@@ -10,6 +10,9 @@ asm/*
 #binaries ripped from the ROMs
 assets/
 assets/*
+bin/
+bin/*
+
 
 # This folder will hold modified asset binaries
 # these assets will override the original game
