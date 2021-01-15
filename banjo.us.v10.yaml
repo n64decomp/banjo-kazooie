@@ -1,0 +1,188 @@
+basename: banjo
+options:
+  find_file_boundaries: True
+  compiler: "IDO"
+  extensions: "custom/n64splat"
+  undefined_syms: undefined_syms.us.v10.txt
+segments:
+- name:  header
+  type:  header
+  start: 0x00000000
+  files:
+  - [0x0000, header, header]
+- name:  boot
+  type:  bin
+  start: 0x00000040
+- name:  bk_boot
+  type:  code
+  start: 0x1000
+  vram:  0x80000400
+  files:
+  - [0x1000, asm]
+  - [0x1050, asm]
+  - [0x1150, asm]
+  - [0x12B0, asm]
+  - [0x27F0, asm]
+  - [0x2970, asm]
+  - [0x2C00, asm]
+  - [0x2D90, asm]
+  - [0x2DB0, asm]
+  - [0x2E60, asm]
+  - [0x37F0, asm]
+  - [0x3870, asm]
+  - [0x38D0, asm]
+  - [0x3930, asm]
+  - [0x3C50, asm]
+  - [0x3CD0, asm]
+  - [0x45C0, asm]
+  - [0x4630, asm]
+  - [0x47D0, asm]
+  - [0x4890, asm]
+  - [0x4BC0, asm]
+  - [0x4C00, asm]
+  - [0x4D90, asm]
+  - [0x4E90, asm]
+  - [0x4FA0, asm]
+  - [0x51D0, asm]
+  - [0x5A40, asm]
+  - [0x5AA0, asm]
+  - [0x5B90, asm]
+- name: assets
+  type: bin
+  start: 0x5BE0
+  files:
+  - [0x5BE0, bin, assets]
+- name: soundfont1
+  type: bin
+  start: 0xD846C0
+  files:
+  - [0xD846C0, bin, soundfont1.ctl]
+  - [0xD954B0, bin, soundfont1.tbl]
+- name: soundfont2
+  type: bin
+  start: 0xEA3EB0
+  files:
+  - [0xEA3EB0, bin, soundfont2.ctl]
+  - [0xEADE60, bin, soundfont2.tbl]
+- name: bk_core1_code.us.v10.rzip
+  type: bin #type: rzip_code #compressed code
+  start: 0xF19250
+  #vram:  0x8023DA20
+- name: bk_core1_data.us.v10.rzip
+  type: bin #type: rzip_.data #compressed data
+  start: 0xF362EB
+  #vram:  0x80275610
+- name: bk_core2_code.us.v10.rzip
+  type: bin #type: rzip_code #compressed code
+  start: 0xF37F90
+  #vram:  0x80286F90
+- name: bk_core2_data.us.v10.rzip
+  type: bin #type: rzip_.data #compressed data
+  start: 0xF9CAE0
+  #vram:  0x80363590
+- name: clankers_cavern_code
+  type: bin #type: rzip_code/overlay #compressed code
+  start: 0xFA3FD0
+  #vram:  0x803863F0
+- name: clankers_cavern_data
+  type: bin #type: rzip_.data/overlay #compressed data
+  start: 0xFA5D96
+- name: mad_monster_mansion_code
+  type: bin #type: rzip_code/overlay #compressed code
+  start: 0xFA5F50
+  #vram:  0x803863F0
+- name: mad_monster_mansion_data
+  type: bin #type: rzip_.data/overlay #compressed data
+  start: 0xFA8CE6
+  #vram:  0x8038B9E0
+- name: gobis_valley_code
+  type: bin #type: rzip_code/overlay #compressed code
+  start: 0xFA9150
+  #vram:  0x803863F0
+- name: gobis_valley_data
+  type: bin #type: rzip_.data/overlay #compressed data
+  start: 0xFAE27E
+  #vram:  0x80390BD0
+- name: treasure_trove_cove_code
+  type: bin #type: rzip_code/overlay #compressed code
+  start: 0xFAE860
+  #vram:  0x803863F0
+- name: treasure_trove_cove_data
+  type: bin #type: rzip_.data/overlay #compressed data
+  start: 0xFB1AEB
+  #vram:  0x8038C3B0
+- name: mumbo_mountain_code
+  type: bin #type: rzip_code/overlay #compressed code
+  start: 0xFB24A0
+  #vram:  0x803863F0
+- name: mumbo_mountain_data
+  type: bin #type: rzip_.data/overlay #compressed data
+  start: 0xFB42D9
+  #vram:  0x80389890
+- name: bubblegloop_swamp_code
+  type: bin #type: rzip_code/overlay #compressed code
+  start: 0xFB44E0
+  #vram:  0x803863F0
+- name: bubblegloop_swamp_data
+  type: bin #type: rzip_.data/overlay #compressed data
+  start: 0xFB9610
+  #vram:  0x80389AA0
+- name: rusty_bucket_bay_code
+  type: bin #type: rzip_code/overlay #compressed code
+  start: 0xFB9A30
+  #vram:  0x803863F0
+- name: rusty_bucket_bay_data
+  type: bin #type: rzip_.data/overlay #compressed data
+  start: 0xFBE5E2
+  #vram:  0x80390050
+- name: freezeezy_peak_code
+  type: bin #type: rzip_code/overlay #compressed code
+  start: 0xFBEBE0
+  #vram:  0x803863F0
+- name: freezeezy_peak_data
+  type: bin #type: rzip_.data/overlay #compressed data
+  start: 0xFC3FEF
+  #vram:  0x803919F0
+- name: spiral_mountain_code
+  type: bin #type: rzip_code/overlay #compressed code
+  start: 0xFC4810
+  #vram:  0x803863F0
+- name: spiral_mountain_data
+  type: bin #type: rzip_.data/overlay #compressed data
+  start: 0xFC6C0F
+  #vram:  0x8038AAC0
+- name: cutscenes_code
+  type: bin #type: rzip_code/overlay #compressed code
+  start: 0xFC6F20
+  #vram:  0x803863F0
+- name: cutscenes_data
+  type: bin #type: rzip_.data/overlay #compressed data
+  start: 0xFC8AFC
+  #vram:  0x8038D350
+- name: lair_code
+  type: bin #type: rzip_code/overlay #compressed code
+  start: 0xFC9150
+  #vram:  0x803863F0
+- name: lair_data
+  type: bin #type: rzip_.data/overlay #compressed data
+  start: 0xFCF698
+  #vram:  0x80392CB0
+- name: fight_code
+  type: bin #type: rzip_code/overlay #compressed code
+  start: 0xFD0420
+  #vram:  0x803863F0
+- name: fight_data
+  type: bin #type: rzip_.data/overlay #compressed data
+  start: 0xFD5A60
+  #vram:  0x80391380
+- name: click_clock_wood_code
+  type: bin #type: rzip_code/overlay #compressed code
+  start: 0xFD6190
+  #vram:  0x803863F0
+- name: click_clock_wood_data
+  type: bin #type: rzip_.data/overlay #compressed data
+  start: 0xFDA2FF
+  #vram:  0x8038EB50
+- [0xFDAA10, bin, empty_level]
+- [0xFDAA30, bin, trailer] # 0xff to end
+- [0x1000000] # end of ROM
