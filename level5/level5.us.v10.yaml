@@ -1,4 +1,4 @@
-basename: core1
+basename: level5
 options:
   find_file_boundaries: true
   compiler: IDO
@@ -7,13 +7,13 @@ segments:
   - name: code
     type: code
     start: 0x00000000
-    vram: 0x8023DA20
+    vram: 0x803863F0
     files:
       - [0x00000000, asm]
   - name: data
     type: .data
-    start: 0x00037BF0
-    vram: 0x80275610
+    start: 0x0000C8C0
+    vram: 0x80392CB0
     files:
-      - [0x00037BF0, bin]
-  - "[0x0003C710]"
+      - [0x0000C8C0, bin]
+  - "[0x0000EF60]"

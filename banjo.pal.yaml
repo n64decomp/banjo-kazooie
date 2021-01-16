@@ -1,0 +1,86 @@
+basename: banjo
+options:
+  find_file_boundaries: true
+  compiler: "\"IDO\""
+  undefined_syms: undefined_syms.pal.txt
+segments:
+  - name: header
+    type: header
+    start: 0x00000000
+    files:
+      - [0x00000000, header, header]
+  - name: boot
+    type: bin
+    start: 0x00000040
+  - name: bk_boot
+    type: code
+    start: 0x00001000
+    vram: 0x80000400
+    files:
+      - [0x00001000, asm]
+  - name: assets
+    type: bin
+    start: 0x00005E90
+    files:
+      - [0x00005E90, bin, assets]
+  - name: soundfont1
+    type: bin
+    start: 0x00DA8DF0
+    files:
+      - [0x00DA8DF0, bin, soundfont1.ctl]
+      - [0x00DB9BE0, bin, soundfont1.tbl]
+  - name: soundfont2
+    type: bin
+    start: 0x00EC85E0
+    files:
+      - [0x00EC85E0, bin, soundfont2.ctl]
+      - [0x00ED2440, bin, soundfont2.tbl]
+  - name: core1.pal.rzip
+    type: bin
+    start: 0x00F3D980
+  - name: core2.pal.rzip
+    type: bin
+    start: 0x00F5BEC0
+  - name: level2.pal.rzip
+    type: bin
+    start: 0x00FC8460
+  - name: level9.pal.rzip
+    type: bin
+    start: 0x00FCA3C0
+  - name: level6.pal.rzip
+    type: bin
+    start: 0x00FCD5C0
+  - name: level1.pal.rzip
+    type: bin
+    start: 0x00FD2CC0
+  - name: level0.pal.rzip
+    type: bin
+    start: 0x00FD6900
+  - name: level3.pal.rzip
+    type: bin
+    start: 0x00FD8930
+  - name: level8.pal.rzip
+    type: bin
+    start: 0x00FDDE80
+  - name: level4.pal.rzip
+    type: bin
+    start: 0x00FE3060
+  - name: level10.pal.rzip
+    type: bin
+    start: 0x00FE8CA0
+  - name: level12.pal.rzip
+    type: bin
+    start: 0x00FEB540
+  - name: level5.pal.rzip
+    type: bin
+    start: 0x00FED780
+  - name: level11.pal.rzip
+    type: bin
+    start: 0x00FF4A50
+  - name: level7.pal.rzip
+    type: bin
+    start: 0x00FFA830
+  - name: emptyLvl.pal.rzip
+    type: bin
+    start: 0x00FFF090
+  - [0x01000000]

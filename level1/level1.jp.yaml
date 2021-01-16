@@ -1,19 +1,19 @@
-basename: core1
+basename: level1
 options:
   find_file_boundaries: true
   compiler: IDO
-  undefined_syms: undefined_syms.us.v10.txt
+  undefined_syms: undefined_syms.jp.txt
 segments:
   - name: code
     type: code
     start: 0x00000000
-    vram: 0x8023DA20
+    vram: 0x80386F40
     files:
       - [0x00000000, asm]
   - name: data
     type: .data
-    start: 0x00037BF0
-    vram: 0x80275610
+    start: 0x00005FF0
+    vram: 0x8038CF30
     files:
-      - [0x00037BF0, bin]
-  - "[0x0003C710]"
+      - [0x00005FF0, bin]
+  - "[0x00007330]"
