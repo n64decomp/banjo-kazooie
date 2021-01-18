@@ -1,0 +1,48 @@
+basename: RBB
+options:
+  find_file_boundaries: yes
+  compiler: "IDO"
+  cpp_args:
+    - "-Iinclude"
+    - "-Iinclude/2.0L"
+    - "-D_LANGUAGE_C"
+  generated_c_preamble: |
+    #include <ultra64.h>
+    #include "functions.h"
+    #include "variables.h"
+  create_detected_syms: yes
+  undefined_syms: syms/undefined_syms.RBB.us.v10.txt
+  symbol_addrs:   syms/symbol_addrs.RBB.us.v10.txt
+segments:
+  - name: RBB/code
+    type: code
+    start: 0x00000000
+    vram: 0x803863F0
+    files:
+      - [0x00000000, asm]
+      - [0xCA0, asm]
+      - [0x1570, asm]
+      - [0x1FC0, asm]
+      - [0x27E0, asm]
+      - [0x2A70, asm]
+      - [0x2E90, asm]
+      - [0x34B0, asm]
+      - [0x36A0, asm]
+      - [0x3CB0, asm]
+      - [0x40F0, asm]
+      - [0x47D0, asm]
+      - [0x4C70, asm]
+      - [0x52F0, asm]
+      - [0x5F10, asm]
+      - [0x5F80, asm]
+      - [0x7A60, asm]
+      - [0x7B20, asm]
+      - [0x8520, asm]
+      - [0x99F0, asm]
+  - name: RBB/data
+    type: code
+    start: 0x00009C60
+    vram: 0x80390050
+    files:
+      - [0x00009C60, bin]
+  - [0x0000AE80]

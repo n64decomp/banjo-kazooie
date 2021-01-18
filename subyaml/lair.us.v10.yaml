@@ -1,0 +1,42 @@
+basename: lair
+options:
+  find_file_boundaries: yes
+  compiler: "IDO"
+  cpp_args:
+    - "-Iinclude"
+    - "-Iinclude/2.0L"
+    - "-D_LANGUAGE_C"
+  generated_c_preamble: |
+    #include <ultra64.h>
+    #include "functions.h"
+    #include "variables.h"
+  create_detected_syms: yes
+  undefined_syms: syms/undefined_syms.lair.us.v10.txt
+  symbol_addrs:   syms/symbol_addrs.lair.us.v10.txt
+segments:
+  - name: lair/code
+    type: code
+    start: 0x00000000
+    vram: 0x803863F0
+    files:
+      - [0x00000000, asm]
+      - [0x42A0, asm]
+      - [0x5640, asm]
+      - [0x5ED0, asm]
+      - [0x86F0, asm]
+      - [0x9C40, asm]
+      - [0xA170, asm]
+      - [0xA430, asm]
+      - [0xA4A0, asm]
+      - [0xA810, asm]
+      - [0xAD70, asm]
+      - [0xBBD0, asm]
+      - [0xC1C0, asm]
+      - [0xC6C0, asm]
+  - name: lair/data
+    type: code
+    start: 0x0000C8C0
+    vram: 0x80392CB0
+    files:
+      - [0x0000C8C0, bin]
+  - [0x0000EF60]

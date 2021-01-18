@@ -1,0 +1,36 @@
+basename: CC
+options:
+  find_file_boundaries: yes
+  compiler: "IDO"
+  cpp_args:
+    - "-Iinclude"
+    - "-Iinclude/2.0L"
+    - "-D_LANGUAGE_C"
+  generated_c_preamble: |
+    #include <ultra64.h>
+    #include "functions.h"
+    #include "variables.h"
+  create_detected_syms: yes
+  undefined_syms: syms/undefined_syms.CC.us.v10.txt
+  symbol_addrs:   syms/symbol_addrs.CC.us.v10.txt
+segments:
+  - name: CC/code
+    type: code
+    start: 0x00000000
+    vram: 0x803863F0
+    files:
+      - [0x00000000, asm]
+      - [0x530, asm]
+      - [0xBF0, asm]
+      - [0x13C0, asm]
+      - [0x19B0, asm]
+      - [0x1B90, asm]
+      - [0x1F70, asm]
+      - [0x3400, asm]
+  - name: CC/data
+    type: code
+    start: 0x000036B0
+    vram: 0x80389AA0
+    files:
+      - [0x000036B0, bin]
+  - [0x00003B80]

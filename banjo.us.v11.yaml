@@ -1,48 +1,87 @@
 basename: banjo
 options:
-  find_file_boundaries: yes
+  find_file_boundaries: True
   compiler: "IDO"
-  create_detected_syms: yes
+  undefined_syms: undefined_syms.us.v11.txt
+  symbol_addrs:   symbol_addrs.us.v11.txt
 segments:
-- name:  header
-  type:  header
-  start: 0x00000000
-- name:  boot
-  type:  bin
-  start: 0x00000040
-- type:  code
-  start: 0x1000
-  vram:  0x10000400
-  files:
-  - [0x1000, asm]
-  - [0x1050, asm]
-  - [0x1150, asm]
-  - [0x12B0, asm]
-  - [0x27F0, asm]
-  - [0x2970, asm]
-  - [0x2C00, asm]
-  - [0x2D90, asm]
-  - [0x2DB0, asm]
-  - [0x2E60, asm]
-  - [0x37F0, asm]
-  - [0x3870, asm]
-  - [0x38D0, asm]
-  - [0x3930, asm]
-  - [0x3C50, asm]
-  - [0x3CD0, asm]
-  - [0x45C0, asm]
-  - [0x4630, asm]
-  - [0x47D0, asm]
-  - [0x4890, asm]
-  - [0x4BC0, asm]
-  - [0x4C00, asm]
-  - [0x4D90, asm]
-  - [0x4E90, asm]
-  - [0x4FA0, asm]
-  - [0x51D0, asm]
-  - [0x5A40, asm]
-  - [0x5AA0, asm]
-  - [0x5B90, asm]
-- type: bin
-  start: 0x5BE0
-- [0x1000000]
+  - name: header
+    type: header
+    start: 0x00000000
+    files:
+      - [0x00000000, header, header]
+  - name: boot
+    type: bin
+    start: 0x00000040
+  - name: bk_boot
+    type: code
+    start: 0x00001000
+    vram: 0x80000400
+    files:
+      - [0x00001000, asm]
+  - name: assets
+    type: bin
+    start: 0x00005E90
+    files:
+      - [0x00005E90, bin, assets]
+  - name: soundfont1
+    type: bin
+    start: 0x00D87CA0
+    files:
+      - [0x00D87CA0, bin, soundfont1.ctl]
+      - [0x00D98A90, bin, soundfont1.tbl]
+  - name: soundfont2
+    type: bin
+    start: 0x00EA7490
+    files:
+      - [0x00EA7490, bin, soundfont2.ctl]
+      - [0x00EB12F0, bin, soundfont2.tbl]
+  - name: core1.us.v11.rzip
+    type: bin
+    start: 0x00F1C830
+  - name: core2.us.v11.rzip
+    type: bin
+    start: 0x00F3ADB0
+  - name: level2.us.v11.rzip
+    type: bin
+    start: 0x00FA6F80
+  - name: level9.us.v11.rzip
+    type: bin
+    start: 0x00FA8EE0
+  - name: level6.us.v11.rzip
+    type: bin
+    start: 0x00FAC0E0
+  - name: level1.us.v11.rzip
+    type: bin
+    start: 0x00FB1810
+  - name: level0.us.v11.rzip
+    type: bin
+    start: 0x00FB5450
+  - name: level3.us.v11.rzip
+    type: bin
+    start: 0x00FB7480
+  - name: level8.us.v11.rzip
+    type: bin
+    start: 0x00FBC9C0
+  - name: level4.us.v11.rzip
+    type: bin
+    start: 0x00FC1BA0
+  - name: level10.us.v11.rzip
+    type: bin
+    start: 0x00FC77E0
+  - name: level12.us.v11.rzip
+    type: bin
+    start: 0x00FC9EF0
+  - name: level5.us.v11.rzip
+    type: bin
+    start: 0x00FCC120
+  - name: level11.us.v11.rzip
+    type: bin
+    start: 0x00FD3400
+  - name: level7.us.v11.rzip
+    type: bin
+    start: 0x00FD91F0
+  - name: emptyLvl.us.v11.rzip
+    type: bin
+    start: 0x00FDDA80
+  - [0x01000000]

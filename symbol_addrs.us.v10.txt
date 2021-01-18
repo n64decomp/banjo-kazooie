@@ -1,0 +1,3 @@
+osPiRawStartDMA = 0x802405F0;
+guMtxIdentF = 0x80240D70;
+func_801241304 = 0x801241304;

@@ -1,0 +1,37 @@
+basename: TTC
+options:
+  find_file_boundaries: yes
+  compiler: "IDO"
+  cpp_args:
+    - "-Iinclude"
+    - "-Iinclude/2.0L"
+    - "-D_LANGUAGE_C"
+  generated_c_preamble: |
+    #include <ultra64.h>
+    #include "functions.h"
+    #include "variables.h"
+  create_detected_syms: yes
+  undefined_syms: syms/undefined_syms.TTC.us.v10.txt
+  symbol_addrs:   syms/symbol_addrs.TTC.us.v10.txt
+segments:
+  - name: TTC/code
+    type: code
+    start: 0x00000000
+    vram: 0x803863F0
+    files:
+      - [0x00000000, asm]
+      - [0x19D0, asm]
+      - [0x26D0, asm]
+      - [0x2B80, asm]
+      - [0x3040, asm]
+      - [0x30D0, asm]
+      - [0x35D0, asm]
+      - [0x3E30, asm]
+      - [0x5BD0, asm]
+  - name: TTC/data
+    type: code
+    start: 0x00005FC0
+    vram: 0x8038C3B0
+    files:
+      - [0x00005FC0, bin]
+  - [0x00007300]

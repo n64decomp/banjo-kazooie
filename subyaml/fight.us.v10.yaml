@@ -1,0 +1,34 @@
+basename: fight
+options:
+  find_file_boundaries: yes
+  compiler: "IDO"
+  cpp_args:
+    - "-Iinclude"
+    - "-Iinclude/2.0L"
+    - "-D_LANGUAGE_C"
+  generated_c_preamble: |
+    #include <ultra64.h>
+    #include "functions.h"
+    #include "variables.h"
+  create_detected_syms: yes
+  undefined_syms: syms/undefined_syms.fight.us.v10.txt
+  symbol_addrs:   syms/symbol_addrs.fight.us.v10.txt
+segments:
+  - name: fight/code
+    type: code
+    start: 0x00000000
+    vram: 0x803863F0
+    files:
+      - [0x00000000, asm]
+      - [0x180, asm]
+      - [0x6E90, asm]
+      - [0x7580, asm]
+      - [0x7BE0, asm]
+      - [0x9850, asm]
+  - name: fight/data
+    type: code
+    start: 0x0000AF90
+    vram: 0x80391380
+    files:
+      - [0x0000AF90, bin]
+  - [0x0000C350]

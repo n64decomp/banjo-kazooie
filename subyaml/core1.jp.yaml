@@ -1,0 +1,29 @@
+basename: core1
+options:
+  find_file_boundaries: yes
+  compiler: "IDO"
+  cpp_args:
+    - "-Iinclude"
+    - "-Iinclude/2.0L"
+    - "-D_LANGUAGE_C"
+  generated_c_preamble: |
+    #include <ultra64.h>
+    #include "functions.h"
+    #include "variables.h"
+  create_detected_syms: yes
+  undefined_syms: undefined_syms.jp.txt
+  symbol_addrs:   symbol_addrs.jp.txt
+segments:
+  - name: core1/code
+    type: code
+    start: 0x00000000
+    vram: 0x8023D680
+    files:
+      - [0x00000000, asm]
+    - name: core1/data
+    type: code
+    start: 0x00036E50
+    vram: 0x80275470
+    files:
+      - [0x00036EF0, bin]
+  - [0x0003B8F0]

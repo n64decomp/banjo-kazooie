@@ -1,0 +1,35 @@
+basename: BGS
+options:
+  find_file_boundaries: yes
+  compiler: "IDO"
+  cpp_args:
+    - "-Iinclude"
+    - "-Iinclude/2.0L"
+    - "-D_LANGUAGE_C"
+  generated_c_preamble: |
+    #include <ultra64.h>
+    #include "functions.h"
+    #include "variables.h"
+  create_detected_syms: yes
+  undefined_syms: syms/undefined_syms.BGS.us.v10.txt
+  symbol_addrs:   syms/symbol_addrs.BGS.us.v10.txt
+segments:
+  - name: BGS/code
+    type: code
+    start: 0x00000000
+    vram: 0x803863F0
+    files:
+      - [0x00000000, asm]
+      - [0x18A0, asm]
+      - [0x3030, asm]
+      - [0x9080, asm]
+      - [0x9750, asm]
+      - [0x98C0, asm]
+      - [0x9920, asm]
+  - name: BGS/data
+    type: code
+    start: 0x0000A2A0
+    vram: 0x80390690
+    files:
+      - [0x0000A2A0, bin]
+  - [0x0000AE40]

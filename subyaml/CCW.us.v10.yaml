@@ -1,0 +1,45 @@
+basename: CCW
+options:
+  find_file_boundaries: yes
+  compiler: "IDO"
+  cpp_args:
+    - "-Iinclude"
+    - "-Iinclude/2.0L"
+    - "-D_LANGUAGE_C"
+  generated_c_preamble: |
+    #include <ultra64.h>
+    #include "functions.h"
+    #include "variables.h"
+  create_detected_syms: yes
+  undefined_syms: syms/undefined_syms.CCW.us.v10.txt
+  symbol_addrs:   syms/symbol_addrs.CCW.us.v10.txt
+segments:
+  - name: CCW/code
+    type: code
+    start: 0x00000000
+    vram: 0x803863F0
+    files:
+      - [0x00000000, asm]
+      - [0x160, asm]
+      - [0x950, asm]
+      - [0x14B0, asm]
+      - [0x1B20, asm]
+      - [0x4530, asm]
+      - [0x4D00, asm]
+      - [0x50D0, asm]
+      - [0x5540, asm]
+      - [0x61E0, asm]
+      - [0x6620, asm]
+      - [0x6AC0, asm]
+      - [0x7570, asm]
+      - [0x76C0, asm]
+      - [0x7BC0, asm]
+      - [0x8050, asm]
+      - [0x8670, asm]
+  - name: CCW/data
+    type: code
+    start: 0x00008760
+    vram: 0x8038EB50
+    files:
+      - [0x00008760, bin]
+  - [0x000099E0]

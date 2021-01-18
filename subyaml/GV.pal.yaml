@@ -1,0 +1,29 @@
+basename: GV
+options:
+  find_file_boundaries: yes
+  compiler: "IDO"
+  cpp_args:
+    - "-Iinclude"
+    - "-Iinclude/2.0L"
+    - "-D_LANGUAGE_C"
+  generated_c_preamble: |
+    #include <ultra64.h>
+    #include "functions.h"
+    #include "variables.h"
+  create_detected_syms: yes
+  undefined_syms: undefined_syms.pal.txt
+  symbol_addrs:   symbol_addrs.pal.txt
+segments:
+  - name: GV/code
+    type: code
+    start: 0x00000000
+    vram: 0x80386DD0
+    files:
+      - [0x00000000, asm]
+  - name: GV/data
+    type: code
+    start: 0x0000A7E0
+    vram: 0x803915B0
+    files:
+      - [0x0000A7E0, bin]
+  - [0x0000B630]

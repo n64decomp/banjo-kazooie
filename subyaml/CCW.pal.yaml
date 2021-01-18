@@ -1,0 +1,29 @@
+basename: CCW
+options:
+  find_file_boundaries: yes
+  compiler: "IDO"
+  cpp_args:
+    - "-Iinclude"
+    - "-Iinclude/2.0L"
+    - "-D_LANGUAGE_C"
+  generated_c_preamble: |
+    #include <ultra64.h>
+    #include "functions.h"
+    #include "variables.h"
+  create_detected_syms: yes
+  undefined_syms: undefined_syms.pal.txt
+  symbol_addrs:   symbol_addrs.pal.txt
+segments:
+  - name: CCW/code
+    type: code
+    start: 0x00000000
+    vram: 0x80386DD0
+    files:
+      - [0x00000000, asm]
+  - name: CCW/data
+    type: code
+    start: 0x00008760
+    vram: 0x8038F530
+    files:
+      - [0x00008760, bin]
+  - [0x000099E0]

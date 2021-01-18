@@ -1,0 +1,37 @@
+basename: MMM
+options:
+  find_file_boundaries: yes
+  compiler: "IDO"
+  cpp_args:
+    - "-Iinclude"
+    - "-Iinclude/2.0L"
+    - "-D_LANGUAGE_C"
+  generated_c_preamble: |
+    #include <ultra64.h>
+    #include "functions.h"
+    #include "variables.h"
+  create_detected_syms: yes
+  undefined_syms: syms/undefined_syms.MMM.us.v10.txt
+  symbol_addrs:   syms/symbol_addrs.MMM.us.v10.txt
+segments:
+  - name: MMM/code
+    type: code
+    start: 0x00000000
+    vram: 0x803863F0
+    files:
+      - [0x00000000, asm]
+      - [0x570, asm]
+      - [0xDC0, asm]
+      - [0x1020, asm]
+      - [0x2F60, asm]
+      - [0x3120, asm]
+      - [0x3420, asm]
+      - [0x3D50, asm]
+      - [0x47D0, asm]
+  - name: MMM/data
+    type: code
+    start: 0x000055F0
+    vram: 0x8038B9E0
+    files:
+      - [0x000055F0, bin]
+  - [0x000060D0]
