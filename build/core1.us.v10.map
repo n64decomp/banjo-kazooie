@@ -1,0 +1,2505 @@
+
+Discarded input sections
+
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_7C0.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_1D00.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_2BD0.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_2DA0.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_2FA0.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_31C0.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_7090.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_72B0.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_7F60.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_8C50.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_9D30.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_CE60.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_E360.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_EAF0.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_11AC0.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_13680.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_13990.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_15770.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_16A50.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_18110.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_18210.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_18310.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_1BE90.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_1D5C0.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_1D5D0.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_1E360.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_1E6E0.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_1E950.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_1F330.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_1F9E0.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_1FA80.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_1FB80.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_1FC00.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_1FC90.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_1FD00.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_1FDA0.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_21210.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_21250.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_21960.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_219D0.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_21A80.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_21AB0.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_21B50.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_21CB0.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_22740.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_227F0.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_22D50.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_22DA0.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_25360.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_25440.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_254C0.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_25C40.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_25E20.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_26110.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_261C0.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_261F0.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_26480.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_265D0.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_26880.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_26B30.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_26C70.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_26D00.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_26DB0.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_27150.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_27200.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_27390.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_27490.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_27940.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_27AB0.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_27E50.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_27F90.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_28070.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_28440.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_284B0.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_28810.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_289D0.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_28A90.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_28D00.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_28DA0.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_28F90.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_291F0.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_29620.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_29870.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_29900.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_2A3C0.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_2A9E0.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_2AB20.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_2AC50.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_2ACE0.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_2ADA0.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_2C1D0.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_2C810.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_2C8C0.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_2D230.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_2D290.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_2D2D0.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_2DA00.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_2DAC0.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_2DC70.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_2DD70.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_2DF50.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_2E260.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_2EA50.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_2EAE0.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_2EC50.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_2F060.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_2F3F0.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_2F480.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_2F5F0.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_301F0.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_30300.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_31060.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_32370.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_32F10.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_33D60.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_33E70.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_34930.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_349D0.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_34A30.o
+ .reginfo       0x0000000000000000       0x18 build/src/core1/code_34B20.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+                0x0000000000000000                . = 0x0
+                0x0000000000000000                code_code_ROM_START = .
+                0x000000008023da20                code_code_VRAM = ADDR (.code_code)
+
+.code_code      0x000000008023da20    0x34be0 load address 0x0000000000000000
+ build/src/core1/code_0.o(.text)
+ .text          0x000000008023da20      0x7c0 build/src/core1/code_0.o
+                0x000000008023da20                func_8023DA20
+                0x000000008023da74                func_8023DA74
+                0x000000008023da9c                func_8023DA9C
+                0x000000008023db4c                func_8023DB4C
+                0x000000008023db5c                func_8023DB5C
+                0x000000008023db68                func_8023DB68
+                0x000000008023db74                func_8023DB74
+                0x000000008023dba4                func_8023DBA4
+                0x000000008023dbac                func_8023DBAC
+                0x000000008023dbdc                func_8023DBDC
+                0x000000008023dc0c                func_8023DC0C
+                0x000000008023dcdc                func_8023DCDC
+                0x000000008023dcf4                func_8023DCF4
+                0x000000008023dd0c                func_8023DD0C
+                0x000000008023df9c                func_8023DF9C
+                0x000000008023dff0                func_8023DFF0
+                0x000000008023e000                func_8023E000
+                0x000000008023e00c                func_8023E00C
+                0x000000008023e018                func_8023E018
+                0x000000008023e060                func_8023E060
+                0x000000008023e06c                func_8023E06C
+                0x000000008023e080                func_8023E080
+                0x000000008023e08c                func_8023E08C
+                0x000000008023e0a0                func_8023E0A0
+                0x000000008023e0c4                func_8023E0C4
+                0x000000008023e0e8                func_8023E0E8
+                0x000000008023e0f0                func_8023E0F0
+                0x000000008023e148                func_8023E148
+ build/src/core1/code_7C0.o(.text)
+ .text          0x000000008023e1e0     0x1540 build/src/core1/code_7C0.o
+                0x000000008023e1e0                func_8023E1E0
+                0x000000008023e820                func_8023E820
+                0x000000008023ecec                func_8023ECEC
+                0x000000008023ee84                func_8023EE84
+                0x000000008023efec                func_8023EFEC
+                0x000000008023f510                func_8023F510
+                0x000000008023f630                func_8023F630
+ build/src/core1/code_1D00.o(.text)
+ .text          0x000000008023f720      0xed0 build/src/core1/code_1D00.o
+                0x000000008023f720                func_8023F720
+                0x000000008023f770                func_8023F770
+                0x000000008023f88c                func_8023F88C
+                0x000000008023fa4c                func_8023FA4C
+                0x000000008023fa64                func_8023FA64
+                0x000000008023fb1c                func_8023FB1C
+                0x000000008023fbb8                func_8023FBB8
+                0x000000008023fe80                func_8023FE80
+                0x000000008023ffac                func_8023FFAC
+                0x000000008023ffd4                func_8023FFD4
+                0x000000008023ffe4                func_8023FFE4
+                0x00000000802401c4                func_802401C4
+                0x0000000080240204                func_80240204
+                0x00000000802403b8                func_802403B8
+                0x00000000802403f0                func_802403F0
+                0x0000000080240538                func_80240538
+                0x0000000080240570                func_80240570
+                0x00000000802405ac                func_802405AC
+                0x00000000802405b8                func_802405B8
+                0x00000000802405c4                func_802405C4
+                0x00000000802405d0                func_802405D0
+                0x00000000802405dc                func_802405DC
+ build/src/core1/code_2BD0.o(.text)
+ .text          0x00000000802405f0      0x1d0 build/src/core1/code_2BD0.o
+                0x0000000080240754                func_80240754
+ build/src/core1/code_2DA0.o(.text)
+ .text          0x00000000802407c0      0x200 build/src/core1/code_2DA0.o
+                0x00000000802407c0                func_802407C0
+                0x0000000080240844                func_80240844
+                0x0000000080240874                func_80240874
+                0x00000000802408b0                func_802408B0
+                0x00000000802408ec                func_802408EC
+                0x0000000080240924                func_80240924
+ build/src/core1/code_2FA0.o(.text)
+ .text          0x00000000802409c0      0x220 build/src/core1/code_2FA0.o
+                0x00000000802409c0                func_802409C0
+                0x0000000080240a74                func_80240A74
+                0x0000000080240a94                func_80240A94
+                0x0000000080240ac8                func_80240AC8
+ build/src/core1/code_31C0.o(.text)
+ .text          0x0000000080240be0     0x3ed0 build/src/core1/code_31C0.o
+                0x0000000080240be0                func_80240BE0
+                0x0000000080240c30                func_80240C30
+                0x0000000080240c70                func_80240C70
+                0x0000000080240df8                func_80240DF8
+                0x0000000080240e4c                func_80240E4C
+                0x000000008024128c                func_8024128C
+                0x0000000080241304                func_80241304
+                0x0000000080241348                func_80241348
+                0x0000000080241490                func_80241490
+                0x0000000080241928                func_80241928
+                0x00000000802424d4                func_802424D4
+                0x0000000080242be8                func_80242BE8
+                0x0000000080243070                func_80243070
+                0x000000008024324c                func_8024324C
+                0x00000000802432f8                func_802432F8
+                0x0000000080243f84                func_80243F84
+                0x0000000080243fe4                func_80243FE4
+                0x0000000080244050                func_80244050
+                0x0000000080244110                func_80244110
+                0x0000000080244190                func_80244190
+                0x000000008024431c                func_8024431C
+                0x00000000802444c0                func_802444C0
+                0x0000000080244594                func_80244594
+                0x00000000802445ac                func_802445AC
+                0x00000000802445c4                func_802445C4
+                0x0000000080244608                func_80244608
+                0x0000000080244814                func_80244814
+                0x0000000080244860                func_80244860
+                0x0000000080244918                func_80244918
+                0x0000000080244938                func_80244938
+                0x0000000080244958                func_80244958
+                0x0000000080244978                func_80244978
+                0x00000000802449c4                func_802449C4
+                0x00000000802449e4                func_802449E4
+                0x0000000080244a98                func_80244A98
+ build/src/core1/code_7090.o(.text)
+ .text          0x0000000080244ab0      0x220 build/src/core1/code_7090.o
+                0x0000000080244ab0                func_80244AB0
+                0x0000000080244b3c                func_80244B3C
+                0x0000000080244bb0                func_80244BB0
+                0x0000000080244c78                func_80244C78
+ build/src/core1/code_72B0.o(.text)
+ .text          0x0000000080244cd0      0xcb0 build/src/core1/code_72B0.o
+                0x0000000080244cd0                func_80244CD0
+                0x0000000080244d94                func_80244D94
+                0x0000000080244e54                func_80244E54
+                0x0000000080244f00                func_80244F00
+                0x0000000080244fc0                func_80244FC0
+                0x00000000802450dc                func_802450DC
+                0x00000000802451a4                func_802451A4
+                0x0000000080245314                func_80245314
+                0x00000000802453a0                func_802453A0
+                0x00000000802453dc                func_802453DC
+                0x000000008024549c                func_8024549C
+                0x0000000080245524                func_80245524
+                0x000000008024559c                func_8024559C
+                0x000000008024560c                func_8024560C
+                0x000000008024575c                func_8024575C
+                0x00000000802457c4                func_802457C4
+                0x000000008024587c                func_8024587C
+                0x00000000802458a8                func_802458A8
+                0x00000000802458e0                func_802458E0
+ build/src/core1/code_7F60.o(.text)
+ .text          0x0000000080245980      0xcf0 build/src/core1/code_7F60.o
+                0x0000000080245980                func_80245980
+                0x00000000802459a0                func_802459A0
+                0x0000000080245a7c                func_80245A7C
+                0x0000000080245be4                func_80245BE4
+                0x0000000080245d44                func_80245D44
+                0x0000000080245dcc                func_80245DCC
+                0x0000000080245f34                func_80245F34
+                0x0000000080245fb8                func_80245FB8
+                0x00000000802462d4                func_802462D4
+                0x000000008024632c                func_8024632C
+                0x00000000802464b0                func_802464B0
+                0x0000000080246510                func_80246510
+                0x0000000080246570                func_80246570
+                0x00000000802465d0                func_802465D0
+                0x0000000080246624                func_80246624
+ build/src/core1/code_8C50.o(.text)
+ .text          0x0000000080246670     0x10e0 build/src/core1/code_8C50.o
+                0x0000000080246670                func_80246670
+                0x00000000802466f4                func_802466F4
+                0x0000000080246744                func_80246744
+                0x0000000080246794                func_80246794
+                0x0000000080246844                func_80246844
+                0x000000008024692c                func_8024692C
+                0x0000000080246a14                func_80246A14
+                0x0000000080246a64                func_80246A64
+                0x0000000080246a84                func_80246A84
+                0x0000000080246b0c                func_80246B0C
+                0x0000000080246b94                func_80246B94
+                0x0000000080246c2c                func_80246C2C
+                0x0000000080246d78                func_80246D78
+                0x0000000080247000                func_80247000
+                0x00000000802471d8                func_802471D8
+                0x00000000802471ec                func_802471EC
+                0x0000000080247224                func_80247224
+                0x0000000080247304                func_80247304
+                0x000000008024730c                func_8024730C
+                0x0000000080247380                func_80247380
+                0x00000000802473b4                func_802473B4
+                0x0000000080247560                func_80247560
+                0x00000000802476dc                func_802476DC
+                0x00000000802476ec                func_802476EC
+                0x0000000080247720                func_80247720
+                0x000000008024772c                func_8024772C
+                0x0000000080247738                func_80247738
+ build/src/core1/code_9D30.o(.text)
+ .text          0x0000000080247750     0x3130 build/src/core1/code_9D30.o
+                0x0000000080247750                func_80247750
+                0x000000008024776c                func_8024776C
+                0x0000000080247818                func_80247818
+                0x00000000802478c0                func_802478C0
+                0x000000008024792c                func_8024792C
+                0x0000000080247934                func_80247934
+                0x0000000080247978                func_80247978
+                0x00000000802479e4                func_802479E4
+                0x0000000080247a40                func_80247A40
+                0x0000000080247a7c                func_80247A7C
+                0x0000000080247c20                func_80247C20
+                0x0000000080247cec                func_80247CEC
+                0x0000000080247d80                func_80247D80
+                0x0000000080247f24                func_80247F24
+                0x0000000080247f9c                func_80247F9C
+                0x0000000080247fd0                func_80247FD0
+                0x0000000080248098                func_80248098
+                0x000000008024824c                func_8024824C
+                0x0000000080248330                func_80248330
+                0x00000000802483b8                func_802483B8
+                0x00000000802483d8                func_802483D8
+                0x0000000080248404                func_80248404
+                0x0000000080248444                func_80248444
+                0x00000000802484d0                func_802484D0
+                0x0000000080248500                func_80248500
+                0x0000000080248520                func_80248520
+                0x000000008024856c                func_8024856C
+                0x00000000802485bc                func_802485BC
+                0x00000000802485c8                func_802485C8
+                0x00000000802485d0                func_802485D0
+                0x0000000080248870                func_80248870
+                0x0000000080248b40                func_80248B40
+                0x0000000080248d40                func_80248D40
+                0x0000000080248f9c                func_80248F9C
+                0x0000000080249210                func_80249210
+                0x0000000080249428                func_80249428
+                0x0000000080249644                func_80249644
+                0x00000000802499bc                func_802499BC
+                0x00000000802499d0                func_802499D0
+                0x00000000802499e4                func_802499E4
+                0x0000000080249cec                func_80249CEC
+                0x0000000080249de0                func_80249DE0
+                0x0000000080249f34                func_80249F34
+                0x000000008024a284                func_8024A284
+                0x000000008024a3c8                func_8024A3C8
+                0x000000008024a490                func_8024A490
+                0x000000008024a564                func_8024A564
+                0x000000008024a770                func_8024A770
+                0x000000008024a810                func_8024A810
+                0x000000008024a840                func_8024A840
+                0x000000008024a85c                func_8024A85C
+                0x000000008024a868                func_8024A868
+ build/src/core1/code_CE60.o(.text)
+ .text          0x000000008024a880     0x1500 build/src/core1/code_CE60.o
+                0x000000008024a880                func_8024A880
+                0x000000008024a8ac                func_8024A8AC
+                0x000000008024a8dc                func_8024A8DC
+                0x000000008024a928                func_8024A928
+                0x000000008024a984                func_8024A984
+                0x000000008024a9ec                func_8024A9EC
+                0x000000008024aab0                func_8024AAB0
+                0x000000008024adf0                func_8024ADF0
+                0x000000008024ae74                func_8024AE74
+                0x000000008024aed8                func_8024AED8
+                0x000000008024af00                func_8024AF00
+                0x000000008024af48                func_8024AF48
+                0x000000008024bd08                func_8024BD08
+                0x000000008024bd40                func_8024BD40
+ build/src/core1/code_E360.o(.text)
+ .text          0x000000008024bd80      0x790 build/src/core1/code_E360.o
+                0x000000008024bd80                func_8024BD80
+                0x000000008024bd94                func_8024BD94
+                0x000000008024bda0                func_8024BDA0
+                0x000000008024bdac                func_8024BDAC
+                0x000000008024be30                func_8024BE30
+                0x000000008024bf94                func_8024BF94
+                0x000000008024bfa0                func_8024BFA0
+                0x000000008024bfac                func_8024BFAC
+                0x000000008024bfd8                func_8024BFD8
+                0x000000008024c1b4                func_8024C1B4
+                0x000000008024c1dc                func_8024C1DC
+                0x000000008024c1fc                func_8024C1FC
+                0x000000008024c2a0                func_8024C2A0
+                0x000000008024c2f8                func_8024C2F8
+                0x000000008024c408                func_8024C408
+                0x000000008024c428                func_8024C428
+                0x000000008024c4e8                func_8024C4E8
+                0x000000008024c4f8                func_8024C4F8
+ build/src/core1/code_EAF0.o(.text)
+ .text          0x000000008024c510     0x2fd0 build/src/core1/code_EAF0.o
+                0x000000008024c510                func_8024C510
+                0x000000008024c584                func_8024C584
+                0x000000008024c5a8                func_8024C5A8
+                0x000000008024c5cc                func_8024C5CC
+                0x000000008024c5f0                func_8024C5F0
+                0x000000008024c6a0                func_8024C6A0
+                0x000000008024c764                func_8024C764
+                0x000000008024c788                func_8024C788
+                0x000000008024c794                func_8024C794
+                0x000000008024c7b8                func_8024C7B8
+                0x000000008024c904                func_8024C904
+                0x000000008024c964                func_8024C964
+                0x000000008024cbd4                func_8024CBD4
+                0x000000008024cc00                func_8024CC00
+                0x000000008024cc08                func_8024CC08
+                0x000000008024cc50                func_8024CC50
+                0x000000008024cc5c                func_8024CC5C
+                0x000000008024ccc4                func_8024CCC4
+                0x000000008024cd7c                func_8024CD7C
+                0x000000008024cd88                func_8024CD88
+                0x000000008024cdb0                func_8024CDB0
+                0x000000008024cdf8                func_8024CDF8
+                0x000000008024ce18                func_8024CE18
+                0x000000008024ce40                func_8024CE40
+                0x000000008024ce60                func_8024CE60
+                0x000000008024ce74                func_8024CE74
+                0x000000008024cf10                func_8024CF10
+                0x000000008024cfd4                func_8024CFD4
+                0x000000008024d1ec                func_8024D1EC
+                0x000000008024d2b0                func_8024D2B0
+                0x000000008024d374                func_8024D374
+                0x000000008024d8f4                func_8024D8F4
+                0x000000008024d9b0                func_8024D9B0
+                0x000000008024db50                func_8024DB50
+                0x000000008024dc04                func_8024DC04
+                0x000000008024dd0c                func_8024DD0C
+                0x000000008024dd34                func_8024DD34
+                0x000000008024dd90                func_8024DD90
+                0x000000008024dd9c                func_8024DD9C
+                0x000000008024dda8                func_8024DDA8
+                0x000000008024ddb4                func_8024DDB4
+                0x000000008024ddc0                func_8024DDC0
+                0x000000008024ddcc                func_8024DDCC
+                0x000000008024ddd8                func_8024DDD8
+                0x000000008024de1c                func_8024DE1C
+                0x000000008024e030                func_8024E030
+                0x000000008024e258                func_8024E258
+                0x000000008024e2fc                func_8024E2FC
+                0x000000008024e3a8                func_8024E3A8
+                0x000000008024e420                func_8024E420
+                0x000000008024e55c                func_8024E55C
+                0x000000008024e5a8                func_8024E5A8
+                0x000000008024e5e8                func_8024E5E8
+                0x000000008024e60c                func_8024E60C
+                0x000000008024e640                func_8024E640
+                0x000000008024e668                func_8024E668
+                0x000000008024e67c                func_8024E67C
+                0x000000008024e698                func_8024E698
+                0x000000008024e6e0                func_8024E6E0
+                0x000000008024e71c                func_8024E71C
+                0x000000008024e7c8                func_8024E7C8
+                0x000000008024ef74                func_8024EF74
+                0x000000008024efb0                func_8024EFB0
+                0x000000008024f05c                func_8024F05C
+                0x000000008024f12c                func_8024F12C
+                0x000000008024f150                func_8024F150
+                0x000000008024f180                func_8024F180
+                0x000000008024f1b0                func_8024F1B0
+                0x000000008024f1f0                func_8024F1F0
+                0x000000008024f224                func_8024F224
+                0x000000008024f2e4                func_8024F2E4
+                0x000000008024f328                func_8024F328
+                0x000000008024f344                func_8024F344
+                0x000000008024f350                func_8024F350
+                0x000000008024f35c                func_8024F35C
+                0x000000008024f3b4                func_8024F3B4
+                0x000000008024f3c4                func_8024F3C4
+                0x000000008024f3f4                func_8024F3F4
+                0x000000008024f400                func_8024F400
+                0x000000008024f450                func_8024F450
+                0x000000008024f4ac                func_8024F4AC
+ build/src/core1/code_11AC0.o(.text)
+ .text          0x000000008024f4e0     0x1bc0 build/src/core1/code_11AC0.o
+                0x000000008024f4e0                func_8024F4E0
+                0x000000008024f758                func_8024F758
+                0x000000008024f764                func_8024F764
+                0x000000008024f7c4                func_8024F7C4
+                0x000000008024f83c                func_8024F83C
+                0x000000008024f890                func_8024F890
+                0x000000008024fa6c                func_8024FA6C
+                0x000000008024fa98                func_8024FA98
+                0x000000008024fb60                func_8024FB60
+                0x000000008024fb8c                func_8024FB8C
+                0x000000008024fc1c                func_8024FC1C
+                0x000000008024fc6c                func_8024FC6C
+                0x000000008024fce0                func_8024FCE0
+                0x000000008024fd28                func_8024FD28
+                0x000000008024fddc                func_8024FDDC
+                0x000000008024fe44                func_8024FE44
+                0x000000008024feec                func_8024FEEC
+                0x000000008024ff34                func_8024FF34
+                0x0000000080250034                func_80250034
+                0x0000000080250048                func_80250048
+                0x0000000080250060                func_80250060
+                0x0000000080250074                func_80250074
+                0x00000000802500c0                func_802500C0
+                0x00000000802500cc                func_802500CC
+                0x00000000802500f4                func_802500F4
+                0x00000000802500fc                func_802500FC
+                0x0000000080250104                func_80250104
+                0x0000000080250170                func_80250170
+                0x00000000802501a0                func_802501A0
+                0x0000000080250200                func_80250200
+                0x0000000080250360                func_80250360
+                0x0000000080250474                func_80250474
+                0x0000000080250530                func_80250530
+                0x0000000080250604                func_80250604
+                0x0000000080250650                func_80250650
+                0x0000000080250890                func_80250890
+                0x00000000802508e0                func_802508E0
+                0x0000000080250930                func_80250930
+                0x000000008025098c                func_8025098C
+                0x0000000080250ba4                func_80250BA4
+                0x0000000080250c08                func_80250C08
+                0x0000000080250c84                func_80250C84
+                0x0000000080250d8c                func_80250D8C
+                0x0000000080250d94                func_80250D94
+                0x0000000080250e6c                func_80250E6C
+                0x0000000080250e94                func_80250E94
+                0x0000000080250fc0                func_80250FC0
+                0x0000000080251060                func_80251060
+                0x000000008025106c                func_8025106C
+                0x000000008025108c                func_8025108C
+ build/src/core1/code_13680.o(.text)
+ .text          0x00000000802510a0      0x310 build/src/core1/code_13680.o
+                0x00000000802510a0                func_802510A0
+                0x00000000802510a8                func_802510A8
+                0x00000000802510b0                func_802510B0
+                0x00000000802510b8                func_802510B8
+                0x00000000802510c0                func_802510C0
+                0x00000000802510c8                func_802510C8
+                0x00000000802510f0                func_802510F0
+                0x0000000080251170                func_80251170
+                0x0000000080251178                func_80251178
+                0x00000000802511c4                func_802511C4
+                0x0000000080251230                func_80251230
+                0x000000008025123c                func_8025123C
+                0x0000000080251250                func_80251250
+                0x00000000802512fc                func_802512FC
+                0x0000000080251308                func_80251308
+                0x00000000802513a4                func_802513A4
+ build/src/core1/code_13990.o(.text)
+ .text          0x00000000802513b0     0x1de0 build/src/core1/code_13990.o
+                0x00000000802513b0                func_802513B0
+                0x0000000080251488                func_80251488
+                0x0000000080251494                func_80251494
+                0x00000000802514bc                func_802514BC
+                0x00000000802515d4                func_802515D4
+                0x00000000802516c8                func_802516C8
+                0x00000000802516e0                func_802516E0
+                0x0000000080251738                func_80251738
+                0x0000000080251788                func_80251788
+                0x00000000802517f8                func_802517F8
+                0x0000000080251878                func_80251878
+                0x00000000802519c8                func_802519C8
+                0x0000000080251b0c                func_80251B0C
+                0x0000000080251b5c                func_80251B5C
+                0x0000000080251bcc                func_80251BCC
+                0x0000000080251c20                func_80251C20
+                0x0000000080251c78                func_80251C78
+                0x0000000080251d84                func_80251D84
+                0x0000000080251e80                func_80251E80
+                0x0000000080251f8c                func_80251F8C
+                0x000000008025208c                func_8025208C
+                0x0000000080252188                func_80252188
+                0x00000000802521c0                func_802521C0
+                0x0000000080252280                func_80252280
+                0x0000000080252330                func_80252330
+                0x000000008025235c                func_8025235C
+                0x0000000080252434                func_80252434
+                0x00000000802524f0                func_802524F0
+                0x00000000802525a4                func_802525A4
+                0x000000008025276c                func_8025276C
+                0x0000000080252980                func_80252980
+                0x0000000080252a38                func_80252A38
+                0x0000000080252af0                func_80252AF0
+                0x0000000080252c08                func_80252C08
+                0x0000000080252cc4                func_80252CC4
+                0x0000000080252d8c                func_80252D8C
+                0x0000000080252ddc                func_80252DDC
+                0x0000000080252e4c                func_80252E4C
+                0x0000000080252ec8                func_80252EC8
+                0x0000000080252f50                func_80252F50
+                0x0000000080252f8c                func_80252F8C
+                0x0000000080252fc8                func_80252FC8
+                0x0000000080253010                func_80253010
+                0x0000000080253034                func_80253034
+                0x0000000080253050                func_80253050
+ build/src/core1/code_15770.o(.text)
+ .text          0x0000000080253190     0x12e0 build/src/core1/code_15770.o
+                0x0000000080253190                func_80253190
+                0x0000000080253208                func_80253208
+                0x0000000080253400                func_80253400
+                0x000000008025340c                func_8025340C
+                0x0000000080253420                func_80253420
+                0x0000000080253428                func_80253428
+                0x00000000802534a8                func_802534A8
+                0x00000000802534cc                func_802534CC
+                0x0000000080253540                func_80253540
+                0x0000000080253550                func_80253550
+                0x000000008025357c                func_8025357C
+                0x00000000802535a8                func_802535A8
+                0x0000000080253640                func_80253640
+                0x00000000802539ac                func_802539AC
+                0x0000000080253a58                func_80253A58
+                0x0000000080253d60                func_80253D60
+                0x0000000080253dc0                func_80253DC0
+                0x0000000080253de0                func_80253DE0
+                0x0000000080253e14                func_80253E14
+                0x0000000080253ea4                func_80253EA4
+                0x0000000080253ec4                func_80253EC4
+                0x0000000080253ee4                func_80253EE4
+                0x0000000080253f74                func_80253F74
+                0x0000000080253f94                func_80253F94
+                0x0000000080253fb4                func_80253FB4
+                0x0000000080253fe8                func_80253FE8
+                0x0000000080254008                func_80254008
+                0x0000000080254028                func_80254028
+                0x0000000080254084                func_80254084
+                0x00000000802541e8                func_802541E8
+                0x000000008025425c                func_8025425C
+                0x00000000802542f4                func_802542F4
+                0x0000000080254348                func_80254348
+                0x0000000080254374                func_80254374
+                0x00000000802543ec                func_802543EC
+                0x0000000080254404                func_80254404
+                0x0000000080254464                func_80254464
+ build/src/core1/code_16A50.o(.text)
+ .text          0x0000000080254470     0x16c0 build/src/core1/code_16A50.o
+                0x0000000080254470                func_80254470
+                0x0000000080254490                func_80254490
+                0x000000008025449c                func_8025449C
+                0x000000008025456c                func_8025456C
+                0x0000000080254608                func_80254608
+                0x0000000080254630                func_80254630
+                0x0000000080254658                func_80254658
+                0x00000000802546d0                func_802546D0
+                0x00000000802546dc                func_802546DC
+                0x00000000802546e4                func_802546E4
+                0x00000000802546fc                func_802546FC
+                0x0000000080254710                func_80254710
+                0x000000008025484c                func_8025484C
+                0x0000000080254898                func_80254898
+                0x0000000080254908                func_80254908
+                0x0000000080254960                func_80254960
+                0x000000008025496c                func_8025496C
+                0x000000008025498c                func_8025498C
+                0x00000000802549bc                func_802549BC
+                0x0000000080254a60                func_80254A60
+                0x0000000080254b84                func_80254B84
+                0x0000000080254bc4                func_80254BC4
+                0x0000000080254bd0                func_80254BD0
+                0x0000000080254c98                func_80254C98
+                0x0000000080254ca8                func_80254CA8
+                0x0000000080254f90                func_80254F90
+                0x0000000080254fd0                func_80254FD0
+                0x00000000802550f0                func_802550F0
+                0x0000000080255170                func_80255170
+                0x0000000080255198                func_80255198
+                0x0000000080255200                func_80255200
+                0x0000000080255300                func_80255300
+                0x0000000080255340                func_80255340
+                0x000000008025534c                func_8025534C
+                0x0000000080255358                func_80255358
+                0x0000000080255498                func_80255498
+                0x00000000802554c0                func_802554C0
+                0x0000000080255524                func_80255524
+                0x00000000802555c4                func_802555C4
+                0x00000000802555d0                func_802555D0
+                0x00000000802555dc                func_802555DC
+                0x0000000080255724                func_80255724
+                0x0000000080255774                func_80255774
+                0x0000000080255888                func_80255888
+                0x00000000802558d8                func_802558D8
+                0x0000000080255920                func_80255920
+                0x0000000080255978                func_80255978
+                0x0000000080255980                func_80255980
+                0x00000000802559a0                func_802559A0
+                0x0000000080255a04                func_80255A04
+                0x0000000080255a14                func_80255A14
+                0x0000000080255a20                func_80255A20
+                0x0000000080255a30                func_80255A30
+                0x0000000080255a3c                func_80255A3C
+                0x0000000080255acc                func_80255ACC
+                0x0000000080255ae4                func_80255AE4
+                0x0000000080255b08                func_80255B08
+ build/src/core1/code_18110.o(.text)
+ .text          0x0000000080255b30      0x100 build/src/core1/code_18110.o
+                0x0000000080255b30                func_80255B30
+                0x0000000080255bac                func_80255BAC
+ build/src/core1/code_18210.o(.text)
+ .text          0x0000000080255c30      0x100 build/src/core1/code_18210.o
+                0x0000000080255c30                func_80255C30
+                0x0000000080255cd8                func_80255CD8
+                0x0000000080255ce0                func_80255CE0
+                0x0000000080255d04                func_80255D04
+                0x0000000080255d0c                func_80255D0C
+ build/src/core1/code_18310.o(.text)
+ .text          0x0000000080255d30     0x3b80 build/src/core1/code_18310.o
+                0x0000000080255d30                func_80255D30
+                0x0000000080255d44                func_80255D44
+                0x0000000080255d58                func_80255D58
+                0x0000000080255d70                func_80255D70
+                0x0000000080255e58                func_80255E58
+                0x0000000080255f14                func_80255F14
+                0x0000000080255f74                func_80255F74
+                0x0000000080255fe4                func_80255FE4
+                0x0000000080256034                func_80256034
+                0x0000000080256064                func_80256064
+                0x00000000802560d0                func_802560D0
+                0x0000000080256280                func_80256280
+                0x00000000802562dc                func_802562DC
+                0x0000000080256378                func_80256378
+                0x00000000802563b8                func_802563B8
+                0x0000000080256450                func_80256450
+                0x00000000802564f0                func_802564F0
+                0x0000000080256558                func_80256558
+                0x00000000802565e0                func_802565E0
+                0x0000000080256664                func_80256664
+                0x0000000080256740                func_80256740
+                0x000000008025686c                func_8025686C
+                0x0000000080256900                func_80256900
+                0x0000000080256990                func_80256990
+                0x0000000080256a24                func_80256A24
+                0x0000000080256ab4                func_80256AB4
+                0x0000000080256b54                func_80256B54
+                0x0000000080256c60                func_80256C60
+                0x0000000080256d0c                func_80256D0C
+                0x0000000080256e24                func_80256E24
+                0x0000000080256f44                func_80256F44
+                0x0000000080256fe0                func_80256FE0
+                0x000000008025715c                func_8025715C
+                0x0000000080257204                func_80257204
+                0x0000000080257248                func_80257248
+                0x000000008025727c                func_8025727C
+                0x0000000080257424                func_80257424
+                0x0000000080257594                func_80257594
+                0x00000000802575bc                func_802575BC
+                0x0000000080257618                func_80257618
+                0x0000000080257658                func_80257658
+                0x0000000080257680                func_80257680
+                0x00000000802576f8                func_802576F8
+                0x000000008025773c                func_8025773C
+                0x000000008025778c                func_8025778C
+                0x00000000802578a4                func_802578A4
+                0x0000000080257918                func_80257918
+                0x00000000802579b0                func_802579B0
+                0x0000000080257a44                func_80257A44
+                0x0000000080257a6c                func_80257A6C
+                0x0000000080257ad4                func_80257AD4
+                0x0000000080257b18                func_80257B18
+                0x0000000080257bfc                func_80257BFC
+                0x0000000080257c48                func_80257C48
+                0x0000000080257c60                func_80257C60
+                0x0000000080257cc0                func_80257CC0
+                0x0000000080257cf8                func_80257CF8
+                0x0000000080257d30                func_80257D30
+                0x0000000080257db0                func_80257DB0
+                0x0000000080257e14                func_80257E14
+                0x0000000080257ea8                func_80257EA8
+                0x0000000080257ed8                func_80257ED8
+                0x0000000080257f18                func_80257F18
+                0x000000008025801c                func_8025801C
+                0x0000000080258108                func_80258108
+                0x0000000080258210                func_80258210
+                0x00000000802582ec                func_802582EC
+                0x0000000080258368                func_80258368
+                0x00000000802583d8                func_802583D8
+                0x0000000080258424                func_80258424
+                0x00000000802584fc                func_802584FC
+                0x00000000802585e0                func_802585E0
+                0x0000000080258640                func_80258640
+                0x00000000802586b0                func_802586B0
+                0x0000000080258708                func_80258708
+                0x0000000080258780                func_80258780
+                0x00000000802587bc                func_802587BC
+                0x00000000802587ec                func_802587EC
+                0x000000008025881c                func_8025881C
+                0x00000000802588b0                func_802588B0
+                0x00000000802588dc                func_802588DC
+                0x0000000080258904                func_80258904
+                0x000000008025892c                func_8025892C
+                0x0000000080258948                func_80258948
+                0x0000000080258964                func_80258964
+                0x0000000080258994                func_80258994
+                0x00000000802589cc                func_802589CC
+                0x00000000802589e4                func_802589E4
+                0x0000000080258a4c                func_80258A4C
+                0x0000000080258b8c                func_80258B8C
+                0x0000000080258ba4                func_80258BA4
+                0x0000000080258bc0                func_80258BC0
+                0x0000000080258bf4                func_80258BF4
+                0x0000000080258c28                func_80258C28
+                0x0000000080258c48                func_80258C48
+                0x0000000080258c7c                func_80258C7C
+                0x0000000080258cb0                func_80258CB0
+                0x0000000080258cdc                func_80258CDC
+                0x0000000080258d68                func_80258D68
+                0x0000000080258da8                func_80258DA8
+                0x0000000080258de8                func_80258DE8
+                0x0000000080258e24                func_80258E24
+                0x0000000080258e60                func_80258E60
+                0x0000000080258ef4                func_80258EF4
+                0x0000000080258f88                func_80258F88
+                0x000000008025901c                func_8025901C
+                0x0000000080259198                func_80259198
+                0x00000000802591d8                func_802591D8
+                0x0000000080259254                func_80259254
+                0x00000000802592c4                func_802592C4
+                0x0000000080259328                func_80259328
+                0x0000000080259384                func_80259384
+                0x0000000080259400                func_80259400
+                0x0000000080259430                func_80259430
+                0x000000008025947c                func_8025947C
+                0x0000000080259554                func_80259554
+                0x00000000802596ac                func_802596AC
+                0x000000008025975c                func_8025975C
+                0x0000000080259808                func_80259808
+                0x000000008025982c                func_8025982C
+ build/src/core1/code_1BE90.o(.text)
+ .text          0x00000000802598b0     0x1730 build/src/core1/code_1BE90.o
+                0x00000000802598b0                func_802598B0
+                0x0000000080259914                func_80259914
+                0x0000000080259994                func_80259994
+                0x00000000802599b4                func_802599B4
+                0x0000000080259a24                func_80259A24
+                0x0000000080259b14                func_80259B14
+                0x0000000080259b8c                func_80259B8C
+                0x0000000080259bd0                func_80259BD0
+                0x0000000080259ea8                func_80259EA8
+                0x0000000080259f7c                func_80259F7C
+                0x000000008025a104                func_8025A104
+                0x000000008025a1a8                func_8025A1A8
+                0x000000008025a23c                func_8025A23C
+                0x000000008025a2b0                func_8025A2B0
+                0x000000008025a2d8                func_8025A2D8
+                0x000000008025a2fc                func_8025A2FC
+                0x000000008025a388                func_8025A388
+                0x000000008025a430                func_8025A430
+                0x000000008025a4c4                func_8025A4C4
+                0x000000008025a55c                func_8025A55C
+                0x000000008025a58c                func_8025A58C
+                0x000000008025a5ac                func_8025A5AC
+                0x000000008025a6cc                func_8025A6CC
+                0x000000008025a6ec                func_8025A6EC
+                0x000000008025a70c                func_8025A70C
+                0x000000008025a788                func_8025A788
+                0x000000008025a7dc                func_8025A7DC
+                0x000000008025a818                func_8025A818
+                0x000000008025a864                func_8025A864
+                0x000000008025a8b8                func_8025A8B8
+                0x000000008025a8e4                func_8025A8E4
+                0x000000008025a904                func_8025A904
+                0x000000008025a96c                func_8025A96C
+                0x000000008025a9d4                func_8025A9D4
+                0x000000008025aa48                func_8025AA48
+                0x000000008025aabc                func_8025AABC
+                0x000000008025ab00                func_8025AB00
+                0x000000008025ab44                func_8025AB44
+                0x000000008025ab78                func_8025AB78
+                0x000000008025abb8                func_8025ABB8
+                0x000000008025ac20                func_8025AC20
+                0x000000008025ac7c                func_8025AC7C
+                0x000000008025ad7c                func_8025AD7C
+                0x000000008025adbc                func_8025ADBC
+                0x000000008025add4                func_8025ADD4
+                0x000000008025ae0c                func_8025AE0C
+                0x000000008025ae50                func_8025AE50
+                0x000000008025aea0                func_8025AEA0
+                0x000000008025aeec                func_8025AEEC
+                0x000000008025af38                func_8025AF38
+                0x000000008025afb0                func_8025AFB0
+                0x000000008025afb8                func_8025AFB8
+                0x000000008025afc0                func_8025AFC0
+                0x000000008025afd0                func_8025AFD0
+ build/src/core1/code_1D5C0.o(.text)
+ .text          0x000000008025afe0       0x10 build/src/core1/code_1D5C0.o
+                0x000000008025afe0                func_8025AFE0
+ build/src/core1/code_1D5D0.o(.text)
+ .text          0x000000008025aff0      0xd90 build/src/core1/code_1D5D0.o
+                0x000000008025aff0                func_8025AFF0
+                0x000000008025b00c                func_8025B00C
+                0x000000008025b08c                func_8025B08C
+                0x000000008025b0e4                func_8025B0E4
+                0x000000008025b1e0                func_8025B1E0
+                0x000000008025b280                func_8025B280
+                0x000000008025b2ec                func_8025B2EC
+                0x000000008025b360                func_8025B360
+                0x000000008025b4fc                func_8025B4FC
+                0x000000008025b69c                func_8025B69C
+                0x000000008025b6c0                func_8025B6C0
+                0x000000008025b700                func_8025B700
+                0x000000008025b808                func_8025B808
+                0x000000008025b810                func_8025B810
+                0x000000008025b818                func_8025B818
+                0x000000008025b820                func_8025B820
+                0x000000008025b998                func_8025B998
+                0x000000008025bbd4                func_8025BBD4
+                0x000000008025bc04                func_8025BC04
+                0x000000008025bcec                func_8025BCEC
+ build/src/core1/code_1E360.o(.text)
+ .text          0x000000008025bd80      0x380 build/src/core1/code_1E360.o
+                0x000000008025bd80                func_8025BD80
+                0x000000008025bde4                func_8025BDE4
+                0x000000008025be0c                func_8025BE0C
+                0x000000008025be30                func_8025BE30
+                0x000000008025be84                func_8025BE84
+                0x000000008025bef8                func_8025BEF8
+                0x000000008025bf6c                func_8025BF6C
+                0x000000008025c010                func_8025C010
+                0x000000008025c01c                func_8025C01C
+                0x000000008025c070                func_8025C070
+                0x000000008025c07c                func_8025C07C
+                0x000000008025c0a4                func_8025C0A4
+ build/src/core1/code_1E6E0.o(.text)
+ .text          0x000000008025c100      0x270 build/src/core1/code_1E6E0.o
+                0x000000008025c100                func_8025C100
+                0x000000008025c240                func_8025C240
+                0x000000008025c288                func_8025C288
+                0x000000008025c29c                func_8025C29C
+                0x000000008025c2e0                func_8025C2E0
+                0x000000008025c320                func_8025C320
+ build/src/core1/code_1E950.o(.text)
+ .text          0x000000008025c370      0x9e0 build/src/core1/code_1E950.o
+                0x000000008025c370                func_8025C370
+                0x000000008025c378                func_8025C378
+                0x000000008025c3d8                func_8025C3D8
+                0x000000008025c40c                func_8025C40C
+                0x000000008025c470                func_8025C470
+                0x000000008025c490                func_8025C490
+                0x000000008025c4c0                func_8025C4C0
+                0x000000008025c4c8                func_8025C4C8
+                0x000000008025ca30                func_8025CA30
+ build/src/core1/code_1F330.o(.text)
+ .text          0x000000008025cd50      0x6b0 build/src/core1/code_1F330.o
+                0x000000008025cd50                func_8025CD50
+                0x000000008025cdfc                func_8025CDFC
+                0x000000008025cf20                func_8025CF20
+                0x000000008025cfac                func_8025CFAC
+                0x000000008025d030                func_8025D030
+                0x000000008025d130                func_8025D130
+                0x000000008025d1a4                func_8025D1A4
+                0x000000008025d200                func_8025D200
+                0x000000008025d208                func_8025D208
+ build/src/core1/code_1F9E0.o(.text)
+ .text          0x000000008025d400       0xa0 build/src/core1/code_1F9E0.o
+                0x000000008025d400                func_8025D400
+ build/src/core1/code_1FA80.o(.text)
+ .text          0x000000008025d4a0      0x100 build/src/core1/code_1FA80.o
+                0x000000008025d4a0                func_8025D4A0
+                0x000000008025d520                func_8025D520
+ build/src/core1/code_1FB80.o(.text)
+ .text          0x000000008025d5a0       0x80 build/src/core1/code_1FB80.o
+                0x000000008025d5a0                func_8025D5A0
+ build/src/core1/code_1FC00.o(.text)
+ .text          0x000000008025d620       0x90 build/src/core1/code_1FC00.o
+                0x000000008025d620                func_8025D620
+ build/src/core1/code_1FC90.o(.text)
+ .text          0x000000008025d6b0       0x70 build/src/core1/code_1FC90.o
+                0x000000008025d6b0                func_8025D6B0
+ build/src/core1/code_1FD00.o(.text)
+ .text          0x000000008025d720       0xa0 build/src/core1/code_1FD00.o
+                0x000000008025d720                func_8025D720
+ build/src/core1/code_1FDA0.o(.text)
+ .text          0x000000008025d7c0     0x1470 build/src/core1/code_1FDA0.o
+                0x000000008025d7c0                func_8025D7C0
+                0x000000008025d830                func_8025D830
+                0x000000008025d838                func_8025D838
+                0x000000008025d840                func_8025D840
+                0x000000008025da30                func_8025DA30
+                0x000000008025e430                func_8025E430
+                0x000000008025e438                func_8025E438
+                0x000000008025eabc                func_8025EABC
+ build/src/core1/code_21210.o(.text)
+ .text          0x000000008025ec30       0x40 build/src/core1/code_21210.o
+                0x000000008025ec30                func_8025EC30
+ build/src/core1/code_21250.o(.text)
+ .text          0x000000008025ec70      0x710 build/src/core1/code_21250.o
+                0x000000008025ec70                func_8025EC70
+                0x000000008025eca0                func_8025ECA0
+                0x000000008025ed64                func_8025ED64
+                0x000000008025edbc                func_8025EDBC
+                0x000000008025edc4                func_8025EDC4
+                0x000000008025f0bc                func_8025F0BC
+                0x000000008025f1d0                func_8025F1D0
+                0x000000008025f340                func_8025F340
+ build/src/core1/code_21960.o(.text)
+ .text          0x000000008025f380       0x70 build/src/core1/code_21960.o
+                0x000000008025f380                func_8025F380
+                0x000000008025f3b0                func_8025F3B0
+ build/src/core1/code_219D0.o(.text)
+ .text          0x000000008025f3f0       0xb0 build/src/core1/code_219D0.o
+                0x000000008025f3f0                func_8025F3F0
+                0x000000008025f430                func_8025F430
+ build/src/core1/code_21A80.o(.text)
+ .text          0x000000008025f4a0       0x30 build/src/core1/code_21A80.o
+                0x000000008025f4a0                func_8025F4A0
+ build/src/core1/code_21AB0.o(.text)
+ .text          0x000000008025f4d0       0xa0 build/src/core1/code_21AB0.o
+                0x000000008025f4d0                func_8025F4D0
+                0x000000008025f510                func_8025F510
+ build/src/core1/code_21B50.o(.text)
+ .text          0x000000008025f570      0x160 build/src/core1/code_21B50.o
+                0x000000008025f570                func_8025F570
+                0x000000008025f5c0                func_8025F5C0
+                0x000000008025f610                func_8025F610
+                0x000000008025f670                func_8025F670
+ build/src/core1/code_21CB0.o(.text)
+ .text          0x000000008025f6d0      0xa90 build/src/core1/code_21CB0.o
+                0x000000008025f6d0                func_8025F6D0
+                0x000000008025f784                func_8025F784
+                0x000000008025f8b0                func_8025F8B0
+                0x000000008025f9f4                func_8025F9F4
+                0x000000008025fc10                func_8025FC10
+ build/src/core1/code_22740.o(.text)
+ .text          0x0000000080260160       0xb0 build/src/core1/code_22740.o
+ build/src/core1/code_227F0.o(.text)
+ .text          0x0000000080260210      0x560 build/src/core1/code_227F0.o
+                0x0000000080260210                func_80260210
+                0x0000000080260338                func_80260338
+ build/src/core1/code_22D50.o(.text)
+ .text          0x0000000080260770       0x50 build/src/core1/code_22D50.o
+                0x0000000080260770                func_80260770
+ build/src/core1/code_22DA0.o(.text)
+ .text          0x00000000802607c0     0x25c0 build/src/core1/code_22DA0.o
+                0x00000000802607c0                func_802607C0
+                0x0000000080260860                func_80260860
+                0x00000000802609e0                func_802609E0
+                0x0000000080260bd4                func_80260BD4
+                0x0000000080260c3c                func_80260C3C
+                0x0000000080261210                func_80261210
+                0x00000000802612ec                func_802612EC
+                0x0000000080261348                func_80261348
+                0x00000000802613dc                func_802613DC
+                0x0000000080261490                func_80261490
+                0x0000000080261498                func_80261498
+                0x00000000802614bc                func_802614BC
+                0x0000000080261560                func_80261560
+                0x0000000080261688                func_80261688
+                0x0000000080261730                func_80261730
+                0x00000000802617a0                func_802617A0
+                0x0000000080261818                func_80261818
+                0x0000000080261868                func_80261868
+                0x00000000802618dc                func_802618DC
+                0x000000008026194c                func_8026194C
+                0x0000000080261a94                func_80261A94
+                0x00000000802623f4                func_802623F4
+                0x00000000802623fc                func_802623FC
+                0x0000000080262a88                func_80262A88
+                0x0000000080262b8c                func_80262B8C
+                0x0000000080262bfc                func_80262BFC
+ build/src/core1/code_25360.o(.text)
+ .text          0x0000000080262d80       0xe0 build/src/core1/code_25360.o
+                0x0000000080262d80                func_80262D80
+ build/src/core1/code_25440.o(.text)
+ .text          0x0000000080262e60       0x80 build/src/core1/code_25440.o
+                0x0000000080262e60                func_80262E60
+ build/src/core1/code_254C0.o(.text)
+ .text          0x0000000080262ee0      0x780 build/src/core1/code_254C0.o
+                0x0000000080262ee0                func_80262EE0
+                0x00000000802630a0                func_802630A0
+                0x00000000802631bc                func_802631BC
+ build/src/core1/code_25C40.o(.text)
+ .text          0x0000000080263660      0x1e0 build/src/core1/code_25C40.o
+                0x0000000080263660                func_80263660
+                0x0000000080263684                func_80263684
+ build/src/core1/code_25E20.o(.text)
+ .text          0x0000000080263840      0x2f0 build/src/core1/code_25E20.o
+                0x0000000080263840                func_80263840
+                0x0000000080263848                func_80263848
+                0x0000000080263850                func_80263850
+                0x00000000802639fc                func_802639FC
+                0x0000000080263b1c                func_80263B1C
+                0x0000000080263b24                func_80263B24
+ build/src/core1/code_26110.o(.text)
+ .text          0x0000000080263b30       0xb0 build/src/core1/code_26110.o
+                0x0000000080263b30                func_80263B30
+                0x0000000080263b40                func_80263B40
+ build/src/core1/code_261C0.o(.text)
+ .text          0x0000000080263be0       0x30 build/src/core1/code_261C0.o
+                0x0000000080263be0                func_80263BE0
+ build/src/core1/code_261F0.o(.text)
+ .text          0x0000000080263c10      0x290 build/src/core1/code_261F0.o
+                0x0000000080263c10                func_80263C10
+ build/src/core1/code_26480.o(.text)
+ .text          0x0000000080263ea0      0x150 build/src/core1/code_26480.o
+                0x0000000080263ea0                func_80263EA0
+ build/src/core1/code_265D0.o(.text)
+ .text          0x0000000080263ff0      0x2b0 build/src/core1/code_265D0.o
+                0x0000000080263ff0                func_80263FF0
+                0x00000000802641b0                func_802641B0
+                0x0000000080264200                func_80264200
+ build/src/core1/code_26880.o(.text)
+ .text          0x00000000802642a0      0x2b0 build/src/core1/code_26880.o
+                0x00000000802642a0                func_802642A0
+                0x00000000802642d0                func_802642D0
+                0x0000000080264430                func_80264430
+                0x0000000080264460                func_80264460
+                0x0000000080264484                func_80264484
+                0x00000000802644bc                func_802644BC
+                0x00000000802644f0                func_802644F0
+ build/src/core1/code_26B30.o(.text)
+ .text          0x0000000080264550      0x140 build/src/core1/code_26B30.o
+                0x0000000080264550                func_80264550
+ build/src/core1/code_26C70.o(.text)
+ .text          0x0000000080264690       0x90 build/src/core1/code_26C70.o
+                0x0000000080264690                func_80264690
+                0x00000000802646a0                func_802646A0
+ build/src/core1/code_26D00.o(.text)
+ .text          0x0000000080264720       0xb0 build/src/core1/code_26D00.o
+                0x0000000080264720                func_80264720
+ build/src/core1/code_26DB0.o(.text)
+ .text          0x00000000802647d0      0x3a0 build/src/core1/code_26DB0.o
+                0x00000000802647d0                func_802647D0
+                0x00000000802648e0                func_802648E0
+                0x00000000802649a0                func_802649A0
+                0x0000000080264af0                func_80264AF0
+ build/src/core1/code_27150.o(.text)
+ .text          0x0000000080264b70       0xb0 build/src/core1/code_27150.o
+                0x0000000080264b70                func_80264B70
+ build/src/core1/code_27200.o(.text)
+ .text          0x0000000080264c20      0x190 build/src/core1/code_27200.o
+                0x0000000080264c20                func_80264C20
+ build/src/core1/code_27390.o(.text)
+ .text          0x0000000080264db0      0x100 build/src/core1/code_27390.o
+                0x0000000080264db0                func_80264DB0
+ build/src/core1/code_27490.o(.text)
+ .text          0x0000000080264eb0      0x4b0 build/src/core1/code_27490.o
+                0x0000000080264eb0                func_80264EB0
+                0x0000000080265000                func_80265000
+                0x00000000802650e0                func_802650E0
+                0x00000000802651e0                func_802651E0
+                0x0000000080265268                func_80265268
+                0x0000000080265298                func_80265298
+                0x0000000080265350                func_80265350
+ build/src/core1/code_27940.o(.text)
+ .text          0x0000000080265360      0x170 build/src/core1/code_27940.o
+                0x0000000080265360                func_80265360
+ build/src/core1/code_27AB0.o(.text)
+ .text          0x00000000802654d0      0x3a0 build/src/core1/code_27AB0.o
+                0x00000000802654d0                func_802654D0
+                0x0000000080265570                func_80265570
+                0x0000000080265580                func_80265580
+                0x000000008026569c                func_8026569C
+                0x000000008026582c                func_8026582C
+ build/src/core1/code_27E50.o(.text)
+ .text          0x0000000080265870      0x140 build/src/core1/code_27E50.o
+                0x0000000080265870                func_80265870
+                0x0000000080265880                func_80265880
+                0x00000000802658c0                func_802658C0
+ build/src/core1/code_27F90.o(.text)
+ .text          0x00000000802659b0       0xe0 build/src/core1/code_27F90.o
+                0x00000000802659b0                func_802659B0
+ build/src/core1/code_28070.o(.text)
+ .text          0x0000000080265a90      0x3d0 build/src/core1/code_28070.o
+                0x0000000080265a90                func_80265A90
+                0x0000000080265abc                func_80265ABC
+                0x0000000080265af8                func_80265AF8
+                0x0000000080265b34                func_80265B34
+                0x0000000080265b60                func_80265B60
+                0x0000000080265b9c                func_80265B9C
+                0x0000000080265bf8                func_80265BF8
+                0x0000000080265c28                func_80265C28
+                0x0000000080265c88                func_80265C88
+                0x0000000080265d24                func_80265D24
+                0x0000000080265d50                func_80265D50
+                0x0000000080265dd0                func_80265DD0
+                0x0000000080265df0                func_80265DF0
+ build/src/core1/code_28440.o(.text)
+ .text          0x0000000080265e60       0x70 build/src/core1/code_28440.o
+                0x0000000080265e60                func_80265E60
+ build/src/core1/code_284B0.o(.text)
+ .text          0x0000000080265ed0      0x360 build/src/core1/code_284B0.o
+                0x0000000080265ed0                func_80265ED0
+                0x0000000080266058                func_80266058
+ build/src/core1/code_28810.o(.text)
+ .text          0x0000000080266230      0x1c0 build/src/core1/code_28810.o
+                0x0000000080266230                func_80266230
+ build/src/core1/code_289D0.o(.text)
+ .text          0x00000000802663f0       0xc0 build/src/core1/code_289D0.o
+                0x00000000802663f0                func_802663F0
+                0x0000000080266440                func_80266440
+ build/src/core1/code_28A90.o(.text)
+ .text          0x00000000802664b0      0x270 build/src/core1/code_28A90.o
+                0x00000000802664b0                func_802664B0
+                0x00000000802664f0                func_802664F0
+                0x0000000080266560                func_80266560
+                0x00000000802666b4                func_802666B4
+ build/src/core1/code_28D00.o(.text)
+ .text          0x0000000080266720       0xa0 build/src/core1/code_28D00.o
+                0x0000000080266720                func_80266720
+                0x0000000080266768                func_80266768
+ build/src/core1/code_28DA0.o(.text)
+ .text          0x00000000802667c0      0x1f0 build/src/core1/code_28DA0.o
+                0x00000000802667c0                func_802667C0
+                0x0000000080266954                func_80266954
+ build/src/core1/code_28F90.o(.text)
+ .text          0x00000000802669b0      0x260 build/src/core1/code_28F90.o
+                0x00000000802669b0                func_802669B0
+                0x0000000080266a74                func_80266A74
+                0x0000000080266b1c                func_80266B1C
+ build/src/core1/code_291F0.o(.text)
+ .text          0x0000000080266c10      0x430 build/src/core1/code_291F0.o
+                0x0000000080266c10                func_80266C10
+                0x0000000080266e08                func_80266E08
+                0x0000000080266ed8                func_80266ED8
+                0x0000000080266fd0                func_80266FD0
+ build/src/core1/code_29620.o(.text)
+ .text          0x0000000080267040      0x250 build/src/core1/code_29620.o
+                0x0000000080267040                func_80267040
+                0x0000000080267048                func_80267048
+                0x0000000080267050                func_80267050
+                0x000000008026713c                func_8026713C
+                0x0000000080267144                func_80267144
+                0x0000000080267248                func_80267248
+ build/src/core1/code_29870.o(.text)
+ .text          0x0000000080267290       0x90 build/src/core1/code_29870.o
+                0x0000000080267290                func_80267290
+ build/src/core1/code_29900.o(.text)
+ .text          0x0000000080267320      0xac0 build/src/core1/code_29900.o
+                0x0000000080267320                func_80267320
+                0x00000000802673c0                func_802673C0
+                0x0000000080267460                func_80267460
+                0x0000000080267524                func_80267524
+                0x000000008026757c                func_8026757C
+                0x0000000080267584                func_80267584
+                0x000000008026787c                func_8026787C
+                0x0000000080267990                func_80267990
+                0x0000000080267afc                func_80267AFC
+                0x0000000080267b04                func_80267B04
+                0x0000000080267c00                func_80267C00
+                0x0000000080267c6c                func_80267C6C
+ build/src/core1/code_2A3C0.o(.text)
+ .text          0x0000000080267de0      0x620 build/src/core1/code_2A3C0.o
+                0x0000000080267de0                func_80267DE0
+                0x0000000080267f48                func_80267F48
+                0x00000000802680b4                func_802680B4
+                0x0000000080268230                func_80268230
+ build/src/core1/code_2A9E0.o(.text)
+ .text          0x0000000080268400      0x140 build/src/core1/code_2A9E0.o
+                0x0000000080268400                func_80268400
+                0x00000000802684c0                func_802684C0
+ build/src/core1/code_2AB20.o(.text)
+ .text          0x0000000080268540      0x130 build/src/core1/code_2AB20.o
+                0x0000000080268540                func_80268540
+ build/src/core1/code_2AC50.o(.text)
+ .text          0x0000000080268670       0x90 build/src/core1/code_2AC50.o
+                0x0000000080268670                func_80268670
+ build/src/core1/code_2ACE0.o(.text)
+ .text          0x0000000080268700       0xc0 build/src/core1/code_2ACE0.o
+                0x0000000080268700                func_80268700
+                0x0000000080268740                func_80268740
+ build/src/core1/code_2ADA0.o(.text)
+ .text          0x00000000802687c0     0x1430 build/src/core1/code_2ADA0.o
+                0x00000000802687c0                func_802687C0
+                0x0000000080268804                func_80268804
+                0x0000000080268858                func_80268858
+                0x00000000802688ac                func_802688AC
+                0x0000000080268934                func_80268934
+                0x00000000802689dc                func_802689DC
+                0x0000000080268a80                func_80268A80
+                0x0000000080268b20                func_80268B20
+                0x0000000080268f60                func_80268F60
+                0x0000000080269008                func_80269008
+                0x00000000802690c0                func_802690C0
+                0x0000000080269248                func_80269248
+                0x00000000802693d4                func_802693D4
+                0x00000000802695f8                func_802695F8
+                0x0000000080269854                func_80269854
+                0x000000008026986c                func_8026986C
+                0x0000000080269bb0                func_80269BB0
+                0x0000000080269bcc                func_80269BCC
+ build/src/core1/code_2C1D0.o(.text)
+ .text          0x0000000080269bf0      0x640 build/src/core1/code_2C1D0.o
+                0x0000000080269bf0                func_80269BF0
+                0x0000000080269c0c                func_80269C0C
+                0x0000000080269c28                func_80269C28
+                0x0000000080269c30                func_80269C30
+                0x0000000080269c38                func_80269C38
+                0x0000000080269c84                func_80269C84
+                0x0000000080269e08                func_80269E08
+                0x0000000080269f28                func_80269F28
+                0x000000008026a00c                func_8026A00C
+                0x000000008026a060                func_8026A060
+                0x000000008026a0b8                func_8026A0B8
+                0x000000008026a108                func_8026A108
+                0x000000008026a138                func_8026A138
+                0x000000008026a210                func_8026A210
+                0x000000008026a220                func_8026A220
+ build/src/core1/code_2C810.o(.text)
+ .text          0x000000008026a230       0xb0 build/src/core1/code_2C810.o
+                0x000000008026a230                func_8026A230
+                0x000000008026a240                func_8026A240
+                0x000000008026a290                func_8026A290
+ build/src/core1/code_2C8C0.o(.text)
+ .text          0x000000008026a2e0      0x970 build/src/core1/code_2C8C0.o
+                0x000000008026a2f0                func_8026A2F0
+                0x000000008026a300                func_8026A300
+ build/src/core1/code_2D230.o(.text)
+ .text          0x000000008026ac50       0x60 build/src/core1/code_2D230.o
+                0x000000008026ac50                func_8026AC50
+ build/src/core1/code_2D290.o(.text)
+ .text          0x000000008026acb0       0x40 build/src/core1/code_2D290.o
+                0x000000008026acb0                func_8026ACB0
+                0x000000008026acd0                func_8026ACD0
+ build/src/core1/code_2D2D0.o(.text)
+ .text          0x000000008026acf0      0x730 build/src/core1/code_2D2D0.o
+                0x000000008026acf0                func_8026ACF0
+                0x000000008026ad30                func_8026AD30
+                0x000000008026ad38                func_8026AD38
+                0x000000008026ad90                func_8026AD90
+                0x000000008026adc8                func_8026ADC8
+                0x000000008026ae28                func_8026AE28
+                0x000000008026ae40                func_8026AE40
+                0x000000008026ae70                func_8026AE70
+                0x000000008026ae78                func_8026AE78
+                0x000000008026b110                func_8026B110
+                0x000000008026b410                func_8026B410
+ build/src/core1/code_2DA00.o(.text)
+ .text          0x000000008026b420       0xc0 build/src/core1/code_2DA00.o
+                0x000000008026b420                func_8026B420
+ build/src/core1/code_2DAC0.o(.text)
+ .text          0x000000008026b4e0      0x1b0 build/src/core1/code_2DAC0.o
+                0x000000008026b4e0                func_8026B4E0
+                0x000000008026b510                func_8026B510
+                0x000000008026b660                func_8026B660
+ build/src/core1/code_2DC70.o(.text)
+ .text          0x000000008026b690      0x100 build/src/core1/code_2DC70.o
+                0x000000008026b690                func_8026B690
+ build/src/core1/code_2DD70.o(.text)
+ .text          0x000000008026b790      0x1e0 build/src/core1/code_2DD70.o
+                0x000000008026b790                func_8026B790
+                0x000000008026b890                func_8026B890
+                0x000000008026b8e0                func_8026B8E0
+                0x000000008026b924                func_8026B924
+                0x000000008026b950                func_8026B950
+ build/src/core1/code_2DF50.o(.text)
+ .text          0x000000008026b970      0x310 build/src/core1/code_2DF50.o
+ build/src/core1/code_2E260.o(.text)
+ .text          0x000000008026bc80      0x7f0 build/src/core1/code_2E260.o
+                0x000000008026bc80                func_8026BC80
+                0x000000008026c110                func_8026C110
+                0x000000008026c430                func_8026C430
+ build/src/core1/code_2EA50.o(.text)
+ .text          0x000000008026c470       0x90 build/src/core1/code_2EA50.o
+                0x000000008026c470                func_8026C470
+ build/src/core1/code_2EAE0.o(.text)
+ .text          0x000000008026c500      0x170 build/src/core1/code_2EAE0.o
+                0x000000008026c500                func_8026C500
+                0x000000008026c530                func_8026C530
+ build/src/core1/code_2EC50.o(.text)
+ .text          0x000000008026c670      0x410 build/src/core1/code_2EC50.o
+                0x000000008026c670                func_8026C670
+                0x000000008026c6fc                func_8026C6FC
+                0x000000008026c874                func_8026C874
+                0x000000008026c8e8                func_8026C8E8
+                0x000000008026ca70                func_8026CA70
+ build/src/core1/code_2F060.o(.text)
+ .text          0x000000008026ca80      0x390 build/src/core1/code_2F060.o
+                0x000000008026ca80                func_8026CA80
+                0x000000008026ca90                func_8026CA90
+                0x000000008026caa0                func_8026CAA0
+                0x000000008026ce00                func_8026CE00
+ build/src/core1/code_2F3F0.o(.text)
+ .text          0x000000008026ce10       0x90 build/src/core1/code_2F3F0.o
+                0x000000008026ce10                func_8026CE10
+ build/src/core1/code_2F480.o(.text)
+ .text          0x000000008026cea0      0x170 build/src/core1/code_2F480.o
+                0x000000008026cea0                func_8026CEA0
+                0x000000008026cef0                func_8026CEF0
+                0x000000008026cf34                func_8026CF34
+                0x000000008026cf60                func_8026CF60
+ build/src/core1/code_2F5F0.o(.text)
+ .text          0x000000008026d010      0xc00 build/src/core1/code_2F5F0.o
+                0x000000008026d010                func_8026D010
+                0x000000008026d1b0                func_8026D1B0
+                0x000000008026d2ac                func_8026D2AC
+                0x000000008026d380                func_8026D380
+                0x000000008026d430                func_8026D430
+                0x000000008026d500                func_8026D500
+                0x000000008026d704                func_8026D704
+                0x000000008026d880                func_8026D880
+                0x000000008026da9c                func_8026DA9C
+ build/src/core1/code_301F0.o(.text)
+ .text          0x000000008026dc10      0x110 build/src/core1/code_301F0.o
+                0x000000008026dc10                func_8026DC10
+ build/src/core1/code_30300.o(.text)
+ .text          0x000000008026dd20      0xd60 build/src/core1/code_30300.o
+                0x000000008026dd20                func_8026DD20
+                0x000000008026dd7c                func_8026DD7C
+                0x000000008026dde4                func_8026DDE4
+                0x000000008026e1fc                func_8026E1FC
+                0x000000008026e394                func_8026E394
+                0x000000008026e5f0                func_8026E5F0
+                0x000000008026e6ec                func_8026E6EC
+                0x000000008026ea0c                func_8026EA0C
+ build/src/core1/code_31060.o(.text)
+ .text          0x000000008026ea80     0x1310 build/src/core1/code_31060.o
+                0x000000008026ea80                func_8026EA80
+                0x000000008026f144                func_8026F144
+                0x000000008026f2f8                func_8026F2F8
+                0x000000008026f4e0                func_8026F4E0
+                0x000000008026f704                func_8026F704
+                0x000000008026f810                func_8026F810
+                0x000000008026fa30                func_8026FA30
+                0x000000008026fc84                func_8026FC84
+ build/src/core1/code_32370.o(.text)
+ .text          0x000000008026fd90      0xba0 build/src/core1/code_32370.o
+                0x000000008026fd90                func_8026FD90
+                0x000000008026fdb0                func_8026FDB0
+                0x000000008026fdd8                func_8026FDD8
+                0x000000008026ffa4                func_8026FFA4
+                0x0000000080270070                func_80270070
+                0x00000000802702e8                func_802702E8
+ build/src/core1/code_32F10.o(.text)
+ .text          0x0000000080270930      0xe50 build/src/core1/code_32F10.o
+                0x0000000080270b04                func_80270B04
+                0x0000000080270eb0                func_80270EB0
+ build/src/core1/code_33D60.o(.text)
+ .text          0x0000000080271780      0x110 build/src/core1/code_33D60.o
+ build/src/core1/code_33E70.o(.text)
+ .text          0x0000000080271890      0xac0 build/src/core1/code_33E70.o
+                0x0000000080271aa0                func_80271AA0
+                0x0000000080271ad0                func_80271AD0
+                0x0000000080272174                func_80272174
+                0x000000008027225c                func_8027225C
+ build/src/core1/code_34930.o(.text)
+ .text          0x0000000080272350       0xa0 build/src/core1/code_34930.o
+                0x0000000080272350                func_80272350
+ build/src/core1/code_349D0.o(.text)
+ .text          0x00000000802723f0       0x60 build/src/core1/code_349D0.o
+                0x00000000802723f0                func_802723F0
+ build/src/core1/code_34A30.o(.text)
+ .text          0x0000000080272450       0xf0 build/src/core1/code_34A30.o
+                0x0000000080272450                func_80272450
+                0x00000000802724a0                func_802724A0
+                0x00000000802724f0                func_802724F0
+ build/src/core1/code_34B20.o(.text)
+ .text          0x0000000080272540       0xc0 build/src/core1/code_34B20.o
+                0x0000000080272540                func_80272540
+
+.reginfo        0x0000000080272600       0x18 load address 0x0000000000034be0
+ .reginfo       0x0000000080272600       0x18 build/src/core1/code_0.o
+                0x0000000000034bdc                . = 0x34bdc
+                0x0000000000034bdc                core1_code_34BDC_bin_ROM_START = .
+                0x00000000802725fc                core1_code_34BDC_bin_VRAM = ADDR (.core1_code_34BDC_bin)
+
+.core1_code_34BDC_bin
+                0x00000000802725fc     0x3014 load address 0x0000000000034bdc
+ build/bin/core1/code_34BDC.o(.data)
+ .data          0x00000000802725fc     0x3014 build/bin/core1/code_34BDC.o
+                0x00000000802725fc                _binary_bin_core1_code_34BDC_bin_start
+                0x0000000080275610                _binary_bin_core1_code_34BDC_bin_end
+                0x0000000000037bf0                . = 0x37bf0
+                0x0000000000037bf0                code_code_ROM_END = .
+                0x0000000000037bf0                . = 0x37bf0
+                0x0000000000037bf0                code_data_ROM_START = .
+                0x0000000080275610                code_data_VRAM = ADDR (.code_data)
+
+.code_data      0x0000000080275610     0x4b20 load address 0x0000000000037bf0
+ build/bin/core1/data_37BF0.o(.data)
+ .data          0x0000000080275610     0x4b20 build/bin/core1/data_37BF0.o
+                0x0000000080275610                _binary_bin_core1_data_37BF0_bin_start
+                0x000000008027a130                _binary_bin_core1_data_37BF0_bin_end
+                0x000000000003c710                . = 0x3c710
+                0x000000000003c710                code_data_ROM_END = .
+                0x00000000802405f0                osPiRawStartDMA = 0x802405f0
+                0x0000000080240d70                guMtxIdentF = 0x80240d70
+                0x0000000801241304                func_801241304 = 0x801241304
+                0x0000000080000450                func_80000450 = 0x80000450
+                0x0000000080002260                func_80002260 = 0x80002260
+                0x000000008025fe6c                func_8025FE6C = 0x8025fe6c
+                0x0000000080260160                func_80260160 = 0x80260160
+                0x000000008026a2e0                func_8026A2E0 = 0x8026a2e0
+                0x000000008026b970                func_8026B970 = 0x8026b970
+                0x000000008026ba50                func_8026BA50 = 0x8026ba50
+                0x000000008026fec4                func_8026FEC4 = 0x8026fec4
+                0x00000000802702f0                func_802702F0 = 0x802702f0
+                0x0000000080270930                func_80270930 = 0x80270930
+                0x0000000080270fdc                func_80270FDC = 0x80270fdc
+                0x0000000080271480                func_80271480 = 0x80271480
+                0x000000008027156c                func_8027156C = 0x8027156c
+                0x0000000080271780                func_80271780 = 0x80271780
+                0x00000000802717b0                func_802717B0 = 0x802717b0
+                0x0000000080271890                func_80271890 = 0x80271890
+                0x00000000802718c0                func_802718C0 = 0x802718c0
+                0x00000000802719e0                func_802719E0 = 0x802719e0
+                0x0000000080271a14                func_80271A14 = 0x80271a14
+                0x0000000080272590                func_80272590 = 0x80272590
+                0x0000000080291610                func_80291610 = 0x80291610
+                0x0000000080291aac                func_80291AAC = 0x80291aac
+                0x00000000802c4140                func_802C4140 = 0x802c4140
+                0x00000000802c418c                func_802C418C = 0x802c418c
+                0x00000000802c71f0                func_802C71F0 = 0x802c71f0
+                0x00000000802c8a54                func_802C8A54 = 0x802c8a54
+                0x00000000802c8aa8                func_802C8AA8 = 0x802c8aa8
+                0x00000000802c8af8                func_802C8AF8 = 0x802c8af8
+                0x00000000802c8b4c                func_802C8B4C = 0x802c8b4c
+                0x00000000802c8ba8                func_802C8BA8 = 0x802c8ba8
+                0x00000000802c8c04                func_802C8C04 = 0x802c8c04
+                0x00000000802d7558                func_802D7558 = 0x802d7558
+                0x00000000802d75b4                func_802D75B4 = 0x802d75b4
+                0x00000000802d7610                func_802D7610 = 0x802d7610
+                0x00000000802deb18                func_802DEB18 = 0x802deb18
+                0x00000000802df99c                func_802DF99C = 0x802df99c
+                0x00000000802e4078                func_802E4078 = 0x802e4078
+                0x000000008030e484                func_8030E484 = 0x8030e484
+                0x000000008030e510                func_8030E510 = 0x8030e510
+                0x0000000080311714                func_80311714 = 0x80311714
+                0x0000000080314ac8                func_80314AC8 = 0x80314ac8
+                0x000000008031cc40                func_8031CC40 = 0x8031cc40
+                0x000000008031f678                func_8031F678 = 0x8031f678
+                0x000000008031fb14                func_8031FB14 = 0x8031fb14
+                0x00000000803253a0                func_803253A0 = 0x803253a0
+                0x00000000803255fc                func_803255FC = 0x803255fc
+                0x0000000080325760                func_80325760 = 0x80325760
+                0x0000000080325794                func_80325794 = 0x80325794
+                0x00000000803272f8                func_803272F8 = 0x803272f8
+                0x0000000080329904                func_80329904 = 0x80329904
+                0x0000000080335110                func_80335110 = 0x80335110
+                0x0000000080345f24                func_80345F24 = 0x80345f24
+                0x0000000080346414                func_80346414 = 0x80346414
+                0x0000000080347b54                func_80347B54 = 0x80347b54
+                0x0000000080347b80                func_80347B80 = 0x80347b80
+                0x0000000080347c5c                func_80347C5C = 0x80347c5c
+                0x0000000080347c70                func_80347C70 = 0x80347c70
+                0x0000000080347cc8                func_80347CC8 = 0x80347cc8
+                0x0000000080347cf4                func_80347CF4 = 0x80347cf4
+                0x0000000080347dd0                func_80347DD0 = 0x80347dd0
+                0x0000000080347de4                func_80347DE4 = 0x80347de4
+                0x000000008034bb08                func_8034BB08 = 0x8034bb08
+                0x0000000080352614                func_80352614 = 0x80352614
+                0x00000000803526dc                func_803526DC = 0x803526dc
+                0x0000000080352f58                func_80352F58 = 0x80352f58
+                0x0000000080352ff4                func_80352FF4 = 0x80352ff4
+                0x0000000080353a90                func_80353A90 = 0x80353a90
+                0x0000000080353cc8                func_80353CC8 = 0x80353cc8
+                0x0000000080353fb4                func_80353FB4 = 0x80353fb4
+                0x00000000803540ac                func_803540AC = 0x803540ac
+                0x00000000803541d8                func_803541D8 = 0x803541d8
+                0x00000000803543f4                func_803543F4 = 0x803543f4
+                0x000000008035451c                func_8035451C = 0x8035451c
+                0x000000008035489c                func_8035489C = 0x8035489c
+                0x0000000080354990                func_80354990 = 0x80354990
+                0x0000000080354c18                func_80354C18 = 0x80354c18
+                0x0000000080354dc8                func_80354DC8 = 0x80354dc8
+                0x0000000080354eec                func_80354EEC = 0x80354eec
+                0x0000000080355004                func_80355004 = 0x80355004
+                0x0000000080355134                func_80355134 = 0x80355134
+                0x0000000080355294                func_80355294 = 0x80355294
+                0x00000000803553e8                func_803553E8 = 0x803553e8
+                0x0000000080355548                func_80355548 = 0x80355548
+                0x000000008035570c                func_8035570C = 0x8035570c
+                0x000000008035585c                func_8035585C = 0x8035585c
+                0x0000000080355b00                func_80355B00 = 0x80355b00
+                0x0000000080355c4c                func_80355C4C = 0x80355c4c
+                0x0000000080355d50                func_80355D50 = 0x80355d50
+                0x0000000080355e80                func_80355E80 = 0x80355e80
+                0x00000000803562e8                func_803562E8 = 0x803562e8
+                0x0000000080356364                func_80356364 = 0x80356364
+                0x000000008035644c                func_8035644C = 0x8035644c
+                0x000000008035646c                func_8035646C = 0x8035646c
+                0x000000008038fe30                func_8038FE30 = 0x8038fe30
+                0x0000000080000300                D_80000300 = 0x80000300
+                0x0000000080000308                D_80000308 = 0x80000308
+                0x000000008000030c                D_8000030C = 0x8000030c
+                0x000000008000031c                D_8000031C = 0x8000031c
+                0x000000008000e800                D_8000E800 = 0x8000e800
+                0x000000008002d500                D_8002D500 = 0x8002d500
+                0x000000008002d501                D_8002D501 = 0x8002d501
+                0x000000008002d514                D_8002D514 = 0x8002d514
+                0x000000008002d520                D_8002D520 = 0x8002d520
+                0x000000008023d500                D_8023D500 = 0x8023d500
+                0x000000008023da00                D_8023DA00 = 0x8023da00
+                0x000000008023da10                D_8023DA10 = 0x8023da10
+                0x00000000802731f0                D_802731F0 = 0x802731f0
+                0x0000000080274620                D_80274620 = 0x80274620
+                0x0000000080275610                D_80275610 = 0x80275610
+                0x0000000080275618                D_80275618 = 0x80275618
+                0x0000000080275670                D_80275670 = 0x80275670
+                0x0000000080275683                D_80275683 = 0x80275683
+                0x00000000802756c4                D_802756C4 = 0x802756c4
+                0x00000000802756e4                D_802756E4 = 0x802756e4
+                0x0000000080275720                D_80275720 = 0x80275720
+                0x0000000080275740                D_80275740 = 0x80275740
+                0x0000000080275764                D_80275764 = 0x80275764
+                0x0000000080275768                D_80275768 = 0x80275768
+                0x0000000080275770                D_80275770 = 0x80275770
+                0x0000000080275774                D_80275774 = 0x80275774
+                0x0000000080275778                D_80275778 = 0x80275778
+                0x000000008027577c                D_8027577C = 0x8027577c
+                0x000000008027584c                D_8027584C = 0x8027584c
+                0x0000000080275860                D_80275860 = 0x80275860
+                0x0000000080275870                D_80275870 = 0x80275870
+                0x0000000080275880                D_80275880 = 0x80275880
+                0x00000000802758c0                D_802758C0 = 0x802758c0
+                0x00000000802758c4                D_802758C4 = 0x802758c4
+                0x00000000802758c8                D_802758C8 = 0x802758c8
+                0x00000000802758cc                D_802758CC = 0x802758cc
+                0x00000000802758d0                D_802758D0 = 0x802758d0
+                0x00000000802758d4                D_802758D4 = 0x802758d4
+                0x00000000802758e0                D_802758E0 = 0x802758e0
+                0x0000000080275908                D_80275908 = 0x80275908
+                0x0000000080275910                D_80275910 = 0x80275910
+                0x0000000080275918                D_80275918 = 0x80275918
+                0x000000008027591c                D_8027591C = 0x8027591c
+                0x0000000080275950                D_80275950 = 0x80275950
+                0x0000000080275958                D_80275958 = 0x80275958
+                0x000000008027595c                D_8027595C = 0x8027595c
+                0x0000000080275988                D_80275988 = 0x80275988
+                0x0000000080275990                D_80275990 = 0x80275990
+                0x0000000080275994                D_80275994 = 0x80275994
+                0x0000000080275998                D_80275998 = 0x80275998
+                0x000000008027599c                D_8027599C = 0x8027599c
+                0x00000000802759a0                D_802759A0 = 0x802759a0
+                0x00000000802759a4                D_802759A4 = 0x802759a4
+                0x00000000802759a8                D_802759A8 = 0x802759a8
+                0x0000000080275a50                D_80275A50 = 0x80275a50
+                0x0000000080275a68                D_80275A68 = 0x80275a68
+                0x0000000080275a6c                D_80275A6C = 0x80275a6c
+                0x0000000080275a70                D_80275A70 = 0x80275a70
+                0x0000000080275a74                D_80275A74 = 0x80275a74
+                0x0000000080275a7c                D_80275A7C = 0x80275a7c
+                0x0000000080275bbc                D_80275BBC = 0x80275bbc
+                0x0000000080275bc0                D_80275BC0 = 0x80275bc0
+                0x0000000080275bc4                D_80275BC4 = 0x80275bc4
+                0x0000000080275bc8                D_80275BC8 = 0x80275bc8
+                0x0000000080275bcc                D_80275BCC = 0x80275bcc
+                0x0000000080275bd0                D_80275BD0 = 0x80275bd0
+                0x0000000080275bd4                D_80275BD4 = 0x80275bd4
+                0x0000000080275bd8                D_80275BD8 = 0x80275bd8
+                0x0000000080275bdc                D_80275BDC = 0x80275bdc
+                0x0000000080275be0                D_80275BE0 = 0x80275be0
+                0x0000000080275be4                D_80275BE4 = 0x80275be4
+                0x0000000080275be8                D_80275BE8 = 0x80275be8
+                0x0000000080275c00                D_80275C00 = 0x80275c00
+                0x0000000080275c10                D_80275C10 = 0x80275c10
+                0x0000000080275c14                D_80275C14 = 0x80275c14
+                0x0000000080275c18                D_80275C18 = 0x80275c18
+                0x0000000080275c1c                D_80275C1C = 0x80275c1c
+                0x0000000080275c20                D_80275C20 = 0x80275c20
+                0x0000000080275c80                D_80275C80 = 0x80275c80
+                0x0000000080275cd0                D_80275CD0 = 0x80275cd0
+                0x0000000080275d20                D_80275D20 = 0x80275d20
+                0x0000000080275d24                D_80275D24 = 0x80275d24
+                0x0000000080275d28                D_80275D28 = 0x80275d28
+                0x0000000080275d2c                D_80275D2C = 0x80275d2c
+                0x0000000080275d38                D_80275D38 = 0x80275d38
+                0x0000000080275d40                D_80275D40 = 0x80275d40
+                0x0000000080275d44                D_80275D44 = 0x80275d44
+                0x00000000802762c0                D_802762C0 = 0x802762c0
+                0x00000000802762c4                D_802762C4 = 0x802762c4
+                0x00000000802762d0                D_802762D0 = 0x802762d0
+                0x00000000802762fc                D_802762FC = 0x802762fc
+                0x0000000080276564                D_80276564 = 0x80276564
+                0x0000000080276574                D_80276574 = 0x80276574
+                0x0000000080276578                D_80276578 = 0x80276578
+                0x000000008027657c                D_8027657C = 0x8027657c
+                0x0000000080276580                D_80276580 = 0x80276580
+                0x0000000080276584                D_80276584 = 0x80276584
+                0x0000000080276588                D_80276588 = 0x80276588
+                0x000000008027658c                D_8027658C = 0x8027658c
+                0x0000000080276590                D_80276590 = 0x80276590
+                0x0000000080276594                D_80276594 = 0x80276594
+                0x0000000080276598                D_80276598 = 0x80276598
+                0x000000008027659c                D_8027659C = 0x8027659c
+                0x00000000802765a0                D_802765A0 = 0x802765a0
+                0x00000000802765a4                D_802765A4 = 0x802765a4
+                0x00000000802765a8                D_802765A8 = 0x802765a8
+                0x00000000802765ac                D_802765AC = 0x802765ac
+                0x00000000802765b0                D_802765B0 = 0x802765b0
+                0x00000000802765b4                D_802765B4 = 0x802765b4
+                0x00000000802765c0                D_802765C0 = 0x802765c0
+                0x00000000802769ac                D_802769AC = 0x802769ac
+                0x0000000080276b98                D_80276B98 = 0x80276b98
+                0x0000000080276cb8                D_80276CB8 = 0x80276cb8
+                0x0000000080276cbc                D_80276CBC = 0x80276cbc
+                0x0000000080276e30                D_80276E30 = 0x80276e30
+                0x0000000080276e34                D_80276E34 = 0x80276e34
+                0x0000000080276e40                D_80276E40 = 0x80276e40
+                0x0000000080276e44                D_80276E44 = 0x80276e44
+                0x0000000080276e48                D_80276E48 = 0x80276e48
+                0x0000000080276e4c                D_80276E4C = 0x80276e4c
+                0x0000000080276e50                D_80276E50 = 0x80276e50
+                0x0000000080276e60                D_80276E60 = 0x80276e60
+                0x0000000080276e80                D_80276E80 = 0x80276e80
+                0x0000000080276e84                D_80276E84 = 0x80276e84
+                0x0000000080276e90                D_80276E90 = 0x80276e90
+                0x0000000080276ef8                D_80276EF8 = 0x80276ef8
+                0x0000000080276f80                D_80276F80 = 0x80276f80
+                0x0000000080276fa8                D_80276FA8 = 0x80276fa8
+                0x0000000080276fd0                D_80276FD0 = 0x80276fd0
+                0x0000000080276ff8                D_80276FF8 = 0x80276ff8
+                0x0000000080277020                D_80277020 = 0x80277020
+                0x000000008027711e                D_8027711E = 0x8027711e
+                0x0000000080277120                D_80277120 = 0x80277120
+                0x0000000080277124                D_80277124 = 0x80277124
+                0x0000000080277128                D_80277128 = 0x80277128
+                0x000000008027712c                D_8027712C = 0x8027712c
+                0x0000000080277130                D_80277130 = 0x80277130
+                0x0000000080277140                D_80277140 = 0x80277140
+                0x0000000080277150                D_80277150 = 0x80277150
+                0x0000000080277160                D_80277160 = 0x80277160
+                0x0000000080277168                D_80277168 = 0x80277168
+                0x000000008027717c                D_8027717C = 0x8027717c
+                0x0000000080277180                D_80277180 = 0x80277180
+                0x0000000080277190                D_80277190 = 0x80277190
+                0x00000000802771b0                D_802771B0 = 0x802771b0
+                0x00000000802771c0                D_802771C0 = 0x802771c0
+                0x0000000080277228                D_80277228 = 0x80277228
+                0x00000000802772b0                D_802772B0 = 0x802772b0
+                0x00000000802772d8                D_802772D8 = 0x802772d8
+                0x0000000080277300                D_80277300 = 0x80277300
+                0x0000000080277328                D_80277328 = 0x80277328
+                0x0000000080277350                D_80277350 = 0x80277350
+                0x0000000080277370                D_80277370 = 0x80277370
+                0x0000000080277378                D_80277378 = 0x80277378
+                0x000000008027737c                D_8027737C = 0x8027737c
+                0x0000000080277380                D_80277380 = 0x80277380
+                0x0000000080277384                D_80277384 = 0x80277384
+                0x0000000080277390                D_80277390 = 0x80277390
+                0x00000000802773a0                D_802773A0 = 0x802773a0
+                0x0000000080277400                D_80277400 = 0x80277400
+                0x0000000080277404                D_80277404 = 0x80277404
+                0x0000000080277410                D_80277410 = 0x80277410
+                0x0000000080277420                D_80277420 = 0x80277420
+                0x0000000080277430                D_80277430 = 0x80277430
+                0x000000008027752e                D_8027752E = 0x8027752e
+                0x0000000080277530                D_80277530 = 0x80277530
+                0x0000000080277580                D_80277580 = 0x80277580
+                0x00000000802775d0                D_802775D0 = 0x802775d0
+                0x0000000080277620                D_80277620 = 0x80277620
+                0x0000000080277628                D_80277628 = 0x80277628
+                0x0000000080277630                D_80277630 = 0x80277630
+                0x0000000080277638                D_80277638 = 0x80277638
+                0x0000000080277640                D_80277640 = 0x80277640
+                0x0000000080277650                D_80277650 = 0x80277650
+                0x0000000080277658                D_80277658 = 0x80277658
+                0x0000000080277660                D_80277660 = 0x80277660
+                0x00000000802776a0                D_802776A0 = 0x802776a0
+                0x00000000802776a4                D_802776A4 = 0x802776a4
+                0x00000000802776a8                D_802776A8 = 0x802776a8
+                0x00000000802776ac                D_802776AC = 0x802776ac
+                0x00000000802776b0                D_802776B0 = 0x802776b0
+                0x00000000802776b4                D_802776B4 = 0x802776b4
+                0x00000000802776c0                D_802776C0 = 0x802776c0
+                0x00000000802776c8                D_802776C8 = 0x802776c8
+                0x00000000802776d0                D_802776D0 = 0x802776d0
+                0x00000000802776d8                D_802776D8 = 0x802776d8
+                0x00000000802776e8                D_802776E8 = 0x802776e8
+                0x00000000802776f0                D_802776F0 = 0x802776f0
+                0x0000000080277700                D_80277700 = 0x80277700
+                0x0000000080277710                D_80277710 = 0x80277710
+                0x0000000080277718                D_80277718 = 0x80277718
+                0x0000000080277720                D_80277720 = 0x80277720
+                0x0000000080277794                D_80277794 = 0x80277794
+                0x0000000080277798                D_80277798 = 0x80277798
+                0x000000008027779c                D_8027779C = 0x8027779c
+                0x00000000802777a0                D_802777A0 = 0x802777a0
+                0x00000000802779f0                D_802779F0 = 0x802779f0
+                0x00000000802779f8                D_802779F8 = 0x802779f8
+                0x0000000080277a00                D_80277A00 = 0x80277a00
+                0x0000000080277a04                D_80277A04 = 0x80277a04
+                0x0000000080277a08                D_80277A08 = 0x80277a08
+                0x0000000080277a0c                D_80277A0C = 0x80277a0c
+                0x0000000080277a10                D_80277A10 = 0x80277a10
+                0x0000000080277a14                D_80277A14 = 0x80277a14
+                0x0000000080277a18                D_80277A18 = 0x80277a18
+                0x0000000080277a1c                D_80277A1C = 0x80277a1c
+                0x0000000080277a20                D_80277A20 = 0x80277a20
+                0x0000000080277a24                D_80277A24 = 0x80277a24
+                0x0000000080277a2c                D_80277A2C = 0x80277a2c
+                0x0000000080277a30                D_80277A30 = 0x80277a30
+                0x0000000080277a38                D_80277A38 = 0x80277a38
+                0x0000000080277a40                D_80277A40 = 0x80277a40
+                0x0000000080277a48                D_80277A48 = 0x80277a48
+                0x0000000080277a58                D_80277A58 = 0x80277a58
+                0x0000000080277a60                D_80277A60 = 0x80277a60
+                0x0000000080277a70                D_80277A70 = 0x80277a70
+                0x0000000080278180                D_80278180 = 0x80278180
+                0x0000000080278184                D_80278184 = 0x80278184
+                0x0000000080278190                D_80278190 = 0x80278190
+                0x0000000080278220                D_80278220 = 0x80278220
+                0x0000000080278228                D_80278228 = 0x80278228
+                0x0000000080278230                D_80278230 = 0x80278230
+                0x0000000080278240                D_80278240 = 0x80278240
+                0x0000000080278248                D_80278248 = 0x80278248
+                0x0000000080278250                D_80278250 = 0x80278250
+                0x0000000080278258                D_80278258 = 0x80278258
+                0x0000000080278260                D_80278260 = 0x80278260
+                0x0000000080278268                D_80278268 = 0x80278268
+                0x0000000080278270                D_80278270 = 0x80278270
+                0x0000000080278280                D_80278280 = 0x80278280
+                0x0000000080278288                D_80278288 = 0x80278288
+                0x0000000080278290                D_80278290 = 0x80278290
+                0x0000000080278298                D_80278298 = 0x80278298
+                0x00000000802782a0                D_802782A0 = 0x802782a0
+                0x00000000802782a8                D_802782A8 = 0x802782a8
+                0x00000000802782b0                D_802782B0 = 0x802782b0
+                0x00000000802782b8                D_802782B8 = 0x802782b8
+                0x00000000802782c0                D_802782C0 = 0x802782c0
+                0x00000000802782c8                D_802782C8 = 0x802782c8
+                0x00000000802782d0                D_802782D0 = 0x802782d0
+                0x00000000802782d8                D_802782D8 = 0x802782d8
+                0x00000000802782e0                D_802782E0 = 0x802782e0
+                0x00000000802782e8                D_802782E8 = 0x802782e8
+                0x00000000802782f0                D_802782F0 = 0x802782f0
+                0x00000000802782f8                D_802782F8 = 0x802782f8
+                0x0000000080278300                D_80278300 = 0x80278300
+                0x0000000080278308                D_80278308 = 0x80278308
+                0x0000000080278310                D_80278310 = 0x80278310
+                0x0000000080278318                D_80278318 = 0x80278318
+                0x0000000080278320                D_80278320 = 0x80278320
+                0x0000000080278328                D_80278328 = 0x80278328
+                0x0000000080278330                D_80278330 = 0x80278330
+                0x0000000080278340                D_80278340 = 0x80278340
+                0x000000008027834c                D_8027834C = 0x8027834c
+                0x0000000080278358                D_80278358 = 0x80278358
+                0x0000000080278364                D_80278364 = 0x80278364
+                0x0000000080278370                D_80278370 = 0x80278370
+                0x000000008027838c                D_8027838C = 0x8027838c
+                0x00000000802783a8                D_802783A8 = 0x802783a8
+                0x00000000802783d0                D_802783D0 = 0x802783d0
+                0x00000000802783d8                D_802783D8 = 0x802783d8
+                0x00000000802783e0                D_802783E0 = 0x802783e0
+                0x00000000802783fc                D_802783FC = 0x802783fc
+                0x000000008027840c                D_8027840C = 0x8027840c
+                0x0000000080278428                D_80278428 = 0x80278428
+                0x0000000080278438                D_80278438 = 0x80278438
+                0x0000000080278440                D_80278440 = 0x80278440
+                0x0000000080278450                D_80278450 = 0x80278450
+                0x0000000080278458                D_80278458 = 0x80278458
+                0x0000000080278468                D_80278468 = 0x80278468
+                0x000000008027847c                D_8027847C = 0x8027847c
+                0x000000008027848c                D_8027848C = 0x8027848c
+                0x0000000080278610                D_80278610 = 0x80278610
+                0x000000008027869c                D_8027869C = 0x8027869c
+                0x00000000802786fc                D_802786FC = 0x802786fc
+                0x0000000080278750                D_80278750 = 0x80278750
+                0x0000000080278770                D_80278770 = 0x80278770
+                0x0000000080278780                D_80278780 = 0x80278780
+                0x0000000080278798                D_80278798 = 0x80278798
+                0x00000000802787a8                D_802787A8 = 0x802787a8
+                0x00000000802787f0                D_802787F0 = 0x802787f0
+                0x000000008027880c                D_8027880C = 0x8027880c
+                0x000000008027881c                D_8027881C = 0x8027881c
+                0x0000000080278838                D_80278838 = 0x80278838
+                0x0000000080278848                D_80278848 = 0x80278848
+                0x0000000080278850                D_80278850 = 0x80278850
+                0x0000000080278868                D_80278868 = 0x80278868
+                0x0000000080278878                D_80278878 = 0x80278878
+                0x00000000802788bc                D_802788BC = 0x802788bc
+                0x00000000802788cc                D_802788CC = 0x802788cc
+                0x00000000802788e4                D_802788E4 = 0x802788e4
+                0x00000000802788f4                D_802788F4 = 0x802788f4
+                0x000000008027891c                D_8027891C = 0x8027891c
+                0x0000000080278930                D_80278930 = 0x80278930
+                0x0000000080278940                D_80278940 = 0x80278940
+                0x0000000080278950                D_80278950 = 0x80278950
+                0x0000000080278960                D_80278960 = 0x80278960
+                0x0000000080278ae4                D_80278AE4 = 0x80278ae4
+                0x0000000080278b38                D_80278B38 = 0x80278b38
+                0x0000000080278b98                D_80278B98 = 0x80278b98
+                0x0000000080278ba0                D_80278BA0 = 0x80278ba0
+                0x0000000080278bb0                D_80278BB0 = 0x80278bb0
+                0x0000000080278bd8                D_80278BD8 = 0x80278bd8
+                0x0000000080278be0                D_80278BE0 = 0x80278be0
+                0x0000000080278be8                D_80278BE8 = 0x80278be8
+                0x0000000080278c00                D_80278C00 = 0x80278c00
+                0x0000000080278c10                D_80278C10 = 0x80278c10
+                0x0000000080278c40                D_80278C40 = 0x80278c40
+                0x0000000080278c48                D_80278C48 = 0x80278c48
+                0x0000000080278c60                D_80278C60 = 0x80278c60
+                0x0000000080278ce0                D_80278CE0 = 0x80278ce0
+                0x0000000080278cf0                D_80278CF0 = 0x80278cf0
+                0x0000000080278cf8                D_80278CF8 = 0x80278cf8
+                0x0000000080278d00                D_80278D00 = 0x80278d00
+                0x0000000080278d18                D_80278D18 = 0x80278d18
+                0x0000000080278d20                D_80278D20 = 0x80278d20
+                0x0000000080278d40                D_80278D40 = 0x80278d40
+                0x0000000080278d50                D_80278D50 = 0x80278d50
+                0x0000000080278d58                D_80278D58 = 0x80278d58
+                0x0000000080278d60                D_80278D60 = 0x80278d60
+                0x0000000080278d80                D_80278D80 = 0x80278d80
+                0x0000000080278db0                D_80278DB0 = 0x80278db0
+                0x0000000080278dc0                D_80278DC0 = 0x80278dc0
+                0x0000000080278dc8                D_80278DC8 = 0x80278dc8
+                0x0000000080278dd0                D_80278DD0 = 0x80278dd0
+                0x0000000080278df8                D_80278DF8 = 0x80278df8
+                0x0000000080278e40                D_80278E40 = 0x80278e40
+                0x0000000080278e68                D_80278E68 = 0x80278e68
+                0x0000000080278e80                D_80278E80 = 0x80278e80
+                0x0000000080279130                D_80279130 = 0x80279130
+                0x0000000080279930                D_80279930 = 0x80279930
+                0x000000008027a130                D_8027A130 = 0x8027a130
+                0x000000008027a538                D_8027A538 = 0x8027a538
+                0x000000008027a53c                D_8027A53C = 0x8027a53c
+                0x000000008027bd38                D_8027BD38 = 0x8027bd38
+                0x000000008027bee8                D_8027BEE8 = 0x8027bee8
+                0x000000008027beec                D_8027BEEC = 0x8027beec
+                0x000000008027bef4                D_8027BEF4 = 0x8027bef4
+                0x000000008027bf00                D_8027BF00 = 0x8027bf00
+                0x000000008027bf10                D_8027BF10 = 0x8027bf10
+                0x000000008027bf14                D_8027BF14 = 0x8027bf14
+                0x000000008027bf18                D_8027BF18 = 0x8027bf18
+                0x000000008027bf1c                D_8027BF1C = 0x8027bf1c
+                0x000000008027bf20                D_8027BF20 = 0x8027bf20
+                0x000000008027bf24                D_8027BF24 = 0x8027bf24
+                0x000000008027bf28                D_8027BF28 = 0x8027bf28
+                0x000000008027bf2c                D_8027BF2C = 0x8027bf2c
+                0x000000008027bf30                D_8027BF30 = 0x8027bf30
+                0x000000008027bf34                D_8027BF34 = 0x8027bf34
+                0x000000008027bf40                D_8027BF40 = 0x8027bf40
+                0x000000008027bf48                D_8027BF48 = 0x8027bf48
+                0x000000008027bf4c                D_8027BF4C = 0x8027bf4c
+                0x000000008027bf58                D_8027BF58 = 0x8027bf58
+                0x000000008027c108                D_8027C108 = 0x8027c108
+                0x000000008027c120                D_8027C120 = 0x8027c120
+                0x000000008027c140                D_8027C140 = 0x8027c140
+                0x000000008027c158                D_8027C158 = 0x8027c158
+                0x000000008027cff0                D_8027CFF0 = 0x8027cff0
+                0x000000008027d000                D_8027D000 = 0x8027d000
+                0x000000008027d008                D_8027D008 = 0x8027d008
+                0x000000008027d0e8                D_8027D0E8 = 0x8027d0e8
+                0x000000008027d5b0                D_8027D5B0 = 0x8027d5b0
+                0x000000008027d5c0                D_8027D5C0 = 0x8027d5c0
+                0x000000008027d5d4                D_8027D5D4 = 0x8027d5d4
+                0x000000008027dcc8                D_8027DCC8 = 0x8027dcc8
+                0x000000008027dccc                D_8027DCCC = 0x8027dccc
+                0x000000008027dcd0                D_8027DCD0 = 0x8027dcd0
+                0x000000008027dcd8                D_8027DCD8 = 0x8027dcd8
+                0x000000008027dd50                D_8027DD50 = 0x8027dd50
+                0x000000008027dd74                D_8027DD74 = 0x8027dd74
+                0x000000008027dd78                D_8027DD78 = 0x8027dd78
+                0x000000008027dd7c                D_8027DD7C = 0x8027dd7c
+                0x000000008027dd80                D_8027DD80 = 0x8027dd80
+                0x000000008027dd84                D_8027DD84 = 0x8027dd84
+                0x000000008027dd88                D_8027DD88 = 0x8027dd88
+                0x000000008027dd98                D_8027DD98 = 0x8027dd98
+                0x000000008027dda8                D_8027DDA8 = 0x8027dda8
+                0x000000008027ddb8                D_8027DDB8 = 0x8027ddb8
+                0x000000008027ddd8                D_8027DDD8 = 0x8027ddd8
+                0x000000008027dde8                D_8027DDE8 = 0x8027dde8
+                0x000000008027ddf8                D_8027DDF8 = 0x8027ddf8
+                0x000000008027e090                D_8027E090 = 0x8027e090
+                0x000000008027e0a8                D_8027E0A8 = 0x8027e0a8
+                0x000000008027e0ac                D_8027E0AC = 0x8027e0ac
+                0x000000008027e0c8                D_8027E0C8 = 0x8027e0c8
+                0x000000008027e108                D_8027E108 = 0x8027e108
+                0x000000008027e120                D_8027E120 = 0x8027e120
+                0x000000008027e138                D_8027E138 = 0x8027e138
+                0x000000008027e140                D_8027E140 = 0x8027e140
+                0x000000008027e158                D_8027E158 = 0x8027e158
+                0x000000008027e160                D_8027E160 = 0x8027e160
+                0x000000008027eb10                D_8027EB10 = 0x8027eb10
+                0x000000008027ed10                D_8027ED10 = 0x8027ed10
+                0x000000008027ef14                D_8027EF14 = 0x8027ef14
+                0x000000008027ef18                D_8027EF18 = 0x8027ef18
+                0x000000008027ef30                D_8027EF30 = 0x8027ef30
+                0x000000008027ef40                D_8027EF40 = 0x8027ef40
+                0x000000008027fb60                D_8027FB60 = 0x8027fb60
+                0x000000008027fb78                D_8027FB78 = 0x8027fb78
+                0x000000008027fbc8                D_8027FBC8 = 0x8027fbc8
+                0x000000008027fbe0                D_8027FBE0 = 0x8027fbe0
+                0x000000008027fc08                D_8027FC08 = 0x8027fc08
+                0x000000008027fc0c                D_8027FC0C = 0x8027fc0c
+                0x000000008027fc10                D_8027FC10 = 0x8027fc10
+                0x000000008027fc14                D_8027FC14 = 0x8027fc14
+                0x000000008027fc18                D_8027FC18 = 0x8027fc18
+                0x000000008027fc1c                D_8027FC1C = 0x8027fc1c
+                0x000000008027fc20                D_8027FC20 = 0x8027fc20
+                0x000000008027fc24                D_8027FC24 = 0x8027fc24
+                0x0000000080280428                D_80280428 = 0x80280428
+                0x00000000802805d8                D_802805D8 = 0x802805d8
+                0x0000000080280628                D_80280628 = 0x80280628
+                0x000000008028062c                D_8028062C = 0x8028062c
+                0x0000000080280630                D_80280630 = 0x80280630
+                0x0000000080280680                D_80280680 = 0x80280680
+                0x0000000080280684                D_80280684 = 0x80280684
+                0x0000000080280688                D_80280688 = 0x80280688
+                0x00000000802806b0                D_802806B0 = 0x802806b0
+                0x00000000802806d0                D_802806D0 = 0x802806d0
+                0x00000000802806d4                D_802806D4 = 0x802806d4
+                0x00000000802806e0                D_802806E0 = 0x802806e0
+                0x00000000802806e4                D_802806E4 = 0x802806e4
+                0x00000000802806e8                D_802806E8 = 0x802806e8
+                0x00000000802806ec                D_802806EC = 0x802806ec
+                0x00000000802806f0                D_802806F0 = 0x802806f0
+                0x00000000802806f4                D_802806F4 = 0x802806f4
+                0x00000000802806f8                D_802806F8 = 0x802806f8
+                0x00000000802806fc                D_802806FC = 0x802806fc
+                0x0000000080280700                D_80280700 = 0x80280700
+                0x0000000080280708                D_80280708 = 0x80280708
+                0x0000000080280720                D_80280720 = 0x80280720
+                0x0000000080280724                D_80280724 = 0x80280724
+                0x0000000080280728                D_80280728 = 0x80280728
+                0x0000000080280730                D_80280730 = 0x80280730
+                0x0000000080280770                D_80280770 = 0x80280770
+                0x0000000080280788                D_80280788 = 0x80280788
+                0x00000000802807b0                D_802807B0 = 0x802807b0
+                0x00000000802807c8                D_802807C8 = 0x802807c8
+                0x00000000802807d0                D_802807D0 = 0x802807d0
+                0x00000000802807e8                D_802807E8 = 0x802807e8
+                0x00000000802808d8                D_802808D8 = 0x802808d8
+                0x00000000802808dc                D_802808DC = 0x802808dc
+                0x00000000802808e0                D_802808E0 = 0x802808e0
+                0x0000000080280e90                D_80280E90 = 0x80280e90
+                0x0000000080280ea0                D_80280EA0 = 0x80280ea0
+                0x0000000080280eb0                D_80280EB0 = 0x80280eb0
+                0x0000000080280ec0                D_80280EC0 = 0x80280ec0
+                0x0000000080280ec4                D_80280EC4 = 0x80280ec4
+                0x0000000080280ec8                D_80280EC8 = 0x80280ec8
+                0x0000000080280ecc                D_80280ECC = 0x80280ecc
+                0x0000000080280ed0                D_80280ED0 = 0x80280ed0
+                0x0000000080280ed4                D_80280ED4 = 0x80280ed4
+                0x0000000080280ed8                D_80280ED8 = 0x80280ed8
+                0x0000000080280edc                D_80280EDC = 0x80280edc
+                0x0000000080280ee0                D_80280EE0 = 0x80280ee0
+                0x0000000080280ee4                D_80280EE4 = 0x80280ee4
+                0x0000000080280ee8                D_80280EE8 = 0x80280ee8
+                0x0000000080280eec                D_80280EEC = 0x80280eec
+                0x0000000080280ef0                D_80280EF0 = 0x80280ef0
+                0x0000000080280ef4                D_80280EF4 = 0x80280ef4
+                0x0000000080280ef8                D_80280EF8 = 0x80280ef8
+                0x0000000080280efc                D_80280EFC = 0x80280efc
+                0x0000000080280f00                D_80280F00 = 0x80280f00
+                0x0000000080280f04                D_80280F04 = 0x80280f04
+                0x0000000080280f08                D_80280F08 = 0x80280f08
+                0x0000000080280f0c                D_80280F0C = 0x80280f0c
+                0x0000000080280f10                D_80280F10 = 0x80280f10
+                0x0000000080280f90                D_80280F90 = 0x80280f90
+                0x0000000080280f98                D_80280F98 = 0x80280f98
+                0x0000000080280fd8                D_80280FD8 = 0x80280fd8
+                0x0000000080281018                D_80281018 = 0x80281018
+                0x000000008028101c                D_8028101C = 0x8028101c
+                0x0000000080281020                D_80281020 = 0x80281020
+                0x0000000080281024                D_80281024 = 0x80281024
+                0x0000000080281028                D_80281028 = 0x80281028
+                0x0000000080281038                D_80281038 = 0x80281038
+                0x0000000080281058                D_80281058 = 0x80281058
+                0x0000000080281068                D_80281068 = 0x80281068
+                0x0000000080281078                D_80281078 = 0x80281078
+                0x0000000080281088                D_80281088 = 0x80281088
+                0x0000000080281098                D_80281098 = 0x80281098
+                0x00000000802810d8                D_802810D8 = 0x802810d8
+                0x00000000802810e0                D_802810E0 = 0x802810e0
+                0x0000000080281130                D_80281130 = 0x80281130
+                0x0000000080281138                D_80281138 = 0x80281138
+                0x0000000080281150                D_80281150 = 0x80281150
+                0x000000008028116c                D_8028116C = 0x8028116c
+                0x0000000080281218                D_80281218 = 0x80281218
+                0x0000000080281250                D_80281250 = 0x80281250
+                0x00000000802812b0                D_802812B0 = 0x802812b0
+                0x00000000802812b4                D_802812B4 = 0x802812b4
+                0x00000000802812b8                D_802812B8 = 0x802812b8
+                0x00000000802812d0                D_802812D0 = 0x802812d0
+                0x00000000802812d8                D_802812D8 = 0x802812d8
+                0x00000000802812f0                D_802812F0 = 0x802812f0
+                0x0000000080281308                D_80281308 = 0x80281308
+                0x0000000080281318                D_80281318 = 0x80281318
+                0x000000008028131b                D_8028131B = 0x8028131b
+                0x0000000080281328                D_80281328 = 0x80281328
+                0x0000000080281330                D_80281330 = 0x80281330
+                0x00000000802816e0                D_802816E0 = 0x802816e0
+                0x00000000802816e8                D_802816E8 = 0x802816e8
+                0x00000000802816f0                D_802816F0 = 0x802816f0
+                0x0000000080281700                D_80281700 = 0x80281700
+                0x0000000080281720                D_80281720 = 0x80281720
+                0x0000000080281722                D_80281722 = 0x80281722
+                0x000000008028181c                D_8028181C = 0x8028181c
+                0x000000008028183a                D_8028183A = 0x8028183a
+                0x0000000080281848                D_80281848 = 0x80281848
+                0x0000000080281898                D_80281898 = 0x80281898
+                0x000000008028189a                D_8028189A = 0x8028189a
+                0x00000000802818a0                D_802818A0 = 0x802818a0
+                0x00000000802818c2                D_802818C2 = 0x802818c2
+                0x0000000080281a3a                D_80281A3A = 0x80281a3a
+                0x0000000080281a40                D_80281A40 = 0x80281a40
+                0x00000000802820e0                D_802820E0 = 0x802820e0
+                0x00000000802820e8                D_802820E8 = 0x802820e8
+                0x0000000080282104                D_80282104 = 0x80282104
+                0x0000000080282108                D_80282108 = 0x80282108
+                0x0000000080282110                D_80282110 = 0x80282110
+                0x00000000802821dc                D_802821DC = 0x802821dc
+                0x0000000080282390                D_80282390 = 0x80282390
+                0x00000000802823a8                D_802823A8 = 0x802823a8
+                0x00000000802823ac                D_802823AC = 0x802823ac
+                0x00000000802823b0                D_802823B0 = 0x802823b0
+                0x00000000802823b4                D_802823B4 = 0x802823b4
+                0x00000000802823b8                D_802823B8 = 0x802823b8
+                0x0000000080282420                D_80282420 = 0x80282420
+                0x0000000080282424                D_80282424 = 0x80282424
+                0x0000000080282428                D_80282428 = 0x80282428
+                0x000000008028242c                D_8028242C = 0x8028242c
+                0x0000000080282430                D_80282430 = 0x80282430
+                0x00000000802827e0                D_802827E0 = 0x802827e0
+                0x00000000802827e4                D_802827E4 = 0x802827e4
+                0x00000000802827f0                D_802827F0 = 0x802827f0
+                0x0000000080282800                D_80282800 = 0x80282800
+                0x0000000080282810                D_80282810 = 0x80282810
+                0x0000000080282fd0                D_80282FD0 = 0x80282fd0
+                0x0000000080282fe0                D_80282FE0 = 0x80282fe0
+                0x0000000080282fe4                D_80282FE4 = 0x80282fe4
+                0x0000000080282ff0                D_80282FF0 = 0x80282ff0
+                0x0000000080282ff4                D_80282FF4 = 0x80282ff4
+                0x0000000080282ff8                D_80282FF8 = 0x80282ff8
+                0x0000000080282ffc                D_80282FFC = 0x80282ffc
+                0x0000000080283000                D_80283000 = 0x80283000
+                0x0000000080283004                D_80283004 = 0x80283004
+                0x00000000802831e8                D_802831E8 = 0x802831e8
+                0x00000000802831f0                D_802831F0 = 0x802831f0
+                0x0000000080283208                D_80283208 = 0x80283208
+                0x000000008028320c                D_8028320C = 0x8028320c
+                0x000000008028320e                D_8028320E = 0x8028320e
+                0x0000000080283210                D_80283210 = 0x80283210
+                0x0000000080283212                D_80283212 = 0x80283212
+                0x0000000080283214                D_80283214 = 0x80283214
+                0x0000000080283220                D_80283220 = 0x80283220
+                0x0000000080283224                D_80283224 = 0x80283224
+                0x0000000080283228                D_80283228 = 0x80283228
+                0x000000008028322c                D_8028322C = 0x8028322c
+                0x0000000080283230                D_80283230 = 0x80283230
+                0x0000000080283234                D_80283234 = 0x80283234
+                0x0000000080283238                D_80283238 = 0x80283238
+                0x0000000080283239                D_80283239 = 0x80283239
+                0x0000000080283280                D_80283280 = 0x80283280
+                0x0000000080283380                D_80283380 = 0x80283380
+                0x0000000080283384                D_80283384 = 0x80283384
+                0x0000000080283388                D_80283388 = 0x80283388
+                0x0000000080283390                D_80283390 = 0x80283390
+                0x0000000080283400                D_80283400 = 0x80283400
+                0x0000000080283401                D_80283401 = 0x80283401
+                0x0000000080283418                D_80283418 = 0x80283418
+                0x0000000080283420                D_80283420 = 0x80283420
+                0x0000000080283424                D_80283424 = 0x80283424
+                0x0000000080283428                D_80283428 = 0x80283428
+                0x000000008028342c                D_8028342C = 0x8028342c
+                0x0000000080283430                D_80283430 = 0x80283430
+                0x0000000080283440                D_80283440 = 0x80283440
+                0x0000000080283450                D_80283450 = 0x80283450
+                0x0000000080284600                D_80284600 = 0x80284600
+                0x0000000080284618                D_80284618 = 0x80284618
+                0x0000000080284620                D_80284620 = 0x80284620
+                0x0000000080284660                D_80284660 = 0x80284660
+                0x00000000802846e0                D_802846E0 = 0x802846e0
+                0x0000000080284890                D_80284890 = 0x80284890
+                0x0000000080285890                D_80285890 = 0x80285890
+                0x00000000802858a8                D_802858A8 = 0x802858a8
+                0x00000000802858c0                D_802858C0 = 0x802858c0
+                0x00000000802858d8                D_802858D8 = 0x802858d8
+                0x00000000802858f0                D_802858F0 = 0x802858f0
+                0x0000000080285900                D_80285900 = 0x80285900
+                0x0000000080285910                D_80285910 = 0x80285910
+                0x000000008028594c                D_8028594C = 0x8028594c
+                0x0000000080285950                D_80285950 = 0x80285950
+                0x0000000080285951                D_80285951 = 0x80285951
+                0x0000000080285958                D_80285958 = 0x80285958
+                0x0000000080285978                D_80285978 = 0x80285978
+                0x0000000080285990                D_80285990 = 0x80285990
+                0x00000000802859a0                D_802859A0 = 0x802859a0
+                0x0000000080285aa0                D_80285AA0 = 0x80285aa0
+                0x0000000080285ba0                D_80285BA0 = 0x80285ba0
+                0x0000000080285bc0                D_80285BC0 = 0x80285bc0
+                0x0000000080285be0                D_80285BE0 = 0x80285be0
+                0x0000000080285be4                D_80285BE4 = 0x80285be4
+                0x0000000080285be5                D_80285BE5 = 0x80285be5
+                0x0000000080285be6                D_80285BE6 = 0x80285be6
+                0x0000000080285be8                D_80285BE8 = 0x80285be8
+                0x0000000080285be9                D_80285BE9 = 0x80285be9
+                0x0000000080285bec                D_80285BEC = 0x80285bec
+                0x0000000080285bf0                D_80285BF0 = 0x80285bf0
+                0x0000000080285c60                D_80285C60 = 0x80285c60
+                0x0000000080285c64                D_80285C64 = 0x80285c64
+                0x0000000080285c65                D_80285C65 = 0x80285c65
+                0x0000000080285c66                D_80285C66 = 0x80285c66
+                0x0000000080285c67                D_80285C67 = 0x80285c67
+                0x0000000080285c68                D_80285C68 = 0x80285c68
+                0x0000000080285c69                D_80285C69 = 0x80285c69
+                0x0000000080285c6c                D_80285C6C = 0x80285c6c
+                0x0000000080285c70                D_80285C70 = 0x80285c70
+                0x0000000080285cd4                D_80285CD4 = 0x80285cd4
+                0x0000000080285ce0                D_80285CE0 = 0x80285ce0
+                0x0000000080285ce8                D_80285CE8 = 0x80285ce8
+                0x0000000080285d20                D_80285D20 = 0x80285d20
+                0x0000000080285d24                D_80285D24 = 0x80285d24
+                0x0000000080285d28                D_80285D28 = 0x80285d28
+                0x0000000080285d2c                D_80285D2C = 0x80285d2c
+                0x0000000080285d30                D_80285D30 = 0x80285d30
+                0x0000000080285d40                D_80285D40 = 0x80285d40
+                0x0000000080285d48                D_80285D48 = 0x80285d48
+                0x0000000080285d60                D_80285D60 = 0x80285d60
+                0x0000000080285d9c                D_80285D9C = 0x80285d9c
+                0x0000000080285da0                D_80285DA0 = 0x80285da0
+                0x0000000080285ddc                D_80285DDC = 0x80285ddc
+                0x0000000080285de0                D_80285DE0 = 0x80285de0
+                0x0000000080285f90                D_80285F90 = 0x80285f90
+                0x0000000080286f90                D_80286F90 = 0x80286f90
+                0x00000000803727f4                D_803727F4 = 0x803727f4
+                0x0000000080379b90                D_80379B90 = 0x80379b90
+                0x00000000803863f0                D_803863F0 = 0x803863f0
+                0x00000000803a5d00                D_803A5D00 = 0x803a5d00
+                0x00000000803bdd00                D_803BDD00 = 0x803bdd00
+                0x00000000803fbe00                D_803FBE00 = 0x803fbe00
+                0x00000000803ffe10                D_803FFE10 = 0x803ffe10
+                0x00000000a4001000                D_A4001000 = 0xa4001000
+                0x00000000a4040004                D_A4040004 = 0xa4040004
+                0x00000000a4040008                D_A4040008 = 0xa4040008
+                0x00000000a404000c                D_A404000C = 0xa404000c
+                0x00000000a4040010                D_A4040010 = 0xa4040010
+                0x00000000a410000c                D_A410000C = 0xa410000c
+                0x00000000a4300008                D_A4300008 = 0xa4300008
+                0x00000000a430000c                D_A430000C = 0xa430000c
+                0x00000000a4400004                D_A4400004 = 0xa4400004
+                0x00000000a4400008                D_A4400008 = 0xa4400008
+                0x00000000a4400010                D_A4400010 = 0xa4400010
+                0x00000000a4500004                D_A4500004 = 0xa4500004
+                0x00000000a4500008                D_A4500008 = 0xa4500008
+                0x00000000a450000c                D_A450000C = 0xa450000c
+                0x00000000a4500010                D_A4500010 = 0xa4500010
+                0x00000000a4500014                D_A4500014 = 0xa4500014
+                0x00000000a4600004                D_A4600004 = 0xa4600004
+                0x00000000a4600008                D_A4600008 = 0xa4600008
+                0x00000000a460000c                D_A460000C = 0xa460000c
+                0x00000000a4600010                D_A4600010 = 0xa4600010
+                0x00000000a4600014                D_A4600014 = 0xa4600014
+                0x00000000a4600018                D_A4600018 = 0xa4600018
+                0x00000000a460001c                D_A460001C = 0xa460001c
+                0x00000000a4600020                D_A4600020 = 0xa4600020
+                0x00000000a4600024                D_A4600024 = 0xa4600024
+                0x00000000a4600028                D_A4600028 = 0xa4600028
+                0x00000000a460002c                D_A460002C = 0xa460002c
+                0x00000000a4600030                D_A4600030 = 0xa4600030
+                0x00000000a4800004                D_A4800004 = 0xa4800004
+                0x00000000a4800010                D_A4800010 = 0xa4800010
+                0x00000000a4800018                D_A4800018 = 0xa4800018
+                0x00000000a5000508                D_A5000508 = 0xa5000508
+                0x00000000a5000510                D_A5000510 = 0xa5000510
+                0x000000008026a824                func_8026A824 = 0x8026a824
+                0x000000008026a90c                func_8026A90C = 0x8026a90c
+                0x000000008026aa0c                func_8026AA0C = 0x8026aa0c
+                0x000000008026aa54                func_8026AA54 = 0x8026aa54
+                0x000000008026aa64                func_8026AA64 = 0x8026aa64
+                0x000000008026abf0                func_8026ABF0 = 0x8026abf0
+                0x000000008026c420                func_8026C420 = 0x8026c420
+                0x0000000080288120                func_80288120 = 0x80288120
+                0x000000008028873c                func_8028873C = 0x8028873c
+                0x000000008028e9a4                func_8028E9A4 = 0x8028e9a4
+                0x000000008028eb3c                func_8028EB3C = 0x8028eb3c
+                0x000000008028ee84                func_8028EE84 = 0x8028ee84
+                0x000000008028f1d4                func_8028F1D4 = 0x8028f1d4
+                0x000000008028f22c                func_8028F22C = 0x8028f22c
+                0x00000000802c3a18                func_802C3A18 = 0x802c3a18
+                0x00000000802c3a38                func_802C3A38 = 0x802c3a38
+                0x00000000802c5a30                func_802C5A30 = 0x802c5a30
+                0x00000000802cacf8                func_802CACF8 = 0x802cacf8
+                0x00000000802cb00c                func_802CB00C = 0x802cb00c
+                0x00000000802d686c                func_802D686C = 0x802d686c
+                0x00000000802da498                func_802DA498 = 0x802da498
+                0x00000000802dd008                func_802DD008 = 0x802dd008
+                0x00000000802dd040                func_802DD040 = 0x802dd040
+                0x00000000802e3580                func_802E3580 = 0x802e3580
+                0x00000000802e35d0                func_802E35D0 = 0x802e35d0
+                0x00000000802e35d8                func_802E35D8 = 0x802e35d8
+                0x00000000802e3f8c                func_802E3F8C = 0x802e3f8c
+                0x00000000802e4170                func_802E4170 = 0x802e4170
+                0x00000000802e4214                func_802E4214 = 0x802e4214
+                0x00000000802e4384                func_802E4384 = 0x802e4384
+                0x00000000802e4424                func_802E4424 = 0x802e4424
+                0x00000000802e48d8                func_802E48D8 = 0x802e48d8
+                0x00000000802e49e0                func_802E49E0 = 0x802e49e0
+                0x00000000802e49fc                func_802E49FC = 0x802e49fc
+                0x00000000802e4a08                func_802E4A08 = 0x802e4a08
+                0x00000000802e6820                func_802E6820 = 0x802e6820
+                0x00000000802eda40                func_802EDA40 = 0x802eda40
+                0x00000000802eda7c                func_802EDA7C = 0x802eda7c
+                0x00000000802eda94                func_802EDA94 = 0x802eda94
+                0x00000000802edaa4                func_802EDAA4 = 0x802edaa4
+                0x00000000802edc18                func_802EDC18 = 0x802edc18
+                0x00000000802edc64                func_802EDC64 = 0x802edc64
+                0x00000000802edc84                func_802EDC84 = 0x802edc84
+                0x00000000802edcdc                func_802EDCDC = 0x802edcdc
+                0x00000000802edd00                func_802EDD00 = 0x802edd00
+                0x00000000802f1294                func_802F1294 = 0x802f1294
+                0x00000000802f542c                func_802F542C = 0x802f542c
+                0x00000000802f9aa8                func_802F9AA8 = 0x802f9aa8
+                0x00000000802f9f80                func_802F9F80 = 0x802f9f80
+                0x00000000802f9fd0                func_802F9FD0 = 0x802f9fd0
+                0x00000000802fa060                func_802FA060 = 0x802fa060
+                0x0000000080309b48                func_80309B48 = 0x80309b48
+                0x0000000080309d58                func_80309D58 = 0x80309d58
+                0x000000008030a850                func_8030A850 = 0x8030a850
+                0x000000008030bd98                func_8030BD98 = 0x8030bd98
+                0x000000008030bdc0                func_8030BDC0 = 0x8030bdc0
+                0x000000008030bedc                func_8030BEDC = 0x8030bedc
+                0x000000008030c704                func_8030C704 = 0x8030c704
+                0x000000008030c710                func_8030C710 = 0x8030c710
+                0x000000008030d90c                func_8030D90C = 0x8030d90c
+                0x000000008030da44                func_8030DA44 = 0x8030da44
+                0x000000008030da80                func_8030DA80 = 0x8030da80
+                0x000000008030dabc                func_8030DABC = 0x8030dabc
+                0x000000008030dbb4                func_8030DBB4 = 0x8030dbb4
+                0x000000008030e2c4                func_8030E2C4 = 0x8030e2c4
+                0x000000008030e394                func_8030E394 = 0x8030e394
+                0x000000008030e6a4                func_8030E6A4 = 0x8030e6a4
+                0x000000008030ed70                func_8030ED70 = 0x8030ed70
+                0x000000008031c44c                func_8031C44C = 0x8031c44c
+                0x000000008031c5ac                func_8031C5AC = 0x8031c5ac
+                0x000000008031c5d4                func_8031C5D4 = 0x8031c5d4
+                0x000000008031c618                func_8031C618 = 0x8031c618
+                0x000000008031c638                func_8031C638 = 0x8031c638
+                0x0000000080320240                func_80320240 = 0x80320240
+                0x00000000803203fc                func_803203FC = 0x803203fc
+                0x00000000803204e4                func_803204E4 = 0x803204e4
+                0x000000008032056c                func_8032056C = 0x8032056c
+                0x0000000080320b98                func_80320B98 = 0x80320b98
+                0x0000000080320c94                func_80320C94 = 0x80320c94
+                0x0000000080320db0                func_80320DB0 = 0x80320db0
+                0x0000000080320fe0                func_80320FE0 = 0x80320fe0
+                0x0000000080321ee4                func_80321EE4 = 0x80321ee4
+                0x000000008032204c                func_8032204C = 0x8032204c
+                0x000000008032274c                func_8032274C = 0x8032274c
+                0x0000000080322758                func_80322758 = 0x80322758
+                0x0000000080323240                func_80323240 = 0x80323240
+                0x0000000080324ee4                func_80324EE4 = 0x80324ee4
+                0x0000000080324f20                func_80324F20 = 0x80324f20
+                0x0000000080324f64                func_80324F64 = 0x80324f64
+                0x0000000080329958                func_80329958 = 0x80329958
+                0x000000008032ad7c                func_8032AD7C = 0x8032ad7c
+                0x00000000803306c8                func_803306C8 = 0x803306c8
+                0x00000000803348c0                func_803348C0 = 0x803348c0
+                0x0000000080335134                func_80335134 = 0x80335134
+                0x0000000080335220                func_80335220 = 0x80335220
+                0x000000008033b3d8                func_8033B3D8 = 0x8033b3d8
+                0x000000008033b574                func_8033B574 = 0x8033b574
+                0x000000008033b61c                func_8033B61C = 0x8033b61c
+                0x000000008033b788                func_8033B788 = 0x8033b788
+                0x000000008033b798                func_8033B798 = 0x8033b798
+                0x000000008033bb84                func_8033BB84 = 0x8033bb84
+                0x000000008033bd6c                func_8033BD6C = 0x8033bd6c
+                0x000000008033bd8c                func_8033BD8C = 0x8033bd8c
+                0x000000008033ca9c                func_8033CA9C = 0x8033ca9c
+                0x000000008033cd0c                func_8033CD0C = 0x8033cd0c
+                0x000000008033dd04                func_8033DD04 = 0x8033dd04
+                0x000000008033dd90                func_8033DD90 = 0x8033dd90
+                0x000000008033dd9c                func_8033DD9C = 0x8033dd9c
+                0x000000008033ef58                func_8033EF58 = 0x8033ef58
+                0x000000008033efb0                func_8033EFB0 = 0x8033efb0
+                0x000000008033f000                func_8033F000 = 0x8033f000
+                0x0000000080349ee4                func_80349EE4 = 0x80349ee4
+                0x000000008034a390                func_8034A390 = 0x8034a390
+                0x000000008034c630                func_8034C630 = 0x8034c630
+                0x000000008034e698                func_8034E698 = 0x8034e698
+                0x0000000084001124                func_84001124 = 0x84001124
+OUTPUT(build/core1.us.v10.elf elf32-tradbigmips)
+
+.options        0x0000000000000000      0xf20
+ .options       0x0000000000000000       0x20 build/src/core1/code_0.o
+ .options       0x0000000000000020       0x20 build/src/core1/code_7C0.o
+ .options       0x0000000000000040       0x20 build/src/core1/code_1D00.o
+ .options       0x0000000000000060       0x20 build/src/core1/code_2BD0.o
+ .options       0x0000000000000080       0x20 build/src/core1/code_2DA0.o
+ .options       0x00000000000000a0       0x20 build/src/core1/code_2FA0.o
+ .options       0x00000000000000c0       0x20 build/src/core1/code_31C0.o
+ .options       0x00000000000000e0       0x20 build/src/core1/code_7090.o
+ .options       0x0000000000000100       0x20 build/src/core1/code_72B0.o
+ .options       0x0000000000000120       0x20 build/src/core1/code_7F60.o
+ .options       0x0000000000000140       0x20 build/src/core1/code_8C50.o
+ .options       0x0000000000000160       0x20 build/src/core1/code_9D30.o
+ .options       0x0000000000000180       0x20 build/src/core1/code_CE60.o
+ .options       0x00000000000001a0       0x20 build/src/core1/code_E360.o
+ .options       0x00000000000001c0       0x20 build/src/core1/code_EAF0.o
+ .options       0x00000000000001e0       0x20 build/src/core1/code_11AC0.o
+ .options       0x0000000000000200       0x20 build/src/core1/code_13680.o
+ .options       0x0000000000000220       0x20 build/src/core1/code_13990.o
+ .options       0x0000000000000240       0x20 build/src/core1/code_15770.o
+ .options       0x0000000000000260       0x20 build/src/core1/code_16A50.o
+ .options       0x0000000000000280       0x20 build/src/core1/code_18110.o
+ .options       0x00000000000002a0       0x20 build/src/core1/code_18210.o
+ .options       0x00000000000002c0       0x20 build/src/core1/code_18310.o
+ .options       0x00000000000002e0       0x20 build/src/core1/code_1BE90.o
+ .options       0x0000000000000300       0x20 build/src/core1/code_1D5C0.o
+ .options       0x0000000000000320       0x20 build/src/core1/code_1D5D0.o
+ .options       0x0000000000000340       0x20 build/src/core1/code_1E360.o
+ .options       0x0000000000000360       0x20 build/src/core1/code_1E6E0.o
+ .options       0x0000000000000380       0x20 build/src/core1/code_1E950.o
+ .options       0x00000000000003a0       0x20 build/src/core1/code_1F330.o
+ .options       0x00000000000003c0       0x20 build/src/core1/code_1F9E0.o
+ .options       0x00000000000003e0       0x20 build/src/core1/code_1FA80.o
+ .options       0x0000000000000400       0x20 build/src/core1/code_1FB80.o
+ .options       0x0000000000000420       0x20 build/src/core1/code_1FC00.o
+ .options       0x0000000000000440       0x20 build/src/core1/code_1FC90.o
+ .options       0x0000000000000460       0x20 build/src/core1/code_1FD00.o
+ .options       0x0000000000000480       0x20 build/src/core1/code_1FDA0.o
+ .options       0x00000000000004a0       0x20 build/src/core1/code_21210.o
+ .options       0x00000000000004c0       0x20 build/src/core1/code_21250.o
+ .options       0x00000000000004e0       0x20 build/src/core1/code_21960.o
+ .options       0x0000000000000500       0x20 build/src/core1/code_219D0.o
+ .options       0x0000000000000520       0x20 build/src/core1/code_21A80.o
+ .options       0x0000000000000540       0x20 build/src/core1/code_21AB0.o
+ .options       0x0000000000000560       0x20 build/src/core1/code_21B50.o
+ .options       0x0000000000000580       0x20 build/src/core1/code_21CB0.o
+ .options       0x00000000000005a0       0x20 build/src/core1/code_22740.o
+ .options       0x00000000000005c0       0x20 build/src/core1/code_227F0.o
+ .options       0x00000000000005e0       0x20 build/src/core1/code_22D50.o
+ .options       0x0000000000000600       0x20 build/src/core1/code_22DA0.o
+ .options       0x0000000000000620       0x20 build/src/core1/code_25360.o
+ .options       0x0000000000000640       0x20 build/src/core1/code_25440.o
+ .options       0x0000000000000660       0x20 build/src/core1/code_254C0.o
+ .options       0x0000000000000680       0x20 build/src/core1/code_25C40.o
+ .options       0x00000000000006a0       0x20 build/src/core1/code_25E20.o
+ .options       0x00000000000006c0       0x20 build/src/core1/code_26110.o
+ .options       0x00000000000006e0       0x20 build/src/core1/code_261C0.o
+ .options       0x0000000000000700       0x20 build/src/core1/code_261F0.o
+ .options       0x0000000000000720       0x20 build/src/core1/code_26480.o
+ .options       0x0000000000000740       0x20 build/src/core1/code_265D0.o
+ .options       0x0000000000000760       0x20 build/src/core1/code_26880.o
+ .options       0x0000000000000780       0x20 build/src/core1/code_26B30.o
+ .options       0x00000000000007a0       0x20 build/src/core1/code_26C70.o
+ .options       0x00000000000007c0       0x20 build/src/core1/code_26D00.o
+ .options       0x00000000000007e0       0x20 build/src/core1/code_26DB0.o
+ .options       0x0000000000000800       0x20 build/src/core1/code_27150.o
+ .options       0x0000000000000820       0x20 build/src/core1/code_27200.o
+ .options       0x0000000000000840       0x20 build/src/core1/code_27390.o
+ .options       0x0000000000000860       0x20 build/src/core1/code_27490.o
+ .options       0x0000000000000880       0x20 build/src/core1/code_27940.o
+ .options       0x00000000000008a0       0x20 build/src/core1/code_27AB0.o
+ .options       0x00000000000008c0       0x20 build/src/core1/code_27E50.o
+ .options       0x00000000000008e0       0x20 build/src/core1/code_27F90.o
+ .options       0x0000000000000900       0x20 build/src/core1/code_28070.o
+ .options       0x0000000000000920       0x20 build/src/core1/code_28440.o
+ .options       0x0000000000000940       0x20 build/src/core1/code_284B0.o
+ .options       0x0000000000000960       0x20 build/src/core1/code_28810.o
+ .options       0x0000000000000980       0x20 build/src/core1/code_289D0.o
+ .options       0x00000000000009a0       0x20 build/src/core1/code_28A90.o
+ .options       0x00000000000009c0       0x20 build/src/core1/code_28D00.o
+ .options       0x00000000000009e0       0x20 build/src/core1/code_28DA0.o
+ .options       0x0000000000000a00       0x20 build/src/core1/code_28F90.o
+ .options       0x0000000000000a20       0x20 build/src/core1/code_291F0.o
+ .options       0x0000000000000a40       0x20 build/src/core1/code_29620.o
+ .options       0x0000000000000a60       0x20 build/src/core1/code_29870.o
+ .options       0x0000000000000a80       0x20 build/src/core1/code_29900.o
+ .options       0x0000000000000aa0       0x20 build/src/core1/code_2A3C0.o
+ .options       0x0000000000000ac0       0x20 build/src/core1/code_2A9E0.o
+ .options       0x0000000000000ae0       0x20 build/src/core1/code_2AB20.o
+ .options       0x0000000000000b00       0x20 build/src/core1/code_2AC50.o
+ .options       0x0000000000000b20       0x20 build/src/core1/code_2ACE0.o
+ .options       0x0000000000000b40       0x20 build/src/core1/code_2ADA0.o
+ .options       0x0000000000000b60       0x20 build/src/core1/code_2C1D0.o
+ .options       0x0000000000000b80       0x20 build/src/core1/code_2C810.o
+ .options       0x0000000000000ba0       0x20 build/src/core1/code_2C8C0.o
+ .options       0x0000000000000bc0       0x20 build/src/core1/code_2D230.o
+ .options       0x0000000000000be0       0x20 build/src/core1/code_2D290.o
+ .options       0x0000000000000c00       0x20 build/src/core1/code_2D2D0.o
+ .options       0x0000000000000c20       0x20 build/src/core1/code_2DA00.o
+ .options       0x0000000000000c40       0x20 build/src/core1/code_2DAC0.o
+ .options       0x0000000000000c60       0x20 build/src/core1/code_2DC70.o
+ .options       0x0000000000000c80       0x20 build/src/core1/code_2DD70.o
+ .options       0x0000000000000ca0       0x20 build/src/core1/code_2DF50.o
+ .options       0x0000000000000cc0       0x20 build/src/core1/code_2E260.o
+ .options       0x0000000000000ce0       0x20 build/src/core1/code_2EA50.o
+ .options       0x0000000000000d00       0x20 build/src/core1/code_2EAE0.o
+ .options       0x0000000000000d20       0x20 build/src/core1/code_2EC50.o
+ .options       0x0000000000000d40       0x20 build/src/core1/code_2F060.o
+ .options       0x0000000000000d60       0x20 build/src/core1/code_2F3F0.o
+ .options       0x0000000000000d80       0x20 build/src/core1/code_2F480.o
+ .options       0x0000000000000da0       0x20 build/src/core1/code_2F5F0.o
+ .options       0x0000000000000dc0       0x20 build/src/core1/code_301F0.o
+ .options       0x0000000000000de0       0x20 build/src/core1/code_30300.o
+ .options       0x0000000000000e00       0x20 build/src/core1/code_31060.o
+ .options       0x0000000000000e20       0x20 build/src/core1/code_32370.o
+ .options       0x0000000000000e40       0x20 build/src/core1/code_32F10.o
+ .options       0x0000000000000e60       0x20 build/src/core1/code_33D60.o
+ .options       0x0000000000000e80       0x20 build/src/core1/code_33E70.o
+ .options       0x0000000000000ea0       0x20 build/src/core1/code_34930.o
+ .options       0x0000000000000ec0       0x20 build/src/core1/code_349D0.o
+ .options       0x0000000000000ee0       0x20 build/src/core1/code_34A30.o
+ .options       0x0000000000000f00       0x20 build/src/core1/code_34B20.o

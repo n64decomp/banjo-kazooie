@@ -103,9 +103,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025AF38.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025AFB0.s")
+void func_8025AFB0(void){}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025AFB8.s")
+void func_8025AFB8(void){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025AFC0.s")
 

@@ -33,4 +33,4 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13680/func_80251308.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13680/func_802513A4.s")
+void func_802513A4(void){}
