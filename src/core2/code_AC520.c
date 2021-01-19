@@ -51,7 +51,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AC520/func_803343F8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AC520/func_80334428.s")
+void func_80334428(void){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AC520/func_80334430.s")
 

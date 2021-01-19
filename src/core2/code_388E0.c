@@ -5,7 +5,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_388E0/func_802BF870.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_388E0/func_802BF880.s")
+void func_802BF880(void){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_388E0/func_802BF888.s")
 
@@ -13,7 +13,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_388E0/func_802BFA60.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_388E0/func_802BFAE8.s")
+void func_802BFAE8(void){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_388E0/func_802BFAF0.s")
 

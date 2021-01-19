@@ -5,7 +5,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39190/func_802C0120.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39190/func_802C0148.s")
+void func_802C0148(void){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39190/func_802C0150.s")
 
@@ -37,13 +37,13 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39190/func_802C04F8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39190/func_802C0550.s")
+void func_802C0550(void){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39190/func_802C0558.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39190/func_802C0640.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39190/func_802C0694.s")
+void func_802C0694(void){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39190/func_802C069C.s")
 

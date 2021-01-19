@@ -33,11 +33,11 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39EF0/func_802C18B0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39EF0/func_802C18F0.s")
+void func_802C18F0(void){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39EF0/func_802C18F8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39EF0/func_802C1AD0.s")
+void func_802C1AD0(void){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39EF0/func_802C1AD8.s")
 

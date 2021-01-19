@@ -76,4 +76,4 @@ void func_80253420(void){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_15770/func_80254404.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_15770/func_80254464.s")
+void func_80254464(void){}

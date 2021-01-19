@@ -5,13 +5,13 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B7F40/func_8033EED0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B7F40/func_8033EEF8.s")
+void func_8033EEF8(void){}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B7F40/func_8033EF00.s")
+void func_8033EF00(void){}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B7F40/func_8033EF08.s")
+void func_8033EF08(void){}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B7F40/func_8033EF10.s")
+void func_8033EF10(void){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B7F40/func_8033EF18.s")
 
@@ -21,9 +21,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B7F40/func_8033EF7C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B7F40/func_8033EF84.s")
+void func_8033EF84(void){}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B7F40/func_8033EF8C.s")
+void func_8033EF8C(void){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B7F40/func_8033EF94.s")
 

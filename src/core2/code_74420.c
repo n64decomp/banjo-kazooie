@@ -41,7 +41,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_74420/func_802FBBC0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_74420/func_802FBDFC.s")
+void func_802FBDFC(void){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_74420/func_802FBE04.s")
 

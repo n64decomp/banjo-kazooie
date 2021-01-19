@@ -15,7 +15,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13900/func_8029A918.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13900/func_8029A924.s")
+void func_8029A924(void){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13900/func_8029A92C.s")
 

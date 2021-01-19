@@ -13,4 +13,4 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_74290/func_802FB394.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_74290/func_802FB3A0.s")
+void func_802FB3A0(void){}

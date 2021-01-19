@@ -17,9 +17,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9C170/func_8032320C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9C170/func_80323230.s")
+void func_80323230(void){}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9C170/func_80323238.s")
+void func_80323238(void){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9C170/func_80323240.s")
 

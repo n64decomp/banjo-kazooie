@@ -9,7 +9,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_11040/func_80298068.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_11040/func_80298114.s")
+void func_80298114(void){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_11040/func_8029811C.s")
 

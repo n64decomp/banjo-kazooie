@@ -15,12 +15,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_CC1E0/func_803537B8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_CC1E0/func_80353A90.s")
+void func_80353A90(void){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_CC1E0/func_80353A98.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_CC1E0/func_80353CC8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_CC1E0/func_80353FB4.s")
+void func_80353FB4(void){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_CC1E0/func_80353FBC.s")

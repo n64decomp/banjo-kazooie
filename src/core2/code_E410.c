@@ -33,7 +33,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_E410/func_802957F0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_E410/func_802957FC.s")
+void func_802957FC(void){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_E410/func_80295804.s")
 

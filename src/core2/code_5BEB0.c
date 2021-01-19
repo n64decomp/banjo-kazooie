@@ -23,7 +23,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5BEB0/func_802E3580.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5BEB0/func_802E35D0.s")
+void func_802E35D0(void){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5BEB0/func_802E35D8.s")
 

@@ -35,7 +35,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A600/func_80291700.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A600/func_8029175C.s")
+void func_8029175C(void){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A600/func_80291764.s")
 

@@ -13,7 +13,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_CBD10/func_80352F58.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_CBD10/func_80352FF4.s")
+void func_80352FF4(void){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_CBD10/func_80352FFC.s")
 

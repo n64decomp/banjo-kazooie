@@ -5,7 +5,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39A10/func_802C09A0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39A10/func_802C09E0.s")
+void func_802C09E0(void){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39A10/func_802C09E8.s")
 

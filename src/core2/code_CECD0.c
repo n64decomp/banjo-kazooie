@@ -19,4 +19,4 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_CECD0/func_803562E8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_CECD0/func_80356364.s")
+void func_80356364(void){}

@@ -67,11 +67,11 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322BC4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322BD4.s")
+void func_80322BD4(void){}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322BDC.s")
+void func_80322BDC(void){}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322BE4.s")
+void func_80322BE4(void){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322BEC.s")
 
@@ -151,7 +151,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322FBC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322FDC.s")
+void func_80322FDC(void){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322FE4.s")
 

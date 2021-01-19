@@ -17,15 +17,15 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031B644.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031B65C.s")
+void func_8031B65C(void){}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031B664.s")
+void func_8031B664(void){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031B66C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031B6D8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031B710.s")
+void func_8031B710(void){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031B718.s")
 
@@ -675,7 +675,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031F9BC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031F9E0.s")
+void func_8031F9E0(void){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031F9E8.s")
 

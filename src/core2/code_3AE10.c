@@ -3,9 +3,9 @@
 #include "variables.h"
 
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_3AE10/func_802C1DA0.s")
+void func_802C1DA0(void){}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_3AE10/func_802C1DA8.s")
+void func_802C1DA8(void){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_3AE10/func_802C1DB0.s")
 

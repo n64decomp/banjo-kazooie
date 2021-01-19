@@ -87,7 +87,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_80250C84.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_80250D8C.s")
+void func_80250D8C(void){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_80250D94.s")
 

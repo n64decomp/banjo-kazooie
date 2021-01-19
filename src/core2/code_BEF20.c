@@ -29,7 +29,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_803465BC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_803465DC.s")
+void func_803465DC(void){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_803465E4.s")
 
@@ -71,7 +71,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_80347958.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_80347984.s")
+void func_80347984(void){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_8034798C.s")
 

@@ -45,4 +45,4 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_126C0/func_80299E90.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_126C0/func_80299EB4.s")
+void func_80299EB4(void){}
