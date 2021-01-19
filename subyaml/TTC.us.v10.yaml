@@ -11,23 +11,23 @@ options:
     #include "functions.h"
     #include "variables.h"
   create_detected_syms: yes
-  undefined_syms: syms/undefined_syms.TTC.us.v10.txt
-  symbol_addrs:   syms/symbol_addrs.TTC.us.v10.txt
+  undefined_syms: undefined_syms.us.v10.txt
+  symbol_addrs:   symbol_addrs.us.v10.txt
 segments:
   - name: TTC/code
     type: code
     start: 0x00000000
     vram: 0x803863F0
     files:
-      - [0x00000000, asm]
-      - [0x19D0, asm]
-      - [0x26D0, asm]
-      - [0x2B80, asm]
-      - [0x3040, asm]
-      - [0x30D0, asm]
-      - [0x35D0, asm]
-      - [0x3E30, asm]
-      - [0x5BD0, asm]
+      - [0x00000000, c]
+      - [0x19D0, c]
+      - [0x26D0, c]
+      - [0x2B80, c]
+      - [0x3040, c]
+      - [0x30D0, c]
+      - [0x35D0, c]
+      - [0x3E30, c]
+      - [0x5BD0, c]
   - name: TTC/data
     type: code
     start: 0x00005FC0

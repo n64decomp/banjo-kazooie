@@ -11,21 +11,21 @@ options:
     #include "functions.h"
     #include "variables.h"
   create_detected_syms: yes
-  undefined_syms: syms/undefined_syms.BGS.us.v10.txt
-  symbol_addrs:   syms/symbol_addrs.BGS.us.v10.txt
+  undefined_syms: undefined_syms.us.v10.txt
+  symbol_addrs:   symbol_addrs.us.v10.txt
 segments:
   - name: BGS/code
     type: code
     start: 0x00000000
     vram: 0x803863F0
     files:
-      - [0x00000000, asm]
-      - [0x18A0, asm]
-      - [0x3030, asm]
-      - [0x9080, asm]
-      - [0x9750, asm]
-      - [0x98C0, asm]
-      - [0x9920, asm]
+      - [0x00000000, c]
+      - [0x18A0, c]
+      - [0x3030, c]
+      - [0x9080, c]
+      - [0x9750, c]
+      - [0x98C0, c]
+      - [0x9920, c]
   - name: BGS/data
     type: code
     start: 0x0000A2A0

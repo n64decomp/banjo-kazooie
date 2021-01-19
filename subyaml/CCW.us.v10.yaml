@@ -11,31 +11,31 @@ options:
     #include "functions.h"
     #include "variables.h"
   create_detected_syms: yes
-  undefined_syms: syms/undefined_syms.CCW.us.v10.txt
-  symbol_addrs:   syms/symbol_addrs.CCW.us.v10.txt
+  undefined_syms: undefined_syms.us.v10.txt
+  symbol_addrs:   symbol_addrs.us.v10.txt
 segments:
   - name: CCW/code
     type: code
     start: 0x00000000
     vram: 0x803863F0
     files:
-      - [0x00000000, asm]
-      - [0x160, asm]
-      - [0x950, asm]
-      - [0x14B0, asm]
-      - [0x1B20, asm]
-      - [0x4530, asm]
-      - [0x4D00, asm]
-      - [0x50D0, asm]
-      - [0x5540, asm]
-      - [0x61E0, asm]
-      - [0x6620, asm]
-      - [0x6AC0, asm]
-      - [0x7570, asm]
-      - [0x76C0, asm]
-      - [0x7BC0, asm]
-      - [0x8050, asm]
-      - [0x8670, asm]
+      - [0x00000000, c]
+      - [0x160, c]
+      - [0x950, c]
+      - [0x14B0, c]
+      - [0x1B20, c]
+      - [0x4530, c]
+      - [0x4D00, c]
+      - [0x50D0, c]
+      - [0x5540, c]
+      - [0x61E0, c]
+      - [0x6620, c]
+      - [0x6AC0, c]
+      - [0x7570, c]
+      - [0x76C0, c]
+      - [0x7BC0, c]
+      - [0x8050, c]
+      - [0x8670, c]
   - name: CCW/data
     type: code
     start: 0x00008760

@@ -11,28 +11,28 @@ options:
     #include "functions.h"
     #include "variables.h"
   create_detected_syms: yes
-  undefined_syms: syms/undefined_syms.lair.us.v10.txt
-  symbol_addrs:   syms/symbol_addrs.lair.us.v10.txt
+  undefined_syms: undefined_syms.us.v10.txt
+  symbol_addrs:   symbol_addrs.us.v10.txt
 segments:
   - name: lair/code
     type: code
     start: 0x00000000
     vram: 0x803863F0
     files:
-      - [0x00000000, asm]
-      - [0x42A0, asm]
-      - [0x5640, asm]
-      - [0x5ED0, asm]
-      - [0x86F0, asm]
-      - [0x9C40, asm]
-      - [0xA170, asm]
-      - [0xA430, asm]
-      - [0xA4A0, asm]
-      - [0xA810, asm]
-      - [0xAD70, asm]
-      - [0xBBD0, asm]
-      - [0xC1C0, asm]
-      - [0xC6C0, asm]
+      - [0x00000000, c]
+      - [0x42A0, c]
+      - [0x5640, c]
+      - [0x5ED0, c]
+      - [0x86F0, c]
+      - [0x9C40, c]
+      - [0xA170, c]
+      - [0xA430, c]
+      - [0xA4A0, c]
+      - [0xA810, c]
+      - [0xAD70, c]
+      - [0xBBD0, c]
+      - [0xC1C0, c]
+      - [0xC6C0, c]
   - name: lair/data
     type: code
     start: 0x0000C8C0

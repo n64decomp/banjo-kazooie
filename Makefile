@@ -4,12 +4,11 @@ VERSION  := us.v10
 SUBCODE := core1 core2 MM TTC CC BGS FP lair GV CCW RBB MMM SM fight cutscenes
 	
 BUILD_DIR = build
+SUB_BUILD_DIRS = $(foreach submod,$(SUBCODE), $(BUILD_DIR)/$(submod))
 
 ASM_DIRS  = asm
 BIN_DIRS  = bin
 SRC_DIRS  = src
-
-
 
 SPLIT_DIR := $(BUILD_DIR)/split
 
@@ -32,6 +31,12 @@ GLOBAL_ASM_O_FILES = $(foreach file,$(GLOBAL_ASM_C_FILES),$(BUILD_DIR)/$(file:.c
 TARGET = $(BUILD_DIR)/$(BASENAME).$(VERSION)
 LD_SCRIPT = $(BASENAME).ld
 
+SUB_TARGET := $(foreach submod,$(SUBCODE), $(BUILD_DIR)/$(submod)/$(submod).$(VERSION))
+SUB_TARGET_BIN := $(foreach target,$(SUB_TARGET), $(target).bin)
+SUB_TARGET_ELF := $(foreach target,$(SUB_TARGET), $(target).elf)
+SUB_TARGET_LD_SCRIPT := $(foreach submod, $(SUBCODE), $(submod).ld)
+SUB_LD_SCRIPT := $(foreach submod,$(SUBCODE), $(BUILD_DIR)/$(submod)/$(submod).ld)
+
 SUBCODE_SRC_BIN := $(foreach submod,$(SUBCODE), $(BIN_DIRS)/$(submod).$(VERSION).rzip.bin)
 SUBCODE_SRC := $(foreach submod,$(SUBCODE), $(BIN_DIRS)/$(submod).$(VERSION).bin)
 SUBCODE_TARGET := $(foreach submod,$(SUBCODE), $(BUILD_DIR)/$(submod).$(VERSION).bin)
@@ -46,7 +51,7 @@ OBJCOPY = $(CROSS)objcopy
 PYTHON = python3
 N64SPLAT = $(PYTHON) tools/n64splat/split.py
 
-CC = ../ido/ido5.3_recomp/cc
+CC = ido/ido5.3_recomp/cc
 
 OPT_FLAGS := -O2 -g3
 MIPSBIT := -mips2 -o32
@@ -59,13 +64,16 @@ CFLAGS := -G 0 -Xfullwarn -Xcpluscomm -signed -g -nostdinc -non_shared -Wab,-r43
 CFLAGS += -D_LANGUAGE_C -D_FINALROM -DF3DEX_GBI
 CFLAGS += $(INCLUDE_CFLAGS)
 
-LDFLAGS = -T $(BUILD_DIR)/$(LD_SCRIPT) -Map $(TARGET).map -T undefined_syms.$(VERSION).txt -T undefined_syms_auto.txt -T undefined_funcs_auto.txt  --no-check-sections
+LDFLAGS = -T $(BUILD_DIR)/$(LD_SCRIPT) -Map $(TARGET).map -T symbol_addrs.$(VERSION).txt -T undefined_syms.$(VERSION).txt -T undefined_syms_auto.txt -T undefined_funcs_auto.txt  --no-check-sections
 
 ### Targets
 
-default: all
+default: main
 
-all: dirs $(TARGET).z64 verify
+all: dirs $(SUBCODE) main
+
+main: dirs main_extract
+	$(MAKE) $(TARGET).z64
 
 dirs:
 	$(foreach dir,$(SRC_DIRS) $(ASM_DIRS) $(BIN_DIRS) ,$(shell mkdir -p build/$(dir)))
@@ -80,15 +88,22 @@ extract: $(foreach submod, $(SUBCODE), $(submod)_extract)
 %_extract: bin/%.$(VERSION).bin
 	$(N64SPLAT) $< subyaml/$*.$(VERSION).yaml .
 
+main_extract: 
+	$(N64SPLAT) baserom.$(VERSION).z64 $(BASENAME).$(VERSION).yaml .
+
+%_verify: $(BUILD_DIR)/%.$(VERSION).bin $(BUILD_DIR)/%.$(VERSION).sha1
+	@echo "$$(awk '{print $$1}' $(word 2,$^))  $<" | sha1sum --check
+
+
+verify: $(TARGET).z64 $(TARGET).sha1
+	@echo "$$(awk '{print $$1}' $(word 2,$^))  $<" | sha1sum --check
 
 decompress: $(SUBCODE_SRC)
 
-verify: $(TARGET).z64
-	@echo "$$(cat $(BASENAME).$(VERSION).sha1)  $(TARGET).z64" | sha1sum --check
-
 ### Tools
-tools/bk_tools/% :
-	make -C tools/bk_tools $^
+bk_inflate_code: 
+	cd toos/bk_tools && make $@
+
 
 ### Recipes
 
@@ -97,14 +112,6 @@ $(BUILD_DIR)/$(LD_SCRIPT): $(LD_SCRIPT)
 
 $(TARGET).elf: $(O_FILES) $(BUILD_DIR)/$(LD_SCRIPT) #add 
 	@$(LD) $(LDFLAGS) -o $@
-
-ifndef PERMUTER
-$(GLOBAL_ASM_O_FILES): $(BUILD_DIR)/%.o: %.c include/variables.h include/structs.h include/functions.h
-	$(PYTHON) $(ASM_PROCESSOR_DIR)/asm_processor.py $(OPT_FLAGS) $< > $(BUILD_DIR)/$<
-	$(CC) -c -32 $(CFLAGS) $(OPT_FLAGS) $(LOOP_UNROLL) $(MIPSBIT) -o $@ $(BUILD_DIR)/$<
-	$(PYTHON) $(ASM_PROCESSOR_DIR)/asm_processor.py $(OPT_FLAGS) $< --post-process $@ \
-		--assembler "$(AS) $(ASFLAGS)" --asm-prelude $(ASM_PROCESSOR_DIR)/prelude.s
-endif
 
 $(BUILD_DIR)/%.o: %.c
 	$(CC) -c $(CFLAGS) $(OPT_FLAGS) $(MIPSBIT) -o $@ $<
@@ -115,22 +122,30 @@ $(BUILD_DIR)/%.o: %.s
 $(BUILD_DIR)/%.o: %.bin
 	$(LD) -r -b binary -o $@ $<
 
-$(TARGET).bin: $(TARGET).elf
+$(TARGET).sha1: $(patsubst build%, bin%, $(TARGET)).bin
+	sha1sum $< > $@
+
+$(BIN_DIRS)/$(BASENAME).$(VERSION).bin:
+	cp baserom.$(VERSION).z64 $@
+
+$(TARGET).bin: $(TARGET).elf $(TARGET).sha1
 	$(OBJCOPY) $(OBJCOPYFLAGS) -O binary $< $@
+	@echo "$$(awk '{print $$1}' $(TARGET).sha1)  $@" | sha1sum --check
 
 $(TARGET).z64: $(TARGET).bin
 	@cp $< $@
 
 # decompress
-bin/%.bin: bin/%.rzip.bin 
+$(SUBCODE_SRC): bin/%.bin : bin/%.rzip.bin 
 	./tools/bk_tools/bk_inflate_code $< $@
 
 # extract
 bin/%.rzip.bin: $(BASENAME).$(VERSION).yaml
 	$(N64SPLAT) baserom.$(VERSION).z64 $(BASENAME).$(VERSION).yaml .
-	make decompress
+	#make decompress
 
-#compress
+#TODO compress code
+#compress code
 #build/%.rzip.bin: build/%.bin
 #	./tools/bk_tools/bk_deflate_code $< $@
 #build/%.rzip.bin: build/%.bin
@@ -138,8 +153,23 @@ bin/%.rzip.bin: $(BASENAME).$(VERSION).yaml
 #build/%.bin: bin/%.bin
 #	cp $< $@
 
-#build/%/
+ifndef PERMUTER
+$(GLOBAL_ASM_O_FILES): $(BUILD_DIR)/%.o: %.c include/variables.h include/structs.h include/functions.h
+	$(PYTHON) $(ASM_PROCESSOR_DIR)/asm_processor.py $(OPT_FLAGS) $< > $(BUILD_DIR)/$<
+	$(CC) -c -32 $(CFLAGS) $(OPT_FLAGS) $(LOOP_UNROLL) $(MIPSBIT) -o $@ $(BUILD_DIR)/$<
+	$(PYTHON) $(ASM_PROCESSOR_DIR)/asm_processor.py $(OPT_FLAGS) $< --post-process $@ \
+		--assembler "$(AS) $(ASFLAGS)" --asm-prelude $(ASM_PROCESSOR_DIR)/prelude.s
+endif
+
+
+$(BUILD_DIR)/%.rzip.bin: $(BIN_DIRS)/%.rzip.bin
+	cp $< $@
+
+$(SUBCODE): % : %_extract
+	$(foreach dir,$(SRC_DIRS) $(ASM_DIRS) $(BIN_DIRS) ,$(shell mkdir -p build/$(dir)/$@))
+	make $(BUILD_DIR)/$@.$(VERSION).bin TARGET=$(BUILD_DIR)/$@.$(VERSION) ASM_DIRS=$(ASM_DIRS)/$@ BIN_DIRS=$(BIN_DIRS)/$@ SRC_DIRS=$(SRC_DIRS)/$@ LD_SCRIPT=$@.ld
+
 
 # settings
-.PHONY: all clean default decompress %_extract $(SUBCODE)
+.PHONY: all clean default decompress %_verify verify %_extract $(SUBCODE) bk_inflate_code dirs main_extract
 SHELL = /bin/bash -e -o pipefail

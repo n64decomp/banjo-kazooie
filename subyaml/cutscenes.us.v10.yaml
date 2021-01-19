@@ -11,17 +11,17 @@ options:
     #include "functions.h"
     #include "variables.h"
   create_detected_syms: yes
-  undefined_syms: syms/undefined_syms.cutscenes.us.v10.txt
-  symbol_addrs:   syms/symbol_addrs.cutscenes.us.v10.txt
+  undefined_syms: undefined_syms.us.v10.txt
+  symbol_addrs:   symbol_addrs.us.v10.txt
 segments:
   - name: cutscenes/code
     type: code
     start: 0x00000000
     vram: 0x803863F0
     files:
-      - [0x00000000, asm]
-      - [0x60F0, asm]
-      - [0x69F0, asm]
+      - [0x00000000, c]
+      - [0x60F0, c]
+      - [0x69F0, c]
   - name: cutscenes/data
     type: code
     start: 0x00006F60

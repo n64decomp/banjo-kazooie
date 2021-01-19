@@ -1,44 +1,50 @@
 # banjo
 
-Grab n64 splat
+Grab tools
 
 ```sh
-mkdir -p tools && cd tools
-git clone https://github.com/ethteck/n64splat.git
+git submodule update --init
 ```
 
 Drop in `US v1.0` as `baserom.us.v10.z64` (sha1sum: `1fe1632098865f639e22c11b9a81ee8f29c75d7a`)
 
-```sh
-make extract
-make --jobs
-```
-
-Build `core1` separately (from base of repo):
+To extract and build everything
 
 ```sh
-make decompress
-# then, either:
-cd core1
 make extract
-make --jobs
-# or:
-make -C core1 extract
-make -C core1 --jobs
+make all
 ```
 
-Build `core2` separately (from base of repo):
+Build only the rom separately (from all the level and core code sections): 
 
 ```sh
-make decompress
-# then, either:
-cd core2
-make extract
-make --jobs
-# or:
-make -C core2 extract
-make -C core2 --jobs
+make main_extract
+make
 ```
+
+Build a level or core code section separately (from base of repo): 
+
+
+```sh
+make <module_id>
+```
+
+where the following are supported values of `<module_id>`
+- `core1` 
+- `core2` 
+- `MM` 
+- `TTC` 
+- `CC` 
+- `BGS` 
+- `FP` 
+- `lair` 
+- `GV` 
+- `CCW` 
+- `RBB` 
+- `MMM` 
+- `SM` 
+- `fight` 
+- `cutscenes`
 
 ## Prerequisites
 
@@ -65,7 +71,7 @@ python3 -m pip install \
 
 ## Other versions
 
-Drop in `US v1.1` as `baserom.us.v11.z64` (sha1sum: `ded6ee166e740ad1bc810fd678a84b48e245ab80`)
+Drop in `us.v11`, `jp`, or `pal` as `baserom.<version>.z64` e.g. `baserom.us.v11.z64`
 
 ```sh
 make extract VERSION=v11

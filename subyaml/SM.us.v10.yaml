@@ -11,22 +11,22 @@ options:
     #include "functions.h"
     #include "variables.h"
   create_detected_syms: yes
-  undefined_syms: syms/undefined_syms.SM.us.v10.txt
-  symbol_addrs:   syms/symbol_addrs.SM.us.v10.txt
+  undefined_syms: undefined_syms.us.v10.txt
+  symbol_addrs:   symbol_addrs.us.v10.txt
 segments:
   - name: SM/code
     type: code
     start: 0x00000000
     vram: 0x803863F0
     files:
-      - [0x00000000, asm]
-      - [0xF0, asm]
-      - [0x5B0, asm]
-      - [0xBF0, asm]
-      - [0xD60, asm]
-      - [0x1520, asm]
-      - [0x4070, asm]
-      - [0x44D0, asm]
+      - [0x00000000, c]
+      - [0xF0, c]
+      - [0x5B0, c]
+      - [0xBF0, c]
+      - [0xD60, c]
+      - [0x1520, c]
+      - [0x4070, c]
+      - [0x44D0, c]
   - name: SM/data
     type: code
     start: 0x000046D0

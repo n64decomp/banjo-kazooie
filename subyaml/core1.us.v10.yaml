@@ -11,8 +11,8 @@ options:
     #include "functions.h"
     #include "variables.h"
   create_detected_syms: yes
-  undefined_syms: syms/undefined_syms.core1.us.v10.txt
-  symbol_addrs:   syms/symbol_addrs.core1.us.v10.txt
+  undefined_syms: undefined_syms.us.v10.txt
+  symbol_addrs:   symbol_addrs.us.v10.txt
 segments:
 - name: core1/code
   type: code
@@ -138,8 +138,13 @@ segments:
   - [0x33E70, c]
   - [0x34930, c]
   - [0x349D0, c]
-  - [0x34A30, asm]
-  - [0x34B20, bin]
+  - [0x34A30, c]
+  - [0x34B20, c]
   - [0x34BDC, bin]
+- name: core1/data
+  type: code
+  start: 0x000037BF0
+  vram:  0x80275610
+  files:
   - [0x37BF0, bin] #data Section
 - [0x3c710] # core1 end
