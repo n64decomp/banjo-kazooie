@@ -6,6 +6,9 @@ baseroms/*
 
 #compiled or ripped asm
 asm/*
+asm
+build/*
+buil/
 
 #binaries ripped from the ROMs
 assets/
