@@ -51,13 +51,13 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_16A50/func_80254C98.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_16A50/func_80254CA8.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_16A50/malloc.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_16A50/func_80254F90.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_16A50/func_80254FD0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_16A50/func_802550F0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_16A50/free.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_16A50/func_80255170.s")
 
@@ -71,7 +71,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_16A50/func_8025534C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_16A50/func_80255358.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_16A50/realloc.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_16A50/func_80255498.s")
 

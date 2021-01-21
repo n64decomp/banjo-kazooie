@@ -21,6 +21,6 @@ void func_8026AD30(void){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_2D2D0/func_8026AE78.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_2D2D0/func_8026B110.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_2D2D0/alSynNew.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_2D2D0/func_8026B410.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_2D2D0/alSynDelete.s")
