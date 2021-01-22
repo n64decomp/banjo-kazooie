@@ -29,6 +29,13 @@ Build a level or core code section separately (from base of repo):
 make <module_id>
 ```
 
+Build a level or core code section without re-extracting it: 
+
+
+```sh
+make <module_id>_fast
+```
+
 where the following are supported values of `<module_id>`
 - `core1` 
 - `core2` 
@@ -74,6 +81,6 @@ python3 -m pip install \
 Drop in `us.v11`, `jp`, or `pal` as `baserom.<version>.z64` e.g. `baserom.us.v11.z64`
 
 ```sh
-make extract VERSION=v11
-make VERSION=v11
+make extract VERSION=us.v11
+make VERSION=us.v11
 ```
