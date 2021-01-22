@@ -15,7 +15,6 @@ guMtxF2L = 0x802650E0;
 guMtxIdentF = 0x802651E0;
 guMtxIdent = 0x80265268;
 guMtxL2F = 0x80265298;
-
 sqrtf = 0x80265350;
 guOrthoF = 0x80266560;
 guOrtho = 0x802666B4;

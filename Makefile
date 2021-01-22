@@ -20,21 +20,38 @@ SPLIT_DIR := $(BUILD_DIR)/split
 
 ASM_PROCESSOR_DIR := tools/asm-processor
 
+TARGET = $(BUILD_DIR)/$(BASENAME).$(VERSION)
+
+
+
+ifneq ($(TARGET), $(BUILD_DIR)/banjo.$(VERSION))
+S_FILES   = $(shell find $(ASM_DIRS) -name '*.s' 2>/dev/null)
+C_FILES   = $(shell find $(SRC_DIRS) -name '*.c' 2>/dev/null)
+H_FILES   = $(shell find $(SRC_DIRS) -name '*.h' 2>/dev/null)
+BIN_FILES = $(shell find $(BIN_DIRS) -name '*.bin' 2>/dev/null)
+else
 S_FILES   = $(foreach dir,$(ASM_DIRS),$(wildcard $(dir)/*.s))
 C_FILES   = $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/*.c))
 H_FILES   = $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/*.h))
 BIN_FILES = $(foreach dir,$(BIN_DIRS),$(wildcard $(dir)/*.bin))
+endif
+
+
 
 O_FILES := $(foreach file,$(S_FILES),$(BUILD_DIR)/$(file:.s=.o)) \
            $(foreach file,$(C_FILES),$(BUILD_DIR)/$(file:.c=.o)) \
            $(foreach file,$(BIN_FILES),$(BUILD_DIR)/$(file:.bin=.o))
+
+
+O_DIRS := $(sort $(dir $(O_FILES)))
+
 
 # Files requiring pre/post-processing
 GREP := grep -rl
 GLOBAL_ASM_C_FILES := $(shell $(GREP) GLOBAL_ASM src </dev/null)
 GLOBAL_ASM_O_FILES := $(foreach file,$(GLOBAL_ASM_C_FILES),$(BUILD_DIR)/$(file:.c=.o))
 
-TARGET = $(BUILD_DIR)/$(BASENAME).$(VERSION)
+
 LD_SCRIPT = $(BASENAME).ld
 
 SUB_TARGET := $(foreach submod,$(SUBCODE), $(BUILD_DIR)/$(submod)/$(submod).$(VERSION))
@@ -74,13 +91,17 @@ LDFLAGS = -T $(BUILD_DIR)/$(LD_SCRIPT) -Map $(TARGET).map -T symbol_addrs.$(VERS
 
 default: main
 
-
-
 main: dirs main_extract
-	$(MAKE) -s $(TARGET).z64
+	@$(MAKE) --no-print-directory $(TARGET).z64
+	@$(MAKE) -s verify
+	@echo -e "def apply(config, args):" > diff_settings.py
+	@echo -e "\tconfig[\"baseimg\"] = \"baserom.$(VERSION).z64\"" >> diff_settings.py
+	@echo -e "\tconfig[\"myimg\"] = \"$(TARGET).z64\"" >> diff_settings.py
+	@echo -e "\tconfig[\"mapfile\"] = \"$(TARGET).map\"" >> diff_settings.py
+	@echo -e "\tconfig[\"source_directories\"] = ['src', 'include']" >> diff_settings.py
 
-dirs: $(foreach dir,$(SRC_DIRS) $(ASM_DIRS) $(BIN_DIRS), build/$(dir)/.) $(foreach subdir, $(SUB_BUILD_DIRS), $(foreach dir,$(SRC_DIRS) $(ASM_DIRS) $(BIN_DIRS), build/$(dir)/$(subdir)/.))
-	
+dirs: $(foreach dir, $(O_DIRS), $(dir).) 
+
 clean:
 	rm -rf asm
 	rm -rf bin
@@ -90,22 +111,31 @@ clean:
 extract: $(foreach submod, $(SUBCODE), $(submod)_extract)
 
 %_extract: bin/%.$(VERSION).bin
-	@$(MAKE) -s dirs
 	$(N64SPLAT) $< subyaml/$*.$(VERSION).yaml .
 
 main_extract: 
 	$(N64SPLAT) baserom.$(VERSION).z64 $(BASENAME).$(VERSION).yaml .
 
 #build
-all: dirs $(SUBCODE) main
+all: $(SUBCODE) main
 
 $(SUBCODE): % : %_extract
-	@$(MAKE) -s $(BUILD_DIR)/$@.$(VERSION).bin TARGET=$(BUILD_DIR)/$@.$(VERSION) ASM_DIRS=$(ASM_DIRS)/$@ BIN_DIRS=$(BIN_DIRS)/$@ SRC_DIRS=$(SRC_DIRS)/$@ LD_SCRIPT=$@.ld
+	@$(MAKE) --no-print-directory $(BUILD_DIR)/$@.$(VERSION).bin TARGET=$(BUILD_DIR)/$@.$(VERSION) ASM_DIRS=$(ASM_DIRS)/$@ BIN_DIRS=$(BIN_DIRS)/$@ SRC_DIRS=$(SRC_DIRS)/$@ LD_SCRIPT=$@.ld
 	@$(MAKE) -s $(BUILD_DIR)/$@.$(VERSION).rzip.bin TARGET=$(BUILD_DIR)/$@.$(VERSION) ASM_DIRS=$(ASM_DIRS)/$@ BIN_DIRS=$(BIN_DIRS)/$@ SRC_DIRS=$(SRC_DIRS)/$@ LD_SCRIPT=$@.ld
+	@$(MAKE) -s $@_verify
+	@$(MAKE) -s $@_comp_verify
+	@echo -e "def apply(config, args):" > diff_settings.py
+	@echo -e "\tconfig[\"baseimg\"] = \"bin/$@.$(VERSION).bin\"" >> diff_settings.py
+	@echo -e "\tconfig[\"myimg\"] = \"build/$@.$(VERSION).bin\"" >> diff_settings.py
+	@echo -e "\tconfig[\"mapfile\"] = \"build/$@.$(VERSION).map\"" >> diff_settings.py
+	@echo -e "\tconfig[\"source_directories\"] = ['src', 'include']" >> diff_settings.py
+	@echo -e "\tconfig[\"makeflags\"] = ['TARGET=$(BUILD_DIR)/$*.$(VERSION)', 'ASM_DIRS=$(ASM_DIRS)/$*', 'BIN_DIRS=$(BIN_DIRS)/$*', 'SRC_DIRS=$(SRC_DIRS)/$*', 'LD_SCRIPT=$*.ld']" >> diff_settings.py
 
-%_fast : dirs
-	@$(MAKE) -s $(BUILD_DIR)/$*.$(VERSION).bin TARGET=$(BUILD_DIR)/$*.$(VERSION) ASM_DIRS=$(ASM_DIRS)/$* BIN_DIRS=$(BIN_DIRS)/$* SRC_DIRS=$(SRC_DIRS)/$* LD_SCRIPT=$*.ld
+%_fast :
+	@$(MAKE) --no-print-directory $(BUILD_DIR)/$*.$(VERSION).bin TARGET=$(BUILD_DIR)/$*.$(VERSION) ASM_DIRS=$(ASM_DIRS)/$* BIN_DIRS=$(BIN_DIRS)/$* SRC_DIRS=$(SRC_DIRS)/$* LD_SCRIPT=$*.ld
 	@$(MAKE) -s $(BUILD_DIR)/$*.$(VERSION).rzip.bin TARGET=$(BUILD_DIR)/$*.$(VERSION) ASM_DIRS=$(ASM_DIRS)/$* BIN_DIRS=$(BIN_DIRS)/$* SRC_DIRS=$(SRC_DIRS)/$* LD_SCRIPT=$*.ld
+	@$(MAKE) -s $*_verify
+	@$(MAKE) -s $*_comp_verify
 
 #verify
 %_verify: $(BUILD_DIR)/%.$(VERSION).bin $(BUILD_DIR)/%.$(VERSION).sha1
@@ -130,13 +160,14 @@ $(BK_TOOLS): % : ./tools/bk_tools/%
 	@cd ./tools/bk_tools/ && $(MAKE) $*
 
 ### Recipes
+
 %/.:
 	@mkdir -p $@
 
 $(BUILD_DIR)/$(LD_SCRIPT): $(LD_SCRIPT)
 	$(CPP) -P -DBUILD_DIR=$(BUILD_DIR) -o $@ $<
 
-$(TARGET).elf: $(O_FILES) $(BUILD_DIR)/$(LD_SCRIPT) #add 
+$(TARGET).elf: dirs $(O_FILES) $(BUILD_DIR)/$(LD_SCRIPT) #add
 	@$(LD) $(LDFLAGS) -o $@
 
 $(BUILD_DIR)/%.o: %.c
@@ -156,7 +187,6 @@ $(BIN_DIRS)/$(BASENAME).$(VERSION).bin:
 
 $(TARGET).bin: $(TARGET).elf $(TARGET).sha1
 	$(OBJCOPY) $(OBJCOPYFLAGS) -O binary $< $@
-	@echo "$$(awk '{print $$1}' $(TARGET).sha1)  $@" | sha1sum --check
 
 $(TARGET).z64: $(TARGET).bin
 	@cp $< $@
@@ -194,7 +224,6 @@ endif
 
 $(TARGET).rzip.bin:$(TARGET).code.bin $(TARGET).data.bin $(TARGET).rzip.sha1 ./tools/bk_tools/bk_deflate_code
 	cd ./tools/bk_tools/ && ./bk_deflate_code $(foreach file, $@ $< $(word 2,$^), ../../$(file))
-	@echo "$$(awk '{print $$1}' $(TARGET).rzip.sha1)  $@" | sha1sum --check
 
 
 # settings
