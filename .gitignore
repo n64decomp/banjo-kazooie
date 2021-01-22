@@ -48,6 +48,7 @@ mod/*
 #misc
 .*/
 *.ld
+*.map
 *auto.txt
 .splat_cache
 .splat_cache*

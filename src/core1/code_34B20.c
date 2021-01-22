@@ -4,5 +4,3 @@
 
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_34B20/func_80272540.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_34B20/func_80272590.s")

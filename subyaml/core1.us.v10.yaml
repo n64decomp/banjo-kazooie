@@ -140,7 +140,12 @@ segments:
   - [0x349D0, c]
   - [0x34A30, c]
   - [0x34B20, c]
-  - [0x34BDC, bin]
+- name: core1/mips3
+  type: code
+  start: 0x34B70
+  vram:  0x80272590
+  files:
+  - [0x34B70, bin]
 - name: core1/data
   type: code
   start: 0x000037BF0

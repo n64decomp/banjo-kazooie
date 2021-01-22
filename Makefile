@@ -74,25 +74,19 @@ LDFLAGS = -T $(BUILD_DIR)/$(LD_SCRIPT) -Map $(TARGET).map -T symbol_addrs.$(VERS
 
 default: main
 
-all: dirs $(SUBCODE) main
+
 
 main: dirs main_extract
 	$(MAKE) -s $(TARGET).z64
 
-$(SUBCODE): % : %_extract
-	@$(MAKE) -s $(BUILD_DIR)/$@.$(VERSION).bin TARGET=$(BUILD_DIR)/$@.$(VERSION) ASM_DIRS=$(ASM_DIRS)/$@ BIN_DIRS=$(BIN_DIRS)/$@ SRC_DIRS=$(SRC_DIRS)/$@ LD_SCRIPT=$@.ld
-	@$(MAKE) -s $(BUILD_DIR)/$@.$(VERSION).rzip.bin TARGET=$(BUILD_DIR)/$@.$(VERSION) ASM_DIRS=$(ASM_DIRS)/$@ BIN_DIRS=$(BIN_DIRS)/$@ SRC_DIRS=$(SRC_DIRS)/$@ LD_SCRIPT=$@.ld
-	
-
 dirs: $(foreach dir,$(SRC_DIRS) $(ASM_DIRS) $(BIN_DIRS), build/$(dir)/.) $(foreach subdir, $(SUB_BUILD_DIRS), $(foreach dir,$(SRC_DIRS) $(ASM_DIRS) $(BIN_DIRS), build/$(dir)/$(subdir)/.))
 	
-	
-
 clean:
 	rm -rf asm
 	rm -rf bin
 	rm -rf build
 
+#extract
 extract: $(foreach submod, $(SUBCODE), $(submod)_extract)
 
 %_extract: bin/%.$(VERSION).bin
@@ -102,6 +96,18 @@ extract: $(foreach submod, $(SUBCODE), $(submod)_extract)
 main_extract: 
 	$(N64SPLAT) baserom.$(VERSION).z64 $(BASENAME).$(VERSION).yaml .
 
+#build
+all: dirs $(SUBCODE) main
+
+$(SUBCODE): % : %_extract
+	@$(MAKE) -s $(BUILD_DIR)/$@.$(VERSION).bin TARGET=$(BUILD_DIR)/$@.$(VERSION) ASM_DIRS=$(ASM_DIRS)/$@ BIN_DIRS=$(BIN_DIRS)/$@ SRC_DIRS=$(SRC_DIRS)/$@ LD_SCRIPT=$@.ld
+	@$(MAKE) -s $(BUILD_DIR)/$@.$(VERSION).rzip.bin TARGET=$(BUILD_DIR)/$@.$(VERSION) ASM_DIRS=$(ASM_DIRS)/$@ BIN_DIRS=$(BIN_DIRS)/$@ SRC_DIRS=$(SRC_DIRS)/$@ LD_SCRIPT=$@.ld
+
+%_fast : dirs
+	@$(MAKE) -s $(BUILD_DIR)/$*.$(VERSION).bin TARGET=$(BUILD_DIR)/$*.$(VERSION) ASM_DIRS=$(ASM_DIRS)/$* BIN_DIRS=$(BIN_DIRS)/$* SRC_DIRS=$(SRC_DIRS)/$* LD_SCRIPT=$*.ld
+	@$(MAKE) -s $(BUILD_DIR)/$@.$(VERSION).rzip.bin TARGET=$(BUILD_DIR)/$@.$(VERSION) ASM_DIRS=$(ASM_DIRS)/$@ BIN_DIRS=$(BIN_DIRS)/$@ SRC_DIRS=$(SRC_DIRS)/$@ LD_SCRIPT=$@.ld
+
+#verify
 %_verify: $(BUILD_DIR)/%.$(VERSION).bin $(BUILD_DIR)/%.$(VERSION).sha1
 	@echo "$$(awk '{print $$1}' $(word 2,$^))  $<" | sha1sum --check
 
@@ -116,9 +122,12 @@ decompress: $(SUBCODE_SRC)
 ### Tools
 BK_TOOLS = bk_inflate_code bk_deflate_code
 
-$(BK_TOOLS): 
-	cd toos/bk_tools && make $@
+tools: $(BK_TOOLS)
 
+$(BK_TOOLS): % : ./tools/bk_tools/%
+
+./tools/bk_tools/%:
+	@cd ./tools/bk_tools/ && $(MAKE) $*
 
 ### Recipes
 %/.:
@@ -153,17 +162,20 @@ $(TARGET).z64: $(TARGET).bin
 	@cp $< $@
 
 # decompress
-$(SUBCODE_SRC): bin/%.bin : bin/%.rzip.bin 
+$(SUBCODE_SRC): bin/%.bin : bin/%.rzip.bin ./tools/bk_tools/bk_inflate_code
 	./tools/bk_tools/bk_inflate_code $< $@
 
 # extract
 bin/%.rzip.bin: $(BASENAME).$(VERSION).yaml
 	$(N64SPLAT) baserom.$(VERSION).z64 $(BASENAME).$(VERSION).yaml .
 
-
+ifneq ($(TARGET), build/core1.$(VERSION))
 $(TARGET).code.bin: $(TARGET).elf
 	$(OBJCOPY) -O binary --only-section .code_code $< $@
-
+else
+build/core1.$(VERSION).code.bin: $(TARGET).elf
+	$(OBJCOPY) -O binary --only-section .code_code --only-section .code_mips3 $< $@
+endif
 $(TARGET).data.bin: $(TARGET).elf
 	$(OBJCOPY) -O binary --only-section .code_data $< $@
 
@@ -171,11 +183,6 @@ $(TARGET).data.bin: $(TARGET).elf
 #compress code
 $(TARGET).rzip.sha1: $(patsubst build%, bin%, $(TARGET)).rzip.bin
 	sha1sum $< > $@
-
-
-
-#build/%.bin: bin/%.bin
-#	cp $< $@
 
 ifndef PERMUTER
 $(GLOBAL_ASM_O_FILES): $(BUILD_DIR)/%.o: %.c include/variables.h include/structs.h include/functions.h
@@ -185,18 +192,10 @@ $(GLOBAL_ASM_O_FILES): $(BUILD_DIR)/%.o: %.c include/variables.h include/structs
 		--assembler "$(AS) $(ASFLAGS)" --asm-prelude $(ASM_PROCESSOR_DIR)/prelude.s
 endif
 
+$(TARGET).rzip.bin:$(TARGET).code.bin $(TARGET).data.bin $(TARGET).rzip.sha1 ./tools/bk_tools/bk_deflate_code
+	cd ./tools/bk_tools/ && ./bk_deflate_code $(foreach file, $@ $< $(word 2,$^), ../../$(file))
+	@echo "$$(awk '{print $$1}' $(TARGET).rzip.sha1)  $@" | sha1sum --check
 
-$(BUILD_DIR)/%.rzip.bin: $(BIN_DIRS)/%.rzip.bin
-	@echo "!!! code deflate not implemented!!!"
-	cp $< $@
-	
-
-#$(TARGET).rzip.bin:$(TARGET).code.bin $(TARGET).data.bin $(TARGET).rzip.sha1
-#	cd ./tools/bk_tools/ && ./bk_deflate_code $(foreach file, $@ $< $(word 2,$^), ../../$(file))
-#	@echo "$$(awk '{print $$1}' $(TARGET).rzip.sha1)  $@" | sha1sum --check
-
-%_fast : dirs
-	make $(BUILD_DIR)/$*.$(VERSION).bin TARGET=$(BUILD_DIR)/$*.$(VERSION) ASM_DIRS=$(ASM_DIRS)/$* BIN_DIRS=$(BIN_DIRS)/$* SRC_DIRS=$(SRC_DIRS)/$* LD_SCRIPT=$*.ld
 
 # settings
 .PHONY: all clean dirs default decompress verify $(SUBCODE) bk_inflate_code dirs main_extract

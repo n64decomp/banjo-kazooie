@@ -15,7 +15,7 @@ typedef struct{
     u16 text_y2_position;
     s32 x_position;
     s32 y_position;
-    u8  pad174[0x34]
+    u8  pad174[0x34];
 }gczoombox_t; //size 0x1A8
 
 
