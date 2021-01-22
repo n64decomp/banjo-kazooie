@@ -17,9 +17,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_16A50/func_80254658.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_16A50/func_802546D0.s")
+s32 func_802546D0(void){ return 0x210520; }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_16A50/func_802546DC.s")
+s32 func_802546DC(void){ return 0; }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_16A50/func_802546E4.s")
 

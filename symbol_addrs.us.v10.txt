@@ -1,6 +1,9 @@
 func_801241304 = 0x801241304;
 osPiRawStartDMA = 0x802405F0;
-guMtxIdentF = 0x80240D70;
+
+guScaleF = 0x80240DF8;
+guScale = 0x80241304;
+_guMtxIdentF_80245D44 = 0x80245D44;
 malloc = 0x80254CA8;
 free = 0x802550F0;
 realloc = 0x80255358;
@@ -8,6 +11,14 @@ alUnlink = 0x80264430;
 alLink = 0x80264460;
 alClose = 0x80264484;
 alInit = 0x802644BC;
+guMtxF2L = 0x802650E0;
+guMtxIdentF = 0x802651E0;
+guMtxIdent = 0x80265268;
+guMtxL2F = 0x80265298;
+
+sqrtf = 0x80265350;
+guOrthoF = 0x80266560;
+guOrtho = 0x802666B4;
 alSynNew = 0x8026B110;
 alSynDelete = 0x8026B410;
 D_80276588 = 0x80276588;
@@ -38,6 +49,9 @@ strcpyToTok = 0x8033DB60;
 strToUpper = 0x8033DBA4;
 D_803688E0 = 0x803688E0;
 D_803688E8 = 0x803688E8;
+D_80378F60 = 0x80378F60;
+D_80378F64 = 0x80378F64;
+D_80378F68 = 0x80378F68;
 _gcbound_red = 0x80380900;
 _gcbound_green = 0x80380901;
 _gcbound_blue = 0x80380902;

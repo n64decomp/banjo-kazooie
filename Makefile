@@ -90,7 +90,7 @@ clean:
 extract: $(foreach submod, $(SUBCODE), $(submod)_extract)
 
 %_extract: bin/%.$(VERSION).bin
-	$(MAKE) -s dirs
+	@$(MAKE) -s dirs
 	$(N64SPLAT) $< subyaml/$*.$(VERSION).yaml .
 
 main_extract: 
@@ -105,7 +105,7 @@ $(SUBCODE): % : %_extract
 
 %_fast : dirs
 	@$(MAKE) -s $(BUILD_DIR)/$*.$(VERSION).bin TARGET=$(BUILD_DIR)/$*.$(VERSION) ASM_DIRS=$(ASM_DIRS)/$* BIN_DIRS=$(BIN_DIRS)/$* SRC_DIRS=$(SRC_DIRS)/$* LD_SCRIPT=$*.ld
-	@$(MAKE) -s $(BUILD_DIR)/$@.$(VERSION).rzip.bin TARGET=$(BUILD_DIR)/$@.$(VERSION) ASM_DIRS=$(ASM_DIRS)/$@ BIN_DIRS=$(BIN_DIRS)/$@ SRC_DIRS=$(SRC_DIRS)/$@ LD_SCRIPT=$@.ld
+	@$(MAKE) -s $(BUILD_DIR)/$*.$(VERSION).rzip.bin TARGET=$(BUILD_DIR)/$*.$(VERSION) ASM_DIRS=$(ASM_DIRS)/$* BIN_DIRS=$(BIN_DIRS)/$* SRC_DIRS=$(SRC_DIRS)/$* LD_SCRIPT=$*.ld
 
 #verify
 %_verify: $(BUILD_DIR)/%.$(VERSION).bin $(BUILD_DIR)/%.$(VERSION).sha1
@@ -163,7 +163,7 @@ $(TARGET).z64: $(TARGET).bin
 
 # decompress
 $(SUBCODE_SRC): bin/%.bin : bin/%.rzip.bin ./tools/bk_tools/bk_inflate_code
-	./tools/bk_tools/bk_inflate_code $< $@
+	@./tools/bk_tools/bk_inflate_code $< $@
 
 # extract
 bin/%.rzip.bin: $(BASENAME).$(VERSION).yaml

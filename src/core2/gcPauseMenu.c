@@ -45,7 +45,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/gcPauseMenu/func_80312B04.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/gcPauseMenu/func_80312B84.s")
+s32 func_80312B84(void){ return 1; }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/gcPauseMenu/func_80312B8C.s")
 

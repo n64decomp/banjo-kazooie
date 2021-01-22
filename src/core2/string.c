@@ -4,15 +4,42 @@
 
 #include "string.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/string/strcat.s")
+void strcat(u8 * dst, u8 *src){
+    while(*(dst) != '\0'){
+        dst++;
+    }
+    while(*(src) != '\0'){
+        *(dst++) = *(src++);
+    }
+    *(dst) = 0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/string/strcatc.s")
+void strcatc(u8 * dst, u8 src){
+    while(*(dst) != '\0'){
+        dst++;
+    }
+    *(dst++) = src;
+    *(dst) = 0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/string/strFToA.s")
+void strFToA(u8* dst, f32 val){
+    s32 decimal;
+    if (val < (f32) 0.0){
+        strcat(dst, &D_80378F60);
+        val = -val;
+    }
+    strIToA(dst, (s32)val);
+    strcat(dst, &D_80378F64);
+    decimal = (s32)((val - (f32)((s32)val))*(f32)100.0);
+    if(decimal < 10){
+        strcat(dst, &D_80378F68);
+    }
+    strIToA(dst, decimal);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/string/_strFToA.s")
 
-void strIToA(s8 *str, s32 num){
+void strIToA(u8 *str, s32 num){
     _strIToA(str, num, 0);
 }
 
@@ -20,18 +47,15 @@ void strIToA(s8 *str, s32 num){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/string/strcmp.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/string/strcpy.s")
-// NONMATCHING using reg v1 instead of v0
-// void strcpy(char * dst, char* src){
-//     u8 v0;
+ void strcpy(u8 *dst, u8 *src){
+     while(*(src) != '\0'){
+        *(dst++) = *(src++);
+    }
+    *(dst) = 0;
+}
 
-//     for(v0 = *(src); v0 != '\0'; v0 = *(++src)){
-//         *(dst++) = v0;   
-//     }
-//     *dst = 0;
-// }
 
-s32 strlen(char * str){
+s32 strlen(u8 * str){
     u8 v0;
     s32 len;
 

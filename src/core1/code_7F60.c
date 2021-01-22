@@ -11,7 +11,15 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_7F60/func_80245BE4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_7F60/func_80245D44.s")
+void _guMtxIdentF_80245D44(float mf[4][4]) //static
+{
+	int	i, j;
+
+	for (i=0; i<4; i++)
+	for (j=0; j<4; j++)
+		if (i == j) mf[i][j] = 1.0;
+		else mf[i][j] = 0.0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_7F60/func_80245DCC.s")
 

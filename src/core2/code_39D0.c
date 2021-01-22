@@ -61,7 +61,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028B0E0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028B120.s")
+s32 func_8028B120(void){return 0;}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028B128.s")
 

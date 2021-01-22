@@ -9,6 +9,6 @@ void func_80255CD8(void){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_18210/func_80255CE0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_18210/func_80255D04.s")
+s32 func_80255D04(void){return 0;}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_18210/func_80255D0C.s")

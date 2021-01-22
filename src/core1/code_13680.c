@@ -17,7 +17,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13680/func_802510F0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13680/func_80251170.s")
+s32 func_80251170(void){return 0;}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13680/func_80251178.s")
 

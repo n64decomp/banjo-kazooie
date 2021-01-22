@@ -62,7 +62,7 @@ void gczoombox_free(gczoombox_t *this){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/gcZoombox/func_80316E84.s")
 
-s32 func_80316ED4(s8 *arg0){
+s32 func_80316ED4(u8 *arg0){
     return strlen(arg0);
 }
 
