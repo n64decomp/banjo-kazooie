@@ -53,3 +53,7 @@ mod/*
 .splat_cache
 .splat_cache*
 diff_settings.py
+
+#progress reports
+*.csv
+progress/*

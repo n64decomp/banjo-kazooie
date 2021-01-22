@@ -99,6 +99,8 @@ main: dirs main_extract
 	@echo -e "\tconfig[\"myimg\"] = \"$(TARGET).z64\"" >> diff_settings.py
 	@echo -e "\tconfig[\"mapfile\"] = \"$(TARGET).map\"" >> diff_settings.py
 	@echo -e "\tconfig[\"source_directories\"] = ['src', 'include']" >> diff_settings.py
+	@$(MAKE) -s progress/progress.bk_boot.csv
+	@$(PYTHON) tools/progress_read.py progress/progress.bk_boot.csv $(VERSION)
 
 dirs: $(foreach dir, $(O_DIRS), $(dir).) 
 
@@ -118,24 +120,26 @@ main_extract:
 
 #build
 all: $(SUBCODE) main
+	@$(MAKE) -s progress
 
 $(SUBCODE): % : %_extract
-	@$(MAKE) --no-print-directory $(BUILD_DIR)/$@.$(VERSION).bin TARGET=$(BUILD_DIR)/$@.$(VERSION) ASM_DIRS=$(ASM_DIRS)/$@ BIN_DIRS=$(BIN_DIRS)/$@ SRC_DIRS=$(SRC_DIRS)/$@ LD_SCRIPT=$@.ld
-	@$(MAKE) -s $(BUILD_DIR)/$@.$(VERSION).rzip.bin TARGET=$(BUILD_DIR)/$@.$(VERSION) ASM_DIRS=$(ASM_DIRS)/$@ BIN_DIRS=$(BIN_DIRS)/$@ SRC_DIRS=$(SRC_DIRS)/$@ LD_SCRIPT=$@.ld
-	@$(MAKE) -s $@_verify
-	@$(MAKE) -s $@_comp_verify
+	@$(MAKE) --no-print-directory $@_fast
 	@echo -e "def apply(config, args):" > diff_settings.py
 	@echo -e "\tconfig[\"baseimg\"] = \"bin/$@.$(VERSION).bin\"" >> diff_settings.py
 	@echo -e "\tconfig[\"myimg\"] = \"build/$@.$(VERSION).bin\"" >> diff_settings.py
 	@echo -e "\tconfig[\"mapfile\"] = \"build/$@.$(VERSION).map\"" >> diff_settings.py
-	@echo -e "\tconfig[\"source_directories\"] = ['src', 'include']" >> diff_settings.py
+	@echo -e "\tconfig[\"source_directories\"] = ['src/$@', 'include']" >> diff_settings.py
 	@echo -e "\tconfig[\"makeflags\"] = ['TARGET=$(BUILD_DIR)/$*.$(VERSION)', 'ASM_DIRS=$(ASM_DIRS)/$*', 'BIN_DIRS=$(BIN_DIRS)/$*', 'SRC_DIRS=$(SRC_DIRS)/$*', 'LD_SCRIPT=$*.ld']" >> diff_settings.py
+
 
 %_fast :
 	@$(MAKE) --no-print-directory $(BUILD_DIR)/$*.$(VERSION).bin TARGET=$(BUILD_DIR)/$*.$(VERSION) ASM_DIRS=$(ASM_DIRS)/$* BIN_DIRS=$(BIN_DIRS)/$* SRC_DIRS=$(SRC_DIRS)/$* LD_SCRIPT=$*.ld
 	@$(MAKE) -s $(BUILD_DIR)/$*.$(VERSION).rzip.bin TARGET=$(BUILD_DIR)/$*.$(VERSION) ASM_DIRS=$(ASM_DIRS)/$* BIN_DIRS=$(BIN_DIRS)/$* SRC_DIRS=$(SRC_DIRS)/$* LD_SCRIPT=$*.ld
 	@$(MAKE) -s $*_verify
 	@$(MAKE) -s $*_comp_verify
+	@$(MAKE) -s progress/progress.$*.csv
+	@$(PYTHON) tools/progress_read.py progress/progress.$*.csv $(VERSION)
+
 
 #verify
 %_verify: $(BUILD_DIR)/%.$(VERSION).bin $(BUILD_DIR)/%.$(VERSION).sha1
@@ -146,6 +150,10 @@ $(SUBCODE): % : %_extract
 
 verify: $(TARGET).z64 $(TARGET).sha1
 	@echo "$$(awk '{print $$1}' $(word 2,$^))  $<" | sha1sum --check
+
+progress: progress.csv
+	@$(PYTHON) tools/progress_read.py progress.csv $(VERSION)
+
 
 decompress: $(SUBCODE_SRC)
 
@@ -225,6 +233,14 @@ endif
 $(TARGET).rzip.bin:$(TARGET).code.bin $(TARGET).data.bin $(TARGET).rzip.sha1 ./tools/bk_tools/bk_deflate_code
 	cd ./tools/bk_tools/ && ./bk_deflate_code $(foreach file, $@ $< $(word 2,$^), ../../$(file))
 
+progress.csv : $(foreach submod, $(SUBCODE), progress/progress.$(submod).csv) progress/progress.bk_boot.csv
+	@cat $^ > $@
+
+progress/progress.bk_boot.csv: progress/.
+	@$(PYTHON) tools/progress.py . build/banjo.$(VERSION).map .code_code --version $(VERSION) > $@
+
+progress/progress.%.csv: progress/.
+	@$(PYTHON) tools/progress.py . build/$*.$(VERSION).map .code_code --version $(VERSION) > $@
 
 # settings
 .PHONY: all clean dirs default decompress verify $(SUBCODE) bk_inflate_code dirs main_extract
