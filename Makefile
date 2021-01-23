@@ -77,7 +77,7 @@ N64SPLAT = $(PYTHON) tools/n64splat/split.py
 CC = ido/ido5.3_recomp/cc
 
 OPT_FLAGS = -O2
-MIPSBIT := -mips2
+MIPSBIT = -mips2
 
 INCLUDE_CFLAGS := -I . -I include -I include/2.0L -I include/2.0L/PR -I include/libc -I src/libultra/os -I src/libultra/audio
 
@@ -167,6 +167,10 @@ $(BK_TOOLS): % : ./tools/bk_tools/%
 ./tools/bk_tools/%:
 	@cd ./tools/bk_tools/ && $(MAKE) $*
 
+
+### exceptions
+build/src/core1/io/%.o: OPT_FLAGS = -O1
+
 ### Recipes
 
 %/.:
@@ -236,11 +240,13 @@ $(TARGET).rzip.bin:$(TARGET).code.bin $(TARGET).data.bin $(TARGET).rzip.sha1 ./t
 progress.csv : $(foreach submod, $(SUBCODE), progress/progress.$(submod).csv) progress/progress.bk_boot.csv
 	@cat $^ > $@
 
-progress/progress.bk_boot.csv: progress/.
+progress/progress.bk_boot.csv: progress/. $(TARGET).elf
 	@$(PYTHON) tools/progress.py . build/banjo.$(VERSION).map .code_code --version $(VERSION) > $@
 
-progress/progress.%.csv: progress/.
+#PROG_CSVS = $(foreach submod, $(SUBCODE), progress/progress.$(submod).csv)
+progress/progress.%.csv:  progress/. build/%.$(VERSION).elf
 	@$(PYTHON) tools/progress.py . build/$*.$(VERSION).map .code_code --version $(VERSION) > $@
+
 
 # settings
 .PHONY: all clean dirs default decompress verify $(SUBCODE) bk_inflate_code dirs main_extract

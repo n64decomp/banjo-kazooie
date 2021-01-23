@@ -19,6 +19,6 @@ void * malloc(s32 size);
 void free(void*);
 void* realloc(void* ptr, s32 size);
 
-
+float gu_sqrtf(float val);
 
 #endif

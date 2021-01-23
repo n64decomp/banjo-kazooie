@@ -19,7 +19,7 @@ def main(csv_name, version):
                 if row['language'] == 'c':
                     done_func += 1
                     done_byte += int(row['length'])
-        print("Progress: bytes: %3.4f%% (%d/%d), funcs: %3.4f%% (%d/%d)" % ((done_byte/total_byte * 100), done_byte, total_byte,((done_func/total_func) *100), done_func, total_func ))
+        print("Progress: bytes: %3.4f%% (%d/%d), funcs: %3.4f%% (%d/%d)" % (((done_byte/total_byte) * 100), done_byte, total_byte,((done_func/total_func) *100), done_func, total_func ))
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Create progress csv based on map file',

@@ -3,10 +3,6 @@
 #include "variables.h"
 
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_28A90/func_802664B0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_28A90/func_802664F0.s")
-
 void guOrthoF(float mf[4][4], float l, float r, float b, float t, float n, float f, float scale)
 {
 	int	i, j;
@@ -26,7 +22,7 @@ void guOrthoF(float mf[4][4], float l, float r, float b, float t, float n, float
 		mf[i][j] *= scale;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_28A90/guOrtho.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core1/gu/ortho/guOrtho.s")
 //void guOrtho(Mtx *m, float l, float r, float b, float t, float n, float f, float scale)
 // {
 // 	float	mf[4][4];
