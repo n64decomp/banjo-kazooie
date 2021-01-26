@@ -21,7 +21,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_11DE0/func_80299210.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_11DE0/func_8029921C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_11DE0/banjo_getYaw.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_11DE0/func_80299228.s")
 

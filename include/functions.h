@@ -3,10 +3,13 @@
 
 #include <ultra64.h>
 
+#include "enums.h"
 #include "structs.h"
 #include "string.h"
 #include "gcbound.h"
 #include "gczoombox.h"
+
+#include "prop.h"
 
 extern f32 fabsf(f32);
 #pragma intrinsic (fabsf)
@@ -19,6 +22,35 @@ void * malloc(s32 size);
 void free(void*);
 void* realloc(void* ptr, s32 size);
 
+float mlNormalizeAngle(float);
+
+void func_80258C48(f32 *arg0, f32 *arg1, f32 *arg2);
+void func_80258C7C(f32 *arg0, f32 arg1);
+
 float gu_sqrtf(float val);
+
+ActorBehavior *func_8028D5D0(void);
+
+enum transformation func_8028E7CC(void);
+
+void func_8028E7EC(f32 *arg0);
+
+void banjo_getRotation(f32 *dst);
+
+void func_80291A60(s32 arg0, f32* arg1);
+
+void banjo_getPosition(f32 *dst);
+
+f32 banjo_getPitch(void);
+
+void func_80298220(f32 *arg0);
+
+f32 banjo_getRoll(void);
+
+f32 banjo_getYaw(void);
+
+f32 func_8033DD9C(void);
+
+
 
 #endif

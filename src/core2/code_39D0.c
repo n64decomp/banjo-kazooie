@@ -3,6 +3,8 @@
 #include "variables.h"
 
 
+extern s32 carriedObject_actorID;
+
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028A960.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028A980.s")
@@ -143,11 +145,15 @@ s32 func_8028B120(void){return 0;}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028D64C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028D658.s")
+void carriedObject_setActorID(s32 arg0){
+    carriedObject_actorID = arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028D664.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028D670.s")
+s32 carriedObject_getActorID(void){
+    return carriedObject_actorID;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028D67C.s")
 

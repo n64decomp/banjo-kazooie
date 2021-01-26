@@ -2,6 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "prop.h"
+#include "enums.h"
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028DFF0.s")
 
@@ -17,7 +19,10 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028E4B0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028E644.s")
+void func_8028E644(void){
+    func_80295B04(); //loadzone_applyCollision
+    D_8037BFBA = 0; //banjo_present
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028E668.s")
 
@@ -31,11 +36,17 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028E78C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028E7AC.s")
+ActorBehavior *func_8028E7AC(void){
+    return func_8028D5D0();
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028E7CC.s")
+enum transformation func_8028E7CC(void){
+    return func_8029A8F4();
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028E7EC.s")
+void func_8028E7EC(f32 *arg0){
+    func_80298220(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028E80C.s")
 
@@ -71,7 +82,11 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028EC04.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028EC24.s")
+void banjo_getRotation(f32 *dst){
+    dst[0] = banjo_getPitch();
+    dst[1] = banjo_getYaw();
+    dst[2] = banjo_getRoll();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028EC64.s")
 

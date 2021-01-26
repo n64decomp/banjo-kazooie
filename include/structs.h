@@ -3,5 +3,4 @@
 
 #include <ultra64.h>
 
-
 #endif

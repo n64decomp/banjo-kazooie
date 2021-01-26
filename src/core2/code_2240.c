@@ -2,59 +2,186 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "animation.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_2240/func_802891D0.s")
+//function declarations
+void func_8028977C(Animation *this, s32 arg1);
+s32  func_802897A0(Animation *this);
+s32  func_802892FC(Animation *this);
+void func_8033AA50(s32, f32, s32);
+void func_8033A750(s32, s32, s32, f32);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_2240/func_8028920C.s")
+//function definitions
+void func_802891D0(Animation *this, s32 arg1){
+    s32 *tmp;
+    if(func_80288400((&this->unkA)[arg1], &tmp) == 0){
+        func_8033A510(tmp);
+    }; 
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_2240/func_8028922C.s")
+void func_8028920C(Animation *this){
+    func_802891D0(this, this->unk8);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_2240/func_8028924C.s")
+void func_8028922C(Animation *this){
+    func_802891D0(this, 2);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_2240/func_80289274.s")
+s32 func_8028924C(Animation *this, s32 arg1){
+    return func_80288374((&this->unkA)[arg1]);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_2240/func_80289294.s")
+s32 func_80289274(Animation *this){
+    return func_8028924C(this, this->unk8);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_2240/func_802892CC.s")
+s32 func_80289294(Animation *this){
+    return func_8028924C(this, (this->unk8 != 0)? 0: 1);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_2240/func_802892FC.s")
+s32 func_802892CC(Animation *this, s32 arg1){
+    s32 tmp;
+    func_80288400((&this->unkA)[arg1], &tmp);
+    return tmp;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_2240/func_8028931C.s")
+s32 func_802892FC(Animation *this){
+    return func_802892CC(this, this->unk8);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_2240/func_80289354.s")
+s32 func_8028931C(Animation *this){
+    return func_802892CC(this, (this->unk8 != 0)? 0: 1);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_2240/func_80289374.s")
+s32 func_80289354(Animation *this){
+    return func_802892CC(this, 2);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_2240/func_8028948C.s")
+void func_80289374(Animation *this){
+    if(this->unk1C == 1 && func_80289274(this)){
+        this->unk8 = (this->unk8)? 0 : 1;
+    }
+    this->unk1C = 0;
+    if( this->duration < 1.0f && func_80289294(this)){
+        func_8033AA50(func_80288590(this->index), this->timer, func_802892FC(this));
+        func_8033A750(func_802892FC(this), func_8028931C(this), func_802892FC(this), this->duration);
+    }
+    else{
+        func_8033AA50(func_80288590(this->index), this->timer, func_802892FC(this));
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_2240/func_802895F8.s")
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_2240/func_80289674.s")
+void func_8028948C(Animation *this){
+    if(this->unk1C == 1 && this->unk1E == 0){
+        if(func_80289274(this)){
+            this->unk8 = (this->unk8)? 0 : 1;
+            func_8028922C(this);
+        }
+    }
+    else{
+        if(this->unk1C == 2)
+            func_8028920C(this);
+    }
+    this->unk1C = 0;
+    if( this->duration < 1.0f && func_80289294(this) && !this->unk1E){
+        func_8033AA50(func_80288590(this->index), this->timer, func_80289354(this));
+        func_8033A750(func_802892FC(this), func_8028931C(this), func_80289354(this), this->duration);
+    }
+    else{
+        func_8033AA50(func_80288590(this->index), this->timer, func_802892FC(this));
+        if(this->unk1E && this->index)
+            this->unk1E = 0;
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_2240/func_80289680.s")
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_2240/func_80289688.s")
+void func_802895F8(Animation *this){
+    if(this->unk1D == 1){
+        func_8028948C(this);
+    }
+    else{
+        func_80289374(this);
+    }
+    if(this->matrices){
+        (*(this->matrices))(func_802892FC(this), this->unk4);
+    }
+    func_802897A0(this);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_2240/func_80289690.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_2240/func_80289698.s")
+void func_80289674(Animation *this){
+    this->unk1C = 1;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_2240/func_802896A0.s")
+s32 func_80289680(void){
+    return 0x20;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_2240/func_802896EC.s")
+s32  func_80289688(Animation *this){
+    return this->index;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_2240/func_8028977C.s")
+f32  func_80289690(Animation *this){
+    return this->timer;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_2240/func_80289784.s")
+f32  func_80289698(Animation *this){
+    return this->duration;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_2240/func_80289790.s")
+void func_802896A0(Animation *this){
+    func_802883AC(this->unkA);
+    func_802883AC(this->unkC);
+    if(this->unk1D == 1){
+        func_802883AC(this->unkE);
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_2240/func_80289798.s")
+void func_802896EC(Animation *this, s32 arg1){
+    this->unk1D = arg1;
+    func_8028977C(this,0);
+    func_80289784(this, 0.0f);
+    func_802897C8(this, 1.0f);
+    func_80289790(this, NULL);
+    this->unk1C = 0;
+    this->unk1E = 1;
+    this->unk8 = 0;
+    this->unkA = func_80288330();
+    this->unkC = func_80288330();
+    if(this->unk1D == 1){
+        this->unkE = func_80288330();
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_2240/func_802897A0.s")
+void func_8028977C(Animation *this, s32 arg1){
+    this->index = arg1;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_2240/func_802897C8.s")
+void func_80289784(Animation *this, f32 arg1){
+    this->timer = arg1;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_2240/func_802897D4.s")
+void func_80289790(Animation *this, void (*arg1)(s32, s32)){
+    this->matrices = arg1;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_2240/func_8028980C.s")
+void func_80289798(Animation *this, s32 arg1){
+    this->unk4 = arg1;
+}
+
+s32 func_802897A0(Animation *this){
+    return func_8033A238(func_802892FC(this));
+}
+
+void func_802897C8(Animation *this, f32 arg1){
+    this->duration = arg1;
+}
+
+void func_802897D4(Animation *this, void *arg0, Animation *dst){
+    func_802EA1A8(this, arg0, func_802892FC(dst));
+}
+
+void func_8028980C(Animation *this){
+    this->unk1C = 2;
+}

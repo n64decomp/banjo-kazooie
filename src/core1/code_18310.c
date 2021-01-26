@@ -159,7 +159,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_18310/func_802587EC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_18310/func_8025881C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_18310/mlNormalizeAngle.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_18310/func_802588B0.s")
 
