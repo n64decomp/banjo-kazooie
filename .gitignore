@@ -20,8 +20,8 @@ bin/*
 # This folder will hold modified asset binaries
 # these assets will override the original game
 # assets in the bin/ at compile time.
-mod/ 
-mod/* 
+mod/
+mod/*
 
 
 #compiled object files
@@ -46,6 +46,8 @@ mod/*
 *.lib
 
 #misc
+__pycache__/
+expected/
 .*/
 *.ld
 *.map

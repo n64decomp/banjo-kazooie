@@ -7,8 +7,6 @@
 
 extern f64 D_80373DF0;
 extern f64 D_80373DF8;
-extern f32 D_80373E00;
-extern f32 D_80373E18;
 
 extern u32 D_A0000238;
 
@@ -60,7 +58,7 @@ void func_80287020(Movement *this){
      if(this->playback_direction == 0){
          delta = -delta;
      }
-     tmp = this->timer + delta; 
+     tmp = this->timer + delta;
      if(tmp < 0.0f){
          tmp += 1.0f;
      }
@@ -82,7 +80,7 @@ void func_802870E0(Movement *this){
      if(this->playback_direction == 0){
          delta = -delta;
      }
-     tmpf14 = this->timer + delta; 
+     tmpf14 = this->timer + delta;
      if(this->duration_max <= tmpf14){
          f_range = this->duration_max - this->duration_min;
          f_percent = (tmpf14 - this->duration_min)/f_range;
@@ -96,7 +94,7 @@ void func_802871A4(Movement *this){
     Animation *anim;
     f32 phi_f0;
     f32 phi_f2;
-    
+
 
     anim = func_80287464(this);
     func_80286F90(this);
@@ -111,13 +109,13 @@ void func_802871A4(Movement *this){
     if (phi_f0 < 0.0f) {
         phi_f0 = 0.0f;
         func_80287674(this, 3);
-        
+
     } else {
         if ((this->duration_max < phi_f0) || (D_80373DF0 < (f64) phi_f0)) {
             if(this->duration_max < phi_f0)
                 phi_f0 = this->duration_max;
             if(D_80373DF8 < (f64) phi_f0)
-                phi_f0 =  D_80373E00;
+                phi_f0 =  0.9999989867210388f; // D_80373E00
             func_80287674(this, 3);
         } else {
             phi_f0 = phi_f0 - (f32) (s32) phi_f0;
@@ -151,26 +149,25 @@ void func_80287394(Movement * this){ //free
     free(this);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_0/func_802873C0.s")
-// void func_802873C0(Movement *this){//update
-//     switch (this->playback_type)
-//     {
-//     case 0:
-//         break;
-//     case 1: //once
-//         func_802871A4(this);
-//         break;
-//     case 2: //loop
-//         func_80287020(this);
-//         break;
-//     case 3: //stopped
-//         func_802870E0(this);
-//         break;
-//     case 4:
-//         func_80286F90(this);
-//         break;
-//     }
-// }
+void func_802873C0(Movement *this){//update
+    switch (this->playback_type)
+    {
+    case 0:
+        break;
+    case 1: //once
+        func_802871A4(this);
+        break;
+    case 2: //loop
+        func_80287020(this);
+        break;
+    case 4: //stopped
+        func_802870E0(this);
+        break;
+    case 3:
+        func_80286F90(this);
+        break;
+    }
+}
 
 Movement *func_80287434(Movement *this){ //realloc
     ActorMovement *full_struct;
@@ -278,7 +275,7 @@ void func_80287738(Movement *this, f32 *min, f32 *max){
 
 void func_8028774C(Movement *this, f32 arg1){
     if(arg1 == 1.0)
-        arg1 = D_80373E18;
+        arg1 = 0.9999989867210388f; // D_80373E18
 
     this->unk18 = arg1;
     this->unk25 = 0;

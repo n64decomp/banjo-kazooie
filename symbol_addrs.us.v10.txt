@@ -1,6 +1,7 @@
 func_801241304 = 0x801241304;
 osPiRawStartDMA = 0x802405F0;
-
+func_8028768C = 0x8028768C;
+func_802878E8 = 0x802878E8;
 guScaleF = 0x80240DF8;
 guScale = 0x80241304;
 _guMtxIdentF_80245D44 = 0x80245D44;
@@ -94,4 +95,3 @@ _gcbound_red = 0x80380900;
 _gcbound_green = 0x80380901;
 _gcbound_blue = 0x80380902;
 D_A0000238 = 0xA0000238;
-
