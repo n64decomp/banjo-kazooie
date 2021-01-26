@@ -29,7 +29,7 @@ void func_80258C7C(f32 *arg0, f32 arg1);
 
 float gu_sqrtf(float val);
 
-ActorBehavior *func_8028D5D0(void);
+ActorMarker *func_8028D5D0(void);
 
 enum transformation func_8028E7CC(void);
 

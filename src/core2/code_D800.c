@@ -6,13 +6,13 @@
 
 extern float D_8037C290;
 extern float D_8037C294;
-extern ActorBehavior* D_8037C298;
+extern ActorMarker* D_8037C298;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D800/func_80294790.s")
 
 void func_802947C4(void){}
 
-void func_802947CC(ActorBehavior*, float*, float*);// func definition
+void func_802947CC(ActorMarker*, float*, float*);// func definition
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D800/func_802947CC.s")
 
 void func_80294828(void){

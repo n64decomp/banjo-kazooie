@@ -72,8 +72,10 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AD0/func_802884E0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AD0/func_80288530.s")
+//loadAll_animationFiles
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AD0/func_80288590.s")
+//animationFile
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AD0/func_802885E8.s")
 

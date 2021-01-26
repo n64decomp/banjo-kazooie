@@ -14,18 +14,18 @@ typedef struct prop_prop_s{
 } PropProp;
 
 typedef struct actor_prop_s{
-    struct actorBehavior_s* behavior;
+    struct actorMarker_s* marker;
     u8 pad[0x8];
 } ActorProp;
 
-typedef struct actorBehavior_s{
+typedef struct actorMarker_s{
     ActorProp*  propPtr;
     struct cude_s*     cudePtr;
     u8          pad8[0x27];
     u8          pad2F:7;
     u8          collidable:1;
     u8          pad30[0x30];
-} ActorBehavior;
+} ActorMarker;
 
 /*typedef struct mtx_array{
     u32 count;
@@ -74,20 +74,32 @@ typedef struct actorMovement_s{
 } ActorMovement;
 
 typedef struct actor_s{
-    ActorBehavior* behavior;
+    ActorMarker* marker;
     f32 position_x;
     f32 position_y;
     f32 position_z;
     u8  pad10[0x4];
     ActorMovement *movement;
-    u8  pad18[0x38];
+    u8  pad18[0x04];
+    f32 unk1C;
+    u8  pad20[0x24];
+    s32 unk44_0:28;
+    s32 despawn_flag:1;
+    s32 unk44_1D:3;
+    u8  pad48[0x8];
     f32 yaw;
     u8  pad54[0x10];
     f32 yaw_moving;
     f32 pitch;
     f32 unk6C;
-    u8  pad70[0xA0];
-    f32 roll;
+    u8  pad70[0x84];
+    u32 unkF4_0:10;
+    u32 unkF4_A:1;
+    u32 unkF4_B:21;
+    u8  padF8[0xC];
+    ActorMarker *unk104;
+    u8  pad108[4];
+    f32 roll;//110
     f32 sound_timer;
     f32 spawn_position_x;
     f32 spawn_position_y;
@@ -105,6 +117,11 @@ typedef union prop_s
     ActorProp   actor;
     SpriteProp  sprite;
     PropProp    prop;
+    struct{
+        u8 pad0[8];
+        s32 pad8: 31;
+        s32 markerFlag: 1;
+    };
 } Prop;
 
 
@@ -112,10 +129,11 @@ typedef struct cude_s{
     u32 x:5;
     u32 y:5;
     u32 z:5;
-    u32 markerCnt:6;
-    u32 propCnt:6;
+    u32 prop1Cnt:6;
+    u32 prop2Cnt:6;
     u32 pad0:5;
-
+    Prop *prop1Ptr;
+    Prop *prop2Ptr;
 }Cube;
 
 #endif

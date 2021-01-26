@@ -216,7 +216,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/actor_copy.s")
 // void actor_copy(Actor *dst, Actor *src){
-//     dst->behavior = src->behavior;
+//     dst->marker = src->marker;
 
 // }
 
@@ -241,12 +241,12 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032AA58.s")
 
 void actor_collisionOff(Actor* this){
-    this->behavior->collidable = 0;
-    //return this->behavior;
+    this->marker->collidable = 0;
+    //return this->marker;
 }
 
 void actor_collisionOn(Actor* this){
-    this->behavior->collidable = 1;
+    this->marker->collidable = 1;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032AA9C.s")

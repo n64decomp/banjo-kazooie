@@ -36,7 +36,7 @@ void func_8028E644(void){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028E78C.s")
 
-ActorBehavior *func_8028E7AC(void){
+ActorMarker *func_8028E7AC(void){
     return func_8028D5D0();
 }
 

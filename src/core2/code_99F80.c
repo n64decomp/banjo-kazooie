@@ -2,8 +2,17 @@
 #include "functions.h"
 #include "variables.h"
 
+void func_80321034(void);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_99F80/func_80320F10.s")
+
+
+
+
+
+void func_80320F10(void){ //jiggyScore_clear
+    func_80321034();
+    func_8032103C();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_99F80/func_80320F38.s")
 

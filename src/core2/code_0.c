@@ -155,19 +155,19 @@ void func_80287394(Movement * this){ //free
 // void func_802873C0(Movement *this){//update
 //     switch (this->playback_type)
 //     {
+//     case 0:
+//         break;
 //     case 1: //once
 //         func_802871A4(this);
 //         break;
 //     case 2: //loop
 //         func_80287020(this);
 //         break;
-//     case 4:
+//     case 3: //stopped
 //         func_802870E0(this);
 //         break;
-//     case 3: //stopped
+//     case 4:
 //         func_80286F90(this);
-//         break;
-//     default:
 //         break;
 //     }
 // }

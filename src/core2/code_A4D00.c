@@ -118,6 +118,29 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032E070.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032E07C.s")
+// void func_8032E07C(Cube *this){
+//     s32 i;
+//     Prop *list_end;
+//     Prop *cur_ptr;
+
+//     if(this->prop2Ptr){
+//         list_end = this->prop2Ptr + this->prop2Cnt;
+//         for(cur_ptr = this->prop2Ptr; cur_ptr != list_end; cur_ptr++){
+//             if(cur_ptr->markerFlag){
+//                 func_80332B2C(cur_ptr->actor.marker);
+//             }
+//         }
+//         free(this->prop2Ptr);
+//         this->prop2Ptr = NULL;
+//     }
+//     if(this->prop1Ptr){
+//         free(this->prop1Ptr);
+//         this->prop1Ptr = NULL;
+//     }
+//     this->prop2Cnt = 0;
+//     this->prop1Cnt = 0;
+//     this->pad0 = 0;
+// }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032E178.s")
 
