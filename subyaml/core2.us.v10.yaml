@@ -316,5 +316,7 @@ segments:
   start: 0x000DC600
   vram:  0x80363590
   files:
-  - [0x000DC600, "bin"]
+  - [0x000DC600, bin]
+  - [0x000ECE70, ".rodata", core2/code_0]
+  - [0x000ECE90, bin]
 - [0xf2c00] # core2 end

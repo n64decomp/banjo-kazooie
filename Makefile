@@ -10,7 +10,7 @@ BIN_DIRS  = bin
 SRC_DIRS  = src
 
 
-SUB_BUILD_DIRS = $(foreach dir,$(SRC_DIRS) $(ASM_DIRS) $(BIN_DIRS), build/$(dir)) 
+SUB_BUILD_DIRS = $(foreach dir,$(SRC_DIRS) $(ASM_DIRS) $(BIN_DIRS), build/$(dir))
 SUB_BUILD_DIRS += $(foreach subdir, $(SUBCODE), $(foreach dir,$(SRC_DIRS) $(ASM_DIRS) $(BIN_DIRS), build/$(dir)/$(subdir)/.))
 
 SUB_BUILD_DIRS = $(SUBCODE)
@@ -84,6 +84,8 @@ INCLUDE_CFLAGS := -I . -I include -I include/2.0L -I include/2.0L/PR -I include/
 ASFLAGS = -EB -mtune=vr4300 -march=vr4300 -mabi=32 -I include
 
 CFLAGS = -c -Wab,-r4300_mul -non_shared -G 0 -Xcpluscomm -Xfullwarn -signed $(OPT_FLAGS) $(INCLUDE_CFLAGS) $(MIPSBIT)
+# ignore compiler warnings about anonymous structs
+CFLAGS += -woff 649,838
 
 LDFLAGS = -T $(BUILD_DIR)/$(LD_SCRIPT) -Map $(TARGET).map -T symbol_addrs.$(VERSION).txt -T undefined_syms.$(VERSION).txt -T undefined_syms_auto.txt -T undefined_funcs_auto.txt  --no-check-sections
 
@@ -102,7 +104,7 @@ main: dirs main_extract
 	@$(MAKE) -s progress/progress.bk_boot.csv
 	@$(PYTHON) tools/progress_read.py progress/progress.bk_boot.csv $(VERSION)
 
-dirs: $(foreach dir, $(O_DIRS), $(dir).) 
+dirs: $(foreach dir, $(O_DIRS), $(dir).)
 
 clean:
 	rm -rf asm
@@ -115,7 +117,7 @@ extract: $(foreach submod, $(SUBCODE), $(submod)_extract)
 %_extract: bin/%.$(VERSION).bin
 	$(N64SPLAT) $< subyaml/$*.$(VERSION).yaml .
 
-main_extract: 
+main_extract:
 	$(N64SPLAT) baserom.$(VERSION).z64 $(BASENAME).$(VERSION).yaml .
 
 #build
