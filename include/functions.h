@@ -29,6 +29,11 @@ void func_80258C7C(f32 *arg0, f32 arg1);
 
 float gu_sqrtf(float val);
 
+void func_802876CC(Movement *, f32,f32);
+void func_8028768C(Movement *, f32);
+s32  func_80289FE8(f32);
+void func_8028A37C(f32);
+
 ActorMarker *func_8028D5D0(void);
 
 enum transformation func_8028E7CC(void);
@@ -43,14 +48,20 @@ void banjo_getPosition(f32 *dst);
 
 f32 banjo_getPitch(void);
 
+void func_80297970(f32);
+
+f32  func_80297AAC(void);
+
 void func_80298220(f32 *arg0);
+
+void func_802991B4(f32);
+
+void func_80299BFC(f32);
 
 f32 banjo_getRoll(void);
 
 f32 banjo_getYaw(void);
 
 f32 func_8033DD9C(void);
-
-
 
 #endif

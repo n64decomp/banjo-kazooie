@@ -160,10 +160,10 @@ void func_802873C0(Movement *this){//update
     case 2: //loop
         func_80287020(this);
         break;
-    case 4: //stopped
+    case 4: 
         func_802870E0(this);
         break;
-    case 3:
+    case 3: //stopped
         func_80286F90(this);
         break;
     }

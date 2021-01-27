@@ -1,6 +1,9 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "structs.h"
+
+
 
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031B5B0.s")
@@ -37,13 +40,59 @@ void func_8031B710(void){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031B990.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031B9B0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031B9D8.s")
+/***BREAK***/
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031BA7C.s")
+void func_8031C608(struct0 *this);
+s32  func_8031BABC(f32 *, f32, f32, u32, f32*);
+void func_8031BD98(struct0 *, f32, s32, s32, f32 *, s32, s32);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031BA9C.s")
+void func_8031BE98(struct0*, f32, s32);
+extern f32 D_8036DDC0[];
+extern f32 D_80378D30;
+extern f32 D_80378D34;
+
+
+void func_8031B9B0(struct0 *this, s32 arg1){
+    if(arg1 == 1)
+        this->unk5D = 5;
+    if(arg1 == 4)
+        this->unk5C = 1;
+    this->unk5E = arg1;
+}
+
+struct0 *func_8031B9D8(void){
+    struct0 *this;
+
+    this = (struct0 *)malloc(0x60);
+    func_80258B8C(&(this->unk1C));
+    func_80258B8C(&(this->unk28));
+    this->normX = 0.0f;
+    this->normZ = 0.0f;
+    this->normY = 1.0f;
+    this->posX = D_80378D30;
+    this->unk4C = 0;
+    this->unk50 = 0;
+    this->posY = D_80378D34;
+    this->unk58 = 0;
+    this->unk5A = 0;
+    this->unk59 = 0;
+    this->unk5B = 0;
+    this->unk54 = 0;
+    this->model = NULL;
+    func_8031C608(this);
+    this->unk5E = 0;
+    func_8031B9B0(this, 1);
+    return this;
+}
+
+void func_8031BA7C(struct0 *this){
+    func_8031B9B0(this, 1);
+}
+
+void func_8031BA9C(struct0 *this){
+    free(this);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031BABC.s")
 
@@ -52,14 +101,34 @@ void func_8031B710(void){}
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031BCF4.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031BD98.s")
+// void func_8031BD98(struct0 *this, f32 arg1, s32 arg2, s32 arg3, f32 *normPtr, s32 model, s32 arg6){
+//     if(arg6){
+//         func_8024587C(&this->vtx1);
+//     }
+//     this->unk58 = 1;
+//     this->unk4C = arg2;
+//     this->unk50 = arg3;
+//     this->posX = arg1;
+//     this->model = model;
+//     func_80258BA4(&this->normX, normPtr);
+// }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031BE0C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031BE58.s")
+void func_8031BE58(struct0 *this){
+    func_8031BD98(this, -9000.0f, 0, 0, D_8036DDC0, 0, 0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031BE98.s")
+void func_8031BE98(struct0 *this, f32 arg1, s32 arg2){
+    if(arg2)
+        func_8024587C(&this->unk10, arg2);
+    this->unk59 = 1;
+    this->posY = arg1;
+};
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031BEE0.s")
+void func_8031BEE0(struct0 *this){
+    func_8031BE98(this, -10000.0, 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031BF08.s")
 
@@ -67,37 +136,66 @@ void func_8031B710(void){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031C29C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031C444.s")
+void func_8031C444(struct0 * this){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031C44C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031C58C.s")
+u8 func_8031C58C(struct0 *this){
+    return this->unk58;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031C594.s")
+u8 func_8031C594(struct0 *this){
+    return this->unk59;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031C59C.s")
+s32 func_8031C59C(struct0 *this){
+    return this->unk4C;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031C5A4.s")
+s32 func_8031C5A4(struct0 *this){
+    return this->unk50;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031C5AC.s")
+// void func_8031C5AC(struct0 *this, f32 *dst){
+//     func_80258BA4(dst, &this->normX);
+// }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031C5D4.s")
+f32 func_8031C5D4(struct0 *this){
+    return this->posX;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031C5DC.s")
+void *func_8031C5DC(struct0 *this){
+    return this->model;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031C5E4.s")
+f32 func_8031C5E4(struct0 *this){
+    return this->posY;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031C5EC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031C5F4.s")
+u16 *func_8031C5F4(struct0* this){
+    return &this->vtx1;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031C5FC.s")
+void func_8031C5FC(struct0* this, f32 arg1){
+    this->posZ = arg1;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031C608.s")
+void func_8031C608(struct0 *this){
+    this->posZ = 56.0f;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031C618.s")
+void func_8031C618(struct0 *this, f32 *arg1){
+    func_80258BA4(&this->unk1C, arg1);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031C638.s")
+void func_8031C638(struct0 *this, s32 arg1){
+    this->unk54 = arg1;
+}
+
+/**** BREAK ***/
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031C640.s")
 

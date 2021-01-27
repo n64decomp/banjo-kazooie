@@ -2,11 +2,49 @@
 #include "functions.h"
 #include "variables.h"
 
+extern s32 D_8037D570;
+extern char D_80375B00[0x10];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/talk/func_802B6130.s")
+void func_802B6130(void){
+    Movement *plyr_mvmt;
+    f32 yaw;
+    f32 plyr_pos[3];
+    f32 target_pos[3];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/talk/func_802B61E0.s")
+    plyr_mvmt = func_80289F64();
+    func_802874AC(plyr_mvmt);
+    func_8029C848(plyr_mvmt);
+    func_80287674(plyr_mvmt, 2);
+    func_802875AC(plyr_mvmt, D_80375B00, 0x38);
+    func_802984D4(plyr_pos);
+    func_802949F8(target_pos);
+    func_80257F18(plyr_pos, target_pos, &yaw);
+    func_802991B4(yaw);
+    func_80289F10(1);
+    func_802991A8(1);
+    func_8029957C(3);
+    func_802978DC(2);
+    func_80297970(0.0f);
+    D_8037D570 = 1;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/talk/func_802B6218.s")
+void func_802B61E0(void){
+    s32 tmp = 0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/talk/func_802B6220.s")
+    if (D_8037D570 == 0)
+        tmp = 1;
+    D_8037D570 = 0;
+    func_8029A72C(tmp);
+}
+
+void func_802B6218(void){}
+
+void func_802B6220(void){
+    if(func_8029A878() == 8){
+        D_8037D570 = 1;
+        func_8029A86C(2);
+    }
+    else{
+        func_80296608();
+    }
+}
