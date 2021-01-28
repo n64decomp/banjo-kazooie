@@ -47,6 +47,7 @@ mod/*
 
 #misc
 __pycache__/
+*__pycache__/
 expected/
 .*/
 *.ld
@@ -58,4 +59,5 @@ diff_settings.py
 
 #progress reports
 *.csv
+symbol_addrs.us.v10.txt
 progress/*

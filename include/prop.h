@@ -20,7 +20,7 @@ typedef struct actor_prop_s{
 
 typedef struct actorMarker_s{
     ActorProp*  propPtr;
-    struct cude_s*     cudePtr;
+    struct cude_s*     cubePtr;
     u8          pad8[0x27];
     u8          pad2F:7;
     u8          collidable:1;

@@ -178,7 +178,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032F3D4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032F430.s")
+void func_8032D9C0(Cube*, Prop*);
+
+func_8032F430(ActorMarker *this){
+    func_8032D9C0(this->cubePtr, this->propPtr);
+    func_80332B2C(this);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032F464.s")
 

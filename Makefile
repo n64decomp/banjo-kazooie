@@ -87,7 +87,7 @@ CFLAGS = -c -Wab,-r4300_mul -non_shared -G 0 -Xcpluscomm -Xfullwarn -signed $(OP
 # ignore compiler warnings about anonymous structs
 CFLAGS += -woff 649,838
 
-LDFLAGS = -T $(BUILD_DIR)/$(LD_SCRIPT) -Map $(TARGET).map -T symbol_addrs.$(VERSION).txt -T undefined_syms.$(VERSION).txt -T undefined_syms_auto.txt -T undefined_funcs_auto.txt  --no-check-sections
+LDFLAGS = -T $(BUILD_DIR)/$(LD_SCRIPT) -Map $(TARGET).map -T symbol_addrs.core1.$(VERSION).txt -T undefined_syms.$(VERSION).txt -T undefined_syms_auto.txt -T undefined_funcs_auto.txt  --no-check-sections
 
 ### Targets
 
@@ -114,10 +114,10 @@ clean:
 #extract
 extract: $(foreach submod, $(SUBCODE), $(submod)_extract)
 
-%_extract: bin/%.$(VERSION).bin
+%_extract: bin/%.$(VERSION).bin symbol_addrs.$(VERSION).txt
 	$(N64SPLAT) $< subyaml/$*.$(VERSION).yaml .
 
-main_extract:
+main_extract: symbol_addrs.$(VERSION).txt
 	$(N64SPLAT) baserom.$(VERSION).z64 $(BASENAME).$(VERSION).yaml .
 
 #build
@@ -181,6 +181,11 @@ build/src/core1/io/%.o: OPT_FLAGS = -O1
 $(BUILD_DIR)/$(LD_SCRIPT): $(LD_SCRIPT)
 	$(CPP) -P -DBUILD_DIR=$(BUILD_DIR) -o $@ $<
 
+LDFLAGS = -T $(BUILD_DIR)/$(LD_SCRIPT) -Map $(TARGET).map -T symbol_addrs.global.$(VERSION).txt -T symbol_addrs.core1.$(VERSION).txt -T symbol_addrs.core2.$(VERSION).txt -T undefined_syms.$(VERSION).txt -T undefined_syms_auto.txt -T undefined_funcs_auto.txt  --no-check-sections
+$(BUILD_DIR)/banjo.$(VERSION).elf: LDFLAGS = -T $(BUILD_DIR)/$(LD_SCRIPT) -Map $(TARGET).map -T symbol_addrs.global.$(VERSION).txt -T undefined_syms.$(VERSION).txt -T undefined_syms_auto.txt -T undefined_funcs_auto.txt  --no-check-sections
+$(BUILD_DIR)/core1.$(VERSION).elf: LDFLAGS = -T $(BUILD_DIR)/$(LD_SCRIPT) -Map $(TARGET).map -T symbol_addrs.global.$(VERSION).txt -T symbol_addrs.core2.$(VERSION).txt -T undefined_syms.$(VERSION).txt -T undefined_syms_auto.txt -T undefined_funcs_auto.txt  --no-check-sections
+$(BUILD_DIR)/core2.$(VERSION).elf: LDFLAGS = -T $(BUILD_DIR)/$(LD_SCRIPT) -Map $(TARGET).map -T symbol_addrs.global.$(VERSION).txt -T symbol_addrs.core1.$(VERSION).txt -T undefined_syms.$(VERSION).txt -T undefined_syms_auto.txt -T undefined_funcs_auto.txt  --no-check-sections
+
 $(TARGET).elf: dirs $(O_FILES) $(BUILD_DIR)/$(LD_SCRIPT) #add
 	@$(LD) $(LDFLAGS) -o $@
 
@@ -210,8 +215,11 @@ $(SUBCODE_SRC): bin/%.bin : bin/%.rzip.bin ./tools/bk_tools/bk_inflate_code
 	@./tools/bk_tools/bk_inflate_code $< $@
 
 # extract
-bin/%.rzip.bin: $(BASENAME).$(VERSION).yaml
-	$(N64SPLAT) baserom.$(VERSION).z64 $(BASENAME).$(VERSION).yaml .
+symbol_addrs.$(VERSION).txt: 
+	@cat symbol_addrs.*.$(VERSION).txt > $@
+
+bin/%.rzip.bin: $(BASENAME).$(VERSION).yaml symbol_addrs.$(VERSION).txt
+	$(N64SPLAT) baserom.$(VERSION).z64 $< .
 
 ifneq ($(TARGET), build/core1.$(VERSION))
 $(TARGET).code.bin: $(TARGET).elf
@@ -243,7 +251,7 @@ progress.csv : $(foreach submod, $(SUBCODE), progress/progress.$(submod).csv) pr
 	@cat $^ > $@
 
 progress/progress.bk_boot.csv: progress/. $(TARGET).elf
-	@$(PYTHON) tools/progress.py . build/banjo.$(VERSION).map .code_code --version $(VERSION) > $@
+	@$(PYTHON) tools/progress.py . build/banjo.$(VERSION).map .code_bk_boot --version $(VERSION) > $@
 
 #PROG_CSVS = $(foreach submod, $(SUBCODE), progress/progress.$(submod).csv)
 progress/progress.%.csv:  progress/. build/%.$(VERSION).elf

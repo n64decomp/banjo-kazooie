@@ -230,7 +230,7 @@ segments:
   - [0x94620, c]
   - [0x99860, c]
   - [0x999A0, c]
-  - [0x99F80, c]
+  - [0x99F80, c, core2/jiggyscore]
   - [0x9A320, c]
   - [0x9A580, c]
   - [0x9A740, c]

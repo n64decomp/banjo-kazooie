@@ -19,9 +19,9 @@ typedef struct struct_0_s{ //floor
     f32     normX;
     f32     normY;
     f32     normZ;
-    f32     posX;
-    f32     posY;
-    f32     posZ;
+    f32     posX; //40
+    f32     posY; //44
+    f32     posZ; //48
     u32     unk4C;
     s16     unk50;
     s16     unk52;

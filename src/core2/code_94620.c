@@ -43,8 +43,14 @@ void func_8031B710(void){}
 
 /***BREAK***/
 
+f32 func_80258964(f32, f32);
+
+void *func_80309B48(f32 *, f32 *, f32 *, u32);
+void *func_80309B98(f32 *, f32 *, f32 *, u32);
+
+
 void func_8031C608(struct0 *this);
-s32  func_8031BABC(f32 *, f32, f32, u32, f32*);
+void *func_8031BABC(f32 *, f32, f32, u32, void*);
 void func_8031BD98(struct0 *, f32, s32, s32, f32 *, s32, s32);
 
 void func_8031BE98(struct0*, f32, s32);
@@ -95,25 +101,107 @@ void func_8031BA9C(struct0 *this){
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031BABC.s")
+// void *func_8031BABC(f32 *arg0, f32 arg1, f32 arg2, u32 arg3, void *arg4) {
+//     //f32 sp38;
+//     f32 sp34[3];
+//     //f32 sp2C;
+//     f32 sp28[3];
+//     void *sp24;
+//     void *temp_v1;
+//     void *phi_v0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031BBA0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031BCF4.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031BD98.s")
-// void func_8031BD98(struct0 *this, f32 arg1, s32 arg2, s32 arg3, f32 *normPtr, s32 model, s32 arg6){
-//     if(arg6){
-//         func_8024587C(&this->vtx1);
+//     func_80258BA4(&sp34, arg0);
+//     sp34[1] = sp34[1] + arg1;
+//     func_80258BA4(&sp28, arg0);
+//     sp28[1] = sp28[1] + arg2;
+//     if (arg3 == 0xF800FF0F) {
+//         phi_v0 = func_80309B48(&sp34, &sp28, arg4, arg3);
+//     } else {
+//         phi_v0 = func_80320B98(&sp34, &sp28, arg4, arg3);
 //     }
-//     this->unk58 = 1;
-//     this->unk4C = arg2;
-//     this->unk50 = arg3;
-//     this->posX = arg1;
-//     this->model = model;
-//     func_80258BA4(&this->normX, normPtr);
+//     temp_v1 = phi_v0;
+//     if (phi_v0 != 0) {
+//         arg4->unk10 = (s32) phi_v0->unk8;
+//         arg4->unk14 = (s16) phi_v0->unk6;
+//     } else {
+//         arg4->unk10 = 0;
+//         arg4->unk14 = (u16)0;
+//     }
+//     arg4->unkC = sp28[1];
+//     sp24 = temp_v1;
+//     arg4->unk18 = func_803209EC();
+//     return temp_v1;
 // }
 
+s32 func_8031BBA0(struct0 *this, f32 arg1, f32 arg2, u32 arg3, s32 arg4) {
+    s32 phi_v1;
+
+    if (func_80258964(arg2 - arg1, arg1) > 500.0f) {
+        if (arg1 < arg2) {
+            phi_v1 = func_8031BABC(this, arg1, arg1 + 500.0f, arg3, arg4);
+            if (phi_v1 == 0) {
+                phi_v1 = func_8031BABC(this, arg1 + 500.0f - 1.0f, arg2, arg3, arg4);     
+            }
+        } else {
+            phi_v1 = func_8031BABC(this, arg1, arg1 - 500.0f, arg3, arg4);
+            if (phi_v1 == 0) {
+                phi_v1 = func_8031BABC(this, arg1 - 500.0f + 1.0f, arg2, arg3, arg4);
+            }
+        }
+    } else {
+        phi_v1 = func_8031BABC(this, arg1, arg2, arg3, arg4);
+    }
+    return phi_v1;
+}
+
+s32 func_8031BCF4(struct0 *this) {
+    f32 temp_f0;
+    f32 temp_f2;
+
+    if (this->unk59 == 0) {
+        return 2;
+    }
+    if ((this->unk59 != 0) && (this->unk58 == 0)) {
+        return 4;
+    }
+    temp_f0 = this->posY;
+    if (temp_f0 < this->unk20) {
+        return 2;
+    }
+    temp_f2 = temp_f0 - this->posX;
+    if (temp_f2 < -20.0f) {
+        return 2;
+    }
+    if (temp_f2 > 100.0f) {
+        return 4;
+    }
+    return 3;
+}
+
+void func_8031BD98(struct0 *this, f32 arg1, s32 arg2, s32 arg3, f32 *normPtr, s32 model, s32 arg6){
+    if(arg6){
+        func_8024587C(&this->vtx1, arg6);
+    }
+    this->unk58 = 1;
+    this->unk4C = arg2;
+    this->unk50 = arg3;
+    this->posX = arg1;
+    this->model = model;
+    func_80258BA4(&this->normX, normPtr);
+}
+
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031BE0C.s")
+// void func_8031BE0C(struct0 *this, s32 arg2) {
+//     s32 sp18;
+//     s32 sp14;
+//     void *sp10;
+
+//     sp10 = this;
+//     sp14 = this->unk18;
+//     sp18 = arg2;
+//     func_8031BD98(arg1->unkC, arg1->unk10, arg1->unk14);
+// }
+
 
 void func_8031BE58(struct0 *this){
     func_8031BD98(this, -9000.0f, 0, 0, D_8036DDC0, 0, 0);

@@ -1,0 +1,2 @@
+osViGetNextFrameBuffer = 0x802664B0;
+D_A0000238 = 0xA0000238;
