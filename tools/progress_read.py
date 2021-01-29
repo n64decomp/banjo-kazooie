@@ -3,6 +3,7 @@ import os
 import re
 import sys
 import csv
+import anybadge
 
 def main(csv_name, version):
     with open(csv_name, mode='r') as csv_file:
@@ -19,7 +20,11 @@ def main(csv_name, version):
                 if row['language'] == 'c':
                     done_func += 1
                     done_byte += int(row['length'])
-        print("bytes: %3.4f%% (%d/%d), funcs: %3.4f%% (%d/%d)" % (((done_byte/total_byte) * 100), done_byte, total_byte,((done_func/total_func) *100), done_func, total_func ))
+        percent = ((done_byte/total_byte) * 100)
+        print("bytes: %3.4f%% (%d/%d), funcs: %3.4f%% (%d/%d)" % (percent, done_byte, total_byte,((done_func/total_func) *100), done_func, total_func ))
+        badge = anybadge.Badge("Banjo-Kazooie (us.v10)", "%3.4f%%" % (percent))
+        badge.write_badge('progress/progress.svg')
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Create progress csv based on map file',
