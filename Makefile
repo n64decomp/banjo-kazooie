@@ -102,6 +102,7 @@ main: dirs main_extract
 	@echo -e "\tconfig[\"mapfile\"] = \"$(TARGET).map\"" >> diff_settings.py
 	@echo -e "\tconfig[\"source_directories\"] = ['src', 'include']" >> diff_settings.py
 	@$(MAKE) -s progress/progress.bk_boot.csv
+	@echo -n "bk_boot: "
 	@$(PYTHON) tools/progress_read.py progress/progress.bk_boot.csv $(VERSION)
 
 dirs: $(foreach dir, $(O_DIRS), $(dir).)
@@ -110,6 +111,7 @@ clean:
 	rm -rf asm
 	rm -rf bin
 	rm -rf build
+	rm -rf symbol_addrs.$(VERSION).txt
 
 #extract
 extract: $(foreach submod, $(SUBCODE), $(submod)_extract)
@@ -154,6 +156,7 @@ verify: $(TARGET).z64 $(TARGET).sha1
 	@echo "$$(awk '{print $$1}' $(word 2,$^))  $<" | sha1sum --check
 
 progress: progress.csv
+	@echo -n "Banjo-Kazooie: "
 	@$(PYTHON) tools/progress_read.py progress.csv $(VERSION)
 
 
@@ -255,6 +258,7 @@ progress/progress.bk_boot.csv: progress/. $(TARGET).elf
 
 #PROG_CSVS = $(foreach submod, $(SUBCODE), progress/progress.$(submod).csv)
 progress/progress.%.csv:  progress/. build/%.$(VERSION).elf
+	@echo -n "$*: "
 	@$(PYTHON) tools/progress.py . build/$*.$(VERSION).map .code_code --version $(VERSION) > $@
 
 

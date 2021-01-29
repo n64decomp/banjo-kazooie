@@ -62,6 +62,8 @@ f32 banjo_getRoll(void);
 
 f32 banjo_getYaw(void);
 
+void *assetcache_get(s32 arg0);
+
 f32 func_8033DD9C(void);
 
 #endif

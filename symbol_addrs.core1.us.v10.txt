@@ -1,5 +1,5 @@
 func_801241304 = 0x801241304;
-osPiRawStartDMA = 0x802405F0;
+osPiRawStartDma = 0x802405F0;
 guScaleF = 0x80240DF8;
 guScale = 0x80241304;
 _guMtxIdentF_80245D44 = 0x80245D44;

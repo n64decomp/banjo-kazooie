@@ -5,6 +5,10 @@
 
 #include "structs.h"
 
+enum ch_id{
+    ch_id_bigbutt = 4
+};
+
 typedef struct sprite_prop_s{
     u8 pad[0x12];
 } SpriteProp;
@@ -26,6 +30,8 @@ typedef struct actorMarker_s{
     u8          collidable:1;
     u8          pad30[0x30];
 } ActorMarker;
+
+
 
 /*typedef struct mtx_array{
     u32 count;
@@ -111,6 +117,26 @@ typedef struct actor_s{
     f32 scale;
     u8  pad130[0x50];
 } Actor;
+
+typedef struct actor_info_s{
+    u16     unk0;
+    s16     actorId;
+    u16     modelId;
+    u16     startAnimation;
+    void*   animations;
+    void    (* update_func)(ActorMarker *);
+    void    (* unk14)(ActorMarker *);
+    void    (* draw_func)(ActorMarker *);
+    u8      pad18[4];
+    f32     shadow_scale;
+    u8      pad20[4];
+} ActorInfo;
+
+typedef struct actor_spawn_s{
+    ActorInfo   *infoPtr;
+    Actor *(*spawnFunc)(f32*, f32*, void*, s32);
+    s32         unk8;
+} ActorSpawn;
 
 typedef union prop_s
 {

@@ -2,48 +2,104 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "prop.h"
 
 extern s32 carriedObject_actorID;
+extern ActorMarker *D_8037BF70;
+enum moves_e{
+    move_beak_barge,
+    move_beak_bomb,
+    move_beak_buster,
+    move_camera_control,
+    move_bear_punch,
+    move_climb,
+    move_eggs,
+    move_feathery_flap,
+    move_flip_flap,
+    move_flight,
+    move_variable_jump,
+    move_ratatat_rap,
+    move_roll,
+    move_shock_jump,
+    move_wading_boots,
+    move_dive,
+    move_talon_trot,
+    move_turbo_talon_trot,
+    move_wonderwing,
+    move_1st_note_door
+};
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028A960.s")
+s32 func_8028A960(void){ //beak_barge_unlocked
+    return func_802957D8(move_beak_barge);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028A980.s")
+s32 func_8028A980(void){ //beak_bomb_unlocked
+    return func_802957D8(move_beak_bomb);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028A9A0.s")
+s32 func_8028A9A0(void){ //beak_buster_unlocked
+    return func_802957D8(move_beak_buster);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028A9C0.s")
+s32 func_8028A9C0(void){ 
+    return func_802957D8(move_camera_control);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028A9E0.s")
+s32 func_8028A9E0(void){ 
+    return func_802957D8(move_bear_punch);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028AA00.s")
+s32 func_8028AA00(void){ 
+    return func_802957D8(move_climb);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028AA20.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028AA98.s")
+s32 func_8028AA98(void){ 
+    return func_802957D8(move_eggs);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028AAB8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028AB08.s")
+s32 func_8028AB08(void){
+    return func_802957D8(move_flip_flap);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028AB28.s")
+s32 func_8028AB28(void){
+    return func_802957D8(move_flight);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028AB48.s")
+s32 func_8028AB48(void){
+    return func_802957D8(move_variable_jump);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028AB68.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028ABB8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028AC18.s")
+s32 func_8028AC18(void){
+    return func_802957D8(move_roll);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028AC38.s")
+s32 func_8028AC38(void){
+    return func_802957D8(move_shock_jump);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028AC58.s")
+s32 func_8028AC58(void){
+    return func_802957D8(move_wading_boots);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028AC78.s")
+s32 func_8028AC78(void){
+    return func_802957D8(move_talon_trot);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028AC98.s")
+s32 func_8028AC98(void){
+    return func_802957D8(move_talon_trot);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028ACB8.s")
+s32 func_8028ACB8(void){
+    return func_802957D8(move_wonderwing);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028ACD8.s")
 
@@ -133,13 +189,21 @@ s32 func_8028B120(void){return 0;}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028D2E4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028D5D0.s")
+ActorMarker *func_8028D5D0(void){ //banjo_getMarker
+    return D_8037BF70;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028D5DC.s")
+void func_8028D5DC(void){ //banjo_collisionOff
+    D_8037BF70->collidable = 0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028D5F4.s")
+void func_8028D5F4(void){ //banjo_collisionOn
+    D_8037BF70->collidable = 1;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028D60C.s")
+s32 func_8028D60C(void){ //banjo_isCollidable
+    return (D_8037BF70->collidable)? 1 : 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028D638.s")
 

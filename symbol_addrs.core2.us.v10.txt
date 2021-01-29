@@ -36,6 +36,7 @@ jiggyscore_info = 0x8032128C;
 actor_copy = 0x80329C40;
 actor_collisionOff = 0x8032AA74;
 actor_collisionOn = 0x8032AA88;
+assetcache_get = 0x8033B798;
 strcat = 0x8033D660;
 strcatc = 0x8033D6A8;
 strFToA = 0x8033D6E0;

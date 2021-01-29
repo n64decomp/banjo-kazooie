@@ -2,6 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "prop.h"
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80301F10.s")
 
@@ -115,7 +116,26 @@ void func_803045D8(void){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_803055E0.s")
 
+extern s32 D_8036A9B0;
+extern ActorSpawn *D_8036A9B4;
+
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_803056FC.s")
+// Actor *func_803056FC(s32 arg0, f32 *arg1, f32 *arg2) {
+//     s32 phi_a3;
+//     s32 i;
+//     ActorSpawn *cur;
+//     ActorSpawn *next;
+//     ActorInfo *tmp;
+
+//     if (func_80320248() == 0) {
+//         arg0 = ch_id_bigbutt;
+//     }
+//     for(i=0; i < D_8036A9B0; i++){
+//         if(arg0 == D_8036A9B4[i].infoPtr->actorId)
+//             return D_8036A9B4[i].spawnFunc(arg1, arg2, D_8036A9B4[i].infoPtr, D_8036A9B4[i].unk8);
+//     }
+//     return NULL;
+// }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_8030578C.s")
 
