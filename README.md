@@ -1,6 +1,5 @@
 # banjo
 
-![Matching Progress](./progress.svg)
 <img src="./progress.svg">
 
 Grab tools
