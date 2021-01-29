@@ -23,7 +23,7 @@ def main(csv_name, version):
         percent = ((done_byte/total_byte) * 100)
         print("bytes: %3.4f%% (%d/%d), funcs: %3.4f%% (%d/%d)" % (percent, done_byte, total_byte,((done_func/total_func) *100), done_func, total_func ))
         badge = anybadge.Badge("Banjo-Kazooie (us.v10)", "%3.4f%%" % (percent))
-        badge.write_badge('progress/progress.svg')
+        badge.write_badge('progress.svg',overwrite=True)
 
 
 if __name__ == '__main__':

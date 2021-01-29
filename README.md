@@ -1,7 +1,7 @@
 # banjo
 
-![Matching Progress](./progress/progress.svg)
-<img src="./progress/progress.svg">
+![Matching Progress](./progress.svg)
+<img src="./progress.svg">
 
 Grab tools
 
