@@ -3,6 +3,8 @@
 
 #include <ultra64.h>
 
+
+
 typedef struct struct_0_s{ //floor
     void *  model;
     u16     vtx1;

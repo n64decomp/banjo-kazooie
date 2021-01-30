@@ -132,6 +132,7 @@ segments:
   - [0x3AE10, c]
   - [0x3B2C0, c]
   - [0x3B5C0, c]
+  - [0x3BB80, c]
   - [0x3D3D0, c, core2/ch/gameSelect]
   - [0x3EAD0, c]
   - [0x3ECE0, c]
@@ -322,7 +323,6 @@ segments:
   - [0x000DC600, bin]
   - [0x000ECE70, ".rodata", core2/code_0]
   - [0x000ECE90, bin]
-  - [0x000EF040, ".rodata", core2/code_3B5C0]
-  - [0x000EF074, bin]
-#  - [0x000EF090, bin] #this is the actual .rodata section end for core2/code_3B5C0
+  - [0x000EF040, ".rodata", core2/code_3BB80]
+  - [0x000EF090, bin]
 - [0xf2c00] # core2 end

@@ -69,7 +69,8 @@ apt-get update && \
     python3 \
     python3-pip \
     unzip \
-    wget
+    wget \
+    libssl-dev
 
 python3 -m pip install \
     capstone pyyaml pycparser \
