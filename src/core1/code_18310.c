@@ -195,7 +195,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_18310/func_80258C7C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_18310/func_80258CB0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_18310/mlScale.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_18310/func_80258CDC.s")
 

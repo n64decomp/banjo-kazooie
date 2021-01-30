@@ -322,4 +322,7 @@ segments:
   - [0x000DC600, bin]
   - [0x000ECE70, ".rodata", core2/code_0]
   - [0x000ECE90, bin]
+  - [0x000EF040, ".rodata", core2/code_3B5C0]
+  - [0x000EF074, bin]
+#  - [0x000EF090, bin] #this is the actual .rodata section end for core2/code_3B5C0
 - [0xf2c00] # core2 end

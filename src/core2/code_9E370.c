@@ -91,7 +91,6 @@ Actor *func_803056FC(s32, f32*, f32*);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80328028.s")
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032811C.s")
 Actor *func_8032811C(s32 id, f32 *pos, f32* rot){
     return func_803056FC(id, pos, rot);
 }
@@ -248,7 +247,6 @@ Actor *func_8032811C(s32 id, f32 *pos, f32* rot){
 
 void actor_collisionOff(Actor* this){
     this->marker->collidable = 0;
-    //return this->marker;
 }
 
 void actor_collisionOn(Actor* this){

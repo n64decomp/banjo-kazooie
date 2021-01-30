@@ -9,6 +9,7 @@ realloc = 0x80255358;
 mlNormalizeAngle = 0x8025881C;
 func_80258C48 = 0x80258C48;
 func_80258C7C = 0x80258C7C;
+mlScale = 0x80258CB0;
 alUnlink = 0x80264430;
 alLink = 0x80264460;
 alClose = 0x80264484;

@@ -26,6 +26,8 @@ float mlNormalizeAngle(float);
 
 void func_80258C48(f32 *arg0, f32 *arg1, f32 *arg2);
 void func_80258C7C(f32 *arg0, f32 arg1);
+void mlScale(f32 *, f32 *, f32);
+
 
 float gu_sqrtf(float val);
 
