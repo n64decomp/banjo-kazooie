@@ -75,7 +75,7 @@ python3 -m pip install \
     capstone pyyaml pycparser \
     colorama ansiwrap watchdog python-Levenshtein cxxfilt \
     python-ranges \
-    pypng
+    pypng anybadge
 ```
 
 ## Other versions
