@@ -5,7 +5,7 @@
 Grab tools
 
 ```sh
-git submodule update --init
+git submodule update --init --recursive
 ```
 
 Drop in `US v1.0` as `baserom.us.v10.z64` (sha1sum: `1fe1632098865f639e22c11b9a81ee8f29c75d7a`)
