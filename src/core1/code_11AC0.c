@@ -45,7 +45,7 @@ extern ALBank *D_80282108;
 //     for(i = 0; i < 6; i++){
 //         func_8025EABC(&D_80281898[i].cseqp, &D_802820E8); //alCSPNew
 //     }
-//     func_80267144(bnk_f, 0xeade60); //alBnkfNew
+//     alBnkfNew(bnk_f, 0xeade60); //alBnkfNew
 //     for(i = 0; i < 6; i++){
 //         func_8025EC30(&D_80281898[i].cseqp, D_80282108); //alSeqpSetBank
 //     }

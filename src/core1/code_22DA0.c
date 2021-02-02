@@ -13,7 +13,40 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_22DA0/func_80260C3C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_22DA0/func_80261210.s")
+void __postNextSeqEvent(ALSeqPlayer *seqp) 
+{
+    ALEvent     evt;
+    s32		deltaTicks;
+    ALSeq       *seq = seqp->target;
+
+    /* sct 1/5/96 - Do nothing if we're not playing or don't have a target sequence. */
+    if ((seqp->state != AL_PLAYING) || (seq == NULL))
+	return;
+
+    /* Get the next event time in ticks. */
+    /* If false is returned, then there is no next delta (ie. end of sequence reached). */
+    if (!__alSeqNextDelta(seq, &deltaTicks))
+	return;
+
+    /* Handle loops. */
+    if (seqp->loopCount)
+    {
+        /* Assume that the loop end falls on a MIDI event. Delta time
+           will be correct even if we loop */
+        if (alSeqGetTicks(seq) + deltaTicks >= seqp->loopEnd->curTicks)
+	{
+	    alSeqSetLoc(seq, seqp->loopStart);            
+
+	    if (seqp->loopCount != -1)
+		seqp->loopCount--;
+	}
+    }    
+
+    evt.type = AL_SEQ_REF_EVT;
+    //alEvtqPostEvent(&seqp->evtq, &evt, deltaTicks * seqp->uspt);
+    alEvtqPostEvent(&seqp->evtq, &evt, deltaTicks * seqp->uspt);
+
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_22DA0/func_802612EC.s")
 
