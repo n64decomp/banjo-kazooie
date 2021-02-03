@@ -1,12 +1,14 @@
 variables:
   GIT_SUBMODULE_STRATEGY: recursive
 
+before_script:
+        - git submodule sync --recursive
+        - git submodule update --init --recursive
+
 build-job:
     stage: build
     only:
         - master
-    before_script:
-        - git submodule sync --recursive
-        - git submodule update --init --recursive
     script:
-        - make all
+        - echo "Thanks for the pull request $GITLAB_USER_ID!"
+        #- make all
