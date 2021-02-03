@@ -1,0 +1,6 @@
+build-job:
+    stage: build
+    only:
+        - master
+    script:
+        - echo "Thanks for pull requesting $GITLAB_USER_LOGIN"
