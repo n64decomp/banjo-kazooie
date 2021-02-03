@@ -1,3 +1,8 @@
 osViGetNextFrameBuffer = 0x802664B0;
+__osEnqueueAndYield = 0x8026A90C;
+__osEnqueueThread = 0x8026AA0C;
+__osPopThread = 0x8026AA54;
+__osDisableInt = 0x8026ACB0;
+__osRestoreInt = 0x8026ACD0;
 D_A0000238 = 0xA0000238;
 D_803682D0 = 0x803682D0;
