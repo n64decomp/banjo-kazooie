@@ -3,4 +3,4 @@ build-job:
     only:
         - master
     script:
-        - echo "Thanks for pull requesting $GITLAB_USER_LOGIN"
+        - make all
