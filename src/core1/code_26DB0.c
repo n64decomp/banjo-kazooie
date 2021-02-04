@@ -9,5 +9,4 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_26DB0/osStartThread.s")
 
-
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_26DB0/func_80264AF0.s")

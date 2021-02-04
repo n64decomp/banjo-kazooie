@@ -2,6 +2,56 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "prop.h"
+
+extern ActorInfo D_80391AB0;
+extern ActorInfo D_80391BB0;
+extern ActorInfo D_80391C18;
+extern ActorInfo D_80391C58;
+extern ActorInfo D_80391CE8;
+extern ActorInfo D_80391E08;
+extern ActorInfo D_80391E2C;
+extern ActorInfo D_80391E50;
+extern ActorInfo D_80391F88;
+extern ActorInfo D_80391FAC;
+extern ActorInfo D_80391FD0;
+extern ActorInfo D_80391FF4;
+extern ActorInfo D_803920E8;
+extern ActorInfo D_803923D0;
+extern ActorInfo D_80391B50;
+extern ActorInfo D_80392420;
+extern ActorInfo D_80392470;
+extern ActorInfo D_803924B0;
+extern ActorInfo D_803924D4;
+extern ActorInfo D_803924F8;
+extern ActorInfo D_80391A10;
+extern ActorInfo D_80391A60;
+extern ActorInfo D_80392588;
+extern ActorInfo D_80392628;
+extern ActorInfo D_80392690;
+extern ActorInfo D_803926C0;
+extern ActorInfo D_80392700;
+extern ActorInfo D_80392840;
+extern ActorInfo D_80392730;
+extern ActorInfo D_80367FE0;
+extern ActorInfo D_803928E0;
+extern ActorInfo D_80392904;
+extern ActorInfo D_80392928;
+extern ActorInfo D_8039294C;
+extern ActorInfo D_80392B20;
+extern ActorInfo D_80392B44;
+extern ActorInfo D_80392970;
+extern ActorInfo D_80392994;
+extern ActorInfo D_803929B8;
+extern ActorInfo D_803929DC;
+extern ActorInfo D_80392A00;
+extern ActorInfo D_80392A24;
+extern ActorInfo D_80392A48;
+extern ActorInfo D_80392A6C;
+extern ActorInfo D_80392A90;
+extern ActorInfo D_80392AB4;
+extern ActorInfo D_80392AD8;
+extern ActorInfo D_80392AFC;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/FP/code_ABD0/func_80390FC0.s")
 
@@ -13,7 +63,57 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/FP/code_ABD0/func_803912EC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_ABD0/func_80391324.s")
+void func_80391324(void)
+{
+      func_803053E8(&D_80391AB0, func_803272F8, 0X600);
+      func_803053E8(&D_80391BB0, func_803272F8, 0X2A);
+      func_803053E8(&D_80391C18, func_803272F8, 0X180084);
+      func_803053E8(&D_80391C58, func_803272F8, 0X180084);
+      func_803053E8(&D_80391CE8, func_803272F8, 0X2002E);
+      func_803053E8(&D_80391E08, func_803272F8, 0X100);
+      func_803053E8(&D_80391E2C, func_803272F8, 0X100);
+      func_803053E8(&D_80391E50, func_803272F8, 0X100);
+      func_803053E8(&D_80391F88, func_803272F8, 0X2100C);
+      func_803053E8(&D_80391FAC, func_803272F8, 0X2100C);
+      func_803053E8(&D_80391FD0, func_803272F8, 0X2100C);
+      func_803053E8(&D_80391FF4, func_803272F8, 0X2100C);
+      func_803053E8(&D_803920E8, func_803272F8, 0X408);
+      func_803053E8(&D_803923D0, func_803272F8, 0X100006C);
+      func_803053E8(&D_80391B50, func_803272F8, 0X20400);
+      func_803053E8(&D_80392420, func_803272F8, 4);
+      func_803053E8(&D_80392470, func_803272F8, 0X444);
+      func_803053E8(&D_803924B0, func_803272F8, 8);
+      func_803053E8(&D_803924D4, func_803272F8, 8);
+      func_803053E8(&D_803924F8, func_803272F8, 8);
+      func_803053E8(&D_80391A10, func_803272F8, 0);
+      func_803053E8(&D_80391A60, func_803272F8, 0X20);
+      func_803053E8(&D_80392588, func_803272F8, 0X80108);
+      func_803053E8(&D_80392628, func_803272F8, 0X44);
+      func_803053E8(&D_80392690, func_803272F8, 0XA8);
+      func_803053E8(&D_803926C0, func_803272F8, 0X8000400);
+      func_803053E8(&D_80392700, func_803272F8, 0X108);
+      func_803053E8(&D_80392840, func_803272F8, 0);
+      func_803053E8(&D_80392730, func_803272F8, 0X20000);
+      func_803053E8(&D_80367FE0, func_803272F8, 0);
+      func_803053E8(&D_803928E0, func_803272F8, 0X40);
+      func_803053E8(&D_80392904, func_803272F8, 0X40);
+      func_803053E8(&D_80392928, func_803272F8, 0X40);
+      func_803053E8(&D_8039294C, func_803272F8, 0X40);
+      func_803053E8(&D_80392B20, func_803272F8, 0X400);
+      func_803053E8(&D_80392B44, func_803272F8, 0X400);
+      func_803053E8(&D_80392970, func_803272F8, 0X400);
+      func_803053E8(&D_80392994, func_803272F8, 0X400);
+      func_803053E8(&D_803929B8, func_803272F8, 0X404);
+      func_803053E8(&D_803929DC, func_803272F8, 0X404);
+      func_803053E8(&D_80392A00, func_803272F8, 0X404);
+      func_803053E8(&D_80392A24, func_803272F8, 0X20004);
+      func_803053E8(&D_80392A48, func_803272F8, 4);
+      func_803053E8(&D_80392A6C, func_803272F8, 0X20004);
+      func_803053E8(&D_80392A90, func_803272F8, 0X20004);
+      func_803053E8(&D_80392AB4, func_803272F8, 0X400);
+      func_803053E8(&D_80392AD8, func_803272F8, 0X400);
+      func_803053E8(&D_80392AFC, func_803272F8, 0X400);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/FP/code_ABD0/func_80391744.s")
 

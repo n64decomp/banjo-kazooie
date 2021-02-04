@@ -3,6 +3,8 @@
 #include "variables.h"
 
 
+extern u32 bgs_D_803907B8[5];
+
 #pragma GLOBAL_ASM("asm/nonmatchings/BGS/code_18A0/func_80387C90.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/BGS/code_18A0/func_80387D18.s")
@@ -17,7 +19,11 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/BGS/code_18A0/func_80387FD4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/BGS/code_18A0/func_803885DC.s")
+void bgs_func_803885DC(void){
+    s32 i;
+    for(i = 0; i<5; i++)
+        bgs_D_803907B8[i] = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/BGS/code_18A0/func_8038860C.s")
 

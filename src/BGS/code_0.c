@@ -24,11 +24,3 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/BGS/code_0/func_80386EF0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/BGS/code_0/func_803870B4.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/BGS/code_0/func_803879E0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/BGS/code_0/func_80387A44.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/BGS/code_0/func_80387AB0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/BGS/code_0/func_80387B80.s")

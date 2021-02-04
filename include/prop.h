@@ -118,15 +118,20 @@ typedef struct actor_s{
     u8  pad130[0x50];
 } Actor;
 
+typedef struct actor_anim_info_s{
+    u32     index;
+    f32     duration;
+} ActorAnimationInfo;
+
 typedef struct actor_info_s{
     u16     unk0;
     s16     actorId;
     u16     modelId;
     u16     startAnimation;
-    void*   animations;
+    ActorAnimationInfo*   animations;
     void    (* update_func)(ActorMarker *);
     void    (* unk14)(ActorMarker *);
-    void    (* draw_func)(ActorMarker *);
+    void    (* draw_func)(ActorMarker *, Gfx **, Mtx**);
     u8      pad18[4];
     f32     shadow_scale;
     u8      pad20[4];

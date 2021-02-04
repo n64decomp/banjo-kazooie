@@ -2,6 +2,33 @@
 #include "functions.h"
 #include "variables.h"
 
+extern ActorInfo D_8038BC28;
+extern ActorInfo D_8038BCDC;
+extern ActorInfo D_8038BC4C;
+extern ActorInfo D_8038BDB4;
+extern ActorInfo D_8038BDD8;
+extern ActorInfo D_8038BDFC;
+extern ActorInfo D_8038BC94;
+extern ActorInfo D_8038BC70;
+extern ActorInfo D_8038BD00;
+extern ActorInfo D_8038BD24;
+extern ActorInfo D_8038BD48;
+extern ActorInfo D_8038BD6C;
+extern ActorInfo D_8038BCB8;
+extern ActorInfo D_8038BD90;
+extern ActorInfo D_8038BA20;
+extern ActorInfo D_8038BA68;
+extern ActorInfo D_8038BA90;
+extern ActorInfo D_80367E70;
+extern ActorInfo D_8038B9F8;
+extern ActorInfo D_8038BAD0;
+extern ActorInfo D_8038BE48;
+extern ActorInfo D_8038BE6C;
+extern ActorInfo D_8038BE90;
+extern ActorInfo D_8038BEB4;
+extern ActorInfo D_8038BED8;
+extern ActorInfo D_8038BEFC;
+extern ActorInfo D_80372C3C;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/MMM/code_1020/func_80387410.s")
 
@@ -57,4 +84,32 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/MMM/code_1020/func_803890B8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/MMM/code_1020/func_803890E0.s")
+void func_803890E0(void){
+    func_803053E8(&D_8038BC28, func_803272F8, 0);
+    func_803053E8(&D_8038BCDC, func_803272F8, 0);
+    func_803053E8(&D_8038BC4C, func_803272F8, 0);
+    func_803053E8(&D_8038BDB4, func_803272F8, 0x40);
+    func_803053E8(&D_8038BDD8, func_803272F8, 0x40);
+    func_803053E8(&D_8038BDFC, func_803272F8, 0x440);
+    func_803053E8(&D_8038BC94, func_803272F8, 0);
+    func_803053E8(&D_8038BC70, func_803272F8, 0);
+    func_803053E8(&D_8038BD00, func_803272F8, 0);
+    func_803053E8(&D_8038BD24, func_803272F8, 0x8600);
+    func_803053E8(&D_8038BD48, func_803272F8, 0x8600);
+    func_803053E8(&D_8038BD6C, func_803272F8, 0x8600);
+    func_803053E8(&D_8038BCB8, func_803272F8, 0x8600);
+    func_803053E8(&D_8038BD90, func_803272F8, 8);
+    func_803053E8(&D_8038BA20, func_803272F8, 0x18A0);
+    func_803053E8(&D_8038BA68, func_803272F8, 0x100);
+    func_803053E8(&D_8038BA90, func_803272F8, 0x20880);
+    func_803053E8(&D_80367E70, func_803272F8, 0);
+    func_803053E8(&D_8038B9F8, func_803272F8, 0x108);
+    func_803053E8(&D_8038BAD0, func_803272F8, 0x2800960);
+    func_803053E8(&D_8038BE48, func_803272F8, 0x800040);
+    func_803053E8(&D_8038BE6C, func_803272F8, 0x800040);
+    func_803053E8(&D_8038BE90, func_803272F8, 0x800040);
+    func_803053E8(&D_8038BEB4, func_803272F8, 0x800040);
+    func_803053E8(&D_8038BED8, func_803272F8, 0x800040);
+    func_803053E8(&D_8038BEFC, func_803272F8, 0x800040);
+    func_803053E8(&D_80372C3C, func_803272F8, 0xA11A9);
+}

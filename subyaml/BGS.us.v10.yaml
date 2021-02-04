@@ -20,9 +20,18 @@ segments:
     vram: 0x803863F0
     files:
       - [0x00000000, c]
+      - [0x15F0, c, BGS/ch/pinkegg]
       - [0x18A0, c]
       - [0x3030, c]
+      - [0x4D70, c, BGS/ch/yumblie]
+      - [0x5600, c, BGS/ch/mrvile]
+      - [0x6730, c, BGS/ch/code_6730]
+      - [0x6DF0, c, BGS/ch/yellowflibbit]
+      - [0x8640, c, BGS/ch/code_8640]
+      - [0x8A60, c, BGS/ch/code_8A60]
+      - [0x8DF0, c]
       - [0x9080, c]
+      - [0x9180, c, BGS/ch/tanktup]
       - [0x9750, c]
       - [0x98C0, c]
       - [0x9920, c]
@@ -31,5 +40,12 @@ segments:
     start: 0x0000A2A0
     vram: 0x80390690
     files:
+    #80390a40 #80390a70
       - [0x0000A2A0, bin]
+      - [0x0000A650, .data, BGS/ch/yumblie]
+      - [0x0000A680, .data, BGS/ch/mrvile]
+      - [0x0000A6C0, .data, BGS/ch/code_6730]
+      - [0x0000A6F0, bin]
+      - [0x0000A830, .data, BGS/ch/tanktup] #tanktupbody
+      - [0x0000A880, bin]
   - [0x0000AE40]
