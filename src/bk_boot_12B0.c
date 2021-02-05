@@ -2,17 +2,640 @@
 #include "functions.h"
 #include "variables.h"
 
+extern u8  D_80004FE0[]; 
+//border[]= {    /* Order of the bit length code lengths */
+    //16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15};
+extern u16 D_80004FF4[]; 
+// static ush cplens[] = {         /* Copy lengths for literal codes 257..285 */
+//         3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 15, 17, 19, 23, 27, 31,
+//         35, 43, 51, 59, 67, 83, 99, 115, 131, 163, 195, 227, 258, 0, 0};
+//         /* note: see note #13 above about the 258 in this list. */
 
-#pragma GLOBAL_ASM("asm/nonmatchings/bk_boot_12B0/func_800006B0.s")
+extern u16 D_80005034[];
+// static ush cplext[] = {         /* Extra bits for literal codes 257..285 */
+//         0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2,
+//         3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 0, 99, 99}; /* 99==invalid */
 
+extern u16 D_80005054[];
+// static ush cpdist[] = {         /* Copy offsets for distance codes 0..29 */
+//         1, 2, 3, 4, 5, 7, 9, 13, 17, 25, 33, 49, 65, 97, 129, 193,
+//         257, 385, 513, 769, 1025, 1537, 2049, 3073, 4097, 6145,
+//         8193, 12289, 16385, 24577};
+
+extern u16 D_80005090[];
+// static ush cpdext[] = {         /* Extra bits for distance codes */
+//         0, 0, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6,
+//         7, 7, 8, 8, 9, 9, 10, 10, 11, 11,
+//         12, 12, 13, 13};
+
+extern u16 D_800050B0[];
+/*ush mask_bits[] = {
+    0x0000,
+    0x0001, 0x0003, 0x0007, 0x000f, 0x001f, 0x003f, 0x007f, 0x00ff,
+    0x01ff, 0x03ff, 0x07ff, 0x0fff, 0x1fff, 0x3fff, 0x7fff, 0xffff
+};*/
+
+extern s32 D_800050D4; //lbits
+extern s32 D_800050D8; //dbits
+
+
+extern u8 *D_80007280; //inbuf
+extern u8 *D_80007284; //slide
+extern u32 D_80007288; //inptr
+extern u32 D_8000728C; //wp
+extern struct huft *D_80007290; //unk
+extern u32 D_80007294; //bb
+extern u32 D_80007298; //bk
+extern u32 D_8000729C; //crc1
+extern u32 D_800072A0; //crc2
+extern u32 D_800072A4; //hufts
+
+
+#ifndef WSIZE
+#  define WSIZE 0x8000     /* window size--must be a power of two, and */
+#endif                     /*  at least 32K for zip's deflate method */
+
+//#define get_byte()  (D_80007288 < insize ? inbuf[D_80007288++] : fill_inbuf(0))
+#define get_byte()  (D_80007280[D_80007288++])
+
+#ifdef CRYPT
+  uch cc;
+#  define NEXTBYTE() \
+     (decrypt ? (cc = get_byte(), zdecode(cc), cc) : get_byte())
+#else
+#  define NEXTBYTE()  (u8)get_byte()
+#endif
+#define NEEDBITS(n) {while(k<(n)){b|=((u32)NEXTBYTE())<<k;k+=8;}}
+#define DUMPBITS(n) {b>>=(n);k-=(n);}
+
+struct huft {
+  u8 e;                /* number of extra bits or operation */
+  u8 b;                /* number of bits in this code or subcode */
+  union {
+    u16 n;              /* literal, length base, or distance base */
+    struct huft *t;     /* pointer to next level of table */
+  } v;
+};
+
+/* If BMAX needs to be larger than 16, then h and x[] should be ulg. */
+#define BMAX 16         /* maximum bit length of any code (16 for explode) */
+#define N_MAX 288       /* maximum number of codes in any set */
+
+
+
+
+ int huft_build(b, n, s, d, e, t, m)
+unsigned *b;            /* code lengths in bits (all assumed <= BMAX) */
+unsigned n;             /* number of codes (assumed <= N_MAX) */
+unsigned s;             /* number of simple-valued codes (0..s-1) */
+u16 *d;                 /* list of base values for non-simple codes */
+u16 *e;                 /* list of extra bits for non-simple codes */
+struct huft **t;        /* result: starting table */
+int *m;                 /* maximum lookup bits, returns actual */
+/* Given a list of code lengths and a maximum table size, make a set of
+   tables to decode that set of codes.  Return zero on success, one if
+   the given code set is incomplete (the tables are still built in this
+   case), two if the input is invalid (all zero length codes or an
+   oversubscribed set of lengths), and three if not enough memory. */
+{
+  unsigned a;                   /* counter for codes of length k */
+  unsigned c[BMAX+1];           /* bit length count table */
+  unsigned f;                   /* i repeats in table every f entries */
+  int g;                        /* maximum code length */
+  int h;                        /* table level */
+  register unsigned i;          /* counter, current code */
+  register unsigned j;          /* counter */
+  register int k;               /* number of bits in current code */
+  int l;                        /* bits per table (returned in m) */
+  register unsigned *p;         /* pointer into c[], b[], or v[] */
+  register struct huft *q;      /* points to current table */
+  struct huft r;                /* table entry for structure assignment */
+  struct huft *u[BMAX];         /* table stack */
+  unsigned v[N_MAX];            /* values in order of bit length */
+  register int w;               /* bits before this table == (l * h) */
+  unsigned x[BMAX+1];           /* bit offsets, then code stack */
+  unsigned *xp;                 /* pointer into x */
+  int y;                        /* number of dummy codes added */
+  unsigned z;                   /* number of entries in current table */
+
+
+   /* Generate counts for each bit length */
+   func_800020F0(c, sizeof(c));
+   p = b;  i = n;
+   do {
+     c[*p]++;                    /* assume all entries <= BMAX */
+     p++;                      /* Can't combine with above line (Solaris bug) */
+   } while (--i);
+   if (c[0] == n)                /* null input--all zero length codes */
+   {
+     *t = (struct huft *)NULL;
+     *m = 0;
+     return 0;
+   }
+
+
+   /* Find minimum and maximum length, bound *m by those */
+   l = *m;
+   for (j = 1; j <= BMAX; j++)
+     if (c[j])
+       break;
+   k = j;                        /* minimum code length */
+   if ((unsigned)l < j)
+     l = j;
+   for (i = BMAX; i; i--)
+     if (c[i])
+       break;
+   g = i;                        /* maximum code length */
+   if ((unsigned)l > i)
+     l = i;
+   *m = l;
+
+
+  /* Adjust last length count to fill out codes, if needed */
+  for (y = 1 << j; j < i; j++, y <<= 1){
+    (y -= c[j]);
+  }
+  y -= c[i];
+  c[i] += y;
+
+
+  /* Generate starting offsets into the value table for each length */
+  x[1] = j = 0;
+  p = c + 1;  xp = x + 2;
+  while (--i) {                 /* note that i == g from above */
+    *xp++ = (j += *p++);
+  }
+
+
+  /* Make a table of values in order of bit lengths */
+  p = b;  i = 0;
+  do {
+    if ((j = *p++) != 0)
+      v[x[j]++] = i;
+  } while (++i < n);
+
+
+  /* Generate the Huffman codes and for each, make the table entries */
+  x[0] = i = 0;                 /* first Huffman code is zero */
+  p = v;                        /* grab values in bit order */
+  h = -1;                       /* no tables yet--level -1 */
+  w = -l;                       /* bits decoded == (l * h) */
+  u[0] = (struct huft *)NULL;   /* just to keep compilers happy */
+  q = (struct huft *)NULL;      /* ditto */
+  z = 0;                        /* ditto */
+
+  /* go through the bit lengths (k already is bits in shortest code) */
+  for (; k <= g; k++)
+  {
+     a = c[k];
+     while (a--)
+     {
+       /* here i is the Huffman code of length k bits for value *p */
+       /* make tables up to required level */
+       while (k > w + l)
+       {
+        h++;
+        w += l;                 /* previous table always l bits */
+
+        /* compute minimum size table less than or equal to l bits */
+        z = (z = g - w) > (unsigned)l ? l : z;  /* upper limit on table size */
+        if ((f = 1 << (j = k - w)) > a + 1)     /* try a k-w bit table */
+        {                       /* too few codes for k-w bit table */
+          f -= a + 1;           /* deduct codes from patterns left */
+          xp = c + k;
+          while (++j < z)       /* try smaller tables up to z bits */
+          {
+            if ((f <<= 1) <= *++xp)
+              break;            /* enough codes to use up j bits */
+            f -= *xp;           /* else deduct codes from patterns */
+          }
+        }
+        z = 1 << j;             /* table entries for j-bit table */
+
+         /* allocate and link in new table */
+        q = D_80007290 + D_800072A4;
+        
+        D_800072A4 += z + 1;         /* track memory usage */
+        *t = q + 1;             /* link to list for huft_free() */
+        *(t = &(q->v.t)) = (struct huft *)NULL;
+        u[h] = ++q;             /* table starts after link */
+
+        /* connect to last table, if there is one */
+        if (h)
+        {
+          x[h] = i;             /* save pattern for backing up */
+          r.b = (u8)l;         /* bits to dump before this table */
+          r.e = (u8)(16 + j);  /* bits in this table */
+          r.v.t = q;            /* pointer to this table */
+          j = i >> (w - l);     /* (get around Turbo C bug) */
+          u[h-1][j] = r;        /* connect to last table */
+        }
+       }
+
+      /* set up table entry in r */
+      r.b = (u8)(k - w);
+      if (p >= v + n)
+        r.e = 99;               /* out of values--invalid code */
+      else if (*p < s)
+      {
+        r.e = (u8)(*p < 256 ? 16 : 15);    /* 256 is end-of-block code */
+        r.v.n = *p;             /* simple code is just the value */
+	      p++;                   /* one compiler does not like *p++ */
+      }
+      else
+      {
+        r.e = *((u8 *)e + (*p - s));   /* non-simple--look up in lists */
+        r.v.n = d[*p++ - s];
+      }
+
+      /* fill code-like entries with r */
+      f = 1 << (k - w);
+      for (j = i >> w; j < z; j += f)
+        q[j] = r;
+
+      /* backwards increment the k-bit code i */
+      for (j = 1 << (k - 1); i & j; j >>= 1)
+        i ^= j;
+      i ^= j;
+
+      /* backup over finished tables */
+      while ((i & ((1 << w) - 1)) != x[h])
+      {
+        h--;                    /* don't need to update q */
+        w -= l;
+      }
+     }
+   }
+
+
+   /* Return true (1) if we were given an incomplete table */
+   return y != 0 && g != 1;
+}
+
+
+#if(1)
 #pragma GLOBAL_ASM("asm/nonmatchings/bk_boot_12B0/func_80000CF0.s")
+#else
+//^inflate_codes
+int func_80000CF0(struct huft *tl, struct huft *td, s32 bl, s32 bd)
+{
+  register unsigned e;  /* table entry flag/number of extra bits */
+  unsigned n, d;        /* length and index for copy */
+  unsigned w;           /* current window position */
+  struct huft *t;       /* pointer to table entry */
+  unsigned ml, md;      /* masks for bl and bd bits */
+  register u32 b;       /* bit buffer */
+  register unsigned k;  /* number of bits in bit buffer */
+  register u32 tmp;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/bk_boot_12B0/func_800011BC.s")
+  /* make local copies of globals */
+  b = D_80007294;                       /* initialize bit buffer */
+  k = D_80007298;
+  w = D_8000728C;                       /* initialize window position */
 
-#pragma GLOBAL_ASM("asm/nonmatchings/bk_boot_12B0/func_80001354.s")
+  /* inflate the coded data */
+  ml = D_800050B0[bl];           /* precompute masks for speed */
+  md = D_800050B0[bd];
+  for (;;)                      /* do until end of block */
+  {
+     NEEDBITS((unsigned)bl)
+     if ((e = (t = tl + ((unsigned)b & ml))->e) > 16)
+       do {
+         DUMPBITS(t->b)
+         e -= 16;
+         NEEDBITS(e)
+       } while ((e = (t = t->v.t + ((unsigned)b & D_800050B0[e]))->e) > 16);
+     DUMPBITS(t->b)
+     if (e == 16)                /* then it's a literal */
+     {
+       tmp = (u8)t->v.n;
+        D_80007284[w++] = tmp;
+        D_8000729C += tmp;
+        D_800072A0 ^= tmp << (D_8000729C & 0x17);
+     }
+     else                        /* it's an EOB or a length */
+     {
+       /* exit if end of block */
+       if (e == 15)
+         break;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/bk_boot_12B0/func_800014BC.s")
+       /* get length of block to copy */
+       NEEDBITS(e)
+       n = t->v.n + ((unsigned)b & D_800050B0[e]);
+       DUMPBITS(e);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/bk_boot_12B0/func_800019E0.s")
+       /* decode distance of block to copy */
+       NEEDBITS((unsigned)bd)
+       if ((e = (t = td + ((unsigned)b & md))->e) > 16)
+         do {
+           DUMPBITS(t->b)
+           e -= 16;
+           NEEDBITS(e)
+         } while ((e = (t = t->v.t + ((unsigned)b & D_800050B0[e]))->e) > 16);
+       DUMPBITS(t->b)
+       NEEDBITS(e)
+       d = w - t->v.n - ((unsigned)b & D_800050B0[e]);
+       DUMPBITS(e)
 
-#pragma GLOBAL_ASM("asm/nonmatchings/bk_boot_12B0/func_80001B00.s")
+       /* do the copy */
+       do {
+            n -= e;
+          
+           do {
+             D_80007284[w++] = (tmp = D_80007284[d++]);
+             //D_8000729C += tmp;
+             D_800072A0 ^= tmp << ((D_8000729C += tmp)& 0x17);
+             
+           } while (--e);
+       } while (n);
+     }
+  }
+  /* restore the globals from the locals */
+  D_8000728C = w;                       /* restore global window pointer */
+  D_80007294 = b;                       /* restore global bit buffer */
+  D_80007298 = k;
+  /* done */
+  return 0;
+}
+#endif
+
+
+//#pragma GLOBAL_ASM("asm/nonmatchings/bk_boot_12B0/func_800011BC.s")
+//^inflate_stored
+int inflate_stored(void)
+/* "decompress" an inflated type 0 (stored) block. */
+{
+  unsigned n;           /* number of bytes in block */
+  unsigned w;           /* current window position */
+  register u32 b;       /* bit buffer */
+  register unsigned k;  /* number of bits in bit buffer */
+
+  /* make local copies of globals */
+  b = D_80007294;                       /* initialize bit buffer */
+  k = D_80007298;
+  w = D_8000728C;                       /* initialize window position */
+
+
+  /* go to byte boundary */
+  n = k & 7;
+  DUMPBITS(n);
+
+
+   /* get the length and its complement */
+   NEEDBITS(16)
+   n = ((unsigned)b & 0xffff);
+   DUMPBITS(16)
+   NEEDBITS(16)
+   DUMPBITS(16)
+
+
+   /* read and output the compressed data */
+   while (n--)
+   {
+     NEEDBITS(8)
+     D_80007284[w++] = (u8) b;
+     D_8000729C += b & 0xFF;
+     D_800072A0 ^= (b &0xFF) << (D_8000729C & 0x17);
+     DUMPBITS(8)
+   }
+
+  /* restore the globals from the locals */
+  D_8000728C = w;                       /* restore global window pointer */
+  D_80007294 = b;                       /* restore global bit buffer */
+  D_80007298 = k;
+  return 0;
+}
+
+int inflate_fixed(void)
+/* decompress an inflated type 1 (fixed Huffman codes) block.  We should
+   either replace this with a custom decoder, or at least precompute the
+   Huffman tables. */
+{
+  int i;                /* temporary variable */
+  struct huft *tl;      /* literal/length code table */
+  struct huft *td;      /* distance code table */
+  int bl;               /* lookup bits for tl */
+  int bd;               /* lookup bits for td */
+  unsigned l[288];      /* length list for huft_build */
+
+
+  /* set up literal table */
+  for (i = 0; i < 144; i++)
+    l[i] = 8;
+  for (; i < 256; i++)
+    l[i] = 9;
+  for (; i < 280; i++)
+    l[i] = 7;
+  for (; i < 288; i++)          /* make a complete, but wrong code set */
+    l[i] = 8;
+  bl = 7;
+  huft_build(l, 288, 257, D_80004FF4, D_80005034, &tl, &bl);
+
+   /* set up distance table */
+   for (i = 0; i < 30; i++)      /* make an incomplete code set */
+     l[i] = 5;
+   bd = 5;
+   huft_build(l, 30, 0, D_80005054, D_80005090, &td, &bd);
+
+   /* decompress until an end-of-block code */
+    func_80000CF0(tl, td, bl, bd);
+
+  return 0;
+}
+
+int inflate_dynamic(void)/* decompress an inflated type 2 (dynamic Huffman codes) block. */
+{
+  int i;                /* temporary variables */
+  unsigned j;
+  unsigned l;           /* last length */
+  unsigned m;           /* mask for bit lengths table */
+  unsigned n;           /* number of lengths to get */
+  struct huft *tl;      /* literal/length code table */
+  struct huft *td;      /* distance code table */
+  int bl;               /* lookup bits for tl */
+  int bd;               /* lookup bits for td */
+  unsigned nb;          /* number of bit length codes */
+  unsigned nl;          /* number of literal/length codes */
+  unsigned nd;          /* number of distance codes */
+
+  register unsigned k;  /* number of bits in bit buffer */
+
+  register u32 b;       /* bit buffer */
+
+#ifdef PKZIP_BUG_WORKAROUND
+  unsigned ll[288+32];  /* literal/length and distance code lengths */
+#else
+  unsigned ll[286+30];  /* literal/length and distance code lengths */
+#endif
+
+  /* make local bit buffer */
+  b = D_80007294;
+  k = D_80007298;
+
+
+   /* read in table lengths */
+   NEEDBITS(5)
+   nl = 257 + ((unsigned)b & 0x1f);      /* number of literal/length codes */
+   DUMPBITS(5)
+   NEEDBITS(5)
+   nd = 1 + ((unsigned)b & 0x1f);        /* number of distance codes */
+   DUMPBITS(5)
+   NEEDBITS(4)
+   nb = 4 + ((unsigned)b & 0xf);         /* number of bit length codes */
+   DUMPBITS(4)
+
+   /* read in bit-length-code lengths */
+   for (j = 0; j < nb; j++)
+   {
+     NEEDBITS(3)
+     ll[D_80004FE0[j]] = (unsigned)b & 7;
+     DUMPBITS(3)
+   }
+   for (; j < 19; j++)
+     ll[D_80004FE0[j]] = 0;
+
+
+    /* build decoding table for trees--single level, 7 bit lookup */
+    bl = 7;
+    huft_build(ll, 19, 19, NULL, NULL, &tl, &bl);
+
+
+   /* read in literal and distance code lengths */
+   n = nl + nd;
+   m = D_800050B0[bl];
+   i = l = 0;
+   while ((unsigned)i < n)
+   {
+      NEEDBITS((unsigned)bl)
+     j = (td = tl + ((unsigned)b & m))->b;
+     DUMPBITS(j)
+     j = td->v.n;
+     if (j < 16)                 /* length of code in bits (0..15) */
+       ll[i++] = l = j;          /* save last length in l */
+     else if (j == 16)           /* repeat last length 3 to 6 times */
+     {
+       NEEDBITS(2)
+       j = 3 + ((unsigned)b & 3);
+       DUMPBITS(2)
+       while (j--)
+         ll[i++] = l;
+     }
+     else if (j == 17)           /* 3 to 10 zero length codes */
+     {
+       NEEDBITS(3)
+       j = 3 + ((unsigned)b & 7);
+       DUMPBITS(3)
+       while (j--)
+         ll[i++] = 0;
+       l = 0;
+     }
+     else                        /* j == 18: 11 to 138 zero length codes */
+     {
+       NEEDBITS(7)
+       j = 11 + ((unsigned)b & 0x7f);
+       DUMPBITS(7)
+       while (j--)
+         ll[i++] = 0;
+       l = 0;
+     }
+    }
+
+   /* restore the global bit buffer */
+   D_80007294 = b;
+   D_80007298 = k;
+
+   /* build the decoding tables for literal/length and distance codes */
+   bl = D_800050D4;
+   huft_build(ll, nl, 257, D_80004FF4, D_80005034, &tl, &bl);
+   bd = D_800050D8;
+   huft_build(ll + nl, nd, 0, D_80005054, D_80005090, &td, &bd);
+
+   /* decompress until an end-of-block code */
+   func_80000CF0(tl, td, bl, bd);
+
+  return 0;
+}
+
+
+int inflate_block(int *e)
+/* decompress an inflated block */
+{
+  u32 t;           /* block type */
+  register u32 b;       /* bit buffer */
+  register unsigned k;  /* number of bits in bit buffer */
+
+
+  /* make local bit buffer */
+  b = D_80007294;
+  k = D_80007298;
+
+
+  /* read in last block bit */
+   NEEDBITS(1)
+   *e = (int)b & 1;
+   DUMPBITS(1)
+
+
+  /* read in block type */
+   NEEDBITS(2)
+   t = (unsigned)b & 3;
+   DUMPBITS(2)
+
+
+  /* restore the global bit buffer */
+   D_80007294 = b;
+   D_80007298 = k;
+
+
+  /* inflate that block type */
+   if (t == 2)
+     return inflate_dynamic();
+   if (t == 0)
+     return inflate_stored();
+   if (t == 1)
+     return inflate_fixed();
+
+
+  /* bad block type */
+  return 2;
+}
+
+/* decompress an inflated entry */
+int func_80001B00(void) //int inflate()
+{
+  int e;                /* last block flag */
+  int r;                /* result code */
+  unsigned h;           /* maximum struct huft's malloc'ed */
+
+  /* initialize window, bit buffer */
+  D_8000728C = 0;
+  D_80007298 = 0;
+  D_80007294 = 0;
+
+  D_8000729C = 0;
+  D_800072A0 = -1;
+
+   /* decompress until the last block */
+   h = 0;
+   do {
+     D_800072A4 = 0;
+     if ((r = inflate_block(&e)) != 0)
+       return r;
+     if (D_800072A4 > h)
+       h = D_800072A4;
+   } while (!e);
+
+  /* Undo too much lookahead. The next read will be byte aligned so we
+   * can discard unused bits in the last meaningful byte.
+   */
+   while (D_80007298 >= 8) {
+     D_80007298 -= 8;
+     D_80007288--;
+   }
+
+  /* return success */
+    #ifdef DEBUG
+    fprintf(stderr, "<%u> ", h);
+    #endif /* DEBUG */
+   return 0;
+}

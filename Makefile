@@ -175,6 +175,7 @@ $(BK_TOOLS): % : ./tools/bk_tools/%
 
 ### exceptions
 build/src/core1/io/%.o: OPT_FLAGS = -O1
+build/src/bk_boot_27F0.o: OPT_FLAGS = -O1
 
 ### Recipes
 
