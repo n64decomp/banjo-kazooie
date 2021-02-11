@@ -2,15 +2,20 @@
 #include "functions.h"
 #include "variables.h"
 
+extern f32 D_80285900;
+
+f32 func_80263FF0(f32);
+f32 func_80265360(f32);
+
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/gu/rotate/guRotateF.s")
-//guRotateF
+// MATCHING but need to resolve core1 data section for static D_80285900
 // void guRotateF(float mf[4][4], float a, float x, float y, float z)
 // {
+//     static f32 D_80285900 = 3.1415926 / 180.0;
 //     float	sine;
 // 	float	cosine;
 // 	float	ab, bc, ca, t;
-
-//     D_80285900 = D_80278CE0; //move to top: static float D_80285900 = D_80278CE0;
+    
 	
 // 	guNormalize(&x, &y, &z);
 // 	a *= D_80285900;
@@ -40,6 +45,7 @@
 // }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/gu/rotate/guRotate.s")
+// MATCHING with -O3, need to resolve data section
 // void guRotate(Mtx *m, float a, float x, float y, float z)
 // {
 // 	float	mf[4][4];

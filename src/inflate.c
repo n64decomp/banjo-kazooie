@@ -4,10 +4,7 @@
 
 #include "rarezip.h"
 
-
-
-
- int huft_build(b, n, s, d, e, t, m)
+int huft_build(b, n, s, d, e, t, m)
 unsigned *b;            /* code lengths in bits (all assumed <= BMAX) */
 unsigned n;             /* number of codes (assumed <= N_MAX) */
 unsigned s;             /* number of simple-valued codes (0..s-1) */
@@ -197,7 +194,7 @@ int *m;                 /* maximum lookup bits, returns actual */
 
 
 #if(1)
-#pragma GLOBAL_ASM("asm/nonmatchings/bk_boot_12B0/func_80000CF0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/inflate/func_80000CF0.s")
 #else
 //^inflate_codes
 int func_80000CF0(struct huft *tl, struct huft *td, s32 bl, s32 bd)
@@ -234,6 +231,7 @@ int func_80000CF0(struct huft *tl, struct huft *td, s32 bl, s32 bd)
        tmp = (u8)t->v.n;
         D_80007284[w++] = tmp;
         D_8000729C += tmp;
+        
         D_800072A0 ^= tmp << (D_8000729C & 0x17);
      }
      else                        /* it's an EOB or a length */
@@ -259,18 +257,29 @@ int func_80000CF0(struct huft *tl, struct huft *td, s32 bl, s32 bd)
        NEEDBITS(e)
        d = w - t->v.n - ((unsigned)b & D_800050B0[e]);
        DUMPBITS(e)
+       
+      
+       //n -= e;
+       
 
        /* do the copy */
-       do {
-            n -= e;
-          
+      // do {
+           //
+      //do{
+              n -= e;
+
+          //NEEDBITS(1)
            do {
-             D_80007284[w++] = (tmp = D_80007284[d++]);
-             //D_8000729C += tmp;
-             D_800072A0 ^= tmp << ((D_8000729C += tmp)& 0x17);
+             //k++;
+             tmp = D_80007284[d++];
+             D_80007284[w++] = tmp;
+             D_8000729C += tmp;
+             D_800072A0 &= tmp << (D_8000729C & 0x17);
+             //if(!e) break;
              
-           } while (--e);
-       } while (n);
+           } while (--e != 0);
+           //
+        //} while (e);
      }
   }
   /* restore the globals from the locals */
@@ -282,10 +291,7 @@ int func_80000CF0(struct huft *tl, struct huft *td, s32 bl, s32 bd)
 }
 #endif
 
-
-//#pragma GLOBAL_ASM("asm/nonmatchings/bk_boot_12B0/func_800011BC.s")
-//^inflate_stored
-int inflate_stored(void)
+ int inflate_stored(void)
 /* "decompress" an inflated type 0 (stored) block. */
 {
   unsigned n;           /* number of bytes in block */
@@ -329,7 +335,7 @@ int inflate_stored(void)
   return 0;
 }
 
-int inflate_fixed(void)
+ int inflate_fixed(void)
 /* decompress an inflated type 1 (fixed Huffman codes) block.  We should
    either replace this with a custom decoder, or at least precompute the
    Huffman tables. */
@@ -366,7 +372,7 @@ int inflate_fixed(void)
   return 0;
 }
 
-int inflate_dynamic(void)/* decompress an inflated type 2 (dynamic Huffman codes) block. */
+ int inflate_dynamic(void)/* decompress an inflated type 2 (dynamic Huffman codes) block. */
 {
   int i;                /* temporary variables */
   unsigned j;
@@ -385,11 +391,7 @@ int inflate_dynamic(void)/* decompress an inflated type 2 (dynamic Huffman codes
 
   register u32 b;       /* bit buffer */
 
-#ifdef PKZIP_BUG_WORKAROUND
-  unsigned ll[288+32];  /* literal/length and distance code lengths */
-#else
   unsigned ll[286+30];  /* literal/length and distance code lengths */
-#endif
 
   /* make local bit buffer */
   b = D_80007294;
@@ -479,8 +481,7 @@ int inflate_dynamic(void)/* decompress an inflated type 2 (dynamic Huffman codes
   return 0;
 }
 
-
-int inflate_block(int *e)
+ int inflate_block(int *e)
 /* decompress an inflated block */
 {
   u32 t;           /* block type */

@@ -5,10 +5,13 @@ SUBCODE := core1 core2 MM TTC CC BGS FP lair GV CCW RBB MMM SM fight cutscenes
 
 BUILD_DIR = build
 
+TARGET = $(BUILD_DIR)/$(BASENAME).$(VERSION)
+
 ASM_DIRS  = asm
 BIN_DIRS  = bin
 SRC_DIRS  = src
 
+SRC_DIRS = src src/done
 
 SUB_BUILD_DIRS = $(foreach dir,$(SRC_DIRS) $(ASM_DIRS) $(BIN_DIRS), build/$(dir))
 SUB_BUILD_DIRS += $(foreach subdir, $(SUBCODE), $(foreach dir,$(SRC_DIRS) $(ASM_DIRS) $(BIN_DIRS), build/$(dir)/$(subdir)/.))
@@ -20,7 +23,7 @@ SPLIT_DIR := $(BUILD_DIR)/split
 
 ASM_PROCESSOR_DIR := tools/asm-processor
 
-TARGET = $(BUILD_DIR)/$(BASENAME).$(VERSION)
+
 
 
 
@@ -76,14 +79,14 @@ N64SPLAT = $(PYTHON) tools/n64splat/split.py
 
 CC = ido/ido5.3_recomp/cc
 
-OPT_FLAGS = -O2
+OPT_FLAGS = -O2 
 MIPSBIT = -mips2
 
 INCLUDE_CFLAGS := -I . -I include -I include/2.0L -I include/2.0L/PR -I include/libc -I src/libultra/os -I src/libultra/audio
 
 ASFLAGS = -EB -mtune=vr4300 -march=vr4300 -mabi=32 -I include
 
-CFLAGS = -c -Wab,-r4300_mul -non_shared -G 0 -Xcpluscomm -Xfullwarn -signed $(OPT_FLAGS) $(INCLUDE_CFLAGS) $(MIPSBIT)
+CFLAGS = -c -Wab,-r4300_mul -non_shared -G 0 -Xfullwarn -Xcpluscomm  -signed $(OPT_FLAGS) $(INCLUDE_CFLAGS) $(MIPSBIT)
 # ignore compiler warnings about anonymous structs
 CFLAGS += -woff 649,838
 
@@ -126,6 +129,7 @@ main_extract: symbol_addrs.$(VERSION).txt
 all: $(SUBCODE) main
 	@$(MAKE) -s progress
 
+$(SUBCODE) : SRC_DIRS = src
 $(SUBCODE): % : %_extract
 	@$(MAKE) --no-print-directory $@_fast
 	@echo -e "def apply(config, args):" > diff_settings.py
@@ -135,7 +139,7 @@ $(SUBCODE): % : %_extract
 	@echo -e "\tconfig[\"source_directories\"] = ['src/$@', 'include']" >> diff_settings.py
 	@echo -e "\tconfig[\"makeflags\"] = ['TARGET=$(BUILD_DIR)/$*.$(VERSION)', 'ASM_DIRS=$(ASM_DIRS)/$*', 'BIN_DIRS=$(BIN_DIRS)/$*', 'SRC_DIRS=$(SRC_DIRS)/$*', 'LD_SCRIPT=$*.ld']" >> diff_settings.py
 
-
+%_fast : SRC_DIRS = src
 %_fast :
 	@$(MAKE) --no-print-directory $(BUILD_DIR)/$*.$(VERSION).bin TARGET=$(BUILD_DIR)/$*.$(VERSION) ASM_DIRS=$(ASM_DIRS)/$* BIN_DIRS=$(BIN_DIRS)/$* SRC_DIRS=$(SRC_DIRS)/$* LD_SCRIPT=$*.ld
 	@$(MAKE) -s $(BUILD_DIR)/$*.$(VERSION).rzip.bin TARGET=$(BUILD_DIR)/$*.$(VERSION) ASM_DIRS=$(ASM_DIRS)/$* BIN_DIRS=$(BIN_DIRS)/$* SRC_DIRS=$(SRC_DIRS)/$* LD_SCRIPT=$*.ld
@@ -175,7 +179,18 @@ $(BK_TOOLS): % : ./tools/bk_tools/%
 
 ### exceptions
 build/src/core1/io/%.o: OPT_FLAGS = -O1
+build/src/core1/done/io/%.o: OPT_FLAGS = -O1
 build/src/bk_boot_27F0.o: OPT_FLAGS = -O1
+build/src/core1/os/%.o: OPT_FLAGS = -O1
+build/src/core1/done/os/%.o: OPT_FLAGS = -O1
+build/src/core1/gu/%.o: OPT_FLAGS = -O3
+build/src/core1/gu/%.o: INCLUDE_CFLAGS = -I . -I include -I include/2.0L -I include/2.0L/PR
+build/src/core1/done/gu/%.o: OPT_FLAGS = -O3
+build/src/core1/done/gu/%.o: INCLUDE_CFLAGS = -I . -I include -I include/2.0L -I include/2.0L/PR
+build/src/core1/gu/mtxutil.o: OPT_FLAGS = -O2
+build/src/core1/gu/rotate.o: OPT_FLAGS = -O2
+build/src/core1/done/audio/%.o: INCLUDE_CFLAGS = -I . -I include -I include/2.0L -I include/2.0L/PR
+build/src/core1/done/audio/%.o: OPT_FLAGS = -O3
 
 ### Recipes
 

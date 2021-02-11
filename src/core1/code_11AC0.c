@@ -23,12 +23,12 @@ extern ALBank *D_80282108;
 //     //volatile s32    phi0 = 0xeade60;
 
 //     bnk_f = malloc(0x9FB0);
-//     func_80263BE0(); //osWritebackDCacheAll()
+//     osWriteBackDCacheAll(); //osWritebackDCacheAll()
 //     mb = func_802405D0();
 //     mq = func_802405C4();
 //     func_802647D0(mb, 0, 0, 0xea3eb0, bnk_f, 0x9FB0, mq);
 //     mq2 = func_802405C4();
-//     func_80264550(mq2, 0, 1); //osRecvMesg
+//     osRecvMesg(mq2, 0, 1); //osRecvMesg
 //     D_80282104 = 0xAD;
 //     D_802820E0 = (MusicTrack **) malloc(0xAD * sizeof(MusicTrack *));
 //     for(i = 0; i < D_80282104; i++){

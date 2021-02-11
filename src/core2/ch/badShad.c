@@ -7,8 +7,8 @@ Actor *func_80329958(ActorMarker *);
 
 void func_802D6EA0(Actor *this){
     s32 iVar1;
-    if(!this->unkF4_A){
-        this->unkF4_A = 1;
+    if(!this->unkF4_21){
+        this->unkF4_21 = 1;
         this->marker->collidable = 0;
     }
     if(!this->despawn_flag && this->unk1C < (f32)(func_8023DB5C() - 1) ){

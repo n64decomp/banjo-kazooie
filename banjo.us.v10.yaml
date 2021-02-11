@@ -28,9 +28,9 @@ segments:
   vram:  0x80000400
   files:
   - [0x1000, c]
-  - [0x1050, c]
-  - [0x1150, c]
-  - [0x12B0, c]
+  - [0x1050, c, done/bk_boot_1050]
+  - [0x1150, c, done/rarezip]
+  - [0x12B0, c, inflate]
   - [0x27F0, c]
   - [0x2970, c]
   - [0x2C00, c]

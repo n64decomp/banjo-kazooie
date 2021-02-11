@@ -22,11 +22,10 @@ void guOrthoF(float mf[4][4], float l, float r, float b, float t, float n, float
 		mf[i][j] *= scale;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/gu/ortho/guOrtho.s")
-//void guOrtho(Mtx *m, float l, float r, float b, float t, float n, float f, float scale)
-// {
-// 	float	mf[4][4];
+void guOrtho(Mtx *m, float l, float r, float b, float t, float n, float f, float scale)
+{
+	float	mf[4][4];
 
-// 	guOrthoF(mf, l, r, b, t, n, f, scale);
-// 	func_802650E0(mf, m);
-// }
+	guOrthoF(mf, l, r, b, t, n, f, scale);
+	guMtxF2L(mf, m);
+}

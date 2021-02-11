@@ -2,13 +2,132 @@
 #include "functions.h"
 #include "variables.h"
 
+/* TODO move declarations to respective headers*/
+void func_8028E9A4(f32 *);
+Actor *func_8032813C(u32, f32 *, f32*);
+f32 func_8028E80C(u32);
+void func_8028F710(u32, f32);
+f32 func_802877D8(ActorMarker *);
+void func_802C4218(u32,f32,f32,f32);
+void func_8030E8B4(u32,f32*, u32);
+void func_80328A84(Actor *, u32);
+void func_802C3F04(void (*)(u32,f32,f32,f32),u32, u32, u32, u32);
+void func_80326224(ActorMarker *);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/BGS/ch/code_8640/func_8038EA30.s")
+/* local declarations */
+Actor *func_8038EAD0(ActorMarker *this, Gfx** gdl, Mtx** mtx, u32 arg3);
+void func_8038EB4C(ActorMarker *);
+void func_8038EB8C(Actor *this);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/BGS/ch/code_8640/func_8038EA90.s")
+/* .data section */
+ActorAnimationInfo D_80390B30[4] = {
+    {0, 0.0f},
+    {0, 0.0f},
+    {0x4E, 0.25f},
+    {0x4E, 1000000.0f}
+};
 
-#pragma GLOBAL_ASM("asm/nonmatchings/BGS/ch/code_8640/func_8038EAD0.s")
+extern u32 D_80390B50[6] = {0xA, 0xA, 0xB, 0xA, 0xA, 0xC
+};
+
+ActorInfo D_80390B68 = {0xD5, actor_mud_hut, 0x7D8, 0x01, D_80390B30,
+    func_8038EB8C, func_80326224, func_8038EAD0,
+    {0,0,0,0}, 0.0f, {0,0,0,0}
+};
+
+/* .code section */
+void func_8038EA30(void){
+    if((func_802E49FC() != 0x7) && (1.5 < func_8028E80C(2)) ){
+        func_8028F710(2, 1.5);
+    }
+}
+
+void func_8038EA90(void){
+    u32 sp1C;
+    func_80268700(0xD10, &sp1C);
+    if(sp1C = (u16)(sp1C-0x400)){
+        func_8038EA30();
+    }
+}
+
+Actor *func_8038EAD0(ActorMarker *this, Gfx** gdl, Mtx** mtx, u32 arg3){
+    Actor *thisActor;
+
+    thisActor = func_80329958(this);
+    func_8033A45C(1, thisActor->unk10_31 == 1);
+    if(thisActor->unk10_31 == 3)
+        return thisActor;
+    
+    return func_80325888(this, gdl, mtx, arg3);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/BGS/ch/code_8640/func_8038EB4C.s")
+// void func_8038EB4C(ActorMarker *this){
+//     Actor *thisActor;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/BGS/ch/code_8640/func_8038EB8C.s")
+//     thisActor = func_80329958(this);
+//     thisActor = func_8032813C(actor_wood_demolished, &thisActor->position_x, NULL);
+//     thisActor = func_8032813C(actor_steam_2, &thisActor->position_x, NULL);
+// }
+
+void func_8038EB8C(Actor *this){
+    
+    f32 diffPos[3];
+    f32 plyrPos[3];
+    s32 tmp;
+
+    if(func_80334904() == 2){
+        if(!this->unkF4_21){
+            this->marker->collidable = 0;
+            this->unkF4_21 = 1;
+        }
+
+        switch(this->unk10_31){
+            case 1:
+                this->marker->propPtr->unkB_3 = 1;
+                func_8028E9A4(plyrPos);
+                diffPos[0] = plyrPos[0] - this->position_x;
+                diffPos[1] = plyrPos[1] - this->position_y;
+                diffPos[2] = plyrPos[2] - this->position_z;
+                if( (150.0f < diffPos[1]) 
+                    && (func_8028E76C(this->marker) == 1) 
+                    && (func_8028F20C())
+                    && (gu_sqrtf(diffPos[0]*diffPos[0] + diffPos[1]*diffPos[1] + diffPos[2]*diffPos[2]) < 350.f)
+                ){
+                    tmp = (s32)( (this->position_y - 600.f)/430.0f);
+                    diffPos[0] = this->position_x;
+                    diffPos[1] = this->position_y;
+                    diffPos[2] = this->position_z;
+                    diffPos[1] += 130.0;
+
+                    
+                    func_8030E8B4(0x7FFB585B, &this->position_x, 0xBB8012C);
+                    func_80328A84(this, 2);
+                    this->marker->propPtr->unkB_3 = 0;
+                    func_803298AC(this);
+                    if(tmp == 5){
+                        func_8025A6EC(0x2D, 28000);
+                    }
+                    func_802C3C88(func_8038EB4C, this->marker);
+                    if(tmp < 5){
+                        func_802C3F04(func_802C4218,D_80390B50[tmp], ((u32 *)diffPos)[0], ((u32 *)diffPos)[1], ((u32 *)diffPos)[2]);
+                    } else {
+                        jiggySpawn(jiggy_bgs_huts, diffPos);
+                    }
+                }
+                break;
+            case 2:
+                this->marker->propPtr->unkB_3 = 0;
+                if(0.99 < func_802877D8(this->movement)){
+                    this->unk10_31 = 3;
+                }
+                break;
+            case 3:
+                this->marker->propPtr->unkB_3 = 0;
+                break;
+        }
+    }
+    else{
+
+    }
+}

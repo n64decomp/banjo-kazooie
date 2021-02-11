@@ -71,8 +71,8 @@ struct0 *func_8031B9D8(void){
     struct0 *this;
 
     this = (struct0 *)malloc(0x60);
-    func_80258B8C(&(this->unk1C));
-    func_80258B8C(&(this->unk28));
+    clear_vec3f(&(this->unk1C));
+    clear_vec3f(&(this->unk28));
     this->normX = 0.0f;
     this->normZ = 0.0f;
     this->normY = 1.0f;
@@ -110,9 +110,9 @@ void func_8031BA9C(struct0 *this){
 //     void *temp_v1;
 //     void *phi_v0;
 
-//     func_80258BA4(&sp34, arg0);
+//     copy_vec3f(&sp34, arg0);
 //     sp34[1] = sp34[1] + arg1;
-//     func_80258BA4(&sp28, arg0);
+//     copy_vec3f(&sp28, arg0);
 //     sp28[1] = sp28[1] + arg2;
 //     if (arg3 == 0xF800FF0F) {
 //         phi_v0 = func_80309B48(&sp34, &sp28, arg4, arg3);
@@ -187,7 +187,7 @@ void func_8031BD98(struct0 *this, f32 arg1, s32 arg2, s32 arg3, f32 *normPtr, s3
     this->unk50 = arg3;
     this->posX = arg1;
     this->model = model;
-    func_80258BA4(&this->normX, normPtr);
+    copy_vec3f(&this->normX, normPtr);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031BE0C.s")
@@ -246,7 +246,7 @@ s32 func_8031C5A4(struct0 *this){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031C5AC.s")
 // void func_8031C5AC(struct0 *this, f32 *dst){
-//     func_80258BA4(dst, &this->normX);
+//     copy_vec3f(dst, &this->normX);
 // }
 
 f32 func_8031C5D4(struct0 *this){
@@ -276,7 +276,7 @@ void func_8031C608(struct0 *this){
 }
 
 void func_8031C618(struct0 *this, f32 *arg1){
-    func_80258BA4(&this->unk1C, arg1);
+    copy_vec3f(&this->unk1C, arg1);
 }
 
 void func_8031C638(struct0 *this, s32 arg1){

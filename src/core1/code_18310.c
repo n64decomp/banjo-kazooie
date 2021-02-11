@@ -144,6 +144,12 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_18310/func_80258424.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_18310/func_802584FC.s")
+// s32 func_802584FC(f32 *arg0, f32 *min, f32 *max)
+// {
+//     return (min[0] < arg0[0] && arg0[0] < max[0]
+//     && min[1] < arg0[1] && arg0[1] < max[1]
+//     && min[2] < arg0[2] && arg0[2] < max[2]);
+// }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_18310/func_802585E0.s")
 
@@ -163,7 +169,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_18310/func_802588B0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_18310/func_802588DC.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_18310/max_f.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_18310/func_80258904.s")
 
@@ -181,9 +187,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_18310/func_80258A4C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_18310/func_80258B8C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_18310/clear_vec3f.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_18310/func_80258BA4.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_18310/copy_vec3f.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_18310/func_80258BC0.s")
 

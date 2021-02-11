@@ -10,22 +10,30 @@ enum ch_id{
 };
 
 typedef struct sprite_prop_s{
-    u8 pad[0x12];
+    u8 pad0[0x12];
 } SpriteProp;
 
 typedef struct prop_prop_s{
-    u8 pad[0x12];
+    u8 pad0[0x12];
 } PropProp;
 
 typedef struct actor_prop_s{
     struct actorMarker_s* marker;
-    u8 pad[0x8];
+    u8 pad4[0x7];
+    u8 padB_7:4;
+    u8 unkB_3:1;
+    u8 padB_2:3;
+    u8 padC;
 } ActorProp;
 
 typedef struct actorMarker_s{
     ActorProp*  propPtr;
     struct cude_s*     cubePtr;
-    u8          pad8[0x27];
+    u8          pad8[0xC];
+    u32         pad14_31:10;
+    u32         unk14_21:1;
+    u32         pad14_20:21;
+    u8          pad18[0x17];
     u8          pad2F:7;
     u8          collidable:1;
     u8          pad30[0x30];
@@ -79,43 +87,101 @@ typedef struct actorMovement_s{
     Animation animation;
 } ActorMovement;
 
+typedef struct chmrvile_s{
+    u8  pad0[0x4];
+    u32 unk4;
+    void *unk8;
+    u8  unkC;
+    u8  padD[0x7];
+    f32 unk14;
+    f32 unk18;
+    f32 unk1C;
+    f32 unk20;
+    f32 unk24;
+    f32 unk28;
+    f32 unk2C;
+    f32 unk30;
+} ActorLocal_MrVile;
+
+typedef struct chpinkegg_s{
+    u32 unk0;
+    u32 unk4;
+} ActorLocal_PinkEgg;
+
+typedef struct chyumblie_s{
+    f32 unk0;
+    u8  unk4;
+    u8  pad7[3];
+    f32 unk8;
+    u32 unkC;
+} ActorLocal_Yumblie;
+
 typedef struct actor_s{
     ActorMarker* marker;
     f32 position_x;
     f32 position_y;
     f32 position_z;
-    u8  pad10[0x4];
+    u32 unk10_31:6;
+    u32 pad10_27:26;
     ActorMovement *movement;
     u8  pad18[0x04];
     f32 unk1C;
-    u8  pad20[0x24];
+    u8  pad20[0x18];
+    u32  unk38_31:10;
+    u32  pad38_21:22;
+    u8  pad3C[0x8];
     s32 unk44_0:28;
     s32 despawn_flag:1;
     s32 unk44_1D:3;
     u8  pad48[0x8];
     f32 yaw;
-    u8  pad54[0x10];
+    u8  pad54[0xC];
+    f32 unk60;
     f32 yaw_moving;
     f32 pitch;
     f32 unk6C;
-    u8  pad70[0x84];
-    u32 unkF4_0:10;
-    u32 unkF4_A:1;
-    u32 unkF4_B:21;
+    u8  pad70[0xC];
+    union
+    {
+        ActorLocal_MrVile mrVile; 
+        ActorLocal_PinkEgg pinkEgg; 
+        ActorLocal_Yumblie yumblie; 
+        struct {
+            u32  unk7C;
+            u32  unk80;
+            u8  pad84[0x4];
+            u8  unk88;
+            u8  pad89[0x23];
+        };
+    };
+    u8  padAC[0x44];
+    u32 unkF4_31:10;
+    u32 unkF4_21:1;
+    u32 unkF4_20:12;
+    u32 unkF4_8:9;
     u8  padF8[0xC];
     ActorMarker *unk104;
-    u8  pad108[4];
+    u8  pad108[8];
     f32 roll;//110
     f32 sound_timer;
     f32 spawn_position_x;
     f32 spawn_position_y;
-    f32 spawn_position_z;
-    u8  pad124[1];
-    u8  alpha;
-    u8  render_order;
-    u8  pad127[1];
+    f32 spawn_position_z;//120
+    u32 pad124_31:12;
+    u32  unk124_19:8;
+    u32  pad124_11:2;
+    u32  unk124_9:2;
+    u32  pad124_7:1;
+    u32  unk124_6:1;
+    u32  pad124_5:6;
     f32 scale;
-    u8  pad130[0x50];
+    u8  pad12C[0x1C];
+    void *unk148;
+    u8  pad14C[0x20];
+    u32  pad16C_31:27;
+    u32  unk16C_4:1;
+    u32  pad16C_3:4;
+    u8  pad170[0x10];
 } Actor;
 
 typedef struct actor_anim_info_s{
@@ -129,9 +195,9 @@ typedef struct actor_info_s{
     u16     modelId;
     u16     startAnimation;
     ActorAnimationInfo*   animations;
-    void    (* update_func)(ActorMarker *);
-    void    (* unk14)(ActorMarker *);
-    void    (* draw_func)(ActorMarker *, Gfx **, Mtx**);
+    void    (* update_func)(Actor *);
+    void    (* unk14)(Actor *);
+    Actor*  (* draw_func)(ActorMarker *, Gfx **, Mtx**, u32);
     u8      pad18[4];
     f32     shadow_scale;
     u8      pad20[4];

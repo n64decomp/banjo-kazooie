@@ -3,34 +3,33 @@
 #include "variables.h"
 
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13680/func_802510A0.s")
+u32 func_802510A0(BKSprite *this){
+    return this->unk8;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13680/func_802510A8.s")
+u32 func_802510A8(BKSprite *this){
+    return this->unkA;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13680/func_802510B0.s")
+u32 func_802510B0(BKSprite *this){
+    return this->unk6;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13680/func_802510B8.s")
+u32 func_802510B8(BKSprite *this){
+    return this->unk4;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13680/func_802510C0.s")
+u32 spriteGetFrameCount(BKSprite *this){
+    return this->frameCnt;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13680/func_802510C8.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13680/spriteGetFramePtr.s")
+// //NONMATCHING bad RegAlloc
+// void *spriteGetFramePtr(BKSprite *this, u32 frame){
+//     u32 *f_array; //frame array
+//     u32 f_data;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13680/func_802510F0.s")
-
-s32 func_80251170(void){return 0;}
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13680/func_80251178.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13680/func_802511C4.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13680/func_80251230.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13680/func_8025123C.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13680/func_80251250.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13680/func_802512FC.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13680/func_80251308.s")
-
-void func_802513A4(void){}
+//     f_array = this + 1; 
+//     f_data = (u32)&f_array[this->frameCnt] + f_array[frame];
+//     return f_data;
+// }

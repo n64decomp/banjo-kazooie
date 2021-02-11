@@ -13,7 +13,9 @@ ActorInfo D_80390AB0 = {0xC4, 0x136, 0x00, 0x00, NULL,
 
 f32 D_80390AD4[3] = {1985.0f, 200.0f, -1386.0f};
 
-#pragma GLOBAL_ASM("asm/nonmatchings/BGS/ch/code_6730/func_8038CB20.s")
+void func_8038CB20(void){
+    jiggySpawn(jiggy_bgs_flibbits, D_80390AD4);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/BGS/ch/code_6730/func_8038CB48.s")
 

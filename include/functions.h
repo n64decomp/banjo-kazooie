@@ -23,6 +23,8 @@ void free(void*);
 void* realloc(void* ptr, s32 size);
 
 float mlNormalizeAngle(float);
+f32 max_f(f32, f32);
+void copy_vec3f(f32* dst, f32* src);
 
 void func_80258C48(f32 *arg0, f32 *arg1, f32 *arg2);
 void func_80258C7C(f32 *arg0, f32 arg1);
@@ -30,6 +32,8 @@ void mlScale(f32 *, f32 *, f32);
 
 
 float gu_sqrtf(float val);
+
+BKSpriteFrame *spriteGetFramePtr(BKSprite *, u32); 
 
 void func_802876CC(Movement *, f32,f32);
 void func_8028768C(Movement *, f32);
@@ -54,7 +58,7 @@ void func_80297970(f32);
 
 f32  func_80297AAC(void);
 
-void func_80298220(f32 *arg0);
+void climbGetBottom(f32 *arg0);
 
 void func_802991B4(f32);
 
@@ -69,5 +73,6 @@ void *assetcache_get(s32 arg0);
 void func_803272F8(s32 *, s32, ActorInfo*, u32);
 
 f32 func_8033DD9C(void);
+void jiggySpawn(u32 indx, f32* pos);
 
 #endif

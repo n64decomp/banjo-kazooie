@@ -1,0 +1,26 @@
+#include <ultra64.h>
+#include "functions.h"
+#include "variables.h"
+
+
+void func_80326224(Actor *);
+Actor* func_80325888(ActorMarker *, Gfx **, Mtx**, u32);
+
+
+
+void func_8038FCB0(Actor *);
+
+/* .data */
+ActorInfo D_80390D70 = {0xDC, actor_bigalligator, 0x397, 0x01, NULL,
+    func_8038FCB0, func_80326224, func_80325888,
+    {0,0,0,0}, 0.0f, {0,0,0,0}
+};
+
+/* .code */
+void func_8038FCB0(Actor *this){
+    if(this->unkF4_21)
+        return;
+    this->marker->propPtr->unkB_3 = 1;
+    actor_collisionOff(this);
+    this->unkF4_21 = 1;
+}

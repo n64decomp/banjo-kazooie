@@ -45,7 +45,7 @@ enum transformation func_8028E7CC(void){
 }
 
 void func_8028E7EC(f32 *arg0){
-    func_80298220(arg0);
+    climbGetBottom(arg0);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028E80C.s")

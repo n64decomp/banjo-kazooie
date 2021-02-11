@@ -19,7 +19,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_ABC00/func_8033301C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_ABC00/func_803330C0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_ABC00/jiggySpawn.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_ABC00/func_803331D8.s")
 

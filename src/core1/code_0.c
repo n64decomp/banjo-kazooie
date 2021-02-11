@@ -10,8 +10,8 @@ extern u8 D_80286F90;
 
 
 void func_8023DA20(s32 arg0){
-    func_80263B40(&D_8027A130, &D_80286F90 - (u8*)&D_8027A130);
-    func_80263BE0();
+    osInvalDCache(&D_8027A130, &D_80286F90 - (u8*)&D_8027A130); //osInvalDCache
+    osWriteBackDCacheAll(); //osWriteBackDCacheAll
     func_8025B1E0();
     func_80263C10();
     func_80240BE0();
@@ -88,10 +88,10 @@ void func_8023DCF4(void){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_0/func_8023DD0C.s")
 
-void func_8023DF9C(s32 arg0){
+void func_8023DF9C(s32 arg0){ 
     func_8023DC0C();
     func_8025B700();
-    while(1){
+    while(1){ //main loop
         func_8023DD0C();
     }
 }

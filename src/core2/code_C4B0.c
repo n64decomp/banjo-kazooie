@@ -2,6 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
+extern struct0 * D_8037C200;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C4B0/func_80293440.s")
 
@@ -63,11 +64,15 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C4B0/func_80294598.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C4B0/func_80294610.s")
+u32 func_80294610(u32 mask){
+     return func_8031C59C(D_8037C200) & mask;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C4B0/func_8029463C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C4B0/func_80294660.s")
+u32 func_80294660(void){
+     return func_8031C59C(D_8037C200);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C4B0/func_80294684.s")
 
