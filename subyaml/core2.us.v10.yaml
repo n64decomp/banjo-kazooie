@@ -140,7 +140,8 @@ segments:
   - [0x3ECE0, c]
   - [0x3EEF0, c]
   - [0x400F0, c]
-  - [0x40AA0, c]
+  - [0x40AA0, c, core2/ch/jiggy]
+  - [0x41130, c, core2/ch/jigsawdance]
   - [0x41460, c]
   - [0x41FB0, c]
   - [0x42CA0, c]
@@ -327,4 +328,6 @@ segments:
   - [0x000ECE90, bin]
   - [0x000EF040, ".rodata", core2/code_3BB80]
   - [0x000EF090, bin]
+  - [0x000EF3E0, .rodata, core2/ch/jigsawdance] #.rodata
+  - [0x000EF450, bin]
 - [0xf2c00] # core2 end

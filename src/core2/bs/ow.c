@@ -17,8 +17,8 @@ void func_802B1FD8(void){
     func_802874AC(plyr_mvmnt);
     func_80287684(plyr_mvmnt, 0);
     func_802876CC(plyr_mvmnt, 0.0f, 0.534399986267f);
-    func_8028745C(plyr_mvmnt, 0x4D);
-    func_8028768C(plyr_mvmnt, 1.70000004768f);
+    movement_setIndex(plyr_mvmnt, 0x4D);
+    movement_setDuration(plyr_mvmnt, 1.70000004768f);
     func_80287674(plyr_mvmnt, 1);
     func_802875AC(plyr_mvmnt, D_803759B0, 0x50);
     func_80299BFC(1.0f);

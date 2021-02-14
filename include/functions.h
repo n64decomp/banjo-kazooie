@@ -36,13 +36,13 @@ float gu_sqrtf(float val);
 BKSpriteFrame *spriteGetFramePtr(BKSprite *, u32); 
 
 void func_802876CC(Movement *, f32,f32);
-void func_8028768C(Movement *, f32);
+void movement_setDuration(Movement *, f32);
 s32  func_80289FE8(f32);
 void func_8028A37C(f32);
 
 ActorMarker *func_8028D5D0(void);
 
-enum transformation func_8028E7CC(void);
+u32 func_8028E7CC(void);
 
 void func_8028E7EC(f32 *arg0);
 

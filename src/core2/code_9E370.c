@@ -6,6 +6,8 @@
 
 Actor *func_803056FC(s32, f32*, f32*);
 
+ActorArray *D_8036E560;
+extern u32 D_80378E08;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80325300.s")
 
@@ -111,7 +113,31 @@ Actor *func_8032811C(s32 id, f32 *pos, f32* rot){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80328478.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80328508.s")
+u32 func_80328508(Actor * arg0, u32 arg1){
+    ActorAnimationInfo *animInfo;
+
+    arg0->unk10_31 = arg1;
+    if(!arg0->unk18)
+        return 0;
+
+    if((animInfo = &arg0->unk18[arg1])->index){
+        if(arg0->movement == NULL){
+            arg0->movement = movement_new(0);
+            func_802874AC(arg0->movement);
+        }
+        movement_setIndex(arg0->movement, animInfo->index);
+        movement_setDuration(arg0->movement, animInfo->duration);
+        movement_setDirection(arg0->movement, mvmt_dir_forwards);
+    }
+    else{
+        if(arg0->movement){
+            func_80287674(arg0->movement, 3);
+            movement_setDirection(arg0->movement, mvmt_dir_forwards);
+        }
+    }
+    return 1;
+    
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_803285E8.s")
 
@@ -127,11 +153,23 @@ Actor *func_8032811C(s32 id, f32 *pos, f32* rot){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80328A2C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80328A84.s")
+
+
+void func_80328A84(Actor * arg0, u32 arg1){
+    if(func_80328508(arg0, arg1) && arg0->movement){
+        func_802875AC(arg0->movement, &D_80378E08, 0X6CA);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80328AC8.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80328AEC.s")
+// void func_80328AEC(Actor * arg0, u32 arg1){
+//     if(func_80328508(arg0, arg1) && arg0->movement){
+//         func_80287674(arg0->movement, 2);
+//         func_803289EC(arg0, NULL, 1); //li zero instead of move?
+//     }
+// }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80328B38.s")
 
@@ -211,7 +249,10 @@ Actor *func_8032811C(s32 id, f32 *pos, f32* rot){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032994C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80329958.s")
+//marker_getActorPtr
+Actor *func_80329958(ActorMarker *this){
+    return &(D_8036E560->data[this->actrArrayIdx]);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80329980.s")
 

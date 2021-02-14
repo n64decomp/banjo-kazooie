@@ -40,7 +40,7 @@ ActorMarker *func_8028E7AC(void){
     return func_8028D5D0();
 }
 
-enum transformation func_8028E7CC(void){
+u32 func_8028E7CC(void){
     return func_8029A8F4();
 }
 

@@ -1,4 +1,8 @@
-func_8028768C = 0x8028768C;
+movement_new = 0x802872E0;
+movement_free = 0x80287394;
+movement_setIndex = 0x8028745C;
+movement_setDirection = 0x8028767C;
+movement_setDuration = 0x8028768C;
 func_802878E8 = 0x802878E8;
 carriedObject_setActorID = 0x8028D658;
 carriedObject_getActorID = 0x8028D670;

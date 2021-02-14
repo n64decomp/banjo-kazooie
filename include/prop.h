@@ -20,7 +20,8 @@ typedef struct prop_prop_s{
 typedef struct actor_prop_s{
     struct actorMarker_s* marker;
     u8 pad4[0x7];
-    u8 padB_7:4;
+    u8 padB_7:3;
+    u8 unkB_4:1;
     u8 unkB_3:1;
     u8 padB_2:3;
     u8 padC;
@@ -33,10 +34,17 @@ typedef struct actorMarker_s{
     u32         pad14_31:10;
     u32         unk14_21:1;
     u32         pad14_20:21;
-    u8          pad18[0x17];
-    u8          pad2F:7;
-    u8          collidable:1;
-    u8          pad30[0x30];
+    u8          pad18[0x14];
+    u32         actrArrayIdx:11; //unk2C
+    u32         pad2C_21:18;
+    u32         unk2C_2:1;
+    u32         pad2C_1:1;
+    u32         collidable:1;
+    u8          pad30[0xC];
+    u32         pad3C_31:30;
+    u32         unk3F_1:1;
+    u32         pad3F_0:1;
+    u8          pad40[0x20];
 } ActorMarker;
 
 
@@ -116,17 +124,64 @@ typedef struct chyumblie_s{
     u32 unkC;
 } ActorLocal_Yumblie;
 
+typedef struct chleafboat_s{
+    f32 unk0;
+    f32 unk4;
+    f32 unk8;
+    f32 unkC;
+    f32 unk10;
+    f32 unk14;
+    f32 unk18;
+    f32 unk1C;
+    f32 unk20;
+    f32 unk24;
+    f32 unk28;
+    f32 unk2C;
+    f32 unk30;
+    f32 unk34;
+    f32 unk38;
+    f32 unk3C;
+    f32 unk40;
+    f32 unk44;
+    f32 unk48;
+    f32 unk4C;
+    f32 unk50;
+    f32 unk54;
+    f32 unk58;
+    f32 unk5C;
+    f32 unk60;
+    f32 unk64;
+    f32 unk68;
+    f32 unk6C;
+} ActorLocal_Leafboat;
+
+typedef struct chjiggy_s{
+    u32 unk0;
+    u32 index;
+} ActorLocal_Jiggy;
+
+typedef struct actor_anim_info_s{
+    u32     index;
+    f32     duration;
+} ActorAnimationInfo;
+
 typedef struct actor_s{
     ActorMarker* marker;
     f32 position_x;
     f32 position_y;
     f32 position_z;
     u32 unk10_31:6;
-    u32 pad10_27:26;
+    u32 pad10_27:13;
+    u32 unk10_4:4;
+    u32 pad10_0:8;
     ActorMovement *movement;
-    u8  pad18[0x04];
+    ActorAnimationInfo *unk18;
     f32 unk1C;
-    u8  pad20[0x18];
+    f32 unk20;
+    f32 unk24;
+    u8  pad28[4];
+    f32 unk2C;
+    u8  pad30[8];
     u32  unk38_31:10;
     u32  pad38_21:22;
     u8  pad3C[0x8];
@@ -134,27 +189,25 @@ typedef struct actor_s{
     s32 despawn_flag:1;
     s32 unk44_1D:3;
     u8  pad48[0x8];
-    f32 yaw;
-    u8  pad54[0xC];
-    f32 unk60;
-    f32 yaw_moving;
-    f32 pitch;
-    f32 unk6C;
+    f32 yaw; //0x50
+    f32 unk54; //0x54
+    u8  pad58[0x8];//0x58, 0x5C, 0x60
+    f32 unk60; //0x60
+    f32 yaw_moving; //0x64
+    f32 pitch;//0x68
+    u32 unk6C;
     u8  pad70[0xC];
     union
     {
-        ActorLocal_MrVile mrVile; 
-        ActorLocal_PinkEgg pinkEgg; 
-        ActorLocal_Yumblie yumblie; 
-        struct {
-            u32  unk7C;
-            u32  unk80;
-            u8  pad84[0x4];
-            u8  unk88;
-            u8  pad89[0x23];
-        };
+        ActorLocal_Jiggy    jiggy;
+        ActorLocal_MrVile   mrVile; 
+        ActorLocal_PinkEgg  pinkEgg; 
+        ActorLocal_Yumblie  yumblie; 
+        ActorLocal_Leafboat leafboat;
+        u8  pad7C[0x70];
     };
-    u8  padAC[0x44];
+    //u8  padAC[0x44];
+    u8  padEC[0x8];
     u32 unkF4_31:10;
     u32 unkF4_21:1;
     u32 unkF4_20:12;
@@ -184,10 +237,7 @@ typedef struct actor_s{
     u8  pad170[0x10];
 } Actor;
 
-typedef struct actor_anim_info_s{
-    u32     index;
-    f32     duration;
-} ActorAnimationInfo;
+
 
 typedef struct actor_info_s{
     u16     unk0;
@@ -232,5 +282,11 @@ typedef struct cude_s{
     Prop *prop1Ptr;
     Prop *prop2Ptr;
 }Cube;
+
+typedef struct actor_array{
+    u32 unk0;
+    u32 unk4;
+    Actor data[];
+}ActorArray;
 
 #endif

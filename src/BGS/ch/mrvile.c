@@ -128,7 +128,7 @@ Actor *mrVileDraw(ActorMarker *this, Gfx **gdl, Mtx** mp){
     thisActor = func_80325888(this);
     sp40 = &thisActor->mrVile;
     if (
-        (thisActor->unk88 == 0x68) &&
+        (sp40->unkC == 0x68) &&
         (sp40->unk14 > 0.0f) 
         && (thisActor->marker->unk14_21)
     ) {

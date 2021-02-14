@@ -38,4 +38,9 @@ enum actor_e
     actor_yumblie           = 0x139
 };
 
+enum movement_direction_e
+{
+    mvmt_dir_forwards = 1
+};
+
 #endif

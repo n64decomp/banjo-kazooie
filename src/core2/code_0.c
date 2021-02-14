@@ -16,9 +16,9 @@ f32 func_80258904(f32 arg0, f32 arg1);
 Animation *func_80287464(Movement *this);
 
 void func_80287674(Movement *this, s32 arg1);
-void func_8028767C(Movement *this, s32 arg1);
+void movement_setDirection(Movement *this, s32 arg1);
 void func_80287684(Movement *this, s32 arg1);
-void func_8028768C(Movement *this, f32 arg1);
+void movement_setDuration(Movement *this, f32 arg1);
 void func_802876C0(Movement *this, f32 arg1);
 void func_802876CC(Movement *this, f32 arg1, f32 arg2);
 void func_80287784(Movement *this, s32 arg1);
@@ -124,7 +124,7 @@ void func_802871A4(Movement *this){
     func_80289784(anim, phi_f0);
 }
 
-Movement *func_802872E0(s32 arg0){ //new
+Movement *movement_new(s32 arg0){ //new
     ActorMovement *this;
 
     this = (ActorMovement *)malloc( func_80289680() + 0x28);
@@ -137,14 +137,14 @@ Movement *func_802872E0(s32 arg0){ //new
     this->movement.unk18 = 0.0f;
     func_80287784(&this->movement, func_8030C77C());
     func_802876CC(&this->movement, 0.0f, 1.0f);
-    func_8028768C(&this->movement, 2.0f);
+    movement_setDuration(&this->movement, 2.0f);
     func_802876C0(&this->movement, 0.2f);
     func_80287684(&this->movement, 1);
-    func_8028767C(&this->movement, 1);
+    movement_setDirection(&this->movement, mvmt_dir_forwards);
     return &this->movement;
 }
 
-void func_80287394(Movement * this){ //free
+void movement_free(Movement * this){ //free
     func_802896A0(this->animation);
     free(this);
 }
@@ -176,7 +176,7 @@ Movement *func_80287434(Movement *this){ //realloc
     return &full_struct->movement;
 }
 
-void func_8028745C(Movement *this, s32 index){
+void movement_setIndex(Movement *this, s32 index){
     this->index = index;
 }
 
@@ -199,9 +199,9 @@ void func_802874AC(Movement *this){
     this->unk18 = 0.0;
     func_80287684(this, 1);
     func_802876CC(this, 0.0, 1.0);
-    func_8028768C(this, 2.0);
+    movement_setDuration(this, 2.0);
     func_802876C0(this, 0.2);
-    func_8028767C(this, 1);
+    movement_setDirection(this, mvmt_dir_forwards);
 }
 
 void func_8028752C(Movement *this){
@@ -238,7 +238,7 @@ void func_80287674(Movement *this, s32 arg1){
     this->playback_type = arg1;
 }
 
-void func_8028767C(Movement *this, s32 arg1){
+void movement_setDirection(Movement *this, s32 arg1){
     this->playback_direction = arg1;
 }
 
@@ -246,9 +246,9 @@ void func_80287684(Movement *this, s32 arg1){
     this->unk22 = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_0/func_8028768C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_0/movement_setDuration.s")
 ////NONMATCHING A0000238 reading to same reg
-// void func_8028768C(Movement *this, f32 arg1){
+// void movement_setDuration(Movement *this, f32 arg1){
 //     if(D_A0000238 - 0x10000003){
 //         arg1 += 3.0f;
 //     }
@@ -349,7 +349,6 @@ s32 func_802878C4(Movement *this){
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_0/func_802878E8.s")
-
 
 s32 func_80287A40(Movement *this){
     return (s32)this->animation - (s32) this == 0x28;
