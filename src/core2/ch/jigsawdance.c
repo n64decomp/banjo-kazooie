@@ -55,7 +55,7 @@ void func_802C811C(Actor * this){
             func_802875AC(this->movement, "chjigsawdance.c", 0x6e);
             break;
         case 5:
-            this->marker->propPtr->unkB_4 = 0;
+            this->marker->propPtr->unk8_4 = 0;
             break;
     }
 }
@@ -84,7 +84,7 @@ void func_802C82C0(Actor * this, u32 arg1){
             break;
         case 5:
             func_80328A84(this, 5);
-            this->marker->propPtr->unkB_4 = 0;
+            this->marker->propPtr->unk8_4 = 0;
             break;
     }
 }

@@ -88,7 +88,7 @@ ASFLAGS = -EB -mtune=vr4300 -march=vr4300 -mabi=32 -I include
 
 CFLAGS = -c -Wab,-r4300_mul -non_shared -G 0 -Xfullwarn -Xcpluscomm  -signed $(OPT_FLAGS) $(INCLUDE_CFLAGS) $(MIPSBIT)
 # ignore compiler warnings about anonymous structs
-CFLAGS += -woff 649,838
+CFLAGS += -woff 649,838,807
 
 LDFLAGS = -T $(BUILD_DIR)/$(LD_SCRIPT) -Map $(TARGET).map -T symbol_addrs.core1.$(VERSION).txt -T undefined_syms.$(VERSION).txt -T undefined_syms_auto.txt -T undefined_funcs_auto.txt  --no-check-sections
 
@@ -202,7 +202,7 @@ $(BUILD_DIR)/$(LD_SCRIPT): $(LD_SCRIPT)
 
 LDFLAGS = -T $(BUILD_DIR)/$(LD_SCRIPT) -Map $(TARGET).map -T symbol_addrs.global.$(VERSION).txt -T symbol_addrs.core1.$(VERSION).txt -T symbol_addrs.core2.$(VERSION).txt -T undefined_syms.$(VERSION).txt -T undefined_syms_auto.txt -T undefined_funcs_auto.txt  --no-check-sections
 $(BUILD_DIR)/banjo.$(VERSION).elf: LDFLAGS = -T $(BUILD_DIR)/$(LD_SCRIPT) -Map $(TARGET).map -T symbol_addrs.global.$(VERSION).txt -T undefined_syms.$(VERSION).txt -T undefined_syms_auto.txt -T undefined_funcs_auto.txt  --no-check-sections
-$(BUILD_DIR)/core1.$(VERSION).elf: LDFLAGS = -T $(BUILD_DIR)/$(LD_SCRIPT) -Map $(TARGET).map -T symbol_addrs.global.$(VERSION).txt -T symbol_addrs.core2.$(VERSION).txt -T undefined_syms.$(VERSION).txt -T undefined_syms_auto.txt -T undefined_funcs_auto.txt  --no-check-sections -T symbol_addrs.core2.$(VERSION).txt
+$(BUILD_DIR)/core1.$(VERSION).elf: LDFLAGS = -T $(BUILD_DIR)/$(LD_SCRIPT) -Map $(TARGET).map -T symbol_addrs.global.$(VERSION).txt -T symbol_addrs.core2.$(VERSION).txt -T undefined_syms.$(VERSION).txt -T undefined_syms_auto.txt -T undefined_funcs_auto.txt  --no-check-sections
 $(BUILD_DIR)/core2.$(VERSION).elf: LDFLAGS = -T $(BUILD_DIR)/$(LD_SCRIPT) -Map $(TARGET).map -T symbol_addrs.global.$(VERSION).txt -T symbol_addrs.core1.$(VERSION).txt -T undefined_syms.$(VERSION).txt -T undefined_syms_auto.txt -T undefined_funcs_auto.txt  -T level_symbols.$(VERSION).txt --no-check-sections
 
 $(TARGET).elf: dirs $(O_FILES) $(BUILD_DIR)/$(LD_SCRIPT) #add

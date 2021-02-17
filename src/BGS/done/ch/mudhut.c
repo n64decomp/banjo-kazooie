@@ -53,7 +53,7 @@ void func_8038EA90(void){
 Actor *func_8038EAD0(ActorMarker *this, Gfx** gdl, Mtx** mtx, u32 arg3){
     Actor *thisActor;
 
-    thisActor = func_80329958(this);
+    thisActor = func_80329958();
     func_8033A45C(1, thisActor->unk10_31 == 1);
     if(thisActor->unk10_31 == 3)
         return thisActor;
@@ -61,14 +61,13 @@ Actor *func_8038EAD0(ActorMarker *this, Gfx** gdl, Mtx** mtx, u32 arg3){
     return func_80325888(this, gdl, mtx, arg3);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/BGS/ch/code_8640/func_8038EB4C.s")
-// void func_8038EB4C(ActorMarker *this){
-//     Actor *thisActor;
+void func_8038EB4C(ActorMarker *this){
+    Actor *thisActor;
 
-//     thisActor = func_80329958(this);
-//     thisActor = func_8032813C(actor_wood_demolished, &thisActor->position_x, NULL);
-//     thisActor = func_8032813C(actor_steam_2, &thisActor->position_x, NULL);
-// }
+    thisActor = func_80329958();
+    thisActor = func_8032813C(actor_wood_demolished, &thisActor->position_x, NULL);
+    thisActor = func_8032813C(actor_steam_2, &thisActor->position_x, NULL);
+}
 
 void func_8038EB8C(Actor *this){
     
@@ -84,7 +83,7 @@ void func_8038EB8C(Actor *this){
 
         switch(this->unk10_31){
             case 1:
-                this->marker->propPtr->unkB_3 = 1;
+                this->marker->propPtr->unk8_3 = 1;
                 func_8028E9A4(plyrPos);
                 diffPos[0] = plyrPos[0] - this->position_x;
                 diffPos[1] = plyrPos[1] - this->position_y;
@@ -103,7 +102,7 @@ void func_8038EB8C(Actor *this){
                     
                     func_8030E8B4(0x7FFB585B, &this->position_x, 0xBB8012C);
                     func_80328A84(this, 2);
-                    this->marker->propPtr->unkB_3 = 0;
+                    this->marker->propPtr->unk8_3 = 0;
                     func_803298AC(this);
                     if(tmp == 5){
                         func_8025A6EC(0x2D, 28000);
@@ -117,13 +116,13 @@ void func_8038EB8C(Actor *this){
                 }
                 break;
             case 2:
-                this->marker->propPtr->unkB_3 = 0;
+                this->marker->propPtr->unk8_3 = 0;
                 if(0.99 < func_802877D8(this->movement)){
                     this->unk10_31 = 3;
                 }
                 break;
             case 3:
-                this->marker->propPtr->unkB_3 = 0;
+                this->marker->propPtr->unk8_3 = 0;
                 break;
         }
     }

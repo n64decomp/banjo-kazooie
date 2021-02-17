@@ -46,6 +46,7 @@ jiggyscore_80321120 = 0x80321120;
 jiggyscore_leveltotal = 0x803211AC;
 jiggyscore_total = 0x8032123C;
 jiggyscore_info = 0x8032128C;
+timedFuncAdd_0 = 0x80324EAC;
 func_80325340 = 0x80325340;
 actor_copy = 0x80329C40;
 actor_collisionOff = 0x8032AA74;

@@ -19,11 +19,13 @@ typedef struct prop_prop_s{
 
 typedef struct actor_prop_s{
     struct actorMarker_s* marker;
-    u8 pad4[0x7];
-    u8 padB_7:3;
-    u8 unkB_4:1;
-    u8 unkB_3:1;
-    u8 padB_2:3;
+    u8 pad4[0x4];
+    u32 unk8_31:24;
+    u32 pad8_7:3;
+    u32 unk8_4:1;
+    u32 unk8_3:1;
+    u32 pad8_2:2;
+    u32 unk8_0:1;
     u8 padC;
 } ActorProp;
 
@@ -124,6 +126,20 @@ typedef struct chyumblie_s{
     u32 unkC;
 } ActorLocal_Yumblie;
 
+typedef struct ch_bgs_6730_s{
+    u32  unk0;
+    u32  unk4;
+    s32  unk8;
+    s32  unkC;
+} ActorLocal_BGS_6730;
+
+typedef struct chflibbit_s{
+    u8  pad0;
+    u8  unk1;
+    s16 unk2[3];
+    s16 unk8[3];
+}ActorLocal_Flibbit;
+
 typedef struct chleafboat_s{
     f32 unk0;
     f32 unk4;
@@ -179,11 +195,12 @@ typedef struct actor_s{
     f32 unk1C;
     f32 unk20;
     f32 unk24;
-    u8  pad28[4];
+    f32 unk28; //used in cheggs
     f32 unk2C;
     u8  pad30[8];
     u32  unk38_31:10;
-    u32  pad38_21:22;
+    u32  pad38_21:21;
+    u32  unk38_0:1;
     u8  pad3C[0x8];
     s32 unk44_0:28;
     s32 despawn_flag:1;
@@ -204,6 +221,8 @@ typedef struct actor_s{
         ActorLocal_PinkEgg  pinkEgg; 
         ActorLocal_Yumblie  yumblie; 
         ActorLocal_Leafboat leafboat;
+        ActorLocal_BGS_6730 bgs_6730;
+        ActorLocal_Flibbit  flibbit;
         u8  pad7C[0x70];
     };
     //u8  padAC[0x44];
@@ -286,7 +305,7 @@ typedef struct cude_s{
 typedef struct actor_array{
     u32 unk0;
     u32 unk4;
-    Actor data[];
+    Actor data[]; //variable size array
 }ActorArray;
 
 #endif

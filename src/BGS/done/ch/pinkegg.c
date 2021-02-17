@@ -74,7 +74,7 @@ void func_80387AB0(ActorMarker *this, u32 arg1){
     ActorLocal_PinkEgg *tmp;
     
     thisActor = func_80329958(this);
-    this->propPtr->unkB_3 = 0;
+    this->propPtr->unk8_3 = 0;
     func_8030E510(0xAA, 28000);
     func_80328A84(thisActor, 3);
     func_803298AC(thisActor);
@@ -92,7 +92,7 @@ void func_80387AB0(ActorMarker *this, u32 arg1){
 //pinkEggUpdate?
 void func_80387B80(Actor *this){
     if(!this->unkF4_21){
-        this->marker->propPtr->unkB_3 = 1;
+        this->marker->propPtr->unk8_3 = 1;
         func_803300A8(this->marker, NULL, NULL, func_80387AB0);
         this->unkF4_21 = 1;
     }

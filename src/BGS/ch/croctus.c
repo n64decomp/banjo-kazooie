@@ -3,8 +3,11 @@
 #include "variables.h"
 
 
+//Actor * func_80329958(ActorMarker *);
+
 void func_80387D18(ActorMarker *, u32);
 Actor *func_8038860C(ActorMarker *, Gfx**, Mtx **, u32);
+
 
 extern u32 bgs_D_803907B8[5];
 
@@ -18,30 +21,32 @@ void func_80387C90(Actor *arg0){
 
 
 /* .code */
-#pragma GLOBAL_ASM("asm/nonmatchings/BGS/ch/croctus/func_80387D18.s")
-// void func_80387D18(ActorMarker * arg0, u32 arg1){
-//     Actor* actPtr;
-//     Actor* nextActPtr;
-//     //f32 spawnPos[3];
+void func_80387D18(ActorMarker * arg0, u32 arg1){
+    Actor* actPtr;
+    Actor* nextActPtr;
 
-//     actPtr = func_80329958(arg0);
-//     nextActPtr = func_8032818C(0x6A, &actPtr);
-//     nextActPtr->unk10_31 = 2;
-//     nextActPtr->unkF4_8 = 0x8C;
-//     nextActPtr->unk60 = 3.0f;
-//     nextActPtr->unk38_31 = arg1;
-// }
+    actPtr = func_80329958(arg0);
+    nextActPtr = func_8032818C(0x6A, &actPtr);
+    nextActPtr->unk10_31 = 2;
+    nextActPtr->unkF4_8 = 0x8C;
+    nextActPtr->unk60 = 3.0f;
+    nextActPtr->unk38_31 = arg1;
+    if(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/BGS/ch/croctus/func_80387D90.s")
-// void func_80387D90(ActorMarker * arg0){
+// void *func_80387D90(ActorMarker * arg0){
 //     Actor* actPtr;
+//     ActorProp *propPtr;
 //     f32 spawnPos[3];
-
+//     //if(arg0);
 //     actPtr = func_80329958(arg0);
+//     //if(arg0);
 //     spawnPos[0] = actPtr->position_x;
 //     spawnPos[1] = actPtr->position_y;
 //     spawnPos[2] = actPtr->position_z;
-//     arg0->propPtr->unkB_3 = 0;
+//     if(arg0);
+//     arg0->propPtr->unk8_3 = 0;
 //     func_802BAFE4(0x19);
 //     jiggySpawn(0x22, spawnPos);
 //     func_8025A6EC(0x2D, 0x7FFF);
@@ -49,14 +54,19 @@ void func_80387C90(Actor *arg0){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/BGS/ch/croctus/func_80387E00.s")
 // void func_80387E00(ActorMarker * arg0){
-//     func_803262E4(func_80329958(arg0));
+//     Actor * thisActor = func_80329958(arg0);
+
+//     func_803262E4(thisActor);
+//     if(arg0);
 //     func_802C3D3C(func_80387D18, arg0, 0x1E);
+    
 // }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/BGS/ch/croctus/func_80387E40.s")
-// void func_80387E40(ActorMarker * arg0){
-//     func_80326310(func_80329958(arg0));
-// }
+void func_80387E40(ActorMarker * arg0){
+    Actor *thisActor = func_80329958(arg0);
+    func_80326310(thisActor);
+    if(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/BGS/ch/croctus/func_80387E68.s")
 

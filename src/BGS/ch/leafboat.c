@@ -94,7 +94,7 @@ void func_8038FD88(ActorMarker *this, u32 arg1){
 //         case 1:
 //             if(this->marker->unk2C_2)
 //                 func_80326224(this);
-//             this->marker->propPtr->unkB_3 = 1;
+//             this->marker->propPtr->unk8_3 = 1;
 //             this->unk1C = 1.0f;
 //             this->unk124_19 = -1;
 //             if(this->unk54 != 0.0f){
@@ -104,7 +104,7 @@ void func_8038FD88(ActorMarker *this, u32 arg1){
 //         case 2:
 //             if(this->marker->unk2C_2)
 //                 func_80326224(this);
-//             this->marker->propPtr->unkB_3 = 1;
+//             this->marker->propPtr->unk8_3 = 1;
 //             this->unk1C = 1.0f;
 //             if(15.0f <= this->unk2C){
 //                 func_80328A84(this, 3);
