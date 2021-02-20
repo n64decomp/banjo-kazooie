@@ -24,7 +24,8 @@ typedef struct actor_prop_s{
     u32 pad8_7:3;
     u32 unk8_4:1;
     u32 unk8_3:1;
-    u32 pad8_2:2;
+    u32 pad8_2:1;
+    u32 unk8_1:1;
     u32 unk8_0:1;
     u8 padC;
 } ActorProp;
@@ -36,17 +37,21 @@ typedef struct actorMarker_s{
     u32         pad14_31:10;
     u32         unk14_21:1;
     u32         pad14_20:21;
-    u8          pad18[0x14];
+    u32         unk18;
+    u8          unk1C[0x10];
     u32         actrArrayIdx:11; //unk2C
     u32         pad2C_21:18;
     u32         unk2C_2:1;
     u32         pad2C_1:1;
     u32         collidable:1;
-    u8          pad30[0xC];
-    u32         pad3C_31:30;
-    u32         unk3F_1:1;
-    u32         pad3F_0:1;
-    u8          pad40[0x20];
+    void        (*unk30)(struct actorMarker_s *);
+    u8          pad34[0x8];
+    u32         pad3C_31:17;
+    u32         modelId:13;
+    u32         unk3C_1:1;
+    u32         pad3C_0:1;
+    u8          pad40[0x1C];
+    s32         unk5C;
 } ActorMarker;
 
 
@@ -126,6 +131,16 @@ typedef struct chyumblie_s{
     u32 unkC;
 } ActorLocal_Yumblie;
 
+typedef struct ch_bgs_2270_s{
+    u32 unk0;
+    vector(struct7s) *unk4;
+    u8  unk8;
+    u8  unk9;
+    u8  unkA;
+    u8  unkB;
+    f32  unkC;
+} ActorLocal_BGS_2270;
+
 typedef struct ch_bgs_6730_s{
     u32  unk0;
     u32  unk4;
@@ -139,6 +154,11 @@ typedef struct chflibbit_s{
     s16 unk2[3];
     s16 unk8[3];
 }ActorLocal_Flibbit;
+
+typedef struct chtanktupbody_s{
+    s32 unk0[4];
+    s32 unk10;
+}ActorLocal_TanktupBody;
 
 typedef struct chleafboat_s{
     f32 unk0;
@@ -202,9 +222,11 @@ typedef struct actor_s{
     u32  pad38_21:21;
     u32  unk38_0:1;
     u8  pad3C[0x8];
-    s32 unk44_0:28;
-    s32 despawn_flag:1;
-    s32 unk44_1D:3;
+    u32 pad44_31:8;
+    u32 modelCacheIndex:10; //modelCacheIndex
+    u32 pad44_4:10;
+    u32 despawn_flag:1;
+    u32 pad44_0:3;
     u8  pad48[0x8];
     f32 yaw; //0x50
     f32 unk54; //0x54
@@ -221,8 +243,10 @@ typedef struct actor_s{
         ActorLocal_PinkEgg  pinkEgg; 
         ActorLocal_Yumblie  yumblie; 
         ActorLocal_Leafboat leafboat;
+        ActorLocal_BGS_2270 bgs_2270;
         ActorLocal_BGS_6730 bgs_6730;
         ActorLocal_Flibbit  flibbit;
+        ActorLocal_TanktupBody tanktup;
         u8  pad7C[0x70];
     };
     //u8  padAC[0x44];
@@ -247,7 +271,13 @@ typedef struct actor_s{
     u32  unk124_6:1;
     u32  pad124_5:6;
     f32 scale;
-    u8  pad12C[0x1C];
+    u8  pad12C[0x8];
+    vector(struct2s) **unk134; //vector<struct2s>
+    u32 unk138_31:7;
+    u32 unk138_24:1;
+    u32 unk138_23:24;
+
+    u8  pad13C[0xC];
     void *unk148;
     u8  pad14C[0x20];
     u32  pad16C_31:27;

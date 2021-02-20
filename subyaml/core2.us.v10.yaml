@@ -192,6 +192,7 @@ segments:
   - [0x637D0, c]
   - [0x654C0, c]
   - [0x66490, c]
+  - [0x66690, c, core2/vla]
   - [0x66AB0, c]
   - [0x67490, c, core2/gc/bound]
   - [0x67650, c]

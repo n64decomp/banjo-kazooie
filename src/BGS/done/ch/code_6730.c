@@ -148,7 +148,7 @@ void func_8038CEE8(Actor *this){
         D_80391240[3] = 0;
         func_802CADC0(0x12, 0);
         func_802CADC0(0x10, 0);
-        if(jiggyscore_80320F7C(0x24)){
+        if(jiggyscore_80320F7C(jiggy_bgs_flibbits)){
             func_8038CC08(this,6);
             return;
         }else{
@@ -198,7 +198,7 @@ void func_8038CEE8(Actor *this){
     }
     if(this->unk10_31 == 1 || this->unk10_31 == 3){
         if( (bgs6730->unk0) 
-          && !jiggyscore_80320F7C(0x24)
+          && !jiggyscore_80320F7C(jiggy_bgs_flibbits)
           && !bgs6730->unk8
           && !bgs6730->unkC
         ){

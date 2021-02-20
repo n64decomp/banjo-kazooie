@@ -23,21 +23,21 @@ void func_8038EB8C(Actor *this);
 ActorAnimationInfo D_80390B30[4] = {
     {0, 0.0f},
     {0, 0.0f},
-    {0x4E, 0.25f},
-    {0x4E, 1000000.0f}
+    {anim_mudhut_smashing, 0.25f},
+    {anim_mudhut_smashing, 1000000.0f}
 };
 
 extern u32 D_80390B50[6] = {0xA, 0xA, 0xB, 0xA, 0xA, 0xC
 };
 
-ActorInfo D_80390B68 = {0xD5, actor_mud_hut, 0x7D8, 0x01, D_80390B30,
+ActorInfo D_80390B68 = {0xD5, actor_mud_hut, model_mudhut_top, 0x01, D_80390B30,
     func_8038EB8C, func_80326224, func_8038EAD0,
     {0,0,0,0}, 0.0f, {0,0,0,0}
 };
 
 /* .code section */
 void func_8038EA30(void){
-    if((func_802E49FC() != 0x7) && (1.5 < func_8028E80C(2)) ){
+    if((getGameMode() != game_mode_attract_demo) && (1.5 < func_8028E80C(2)) ){
         func_8028F710(2, 1.5);
     }
 }
@@ -64,9 +64,10 @@ Actor *func_8038EAD0(ActorMarker *this, Gfx** gdl, Mtx** mtx, u32 arg3){
 void func_8038EB4C(ActorMarker *this){
     Actor *thisActor;
 
-    thisActor = func_80329958();
+    thisActor = func_80329958(this);
     thisActor = func_8032813C(actor_wood_demolished, &thisActor->position_x, NULL);
     thisActor = func_8032813C(actor_steam_2, &thisActor->position_x, NULL);
+    if(this);
 }
 
 void func_8038EB8C(Actor *this){

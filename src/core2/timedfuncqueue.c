@@ -21,29 +21,29 @@ typedef struct timed_function_queue_s{
     };
     s32  arg[25];
     
-}TimedFunctionQueue;
+}TimedFunction;
 
-typedef struct struct_2_s{
+typedef struct tfq_struct_2_s{
     u32 unk0;
     u32 unk4;
     u32 unk8;
     f32 unkC[3];
     f32 unk18;
     f32 unk1C;
-}Struct2;
+}timefuncqueue_Struct2;
 
-typedef struct struct_3_s{
-    void *unk0; //timedFuncArrayPtr
-    f32 unk4; //currentFuncQueueTime;
-}Struct3;
+typedef struct timed_func_array_s{
+    VLA *ptr;
+    f32 time;
+}TimedFunctionArray;
 
 typedef struct delayed_jiggy_s{
     u32 id;
     f32 pos[3];
 } DelayedJiggyInfo;
 
-void func_80324C30(DelayedJiggyInfo *);
-TimedFunctionQueue* __timedFuncQueue_insert(f32, u32, void(* func)(u32, u32, u32, u32, u32), u32, u32, u32, u32, u32);
+//void __spawnjiggy(DelayedJiggyInfo *);
+TimedFunction* __timedFuncQueue_insert(f32, u32, void(* func)(u32, u32, u32, u32, u32), u32, u32, u32, u32, u32);
 void func_8030E760(u32, f32, u32);
 void func_8030E9C4(u32, u32, u32, f32 *, f32, f32);
 
@@ -55,28 +55,28 @@ void func_80325048(f32 time, void(*funcPtr)(u32, u32, u32, u32, u32, u32), u32* 
 
 void func_802BE720(void);
 
-extern Struct3 D_80383380;
+extern TimedFunctionArray D_80383380;
 
 
-TimedFunctionQueue* __timedFuncQueue_insert(f32 time, u32 cnt, void(* funcPtr)(u32, u32, u32, u32, u32), u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4){
-    TimedFunctionQueue * startPtr;
-    TimedFunctionQueue *retVal;
-    TimedFunctionQueue * iPtr;
-    TimedFunctionQueue * endPtr;
+TimedFunction* __timedFuncQueue_insert(f32 time, u32 cnt, void(* funcPtr)(u32, u32, u32, u32, u32), u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4){
+    TimedFunction * startPtr;
+    TimedFunction *retVal;
+    TimedFunction * iPtr;
+    TimedFunction * endPtr;
 
-    startPtr = (TimedFunctionQueue * )func_802ED62C(D_80383380.unk0);
-    endPtr = (TimedFunctionQueue * )func_802ED6D4(D_80383380.unk0);
+    startPtr = (TimedFunction * )vla_getBegin(D_80383380.ptr);
+    endPtr = (TimedFunction * )vla_getEnd(D_80383380.ptr);
     if(endPtr == startPtr){
-        D_80383380.unk4 = 0.0f; 
+        D_80383380.time = 0.0f; 
     }
     else{
-        time += D_80383380.unk4;
+        time += D_80383380.time;
     }
     for(iPtr = startPtr; iPtr < endPtr; iPtr++){
         if(iPtr->time > time)
             break;
     }
-    retVal = (TimedFunctionQueue * )func_802ED7C0(&D_80383380, ((s32)iPtr - (s32)startPtr)/(s32)sizeof(TimedFunctionQueue));
+    retVal = (TimedFunction * )vla_insertNew(&D_80383380, ((s32)iPtr - (s32)startPtr)/(s32)sizeof(TimedFunction));
     retVal->time = time;
     retVal->arg_cnt = cnt;
     retVal->func5 = funcPtr;
@@ -88,7 +88,7 @@ TimedFunctionQueue* __timedFuncQueue_insert(f32 time, u32 cnt, void(* funcPtr)(u
     return retVal;
 }
 
-void __timedFunc_execute(TimedFunctionQueue *arg0){
+void __timedFunc_execute(TimedFunction *arg0){
     if(arg0->arg_cnt == 0)
         arg0->func0();
     else if(arg0->arg_cnt == 1)
@@ -117,7 +117,7 @@ void func_80324A68(u32 arg0, s32 arg1, u32 arg2){
     func_8030E760(arg0, arg1/1000.0f, arg2);
 }
 
-void func_80324AA4(Struct2 *arg0){
+void func_80324AA4(timefuncqueue_Struct2 *arg0){
     func_8030E9C4(arg0->unk0, arg0->unk4, arg0->unk8, &arg0->unkC, arg0->unk18, arg0->unk1C);
 }
 
@@ -138,16 +138,16 @@ void func_80324BA0(u32 arg0){
     }
 }
 
-void func_80324C30(DelayedJiggyInfo *jigInfo){
+void __spawnjiggy(DelayedJiggyInfo *jigInfo){
     jiggySpawn(jigInfo->id, &jigInfo->pos);
 }
 
 void func_80324C58(void){
-    func_802ED620(D_80383380.unk0);
+    vla_clear(D_80383380.ptr);
 }
 
 f32 func_80324C7C(void){
-    return D_80383380.unk4;
+    return D_80383380.time;
 }
 
 void func_80324C88(f32 time, u32 arg0, f32 arg1, u32 arg2){
@@ -168,7 +168,7 @@ void func_80324D2C(f32 time, u32 arg0){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/timedfuncqueue/func_80324D54.s")
 // void func_80324D54(f32 time, u32 arg1, u32 arg2, u32 arg3, f32 * arg4, f32 arg5, f32 arg6){
-//     Struct2 argStruct;
+//     timefuncqueue_Struct2 argStruct;
 //     argStruct.unk0 = arg1;
 //     //argStruct.unk4 = arg2;
 //     argStruct.unk8 = arg3;
@@ -220,7 +220,7 @@ void func_80324FF8(f32 time, void(*funcPtr)(u32, u32, u32, u32, u32), u32 arg0, 
 }
 
 void func_80325048(f32 time, void(*funcPtr)(u32, u32, u32, u32, u32, u32), u32* argPtr ){
-    TimedFunctionQueue *q = __timedFuncQueue_insert(time, 6, funcPtr, 0, 0, 0, 0, 0);
+    TimedFunction *q = __timedFuncQueue_insert(time, 6, funcPtr, 0, 0, 0, 0, 0);
     func_80254608(&q->arg[5], argPtr, 0x50);
 }
 
@@ -232,59 +232,60 @@ void func_80325098(f32 time, u32 jiggyId, f32 *position){
     jiggyInfo.pos[1] = position[1];
     jiggyInfo.pos[2] = position[2];
 
-    func_80325048(time, func_80324C30, &jiggyInfo);
+    func_80325048(time, __spawnjiggy, &jiggyInfo);
 }
 
 //timerFuncQueue_Empty
 u32 func_803250DC(void){
-    return !func_802ED690(D_80383380.unk0);
+    return !vla_size(D_80383380.ptr);
 }
 
 //timedFuncQueue_Flush
 void func_80325104(void){
-    TimedFunctionQueue *iPtr;
-    TimedFunctionQueue iFunc;
+    TimedFunction *iPtr;
+    TimedFunction iFunc;
 
-    while(func_802ED690(D_80383380.unk0) > 0){
-        iPtr = func_802ED62C(D_80383380.unk0);
-        func_80254608(&iFunc, iPtr, sizeof(TimedFunctionQueue));
-        func_802ED914(D_80383380.unk0, 0);
+    while(vla_size(D_80383380.ptr) > 0){
+        iPtr = vla_getBegin(D_80383380.ptr);
+        func_80254608(&iFunc, iPtr, sizeof(TimedFunction));
+        vla_remove(D_80383380.ptr, 0);
         __timedFunc_execute(&iFunc);
     }
 }
 
+//timedFuncQueue_Free
 void func_8032517C(void){
-    func_802ED8A4(D_80383380.unk0);
+    vla_free(D_80383380.ptr);
 }
 
 //timedFuncQueue_Init
 void func_803251A0(void){
-    D_80383380.unk0 = func_802ED8C4(0x70, 0x10);
-    D_80383380.unk4 = 0.0f;
+    D_80383380.ptr = vla_new(0x70, 0x10);
+    D_80383380.time = 0.0f;
 }
 
 //timedFuncQueue_update
 void func_803251D4(void){
-    TimedFunctionQueue *iPtr;
-    TimedFunctionQueue iFunc;
+    TimedFunction *iPtr;
+    TimedFunction iFunc;
 
-    if(func_802ED690(D_80383380.unk0) == 0)
+    if(vla_size(D_80383380.ptr) == 0)
         return;
 
-    D_80383380.unk4 += func_8033DD9C();
+    D_80383380.time += func_8033DD9C();
 
-    while(func_802ED690(D_80383380.unk0) > 0){
-        iPtr = func_802ED62C(D_80383380.unk0);
-        if(D_80383380.unk4 < iPtr->time)
+    while(vla_size(D_80383380.ptr) > 0){
+        iPtr = vla_getBegin(D_80383380.ptr);
+        if(D_80383380.time < iPtr->time)
             break;
-        func_80254608(&iFunc, iPtr, sizeof(TimedFunctionQueue));
-        func_802ED914(D_80383380.unk0, 0);
+        func_80254608(&iFunc, iPtr, sizeof(TimedFunction));
+        vla_remove(D_80383380.ptr, 0);
         __timedFunc_execute(&iFunc);
     }
 }
 
 void func_80325288(void){
-    D_80383380.unk0 = func_802ED9E0(D_80383380.unk0);
+    D_80383380.ptr = vla_802ED9E0(D_80383380.ptr);
 }
 
 void func_803252B0(u32 arg0){

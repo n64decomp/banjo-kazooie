@@ -1,7 +1,12 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "structs.h"
 
+void func_8032D9C0(Cube*, Prop*);
+
+extern ModelCache *modelCache; //model pointer array pointer
+extern u32 D_80383444;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032BC90.s")
 
@@ -178,7 +183,6 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032F3D4.s")
 
-void func_8032D9C0(Cube*, Prop*);
 
 func_8032F430(ActorMarker *this){
     func_8032D9C0(this->cubePtr, this->propPtr);
@@ -237,7 +241,10 @@ func_8032F430(ActorMarker *this){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_803300E0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_803300E8.s")
+//actorMarker_setModelId
+void func_803300E8(ActorMarker *this, s32 modelIndex){
+    this->modelId = modelIndex;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_80330104.s")
 
@@ -249,7 +256,19 @@ func_8032F430(ActorMarker *this){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8033056C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_803305AC.s")
+//modelCache_Init
+void func_803305AC(void){
+    s32 i;
+
+    modelCache = (ModelCache *)malloc(0x3D5 * sizeof(ModelCache));
+    for(i = 0; i<0x3D5; i++){
+        modelCache[i].modelPtr = NULL;
+        modelCache[i].unk4 = 0;
+        modelCache[i].unk8 = 0;
+        modelCache[i].unkC = 0;
+    }
+    D_80383444 = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_803306C8.s")
 
@@ -259,7 +278,32 @@ func_8032F430(ActorMarker *this){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_80330B10.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_80330B1C.s")
+//ActorMarker_getModelPtr
+void *func_80330B1C(ActorMarker *this){
+    Actor* thisActor;
+    void * model;
+    ModelCache *modelInfo;
+
+    if(this->modelId == 0)
+        return NULL;
+
+    thisActor = func_80329958(this);
+    if((modelInfo = &modelCache[thisActor->modelCacheIndex])->modelPtr == NULL){
+        model = assetcache_get(this->modelId);
+        modelInfo->modelPtr = model;
+        if(func_8033A110(model)){
+            modelInfo->unkC = func_80349C3C();
+            func_80349D00(modelInfo->unkC, func_8033A110(modelInfo->modelPtr));
+        }
+        func_8032ACA8(thisActor);
+    }
+    func_8032AB84(thisActor);
+    if(!this->unk18 && this->propPtr->unk8_1 && modelInfo->modelPtr && func_8033A12C(modelInfo->modelPtr)){
+        this->unk18 = func_80330B10();
+    }
+    modelInfo->unk10 = func_8023DB5C();
+    return modelInfo->modelPtr;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_80330C48.s")
 
@@ -271,9 +315,14 @@ func_8032F430(ActorMarker *this){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_80330DC4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_80330DE4.s")
+void *func_80330DE4(ActorMarker *this){
+    Actor *thisActor = func_80329958(this);
+    return (modelCache + thisActor->modelCacheIndex)->modelPtr;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_80330E28.s")
+void *func_80330E28(Actor* this){
+    return (modelCache + this->modelCacheIndex)->modelPtr;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_80330E54.s")
 
@@ -339,7 +388,27 @@ func_8032F430(ActorMarker *this){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8033297C.s")
 
+extern ActorMarker *D_8036E7C8;
+extern s8 D_80383428;
+
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_803329AC.s")
+// void func_803329AC(void){
+//     u8 *iPtr;
+//     s32 i;
+    
+//     D_8036E7C8 = (ActorMarker *)malloc(0xE0*sizeof(ActorMarker));
+//     // for(i = 0; i < 0xE0/8; i++){
+//     //     (&D_80383428)[i] = 0;
+//     // }
+//     if(iPtr = &D_80383428);
+//     do{
+//         *(iPtr++) = 0;
+//     }while((u32)iPtr < (u32)&D_80383444);
+       
+//     for(i =0; i<0xE0; i++){
+//         D_8036E7C8[i].unk5C = 0;
+//     }
+// }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_80332A38.s")
 

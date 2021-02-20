@@ -68,6 +68,25 @@ f32 banjo_getRoll(void);
 
 f32 banjo_getYaw(void);
 
+/* vla - variable length array*/
+void    vla_clear(VLA *this);
+void *  vla_getBegin(VLA *this);
+void *  vla_at(VLA *this, u32 n);
+s32     vla_getIndex(VLA *this, void *element);
+s32     vla_size(VLA *this);
+void *  vla_getEnd(VLA *this);
+void *  vla_pushBackNew(VLA **thisPtr);
+void *  vla_insertNew(VLA **thisPtr, s32 indx);
+void    vla_free(VLA *this);
+VLA *   vla_new(u32 elemSize, u32 cnt);
+void    vla_remove(VLA *this, u32 indx);
+void    vla_popBack_n(VLA *this, u32 n);
+void    vla_assign(VLA *this, s32 indx, void* value);
+VLA *   vla_802ED9E0(VLA *this);
+
+
+
+
 void *assetcache_get(s32 arg0);
 
 void func_803272F8(s32 *, s32, ActorInfo*, u32);

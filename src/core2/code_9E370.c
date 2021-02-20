@@ -239,7 +239,11 @@ void func_80328A84(Actor * arg0, u32 arg1){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_803298AC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_803298D8.s")
+//actor_loopAnimation
+void func_803298D8(Actor *this){
+    if(this->movement)
+        func_80287674(this->movement, 2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80329904.s")
 

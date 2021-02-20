@@ -285,6 +285,13 @@ void func_8031C638(struct0 *this, s32 arg1){
 
 /**** BREAK ***/
 
+void func_802CADC0(s32, s32);
+
+s32 func_8031C688(void);
+s32 func_8031C6E4(void);
+s32 func_8031C640(void);
+s32 func_8031C7C8(void);
+
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031C640.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031C688.s")
@@ -293,9 +300,49 @@ void func_8031C638(struct0 *this, s32 arg1){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031C7C8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031C7EC.s")
+//checks is a cutscene can be inturrupted and performs take me there
+void func_8031C7EC(s32 cs_map, s32 arg1, s32 return_map, s32 return_exit, u32 (* condFunc)(void)){
+    if(func_803348C0() != cs_map)
+        return;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031C880.s")
+    if((condFunc && condFunc()) || func_802CACF8(arg1)){
+        func_802CADC0(arg1, 0);
+        func_802E4078(return_map, (return_exit == -1)? 0: return_exit, 1);
+    }
+}
+
+//check cutscene interrupts
+s32 func_8031C880(void){
+    func_8031C7EC(0x86, 0, 0x89, -1, NULL);
+    func_8031C7EC(0x7d, 0, 0x7c, -1, NULL);
+    func_8031C7EC(0x7c, 0, 0x86, -1, NULL);
+    func_8031C7EC(0x89, 0, 1, 0x12, NULL);
+    func_8031C7EC(0x85, 0, 0x7b, -1, NULL);
+    func_8031C7EC(0x7b, 1, 0x81, -1, NULL);
+    func_8031C7EC(0x81, 0, 0x7d, -1, NULL);
+    func_8031C7EC(0x82, 0, 0x69, 0x12, func_8031C688);
+    func_8031C7EC(0x83, 0, 0x1f, -1, func_8031C6E4);
+    func_8031C7EC(0x87, 0, 0x88, -1, NULL);
+    func_8031C7EC(0x94, 0, 0x8e, 4, NULL);
+    func_8031C7EC(0x88, 1, 0x96, -1, NULL);
+    func_8031C7EC(0x98, 0, 0x1f, -1, NULL);
+    func_8031C7EC(0x99, 0, 0x1f, -1, NULL);
+    func_8031C7EC(0x20, 0, 0x98, -1, NULL);
+    func_8031C7EC(0x95, 0, 0x99, -1, NULL);
+    func_8031C7EC(0x97, 0, 0x99, -1, func_8031C7C8);
+    func_8031C7EC(0x85, 0xC, 1, 0x12, func_8031C640);
+    func_8031C7EC(0x7B, 0xC, 1, 0x12, func_8031C640);
+    func_8031C7EC(0x81, 0xC, 1, 0x12, func_8031C640);
+    func_8031C7EC(0x7D, 0xC, 1, 0x12, func_8031C640);
+    func_8031C7EC(0x7C, 0xC, 1, 0x12, func_8031C640);
+    func_8031C7EC(0x86, 0xC, 1, 0x12, func_8031C640);
+    func_8031C7EC(0x89, 0xC, 1, 0x12, func_8031C640);
+    if(func_803348C0() == 0x95 && func_802CACF8(1)){
+        func_8034B9E4();
+        func_802CADC0(1, 0);
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031CB50.s")
 

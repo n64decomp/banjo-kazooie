@@ -4,11 +4,19 @@
 
 #include "prop.h"
 
-
-
-void   func_80326224(Actor *);
 Actor* func_80325888(ActorMarker *, Gfx **, Mtx**, u32);
 
+void   func_80326224(Actor *);
+
+Actor* func_8032813C(s32, f32*, s32);
+void func_80328B8C(f32*, s32, f32, s32);
+
+void func_80324E88(f32);
+
+void func_80324F20(f32, void(*)(s32, s32), s32, s32);
+
+
+s32 func_802878E8(Movement *, f32);
 
 void func_8038F6A4(Actor *);
 void func_8038FBF8(Actor *);
@@ -76,22 +84,88 @@ ActorInfo D_80390D48 = {0x6D, 0xEC, 0x3F2, 0x01, D_80390C30,
     {0,0,1,0x66}, 0.0f, {0,0,0,0}
 };
 
+/* .rodata */
+extern f32 D_803911C0;
 
 /* .code */
-#pragma GLOBAL_ASM("asm/nonmatchings/BGS/ch/tanktup/func_8038F470.s")
+void func_8038F470(ActorMarker *this, s32 arg1, s32 arg2){
+    Actor* thisActor;
+    f32 pad;
+    Actor* sp24;
+    f32 sp18[3];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/BGS/ch/tanktup/func_8038F51C.s")
+    thisActor = func_80329958(this);
+    sp18[0] = thisActor->position_x;
+    sp18[1] = thisActor->position_y;
+    sp18[2] = thisActor->position_z;
+    sp18[1] += 50.0f;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/BGS/ch/tanktup/func_8038F570.s")
+    sp24 = func_8032813C(arg2 + 0xe9, sp18, (s32)thisActor->yaw);
+    func_80328B8C(sp24, arg1 + 1, 0, -1);
+    sp24->unk10_4 = arg2;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/BGS/ch/tanktup/func_8038F5E4.s")
+void func_8038F51C(Actor *this){
+    Actor * spawnPtr;
+    spawnPtr = func_80326D68(&this->position_x, 0xe8, -1, 0);
+    spawnPtr->tanktup.unk0[this->unk10_4] = 1;
+    spawnPtr->tanktup.unk10 = 1;
+}
+
+s32 func_8038F570(s16 *arg0){
+    f32 pos[3];
+    Actor * spawnPtr;
+
+    pos[0] = (f32)arg0[0];
+    pos[1] = (f32)arg0[1];
+    pos[2] = (f32)arg0[2];
+    spawnPtr = func_80326D68(pos, 0xe8, -1, 0);
+    return spawnPtr->unk10_31 == 3;
+
+
+}
+
+void func_8038F5E4(s32 arg0, s32 arg1, s32 arg2){
+    func_80324E88(0.0f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/BGS/ch/tanktup/func_8038F610.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/BGS/ch/tanktup/func_8038F6A4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/BGS/ch/tanktup/func_8038FB40.s")
+//===BREAK
 
-#pragma GLOBAL_ASM("asm/nonmatchings/BGS/ch/tanktup/func_8038FB84.s")
+void func_8038FB40(ActorMarker *this, s32 arg1){
+    Actor * thisActor;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/BGS/ch/tanktup/func_8038FBF8.s")
+    thisActor = func_80329958(this);
+    func_80328A84(thisActor, 2);
+    func_803298AC(thisActor);
+    func_8030E624(0x665ff80A);
+}
+
+void func_8038FB84(ActorMarker *this, s32 arg1){
+    Actor *thisActor;
+
+    thisActor = func_80329958(this);
+    func_8030E8B4(0x7FFFF887, &thisActor->position_x, 0x0BB803E8);
+    func_80324F20(D_803911C0, func_8038FB40, this, arg1);
+    func_8038F51C(thisActor);
+    this->collidable = 0;
+}
+
+void func_8038FBF8(Actor *this){
+    if(!this->unkF4_21){
+        this->unkF4_21 = 1;
+        this->marker->propPtr->unk8_3 = 1;
+        func_803300A8(this->marker, NULL, NULL, func_8038FB84);
+    }
+    if(this->unk10_31 == 2){
+        if(func_802878E8(this->movement, 0.65f)){
+            func_8030E540(0x7C);
+        }
+        if(func_802878C4(this->movement)){
+            func_803282F4(this->marker);
+        }
+    }
+}

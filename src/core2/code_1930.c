@@ -59,9 +59,18 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_1930/func_80289090.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_1930/func_802890D0.s")
+void func_802890D0(VLA** arg0){
+    vla_free(*arg0);
+    free(arg0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_1930/func_802890FC.s")
+vector(struct2s) **func_802890FC(void){
+    vector(struct2s) **ptr = (vector(struct2s) **)malloc(sizeof(vector(struct2s) **));
+    *ptr = vla_new(sizeof(struct2s), 2);
+    func_80288C7C(ptr);
+    return ptr;
+}
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_1930/func_8028913C.s")
 

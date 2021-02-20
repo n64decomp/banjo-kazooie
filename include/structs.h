@@ -3,6 +3,17 @@
 
 #include <ultra64.h>
 
+typedef struct variable_length_array{
+    s32 elem_size;
+    void * begin;
+    void * end;
+    void * mem_end;
+    u8  data[];
+}VLA;
+
+#define vector(T) VLA
+//^defined to keep element type with vla
+
 typedef struct bk_sprite_s{
     s16 frameCnt;
     s16 type;
@@ -90,5 +101,75 @@ typedef struct struct_1_s{
     u8 pad1C[4];
 } struct1;
 
+typedef struct struct_2_s{
+    u8 pad0[0x18];
+} struct2s;
+
+typedef struct struct_3_s{
+    u32 unk0;
+    f32 unk4;
+    f32 unk8;
+    f32 unkC;
+    f32 unk10;
+    f32 unk14;
+    f32 unk18;
+    u8 unk1C;
+    u8 pad1D[0x3];
+    vector(struct struct_4_s) *unk20;
+    s32 unk24;
+    s32 unk28;
+    void *unk2C;
+    f32 unk30;
+    u8 unk34;
+    u8 pad35[0x1B];
+} struct3s;
+
+typedef struct struct_4_s{
+    f32 unk0;
+    f32 unk4;
+    f32 unk8;
+    f32 unkC;
+    f32 unk10;
+    f32 unk14;
+    u8 unk18;
+    u8 pad19[3];
+} struct4s;
+
+typedef struct struct_5_s{
+    u8 pad0[0x38];
+}struct5s;
+
+typedef struct struct_6_s{
+    f32 unk0;
+    f32 unk4;
+    f32 unk8;
+    f32 unkC;
+    f32 unk10;
+    f32 unk14;
+    u32 unk18;
+    vector(struct5s) *unk1C;
+    s16 unk20;
+    u8 unk22;
+    u8 pad23[1];
+    void *unk24;
+    void *unk28;
+    void *unk2C;
+    void *unk30;
+    u8    unk34;
+    u8 pad35[0x3];
+    f32 unk38;
+}struct6s;
+
+typedef struct struct_7_s{
+    u32 unk0;
+}struct7s;
+
+typedef struct model_cache_s{
+    void * modelPtr;
+    s32     unk4; 
+    s32     unk8;
+    u32     unkC;
+    u32     unk10;
+} ModelCache;
 
 #endif
