@@ -41,7 +41,6 @@ void func_8029F4F0(void){
     }
 }
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/barge/func_8029F60C.s")
 void func_8029F60C(void){
     f32 plyrPos[3];
     player_getPosition(plyrPos);
@@ -49,9 +48,16 @@ void func_8029F60C(void){
 }
 
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/barge/func_8029F644.s")
+s32 func_8029F644(void){
+    return D_8037D2A6;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/barge/func_8029F650.s")
+// void func_8029F650(void){
+//     ActorMarker *plyrMarker;
+
+//     plyrMarker = func_80289F64();
+// }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/barge/func_8029F77C.s")
 
