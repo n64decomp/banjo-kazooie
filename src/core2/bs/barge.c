@@ -5,6 +5,8 @@
 
 f32 func_80297A7C(void);
 void  func_80292864(f32, f32);
+void func_8032728C(f32*, f32, s32, s32(*)(Actor *));
+
 
 extern u8 D_8037D2A4;
 extern u8 D_8037D2A6;
@@ -39,7 +41,13 @@ void func_8029F4F0(void){
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/barge/func_8029F60C.s")
+//#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/barge/func_8029F60C.s")
+void func_8029F60C(void){
+    f32 plyrPos[3];
+    player_getPosition(plyrPos);
+    func_8032728C(plyrPos, 50.0f, 2, func_8029F4E0);
+}
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/barge/func_8029F644.s")
 
