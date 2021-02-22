@@ -33,15 +33,71 @@ extern struct{
     u8 unk1C;
 } D_8037E8E0;
 
+typedef struct map_savestate_s{
+    u32 flags;
+}MapSavestate;
+
+extern MapSavestate *D_8037E650[];
+
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5BEB0/func_802E2E40.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5BEB0/func_802E2E7C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5BEB0/func_802E2ED4.s")
 
+//mapSavestate_save
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5BEB0/func_802E2F2C.s")
+// void func_802E2F2C(s32 map){
+//     u32 **tmp;
+//     u32 wSize;
+//     volatile u32 * sp38;
+//     s32 iBit;
+//     s32 bit_max;
+//     s32 reg_s4;
+//     u32* reg_v1;
+//     u32* valPtr;
 
+      
+//     wSize = 4;
+//     tmp = &D_8037E650[map];
+//     if(*tmp)
+//         free(*tmp);
+      
+//     *tmp = (MapSavestate *) malloc(4*sizeof(u32));
+//     sp38 =  *tmp;
+
+//     *sp38 = mapSpecificFlags_getAll();
+    
+//     iBit = 0x20;
+//     func_80308230(1, sp38);
+//     func_803083B0(-1);
+    
+//     for(reg_s4 = func_803083B0(-2);reg_s4 != -1; reg_s4 = func_803083B0(-2, valPtr)){
+//         if( !(iBit < wSize*sizeof(u32)*8)){
+//             wSize += 4;
+//             *tmp = (MapSavestate *)realloc(*tmp, wSize*sizeof(u32));
+//             reg_v1 = ((s32)D_8037E650[map] + wSize*sizeof(u32));
+//             reg_v1[-1] = 0;
+//             reg_v1[-2] = 0;
+//             reg_v1[-3] = 0;
+//             reg_v1[-4] = 0;
+//         }
+//         valPtr = *tmp;
+//         valPtr[(iBit >> 5)] = (reg_s4)
+//             ? valPtr[(iBit >> 5)] | (1 << (iBit & 0x1f))
+//             : valPtr[(iBit >> 5)] & ~(1 << (iBit & 0x1f));
+        
+//         iBit++;
+        
+//     }
+//     //if(sp38);
+//     *tmp = func_80329CBC(*tmp, *tmp + 4*((iBit + 0x7F) >> 7));   
+// }  
+
+//mapSavestate_apply
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5BEB0/func_802E30AC.s")
+
+//===== BREAK ======//
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5BEB0/func_802E31D0.s")
 

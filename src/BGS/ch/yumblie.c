@@ -168,7 +168,7 @@ u32 func_8038B684(ActorMarker * arg0){
 //     sp50 = func_80335684(this->unk148);
 //     if(this->unk10_31 == 1){
 //         if(func_8025773C(&s0->unk8, sp4C)){
-//             if(func_802CACF8(6) && (0xc > func_8038A9B8(s0->unkC))){
+//             if(mapSpecificFlags_get(6) && (0xc > func_8038A9B8(s0->unkC))){
 //                 func_8038B220(this,2);
 //             }
 //             else{
@@ -201,7 +201,7 @@ u32 func_8038B684(ActorMarker * arg0){
 
 //     }
 //     if(this->unk10_31 == 3){
-//         if( func_8025773C(&s0->unk8,sp4C) || !func_802CACF8(6) ){
+//         if( func_8025773C(&s0->unk8,sp4C) || !mapSpecificFlags_get(6) ){
 //             func_8038B220(this,4);
 //         }
 //     }

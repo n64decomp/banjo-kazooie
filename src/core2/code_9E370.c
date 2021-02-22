@@ -91,7 +91,22 @@ extern u32 D_80378E08;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_803272F8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80328028.s")
+//actor_free
+void func_80328028(ActorMarker *arg0, Actor *arg1){
+    s32 arrayEnd;
+
+    arrayEnd = &D_8036E560->data[D_8036E560->cnt - 1];
+    func_80325FE8(arg1);
+    if((s32)arg1 != arrayEnd)
+        func_80254608(arg1, arrayEnd, 0x180); //memcpy
+    arg1->marker->actrArrayIdx = arg0->actrArrayIdx;
+    D_8036E560->cnt--;
+    if(D_8036E560->cnt + 8 <= D_8036E560->unk4){
+        D_8036E560->unk4 = D_8036E560->cnt + 4;
+        D_8036E560 = (ActorArray *)realloc(D_8036E560, D_8036E560->unk4*sizeof(Actor) + sizeof(ActorArray));
+    }
+    func_8032F430(arg0);//marker_free
+}
 
 Actor *func_8032811C(s32 id, f32 *pos, f32* rot){
     return func_803056FC(id, pos, rot);
@@ -264,11 +279,15 @@ Actor *func_80329958(ActorMarker *this){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80329B68.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/actor_copy.s")
-// void actor_copy(Actor *dst, Actor *src){
-//     dst->marker = src->marker;
-
-// }
+void actor_copy(Actor *dst, Actor *src){
+    dst->marker = src->marker;
+    dst->movement = src->movement;
+    dst->unk44_4 = src->unk44_4;
+    dst->unk148 = src->unk148;
+    dst->unk14C = src->unk14C;
+    dst->unk150 = src->unk150;
+    func_80254608(src, dst, sizeof(Actor));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80329CBC.s")
 

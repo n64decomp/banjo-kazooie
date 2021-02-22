@@ -289,7 +289,7 @@ void func_80325288(void){
 }
 
 void func_803252B0(u32 arg0){
-    func_802CADC0(arg0, 1);
+    mapSpecificFlags_set(arg0, 1);
 }
 
 void func_803252D0(f32 time, u32 arg0){

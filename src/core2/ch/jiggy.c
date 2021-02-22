@@ -18,18 +18,18 @@ Actor *func_802C41D8(f23, f32, f32);
 void func_802C7AB0(ActorMarker * arg0, u32 arg1){
     func_8030E6D4(0x30);
     func_8025A6EC(0x3c, 0x7FF8);
-    func_802CADC0(arg1, 1);
+    mapSpecificFlags_set(arg1, 1);
     func_803282F4(arg0);
 }
 
 void func_802C7AF8(u32 x, u32 y, u32 z, u32 arg3){
     func_802C3F04(func_802C41D8, 0x4c, x, y, z); //spawn steam
     func_802C3F04(func_802C41D8, 0x14f, x, y, z); //spawn destroyed jiggy
-    func_802CADC0(arg3, 1);
+    mapSpecificFlags_set(arg3, 1);
 }
 
 void func_802C7B6C(u32 arg0){
-    func_802CADC0(arg0, 0);
+    mapSpecificFlags_set(arg0, 0);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/ch/jiggy/func_802C7B8C.s")

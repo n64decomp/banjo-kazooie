@@ -174,7 +174,7 @@ void func_803888E4(Actor *this, s32 arg1){
         }else{
             this->unk10_31 = 0x05;
         }
-        func_802CADC0(0, 0);
+        mapSpecificFlags_set(0, 0);
     }//L80388C6C
     if(this->unk10_31 == 4){
         
@@ -220,8 +220,8 @@ void func_80388E94(ActorMarker *this, s32 arg1){
     thisActor = func_80329958(this);
     unqPtr = &thisActor->bgs_2270;
     if((s32)unqPtr->unk0 >= (s32) vla_size(unqPtr->unk4)){
-        if(!func_802CACF8(0) && func_80311480(0xc76, 0, 0, 0, 0, 0))
-            func_802CADC0(0,1);
+        if(!mapSpecificFlags_get(0) && func_80311480(0xc76, 0, 0, 0, 0, 0))
+            mapSpecificFlags_set(0,1);
     }else{
         tmp = (struct7s *)vla_at(unqPtr->unk4, unqPtr->unk0);
         if(arg1 == tmp->unk0){
@@ -230,8 +230,8 @@ void func_80388E94(ActorMarker *this, s32 arg1){
         else{
             func_8028F55C(1, thisActor->marker);
             timedFuncAdd_0(0.5f, func_80388760);
-           if(!func_802CACF8(1) && !func_803203FC(2) && func_80311480(0xc75, 0, 0, 0, 0, 0))
-               func_802CADC0(1,1);
+           if(!mapSpecificFlags_get(1) && !func_803203FC(2) && func_80311480(0xc75, 0, 0, 0, 0, 0))
+               mapSpecificFlags_set(1,1);
         }
     }
 }

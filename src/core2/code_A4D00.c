@@ -4,6 +4,8 @@
 #include "structs.h"
 
 void func_8032D9C0(Cube*, Prop*);
+void func_80332B2C(ActorMarker * arg0);
+
 
 extern ModelCache *modelCache; //model pointer array pointer
 extern u32 D_80383444;
@@ -389,7 +391,8 @@ void *func_80330E28(Actor* this){
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8033297C.s")
 
 extern ActorMarker *D_8036E7C8;
-extern s8 D_80383428;
+extern u32 D_8036E804[8];
+extern u8 D_80383428[];
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_803329AC.s")
 // void func_803329AC(void){
@@ -415,5 +418,11 @@ extern s8 D_80383428;
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_80332A60.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_80332B2C.s")
+// void func_80332B2C(ActorMarker * arg0){
+//     s32 index = ((s32)arg0 - (s32)(D_8036E7C8))/(s32)sizeof(ActorMarker);
+//     arg0->unk5C = 0;
+    
+//     D_80383428[index >> 3] &= D_8036E804[index & 7];
+// }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_80332B7C.s")

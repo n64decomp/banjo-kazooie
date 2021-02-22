@@ -14,7 +14,7 @@ void func_80324E60(f32, u32);
 void timedFuncAdd_0(f32, void(*)(void));
 void func_80324E88(f32);
 void func_8028E9A4(f32 *);
-void func_802CADC0(u32, u32);
+void mapSpecificFlags_set(u32, u32);
 
 ActorInfo D_80390AB0 = {0xC4, 0x136, 0x00, 0x00, NULL,
     func_8038CEE8, NULL, func_80325340,
@@ -31,7 +31,7 @@ void func_8038CB20(void){
 
 void func_8038CB48(ActorMarker *arg0, u32 arg1, u32 arg2){
     Actor *actPtr = func_80329958(arg0);
-    func_802CADC0(0x10, 0);
+    mapSpecificFlags_set(0x10, 0);
     if(actPtr->unk10_31 == 4){
         func_8038CC08(actPtr,5);
     }
@@ -57,7 +57,7 @@ void func_8038CC08(Actor * arg0, u32 arg1){
     if(arg1 == 2){
         func_8028F8F8(0x12, 1);
         func_8028F8F8(0x1F, 0);
-        func_802CADC0(0x10, 1);
+        mapSpecificFlags_set(0x10, 1);
         if(!func_8031FF1C(0x1B)){
             func_80320004(0x1B, 1);
             func_80311480(0xc81, 0xf, &arg0->position_x, arg0->marker, func_8038CB48, 0);
@@ -146,8 +146,8 @@ void func_8038CEE8(Actor *this){
         D_80391240[1] = 0;
         D_80391240[2] = 0;
         D_80391240[3] = 0;
-        func_802CADC0(0x12, 0);
-        func_802CADC0(0x10, 0);
+        mapSpecificFlags_set(0x12, 0);
+        mapSpecificFlags_set(0x10, 0);
         if(jiggyscore_80320F7C(jiggy_bgs_flibbits)){
             func_8038CC08(this,6);
             return;
@@ -192,7 +192,7 @@ void func_8038CEE8(Actor *this){
             func_8038CC08(this, 1);
         }else{
             if(bgs6730->unk8 < 2 && bgs6730->unkC > 0){
-                func_802CADC0(0x12, 1);
+                mapSpecificFlags_set(0x12, 1);
             }
         }
     }

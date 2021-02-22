@@ -285,7 +285,7 @@ void func_8031C638(struct0 *this, s32 arg1){
 
 /**** BREAK ***/
 
-void func_802CADC0(s32, s32);
+void mapSpecificFlags_set(s32, s32);
 
 s32 func_8031C688(void);
 s32 func_8031C6E4(void);
@@ -305,8 +305,8 @@ void func_8031C7EC(s32 cs_map, s32 arg1, s32 return_map, s32 return_exit, u32 (*
     if(func_803348C0() != cs_map)
         return;
 
-    if((condFunc && condFunc()) || func_802CACF8(arg1)){
-        func_802CADC0(arg1, 0);
+    if((condFunc && condFunc()) || mapSpecificFlags_get(arg1)){
+        mapSpecificFlags_set(arg1, 0);
         func_802E4078(return_map, (return_exit == -1)? 0: return_exit, 1);
     }
 }
@@ -337,9 +337,9 @@ s32 func_8031C880(void){
     func_8031C7EC(0x7C, 0xC, 1, 0x12, func_8031C640);
     func_8031C7EC(0x86, 0xC, 1, 0x12, func_8031C640);
     func_8031C7EC(0x89, 0xC, 1, 0x12, func_8031C640);
-    if(func_803348C0() == 0x95 && func_802CACF8(1)){
+    if(func_803348C0() == 0x95 && mapSpecificFlags_get(1)){
         func_8034B9E4();
-        func_802CADC0(1, 0);
+        mapSpecificFlags_set(1, 0);
     }
     return 0;
 }

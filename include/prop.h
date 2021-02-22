@@ -224,9 +224,9 @@ typedef struct actor_s{
     u8  pad3C[0x8];
     u32 pad44_31:8;
     u32 modelCacheIndex:10; //modelCacheIndex
-    u32 pad44_4:10;
+    s32 unk44_4:10;
     u32 despawn_flag:1;
-    u32 pad44_0:3;
+    s32 pad44_0:3;
     u8  pad48[0x8];
     f32 yaw; //0x50
     f32 unk54; //0x54
@@ -273,13 +273,16 @@ typedef struct actor_s{
     f32 scale;
     u8  pad12C[0x8];
     vector(struct2s) **unk134; //vector<struct2s>
-    u32 unk138_31:7;
+    u32 unk138_31:1;
+    u32 unk138_30:6;
     u32 unk138_24:1;
     u32 unk138_23:24;
 
     u8  pad13C[0xC];
     void *unk148;
-    u8  pad14C[0x20];
+    void *unk14C;
+    void *unk150;
+    u8  pad14C[0x18];
     u32  pad16C_31:27;
     u32  unk16C_4:1;
     u32  pad16C_3:4;
@@ -333,8 +336,8 @@ typedef struct cude_s{
 }Cube;
 
 typedef struct actor_array{
-    u32 unk0;
-    u32 unk4;
+    s32 cnt;
+    s32 unk4;
     Actor data[]; //variable size array
 }ActorArray;
 
