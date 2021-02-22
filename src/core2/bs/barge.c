@@ -8,19 +8,28 @@ void func_8029797C(f32);
 f32 func_80297A64(void);
 void func_80297970(f32);
 f32 func_80297A7C(void);
+s32 func_802878E8(Movement*, f32);
+s32 func_8029E2E0(s32, f32);
 void  func_80292864(f32, f32);
 void func_802979AC(f32, f32);
 void func_8032728C(f32*, f32, s32, s32(*)(Actor *));
 void func_8029E3C0(s32, f32);
+void func_8030E760(s32, f32, s32);
 
 
 
+extern f32 D_8037D2A0;
 extern u8 D_8037D2A4;
 extern u8 D_8037D2A5;
 extern u8 D_8037D2A6;
 
-extern s8 D_803752D0[]; //"bsbarge.c"
+//extern char D_803752D0 = "bsbarge.c";
 extern f64 D_803752E0;
+//
+extern f32 D_803752FC;
+extern f32 D_80375300;
+extern f32 D_80375304;
+
 
 s32 func_8029F4E0(Actor * arg0){
     return arg0->unk138_31 == 0;
@@ -63,7 +72,7 @@ s32 func_8029F644(void){
     return D_8037D2A6;
 }
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/barge/func_8029F650.s")
+//bsbarge_start
 void func_8029F650(void){
     Movement *plyrMvmnt;
 
@@ -74,11 +83,11 @@ void func_8029F650(void){
     movement_setDuration(plyrMvmnt, 1.0f);
     func_802876CC(plyrMvmnt, 0, 0.375f);
     func_80287674(plyrMvmnt, 1);
-    func_802875AC(plyrMvmnt, D_803752D0, 0x98);
+    func_802875AC(plyrMvmnt, "bsbbarge.c", 0x98);
     D_8037D2A4 = 0;
     func_8029C7F4(1,1,3,3);
     func_8029797C(func_80299228());
-    func_80297970(func_80297A64()*D_803752E0);
+    func_80297970(func_80297A64()*0.3);
     func_802979AC(func_80299228(), func_80297A64());
     func_8029E070(1);
     D_8037D2A6 = 0;
@@ -90,8 +99,99 @@ void func_8029F650(void){
 
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/barge/func_8029F77C.s")
+//bsbarge_update
+void func_8029F77C(void){
+    s32 sp24;
+    Movement *plyrMvmnt;
+    
+    sp24 = 0;
+    plyrMvmnt = func_80289F64();
+    if(func_80295590(9))
+        func_802933E8(0xA);
+    switch(D_8037D2A5){
+        case 0:
+            if(func_802878E8(plyrMvmnt, 0.1392f))
+                func_80299BD4();
+            
+            if(!func_802878C4(plyrMvmnt))
+                break;
 
+            if(func_802933D0(0xA)){
+                func_802933E8(0xC);
+                D_8037D2A0 = 850.0f;
+            }else{
+                D_8037D2A0 = 500.0f;
+            }
+            func_8029E3C0(1, 0.01f);
+            D_8037D2A5 = 1;
+            break;
+        case 1:
+            func_8029E1A8(1);
+            if(func_802933D0(0xB) && func_8029E2E0(1, 0.1f)){
+                if(func_802933C0(0xC)){
+                    func_8030E560(4, 0x7530);
+                }else{
+                    func_8030E560(0x43, 0x7530);
+                }
+                func_802933E8(0xB);
+            }
+            if(!func_8029E384(1))
+                break;
+            
+            movement_setDuration(plyrMvmnt, 1.0f);
+            func_8028A37C(0.565f);
+            func_80297970(D_8037D2A0);
+            func_802979AC(func_80299228(), func_80297A64());
+            func_8030E760(2, 0.558f, 22000);
+            D_8037D2A5 = 2;
+            func_8029F4F0();
+            D_8037D2A6 = 1;
+            break;
+        case 2:
+            func_80297970(D_8037D2A0);
+            if(func_802878C4(plyrMvmnt)){
+                movement_setDuration(plyrMvmnt, 2.0f);
+                func_8028A37C(0.6f);
+                func_8029E3C0(0, 0.1f);
+                D_8037D2A5 = 3;
+            }
+            func_8029F4F0();
+            break;
+        case 3:
+            func_8029E1A8(0);
+            if(func_802933D0(0xC) || func_8029E384(0)){
+                D_8037D2A0 -= 80.0f;
+            }
+            func_80297970(D_8037D2A0);
+            if(D_8037D2A0 < 200.0f){
+                movement_setDuration(plyrMvmnt, 1.5f);
+                func_8028A37C(1.0f);
+                D_8037D2A5 = 4;
+            }
+            func_8029F4F0();
+            break;
+        case 4:
+            if(!func_8028B2E8())
+                sp24 = 0x2F;
+
+            if(func_802878E8(plyrMvmnt, 0.7f)){
+                D_8037D2A0 = 0.0f;
+                D_8037D2A6 = 0;
+            }
+            func_80297970(D_8037D2A0);
+            if(func_802878E8(plyrMvmnt, 0.9193f))
+                sp24 = 0x20;
+            break;
+    }
+    if(D_8037D2A6)
+        func_8029F60C();
+
+    if(func_8028B51C())
+        sp24 = 0x4c;
+    func_8029A72C(sp24);
+}
+
+//bsbarge_end
 void func_8029FAE8(void){
     func_80295610(5);
     func_8029E070(0);
