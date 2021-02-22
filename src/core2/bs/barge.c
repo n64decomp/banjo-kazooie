@@ -23,13 +23,6 @@ extern u8 D_8037D2A4;
 extern u8 D_8037D2A5;
 extern u8 D_8037D2A6;
 
-//extern char D_803752D0 = "bsbarge.c";
-extern f64 D_803752E0;
-//
-extern f32 D_803752FC;
-extern f32 D_80375300;
-extern f32 D_80375304;
-
 
 s32 func_8029F4E0(Actor * arg0){
     return arg0->unk138_31 == 0;
