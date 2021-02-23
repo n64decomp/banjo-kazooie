@@ -18,7 +18,9 @@ void func_802979A0(f32);
 void func_8030E58C(s32, f32);
 void func_8028A010(s32, f32);
 void func_80297FB0(f32, f32);
-
+void func_802921BC(f32);
+void func_80298CE0(f32);
+void func_80297F3C(f32);
 
 
 extern f32 D_80375350;
@@ -89,9 +91,23 @@ void func_802A0750(void){
     func_80297FB0(1000.0f, D_80375354);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/beeFly/func_802A077C.s")
+void func_802A077C(void){
+    if(func_802A0F78(func_8029A7D4()))
+        return;
+    func_802921BC(0.0f);
+    func_80298CE0(0.0f);
+    func_80297F3C(0.0f);
+    func_80291548();
+    func_80297B70();
+    func_80297B94();
+    func_8028FFBC(0);
+    func_8029099C();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/beeFly/func_802A07F8.s")
+// void func_802A07F8(void){
+
+// }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/beeFly/func_802A0890.s")
 
