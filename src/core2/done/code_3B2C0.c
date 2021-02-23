@@ -3,7 +3,6 @@
 #include "variables.h"
 
 
-f32 func_80257B18(f32, f32, f32, f32, f32);
 f32 func_802591D8(f32, f32);
 
 
@@ -56,7 +55,7 @@ void func_802C22C0(f32 *arg0, f32 *arg1){
     if(D_8037DC3C <= 0.0f)
         D_8037DC44 = 0;
     else {
-        tmp = func_80257B18(D_8037DC3C, 0.0f, D_8037DC40, 0.0f, 1.0f);
+        tmp = mlMap_f(D_8037DC3C, 0.0f, D_8037DC40, 0.0f, 1.0f);
         mlScale(tmpf_1, D_8037DC20, tmp);
         mlScale(tmpf_2, D_8037DC30, tmp);
         arg0[0] += tmpf_1[0];

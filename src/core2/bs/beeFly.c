@@ -25,8 +25,8 @@ void func_80298D54(f32, f32);
 void func_80297BF8(f32);
 void func_802BFE50(f32, f32, f32);
 void func_80299234(f32, f32);
-f32 func_80257B18(f32, f32, f32,f32,f32);
 f32 func_8029B2D0(void);
+f32 func_8029B2DC(void);
 
 extern f32 D_80375350;
 extern f32 D_80375358;
@@ -140,13 +140,19 @@ void func_802A0890(void){
         sp34 = 3.0f;
         sp30 = 65.0f;
     }
-    func_80298CE0(func_80257B18(sp2C, -1.0f, 1.0f, -sp30, sp30));
-    func_802991B4(mlNormalizeAngle(func_80299228() +func_80257B18(sp2C, -1.0f, 1.0f, sp34, -sp34)));
+    func_80298CE0(mlMap_f(sp2C, -1.0f, 1.0f, -sp30, sp30));
+    func_802991B4(mlNormalizeAngle(func_80299228() + mlMap_f(sp2C, -1.0f, 1.0f, sp34, -sp34)));
 }
 
-
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/beeFly/func_802A09A4.s")
+void func_802A09A4(void){
+    f32 stickY = func_8029B2DC();
+    if(stickY < 0.0f){
+        func_80297F3C(mlMap_f(stickY, -1.0f, 0.0f, 300.0f, 360.0f));
+    } else {
+        func_80297F3C(mlMap_f(stickY, 0.0f, 1.0f, 0.0f, 80.0f));
+    }
+    
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/beeFly/func_802A0A2C.s")
 

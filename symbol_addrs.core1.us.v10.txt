@@ -9,6 +9,7 @@ spriteGetFramePtr = 0x802510C8;
 malloc = 0x80254CA8;
 free = 0x802550F0;
 realloc = 0x80255358;
+mlMap_f = 0x80257B18;
 mlNormalizeAngle = 0x8025881C;
 max_f = 0x802588DC;
 clear_vec3f = 0x80258B8C;

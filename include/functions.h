@@ -22,6 +22,7 @@ void * malloc(s32 size);
 void free(void*);
 void* realloc(void* ptr, s32 size);
 
+f32 mlMap_f(f32 val, f32 in_min, f32 in_max, f32 out_min, f32 out_max);
 float mlNormalizeAngle(float);
 f32 max_f(f32, f32);
 void copy_vec3f(f32* dst, f32* src);
