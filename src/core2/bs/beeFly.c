@@ -107,7 +107,6 @@ void func_802A077C(void){
     func_8029099C();
 }
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/beeFly/func_802A07F8.s")
 void func_802A07F8(void){
     if(func_802A0F78(func_8029A7BC()))
         return;
