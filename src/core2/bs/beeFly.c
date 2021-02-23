@@ -50,7 +50,6 @@ void func_802A0590(void){
     D_8037D2C0 = 0;
 }
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/beeFly/func_802A0630.s")
 void func_802A0630(void){
     s32 next_state = 0;
     Movement * mvmnt; //sp1C
@@ -73,10 +72,12 @@ void func_802A0630(void){
             break;
     }
     func_8029A72C(next_state);
-
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/beeFly/func_802A0704.s")
+//#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/beeFly/func_802A0704.s")
+void func_802A0704(void){
+    func_802A02C0();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/beeFly/func_802A0724.s")
 
