@@ -13,6 +13,14 @@ void func_8029797C(f32);
 f32 func_80299228(void);
 void func_80297970(f32);
 void func_80297BEC(f32);
+s32 func_802878E8(Movement *, f32);
+void func_802979A0(f32);
+void func_8030E58C(s32, f32);
+void func_8028A010(s32, f32);
+
+
+
+
 
 extern  u8 D_8037D2C0;
 
@@ -29,7 +37,6 @@ void func_802A04F0(void){
 
 }
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/beeFly/func_802A0590.s")
 void func_802A0590(void){
     func_802A0340();
     func_8028A274(0x1df, 1.5f);
@@ -43,7 +50,31 @@ void func_802A0590(void){
     D_8037D2C0 = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/beeFly/func_802A0630.s")
+//#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/beeFly/func_802A0630.s")
+void func_802A0630(void){
+    s32 next_state = 0;
+    Movement * mvmnt; //sp1C
+
+    mvmnt = func_80289F64();
+    switch(D_8037D2C0){
+        case 0:
+            if(!func_802878E8(mvmnt, 0.266f))
+                break;
+            func_802979A0(1600.0f);
+            func_8030E58C(0xc, 0.7f);
+            D_8037D2C0 = 1;
+            break;
+        case 1:
+            func_802A04F0();
+            if(func_802878C4(mvmnt))
+                func_8028A010(0x1dc, 0.38f);
+            if(func_80297AAC() < 0.0f)
+                next_state = 0x8c;
+            break;
+    }
+    func_8029A72C(next_state);
+
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/beeFly/func_802A0704.s")
 
