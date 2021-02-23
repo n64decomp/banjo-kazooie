@@ -23,7 +23,10 @@ void func_80298CE0(f32);
 void func_80297F3C(f32);
 void func_80298D54(f32, f32);
 void func_80297BF8(f32);
-
+void func_802BFE50(f32, f32, f32);
+void func_80299234(f32, f32);
+f32 func_80257B18(f32, f32, f32,f32,f32);
+f32 func_8029B2D0(void);
 
 extern f32 D_80375350;
 extern f32 D_80375358;
@@ -121,7 +124,27 @@ void func_802A07F8(void){
     func_802909C4();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/beeFly/func_802A0890.s")
+void func_802A0890(void){
+    f32 sp34;
+    f32 sp30;
+    f32 sp2C;
+    sp2C = func_8029B2D0();
+    func_802BFE50(2.0f, 2000.0f, 350.0f);
+    if(func_8029557C(3)){
+        func_80299234(500.0f, 30.0f);
+        sp34 = 6.0f;
+        sp30 = 85.0f;
+    }
+    else{
+        func_80299234(500.0f, 2.0f);
+        sp34 = 3.0f;
+        sp30 = 65.0f;
+    }
+    func_80298CE0(func_80257B18(sp2C, -1.0f, 1.0f, -sp30, sp30));
+    func_802991B4(mlNormalizeAngle(func_80299228() +func_80257B18(sp2C, -1.0f, 1.0f, sp34, -sp34)));
+}
+
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/beeFly/func_802A09A4.s")
 
