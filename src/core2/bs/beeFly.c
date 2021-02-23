@@ -5,7 +5,6 @@
 f32 func_8034A754(f32, f32);
 void func_80354030(f32*, f32);
 void func_8028A274(s32, f32);
-
 f32  func_8029B2E8(void);
 void func_802991B4(f32);
 f32 func_8029B33C(void);
@@ -27,6 +26,9 @@ void func_802BFE50(f32, f32, f32);
 void func_80299234(f32, f32);
 f32 func_8029B2D0(void);
 f32 func_8029B2DC(void);
+f32 func_80297A64(void);
+void func_802979AC(f32, f32);
+void func_8028FDC8(f32);
 
 extern f32 D_80375350;
 extern f32 D_80375358;
@@ -34,6 +36,7 @@ extern f32 D_80375354;
 
 extern  u8 D_8037D2C0;
 
+s32 func_802A0F78(s32);
 
 void func_802A04F0(void){
     f32 plyrPos[3]; //sp1C
@@ -127,8 +130,8 @@ void func_802A07F8(void){
 void func_802A0890(void){
     f32 sp34;
     f32 sp30;
-    f32 sp2C;
-    sp2C = func_8029B2D0();
+    f32 stickX;
+    stickX = func_8029B2D0();
     func_802BFE50(2.0f, 2000.0f, 350.0f);
     if(func_8029557C(3)){
         func_80299234(500.0f, 30.0f);
@@ -140,8 +143,8 @@ void func_802A0890(void){
         sp34 = 3.0f;
         sp30 = 65.0f;
     }
-    func_80298CE0(mlMap_f(sp2C, -1.0f, 1.0f, -sp30, sp30));
-    func_802991B4(mlNormalizeAngle(func_80299228() + mlMap_f(sp2C, -1.0f, 1.0f, sp34, -sp34)));
+    func_80298CE0(mlMap_f(stickX, -1.0f, 1.0f, -sp30, sp30));
+    func_802991B4(mlNormalizeAngle(func_80299228() + mlMap_f(stickX, -1.0f, 1.0f, sp34, -sp34)));
 }
 
 void func_802A09A4(void){
@@ -154,10 +157,37 @@ void func_802A09A4(void){
     
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/beeFly/func_802A0A2C.s")
+void func_802A0A2C(void){
+    s32 mvmnt;
+
+    mvmnt = func_8029A7BC();
+    func_8028A010(0x1dc, 0.38);
+    func_8029C7F4(1, 1, 3, 3);
+    if(func_802933C0(9))
+        func_80297970(0.0f);
+    else
+        func_80297970(600.0f);
+    func_802979AC(func_80299228(), func_80297A64());
+    func_8029797C(func_80299228());
+    func_802914CC(4);
+    func_802A07F8();
+    if(mvmnt != 0x8b){
+        func_8028FDC8(1.0f);
+        D_8037D2C0 = 0;
+    }
+    else {
+        D_8037D2C0 = 1;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/beeFly/func_802A0B14.s")
+//func_802A0B14
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/beeFly/func_802A0F58.s")
+void func_802A0F58(void){
+    func_802A077C();
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/beeFly/func_802A0F78.s")
+//#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/beeFly/func_802A0F78.s")
+s32 func_802A0F78(s32 move){
+    return move == 0x8C;
+}
