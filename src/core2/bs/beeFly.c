@@ -17,12 +17,15 @@ s32 func_802878E8(Movement *, f32);
 void func_802979A0(f32);
 void func_8030E58C(s32, f32);
 void func_8028A010(s32, f32);
+void func_80297FB0(f32, f32);
 
 
 
-
+extern f32 D_80375350;
+extern f32 D_80375354;
 
 extern  u8 D_8037D2C0;
+
 
 void func_802A04F0(void){
     f32 plyrPos[3]; //sp1C
@@ -74,14 +77,17 @@ void func_802A0630(void){
     func_8029A72C(next_state);
 }
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/beeFly/func_802A0704.s")
 void func_802A0704(void){
     func_802A02C0();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/beeFly/func_802A0724.s")
+void func_802A0724(void){
+    func_80297FB0(500.0f, D_80375350);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/beeFly/func_802A0750.s")
+void func_802A0750(void){
+    func_80297FB0(1000.0f, D_80375354);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/beeFly/func_802A077C.s")
 
