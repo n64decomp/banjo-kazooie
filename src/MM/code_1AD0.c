@@ -18,7 +18,6 @@ s32 func_80387EC0(void) {
     return temp_sp18;
 }*/
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/MM/code_1AD0/func_80387F44.s")
 void func_80387F44(void) {
     s32 sp1C;
 
