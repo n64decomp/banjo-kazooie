@@ -2,8 +2,23 @@
 #include "functions.h"
 #include "variables.h"
 
+f32 func_8034A754(f32, f32);
+void func_80354030(f32*, f32);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/beeFly/func_802A04F0.s")
+
+//#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/beeFly/func_802A04F0.s")
+void func_802A04F0(void){
+    f32 plyrPos[3]; //sp1C
+
+    player_getPosition(plyrPos);
+    plyrPos[0] += func_8034A754(-30.0f, 30.0f);
+    plyrPos[1] += 30.0f + func_8034A754(0.0f, 30.0f);
+    plyrPos[2] += func_8034A754(-30.0f, 30.0f);
+    func_803541C0(3);
+    func_803541CC(0x50);
+    func_80354030(plyrPos, 0.5f);
+
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/beeFly/func_802A0590.s")
 

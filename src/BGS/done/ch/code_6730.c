@@ -14,7 +14,6 @@ void func_80324E60(f32, u32);
 void timedFuncAdd_0(f32, void(*)(void));
 void func_80324E88(f32);
 void func_8028E9A4(f32 *);
-void mapSpecificFlags_set(u32, u32);
 
 ActorInfo D_80390AB0 = {0xC4, 0x136, 0x00, 0x00, NULL,
     func_8038CEE8, NULL, func_80325340,

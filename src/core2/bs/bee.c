@@ -38,8 +38,8 @@ void func_802A0340(void){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bee/func_802A03C4.s")
 // //bsBee_inSet
-// s32 func_802A03C4(s32 move_idx){
-//     return (move_idx == 0x85)
+// s32 func_802A03C4(s32 move_idx){    
+//     return ((move_idx == 0x85)
 //         || (move_idx == 0x86)
 //         || (move_idx == 0x87)
 //         || (move_idx == 0x88)
@@ -48,7 +48,7 @@ void func_802A0340(void){
 //         || (move_idx == 0x8b)
 //         || (move_idx == 0x9d)
 //         || (move_idx == 0x6b)
-//         || func_802A0F78(); //bsBeeFly_inSet
+//         || func_802A0F78()); //bsBeeFly_inSet
 // }
 
 
