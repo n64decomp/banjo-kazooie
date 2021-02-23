@@ -187,7 +187,6 @@ void func_802A0F58(void){
     func_802A077C();
 }
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/beeFly/func_802A0F78.s")
 s32 func_802A0F78(s32 move){
     return move == 0x8C;
 }
