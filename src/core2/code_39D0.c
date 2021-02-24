@@ -189,19 +189,19 @@ s32 func_8028B120(void){return 0;}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028D2E4.s")
 
-ActorMarker *func_8028D5D0(void){ //banjo_getMarker
+ActorMarker *func_8028D5D0(void){ //player_getMarker
     return D_8037BF70;
 }
 
-void func_8028D5DC(void){ //banjo_collisionOff
+void func_8028D5DC(void){ //player_collisionOff
     D_8037BF70->collidable = 0;
 }
 
-void func_8028D5F4(void){ //banjo_collisionOn
+void func_8028D5F4(void){ //player_collisionOn
     D_8037BF70->collidable = 1;
 }
 
-s32 func_8028D60C(void){ //banjo_isCollidable
+s32 func_8028D60C(void){ //player_isCollidable
     return (D_8037BF70->collidable)? 1 : 0;
 }
 

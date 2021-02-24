@@ -64,7 +64,7 @@ extern f64 D_80375400;
 //         }
 //     }
 //     if (func_802878C4(plyr_mvmt)) {
-//         next_state = (func_8029557C(1))? 7 : 1;
+//         next_state = (button_held(1))? 7 : 1;
 //     } else if (D_80375400 < (f64) func_802877D8(plyr_mvmt)) {
 //         next_state = func_802ADCD4(0);
 //     }

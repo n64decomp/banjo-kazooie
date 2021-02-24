@@ -4,7 +4,6 @@
 
 void func_80293D48(f32, f32);
 
-void func_80297F3C(f32);
 void func_80297FB0(f32, f32);
 
 void func_80298CE0(f32);
@@ -14,7 +13,7 @@ s32 func_802A03C4(s32 move_idx);
 
 void func_802A02C0(void){
     if(func_802A03C4(func_8029A7D4()) == 0){
-        func_80297F3C(0.0f); //player_setIdealPitch
+        player_setIdealPitch(0.0f); //player_setIdealPitch
         func_80298CE0(0.0f);
         func_8029B0C0();
         func_8029E070(0);
@@ -48,7 +47,7 @@ void func_802A0340(void){
 //     || (move_idx == 0x8b)
 //     || (move_idx == 0x9d)
 //     || (move_idx == 0x6b)
-//     || bsbeefly_inSet(move_idx); //bsBeeFly_inSet
+//     || bsBeeFly_inSet(move_idx); //bsBeeFly_inSet
 //     return out;
 // }
 

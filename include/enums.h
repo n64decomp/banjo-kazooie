@@ -2,6 +2,7 @@
 #define ENUMS_H
 
 enum button{
+    button_R = 0x3,
     button_A = 0x8,
     button_B = 0x9
 };
@@ -60,7 +61,7 @@ enum game_mode_e
     game_mode_file_playback = 6,
     game_mode_attract_demo = 7,
     game_mode_bottles_bonus = 8,
-    game_mode_BANJO_AND_KAZOOIE = 9,
+    game_mode_player_AND_KAZOOIE = 9,
     game_mode_SnS_picture = 10
 };
 

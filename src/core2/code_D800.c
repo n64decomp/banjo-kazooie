@@ -20,8 +20,8 @@ void func_80294828(void){
     f32 banjoRot[3];
     
     
-    banjo_getRotation(banjoRot);
-    banjo_getPosition(banjoPos);
+    player_getRotation(banjoRot);
+    player_getPosition(banjoPos);
     banjoRot[1] = mlNormalizeAngle(banjoRot[1] + D_8037C294);
     banjoPos[1] += D_8037C290;
     func_802947CC(D_8037C298, banjoPos, banjoRot);

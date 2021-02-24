@@ -13,7 +13,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_11DE0/func_802991A8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_11DE0/func_802991B4.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_11DE0/player_setMovingYaw.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_11DE0/func_802991D8.s")
 
@@ -21,9 +21,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_11DE0/func_80299210.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_11DE0/banjo_getYaw.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_11DE0/player_getYaw.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_11DE0/func_80299228.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_11DE0/player_getMovingYaw.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_11DE0/func_80299234.s")
 

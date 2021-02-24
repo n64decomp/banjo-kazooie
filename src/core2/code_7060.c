@@ -21,7 +21,7 @@
 
 void func_8028E644(void){
     func_80295B04(); //loadzone_applyCollision
-    D_8037BFBA = 0; //banjo_present
+    D_8037BFBA = 0; //player_present
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028E668.s")
@@ -82,10 +82,10 @@ void func_8028E7EC(f32 *arg0){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028EC04.s")
 
-void banjo_getRotation(f32 *dst){
-    dst[0] = banjo_getPitch();
-    dst[1] = banjo_getYaw();
-    dst[2] = banjo_getRoll();
+void player_getRotation(f32 *dst){
+    dst[0] = player_getPitch();
+    dst[1] = player_getYaw();
+    dst[2] = player_getRoll();
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028EC64.s")

@@ -9,13 +9,13 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_10DA0/func_80297F10.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_10DA0/func_80297F3C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_10DA0/player_setIdealPitch.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_10DA0/func_80297F60.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_10DA0/func_80297F84.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_10DA0/banjo_getPitch.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_10DA0/player_getPitch.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_10DA0/func_80297FA4.s")
 

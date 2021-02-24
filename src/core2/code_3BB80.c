@@ -122,7 +122,7 @@ extern ActorInfo D_80372AC0;//water_drops
 extern ActorInfo D_80372BA4;//ice_cube
 extern ActorInfo D_8036804C;//GAME_OVER
 extern ActorInfo D_8036807C;//THE_END
-extern ActorInfo D_803680AC;//BANJO_KAZOOIE
+extern ActorInfo D_803680AC;//player_KAZOOIE
 extern ActorInfo D_803680DC;//copyright_info
 extern ActorInfo D_80368124;//PRESS_START
 extern ActorInfo D_803682D0;//jiggy_picture
@@ -300,7 +300,7 @@ void func_802C2B5C(void){
     func_803053E8(&D_80372BA4, func_803272F8, 0x2020141);//ice_cube
     func_803053E8(&D_8036804C, func_803272F8, 0x508604);//GAME_OVER
     func_803053E8(&D_8036807C, func_803272F8, 0x508604);//THE_END
-    func_803053E8(&D_803680AC, func_803272F8, 0x508604);//BANJO_KAZOOIE
+    func_803053E8(&D_803680AC, func_803272F8, 0x508604);//player_KAZOOIE
     func_803053E8(&D_803680DC, func_803272F8, 0x508604);//copyright_info
     func_803053E8(&D_80368124, func_803272F8, 0x508604);//PRESS_START
     func_803053E8(&D_803682D0, func_802DEB18, 0x509604);//jiggy_picture

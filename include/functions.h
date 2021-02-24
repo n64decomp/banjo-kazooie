@@ -47,13 +47,18 @@ u32 func_8028E7CC(void);
 
 void func_8028E7EC(f32 *arg0);
 
-void banjo_getRotation(f32 *dst);
+void player_getRotation(f32 *dst);
 
 void func_80291A60(s32 arg0, f32* arg1);
 
-void banjo_getPosition(f32 *dst);
+s32 button_pressed(s32);
+s32 button_held(s32);
 
-f32 banjo_getPitch(void);
+void player_getPosition(f32 *dst);
+
+void player_setIdealPitch(f32);
+f32 player_getPitch(void);
+
 
 void func_80297970(f32);
 
@@ -61,13 +66,14 @@ f32  func_80297AAC(void);
 
 void climbGetBottom(f32 *arg0);
 
-void func_802991B4(f32);
+void player_setMovingYaw(f32);
 
 void func_80299BFC(f32);
 
-f32 banjo_getRoll(void);
+f32 player_getRoll(void);
 
-f32 banjo_getYaw(void);
+f32 player_getYaw(void);
+f32 player_getMovingYaw(void);
 
 /* vla - variable length array*/
 void    vla_clear(VLA *this);

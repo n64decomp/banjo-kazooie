@@ -6,10 +6,8 @@ f32 func_8034A754(f32, f32);
 void func_80354030(f32*, f32);
 void func_8028A274(s32, f32);
 f32  func_8029B2E8(void);
-void func_802991B4(f32);
 f32 func_8029B33C(void);
 void func_8029797C(f32);
-f32 func_80299228(void);
 void func_80297970(f32);
 void func_80297BEC(f32);
 s32 func_802878E8(Movement *, f32);
@@ -19,7 +17,6 @@ void func_8028A010(s32, f32);
 void func_80297FB0(f32, f32);
 void func_802921BC(f32);
 void func_80298CE0(f32);
-void func_80297F3C(f32);
 void func_80298D54(f32, f32);
 void func_80297BF8(f32);
 void func_802BFE50(f32, f32, f32);
@@ -41,7 +38,7 @@ extern f32 D_803649C4[];
 
 extern  u8 D_8037D2C0;
 
-s32 bsbeefly_inSet(s32);
+s32 bsBeeFly_inSet(s32);
 
 void func_802A04F0(void){
     f32 plyrPos[3]; //sp1C
@@ -61,9 +58,9 @@ void func_802A0590(void){
     func_8028A274(0x1df, 1.5f);
     func_8029C7F4(1,1,3,6);
     if(func_8029B2E8() != 0.0f){
-        func_802991B4(func_8029B33C());
+        player_setMovingYaw(func_8029B33C());
     }
-    func_8029797C(func_80299228());
+    func_8029797C(player_getMovingYaw());
     func_80297970(0.0f);
     func_80297BEC(-1200.0f);
     D_8037D2C0 = 0;
@@ -106,11 +103,11 @@ void func_802A0750(void){
 }
 
 void func_802A077C(void){
-    if(bsbeefly_inSet(func_8029A7D4()))
+    if(bsBeeFly_inSet(func_8029A7D4()))
         return;
     func_802921BC(0.0f);
     func_80298CE0(0.0f);
-    func_80297F3C(0.0f);
+    player_setIdealPitch(0.0f);
     func_80291548();
     func_80297B70();
     func_80297B94();
@@ -119,7 +116,7 @@ void func_802A077C(void){
 }
 
 void func_802A07F8(void){
-    if(bsbeefly_inSet(func_8029A7BC()))
+    if(bsBeeFly_inSet(func_8029A7BC()))
         return;
     func_802921BC(65.0f);
     func_802991A8(3);
@@ -132,13 +129,13 @@ void func_802A07F8(void){
     func_802909C4();
 }
 
-void func_802A0890(void){
+void _bsBeeFly_updateYaw(void){
     f32 sp34;
     f32 sp30;
     f32 stickX;
     stickX = func_8029B2D0();
     func_802BFE50(2.0f, 2000.0f, 350.0f);
-    if(func_8029557C(3)){
+    if(button_held(3)){
         func_80299234(500.0f, 30.0f);
         sp34 = 6.0f;
         sp30 = 85.0f;
@@ -149,15 +146,15 @@ void func_802A0890(void){
         sp30 = 65.0f;
     }
     func_80298CE0(mlMap_f(stickX, -1.0f, 1.0f, -sp30, sp30));
-    func_802991B4(mlNormalizeAngle(func_80299228() + mlMap_f(stickX, -1.0f, 1.0f, sp34, -sp34)));
+    player_setMovingYaw(mlNormalizeAngle(player_getMovingYaw() + mlMap_f(stickX, -1.0f, 1.0f, sp34, -sp34)));
 }
 
-void func_802A09A4(void){
+void _bsBeeFly_updatePitch(void){
     f32 stickY = func_8029B2DC();
     if(stickY < 0.0f){
-        func_80297F3C(mlMap_f(stickY, -1.0f, 0.0f, 300.0f, 360.0f));
+        player_setIdealPitch(mlMap_f(stickY, -1.0f, 0.0f, 300.0f, 360.0f));
     } else {
-        func_80297F3C(mlMap_f(stickY, 0.0f, 1.0f, 0.0f, 80.0f));
+        player_setIdealPitch(mlMap_f(stickY, 0.0f, 1.0f, 0.0f, 80.0f));
     }
     
 }
@@ -173,8 +170,8 @@ void func_802A0A2C(void){
         func_80297970(0.0f);
     else
         func_80297970(600.0f);
-    func_802979AC(func_80299228(), func_80297A64());
-    func_8029797C(func_80299228());
+    func_802979AC(player_getMovingYaw(), func_80297A64());
+    func_8029797C(player_getMovingYaw());
     func_802914CC(4);
     func_802A07F8();
     if(mvmnt != 0x8b){
@@ -187,7 +184,6 @@ void func_802A0A2C(void){
 }
 
 //bsbeefly_update
-//#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/beeFly/func_802A0B14.s")
 void func_802A0B14(void){
     s32 sp4C;
     Movement* sp48;
@@ -201,10 +197,10 @@ void func_802A0B14(void){
 
     sp4C = 0;
     sp48 = func_80289F64();
-    func_802A0890();//bsbeefly_updateYaw
-    func_802A09A4();//bsBeeFly_updatePitch
-    banjo_getPitch();
-    if(func_80295544(button_A) && (player_getYPosition() < 7500.0)){
+    _bsBeeFly_updateYaw();
+    _bsBeeFly_updatePitch();
+    player_getPitch();
+    if(button_pressed(button_A) && (player_getYPosition() < 7500.0)){
         func_8028FDC8(1.0f);
     }
     if(!func_8028FD30() && func_8028B51C()){
@@ -215,7 +211,7 @@ void func_802A0B14(void){
     sp24 = &D_803649C4[sp44];
     sp40 = 0.9f;
     sp40 += *sp24;
-    sp3C = banjo_getPitch();
+    sp3C = player_getPitch();
     sp30 = 0.0f;
     if(func_80297AAC() < 0.0f){
         if(sp3C < 300.0f){
@@ -226,7 +222,7 @@ void func_802A0B14(void){
         }
     }
     sp40 += sp30;
-    if(!sp44 && func_8029557C(button_B)){
+    if(!sp44 && button_held(button_B)){
         sp40 += 0.12;
     }
     func_80290B40(sp40);
@@ -242,7 +238,7 @@ void func_802A0B14(void){
             sp40 = mlNormalizeAngle(func_80297FA4() - 30.0f);
             if(80.0f < sp40 && sp40 <300.0f)
                 sp40 = 300.0f;
-            func_80297F3C(sp40);
+            player_setIdealPitch(sp40);
             func_802A0750();
             if(sp44 != 0){
                 func_802979A0(sp44*400.0);
@@ -267,8 +263,8 @@ void func_802A0B14(void){
             sp38 = mlMap_f(sp3C, 300.0f, 340.0f, 0.0f, 600.0f);
         }
     }
-    func_8029797C(banjo_getYaw());
-    if(func_8029557C(9)){
+    func_8029797C(player_getYaw());
+    if(button_held(9)){
         sp38 += (f64)sp38;
     }
     func_80297970(sp38);
@@ -283,6 +279,6 @@ void func_802A0F58(void){
     func_802A077C();
 }
 
-s32 bsbeefly_inSet(s32 move){
+s32 bsBeeFly_inSet(s32 move){
     return move == 0x8C;
 }
