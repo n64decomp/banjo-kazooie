@@ -25,6 +25,8 @@ player_getPosition = 0x802984D4;
 player_getYPosition = 0x802984F8;
 banjo_getRoll = 0x80298D3C;
 banjo_getYaw = 0x8029921C;
+bsbeefly_inSet =0x802A0F78;
+
 func_802C4140 = 0x802C4140;
 func_802C418C = 0x802C418C;
 func_802C4218 = 0x802C4218;

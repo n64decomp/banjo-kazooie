@@ -1,6 +1,11 @@
 #ifndef ENUMS_H
 #define ENUMS_H
 
+enum button{
+    button_A = 0x8,
+    button_B = 0x9
+};
+
 enum transformation_E
 {
     unknown,

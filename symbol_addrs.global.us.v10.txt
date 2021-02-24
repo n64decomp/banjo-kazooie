@@ -21,6 +21,8 @@ func_800020DC = 0x800020DC;
 D_803772C8 = 0x803772C8;
 D_803772D0 = 0x803772D0;
 
+D_8037536C = 0x8037536C;
+
 osViGetNextFrameBuffer = 0x802664B0;
 __osEnqueueAndYield = 0x8026A90C;
 __osEnqueueThread = 0x8026AA0C;

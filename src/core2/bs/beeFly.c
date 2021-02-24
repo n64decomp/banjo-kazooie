@@ -29,14 +29,19 @@ f32 func_8029B2DC(void);
 f32 func_80297A64(void);
 void func_802979AC(f32, f32);
 void func_8028FDC8(f32);
+f32 player_getYPosition(void);
+Movement * func_80289F64(void);
+void func_80290B40(f32);
+f32 func_80297FA4(void);
+void func_80290A6C(void);
 
-extern f32 D_80375350;
-extern f32 D_80375358;
-extern f32 D_80375354;
+
+extern f32 D_803649B0[];
+extern f32 D_803649C4[];
 
 extern  u8 D_8037D2C0;
 
-s32 func_802A0F78(s32);
+s32 bsbeefly_inSet(s32);
 
 void func_802A04F0(void){
     f32 plyrPos[3]; //sp1C
@@ -93,15 +98,15 @@ void func_802A0704(void){
 }
 
 void func_802A0724(void){
-    func_80297FB0(500.0f, D_80375350);
+    func_80297FB0(500.0f, 1.2f);
 }
 
 void func_802A0750(void){
-    func_80297FB0(1000.0f, D_80375354);
+    func_80297FB0(1000.0f, 2.2f);
 }
 
 void func_802A077C(void){
-    if(func_802A0F78(func_8029A7D4()))
+    if(bsbeefly_inSet(func_8029A7D4()))
         return;
     func_802921BC(0.0f);
     func_80298CE0(0.0f);
@@ -114,14 +119,14 @@ void func_802A077C(void){
 }
 
 void func_802A07F8(void){
-    if(func_802A0F78(func_8029A7BC()))
+    if(bsbeefly_inSet(func_8029A7BC()))
         return;
     func_802921BC(65.0f);
     func_802991A8(3);
     func_80298D54(500.0f, 2.0f);
     func_802A0724();
     func_80297BEC(-300.0f);
-    func_80297BF8(D_80375358);
+    func_80297BF8(-99.9f);
     func_8028FEF0();
     func_8028FFBC(1);
     func_802909C4();
@@ -157,6 +162,7 @@ void func_802A09A4(void){
     
 }
 
+//bsbeefly_enter
 void func_802A0A2C(void){
     s32 mvmnt;
 
@@ -180,13 +186,103 @@ void func_802A0A2C(void){
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/beeFly/func_802A0B14.s")
-//func_802A0B14
+//bsbeefly_update
+//#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/beeFly/func_802A0B14.s")
+void func_802A0B14(void){
+    s32 sp4C;
+    Movement* sp48;
+    s32 sp44;
+    f32 sp40;
+    f32 sp3C;
+    f32 sp38;
+    f32 *sp24;
+    f32 sp30;
+   
 
+    sp4C = 0;
+    sp48 = func_80289F64();
+    func_802A0890();//bsbeefly_updateYaw
+    func_802A09A4();//bsBeeFly_updatePitch
+    banjo_getPitch();
+    if(func_80295544(button_A) && (player_getYPosition() < 7500.0)){
+        func_8028FDC8(1.0f);
+    }
+    if(!func_8028FD30() && func_8028B51C()){
+        func_8028FDC8(1.0f);
+    }
+    sp44 = func_8028FD30();
+    movement_setDuration(sp48, D_803649B0[sp44]);
+    sp24 = &D_803649C4[sp44];
+    sp40 = 0.9f;
+    sp40 += *sp24;
+    sp3C = banjo_getPitch();
+    sp30 = 0.0f;
+    if(func_80297AAC() < 0.0f){
+        if(sp3C < 300.0f){
+            sp30 = mlMap_f(sp3C, 0.0f, 80.0f, 0.0f, 0.23f);
+        }
+        if(80.0f < sp3C){
+            sp30 = mlMap_f(sp3C, 300.0f, 360.0f, -0.2f, 0.0f);
+        }
+    }
+    sp40 += sp30;
+    if(!sp44 && func_8029557C(button_B)){
+        sp40 += 0.12;
+    }
+    func_80290B40(sp40);
+    func_80290A6C();
+    switch(D_8037D2C0){
+        default:
+            break;
+        case 0:
+            if((s32)sp24 != (s32)&D_803649C4)
+                D_8037D2C0 = 1;
+            break;
+        case 1:
+            sp40 = mlNormalizeAngle(func_80297FA4() - 30.0f);
+            if(80.0f < sp40 && sp40 <300.0f)
+                sp40 = 300.0f;
+            func_80297F3C(sp40);
+            func_802A0750();
+            if(sp44 != 0){
+                func_802979A0(sp44*400.0);
+                func_802A04F0();
+            }
+            if((s32)sp24 == (s32)&D_803649C4){
+                func_802A0724();
+                D_8037D2C0 = 0;
+            }
+            break;
+    }//L802A0DF0
+    if(func_802933C0(9)){
+        func_80297BF8(0.0f);
+        func_80297A0C(0);
+        sp38 = 0.0f;
+    }else{
+        if(sp3C <= 80.0f){
+            func_80297BF8(mlMap_f(sp3C, 60.0f, 80.0f, -99.9, -1266.66));
+            sp38 = mlMap_f(sp3C, 60.0f, 80.0f, 600.0f, 60.0f);
+        }else{
+            func_80297BF8(mlMap_f(sp3C, 300.0f, 310.0f, -399.99, -99.9));
+            sp38 = mlMap_f(sp3C, 300.0f, 340.0f, 0.0f, 600.0f);
+        }
+    }
+    func_8029797C(banjo_getYaw());
+    if(func_8029557C(9)){
+        sp38 += (f64)sp38;
+    }
+    func_80297970(sp38);
+    if(func_8028B2E8() && !func_8028B51C())
+        sp4C = 0x85;
+    func_8028FFF0();
+    func_8029A72C(sp4C);
+}
+
+//bsbeefly_exit
 void func_802A0F58(void){
     func_802A077C();
 }
 
-s32 func_802A0F78(s32 move){
+s32 bsbeefly_inSet(s32 move){
     return move == 0x8C;
 }
