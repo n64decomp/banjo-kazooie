@@ -63,8 +63,8 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AA60/func_80292284.s")
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AA60/player_getPosition.s")
-void player_getPosition(f32* dst){
+//#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AA60/banjo_getPosition.s")
+void banjo_getPosition(f32* dst){
     f32 tmp1[3];
     f32 tmp2[3];
     func_80291A60(5,tmp1);

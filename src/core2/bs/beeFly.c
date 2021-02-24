@@ -135,7 +135,7 @@ void _bsBeeFly_updateYaw(void){
     f32 stickX;
     stickX = func_8029B2D0();
     func_802BFE50(2.0f, 2000.0f, 350.0f);
-    if(button_held(3)){
+    if(button_held(button_R)){
         func_80299234(500.0f, 30.0f);
         sp34 = 6.0f;
         sp30 = 85.0f;
@@ -164,7 +164,7 @@ void func_802A0A2C(void){
     s32 mvmnt;
 
     mvmnt = func_8029A7BC();
-    func_8028A010(0x1dc, 0.38);
+    func_8028A010(anim_beeBanjo_flying, 0.38);
     func_8029C7F4(1, 1, 3, 3);
     if(func_802933C0(9))
         func_80297970(0.0f);
@@ -199,7 +199,7 @@ void func_802A0B14(void){
     sp48 = func_80289F64();
     _bsBeeFly_updateYaw();
     _bsBeeFly_updatePitch();
-    player_getPitch();
+    player_getPitch(); //return value never used
     if(button_pressed(button_A) && (player_getYPosition() < 7500.0)){
         func_8028FDC8(1.0f);
     }
@@ -269,7 +269,7 @@ void func_802A0B14(void){
     }
     func_80297970(sp38);
     if(func_8028B2E8() && !func_8028B51C())
-        sp4C = 0x85;
+        sp4C = movement_bee_idle;
     func_8028FFF0();
     func_8029A72C(sp4C);
 }

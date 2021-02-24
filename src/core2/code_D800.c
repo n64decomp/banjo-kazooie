@@ -21,7 +21,7 @@ void func_80294828(void){
     
     
     player_getRotation(banjoRot);
-    player_getPosition(banjoPos);
+    banjo_getPosition(banjoPos);
     banjoRot[1] = mlNormalizeAngle(banjoRot[1] + D_8037C294);
     banjoPos[1] += D_8037C290;
     func_802947CC(D_8037C298, banjoPos, banjoRot);

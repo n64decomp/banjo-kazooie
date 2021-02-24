@@ -49,6 +49,11 @@ enum actor_e
     actor_yumblie           = 0x139
 };
 
+enum movement_e
+{
+    movement_bee_idle = 0x85
+};
+
 enum movement_direction_e
 {
     mvmt_dir_forwards = 1
@@ -68,6 +73,8 @@ enum game_mode_e
 enum asset_e
 {
     anim_mudhut_smashing = 0x4E,
+
+    anim_beeBanjo_flying = 0x1dc,
 
     model_mudhut_top = 0x7D8
 };
