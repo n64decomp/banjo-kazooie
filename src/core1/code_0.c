@@ -4,10 +4,10 @@
 
 extern u32 D_80275618;
 extern u32 D_8027A130;
+extern s32 D_8027BEEC;
 extern u64 D_8027BEF0;
 extern u64 D_8027A538;
 extern u8 D_80286F90;
-
 
 void func_8023DA20(s32 arg0){
     osInvalDCache(&D_8027A130, &D_80286F90 - (u8*)&D_8027A130); //osInvalDCache
@@ -103,21 +103,14 @@ void func_8023DF9C(s32 arg0){
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_0/func_8023E00C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_0/func_8023E018.s")
+//extern s16 D_8027BD38;
+//extern u32 D_8023DF9C;
+//void func_8023E018(void){
+//    osCreateThread(&D_8027BD38, 0x6, &D_8023DF9C, (void*)0x0, (void*)&D_8027BD38, 0x14);
+//}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_0/func_8023E060.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_0/func_8023E06C.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_0/func_8023E080.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_0/func_8023E08C.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_0/func_8023E0A0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_0/func_8023E0C4.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_0/func_8023E0E8.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_0/func_8023E0F0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_0/func_8023E148.s")
+void func_8023E06C(void){
+    D_8027BEEC = 1;
+}
