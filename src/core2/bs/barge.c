@@ -178,7 +178,7 @@ void func_8029F77C(void){
     if(D_8037D2A6)
         func_8029F60C();
 
-    if(func_8028B51C())
+    if(player_inWater())
         sp24 = 0x4c;
     func_8029A72C(sp24);
 }

@@ -51,7 +51,12 @@ enum actor_e
 
 enum movement_e
 {
-    movement_bee_idle = 0x85
+    movement_bee_idle = 0x85,
+    movement_bee_walk = 0x86,
+    movement_bee_jump = 0x87,
+    movement_bee_fall = 0x88,
+
+    movement_bee_fly = 0x8c
 };
 
 enum movement_direction_e
@@ -74,8 +79,15 @@ enum asset_e
 {
     anim_mudhut_smashing = 0x4E,
 
-    anim_beeBanjo_flying = 0x1dc,
+    
+    anim_beeBanjo_flying    = 0x1dc,
+    anim_beeBanjo_walking    = 0x1dd,
+    anim_beeBanjo_idle    = 0x1de,
 
+    anim_beeBanjo_ow        = 0x1e0,
+    anim_beeBanjo_dying     = 0x1e1,
+    anim_beeBanjo_jumping     = 0x1e2,
+    
     model_mudhut_top = 0x7D8
 };
 

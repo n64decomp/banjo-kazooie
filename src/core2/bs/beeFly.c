@@ -203,7 +203,7 @@ void func_802A0B14(void){
     if(button_pressed(button_A) && (player_getYPosition() < 7500.0)){
         func_8028FDC8(1.0f);
     }
-    if(!func_8028FD30() && func_8028B51C()){
+    if(!func_8028FD30() && player_inWater()){
         func_8028FDC8(1.0f);
     }
     sp44 = func_8028FD30();
@@ -268,7 +268,7 @@ void func_802A0B14(void){
         sp38 += (f64)sp38;
     }
     func_80297970(sp38);
-    if(func_8028B2E8() && !func_8028B51C())
+    if(func_8028B2E8() && !player_inWater())
         sp4C = movement_bee_idle;
     func_8028FFF0();
     func_8029A72C(sp4C);

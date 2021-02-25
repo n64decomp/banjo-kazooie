@@ -145,7 +145,7 @@ s32 func_8028B120(void){return 0;}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028B4C4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028B51C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/player_inWater.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028B528.s")
 

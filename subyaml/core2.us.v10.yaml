@@ -331,7 +331,8 @@ segments:
   - [0x000EE340, .rodata, core2/bs/barge]
   - [0x000EE380, bin]
   - [0x000EE3C0, .rodata, core2/bs/beeFly]
-  - [0x000EE3F0, bin]
+  - [0x000EE3F0, .rodata, core2/bs/beeMain]
+  - [0x000EE460, bin]
   - [0x000EF040, ".rodata", core2/code_3BB80]
   - [0x000EF090, bin]
   - [0x000EF3E0, .rodata, core2/ch/jigsawdance] #.rodata

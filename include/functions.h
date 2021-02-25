@@ -41,6 +41,8 @@ void movement_setDuration(Movement *, f32);
 s32  func_80289FE8(f32);
 void func_8028A37C(f32);
 
+s32 player_inWater(void);
+
 ActorMarker *func_8028D5D0(void);
 
 u32 func_8028E7CC(void);

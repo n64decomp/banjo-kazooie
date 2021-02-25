@@ -4,6 +4,7 @@ movement_setIndex = 0x8028745C;
 movement_setDirection = 0x8028767C;
 movement_setDuration = 0x8028768C;
 func_802878E8 = 0x802878E8;
+player_inWater = 0x8028B51C;
 carriedObject_setActorID = 0x8028D658;
 carriedObject_getActorID = 0x8028D670;
 func_8028E7EC9 = 0x8028E7EC9;

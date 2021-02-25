@@ -55,7 +55,7 @@ void func_802B1FD8(void){
 //     if (func_8028B2E8() != 0) {
 //         sp1C = 2;
 //     }
-//     if ((func_8028B51C() != 0) && (func_80297AAC() <= 0.0f)) {
+//     if ((player_inWater() != 0) && (func_80297AAC() <= 0.0f)) {
 //         sp1C = 0x4C;
 //     }
 
