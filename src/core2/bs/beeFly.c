@@ -2,6 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
+
 f32 func_8034A754(f32, f32);
 void func_80354030(f32*, f32);
 void func_8028A274(s32, f32);
@@ -87,7 +88,7 @@ void func_802A0630(void){
                 next_state = 0x8c;
             break;
     }
-    func_8029A72C(next_state);
+    bs_setState(next_state);
 }
 
 void func_802A0704(void){
@@ -103,7 +104,7 @@ void func_802A0750(void){
 }
 
 void func_802A077C(void){
-    if(bsBeeFly_inSet(func_8029A7D4()))
+    if(bsBeeFly_inSet(bs_getNextState()))
         return;
     func_802921BC(0.0f);
     func_80298CE0(0.0f);
@@ -116,7 +117,7 @@ void func_802A077C(void){
 }
 
 void func_802A07F8(void){
-    if(bsBeeFly_inSet(func_8029A7BC()))
+    if(bsBeeFly_inSet(bs_getPrevState()))
         return;
     func_802921BC(65.0f);
     func_802991A8(3);
@@ -163,7 +164,7 @@ void _bsBeeFly_updatePitch(void){
 void func_802A0A2C(void){
     s32 mvmnt;
 
-    mvmnt = func_8029A7BC();
+    mvmnt = bs_getPrevState();
     func_8028A010(anim_beeBanjo_flying, 0.38);
     func_8029C7F4(1, 1, 3, 3);
     if(func_802933C0(9))
@@ -271,7 +272,7 @@ void func_802A0B14(void){
     if(func_8028B2E8() && !player_inWater())
         sp4C = movement_bee_idle;
     func_8028FFF0();
-    func_8029A72C(sp4C);
+    bs_setState(sp4C);
 }
 
 //bsbeefly_exit

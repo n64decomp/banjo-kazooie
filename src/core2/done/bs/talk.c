@@ -34,13 +34,13 @@ void func_802B61E0(void){
     if (D_8037D570 == 0)
         tmp = 1;
     D_8037D570 = 0;
-    func_8029A72C(tmp);
+    bs_setState(tmp);
 }
 
 void func_802B6218(void){}
 
 void func_802B6220(void){
-    if(func_8029A878() == 8){
+    if(bs_getInterruptType() == 8){
         D_8037D570 = 1;
         func_8029A86C(2);
     }

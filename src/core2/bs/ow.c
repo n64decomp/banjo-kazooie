@@ -59,7 +59,7 @@ void func_802B1FD8(void){
 //         sp1C = 0x4C;
 //     }
 
-//     func_8029A72C(sp1C);
+//     bs_setState(sp1C);
 // }
 
 void func_802B2184(void){

@@ -2,7 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-
 void func_8029797C(f32);
 f32 func_80297A64(void);
 void func_80297970(f32);
@@ -180,7 +179,7 @@ void func_8029F77C(void){
 
     if(player_inWater())
         sp24 = 0x4c;
-    func_8029A72C(sp24);
+    bs_setState(sp24);
 }
 
 //bsbarge_end

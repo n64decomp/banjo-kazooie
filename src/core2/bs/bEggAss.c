@@ -46,14 +46,14 @@ void func_802A21F8(void) {
             func_80346C10(&sp28, -1, 0, 0xD, 0);
     }
     if (has_eggs) {
-        if (func_802878E8(plyr_mvmt, 0.383700013161f)) {
-            func_8030E760(0x3E, 1.39999997616f, 0x6D60);
+        if (func_802878E8(plyr_mvmt, 0.3837f)) {
+            func_8030E760(0x3E, 1.4f, 0x6D60);
             func_8033E3F0(4, 1);
             func_80345F44(0xD);
             func_80295610(7);
         }
-        if ((func_802878E8(plyr_mvmt,  0.488499999046f)) &&  (D_8037D2E1 < D_8037D2E0)) {
-            func_8028774C(plyr_mvmt, 0.349000006914f);
+        if ((func_802878E8(plyr_mvmt,  0.4885f)) &&  (D_8037D2E1 < D_8037D2E0)) {
+            func_8028774C(plyr_mvmt, 0.349f);
             func_802875AC(plyr_mvmt, "bsbeggass.c", 0x5E);
             D_8037D2E1++;
         }
@@ -65,7 +65,7 @@ void func_802A21F8(void) {
     }
     if (func_8028B094())
         next_state = 0x2F;
-    func_8029A72C(next_state);
+    bs_setState(next_state);
 }
 
 

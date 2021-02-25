@@ -12,7 +12,7 @@ void func_80298D54(f32, f32);
 s32 func_802A03C4(s32 move_idx);
 
 void func_802A02C0(void){
-    if(func_802A03C4(func_8029A7D4()) == 0){
+    if(func_802A03C4(bs_getNextState()) == 0){
         player_setIdealPitch(0.0f); //player_setIdealPitch
         func_80298CE0(0.0f);
         func_8029B0C0();
@@ -26,7 +26,7 @@ void func_802A02C0(void){
 }
 
 void func_802A0340(void){
-    if(func_802A03C4(func_8029A7BC()) == 0){
+    if(func_802A03C4(bs_getPrevState()) == 0){
         func_80297FB0(1000.0f, 12.0f);
         func_80298D54(1000.0f, 12.0f);
         func_80293D48(50.0f, 25.0f);

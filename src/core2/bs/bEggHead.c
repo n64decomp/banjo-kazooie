@@ -25,7 +25,6 @@ void func_802A23E0(void){
     func_802952A8(2,0);
 }
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bEggHead/func_802A2468.s")
 void func_802A2468(void) {
     s32 next_state;
     Movement *plyr_mvmt;
@@ -69,7 +68,7 @@ void func_802A2468(void) {
     }
     if (func_8028B094())
         next_state = 0x2F;
-    func_8029A72C(next_state);
+    bs_setState(next_state);
 }
 
 

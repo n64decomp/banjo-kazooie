@@ -53,7 +53,7 @@ climbSet(f32* bottom, f32* top, f32 radius, u32 arg3){
 void func_80298344(void){ //climbUpdateRegrab
     D_8037C58C = max_f(D_8037C58C - func_8033DD9C(), 0.0f);
     if(D_8037C590 &&  func_802957D8(5)){
-        func_8029A81C(0xC);
+        bs_checkInterrupt(0xC);
     }
     D_8037C590 = 0;
 }

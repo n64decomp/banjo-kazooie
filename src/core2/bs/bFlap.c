@@ -201,7 +201,7 @@ void func_802A2A1C(void){
     if(player_inWater())
         sp1c = 0x4c;
 
-    func_8029A72C(sp1c);
+    bs_setState(sp1c);
 }
 
 void func_802A2D10(void) {

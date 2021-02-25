@@ -2,21 +2,67 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "bsint.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13780/func_8029A710.s")
+extern s32 D_8037D160; //prev_state
+extern s32 D_8037D164; //state
+extern s32 D_8037D168; //next_state
+extern s32 D_8037D16C; 
+extern s32 D_8037D170;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13780/func_8029A72C.s")
+void bs_clearState(void){
+    D_8037D160 = 0;
+    D_8037D164 = 0;
+    D_8037D168 = 0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13780/func_8029A7BC.s")
+void bs_setState(s32 state_id){
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13780/func_8029A7C8.s")
+    if(state_id == 0)
+        return;
+    
+    D_8037D168 = state_id;
+    if(bsList_getEndMethod(D_8037D164) != NULL)
+        bsList_getEndMethod(D_8037D164)();
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13780/func_8029A7D4.s")
+    
+    D_8037D160 = D_8037D164;
+    D_8037D164 = D_8037D168;
+    D_8037D168 = 0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13780/func_8029A7E0.s")
+    if(bsList_getInitMethod(D_8037D164) != NULL)
+        bsList_getInitMethod(D_8037D164)();
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13780/func_8029A81C.s")
+s32 bs_getPrevState(void){
+    return D_8037D160;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13780/func_8029A86C.s")
+s32 bs_getState(void){
+    return D_8037D164;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13780/func_8029A878.s")
+s32 bs_getNextState(void){
+    return D_8037D168;
+}
+
+void bs_updateState(void){
+    if(bsList_getUpdateMethod(D_8037D164) != NULL)
+        bsList_getUpdateMethod(D_8037D164)();
+}
+
+s32 bs_checkInterrupt(s32 arg0){
+    D_8037D16C = arg0;
+    D_8037D170 = 0;
+    if(bsList_getInterruptMethod(D_8037D164) != NULL)
+        bsList_getInterruptMethod(D_8037D164)();
+    return D_8037D170;
+}
+
+void func_8029A86C(s32 arg0){
+    D_8037D170 = arg0;
+}
+
+s32 bs_getInterruptType(void){
+    return D_8037D16C;
+}
