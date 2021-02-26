@@ -20,7 +20,7 @@ void func_8038EEA4(Actor *this){
     func_8038EA90();
     if(mapSpecificFlags_get(7)){
         mapSpecificFlags_set(7, 0);
-        if(!mapSpecificFlags_get(3) || (func_80345FA0(0) > 0)){
+        if(!mapSpecificFlags_get(3) || (item_getCount(0) > 0)){
             func_802D68F0(0x2D);
         }
     }
@@ -59,7 +59,7 @@ void func_8038F06C(Actor *this){
     func_8038EA90();
     if(mapSpecificFlags_get(8)){
         mapSpecificFlags_set(8, 0);
-        if(!mapSpecificFlags_get(0xC) || (func_80345FA0(0) > 0)){
+        if(!mapSpecificFlags_get(0xC) || (item_getCount(0) > 0)){
             func_802D68F0(0xA);
         }
     }

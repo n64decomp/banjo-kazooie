@@ -64,7 +64,7 @@ segments:
   - [0x16010, c]
   - [0x16C60, c]
   - [0x171F0, c]
-  - [0x17450, c, core2/bs/bsAnt]
+  - [0x17450, c, core2/bs/ant]
   - [0x18550, c, core2/bs/bBarge]
   - [0x18B90, c, core2/bs/buster]
   - [0x19330, c, core2/bs/bee]

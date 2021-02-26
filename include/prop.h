@@ -255,7 +255,8 @@ typedef struct actor_s{
     u32 unkF4_21:1;
     u32 unkF4_20:12;
     u32 unkF4_8:9;
-    u8  padF8[0xC];
+    u8  padF8[0x8];
+    u32 unk100;
     ActorMarker *unk104;
     u8  pad108[8];
     f32 roll;//110

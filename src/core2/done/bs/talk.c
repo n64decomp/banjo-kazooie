@@ -11,7 +11,7 @@ void func_802B6130(void){
     f32 plyr_pos[3];
     f32 target_pos[3];
 
-    plyr_mvmt = func_80289F64();
+    plyr_mvmt = player_getMovementPtr();
     func_802874AC(plyr_mvmt);
     func_8029C848(plyr_mvmt);
     func_80287674(plyr_mvmt, 2);

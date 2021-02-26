@@ -38,6 +38,7 @@ BKSpriteFrame *spriteGetFramePtr(BKSprite *, u32);
 
 void func_802876CC(Movement *, f32,f32);
 void movement_setDuration(Movement *, f32);
+Movement *player_getMovementPtr(void);
 s32  func_80289FE8(f32);
 void func_8028A37C(f32);
 
@@ -76,6 +77,17 @@ f32 player_getRoll(void);
 
 f32 player_getYaw(void);
 f32 player_getMovingYaw(void);
+
+/* core2/code_13780.c */
+void bs_clearState(void);
+void bs_setState(s32 state_id);
+s32 bs_getPrevState(void);
+s32 bs_getState(void);
+s32 bs_getNextState(void);
+void bs_updateState(void);
+s32 bs_checkInterrupt(s32 arg0);
+void func_8029A86C(s32 arg0);
+s32 bs_getInterruptType(void);
 
 /* vla - variable length array*/
 void    vla_clear(VLA *this);

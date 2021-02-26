@@ -13,7 +13,7 @@ void func_802B1FD0(s32 arg0){}
 void func_802B1FD8(void){
     Movement *plyr_mvmnt;
 
-    plyr_mvmnt = func_80289F64();
+    plyr_mvmnt = player_getMovementPtr();
     func_802874AC(plyr_mvmnt);
     func_80287684(plyr_mvmnt, 0);
     func_802876CC(plyr_mvmnt, 0.0f, 0.534399986267f);

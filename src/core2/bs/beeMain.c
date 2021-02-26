@@ -86,13 +86,13 @@ void func_802A10D4(void){
         s0 = func_802926C0();
     
     if(func_8029B300() > 0)
-        s0 = movement_bee_walk;
+        s0 = bs_bee_walk;
 
     if(button_pressed(button_A))
-        s0 = movement_bee_jump;
+        s0 = bs_bee_jump;
 
     if(player_inWater())
-        s0 = movement_bee_fly;
+        s0 = bs_bee_fly;
 
     bs_setState(func_8029CA94(s0));
 }
@@ -119,16 +119,16 @@ void func_802A1214(void){
     func_8029AD28(0.94f, 4);
     func_8029AD28(0.44f, 3);
     if(func_8029B300() == 0 && func_80297C04(1.0f))
-        s0 = movement_bee_idle;
+        s0 = bs_bee_idle;
     
     if(func_8028B094())
-        s0 = movement_bee_fall;
+        s0 = bs_bee_fall;
 
     if(button_pressed(button_A))
-        s0 = movement_bee_jump;
+        s0 = bs_bee_jump;
 
     if(player_inWater())
-        s0 = movement_bee_fly;
+        s0 = bs_bee_fly;
 
     bs_setState(s0);
 }
@@ -141,7 +141,7 @@ void func_802A12D4(void){
 void func_802A12FC(void){
     Movement * s0;
 
-    s0 = func_80289F64();
+    s0 = player_getMovementPtr();
     func_802A0340();
     func_802874AC(s0);
     func_80287684(s0, 0);
@@ -170,7 +170,7 @@ void func_802A1438(void){
     f32 sp1c[3];
 
     sp2c = 0;
-    sp28 = func_80289F64();
+    sp28 = player_getMovementPtr();
     func_802A1020();
     func_80297A88(sp1c);
     if(func_80295590(8) && (0.0f < sp1c[1])){
@@ -207,24 +207,24 @@ void func_802A1438(void){
         func_80299628(0);
         if(func_802878C4(sp28)){
             func_80297970(0.0f);
-            sp2c = movement_bee_idle;
+            sp2c = bs_bee_idle;
         }
         break;
     }
     if(func_8028B2E8()){
         if(func_8029B300() > 0)
-            sp2c = movement_bee_walk;
+            sp2c = bs_bee_walk;
         if(button_pressed(button_A)){
-            sp2c = movement_bee_jump;
+            sp2c = bs_bee_jump;
         }
     }
     else{
         if(button_pressed(button_A)){
-            sp2c = movement_bee_fly;
+            sp2c = bs_bee_fly;
         }
     }
     if(player_inWater())
-        sp2c = movement_bee_fly;
+        sp2c = bs_bee_fly;
     bs_setState(sp2c);
 }
 
@@ -236,7 +236,7 @@ void func_802A163C(void){
 void func_802A1664(void){
     Movement * s0;
 
-    s0 = func_80289F64();
+    s0 = player_getMovementPtr();
     func_802A0340();
     func_802874AC(s0);
     movement_setIndex(s0, anim_beeBanjo_jumping);
@@ -255,7 +255,7 @@ void func_802A170C(void){
     f32 sp1c[3];
 
     sp2c = 0;
-    sp28 = func_80289F64();
+    sp28 = player_getMovementPtr();
     func_80299628(0);
     func_802A1020();
     func_80297A88(sp1c);
@@ -279,7 +279,7 @@ void func_802A170C(void){
             func_80299628(0);
             if(func_802878C4(sp28)){
                 func_80297970(0.0f);
-                sp2c = movement_bee_idle;
+                sp2c = bs_bee_idle;
             }
             break;
     }
@@ -288,18 +288,18 @@ void func_802A170C(void){
             sp2c = func_80292738();
         }else{
             if(func_8029B300() > 0)
-                sp2c = movement_bee_walk;
+                sp2c = bs_bee_walk;
             if(button_pressed(button_A))
-                sp2c = movement_bee_jump;
+                sp2c = bs_bee_jump;
             sp2c = func_8029CA94(sp2c);
         }
     }
     else{
         if(func_802933D0(0xf) && button_pressed(button_A))
-            sp2c = movement_bee_fly;
+            sp2c = bs_bee_fly;
     }//L802A189C
     if(player_inWater())
-        sp2c = movement_bee_fly;
+        sp2c = bs_bee_fly;
     bs_setState(sp2c);
 }
 
@@ -315,7 +315,7 @@ void func_802A18E8(s32 arg0){
     f32 sp20[3];
 
     //sp40 = arg0;
-    sp3C = func_80289F64();
+    sp3C = player_getMovementPtr();
     func_802A0340();
     func_802874AC(sp3C);
     movement_setIndex(sp3C, anim_beeBanjo_ow);
@@ -362,7 +362,7 @@ void func_802A1A50(void){
             break;
     }
     if(func_8028B2E8())
-        sp1C = movement_bee_idle;
+        sp1C = bs_bee_idle;
     if(0.65 < func_80289F70() && player_inWater()){
         sp1C = 0x8C;
     }
@@ -401,13 +401,13 @@ void func_802A1C08(void){
     func_802A1B28();
 }
 
-void func_802A1C28(void){
+void bsbeemain_die_init(void){
     Movement* sp3C;
     f32 sp38;
     f32 sp2C[3];
     f32 sp20[3];
     
-    sp3C = func_80289F64();
+    sp3C = player_getMovementPtr();
     func_8029B930();
     func_802A0340();
     func_802874AC(sp3C);
@@ -502,7 +502,7 @@ void func_802A1FC8(void){
     func_80299628(0);
     func_8029C6D0();
     if(!func_80298850()){
-        sp1C = movement_bee_idle;
+        sp1C = bs_bee_idle;
     }
     bs_setState(sp1C);
 }
@@ -539,7 +539,7 @@ void func_802A2098(void){
 void func_802A2130(void){
     s32 next  = 0;
     if(func_8029E1A8(0)){
-        next = movement_bee_idle;
+        next = bs_bee_idle;
     }
     bs_setState(next);
 }

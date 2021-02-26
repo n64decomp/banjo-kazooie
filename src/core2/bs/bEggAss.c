@@ -37,8 +37,8 @@ void func_802A21F8(void) {
     s32 fill2;
 
     next_state = 0;
-    plyr_mvmt = func_80289F64();
-    has_eggs = (func_80345F74(0xD) == 0);
+    plyr_mvmt = player_getMovementPtr();
+    has_eggs = (item_empty(item_eggs) == 0);
     if (func_80295068()) {
         if (has_eggs)
             D_8037D2E0 = func_80258948(D_8037D2E0 + 1, 3);

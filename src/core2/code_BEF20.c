@@ -9,9 +9,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_80345F44.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_80345F74.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/item_empty.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_80345FA0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/item_getCount.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_80345FB4.s")
 

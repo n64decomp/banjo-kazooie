@@ -62,7 +62,7 @@ void func_802A2790(s32 arg0, f32 arg1, s32 arg2) {
 
 void func_802A2810(void) {
     Movement *plyrMvPtr;
-    plyrMvPtr = func_80289F64();
+    plyrMvPtr = player_getMovementPtr();
     if (func_802878E8(plyrMvPtr, 0.9f)) {
         D_8037D301++;
     }
@@ -87,7 +87,7 @@ f32 func_802A2858(void){
 }
 
 void func_802A28CC(void){
-    Movement *sp1c = func_80289F64();
+    Movement *sp1c = player_getMovementPtr();
     movement_setDuration(sp1c, func_802A2858());
 }
 
@@ -104,7 +104,7 @@ s32 func_802A293C(f32 arg0);
 
 void func_802A298C(void){
     Movement * sp1c;
-    sp1c = func_80289F64();
+    sp1c = player_getMovementPtr();
     if(func_802A293C(0.08f)){
         func_802A2790(0x4e, 1.24f, 0x4e20);
     }
@@ -119,7 +119,7 @@ void func_802A2A1C(void){
     Movement * sp18;
 
     sp1c = 0;
-    sp18 = func_80289F64();
+    sp18 = player_getMovementPtr();
     func_802B6FA8();
     switch(D_8037D300){
         case 0:

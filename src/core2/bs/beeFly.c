@@ -28,7 +28,7 @@ f32 func_80297A64(void);
 void func_802979AC(f32, f32);
 void func_8028FDC8(f32);
 f32 player_getYPosition(void);
-Movement * func_80289F64(void);
+Movement * player_getMovementPtr(void);
 void func_80290B40(f32);
 f32 func_80297FA4(void);
 void func_80290A6C(void);
@@ -71,7 +71,7 @@ void func_802A0630(void){
     s32 next_state = 0;
     Movement * mvmnt; //sp1C
 
-    mvmnt = func_80289F64();
+    mvmnt = player_getMovementPtr();
     switch(D_8037D2C0){
         case 0:
             if(!func_802878E8(mvmnt, 0.266f))
@@ -103,7 +103,7 @@ void func_802A0750(void){
     func_80297FB0(1000.0f, 2.2f);
 }
 
-void func_802A077C(void){
+void _bsbeefly_end(void){
     if(bsBeeFly_inSet(bs_getNextState()))
         return;
     func_802921BC(0.0f);
@@ -160,8 +160,7 @@ void _bsBeeFly_updatePitch(void){
     
 }
 
-//bsbeefly_enter
-void func_802A0A2C(void){
+void bsbeefly_enter(void){
     s32 mvmnt;
 
     mvmnt = bs_getPrevState();
@@ -184,8 +183,7 @@ void func_802A0A2C(void){
     }
 }
 
-//bsbeefly_update
-void func_802A0B14(void){
+void bsbeefly_update(void){
     s32 sp4C;
     Movement* sp48;
     s32 sp44;
@@ -197,7 +195,7 @@ void func_802A0B14(void){
    
 
     sp4C = 0;
-    sp48 = func_80289F64();
+    sp48 = player_getMovementPtr();
     _bsBeeFly_updateYaw();
     _bsBeeFly_updatePitch();
     player_getPitch(); //return value never used
@@ -270,14 +268,13 @@ void func_802A0B14(void){
     }
     func_80297970(sp38);
     if(func_8028B2E8() && !player_inWater())
-        sp4C = movement_bee_idle;
+        sp4C = bs_bee_idle;
     func_8028FFF0();
     bs_setState(sp4C);
 }
 
-//bsbeefly_exit
-void func_802A0F58(void){
-    func_802A077C();
+void bsbeefly_end(void){
+    _bsbeefly_end();
 }
 
 s32 bsBeeFly_inSet(s32 move){

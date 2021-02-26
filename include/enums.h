@@ -49,14 +49,19 @@ enum actor_e
     actor_yumblie           = 0x139
 };
 
-enum movement_e
+enum bs_e
 {
-    movement_bee_idle = 0x85,
-    movement_bee_walk = 0x86,
-    movement_bee_jump = 0x87,
-    movement_bee_fall = 0x88,
+    bs_bee_idle = 0x85,
+    bs_bee_walk = 0x86,
+    bs_bee_jump = 0x87,
+    bs_bee_fall = 0x88,
 
-    movement_bee_fly = 0x8c
+    bs_bee_fly = 0x8c
+};
+
+enum item_e
+{
+    item_eggs = 0xD
 };
 
 enum movement_direction_e

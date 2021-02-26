@@ -310,7 +310,7 @@ void func_80389080(Actor *this){
         }
         if(this->unk10_31 == 5){
             if(func_803203FC(2)){
-                if(func_80345F74(0)){
+                if(item_empty(0)){
                     func_80346414(6,1);
                     func_803204E4(3,0);
                     func_803204E4(5,0);

@@ -63,11 +63,10 @@ s32 func_8029F644(void){
     return D_8037D2A6;
 }
 
-//bsbarge_start
-void func_8029F650(void){
+void bsbarge_init(void){
     Movement *plyrMvmnt;
 
-    plyrMvmnt = func_80289F64();
+    plyrMvmnt = player_getMovementPtr();
     func_802874AC(plyrMvmnt);
     func_80287684(plyrMvmnt, 0);
     movement_setIndex(plyrMvmnt, 0x1C);
@@ -90,13 +89,12 @@ void func_8029F650(void){
 
 }
 
-//bsbarge_update
-void func_8029F77C(void){
+void bsbarge_update(void){
     s32 sp24;
     Movement *plyrMvmnt;
     
     sp24 = 0;
-    plyrMvmnt = func_80289F64();
+    plyrMvmnt = player_getMovementPtr();
     if(func_80295590(9))
         func_802933E8(0xA);
     switch(D_8037D2A5){
@@ -163,7 +161,7 @@ void func_8029F77C(void){
             break;
         case 4:
             if(!func_8028B2E8())
-                sp24 = 0x2F;
+                sp24 = 0x2F; //falling
 
             if(func_802878E8(plyrMvmnt, 0.7f)){
                 D_8037D2A0 = 0.0f;
@@ -171,19 +169,18 @@ void func_8029F77C(void){
             }
             func_80297970(D_8037D2A0);
             if(func_802878E8(plyrMvmnt, 0.9193f))
-                sp24 = 0x20;
+                sp24 = 0x20; //landing
             break;
     }
     if(D_8037D2A6)
         func_8029F60C();
 
     if(player_inWater())
-        sp24 = 0x4c;
+        sp24 = 0x4c; //landing in water
     bs_setState(sp24);
 }
 
-//bsbarge_end
-void func_8029FAE8(void){
+void bsbarge_end(void){
     func_80295610(5);
     func_8029E070(0);
     D_8037D2A6 = 0;
