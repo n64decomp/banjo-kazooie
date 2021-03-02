@@ -35,13 +35,15 @@ typedef struct actorMarker_s{
     ActorProp*  propPtr;
     struct cude_s*     cubePtr;
     u8          pad8[0xC];
-    u32         pad14_31:10;
+    u32         yaw:9;
+    u32         pad14_22:1;
     u32         unk14_21:1;
     u32         pad14_20:21;
     u32         unk18;
     u8          unk1C[0x10];
     u32         actrArrayIdx:11; //unk2C
-    u32         pad2C_21:18;
+    u32         pitch:9;
+    u32         roll:9;
     u32         unk2C_2:1;
     u32         pad2C_1:1;
     u32         collidable:1;

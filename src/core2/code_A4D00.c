@@ -221,19 +221,18 @@ void func_8032F430(ActorMarker *this){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032F464.s")
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032F470.s")
-void func_8032F470(s32 *arg0, ActorMarker *arg1){
+void func_8032F470(s32 *pos, ActorMarker *arg1){
     Cube *cubePtr;
 
-    cubePtr = (arg1->unk40_23)? func_8030364C(): func_80303470(arg0);
+    cubePtr = (arg1->unk40_23)? func_8030364C(): func_80303470(pos);
 
     if(cubePtr == arg1->cubePtr){
-        arg1->propPtr->x = arg0[0];
-        arg1->propPtr->y = arg0[1];
-        arg1->propPtr->z = arg0[2];
+        arg1->propPtr->x = pos[0];
+        arg1->propPtr->y = pos[1];
+        arg1->propPtr->z = pos[2];
     }
     else{
-        func_8032F194(arg1, arg0, cubePtr);
+        func_8032F194(arg1, pos, cubePtr);
     }
 
     if(arg1->pad2C_1)
@@ -248,9 +247,35 @@ void func_8032F470(s32 *arg0, ActorMarker *arg1){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032F5E8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032F64C.s")
+void func_8032F64C(f32 *pos, ActorMarker * marker){
+    s32 pos_w[3];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032F6A4.s")
+    pos_w[0] = pos[0];
+    pos_w[1] = pos[1];
+    pos_w[2] = pos[2];
+    func_8032F470(pos_w, marker);
+}
+
+void func_8032F6A4(s32 *pos, ActorMarker * marker, s32 *rot){
+    s32 rot_w[3];
+    
+    rot_w[0] = (s32)rot[0] % 360;
+    if(rot_w[0] < 0)
+        rot_w[0] += 360;
+
+    rot_w[1] = (s32)rot[1] % 360;
+    if(rot_w[1] < 0)
+        rot_w[1] += 360;
+
+    rot_w[2] = (s32)rot[2] % 360;
+    if(rot_w[2] < 0)
+        rot_w[2] += 360;
+
+    marker->yaw = rot_w[1];
+    marker->pitch = rot_w[0];
+    marker->roll = rot_w[2];
+    func_8032F470(pos, marker);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032F7EC.s")
 
