@@ -22,9 +22,15 @@ enum transformation_E
 enum map_e
 {
     map_sm_spiral_mountain = 1,
+
+    map_ttc_treasure_trove_cove = 7,
+
     map_cs_start_nintendo = 0x1E,
-    map_cs_start_rarware,
-    map_cs_end_not100
+    map_cs_start_rarware = 0x1F,
+    map_cs_end_not100 = 0x20,
+    map_rbb_rusty_bucket_bay = 0x31,
+    map_sm_banjos_house = 0x8C
+
 };
 
 enum jiggy_e
