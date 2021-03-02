@@ -10,11 +10,11 @@ enum ch_id{
 };
 
 typedef struct sprite_prop_s{
-    u8 pad0[0x12];
+    u8 pad0[0xC];
 } SpriteProp;
 
 typedef struct prop_prop_s{
-    u8 pad0[0x12];
+    u8 pad0[0xC];
 } PropProp;
 
 typedef struct actor_prop_s{
@@ -27,7 +27,7 @@ typedef struct actor_prop_s{
     u32 pad8_2:1;
     u32 unk8_1:1;
     u32 unk8_0:1;
-    u8 padC;
+    //u8 padC;
 } ActorProp;
 
 typedef struct actorMarker_s{
@@ -318,8 +318,10 @@ typedef union prop_s
     SpriteProp  sprite;
     PropProp    prop;
     struct{
-        u8 pad0[8];
-        s32 pad8: 31;
+        u8 pad0[6];
+        s16 unk6;
+        s32 pad8_31: 30;
+        u32 pad8_1:1;
         s32 markerFlag: 1;
     };
 } Prop;

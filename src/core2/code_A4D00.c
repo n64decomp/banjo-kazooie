@@ -3,9 +3,12 @@
 #include "variables.h"
 #include "structs.h"
 
-void func_8032D9C0(Cube*, Prop*);
+s32 func_8032D9C0(Cube*, Prop*);
 void func_80332B2C(ActorMarker * arg0);
-
+s32 func_803058C0(f32);
+void func_80305CD8(s32, s32);
+void func_80330104(Cube*);
+void func_80254608(void *, void *, s32);
 
 extern ModelCache *modelCache; //model pointer array pointer
 extern u32 D_80383444;
@@ -68,7 +71,31 @@ extern u32 D_80383444;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032D8F0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032D9C0.s")
+s32 func_8032D9C0(Cube *this, Prop* prop){
+    s32 sp24;
+    s32 tmp;
+
+    sp24 = 0;
+    if(this->prop2Cnt != 0){
+        sp24 = prop->pad8_1; 
+        if(func_80305D14()){
+            func_80305CD8(func_803058C0(prop->unk6), -1);
+        }
+        if((prop - this->prop2Ptr) < (this->prop2Cnt - 1)){
+            func_80254608(prop, prop + 1, (s32)(&this->prop2Ptr[this->prop2Cnt-1]) - (s32)(prop));
+        }
+        this->prop2Cnt--;
+        if(this->prop2Cnt){
+            this->prop2Ptr = realloc(this->prop2Ptr, this->prop2Cnt*sizeof(Prop));
+            func_80330104(this);
+        }else{
+            free(this->prop2Ptr);
+            this->prop2Ptr = NULL;
+        }
+        return sp24;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032DB2C.s")
 
