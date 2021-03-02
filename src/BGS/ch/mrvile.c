@@ -11,7 +11,6 @@ void func_8033A4CC(u32);
 Actor *mrVileDraw(ActorMarker*, Gfx **, Mtx **);
 void func_8038C48C(ActorMarker *);
 Actor *func_80325888(ActorMarker *);
-Actor *
 void func_80324C88(f32, u32, f32, u32);
 void func_80324EE4(f32, void (*)(ActorMarker *), ActorMarker *);
 f32  func_8034A754(f32, f32);

@@ -4,7 +4,6 @@
 
 void  func_80326224(Actor *);
 void  func_803298AC(Actor *);
-Actor *
 void chPinkEggDraw(ActorMarker *this, Gfx ** gdl, Mtx** mptr, u32 arg3);
 void  func_80387AB0(ActorMarker *this, u32 arg1);
 void func_80387B80(Actor *this);

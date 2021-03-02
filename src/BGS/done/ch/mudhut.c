@@ -53,7 +53,7 @@ void func_8038EA90(void){
 Actor *func_8038EAD0(ActorMarker *this, Gfx** gdl, Mtx** mtx, u32 arg3){
     Actor *thisActor;
 
-    thisActor = marker_getActor();
+    thisActor = marker_getActor(this);
     func_8033A45C(1, thisActor->unk10_31 == 1);
     if(thisActor->unk10_31 == 3)
         return thisActor;

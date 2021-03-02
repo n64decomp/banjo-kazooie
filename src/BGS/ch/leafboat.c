@@ -5,7 +5,6 @@
 f32 func_8034A754(f32, f32);
 
 
-Actor *
 
 void func_8038FD9C(Actor *this);
 Actor *func_8038FD10(ActorMarker *this, Gfx** gdl, Mtx** mtx, u32 arg3);

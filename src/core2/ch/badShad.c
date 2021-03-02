@@ -2,9 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-Actor *
-
-
 void func_802D6EA0(Actor *this){
     s32 iVar1;
     if(!this->unkF4_21){
