@@ -19,9 +19,10 @@ typedef struct prop_prop_s{
 
 typedef struct actor_prop_s{
     struct actorMarker_s* marker;
-    u8 pad4[0x4];
-    u32 unk8_31:24;
-    u32 pad8_7:3;
+    s16 x;
+    s16 y;
+    s32 z:16;
+    u32 pad8_15:11;
     u32 unk8_4:1;
     u32 unk8_3:1;
     u32 pad8_2:1;
@@ -50,7 +51,10 @@ typedef struct actorMarker_s{
     u32         modelId:13;
     u32         unk3C_1:1;
     u32         pad3C_0:1;
-    u8          pad40[0x1C];
+    u32         pad40_31:8;
+    u32         unk40_23:1;
+    u32         pad40_22:23;
+    u8          pad44[0x18];
     s32         unk5C;
 } ActorMarker;
 

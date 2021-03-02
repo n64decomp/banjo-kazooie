@@ -71,6 +71,7 @@ extern u32 D_80383444;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032D8F0.s")
 
+//cube_removeProp
 s32 func_8032D9C0(Cube *this, Prop* prop){
     s32 sp24;
     s32 tmp;
@@ -213,14 +214,31 @@ s32 func_8032D9C0(Cube *this, Prop* prop){
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032F3D4.s")
 
 
-func_8032F430(ActorMarker *this){
+void func_8032F430(ActorMarker *this){
     func_8032D9C0(this->cubePtr, this->propPtr);
     func_80332B2C(this);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032F464.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032F470.s")
+//#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032F470.s")
+void func_8032F470(s32 *arg0, ActorMarker *arg1){
+    Cube *cubePtr;
+
+    cubePtr = (arg1->unk40_23)? func_8030364C(): func_80303470(arg0);
+
+    if(cubePtr == arg1->cubePtr){
+        arg1->propPtr->x = arg0[0];
+        arg1->propPtr->y = arg0[1];
+        arg1->propPtr->z = arg0[2];
+    }
+    else{
+        func_8032F194(arg1, arg0, cubePtr);
+    }
+
+    if(arg1->pad2C_1)
+        func_80307CA0(arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032F528.s")
 
