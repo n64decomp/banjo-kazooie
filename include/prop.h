@@ -222,7 +222,7 @@ typedef struct actor_s{
     u32  pad38_21:21;
     u32  unk38_0:1;
     u8  pad3C[0x8];
-    u32 pad44_31:8;
+    u32 unk44_31:8;
     u32 modelCacheIndex:10; //modelCacheIndex
     s32 unk44_4:10;
     u32 despawn_flag:1;

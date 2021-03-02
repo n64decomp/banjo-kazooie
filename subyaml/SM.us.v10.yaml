@@ -33,4 +33,6 @@ segments:
     vram: 0x8038AAC0
     files:
       - [0x000046D0, bin]
+      - [0x00004D20, .rodata, SM/code_5B0]
+      - [0x00004D40, bin]
   - [0x00004F30]
