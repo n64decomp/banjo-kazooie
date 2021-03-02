@@ -52,7 +52,7 @@ void func_80386A00(Actor *this) {
     func_803869A0(this, D_8038B110, D_8038B110);
 }
 
-void func_80386B04(Actor *this, s32 arg1, s32 arg2, f32 arg3) {
+void func_80386B04(Actor *this, f32 *arg1, s32 arg2, f32 arg3) {
     func_802EF9F8(this, 0.6f);
     func_802EFA18(this, 4);
     func_802EFA5C(this, 0.00f, 0.75f);
@@ -68,7 +68,7 @@ void func_80386B04(Actor *this, s32 arg1, s32 arg2, f32 arg3) {
     func_802EF5C8(this, arg2);
 }
 
-void func_80386C2C(Actor *this, s32 arg1, s32 arg2, f32 arg3) {
+void func_80386C2C(Actor *this, f32 *arg1, s32 arg2, f32 arg3) {
     func_802EFFA8(this, &D_8038AB90);
     func_802EF950(this, 0x700);
     func_802EFA5C(this, 0.00f, 0.01f);
@@ -94,18 +94,17 @@ void func_80386C2C(Actor *this, s32 arg1, s32 arg2, f32 arg3) {
 //     s32 temp_a0;
 //     s32 temp_a1;
 
-//     func_8030E8B4(0x7FFF409B, (temp_a1 = &this->position_x), 0x07D003E8);
+//     func_8030E8B4(0x7FFF409B, &this->position_x, 0x07D003E8);
 //     this->pad44_31 = func_8030D90C();
 //     func_8030DA80(this->pad44_31, 0x3F9);
 //     func_8030DD14(this->pad44_31, 3);
 //     func_8030DABC(this->pad44_31, 0x7D00);
 //     func_8030DBB4(this->pad44_31, (0.01 < (2.0 - this->scale))? (2.0 - this->scale): 0.01);
 //     func_8030E2C4(this->pad44_31);
-//     func_80386B04(func_802F0BD0(0xA), *(u32 *)(&temp_a1), 0xA, this->scale);
-//     func_80386C2C(func_802F0BD0(0x10), *(u32 *)(&temp_a1), 0x10, this->scale);
+//     func_80386B04(func_802F0BD0(0xA), &this->position_x, 0xA, this->scale);
+//     func_80386C2C(func_802F0BD0(0x10), &this->position_x, 0x10, this->scale);
 
-//     temp_a0 = this->unk100;
-//     if(temp_a0 && func_803870E8(temp_a0)){
+//     if(this->unk100 && func_803870E8(this->unk100)){
 //         func_802CA1CC(0x18);
 //         func_802C3F04(func_802C4218, 0x1F, *(u32 *)(&this->position_x), *(u32 *)(&this->position_y), *(u32 *)(&this->position_z));
 //     }
