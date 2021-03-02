@@ -25,7 +25,7 @@ extern u8  D_80390864[];
 extern f32 D_80390868[3];
 
 void func_80388660(ActorMarker *this){
-    func_803888E4(func_80329958(this), 6);
+    func_803888E4(marker_getActor(this), 6);
 }
 
 void func_8038868C(void){
@@ -37,7 +37,7 @@ void func_803886B4(ActorMarker *this, s32 arg1){
     ActorLocal_BGS_2270 *actLocalPtr;
     struct7s *tmpPtr;
 
-    thisActor = func_80329958(this);
+    thisActor = marker_getActor(this);
     actLocalPtr = &thisActor->bgs_2270;
     actLocalPtr->unkB = arg1;
     if(arg1){
@@ -49,7 +49,7 @@ void func_803886B4(ActorMarker *this, s32 arg1){
 void func_803886F4(ActorMarker *this){
     Actor *thisActor;
     
-    thisActor = func_80329958(this);
+    thisActor = marker_getActor(this);
     func_80346414(6, 1);
     func_80346414(0, 0x707);
     func_803888E4(thisActor, 5);
@@ -66,7 +66,7 @@ void func_80388760(void){
 void func_80388784(ActorMarker *this, s32 arg1, s32 arg2){
     Actor *thisActor;
 
-    thisActor = func_80329958(this);
+    thisActor = marker_getActor(this);
     switch(arg1){
         case 0xc72:
         case 0xc74:
@@ -95,7 +95,7 @@ void func_80388848(ActorMarker *this){
     ActorLocal_BGS_2270 *unqPtr;
     s32 sp1C;
 
-    thisActor = func_80329958(this);
+    thisActor = marker_getActor(this);
     unqPtr = &thisActor->bgs_2270;
     sp1C = vla_size(unqPtr->unk4);
     func_8038873C();
@@ -208,7 +208,7 @@ void func_80388E44(s32 arg0, s32 arg1){
 }
 
 s32 func_80388E70(ActorMarker *this){
-    Actor *ptr = func_80329958(this);
+    Actor *ptr = marker_getActor(this);
     return ptr->bgs_2270.unkB;
 }
 
@@ -217,7 +217,7 @@ void func_80388E94(ActorMarker *this, s32 arg1){
     ActorLocal_BGS_2270 *unqPtr;
     struct7s * tmp;
 
-    thisActor = func_80329958(this);
+    thisActor = marker_getActor(this);
     unqPtr = &thisActor->bgs_2270;
     if((s32)unqPtr->unk0 >= (s32) vla_size(unqPtr->unk4)){
         if(!mapSpecificFlags_get(0) && func_80311480(0xc76, 0, 0, 0, 0, 0))
@@ -245,7 +245,7 @@ void func_80388FFC(ActorMarker *this, s32 *arg1, f32* arg2){
     Actor *thisActor;
     ActorLocal_BGS_2270 *localPtr;
 
-    thisActor = func_80329958(this);
+    thisActor = marker_getActor(this);
     localPtr = &(thisActor->bgs_2270);
     
     *arg2 = 0.52 + (f64)localPtr->unk9 * 0.12;

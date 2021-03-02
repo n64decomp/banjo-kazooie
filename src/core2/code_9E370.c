@@ -269,7 +269,7 @@ void func_803298D8(Actor *this){
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032994C.s")
 
 //marker_getActorPtr
-Actor *func_80329958(ActorMarker *this){
+Actor *marker_getActor(ActorMarker *this){
     return &(D_8036E560->data[this->actrArrayIdx]);
 }
 

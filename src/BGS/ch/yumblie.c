@@ -95,7 +95,7 @@ void func_8038B220(Actor* this, u32 state){
 // u32 func_8038B4E4(ActorMarker * arg0){
 //     volatile Actor* actPtr;
 
-//     actPtr = func_80329958(arg0);
+//     actPtr = marker_getActor(arg0);
 //     return ( (actPtr->unk10_31 < 2)) && (actPtr->unk10_31 < 5);
 // }
 
@@ -105,7 +105,7 @@ Actor *func_8038B528(ActorMarker *this, Gfx **gdl, Mtx** mp, u32 arg3){
     f32 sp44[3];
     f32 sp38[3];
     
-    thisActor = func_80329958(this);
+    thisActor = marker_getActor(this);
     sp40 = &thisActor->yumblie;
     if ( thisActor->unk10_31 < 2 || thisActor->unk10_31 > 4){
         thisActor->marker->unk14_21 = 0;
@@ -130,7 +130,7 @@ Actor *func_8038B528(ActorMarker *this, Gfx **gdl, Mtx** mp, u32 arg3){
 }
 
 u32 func_8038B684(ActorMarker * arg0){
-    Actor* actPtr = func_80329958(arg0);
+    Actor* actPtr = marker_getActor(arg0);
 
     if( actPtr->unk10_31 < 5){
         func_8038B220(actPtr, 5);

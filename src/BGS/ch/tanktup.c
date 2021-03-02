@@ -94,7 +94,7 @@ void func_8038F470(ActorMarker *this, s32 arg1, s32 arg2){
     Actor* sp24;
     f32 sp18[3];
 
-    thisActor = func_80329958(this);
+    thisActor = marker_getActor(this);
     sp18[0] = thisActor->position_x;
     sp18[1] = thisActor->position_y;
     sp18[2] = thisActor->position_z;
@@ -138,7 +138,7 @@ void func_8038F5E4(s32 arg0, s32 arg1, s32 arg2){
 void func_8038FB40(ActorMarker *this, s32 arg1){
     Actor * thisActor;
 
-    thisActor = func_80329958(this);
+    thisActor = marker_getActor(this);
     func_80328A84(thisActor, 2);
     func_803298AC(thisActor);
     func_8030E624(0x665ff80A);
@@ -147,7 +147,7 @@ void func_8038FB40(ActorMarker *this, s32 arg1){
 void func_8038FB84(ActorMarker *this, s32 arg1){
     Actor *thisActor;
 
-    thisActor = func_80329958(this);
+    thisActor = marker_getActor(this);
     func_8030E8B4(0x7FFFF887, &thisActor->position_x, 0x0BB803E8);
     func_80324F20(D_803911C0, func_8038FB40, this, arg1);
     func_8038F51C(thisActor);

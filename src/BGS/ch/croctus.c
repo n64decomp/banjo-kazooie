@@ -2,9 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-
-//Actor * func_80329958(ActorMarker *);
-
 void func_80387D18(ActorMarker *, u32);
 Actor *func_8038860C(ActorMarker *, Gfx**, Mtx **, u32);
 
@@ -25,7 +22,7 @@ void func_80387D18(ActorMarker * arg0, u32 arg1){
     Actor* actPtr;
     Actor* nextActPtr;
 
-    actPtr = func_80329958(arg0);
+    actPtr = marker_getActor(arg0);
     nextActPtr = func_8032818C(0x6A, &actPtr);
     nextActPtr->unk10_31 = 2;
     nextActPtr->unkF4_8 = 0x8C;
@@ -40,7 +37,7 @@ void func_80387D18(ActorMarker * arg0, u32 arg1){
 //     ActorProp *propPtr;
 //     f32 spawnPos[3];
 //     //if(arg0);
-//     actPtr = func_80329958(arg0);
+//     actPtr = marker_getActor(arg0);
 //     //if(arg0);
 //     spawnPos[0] = actPtr->position_x;
 //     spawnPos[1] = actPtr->position_y;
@@ -54,7 +51,7 @@ void func_80387D18(ActorMarker * arg0, u32 arg1){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/BGS/ch/croctus/func_80387E00.s")
 // void func_80387E00(ActorMarker * arg0){
-//     Actor * thisActor = func_80329958(arg0);
+//     Actor * thisActor = marker_getActor(arg0);
 
 //     func_803262E4(thisActor);
 //     if(arg0);
@@ -63,7 +60,7 @@ void func_80387D18(ActorMarker * arg0, u32 arg1){
 // }
 
 void func_80387E40(ActorMarker * arg0){
-    Actor *thisActor = func_80329958(arg0);
+    Actor *thisActor = marker_getActor(arg0);
     func_80326310(thisActor);
     if(arg0);
 }
@@ -80,7 +77,7 @@ void bgs_func_803885DC(void){
 
 Actor *func_8038860C(ActorMarker *this, Gfx** gdl, Mtx ** mptr, u32 arg3){
     Actor *thisActor; 
-    thisActor = func_80329958(this);
+    thisActor = marker_getActor(this);
     func_8033A45C(1, thisActor->unkF4_8);
     return func_80325888(this, gdl, mptr, arg3);
 }

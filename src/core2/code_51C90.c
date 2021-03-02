@@ -53,7 +53,7 @@ u32 func_802D8D48(Actor* actor, u32 arg1, u32 dialogId, u32 sfxId, u32 itemId, f
 
 //     func_802F3808(&arg0->pad4);
 //     if(arg0->unk8_0)
-//         actPtr = func_80329958(arg0->marker);
+//         actPtr = marker_getActor(arg0->marker);
 //     func_802D8D48(actPtr, 5, 0xD9E, 0xC, 0xD, 2.0f);
 // }
 
@@ -62,7 +62,7 @@ void func_802D8E68(ActorProp *arg0){
     Actor *actPtr = NULL;
     func_802F38F0(&arg0->pad4);
     if(arg0->unk8_0)
-        actPtr = func_80329958(arg0->marker);
+        actPtr = marker_getActor(arg0->marker);
     func_802D8D48(actPtr, 6, 0xD9F, 0xB, 0xF, 4.0f);
 }
 
@@ -71,12 +71,12 @@ void func_802D8EDC(ActorProp *arg0){
     Actor *actPtr = NULL;
     func_802F39D8(&arg0->pad4);
     if(arg0->unk8_0)
-        actPtr = func_80329958(arg0->marker);
+        actPtr = marker_getActor(arg0->marker);
     func_802D8D48(actPtr, 7, 0xDA0, 0x14, 0x10, 6.0f);
 }
 
 Actor *func_802D8F50(ActorMarker *this, Gfx **gdl, Mtx **mptr, u32 arg3){
-    Actor *thisActor = func_80329958(this);
+    Actor *thisActor = marker_getActor(this);
 
     if(thisActor->unk28 != 0.0f){
         if(thisActor->unk38_0){

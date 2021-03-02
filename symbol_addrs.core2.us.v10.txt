@@ -123,6 +123,7 @@ levelSpecificFlags_validateCRC1 = 0x8032204C;
 levelSpecificFlags_validateCRC2 = 0x803220B4;
 timedFuncAdd_0 = 0x80324EAC;
 func_80325340 = 0x80325340;
+marker_getActor = 0x80329958;
 actor_copy = 0x80329C40;
 actor_collisionOff = 0x8032AA74;
 actor_collisionOn = 0x8032AA88;

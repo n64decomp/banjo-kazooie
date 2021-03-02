@@ -48,7 +48,7 @@ void func_802C7CA4(Actor *this){
 Actor *func_802C7D0C(ActorMarker *this, Gfx **gdl, Mtx **mptr, u32 arg3){
     Actor * thisActor;
     u32 jiggyId;
-    thisActor = func_80329958(this);
+    thisActor = marker_getActor(this);
     if(!thisActor->jiggy.unk0){
         jiggyId = func_802C8088(thisActor);
         if((jiggyId == 0x1c) || (jiggyId == 0x1d)){

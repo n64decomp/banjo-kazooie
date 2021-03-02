@@ -14,7 +14,6 @@ void func_802EFE5C(Actor*, f32, f32);
 void func_802EFEC0(Actor*, f32, f32);
 void func_8030E878(u32,f32,u32,f32*, f32, f32);
 u32 func_8032886C(Actor*, f32);
-Actor *func_80329958(ActorMarker *);
 void func_803869A0(Actor*, f32, f32);
 void func_802C3F04(void (*)(s32,s32,s32,s32), s32, s32, s32, s32);
 void func_802C4218(s32, f32, f32, f32);
@@ -103,7 +102,7 @@ void func_80386D68(Actor *this){
 
 void func_80386EB4(ActorMarker *this, s32 arg1) {
     Actor *temp_v0;
-    temp_v0 = func_80329958(this);
+    temp_v0 = marker_getActor(this);
     if ((temp_v0->unk10_31 ) == 2) {
         func_80386D68(temp_v0);
     }

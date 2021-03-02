@@ -4,7 +4,7 @@
 
 void  func_80326224(Actor *);
 void  func_803298AC(Actor *);
-Actor *func_80329958(ActorMarker *);
+Actor *
 void chPinkEggDraw(ActorMarker *this, Gfx ** gdl, Mtx** mptr, u32 arg3);
 void  func_80387AB0(ActorMarker *this, u32 arg1);
 void func_80387B80(Actor *this);
@@ -48,7 +48,7 @@ void chPinkEggSpawnNext(ActorMarker * arg0, u32 arg1){
     u32   tmp;
     Actor *actorPtr;
     Actor *unkActor;
-    actorPtr = func_80329958(arg0);
+    actorPtr = marker_getActor(arg0);
     unkActor = func_8032818C( D_803906C4[arg1], &actorPtr);
 
     unkActor->pinkEgg.unk0 = arg1 + 1;
@@ -62,7 +62,7 @@ void chPinkEggDraw(ActorMarker *this, Gfx ** gdl, Mtx** mptr, u32 arg3){
     u32 sp18;
     u32 t7;
 
-    t7 = func_80329958(this)->unk10_31 == 3;
+    t7 = marker_getActor(this)->unk10_31 == 3;
     func_8033A45C(1, (sp18 = t7) ^ 1);
     func_8033A45C(2, sp18);
     func_80325888(this, gdl, mptr, arg3);
@@ -73,7 +73,7 @@ void func_80387AB0(ActorMarker *this, u32 arg1){
     Actor *thisActor;
     ActorLocal_PinkEgg *tmp;
     
-    thisActor = func_80329958(this);
+    thisActor = marker_getActor(this);
     this->propPtr->unk8_3 = 0;
     func_8030E510(0xAA, 28000);
     func_80328A84(thisActor, 3);

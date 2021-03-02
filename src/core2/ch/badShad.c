@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-Actor *func_80329958(ActorMarker *);
+Actor *
 
 
 void func_802D6EA0(Actor *this){
@@ -13,7 +13,7 @@ void func_802D6EA0(Actor *this){
     }
     if(!this->despawn_flag && this->unk1C < (f32)(func_8023DB5C() - 1) ){
         if(this->unk104){
-            func_80329958(this->unk104)->unk104 = 0;
+            marker_getActor(this->unk104)->unk104 = 0;
         }
         func_803282F4(this->marker);
     }

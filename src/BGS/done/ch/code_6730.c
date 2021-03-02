@@ -3,7 +3,7 @@
 #include "variables.h"
 
 
-Actor *func_80329958(ActorMarker *);
+Actor *
 void func_8038CEE8(Actor *);
 Actor *func_80325340(ActorMarker*, Gfx **, Mtx **, u32);
 void func_8038CC08(Actor * arg0, u32 arg1);
@@ -30,7 +30,7 @@ void func_8038CB20(void){
 }
 
 void func_8038CB48(ActorMarker *arg0, u32 arg1, u32 arg2){
-    Actor *actPtr = func_80329958(arg0);
+    Actor *actPtr = marker_getActor(arg0);
     mapSpecificFlags_set(0x10, 0);
     if(actPtr->unk10_31 == 4){
         func_8038CC08(actPtr,5);

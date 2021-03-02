@@ -112,6 +112,8 @@ void *assetcache_get(s32 arg0);
 
 void func_803272F8(s32 *, s32, ActorInfo*, u32);
 
+Actor *marker_getActor(ActorMarker *);
+
 f32 func_8033DD9C(void);
 void jiggySpawn(u32 indx, f32* pos);
 

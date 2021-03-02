@@ -10,7 +10,7 @@ void func_80328A84(Actor*, u32);
 //TODO move data
 
 Actor *func_802C80C0(ActorMarker *this, Gfx **gdl, Mtx **mptr, u32 arg3){
-    Actor *thisActor = func_80329958(this);
+    Actor *thisActor = marker_getActor(this);
 
     if(!thisActor->unkF4_21){
         thisActor->unkF4_21 = 1;

@@ -5,7 +5,7 @@
 f32 func_8034A754(f32, f32);
 
 
-Actor *func_80329958(ActorMarker *);
+Actor *
 
 void func_8038FD9C(Actor *this);
 Actor *func_8038FD10(ActorMarker *this, Gfx** gdl, Mtx** mtx, u32 arg3);
@@ -27,7 +27,7 @@ ActorInfo D_80390DA8 = {0xDA, actor_leafboat, 0x30D, 0x01, NULL,
 Actor *func_8038FD10(ActorMarker *this, Gfx** gdl, Mtx** mtx, u32 arg3){
     Actor * thisActor;
 
-    thisActor = func_80329958(this);
+    thisActor = marker_getActor(this);
     if((thisActor->unk1C != 0.0f) && (0x80 < thisActor->unk124_19)){
         thisActor = func_80325888(this, gdl, mtx, arg3);
     }

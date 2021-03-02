@@ -11,7 +11,7 @@ void func_8033A4CC(u32);
 Actor *mrVileDraw(ActorMarker*, Gfx **, Mtx **);
 void func_8038C48C(ActorMarker *);
 Actor *func_80325888(ActorMarker *);
-Actor *func_80329958(ActorMarker *);
+Actor *
 void func_80324C88(f32, u32, f32, u32);
 void func_80324EE4(f32, void (*)(ActorMarker *), ActorMarker *);
 f32  func_8034A754(f32, f32);
@@ -38,7 +38,7 @@ f32 D_80390A94[7] = {0.0f, 0.8f, 0.9f, 1.0f, 0.9f, 0.95f, 1.0f};
 #pragma GLOBAL_ASM("asm/nonmatchings/BGS/ch/mrvile/func_8038B9F0.s")
 
 void func_8038BB40(ActorMarker * arg0){
-    if(func_8038A9E0(func_80329958(arg0)->mrVile.unk8) >= 3){
+    if(func_8038A9E0(marker_getActor(arg0)->mrVile.unk8) >= 3){
         func_80346414(0x14, 0);
         func_8028F66C(0xF);
     }
@@ -159,7 +159,7 @@ Actor *mrVileDraw(ActorMarker *this, Gfx **gdl, Mtx** mp){
 #pragma GLOBAL_ASM("asm/nonmatchings/BGS/ch/mrvile/func_8038C434.s")
 
 void func_8038C460(ActorMarker *arg0){
-    func_8038C0C8(func_80329958(arg0), 1);
+    func_8038C0C8(marker_getActor(arg0), 1);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/BGS/ch/mrvile/func_8038C48C.s")

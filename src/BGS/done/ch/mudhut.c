@@ -53,7 +53,7 @@ void func_8038EA90(void){
 Actor *func_8038EAD0(ActorMarker *this, Gfx** gdl, Mtx** mtx, u32 arg3){
     Actor *thisActor;
 
-    thisActor = func_80329958();
+    thisActor = marker_getActor();
     func_8033A45C(1, thisActor->unk10_31 == 1);
     if(thisActor->unk10_31 == 3)
         return thisActor;
@@ -64,7 +64,7 @@ Actor *func_8038EAD0(ActorMarker *this, Gfx** gdl, Mtx** mtx, u32 arg3){
 void func_8038EB4C(ActorMarker *this){
     Actor *thisActor;
 
-    thisActor = func_80329958(this);
+    thisActor = marker_getActor(this);
     thisActor = func_8032813C(actor_wood_demolished, &thisActor->position_x, NULL);
     thisActor = func_8032813C(actor_steam_2, &thisActor->position_x, NULL);
     if(this);
