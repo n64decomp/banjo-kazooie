@@ -67,7 +67,17 @@ enum bs_e
 
 enum item_e
 {
-    item_eggs = 0xD
+    item_note = 0xC,
+    item_eggs = 0xD,
+    item_red_feather = 0xF,
+    item_gold_feather = 0x10,
+    item_health = 0x14,
+    item_health_total = 0x15,
+    item_life = 0x16,
+    item_air = 0x17,
+    item_mumbo_token = 0x1C,
+    item_mumbo_token_total = 0x25,
+    item_jiggy_total = 0x26
 };
 
 enum movement_direction_e

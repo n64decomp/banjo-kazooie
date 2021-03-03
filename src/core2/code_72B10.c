@@ -53,7 +53,22 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_72B10/func_802FAC3C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_72B10/func_802FACA4.s")
+//#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_72B10/func_802FACA4.s")
+typedef struct item_print_s{
+    u8 pad0[0x14];
+    u32 unk14;
+} ItemPrint;
+
+extern ItemPrint D_803692F8[];
+extern f32 D_803810B8[];
+extern f64 D_80377380;
+
+void func_802FACA4(s32 itemId){
+    if(func_802FB0D4(D_803692F8[itemId].unk14) == 2 || itemId < 6 || itemId == item_air ){
+        D_803810B8[itemId] += ((f32)item_getCount(itemId) - D_803810B8[itemId] )*D_80377380;
+    }
+    func_802FB020(D_803692F8[itemId].unk14, 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_72B10/func_802FAD64.s")
 
