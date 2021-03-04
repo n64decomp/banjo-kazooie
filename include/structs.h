@@ -164,6 +164,10 @@ typedef struct struct_7_s{
     u32 unk0;
 }struct7s;
 
+typedef struct struct_8_s{
+    u32 unk0;
+}struct8s;
+
 typedef struct model_cache_s{
     void * modelPtr;
     s32     unk4; 

@@ -117,4 +117,44 @@ Actor *marker_getActor(ActorMarker *);
 f32 func_8033DD9C(void);
 void jiggySpawn(u32 indx, f32* pos);
 
+struct8s *func_802FD320(s32);
+void func_802FD330(s32, struct8s *);
+void func_802FD33C(s32, struct8s *, Gfx**, Mtx**, s32);
+void func_802FD350(s32, struct8s *);
+
+struct8s *func_802FD7B0(s32);
+void func_802FD80C(s32, struct8s *);
+void func_802FDAF4(s32, struct8s *, Gfx**, Mtx**, s32);
+void func_802FDC80(s32, struct8s *);
+
+struct8s *func_802FDE2C(s32);
+void func_802FE844(s32, struct8s *);
+void func_802FDEE0(s32, struct8s *, Gfx**, Mtx**, s32);
+void func_802FDDC4(s32, struct8s *);
+
+struct8s *func_802FF090(s32);
+void func_802FFA50(s32, struct8s *);
+void func_802FF3B8(s32, struct8s *, Gfx**, Mtx**, s32);
+void func_802FF358(s32, struct8s *);
+
+struct8s *func_802FFE4C(s32);
+void func_803005BC(s32, struct8s *);
+void func_802FFF34(s32, struct8s *, Gfx**, Mtx**, s32);
+void func_802FFED4(s32, struct8s *);
+
+struct8s *func_803007C0(s32);
+void func_8030081C(s32, struct8s *);
+void func_80300974(s32, struct8s *, Gfx**, Mtx**, s32);
+void func_80300BB4(s32, struct8s *);
+
+struct8s *func_80300CD8(s32);
+void func_80301348(s32, struct8s *);
+void func_80300D0C(s32, struct8s *, Gfx**, Mtx**, s32);
+void func_80300C70(s32, struct8s *);
+
+struct8s *func_8030179C(s32);
+void func_80301DE4(s32, struct8s *);
+void func_803017D0(s32, struct8s *, Gfx**, Mtx**, s32);
+void func_80301754(s32, struct8s *);
+
 #endif

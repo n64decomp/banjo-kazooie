@@ -209,6 +209,7 @@ segments:
   - [0x71820, c]
   - [0x72060, c]
   - [0x72B10, c]
+  - [0x73640, c]
   - [0x74090, c]
   - [0x74290, c]
   - [0x74420, c]
@@ -216,6 +217,7 @@ segments:
   - [0x75930, c]
   - [0x75E90, c]
   - [0x76390, c]
+  - [0x763D0, c]
   - [0x76D90, c]
   - [0x77E50, c]
   - [0x78100, c]
@@ -327,6 +329,8 @@ segments:
   vram:  0x80363590
   files:
   - [0x000DC600, bin]
+  - [0x000E2350, .data, core2/code_73640]
+  - [0x000E2790, bin]
   - [0x000ECE70, ".rodata", core2/code_0]
   - [0x000ECE90, bin]
   - [0x000EE340, .rodata, core2/bs/bBarge]
@@ -341,4 +345,6 @@ segments:
   - [0x000EF090, bin]
   - [0x000EF3E0, .rodata, core2/ch/jigsawdance]
   - [0x000EF450, bin]
+  - [0x000F03D0, bin, core2/code_73640] #.rodata
+  - [0x000F0400, bin]
 - [0xf2c00] # core2 end
