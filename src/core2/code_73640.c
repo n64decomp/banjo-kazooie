@@ -81,21 +81,6 @@ f32 func_8033DD9C(void);
 void func_8030E6A4(s32, f32, s32);
 void func_8025A6EC(s32, s32);
 
-/* .rodata */
-// f32 D_80377360 = 0.7f;
-// f64 D_80377368 = 0.01;
-// f64 D_80377370 = 0.1;
-// f32 D_80377378 = 0.7f;
-// f64 D_80377380 = 0.7;
-// f64 D_80377388 = 0.01;
-
-extern f32 D_80377360;
-extern f64 D_80377368;
-extern f64 D_80377370;
-extern f32 D_80377378;
-extern f64 D_80377380;
-extern f64 D_80377388;
-
 void func_802FA5D0(void){
     s32 i;
 
