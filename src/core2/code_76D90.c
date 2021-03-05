@@ -190,6 +190,7 @@ void func_802FDEE0(s32 arg0, struct8s *arg1, Gfx **arg2, Mtx **arg3, s32 *arg4){
 }
 #endif
 
+extern f64 D_803773E0;
 void func_802FE844(s32 arg0, struct8s *arg1){
     f32 sp24;
     s32 sp20;
@@ -208,6 +209,7 @@ void func_802FE844(s32 arg0, struct8s *arg1){
             D_803815E8 = _76D90_MIN(D_803815E8 + 0x10, 0xFF);
         }
     }//L802FE9A0
+    //sp24 = func_8033DD9C();
     switch(sp20){
         case 1:
             if(D_8036A010 == NULL)
