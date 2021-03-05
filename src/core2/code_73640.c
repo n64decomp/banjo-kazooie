@@ -220,14 +220,10 @@ s32 func_802FAD9C(s32 itemId){
     return (func_802FB0D4(D_803692F8[itemId].unk14) == 2);
 }
 
-#if 0 
-s32 func_802FADD4(s32 itemId){
+int func_802FADD4(s32 itemId){
     s32 v0 = func_802FB0D4(D_803692F8[itemId].unk14);
     return (v0 == 2)||(v0 == 1);
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_73640/func_802FADD4.s")
-#endif
 
 s32 func_802FAE1C(s32 itemId){
     return D_803810B8[itemId] + 0.01;
