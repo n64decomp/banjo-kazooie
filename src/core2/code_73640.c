@@ -14,6 +14,24 @@ typedef struct item_print_s{
     struct8s *unk14;
 } ItemPrint;
 
+
+s32 func_802FAD9C(s32 itemId);
+f32 func_8033DD9C(void);
+f32 func_8033DD9C(void);
+void func_8030E6A4(s32, f32, s32);
+void func_8025A6EC(s32, s32);
+
+extern s32 D_803810B0;
+extern f32 D_803810B8[0x2C];
+extern s32 D_80381168[0x2C];
+extern f32 D_80381218[0x2C];
+extern s32 D_803812C8[0x2C];
+extern s32 D_80381378[0x2C];
+extern void *D_80381428[];
+extern void *D_80381450[];
+extern s32 D_80381478[0X2C];
+
+
 /* .data */
 s16 D_803692E0[6] = {0x89D, 0x7D9, 0x7DD, 0x35F, 0x360, -1};
 s16 D_803692EC[6] = {0x580, 0x6D1, 0x41A, 0x36D, -1};
@@ -64,38 +82,7 @@ ItemPrint D_803692F8[0x2C] = {
     { func_803007C0, func_8030081C, func_80300974, func_80300BB4, 2, NULL }
 };
 
-extern s32 D_803810B0;
-extern f32 D_803810B8[0x2C];
-extern s32 D_80381168[0x2C];
-extern f32 D_80381218[0x2C];
-extern s32 D_803812C8[0x2C];
-extern s32 D_80381378[0x2C];
-extern s32 D_80381478[0X2C];
-
-extern void *D_80381428[];
-extern void *D_80381450[];
-
-s32 func_802FAD9C(s32 itemId);
-f32 func_8033DD9C(void);
-f32 func_8033DD9C(void);
-void func_8030E6A4(s32, f32, s32);
-void func_8025A6EC(s32, s32);
-
-/* .rodata */
-// f32 D_80377360 = 0.7f;
-// f64 D_80377368 = 0.01;
-// f64 D_80377370 = 0.1;
-// f32 D_80377378 = 0.7f;
-// f64 D_80377380 = 0.7;
-// f64 D_80377388 = 0.01;
-
-extern f32 D_80377360;
-extern f64 D_80377368;
-extern f64 D_80377370;
-extern f32 D_80377378;
-extern f64 D_80377380;
-extern f64 D_80377388;
-
+/* .code */
 void func_802FA5D0(void){
     s32 i;
 

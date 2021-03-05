@@ -96,11 +96,9 @@ void func_802A2900(void){
     D_8037D308 += func_8033DD9C();
 }
 
-s32 func_802A293C(f32 arg0);
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bFlap/func_802A293C.s")
-// s32 func_802A293C(f32 arg0){
-//     return ((D_8037D304 <= arg0) && (arg0 < D_8037D308));
-// }
+int func_802A293C(f32 arg0){
+    return ((D_8037D304 <= arg0) && (arg0 < D_8037D308));
+}
 
 void func_802A298C(void){
     Movement * sp1c;
