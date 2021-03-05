@@ -91,13 +91,12 @@ void func_8038B220(Actor* this, u32 state){
     this->unk10_31 = state;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/BGS/ch/yumblie/func_8038B4E4.s")
-// u32 func_8038B4E4(ActorMarker * arg0){
-//     volatile Actor* actPtr;
+int func_8038B4E4(ActorMarker * arg0){
+    volatile Actor* actPtr;
 
-//     actPtr = marker_getActor(arg0);
-//     return ( (actPtr->unk10_31 < 2)) && (actPtr->unk10_31 < 5);
-// }
+    actPtr = marker_getActor(arg0);
+    return (actPtr->unk10_31 >= 2) && (actPtr->unk10_31 < 5);
+}
 
 Actor *func_8038B528(ActorMarker *this, Gfx **gdl, Mtx** mp, u32 arg3){
     Actor *thisActor;
