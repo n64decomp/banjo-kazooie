@@ -54,8 +54,8 @@ void player_getRotation(f32 *dst);
 
 void func_80291A60(s32 arg0, f32* arg1);
 
-s32 button_pressed(s32);
-s32 button_held(s32);
+int button_pressed(s32);
+u32 button_held(s32);
 
 void player_getPosition(f32 *dst);
 
