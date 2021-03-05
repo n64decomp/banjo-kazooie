@@ -63,6 +63,19 @@ enum actor_e
 
 enum bs_e
 {
+    bs_longleg_idle = 0x26,
+    bs_longleg_walk = 0x27,
+    bs_longleg_jump = 0x28,
+    bs_longleg_exit = 0x29,
+    
+
+    bs_ant_idle = 0x35,
+    bs_ant_walk = 0x36,
+    bs_ant_jump = 0x37,
+    bs_ant_fall = 0x38,
+
+    bs_longleg_slip = 0x55,
+
     bs_bee_idle = 0x85,
     bs_bee_walk = 0x86,
     bs_bee_jump = 0x87,
