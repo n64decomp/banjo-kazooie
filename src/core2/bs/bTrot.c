@@ -77,7 +77,18 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802A9B78.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802A9B98.s")
+int bsbtrot_inSet(s32 move_indx){
+    return (move_indx == bs_btrot_idle)
+    || (move_indx == bs_btrot_walk)
+    || (move_indx == bs_btrot_jump)
+    || (move_indx == bs_btrot_exit)
+    || (move_indx == 0x45)
+    || (move_indx == bs_btrot_enter)
+    || (move_indx == 0x79)
+    || (move_indx == 0x7b)
+    || (move_indx == 0x71)
+    || (move_indx == 0x9a);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802A9C38.s")
 

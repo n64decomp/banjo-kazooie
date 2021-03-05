@@ -63,6 +63,13 @@ enum actor_e
 
 enum bs_e
 {
+    bs_btrot_jump = 0x8,
+
+    bs_btrot_enter = 0x14,
+    bs_btrot_idle = 0x15,
+    bs_btrot_walk = 0x16,
+    bs_btrot_exit = 0x17,
+
     bs_longleg_idle = 0x26,
     bs_longleg_walk = 0x27,
     bs_longleg_jump = 0x28,

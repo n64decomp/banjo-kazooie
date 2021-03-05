@@ -9,7 +9,6 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A524C.s")
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/bslongleg_inSet.s")
 int bslongleg_inSet(s32 move_indx){
     return (move_indx == bs_longleg_idle)
     || (move_indx == bs_longleg_walk)
