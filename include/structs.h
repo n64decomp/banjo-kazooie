@@ -165,7 +165,24 @@ typedef struct struct_7_s{
 }struct7s;
 
 typedef struct struct_8_s{
-    u32 unk0;
+    u8 pad0[0x14];
+    s32 unk14;
+    u8 pad18[0x8];
+    u32 unk20;
+    s32 unk24; //asset_index
+    u32 unk28;
+    s32 unk2C;
+    f32 unk30;
+    f32 unk34;
+    f32 unk38; //added to x string print position (position?)
+    f32 unk3C; //added to y string print position (position?)
+    u8 pad40[4];
+    f32 unk44; //added to x string print position (sprite w)
+    f32 unk48; //added to y string print position (sprite h)
+    f32 unk4C; 
+    u32 unk50; //asset_ptr (indx in unk24)
+    s8 unk54[0xC]; //value string
+    f32 unk60;
 }struct8s;
 
 typedef struct model_cache_s{

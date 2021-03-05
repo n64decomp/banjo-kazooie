@@ -129,7 +129,7 @@ void func_802FDC80(s32, struct8s *);
 
 struct8s *func_802FDE2C(s32);
 void func_802FE844(s32, struct8s *);
-void func_802FDEE0(s32, struct8s *, Gfx**, Mtx**, s32);
+void func_802FDEE0(s32, struct8s *, Gfx**, Mtx**, s32*);
 void func_802FDDC4(s32, struct8s *);
 
 struct8s *func_802FF090(s32);

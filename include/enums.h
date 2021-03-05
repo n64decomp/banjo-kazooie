@@ -33,6 +33,12 @@ enum map_e
 
 };
 
+enum level_e
+{
+    level_lair = 0x6,
+    level_boss = 0xC
+};
+
 enum jiggy_e
 {
     jiggy_bgs_elevated_walkway = 0x20,

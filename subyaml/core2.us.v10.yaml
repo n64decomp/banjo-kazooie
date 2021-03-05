@@ -347,4 +347,7 @@ segments:
   - [0x000EF450, bin]
   - [0x000F03D0, bin, core2/code_73640] #.rodata
   - [0x000F0400, bin]
+  - [0x000F0420, bin] #this is first part of [.rodata, core2/code_76D90]
+  - [0x000F0440, .rodata, core2/code_76D90]
+  - [0x000F0470, bin]
 - [0xf2c00] # core2 end
