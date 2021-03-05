@@ -81,6 +81,9 @@ enum bs_e
     bs_ant_jump = 0x37,
     bs_ant_fall = 0x38,
 
+    bs_climb_idle = 0x4f,
+    bs_climb_move = 0x50,
+
     bs_longleg_slip = 0x55,
 
     bs_bee_idle = 0x85,

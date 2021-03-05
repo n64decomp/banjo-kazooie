@@ -13,7 +13,11 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/climb/func_802AB788.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/climb/func_802AB800.s")
+int bsclimb_inSet(s32 move_indx){
+    return (move_indx == bs_climb_idle)
+    || (move_indx == bs_climb_move)
+    || (move_indx == 0x9e);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/climb/func_802AB830.s")
 

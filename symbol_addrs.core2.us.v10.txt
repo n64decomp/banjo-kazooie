@@ -60,6 +60,7 @@ bsBeeFly_inSet =0x802A0F78;
 bsbeemain_die_init = 0x802A1C28;
 bslongleg_inSet = 0x802A52AC;
 bsbtrot_inSet = 0x802A9B98;
+bsclimb_inSet = 0x802AB800;
 func_802C4140 = 0x802C4140;
 func_802C418C = 0x802C418C;
 func_802C4218 = 0x802C4218;
