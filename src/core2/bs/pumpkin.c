@@ -9,7 +9,16 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/pumpkin/func_802B229C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/pumpkin/func_802B2304.s")
+int bspumpkin_inSet(s32 move_indx){
+    return (move_indx == bs_pumpkin_idle)
+    || (move_indx == 0x49)
+    || (move_indx == 0x4a)
+    || (move_indx == 0x4b)
+    || (move_indx == 0x4d)
+    || (move_indx == 0x4e)
+    || (move_indx == 0x8f)
+    || (move_indx == 0x93);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/pumpkin/func_802B2384.s")
 
