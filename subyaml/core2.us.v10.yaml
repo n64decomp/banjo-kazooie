@@ -345,7 +345,7 @@ segments:
   - [0x000EF090, bin]
   - [0x000EF3E0, .rodata, core2/ch/jigsawdance]
   - [0x000EF450, bin]
-  - [0x000F03D0, bin, core2/code_73640] #.rodata
+  - [0x000F03D0, .rodata, core2/code_73640] #.rodata
   - [0x000F0400, bin]
   - [0x000F0420, bin] #this is first part of [.rodata, core2/code_76D90], COMBINE WITH FOLLOWING SECTION ONCE CODE DONE
   - [0x000F0440, .rodata, core2/code_76D90]

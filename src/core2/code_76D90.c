@@ -208,7 +208,6 @@ void func_802FE844(s32 arg0, struct8s *arg1){
             D_803815E8 = _76D90_MIN(D_803815E8 + 0x10, 0xFF);
         }
     }//L802FE9A0
-    //sp24 = func_8033DD9C();
     switch(sp20){
         case 1:
             if(D_8036A010 == NULL)
