@@ -4,6 +4,9 @@
 
 void func_8028764C(Movement*, f32);
 void func_8025AC20(s32, s32, s32, f32, char*, s32);
+f32 func_80257618(void);
+void func_8024CE60(f32, f32);
+void func_803391A4(Gfx **, Mtx **, f32*, f32*, f32, s32, s32);
 
 typedef struct struct_9_s{
     u8 unk0;
@@ -12,7 +15,7 @@ typedef struct struct_9_s{
     f32 unk4; //duration
     s32 unk8; //asset_indx
     s32 unkC; //animation_indx
-    u8 pad10[0x4];
+    f32 unk10;
 }struct9s;
 
 typedef struct struct_10_s{
@@ -23,10 +26,10 @@ typedef struct struct_10_s{
 
 struct{
     s32 unk0;
-    struct10s *unk4;
+    struct9s *unk4;
     u8 unk8;
     u8 pad9[3]; //not needed
-    void *unkC;
+    s32 unkC;
     f32 rotation;
     f32 timer;
     Movement *movement;
@@ -37,10 +40,16 @@ extern struct9s D_8036C150[];
 extern struct9s D_8036C308[];
 extern struct10s D_8036C3F8[];
 
+
+extern f32 D_8036C440;
+extern f32 D_8036C444;
 /* .rodata */
 extern char D_80378450[];
 extern char D_80378460[];
 extern char D_80378470[];
+extern f64 D_80378480;
+extern f64 D_80378488;
+extern f64 D_80378490;
 
 struct9s *func_8030B400(s32 arg0){
     struct9s * i;
@@ -127,9 +136,132 @@ void func_8030B498(s32 arg0, struct9s *arg1){
     D_80382430.unk1C = 0;
 }  
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/transition/func_8030B740.s")
+void func_8030B740(void){
+    if(D_80382430.unkC != NULL)
+        D_80382430.unkC = func_80255724(D_80382430.unkC);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/transition/func_8030B778.s")
+void func_8030B778(Gfx **arg0, Mtx **arg1, void* arg2){
+    f32 sp74[3];
+    f32 sp68[3];
+    f32 sp64;
+    f32 sp58[3];
+    f32 tmp;
+
+    D_80382430.unk0++;
+    if(D_80382430.unk8 == 0)
+        return;
+
+    func_8024E258();
+    if(D_80382430.movement != NULL){
+        sp74[0] = 0.0f;
+        sp74[1] = 0.0f;
+        sp74[2] = 350.0f;
+    }else{
+        sp74[0] = 0.0f;
+        sp74[1] = 0.0f;
+        sp74[2] = 300.0f;
+    }
+
+    sp68[0] = 0.0f;
+    sp68[1] = 0.0f;
+    sp68[2] = 0.0f;
+    func_8024CE60(D_8036C440, D_8036C444);
+    func_8024CD88(sp74); //camera_setPosition
+    func_8024CE18(sp68); //camera_setRotation
+    func_8024CFD4(); //camera_updateNormal
+    func_8024C904(arg0, arg1);
+
+    sp58[0] = 0.0f;
+    sp58[1] = 0.0f;
+    sp58[2] = 0.0f;
+    if(D_80382430.movement != NULL){
+        gDPSetTextureFilter((*arg0)++, G_TF_POINT);
+        gDPSetColorDither((*arg0)++, G_CD_DISABLE);
+        func_8028781C(D_80382430.movement, sp58, 1);
+        func_8033A4CC(1);
+    }
+    if(D_80382430.unk8 == 1 || D_80382430.unk8 == 6){
+        func_803391A4(arg0, arg1, sp58, sp68, 1.0f, 0, D_80382430.unkC);
+        if(D_80382430.movement != NULL){
+            gDPSetTextureFilter((*arg0)++, G_TF_BILERP);
+            gDPSetColorDither((*arg0)++, G_CD_MAGICSQ);
+        }
+    }
+    else{
+        sp64 = D_80382430.timer/(D_80382430.unk4->unk4);
+        if(D_80382430.unk8 == 4){
+
+            if(D_80382430.unk4->unk0 == 0x10){
+                tmp = D_80382430.unk4->unk10;
+                
+            }
+            else{
+                sp68[2] = D_80382430.rotation - 90.0f*sp64;
+                tmp = sp64*D_80382430.unk4->unk10 + D_80378480;//D_80378480
+            }
+            func_803391A4(arg0, arg1, sp58, sp68, tmp, 0, D_80382430.unkC);
+        }
+        else if(D_80382430.unk8 == 5){//L8030B9EC
+            switch (D_80382430.unk4->unk0)
+            {
+            default:
+                sp68[2] = D_80382430.rotation - 90.0f*sp64;
+                tmp = (1.0f - sp64)*D_80382430.unk4->unk10 + D_80378488;//D_80378488;
+                break;
+            case 0x11:
+                tmp = D_80382430.unk4->unk10;
+                break;
+            case 0xA:
+                sp68[2] = 0.0f;
+                tmp = (1.0f - func_80257618())*D_80382430.unk4->unk10 + D_80378490;//D_80378490;
+                break;
+            }
+            if(!(D_80382430.unk1C < 3) || D_80382430.unk4->unk0 != 0x11){
+                func_803391A4(arg0, arg1, sp58, sp68, tmp, 0, D_80382430.unkC);
+            }
+            else{
+                func_80338390();
+            }
+
+        }
+        else if(D_80382430.unk8 == 2){//L8030BAF4
+            gcbound_reset();
+            gcbound_alpha((1.0f - sp64)*255.0f + 0.5);
+            gcbound_color(0,0,0);
+            gcbound_draw(arg0);
+        }
+        else if(D_80382430.unk8 == 3){//L8030BB6C
+            gcbound_reset();
+            gcbound_alpha(sp64*255.0f + 0.5);
+            gcbound_color(0,0,0);
+            gcbound_draw(arg0);
+        }
+        else if(D_80382430.unk8 == 7){//L8030BBD8
+            sp64 = (sp64 <= 0.5)? 1.0 : 1.0 - (sp64-0.5)/0.5;
+            gcbound_reset();
+            gcbound_alpha(sp64*255.0f + 0.5);
+            gcbound_color(0xff,0xff,0xff);
+            gcbound_draw(arg0);
+        }
+        else if(D_80382430.unk8 == 8){//L8030BC8C
+            
+            gcbound_reset();
+            gcbound_alpha(sp64*255.0f + 0.5);
+            gcbound_color(0xff,0xff,0xff);
+            gcbound_draw(arg0);
+        }//L8030BD00
+        else{
+            
+        }
+        if(D_80382430.movement != NULL){
+            gDPSetTextureFilter((*arg0)++, G_TF_BILERP);
+        }
+        func_8024E2FC();
+        func_8024C904(arg0, arg1);
+    }
+}
+
 
 void func_8030BD4C(void){
     struct10s *tmp_10s;
