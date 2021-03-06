@@ -6,7 +6,7 @@ void func_8028764C(Movement*, f32);
 void func_8025AC20(s32, s32, s32, f32, char*, s32);
 
 typedef struct struct_9_s{
-    u8 pad0[0x1];
+    u8 unk0;
     u8 unk1;
     u8 pad2[0x2];
     f32 unk4; //duration
@@ -17,6 +17,8 @@ typedef struct struct_9_s{
 
 typedef struct struct_10_s{
     u8 unk0;
+    u8 unk1;
+    u8 unk2;
 }struct10s;
 
 struct{
@@ -31,17 +33,32 @@ struct{
     s32 unk1C;
 } D_80382430;
 
+extern struct9s D_8036C150[];
 extern struct9s D_8036C308[];
+extern struct10s D_8036C3F8[];
 
 /* .rodata */
 extern char D_80378450[];
 extern char D_80378460[];
 extern char D_80378470[];
 
-struct9s *func_8030B400(s32);
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/transition/func_8030B400.s")
+struct9s *func_8030B400(s32 arg0){
+    struct9s * i;
+    for(i = D_8036C150; i->unk0 != 0; i++){
+        if(i->unk0 == arg0)
+            return i;
+    }
+    return NULL;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/transition/func_8030B44C.s")
+struct10s *func_8030B44C(s32 arg0){
+    struct10s * i;
+    for(i = D_8036C3F8; i->unk0 != 0; i++){
+        if(i->unk0 == arg0)
+            return i;
+    }
+    return i;
+}
 
 void func_8030B498(s32 arg0, struct9s *arg1){
     if(D_80382430.unkC != NULL){
@@ -115,8 +132,10 @@ void func_8030B498(s32 arg0, struct9s *arg1){
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/transition/func_8030B778.s")
 
 void func_8030BD4C(void){
+    struct10s *tmp_10s;
     struct9s *tmp_a1;
-    tmp_a1 = func_8030B400(*(u8*)(func_8030B44C(func_803348C0()) + 1));
+    tmp_10s = func_8030B44C(func_803348C0());
+    tmp_a1 = func_8030B400(tmp_10s->unk1);
    func_8030B498(tmp_a1->unk1, tmp_a1);
 }
 
@@ -147,7 +166,7 @@ void func_8030BE3C(void){
 
 void func_8030BE60(void){
     struct9s *tmp_a1;
-    tmp_a1 = func_8030B400(*(u8*)(func_8030B44C(func_803348C0()) + 2));
+    tmp_a1 = func_8030B400(func_8030B44C(func_803348C0())->unk2);
    func_8030C180();
    func_8030B498(tmp_a1->unk1, tmp_a1);
 }
