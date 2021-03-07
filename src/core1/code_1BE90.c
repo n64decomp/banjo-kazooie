@@ -3,9 +3,11 @@
 #include "variables.h"
 
 extern char D_80278340[]; //"comusic.c"
-
+extern char D_8027834C[]; //"comusic.c"
 
 void func_8025AC20(s32, s32, s32, f32, char*, s32);
+void func_8025AC7C(s32, s32, s32, f32, s32, char*, s32);
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_802598B0.s")
 
@@ -81,12 +83,13 @@ void func_8025AC20(s32, s32, s32, f32, char*, s32);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025AB00.s")
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/comusic_8025AB44.s")
 void comusic_8025AB44(s32 arg0, s32 arg1, s32 arg2){
     func_8025AC20(arg0, arg1, arg2,0.0f, D_80278340, 0x39e);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025AB78.s")
+void comusic_8025AB78(s32 arg0, s32 arg1, s32 arg2, s32 arg3){
+    func_8025AC7C(arg0, arg1, arg2, 0, arg3, D_8027834C, 0x3a3);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025ABB8.s")
 

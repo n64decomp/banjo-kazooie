@@ -8,6 +8,7 @@ _guMtxIdentF_80245D44 = 0x80245D44;
 spriteGetFrameCount = 0x802510C0;
 spriteGetFramePtr = 0x802510C8;
 comusic_8025AB44 = 0x8025AB44;
+comusic_8025AB78 = 0x8025AB78;
 malloc = 0x80254CA8;
 free = 0x802550F0;
 realloc = 0x80255358;
