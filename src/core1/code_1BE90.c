@@ -2,14 +2,43 @@
 #include "functions.h"
 #include "variables.h"
 
+typedef struct struct_11_s{
+    u8 pad0[0x10];
+    s16 unk10; //trackId
+    u8 pad12[0x42];
+} CoMusic;
+
+extern CoMusic *D_80276E30; //active track ptr
+
+//.rodata
 extern char D_80278340[]; //"comusic.c"
 extern char D_8027834C[]; //"comusic.c"
+extern char D_80278358[]; //"comusic.c"
+extern char D_80278364[]; //"comusic.c"
 
 void func_8025AC20(s32, s32, s32, f32, char*, s32);
 void func_8025AC7C(s32, s32, s32, f32, s32, char*, s32);
 
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_802598B0.s")
+CoMusic *func_802598B0(s32 track_id) {
+    CoMusic *iMusPtr;
+    CoMusic *freeSlotPtr;
+
+    freeSlotPtr = NULL;
+    for(iMusPtr = D_80276E30 + 1; iMusPtr < D_80276E30 + 5; iMusPtr++) {
+        if (track_id == iMusPtr->unk10) {
+            return iMusPtr;
+        }
+        if (freeSlotPtr == 0) {
+            if ((s32) iMusPtr->unk10 < 0) {
+                freeSlotPtr = iMusPtr;
+            }
+        }
+    }
+    return freeSlotPtr;
+}
+
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_80259914.s")
 
@@ -119,5 +148,4 @@ void comusic_8025AB78(s32 arg0, s32 arg1, s32 arg2, s32 arg3){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025AFC0.s")
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025AFD0.s")
 s32 func_8025AFD0(void){ return 0; }
