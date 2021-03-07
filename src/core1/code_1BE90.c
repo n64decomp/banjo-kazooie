@@ -118,7 +118,15 @@ void func_80259B14(void){
     D_80276E30 = NULL;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_80259B8C.s")
+s32 func_80259B8C(void){
+    CoMusic * iPtr;
+    s32 cnt = 0;
+    for(iPtr = D_80276E30; iPtr < D_80276E30 + 6; iPtr++){
+        if(iPtr->unk10 >= 0)
+            cnt++;
+    }
+    return cnt;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_80259BD0.s")
 
