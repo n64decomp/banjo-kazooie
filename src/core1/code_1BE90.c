@@ -34,7 +34,9 @@ void func_8024FD28(u8, s32);
 void func_8024FC1C(u8, s32);
 void func_8025AC20(s32, s32, s32, f32, char*, s32);
 void func_8025AC7C(s32, s32, s32, f32, s32, char*, s32);
+void func_80259B14(void);
 struct12s *func_802EDAA4(s32 *, s32*);
+
 
 CoMusic *func_802598B0(s32 track_id) {
     CoMusic *iMusPtr;
@@ -104,7 +106,17 @@ void func_80259A24(void){
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_80259B14.s")
+void func_80259B14(void){
+    CoMusic *iPtr;
+    func_8024FB8C();
+    func_8024F83C();
+
+    for(iPtr = D_80276E30; iPtr < D_80276E30 + 6; iPtr++){
+        func_802EDC64(iPtr->unk18);
+    }
+    free(D_80276E30);
+    D_80276E30 = NULL;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_80259B8C.s")
 
