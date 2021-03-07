@@ -2,6 +2,11 @@
 #include "functions.h"
 #include "variables.h"
 
+typedef struct struct_12_s{
+    s32 unk0;
+    s32 unk1;
+} struct12s;
+
 typedef struct struct_11_s{
     f32 unk0;
     f32 unk4;
@@ -11,9 +16,9 @@ typedef struct struct_11_s{
     s16 unk12;
     u8 pad14[0x1];
     u8 unk15;
-    u8 pad16[0x6];
-    s32 unk1C[1];
-    u8 pad20[0x34];
+    u8 pad16[0x2];
+    s32 unk18;
+    s32 unk1C[0xE];
 } CoMusic;
 
 extern CoMusic *D_80276E30; //active track ptr
@@ -29,6 +34,7 @@ void func_8024FD28(u8, s32);
 void func_8024FC1C(u8, s32);
 void func_8025AC20(s32, s32, s32, f32, char*, s32);
 void func_8025AC7C(s32, s32, s32, f32, s32, char*, s32);
+struct12s *func_802EDAA4(s32 *, s32*);
 
 CoMusic *func_802598B0(s32 track_id) {
     CoMusic *iMusPtr;
@@ -48,9 +54,23 @@ CoMusic *func_802598B0(s32 track_id) {
     return freeSlotPtr;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_80259914.s")
+void func_80259914(CoMusic *this, s32 arg1, s32 arg2){
+    s32 sp2C;
+    s32 i;
+    struct12s *tmp;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_80259994.s")
+    func_802EDA40(this->unk18);
+    for(i = 0; i < 0xE; i++){
+        this->unk1C[i] = 0;
+    }
+    tmp  = func_802EDAA4(&this->unk18, &sp2C);
+    tmp->unk0 = arg1;
+    tmp->unk1 = arg2;
+}
+
+void func_80259994(CoMusic *this, s32 arg1){
+    func_80259914(this, arg1, arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_802599B4.s")
 
@@ -135,8 +155,6 @@ void func_8025ABB8(s32 arg0, s32 arg1, s32 arg2, s32 arg3){
 void func_8025AC20(s32 arg0, s32 arg1, s32 arg2, f32 arg3, char* arg4, s32 char5){
     func_8025AC7C(arg0, arg1, arg2, 0.0f, (s32) func_802598B0(arg0)->unk1C, D_80278364, 0x3b1);
 }
-
-
 
 void func_8025AC7C(s32 arg0, s32 arg1, s32 arg2, f32 arg3, s32 arg4, char* arg5, s32 arg6){
     CoMusic *trackPtr;
