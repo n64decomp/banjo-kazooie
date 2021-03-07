@@ -350,4 +350,6 @@ segments:
   - [0x000F0420, bin] #this is first part of [.rodata, core2/code_76D90], COMBINE WITH FOLLOWING SECTION ONCE CODE DONE
   - [0x000F0440, .rodata, core2/code_76D90]
   - [0x000F0470, bin]
+  - [0x000F14C0, .rodata, core2/gc/transition]
+  - [0x000F1520, bin]
 - [0xf2c00] # core2 end

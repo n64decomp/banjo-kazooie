@@ -8,22 +8,6 @@ f32 func_80257618(void);
 void func_8024CE60(f32, f32);
 void func_803391A4(Gfx **, Mtx **, f32*, f32*, f32, s32, s32);
 
-typedef struct struct_9_s{
-    u8 unk0;
-    u8 unk1;
-    u8 pad2[0x2];
-    f32 unk4; //duration
-    s32 unk8; //asset_indx
-    s32 unkC; //animation_indx
-    f32 unk10;
-}struct9s;
-
-typedef struct struct_10_s{
-    u8 unk0;
-    u8 unk1;
-    u8 unk2;
-}struct10s;
-
 struct{
     s32 unk0;
     struct9s *unk4;
@@ -40,16 +24,8 @@ extern struct9s D_8036C150[];
 extern struct9s D_8036C308[];
 extern struct10s D_8036C3F8[];
 
-
 extern f32 D_8036C440;
 extern f32 D_8036C444;
-/* .rodata */
-extern char D_80378450[];
-extern char D_80378460[];
-extern char D_80378470[];
-extern f64 D_80378480;
-extern f64 D_80378488;
-extern f64 D_80378490;
 
 struct9s *func_8030B400(s32 arg0){
     struct9s * i;
@@ -105,13 +81,13 @@ void func_8030B498(s32 arg0, struct9s *arg1){
             osViBlack(1);
             func_8028764C(D_80382430.movement, 0.25f); //set animation timer
         }
-        func_802875AC(D_80382430.movement, D_80378450/*"gctransition.c"*/, 0x125); 
+        func_802875AC(D_80382430.movement, "gctransition.c", 0x125); 
     }
 
     if(arg0 == 4){
         if(func_802D4608()==0){
             func_8025A70C(0x4e);
-            func_8025AC20(0x4e, 0, 1000, 0.4f, D_80378460/*"gctransition.c"*/, 0x12d);
+            func_8025AC20(0x4e, 0, 1000, 0.4f, "gctransition.c", 0x12d);
             func_8025AABC(0x4e);
         }
     }//L8030B67C
@@ -122,7 +98,7 @@ void func_8030B498(s32 arg0, struct9s *arg1){
         else{
             if(func_802D4608() == 0){
                 func_8025A70C(0x4f);
-                func_8025AC20(0x4f, 0, 1000, 0.2f, D_80378470/*"gctransition.c"*/, 0x13a);
+                func_8025AC20(0x4f, 0, 1000, 0.2f, "gctransition.c", 0x13a);
                 func_8025AABC(0x4f);
             }
         }
@@ -198,7 +174,7 @@ void func_8030B778(Gfx **arg0, Mtx **arg1, void* arg2){
             }
             else{
                 sp68[2] = D_80382430.rotation - 90.0f*sp64;
-                tmp = sp64*D_80382430.unk4->unk10 + D_80378480;//D_80378480
+                tmp = sp64*D_80382430.unk4->unk10 + 0.1;
             }
             func_803391A4(arg0, arg1, sp58, sp68, tmp, 0, D_80382430.unkC);
         }
@@ -207,14 +183,14 @@ void func_8030B778(Gfx **arg0, Mtx **arg1, void* arg2){
             {
             default:
                 sp68[2] = D_80382430.rotation - 90.0f*sp64;
-                tmp = (1.0f - sp64)*D_80382430.unk4->unk10 + D_80378488;//D_80378488;
+                tmp = (1.0f - sp64)*D_80382430.unk4->unk10 + 0.1;
                 break;
             case 0x11:
                 tmp = D_80382430.unk4->unk10;
                 break;
             case 0xA:
                 sp68[2] = 0.0f;
-                tmp = (1.0f - func_80257618())*D_80382430.unk4->unk10 + D_80378490;//D_80378490;
+                tmp = (1.0f - func_80257618())*D_80382430.unk4->unk10 + 0.1;
                 break;
             }
             if(!(D_80382430.unk1C < 3) || D_80382430.unk4->unk0 != 0x11){
@@ -315,4 +291,76 @@ void func_8030BEDC(void){
     func_8030B498(0,0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/transition/func_8030BF1C.s")
+void func_8030BF1C(void){
+    f32 sp24;
+    f32 tmp;
+    
+
+    sp24 = func_8033DD9C();
+    if(D_80382430.unk4 == NULL)
+        return;
+    
+    if(D_80382430.movement != NULL){
+        func_802873C0(D_80382430.movement);
+        if(D_80382430.unk8 == 4){
+            switch(D_80382430.unk1C){
+                case 0:
+                    break;
+                case 1:
+                    func_8028F7C8(1);
+                    func_80335110(0);
+                    break;
+                case 2:
+                    func_80335128(0);
+                    break;
+                case 3:
+                    func_802FEF48(D_80382430.unkC);
+                    break;
+                case 4:
+                    osViBlack(0);
+                    break;
+                default:
+                   D_80382430.timer += sp24;
+                   break;
+            }
+        }
+        else{//L8030BFEC
+            switch(D_80382430.unk1C){
+                default:
+                    D_80382430.timer += sp24;
+                    break;
+                case 0:
+                case 1:
+                    break;
+                case 2:
+                    func_80335128(0);
+                    func_802FEF48(D_80382430.unkC);
+                    break;
+                
+            }
+            
+        }
+    }
+    else{//L8030C034
+        D_80382430.timer += sp24;
+    }
+    if(D_80382430.unk4->unk4 < D_80382430.timer
+        || (D_80382430.movement!= NULL && func_802878C4(D_80382430.movement))
+    ){
+        D_80382430.timer = D_80382430.unk4->unk4;
+        if(D_80382430.unk8 == 4 || D_80382430.unk8 == 5){
+            D_80382430.rotation -= 90.0f;
+            if (D_80382430.rotation < -360.0f)
+                D_80382430.rotation += 360.0f;
+            if (360.0f < D_80382430.rotation)
+                D_80382430.rotation -= 360.0f;
+        }//L8030C104
+        func_8030B498(D_80382430.unk4->unk2, 0);
+        if(D_80382430.unk8 == 4)
+            func_8030C180();
+
+        if(D_80382430.movement != NULL)
+            func_80334ECC();
+    }
+    D_80382430.unk1C++;
+}
