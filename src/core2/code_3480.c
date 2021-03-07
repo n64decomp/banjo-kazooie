@@ -78,7 +78,7 @@ s32 func_8028A5C0(void){
     s32 tmp;
     f32 sp30[3];
 
-    if(func_8030BDC0() || getGameMode() != game_mode_normal)
+    if(gctransition_8030BDC0() || getGameMode() != game_mode_normal)
         return 0;
 
     if(func_8034BB48() && func_802DE41C() != 7){

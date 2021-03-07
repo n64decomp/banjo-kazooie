@@ -148,6 +148,14 @@ $(SUBCODE): % : %_extract
 	@$(MAKE) -s progress/progress.$*.csv
 	@$(PYTHON) tools/progress_read.py progress/progress.$*.csv $(VERSION)
 
+%_faster : SRC_DIRS = src
+%_faster :
+	@$(MAKE) -j --no-print-directory $(BUILD_DIR)/$*.$(VERSION).bin TARGET=$(BUILD_DIR)/$*.$(VERSION) ASM_DIRS=$(ASM_DIRS)/$* BIN_DIRS=$(BIN_DIRS)/$* SRC_DIRS=$(SRC_DIRS)/$* LD_SCRIPT=$*.ld
+	@$(MAKE) -s $(BUILD_DIR)/$*.$(VERSION).rzip.bin TARGET=$(BUILD_DIR)/$*.$(VERSION) ASM_DIRS=$(ASM_DIRS)/$* BIN_DIRS=$(BIN_DIRS)/$* SRC_DIRS=$(SRC_DIRS)/$* LD_SCRIPT=$*.ld
+	@$(MAKE) -s $*_verify
+	@$(MAKE) -s $*_comp_verify
+	@$(MAKE) -s progress/progress.$*.csv
+	@$(PYTHON) tools/progress_read.py progress/progress.$*.csv $(VERSION)
 
 #verify
 %_verify: $(BUILD_DIR)/%.$(VERSION).bin $(BUILD_DIR)/%.$(VERSION).sha1

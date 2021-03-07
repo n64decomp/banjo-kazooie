@@ -43,7 +43,7 @@ void func_8038CBB4(Actor * arg0){
     if(!arg0->bgs_6730.unk4)
         return;
     func_8025A58C(-1, 400);
-    func_8025AB44(0x72,0, 400);
+    comusic_8025AB44(0x72,0, 400);
     func_8025AABC(0x72);
     
     arg0->bgs_6730.unk4 = 0;
@@ -78,7 +78,7 @@ void func_8038CC08(Actor * arg0, u32 arg1){
             s0->unk4 = 1;
         }
         else{
-            func_8025AB44(0x72, 30000, 400);
+            comusic_8025AB44(0x72, 30000, 400);
         }
     }
 
@@ -87,7 +87,7 @@ void func_8038CC08(Actor * arg0, u32 arg1){
         func_8028F8F8(0x1F, 1);
         if(arg1 == 1){
             if(s0->unk4){
-                func_8025AB44(0x72, 18000, 100);
+                comusic_8025AB44(0x72, 18000, 100);
             }
         }
         else{

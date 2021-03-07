@@ -194,7 +194,7 @@ typedef struct struct_8_s{
 }struct8s;
 
 typedef struct struct_9_s{
-    u8 unk0;
+    u8 uid;
     u8 unk1;
     u8 unk2;
     u8 pad3[1];
@@ -205,7 +205,7 @@ typedef struct struct_9_s{
 }struct9s;
 
 typedef struct struct_10_s{
-    u8 unk0;
+    u8 map_indx;
     u8 unk1;
     u8 unk2;
 }struct10s;

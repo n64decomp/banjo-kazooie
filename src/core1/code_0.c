@@ -2,6 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "gc/transition.h"
+
 extern u32 D_80275618;
 extern u32 D_8027A130;
 extern s32 D_8027BEEC;
@@ -72,7 +74,7 @@ void func_8023DBDC(void){
 //     func_8023FB1C();
 //     func_8025425C();
 //     func_80257424();
-//     func_8030BEDC();
+//     gctransition_reset();
 //     D_8027A130 = 0;
 //     D_80275618 = 0;
 //     func_8023DA9C(3);

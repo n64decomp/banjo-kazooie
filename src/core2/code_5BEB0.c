@@ -2,6 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "gc/transition.h"
+
 void func_8024CE60(f32, f32);
 
 
@@ -165,8 +167,8 @@ void func_802E40D0(s32 map, s32 exit){
 void func_802E40E8(s32 transition){
     D_8037E8E0.unk17 = transition;
     D_8037E8E0.unk19 = 0;
-    if(transition && !func_8030BDC0()){
-        func_8030BE60();
+    if(transition && !gctransition_8030BDC0()){
+        gctransition_8030BE60();
     }
     
 }
@@ -174,8 +176,8 @@ void func_802E40E8(s32 transition){
 void func_802E412C(s32 arg0, s32 arg1){
     D_8037E8E0.unk17 = arg0;
     D_8037E8E0.unk19 = arg1;
-    if(arg0 && !func_8030BDC0()){
-        func_8030BEA4(arg1);
+    if(arg0 && !gctransition_8030BDC0()){
+        gctransition_8030BEA4(arg1);
     }
 }
 
