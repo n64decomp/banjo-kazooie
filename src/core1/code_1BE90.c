@@ -114,6 +114,7 @@ void func_80259994(CoMusic *this, s32 arg1){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025A6EC.s")
 
+//comusic_queueTrack
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025A70C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025A788.s")
@@ -164,7 +165,7 @@ void func_8025AC7C(s32 arg0, s32 arg1, s32 arg2, f32 arg3, s32 arg4, char* arg5,
     if(trackPtr == NULL)
         return;
 
-    if(trackPtr->unk10 < 0){ //Free Track
+    if(trackPtr->unk10 < 0){ //Track not ready
         if(arg1 == 0)
             return;
         sp24 = (trackPtr - D_80276E30);
@@ -184,9 +185,16 @@ void func_8025AC7C(s32 arg0, s32 arg1, s32 arg2, f32 arg3, s32 arg4, char* arg5,
 
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025AD7C.s")
+//comusic_trackQueued
+int func_8025AD7C(s32 arg0){
+    CoMusic * trackPtr = func_802598B0(arg0);
+    return (trackPtr == NULL || trackPtr->unk10 == -1)? 0 : 1;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025ADBC.s")
+//comusic_isPrimaryTrack
+int func_8025ADBC(s32 arg0){
+    return D_80276E30[0].unk10 == arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025ADD4.s")
 
