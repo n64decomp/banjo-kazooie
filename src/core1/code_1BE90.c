@@ -80,7 +80,29 @@ void func_802599B4(CoMusic *this){
     func_8024FC1C(this - D_80276E30, -1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_80259A24.s")
+void func_80259A24(void){
+    CoMusic * iPtr;
+    s32 i;
+    
+    if(D_80276E30 != NULL)
+        func_80259B14();
+
+    D_80276E30 = (CoMusic *) malloc(6*sizeof(CoMusic));
+    for(iPtr = D_80276E30; iPtr < D_80276E30 + 6; iPtr++){
+        iPtr->unk10 = -1;
+        iPtr->unk8 = 0;
+        iPtr->unk12 = 0;
+        iPtr->unkC = 0;
+        iPtr->unk4 = 0.0f;
+        iPtr->unk14 = 0;
+        iPtr->unk15 = 0;
+        iPtr->unk0 = 0.0f;
+        iPtr->unk18 = func_802EDC84(8,4);
+        for(i = 0; i < 0xE; i++){
+            iPtr->unk1C[i] = 0;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_80259B14.s")
 
@@ -160,6 +182,7 @@ void func_8025A70C(s32 track_id){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025AA48.s")
 
+//dequeue_track?
 void func_8025AABC(s32 track_id){
     CoMusic *trackPtr;
     
