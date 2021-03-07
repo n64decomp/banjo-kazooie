@@ -115,7 +115,24 @@ void func_80259994(CoMusic *this, s32 arg1){
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025A6EC.s")
 
 //comusic_queueTrack
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025A70C.s")
+void func_8025A70C(s32 track_id){
+    CoMusic *trackPtr;
+    s32 indx;
+
+    trackPtr = func_802598B0(track_id);
+    if(trackPtr == NULL)
+        return;
+    
+    indx = trackPtr - D_80276E30;
+    if(trackPtr->unk10 < 0){
+        trackPtr->unk10 = track_id;
+        trackPtr->unk12 = 0;
+        trackPtr->unk4 = 0.0f;
+        func_8024FC1C( indx, track_id);
+        func_80259994(trackPtr, trackPtr->unk8 = func_80250034(track_id));
+    }
+
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025A788.s")
 
