@@ -14,7 +14,7 @@ typedef struct struct_11_s{
     s32 unkC;
     s16 unk10; //trackId
     s16 unk12;
-    u8 pad14[0x1];
+    u8 unk14;
     u8 unk15;
     u8 pad16[0x2];
     s32 unk18;
@@ -72,7 +72,13 @@ void func_80259994(CoMusic *this, s32 arg1){
     func_80259914(this, arg1, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_802599B4.s")
+void func_802599B4(CoMusic *this){
+    func_80259994(this, func_80250034(this->unk10));
+    this->unk10 = -1;
+    this->unk14 = 0;
+    this->unk15 = 0;
+    func_8024FC1C(this - D_80276E30, -1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_80259A24.s")
 
