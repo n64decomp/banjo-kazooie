@@ -154,7 +154,15 @@ void func_8025A70C(s32 track_id){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025AA48.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025AABC.s")
+void func_8025AABC(s32 track_id){
+    CoMusic *trackPtr;
+    
+    if(trackPtr = func_802598B0(track_id)){
+        trackPtr->unk15 = 1;
+        if(!trackPtr->unk8)
+            func_802599B4(trackPtr);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025AB00.s")
 
