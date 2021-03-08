@@ -23,6 +23,7 @@ extern ALBank *D_80282108;
 
 /* .rodata */
 
+/* .code */
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_8024F4E0.s")
 // void func_8024F4E0(void){
 //     ALBankFile * bnk_f;
