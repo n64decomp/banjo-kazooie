@@ -16,4 +16,10 @@ typedef struct music_track_s{
     u8  pad184[0x1C];
 } MusicTrack;
 
+typedef struct music_track_meta_s{
+    char *name;
+    u16  unk4;
+    u8 pad6[2];
+}MusicTrackMeta;
+
 #endif

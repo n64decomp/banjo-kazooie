@@ -4,11 +4,20 @@
 
 #include "music.h"
 
+/* dependent functions */
+
+/* .data */
+extern MusicTrackMeta D_80275D40[];
+
+/* .bss */
 extern MusicTrack D_80281898[];
 extern MusicTrack **D_802820E0;
 extern ALSeqpConfig D_802820E8;
 extern u16 D_80282104;
 extern ALBank *D_80282108;
+
+
+/* .rodata */
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_8024F4E0.s")
 // void func_8024F4E0(void){
@@ -102,7 +111,10 @@ void func_8024F764(s32 arg0){//music track load
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_80250048.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_80250060.s")
+//song_getName
+char *func_80250060(s32 track_id){
+    return D_80275D40[track_id].name;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_80250074.s")
 

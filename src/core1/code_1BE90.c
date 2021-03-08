@@ -106,6 +106,7 @@ void func_80259A24(void){
     }
 }
 
+//comusic_freeAll
 void func_80259B14(void){
     CoMusic *iPtr;
     func_8024FB8C();
@@ -118,6 +119,7 @@ void func_80259B14(void){
     D_80276E30 = NULL;
 }
 
+//comusic_count
 s32 func_80259B8C(void){
     CoMusic * iPtr;
     s32 cnt = 0;
