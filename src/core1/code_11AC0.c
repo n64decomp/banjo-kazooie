@@ -95,16 +95,35 @@ void func_8024F764(s32 arg0){//music track load
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_8024FB8C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_8024FC1C.s")
+void func_8024FC1C(u8 arg0, s32 arg1){
+    D_80281720[arg0].index_cpy = arg1;
+    D_80281720[arg0].unk2 = 1;
+    D_80281720[arg0].unk3 = 0;
+    D_80281720[arg0].unk0 =  D_80275D40[arg1].unk4;
+}
 
+#if NONMATCHING
+void func_8024FC6C(u8 arg0){
+    if(D_80281720[arg0].index == 0x2D || D_80281720[arg0].index == 0x3D){
+        D_80281720[arg0].unk2 = 1;
+        D_80281720[arg0].unk3 = 0;
+        D_80281720[arg0].index_cpy = D_80281720[arg0].index;
+    }else{
+        D_80281720[arg0].index_cpy = -1;
+        D_80281720[arg0].unk3 = 1;
+        D_80281720[arg0].unk2 = 1;
+        D_80281720[arg0].unk0 = 0;
+    }
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_8024FC6C.s")
+#endif
 
 void func_8024FCE0(u8 arg0, s16 arg1){
     D_80281720[arg0].unk3 = 1;
     D_80281720[arg0].unk2 = 1;
     D_80281720[arg0].unk0 = arg1;
     D_80281720[arg0].index_cpy = D_80281720[arg0].index;
-   
 }
 
 //musicTrack_setVolume
