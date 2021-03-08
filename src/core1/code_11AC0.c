@@ -109,7 +109,9 @@ void func_8024F764(s32 arg0){//music track load
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_80250034.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_80250048.s")
+void func_80250048(s32 track_id, u16 arg1){
+    D_80275D40[track_id].unk4 = arg1;
+}
 
 //song_getName
 char *func_80250060(s32 track_id){
