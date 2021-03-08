@@ -83,7 +83,7 @@
 #define alCSPSetChlPriority	n_alCSPSetChlPriority
 #define alCSPSetChlProgram	n_alCSPSetChlProgram
 #define alCSPSetSeq		n_alCSPSetSeq
-#define alCSPSetTempo		n_alCSPSetTempo
+#define 		n_
 #define alCSPSetVol		n_alCSPSetVol
 #define alCSPStop		n_alCSPStop
 

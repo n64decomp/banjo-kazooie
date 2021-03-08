@@ -62,6 +62,7 @@ segments:
   - [0x21250, c]
   - [0x21960, c]
   - [0x219D0, c]
+  - [0x21A10, c, core1/done/audio/cspsettempo]
   - [0x21A80, c]
   - [0x21AB0, c]
   - [0x21B50, c]

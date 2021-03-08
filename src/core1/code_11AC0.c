@@ -8,7 +8,7 @@
 void func_8024FA98(u8, s32);
 void func_8024FD28(u8, s32);
 int func_80250074(u8);
-void func_8025F430(ALCSPlayer *, s32);
+void alCSPSetTempo(ALCSPlayer *, s32);
 void func_8025F3F0(ALCSPlayer *, f32, f32);
 
 
@@ -103,10 +103,11 @@ void func_8024F764(s32 arg0){//music track load
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_8024FD28.s")
 
+//musicTrack_setTempo
 void func_8024FDDC(u8 arg0, s32 arg1){
     if(func_80250074(arg0) == 0){
         if(!D_80281720[arg0].unk2){
-            func_8025F430(&D_80281720[arg0].cseqp, arg1);
+            alCSPSetTempo(&D_80281720[arg0].cseqp, arg1);
         }
     }
 }

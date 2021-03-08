@@ -300,7 +300,7 @@ void    n_alCSPSetChlPan(N_ALCSPlayer *seqp, u8 chan, ALPan pan);
 void    n_alCSPSetChlPriority(N_ALCSPlayer *seqp, u8 chan, u8 priority);
 void    n_alCSPSetChlProgram(N_ALCSPlayer *seqp, u8 chan, u8 prog);
 void    n_alCSPSetSeq(N_ALCSPlayer *seqp, ALCSeq *seq);
-void    n_alCSPSetTempo(N_ALCSPlayer *seqp, s32 tempo);
+void    n_(N_ALCSPlayer *seqp, s32 tempo);
 void    n_alCSPSetVol(N_ALCSPlayer *seqp, s16 vol);
 void    n_alCSPStop(N_ALCSPlayer *seqp);
 
