@@ -21,6 +21,7 @@ func_80258C48 = 0x80258C48;
 func_80258C7C = 0x80258C7C;
 mlScale = 0x80258CB0;
 alEvtqPostEvent = 0x8025CDFC;
+alCSPSetVol = 0x8025F3B0;
 alCSPSetTempo = 0x8025F430;
 __postNextSeqEvent = 0x80261210;
 osInvalDCache = 0x80263B40;
