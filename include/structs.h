@@ -210,4 +210,25 @@ typedef struct struct_10_s{
     u8 unk2;
 }struct10s;
 
+typedef struct struct_11_s{
+    f32 unk0;
+    f32 unk4;
+    s32 unk8;
+    s32 unkC;
+    s16 unk10; //trackId
+    s16 unk12;
+    u8 unk14;
+    u8 unk15;
+    u8 pad16[0x2];
+    s32 unk18;
+    s32 unk1C[0xE];
+} CoMusic;
+
+typedef struct struct_12_s{
+    s32 unk0;
+    s32 unk1;
+} struct12s;
+
+
+
 #endif

@@ -5,12 +5,13 @@
 #include "music.h"
 
 /* dependent functions */
+void func_8024FA98(u8, s32);
+void func_8024FD28(u8, s32);
+
 
 /* .data */
 extern MusicTrackMeta D_80275D40[];
-
-/* .bss */
-extern MusicTrack D_80281898[];
+extern MusicTrack D_80281720[];
 extern MusicTrack **D_802820E0;
 extern ALSeqpConfig D_802820E8;
 extern u16 D_80282104;
@@ -103,11 +104,46 @@ void func_8024F764(s32 arg0){//music track load
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_8024FE44.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_8024FEEC.s")
+//#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_8024FEEC.s")
+void func_8024FEEC(u8 arg0){
+    func_80267AFC(&D_80281720[arg0].cseq);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_8024FF34.s")
+void func_8024FF34(void){
+    s32 i;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_80250034.s")
+    for(i = 0; i < 6 ; i++){
+        switch(D_80281720[i].cseqp.state){
+            case AL_PLAYING://L8024FF94
+                if(D_80281720[i].unk2){
+                    func_8025EC70(&(D_80281720[i].cseqp));
+
+                    if(D_80281720[i].unk3)
+                        D_80281720[i].unk2 = 0;
+                }
+                break;
+            
+            case AL_STOPPED: //L8024FFBC
+                if(D_80281720[i].unk2){
+                    if(D_80281720[i].unk3){
+                        func_8025F380(&D_80281720[i].cseqp);
+                    } else{
+                        func_8024FA98(i, D_80281720[i].index_cpy);
+                    }
+                    D_80281720[i].unk3 = 0;
+                    D_80281720[i].unk2 = 0;
+                    func_8024FD28(i, D_80281720[i].unk0);
+                }
+                break;
+            case AL_STOPPING: //L80250008
+                break;
+        }
+    }
+}
+
+s32 func_80250034(s32 track_id){
+    return D_80275D40[track_id].unk4;
+}
 
 void func_80250048(s32 track_id, u16 arg1){
     D_80275D40[track_id].unk4 = arg1;

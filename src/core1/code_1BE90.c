@@ -2,25 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-typedef struct struct_12_s{
-    s32 unk0;
-    s32 unk1;
-} struct12s;
-
-typedef struct struct_11_s{
-    f32 unk0;
-    f32 unk4;
-    s32 unk8;
-    s32 unkC;
-    s16 unk10; //trackId
-    s16 unk12;
-    u8 unk14;
-    u8 unk15;
-    u8 pad16[0x2];
-    s32 unk18;
-    s32 unk1C[0xE];
-} CoMusic;
-
 extern CoMusic *D_80276E30; //active track ptr
 extern int D_80276E34;
 

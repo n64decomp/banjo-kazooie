@@ -4,7 +4,7 @@
 #include "structs.h"
 
 typedef struct music_track_s{
-    u8  pad0[2];
+    s16  unk0;
     u8  unk2;
     u8  unk3;
     ALCSeq cseq;
