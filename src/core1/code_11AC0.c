@@ -171,7 +171,7 @@ void func_8024FF34(void){
         switch(D_80281720[i].cseqp.state){
             case AL_PLAYING://L8024FF94
                 if(D_80281720[i].unk2){
-                    func_8025EC70(&(D_80281720[i].cseqp));
+                    alCSPStop(&(D_80281720[i].cseqp));
 
                     if(D_80281720[i].unk3)
                         D_80281720[i].unk2 = 0;
