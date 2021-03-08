@@ -7,6 +7,8 @@
 /* dependent functions */
 void func_8024FA98(u8, s32);
 void func_8024FD28(u8, s32);
+int func_80250074(u8);
+void func_8025F3F0(ALCSPlayer *, f32, f32);
 
 
 /* .data */
@@ -102,9 +104,18 @@ void func_8024F764(s32 arg0){//music track load
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_8024FDDC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_8024FE44.s")
+void func_8024FE44(u8 arg0, f32 arg1, f32 arg2){
+    D_80281720[arg0].unk17C = arg1;
+    D_80281720[arg0].unk180 = arg2;
+    if(func_80250074(arg0) == 0){
+        if(func_8028EE84() == 2){
+            func_8025F3F0(&D_80281720[arg0].cseqp, 0.0f, 1.0f);
+        }else{
+            func_8025F3F0(&D_80281720[arg0].cseqp, arg1, arg2);
+        }
+    }
+}
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_8024FEEC.s")
 void func_8024FEEC(u8 arg0){
     func_80267AFC(&D_80281720[arg0].cseq);
 }
