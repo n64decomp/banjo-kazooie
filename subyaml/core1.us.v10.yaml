@@ -58,7 +58,7 @@ segments:
   - [0x1FC90, c]
   - [0x1FD00, c]
   - [0x1FDA0, c]
-  - [0x21210, c]
+  - [0x21210, c, core1/done/audio/cspsetbank]
   - [0x21250, c, core1/done/audio/cspstop]
   - [0x21280, c]
   - [0x21960, c, core1/done/audio/cspplay]

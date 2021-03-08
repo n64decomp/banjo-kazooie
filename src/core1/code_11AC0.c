@@ -56,18 +56,18 @@ extern ALBank *D_80282108;
 //     D_802820E8.stopOsc = NULL;
 //     func_8023FA64(&D_802820E8);
 //     for(i = 0; i < 6; i++){
-//         func_8025EABC(&D_80281898[i].cseqp, &D_802820E8); //alCSPNew
+//         func_8025EABC(&D_80281720[i].cseqp, &D_802820E8); //alCSPNew
 //     }
 //     alBnkfNew(bnk_f, 0xeade60); //alBnkfNew
 //     for(i = 0; i < 6; i++){
-//         func_8025EC30(&D_80281898[i].cseqp, D_80282108); //alSeqpSetBank
+//         alCSPSetBank(&D_80281720[i].cseqp, D_80282108);
 //     }
 //     for(i = 0; i < 6; i++){
-//         D_80281898[i].unk2 = 0;
-//         D_80281898[i].unk3 = 0;
-//         D_80281898[i].index_cpy = 0;
-//         D_80281898[i].unk17C = 0.0f;
-//         D_80281898[i].unk180 = 1.0f;
+//         D_80281720[i].unk2 = 0;
+//         D_80281720[i].unk3 = 0;
+//         D_80281720[i].index_cpy = 0;
+//         D_80281720[i].unk17C = 0.0f;
+//         D_80281720[i].unk180 = 1.0f;
 //     }
 //     func_8024FB8C();
 // }
