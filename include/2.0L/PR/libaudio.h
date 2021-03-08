@@ -434,7 +434,8 @@ enum ALMsg {
     AL_CSP_LOOPEND,
     AL_CSP_NOTEOFF_EVT,
     AL_TREM_OSC_EVT,
-    AL_VIB_OSC_EVT
+    AL_VIB_OSC_EVT,
+    AL_UNK18_EVT
 };
 
 /*
@@ -589,6 +590,11 @@ typedef struct {
 } ALOscEvent;
 
 typedef struct {
+    float       unk0;
+    float       unk4;
+} ALUnk18Event;
+
+typedef struct {
     s16                 	type;
     union {
         ALMIDIEvent     	midi;
@@ -598,10 +604,11 @@ typedef struct {
         ALVolumeEvent   	vol;
         ALSeqpLoopEvent 	loop;
         ALSeqpVolEvent  	spvol;
-	ALSeqpPriorityEvent	sppriority;
-	ALSeqpSeqEvent		spseq;
-	ALSeqpBankEvent		spbank;
+	    ALSeqpPriorityEvent	sppriority;
+	    ALSeqpSeqEvent		spseq;
+	    ALSeqpBankEvent		spbank;
         ALOscEvent      	osc;
+        ALUnk18Event        unk18;
     } msg;
 } ALEvent;
 
