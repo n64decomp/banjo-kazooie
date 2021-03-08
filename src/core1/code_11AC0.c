@@ -99,14 +99,20 @@ void func_8024F764(s32 arg0){//music track load
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_8024FC6C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_8024FCE0.s")
+void func_8024FCE0(u8 arg0, s16 arg1){
+    D_80281720[arg0].unk3 = 1;
+    D_80281720[arg0].unk2 = 1;
+    D_80281720[arg0].unk0 = arg1;
+    D_80281720[arg0].index_cpy = D_80281720[arg0].index;
+   
+}
 
 //musicTrack_setVolume
 void func_8024FD28(u8 arg0, s16 arg1){
     D_80281720[arg0].unk0 = arg1;
     alCSPSetVol(&D_80281720[arg0].cseqp, arg1);
     if(D_80281720[arg0].unk3 && arg1){
-        func_8024FCE0(arg0);
+        func_8024FCE0(arg0, arg1);
     }
     else if(!D_80281720[arg0].unk3 && arg1 == 0){
         if(func_80250074(arg0) == 0)
