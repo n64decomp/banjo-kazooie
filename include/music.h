@@ -3,7 +3,13 @@
 #include <ultra64.h>
 #include "structs.h"
 
-
+typedef struct struct_13_s{
+    s32 unk0;
+    s32 unk4;
+    f32 unk8;
+    f32 unkC;
+    f32 unk10;
+} struct13s;
 
 typedef struct music_track_s{
     s16  unk0;

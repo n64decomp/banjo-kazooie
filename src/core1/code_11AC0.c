@@ -15,12 +15,14 @@ void func_8025F3F0(ALCSPlayer *, f32, f32);
 
 /* .data */
 extern MusicTrackMeta D_80275D40[];
-
+extern f32 D_80278180;
+extern f32 D_80278184;
 extern MusicTrack D_80281720[];
 extern MusicTrack **D_802820E0;
 extern ALSeqpConfig D_802820E8;
 extern u16 D_80282104; //called as u16 someplaces and s16 others
 extern ALBank *D_80282108;
+extern struct13s D_80282110[0x20];
 
 
 
@@ -318,18 +320,57 @@ ALCSPlayer *func_802500CC(s32 arg0){
 
 void func_802500F4(s32 arg0){}
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_802500FC.s")
 void func_802500FC(s32 arg0){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_80250104.s")
+// void func_80250104(MusicTrack *arg0, s32 arg1, s32 arg2){
+//     u8 i;
+//     for(i = 0; i < 6; i++){
+//         if(arg0 == D_80281720 + i){
+//             D_80281720[i].cseqp.curTime = 1;
+//             D_80281720[i].cseqp.state = arg2;
+//             return;
+//         }
+//     }
+// }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_80250170.s")
+// MATCHES BUT STRUCT IS WRONG for ALCSPlayer
+// void func_80250170(u8 arg0, s32 arg1, s32 arg2){
+//     ((u8 *)(&D_80281720[arg0].cseqp.curTime))[2 + arg1] = arg2;
+// }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_802501A0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_80250200.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_80250360.s")
+void func_80250360(s32 arg0, s32 arg1, f32 arg2){
+    ALCSPlayer * sp24;
+    s32 i;
+    s32 sp1C;
+    f32 tmpf;
+    
+    sp24 = func_802500CC(arg0);
+    sp1C = osSetIntMask(1);
+    tmpf = func_8025F4D0(sp24);
+    if( arg2 < D_80278184){
+        arg2 = D_80278184;
+    }
+    for(i = 0; i < 0x20; i++){
+        if(D_80282110[i].unk8 == D_80282110[i].unk10 
+            || (D_80282110[i].unk0 == arg0 && -1 == D_80282110[i].unk4)
+        ){
+            D_80282110[i].unk0 = arg0;
+            D_80282110[i].unk4 = -1;
+            D_80282110[i].unk8 = tmpf;
+            D_80282110[i].unkC = (arg1 - tmpf)/((arg2 * 60.0f)/2);
+            D_80282110[i].unk10 = arg1;
+            osSetIntMask(sp1C);
+            return;
+        }
+    }
+    osSetIntMask(sp1C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_80250474.s")
 
