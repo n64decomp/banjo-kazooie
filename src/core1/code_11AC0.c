@@ -13,6 +13,7 @@ s64 func_80267290(void);
 void func_8024FA98(u8, s32);
 void func_8024FD28(u8, s16);
 int func_80250074(u8);
+u8 func_8025F4A0(ALCSPlayer *, u8);
 
 void func_8025F3F0(ALCSPlayer *, f32, f32);
 u16 func_80250474(s32 arg0);
@@ -346,7 +347,36 @@ void func_802500FC(s32 arg0){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_802501A0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_80250200.s")
+
+void func_80250200(s32 arg0, s16 arg1, s16 arg2, f32 arg3){
+    s32 i;
+    ALCSPlayer *sp28;
+    f32 tmpf;
+    s32 sp20; 
+
+    sp28 = func_802500CC(arg0);
+    sp20 = osSetIntMask(OS_IM_NONE);
+    tmpf = (!func_80250074(arg0))? func_8025F4A0(sp28, arg1) :127.0f;
+
+    if(arg3 < D_80278180){
+        arg3 = D_80278180;
+    }
+
+    for(i = 0; i< 0x20; i++){
+        if( (D_80282110[i].unk8 == D_80282110[i].unk10) 
+            || (D_80282110[i].unk0 == arg0 && arg1 == D_80282110[i].unk4)
+        ){
+            D_80282110[i].unk0 = arg0;
+            D_80282110[i].unk4 = arg1;
+            D_80282110[i].unk8 = tmpf;
+            D_80282110[i].unkC = (arg2 - tmpf)/((arg3 * 60.0f)/2);
+            D_80282110[i].unk10 = arg2;
+            osSetIntMask(sp20);
+            return;
+        }
+    }
+    osSetIntMask(sp20);
+}
 
 void func_80250360(s32 arg0, s32 arg1, f32 arg2){
     ALCSPlayer * sp24;
