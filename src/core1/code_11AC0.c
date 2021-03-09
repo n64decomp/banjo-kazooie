@@ -19,7 +19,7 @@ extern MusicTrackMeta D_80275D40[];
 extern MusicTrack D_80281720[];
 extern MusicTrack **D_802820E0;
 extern ALSeqpConfig D_802820E8;
-extern u16 D_80282104;
+extern u16 D_80282104; //called as u16 someplaces and s16 others
 extern ALBank *D_80282108;
 
 
@@ -308,9 +308,13 @@ int func_80250074(u8 arg0){
     return (D_80281720[arg0].cseqp.state == AL_STOPPED && D_80281720[arg0].unk3 == 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_802500C0.s")
+s32 func_802500C0(void){
+    return *(s16 *)&D_80282104;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_802500CC.s")
+ALCSPlayer *func_802500CC(s32 arg0){
+    return &D_80281720[arg0].cseqp;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_802500F4.s")
 
