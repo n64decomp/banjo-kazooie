@@ -100,7 +100,12 @@ void func_8024F7C4(s32 arg0){
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_8024F83C.s")
+void func_8024F83C(void){
+    s32 i;
+    for(i = 0; i < D_80282104; i++){
+        func_8024F7C4(i);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_8024F890.s")
 
