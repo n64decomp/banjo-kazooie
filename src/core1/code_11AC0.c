@@ -5,6 +5,7 @@
 #include "music.h"
 
 /* dependent functions */
+s64 func_80267290(void);
 void func_8024FA98(u8, s32);
 void func_8024FD28(u8, s16);
 int func_80250074(u8);
@@ -146,7 +147,24 @@ s32 func_8024FA6C(u8 arg0){
     return D_80281720[arg0].index;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_8024FA98.s")
+void func_8024FA98(u8 arg0, s32 arg1){
+    s32 sp2C;
+    s32 sp24;
+    volatile s64 sp20;
+
+    sp2C = D_80281720[arg0].index;
+    if(arg1 == sp2C || sp2C == -1){
+        func_8024F890(arg0, arg1);
+    }else{
+        func_8024F890(arg0, -1);
+        sp20 = func_80267290();
+        while(D_80281720[arg0].cseqp.state != 0){
+            func_80267290();
+        };
+        func_8024F7C4(sp2C);
+        func_8024F890(arg0, arg1);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_8024FB60.s")
 
