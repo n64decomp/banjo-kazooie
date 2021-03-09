@@ -4,6 +4,10 @@
 
 #include "music.h"
 
+
+extern ALBankFile D_EA3EB0;
+extern ALWaveTable D_EADE60;
+
 /* dependent functions */
 s64 func_80267290(void);
 void func_8024FA98(u8, s32);
@@ -13,6 +17,7 @@ int func_80250074(u8);
 void func_8025F3F0(ALCSPlayer *, f32, f32);
 u16 func_80250474(s32 arg0);
 void func_8024AF48(void);
+void func_8024FB8C(void);
 
 /* .data */
 extern MusicTrackMeta D_80275D40[];
@@ -32,59 +37,57 @@ extern struct13s D_80282110[0x20];
 /* .rodata */
 
 /* .code */
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_8024F4E0.s")
-// void func_8024F4E0(void){
-//     ALBankFile * bnk_f;
-//     void * mb;
-//     void * mq;
-//     void * mq2;
-//     s32 i;
-//     ALCSPlayer * cseqp;
-    
-//     //volatile s32    phi2 = 0xea3eb0;
-//     //volatile s32    phi0 = 0xeade60;
 
-//     bnk_f = malloc(0x9FB0);
-//     osWriteBackDCacheAll(); //osWritebackDCacheAll()
-//     mb = func_802405D0();
-//     mq = func_802405C4();
-//     func_802647D0(mb, 0, 0, 0xea3eb0, bnk_f, 0x9FB0, mq);
-//     mq2 = func_802405C4();
-//     osRecvMesg(mq2, 0, 1); //osRecvMesg
-//     D_80282104 = 0xAD;
-//     D_802820E0 = (MusicTrack **) malloc(0xAD * sizeof(MusicTrack *));
-//     for(i = 0; i < D_80282104; i++){
-//         D_802820E0[i] = NULL;
-//     }
-//     D_802820E8.maxVoices = 0x18;
-//     D_802820E8.maxEvents = 0x55;
-//     D_802820E8.maxChannels = 0x10;
-//     D_802820E8.heap = func_802405B8();
-//     D_802820E8.initOsc = NULL;
-//     D_802820E8.updateOsc = NULL;
-//     D_802820E8.stopOsc = NULL;
-//     func_8023FA64(&D_802820E8);
-//     for(i = 0; i < 6; i++){
-//         func_8025EABC(&D_80281720[i].cseqp, &D_802820E8); //alCSPNew
-//     }
-//     alBnkfNew(bnk_f, 0xeade60); //alBnkfNew
-//     for(i = 0; i < 6; i++){
-//         alCSPSetBank(&D_80281720[i].cseqp, D_80282108);
-//     }
-//     for(i = 0; i < 6; i++){
-//         D_80281720[i].unk2 = 0;
-//         D_80281720[i].unk3 = 0;
-//         D_80281720[i].index_cpy = 0;
-//         D_80281720[i].unk17C = 0.0f;
-//         D_80281720[i].unk180 = 1.0f;
-//     }
-//     func_8024FB8C();
-// }
+#if NONMATCHING
+void func_8024F4E0(void){
+    s32 size;
+    ALBankFile * bnk_f; //sp38
+    s32 i;
+    f32 tmpf1;
+    
+    size = (u32)&D_EADE60 - (u32)&D_EA3EB0;
+    bnk_f = malloc(size);
+    osWriteBackDCacheAll();
+    func_802647D0(func_802405D0(), 0, 0, &D_EA3EB0, bnk_f, size, func_802405C4());
+    osRecvMesg(func_802405C4(), 0, 1); //osRecvMesg
+    D_80282104 = 0xAD;
+    D_802820E0 = (MusicTrack **) malloc(D_80282104 * sizeof(MusicTrack *));
+    for(i = 0; i < D_80282104; i++){
+        D_802820E0[i] = NULL;
+    }
+    D_802820E8.maxVoices = 0x18;
+    D_802820E8.maxEvents = 0x55;
+    D_802820E8.maxChannels = 0x10;
+    D_802820E8.heap = func_802405B8();
+    D_802820E8.initOsc = NULL;
+    D_802820E8.updateOsc = NULL;
+    D_802820E8.stopOsc = NULL;
+    func_8023FA64(&D_802820E8);
+    for(i = 0; i < 6; i++){
+        func_8025EABC(&D_80281720[i].cseqp, &D_802820E8); //alCSPNew
+    }
+    alBnkfNew(bnk_f, &D_EADE60);
+    D_80282108 = bnk_f->bankArray[0];
+    for(i = 0; i < 6; i++){
+        alCSPSetBank(&D_80281720[i].cseqp, D_80282108);
+    }
+    //something wrong with this last loop.
+    for(i = 0; i < 6; i++){
+       D_80281720[i].unk2 = 0;
+       D_80281720[i].unk3 = 0;
+       D_80281720[i].index_cpy = 0;
+       D_80281720[i].unk17C = 0.0f;
+       D_80281720[i].unk180 = 1.0f;
+    }
+    func_8024FB8C();
+}
+#else
+#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_8024F4E0.s")
+#endif
 
 ALBank *func_8024F758(void){
     return D_80282108;
 }
-
 
 void func_8024F764(s32 arg0){//music track load
     if(D_802820E0[arg0] == NULL){
@@ -202,22 +205,20 @@ void func_8024FC1C(u8 arg0, s32 arg1){
     D_80281720[arg0].unk0 =  D_80275D40[arg1].unk4;
 }
 
-// #if NONMATCHING
-// void func_8024FC6C(u8 arg0){
-//     if(D_80281720[arg0].index == 0x2D || D_80281720[arg0].index == 0x3D){
-//         D_80281720[arg0].unk2 = 1;
-//         D_80281720[arg0].unk3 = 0;
-//         D_80281720[arg0].index_cpy = D_80281720[arg0].index;
-//     }else{
-//         D_80281720[arg0].index_cpy = -1;
-//         D_80281720[arg0].unk3 = 1;
-//         D_80281720[arg0].unk2 = 1;
-//         D_80281720[arg0].unk0 = 0;
-//     }
-// }
-// #else
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_8024FC6C.s")
-//#endif
+void func_8024FC6C(u8 arg0){
+    s32 indx;
+    indx = D_80281720[arg0].index;
+    if(indx == 0x2D || indx == 0x3D){
+        D_80281720[arg0].unk2 = 1;
+        D_80281720[arg0].unk3 = 0;
+        D_80281720[arg0].index_cpy = D_80281720[arg0].index;
+    }else{
+        D_80281720[arg0].index_cpy = -1;
+        D_80281720[arg0].unk3 = 1;
+        D_80281720[arg0].unk2 = 1;
+        D_80281720[arg0].unk0 = 0;
+    }
+}
 
 void func_8024FCE0(u8 arg0, s16 arg1){
     D_80281720[arg0].unk3 = 1;
