@@ -318,7 +318,8 @@ ALCSPlayer *func_802500CC(s32 arg0){
 
 void func_802500F4(s32 arg0){}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_802500FC.s")
+//#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_802500FC.s")
+void func_802500FC(s32 arg0){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_80250104.s")
 
