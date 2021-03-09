@@ -3,6 +3,8 @@
 #include <ultra64.h>
 #include "structs.h"
 
+
+
 typedef struct music_track_s{
     s16  unk0;
     u8  unk2;
@@ -13,7 +15,8 @@ typedef struct music_track_s{
     s16 index_cpy;
     f32 unk17C;
     f32 unk180;
-    u8  pad184[0x1C];
+    u8 unk184[0xE];
+    u8 unk192[0xE];
 } MusicTrack;
 
 typedef struct music_track_meta_s{

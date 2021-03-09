@@ -107,7 +107,40 @@ void func_8024F83C(void){
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_8024F890.s")
+void func_8024F890(u8 arg0, s32 arg1){
+    s32 i;
+    if(arg1 == -1){
+        if(arg1 !=  D_80281720[arg0].index)
+          alCSPStop(&D_80281720[arg0].cseqp);
+        D_80281720[arg0].index = arg1;
+
+    }
+    else{
+        if(-1 != D_80281720[arg0].index){
+            func_8024F890(arg0, -1);
+        }
+        D_80281720[arg0].unk2 = 0;
+        D_80281720[arg0].unk3 = 0;
+        D_80281720[arg0].index = arg1;
+        for(i = 0; i < 0xe; i++){
+            D_80281720[arg0].unk184[i] = 0;
+            D_80281720[arg0].unk192[i] = 0;
+        }
+        func_8024F764(D_80281720[arg0].index);
+        func_8025F0BC(&D_80281720[arg0].cseq, D_802820E0[D_80281720[arg0].index]);
+        
+        D_80281720[arg0].cseqp.chanMask = func_80250474(arg0);
+        func_8025F340(&D_80281720[arg0].cseqp, &D_80281720[arg0].cseq);
+        alCSPPlay(&D_80281720[arg0].cseqp);
+        alCSPSetVol(&D_80281720[arg0].cseqp, D_80281720[arg0].unk0);
+        if(func_8028F1D4() && func_8028EE84() == 2){
+            func_8025F3F0(&D_80281720[arg0].cseqp, 0.0f, 1.0f);
+        }
+        else{
+            func_8025F3F0(&D_80281720[arg0].cseqp, D_80281720[arg0].unk17C, D_80281720[arg0].unk180);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_8024FA6C.s")
 
