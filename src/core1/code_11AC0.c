@@ -87,7 +87,18 @@ void func_8024F764(s32 arg0){//music track load
     } 
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_8024F7C4.s")
+void func_8024F7C4(s32 arg0){
+    s32 i;
+    if(D_802820E0[arg0] != NULL){
+        i = 0;
+        for(i = 0; i != 6; i++){
+            if(D_80281720[i].index == arg0)
+                return;
+        }
+        func_8033B3D8(D_802820E0[arg0]);
+        D_802820E0[arg0] = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_8024F83C.s")
 
