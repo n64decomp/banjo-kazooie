@@ -166,9 +166,29 @@ void func_8024FA98(u8 arg0, s32 arg1){
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_8024FB60.s")
+s32 func_8024FB60(u8 arg0){
+    return D_80281720[arg0].cseqp.state;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_8024FB8C.s")
+void func_8024FB8C(void){
+    s32 i, allStopped;
+    volatile s64 sp2C;
+
+    for(i = 0; i < 6; i++){
+        func_8024F890(i,-1);
+    }
+    sp2C = func_80267290();
+
+    do{
+        allStopped = 0;
+        for(i = 0; i < 6; i++){
+            if(func_8024FB60(i) != AL_STOPPED)
+                allStopped++;
+        }
+        func_80267290();
+    }while(allStopped);
+
+}
 
 void func_8024FC1C(u8 arg0, s32 arg1){
     D_80281720[arg0].index_cpy = arg1;
@@ -284,7 +304,9 @@ char *func_80250060(s32 track_id){
     return D_80275D40[track_id].name;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_80250074.s")
+int func_80250074(u8 arg0){
+    return (D_80281720[arg0].cseqp.state == AL_STOPPED && D_80281720[arg0].unk3 == 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_802500C0.s")
 
