@@ -14,11 +14,13 @@ void func_8025F3F0(ALCSPlayer *, f32, f32);
 
 /* .data */
 extern MusicTrackMeta D_80275D40[];
+
 extern MusicTrack D_80281720[];
 extern MusicTrack **D_802820E0;
 extern ALSeqpConfig D_802820E8;
 extern u16 D_80282104;
 extern ALBank *D_80282108;
+
 
 
 /* .rodata */
@@ -73,7 +75,10 @@ extern ALBank *D_80282108;
 //     func_8024FB8C();
 // }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_8024F758.s")
+ALBank *func_8024F758(void){
+    return D_80282108;
+}
+
 
 void func_8024F764(s32 arg0){//music track load
     if(D_802820E0[arg0] == NULL){
