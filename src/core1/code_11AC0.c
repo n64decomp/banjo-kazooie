@@ -316,7 +316,7 @@ ALCSPlayer *func_802500CC(s32 arg0){
     return &D_80281720[arg0].cseqp;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_802500F4.s")
+void func_802500F4(s32 arg0){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_802500FC.s")
 
