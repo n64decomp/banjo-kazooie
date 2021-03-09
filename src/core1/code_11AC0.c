@@ -142,7 +142,9 @@ void func_8024F890(u8 arg0, s32 arg1){
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_8024FA6C.s")
+s32 func_8024FA6C(u8 arg0){
+    return D_80281720[arg0].index;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_8024FA98.s")
 
