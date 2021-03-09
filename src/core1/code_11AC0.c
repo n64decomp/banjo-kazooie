@@ -11,10 +11,13 @@ void func_8024FD28(u8, s16);
 int func_80250074(u8);
 
 void func_8025F3F0(ALCSPlayer *, f32, f32);
-
+u16 func_80250474(s32 arg0);
+void func_8024AF48(void);
 
 /* .data */
 extern MusicTrackMeta D_80275D40[];
+extern s32 D_802762C0;
+extern s32 D_802762C4;
 extern f32 D_80278180;
 extern f32 D_80278184;
 extern MusicTrack D_80281720[];
@@ -372,7 +375,29 @@ void func_80250360(s32 arg0, s32 arg1, f32 arg2){
     osSetIntMask(sp1C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_80250474.s")
+u16 func_80250474(s32 arg0){
+    ALCSPlayer * sp24;
+    s32 i;
+    s32 sp1C;
+    f32 tmpf;
+    
+
+    if(arg0 != 0)
+        return ~0;
+    D_802762C0 = (D_802762C4 = -1);
+    sp1C = osSetIntMask(1);
+    for(i = 0; i < 0x20; i++){
+        D_80282110[i].unk8 = -1.0f;
+        D_80282110[i].unk10 = -1.0f;
+    }
+    osSetIntMask(sp1C);
+    func_8024AF48();
+    if(D_802762C0 == -1){
+        D_802762C0 = 0xFFFF;
+    }
+    return D_802762C0;
+
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_80250530.s")
 
