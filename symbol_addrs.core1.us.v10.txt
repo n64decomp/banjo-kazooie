@@ -110,6 +110,7 @@ alEnvmixerPull      = 0x802702F0;
 alLoadParam         = 0x80270930;
 alResampleParam     = 0x80271480;
 alAuxBusParam       = 0x80271780;
+alAuxBusPull        = 0x802717B0;
 alMainBusParam      = 0x80271890;
 alSaveParam         = 0x802719E0;
 alSynAllocFX        = 0x80272350; 
