@@ -91,7 +91,7 @@ segments:
   - [0x26880, c, core1/done/os/createmesgqueue]
   - [0x268B0, c]
   - [0x26A10, c, core1/done/audio/sl]
-  - [0x26AD0, c, core1/audio/heapalloc]
+  - [0x26AD0, c, core1/done/audio/heapalloc]
   - [0x26B30, c, core1/done/os/recvmesg]
   - [0x26C70, c]
   - [0x26D00, c]
