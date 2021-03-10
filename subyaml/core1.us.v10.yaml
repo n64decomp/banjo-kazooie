@@ -161,7 +161,7 @@ segments:
   - [0x31060, c]
   - [0x32370, c, core1/audio/filter]
   - [0x32390, c, core1/audio/env]
-  - [0x32F10, c, core1/audio/load]
+  - [0x32F10, c, core1/done/audio/load]
   - [0x33A60, c, core1/audio/resample]
   - [0x33D60, c, core1/done/audio/auxbus]
   - [0x33E70, c, core1/done/audio/mainbus]

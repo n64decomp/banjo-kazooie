@@ -109,6 +109,7 @@ alFilterNew         = 0x8026FD90;
 alEnvmixerParam     = 0x8026FEC4;
 alEnvmixerPull      = 0x802702F0;
 alLoadParam         = 0x80270930;
+alLoadPull          = 0x80270FDC;
 alResampleParam     = 0x80271480;
 alAuxBusParam       = 0x80271780;
 alAuxBusPull        = 0x802717B0;
