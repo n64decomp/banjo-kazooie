@@ -65,7 +65,7 @@ void func_8024F4E0(void){
     D_802820E8.stopOsc = NULL;
     func_8023FA64(&D_802820E8);
     for(i = 0; i < 6; i++){
-        func_8025EABC(&D_80281720[i].cseqp, &D_802820E8); //alCSPNew
+        alCSPNew(&D_80281720[i].cseqp, &D_802820E8); //alCSPNew
     }
     alBnkfNew(bnk_f, &D_EADE60);
     D_80282108 = bnk_f->bankArray[0];
@@ -346,6 +346,7 @@ void func_802500FC(s32 arg0){}
 // }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_802501A0.s")
+
 
 
 void func_80250200(s32 arg0, s16 chan, s16 arg2, f32 arg3){

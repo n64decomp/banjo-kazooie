@@ -3,11 +3,11 @@
 #include "variables.h"
 
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_33E70/func_80271890.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_33E70/alMainBusParam.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_33E70/func_802718C0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_33E70/func_802719E0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_33E70/alSaveParam.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_33E70/func_80271A14.s")
 
