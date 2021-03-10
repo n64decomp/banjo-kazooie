@@ -165,7 +165,7 @@ segments:
   - [0x33A60, c, core1/audio/resample]
   - [0x33D60, c, core1/done/audio/auxbus]
   - [0x33E70, c, core1/audio/mainbus]
-  - [0x33FC0, c, core1/audio/save]
+  - [0x33FC0, c, core1/done/audio/save]
   - [0x34080, c]
   - [0x34930, c, core1/audio/synallocfx]
   - [0x349D0, c]
