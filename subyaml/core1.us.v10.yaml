@@ -162,7 +162,7 @@ segments:
   - [0x32370, c, core1/done/audio/filter]
   - [0x32390, c, core1/audio/env]
   - [0x32F10, c, core1/done/audio/load]
-  - [0x33A60, c, core1/audio/resample]
+  - [0x33A60, c, core1/done/audio/resample]
   - [0x33D60, c, core1/done/audio/auxbus]
   - [0x33E70, c, core1/done/audio/mainbus]
   - [0x33FC0, c, core1/done/audio/save]
@@ -184,5 +184,7 @@ segments:
   files:
   - [0x37BF0, bin] #data Section
   #- [0x3B2C0, .rodata, core1/gu/rotate] #need to resolve .data section first
-  #- [0x3B2D0, bin] #data Section
+  #- [0x3B2D0, bin]
+  - [0x3B420, .rodata, core1/done/audio/resample]
+  - [0x3B460, bin]
 - [0x3c710] # core1 end
