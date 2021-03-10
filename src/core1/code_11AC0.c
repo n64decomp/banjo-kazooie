@@ -137,10 +137,10 @@ void func_8024F890(u8 arg0, s32 arg1){
             D_80281720[arg0].unk192[i] = 0;
         }
         func_8024F764(D_80281720[arg0].index);
-        func_8025F0BC(&D_80281720[arg0].cseq, D_802820E0[D_80281720[arg0].index]);
+        alCSeqNew(&D_80281720[arg0].cseq, D_802820E0[D_80281720[arg0].index]);
         
         D_80281720[arg0].cseqp.chanMask = func_80250474(arg0);
-        func_8025F340(&D_80281720[arg0].cseqp, &D_80281720[arg0].cseq);
+        alCSPSetSeq(&D_80281720[arg0].cseqp, &D_80281720[arg0].cseq);
         alCSPPlay(&D_80281720[arg0].cseqp);
         alCSPSetVol(&D_80281720[arg0].cseqp, D_80281720[arg0].unk0);
         if(func_8028F1D4() && func_8028EE84() == 2){
@@ -167,7 +167,7 @@ void func_8024FA98(u8 arg0, s32 arg1){
     }else{
         func_8024F890(arg0, -1);
         sp20 = func_80267290();
-        while(D_80281720[arg0].cseqp.state != 0){
+        while(D_80281720[arg0].cseqp.state != AL_STOPPED){
             func_80267290();
         };
         func_8024F7C4(sp2C);
@@ -348,15 +348,15 @@ void func_802500FC(s32 arg0){}
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_802501A0.s")
 
 
-void func_80250200(s32 arg0, s16 arg1, s16 arg2, f32 arg3){
+void func_80250200(s32 arg0, s16 chan, s16 arg2, f32 arg3){
     s32 i;
     ALCSPlayer *sp28;
     f32 tmpf;
-    s32 sp20; 
+    s32 mask; 
 
     sp28 = func_802500CC(arg0);
-    sp20 = osSetIntMask(OS_IM_NONE);
-    tmpf = (!func_80250074(arg0))? func_8025F4A0(sp28, arg1) :127.0f;
+    mask = osSetIntMask(OS_IM_NONE);
+    tmpf = (!func_80250074(arg0))? func_8025F4A0(sp28, chan) :127.0f;
 
     if(arg3 < D_80278180){
         arg3 = D_80278180;
@@ -364,29 +364,29 @@ void func_80250200(s32 arg0, s16 arg1, s16 arg2, f32 arg3){
 
     for(i = 0; i< 0x20; i++){
         if( (D_80282110[i].unk8 == D_80282110[i].unk10) 
-            || (D_80282110[i].unk0 == arg0 && arg1 == D_80282110[i].unk4)
+            || (D_80282110[i].unk0 == arg0 && chan == D_80282110[i].unk4)
         ){
             D_80282110[i].unk0 = arg0;
-            D_80282110[i].unk4 = arg1;
+            D_80282110[i].unk4 = chan;
             D_80282110[i].unk8 = tmpf;
             D_80282110[i].unkC = (arg2 - tmpf)/((arg3 * 60.0f)/2);
             D_80282110[i].unk10 = arg2;
-            osSetIntMask(sp20);
+            osSetIntMask(mask);
             return;
         }
     }
-    osSetIntMask(sp20);
+    osSetIntMask(mask);
 }
 
 void func_80250360(s32 arg0, s32 arg1, f32 arg2){
     ALCSPlayer * sp24;
     s32 i;
     s32 sp1C;
-    f32 tmpf;
+    f32 tempo;
     
     sp24 = func_802500CC(arg0);
     sp1C = osSetIntMask(1);
-    tmpf = func_8025F4D0(sp24);
+    tempo = alCSPGetTempo(sp24);
     if( arg2 < D_80278184){
         arg2 = D_80278184;
     }
@@ -396,8 +396,8 @@ void func_80250360(s32 arg0, s32 arg1, f32 arg2){
         ){
             D_80282110[i].unk0 = arg0;
             D_80282110[i].unk4 = -1;
-            D_80282110[i].unk8 = tmpf;
-            D_80282110[i].unkC = (arg1 - tmpf)/((arg2 * 60.0f)/2);
+            D_80282110[i].unk8 = tempo;
+            D_80282110[i].unkC = (arg1 - tempo)/((arg2 * 60.0f)/2);
             D_80282110[i].unk10 = arg1;
             osSetIntMask(sp1C);
             return;
