@@ -159,7 +159,7 @@ segments:
   - [0x301F0, c]
   - [0x30300, c]
   - [0x31060, c]
-  - [0x32370, c, core1/audio/filter]
+  - [0x32370, c, core1/done/audio/filter]
   - [0x32390, c, core1/audio/env]
   - [0x32F10, c, core1/done/audio/load]
   - [0x33A60, c, core1/audio/resample]
