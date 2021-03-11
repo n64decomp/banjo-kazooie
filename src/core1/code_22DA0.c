@@ -48,33 +48,33 @@ void __postNextSeqEvent(ALSeqPlayer *seqp)
 
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_22DA0/func_802612EC.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_22DA0/__setInstChanState.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_22DA0/func_80261348.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_22DA0/func_802613DC.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_22DA0/__initFromBank.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_22DA0/func_80261490.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_22DA0/func_80261498.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_22DA0/__vsDelta.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_22DA0/func_802614BC.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_22DA0/__vsVol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_22DA0/func_80261560.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_22DA0/__seqpReleaseVoice.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_22DA0/func_80261688.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_22DA0/__voiceNeedsNoteKill.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_22DA0/func_80261730.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_22DA0/__unmapVoice.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_22DA0/func_802617A0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_22DA0/func_80261818.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_22DA0/__vsPan.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_22DA0/func_80261868.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_22DA0/__lookupVoice.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_22DA0/func_802618DC.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_22DA0/__mapVoice.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_22DA0/func_8026194C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_22DA0/__lookupSoundQuick.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_22DA0/func_80261A94.s")
 
@@ -82,8 +82,8 @@ void __postNextSeqEvent(ALSeqPlayer *seqp)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_22DA0/func_802623FC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_22DA0/func_80262A88.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_22DA0/__seqpStopOsc.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_22DA0/func_80262B8C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_22DA0/__initChanState.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_22DA0/func_80262BFC.s")

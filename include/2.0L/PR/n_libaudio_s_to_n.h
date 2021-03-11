@@ -2,7 +2,7 @@
 #define ALSynth 		N_ALSynth
 #define ALGlobals 		N_ALGlobals
 
-#define alSynAddPlayer( a, b)         n_alSynAddPlayer( b)
+#define n_alSynAddPlayer( a, b)         n_alSynAddPlayer( b)
 #define alSynAllocFX( a, b, c, d)     n_alSynAllocFX( b, c, d)
 #define alSynAllocVoice( a, b, c)     n_alSynAllocVoice( b, c)
 #define alSynDelete( a)               n_alSynDelete()
@@ -18,8 +18,8 @@
 #define alSynSetPriority( a, b, c)    n_alSynSetPriority( b, c)
 #define alSynSetVol( a, b, c, d)      n_alSynSetVol( b, c, d)
 #define alSynStartVoice( a, b, c)     n_alSynStartVoice( b, c)
-#define alSynStartVoiceParams( a, b, c, d, e, f, g, h) \
-                                      n_alSynStartVoiceParams( b, c, d, e, f, g, h)
+#define n_alSynStartVoiceParams( a, b, c, d, e, f, g, h) \
+                                      n_n_alSynStartVoiceParams( b, c, d, e, f, g, h)
 #define alSynStopVoice( a, b)         n_alSynStopVoice( b)
 #define alSynNew( a, b)               n_alSynNew( b)
 

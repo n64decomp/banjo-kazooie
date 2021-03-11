@@ -25,4 +25,4 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_29900/func_80267C00.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_29900/func_80267C6C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_29900/__alCSeqNextDelta.s")

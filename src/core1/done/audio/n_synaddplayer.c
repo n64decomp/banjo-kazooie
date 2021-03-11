@@ -4,18 +4,18 @@
 
 extern AL0s *D_80276E84;
 
-void alSynAddPlayer(ALPlayer *client)
+void n_alSynAddPlayer(ALPlayer *client)
 {
     OSIntMask mask = osSetIntMask(OS_IM_NONE);
 
-    client->samplesLeft = D_80276E84->curSamples;
-    client->next = D_80276E84->head;
-    D_80276E84->head = client;
-    if(D_80276E84->unk4 == 0){
-        D_80276E84->unk4 = client;
+    client->samplesLeft = D_80276E84->synth.curSamples;
+    client->next = D_80276E84->synth.head;
+    D_80276E84->synth.head = client;
+    if(D_80276E84->synth.n_seqp1 == 0){
+        D_80276E84->synth.n_seqp1 = client;
     }
-    else if(D_80276E84->unk8 == 0){
-        D_80276E84->unk8 = client;
+    else if(D_80276E84->synth.n_seqp2 == 0){
+        D_80276E84->synth.n_seqp2 = client;
     }
     else if(D_80276E84->unk5C == 0){
         D_80276E84->unk5C = client;
@@ -35,9 +35,6 @@ void alSynAddPlayer(ALPlayer *client)
     else if(D_80276E84->unk70 == 0){
         D_80276E84->unk70 = client;
     }
-    //client->samplesLeft = drvr->curSamples;
-    //client->next = drvr->head;
-    //drvr->head   = client;
 
     osSetIntMask(mask);
 }

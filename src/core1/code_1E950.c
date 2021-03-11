@@ -5,7 +5,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1E950/func_8025C370.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1E950/func_8025C378.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1E950/n__timeToSamples.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1E950/func_8025C3D8.s")
 
@@ -13,7 +13,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1E950/func_8025C470.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1E950/func_8025C490.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1E950/n__allocParam.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1E950/func_8025C4C0.s")
 
