@@ -6,7 +6,3 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1F710/func_8025D130.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1F710/func_8025D1A4.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1F710/func_8025D200.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1F710/alSynAllocVoice.s")
