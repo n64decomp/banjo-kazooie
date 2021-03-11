@@ -229,6 +229,4 @@ typedef struct struct_12_s{
     s32 unk1;
 } struct12s;
 
-
-
 #endif

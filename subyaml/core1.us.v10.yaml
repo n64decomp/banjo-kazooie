@@ -51,7 +51,7 @@ segments:
   - [0x1E6E0, c]
   - [0x1E950, c]
   - [0x1F330, c, core1/done/audio/event]
-  - [0x1F610, c, core1/audio/alSynAddPlayer]
+  - [0x1F610, c, core1/done/audio/alSynAddPlayer]
   - [0x1F710, c]
   - [0x1F9E0, c]
   - [0x1FA80, c]

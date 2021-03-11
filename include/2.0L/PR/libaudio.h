@@ -354,7 +354,8 @@ typedef struct {
 void    alSynNew(ALSynth *s, ALSynConfig *config);
 void    alSynDelete(ALSynth *s);
 
-void    alSynAddPlayer(ALSynth *s, ALPlayer *client);
+//void    alSynAddPlayer(ALSynth *s, ALPlayer *client);
+void    alSynAddPlayer(ALPlayer *client);
 void    alSynRemovePlayer(ALSynth *s, ALPlayer *client);
 
 s32     alSynAllocVoice(ALSynth *s, ALVoice *v, ALVoiceConfig *vc);
