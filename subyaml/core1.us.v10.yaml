@@ -53,7 +53,7 @@ segments:
   - [0x1F330, c, core1/done/audio/event]
   - [0x1F610, c, core1/done/audio/n_synaddplayer]
   - [0x1F710, c]
-  - [0x1F7E0, c, core1/audio/n_synallocvoice]
+  - [0x1F7E0, c, core1/done/audio/n_synallocvoice]
   - [0x1F9E0, c, core1/done/audio/n_synsetvol]
   - [0x1FA80, c]
   - [0x1FB00, c, core1/done/audio/n_synsetpan]

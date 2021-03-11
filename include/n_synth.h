@@ -14,7 +14,8 @@ typedef struct N_PVoice_s {
     // s32                 offset;
 
     ALLink                 node;
-    u8                     pad8[0x80];
+    struct N_ALVoice_s    *vvoice;
+    u8                     padC[0x7C];
     s32                    offset;
 }N_PVoice;
 
@@ -41,6 +42,6 @@ void            _n_collectPVoices();
 s32             _n_timeToSamples(s32 micros);
 ALMicroTime     _n_samplesToTime(s32 samples);
 
-
+void func_802607C0(N_PVoice *v, s32 arg1, ALParam* update);
 
 #endif
