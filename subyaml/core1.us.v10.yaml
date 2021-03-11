@@ -56,7 +56,7 @@ segments:
   - [0x1F7E0, c, core1/audio/n_synallocvoice]
   - [0x1F9E0, c, core1/done/audio/n_synsetvol]
   - [0x1FA80, c]
-  - [0x1FB00, c, core1/audio/n_synsetpan]
+  - [0x1FB00, c, core1/done/audio/n_synsetpan]
   - [0x1FB80, c, core1/done/audio/n_synsetpitch]
   - [0x1FC00, c, core1/audio/n_synsetfxmix]
   - [0x1FC90, c, core1/audio/n_synstopvoice]
