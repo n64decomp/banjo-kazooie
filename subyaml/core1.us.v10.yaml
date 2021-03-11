@@ -59,7 +59,7 @@ segments:
   - [0x1FB00, c, core1/done/audio/n_synsetpan]
   - [0x1FB80, c, core1/done/audio/n_synsetpitch]
   - [0x1FC00, c, core1/audio/n_synsetfxmix]
-  - [0x1FC90, c, core1/audio/n_synstopvoice]
+  - [0x1FC90, c, core1/done/audio/n_synstopvoice]
   - [0x1FD00, c, core1/done/audio/n_synfreevoice]
   - [0x1FDA0, c, core1/audio/n_csplayer]
   - [0x21210, c, core1/done/audio/cspsetbank]
