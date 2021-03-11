@@ -1,6 +1,6 @@
 #include <ultra64.h>
 #include "synthInternals.h"
-#include "n_al.h"
+#include "n_synth.h"
 
 extern AL0s *D_80276E84;
 

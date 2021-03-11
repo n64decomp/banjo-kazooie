@@ -15,6 +15,6 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/audio/n_csplayer/func_8025E430.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/audio/n_csplayer/n___CSPVoiceHandler.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core1/audio/n_csplayer/__n_CSPVoiceHandler.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/audio/n_csplayer/n_alCSPNew.s")

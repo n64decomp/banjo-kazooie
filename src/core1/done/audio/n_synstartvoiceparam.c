@@ -1,11 +1,11 @@
 #include <ultra64.h>
 #include "synthInternals.h"
-#include "n_al.h"
+#include "n_synth.h"
 
 
 extern AL0s *D_80276E84;
 
-void n_alSynStartVoiceParams(ALVoice *v, ALWaveTable *w,
+void n_alSynStartVoiceParams(N_ALVoice *v, ALWaveTable *w,
                            f32 pitch, s16 vol, ALPan pan, u8 fxmix,
                            ALMicroTime t)
 {
@@ -17,7 +17,7 @@ void n_alSynStartVoiceParams(ALVoice *v, ALWaveTable *w,
         /*
          * get new update struct from the free list
          */
-        update = (ALStartParamAlt *)n__allocParam();
+        update = (ALStartParamAlt *)__n_allocParam();
         ALFailIf(update == 0, ERR_ALSYN_NO_UPDATE);
 
         if (fxmix < 0)
@@ -26,7 +26,7 @@ void n_alSynStartVoiceParams(ALVoice *v, ALWaveTable *w,
         /*
          * set offset and fxmix data
          */
-        update->delta  = D_80276E84->synth.paramSamples + v->pvoice->resampler.motion;
+        update->delta  = D_80276E84->synth.paramSamples + v->pvoice->offset;
         update->next   = 0;
         update->type   = AL_FILTER_START_VOICE_ALT;
 
@@ -35,7 +35,7 @@ void n_alSynStartVoiceParams(ALVoice *v, ALWaveTable *w,
         update->volume = vol;
         update->fxMix  = fxmix;
         update->pitch  = pitch;
-        update->samples = n__timeToSamples( t);
+        update->samples = _n_timeToSamples( t);
         update->wave    = w;
         
         func_802607C0(v->pvoice, AL_FILTER_ADD_UPDATE, update);        

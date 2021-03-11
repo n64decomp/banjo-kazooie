@@ -11,7 +11,9 @@ extern u32 client_num, client_cnt, client_max, client_min;
 #   define MIN(a,b) (((a)<(b))?(a):(b))
 #endif
 
+#ifndef assert
 #define assert(s) 
+#endif
 
 static s32 __nextSampleTime(ALSynth *drvr, ALPlayer **client);
 static s32 _timeToSamplesNoRound(ALSynth *ALSynth, s32 micros);
