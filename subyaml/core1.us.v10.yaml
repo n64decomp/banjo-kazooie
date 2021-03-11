@@ -138,7 +138,7 @@ segments:
   - [0x2D230, c]
   - [0x2D290, c]
   - [0x2D2D0, c] #os/thread.c
-  - [0x2D310, c, core1/audio/synthesizer]
+  - [0x2D310, c, core1/done/audio/synthesizer]
   - [0x2D9F0, c, core1/done/audio/syndelete]
   - [0x2DA00, c]
   - [0x2DAC0, c]
@@ -185,6 +185,8 @@ segments:
   - [0x37BF0, bin] #data Section
   #- [0x3B2C0, .rodata, core1/gu/rotate] #need to resolve .data section first
   #- [0x3B2D0, bin]
+  - [0x3B3A0, .rodata, core1/done/audio/synthesizer]
+  - [0x3B3B0, bin]
   - [0x3B420, .rodata, core1/done/audio/resample]
   - [0x3B460, bin]
 - [0x3c710] # core1 end
