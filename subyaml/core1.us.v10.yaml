@@ -58,7 +58,7 @@ segments:
   - [0x1FB80, c]
   - [0x1FC00, c]
   - [0x1FC90, c]
-  - [0x1FD00, c]
+  - [0x1FD00, c, core1/done/audio/n_synfreevoice]
   - [0x1FDA0, c, core1/audio/n_csplayer]
   - [0x21210, c, core1/done/audio/cspsetbank]
   - [0x21250, c, core1/done/audio/cspstop]

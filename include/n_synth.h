@@ -12,7 +12,7 @@ typedef struct N_PVoice_s {
     // ALResampler         resampler;
     // ALEnvMixer          envmixer;
     // s32                 offset;
-    
+
     ALLink                 node;
     u8                     pad8[0x80];
     s32                    offset;
@@ -35,7 +35,7 @@ extern AL0s *D_80276E84;
  */
 ALParam         *__n_allocParam(void);
 void            __n_freeParam(ALParam *param);
-void            _n_freePVoice(PVoice *pvoice);
+void            _n_freePVoice(N_PVoice *pvoice);
 void            _n_collectPVoices();
 
 s32             _n_timeToSamples(s32 micros);
