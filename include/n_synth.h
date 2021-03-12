@@ -4,19 +4,59 @@
 #include <n_libaudio.h>
 #include "synthInternals.h"
 
-typedef struct N_PVoice_s {
-    // ALLink               node;
-    // struct ALVoice_s    *vvoice;
-    // ALFilter            *channelKnob;
-    // ALLoadFilter        decoder;
-    // ALResampler         resampler;
-    // ALEnvMixer          envmixer;
-    // s32                 offset;
+typedef struct N_ALLoadFilter_s{
+    //ALFilter                    filter;
+    ADPCM_STATE                 *state; //0xC
+    ADPCM_STATE                 *lstate; //0x10
+    ALRawLoop                   loop; //0x14
+    struct ALWaveTable_s        *table; //0x20
+    s32                         bookSize;
+    ALDMAproc                   dma;
+    void                        *dmaState;
+    s32                         sample;
+    s32                         lastsam;
+    s32                         first;
+    s32                         memin; 
+} N_ALLoadFilter;
 
+typedef struct N_ALResampler_s {
+    //ALFilter            filter;
+    RESAMPLE_STATE      *state;
+    f32                 ratio;
+    s32			upitch;
+    f32		        delta;
+    s32			first;
+} N_ALResampler;
+
+typedef struct N_ALEnvMixer_s {
+    ENVMIX_STATE    *state;
+    s16         pan;
+    s16         volume;
+    s16         cvolL;
+    s16         cvolR;
+    s16         dryamt;
+    s16         wetamt;
+    u16         lratl;
+    s16         lratm;
+    s16         ltgt;
+    u16         rratl;
+    s16         rratm;
+    s16         rtgt;
+    s32         delta;
+    s32         segEnd;
+    s32         first;
+} N_ALEnvMixer;
+
+typedef struct N_PVoice_s {
     ALLink                 node;
     struct N_ALVoice_s    *vvoice;
-    u8                     padC[0x7C];
-    s32                    offset;
+    N_ALLoadFilter decoder;
+    N_ALResampler resampler;
+    N_ALEnvMixer envmixer;
+    ALParam		*ctrlList;
+    ALParam		*ctrlTail;
+    s32          motion;
+    s32          offset;
 }N_PVoice;
 
 typedef struct audio_0_struct{
@@ -42,6 +82,7 @@ void            _n_collectPVoices();
 s32             _n_timeToSamples(s32 micros);
 ALMicroTime     _n_samplesToTime(s32 samples);
 
-void func_802607C0(N_PVoice *v, s32 arg1, ALParam* update);
-
+int n_alEnvmixerResampleParam(N_PVoice *v, s32 paramId, void* param);
+//n_alLoadParam
+void n_alLoadParam(N_PVoice *v, s32 paramId, void* param);
 #endif

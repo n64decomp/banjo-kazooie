@@ -19,7 +19,7 @@ void n_alSynFreeVoice(N_ALVoice *voice)
             update->type   = AL_FILTER_FREE_VOICE;
             update->pvoice = voice->pvoice;
 
-            func_802607C0(voice->pvoice, AL_FILTER_ADD_UPDATE, update);
+            n_alEnvmixerResampleParam(voice->pvoice, AL_FILTER_ADD_UPDATE, update);
         } else {
             _n_freePVoice(voice->pvoice);
         }

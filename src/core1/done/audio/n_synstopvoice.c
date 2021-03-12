@@ -15,6 +15,6 @@ void    n_alSynStopVoice( N_ALVoice *v)
         update->type   = AL_FILTER_STOP_VOICE;
         update->next   = 0;
 
-        func_802607C0(v->pvoice, AL_FILTER_ADD_UPDATE, update);        
+        n_alEnvmixerResampleParam(v->pvoice, AL_FILTER_ADD_UPDATE, update);        
     }
 }

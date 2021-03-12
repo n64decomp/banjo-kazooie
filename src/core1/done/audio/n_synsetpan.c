@@ -22,6 +22,6 @@ void    n_alSynSetPan(N_ALVoice *v, u8 pan)
         update->data.i = pan;
         update->next   = 0;
 
-        func_802607C0(v->pvoice, AL_FILTER_ADD_UPDATE, update);        
+        n_alEnvmixerResampleParam(v->pvoice, AL_FILTER_ADD_UPDATE, update);        
     }
 }

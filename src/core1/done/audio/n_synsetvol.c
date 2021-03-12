@@ -25,6 +25,6 @@ void n_alSynSetVol( N_ALVoice *v, s16 volume, ALMicroTime t)
 
         //f = v->pvoice->channelKnob;
         //(*f->setParam)(f, AL_FILTER_ADD_UPDATE, update);
-         func_802607C0(v->pvoice, AL_FILTER_ADD_UPDATE, update);       
+         n_alEnvmixerResampleParam(v->pvoice, AL_FILTER_ADD_UPDATE, update);       
     }
 }
