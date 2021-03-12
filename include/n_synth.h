@@ -84,5 +84,5 @@ ALMicroTime     _n_samplesToTime(s32 samples);
 
 int n_alEnvmixerResampleParam(N_PVoice *v, s32 paramId, void* param);
 //n_alLoadParam
-void n_alLoadParam(N_PVoice *v, s32 paramId, void* param);
+int n_alLoadParam(N_PVoice *v, s32 paramId, void* param);
 #endif

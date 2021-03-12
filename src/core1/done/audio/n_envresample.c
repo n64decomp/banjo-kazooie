@@ -26,6 +26,7 @@ int n_alEnvmixerResampleParam(N_PVoice *v, s32 paramID, void* param){
         case AL_FILTER_START:
             v->motion = AL_PLAYING;
             break;
+            
         default:
             n_alLoadParam(v,paramID, param);
             break;
