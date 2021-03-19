@@ -298,7 +298,6 @@ void func_80310574(s32 text_id);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_85800/func_803106A4.s")
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_85800/func_803106BC.s")
 void func_803106BC(s32 text_id, s32 arg1, ActorMarker *marker, void(*callback)(ActorMarker *, s32, s32), s32 arg4, s32 arg5){
     s32 i;
     s32 j;
@@ -396,7 +395,6 @@ void func_80310B1C(s32 text_id, s32 arg1, ActorMarker *marker, void(*callback)(A
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_85800/func_803110F8.s")
 
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_85800/func_80311174.s")
 int func_80311174(s32 text_id, s32 arg1, f32 *pos, ActorMarker *marker, void(*callback)(ActorMarker *, s32, s32), s32 arg5, s32 arg6){
     f32 pad;
     s32 temp_v1;
