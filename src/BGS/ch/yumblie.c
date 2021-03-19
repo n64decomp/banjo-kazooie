@@ -3,9 +3,6 @@
 #include "variables.h"
 
 #include "prop.h"
-
-
-f32 func_8034A754(f32, f32);
 f32 func_80335684(void *);
 u32 func_8025773C(f32*, f32);
 void func_803253A0(Actor *);
@@ -16,7 +13,7 @@ Actor *func_8038B528(ActorMarker*, Gfx **, Mtx **, u32 arg3);
 void func_8030E878(u32,f32,u32,f32*, f32, f32);
 void func_8030E6A4(u32,f32, u32);
 
-f32 func_8034A390(void);
+f32 randf (void);
 
 extern f64 D_80391010;
 extern f32 D_80391018;
@@ -45,9 +42,9 @@ u32 func_8038B160(Actor *this){
         return 0;
     
     if ((temp_v0 == 2) || (temp_v0 == 5)) 
-        return (D_80391010 <= (f64) func_8034A390()) ? 1 : 0;
+        return (D_80391010 <= (f64) randf ()) ? 1 : 0;
 
-    return ((f64) func_8034A390() >= 0.5)? 1 : 0;
+    return ((f64) randf () >= 0.5)? 1 : 0;
 
 
 }
@@ -57,24 +54,24 @@ void func_8038B220(Actor* this, u32 state){
     s0 = &this->yumblie;
     s0->unk8 = 0;
     if(state == 1){
-        s0->unk8 = func_8034A754(1.0f, 10.0f);
+        s0->unk8 = randf2(1.0f, 10.0f);
     }
      
     if(state == 2){
-        this->yaw = func_8034A754(0.0f, 360.0f);
+        this->yaw = randf2(0.0f, 360.0f);
         s0->unk4 = func_8038B160(this);
-        func_8038AC54(s0->unkC, this->marker, &this->position_x, s0->unk4);
+        func_8038AC54(s0->unkC, this->marker, this->position, s0->unk4);
         func_80335924(this->unk148, (s0->unk4)? 0x128 : 0x125, 0.0f, 1.5f);
         func_80335A8C(this->unk148, 2);
     }
     if(state == 3){
-        s0->unk8 = func_8034A754(5.0f, 10.0f);
-        func_80335924(this->unk148, (s0->unk4)? 0x12A : 0x127, 0.1f, func_8034A754(0.5f, 1.0f));
+        s0->unk8 = randf2(5.0f, 10.0f);
+        func_80335924(this->unk148, (s0->unk4)? 0x12A : 0x127, 0.1f, randf2(0.5f, 1.0f));
         func_80335A8C(this->unk148, 1);
         if(s0->unk4){
-            func_8030E6A4(0xc4,func_8034A754(1.0f, D_80391018), 0x7530);
+            func_8030E6A4(0xc4,randf2(1.0f, D_80391018), 0x7530);
         }else{
-            func_8030E878(0xc3,func_8034A754(1.0f, D_8039101C), 0x7530, &this->position_x, 500.0f, D_80391020);
+            func_8030E878(0xc3,randf2(1.0f, D_8039101C), 0x7530, this->position, 500.0f, D_80391020);
         }
     }
     
@@ -84,9 +81,9 @@ void func_8038B220(Actor* this, u32 state){
         func_80335A8C(this->unk148, 2);
     }
     if(state == 5){
-        s0->unk8 = func_8034A754(10.0f, 20.0f);
+        s0->unk8 = randf2(10.0f, 20.0f);
         func_8038ACFC(s0->unkC, this->marker);
-        func_8030E878((s0->unk4)? 0xc4: 0xc3, 1.4f, 0x7D00, &this->position_x, 500.0f, D_80391024);
+        func_8030E878((s0->unk4)? 0xc4: 0xc3, 1.4f, 0x7D00, this->position, 500.0f, D_80391024);
     }
     this->unk10_31 = state;
 }
@@ -162,7 +159,7 @@ u32 func_8038B684(ActorMarker * arg0){
 //     }
 
 //     if(s0->unkC == 0){
-//         s0->unkC = *((u32*)func_80326D68(&this->position_x, 0x138, -1, &sp48));
+//         s0->unkC = *((u32*)func_80326D68(this->position, 0x138, -1, &sp48));
 //     }
 //     sp50 = func_80335684(this->unk148);
 //     if(this->unk10_31 == 1){
@@ -189,8 +186,8 @@ u32 func_8038B684(ActorMarker * arg0){
 //         }
 
 //         if(((f64)tmp < 0.5) && (0.5 <= (f64) s0->unk0)){
-//             //!!! func_8034A754(1.0f, D_80391038) saving to wrong place in stack !!!
-//             func_8030E878(0xc5, func_8034A754(1.0f, D_80391038), 30000, &this->position_x, 500.0f, D_8039103C);
+//             //!!! randf2(1.0f, D_80391038) saving to wrong place in stack !!!
+//             func_8030E878(0xc5, randf2(1.0f, D_80391038), 30000, this->position, 500.0f, D_8039103C);
 //         }
 
 //         if( 0 < func_80335794(this->unk148)){

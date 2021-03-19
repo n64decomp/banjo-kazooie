@@ -89,7 +89,7 @@ void    n_alSynSetPitch( N_ALVoice *v, f32 pitch);
 void    n_alSynSetPriority( N_ALVoice *voice, s16 priority);
 void    n_alSynSetVol( N_ALVoice *v, s16 volume, ALMicroTime t);
 void    n_alSynStartVoice(N_ALVoice *v, ALWaveTable *table);
-void    n_n_alSynStartVoiceParams(N_ALVoice *v, ALWaveTable *w,f32 pitch, s16 vol,
+void    n_alSynStartVoiceParams(N_ALVoice *v, ALWaveTable *w,f32 pitch, s16 vol,
 				ALPan pan, u8 fxmix, ALMicroTime t);
 void    n_alSynStopVoice( N_ALVoice *v);
 

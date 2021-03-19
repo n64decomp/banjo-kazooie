@@ -8,7 +8,6 @@ void func_80256900(f32*, f32*, f32);
 
 void func_802F9FD0(void *, f32, f32, f32);
 void func_803391A4(s32, s32, struct4s *, s32, f32, s32, s32);
-f32 func_8034A754(f32, f32);
 
 extern f32 D_803772C0;
 extern f64 D_803772C8;
@@ -28,20 +27,20 @@ void func_802F7EB0(struct3s *this){
     if(vla_size(this->unk20) >= this->unk24)
         return;
 
-    func_8028E9A4(plyrPos);
+    player_getPosition(plyrPos);
     func_8024C5A8(camNorm);
     func_8024C764(camRot);
     sp50 = vla_pushBackNew(&this->unk20);
-    tmpf = func_8034A754(50.0f, D_803772C0);
+    tmpf = randf2(50.0f, D_803772C0);
     sp4C[0] = 0.0f;
-    sp4C[1] = func_8034A754(200.0f, 300.0f);
+    sp4C[1] = randf2(200.0f, 300.0f);
     sp4C[2] = -tmpf;
 
     if(gu_sqrtf(this->unk18*this->unk18 + (this->unk10*this->unk10 + this->unk14*this->unk14)) < 5.0f){
-        func_80256900(sp4C, sp4C, func_8034A754(0.0f, 360.0f));
+        func_80256900(sp4C, sp4C, randf2(0.0f, 360.0f));
     }
     else{
-        func_80256900(sp4C, sp4C, camRot[1]+ func_8034A754(-70.0f, 70.0f));
+        func_80256900(sp4C, sp4C, camRot[1]+ randf2(-70.0f, 70.0f));
     }
     sp4C[0] = plyrPos[0] + sp4C[0];
     sp4C[1] = plyrPos[1] + sp4C[1];
@@ -55,7 +54,7 @@ void func_802F7EB0(struct3s *this){
     sp50->unk4 = sp4C[1];
     sp50->unk8 = sp4C[2];
     sp50->unkC = 0.0f;
-    sp50->unk10 = func_8034A754(-1600.0f, D_803772D0);
+    sp50->unk10 = randf2(-1600.0f, D_803772D0);
     sp50->unk14 = 0.0f;
 }
 

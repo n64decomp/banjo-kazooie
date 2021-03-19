@@ -10,12 +10,12 @@ void func_8025A58C(u32, u32);
 void func_8025A6EC(u32, u32);
 void func_80324E38(f32, u32);
 void func_80324E60(f32, u32);
-void timedFuncAdd_0(f32, void(*)(void));
+void timedFunc_set_0(f32, void(*)(void));
 void func_80324E88(f32);
-void func_8028E9A4(f32 *);
+void player_getPosition(f32 *);
 void mapSpecificFlags_set(u32, u32);
 
-ActorInfo D_80390AB0 = {0xC4, 0x136, 0x00, 0x00, NULL,
+ActorInfo D_80390AB0 = {0xC4, actor_yellow_flibbit_controller, 0x00, 0x00, NULL,
     func_8038CEE8, NULL, func_80325340,
     {0,0,0,0}, 0.0f, {0,0,0,0}
 };
@@ -59,13 +59,13 @@ void func_8038CC08(Actor * arg0, u32 arg1){
         mapSpecificFlags_set(0x10, 1);
         if(!func_8031FF1C(0x1B)){
             func_80320004(0x1B, 1);
-            func_80311480(0xc81, 0xf, &arg0->position_x, arg0->marker, func_8038CB48, 0);
+            func_80311480(text_flibbits_meet, 0xf, arg0->position, arg0->marker, func_8038CB48, 0);
         }else{
             if(!arg0->bgs_6730.unk8){
-                func_80311480(0xc83, 0x4, &arg0->position_x, arg0->marker, func_8038CB48, 0);
+                func_80311480(text_flibbits_return, 0x4, arg0->position, arg0->marker, func_8038CB48, 0);
             }
             else{
-                func_8038CB48(arg0->marker, 0xc83, 0);
+                func_8038CB48(arg0->marker, text_flibbits_return, 0);
                 return;
             }
         }
@@ -96,12 +96,12 @@ void func_8038CC08(Actor * arg0, u32 arg1){
     }
 
     if(arg1 == 4){
-        func_80311480(0xc82, 0xf, &arg0->position_x, arg0->marker, func_8038CB48, 0);
+        func_80311480(text_flibbits_defeat, 0xf, arg0->position, arg0->marker, func_8038CB48, 0);
     }
     if(arg1 == 5){
         func_80324E38(0.0f, 3);
         func_80324E60(0.0f, 0x27);
-        timedFuncAdd_0(D_80391090, func_8038CB20);
+        timedFunc_set_0(D_80391090, func_8038CB20);
         func_80324E88(3.0f);
         func_80324E38(3.0f, 0);
         arg1 = 6;
@@ -173,7 +173,7 @@ void func_8038CEE8(Actor *this){
         bgs6730->unkC += D_80391240[3];
         D_80391240[3] = 0;
     }
-    func_8028E9A4(sp34);
+    player_getPosition(sp34);
     sp28 = (sp34[1] < 500.0f) && (func_80329210(this,sp34) != 0);
     if(this->unk10_31 == 1){
         if(sp28 && ((bgs6730->unk8 > 0) || (bgs6730->unkC > 0)) && !func_8028FB48(0xe000)){

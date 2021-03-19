@@ -1,7 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
-#include <n_libaudio.h>
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/audio/n_csplayer/func_8025D7C0.s")
 

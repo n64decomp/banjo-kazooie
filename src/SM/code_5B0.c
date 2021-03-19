@@ -29,7 +29,7 @@ extern s32 D_8038AB9C;
 
 void func_803869A0(Actor *this, f32 arg1, f32 arg2) {
     if (func_8032886C(this, arg1)) {
-        func_8030E878(0x98, arg2, 0x7D00, &this->position_x, 2000.0f, 4000.0f);
+        func_8030E878(0x98, arg2, 0x7D00, this->position, 2000.0f, 4000.0f);
     }
 }
 
@@ -83,19 +83,19 @@ void func_80386C2C(Actor *this, f32 *arg1, s32 arg2, f32 arg3) {
 }
 
 void func_80386D68(Actor *this){
-    func_8030E8B4(0x7FFF409B, &this->position_x, 0x07D003E8);
+    func_8030E8B4(0x7FFF409B, this->position, 0x07D003E8);
     this->unk44_31 = func_8030D90C();
     func_8030DA80(this->unk44_31, 0x3F9);
     func_8030DD14(this->unk44_31, 3);
     func_8030DABC(this->unk44_31, 0x7D00);
     func_8030DBB4(this->unk44_31, (0.01 < (2.0 - this->scale))? (2.0 - this->scale): 0.01);
     func_8030E2C4(this->unk44_31);
-    func_80386B04(func_802F0BD0(0xA), &this->position_x, 0xA, this->scale);
-    func_80386C2C(func_802F0BD0(0x10), &this->position_x, 0x10, this->scale);
+    func_80386B04(func_802F0BD0(0xA), this->position, 0xA, this->scale);
+    func_80386C2C(func_802F0BD0(0x10), this->position, 0x10, this->scale);
 
     if(this->unk100 && func_803870E8(this->unk100)){
         func_802CA1CC(0x18);
-        func_802C3F04(func_802C4218, 0x1F, *(u32 *)(&this->position_x), *(u32 *)(&this->position_y), *(u32 *)(&this->position_z));
+        func_802C3F04(func_802C4218, 0x1F, *(u32 *)(this->position), *(u32 *)(&this->position_y), *(u32 *)(&this->position_z));
     }
     func_803282F4(this->marker);
 }

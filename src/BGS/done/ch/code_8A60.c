@@ -4,7 +4,7 @@
 
 Actor *func_802C4140(s32, f32, f32, f32);
 void func_802C3F04(Actor (*)(s32, f32, f32, f32), s32, u32, u32, u32);
-void timedFuncAdd_0(f32, void (*)(void));
+void timedFunc_set_0(f32, void (*)(void));
 
 
 void func_8038EE50(void){
@@ -28,18 +28,18 @@ void func_8038EEA4(Actor *this){
         func_802D4928(this, 1, 6, 7);
     }
     if(mapSpecificFlags_get(2)){
-        this->unk2C = 0.0f;
+        this->velocity_x = 0.0f;
         mapSpecificFlags_set(3,0);
         mapSpecificFlags_set(4,0);
         mapSpecificFlags_set(1,0);
         mapSpecificFlags_set(2,0);
     }
-    if( this->unk2C == 0.0f && mapSpecificFlags_get(1)){
-        this->unk2C = 1.0f;
+    if( this->velocity_x == 0.0f && mapSpecificFlags_get(1)){
+        this->velocity_x = 1.0f;
         func_802BAFE4(0xc);
-        timedFuncAdd_0(1.2f, func_8038EE50);
+        timedFunc_set_0(1.2f, func_8038EE50);
     } //L8038EFB4
-    if( this->unk2C != 0.0f && !mapSpecificFlags_get(3) && func_802BB270()){
+    if( this->velocity_x != 0.0f && !mapSpecificFlags_get(3) && func_802BB270()){
         mapSpecificFlags_set(3,1);
         func_802D68F0(0x2D);
         func_80346414(6,1);
@@ -67,18 +67,18 @@ void func_8038F06C(Actor *this){
         func_802D4928(this, 0xA, 6, 7);
     }
     if(mapSpecificFlags_get(0xB)){
-        this->unk2C = 0.0f;
+        this->velocity_x = 0.0f;
         mapSpecificFlags_set(0xC,0);
         mapSpecificFlags_set(0xD,0);
         mapSpecificFlags_set(0xA,0);
         mapSpecificFlags_set(0xB,0);
     }
-    if( this->unk2C == 0.0f && mapSpecificFlags_get(0xA)){
-        this->unk2C = 1.0f;
+    if( this->velocity_x == 0.0f && mapSpecificFlags_get(0xA)){
+        this->velocity_x = 1.0f;
         func_802BAFE4(0x1D);
-        timedFuncAdd_0(1.2f, func_8038F018);
+        timedFunc_set_0(1.2f, func_8038F018);
     } //L8038EFB4
-    if( this->unk2C != 0.0f && !mapSpecificFlags_get(0xC) && func_802BB270()){
+    if( this->velocity_x != 0.0f && !mapSpecificFlags_get(0xC) && func_802BB270()){
         mapSpecificFlags_set(0xC,1);
         func_802D68F0(0xA);
         func_80346414(6,1);

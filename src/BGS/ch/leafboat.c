@@ -2,10 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-f32 func_8034A754(f32, f32);
-
-
-
 void func_8038FD9C(Actor *this);
 Actor *func_8038FD10(ActorMarker *this, Gfx** gdl, Mtx** mtx, u32 arg3);
 
@@ -46,7 +42,7 @@ void func_8038FD88(ActorMarker *this, u32 arg1){
 //     if(!this->unkF4_21){
 //         this->unkF4_21 = 1;
 //         func_803300A8(this->marker, func_8038FD88, NULL, NULL);
-//         (s1 = &this->leafboat)->unk6C = func_8034A754(80.0f, 100.0f);
+//         (s1 = &this->leafboat)->unk6C = randf2(80.0f, 100.0f);
 //         this->unk1C = 0.0f;
 //         this->unk20 = 0.0f;
 //         this->unk24 = 0.0f;
@@ -79,7 +75,7 @@ void func_8038FD88(ActorMarker *this, u32 arg1){
 //         s1->unk68 = this->roll;
 //         this->unk60 = 0.0f;
 //         this->unk2C = 0.0f;
-//         this->unk10_4 = 0;
+//         this->unk10_14 = 0;
 //         return;
 //     }
 

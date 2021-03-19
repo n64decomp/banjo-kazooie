@@ -2,7 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-void func_80324EE4(f32, void(*)(u32), u32);
 u32 func_802D8D48(Actor*, u32, u32, u32, u32, f32);
 void func_8032628C(Actor*,s32);
 void func_8035644C(u32);
@@ -29,7 +28,7 @@ void func_802D8C20(Actor *arg0, u32 arg1){
 //collectItem
 u32 func_802D8D48(Actor* actor, u32 arg1, u32 dialogId, u32 sfxId, u32 itemId, f32 arg5){
     func_8025A6EC(sfxId,32000);
-    func_80324EE4(0.75f, func_8035644C, arg1);
+    timedFunc_set_1(0.75f, func_8035644C, arg1);
     if(!func_802FADD4(0x1b)){
         func_80345F24(itemId);
     } else {

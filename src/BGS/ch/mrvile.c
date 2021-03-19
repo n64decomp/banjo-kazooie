@@ -12,9 +12,6 @@ Actor *mrVileDraw(ActorMarker*, Gfx **, Mtx **);
 void func_8038C48C(ActorMarker *);
 Actor *func_80325888(ActorMarker *);
 void func_80324C88(f32, u32, f32, u32);
-void func_80324EE4(f32, void (*)(ActorMarker *), ActorMarker *);
-f32  func_8034A754(f32, f32);
-u32  func_8034A7BC(u32, u32);
 void func_8038BB40(ActorMarker *);
 
 extern f32 D_80391040;
@@ -70,7 +67,7 @@ void func_8038BB40(ActorMarker * arg0){
 //         func_80335A24(arg0->unk148, 0x124, 0.1f, 0.5f); //0x124 = croc_munch
 //         if(arg0->unk10_31 == 4){
 //             func_80324C88(D_80391040, 0x4C, 0.90f, 0x61A8);
-//             func_80324EE4(D_80391044, func_8038BB40, arg0->marker);
+//             timedFunc_set_1(D_80391044, func_8038BB40, arg0->marker);
 //         }
 //         else{
 //             func_80324C88(D_80391048, 0x4C, 0.90f, 0x61A8);
@@ -82,7 +79,7 @@ void func_8038BB40(ActorMarker * arg0){
 //         reg_s1->unk14 = 1.0f;
         
 //         //!!! bad reg for arg2; !!!
-//         func_80324C88(func_8034A754(D_80391054, D_80391058), (0x97), func_8034A754(D_8039105C, D_80391060), func_8034A7BC(25000, 32000));
+//         func_80324C88(randf2(D_80391054, D_80391058), (0x97), randf2(D_8039105C, D_80391060), randi2(25000, 32000));
 //     }
 //     reg_s1->unkC = arg1; 
 // }

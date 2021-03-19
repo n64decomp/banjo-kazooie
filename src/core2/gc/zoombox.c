@@ -1,7 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
-#include "gczoombox.h"
+#include "gc/gczoombox.h"
 
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/zoombox/func_80315200.s")

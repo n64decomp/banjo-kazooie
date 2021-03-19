@@ -235,7 +235,7 @@ void func_8032F470(s32 *pos, ActorMarker *arg1){
         func_8032F194(arg1, pos, cubePtr);
     }
 
-    if(arg1->pad2C_1)
+    if(arg1->unk2C_1)
         func_80307CA0(arg1);
 }
 

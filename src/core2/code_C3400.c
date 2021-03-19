@@ -3,7 +3,7 @@
 #include "variables.h"
 
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C3400/func_8034A390.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C3400/randf.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C3400/func_8034A4FC.s")
 
@@ -13,11 +13,11 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C3400/func_8034A6FC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C3400/func_8034A754.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C3400/randf2.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C3400/func_8034A788.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C3400/func_8034A7BC.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C3400/randi2.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C3400/func_8034A80C.s")
 

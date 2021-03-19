@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-#include "gc/transition.h"
+#include "gc/gctransition.h"
 
 void func_8024CE60(f32, f32);
 

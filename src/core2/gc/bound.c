@@ -1,7 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
-#include "gcbound.h"
+#include "gc/gcbound.h"
 
 
 extern s32 D_803688E0; //_gcBoundAlpha

@@ -328,7 +328,7 @@ void func_802A18E8(s32 arg0){
     }else{
         func_8030E58C(0x56, 1.8f);
     }
-    player_getPosition(sp2C);
+    _player_getPosition(sp2C);
     func_80294980(sp20);
     func_80257F18(sp20, sp2C, &sp38);
     player_setMovingYaw(mlNormalizeAngle(sp38 + 180.0f));
@@ -418,7 +418,7 @@ void bsbeemain_die_init(void){
     func_80287674(sp3C, 1);
     func_802875AC(sp3C, "bsbeemain.c", 0x2ef);
     func_8029C7F4(1,1,2,3);
-    player_getPosition(sp2C);
+    _player_getPosition(sp2C);
     func_80294980(sp20);
     func_80257F18(sp20, sp2C, &sp38);
     player_setMovingYaw(mlNormalizeAngle(sp38 + 180.0f));

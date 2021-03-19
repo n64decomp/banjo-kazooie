@@ -29,7 +29,7 @@ void func_802C811C(Actor * this){
         case 1:
             break;
         case 2:
-            func_8028E9A4(&this->position_x);
+            player_getPosition(this->position);
             this->yaw = func_8028EBA4();
             plyrMvmt = func_8028E78C();
             func_80287684(this->movement, 0);
@@ -46,7 +46,7 @@ void func_802C811C(Actor * this){
             func_802875AC(this->movement, "chjigsawdance.c", 0x62);
             break;
         case 4:
-            func_8028E9A4(&this->position_x);
+            player_getPosition(this->position);
             this->yaw = func_8028EBA4();
             plyrMvmt = func_8028E78C();
             func_80287684(this->movement, 0);
@@ -75,7 +75,7 @@ void func_802C82C0(Actor * this, u32 arg1){
             func_80328A84(this, 4);
             break;
         case 4:
-            func_8028E9A4(&this->position_x);
+            player_getPosition(this->position);
             this->yaw = func_8028EBA4();
             func_80287684(this->movement, 0);
             func_8028774C(this->movement, func_802877D8(func_8028E78C()));

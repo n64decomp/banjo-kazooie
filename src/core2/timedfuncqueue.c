@@ -2,9 +2,11 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "core2/timedfunc.h"
+
 void func_802BAE4C(void);
 void func_802BAE20(f32);
-void func_80324BA0(u32);
+
 
 typedef struct timed_function_queue_s{
     f32 time;
@@ -43,22 +45,17 @@ typedef struct delayed_jiggy_s{
 } DelayedJiggyInfo;
 
 //void __spawnjiggy(DelayedJiggyInfo *);
-TimedFunction* __timedFuncQueue_insert(f32, u32, void(* func)(u32, u32, u32, u32, u32), u32, u32, u32, u32, u32);
+TimedFunction* __timedFuncQueue_insert(f32, s32, void(* func)(s32, s32, s32, s32, s32), s32, s32, s32, s32, s32);
 void func_8030E760(u32, f32, u32);
 void func_8030E9C4(u32, u32, u32, f32 *, f32, f32);
-
-void timedFuncAdd_0(f32 time, void(*funcPtr)(void));
-void func_80324EE4(f32 time, void(*funcPtr)(u32), u32 arg0);
-void func_80324F20(f32 time, void(*funcPtr)(u32, u32), u32 arg0, u32 arg1);
-void func_80324F64(f32 time, void(*funcPtr)(u32, u32, u32), u32 arg0, u32 arg1, u32 arg2);
-void func_80325048(f32 time, void(*funcPtr)(u32, u32, u32, u32, u32, u32), u32* argPtr );
+void func_80324BA0(s32);
 
 void func_802BE720(void);
 
 extern TimedFunctionArray D_80383380;
 
 
-TimedFunction* __timedFuncQueue_insert(f32 time, u32 cnt, void(* funcPtr)(u32, u32, u32, u32, u32), u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4){
+TimedFunction* __timedFuncQueue_insert(f32 time, s32 cnt, void(* funcPtr)(s32, s32, s32, s32, s32), s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4){
     TimedFunction * startPtr;
     TimedFunction *retVal;
     TimedFunction * iPtr;
@@ -105,15 +102,15 @@ void __timedFunc_execute(TimedFunction *arg0){
         arg0->func6(&arg0->arg[5]);
 }
 
-void func_80324A28(u32 soundId, u32 volume){
+void func_80324A28(s32 soundId, s32 volume){
     func_8025A6EC(soundId, volume);
 }
 
-void func_80324A48(u32 arg0){
+void func_80324A48(s32 arg0){
     func_8025A7DC(arg0);
 }
 
-void func_80324A68(u32 arg0, s32 arg1, u32 arg2){
+void func_80324A68(s32 arg0, s32 arg1, s32 arg2){
     func_8030E760(arg0, arg1/1000.0f, arg2);
 }
 
@@ -123,7 +120,7 @@ void func_80324AA4(timefuncqueue_Struct2 *arg0){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/timedfuncqueue/func_80324AEC.s")
 
-void func_80324BA0(u32 arg0){
+void func_80324BA0(s32 arg0){
     if(arg0 == 1)
         func_8028F918(1);
     else if(arg0 == 2)
@@ -150,24 +147,24 @@ f32 func_80324C7C(void){
     return D_80383380.time;
 }
 
-void func_80324C88(f32 time, u32 arg0, f32 arg1, u32 arg2){
-    func_80324F64(time, func_80324A68, arg0, (s32)(arg1*1000.0f), arg2);
+void func_80324C88(f32 time, s32 arg0, f32 arg1, s32 arg2){
+    timedFunc_set_3(time, func_80324A68, arg0, (s32)(arg1*1000.0f), arg2);
 }
 
 void func_80324CD8(f32 time){
-    timedFuncAdd_0(time, func_802BE720);
+    timedFunc_set_0(time, func_802BE720);
 }
 
-void func_80324CFC(f32 time, u32 id, u32 volume){
-    func_80324F20(time, func_80324A28, id, volume);
+void func_80324CFC(f32 time, s32 id, s32 volume){
+    timedFunc_set_2(time, func_80324A28, id, volume);
 }
 
-void func_80324D2C(f32 time, u32 arg0){
-    func_80324EE4(time, func_80324A48, arg0);
+void func_80324D2C(f32 time, s32 arg0){
+    timedFunc_set_1(time, func_80324A48, arg0);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/timedfuncqueue/func_80324D54.s")
-// void func_80324D54(f32 time, u32 arg1, u32 arg2, u32 arg3, f32 * arg4, f32 arg5, f32 arg6){
+// void func_80324D54(f32 time, s32 arg1, s32 arg2, s32 arg3, f32 * arg4, f32 arg5, f32 arg6){
 //     timefuncqueue_Struct2 argStruct;
 //     argStruct.unk0 = arg1;
 //     //argStruct.unk4 = arg2;
@@ -178,61 +175,61 @@ void func_80324D2C(f32 time, u32 arg0){
 //     argStruct.unkC[1] = arg4[1];
 //     argStruct.unkC[2] = arg4[2];
     
-//     func_80325048(time, func_80324AA4, (u32) &argStruct);
+//     timedFunc_set_6(time, func_80324AA4, (s32) &argStruct);
 // }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/timedfuncqueue/func_80324DBC.s")
 
-void func_80324E38(f32 time, u32 arg0){
-    func_80324EE4(time, func_80324BA0, arg0);
+void func_80324E38(f32 time, s32 arg0){
+    timedFunc_set_1(time, func_80324BA0, arg0);
 }
 
-void func_80324E60(f32 time, u32 arg0){
-    func_80324EE4(time, func_802BAE20, arg0);
+void func_80324E60(f32 time, s32 arg0){
+    timedFunc_set_1(time, func_802BAE20, arg0);
 }
 
 void func_80324E88(f32 time){
-    timedFuncAdd_0(time, func_802BAE4C);
+    timedFunc_set_0(time, func_802BAE4C);
 }
 
-void timedFuncAdd_0(f32 time, void(*funcPtr)(void)){
+void timedFunc_set_0(f32 time, void(*funcPtr)(void)){
     __timedFuncQueue_insert(time, 0, funcPtr, 0, 0, 0, 0, 0);
 }
 
-void func_80324EE4(f32 time, void(*funcPtr)(u32), u32 arg0){
+void timedFunc_set_1(f32 time, void(*funcPtr)(s32), s32 arg0){
     __timedFuncQueue_insert(time, 1, funcPtr, arg0, 0, 0, 0, 0);
 }
 
-void func_80324F20(f32 time, void(*funcPtr)(u32, u32), u32 arg0, u32 arg1){
+void timedFunc_set_2(f32 time, void(*funcPtr)(s32, s32), s32 arg0, s32 arg1){
     __timedFuncQueue_insert(time, 2, funcPtr, arg0, arg1, 0, 0, 0);
 }
 
-void func_80324F64(f32 time, void(*funcPtr)(u32, u32, u32), u32 arg0, u32 arg1, u32 arg2){
+void timedFunc_set_3(f32 time, void(*funcPtr)(s32, s32, s32), s32 arg0, s32 arg1, s32 arg2){
     __timedFuncQueue_insert(time, 3, funcPtr, arg0, arg1, arg2, 0, 0);
 }
 
-void func_80324FAC(f32 time, void(*funcPtr)(u32, u32, u32, u32), u32 arg0, u32 arg1, u32 arg2, u32 arg3){
+void timedFunc_set_4(f32 time, void(*funcPtr)(s32, s32, s32, s32), s32 arg0, s32 arg1, s32 arg2, s32 arg3){
     __timedFuncQueue_insert(time, 4, funcPtr, arg0, arg1, arg2, arg3, 0);
 }
 
-void func_80324FF8(f32 time, void(*funcPtr)(u32, u32, u32, u32, u32), u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4){
+void timedFunc_set_5(f32 time, void(*funcPtr)(s32, s32, s32, s32, s32), s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4){
     __timedFuncQueue_insert(time, 5, funcPtr, arg0, arg1, arg2, arg3, arg4);
 }
 
-void func_80325048(f32 time, void(*funcPtr)(u32, u32, u32, u32, u32, u32), u32* argPtr ){
+void timedFunc_set_6(f32 time, void(*funcPtr)(s32, s32, s32, s32, s32, s32), s32* argPtr ){
     TimedFunction *q = __timedFuncQueue_insert(time, 6, funcPtr, 0, 0, 0, 0, 0);
     func_80254608(&q->arg[5], argPtr, 0x50);
 }
 
 //timedJiggySpawn
-void func_80325098(f32 time, u32 jiggyId, f32 *position){
+void timedJiggySpawn(f32 time, s32 jiggyId, f32 *position){
     DelayedJiggyInfo jiggyInfo;
     jiggyInfo.id = jiggyId;
     jiggyInfo.pos[0] = position[0];
     jiggyInfo.pos[1] = position[1];
     jiggyInfo.pos[2] = position[2];
 
-    func_80325048(time, __spawnjiggy, &jiggyInfo);
+    timedFunc_set_6(time, __spawnjiggy, &jiggyInfo);
 }
 
 //timerFuncQueue_Empty
@@ -288,10 +285,10 @@ void func_80325288(void){
     D_80383380.ptr = vla_802ED9E0(D_80383380.ptr);
 }
 
-void func_803252B0(u32 arg0){
+void func_803252B0(s32 arg0){
     mapSpecificFlags_set(arg0, 1);
 }
 
-void func_803252D0(f32 time, u32 arg0){
-    func_80324EE4(time, func_803252B0, arg0);
+void func_803252D0(f32 time, s32 arg0){
+    timedFunc_set_1(time, func_803252B0, arg0);
 }

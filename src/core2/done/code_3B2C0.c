@@ -79,7 +79,7 @@ void func_802C2460(void){
     func_8024C764(sp12);
     func_802BD334(sp24);
     func_802BD35C(sp12);
-    func_8028E9A4(D_8037DC50);
+    player_getPosition(D_8037DC50);
     func_80291488(5);
 }
 
@@ -89,7 +89,7 @@ void func_802C24B4(void){
     f32 sp24[3];
     f32 sp18[3];
 
-    func_8028E9A4(sp24);
+    player_getPosition(sp24);
     func_80258BC0(sp18, D_8037DC50, sp24);
     if( !(gu_sqrtf(sp18[0]*sp18[0] + sp18[1]*sp18[1] + sp18[2]*sp18[2]) < 2.0f)){
         func_80291488(2);

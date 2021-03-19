@@ -3,7 +3,7 @@
 #include "variables.h"
 
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1E6E0/func_8025C100.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1E6E0/SnSPayload_calcChecksum.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1E6E0/func_8025C240.s")
 

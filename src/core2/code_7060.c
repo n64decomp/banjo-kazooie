@@ -40,7 +40,7 @@ ActorMarker *func_8028E7AC(void){
     return func_8028D5D0();
 }
 
-u32 func_8028E7CC(void){
+u32 player_getTransformation(void){
     return func_8029A8F4();
 }
 
@@ -68,7 +68,7 @@ void func_8028E7EC(f32 *arg0){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028E984.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028E9A4.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/player_getPosition.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028E9C4.s")
 

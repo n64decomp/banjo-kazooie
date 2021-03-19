@@ -9,8 +9,8 @@ f32 func_8033DD9C(void);
 f32 func_802FDE60(f32);
 void func_8030E760(s32, f32, s32);
 
-void func_80324EE4(f32, void (*)(s32), s32);
-void func_80324F20(f32, void (*)(s32,s32), s32, s32);
+void timedFunc_set_1(f32, void (*)(s32), s32);
+void timedFunc_set_2(f32, void (*)(s32,s32), s32, s32);
 void func_80345F24(s32);
 void func_8030E484(s32);
 void func_80314AC8(s32);
@@ -245,12 +245,12 @@ void func_802FE844(s32 arg0, struct8s *arg1){
                         D_803815E4 = 0;
                         D_803815E0 = 0.9999f;
                         func_803463D4(0x13, -6);
-                        func_80324F20(0.25f, func_8025A6EC, 0x2B, 28000);
+                        timedFunc_set_2(0.25f, func_8025A6EC, 0x2B, 28000);
                         func_803463D4(0x14, 0);
-                        func_80324EE4(1.25f, func_80345F24, 0x15);
-                        func_80324EE4(1.25f, func_8030E484, 0x3EA);
-                        func_80324F20(1.25f, func_80346414, 0x14, item_getCount(0x15)+1);
-                        func_80324EE4(1.5f, func_80314AC8, 1);
+                        timedFunc_set_1(1.25f, func_80345F24, 0x15);
+                        timedFunc_set_1(1.25f, func_8030E484, 0x3EA);
+                        timedFunc_set_2(1.25f, func_80346414, 0x14, item_getCount(0x15)+1);
+                        timedFunc_set_1(1.5f, func_80314AC8, 1);
                     }
                     break;
                 case 2://L802FECD4

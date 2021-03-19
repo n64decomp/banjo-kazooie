@@ -19,18 +19,38 @@ segments:
     start: 0x00000000
     vram: 0x803863F0
     files:
-      - [0x0, c]
-      - [0x570, c]
-      - [0xAE0, c]
+      - [0x0, c, MM/ch/orangepad]
+      - [0x570, c, MM/ch/hut]
+      - [0x8B0, c, MM/ch/chimpystump]
+      - [0xAE0, c, MM/ch/conga]
       - [0x1AD0, c]
-      - [0x1BA0, c]
+      - [0x1BA0, c, MM/ch/orange]
+      - [0x1F10, c, MM/ch/lmonkey] #chimpy
       - [0x24C0, c]
-      - [0x25B0, c]
-      - [0x2740, c]
+      - [0x25B0, c, MM/ch/grublin]
+      - [0x2740, c, MM/ch/jujuhitbox]
+      - [0x2BE0, c, MM/ch/juju]
   - name: MM/data
     type: code
     start: 0x000034A0
     vram: 0x80389890
     files:
-      - [0x000034A0, bin]
+      - [0x34A0, .data, MM/ch/orangepad]
+      - [0x34D0, .data, MM/ch/hut]
+      - [0x3530, .data, MM/ch/chimpystump]
+      - [0x3560, .data, MM/ch/conga]
+      - [0x35D0, bin]
+      - [0x35E0, .data, MM/ch/orange]
+      - [0x3620, .data, MM/ch/lmonkey]
+      - [0x3670, .data, MM/ch/grublin]
+      - [0x36F0, .data, MM/ch/jujuhitbox]
+      - [0x3720, .data, MM/ch/juju]
+      - [0x3750, bin]
+      - [0x3760, .rodata, MM/ch/hut]
+      - [0x3770, bin]
+      - [0x37F0, .rodata, MM/ch/orange]
+      - [0x3810, bin]
+      - [0x3860, .rodata, MM/ch/grublin]
+      - [0x3870, .rodata, MM/ch/jujuhitbox]
+      - [0x3880, bin]
   - [0x00003890]

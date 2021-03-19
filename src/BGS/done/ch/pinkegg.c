@@ -83,7 +83,7 @@ void func_80387AB0(ActorMarker *this, u32 arg1){
         // !!! thisActor->unk7C loading into a2 too soon 
         func_802C3D3C(chPinkEggSpawnNext, thisActor->marker, tmp->unk0);
     } else {
-        jiggySpawn(jiggy_bgs_pinkegg, &thisActor->position_x);
+        jiggySpawn(jiggy_bgs_pinkegg, thisActor->position);
         func_8025A6EC(0x2d, 28000);
     }
 }

@@ -54,7 +54,7 @@ void func_8029F4F0(void){
 
 void func_8029F60C(void){
     f32 plyrPos[3];
-    player_getPosition(plyrPos);
+    _player_getPosition(plyrPos);
     func_8032728C(plyrPos, 50.0f, 2, func_8029F4E0);
 }
 

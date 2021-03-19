@@ -15,7 +15,7 @@ extern f32 D_80377328;
 //     if(vla_size(this) >= this->unk20)
 //         return;
     
-//     func_8028E9A4(plyrPos);
+//     player_getPosition(plyrPos);
 //     func_8024C5A8(camNorm);
 //     func_8024C764(camRot);
 //     ptr = vla_pushBackNew(this->unk1C);

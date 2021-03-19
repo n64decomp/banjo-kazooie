@@ -665,10 +665,10 @@ typedef struct {
     ALPan               pan;            /* overall pan for this chan        */
     u8                  priority;       /* priority for this chan           */
     u8                  vol;            /* current volume for this chan     */
+    u8                  unk9;
     u8                  fxmix;          /* current fx mix for this chan     */
     u8                  sustain;        /* current sustain pedal state      */
     f32                 pitchBend;      /* current pitch bend val in cents  */
-    u8                  pad[4];         //modified via rare???
 } ALChanState;
 
 typedef struct ALSeq_s {

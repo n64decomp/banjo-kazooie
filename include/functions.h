@@ -6,10 +6,11 @@
 #include "enums.h"
 #include "structs.h"
 #include "string.h"
-#include "gcbound.h"
-#include "gczoombox.h"
+#include "rand.h"
 
 #include "prop.h"
+
+#include "core2/core2.h"
 
 extern f32 fabsf(f32);
 #pragma intrinsic (fabsf)
@@ -46,10 +47,12 @@ s32 player_inWater(void);
 
 ActorMarker *func_8028D5D0(void);
 
-u32 func_8028E7CC(void);
+u32 player_getTransformation(void);
 
 void func_8028E7EC(f32 *arg0);
 
+void _player_getPosition(f32 *dst);
+void player_getPosition(f32 *dst);
 void player_getRotation(f32 *dst);
 
 void func_80291A60(s32 arg0, f32* arg1);
@@ -57,11 +60,9 @@ void func_80291A60(s32 arg0, f32* arg1);
 int button_pressed(s32);
 u32 button_held(s32);
 
-void player_getPosition(f32 *dst);
-
 void player_setIdealPitch(f32);
 f32 player_getPitch(void);
-
+f32 player_getYPosition(void);
 
 void func_80297970(f32);
 
@@ -106,7 +107,7 @@ void    vla_assign(VLA *this, s32 indx, void* value);
 VLA *   vla_802ED9E0(VLA *this);
 
 
-
+void actor_collisionOff(Actor *);
 
 void *assetcache_get(s32 arg0);
 

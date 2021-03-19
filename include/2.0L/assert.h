@@ -39,11 +39,11 @@ extern "C" {
 
 #else
 
-extern void __assert(const char *, const char *, int);
+extern void func_8033F000(const char *, const char *, int);
 #ifdef __ANSI_CPP__
-#define assert(EX)  ((EX)?((void)0):__assert( # EX , __FILE__, __LINE__))
+#define assert(EX)  ((EX)?((void)0):func_8033F000( # EX , __FILE__, __LINE__))
 #else
-#define assert(EX)  ((EX)?((void)0):__assert("EX", __FILE__, __LINE__))
+#define assert(EX)  ((EX)?((void)0):func_8033F000("EX", __FILE__, __LINE__))
 #endif
 #endif /* NDEBUG */
 

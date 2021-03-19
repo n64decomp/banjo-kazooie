@@ -30,7 +30,7 @@ void player_setYPosition(f32 arg0){
     player_position[1] = arg0;
 }
 
-void player_getPosition(f32 *arg0){
+void _player_getPosition(f32 *arg0){
     copy_vec3f(arg0, player_position);
 }
 

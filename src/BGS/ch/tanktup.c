@@ -13,7 +13,7 @@ void func_80328B8C(f32*, s32, f32, s32);
 
 void func_80324E88(f32);
 
-void func_80324F20(f32, void(*)(s32, s32), s32, s32);
+void timedFunc_set_2(f32, void(*)(s32, s32), s32, s32);
 
 
 s32 func_802878E8(Movement *, f32);
@@ -102,13 +102,13 @@ void func_8038F470(ActorMarker *this, s32 arg1, s32 arg2){
 
     sp24 = func_8032813C(arg2 + 0xe9, sp18, (s32)thisActor->yaw);
     func_80328B8C(sp24, arg1 + 1, 0, -1);
-    sp24->unk10_4 = arg2;
+    sp24->unk10_14 = arg2;
 }
 
 void func_8038F51C(Actor *this){
     Actor * spawnPtr;
-    spawnPtr = func_80326D68(&this->position_x, 0xe8, -1, 0);
-    spawnPtr->tanktup.unk0[this->unk10_4] = 1;
+    spawnPtr = func_80326D68(this->position, 0xe8, -1, 0);
+    spawnPtr->tanktup.unk0[this->unk10_14] = 1;
     spawnPtr->tanktup.unk10 = 1;
 }
 
@@ -148,8 +148,8 @@ void func_8038FB84(ActorMarker *this, s32 arg1){
     Actor *thisActor;
 
     thisActor = marker_getActor(this);
-    func_8030E8B4(0x7FFFF887, &thisActor->position_x, 0x0BB803E8);
-    func_80324F20(D_803911C0, func_8038FB40, this, arg1);
+    func_8030E8B4(0x7FFFF887, thisActor->position, 0x0BB803E8);
+    timedFunc_set_2(D_803911C0, func_8038FB40, this, arg1);
     func_8038F51C(thisActor);
     this->collidable = 0;
 }

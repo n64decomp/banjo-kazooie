@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-#include "gc/transition.h"
+#include "gc/gctransition.h"
 
 void func_8028764C(Movement*, f32);
 void func_8025AC20(s32, s32, s32, f32, char*, s32);

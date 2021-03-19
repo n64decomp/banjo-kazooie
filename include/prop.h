@@ -45,7 +45,7 @@ typedef struct actorMarker_s{
     u32         pitch:9;
     u32         roll:9;
     u32         unk2C_2:1;
-    u32         pad2C_1:1;
+    u32         unk2C_1:1;
     u32         collidable:1;
     void        (*unk30)(struct actorMarker_s *);
     u8          pad34[0x8];
@@ -207,23 +207,66 @@ typedef struct actor_anim_info_s{
     f32     duration;
 } ActorAnimationInfo;
 
+typedef struct chgrublin_s{
+    f32     unk0;
+    f32     unk4;
+    u8      unk8;
+    u8      unk9;
+    u8      unkA;
+    u8      unkB;
+    u32     unkC_31:3;
+    u32     unkC_28:1;
+    u32     padC_27:28;
+    s16     unk10;
+    s16     unk12;
+    f32     unk14; //90
+    u8      unk18[0x18];
+    s32     unk30;
+    void    (*unk34)(ActorMarker *, s32);
+}ActorLocal_Grublin;
+
+typedef struct chconga_s{
+    TUPLE(s32, orangeSpawnPosition);
+    s32     unkC;
+    s32     unk10;
+    u8      pad14[0x4];
+    s32     unk18;
+    s32     unk1C;
+}ActorLocal_Conga;
+
+typedef struct juju_hitbox_s{
+    u8      pad0[0x4];
+    s32     unk4;
+    ActorMarker *unk8[4];
+    f32     unk18;
+}ActorLocal_JujuHitbox;
+
+typedef struct juju_s{
+    s32     unk0;
+    s32     unk4;
+    u8      pad8[0x4];
+    f32     unkC;
+    u8      pad10[0x4];
+    f32     unk14;
+}ActorLocal_Juju;
+
+
 typedef struct actor_s{
     ActorMarker* marker;
-    f32 position_x;
-    f32 position_y;
-    f32 position_z;
-    u32 unk10_31:6;
+    TUPLE(f32,position);
+    u32 unk10_31:6; //current animation state
     u32 pad10_27:13;
+    u32 unk10_14:4;
+    u32 pad10_10:4;
     u32 unk10_4:4;
-    u32 pad10_0:8;
+    u32 pad10_0:1;
     ActorMovement *movement;
     ActorAnimationInfo *unk18;
     f32 unk1C;
     f32 unk20;
     f32 unk24;
     f32 unk28; //used in cheggs
-    f32 unk2C;
-    u8  pad30[8];
+    TUPLE(f32, velocity);
     u32  unk38_31:10;
     u32  pad38_21:21;
     u32  unk38_0:1;
@@ -253,16 +296,20 @@ typedef struct actor_s{
         ActorLocal_BGS_6730 bgs_6730;
         ActorLocal_Flibbit  flibbit;
         ActorLocal_TanktupBody tanktup;
+        ActorLocal_Grublin grublin;
+        ActorLocal_Conga conga;
+        ActorLocal_JujuHitbox juju_ctl;
+        ActorLocal_Juju juju;
         u8  pad7C[0x70];
     };
     //u8  padAC[0x44];
     u8  padEC[0x8];
     u32 unkF4_31:10;
-    u32 unkF4_21:1;
+    u32 unkF4_21:1; //actor initalized bool
     u32 unkF4_20:12;
     u32 unkF4_8:9;
     u8  padF8[0x8];
-    u32 unk100;
+    ActorMarker *unk100;
     ActorMarker *unk104;
     u8  pad108[8];
     f32 roll;//110
@@ -283,8 +330,7 @@ typedef struct actor_s{
     u32 unk138_31:1;
     u32 unk138_30:6;
     u32 unk138_24:1;
-    u32 unk138_23:24;
-
+    u32 pad138_23:24;
     u8  pad13C[0xC];
     void *unk148;
     void *unk14C;
@@ -292,7 +338,8 @@ typedef struct actor_s{
     u8  pad14C[0x18];
     u32  pad16C_31:27;
     u32  unk16C_4:1;
-    u32  pad16C_3:4;
+    u32  pad16C_3:3;
+    u32  unk16C_0:1;
     u8  pad170[0x10];
 } Actor;
 

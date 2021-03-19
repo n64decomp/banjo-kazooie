@@ -3,7 +3,7 @@
 #include "variables.h"
 
 /* TODO move declarations to respective headers*/
-void func_8028E9A4(f32 *);
+void player_getPosition(f32 *);
 Actor *func_8032813C(u32, f32 *, f32*);
 f32 func_8028E80C(u32);
 void func_8028F710(u32, f32);
@@ -65,8 +65,8 @@ void func_8038EB4C(ActorMarker *this){
     Actor *thisActor;
 
     thisActor = marker_getActor(this);
-    thisActor = func_8032813C(actor_wood_demolished, &thisActor->position_x, NULL);
-    thisActor = func_8032813C(actor_steam_2, &thisActor->position_x, NULL);
+    thisActor = func_8032813C(actor_wood_demolished, thisActor->position, NULL);
+    thisActor = func_8032813C(actor_steam_2, thisActor->position, NULL);
     if(this);
 }
 
@@ -85,7 +85,7 @@ void func_8038EB8C(Actor *this){
         switch(this->unk10_31){
             case 1:
                 this->marker->propPtr->unk8_3 = 1;
-                func_8028E9A4(plyrPos);
+                player_getPosition(plyrPos);
                 diffPos[0] = plyrPos[0] - this->position_x;
                 diffPos[1] = plyrPos[1] - this->position_y;
                 diffPos[2] = plyrPos[2] - this->position_z;
@@ -101,7 +101,7 @@ void func_8038EB8C(Actor *this){
                     diffPos[1] += 130.0;
 
                     
-                    func_8030E8B4(0x7FFB585B, &this->position_x, 0xBB8012C);
+                    func_8030E8B4(0x7FFB585B, this->position, 0xBB8012C);
                     func_80328A84(this, 2);
                     this->marker->propPtr->unk8_3 = 0;
                     func_803298AC(this);

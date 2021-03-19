@@ -16,7 +16,7 @@ void func_802B6130(void){
     func_8029C848(plyr_mvmt);
     func_80287674(plyr_mvmt, 2);
     func_802875AC(plyr_mvmt, D_80375B00, 0x38);
-    player_getPosition(plyr_pos);
+    _player_getPosition(plyr_pos);
     func_802949F8(target_pos);
     func_80257F18(plyr_pos, target_pos, &yaw);
     player_setMovingYaw(yaw);

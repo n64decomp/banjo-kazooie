@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-#include "gc/transition.h"
+#include "gc/gctransition.h"
 
 extern u32 D_80275618;
 extern u32 D_8027A130;

@@ -22,15 +22,15 @@ enum transformation_E
 enum map_e
 {
     map_sm_spiral_mountain = 1,
-
+    map_mm_mumbos_mountain = 2,
     map_ttc_treasure_trove_cove = 7,
 
     map_cs_start_nintendo = 0x1E,
     map_cs_start_rarware = 0x1F,
     map_cs_end_not100 = 0x20,
     map_rbb_rusty_bucket_bay = 0x31,
-    map_sm_banjos_house = 0x8C
-
+    map_sm_banjos_house = 0x8C,
+    map_lair_battlements = 0x90
 };
 
 enum level_e
@@ -41,6 +41,10 @@ enum level_e
 
 enum jiggy_e
 {
+    jiggy_mm_huts       = 0x05,
+
+    jiggy_mm_orange_pads    = 0x08,
+
     jiggy_bgs_elevated_walkway = 0x20,
     jiggy_bgs_pinkegg   = 0x21,
 
@@ -53,12 +57,31 @@ enum jiggy_e
 
 enum actor_e
 {
+    actor_grublin           = 0x6,
+
+    actor_conga             = 0x8,
+    actor_MM_hut            = 0x9,
+
     actor_mud_hut           = 0xC,
     actor_wood_demolished   = 0xD,
+
+    actor_chimpy            = 0xF,
+    actor_juju_hitbox       = 0x11,
+    
+    actor_orange_projectile = 0x14,
+
     actor_steam_2           = 0x4D,
+
+    actor_orange_pad        = 0x57,
+
+    actor_juju              = 0x59,
+    
+    actor_chimpy_stump      = 0xC5,
+    
     actor_leafboat          = 0xF1,
     actor_bigalligator      = 0xF6,
-    actor_yumblie           = 0x139
+    actor_yellow_flibbit_controller = 0x136,
+    actor_yumblie           = 0x139  
 };
 
 enum bs_e
@@ -96,6 +119,11 @@ enum bs_e
     bs_bee_fly = 0x8c
 };
 
+enum map_flags_e
+{
+    mapflag_mm_main_hit_with_orange = 8
+};
+
 enum item_e
 {
     item_note = 0xC,
@@ -131,16 +159,53 @@ enum asset_e
 {
     anim_mudhut_smashing = 0x4E,
 
+    anim_conga_idle     = 0x51,
+    anim_conga_ow       = 0x52,
+    anim_conga_defeat   = 0x53,
+
+    anim_conga_beat_chest = 0x55,
+    anim_conga_raise_arms = 0x56,
     
     anim_beeBanjo_flying    = 0x1dc,
-    anim_beeBanjo_walking    = 0x1dd,
-    anim_beeBanjo_idle    = 0x1de,
+    anim_beeBanjo_walking   = 0x1dd,
+    anim_beeBanjo_idle      = 0x1de,
 
     anim_beeBanjo_ow        = 0x1e0,
     anim_beeBanjo_dying     = 0x1e1,
     anim_beeBanjo_jumping     = 0x1e2,
     
-    model_mudhut_top = 0x7D8
+    model_orange            = 0x2d2, //projectile
+
+    model_juju              = 0x2e6,
+
+    model_orange_pad        = 0x2eb,
+
+    model_conga             = 0x35c,
+    model_chimpy            = 0x35d,
+
+    model_grublin           = 0x3c5,
+
+    model_chimpy_stump      = 0x3c8,
+
+    model_MM_hut     = 0x7d7,
+    model_mudhut_top = 0x7d8,
+
+    text_conga_safe_up_here     = 0xb37,
+    text_conga_defeat           = 0xb38,
+    text_conga_hit_by_egg       = 0xb39,
+    text_conga_hits_player      = 0xb3a,
+    text_conga_orange_pad_jiggy = 0xb3b,
+    text_conga_meet             = 0xb3c,
+
+    text_conga_meet_as_termite  = 0xb3e,
+    text_juju_meet              = 0xb44,
+    text_jiggy_collect_10       = 0xb45, 
+
+    text_bottles_how_to_exit_level = 0xb51,
+
+    text_flibbits_meet   = 0xc81,
+    text_flibbits_defeat = 0xc82,
+    text_flibbits_return = 0xc83
 };
 
 #endif

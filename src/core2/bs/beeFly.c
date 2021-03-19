@@ -2,8 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-
-f32 func_8034A754(f32, f32);
 void func_80354030(f32*, f32);
 void func_8028A274(s32, f32);
 f32  func_8029B2E8(void);
@@ -27,8 +25,6 @@ f32 func_8029B2DC(void);
 f32 func_80297A64(void);
 void func_802979AC(f32, f32);
 void func_8028FDC8(f32);
-f32 player_getYPosition(void);
-Movement * player_getMovementPtr(void);
 void func_80290B40(f32);
 f32 func_80297FA4(void);
 void func_80290A6C(void);
@@ -39,15 +35,15 @@ extern f32 D_803649C4[];
 
 extern  u8 D_8037D2C0;
 
-s32 bsBeeFly_inSet(s32);
+int bsBeeFly_inSet(s32);
 
 void func_802A04F0(void){
     f32 plyrPos[3]; //sp1C
 
-    player_getPosition(plyrPos);
-    plyrPos[0] += func_8034A754(-30.0f, 30.0f);
-    plyrPos[1] += 30.0f + func_8034A754(0.0f, 30.0f);
-    plyrPos[2] += func_8034A754(-30.0f, 30.0f);
+    _player_getPosition(plyrPos);
+    plyrPos[0] += randf2(-30.0f, 30.0f);
+    plyrPos[1] += 30.0f + randf2(0.0f, 30.0f);
+    plyrPos[2] += randf2(-30.0f, 30.0f);
     func_803541C0(3);
     func_803541CC(0x50);
     func_80354030(plyrPos, 0.5f);
@@ -277,6 +273,6 @@ void bsbeefly_end(void){
     _bsbeefly_end();
 }
 
-s32 bsBeeFly_inSet(s32 move){
+int bsBeeFly_inSet(s32 move){
     return move == 0x8C;
 }

@@ -48,3 +48,18 @@ bgs_D_803907B8 = 0x803907B8;
 bgs_D_80391190 = 0x80391190;
 bgs_D_80391220 = 0x80391220;
 bgs_D_80391228 = 0x80391228;
+
+
+chorangepadInfo     = 0x80389890;
+func_80389890       = 0x80389890;
+D_80389B88 = 0x80389B88;
+D_80389B8C = 0x80389B8C;
+
+chhutInfo           = 0x803898F0;
+chchimpystump       = 0x80389920;
+chcongaInfo         = 0x80389998;
+chorangeInfo        = 0x803899D0;
+chlmonkeyInfo       = 0x80389A38;
+chgrublinInfo       = 0x80389AB8;
+chjujuhitboxInfo    = 0x80389AE0;
+chjujuInfo          = 0x80389B10;

@@ -2,14 +2,11 @@
 #include "functions.h"
 #include "variables.h"
 
-f32 func_8034A390(void);
 void func_80258A4C(f32 *, f32, f32 *, f32 *, f32 *, f32 *);
 void func_80256A24(f32 *, f32);
 f32 func_80309724(f32 *);
-f32 func_8034A754(f32, f32);
 void func_80335924(void *, u32, f32,f32);
 void func_80324D54(f32, u32, f32, u32, f32 *, f32, f32);
-u32 func_8034A7BC(u32, u32);
 
 
 extern f32 D_80390DD0;
@@ -37,9 +34,9 @@ extern f64 D_80390DF8;
 //     this->flibbit.unk8[2] = arg1[2];
 
 //     this->flibbit.unk8[1] = func_80309724(arg1);
-//     func_80335924(this->unk148, 0xdb, 0.2f,(arg2) ?  func_8034A754(D_80390DD0, D_80390DD4) :  func_8034A754(0.75f, D_80390DD8));
+//     func_80335924(this->unk148, 0xdb, 0.2f,(arg2) ?  randf2(D_80390DD0, D_80390DD4) :  randf2(0.75f, D_80390DD8));
 //     func_80335A8C(this->unk148, 2);
-//     func_80324D54(D_80390DE4, 0x3f2, func_8034A754(D_80390DDC, D_80390DE0), func_8034A7BC(0x61A8, 0x6978), &this->position_x, 500.0f, D_80390DE8);
+//     func_80324D54(D_80390DE4, 0x3f2, randf2(D_80390DDC, D_80390DE0), randi2(0x61A8, 0x6978), this->position, 500.0f, D_80390DE8);
 //     return 1;
 // }
 
@@ -52,8 +49,8 @@ u32 func_80386564(Actor *this){
     f32 sp3C[3]; //sp3C
     f32 sp30[3]; //sp30
 
-    func_8028E9A4(plyrPos);
-    func_80258A4C(&this->position_x, this->yaw - 90.0f, plyrPos, &sp48, &sp44, &sp40);
+    player_getPosition(plyrPos);
+    func_80258A4C(this->position, this->yaw - 90.0f, plyrPos, &sp48, &sp44, &sp40);
     if(func_80329210(this, plyrPos)){
         if((D_80390DF0 <= sp40) && (sp40 <= D_80390DF8)){
             sp3C[0] = plyrPos[0] - this->position_x;
@@ -82,9 +79,9 @@ u32 func_80386A34(Actor * this){
     if(func_803203FC(0xC1))
         return 0;
     
-    func_8028E9A4(plyrPos);
+    player_getPosition(plyrPos);
     if(func_80329210(this, plyrPos)){
-        if(!(out = func_80386564(this)) && (0.5 < func_8034A390())){
+        if(!(out = func_80386564(this)) && (0.5 < randf ())){
             return 0;
         }
     }else{
