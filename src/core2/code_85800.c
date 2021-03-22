@@ -35,7 +35,7 @@ extern struct {
     gczoombox_t *unk11C[2];
     s16 unk124[2];
     u32 unk128_31:8;
-    u32 pad128_23:8;
+    u32 unk128_23:8;
     u32 unk128_15:8;
     u32 unk128_7:1;
     u32 unk128_6:1;
@@ -479,9 +479,38 @@ int func_80311480(s32 text_id, s32 arg1, f32 *pos, ActorMarker *marker, void(*ca
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_85800/func_803114B0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_85800/func_803114C4.s")
+//#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_85800/func_803114C4.s")
+int func_803114C4(void){
+    return D_80382E20.unk130;
+}
 
+#if NONMATCHING
+void func_803114D0(void){
+    s32 i;
+
+    if(func_803114B0()){
+        func_8030F488(6);
+    }else{
+        if(D_80382E20.unk128_23 != 6){
+            D_80382E20.unk12C_25 = 0;
+            for(i = 0; i< 2; i++){
+                D_80382E20.unk11A[i].unk0_7 = 0;
+                if(D_80382E20.unk11C[i] != NULL){
+                    D_80382E20.unk12C_25 += func_803188B4(D_80382E20.unk11C[i]);
+                }
+            }
+            if(D_80382E20.unk12C_25 != 0){
+                D_80382E20.unk128_23 = 6;
+            }
+        }
+    }//L80311594
+    D_80382E20.unk12C_15 = 0;
+    D_80382E20.unk12C_11 = 0;
+
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_85800/func_803114D0.s")
+#endif
 
 int func_803115C4(s32 arg0){
     if(func_803114C4() != arg0){
