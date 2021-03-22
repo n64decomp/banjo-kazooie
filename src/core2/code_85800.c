@@ -64,6 +64,7 @@ extern struct {
 
 void func_803114D0(void );
 void func_803184C8(gczoombox_t *, f32, s32, s32, f32, s32, s32);
+int func_803114B0(void);
 
 /*rodata*/
 extern f32 D_80378534;
@@ -477,9 +478,10 @@ int func_80311480(s32 text_id, s32 arg1, f32 *pos, ActorMarker *marker, void(*ca
     return func_80311174(text_id, arg1, pos, marker, callback, arg5, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_85800/func_803114B0.s")
+int func_803114B0(void){
+    return (D_80382E20.unk130 + 1) != 0;
+}
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_85800/func_803114C4.s")
 int func_803114C4(void){
     return D_80382E20.unk130;
 }
