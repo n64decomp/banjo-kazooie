@@ -539,23 +539,19 @@ void func_80311650(void){
     }
 }
 
-#if 1
 void func_8031169C(void){
     s32 i;
     
     for(i = 0; i< 2; i++){
         func_80318C0C(D_80382E20.unk11C[i]);
         if(D_80382E20.unk104[i]){
-            D_80382E20.unk104[i] = func_802555DC();
+            D_80382E20.unk104[i] = func_802555DC(D_80382E20.unk104[i]);
         }
         if(D_80382E20.unk11C[i] != NULL){
-            D_80382E20.unk11C[i] = func_802555DC();
+            D_80382E20.unk11C[i] = func_802555DC(D_80382E20.unk11C[i]);
         }
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_85800/func_8031169C.s")
-#endif
 
 void func_80311714(int arg0){
     D_80382E20.unk128_3 = arg0;
