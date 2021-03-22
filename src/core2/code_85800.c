@@ -302,7 +302,9 @@ void func_8030F754(s32, s32);
 void func_80310574(s32 text_id);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_85800/func_80310574.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_85800/func_8031068C.s")
+s32 func_8031068C(s32 arg0){
+    return (arg0) ? 0 : 0xA0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_85800/func_803106A4.s")
 
