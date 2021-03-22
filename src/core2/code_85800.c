@@ -539,7 +539,7 @@ void func_80311650(void){
     }
 }
 
-#if NONMATCHING
+#if 1
 void func_8031169C(void){
     s32 i;
     
