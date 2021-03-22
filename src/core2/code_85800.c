@@ -69,7 +69,6 @@ int func_803114B0(void);
 /*rodata*/
 extern f32 D_80378534;
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_85800/func_8030C790.s")
 void func_8030C790(f32 *arg0){
     if(func_8028F1D4())
         player_getPosition(arg0);
