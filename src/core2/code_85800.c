@@ -39,7 +39,8 @@ extern struct {
     u32 unk128_15:8;
     u32 unk128_7:1;
     u32 unk128_6:1;
-    u32 pad128_5:2;
+    u32 unk128_5:1;
+    u32 unk128_4:1;
     u32 unk128_3:1;
     u32 pad128_2:3;
     u32 unk12C_31:2;
@@ -51,7 +52,8 @@ extern struct {
     u32 unk12C_11:4;
     u32 pad12C_7:8;
     s16 unk130;
-    u8  pad132[0x2];
+    s8  unk132;
+    u8  pad133[0x1];
     ActorMarker *unk134;
     s32  unk138;
     void *unk13C;
@@ -485,9 +487,31 @@ int func_80311480(s32 text_id, s32 arg1, f32 *pos, ActorMarker *marker, void(*ca
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_85800/func_80311604.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_85800/func_80311650.s")
+void func_80311650(void){
+    if(func_803114B0()){
+        D_80382E20.unk128_5 = 1;
+        D_80382E20.unk128_4 = 1;
+        D_80382E20.unk132--;
+    }
+}
 
+#if NONMATCHING
+void func_8031169C(void){
+    s32 i;
+    
+    for(i = 0; i< 2; i++){
+        func_80318C0C(D_80382E20.unk11C[i]);
+        if(D_80382E20.unk104[i]){
+            D_80382E20.unk104[i] = func_802555DC();
+        }
+        if(D_80382E20.unk11C[i] != NULL){
+            D_80382E20.unk11C[i] = func_802555DC();
+        }
+    }
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_85800/func_8031169C.s")
+#endif
 
 void func_80311714(int arg0){
     D_80382E20.unk128_3 = arg0;
