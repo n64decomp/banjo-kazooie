@@ -306,7 +306,9 @@ s32 func_8031068C(s32 arg0){
     return (arg0) ? 0 : 0xA0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_85800/func_803106A4.s")
+int func_803106A4(s32 arg0){
+    return (arg0) ? 1 : 0;
+}
 
 void func_803106BC(s32 text_id, s32 arg1, ActorMarker *marker, void(*callback)(ActorMarker *, s32, s32), s32 arg4, s32 arg5){
     s32 i;
