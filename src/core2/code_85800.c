@@ -69,7 +69,13 @@ int func_803114B0(void);
 /*rodata*/
 extern f32 D_80378534;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_85800/func_8030C790.s")
+//#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_85800/func_8030C790.s")
+void func_8030C790(f32 *arg0){
+    if(func_8028F1D4())
+        player_getPosition(arg0);
+    else
+        clear_vec3f(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_85800/func_8030C7D0.s")
 
@@ -498,7 +504,7 @@ void func_803114D0(void){
             for(i = 0; i< 2; i++){
                 D_80382E20.unk11A[i].unk0_7 = 0;
                 if(D_80382E20.unk11C[i] != NULL){
-                    D_80382E20.unk12C_25 += func_803188B4(D_80382E20.unk11C[i]);
+                    D_80382E20.unk12C_25 = D_80382E20.unk12C_25 + func_803188B4(D_80382E20.unk11C[i]);
                 }
             }
             if(D_80382E20.unk12C_25 != 0){
