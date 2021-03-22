@@ -483,7 +483,14 @@ int func_80311480(s32 text_id, s32 arg1, f32 *pos, ActorMarker *marker, void(*ca
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_85800/func_803114D0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_85800/func_803115C4.s")
+int func_803115C4(s32 arg0){
+    if(func_803114C4() != arg0){
+        return 0;
+    }else{
+        func_8030F488(6);
+        return 1;
+    }
+}
 
 void func_80311604(void){
     if(func_803114B0()){
