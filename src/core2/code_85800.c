@@ -279,8 +279,13 @@ void func_8030C790(f32 *arg0){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_85800/func_8030EDE8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_85800/func_8030F030.s")
-
+void func_8030F030(void){
+    s32 i;
+    for(i =0; i < 2; i++){
+        gczoombox_free(D_80382E20.unk11C[i]);
+        D_80382E20.unk11C[i] = NULL;
+    }
+}
 
 void func_8030F078(void){
     s32 i;
