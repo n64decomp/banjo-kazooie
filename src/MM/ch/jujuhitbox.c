@@ -120,7 +120,7 @@ void func_80388E20(Actor *this){
             && !func_8028ECAC()
         ){
             if( !this->unk138_24 ){
-                if(func_80311480(text_juju_meet, 0, 0, 0, 0, 0)){
+                if(func_80311480(text_juju_meet, 0, 0, 0, NULL, NULL)){
                     this->unk138_24 = 1;
                 }
             }
