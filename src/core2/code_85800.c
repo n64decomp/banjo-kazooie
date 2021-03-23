@@ -277,6 +277,9 @@ void func_8030C790(f32 *arg0){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_85800/func_8030EDAC.s")
 
+
+/*GC DIALOG BREAK*/
+
 int func_8030EDC0(ActorMarker *caller, s32 arg1){
     return (arg1 == -1)? 0: caller->unk5C == arg1;
 }
@@ -576,7 +579,9 @@ void func_80310B1C(s32 text_id, s32 arg1, ActorMarker *marker, void(*callback)(A
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_85800/func_80310BB4.s")
+void func_80310BB4(s32 arg0, s32 arg1, s32 arg2){
+    func_80310A5C(arg1, arg2, arg0, D_80382E20.unk128_31 & 2, D_80382E20.unk128_31 & 0x80);
+}
 
 void func_80310BFC(void){
     s32 ch;
