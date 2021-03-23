@@ -281,10 +281,23 @@ void func_8030C790(f32 *arg0){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_85800/func_8030F030.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_85800/func_8030F078.s")
-// void func_8030F078(void){
 
-// }
+void func_8030F078(void){
+    s32 i;
+    s32 j;
+    for(i = 0; i <2; i++){
+        for(j =0; j < D_80382E20.dialogStringCount[i]; j++){
+            D_80382E20.unk104[i][j].str = NULL;
+        }
+        D_80382E20.dialogStringCount[i] = 0;
+        free(D_80382E20.unk104[i]);
+        D_80382E20.unk104[i] = NULL;
+    }
+    if(D_80382E20.unk130 != -1){
+        func_8031B6D8(D_80382E20.unk130);
+    }
+    D_80382E20.unk100 = NULL;
+}
 
 void func_8030F130(void){
    func_8030F078();
