@@ -55,7 +55,7 @@ extern struct {
     s16 unk130;
     s8  unk132;
     u8  pad133[0x1];
-    ActorMarker *unk134;
+    ActorMarker *caller;
     s32  unk138;
     void (* unk13C)(ActorMarker *, s32, s32);
     void (* unk140)(ActorMarker *, s32, s32);
@@ -282,8 +282,26 @@ void func_8030C790(f32 *arg0){
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_85800/func_8030F030.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_85800/func_8030F078.s")
+// void func_8030F078(void){
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_85800/func_8030F130.s")
+// }
+
+void func_8030F130(void){
+   func_8030F078();
+   if(D_80382E20.unk11C[1] != NULL && !D_80382E20.unk11A[1].unk0_7){
+       func_80347A14(1);
+   }
+   if(!D_80382E20.unk11A[0].unk0_7 && !D_80382E20.unk11A[1].unk0_7){
+       func_8030F030();
+   }
+   D_80382E20.unk130 = -1;
+   D_80382E20.unk128_15 = 0;
+   D_80382E20.unk128_31 = 0;
+   D_80382E20.caller = NULL;
+   D_80382E20.unk13C = NULL;
+   D_80382E20.unk140 = NULL;
+   D_80382E20.unk144 = NULL;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_85800/func_8030F1D0.s")
 
@@ -291,11 +309,11 @@ void func_8030C790(f32 *arg0){
 
 void func_8030F338(void){
     if(D_80382E20.unk13C != NULL){
-        if(D_80382E20.unk134 == NULL){
-            D_80382E20.unk13C(D_80382E20.unk134, D_80382E20.unk130, D_80382E20.unk12C_23);
+        if(D_80382E20.caller == NULL){
+            D_80382E20.unk13C(D_80382E20.caller, D_80382E20.unk130, D_80382E20.unk12C_23);
         }else{
-            if(func_8030EDC0(D_80382E20.unk134, D_80382E20.unk138)){
-                D_80382E20.unk13C(D_80382E20.unk134, D_80382E20.unk130, D_80382E20.unk12C_23);
+            if(func_8030EDC0(D_80382E20.caller, D_80382E20.unk138)){
+                D_80382E20.unk13C(D_80382E20.caller, D_80382E20.unk130, D_80382E20.unk12C_23);
             }
         }
     }
@@ -343,11 +361,11 @@ void func_8030F488(s32 arg0){
                 for(i  = 0; i< 2; i++){//L8030F59C
                     for(j = D_80382E20.unk118[i]; D_80382E20.unk104[i][j].cmd < -4 || D_80382E20.unk104[i][j].cmd >= 0; j++){
                         if(D_80382E20.unk104[i][j].cmd == -7 && D_80382E20.unk140){
-                            if(D_80382E20.unk134 == NULL){
-                                D_80382E20.unk140(D_80382E20.unk134, D_80382E20.unk130, *D_80382E20.unk104[i][j].str);
+                            if(D_80382E20.caller == NULL){
+                                D_80382E20.unk140(D_80382E20.caller, D_80382E20.unk130, *D_80382E20.unk104[i][j].str);
                             }else{
-                                if(func_8030EDC0(D_80382E20.unk134, D_80382E20.unk138)){
-                                    D_80382E20.unk140(D_80382E20.unk134, D_80382E20.unk130, *D_80382E20.unk104[i][j].str);
+                                if(func_8030EDC0(D_80382E20.caller, D_80382E20.unk138)){
+                                    D_80382E20.unk140(D_80382E20.caller, D_80382E20.unk130, *D_80382E20.unk104[i][j].str);
                                 }
                             }
                         }
@@ -506,7 +524,7 @@ void func_803106BC(s32 text_id, s32 arg1, ActorMarker *marker, void(*callback)(A
     }//L8031095C
     D_80382E20.unk128_6 = 1;
     D_80382E20.unk12C_23 = ((func_802E4A08() || func_803203FC(0x1F)) && D_80382E20.unk128_3) ? 1 : -1;
-    D_80382E20.unk134 = marker;
+    D_80382E20.caller = marker;
     D_80382E20.unk13C = callback;
     D_80382E20.unk140 = arg4;
     D_80382E20.unk144 = arg5;
