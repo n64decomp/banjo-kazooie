@@ -578,7 +578,6 @@ void func_80310B1C(s32 text_id, s32 arg1, ActorMarker *marker, void(*callback)(A
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_85800/func_80310BB4.s")
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_85800/func_80310BFC.s")
 void func_80310BFC(void){
     s32 ch;
     if(D_80382E20.unk128_4){
