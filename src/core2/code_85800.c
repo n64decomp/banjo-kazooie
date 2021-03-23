@@ -275,7 +275,9 @@ void func_8030C790(f32 *arg0){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_85800/func_8030EDAC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_85800/func_8030EDC0.s")
+int func_8030EDC0(ActorMarker *caller, s32 arg1){
+    return (arg1 == -1)? 0: caller->unk5C == arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_85800/func_8030EDE8.s")
 
