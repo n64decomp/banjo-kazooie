@@ -48,7 +48,7 @@ extern struct {
     u32 unk12C_29:2;
     u32 unk12C_27:2;
     u32 unk12C_25:2;
-    u32 unk12C_23:8;
+    s32 unk12C_23:8;
     u32 unk12C_15:4;
     u32 unk12C_11:4;
     u32 pad12C_7:8;
@@ -57,7 +57,7 @@ extern struct {
     u8  pad133[0x1];
     ActorMarker *unk134;
     s32  unk138;
-    void *unk13C;
+    void (* unk13C)(ActorMarker *, s32, s32);
     void (* unk140)(ActorMarker *, s32, s32);
     s32 unk144;
     struct14s unk148[4];
@@ -289,7 +289,24 @@ void func_8030C790(f32 *arg0){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_85800/func_8030F218.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_85800/func_8030F338.s")
+void func_8030F338(void){
+    if(D_80382E20.unk13C != NULL){
+        if(D_80382E20.unk134 == NULL){
+            D_80382E20.unk13C(D_80382E20.unk134, D_80382E20.unk130, D_80382E20.unk12C_23);
+        }else{
+            if(func_8030EDC0(D_80382E20.unk134, D_80382E20.unk138)){
+                D_80382E20.unk13C(D_80382E20.unk134, D_80382E20.unk130, D_80382E20.unk12C_23);
+            }
+        }
+    }
+    if(D_80382E20.unk128_31 & 0x8){
+            if((!func_802E4A08() && !func_803203FC(0x1F)) || !D_80382E20.unk128_3){
+                func_8028F918(0);
+            }
+    }//L8030F3E8
+    func_8025A55C(-1, 0x12c, 2);
+    func_8030F130();
+}
 
 void func_8030F410(s32 arg0, s32 arg1, s32 arg2){
     s32 i;
@@ -430,7 +447,7 @@ int func_803106A4(s32 arg0){
     return (arg0) ? 1 : 0;
 }
 
-void func_803106BC(s32 text_id, s32 arg1, ActorMarker *marker, void(*callback)(ActorMarker *, s32, s32), s32 arg4, s32 arg5){
+void func_803106BC(s32 text_id, s32 arg1, ActorMarker *marker, void(*callback)(ActorMarker *, s32, s32), void(*arg4)(ActorMarker *, s32, s32), s32 arg5){
     s32 i;
     s32 j;
 
@@ -508,7 +525,7 @@ void func_80310A5C(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4){
     }
 }
 
-void func_80310B1C(s32 text_id, s32 arg1, ActorMarker *marker, void(*callback)(ActorMarker *, s32, s32), s32 arg4, s32 arg5){
+void func_80310B1C(s32 text_id, s32 arg1, ActorMarker *marker, void(*callback)(ActorMarker *, s32, s32), void(*arg4)(ActorMarker *, s32, s32), s32 arg5){
     func_803106BC(text_id, arg1, marker, callback, arg4, arg5);
     if(func_803348C0() == map_lair_battlements && 0x10ec < text_id){
         func_80310A5C( 3, 4, 0x1e, arg1 & 2, arg1 & 0x80);
@@ -527,7 +544,7 @@ void func_80310B1C(s32 text_id, s32 arg1, ActorMarker *marker, void(*callback)(A
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_85800/func_803110F8.s")
 
 
-int func_80311174(s32 text_id, s32 arg1, f32 *pos, ActorMarker *marker, void(*callback)(ActorMarker *, s32, s32), s32 arg5, s32 arg6){
+int func_80311174(s32 text_id, s32 arg1, f32 *pos, ActorMarker *marker, void(*callback)(ActorMarker *, s32, s32), void(*arg5)(ActorMarker *, s32, s32), s32 arg6){
     f32 pad;
     s32 temp_v1;
 
@@ -603,7 +620,7 @@ int func_80311174(s32 text_id, s32 arg1, f32 *pos, ActorMarker *marker, void(*ca
 }
 
 
-int func_80311480(s32 text_id, s32 arg1, f32 *pos, ActorMarker *marker, void(*callback)(ActorMarker *, s32, s32), s32 arg5){
+int func_80311480(s32 text_id, s32 arg1, f32 *pos, ActorMarker *marker, void(*callback)(ActorMarker *, s32, s32), void(*arg5)(ActorMarker *, s32, s32)){
     return func_80311174(text_id, arg1, pos, marker, callback, arg5, 0);
 }
 

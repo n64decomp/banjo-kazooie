@@ -28,7 +28,7 @@ f32 D_80389A00[3] = {0.0f, 0.0f, 0.0f};
 void func_80387F90(ActorMarker *arg0, s32 arg1){
     if( !func_8028F22C(arg0) 
         && !mapSpecificFlags_get(mapflag_mm_main_hit_with_orange)
-        && func_80311480(text_conga_hits_player, 0, 0, 0, 0, 0)
+        && func_80311480(text_conga_hits_player, 0, 0, 0, NULL, NULL)
     ){
         mapSpecificFlags_set(mapflag_mm_main_hit_with_orange, 1);
     }
