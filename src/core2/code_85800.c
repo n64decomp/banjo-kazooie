@@ -33,7 +33,7 @@ extern struct {
     s8 unk116[2];
     u8 unk118[2];
     struct15s unk11A[2];
-    gczoombox_t *unk11C[2];
+    gczoombox_t *zoombox[2];
     s16 unk124[2];
     u32 unk128_31:8;
     u32 unk128_23:8;
@@ -284,8 +284,8 @@ int func_8030EDC0(ActorMarker *caller, s32 arg1){
 void func_8030F030(void){
     s32 i;
     for(i =0; i < 2; i++){
-        gczoombox_free(D_80382E20.unk11C[i]);
-        D_80382E20.unk11C[i] = NULL;
+        gczoombox_free(D_80382E20.zoombox[i]);
+        D_80382E20.zoombox[i] = NULL;
     }
 }
 
@@ -308,7 +308,7 @@ void func_8030F078(void){
 
 void func_8030F130(void){
    func_8030F078();
-   if(D_80382E20.unk11C[1] != NULL && !D_80382E20.unk11A[1].unk0_7){
+   if(D_80382E20.zoombox[1] != NULL && !D_80382E20.unk11A[1].unk0_7){
        func_80347A14(1);
    }
    if(!D_80382E20.unk11A[0].unk0_7 && !D_80382E20.unk11A[1].unk0_7){
@@ -349,7 +349,7 @@ void func_8030F338(void){
 void func_8030F410(s32 arg0, s32 arg1, s32 arg2){
     s32 i;
     for(i = 0; i<2; i++){
-        func_80316B8C(D_80382E20.unk11C[i], arg0, arg1, arg2);
+        func_80316B8C(D_80382E20.zoombox[i], arg0, arg1, arg2);
     }
 }
 
@@ -363,16 +363,16 @@ void func_8030F488(s32 arg0){
         switch(arg0){
             case 1:
                 for(i = 0; i < 2; i++){
-                    if(D_80382E20.unk11C[i] != NULL && D_80382E20.unk11A[i].unk0_7 == 0)
-                        gczoombox_open(D_80382E20.unk11C[i]);
+                    if(D_80382E20.zoombox[i] != NULL && D_80382E20.unk11A[i].unk0_7 == 0)
+                        gczoombox_open(D_80382E20.zoombox[i]);
                 }
                 break;
 
             case 5:
                 for(i =0; i < 2; i++){
-                    if(D_80382E20.unk11C[i] != NULL && D_80382E20.unk11A[i].unk0_7 == 0){
-                        gczoombox_minimize(D_80382E20.unk11C[i]);
-                        gczoombox_close(D_80382E20.unk11C[i]);
+                    if(D_80382E20.zoombox[i] != NULL && D_80382E20.unk11A[i].unk0_7 == 0){
+                        gczoombox_minimize(D_80382E20.zoombox[i]);
+                        gczoombox_close(D_80382E20.zoombox[i]);
                     }
                 }
                 break;
@@ -394,8 +394,8 @@ void func_8030F488(s32 arg0){
                 D_80382E20.unk12C_25 = 0;
                 for(i=0; i< 2; i++){
                     D_80382E20.unk11A[i].unk0_7 = 0;
-                    if(D_80382E20.unk11C[i] != NULL){
-                        D_80382E20.unk12C_25 += func_803188B4(D_80382E20.unk11C[i]);
+                    if(D_80382E20.zoombox[i] != NULL){
+                        D_80382E20.unk12C_25 += func_803188B4(D_80382E20.zoombox[i]);
                         
                     }
                 }
@@ -409,8 +409,8 @@ void func_8030F488(s32 arg0){
                 func_8030F338();
                 for(i=0; i<2; i++){
                     if(D_80382E20.unk11A[i].unk0_7 == 0){
-                        gczoombox_free(D_80382E20.unk11C[i]);
-                        D_80382E20.unk11C[i] = NULL;
+                        gczoombox_free(D_80382E20.zoombox[i]);
+                        D_80382E20.zoombox[i] = NULL;
                     }
                 }
                 break;
@@ -440,6 +440,7 @@ void func_8030F754(s32, s32);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_85800/func_8030F990.s")
 
+//parses text asset into seperate strings
 void func_80310574(s32 text_id);
 #if NONMATCHING
 void func_80310574(s32 text_id){
@@ -510,7 +511,7 @@ void func_803106BC(s32 text_id, s32 arg1, ActorMarker *marker, void(*callback)(A
         D_80382E20.unk11A[j].unk0_5 = 0;
         if(D_80382E20.unk104[j][i].cmd >= 0){
             if(!D_80382E20.unk11A[j].unk0_7){
-                D_80382E20.unk11C[j] =  func_80317E8C(D_80382E20.unk124[j], D_80382E20.unk104[j][i].cmd + 0xC, 0, func_803106A4(j), func_8030F754);
+                D_80382E20.zoombox[j] =  func_80317E8C(D_80382E20.unk124[j], D_80382E20.unk104[j][i].cmd + 0xC, 0, func_803106A4(j), func_8030F754);
                 if( j == 1 ){
                     func_80347A14(0);
                 }
@@ -521,10 +522,10 @@ void func_803106BC(s32 text_id, s32 arg1, ActorMarker *marker, void(*callback)(A
         }else{//L80310890
             if(D_80382E20.unk104[j][i].cmd < -2){
                 if(D_80382E20.unk11A[j].unk0_7){
-                    gczoombox_close(D_80382E20.unk11C[j]);
+                    gczoombox_close(D_80382E20.zoombox[j]);
                     D_80382E20.unk128_15++;
                 }else{
-                    D_80382E20.unk11C[j] = NULL;
+                    D_80382E20.zoombox[j] = NULL;
                 }
                 D_80382E20.unk11A[j].unk0_7 = 0;
             }else{//L803108D8
@@ -557,8 +558,8 @@ void func_80310A5C(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4){
     s32 i;
     f32 tmpf;
     for(i = 0, tmpf = D_80378534; i< 2; i++){
-        if(D_80382E20.unk11C[i]){
-            func_803184C8(D_80382E20.unk11C[i], arg2, arg0, arg1, tmpf, arg3, arg4);
+        if(D_80382E20.zoombox[i]){
+            func_803184C8(D_80382E20.zoombox[i], arg2, arg0, arg1, tmpf, arg3, arg4);
         }
     }
 }
@@ -579,8 +580,12 @@ void func_80310B1C(s32 text_id, s32 arg1, ActorMarker *marker, void(*callback)(A
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_85800/func_80310D2C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_85800/func_803110F8.s")
-
+int func_803110F8(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4){
+    func_8025A55C(15000, 300, 2);
+    func_80311174(arg0 + 0xe57, 0x84, NULL, NULL, NULL, NULL, arg4);
+    func_80310A5C(arg2, arg3, arg1, 0, 0);
+    return 1;
+}
 
 int func_80311174(s32 text_id, s32 arg1, f32 *pos, ActorMarker *marker, void(*callback)(ActorMarker *, s32, s32), void(*arg5)(ActorMarker *, s32, s32), s32 arg6){
     f32 pad;
@@ -681,8 +686,8 @@ void func_803114D0(void){
             D_80382E20.unk12C_25 = 0;
             for(i = 0; i< 2; i++){
                 D_80382E20.unk11A[i].unk0_7 = 0;
-                if(D_80382E20.unk11C[i] != NULL){
-                    D_80382E20.unk12C_25 = D_80382E20.unk12C_25 + func_803188B4(D_80382E20.unk11C[i]);
+                if(D_80382E20.zoombox[i] != NULL){
+                    D_80382E20.unk12C_25 = D_80382E20.unk12C_25 + func_803188B4(D_80382E20.zoombox[i]);
                 }
             }
             if(D_80382E20.unk12C_25 != 0){
@@ -727,12 +732,12 @@ void func_8031169C(void){
     s32 i;
     
     for(i = 0; i< 2; i++){
-        func_80318C0C(D_80382E20.unk11C[i]);
+        func_80318C0C(D_80382E20.zoombox[i]);
         if(D_80382E20.unk104[i]){
             D_80382E20.unk104[i] = func_802555DC(D_80382E20.unk104[i]);
         }
-        if(D_80382E20.unk11C[i] != NULL){
-            D_80382E20.unk11C[i] = func_802555DC(D_80382E20.unk11C[i]);
+        if(D_80382E20.zoombox[i] != NULL){
+            D_80382E20.zoombox[i] = func_802555DC(D_80382E20.zoombox[i]);
         }
     }
 }
