@@ -6,9 +6,15 @@ extern struct {
     void *unk0;
     int unk4;
 } D_80282FE0;
-extern u8 D_8000E800;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_15770/func_80253190.s")
+extern u8 D_8000E800;
+extern u8 D_803A5D00[2][0x1ecc0];
+
+void func_80253208(Gfx **gdl, s32 x, s32 y, s32 w, s32 h, void *color_buffer);
+
+void func_80253190(Gfx **gdl){
+    func_80253208(gdl, 0, 0, D_80276588, D_8027658C, D_803A5D00[func_8024BDA0()]);
+}
 
 void func_80253208(Gfx **gdl, s32 x, s32 y, s32 w, s32 h, void *color_buffer){
     if( D_80282FE0.unk0 != NULL && (getGameMode() != GAME_MODE_PAUSED || func_80335134())){
