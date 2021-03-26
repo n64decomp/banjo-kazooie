@@ -2,6 +2,7 @@
 #define ENUMS_H
 
 enum button{
+    BUTTON_START = 0x0,
     button_R = 0x3,
     button_A = 0x8,
     button_B = 0x9
@@ -29,13 +30,18 @@ enum map_e
     map_cs_start_rarware = 0x1F,
     map_cs_end_not100 = 0x20,
     map_rbb_rusty_bucket_bay = 0x31,
+    MAP_LAIR_FF_ENTRANCE = 0x80,
+    MAP_CUTSCENE_GAMEOVER = 0x83,
     map_sm_banjos_house = 0x8C,
+    MAP_LAIR_FURNACE_FUN = 0x8e,
     map_lair_battlements = 0x90
 };
 
 enum level_e
 {
+    LEVEL_MUMBOS_MOUNTAIN = 0x1,
     level_lair = 0x6,
+    LEVEL_SPIRAL_MOUNTAIN = 0xB,
     level_boss = 0xC
 };
 
@@ -130,9 +136,10 @@ enum item_e
     item_eggs = 0xD,
     item_red_feather = 0xF,
     item_gold_feather = 0x10,
+    ITEM_JINJOS = 0x12,
     item_health = 0x14,
     item_health_total = 0x15,
-    item_life = 0x16,
+    ITEM_LIFE = 0x16,
     item_air = 0x17,
     item_mumbo_token = 0x1C,
     item_mumbo_token_total = 0x25,
@@ -147,7 +154,7 @@ enum movement_direction_e
 enum game_mode_e
 {
     game_mode_normal = 3,
-    game_mode_paused = 4,
+    GAME_MODE_PAUSED = 4,
     game_mode_file_playback = 6,
     game_mode_attract_demo = 7,
     game_mode_bottles_bonus = 8,

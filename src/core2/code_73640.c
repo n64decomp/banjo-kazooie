@@ -58,7 +58,7 @@ ItemPrint D_803692F8[0x2C] = {
     { func_802FDE2C, func_802FE844, func_802FDEE0, func_802FDDC4, 0, NULL }, //19
     { func_80300CD8, func_80301348, func_80300D0C, func_80300C70, 0, NULL }, //item_health
     { func_802FD320, func_802FD330, func_802FD33C, func_802FD350, 0, NULL }, //item_health_total
-    { func_802FFE4C, func_803005BC, func_802FFF34, func_802FFED4, 6, NULL }, //item_life
+    { func_802FFE4C, func_803005BC, func_802FFF34, func_802FFED4, 6, NULL }, //ITEM_LIFE
     { func_8030179C, func_80301DE4, func_803017D0, func_80301754, 0, NULL }, //item_air
     { func_803007C0, func_8030081C, func_80300974, func_80300BB4, 2, NULL }, //24
     { func_803007C0, func_8030081C, func_80300974, func_80300BB4, 2, NULL }, //25

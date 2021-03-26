@@ -237,4 +237,69 @@ typedef struct struct_12_s{
     s32 unk1;
 } struct12s;
 
+typedef struct struct_13_s{
+    s32 cmd;
+    u8* str;
+}struct13s;
+
+typedef struct struct_14_s{
+    s16 unk0;
+    s16 unk2;
+    TUPLE(f32, unk4);
+    struct actorMarker_s *unk10;
+    s32 unk14;
+    void (*unk18)(struct actorMarker_s *, s32, s32);
+    void (*unk1C)(struct actorMarker_s *, s32, s32);
+    s32 unk20;
+}struct14s;
+
+typedef struct struct_15_s{
+    u8 unk0_7:2;
+    u8 unk0_5:2;
+    u8 pad0_3:4;
+}struct15s;
+
+typedef struct struct_16_s{
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+    s32 unkC;
+}struct16s;
+
+typedef struct struct_18_s{
+    s16 uid;
+    s16 unk2;
+    f32 unk4;
+}struct18s;
+
+typedef struct struct_17_s{
+    s16 uid;
+    s8 unk2;
+    s8 unk3;
+    struct18s soundInfo[5];
+}struct17s;
+
+typedef struct struct_19_s{
+    s16 unk0;
+}struct19s;
+
+typedef struct struct_1A_s{
+    u8  pad0[0x8];
+    u8  *str;
+    s16 unkC;
+    u8  unkE;
+    u8  unkF;
+}struct1As;
+
+typedef struct struct_1B_s{
+    s16 map;
+    s16 exit;
+}struct1Bs;
+
+typedef struct struct_1C_s{
+    s16 unk0;
+    u8  pad2[2];
+    s32 unk4;
+}struct1Cs;
+
 #endif

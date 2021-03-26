@@ -111,10 +111,13 @@ gctransition_reset = 0x8030BEDC;
 gctransition_update = 0x8030BF1C;
 
 gczoombox_free = 0x80315374;
+_gczoombox_memClear = 0x80315430;
+gczoombox_new = 0x80317E8C;
 gczoombox_open = 0x803183EC;
 gczoombox_close = 0x803183FC;
 gczoombox_maximize = 0x8031840C;
 gczoombox_minimize = 0x8031841C;
+gczoombox_highlight = 0x803185D8;
 jiggyscore_80320F10 = 0x80320F10;
 jiggyscore_80320F38 = 0x80320F38;
 jiggyscore_80320F70 = 0x80320F70;

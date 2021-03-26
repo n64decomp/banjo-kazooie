@@ -4,27 +4,7 @@
 
 extern s8 D_8036C4D0[];
 
-typedef struct struct_13_s{
-    s32 cmd;
-    u8* str;
-}struct13s;
 
-typedef struct struct_14_s{
-    s16 unk0;
-    s16 unk2;
-    TUPLE(f32, unk4);
-    ActorMarker *unk10;
-    s32 unk14;
-    void (*unk18)(ActorMarker *, s32, s32);
-    void (*unk1C)(ActorMarker *, s32, s32);
-    s32 unk20;
-}struct14s;
-
-typedef struct struct_15_s{
-    u8 unk0_7:2;
-    u8 unk0_5:2;
-    u8 pad0_3:4;
-}struct15s;
 
 extern struct {
     u8 pad0[0x100];
@@ -516,7 +496,7 @@ void func_803106BC(s32 text_id, s32 arg1, ActorMarker *marker, void(*callback)(A
         D_80382E20.unk11A[j].unk0_5 = 0;
         if(D_80382E20.unk104[j][i].cmd >= 0){
             if(!D_80382E20.unk11A[j].unk0_7){
-                D_80382E20.zoombox[j] =  func_80317E8C(D_80382E20.unk124[j], D_80382E20.unk104[j][i].cmd + 0xC, 0, func_803106A4(j), func_8030F754);
+                D_80382E20.zoombox[j] =  gczoombox_new(D_80382E20.unk124[j], D_80382E20.unk104[j][i].cmd + 0xC, 0, func_803106A4(j), func_8030F754);
                 if( j == 1 ){
                     func_80347A14(0);
                 }
@@ -805,7 +785,7 @@ void func_803114D0(void){
             D_80382E20.unk12C_25 = 0;
             for(i = 0; i< 2; i++){
                 D_80382E20.unk11A[i].unk0_7 = 0;
-                if(D_80382E20.zoombox[i] != NULL){
+                if(D_80382E20.zoombox[i]){
                     D_80382E20.unk12C_25 = D_80382E20.unk12C_25 + func_803188B4(D_80382E20.zoombox[i]);
                 }
             }

@@ -31,7 +31,7 @@ extern MusicTrack **D_802820E0;
 extern ALSeqpConfig D_802820E8;
 extern u16 D_80282104; //called as u16 someplaces and s16 others
 extern ALBank *D_80282108;
-extern struct13s D_80282110[0x20];
+extern structBs D_80282110[0x20];
 
 
 
