@@ -2,12 +2,28 @@
 #include "functions.h"
 #include "variables.h"
 
+void func_80328B8C(Actor *, s32, f32, s32);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_55BC0/func_802DCB50.s")
 
+void func_802DCC78(ActorMarker this, s32 arg1);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_55BC0/func_802DCC78.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_55BC0/func_802DCC90.s")
+void func_802DCC90(Actor *this){
+    if(!this->unkF4_21){
+        this->unkF4_21 = 1;
+        this->unk124_9 = 0;
+        actor_collisionOff(this);
+        func_80328B8C(this, 1, 0.0f, 1);
+        func_803298AC(this);
+        func_803300D8(this->marker, func_802DCC78);
+    }
+
+    if(func_802878C4(this->movement)){
+        func_80328B8C(this, 2, 0.0f, 1);
+        func_803298D8(this);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_55BC0/func_802DCD34.s")
 
