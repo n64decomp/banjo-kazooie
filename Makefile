@@ -106,7 +106,7 @@ main: dirs main_extract
 	@echo -e "\tconfig[\"source_directories\"] = ['src', 'include']" >> diff_settings.py
 	@$(MAKE) -s progress/progress.bk_boot.csv
 	@echo -n "bk_boot: "
-	@$(PYTHON) tools/progress_read.py progress/progress.bk_boot.csv $(VERSION)
+	@$(PYTHON) tools/progress_read.py progress/progress.bk_boot.csv $(VERSION) bk_boot
 
 dirs: $(foreach dir, $(O_DIRS), $(dir).)
 
@@ -146,7 +146,7 @@ $(SUBCODE): % : %_extract
 	@$(MAKE) -s $*_verify
 	@$(MAKE) -s $*_comp_verify
 	@$(MAKE) -s progress/progress.$*.csv
-	@$(PYTHON) tools/progress_read.py progress/progress.$*.csv $(VERSION)
+	@$(PYTHON) tools/progress_read.py progress/progress.$*.csv $(VERSION) $*
 
 %_faster : SRC_DIRS = src
 %_faster :
@@ -155,7 +155,7 @@ $(SUBCODE): % : %_extract
 	@$(MAKE) -s $*_verify
 	@$(MAKE) -s $*_comp_verify
 	@$(MAKE) -s progress/progress.$*.csv
-	@$(PYTHON) tools/progress_read.py progress/progress.$*.csv $(VERSION)
+	@$(PYTHON) tools/progress_read.py progress/progress.$*.csv $(VERSION) $*
 
 #verify
 %_verify: $(BUILD_DIR)/%.$(VERSION).bin $(BUILD_DIR)/%.$(VERSION).sha1
@@ -169,7 +169,7 @@ verify: $(TARGET).z64 $(TARGET).sha1
 
 progress: progress.csv
 	@echo -n "Banjo-Kazooie: "
-	@$(PYTHON) tools/progress_read.py progress.csv $(VERSION)
+	@$(PYTHON) tools/progress_read.py progress.csv $(VERSION) total
 
 
 decompress: $(SUBCODE_SRC)
