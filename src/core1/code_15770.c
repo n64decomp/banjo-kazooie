@@ -32,7 +32,9 @@ void func_80253208(Gfx **gdl, s32 x, s32 y, s32 w, s32 h, void *color_buffer){
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_15770/func_80253400.s")
+int func_80253400(void){
+    return D_80282FE0.unk4;
+}
 
 int func_8025340C(void){
     return D_80282FE0.unk0 != NULL;
@@ -40,9 +42,28 @@ int func_8025340C(void){
 
 void func_80253420(void){}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_15770/func_80253428.s")
+#if NONMATCHING
+void func_80253428(int arg0){
+    s32 i;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_15770/func_802534A8.s")
+    if(arg0){
+        D_80282FE0.unk0 = &D_8000E800;
+        while((s32)D_80282FE0.unk0 % 0x40){
+            D_80282FE0.unk0 = (s32)D_80282FE0.unk0 + 2;
+        }
+    }else{//L80253494
+        D_80282FE0.unk0 = NULL;
+        
+    }//L802534A0
+    D_80282FE0.unk4 = 0;
+}
+#else
+#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_15770/func_80253428.s")
+#endif
+
+void func_802534A8(int arg0){
+    D_80282FE0.unk4 = (D_80282FE0.unk0 != NULL && arg0);
+}
 
 //zBuffer_set
 void func_802534CC(Gfx **gdl){

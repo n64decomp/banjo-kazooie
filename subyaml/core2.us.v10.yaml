@@ -152,7 +152,7 @@ segments:
   - [0x43CD0, c, core2/mapspecificflags]
   - [0x440B0, c]
   - [0x45310, c]
-  - [0x46BC0, c]
+  - [0x46BC0, c, core2/ch/jinjo]
   - [0x47850, c]
   - [0x47BD0, c]
   - [0x49570, c]
@@ -345,6 +345,9 @@ segments:
   - [0x000EF090, bin]
   - [0x000EF3E0, .rodata, core2/ch/jigsawdance]
   - [0x000EF450, bin]
+  - [0x000EF5D0, .rodata, core2/ch/jinjo]
+  - [0x000EF5F0, bin] #part of ch/jinjo .rodata
+  - [0x000EF640, bin]
   - [0x000F03D0, .rodata, core2/code_73640]
   - [0x000F0400, bin]
   - [0x000F0420, bin] #this is first part of [.rodata, core2/code_76D90], COMBINE WITH FOLLOWING SECTION ONCE CODE DONE

@@ -34,11 +34,14 @@ typedef struct actor_prop_s{
 typedef struct actorMarker_s{
     ActorProp*  propPtr;
     struct cude_s*     cubePtr;
-    u8          pad8[0xC];
+    u8          pad8[0x4];
+    void       ( *unkC)(struct actorMarker_s *, s32);
+    u8          pad10[0x4];
     u32         yaw:9;
     u32         pad14_22:1;
     u32         unk14_21:1;
-    u32         pad14_20:21;
+    u32         unk14_20:10; //contains jingo_id for chjinjo
+    u32         pad14_19:11;
     u32         unk18;
     u8          unk1C[0x10];
     u32         actrArrayIdx:11; //unk2C
@@ -234,6 +237,13 @@ typedef struct chconga_s{
     s32     unk1C;
 }ActorLocal_Conga;
 
+typedef struct jinjo_s{
+    s32     unk0;
+    s32     unk4;
+    s32     unk8;
+    s32     unkC;
+}ActorLocal_Jinjo;
+
 typedef struct juju_hitbox_s{
     u8      pad0[0x4];
     s32     unk4;
@@ -298,6 +308,7 @@ typedef struct actor_s{
         ActorLocal_TanktupBody tanktup;
         ActorLocal_Grublin grublin;
         ActorLocal_Conga conga;
+        ActorLocal_Jinjo jinjo;
         ActorLocal_JujuHitbox juju_ctl;
         ActorLocal_Juju juju;
         u8  pad7C[0x70];
