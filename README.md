@@ -1,21 +1,23 @@
 # banjo
 
 <img src="./progress_total.svg">
-<img src="./progress_core1.svg">  
-<img src="./progress_core2.svg">
-<img src="./progress_SM.svg">
-<img src="./progress_MM.svg">
-<img src="./progress_TTC.svg">
-<img src="./progress_CC.svg">
-<img src="./progress_BGS.svg">
-<img src="./progress_FP.svg">
-<img src="./progress_GV.svg">
-<img src="./progress_MMM.svg">
-<img src="./progress_RBB.svg">
-<img src="./progress_CCW.svg">
-<img src="./progress_lair.svg">
-<img src="./progress_fight.svg">
-<img src="./progress_cutscenes.svg">
+
+- <img src="./progress_core1.svg">  
+- <img src="./progress_core2.svg">  
+- <img src="./progress_SM.svg">
+- <img src="./progress_MM.svg">
+- <img src="./progress_TTC.svg">
+- <img src="./progress_CC.svg">
+- <img src="./progress_BGS.svg">
+- <img src="./progress_FP.svg">
+- <img src="./progress_GV.svg">
+- <img src="./progress_MMM.svg">
+- <img src="./progress_RBB.svg">
+- <img src="./progress_CCW.svg">
+- <img src="./progress_lair.svg">
+- <img src="./progress_fight.svg">
+- <img src="./progress_cutscenes.svg">
+
 
 Grab tools
 
