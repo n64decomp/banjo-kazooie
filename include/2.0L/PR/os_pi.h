@@ -202,6 +202,8 @@ extern s32		osPiStartDma(OSIoMesg *, s32, s32, u32, void *, u32,
 				     OSMesgQueue *);
 extern void		osCreatePiManager(OSPri, OSMesgQueue *, OSMesg *, s32);
 
+extern s32 osEPiRawStartDma(OSPiHandle *, s32 , u32 , void *, u32 );
+
 /* Enhanced PI interface */
 
 extern OSPiHandle *osCartRomInit(void);
@@ -213,6 +215,8 @@ extern s32 osEPiWriteIo(OSPiHandle *, u32 , u32 );
 extern s32 osEPiReadIo(OSPiHandle *, u32 , u32 *);
 extern s32 osEPiStartDma(OSPiHandle *, OSIoMesg *, s32);
 extern s32 osEPiLinkHandle(OSPiHandle *);
+
+extern s32 osPiRawStartDma(s32, u32, void *, u32);
 
 
 #endif  /* defined(_LANGUAGE_C) || defined(_LANGUAGE_C_PLUS_PLUS) */

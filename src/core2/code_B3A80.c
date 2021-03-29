@@ -182,7 +182,7 @@ void func_8033B788(void ){
 //         uncompressed_file = malloc(comp_size);
 //         compressed_file = uncompressed_file;
 //     }
-//     osPiRawStartDma(compressed_file, D_80383CC4[i].offset + D_80383CCC, sp3C);
+//     func_802405F0(compressed_file, D_80383CC4[i].offset + D_80383CCC, sp3C);
 //     if(D_80383CC4[i].compFlag & 0x0001){//decompress
 //         func_8023E0A0(compressed_file, uncompressed_file);
 //         realloc(uncompressed_file, D_80370A10);
@@ -223,9 +223,9 @@ void func_8033BB00(void *arg0, s32 arg1){
 //     D_80370A14 = 0;
 //     D_80383CC0 = malloc(sizeof(AssetROMHead));
 //     D_80383CC8 = 0x5E90; //how to get upper nibble to load?
-//     osPiRawStartDma(D_80383CC0, D_80383CC8, sizeof(AssetROMHead));
+//     func_802405F0(D_80383CC0, D_80383CC8, sizeof(AssetROMHead));
 //     D_80383CC4 = malloc(D_80383CC0->count*sizeof(AssetFileMeta));
-//     osPiRawStartDma(D_80383CC4, D_80383CC8 + sizeof(AssetROMHead),D_80383CC0->count*sizeof(AssetFileMeta));
+//     func_802405F0(D_80383CC4, D_80383CC8 + sizeof(AssetROMHead),D_80383CC0->count*sizeof(AssetFileMeta));
 //     D_80383CC8 = D_80383CC8 + sizeof(AssetROMHead) + D_80383CC0->count*sizeof(AssetFileMeta);
 // }
 

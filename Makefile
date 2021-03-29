@@ -90,6 +90,8 @@ CFLAGS = -c -Wab,-r4300_mul -non_shared -G 0 -Xfullwarn -Xcpluscomm  -signed $(O
 # ignore compiler warnings about anonymous structs
 CFLAGS += -woff 649,838,807
 
+CFLAGS += -D_FINALROM
+
 LDFLAGS = -T $(BUILD_DIR)/$(LD_SCRIPT) -Map $(TARGET).map -T symbol_addrs.core1.$(VERSION).txt -T undefined_syms.$(VERSION).txt -T undefined_syms_auto.txt -T undefined_funcs_auto.txt  --no-check-sections
 
 ### Targets
@@ -115,6 +117,8 @@ clean:
 	rm -rf bin
 	rm -rf build
 	rm -rf symbol_addrs.$(VERSION).txt
+	rm -rf *.ld
+	rm -rf *.map
 
 #extract
 extract: $(foreach submod, $(SUBCODE), $(submod)_extract)
@@ -187,9 +191,11 @@ $(BK_TOOLS): % : ./tools/bk_tools/%
 
 ### exceptions
 build/src/core1/io/%.o: OPT_FLAGS = -O1
+build/src/core1/io/pimgr.o: OPT_FLAGS = -O1
 build/src/core1/done/io/%.o: OPT_FLAGS = -O1
 build/src/bk_boot_27F0.o: OPT_FLAGS = -O1
 build/src/core1/os/%.o: OPT_FLAGS = -O1
+build/src/core1/code_2D2D0.o: OPT_FLAGS = -O1
 build/src/core1/done/os/%.o: OPT_FLAGS = -O1
 build/src/core1/code_21A10.o: INCLUDE_CFLAGS = -I . -I include -I include/2.0L -I include/2.0L/PR
 build/src/core1/code_21A10.o: OPT_FLAGS = -O3

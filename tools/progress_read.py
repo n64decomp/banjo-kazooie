@@ -36,7 +36,7 @@ def main(csv_name, version, overlay):
             badge = anybadge.Badge("Banjo-Kazooie (us.v10)", "%3.4f%%" % (percent), default_color=color)
         else:
             badge = anybadge.Badge(overlay, "%3.4f%%" % (percent), default_color=color)
-        badge.write_badge('progress_' + overlay + '.svg',overwrite=True)
+        badge.write_badge('progress/progress_' + overlay + '.svg',overwrite=True)
 
 
 if __name__ == '__main__':

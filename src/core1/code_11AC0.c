@@ -9,7 +9,6 @@ extern ALBankFile D_EA3EB0;
 extern ALWaveTable D_EADE60;
 
 /* dependent functions */
-s64 func_80267290(void);
 void func_8024FA98(u8, s32);
 void func_8024FD28(u8, s16);
 int func_80250074(u8);
@@ -49,7 +48,7 @@ void func_8024F4E0(void){
     size = (u32)&D_EADE60 - (u32)&D_EA3EB0;
     bnk_f = malloc(size);
     osWriteBackDCacheAll();
-    func_802647D0(func_802405D0(), 0, 0, &D_EA3EB0, bnk_f, size, func_802405C4());
+    osPiStartDma(func_802405D0(), 0, 0, &D_EA3EB0, bnk_f, size, func_802405C4());
     osRecvMesg(func_802405C4(), 0, 1); //osRecvMesg
     D_80282104 = 0xAD;
     D_802820E0 = (MusicTrack **) malloc(D_80282104 * sizeof(MusicTrack *));
@@ -166,9 +165,9 @@ void func_8024FA98(u8 arg0, s32 arg1){
         func_8024F890(arg0, arg1);
     }else{
         func_8024F890(arg0, -1);
-        sp20 = func_80267290();
+        sp20 = osGetTime();
         while(D_80281720[arg0].cseqp.state != AL_STOPPED){
-            func_80267290();
+            osGetTime();
         };
         func_8024F7C4(sp2C);
         func_8024F890(arg0, arg1);
@@ -186,7 +185,7 @@ void func_8024FB8C(void){
     for(i = 0; i < 6; i++){
         func_8024F890(i,-1);
     }
-    sp2C = func_80267290();
+    sp2C = osGetTime();
 
     do{
         allStopped = 0;
@@ -194,7 +193,7 @@ void func_8024FB8C(void){
             if(func_8024FB60(i) != AL_STOPPED)
                 allStopped++;
         }
-        func_80267290();
+        osGetTime();
     }while(allStopped);
 
 }

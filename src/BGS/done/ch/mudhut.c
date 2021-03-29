@@ -44,7 +44,7 @@ void func_8038EA30(void){
 
 void func_8038EA90(void){
     u32 sp1C;
-    func_80268700(0xD10, &sp1C);
+    osPiWriteIo(0xD10, &sp1C);
     if(sp1C = (u16)(sp1C-0x400)){
         func_8038EA30();
     }

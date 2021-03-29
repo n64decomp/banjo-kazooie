@@ -21,7 +21,7 @@ s32 func_80387EC0(void) {
 void func_80387F44(void) {
     s32 sp1C;
 
-    func_80268700(0x578, &sp1C);
+    osPiWriteIo(0x578, &sp1C);
     sp1C = sp1C & (sp1C ^ 0xFFFF0000);
     if (sp1C != 0x8965){
         sp1C = func_80387EC0();
