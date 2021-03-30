@@ -15,6 +15,8 @@
 extern f32 fabsf(f32);
 #pragma intrinsic (fabsf)
 
+#define TUPLE_OP(a,op,b,op2,c) { a[0] op b[0] op2 c[0]; a[1] op b[1] op2 c[1]; a[2] op b[2] op2 c[2];} 
+
 void func_80241304(Mtx *m, float x, float y, float z);
 
 void _guMtxIdentF_80245D44(float mf[4][4]); //static should NOT be here

@@ -47,6 +47,7 @@ enum level_e
 
 enum jiggy_e
 {
+    JIGGY_MM_JUJU       = 0x04,
     jiggy_mm_huts       = 0x05,
 
     jiggy_mm_orange_pads    = 0x08,
@@ -72,7 +73,7 @@ enum actor_e
     actor_wood_demolished   = 0xD,
 
     actor_chimpy            = 0xF,
-    actor_juju_hitbox       = 0x11,
+    ACTOR_JUJU_HITBOX       = 0x11,
     
     actor_orange_projectile = 0x14,
 
@@ -80,7 +81,7 @@ enum actor_e
 
     actor_orange_pad        = 0x57,
 
-    actor_juju              = 0x59,
+    ACTOR_JUJU              = 0x59,
     
     actor_chimpy_stump      = 0xC5,
     

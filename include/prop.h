@@ -254,10 +254,9 @@ typedef struct juju_hitbox_s{
 typedef struct juju_s{
     s32     unk0;
     s32     unk4;
-    u8      pad8[0x4];
-    f32     unkC;
-    u8      pad10[0x4];
+    TUPLE(f32, unk8);
     f32     unk14;
+    s32     unk18;
 }ActorLocal_Juju;
 
 

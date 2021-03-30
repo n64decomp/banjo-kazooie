@@ -52,5 +52,5 @@ segments:
       - [0x3810, bin]
       - [0x3860, .rodata, MM/ch/grublin]
       - [0x3870, .rodata, MM/ch/jujuhitbox]
-      - [0x3880, bin]
+      - [0x3880, .rodata, MM/ch/juju]
   - [0x00003890]
