@@ -51,6 +51,7 @@ enum jiggy_e
     jiggy_mm_huts       = 0x05,
 
     jiggy_mm_orange_pads    = 0x08,
+    JIGGY_MM_CHIMPY     = 0x9,
 
     jiggy_bgs_elevated_walkway = 0x20,
     jiggy_bgs_pinkegg   = 0x21,
@@ -142,6 +143,7 @@ enum item_e
     item_health_total = 0x15,
     ITEM_LIFE = 0x16,
     item_air = 0x17,
+    ITEM_ORANGE = 0x19,
     item_mumbo_token = 0x1C,
     item_mumbo_token_total = 0x25,
     item_jiggy_total = 0x26

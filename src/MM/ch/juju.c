@@ -22,7 +22,18 @@ ActorInfo chjujuInfo = { 0x67, ACTOR_JUJU, model_juju, 0, NULL,
 
 extern s32 D_80389C90;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/MM/ch/juju/func_80388FD0.s")
+void func_80388FD0(Actor *this, f32 *arg1, f32 *arg2, s32 arg3){
+    this->juju.unk0 = arg3;
+    this->juju.unk14 = 1.0f;
+
+    this->position_x = arg1[0];
+    this->position_y = arg1[1];
+    this->position_z = arg1[2];
+    
+    this->juju.unk8_x = arg2[0];
+    this->juju.unk8_y = arg2[1];
+    this->juju.unk8_z = arg2[2];
+}
 
 Actor*  func_80389014(ActorMarker *this, Gfx **dl, Mtx **mPtr, u32 arg2){
     f32 sp34[3];

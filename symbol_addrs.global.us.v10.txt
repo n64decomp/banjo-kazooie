@@ -61,6 +61,8 @@ func_80389890       = 0x80389890;
 D_80389B88 = 0x80389B88;
 D_80389B8C = 0x80389B8C;
 
+D_80389C00 = 0x80389C00;
+
 chhutInfo           = 0x803898F0;
 chchimpystump       = 0x80389920;
 chcongaInfo         = 0x80389998;

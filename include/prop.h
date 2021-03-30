@@ -285,7 +285,8 @@ typedef struct actor_s{
     s32 unk44_4:10;
     u32 despawn_flag:1;
     s32 pad44_0:3;
-    u8  pad48[0x8];
+    f32 unk48; //used in chlmonkey (chimpy)
+    u8  pad4c[0x4];
     f32 yaw; //0x50
     f32 unk54; //0x54
     u8  pad58[0x8];//0x58, 0x5C, 0x60
