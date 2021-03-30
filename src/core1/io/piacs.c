@@ -1,10 +1,25 @@
 #include <ultra64.h>
-#include "functions.h"
-#include "variables.h"
 
+#define PI_Q_BUF_LEN 1
+extern u32 __osPiAccessQueueEnabled;// = 0;
+extern OSMesg piAccessBuf[PI_Q_BUF_LEN];
+extern OSMesgQueue __osPiAccessQueue;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/io/piacs/__osPiCreateAccessQueue.s")
+void __osPiCreateAccessQueue(void)
+{
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/io/piacs/__osPiGetAccess.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/io/piacs/__osPiRelAccess.s")
+	__osPiAccessQueueEnabled = 1;
+	osCreateMesgQueue(&__osPiAccessQueue, piAccessBuf, PI_Q_BUF_LEN);
+	osSendMesg(&__osPiAccessQueue, NULL, OS_MESG_NOBLOCK);
+}
+void __osPiGetAccess(void)
+{
+	OSMesg dummyMesg;
+	if (!__osPiAccessQueueEnabled)
+		__osPiCreateAccessQueue();
+	osRecvMesg(&__osPiAccessQueue, &dummyMesg, OS_MESG_BLOCK);
+}
+void __osPiRelAccess(void)
+{
+	osSendMesg(&__osPiAccessQueue, NULL, OS_MESG_NOBLOCK);
+}

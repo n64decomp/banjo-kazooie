@@ -1,6 +1,10 @@
 #include <ultra64.h>
-#include "functions.h"
-#include "variables.h"
 
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/io/piwrite/osPiWriteIo.s")
+s32 osPiWriteIo(u32 devAddr, u32 data)
+{
+    register s32 ret;
+    __osPiGetAccess();
+    ret = osPiRawWriteIo(devAddr, data);
+    __osPiRelAccess();
+    return ret;
+}

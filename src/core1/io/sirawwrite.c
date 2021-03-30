@@ -1,5 +1,10 @@
 #include <ultra64.h>
-#include "functions.h"
-#include "variables.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/io/sirawwrite/__osSiRawWriteIo.s")
+s32 __osSiRawWriteIo(u32 devAddr, u32 data)
+{
+
+    if (__osSiDeviceBusy())
+        return -1;
+    IO_WRITE(devAddr, data);
+    return 0;
+}

@@ -2,5 +2,10 @@
 #include "functions.h"
 #include "variables.h"
 
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/io/si/__osSiDeviceBusy.s")
+int __osSiDeviceBusy()
+{
+    register u32 stat = IO_READ(SI_STATUS_REG);
+    if (stat & (SI_STATUS_DMA_BUSY | SI_STATUS_RD_BUSY))
+        return 1;
+    return 0;
+}

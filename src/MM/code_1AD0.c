@@ -12,7 +12,7 @@ s32 func_80387EC0(void) {
         *(temp_sp18+0) = 0x3E00008;
         *(temp_sp18+4) = 0x24020002;
         
-        func_80264AF0(&temp_sp18, 8);
+        osWritebackDCache(&temp_sp18, 8);
         func_802684C0(&temp_sp18, 8);
     }
     return temp_sp18;

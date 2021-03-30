@@ -1,6 +1,22 @@
 #include <ultra64.h>
-#include "functions.h"
-#include "variables.h"
 
+s32 __osSiRawStartDma(s32 direction, void *dramAddr)
+{
+    if (__osSiDeviceBusy())
+        return -1;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/io/sirawdma/__osSiRawStartDma.s")
+    if (direction == OS_WRITE)
+        osWritebackDCache(dramAddr, 64);
+
+    IO_WRITE(SI_DRAM_ADDR_REG, osVirtualToPhysical(dramAddr));
+
+    if (direction == OS_READ)
+        IO_WRITE(SI_PIF_ADDR_RD64B_REG, 0x1FC007C0);
+    else
+        IO_WRITE(SI_PIF_ADDR_WR64B_REG, 0x1FC007C0);
+
+    if (direction == OS_READ)
+        func_80264B70(dramAddr, 64);//osInvalDCache(dramAddr, 64);
+
+    return 0;
+}

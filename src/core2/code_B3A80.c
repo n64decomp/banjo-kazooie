@@ -186,7 +186,7 @@ void func_8033B788(void ){
 //     if(D_80383CC4[i].compFlag & 0x0001){//decompress
 //         func_8023E0A0(compressed_file, uncompressed_file);
 //         realloc(uncompressed_file, D_80370A10);
-//         func_80264AF0(uncompressed_file, D_80370A10);
+//         osWritebackDCache(uncompressed_file, D_80370A10);
 //         if (sp33 == 2) {
 //             free(compressed_file);
 

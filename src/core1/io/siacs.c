@@ -1,10 +1,24 @@
 #include <ultra64.h>
-#include "functions.h"
-#include "variables.h"
 
+#define SI_Q_BUF_LEN 1
+extern u32 __osSiAccessQueueEnabled;// = 0;
+extern OSMesg siAccessBuf[SI_Q_BUF_LEN];
+extern OSMesgQueue __osSiAccessQueue;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/io/siacs/__osSiCreateAccessQueue.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/io/siacs/__osSiGetAccess.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/io/siacs/__osSiRelAccess.s")
+void __osSiCreateAccessQueue(void)
+{
+	__osSiAccessQueueEnabled = 1;
+	osCreateMesgQueue(&__osSiAccessQueue, siAccessBuf, SI_Q_BUF_LEN);
+	osSendMesg(&__osSiAccessQueue, NULL, OS_MESG_NOBLOCK);
+}
+void __osSiGetAccess(void)
+{
+	OSMesg dummyMesg;
+	if (!__osSiAccessQueueEnabled)
+		__osSiCreateAccessQueue();
+	osRecvMesg(&__osSiAccessQueue, &dummyMesg, OS_MESG_BLOCK);
+}
+void __osSiRelAccess(void)
+{
+	osSendMesg(&__osSiAccessQueue, NULL, OS_MESG_NOBLOCK);
+} 
