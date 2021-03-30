@@ -2,6 +2,7 @@
 
 <img src="./progress/progress_total.svg">
 
+- <img src="./progress/progress_bk_boot.svg"> 
 - <img src="./progress/progress_core1.svg">  
 - <img src="./progress/progress_core2.svg">  
 - <img src="./progress/progress_SM.svg">
