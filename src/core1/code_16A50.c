@@ -11,7 +11,7 @@ typedef struct stack_header{
     u32 padC_5:6;
 }StackHeader;
 
-extern void *D_8002D514;
+extern StackHeader D_8002D500[2];
 extern u8 D_8023DA00;
 extern StackHeader D_802765B0;
 extern u32 D_80283230;
@@ -19,6 +19,9 @@ extern s32 D_80283234;
 extern u32 D_80276590;
 extern u32 D_802765A0;
 extern u32 D_802765A8;
+extern StackHeader *D_8023DA10;
+
+extern StackHeader D_8023D500[0x52];
 
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_16A50/func_80254470.s")
@@ -27,7 +30,24 @@ extern u32 D_802765A8;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_16A50/func_8025449C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_16A50/func_8025456C.s")
+void func_8025456C(StackHeader * arg0){
+    arg0->unkC_7 = 0;
+    arg0->unkC_31 = 0;
+    if((u8*)arg0->next - (u8*)arg0 < 10000){
+        arg0[1].prev = &D_8002D500;
+        arg0[1].next = D_8002D500[1].next;
+        D_8002D500[1].next[1].prev = arg0;
+        D_8002D500[1].next = arg0;
+    }else{
+        arg0[1].prev = D_8023D500[0x51].prev;
+        arg0[1].next = &D_8023D500[0x50];
+        
+        D_8023D500[0x51].prev[1].next = arg0;
+        D_8023D500[0x51].prev = arg0;
+
+    }
+    func_8025449C();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_16A50/func_80254608.s")
 
@@ -61,7 +81,13 @@ s32 func_802546DC(void){ return 0; }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_16A50/func_80254A60.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_16A50/func_80254B84.s")
+void *func_80254B84(s32 arg0){
+    if(D_80283234){
+        return func_80254A60(1);
+    }else{
+        return func_80254A60(0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_16A50/func_80254BC4.s")
 
@@ -76,7 +102,7 @@ s32 func_802546DC(void){ return 0; }
 
     D_80283234 = D_802765B0.prev;
     D_802765B0.prev = 0;
-    if(D_8002D514 == &D_8023DA00)
+    if(D_8002D500[1].next == &D_8023DA00)
         return NULL;
 
     D_80283230 = func_80254470((size > 0 )? size : 1); 
@@ -167,7 +193,7 @@ void free(void * ptr){
         sPtr = (StackHeader *) ptr - 1;
         D_80276590 =  D_80276590 - (u32)((u8*)sPtr->next - (u8*)ptr) - sizeof(StackHeader);
         
-        func_8025456C(sPtr, ptr);
+        func_8025456C(sPtr);
         
         if((u32)ptr == (u32)D_802765A0)
             D_802765A0 = 0;
