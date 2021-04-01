@@ -6,25 +6,32 @@ typedef struct stack_header{
     struct stack_header * prev;
     struct stack_header * next;
     u8 pad8[4];
-    u32 unkC_31:24;
-    u32 unkC_7:2;
+    u32 unkC_31:24; //size?
+    u32 unkC_7:2; //state?
     u32 padC_5:6;
 }StackHeader;
 
 extern StackHeader D_8002D500[2];
 extern u8 D_8023DA00;
 extern StackHeader D_802765B0;
+extern void *D_80283224;
+extern void *D_80283228;
 extern u32 D_80283230;
 extern s32 D_80283234;
 extern u32 D_80276590;
+extern void *D_8027659C;
 extern u32 D_802765A0;
 extern u32 D_802765A8;
+
 extern StackHeader *D_8023DA10;
 
 extern StackHeader D_8023D500[0x52];
 
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_16A50/func_80254470.s")
+s32 __stack_align(s32 size){
+    s32 misalign = size & 0xf;
+    return(misalign)? (size - misalign + 0x10) : size;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_16A50/func_80254490.s")
 
@@ -106,7 +113,7 @@ void *malloc(s32 size){
     if((u8*)D_8002D500[1].next == &D_8023DA00)
         return NULL;
 
-    D_80283230 = func_80254470((size > 0 )? size : 1); 
+    D_80283230 = __stack_align((size > 0 )? size : 1); 
     if(!(v1 = func_80254B84(0))){
         D_80283234 = 0;
         func_803306C8(2);
@@ -217,6 +224,47 @@ void free(void * ptr){
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_16A50/func_8025534C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_16A50/realloc.s")
+/*void *realloc(void *ptr, s32 size){
+    StackHeader *sPtr;
+    void *newSeg;
+    StackHeader *nextSeg;
+    
+    
+    D_80283224 = ptr;
+    D_80283228 = ptr;
+    sPtr = (StackHeader *)ptr - 1;
+    if(!((u32)((u8*) sPtr->next - (u8*)ptr) < size)){ 
+        //current pointer has enough free space to accomidate size change
+        func_80255300(sPtr);
+        return ptr;
+    }
+    D_8027659C = ptr;
+    nextSeg = sPtr->next;
+    if( nextSeg->unkC_7 == 0 
+        && !((u32)((u8*)nextSeg->next - (u8*)sPtr) - 0x10 < size)
+    ){
+        //combine current heap segment with the next one.
+        nextSeg[1].next[1].prev = nextSeg[1].prev;
+        nextSeg[1].prev[1].next = nextSeg[1].next;
+        D_80276590 += (u8*)nextSeg->next - (u8*)nextSeg;
+        sPtr->next = nextSeg->next;
+        nextSeg->next->prev = sPtr;
+        func_80255300(sPtr);
+        D_8027659C = 0;
+        return ptr;
+    }//L80255430
+
+    //try creating a new segment
+    if((newSeg = malloc(size)) == NULL)
+        return NULL;
+
+    func_80253010(newSeg, ptr, __stack_align(size));
+    free(ptr);
+    D_8027659C = 0;
+    D_80283228 = newSeg;
+    return newSeg;
+
+}//*/
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_16A50/func_80255498.s")
 
