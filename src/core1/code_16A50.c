@@ -81,6 +81,7 @@ s32 func_802546DC(void){ return 0; }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_16A50/func_80254A60.s")
 
+
 void *func_80254B84(s32 arg0){
     if(D_80283234){
         return func_80254A60(1);
@@ -95,14 +96,14 @@ void *func_80254B84(s32 arg0){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_16A50/func_80254C98.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_16A50/malloc.s")
-/*void *malloc(s32 size){
+void *malloc(s32 size){
+    u32 container_space;
     StackHeader *v1;
     StackHeader *a0;
 
     D_80283234 = D_802765B0.prev;
     D_802765B0.prev = 0;
-    if(D_8002D500[1].next == &D_8023DA00)
+    if((u8*)D_8002D500[1].next == &D_8023DA00)
         return NULL;
 
     D_80283230 = func_80254470((size > 0 )? size : 1); 
@@ -146,10 +147,10 @@ void *func_80254B84(s32 arg0){
         }//L80254E38
     }//L80254E38
 
-    if( D_80283230 + 0x10 < (u32)v1->next - (u32)v1 - 0x10){
+    if( D_80283230 + 0x10 < (u8*)v1->next - (u8*)v1 - 0x10){
         if(D_80283234){
             a0 = v1;
-            v1 = (u32)v1->next - D_80283230;
+            v1 = (u8*)v1->next - D_80283230;
             v1[-1].next = a0->next;
             a0->next->prev =  --v1;
             a0->next = v1;
@@ -157,14 +158,14 @@ void *func_80254B84(s32 arg0){
             func_80254FD0(a0);
         }
         else{//L80254EA4
-            a0 = (u32)v1 + (u32)D_80283230 + 0x10;
+            a0 = (u8*)v1 + D_80283230 + 0x10;
             a0[1].next = v1[1].next;
             a0[1].prev = v1[1].prev;
             a0[1].next[1].prev = a0;
             a0[1].prev[1].next = a0;
             a0->prev = v1;
             a0->next = v1->next;
-            v1->prev = a0;
+            a0->next->prev = a0;
             a0->unkC_7 = 0;
             a0->unkC_31 = 0;
             v1->next = a0;
@@ -175,11 +176,11 @@ void *func_80254B84(s32 arg0){
         v1[1].next[1].prev = v1[1].prev;
         v1[1].prev[1].next = v1[1].next;
     }//L80254F20
-
-    v1->unkC_31 = (u32)v1->next - (u32)v1 - size - 0x10;
+    container_space = (u32)v1->next - (u32)v1 ;
+    v1->unkC_31 = container_space - size - 0x10;
     v1->unkC_7 = 1;
-    D_80276590 += (u32)v1->next - (u32)v1 - size;
-    return &v1[1];
+    D_80276590 += container_space;
+    return (u8*)v1 + sizeof(StackHeader);
 }//*/
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_16A50/func_80254F90.s")
