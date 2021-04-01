@@ -4,5 +4,3 @@
 
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_26C70/func_80264690.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_26C70/osVirtualToPhysical.s")
