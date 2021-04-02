@@ -12,7 +12,7 @@ extern u64 D_8027A538;
 extern u8 D_80286F90;
 
 void func_8023DA20(s32 arg0){
-    osInvalDCache(&D_8027A130, &D_80286F90 - (u8*)&D_8027A130); //osInvalDCache
+    bzero(&D_8027A130, &D_80286F90 - (u8*)&D_8027A130); //bzero
     osWriteBackDCacheAll(); //osWriteBackDCacheAll
     func_8025B1E0();
     osInitialize();

@@ -16,7 +16,7 @@ s32 __osSiRawStartDma(s32 direction, void *dramAddr)
         IO_WRITE(SI_PIF_ADDR_WR64B_REG, 0x1FC007C0);
 
     if (direction == OS_READ)
-        func_80264B70(dramAddr, 64);//osInvalDCache(dramAddr, 64);
+        osInvalDCache(dramAddr, 64);//bzero(dramAddr, 64);
 
     return 0;
 }
