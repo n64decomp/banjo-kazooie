@@ -19,7 +19,7 @@ segments:
     start: 0x00000000
     vram: 0x803863F0
     files:
-      - [0x00000000, c]
+      - [0x0, c]
       - [0x42A0, c]
       - [0x5640, c]
       - [0x5ED0, c]

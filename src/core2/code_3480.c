@@ -100,7 +100,7 @@ s32 func_8028A5C0(void){
                 func_80311480(0xe35, 0x6, &D_80363610, 0, func_8028A558, NULL);
                 D_8037DCCC = 1;
             }//L8028A764
-            else if(jiggyscore_80320FE0(0x10)){
+            else if(jiggyscore_isCollected(0x10)){
                 func_802C2ADC(sp30);
                 if( (((D_8036361C[0] <= sp30[0])? (sp30[0] - D_8036361C[0]) : -(sp30[0] - D_8036361C[0])) < 4.0f)
                     && (((D_8036361C[1] <= sp30[1])? (sp30[1] - D_8036361C[1]) : -(sp30[1] - D_8036361C[1])) < 20.0f)

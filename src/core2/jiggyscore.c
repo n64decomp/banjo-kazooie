@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-u32 jiggyscore_80320FE0(s32);
+u32 jiggyscore_isCollected(s32);
 void jiggyscore_debug(void);
 void jiggyscore_8032103C(void);
 void jiggyscore_80321120(s32, s32);
@@ -27,17 +27,12 @@ u8* jiggyscore_80320F70(void){
     return D_803832C0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/jiggyscore/jiggyscore_80320F7C.s")
-// s32 jiggyscore_80320F7C(s32 arg0) {
-//     s32 phi_return;
+int jiggyscore_80320F7C(s32 arg0) {
+    return ((D_803832CD[(arg0 - 1) / 8] & (1 << (arg0 & 7))) != 0) 
+           || (jiggyscore_isCollected(arg0) != 0);
+}
 
-//     phi_return = (D_803832CD[(arg0 - 1) / 8] & (1 << (arg0 & 7))) != 0;
-//     if (!phi_return)
-//         phi_return =  (jiggyscore_80320FE0(arg0) != 0);
-//     return phi_return;
-// }
-
-u32 jiggyscore_80320FE0(s32 indx){
+u32 jiggyscore_isCollected(s32 indx){
     if( indx <= 0 || indx >= 0x65)
         return 0;
     return (D_803832C0[(indx - 1) / 8] & (1 << (indx & 7))) != 0;
@@ -90,7 +85,7 @@ s32 jiggyscore_leveltotal(s32 lvl) {
     start = (lvl - 1)*10 + 1;
     end = (lvl)*10 + 1;
     for(i = start; i < end; i++ ){
-        if(jiggyscore_80320FE0(i))
+        if(jiggyscore_isCollected(i))
             cnt++;
     }
     return cnt;

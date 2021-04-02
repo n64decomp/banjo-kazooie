@@ -144,7 +144,7 @@ void func_80387168(ActorMarker *this, s32 arg1){
 
             actorPtr->unk10_14 = MIN(actorPtr->unk38_31, 0xA);
             if( actorPtr->unk38_31 == 3 
-                && !jiggyscore_80320FE0(0xA)
+                && !jiggyscore_isCollected(0xA)
             ){
                 func_80328B8C(actorPtr, 8, 0 ,1);
                 func_80324E60(0.0f, 0x10);

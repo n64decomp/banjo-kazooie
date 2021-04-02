@@ -4,6 +4,11 @@
 
 #include "prop.h"
 
+int func_8032886C(Actor *, f32);
+void func_80328B8C(Actor *, s32, f32, s32);
+void func_802D4830(Actor *, s32, f32);
+
+/* .data */
 extern ActorInfo D_80392F40;
 extern ActorInfo D_80392F64;
 extern ActorInfo D_803932E8;
@@ -75,9 +80,40 @@ extern ActorInfo D_80394C94;
 extern ActorInfo D_80393354;
 extern ActorInfo D_80392D90;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/lair/code_0/func_803863F0.s")
+//chcobweb
+void func_803863F0(Actor *this){
+    if(!this->unkF4_21){
+        func_802D3CE8();
+        if(func_8031FF1C((this->unkF4_8 == 1)? 0xcb : 0xcc)){
+            func_803282F4(this->marker);
+            return;
+        }
+    }//L8038645C
+    if(this->unk10_31 == 0xC){
+        if(func_8032886C(this, 0.95f)){
+            func_80328B8C(this, 0xd, 0.98f, 1);
+            func_80326310(this);
+        }
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/lair/code_0/func_803864B0.s")
+//chbigyellowcobweb
+void func_803864B0(Actor *this){
+    if(!this->unkF4_21){
+        func_802D3CE8();
+        if(func_8031FF1C(0xca)){
+            func_803282F4(this->marker);
+            return;
+        }
+    }//L8038645C
+    if(this->unk10_31 == 0xF){
+        if(func_8032886C(this, 0.90f)){
+            func_80328B8C(this, 0x10, 0.98f, 1);
+            func_80326310(this);
+        }
+    }
+}
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/lair/code_0/func_80386550.s")
 
@@ -99,11 +135,60 @@ extern ActorInfo D_80392D90;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/lair/code_0/func_80387560.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/lair/code_0/func_803875F0.s")
+//circular grate
+void func_803875F0(Actor * this){
+    func_802D3D74(this);
+    if(!this->unk16C_4){
+        if(func_8031FF1C(0x1e)){
+            func_803282F4(this->marker);
+        }
+        else if(mapSpecificFlags_get(0)){
+            this->unk20 = this->position_y;
+            func_802BAFE4(0x2A);
+            func_80320004(0x1E, 1);
+            this->unk16C_4 = 1;
+            this->unk38_31 =  0x0C;
+        }
+    }else{//L80387684
+        if(this->unk38_31){
+            this->unk38_31--;
+            if(this->unk38_31)
+                return;
+            func_802D4830(this, 0x9A, 0.5f);
+        }
+        //L803876CC
+        this->position_y += 4.0f;
+        if(this->unk20 + 380.0f < this->position_y){
+            func_802D48B8(this);
+            func_8030E624(0x7FF0987F);
+            func_803282F4(this->marker);
+        }
+        
+    }
+}
 
+//chnotedoor50_update
 #pragma GLOBAL_ASM("asm/nonmatchings/lair/code_0/func_80387730.s")
 
+//chnotedoor50_draw
 #pragma GLOBAL_ASM("asm/nonmatchings/lair/code_0/func_80387DA8.s")
+/* Actor * func_80387DA8(ActorMarker *marker, Gfx **gdl, Mtx**mptr, u32 vptr){
+    Actor *actor = marker_getActor(marker);
+    s32 temp_s0;
+    s32 temp_a0;
+    s32 i;
+    temp_s0 = func_8034C2C4(marker, 0x1f3);
+    if(temp_a0 = func_8034C2C4(marker, 0x1f2)){
+        func_8034E0FC(temp_a0, (s32)actor->unk20);
+    }
+    if(temp_s0){
+        func_8034E0FC(temp_s0, 0xff - (s32)actor->unk20);
+    }
+    for(i = 0; i < 0xC; i++){
+        func_8033A45C(i+1, actor->unkF4_8 == (i+1));
+    }
+    return func_80325E78(marker, gdl, mptr, vptr);
+}//*/
 
 #pragma GLOBAL_ASM("asm/nonmatchings/lair/code_0/func_80387E94.s")
 

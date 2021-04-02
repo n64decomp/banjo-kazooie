@@ -10,7 +10,7 @@ void func_8024CE60(f32, f32);
 void func_802E40A8(s32 map, s32 exit);
 void func_802E40D0(s32 map, s32 exit);
 void func_802E40E8(s32 transition);
-s32 func_802E4A08(void);
+int func_802E4A08(void);
 
 f32 func_8033DC20(void);
 void func_8033DC9C(f32);
@@ -310,15 +310,14 @@ s32 getGameMode(void){
     return D_8037E8E0.game_mode;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5BEB0/func_802E4A08.s")
-// s32 func_802E4A08(void){
-//     return (D_8037E8E0.game_mode == 6) 
-//         || (D_8037E8E0.game_mode == 5)
-//         || (D_8037E8E0.game_mode == 7)
-//         || (D_8037E8E0.game_mode == 8)
-//         || (D_8037E8E0.game_mode == 9)
-//         || (D_8037E8E0.game_mode == 10);
-// }
+int func_802E4A08(void){
+    return (D_8037E8E0.game_mode == 6) 
+        || (D_8037E8E0.game_mode == 5)
+        || (D_8037E8E0.game_mode == 7)
+        || (D_8037E8E0.game_mode == 8)
+        || (D_8037E8E0.game_mode == 9)
+        || (D_8037E8E0.game_mode == 10);
+}
 
 void func_802E4A70(void){
     D_8037E8E0.unk1C = 1;
