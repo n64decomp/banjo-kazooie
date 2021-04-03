@@ -68,17 +68,14 @@ void func_80387514(Actor *this){
 #pragma GLOBAL_ASM("asm/nonmatchings/SM/code_D60/func_80387690.s")
 void func_80387690(ActorMarker *, s32, s32);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/SM/code_D60/func_80387764.s")
-/*void func_80387764(ActorMarker * marker){
-    volatile s32 sp34;
-    s32 sp2C = 4;
-    s32 temp_a0 = 2;
+void func_80387764(ActorMarker * marker){
+    s32 sp34;
     int temp_a2;
-    f32 *sp20;
+    s32 sp2C = 4;
+    
     Actor *actor = marker_getActor(marker);
     
     temp_a2 = actor->unk38_31 ? 1 : 0 ;
-    temp_a0 = 2;
     if( temp_a2 ){
         sp2C = 0xE;
     }
@@ -86,25 +83,24 @@ void func_80387690(ActorMarker *, s32, s32);
     switch (actor->unk10_14)
     {
     case 0x1: //L803877D8
-        sp34 = temp_a2 ? 0xe14 : 0xe15; //dialog enums
+        sp34 = temp_a2 ? 0xe15 : 0xe14; //dialog enums
         break;
 
     case 0x2: //L803877F4
-        sp34 = temp_a2 ? 0xe16 : 0xe17; //dialog enums
+        sp34 = temp_a2 ? 0xe17 : 0xe16; //dialog enums
         break;
 
     case 3: //L80387810
-        sp34 = temp_a2 ? 0xe18 : 0xe19; //dialog enums
+        sp34 = temp_a2 ? 0xe19 : 0xe18; //dialog enums
         break;
     default:
-        sp34 = actor->unk38_31;
+        //sp34 = actor->unk38_31;
         break;
     }//L8038782C
     if(sp34 == 0xe19){ 
         func_8028F94C(2, &actor->unk1C);
     }
     //L80387848
-    sp20 = &actor->unk1C;
     if(!mapSpecificFlags_get(3) && func_802DA498() && temp_a2){
         mapSpecificFlags_set(3, 1);
         sp34 = 0xE12;
@@ -113,6 +109,6 @@ void func_80387690(ActorMarker *, s32, s32);
         func_80324E60(0.0f, 6);
     }//L803878B0
 
-    func_80311480(sp34, sp2C, sp20, actor->marker, func_80387690, NULL);
+    func_80311480(sp34, sp2C, &actor->unk1C, actor->marker, func_80387690, NULL);
     actor->unk38_31++;
 }//*/
