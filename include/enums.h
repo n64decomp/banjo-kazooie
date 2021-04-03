@@ -20,6 +20,14 @@ enum transformation_E
     wishywashy
 };
 
+enum ABILITY_E
+{
+    ABILITY_BEAR_PUNCH = 0x4,
+
+    ABILITY_RATATAT_RAP = 0xB,
+    ABILITY_ROLL = 0xC
+};
+
 enum MAP_E
 {
     MAP_SM_SPIRAL_MOUNTAIN = 0x01,
@@ -229,7 +237,12 @@ enum actor_e
     actor_leafboat          = 0xF1,
     actor_bigalligator      = 0xF6,
     actor_yellow_flibbit_controller = 0x136,
-    actor_yumblie           = 0x139  
+    actor_yumblie           = 0x139,
+
+    ACTOR_COLLIWOBBLE       = 0x164,
+    ACTOR_BAWL              = 0x165,
+    ACTOR_TOPPER            = 0x166,
+    ACTOR_ATTACK_TUTORIAL   = 0x167
 };
 
 enum bs_e

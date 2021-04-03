@@ -23,7 +23,7 @@ segments:
       - [0xF0, c]
       - [0x5B0, c]
       - [0xBF0, c]
-      - [0xD60, c]
+      - [0xD60, c, SM/ch/attacktutorial]
       - [0x1520, c]
       - [0x4070, c]
       - [0x44D0, c]
@@ -33,6 +33,9 @@ segments:
     vram: 0x8038AAC0
     files:
       - [0x000046D0, bin]
+      - [0x00004830, .data, SM/ch/attacktutorial]
+      - [0x00004860, bin]
       - [0x00004D20, .rodata, SM/code_5B0]
-      - [0x00004D40, bin]
+      - [0x00004D40, .rodata, SM/ch/attacktutorial]
+      - [0x00004DB0, bin]
   - [0x00004F30]

@@ -128,7 +128,7 @@ void player_getRotation(f32 *dst){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028F170.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028F190.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/ability_isUnlocked.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028F1B0.s")
 
@@ -154,7 +154,7 @@ void player_getRotation(f32 *dst){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028F364.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028F3B8.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/ability_unlock.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028F3D8.s")
 
