@@ -132,9 +132,9 @@ void func_80388E20(Actor *this){
                 func_80388D60(this);
             }
             if(func_8038941C(jujuCtlPtr->unk8)){
-                func_803282F4(this->marker);
+                marker_despawn(this->marker);
                 for(i = 0; i < 4; i++){
-                    func_803282F4(jujuCtlPtr->unk8[i]);
+                    marker_despawn(jujuCtlPtr->unk8[i]);
                 }
                 return;
             }

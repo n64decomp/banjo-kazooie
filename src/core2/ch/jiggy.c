@@ -19,7 +19,7 @@ void func_802C7AB0(ActorMarker * arg0, u32 arg1){
     func_8030E6D4(0x30);
     func_8025A6EC(0x3c, 0x7FF8);
     mapSpecificFlags_set(arg1, 1);
-    func_803282F4(arg0);
+    marker_despawn(arg0);
 }
 
 void func_802C7AF8(u32 x, u32 y, u32 z, u32 arg3){

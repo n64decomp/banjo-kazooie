@@ -278,7 +278,7 @@ void func_80389080(Actor *this){
         }
         func_803888E4(this, 1);
         if(jiggyscore_80320F7C(jiggy_bgs_tiptup) && !func_803203FC(2) && !func_803203FC(1))
-            func_803282F4(this->marker);
+            marker_despawn(this->marker);
     }
     else{
         player_getPosition(sp44);

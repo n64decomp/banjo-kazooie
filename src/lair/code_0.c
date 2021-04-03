@@ -85,7 +85,7 @@ void func_803863F0(Actor *this){
     if(!this->unkF4_21){
         func_802D3CE8();
         if(func_8031FF1C((this->unkF4_8 == 1)? 0xcb : 0xcc)){
-            func_803282F4(this->marker);
+            marker_despawn(this->marker);
             return;
         }
     }//L8038645C
@@ -102,7 +102,7 @@ void func_803864B0(Actor *this){
     if(!this->unkF4_21){
         func_802D3CE8();
         if(func_8031FF1C(0xca)){
-            func_803282F4(this->marker);
+            marker_despawn(this->marker);
             return;
         }
     }//L8038645C
@@ -140,7 +140,7 @@ void func_803875F0(Actor * this){
     func_802D3D74(this);
     if(!this->unk16C_4){
         if(func_8031FF1C(0x1e)){
-            func_803282F4(this->marker);
+            marker_despawn(this->marker);
         }
         else if(mapSpecificFlags_get(0)){
             this->unk20 = this->position_y;
@@ -161,7 +161,7 @@ void func_803875F0(Actor * this){
         if(this->unk20 + 380.0f < this->position_y){
             func_802D48B8(this);
             func_8030E624(0x7FF0987F);
-            func_803282F4(this->marker);
+            marker_despawn(this->marker);
         }
         
     }

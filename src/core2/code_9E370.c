@@ -120,7 +120,7 @@ Actor *func_8032811C(s32 id, f32 *pos, f32* rot){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_803282AC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_803282F4.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/marker_despawn.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_803283BC.s")
 

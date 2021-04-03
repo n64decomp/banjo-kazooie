@@ -115,7 +115,7 @@ void func_802CDD78(Actor * this){
         this->marker->unkC = func_802CDBA8;
         func_803300D8(this->marker, func_802CDD3C);
         if(func_803203FC(0xc1)){
-            func_803282F4(this->marker);
+            marker_despawn(this->marker);
         }
     }//L802CDE24
     sp30 = this->position;

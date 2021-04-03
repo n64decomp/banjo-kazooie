@@ -152,6 +152,7 @@ timedFunc_set_6 = 0x80325048;
 timedJiggySpawn = 0x80325098;
 func_80325340 = 0x80325340;
 func_80326224 = 0x80326224;
+marker_despawn = 0x803282F4;
 marker_getActor = 0x80329958;
 actor_copy = 0x80329C40;
 actor_collisionOff = 0x8032AA74;

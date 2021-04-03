@@ -160,4 +160,6 @@ void func_80301DE4(s32, struct8s *);
 void func_803017D0(s32, struct8s *, Gfx**, Mtx**, s32);
 void func_80301754(s32, struct8s *);
 
+void marker_despawn(ActorMarker *marker);
+
 #endif

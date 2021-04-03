@@ -12,7 +12,7 @@ void func_802D6EA0(Actor *this){
         if(this->unk104){
             marker_getActor(this->unk104)->unk104 = 0;
         }
-        func_803282F4(this->marker);
+        marker_despawn(this->marker);
     }
 }
 

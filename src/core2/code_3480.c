@@ -129,13 +129,13 @@ s32 func_8028A5C0(void){
 //snacker_updateState
 void func_8028A8D0(void){
     switch(func_803348C0()){
-        case map_ttc_treasure_trove_cove:
+        case MAP_TTC_TREASURE_TROVE_COVE:
             D_8037BF50 = func_8028A45C();
             break;
-        case map_rbb_rusty_bucket_bay:
+        case MAP_RBB_RUSTY_BUCKET_BAY:
             D_8037BF50 = func_8028A504();
             break;
-        case map_sm_banjos_house:
+        case MAP_SM_BANJOS_HOUSE:
             D_8037BF50 = func_8028A5C0();
             break;
     }

@@ -20,7 +20,7 @@ void func_80386FE0(Actor *this){
             break;
         case 2://L803870C4
             if(this->unk10_14 == 0)
-                func_803282F4(this->marker);
+                marker_despawn(this->marker);
             break;
     }//L803870DC
 }

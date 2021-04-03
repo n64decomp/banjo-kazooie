@@ -165,7 +165,7 @@ void func_8038FBF8(Actor *this){
             func_8030E540(0x7C);
         }
         if(func_802878C4(this->movement)){
-            func_803282F4(this->marker);
+            marker_despawn(this->marker);
         }
     }
 }

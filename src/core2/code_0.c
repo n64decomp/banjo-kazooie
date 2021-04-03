@@ -329,8 +329,8 @@ s32  func_8028780C(Movement *this, s32 arg1){
 s32 func_8028781C(Movement *this, f32 *arg1, s32 arg2){
     s32 map;
     map = func_803348C0();
-    if( map != map_cs_start_nintendo && map != map_cs_start_rarware
-        && map != map_cs_end_not100 && this->unk23 !=0 && arg1 != NULL)
+    if( map != MAP_CS_START_NINTENDO && map != MAP_CS_START_RAREWARE
+        && map != MAP_CS_END_NOT_100 && this->unk23 !=0 && arg1 != NULL)
     {
         this->unk24 = this->unk24 -1;
         if(this->unk24 == 0xFF){

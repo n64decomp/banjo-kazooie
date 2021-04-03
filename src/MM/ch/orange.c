@@ -71,7 +71,7 @@ void func_80387FF4(Actor * this){
             }
             this->unk60 -= 4.0;
             if(this->unk60 < 4.0){
-                func_803282F4(this->marker);
+                marker_despawn(this->marker);
             }
             break;
     }

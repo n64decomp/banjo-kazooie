@@ -36,7 +36,7 @@ void func_803869A0(Actor *this, f32 arg1, f32 arg2) {
 void func_80386A00(Actor *this) {
     if (this->unk16C_4 <= 0) {
         if (func_8031FF1C(0xFC) == 0) {
-            func_803282F4(this->marker);
+            marker_despawn(this->marker);
             return;
         }
         actor_collisionOff(this);
@@ -97,7 +97,7 @@ void func_80386D68(Actor *this){
         func_802CA1CC(0x18);
         func_802C3F04(func_802C4218, 0x1F, *(u32 *)(this->position), *(u32 *)(&this->position_y), *(u32 *)(&this->position_z));
     }
-    func_803282F4(this->marker);
+    marker_despawn(this->marker);
 }
 
 void func_80386EB4(ActorMarker *this, s32 arg1) {

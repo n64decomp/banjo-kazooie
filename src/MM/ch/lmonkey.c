@@ -150,7 +150,7 @@ void func_803885D0(Actor *this){
                     mapSpecificFlags_set(3, 1);
                 }
                 if(D_80389C48 <= this->unk48){
-                    func_803282F4(this->marker);
+                    marker_despawn(this->marker);
                 }
                 break;
             
