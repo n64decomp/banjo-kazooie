@@ -16,6 +16,8 @@ void func_8024FC1C(u8, s32);
 void func_8025AC20(s32, s32, s32, f32, char*, s32);
 void func_8025AC7C(s32, s32, s32, f32, s32, char*, s32);
 void func_80259B14(void);
+void func_8025A55C(s32, s32, s32);
+void func_8025ABB8(s32, s32, s32, s32);
 struct12s *func_802EDAA4(s32 *, s32*);
 
 
@@ -117,33 +119,116 @@ s32 func_80259B8C(void){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_80259F7C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025A104.s")
+void func_8025A104(s32 arg0, s32 arg1){
+    if (arg0 != D_80276E30[0].unk10){
+        func_8024FC1C(0, arg0);
+    }
+    func_8024FD28(0, (s16)arg1);
+    D_80276E30[0].unk10 = (s16) arg0;
+    D_80276E30[0].unk8 = arg1;
+    D_80276E30[0].unk0 = 0.0f;
+    D_80276E30[0].unk12 = 0;
+    D_80276E30[0].unk4 = 0.0f;
+    D_80276E30[0].unk15 = 0;
+    func_80259994(&D_80276E30[0], arg1);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025A1A8.s")
+void func_8025A1A8(s32 arg0){
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025A23C.s")
+    if (arg0 != D_80276E30[0].unk10){
+        func_8024FC1C(0, arg0);
+        D_80276E30[0].unk10 = (s16) arg0;
+        D_80276E30[0].unk8 = func_80250034(arg0);
+        D_80276E30[0].unk0 = 0.0f;
+        D_80276E30[0].unk12 = 0;
+        D_80276E30[0].unk4 = 0.0f;
+        D_80276E30[0].unk15 = 0;
+        func_80259994(&D_80276E30[0], D_80276E30[0].unk8);
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025A2B0.s")
+void func_8025A23C(s32 arg0){
+    CoMusic *music = &D_80276E30[5];
+    s32 temp_v0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025A2D8.s")
+    if (arg0 != music->unk10){
+        func_8024FC1C(5, arg0);
+        music->unk10 = (s16) arg0;
+        temp_v0 = func_80250034(arg0);
+        music->unk8 = temp_v0;
+        music->unk12 = 0;
+        music->unk15 = 0;
+        music->unk0 = 0.0f;
+        music->unk4 = 0.0f;
+        func_80259994(music, temp_v0);
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025A2FC.s")
+void func_8025A2B0(void){
+    func_802599B4(&D_80276E30[5]);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025A388.s")
+void func_8025A2D8(void){
+    func_802599B4(&D_80276E30[0]);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025A430.s")
+void func_8025A2FC(s32 arg0, s32 arg1){
+    s32 i;
+
+    func_8025A55C(arg0, arg1, 1);
+    for (i = 1; i < 5; i++){
+        s16 val = (i + D_80276E30)->unk10; // Doesn't match with D_80276E30[i]
+        if (val >= 0){
+            func_8025ABB8(val, arg0, arg1, 1);
+        }
+    }
+}
+
+void func_8025A388(s32 arg0, s32 arg1) {
+    s32 i;
+
+    if (D_80276E30->unk14 == 0){
+        func_8025A55C(arg0, arg1, 1);
+    }
+    for (i = 1; i < 5; i++){
+        CoMusic *current = (i + D_80276E30); // Doesn't match with D_80276E30[i]
+        if (current->unk10 >= 0 && current->unk14 == 0){
+            func_8025ABB8(current->unk10, arg0, arg1, 1);
+        }
+    }
+}
+
+void func_8025A430(s32 arg0, s32 arg1, s32 arg2){
+    s32 i;
+
+    func_8025A55C(arg0, arg1, arg2);
+    for (i = 1; i < 5; i++){
+        s16 val = (i + D_80276E30)->unk10; // Doesn't match with D_80276E30[i]
+        if (val >= 0){
+            func_8025ABB8(val, arg0, arg1, arg2);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025A4C4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025A55C.s")
+void func_8025A55C(s32 arg0, s32 arg1, s32 arg2){
+    func_8025A4C4(arg0, arg1, &D_80276E30->unk1C[arg2]);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025A58C.s")
+void func_8025A58C(s32 arg0, s32 arg1){
+    func_8025A55C(arg0, arg1, 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025A5AC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025A6CC.s")
+void func_8025A6CC(s32 arg0, s32 arg1){
+    func_8025A5AC(arg0, arg1, 0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025A6EC.s")
+void func_8025A6EC(s32 arg0, s32 arg1){
+    func_8025A5AC(arg0, arg1, 1);
+}
 
 //comusic_queueTrack
 void func_8025A70C(s32 track_id){
@@ -165,19 +250,66 @@ void func_8025A70C(s32 track_id){
 
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025A788.s")
+void func_8025A7DC(s32);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025A7DC.s")
+void func_8025A788(s32 arg0, f32 arg1, f32 arg2){
+    timedFunc_set_1(arg1, &func_8025A70C, arg0);
+    timedFunc_set_1(arg1 + arg2, &func_8025A7DC, arg0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025A818.s")
+void func_8025A7DC(s32 track_id){
+    CoMusic *trackPtr;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025A864.s")
+    trackPtr = func_802598B0(track_id);
+    if (trackPtr != NULL && trackPtr->unk10 >= 0){
+        func_802599B4(trackPtr);
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025A8B8.s")
+s32 func_8025A818(void){
+    if (D_80276E30[0].unkC == 0 && D_80276E30[0].unk8 <= 0){
+        func_802599B4(&D_80276E30[0]);
+        return 1;
+    }
+    return 0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025A8E4.s")
+s32 func_8025A864(s32 track_id){
+    CoMusic *trackPtr;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025A904.s")
+    trackPtr = func_802598B0(track_id);
+    if (trackPtr != NULL && trackPtr->unkC == 0 && trackPtr->unk8 <= 0){
+        func_802599B4(trackPtr);
+        return 1;
+    }
+    return 0;
+}
+
+void func_8025A8B8(s32 track_id, s32 arg1){
+    CoMusic *trackPtr;
+
+    trackPtr = func_802598B0(track_id);
+    if (trackPtr != NULL){
+        trackPtr->unk14 = arg1;
+    }
+}
+
+void func_8025A8E4(s32 arg0) {
+    if (D_80276E30[0].unk10 >= 0) {
+        D_80276E30[0].unk14 = arg0;
+    }
+}
+
+void func_8025A904(void){
+    CoMusic *trackPtr = &D_80276E30[0];
+
+    while (trackPtr < &D_80276E30[6]){
+        if (trackPtr->unk10 >= 0){
+            func_802599B4(trackPtr);
+        }
+        trackPtr++;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025A96C.s")
 
@@ -196,7 +328,12 @@ void func_8025AABC(s32 track_id){
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025AB00.s")
+void func_8025AB00(void){
+    D_80276E30[0].unk15 = 1;
+    if (!D_80276E30[0].unk8){
+        func_802599B4(&D_80276E30[0]);
+    }
+}
 
 void comusic_8025AB44(s32 arg0, s32 arg1, s32 arg2){
     func_8025AC20(arg0, arg1, arg2, 0.0f, D_80278340, 0x39e);
