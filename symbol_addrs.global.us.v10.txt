@@ -63,8 +63,6 @@ D_80389B8C = 0x80389B8C;
 
 D_80389C00 = 0x80389C00;
 
-D_8038B1C0 = 0x8038B1C0;
-
 chhutInfo           = 0x803898F0;
 chchimpystump       = 0x80389920;
 chcongaInfo         = 0x80389998;
@@ -73,3 +71,7 @@ chlmonkeyInfo       = 0x80389A38;
 chgrublinInfo       = 0x80389AB8;
 chjujuhitboxInfo    = 0x80389AE0;
 chjujuInfo          = 0x80389B10;
+
+
+D_8038B1C0 = 0x8038B1C0;
+D_8038B1D8 = 0x8038B1D8;
