@@ -15,7 +15,7 @@ typedef struct{
 #define TUPLE(t, n) union{\
     struct{ t n##_x; t n##_y; t n##_z; };\
     struct{ t n##_pitch; t n##_yaw; t n##_roll; };\
-    t n##[3];\
+    t n[3];\
 }
 
 typedef struct variable_length_array{

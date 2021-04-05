@@ -11,19 +11,19 @@ options:
     #include "functions.h"
     #include "variables.h"
   create_detected_syms: yes
-  undefined_syms: undefined_syms.us.v11.txt
-  symbol_addrs:   symbol_addrs.us.v11.txt
+  undefined_syms_path: undefined_syms.us.v11.txt
+  symbol_addrs_path:   symbol_addrs.us.v11.txt
 segments:
   - name: MMM/code
     type: code
     start: 0x00000000
     vram: 0x80385610
-    files:
+    subsections:
       - [0x00000000, asm]
   - name: MMM/data
     type: code
     start: 0x000055F0
     vram: 0x8038AC00
-    files:
+    subsections:
       - [0x000055F0, bin]
   - [0x000060D0]

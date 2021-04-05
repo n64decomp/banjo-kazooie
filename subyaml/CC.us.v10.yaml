@@ -11,14 +11,14 @@ options:
     #include "functions.h"
     #include "variables.h"
   create_detected_syms: yes
-  undefined_syms: undefined_syms.us.v10.txt
-  symbol_addrs:   symbol_addrs.us.v10.txt
+  undefined_syms_path: undefined_syms.us.v10.txt
+  symbol_addrs_path:   symbol_addrs.us.v10.txt
 segments:
   - name: CC/code
     type: code
     start: 0x00000000
     vram: 0x803863F0
-    files:
+    subsections:
       - [0x00000000, c]
       - [0x530, c]
       - [0xBF0, c]
@@ -31,6 +31,6 @@ segments:
     type: code
     start: 0x000036B0
     vram: 0x80389AA0
-    files:
+    subsections:
       - [0x000036B0, bin]
   - [0x00003B80]

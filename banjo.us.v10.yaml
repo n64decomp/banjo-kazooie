@@ -11,22 +11,24 @@ options:
     #include "functions.h"
     #include "variables.h"
   create_detected_syms: yes
-  undefined_syms: undefined_syms.us.v10.txt
-  symbol_addrs:   symbol_addrs.us.v10.txt
+  undefined_syms_path: undefined_syms.us.v10.txt
+  symbol_addrs_path:   symbol_addrs.us.v10.txt
 segments:
 - name:  header
   type:  header
   start: 0x00000000
-  files:
-  - [0x0000, header, header]
-- name:  boot
-  type:  bin
-  start: 0x00000040
+- name: boot
+  type: code
+  start: 0x0040
+  vram: 0xA4000040
+  subsections:
+  - [0x0040, asm, boot]
+  - [0x0B70, bin, boot2]
 - name:  bk_boot
   type:  code
   start: 0x1000
   vram:  0x80000400
-  files:
+  subsections:
   - [0x1000, c]
   - [0x1050, c, done/bk_boot_1050]
   - [0x1150, c, done/rarezip]
@@ -59,18 +61,18 @@ segments:
 - name: assets
   type: bin
   start: 0x5BE0
-  files:
+  subsections:
   - [0x5BE0, bin, assets]
 - name: soundfont1
   type: bin
   start: 0xD846C0
-  files:
+  subsections:
   - [0xD846C0, bin, soundfont1.ctl]
   - [0xD954B0, bin, soundfont1.tbl]
 - name: soundfont2
   type: bin
   start: 0xEA3EB0
-  files:
+  subsections:
   - [0xEA3EB0, bin, soundfont2.ctl]
   - [0xEADE60, bin, soundfont2.tbl]
 - name: core1.us.v10.rzip

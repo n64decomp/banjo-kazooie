@@ -11,14 +11,14 @@ options:
     #include "functions.h"
     #include "variables.h"
   create_detected_syms: yes
-  undefined_syms: undefined_syms.us.v10.txt
-  symbol_addrs: symbol_addrs.us.v10.txt
+  undefined_syms_path: undefined_syms.us.v10.txt
+  symbol_addrs_path: symbol_addrs.us.v10.txt
 segments:
 - name: core2/code
   type: code
   start: 0x00000000
   vram:  0x80286F90 # via https://hack64.net/wiki/doku.php?id=player_kazooie:ram_map
-  files:
+  subsections:
   - [0x0000, c]
   - [0x0AD0, c]
   - [0x1930, c]
@@ -327,7 +327,7 @@ segments:
   name: core2/data
   start: 0x000DC600
   vram:  0x80363590
-  files:
+  subsections:
   - [0x000DC600, bin]
   - [0x000E2350, .data, core2/code_73640]
   - [0x000E2790, bin]

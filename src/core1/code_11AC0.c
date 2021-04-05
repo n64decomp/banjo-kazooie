@@ -459,9 +459,3 @@ void func_80250D8C(void){}
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_80250E94.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_80250FC0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_80251060.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_8025106C.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_8025108C.s")
