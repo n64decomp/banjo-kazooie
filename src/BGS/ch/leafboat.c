@@ -39,8 +39,8 @@ void func_8038FD88(ActorMarker *this, u32 arg1){
 //     u8 tmp[5];
 
 //     s1 = &this->leafboat;
-//     if(!this->unkF4_21){
-//         this->unkF4_21 = 1;
+//     if(!this->initialized){
+//         this->initialized = 1;
 //         func_803300A8(this->marker, func_8038FD88, NULL, NULL);
 //         (s1 = &this->leafboat)->unk6C = randf2(80.0f, 100.0f);
 //         this->unk1C = 0.0f;
@@ -75,7 +75,7 @@ void func_8038FD88(ActorMarker *this, u32 arg1){
 //         s1->unk68 = this->roll;
 //         this->unk60 = 0.0f;
 //         this->unk2C = 0.0f;
-//         this->unk10_14 = 0;
+//         this->unk10_12 = 0;
 //         return;
 //     }
 

@@ -12,8 +12,8 @@ void func_80328A84(Actor*, u32);
 Actor *func_802C80C0(ActorMarker *this, Gfx **gdl, Mtx **mptr, u32 arg3){
     Actor *thisActor = marker_getActor(this);
 
-    if(!thisActor->unkF4_21){
-        thisActor->unkF4_21 = 1;
+    if(!thisActor->initialized){
+        thisActor->initialized = 1;
         return thisActor;
     }
     else{

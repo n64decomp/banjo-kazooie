@@ -23,8 +23,8 @@ ActorInfo chchimpystump = { 0x95, actor_chimpy_stump, model_chimpy_stump, 1, NUL
 
 void _chchimpystump_80386CA0(Actor *this){
     if(mapSpecificFlags_get(4)){
-        if(this->unk10_14 == 0){
-            this->unk10_14 = 1;
+        if(this->unk10_12 == 0){
+            this->unk10_12 = 1;
             func_802BB3DC(1, 3.0f, 1.0f);
             func_80244BB0(0, 0x6A, 0x7FF8, 0.2f);
         }//L80386D0C
@@ -34,9 +34,9 @@ void _chchimpystump_80386CA0(Actor *this){
 }
 
 void chchimpystump_update(Actor *this){
-    if(!this->unkF4_21){
+    if(!this->initialized){
         actor_collisionOff(this);
-        this->unkF4_21 = 1;
+        this->initialized = 1;
         this->unk28 = this->position_y;
         this->position_y -= 134.0f;
         this->marker->propPtr->unk8_3 = 1;

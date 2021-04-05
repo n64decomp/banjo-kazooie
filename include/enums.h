@@ -239,10 +239,15 @@ enum actor_e
     actor_yellow_flibbit_controller = 0x136,
     actor_yumblie           = 0x139,
 
-    ACTOR_COLLIWOBBLE       = 0x164,
-    ACTOR_BAWL              = 0x165,
-    ACTOR_TOPPER            = 0x166,
-    ACTOR_ATTACK_TUTORIAL   = 0x167
+    ACTOR_COLLYWOBBLE_A       = 0x164,
+    ACTOR_BAWL_A              = 0x165,
+    ACTOR_TOPPER_A            = 0x166,
+    ACTOR_ATTACK_TUTORIAL   = 0x167,
+
+
+    ACTOR_COLLYWOBBLE_B     = 0x36D,
+    ACTOR_BAWL_B            = 0x36E,
+    ACTOR_TOPPER_B          = 0x36F
 };
 
 enum bs_e
@@ -349,6 +354,10 @@ enum asset_e
     model_grublin           = 0x3c5,
 
     model_chimpy_stump      = 0x3c8,
+
+    MODEL_TOPPER            = 0x4ed,
+    MODEL_COLLYWOBBLE       = 0x4ee,
+    MODEL_BAWL              = 0x4ef,
 
     model_MM_hut     = 0x7d7,
     model_mudhut_top = 0x7d8,

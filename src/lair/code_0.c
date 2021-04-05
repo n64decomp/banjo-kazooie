@@ -82,7 +82,7 @@ extern ActorInfo D_80392D90;
 
 //chcobweb
 void func_803863F0(Actor *this){
-    if(!this->unkF4_21){
+    if(!this->initialized){
         func_802D3CE8();
         if(func_8031FF1C((this->unkF4_8 == 1)? 0xcb : 0xcc)){
             marker_despawn(this->marker);
@@ -99,7 +99,7 @@ void func_803863F0(Actor *this){
 
 //chbigyellowcobweb
 void func_803864B0(Actor *this){
-    if(!this->unkF4_21){
+    if(!this->initialized){
         func_802D3CE8();
         if(func_8031FF1C(0xca)){
             marker_despawn(this->marker);

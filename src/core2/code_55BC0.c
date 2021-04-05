@@ -50,8 +50,8 @@ void func_802DCC78(ActorMarker *this){
 }
 
 void func_802DCC90(Actor *this){
-    if(!this->unkF4_21){
-        this->unkF4_21 = 1;
+    if(!this->initialized){
+        this->initialized = 1;
         this->unk124_9 = 0;
         actor_collisionOff(this);
         func_80328B8C(this, 1, 0.0f, 1);

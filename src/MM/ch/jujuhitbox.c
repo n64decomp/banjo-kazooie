@@ -106,8 +106,8 @@ void func_80388E20(Actor *this){
     s32 i;
 
     jujuCtlPtr = &this->juju_ctl;
-    if(!this->unkF4_21){
-        this->unkF4_21 = 1;
+    if(!this->initialized){
+        this->initialized = 1;
         this->unk138_24 = 0;
         jujuCtlPtr->unk18 = 0.5f;
     }

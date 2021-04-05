@@ -77,9 +77,9 @@ void func_8038EB8C(Actor *this){
     s32 tmp;
 
     if(func_80334904() == 2){
-        if(!this->unkF4_21){
+        if(!this->initialized){
             this->marker->collidable = 0;
-            this->unkF4_21 = 1;
+            this->initialized = 1;
         }
 
         switch(this->unk10_31){

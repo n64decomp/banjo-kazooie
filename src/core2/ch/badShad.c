@@ -4,8 +4,8 @@
 
 void func_802D6EA0(Actor *this){
     s32 iVar1;
-    if(!this->unkF4_21){
-        this->unkF4_21 = 1;
+    if(!this->initialized){
+        this->initialized = 1;
         this->marker->collidable = 0;
     }
     if(!this->despawn_flag && this->unk1C < (f32)(func_8023DB5C() - 1) ){

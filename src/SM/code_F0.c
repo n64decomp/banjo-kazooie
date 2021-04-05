@@ -5,11 +5,11 @@
 
 extern ActorInfo D_8038AB00;
 extern ActorInfo D_8038ABF0;
-extern ActorInfo D_8038AC20;
-extern ActorInfo D_8038AC78;
+extern ActorInfo D_8038AC20; //chAttackTutorial
+extern ActorInfo D_8038AC78; //chCarrot Slave?
 extern ActorInfo D_8038ACE8;
 extern ActorInfo D_8038AD58;
-extern ActorInfo D_8038AC9C;
+extern ActorInfo D_8038AC9C; //chCarrot FreeRange?
 extern ActorInfo D_8038AD0C;
 extern ActorInfo D_8038AD7C;
 extern ActorInfo D_8038AF90;

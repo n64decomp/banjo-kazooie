@@ -77,7 +77,7 @@ int func_80386ED0(Actor * this){
     if(func_803348C0() != MAP_MM_MUMBOS_MOUNTAIN)
         return 0;
 
-    if(!this->unk10_14)
+    if(!this->unk10_12)
         return 0;
 
     player_getPosition(plyrPos);
@@ -137,12 +137,12 @@ void func_80387168(ActorMarker *this, s32 arg1){
 
     actorPtr = marker_getActor(this);
     if(actorPtr->conga.unkC == 1){
-        if(actorPtr->unk10_14 == 0){
+        if(actorPtr->unk10_12 == 0){
             actorPtr->conga.unkC = 0;
             if(mapSpecificFlags_get(0xA))
                 actorPtr->unk38_31++;
 
-            actorPtr->unk10_14 = MIN(actorPtr->unk38_31, 0xA);
+            actorPtr->unk10_12 = MIN(actorPtr->unk38_31, 0xA);
             if( actorPtr->unk38_31 == 3 
                 && !jiggyscore_isCollected(0xA)
             ){
@@ -197,7 +197,7 @@ void func_803873C8(ActorMarker *congaMarker){
     f32 iVelY;
 
     conga_localPtr = &congaPtr->conga;
-    congaPtr->unk10_14 -= (congaPtr->unk10_14 && ( (conga_state = congaPtr->unk10_31) == 7));
+    congaPtr->unk10_12 -= (congaPtr->unk10_12 && ( (conga_state = congaPtr->unk10_31) == 7));
     func_80387F44();
     congaPtr->unk28 = 2.0f;
     orangePtr = func_8032811C(actor_orange_projectile, conga_localPtr->orangeSpawnPosition, congaPtr->yaw);
@@ -235,10 +235,10 @@ void func_803873C8(ActorMarker *congaMarker){
 //     s32 sp38;
 
 //     this->marker->propPtr->unk8_3 = (func_803250DC(this))?1:0;
-//     if(!this->unkF4_21){
+//     if(!this->initialized){
 //         this->conga.unkC = 1;
 //         this->unk16C_0 = 1;
-//         this->unkF4_21 = 1;
+//         this->initialized = 1;
 //         this->velocity_x = 0.0f;
 //         this->unk28 = 0.0f;
 //         sp40 = func_80304C38(0x150, this);

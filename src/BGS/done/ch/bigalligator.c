@@ -18,9 +18,9 @@ ActorInfo D_80390D70 = {0xDC, actor_bigalligator, 0x397, 0x01, NULL,
 
 /* .code */
 void func_8038FCB0(Actor *this){
-    if(this->unkF4_21)
+    if(this->initialized)
         return;
     this->marker->propPtr->unk8_3 = 1;
     actor_collisionOff(this);
-    this->unkF4_21 = 1;
+    this->initialized = 1;
 }

@@ -264,9 +264,9 @@ typedef struct actor_s{
     ActorMarker* marker;
     TUPLE(f32,position);
     u32 unk10_31:6; //current animation state
-    u32 pad10_27:13;
-    u32 unk10_14:4;
-    u32 pad10_10:4;
+    u32 pad10_25:13;
+    u32 unk10_12:4;
+    u32 pad10_8:4;
     u32 unk10_4:4;
     u32 pad10_0:1;
     ActorMovement *movement;
@@ -317,12 +317,14 @@ typedef struct actor_s{
         ActorLocal_Jinjo jinjo;
         ActorLocal_JujuHitbox juju_ctl;
         ActorLocal_Juju juju;
+        u8  local[1];
         u8  pad7C[0x70];
+        
     };
     //u8  padAC[0x44];
     u8  padEC[0x8];
     u32 unkF4_31:10;
-    u32 unkF4_21:1; //actor initalized bool
+    u32 initialized:1; //unkF4_21;
     u32 unkF4_20:12;
     u32 unkF4_8:9;
     u8  padF8[0x8];
@@ -347,7 +349,8 @@ typedef struct actor_s{
     u32 unk138_31:1;
     u32 unk138_30:6;
     u32 unk138_24:1;
-    u32 pad138_23:24;
+    u32 unk138_23:1;
+    u32 pad138_23:23;
     u8  pad13C[0xC];
     void *unk148;
     void *unk14C;

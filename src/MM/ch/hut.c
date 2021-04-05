@@ -72,9 +72,9 @@ void    chhut_update(Actor *this){
     if(func_80334904() != 2)
         return;
 
-    if(!this->unkF4_21){
+    if(!this->initialized){
         this->marker->collidable = 0;
-        this->unkF4_21 = 1;
+        this->initialized = 1;
     }
     switch(this->unk10_31){
         case 0: //L80386AA4

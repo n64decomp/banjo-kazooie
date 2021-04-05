@@ -90,10 +90,10 @@ void func_80387AB0(ActorMarker *this, u32 arg1){
 
 //pinkEggUpdate?
 void func_80387B80(Actor *this){
-    if(!this->unkF4_21){
+    if(!this->initialized){
         this->marker->propPtr->unk8_3 = 1;
         func_803300A8(this->marker, NULL, NULL, func_80387AB0);
-        this->unkF4_21 = 1;
+        this->initialized = 1;
     }
 
     switch(this->unk10_31){

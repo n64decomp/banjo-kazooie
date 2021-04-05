@@ -102,13 +102,13 @@ void func_8038F470(ActorMarker *this, s32 arg1, s32 arg2){
 
     sp24 = func_8032813C(arg2 + 0xe9, sp18, (s32)thisActor->yaw);
     func_80328B8C(sp24, arg1 + 1, 0, -1);
-    sp24->unk10_14 = arg2;
+    sp24->unk10_12 = arg2;
 }
 
 void func_8038F51C(Actor *this){
     Actor * spawnPtr;
     spawnPtr = func_80326D68(this->position, 0xe8, -1, 0);
-    spawnPtr->tanktup.unk0[this->unk10_14] = 1;
+    spawnPtr->tanktup.unk0[this->unk10_12] = 1;
     spawnPtr->tanktup.unk10 = 1;
 }
 
@@ -155,8 +155,8 @@ void func_8038FB84(ActorMarker *this, s32 arg1){
 }
 
 void func_8038FBF8(Actor *this){
-    if(!this->unkF4_21){
-        this->unkF4_21 = 1;
+    if(!this->initialized){
+        this->initialized = 1;
         this->marker->propPtr->unk8_3 = 1;
         func_803300A8(this->marker, NULL, NULL, func_8038FB84);
     }

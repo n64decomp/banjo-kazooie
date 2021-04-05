@@ -107,8 +107,8 @@ void func_802CDD78(Actor * this){
     s32 i;
     
     local = &this->jinjo;
-    if(!this->unkF4_21){
-        this->unkF4_21 = 1;
+    if(!this->initialized){
+        this->initialized = 1;
         local->unk0 = 1;
         local->unk4 = 0;
         local->unk8 = (this->position_y < func_80309B24(this->position));
