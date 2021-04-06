@@ -111,9 +111,17 @@ void func_80387DCC(ActorMarker *);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/SM/ch/vegetables/func_80387DF4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/SM/ch/vegetables/func_80387E64.s")
-//void func_80387E64
+void func_80387E64(Actor *this){
+    ChVeg *local = &this->local;
 
+    this->unk1C = randf2(-50.0f, 50.0f);
+    this->unk20 = randf2(-50.0f, 50.0f);
+    this->unk24 = randf2(-50.0f, 50.0f);
+
+    this->unk1C = local->unk0_x + this->unk1C;
+    this->unk20 = local->unk0_y + this->unk20;
+    this->unk24 = local->unk0_z + this->unk24;
+}
 
 void func_80387F00(Actor *this){
     ChVeg *local = &this->local;
