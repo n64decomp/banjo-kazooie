@@ -12,6 +12,9 @@ f32 func_80309724(f32*);
 void func_80256A24(f32 *, f32);
 f32 func_80256064(f32 *, f32 *);
 void func_80256900(f32*, f32*, f32);
+void func_802C4218(s32, f32, f32, f32);
+void func_803252D0(f32, s32);
+void func_80328B8C(Actor *, s32, f32, s32);
 
 //typedefs
 typedef struct ch_vegatable{
@@ -104,10 +107,42 @@ extern f64 D_8038B1F0;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/SM/ch/vegetables/func_80387B48.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/SM/ch/vegetables/func_80387C28.s")
+//#pragma GLOBAL_ASM("asm/nonmatchings/SM/ch/vegetables/func_80387C28.s")
+void func_80387C28(Actor * this){
+    ChVeg * local = &this->local;
+    f32 sp30[3];
 
-void func_80387DCC(ActorMarker *);
-#pragma GLOBAL_ASM("asm/nonmatchings/SM/ch/vegetables/func_80387DCC.s")
+    func_8030E8B4(0x7FFF4111, this->position, 0x7d003e8);
+    if(local->unkC == 3){
+        sp30[0] = this->position_x;
+        sp30[1] = this->position_y;
+        sp30[2] = this->position_z;
+        sp30[1] += 50.0f;
+        func_80387B48(func_802F0BD0(0xC), sp30, 0xC, 0x4F4);
+        func_803879B8(func_802F0BD0(4), sp30, 0x4, 0x4F2);
+        func_803879B8(func_802F0BD0(4), sp30, 0x4, 0x4F3);
+        sp30[1] += 50.0f;
+        func_80387910(func_802F0BD0(8), sp30, 8);
+    }//L80387D18
+    if(this->unk38_31){
+        this->position_y += 100.0f;
+        func_802CA1CC(0x17);
+        func_802C3F04(func_802C4218, 0x1f, *(s32 *)&this->position_x, *(s32 *)&this->position_y, *(s32 *)&this->position_z);
+    }//L80387D64
+    func_803252D0(1.5f, 7);
+    actor_collisionOff(this);
+    if(local->unkC != 3){
+        func_80328B8C(this, 3, 0.0f, 1);
+        func_803298AC(this);
+    }
+    else{
+        marker_despawn(this->marker);
+    }
+}
+
+void func_80387DCC(ActorMarker *marker, s32 arg1){
+    func_80387C28(marker_getActor(marker));
+}
 
 Actor *func_80387DF4(ActorMarker *marker, Gfx **gdl, Mtx **mptr, s32 arg3){
     Actor *actor = marker_getActor(marker);
