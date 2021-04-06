@@ -86,11 +86,14 @@ ActorInfo D_8038AD7C = { 0x1E8, ACTOR_COLLYWOBBLE_B, MODEL_COLLYWOBBLE, 1, chCau
     {0,0,0,0}, 2.0f, {0,0,0,0}
 };
 
+
+extern s32 D_8038AE04;
+extern s32 D_8038AE2C;
+
 extern s32 D_8038AE74;
-extern s32 D_8038AEE4;
-
-
 extern s32 D_8038AE9C;
+
+extern s32 D_8038AEE4;
 extern s32 D_8038AF0C;
 
 /* .rodata */
@@ -110,7 +113,17 @@ extern f64 D_8038B1F0;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/SM/ch/vegetables/func_80387910.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/SM/ch/vegetables/func_803879B8.s")
+void func_803879B8(Actor *arg0, f32 *arg1, s32 arg2, s32 arg3){
+    func_802EF9F8(arg0, 0.6f);
+    func_802EFA18(arg0, 2);
+    func_802EFAC8(arg0, arg3);
+    func_802EFB54(arg0, arg1);
+    func_802EFA70(arg0, 2);
+    func_802EFE24(arg0, -300.0f, -300.0f, -300.0f, 300.0f, 300.0f, 300.0f);
+    func_802EFB98(arg0, &D_8038AE04);
+    func_802EFD7C(arg0, &D_8038AE2C);
+    func_802EF5C8(arg0, arg2);
+}
 
 void func_80387A80(Actor *arg0, f32 *arg1, s32 arg2, s32 arg3){
     func_802EF9F8(arg0, 0.6f);
