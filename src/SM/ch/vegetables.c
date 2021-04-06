@@ -15,6 +15,8 @@ void func_80256900(f32*, f32*, f32);
 void func_802C4218(s32, f32, f32, f32);
 void func_803252D0(f32, s32);
 void func_80328B8C(Actor *, s32, f32, s32);
+void func_802EF9F8(Actor *, f32);
+void func_802EFE24(Actor *, f32, f32, f32, f32, f32, f32);
 
 //typedefs
 typedef struct ch_vegatable{
@@ -84,6 +86,9 @@ ActorInfo D_8038AD7C = { 0x1E8, ACTOR_COLLYWOBBLE_B, MODEL_COLLYWOBBLE, 1, chCau
     {0,0,0,0}, 2.0f, {0,0,0,0}
 };
 
+extern s32 D_8038AEE4;
+extern s32 D_8038AF0C;
+
 /* .rodata */
 extern f64 D_8038B1A0;
 extern f64 D_8038B1A8;
@@ -105,9 +110,19 @@ extern f64 D_8038B1F0;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/SM/ch/vegetables/func_80387A80.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/SM/ch/vegetables/func_80387B48.s")
+void func_80387B48(Actor *arg0, f32 *arg1, s32 arg2, s32 arg3){
+    func_802EF9F8(arg0, 0.7f);
+    func_802EFA18(arg0, 4);
+    func_802EFAC8(arg0, arg3);
+    func_802EFB54(arg0, arg1);
+    func_802EFA70(arg0, 2);
+    func_802EFE24(arg0, 150.0f, -300.0f, -300.0f, 300.0f, 300.0f, -150.0f);
+    func_802EF9EC(arg0, 0x1f, 0x1f40);
+    func_802EFB98(arg0, &D_8038AEE4);
+    func_802EFD7C(arg0, &D_8038AF0C);
+    func_802EF5C8(arg0, arg2);
+}
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/SM/ch/vegetables/func_80387C28.s")
 void func_80387C28(Actor * this){
     ChVeg * local = &this->local;
     f32 sp30[3];
