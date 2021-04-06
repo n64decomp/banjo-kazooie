@@ -109,7 +109,16 @@ extern f64 D_8038B1F0;
 void func_80387DCC(ActorMarker *);
 #pragma GLOBAL_ASM("asm/nonmatchings/SM/ch/vegetables/func_80387DCC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/SM/ch/vegetables/func_80387DF4.s")
+Actor *func_80387DF4(ActorMarker *marker, Gfx **gdl, Mtx **mptr, s32 arg3){
+    Actor *actor = marker_getActor(marker);
+
+    if(actor->unk138_24)
+        func_8033A470(3, 7);
+    else
+        func_8033A45C(3, 0);
+
+    func_80325888(marker, gdl, mptr, arg3);
+}
 
 void func_80387E64(Actor *this){
     ChVeg *local = &this->local;
