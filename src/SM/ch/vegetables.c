@@ -82,6 +82,8 @@ ActorInfo D_8038AD7C = { 0x1E8, ACTOR_COLLYWOBBLE_B, MODEL_COLLYWOBBLE, 1, chCau
 };
 
 /* .rodata */
+extern f64 D_8038B1A0;
+extern f64 D_8038B1A8;
 extern f64 D_8038B1B0;
 extern f64 D_8038B1B8;
 extern f64 D_8038B1C0;
@@ -110,12 +112,41 @@ void func_80387DCC(ActorMarker *);
 #pragma GLOBAL_ASM("asm/nonmatchings/SM/ch/vegetables/func_80387DF4.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/SM/ch/vegetables/func_80387E64.s")
+//void func_80387E64
 
-#pragma GLOBAL_ASM("asm/nonmatchings/SM/ch/vegetables/func_80387F00.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/SM/ch/vegetables/func_80387FA8.s")
+void func_80387F00(Actor *this){
+    ChVeg *local = &this->local;
+    
+    this->position_y += (mapSpecificFlags_get(0xC) || func_803203FC(0xC1, this)) ? 120.0 : D_8038B1A0;
+    local->unk0_x = this->position_x;
+    local->unk0_y = this->position_y;
+    local->unk0_z = this->position_z;
+    this->velocity_x = 0.0f;
+    this->velocity_y = 0.0f;
+    this->velocity_z = 0.0f;
+    func_80387E64(this);
+}
+
+int func_80387FA8(Actor *this, ChVeg *local, s32 yaw, s32 arg3){
+    f32 sp24[3];
+    f32 sp18[3];
+    
+    sp18[0] = arg3;
+    sp18[1] = 0.0f;
+    sp18[2] = 0.0f;
+    func_80256900(sp18, sp18, yaw - D_8038B1A8);
+    sp24[0] = sp18[0] + local->unk0_x;
+    sp24[1] = sp18[1] + local->unk0_y;
+    sp24[2] = sp18[2] + local->unk0_z;
+    if(func_80307258(sp24, this->unk10_25 - 1, this->unk10_18 - 1) == -1)
+        return 0;
+    else
+        return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/SM/ch/vegetables/func_80388080.s")
+//99.99% Matching
 /*void func_80388080(Actor *this){
     f32 temp_velZ;
     f32 temp_velX;
@@ -285,9 +316,8 @@ void func_80387DCC(ActorMarker *);
                         this->unk20 -= local->unk0_y;
                         this->unk24 -= local->unk0_z;
                         sp60[0] = this->unk28;
-                        sp60[1] = 0.0f; //register assignment order swapped;
                         sp60[2] = 0.0f; //register assignment order swapped;
-                        
+                        sp60[1] = 0.0f; //register assignment order swapped;
                         func_80256900(sp60, sp60, this->yaw - D_8038B1D8);
                         local->unk0_x = sp60[0] + local->unk0_x;
                         local->unk0_y = sp60[1] + local->unk0_y;

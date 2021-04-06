@@ -264,7 +264,8 @@ typedef struct actor_s{
     ActorMarker* marker;
     TUPLE(f32,position);
     u32 unk10_31:6; //current animation state
-    u32 pad10_25:13;
+    u32 unk10_25:7;
+    u32 unk10_18:6;
     u32 unk10_12:4;
     u32 pad10_8:4;
     u32 unk10_4:4;
