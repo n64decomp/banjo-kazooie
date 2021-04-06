@@ -2,13 +2,13 @@ basename: banjo
 options:
   find_file_boundaries: True
   compiler: "IDO"
-  undefined_syms: undefined_syms.us.v11.txt
-  symbol_addrs:   symbol_addrs.us.v11.txt
+  undefined_syms_path: undefined_syms.us.v11.txt
+  symbol_addrs_path:   symbol_addrs.us.v11.txt
 segments:
   - name: header
     type: header
     start: 0x00000000
-    files:
+    subsections:
       - [0x00000000, header, header]
   - name: boot
     type: bin
@@ -17,23 +17,23 @@ segments:
     type: code
     start: 0x00001000
     vram: 0x80000400
-    files:
+    subsections:
       - [0x00001000, asm]
   - name: assets
     type: bin
     start: 0x00005E90
-    files:
+    subsections:
       - [0x00005E90, bin, assets]
   - name: soundfont1
     type: bin
     start: 0x00D87CA0
-    files:
+    subsections:
       - [0x00D87CA0, bin, soundfont1.ctl]
       - [0x00D98A90, bin, soundfont1.tbl]
   - name: soundfont2
     type: bin
     start: 0x00EA7490
-    files:
+    subsections:
       - [0x00EA7490, bin, soundfont2.ctl]
       - [0x00EB12F0, bin, soundfont2.tbl]
   - name: core1.us.v11.rzip

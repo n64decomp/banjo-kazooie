@@ -401,11 +401,3 @@ int func_8025ADBC(s32 arg0){
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025AEEC.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025AF38.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025AFB0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025AFB8.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025AFC0.s")
-
-s32 func_8025AFD0(void){ return 0; }

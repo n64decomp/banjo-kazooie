@@ -124,10 +124,10 @@ clean:
 extract: $(foreach submod, $(SUBCODE), $(submod)_extract)
 
 %_extract: bin/%.$(VERSION).bin symbol_addrs.$(VERSION).txt
-	$(N64SPLAT) $< subyaml/$*.$(VERSION).yaml .
+	$(N64SPLAT) --rom $< subyaml/$*.$(VERSION).yaml --outdir .
 
 main_extract: symbol_addrs.$(VERSION).txt
-	$(N64SPLAT) baserom.$(VERSION).z64 $(BASENAME).$(VERSION).yaml .
+	$(N64SPLAT) --rom baserom.$(VERSION).z64 $(BASENAME).$(VERSION).yaml --outdir .
 
 #build
 all: $(SUBCODE) main
@@ -254,7 +254,7 @@ symbol_addrs.$(VERSION).txt:
 	@cat symbol_addrs.*.$(VERSION).txt > $@
 
 bin/%.rzip.bin: $(BASENAME).$(VERSION).yaml symbol_addrs.$(VERSION).txt
-	$(N64SPLAT) baserom.$(VERSION).z64 $< .
+	$(N64SPLAT) --rom baserom.$(VERSION).z64 $< --outdir .
 
 ifneq ($(TARGET), build/core1.$(VERSION))
 $(TARGET).code.bin: $(TARGET).elf

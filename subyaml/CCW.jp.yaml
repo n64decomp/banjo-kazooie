@@ -11,19 +11,19 @@ options:
     #include "functions.h"
     #include "variables.h"
   create_detected_syms: yes
-  undefined_syms: undefined_syms.jp.txt
-  symbol_addrs:   symbol_addrs.jp.txt
+  undefined_syms_path: undefined_syms.jp.txt
+  symbol_addrs_path:   symbol_addrs.jp.txt
 segments:
   - name: CCW/code
     type: code
     start: 0x00000000
     vram: 0x80386F40
-    files:
+    subsections:
       - [0x00000000, asm]
   - name: CCW/data
     type: code
     start: 0x00008790
     vram: 0x8038F6D0
-    files:
+    subsections:
       - [0x00008790, bin]
   - [0x00009A10]
