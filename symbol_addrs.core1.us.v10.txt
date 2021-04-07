@@ -131,6 +131,7 @@ osMotorStart        = 0x80267F48;
 _MakeMotorData      = 0x802680B4;
 osMotorInit         = 0x80268230;
 osPfsInit           = 0x80268400;
+osInvalICache = 0x802684C0;
 osEepromLongWrite   = 0x80268540;
 osEepromLongRead    = 0x80268670;
 osPiReadIo     = 0x80268700;
