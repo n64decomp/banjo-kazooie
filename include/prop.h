@@ -59,7 +59,8 @@ typedef struct actorMarker_s{
     u32         pad40_31:8;
     u32         unk40_23:1;
     u32         pad40_22:23;
-    u8          pad44[0x18];
+    u32         unk44;
+    u8          pad48[0x14];
     s32         unk5C;
 } ActorMarker;
 
@@ -259,6 +260,24 @@ typedef struct juju_s{
     s32     unk18;
 }ActorLocal_Juju;
 
+typedef struct ch_fight_180_s{
+    u8 unk0;
+    u8 pad1;
+    u8 pad2;
+    u8 pad3;
+    u8 pad4;
+    u8 pad5;
+    u8 pad6;
+    u8 pad7;
+    u8 pad8;
+    u8 pad9;
+    u8 padA;
+    u8 padB;
+    u8 unkC;
+    u8 unkD;
+    u8 unkE;
+}ActorLocal_fight_180;
+
 
 typedef struct actor_s{
     ActorMarker* marker;
@@ -300,7 +319,7 @@ typedef struct actor_s{
     f32 unk60; //0x60
     f32 yaw_moving; //0x64
     f32 pitch;//0x68
-    u32 unk6C;
+    f32 unk6C;
     u8  pad70[0xC];
     union
     {
@@ -318,6 +337,7 @@ typedef struct actor_s{
         ActorLocal_Jinjo jinjo;
         ActorLocal_JujuHitbox juju_ctl;
         ActorLocal_Juju juju;
+        ActorLocal_fight_180 fight_180;
         u8  local[1];
         u8  pad7C[0x70];
         

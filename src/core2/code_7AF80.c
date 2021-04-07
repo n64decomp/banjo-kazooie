@@ -4,6 +4,8 @@
 
 #include "prop.h"
 
+extern s32 D_803820B8;
+
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80301F10.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80301F50.s")
@@ -44,15 +46,36 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80303F6C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80303F7C.s")
+extern s32 D_80382148;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80303FE4.s")
+void func_80303D78(s32, f32);
+
+#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80303F7C.s")
+// s32 func_80303F7C(s32 arg0, f32 arg1, s32 arg2, s32 arg3) {
+//     s32 temp_v1;
+
+//     if (arg3 == 0) {
+//         func_80303D78(arg0, arg1);
+//         D_80382148 = 0;
+//         return 0;
+//     }
+//     temp_v1 = *(&D_803820B8 + D_80382148);
+//     if (temp_v1 != 0) {
+//         D_80382148++;
+//     }
+//     return temp_v1;
+// }
+
+s32 func_80303FE4(s32 arg0, f32 arg1) {
+    func_80303D78(arg0, arg1);
+    return D_803820B8;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80304010.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_803040EC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_803045CC.s")
+void func_803045CC(s32 arg0, s32 arg1){}
 
 void func_803045D8(void){}
 
@@ -62,29 +85,102 @@ void func_803045D8(void){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_803048E0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80304984.s")
+s32 func_80304984(s32 arg0, u32 *arg1) {
+    u16 *temp_v0;
+
+    temp_v0 = func_803049CC(arg0, 0);
+    if (temp_v0 != 0) {
+        *arg1 = (u32) ((u32) temp_v0[3] >> 7);
+        return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_803049CC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80304C38.s")
+void func_80304C38(s32 arg0, f32 *arg1) {
+    s32 vec[3];
+    s32 *phi_a1;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80304CAC.s")
+    if (arg1 != 0) {
+        vec[0] = arg1[1];
+        vec[1] = arg1[2];
+        vec[2] = arg1[3];
+    }
+    if (arg1 == 0) {
+        phi_a1 = NULL;
+    } else {
+        phi_a1 = vec;
+    }
+    func_803049CC(arg0, phi_a1);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80304D04.s")
+void func_80304CAC(s32 arg0, f32 *arg1) {
+    s32 vec[3];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80304D3C.s")
+    vec[0] = arg1[0];
+    vec[1] = arg1[1];
+    vec[2] = arg1[2];
+    func_803049CC(arg0, vec);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80304D4C.s")
+void func_80304D04(s32 arg0, s16 *arg1) {
+    s32 arr[3];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80304D68.s")
+    arr[0] = arg1[0];
+    arr[1] = arg1[1];
+    arr[2] = arg1[2];
+    func_803049CC(arg0, arr);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80304DA8.s")
+u32 func_80304D3C(u16 *arg0) {
+    return (u32)arg0[3] >> 7;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80304DB8.s")
+void func_80304D4C(s16 *arg0, s32 *arg1) {
+    arg1[0] = arg0[0];
+    arg1[1] = arg0[1];
+    arg1[2] = arg0[2];
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80304DD0.s")
+void func_80304D68(s16 *arg0, f32 *arg1) {
+    arg1[0] = arg0[0];
+    arg1[1] = arg0[1];
+    arg1[2] = arg0[2];
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80304E24.s")
+u32 func_80304DA8(u32 *arg0) {
+    return arg0[3] >> 0x17;
+}
+
+s32 func_80304DB8(u32 *arg0) {
+    return arg0[3] & 0x7FFFFF;
+}
+
+s32 func_80304DD0(s32 arg0, s32 *arg1) {
+    s16 *temp_v0;
+
+    temp_v0 = func_803049CC(arg0, 0, arg1);
+    if (temp_v0 != 0) {
+        arg1[0] = (s32) temp_v0[0];
+        arg1[1] = (s32) temp_v0[1];
+        arg1[2] = (s32) temp_v0[2];
+        return 1;
+    }
+    return 0;
+}
+
+s32 func_80304E24(s32 arg0, f32 *arg1) {
+    s32 vec[3];
+
+    if (func_80304DD0(arg0, vec) == 0) {
+        return 0;
+    }
+    arg1[0] = vec[0];
+    arg1[1] = vec[1];
+    arg1[2] = vec[2];
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80304E9C.s")
 

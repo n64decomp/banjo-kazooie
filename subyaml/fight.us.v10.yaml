@@ -21,6 +21,7 @@ segments:
     subsections:
       - [0x00000000, c]
       - [0x180, c]
+      - [0x5ED0, c]
       - [0x6E90, c]
       - [0x7580, c]
       - [0x7BE0, c]

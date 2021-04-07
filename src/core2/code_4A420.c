@@ -9,9 +9,33 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_4A420/func_802D1468.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_4A420/func_802D1680.s")
+s32 func_802D1680(s32 arg0) {
+    f32 var[3];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_4A420/func_802D16AC.s")
+    if (func_80304E24(arg0, var) != 0) {
+        return 1;
+    }
+    return 0;
+}
+
+s32 func_802D16AC(void) {
+    s32 ret = 2;
+
+    func_802D1680(0x1F);
+    if (func_802D1680(0x20) != 0) {
+        ret = 3;
+    }
+    if (func_802D1680(0x21) != 0) {
+        ret = 5;
+    }
+    if (func_802D1680(0x22) != 0) {
+        ret = 4;
+    }
+    if (func_802D1680(0x23) != 0) {
+        ret = 6;
+    }
+    return ret;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_4A420/func_802D1724.s")
 
