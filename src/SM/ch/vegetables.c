@@ -268,15 +268,15 @@ int func_80387FA8(Actor *this, ChVeg *local, s32 yaw, s32 arg3){
     if(!this->initialized){
         switch(this->marker->unk14_20){
             default:
-                local->unkC = 3;
+                local->unkC = 3; //cauliflower
                 break;
             case 0x12A: //L803880F0
             case 0x1E6: //L803880F0
-                local->unkC = 1;
+                local->unkC = 1; //carrot
                 break;
             case 0x129: //L80388100
             case 0x1E7: //L80388100
-                local->unkC = 2;
+                local->unkC = 2; //onion
                 break;
         }
         actor_collisionOff(this);
