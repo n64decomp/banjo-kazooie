@@ -57,6 +57,7 @@ expected/
 .splat_cache*
 diff_settings.py
 ctx.c
+nonmatchings/
 
 #progress reports
 *.csv

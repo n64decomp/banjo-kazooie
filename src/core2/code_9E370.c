@@ -194,7 +194,16 @@ void func_80328A84(Actor * arg0, u32 arg1){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80328C64.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80328CA8.s")
+void func_80328CA8(Actor *arg0, s32 angle) {
+    s32 fixedAngle = angle;
+    while (fixedAngle < 0) {
+        fixedAngle += 360;
+    }
+    while (fixedAngle >= 360) {
+        fixedAngle -= 360;
+    }
+    arg0->unk6C = fixedAngle;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80328CEC.s")
 
@@ -204,11 +213,19 @@ void func_80328A84(Actor * arg0, u32 arg1){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80328FB0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80328FF0.s")
+f32 func_80328DCC(Actor *, f32, f32, s32);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80329030.s")
+void func_80328FF0(Actor *arg0, f32 arg1) {
+    arg0->pitch = func_80328DCC(arg0, arg0->pitch, arg0->unk6C, (s32) arg1);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80329054.s")
+s32 func_80329030(s32 arg0, s32 arg1) {
+    return !func_8032CA80(arg0, arg1);
+}
+
+s32 func_80329054(s32 arg0, s32 arg1) {
+    return !func_8032CA80(arg0, arg1 + 4);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80329078.s")
 
