@@ -3,4 +3,4 @@
 #include "variables.h"
 
 
-#pragma GLOBAL_ASM("asm/nonmatchings/bk_boot_2970/func_80001D70.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/bk_boot_4990/func_80003D90.s")

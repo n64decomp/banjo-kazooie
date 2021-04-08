@@ -76,6 +76,7 @@ OBJDUMP = $(CROSS)objdump
 OBJCOPY = $(CROSS)objcopy
 PYTHON = python3
 N64SPLAT = $(PYTHON) tools/n64splat/split.py
+PATCH_LIB_MATH = tools/patch_libultra_math
 
 CC = ido/ido5.3_recomp/cc
 
@@ -207,6 +208,32 @@ build/src/core1/gu/mtxutil.o: OPT_FLAGS = -O2
 build/src/core1/gu/rotate.o: OPT_FLAGS = -O2
 build/src/core1/done/audio/%.o: INCLUDE_CFLAGS = -I . -I include -I include/2.0L -I include/2.0L/PR
 build/src/core1/done/audio/%.o: OPT_FLAGS = -O3
+build/src/done/destroythread.o: OPT_FLAGS := -O1
+build/src/done/pirawdma.o: OPT_FLAGS := -O1
+build/src/done/thread.o: OPT_FLAGS := -O1
+build/src/done/pimgr.o: OPT_FLAGS := -O1
+build/src/getthreadid.o: OPT_FLAGS := -O1
+build/src/done/setthreadpri.o: OPT_FLAGS := -O1
+build/src/done/createthread.o: OPT_FLAGS := -O1
+build/src/done/yieldthread.o: OPT_FLAGS := -O1
+build/src/done/setglobalintmask.o: OPT_FLAGS := -O1
+build/src/done/recvmesg.o: OPT_FLAGS := -O1
+build/src/done/startthread.o: OPT_FLAGS := -O1
+build/src/done/devmgr.o: OPT_FLAGS := -O1
+build/src/done/sendmesg.o: OPT_FLAGS := -O1
+build/src/done/pigetstat.o: OPT_FLAGS := -O1
+build/src/done/si.o: OPT_FLAGS := -O1
+build/src/done/resetglobalintmask.o: OPT_FLAGS := -O1
+build/src/done/epirawwrite.o: OPT_FLAGS := -O1
+build/src/done/epirawread.o: OPT_FLAGS := -O1
+build/src/done/createmesgqueue.o: OPT_FLAGS := -O1
+build/src/done/leodiskinit.o: OPT_FLAGS := -O1
+build/src/done/virtualtophysical.o: OPT_FLAGS := -O1
+build/src/done/ll.o: OPT_FLAGS := -O1
+build/src/done/ll.o: MIPSBIT := -mips3 -o32
+build/src/done/sirawwrite.o: OPT_FLAGS := -O1
+build/src/done/sirawread.o: OPT_FLAGS := -O1
+build/src/done/initialize.o: OPT_FLAGS := -O1
 
 ### Recipes
 
@@ -294,6 +321,15 @@ progress/progress.%.csv:  progress/. build/%.$(VERSION).elf
 	@$(PYTHON) tools/progress.py . build/$*.$(VERSION).map .code_code --version $(VERSION) > $@
 
 
+build/src/done/ll.o: src/done/ll.c include/variables.h include/structs.h include/functions.h
+	$(PYTHON) $(ASM_PROCESSOR_DIR)/asm_processor.py $(OPT_FLAGS) $< > $(BUILD_DIR)/$<
+	$(CC) -c -32 $(CFLAGS) $(OPT_FLAGS) $(LOOP_UNROLL) $(MIPSBIT) -o $@ $(BUILD_DIR)/$<
+	$(PYTHON) $(ASM_PROCESSOR_DIR)/asm_processor.py $(OPT_FLAGS) $< --post-process $@ \
+		--assembler "$(AS) $(ASFLAGS)" --asm-prelude $(ASM_PROCESSOR_DIR)/prelude.s
+	tools/set_o32abi_bit.py $@
+
 # settings
 .PHONY: all clean dirs default decompress verify $(SUBCODE) bk_inflate_code dirs main_extract
 SHELL = /bin/bash -e -o pipefail
+
+print-% : ; $(info $* is a $(flavor $*) variable set to [$($*)]) @true
