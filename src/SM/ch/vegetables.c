@@ -473,33 +473,3 @@ int func_80387FA8(Actor *this, ChVeg *local, s32 yaw, s32 arg3){
         break;
     }//L80388CE0
 }//*/
-
-#pragma GLOBAL_ASM("asm/nonmatchings/SM/ch/vegetables/func_80388CF0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/SM/ch/vegetables/func_80388D48.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/SM/ch/vegetables/func_80388D80.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/SM/ch/vegetables/func_80388E48.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/SM/ch/vegetables/func_80388EB0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/SM/ch/vegetables/func_80388F24.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/SM/ch/vegetables/func_80388FA0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/SM/ch/vegetables/func_80389214.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/SM/ch/vegetables/func_803892C8.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/SM/ch/vegetables/func_80389494.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/SM/ch/vegetables/func_80389610.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/SM/ch/vegetables/func_80389948.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/SM/ch/vegetables/func_80389984.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/SM/ch/vegetables/func_803899B0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/SM/ch/vegetables/func_8038A3B0.s")

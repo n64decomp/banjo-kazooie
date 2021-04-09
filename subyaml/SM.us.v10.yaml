@@ -25,6 +25,7 @@ segments:
       - [0xBF0, c]
       - [0xD60, c, SM/ch/attacktutorial]
       - [0x1520, c, SM/ch/vegetables]
+      - [0x2900, c]
       - [0x4070, c]
       - [0x44D0, c]
   - name: SM/data

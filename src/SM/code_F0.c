@@ -7,11 +7,11 @@ extern ActorInfo D_8038AB00;
 extern ActorInfo D_8038ABF0;
 extern ActorInfo D_8038AC20; //chAttackTutorial
 extern ActorInfo D_8038AC78; //chCarrot Slave?
-extern ActorInfo D_8038ACE8;
-extern ActorInfo D_8038AD58;
+extern ActorInfo D_8038ACE8; //ch onion A
+extern ActorInfo D_8038AD58; //ch cauliflower A
 extern ActorInfo D_8038AC9C; //chCarrot FreeRange?
-extern ActorInfo D_8038AD0C;
-extern ActorInfo D_8038AD7C;
+extern ActorInfo D_8038AD0C; //ch onion B
+extern ActorInfo D_8038AD7C; //ch cauliflower B
 extern ActorInfo D_8038AF90;
 extern ActorInfo D_8038B0B0;
 extern ActorInfo D_8038B0E0;
