@@ -12,7 +12,7 @@ f32 func_80256064(f32 *, f32 *);
 int func_8032886C(Actor *, f32);
 f32 func_802877D8(ActorMovement *);
 void func_8030E878(s32, f32, s32, f32*, f32, f32);
-
+void func_8030DA44(u8);
 
 //static types
 typedef struct sm_2900_struct{
@@ -43,6 +43,8 @@ extern SM2900Struct D_8038AFB4[];
 
 extern s32 D_8038AFE4;
 
+
+/* .rodata */
 extern f64 D_8038B2C8;
 extern f64 D_8038B2D0;
 extern f32 D_8038B2D8;
@@ -81,11 +83,25 @@ void func_803892C8(ActorMarker *marker, s32 text_id, s32);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/SM/code_2900/func_80389610.s")
 
-void func_80389948(ActorMarker *);
-#pragma GLOBAL_ASM("asm/nonmatchings/SM/code_2900/func_80389948.s")
+void func_80389948(ActorMarker * marker){
+    Actor *actor;
+    Actor *other;
+    s32      pad;
 
-void func_80389984(ActorMarker *);
-#pragma GLOBAL_ASM("asm/nonmatchings/SM/code_2900/func_80389984.s")
+    actor = marker_getActor(marker);
+    other = func_8032818C(0x12c, &actor);
+    actor->unk100 = other->marker;
+    
+    if(marker);
+}
+
+void func_80389984(Actor * this){
+    u8 tmp;
+
+    tmp = this->unk44_31;
+    if(tmp)
+        func_8030DA44(tmp);
+}
 
 void func_803899B0(Actor * this){
     s32 sp50[6];
