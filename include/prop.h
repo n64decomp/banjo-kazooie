@@ -278,6 +278,9 @@ typedef struct ch_fight_180_s{
     u8 unkE;
 }ActorLocal_fight_180;
 
+typedef struct ch_sm_4070{
+    s32 unk0;
+}ActorLocal_SM_4070;
 
 typedef struct actor_s{
     ActorMarker* marker;
@@ -338,6 +341,7 @@ typedef struct actor_s{
         ActorLocal_JujuHitbox juju_ctl;
         ActorLocal_Juju juju;
         ActorLocal_fight_180 fight_180;
+        ActorLocal_SM_4070 sm_4070;
         u8  local[1];
         u8  pad7C[0x70];
         
