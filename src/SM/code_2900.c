@@ -13,6 +13,9 @@ int func_8032886C(Actor *, f32);
 f32 func_802877D8(ActorMovement *);
 void func_8030E878(s32, f32, s32, f32*, f32, f32);
 void func_8030DA44(u8);
+void func_80324E88(f32);
+void func_80324E60(f32, s32);
+
 
 //static types
 typedef struct sm_2900_struct{
@@ -76,11 +79,47 @@ extern f64 D_8038B300;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/SM/code_2900/func_80388FA0.s")
 
-void func_80389214(ActorMarker *marker, s32 text_id, s32);
-#pragma GLOBAL_ASM("asm/nonmatchings/SM/code_2900/func_80389214.s")
+void func_80389214(ActorMarker *marker, s32 text_id, s32 arg2){
+    Actor *actor = marker_getActor(marker);
+    switch(arg2){
+        case 3:
+            func_80324E60(0.0f, 2);
+            break;
+        case 4:
+            mapSpecificFlags_set(4,1);
+            break;
+        case 5:
+            func_80324E60(0.0f, 0x12);
+            break;
+        case 6:
+            func_8025A70C(0x2b);
+            break;
+        case 0xff:
+            func_80388F24(actor);
+            break;
+    }
+}
 
 void func_803892C8(ActorMarker *marker, s32 text_id, s32);
 #pragma GLOBAL_ASM("asm/nonmatchings/SM/code_2900/func_803892C8.s")
+/* void func_803892C8(ActorMarker *marker, s32 text_id, s32 arg2){
+    Actor *actor;
+
+    actor = marker_getActor(marker);
+    if(mapSpecificFlags_get(3) && func_802DA498()){
+        mapSpecificFlags_set(3, 1);
+        func_80311480(0xe12, 0xe, actor->position, actor->marker, func_803892C8, NULL);
+    }//L8038933C
+    else{ 
+        if( text_id != 0xdf3 || text_id != 0xe1f || text_id != 0xe1d){
+            func_80324E88(0.0f);
+        }
+        switch(text_id){
+
+        }
+    }
+}//*/
+
 
 void func_80389494(Actor * this, s32* arg1, s32 *arg2){
     if(ability_isUnlocked(D_8038AFB4[this->unkF4_8 -1].unk5)){
