@@ -71,7 +71,19 @@ extern f64 D_8038B300;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/SM/code_2900/func_80388D80.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/SM/code_2900/func_80388E48.s")
+//#pragma GLOBAL_ASM("asm/nonmatchings/SM/code_2900/func_80388E48.s")
+void func_80388E48(void){
+    ability_unlock(ABILITY_CAMERA_CONTROL);
+    func_802957B8(0);
+    func_802957B8(1);
+    func_802957B8(2);
+    func_802957B8(3);
+    func_802957B8(4);
+    func_802957B8(5);
+    func_802957B8(0xb);
+    func_802957B8(0xc);
+    func_802957B8(0xa);
+}
 
 void func_80388EB0(void){
     ability_unlock(ABILITY_DIVE);
