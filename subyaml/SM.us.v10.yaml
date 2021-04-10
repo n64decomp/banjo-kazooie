@@ -39,7 +39,7 @@ segments:
       - [0x00004830, .data, SM/ch/attacktutorial]
       - [0x00004860, .data, SM/ch/vegetables]
       - [0x000049B0, bin] #still part of ch/vegetables
-      - [0x00004B70, bin, SM/code_2990]
+      - [0x00004B70, bin] #.data, SM/code_2990]
       - [0x00004C00, bin]
       - [0x00004D20, .rodata, SM/code_5B0]
       - [0x00004D40, .rodata, SM/ch/attacktutorial]

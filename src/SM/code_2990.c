@@ -62,6 +62,7 @@ SM2900Struct D_8038AFB4[8] = {
 s32 D_8038AFE4 = 0;
 
 
+/* .code */
 int func_80388D80(void){
     return ability_isUnlocked(ABILITY_DIVE)
         || ability_isUnlocked(ABILITY_BEAR_PUNCH)
