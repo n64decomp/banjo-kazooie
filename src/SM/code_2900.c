@@ -69,9 +69,18 @@ extern f64 D_8038B300;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/SM/code_2900/func_80388D48.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/SM/code_2900/func_80388D80.s")
+int func_80388D80(void){
+    return ability_isUnlocked(ABILITY_DIVE)
+        || ability_isUnlocked(ABILITY_BEAR_PUNCH)
+        || ability_isUnlocked(ABILITY_ROLL)
+        || ability_isUnlocked(ABILITY_RATATAT_RAP)
+        || ability_isUnlocked(ABILITY_CAMERA_CONTROL)
+        || ability_isUnlocked(ABILITY_HOLD_A_JUMP_HIGHER)
+        || ability_isUnlocked(ABILITY_FLAP)
+        || ability_isUnlocked(ABILITY_FLIP)
+        || ability_isUnlocked(ABILITY_CLIMB);
+}
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/SM/code_2900/func_80388E48.s")
 void func_80388E48(void){
     ability_unlock(ABILITY_CAMERA_CONTROL);
     func_802957B8(0);
