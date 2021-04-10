@@ -6,9 +6,11 @@
 Actor *func_802D94B4(ActorMarker *, Gfx **, Mtx **, s32);
 void func_80326224(Actor *);
 void func_8024E55C(s32, void *);
+void func_80324E88(f32);
 
 //public
 void func_8038A5D8(Actor *this);
+void func_8038A4DC(Actor *this, s32 arg1);
 
 /* .data */
 /*
@@ -21,8 +23,13 @@ ActorInfo D_8038B0B0 = { 0x1ED, 0x3B9, 0, 1, NULL,
 /* .code */
 #pragma GLOBAL_ASM("asm/nonmatchings/SM/code_4070/func_8038A460.s")
 
-void func_8038A488(ActorMarker *caller, s32 text_id, s32 arg2);
-#pragma GLOBAL_ASM("asm/nonmatchings/SM/code_4070/func_8038A488.s")
+void func_8038A488(ActorMarker *caller, s32 text_id, s32 arg2){
+    Actor *actor = marker_getActor(caller);
+    if(text_id == 0xdf9 || text_id == 0xe12){
+        func_8038A4DC(actor, 3);
+    }
+    func_80324E88(0.0f);
+}
 
 void func_8038A4DC(Actor *this, s32 arg1){
     switch(arg1){
