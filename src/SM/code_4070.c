@@ -24,9 +24,31 @@ ActorInfo D_8038B0B0 = { 0x1ED, 0x3B9, 0, 1, NULL,
 void func_8038A488(ActorMarker *caller, s32 text_id, s32 arg2);
 #pragma GLOBAL_ASM("asm/nonmatchings/SM/code_4070/func_8038A488.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/SM/code_4070/func_8038A4DC.s")
+void func_8038A4DC(Actor *this, s32 arg1){
+    switch(arg1){
+    case 2://L8038A50C
+        this->sm_4070.unk0 = 0;
+        player_getPosition(this->velocity);
+        func_8028F918(0);
+        if(ability_isUnlocked(ABILITY_FLAP)){
+            mapSpecificFlags_set(9,1);
+        }else if(ability_isUnlocked(ABILITY_HOLD_A_JUMP_HIGHER)){//L8038A540
+            mapSpecificFlags_set(8,1);
+        }else{//L8038A560
+            func_8038A460(this);
+            ability_unlock(ABILITY_HOLD_A_JUMP_HIGHER);
+            func_80311480(0xdf6, 0xe, &this->unk1C, this->marker, func_8038A488, NULL);
+            this->sm_4070.unk0 = 0xe1a;
+            mapSpecificFlags_set(8, 0);
+        }
+        break;
+    case 3://L8038A5B0
+        mapSpecificFlags_set(5, 1);
+        break;
+    }//L8038A5BC
+    func_80328A84(this, arg1);
+}
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/SM/code_4070/func_8038A5D8.s")
 void func_8038A5D8(Actor *this){
     f32 sp5C[3];
     s32 sp44[6];
