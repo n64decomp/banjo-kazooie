@@ -13,7 +13,7 @@ extern ActorInfo D_8038AC9C; //chCarrot FreeRange?
 extern ActorInfo D_8038AD0C; //ch onion B
 extern ActorInfo D_8038AD7C; //ch cauliflower B
 extern ActorInfo D_8038AF90; //D_8038AF90 bottles
-extern ActorInfo D_8038B0B0;
+extern ActorInfo D_8038B0B0; //chJumpTutorial code_4070
 extern ActorInfo D_8038B0E0;
 extern ActorInfo D_8038B008;
 extern ActorInfo D_8038B044;

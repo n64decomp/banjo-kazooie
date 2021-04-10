@@ -30,6 +30,7 @@ segments:
       - [0x3FC0, c]
       - [0x4070, c]
       - [0x44D0, c]
+      - [0x46C0, c]
   - name: SM/data
     type: code
     start: 0x000046D0
@@ -41,6 +42,8 @@ segments:
       - [0x000049B0, bin] #still part of ch/vegetables
       - [0x00004B70, bin] #.data, SM/code_2990]
       - [0x00004C00, bin]
+      - [0x00004CC0, bin] #.data, SM/code_4070]
+      - [0x00004CF0, bin] #.data, SM/code_44D0]
       - [0x00004D20, .rodata, SM/code_5B0]
       - [0x00004D40, .rodata, SM/ch/attacktutorial]
       - [0x00004DB0, bin]
