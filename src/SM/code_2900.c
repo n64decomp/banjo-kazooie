@@ -16,9 +16,9 @@ void func_8030DA44(u8);
 
 //static types
 typedef struct sm_2900_struct{
-    s16 unk0;
-    s16 unk2;
-    u8 pad4[1];
+    s16 unk0; //text_id
+    s16 unk2; //text_id
+    u8 unk4; //ability_id
     s8 unk5;
 }SM2900Struct;
 
@@ -82,9 +82,28 @@ void func_80389214(ActorMarker *marker, s32 text_id, s32);
 void func_803892C8(ActorMarker *marker, s32 text_id, s32);
 #pragma GLOBAL_ASM("asm/nonmatchings/SM/code_2900/func_803892C8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/SM/code_2900/func_80389494.s")
+void func_80389494(Actor * this, s32* arg1, s32 *arg2){
+    if(ability_isUnlocked(D_8038AFB4[this->unkF4_8 -1].unk5)){
+        if(func_8031FF1C(0xDB)){
+            *arg1 = D_8038AFE4 + 0xE0A; //dialog index
+            D_8038AFE4++;
+            D_8038AFE4 = MIN(D_8038AFE4, 5);
+            if(*arg1 != 0xE0E){
+                *arg2 |= 1;
+            }
+        }else{//L8038956C
+            *arg2 |= 1;
+            *arg1 = D_8038AFB4[this->unkF4_8 -1].unk2;
+            if(*arg1 == 0xdfe && !func_802957A0(3)){
+                *arg1 = 0xdfd;
+            }
+        }
+    }else{//L803895C0
+        *arg1 = D_8038AFB4[this->unkF4_8 -1].unk0;
+        ability_unlock(D_8038AFB4[this->unkF4_8 -1].unk5);
+    }
+}
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/SM/code_2900/func_80389610.s")
 void func_80389610(Actor * this){
     s32 sp2C;
     s32 sp28;
