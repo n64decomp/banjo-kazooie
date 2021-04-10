@@ -15,9 +15,9 @@ extern ActorInfo D_8038AD7C; //ch cauliflower B
 extern ActorInfo D_8038AF90; //D_8038AF90 bottles
 extern ActorInfo D_8038B0B0; //chJumpTutorial code_4070
 extern ActorInfo D_8038B0E0;
-extern ActorInfo D_8038B008;
-extern ActorInfo D_8038B044;
-extern ActorInfo D_8038B080;
+extern ActorInfo D_8038B008; //chBanjosBed
+extern ActorInfo D_8038B044; //chBanjosChair
+extern ActorInfo D_8038B080; //chBanjosStove
 extern ActorInfo D_8038AB24;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/SM/code_F0/func_803864E0.s")

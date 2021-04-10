@@ -3,6 +3,58 @@
 #include "variables.h"
 
 
-#pragma GLOBAL_ASM("asm/nonmatchings/SM/code_44D0/func_8038A8C0.s")
+void func_80326224(Actor *);
+Actor *func_80325340(ActorMarker *, Gfx **, Mtx **, s32);
+f32 func_80256064(f32 *, f32 *);
+f32 func_8028E82C(void);
+void func_8028F3D8(f32 *, f32,  void(*)(ActorMarker *), ActorMarker *);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/SM/code_44D0/func_8038A8F8.s")
+// prototypes
+void func_8038A8F8(Actor *this);
+
+/* .data */
+ActorInfo D_8038B0E0 = { 0x1F0, 0x3BD, 0, 0, NULL,
+    func_8038A8F8, func_80326224, func_80325340,
+    {0,0,0,0}, 0.0f, {0,0,0,0}
+};
+
+
+/* .code */
+void func_8038A8C0(ActorMarker *arg0){
+    mapSpecificFlags_set(0x10, 0);
+    func_8028E6EC(2);
+    func_8028F918(0);
+}
+
+void func_8038A8F8(Actor *this){
+    f32 sp2C;
+    Actor *other;
+    
+    if(!this->unk16C_4){
+        other = func_80304C38(0x3be, this);
+        if(!other){
+            this->unk1C = this->position_x;
+            this->unk20 = this->position_y;
+            this->unk24 = this->position_z;
+        }else{
+            func_80304D68(other, &this->unk1C);
+        }
+        actor_collisionOff(this);
+        this->unk16C_4 = 1;
+    }//L8038A968
+    player_getPosition(this->velocity);
+    sp2C = func_80256064(this->velocity, this->position);
+    if(sp2C < (f32) this->unkF4_8)
+        func_80388D48();
+
+    if( !mapSpecificFlags_get(0x10) && sp2C < (f32) this->unkF4_8 && 1780.0f < func_8028E82C()){
+        if( !mapSpecificFlags_get(2) 
+            || (mapSpecificFlags_get(3) && !mapSpecificFlags_get(0xf))
+        ){ //L8038AA54
+            this->yaw_moving = func_80256064(this->velocity, &this->unk1C) / 150.0;
+            func_8028F3D8(&this->unk1C, this->yaw_moving, func_8038A8C0, this->marker);
+            mapSpecificFlags_set(0x10, 1);
+        }
+    }
+}
+
