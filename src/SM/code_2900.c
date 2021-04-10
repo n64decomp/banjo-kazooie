@@ -16,7 +16,9 @@ void func_8030DA44(u8);
 
 //static types
 typedef struct sm_2900_struct{
-    u8 pad0[5];
+    s16 unk0;
+    s16 unk2;
+    u8 pad4[1];
     s8 unk5;
 }SM2900Struct;
 
@@ -39,6 +41,7 @@ ActorInfo D_8038AF90 = { 0xB7, 0x12B, 0x387, 1, D_8038AF60, //bottles
 
 
 };//*/
+//D_8038AFB0
 extern SM2900Struct D_8038AFB4[];
 
 extern s32 D_8038AFE4;
@@ -81,7 +84,92 @@ void func_803892C8(ActorMarker *marker, s32 text_id, s32);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/SM/code_2900/func_80389494.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/SM/code_2900/func_80389610.s")
+//#pragma GLOBAL_ASM("asm/nonmatchings/SM/code_2900/func_80389610.s")
+void func_80389610(Actor * this){
+    s32 sp2C;
+    s32 sp28;
+
+    sp28 = 0xe;
+    sp2C = 0;
+
+    switch(this->unkF4_8){
+        case 1://L8038965C
+            if(mapSpecificFlags_get(1)){
+                sp28 |= 1;
+                if(func_8031FF1C(0xDB)){
+                    sp2C = D_8038AFE4 + 0xE0A; //dialog index
+                    D_8038AFE4++;
+                    D_8038AFE4 = MIN(D_8038AFE4, 5);
+                }else{//L803896C0
+                    sp2C = D_8038AFB4[this->unkF4_8 -1].unk2;
+                }
+            }
+            else{//L803896E8
+                sp2C = D_8038AFB4[this->unkF4_8 -1].unk0;
+                mapSpecificFlags_set(1,1);
+            }
+            break;
+        case 8://L80389720
+            if(mapSpecificFlags_get(3)){
+                if(func_8031FF1C(0xa6)){
+                    sp2C = 0xe37;
+                    sp28 |= 1;
+                }else{//L80389758
+                    if(mapSpecificFlags_get(0xf)){
+                        sp2C = 0xe0f;
+                        sp28 |= 1;
+                    }else{//L80389780
+                        func_80388E48();
+                        sp2C = func_8031FF1C(0xdb) ? 0xe1e : 0xe13;
+                        mapSpecificFlags_set(0xf, 1);
+                    }
+                } //L803897B4
+                mapSpecificFlags_set(2, 1);
+            }
+            else{//L803897C8
+                if(mapSpecificFlags_get(2)){
+                    sp2C = D_8038AFB4[this->unkF4_8 -1].unk2;
+                    sp28 |= 1;
+                }
+                else{
+                    sp2C = D_8038AFB4[this->unkF4_8 -1].unk0;
+                    mapSpecificFlags_set(2, 1);
+                }
+
+            }
+            break;
+            
+        case 4://L80389848
+            if( !ability_isUnlocked(ABILITY_BEAR_PUNCH)
+                || !ability_isUnlocked(ABILITY_ROLL)
+                || !ability_isUnlocked(ABILITY_RATATAT_RAP)
+            ){//L803898D4
+                mapSpecificFlags_set(4, 1);
+            }
+            else{//L803898E4
+                func_80389494(this, &sp2C, &sp28);
+            }
+            break;
+        
+        case 6://L803898A0
+            if( !ability_isUnlocked(ABILITY_HOLD_A_JUMP_HIGHER)
+                || !ability_isUnlocked(ABILITY_FLAP)
+                || !ability_isUnlocked(ABILITY_FLIP)
+            ){//L803898D4
+                mapSpecificFlags_set(0xE, 1);
+            }
+            else{//L803898E4
+                func_80389494(this, &sp2C, &sp28);
+            }
+            break;
+        default://L803898F8
+            func_80389494(this, &sp2C, &sp28);
+            break;
+    }//L80389904
+    if(sp2C){
+        func_80311480(sp2C, sp28, this->position, this->marker, func_803892C8, func_80389214);
+    }
+}
 
 void func_80389948(ActorMarker * marker){
     Actor *actor;
