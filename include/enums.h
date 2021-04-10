@@ -22,12 +22,19 @@ enum transformation_E
 
 enum ABILITY_E
 {
+    ABILITY_BARGE = 0x0,
+
     ABILITY_BEAR_PUNCH = 0x4,
+    ABILITY_CLIMB = 0x5,
+
     ABILITY_FLAP = 0x7,
     ABILITY_FLIP = 0x8,
+
     ABILITY_HOLD_A_JUMP_HIGHER = 0xA,
     ABILITY_RATATAT_RAP = 0xB,
-    ABILITY_ROLL = 0xC
+    ABILITY_ROLL = 0xC,
+
+    ABILITY_DIVE = 0xF
 };
 
 enum MAP_E

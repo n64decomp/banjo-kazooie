@@ -73,7 +73,19 @@ extern f64 D_8038B300;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/SM/code_2900/func_80388E48.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/SM/code_2900/func_80388EB0.s")
+void func_80388EB0(void){
+    ability_unlock(ABILITY_DIVE);
+    ability_unlock(ABILITY_BEAR_PUNCH);
+    ability_unlock(ABILITY_ROLL);
+    ability_unlock(ABILITY_RATATAT_RAP);
+    ability_unlock(ABILITY_BARGE);
+    ability_unlock(ABILITY_HOLD_A_JUMP_HIGHER);
+    ability_unlock(ABILITY_FLAP);
+    ability_unlock(ABILITY_FLIP);
+    ability_unlock(ABILITY_CLIMB);
+    func_80388E48();
+    mapSpecificFlags_set(3,1);
+}
 
 void func_80388F24(Actor *this){
     if(this->unkF4_8 == 1 && !mapSpecificFlags_get(1)){
