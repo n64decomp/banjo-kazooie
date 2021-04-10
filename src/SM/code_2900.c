@@ -21,8 +21,8 @@ void func_80324E60(f32, s32);
 typedef struct sm_2900_struct{
     s16 unk0; //text_id
     s16 unk2; //text_id
-    u8 unk4; //ability_id
-    s8 unk5;
+    s8 unk4; 
+    s8 unk5; //ability_id
 }SM2900Struct;
 
 //public
@@ -75,9 +75,46 @@ extern f64 D_8038B300;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/SM/code_2900/func_80388EB0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/SM/code_2900/func_80388F24.s")
+void func_80388F24(Actor *this){
+    if(this->unkF4_8 == 1 && !mapSpecificFlags_get(1)){
+        func_80324E60(0.0f, 0x12);
+    }
+    else{ //L80388F68
+        func_80324E60(0.0f, D_8038AFB4[this->unkF4_8 -1].unk4);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/SM/code_2900/func_80388FA0.s")
+/*void func_80388FA0(Actor *this, s32 arg1){
+    switch(this->unk10_31){
+        case 1://L80388FE8
+            this->unk138_23 = 1;
+            break;
+        case 4://L80388FF8
+            this->unk138_23 = 0;
+            break;
+        case 2://L80389004
+            func_8030DA44(this->unk44_31);
+            this->unk44_31 = 0;
+            break;
+        case 5://L80389018
+            func_8028F918(0);
+            this->unk138_23 = 0;
+            break;
+    }//L8038902C
+
+    switch(arg1){
+        case 1:
+            break;
+        case 2:
+            break;
+        case 3:
+            break;
+        case 4:
+            break;
+    }
+    func_80328B8C(this, arg1, 0.0001f, 1);
+}//*/
 
 void func_80389214(ActorMarker *marker, s32 text_id, s32 arg2){
     Actor *actor = marker_getActor(marker);
