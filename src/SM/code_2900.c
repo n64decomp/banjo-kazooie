@@ -74,7 +74,7 @@ int func_80388D80(void){
         || ability_isUnlocked(ABILITY_BEAR_PUNCH)
         || ability_isUnlocked(ABILITY_ROLL)
         || ability_isUnlocked(ABILITY_RATATAT_RAP)
-        || ability_isUnlocked(ABILITY_CAMERA_CONTROL)
+        || ability_isUnlocked(ABILITY_BARGE)
         || ability_isUnlocked(ABILITY_HOLD_A_JUMP_HIGHER)
         || ability_isUnlocked(ABILITY_FLAP)
         || ability_isUnlocked(ABILITY_FLIP)
