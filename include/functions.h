@@ -15,10 +15,12 @@
 extern f32 fabsf(f32);
 #pragma intrinsic (fabsf)
 
-#define TUPLE_OP(out, a, op, b) \
-    out##[0] = a##[0] op b##[0];\
-    out##[1] = a##[1] op b##[1];\
-    out##[1] = a##[1] op b##[1]
+#define TUPLE_ASSIGN(out, a, b, c) {\
+    out[0] = a;\
+    out[1] = b;\
+    out[2] = c;\
+}
+
 
 void func_80241304(Mtx *m, float x, float y, float z);
 

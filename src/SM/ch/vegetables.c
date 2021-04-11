@@ -99,19 +99,6 @@ extern s32 D_8038AE9C;
 extern s32 D_8038AEE4;
 extern s32 D_8038AF0C;
 
-/* .rodata */
-extern f64 D_8038B1A0;
-extern f64 D_8038B1A8;
-extern f64 D_8038B1B0;
-extern f64 D_8038B1B8;
-extern f64 D_8038B1C0;
-extern f64 D_8038B1C8;
-extern f64 D_8038B1D0;
-extern f64 D_8038B1D8;
-extern f64 D_8038B1E0;
-extern f64 D_8038B1E8;
-extern f64 D_8038B1F0;
-
 /* .code */
 void func_80387910(Actor *arg0, f32 *arg1, s32 arg2){
     f32 sp24[3] = D_8038ADA0;
@@ -223,7 +210,7 @@ void func_80387E64(Actor *this){
 void func_80387F00(Actor *this){
     ChVeg *local = &this->local;
     
-    this->position_y += (mapSpecificFlags_get(0xC) || func_803203FC(0xC1, this)) ? 120.0 : D_8038B1A0;
+    this->position_y += (mapSpecificFlags_get(0xC) || func_803203FC(0xC1, this)) ? 120.0 : 180.0;
     local->unk0_x = this->position_x;
     local->unk0_y = this->position_y;
     local->unk0_z = this->position_z;
@@ -240,7 +227,7 @@ int func_80387FA8(Actor *this, ChVeg *local, s32 yaw, s32 arg3){
     sp18[0] = arg3;
     sp18[1] = 0.0f;
     sp18[2] = 0.0f;
-    func_80256900(sp18, sp18, yaw - D_8038B1A8);
+    func_80256900(sp18, sp18, yaw - 90.0);
     sp24[0] = sp18[0] + local->unk0_x;
     sp24[1] = sp18[1] + local->unk0_y;
     sp24[2] = sp18[2] + local->unk0_z;
@@ -250,9 +237,7 @@ int func_80387FA8(Actor *this, ChVeg *local, s32 yaw, s32 arg3){
         return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/SM/ch/vegetables/func_80388080.s")
-//99.99% Matching
-/*void func_80388080(Actor *this){
+void func_80388080(Actor *this){
     f32 temp_velZ;
     f32 temp_velX;
     f32 temp_f0;
@@ -313,7 +298,7 @@ int func_80387FA8(Actor *this, ChVeg *local, s32 yaw, s32 arg3){
             if(mapSpecificFlags_get(0xC) || func_803203FC(0xC1)){ //L8038830C
                 this->unk20 += (local->unkC == 3)? 120.0 : 0.0;
             }else{//L80388350
-                this->unk20 += (local->unkC == 3)? D_8038B1B0 : D_8038B1B8;
+                this->unk20 += (local->unkC == 3)? 270.0 : 85.0;
             }
             //L80388384
             func_80328A84(this, 4);
@@ -324,7 +309,7 @@ int func_80387FA8(Actor *this, ChVeg *local, s32 yaw, s32 arg3){
         this->position_y = this->velocity_y + this->position_y;
         this->position_z = this->velocity_z + this->position_z;
         this->velocity_y -= 5.0f;
-        this->scale = MIN(this->scale + D_8038B1C0, 1.0);
+        this->scale = MIN(this->scale + 0.05, 1.0);
         if(this->velocity_y < 0.0f && this->position_y < this->unk20){
             this->position_y = func_80309724(this->position);
             if(local->unkC == 3)
@@ -360,7 +345,7 @@ int func_80387FA8(Actor *this, ChVeg *local, s32 yaw, s32 arg3){
                         this->yaw_moving = func_80329784(this);
                     }
                     else{//L803885CC
-                        if(randf() < D_8038B1C8){
+                        if(randf() < 0.02){
                             func_80328CEC(this, (s32)this->yaw, 0x1E, 0x5A);
                         }
                     }//L80388B68
@@ -378,7 +363,7 @@ int func_80387FA8(Actor *this, ChVeg *local, s32 yaw, s32 arg3){
                 if(mapSpecificFlags_get(0xC) || (func_803203FC(0xC1) && func_803292E0(this))){
                     this->yaw_moving = func_80329784(this);
                 }else{//L803886E4
-                    if(randf() < D_8038B1D0){
+                    if(randf() < 0.02){//D_8038B1D0){
                         func_80328CEC(this, (s32)this->yaw, 0x1E, 0x5A);
                     }
                 }
@@ -420,10 +405,8 @@ int func_80387FA8(Actor *this, ChVeg *local, s32 yaw, s32 arg3){
                         this->unk1C -= local->unk0_x;
                         this->unk20 -= local->unk0_y;
                         this->unk24 -= local->unk0_z;
-                        sp60[0] = this->unk28;
-                        sp60[2] = 0.0f; //register assignment order swapped;
-                        sp60[1] = 0.0f; //register assignment order swapped;
-                        func_80256900(sp60, sp60, this->yaw - D_8038B1D8);
+                        TUPLE_ASSIGN(sp60, this->unk28, 0.0f, 0.0f);
+                        func_80256900(sp60, sp60, this->yaw - 90.0);
                         local->unk0_x = sp60[0] + local->unk0_x;
                         local->unk0_y = sp60[1] + local->unk0_y;
                         local->unk0_z = sp60[2] + local->unk0_z;
@@ -437,7 +420,7 @@ int func_80387FA8(Actor *this, ChVeg *local, s32 yaw, s32 arg3){
                     if(func_803292E0(this)){
                         this->yaw_moving = func_80329784(this);
                     }else{//L80388B04
-                        if(randf() < D_8038B1E0){
+                        if(randf() < 0.01){
                             func_80328CEC(this, (s32)this->yaw, 0x1e, 0x5A);
                         }
                     }
@@ -458,7 +441,7 @@ int func_80387FA8(Actor *this, ChVeg *local, s32 yaw, s32 arg3){
         }
         break;
     case 3: //L80388BFC
-        if(func_8032886C(this, (local->unkC == 2) ? D_8038B1E8 : D_8038B1F0)){
+        if(func_8032886C(this, (local->unkC == 2) ? 0.4 : 0.05)){
             sp54[0] = this->position_x;
             sp54[1] = this->position_y;
             sp54[2] = this->position_z;
