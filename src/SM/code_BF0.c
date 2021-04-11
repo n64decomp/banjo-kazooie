@@ -25,4 +25,9 @@ void func_80386FE0(Actor *this){
     }//L803870DC
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/SM/code_BF0/func_803870E8.s")
+int func_803870E8(ActorMarker * arg0){
+    Actor *actor = marker_getActor(arg0);
+    
+    return (--actor->unk10_12)==0 ? 1 : 0;
+
+}

@@ -294,15 +294,9 @@ typedef struct actor_s{
     u32 pad10_0:1;
     ActorMovement *movement;
     ActorAnimationInfo *unk18;
-    // union{
-    //     struct
-    //     {
     f32 unk1C;
     f32 unk20;
     f32 unk24;
-    //     };
-    //     TUPLE(f32, vnk1C);
-    // };
     f32 unk28; //used in cheggs
     TUPLE(f32, velocity);
     u32  unk38_31:10;
