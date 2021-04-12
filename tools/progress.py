@@ -2,6 +2,8 @@ import argparse
 import os
 import re
 import sys
+import subprocess
+import glob
 
 def parse_map(mapfile, section, ending=None):
     functions = {}
@@ -91,27 +93,53 @@ def parse_file(basedir, filename, file_funcs):
     return updates
 
 
-def generate_csv(files, functions, version, section):
+def generate_csv(files, functions, nonmatching_funcs, version, section):
     ret = []
-    ret.append("version,section,filename,function,offset,length,language")
+    ret.append("version,section,filename,function,offset,length,matching")
     for filename, funcs in files.items():
         basename = os.path.basename(filename)
         for func in funcs:
-            language = functions[func]["language"]
+            matching = "no" if func in nonmatching_funcs else "yes"
             offset = functions[func]["offset"]
             length = functions[func]["length"]
-            ret.append(f"{version},{section},{basename},{func},{offset},{length},{language}")
+            ret.append(f"{version},{section},{basename},{func},{offset},{length},{matching}")
     return "\n".join(ret)
 
+def get_nonmatching_funcs(basedir, subcode):
+    grepstr = r'#pragma GLOBAL_ASM\(.*/\K.*(?=\.s)'
+    if subcode:
+        try:
+            funcs = set(subprocess.check_output(['grep', '-ohPR', grepstr, basedir + '/src/' + subcode]).decode('ascii').split())
+        except subprocess.CalledProcessError as grepexc:
+            if grepexc.returncode != 1:
+                raise grepexc
+            funcs = set()
+    else:
+        args = ['grep', '-ohPs', '-d', 'skip', grepstr]
+        args.extend(glob.glob(basedir + '/src/*'))
+        try:
+            funcs = set(subprocess.check_output(args).decode('ascii').split())
+        except subprocess.CalledProcessError as grepexc:
+            if grepexc.returncode != 1:
+                raise grepexc
+            funcs = set()
+        try:
+            funcs = funcs.union(set(subprocess.check_output(['grep', '-ohPR', grepstr, basedir + '/src/done']).decode('ascii').split()))
+        except subprocess.CalledProcessError as grepexc:
+            if grepexc.returncode != 1:
+                raise grepexc
+    return funcs
 
-def main(basedir, mapfile, section, ending, version):
+
+def main(basedir, mapfile, section, ending, version, subcode):
     files, functions = parse_map(mapfile, section, ending)
     for filename, file_funcs in files.items():
         c_functions = parse_file(basedir, filename, file_funcs)
         for c_function in c_functions:
             functions[c_function]["language"] = "c"
     section_name = section.split("_")[-1] # .code_game -> game
-    csv = generate_csv(files, functions, version, section_name)
+    nonmatching_funcs = get_nonmatching_funcs(basedir, subcode)
+    csv = generate_csv(files, functions, nonmatching_funcs, version, section_name)
     print(csv)
 
 if __name__ == '__main__':
@@ -127,6 +155,8 @@ if __name__ == '__main__':
                         help="section name that marks the end of 'section'")
     parser.add_argument('--version', type=str, default='us',
                         help="ROM version, us, eu, debug, ects")
+    parser.add_argument('--subcode', type=str, default=None,
+                        help="Subcode for section to get progress of")
     args = parser.parse_args()
 
-    main(args.basedir, args.mapfile, args.section, args.ending, args.version)
+    main(args.basedir, args.mapfile, args.section, args.ending, args.version, args.subcode)

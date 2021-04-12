@@ -42,4 +42,3 @@ s32 osSendMesg(OSMesgQueue *mq, OSMesg msg, s32 flags)
     __osRestoreInt(saveMask);
     return 0;
 }
-// #pragma GLOBAL_ASM("asm/nonmatchings/bk_boot_57B0/func_80004BB0.s")

@@ -35,4 +35,3 @@ void osSetThreadPri(OSThread *t, OSPri pri)
     }
     __osRestoreInt(saveMask);
 }
-// #pragma GLOBAL_ASM("asm/nonmatchings/bk_boot_4FA0/func_800043A0.s")

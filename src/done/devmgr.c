@@ -130,4 +130,3 @@ void __osDevMgrMain(void *args)
     }
   }
 }
-// #pragma GLOBAL_ASM("asm/nonmatchings/bk_boot_51D0/func_800045D0.s")

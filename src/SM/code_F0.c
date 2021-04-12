@@ -91,7 +91,6 @@ void func_80386614(u8 *arg0, u8 *arg1, s32 *arg2, s32 *arg3){
     *arg3 = temp_v1;
 }
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/SM/code_F0/func_803866CC.s")
 extern s32 D_00005E70;
 
 int func_803866CC(void){

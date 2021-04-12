@@ -84,4 +84,3 @@ void osInitialize()
       osViClock = VI_NTSC_CLOCK;
    }
 }
-// #pragma GLOBAL_ASM("asm/nonmatchings/bk_boot_2970/func_80001D70.s")

@@ -83,4 +83,3 @@ void osCreatePiManager(OSPri pri, OSMesgQueue *cmdQ, OSMesg *cmdBuf, s32 cmdMsgC
 		}
 	}
 }
-// #pragma GLOBAL_ASM("asm/nonmatchings/pimgr/func_80004000.s")
