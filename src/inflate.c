@@ -192,10 +192,6 @@ int *m;                 /* maximum lookup bits, returns actual */
    return y != 0 && g != 1;
 }
 
-
-#if(1)
-#pragma GLOBAL_ASM("asm/nonmatchings/inflate/func_80000CF0.s")
-#else
 //^inflate_codes
 int func_80000CF0(struct huft *tl, struct huft *td, s32 bl, s32 bd)
 {
@@ -206,7 +202,7 @@ int func_80000CF0(struct huft *tl, struct huft *td, s32 bl, s32 bd)
   unsigned ml, md;      /* masks for bl and bd bits */
   register u32 b;       /* bit buffer */
   register unsigned k;  /* number of bits in bit buffer */
-  register u32 tmp;
+  register u8 tmp;
 
   /* make local copies of globals */
   b = D_80007294;                       /* initialize bit buffer */
@@ -216,71 +212,58 @@ int func_80000CF0(struct huft *tl, struct huft *td, s32 bl, s32 bd)
   /* inflate the coded data */
   ml = D_800050B0[bl];           /* precompute masks for speed */
   md = D_800050B0[bd];
+
   for (;;)                      /* do until end of block */
-  {
-     NEEDBITS((unsigned)bl)
-     if ((e = (t = tl + ((unsigned)b & ml))->e) > 16)
-       do {
-         DUMPBITS(t->b)
-         e -= 16;
-         NEEDBITS(e)
-       } while ((e = (t = t->v.t + ((unsigned)b & D_800050B0[e]))->e) > 16);
-     DUMPBITS(t->b)
-     if (e == 16)                /* then it's a literal */
-     {
-       tmp = (u8)t->v.n;
-        D_80007284[w++] = tmp;
-        D_8000729C += tmp;
-        
-        D_800072A0 ^= tmp << (D_8000729C & 0x17);
-     }
-     else                        /* it's an EOB or a length */
-     {
+  {//L80000D78
+    NEEDBITS((unsigned)bl)
+    if ((e = (t = tl + ((unsigned)b & ml))->e) > 16)
+      do {
+        DUMPBITS(t->b)
+        e -= 16;
+        NEEDBITS(e)
+      } while ((e = (t = t->v.t + ((unsigned)b & D_800050B0[e]))->e) > 16);
+    DUMPBITS(t->b)
+    if (e == 16)                /* then it's a literal */
+    {
+
+      tmp = (u8)t->v.n;
+      D_80007284[w++] = tmp;
+      D_8000729C += tmp;  
+      D_800072A0 ^= tmp << (D_8000729C & 0x17);
+    }
+    else                        /* it's an EOB or a length */
+    {//L80000EAC
        /* exit if end of block */
-       if (e == 15)
-         break;
+      if (e == 15)
+        break;
 
        /* get length of block to copy */
-       NEEDBITS(e)
-       n = t->v.n + ((unsigned)b & D_800050B0[e]);
-       DUMPBITS(e);
+      NEEDBITS(e) //L80000EAC - L80000ED8 
+      n = t->v.n + ((unsigned)b & D_800050B0[e]);
+      DUMPBITS(e);
 
        /* decode distance of block to copy */
-       NEEDBITS((unsigned)bd)
-       if ((e = (t = td + ((unsigned)b & md))->e) > 16)
-         do {
-           DUMPBITS(t->b)
-           e -= 16;
-           NEEDBITS(e)
-         } while ((e = (t = t->v.t + ((unsigned)b & D_800050B0[e]))->e) > 16);
-       DUMPBITS(t->b)
-       NEEDBITS(e)
-       d = w - t->v.n - ((unsigned)b & D_800050B0[e]);
-       DUMPBITS(e)
-       
+      NEEDBITS((unsigned)bd)//L80000F04 - L80000F2C
+      if ((e = (t = td + ((unsigned)b & md))->e) > 16)
+        do {
+          DUMPBITS(t->b)
+          e -= 16;
+          NEEDBITS(e)
+        } while ((e = (t = t->v.t + ((unsigned)b & D_800050B0[e]))->e) > 16);
+      //L80000FC8
+      DUMPBITS(t->b)
+      NEEDBITS(e) //L80000FE0 - L80001008
+      d = w - t->v.n - ((unsigned)b & D_800050B0[e]);
+      DUMPBITS(e)
       
-       //n -= e;
-       
-
        /* do the copy */
-      // do {
-           //
-      //do{
-              n -= e;
-
-          //NEEDBITS(1)
-           do {
-             //k++;
-             tmp = D_80007284[d++];
-             D_80007284[w++] = tmp;
-             D_8000729C += tmp;
-             D_800072A0 &= tmp << (D_8000729C & 0x17);
-             //if(!e) break;
-             
-           } while (--e != 0);
-           //
-        //} while (e);
-     }
+      do{
+        tmp =  D_80007284[d++];
+        D_80007284[w++] = tmp;
+        D_8000729C += tmp;
+        D_800072A0 ^= tmp << (D_8000729C & 0x17);
+      }while(--n);
+    }
   }
   /* restore the globals from the locals */
   D_8000728C = w;                       /* restore global window pointer */
@@ -289,7 +272,6 @@ int func_80000CF0(struct huft *tl, struct huft *td, s32 bl, s32 bd)
   /* done */
   return 0;
 }
-#endif
 
  int inflate_stored(void)
 /* "decompress" an inflated type 0 (stored) block. */

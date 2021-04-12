@@ -374,7 +374,7 @@ void func_80389984(Actor * this){
 }
 
 void func_803899B0(Actor * this){
-    s32 sp50[6];
+    s32 sp50[6]; //face buttons
     f32 sp44[3]; //player position
     Actor *sp40;
     int sp34;
