@@ -91,19 +91,21 @@ void func_80386614(u8 *arg0, u8 *arg1, s32 *arg2, s32 *arg3){
     *arg3 = temp_v1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/SM/code_F0/func_803866CC.s")
-/*int func_803866CC(void){
+//#pragma GLOBAL_ASM("asm/nonmatchings/SM/code_F0/func_803866CC.s")
+extern s32 D_00005E70;
+
+int func_803866CC(void){
     u32 sp24;
 
-    if( (osPiReadIo(0x5E70 + 8, &sp24), sp24 == D_803FFE00)
-        && (osPiReadIo(0x5E70 + 0xC, &sp24), sp24 == D_803FFE04)
-        && (osPiReadIo(0x5E70 + 0x10, &sp24), sp24 == D_803FFE08)
-        && (osPiReadIo(0x5E70 + 0x14, &sp24), sp24 == D_803FFE0C)
+    if( (osPiReadIo((u32)&D_00005E70 + 8, &sp24), sp24 == D_803FFE00)
+        && (osPiReadIo((u32)&D_00005E70 + 12, &sp24), sp24 == D_803FFE04)
+        && (osPiReadIo((u32)&D_00005E70 + 16, &sp24), sp24 == D_803FFE08)
+        && (osPiReadIo((u32)&D_00005E70 + 20, &sp24), sp24 == D_803FFE0C)
     ){
         return 1;
     }
     return 0;
-}//*/
+}
 
 int func_80386780(void){
     if( D_8038B320.unk0 == D_8038AAE0
