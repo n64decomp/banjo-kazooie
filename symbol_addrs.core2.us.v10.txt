@@ -19,6 +19,7 @@ banjo_getPosition = 0x80292468;
 func_802947CC = 0x802947CC;
 button_pressed = 0x80295544;
 button_held = 0x8029557C;
+ability_setHasUsed = 0x802957B8;
 player_setIdealPitch = 0x80297F3C;
 player_getPitch = 0x80297F98;
 climbClear = 0x802981E0;

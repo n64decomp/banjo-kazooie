@@ -21,6 +21,12 @@ extern f32 fabsf(f32);
     out[2] = c;\
 }
 
+#define TUPLE_OP(out, a, op, b) {\
+    out##_x = a##_x op b##_x;\
+    out##_y = a##_y op b##_y;\
+    out##_z = a##_z op b##_z;\
+}
+
 void func_80241304(Mtx *m, float x, float y, float z);
 
 void _guMtxIdentF_80245D44(float mf[4][4]); //static should NOT be here

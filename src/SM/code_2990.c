@@ -77,15 +77,15 @@ int func_80388D80(void){
 
 void func_80388E48(void){
     ability_unlock(ABILITY_CAMERA_CONTROL);
-    func_802957B8(0);
-    func_802957B8(1);
-    func_802957B8(2);
-    func_802957B8(3);
-    func_802957B8(4);
-    func_802957B8(5);
-    func_802957B8(0xb);
-    func_802957B8(0xc);
-    func_802957B8(0xa);
+    ability_setHasUsed(ABILITY_BARGE);
+    ability_setHasUsed(ABILITY_BEAK_BOMB);
+    ability_setHasUsed(ABILITY_BEAK_BUSTER);
+    ability_setHasUsed(ABILITY_CAMERA_CONTROL);
+    ability_setHasUsed(ABILITY_BEAR_PUNCH);
+    ability_setHasUsed(ABILITY_CLIMB);
+    ability_setHasUsed(ABILITY_RATATAT_RAP);
+    ability_setHasUsed(ABILITY_ROLL);
+    ability_setHasUsed(ABILITY_HOLD_A_JUMP_HIGHER);
 }
 
 void func_80388EB0(void){
@@ -426,7 +426,7 @@ void func_803899B0(Actor * this){
         func_8028E668(this->position, 180.0f, -40.0f, 120.0f);
     }//L80389B64
 
-    func_8024E55C(0,sp50);
+    func_8024E55C(0,sp50); //get face buttons press counters
     player_getPosition(sp44);
     switch (this->unk10_31)
     {
@@ -540,16 +540,16 @@ void func_803899B0(Actor * this){
             this->unk60 += func_8033DD9C();
             if(func_803114C4() != 0xe1d){
                 if(sp50[0] == 1) 
-                    sp38 = 1;
+                    sp38 = 1; //A button pressed
                 else if(sp50[1] == 1)
-                    sp38 = 0;
+                    sp38 = 0; //B button pressed
             }//L8038A218
 
-            if( sp38 != -1){
+            if( sp38 != -1){ //button was pressed
                 func_80320004(0xdb, (sp38)?0:1);
                 func_80311480((sp38)? 0xe07 : 0xe09, 0xe, this->position, this->marker, func_803892C8, func_80389214);
                 if(!sp38){
-                    func_80388EB0();
+                    func_80388EB0(); //give all SM moves
                 }
                 this->unk38_0 = 0;
             }else if(!this->unk138_24 && 5.0 < this->unk60){

@@ -11,7 +11,7 @@ s32 func_802957A0(s32 move){
     return (1 << move) & D_8037C3A4;
 }
 
-void func_802957B8(s32 move){
+void ability_setHasUsed(s32 move){
     D_8037C3A4 |= (1 << move); 
 }
 

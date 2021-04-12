@@ -77,15 +77,12 @@ void func_80388300(Actor **arg0){
     }
 }//*/
 
-void func_803884C0(s32 x, s32 y, s32 z);
-#pragma GLOBAL_ASM("asm/nonmatchings/MM/ch/lmonkey/func_803884C0.s")
-/*void func_803884C0(s32 x, s32 y, s32 z){
+
+void func_803884C0(s32 x, s32 y, s32 z){
     f32 sp1C[3];
-    sp1C[0] = x;
-    sp1C[1] = y;
-    sp1C[2] = z;
+    TUPLE_ASSIGN(sp1C, x, y, z);
     jiggySpawn(JIGGY_MM_CHIMPY, sp1C);
-}//*/
+}
 
 void func_80388514(ActorMarker *marker, s32 arg1, s32 arg2){
     Actor * actor = marker_getActor(marker);

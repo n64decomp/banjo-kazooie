@@ -23,7 +23,8 @@ enum transformation_E
 enum ABILITY_E
 {
     ABILITY_BARGE = 0x0,
-
+    ABILITY_BEAK_BOMB = 0x1,
+    ABILITY_BEAK_BUSTER = 0x2,
     ABILITY_CAMERA_CONTROL = 0x3,
     ABILITY_BEAR_PUNCH = 0x4,
     ABILITY_CLIMB = 0x5,
