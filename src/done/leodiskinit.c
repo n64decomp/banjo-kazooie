@@ -37,4 +37,3 @@ OSPiHandle *osLeoDiskInit()
 	__osRestoreInt(saveMask);
 	return &LeoDiskHandle;
 }
-// #pragma GLOBAL_ASM("asm/nonmatchings/bk_boot_4890/func_80003C90.s")

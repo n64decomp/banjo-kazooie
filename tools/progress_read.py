@@ -24,7 +24,7 @@ def main(csv_name, version, overlay):
             if(row["version"] == version):
                 total_func += 1
                 total_byte += int(row['length'])
-                if row['language'] == 'c':
+                if row['matching'] == 'yes':
                     done_func += 1
                     done_byte += int(row['length'])
         percent = ((done_byte/total_byte) * 100)

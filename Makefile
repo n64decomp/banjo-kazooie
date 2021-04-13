@@ -318,7 +318,7 @@ progress/progress.bk_boot.csv: progress/. $(TARGET).elf
 #PROG_CSVS = $(foreach submod, $(SUBCODE), progress/progress.$(submod).csv)
 progress/progress.%.csv:  progress/. build/%.$(VERSION).elf
 	@echo -n "$*: "
-	@$(PYTHON) tools/progress.py . build/$*.$(VERSION).map .code_code --version $(VERSION) > $@
+	@$(PYTHON) tools/progress.py . build/$*.$(VERSION).map .code_code --version $(VERSION) --subcode $* > $@
 
 
 build/src/done/ll.o: src/done/ll.c include/variables.h include/structs.h include/functions.h
