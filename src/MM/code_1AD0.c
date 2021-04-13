@@ -2,20 +2,23 @@
 #include "functions.h"
 #include "variables.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/MM/code_1AD0/func_80387EC0.s")
-// extern  s32 D_802D1724[];
-// void func_80387EC0(void) {
-//     s32 temp_sp18;
+void func_802D1724(void);
 
-//     if (getGameMode() != 7) {
-//         temp_sp18 = ((((s32)D_802D1724) + 0xC) & 0xF0000000) + ((D_802D1724[2] & 0x3FFFFFF) * 4);
-//         ((s32*)temp_sp18)[0] = 0x3E00008;
-//         ((s32*)temp_sp18)[1] = 0x24020002;
+void func_80387EC0(void) {
+    u32 *temp_v0;
+    u32 temp_a0;
+
+    temp_v0 = func_802D1724;
+    if (getGameMode() != 7) {
+        temp_a0 = (temp_v0[2] & 0x03FFFFFF)*4; //get offset
+        temp_a0 += (u32)&temp_v0[3] & 0xF0000000; //get region
+        ((u32 *)temp_a0)[0] = 0x03E00008; //jr $ra
+        ((u32 *)temp_a0)[1] = 0x24020002; //addiu $v0, $zero, 0x2
         
-//         osWritebackDCache(temp_sp18, 8);
-//         osInvalICache(temp_sp18, 8);
-//     }
-// }
+        osWritebackDCache(temp_a0, 8);
+        osInvalICache(temp_a0, 8);
+    }
+}
 
 void func_80387F44(void) {
     s32 sp1C;

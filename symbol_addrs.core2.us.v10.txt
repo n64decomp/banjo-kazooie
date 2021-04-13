@@ -81,6 +81,7 @@ mapSpecificFlags_setN       = 0x802CAE24;
 mapSpecificFlags_getAll     = 0x802CAE8C;
 mapSpecificFlags_setAll     = 0x802CAE98;
 mapSpecificFlags_validateCRC1 = 0x802CB00C;
+func_802D1724 = 0x802D1724;
 getGameMode = 0x802E49FC;
 vla_clear = 0x802ED620;
 vla_getBegin = 0x802ED62C;
