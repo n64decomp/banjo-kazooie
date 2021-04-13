@@ -36,7 +36,7 @@ u32 func_800005C0(u8* in, u8* out, struct huft *arg2){
     D_8000728C = 0; //wp
     D_80007288 = 0; //inptr
     
-    func_80001B00(); //inflate
+    bkboot_inflate(); //inflate
     return D_8000728C; //return uncompressed size
 }
 
