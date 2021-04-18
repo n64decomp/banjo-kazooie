@@ -51,14 +51,14 @@ typedef struct {
     s32 unk160;
     s16 unk164;
     u16 unk166;
-    u16 unk168;
+    s16 unk168;
     u16 unk16A;
     s32 x_position;
     s16 unk170;
     u16 unk172;
     u16 unk174;
-    u8  unk176;
-    u8  unk177;
+    s8  unk176;
+    s8  unk177;
     s8  unk178;
     s8  unk179;
     u8  pad17A[0x2];
@@ -103,7 +103,7 @@ typedef struct {
     u32 pad1A4_10:11;
 }gczoombox_t; //size 0x1A8
 
-
+void gczoombox_draw(gczoombox_t *this, Gfx **gdl, Mtx ** mptr, void *vptr);
 void gczoombox_free(gczoombox_t* this);
 gczoombox_t *gczoombox_new(s32 arg0, s32 arg1, s32 arg2, s32 arg3, void (*arg4)(s32, s32));
 

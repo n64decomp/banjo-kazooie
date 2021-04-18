@@ -105,11 +105,57 @@ void _gczoombox_memClear(u8 *arg0, s32 size){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/zoombox/func_803163A8.s")
 
+void func_803164B0(gczoombox_t *, Gfx **, Mtx **, s32, s32, s32, f32);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/zoombox/func_803164B0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/zoombox/func_80316764.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/zoombox/func_80316B8C.s")
+void gczoombox_draw(gczoombox_t *this, Gfx **gdl, Mtx ** mptr, void *vptr){
+     if(!this)
+          return;
+
+     if(getGameMode() == game_mode_BANJO_AND_KAZOOIE)
+          func_8034A900();
+     //L80316BCC
+     if(this->unk1A4_28 && this->unk135 && this->unkF0){
+          func_803162B4(this);
+          func_803163A8(this, gdl, mptr);
+          if( this->unk139 == 2
+               || ( getGameMode() != game_mode_normal
+                    && getGameMode() != game_mode_bottles_bonus
+                    && getGameMode() != game_mode_SnS_picture
+                    && !func_803203FC(0x1F))
+          ){//L80316C64
+               func_80316764(this, 0);
+          }
+          else{ //L80316C74
+               func_80316764(this, this->unk1A4_23);
+          }//L80316C8C
+
+          if(!this->unk1A4_13){
+               func_803164B0(this, gdl, mptr, this->unk176, this->unk177, this->unkFC, 1.0f);
+          }else{
+               func_803164B0(this, gdl, mptr, this->unk176, this->unk177, this->unkFC, 1.0 - this->unk17C);
+               func_803164B0(this, gdl, mptr, this->unk178, this->unk179, this->unk104, this->unk17C);
+          }//L80316D40
+
+          if( !this->unk1A4_18 && !(this->unk168 < 0x81)
+          ){
+               this->unk168 -= 0xC;
+               this->unk168 = !(this->unk168 < 0x81) ? this->unk168 : 0x80;
+          }
+
+          if(this->unk1A4_18 && this->unk168 < 0xff){
+               this->unk168 += 0xC;
+               this->unk168 = MIN(this->unk168, 0xff);
+          }
+     }//L80316DD8
+     if(getGameMode() == game_mode_BANJO_AND_KAZOOIE){
+          func_8034A964();
+     }
+
+     
+}//*/
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/zoombox/func_80316E08.s")
 

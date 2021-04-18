@@ -131,75 +131,75 @@ void func_8033B788(void ){
     D_80370A1C = 1;
 }
 
+#define ALIGN10(s) {\
+    if(((u32)(s) & 0xF))\
+        (s) = (s) - ((u32)(s) & 0xF) +  0x10;\
+}
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B3A80/assetcache_get.s")
-//assetCache.get
-// void *assetcache_get(s32 arg0) {
-//     s32 comp_size;//sp_4C
-//     s32 uncomp_size; //sp44
-//     volatile s32 sp3C; //sp3C
-//     s32 i;
-//     void *uncompressed_file;//sp34
-//     u8 sp33; //sp33
-//     void *compressed_file;//sp2C
-//     s32 sp28;//sp28
+/*void *assetcache_get(s32 arg0) {
+    s32 comp_size;//sp_44
+    s32 i;
+    volatile s32 sp3C; //sp3C
+    s32 uncomp_size; //sp38
+    void *uncompressed_file;//sp34
+    u8 sp33; //sp33
+    void *compressed_file;//sp2C
+    s32 sp28;//sp28
     
-//     sp28 = (s32 )D_80370A1C;
-//     D_80370A1C = (u8)0U;
-//     for(i = 0; i < D_80370A14 && arg0 != D_80383CDC[i]; i++);
-//     D_80370A18 = i;
-//     if(i == 0x96)
-//         return NULL;
+    sp28 = (s32 )D_80370A1C;
+    D_80370A1C = (u8)0U;
+    for(i = 0; i < D_80370A14 && arg0 != D_80383CDC[i]; i++);
+    D_80370A18 = i;
+    if(i == 0x96)
+        return NULL;
     
-//     if(i < D_80370A14){ //asset exists in array;
-//         D_80383CD8[i]++;
-//         return D_80383CD0[i];
-//     }
-//     comp_size = D_80383CC4[i+1].offset - D_80383CC4[i].offset;
-//     if(comp_size & 1) 
-//         comp_size++;
-//     sp3C = comp_size;
+    if(i < D_80370A14){ //asset exists in array;
+        D_80383CD8[i]++;
+        return D_80383CD0[i];
+    }
+    comp_size = D_80383CC4[arg0+1].offset - D_80383CC4[arg0].offset;
+    if(comp_size & 1) 
+        comp_size++;
+    sp3C = comp_size;
 
-//     if(D_80383CC4[i].compFlag & 0x0001){//compressed
-//         func_8033BAB0(arg0, 0, 0x10, &D_80383CB0);
-//         D_80370A10 = func_8023E080(&D_80383CB0);
-//         uncomp_size = D_80370A10;
-//         if (((s32)D_80370A10 & 0xF) != 0) {
-//             uncomp_size -= ((s32)D_80370A10 & 0xF) - 0x10;
-//         }
-//         if ((func_8025498C(comp_size + uncomp_size, uncomp_size, comp_size + uncomp_size, &D_80370A10) != 0) && (sp28 == 0)) {
-//             sp33 = 1;
-//             uncompressed_file = malloc(comp_size + uncomp_size);
-//             compressed_file = (s32) uncompressed_file + uncomp_size;
-//         } else {
-//             sp33 = 2;
-//             if (sp28 != 0) {
-//                 func_80254C98();
-//             }
-//             uncompressed_file = malloc(uncomp_size);
-//             compressed_file = malloc(comp_size);
-//         }
-//     } else { //uncompressed
-//         uncompressed_file = malloc(comp_size);
-//         compressed_file = uncompressed_file;
-//     }
-//     func_802405F0(compressed_file, D_80383CC4[i].offset + D_80383CCC, sp3C);
-//     if(D_80383CC4[i].compFlag & 0x0001){//decompress
-//         func_8023E0A0(compressed_file, uncompressed_file);
-//         realloc(uncompressed_file, D_80370A10);
-//         osWritebackDCache(uncompressed_file, D_80370A10);
-//         if (sp33 == 2) {
-//             free(compressed_file);
+    if(D_80383CC4[arg0].compFlag & 0x0001){//compressed
+        func_8033BAB0(arg0, 0, 0x10, &D_80383CB0);
+        uncomp_size = D_80370A10 = func_8023E080(&D_80383CB0);
+        ALIGN10(uncomp_size);
+        if (func_8025498C(comp_size + uncomp_size) && !sp28) {
+            sp33 = 1;
+            uncompressed_file = malloc(comp_size + uncomp_size);
+            compressed_file = (s32) uncompressed_file + uncomp_size;
+        } else {
+            sp33 = 2;
+            if (sp28 != 0) {
+                func_80254C98();
+            }
+            uncompressed_file = malloc(uncomp_size);
+            compressed_file = malloc(comp_size);
+        }
+    } else { //uncompressed
+        uncompressed_file = malloc(comp_size);
+        compressed_file = uncompressed_file;
+    }
+    func_802405F0(compressed_file, D_80383CC4[arg0].offset + D_80383CCC, sp3C);
+    if(D_80383CC4[arg0].compFlag & 0x0001){//decompress
+        func_8023E0A0(compressed_file, uncompressed_file);
+        realloc(uncompressed_file, D_80370A10);
+        osWritebackDCache(uncompressed_file, D_80370A10);
+        if (sp33 == 2) {
+            free(compressed_file);
 
-//         }
-//     }
-//     D_80370A18 = D_80370A14;
-//     D_80383CD8[D_80370A14] = 1;
-//     D_80383CD0[D_80370A14] = uncompressed_file;
-//     D_80383CD4[D_80370A14] = 0;
-//     D_80383CDC[D_80370A14] = arg0;
-//     D_80370A14++;
-//     return uncompressed_file;
-// }
+        }
+    }
+    D_80370A18 = D_80370A14;
+    D_80383CD8[D_80370A14] = 1;
+    D_80383CD0[D_80370A14] = uncompressed_file;
+    D_80383CD4[D_80370A14] = 0;
+    D_80383CDC[D_80370A14] = arg0;
+    D_80370A14++;
+    return uncompressed_file;
+}//*/
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B3A80/func_8033BAB0.s")
 

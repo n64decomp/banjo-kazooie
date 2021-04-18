@@ -116,6 +116,7 @@ gctransition_update = 0x8030BF1C;
 
 gczoombox_free = 0x80315374;
 _gczoombox_memClear = 0x80315430;
+gczoombox_draw = 0x80316B8C;
 gczoombox_new = 0x80317E8C;
 gczoombox_open = 0x803183EC;
 gczoombox_close = 0x803183FC;

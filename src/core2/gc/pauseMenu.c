@@ -1028,7 +1028,7 @@ void func_80314320(Gfx **gdl, Mtx **mptr, s32 arg2){
 
         //draw_zoomboxes
         for(i = 0; i < 4; i++){
-            func_80316B8C(D_80383010.zoombox[i], gdl, mptr, arg2); 
+            gczoombox_draw(D_80383010.zoombox[i], gdl, mptr, arg2); 
         }
 
         //draw_control_stick_sprites

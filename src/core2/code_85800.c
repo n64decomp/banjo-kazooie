@@ -266,7 +266,7 @@ int func_8030EDC0(ActorMarker *caller, s32 arg1){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_85800/func_8030EDE8.s")
 
-void func_8030F030(void){
+static void _gcdialog_freeZoomboxes(void){
     s32 i;
     for(i =0; i < 2; i++){
         gczoombox_free(D_80382E20.zoombox[i]);
@@ -297,7 +297,7 @@ void func_8030F130(void){
        func_80347A14(1);
    }
    if(!D_80382E20.unk11A[0].unk0_7 && !D_80382E20.unk11A[1].unk0_7){
-       func_8030F030();
+       _gcdialog_freeZoomboxes();
    }
    D_80382E20.unk130 = -1;
    D_80382E20.unk128_15 = 0;
@@ -331,10 +331,10 @@ void func_8030F338(void){
     func_8030F130();
 }
 
-void func_8030F410(s32 arg0, s32 arg1, s32 arg2){
+void func_8030F410(Gfx **arg0, Mtx **arg1, s32 arg2){
     s32 i;
     for(i = 0; i<2; i++){
-        func_80316B8C(D_80382E20.zoombox[i], arg0, arg1, arg2);
+        gczoombox_draw(D_80382E20.zoombox[i], arg0, arg1, arg2);
     }
 }
 
