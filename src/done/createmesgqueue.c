@@ -2,9 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-#define osCreateMesgQueue func_80004290
-#define __osThreadTail D_80005120
-
 extern OSThread __osThreadTail;
 
 void osCreateMesgQueue(OSMesgQueue *mq, OSMesg *msg, s32 msgCount)

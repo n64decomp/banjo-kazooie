@@ -4,7 +4,52 @@
 
 #include "rarezip.h"
 
+<<<<<<< HEAD:src/inflate.c
 static int huft_build(b, n, s, d, e, t, m)
+=======
+u8 border[] = {    /* Order of the bit length code lengths */
+    16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15};
+/*static*/ u16 cplens[] = {         /* Copy lengths for literal codes 257..285 */
+        3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 15, 17, 19, 23, 27, 31,
+        35, 43, 51, 59, 67, 83, 99, 115, 131, 163, 195, 227, 258, 0, 0};
+        /* note: see note #13 above about the 258 in this list. */
+
+/*static*/ u8 cplext[] = {         /* Extra bits for literal codes 257..285 */
+        0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2,
+        3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 0, 99, 99}; /* 99==invalid */
+
+/*static*/ u16 cpdist[] = {         /* Copy offsets for distance codes 0..29 */
+        1, 2, 3, 4, 5, 7, 9, 13, 17, 25, 33, 49, 65, 97, 129, 193,
+        257, 385, 513, 769, 1025, 1537, 2049, 3073, 4097, 6145,
+        8193, 12289, 16385, 24577};
+
+/*static*/ u8 cpdext[] = {         /* Extra bits for distance codes */
+        0, 0, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6,
+        7, 7, 8, 8, 9, 9, 10, 10, 11, 11,
+        12, 12, 13, 13};
+
+u16 mask_bits[] = {
+    0x0000,
+    0x0001, 0x0003, 0x0007, 0x000f, 0x001f, 0x003f, 0x007f, 0x00ff,
+    0x01ff, 0x03ff, 0x07ff, 0x0fff, 0x1fff, 0x3fff, 0x7fff, 0xffff
+};
+
+s32 lbits = 9;
+s32 dbits = 6;
+
+u8 *inbuf;
+u8 *D_80007284;
+u32 inptr;
+u32 wp;
+struct huft *D_80007290; //unk
+u32 bb;
+u32 bk;
+u32 crc1;
+u32 crc2;
+u32 hufts;
+
+int huft_build(b, n, s, d, e, t, m)
+>>>>>>> Mr-Wiseguy/banjo-kazooie-wiseguy-dev:src/done/inflate.c
 unsigned *b;            /* code lengths in bits (all assumed <= BMAX) */
 unsigned n;             /* number of codes (assumed <= N_MAX) */
 unsigned s;             /* number of simple-valued codes (0..s-1) */
@@ -40,7 +85,7 @@ int *m;                 /* maximum lookup bits, returns actual */
 
 
    /* Generate counts for each bit length */
-   func_800020F0(c, sizeof(c));
+   bzero(c, sizeof(c));
    p = b;  i = n;
    do {
      c[*p]++;                    /* assume all entries <= BMAX */
@@ -133,9 +178,9 @@ int *m;                 /* maximum lookup bits, returns actual */
         z = 1 << j;             /* table entries for j-bit table */
 
          /* allocate and link in new table */
-        q = D_80007290 + D_800072A4;
+        q = D_80007290 + hufts;
         
-        D_800072A4 += z + 1;         /* track memory usage */
+        hufts += z + 1;         /* track memory usage */
         *t = q + 1;             /* link to list for huft_free() */
         *(t = &(q->v.t)) = (struct huft *)NULL;
         u[h] = ++q;             /* table starts after link */
@@ -205,13 +250,13 @@ static int inflate_codes(struct huft *tl, struct huft *td, s32 bl, s32 bd)
   register u8 tmp;
 
   /* make local copies of globals */
-  b = D_80007294;                       /* initialize bit buffer */
-  k = D_80007298;
-  w = D_8000728C;                       /* initialize window position */
+  b = bb;                       /* initialize bit buffer */
+  k = bk;
+  w = wp;                       /* initialize window position */
 
   /* inflate the coded data */
-  ml = D_800050B0[bl];           /* precompute masks for speed */
-  md = D_800050B0[bd];
+  ml = mask_bits[bl];           /* precompute masks for speed */
+  md = mask_bits[bd];
 
   for (;;)                      /* do until end of block */
   {//L80000D78
@@ -221,15 +266,15 @@ static int inflate_codes(struct huft *tl, struct huft *td, s32 bl, s32 bd)
         DUMPBITS(t->b)
         e -= 16;
         NEEDBITS(e)
-      } while ((e = (t = t->v.t + ((unsigned)b & D_800050B0[e]))->e) > 16);
+      } while ((e = (t = t->v.t + ((unsigned)b & mask_bits[e]))->e) > 16);
     DUMPBITS(t->b)
     if (e == 16)                /* then it's a literal */
     {
 
       tmp = (u8)t->v.n;
       D_80007284[w++] = tmp;
-      D_8000729C += tmp;  
-      D_800072A0 ^= tmp << (D_8000729C & 0x17);
+      crc1 += tmp;  
+      crc2 ^= tmp << (crc1 & 0x17);
     }
     else                        /* it's an EOB or a length */
     {//L80000EAC
@@ -239,7 +284,7 @@ static int inflate_codes(struct huft *tl, struct huft *td, s32 bl, s32 bd)
 
        /* get length of block to copy */
       NEEDBITS(e) //L80000EAC - L80000ED8 
-      n = t->v.n + ((unsigned)b & D_800050B0[e]);
+      n = t->v.n + ((unsigned)b & mask_bits[e]);
       DUMPBITS(e);
 
        /* decode distance of block to copy */
@@ -249,26 +294,26 @@ static int inflate_codes(struct huft *tl, struct huft *td, s32 bl, s32 bd)
           DUMPBITS(t->b)
           e -= 16;
           NEEDBITS(e)
-        } while ((e = (t = t->v.t + ((unsigned)b & D_800050B0[e]))->e) > 16);
+        } while ((e = (t = t->v.t + ((unsigned)b & mask_bits[e]))->e) > 16);
       //L80000FC8
       DUMPBITS(t->b)
       NEEDBITS(e) //L80000FE0 - L80001008
-      d = w - t->v.n - ((unsigned)b & D_800050B0[e]);
+      d = w - t->v.n - ((unsigned)b & mask_bits[e]);
       DUMPBITS(e)
       
        /* do the copy */
       do{
         tmp =  D_80007284[d++];
         D_80007284[w++] = tmp;
-        D_8000729C += tmp;
-        D_800072A0 ^= tmp << (D_8000729C & 0x17);
+        crc1 += tmp;
+        crc2 ^= tmp << (crc1 & 0x17);
       }while(--n);
     }
   }
   /* restore the globals from the locals */
-  D_8000728C = w;                       /* restore global window pointer */
-  D_80007294 = b;                       /* restore global bit buffer */
-  D_80007298 = k;
+  wp = w;                       /* restore global window pointer */
+  bb = b;                       /* restore global bit buffer */
+  bk = k;
   /* done */
   return 0;
 }
@@ -282,9 +327,9 @@ static int inflate_stored(void)
   register unsigned k;  /* number of bits in bit buffer */
 
   /* make local copies of globals */
-  b = D_80007294;                       /* initialize bit buffer */
-  k = D_80007298;
-  w = D_8000728C;                       /* initialize window position */
+  b = bb;                       /* initialize bit buffer */
+  k = bk;
+  w = wp;                       /* initialize window position */
 
 
   /* go to byte boundary */
@@ -305,15 +350,15 @@ static int inflate_stored(void)
    {
      NEEDBITS(8)
      D_80007284[w++] = (u8) b;
-     D_8000729C += b & 0xFF;
-     D_800072A0 ^= (b &0xFF) << (D_8000729C & 0x17);
+     crc1 += b & 0xFF;
+     crc2 ^= (b &0xFF) << (crc1 & 0x17);
      DUMPBITS(8)
    }
 
   /* restore the globals from the locals */
-  D_8000728C = w;                       /* restore global window pointer */
-  D_80007294 = b;                       /* restore global bit buffer */
-  D_80007298 = k;
+  wp = w;                       /* restore global window pointer */
+  bb = b;                       /* restore global bit buffer */
+  bk = k;
   return 0;
 }
 
@@ -340,13 +385,13 @@ static int inflate_fixed(void)
   for (; i < 288; i++)          /* make a complete, but wrong code set */
     l[i] = 8;
   bl = 7;
-  huft_build(l, 288, 257, D_80004FF4, D_80005034, &tl, &bl);
+  huft_build(l, 288, 257, cplens, cplext, &tl, &bl);
 
    /* set up distance table */
    for (i = 0; i < 30; i++)      /* make an incomplete code set */
      l[i] = 5;
    bd = 5;
-   huft_build(l, 30, 0, D_80005054, D_80005090, &td, &bd);
+   huft_build(l, 30, 0, cpdist, cpdext, &td, &bd);
 
    /* decompress until an end-of-block code */
     inflate_codes(tl, td, bl, bd);
@@ -376,8 +421,8 @@ static int inflate_dynamic(void)/* decompress an inflated type 2 (dynamic Huffma
   unsigned ll[286+30];  /* literal/length and distance code lengths */
 
   /* make local bit buffer */
-  b = D_80007294;
-  k = D_80007298;
+  b = bb;
+  k = bk;
 
 
    /* read in table lengths */
@@ -395,11 +440,11 @@ static int inflate_dynamic(void)/* decompress an inflated type 2 (dynamic Huffma
    for (j = 0; j < nb; j++)
    {
      NEEDBITS(3)
-     ll[D_80004FE0[j]] = (unsigned)b & 7;
+     ll[border[j]] = (unsigned)b & 7;
      DUMPBITS(3)
    }
    for (; j < 19; j++)
-     ll[D_80004FE0[j]] = 0;
+     ll[border[j]] = 0;
 
 
     /* build decoding table for trees--single level, 7 bit lookup */
@@ -409,7 +454,7 @@ static int inflate_dynamic(void)/* decompress an inflated type 2 (dynamic Huffma
 
    /* read in literal and distance code lengths */
    n = nl + nd;
-   m = D_800050B0[bl];
+   m = mask_bits[bl];
    i = l = 0;
    while ((unsigned)i < n)
    {
@@ -448,14 +493,14 @@ static int inflate_dynamic(void)/* decompress an inflated type 2 (dynamic Huffma
     }
 
    /* restore the global bit buffer */
-   D_80007294 = b;
-   D_80007298 = k;
+   bb = b;
+   bk = k;
 
    /* build the decoding tables for literal/length and distance codes */
-   bl = D_800050D4;
-   huft_build(ll, nl, 257, D_80004FF4, D_80005034, &tl, &bl);
-   bd = D_800050D8;
-   huft_build(ll + nl, nd, 0, D_80005054, D_80005090, &td, &bd);
+   bl = lbits;
+   huft_build(ll, nl, 257, cplens, cplext, &tl, &bl);
+   bd = dbits;
+   huft_build(ll + nl, nd, 0, cpdist, cpdext, &td, &bd);
 
    /* decompress until an end-of-block code */
    inflate_codes(tl, td, bl, bd);
@@ -472,8 +517,8 @@ static int inflate_block(int *e)
 
 
   /* make local bit buffer */
-  b = D_80007294;
-  k = D_80007298;
+  b = bb;
+  k = bk;
 
 
   /* read in last block bit */
@@ -489,8 +534,8 @@ static int inflate_block(int *e)
 
 
   /* restore the global bit buffer */
-   D_80007294 = b;
-   D_80007298 = k;
+   bb = b;
+   bk = k;
 
 
   /* inflate that block type */
@@ -514,29 +559,29 @@ int bkboot_inflate(void) //int inflate()
   unsigned h;           /* maximum struct huft's malloc'ed */
 
   /* initialize window, bit buffer */
-  D_8000728C = 0;
-  D_80007298 = 0;
-  D_80007294 = 0;
+  wp = 0;
+  bk = 0;
+  bb = 0;
 
-  D_8000729C = 0;
-  D_800072A0 = -1;
+  crc1 = 0;
+  crc2 = -1;
 
    /* decompress until the last block */
    h = 0;
    do {
-     D_800072A4 = 0;
+     hufts = 0;
      if ((r = inflate_block(&e)) != 0)
        return r;
-     if (D_800072A4 > h)
-       h = D_800072A4;
+     if (hufts > h)
+       h = hufts;
    } while (!e);
 
   /* Undo too much lookahead. The next read will be byte aligned so we
    * can discard unused bits in the last meaningful byte.
    */
-   while (D_80007298 >= 8) {
-     D_80007298 -= 8;
-     D_80007288--;
+   while (bk >= 8) {
+     bk -= 8;
+     inptr--;
    }
 
   /* return success */

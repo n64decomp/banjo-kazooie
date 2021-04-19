@@ -1,7 +1,9 @@
-basename: MMM
 options:
+  basename: MMM
   find_file_boundaries: yes
   compiler: "IDO"
+  platform: n64
+  asm_endlabels: yes
   cpp_args:
     - "-Iinclude"
     - "-Iinclude/2.0L"
@@ -14,16 +16,18 @@ options:
   undefined_syms_path: undefined_syms.jp.txt
   symbol_addrs_path:   symbol_addrs.jp.txt
 segments:
-  - name: MMM/code
+  - name: code
+    dir: MMM
     type: code
     start: 0x00000000
     vram: 0x80386F40
-    subsections:
+    subsegments:
       - [0x00000000, asm]
-  - name: MMM/data
+  - name: data
+    dir: MMM
     type: code
     start: 0x000055F0
     vram: 0x8038C530
-    subsections:
-      - [0x000055F0, bin]
+    subsegments:
+      - [0x000055F0, bin, data_55F0]
   - [0x000060D0]

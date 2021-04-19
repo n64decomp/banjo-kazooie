@@ -6,9 +6,9 @@ baseroms/*
 
 #compiled or ripped asm
 asm/*
-asm
+!asm/ultra
 build/*
-buil/
+build/
 
 #binaries ripped from the ROMs
 assets/
@@ -58,6 +58,8 @@ expected/
 diff_settings.py
 ctx.c
 nonmatchings/
+undefined_syms_auto*
+undefined_funcs_auto*
 
 #progress reports
 *.csv

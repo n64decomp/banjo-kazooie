@@ -1,18 +1,5 @@
 #include <ultra64.h>
-#include "functions.h"
-#include "variables.h"
-
-#define osSetThreadPri func_800043A0
-#define __osDisableInt func_80003FC0
-#define __osRunningThread D_80005130
-#define __osDequeueThread func_80003100
-#define __osEnqueueThread func_8000298C
-#define __osEnqueueAndYield func_8000288C
-#define __osRestoreInt func_80003FE0
-#define __osRunQueue D_80005128
-
-extern OSThread *__osRunningThread;
-extern OSThread *__osRunQueue;
+#include "osint.h"
 
 void osSetThreadPri(OSThread *t, OSPri pri)
 {

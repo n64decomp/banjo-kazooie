@@ -1,7 +1,9 @@
-basename: SM
 options:
+  basename: SM
   find_file_boundaries: yes
   compiler: "IDO"
+  platform: n64
+  asm_endlabels: yes
   cpp_args:
     - "-Iinclude"
     - "-Iinclude/2.0L"
@@ -13,40 +15,48 @@ options:
   create_detected_syms: yes
   undefined_syms_path: undefined_syms.us.v10.txt
   symbol_addrs_path:   symbol_addrs.us.v10.txt
+  undefined_funcs_auto_path: undefined_funcs_auto.SM.us.v10.txt
+  undefined_syms_auto_path: undefined_syms_auto.SM.us.v10.txt
+  base_path: .
+  target_path: build/us.v10/SM.us.v10.bin
+  asset_path: bin
+  build_path: build/us.v10
 segments:
-  - name: SM/code
+  - name: code
+    dir: SM
     type: code
     start: 0x00000000
     vram: 0x803863F0
-    subsections:
-      - [0x00000000, c]
-      - [0xF0, c]
-      - [0x5B0, c]
-      - [0xBF0, c]
-      - [0xD60, c, SM/ch/attacktutorial]
-      - [0x1520, c, SM/ch/vegetables]
-      - [0x2900, c]
-      - [0x2990, c]
-      - [0x3FC0, c]
-      - [0x4070, c]
-      - [0x44D0, c]
-      - [0x46C0, c]
-  - name: SM/data
+    subsegments:
+      - [0x00000000, c, code_0]
+      - [0xF0, c, code_F0]
+      - [0x5B0, c, code_5B0]
+      - [0xBF0, c, code_BF0]
+      - [0xD60, c, ch/attacktutorial]
+      - [0x1520, c, ch/vegetables]
+      - [0x2900, c, code_2900]
+      - [0x2990, c, code_2990]
+      - [0x3FC0, c, code_3FC0]
+      - [0x4070, c, code_4070]
+      - [0x44D0, c, code_44D0]
+      - [0x46C0, c, code_46C0]
+  - name: data
+    dir: SM
     type: code
     start: 0x000046D0
     vram: 0x8038AAC0
-    subsections:
+    subsegments:
       - [0x000046D0, bin]
-      - [0x00004830, .data, SM/ch/attacktutorial]
-      - [0x00004860, .data, SM/ch/vegetables]
-      - [0x000049B0, bin] #still part of ch/vegetables
-      - [0x00004B70, bin] #.data, SM/code_2990]
-      - [0x00004C00, bin] #.data, SM/code_3FC0]
-      - [0x00004CC0, bin] #.data, SM/code_4070]
-      - [0x00004CF0, bin] #.data, SM/code_44D0]
-      - [0x00004D20, .rodata, SM/code_5B0]
-      - [0x00004D40, .rodata, SM/ch/attacktutorial]
-      - [0x00004DE0, .rodata, SM/ch/vegetables]
-      - [0x00004E10, .rodata, SM/code_2990]
-      - [0x00004F20, .rodata, SM/code_44D0]
+      - [0x00004830, .data, ch/attacktutorial]
+      - [0x00004860, .data, ch/vegetables]
+      - [0x000049B0, bin, data_49B0] #still part of ch/vegetables
+      - [0x00004B70, bin, data_4B70] #.data, SM/code_2990]
+      - [0x00004C00, bin, data_4C00] #.data, SM/code_3FC0]
+      - [0x00004CC0, bin, data_4CC0] #.data, SM/code_4070]
+      - [0x00004CF0, bin, data_4CF0] #.data, SM/code_44D0]
+      - [0x00004D20, .rodata, code_5B0]
+      - [0x00004D40, .rodata, ch/attacktutorial]
+      - [0x00004DE0, .rodata, ch/vegetables]
+      - [0x00004E10, .rodata, code_2990]
+      - [0x00004F20, .rodata, code_44D0]
   - [0x00004F30]

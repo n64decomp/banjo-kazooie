@@ -1,7 +1,9 @@
-basename: cutscenes
 options:
+  basename: cutscenes
   find_file_boundaries: yes
   compiler: "IDO"
+  platform: n64
+  asm_endlabels: yes
   cpp_args:
     - "-Iinclude"
     - "-Iinclude/2.0L"
@@ -13,19 +15,27 @@ options:
   create_detected_syms: yes
   undefined_syms_path: undefined_syms.us.v10.txt
   symbol_addrs_path:   symbol_addrs.us.v10.txt
+  undefined_funcs_auto_path: undefined_funcs_auto.cutscenes.us.v10.txt
+  undefined_syms_auto_path: undefined_syms_auto.cutscenes.us.v10.txt
+  base_path: .
+  target_path: build/us.v10/cutscenes.us.v10.bin
+  asset_path: bin
+  build_path: build/us.v10
 segments:
-  - name: cutscenes/code
+  - name: code
+    dir: cutscenes
     type: code
     start: 0x00000000
     vram: 0x803863F0
-    subsections:
-      - [0x00000000, c]
-      - [0x60F0, c]
-      - [0x69F0, c]
-  - name: cutscenes/data
+    subsegments:
+      - [0x00000000, c, code_0]
+      - [0x60F0, c, code_60F0]
+      - [0x69F0, c, code_69F0]
+  - name: data
+    dir: cutscenes
     type: code
     start: 0x00006F60
     vram: 0x8038D350
-    subsections:
-      - [0x00006F60, bin]
+    subsegments:
+      - [0x00006F60, bin, data_6F60]
   - [0x000085F0]

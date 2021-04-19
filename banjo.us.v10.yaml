@@ -1,7 +1,9 @@
-basename: banjo
 options:
+  basename: banjo
   find_file_boundaries: True
   compiler: "IDO"
+  platform: n64
+  asm_endlabels: yes
   cpp_args:
     - "-Iinclude"
     - "-Iinclude/2.0L"
@@ -12,7 +14,13 @@ options:
     #include "variables.h"
   create_detected_syms: yes
   undefined_syms_path: undefined_syms.us.v10.txt
-  symbol_addrs_path:   symbol_addrs.us.v10.txt
+  symbol_addrs_path:   symbol_addrs.boot.us.v10.txt
+  undefined_funcs_auto_path: undefined_funcs_auto.us.v10.txt
+  undefined_syms_auto_path: undefined_syms_auto.us.v10.txt
+  base_path: .
+  target_path: baserom.us.v10.z64
+  asset_path: bin
+  build_path: build/us.v10
 segments:
 - name:  header
   type:  header
@@ -21,19 +29,19 @@ segments:
   type: code
   start: 0x0040
   vram: 0xA4000040
-  subsections:
+  subsegments:
   - [0x0040, asm, boot]
   - [0x0B70, bin, boot2]
-- name:  bk_boot
+- name:  boot/bk_boot
   type:  code
   start: 0x1000
   vram:  0x80000400
-  subsections:
-  - [0x1000, c]
+  subsegments:
+  - [0x1000, hasm, entry]
   - [0x1050, c, done/bk_boot_1050]
   - [0x1150, c, done/rarezip]
-  - [0x12B0, c, inflate]
-  - [0x27F0, c]
+  - [0x12B0, c, done/inflate]
+  - [0x27F0, c, done/overlays]
   - [0x2970, c, done/initialize]
   - [0x2C00, c, done/pirawdma]
   - [0x2CE0, c, done/pigetstat]
@@ -43,27 +51,28 @@ segments:
   - [0x2DB0, hasm, setfpccsr]
   - [0x2DC0, c, done/sirawread]
   - [0x2E10, c, done/sirawwrite]
-  - [0x2E60, c]
-  - [0x37F0, c]
+  - [0x2E60, hasm, ultra/exceptasm]
+  - [0x3770, hasm, writebackdcache]
+  - [0x37F0, hasm, invalicache]
   - [0x3870, hasm, maptlbrdb]
-  - [0x38D0, c]
+  - [0x38D0, c, done/pirawread]
   - [0x3930, c, done/ll]
   - [0x3BF0, bin, padding3BF0] # Empty space
   - [0x3C50, c, done/virtualtophysical]
   - [0x3CD0, c, done/si]
   - [0x3D00, c, done/thread]
-  - [0x3D40, c]
-  - [0x45C0, c]
-  - [0x4630, c]
+  - [0x3D40, c, done/leointerrupt]
+  - [0x45C0, c, done/seteventmesg]
+  - [0x4630, hasm, ultra/setintmask]
   - [0x46D0, c, done/destroythread]
-  - [0x47D0, c]
+  - [0x47D0, hasm, probetlb]
   - [0x4890, c, done/leodiskinit]
-  - [0x4990, c]
+  - [0x4990, c, done/epirawdma]
   - [0x4BC0, hasm, interrupt]
   - [0x4C00, c, done/pimgr]
-  - [0x4D90, c, cartrominit]
+  - [0x4D90, c, done/cartrominit]
   - [0x4E90, c, done/createmesgqueue]
-  - [0x4EC0, c, siacs]
+  - [0x4EC0, c, done/piacs]
   - [0x4F80, c, done/getthreadpri]
   - [0x4FA0, c, done/setthreadpri]
   - [0x5080, c, done/createthread]
@@ -76,29 +85,42 @@ segments:
   - [0x5AF0, c, done/epirawread]
   - [0x5B40, c, done/setglobalintmask]
   - [0x5B90, c, done/yieldthread]
-  - [0x5BE0, bin, boot_rodata]
+  - [0x5BE0, c, done/kdebugserver]
+  - [0x5BE0, .data, done/inflate]
   - [0x5CE0, .data, done/initialize]
-  - [0x5D00, bin, boot_rodata2]
+  - [0x5D00, .data, ultra/exceptasm]
+  - [0x5D20, .data, done/thread]
   - [0x5D40, .data, done/pimgr]
-  - [0x5D70, bin, boot_rodata3]
+  - [0x5D70, .data, done/piacs]
+  - [0x5D80, .rodata, ultra/exceptasm]
+  - [0x5DD0, .rodata, ultra/setintmask]
   - [0x5E50, .rodata, done/devmgr]
-  - [0x5E50, .bss, done/bk_boot_1050, 0x32A0] # Not the correct file, this entry is just here to pad bss until it is fully migrated
-  - [0x5E50, .bss, done/leodiskinit, 0x0] # bss length tbd
+  - [0x5E70, .bss, done/bk_boot_1050]
+  - [0x5E70, .bss, done/rarezip]
+  - [0x5E70, .bss, done/inflate]
+  - [0x5E70, .bss, done/initialize]
+  - [0x5E70, .bss, done/kdebugserver]
+  - [0x5E70, .bss, done/leointerrupt]
+  - [0x5E70, .bss, done/seteventmesg]
+  - [0x5E70, .bss, done/leodiskinit]
+  - [0x5E70, .bss, done/pimgr]
+  - [0x5E70, .bss, done/cartrominit]
+  - [0x5E70, .bss, done/piacs]
 - name: assets
   type: bin
   start: 0x5E70
-  subsections:
+  subsegments:
   - [0x5E70, bin, assets]
 - name: soundfont1
   type: bin
   start: 0xD846C0
-  subsections:
+  subsegments:
   - [0xD846C0, bin, soundfont1.ctl]
   - [0xD954B0, bin, soundfont1.tbl]
 - name: soundfont2
   type: bin
   start: 0xEA3EB0
-  subsections:
+  subsegments:
   - [0xEA3EB0, bin, soundfont2.ctl]
   - [0xEADE60, bin, soundfont2.tbl]
 - name: core1.us.v10.rzip

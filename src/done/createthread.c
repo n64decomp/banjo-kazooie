@@ -2,11 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-#define __osDisableInt func_80003FC0
-#define osCreateThread func_80004480
-#define __osRestoreInt func_80003FE0
-#define __osCleanupThread func_80002b60
-#define __osActiveQueue D_8000512C
+#define __osCleanupThread __osCleanupThread
 
 void __osCleanupThread(void);
 extern OSThread *__osActiveQueue;

@@ -1,7 +1,9 @@
-basename: RBB
 options:
+  basename: RBB
   find_file_boundaries: yes
   compiler: "IDO"
+  platform: n64
+  asm_endlabels: yes
   cpp_args:
     - "-Iinclude"
     - "-Iinclude/2.0L"
@@ -14,16 +16,18 @@ options:
   undefined_syms_path: undefined_syms.jp.txt
   symbol_addrs_path:   symbol_addrs.jp.txt
 segments:
-  - name: RBB/code
+  - name: code
+    dir: RBB
     type: code
     start: 0x00000000
     vram: 0x80386F40
-    subsections:
+    subsegments:
       - [0x00000000, asm]
-  - name: RBB/data
+  - name: data
+    dir: RBB
     type: code
     start: 0x00009C80
     vram: 0x80390BC0
-    subsections:
-      - [0x00009C80, bin]
+    subsegments:
+      - [0x00009C80, bin, data_9C80]
   - [0x0000AEA0]

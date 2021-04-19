@@ -1,7 +1,9 @@
-basename: MMM
 options:
+  basename: MMM
   find_file_boundaries: yes
   compiler: "IDO"
+  platform: n64
+  asm_endlabels: yes
   cpp_args:
     - "-Iinclude"
     - "-Iinclude/2.0L"
@@ -13,25 +15,33 @@ options:
   create_detected_syms: yes
   undefined_syms_path: undefined_syms.us.v10.txt
   symbol_addrs_path:   symbol_addrs.us.v10.txt
+  undefined_funcs_auto_path: undefined_funcs_auto.MMM.us.v10.txt
+  undefined_syms_auto_path: undefined_syms_auto.MMM.us.v10.txt
+  base_path: .
+  target_path: build/us.v10/MMM.us.v10.bin
+  asset_path: bin
+  build_path: build/us.v10
 segments:
-  - name: MMM/code
+  - name: code
+    dir: MMM
     type: code
     start: 0x00000000
     vram: 0x803863F0
-    subsections:
-      - [0x00000000, c]
-      - [0x570, c]
-      - [0xDC0, c]
-      - [0x1020, c]
-      - [0x2F60, c]
-      - [0x3120, c]
-      - [0x3420, c]
-      - [0x3D50, c]
-      - [0x47D0, c]
-  - name: MMM/data
+    subsegments:
+      - [0x00000000, c, code_0]
+      - [0x570, c, code_570]
+      - [0xDC0, c, code_DC0]
+      - [0x1020, c, code_1020]
+      - [0x2F60, c, code_2F60]
+      - [0x3120, c, code_3120]
+      - [0x3420, c, code_3420]
+      - [0x3D50, c, code_3D50]
+      - [0x47D0, c, code_47D0]
+  - name: data
+    dir: MMM
     type: code
     start: 0x000055F0
     vram: 0x8038B9E0
-    subsections:
-      - [0x000055F0, bin]
+    subsegments:
+      - [0x000055F0, bin, data_55F0]
   - [0x000060D0]

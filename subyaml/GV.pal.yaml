@@ -1,7 +1,9 @@
-basename: GV
 options:
+  basename: GV
   find_file_boundaries: yes
   compiler: "IDO"
+  platform: n64
+  asm_endlabels: yes
   cpp_args:
     - "-Iinclude"
     - "-Iinclude/2.0L"
@@ -14,16 +16,18 @@ options:
   undefined_syms_path: undefined_syms.pal.txt
   symbol_addrs_path:   symbol_addrs.pal.txt
 segments:
-  - name: GV/code
+  - name: code
+    dir: GV
     type: code
     start: 0x00000000
     vram: 0x80386DD0
-    subsections:
+    subsegments:
       - [0x00000000, asm]
-  - name: GV/data
+  - name: data
+    dir: GV
     type: code
     start: 0x0000A7E0
     vram: 0x803915B0
-    subsections:
-      - [0x0000A7E0, bin]
+    subsegments:
+      - [0x0000A7E0, bin, data_A7E0]
   - [0x0000B630]

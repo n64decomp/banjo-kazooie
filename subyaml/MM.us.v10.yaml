@@ -1,7 +1,9 @@
-basename: MM
 options:
+  basename: MM
   find_file_boundaries: yes
   compiler: "IDO"
+  platform: n64
+  asm_endlabels: yes
   cpp_args:
     - "-Iinclude"
     - "-Iinclude/2.0L"
@@ -13,44 +15,52 @@ options:
   create_detected_syms: yes
   undefined_syms_path: undefined_syms.us.v10.txt
   symbol_addrs_path:   symbol_addrs.us.v10.txt
+  undefined_funcs_auto_path: undefined_funcs_auto.MM.us.v10.txt
+  undefined_syms_auto_path: undefined_syms_auto.MM.us.v10.txt
+  base_path: .
+  target_path: build/us.v10/MM.us.v10.bin
+  asset_path: bin
+  build_path: build/us.v10
 segments:
-  - name: MM/code
+  - name: code
+    dir: MM
     type: code
     start: 0x00000000
     vram: 0x803863F0
-    subsections:
-      - [0x0, c, MM/ch/orangepad]
-      - [0x570, c, MM/ch/hut]
-      - [0x8B0, c, MM/ch/chimpystump]
-      - [0xAE0, c, MM/ch/conga]
-      - [0x1AD0, c]
-      - [0x1BA0, c, MM/ch/orange]
-      - [0x1F10, c, MM/ch/lmonkey] #chimpy
-      - [0x24C0, c]
-      - [0x25B0, c, MM/ch/grublin]
-      - [0x2740, c, MM/ch/jujuhitbox]
-      - [0x2BE0, c, MM/ch/juju]
-  - name: MM/data
+    subsegments:
+      - [0x0, c, ch/orangepad]
+      - [0x570, c, ch/hut]
+      - [0x8B0, c, ch/chimpystump]
+      - [0xAE0, c, ch/conga]
+      - [0x1AD0, c, code_1AD0]
+      - [0x1BA0, c, ch/orange]
+      - [0x1F10, c, ch/lmonkey] #chimpy
+      - [0x24C0, c, code_24C0]
+      - [0x25B0, c, ch/grublin]
+      - [0x2740, c, ch/jujuhitbox]
+      - [0x2BE0, c, ch/juju]
+  - name: data
+    dir: MM
     type: code
     start: 0x000034A0
     vram: 0x80389890
-    subsections:
-      - [0x34A0, .data, MM/ch/orangepad]
-      - [0x34D0, .data, MM/ch/hut]
-      - [0x3530, .data, MM/ch/chimpystump]
-      - [0x3560, .data, MM/ch/conga]
-      - [0x35D0, bin]
-      - [0x35E0, .data, MM/ch/orange]
-      - [0x3620, .data, MM/ch/lmonkey]
-      - [0x3670, .data, MM/ch/grublin]
-      - [0x36F0, .data, MM/ch/jujuhitbox]
-      - [0x3720, .data, MM/ch/juju]
-      - [0x3750, bin]
-      - [0x3760, .rodata, MM/ch/hut]
-      - [0x3770, bin]
-      - [0x37F0, .rodata, MM/ch/orange]
-      - [0x3810, bin]
-      - [0x3860, .rodata, MM/ch/grublin]
-      - [0x3870, .rodata, MM/ch/jujuhitbox]
-      - [0x3880, .rodata, MM/ch/juju]
+    subsegments:
+      - [0x34A0, .data, ch/orangepad]
+      - [0x34D0, .data, ch/hut]
+      - [0x3530, .data, ch/chimpystump]
+      - [0x3560, .data, ch/conga]
+      - [0x35D0, bin, data_35D0]
+      - [0x35E0, .data, ch/orange]
+      - [0x3620, .data, ch/lmonkey]
+      - [0x3670, .data, ch/grublin]
+      - [0x36F0, .data, ch/jujuhitbox]
+      - [0x3720, .data, ch/juju]
+      - [0x3750, bin, data_3750]
+      - [0x3760, .rodata, ch/hut]
+      - [0x3770, bin, data_3770]
+      - [0x37F0, .rodata, ch/orange]
+      - [0x3810, bin, data_3810]
+      - [0x3860, .rodata, ch/grublin]
+      - [0x3870, .rodata, ch/jujuhitbox]
+      - [0x3880, .rodata, ch/juju]
   - [0x00003890]

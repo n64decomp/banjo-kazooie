@@ -1,7 +1,9 @@
-basename: FP
 options:
+  basename: FP
   find_file_boundaries: yes
   compiler: "IDO"
+  platform: n64
+  asm_endlabels: yes
   cpp_args:
     - "-Iinclude"
     - "-Iinclude/2.0L"
@@ -14,16 +16,18 @@ options:
   undefined_syms_path: undefined_syms.pal.txt
   symbol_addrs_path:   symbol_addrs.pal.txt
 segments:
-  - name: FP/code
+  - name: code
+    dir: FP
     type: code
     start: 0x00000000
     vram: 0x80386DD0
-    subsections:
+    subsegments:
       - [0x00000000, asm]
-  - name: FP/data
+  - name: data
+    dir: FP
     type: code
     start: 0x0000B600
     vram: 0x803923D0
-    subsections:
-      - [0x0000B600, bin]
+    subsegments:
+      - [0x0000B600, bin, data_B600]
   - [0x0000CB20]

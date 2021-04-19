@@ -1,9 +1,11 @@
-#include <ultra64.h>
-#include "functions.h"
-#include "variables.h"
+#include <os_internal.h>
+#include "osint.h"
 
-#define __osDequeueThread func_80003100
-
+struct __osThreadTail __osThreadTail = {0, -1};
+OSThread *__osRunQueue = (OSThread *)&__osThreadTail;
+OSThread *__osActiveQueue = (OSThread *)&__osThreadTail;
+OSThread *__osRunningThread = {0};
+OSThread *__osFaultedThread = {0};
 void __osDequeueThread(OSThread **queue, OSThread *t)
 {
    register OSThread *pred;

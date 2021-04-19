@@ -1,17 +1,5 @@
 #include <ultra64.h>
-#include "functions.h"
-#include "variables.h"
-
-#define osDestroyThread func_80003AD0
-#define __osDisableInt func_80003FC0
-#define __osRunningThread D_80005130
-#define __osDequeueThread func_80003100
-#define __osActiveQueue D_8000512C
-#define __osDispatchThread func_800029E4
-#define __osRestoreInt func_80003FE0
-
-extern OSThread *__osRunningThread;
-extern OSThread *__osActiveQueue;
+#include "osint.h"
 
 void osDestroyThread(OSThread *t)
 {

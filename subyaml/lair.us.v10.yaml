@@ -1,7 +1,9 @@
-basename: lair
 options:
+  basename: lair
   find_file_boundaries: yes
   compiler: "IDO"
+  platform: n64
+  asm_endlabels: yes
   cpp_args:
     - "-Iinclude"
     - "-Iinclude/2.0L"
@@ -13,30 +15,38 @@ options:
   create_detected_syms: yes
   undefined_syms_path: undefined_syms.us.v10.txt
   symbol_addrs_path:   symbol_addrs.us.v10.txt
+  undefined_funcs_auto_path: undefined_funcs_auto.lair.us.v10.txt
+  undefined_syms_auto_path: undefined_syms_auto.lair.us.v10.txt
+  base_path: .
+  target_path: build/us.v10/lair.us.v10.bin
+  asset_path: bin
+  build_path: build/us.v10
 segments:
-  - name: lair/code
+  - name: code
+    dir: lair
     type: code
     start: 0x00000000
     vram: 0x803863F0
-    subsections:
-      - [0x0, c]
-      - [0x42A0, c]
-      - [0x5640, c]
-      - [0x5ED0, c]
-      - [0x86F0, c]
-      - [0x9C40, c]
-      - [0xA170, c]
-      - [0xA430, c]
-      - [0xA4A0, c]
-      - [0xA810, c]
-      - [0xAD70, c]
-      - [0xBBD0, c]
-      - [0xC1C0, c]
-      - [0xC6C0, c]
-  - name: lair/data
+    subsegments:
+      - [0x0, c, code_0]
+      - [0x42A0, c, code_42A0]
+      - [0x5640, c, code_5640]
+      - [0x5ED0, c, code_5ED0]
+      - [0x86F0, c, code_86F0]
+      - [0x9C40, c, code_9C40]
+      - [0xA170, c, code_A170]
+      - [0xA430, c, code_A430]
+      - [0xA4A0, c, code_A4A0]
+      - [0xA810, c, code_A810]
+      - [0xAD70, c, code_AD70]
+      - [0xBBD0, c, code_BBD0]
+      - [0xC1C0, c, code_C1C0]
+      - [0xC6C0, c, code_C6C0]
+  - name: data
+    dir: lair
     type: code
     start: 0x0000C8C0
     vram: 0x80392CB0
-    subsections:
-      - [0x0000C8C0, bin]
+    subsegments:
+      - [0x0000C8C0, bin, data_C8C0]
   - [0x0000EF60]

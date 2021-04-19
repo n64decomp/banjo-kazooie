@@ -1,7 +1,9 @@
-basename: RBB
 options:
+  basename: RBB
   find_file_boundaries: yes
   compiler: "IDO"
+  platform: n64
+  asm_endlabels: yes
   cpp_args:
     - "-Iinclude"
     - "-Iinclude/2.0L"
@@ -13,36 +15,44 @@ options:
   create_detected_syms: yes
   undefined_syms_path: undefined_syms.us.v10.txt
   symbol_addrs_path:   symbol_addrs.us.v10.txt
+  undefined_funcs_auto_path: undefined_funcs_auto.RBB.us.v10.txt
+  undefined_syms_auto_path: undefined_syms_auto.RBB.us.v10.txt
+  base_path: .
+  target_path: build/us.v10/RBB.us.v10.bin
+  asset_path: bin
+  build_path: build/us.v10
 segments:
-  - name: RBB/code
+  - name: code
+    dir: RBB
     type: code
     start: 0x00000000
     vram: 0x803863F0
-    subsections:
-      - [0x00000000, c]
-      - [0xCA0, c]
-      - [0x1570, c]
-      - [0x1FC0, c]
-      - [0x27E0, c]
-      - [0x2A70, c]
-      - [0x2E90, c]
-      - [0x34B0, c]
-      - [0x36A0, c]
-      - [0x3CB0, c]
-      - [0x40F0, c]
-      - [0x47D0, c]
-      - [0x4C70, c]
-      - [0x52F0, c]
-      - [0x5F10, c]
-      - [0x5F80, c]
-      - [0x7A60, c]
-      - [0x7B20, c]
-      - [0x8520, c]
-      - [0x99F0, c]
-  - name: RBB/data
+    subsegments:
+      - [0x00000000, c, code_0]
+      - [0xCA0, c, code_CA0]
+      - [0x1570, c, code_1570]
+      - [0x1FC0, c, code_1FC0]
+      - [0x27E0, c, code_27E0]
+      - [0x2A70, c, code_2A70]
+      - [0x2E90, c, code_2E90]
+      - [0x34B0, c, code_34B0]
+      - [0x36A0, c, code_36A0]
+      - [0x3CB0, c, code_3CB0]
+      - [0x40F0, c, code_40F0]
+      - [0x47D0, c, code_47D0]
+      - [0x4C70, c, code_4C70]
+      - [0x52F0, c, code_52F0]
+      - [0x5F10, c, code_5F10]
+      - [0x5F80, c, code_5F80]
+      - [0x7A60, c, code_7A60]
+      - [0x7B20, c, code_7B20]
+      - [0x8520, c, code_8520]
+      - [0x99F0, c, code_99F0]
+  - name: data
+    dir: RBB
     type: code
     start: 0x00009C60
     vram: 0x80390050
-    subsections:
-      - [0x00009C60, bin]
+    subsegments:
+      - [0x00009C60, bin, data_9C60]
   - [0x0000AE80]

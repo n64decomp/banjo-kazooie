@@ -1,7 +1,9 @@
-basename: core2
 options:
+  basename: core2
   find_file_boundaries: yes
   compiler: "IDO"
+  platform: n64
+  asm_endlabels: yes
   cpp_args:
     - "-Iinclude"
     - "-Iinclude/2.0L"
@@ -14,16 +16,18 @@ options:
   undefined_syms_path: undefined_syms.us.v11.txt
   symbol_addrs_path:   symbol_addrs.us.v11.txt
 segments:
-  - name: core2/code
+  - name: code
+    dir: core2
     type: code
     start: 0x00000000
     vram: 0x80285DD0
-    subsections:
+    subsegments:
       - [0x00000000, asm]
-  - name: core2/data
+  - name: data
+    dir: core2
     type: code
     start: 0x000DC9C0
     vram: 0x80362790
-    subsections:
-      - [0x000DC9C0, bin]
+    subsegments:
+      - [0x000DC9C0, bin, data_DC9C0]
   - [0x000F2FC0]

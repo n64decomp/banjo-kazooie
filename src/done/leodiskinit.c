@@ -1,19 +1,9 @@
-#include <ultra64.h>
-#include "functions.h"
-#include "variables.h"
-
-#define LeoDiskHandle D_800084F0
-#define __osDiskHandle D_80008564
-#define __osPiTable D_8000515C
-#define osLeoDiskInit func_80003C90
-#define __osDisableInt func_80003FC0
-#define __osRestoreInt func_80003FE0
-#define bzero func_800020F0
+#include <os_internal.h>
+#include <rcp.h>
+#include <os_libc.h>
 
 OSPiHandle LeoDiskHandle;
 OSPiHandle *__osDiskHandle;
-extern OSPiHandle *__osPiTable;
-// Very small diff
 OSPiHandle *osLeoDiskInit()
 {
 	u32 saveMask;

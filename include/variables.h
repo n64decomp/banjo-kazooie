@@ -1,6 +1,13 @@
 #ifndef VARIABLES_H
 #define VARIABLES_H
 
+struct Overlay {
+    void *start;
+    void *end;
+};
+
+extern struct Overlay gOverlayTable[];
+
 extern s32  D_80276588;
 extern s32  D_8027658C;
 

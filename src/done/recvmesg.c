@@ -1,18 +1,5 @@
 #include <ultra64.h>
-#include "functions.h"
-#include "variables.h"
-
-#define __osDisableInt func_80003FC0
-#define __osRestoreInt func_80003FE0
-#define __osEnqueueAndYield func_8000288C
-#define __osRunningThread D_80005130
-#define __osDisableInt func_80003FC0
-#define __osRestoreInt func_80003FE0
-#define osStartThread func_80004A60
-#define __osPopThread func_800029D4
-#define osRecvMesg func_80004D00
-
-extern OSThread *__osRunningThread;
+#include "osint.h"
 
 s32 osRecvMesg(OSMesgQueue *mq, OSMesg *msg, s32 flags)
 {
