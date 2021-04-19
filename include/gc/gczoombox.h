@@ -67,7 +67,7 @@ typedef struct {
     u8  unk181;
     u8  pad182[0x3];
     u8 unk185;
-    u8 unk186;
+    s8 unk186;
     u8 unk187;
     u8 unk188;
     u8 unk189;

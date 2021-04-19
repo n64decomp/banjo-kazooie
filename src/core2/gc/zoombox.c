@@ -6,14 +6,25 @@
 extern struct17s D_8036C6C0[];
 
 extern char D_80378880[];
+
+extern f64 D_803788E0;
 extern f32 D_80378938;
 extern f32 D_8037893C;
 extern f32 D_80378940;
 
 void func_8030DA44(u8);
+void func_802521C0(f32, f32, f32);
+void func_80252330(f32, f32, f32);
+void func_80251D84(f32);
+void func_80338338(s32, s32, s32);
+void func_803382FC(u8);
+
+
 
 void func_803184C8(gczoombox_t *, f32, s32, s32, f32, s32, s32);
 void func_80318760(gczoombox_t *this, s32 arg1);
+
+
 
 
 void func_80315200(gczoombox_t *this){
@@ -107,6 +118,36 @@ void _gczoombox_memClear(u8 *arg0, s32 size){
 
 void func_803164B0(gczoombox_t *, Gfx **, Mtx **, s32, s32, s32, f32);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/zoombox/func_803164B0.s")
+/*void func_803164B0(gczoombox_t *this, Gfx **gdl, Mtx **mptr, s32 arg3, s32 arg4, s32 arg5, f32 arg6){
+     volatile f32 sp2C;
+     f32 temp_f12;
+
+     if(this->portrait_id == 0x46)
+          arg6 = 0.75;
+     //L803164F0
+     func_80338338(0xff, 0xff, 0xff);
+     func_803382FC(this->unk168 * arg6);
+     func_803382E4(5);
+     func_80335D30(gdl);
+     func_8024C7B8(gdl, mptr);
+     func_80251B0C();
+     if(this->unk1A4_24){
+          func_80251D84(180.0f);
+          sp2C = this->unk170 - arg3*this->unk198;
+     }else{//L8031661C
+          sp2C = this->unk170 + arg3*this->unk198;
+     }
+     //L80316640
+     func_80252330(sp2C*4.0f - D_80276588*2.0f, D_8027658C*2.0f - ((f32)this->unk172 + (f32)arg4*this->unk198)*4.0f, -10.0f);
+     func_802521C0(this->unk198 * D_803788E0, this->unk198 * D_803788E0, 1.0f);
+     func_80251494(*mptr);
+     gSPMatrix((*gdl)++, (*mptr)++, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
+     func_8033A4CC(0);
+     func_80344090(arg5, this->unk186, gdl);
+     func_8033687C(gdl);
+     func_8024C904(gdl, mptr);
+}//*/
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/zoombox/func_80316764.s")
 
