@@ -38,13 +38,8 @@ u32 func_800005C0(u8* in, u8* out, struct huft *arg2){
     wp = 0; //wp
     inptr = 0; //inptr
     
-<<<<<<< HEAD
     bkboot_inflate(); //inflate
-    return D_8000728C; //return uncompressed size
-=======
-    func_80001B00(); //inflate
     return wp; //return uncompressed size
->>>>>>> Mr-Wiseguy/banjo-kazooie-wiseguy-dev
 }
 
 u32 func_80000618(u8 **inPtr, u8 **outPtr, struct huft *arg2){

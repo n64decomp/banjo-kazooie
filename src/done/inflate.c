@@ -4,9 +4,6 @@
 
 #include "rarezip.h"
 
-<<<<<<< HEAD:src/inflate.c
-static int huft_build(b, n, s, d, e, t, m)
-=======
 u8 border[] = {    /* Order of the bit length code lengths */
     16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15};
 /*static*/ u16 cplens[] = {         /* Copy lengths for literal codes 257..285 */
@@ -49,7 +46,6 @@ u32 crc2;
 u32 hufts;
 
 int huft_build(b, n, s, d, e, t, m)
->>>>>>> Mr-Wiseguy/banjo-kazooie-wiseguy-dev:src/done/inflate.c
 unsigned *b;            /* code lengths in bits (all assumed <= BMAX) */
 unsigned n;             /* number of codes (assumed <= N_MAX) */
 unsigned s;             /* number of simple-valued codes (0..s-1) */
@@ -238,7 +234,7 @@ int *m;                 /* maximum lookup bits, returns actual */
 }
 
 //^inflate_codes
-static int inflate_codes(struct huft *tl, struct huft *td, s32 bl, s32 bd)
+/* static */ int inflate_codes(struct huft *tl, struct huft *td, s32 bl, s32 bd)
 {
   register unsigned e;  /* table entry flag/number of extra bits */
   unsigned n, d;        /* length and index for copy */
@@ -318,7 +314,7 @@ static int inflate_codes(struct huft *tl, struct huft *td, s32 bl, s32 bd)
   return 0;
 }
 
-static int inflate_stored(void)
+/* static */ int inflate_stored(void)
 /* "decompress" an inflated type 0 (stored) block. */
 {
   unsigned n;           /* number of bytes in block */
@@ -362,7 +358,7 @@ static int inflate_stored(void)
   return 0;
 }
 
-static int inflate_fixed(void)
+/* static */ int inflate_fixed(void)
 /* decompress an inflated type 1 (fixed Huffman codes) block.  We should
    either replace this with a custom decoder, or at least precompute the
    Huffman tables. */
@@ -399,7 +395,7 @@ static int inflate_fixed(void)
   return 0;
 }
 
-static int inflate_dynamic(void)/* decompress an inflated type 2 (dynamic Huffman codes) block. */
+/* static */ int inflate_dynamic(void)/* decompress an inflated type 2 (dynamic Huffman codes) block. */
 {
   int i;                /* temporary variables */
   unsigned j;
@@ -508,7 +504,7 @@ static int inflate_dynamic(void)/* decompress an inflated type 2 (dynamic Huffma
   return 0;
 }
 
-static int inflate_block(int *e)
+/* static */ int inflate_block(int *e)
 /* decompress an inflated block */
 {
   u32 t;           /* block type */
