@@ -5,104 +5,33 @@ import sys
 import subprocess
 import glob
 
-def parse_map(mapfile, section, ending=None):
+def get_functions(elffile, section, ending=None):
+    try:
+        result = subprocess.run(['objdump', '-x', elffile], stdout=subprocess.PIPE)
+        nm_lines = result.stdout.decode().split("\n")
+    except:
+        sys.stderr.write(f"Error: Could not run objdump on {elffile} - make sure that the project is built")
+        sys.exit(1)
+
     functions = {}
-    files = {}
 
-    in_code = False
+    for line in nm_lines:
+        if f"g     F {section}" in line or "g     F *ABS*	" in line:
+            components = line.split()
+            size = int(components[4], 16)
+            name = components[5]
+            functions[name] = {"function": name, "length": size}
 
-    filename = None
-    function = None
-    total_size = None
+    return functions
 
-    previous_offset = 0
-
-    while True:
-        line = mapfile.readline()
-        if not line:
-            break
-
-        if not in_code:
-            if line.startswith(section):
-                in_code = True
-                split_line = line.split()
-                if len(split_line) > 2:
-                    # should we take file offset from individual offsets?
-                    total_size = int(split_line[1], 16) + int(split_line[2], 16)
-                else:
-                    # try nextline
-                    line = mapfile.readline()
-                    split_line = line.split()
-                    if len(split_line) < 2:
-                        print("Could not determine total size, aborting")
-                        break
-                    total_size = int(split_line[0], 16) + int(split_line[1], 16)
-                continue
-        else:
-            if (ending and line.startswith(ending)) or (ending is None and len(line) in [0, 1, 2]):
-                in_code = False
-                if function and total_size:
-                    functions[function]["length"] = total_size - functions[function]["offset"]
-                else:
-                    print("No function / unable to determine total size")
-                break
-            # assuming "build/src/..."
-            if line.startswith(" build/"):
-                filename = line[7:].replace(".o(.text)", "").strip()
-                files[filename] = []
-                continue
-            if line.startswith(" .text "):
-                continue
-            # should we use regex?
-            split_line = line.split()
-            if len(split_line) == 2:
-                offset, new_function = split_line
-                offset = int(offset, 16)
-            else:
-                continue
-            if offset < previous_offset:
-                continue
-            if function:
-                # not 100% accurate due to nops but.. it'll do for now
-                functions[function]["length"] = offset - functions[function]["offset"]
-            functions[new_function] = {"offset": offset, "filename": filename, "language": "asm"}
-            files[filename].append(new_function)
-            function = new_function
-            previous_offset = offset
-
-    return (files, functions)
-
-
-def parse_file(basedir, filename, file_funcs):
-    updates = []
-    c_path = os.path.join(basedir, filename + ".c")
-    pattern = re.compile(r'#pragma GLOBAL_ASM\(".*\/([^\/]+)\.s"\)')
-    if os.path.isfile(c_path):
-        global_asms = []
-        with open (c_path, "r") as f:
-            while True:
-                line = f.readline()
-                if not line:
-                    break
-                match = pattern.match(line)
-                if match:
-                    global_asms.append(match.group(1))
-        for function in file_funcs:
-            if not function in global_asms:
-                updates.append(function)
-    return updates
-
-
-def generate_csv(files, functions, nonmatching_funcs, version, section):
+def generate_csv(functions, nonmatching_funcs, version, section):
     ret = []
-    ret.append("version,section,filename,function,offset,length,matching")
-    for filename, funcs in files.items():
-        basename = os.path.basename(filename)
-        for func in funcs:
+    ret.append("version,section,function,length,matching")
+    for func in functions:
+        length = functions[func]["length"]
+        if length > 0:
             matching = "no" if func in nonmatching_funcs else "yes"
-            offset = functions[func]["offset"]
-            length = functions[func]["length"]
-            ret.append(f"{version},{section},{basename},{func},{offset},{length},{matching}")
+            ret.append(f"{version},{section},{func},{length},{matching}")
     return "\n".join(ret)
 
 def get_nonmatching_funcs(basedir, subcode):
@@ -131,15 +60,11 @@ def get_nonmatching_funcs(basedir, subcode):
     return funcs
 
 
-def main(basedir, mapfile, section, ending, version, subcode):
-    files, functions = parse_map(mapfile, section, ending)
-    for filename, file_funcs in files.items():
-        c_functions = parse_file(basedir, filename, file_funcs)
-        for c_function in c_functions:
-            functions[c_function]["language"] = "c"
+def main(basedir, elffile, section, ending, version, subcode):
+    functions = get_functions(elffile, section, ending)
     section_name = section.split("_")[-1] # .code_game -> game
     nonmatching_funcs = get_nonmatching_funcs(basedir, subcode)
-    csv = generate_csv(files, functions, nonmatching_funcs, version, section_name)
+    csv = generate_csv(functions, nonmatching_funcs, version, section_name)
     print(csv)
 
 if __name__ == '__main__':
@@ -147,8 +72,8 @@ if __name__ == '__main__':
                                      formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument('basedir', type=str,
                         help="base directory (containing src/)")
-    parser.add_argument('mapfile', type=argparse.FileType('r'),
-                        help=".map file to be parsed")
+    parser.add_argument('elffile', type=str,
+                        help=".elf file to be read")
     parser.add_argument('section', type=str,
                         help=".text section of the map")
     parser.add_argument('--ending', type=str,
@@ -159,4 +84,4 @@ if __name__ == '__main__':
                         help="Subcode for section to get progress of")
     args = parser.parse_args()
 
-    main(args.basedir, args.mapfile, args.section, args.ending, args.version, args.subcode)
+    main(args.basedir, args.elffile, args.section, args.ending, args.version, args.subcode)

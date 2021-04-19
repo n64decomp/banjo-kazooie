@@ -1,7 +1,9 @@
-basename: GV
 options:
+  basename: GV
   find_file_boundaries: yes
   compiler: "IDO"
+  platform: n64
+  asm_endlabels: yes
   cpp_args:
     - "-Iinclude"
     - "-Iinclude/2.0L"
@@ -13,38 +15,46 @@ options:
   create_detected_syms: yes
   undefined_syms_path: GV/undefined_syms.GV.us.v10.txt
   symbol_addrs_path:   GV/symbol_addrs.GV.us.v10.txt
+  undefined_funcs_auto_path: undefined_funcs_auto.GV.us.v10.txt
+  undefined_syms_auto_path: undefined_syms_auto.GV.us.v10.txt
+  base_path: .
+  target_path: build/us.v10/GV.us.v10.bin
+  asset_path: bin
+  build_path: build/us.v10
 segments:
-  - name: GV/code
+  - name: code
+    dir: GV
     type: code
     start: 0x00000000
     vram: 0x803863F0
-    subsections:
-      - [0x00000000, c]
-      - [0x230, c]
-      - [0xD60, c]
-      - [0x1E80, c]
-      - [0x2730, c]
-      - [0x2B80, c]
-      - [0x2EE0, c]
-      - [0x30C0, c]
-      - [0x3630, c]
-      - [0x3BB0, c]
-      - [0x3D90, c]
-      - [0x43B0, c]
-      - [0x5570, c]
-      - [0x61E0, c]
-      - [0x6370, c]
-      - [0x6F80, c]
-      - [0x7060, c]
-      - [0x9860, c]
-      - [0x9B70, c]
-      - [0x9C10, c]
-      - [0x9DB0, c]
-      - [0xA490, c]
-  - name: GV/data
+    subsegments:
+      - [0x00000000, c, code_0]
+      - [0x230, c, code_230]
+      - [0xD60, c, code_D60]
+      - [0x1E80, c, code_1E80]
+      - [0x2730, c, code_2730]
+      - [0x2B80, c, code_2B80]
+      - [0x2EE0, c, code_2EE0]
+      - [0x30C0, c, code_30C0]
+      - [0x3630, c, code_3630]
+      - [0x3BB0, c, code_3BB0]
+      - [0x3D90, c, code_3D90]
+      - [0x43B0, c, code_43B0]
+      - [0x5570, c, code_5570]
+      - [0x61E0, c, code_61E0]
+      - [0x6370, c, code_6370]
+      - [0x6F80, c, code_6F80]
+      - [0x7060, c, code_7060]
+      - [0x9860, c, code_9860]
+      - [0x9B70, c, code_9B70]
+      - [0x9C10, c, code_9C10]
+      - [0x9DB0, c, code_9DB0]
+      - [0xA490, c, code_A490]
+  - name: data
+    dir: GV
     type: code
     start: 0x0000A7E0
     vram: 0x80390BD0
-    subsections:
-      - [0x0000A7E0, bin]
+    subsegments:
+      - [0x0000A7E0, bin, data_A7E0]
   - [0x0000B630]

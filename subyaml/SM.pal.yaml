@@ -1,7 +1,9 @@
-basename: SM
 options:
+  basename: SM
   find_file_boundaries: yes
   compiler: "IDO"
+  platform: n64
+  asm_endlabels: yes
   cpp_args:
     - "-Iinclude"
     - "-Iinclude/2.0L"
@@ -14,16 +16,18 @@ options:
   undefined_syms_path: undefined_syms.pal.txt
   symbol_addrs_path:   symbol_addrs.pal.txt
 segments:
-  - name: SM/code
+  - name: code
+    dir: SM
     type: code
     start: 0x00000000
     vram: 0x80386DD0
-    subsections:
+    subsegments:
       - [0x00000000, asm]
-  - name: SM/data
+  - name: data
+    dir: SM
     type: code
     start: 0x00004910
     vram: 0x8038B6E0
-    subsections:
-      - [0x00004910, bin]
+    subsegments:
+      - [0x00004910, bin, data_4910]
   - [0x000051E0]

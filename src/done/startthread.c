@@ -1,22 +1,5 @@
 #include <ultra64.h>
-#include "functions.h"
-#include "variables.h"
-
-#define __osDisableInt func_80003FC0
-#define __osRestoreInt func_80003FE0
-#define __osEnqueueAndYield func_8000288C
-#define __osRunningThread D_80005130
-#define __osDisableInt func_80003FC0
-#define __osRestoreInt func_80003FE0
-#define osStartThread func_80004A60
-#define __osPopThread func_800029D4
-#define __osRunningThread D_80005130
-#define __osRunQueue D_80005128
-#define __osEnqueueThread func_8000298C
-#define __osDispatchThread func_800029E4
-
-extern OSThread *__osRunningThread;
-extern OSThread *__osRunQueue;
+#include "osint.h"
 
 void osStartThread(OSThread *t)
 {

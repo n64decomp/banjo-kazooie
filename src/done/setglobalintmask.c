@@ -2,10 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-#define __osSetGlobalIntMask func_80004F40
-#define __osDisableInt func_80003FC0
-#define __osRestoreInt func_80003FE0
-#define __OSGlobalIntMask D_800050F0 
 
 extern OSIntMask __OSGlobalIntMask;
 

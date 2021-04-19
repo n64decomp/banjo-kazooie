@@ -1,7 +1,9 @@
-basename: FP
 options:
+  basename: FP
   find_file_boundaries: yes
   compiler: "IDO"
+  platform: n64
+  asm_endlabels: yes
   cpp_args:
     - "-Iinclude"
     - "-Iinclude/2.0L"
@@ -13,37 +15,45 @@ options:
   create_detected_syms: yes
   undefined_syms_path: FP/undefined_syms.FP.us.v10.txt
   symbol_addrs_path:   FP/symbol_addrs.FP.us.v10.txt
+  undefined_funcs_auto_path: undefined_funcs_auto.FP.us.v10.txt
+  undefined_syms_auto_path: undefined_syms_auto.FP.us.v10.txt
+  base_path: .
+  target_path: build/us.v10/FP.us.v10.bin
+  asset_path: bin
+  build_path: build/us.v10
 segments:
-  - name: FP/code
+  - name: code
+    dir: FP
     type: code
     start: 0x00000000
     vram: 0x803863F0
-    subsections:
-      - [0x00000000, c]
-      - [0x4D0, c]
-      - [0xA40, c]
-      - [0x11F0, c]
-      - [0x19E0, c]
-      - [0x1FF0, c]
-      - [0x2350, c]
-      - [0x3E00, c]
-      - [0x4400, c]
-      - [0x45D0, c]
-      - [0x4770, c]
-      - [0x5CC0, c]
-      - [0x6AE0, c]
-      - [0x8330, c]
-      - [0x8D00, c]
-      - [0x8E20, c]
-      - [0x9EA0, c]
-      - [0xA240, c]
-      - [0xA880, c]
-      - [0xABD0, c]
-      - [0xB4D0, c]
-  - name: FP/data
+    subsegments:
+      - [0x00000000, c, code_0]
+      - [0x4D0, c, code_4D0]
+      - [0xA40, c, code_A40]
+      - [0x11F0, c, code_11F0]
+      - [0x19E0, c, code_19E0]
+      - [0x1FF0, c, code_1FF0]
+      - [0x2350, c, code_2350]
+      - [0x3E00, c, code_3E00]
+      - [0x4400, c, code_4400]
+      - [0x45D0, c, code_45D0]
+      - [0x4770, c, code_4770]
+      - [0x5CC0, c, code_5CC0]
+      - [0x6AE0, c, code_6AE0]
+      - [0x8330, c, code_8330]
+      - [0x8D00, c, code_8D00]
+      - [0x8E20, c, code_8E20]
+      - [0x9EA0, c, code_9EA0]
+      - [0xA240, c, code_A240]
+      - [0xA880, c, code_A880]
+      - [0xABD0, c, code_ABD0]
+      - [0xB4D0, c, code_B4D0]
+  - name: data
+    dir: FP
     type: code
     start: 0x0000B600
     vram: 0x803919F0
-    subsections:
-      - [0x0000B600, bin]
+    subsegments:
+      - [0x0000B600, bin, data_B600]
   - [0x0000CB20]

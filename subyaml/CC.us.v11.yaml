@@ -1,7 +1,9 @@
-basename: CC
 options:
+  basename: CC
   find_file_boundaries: yes
   compiler: "IDO"
+  platform: n64
+  asm_endlabels: yes
   cpp_args:
     - "-Iinclude"
     - "-Iinclude/2.0L"
@@ -14,16 +16,18 @@ options:
   undefined_syms_path: undefined_syms.us.v11.txt
   symbol_addrs_path:   symbol_addrs.us.v11.txt
 segments:
-  - name: CC/code
+  - name: code
+    dir: CC
     type: code
     start: 0x00000000
     vram: 0x80385610
-    subsections:
+    subsegments:
       - [0x00000000, asm]
-  - name: CC/data
+  - name: data
+    dir: CC
     type: code
     start: 0x000036B0
     vram: 0x80388CC0
-    subsections:
-      - [0x000036B0, bin]
+    subsegments:
+      - [0x000036B0, bin, data_36B0]
   - [0x00003B80]

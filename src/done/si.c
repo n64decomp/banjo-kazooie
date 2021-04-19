@@ -2,8 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-#define __osSiDeviceBusy func_800030D0
-
 int __osSiDeviceBusy()
 {
     register u32 stat = IO_READ(SI_STATUS_REG);

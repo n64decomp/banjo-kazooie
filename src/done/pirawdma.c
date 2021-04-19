@@ -7,9 +7,6 @@
     while (stat & (PI_STATUS_IO_BUSY | PI_STATUS_DMA_BUSY)) \
         stat = IO_READ(PI_STATUS_REG);
 
-#define osPiRawStartDma func_80002000
-#define osVirtualToPhysical func_80003050
-
 s32 osPiRawStartDma(s32 direction, u32 devAddr, void *dramAddr, u32 size)
 {
     register u32 stat;

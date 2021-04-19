@@ -28,7 +28,7 @@ def main(csv_name, version, overlay):
                     done_func += 1
                     done_byte += int(row['length'])
         percent = ((done_byte/total_byte) * 100)
-        print("bytes: %3.4f%% (%d/%d), funcs: %3.4f%% (%d/%d)" % (percent, done_byte, total_byte,((done_func/total_func) *100), done_func, total_func ))
+        print("%s: bytes: %3.4f%% (%d/%d), funcs: %3.4f%% (%d/%d)" % (overlay, percent, done_byte, total_byte,((done_func/total_func) *100), done_func, total_func ))
         green = min(255, round(min(1, (percent / 100) * 2) * 256))
         red = min(255, round(min(1, ((100 - percent) / 100) * 2) * 256))
         color = RGB_to_hex([red, green, 0])

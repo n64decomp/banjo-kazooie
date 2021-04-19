@@ -1,7 +1,9 @@
-basename: CCW
 options:
+  basename: CCW
   find_file_boundaries: yes
   compiler: "IDO"
+  platform: n64
+  asm_endlabels: yes
   cpp_args:
     - "-Iinclude"
     - "-Iinclude/2.0L"
@@ -14,16 +16,18 @@ options:
   undefined_syms_path: undefined_syms.us.v11.txt
   symbol_addrs_path:   symbol_addrs.us.v11.txt
 segments:
-  - name: CCW/code
+  - name: code
+    dir: CCW
     type: code
     start: 0x00000000
     vram: 0x80385610
-    subsections:
+    subsegments:
       - [0x00000000, asm]
-  - name: CCW/data
+  - name: data
+    dir: CCW
     type: code
     start: 0x00008790
     vram: 0x8038DDA0
-    subsections:
-      - [0x00008790, bin]
+    subsegments:
+      - [0x00008790, bin, data_8790]
   - [0x00009A10]

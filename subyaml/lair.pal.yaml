@@ -1,7 +1,9 @@
-basename: lair
 options:
+  basename: lair
   find_file_boundaries: yes
   compiler: "IDO"
+  platform: n64
+  asm_endlabels: yes
   cpp_args:
     - "-Iinclude"
     - "-Iinclude/2.0L"
@@ -14,16 +16,18 @@ options:
   undefined_syms_path: undefined_syms.pal.txt
   symbol_addrs_path:   symbol_addrs.pal.txt
 segments:
-  - name: lair/code
+  - name: code
+    dir: lair
     type: code
     start: 0x00000000
     vram: 0x80386DD0
-    subsections:
+    subsegments:
       - [0x00000000, asm]
-  - name: lair/data
+  - name: data
+    dir: lair
     type: code
     start: 0x0000C8C0
     vram: 0x80393690
-    subsections:
-      - [0x0000C8C0, bin]
+    subsegments:
+      - [0x0000C8C0, bin, data_C8C0]
   - [0x0000EF60]

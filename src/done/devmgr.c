@@ -3,22 +3,9 @@
 #include "variables.h"
 #include "piint.h"
 
-#define __osDisableInt func_80003FC0
-#define __osRestoreInt func_80003FE0
-#define __osEnqueueAndYield func_8000288C
-#define __osRunningThread D_80005130
-#define __osDisableInt func_80003FC0
-#define __osRestoreInt func_80003FE0
-#define osStartThread func_80004A60
-#define __osPopThread func_800029D4
-#define osRecvMesg func_80004D00
-#define osSendMesg func_80004BB0
 #define __osResetGlobalIntMask func_80004E40
 #define osEPiRawWriteIo func_80004EA0
 #define osEPiRawReadIo func_80004EF0
-#define __osSetGlobalIntMask func_80004F40
-#define osYieldThread func_80004F90
-#define __osDevMgrMain func_800045D0
 
 void __osDevMgrMain(void *args)
 {

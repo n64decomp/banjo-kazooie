@@ -2,9 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-#define osVirtualToPhysical func_80003050
-#define __osProbeTLB func_80003BD0
-
 u32 osVirtualToPhysical(void *addr)
 {
     if (IS_KSEG0(addr))

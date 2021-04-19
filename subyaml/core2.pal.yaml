@@ -1,7 +1,9 @@
-basename: core2
 options:
+  basename: core2
   find_file_boundaries: yes
   compiler: "IDO"
+  platform: n64
+  asm_endlabels: yes
   cpp_args:
     - "-Iinclude"
     - "-Iinclude/2.0L"
@@ -18,12 +20,12 @@ segments:
     type: code
     start: 0x00000000
     vram: 0x80286DB0
-    subsections:
+    subsegments:
       - [0x00000000, asm]
   - name: data
     type: code
     start: 0x000DCC50
     vram: 0x80363A00
-    subsections:
-      - [0x000DCC50, bin]
+    subsegments:
+      - [0x000DCC50, bin, data_DCC50]
   - [0x000F37B0]
