@@ -12,6 +12,15 @@ f32 func_80265360(f32);
 extern f64 D_80278220;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_802513B0.s")
+/*void func_802513B0(Mtx *arg0){
+    s32 i;
+    for(i = 0; i < 4; i++){
+       arg0->m[i][0] = D_80282FD0->m[i][0];
+       arg0->m[i][1] = D_80282FD0->m[i][1];
+       arg0->m[i][2] = D_80282FD0->m[i][2];
+       arg0->m[i][3] = D_80282FD0->m[i][3];
+    }
+}//*/
 
 Mtx *func_80251488(void){
     return D_80282FD0;
