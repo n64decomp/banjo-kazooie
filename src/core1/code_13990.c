@@ -13,7 +13,9 @@ extern f64 D_80278220;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_802513B0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_80251488.s")
+Mtx *func_80251488(void){
+    return D_80282FD0;
+}
 
 void func_80251494(Mtx *mPtr){
     func_80245A7C(D_80282FD0, mPtr);
