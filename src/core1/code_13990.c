@@ -7,11 +7,17 @@
 extern Mtx *D_80282FD0;
 extern Mtx_t D_80282810;
 
+f32 func_80263FF0(f32);
+f32 func_80265360(f32);
+extern f64 D_80278220;
+
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_802513B0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_80251488.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_80251494.s")
+void func_80251494(Mtx *mPtr){
+    func_80245A7C(D_80282FD0, mPtr);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_802514BC.s")
 
@@ -52,11 +58,39 @@ void mlMtxIdent(void){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_80251C20.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_80251C78.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/mlMtxRotPitch.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_80251D84.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/mlMtxRotYaw.s")
+/*void mlMtxRotYaw(f32 yaw) {
+    f32 sin;
+    f32 cos;
+    f32 phi_f12;
+    f32 phi_f10;
+    f32 phi_f8;
+    f32 phi_f4;
+    f32 *phi_v0;
+    s32 phi_v1;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_80251E80.s")
+    if (yaw == 0.0f)
+        return;
+
+    sin = func_80263FF0(yaw*0.0174533);
+    cos = func_80265360(yaw*0.0174533);
+    phi_v0 = D_80282FD0;
+    for(phi_v1 = 0; phi_v1 < 0xC; phi_v1 += 4){
+        phi_v0 = (u32)D_80282FD0 + phi_v1;
+        phi_f12 = phi_v0[0] * cos;
+        phi_f10 = phi_v0[8] * sin;
+        phi_f8 = phi_v0[0] * sin;
+        phi_f4 = phi_v0[8] * cos;
+        phi_v0[0] = phi_f12 - phi_f10;
+        phi_v0 = (u32)D_80282FD0 + phi_v1;
+        phi_v0[8] = phi_f8 + phi_f4;
+    }
+
+}//*/
+
+#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/mlMtxRotRoll.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_80251F8C.s")
 
@@ -64,7 +98,7 @@ void mlMtxIdent(void){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_80252188.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_802521C0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/mlMtxScale.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_80252280.s")
 
@@ -80,7 +114,7 @@ void mlMtxIdent(void){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_8025276C.s")
 
-void mlMtxTranslate(f32 arg0, f32 arg1, f32 arg2) {
+void mlMtxTranslate(f32 x, f32 y, f32 z) {
     f32 *temp_t6;
     f32 *phi_v0;
     f32 phi_f18;
@@ -91,9 +125,9 @@ void mlMtxTranslate(f32 arg0, f32 arg1, f32 arg2) {
     phi_v0 = D_80282FD0;
     for(phi_v1 = 0; phi_v1 < 0xC; phi_v1 +=4){
         phi_v0 = (u32)D_80282FD0 + phi_v1;
-        phi_f18 = phi_v0[0] * arg0;
-        phi_f16 = phi_v0[4] * arg1;
-        phi_v0[0xC] += phi_f18 + phi_f16 + (phi_v0[8] * arg2);
+        phi_f18 = phi_v0[0] * x;
+        phi_f16 = phi_v0[4] * y;
+        phi_v0[0xC] += phi_f18 + phi_f16 + (phi_v0[8] * z);
     }
 }
 

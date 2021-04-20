@@ -12,9 +12,7 @@ extern f32 D_8037893C;
 extern f32 D_80378940;
 
 void func_8030DA44(u8);
-void func_802521C0(f32, f32, f32);
 void func_80252330(f32, f32, f32);
-void func_80251D84(f32);
 void func_80338338(s32, s32, s32);
 void func_803382FC(u8);
 
@@ -131,14 +129,14 @@ void func_803164B0(gczoombox_t *, Gfx **, Mtx **, s32, s32, s32, f32);
      func_8024C7B8(gdl, mptr);
      mlMtxIdent();
      if(this->unk1A4_24){
-          func_80251D84(180.0f);
+          mlMtxRotYaw(180.0f);
           sp2C = this->unk170 - arg3*this->unk198;
      }else{//L8031661C
           sp2C = this->unk170 + arg3*this->unk198;
      }
      //L80316640
      func_80252330(sp2C*4.0f - D_80276588*2.0f, D_8027658C*2.0f - ((f32)this->unk172 + (f32)arg4*this->unk198)*4.0f, -10.0f);
-     func_802521C0(this->unk198 * D_803788E0, this->unk198 * D_803788E0, 1.0f);
+     mlMtxScale(this->unk198 * D_803788E0, this->unk198 * D_803788E0, 1.0f);
      func_80251494(*mptr);
      gSPMatrix((*gdl)++, (*mptr)++, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
      func_8033A4CC(0);

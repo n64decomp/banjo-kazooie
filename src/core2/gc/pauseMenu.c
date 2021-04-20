@@ -13,11 +13,7 @@
 void func_803204E4(s32, s32);
 void func_803391A4(Gfx**, Mtx**, f32*, f32*, f32, f32*, s32);
 f32 func_8024DE1C(f32, f32, f32 *, f32 *);
-void mlMtxTranslate(f32, f32, f32);
-void func_80251D84(f32);
-void func_80251C78(f32); //mtx_rot_pitch
-void func_80251E80(f32); //mtx_rot_roll
-void func_802521C0(f32, f32, f32);
+void mlMtxScale(f32, f32, f32);
 void func_80251494(Mtx*);
 void func_80310D2C(void);
 
@@ -982,10 +978,10 @@ void __pause_drawSprite(Gfx** gdl, Mtx** mptr, void* vptr, BKSprite* sprite, s32
     sp38[1] = sp5C[1] - sp50[1];
     sp38[2] = sp5C[2] - sp50[2];
     mlMtxTranslate(sp38[0], sp38[1], sp38[2]); //mtx_translate
-    func_80251D84(sp44[1]); //mtx_rot_yaw
-    func_80251C78(sp44[0]); //mtx_rot_pitch
-    func_80251E80(sp44[2]); //mtx_rot_roll
-    func_802521C0((sp34 * w)/sp2C, (sp34 * h)/sp28, sp34);
+    mlMtxRotYaw(sp44[1]); //mtx_rot_yaw
+    mlMtxRotPitch(sp44[0]); //mtx_rot_pitch
+    mlMtxRotRoll(sp44[2]); //mtx_rot_roll
+    mlMtxScale((sp34 * w)/sp2C, (sp34 * h)/sp28, sp34);
     func_80251494(*mptr); //add matrix;
     gSPMatrix((*gdl)++, (*mptr)++, G_MTX_PUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
     func_80338308((s32)sp2C, (s32)sp28);
