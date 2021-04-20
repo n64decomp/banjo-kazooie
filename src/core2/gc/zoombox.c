@@ -6,7 +6,6 @@
 extern struct17s D_8036C6C0[];
 
 extern char D_80378880[];
-
 extern f64 D_803788E0;
 extern f32 D_80378938;
 extern f32 D_8037893C;
@@ -130,7 +129,7 @@ void func_803164B0(gczoombox_t *, Gfx **, Mtx **, s32, s32, s32, f32);
      func_803382E4(5);
      func_80335D30(gdl);
      func_8024C7B8(gdl, mptr);
-     func_80251B0C();
+     mlMtxIdent();
      if(this->unk1A4_24){
           func_80251D84(180.0f);
           sp2C = this->unk170 - arg3*this->unk198;
@@ -253,16 +252,15 @@ void func_80317D10(gczoombox_t *this, s32 portrait_id){
 #if NONMATCHING
 gczoombox_t *gczoombox_new(s32 arg0, s32 portrait_id, s32 arg2, s32 arg3, void (*arg4)(s32, s32)){
      gczoombox_t *this;
-     u8 temp_a1;
+     u8 temp_a1 = 0;
      s32 i;
      s32 tmp;
 
      this = (gczoombox_t *)malloc(sizeof(gczoombox_t));
-     
      this->unk135 = 0xB;
      this->unk130 = arg4;
-     this->unk137 = 0;
-     this->unk134 = 0;
+     
+     this->unk134 = this->unk137 = temp_a1;
      this->unk138 = 0;
      this->portrait_id = portrait_id;
      this->unk13A = 0x20;
@@ -275,8 +273,9 @@ gczoombox_t *gczoombox_new(s32 arg0, s32 portrait_id, s32 arg2, s32 arg3, void (
      }
      this->unk15E = 0;
      this->unk15D = 0;
-     this->unk15C = 0;
      this->unk1A4_19 = 0;
+     this->unk15C = 0;
+     
      this->unk160 = 0;
      this->unk166 = this->unk1A4_19;
      this->unk168 = 0xFF;
@@ -301,10 +300,11 @@ gczoombox_t *gczoombox_new(s32 arg0, s32 portrait_id, s32 arg2, s32 arg3, void (
      this->unk172 = this->unk164;
      this->unk18C = 0.0f;
      this->unk19C = 0.0f;
-     this->unk194 = D_80378938;
+     this->unk194 = 0.999f;
      this->unk198 = 1.0f;
      this->unk1A4_13 = 0;
-     this->unk1A0 = D_8037893C;
+     this->unk1A0 = 1.0f/30.0f;
+     
      tmp = this->unk1A4_19;
      this->unk1A4_14 = tmp;
      this->unk1A4_15 = tmp;
@@ -328,14 +328,14 @@ gczoombox_t *gczoombox_new(s32 arg0, s32 portrait_id, s32 arg2, s32 arg3, void (
      func_802874AC(this->unkF4);
      movement_setIndex(this->unkF4, 0x138);
      func_802875AC(this->unkF4, D_80378880, 0x6fd);
-     func_803184C8(this, 15.0f, 5, 2, D_80378940, 0, 0);
+     func_803184C8(this, 15.0f, 5, 2, 0.4f, 0, 0);
      this->unk176 = D_8036C6C0[portrait_id].unk2;
+     this->unk177 = D_8036C6C0[portrait_id].unk3;
      this->unk179 = 0;
      this->unk100 = 0;
      this->unk104 = 0;
-     
-     this->unk177 = D_8036C6C0[portrait_id].unk3;
      this->unk178 = this->unk179;
+     this->unk17C = 1.0f;
      
      func_80317D10(this, portrait_id);
      func_80318760(this, 18000);

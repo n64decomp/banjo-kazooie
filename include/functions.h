@@ -11,6 +11,7 @@
 #include "prop.h"
 
 #include "core2/core2.h"
+#include "ml/mtx.h"
 
 extern f32 fabsf(f32);
 #pragma intrinsic (fabsf)

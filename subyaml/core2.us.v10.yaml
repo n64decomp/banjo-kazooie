@@ -365,4 +365,6 @@ segments:
   - [0x000F0470, bin, data_F0470]
   - [0x000F14C0, .rodata, gc/transition]
   - [0x000F1520, bin, data_F1520]
+  #- [0x000F18F0, .rodata, gc/zoombox]
+  - [0x000F18F0, bin]
 - [0xf2c00] # core2 end

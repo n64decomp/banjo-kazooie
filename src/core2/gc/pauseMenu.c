@@ -13,7 +13,7 @@
 void func_803204E4(s32, s32);
 void func_803391A4(Gfx**, Mtx**, f32*, f32*, f32, f32*, s32);
 f32 func_8024DE1C(f32, f32, f32 *, f32 *);
-void func_80252980(f32, f32, f32);
+void mlMtxTranslate(f32, f32, f32);
 void func_80251D84(f32);
 void func_80251C78(f32); //mtx_rot_pitch
 void func_80251E80(f32); //mtx_rot_roll
@@ -977,11 +977,11 @@ void __pause_drawSprite(Gfx** gdl, Mtx** mptr, void* vptr, BKSprite* sprite, s32
     func_8024C5CC(sp50);
     
     sp34 = func_8024DE1C(x, y, sp5C, sp44);
-    func_80251B0C(); //matrix_stack_identity
+    mlMtxIdent(); //matrix_stack_identity
     sp38[0] = sp5C[0] - sp50[0];
     sp38[1] = sp5C[1] - sp50[1];
     sp38[2] = sp5C[2] - sp50[2];
-    func_80252980(sp38[0], sp38[1], sp38[2]); //mtx_translate
+    mlMtxTranslate(sp38[0], sp38[1], sp38[2]); //mtx_translate
     func_80251D84(sp44[1]); //mtx_rot_yaw
     func_80251C78(sp44[0]); //mtx_rot_pitch
     func_80251E80(sp44[2]); //mtx_rot_roll

@@ -2,6 +2,10 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "ml/mtx.h"
+
+extern Mtx *D_80282FD0;
+extern Mtx_t D_80282810;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_802513B0.s")
 
@@ -27,7 +31,20 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_802519C8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_80251B0C.s")
+//mlMtx
+void mlMtxIdent(void){
+    s32 i;
+    f32 *v0 = D_80282FD0 = D_80282810;
+    for(i = 0; i<3; i++){
+        v0[0] = 1.0f;
+        v0[1] = 0.0f;
+        v0[2] = 0.0f;
+        v0[3] = 0.0f;
+        v0[4] = 0.0f;
+        v0 += 5;
+    }
+    v0[0] = 1.0f; 
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_80251B5C.s")
 
@@ -63,7 +80,22 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_8025276C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_80252980.s")
+void mlMtxTranslate(f32 arg0, f32 arg1, f32 arg2) {
+    f32 *temp_t6;
+    f32 *phi_v0;
+    f32 phi_f18;
+    f32 phi_f16;
+    f32 phi_f10;
+    s32 phi_v1;
+
+    phi_v0 = D_80282FD0;
+    for(phi_v1 = 0; phi_v1 < 0xC; phi_v1 +=4){
+        phi_v0 = (u32)D_80282FD0 + phi_v1;
+        phi_f18 = phi_v0[0] * arg0;
+        phi_f16 = phi_v0[4] * arg1;
+        phi_v0[0xC] += phi_f18 + phi_f16 + (phi_v0[8] * arg2);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_80252A38.s")
 
