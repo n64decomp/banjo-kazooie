@@ -21,6 +21,7 @@ f32 func_80297AF0(void);
 void func_80289EF8(f32);
 f32 func_8029B30C(void);
 f32 func_80257C48(f32, f32, f32);
+f32 func_80297A64(void);
 
 extern f32 D_80364D70;//creep_min
 extern f32 D_80364D74;//creep_max/slow_walk_min
@@ -108,12 +109,22 @@ void func_802B6EBC(void){
    D_8037D5B0 = max_f(0.0f, D_8037D5B0 - func_8033DD9C());
 }
 
-
 int func_802B6EF4(void){
     return D_8037D5B0 == 0.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/walk/func_802B6F20.s")
+s32 func_802B6F20(s32 arg0){
+    if(button_pressed(BUTTON_B)){
+        if( D_80364D7C < func_80297A64()){
+            if(func_8028AC18())
+                arg0 = BS_ROLL;
+        }else{//L802B6F74
+            if(func_8028A9E0())
+                arg0 = BS_PUNCH;
+        }
+    }
+    return arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/walk/func_802B6F9C.s")
 
