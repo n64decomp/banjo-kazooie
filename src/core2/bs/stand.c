@@ -5,12 +5,12 @@
 
 extern f32 func_8029B2E8(void);
 void func_80299234(f32, f32);
-int func_802878E8(Movement *, f32);
-void func_802876C0(Movement *, f32);
-void func_802875AC(Movement *, char*, s32);
+int func_802878E8(AnimCtrl *, f32);
+void func_802876C0(AnimCtrl *, f32);
+void func_802875AC(AnimCtrl *, char*, s32);
 void func_80299D2C(s32, f32, s32);
-void func_8028774C(Movement *, f32);
-f32 func_802877D8(Movement *);
+void func_8028774C(AnimCtrl *, f32);
+f32 func_802877D8(AnimCtrl *);
 void func_802900B4(void);
 
 extern u8 D_80364D20[];
@@ -82,12 +82,15 @@ void bsstand_init(void){
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/stand/func_802B4A10.s")
+// void func_802B4A10(AnimCtrl *arg0){
+
+// }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/stand/bsstand_update.s")
 /*void bsstand_update(void){
     s32 temp_v1;
     s32 sp24 = 0;
-    Movement * sp20 = player_getMovementPtr();
+    AnimCtrl * sp20 = player_getAnimCtrlPtr();
     f32 sp1C;
     s32 sp18;
     
@@ -143,8 +146,8 @@ void bsstand_init(void){
                 if(func_802878E8(sp20, 0.37f)){
                     func_802874AC(sp20);
                     func_802876C0(sp20, 0.1f);
-                    movement_setIndex(sp20, 0xf6);
-                    movement_setDuration(sp20, 5.0f);
+                    animctrl_setIndex(sp20, 0xf6);
+                    animctrl_setDuration(sp20, 5.0f);
                     func_80287674(sp20, 1);
                     func_802875AC(sp20, D_80375A70, 0x170);
                 }
@@ -207,8 +210,8 @@ void bsstand_init(void){
                 func_802900B4();
             }
             func_802874AC(sp20);
-            movement_setIndex(sp20, 0x6f);
-            movement_setDuration(sp20, 5.5f);
+            animctrl_setIndex(sp20, 0x6f);
+            animctrl_setDuration(sp20, 5.5f);
             func_80287674(sp20, 2);
             func_8028774C(sp20, sp1C);
             func_802875AC(sp20, D_80375A88, 0x1c3);

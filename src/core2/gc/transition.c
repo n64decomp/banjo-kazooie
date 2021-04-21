@@ -4,7 +4,7 @@
 
 #include "gc/gctransition.h"
 
-void func_8028764C(Movement*, f32);
+void func_8028764C(AnimCtrl*, f32);
 void func_8025AC20(s32, s32, s32, f32, char*, s32);
 f32 func_80257618(void);
 void func_8024CE60(f32, f32);
@@ -18,7 +18,7 @@ struct{
     void * unkC; //asset_ptr
     f32 rotation;
     f32 timer;
-    Movement *movement;
+    AnimCtrl *animctrl;
     s32 unk1C; //times update called?
 } D_80382430;
 
@@ -51,9 +51,9 @@ void _gctranstion_changeState(s32 state, struct9s *arg1){
         func_8033BD20(&D_80382430.unkC);
     }
 
-    if(D_80382430.movement != NULL){
-        movement_free(D_80382430.movement);
-        D_80382430.movement = NULL;
+    if(D_80382430.animctrl != NULL){
+        animctrl_free(D_80382430.animctrl);
+        D_80382430.animctrl = NULL;
     }
     
     D_80382430.unk0 = 0;
@@ -68,21 +68,21 @@ void _gctranstion_changeState(s32 state, struct9s *arg1){
         D_80382430.unkC = assetcache_get(arg1->unk8);
 
     if(arg1 != NULL && arg1->unkC != NULL){
-        D_80382430.movement = movement_new(0);
-        func_802874AC(D_80382430.movement);
-        movement_setIndex(D_80382430.movement, arg1->unkC);
-        movement_setDuration(D_80382430.movement, arg1->unk4);
-        func_80287674(D_80382430.movement, 1);
+        D_80382430.animctrl = animctrl_new(0);
+        func_802874AC(D_80382430.animctrl);
+        animctrl_setIndex(D_80382430.animctrl, arg1->unkC);
+        animctrl_setDuration(D_80382430.animctrl, arg1->unk4);
+        func_80287674(D_80382430.animctrl, 1);
         if(state == 5){
-            movement_setDirection(D_80382430.movement, 0);
+            animctrl_setDirection(D_80382430.animctrl, 0);
             func_8028F7C8(1); //player_noControl(true)
             func_80335110(0); //objects_update(false)
         }
         else{
             osViBlack(1);
-            func_8028764C(D_80382430.movement, 0.25f); //set animation timer
+            func_8028764C(D_80382430.animctrl, 0.25f); //set animation timer
         }
-        func_802875AC(D_80382430.movement, "gctransition.c", 0x125); 
+        func_802875AC(D_80382430.animctrl, "gctransition.c", 0x125); 
     }
 
     if(state == 4){
@@ -130,7 +130,7 @@ void gctransition_draw(Gfx **arg0, Mtx **arg1, void* arg2){
         return;
 
     func_8024E258();
-    if(D_80382430.movement != NULL){
+    if(D_80382430.animctrl != NULL){
         sp74[0] = 0.0f;
         sp74[1] = 0.0f;
         sp74[2] = 350.0f;
@@ -152,15 +152,15 @@ void gctransition_draw(Gfx **arg0, Mtx **arg1, void* arg2){
     sp58[0] = 0.0f;
     sp58[1] = 0.0f;
     sp58[2] = 0.0f;
-    if(D_80382430.movement != NULL){
+    if(D_80382430.animctrl != NULL){
         gDPSetTextureFilter((*arg0)++, G_TF_POINT);
         gDPSetColorDither((*arg0)++, G_CD_DISABLE);
-        func_8028781C(D_80382430.movement, sp58, 1);
+        func_8028781C(D_80382430.animctrl, sp58, 1);
         func_8033A4CC(1);
     }
     if(D_80382430.unk8 == 1 || D_80382430.unk8 == 6){
         func_803391A4(arg0, arg1, sp58, sp68, 1.0f, 0, D_80382430.unkC);
-        if(D_80382430.movement != NULL){
+        if(D_80382430.animctrl != NULL){
             gDPSetTextureFilter((*arg0)++, G_TF_BILERP);
             gDPSetColorDither((*arg0)++, G_CD_MAGICSQ);
         }
@@ -231,7 +231,7 @@ void gctransition_draw(Gfx **arg0, Mtx **arg1, void* arg2){
         else{
             
         }
-        if(D_80382430.movement != NULL){
+        if(D_80382430.animctrl != NULL){
             gDPSetTextureFilter((*arg0)++, G_TF_BILERP);
         }
         func_8024E2FC();
@@ -299,8 +299,8 @@ void gctransition_update(void){
     if(D_80382430.unk4 == NULL)
         return;
     
-    if(D_80382430.movement != NULL){
-        func_802873C0(D_80382430.movement);
+    if(D_80382430.animctrl != NULL){
+        func_802873C0(D_80382430.animctrl);
         if(D_80382430.unk8 == 4){
             switch(D_80382430.unk1C){
                 case 0:
@@ -344,7 +344,7 @@ void gctransition_update(void){
         D_80382430.timer += sp24;
     }
     if(D_80382430.unk4->unk4 < D_80382430.timer
-        || (D_80382430.movement!= NULL && func_802878C4(D_80382430.movement))
+        || (D_80382430.animctrl!= NULL && func_802878C4(D_80382430.animctrl))
     ){
         D_80382430.timer = D_80382430.unk4->unk4;
         if(D_80382430.unk8 == 4 || D_80382430.unk8 == 5){
@@ -358,7 +358,7 @@ void gctransition_update(void){
         if(D_80382430.unk8 == 4)
             func_8030C180();
 
-        if(D_80382430.movement != NULL)
+        if(D_80382430.animctrl != NULL)
             func_80334ECC();
     }
     D_80382430.unk1C++;

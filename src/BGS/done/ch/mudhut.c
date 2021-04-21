@@ -118,7 +118,7 @@ void func_8038EB8C(Actor *this){
                 break;
             case 2:
                 this->marker->propPtr->unk8_3 = 0;
-                if(0.99 < func_802877D8(this->movement)){
+                if(0.99 < func_802877D8(this->animctrl)){
                     this->unk10_31 = 3;
                 }
                 break;

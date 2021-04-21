@@ -11,14 +11,14 @@ extern u8  D_8037D4D0;
 void func_802B1FD0(s32 arg0){}
 
 void func_802B1FD8(void){
-    Movement *plyr_mvmnt;
+    AnimCtrl *plyr_mvmnt;
 
-    plyr_mvmnt = player_getMovementPtr();
+    plyr_mvmnt = player_getAnimCtrlPtr();
     func_802874AC(plyr_mvmnt);
     func_80287684(plyr_mvmnt, 0);
     func_802876CC(plyr_mvmnt, 0.0f, 0.534399986267f);
-    movement_setIndex(plyr_mvmnt, 0x4D);
-    movement_setDuration(plyr_mvmnt, 1.70000004768f);
+    animctrl_setIndex(plyr_mvmnt, 0x4D);
+    animctrl_setDuration(plyr_mvmnt, 1.70000004768f);
     func_80287674(plyr_mvmnt, 1);
     func_802875AC(plyr_mvmnt, D_803759B0, 0x50);
     func_80299BFC(1.0f);

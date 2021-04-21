@@ -136,18 +136,18 @@ u32 func_80328508(Actor * arg0, u32 arg1){
         return 0;
 
     if((animInfo = &arg0->unk18[arg1])->index){
-        if(arg0->movement == NULL){
-            arg0->movement = movement_new(0);
-            func_802874AC(arg0->movement);
+        if(arg0->animctrl == NULL){
+            arg0->animctrl = animctrl_new(0);
+            func_802874AC(arg0->animctrl);
         }
-        movement_setIndex(arg0->movement, animInfo->index);
-        movement_setDuration(arg0->movement, animInfo->duration);
-        movement_setDirection(arg0->movement, mvmt_dir_forwards);
+        animctrl_setIndex(arg0->animctrl, animInfo->index);
+        animctrl_setDuration(arg0->animctrl, animInfo->duration);
+        animctrl_setDirection(arg0->animctrl, mvmt_dir_forwards);
     }
     else{
-        if(arg0->movement){
-            func_80287674(arg0->movement, 3);
-            movement_setDirection(arg0->movement, mvmt_dir_forwards);
+        if(arg0->animctrl){
+            func_80287674(arg0->animctrl, 3);
+            animctrl_setDirection(arg0->animctrl, mvmt_dir_forwards);
         }
     }
     return 1;
@@ -171,8 +171,8 @@ u32 func_80328508(Actor * arg0, u32 arg1){
 
 
 void func_80328A84(Actor * arg0, u32 arg1){
-    if(func_80328508(arg0, arg1) && arg0->movement){
-        func_802875AC(arg0->movement, &D_80378E08, 0X6CA);
+    if(func_80328508(arg0, arg1) && arg0->animctrl){
+        func_802875AC(arg0->animctrl, &D_80378E08, 0X6CA);
     }
 }
 
@@ -180,8 +180,8 @@ void func_80328A84(Actor * arg0, u32 arg1){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80328AEC.s")
 // void func_80328AEC(Actor * arg0, u32 arg1){
-//     if(func_80328508(arg0, arg1) && arg0->movement){
-//         func_80287674(arg0->movement, 2);
+//     if(func_80328508(arg0, arg1) && arg0->animctrl){
+//         func_80287674(arg0->animctrl, 2);
 //         func_803289EC(arg0, NULL, 1); //li zero instead of move?
 //     }
 // }
@@ -273,8 +273,8 @@ s32 func_80329054(s32 arg0, s32 arg1) {
 
 //actor_loopAnimation
 void func_803298D8(Actor *this){
-    if(this->movement)
-        func_80287674(this->movement, 2);
+    if(this->animctrl)
+        func_80287674(this->animctrl, 2);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80329904.s")
@@ -298,7 +298,7 @@ Actor *marker_getActor(ActorMarker *this){
 
 void actor_copy(Actor *dst, Actor *src){
     dst->marker = src->marker;
-    dst->movement = src->movement;
+    dst->animctrl = src->animctrl;
     dst->unk44_4 = src->unk44_4;
     dst->unk148 = src->unk148;
     dst->unk14C = src->unk14C;

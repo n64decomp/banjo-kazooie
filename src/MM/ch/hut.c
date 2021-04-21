@@ -8,8 +8,8 @@
 
 
 /* extern function declarations */
-f32 func_802877D8(ActorMovement *);
-void func_802876C0(ActorMovement *, f32);
+f32 func_802877D8(ActorAnimCtrl *);
+void func_802876C0(ActorAnimCtrl *, f32);
 void func_80326224(Actor *);
 void func_802C8F70(f32);
 void func_802C4218(s32, f32, f32, f32);
@@ -106,8 +106,8 @@ void    chhut_update(Actor *this){
             }
             break;
         case 1: //L80386C2C
-            if(func_802877D8(this->movement) > 0.99){
-                func_802876C0(this->movement, 0.0f);
+            if(func_802877D8(this->animctrl) > 0.99){
+                func_802876C0(this->animctrl, 0.0f);
                 func_80328A84(this, 2);
                 this->position_y -= 160.0f;
             }

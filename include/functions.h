@@ -51,9 +51,9 @@ float gu_sqrtf(float val);
 
 BKSpriteFrame *spriteGetFramePtr(BKSprite *, u32); 
 
-void func_802876CC(Movement *, f32,f32);
-void movement_setDuration(Movement *, f32);
-Movement *player_getMovementPtr(void);
+void func_802876CC(AnimCtrl *, f32,f32);
+void animctrl_setDuration(AnimCtrl *, f32);
+AnimCtrl *player_getAnimCtrlPtr(void);
 s32  func_80289FE8(f32);
 void func_8028A180(s32 animation, f32 duration);
 void func_8028A37C(f32);

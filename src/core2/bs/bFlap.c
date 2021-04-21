@@ -12,10 +12,10 @@ void func_8029797C(f32);
 f32  func_8029B33C(void);
 f32 func_8029B2E8(void);
 void func_8029E090(s32, f32);
-s32 func_802878E8(Movement *, f32);
+s32 func_802878E8(AnimCtrl *, f32);
 f32 func_802A2858(void);
 void func_80297BF8(f32);
-void func_8028774C(Movement *, f32);
+void func_8028774C(AnimCtrl *, f32);
 void func_8030DBB4(s32, f32);
 
 extern f32 D_80364A10;
@@ -61,8 +61,8 @@ void func_802A2790(s32 arg0, f32 arg1, s32 arg2) {
 }
 
 void func_802A2810(void) {
-    Movement *plyrMvPtr;
-    plyrMvPtr = player_getMovementPtr();
+    AnimCtrl *plyrMvPtr;
+    plyrMvPtr = player_getAnimCtrlPtr();
     if (func_802878E8(plyrMvPtr, 0.9f)) {
         D_8037D301++;
     }
@@ -87,8 +87,8 @@ f32 func_802A2858(void){
 }
 
 void func_802A28CC(void){
-    Movement *sp1c = player_getMovementPtr();
-    movement_setDuration(sp1c, func_802A2858());
+    AnimCtrl *sp1c = player_getAnimCtrlPtr();
+    animctrl_setDuration(sp1c, func_802A2858());
 }
 
 void func_802A2900(void){
@@ -101,8 +101,8 @@ int func_802A293C(f32 arg0){
 }
 
 void func_802A298C(void){
-    Movement * sp1c;
-    sp1c = player_getMovementPtr();
+    AnimCtrl * sp1c;
+    sp1c = player_getAnimCtrlPtr();
     if(func_802A293C(0.08f)){
         func_802A2790(0x4e, 1.24f, 0x4e20);
     }
@@ -114,10 +114,10 @@ void func_802A298C(void){
 
 void func_802A2A1C(void){
     s32 sp1c;
-    Movement * sp18;
+    AnimCtrl * sp18;
 
     sp1c = 0;
-    sp18 = player_getMovementPtr();
+    sp18 = player_getAnimCtrlPtr();
     func_802B6FA8();
     switch(D_8037D300){
         case 0:
@@ -126,8 +126,8 @@ void func_802A2A1C(void){
             func_802A298C();
             if(func_802878E8(sp18, 0.9f)){
                 func_80287684(sp18, 0);
-                movement_setIndex(sp18, 0x17);
-                movement_setDuration(sp18, func_802A2858());
+                animctrl_setIndex(sp18, 0x17);
+                animctrl_setDuration(sp18, func_802A2858());
                 func_80287674(sp18, 2);
                 func_8028774C(sp18, 0.0f);
                 func_802875AC(sp18, "bsbflap.c", 0xe1);
@@ -158,7 +158,7 @@ void func_802A2A1C(void){
             if(func_80295590(8)){
                 func_80297B70();
                 func_80297B94();
-                movement_setDuration(sp18, 1.0f);
+                animctrl_setDuration(sp18, 1.0f);
                 D_8037D300 = 4;
             }
             break;
@@ -171,7 +171,7 @@ void func_802A2A1C(void){
             if(func_80295590(8)){
                 func_80297B70();
                 func_80297B94();
-                movement_setDuration(sp18, 1.0f);
+                animctrl_setDuration(sp18, 1.0f);
                 func_80293240(2);
                 D_8037D300 = 4;
             }

@@ -3,8 +3,8 @@
 #include "variables.h"
 
 f32 func_8028EBA4();
-f32 func_802877D8(ActorMovement*);
-void func_8028774C(ActorMovement*, f32);
+f32 func_802877D8(ActorAnimCtrl*);
+void func_8028774C(ActorAnimCtrl*, f32);
 void func_80328A84(Actor*, u32);
 
 //TODO move data
@@ -22,7 +22,7 @@ Actor *func_802C80C0(ActorMarker *this, Gfx **gdl, Mtx **mptr, u32 arg3){
 }
 
 void func_802C811C(Actor * this){
-    ActorMovement *plyrMvmt;
+    ActorAnimCtrl *plyrMvmt;
 
     this->marker->collidable = 0;
     switch(this->unk10_31){
@@ -32,27 +32,27 @@ void func_802C811C(Actor * this){
             player_getPosition(this->position);
             this->yaw = func_8028EBA4();
             plyrMvmt = func_8028E78C();
-            func_80287684(this->movement, 0);
-            movement_setIndex(this->movement, func_80287790(plyrMvmt));
-            func_8028774C(this->movement,func_802877D8(plyrMvmt));
-            movement_setDuration(this->movement, 1000.0f);
-            func_802875AC(this->movement, "chjigsawdance.c", 0x59);
+            func_80287684(this->animctrl, 0);
+            animctrl_setIndex(this->animctrl, func_80287790(plyrMvmt));
+            func_8028774C(this->animctrl,func_802877D8(plyrMvmt));
+            animctrl_setDuration(this->animctrl, 1000.0f);
+            func_802875AC(this->animctrl, "chjigsawdance.c", 0x59);
             break;
         case 3:
             plyrMvmt = func_8028E78C();
-            func_80287684(this->movement, 0);
-            func_8028774C(this->movement,func_802877D8(plyrMvmt));
-            movement_setDuration(this->movement, 1000.0f);
-            func_802875AC(this->movement, "chjigsawdance.c", 0x62);
+            func_80287684(this->animctrl, 0);
+            func_8028774C(this->animctrl,func_802877D8(plyrMvmt));
+            animctrl_setDuration(this->animctrl, 1000.0f);
+            func_802875AC(this->animctrl, "chjigsawdance.c", 0x62);
             break;
         case 4:
             player_getPosition(this->position);
             this->yaw = func_8028EBA4();
             plyrMvmt = func_8028E78C();
-            func_80287684(this->movement, 0);
-            func_8028774C(this->movement,func_802877D8(plyrMvmt));
-            movement_setDuration(this->movement, 1000.0f);
-            func_802875AC(this->movement, "chjigsawdance.c", 0x6e);
+            func_80287684(this->animctrl, 0);
+            func_8028774C(this->animctrl,func_802877D8(plyrMvmt));
+            animctrl_setDuration(this->animctrl, 1000.0f);
+            func_802875AC(this->animctrl, "chjigsawdance.c", 0x6e);
             break;
         case 5:
             this->marker->propPtr->unk8_4 = 0;
@@ -65,7 +65,7 @@ void func_802C82C0(Actor * this, u32 arg1){
         case 3:
             if(this->unk10_31 == 1){
                 func_80328A84(this, 2);
-                func_80287674(this->movement, 1);
+                func_80287674(this->animctrl, 1);
             }
             break;
         case 2:
@@ -77,10 +77,10 @@ void func_802C82C0(Actor * this, u32 arg1){
         case 4:
             player_getPosition(this->position);
             this->yaw = func_8028EBA4();
-            func_80287684(this->movement, 0);
-            func_8028774C(this->movement, func_802877D8(func_8028E78C()));
-            movement_setDuration(this->movement, 1000.0f);
-            func_802875AC(this->movement, "chjigsawdance.c", 0x97);
+            func_80287684(this->animctrl, 0);
+            func_8028774C(this->animctrl, func_802877D8(func_8028E78C()));
+            animctrl_setDuration(this->animctrl, 1000.0f);
+            func_802875AC(this->animctrl, "chjigsawdance.c", 0x97);
             break;
         case 5:
             func_80328A84(this, 5);

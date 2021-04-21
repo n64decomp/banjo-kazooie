@@ -24,7 +24,7 @@ typedef struct {
         u8 pad0[0x40];
     } unkB0;
     void *unkF0;
-    Movement *unkF4;
+    AnimCtrl *unkF4;
     struct19s *unkF8;
     s32 unkFC;
     s32 unk100;

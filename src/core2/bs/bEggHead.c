@@ -4,16 +4,16 @@
 
 void func_8028A274(s32, f32);
 void func_80299234(f32, f32);
-void func_802875AC(Movement *, char*, s32);
+void func_802875AC(AnimCtrl *, char*, s32);
 
 
 extern u8 D_8037D2F0;
 extern u8 D_8037D2F1;
 
 s32 func_8030E760(s32, f32, s32);
-f32 func_802877D8(Movement *);
-s32 func_802878E8(Movement *, f32);
-s32 func_8028774C(Movement *, f32);
+f32 func_802877D8(AnimCtrl *);
+s32 func_802878E8(AnimCtrl *, f32);
+s32 func_8028774C(AnimCtrl *, f32);
 
 void func_802A23E0(void){
     func_8028A274(0x2A, 1.0f);
@@ -27,14 +27,14 @@ void func_802A23E0(void){
 
 void func_802A2468(void) {
     s32 next_state;
-    Movement *plyr_mvmt;
+    AnimCtrl *plyr_mvmt;
     s32 has_eggs;
     s32 sp28;
     s32 fill1;
     s32 fill2;
 
     next_state = 0;
-    plyr_mvmt = player_getMovementPtr();
+    plyr_mvmt = player_getAnimCtrlPtr();
     has_eggs = (item_empty(item_eggs) == 0);
     if (func_802950A4()) {
         if (has_eggs)

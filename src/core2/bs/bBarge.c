@@ -6,7 +6,7 @@ void func_8029797C(f32);
 f32 func_80297A64(void);
 void func_80297970(f32);
 f32 func_80297A7C(void);
-s32 func_802878E8(Movement*, f32);
+s32 func_802878E8(AnimCtrl*, f32);
 s32 func_8029E2E0(s32, f32);
 void  func_80292864(f32, f32);
 void func_802979AC(f32, f32);
@@ -64,13 +64,13 @@ s32 func_8029F644(void){
 }
 
 void bsbarge_init(void){
-    Movement *plyrMvmnt;
+    AnimCtrl *plyrMvmnt;
 
-    plyrMvmnt = player_getMovementPtr();
+    plyrMvmnt = player_getAnimCtrlPtr();
     func_802874AC(plyrMvmnt);
     func_80287684(plyrMvmnt, 0);
-    movement_setIndex(plyrMvmnt, 0x1C);
-    movement_setDuration(plyrMvmnt, 1.0f);
+    animctrl_setIndex(plyrMvmnt, 0x1C);
+    animctrl_setDuration(plyrMvmnt, 1.0f);
     func_802876CC(plyrMvmnt, 0, 0.375f);
     func_80287674(plyrMvmnt, 1);
     func_802875AC(plyrMvmnt, "bsbbarge.c", 0x98);
@@ -91,10 +91,10 @@ void bsbarge_init(void){
 
 void bsbarge_update(void){
     s32 sp24;
-    Movement *plyrMvmnt;
+    AnimCtrl *plyrMvmnt;
     
     sp24 = 0;
-    plyrMvmnt = player_getMovementPtr();
+    plyrMvmnt = player_getAnimCtrlPtr();
     if(func_80295590(9))
         func_802933E8(0xA);
     switch(D_8037D2A5){
@@ -127,7 +127,7 @@ void bsbarge_update(void){
             if(!func_8029E384(1))
                 break;
             
-            movement_setDuration(plyrMvmnt, 1.0f);
+            animctrl_setDuration(plyrMvmnt, 1.0f);
             func_8028A37C(0.565f);
             func_80297970(D_8037D2A0);
             func_802979AC(player_getMovingYaw(), func_80297A64());
@@ -139,7 +139,7 @@ void bsbarge_update(void){
         case 2:
             func_80297970(D_8037D2A0);
             if(func_802878C4(plyrMvmnt)){
-                movement_setDuration(plyrMvmnt, 2.0f);
+                animctrl_setDuration(plyrMvmnt, 2.0f);
                 func_8028A37C(0.6f);
                 func_8029E3C0(0, 0.1f);
                 D_8037D2A5 = 3;
@@ -153,7 +153,7 @@ void bsbarge_update(void){
             }
             func_80297970(D_8037D2A0);
             if(D_8037D2A0 < 200.0f){
-                movement_setDuration(plyrMvmnt, 1.5f);
+                animctrl_setDuration(plyrMvmnt, 1.5f);
                 func_8028A37C(1.0f);
                 D_8037D2A5 = 4;
             }

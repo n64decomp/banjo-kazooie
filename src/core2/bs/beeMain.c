@@ -19,7 +19,7 @@ void func_8030E58C(s32, f32);
 f32 func_80289F70(void);
 void func_8028A3B8(f32, f32);
 void func_80297A88(f32 *);
-void func_8028774C(Movement *, f32);
+void func_8028774C(AnimCtrl *, f32);
 f32 func_8029B2E8(void);
 f32 func_8029B33C(void);
 f32 func_8029AD28(f32, s32);
@@ -139,16 +139,16 @@ void func_802A12D4(void){
 }
 
 void func_802A12FC(void){
-    Movement * s0;
+    AnimCtrl * s0;
 
-    s0 = player_getMovementPtr();
+    s0 = player_getAnimCtrlPtr();
     func_802A0340();
     func_802874AC(s0);
     func_80287684(s0, 0);
-    movement_setIndex(s0, anim_beeBanjo_jumping);
+    animctrl_setIndex(s0, anim_beeBanjo_jumping);
     func_802876CC(s0, 0, 0.34f);
     func_8028774C(s0, 0.1f);
-    movement_setDuration(s0, 1.2f);
+    animctrl_setDuration(s0, 1.2f);
     func_80287674(s0, 1);
     func_802875AC(s0, "bsbeemain.c", 0x15b);
     func_8029C7F4(1,1,3,6);
@@ -166,11 +166,11 @@ void func_802A12FC(void){
 
 void func_802A1438(void){
     s32 sp2c;
-    Movement * sp28;
+    AnimCtrl * sp28;
     f32 sp1c[3];
 
     sp2c = 0;
-    sp28 = player_getMovementPtr();
+    sp28 = player_getAnimCtrlPtr();
     func_802A1020();
     func_80297A88(sp1c);
     if(func_80295590(8) && (0.0f < sp1c[1])){
@@ -234,14 +234,14 @@ void func_802A163C(void){
 }
 
 void func_802A1664(void){
-    Movement * s0;
+    AnimCtrl * s0;
 
-    s0 = player_getMovementPtr();
+    s0 = player_getAnimCtrlPtr();
     func_802A0340();
     func_802874AC(s0);
-    movement_setIndex(s0, anim_beeBanjo_jumping);
+    animctrl_setIndex(s0, anim_beeBanjo_jumping);
     func_8028774C(s0, 0.34f);
-    movement_setDuration(s0, 8.0f);
+    animctrl_setDuration(s0, 8.0f);
     func_802876CC(s0, 0, 0.51f);
     func_80287674(s0, 1);
     func_802875AC(s0, "bsbeemain.c", 0x1e2);
@@ -251,11 +251,11 @@ void func_802A1664(void){
 
 void func_802A170C(void){
     s32 sp2c; //next state
-    Movement * sp28;
+    AnimCtrl * sp28;
     f32 sp1c[3];
 
     sp2c = 0;
-    sp28 = player_getMovementPtr();
+    sp28 = player_getAnimCtrlPtr();
     func_80299628(0);
     func_802A1020();
     func_80297A88(sp1c);
@@ -309,17 +309,17 @@ void func_802A18C8(void){
 
 void func_802A18E8(s32 arg0){
     ///s32 sp40;
-    Movement *sp3C;
+    AnimCtrl *sp3C;
     f32 sp38;
     f32 sp2C[3];
     f32 sp20[3];
 
     //sp40 = arg0;
-    sp3C = player_getMovementPtr();
+    sp3C = player_getAnimCtrlPtr();
     func_802A0340();
     func_802874AC(sp3C);
-    movement_setIndex(sp3C, anim_beeBanjo_ow);
-    movement_setDuration(sp3C, 1.0f);
+    animctrl_setIndex(sp3C, anim_beeBanjo_ow);
+    animctrl_setDuration(sp3C, 1.0f);
     func_802876CC(sp3C, 0, 0.7518f);
     func_80287674(sp3C, 1);
     func_802875AC(sp3C, "bsbeemain.c", 0x269);
@@ -402,19 +402,19 @@ void func_802A1C08(void){
 }
 
 void bsbeemain_die_init(void){
-    Movement* sp3C;
+    AnimCtrl* sp3C;
     f32 sp38;
     f32 sp2C[3];
     f32 sp20[3];
     
-    sp3C = player_getMovementPtr();
+    sp3C = player_getAnimCtrlPtr();
     func_8029B930();
     func_802A0340();
     func_802874AC(sp3C);
     func_80287684(sp3C, 0);
-    movement_setIndex(sp3C, anim_beeBanjo_dying);
+    animctrl_setIndex(sp3C, anim_beeBanjo_dying);
     func_802876CC(sp3C, 0, 0.3966f);
-    movement_setDuration(sp3C, 1.7f);
+    animctrl_setDuration(sp3C, 1.7f);
     func_80287674(sp3C, 1);
     func_802875AC(sp3C, "bsbeemain.c", 0x2ef);
     func_8029C7F4(1,1,2,3);

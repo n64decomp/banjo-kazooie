@@ -289,7 +289,7 @@ void func_803873C8(ActorMarker *congaMarker){
 //             func_80386FE8();
 //             if(func_8032886C(this, 0) || func_8032886C(this, 0.45f)){
 //                 if(randf() < D_80389BC0){
-//                     movement_setDirection(this->movement, (this->movement, 0.65625f)?0:1);
+//                     animctrl_setDirection(this->animctrl, (this->animctrl, 0.65625f)?0:1);
 //                 };
 //             }//L80387A18
 //             if(func_8032886C(this, 0.66f)){

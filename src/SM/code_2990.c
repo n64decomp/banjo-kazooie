@@ -10,7 +10,7 @@ void func_8028E668(f32*, f32, f32, f32);
 void func_80328FB0(Actor *, f32);
 f32 func_80256064(f32 *, f32 *);
 int func_8032886C(Actor *, f32);
-f32 func_802877D8(ActorMovement *);
+f32 func_802877D8(ActorAnimCtrl *);
 void func_8030E878(s32, f32, s32, f32*, f32, f32);
 void func_8030DA44(u8);
 void func_80324E88(f32);
@@ -147,7 +147,7 @@ void func_80388FA0(Actor *this, s32 arg1){
             func_8028F918(0);
             break;
         case 1:
-            func_80287684(this->movement, 0);
+            func_80287684(this->animctrl, 0);
             break;
         case 5:
             func_80388F24(this);
@@ -162,7 +162,7 @@ void func_80388FA0(Actor *this, s32 arg1){
              myOther = this->unk100;
             if(myOther && other && myOther->unk14_20 == 0xB8)
                  func_80328B8C(other, 2, 0.0001f, 1);
-            func_80287684(this->movement, 1);
+            func_80287684(this->animctrl, 1);
             func_803298AC(this);
             this->unk44_31 = func_8030D90C();
             func_8030DA80(this->unk44_31, 0x3f9);
@@ -480,8 +480,8 @@ void func_803899B0(Actor * this){
     case 2://L80389E2C
         this->yaw_moving = func_80329784(this);
         func_80328FB0(this, 4.0f);
-        if( (f64) 0.0 < func_802877D8(this->movement)
-            && func_802877D8(this->movement) < 0.16
+        if( (f64) 0.0 < func_802877D8(this->animctrl)
+            && func_802877D8(this->animctrl) < 0.16
         ){
             func_8030E2C4(this->unk44_31);
         }//L80389EA0
@@ -513,7 +513,7 @@ void func_803899B0(Actor * this){
             ) 
             && randf() < 0.2
         ){
-            movement_setDirection(this->movement, func_802877B8(this->movement)^1);
+            animctrl_setDirection(this->animctrl, func_802877B8(this->animctrl)^1);
         }//L8038A088
         else if( func_8032886C(this, 0.25f)
             || func_8032886C(this, 0.28f)
@@ -559,8 +559,8 @@ void func_803899B0(Actor * this){
         }
         break;
     case 4://L8038A31C
-        if( 0.35 < func_802877D8(this->movement) 
-            && func_802877D8(this->movement) < 0.9
+        if( 0.35 < func_802877D8(this->animctrl) 
+            && func_802877D8(this->animctrl) < 0.9
         ){
             func_8030E2C4(this->unk44_31);
         }else{//L8038A378

@@ -13,7 +13,7 @@ extern f64 D_80390EE0;
 extern f64 D_80390EE8;
 
 void func_80387C90(Actor *arg0){
-    movement_setDuration(arg0->movement, (f32)(5 - arg0->unkF4_8) * 0.25 *D_80390EE0 + D_80390EE8);
+    animctrl_setDuration(arg0->animctrl, (f32)(5 - arg0->unkF4_8) * 0.25 *D_80390EE0 + D_80390EE8);
 }
 
 

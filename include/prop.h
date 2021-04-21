@@ -89,7 +89,7 @@ typedef struct animation_s{
     u8      unk1F;
 } Animation;
 
-typedef struct movement_s{
+typedef struct animctrl_s{
     Animation *animation;
     f32     timer;
     f32     duration_min;
@@ -105,12 +105,12 @@ typedef struct movement_s{
     u8      unk24;
     u8      unk25;
     u8      pad26[2];
-} Movement;
+} AnimCtrl;
 
-typedef struct actorMovement_s{
-    Movement movement;
+typedef struct actorAnimCtrl_s{
+    AnimCtrl animctrl;
     Animation animation;
-} ActorMovement;
+} ActorAnimCtrl;
 
 typedef struct chmrvile_s{
     u8  pad0[0x4];
@@ -292,7 +292,7 @@ typedef struct actor_s{
     u32 pad10_8:4;
     u32 unk10_4:4;
     u32 pad10_0:1;
-    ActorMovement *movement;
+    ActorAnimCtrl *animctrl;
     ActorAnimationInfo *unk18;
     union{
         struct{

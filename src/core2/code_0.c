@@ -13,17 +13,17 @@ extern u32 D_A0000238;
 
 f32 func_80258904(f32 arg0, f32 arg1);
 
-Animation *func_80287464(Movement *this);
+Animation *func_80287464(AnimCtrl *this);
 
-void func_80287674(Movement *this, s32 arg1);
-void movement_setDirection(Movement *this, s32 arg1);
-void func_80287684(Movement *this, s32 arg1);
-void movement_setDuration(Movement *this, f32 arg1);
-void func_802876C0(Movement *this, f32 arg1);
-void func_802876CC(Movement *this, f32 arg1, f32 arg2);
-void func_80287784(Movement *this, s32 arg1);
-f32  func_802877C8(Movement *this);
-f32  func_802877D0(Movement *this);
+void func_80287674(AnimCtrl *this, s32 arg1);
+void animctrl_setDirection(AnimCtrl *this, s32 arg1);
+void func_80287684(AnimCtrl *this, s32 arg1);
+void animctrl_setDuration(AnimCtrl *this, f32 arg1);
+void func_802876C0(AnimCtrl *this, f32 arg1);
+void func_802876CC(AnimCtrl *this, f32 arg1, f32 arg2);
+void func_80287784(AnimCtrl *this, s32 arg1);
+f32  func_802877C8(AnimCtrl *this);
+f32  func_802877D0(AnimCtrl *this);
 
 
 
@@ -33,7 +33,7 @@ static enum playback_type_e{
     playback_loop = 2
 };
 
-void func_80286F90(Movement *this){
+void func_80286F90(AnimCtrl *this){
     Animation *anim;
     f32 duration;
 
@@ -46,7 +46,7 @@ void func_80286F90(Movement *this){
     }
 }
 
-void func_80287020(Movement *this){
+void func_80287020(AnimCtrl *this){
     Animation *anim;
     f32 delta;
     f32 tmp;
@@ -66,7 +66,7 @@ void func_80287020(Movement *this){
      func_80289784(anim, tmp);
 }
 
-void func_802870E0(Movement *this){
+void func_802870E0(AnimCtrl *this){
     Animation *anim;
     f32 delta;
     f32 tmpf14;
@@ -90,7 +90,7 @@ void func_802870E0(Movement *this){
 }
 
 
-void func_802871A4(Movement *this){
+void func_802871A4(AnimCtrl *this){
     Animation *anim;
     f32 phi_f0;
     f32 phi_f2;
@@ -124,32 +124,32 @@ void func_802871A4(Movement *this){
     func_80289784(anim, phi_f0);
 }
 
-Movement *movement_new(s32 arg0){ //new
-    ActorMovement *this;
+AnimCtrl *animctrl_new(s32 arg0){ //new
+    ActorAnimCtrl *this;
 
-    this = (ActorMovement *)malloc( func_80289680() + 0x28);
-    this->movement.animation = &this->animation;
+    this = (ActorAnimCtrl *)malloc( func_80289680() + 0x28);
+    this->animctrl.animation = &this->animation;
     func_802896EC(&this->animation, 1);
-    this->movement.playback_type = 0;
-    this->movement.index = 0;
-    this->movement.unk25 = 1;
-    this->movement.timer = 0.0f;
-    this->movement.unk18 = 0.0f;
-    func_80287784(&this->movement, func_8030C77C());
-    func_802876CC(&this->movement, 0.0f, 1.0f);
-    movement_setDuration(&this->movement, 2.0f);
-    func_802876C0(&this->movement, 0.2f);
-    func_80287684(&this->movement, 1);
-    movement_setDirection(&this->movement, mvmt_dir_forwards);
-    return &this->movement;
+    this->animctrl.playback_type = 0;
+    this->animctrl.index = 0;
+    this->animctrl.unk25 = 1;
+    this->animctrl.timer = 0.0f;
+    this->animctrl.unk18 = 0.0f;
+    func_80287784(&this->animctrl, func_8030C77C());
+    func_802876CC(&this->animctrl, 0.0f, 1.0f);
+    animctrl_setDuration(&this->animctrl, 2.0f);
+    func_802876C0(&this->animctrl, 0.2f);
+    func_80287684(&this->animctrl, 1);
+    animctrl_setDirection(&this->animctrl, mvmt_dir_forwards);
+    return &this->animctrl;
 }
 
-void movement_free(Movement * this){ //free
+void animctrl_free(AnimCtrl * this){ //free
     func_802896A0(this->animation);
     free(this);
 }
 
-void func_802873C0(Movement *this){//update
+void func_802873C0(AnimCtrl *this){//update
     switch (this->playback_type)
     {
     case 0:
@@ -169,42 +169,42 @@ void func_802873C0(Movement *this){//update
     }
 }
 
-Movement *func_80287434(Movement *this){ //realloc
-    ActorMovement *full_struct;
+AnimCtrl *func_80287434(AnimCtrl *this){ //realloc
+    ActorAnimCtrl *full_struct;
     full_struct = func_802555DC(this);
-    full_struct->movement.animation = &full_struct->animation;
-    return &full_struct->movement;
+    full_struct->animctrl.animation = &full_struct->animation;
+    return &full_struct->animctrl;
 }
 
-void movement_setIndex(Movement *this, s32 index){
+void animctrl_setIndex(AnimCtrl *this, s32 index){
     this->index = index;
 }
 
-Animation *func_80287464(Movement *this){
+Animation *func_80287464(AnimCtrl *this){
     return this->animation;
 }
 
-void func_8028746C(Movement *this,  void (* arg1)(s32,s32)){
+void func_8028746C(AnimCtrl *this,  void (* arg1)(s32,s32)){
     func_80289790(this->animation, arg1);
 }
 
-void func_8028748C(Movement *this, s32 arg1){
+void func_8028748C(AnimCtrl *this, s32 arg1){
     func_80289798(this->animation, arg1);
 }
 
-void func_802874AC(Movement *this){
+void func_802874AC(AnimCtrl *this){
     this->playback_type = playback_loop;
     this->unk25 = 1;
     this->timer = 0.0;
     this->unk18 = 0.0;
     func_80287684(this, 1);
     func_802876CC(this, 0.0, 1.0);
-    movement_setDuration(this, 2.0);
+    animctrl_setDuration(this, 2.0);
     func_802876C0(this, 0.2);
-    movement_setDirection(this, mvmt_dir_forwards);
+    animctrl_setDirection(this, mvmt_dir_forwards);
 }
 
-void func_8028752C(Movement *this){
+void func_8028752C(AnimCtrl *this){
     if(this->unk25){
         if(this->playback_direction)
             func_80289784(this->animation, 0.0f);
@@ -216,7 +216,7 @@ void func_8028752C(Movement *this){
     this->timer = func_80289690(this->animation);
 }
 
-void func_802875AC(Movement * this, s32 arg1, s32 arg2){
+void func_802875AC(AnimCtrl * this, s32 arg1, s32 arg2){
     if(this->unk22 && func_80289688(this->animation)){
         func_80289674(this->animation);
         func_8028977C(this->animation, this->index);
@@ -230,25 +230,25 @@ void func_802875AC(Movement * this, s32 arg1, s32 arg2){
     }
 }
 
-void func_8028764C(Movement *this, f32 timer){
+void func_8028764C(AnimCtrl *this, f32 timer){
     func_80289784(this->animation, timer);
 }
 
-void func_80287674(Movement *this, s32 arg1){
+void func_80287674(AnimCtrl *this, s32 arg1){
     this->playback_type = arg1;
 }
 
-void movement_setDirection(Movement *this, s32 arg1){
+void animctrl_setDirection(AnimCtrl *this, s32 arg1){
     this->playback_direction = arg1;
 }
 
-void func_80287684(Movement *this, s32 arg1){
+void func_80287684(AnimCtrl *this, s32 arg1){
     this->unk22 = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_0/movement_setDuration.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_0/animctrl_setDuration.s")
 ////NONMATCHING A0000238 reading to same reg
-// void movement_setDuration(Movement *this, f32 arg1){
+// void animctrl_setDuration(AnimCtrl *this, f32 arg1){
 //     if(D_A0000238 - 0x10000003){
 //         arg1 += 3.0f;
 //     }
@@ -256,24 +256,24 @@ void func_80287684(Movement *this, s32 arg1){
 // }
 
 
-void func_802876C0(Movement *this, f32 arg1){
+void func_802876C0(AnimCtrl *this, f32 arg1){
     this->transition_timer = arg1;
 }
 
-void func_802876CC(Movement *this, f32 min, f32 max){
+void func_802876CC(AnimCtrl *this, f32 min, f32 max){
     this->duration_min = min - (f32)(s32)min;
     this->duration_max = (max != 1.0)? max - (f32)(s32)max : max;
 
 }
 
-void func_80287738(Movement *this, f32 *min, f32 *max){
+void func_80287738(AnimCtrl *this, f32 *min, f32 *max){
     *min = this->duration_min;
     *max = this->duration_max;
 }
 
 
 
-void func_8028774C(Movement *this, f32 arg1){
+void func_8028774C(AnimCtrl *this, f32 arg1){
     if(arg1 == 1.0)
         arg1 = 0.9999989867210388f; // D_80373E18
 
@@ -281,52 +281,52 @@ void func_8028774C(Movement *this, f32 arg1){
     this->unk25 = 0;
 }
 
-void func_80287784(Movement *this, s32 arg1){
+void func_80287784(AnimCtrl *this, s32 arg1){
     this->unk23 = arg1;
     this->unk24 = 0;
 }
 
-s32 func_80287790(Movement *this){
+s32 func_80287790(AnimCtrl *this){
     return func_80289688(this->animation);
 }
 
-s32 func_802877B0(Movement *this){
+s32 func_802877B0(AnimCtrl *this){
     return this->playback_type;
 }
 
-s32 func_802877B8(Movement *this){
+s32 func_802877B8(AnimCtrl *this){
     return this->playback_direction;
 }
 
-s32 func_802877C0(Movement *this){
+s32 func_802877C0(AnimCtrl *this){
     return this->unk22;
 }
 
-f32 func_802877C8(Movement *this){
+f32 func_802877C8(AnimCtrl *this){
     return this->animation_timer;
 }
 
-f32 func_802877D0(Movement *this){
+f32 func_802877D0(AnimCtrl *this){
     return this->transition_timer;
 }
 
-f32 func_802877D8(Movement *this){
+f32 func_802877D8(AnimCtrl *this){
     return func_80289690(this->animation);
 }
 
-f32 func_802877F8(Movement *this){
+f32 func_802877F8(AnimCtrl *this){
     return this->timer;
 }
 
-void  func_80287800(Movement *this, f32 arg1){
+void  func_80287800(AnimCtrl *this, f32 arg1){
     this->timer = arg1;
 }
 
-s32  func_8028780C(Movement *this, s32 arg1){
+s32  func_8028780C(AnimCtrl *this, s32 arg1){
     return 0;
 }
 
-s32 func_8028781C(Movement *this, f32 *arg1, s32 arg2){
+s32 func_8028781C(AnimCtrl *this, f32 *arg1, s32 arg2){
     s32 map;
     map = func_803348C0();
     if( map != MAP_CS_START_NINTENDO && map != MAP_CS_START_RAREWARE
@@ -344,12 +344,12 @@ s32 func_8028781C(Movement *this, f32 *arg1, s32 arg2){
     func_802895F8(this->animation);
 }
 
-s32 func_802878C4(Movement *this){
+s32 func_802878C4(AnimCtrl *this){
     return func_802877B0(this) == 3;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_0/func_802878E8.s")
 
-s32 func_80287A40(Movement *this){
+s32 func_80287A40(AnimCtrl *this){
     return (s32)this->animation - (s32) this == 0x28;
 }

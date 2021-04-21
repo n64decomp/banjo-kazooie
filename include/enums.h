@@ -451,7 +451,7 @@ enum item_e
     item_jiggy_total = 0x26
 };
 
-enum movement_direction_e
+enum animctrl_direction_e
 {
     mvmt_dir_forwards = 1
 };

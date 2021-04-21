@@ -16,7 +16,7 @@ void func_80324E88(f32);
 void timedFunc_set_2(f32, void(*)(s32, s32), s32, s32);
 
 
-s32 func_802878E8(Movement *, f32);
+s32 func_802878E8(AnimCtrl *, f32);
 
 void func_8038F6A4(Actor *);
 void func_8038FBF8(Actor *);
@@ -161,10 +161,10 @@ void func_8038FBF8(Actor *this){
         func_803300A8(this->marker, NULL, NULL, func_8038FB84);
     }
     if(this->unk10_31 == 2){
-        if(func_802878E8(this->movement, 0.65f)){
+        if(func_802878E8(this->animctrl, 0.65f)){
             func_8030E540(0x7C);
         }
-        if(func_802878C4(this->movement)){
+        if(func_802878C4(this->animctrl)){
             marker_despawn(this->marker);
         }
     }

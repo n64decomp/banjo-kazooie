@@ -35,7 +35,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_2890/func_80289F30.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_2890/player_getMovementPtr.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_2890/player_getAnimCtrlPtr.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_2890/func_80289F70.s")
 

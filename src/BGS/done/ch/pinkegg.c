@@ -107,7 +107,7 @@ void func_80387B80(Actor *this){
             }
             break;
         case 3:
-            if(func_802878C4(this->movement)){
+            if(func_802878C4(this->animctrl)){
                 func_80326310(this);
                 if(this->unk124_19 < 0x60){
                     this->unk124_9 = 0x2;

@@ -9,7 +9,7 @@ f32 func_8029B33C(void);
 void func_8029797C(f32);
 void func_80297970(f32);
 void func_80297BEC(f32);
-s32 func_802878E8(Movement *, f32);
+s32 func_802878E8(AnimCtrl *, f32);
 void func_802979A0(f32);
 void func_8030E58C(s32, f32);
 void func_8028A010(s32, f32);
@@ -65,9 +65,9 @@ void func_802A0590(void){
 
 void func_802A0630(void){
     s32 next_state = 0;
-    Movement * mvmnt; //sp1C
+    AnimCtrl * mvmnt; //sp1C
 
-    mvmnt = player_getMovementPtr();
+    mvmnt = player_getAnimCtrlPtr();
     switch(D_8037D2C0){
         case 0:
             if(!func_802878E8(mvmnt, 0.266f))
@@ -181,7 +181,7 @@ void bsbeefly_enter(void){
 
 void bsbeefly_update(void){
     s32 sp4C;
-    Movement* sp48;
+    AnimCtrl* sp48;
     s32 sp44;
     f32 sp40;
     f32 sp3C;
@@ -191,7 +191,7 @@ void bsbeefly_update(void){
    
 
     sp4C = 0;
-    sp48 = player_getMovementPtr();
+    sp48 = player_getAnimCtrlPtr();
     _bsBeeFly_updateYaw();
     _bsBeeFly_updatePitch();
     player_getPitch(); //return value never used
@@ -202,7 +202,7 @@ void bsbeefly_update(void){
         func_8028FDC8(1.0f);
     }
     sp44 = func_8028FD30();
-    movement_setDuration(sp48, D_803649B0[sp44]);
+    animctrl_setDuration(sp48, D_803649B0[sp44]);
     sp24 = &D_803649C4[sp44];
     sp40 = 0.9f;
     sp40 += *sp24;

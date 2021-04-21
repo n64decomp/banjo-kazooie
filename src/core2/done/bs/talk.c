@@ -6,12 +6,12 @@ extern s32 D_8037D570;
 extern char D_80375B00[0x10];
 
 void func_802B6130(void){
-    Movement *plyr_mvmt;
+    AnimCtrl *plyr_mvmt;
     f32 yaw;
     f32 plyr_pos[3];
     f32 target_pos[3];
 
-    plyr_mvmt = player_getMovementPtr();
+    plyr_mvmt = player_getAnimCtrlPtr();
     func_802874AC(plyr_mvmt);
     func_8029C848(plyr_mvmt);
     func_80287674(plyr_mvmt, 2);
