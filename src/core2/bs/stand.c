@@ -12,6 +12,8 @@ void func_80299D2C(s32, f32, s32);
 void func_8028774C(AnimCtrl *, f32);
 f32 func_802877D8(AnimCtrl *);
 void func_802900B4(void);
+void func_80250D94(f32, f32, f32);
+void func_8030E58C(s32, f32);
 
 extern u8 D_80364D20[];
 
@@ -81,10 +83,88 @@ void bsstand_init(void){
     D_8037D544 = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/stand/func_802B4A10.s")
-// void func_802B4A10(AnimCtrl *arg0){
+void func_802B4A10(AnimCtrl *arg0){
+    if(func_802878E8(arg0, 0.2057f)){ //(30/145)
+        func_8030E624(0xe62fa021);
+        func_80250D94(0.5f, 0.25f, 0.4f);
+    }//L802B4A54
 
-// }
+    if(func_802878E8(arg0, 0.2057f)) //(30/145)
+        func_80292E48();
+    //L802B4A78
+
+    if(func_802878E8(arg0, 0.2555f)){ //(37/145)
+        func_8030E624(0xe62fa021);
+        func_80250D94(0.5f, 0.25f, 0.4f);
+    }//L802B4AB0
+
+    if(func_802878E8(arg0, 0.2896f)){ //(42/145)
+        func_8030E624(0xe62fa021);
+        func_80250D94(0.5f, 0.25f, 0.4f);
+    }//L802B4AEC
+
+    if(func_802878E8(arg0, 0.3f)){ //(43.5/145)?
+        func_8030E624(0x7ffb5862);
+    }//L802B4B0C
+
+    if(func_802878E8(arg0, 0.3607f)){
+        func_80292EA4();
+    }//L802B4B30
+
+    if(func_802878E8(arg0, 0.4183f)){
+        func_8030E58C(0x3f1, 1.6f);
+    }//L802B4B50
+
+    if(func_802878E8(arg0, 0.455f)){
+        func_8030E58C(0x3f1, 1.45f);
+    }//L802B4B74
+
+    if(func_802878E8(arg0, 0.49f)){
+        func_8030E58C(0x3f1, 1.4f);
+    }//L802B4B98
+
+    if(func_802878E8(arg0, 0.5397f)){
+        func_802900D8();
+    }//L802B4BBC
+
+    if(func_802878E8(arg0, 0.6619f)){
+        func_8030E624(0xe62fa021);
+        func_80250D94(0.5f, 0.25f, 0.4f);
+    }//L802B4BF4
+
+    if(func_802878E8(arg0, 0.6688f))
+        func_80292E48();
+    //L802B4C18
+
+    if(func_802878E8(arg0, 0.6964f)){
+        func_8030E624(0xe62fa021);
+        func_80250D94(0.5f, 0.25f, 0.4f);
+    }//L802B4C50
+
+    if(func_802878E8(arg0, 0.7747f))
+        func_80292EA4();
+    //L802B4C74
+
+    if(func_802878E8(arg0, 0.7822f)){
+        func_8030E624(0x7feda86f);
+    }//L802B4C90
+
+    if(func_802878E8(arg0, 0.8322f)){
+        func_8030E624(0x7feda86f);
+    }//L802B4CB0
+
+    if(func_802878E8(arg0, 0.8669f)){
+        func_8030E624(0x7feda86f);
+    }//L802B4CD0
+
+    if(func_802878E8(arg0, 0.9048f)){
+        func_8030E624(0x7feda86f);
+    }//L802B4CF0
+
+    if(func_802878E8(arg0, 0.9649f)){
+        func_802900D8();
+    }//L802B4CF0
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/stand/bsstand_update.s")
 /*void bsstand_update(void){
