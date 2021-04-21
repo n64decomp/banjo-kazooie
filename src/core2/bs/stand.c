@@ -321,5 +321,31 @@ void bsstand_landing_init(void){
 //bsStand_Land_update
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/stand/func_802B52B0.s")
 
-//bsStand_Land_interrupt
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/stand/func_802B5350.s")
+void func_802B5350(void){
+    s32 sp1C = bs_getInterruptType();
+    if(sp1C == 0xd){
+        bs_setState(0x52);
+    }
+    if(sp1C == 0x7){
+        if(func_8029A8F4() != 1)
+            func_8029A86C(1);
+        else{
+            func_802948F8(func_8028D688());
+            bs_setState(BS_CARRY_IDLE);
+        }
+    }
+    else if(sp1C == 0x12){//L802B53D0
+        func_8029A86C(1);
+        if( func_8029A8F4() == 1 && !func_802933C0(0xF) && func_802916CC(0)){
+            func_8028DE6C(carriedObject_getActorID());
+            func_8029A86C(2);
+        }
+    }
+    else if(sp1C == 0x8){//L802B5438
+        func_8029A86C(2);
+        bs_setState(0x3C);
+    }else{
+        func_802948E0();
+        func_80296608();
+    }
+}
