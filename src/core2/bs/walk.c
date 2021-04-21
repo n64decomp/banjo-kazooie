@@ -109,7 +109,9 @@ void func_802B6EBC(void){
 }
 
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/walk/func_802B6EF4.s")
+int func_802B6EF4(void){
+    return D_8037D5B0 == 0.0f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/walk/func_802B6F20.s")
 
