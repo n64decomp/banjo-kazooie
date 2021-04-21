@@ -24,7 +24,11 @@ extern char D_80375A88[];
 extern s32 D_8037D540;
 extern u8  D_8037D544;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/stand/func_802B4870.s")
+u32 func_802B4870(u32 arg0){
+    if(++arg0 > 0x14)
+        arg0 = 0;
+    return arg0;
+}
 
 s32 func_802B488C(s32 arg0){
     s32 retVal = arg0;
