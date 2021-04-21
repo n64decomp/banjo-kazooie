@@ -118,7 +118,7 @@ void func_802A2170(void);
 void func_802A21F8(void);
 void func_802A23AC(void);
 //BS_CREEP(void);
-void func_802B6FC8(void);
+void bswalk_creep_init(void);
 void func_802B70C4(void);
 //BS_LANDING(void);
 void bsstand_landing_init(void);

@@ -118,7 +118,7 @@ segments:
   - [0x2F2E0, c, bs/timeout]
   - [0x2F5B0, c, bs/throw]
   - [0x2FAB0, c, bs/turn]
-  - [0x2FD70, c, bs/twirl]
+  - [0x2FD70, c, bs/walk]
   - [0x329F0, c, code_329F0]
   - [0x32DB0, c, code_32DB0]
   - [0x33250, c, code_33250]
