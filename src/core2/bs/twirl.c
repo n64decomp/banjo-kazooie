@@ -9,15 +9,22 @@ void func_80289EA8(f32, f32);
 void func_80289EC8(f32, f32, s32, s32);
 void func_802B6EB0(f32);
 
+extern f32 D_80364D74;//slow_walk_min
+extern f32 D_80364D78;//slow_walk_max/walk_min
+extern f32 D_80364D7C;//walk_max
 
-extern f32 D_80364D78;
-extern f32 D_80364D7C;
 
-extern s32 D_80364DA0;
+extern s32 D_80364D90; //slow walk
+extern s32 D_80364D94;
+
+extern s32 D_80364DA0; //walk
 extern s32 D_80364DA4;
 
 // .rodata
+extern char D_80375B7C[];
 extern char D_80375B88[];
+extern f32 D_80375BC4;
+
 extern f32 D_80375BD0;
 extern f32 D_80375BD4;
 
@@ -41,7 +48,25 @@ extern f32 D_80375BD4;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/twirl/func_802B70C4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/twirl/func_802B7260.s")
+void bswalk_slow_init(void){
+    AnimCtrl * s0 = player_getAnimCtrlPtr();
+    f32 sp20;
+
+    if(bs_getPrevState() == 3){
+        sp20 = func_80289690(func_80287464(s0));
+    }else{
+        sp20 = 0.0f;
+    }
+    func_802874AC(s0);
+    animctrl_setIndex(s0, 0x3);
+    animctrl_setDuration(s0, 0.43f);
+    func_8028774C(s0, sp20);
+    func_80287674(s0, 2);
+    func_802875AC(s0, D_80375B7C, 0x168);
+    func_8029C7F4(2,1,1,2);
+    func_80289EA8(D_80375BC4, 1.5f);
+    func_80289EC8(D_80364D74, D_80364D78, D_80364D90, D_80364D94);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/twirl/func_802B735C.s")
 

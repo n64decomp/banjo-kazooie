@@ -11,7 +11,7 @@ void bsstand_init(void);
 void bsstand_update(void);
 void bsstand_end(void);
 //bswalkslow
-void func_802B7260(void);
+void bswalk_slow_init(void);
 void func_802B735C(void);
 //bswalk
 void bswalk_init(void);
