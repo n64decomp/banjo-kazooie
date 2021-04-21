@@ -12,10 +12,10 @@ void bsstand_update(void);
 void bsstand_end(void);
 //bswalkslow
 void bswalk_slow_init(void);
-void func_802B735C(void);
+void bswalk_slow_upate(void);
 //bswalk
 void bswalk_init(void);
-void func_802B7614(void);
+void bswalk_update(void);
 //bswalkfast
 void bswalk_fast_init(void);
 void func_802B796C(void);

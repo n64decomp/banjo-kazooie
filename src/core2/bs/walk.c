@@ -30,7 +30,7 @@ extern f32 D_80364D7C;//walk_max/walk_fast_min
 extern f32 D_80364D80;//walk_fast_max
 extern f32 D_80364D84; //mud_min
 extern f32 D_80364D88; //mud_max
-
+extern f32 D_80364D8C; 
 extern s32 D_80364D90; //walk_slow
 extern s32 D_80364D94;
 extern s32 D_80364D98; //creep
@@ -45,10 +45,12 @@ extern s32 D_80364DB4;
 
 extern f32 D_80375BC0;
 extern f32 D_80375BC4;
-
+extern f32 D_80375BC8;
+extern f32 D_80375BCC;
 extern f32 D_80375BD0;
 extern f32 D_80375BD4;
-
+extern f32 D_80375BD8;
+extern f32 D_80375BDC;
 extern f32 D_80375BE0;
 extern f32 D_80375BE4;
 
@@ -227,7 +229,58 @@ void bswalk_slow_init(void){
     func_80289EC8(D_80364D74, D_80364D78, D_80364D90, D_80364D94);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/walk/func_802B735C.s")
+void bswalk_slow_upate(void){
+    s32 s0 = 0;
+    func_802B6E44();
+    if(func_8029B2E8() == 0.0f){
+        player_setMovingYaw(player_getYaw());
+    }
+
+    func_8029AD28(D_80375BC8, 4);
+    func_8029AD28(D_80375BCC, 3);
+    func_802B6D00();
+    switch(func_8029B300()){
+        case 0://L802B7160
+            if(func_80297C04(3.0f))
+                s0 = BS_IDLE;
+            break;
+        case 1://L802B7180
+            s0 = BS_WALK_CREEP;
+            break;
+        case 3://L802B7188
+            s0 = BS_WALK;
+            break;
+        case 4:
+            s0 = BS_WALK_FAST;
+            break;
+    }//L802B7194
+    if(func_8028B128())
+        s0 = BS_WALK_MUD;
+
+    if(func_80294F78())
+        s0 = func_802926C0();
+
+    if(func_8028B094())
+        s0 = BS_FALL;
+
+    if(button_held(BUTTON_Z))
+        s0 = BS_CROUCH;
+
+    s0 = func_802B6F20(s0);
+
+    if(button_pressed(BUTTON_A))
+        s0 = func_8029C780();
+
+    if(func_8028B338())
+        s0 = BS_SLIDE;
+    
+    s0 = func_8029CA94(s0);
+
+    if(player_inWater())
+        s0 = BS_SWIM_IDLE;
+
+    bs_setState(s0);
+}
 
 void bswalk_init(void){
     AnimCtrl * s0 = player_getAnimCtrlPtr();
@@ -255,7 +308,55 @@ void bswalk_init(void){
     func_802B6EB0(D_80375BD4);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/walk/func_802B7614.s")
+void bswalk_update(void){
+    s32 s0 = 0;
+    func_802B6E44();
+    func_8029AD28(D_80375BD8, 4);
+    func_8029AD28(D_80375BDC, 3);
+    func_802B6EBC();
+    func_802B6D00();
+    switch(func_8029B300()){
+        case 0:
+        case 1:
+        case 2:
+            if(func_80297C04(D_80364D78) && func_802B6EF4())
+                s0 = BS_WALK_SLOW;
+            break;
+        case 4:
+            s0 = BS_WALK_FAST;
+            break;
+    }//L802B76B8
+    if(func_8028B128())
+        s0 = BS_WALK_MUD;
+
+    if(func_8028B4C4() && D_80364D8C < func_80297AB8()){
+        s0 = BS_SKID;
+    }
+
+    if(func_80294F78())
+        s0 = func_802926C0();
+
+    if(func_8028B094())
+        s0 = BS_FALL;
+
+    if(button_held(BUTTON_Z))
+        s0 = BS_CROUCH;
+
+    s0 = func_802B6F20(s0);
+
+    if(button_pressed(BUTTON_A))
+        s0 = func_8029C780();
+
+    if(func_8028B338())
+        s0 = BS_SLIDE;
+    
+    s0 = func_8029CA94(s0);
+
+    if(player_inWater())
+        s0 = BS_SWIM_IDLE;
+
+    bs_setState(s0);
+}
 
 void bswalk_fast_init(void){
     AnimCtrl * s0 = player_getAnimCtrlPtr();
