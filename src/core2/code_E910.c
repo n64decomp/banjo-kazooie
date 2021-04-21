@@ -147,7 +147,7 @@ bsMap D_80363824[] ={
     {BS_WALRUS_LOCKED, func_802B9060, func_802B9088, func_802B90A8, func_802AE490},
     {BS_SWIM_LOCKED, func_802B5F58, func_802B5F80, func_802B5FA0, func_802AE490},
     {BS_DIVE_LOCKED, func_802A874C, func_802A8774, func_802A8794, func_802AE490},
-    {0x00000098, bswalk_unk98_init, func_802B7DC0, func_802B7DE0, func_802AE490},
+    {0x00000098, bswalk_unk98_init, bswalk_unk98_update, func_802B7DE0, func_802AE490},
     {0x00000099, func_802A50B0, func_802A50D8, func_802A50F8, func_802AE490},
     {0x0000009A, func_802AA378, func_802AA3A8, func_802AA3D0, func_802AE490},
     {0x0000009B, func_802A6478, func_802A64A0, func_802A64E0, func_802AE490},

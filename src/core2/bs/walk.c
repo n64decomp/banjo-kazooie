@@ -503,6 +503,8 @@ void bswalk_unk98_init(void){
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/walk/func_802B7DC0.s")
+void bswalk_unk98_update(void){
+    func_802AE410();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/walk/func_802B7DE0.s")
