@@ -130,7 +130,9 @@ f32 func_802B6F9C(void){
     return D_80364D80;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/walk/func_802B6FA8.s")
+void func_802B6FA8(void){
+    func_802B6D00();
+}
 
 void bswalk_creep_init(void){
     AnimCtrl * s0 = player_getAnimCtrlPtr();
