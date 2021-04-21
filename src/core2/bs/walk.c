@@ -126,7 +126,9 @@ s32 func_802B6F20(s32 arg0){
     return arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/walk/func_802B6F9C.s")
+f32 func_802B6F9C(void){
+    return D_80364D80;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/walk/func_802B6FA8.s")
 
