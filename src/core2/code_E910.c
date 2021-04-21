@@ -10,7 +10,7 @@ bsMap D_80363824[] ={
     {BS_IDLE,       bsstand_init,    bsstand_update, bsstand_end, func_802B5350},
     {BS_WALK_SLOW,  bswalk_slow_init, func_802B735C, NULL,          func_802B5350},
     {BS_WALK,       bswalk_init, func_802B7614, NULL,          func_802B5350},
-    {BS_WALK_FAST,  func_802B77B8, func_802B796C, func_802B7B88, func_802B5350},
+    {BS_WALK_FAST,  bswalk_fast_init, func_802B796C, func_802B7B88, func_802B5350},
     {BS_JUMP,       func_802B112C, func_802B1354, func_802B1614, func_80296608},
     {BS_PUNCH,      func_802AB28C, func_802AB2FC, func_802AB58C, func_80296608},
     {BS_CROUCH,     func_802AD7EC, func_802AD970, func_802ADCCC, func_802B5350},

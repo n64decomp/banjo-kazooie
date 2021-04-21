@@ -17,7 +17,7 @@ void func_802B735C(void);
 void bswalk_init(void);
 void func_802B7614(void);
 //bswalkfast
-void func_802B77B8(void);
+void bswalk_fast_init(void);
 void func_802B796C(void);
 void func_802B7B88(void);
 //bsjump

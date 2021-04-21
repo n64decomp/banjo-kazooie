@@ -8,10 +8,15 @@ f32 func_80289690(s32);
 void func_80289EA8(f32, f32);
 void func_80289EC8(f32, f32, s32, s32);
 void func_802B6EB0(f32);
+f32 func_80297AB8(void);
+void func_802927E0(f32, f32);
+void func_80297FB0(f32, f32);
+void func_80298D54(f32, f32);
 
 extern f32 D_80364D74;//slow_walk_min
 extern f32 D_80364D78;//slow_walk_max/walk_min
-extern f32 D_80364D7C;//walk_max
+extern f32 D_80364D7C;//walk_max/walk_fast_min
+extern f32 D_80364D80;//walk_fast_max
 
 
 extern s32 D_80364D90; //slow walk
@@ -19,14 +24,20 @@ extern s32 D_80364D94;
 
 extern s32 D_80364DA0; //walk
 extern s32 D_80364DA4;
+extern s32 D_80364DA8; //walk_fast
+extern s32 D_80364DAC;
 
 // .rodata
 extern char D_80375B7C[];
 extern char D_80375B88[];
+extern char D_80375B94[];
 extern f32 D_80375BC4;
 
 extern f32 D_80375BD0;
 extern f32 D_80375BD4;
+
+extern f32 D_80375BE0;
+extern f32 D_80375BE4;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/twirl/func_802B6D00.s")
 
@@ -98,7 +109,42 @@ void bswalk_init(void){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/twirl/func_802B7614.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/twirl/func_802B77B8.s")
+void bswalk_fast_init(void){
+    AnimCtrl * s0 = player_getAnimCtrlPtr();
+    f32 sp28 = 0.0f;
+    int sp24 = 1;
+    
+    switch(bs_getPrevState()){
+        case 1:
+        case 2://L802B780C
+            if(func_80297AB8() < 200.0f){
+                func_802927E0(0.0f, 0.0f);
+            }
+            break;
+        case 0xc: //L802B7844
+            sp24 = 0;
+            break;
+        case 3:
+            sp28 = func_80289690(func_80287464(s0));
+
+            break;
+    }
+    func_802874AC(s0);
+    func_80287684(s0, sp24);
+    animctrl_setIndex(s0, 0xC);
+    animctrl_setDuration(s0, 0.66f);
+    func_802876C0(s0, 0.1f);
+    func_8028774C(s0, sp28);
+    func_80287674(s0, 2);
+    func_802875AC(s0, D_80375B94, 0x27d);
+    func_8029C7F4(2,1,1,2);
+    func_80289EA8(D_80375BE0, 1.5f);
+    func_80289EC8(D_80364D7C, D_80364D80, D_80364DA8, D_80364DAC);
+    func_80297FB0(1000.0f, 12.0f);
+    func_80298D54(1000.0f, 12.0f);
+    func_802B6EB0(D_80375BE4);
+    
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/twirl/func_802B796C.s")
 
