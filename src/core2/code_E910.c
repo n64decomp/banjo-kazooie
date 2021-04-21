@@ -7,7 +7,7 @@
 
 u8 D_80363820 = 0;
 bsMap D_80363824[] ={
-    {BS_IDLE,       bsidle_init,    bsidle_update, bsidle_end, func_802B5350},
+    {BS_IDLE,       bsstand_init,    bsstand_update, bsstand_end, func_802B5350},
     {BS_WALK_SLOW,  func_802B7260, func_802B735C, NULL,          func_802B5350},
     {BS_WALK,       func_802B74F8, func_802B7614, NULL,          func_802B5350},
     {BS_WALK_FAST,  func_802B77B8, func_802B796C, func_802B7B88, func_802B5350},

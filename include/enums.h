@@ -6,8 +6,8 @@ enum button{
     BUTTON_Z = 0x1,
 
     button_R = 0x3,
-    button_A = 0x8,
-    button_B = 0x9
+    BUTTON_A = 0x8,
+    BUTTON_B = 0x9
 };
 
 enum transformation_E

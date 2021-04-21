@@ -6,10 +6,10 @@ void func_802B5350(void);
 void func_80296608(void);
 void func_80296590(void); //bsow
 
-//bsidle
-void bsidle_init(void); 
-void bsidle_update(void);
-void bsidle_end(void);
+//bsstand
+void bsstand_init(void); 
+void bsstand_update(void);
+void bsstand_end(void);
 //bswalkslow
 void func_802B7260(void);
 void func_802B735C(void);

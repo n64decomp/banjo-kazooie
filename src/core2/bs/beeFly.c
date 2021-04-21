@@ -195,7 +195,7 @@ void bsbeefly_update(void){
     _bsBeeFly_updateYaw();
     _bsBeeFly_updatePitch();
     player_getPitch(); //return value never used
-    if(button_pressed(button_A) && (player_getYPosition() < 7500.0)){
+    if(button_pressed(BUTTON_A) && (player_getYPosition() < 7500.0)){
         func_8028FDC8(1.0f);
     }
     if(!func_8028FD30() && player_inWater()){
@@ -217,7 +217,7 @@ void bsbeefly_update(void){
         }
     }
     sp40 += sp30;
-    if(!sp44 && button_held(button_B)){
+    if(!sp44 && button_held(BUTTON_B)){
         sp40 += 0.12;
     }
     func_80290B40(sp40);

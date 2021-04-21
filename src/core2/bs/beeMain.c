@@ -88,7 +88,7 @@ void func_802A10D4(void){
     if(func_8029B300() > 0)
         s0 = BS_BEE_WALK;
 
-    if(button_pressed(button_A))
+    if(button_pressed(BUTTON_A))
         s0 = BS_BEE_JUMP;
 
     if(player_inWater())
@@ -124,7 +124,7 @@ void func_802A1214(void){
     if(func_8028B094())
         s0 = BS_BEE_FALL;
 
-    if(button_pressed(button_A))
+    if(button_pressed(BUTTON_A))
         s0 = BS_BEE_JUMP;
 
     if(player_inWater())
@@ -214,12 +214,12 @@ void func_802A1438(void){
     if(func_8028B2E8()){
         if(func_8029B300() > 0)
             sp2c = BS_BEE_WALK;
-        if(button_pressed(button_A)){
+        if(button_pressed(BUTTON_A)){
             sp2c = BS_BEE_JUMP;
         }
     }
     else{
-        if(button_pressed(button_A)){
+        if(button_pressed(BUTTON_A)){
             sp2c = BS_BEE_FLY;
         }
     }
@@ -289,13 +289,13 @@ void func_802A170C(void){
         }else{
             if(func_8029B300() > 0)
                 sp2c = BS_BEE_WALK;
-            if(button_pressed(button_A))
+            if(button_pressed(BUTTON_A))
                 sp2c = BS_BEE_JUMP;
             sp2c = func_8029CA94(sp2c);
         }
     }
     else{
-        if(func_802933D0(0xf) && button_pressed(button_A))
+        if(func_802933D0(0xf) && button_pressed(BUTTON_A))
             sp2c = BS_BEE_FLY;
     }//L802A189C
     if(player_inWater())

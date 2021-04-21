@@ -3,14 +3,69 @@
 #include "variables.h"
 #include "bsint.h"
 
+extern f32 func_8029B2E8(void);
+void func_80299234(f32, f32);
+int func_802878E8(Movement *, f32);
+void func_802876C0(Movement *, f32);
+void func_802875AC(Movement *, char*, s32);
+void func_80299D2C(s32, f32, s32);
+void func_8028774C(Movement *, f32);
+f32 func_802877D8(Movement *);
+void func_802900B4(void);
+
+extern u8 D_80364D20[];
+
+//.rodata
+extern char D_80375A70[];
+extern char D_80375A7C[];
+extern char D_80375A88[];
+
+//.bss
 extern s32 D_8037D540;
-extern s8  D_8037D544;
+extern u8  D_8037D544;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/stand/func_802B4870.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/stand/func_802B488C.s")
+s32 func_802B488C(s32 arg0){
+    s32 retVal = arg0;
+    switch(func_8029B300()){
+        case 1: //L802B48CC
+            retVal = BS_CREEP;
+            break;
+        case 2: //L802B48D4
+            retVal = BS_WALK_SLOW;
+            break;
+        case 3: //L802B48D4
+            retVal = BS_WALK;
+            break;
+        case 4: //L802B48D4
+            retVal = BS_WALK_FAST;
+            break;
+    }
+    if(button_held(BUTTON_Z))
+        retVal = BS_CROUCH;
 
-void bsidle_init(void){
+    if(button_pressed(BUTTON_B) && func_8028A9E0())
+        retVal = BS_PUNCH;
+
+    if(button_pressed(BUTTON_A))
+        retVal = func_8029C780();
+
+    if(func_80294F78())
+        retVal = func_802926C0();
+
+    if(func_8028B338())
+        retVal = BS_SLIDE;
+
+    retVal = func_8029CA94(retVal);
+
+    if(player_inWater())
+        retVal = BS_SWIM_IDLE;
+    
+    return retVal;
+}
+
+void bsstand_init(void){
     if(bsclimb_inSet(bs_getPrevState()))
         climbRelease();
 
@@ -24,10 +79,147 @@ void bsidle_init(void){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/stand/func_802B4A10.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/stand/bsidle_update.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/stand/bsstand_update.s")
+/*void bsstand_update(void){
+    s32 temp_v1;
+    s32 sp24 = 0;
+    Movement * sp20 = player_getMovementPtr();
+    f32 sp1C;
+    s32 sp18;
+    
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/stand/bsidle_end.s")
-void bsidle_end(void){
+    if(!func_8029B300() && (0.0f < func_8029B2E8())){
+        D_8037D544 = 1;
+        func_802991A8(3);
+        func_80299234(200.0f, 14.0f);
+
+    }
+    else{ 
+        if(D_8037D544)
+            player_setMovingYaw(player_getYaw());
+        D_8037D544 = 0;
+        func_802991A8(1);
+    }//L802B4DBC
+    sp24 = func_802B488C(0);
+    if((D_80364D20[D_8037D540] & (1 << 3))){
+        if(sp18 = D_80364D20[D_8037D540] & (1 << 2)){
+            if(func_802878E8(sp20, 0.0909f)){
+                temp_v1 = sp18;
+                sp18 = temp_v1;
+                func_80299BD4();
+            }
+
+            if(func_802878E8(sp20, 0.0909f)){
+                temp_v1 = sp18;
+                sp18 = temp_v1;
+                func_8029E070(1);
+            }
+            
+            if(func_802878E8(sp20, 0.6818f)){
+                temp_v1 = sp18;
+                sp18 = temp_v1;
+                func_8029E070(0);
+            }
+            
+        }//L802B4E70
+        if( temp_v1 & (1 << 1)){
+            if(func_802878E8(sp20, 0.7727f))
+                func_8029E070(1);
+
+            if(func_802878E8(sp20, 0.9999f))
+                func_8029E070(0);
+        }else{
+        }
+    }
+    else{ 
+        if(D_80364D20[D_8037D540] & (1 << 5)){//L802B4EC0
+            if(func_80287790(sp20) == 0x95){
+                func_802B4A10(sp20);
+
+                if(func_802878E8(sp20, 0.37f)){
+                    func_802874AC(sp20);
+                    func_802876C0(sp20, 0.1f);
+                    movement_setIndex(sp20, 0xf6);
+                    movement_setDuration(sp20, 5.0f);
+                    func_80287674(sp20, 1);
+                    func_802875AC(sp20, D_80375A70, 0x170);
+                }
+            }
+            else{//L802B4F54
+                if(func_802878E8(sp20, 0.069f)) //nice
+                    func_80299D2C(0x4b, 1.4f, 0x4650);
+
+                if(func_802878E8(sp20, 0.1677f))
+                    func_80299D2C(0x8b, 1.0f, 0x4650);
+                
+                if(func_802878E8(sp20, 0.2441f))
+                    func_80299D2C(0x8b, 1.03f, 0x4650);
+
+                if(func_802878E8(sp20, 0.3141f))
+                    func_80299D2C(0x8b, 1.06f, 0x4650);
+
+                if(func_802878E8(sp20, 0.3859f))
+                    func_80299D2C(0x8b, 1.5f, 0x7D00);
+
+                if(func_802878E8(sp20, 0.414f))
+                    func_80299D2C(0x2d, 1.0f, 0x4650);
+
+                if(func_802878E8(sp20, 0.55f))
+                    func_80299D2C(0xa3, 1.0f, 0x6d60);
+
+                if(func_802878E8(sp20, 0.6187f))
+                    func_80299D2C(0xa0, 1.7f, 0x4650);
+
+                if(func_802878E8(sp20, 0.7108f))
+                    func_80299D2C(0xa0, 1.6f, 0x4650);
+
+                if(func_802878E8(sp20, 0.7927f))
+                    func_80299D2C(0xa0, 1.5f, 0x4650);
+            }
+        } 
+        else if(D_80364D20[D_8037D540] & (1 << 4)){//L802B50D4
+            func_802B4A10(sp20);
+        }//L802B50E4
+    }
+
+    if(func_802878E8(sp20, 0.9999f)){
+        D_8037D540 = func_802B4870(D_8037D540);
+        if(D_80364D20[D_8037D540] & (1<< 4)){
+            func_8028A180(0x95, 5.5f);
+            func_802875AC(sp20, D_80375A7C, 0x1AB);
+            func_8029E070(1);
+            func_802900FC();
+        }
+        else if(D_80364D20[D_8037D540] & (1<< 5)){//L802B5164
+            func_8028A180(0x95, 5.5f);
+            func_8029E070(1);
+            func_802900FC();
+        }
+        else if(D_80364D20[D_8037D540] & (1<< 3)){//L802B5190
+            if(func_80287790(sp20) == 0x6f){
+                sp1C = func_802877D8(sp20);
+            }else{
+                sp1C = 0.0f;
+                func_802900B4();
+            }
+            func_802874AC(sp20);
+            movement_setIndex(sp20, 0x6f);
+            movement_setDuration(sp20, 5.5f);
+            func_80287674(sp20, 2);
+            func_8028774C(sp20, sp1C);
+            func_802875AC(sp20, D_80375A88, 0x1c3);
+            func_8029E070(0);
+        }
+    }//L802B521C
+
+
+    if(func_8028B094())
+        sp24 = BS_FALL;
+    bs_setState(sp24);
+
+}//*/
+
+void bsstand_end(void){
     func_8029E070(0);
     func_802900FC();
     func_80292EA4();
