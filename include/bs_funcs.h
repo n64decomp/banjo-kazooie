@@ -14,7 +14,7 @@ void bsstand_end(void);
 void func_802B7260(void);
 void func_802B735C(void);
 //bswalk
-void func_802B74F8(void);
+void bswalk_init(void);
 void func_802B7614(void);
 //bswalkfast
 void func_802B77B8(void);
