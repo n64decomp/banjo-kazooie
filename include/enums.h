@@ -295,7 +295,7 @@ enum bs_e
     BS_WONDERWING_WALK = 0x1C,
     BS_WONDERWING_JUMP = 0x1D,
     BS_WONDERWING_EXIT = 0x1E,
-    BS_CREEP = 0x1F,
+    BS_WALK_CREEP = 0x1F,
     BS_LANDING = 0x20,
     BS_BSHOCK_CHARGE = 0x21,
     BS_BSHOCK_JUMP = 0x22,
@@ -385,7 +385,7 @@ enum bs_e
     //0x77 locked swim
     //0x78 locked dive
     //0x79 locked holding jiggy in tt
-    //0x7A BS_Creep
+    BSWALK_MUD = 0x7A,
     BS_BTROT_OW = 0x7B,
     //0x7C locked FP scarf sled
     BS_WALRUS_SLED_IDLE = 0x7D,

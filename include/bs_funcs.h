@@ -117,7 +117,7 @@ void func_802A2650(void);
 void func_802A2170(void);
 void func_802A21F8(void);
 void func_802A23AC(void);
-//BS_CREEP(void);
+//BS_WALK_CREEP(void);
 void bswalk_creep_init(void);
 void func_802B70C4(void);
 //BS_LANDING(void);
@@ -497,9 +497,8 @@ void func_802AA0E8(void);
 void func_802AA134(void);
 void func_80296608(void);
 //0x0000007A
-void func_802B7BB8(void);
+void bswalk_mud_init(void);
 void func_802B7C30(void);
-void func_80296608(void);
 //0x0000007B
 void func_802AA15C(void);
 void func_802AA27C(void);

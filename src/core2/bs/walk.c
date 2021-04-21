@@ -13,13 +13,15 @@ void func_802927E0(f32, f32);
 void func_80297FB0(f32, f32);
 void func_80298D54(f32, f32);
 void func_80298CE0(f32);
+void func_8028A010(s32, f32);
 
 extern f32 D_80364D70;//creep_min
 extern f32 D_80364D74;//creep_max/slow_walk_min
 extern f32 D_80364D78;//slow_walk_max/walk_min
 extern f32 D_80364D7C;//walk_max/walk_fast_min
 extern f32 D_80364D80;//walk_fast_max
-
+extern f32 D_80364D84; //0x7A_min
+extern f32 D_80364D88; //0x7A_max
 
 extern s32 D_80364D90; //walk_slow
 extern s32 D_80364D94;
@@ -29,7 +31,8 @@ extern s32 D_80364DA0; //walk
 extern s32 D_80364DA4;
 extern s32 D_80364DA8; //walk_fast
 extern s32 D_80364DAC;
-
+extern s32 D_80364DB0; //0x7A
+extern s32 D_80364DB4;
 // .rodata
 extern char D_80375B70[];
 extern char D_80375B7C[];
@@ -45,6 +48,8 @@ extern f32 D_80375BD4;
 
 extern f32 D_80375BE0;
 extern f32 D_80375BE4;
+
+extern f32 D_80375BF0;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/walk/func_802B6D00.s")
 
@@ -178,7 +183,12 @@ void bswalk_fast_end(void){
     func_80298CE0(0.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/walk/func_802B7BB8.s")
+void bswalk_mud_init(void){
+    func_8028A010(0xb, 0.43f);
+    func_8029C7F4(2,1,1,2);
+    func_80289EA8(D_80375BF0, 1.5f);
+    func_80289EC8(D_80364D84, D_80364D88, D_80364DB0, D_80364DB4);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/walk/func_802B7C30.s")
 
