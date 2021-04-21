@@ -119,6 +119,7 @@ segments:
   - [0x2F5B0, c, bs/throw]
   - [0x2FAB0, c, bs/turn]
   - [0x2FD70, c, bs/walk]
+  - [0x30E70, c, bs/walrus]
   - [0x329F0, c, code_329F0]
   - [0x32DB0, c, code_32DB0]
   - [0x33250, c, code_33250]

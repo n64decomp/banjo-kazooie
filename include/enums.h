@@ -385,7 +385,7 @@ enum bs_e
     //0x77 locked swim
     //0x78 locked dive
     //0x79 locked holding jiggy in tt
-    BSWALK_MUD = 0x7A,
+    BS_WALK_MUD = 0x7A,
     BS_BTROT_OW = 0x7B,
     //0x7C locked FP scarf sled
     BS_WALRUS_SLED_IDLE = 0x7D,
