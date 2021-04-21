@@ -355,7 +355,7 @@ segments:
   - [0x000EE4A0, .rodata, bs/bFlap]
   - [0x000EE510, bin, data_EE510]
   - [0x000EEBE0, .rodata, bs/walk]
-  - [0x000EEC30, bin]
+  - [0x000EEC60, bin]
   - [0x000EF040, ".rodata", code_3BB80]
   - [0x000EF090, bin, data_EF090]
   - [0x000EF3E0, .rodata, ch/jigsawdance]

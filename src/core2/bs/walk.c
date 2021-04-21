@@ -22,6 +22,7 @@ void func_80289EF8(f32);
 f32 func_8029B30C(void);
 f32 func_80257C48(f32, f32, f32);
 f32 func_80297A64(void);
+void func_80299594(s32, f32);
 
 extern f32 D_80364D70;//creep_min
 extern f32 D_80364D74;//creep_max/slow_walk_min
@@ -41,21 +42,16 @@ extern s32 D_80364DA8; //walk_fast
 extern s32 D_80364DAC;
 extern s32 D_80364DB0; //mud
 extern s32 D_80364DB4;
-// .rodata
 
-extern f32 D_80375BC0;
-extern f32 D_80375BC4;
-extern f32 D_80375BC8;
-extern f32 D_80375BCC;
-extern f32 D_80375BD0;
-extern f32 D_80375BD4;
-extern f32 D_80375BD8;
-extern f32 D_80375BDC;
+// .rodata
 extern f32 D_80375BE0;
 extern f32 D_80375BE4;
-
+extern f32 D_80375BE8;
+extern f32 D_80375BEC;
 extern f32 D_80375BF0;
-
+extern f32 D_80375BF4;
+extern f32 D_80375BF8;
+extern f32 D_80375BFC;
 // .bss
 extern f32 D_8037D5B0;
 
@@ -164,7 +160,7 @@ void bswalk_creep_update(void){
     }
 
     func_8029AD28(0.47f, 4);
-    func_8029AD28(D_80375BC0, 3);
+    func_8029AD28(0.97f, 3);
     func_802B6D00();
     switch(func_8029B300()){
         case 0://L802B7160
@@ -225,7 +221,7 @@ void bswalk_slow_init(void){
     func_80287674(s0, 2);
     func_802875AC(s0, "bswalk.c", 0x168);
     func_8029C7F4(2,1,1,2);
-    func_80289EA8(D_80375BC4, 1.5f);
+    func_80289EA8(0.3f, 1.5f);
     func_80289EC8(D_80364D74, D_80364D78, D_80364D90, D_80364D94);
 }
 
@@ -236,8 +232,8 @@ void bswalk_slow_upate(void){
         player_setMovingYaw(player_getYaw());
     }
 
-    func_8029AD28(D_80375BC8, 4);
-    func_8029AD28(D_80375BCC, 3);
+    func_8029AD28(0.4f, 4);
+    func_8029AD28(0.9f, 3);
     func_802B6D00();
     switch(func_8029B300()){
         case 0://L802B7160
@@ -303,16 +299,16 @@ void bswalk_init(void){
     func_80287674(s0, 2);
     func_802875AC(s0, "bswalk.c", 0x1ed);
     func_8029C7F4(2,1,1,2);
-    func_80289EA8(D_80375BD0, 1.5f);
+    func_80289EA8(0.3f, 1.5f);
     func_80289EC8(D_80364D78, D_80364D7C, D_80364DA0, D_80364DA4);
-    func_802B6EB0(D_80375BD4);
+    func_802B6EB0(0.3f);
 }
 
 void bswalk_update(void){
     s32 s0 = 0;
     func_802B6E44();
-    func_8029AD28(D_80375BD8, 4);
-    func_8029AD28(D_80375BDC, 3);
+    func_8029AD28(0.4f, 4);
+    func_8029AD28(0.9f, 3);
     func_802B6EBC();
     func_802B6D00();
     switch(func_8029B300()){
@@ -387,15 +383,76 @@ void bswalk_fast_init(void){
     func_80287674(s0, 2);
     func_802875AC(s0, "bswalk.c", 0x27d);
     func_8029C7F4(2,1,1,2);
-    func_80289EA8(D_80375BE0, 1.5f);
+    func_80289EA8(0.3f, 1.5f);
     func_80289EC8(D_80364D7C, D_80364D80, D_80364DA8, D_80364DAC);
     func_80297FB0(1000.0f, 12.0f);
     func_80298D54(1000.0f, 12.0f);
-    func_802B6EB0(D_80375BE4);
+    func_802B6EB0(0.3f);
     
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/walk/func_802B796C.s")
+void bswalk_fast_update(void){
+    s32 s0 = 0;
+    func_802B6E44();
+    func_80299594(0, 0.5f);
+    func_8029AD28(0.4f, 4);
+    func_8029AD28(0.9f, 3);
+    func_802B6EBC();
+    func_802B6D00();
+    switch(func_8029B300()){
+        case 0://L802B79EC
+            if(func_80297C04(18.0f))
+                s0 = BS_IDLE;
+
+            if(func_80294F78())
+                s0 = func_802926C0();
+            
+            break;
+        case 1:
+        case 2://L802B7A28
+            if(func_80297C04(D_80364D78))
+                s0 = BS_WALK_SLOW;
+
+            if(func_80294F78())
+                s0 = func_802926C0();
+
+            break;
+        case 3://L802B7A60
+            if(func_80297C04(D_80364D7C) && func_802B6EF4())
+                s0 = BS_WALK;
+
+            if(func_80294F78())
+                s0 = func_802926C0();
+            break;
+    }//L802B7AA4
+    if(func_8028B128())
+        s0 = BS_WALK_MUD;
+
+    if(func_8028B4C4() && D_80364D8C < func_80297AB8()){
+        s0 = BS_SKID;
+    }
+
+    if(func_8028B094())
+        s0 = BS_FALL;
+
+    if(button_held(BUTTON_Z))
+        s0 = BS_CROUCH;
+
+    s0 = func_802B6F20(s0);
+
+    if(button_pressed(BUTTON_A))
+        s0 = func_8029C780();
+
+    if(func_8028B338())
+        s0 = BS_SLIDE;
+    
+    s0 = func_8029CA94(s0);
+
+    if(player_inWater())
+        s0 = BS_SWIM_IDLE;
+
+    bs_setState(s0);
+}
 
 void bswalk_fast_end(void){
     player_setIdealPitch(0.0f);
