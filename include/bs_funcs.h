@@ -498,7 +498,7 @@ void func_802AA134(void);
 void func_80296608(void);
 //0x0000007A
 void bswalk_mud_init(void);
-void func_802B7C30(void);
+void bswalk_mud_update(void);
 //0x0000007B
 void func_802AA15C(void);
 void func_802AA27C(void);
@@ -630,7 +630,7 @@ void func_802A8774(void);
 void func_802A8794(void);
 void func_802AE490(void);
 //0x00000098
-void func_802B7D4C(void);
+void bswalk_unk98_init(void);
 void func_802B7DC0(void);
 void func_802B7DE0(void);
 void func_802AE490(void);

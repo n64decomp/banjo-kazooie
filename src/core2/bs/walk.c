@@ -43,16 +43,7 @@ extern s32 D_80364DAC;
 extern s32 D_80364DB0; //mud
 extern s32 D_80364DB4;
 
-// .rodata
-extern f32 D_80375BE0;
-extern f32 D_80375BE4;
-extern f32 D_80375BE8;
-extern f32 D_80375BEC;
-extern f32 D_80375BF0;
-extern f32 D_80375BF4;
-extern f32 D_80375BF8;
-extern f32 D_80375BFC;
-// .bss
+// .bss (?)
 extern f32 D_8037D5B0;
 
 /*.code*/
@@ -462,13 +453,55 @@ void bswalk_fast_end(void){
 void bswalk_mud_init(void){
     func_8028A010(0xb, 0.43f);
     func_8029C7F4(2,1,1,2);
-    func_80289EA8(D_80375BF0, 1.5f);
+    func_80289EA8(0.3f, 1.5f);
     func_80289EC8(D_80364D84, D_80364D88, D_80364DB0, D_80364DB4);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/walk/func_802B7C30.s")
+void bswalk_mud_update(void){
+    s32 s0 = 0;
+    func_802B6E44();
+    func_8029AD28(0.4f, 4);
+    func_8029AD28(0.9f, 3);
+    func_802B6D00();
+    if(!func_8028B128())
+        s0 = BS_WALK_SLOW;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/walk/func_802B7D4C.s")
+    if(!func_8029B300())
+        s0 = BS_IDLE;
+
+    if(func_80294F78())
+        s0 = func_802926C0();
+
+    if(func_8028B094())
+        s0 = BS_FALL;
+
+    if(button_held(BUTTON_Z))
+        s0 = BS_CROUCH;
+
+    s0 = func_802B6F20(s0);
+
+    if(button_pressed(BUTTON_A))
+        s0 = func_8029C780();
+
+    if(func_8028B338())
+        s0 = BS_SLIDE;
+    
+    s0 = func_8029CA94(s0);
+
+    if(player_inWater())
+        s0 = BS_SWIM_IDLE;
+
+    bs_setState(s0);
+}
+
+void bswalk_unk98_init(void){
+    func_802AE3D0();
+    if(func_80289F94(3)){
+        func_80289F10(2);
+        func_80289EA8(0.3f, 1.5f);
+        func_80289EC8(D_80364D74, D_80364D78, D_80364D90, D_80364D94);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/walk/func_802B7DC0.s")
 
