@@ -19,7 +19,7 @@ void func_802B7614(void);
 //bswalkfast
 void bswalk_fast_init(void);
 void func_802B796C(void);
-void func_802B7B88(void);
+void bswalk_fast_end(void);
 //bsjump
 void func_802B112C(void);
 void func_802B1354(void);

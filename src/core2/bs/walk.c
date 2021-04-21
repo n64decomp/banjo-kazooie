@@ -12,6 +12,7 @@ f32 func_80297AB8(void);
 void func_802927E0(f32, f32);
 void func_80297FB0(f32, f32);
 void func_80298D54(f32, f32);
+void func_80298CE0(f32);
 
 extern f32 D_80364D70;//creep_min
 extern f32 D_80364D74;//creep_max/slow_walk_min
@@ -172,7 +173,10 @@ void bswalk_fast_init(void){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/walk/func_802B796C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/walk/func_802B7B88.s")
+void bswalk_fast_end(void){
+    player_setIdealPitch(0.0f);
+    func_80298CE0(0.0f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/walk/func_802B7BB8.s")
 
