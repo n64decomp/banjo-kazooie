@@ -10,7 +10,6 @@ extern s8  D_8037D544;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/stand/func_802B488C.s")
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/stand/bsidle_init.s")
 void bsidle_init(void){
     if(bsclimb_inSet(bs_getPrevState()))
         climbRelease();
@@ -27,7 +26,12 @@ void bsidle_init(void){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/stand/bsidle_update.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/stand/bsidle_end.s")
+//#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/stand/bsidle_end.s")
+void bsidle_end(void){
+    func_8029E070(0);
+    func_802900FC();
+    func_80292EA4();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/stand/func_802B5278.s")
 
