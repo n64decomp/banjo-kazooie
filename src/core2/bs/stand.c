@@ -14,6 +14,7 @@ f32 func_802877D8(AnimCtrl *);
 void func_802900B4(void);
 void func_80250D94(f32, f32, f32);
 void func_8030E58C(s32, f32);
+void func_80299CF4(s32, f32, s32);
 
 extern u8 D_80364D20[];
 
@@ -319,8 +320,29 @@ void bsstand_landing_init(void){
 }
 
 //bsStand_Land_update
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/stand/func_802B52B0.s")
+void bsstand_landing_update(void){
+    s32 sp1C = 0;
+    AnimCtrl * sp18 = player_getAnimCtrlPtr();
 
+    if(func_80287790(sp18) == 0xd2){
+        if(func_802878E8(sp18, 0.8264f)){
+            func_80299CF4(0x6f, 1.0f, 0x36b0);
+        }
+
+        //L802B52F8
+        if(func_802878E8(sp18, 0.8864f)){
+            func_80299CF4(0x6f, 1.0f, 0x36b0);
+        }
+    }
+    //L802B531C
+    if(func_802878C4(sp18))
+        sp1C = BS_IDLE;
+
+    bs_setState(func_802B488C(sp1C));
+}
+
+
+///BREAK???
 void func_802B5350(void){
     s32 sp1C = bs_getInterruptType();
     if(sp1C == 0xd){

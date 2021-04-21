@@ -122,7 +122,7 @@ void func_802B6FC8(void);
 void func_802B70C4(void);
 //BS_LANDING(void);
 void bsstand_landing_init(void);
-void func_802B52B0(void);
+void bsstand_landing_update(void);
 //BS_BSHOCK_CHARGE(void);
 void func_802A69B0(void);
 void func_802A6B40(void);
