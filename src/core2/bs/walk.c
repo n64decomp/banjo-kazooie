@@ -7,7 +7,7 @@ void func_8028774C(AnimCtrl *, f32);
 f32 func_80289690(s32);
 void func_80289EA8(f32, f32);
 void func_80289EC8(f32, f32, s32, s32);
-void func_802B6EB0(f32);
+
 f32 func_80297AB8(void);
 void func_802927E0(f32, f32);
 void func_80297FB0(f32, f32);
@@ -53,6 +53,8 @@ extern f32 D_80375BE4;
 
 extern f32 D_80375BF0;
 
+// .bss
+extern f32 D_8037D5B0;
 
 /*.code*/
 void func_802B6D00(void){
@@ -98,7 +100,9 @@ void func_802B6E44(void){
 
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/walk/func_802B6EB0.s")
+void func_802B6EB0(f32 arg0){
+    D_8037D5B0 = arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/walk/func_802B6EBC.s")
 
