@@ -339,6 +339,8 @@ segments:
   vram:  0x80363590
   subsegments:
   - [0x000DC600, bin, data_DC600]
+  - [0x000DC890, .data, code_E910]
+  - [0x000DD4B0, bin, data_DD4B0]
   - [0x000E2350, .data, code_73640]
   - [0x000E2790, bin, data_E2790]
   - [0x000ECE70, ".rodata", code_0]

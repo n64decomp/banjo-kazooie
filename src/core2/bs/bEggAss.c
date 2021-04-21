@@ -59,7 +59,7 @@ void func_802A21F8(void) {
         }
     }
     if (func_802878C4(plyr_mvmt)) {
-        next_state = (button_held(1))? 7 : 1;
+        next_state = (button_held(BUTTON_Z))? BS_CROUCH : BS_IDLE;
     } else if (0.6 < (f64) func_802877D8(plyr_mvmt)) {
         next_state = func_802ADCD4(0);
     }

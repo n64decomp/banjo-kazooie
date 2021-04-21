@@ -10,7 +10,7 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/pumpkin/func_802B229C.s")
 
 int bspumpkin_inSet(s32 move_indx){
-    return (move_indx == bs_pumpkin_idle)
+    return (move_indx == BS_PUMPKIN_IDLE)
     || (move_indx == 0x49)
     || (move_indx == 0x4a)
     || (move_indx == 0x4b)

@@ -86,13 +86,13 @@ void func_802A10D4(void){
         s0 = func_802926C0();
     
     if(func_8029B300() > 0)
-        s0 = bs_bee_walk;
+        s0 = BS_BEE_WALK;
 
     if(button_pressed(button_A))
-        s0 = bs_bee_jump;
+        s0 = BS_BEE_JUMP;
 
     if(player_inWater())
-        s0 = bs_bee_fly;
+        s0 = BS_BEE_FLY;
 
     bs_setState(func_8029CA94(s0));
 }
@@ -119,16 +119,16 @@ void func_802A1214(void){
     func_8029AD28(0.94f, 4);
     func_8029AD28(0.44f, 3);
     if(func_8029B300() == 0 && func_80297C04(1.0f))
-        s0 = bs_bee_idle;
+        s0 = BS_BEE_IDLE;
     
     if(func_8028B094())
-        s0 = bs_bee_fall;
+        s0 = BS_BEE_FALL;
 
     if(button_pressed(button_A))
-        s0 = bs_bee_jump;
+        s0 = BS_BEE_JUMP;
 
     if(player_inWater())
-        s0 = bs_bee_fly;
+        s0 = BS_BEE_FLY;
 
     bs_setState(s0);
 }
@@ -207,24 +207,24 @@ void func_802A1438(void){
         func_80299628(0);
         if(func_802878C4(sp28)){
             func_80297970(0.0f);
-            sp2c = bs_bee_idle;
+            sp2c = BS_BEE_IDLE;
         }
         break;
     }
     if(func_8028B2E8()){
         if(func_8029B300() > 0)
-            sp2c = bs_bee_walk;
+            sp2c = BS_BEE_WALK;
         if(button_pressed(button_A)){
-            sp2c = bs_bee_jump;
+            sp2c = BS_BEE_JUMP;
         }
     }
     else{
         if(button_pressed(button_A)){
-            sp2c = bs_bee_fly;
+            sp2c = BS_BEE_FLY;
         }
     }
     if(player_inWater())
-        sp2c = bs_bee_fly;
+        sp2c = BS_BEE_FLY;
     bs_setState(sp2c);
 }
 
@@ -279,7 +279,7 @@ void func_802A170C(void){
             func_80299628(0);
             if(func_802878C4(sp28)){
                 func_80297970(0.0f);
-                sp2c = bs_bee_idle;
+                sp2c = BS_BEE_IDLE;
             }
             break;
     }
@@ -288,18 +288,18 @@ void func_802A170C(void){
             sp2c = func_80292738();
         }else{
             if(func_8029B300() > 0)
-                sp2c = bs_bee_walk;
+                sp2c = BS_BEE_WALK;
             if(button_pressed(button_A))
-                sp2c = bs_bee_jump;
+                sp2c = BS_BEE_JUMP;
             sp2c = func_8029CA94(sp2c);
         }
     }
     else{
         if(func_802933D0(0xf) && button_pressed(button_A))
-            sp2c = bs_bee_fly;
+            sp2c = BS_BEE_FLY;
     }//L802A189C
     if(player_inWater())
-        sp2c = bs_bee_fly;
+        sp2c = BS_BEE_FLY;
     bs_setState(sp2c);
 }
 
@@ -362,7 +362,7 @@ void func_802A1A50(void){
             break;
     }
     if(func_8028B2E8())
-        sp1C = bs_bee_idle;
+        sp1C = BS_BEE_IDLE;
     if(0.65 < func_80289F70() && player_inWater()){
         sp1C = 0x8C;
     }
@@ -502,7 +502,7 @@ void func_802A1FC8(void){
     func_80299628(0);
     func_8029C6D0();
     if(!func_80298850()){
-        sp1C = bs_bee_idle;
+        sp1C = BS_BEE_IDLE;
     }
     bs_setState(sp1C);
 }
@@ -539,7 +539,7 @@ void func_802A2098(void){
 void func_802A2130(void){
     s32 next  = 0;
     if(func_8029E1A8(0)){
-        next = bs_bee_idle;
+        next = BS_BEE_IDLE;
     }
     bs_setState(next);
 }

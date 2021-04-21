@@ -81,7 +81,7 @@ void func_802A0630(void){
             if(func_802878C4(mvmnt))
                 func_8028A010(0x1dc, 0.38f);
             if(func_80297AAC() < 0.0f)
-                next_state = 0x8c;
+                next_state = BS_BEE_FLY;
             break;
     }
     bs_setState(next_state);
@@ -264,7 +264,7 @@ void bsbeefly_update(void){
     }
     func_80297970(sp38);
     if(func_8028B2E8() && !player_inWater())
-        sp4C = bs_bee_idle;
+        sp4C = BS_BEE_IDLE;
     func_8028FFF0();
     bs_setState(sp4C);
 }

@@ -3,6 +3,8 @@
 
 enum button{
     BUTTON_START = 0x0,
+    BUTTON_Z = 0x1,
+
     button_R = 0x3,
     button_A = 0x8,
     button_B = 0x9
@@ -263,37 +265,168 @@ enum actor_e
 
 enum bs_e
 {
-    bs_btrot_jump = 0x8,
+    BS_IDLE = 0x1,
+    BS_WALK_SLOW = 0x2,
+    BS_WALK = 0x3,
+    BS_WALK_FAST = 0x4,
+    BS_JUMP = 0x5,
+    BS_PUNCH = 0x6,
+    BS_CROUCH = 0x7,
+    BS_BTROT_JUMP = 0x8,
+    BS_EGG_HEAD = 0x9,
+    BS_EGG_ASS = 0xa,
 
-    bs_btrot_enter = 0x14,
-    bs_btrot_idle = 0x15,
-    bs_btrot_walk = 0x16,
-    bs_btrot_exit = 0x17,
+    BS_SKID = 0xc,
+    //unknown 0xd,
+    BS_OW = 0xe,
+    BS_BUSTER = 0xf,
+    BS_BFLAP = 0x10,
+    BS_BPECK = 0x11,
+    BS_BFLIP = 0x12,
+    BS_BBARGE = 0x13, 
+    BS_BTROT_ENTER = 0x14,
+    BS_BTROT_IDLE = 0x15,
+    BS_BTROT_WALK = 0x16,
+    BS_BTROT_EXIT = 0x17,
+    BS_FLY_KNOCKBACK = 0x18,
 
-    bs_longleg_idle = 0x26,
-    bs_longleg_walk = 0x27,
-    bs_longleg_jump = 0x28,
-    bs_longleg_exit = 0x29,
+    BS_WONDERWING_ENTER = 0x1A,
+    BS_WONDERWING_IDLE = 0x1B,
+    BS_WONDERWING_WALK = 0x1C,
+    BS_WONDERWING_JUMP = 0x1D,
+    BS_WONDERWING_EXIT = 0x1E,
+    BS_CREEP = 0x1F,
+    BS_LANDING = 0x20,
+    BS_BSHOCK_CHARGE = 0x21,
+    BS_BSHOCK_JUMP = 0x22,
+    BS_FLY_ENTER = 0x23,
+    BS_FLY = 0x24,
+    BS_LONGLEG_ENTER = 0x25,
+    BS_LONGLEG_IDLE = 0x26,
+    BS_LONGLEG_WALK = 0x27,
+    BS_LONGLEG_JUMP = 0x28,
+    BS_LONGLEG_EXIT = 0x29,
+    BS_BOMB = 0x2A,
+    BS_DIVE_IDLE = 0x2B,
+    BS_DIVE_B = 0x2C,
+    BS_SWIM_IDLE = 0x2D,
+    BS_SWIM = 0x2E,
+    BS_FALL = 0x2F,
+    BS_DIVE_ENTER = 0x30,
+    BS_ROLL = 0x31,
+    BS_SLIDE = 0x32,
+    //unk33,
+    BS_JIG_NOTEDOOR = 0x34,
+    BS_ANT_IDLE = 0x35,
+    BS_ANT_WALK = 0x36,
+    BS_ANT_JUMP = 0x37,
+    BS_ANT_FALL = 0x38,
+    BS_DIVE_A = 0x39,
+    BS_CARRY_IDLE = 0x3A,
+    BS_CARRY_WALK = 0x3B,
+    //unk3C,
+    BS_FALL_TUMBLING = 0x3D,
+    BS_ANT_OW = 0x3E,
+    //unk3F
+    //BS_PUMPKIN_unk40,
+    BS_DIE = 0x41,
+    BS_DINGPOT = 0x42,
+    BS_ANT_DIE = 0x43,
+    BS_JIG_JIGGY = 0x44,
+    BS_BTROT_SLIDE = 0x45,
+    //unk46
+    //unk47
+    BS_PUMPKIN_IDLE = 0x48,
+    BS_PUMPKIN_WALK = 0x49,
+    BS_PUMPKIN_JUMP = 0x4A,
+    BS_PUMPKIN_FALL = 0x4B,
+    BS_LANDING_IN_WATER = 0x4c,
+    BS_PUMPKIN_OW = 0x4D,
+    BS_PUMPKIN_DIE = 0x4E,
+    BS_CLIMB_IDLE = 0x4f,
+    BS_CLIMB_MOVE = 0x50,
+    BS_CLIMB_EXIT = 0x51,
+    //unk52 //tumblar??? a.k.a bssurf
+    //unk53 //tumblar??? a.k.a bssurf
+    BS_SWIM_DIE = 0x54,
+    BS_LONGLEG_SLIDE = 0x55,
+    BS_RECOIL = 0x56,
+    BS_BOMB_END = 0x57,
+    //bs_bomb_unk58
+    //bs_bomb_unk59
+    BS_LOADZONE = 0x5A,
+    BS_CARRY_THROW = 0x5B,
     
+    BS_CROC_IDLE = 0x5E,
+    BS_CROC_WALK = 0x5F,
+    BS_CROC_JUMP = 0x60,
+    BS_CROC_FALL = 0x61,
+    //unk62
+    BS_CROC_OW   = 0x63,
+    BS_CROC_DIE = 0x64, 
 
-    bs_ant_idle = 0x35,
-    bs_ant_walk = 0x36,
-    bs_ant_jump = 0x37,
-    bs_ant_fall = 0x38,
 
-    bs_pumpkin_idle = 0x48,
+    BS_WALRUS_IDLE = 0x67,
+    BS_WALRUS_WALK = 0x68,
+    BS_WALRUS_JUMP = 0x69,
+    BS_WALRUS_FALL = 0x6A,
+    //unk0x6B //[107] = "Locked", -- Bee, Mumbo Transform Cutscene
+    BS_WALRUS_OW = 0x6C,
+    BS_WALRUC_DIE = 0x6D,
+    BS_CROC_BITE = 0x6E,
+    BS_CROC_EAT_BAD = 0x6F,
+    BS_CROC_EAT_GOOD = 0x70,
+    BS_BTROT_FALL = 0x71,
+    BS_SPLAT    = 0x72, //get up after fall damage
+    //0x73 locked_cutscene
+    //0x74 locked jiggypad, xform, bottles
+    //0x75 locked bottles
+    //0x76 locked flying
+    //0x77 locked swim
+    //0x78 locked dive
+    //0x79 locked holding jiggy in tt
+    //0x7A BS_Creep
+    BS_BTROT_OW = 0x7B,
+    //0x7C locked FP scarf sled
+    BS_WALRUS_SLED_IDLE = 0x7D,
+    BS_WALRUS_SLED_JUMP = 0x7E,
+    BS_DIVE_OW = 0x7F,
+    //BS_WALRUS_SLED_LOSE = 0x80,
+    //BS_WALRUS_SLED_LOCKED = 0x81,
+    //BS_WALRUS_SLED_LOSE_IN_AIR = 0x82,
 
-    bs_climb_idle = 0x4f,
-    bs_climb_move = 0x50,
+    BS_BEE_IDLE = 0x85,
+    BS_BEE_WALK = 0x86,
+    BS_BEE_JUMP = 0x87,
+    BS_BEE_FALL = 0x88,
+    BS_BEE_OW = 0x89,
+    BS_BEE_DIE = 0x8A,
 
-    bs_longleg_slip = 0x55,
-
-    bs_bee_idle = 0x85,
-    bs_bee_walk = 0x86,
-    bs_bee_jump = 0x87,
-    bs_bee_fall = 0x88,
-
-    bs_bee_fly = 0x8c
+    BS_BEE_FLY = 0x8c,
+    BS_CROC_LOCKED = 0x8D,
+    //0x8E, //[142] = "Locked", -- Jiggy podium, Bottles' text outside Mumbo's
+    BS_PUMPKIN_LOCKED = 0x8F,
+    BS_FLY_OW = 0x91,
+    BS_ANT_LOCKED = 0x92,
+    //0x93 BS_PUMPKIN_LOCKED_2?
+    BS_TRANSFORMING = 0x94,
+    BS_WALRUS_LOCKED = 0x95,
+    BS_SWIM_LOCKED = 0x96,
+    BS_DIVE_LOCKED = 0x97,
+    // [152] = "Locked", -- Loading zone, Mumbo transformation
+	// [153] = "Locked", -- Flying
+	// [154] = "Locked", -- Talon Trot
+	// [155] = "Locked", -- Wading Boots
+	// --[156] = "Locked??", -- In WalrusSled Set
+	// [157] = "Locked", -- Bee?
+	// [158] = "Locked", -- Climbing
+    BS_ANT_BOUNCE = 0x9F,
+    BS_PUMPKIN_BOUNCE = 0xA0,
+    BS_CROC_BOUNCE = 0xA1,
+    BS_WALRUS_BOUNCE = 0xA2,
+	BS_BEE_BOUCE = 0xA3
+	// --[164] = "???", -- Wonderwing
+	// [165] = "Locked", -- Wonderwing
 };
 
 enum map_flags_e

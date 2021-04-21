@@ -13,7 +13,6 @@
 void func_803204E4(s32, s32);
 void func_803391A4(Gfx**, Mtx**, f32*, f32*, f32, f32*, s32);
 f32 func_8024DE1C(f32, f32, f32 *, f32 *);
-void mlMtxScale(f32, f32, f32);
 void func_80251494(Mtx*);
 void func_80310D2C(void);
 

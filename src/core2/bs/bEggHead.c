@@ -10,7 +10,7 @@ void func_802875AC(Movement *, char*, s32);
 extern u8 D_8037D2F0;
 extern u8 D_8037D2F1;
 
-s32 func_8030E760(Movement *, f32, s32);
+s32 func_8030E760(s32, f32, s32);
 f32 func_802877D8(Movement *);
 s32 func_802878E8(Movement *, f32);
 s32 func_8028774C(Movement *, f32);
@@ -61,7 +61,7 @@ void func_802A2468(void) {
         }
     }
     if (func_802878C4(plyr_mvmt)) {
-        next_state = (button_held(1))? 7 : 1;
+        next_state = (button_held(BUTTON_Z))? BS_CROUCH : BS_IDLE;
 
     } else if (0.65 < (f64) func_802877D8(plyr_mvmt)) {
         next_state = func_802ADCD4(0);

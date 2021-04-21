@@ -14,10 +14,10 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/ant/func_8029E554.s")
 
 int bsant_inSet(s32 move_indx){
-    return (move_indx == bs_ant_idle)
-    || (move_indx == bs_ant_walk)
-    || (move_indx == bs_ant_jump)
-    || (move_indx == bs_ant_fall)
+    return (move_indx == BS_ANT_IDLE)
+    || (move_indx == BS_ANT_WALK)
+    || (move_indx == BS_ANT_JUMP)
+    || (move_indx == BS_ANT_FALL)
     || (move_indx == 0x3e)
     || (move_indx == 0x43)
     || (move_indx == 0x8e)

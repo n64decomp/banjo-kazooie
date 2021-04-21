@@ -78,12 +78,12 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802A9B78.s")
 
 int bsbtrot_inSet(s32 move_indx){
-    return (move_indx == bs_btrot_idle)
-    || (move_indx == bs_btrot_walk)
-    || (move_indx == bs_btrot_jump)
-    || (move_indx == bs_btrot_exit)
+    return (move_indx == BS_BTROT_IDLE)
+    || (move_indx == BS_BTROT_WALK)
+    || (move_indx == BS_BTROT_JUMP)
+    || (move_indx == BS_BTROT_EXIT)
     || (move_indx == 0x45)
-    || (move_indx == bs_btrot_enter)
+    || (move_indx == BS_BTROT_ENTER)
     || (move_indx == 0x79)
     || (move_indx == 0x7b)
     || (move_indx == 0x71)

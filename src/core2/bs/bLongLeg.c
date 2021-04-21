@@ -10,11 +10,11 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A524C.s")
 
 int bslongleg_inSet(s32 move_indx){
-    return (move_indx == bs_longleg_idle)
-    || (move_indx == bs_longleg_walk)
-    || (move_indx == bs_longleg_jump)
-    || (move_indx == bs_longleg_exit)
-    || (move_indx == bs_longleg_slip)
+    return (move_indx == BS_LONGLEG_IDLE)
+    || (move_indx == BS_LONGLEG_WALK)
+    || (move_indx == BS_LONGLEG_JUMP)
+    || (move_indx == BS_LONGLEG_EXIT)
+    || (move_indx == BS_LONGLEG_SLIDE)
     || (move_indx == 0x9b)
     || (move_indx == 0x62);
 }

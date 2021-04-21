@@ -7,13 +7,13 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/stand/func_802B488C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/stand/func_802B4998.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/stand/bsidle_init.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/stand/func_802B4A10.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/stand/func_802B4D20.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/stand/bsidle_update.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/stand/func_802B5248.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/stand/bsidle_end.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/stand/func_802B5278.s")
 

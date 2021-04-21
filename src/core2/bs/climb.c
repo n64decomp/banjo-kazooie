@@ -14,8 +14,8 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/climb/func_802AB788.s")
 
 int bsclimb_inSet(s32 move_indx){
-    return (move_indx == bs_climb_idle)
-    || (move_indx == bs_climb_move)
+    return (move_indx == BS_CLIMB_IDLE)
+    || (move_indx == BS_CLIMB_MOVE)
     || (move_indx == 0x9e);
 }
 

@@ -181,23 +181,23 @@ void func_802A2A1C(void){
             break;
         case 4:
             if(func_8028B424())
-                sp1c = 0x3d;
+                sp1c = BS_FALL_TUMBLING;
             break;
     }//L802A2C94
     func_8029E1A8(0);
     if(func_8029E384(0))
-        sp1c = 0x2f;
+        sp1c = BS_FALL;
     
     if(func_80294F3C())
-        sp1c = 0xf;
+        sp1c = BS_BUSTER;
 
     if(func_8028B2E8()){
         func_8029C5E8();
-        sp1c = 0x2;
+        sp1c = BS_WALK_SLOW;
     }
 
     if(player_inWater())
-        sp1c = 0x4c;
+        sp1c = BS_LANDING_IN_WATER;
 
     bs_setState(sp1c);
 }

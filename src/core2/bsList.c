@@ -5,8 +5,8 @@
 
 
 
-
-extern bsState D_8037C700[];
+//TODO replace with bsList Count
+extern bsState D_8037C700[165];
 
 void bsList_clearAll(void){
     s32 i = 0;

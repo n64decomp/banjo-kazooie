@@ -161,22 +161,21 @@ void bsbarge_update(void){
             break;
         case 4:
             if(!func_8028B2E8())
-                sp24 = 0x2F; //falling
-
+                sp24 = BS_FALL;
             if(func_802878E8(plyrMvmnt, 0.7f)){
                 D_8037D2A0 = 0.0f;
                 D_8037D2A6 = 0;
             }
             func_80297970(D_8037D2A0);
             if(func_802878E8(plyrMvmnt, 0.9193f))
-                sp24 = 0x20; //landing
+                sp24 = BS_LANDING;
             break;
     }
     if(D_8037D2A6)
         func_8029F60C();
 
     if(player_inWater())
-        sp24 = 0x4c; //landing in water
+        sp24 = BS_LANDING_IN_WATER;
     bs_setState(sp24);
 }
 

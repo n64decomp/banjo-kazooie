@@ -14,6 +14,11 @@ typedef struct bs_state_s{
     bsStateMethod interrupt_func;
 } bsState;
 
+typedef struct bs_map_s{
+    s32 uid;
+    bsState behavior;
+} bsMap;
+
 void bsList_clearAll(void);
 void bsList_setInitMethod(s32 i, bsStateMethod func);
 void bsList_setUpdateMethod(s32 i, bsStateMethod func);
