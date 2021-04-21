@@ -632,7 +632,7 @@ void func_802AE490(void);
 //0x00000098
 void bswalk_unk98_init(void);
 void bswalk_unk98_update(void);
-void func_802B7DE0(void);
+void bswalk_unk98_end(void);
 void func_802AE490(void);
 //0x00000099
 void func_802A50B0(void);
