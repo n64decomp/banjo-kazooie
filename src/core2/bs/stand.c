@@ -312,8 +312,14 @@ void bsstand_end(void){
     func_80292EA4();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/stand/func_802B5278.s")
+//bsStand_Land_init
+void bsstand_landing_init(void){
+    func_8029C7F4(1,1,1,2);
+    func_80297970(0.0f);
+}
 
+//bsStand_Land_update
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/stand/func_802B52B0.s")
 
+//bsStand_Land_interrupt
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/stand/func_802B5350.s")
