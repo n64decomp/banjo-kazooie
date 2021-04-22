@@ -7,12 +7,6 @@
     while (stat & (PI_STATUS_IO_BUSY | PI_STATUS_DMA_BUSY)) \
         stat = IO_READ(PI_STATUS_REG);
 
-#define __osDiskHandle __osDiskHandle
-
-#define __osLeoInterrupt func_80003140
-#define __osLeoAbnormalResume func_800037E4
-#define __osLeoResume func_800038CC
-
 static void __osLeoResume(void);
 static void __osLeoAbnormalResume(void);
 

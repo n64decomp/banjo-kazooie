@@ -2,8 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-Actor *func_802C4140(s32, f32, f32, f32);
-void func_802C3F04(Actor (*)(s32, f32, f32, f32), s32, u32, u32, u32);
+void func_802C4140(s32, s32, s32, s32);
 void timedFunc_set_0(f32, void (*)(void));
 
 

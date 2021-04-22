@@ -1,6 +1,6 @@
 options:
   basename: CC
-  find_file_boundaries: yes
+  find_file_boundaries: no
   compiler: "IDO"
   platform: n64
   asm_endlabels: yes

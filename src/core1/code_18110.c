@@ -1,17 +1,28 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "save.h"
 
-// s32 func_80255B30(s32 arg0, s32 arg1, u8 *arg2, s32 arg3) {
-//     s32 ret;
+#define ROUND_UP_DIVIDE(a, b) (((a) + (b) - 1) / (b))
+// The round up divide is not technically needed, but will come in handy for modding
+#define SAVEFILE_NUM_BLOCKS ROUND_UP_DIVIDE(sizeof(SaveFile),EEPROM_BLOCK_SIZE)
 
-//     func_8024F35C(3);
-//     ret = osEepromLongWrite(func_8024F344(), ((arg0 * 0xF) + arg1) & 0xFF, arg2, arg3 * 8);
-//     func_8024F35C(0);
-//     return ret;
-// }
+s32 write_file_blocks(s32 filenum, s32 blockOffset, u8 *buffer, s32 blockCount) {
+    s32 address = (filenum * SAVEFILE_NUM_BLOCKS) + blockOffset;
+    s32 ret;
 
+    func_8024F35C(3);
+    ret = osEepromLongWrite(func_8024F344(), address, buffer, blockCount * EEPROM_BLOCK_SIZE);
+    func_8024F35C(0);
+    return ret;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_18110/func_80255B30.s")
+s32 load_file_blocks(s32 filenum, s32 blockOffset, u8 *buffer, s32 blockCount) {
+    s32 address = (filenum * SAVEFILE_NUM_BLOCKS) + blockOffset;
+    s32 ret;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_18110/func_80255BAC.s")
+    func_8024F35C(3);
+    ret = osEepromLongRead(func_8024F344(), address, buffer, blockCount * EEPROM_BLOCK_SIZE);
+    func_8024F35C(0);
+    return ret;
+}

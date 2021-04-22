@@ -15,7 +15,6 @@ void func_802EFEC0(Actor*, f32, f32);
 void func_8030E878(u32,f32,u32,f32*, f32, f32);
 u32 func_8032886C(Actor*, f32);
 void func_803869A0(Actor*, f32, f32);
-void func_802C3F04(void (*)(s32,s32,s32,s32), s32, s32, s32, s32);
 void func_802C4218(s32, f32, f32, f32);
 Actor *func_802F0BD0(u32);
 void func_8030DBB4(s32, f32);
@@ -95,7 +94,7 @@ void func_80386D68(Actor *this){
 
     if(this->unk100 && func_803870E8(this->unk100)){
         func_802CA1CC(0x18);
-        func_802C3F04(func_802C4218, 0x1F, *(u32 *)(this->position), *(u32 *)(&this->position_y), *(u32 *)(&this->position_z));
+        func_802C3F04(func_802C4218, 0x1F, *(s32 *)(this->position), *(s32 *)(&this->position_y), *(s32 *)(&this->position_z));
     }
     marker_despawn(this->marker);
 }

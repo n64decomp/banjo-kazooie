@@ -6,7 +6,7 @@
 
 extern u32 D_80283390[]; //SnS_Packet
 
-extern SaveFile D_80283400;
+extern SaveSettings D_80283400;
 
 extern s32 D_80283420; //min_value
 extern s32 D_80283424; //max_value

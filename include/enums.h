@@ -214,6 +214,8 @@ enum jiggy_e
     jiggy_mm_orange_pads    = 0x08,
     JIGGY_MM_CHIMPY     = 0x9,
 
+    JIGGY_CC_MUTIE_SNIPPETS = 0x17,
+
     jiggy_bgs_elevated_walkway = 0x20,
     jiggy_bgs_pinkegg   = 0x21,
 

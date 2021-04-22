@@ -267,7 +267,12 @@ piAccessBuf = 0x80285CE0;
 __osPiAccessQueue = 0x80285CE8;
 siAccessBuf = 0x80285D40;
 __osSiAccessQueue = 0x80285D48;
-
+__osSpSetStatus = 0x8026C420;
+__osSpDeviceBusy = 0x8026C500;
+osSpTaskLoad = 0x8026569C;
+osSpTaskStartGo = 0x8026582C;
+write_file_blocks = 0x80255B30;
+load_file_blocks = 0x80255BAC;
 
 
 D_8027BEEC = 0x8027BEEC;

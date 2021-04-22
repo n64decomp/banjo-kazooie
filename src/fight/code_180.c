@@ -90,11 +90,11 @@ void func_80386698(f32 arg0) {
     }
 }
 
-void func_802EFE24(s32, f32, f32, f32, f32, f32, f32);
+void func_802EFE24(Actor *, f32, f32, f32, f32, f32, f32);
 
 void func_803866E4(s32 arg0, s32 arg1, s32 arg2) {
-    s32 temp_s0;
-    s32 temp_v0;
+    Actor *temp_s0;
+    Actor *temp_v0;
 
     temp_v0 = func_802F0BD0(arg2);
     temp_s0 = temp_v0;
@@ -108,13 +108,13 @@ void func_803866E4(s32 arg0, s32 arg1, s32 arg2) {
 }
 
 void func_802EFD00(s32, s32*);
-void func_802EFE5C(s32, f32, f32);
-void func_802EFEC0(s32, f32, f32);
-void func_802EFA5C(s32, f32, f32);
+void func_802EFE5C(Actor *, f32, f32);
+void func_802EFEC0(Actor *, f32, f32);
+void func_802EFA5C(Actor *, f32, f32);
 
-void func_8038679C(f32 *arg0, s32 arg1, s32 *arg2) {
-    s32 temp_s0;
-    s32 temp_v0;
+void func_8038679C(f32 *arg0, s32 arg1, f32 *arg2) {
+    Actor *temp_s0;
+    Actor *temp_v0;
 
     temp_v0 = func_802F0BD0(arg1);
     temp_s0 = temp_v0;

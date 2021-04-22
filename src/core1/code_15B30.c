@@ -49,7 +49,10 @@ void func_80253640(Gfx ** gdl, void *arg1){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_15B30/func_80253DC0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_15B30/func_80253DE0.s")
+void func_80253DE0(Gfx **gdl) {
+    gDPFullSync((*gdl)++);
+    gSPEndDisplayList((*gdl)++);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_15B30/func_80253E14.s")
 

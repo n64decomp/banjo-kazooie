@@ -175,4 +175,30 @@ void func_80301754(s32, struct8s *);
 
 void marker_despawn(ActorMarker *marker);
 
+Actor *func_8032818C(s32, Actor**);
+
+
+void func_80324D2C(f32, s32);
+void func_802EF950(Actor *, s32);
+void func_802EFB54(Actor *, f32*);
+Actor *func_802F0BD0(u32);
+void func_802BB3DC(s32, f32, f32);
+void func_802C3F04(void (* arg0)(void), s32, s32, s32, s32);
+void func_802C4140();
+void func_8030DA44(u8);
+void func_802EFB1C(Actor *, f32, f32, f32, f32, f32, f32);
+void func_802EF9AC(Actor *, f32, f32, f32, f32, f32, f32);
+void func_802EFED4(Actor *, f32, f32, f32, f32, f32, f32);
+void func_802EFE24(Actor *, f32, f32, f32, f32, f32, f32);
+void func_802EFB70(Actor *, f32, f32);
+void func_802EFB84(Actor *, f32, f32);
+void func_802EF9F8(Actor *, f32);
+void func_802EFE5C(Actor *, f32, f32);
+void func_802EFEC0(Actor *, f32, f32);
+void func_802EFA5C(Actor *, f32, f32);
+void func_802EFA9C(Actor *, f32, f32);
+void func_802EFA18(Actor *, s32);
+
+OSMesgQueue *func_8024F344(void);
+
 #endif

@@ -173,7 +173,7 @@ endef
 ### Flags ###
 
 # Build tool flags
-CFLAGS         := -c -Wab,-r4300_mul -non_shared -G 0 -Xfullwarn -Xcpluscomm  -signed $(OPT_FLAGS) $(MIPSBIT) -D_FINALROM
+CFLAGS         := -c -Wab,-r4300_mul -non_shared -G 0 -Xfullwarn -Xcpluscomm  -signed $(OPT_FLAGS) $(MIPSBIT) -D_FINALROM -DF3DEX_GBI
 CFLAGS         += -woff 649,838,807
 CPPFLAGS       := -D_FINALROM
 INCLUDE_CFLAGS := -I . -I include -I include/2.0L -I include/2.0L/PR -I include/libc -I src/libultra/os -I src/libultra/audio
@@ -189,6 +189,16 @@ BINOFLAGS      := -I binary -O elf32-big
 
 # Default target, all
 all: verify
+
+# Shows progress for all overlays, boot, and total
+progress: $(OVERLAY_PROG_CSVS) $(MAIN_PROG_CSV) $(TOTAL_PROG_CSV)
+	@$(foreach overlay,$(OVERLAYS),$(PROGRESS_READ) progress/progress.$(overlay).csv $(VERSION) $(overlay) &&) \
+	$(PROGRESS_READ) $(MAIN_PROG_CSV) $(VERSION) bk_boot
+	@$(PROGRESS_READ) $(TOTAL_PROG_CSV) $(VERSION) total
+
+# Shows progress for a single overlay (e.g. progress-SM)
+$(addprefix progress-,$(OVERLAYS)) : progress-% : progress/progress.%.csv
+	@$(PROGRESS_READ) $< $(VERSION) $*
 
 # Verify that the roms match, also sets up diff_settings
 verify: $(Z64)
@@ -350,7 +360,7 @@ $(BUILD_DIR)/%.rzip.bin : $(BUILD_DIR)/%.code $(BUILD_DIR)/%.data $(BK_DEFLATE)
 # .o -> .elf (game)
 $(ELF): $(MAIN_ALL_OBJS) $(LD_SCRIPT) $(OVERLAY_RZIP_OBJS) $(addprefix $(BUILD_DIR)/, $(addsuffix .full, $(OVERLAYS)))
 	$(call print1,Linking elf:,$@)
-	$(LD) $(LDFLAGS) -T undefined_syms_auto.us.v10.txt -o $@
+	@$(LD) $(LDFLAGS) -T undefined_syms_auto.us.v10.txt -o $@
 
 # .elf -> .z64
 $(Z64) : $(ELF) $(OVERLAY_PROG_SVGS) $(MAIN_PROG_SVG) $(TOTAL_PROG_SVG)
@@ -434,7 +444,7 @@ build/us.v10/src/done/epirawdma.c.o: OPT_FLAGS := -O1
 MAKEFLAGS += -r
 
 # Phony targets
-.PHONY: all clean verify $(OVERLAYS)
+.PHONY: all clean verify $(OVERLAYS) progress $(addprefix progress-,$(OVERLAYS))
 
 # Set up pipefail
 SHELL = /bin/bash -e -o pipefail

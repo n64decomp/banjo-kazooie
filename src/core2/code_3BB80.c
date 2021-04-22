@@ -424,7 +424,7 @@ void func_802C398C(void){
 void func_802C39D4(void){
     func_803268B4();
     if(!levelSpecificFlags_validateCRC2()){
-        func_80255B30(0, 0, 0x80749530, 0x40);
+        write_file_blocks(0, 0, 0x80749530, EEPROM_MAXBLOCKS);
     }
 }
 
