@@ -8,7 +8,7 @@
 	path = tools/asm-processor
 	url = https://github.com/simonlindholm/asm-processor.git
 [submodule "tools/n64splat"]
-	path = tools/splat
+	path = tools/n64splat
 	url = https://github.com/ethteck/splat
 [submodule "tools/ido-static-recomp"]
 	path = tools/ido-static-recomp
