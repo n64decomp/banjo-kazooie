@@ -2,12 +2,10 @@
 #include "functions.h"
 #include "variables.h"
 
-void func_802876C0(AnimCtrl *, f32);
-void func_8028774C(AnimCtrl *, f32);
+void func_802876C0(AnimCtrl *this, f32 arg1);
 f32 func_80289690(s32);
 void func_80289EA8(f32, f32);
 void func_80289EC8(f32, f32, s32, s32);
-
 f32 func_80297AB8(void);
 void func_802927E0(f32, f32);
 void func_80297FB0(f32, f32);
@@ -23,7 +21,9 @@ f32 func_8029B30C(void);
 f32 func_80257C48(f32, f32, f32);
 f32 func_80297A64(void);
 void func_80299594(s32, f32);
+void func_8028774C(s32, f32);
 
+// .data
 extern f32 D_80364D70;//creep_min
 extern f32 D_80364D74;//creep_max/slow_walk_min
 extern f32 D_80364D78;//slow_walk_max/walk_min
