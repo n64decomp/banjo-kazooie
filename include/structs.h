@@ -309,7 +309,13 @@ typedef struct struct_1C_s{
     s32 unk4;
 }struct1Cs;
 
-
+typedef struct struct_1D_s{
+    struct struct_1F_s **unk0;
+    s16 unk4;
+    u8 unk6;
+    u8 pad7[1];
+    u8 pad8[0xA0];
+}struct1Ds;
 
 typedef struct struct_1E_s{
     void (* unk0)(void * arg0, s32 arg1, s32 arg2, s32 arg3);
@@ -317,24 +323,19 @@ typedef struct struct_1E_s{
     void (* unk8)(void * arg0);
 }struct1Es;
 
+typedef struct struct_1F_s{
+    s16 count;
+    struct struct_20_s unk2[1];
+}struct1Fs;
+
 typedef struct struct_20_s{
     s16 uid;
     s16 count;
     s16 data[];
 }struct20s;
 
-typedef struct struct_1F_s{
-    s16 count;
-    struct20s unk2[];
-}struct1Fs;
-
-typedef struct struct_1D_s{
-    struct1Fs **unk0;
-    s16 unk4;
-    u8 unk6;
-    u8 pad7[1];
-    u8 pad8[0xA0];
-}struct1Ds;
-
+typedef struct struct_21_s{
+    u8 pad0[8];
+}struct21s;
 
 #endif

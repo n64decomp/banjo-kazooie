@@ -4,6 +4,8 @@
 
 #include "assets.h"
 
+extern u8 D_5E90;
+
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B3A80/func_8033AA10.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B3A80/func_8033AA50.s")
@@ -211,23 +213,23 @@ void func_8033BB00(void *arg0, s32 arg1){
     D_80383CD0[i] = realloc(arg0, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B3A80/func_8033BB84.s")
-// void func_8033BB84(void){
+//#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B3A80/func_8033BB84.s")
+void func_8033BB84(void){
     
-//     D_80370A1C = 0;
-//     func_8033B180();
-//     D_80383CD0 = malloc(600);
-//     D_80383CD4 = malloc(600);
-//     D_80383CD8 = malloc(150);
-//     D_80383CDC = malloc(150*sizeof(s16));
-//     D_80370A14 = 0;
-//     D_80383CC0 = malloc(sizeof(AssetROMHead));
-//     D_80383CC8 = 0x5E90; //how to get upper nibble to load?
-//     func_802405F0(D_80383CC0, D_80383CC8, sizeof(AssetROMHead));
-//     D_80383CC4 = malloc(D_80383CC0->count*sizeof(AssetFileMeta));
-//     func_802405F0(D_80383CC4, D_80383CC8 + sizeof(AssetROMHead),D_80383CC0->count*sizeof(AssetFileMeta));
-//     D_80383CC8 = D_80383CC8 + sizeof(AssetROMHead) + D_80383CC0->count*sizeof(AssetFileMeta);
-// }
+    D_80370A1C = 0;
+    func_8033B180();
+    D_80383CD0 = malloc(600);
+    D_80383CD4 = malloc(600);
+    D_80383CD8 = malloc(150);
+    D_80383CDC = malloc(150*sizeof(s16));
+    D_80370A14 = 0;
+    D_80383CC0 = malloc(sizeof(AssetROMHead));
+    D_80383CC8 = &D_5E90; //how to get upper nibble to load?
+    func_802405F0(D_80383CC0, D_80383CC8, sizeof(AssetROMHead));
+    D_80383CC4 = malloc(D_80383CC0->count*sizeof(AssetFileMeta));
+    func_802405F0(D_80383CC4, D_80383CC8 + sizeof(AssetROMHead),D_80383CC0->count*sizeof(AssetFileMeta));
+    D_80383CC8 = D_80383CC8 + sizeof(AssetROMHead) + D_80383CC0->count*sizeof(AssetFileMeta);
+}
 
 s32 func_8033BC94(s32 arg0){ //asset_size
     return D_80383CC4[arg0+1].offset - D_80383CC4[arg0].offset;
