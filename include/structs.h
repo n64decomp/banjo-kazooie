@@ -323,4 +323,16 @@ typedef struct struct_1E_s{
     void (* unk8)(void * arg0);
 }struct1Es;
 
+typedef struct struct_20_s{
+    s16 uid;
+    s16 count;
+    s16 data[];
+}struct20s;
+
+typedef struct struct_1F_s{
+    s16 unk0;//uid
+    struct20s unk2[];
+}struct1Fs;
+
+
 #endif
