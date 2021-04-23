@@ -11,7 +11,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B8070/func_8033F220.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B8070/func_8033F2AC.s")
+struct1Fs *func_8033F2AC(struct1Fs **arg0){
+    return *arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B8070/func_8033F2B4.s")
 
