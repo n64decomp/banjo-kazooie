@@ -4,8 +4,6 @@
 
 #include "assets.h"
 
-extern u8 D_5E90;
-
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B3A80/func_8033AA10.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B3A80/func_8033AA50.s")
@@ -32,19 +30,25 @@ extern u8 D_5E90;
 
 extern u8 D_80370A1C;
 extern u8 D_80370A14; //assetCache_size;
-extern s16 *D_80383CDC; //assetCache_indexs
 extern u8 D_80370A18;
-extern u8* D_80383CD8; //assetCache_dependencies;
-extern void** D_80383CD0; //assetCache_ptrs;
-extern AssetFileMeta *D_80383CC4;
-extern s32 D_80383CCC; //asset_data_rom_offset
 extern s32 D_80370A10;
-extern s32 *D_80383CD4;
+
 extern s32 D_80383CB0;
 extern AssetROMHead *D_80383CC0;
+extern AssetFileMeta *D_80383CC4;
 extern u32 D_80383CC8;
+extern s32 D_80383CCC; //asset_data_rom_offset
+extern void** D_80383CD0; //assetCache_ptrs;
+extern s32 *D_80383CD4;
+extern u8* D_80383CD8; //assetCache_dependencies;
+extern s16 *D_80383CDC; //assetCache_indexs
+extern vector(struct21s) *D_80383CE0;
+extern vector(struct21s) *D_80383CE4;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B3A80/func_8033B180.s")
+void func_8033B180(void){
+    D_80383CE0 = vla_new(sizeof(struct21s), 0x10);
+    D_80383CE4 = vla_new(sizeof(struct21s), 0x10);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B3A80/func_8033B1BC.s")
 
@@ -213,9 +217,8 @@ void func_8033BB00(void *arg0, s32 arg1){
     D_80383CD0[i] = realloc(arg0, arg1);
 }
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B3A80/func_8033BB84.s")
+//assetTable_init
 void func_8033BB84(void){
-    
     D_80370A1C = 0;
     func_8033B180();
     D_80383CD0 = malloc(600);
@@ -224,11 +227,11 @@ void func_8033BB84(void){
     D_80383CDC = malloc(150*sizeof(s16));
     D_80370A14 = 0;
     D_80383CC0 = malloc(sizeof(AssetROMHead));
-    D_80383CC8 = &D_5E90; //how to get upper nibble to load?
+    D_80383CC8 = &D_5E90;
     func_802405F0(D_80383CC0, D_80383CC8, sizeof(AssetROMHead));
     D_80383CC4 = malloc(D_80383CC0->count*sizeof(AssetFileMeta));
     func_802405F0(D_80383CC4, D_80383CC8 + sizeof(AssetROMHead),D_80383CC0->count*sizeof(AssetFileMeta));
-    D_80383CC8 = D_80383CC8 + sizeof(AssetROMHead) + D_80383CC0->count*sizeof(AssetFileMeta);
+    D_80383CCC = D_80383CC8 + sizeof(AssetROMHead) + D_80383CC0->count*sizeof(AssetFileMeta);
 }
 
 s32 func_8033BC94(s32 arg0){ //asset_size

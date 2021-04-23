@@ -1,4 +1,4 @@
-D_5E90 = 0x5E90; //assets offset
+D_5E90 = 0x5E90;
 D_EA3EB0 = 0xEA3EB0;
 D_EADE60 = 0xEADE60;
 D_1048560 = 0x1048560;
