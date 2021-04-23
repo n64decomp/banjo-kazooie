@@ -299,7 +299,7 @@ void func_80389080(Actor *this){
                 }
             }
             else{
-                if(func_80256064(this->position, &sp44) < 300.0f && player_getTransformation() == banjo && !jiggyscore_80320F7C(jiggy_bgs_tiptup)){
+                if(func_80256064(this->position, &sp44) < 300.0f && player_getTransformation() == TRANSFORM_BANJO && !jiggyscore_80320F7C(jiggy_bgs_tiptup)){
                     func_803888E4(this, 2);
                 }
             }

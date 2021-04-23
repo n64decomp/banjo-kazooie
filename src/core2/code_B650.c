@@ -13,7 +13,10 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B650/func_80292658.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B650/func_802926C0.s")
+s32 func_802926C0(void){
+    func_802925E0(2);
+    return func_8029BD90();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B650/func_802926E8.s")
 

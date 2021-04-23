@@ -13,13 +13,13 @@ enum button{
 enum transformation_E
 {
     unknown,
-    banjo,
-    termite,
-    pumpkin,
-    walrus,
-    croc,
-    bee,
-    wishywashy
+    TRANSFROM_BANJO,
+    TRANSFORM_TERMITE,
+    TRANSFORM_PUMPKIN,
+    TRANSFORM_WALRUS,
+    TRANSFORM_CROC,
+    TRANSFORM_BEE,
+    TRANSFORM_WISHWASHY
 };
 
 enum ABILITY_E

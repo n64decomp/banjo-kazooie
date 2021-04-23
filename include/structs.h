@@ -309,4 +309,18 @@ typedef struct struct_1C_s{
     s32 unk4;
 }struct1Cs;
 
+typedef struct struct_1D_s{
+    s32 unk0;
+    s16 unk4;
+    u8 unk6;
+    u8 pad7[1];
+    u8 pad8[0xA0];
+}struct1Ds;
+
+typedef struct struct_1E_s{
+    void (* unk0)(void * arg0, s32 arg1, s32 arg2, s32 arg3);
+    void (* unk4)(void * arg0, s32 arg1, s32 arg2);
+    void (* unk8)(void * arg0);
+}struct1Es;
+
 #endif

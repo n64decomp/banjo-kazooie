@@ -8,3 +8,6 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_62FD0/func_802E9F9C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_62FD0/func_802E9FEC.s")
+// int func_802E9FEC(void * arg0, s32 arg1, s32 arg2){
+
+// }

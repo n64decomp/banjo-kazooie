@@ -129,7 +129,18 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029C748.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029C780.s")
+s32 func_8029C780(void){
+    if(button_held(BUTTON_Z) && func_8028AB08())
+        return BS_BFLIP;
+
+    if(func_802933C0(2))
+        return BS_JUMP;
+
+    if(func_802933C0(1))
+        return BS_FLY_ENTER;
+
+    return BS_JUMP;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029C7F4.s")
 
@@ -139,9 +150,54 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029C984.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029C9C0.s")
+s32 func_8029C9C0(s32 arg0){
+    if(func_802933C0(0xF))
+        return arg0;
+    
+    if(button_pressed(BUTTON_A))
+        arg0 = func_8029C780();
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029CA94.s")
+    if(button_pressed(BUTTON_B) && func_8028A9E0())
+        arg0 = BS_PUNCH;
+
+    if(button_held(BUTTON_Z) && func_80294F00())
+        arg0 = BS_BBARGE;
+
+    if(func_80294F78())
+        arg0 = func_802926C0();
+    
+    if(func_8028B338())
+        arg0  = BS_SLIDE;
+
+    return arg0;
+}
+
+s32 func_8029CA94(s32 arg0){
+    if(func_802933C0(0x19))
+        arg0 = func_80292738();
+    
+    if(func_802933C0(0x1A))
+        arg0 = (player_getTransformation() == TRANSFORM_BEE) ? 0x46 : BS_JIG_NOTEDOOR;
+
+    if(func_802933C0(0xE))
+        arg0 = BS_LONGLEG_ENTER;
+
+    if(func_802933C0(0x10))
+        arg0 = BS_BTROT_ENTER;
+
+    if(func_802933C0(0x6))
+        arg0 = 0x53;
+
+    if(func_802933C0(0x7))
+        arg0 = BS_JIG_JIGGY;
+
+    if(func_802933C0(0x14))
+        arg0 = (player_getTransformation() == TRANSFORM_WALRUS) ? 0x80 : 0x53;
+    
+    func_802933FC(0xF);
+
+    return arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029CB84.s")
 

@@ -5,6 +5,7 @@
 void func_8025901C(f32, f32 *, f32 *, f32);
 void func_80298CE0(f32);
 
+extern f32 D_8037C690;
 extern f32 D_8037C694;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_11DE0/func_80298D70.s")
@@ -25,7 +26,9 @@ extern f32 D_8037C694;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_11DE0/func_80299210.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_11DE0/player_getYaw.s")
+f32 player_getYaw(void){
+    return D_8037C690;
+}
 
 f32 player_getMovingYaw(void){
     return D_8037C694;
