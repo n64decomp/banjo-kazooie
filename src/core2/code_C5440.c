@@ -13,7 +13,7 @@ extern struct {
 void func_8034C9B0(int arg0);
 
 //.code
-func_8034C3D0(s32 arg0, s32 arg1, s32 arg2, s32 arg3){
+func_8034C3D0(struct1Fs **arg0, s32 arg1, s32 arg2, s32 arg3){
     struct1Ds * v0 = vla_pushBackNew(&D_80386140.unk4);
     v0->unk6 = arg2;
     v0->unk0 = arg0;
@@ -76,7 +76,44 @@ void * func_8034C630(s32 arg0){
     return NULL;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C5440/func_8034C6DC.s")
+void func_8034C6DC(struct1Fs **arg0){
+    struct1Fs * sp2C = func_8033F2AC(arg0);
+    s32 i;
+    struct20s * s1 = sp2C->unk2;
+    for(i = 0; i < sp2C->count; i++){
+        if(s1->uid >= 0x65 && s1->uid < 0xC8){
+            func_8034C3D0(arg0, s1->uid, 1, s1->uid - 0x64);
+        }
+        else if(s1->uid >= 0xc8 && s1->uid < 0x12c){
+            func_8034C3D0(arg0, s1->uid, 0, s1->uid - 0xc8);
+        }
+        else if(s1->uid >= 0x12c && s1->uid < 0x190){
+            func_8034C3D0(arg0, s1->uid, 3, s1->uid - 0x12c);
+        }
+        else if(s1->uid >= 0x190 && s1->uid < 0x1F4){
+            func_8034C3D0(arg0, s1->uid, 2, s1->uid - 0x190);
+        }
+        else if(s1->uid >= 0x1F4 && s1->uid < 0x258){
+            func_8034C3D0(arg0, s1->uid, 4, s1->uid - 0x1F4);
+        }
+        else if(s1->uid >= 0x258 && s1->uid < 0x2bc){
+            func_8034C3D0(arg0, s1->uid, 2, s1->uid - 0x258);
+        }
+        else if(s1->uid >= 0x2bc && s1->uid < 0x320){
+            func_8034C3D0(arg0, s1->uid, 5, s1->uid - 0x2bc);
+        }
+        else if(s1->uid >= 0x320 && s1->uid < 0x384){
+            func_8034C3D0(arg0, s1->uid, 6, s1->uid - 0x320);
+        }
+        else if(s1->uid >= 0x384 && s1->uid < 0x3e8){
+            func_8034C3D0(arg0, s1->uid, 8, s1->uid - 0x384);
+        }
+        else if(s1->uid >= 0x3e8 && s1->uid < 0x44c){
+            func_8034C3D0(arg0, s1->uid, 7, s1->uid - 0x3e8);
+        }
+        s1 = &s1->data[s1->count];
+    }
+}
 
 void * func_8034C8D8(void){
     struct1Ds *iPtr;
