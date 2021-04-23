@@ -330,7 +330,7 @@ typedef struct struct_20_s{
 }struct20s;
 
 typedef struct struct_1F_s{
-    s16 unk0;//uid
+    s16 count;
     struct20s unk2[];
 }struct1Fs;
 

@@ -3,13 +3,24 @@
 #include "variables.h"
 
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_62FD0/func_802E9F60.s")
+s32 func_802E9F60(struct1Fs *arg0){
+    s32 i;
+    s32 v1 = 0;
+    struct20s *v0 = arg0->unk2;
+
+    for(i = 0; i < arg0->count; ++i){
+        v1 += v0->count;
+        v0 = &v0->data[v0->count];
+        
+    }
+    return v1;
+}
 
 struct20s * func_802E9F9C(struct1Fs *arg0, s32 arg1){
     s32 i;
     struct20s *v1 = arg0->unk2;
 
-    for(i=0; i < arg0->unk0; i++){
+    for(i=0; i < arg0->count; i++){
         if(v1->uid == arg1){
             return v1;
         }
