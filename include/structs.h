@@ -343,7 +343,8 @@ typedef struct struct_22_s{
     u8 pad0[0x18];
     f32 unk18;
     f32 unk1C;
-    u8 pad20[0x14];
+    u8 pad20[0x8];
+    s32 unk28[3];
     u8 unk34;
     u8 pad35[0x3];
 } struct22s;//size 0x38

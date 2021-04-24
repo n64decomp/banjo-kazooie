@@ -25,7 +25,12 @@ void func_80333784(s32 index, f32 *arg1){
     arg1[1] = v0->unk1C;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AC520/func_803337C8.s")
+void func_803337C8(s32 index, s32 *arg1){
+    struct22s *v0 = vla_at(D_80383570.unk0, index-1);
+    arg1[0] = v0->unk28[0];
+    arg1[1] = v0->unk28[1];
+    arg1[2] = v0->unk28[2];
+}
 
 s32 func_80333818(void){
     return vla_size(D_80383570.unk0);
