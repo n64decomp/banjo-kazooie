@@ -42,15 +42,42 @@ extern void** D_80383CD0; //assetCache_ptrs;
 extern s32 *D_80383CD4;
 extern u8* D_80383CD8; //assetCache_dependencies;
 extern s16 *D_80383CDC; //assetCache_indexs
-extern vector(struct21s) *D_80383CE0;
-extern vector(struct21s) *D_80383CE4;
+
+struct {
+    vector(struct21s) *unk0;
+    vector(struct21s) *unk4;
+}D_80383CE0;
+s32 func_8033B3D8(void * arg0);
 
 void func_8033B180(void){
-    D_80383CE0 = vla_new(sizeof(struct21s), 0x10);
-    D_80383CE4 = vla_new(sizeof(struct21s), 0x10);
+    D_80383CE0.unk0 = vla_new(sizeof(struct21s), 0x10);
+    D_80383CE0.unk4 = vla_new(sizeof(struct21s), 0x10);
 }
 
+
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B3A80/func_8033B1BC.s")
+/*void func_8033B1BC(void){
+    struct21s *tmp_v0;
+    struct21s *tmp_a0;
+    struct21s *iPtr;
+    struct21s *endPtr;
+    int i;
+
+    tmp_a0 = D_80383CE0.unk0;
+    tmp_v0 = D_80383CE0.unk4;
+    D_80383CE0.unk0 = tmp_v0;
+    D_80383CE0.unk4 = tmp_a0;
+    
+    endPtr = vla_getEnd(D_80383CE0.unk0);
+
+    for(iPtr = vla_getBegin(D_80383CE0.unk0); iPtr < endPtr; iPtr++){
+        for(i = 0; i < iPtr->unk0; i++)
+            func_8033B3D8(iPtr->unk1);
+    }
+    
+
+    vla_clear(D_80383CE0.unk0);
+}//*/
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B3A80/func_8033B268.s")
 
@@ -141,6 +168,7 @@ void func_8033B788(void ){
     if(((u32)(s) & 0xF))\
         (s) = (s) - ((u32)(s) & 0xF) +  0x10;\
 }
+
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B3A80/assetcache_get.s")
 /*void *assetcache_get(s32 arg0) {
     s32 comp_size;//sp_44
@@ -170,7 +198,8 @@ void func_8033B788(void ){
 
     if(D_80383CC4[arg0].compFlag & 0x0001){//compressed
         func_8033BAB0(arg0, 0, 0x10, &D_80383CB0);
-        uncomp_size = D_80370A10 = func_8023E080(&D_80383CB0);
+        D_80370A10 = func_8023E080(&D_80383CB0);
+        uncomp_size = D_80370A10;
         ALIGN10(uncomp_size);
         if (func_8025498C(comp_size + uncomp_size) && !sp28) {
             sp33 = 1;

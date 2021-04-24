@@ -335,7 +335,8 @@ typedef struct struct_1F_s{
 }struct1Fs;
 
 typedef struct struct_21_s{
-    u8 pad0[8];
+    s32 unk0;
+    void * unk1;
 }struct21s;
 
 #endif

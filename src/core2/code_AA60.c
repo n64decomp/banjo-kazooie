@@ -2,7 +2,16 @@
 #include "functions.h"
 #include "variables.h"
 
+void func_80254008(void);
+void func_8033B3D8(void *); //assetcache_free
 
+extern void *D_8037C0E0;
+extern s16 D_8037C0E4;
+
+//public
+void playerModel_set(s32 asset_id);
+
+//.data
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AA60/func_802919F0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AA60/func_80291A60.s")
@@ -13,7 +22,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AA60/func_80291AF0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AA60/func_80291D04.s")
+void func_80291D04(void){
+    playerModel_set(func_802985F0());
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AA60/func_80291D2C.s")
 
@@ -27,7 +38,18 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AA60/func_80291FB8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AA60/func_80291FC4.s")
+void playerModel_set(s32 asset_id){
+    if(asset_id != D_8037C0E4){
+        if(D_8037C0E0){
+            func_80254008();
+            func_8033B3D8(D_8037C0E0);
+            D_8037C0E0 = NULL;
+        }
+        D_8037C0E4 = asset_id;
+        if(D_8037C0E4)
+            D_8037C0E0 = assetcache_get(D_8037C0E4);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AA60/func_80292048.s")
 
