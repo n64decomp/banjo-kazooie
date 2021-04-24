@@ -2,6 +2,12 @@
 #include "functions.h"
 #include "variables.h"
 
+extern struct {
+    vector(struct22s) *unk0;
+    u8 pad4[0x40];
+    s32 unk44;
+    void *unk48;
+} D_80383570;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AC520/func_803334B0.s")
 
@@ -13,24 +19,24 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AC520/func_80333734.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AC520/func_80333784.s")
+void func_80333784(s32 index, f32 *arg1){
+    struct22s *v0 = vla_at(D_80383570.unk0, index-1);
+    arg1[0] = v0->unk18;
+    arg1[1] = v0->unk1C;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AC520/func_803337C8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AC520/func_80333818.s")
+s32 func_80333818(void){
+    return vla_size(D_80383570.unk0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AC520/func_8033383C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AC520/func_80333918.s")
 
-extern struct {
-    vector(struct22s) *unk0;
-    u8 pad4[0x40];
-    s32 unk44;
-    void *unk48;
-} D_80383570;
 
-extern u8 D_803835B4;
+
 
 void func_8033393C(void){
     D_80383570.unk0 = vla_new(sizeof(struct22s), 0x10);
