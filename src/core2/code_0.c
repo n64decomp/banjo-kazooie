@@ -246,15 +246,12 @@ void func_80287684(AnimCtrl *this, s32 arg1){
     this->unk22 = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_0/animctrl_setDuration.s")
-////NONMATCHING A0000238 reading to same reg
-// void animctrl_setDuration(AnimCtrl *this, f32 arg1){
-//     if(D_A0000238 - 0x10000003){
-//         arg1 += 3.0f;
-//     }
-//     this->animation_timer = arg1;
-// }
-
+void animctrl_setDuration(AnimCtrl *this, f32 arg1){
+    if(IO_READ(0x238) - 0x10000003){
+        arg1 += 3.0f;
+    }
+    this->animation_timer = arg1;
+}
 
 void func_802876C0(AnimCtrl *this, f32 arg1){
     this->transition_timer = arg1;
