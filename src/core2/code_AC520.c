@@ -23,9 +23,24 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AC520/func_80333918.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AC520/func_8033393C.s")
+extern struct {
+    vector(struct22s) *unk0;
+    u8 pad4[0x40];
+    s32 unk44;
+    void *unk48;
+} D_80383570;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AC520/func_80333974.s")
+extern u8 D_803835B4;
+
+void func_8033393C(void){
+    D_80383570.unk0 = vla_new(sizeof(struct22s), 0x10);
+    D_80383570.unk48 = &D_80383570.unk44;
+}
+
+void func_80333974(s32 index){
+    struct22s *v0 = vla_at(D_80383570.unk0, index-1);
+    v0->unk34 = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AC520/func_803339A4.s")
 

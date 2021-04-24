@@ -339,4 +339,12 @@ typedef struct struct_21_s{
     void * unk1;
 }struct21s;
 
+typedef struct struct_22_s{
+    u8 pad0[0x34];
+    u8 unk34;
+    u8 pad35[0x3];
+} struct22s;//size 0x38
+
+
+
 #endif
