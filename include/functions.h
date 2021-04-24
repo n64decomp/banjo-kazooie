@@ -60,7 +60,7 @@ void func_8028A37C(f32);
 
 s32 player_inWater(void);
 
-ActorMarker *func_8028D5D0(void);
+ActorMarker *player_getMarker(void);
 
 u32 player_getTransformation(void);
 

@@ -5,8 +5,8 @@
 void func_80254008(void);
 void func_8033B3D8(void *); //assetcache_free
 
-extern void *D_8037C0E0;
-extern s16 D_8037C0E4;
+extern void *D_8037C0E0; //playerModelPtr
+extern s16 D_8037C0E4; //playerModel asset_id
 
 //public
 void playerModel_set(s32 asset_id);
@@ -16,9 +16,13 @@ void playerModel_set(s32 asset_id);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AA60/func_80291A60.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AA60/func_80291AAC.s")
+int func_80291AAC(s32 arg0, s32 arga, s32 arg2, s32 arg3){
+    return 0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AA60/func_80291AC4.s")
+void func_80291AC4(int arg0){
+    player_getMarker()->unk14_21 = 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AA60/func_80291AF0.s")
 

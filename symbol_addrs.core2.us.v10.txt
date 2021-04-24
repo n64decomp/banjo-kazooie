@@ -9,6 +9,7 @@ ability_isUnlocked = 0x8028F190;
 ability_unlock = 0x8028F3B8;
 player_getAnimCtrlPtr = 0x80289F64;
 player_inWater = 0x8028B51C;
+player_getMarker = 0x8028D5D0;
 carriedObject_setActorID = 0x8028D658;
 carriedObject_getActorID = 0x8028D670;
 func_8028E7EC9 = 0x8028E7EC9;

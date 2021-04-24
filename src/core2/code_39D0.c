@@ -189,7 +189,7 @@ s32 func_8028B120(void){return 0;}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028D2E4.s")
 
-ActorMarker *func_8028D5D0(void){ //player_getMarker
+ActorMarker *player_getMarker(void){ //player_getMarker
     return D_8037BF70;
 }
 

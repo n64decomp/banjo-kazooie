@@ -37,7 +37,7 @@ void func_8028E644(void){
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028E78C.s")
 
 ActorMarker *func_8028E7AC(void){
-    return func_8028D5D0();
+    return player_getMarker();
 }
 
 u32 player_getTransformation(void){
