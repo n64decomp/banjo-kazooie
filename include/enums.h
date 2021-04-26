@@ -13,7 +13,7 @@ enum button{
 enum transformation_E
 {
     unknown,
-    TRANSFROM_BANJO,
+    TRANSFORM_BANJO,
     TRANSFORM_TERMITE,
     TRANSFORM_PUMPKIN,
     TRANSFORM_WALRUS,

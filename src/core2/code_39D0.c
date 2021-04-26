@@ -171,7 +171,22 @@ s32 func_8028B120(void){return 0;}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028BA00.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028BA2C.s")
+void func_8035644C(s32);
+
+void func_8028BA2C(s32 arg0) {
+    if (func_802FADD4(0x1B) == 0) {
+        func_80345F24(item_note);
+    } else {
+        func_803463F4(item_note, 1);
+    }
+    if (item_getCount(item_note) < 100) {
+        func_8025A6EC(9, 0x3E80);
+        timedFunc_set_1(0.75f, func_8035644C, 3);
+    }
+    func_802F379C(arg0 + 4);
+}
+
+// #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028BA2C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028BAB0.s")
 
