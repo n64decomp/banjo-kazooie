@@ -34,7 +34,18 @@ s32 func_8033361C(void){
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AC520/func_80333698.s")
+s32 func_80333698(s32 index){
+    struct22s *startPtr = vla_getBegin(D_80383570.unk0);
+    struct22s *iPtr = vla_at(D_80383570.unk0, index - 1);
+    struct22s *endPtr = vla_getEnd(D_80383570.unk0);
+    
+    for(++iPtr; iPtr < endPtr; iPtr++){
+        if(iPtr->unk34){
+            return (iPtr-startPtr) + 1;
+        }
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AC520/func_80333734.s")
 
