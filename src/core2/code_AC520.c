@@ -2,6 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
+f32 func_80256064(s32, void *);
+
 extern struct {
     vector(struct22s) *unk0;
     u8 pad4[0x40];
@@ -11,6 +13,7 @@ extern struct {
 
 void func_80333918(void);
 void func_8033393C(void);
+
 
 
 //.code
@@ -110,7 +113,21 @@ void func_80333974(s32 index){
     v0->unk34 = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AC520/func_803339A4.s")
+s32 func_803339A4(s32 arg0){
+    struct22s *beginPtr = vla_getBegin(D_80383570.unk0);
+    struct22s *endPtr = vla_getEnd(D_80383570.unk0);
+    struct22s *iPtr;
+    struct22s *tmp_s0 = NULL;
+    
+    for(iPtr = beginPtr; iPtr < endPtr; iPtr++){
+        if(iPtr->unk34){
+            if(!tmp_s0 || func_80256064(arg0, iPtr) < func_80256064(arg0, tmp_s0)){
+                tmp_s0 = iPtr;
+            }
+        }
+    }
+    return (tmp_s0) ? tmp_s0 + 1 - beginPtr : 0;
+}
 
 void func_80333A94(s32 index , f32 *arg1){
     struct22s *v0 = vla_at(D_80383570.unk0, index-1);
@@ -175,4 +192,6 @@ void func_80334428(void){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AC520/func_80334524.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AC520/func_8033452C.s")
+s32 func_8033452C(s32 arg0){
+    return arg0 + 0x19d;
+}
