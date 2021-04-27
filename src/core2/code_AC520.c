@@ -134,7 +134,22 @@ void func_80333B28(s32 index , s32 *arg1){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AC520/func_80333B78.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AC520/func_80333C78.s")
+s32 func_80333C78(s32 arg0){
+    struct22s *beginPtr = vla_getBegin(D_80383570.unk0);
+    struct22s *endPtr = vla_getEnd(D_80383570.unk0);
+    struct22s *iPtr;
+
+    for(iPtr = beginPtr; iPtr < endPtr; iPtr++){
+        if(iPtr->unk34){
+            func_8034AF98(arg0, 1);
+            func_8034B108(arg0, 2, &iPtr->unk0, 3);
+            func_8034B108(arg0, 3, &iPtr->unk18, 2);
+            func_8034B190(arg0, 4, &iPtr->unk28, 3);
+        }
+    }
+
+    return func_8034AF98(arg0, 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AC520/func_80333D48.s")
 
