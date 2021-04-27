@@ -9,11 +9,30 @@ extern struct {
     void *unk48;
 } D_80383570;
 
+void func_80333918(void);
+void func_8033393C(void);
+
+
+//.code
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AC520/func_803334B0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AC520/func_803335F4.s")
+void func_803335F4(void){
+    func_80333918();
+    func_8033393C();
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AC520/func_8033361C.s")
+s32 func_8033361C(void){
+    struct22s *startPtr = vla_getBegin(D_80383570.unk0);
+    struct22s *endPtr = vla_getEnd(D_80383570.unk0);
+    struct22s *iPtr;
+
+    for(iPtr = startPtr; iPtr < endPtr; iPtr++){
+        if(iPtr->unk34){
+            return (iPtr-startPtr) + 1;
+        }
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AC520/func_80333698.s")
 
