@@ -340,7 +340,8 @@ typedef struct struct_21_s{
 }struct21s;
 
 typedef struct struct_22_s{
-    u8 pad0[0x18];
+    f32 unk0[3];
+    u8 padC[0xC];
     f32 unk18;
     f32 unk1C;
     u8 pad20[0x8];
