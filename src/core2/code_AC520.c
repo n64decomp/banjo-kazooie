@@ -190,7 +190,10 @@ void func_80334428(void){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AC520/func_8033451C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AC520/func_80334524.s")
+//#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AC520/func_80334524.s")
+s32 func_80334524(s32 arg0){
+    return arg0 + 0xcc;
+}
 
 s32 func_8033452C(s32 arg0){
     return arg0 + 0x19d;
