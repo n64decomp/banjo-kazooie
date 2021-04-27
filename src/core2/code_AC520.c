@@ -38,10 +38,9 @@ s32 func_80333818(void){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AC520/func_8033383C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AC520/func_80333918.s")
-
-
-
+void func_80333918(void){
+    vla_free(D_80383570.unk0);
+}
 
 void func_8033393C(void){
     D_80383570.unk0 = vla_new(sizeof(struct22s), 0x10);
