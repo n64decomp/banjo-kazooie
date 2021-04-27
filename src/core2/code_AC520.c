@@ -182,7 +182,8 @@ s32 func_80333C78(s32 arg0){
 
 void func_80334428(void){}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AC520/func_80334430.s")
+//#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AC520/func_80334430.s")
+void func_80334430(s32 arg0, s32 arg1){}
 
 void func_8033443C(s32 arg0, s32 arg1){}
 
