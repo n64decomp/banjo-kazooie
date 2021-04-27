@@ -71,7 +71,30 @@ s32 func_80333818(void){
     return vla_size(D_80383570.unk0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AC520/func_8033383C.s")
+s32 func_8033383C(void){
+    struct22s *beginPtr = vla_getBegin(D_80383570.unk0);
+    struct22s *endPtr = vla_getEnd(D_80383570.unk0);
+    struct22s *iPtr;
+
+    for(iPtr = beginPtr; iPtr < endPtr; iPtr++){
+        if(!iPtr->unk34)
+            break;
+    }
+    if(iPtr == endPtr)
+        iPtr = vla_pushBackNew(&D_80383570.unk0);
+
+    iPtr->unk34 = 1;
+    iPtr->unk28[0] = 0xff;
+    iPtr->unk28[1] = 0xff;
+    iPtr->unk28[2] = 0xff;
+    iPtr->unk0[2] = 0.0f;
+    iPtr->unk0[1] = 0.0f;
+    iPtr->unk0[0] = 0.0f;
+    iPtr->unk18 = 150.0f;
+    iPtr->unk1C = 300.0f;
+    return (iPtr - (struct22s *)vla_getBegin(D_80383570.unk0)) + 1;
+}
+
 
 void func_80333918(void){
     vla_free(D_80383570.unk0);
