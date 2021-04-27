@@ -61,7 +61,11 @@ void func_80333A94(s32 index , f32 *arg1){
     v0->unk0[2] = arg1[2];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AC520/func_80333AE4.s")
+void func_80333AE4(s32 index , f32 *arg1){
+    struct22s *v0 = vla_at(D_80383570.unk0, index-1);
+    v0->unk18 = arg1[0];
+    v0->unk1C = arg1[1];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AC520/func_80333B28.s")
 
