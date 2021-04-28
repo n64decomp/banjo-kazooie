@@ -126,7 +126,8 @@ typedef struct struct_1_s{
 } struct1;
 
 typedef struct struct_2_s{
-    u8 pad0[0x18];
+    s32 unk0;
+    u8 pad4[0x14];
 } struct2s;
 
 typedef struct struct_3_s{

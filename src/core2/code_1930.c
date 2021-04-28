@@ -74,4 +74,10 @@ vector(struct2s) **func_802890FC(void){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_1930/func_8028913C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_1930/func_8028914C.s")
+void func_8028914C(vector(struct2s) **arg0, s32 arg1){
+    struct2s *iPtr;
+    for(iPtr = vla_getBegin(*arg0); iPtr != (struct2s*)vla_getEnd(*arg0); iPtr++){
+        if(func_802878E8(arg1, iPtr->unk0))
+            func_80288B98(arg0, iPtr);
+    }
+}
