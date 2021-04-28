@@ -345,7 +345,31 @@ s32 func_802878C4(AnimCtrl *this){
     return func_802877B0(this) == 3;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_0/func_802878E8.s")
+int func_802878E8(AnimCtrl *this, f32 arg1){
+    int retval;
+    f32 f0 = func_80289690(this->animation); 
+
+    if(f0 == this->timer){
+        return 0;
+    }
+    else{
+        if(this->playback_direction != 0){
+            if(this->timer < f0){
+                return  this->timer <= arg1 && arg1 < f0;
+            }else{
+                return  this->timer <= arg1 || arg1 < f0;
+            }
+        }else{
+            if(f0 < this->timer){
+                return  arg1 <= this->timer && f0  < arg1;
+            }else{
+                return  arg1 <= this->timer || f0  < arg1;
+            }
+        }
+    }
+    
+    return retval;
+}
 
 s32 func_80287A40(AnimCtrl *this){
     return (s32)this->animation - (s32) this == 0x28;

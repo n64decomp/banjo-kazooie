@@ -77,11 +77,12 @@ VLA *vla_new(u32 elemSize, u32 cnt){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/vla/vla_remove.s")
 // void vla_remove(VLA *this, u32 indx){
-//     s32 elemOffset = indx * this->elem_size;
-//     s32 nextOffset = (indx + 1) * this->elem_size;
+//     u32 elemOffset = (u32)this->begin + indx * this->elem_size;
+//     u32 nextOffset = (u32)this->begin + (indx + 1) * this->elem_size;
+//     u32 size = (u32)this->end - (u32)this->begin;
     
-//     func_80254608((s32)this->begin + elemOffset, (s32)this->begin + nextOffset, ((s32)this->end - (s32)this->begin) - nextOffset);
-//     this->end = (s32)this->end - this->elem_size;
+//     func_80254608( elemOffset, nextOffset, size - (indx + 1) * this->elem_size);
+//     this->end = (u32)this->end - this->elem_size;
 // }
 
 
