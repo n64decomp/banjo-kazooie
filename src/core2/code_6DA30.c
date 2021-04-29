@@ -9,10 +9,52 @@ typedef struct font_letter{
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6DA30/func_802F49C0.s")
 
+// this function reassigns the referenced font mask pixel 
+// using the texture @ pixel (x,y) 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6DA30/func_802F4A24.s")
+/*void func_802F4A24(BKSpriteTextureBlock *arg0, u32 *arg1, s32 arg2, s32 arg3) {
+    s32 temp_lo;
+    s32 temp_t0;
+    u32 red;
+    u32 blue;
+    u32 green;
+    u32 alpha;
+    s32 _x = MIN(MAX(0, arg2), arg0->w - 1);
+    s32 _y = MIN(MAX(0, arg3), arg0->h - 1);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6DA30/func_802F4B58.s")
+    temp_t0 = ((u16 *) (arg0 + 1))[_x +  _y * arg0->w];
+    
+    if(temp_t0);
+    blue = ((temp_t0 >> 1) & ((1<< 5)  - 1));
+    green = ((temp_t0 >> 6) & ((1<< 5)  - 1));
+    red = ((temp_t0 >> 11) & ((1<< 5) - 1));
+    temp_lo = (s32) ((*arg1 >> 8) & 0xFF) / 0x1F;
 
+
+    *arg1 = (( ((red * temp_lo) << 0x18) | ((green * temp_lo) << 0x10)) | ((blue * temp_lo) << 8)) | (*arg1 & 0xff);
+}//*/
+
+//this function applies the texture to the font alpha mask.
+void func_802F4B58(BKSpriteTextureBlock *alphaMask, BKSpriteTextureBlock *texture){
+    s32 y_min;
+    s32 x_min;
+    u32 *pxl;
+    s32 x;
+    s32 y;
+
+    pxl = alphaMask + 1;
+    x_min = (texture->w - alphaMask->w) >> 1;
+    y_min = (texture->h - alphaMask->h) >> 1;
+    
+    for(y = y_min; y < alphaMask->h + y_min; y++){
+        for(x = x_min; x < alphaMask->w + x_min; x++){
+            func_802F4A24(texture, pxl, x, y);
+            pxl++;
+        }
+    }
+}
+
+//This functions seperates the fonts into letters
 FontLetter *func_802F4C3C(BKSprite *alphaMask, BKSprite *textureSprite){
     BKSpriteFrame * font = spriteGetFramePtr(alphaMask, 0);
     BKSpriteTextureBlock *chunkPtr;
@@ -34,14 +76,14 @@ FontLetter *func_802F4C3C(BKSprite *alphaMask, BKSprite *textureSprite){
                 palDataPtr = chunkDataPtr;
                 chunkPtr = palDataPtr + 2*0x100;
                 
-                for(i= 0; i < font->chunkCnt; ){
+                for(i= 0; i < font->chunkCnt; i++){
                     
                     chunkDataPtr = chunkPtr + 1;
                     while((s32)chunkDataPtr % 8)
                         chunkDataPtr++;
 
                     sp2C[i].unk0 = chunkPtr;
-                    sp2C[i++].unk4 = palDataPtr;
+                    sp2C[i].unk4 = palDataPtr;
                     chunkSize = chunkPtr->w*chunkPtr->h;
                     chunkPtr = chunkDataPtr + chunkSize;
                 }
