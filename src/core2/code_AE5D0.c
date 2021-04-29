@@ -66,7 +66,9 @@ void func_80336904(Gfx **gdl, Mtx *mptr, BKSprite *sp, u32 frame){
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AE5D0/func_80336924.s")
-/* func_80336924(Gfx **gdl, Mtx *mptr, BKSprite *sp, u32 frame, u32 arg4){
+/*func_80336924(Gfx **gdl, Mtx *mptr, BKSprite *sp, u32 frame, u32 arg4){
+    s32 sp1d8;
+    BKSprite *sp1d0;
     s32 sp_type;
     BKSpriteFrame *framePtr;
     BKSpriteTextureBlock *chunkPtr;
@@ -78,46 +80,48 @@ void func_80336904(Gfx **gdl, Mtx *mptr, BKSprite *sp, u32 frame){
 
     func_80349AD0();
   
-    if (sp->type & 0x1) {
+    if (sp->type & SPRITE_TYPE_CI4) {
         chkDataSize = 1;
-    } else if (sp->type & 0x4) {
+    } else if (sp->type & SPRITE_TYPE_CI8) {
         chkDataSize = 2;
     } else if (sp->type & 0x40){
         chkDataSize = 2;
     } else if (sp->type & 0x100){
         chkDataSize = 2;
-    } else if (sp->type & 0x400) {
+    } else if (sp->type & SPRITE_TYPE_RGBA16) {
         chkDataSize = 4;
-    } else if (sp->type & 0x800){
+    } else if (sp->type & SPRITE_TYPE_RGBA32){
         chkDataSize = 8;
     }
   
     func_80335D30(gdl);
-    if(D_80383638 || (sp->type & 4)){
+    if(D_80383638 || (sp->type & SPRITE_TYPE_CI8)){
         gDPPipelineMode((*gdl)++, G_PM_1PRIMITIVE);    }
 
     framePtr = spriteGetFramePtr(sp, frame);
 
+    //load Palettes for CI4 and CI8
     chunkPtr = ((u32) (framePtr + 1));
-    if (sp->type & 0x1) { //CI4
+    if (sp->type & SPRITE_TYPE_CI4) { //CI4
         gDPSetTextureLUT((*gdl)++, G_TT_RGBA16);
-        gDPSetTextureImage((*gdl)++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, (u32)(framePtr + 1));
+        gDPSetTextureImage((*gdl)++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, chunkPtr = (u32)chunkPtr & -8);
         gDPTileSync((*gdl)++);
         gDPSetTile((*gdl)++, G_IM_FMT_RGBA, G_IM_SIZ_4b, 0, 0x0100, G_TX_LOADTILE, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD);
+        sp1d0 = sp;
         gDPLoadSync((*gdl)++);
         gDPLoadTLUTCmd((*gdl)++, G_TX_LOADTILE, 15);
         gDPPipeSync((*gdl)++);
-    } else if (sp->type & 0x4) {//CI8
+        chunkPtr = (u32) chunkPtr + 0x10 * sizeof(u16);
+    } else if (sp->type & SPRITE_TYPE_CI8) {//CI8
+        //L80336B28
         gDPSetTextureLUT((*gdl)++, G_TT_RGBA16);
-        gDPSetTextureImage((*gdl)++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, (u32)(framePtr + 1) + 0xF);
+        gDPSetTextureImage((*gdl)++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, chunkPtr = (u32)chunkPtr & -8);
         gDPTileSync((*gdl)++);
         gDPSetTile((*gdl)++, G_IM_FMT_RGBA, G_IM_SIZ_4b, 0, 0x0100, G_TX_LOADTILE, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD);
-
-//L80336B28
-//         gDPSetTextureLUT((*gdl)++, G_TT_RGBA16);
-//         palPtr = ((u32) (framePtr + 1) + 0xF) & ~7;
-//         gDPLoadTLUT_pal256((*gdl)++, 0, palPtr);
-//         chunkPtr = ((u32)palPtr + 0x200);
+        gDPLoadSync((*gdl)++);
+        gDPLoadTLUTCmd((*gdl)++, G_TX_LOADTILE, 255);
+        gDPPipeSync((*gdl)++);
+        chunkPtr = (u32) chunkPtr + 0x100 * sizeof(u16);
     }//L80336C0C
 
 //     if(arg4){
@@ -126,7 +130,7 @@ void func_80336904(Gfx **gdl, Mtx *mptr, BKSprite *sp, u32 frame){
 //         gSPVertex((*gdl)++, 0, 0, 0, 0);
 //     }
 
-//     for(i = 0; i < framePtr->chunkCnt; i++){
+    for(i = 0; i < framePtr->chunkCnt; i++){
 //         // temp_ra = phi_t2->unk6;
 //         // temp_t8_3 = (phi_t2 + 0xF) & ~7;
 //         // sp1A8 = temp_t8_3;
@@ -135,30 +139,30 @@ void func_80336904(Gfx **gdl, Mtx *mptr, BKSprite *sp, u32 frame){
 //         // sp44 = temp_s3 + 4;
 //         // sp48 = temp_s3 + 6;
 //         // temp_fp = temp_s3 + 2;
-//         chunk_block = (((u32) (chunkPtr + 1) + 0xF) & 0xFFFFFFF8);
-//         if (sp->type & 0x400) { //RGBA16
-//             gDPLoadTextureBlock((*gdl)++, chunk_block, G_IM_FMT_RGBA, G_IM_SIZ_16b, 
-//                 chunkPtr->w, chunkPtr->h, 0, 0, 0, 0, 0, 0, 0);
+        chunk_block = (((u32) (chunkPtr + 1) + 0xF) & 0xFFFFFFF8);
+        if(sp->type & SPRITE_TYPE_RGBA16) { //RGBA16
+            gDPLoadTextureBlock((*gdl)++, chunk_block, G_IM_FMT_RGBA, G_IM_SIZ_16b, 
+                chunkPtr->w, chunkPtr->h, 0, 0, 0, 0, 0, 0, 0);
 
-//         } else if (sp->type & 0x800) { //RGBA32
-//             gDPLoadTextureBlock((*gdl)++, chunk_block, G_IM_FMT_RGBA, G_IM_SIZ_32b, 
-//                 chunkPtr->w, chunkPtr->h, 0, 0, 0, 0, 0, 0, 0);
+        } else if (sp->type & SPRITE_TYPE_RGBA32) { //RGBA32
+            gDPLoadTextureBlock((*gdl)++, chunk_block, G_IM_FMT_RGBA, G_IM_SIZ_32b, 
+                chunkPtr->w, chunkPtr->h, 0, 0, 0, 0, 0, 0, 0);
 
-//         } else if (sp->type & 1) { //CI4
-//             gDPLoadTextureBlock((*gdl)++, chunk_block, G_IM_FMT_CI, G_IM_SIZ_16b, 
-//                 chunkPtr->w, chunkPtr->h, 0, 0, 0, 0, 0, 0, 0);
-//         } else if (sp->type & 4) { //CI8
-//             gDPLoadTextureBlock((*gdl)++, chunk_block, G_IM_FMT_CI, G_IM_SIZ_16b, 
-//                 chunkPtr->w, chunkPtr->h, 0, 0, 0, 0, 0, 0, 0);
+        } else if (sp->type & 1) { //CI4
+            gDPLoadTextureBlock((*gdl)++, chunk_block, G_IM_FMT_CI, G_IM_SIZ_16b, 
+                chunkPtr->w, chunkPtr->h, 0, 0, 0, 0, 0, 0, 0);
+        } else if (sp->type & 4) { //CI8
+            gDPLoadTextureBlock((*gdl)++, chunk_block, G_IM_FMT_CI, G_IM_SIZ_16b, 
+                chunkPtr->w, chunkPtr->h, 0, 0, 0, 0, 0, 0, 0);
 
-//         } else if (sp->type & 0x100) {
-//             gDPLoadTextureBlock((*gdl)++, chunk_block, G_IM_FMT_CI, G_IM_SIZ_16b, 
-//                 chunkPtr->w, chunkPtr->h, 0, 0, 0, 0, 0, 0, 0);
-//         } else if (sp->type & 0x40) {
-//             gDPLoadTextureBlock((*gdl)++, chunk_block, G_IM_FMT_I, G_IM_SIZ_8b, 
-//                 chunkPtr->w, chunkPtr->h, 0, 0, 0, 0, 0, 0, 0);
-//         }
-//         gSP1Triangle((*gdl)++,0,1,2,0);
+        } else if (sp->type & 0x100) {
+            gDPLoadTextureBlock((*gdl)++, chunk_block, G_IM_FMT_I, G_IM_SIZ_16b, 
+                chunkPtr->w, chunkPtr->h, 0, 0, 0, 0, 0, 0, 0);
+        } else if (sp->type & 0x40) {
+            gDPLoadTextureBlock((*gdl)++, chunk_block, G_IM_FMT_I, G_IM_SIZ_8b, 
+                chunkPtr->w, chunkPtr->h, 0, 0, 0, 0, 0, 0, 0);
+        }
+        gSP1Triangle((*gdl)++,0,1,2,0);
 // //         temp_a2 = *arg0;
 // //         temp_v1_69 = temp_s3 & 0xFF;
 // //         *arg0 = (void *) (temp_a2 + 8);
@@ -273,19 +277,13 @@ void func_80336904(Gfx **gdl, Mtx *mptr, BKSprite *sp, u32 frame){
 // //         }
 //            chunkSize = chunkPtr->w * chunkPtr->h * chkDataSize;
 //            chunkPtr = chunk_block + chunkSize/2;
-//     }
-
-    if(1){
-
-    }else{//L80337AA4
-
-    }//L80337AA8
+    }
 
     gDPPipeSync((*gdl)++);
-    if((sp->type & 0x1) || (sp->type & 0x4)){ //CI4 or CI8 //L80337AD8
+    if((sp->type & SPRITE_TYPE_CI4) || (sp->type & SPRITE_TYPE_CI8)){ //CI4 or CI8 //L80337AD8
         gDPSetTextureLUT((*gdl)++, G_TT_NONE);
     }
-    if( D_80383638 || sp->type & 4){
+    if( D_80383638 || sp->type & SPRITE_TYPE_CI8){
         //L80337B18
         gDPPipelineMode((*gdl)++, G_PM_NPRIMITIVE);
     }//L80337B30

@@ -1,6 +1,12 @@
 #ifndef ENUMS_H
 #define ENUMS_H
 
+#define SPRITE_TYPE_CI4 (1 << 0)
+#define SPRITE_TYPE_CI8 (1 << 2)
+#define SPRITE_TYPE_RGBA16 (1 << 10)
+#define SPRITE_TYPE_RGBA32 (1 << 11)
+
+
 enum button{
     BUTTON_START = 0x0,
     BUTTON_Z = 0x1,

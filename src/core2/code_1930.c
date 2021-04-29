@@ -3,6 +3,8 @@
 #include "variables.h"
 
 
+int func_802878E8(AnimCtrl *, f32);
+
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_1930/func_802888C0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_1930/func_80288914.s")
@@ -74,7 +76,7 @@ vector(struct2s) **func_802890FC(void){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_1930/func_8028913C.s")
 
-void func_8028914C(vector(struct2s) **arg0, s32 arg1){
+void func_8028914C(vector(struct2s) **arg0, AnimCtrl *arg1){
     struct2s *iPtr;
     for(iPtr = vla_getBegin(*arg0); iPtr != (struct2s*)vla_getEnd(*arg0); iPtr++){
         if(func_802878E8(arg1, iPtr->unk0))

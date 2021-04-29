@@ -46,7 +46,7 @@ typedef struct bk_sprite_frame_s{
     s16 h;
     s16 chunkCnt;
     s16 unkA;
-    u8  unkC[8];
+    u8  padC[8];
 } BKSpriteFrame;
 
 typedef struct bk_sprite_texture_block_s{
@@ -126,8 +126,10 @@ typedef struct struct_1_s{
 } struct1;
 
 typedef struct struct_2_s{
-    s32 unk0;
-    u8 pad4[0x14];
+    f32 unk0;
+    u8 pad4[1];
+    u8 unk5;
+    u8 pad6[0x12];
 } struct2s;
 
 typedef struct struct_3_s{

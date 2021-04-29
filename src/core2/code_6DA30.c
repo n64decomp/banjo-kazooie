@@ -2,6 +2,10 @@
 #include "functions.h"
 #include "variables.h"
 
+typedef struct font_letter{
+    void *unk0;//chunkPtr
+    void *unk4;//palPtr
+} FontLetter;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6DA30/func_802F49C0.s")
 
@@ -9,43 +13,83 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6DA30/func_802F4B58.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6DA30/func_802F4C3C.s")
-// void *func_802F4C3C(BKSprite *alphaMask, BKSprite *textureSprite){
-//     BKSpriteFrame * font = spriteGetFramePtr(alphaMask, 0);
-//     void * sp2C = malloc((font->chunkCnt + 1)*8);
-//     s32 i;
-//     BKSpriteFrame *texture;
+FontLetter *func_802F4C3C(BKSprite *alphaMask, BKSprite *textureSprite){
+    BKSpriteFrame * font = spriteGetFramePtr(alphaMask, 0);
+    BKSpriteTextureBlock *chunkPtr;
+    FontLetter * sp2C = malloc((font->chunkCnt + 1)*sizeof(FontLetter));
+    u8* palDataPtr;
+    u8* chunkDataPtr;
+    s32 chunkSize;
+    s32 i;
+    
 
-//     switch(alphaMask->type){
-//         //CI8
-//         case 4:
-//             {//L802F4CA8 
-//                 u8 *pixelPtr = font + 1;
-//                 pixelPtr += ((u32)pixelPtr & 7) ? 8 - ((u32)pixelPtr & 0x7): 0;
-//                 //L802F4CE8
-//                 for(i = 0; i < font->chunkCnt; i++){
+    switch(alphaMask->type){
+        case SPRITE_TYPE_CI8:
+            {//L802F4CA8 
+                chunkPtr = (font + 1);
+                chunkDataPtr = chunkPtr;
+                while((s32)chunkDataPtr % 8)
+                    chunkDataPtr++;
+                
+                palDataPtr = chunkDataPtr;
+                chunkPtr = palDataPtr + 2*0x100;
+                
+                for(i= 0; i < font->chunkCnt; ){
+                    
+                    chunkDataPtr = chunkPtr + 1;
+                    while((s32)chunkDataPtr % 8)
+                        chunkDataPtr++;
 
-//                 }
-//             }
-//             break;
-//         //RGBA16
-//         case 0x800://L802F4D80
-//             for( i = 0; i < font->chunkCnt; i++){
-//                 texture = spriteGetFramePtr(textureSprite, 0);
-//                 func_802F4B58(font + 1, texture +1);
-//             }
-//             break;
-//         //???
-//         case 0x20://L802F4E24
-//             break;
-//         default://L802F4EC0
-//             for( i = 0; i < font->chunkCnt; i++){
-//                 sp2C = (u32)font + 1;
-//             }
-//             break;
-//     };
-//     return sp2C;
-// }
+                    sp2C[i].unk0 = chunkPtr;
+                    sp2C[i++].unk4 = palDataPtr;
+                    chunkSize = chunkPtr->w*chunkPtr->h;
+                    chunkPtr = chunkDataPtr + chunkSize;
+                }
+            }
+            break;
+        case SPRITE_TYPE_RGBA32://L802F4D80
+            {
+                chunkPtr = font + 1;
+                for( i = 0; i < font->chunkCnt; i++){
+                    func_802F4B58(chunkPtr, spriteGetFramePtr(textureSprite, 0) + 1);
+                    sp2C[i].unk0 = chunkPtr;
+                    chunkSize = chunkPtr->w*chunkPtr->h;
+                    chunkDataPtr = chunkPtr + 1;
+                    while((s32)chunkDataPtr % 8)
+                        chunkDataPtr++;
+                    chunkPtr = chunkDataPtr + chunkSize*4;
+                }
+            }
+            break;
+        case 0x20://L802F4E24
+            {
+                chunkPtr = (u32)(font + 1);
+                for( i = 0; i < font->chunkCnt; i++){
+                    sp2C[i].unk0 = chunkPtr;
+                    chunkDataPtr = chunkPtr + 1;
+                    chunkSize = chunkPtr->w*chunkPtr->h;
+                    while((s32)chunkDataPtr % 8)
+                        chunkDataPtr++;
+                    chunkPtr = chunkDataPtr + chunkSize/2;
+                }
+            }
+            break;
+        default://L802F4EC0
+            {
+                chunkPtr = font + 1;
+                for( i = 0; i < font->chunkCnt; i++){
+                    chunkDataPtr = chunkPtr + 1;
+                    sp2C[i].unk0 = chunkPtr;
+                    chunkSize = chunkPtr->w*chunkPtr->h;
+                    while((s32)chunkDataPtr % 8)
+                        chunkDataPtr++;
+                    chunkPtr = chunkDataPtr + chunkSize;
+                }
+            }
+            break;
+    };
+    return sp2C;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6DA30/func_802F4F64.s")
 
