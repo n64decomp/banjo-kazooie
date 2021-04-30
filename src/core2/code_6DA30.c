@@ -5,7 +5,8 @@
 typedef struct{
     s16 x;
     s16 y;
-    u8 pad4[0x4];
+    s16 unk4;
+    s16 unk6;
     u8 unk8[8];
     f32 unk10;
     u8 *string;
@@ -36,7 +37,11 @@ extern MapFontTextureMap D_8036907C[];
 
 extern u8 D_80369200[];
 
-extern u8 D_80377240[];
+extern u8 D_80377240[4];
+extern u8 D_80377244[4];
+extern u8 D_80377248[4];
+extern u8 D_8037724C[4];
+extern u8 D_80377250[4];
 
 extern s8 D_80380AB0;
 extern BKSprite *D_80380AB8[0x5];
@@ -109,7 +114,7 @@ void func_802F4B58(BKSpriteTextureBlock *alphaMask, BKSpriteTextureBlock *textur
     s32 x;
     s32 y;
 
-    pxl = alphaMask + 1;
+    pxl = (u32*)(alphaMask + 1);
     x_min = (texture->w - alphaMask->w) >> 1;
     y_min = (texture->h - alphaMask->h) >> 1;
     
@@ -135,64 +140,64 @@ FontLetter *func_802F4C3C(BKSprite *alphaMask, BKSprite *textureSprite){
     switch(alphaMask->type){
         case SPRITE_TYPE_CI8:
             {//L802F4CA8 
-                chunkPtr = (font + 1);
-                chunkDataPtr = chunkPtr;
+                chunkPtr = (BKSpriteTextureBlock *) (font + 1);
+                chunkDataPtr = (u8 *)chunkPtr;
                 while((s32)chunkDataPtr % 8)
                     chunkDataPtr++;
                 
                 palDataPtr = chunkDataPtr;
-                chunkPtr = palDataPtr + 2*0x100;
+                chunkPtr = (BKSpriteTextureBlock *) (palDataPtr + 2*0x100);
                 
                 for(i= 0; i < font->chunkCnt; i++){
                     
-                    chunkDataPtr = chunkPtr + 1;
+                    chunkDataPtr = (u8*)(chunkPtr + 1);
                     while((s32)chunkDataPtr % 8)
                         chunkDataPtr++;
 
                     sp2C[i].unk0 = chunkPtr;
                     sp2C[i].unk4 = palDataPtr;
                     chunkSize = chunkPtr->w*chunkPtr->h;
-                    chunkPtr = chunkDataPtr + chunkSize;
+                    chunkPtr = (BKSpriteTextureBlock *)(chunkDataPtr + chunkSize);
                 }
             }
             break;
         case SPRITE_TYPE_RGBA32://L802F4D80
             {
-                chunkPtr = font + 1;
+                chunkPtr = (BKSpriteTextureBlock *)(font + 1);
                 for( i = 0; i < font->chunkCnt; i++){
-                    func_802F4B58(chunkPtr, spriteGetFramePtr(textureSprite, 0) + 1);
+                    func_802F4B58(chunkPtr, (BKSpriteTextureBlock *)(spriteGetFramePtr(textureSprite, 0) + 1));
                     sp2C[i].unk0 = chunkPtr;
                     chunkSize = chunkPtr->w*chunkPtr->h;
-                    chunkDataPtr = chunkPtr + 1;
+                    chunkDataPtr = (u8*)(chunkPtr + 1);
                     while((s32)chunkDataPtr % 8)
                         chunkDataPtr++;
-                    chunkPtr = chunkDataPtr + chunkSize*4;
+                    chunkPtr = (BKSpriteTextureBlock *) (chunkDataPtr + chunkSize*4);
                 }
             }
             break;
         case 0x20://L802F4E24
             {
-                chunkPtr = (u32)(font + 1);
+                chunkPtr = (BKSpriteTextureBlock *) (font + 1);
                 for( i = 0; i < font->chunkCnt; i++){
                     sp2C[i].unk0 = chunkPtr;
-                    chunkDataPtr = chunkPtr + 1;
+                    chunkDataPtr = (u8*)(chunkPtr + 1);
                     chunkSize = chunkPtr->w*chunkPtr->h;
                     while((s32)chunkDataPtr % 8)
                         chunkDataPtr++;
-                    chunkPtr = chunkDataPtr + chunkSize/2;
+                    chunkPtr = (BKSpriteTextureBlock *) (chunkDataPtr + chunkSize/2);
                 }
             }
             break;
         default://L802F4EC0
             {
-                chunkPtr = font + 1;
+                chunkPtr = (BKSpriteTextureBlock *)(font + 1);
                 for( i = 0; i < font->chunkCnt; i++){
-                    chunkDataPtr = chunkPtr + 1;
+                    chunkDataPtr = (u8*)(chunkPtr + 1);
                     sp2C[i].unk0 = chunkPtr;
                     chunkSize = chunkPtr->w*chunkPtr->h;
                     while((s32)chunkDataPtr % 8)
                         chunkDataPtr++;
-                    chunkPtr = chunkDataPtr + chunkSize;
+                    chunkPtr = (BKSpriteTextureBlock *)(chunkDataPtr + chunkSize);
                 }
             }
             break;
@@ -324,12 +329,12 @@ void func_802F53D0(void){
 }
 
 void func_802F542C(void){
-    D_80380AD0[0] = func_802555DC(D_80380AD0[0]);
-    D_80380AD0[1] = func_802555DC(D_80380AD0[1]);
+    D_80380AD0[0] = (FontLetter *)func_802555DC(D_80380AD0[0]);
+    D_80380AD0[1] = (FontLetter *)func_802555DC(D_80380AD0[1]);
     if(D_80380AD0[3]){
-        D_80380AD0[3] = func_802555DC(D_80380AD0[3]);
+        D_80380AD0[3] = (FontLetter *)func_802555DC(D_80380AD0[3]);
     }
-    D_80380AE0 = func_802555DC(D_80380AE0);
+    D_80380AE0 = (PrintBuffer *)func_802555DC(D_80380AE0);
 }
 
 //returns the pixel data and type for a given letter
@@ -360,7 +365,7 @@ void *func_802F5494(s32 letterId, s32 *fontType){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6DA30/func_802F6E94.s")
 
-//adds a string to the print buffer and updates string buffer end ptr
+//adds a new string to the print buffer and updates string buffer end ptr
 void func_802F77A8(s32 x, s32 y, u8 * string) {
     for(D_80380AE4 = D_80380AE0; D_80380AE4 < D_80380AE0 + 0x20 && D_80380AE4->string; D_80380AE4++) {
     }
@@ -382,18 +387,40 @@ void func_802F77A8(s32 x, s32 y, u8 * string) {
 void func_802F7870(s32 x, s32 y, f32 arg2, u8* string){
     func_802F77A8(x, y, string);
     if(D_80380AE4){
-        strcpy(&D_80380AE4->unk8, D_80377240);
+        strcpy(D_80380AE4->unk8, D_80377240);
         D_80380AE4->unk10 = arg2;
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6DA30/func_802F78C0.s")
+void func_802F78C0(s32 x, s32 y, u8* string){
+    func_802F77A8(x, y, string);
+    if(D_80380AE4){
+        strcpy(D_80380AE4->unk8, D_80377244);
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6DA30/func_802F78FC.s")
+void func_802F78FC(s32 x, s32 y, u8* string){
+    func_802F77A8(x, y, string);
+    if(D_80380AE4){
+        strcpy(D_80380AE4->unk8, D_80377248);
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6DA30/func_802F7938.s")
+void func_802F7938(s32 x, s32 y, u8* string){
+    func_802F77A8(x, y, string);
+    if(D_80380AE4){
+        strcpy(D_80380AE4->unk8, D_8037724C);
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6DA30/func_802F7974.s")
+void func_802F7974(s32 x, s32 y, u8* string, u8 arg3, u8 arg4){
+    func_802F77A8(x, y, string);
+    if(D_80380AE4){
+        D_80380AE4->unk4 = arg3;
+        D_80380AE4->unk6 = arg4;
+        strcpy(D_80380AE4->unk8, D_80377250);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6DA30/func_802F79D0.s")
 
