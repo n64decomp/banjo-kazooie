@@ -297,7 +297,17 @@ void func_802F5374(void){
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6DA30/func_802F53D0.s")
+void func_802F53D0(void){
+    if(D_80380AB8[3]){
+        assetcache_release(D_80380AB8[3]);
+        D_80380AB8[3] = NULL;
+    }
+    if(D_80380ADC){
+        free(D_80380ADC);
+        D_80380ADC = NULL;
+    }
+    D_80380B18 = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6DA30/func_802F542C.s")
 
