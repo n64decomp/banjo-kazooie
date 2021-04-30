@@ -168,6 +168,7 @@ actor_collisionOff = 0x8032AA74;
 actor_collisionOn = 0x8032AA88;
 jiggySpawn = 0x803330C0;
 func_80336924 = 0x80336924;
+assetcache_release = 0x8033B3D8;
 assetcache_get = 0x8033B798;
 strcat = 0x8033D660;
 strcatc = 0x8033D6A8;

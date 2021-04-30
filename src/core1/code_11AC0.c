@@ -104,7 +104,7 @@ void func_8024F7C4(s32 arg0){
             if(D_80281720[i].index == arg0)
                 return;
         }
-        func_8033B3D8(D_802820E0[arg0]);
+        assetcache_release(D_802820E0[arg0]);
         D_802820E0[arg0] = 0;
     }
 }

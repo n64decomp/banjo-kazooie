@@ -153,7 +153,35 @@ FontLetter *func_802F4C3C(BKSprite *alphaMask, BKSprite *textureSprite){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6DA30/func_802F5010.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6DA30/func_802F5060.s")
+void func_802F5060(s32 textureId){
+    s32 tmp_a2;
+    tmp_a2 = func_802546E4(D_80380AB8.unk0[1]);
+    if(tmp_a2 & 0xF)
+        tmp_a2 += 0x10 - (tmp_a2 & 0xF);
+    if(!func_8033BDAC(SPRITE_BOLD_FONT_NUMBERS_ALPHAMASK, D_80380AB8.unk0[1],tmp_a2)){
+        assetcache_release(D_80380AB8.unk0[1]);
+        D_80380AB8.unk0[1] = assetcache_get(SPRITE_BOLD_FONT_NUMBERS_ALPHAMASK);
+    }
+    if(D_80380AB8.unkC){
+        tmp_a2 = func_802546E4(D_80380AB8.unkC);
+        if(tmp_a2 & 0xF)
+            tmp_a2 += 0x10 - (tmp_a2 & 0xF);
+        if(!func_8033BDAC(SPRITE_BOLD_FONT_LETTERS_ALPHAMASK, D_80380AB8.unkC,tmp_a2)){
+            assetcache_release(D_80380AB8.unkC);
+            D_80380AB8.unkC = assetcache_get(SPRITE_BOLD_FONT_LETTERS_ALPHAMASK);
+        }
+    }//L802F510C
+    D_80380AB8.unk10 = assetcache_get(textureId);
+    free(D_80380AD0[1]);
+    D_80380AD0[1] = func_802F4C3C(D_80380AB8.unk0[1], D_80380AB8.unk10);
+    if(D_80380AB8.unkC){
+        free(D_80380AD0[3]);
+        D_80380ADC = func_802F4C3C(D_80380AB8.unkC, D_80380AB8.unk10);
+    }
+    assetcache_release(D_80380AB8.unk10);
+    D_80380AB8.unk10 = NULL;
+    D_80380B1C = textureId;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6DA30/func_802F5188.s")
 
@@ -165,18 +193,18 @@ FontLetter *func_802F4C3C(BKSprite *alphaMask, BKSprite *textureSprite){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6DA30/func_802F542C.s")
 
+//returns the pixel data and type for a given letter
 void *func_802F5494(s32 letterId, s32 *fontType){
     if(D_80380AE8.unk0 != 1 || (D_80380AE8.unk0 == 1 && letterId < 0xA)){
-//L802F54C8
         *fontType = D_80380AB8.unk0[D_80380AE8.unk0]->type;
         return D_80380AD0[D_80380AE8.unk0][letterId].unk0;
     }
     else{//L802F5510
         if(!D_80380AB8.unkC){
-            D_80380AB8.unkC = assetcache_get(SPRITE_BOLD_FONT_NUMBERS_ALPHAMASK);
+            D_80380AB8.unkC = assetcache_get(SPRITE_BOLD_FONT_LETTERS_ALPHAMASK);
             D_80380AB8.unk10 = assetcache_get(D_80380B1C);
             D_80380ADC = func_802F4C3C(D_80380AB8.unkC, D_80380AB8.unk10);
-            func_8033B3D8(D_80380AB8.unk10);
+            assetcache_release(D_80380AB8.unk10);
             D_80380AB8.unk10 = NULL;
         }//L802F5568
         D_80380B18 = 5;

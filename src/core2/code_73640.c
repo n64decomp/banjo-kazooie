@@ -230,10 +230,10 @@ void func_802FAE4C(void){
 void func_802FAF0C(void){
     s32 i;
     for(i = 0; D_803692E0[i] != -1; i++){
-        func_8033B3D8(D_80381428[i]);
+        assetcache_release(D_80381428[i]);
     }
     for(i = 0; D_803692EC[i] != -1; i++){
-        func_8033B3D8(D_80381450[i]);
+        assetcache_release(D_80381450[i]);
     }
 }
 

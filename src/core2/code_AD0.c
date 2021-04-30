@@ -107,7 +107,7 @@ void func_802885E8(void){ //animationCache_free
     s32 i;
     for(i = 0; i < 0x2CA; i++){
         if(D_8037A8C0[i].unk0){
-            func_8033B3D8(D_8037A8C0[i].unk0);
+            assetcache_release(D_8037A8C0[i].unk0);
         }
     }
 }
@@ -129,7 +129,7 @@ void func_8028873C(s32 arg0){
     if(arg0){
         for(i = 0; i < 0x2CA; i++){
             if(D_8037A8C0[i].unk0 && D_8037A8C0[i].unk4_0 && (D_8037A8C0[i].unk4_15 < 0x1E)){
-                func_8033B3D8(D_8037A8C0[i].unk0);
+                assetcache_release(D_8037A8C0[i].unk0);
                 D_8037A8C0[i].unk0 = NULL;
                 D_8037A8C0[i].unk4_0 = 0;
             }
@@ -138,7 +138,7 @@ void func_8028873C(s32 arg0){
     else{
         for(i = 0; i < 0x2CA; i++){
             if(D_8037A8C0[i].unk0 && !D_8037A8C0[i].unk4_0 && (D_8037A8C0[i].unk4_15 < 0x1E)){
-                func_8033B3D8(D_8037A8C0[i].unk0);
+                assetcache_release(D_8037A8C0[i].unk0);
                 D_8037A8C0[i].unk0 = NULL;
                 if(func_80254BC4(1))
                     break;
@@ -151,7 +151,7 @@ void func_80288834(void){
     s32 i;
     for(i = 0; i < 0x2CA; i++){
         if(D_8037A8C0[i].unk0 && !D_8037A8C0[i].unk4_0 && !(D_8037A8C0[i].unk4_15-= 1)){
-            func_8033B3D8(D_8037A8C0[i].unk0);
+            assetcache_release(D_8037A8C0[i].unk0);
             D_8037A8C0[i].unk0 = NULL;
         }
     }

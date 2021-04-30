@@ -140,9 +140,9 @@ void func_803117A0(void){
 void func_803117E8(void){
     s32 i;
     for( i=0; i<2; i++){
-        func_8033B3D8(D_80383010.unk24);
+        assetcache_release(D_80383010.unk24);
         D_80383010.unk24 = NULL;
-        func_8033B3D8(D_80383010.unk2C);
+        assetcache_release(D_80383010.unk2C);
         D_80383010.unk2C = NULL;
     }
     func_803117A0();

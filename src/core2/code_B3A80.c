@@ -47,7 +47,7 @@ struct {
     vector(struct21s) *unk0;
     vector(struct21s) *unk4;
 }D_80383CE0;
-s32 func_8033B3D8(void * arg0);
+s32 assetcache_release(void * arg0);
 
 void func_8033B180(void){
     D_80383CE0.unk0 = vla_new(sizeof(struct21s), 0x10);
@@ -72,7 +72,7 @@ void func_8033B180(void){
 
     for(iPtr = vla_getBegin(D_80383CE0.unk0); iPtr < endPtr; iPtr++){
         for(i = 0; i < iPtr->unk0; i++)
-            func_8033B3D8(iPtr->unk1);
+            assetcache_release(iPtr->unk1);
     }
     
 
@@ -87,7 +87,7 @@ void func_8033B180(void){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B3A80/func_8033B388.s")
 
-s32 func_8033B3D8(void * arg0){
+s32 assetcache_release(void * arg0){
     s32 i;
     if(arg0){
         for(i = 0; i < D_80370A14  && arg0 != D_80383CD0[i]; i++);

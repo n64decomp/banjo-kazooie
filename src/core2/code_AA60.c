@@ -3,7 +3,7 @@
 #include "variables.h"
 
 void func_80254008(void);
-void func_8033B3D8(void *); //assetcache_free
+void assetcache_release(void *); //assetcache_free
 
 extern void *D_8037C0E0; //playerModelPtr
 extern s16 D_8037C0E4; //playerModel asset_id
@@ -46,7 +46,7 @@ void playerModel_set(s32 asset_id){
     if(asset_id != D_8037C0E4){
         if(D_8037C0E0){
             func_80254008();
-            func_8033B3D8(D_8037C0E0);
+            assetcache_release(D_8037C0E0);
             D_8037C0E0 = NULL;
         }
         D_8037C0E4 = asset_id;
