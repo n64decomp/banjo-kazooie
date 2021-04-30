@@ -2,28 +2,65 @@
 #include "functions.h"
 #include "variables.h"
 
+typedef struct struct_23_s{
+    u8 pad0[0x14];
+    s32 unk14;
+    u8 pad18[0x4];
+} struct23s;
+
 typedef struct font_letter{
     void *unk0;//chunkPtr
     void *unk4;//palPtr
 } FontLetter;
 
-extern struct {
-    BKSprite *unk0[0x3];
-    BKSprite *unkC;
-    BKSprite *unk10;
-} D_80380AB8;
+typedef struct map_font_texture_map{
+    s16 mapID;
+    s16 assetId;
+} MapFontTextureMap;
+
+extern MapFontTextureMap D_8036907C[];
+
+extern u8 D_80369200[];
+
+
+extern s8 D_80380AB0;
+extern BKSprite *D_80380AB8[0x5];
 
 extern FontLetter *D_80380AD0[3];
 extern FontLetter *D_80380ADC;
 
+extern struct23s *D_80380AE0;
 extern struct {
     s32 unk0;   
 }D_80380AE8;
 
+extern s32 D_80380AEC;
+extern s32 D_80380AF0;
+extern s32 D_80380AF4;
+extern s32 D_80380AF8;
+extern s32 D_80380AFC;
+extern s32 D_80380B00;
+extern s32 D_80380B04;
+extern s32 D_80380B08;
+extern s32 D_80380B0C;
+extern s32 D_80380B10;
+extern s32 D_80380B14;
+
 extern s32 D_80380B18;
 extern s32 D_80380B1C;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6DA30/func_802F49C0.s")
+extern s8 D_80380F20[0x80];
+
+//returns map texture assetID for current map;
+enum asset_e func_802F49C0(void){
+    s32 i;
+    for(i = 0; D_8036907C[i].mapID != 0 ; i++){
+        if(func_803348C0() == D_8036907C[i].mapID){
+            return D_8036907C[i].assetId;
+        }
+    }
+    return 0x708;
+}
 
 // this function reassigns the referenced font mask pixel 
 // using the texture @ pixel (x,y) 
@@ -149,43 +186,107 @@ FontLetter *func_802F4C3C(BKSprite *alphaMask, BKSprite *textureSprite){
     return sp2C;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6DA30/func_802F4F64.s")
+void func_802F4F64(void){
+    s32 i; 
+    for(i = 0; i< 5; i++){
+        assetcache_release(D_80380AB8[i]);
+        D_80380AB8[i] = NULL;
+        if(i < 4){
+            free(D_80380AD0[i]);
+            D_80380AD0[i] = NULL;
+        }
+    }
+    free(D_80380AE0);
+    D_80380AE0 = NULL;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6DA30/func_802F5010.s")
+void func_802F5010(void){
+    s32 i;
+    for(i = 0; i < 0x20; i++){
+        D_80380AE0[i].unk14 = 0;
+    }
+}
 
 void func_802F5060(s32 textureId){
     s32 tmp_a2;
-    tmp_a2 = func_802546E4(D_80380AB8.unk0[1]);
+    tmp_a2 = func_802546E4(D_80380AB8[1]);
     if(tmp_a2 & 0xF)
         tmp_a2 += 0x10 - (tmp_a2 & 0xF);
-    if(!func_8033BDAC(SPRITE_BOLD_FONT_NUMBERS_ALPHAMASK, D_80380AB8.unk0[1],tmp_a2)){
-        assetcache_release(D_80380AB8.unk0[1]);
-        D_80380AB8.unk0[1] = assetcache_get(SPRITE_BOLD_FONT_NUMBERS_ALPHAMASK);
+    if(!func_8033BDAC(SPRITE_BOLD_FONT_NUMBERS_ALPHAMASK, D_80380AB8[1],tmp_a2)){
+        assetcache_release(D_80380AB8[1]);
+        D_80380AB8[1] = assetcache_get(SPRITE_BOLD_FONT_NUMBERS_ALPHAMASK);
     }
-    if(D_80380AB8.unkC){
-        tmp_a2 = func_802546E4(D_80380AB8.unkC);
+    if(D_80380AB8[3]){
+        tmp_a2 = func_802546E4(D_80380AB8[3]);
         if(tmp_a2 & 0xF)
             tmp_a2 += 0x10 - (tmp_a2 & 0xF);
-        if(!func_8033BDAC(SPRITE_BOLD_FONT_LETTERS_ALPHAMASK, D_80380AB8.unkC,tmp_a2)){
-            assetcache_release(D_80380AB8.unkC);
-            D_80380AB8.unkC = assetcache_get(SPRITE_BOLD_FONT_LETTERS_ALPHAMASK);
+        if(!func_8033BDAC(SPRITE_BOLD_FONT_LETTERS_ALPHAMASK, D_80380AB8[3],tmp_a2)){
+            assetcache_release(D_80380AB8[3]);
+            D_80380AB8[3] = assetcache_get(SPRITE_BOLD_FONT_LETTERS_ALPHAMASK);
         }
     }//L802F510C
-    D_80380AB8.unk10 = assetcache_get(textureId);
+    D_80380AB8[4] = assetcache_get(textureId);
     free(D_80380AD0[1]);
-    D_80380AD0[1] = func_802F4C3C(D_80380AB8.unk0[1], D_80380AB8.unk10);
-    if(D_80380AB8.unkC){
+    D_80380AD0[1] = func_802F4C3C(D_80380AB8[1], D_80380AB8[4]);
+    if(D_80380AB8[3]){
         free(D_80380AD0[3]);
-        D_80380ADC = func_802F4C3C(D_80380AB8.unkC, D_80380AB8.unk10);
+        D_80380ADC = func_802F4C3C(D_80380AB8[3], D_80380AB8[4]);
     }
-    assetcache_release(D_80380AB8.unk10);
-    D_80380AB8.unk10 = NULL;
+    assetcache_release(D_80380AB8[4]);
+    D_80380AB8[4] = NULL;
     D_80380B1C = textureId;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6DA30/func_802F5188.s")
+void func_802F5188(void){
+    func_802F5060(func_802F49C0());
+    func_802F5010();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6DA30/func_802F51B8.s")
+/*void func_802F51B8(void){
+    s32 i, j;
+    s32 length;
+    int found;
+
+    length = strlen(D_80369200);
+    D_80380AEC = 0;
+    D_80380AF0 = 0;
+    D_80380AF4 = 0;
+    D_80380AF8 = 0;
+    D_80380AFC = 0;
+    D_80380B00 = 0;
+    D_80380B04 = 0;
+    D_80380B08 = 0;
+    D_80380B0C = 0;
+    D_80380B10 = 0;
+    D_80380B14 = 0;
+    D_80380AE8.unk0 = 0;
+    D_80380AB0 = 0;
+    func_802F7A2C(3);
+    D_80380AB8[0] = assetcache_get(SPRITE_DIALOG_FONT_ALPHAMASK);
+    D_80380AB8[1] = assetcache_get(SPRITE_BOLD_FONT_NUMBERS_ALPHAMASK);
+    D_80380AB8[4] = assetcache_get(func_802F49C0());
+    D_80380AD0[0] =  func_802F4C3C(D_80380AB8[0], D_80380AB8[4]);
+    D_80380AD0[1] =  func_802F4C3C(D_80380AB8[1], D_80380AB8[4]);
+    D_80380AE0 = malloc(0x20*sizeof(struct23s));
+    func_802F5010();
+
+    for(i = 0; i < 0x80; i++){//L802F52EC
+        found = 0;
+        for(j = 0; j < length && !found; j++){//L802F5304
+            if(D_80369200[j] == i){
+                D_80380F20[i] = j;
+                found = 1;
+            }//L802F531C
+        }//L802F5330
+        if(!found)
+            D_80380F20[i] = -1;
+        //L802F533C
+    }
+    assetcache_release(D_80380AB8[4]);
+    D_80380AB8[4] = NULL;
+    D_80380B1C = func_802F49C0();
+}//*/
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6DA30/func_802F5374.s")
 
@@ -196,19 +297,19 @@ void func_802F5060(s32 textureId){
 //returns the pixel data and type for a given letter
 void *func_802F5494(s32 letterId, s32 *fontType){
     if(D_80380AE8.unk0 != 1 || (D_80380AE8.unk0 == 1 && letterId < 0xA)){
-        *fontType = D_80380AB8.unk0[D_80380AE8.unk0]->type;
+        *fontType = D_80380AB8[D_80380AE8.unk0]->type;
         return D_80380AD0[D_80380AE8.unk0][letterId].unk0;
     }
     else{//L802F5510
-        if(!D_80380AB8.unkC){
-            D_80380AB8.unkC = assetcache_get(SPRITE_BOLD_FONT_LETTERS_ALPHAMASK);
-            D_80380AB8.unk10 = assetcache_get(D_80380B1C);
-            D_80380ADC = func_802F4C3C(D_80380AB8.unkC, D_80380AB8.unk10);
-            assetcache_release(D_80380AB8.unk10);
-            D_80380AB8.unk10 = NULL;
+        if(!D_80380AB8[3]){
+            D_80380AB8[3] = assetcache_get(SPRITE_BOLD_FONT_LETTERS_ALPHAMASK);
+            D_80380AB8[4] = assetcache_get(D_80380B1C);
+            D_80380ADC = func_802F4C3C(D_80380AB8[3], D_80380AB8[4]);
+            assetcache_release(D_80380AB8[4]);
+            D_80380AB8[4] = NULL;
         }//L802F5568
         D_80380B18 = 5;
-        *fontType  = D_80380AB8.unkC->type;
+        *fontType  = D_80380AB8[3]->type;
         return D_80380ADC[letterId-10].unk0;
     }
 }
