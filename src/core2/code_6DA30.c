@@ -6,8 +6,7 @@ typedef struct{
     s16 x;
     s16 y;
     u8 pad4[0x4];
-    u8 unk8;
-    u8 pad9[0x7];
+    u8 unk8[8];
     f32 unk10;
     u8 *string;
     u8 unk18;
@@ -37,6 +36,7 @@ extern MapFontTextureMap D_8036907C[];
 
 extern u8 D_80369200[];
 
+extern u8 D_80377240[];
 
 extern s8 D_80380AB0;
 extern BKSprite *D_80380AB8[0x5];
@@ -360,6 +360,7 @@ void *func_802F5494(s32 letterId, s32 *fontType){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6DA30/func_802F6E94.s")
 
+//adds a string to the print buffer and updates string buffer end ptr
 void func_802F77A8(s32 x, s32 y, u8 * string) {
     for(D_80380AE4 = D_80380AE0; D_80380AE4 < D_80380AE0 + 0x20 && D_80380AE4->string; D_80380AE4++) {
     }
@@ -369,7 +370,7 @@ void func_802F77A8(s32 x, s32 y, u8 * string) {
     }
     D_80380AE4->x = x;
     D_80380AE4->y = y;
-    D_80380AE4->unk8 = (u8)0;
+    D_80380AE4->unk8[0] = (u8)0;
     D_80380AE4->string = string;
     D_80380AE4->unk10 = 1.0f;
     D_80380AE4->unk18 = (u8) D_80369078.unk0;
@@ -378,8 +379,13 @@ void func_802F77A8(s32 x, s32 y, u8 * string) {
     D_80380AE4->unk1B = (u8) D_80369078.unk3;
 }
 
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6DA30/func_802F7870.s")
+void func_802F7870(s32 x, s32 y, f32 arg2, u8* string){
+    func_802F77A8(x, y, string);
+    if(D_80380AE4){
+        strcpy(&D_80380AE4->unk8, D_80377240);
+        D_80380AE4->unk10 = arg2;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6DA30/func_802F78C0.s")
 
