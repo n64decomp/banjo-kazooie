@@ -288,7 +288,14 @@ void func_802F5188(void){
     D_80380B1C = func_802F49C0();
 }//*/
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6DA30/func_802F5374.s")
+void func_802F5374(void){
+    if(D_80380B18 > 0 && --D_80380B18 == 0){
+        assetcache_release(D_80380AB8[3]);
+        D_80380AB8[3] = 0;
+        free(D_80380ADC);
+        D_80380ADC = NULL;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6DA30/func_802F53D0.s")
 
