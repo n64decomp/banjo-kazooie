@@ -434,6 +434,12 @@ void func_802F79D0(s32 x, s32 y, u8* string, s32 arg3, s32 arg4){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6DA30/func_802F7A2C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6DA30/func_802F7B90.s")
+void func_802F7B90(s32 arg0, s32 arg1, s32 arg2){
+    D_80369078.unk0 = arg0;
+    D_80369078.unk1 = arg1;
+    D_80369078.unk2 = arg2;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6DA30/func_802F7BA8.s")
+void func_802F7BA8(s32 arg0){
+    D_80369078.unk3 = arg0;
+}
