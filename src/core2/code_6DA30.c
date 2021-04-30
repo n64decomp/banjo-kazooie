@@ -7,6 +7,22 @@ typedef struct font_letter{
     void *unk4;//palPtr
 } FontLetter;
 
+extern struct {
+    BKSprite *unk0[0x3];
+    BKSprite *unkC;
+    BKSprite *unk10;
+} D_80380AB8;
+
+extern FontLetter *D_80380AD0[3];
+extern FontLetter *D_80380ADC;
+
+extern struct {
+    s32 unk0;   
+}D_80380AE8;
+
+extern s32 D_80380B18;
+extern s32 D_80380B1C;
+
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6DA30/func_802F49C0.s")
 
 // this function reassigns the referenced font mask pixel 
@@ -149,7 +165,25 @@ FontLetter *func_802F4C3C(BKSprite *alphaMask, BKSprite *textureSprite){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6DA30/func_802F542C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6DA30/func_802F5494.s")
+void *func_802F5494(s32 letterId, s32 *fontType){
+    if(D_80380AE8.unk0 != 1 || (D_80380AE8.unk0 == 1 && letterId < 0xA)){
+//L802F54C8
+        *fontType = D_80380AB8.unk0[D_80380AE8.unk0]->type;
+        return D_80380AD0[D_80380AE8.unk0][letterId].unk0;
+    }
+    else{//L802F5510
+        if(!D_80380AB8.unkC){
+            D_80380AB8.unkC = assetcache_get(SPRITE_BOLD_FONT_NUMBERS_ALPHAMASK);
+            D_80380AB8.unk10 = assetcache_get(D_80380B1C);
+            D_80380ADC = func_802F4C3C(D_80380AB8.unkC, D_80380AB8.unk10);
+            func_8033B3D8(D_80380AB8.unk10);
+            D_80380AB8.unk10 = NULL;
+        }//L802F5568
+        D_80380B18 = 5;
+        *fontType  = D_80380AB8.unkC->type;
+        return D_80380ADC[letterId-10].unk0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6DA30/func_802F55A8.s")
 

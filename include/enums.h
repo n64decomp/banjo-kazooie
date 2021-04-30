@@ -511,6 +511,8 @@ enum asset_e
     MODEL_COLLYWOBBLE       = 0x4ee,
     MODEL_BAWL              = 0x4ef,
 
+    SPRITE_BOLD_FONT_NUMBERS_ALPHAMASK = 0x6ec,
+
     model_MM_hut     = 0x7d7,
     model_mudhut_top = 0x7d8,
 
