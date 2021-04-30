@@ -42,6 +42,7 @@ extern u8 D_80377244[4];
 extern u8 D_80377248[4];
 extern u8 D_8037724C[4];
 extern u8 D_80377250[4];
+extern u8 D_80377254[4];
 
 extern s8 D_80380AB0;
 extern BKSprite *D_80380AB8[0x5];
@@ -422,7 +423,14 @@ void func_802F7974(s32 x, s32 y, u8* string, u8 arg3, u8 arg4){
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6DA30/func_802F79D0.s")
+void func_802F79D0(s32 x, s32 y, u8* string, s32 arg3, s32 arg4){
+    func_802F77A8(x, y, string);
+    if(D_80380AE4){
+        D_80380AE4->unk4 = arg3;
+        D_80380AE4->unk6 = arg4;
+        strcpy(D_80380AE4->unk8, D_80377254);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6DA30/func_802F7A2C.s")
 
