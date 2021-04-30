@@ -438,22 +438,21 @@ void func_802F79D0(s32 x, s32 y, u8* string, s32 arg3, s32 arg4){
 
 void func_802F7A2C(s32 arg0) {
     s8 *phi_v0;
-    s32 offset;
-    s32 j;
     s32 i;
+    s32 j;
+    s32 offset;
 
     D_80380B0C = arg0;
     
-    offset = 0;
     i = 0;
-    while(offset < D_80380B0C){
-        phi_v0 = i + D_80380B20;
+    offset = 0;
+    while(i < D_80380B0C){
+        phi_v0 = offset + D_80380B20;
         for(j = 0; j < 0x20; j++){
-            phi_v0[j] = (s8) ((offset*0xff) / (s32) (D_80380B0C - 1));
+            phi_v0[j] = (s8) ((i*0xff) / (s32) (D_80380B0C - 1));
         }
-        offset++;
-        i+=0x20;
-        
+        i++;
+        offset+=0x20;
     }
     osWritebackDCache(&D_80380B20, D_80380B0C*sizeof(struct23s));
 }
