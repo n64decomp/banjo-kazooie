@@ -3,6 +3,10 @@
 #include "variables.h"
 
 typedef struct{
+    s8 pad0[0x20];
+} struct23s;
+
+typedef struct{
     s16 x;
     s16 y;
     s16 unk4;
@@ -68,7 +72,7 @@ extern s32 D_80380B14;
 
 extern s32 D_80380B18;
 extern s32 D_80380B1C;
-
+extern s8 D_80380B20[0x400];
 extern s8 D_80380F20[0x80];
 
 //returns map texture assetID for current map;
@@ -432,7 +436,27 @@ void func_802F79D0(s32 x, s32 y, u8* string, s32 arg3, s32 arg4){
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6DA30/func_802F7A2C.s")
+void func_802F7A2C(s32 arg0) {
+    s8 *phi_v0;
+    s32 offset;
+    s32 j;
+    s32 i;
+
+    D_80380B0C = arg0;
+    
+    offset = 0;
+    i = 0;
+    while(offset < D_80380B0C){
+        phi_v0 = i + D_80380B20;
+        for(j = 0; j < 0x20; j++){
+            phi_v0[j] = (s8) ((offset*0xff) / (s32) (D_80380B0C - 1));
+        }
+        offset++;
+        i+=0x20;
+        
+    }
+    osWritebackDCache(&D_80380B20, D_80380B0C*sizeof(struct23s));
+}
 
 void func_802F7B90(s32 arg0, s32 arg1, s32 arg2){
     D_80369078.unk0 = arg0;
