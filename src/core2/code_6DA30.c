@@ -2,11 +2,19 @@
 #include "functions.h"
 #include "variables.h"
 
-typedef struct struct_23_s{
-    u8 pad0[0x14];
-    s32 unk14;
-    u8 pad18[0x4];
-} struct23s;
+typedef struct{
+    s16 x;
+    s16 y;
+    u8 pad4[0x4];
+    u8 unk8;
+    u8 pad9[0x7];
+    f32 unk10;
+    u8 *string;
+    u8 unk18;
+    u8 unk19;
+    u8 unk1A;
+    u8 unk1B;
+} PrintBuffer;
 
 typedef struct font_letter{
     void *unk0;//chunkPtr
@@ -18,6 +26,13 @@ typedef struct map_font_texture_map{
     s16 assetId;
 } MapFontTextureMap;
 
+extern struct {
+    u8 unk0;
+    u8 unk1;
+    u8 unk2;
+    u8 unk3;
+} D_80369078;
+
 extern MapFontTextureMap D_8036907C[];
 
 extern u8 D_80369200[];
@@ -26,10 +41,9 @@ extern u8 D_80369200[];
 extern s8 D_80380AB0;
 extern BKSprite *D_80380AB8[0x5];
 
-extern FontLetter *D_80380AD0[3];
-extern FontLetter *D_80380ADC;
-
-extern struct23s *D_80380AE0;
+extern FontLetter *D_80380AD0[4];
+extern PrintBuffer *D_80380AE0;
+extern PrintBuffer *D_80380AE4;
 extern struct {
     s32 unk0;   
 }D_80380AE8;
@@ -203,7 +217,7 @@ void func_802F4F64(void){
 void func_802F5010(void){
     s32 i;
     for(i = 0; i < 0x20; i++){
-        D_80380AE0[i].unk14 = 0;
+        D_80380AE0[i].string = NULL;
     }
 }
 
@@ -230,7 +244,7 @@ void func_802F5060(s32 textureId){
     D_80380AD0[1] = func_802F4C3C(D_80380AB8[1], D_80380AB8[4]);
     if(D_80380AB8[3]){
         free(D_80380AD0[3]);
-        D_80380ADC = func_802F4C3C(D_80380AB8[3], D_80380AB8[4]);
+        D_80380AD0[3] = func_802F4C3C(D_80380AB8[3], D_80380AB8[4]);
     }
     assetcache_release(D_80380AB8[4]);
     D_80380AB8[4] = NULL;
@@ -268,7 +282,7 @@ void func_802F5188(void){
     D_80380AB8[4] = assetcache_get(func_802F49C0());
     D_80380AD0[0] =  func_802F4C3C(D_80380AB8[0], D_80380AB8[4]);
     D_80380AD0[1] =  func_802F4C3C(D_80380AB8[1], D_80380AB8[4]);
-    D_80380AE0 = malloc(0x20*sizeof(struct23s));
+    D_80380AE0 = malloc(0x20*sizeof(PrintBuffer));
     func_802F5010();
 
     for(i = 0; i < 0x80; i++){//L802F52EC
@@ -292,8 +306,8 @@ void func_802F5374(void){
     if(D_80380B18 > 0 && --D_80380B18 == 0){
         assetcache_release(D_80380AB8[3]);
         D_80380AB8[3] = 0;
-        free(D_80380ADC);
-        D_80380ADC = NULL;
+        free(D_80380AD0[3]);
+        D_80380AD0[3] = NULL;
     }
 }
 
@@ -302,14 +316,21 @@ void func_802F53D0(void){
         assetcache_release(D_80380AB8[3]);
         D_80380AB8[3] = NULL;
     }
-    if(D_80380ADC){
-        free(D_80380ADC);
-        D_80380ADC = NULL;
+    if(D_80380AD0[3]){
+        free(D_80380AD0[3]);
+        D_80380AD0[3] = NULL;
     }
     D_80380B18 = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6DA30/func_802F542C.s")
+void func_802F542C(void){
+    D_80380AD0[0] = func_802555DC(D_80380AD0[0]);
+    D_80380AD0[1] = func_802555DC(D_80380AD0[1]);
+    if(D_80380AD0[3]){
+        D_80380AD0[3] = func_802555DC(D_80380AD0[3]);
+    }
+    D_80380AE0 = func_802555DC(D_80380AE0);
+}
 
 //returns the pixel data and type for a given letter
 void *func_802F5494(s32 letterId, s32 *fontType){
@@ -321,13 +342,13 @@ void *func_802F5494(s32 letterId, s32 *fontType){
         if(!D_80380AB8[3]){
             D_80380AB8[3] = assetcache_get(SPRITE_BOLD_FONT_LETTERS_ALPHAMASK);
             D_80380AB8[4] = assetcache_get(D_80380B1C);
-            D_80380ADC = func_802F4C3C(D_80380AB8[3], D_80380AB8[4]);
+            D_80380AD0[3] = func_802F4C3C(D_80380AB8[3], D_80380AB8[4]);
             assetcache_release(D_80380AB8[4]);
             D_80380AB8[4] = NULL;
         }//L802F5568
         D_80380B18 = 5;
         *fontType  = D_80380AB8[3]->type;
-        return D_80380ADC[letterId-10].unk0;
+        return D_80380AD0[3][letterId-10].unk0;
     }
 }
 
@@ -339,7 +360,24 @@ void *func_802F5494(s32 letterId, s32 *fontType){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6DA30/func_802F6E94.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6DA30/func_802F77A8.s")
+void func_802F77A8(s32 x, s32 y, u8 * string) {
+    for(D_80380AE4 = D_80380AE0; D_80380AE4 < D_80380AE0 + 0x20 && D_80380AE4->string; D_80380AE4++) {
+    }
+    if (D_80380AE4 == D_80380AE0 + 0x20) {
+        D_80380AE4 = NULL;
+        return;
+    }
+    D_80380AE4->x = x;
+    D_80380AE4->y = y;
+    D_80380AE4->unk8 = (u8)0;
+    D_80380AE4->string = string;
+    D_80380AE4->unk10 = 1.0f;
+    D_80380AE4->unk18 = (u8) D_80369078.unk0;
+    D_80380AE4->unk19 = (u8) D_80369078.unk1;
+    D_80380AE4->unk1A = (u8) D_80369078.unk2;
+    D_80380AE4->unk1B = (u8) D_80369078.unk3;
+}
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6DA30/func_802F7870.s")
 
