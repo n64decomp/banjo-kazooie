@@ -278,7 +278,7 @@ enum bs_e
     BS_WALK = 0x3,
     BS_WALK_FAST = 0x4,
     BS_JUMP = 0x5,
-    BS_PUNCH = 0x6,
+    BS_CLAW = 0x6,
     BS_CROUCH = 0x7,
     BS_BTROT_JUMP = 0x8,
     BS_EGG_HEAD = 0x9,

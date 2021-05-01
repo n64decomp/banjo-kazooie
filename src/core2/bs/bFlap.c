@@ -15,7 +15,6 @@ void func_8029E090(s32, f32);
 s32 func_802878E8(AnimCtrl *, f32);
 f32 func_802A2858(void);
 void func_80297BF8(f32);
-void func_8028774C(AnimCtrl *, f32);
 void func_8030DBB4(s32, f32);
 
 extern f32 D_80364A10;

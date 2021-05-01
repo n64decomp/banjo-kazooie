@@ -26,8 +26,8 @@ void bsjump_update(void);
 void bsjump_end(void);
 //bspunch
 void bsclaw_init(void);
-void func_802AB2FC(void);
-void func_802AB58C(void);
+void bsclaw_update(void);
+void bsclaw_end(void);
 //bscrouch
 void func_802AD7EC(void);
 void func_802AD970(void);

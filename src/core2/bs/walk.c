@@ -21,7 +21,6 @@ f32 func_8029B30C(void);
 f32 func_80257C48(f32, f32, f32);
 f32 func_80297A64(void);
 void func_80299594(s32, f32);
-void func_8028774C(s32, f32);
 
 // .data
 extern f32 D_80364D70;//creep_min
@@ -109,7 +108,7 @@ s32 func_802B6F20(s32 arg0){
                 arg0 = BS_ROLL;
         }else{//L802B6F74
             if(func_8028A9E0())
-                arg0 = BS_PUNCH;
+                arg0 = BS_CLAW;
         }
     }
     return arg0;

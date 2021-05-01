@@ -3,7 +3,6 @@
 #include "variables.h"
 
 void func_802876C0(AnimCtrl *, f32);
-void func_8028774C(AnimCtrl *, f32);
 
 f32 func_80294438(void);
 void func_8029797C(f32);

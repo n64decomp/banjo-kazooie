@@ -9,7 +9,6 @@ int func_802878E8(AnimCtrl *, f32);
 void func_802876C0(AnimCtrl *, f32);
 void func_802875AC(AnimCtrl *, char*, s32);
 void func_80299D2C(s32, f32, s32);
-void func_8028774C(AnimCtrl *, f32);
 f32 func_802877D8(AnimCtrl *);
 void func_802900B4(void);
 void func_80250D94(f32, f32, f32);
@@ -53,7 +52,7 @@ s32 func_802B488C(s32 arg0){
         retVal = BS_CROUCH;
 
     if(button_pressed(BUTTON_B) && func_8028A9E0())
-        retVal = BS_PUNCH;
+        retVal = BS_CLAW;
 
     if(button_pressed(BUTTON_A))
         retVal = func_8029C780();
