@@ -22,7 +22,7 @@ void bswalk_fast_update(void);
 void bswalk_fast_end(void);
 //bsjump
 void bsjump_init(void);
-void func_802B1354(void);
+void bsjump_update(void);
 void func_802B1614(void);
 //bspunch
 void func_802AB28C(void);
