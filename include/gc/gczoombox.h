@@ -8,12 +8,8 @@
 
 
 typedef struct {
-    struct {
-        u8 pad0[0x30];
-    } unk0;
-    struct {
-        u8 pad0[0x30];
-    } unk30;
+    u8 unk0[0x30]; //string1
+    u8 unk30[0x30]; //string2
     struct {
         u8 pad0[0x30];
     } unk60;
@@ -50,11 +46,11 @@ typedef struct {
     u8 pad15F[0x1];
     s32 unk160;
     s16 unk164;
-    s16 unk166;
-    s16 unk168;
-    s16 unk16A;
-    s16 unk16C;
-    s16 unk16E;
+    s16 unk166; //top_transparency???
+    s16 unk168; //rgb???
+    s16 unk16A; //x_pos
+    s16 unk16C; //y1_pos
+    s16 unk16E; //y2_pos
     s16 unk170;
     u16 unk172;
     u16 unk174;

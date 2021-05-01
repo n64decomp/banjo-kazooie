@@ -109,24 +109,23 @@ void _gczoombox_memClear(u8 *arg0, s32 size){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/zoombox/func_803160A8.s")
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/zoombox/func_803162B4.s")
 void func_803162B4(gczoombox_t *this){
      func_802F7B90(this->unk168, this->unk168, this->unk168);
      if(this->unk1A4_30){
           if(this->unk1A4_17){
-               func_802F79D0(this->unk16A, this->unk16C, this->unk0.pad0, this->unk166, -1);
+               func_802F79D0(this->unk16A, this->unk16C, this->unk0, this->unk166, -1);
           }
           else if(this->unk1A4_15){
-               print_bold_spaced(this->unk16A, this->unk16C, this->unk0.pad0);
+               print_bold_spaced(this->unk16A, this->unk16C, this->unk0);
           }else{
-               print_dialog(this->unk16A, this->unk16C, this->unk0.pad0);
+               print_dialog(this->unk16A, this->unk16C, this->unk0);
           }
      }
      if(this->unk1A4_29){
           if(this->unk1A4_15){
-               print_bold_spaced(this->unk16A, this->unk16E, this->unk30.pad0);
+               print_bold_spaced(this->unk16A, this->unk16E, this->unk30);
           }else{
-               print_dialog(this->unk16A, this->unk16E, this->unk30.pad0);
+               print_dialog(this->unk16A, this->unk16E, this->unk30);
           }
      }
      func_802F7B90(0xff, 0xff, 0xff);
@@ -358,8 +357,8 @@ gczoombox_t *gczoombox_new(s32 arg0, s32 portrait_id, s32 arg2, s32 arg3, void (
      
      func_80317D10(this, portrait_id);
      func_80318760(this, 18000);
-     _gczoombox_memClear( &this->unk0, 0x30);
-     _gczoombox_memClear( &this->unk30, 0x30);
+     _gczoombox_memClear( this->unk0, 0x30);
+     _gczoombox_memClear( this->unk30, 0x30);
      _gczoombox_memClear( &this->unk60, 0x30);
      _gczoombox_memClear( &this->unk90, 0x20);
      _gczoombox_memClear( &this->unkB0, 0x40);
@@ -441,8 +440,8 @@ int func_8031877C(gczoombox_t *this){
     ){
         return 0;
     }
-    _gczoombox_memClear(&this->unk0, 0x30);
-    _gczoombox_memClear(&this->unk30, 0x30);
+    _gczoombox_memClear(this->unk0, 0x30);
+    _gczoombox_memClear(this->unk30, 0x30);
   
 // /* 91884 80318814 A0C801A5 */  sb         (0 << 7) | (0x1a5($a2) & 0x7f), 0x1a5($a2)
 // /* 91898 80318828 A0CB01A4 */  sb         (0 << 7) | (0x1a4($a2) & 0x7f), 0x1a4($a2)
