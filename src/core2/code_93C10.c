@@ -2,6 +2,12 @@
 #include "functions.h"
 #include "variables.h"
 
+extern struct{
+    u8 pad0[3];
+    s8 unk3;
+    u8 pad4[8];
+    struct1Cs *unkC;
+}D_803830F0;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_93C10/func_8031ABA0.s")
 
@@ -15,7 +21,10 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_93C10/func_8031B030.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_93C10/func_8031B070.s")
+void func_8031B070(s32 arg0){
+    struct1Cs *v0 = D_803830F0.unkC;
+    print_bold_overlapping(v0->x, D_803830F0.unk3, -1.2f, v0->string);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_93C10/func_8031B0B0.s")
 

@@ -309,8 +309,8 @@ typedef struct struct_1B_s{
 
 typedef struct struct_1C_s{
     s16 unk0;
-    u8  pad2[2];
-    s32 unk4;
+    s16 x;   //0x2
+    u8 *string; //0x4
 }struct1Cs;
 
 typedef struct struct_1D_s{

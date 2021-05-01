@@ -123,7 +123,7 @@ void func_802FDAF4(s32 arg0, struct8s *arg1, Gfx **arg2, Mtx **arg3, s32 arg4){
     //convert to string
     strIToA(arg1->unk54, sp38);
     //print text (blue egg font)
-    func_802F78C0(
+    print_bold_spaced(
         (s32)(func_802FB0DC(arg1) + arg1->unk38 + arg1->unk44 + sp34), 
         (s32)(func_802FB0E4(arg1)*arg1->unk4C + (arg1->unk3C + arg1->unk48)), 
         arg1->unk54

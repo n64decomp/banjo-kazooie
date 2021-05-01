@@ -50,10 +50,11 @@ typedef struct {
     u8 pad15F[0x1];
     s32 unk160;
     s16 unk164;
-    u16 unk166;
+    s16 unk166;
     s16 unk168;
-    u16 unk16A;
-    s32 x_position;
+    s16 unk16A;
+    s16 unk16C;
+    s16 unk16E;
     s16 unk170;
     u16 unk172;
     u16 unk174;

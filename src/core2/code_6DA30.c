@@ -2,6 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
+
+
 typedef struct{
     s8 pad0[0x20];
 } struct23s;
@@ -37,9 +39,22 @@ extern struct {
     u8 unk3;
 } D_80369078;
 
+extern s32 D_80369068[];
 extern MapFontTextureMap D_8036907C[];
 
 extern u8 D_80369200[];
+
+extern Gfx D_80369238[];/* = {
+    gsDPPipeSync(),
+    gsSPClearGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BOTH | G_FOG | G_LIGHTING | G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR | G_LOD | G_SHADING_SMOOTH),
+    gsSPSetGeometryMode(G_SHADE | G_TEXTURE_GEN_LINEAR | G_SHADING_SMOOTH),
+    gsSPTexture(qu016(0.5), qu016(0.5), 0, G_TX_RENDERTILE, G_ON),
+    gsDPSetCycleType(G_CYC_1CYCLE),
+    gsDPSetRenderMode(G_RM_XLU_SURF, G_RM_XLU_SURF2),
+    gsDPSetTexturePersp(G_TP_NONE),
+    gsDPSetTextureFilter(G_TF_BILERP),
+    gsSPEndDisplayList(),
+};*/
 
 extern u8 D_80377240[4];
 extern u8 D_80377244[4];
@@ -74,6 +89,7 @@ extern s32 D_80380B18;
 extern s32 D_80380B1C;
 extern s8 D_80380B20[0x400];
 extern s8 D_80380F20[0x80];
+extern f32 D_80380FA8[];
 
 //returns map texture assetID for current map;
 enum asset_e func_802F49C0(void){
@@ -362,13 +378,82 @@ void *func_802F5494(s32 letterId, s32 *fontType){
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6DA30/func_802F55A8.s")
+//returns the letter's palette
+void *func_802F55A8(u8 arg0){
+    return  D_80380AD0[D_80380AE8.unk0][arg0].unk4;
+}
 
+void func_802F55D8(s32 letter, f32* xPtr, f32* yPtr, f32 arg3, Gfx **gdl, Mtx **mptr, s32 vptr);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6DA30/func_802F55D8.s")
+/*void func_802F55D8(s32 letter, f32* arg1, f32* arg2, f32 arg3, Gfx **gdl, Mtx **mptr, s32 vptr){
 
+}//*/
+
+f32 func_802F6C90(u8 letter, f32* xPtr, f32 *yPtr, f32 arg3);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6DA30/func_802F6C90.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6DA30/func_802F6E94.s")
+/*void func_802F6E94(Gfx **arg0, Mtx **arg1, s32 arg2) {
+    s32 j;
+    f32 _x;
+    f32 _y;
+    f32 half;
+    s32 length;
+
+    gSPDisplayList((*arg0)++, D_80369238);
+    for(D_80380AE4 = D_80380AE0; D_80380AE4 < D_80380AE0 + 0x20; D_80380AE4++){
+        if (D_80380AE4->string != 0) {
+            _x = (f32) D_80380AE4->x;
+            _y = (f32) D_80380AE4->y;
+            for(j = 0; D_80380AE4->unk8[j] != 0; j++) {
+                func_802F55D8(0xFD, &_x, &_y, 1.0f, arg0, arg1, arg2);
+                func_802F55D8(D_80380AE4->unk8[j], &_x, &_y, 1.0f, arg0, arg1, arg2);
+            }
+            if (D_80380B00 != 0) {
+                length = strlen(D_80380AE4->string);
+                gDPPipeSync((*arg0)++);
+                gDPSetPrimColor((*arg0)++, 0, 0, 0x00, 0x00, 0x00, 0x64);
+                gDPSetCombineMode((*arg0)++, G_CC_PRIMITIVE, G_CC_PRIMITIVE);
+                half = D_80369068[D_80380AE8.unk0]/2;
+                gDPScisFillRectangle((*arg0)++, _x - half - 1.0f, _y - half - 1.0f, half + (_x + D_80369068[D_80380AE8.unk0] * (length - 1)), half + _y + 1.0f);
+                gDPPipeSync((*arg0)++);
+            }
+            if ((D_80380AF8 == 0) && (D_80380AF4 == 0)) {
+                if (D_80380AE8.unk0 != 0) {
+                    gDPSetCombineMode((*arg0)++, G_CC_DECALRGBA, G_CC_DECALRGBA);
+                    gDPSetPrimColor((*arg0)++, 0, 0, 0xFF, 0xFF, 0xFF, 0xFF);
+                } else {
+                    gDPSetCombineMode((*arg0)++, G_CC_MODULATEIA_PRIM, G_CC_MODULATEIA_PRIM);
+                    gDPSetPrimColor((*arg0)++, 0, 0, D_80380AE4->unk18, D_80380AE4->unk19, D_80380AE4->unk1A, D_80380AE4->unk1B);
+                }
+            }
+            if ((D_80380AE8.unk0 == 1) && ((f64) D_80380AE4->unk10 < 0.0)) {
+                for(j = 0; D_80380AE4->string[j]; j++){
+                    D_80380FA8[j] = func_802F6C90(D_80380AE4->string[j], &_x, &_y, -D_80380AE4->unk10);
+                }
+                while(j >= 0){
+                    _x = D_80380FA8[j];
+                    func_802F55D8(D_80380AE4->string[j], &_x, &_y, -D_80380AE4->unk10, arg0, arg1, arg2);
+                    j--;
+                }
+            } else {
+                for(j = 0; (D_80380AE4->string[j] != 0) || (D_80380B04 != 0); j++){
+                    func_802F55D8(D_80380AE4->string[j], &_x, &_y, D_80380AE4->unk10, arg0, arg1, arg2);
+                }
+            }
+            for(j = 0; D_80380AE4->unk8[j] != 0; j++) {
+                func_802F55D8(0xFD, &_x, &_y, 1.0f, arg0, arg1, arg2);
+                func_802F55D8(D_80380AE4->unk8[j], &_x, &_y, 1.0f, arg0, arg1, arg2);
+            }
+            func_802F55D8(0, &_x, &_y, 1.0f, arg0, arg1, arg2);
+            D_80380AE4->string = NULL;
+        }
+    }
+    gDPPipeSync((*arg0)++);
+    gDPSetTexturePersp((*arg0)++, G_TP_PERSP);
+    gDPSetTextureFilter((*arg0)++, G_TF_BILERP);
+    func_8024C904(arg0, arg1);
+}//*/
 
 //adds a new string to the print buffer and updates string buffer end ptr
 void func_802F77A8(s32 x, s32 y, u8 * string) {
@@ -389,7 +474,7 @@ void func_802F77A8(s32 x, s32 y, u8 * string) {
     D_80380AE4->unk1B = (u8) D_80369078.unk3;
 }
 
-void func_802F7870(s32 x, s32 y, f32 arg2, u8* string){
+void print_bold_overlapping(s32 x, s32 y, f32 arg2, u8* string){
     func_802F77A8(x, y, string);
     if(D_80380AE4){
         strcpy(D_80380AE4->unk8, D_80377240);
@@ -397,28 +482,28 @@ void func_802F7870(s32 x, s32 y, f32 arg2, u8* string){
     }
 }
 
-void func_802F78C0(s32 x, s32 y, u8* string){
+void print_bold_spaced(s32 x, s32 y, u8* string){
     func_802F77A8(x, y, string);
     if(D_80380AE4){
         strcpy(D_80380AE4->unk8, D_80377244);
     }
 }
 
-void func_802F78FC(s32 x, s32 y, u8* string){
+void print_dialog(s32 x, s32 y, u8* string){
     func_802F77A8(x, y, string);
     if(D_80380AE4){
         strcpy(D_80380AE4->unk8, D_80377248);
     }
 }
 
-void func_802F7938(s32 x, s32 y, u8* string){
+void print_dialog_w_bg(s32 x, s32 y, u8* string){
     func_802F77A8(x, y, string);
     if(D_80380AE4){
         strcpy(D_80380AE4->unk8, D_8037724C);
     }
 }
 
-void func_802F7974(s32 x, s32 y, u8* string, u8 arg3, u8 arg4){
+void print_dialog_gradient(s32 x, s32 y, u8* string, u8 arg3, u8 arg4){
     func_802F77A8(x, y, string);
     if(D_80380AE4){
         D_80380AE4->unk4 = arg3;

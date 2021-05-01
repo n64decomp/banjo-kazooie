@@ -605,7 +605,10 @@ s32 func_80312B84(void){ return 1; }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/pauseMenu/func_80312E80.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/pauseMenu/func_80312F88.s")
+func_80312F88(s32 arg0){
+    struct1Cs *v0 = D_8036C58C + arg0;
+    print_bold_overlapping(v0->x, D_80383010.unk8, -1.05f, v0->string);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/pauseMenu/func_80312FD0.s")
 
