@@ -11,21 +11,27 @@ void func_802979A0(f32);
 void func_802979AC(f32, f32);
 f32 func_80297A64(void);
 void func_80297BEC(f32);
+void func_80299B58(f32, f32);
 f32 func_8029B2E8(void);
 f32 func_8029B33C(void);
 
+extern f32 D_80364CD0;
+extern f32 D_80364CD4;
+extern f32 D_80364CE4;
+
 extern char D_80375960[];
+extern f32 D_8037599C;
+extern f32 D_803759A0;
 
 extern u8 D_8037D4C0;
 extern u8 D_8037D4C1;
 extern u8 D_8037D4C2;
 
-/*.rodata */
-extern f32 D_80364CD0;
-extern f32 D_80364CD4;
-extern f32 D_80364CE4;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/jump/func_802B1100.s")
+
+void func_802B1100(void){
+    func_80299B58(D_8037599C, D_803759A0);
+}
 
 void bsjump_init(void){
     AnimCtrl *aCtrl =  player_getAnimCtrlPtr();
@@ -154,9 +160,15 @@ void bsjump_update(void){
         sp34 = BS_LANDING_IN_WATER;
 
     bs_setState(sp34);
-}//*/
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/jump/func_802B1614.s")
+void bsjump_end(void){
+    if(func_802957D8(0xa))
+        func_80295610(0);
+
+    if(bs_getNextState() != BS_BPECK)
+        func_80297B70();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/jump/func_802B1660.s")
 

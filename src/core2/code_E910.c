@@ -7,11 +7,11 @@
 
 u8 D_80363820 = 0;
 bsMap D_80363824[] ={
-    {BS_IDLE,       bsstand_init,       bsstand_update, bsstand_end, func_802B5350},
-    {BS_WALK_SLOW,  bswalk_slow_init,   bswalk_slow_upate, NULL,          func_802B5350},
-    {BS_WALK,       bswalk_init,        bswalk_update, NULL,          func_802B5350},
+    {BS_IDLE,       bsstand_init,       bsstand_update,     bsstand_end, func_802B5350},
+    {BS_WALK_SLOW,  bswalk_slow_init,   bswalk_slow_upate,  NULL,          func_802B5350},
+    {BS_WALK,       bswalk_init,        bswalk_update,      NULL,          func_802B5350},
     {BS_WALK_FAST,  bswalk_fast_init,   bswalk_fast_update, bswalk_fast_end, func_802B5350},
-    {BS_JUMP,       bsjump_init,        bsjump_update, func_802B1614, func_80296608},
+    {BS_JUMP,       bsjump_init,        bsjump_update,      bsjump_end, func_80296608},
     {BS_PUNCH,      func_802AB28C, func_802AB2FC, func_802AB58C, func_80296608},
     {BS_CROUCH,     func_802AD7EC, func_802AD970, func_802ADCCC, func_802B5350},
     {BS_BTROT_JUMP, func_802A9328, func_802A9478, func_802A9864, func_802B5350},
