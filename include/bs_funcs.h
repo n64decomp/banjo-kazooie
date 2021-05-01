@@ -29,7 +29,7 @@ void bsclaw_init(void);
 void bsclaw_update(void);
 void bsclaw_end(void);
 //bscrouch
-void func_802AD7EC(void);
+void bscrouch_init(void);
 void func_802AD970(void);
 void func_802ADCCC(void);
 //bsbtrotjump
