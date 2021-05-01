@@ -2,7 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-void func_802876C0(AnimCtrl *this, f32 arg1);
 f32 func_80289690(s32);
 void func_80289EA8(f32, f32);
 void func_80289EC8(f32, f32, s32, s32);

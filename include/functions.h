@@ -201,7 +201,7 @@ void func_802EFA18(Actor *, s32);
 
 OSMesgQueue *func_8024F344(void);
 
-void func_802876C0(AnimCtrl *, f32);
+void func_802876C0(AnimCtrl *this, f32 arg1);
 void func_8028774C(AnimCtrl *, f32);
 
 f32 func_80294438(void);

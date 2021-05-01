@@ -19,7 +19,6 @@ void func_80287674(AnimCtrl *this, s32 arg1);
 void animctrl_setDirection(AnimCtrl *this, s32 arg1);
 void func_80287684(AnimCtrl *this, s32 arg1);
 void animctrl_setDuration(AnimCtrl *this, f32 arg1);
-void func_802876C0(AnimCtrl *this, f32 arg1);
 void func_802876CC(AnimCtrl *this, f32 arg1, f32 arg2);
 void func_80287784(AnimCtrl *this, s32 arg1);
 f32  func_802877C8(AnimCtrl *this);

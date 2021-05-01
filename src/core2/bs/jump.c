@@ -2,8 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-void func_802876C0(AnimCtrl *, f32);
-
 f32 func_80294438(void);
 void func_8029797C(f32);
 void func_802979A0(f32);
