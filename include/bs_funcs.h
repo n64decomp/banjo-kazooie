@@ -45,9 +45,9 @@ void func_802B63F8(void);
 void func_802B64D0(void);
 void func_802B6500(void);
 //bsow
-void func_802B1FD8(void);
-void func_802B209C(void);
-void func_802B2184(void);
+void bsow_init(void);
+void bsow_update(void);
+void bsow_end(void);
 //bsbuster
 void func_8029FC64(void);
 void func_8029FD8C(void);

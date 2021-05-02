@@ -3,10 +3,10 @@
 #include "variables.h"
 
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/turn/func_802B6A40.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/twirl/func_802B6A40.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/turn/func_802B6A4C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/twirl/func_802B6A4C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/turn/func_802B6B70.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/twirl/func_802B6B70.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/turn/func_802B6CD4.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/twirl/func_802B6CD4.s")

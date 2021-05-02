@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-
+void func_802B37DC(void);
 
 extern char D_803759B0[];
 extern f32 D_803759B8;
@@ -10,7 +10,7 @@ extern u8  D_8037D4D0;
 
 void func_802B1FD0(s32 arg0){}
 
-void func_802B1FD8(void){
+void bsow_init(void){
     AnimCtrl *plyr_mvmnt;
 
     plyr_mvmnt = player_getAnimCtrlPtr();
@@ -29,40 +29,39 @@ void func_802B1FD8(void){
     func_802B1FD0(1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/ow/func_802B209C.s")
-// void func_802B209C(void) {
-//     s32 sp1C;
-//     u8 temp_v0;
+void bsow_update(void) {
+    s32 sp1C = 0;
+    u8 temp_v0;
 
-//     sp1C = 0;
-//     func_802B37DC();
-//     temp_v0 = D_8037D4D0;
-//     if (temp_v0 != 0) {
-//         if (temp_v0 != 1) {
+    sp1C = 0;
+    func_802B37DC();
+    temp_v0 = D_8037D4D0;
+    if (temp_v0 != 0) {
+        if (temp_v0 != 1) {
 
-//         }
-//     } else if (func_8028B254(0x5A) != 0) {
-//         func_8028A37C(1.0f);
-//         D_8037D4D0 = 1;
-//     }
+        }
+    } else if (func_8028B254(0x5A) != 0) {
+        func_8028A37C(1.0f);
+        D_8037D4D0 = 1;
+    }
 
-//     if (func_80289FE8(D_803759B8) != 0) {
-//         func_80292EA4();
-//     }
-//     if (func_8028B424() != 0) {
-//         sp1C = 0x3D;
-//     }
-//     if (func_8028B2E8() != 0) {
-//         sp1C = 2;
-//     }
-//     if ((player_inWater() != 0) && (func_80297AAC() <= 0.0f)) {
-//         sp1C = 0x4C;
-//     }
+    if (func_80289FE8(D_803759B8) != 0) {
+        func_80292EA4();
+    }
+    if (func_8028B424() != 0) {
+        sp1C = 0x3D;
+    }
+    if (func_8028B2E8() != 0) {
+        sp1C = 2;
+    }
+    if ((player_inWater() != 0) && (func_80297AAC() <= 0.0f)) {
+        sp1C = 0x4C;
+    }
 
-//     bs_setState(sp1C);
-// }
+    bs_setState(sp1C);
+}
 
-void func_802B2184(void){
+void bsow_end(void){
     func_802B35DC();
     func_802B1FD0(0);
     func_80297CA8();
