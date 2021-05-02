@@ -38,8 +38,8 @@ void func_802A9478(void);
 void func_802A9864(void);
 //bsskid
 void bsturn_init(void);
-void func_802B6850(void);
-void func_802B69F0(void);
+void bsturn_update(void);
+void bsturn_end(void);
 //0xd
 void func_802B63F8(void);
 void func_802B64D0(void);

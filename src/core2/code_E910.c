@@ -15,7 +15,7 @@ bsMap D_80363824[] ={
     {BS_CLAW,       bsclaw_init,        bsclaw_update,      bsclaw_end,         func_80296608},
     {BS_CROUCH,     bscrouch_init,      bscrouch_update,    bscrouch_end,       func_802B5350},
     {BS_BTROT_JUMP, func_802A9328,      func_802A9478,      func_802A9864,      func_802B5350},
-    {BS_SKID,       bsturn_init, func_802B6850, func_802B69F0, func_802B5350},
+    {BS_SKID,       bsturn_init, bsturn_update, bsturn_end, func_802B5350},
     {0xd,           func_802B63F8, func_802B64D0, func_802B6500, func_80296590},
     {BS_OW,         func_802B1FD8, func_802B209C, func_802B2184, func_80296590},
     {BS_BUSTER,     func_8029FC64, func_8029FD8C, func_802A0278, func_80296608},
