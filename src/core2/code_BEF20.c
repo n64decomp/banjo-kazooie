@@ -3,7 +3,6 @@
 #include "variables.h"
 
 f32 func_8033DD9C(void);
-void func_8030E760(s32, f32, s32);
 void func_80346DB4(s32);
 
 void func_803463D4(s32 item, s32 diff);

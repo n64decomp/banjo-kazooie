@@ -251,7 +251,7 @@ void func_8030E5F4(s32, f32);
 void func_8030E760(s32, f32, s32);
 void func_8030EBC8(s32, f32, f32, s32, s32);
 
-int func_8032728C(f32*, f32, s32, s32(*)(Actor *));
+void func_8032728C(f32*, f32, s32, s32(*)(Actor *));
 
 void func_80352CF4(f32 *, f32 *, f32, f32);
 

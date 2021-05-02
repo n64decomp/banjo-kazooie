@@ -10,9 +10,7 @@ f32 func_80297A7C(void);
 s32 func_8029E2E0(s32, f32);
 void  func_80292864(f32, f32);
 void func_802979AC(f32, f32);
-void func_8032728C(f32*, f32, s32, s32(*)(Actor *));
 void func_8029E3C0(s32, f32);
-void func_8030E760(s32, f32, s32);
 
 
 

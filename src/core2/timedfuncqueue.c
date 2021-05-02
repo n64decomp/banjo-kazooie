@@ -46,7 +46,6 @@ typedef struct delayed_jiggy_s{
 
 //void __spawnjiggy(DelayedJiggyInfo *);
 TimedFunction* __timedFuncQueue_insert(f32, s32, void(* func)(s32, s32, s32, s32, s32), s32, s32, s32, s32, s32);
-void func_8030E760(u32, f32, u32);
 void func_8030E9C4(u32, u32, u32, f32 *, f32, f32);
 void func_80324BA0(s32);
 

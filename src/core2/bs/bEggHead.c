@@ -10,9 +10,6 @@ void func_802875AC(AnimCtrl *, char*, s32);
 extern u8 D_8037D2F0;
 extern u8 D_8037D2F1;
 
-s32 func_8030E760(s32, f32, s32);
-
-
 
 void func_802A23E0(void){
     func_8028A274(0x2A, 1.0f);
