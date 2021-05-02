@@ -5,7 +5,7 @@
 
 extern f32 func_8029B2E8(void);
 void func_80299234(f32, f32);
-int func_802878E8(AnimCtrl *, f32);
+
 void func_802875AC(AnimCtrl *, char*, s32);
 void func_80299D2C(s32, f32, s32);
 

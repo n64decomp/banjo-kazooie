@@ -3,7 +3,7 @@
 #include "variables.h"
 
 
-int func_802878E8(AnimCtrl *, f32);
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_1930/func_802888C0.s")
 

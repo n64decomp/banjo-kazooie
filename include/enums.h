@@ -285,7 +285,7 @@ enum bs_e
     BS_EGG_ASS = 0xa,
 
     BS_SKID = 0xc,
-    //unknown 0xd,
+    BS_TIMEOUT = 0xd,
     BS_OW = 0xe,
     BS_BUSTER = 0xf,
     BS_BFLAP = 0x10,
@@ -355,7 +355,7 @@ enum bs_e
     BS_CLIMB_MOVE = 0x50,
     BS_CLIMB_EXIT = 0x51,
     //unk52 //tumblar??? a.k.a bssurf
-    //unk53 //tumblar??? a.k.a bssurf
+    BS_TIMEOUT_UNK53 = 0x53,    
     BS_SWIM_DIE = 0x54,
     BS_LONGLEG_SLIDE = 0x55,
     BS_RECOIL = 0x56,

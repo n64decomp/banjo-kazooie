@@ -16,7 +16,7 @@ void func_80324E88(f32);
 void timedFunc_set_2(f32, void(*)(s32, s32), s32, s32);
 
 
-s32 func_802878E8(AnimCtrl *, f32);
+
 
 void func_8038F6A4(Actor *);
 void func_8038FBF8(Actor *);

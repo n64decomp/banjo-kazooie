@@ -3,7 +3,7 @@
 #include "variables.h"
 
 
-s32 func_802878E8(AnimCtrl*, f32);
+
 void func_802875AC(AnimCtrl *, char*, s32);
 
 void func_8028A274(s32, f32);

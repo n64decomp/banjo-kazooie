@@ -12,7 +12,7 @@ extern u8 D_8037D2F1;
 
 s32 func_8030E760(s32, f32, s32);
 
-s32 func_802878E8(AnimCtrl *, f32);
+
 
 void func_802A23E0(void){
     func_8028A274(0x2A, 1.0f);
