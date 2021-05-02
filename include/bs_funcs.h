@@ -59,7 +59,7 @@ void bsbflap_end(void);
 //bsbpeck
 void bsbpeck_init(void);
 void func_802A66F0(void);
-void func_802A6928(void);
+void bsbpeck_end(void);
 //bsbflip
 void func_802A2E6C(void);
 void func_802A2F48(void);

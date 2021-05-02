@@ -49,4 +49,12 @@ void bsbpeck_init(void){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bPeck/func_802A66F0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bPeck/func_802A6928.s")
+void bsbpeck_end(void){
+    D_8037D376 = 0;
+    func_80295610(0xa);
+    func_80292048(1, 0.0f, 0.0f, 0.0f);
+    func_80292048(0, 0.0f, 0.0f, 0.0f);
+    func_8028D638(0, 0);
+    func_8029E070(0);
+    func_80297B70();
+}
