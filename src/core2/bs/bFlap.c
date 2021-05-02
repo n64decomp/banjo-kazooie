@@ -29,7 +29,7 @@ extern f32 D_8037D308;
 extern u8 D_8037D30C;
 
 void func_802A2690(void) {
-    func_8028A274(0x18, 0x3E99999A);
+    func_8028A274(0x18, 0.3f);
     func_8029C7F4(1, 1, 1, 2);
     if (func_8029B2E8() != 0.0f) {
         player_setMovingYaw(func_8029B33C());
@@ -188,7 +188,7 @@ void func_802A2A1C(void){
         sp1c = BS_FALL;
     
     if(func_80294F3C())
-        sp1c = BS_BUSTER;
+        sp1c = BS_BBUSTER;
 
     if(func_8028B2E8()){
         func_8029C5E8();

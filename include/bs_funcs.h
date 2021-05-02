@@ -49,7 +49,7 @@ void bsow_init(void);
 void bsow_update(void);
 void bsow_end(void);
 //bsbuster
-void func_8029FC64(void);
+void bsbbuster_init(void);
 void func_8029FD8C(void);
 void func_802A0278(void);
 //bsflap
@@ -457,9 +457,9 @@ void func_802A9D08(void);
 void func_802AA068(void);
 void func_80296608(void);
 //0x00000072
-void func_802B45F0(void);
-void func_802B4708(void);
-void func_802B4844(void);
+void bssplat_init(void);
+void bssplat_update(void);
+void bssplat_end(void);
 void func_80296590(void);
 //0x00000073
 void func_802B3CEC(void);

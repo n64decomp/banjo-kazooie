@@ -146,7 +146,7 @@ void bsjump_update(void){
         sp34 = BS_BPECK;
 
     if(func_80294F3C())
-        sp34 = BS_BUSTER;
+        sp34 = BS_BBUSTER;
 
     if(func_8028B2E8()){
         func_8029C5E8();

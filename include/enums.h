@@ -287,7 +287,7 @@ enum bs_e
     BS_SKID = 0xc,
     BS_TIMEOUT = 0xd,
     BS_OW = 0xe,
-    BS_BUSTER = 0xf,
+    BS_BBUSTER = 0xf,
     BS_BFLAP = 0x10,
     BS_BPECK = 0x11,
     BS_BFLIP = 0x12,
