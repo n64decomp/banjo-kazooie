@@ -221,6 +221,7 @@ void func_80292900(f32, f32);
 
 void func_80292E80(s32, f32);
 f32  func_80294438(void);
+void func_80292974(f32, f32, f32);
 void func_8029797C(f32);
 void func_802979A0(f32);
 void func_802979AC(f32, f32);
@@ -228,6 +229,8 @@ f32  func_80297A64(void);
 f32  func_80297A7C(void);
 f32  func_80297AB8(void);
 void func_80297BEC(f32);
+void func_80297BF8(f32);
+void func_80297CCC(f32);
 void func_80297FB0(f32, f32);
 void func_80298CE0(f32);
 void func_802991D8(f32);
@@ -244,7 +247,11 @@ f32  func_8029B41C(void);
 void func_8029E3C0(s32, f32);
 f32  func_8029E270(s32);
 void func_802BF2C0(f32);
+void func_8030E5F4(s32, f32);
+void func_8030E760(s32, f32, s32);
 void func_8030EBC8(s32, f32, f32, s32, s32);
+
+int func_8032728C(f32*, f32, s32, s32(*)(Actor *));
 
 void func_80352CF4(f32 *, f32 *, f32, f32);
 

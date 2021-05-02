@@ -2,40 +2,32 @@
 #include "functions.h"
 #include "variables.h"
 
-void func_80292974(f32, f32, f32);
-void func_80297BF8(f32);
-void func_80297CCC(f32);
-void func_8030E5F4(s32, f32);
-void func_8030E760(s32, f32, s32);
+/*.data*/
+const f32 D_80364990 = 400.0f;
+const f32 D_80364994 = -800.0f;
 
-int func_8032728C(f32*, f32, s32, s32(*)(Actor *));
+const f32 D_80364998 = 730.0f;
+const f32 D_8036499C = -2110.0f;
 
+const f32 D_803649A0 = 2300.0f;
+const f32 D_803649A4 = -20000.0f;
+const f32 D_803649A8 = -5000.0f;
 
-extern f32 D_80364990;
-extern f32 D_80364994;
-
-extern f32 D_80364998;
-extern f32 D_8036499C;
-
-extern f32 D_803649A0;
-extern f32 D_803649A4;
-extern f32 D_803649A8;
-
-
-
-extern f32 D_8037D2B0;
-extern u8 D_8037D2B4;
-extern u8 D_8037D2B5;
-extern u8 D_8037D2B6;
-extern u8 D_8037D2B7;
-extern u8 D_8037D2B8;
-extern u8 D_8037D2B9;
-extern u8 D_8037D2BA;
-extern u8 D_8037D2BB;
-extern u8 D_8037D2BC;
+/*.bss*/
+f32 D_8037D2B0;
+u8 D_8037D2B4;
+u8 D_8037D2B5;
+u8 D_8037D2B6;
+u8 D_8037D2B7;
+u8 D_8037D2B8;
+u8 D_8037D2B9;
+u8 D_8037D2BA;
+u8 D_8037D2BB;
+u8 D_8037D2BC;
 
 void func_802A02B4(s32 arg0);
 
+/*.code*/
 int func_8029FB20(Actor *arg0){
     return !arg0->unk124_0;
 }
@@ -50,9 +42,14 @@ void func_8029FB30(void) {
         func_80292974(mlNormalizeAngle(i + 30.0f), 430.0f, 40.0f);
     }
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bbuster/func_8029FC4C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bbuster/func_8029FC58.s")
+s32 func_8029FC4C(void){
+    return D_8037D2B8;
+}
+
+s32 func_8029FC58(void){
+    return D_8037D2B7;
+}
 
 void bsbbuster_init(void){
     AnimCtrl *aCtrl = player_getAnimCtrlPtr();
