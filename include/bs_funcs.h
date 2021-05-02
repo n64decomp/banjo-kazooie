@@ -37,7 +37,7 @@ void func_802A9328(void);
 void func_802A9478(void);
 void func_802A9864(void);
 //bsskid
-void func_802B6760(void);
+void bsturn_init(void);
 void func_802B6850(void);
 void func_802B69F0(void);
 //0xd

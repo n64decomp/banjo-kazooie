@@ -2,15 +2,48 @@
 #include "functions.h"
 #include "variables.h"
 
-void func_80297FB0(f32, f32);
-
-extern char D_80375A60[];
-
+/* .bss */
 extern s32 D_8037D520;
 extern s32 D_8037D524;
 extern f32 D_8037D528;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/slide/func_802B40D0.s")
+void func_802B40D0(void){
+    f32 sp44[3];
+    f32 sp38[3];
+    f32 sp2C[3];
+    f32 sp28;
+
+    _player_getPosition(sp38);
+    sp38[1] += 20.0f;
+    D_8037D524++;
+    if(!(D_8037D524 < 3))
+        D_8037D524 = 0;
+
+    if(D_8037D524){
+        sp28 = mlNormalizeAngle(player_getYaw() + 90.0f);
+        func_802589E4(sp2C, sp28, randf()*10.0f + 20.0f);
+        sp2C[1] = 0.0f;
+    }
+
+    switch(D_8037D524){
+        case 1://L802B41A0
+            func_80258C7C(sp2C, -1.0f);
+            sp38[0] += sp2C[0];
+            sp38[1] += sp2C[1];
+            sp38[2] += sp2C[2];
+            break;
+        case 2://L802B41DC
+            sp38[0] += sp2C[0];
+            sp38[1] += sp2C[1];
+            sp38[2] += sp2C[2];
+            break;
+        case 0://L802B4208
+            break;
+    }
+    func_802589E4(sp44, player_getYaw(), 40.0f);
+    sp44[1] = 50.0f;
+    func_80352CF4(sp38, sp44, 10.0f, 150.0f);
+}
 
 void bsslide_init(void){
     AnimCtrl *aCtrl = player_getAnimCtrlPtr();
@@ -32,7 +65,7 @@ void bsslide_init(void){
     animctrl_setIndex(aCtrl, D_8037D520);
     func_80287674(aCtrl, 3);
     animctrl_setDuration(aCtrl, 1.0f);
-    func_802875AC(aCtrl, D_80375A60, 0x7f);
+    func_802875AC(aCtrl, "bsslide.c", 0x7f);
     func_8029C7F4(1,1,3,3);
     func_8029797C(player_getMovingYaw());
     func_802979AC(player_getMovingYaw() ,func_80297A64());
