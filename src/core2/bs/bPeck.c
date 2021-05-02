@@ -3,14 +3,26 @@
 #include "variables.h"
 
 void func_80292048(s32, f32, f32, f32);
+void func_802875AC(AnimCtrl *, char *, s32);
+void func_8030E58C(s32, f32);
 
 extern f32 D_80364A60;
 extern f32 D_80364A64;
 
+extern char D_803755E0[];
+extern char D_803755EC[];
+extern f32 D_803755F8;
+extern f32 D_803755FC;
+extern f32 D_80375600;
+extern f64 D_80375608;
+
+extern f32 D_8037D370;
 extern u8 D_8037D374;
 extern u8 D_8037D375;
 extern u8 D_8037D376;
 extern u8 D_8037D377;
+
+
 
 s32 func_802A6510(void){
     return D_8037D376;
@@ -45,9 +57,81 @@ void bsbpeck_init(void){
     D_8037D376 = 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bPeck/func_802A664C.s")
+void func_802A664C(void){
+    f32 sp1C = 1.0f;
+    switch(D_8037D375){
+        case 0:
+            sp1C = D_803755F8;
+            break;
+        case 1:
+            sp1C = D_803755FC;
+            break;
+        case 2:
+            sp1C = D_80375600;
+            break;
+    }
+    func_802933E8(5);
+    func_8030E58C(0x42, sp1C);
+    func_802979A0(D_80364A64);
+    D_8037D375++;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bPeck/func_802A66F0.s")
+void bsbpeck_update(void){
+    enum bs_e sp24 = 0;
+    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+
+    func_802B6FA8();
+    if(D_8037D377){
+        func_80297970(func_80297A64() * D_80375608);
+    }
+
+    switch(D_8037D374){
+        case 0://L802A6770
+            if(func_802878E8(aCtrl, 0.9126f)){
+                animctrl_setIndex(aCtrl, 0x19);
+                func_8028774C(aCtrl, 0.0f);
+                animctrl_setDuration(aCtrl, 0.35f);
+                func_80287674(aCtrl, 2);
+                func_802875AC(aCtrl, D_803755E0, 0xbd);
+                D_8037D370 = 0.5f;
+                D_8037D374 = 1;
+            }
+            break;
+        case 1://L802A67E8
+            if(func_802878E8(aCtrl, 0.1621f))
+                func_802A664C();
+            
+            if(func_802878E8(aCtrl, 0.7f))
+                func_802A664C();
+
+            D_8037D370 -= func_8033DD9C();
+            if(D_8037D370 < 0.0f){
+                func_802874AC(aCtrl);
+                func_80287684(aCtrl, 0);
+                animctrl_setIndex(aCtrl, 0x1a);
+                animctrl_setDirection(aCtrl, 0);
+                animctrl_setDuration(aCtrl, 0.2f);
+                func_80287674(aCtrl, 1);
+                func_802875AC(aCtrl, D_803755EC, 0xd4);
+                D_8037D374 = 2;
+            }
+            break;
+        case 2://L802A68C4
+            if(func_802878C4(aCtrl))
+                sp24 = BS_FALL;
+            break;
+    }//L802A68D8
+
+    if(func_8028B2E8()){
+        func_8029C5E8();
+        sp24 = BS_IDLE;
+    }
+
+    if(player_inWater())
+        sp24 = BS_LANDING_IN_WATER;
+
+    bs_setState(sp24);
+}
 
 void bsbpeck_end(void){
     D_8037D376 = 0;
