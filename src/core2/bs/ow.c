@@ -4,8 +4,6 @@
 
 void func_802B37DC(void);
 
-extern char D_803759B0[];
-extern f32 D_803759B8;
 extern u8  D_8037D4D0;
 
 void func_802B1FD0(s32 arg0){}
@@ -20,7 +18,7 @@ void bsow_init(void){
     animctrl_setIndex(plyr_mvmnt, 0x4D);
     animctrl_setDuration(plyr_mvmnt, 1.70000004768f);
     func_80287674(plyr_mvmnt, 1);
-    func_802875AC(plyr_mvmnt, D_803759B0, 0x50);
+    func_802875AC(plyr_mvmnt, "bsow.c", 0x50);
     func_80299BFC(1.0f);
     func_802B360C();
     func_8028D5DC();
@@ -35,27 +33,28 @@ void bsow_update(void) {
 
     sp1C = 0;
     func_802B37DC();
-    temp_v0 = D_8037D4D0;
-    if (temp_v0 != 0) {
-        if (temp_v0 != 1) {
-
-        }
-    } else if (func_8028B254(0x5A) != 0) {
-        func_8028A37C(1.0f);
-        D_8037D4D0 = 1;
+    switch(D_8037D4D0){
+        case 0:
+            if (func_8028B254(0x5A) != 0) {
+                func_8028A37C(1.0f);
+                D_8037D4D0 = 1;
+            }
+            break;
+        case 1:
+            break;
     }
 
-    if (func_80289FE8(D_803759B8) != 0) {
+    if (func_80289FE8(0.3f) != 0) {
         func_80292EA4();
     }
     if (func_8028B424() != 0) {
-        sp1C = 0x3D;
+        sp1C = BS_FALL_TUMBLING;
     }
     if (func_8028B2E8() != 0) {
-        sp1C = 2;
+        sp1C = BS_WALK_SLOW;
     }
     if ((player_inWater() != 0) && (func_80297AAC() <= 0.0f)) {
-        sp1C = 0x4C;
+        sp1C = BS_LANDING_IN_WATER;
     }
 
     bs_setState(sp1C);

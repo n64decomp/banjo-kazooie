@@ -359,6 +359,8 @@ segments:
   - [0x000EE810, bin, data_EE810]
   - [0x000EE880, .rodata, bs/crouch]
   - [0x000EE8B0, bin, data_EE8B0]
+  - [0x000EEA20, .rodata, bs/ow]
+  - [0x000EEA30, bin, data_EEA30]
   - [0x000EEAD0, .rodata, bs/slide]
   - [0x000EEAE0, bin, data_EEAE0]
   - [0x000EEBA0, .rodata, bs/turn]
