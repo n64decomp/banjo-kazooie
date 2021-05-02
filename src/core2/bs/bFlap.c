@@ -3,32 +3,21 @@
 #include "variables.h"
 
 
-void func_80297BEC(f32);
-void func_8029E3C0(s32, f32);
-void func_802979AC(f32, f32);
-f32  func_80297A64(void);
-void func_802979A0(f32);
-void func_8029797C(f32);
-f32  func_8029B33C(void);
-f32 func_8029B2E8(void);
-void func_8029E090(s32, f32);
-
 f32 func_802A2858(void);
-void func_80297BF8(f32);
-void func_8030DBB4(s32, f32);
 
-extern f32 D_80364A10;
-extern f32 D_80364A14;
-extern f32 D_80364A18;
+/*.data*/
+const f32 D_80364A10 = 280.0f;
+const f32 D_80364A14 = -1100.0f;
+const f32 D_80364A18 = -399.9f;
 
-
+/*.bss*/
 extern u8 D_8037D300;
 extern u8 D_8037D301;
 extern f32 D_8037D304;
 extern f32 D_8037D308;
 extern u8 D_8037D30C;
 
-void func_802A2690(void) {
+void bsbflap_init(void) {
     func_8028A274(0x18, 0.3f);
     func_8029C7F4(1, 1, 1, 2);
     if (func_8029B2E8() != 0.0f) {
@@ -111,7 +100,7 @@ void func_802A298C(void){
     }
 }
 
-void func_802A2A1C(void){
+void bsbflap_update(void){
     s32 sp1c;
     AnimCtrl * sp18;
 
@@ -201,7 +190,7 @@ void func_802A2A1C(void){
     bs_setState(sp1c);
 }
 
-void func_802A2D10(void) {
+void bsbflap_end(void) {
     func_80295610(1);
     func_80297B70();
     func_80297B94();

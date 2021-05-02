@@ -213,6 +213,7 @@ int func_802878E8(AnimCtrl *, f32);
 void func_802876C0(AnimCtrl *this, f32 arg1);
 void func_8028774C(AnimCtrl *, f32);
 f32  func_802877D8(AnimCtrl *);
+void func_8028A010(s32, f32);
 void func_8028A1F4(s32, f32, f32);
 void func_8028A274(s32, f32);
 
@@ -239,14 +240,16 @@ void func_8029932C(f32);
 void func_80299B58(f32, f32);
 void func_80299CF4(s32, f32, s32);
 
-void func_8028A010(s32, f32);
+
 void func_8029AD28(f32, s32);
 f32  func_8029B2E8(void);
 f32  func_8029B33C(void);
 f32  func_8029B41C(void);
+void func_8029E090(s32, f32);
 void func_8029E3C0(s32, f32);
 f32  func_8029E270(s32);
 void func_802BF2C0(f32);
+void func_8030DBB4(s32, f32);
 void func_8030E5F4(s32, f32);
 void func_8030E760(s32, f32, s32);
 void func_8030EBC8(s32, f32, f32, s32, s32);

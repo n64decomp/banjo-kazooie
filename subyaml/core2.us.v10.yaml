@@ -345,6 +345,8 @@ segments:
   - [0x000DD4B0, bin, data_DD4B0]
   - [0x000DDA00, .data, bs/bbuster]
   - [0x000DDA20, bin, data_DDA20]
+  - [0x000DDA80, .data, bs/bFlap]
+  - [0x000DDA90, bin, data_DDA90]
   - [0x000E2350, .data, code_73640]
   - [0x000E2790, bin, data_E2790]
   - [0x000ECE70, ".rodata", code_0]

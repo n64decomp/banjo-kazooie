@@ -53,11 +53,11 @@ void bsbbuster_init(void);
 void bsbbuster_update(void);
 void bsbbuster_end(void);
 //bsflap
-void func_802A2690(void);
-void func_802A2A1C(void);
-void func_802A2D10(void);
+void bsbflap_init(void);
+void bsbflap_update(void);
+void bsbflap_end(void);
 //bsbpeck
-void func_802A651C(void);
+void bsbpeck_init(void);
 void func_802A66F0(void);
 void func_802A6928(void);
 //bsbflip
