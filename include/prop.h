@@ -396,7 +396,8 @@ typedef struct actor_s{
     u32  unk124_9:2;
     u32  pad124_7:1;
     u32  unk124_6:1;
-    u32  pad124_5:6;
+    u32  pad124_5:5;
+    u32  unk124_0:1; //read in bsbbuster func 
     f32 scale;
     u8  pad12C[0x8];
     vector(struct2s) **unk134; //vector<struct2s>

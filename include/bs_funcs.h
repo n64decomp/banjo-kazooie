@@ -50,8 +50,8 @@ void bsow_update(void);
 void bsow_end(void);
 //bsbuster
 void bsbbuster_init(void);
-void func_8029FD8C(void);
-void func_802A0278(void);
+void bsbbuster_update(void);
+void bsbbuster_end(void);
 //bsflap
 void func_802A2690(void);
 void func_802A2A1C(void);

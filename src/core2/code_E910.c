@@ -18,7 +18,7 @@ bsMap D_80363824[] ={
     {BS_SKID,       bsturn_init,        bsturn_update,      bsturn_end,         func_802B5350},
     {BS_TIMEOUT,    func_802B63F8,      func_802B64D0,      func_802B6500,      func_80296590},
     {BS_OW,         bsow_init,          bsow_update,        bsow_end,           func_80296590},
-    {BS_BBUSTER,     bsbbuster_init, func_8029FD8C, func_802A0278, func_80296608},
+    {BS_BBUSTER,     bsbbuster_init, bsbbuster_update, bsbbuster_end, func_80296608},
     {BS_BFLAP,      func_802A2690, func_802A2A1C, func_802A2D10, func_80296608},
     {BS_BPECK,      func_802A651C, func_802A66F0, func_802A6928, func_80296608},
     {BS_BFLIP,      func_802A2E6C, func_802A2F48, func_802A330C, func_80296608},

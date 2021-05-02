@@ -348,7 +348,7 @@ segments:
   - [0x000ECE70, ".rodata", code_0]
   - [0x000ECE90, bin, data_ECE90]
   - [0x000EE340, .rodata, bs/bBarge]
-  - [0x000EE380, bin, data_EE380]
+  - [0x000EE380, .rodata, bs/bbuster]
   - [0x000EE3C0, .rodata, bs/beeFly]
   - [0x000EE3F0, .rodata, bs/beeMain]
   - [0x000EE460, .rodata, bs/bEggAss]
