@@ -63,7 +63,7 @@ void func_8031B710(void){}
 
 /***BREAK***/
 
-f32 func_80258964(f32, f32);
+//f32 func_80258964(f32, f32);
 
 void *func_80309B48(f32 *, f32 *, f32 *, u32);
 void *func_80309B98(f32 *, f32 *, f32 *, u32);
@@ -156,7 +156,7 @@ void func_8031BA9C(struct0 *this){
 s32 *func_8031BBA0(f32 *this, f32 arg1, f32 arg2, u32 arg3, void *arg4) {
     s32* phi_v1;
 
-    if (func_80258964(arg2 - arg1, arg1) > 500.0f) {
+    if (func_80258964(arg2 - arg1) > 500.0f) {
         if (arg1 < arg2) {
             phi_v1 = func_8031BABC(this, arg1, arg1 + 500.0f, arg3, arg4);
             if (phi_v1 == NULL) {

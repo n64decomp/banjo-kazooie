@@ -8,7 +8,7 @@ void func_80299234(f32, f32);
 int func_802878E8(AnimCtrl *, f32);
 void func_802875AC(AnimCtrl *, char*, s32);
 void func_80299D2C(s32, f32, s32);
-f32 func_802877D8(AnimCtrl *);
+
 void func_802900B4(void);
 void func_80250D94(f32, f32, f32);
 void func_8030E58C(s32, f32);

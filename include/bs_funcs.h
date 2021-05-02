@@ -193,9 +193,9 @@ void func_802B6A4C(void);
 void func_802B6B70(void);
 void func_802B6CD4(void);
 //BS_SLIDE
-void func_802B4250(void);
-void func_802B43C0(void);
-void func_802B452C(void);
+void bsslide_init(void);
+void bsslide_update(void);
+void bsslide_end(void);
 //0x33(void);
 void func_802B9ACC(void);
 void func_802B9B14(void);

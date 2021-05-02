@@ -2,18 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-f32 func_802877D8(AnimCtrl *);
-void func_8028A1F4(s32, f32, f32);
-void func_80299234(f32, f32);
-void func_8029932C(f32);
-void func_8028A010(s32, f32);
-void func_8029AD28(f32, s32);
-void func_8029E3C0(s32, f32);
-f32  func_8029E270(s32);
-f32 func_80258964(f32);
-f32 func_802591D8(f32, f32);
-
-
 extern char D_80375810[];
 extern f32 D_8037581C;
 extern f32 D_80375820;

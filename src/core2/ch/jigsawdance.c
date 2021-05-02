@@ -3,7 +3,7 @@
 #include "variables.h"
 
 f32 func_8028EBA4();
-f32 func_802877D8(ActorAnimCtrl*);
+
 void func_80328A84(Actor*, u32);
 
 //TODO move data

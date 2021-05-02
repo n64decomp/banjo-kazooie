@@ -8,7 +8,7 @@
 
 
 /* extern function declarations */
-f32 func_802877D8(ActorAnimCtrl *);
+
 void func_80326224(Actor *);
 void func_802C8F70(f32);
 void func_802C4218(s32, s32, s32, s32);

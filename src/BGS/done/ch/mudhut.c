@@ -7,7 +7,7 @@ void player_getPosition(f32 *);
 Actor *func_8032813C(u32, f32 *, f32*);
 f32 func_8028E80C(u32);
 void func_8028F710(u32, f32);
-f32 func_802877D8(ActorMarker *);
+
 void func_802C4218(u32,f32,f32,f32);
 void func_8030E8B4(u32,f32*, u32);
 void func_80328A84(Actor *, u32);
