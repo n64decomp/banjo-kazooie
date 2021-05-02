@@ -31,14 +31,6 @@ Drop in `US v1.0` as `baserom.us.v10.z64` (sha1sum: `1fe1632098865f639e22c11b9a8
 To extract and build everything
 
 ```sh
-make extract
-make all
-```
-
-Build only the rom separately (from all the level and core code sections): 
-
-```sh
-make main_extract
 make
 ```
 
@@ -81,6 +73,7 @@ Ubuntu 18.04 or higher.
 apt-get update && \
   apt-get install -y \
     binutils-mips-linux-gnu \
+    gcc-mips-linux-gnu \
     build-essential \
     less \
     libglib2.0 \
@@ -94,7 +87,8 @@ python3 -m pip install \
     capstone pyyaml pycparser \
     colorama ansiwrap watchdog python-Levenshtein cxxfilt \
     python-ranges \
-    pypng anybadge
+    pypng anybadge \
+    pylibyaml
 ```
 
 ## Other versions
