@@ -445,9 +445,9 @@ enum map_flags_e
 enum item_e
 {
     item_note = 0xC,
-    item_eggs = 0xD,
+    ITEM_EGGS = 0xD,
     item_red_feather = 0xF,
-    item_gold_feather = 0x10,
+    ITEM_GOLD_FEATHER = 0x10,
     ITEM_JINJOS = 0x12,
     item_health = 0x14,
     item_health_total = 0x15,

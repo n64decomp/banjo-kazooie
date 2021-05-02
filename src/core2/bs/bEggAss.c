@@ -37,7 +37,7 @@ void func_802A21F8(void) {
 
     next_state = 0;
     plyr_mvmt = player_getAnimCtrlPtr();
-    has_eggs = (item_empty(item_eggs) == 0);
+    has_eggs = (item_empty(ITEM_EGGS) == 0);
     if (func_80295068()) {
         if (has_eggs)
             D_8037D2E0 = func_80258948(D_8037D2E0 + 1, 3);
