@@ -15,7 +15,13 @@ int _bsdie_802ADE00(void){
     return func_8028B2E8();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/die/func_802ADE20.s")
+void _bsdie_802ADE20(void){
+    f32 i;
+
+    for(i = 0.0f; i < 360.0f; i += 45.0f){
+        func_80292900(i, 230.0f);
+    }
+}
 
 void bsdie_init(void){
     AnimCtrl *aCtrl = player_getAnimCtrlPtr();
@@ -72,7 +78,7 @@ void bsdie_update(void){
                 func_80299DB8();
                 func_8030E624(0x7ff19039);
                 func_80250D94(1.0f, 1.0f, 0.4f);
-                func_802ADE20();
+                _bsdie_802ADE20();
                 D_8037D414 = 1;
             }
             break;
