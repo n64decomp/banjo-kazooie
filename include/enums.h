@@ -657,6 +657,7 @@ enum game_mode_e
 
 enum asset_e
 {
+    ANIM_BANJO_DIE = 0x9,
     anim_mudhut_smashing = 0x4E,
 
     anim_conga_idle     = 0x51,

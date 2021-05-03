@@ -69,7 +69,7 @@ bsMap D_80363824[] ={
     {BS_ANT_OW,     func_8029EFA8, func_8029EFC8, func_8029EFE8, func_80296590},
     {0x3F,          func_802B1BF4, func_802B1CF8, func_802B1DA4, func_80296590},
     {0x40,          func_802B2BF0, func_802B2C58, func_802B2D50, func_80296590},
-    {BS_DIE,        func_802ADEA0, func_802AE058, func_802AE30C, func_80296590},
+    {BS_DIE,        bsdie_init, func_802AE058, func_802AE30C, func_80296590},
     {BS_DINGPOT,    func_802A5120, func_802A5190, func_802A51C0, func_80296590},
     {BS_ANT_DIE,    func_8029F068, func_8029F218, func_8029F348, func_80296590},
     {BS_JIG_JIGGY,  func_802B0A78, func_802B0BE4, func_802B0D1C, func_802B0EBC},

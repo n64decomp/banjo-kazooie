@@ -211,7 +211,7 @@ void func_8025A70C(enum comusic_e);
 void comusic_8025AB44(enum comusic_e comusic_id, s32 arg1, s32 arg2);
 int func_802878E8(AnimCtrl *, f32);
 
-
+void animctrl_setIndex(AnimCtrl *this, enum asset_e index);
 void func_802876C0(AnimCtrl *this, f32 arg1);
 void func_8028774C(AnimCtrl *, f32);
 f32  func_802877D8(AnimCtrl *);

@@ -175,7 +175,7 @@ AnimCtrl *func_80287434(AnimCtrl *this){ //realloc
     return &full_struct->animctrl;
 }
 
-void animctrl_setIndex(AnimCtrl *this, s32 index){
+void animctrl_setIndex(AnimCtrl *this, enum asset_e index){
     this->index = index;
 }
 
