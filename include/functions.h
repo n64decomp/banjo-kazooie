@@ -203,7 +203,7 @@ OSMesgQueue *func_8024F344(void);
 
 void func_80250D94(f32, f32, f32);
 
-f32  func_80258964(f32);
+f32  mlAbsF(f32);
 void func_802589E4(f32 *, f32, f32);
 f32  func_802591D8(f32, f32);
 void func_8025A6EC(enum comusic_e, s32);

@@ -171,7 +171,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_18350/func_80258948.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_18350/func_80258964.s")
+f32 mlAbsF(f32 arg0){
+    return (0.0f < arg0) ? arg0 : -arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_18350/func_80258994.s")
 

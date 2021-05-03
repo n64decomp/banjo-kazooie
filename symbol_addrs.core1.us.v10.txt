@@ -22,6 +22,7 @@ realloc = 0x80255358;
 mlMap_f = 0x80257B18;
 mlNormalizeAngle = 0x8025881C;
 max_f = 0x802588DC;
+mlAbsF = 0x80258964;
 clear_vec3f = 0x80258B8C;
 copy_vec3f = 0x80258BA4;
 func_80258C48 = 0x80258C48;
