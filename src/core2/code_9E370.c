@@ -128,14 +128,16 @@ Actor *func_8032811C(s32 id, f32 *pos, f32* rot){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80328478.s")
 
-u32 func_80328508(Actor * arg0, u32 arg1){
+#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80328508.s")
+/*u32 func_80328508(Actor * arg0, u32 arg1){
     ActorAnimationInfo *animInfo;
 
     arg0->unk10_31 = arg1;
     if(!arg0->unk18)
         return 0;
 
-    if((animInfo = &arg0->unk18[arg1])->index){
+    (animInfo = &arg0->unk18[arg1]);
+    if(animInfo->index){
         if(arg0->animctrl == NULL){
             arg0->animctrl = animctrl_new(0);
             func_802874AC(arg0->animctrl);
@@ -152,7 +154,7 @@ u32 func_80328508(Actor * arg0, u32 arg1){
     }
     return 1;
     
-}
+}//*/
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_803285E8.s")
 

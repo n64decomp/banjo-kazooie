@@ -224,6 +224,9 @@ void func_80292900(f32, f32);
 
 void func_80292E80(s32, f32);
 f32  func_80294438(void);
+f32 func_80294500(void);
+void func_80297970(f32);
+
 void func_80292974(f32, f32, f32);
 void func_8029797C(f32);
 void func_802979A0(f32);
@@ -239,9 +242,10 @@ void func_80298CE0(f32);
 void func_802991D8(f32);
 void func_80299234(f32, f32);
 void func_8029932C(f32);
+void func_80299628(s32);
+
 void func_80299B58(f32, f32);
 void func_80299CF4(s32, f32, s32);
-
 
 void func_8029AD28(f32, s32);
 f32  func_8029B2E8(void);
@@ -252,6 +256,7 @@ void func_8029E3C0(s32, f32);
 f32  func_8029E270(s32);
 void func_802BF2C0(f32);
 void func_8030DBB4(s32, f32);
+void func_8030E58C(s32, f32);
 void func_8030E5F4(s32, f32);
 void func_8030E760(s32, f32, s32);
 void func_8030EBC8(s32, f32, f32, s32, s32);

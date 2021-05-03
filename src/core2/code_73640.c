@@ -19,7 +19,6 @@ s32 func_802FAD9C(s32 itemId);
 f32 func_8033DD9C(void);
 f32 func_8033DD9C(void);
 void func_8030E6A4(s32, f32, s32);
-void func_8025A6EC(s32, s32);
 
 extern s32 D_803810B0;
 extern f32 D_803810B8[0x2C];

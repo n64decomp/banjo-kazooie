@@ -2,12 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-f32 func_80294500(void);
-void func_80297970(f32);
-void func_80299628(s32);
-void func_8030E58C(s32, f32);
-extern char D_80375840[];
-
 extern f32 D_8037D410;
 extern s32 D_8037D414;
 
@@ -35,7 +29,7 @@ void bsdie_init(void){
     func_802876CC(aCtrl, 0.0f, 0.3356f);
     animctrl_setDuration(aCtrl, 2.0f);
     func_80287674(aCtrl, 1);
-    func_802875AC(aCtrl, D_80375840, 0x7e);
+    func_802875AC(aCtrl, "bsdie.c", 0x7e);
     func_8029B930();
     func_8030E58C(0x36, 1.0f);
     _player_getPosition(sp2C);
