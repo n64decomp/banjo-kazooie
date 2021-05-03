@@ -4,8 +4,9 @@ variables:
 before_script:
   - git submodule sync --recursive
   - git submodule update --init --recursive
-  - wget $ROM_URL/baserom.us.v10.enc.z64
-  - openssl enc -aes-256-cbc -pbkdf2 -d -k $BASEROM_US10_SECRET -in baserom.us.v10.enc.z64 -out baserom.us.v10.z64
+  - ping -c 4 $ROM_URL
+  #- wget $ROM_URL/baserom.us.v10.enc.z64
+  #- openssl enc -aes-256-cbc -pbkdf2 -d -k $BASEROM_US10_SECRET -in baserom.us.v10.enc.z64 -out baserom.us.v10.z64
 
 build-job:
   stage: build
