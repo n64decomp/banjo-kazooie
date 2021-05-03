@@ -2,14 +2,18 @@
 #include "functions.h"
 #include "variables.h"
 
+f32 func_80294500(void);
 void func_80297970(f32);
+void func_80299628(s32);
 void func_8030E58C(s32, f32);
 extern char D_80375840[];
 
 extern f32 D_8037D410;
 extern s32 D_8037D414;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/die/func_802ADE00.s")
+int _bsdie_802ADE00(void){
+    return func_8028B2E8();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/die/func_802ADE20.s")
 
@@ -54,7 +58,66 @@ void bsdie_init(void){
     func_80292E48();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/die/func_802AE058.s")
+void bsdie_update(void){
+    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    enum bs_e sp28 = 0;
+    func_80297970(D_8037D410);
+    func_80299628(0);
+    switch(D_8037D414){
+        case 0://L802AE0B8
+            if(_bsdie_802ADE00()){
+                func_802876CC(aCtrl, 0.0f, 1.0f);
+                func_80287674(aCtrl, 1);
+                func_802979A0(400.0f);
+                func_80299DB8();
+                func_8030E624(0x7ff19039);
+                func_80250D94(1.0f, 1.0f, 0.4f);
+                func_802ADE20();
+                D_8037D414 = 1;
+            }
+            break;
+        case 1://L802AE134
+            if(_bsdie_802ADE00()){
+                func_80299E00();
+                func_8030E624(0x7ff19038);
+                func_80250D94(1.0f, 0.5f, 0.4f);
+                D_8037D414 = 2;
+            }
+            break;
+        case 2://L802AE184
+            D_8037D410 = max_f(D_8037D410 - 12.0f, 0.0f);
+            if(140.0f < D_8037D410)
+                func_802929F8();
+
+            if(func_802878E8(aCtrl, 0.6538f))
+                animctrl_setDuration(aCtrl, 4.0f);
+
+            if(func_802878C4(aCtrl)){
+                D_8037D410 = 0.0f;
+                D_8037D414 = 3;
+            }
+            break;
+        case 3:
+            break;
+    }//L802AE218
+    if(func_8029E1A8(0))
+        func_8029B890();
+
+    if( func_8029E270(0) != 0.0f 
+        && func_80294574() 
+        && ( D_8037D414
+             || ( func_802878C4(aCtrl) 
+                  && ( player_getYPosition() < (func_80294500() - 150.0f)) 
+                )
+           )
+        && player_inWater()
+        && 100.0f < (func_80294500() - func_80294438())
+    ){
+        sp28 = BS_SWIM_DIE;
+    }
+
+    bs_setState(sp28);
+}
 
 void bsdie_end(void){
     func_8024BD08(0);
