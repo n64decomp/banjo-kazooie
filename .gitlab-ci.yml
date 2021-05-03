@@ -13,5 +13,5 @@ build-job:
   only:
     - master
   script:
-    - make
+    #- make
     - echo "Thanks for the pull request $GITLAB_USER_ID!"
