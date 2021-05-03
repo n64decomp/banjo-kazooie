@@ -215,7 +215,7 @@ void func_8028752C(AnimCtrl *this){
     this->timer = func_80289690(this->animation);
 }
 
-void func_802875AC(AnimCtrl * this, s32 arg1, s32 arg2){
+void func_802875AC(AnimCtrl * this, char *file, s32 line){
     if(this->unk22 && func_80289688(this->animation)){
         func_80289674(this->animation);
         func_8028977C(this->animation, this->index);

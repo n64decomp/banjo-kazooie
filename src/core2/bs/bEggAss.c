@@ -2,21 +2,11 @@
 #include "functions.h"
 #include "variables.h"
 
-
-
-void func_802875AC(AnimCtrl *, char*, s32);
-
-void func_8028A274(s32, f32);
-void func_80299234(f32, f32);
-
-
-
-
 extern u8 D_8037D2E0;
 extern u8 D_8037D2E1;
 
 
-void func_802A2170(void){
+void bseggass_init(void){
     func_8028A274(0x2B, 1.0f);
     func_8029C7F4(1,3,1,3);
     func_80299234(350.0f, 14.0f);
@@ -26,7 +16,7 @@ void func_802A2170(void){
     func_802952A8(5,0);
 }
 
-void func_802A21F8(void) {
+void bseggass_update(void) {
     s32 next_state;
     AnimCtrl *plyr_mvmt;
     s32 has_eggs;
@@ -67,7 +57,7 @@ void func_802A21F8(void) {
 }
 
 
-void func_802A23AC(void){
+void bseggass_end(void){
     func_802952A8(5, 1);
     func_80297B70();
     func_8029E058(0);

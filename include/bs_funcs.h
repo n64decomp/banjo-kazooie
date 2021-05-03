@@ -114,9 +114,9 @@ void func_802A23E0(void);
 void func_802A2468(void);
 void func_802A2650(void);
 //BS_EGG_ASS
-void func_802A2170(void);
-void func_802A21F8(void);
-void func_802A23AC(void);
+void bseggass_init(void);
+void bseggass_update(void);
+void bseggass_end(void);
 //BS_WALK_CREEP(void);
 void bswalk_creep_init(void);
 void bswalk_creep_update(void);
