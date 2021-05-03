@@ -657,7 +657,26 @@ enum game_mode_e
 
 enum asset_e
 {
+    ANIM_BANJO_CROUCH = 0x1,
+    ANIM_BANJO_WALK_CREEP = 0x2,
+    ANIM_BANJO_WALK = 0x3,
+
+
+    ANIM_BANJO_JUMP = 0x8,
     ANIM_BANJO_DIE = 0x9,
+
+    ANIM_BANJO_RUN = 0xc,
+
+    ANIM_BANJO_TURN = 0xe,
+
+    ANIM_BANJO_BFLAP = 0x17,
+    ANIM_BANJO_BPECK_ENTER = 0x19,
+    ANIM_BANJO_BPECK = 0x1A,
+
+    ANIM_BANJO_BBARGE = 0x1C,
+    ANIM_BANJO_BBUSTER = 0x1D,
+
+    ANIM_BANJO_OW = 0x4D,
     anim_mudhut_smashing = 0x4E,
 
     anim_conga_idle     = 0x51,
@@ -667,13 +686,20 @@ enum asset_e
     anim_conga_beat_chest = 0x55,
     anim_conga_raise_arms = 0x56,
     
+    ANIM_BANJO_SLIDE_BACK = 0x59,
+    ANIM_BANJO_SLIDE_FRONT = 0x5A,
+
+    ANIM_GRUBLIN_DIE = 0x94,
+
+    ANIM_ZOOMBOX = 0x138,
+
     anim_beeBanjo_flying    = 0x1dc,
     anim_beeBanjo_walking   = 0x1dd,
     anim_beeBanjo_idle      = 0x1de,
 
-    anim_beeBanjo_ow        = 0x1e0,
-    anim_beeBanjo_dying     = 0x1e1,
-    anim_beeBanjo_jumping     = 0x1e2,
+    ANIM_BEE_OW        = 0x1e0,
+    ANIM_BEE_DIE     = 0x1e1,
+    ANIM_BEE_JUMP     = 0x1e2,
     
     model_orange            = 0x2d2, //projectile
 

@@ -51,13 +51,13 @@ void bsslide_init(void){
     f32 sp2C;
     f32 sp28;
     f32 tmp_f0;
-    D_8037D520 = 0x5A;
+    D_8037D520 = ANIM_BANJO_SLIDE_FRONT;
     if(func_8028B338()){
         func_80294480(sp30);
         if(func_80258108(sp30, &sp28, &sp2C)){
             tmp_f0 = mlNormalizeAngle(player_getYaw() - sp28);
             if(tmp_f0 < 90.0f || 270.0f < tmp_f0){
-                D_8037D520 = 0x59;
+                D_8037D520 = ANIM_BANJO_SLIDE_BACK;
             }
         }
     }

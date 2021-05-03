@@ -67,7 +67,7 @@ void bsbarge_init(void){
     plyrMvmnt = player_getAnimCtrlPtr();
     func_802874AC(plyrMvmnt);
     func_80287684(plyrMvmnt, 0);
-    animctrl_setIndex(plyrMvmnt, 0x1C);
+    animctrl_setIndex(plyrMvmnt, ANIM_BANJO_BBARGE);
     animctrl_setDuration(plyrMvmnt, 1.0f);
     func_802876CC(plyrMvmnt, 0, 0.375f);
     func_80287674(plyrMvmnt, 1);

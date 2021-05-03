@@ -88,7 +88,7 @@ void bsbpeck_update(void){
     switch(D_8037D374){
         case 0://L802A6770
             if(func_802878E8(aCtrl, 0.9126f)){
-                animctrl_setIndex(aCtrl, 0x19);
+                animctrl_setIndex(aCtrl, ANIM_BANJO_BPECK_ENTER);
                 func_8028774C(aCtrl, 0.0f);
                 animctrl_setDuration(aCtrl, 0.35f);
                 func_80287674(aCtrl, 2);
@@ -108,7 +108,7 @@ void bsbpeck_update(void){
             if(D_8037D370 < 0.0f){
                 func_802874AC(aCtrl);
                 func_80287684(aCtrl, 0);
-                animctrl_setIndex(aCtrl, 0x1a);
+                animctrl_setIndex(aCtrl, ANIM_BANJO_BPECK);
                 animctrl_setDirection(aCtrl, 0);
                 animctrl_setDuration(aCtrl, 0.2f);
                 func_80287674(aCtrl, 1);

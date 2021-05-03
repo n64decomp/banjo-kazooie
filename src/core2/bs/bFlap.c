@@ -114,7 +114,7 @@ void bsbflap_update(void){
             func_802A298C();
             if(func_802878E8(sp18, 0.9f)){
                 func_80287684(sp18, 0);
-                animctrl_setIndex(sp18, 0x17);
+                animctrl_setIndex(sp18, ANIM_BANJO_BFLAP);
                 animctrl_setDuration(sp18, func_802A2858());
                 func_80287674(sp18, 2);
                 func_8028774C(sp18, 0.0f);

@@ -57,7 +57,7 @@ void bscrouch_init(void){
             break;
     }
     func_802874AC(aCtrl);
-    animctrl_setIndex(aCtrl, 1);
+    animctrl_setIndex(aCtrl, ANIM_BANJO_CROUCH);
     animctrl_setDuration(aCtrl, 0.5f);
     func_80287674(aCtrl, 1);
     func_8028774C(aCtrl, sp24);

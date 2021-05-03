@@ -125,13 +125,13 @@ void bswalk_creep_init(void){
     AnimCtrl * s0 = player_getAnimCtrlPtr();
     f32 sp20;
 
-    if(bs_getPrevState() == 2){
+    if(bs_getPrevState() == BS_WALK_SLOW){
         sp20 = func_80289690(func_80287464(s0));
     }else{
         sp20 = 0.0f;
     }
     func_802874AC(s0);
-    animctrl_setIndex(s0, 0x2);
+    animctrl_setIndex(s0, ANIM_BANJO_WALK_CREEP);
     animctrl_setDuration(s0, 0.43f);
     func_8028774C(s0, sp20);
     func_80287674(s0, 2);
@@ -204,7 +204,7 @@ void bswalk_slow_init(void){
         sp20 = 0.0f;
     }
     func_802874AC(s0);
-    animctrl_setIndex(s0, 0x3);
+    animctrl_setIndex(s0, ANIM_BANJO_WALK);
     animctrl_setDuration(s0, 0.43f);
     func_8028774C(s0, sp20);
     func_80287674(s0, 2);
@@ -281,7 +281,7 @@ void bswalk_init(void){
             break;
     }
     func_802874AC(s0);
-    animctrl_setIndex(s0, 0xC);
+    animctrl_setIndex(s0, ANIM_BANJO_RUN);
     animctrl_setDuration(s0, 0.66f);
     func_802876C0(s0, 0.14f);
     func_8028774C(s0, sp20);
@@ -365,7 +365,7 @@ void bswalk_fast_init(void){
     }
     func_802874AC(s0);
     func_80287684(s0, sp24);
-    animctrl_setIndex(s0, 0xC);
+    animctrl_setIndex(s0, ANIM_BANJO_RUN);
     animctrl_setDuration(s0, 0.66f);
     func_802876C0(s0, 0.1f);
     func_8028774C(s0, sp28);

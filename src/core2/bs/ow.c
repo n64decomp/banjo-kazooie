@@ -15,7 +15,7 @@ void bsow_init(void){
     func_802874AC(plyr_mvmnt);
     func_80287684(plyr_mvmnt, 0);
     func_802876CC(plyr_mvmnt, 0.0f, 0.534399986267f);
-    animctrl_setIndex(plyr_mvmnt, 0x4D);
+    animctrl_setIndex(plyr_mvmnt, ANIM_BANJO_OW);
     animctrl_setDuration(plyr_mvmnt, 1.70000004768f);
     func_80287674(plyr_mvmnt, 1);
     func_802875AC(plyr_mvmnt, "bsow.c", 0x50);

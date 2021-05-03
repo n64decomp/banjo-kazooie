@@ -56,4 +56,12 @@ void bsdie_init(void){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/die/func_802AE058.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/die/func_802AE30C.s")
+void bsdie_end(void){
+    func_8024BD08(0);
+    func_80297B70();
+    func_8029E070(0);
+    player_setIdealPitch(0.0f);
+    func_80298CE0(0.0f);
+    func_80291548();
+    func_80292EA4();
+}

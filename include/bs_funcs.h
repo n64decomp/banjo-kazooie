@@ -258,7 +258,7 @@ void func_802B2D50(void);
     //BS_DIE
 void bsdie_init(void);
 void func_802AE058(void);
-void func_802AE30C(void);
+void bsdie_end(void);
     //BS_DINGPOT
 void func_802A5120(void);
 void func_802A5190(void);

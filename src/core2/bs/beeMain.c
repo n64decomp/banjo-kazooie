@@ -143,7 +143,7 @@ void func_802A12FC(void){
     func_802A0340();
     func_802874AC(s0);
     func_80287684(s0, 0);
-    animctrl_setIndex(s0, anim_beeBanjo_jumping);
+    animctrl_setIndex(s0, ANIM_BEE_JUMP);
     func_802876CC(s0, 0, 0.34f);
     func_8028774C(s0, 0.1f);
     animctrl_setDuration(s0, 1.2f);
@@ -237,7 +237,7 @@ void func_802A1664(void){
     s0 = player_getAnimCtrlPtr();
     func_802A0340();
     func_802874AC(s0);
-    animctrl_setIndex(s0, anim_beeBanjo_jumping);
+    animctrl_setIndex(s0, ANIM_BEE_JUMP);
     func_8028774C(s0, 0.34f);
     animctrl_setDuration(s0, 8.0f);
     func_802876CC(s0, 0, 0.51f);
@@ -316,7 +316,7 @@ void func_802A18E8(s32 arg0){
     sp3C = player_getAnimCtrlPtr();
     func_802A0340();
     func_802874AC(sp3C);
-    animctrl_setIndex(sp3C, anim_beeBanjo_ow);
+    animctrl_setIndex(sp3C, ANIM_BEE_OW);
     animctrl_setDuration(sp3C, 1.0f);
     func_802876CC(sp3C, 0, 0.7518f);
     func_80287674(sp3C, 1);
@@ -410,7 +410,7 @@ void bsbeemain_die_init(void){
     func_802A0340();
     func_802874AC(sp3C);
     func_80287684(sp3C, 0);
-    animctrl_setIndex(sp3C, anim_beeBanjo_dying);
+    animctrl_setIndex(sp3C, ANIM_BEE_DIE);
     func_802876CC(sp3C, 0, 0.3966f);
     animctrl_setDuration(sp3C, 1.7f);
     func_80287674(sp3C, 1);

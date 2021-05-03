@@ -17,7 +17,7 @@ ActorAnimationInfo chGrublinAnimations[11] = {
     {0x62, 0.7f},
     {0x63, 0.7f},
     {0x64, 0.9f},
-    {0x94, 1.0f},
+    {ANIM_GRUBLIN_DIE, 1.0f},
     {0x62, 1.5f},
     {0x63, 0.5f},
     {0x62, 1.5f},

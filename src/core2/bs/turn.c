@@ -10,7 +10,7 @@ void bsturn_init(void){
     f32 sp28[3];
 
     func_802874AC(aCtrl);
-    animctrl_setIndex(aCtrl, 0xe);
+    animctrl_setIndex(aCtrl, ANIM_BANJO_TURN);
     animctrl_setDuration(aCtrl, 0.3f);
     func_802876C0(aCtrl,0.1f);
     func_80287674(aCtrl, 1);

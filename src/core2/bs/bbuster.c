@@ -57,7 +57,7 @@ void bsbbuster_init(void){
     
     func_802874AC(aCtrl);
     func_80287684(aCtrl, 0);
-    animctrl_setIndex(aCtrl, 0x1D);
+    animctrl_setIndex(aCtrl, ANIM_BANJO_BBUSTER);
     animctrl_setDuration(aCtrl, 1.02f);
     func_802876CC(aCtrl, 0.0f, 0.35f);
     func_80287674(aCtrl, 1);
