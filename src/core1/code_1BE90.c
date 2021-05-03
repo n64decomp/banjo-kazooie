@@ -11,13 +11,15 @@ extern char D_8027834C[]; //"comusic.c"
 extern char D_80278358[]; //"comusic.c"
 extern char D_80278364[]; //"comusic.c"
 
+
 void func_8024FD28(u8, s32);
 void func_8024FC1C(u8, s32);
-void func_8025AC20(s32, s32, s32, f32, char*, s32);
-void func_8025AC7C(s32, s32, s32, f32, s32, char*, s32);
+void func_8025AC20(enum comusic_e, s32, s32, f32, char*, s32);
+void func_8025AC7C(enum comusic_e, s32, s32, f32, s32, char*, s32);
 void func_80259B14(void);
 void func_8025A55C(s32, s32, s32);
-void func_8025ABB8(s32, s32, s32, s32);
+void func_8025A7DC(enum comusic_e);
+void func_8025ABB8(enum comusic_e, s32, s32, s32);
 struct12s *func_802EDAA4(s32 *, s32*);
 
 
@@ -226,12 +228,12 @@ void func_8025A6CC(s32 arg0, s32 arg1){
     func_8025A5AC(arg0, arg1, 0);
 }
 
-void func_8025A6EC(s32 arg0, s32 arg1){
-    func_8025A5AC(arg0, arg1, 1);
+void func_8025A6EC(enum comusic_e track_id, s32 arg1){
+    func_8025A5AC(track_id, arg1, 1);
 }
 
 //comusic_queueTrack
-void func_8025A70C(s32 track_id){
+void func_8025A70C(enum comusic_e track_id){
     CoMusic *trackPtr;
     s32 indx;
 
@@ -250,14 +252,14 @@ void func_8025A70C(s32 track_id){
 
 }
 
-void func_8025A7DC(s32);
 
-void func_8025A788(s32 arg0, f32 arg1, f32 arg2){
-    timedFunc_set_1(arg1, &func_8025A70C, arg0);
-    timedFunc_set_1(arg1 + arg2, &func_8025A7DC, arg0);
+
+void func_8025A788(enum comusic_e comusic_id, f32 delay1, f32 delay2){
+    timedFunc_set_1(delay1, &func_8025A70C, comusic_id);
+    timedFunc_set_1(delay1 + delay2, &func_8025A7DC, comusic_id);
 }
 
-void func_8025A7DC(s32 track_id){
+void func_8025A7DC(enum comusic_e track_id){
     CoMusic *trackPtr;
 
     trackPtr = func_802598B0(track_id);
@@ -274,7 +276,7 @@ s32 func_8025A818(void){
     return 0;
 }
 
-s32 func_8025A864(s32 track_id){
+s32 func_8025A864(enum comusic_e track_id){
     CoMusic *trackPtr;
 
     trackPtr = func_802598B0(track_id);
@@ -285,7 +287,7 @@ s32 func_8025A864(s32 track_id){
     return 0;
 }
 
-void func_8025A8B8(s32 track_id, s32 arg1){
+void func_8025A8B8(enum comusic_e track_id, s32 arg1){
     CoMusic *trackPtr;
 
     trackPtr = func_802598B0(track_id);
@@ -318,7 +320,7 @@ void func_8025A904(void){
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025AA48.s")
 
 //dequeue_track?
-void func_8025AABC(s32 track_id){
+void func_8025AABC(enum comusic_e track_id){
     CoMusic *trackPtr;
     
     if(trackPtr = func_802598B0(track_id)){
@@ -335,27 +337,27 @@ void func_8025AB00(void){
     }
 }
 
-void comusic_8025AB44(s32 arg0, s32 arg1, s32 arg2){
-    func_8025AC20(arg0, arg1, arg2, 0.0f, D_80278340, 0x39e);
+void comusic_8025AB44(enum comusic_e comusic_id, s32 arg1, s32 arg2){
+    func_8025AC20(comusic_id, arg1, arg2, 0.0f, D_80278340, 0x39e);
 }
 
-void comusic_8025AB78(s32 arg0, s32 arg1, s32 arg2, s32 arg3){
-    func_8025AC7C(arg0, arg1, arg2, 0.0f, arg3, D_8027834C, 0x3a3);
+void comusic_8025AB78(enum comusic_e comusic_id, s32 arg1, s32 arg2, s32 arg3){
+    func_8025AC7C(comusic_id, arg1, arg2, 0.0f, arg3, D_8027834C, 0x3a3);
 }
 
-void func_8025ABB8(s32 arg0, s32 arg1, s32 arg2, s32 arg3){
-    func_8025AC7C(arg0, arg1, arg2, 0.0f, (s32)&(func_802598B0(arg0)->unk1C[arg3]), D_80278358, 0x3aa);
+void func_8025ABB8(enum comusic_e comusic_id, s32 arg1, s32 arg2, s32 arg3){
+    func_8025AC7C(comusic_id, arg1, arg2, 0.0f, (s32)&(func_802598B0(comusic_id)->unk1C[arg3]), D_80278358, 0x3aa);
 }
 
-void func_8025AC20(s32 arg0, s32 arg1, s32 arg2, f32 arg3, char* arg4, s32 char5){
-    func_8025AC7C(arg0, arg1, arg2, 0.0f, (s32) func_802598B0(arg0)->unk1C, D_80278364, 0x3b1);
+void func_8025AC20(enum comusic_e comusic_id, s32 arg1, s32 arg2, f32 arg3, char* arg4, s32 char5){
+    func_8025AC7C(comusic_id, arg1, arg2, 0.0f, (s32) func_802598B0(comusic_id)->unk1C, D_80278364, 0x3b1);
 }
 
-void func_8025AC7C(s32 arg0, s32 arg1, s32 arg2, f32 arg3, s32 arg4, char* arg5, s32 arg6){
+void func_8025AC7C(enum comusic_e comusic_id, s32 arg1, s32 arg2, f32 arg3, s32 arg4, char* arg5, s32 arg6){
     CoMusic *trackPtr;
     u32 sp24;
 
-    trackPtr = func_802598B0(arg0);
+    trackPtr = func_802598B0(comusic_id);
     if(trackPtr == NULL)
         return;
 
@@ -363,8 +365,8 @@ void func_8025AC7C(s32 arg0, s32 arg1, s32 arg2, f32 arg3, s32 arg4, char* arg5,
         if(arg1 == 0)
             return;
         sp24 = (trackPtr - D_80276E30);
-        func_8024FC1C(sp24, arg0);
-        trackPtr->unk10 = arg0;
+        func_8024FC1C(sp24, comusic_id);
+        trackPtr->unk10 = comusic_id;
         trackPtr->unk8 = 0;
         trackPtr->unk15 = 0;
         trackPtr->unk4 = 0.0f;

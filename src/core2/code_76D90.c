@@ -12,7 +12,6 @@ void timedFunc_set_2(f32, void (*)(s32,s32), s32, s32);
 void func_80345F24(s32);
 void func_8030E484(s32);
 void func_80314AC8(s32);
-void func_8025A6EC(s32, s32);
 void func_80346414(s32, s32);
 
 
@@ -223,7 +222,7 @@ void func_802FE844(s32 arg0, struct8s *arg1){
                         if(6.0f <= D_803815D4 && D_80381610 && D_803815E8 == 0xFF){
                             D_803815C0 = 1;
                             D_803815DC = 20.0f;
-                            func_8025A6EC(0x18, 28000);
+                            func_8025A6EC(JINGLE_HEALTH_UPGRADE, 28000);
                         }else{
                             if(1.0f < D_803815D4 &&  !D_80381610){
                                 D_803815D8 += _76D90_MAX((((D_803815D4 - 1.0f) * 60.0 - D_803815D8) * sp24 * 3.0), 2.0);
@@ -243,7 +242,7 @@ void func_802FE844(s32 arg0, struct8s *arg1){
                         D_803815E4 = 0;
                         D_803815E0 = 0.9999f;
                         func_803463D4(0x13, -6);
-                        timedFunc_set_2(0.25f, func_8025A6EC, 0x2B, 28000);
+                        timedFunc_set_2(0.25f, func_8025A6EC, SFX_DING_B, 28000);
                         func_803463D4(0x14, 0);
                         timedFunc_set_1(1.25f, func_80345F24, 0x15);
                         timedFunc_set_1(1.25f, func_8030E484, 0x3EA);

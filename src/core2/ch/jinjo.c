@@ -177,9 +177,9 @@ void func_802CDD78(Actor * this){
                 func_8024BD08(0);
                 func_8032BB88(this, 0, 4000);
                 if(local->unk4){
-                    func_8025A6EC(0x30, 28000);
+                    func_8025A6EC(JINGLE_5TH_JINJO_COLLECTED, 28000);
                 }else{
-                    func_8025A6EC(0xA, 28000);
+                    func_8025A6EC(SFX_JINJO_COLLECTED, 28000);
                 }
             }//L802CE114
             break;
@@ -223,8 +223,8 @@ void func_802CDD78(Actor * this){
                     func_802F9EC4(local->unkC, sp30, 500, 2000);
                     func_802F9F80(local->unkC, 0.0f, 9000000000.0f, 0.0f);
                     func_802FA0B0(local->unkC, 0);
-                    func_8025A6EC(0x43, 0x7FFF);
-                    func_8025AABC(0x43);
+                    func_8025A6EC(SFX_ENTER_MAP_GLITTER, 0x7FFF);
+                    func_8025AABC(SFX_ENTER_MAP_GLITTER);
                     func_8030E9C4(0xc7, 0.8f, 0x7FFF, sp30, 300.0f, 2000.0f);
                 }//L802CE3C4
 
@@ -259,7 +259,7 @@ void func_802CDD78(Actor * this){
                         local->unk4 = 0;
                     }
                     func_8030E4E4(0x19);
-                    func_8025A7DC(0x43);
+                    func_8025A7DC(SFX_ENTER_MAP_GLITTER);
                 }//L802CE558
 
                 if(local->unk4 && func_8032886C(this,0.95f)){

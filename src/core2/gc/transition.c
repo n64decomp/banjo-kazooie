@@ -87,9 +87,9 @@ void _gctranstion_changeState(s32 state, struct9s *arg1){
 
     if(state == 4){
         if(func_802D4608()==0){
-            func_8025A70C(0x4e);
-            func_8025AC20(0x4e, 0, 1000, 0.4f, "gctransition.c", 0x12d);
-            func_8025AABC(0x4e);
+            func_8025A70C(SFX_IN_TRANSITION);
+            func_8025AC20(SFX_IN_TRANSITION, 0, 1000, 0.4f, "gctransition.c", 0x12d);
+            func_8025AABC(SFX_IN_TRANSITION);
         }
     }//L8030B67C
     else if(state == 5){
@@ -98,9 +98,9 @@ void _gctranstion_changeState(s32 state, struct9s *arg1){
         }
         else{
             if(func_802D4608() == 0){
-                func_8025A70C(0x4f);
-                func_8025AC20(0x4f, 0, 1000, 0.2f, "gctransition.c", 0x13a);
-                func_8025AABC(0x4f);
+                func_8025A70C(SFX_OUT_TRANSITION);
+                func_8025AC20(SFX_OUT_TRANSITION, 0, 1000, 0.2f, "gctransition.c", 0x13a);
+                func_8025AABC(SFX_OUT_TRANSITION);
             }
         }
     }

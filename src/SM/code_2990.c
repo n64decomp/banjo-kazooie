@@ -189,7 +189,7 @@ void func_80389214(ActorMarker *marker, s32 text_id, s32 arg2){
             func_80324E60(0.0f, 0x12);
             break;
         case 6:
-            func_8025A70C(0x2b);
+            func_8025A70C(SFX_DING_B);
             break;
         case 0xff:
             func_80388F24(actor);

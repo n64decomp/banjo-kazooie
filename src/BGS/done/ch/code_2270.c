@@ -52,11 +52,11 @@ void func_803886F4(ActorMarker *this){
 }
 
 void func_8038873C(void){
-    func_8025A6EC(0x2B, 28000);
+    func_8025A6EC(SFX_DING_B, 28000);
 }
 
 void func_80388760(void){
-    func_8025A6EC(0x2C, 28000);
+    func_8025A6EC(SFX_BUZZER, 28000);
 }
 
 void func_80388784(ActorMarker *this, s32 arg1, s32 arg2){
@@ -191,7 +191,7 @@ void func_803888E4(Actor *this, s32 arg1){
     }//L80388D8C
     if(this->unk10_31 == 6){
         if(unqPtr->unkA == 3){
-            func_8025A6EC(0x2D, 28000);
+            func_8025A6EC(JINGLE_PUZZLE_SOLVED_FANFARE, 28000);
         }
         func_80324E38(0.5f, 3);
         func_80324E60(1.5f, 1);

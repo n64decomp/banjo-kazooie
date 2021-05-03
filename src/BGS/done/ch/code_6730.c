@@ -7,13 +7,13 @@ void func_8038CEE8(Actor *);
 Actor *func_80325340(ActorMarker*, Gfx **, Mtx **, u32);
 void func_8038CC08(Actor * arg0, u32 arg1);
 void func_8025A58C(u32, u32);
-void func_8025A6EC(u32, u32);
 void func_80324E38(f32, u32);
 void func_80324E60(f32, u32);
 void timedFunc_set_0(f32, void(*)(void));
 void func_80324E88(f32);
 void player_getPosition(f32 *);
 void mapSpecificFlags_set(u32, u32);
+
 
 ActorInfo D_80390AB0 = {0xC4, actor_yellow_flibbit_controller, 0x00, 0x00, NULL,
     func_8038CEE8, NULL, func_80325340,
@@ -43,8 +43,8 @@ void func_8038CBB4(Actor * arg0){
     if(!arg0->bgs_6730.unk4)
         return;
     func_8025A58C(-1, 400);
-    comusic_8025AB44(0x72,0, 400);
-    func_8025AABC(0x72);
+    comusic_8025AB44(MUSIC_BGS_FLIBBIT_FIGHT,0, 400);
+    func_8025AABC(MUSIC_BGS_FLIBBIT_FIGHT);
     
     arg0->bgs_6730.unk4 = 0;
 }
@@ -74,11 +74,11 @@ void func_8038CC08(Actor * arg0, u32 arg1){
         s0->unk0 = 1;
         if(!s0->unk4){
             func_8025A58C(0, 400);
-            func_8025A6EC(0x72, 30000);
+            func_8025A6EC(MUSIC_BGS_FLIBBIT_FIGHT, 30000);
             s0->unk4 = 1;
         }
         else{
-            comusic_8025AB44(0x72, 30000, 400);
+            comusic_8025AB44(MUSIC_BGS_FLIBBIT_FIGHT, 30000, 400);
         }
     }
 
@@ -87,7 +87,7 @@ void func_8038CC08(Actor * arg0, u32 arg1){
         func_8028F8F8(0x1F, 1);
         if(arg1 == 1){
             if(s0->unk4){
-                comusic_8025AB44(0x72, 18000, 100);
+                comusic_8025AB44(MUSIC_BGS_FLIBBIT_FIGHT, 18000, 100);
             }
         }
         else{

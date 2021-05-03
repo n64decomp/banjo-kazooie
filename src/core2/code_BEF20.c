@@ -128,7 +128,7 @@ s32 func_80345FB4(s32 item, s32 diff, s32 arg2){
             }
             if(sp2C && sp30 != sp2C ){
                 if(sp2C < sp30){
-                    func_8025A6EC(0x93, 28000);
+                    func_8025A6EC(SFX_AIR_METER_DROPPING, 28000);
                 }
                 else{
                     func_8030E760(0x3e9, 1.2f, 28000);
@@ -139,7 +139,7 @@ s32 func_80345FB4(s32 item, s32 diff, s32 arg2){
             sp28 = func_80346F34(func_80321900());
             func_80346DB4(D_80385F30[item]);
             if(D_80385F30[item] == 100 && sp28 != 100){
-                func_8025A6EC(0x36, 20000);
+                func_8025A6EC(JINGLE_100TH_NOTE_COLLECTED, 20000);
                 func_80345F24(ITEM_LIFE);
             }
             break;

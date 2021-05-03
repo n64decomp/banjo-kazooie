@@ -17,7 +17,7 @@ Actor *func_802C41D8(f23, f32, f32);
 
 void func_802C7AB0(ActorMarker * arg0, u32 arg1){
     func_8030E6D4(0x30);
-    func_8025A6EC(0x3c, 0x7FF8);
+    func_8025A6EC(JINGLE_MINIGAME_LOSS, 0x7FF8);
     mapSpecificFlags_set(arg1, 1);
     marker_despawn(arg0);
 }

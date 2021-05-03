@@ -84,7 +84,7 @@ void func_80387AB0(ActorMarker *this, u32 arg1){
         func_802C3D3C(chPinkEggSpawnNext, thisActor->marker, tmp->unk0);
     } else {
         jiggySpawn(jiggy_bgs_pinkegg, thisActor->position);
-        func_8025A6EC(0x2d, 28000);
+        func_8025A6EC(JINGLE_PUZZLE_SOLVED_FANFARE, 28000);
     }
 }
 

@@ -206,7 +206,9 @@ void func_80250D94(f32, f32, f32);
 f32  func_80258964(f32);
 void func_802589E4(f32 *, f32, f32);
 f32  func_802591D8(f32, f32);
-
+void func_8025A6EC(enum comusic_e, s32);
+void func_8025A70C(enum comusic_e);
+void comusic_8025AB44(enum comusic_e comusic_id, s32 arg1, s32 arg2);
 int func_802878E8(AnimCtrl *, f32);
 
 

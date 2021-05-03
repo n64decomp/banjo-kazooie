@@ -15,7 +15,7 @@ void func_802B6270(void){
     player_setMovingYaw(func_8029B41C() + 35.0f);
     func_802BF2C0(80.0f);
     func_8025A58C(0,0xfa0);
-    func_8025A70C(0x3c);
+    func_8025A70C(JINGLE_MINIGAME_LOSS);
     func_8024BD08(0);
     func_8029E070(1);
     func_8028D5DC();
@@ -56,7 +56,7 @@ void func_802B63F8(void){
     player_setMovingYaw(func_8029B41C() + 35.0f);
     func_802BF2C0(80.0f);
     func_8025A58C(0,0xfa0);
-    func_8025A70C(0x3C);
+    func_8025A70C(JINGLE_MINIGAME_LOSS);
     func_8024BD08(0);
     func_8028D5DC();
     func_8029E3C0(0, 2.9f);

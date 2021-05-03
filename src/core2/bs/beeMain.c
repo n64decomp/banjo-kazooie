@@ -528,7 +528,7 @@ void func_802A2098(void){
     func_80297970(0.0f);
     func_8024BD08(0);
     func_8025A2FC(0, 0xFA0);
-    func_8025A6EC(0x42, -1);
+    func_8025A6EC(JINGLE_NOTEDOOR_OPENING_FANFARE, -1);
     func_8029151C(0xC);
     func_8028D5DC();
     func_8029E3C0(0, 3.0f);

@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-u32 func_802D8D48(Actor*, u32, u32, u32, u32, f32);
+u32 func_802D8D48(Actor*, u32, enum asset_e, enum comusic_e, enum item_e, f32);
 void func_8032628C(Actor*,s32);
 void func_8035644C(u32);
 
@@ -26,7 +26,7 @@ void func_802D8C20(Actor *arg0, u32 arg1){
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_51C90/func_802D8C98.s")
 
 //collectItem
-u32 func_802D8D48(Actor* actor, u32 arg1, u32 dialogId, u32 sfxId, u32 itemId, f32 arg5){
+u32 func_802D8D48(Actor* actor, u32 arg1, enum asset_e dialogId, enum comusic_e sfxId, enum item_e itemId, f32 arg5){
     func_8025A6EC(sfxId,32000);
     timedFunc_set_1(0.75f, func_8035644C, arg1);
     if(!func_802FADD4(0x1b)){
@@ -53,7 +53,7 @@ u32 func_802D8D48(Actor* actor, u32 arg1, u32 dialogId, u32 sfxId, u32 itemId, f
 //     func_802F3808(&arg0->x);
 //     if(arg0->unk8_0)
 //         actPtr = marker_getActor(arg0->marker);
-//     func_802D8D48(actPtr, 5, 0xD9E, 0xC, 0xD, 2.0f);
+//     func_802D8D48(actPtr, 5, 0xD9E, SFX_EGG_COLLECTED, 0xD, 2.0f);
 // }
 
 //readFeather_collision
@@ -62,7 +62,7 @@ void func_802D8E68(ActorProp *arg0){
     func_802F38F0(&arg0->x);
     if(arg0->unk8_0)
         actPtr = marker_getActor(arg0->marker);
-    func_802D8D48(actPtr, 6, 0xD9F, 0xB, 0xF, 4.0f);
+    func_802D8D48(actPtr, 6, 0xD9F, SFX_RED_FEATHER_COLLECTED, 0xF, 4.0f);
 }
 
 //goldFeather_collision
@@ -71,7 +71,7 @@ void func_802D8EDC(ActorProp *arg0){
     func_802F39D8(&arg0->x);
     if(arg0->unk8_0)
         actPtr = marker_getActor(arg0->marker);
-    func_802D8D48(actPtr, 7, 0xDA0, 0x14, 0x10, 6.0f);
+    func_802D8D48(actPtr, 7, 0xDA0, SFX_GOLD_FEATHER_COLLECTED, ITEM_GOLD_FEATHER, 6.0f);
 }
 
 Actor *func_802D8F50(ActorMarker *this, Gfx **gdl, Mtx **mptr, u32 arg3){
