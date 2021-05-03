@@ -219,7 +219,19 @@ f32 mlAbsF(f32 arg0){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_18350/func_80259198.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_18350/func_802591D8.s")
+f32 mlDiffDegF(f32 arg0, f32 arg1){
+    f32 diff = arg0 - arg1;
+
+    while(180.0f < diff){
+        diff -= 360.0f;
+    }//L80259218
+    
+    while(diff <= -180.0f){
+        diff += 360.0f;
+    }//L80259218
+    
+    return diff;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_18350/func_80259254.s")
 

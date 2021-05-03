@@ -3,7 +3,7 @@
 #include "variables.h"
 
 
-f32 func_802591D8(f32, f32);
+f32 mlDiffDegF(f32, f32);
 
 
 
@@ -46,8 +46,8 @@ void func_802C22C0(f32 *arg0, f32 *arg1){
     
     if(D_8037DC44 == 1){
         func_80258BF4(D_8037DC20, arg0);
-        D_8037DC30[0] = func_802591D8(D_8037DC30[0], arg1[0]);
-        D_8037DC30[1] = func_802591D8(D_8037DC30[1], arg1[1]);
+        D_8037DC30[0] = mlDiffDegF(D_8037DC30[0], arg1[0]);
+        D_8037DC30[1] = mlDiffDegF(D_8037DC30[1], arg1[1]);
         D_8037DC30[2] = 0.0f;
         D_8037DC44 = 2;
     }
