@@ -1,0 +1,12 @@
+ansiwrap
+anybadge
+capstone
+colorama
+cxxfilt
+pycparser
+pylibyaml
+pypng
+python-Levenshtein
+python-ranges
+pyyaml
+watchdog
