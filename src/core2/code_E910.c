@@ -38,7 +38,7 @@ bsMap D_80363824[] ={
     {BS_WALK_CREEP, bswalk_creep_init,      bswalk_creep_update,    NULL,           func_802B5350},  
     {BS_LANDING,    bsstand_landing_init,   bsstand_landing_update, NULL,           func_802B5350},
     {BS_BSHOCK_CHARGE, bsbshock_charge_init, bsbshock_charge_update, bsbshock_charge_end, func_80296608},
-    {BS_BSHOCK_JUMP, bsbshock_init, func_802A6FC8, bsbshock_end, func_80296608},
+    {BS_BSHOCK_JUMP, bsbshock_init, bsbshock_update, bsbshock_end, func_80296608},
     {BS_FLY_ENTER,  func_802A3820, func_802A38DC, func_802A3994, func_802A505C},
     {BS_FLY,        func_802A39BC, func_802A3AA8, func_802A3F70, func_802A505C},
     {BS_LONGLEG_ENTER,  func_802A55C0, func_802A5684, func_802A5718, func_802B5350},

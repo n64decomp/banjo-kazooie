@@ -13,7 +13,7 @@ extern f32 D_80364A74;
 
 extern char D_80375610[];
 extern char D_8037561C[];
-extern f64 D_80375628;
+extern f64  D_80375628;
 
 extern u8 D_8037D380;
 extern u8 D_8037D381;
@@ -158,7 +158,38 @@ void bsbshock_init(void){
     D_8037D381 = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bShock/func_802A6FC8.s")
+void bsbshock_update(void){
+    enum bs_e sp2C = 0;
+    f32 sp20[3];
+    AnimCtrl * aCtrl = player_getAnimCtrlPtr();
+
+    func_802B6FA8();
+    func_80297A88(sp20);
+    if(func_802878E8(aCtrl, 0.7f))
+        func_8030E484(0x53);
+
+    if(func_80295590(8) && 0.0f < sp20[1])
+        func_80297B70();
+
+    if(D_8037D381 == 0){
+        func_8029C348();
+        if(sp20[1] < 0.0f)
+            sp2C = BS_FALL;
+    }
+
+    if(!func_8028B2E8()){
+        if(func_8028B424())
+            sp2C = BS_FALL_TUMBLING;
+
+        if(func_802950E0())
+            sp2C = BS_BFLAP;
+
+        if(func_80294F3C())
+            sp2C =BS_BBUSTER;
+    }
+
+    bs_setState(sp2C);
+}
 
 void bsbshock_end(void){
     if(bs_getNextState() != BS_BPECK)

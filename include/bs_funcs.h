@@ -129,7 +129,7 @@ void bsbshock_charge_update(void);
 void bsbshock_charge_end(void);
 //BS_BSHOCK_JUMP(void);
 void bsbshock_init(void);
-void func_802A6FC8(void);
+void bsbshock_update(void);
 void bsbshock_end(void);
 //BS_FLY_ENTER(void);
 void func_802A3820(void);
