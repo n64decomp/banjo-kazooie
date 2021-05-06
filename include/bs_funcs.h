@@ -33,7 +33,7 @@ void bscrouch_init(void);
 void bscrouch_update(void);
 void bscrouch_end(void);
 //bsbtrotjump
-void func_802A9328(void);
+void bsbtrot_jump_init(void);
 void func_802A9478(void);
 void func_802A9864(void);
 //bsskid

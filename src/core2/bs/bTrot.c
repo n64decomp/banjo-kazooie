@@ -3,6 +3,13 @@
 #include "variables.h"
 
 
+extern f32 D_80364ABC;
+extern f32 D_80364AC0;
+
+extern char D_803756AC[];
+
+extern u8 D_8037D3A4;
+
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802A87C0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802A880C.s")
@@ -59,7 +66,33 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802A9320.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802A9328.s")
+void bsbtrot_jump_init(void){
+    AnimCtrl * aCtrl = player_getAnimCtrlPtr();
+
+    func_802874AC(aCtrl);
+    animctrl_setIndex(aCtrl, ANIM_BANJO_BTROT_JUMP);
+    animctrl_setDuration(aCtrl, 1.4f);
+    func_802876C0(aCtrl, 0.1f);
+    func_8028774C(aCtrl, 0.2f);
+    func_802876CC(aCtrl, 0.0f,  0.4002f);
+    func_80287674(aCtrl, 1);
+    func_802875AC(aCtrl, D_803756AC, 0x272);
+    func_802A8A40();
+    func_80289F10(1);
+    func_802991A8(1);
+    func_8029957C(3);
+    func_802978DC(6);
+    if(func_8029B2E8() != 0.0f)
+        player_setMovingYaw(func_8029B33C());
+
+    func_8029797C(player_getMovingYaw());
+    func_802A89D4();
+    func_802979AC(player_getMovingYaw(), func_80297A64());
+    func_802979A0(D_80364ABC);
+    func_80297BEC(D_80364AC0);
+    func_8030E484(0x48);
+    D_8037D3A4 = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802A9478.s")
 
