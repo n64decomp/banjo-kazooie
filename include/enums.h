@@ -676,6 +676,9 @@ enum asset_e
     ANIM_BANJO_BBARGE = 0x1C,
     ANIM_BANJO_BBUSTER = 0x1D,
 
+    ANIM_BANJO_BSHOCK_CHARGE = 0x48,
+    ANIM_BANJO_BSHOCK_JUMP = 0x49,
+
     ANIM_BANJO_OW = 0x4D,
     anim_mudhut_smashing = 0x4E,
 

@@ -121,7 +121,7 @@ enum asset_e func_802F49C0(void){
     blue = ((temp_t0 >> 1) & ((1<< 5)  - 1));
     green = ((temp_t0 >> 6) & ((1<< 5)  - 1));
     red = ((temp_t0 >> 11) & ((1<< 5) - 1));
-    temp_lo = (s32) ((*arg1 >> 8) & 0xFF) / 0x1F;
+    temp_lo = (s32) ((*arg1 >> 11) & 0xFF) / 0x1F;
 
 
     *arg1 = (( ((red * temp_lo) << 0x18) | ((green * temp_lo) << 0x10)) | ((blue * temp_lo) << 8)) | (*arg1 & 0xff);

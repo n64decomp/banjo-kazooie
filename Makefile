@@ -367,8 +367,14 @@ $(Z64) : $(ELF) $(OVERLAY_PROG_SVGS) $(MAIN_PROG_SVG) $(TOTAL_PROG_SVG)
 	$(call print1,Creating z64:,$@)
 	@$(OBJCOPY) $< $@ -O binary $(OCOPYFLAGS)
 
+$(BK_TOOLS)/gzip-1.2.4/gzip: $(BK_TOOLS)/gzip-1.2.4/Makefile
+	@$(CD) $(BK_TOOLS)/gzip-1.2.4 && $(MAKE) gzip
+
+$(BK_TOOLS)/gzip-1.2.4/Makefile:
+	@$(CD) $(BK_TOOLS)/gzip-1.2.4 && ./configure
+
 # Build tools
-$(BK_TOOLS)/%:
+$(BK_TOOLS)/%: $(BK_TOOLS)/gzip-1.2.4/gzip
 	$(call print1,Compiling build tool:,$@)
 	@$(CD) $(BK_TOOLS) && $(MAKE) $*
 

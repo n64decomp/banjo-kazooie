@@ -11,7 +11,7 @@ extern u8 D_8037D2F0;
 extern u8 D_8037D2F1;
 
 
-void func_802A23E0(void){
+void bsegghead_init(void){
     func_8028A274(0x2A, 1.0f);
     func_8029C7F4(1,3,1,3);
     func_80299234(350.0f, 14.0f);
@@ -21,7 +21,7 @@ void func_802A23E0(void){
     func_802952A8(2,0);
 }
 
-void func_802A2468(void) {
+void bsegghead_update(void) {
     s32 next_state;
     AnimCtrl *plyr_mvmt;
     s32 has_eggs;
@@ -68,7 +68,7 @@ void func_802A2468(void) {
 }
 
 
-void func_802A2650(void){
+void bsegghead_end(void){
     func_802952A8(2, 1);
     func_80297B70();
     func_8029E070(0);
