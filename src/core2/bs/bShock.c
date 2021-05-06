@@ -1,19 +1,9 @@
 #include <ultra64.h>
 #include "functions.h"
-#include "variables.h"
+#include "variables.h"s
 
-
-void func_80292158(f32);
-f32 func_80292230(void);
-void func_80298528(f32);
-void func_8030E04C(s32, f32, f32, f32);
-
-extern f32 D_80364A70;
-extern f32 D_80364A74;
-
-extern char D_80375610[];
-extern char D_8037561C[];
-extern f64  D_80375628;
+const f32 D_80364A70 = 1250.0f;
+const f32 D_80364A74 = -1200.f;
 
 extern u8 D_8037D380;
 extern u8 D_8037D381;
@@ -27,7 +17,7 @@ void bsbshock_charge_init(void){
     animctrl_setDuration(aCtrl, 4.2f);
     func_802876CC(aCtrl, 0.0f, 0.1061f);
     func_80287674(aCtrl,1);
-    func_802875AC(aCtrl, D_80375610, 0x61);
+    func_802875AC(aCtrl, "bsbshock.c", 0x61);
     func_8029C7F4(1,1,3,6);
 
     if(func_8029B2E8() != 0.0f)
@@ -92,7 +82,7 @@ void bsbshock_charge_update(void){
     }//L802A6CAC
 
     if(func_8028B254(0x3C)){
-        if(func_802877D8(aCtrl) < D_80375628 && func_80295590(8)){
+        if(func_802877D8(aCtrl) < 0.3637 && func_80295590(8)){
             D_8037D380 = 0;
         }//L802A6CF4
         if(func_8028B2E8())
@@ -138,7 +128,7 @@ void bsbshock_init(void){
     func_8028774C(aCtrl, 0.5304f);
     func_802876CC(aCtrl, 0.0f, 1.0f);
     func_80287674(aCtrl,1);
-    func_802875AC(aCtrl, D_8037561C, 0x13a);
+    func_802875AC(aCtrl, "bsbshock.c", 0x13a);
     func_8029C7F4(1,1,3,6);
 
     if(func_8029B2E8() != 0.0f)
