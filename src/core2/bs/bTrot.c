@@ -550,7 +550,9 @@ void bsbtrot_fall_update(void){
     bs_setState(sp2C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802AA068.s")
+void bsbtrot_fall_end(void){
+    func_802A8BB0();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802AA088.s")
 

@@ -454,7 +454,7 @@ void func_802B5350(void);
 //0x00000071
 void bsbtrot_fall_init(void);
 void bsbtrot_fall_update(void);
-void func_802AA068(void);
+void bsbtrot_fall_end(void);
 void func_80296608(void);
 //0x00000072
 void bssplat_init(void);
