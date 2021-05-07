@@ -12,6 +12,8 @@ f32 func_802987E4(void);
 void func_80298D54(f32, f32);
 void func_80289EC8(f32, f32, f32, f32);
 void func_80289EF8(f32);
+void func_8029CF48(s32, s32, f32);
+void func_802917E4(s32, f32);
 
 
 extern f32 D_80364ABC;
@@ -44,9 +46,34 @@ f32 func_802A8984(void);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802A8AD8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802A8BB0.s")
+void func_802A8BB0(void){
+    enum bs_e next_state = bs_getNextState();
+    
+    if(bsbtrot_inSet(next_state))
+        return;
+    
+    func_80292090(1);
+    func_8029B0C0();
+    func_8029E070(0);
+    func_8029E064(0);
+    player_setIdealPitch(0.0f);
+    func_80298CE0(0.0f);
+    func_802933FC(3);
+    if(next_state != BS_LOADZONE)
+        func_802917E4(3, 0.0f);
+    func_802A8AD8();
+    func_80289F10(1);
+    func_8029CF48(4, 0, 0.0f);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802A8C60.s")
+
+}
+
+int func_802A8C60(void){
+    if(func_80291698(3))
+        return 0;
+
+    return func_80295590(1);
+}
 
 void _bsbtrot_802A8C98(AnimCtrl *aCtrl, enum asset_e arg1){
     if(func_80287790(aCtrl) != arg1){
