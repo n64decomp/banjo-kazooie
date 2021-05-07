@@ -42,7 +42,7 @@ f32 func_802A8984(void);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802A8C60.s")
 
-void func_802A8C98(AnimCtrl *aCtrl, enum asset_e arg1){
+void _bsbtrot_802A8C98(AnimCtrl *aCtrl, enum asset_e arg1){
     if(func_80287790(aCtrl) != arg1){
         animctrl_setIndex(aCtrl, arg1);
         func_8028774C(aCtrl, func_802877D8(aCtrl));
@@ -53,7 +53,15 @@ void func_802A8C98(AnimCtrl *aCtrl, enum asset_e arg1){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802A8D00.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802A8D34.s")
+enum bs_e func_802A8D34(enum bs_e arg0){
+    if(func_802933C0(0xf))
+        return arg0;
+    
+    if(func_802933C0(1)) 
+        return BS_FLY_ENTER;
+
+    return BS_BTROT_JUMP; 
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802A8D84.s")
 
@@ -92,7 +100,7 @@ void bsbtrot_walk_update(void){
     func_802A8850();
     func_802A9054();
     func_802A8AD8();
-    func_802A8C98(aCtrl, func_802A9030());
+    _bsbtrot_802A8C98(aCtrl, func_802A9030());
     func_80299628(1);
     func_802A89D4();
     if(func_802878E8(aCtrl, 0.2781f))
