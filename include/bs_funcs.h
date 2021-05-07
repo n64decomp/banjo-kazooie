@@ -34,7 +34,7 @@ void bscrouch_update(void);
 void bscrouch_end(void);
 //bsbtrotjump
 void bsbtrot_jump_init(void);
-void func_802A9478(void);
+void bsbtrot_jump_update(void);
 void func_802A9864(void);
 //bsskid
 void bsturn_init(void);
@@ -78,7 +78,7 @@ void func_802A8FB0(void);
 void func_802A9010(void);
 //bsbtrot_walk
 void func_802A90F8(void);
-void func_802A914C(void);
+void bsbtrot_walk_update(void);
 void func_802A9300(void);
 //bsbtrot_exit
 void func_802A988C(void);
@@ -273,7 +273,7 @@ void func_802B0BE4(void);
 void func_802B0D1C(void);
 void func_802B0EBC(void);
 //BS_BTROT_SLIDE
-void func_802A9924(void);
+void bsbtrot_slide_init(void);
 void func_802A9A34(void);
 void func_802A9B78(void);
 //0x46
@@ -452,8 +452,8 @@ void func_802AD3AC(void);
 void func_802AD530(void);
 void func_802B5350(void);
 //0x00000071
-void func_802A9C38(void);
-void func_802A9D08(void);
+void bsbtrot_fall_init(void);
+void bsbtrot_fall_update(void);
 void func_802AA068(void);
 void func_80296608(void);
 //0x00000072
@@ -501,7 +501,7 @@ void bswalk_mud_init(void);
 void bswalk_mud_update(void);
 //0x0000007B
 void func_802AA15C(void);
-void func_802AA27C(void);
+void bsbtrot_ow_update(void);
 void func_802AA338(void);
 void func_80296590(void);
 //0x0000007C
