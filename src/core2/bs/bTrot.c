@@ -57,7 +57,12 @@ void _bsbtrot_802A8C98(AnimCtrl *aCtrl, enum asset_e arg1){
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802A8D00.s")
+enum asset_e func_802A8D00(enum asset_e arg0, enum asset_e arg1){
+    if(func_802916CC(3))
+        return arg0;
+    else
+        return arg1;
+}
 
 enum bs_e func_802A8D34(enum bs_e arg0){
     if(func_802933C0(0xf))
