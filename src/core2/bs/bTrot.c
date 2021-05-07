@@ -148,7 +148,9 @@ void bsbtrot_stand_end(void){
     func_802A8BB0();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802A9030.s")
+enum asset_e func_802A9030(void){
+    return func_802A8D00(0x15, 0x44);
+}
 
 void func_802A9054(void){
     f32 tmp = 1.0f;
