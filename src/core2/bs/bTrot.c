@@ -558,7 +558,14 @@ void bsbtrot_fall_end(void){
     func_802A8BB0();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802AA088.s")
+void bsbtrot_unk79_init(void){
+    func_8028A010(0x26, 1.2f);
+    func_8029C7F4(1,1,3,2);
+    func_80297970(0.0f);
+    func_802A8A40();
+    func_80292090(2);
+    func_8029C674();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802AA0E8.s")
 

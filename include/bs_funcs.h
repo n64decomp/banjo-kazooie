@@ -492,7 +492,7 @@ void func_802A8410(void);
 void func_802A844C(void);
 void func_80296608(void);
 //0x00000079
-void func_802AA088(void);
+void bsbtrot_unk79_init(void);
 void func_802AA0E8(void);
 void func_802AA134(void);
 void func_80296608(void);
