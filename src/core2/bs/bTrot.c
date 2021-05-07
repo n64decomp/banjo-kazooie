@@ -44,7 +44,15 @@ extern u8 D_8037D3A4;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802A880C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802A8850.s")
+void func_802A8850(void){
+    if( button_pressed(BUTTON_B) 
+        && func_80291698(3)
+        && func_80297A64() == 0.0f
+    ){
+        func_802917C4(3);
+    }
+
+}
 
 f32 func_802A88B0(void){
     if(func_8028B128())
