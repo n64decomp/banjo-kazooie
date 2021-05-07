@@ -121,7 +121,7 @@ bsMap D_80363824[] ={
     {0x00000078, func_802A83C0, func_802A8410, func_802A844C, func_80296608},
     {0x00000079, func_802AA088, func_802AA0E8, func_802AA134, func_80296608},
     {BS_WALK_MUD, bswalk_mud_init, bswalk_mud_update, NULL,          func_80296608},
-    {BS_BTROT_OW, func_802AA15C, bsbtrot_ow_update, func_802AA338, func_80296590},
+    {BS_BTROT_OW, bsbtrot_ow_init, bsbtrot_ow_update, func_802AA338, func_80296590},
     {0x0000007C, func_802B3FA4, func_802B4004, func_802B4038, func_802B4080},
     {BS_WALRUS_SLED_IDLE, func_802B91A4, func_802B9214, func_802B92DC, func_802B98C0},
     {BS_WALRUS_SLED_JUMP, func_802B9304, func_802B9440, func_802B9578, func_802B98C0},

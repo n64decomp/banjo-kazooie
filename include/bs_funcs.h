@@ -500,7 +500,7 @@ void func_80296608(void);
 void bswalk_mud_init(void);
 void bswalk_mud_update(void);
 //0x0000007B
-void func_802AA15C(void);
+void bsbtrot_ow_init(void);
 void bsbtrot_ow_update(void);
 void func_802AA338(void);
 void func_80296590(void);

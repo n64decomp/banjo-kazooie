@@ -2,9 +2,13 @@
 #include "functions.h"
 #include "variables.h"
 
+
 int func_80297C04(f32);
 f32 func_80297AF0(void);
 f32 func_80297FA4(void);
+f32 func_802987C4(void);
+f32 func_802987D4(void);
+f32 func_802987E4(void);
 void func_80298D54(f32, f32);
 void func_80289EC8(f32, f32, f32, f32);
 void func_80289EF8(f32);
@@ -560,7 +564,31 @@ void bsbtrot_fall_end(void){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802AA134.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802AA15C.s")
+void bsbtrot_ow_init(void){
+    f32 sp3C;
+    f32 sp30[3];
+    f32 sp24[3];
+
+    func_802A8A40();
+    func_80298760(func_80296560());
+    func_8028A274(0x66, 1.1f);
+    func_80299BFC(1.0f);
+    _player_getPosition(sp30);
+    func_80294980(sp24);
+    func_80257F18(sp24, sp30, &sp3C);
+    player_setMovingYaw(mlNormalizeAngle(sp3C + 180.0f));\
+    func_802991FC();
+    func_80297970(func_802987D4());
+    func_8029797C(sp3C);
+    func_802979AC(sp3C, func_80297A64());
+    func_8029C7F4(1,1,2,3);
+    if(func_802987B4() == 2)
+        func_802978DC(6);
+    func_802979A0(func_802987C4());
+    func_80297BEC(func_802987E4());
+    func_8028D5DC();
+    func_80292E48();
+}
 
 void bsbtrot_ow_update(void){
     enum bs_e sp1C = 0;
