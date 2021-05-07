@@ -567,9 +567,20 @@ void bsbtrot_unk79_init(void){
     func_8029C674();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802AA0E8.s")
+void bsbtrot_unk79_update(void){
+    enum bs_e sp1C = 0;
+    func_8029C6D0();
+    func_802A8AD8();
+    func_80299628(1);
+    if(!func_80298850())
+        sp1C = BS_BTROT_IDLE;
+    bs_setState(sp1C);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802AA134.s")
+void bsbtrot_unk79_end(void){
+    func_8029C748();
+    func_802A8BB0();
+}
 
 void bsbtrot_ow_init(void){
     f32 sp3C;
