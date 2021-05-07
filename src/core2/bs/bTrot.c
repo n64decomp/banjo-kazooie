@@ -20,6 +20,7 @@ void func_80299650(f32, f32);
 f32 func_80294A40(void);
 f32 func_80257C48(f32, f32, f32);
 f32 func_8029B30C(void);
+void func_8029C3E8(f32, f32);
 
 extern f32 D_80364A90;
 extern f32 D_80364A94;
@@ -40,7 +41,13 @@ extern f32 D_80364AC0;
 extern f32 D_8037D3A0;
 extern u8 D_8037D3A4;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802A87C0.s")
+//#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802A87C0.s")
+void func_802A87C0(void){
+    if(func_80291698(3))
+        func_8029C3E8(10.0f, 50.0f);
+    else
+        func_8029C22C();
+}
 
 void func_802A880C(s32 arg0){
     if(arg0)
