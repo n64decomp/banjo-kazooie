@@ -610,10 +610,26 @@ void bsbtrot_ow_update(void){
     bs_setState(sp1C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802AA338.s")
+void bsbtrot_ow_end(void){
+    func_80297CA8();
+    func_80297B70();
+    func_8028D5F4();
+    func_80292EA4();
+    func_802A8BB0();
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802AA378.s")
+void bsbtrot_unk9A_init(void){
+    func_802A8AD8();
+    func_802A8A40();
+    func_802AE3D0();
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802AA3A8.s")
+void bsbtrot_unk9A_update(void){
+    func_802AE410();
+    func_802A8AD8();
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802AA3D0.s")
+void bsbtrot_unk9A_end(void){
+    func_802AE450();
+    func_802A8BB0();
+}

@@ -502,7 +502,7 @@ void bswalk_mud_update(void);
 //0x0000007B
 void bsbtrot_ow_init(void);
 void bsbtrot_ow_update(void);
-void func_802AA338(void);
+void bsbtrot_ow_end(void);
 void func_80296590(void);
 //0x0000007C
 void func_802B3FA4(void);
@@ -640,9 +640,9 @@ void func_802A50D8(void);
 void func_802A50F8(void);
 void func_802AE490(void);
 //0x0000009A
-void func_802AA378(void);
-void func_802AA3A8(void);
-void func_802AA3D0(void);
+void bsbtrot_unk9A_init(void);
+void bsbtrot_unk9A_update(void);
+void bsbtrot_unk9A_end(void);
 void func_802AE490(void);
 //0x0000009B
 void func_802A6478(void);
