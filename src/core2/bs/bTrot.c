@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-
+void func_8029B324(s32, f32);
 int func_80297C04(f32);
 f32 func_80297AF0(void);
 f32 func_80297FA4(void);
@@ -18,6 +18,8 @@ f32 func_80291684(s32);
 f32 func_80291670(s32);
 void func_80299650(f32, f32);
 f32 func_80294A40(void);
+f32 func_80257C48(f32, f32, f32);
+f32 func_8029B30C(void);
 
 
 extern f32 D_80364ABC;
@@ -44,9 +46,28 @@ f32 func_802A8934(void);
 f32 func_802A8984(void);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802A8984.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802A89D4.s")
+void func_802A89D4(void){
+    f32 sp24 = func_8029B30C();
+    if(!func_8029B300()){
+        func_80297970(0.0f);
+    }
+    else{
+        func_80297970(func_80257C48(sp24, func_802A8900(), func_802A88B0()));
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802A8A40.s")
+}
+
+void func_802A8A40(void){
+    func_8029B324(0, 0.03f);
+    func_8029B324(1, 1.0f);
+    func_8029E070(1);
+    func_8029E064(1);
+    func_80297FB0(1000.0f, 12.0f);
+    func_80298D54(1000.0f, 12.0f);
+    func_802933E8(3);
+    func_8029CF48(4,1,0.24f);
+    func_80292090(2);
+}
 
 void func_802A8AD8(void){
     func_80299650(func_80291684(3), func_80291670(3));
