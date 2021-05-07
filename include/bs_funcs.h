@@ -35,7 +35,7 @@ void bscrouch_end(void);
 //bsbtrotjump
 void bsbtrot_jump_init(void);
 void bsbtrot_jump_update(void);
-void func_802A9864(void);
+void bsbtrot_jump_end(void);
 //bsskid
 void bsturn_init(void);
 void bsturn_update(void);
@@ -69,8 +69,8 @@ void bsbarge_init(void);
 void bsbarge_update(void);
 void bsbarge_end(void);
 //bsbtrot_enter
-void func_802A8E3C(void);
-void func_802A8EA4(void);
+void bsbtrot_enter_init(void);
+void bsbtrot_enter_update(void);
 void func_802A8F34(void);
 //bsbtrot_idle
 void func_802A8F60(void);

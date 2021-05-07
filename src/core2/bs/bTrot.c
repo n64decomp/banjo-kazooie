@@ -63,11 +63,55 @@ enum bs_e func_802A8D34(enum bs_e arg0){
     return BS_BTROT_JUMP; 
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802A8D84.s")
+enum bs_e func_802A8D84(enum bs_e arg0){
+    if( func_8029B300(arg0) > 0)
+        arg0 = BS_BTROT_WALK;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802A8E3C.s")
+    if(func_80294F78())
+        arg0 = func_802926C0();
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802A8EA4.s")
+    if(func_8028B094())
+        arg0 = BS_BTROT_FALL;
+
+    if(func_802A8C60())
+        arg0 = BS_BTROT_EXIT;
+
+    if(button_pressed(BUTTON_A))
+        arg0 = func_802A8D34(arg0);
+
+    if(func_8028B1E0())
+        arg0 = BS_BTROT_SLIDE;
+
+    if(player_inWater())
+        arg0 = BS_SWIM_IDLE;
+
+    return arg0;
+}
+
+void bsbtrot_enter_init(void){
+    func_802A8AD8();
+    func_8028A274(0x16, 1.0f);
+    func_8029C7F4(1,1,2,2);
+    func_80297970(0.0f);
+    func_802A8A40();
+    func_80299BD4();
+    func_802952A8(0,0);
+}
+
+void bsbtrot_enter_update(void){
+    enum bs_e next_state = 0;
+    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    func_802952A8(0,1);
+    func_80299628(1);
+    if(func_802878C4(aCtrl))
+        next_state = BS_BTROT_IDLE;
+
+    if(0.5 <  func_802877D8(aCtrl))
+        next_state = func_802A8D84(next_state);
+
+    bs_setState(next_state);
+
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802A8F34.s")
 
@@ -276,7 +320,10 @@ void bsbtrot_jump_update(void){
     bs_setState(sp2C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802A9864.s")
+void bsbtrot_jump_end(void){
+    func_80297B70();
+    func_802A8BB0();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802A988C.s")
 
