@@ -21,6 +21,10 @@ f32 func_80294A40(void);
 f32 func_80257C48(f32, f32, f32);
 f32 func_8029B30C(void);
 
+extern f32 D_80364A90;
+
+extern f32 D_80364A98;
+
 extern f32 D_80364AA4;
 extern f32 D_80364AA8;
 
@@ -44,8 +48,13 @@ extern u8 D_8037D3A4;
 f32 func_802A88B0(void);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802A88B0.s")
 
-f32 func_802A8900(void);
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802A8900.s")
+f32 func_802A8900(void){
+
+    if(func_80291698(3))
+        return D_80364A98;
+
+    return D_80364A90;
+}
 
 f32 func_802A8934(void){
     if(func_8028B128())
