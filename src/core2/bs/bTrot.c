@@ -14,6 +14,10 @@ void func_80289EC8(f32, f32, f32, f32);
 void func_80289EF8(f32);
 void func_8029CF48(s32, s32, f32);
 void func_802917E4(s32, f32);
+f32 func_80291684(s32);
+f32 func_80291670(s32);
+void func_80299650(f32, f32);
+f32 func_80294A40(void);
 
 
 extern f32 D_80364ABC;
@@ -44,7 +48,25 @@ f32 func_802A8984(void);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802A8A40.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802A8AD8.s")
+void func_802A8AD8(void){
+    func_80299650(func_80291684(3), func_80291670(3));
+    if(func_802933C0(0x10) &&(bs_getState() != BS_BTROT_EXIT)){
+        func_802933FC(0x10);
+        func_802917E4(3, func_80294A40());
+        func_803219F4(4);
+    }
+
+    if(func_802916CC(3)){
+        if(func_8029DFE0()){
+            func_8029E0DC(0);
+            if(func_802933D0(0x14))
+                func_8030E484(0x3eb);
+            func_803219F4(1);
+        }
+    }else{
+        func_8029E0DC(1);
+    }
+}
 
 void func_802A8BB0(void){
     enum bs_e next_state = bs_getNextState();
