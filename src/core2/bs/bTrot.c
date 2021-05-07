@@ -353,7 +353,11 @@ void bsbtrot_jump_end(void){
     func_802A8BB0();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802A988C.s")
+void bsbtrot_exit_init(void){
+    func_8028A274(7, 0.6f);
+    func_80289F10(1);
+    func_80297970(0.0f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802A98C8.s")
 

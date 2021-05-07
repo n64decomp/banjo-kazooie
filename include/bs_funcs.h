@@ -81,7 +81,7 @@ void bsbtrot_walk_init(void);
 void bsbtrot_walk_update(void);
 void bsbtrot_walk_end(void);
 //bsbtrot_exit
-void func_802A988C(void);
+void bsbtrot_exit_init(void);
 void func_802A98C8(void);
 void func_802A9904(void);
 //bsfly_knockback
