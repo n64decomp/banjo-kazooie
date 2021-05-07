@@ -113,13 +113,34 @@ void bsbtrot_enter_update(void){
 
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802A8F34.s")
+void bsbtrot_enter_end(void){
+    func_802952A8(0,1);
+    func_802A8BB0();
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802A8F60.s")
+void bsbtrot_stand_init(void){
+    func_8028A010(0x26, 1.2f);
+    func_8029C7F4(1,1,1,2);
+    func_80297970(0.0f);
+    func_802A8A40();
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802A8FB0.s")
+void bsbtrot_stand_update(void){
+    enum bs_e next_state = 0;;
+    func_802A8850();
+    func_802A8AD8();
+    if(func_80291698(3))
+        func_802A87C0();
+    func_80299628(1);
+    next_state = func_802A8D84(next_state);
+    next_state = func_8029CA94(next_state);
+    bs_setState(next_state);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802A9010.s")
+}
+
+void bsbtrot_stand_end(void){
+    func_802A8BB0();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802A9030.s")
 
@@ -135,7 +156,12 @@ void func_802A9054(void){
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802A90F8.s")
+void bsbtrot_walk_init(void){
+    func_8028A010(func_802A9030(), 0.53f);
+    func_8029C7F4(2,1,1,2);
+    func_802A8A40();
+    func_802A9054();
+}
 
 void bsbtrot_walk_update(void){
     enum bs_e sp1C = 0;
@@ -183,9 +209,11 @@ void bsbtrot_walk_update(void){
     bs_setState(func_8029CA94(sp1C));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802A9300.s")
+void bsbtrot_walk_end(void){
+    func_802A8BB0();
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802A9320.s")
+void func_802A9320(void){}
 
 void bsbtrot_jump_init(void){
     AnimCtrl * aCtrl = player_getAnimCtrlPtr();

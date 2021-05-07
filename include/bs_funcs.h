@@ -71,15 +71,15 @@ void bsbarge_end(void);
 //bsbtrot_enter
 void bsbtrot_enter_init(void);
 void bsbtrot_enter_update(void);
-void func_802A8F34(void);
+void bsbtrot_enter_end(void);
 //bsbtrot_idle
-void func_802A8F60(void);
-void func_802A8FB0(void);
-void func_802A9010(void);
+void bsbtrot_stand_init(void);
+void bsbtrot_stand_update(void);
+void bsbtrot_stand_end(void);
 //bsbtrot_walk
-void func_802A90F8(void);
+void bsbtrot_walk_init(void);
 void bsbtrot_walk_update(void);
-void func_802A9300(void);
+void bsbtrot_walk_end(void);
 //bsbtrot_exit
 void func_802A988C(void);
 void func_802A98C8(void);
