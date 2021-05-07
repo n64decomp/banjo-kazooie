@@ -82,8 +82,8 @@ void bsbtrot_walk_update(void);
 void bsbtrot_walk_end(void);
 //bsbtrot_exit
 void bsbtrot_exit_init(void);
-void func_802A98C8(void);
-void func_802A9904(void);
+void bsbtrot_exit_update(void);
+void bsbtrot_exit_end(void);
 //bsfly_knockback
 void func_802A4D90(void);
 void func_802A4EC8(void);
@@ -274,8 +274,8 @@ void func_802B0D1C(void);
 void func_802B0EBC(void);
 //BS_BTROT_SLIDE
 void bsbtrot_slide_init(void);
-void func_802A9A34(void);
-void func_802A9B78(void);
+void bsbtrot_slide_update(void);
+void bsbtrot_slide_end(void);
 //0x46
 void func_802A2098(void);
 void func_802A2130(void);

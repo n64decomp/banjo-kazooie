@@ -2,11 +2,13 @@
 #include "functions.h"
 #include "variables.h"
 
+int func_80297C04(f32);
 f32 func_80297AF0(void);
+f32 func_80297FA4(void);
 void func_80298D54(f32, f32);
 void func_80289EC8(f32, f32, f32, f32);
 void func_80289EF8(f32);
-int func_80297C04(f32);
+
 
 extern f32 D_80364ABC;
 extern f32 D_80364AC0;
@@ -359,9 +361,17 @@ void bsbtrot_exit_init(void){
     func_80297970(0.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802A98C8.s")
+void bsbtrot_exit_update(void){
+    enum bs_e sp1C = 0;
+    if(func_802878C4(player_getAnimCtrlPtr()))
+        sp1C = BS_IDLE;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802A9904.s")
+    bs_setState(sp1C);
+}
+
+void bsbtrot_exit_end(void){
+    func_802A8BB0();
+}
 
 void bsbtrot_slide_init(void){
     AnimCtrl *aCtrl = player_getAnimCtrlPtr();
@@ -383,9 +393,39 @@ void bsbtrot_slide_init(void){
     D_8037D3A0 = 1.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802A9A34.s")
+void bsbtrot_slide_update(void){
+    enum bs_e sp3C = 0;
+    f32 sp30[3];
+    f32 sp2C;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802A9B78.s")
+    func_802A8AD8();
+    if(func_80291698(3))
+        func_802A87C0();
+    func_80299AAC();
+    D_8037D3A0 = max_f(D_8037D3A0-func_8033DD9C(), 0.0f);
+    if(func_8028B1E0()){
+        func_80294480(sp30);
+        func_8025801C(sp30, &sp2C);
+        func_80299628(1);
+        func_80297970(mlMap_f(func_80297FA4(), 20.0f, 60.0f, 550.0f, 700.0f));
+        func_8029797C(sp2C);
+        func_8029C22C();
+    }else{
+        sp3C = BS_BTROT_IDLE;
+    }
+    if(player_inWater())
+        sp3C = BS_SWIM_IDLE;
+
+    if(D_8037D3A0 == 0.0f && button_pressed(BUTTON_A) && func_8028B2E8())
+        sp3C = func_802A8D34(sp3C);
+    
+
+    bs_setState(sp3C);
+}
+
+void bsbtrot_slide_end(void){
+    func_802A8BB0();
+}
 
 int bsbtrot_inSet(s32 move_indx){
     return (move_indx == BS_BTROT_IDLE)
