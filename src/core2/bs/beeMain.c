@@ -21,8 +21,6 @@ void func_8028A3B8(f32, f32);
 void func_80297A88(f32 *);
 f32 func_8029B2E8(void);
 f32 func_8029B33C(void);
-s32 func_80297C04(f32);
-void func_80289EC8(f32, f32, f32, f32);
 f32 func_80257C48(f32, f32, f32);
 f32 func_8029B30C();
 void func_8030EB00(s32, f32, f32);

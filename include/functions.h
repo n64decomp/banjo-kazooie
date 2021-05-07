@@ -202,7 +202,7 @@ void func_802EFA18(Actor *, s32);
 OSMesgQueue *func_8024F344(void);
 
 void func_80250D94(f32, f32, f32);
-
+f32  func_80257C48(f32, f32, f32);
 f32  mlAbsF(f32);
 void func_802589E4(f32 *, f32, f32);
 f32  mlDiffDegF(f32, f32);
@@ -220,6 +220,10 @@ void func_8028A010(s32, f32);
 void func_8028A1F4(s32, f32, f32);
 void func_8028A274(s32, f32);
 
+f32  func_80291670(s32);
+f32  func_80291684(s32);
+void func_802917E4(s32, f32);
+
 void func_80292158(f32);
 f32  func_80292230(void);
 
@@ -230,6 +234,7 @@ void func_80292900(f32, f32);
 
 void func_80292E80(s32, f32);
 f32  func_80294438(void);
+f32  func_80294A40(void);
 f32 func_80294500(void);
 void func_80297970(f32);
 void func_8029797C(f32);
@@ -238,22 +243,36 @@ void func_802979AC(f32, f32);
 f32  func_80297A64(void);
 f32  func_80297A7C(void);
 f32  func_80297AB8(void);
+f32  func_80297AF0(void);
 void func_80297BEC(f32);
 void func_80297BF8(f32);
+int  func_80297C04(f32);
 void func_80297CCC(f32);
+f32  func_80297FA4(void);
 void func_80297FB0(f32, f32);
 void func_80298528(f32);
+f32  func_802987C4(void);
+f32  func_802987D4(void);
+f32  func_802987E4(void);
 void func_80298CE0(f32);
+void func_80298D54(f32, f32);
 void func_802991D8(f32);
 void func_80299234(f32, f32);
 void func_8029932C(f32);
 void func_80299628(s32);
+void func_80299650(f32, f32);
 void func_80299B58(f32, f32);
 void func_80299CF4(s32, f32, s32);
+void func_80289EC8(f32, f32, f32, f32);
+void func_80289EF8(f32);
 void func_8029AD28(f32, s32);
 f32  func_8029B2E8(void);
+f32  func_8029B30C(void);
+void func_8029B324(s32, f32);
 f32  func_8029B33C(void);
 f32  func_8029B41C(void);
+void func_8029C3E8(f32, f32);
+void func_8029CF48(s32, s32, f32);
 void func_8029E090(s32, f32);
 void func_8029E3C0(s32, f32);
 f32  func_8029E270(s32);
@@ -268,5 +287,12 @@ void func_8030EBC8(s32, f32, f32, s32, s32);
 void func_8032728C(f32*, f32, s32, s32(*)(Actor *));
 
 void func_80352CF4(f32 *, f32 *, f32, f32);
+
+
+
+
+
+
+
 
 #endif

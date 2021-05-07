@@ -4,7 +4,6 @@
 
 f32 func_80289690(s32);
 void func_80289EA8(f32, f32);
-void func_80289EC8(f32, f32, s32, s32);
 f32 func_80297AB8(void);
 void func_802927E0(f32, f32);
 void func_80297FB0(f32, f32);
@@ -30,16 +29,16 @@ extern f32 D_80364D80;//walk_fast_max
 extern f32 D_80364D84; //mud_min
 extern f32 D_80364D88; //mud_max
 extern f32 D_80364D8C; 
-extern s32 D_80364D90; //walk_slow
-extern s32 D_80364D94;
-extern s32 D_80364D98; //creep
-extern s32 D_80364D9C;
-extern s32 D_80364DA0; //walk
-extern s32 D_80364DA4;
-extern s32 D_80364DA8; //walk_fast
-extern s32 D_80364DAC;
-extern s32 D_80364DB0; //mud
-extern s32 D_80364DB4;
+extern f32 D_80364D90; //walk_slow
+extern f32 D_80364D94;
+extern f32 D_80364D98; //creep
+extern f32 D_80364D9C;
+extern f32 D_80364DA0; //walk
+extern f32 D_80364DA4;
+extern f32 D_80364DA8; //walk_fast
+extern f32 D_80364DAC;
+extern f32 D_80364DB0; //mud
+extern f32 D_80364DB4;
 
 // .bss (?)
 extern f32 D_8037D5B0;

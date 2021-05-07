@@ -2,25 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-void func_8029B324(s32, f32);
-int func_80297C04(f32);
-f32 func_80297AF0(void);
-f32 func_80297FA4(void);
-f32 func_802987C4(void);
-f32 func_802987D4(void);
-f32 func_802987E4(void);
-void func_80298D54(f32, f32);
-void func_80289EC8(f32, f32, f32, f32);
-void func_80289EF8(f32);
-void func_8029CF48(s32, s32, f32);
-void func_802917E4(s32, f32);
-f32 func_80291684(s32);
-f32 func_80291670(s32);
-void func_80299650(f32, f32);
-f32 func_80294A40(void);
-f32 func_80257C48(f32, f32, f32);
-f32 func_8029B30C(void);
-void func_8029C3E8(f32, f32);
+
 
 extern f32 D_80364A90;
 extern f32 D_80364A94;
@@ -41,7 +23,6 @@ extern f32 D_80364AC0;
 extern f32 D_8037D3A0;
 extern u8 D_8037D3A4;
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bTrot/func_802A87C0.s")
 void func_802A87C0(void){
     if(func_80291698(3))
         func_8029C3E8(10.0f, 50.0f);
