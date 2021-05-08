@@ -21,7 +21,7 @@ bsMap D_80363824[] ={
     {BS_BBUSTER,    bsbbuster_init,     bsbbuster_update,   bsbbuster_end,      func_80296608},
     {BS_BFLAP,      bsbflap_init,       bsbflap_update,     bsbflap_end,        func_80296608},
     {BS_BPECK,      bsbpeck_init,       bsbpeck_update,     bsbpeck_end,        func_80296608},
-    {BS_BFLIP,      bsbflip_init, bsbflip_update, func_802A330C, func_80296608},
+    {BS_BFLIP,      bsbflip_init, bsbflip_update, bsbflip_end, func_80296608},
     {BS_BBARGE,     bsbarge_init,       bsbarge_update,     bsbarge_end,        func_80296608},
     {BS_BTROT_ENTER,    bsbtrot_enter_init, bsbtrot_enter_update, bsbtrot_enter_end, func_802B5350},
     {BS_BTROT_IDLE, bsbtrot_stand_init, bsbtrot_stand_update,   bsbtrot_stand_end,  func_802B5350},

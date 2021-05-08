@@ -148,4 +148,10 @@ void bsbflip_update(void){
     bs_setState(sp24);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bFlip/func_802A330C.s")
+void bsbflip_end(void){
+    func_80295610(2);
+    func_80297B70();
+    func_80297B94();
+    func_8029E070(0);
+    func_8029B0C0();
+}
