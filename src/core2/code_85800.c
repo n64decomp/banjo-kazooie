@@ -119,6 +119,7 @@ void func_8030C790(f32 *arg0){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_85800/func_8030D644.s")
 
+void func_8030D6C4(s32 arg0, f32 arg1, s32 arg2, s32 arg3, s32 arg4);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_85800/func_8030D6C4.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_85800/func_8030D750.s")
@@ -201,7 +202,9 @@ void func_8030C790(f32 *arg0){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_85800/func_8030E560.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_85800/func_8030E58C.s")
+void func_8030E58C(s32 arg0, f32 arg1){
+    func_8030D6C4(arg0, arg1, 0x55f0, 0, 2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_85800/func_8030E5C0.s")
 
