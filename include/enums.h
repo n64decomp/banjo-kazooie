@@ -685,6 +685,7 @@ enum asset_e
 
     ANIM_BANJO_OW = 0x4D,
     anim_mudhut_smashing = 0x4E,
+    ANIM_BANJO_ROLL = 0x4F,
 
     anim_conga_idle     = 0x51,
     anim_conga_ow       = 0x52,

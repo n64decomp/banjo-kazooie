@@ -2,15 +2,18 @@
 #include "functions.h"
 #include "variables.h"
 
+/* .data */
 const f32 D_80364A20 = 920.0f;
 const f32 D_80364A24 = -1200.0f;
 const f32 D_80364A28 = -533.3f;
 const f32 D_80364A2C = 80.0f;
 const f32 D_80364A30 = 200.0f;
 
-
+/* .bss */
 extern u8 D_8037D310;
 
+
+/* .code */
 void _bsbflip_802A2D60(void){
     f32 sp1C;
     sp1C = func_8029B30C();
@@ -72,7 +75,7 @@ void bsbflip_update(void){
             if(func_8029B2E8() != 0.0f){
                 func_802991A8(2);
                 func_8029957C(3);
-                if(func_8029B2E8){
+                if(func_8029B2E8){ //!!! BUG !!!
                     player_setMovingYaw(func_8029B33C());
                 }
                 func_80299254(1.0f);
