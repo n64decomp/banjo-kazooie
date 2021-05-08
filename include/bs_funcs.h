@@ -191,7 +191,7 @@ void func_802A7F4C(void);
 //BS_ROLL(void);
 int bstwirl_hitboxActive(void);
 void bstwirl_init(void);
-void func_802B6B70(void);
+void bstwirl_update(void);
 void bstwirl_end(void);
 //BS_SLIDE
 void bsslide_init(void);

@@ -53,7 +53,7 @@ bsMap D_80363824[] ={
     {BS_SWIM,       func_802B5B18, func_802B5C40, func_802B5E10, func_80296608},
     {BS_FALL,       func_802B1660, func_802B1750, func_802B1920, func_80296608},
     {BS_DIVE_ENTER, func_802A7DAC, func_802A7E2C, func_802A7F4C, func_80296608},
-    {BS_ROLL,       bstwirl_init, func_802B6B70, bstwirl_end, func_802B5350},
+    {BS_ROLL,       bstwirl_init, bstwirl_update, bstwirl_end, func_802B5350},
     {BS_SLIDE,      bsslide_init,   bsslide_update, bsslide_end, func_802B5350},
     {0x33,          func_802B9ACC, func_802B9B14, func_802B9AAC, func_802B9D00},
     {BS_JIG_NOTEDOOR, func_802B0F88, func_802B1090, func_802B0EF0, func_80296590},
