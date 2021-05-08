@@ -164,6 +164,8 @@ bsMap D_80363824[] ={
     {0}
 };
 
+extern s32 D_8037C3B0;
+
 void func_802958A0(void){
     s32 i;
     bsMap *iPtr;
@@ -176,7 +178,52 @@ void func_802958A0(void){
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_E910/func_80295914.s")
+void func_80295914(void){
+    D_80363820 = 1;
+    D_8037C3B0 = 0;
+    func_8029C608();
+    func_802983F0();
+    func_8028A410();
+    func_80291910();
+    func_8029279C();
+    func_802932AC();
+    func_80293380();
+    func_8028B6FC();
+    func_80291590();
+    func_802953A0();
+    func_8029B11C();
+    func_8029528C();
+    bsList_clearAll();
+    bs_clearState();
+    func_80295DD0();
+    func_80296C30();
+    func_802976E4();
+    func_80297C78();
+    func_80297ED0();
+    climbClear();
+    func_8029887C();
+    func_80298C70();
+    func_802992F0();
+    func_80294DD8();
+    func_8029CF6C();
+    func_8029DFF8();
+    func_80290B6C();
+    func_80292D88();
+    func_80290070();
+    func_80290664();
+    func_80291764();
+    func_80292B3C();
+    func_80294790();
+    func_80293DA4();
+    func_80289D1C();
+    func_80291D2C();
+    func_8028D1FC();
+    func_80299900();
+    func_8029A4D0();
+    func_8029ADCC();
+    func_8029D01C();
+    func_802958A0();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_E910/func_80295A8C.s")
 
