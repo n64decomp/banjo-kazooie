@@ -381,7 +381,7 @@ segments:
   - [0x000EEB80, .rodata, bs/timeout]
   - [0x000EEB90, bin, data_EEB90]
   - [0x000EEBA0, .rodata, bs/turn]
-  - [0x000EEBC0, bin, data_EEBC0]
+  - [0x000EEBC0, .rodata, bs/twirl]
   - [0x000EEBE0, .rodata, bs/walk]
   - [0x000EEC70, bin]
   - [0x000EF040, ".rodata", code_3BB80]

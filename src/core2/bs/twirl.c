@@ -2,9 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-extern char D_80375B50[];
-extern f64 D_80375B60;
-
 extern f32 D_8037D5A0;
 extern u8 D_8037D5A4;
 extern u8 _bstwirlHitboxActive;
@@ -21,7 +18,7 @@ void bstwirl_init(void){
     animctrl_setDuration(aCtrl, 0.9f);
     func_802876CC(aCtrl, 0.0f, 1.0f);
     func_80287674(aCtrl, 1);
-    func_802875AC(aCtrl, D_80375B50, 0x46);
+    func_802875AC(aCtrl, "bstwirl.c", 0x46);
     func_80289F10(1);
     func_802991A8(1);
     func_8029957C(3);
@@ -35,7 +32,6 @@ void bstwirl_init(void){
     func_8029E3C0(0, 0.01f);
     D_8037D5A4 = 0;
 }
-
 
 void bstwirl_update(void){
     enum bs_e sp1C = 0;
@@ -69,7 +65,7 @@ void bstwirl_update(void){
     if(button_pressed(BUTTON_A))
         sp1C = func_8029C780();
 
-    if(D_80375B60 < func_802877D8(aCtrl) && !func_8028B2E8())
+    if(0.6 < func_802877D8(aCtrl) && !func_8028B2E8())
         sp1C = BS_FALL;
 
     if(player_inWater())
