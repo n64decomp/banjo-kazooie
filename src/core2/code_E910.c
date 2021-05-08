@@ -236,10 +236,7 @@ void func_80295A8C(void){
 
 }
 
-void func_8029A968(f32);
-void func_8029A980(s32);
-void func_8029A974(f32);
-//#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_E910/func_80295B04.s")
+
 void func_80295B04(void){
     f32 sp24;
     enum bs_e sp20 = bs_getState();
@@ -273,7 +270,9 @@ void func_80295B04(void){
 }
 
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_E910/func_80295C08.s")
+void func_80295C08(s32 arg0){
+    D_8037C3B0 = arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_E910/func_80295C14.s")
 
