@@ -4,11 +4,11 @@
 
 void func_80299254(f32);
 
-extern f32 D_80364A20;
-extern f32 D_80364A24;
-extern f32 D_80364A28;
-extern f32 D_80364A2C;
-extern f32 D_80364A30;
+const f32 D_80364A20 = 920.0f;
+const f32 D_80364A24 = -1200.0f;
+const f32 D_80364A28 = -533.3f;
+const f32 D_80364A2C = 80.0f;
+const f32 D_80364A30 = 200.0f;
 
 
 extern u8 D_8037D310;
