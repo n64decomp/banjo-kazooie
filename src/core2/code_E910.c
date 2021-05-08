@@ -225,9 +225,53 @@ void func_80295914(void){
     func_802958A0();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_E910/func_80295A8C.s")
+void func_80295A8C(void){
+    
+    func_802917E4(2, func_8029A900());
+    func_802917E4(3, func_8029A90C());
+    if(func_8028ADB4())
+        bs_setState(func_80292630());
+    else
+        bs_setState(func_8029BF78());
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_E910/func_80295B04.s")
+}
+
+void func_8029A968(f32);
+void func_8029A980(s32);
+void func_8029A974(f32);
+//#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_E910/func_80295B04.s")
+void func_80295B04(void){
+    f32 sp24;
+    enum bs_e sp20 = bs_getState();
+    int tmp_a1;
+    
+    sp24 = (bslongleg_inSet(sp20)) ? func_80291670(2) : 0.0f;
+    func_8029A968(sp24);
+    sp24 = 0.0f;
+    tmp_a1 = 0;
+    if(bsbtrot_inSet(sp20)){
+        sp24 = func_80291670(3);
+        tmp_a1 = 1;
+    }
+
+    func_8029A980(tmp_a1);
+    func_8029A974(sp24);
+    bs_setState(BS_LOADZONE);
+    func_8028D2BC();
+    func_8029065C();
+    func_8029175C();
+    func_80292B18();
+    func_80291E88();
+    func_80289DDC();
+    func_80293E88();
+    func_802947C4();
+    func_80299A20();
+    func_8029A54C();
+    func_8029ADA8();
+    func_8029CFF8();
+    D_80363820 = 0;
+}
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_E910/func_80295C08.s")
 
