@@ -317,4 +317,12 @@ func_80299A8C();
 func_80295E74();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_E910/func_80295D74.s")
+void func_80295D74(void){
+    if(D_80363820){
+        func_80289E74();
+        func_8029259C();
+        func_80292C78();
+        func_80294750();
+        func_8029AF1C();
+    }
+}
