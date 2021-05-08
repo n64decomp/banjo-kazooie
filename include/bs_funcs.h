@@ -61,7 +61,7 @@ void bsbpeck_init(void);
 void bsbpeck_update(void);
 void bsbpeck_end(void);
 //bsbflip
-void func_802A2E6C(void);
+void bsbflip_init(void);
 void func_802A2F48(void);
 void func_802A330C(void);
 //bsbbarge

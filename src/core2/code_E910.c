@@ -21,7 +21,7 @@ bsMap D_80363824[] ={
     {BS_BBUSTER,    bsbbuster_init,     bsbbuster_update,   bsbbuster_end,      func_80296608},
     {BS_BFLAP,      bsbflap_init,       bsbflap_update,     bsbflap_end,        func_80296608},
     {BS_BPECK,      bsbpeck_init,       bsbpeck_update,     bsbpeck_end,        func_80296608},
-    {BS_BFLIP,      func_802A2E6C, func_802A2F48, func_802A330C, func_80296608},
+    {BS_BFLIP,      bsbflip_init, func_802A2F48, func_802A330C, func_80296608},
     {BS_BBARGE,     bsbarge_init,       bsbarge_update,     bsbarge_end,        func_80296608},
     {BS_BTROT_ENTER,    bsbtrot_enter_init, bsbtrot_enter_update, bsbtrot_enter_end, func_802B5350},
     {BS_BTROT_IDLE, bsbtrot_stand_init, bsbtrot_stand_update,   bsbtrot_stand_end,  func_802B5350},
@@ -236,7 +236,6 @@ void func_80295A8C(void){
 
 }
 
-
 void func_80295B04(void){
     f32 sp24;
     enum bs_e sp20 = bs_getState();
@@ -274,47 +273,47 @@ void func_80295C08(void (* arg0)(void)){
 }
 
 void func_80295C14(void){
-func_802964B8();
-func_80298A84();
-func_80291804();
-func_8029E100();
-func_8024E7C8();
-func_8023E06C();
-func_80295448();
-func_8029B174();
-func_8029533C();
-bs_updateState();
-func_80297744();
-func_8029858C();
-func_802932EC();
-func_80293F0C();
-func_80297F10();
-func_80298CB4();
-func_802993C8();
-func_802906D8();
-func_80289E00();
-func_8029A554();
-func_80298344();
-func_80290108();
-func_80292C1C();
-func_80292EDC();
-func_80291ECC();
-func_8029842C();
-func_8028D2E4();
-func_80294890();
-func_8028A8D0();
-func_8028B71C();
-func_8029D968();
-func_80297CF8();
-func_80294E60();
-func_80291358();
-func_802919A0();
-if(D_8037C3B0){
-    D_8037C3B0();
-    D_8037C3B0 = NULL;
-}
-func_80299A8C();
-func_80295E74();
+    func_802964B8();
+    func_80298A84();
+    func_80291804();
+    func_8029E100();
+    func_8024E7C8();
+    func_8023E06C();
+    func_80295448();
+    func_8029B174();
+    func_8029533C();
+    bs_updateState();
+    func_80297744();
+    func_8029858C();
+    func_802932EC();
+    func_80293F0C();
+    func_80297F10();
+    func_80298CB4();
+    func_802993C8();
+    func_802906D8();
+    func_80289E00();
+    func_8029A554();
+    func_80298344();
+    func_80290108();
+    func_80292C1C();
+    func_80292EDC();
+    func_80291ECC();
+    func_8029842C();
+    func_8028D2E4();
+    func_80294890();
+    func_8028A8D0();
+    func_8028B71C();
+    func_8029D968();
+    func_80297CF8();
+    func_80294E60();
+    func_80291358();
+    func_802919A0();
+    if(D_8037C3B0){
+        D_8037C3B0();
+        D_8037C3B0 = NULL;
+    }
+    func_80299A8C();
+    func_80295E74();
 }
 
 void func_80295D74(void){
