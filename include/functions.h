@@ -258,6 +258,7 @@ void func_80298CE0(f32);
 void func_80298D54(f32, f32);
 void func_802991D8(f32);
 void func_80299234(f32, f32);
+void func_80299254(f32);
 void func_8029932C(f32);
 void func_80299628(s32);
 void func_80299650(f32, f32);

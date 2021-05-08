@@ -2,8 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-void func_80299254(f32);
-
 const f32 D_80364A20 = 920.0f;
 const f32 D_80364A24 = -1200.0f;
 const f32 D_80364A28 = -533.3f;
