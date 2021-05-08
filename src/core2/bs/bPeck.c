@@ -4,7 +4,7 @@
 
 void func_80292048(s32, f32, f32, f32);
 void func_802875AC(AnimCtrl *, char *, s32);
-void func_8030E58C(s32, f32);
+
 
 extern f32 D_80364A60;
 extern f32 D_80364A64;

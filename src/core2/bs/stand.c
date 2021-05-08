@@ -11,7 +11,7 @@ void func_80299D2C(s32, f32, s32);
 
 void func_802900B4(void);
 void func_80250D94(f32, f32, f32);
-void func_8030E58C(s32, f32);
+
 void func_80299CF4(s32, f32, s32);
 
 extern u8 D_80364D20[];

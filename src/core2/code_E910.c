@@ -158,13 +158,23 @@ bsMap D_80363824[] ={
     {BS_PUMPKIN_BOUNCE, func_802B303C, func_802B305C, func_802B307C, func_80296590},
     {BS_CROC_BOUNCE, func_802ACB98, func_802ACBB8, func_802ACBD8, func_80296590},
     {BS_WALRUS_BOUNCE, func_802B8CE4, func_802B8D04, func_802B8D24, func_80296590},
-    {BS_BEE_BOUCE, func_802A1BC8, func_802A1BE8, func_802A1C08, func_80296590},
+    {BS_BEE_BOUNCE, func_802A1BC8, func_802A1BE8, func_802A1C08, func_80296590},
     {0x000000A4, func_802AAD4C, func_802AAD6C, func_802AAD94, func_80296608},
     {0x000000A5, func_802AADBC, func_802AAE08, func_802AAE4C, func_80296608},
     {0}
 };
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_E910/func_802958A0.s")
+void func_802958A0(void){
+    s32 i;
+    bsMap *iPtr;
+    
+    for(i = 0; D_80363824[i].uid != 0; i++){
+        bsList_setInitMethod(D_80363824[i].uid, D_80363824[i].behavior.init_func);
+        bsList_setUpdateMethod(D_80363824[i].uid, D_80363824[i].behavior.update_func);
+        bsList_setEndMethod(D_80363824[i].uid, D_80363824[i].behavior.end_func);
+        bsList_setInterruptMethod(D_80363824[i].uid, D_80363824[i].behavior.interrupt_func);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_E910/func_80295914.s")
 

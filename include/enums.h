@@ -612,7 +612,7 @@ enum bs_e
     BS_PUMPKIN_BOUNCE = 0xA0,
     BS_CROC_BOUNCE = 0xA1,
     BS_WALRUS_BOUNCE = 0xA2,
-	BS_BEE_BOUCE = 0xA3
+	BS_BEE_BOUNCE = 0xA3
 	// --[164] = "???", -- Wonderwing
 	// [165] = "Locked", -- Wonderwing
 };

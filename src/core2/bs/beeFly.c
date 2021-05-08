@@ -11,7 +11,7 @@ void func_80297970(f32);
 void func_80297BEC(f32);
 
 void func_802979A0(f32);
-void func_8030E58C(s32, f32);
+
 void func_8028A010(s32, f32);
 void func_80297FB0(f32, f32);
 void func_802921BC(f32);

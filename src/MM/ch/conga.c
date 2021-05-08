@@ -18,7 +18,7 @@
 void func_80326224(Actor *);
 Actor*  func_80325888(ActorMarker *, Gfx **, Mtx**, u32);
 void func_80328FB0(Actor *, f32);
-void func_8030E58C(s32, f32);
+
 void func_80328B8C(Actor*, s32, f32, s32);
 void func_802C8F70(f32);
 void func_80324E60(f32, s32);
