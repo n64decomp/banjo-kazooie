@@ -13,8 +13,7 @@ extern f32 D_80364A30;
 
 extern u8 D_8037D310;
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bFlip/func_802A2D60.s")
-void func_802A2D60(void){
+void _bsbflip_802A2D60(void){
     f32 sp1C;
     sp1C = func_8029B30C();
     if(!func_8029B300())
@@ -96,7 +95,7 @@ void bsbflip_update(void){
         }
         break;
     case 1://L802A30F8
-        func_802A2D60();
+        _bsbflip_802A2D60();
         if(func_802878C4(aCtrl)){
             func_802874AC(aCtrl);
             func_80287684(aCtrl, 0);
