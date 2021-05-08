@@ -7,11 +7,21 @@ void func_80299254(f32);
 extern f32 D_80364A20;
 extern f32 D_80364A24;
 extern f32 D_80364A28;
+extern f32 D_80364A2C;
+extern f32 D_80364A30;
 
 
 extern u8 D_8037D310;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bFlip/func_802A2D60.s")
+//#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bFlip/func_802A2D60.s")
+void func_802A2D60(void){
+    f32 sp1C;
+    sp1C = func_8029B30C();
+    if(!func_8029B300())
+        func_80297970(0.0f);
+    else
+        func_80297970(func_80257C48(sp1C, D_80364A2C, D_80364A30));
+}
 
 void _bsbflip_802A2DC0(void){
     AnimCtrl *aCtrl = player_getAnimCtrlPtr();
