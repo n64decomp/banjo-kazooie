@@ -2,6 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
+extern u8 _bscrocHitboxActive;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/croc/func_802ABDC0.s")
 
@@ -63,7 +64,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/croc/func_802ACEFC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/croc/func_802ACF4C.s")
+int bscroc_hitboxActive(void){
+    return _bscrocHitboxActive;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/croc/func_802ACF58.s")
 

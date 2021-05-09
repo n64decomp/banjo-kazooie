@@ -219,6 +219,7 @@ f32  func_802877D8(AnimCtrl *);
 void func_8028A010(s32, f32);
 void func_8028A1F4(s32, f32, f32);
 void func_8028A274(s32, f32);
+int  func_8028AED4(f32*, f32);
 
 f32  func_80291670(s32);
 f32  func_80291684(s32);

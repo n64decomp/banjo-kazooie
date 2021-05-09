@@ -61,9 +61,27 @@ void bsbwhirl_enter_end(void){
     func_802AA460();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bWhirl/func_802AA754.s")
+void bsbwhirl_stand_init(void){
+    func_8028A010(0x23, 1.0f);
+    func_8029C7F4(1,1,1,2);
+    func_80297970(0.0f);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bWhirl/func_802AA798.s")
+void bsbwhirl_stand_update(void){
+    enum bs_e sp1C = 0;
+    func_802AA4EC();
+    sp1C = func_802AA510(sp1C);
+    func_802AA58C(&sp1C);
+
+    if(func_8028B338())
+        sp1C = BS_SLIDE;
+
+    if(player_inWater())
+        sp1C = BS_LANDING_IN_WATER;
+
+    bs_setState(sp1C);
+
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bWhirl/func_802AA7FC.s")
 

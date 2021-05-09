@@ -25,6 +25,7 @@ void bsjump_init(void);
 void bsjump_update(void);
 void bsjump_end(void);
 //bspunch
+int bsclaw_hitboxActive(void);
 void bsclaw_init(void);
 void bsclaw_update(void);
 void bsclaw_end(void);
@@ -93,8 +94,8 @@ void bsbwhirl_enter_init(void);
 void bsbwhirl_enter_update(void);
 void bsbwhirl_enter_end(void);
 //BS_WONDERWING_IDLE
-void func_802AA754(void);
-void func_802AA798(void);
+void bsbwhirl_stand_init(void);
+void bsbwhirl_stand_update(void);
 void func_802AA7FC(void);
 //BS_WONDERWING_WALK,
 void func_802AA81C(void);

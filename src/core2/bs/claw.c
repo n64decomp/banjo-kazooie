@@ -8,10 +8,10 @@ void func_802915CC(f32);
 void func_8029AD28(f32, s32);
 void func_8030EB00(s32, f32, f32);
 
-extern u8 D_8037D3C0;
+extern u8 _bsclawHitboxActive;
 
-int func_802AB280(void){
-    return D_8037D3C0;
+int bsclaw_hitboxActive(void){
+    return _bsclawHitboxActive;
 }
 
 void bsclaw_init(void){
@@ -20,7 +20,7 @@ void bsclaw_init(void){
     func_8029797C(player_getMovingYaw());
     func_80297970(160.0f);
     func_802915CC(80.0f);
-    D_8037D3C0 = 0;
+    _bsclawHitboxActive = 0;
 }
 
 void bsclaw_update(void){
@@ -29,7 +29,7 @@ void bsclaw_update(void){
     f32 sp24;
     
     sp24 = func_802877D8(aCtrl);
-    D_8037D3C0 = func_802878E8(aCtrl, 0.1488f) != 0
+    _bsclawHitboxActive = func_802878E8(aCtrl, 0.1488f) != 0
               || (0.04879999999999998 < sp24 && sp24 < 0.2488)
               || func_802878E8(aCtrl, 0.3288f) != 0
               || (0.22879999999999998 < sp24 && sp24 < 0.42879999999999998)
@@ -67,7 +67,7 @@ void bsclaw_update(void){
 
 void bsclaw_end(void){
     func_80295610(0xB);
-    D_8037D3C0 = 0;
+    _bsclawHitboxActive = 0;
     func_802915B8();
 
 }
