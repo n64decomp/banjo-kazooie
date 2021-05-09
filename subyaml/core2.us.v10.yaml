@@ -354,6 +354,8 @@ segments:
   - [0x000E2790, bin, data_E2790]
   - [0x000ECE70, ".rodata", code_0]
   - [0x000ECE90, bin, data_ECE90]
+  - [0x000ED410, .rodata, code_6B30]
+  - [0x000ED500, bin, data_ED500]
   - [0x000EE340, .rodata, bs/bBarge]
   - [0x000EE380, .rodata, bs/bbuster]
   - [0x000EE3C0, .rodata, bs/beeFly]
