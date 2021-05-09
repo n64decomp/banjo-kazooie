@@ -31,9 +31,18 @@ void bsbwhirl_enter_init(void){
     func_802952A8(1,0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bWhirl/func_802AA6DC.s")
+void bsbwhirl_enter_update(void){
+    enum bs_e sp1C = 0;
+    func_802952A8(1,1);
+    if(func_802878C4(player_getAnimCtrlPtr()))
+        sp1C = BS_WONDERWING_IDLE;
+    bs_setState(sp1C);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bWhirl/func_802AA728.s")
+void bsbwhirl_enter_end(void){
+    func_802952A8(1,1);
+    func_802AA460();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bWhirl/func_802AA754.s")
 
