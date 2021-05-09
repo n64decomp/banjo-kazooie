@@ -293,6 +293,8 @@ void func_8030EBC8(s32, f32, f32, s32, s32);
 
 void func_8032728C(f32*, f32, s32, s32(*)(Actor *));
 
+void func_80346C10(enum bs_e *retVal, enum bs_e fail_state, enum bs_e success_state, enum item_e item_id, int use_item);
+
 void func_80352CF4(f32 *, f32 *, f32, f32);
 
 

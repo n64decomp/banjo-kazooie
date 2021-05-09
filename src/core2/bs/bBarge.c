@@ -93,7 +93,7 @@ void bsbarge_update(void){
     
     sp24 = 0;
     plyrMvmnt = player_getAnimCtrlPtr();
-    if(func_80295590(9))
+    if(button_released(BUTTON_B))
         func_802933E8(0xA);
     switch(D_8037D2A5){
         case 0:

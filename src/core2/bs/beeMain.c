@@ -169,7 +169,7 @@ void func_802A1438(void){
     sp28 = player_getAnimCtrlPtr();
     func_802A1020();
     func_80297A88(sp1c);
-    if(func_80295590(8) && (0.0f < sp1c[1])){
+    if(button_released(BUTTON_A) && (0.0f < sp1c[1])){
         func_80297B70();
     }
     switch (D_8037D2D4)

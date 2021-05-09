@@ -95,7 +95,7 @@ void bsjump_update(void){
     }
 
     func_80297A88(sp24);
-    if((func_80295590(8) && 0.0f < sp24[1] && !D_8037D4C2) || !func_8028AB48()){
+    if((button_released(BUTTON_A) && 0.0f < sp24[1] && !D_8037D4C2) || !func_8028AB48()){
         func_80297B70();
     }
 
@@ -136,7 +136,7 @@ void bsjump_update(void){
     if(func_8028B424())
         sp34 = BS_FALL_TUMBLING;
 
-    if(func_80295590(8))
+    if(button_released(BUTTON_A))
         D_8037D4C2 = 0;
 
     if(func_802950E0())

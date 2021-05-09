@@ -143,7 +143,7 @@ void bsbflap_update(void){
             func_802A298C();
             if(D_8037D301 == 4)
                 D_8037D300 = 3;
-            if(func_80295590(8)){
+            if(button_released(BUTTON_A)){
                 func_80297B70();
                 func_80297B94();
                 animctrl_setDuration(sp18, 1.0f);
@@ -156,7 +156,7 @@ void bsbflap_update(void){
             func_802A2810();
             func_802A28CC();
             func_802A298C();
-            if(func_80295590(8)){
+            if(button_released(BUTTON_A)){
                 func_80297B70();
                 func_80297B94();
                 animctrl_setDuration(sp18, 1.0f);

@@ -180,7 +180,7 @@ void bscrouch_update(void){
 void bscrouch_end(void){}
 
 enum bs_e func_802ADCD4(enum bs_e arg0){
-    if(func_80295590(1)){
+    if(button_released(BUTTON_Z)){
         arg0 = BS_IDLE;
         
         if(button_pressed(BUTTON_B) && func_8028A9E0())

@@ -113,7 +113,7 @@ void bsbflip_update(void){
     case 2://L802A3184
         if(func_8028B424())
             sp24 = BS_FALL_TUMBLING;
-        if(func_80295590(8)){
+        if(button_released(BUTTON_A)){
             func_802874AC(aCtrl);
             func_80287684(aCtrl, 0);
             animctrl_setIndex(aCtrl, 0x61);

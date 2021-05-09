@@ -6,6 +6,10 @@ extern f32 D_80364AD0;
 extern f32 D_80364AD4;
 extern f32 D_80364AD8;
 extern f32 D_80364ADC;
+
+extern f32 D_80375728;
+extern f32 D_8037572C;
+
 extern float D_8037D3B0;
 
 
@@ -30,11 +34,39 @@ static void func_802AA460(void){
     func_80289F10(1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bWhirl/func_802AA4EC.s")
+//__bsbwhirl_spawnSparkle
+void func_802AA4EC(void){
+    func_8033E3F0(2,1);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bWhirl/func_802AA510.s")
+enum bs_e func_802AA510(enum bs_e arg0){
+    if(func_8029B300(arg0) > 0)
+        arg0 = BS_WONDERWING_WALK;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bWhirl/func_802AA58C.s")
+    if(button_released(BUTTON_Z))
+        arg0 = BS_WONDERWING_EXIT;
+
+    if(button_pressed(BUTTON_A) && func_8028B2E8())
+        arg0 = BS_WONDERWING_JUMP;
+
+    if(player_inWater())
+        arg0 = BS_SWIM_IDLE;
+
+    return arg0;
+
+}
+
+void func_802AA58C(enum bs_e *arg0){
+    D_8037D3B0 += func_8033DD9C();
+    if(2.0 < D_8037D3B0){
+        D_8037D3B0 = 0.0f;
+        func_80346C10(arg0, BS_WONDERWING_EXIT, -1, ITEM_GOLD_FEATHER, 1);
+        if(*arg0 != BS_WONDERWING_EXIT){
+            func_8030E624(0x665b5be9);
+            func_802D8BE4(1);
+        }
+    }
+}
 
 void bsbwhirl_enter_init(void){
     func_8028A274(0x22, 0.5f);
@@ -97,7 +129,32 @@ void bsbwhirl_walk_init(void){
 
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bWhirl/func_802AA87C.s")
+void bsbwhirl_walk_update(void){
+    enum bs_e sp1C = 0;
+    func_802AA4EC();
+    func_8029AD28(D_80375728, 4);
+    func_8029AD28(D_8037572C, 3);
+    func_802AA400();
+
+    if(!func_8029B300() && func_80297C04(1.0f))
+        sp1C = BS_WONDERWING_IDLE;
+
+    if(button_released(BUTTON_Z))
+        sp1C = BS_WONDERWING_EXIT;
+
+    if(button_pressed(BUTTON_A) && func_8028B2E8())
+        sp1C = BS_WONDERWING_JUMP;
+
+    if(player_inWater())
+        sp1C = BS_LANDING_IN_WATER;
+
+    func_802AA58C(&sp1C);
+
+    if(player_isSliding())
+        sp1C = BS_SLIDE;
+
+    bs_setState(sp1C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bWhirl/func_802AA95C.s")
 

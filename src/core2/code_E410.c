@@ -66,7 +66,7 @@ u32 button_held(s32 button_indx){
     return D_8037C310.unk0[button_indx];
 }
 
-int func_80295590(s32 button_indx){
+int button_released(s32 button_indx){
     return D_8037C310.unk38[button_indx];
 }
 

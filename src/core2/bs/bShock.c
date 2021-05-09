@@ -53,7 +53,7 @@ void bsbshock_charge_update(void){
     }
     func_802B6FA8();
     func_80297A88(sp1C);
-    if(func_80295590(8) && 0.0f < sp1C[1]){
+    if(button_released(BUTTON_A) && 0.0f < sp1C[1]){
         func_80297B70();
     }
     
@@ -82,7 +82,7 @@ void bsbshock_charge_update(void){
     }//L802A6CAC
 
     if(func_8028B254(0x3C)){
-        if(func_802877D8(aCtrl) < 0.3637 && func_80295590(8)){
+        if(func_802877D8(aCtrl) < 0.3637 && button_released(8)){
             D_8037D380 = 0;
         }//L802A6CF4
         if(func_8028B2E8())
@@ -158,7 +158,7 @@ void bsbshock_update(void){
     if(func_802878E8(aCtrl, 0.7f))
         func_8030E484(0x53);
 
-    if(func_80295590(8) && 0.0f < sp20[1])
+    if(button_released(BUTTON_A) && 0.0f < sp20[1])
         func_80297B70();
 
     if(D_8037D381 == 0){

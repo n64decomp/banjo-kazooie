@@ -154,7 +154,7 @@ int func_802A8C60(void){
     if(func_80291698(3))
         return 0;
 
-    return func_80295590(1);
+    return button_released(BUTTON_Z);
 }
 
 void _bsbtrot_802A8C98(AnimCtrl *aCtrl, enum asset_e arg1){
@@ -379,7 +379,7 @@ void bsbtrot_jump_update(void){
         func_802A89D4();
 
     func_80297A88(sp1C);
-    if(func_80295590(8) && 0.0f < sp1C[1])
+    if(button_released(BUTTON_A) && 0.0f < sp1C[1])
         func_80297B70();
     
     switch(D_8037D3A4){
