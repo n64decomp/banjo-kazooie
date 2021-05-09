@@ -183,7 +183,7 @@ s32 func_8038F5BC(f32 *arg0, f32 arg1) {
 }
 
 void func_8038F5F8(s32 arg0) {
-    func_80324D2C(0.0f, 0x43);
+    func_80324D2C(0.0f, SFX_ENTER_MAP_GLITTER);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/fight/code_7BE0/func_8038F620.s")

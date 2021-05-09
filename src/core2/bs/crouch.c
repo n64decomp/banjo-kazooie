@@ -161,7 +161,7 @@ void bscrouch_update(void){
             break;
     }//L802ADC50
 
-    if(func_8028B338())
+    if(player_isSliding())
         sp34 = BS_SLIDE;
 
     if(func_8028B094())

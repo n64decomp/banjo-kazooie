@@ -182,7 +182,7 @@ void bswalk_creep_update(void){
     if(button_pressed(BUTTON_A))
         s0 = func_8029C780();
 
-    if(func_8028B338())
+    if(player_isSliding())
         s0 = BS_SLIDE;
     
     s0 = func_8029CA94(s0);
@@ -255,7 +255,7 @@ void bswalk_slow_upate(void){
     if(button_pressed(BUTTON_A))
         s0 = func_8029C780();
 
-    if(func_8028B338())
+    if(player_isSliding())
         s0 = BS_SLIDE;
     
     s0 = func_8029CA94(s0);
@@ -331,7 +331,7 @@ void bswalk_update(void){
     if(button_pressed(BUTTON_A))
         s0 = func_8029C780();
 
-    if(func_8028B338())
+    if(player_isSliding())
         s0 = BS_SLIDE;
     
     s0 = func_8029CA94(s0);
@@ -431,7 +431,7 @@ void bswalk_fast_update(void){
     if(button_pressed(BUTTON_A))
         s0 = func_8029C780();
 
-    if(func_8028B338())
+    if(player_isSliding())
         s0 = BS_SLIDE;
     
     s0 = func_8029CA94(s0);
@@ -480,7 +480,7 @@ void bswalk_mud_update(void){
     if(button_pressed(BUTTON_A))
         s0 = func_8029C780();
 
-    if(func_8028B338())
+    if(player_isSliding())
         s0 = BS_SLIDE;
     
     s0 = func_8029CA94(s0);

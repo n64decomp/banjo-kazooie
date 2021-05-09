@@ -8,7 +8,7 @@ extern float D_8037D3B0;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bWhirl/func_802AA400.s")
 
-void func_802AA460(void){
+static void func_802AA460(void){
     enum bs_e state = bs_getNextState();
     if(!( state == BS_WONDERWING_IDLE
           || state == BS_WONDERWING_WALK
@@ -22,7 +22,7 @@ void func_802AA460(void){
         func_8029E070(0);
         func_8025A55C(-1, 0xfa0, 0xd);
         func_8024BD08(1);
-        func_8025A7DC(0x25);
+        func_8025A7DC(MUSIC_USING_GOLD_FEATHERS);
     }  
     func_80289F10(1);
 }
@@ -73,7 +73,7 @@ void bsbwhirl_stand_update(void){
     sp1C = func_802AA510(sp1C);
     func_802AA58C(&sp1C);
 
-    if(func_8028B338())
+    if(player_isSliding())
         sp1C = BS_SLIDE;
 
     if(player_inWater())
@@ -83,7 +83,9 @@ void bsbwhirl_stand_update(void){
 
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bWhirl/func_802AA7FC.s")
+void bsbwhirl_stand_end(void){
+    func_802AA460();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bWhirl/func_802AA81C.s")
 

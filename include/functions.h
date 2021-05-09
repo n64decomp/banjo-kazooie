@@ -178,7 +178,7 @@ void marker_despawn(ActorMarker *marker);
 Actor *func_8032818C(s32, Actor**);
 
 
-void func_80324D2C(f32, s32);
+void func_80324D2C(f32, enum comusic_e);
 void func_802EF950(Actor *, s32);
 void func_802EFB54(Actor *, f32*);
 Actor *func_802F0BD0(u32);

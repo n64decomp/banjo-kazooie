@@ -133,7 +133,7 @@ s32 func_8028B120(void){return 0;}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028B2E8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028B338.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/player_isSliding.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028B394.s")
 

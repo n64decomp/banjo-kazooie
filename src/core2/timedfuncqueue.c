@@ -105,7 +105,7 @@ void func_80324A28(s32 soundId, s32 volume){
     func_8025A6EC(soundId, volume);
 }
 
-void func_80324A48(s32 arg0){
+void func_80324A48(enum comusic_e arg0){
     func_8025A7DC(arg0);
 }
 
@@ -158,7 +158,7 @@ void func_80324CFC(f32 time, s32 id, s32 volume){
     timedFunc_set_2(time, func_80324A28, id, volume);
 }
 
-void func_80324D2C(f32 time, s32 arg0){
+void func_80324D2C(f32 time, enum comusic_e arg0){
     timedFunc_set_1(time, func_80324A48, arg0);
 }
 

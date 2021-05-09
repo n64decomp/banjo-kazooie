@@ -84,8 +84,6 @@ void func_802CDD3C(Actor * this){
     }
 }
 
-s32 func_8028AED4(f32*, f32);
-
 #if NONMATCHING
 void func_802CDD78(Actor * this){
     f32 sp7C[3];

@@ -4,6 +4,7 @@ animctrl_setIndex = 0x8028745C;
 animctrl_setDirection = 0x8028767C;
 animctrl_setDuration = 0x8028768C;
 func_802878E8 = 0x802878E8;
+player_isSliding = 0x8028B338;
 player_getTransformation = 0x8028E7CC;
 ability_isUnlocked = 0x8028F190;
 ability_unlock = 0x8028F3B8;

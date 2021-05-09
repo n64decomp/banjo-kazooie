@@ -59,7 +59,7 @@ s32 func_802B488C(s32 arg0){
     if(func_80294F78())
         retVal = func_802926C0();
 
-    if(func_8028B338())
+    if(player_isSliding())
         retVal = BS_SLIDE;
 
     retVal = func_8029CA94(retVal);

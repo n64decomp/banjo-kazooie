@@ -166,7 +166,7 @@ s32 func_8029C9C0(s32 arg0){
     if(func_80294F78())
         arg0 = func_802926C0();
     
-    if(func_8028B338())
+    if(player_isSliding())
         arg0  = BS_SLIDE;
 
     return arg0;
