@@ -100,7 +100,7 @@ void bsbwhirl_stand_end(void);
 //BS_WONDERWING_WALK,
 void bsbwhirl_walk_init(void);
 void bsbwhirl_walk_update(void);
-void func_802AA95C(void);
+void bsbwhirl_walk_end(void);
 void func_80296608(void);
 //BS_WONDERWING_JUMP
 void func_802AA97C(void);

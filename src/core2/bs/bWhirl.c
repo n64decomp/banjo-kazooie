@@ -156,7 +156,9 @@ void bsbwhirl_walk_update(void){
     bs_setState(sp1C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bWhirl/func_802AA95C.s")
+void bsbwhirl_walk_end(void){
+    func_802AA460();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bWhirl/func_802AA97C.s")
 
