@@ -8,7 +8,24 @@ extern float D_8037D3B0;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bWhirl/func_802AA400.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bWhirl/func_802AA460.s")
+void func_802AA460(void){
+    enum bs_e state = bs_getNextState();
+    if(!( state == BS_WONDERWING_IDLE
+          || state == BS_WONDERWING_WALK
+          || state ==  BS_WONDERWING_JUMP
+          || state == BS_WONDERWING_EXIT
+          || state == BS_WONDERWING_UNKA4
+          || state == BS_WONDERWING_UNKA5
+        )
+    ){
+        func_8029B0C0();
+        func_8029E070(0);
+        func_8025A55C(-1, 0xfa0, 0xd);
+        func_8024BD08(1);
+        func_8025A7DC(0x25);
+    }  
+    func_80289F10(1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bWhirl/func_802AA4EC.s")
 
