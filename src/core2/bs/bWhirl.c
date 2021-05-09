@@ -2,7 +2,10 @@
 #include "functions.h"
 #include "variables.h"
 
-
+extern f32 D_80364AD0;
+extern f32 D_80364AD4;
+extern f32 D_80364AD8;
+extern f32 D_80364ADC;
 extern float D_8037D3B0;
 
 
@@ -87,7 +90,12 @@ void bsbwhirl_stand_end(void){
     func_802AA460();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bWhirl/func_802AA81C.s")
+void bsbwhirl_walk_init(void){
+    func_8028A010(0x11, 0.53f);
+    func_80289EC8(D_80364AD0, D_80364AD4, D_80364AD8, D_80364ADC);
+    func_8029C7F4(2,1,1,2);
+
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bWhirl/func_802AA87C.s")
 
