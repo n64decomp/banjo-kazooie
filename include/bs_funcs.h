@@ -89,7 +89,7 @@ void func_802A4D90(void);
 void func_802A4EC8(void);
 void func_802A4F44(void);
 //BS_WONDERWING_ENTER
-void func_802AA630(void);
+void bsbwhirl_enter_init(void);
 void func_802AA6DC(void);
 void func_802AA728(void);
 //BS_WONDERWING_IDLE

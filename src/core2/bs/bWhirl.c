@@ -3,6 +3,9 @@
 #include "variables.h"
 
 
+extern float D_8037D3B0;
+
+
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bWhirl/func_802AA400.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bWhirl/func_802AA460.s")
@@ -13,7 +16,20 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bWhirl/func_802AA58C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bWhirl/func_802AA630.s")
+void bsbwhirl_enter_init(void){
+    func_8028A274(0x22, 0.5f);
+    func_8029C7F4(1,1,1,2);
+    func_80297970(0.0f);
+    func_8029B324(0, 0.03f);
+    func_8029B324(1, 1.0f);
+    func_8029E070(1);
+    D_8037D3B0 = 0.0f;
+    func_8024BD08(0);
+    func_8025A55C(0, 0xfa0, 0xd);
+    func_8025A6EC(0x25, 0x6d60);
+    func_80299BD4();
+    func_802952A8(1,0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bWhirl/func_802AA6DC.s")
 
