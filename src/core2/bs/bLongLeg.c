@@ -465,7 +465,9 @@ void bsblongleg_slide_update(void){
     bs_setState(sp3C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A6368.s")
+void bsblongleg_slide_end(void){
+    func_802A5404();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A6388.s")
 

@@ -336,7 +336,7 @@ void func_80296590(void);
     //0x55
 void bsblongleg_slide_init(void);
 void bsblongleg_slide_update(void);
-void func_802A6368(void);
+void bsblongleg_slide_end(void);
 void func_802B5350(void);
     //0x56
 void func_802B3868(void);
