@@ -21,6 +21,7 @@ extern char D_80375570[];
 extern char D_80375580[];
 extern char D_80375590[];
 extern char D_803755A0[];
+extern char D_803755B0[];
 extern f32 D_803755C0;
 extern f32 D_803755C4;
 extern f32 D_803755C8;
@@ -29,6 +30,7 @@ extern f32 D_803755D8;
 
 extern f32 D_8037D350;
 extern f32 D_8037D354;
+extern f32 D_8037D358;
 extern f32 D_8037D35C;
 extern u8 D_8037D360;
 extern u8 D_8037D361;
@@ -414,7 +416,25 @@ void bsblongleg_jump_end(void){
     func_802A5404();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A6144.s")
+void bsblongleg_slide_init(void){
+    AnimCtrl * aCtrl = player_getAnimCtrlPtr();
+
+    func_802874AC(aCtrl);
+    animctrl_setIndex(aCtrl, ANIM_BANJO_LONGLEG_JUMP);
+    func_80287674(aCtrl, 3);
+    func_8028774C(aCtrl, 0.0865f);
+    func_802875AC(aCtrl, D_803755B0, 0x339);
+    func_8029C7F4(1,1,3,3);
+    func_8029797C(player_getMovingYaw());
+    func_802979AC(player_getMovingYaw(), func_80297A64());
+    func_8029E070(1);
+    func_8029E064(1);
+    func_80297FB0(1000.0f, 12.0f);
+    func_80298D54(1000.0f, 12.0f);
+    func_80297970(0.0f);
+    func_80299AAC();
+    D_8037D358 = 1.0f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A624C.s")
 
