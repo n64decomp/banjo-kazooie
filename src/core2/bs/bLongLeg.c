@@ -436,7 +436,34 @@ void bsblongleg_slide_init(void){
     D_8037D358 = 1.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A624C.s")
+void bsblongleg_slide_update(void){
+    enum bs_e sp3C = 0;
+    f32 sp30[3];
+    f32 sp2C;
+
+    func_802A531C();
+    func_80299AAC();
+    D_8037D358 = max_f(D_8037D358 - func_8033DD9C(), 0.0f);
+
+    if(player_isSliding()){
+        func_80294480(sp30);
+        func_8025801C(sp30, &sp2C);
+        func_80299594(1, 0.5f);
+        func_80297970(mlMap_f(func_80297FA4(), 20.0f, 60.0f, 550.0f, 700.0f));
+        func_8029797C(sp2C);
+        func_8029C22C();
+    }else{//L802A6304
+        sp3C = BS_LONGLEG_IDLE;
+    }
+
+    if(D_8037D358 == 0.0f && button_pressed(BUTTON_A))
+        sp3C = BS_LONGLEG_JUMP;
+
+    if(func_802A51D0())
+        sp3C = BS_LANDING_IN_WATER;
+
+    bs_setState(sp3C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A6368.s")
 
