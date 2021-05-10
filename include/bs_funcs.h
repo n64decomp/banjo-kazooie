@@ -104,7 +104,7 @@ void bsbwhirl_walk_end(void);
 void func_80296608(void);
 //BS_WONDERWING_JUMP
 void bsbwhirl_jump_init(void);
-void func_802AAAC4(void);
+void bsbwhirl_jump_update(void);
 void func_802AAC1C(void);
 //BS_WONDERWING_EXIT
 void func_802AAC44(void);

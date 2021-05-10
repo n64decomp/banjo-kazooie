@@ -190,7 +190,47 @@ void bsbwhirl_jump_init(void){
     D_8037D3B4 = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bWhirl/func_802AAAC4.s")
+void bsbwhirl_jump_update(void){
+    enum bs_e sp2C = 0;
+    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    f32 sp1C[3];
+
+    func_802AA4EC();
+    func_802AA400();
+    func_80297A88(sp1C);
+    if(button_released(BUTTON_A) && 0.0f < sp1C[1])
+        func_80297B70();
+    
+    switch(D_8037D3B4){
+        case 0://L802AAB48
+            if(func_8028B254(0x82)){
+                func_802876CC(aCtrl, 0.0f, 1.0f);
+                animctrl_setDuration(aCtrl, 0.8f);
+                func_80287674(aCtrl, 1);
+                D_8037D3B4 = 1;
+            }
+            break;
+        case 1://L802AAB90
+            if(player_inWater())
+                sp2C = BS_SWIM_IDLE;
+
+            if(func_8028B2E8()){
+                D_8037D3B4 = 2;
+                func_8029C5E8();
+            }
+            break;
+        case 2://L802AABC8
+            if(func_802878C4(aCtrl))
+                sp2C = BS_WONDERWING_IDLE;
+            sp2C = func_802AA510(sp2C);
+            break;
+    }//L802AABE8
+    func_802AA58C(&sp2C);
+    if(player_inWater())
+        sp2C = BS_LANDING_IN_WATER;
+
+    bs_setState(sp2C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bWhirl/func_802AAC1C.s")
 
