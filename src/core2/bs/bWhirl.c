@@ -14,7 +14,14 @@ extern f32 D_80364AE4;
 extern float D_8037D3B0;
 extern u8 D_8037D3B4;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bWhirl/func_802AA400.s")
+void func_802AA400(void){
+    f32 sp1C = func_8029B30C();
+    if(!func_8029B300()){
+        func_80297970(0.0f);
+    }else{
+        func_80297970(func_80257C48(sp1C, D_80364AD0, D_80364AD4));
+    }
+}
 
 static void func_802AA460(void){
     enum bs_e state = bs_getNextState();
@@ -261,14 +268,38 @@ void bsbwhirl_exit_end(void){
     func_802AA460();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bWhirl/func_802AAD4C.s")
+void func_802AAD4C(void){
+    func_802AE3D0();
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bWhirl/func_802AAD6C.s")
+void func_802AAD6C(void){
+    func_802AA4EC();
+    func_802AE410();
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bWhirl/func_802AAD94.s")
+void func_802AAD94(void){
+    func_802AE450();
+    func_802AA460();
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bWhirl/func_802AADBC.s")
+void func_802AADBC(void){
+    func_8028A010(0x23, 1.0f);
+    func_8029C7F4(1,1,3,2);
+    func_80297970(0.0f);
+    func_8029C674();
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bWhirl/func_802AAE08.s")
+void func_802AAE08(void){
+    enum bs_e sp1C =0;
+    func_802AA4EC();
+    func_8029C6D0();
+    if(!func_80298850())
+        sp1C = BS_WONDERWING_IDLE;
+    
+    bs_setState(sp1C);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bWhirl/func_802AAE4C.s")
+void func_802AAE4C(void){
+    func_8029C748();
+    func_802AA460();
+}
