@@ -248,9 +248,42 @@ void bsblongleg_walk_end(void){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A5B34.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A5BB4.s")
+void bsblongleg_exit_init(void){
+    func_802A5AB0();
+    func_80289F10(1);
+    func_8029957C(2);
+    func_80297970(0.0f);
+    D_8037D361 = func_8030D90C();
+    func_8030DA80(D_8037D361, 0x2C);
+    func_8030E04C(D_8037D361, 1.4f, 0.4f, -1.2f);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A5C34.s")
+void bsblongleg_exit_update(void){
+    enum bs_e sp1C = 0;
+    AnimCtrl * aCtrl = player_getAnimCtrlPtr();
+    func_802A531C();
+    func_80299628(1);
+    switch(D_8037D360){
+        case 0://L802A5C7C
+            if(func_802878E8(aCtrl, 0.68f))
+                func_8030E2C4(D_8037D361);
+            
+            if(func_802878C4(aCtrl))
+                func_802A5B34();
+
+            break;
+        case 1://L802A5CB4
+            if(func_802878C4(aCtrl))
+                sp1C = BS_IDLE;
+            break;
+    }
+
+    if(func_802A51D0())
+        sp1C = BS_LANDING_IN_WATER;
+    
+    bs_setState(sp1C);
+    
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A5CF4.s")
 
