@@ -45,7 +45,7 @@ bsMap D_80363824[] ={
     {BS_LONGLEG_IDLE,   bsblongleg_stand_enter, bsblongleg_stand_update, bsblongleg_stand_end, func_802B5350},
     {BS_LONGLEG_WALK,   bsblongleg_walk_init, bsblongleg_walk_update, bsblongleg_walk_end, func_802B5350},
     {BS_LONGLEG_JUMP,   func_802A5D20, func_802A5E70, func_802A611C, func_80296608},
-    {BS_LONGLEG_EXIT,   bsblongleg_exit_init, bsblongleg_exit_update, func_802A5CF4, func_802B5350},
+    {BS_LONGLEG_EXIT,   bsblongleg_exit_init, bsblongleg_exit_update, bsblongleg_exit_end, func_802B5350},
     {BS_BOMB,       func_802A3F9C, func_802A411C, func_802A4404, func_802A505C},
     {BS_DIVE_IDLE,  func_802A762C, func_802A7674, func_802A7718, func_80296608},
     {BS_DIVE_B,     func_802A7738, func_802A7838, func_802A7A2C, func_80296608},

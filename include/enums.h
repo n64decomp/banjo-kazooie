@@ -661,7 +661,7 @@ enum asset_e
     ANIM_BANJO_WALK_CREEP = 0x2,
     ANIM_BANJO_WALK = 0x3,
 
-
+    ANIM_BANJO_BTROT_EXIT = 0x7,
     ANIM_BANJO_JUMP = 0x8,
     ANIM_BANJO_DIE = 0x9,
 

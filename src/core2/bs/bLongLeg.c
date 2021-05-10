@@ -15,6 +15,7 @@ extern f32 D_80364A4C;
 extern char D_80375550[];
 extern char D_80375560[];
 extern char D_80375570[];
+extern char D_80375590[];
 extern f32 D_803755C0;
 extern f32 D_803755C4;
 
@@ -246,7 +247,17 @@ void bsblongleg_walk_end(void){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A5AB0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A5B34.s")
+void func_802A5B34(void){
+    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+
+    func_802874AC(aCtrl);
+    func_80287684(aCtrl, 0);
+    animctrl_setIndex(aCtrl, ANIM_BANJO_BTROT_EXIT);
+    animctrl_setDuration(aCtrl, 0.6f);
+    func_80287674(aCtrl, 1);
+    func_802875AC(aCtrl, D_80375590, 0x210);
+    D_8037D360 = 1;
+}
 
 void bsblongleg_exit_init(void){
     func_802A5AB0();
@@ -285,7 +296,10 @@ void bsblongleg_exit_update(void){
     
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A5CF4.s")
+void bsblongleg_exit_end(void){
+    func_8030DA44(D_8037D361);
+    func_802A5404();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A5D20.s")
 

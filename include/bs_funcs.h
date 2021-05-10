@@ -160,7 +160,7 @@ void func_802A611C(void);
 //BS_LONGLEG_EXIT(void);
 void bsblongleg_exit_init(void);
 void bsblongleg_exit_update(void);
-void func_802A5CF4(void);
+void bsblongleg_exit_end(void);
 //BS_BOMB(void);
 void func_802A3F9C(void);
 void func_802A411C(void);
