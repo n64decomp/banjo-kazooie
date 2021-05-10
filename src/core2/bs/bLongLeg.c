@@ -15,7 +15,8 @@ extern f32 D_80364A4C;
 extern char D_80375550[];
 extern char D_80375560[];
 extern char D_80375570[];
-
+extern f32 D_803755C0;
+extern f32 D_803755C4;
 
 extern f32 D_8037D35C;
 extern u8 D_8037D360;
@@ -189,7 +190,40 @@ void bsblongleg_walk_init(void){
     func_80289EC8(D_80364A40, D_80364A44, D_80364A48, D_80364A4C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A592C.s")
+void bsblongleg_walk_update(void){
+    enum bs_e sp1C = 0;
+    AnimCtrl * aCtrl = player_getAnimCtrlPtr();
+    func_802A531C();
+    func_80299594(1, 0.5f);
+    func_8029AD28(D_803755C0, 4);
+    func_8029AD28(D_803755C4, 3);
+    if(func_802878E8(aCtrl, 0.7781f))
+        func_802A5208(0);
+
+    if(func_802878E8(aCtrl, 0.2781f))
+        func_802A5208(1);
+    
+    func_802A524C();
+    if(button_pressed(BUTTON_B) && func_80297A64() == 0.0f)
+        func_802917C4(2);
+
+    if(!func_8029B300() && func_80297C04(1.0f))
+        sp1C = BS_LONGLEG_IDLE;
+
+    if(func_8028B1E0())
+        sp1C = BS_LONGLEG_SLIDE;
+
+    if(button_pressed(BUTTON_A) && func_8028B2E8())
+        sp1C = BS_LONGLEG_JUMP;
+
+    if(func_802916CC(2))
+        sp1C = BS_LONGLEG_EXIT;
+
+    if(func_802A51D0())
+        sp1C = BS_LANDING_IN_WATER;
+
+    bs_setState(sp1C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A5A90.s")
 
