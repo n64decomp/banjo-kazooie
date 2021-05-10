@@ -3,6 +3,10 @@
 #include "variables.h"
 
 
+extern char D_80375550[];
+
+extern f32 D_8037D35C;
+extern u8 D_8037D360;
 extern u8 D_8037D361;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A51D0.s")
@@ -27,7 +31,19 @@ int bslongleg_inSet(s32 move_indx){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A5404.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A54A8.s")
+void func_802A54A8(void){
+    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    func_802874AC(aCtrl);
+    func_80287684(aCtrl, 0);
+    animctrl_setIndex(aCtrl, ANIM_BANJO_LONGLEG_ENTER_AS_BIRD);
+    animctrl_setDuration(aCtrl, 1.0f);
+    func_80287674(aCtrl, 1);
+    func_802875AC(aCtrl, D_80375550, 0xe1);
+    func_802917E4(2, D_8037D35C);
+    func_803219F4(2);
+    func_8030E2C4(D_8037D361);
+    D_8037D360 = 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A5548.s")
 
