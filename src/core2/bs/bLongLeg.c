@@ -507,6 +507,11 @@ void func_802A6478(void){
     func_802AE3D0();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A64A0.s")
+void func_802A64A0(void){
+    func_802A531C();
+    func_802AE410();
+    if(func_802916CC(2))
+        bs_setState(BS_LONGLEG_EXIT);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A64E0.s")
