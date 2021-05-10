@@ -7,8 +7,15 @@ void func_80299594(s32, f32);
 void func_8029E180(s32, f32);
 int func_80291700(s32, f32);
 
+extern f32 D_80364A40;
+extern f32 D_80364A44;
+extern f32 D_80364A48;
+extern f32 D_80364A4C;
+
 extern char D_80375550[];
 extern char D_80375560[];
+extern char D_80375570[];
+
 
 extern f32 D_8037D35C;
 extern u8 D_8037D360;
@@ -171,7 +178,16 @@ void bsblongleg_stand_end(void){
     func_802A5404();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A589C.s")
+void bsblongleg_walk_init(void){
+    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+
+    func_802874AC(aCtrl);
+    animctrl_setIndex(aCtrl, ANIM_BANJO_LONGLEG_WALK);
+    func_80287674(aCtrl, 2);
+    func_802875AC(aCtrl, D_80375570, 0x1a1);
+    func_8029C7F4(2,1,1,2);
+    func_80289EC8(D_80364A40, D_80364A44, D_80364A48, D_80364A4C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A592C.s")
 
