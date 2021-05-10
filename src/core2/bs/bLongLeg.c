@@ -500,7 +500,10 @@ void func_802A6450(void){
     func_802A5404();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A6478.s")
+void func_802A6478(void){
+    func_802A5374();
+    func_802AE3D0();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A64A0.s")
 
