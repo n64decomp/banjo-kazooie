@@ -22,9 +22,12 @@ extern f32 D_8037D35C;
 extern u8 D_8037D360;
 extern u8 D_8037D361;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A51D0.s")
+int func_802A51D0(void){
+    if(func_8029D66C())
+        return 0;
+    return player_inWater();
+}
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A5208.s")
 void func_802A5208(int arg0){
     if(arg0)
         func_8030E5F4(0x49, 0.88f);
