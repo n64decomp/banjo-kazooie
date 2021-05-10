@@ -24,9 +24,14 @@ extern u8 D_8037D361;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A51D0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A5208.s")
+//#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A5208.s")
+void func_802A5208(int arg0){
+    if(arg0)
+        func_8030E5F4(0x49, 0.88f);
+    else
+        func_8030E5F4(0x49, 0.96f);
+}
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A524C.s")
 void func_802A524C(void){
     f32 sp1C = func_8029B30C();
     if(!func_8029B300())
