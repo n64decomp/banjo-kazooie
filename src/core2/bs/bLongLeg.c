@@ -471,7 +471,14 @@ void bsblongleg_slide_end(void){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A6388.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A6394.s")
+void func_802A6394(void){
+    func_8028A010(0x41, 1.0f);
+    func_8029C7F4(1,1,3,2);
+    func_80297970(0.0f);
+    func_802A5374();
+    func_80292090(2);
+    func_8029C674();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A63F0.s")
 
