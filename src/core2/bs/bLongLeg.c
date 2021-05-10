@@ -480,7 +480,20 @@ void func_802A6394(void){
     func_8029C674();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A63F0.s")
+void func_802A63F0(void){
+    enum bs_e sp1C = 0;
+    func_802A531C();
+    func_8029C6D0();
+    func_80299628(1);
+    
+    if(func_80298850() == 0)
+        sp1C = BS_LONGLEG_IDLE;
+    
+    if(func_802A51D0())
+        sp1C = BS_LANDING_IN_WATER;
+
+    bs_setState(sp1C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A6450.s")
 
