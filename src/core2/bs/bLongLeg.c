@@ -469,7 +469,9 @@ void bsblongleg_slide_end(void){
     func_802A5404();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A6388.s")
+void func_802A6388(f32 arg0){
+    D_8037D35C = arg0;
+}
 
 void func_802A6394(void){
     func_8028A010(0x41, 1.0f);
