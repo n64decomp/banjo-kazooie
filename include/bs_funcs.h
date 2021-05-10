@@ -152,7 +152,7 @@ void bsblongleg_stand_end(void);
 //BS_LONGLEG_WALK(void);
 void bsblongleg_walk_init(void);
 void bsblongleg_walk_update(void);
-void func_802A5A90(void);
+void bsblongleg_walk_end(void);
 //BS_LONGLEG_JUMP(void);
 void func_802A5D20(void);
 void func_802A5E70(void);

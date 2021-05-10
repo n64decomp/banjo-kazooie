@@ -26,7 +26,14 @@ extern u8 D_8037D361;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A5208.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A524C.s")
+//#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A524C.s")
+void func_802A524C(void){
+    f32 sp1C = func_8029B30C();
+    if(!func_8029B300())
+        func_80297970(0.0f);
+    else
+        func_80297970(func_80257C48(sp1C, D_80364A40, D_80364A44));
+}
 
 int bslongleg_inSet(s32 move_indx){
     return (move_indx == BS_LONGLEG_IDLE)
@@ -225,7 +232,9 @@ void bsblongleg_walk_update(void){
     bs_setState(sp1C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A5A90.s")
+void bsblongleg_walk_end(void){
+    func_802A5404();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A5AB0.s")
 
