@@ -2,7 +2,9 @@
 #include "functions.h"
 #include "variables.h"
 
+void func_80292078(s32, f32);
 void func_80299594(s32, f32);
+void func_8029E180(s32, f32);
 
 extern char D_80375550[];
 extern char D_80375560[];
@@ -31,7 +33,24 @@ int bslongleg_inSet(s32 move_indx){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A5374.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A5404.s")
+void func_802A5404(void){
+    if(bslongleg_inSet(bs_getNextState()))
+        return;
+    
+    func_80292078(1,0);
+    func_8029B0C0();
+    func_8029E070(0);
+    func_8029E064(0);
+    func_8029E0F4(0);
+    func_80292090(1);
+    player_setIdealPitch(0.0f);
+    func_80298CE0(0.0f);
+    func_802917C4(2);
+    func_803219F4(1);
+    func_802933FC(3);
+    func_8029E180(4, 0.5f);
+    func_802A531C();
+}
 
 void func_802A54A8(void){
     AnimCtrl *aCtrl = player_getAnimCtrlPtr();
