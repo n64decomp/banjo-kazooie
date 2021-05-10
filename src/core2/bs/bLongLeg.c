@@ -2,8 +2,10 @@
 #include "functions.h"
 #include "variables.h"
 
+void func_80299594(s32, f32);
 
 extern char D_80375550[];
+extern char D_80375560[];
 
 extern f32 D_8037D35C;
 extern u8 D_8037D360;
@@ -45,7 +47,16 @@ void func_802A54A8(void){
     D_8037D360 = 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A5548.s")
+void func_802A5548(void){
+    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    func_802874AC(aCtrl);
+    func_80287684(aCtrl, 0);
+    animctrl_setIndex(aCtrl, ANIM_BANJO_LONGLEG_ENTER_AS_BEAR);
+    animctrl_setDuration(aCtrl, 0.5f);
+    func_80287674(aCtrl, 1);
+    func_802875AC(aCtrl, D_80375560, 0xf6);
+    D_8037D360 = 0;
+}
 
 void bsblongleg_enter_init(void){
     D_8037D361 = func_8030D90C();
@@ -62,9 +73,28 @@ void bsblongleg_enter_init(void){
     func_80299BD4();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A5684.s")
+void bsblongleg_enter_update(void){
+    enum bs_e sp1C = 0;
+    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    func_802A531C();
+    func_80299594(1, 0.5f);
+    switch(D_8037D360){
+        case 0:
+            if(func_802878C4(aCtrl))
+                func_802A54A8();
+            break;
+        case 1:
+            if(func_802878C4(aCtrl))
+                sp1C = BS_LONGLEG_IDLE;
+            break;
+    }
+    bs_setState(sp1C);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A5718.s")
+void bsblongleg_enter_end(void){
+    func_802A5404();
+    func_8030DA44(D_8037D361);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A5744.s")
 
