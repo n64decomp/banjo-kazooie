@@ -514,4 +514,8 @@ void func_802A64A0(void){
         bs_setState(BS_LONGLEG_EXIT);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A64E0.s")
+void func_802A64E0(void){
+    func_802AE450();
+    func_802A5404();
+}
+
