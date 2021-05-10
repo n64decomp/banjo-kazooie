@@ -108,8 +108,8 @@ void bsbwhirl_jump_update(void);
 void bsbwhirl_jump_end(void);
 //BS_WONDERWING_EXIT
 void bsbwhirl_exit_init(void);
-void func_802AACF0(void);
-void func_802AAD2C(void);
+void bsbwhirl_exit_update(void);
+void bsbwhirl_exit_end(void);
 //BS_EGG_HEAD
 void bsegghead_init(void);
 void bsegghead_update(void);

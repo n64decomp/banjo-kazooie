@@ -248,16 +248,18 @@ void bsbwhirl_exit_init(void){
     comusic_8025AB44(MUSIC_USING_GOLD_FEATHERS, 0.0f, 0xFA0);
 }
 
-void func_802AACF0(void){
+void bsbwhirl_exit_update(void){
     enum bs_e sp1C = 0;
     
     if(func_802878C4(player_getAnimCtrlPtr()))
         sp1C = BS_IDLE;
-        
+
     bs_setState(sp1C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bWhirl/func_802AAD2C.s")
+void bsbwhirl_exit_end(void){
+    func_802AA460();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bWhirl/func_802AAD4C.s")
 
