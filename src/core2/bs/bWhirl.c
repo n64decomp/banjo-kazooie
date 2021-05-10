@@ -2,13 +2,12 @@
 #include "functions.h"
 #include "variables.h"
 
-extern f32 D_80364AD0;
-extern f32 D_80364AD4;
-extern f32 D_80364AD8;
-extern f32 D_80364ADC;
-
-extern f32 D_80364AE0;
-extern f32 D_80364AE4;
+const f32 D_80364AD0 = 80.0f;
+const f32 D_80364AD4 = 425.0f;
+const f32 D_80364AD8 = 0.56f;
+const f32 D_80364ADC = 0.4f;
+const f32 D_80364AE0 = 693.5f;
+const f32 D_80364AE4 = -1200.0f;
 
 
 extern float D_8037D3B0;
@@ -23,7 +22,7 @@ void func_802AA400(void){
     }
 }
 
-static void func_802AA460(void){
+static void __bsbwhirl_end(void){
     enum bs_e state = bs_getNextState();
     if(!( state == BS_WONDERWING_IDLE
           || state == BS_WONDERWING_WALK
@@ -42,8 +41,7 @@ static void func_802AA460(void){
     func_80289F10(1);
 }
 
-//__bsbwhirl_spawnSparkle
-void func_802AA4EC(void){
+static void __bsbwhirl_spawnSparkle(void){
     func_8033E3F0(2,1);
 }
 
@@ -101,7 +99,7 @@ void bsbwhirl_enter_update(void){
 
 void bsbwhirl_enter_end(void){
     func_802952A8(1,1);
-    func_802AA460();
+    __bsbwhirl_end();
 }
 
 void bsbwhirl_stand_init(void){
@@ -112,7 +110,7 @@ void bsbwhirl_stand_init(void){
 
 void bsbwhirl_stand_update(void){
     enum bs_e sp1C = 0;
-    func_802AA4EC();
+    __bsbwhirl_spawnSparkle();
     sp1C = func_802AA510(sp1C);
     func_802AA58C(&sp1C);
 
@@ -127,7 +125,7 @@ void bsbwhirl_stand_update(void){
 }
 
 void bsbwhirl_stand_end(void){
-    func_802AA460();
+    __bsbwhirl_end();
 }
 
 void bsbwhirl_walk_init(void){
@@ -139,7 +137,7 @@ void bsbwhirl_walk_init(void){
 
 void bsbwhirl_walk_update(void){
     enum bs_e sp1C = 0;
-    func_802AA4EC();
+    __bsbwhirl_spawnSparkle();
     func_8029AD28(0.47f, 4);
     func_8029AD28(0.97f, 3);
     func_802AA400();
@@ -165,7 +163,7 @@ void bsbwhirl_walk_update(void){
 }
 
 void bsbwhirl_walk_end(void){
-    func_802AA460();
+    __bsbwhirl_end();
 }
 
 void bsbwhirl_jump_init(void){
@@ -197,7 +195,7 @@ void bsbwhirl_jump_update(void){
     AnimCtrl *aCtrl = player_getAnimCtrlPtr();
     f32 sp1C[3];
 
-    func_802AA4EC();
+    __bsbwhirl_spawnSparkle();
     func_802AA400();
     func_80297A88(sp1C);
     if(button_released(BUTTON_A) && 0.0f < sp1C[1])
@@ -236,7 +234,7 @@ void bsbwhirl_jump_update(void){
 
 void bsbwhirl_jump_end(void){
     func_80297B70();
-    func_802AA460();
+    __bsbwhirl_end();
 }
 
 void bsbwhirl_exit_init(void){
@@ -265,7 +263,7 @@ void bsbwhirl_exit_update(void){
 }
 
 void bsbwhirl_exit_end(void){
-    func_802AA460();
+    __bsbwhirl_end();
 }
 
 void func_802AAD4C(void){
@@ -273,13 +271,13 @@ void func_802AAD4C(void){
 }
 
 void func_802AAD6C(void){
-    func_802AA4EC();
+    __bsbwhirl_spawnSparkle();
     func_802AE410();
 }
 
 void func_802AAD94(void){
     func_802AE450();
-    func_802AA460();
+    __bsbwhirl_end();
 }
 
 void func_802AADBC(void){
@@ -291,7 +289,7 @@ void func_802AADBC(void){
 
 void func_802AAE08(void){
     enum bs_e sp1C =0;
-    func_802AA4EC();
+    __bsbwhirl_spawnSparkle();
     func_8029C6D0();
     if(!func_80298850())
         sp1C = BS_WONDERWING_IDLE;
@@ -301,5 +299,5 @@ void func_802AAE08(void){
 
 void func_802AAE4C(void){
     func_8029C748();
-    func_802AA460();
+    __bsbwhirl_end();
 }
