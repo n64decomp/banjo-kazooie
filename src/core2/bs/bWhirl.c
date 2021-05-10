@@ -10,11 +10,6 @@ extern f32 D_80364ADC;
 extern f32 D_80364AE0;
 extern f32 D_80364AE4;
 
-extern char D_80375710[];
-extern f32 D_80375728;
-extern f32 D_8037572C;
-extern f32 D_80375730;
-extern f32 D_80375734;
 
 extern float D_8037D3B0;
 extern u8 D_8037D3B4;
@@ -138,8 +133,8 @@ void bsbwhirl_walk_init(void){
 void bsbwhirl_walk_update(void){
     enum bs_e sp1C = 0;
     func_802AA4EC();
-    func_8029AD28(D_80375728, 4);
-    func_8029AD28(D_8037572C, 3);
+    func_8029AD28(0.47f, 4);
+    func_8029AD28(0.97f, 3);
     func_802AA400();
 
     if(!func_8029B300() && func_80297C04(1.0f))
@@ -176,7 +171,7 @@ void bsbwhirl_jump_init(void){
     func_8028774C(aCtrl, 0.14f);
     func_802876CC(aCtrl, 0.0f, 0.4495f);
     func_80287674(aCtrl, 1);
-    func_802875AC(aCtrl, D_80375710, 0x181);
+    func_802875AC(aCtrl, "bsbwhirl.c", 0x181);
     func_8029C7F4(1,1,3,6);
     if(func_8029B2E8() != 0.0f)
         player_setMovingYaw(func_8029B33C());
@@ -186,7 +181,7 @@ void bsbwhirl_jump_init(void){
     func_802979AC(player_getMovingYaw(), func_80297A64());
     func_802979A0(D_80364AE0);
     func_80297BEC(D_80364AE4);
-    func_80299B58(D_80375730, D_80375734);
+    func_80299B58(0.91f, 1.09f);
     D_8037D3B4 = 0;
 }
 
@@ -237,9 +232,30 @@ void bsbwhirl_jump_end(void){
     func_802AA460();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bWhirl/func_802AAC44.s")
+void bsbwhirl_exit_init(void){
+    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bWhirl/func_802AACF0.s")
+    func_802874AC(aCtrl);
+    func_80287684(aCtrl, 0);
+    animctrl_setDirection(aCtrl, 0);
+    animctrl_setIndex(aCtrl, ANIM_BANJO_WONDERWING_EXIT);
+    animctrl_setDuration(aCtrl, 0.5f);
+    func_80287674(aCtrl, 1);
+    func_802875AC(aCtrl, "bsbwhirl.c", 0x201);
+    func_80289F10(1);
+    func_8029957C(2);
+    func_80297970(0.0f);
+    comusic_8025AB44(MUSIC_USING_GOLD_FEATHERS, 0.0f, 0xFA0);
+}
+
+void func_802AACF0(void){
+    enum bs_e sp1C = 0;
+    
+    if(func_802878C4(player_getAnimCtrlPtr()))
+        sp1C = BS_IDLE;
+        
+    bs_setState(sp1C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bWhirl/func_802AAD2C.s")
 
