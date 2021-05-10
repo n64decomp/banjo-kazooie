@@ -167,7 +167,7 @@ void bsblongleg_stand_update(void){
 
 }
 
-void func_802A587C(void){
+void bsblongleg_stand_end(void){
     func_802A5404();
 }
 

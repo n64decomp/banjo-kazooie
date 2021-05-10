@@ -148,7 +148,7 @@ void bsblongleg_enter_end(void);
 //BS_LONGLEG_IDLE(void);
 void bsblongleg_stand_enter(void);
 void bsblongleg_stand_update(void);
-void func_802A587C(void);
+void bsblongleg_stand_end(void);
 //BS_LONGLEG_WALK(void);
 void func_802A589C(void);
 void func_802A592C(void);
