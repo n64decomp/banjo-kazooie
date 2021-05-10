@@ -31,7 +31,17 @@ int bslongleg_inSet(s32 move_indx){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A531C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A5374.s")
+void func_802A5374(void){
+    func_80292078(1, -50.0f);
+    func_8029B324(0, 0.03f);
+    func_8029B324(1, 1.0f);
+    func_8029E070(1);
+    func_8029E064(1);
+    func_8029E0F4(1);
+    func_80297FB0(1000.0f, 12.0f);
+    func_80298D54(1000.0f, 12.0f);
+    func_802933E8(3);
+}
 
 void func_802A5404(void){
     if(bslongleg_inSet(bs_getNextState()))
