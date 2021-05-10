@@ -495,7 +495,10 @@ void func_802A63F0(void){
     bs_setState(sp1C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A6450.s")
+void func_802A6450(void){
+    func_8029C748();
+    func_802A5404();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A6478.s")
 
