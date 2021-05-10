@@ -7,11 +7,17 @@ extern f32 D_80364AD4;
 extern f32 D_80364AD8;
 extern f32 D_80364ADC;
 
+extern f32 D_80364AE0;
+extern f32 D_80364AE4;
+
+extern char D_80375710[];
 extern f32 D_80375728;
 extern f32 D_8037572C;
+extern f32 D_80375730;
+extern f32 D_80375734;
 
 extern float D_8037D3B0;
-
+extern u8 D_8037D3B4;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bWhirl/func_802AA400.s")
 
@@ -160,7 +166,29 @@ void bsbwhirl_walk_end(void){
     func_802AA460();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bWhirl/func_802AA97C.s")
+void bsbwhirl_jump_init(void){
+    AnimCtrl * aCtrl = player_getAnimCtrlPtr();
+    
+    func_802874AC(aCtrl);
+    animctrl_setIndex(aCtrl, ANIM_BANJO_WONDERWING_JUMP);
+    animctrl_setDuration(aCtrl, 0.8f);
+    func_802876C0(aCtrl, 0.134f);
+    func_8028774C(aCtrl, 0.14f);
+    func_802876CC(aCtrl, 0.0f, 0.4495f);
+    func_80287674(aCtrl, 1);
+    func_802875AC(aCtrl, D_80375710, 0x181);
+    func_8029C7F4(1,1,3,6);
+    if(func_8029B2E8() != 0.0f)
+        player_setMovingYaw(func_8029B33C());
+    
+    func_8029797C(player_getMovingYaw());
+    func_802AA400();
+    func_802979AC(player_getMovingYaw(), func_80297A64());
+    func_802979A0(D_80364AE0);
+    func_80297BEC(D_80364AE4);
+    func_80299B58(D_80375730, D_80375734);
+    D_8037D3B4 = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bWhirl/func_802AAAC4.s")
 
