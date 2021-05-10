@@ -2,32 +2,15 @@
 #include "functions.h"
 #include "variables.h"
 
-void func_80292078(s32, f32);
-void func_80299594(s32, f32);
-void func_8029E180(s32, f32);
-int func_80291700(s32, f32);
-void func_8028764C(AnimCtrl *, f32);
+/* .data */
+const f32 D_80364A40 = 80.0f;
+const f32 D_80364A44 = 500.0f;
+const f32 D_80364A48 = 1.0f;
+const f32 D_80364A4C = 0.8f;
+const f32 D_80364A50 = 400.0f;
+const f32 D_80364A54 = -800.0f;
 
-extern f32 D_80364A40;
-extern f32 D_80364A44;
-extern f32 D_80364A48;
-extern f32 D_80364A4C;
-extern f32 D_80364A50;
-extern f32 D_80364A54;
-
-extern char D_80375550[];
-extern char D_80375560[];
-extern char D_80375570[];
-extern char D_80375580[];
-extern char D_80375590[];
-extern char D_803755A0[];
-extern char D_803755B0[];
-extern f32 D_803755C0;
-extern f32 D_803755C4;
-extern f32 D_803755C8;
-extern f64 D_803755D0;
-extern f32 D_803755D8;
-
+/* .bss */
 extern f32 D_8037D350;
 extern f32 D_8037D354;
 extern f32 D_8037D358;
@@ -35,6 +18,7 @@ extern f32 D_8037D35C;
 extern u8 D_8037D360;
 extern u8 D_8037D361;
 
+/* .code */
 int func_802A51D0(void){
     if(func_8029D66C())
         return 0;
@@ -62,8 +46,8 @@ int bslongleg_inSet(s32 move_indx){
     || (move_indx == BS_LONGLEG_JUMP)
     || (move_indx == BS_LONGLEG_EXIT)
     || (move_indx == BS_LONGLEG_SLIDE)
-    || (move_indx == 0x9b)
-    || (move_indx == 0x62);
+    || (move_indx == BS_LONGLEG_UNK9B)
+    || (move_indx == BS_LONGLEG_UNK62);
 }
 
 void func_802A531C(void){
@@ -110,7 +94,7 @@ void func_802A54A8(void){
     animctrl_setIndex(aCtrl, ANIM_BANJO_LONGLEG_ENTER_AS_BIRD);
     animctrl_setDuration(aCtrl, 1.0f);
     func_80287674(aCtrl, 1);
-    func_802875AC(aCtrl, D_80375550, 0xe1);
+    func_802875AC(aCtrl, "bsblongleg.c", 0xe1);
     func_802917E4(2, D_8037D35C);
     func_803219F4(2);
     func_8030E2C4(D_8037D361);
@@ -124,7 +108,7 @@ void func_802A5548(void){
     animctrl_setIndex(aCtrl, ANIM_BANJO_LONGLEG_ENTER_AS_BEAR);
     animctrl_setDuration(aCtrl, 0.5f);
     func_80287674(aCtrl, 1);
-    func_802875AC(aCtrl, D_80375560, 0xf6);
+    func_802875AC(aCtrl, "bsblongleg.c", 0xf6);
     D_8037D360 = 0;
 }
 
@@ -213,7 +197,7 @@ void bsblongleg_walk_init(void){
     func_802874AC(aCtrl);
     animctrl_setIndex(aCtrl, ANIM_BANJO_LONGLEG_WALK);
     func_80287674(aCtrl, 2);
-    func_802875AC(aCtrl, D_80375570, 0x1a1);
+    func_802875AC(aCtrl, "bsblongleg.c", 0x1a1);
     func_8029C7F4(2,1,1,2);
     func_80289EC8(D_80364A40, D_80364A44, D_80364A48, D_80364A4C);
 }
@@ -223,8 +207,8 @@ void bsblongleg_walk_update(void){
     AnimCtrl * aCtrl = player_getAnimCtrlPtr();
     func_802A531C();
     func_80299594(1, 0.5f);
-    func_8029AD28(D_803755C0, 4);
-    func_8029AD28(D_803755C4, 3);
+    func_8029AD28(0.47f, 4);
+    func_8029AD28(0.97f, 3);
     if(func_802878E8(aCtrl, 0.7781f))
         func_802A5208(0);
 
@@ -265,7 +249,7 @@ void func_802A5AB0(void){
     animctrl_setIndex(aCtrl, ANIM_BANJO_LONGLEG_ENTER_AS_BIRD);
     animctrl_setDuration(aCtrl, 1.0f);
     func_80287674(aCtrl, 1);
-    func_802875AC(aCtrl, D_80375580, 0x200);
+    func_802875AC(aCtrl, "bsblongleg.c", 0x200);
     D_8037D360 = 0;
 }
 
@@ -277,7 +261,7 @@ void func_802A5B34(void){
     animctrl_setIndex(aCtrl, ANIM_BANJO_BTROT_EXIT);
     animctrl_setDuration(aCtrl, 0.6f);
     func_80287674(aCtrl, 1);
-    func_802875AC(aCtrl, D_80375590, 0x210);
+    func_802875AC(aCtrl, "bsblongleg.c", 0x210);
     D_8037D360 = 1;
 }
 
@@ -325,7 +309,7 @@ void bsblongleg_exit_end(void){
 
 void bsblongleg_jump_init(void){
     AnimCtrl * aCtrl = player_getAnimCtrlPtr();
-    D_8037D350 = D_803755C8;
+    D_8037D350 = 0.14f;
     func_802874AC(aCtrl);
     animctrl_setIndex(aCtrl, ANIM_BANJO_LONGLEG_JUMP);
     func_802876C0(aCtrl, 0.134f);
@@ -333,7 +317,7 @@ void bsblongleg_jump_init(void){
     func_8028774C(aCtrl, D_8037D350);
     func_802876CC(aCtrl, 0.0f, 0.42f);
     func_80287674(aCtrl, 1);
-    func_802875AC(aCtrl, D_803755A0, 0x27F);
+    func_802875AC(aCtrl, "bsblongleg.c", 0x27F);
     func_8029C7F4(1,1,3,6);
     if(func_8029B2E8() != 0.0f)
         player_setMovingYaw(func_8029B33C());
@@ -372,7 +356,7 @@ void bsblongleg_jump_update(void){
             }
             break;
         case 1://L802A5FA8
-            if((D_803755D0 < func_802877D8(aCtrl)) && sp30  < 70.0f){
+            if((0.4 < func_802877D8(aCtrl)) && sp30  < 70.0f){
                 D_8037D350 = func_802877D8(aCtrl);
                 D_8037D354 = sp30;
                 func_80287674(aCtrl, 3);
@@ -380,7 +364,7 @@ void bsblongleg_jump_update(void){
             }
             break;
         case 2://L802A6020
-            func_8028764C(aCtrl, mlMap_f(sp30, D_8037D354, 1.0f, D_8037D350, D_803755D8));
+            func_8028764C(aCtrl, mlMap_f(sp30, D_8037D354, 1.0f, D_8037D350, 0.6703f));
             func_80299594(1, 0.5f);
             if(func_8028B2E8()){
                 func_8029C5E8();
@@ -423,7 +407,7 @@ void bsblongleg_slide_init(void){
     animctrl_setIndex(aCtrl, ANIM_BANJO_LONGLEG_JUMP);
     func_80287674(aCtrl, 3);
     func_8028774C(aCtrl, 0.0865f);
-    func_802875AC(aCtrl, D_803755B0, 0x339);
+    func_802875AC(aCtrl, "bsblongleg.c", 0x339);
     func_8029C7F4(1,1,3,3);
     func_8029797C(player_getMovingYaw());
     func_802979AC(player_getMovingYaw(), func_80297A64());

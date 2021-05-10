@@ -328,7 +328,8 @@ void bsbtrot_walk_update(void){
     if(player_inWater())
         sp1C = BS_SWIM_IDLE;
 
-    bs_setState(func_8029CA94(sp1C));
+    sp1C = func_8029CA94(sp1C);
+    bs_setState(sp1C);
 }
 
 void bsbtrot_walk_end(void){

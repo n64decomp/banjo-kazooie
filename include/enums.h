@@ -549,7 +549,7 @@ enum bs_e
     BS_CROC_WALK = 0x5F,
     BS_CROC_JUMP = 0x60,
     BS_CROC_FALL = 0x61,
-    //unk62
+    BS_LONGLEG_UNK62 = 0x62,
     BS_CROC_OW   = 0x63,
     BS_CROC_DIE = 0x64, 
 
@@ -604,7 +604,7 @@ enum bs_e
     // [152] = "Locked", -- Loading zone, Mumbo transformation
 	// [153] = "Locked", -- Flying
 	// [154] = "Locked", -- Talon Trot
-	// [155] = "Locked", -- Wading Boots
+	BS_LONGLEG_UNK9B = 0x9B,
 	// --[156] = "Locked??", -- In WalrusSled Set
 	// [157] = "Locked", -- Bee?
 	// [158] = "Locked", -- Climbing

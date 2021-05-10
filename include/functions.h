@@ -297,11 +297,11 @@ void func_80346C10(enum bs_e *retVal, enum bs_e fail_state, enum bs_e success_st
 
 void func_80352CF4(f32 *, f32 *, f32, f32);
 
-
-
-
-
-
+void func_80292078(s32, f32);
+void func_80299594(s32, f32);
+void func_8029E180(s32, f32);
+int func_80291700(s32, f32);
+void func_8028764C(AnimCtrl *, f32);
 
 
 #endif

@@ -63,7 +63,7 @@ void bsegghead_update(void) {
         next_state = func_802ADCD4(0);
     }
     if (func_8028B094())
-        next_state = 0x2F;
+        next_state = BS_FALL;
     bs_setState(next_state);
 }
 
