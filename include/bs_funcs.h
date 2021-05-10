@@ -142,7 +142,7 @@ void func_802A39BC(void);
 void func_802A3AA8(void);
 void func_802A3F70(void);
 //BS_LONGLEG_ENTER(void);
-void func_802A55C0(void);
+void bsblongleg_enter_init(void);
 void func_802A5684(void);
 void func_802A5718(void);
 //BS_LONGLEG_IDLE(void);

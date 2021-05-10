@@ -3,6 +3,8 @@
 #include "variables.h"
 
 
+extern u8 D_8037D361;
+
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A51D0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A5208.s")
@@ -29,7 +31,20 @@ int bslongleg_inSet(s32 move_indx){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A5548.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A55C0.s")
+void bsblongleg_enter_init(void){
+    D_8037D361 = func_8030D90C();
+    func_8030DA80(D_8037D361, 0x2C);
+    func_8030E04C(D_8037D361, 0.8f, 1.9f, 1.2f);
+    func_802933FC(0xe);
+    if(bsbtrot_inSet(bs_getPrevState()))
+        func_802A54A8();
+    else
+        func_802A5548();
+    func_8029C7F4(1,1,3,2);
+    func_80297970(0.0f);
+    func_802A5374();
+    func_80299BD4();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A5684.s")
 
