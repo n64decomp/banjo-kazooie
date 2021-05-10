@@ -5,6 +5,7 @@
 void func_80292078(s32, f32);
 void func_80299594(s32, f32);
 void func_8029E180(s32, f32);
+int func_80291700(s32, f32);
 
 extern char D_80375550[];
 extern char D_80375560[];
@@ -29,7 +30,11 @@ int bslongleg_inSet(s32 move_indx){
     || (move_indx == 0x62);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A531C.s")
+void func_802A531C(void){
+    func_80299650(func_80291684(2), func_80291670(2));
+    if(func_80291700(2, 0.01f))
+        func_8030E484(0x3eb);
+}
 
 void func_802A5374(void){
     func_80292078(1, -50.0f);
