@@ -232,7 +232,10 @@ void bsbwhirl_jump_update(void){
     bs_setState(sp2C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bWhirl/func_802AAC1C.s")
+void bsbwhirl_jump_end(void){
+    func_80297B70();
+    func_802AA460();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bWhirl/func_802AAC44.s")
 
