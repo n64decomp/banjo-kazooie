@@ -130,11 +130,46 @@ void bsblongleg_enter_end(void){
     func_8030DA44(D_8037D361);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A5744.s")
+void bsblongleg_stand_enter(void){
+    func_8028A010(0x41, 1.0f);
+    func_8029C7F4(1,1,1,2);
+    func_80297970(0.0f);
+    func_80292090(2);
+    func_802A5374();
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A5798.s")
+void bsblongleg_stand_update(void){
+    enum bs_e next_state = 0;
+    func_802A531C();
+    func_80299594(1, 0.5f);
+    if(func_80294F78())
+        next_state = func_802926C0();
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A587C.s")
+    if(button_pressed(BUTTON_B))
+        func_802917C4(2);
+    
+    if(func_8029B300() > 0)
+        next_state = BS_LONGLEG_WALK;
+    
+    if(func_8028B1E0())
+        next_state = BS_LONGLEG_SLIDE;
+    
+    if(button_pressed(BUTTON_A) && func_8028B2E8())
+        next_state = BS_LONGLEG_JUMP;
+
+    if(func_802916CC(2))
+        next_state = BS_LONGLEG_EXIT;
+
+    if(func_802A51D0())
+        next_state = BS_LANDING_IN_WATER;
+
+    bs_setState(next_state);
+
+}
+
+void func_802A587C(void){
+    func_802A5404();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bLongLeg/func_802A589C.s")
 
