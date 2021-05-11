@@ -83,7 +83,7 @@ void func_8028E7EC(f32 *arg0){
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028EC04.s")
 
 void player_getRotation(f32 *dst){
-    dst[0] = player_getPitch();
+    dst[0] = pitch_get();
     dst[1] = player_getYaw();
     dst[2] = player_getRoll();
 }

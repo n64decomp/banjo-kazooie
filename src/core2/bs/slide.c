@@ -69,7 +69,7 @@ void bsslide_init(void){
     func_8029C7F4(1,1,3,3);
     func_8029797C(player_getMovingYaw());
     func_802979AC(player_getMovingYaw() ,func_80297A64());
-    player_setPitchAngVel(800.0f, 8.0f);
+    pitch_setAngVel(800.0f, 8.0f);
     func_80297970(0.0f);
     func_80299AAC();
     D_8037D524 = 0;
@@ -90,10 +90,10 @@ void bsslide_update(void){
         if(func_80258108(sp30, &sp2C, &sp28)){
             if(D_8037D520 == 0x5A){
                 player_setMovingYaw(sp2C + 180.0f);
-                player_setIdealPitch(-sp28);
+                pitch_setIdeal(-sp28);
             }else{
                 player_setMovingYaw(sp2C);
-                player_setIdealPitch(sp28);
+                pitch_setIdeal(sp28);
             }
             func_80297970(mlMap_f(sp28,20.0f, 60.0f, 550.0f, 700.0f));
             func_8029797C(sp2C);
@@ -117,5 +117,5 @@ void bsslide_update(void){
 void bsslide_end(void){
     if(func_80321900() != 6)
         func_80295610(6);
-    player_setIdealPitch(0.0f);
+    pitch_setIdeal(0.0f);
 }

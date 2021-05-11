@@ -199,7 +199,7 @@ void func_80295914(void){
     func_80296C30();
     func_802976E4();
     func_80297C78();
-    func_80297ED0();
+    pitch_reset();
     climbClear();
     func_8029887C();
     func_80298C70();
@@ -287,7 +287,7 @@ void func_80295C14(void){
     func_8029858C();
     func_802932EC();
     func_80293F0C();
-    func_80297F10();
+    pitch_update();
     func_80298CB4();
     func_802993C8();
     func_802906D8();

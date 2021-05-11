@@ -6,7 +6,7 @@ f32 func_80289690(s32);
 void func_80289EA8(f32, f32);
 f32 func_80297AB8(void);
 void func_802927E0(f32, f32);
-void player_setPitchAngVel(f32, f32);
+void pitch_setAngVel(f32, f32);
 void func_80298D54(f32, f32);
 void func_80298CE0(f32);
 void func_8028A010(s32, f32);
@@ -373,7 +373,7 @@ void bswalk_fast_init(void){
     func_8029C7F4(2,1,1,2);
     func_80289EA8(0.3f, 1.5f);
     func_80289EC8(D_80364D7C, D_80364D80, D_80364DA8, D_80364DAC);
-    player_setPitchAngVel(1000.0f, 12.0f);
+    pitch_setAngVel(1000.0f, 12.0f);
     func_80298D54(1000.0f, 12.0f);
     func_802B6EB0(0.3f);
     
@@ -443,7 +443,7 @@ void bswalk_fast_update(void){
 }
 
 void bswalk_fast_end(void){
-    player_setIdealPitch(0.0f);
+    pitch_setIdeal(0.0f);
     func_80298CE0(0.0f);
 }
 

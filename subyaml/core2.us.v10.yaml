@@ -360,6 +360,8 @@ segments:
   - [0x000ECE90, bin, data_ECE90]
   - [0x000ED410, .rodata, code_6B30]
   - [0x000ED500, bin, data_ED500]
+  - [0x000EDA60, .rodata, code_10DA0]
+  - [0x000EDA90, bin, data_EDA90]
   - [0x000EE340, .rodata, bs/bBarge]
   - [0x000EE380, .rodata, bs/bbuster]
   - [0x000EE3C0, .rodata, bs/beeFly]

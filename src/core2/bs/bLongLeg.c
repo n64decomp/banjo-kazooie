@@ -63,7 +63,7 @@ void func_802A5374(void){
     func_8029E070(1);
     func_8029E064(1);
     func_8029E0F4(1);
-    player_setPitchAngVel(1000.0f, 12.0f);
+    pitch_setAngVel(1000.0f, 12.0f);
     func_80298D54(1000.0f, 12.0f);
     func_802933E8(3);
 }
@@ -78,7 +78,7 @@ void func_802A5404(void){
     func_8029E064(0);
     func_8029E0F4(0);
     func_80292090(1);
-    player_setIdealPitch(0.0f);
+    pitch_setIdeal(0.0f);
     func_80298CE0(0.0f);
     func_802917C4(2);
     func_803219F4(1);
@@ -413,7 +413,7 @@ void bsblongleg_slide_init(void){
     func_802979AC(player_getMovingYaw(), func_80297A64());
     func_8029E070(1);
     func_8029E064(1);
-    player_setPitchAngVel(1000.0f, 12.0f);
+    pitch_setAngVel(1000.0f, 12.0f);
     func_80298D54(1000.0f, 12.0f);
     func_80297970(0.0f);
     func_80299AAC();
@@ -433,7 +433,7 @@ void bsblongleg_slide_update(void){
         func_80294480(sp30);
         func_8025801C(sp30, &sp2C);
         func_80299594(1, 0.5f);
-        func_80297970(mlMap_f(player_getIdealPitch(), 20.0f, 60.0f, 550.0f, 700.0f));
+        func_80297970(mlMap_f(pitch_getIdeal(), 20.0f, 60.0f, 550.0f, 700.0f));
         func_8029797C(sp2C);
         func_8029C22C();
     }else{//L802A6304

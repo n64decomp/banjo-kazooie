@@ -13,7 +13,7 @@ void func_8029797C(f32);
 f32 func_80297A64(void);
 void func_802979AC(f32, f32);
 void gravity_set(f32);
-void player_setPitchAngVel(f32, f32);
+void pitch_setAngVel(f32, f32);
 void func_802BF2C0(f32);
 
 f32 func_80289F70(void);
@@ -425,7 +425,7 @@ void bsbeemain_die_init(void){
     func_802979AC(sp38, func_80297A64());
     player_setYVelocity(420.0f);
     gravity_set(-1200.0f);
-    player_setPitchAngVel(1000.0f, 12.0f);
+    pitch_setAngVel(1000.0f, 12.0f);
     func_8028D5DC();
     func_80292E48();
     func_802914CC(0xd);
@@ -504,7 +504,7 @@ void func_802A1FC8(void){
 }
 
 void func_802A2014(void){
-    player_setIdealPitch(0.0f);
+    pitch_setIdeal(0.0f);
     func_80298CE0(0.0f);
     func_8029C748();
     func_802A02C0();

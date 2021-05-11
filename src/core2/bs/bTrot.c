@@ -101,7 +101,7 @@ void func_802A8A40(void){
     func_8029B324(1, 1.0f);
     func_8029E070(1);
     func_8029E064(1);
-    player_setPitchAngVel(1000.0f, 12.0f);
+    pitch_setAngVel(1000.0f, 12.0f);
     func_80298D54(1000.0f, 12.0f);
     func_802933E8(3);
     func_8029CF48(4,1,0.24f);
@@ -138,7 +138,7 @@ void func_802A8BB0(void){
     func_8029B0C0();
     func_8029E070(0);
     func_8029E064(0);
-    player_setIdealPitch(0.0f);
+    pitch_setIdeal(0.0f);
     func_80298CE0(0.0f);
     func_802933FC(3);
     if(next_state != BS_LOADZONE)
@@ -507,7 +507,7 @@ void bsbtrot_slide_init(void){
     func_802979AC(player_getMovingYaw(), func_80297A64());
     func_8029E070(1);
     func_8029E064(1);
-    player_setPitchAngVel(1000.0f, 12.0f);
+    pitch_setAngVel(1000.0f, 12.0f);
     func_80298D54(1000.0f, 12.0f);
     func_80297970(0.0f);
     func_80299AAC();
@@ -528,7 +528,7 @@ void bsbtrot_slide_update(void){
         func_80294480(sp30);
         func_8025801C(sp30, &sp2C);
         func_80299628(1);
-        func_80297970(mlMap_f(player_getIdealPitch(), 20.0f, 60.0f, 550.0f, 700.0f));
+        func_80297970(mlMap_f(pitch_getIdeal(), 20.0f, 60.0f, 550.0f, 700.0f));
         func_8029797C(sp2C);
         func_8029C22C();
     }else{

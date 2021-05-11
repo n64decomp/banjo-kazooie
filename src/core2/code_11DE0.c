@@ -61,7 +61,7 @@ void func_80299594(s32 arg0, f32 arg1){
     } else {
         func_8025901C(player_getYaw(), sp2C, sp20, arg1);
     }
-    player_setIdealPitch(sp20[0]);
+    pitch_setIdeal(sp20[0]);
     func_80298CE0(sp20[2]);
 }
 

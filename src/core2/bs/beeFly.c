@@ -13,7 +13,7 @@ void gravity_set(f32);
 void player_setYVelocity(f32);
 
 void func_8028A010(s32, f32);
-void player_setPitchAngVel(f32, f32);
+void pitch_setAngVel(f32, f32);
 void func_802921BC(f32);
 void func_80298CE0(f32);
 void func_80298D54(f32, f32);
@@ -26,7 +26,7 @@ f32 func_80297A64(void);
 void func_802979AC(f32, f32);
 void func_8028FDC8(f32);
 void func_80290B40(f32);
-f32 player_getIdealPitch(void);
+f32 pitch_getIdeal(void);
 void func_80290A6C(void);
 
 
@@ -92,11 +92,11 @@ void func_802A0704(void){
 }
 
 void func_802A0724(void){
-    player_setPitchAngVel(500.0f, 1.2f);
+    pitch_setAngVel(500.0f, 1.2f);
 }
 
 void func_802A0750(void){
-    player_setPitchAngVel(1000.0f, 2.2f);
+    pitch_setAngVel(1000.0f, 2.2f);
 }
 
 void _bsbeefly_end(void){
@@ -104,7 +104,7 @@ void _bsbeefly_end(void){
         return;
     func_802921BC(0.0f);
     func_80298CE0(0.0f);
-    player_setIdealPitch(0.0f);
+    pitch_setIdeal(0.0f);
     func_80291548();
     gravity_reset();
     func_80297B94();
@@ -149,9 +149,9 @@ void _bsBeeFly_updateYaw(void){
 void _bsBeeFly_updatePitch(void){
     f32 stickY = func_8029B2DC();
     if(stickY < 0.0f){
-        player_setIdealPitch(mlMap_f(stickY, -1.0f, 0.0f, 300.0f, 360.0f));
+        pitch_setIdeal(mlMap_f(stickY, -1.0f, 0.0f, 300.0f, 360.0f));
     } else {
-        player_setIdealPitch(mlMap_f(stickY, 0.0f, 1.0f, 0.0f, 80.0f));
+        pitch_setIdeal(mlMap_f(stickY, 0.0f, 1.0f, 0.0f, 80.0f));
     }
     
 }
@@ -194,7 +194,7 @@ void bsbeefly_update(void){
     sp48 = player_getAnimCtrlPtr();
     _bsBeeFly_updateYaw();
     _bsBeeFly_updatePitch();
-    player_getPitch(); //return value never used
+    pitch_get(); //return value never used
     if(button_pressed(BUTTON_A) && (player_getYPosition() < 7500.0)){
         func_8028FDC8(1.0f);
     }
@@ -206,7 +206,7 @@ void bsbeefly_update(void){
     sp24 = &D_803649C4[sp44];
     sp40 = 0.9f;
     sp40 += *sp24;
-    sp3C = player_getPitch();
+    sp3C = pitch_get();
     sp30 = 0.0f;
     if(func_80297AAC() < 0.0f){
         if(sp3C < 300.0f){
@@ -230,10 +230,10 @@ void bsbeefly_update(void){
                 D_8037D2C0 = 1;
             break;
         case 1:
-            sp40 = mlNormalizeAngle(player_getIdealPitch() - 30.0f);
+            sp40 = mlNormalizeAngle(pitch_getIdeal() - 30.0f);
             if(80.0f < sp40 && sp40 <300.0f)
                 sp40 = 300.0f;
-            player_setIdealPitch(sp40);
+            pitch_setIdeal(sp40);
             func_802A0750();
             if(sp44 != 0){
                 player_setYVelocity(sp44*400.0);
