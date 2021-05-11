@@ -21,7 +21,9 @@ void player_setPitch(f32 pitch_deg){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_10DA0/func_80297F84.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_10DA0/player_getPitch.s")
+f32 player_getPitch(void){
+    return D_8037C540;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_10DA0/func_80297FA4.s")
 
