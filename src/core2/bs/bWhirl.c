@@ -184,7 +184,7 @@ void bsbwhirl_jump_init(void){
     func_8029797C(player_getMovingYaw());
     func_802AA400();
     func_802979AC(player_getMovingYaw(), func_80297A64());
-    func_802979A0(D_80364AE0);
+    player_setYVelocity(D_80364AE0);
     gravity_set(D_80364AE4);
     func_80299B58(0.91f, 1.09f);
     D_8037D3B4 = 0;
@@ -199,7 +199,7 @@ void bsbwhirl_jump_update(void){
     func_802AA400();
     func_80297A88(sp1C);
     if(button_released(BUTTON_A) && 0.0f < sp1C[1])
-        func_80297B70();
+        gravity_reset();
     
     switch(D_8037D3B4){
         case 0://L802AAB48
@@ -233,7 +233,7 @@ void bsbwhirl_jump_update(void){
 }
 
 void bsbwhirl_jump_end(void){
-    func_80297B70();
+    gravity_reset();
     __bsbwhirl_end();
 }
 

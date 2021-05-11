@@ -239,7 +239,7 @@ f32  func_80294A40(void);
 f32 func_80294500(void);
 void func_80297970(f32);
 void func_8029797C(f32);
-void func_802979A0(f32);
+void player_setYVelocity(f32);
 void func_802979AC(f32, f32);
 f32  func_80297A64(void);
 f32  func_80297A7C(void);

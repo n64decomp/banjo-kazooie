@@ -87,7 +87,7 @@ void bsbflip_update(void){
                 func_802978DC(6);
                 func_80297970(0.0f);
             }
-            func_802979A0(D_80364A20);
+            player_setYVelocity(D_80364A20);
             gravity_set(D_80364A24);
             func_80297BF8(D_80364A28);
             animctrl_setDuration(aCtrl, 1.9f);
@@ -160,7 +160,7 @@ void bsbflip_update(void){
 
 void bsbflip_end(void){
     func_80295610(2);
-    func_80297B70();
+    gravity_reset();
     func_80297B94();
     func_8029E070(0);
     func_8029B0C0();

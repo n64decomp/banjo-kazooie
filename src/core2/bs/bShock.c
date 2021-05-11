@@ -54,7 +54,7 @@ void bsbshock_charge_update(void){
     func_802B6FA8();
     func_80297A88(sp1C);
     if(button_released(BUTTON_A) && 0.0f < sp1C[1]){
-        func_80297B70();
+        gravity_reset();
     }
     
     switch(D_8037D381){
@@ -99,7 +99,7 @@ void bsbshock_charge_update(void){
         sp2C = BS_BSHOCK_JUMP;
     
     if(func_802878E8(aCtrl, 0.5551f)){
-        func_802979A0(180.0f);
+        player_setYVelocity(180.0f);
         func_80292158(0.0f);
         func_80298528(50.0f);
     }
@@ -137,7 +137,7 @@ void bsbshock_init(void){
     func_8029797C(player_getMovingYaw());
     func_802B6FA8();
     func_802979AC(player_getMovingYaw(), func_80297A64());
-    func_802979A0(D_80364A70);
+    player_setYVelocity(D_80364A70);
     gravity_set(D_80364A74);
     func_8030E484(0xe);
     func_8029E064(1);
@@ -159,7 +159,7 @@ void bsbshock_update(void){
         func_8030E484(0x53);
 
     if(button_released(BUTTON_A) && 0.0f < sp20[1])
-        func_80297B70();
+        gravity_reset();
 
     if(D_8037D381 == 0){
         func_8029C348();
@@ -183,7 +183,7 @@ void bsbshock_update(void){
 
 void bsbshock_end(void){
     if(bs_getNextState() != BS_BPECK)
-        func_80297B70();
+        gravity_reset();
 
     func_8029E064(0);
     func_8029E070(0);

@@ -45,7 +45,7 @@ void bsdie_init(void){
     func_802991A8(1);
     func_8029957C(2);
     func_802978DC(3);
-    func_802979A0(510.0f);
+    player_setYVelocity(510.0f);
     gravity_set(-1400.0f);
     func_80297FB0(1000.0f, 12.0f);
     func_8029E070(1);
@@ -68,7 +68,7 @@ void bsdie_update(void){
             if(_bsdie_802ADE00()){
                 func_802876CC(aCtrl, 0.0f, 1.0f);
                 func_80287674(aCtrl, 1);
-                func_802979A0(400.0f);
+                player_setYVelocity(400.0f);
                 func_80299DB8();
                 func_8030E624(0x7ff19039);
                 func_80250D94(1.0f, 1.0f, 0.4f);
@@ -121,7 +121,7 @@ void bsdie_update(void){
 
 void bsdie_end(void){
     func_8024BD08(0);
-    func_80297B70();
+    gravity_reset();
     func_8029E070(0);
     player_setIdealPitch(0.0f);
     func_80298CE0(0.0f);

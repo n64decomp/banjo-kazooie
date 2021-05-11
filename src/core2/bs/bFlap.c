@@ -26,7 +26,7 @@ void bsbflap_init(void) {
     func_8029797C(player_getMovingYaw());
     func_802B6FA8();
     func_802979AC(player_getMovingYaw(), func_80297A64());
-    func_802979A0(0.0f);
+    player_setYVelocity(0.0f);
     gravity_set(D_80364A14);
     func_8029E070(1);
     func_802933E8(0x12);
@@ -119,7 +119,7 @@ void bsbflap_update(void){
                 func_80287674(sp18, 2);
                 func_8028774C(sp18, 0.0f);
                 func_802875AC(sp18, "bsbflap.c", 0xe1);
-                func_802979A0(D_80364A10);
+                player_setYVelocity(D_80364A10);
                 gravity_set(D_80364A14);
                 func_80297BF8(D_80364A18);
                 D_8037D300 = 1;
@@ -144,7 +144,7 @@ void bsbflap_update(void){
             if(D_8037D301 == 4)
                 D_8037D300 = 3;
             if(button_released(BUTTON_A)){
-                func_80297B70();
+                gravity_reset();
                 func_80297B94();
                 animctrl_setDuration(sp18, 1.0f);
                 D_8037D300 = 4;
@@ -157,7 +157,7 @@ void bsbflap_update(void){
             func_802A28CC();
             func_802A298C();
             if(button_released(BUTTON_A)){
-                func_80297B70();
+                gravity_reset();
                 func_80297B94();
                 animctrl_setDuration(sp18, 1.0f);
                 func_80293240(2);
@@ -192,7 +192,7 @@ void bsbflap_update(void){
 
 void bsbflap_end(void) {
     func_80295610(1);
-    func_80297B70();
+    gravity_reset();
     func_80297B94();
     func_8029E090(0, 0.2f);
     func_8030DA44(D_8037D30C);

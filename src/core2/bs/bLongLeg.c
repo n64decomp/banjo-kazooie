@@ -324,7 +324,7 @@ void bsblongleg_jump_init(void){
     func_8029797C(player_getMovingYaw());
     func_802A524C();
     func_802979AC(player_getMovingYaw(), func_80297A64());
-    func_802979A0(D_80364A50);
+    player_setYVelocity(D_80364A50);
     gravity_set(D_80364A54);
     func_8030E58C(0x48, 0.9f);
     D_8037D360 = 0;
@@ -340,7 +340,7 @@ void bsblongleg_jump_update(void){
     func_802A524C();
     func_80297A88(sp34);
     if(button_released(BUTTON_A) && 0.0f < sp34[1])
-        func_80297B70();
+        gravity_reset();
 
     sp30 = player_getYPosition() - func_80294438();
     switch(D_8037D360){
@@ -396,7 +396,7 @@ void bsblongleg_jump_update(void){
 }
 
 void bsblongleg_jump_end(void){
-    func_80297B70();
+    gravity_reset();
     func_802A5404();
 }
 

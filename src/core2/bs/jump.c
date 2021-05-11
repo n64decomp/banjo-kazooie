@@ -4,7 +4,7 @@
 
 f32 func_80294438(void);
 void func_8029797C(f32);
-void func_802979A0(f32);
+void player_setYVelocity(f32);
 void func_802979AC(f32, f32);
 f32 func_80297A64(void);
 void gravity_set(f32);
@@ -65,9 +65,9 @@ void bsjump_init(void){
         func_802B6FA8();
         func_802979AC(player_getMovingYaw(), func_80297A64());
         if(D_8037D4C1){
-            func_802979A0(D_80364CE4);
+            player_setYVelocity(D_80364CE4);
         } else {
-            func_802979A0(D_80364CD0);
+            player_setYVelocity(D_80364CD0);
         }
         gravity_set(D_80364CD4);
         D_8037D4C0 = 0;
@@ -96,7 +96,7 @@ void bsjump_update(void){
 
     func_80297A88(sp24);
     if((button_released(BUTTON_A) && 0.0f < sp24[1] && !D_8037D4C2) || !func_8028AB48()){
-        func_80297B70();
+        gravity_reset();
     }
 
     switch(D_8037D4C0){
@@ -164,7 +164,7 @@ void bsjump_end(void){
         func_80295610(0);
 
     if(bs_getNextState() != BS_BPECK)
-        func_80297B70();
+        gravity_reset();
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/jump/func_802B1660.s")

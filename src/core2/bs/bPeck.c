@@ -48,7 +48,7 @@ void bsbpeck_init(void){
     func_80299234(1200.0f, 10.0f);
     func_8029E070(1);
     gravity_set(D_80364A60);
-    func_802979A0(D_80364A64);
+    player_setYVelocity(D_80364A64);
     func_80292048(1, -38.0f, 0.0f, 105.0f);
     func_80292048(0, -38.0f, 0.0f, -7.0f);
     func_8028D638(0x23, 0x2A);
@@ -72,7 +72,7 @@ void func_802A664C(void){
     }
     func_802933E8(5);
     func_8030E58C(0x42, sp1C);
-    func_802979A0(D_80364A64);
+    player_setYVelocity(D_80364A64);
     D_8037D375++;
 }
 
@@ -140,5 +140,5 @@ void bsbpeck_end(void){
     func_80292048(0, 0.0f, 0.0f, 0.0f);
     func_8028D638(0, 0);
     func_8029E070(0);
-    func_80297B70();
+    gravity_reset();
 }

@@ -70,6 +70,6 @@ void bsegghead_update(void) {
 
 void bsegghead_end(void){
     func_802952A8(2, 1);
-    func_80297B70();
+    gravity_reset();
     func_8029E070(0);
 }

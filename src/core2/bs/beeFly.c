@@ -10,7 +10,7 @@ void func_8029797C(f32);
 void func_80297970(f32);
 void gravity_set(f32);
 
-void func_802979A0(f32);
+void player_setYVelocity(f32);
 
 void func_8028A010(s32, f32);
 void func_80297FB0(f32, f32);
@@ -72,7 +72,7 @@ void func_802A0630(void){
         case 0:
             if(!func_802878E8(mvmnt, 0.266f))
                 break;
-            func_802979A0(1600.0f);
+            player_setYVelocity(1600.0f);
             func_8030E58C(0xc, 0.7f);
             D_8037D2C0 = 1;
             break;
@@ -106,7 +106,7 @@ void _bsbeefly_end(void){
     func_80298CE0(0.0f);
     player_setIdealPitch(0.0f);
     func_80291548();
-    func_80297B70();
+    gravity_reset();
     func_80297B94();
     func_8028FFBC(0);
     func_8029099C();
@@ -236,7 +236,7 @@ void bsbeefly_update(void){
             player_setIdealPitch(sp40);
             func_802A0750();
             if(sp44 != 0){
-                func_802979A0(sp44*400.0);
+                player_setYVelocity(sp44*400.0);
                 func_802A04F0();
             }
             if((s32)sp24 == (s32)&D_803649C4){

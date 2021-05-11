@@ -64,7 +64,7 @@ void bsow_end(void){
     func_802B35DC();
     func_802B1FD0(0);
     func_80297CA8();
-    func_80297B70();
+    gravity_reset();
     func_8028D5F4();
     func_80292EA4();
 }

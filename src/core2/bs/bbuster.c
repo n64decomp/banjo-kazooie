@@ -101,10 +101,10 @@ void bsbbuster_update(void){
         case 1://8029FE24
             D_8037D2B0 -= func_8033DD9C();
             if(D_8037D2B0 <= 0.0f){
-                func_80297B70();
+                gravity_reset();
                 func_80297BF8(D_803649A8);
                 gravity_set(D_803649A4);
-                func_802979A0(D_803649A0);
+                player_setYVelocity(D_803649A0);
                 D_8037D2B7 = 1;
                 D_8037D2BA = 2;
             }
@@ -160,10 +160,10 @@ void bsbbuster_update(void){
             D_8037D2B0 -= func_8033DD9C();
             if(D_8037D2B0 <= 0.0f){
                 if(D_8037D2BB){
-                    func_802979A0(D_80364990);
+                    player_setYVelocity(D_80364990);
                     gravity_set(D_80364994);
                 }else{
-                    func_802979A0(D_80364998);
+                    player_setYVelocity(D_80364998);
                     gravity_set(D_8036499C);
                 }
             
@@ -196,7 +196,7 @@ void bsbbuster_update(void){
 }//L802A024C
 
 void bsbbuster_end(void){
-    func_80297B70();
+    gravity_reset();
     func_80297B94();
     func_8029E070(0);
     D_8037D2B7 = 0;

@@ -2,6 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
+extern f32 D_80364440; //defaultGravity
 
 extern f32 D_8037C4E8; //gravity
 
@@ -37,7 +38,7 @@ extern f32 D_8037C4E8; //gravity
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_FD60/func_8029797C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_FD60/func_802979A0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_FD60/player_setYVelocity.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_FD60/func_802979AC.s")
 
@@ -65,7 +66,9 @@ extern f32 D_8037C4E8; //gravity
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_FD60/func_80297B64.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_FD60/func_80297B70.s")
+void gravity_reset(void){
+    gravity_set(D_80364440);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_FD60/func_80297B94.s")
 

@@ -6,7 +6,7 @@ void func_8028A010(s32, f32);
 f32 func_8029B41C(void);
 void func_8029E3C0(s32, f32);
 void func_80298CE0(f32);
-void func_802979A0(f32);
+void player_setYVelocity(f32);
 void func_80299628(s32);
 void func_802991FC(void);
 void func_8029797C(f32);
@@ -154,7 +154,7 @@ void func_802A12FC(void){
     func_8029797C(player_getMovingYaw());
     func_802A1020();
     func_802979AC(player_getMovingYaw(), func_80297A64());
-    func_802979A0(D_803649F0);
+    player_setYVelocity(D_803649F0);
     gravity_set(D_803649F4);
     func_802A0FB4();
     D_8037D2D4 = 0;
@@ -170,7 +170,7 @@ void func_802A1438(void){
     func_802A1020();
     func_80297A88(sp1c);
     if(button_released(BUTTON_A) && (0.0f < sp1c[1])){
-        func_80297B70();
+        gravity_reset();
     }
     switch (D_8037D2D4)
     {
@@ -226,7 +226,7 @@ void func_802A1438(void){
 
 void func_802A163C(void){
     func_802A02C0();
-    func_80297B70();
+    gravity_reset();
 }
 
 void func_802A1664(void){
@@ -333,7 +333,7 @@ void func_802A18E8(s32 arg0){
     func_8029797C(sp38);
     func_802979AC(sp38, func_80297A64());
     func_8029C7F4(1, 1, 2, 3);
-    func_802979A0(510.0f);
+    player_setYVelocity(510.0f);
     gravity_set(-1200.0f);
     func_8028D5DC();
     func_80292E48();
@@ -367,7 +367,7 @@ void func_802A1A50(void){
 
 void func_802A1B28(void){
     func_80297CA8();
-    func_80297B70();
+    gravity_reset();
     func_8028D5F4();
     func_80292EA4();
     func_802A02C0();
@@ -423,7 +423,7 @@ void bsbeemain_die_init(void){
     func_80297970(D_8037D2D0);
     func_8029797C(sp38);
     func_802979AC(sp38, func_80297A64());
-    func_802979A0(420.0f);
+    player_setYVelocity(420.0f);
     gravity_set(-1200.0f);
     func_80297FB0(1000.0f, 12.0f);
     func_8028D5DC();
@@ -446,7 +446,7 @@ void func_802A1DD8(void){
             func_8028A37C(0.7453f);
             func_8030E624(0x6651901F);
             func_8030E624(0xe6319039);
-            func_802979A0(400.0f);
+            player_setYVelocity(400.0f);
             D_8037D2D4 = 1;
             break;
         case 1:
@@ -475,7 +475,7 @@ void func_802A1DD8(void){
 
 void func_802A1F2C(void){
     func_8024BD08(0);
-    func_80297B70();
+    gravity_reset();
     func_80291548();
     func_80292EA4();
     func_802A02C0();

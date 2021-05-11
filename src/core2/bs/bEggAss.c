@@ -59,6 +59,6 @@ void bseggass_update(void) {
 
 void bseggass_end(void){
     func_802952A8(5, 1);
-    func_80297B70();
+    gravity_reset();
     func_8029E058(0);
 }
