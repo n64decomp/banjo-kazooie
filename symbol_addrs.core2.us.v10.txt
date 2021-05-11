@@ -26,6 +26,7 @@ ability_setHasUsed = 0x802957B8;
 player_setYVelocity = 0x802979A0;
 gravity_reset = 0x80297B70;
 gravity_set = 0x80297BEC;
+__pitch_update = 0x80297D30;
 pitch_reset = 0x80297ED0;
 pitch_update = 0x80297F10;
 pitch_setIdeal = 0x80297F3C;

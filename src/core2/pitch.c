@@ -13,8 +13,6 @@ static void __pitch_update(f32 limit, f32 angVel){
     f32 tick = func_8033DD9C();
     f32 max;
     
-
-
     max = limit*tick;
     diff = D_8037C544 - D_8037C540;
     if(180.0f < mlAbsF(diff)){
@@ -24,7 +22,6 @@ static void __pitch_update(f32 limit, f32 angVel){
     val = diff * angVel * tick;
     val = (val < 0) ? func_80257ED8(val, -max, -0.1f) : func_80257ED8(val, 0.1f, max);
 
-
     D_8037C540 =( mlAbsF(val) <= mlAbsF(diff)) ?  D_8037C540 + val : D_8037C544;
 
     if(D_8037C540 < 360.0){
@@ -33,8 +30,6 @@ static void __pitch_update(f32 limit, f32 angVel){
     }
     else 
         D_8037C540 -= 360.0;
-    
-    
 }
 
 void pitch_reset(void){
