@@ -20,6 +20,7 @@ enum level_e map_getLevel(enum MAP_E map){
     return func_8030AD00(map)->level_id;
 };
 
+/* returns string containing the map name and index */
 u8 *func_8030AD6C(enum MAP_E map){
     MapInfo *map_info = func_8030AD00(map);
     D_803823A0[0] = 0;

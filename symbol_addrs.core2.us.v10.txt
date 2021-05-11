@@ -27,6 +27,7 @@ player_setYVelocity = 0x802979A0;
 gravity_reset = 0x80297B70;
 gravity_set = 0x80297BEC;
 player_setIdealPitch = 0x80297F3C;
+player_setPitch = 0x80297F60;
 player_getPitch = 0x80297F98;
 climbClear = 0x802981E0;
 climbGetBottom = 0x80298220;
