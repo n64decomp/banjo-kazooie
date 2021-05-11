@@ -3,6 +3,8 @@
 #include "variables.h"
 
 
+extern f32 D_8037C4E8; //gravity
+
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_FD60/func_80296CF0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_FD60/func_80297094.s")
@@ -71,7 +73,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_FD60/func_80297BC4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_FD60/gravity_set.s")
+void gravity_set(f32 arg0){
+    D_8037C4E8 = arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_FD60/func_80297BF8.s")
 
