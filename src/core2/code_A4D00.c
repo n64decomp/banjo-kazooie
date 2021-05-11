@@ -281,9 +281,17 @@ void func_8032F6A4(s32 *pos, ActorMarker * marker, s32 *rot){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032F9DC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032FB80.s")
+ActorMarker * func_8032FB80(f32 *pos, void *arg1, int arg2, void *arg3, int arg4){
+    s32 sp24[3];
+    sp24[0] = pos[0];
+    sp24[1] = pos[1];
+    sp24[2] = pos[2];
+    func_8032F9DC(sp24, arg1, arg2, arg3, arg4);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032FBE4.s")
+ActorMarker * func_8032FBE4(f32 *pos, void *arg1, int arg2, void *arg3){
+    return func_8032FB80(pos, arg1, arg2, arg3, 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032FC04.s")
 

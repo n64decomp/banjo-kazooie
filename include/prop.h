@@ -58,7 +58,8 @@ typedef struct actorMarker_s{
     u32         pad3C_0:1;
     u32         pad40_31:8;
     u32         unk40_23:1;
-    u32         pad40_22:23;
+    u32         unk40_22:1;
+    u32         pad40_21:22;
     u32         unk44;
     u8          pad48[0x14];
     s32         unk5C;

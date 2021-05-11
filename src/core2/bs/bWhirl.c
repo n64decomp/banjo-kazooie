@@ -26,7 +26,7 @@ static void __bsbwhirl_end(void){
     enum bs_e state = bs_getNextState();
     if(!( state == BS_WONDERWING_IDLE
           || state == BS_WONDERWING_WALK
-          || state ==  BS_WONDERWING_JUMP
+          || state == BS_WONDERWING_JUMP
           || state == BS_WONDERWING_EXIT
           || state == BS_WONDERWING_UNKA4
           || state == BS_WONDERWING_UNKA5
