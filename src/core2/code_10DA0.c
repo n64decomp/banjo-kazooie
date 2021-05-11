@@ -27,6 +27,8 @@ f32 player_getPitch(void){
     return D_8037C540;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_10DA0/func_80297FA4.s")
+f32 player_getIdealPitch(void){
+    return D_8037C544;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_10DA0/func_80297FB0.s")

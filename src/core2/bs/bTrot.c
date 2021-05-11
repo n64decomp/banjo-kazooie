@@ -528,7 +528,7 @@ void bsbtrot_slide_update(void){
         func_80294480(sp30);
         func_8025801C(sp30, &sp2C);
         func_80299628(1);
-        func_80297970(mlMap_f(func_80297FA4(), 20.0f, 60.0f, 550.0f, 700.0f));
+        func_80297970(mlMap_f(player_getIdealPitch(), 20.0f, 60.0f, 550.0f, 700.0f));
         func_8029797C(sp2C);
         func_8029C22C();
     }else{

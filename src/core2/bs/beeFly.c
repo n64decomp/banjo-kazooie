@@ -26,7 +26,7 @@ f32 func_80297A64(void);
 void func_802979AC(f32, f32);
 void func_8028FDC8(f32);
 void func_80290B40(f32);
-f32 func_80297FA4(void);
+f32 player_getIdealPitch(void);
 void func_80290A6C(void);
 
 
@@ -230,7 +230,7 @@ void bsbeefly_update(void){
                 D_8037D2C0 = 1;
             break;
         case 1:
-            sp40 = mlNormalizeAngle(func_80297FA4() - 30.0f);
+            sp40 = mlNormalizeAngle(player_getIdealPitch() - 30.0f);
             if(80.0f < sp40 && sp40 <300.0f)
                 sp40 = 300.0f;
             player_setIdealPitch(sp40);
