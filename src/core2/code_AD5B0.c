@@ -345,7 +345,7 @@ s32 func_80334ECC(void) {
         func_803306C8(1);
         func_8032AD7C(1);
         func_80322490();
-        if (func_8030AD48(D_803835D0[1]) == 0xD) {
+        if (map_getLevel(D_803835D0[1]) == 0xD) {
             func_802C79C4();
         }
         func_8032AABC();
