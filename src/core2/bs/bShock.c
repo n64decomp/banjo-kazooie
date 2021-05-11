@@ -138,7 +138,7 @@ void bsbshock_init(void){
     func_802B6FA8();
     func_802979AC(player_getMovingYaw(), func_80297A64());
     func_802979A0(D_80364A70);
-    func_80297BEC(D_80364A74);
+    gravity_set(D_80364A74);
     func_8030E484(0xe);
     func_8029E064(1);
     func_8029E070(1);

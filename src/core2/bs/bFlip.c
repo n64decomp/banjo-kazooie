@@ -88,7 +88,7 @@ void bsbflip_update(void){
                 func_80297970(0.0f);
             }
             func_802979A0(D_80364A20);
-            func_80297BEC(D_80364A24);
+            gravity_set(D_80364A24);
             func_80297BF8(D_80364A28);
             animctrl_setDuration(aCtrl, 1.9f);
             func_8030E4E4(0x33);

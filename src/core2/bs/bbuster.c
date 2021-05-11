@@ -63,7 +63,7 @@ void bsbbuster_init(void){
     func_80287674(aCtrl, 1);
     func_802875AC(aCtrl, "bsbbuster.c", 0x81);
     func_8029C7F4(1,1,3,6);
-    func_80297BEC(0.0f);
+    gravity_set(0.0f);
     func_80297970(0.0f);
     clear_vec3f(sp20);
     func_80297A0C(sp20);
@@ -103,7 +103,7 @@ void bsbbuster_update(void){
             if(D_8037D2B0 <= 0.0f){
                 func_80297B70();
                 func_80297BF8(D_803649A8);
-                func_80297BEC(D_803649A4);
+                gravity_set(D_803649A4);
                 func_802979A0(D_803649A0);
                 D_8037D2B7 = 1;
                 D_8037D2BA = 2;
@@ -138,7 +138,7 @@ void bsbbuster_update(void){
                 func_8029AE74(0);
                 func_8029FB30();
                 func_80297A0C(0);
-                func_80297BEC(0.0f);
+                gravity_set(0.0f);
                 func_80297970(0.0f);
                 D_8037D2B7 = 2;
                 D_8037D2B8 = 1;
@@ -161,10 +161,10 @@ void bsbbuster_update(void){
             if(D_8037D2B0 <= 0.0f){
                 if(D_8037D2BB){
                     func_802979A0(D_80364990);
-                    func_80297BEC(D_80364994);
+                    gravity_set(D_80364994);
                 }else{
                     func_802979A0(D_80364998);
-                    func_80297BEC(D_8036499C);
+                    gravity_set(D_8036499C);
                 }
             
                 func_802876CC(aCtrl, 0.0f, 0.7299f);

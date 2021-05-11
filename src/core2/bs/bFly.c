@@ -21,11 +21,23 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bFly/func_802A36D0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bFly/func_802A3778.s")
+int bsbfly_inSet(enum bs_e arg0){
+    return arg0 == BS_BOMB
+        || arg0 == BS_BOMB_END
+        || arg0 == BS_FLY_KNOCKBACK
+        || arg0 == BS_BFLY_UNK59
+        || arg0 == BS_FLY_OW
+        || arg0 == BS_BFLY_UNK76
+        || arg0 == BS_FLY
+        || arg0 == BS_BFLY_UNK99;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bFly/func_802A37F8.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bFly/func_802A3820.s")
+// void func_802A3820(void){
+//     func_8028A274(0x45, 1.4f);
+// }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bFly/func_802A38DC.s")
 

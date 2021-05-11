@@ -8,7 +8,7 @@ f32  func_8029B2E8(void);
 f32 func_8029B33C(void);
 void func_8029797C(f32);
 void func_80297970(f32);
-void func_80297BEC(f32);
+void gravity_set(f32);
 
 void func_802979A0(f32);
 
@@ -59,7 +59,7 @@ void func_802A0590(void){
     }
     func_8029797C(player_getMovingYaw());
     func_80297970(0.0f);
-    func_80297BEC(-1200.0f);
+    gravity_set(-1200.0f);
     D_8037D2C0 = 0;
 }
 
@@ -119,7 +119,7 @@ void func_802A07F8(void){
     func_802991A8(3);
     func_80298D54(500.0f, 2.0f);
     func_802A0724();
-    func_80297BEC(-300.0f);
+    gravity_set(-300.0f);
     func_80297BF8(-99.9f);
     func_8028FEF0();
     func_8028FFBC(1);

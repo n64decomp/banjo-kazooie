@@ -361,7 +361,7 @@ void bsbtrot_jump_init(void){
     func_802A89D4();
     func_802979AC(player_getMovingYaw(), func_80297A64());
     func_802979A0(D_80364ABC);
-    func_80297BEC(D_80364AC0);
+    gravity_set(D_80364AC0);
     func_8030E484(0x48);
     D_8037D3A4 = 0;
 }
@@ -720,7 +720,7 @@ void bsbtrot_ow_init(void){
     if(func_802987B4() == 2)
         func_802978DC(6);
     func_802979A0(func_802987C4());
-    func_80297BEC(func_802987E4());
+    gravity_set(func_802987E4());
     func_8028D5DC();
     func_80292E48();
 }

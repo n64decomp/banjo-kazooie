@@ -27,7 +27,7 @@ void bsbflap_init(void) {
     func_802B6FA8();
     func_802979AC(player_getMovingYaw(), func_80297A64());
     func_802979A0(0.0f);
-    func_80297BEC(D_80364A14);
+    gravity_set(D_80364A14);
     func_8029E070(1);
     func_802933E8(0x12);
     func_8029E3C0(0, 2.5f);
@@ -120,7 +120,7 @@ void bsbflap_update(void){
                 func_8028774C(sp18, 0.0f);
                 func_802875AC(sp18, "bsbflap.c", 0xe1);
                 func_802979A0(D_80364A10);
-                func_80297BEC(D_80364A14);
+                gravity_set(D_80364A14);
                 func_80297BF8(D_80364A18);
                 D_8037D300 = 1;
             }

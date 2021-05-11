@@ -47,7 +47,7 @@ void bsbpeck_init(void){
     func_8029C7F4(1,3,1,6);
     func_80299234(1200.0f, 10.0f);
     func_8029E070(1);
-    func_80297BEC(D_80364A60);
+    gravity_set(D_80364A60);
     func_802979A0(D_80364A64);
     func_80292048(1, -38.0f, 0.0f, 105.0f);
     func_80292048(0, -38.0f, 0.0f, -7.0f);

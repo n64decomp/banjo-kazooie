@@ -46,7 +46,7 @@ void bsdie_init(void){
     func_8029957C(2);
     func_802978DC(3);
     func_802979A0(510.0f);
-    func_80297BEC(-1400.0f);
+    gravity_set(-1400.0f);
     func_80297FB0(1000.0f, 12.0f);
     func_8029E070(1);
     func_8029151C(0xd);

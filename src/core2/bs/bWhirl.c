@@ -185,7 +185,7 @@ void bsbwhirl_jump_init(void){
     func_802AA400();
     func_802979AC(player_getMovingYaw(), func_80297A64());
     func_802979A0(D_80364AE0);
-    func_80297BEC(D_80364AE4);
+    gravity_set(D_80364AE4);
     func_80299B58(0.91f, 1.09f);
     D_8037D3B4 = 0;
 }

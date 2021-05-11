@@ -12,7 +12,7 @@ void func_802991FC(void);
 void func_8029797C(f32);
 f32 func_80297A64(void);
 void func_802979AC(f32, f32);
-void func_80297BEC(f32);
+void gravity_set(f32);
 void func_80297FB0(f32, f32);
 void func_802BF2C0(f32);
 
@@ -155,7 +155,7 @@ void func_802A12FC(void){
     func_802A1020();
     func_802979AC(player_getMovingYaw(), func_80297A64());
     func_802979A0(D_803649F0);
-    func_80297BEC(D_803649F4);
+    gravity_set(D_803649F4);
     func_802A0FB4();
     D_8037D2D4 = 0;
 }
@@ -334,7 +334,7 @@ void func_802A18E8(s32 arg0){
     func_802979AC(sp38, func_80297A64());
     func_8029C7F4(1, 1, 2, 3);
     func_802979A0(510.0f);
-    func_80297BEC(-1200.0f);
+    gravity_set(-1200.0f);
     func_8028D5DC();
     func_80292E48();
     D_8037D2D4 = 0;
@@ -424,7 +424,7 @@ void bsbeemain_die_init(void){
     func_8029797C(sp38);
     func_802979AC(sp38, func_80297A64());
     func_802979A0(420.0f);
-    func_80297BEC(-1200.0f);
+    gravity_set(-1200.0f);
     func_80297FB0(1000.0f, 12.0f);
     func_8028D5DC();
     func_80292E48();

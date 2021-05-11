@@ -24,10 +24,6 @@ void func_80287784(AnimCtrl *this, s32 arg1);
 f32  func_802877C8(AnimCtrl *this);
 f32  func_802877D0(AnimCtrl *this);
 
-
-
-
-
 static enum playback_type_e{
     playback_loop = 2
 };

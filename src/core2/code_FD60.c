@@ -71,7 +71,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_FD60/func_80297BC4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_FD60/func_80297BEC.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_FD60/gravity_set.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_FD60/func_80297BF8.s")
 

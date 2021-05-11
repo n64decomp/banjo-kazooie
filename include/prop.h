@@ -34,16 +34,19 @@ typedef struct actor_prop_s{
 typedef struct actorMarker_s{
     ActorProp*  propPtr;
     struct cude_s*     cubePtr;
-    u8          pad8[0x4];
+    s32         unk8;
     void       ( *unkC)(struct actorMarker_s *, s32);
-    u8          pad10[0x4];
+    s32         unk10;
     u32         yaw:9;
     u32         pad14_22:1;
     u32         unk14_21:1;
     u32         unk14_20:10; //contains jingo_id for chjinjo
     u32         pad14_19:11;
     u32         unk18;
-    u8          unk1C[0x10];
+    s32         unk1C;
+    s32         unk20;
+    s32         unk24;
+    s32         unk28;
     u32         actrArrayIdx:11; //unk2C
     u32         pitch:9;
     u32         roll:9;
@@ -51,17 +54,28 @@ typedef struct actorMarker_s{
     u32         unk2C_1:1;
     u32         collidable:1;
     void        (*unk30)(struct actorMarker_s *);
-    u8          pad34[0x8];
-    u32         pad3C_31:17;
+    s32         unk34;
+    u16         unk38;
+    u16         unk3A;
+    u32         unk3C_31:16;
+    u32         pad3C_23:1;
     u32         modelId:13;
     u32         unk3C_1:1;
     u32         pad3C_0:1;
-    u32         pad40_31:8;
+    u32         unk40_31:4;
+    u32         pad40_27:1;
+    u32         unk40_26:3;
     u32         unk40_23:1;
     u32         unk40_22:1;
-    u32         pad40_21:22;
+    u32         pad40_21:1;
+    u32         unk40_20:1;
+    u32         pad40_19:20;
     u32         unk44;
-    u8          pad48[0x14];
+    s32         unk48;
+    s32         unk4C;
+    s32         unk50;
+    s32         unk54;
+    s32         unk58;
     s32         unk5C;
 } ActorMarker;
 

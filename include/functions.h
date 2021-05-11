@@ -245,7 +245,7 @@ f32  func_80297A64(void);
 f32  func_80297A7C(void);
 f32  func_80297AB8(void);
 f32  func_80297AF0(void);
-void func_80297BEC(f32);
+void gravity_set(f32);
 void func_80297BF8(f32);
 int  func_80297C04(f32);
 void func_80297CCC(f32);

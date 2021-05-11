@@ -540,8 +540,8 @@ enum bs_e
     BS_LONGLEG_SLIDE = 0x55,
     BS_RECOIL = 0x56,
     BS_BOMB_END = 0x57,
-    //bs_bomb_unk58
-    //bs_bomb_unk59
+    //0x58,
+    BS_BFLY_UNK59 = 0x59,
     BS_LOADZONE = 0x5A,
     BS_CARRY_THROW = 0x5B,
     
@@ -569,7 +569,7 @@ enum bs_e
     //0x73 locked_cutscene
     //0x74 locked jiggypad, xform, bottles
     //0x75 locked bottles
-    //0x76 locked flying
+    BS_BFLY_UNK76 = 0x76,
     //0x77 locked swim
     //0x78 locked dive
     //0x79 locked holding jiggy in tt
@@ -602,7 +602,7 @@ enum bs_e
     BS_SWIM_LOCKED = 0x96,
     BS_DIVE_LOCKED = 0x97,
     // [152] = "Locked", -- Loading zone, Mumbo transformation
-	// [153] = "Locked", -- Flying
+	BS_BFLY_UNK99=  0x99,
 	// [154] = "Locked", -- Talon Trot
 	BS_LONGLEG_UNK9B = 0x9B,
 	// --[156] = "Locked??", -- In WalrusSled Set

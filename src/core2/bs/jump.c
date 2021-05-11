@@ -7,7 +7,7 @@ void func_8029797C(f32);
 void func_802979A0(f32);
 void func_802979AC(f32, f32);
 f32 func_80297A64(void);
-void func_80297BEC(f32);
+void gravity_set(f32);
 void func_80299B58(f32, f32);
 f32 func_8029B2E8(void);
 f32 func_8029B33C(void);
@@ -69,7 +69,7 @@ void bsjump_init(void){
         } else {
             func_802979A0(D_80364CD0);
         }
-        func_80297BEC(D_80364CD4);
+        gravity_set(D_80364CD4);
         D_8037D4C0 = 0;
         if(D_8037D4C2){
             func_8030E6D4(0x33);

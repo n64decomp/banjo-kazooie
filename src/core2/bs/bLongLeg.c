@@ -325,7 +325,7 @@ void bsblongleg_jump_init(void){
     func_802A524C();
     func_802979AC(player_getMovingYaw(), func_80297A64());
     func_802979A0(D_80364A50);
-    func_80297BEC(D_80364A54);
+    gravity_set(D_80364A54);
     func_8030E58C(0x48, 0.9f);
     D_8037D360 = 0;
 }
