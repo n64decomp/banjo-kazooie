@@ -6,6 +6,8 @@ typedef struct demo_file_header{
     u8 pad0[0x4];
 } DemoFileHeader;
 
+void demo_free(void);
+
 extern DemoFileHeader * D_803860D4; //demo_inputs_ptr
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C2C20/func_80349BB0.s")
@@ -39,4 +41,9 @@ void demo_load(enum MAP_E map, s32 demo_id){
     func_80349FB0(D_803860D4 + 1, func_8033B678() - sizeof(DemoFileHeader), 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C2C20/demo_free.s")
+void demo_free(void){
+    if(D_803860D4){
+        assetcache_release(D_803860D4);
+        D_803860D4 = NULL;
+    }
+}
