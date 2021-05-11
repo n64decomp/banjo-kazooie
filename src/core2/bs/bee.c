@@ -4,7 +4,7 @@
 
 void func_80293D48(f32, f32);
 
-void func_80297FB0(f32, f32);
+void player_setPitchAngVel(f32, f32);
 
 void func_80298CE0(f32);
 void func_80298D54(f32, f32);
@@ -27,7 +27,7 @@ void func_802A02C0(void){
 
 void func_802A0340(void){
     if(bsbee_inSet(bs_getPrevState()) == 0){
-        func_80297FB0(1000.0f, 12.0f);
+        player_setPitchAngVel(1000.0f, 12.0f);
         func_80298D54(1000.0f, 12.0f);
         func_80293D48(50.0f, 25.0f);
         func_802933E8(3);

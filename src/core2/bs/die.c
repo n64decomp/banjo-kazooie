@@ -47,7 +47,7 @@ void bsdie_init(void){
     func_802978DC(3);
     player_setYVelocity(510.0f);
     gravity_set(-1400.0f);
-    func_80297FB0(1000.0f, 12.0f);
+    player_setPitchAngVel(1000.0f, 12.0f);
     func_8029E070(1);
     func_8029151C(0xd);
     func_802BF2C0(30.0f);

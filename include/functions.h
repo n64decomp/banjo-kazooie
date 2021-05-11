@@ -250,7 +250,7 @@ void func_80297BF8(f32);
 int  func_80297C04(f32);
 void func_80297CCC(f32);
 f32  player_getIdealPitch(void);
-void func_80297FB0(f32, f32);
+void player_setPitchAngVel(f32, f32);
 void func_80298528(f32);
 f32  func_802987C4(void);
 f32  func_802987D4(void);

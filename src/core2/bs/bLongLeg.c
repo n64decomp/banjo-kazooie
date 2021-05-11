@@ -63,7 +63,7 @@ void func_802A5374(void){
     func_8029E070(1);
     func_8029E064(1);
     func_8029E0F4(1);
-    func_80297FB0(1000.0f, 12.0f);
+    player_setPitchAngVel(1000.0f, 12.0f);
     func_80298D54(1000.0f, 12.0f);
     func_802933E8(3);
 }
@@ -413,7 +413,7 @@ void bsblongleg_slide_init(void){
     func_802979AC(player_getMovingYaw(), func_80297A64());
     func_8029E070(1);
     func_8029E064(1);
-    func_80297FB0(1000.0f, 12.0f);
+    player_setPitchAngVel(1000.0f, 12.0f);
     func_80298D54(1000.0f, 12.0f);
     func_80297970(0.0f);
     func_80299AAC();

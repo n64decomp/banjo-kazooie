@@ -31,6 +31,7 @@ player_setPitch = 0x80297F60;
 player_applyIdealPitch = 0x80297F84;
 player_getPitch = 0x80297F98;
 player_getIdealPitch = 0x80297FA4;
+player_setPitchAngVel = 0x80297FB0;
 climbClear = 0x802981E0;
 climbGetBottom = 0x80298220;
 climbGetBottomY = 0x80298244;

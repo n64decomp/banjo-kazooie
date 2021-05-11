@@ -4,6 +4,8 @@
 
 extern f32 D_8037C540; //pitch degrees
 extern f32 D_8037C544; //idealPitch degrees
+extern f32 D_8037C548; //pitchAngularVelocityLimit
+extern f32 D_8037C54C; //PitchAngularVelocity
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_10DA0/func_80297D30.s")
 
@@ -31,4 +33,7 @@ f32 player_getIdealPitch(void){
     return D_8037C544;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_10DA0/func_80297FB0.s")
+void player_setPitchAngVel(f32 limit, f32 angVel){
+    D_8037C548 = limit;
+    D_8037C54C = angVel;
+}

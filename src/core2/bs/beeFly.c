@@ -13,7 +13,7 @@ void gravity_set(f32);
 void player_setYVelocity(f32);
 
 void func_8028A010(s32, f32);
-void func_80297FB0(f32, f32);
+void player_setPitchAngVel(f32, f32);
 void func_802921BC(f32);
 void func_80298CE0(f32);
 void func_80298D54(f32, f32);
@@ -92,11 +92,11 @@ void func_802A0704(void){
 }
 
 void func_802A0724(void){
-    func_80297FB0(500.0f, 1.2f);
+    player_setPitchAngVel(500.0f, 1.2f);
 }
 
 void func_802A0750(void){
-    func_80297FB0(1000.0f, 2.2f);
+    player_setPitchAngVel(1000.0f, 2.2f);
 }
 
 void _bsbeefly_end(void){

@@ -69,7 +69,7 @@ void bsslide_init(void){
     func_8029C7F4(1,1,3,3);
     func_8029797C(player_getMovingYaw());
     func_802979AC(player_getMovingYaw() ,func_80297A64());
-    func_80297FB0(800.0f, 8.0f);
+    player_setPitchAngVel(800.0f, 8.0f);
     func_80297970(0.0f);
     func_80299AAC();
     D_8037D524 = 0;
