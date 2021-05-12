@@ -69,6 +69,15 @@ typedef struct audio_0_struct{
     ALPlayer *unk70;
 } AL0s; //modified ALSynth?
 
+typedef struct N_ALAuxBus_s {
+    ALFilter            filter;
+    s32                 sourceCount;
+    s32                 maxSources;
+    N_PVoice           **sources;
+    ALFx                *fx;
+    ALFx		*fx_array[AL_MAX_AUX_BUS_SOURCES];
+} N_ALAuxBus;
+
 extern AL0s *n_syn;
 
 /*
