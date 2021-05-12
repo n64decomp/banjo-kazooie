@@ -69,7 +69,6 @@ segments:
   - [0x1E950, c, audio/n_synthesizer]
   - [0x1F330, c, done/audio/event]
   - [0x1F610, c, done/audio/n_synaddplayer]
-  - [0x1F710, c, code_1F710]
   - [0x1F7E0, c, done/audio/n_synallocvoice]
   - [0x1F9E0, c, done/audio/n_synsetvol]
   - [0x1FA80, c, code_1FA80]

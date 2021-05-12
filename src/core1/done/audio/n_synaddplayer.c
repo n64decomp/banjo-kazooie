@@ -4,7 +4,36 @@
 
 extern AL0s *n_syn;
 
-void n_alSynAddPlayer(ALPlayer *client)
+void n_alSynAddPlayer( ALPlayer *client)
+{
+    OSIntMask mask = osSetIntMask(OS_IM_NONE);
+
+    client->samplesLeft = n_syn->synth.curSamples;
+
+    client->next = n_syn->synth.head;
+    n_syn->synth.head   = client;
+
+    osSetIntMask(mask);
+}
+
+void n_alSynAddSndPlayer( ALPlayer *client)
+{
+    OSIntMask mask = osSetIntMask(OS_IM_NONE);
+
+    client->samplesLeft = n_syn->synth.curSamples;
+
+#if 1
+    client->next = n_syn->synth.head;
+    n_syn->synth.head   = client;
+#endif
+
+    if( !(n_syn->synth.n_sndp) )
+      n_syn->synth.n_sndp = client;
+
+    osSetIntMask(mask);
+}
+
+void n_alSynAddSeqPlayer(ALPlayer *client)
 {
     OSIntMask mask = osSetIntMask(OS_IM_NONE);
 

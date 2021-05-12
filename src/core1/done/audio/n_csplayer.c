@@ -85,7 +85,7 @@ void n_alCSPNew(N_ALCSPlayer *seqp, ALSeqpConfig *c)
     seqp->node.next       = NULL;
     seqp->node.handler    = __n_CSPVoiceHandler;
     seqp->node.clientData = seqp;
-    n_alSynAddPlayer(&seqp->node);  
+    n_alSynAddSeqPlayer(&seqp->node);  
 }
 
 /*************************************************************
