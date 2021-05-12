@@ -65,7 +65,7 @@ s32 func_80345FB4(s32 item, s32 diff, s32 arg2){
     if(diff < 0){
         if( (item == ITEM_EGGS && func_803203FC(0x74))
             || (item == ITEM_LIFE && func_803203FC(0x73))
-            || (item == item_red_feather && func_803203FC(0x75))
+            || (item == ITEM_RED_FEATHER && func_803203FC(0x75))
             || (item == ITEM_GOLD_FEATHER && func_803203FC(0x76))
             || (item == item_air && func_803203FC(0x96))) 
             diff = 0;
@@ -89,7 +89,7 @@ s32 func_80345FB4(s32 item, s32 diff, s32 arg2){
             sp38 = (func_8031FF1C(0xbe))? 200 : 100;
             break;
 
-        case item_red_feather:
+        case ITEM_RED_FEATHER:
             sp38 = (func_8031FF1C(0xbf))? 100 : 50;
             break;
 

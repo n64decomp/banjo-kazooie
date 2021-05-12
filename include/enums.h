@@ -626,7 +626,7 @@ enum item_e
 {
     item_note = 0xC,
     ITEM_EGGS = 0xD,
-    item_red_feather = 0xF,
+    ITEM_RED_FEATHER = 0xF,
     ITEM_GOLD_FEATHER = 0x10,
     ITEM_JINJOS = 0x12,
     item_health = 0x14,
@@ -682,6 +682,8 @@ enum asset_e
 
     ANIM_BANJO_BTROT_JUMP = 0x27,
     
+    ANIM_BANJO_FLY = 0x38,
+
     ANIM_BANJO_LONGLEG_JUMP = 0x3D,
 
     ANIM_BANJO_LONGLEG_ENTER_AS_BIRD = 0x40,

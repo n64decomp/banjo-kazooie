@@ -2,9 +2,18 @@
 #include "functions.h"
 #include "variables.h"
 
+void func_8028FDC8(f32);
+void func_802A3404(void);
+
+extern f32 D_80375510;
+extern f32 D_80375514;
+extern f32 D_80375518;
+extern f32 D_8037551C;
+extern f32 D_8037D320;
 extern u8 D_8037D344;
 extern u8 D_8037D345;
 extern u8 D_8037D346;
+extern u8 D_8037D347;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bFly/func_802A3350.s")
 
@@ -81,9 +90,137 @@ void bsbfly_enter_end(void){
     func_8029E070(0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bFly/func_802A39BC.s")
+void bsbfly_init(void){
+    func_8028A010(ANIM_BANJO_FLY, 0.62f);
+    func_8029C7F4(1,1,3,3);
+    if(func_802933C0(9)){
+        func_80297970(0.0f);
+    }else{
+        func_80297970(600.0f);
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bFly/func_802A3AA8.s")
+    func_802979AC(yaw_getIdeal(), func_80297A64());
+    func_8029797C(yaw_getIdeal());
+    func_8029E070(1);
+    gravity_set(-300.0f);
+    func_80297BF8(D_80375510);
+    func_802914CC(4);
+    func_802A3430();
+    D_8037D320 = 1.0f;
+    D_8037D344 = 0;
+    D_8037D347 = 0;
+}
+
+void bsbfly_update(void){
+    enum bs_e sp54 = 0;
+    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    int sp4C;
+    f32 sp40[3];
+    f32 sp3C;
+    f32 sp38;
+    f32 sp34;
+    int sp30;
+    enum bs_e sp2C;
+    
+
+    func_802A354C();
+    func_802A3648();
+    sp3C = pitch_get();
+    sp2C = 0;
+    if(button_pressed(BUTTON_A))
+        D_8037D347 = 1;
+
+    if(D_8037D347 && func_8023DB5C()%3 == 0){
+        D_8037D347 = 0;
+        func_80346C10(&sp2C, 0, BS_IDLE, ITEM_RED_FEATHER, 1);
+    }
+
+    if(sp2C || D_8037D346){
+        if(sp2C){
+            animctrl_setDuration(aCtrl, 0.3f);
+            func_802D8BE4(0);
+        }
+        if(D_8037D346){
+            D_8037D346 = 0;
+            func_8028FDC8(D_80375514);
+        }else{
+            func_8028FDC8(1.0f);
+        }
+    }//L802A3BB4
+
+    sp30 = func_8028FD30();
+    switch(D_8037D344){
+        case 0:
+            if(sp30)
+                D_8037D344 = 1;
+            break;
+        case 1://L802A3BF4
+            sp34 = mlNormalizeAngle(pitch_getIdeal() - 30.0f);
+            if((80.0f < sp34 && sp34 < 300.0f))
+                sp34 = 300.0f;
+            pitch_setIdeal(sp34);
+            func_802A3404();
+            if(sp30){
+                player_setYVelocity(sp30 * 400.0);
+            }
+            if(!sp30){
+                animctrl_setDuration(aCtrl, 0.62f);
+                func_802A33D8();
+                D_8037D344 = 0;
+            }
+            break;
+    }//L802A3CB8
+    if(func_802878E8(aCtrl, 0.1358f)){
+        func_8030EBC8(2, 0.6f, 0.7f, 0x2710, 0x2ee0);
+    }
+    gravity_set(-300.0f);
+    if(func_802933C0(9)){
+        func_80297BF8(0.0f);
+        func_80297A0C(0);
+        sp38 = 0.0f;
+    }
+    else if(sp3C <= 80.0f){
+        func_80297BF8(mlMap_f(sp3C, 60.0f, 80.0f, -99.9f, D_80375518));
+        gravity_set(mlMap_f(sp3C, 60.0f, 80.0f, -300.0f, -700.0f));
+        sp38 = mlMap_f(sp3C, 60.0f, 80.0f, 600.0f, 60.0f);
+    }
+    else{
+        func_80297BF8(mlMap_f(sp3C, 300.0f, 310.0f, -399.99f, D_8037551C));
+        sp38 = mlMap_f(sp3C, 300.0f, 340.0f, 0.0f, 600.0f);
+    }//L802A3E18
+
+    sp4C = func_802946F0();
+    func_8029445C(sp40);
+
+    if(sp4C && -1.0 < sp40[1])
+        sp38 = 0.0f;
+
+    func_8029797C(yaw_get());
+    func_80297970(sp38);
+
+    if(func_80294F3C())
+        sp54 = BS_BBUSTER;
+
+    D_8037D320 = max_f(D_8037D320 - func_8033DD9C(), 0.0f);
+    if( D_8037D320 == 0.0f
+        && button_pressed(BUTTON_B)
+        && func_8028A980()
+    ){
+        sp2C = 0;
+        func_80346C10(&sp2C, 0, 1, ITEM_RED_FEATHER, 1);
+        if(sp2C)
+            sp54 = BS_BOMB;
+    }
+
+    if(player_inWater())
+        sp54 = BS_SWIM_IDLE;
+
+    if(func_802A3350())
+        sp54 = BS_IDLE;
+
+    func_8028FFF0();
+    bs_setState(sp54);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bFly/func_802A3F70.s")
 
