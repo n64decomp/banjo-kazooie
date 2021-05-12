@@ -20,7 +20,7 @@ void func_802B40D0(void){
         D_8037D524 = 0;
 
     if(D_8037D524){
-        sp28 = mlNormalizeAngle(player_getYaw() + 90.0f);
+        sp28 = mlNormalizeAngle(yaw_get() + 90.0f);
         func_802589E4(sp2C, sp28, randf()*10.0f + 20.0f);
         sp2C[1] = 0.0f;
     }
@@ -40,7 +40,7 @@ void func_802B40D0(void){
         case 0://L802B4208
             break;
     }
-    func_802589E4(sp44, player_getYaw(), 40.0f);
+    func_802589E4(sp44, yaw_get(), 40.0f);
     sp44[1] = 50.0f;
     func_80352CF4(sp38, sp44, 10.0f, 150.0f);
 }
@@ -55,7 +55,7 @@ void bsslide_init(void){
     if(player_isSliding()){
         func_80294480(sp30);
         if(func_80258108(sp30, &sp28, &sp2C)){
-            tmp_f0 = mlNormalizeAngle(player_getYaw() - sp28);
+            tmp_f0 = mlNormalizeAngle(yaw_get() - sp28);
             if(tmp_f0 < 90.0f || 270.0f < tmp_f0){
                 D_8037D520 = ANIM_BANJO_SLIDE_BACK;
             }
@@ -67,8 +67,8 @@ void bsslide_init(void){
     animctrl_setDuration(aCtrl, 1.0f);
     func_802875AC(aCtrl, "bsslide.c", 0x7f);
     func_8029C7F4(1,1,3,3);
-    func_8029797C(player_getMovingYaw());
-    func_802979AC(player_getMovingYaw() ,func_80297A64());
+    func_8029797C(yaw_getIdeal());
+    func_802979AC(yaw_getIdeal() ,func_80297A64());
     pitch_setAngVel(800.0f, 8.0f);
     func_80297970(0.0f);
     func_80299AAC();
@@ -89,10 +89,10 @@ void bsslide_update(void){
         func_80294480(sp30);
         if(func_80258108(sp30, &sp2C, &sp28)){
             if(D_8037D520 == 0x5A){
-                player_setMovingYaw(sp2C + 180.0f);
+                yaw_setIdeal(sp2C + 180.0f);
                 pitch_setIdeal(-sp28);
             }else{
-                player_setMovingYaw(sp2C);
+                yaw_setIdeal(sp2C);
                 pitch_setIdeal(sp28);
             }
             func_80297970(mlMap_f(sp28,20.0f, 60.0f, 550.0f, 700.0f));

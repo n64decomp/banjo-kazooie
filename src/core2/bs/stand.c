@@ -182,7 +182,7 @@ void func_802B4A10(AnimCtrl *arg0){
     }
     else{ 
         if(D_8037D544)
-            player_setMovingYaw(player_getYaw());
+            yaw_setIdeal(yaw_get());
         D_8037D544 = 0;
         func_802991A8(1);
     }//L802B4DBC

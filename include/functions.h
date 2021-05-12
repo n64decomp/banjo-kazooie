@@ -85,14 +85,14 @@ f32  func_80297AAC(void);
 
 void climbGetBottom(f32 *arg0);
 
-void player_setMovingYaw(f32);
+void yaw_setIdeal(f32);
 
 void func_80299BFC(f32);
 
 f32 roll_get(void);
 
-f32 player_getYaw(void);
-f32 player_getMovingYaw(void);
+f32 yaw_get(void);
+f32 yaw_getIdeal(void);
 
 /* core2/code_13780.c */
 void bs_clearState(void);
@@ -258,7 +258,7 @@ f32  func_802987D4(void);
 f32  func_802987E4(void);
 void roll_setIdeal(f32);
 void roll_setAngularVelocity(f32, f32);
-void func_802991D8(f32);
+void yaw_set(f32);
 void func_80299234(f32, f32);
 void func_80299254(f32);
 void func_8029932C(f32);

@@ -76,13 +76,13 @@ void bsbflip_update(void){
                 func_802991A8(2);
                 func_8029957C(3);
                 if(func_8029B2E8){ //!!! BUG !!!
-                    player_setMovingYaw(func_8029B33C());
+                    yaw_setIdeal(func_8029B33C());
                 }
                 func_80299254(1.0f);
                 func_802978DC(6);
-                func_8029797C(player_getMovingYaw());
+                func_8029797C(yaw_getIdeal());
                 func_80297970(200.0f);
-                func_802979AC(player_getMovingYaw(), func_80297A64());
+                func_802979AC(yaw_getIdeal(), func_80297A64());
             }else{//L802A3098
                 func_802978DC(6);
                 func_80297970(0.0f);

@@ -355,11 +355,11 @@ void bsbtrot_jump_init(void){
     func_8029957C(3);
     func_802978DC(6);
     if(func_8029B2E8() != 0.0f)
-        player_setMovingYaw(func_8029B33C());
+        yaw_setIdeal(func_8029B33C());
 
-    func_8029797C(player_getMovingYaw());
+    func_8029797C(yaw_getIdeal());
     func_802A89D4();
-    func_802979AC(player_getMovingYaw(), func_80297A64());
+    func_802979AC(yaw_getIdeal(), func_80297A64());
     player_setYVelocity(D_80364ABC);
     gravity_set(D_80364AC0);
     func_8030E484(0x48);
@@ -503,8 +503,8 @@ void bsbtrot_slide_init(void){
     func_802875AC(aCtrl, "bsbtrot.c", 0x382);
     func_802A8A40();
     func_8029C7F4(1,1,3,3);
-    func_8029797C(player_getMovingYaw());
-    func_802979AC(player_getMovingYaw(), func_80297A64());
+    func_8029797C(yaw_getIdeal());
+    func_802979AC(yaw_getIdeal(), func_80297A64());
     func_8029E070(1);
     func_8029E064(1);
     pitch_setAngVel(1000.0f, 12.0f);
@@ -571,9 +571,9 @@ void bsbtrot_fall_init(void){
     func_802875AC(aCtrl, "bsbtrot.c", 0x400);
     func_802A8A40();
     func_8029C7F4(1,1,3,6);
-    func_8029797C(player_getMovingYaw());
+    func_8029797C(yaw_getIdeal());
     func_802A89D4();
-    func_802979AC(player_getMovingYaw(), func_80297A64());
+    func_802979AC(yaw_getIdeal(), func_80297A64());
     D_8037D3A4 = 0;
 }
 
@@ -711,7 +711,7 @@ void bsbtrot_ow_init(void){
     _player_getPosition(sp30);
     func_80294980(sp24);
     func_80257F18(sp24, sp30, &sp3C);
-    player_setMovingYaw(mlNormalizeAngle(sp3C + 180.0f));\
+    yaw_setIdeal(mlNormalizeAngle(sp3C + 180.0f));\
     func_802991FC();
     func_80297970(func_802987D4());
     func_8029797C(sp3C);

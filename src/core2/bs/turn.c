@@ -62,7 +62,7 @@ void bsturn_update(void){
 }
 
 void bsturn_end(void){
-    func_802991D8(mlNormalizeAngle(player_getYaw() - 180.0f));
+    yaw_set(mlNormalizeAngle(yaw_get() - 180.0f));
     pitch_setIdeal(0.0f);
     roll_setIdeal(0.0f);
 }

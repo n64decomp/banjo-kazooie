@@ -21,11 +21,11 @@ void bsbshock_charge_init(void){
     func_8029C7F4(1,1,3,6);
 
     if(func_8029B2E8() != 0.0f)
-        player_setMovingYaw(func_8029B33C());
+        yaw_setIdeal(func_8029B33C());
     
-    func_8029797C(player_getMovingYaw());
+    func_8029797C(yaw_getIdeal());
     func_802B6FA8();
-    func_802979AC(player_getMovingYaw(), func_80297A64());
+    func_802979AC(yaw_getIdeal(), func_80297A64());
     func_8029E064(1);
     func_8029E070(1);
     func_80299BD4();
@@ -132,11 +132,11 @@ void bsbshock_init(void){
     func_8029C7F4(1,1,3,6);
 
     if(func_8029B2E8() != 0.0f)
-        player_setMovingYaw(func_8029B33C());
+        yaw_setIdeal(func_8029B33C());
     
-    func_8029797C(player_getMovingYaw());
+    func_8029797C(yaw_getIdeal());
     func_802B6FA8();
-    func_802979AC(player_getMovingYaw(), func_80297A64());
+    func_802979AC(yaw_getIdeal(), func_80297A64());
     player_setYVelocity(D_80364A70);
     gravity_set(D_80364A74);
     func_8030E484(0xe);

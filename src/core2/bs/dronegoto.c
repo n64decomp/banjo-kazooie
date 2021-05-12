@@ -65,7 +65,7 @@ void func_802AECE4(void){
 
     func_80297A88(sp20);
     if(func_8025801C(sp20, &sp2C)){
-        player_setMovingYaw(sp2C);
+        yaw_setIdeal(sp2C);
     }
 
     if( 250.0f <= gu_sqrtf(sp20[0]*sp20[0] + sp20[2]*sp20[2])

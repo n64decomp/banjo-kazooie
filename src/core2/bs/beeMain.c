@@ -148,11 +148,11 @@ void func_802A12FC(void){
     func_802875AC(s0, "bsbeemain.c", 0x15b);
     func_8029C7F4(1,1,3,6);
     if(func_8029B2E8() != 0.0f){
-        player_setMovingYaw(func_8029B33C());
+        yaw_setIdeal(func_8029B33C());
     }
-    func_8029797C(player_getMovingYaw());
+    func_8029797C(yaw_getIdeal());
     func_802A1020();
-    func_802979AC(player_getMovingYaw(), func_80297A64());
+    func_802979AC(yaw_getIdeal(), func_80297A64());
     player_setYVelocity(D_803649F0);
     gravity_set(D_803649F4);
     func_802A0FB4();
@@ -326,7 +326,7 @@ void func_802A18E8(s32 arg0){
     _player_getPosition(sp2C);
     func_80294980(sp20);
     func_80257F18(sp20, sp2C, &sp38);
-    player_setMovingYaw(mlNormalizeAngle(sp38 + 180.0f));
+    yaw_setIdeal(mlNormalizeAngle(sp38 + 180.0f));
     func_802991FC();
     func_80297970(200.0f);
     func_8029797C(sp38);
@@ -416,7 +416,7 @@ void bsbeemain_die_init(void){
     _player_getPosition(sp2C);
     func_80294980(sp20);
     func_80257F18(sp20, sp2C, &sp38);
-    player_setMovingYaw(mlNormalizeAngle(sp38 + 180.0f));
+    yaw_setIdeal(mlNormalizeAngle(sp38 + 180.0f));
     func_802991FC();
     D_8037D2D0 = 250.f;
     func_80297970(D_8037D2D0);
@@ -520,7 +520,7 @@ void func_802A2054(void){
 void func_802A2098(void){
     func_802933FC(0x1A);
     func_8028A010(0x1DE, 3.0f);
-    player_setMovingYaw(func_8029B41C());
+    yaw_setIdeal(func_8029B41C());
     func_8029C7F4(1,1,3,2);
     func_80297970(0.0f);
     func_8024BD08(0);

@@ -21,11 +21,11 @@ void bsbflap_init(void) {
     func_8028A274(0x18, 0.3f);
     func_8029C7F4(1, 1, 1, 2);
     if (func_8029B2E8() != 0.0f) {
-        player_setMovingYaw(func_8029B33C());
+        yaw_setIdeal(func_8029B33C());
     }
-    func_8029797C(player_getMovingYaw());
+    func_8029797C(yaw_getIdeal());
     func_802B6FA8();
-    func_802979AC(player_getMovingYaw(), func_80297A64());
+    func_802979AC(yaw_getIdeal(), func_80297A64());
     player_setYVelocity(0.0f);
     gravity_set(D_80364A14);
     func_8029E070(1);

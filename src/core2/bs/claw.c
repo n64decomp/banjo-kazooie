@@ -17,7 +17,7 @@ int bsclaw_hitboxActive(void){
 void bsclaw_init(void){
     func_8028A180(5, 1.3f);
     func_8029C7F4(1,1,3,3);
-    func_8029797C(player_getMovingYaw());
+    func_8029797C(yaw_getIdeal());
     func_80297970(160.0f);
     func_802915CC(80.0f);
     _bsclawHitboxActive = 0;

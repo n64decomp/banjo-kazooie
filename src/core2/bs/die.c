@@ -36,7 +36,7 @@ void bsdie_init(void){
     func_80294980(sp20);
     func_80257F18(sp20, sp2C, &sp38);
     D_8037D410 = 250.0f;
-    player_setMovingYaw(mlNormalizeAngle(sp38 + 180.0f));
+    yaw_setIdeal(mlNormalizeAngle(sp38 + 180.0f));
     func_802991FC();
     func_80297970(D_8037D410);
     func_8029797C(sp38);

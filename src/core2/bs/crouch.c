@@ -98,8 +98,8 @@ void bscrouch_update(void){
         func_802929F8();
     if(160.0f < sp30)
         func_80299AAC();
-    sp20 = player_getMovingYaw();
-    temp_f2 = mlAbsF(mlDiffDegF(sp20, player_getYaw()));
+    sp20 = yaw_getIdeal();
+    temp_f2 = mlAbsF(mlDiffDegF(sp20, yaw_get()));
     
     switch(D_8037D404){
         case 0://802ADA64
@@ -154,7 +154,7 @@ void bscrouch_update(void){
                 D_8037D404 = 4;
             }else{
                 if(func_802878C4(aCtrl)){
-                    player_setMovingYaw(player_getYaw());
+                    yaw_setIdeal(yaw_get());
                     func_802AD728();
                 }
             }

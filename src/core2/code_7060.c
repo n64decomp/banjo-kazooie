@@ -84,7 +84,7 @@ void func_8028E7EC(f32 *arg0){
 
 void player_getRotation(f32 *dst){
     dst[0] = pitch_get();
-    dst[1] = player_getYaw();
+    dst[1] = yaw_get();
     dst[2] = roll_get();
 }
 

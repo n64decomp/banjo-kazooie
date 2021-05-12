@@ -22,8 +22,8 @@ void bstwirl_init(void){
     func_80289F10(1);
     func_802991A8(1);
     func_8029957C(3);
-    func_8029797C(player_getMovingYaw());
-    func_802979AC(player_getMovingYaw(), func_80297A64());
+    func_8029797C(yaw_getIdeal());
+    func_802979AC(yaw_getIdeal(), func_80297A64());
     func_802978DC(3);
     D_8037D5A0 = func_80297A64();
     func_80297970(600.0f);

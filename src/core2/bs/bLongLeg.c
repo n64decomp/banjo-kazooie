@@ -320,10 +320,10 @@ void bsblongleg_jump_init(void){
     func_802875AC(aCtrl, "bsblongleg.c", 0x27F);
     func_8029C7F4(1,1,3,6);
     if(func_8029B2E8() != 0.0f)
-        player_setMovingYaw(func_8029B33C());
-    func_8029797C(player_getMovingYaw());
+        yaw_setIdeal(func_8029B33C());
+    func_8029797C(yaw_getIdeal());
     func_802A524C();
-    func_802979AC(player_getMovingYaw(), func_80297A64());
+    func_802979AC(yaw_getIdeal(), func_80297A64());
     player_setYVelocity(D_80364A50);
     gravity_set(D_80364A54);
     func_8030E58C(0x48, 0.9f);
@@ -409,8 +409,8 @@ void bsblongleg_slide_init(void){
     func_8028774C(aCtrl, 0.0865f);
     func_802875AC(aCtrl, "bsblongleg.c", 0x339);
     func_8029C7F4(1,1,3,3);
-    func_8029797C(player_getMovingYaw());
-    func_802979AC(player_getMovingYaw(), func_80297A64());
+    func_8029797C(yaw_getIdeal());
+    func_802979AC(yaw_getIdeal(), func_80297A64());
     func_8029E070(1);
     func_8029E064(1);
     pitch_setAngVel(1000.0f, 12.0f);

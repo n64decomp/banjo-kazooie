@@ -54,9 +54,9 @@ void func_802A0590(void){
     func_8028A274(0x1df, 1.5f);
     func_8029C7F4(1,1,3,6);
     if(func_8029B2E8() != 0.0f){
-        player_setMovingYaw(func_8029B33C());
+        yaw_setIdeal(func_8029B33C());
     }
-    func_8029797C(player_getMovingYaw());
+    func_8029797C(yaw_getIdeal());
     func_80297970(0.0f);
     gravity_set(-1200.0f);
     D_8037D2C0 = 0;
@@ -142,7 +142,7 @@ void _bsBeeFly_updateYaw(void){
         sp30 = 65.0f;
     }
     roll_setIdeal(mlMap_f(stickX, -1.0f, 1.0f, -sp30, sp30));
-    player_setMovingYaw(mlNormalizeAngle(player_getMovingYaw() + mlMap_f(stickX, -1.0f, 1.0f, sp34, -sp34)));
+    yaw_setIdeal(mlNormalizeAngle(yaw_getIdeal() + mlMap_f(stickX, -1.0f, 1.0f, sp34, -sp34)));
 }
 
 void _bsBeeFly_updatePitch(void){
@@ -165,8 +165,8 @@ void bsbeefly_enter(void){
         func_80297970(0.0f);
     else
         func_80297970(600.0f);
-    func_802979AC(player_getMovingYaw(), func_80297A64());
-    func_8029797C(player_getMovingYaw());
+    func_802979AC(yaw_getIdeal(), func_80297A64());
+    func_8029797C(yaw_getIdeal());
     func_802914CC(4);
     func_802A07F8();
     if(mvmnt != 0x8b){
@@ -257,7 +257,7 @@ void bsbeefly_update(void){
             sp38 = mlMap_f(sp3C, 300.0f, 340.0f, 0.0f, 600.0f);
         }
     }
-    func_8029797C(player_getYaw());
+    func_8029797C(yaw_get());
     if(button_held(9)){
         sp38 += (f64)sp38;
     }

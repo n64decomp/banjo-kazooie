@@ -74,9 +74,9 @@ void bsbarge_init(void){
     func_802875AC(plyrMvmnt, "bsbbarge.c", 0x98);
     D_8037D2A4 = 0;
     func_8029C7F4(1,1,3,3);
-    func_8029797C(player_getMovingYaw());
+    func_8029797C(yaw_getIdeal());
     func_80297970(func_80297A64()*0.3);
-    func_802979AC(player_getMovingYaw(), func_80297A64());
+    func_802979AC(yaw_getIdeal(), func_80297A64());
     func_8029E070(1);
     D_8037D2A6 = 0;
     D_8037D2A5 = 0;
@@ -128,7 +128,7 @@ void bsbarge_update(void){
             animctrl_setDuration(plyrMvmnt, 1.0f);
             func_8028A37C(0.565f);
             func_80297970(D_8037D2A0);
-            func_802979AC(player_getMovingYaw(), func_80297A64());
+            func_802979AC(yaw_getIdeal(), func_80297A64());
             func_8030E760(2, 0.558f, 22000);
             D_8037D2A5 = 2;
             func_8029F4F0();

@@ -143,7 +143,7 @@ void bswalk_creep_update(void){
     s32 s0 = 0;
     func_802B6E44();
     if(func_8029B2E8() == 0.0f){
-        player_setMovingYaw(player_getYaw());
+        yaw_setIdeal(yaw_get());
     }
 
     func_8029AD28(0.47f, 4);
@@ -216,7 +216,7 @@ void bswalk_slow_upate(void){
     s32 s0 = 0;
     func_802B6E44();
     if(func_8029B2E8() == 0.0f){
-        player_setMovingYaw(player_getYaw());
+        yaw_setIdeal(yaw_get());
     }
 
     func_8029AD28(0.4f, 4);

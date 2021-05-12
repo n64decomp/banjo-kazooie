@@ -179,11 +179,11 @@ void bsbwhirl_jump_init(void){
     func_802875AC(aCtrl, "bsbwhirl.c", 0x181);
     func_8029C7F4(1,1,3,6);
     if(func_8029B2E8() != 0.0f)
-        player_setMovingYaw(func_8029B33C());
+        yaw_setIdeal(func_8029B33C());
     
-    func_8029797C(player_getMovingYaw());
+    func_8029797C(yaw_getIdeal());
     func_802AA400();
-    func_802979AC(player_getMovingYaw(), func_80297A64());
+    func_802979AC(yaw_getIdeal(), func_80297A64());
     player_setYVelocity(D_80364AE0);
     gravity_set(D_80364AE4);
     func_80299B58(0.91f, 1.09f);
