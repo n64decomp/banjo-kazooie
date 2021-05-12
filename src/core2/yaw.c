@@ -51,7 +51,7 @@ static void func_80298F14(f32 limit, f32 step_percent){
         }
 
         val = diff * step_percent * tick;
-        val = (val < 0) ? func_80257ED8(val, -max, -0.1f) : func_80257ED8(val, 0.1f, max);
+        val = (val < 0) ? mlClamp_f(val, -max, -0.1f) : mlClamp_f(val, 0.1f, max);
 
         D_8037C690 =( mlAbsF(val) <= mlAbsF(diff)) ?  D_8037C690 + val : D_8037C694;
 

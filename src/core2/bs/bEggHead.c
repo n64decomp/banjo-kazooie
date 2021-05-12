@@ -2,7 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-void func_8028A274(s32, f32);
 void func_80299234(f32, f32);
 void func_802875AC(AnimCtrl *, char*, s32);
 

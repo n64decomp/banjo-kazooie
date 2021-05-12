@@ -3,7 +3,6 @@
 #include "variables.h"
 #include "bsint.h"
 
-void func_8028A274(s32, f32);
 void func_80292900(f32, f32);
 void func_80299CF4(s32, f32, s32);
 void func_80250D94(f32, f32, f32);

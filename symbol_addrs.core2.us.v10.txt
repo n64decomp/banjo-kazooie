@@ -55,6 +55,7 @@ roll_applyIdeal = 0x80298D28;
 roll_get = 0x80298D3C;
 roll_getIdeal = 0x80298D48;
 roll_setAngularVelocity = 0x80298D54;
+yaw_update = 0x80299118;
 yaw_setIdeal = 0x802991B4;
 yaw_set = 0x802991D8;
 yaw_get = 0x8029921C;

@@ -204,7 +204,7 @@ OSMesgQueue *func_8024F344(void);
 void func_80250D94(f32, f32, f32);
 f32  func_80257C48(f32, f32, f32);
 f32  mlAbsF(f32);
-f32 func_80257ED8(f32, f32, f32);
+f32 mlClamp_f(f32, f32, f32);
 void func_802589E4(f32 *, f32, f32);
 f32  mlDiffDegF(f32, f32);
 void func_8025A6EC(enum comusic_e, s32);
@@ -219,7 +219,7 @@ void func_8028774C(AnimCtrl *, f32);
 f32  func_802877D8(AnimCtrl *);
 void func_8028A010(s32, f32);
 void func_8028A1F4(s32, f32, f32);
-void func_8028A274(s32, f32);
+void func_8028A274(enum asset_e, f32);
 int  func_8028AED4(f32*, f32);
 
 f32  func_80291670(s32);

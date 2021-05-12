@@ -119,7 +119,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_18350/func_80257EA8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_18350/func_80257ED8.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_18350/mlClamp_f.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_18350/func_80257F18.s")
 

@@ -2,6 +2,9 @@
 #include "functions.h"
 #include "variables.h"
 
+extern u8 D_8037D344;
+extern u8 D_8037D345;
+extern u8 D_8037D346;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bFly/func_802A3350.s")
 
@@ -34,14 +37,49 @@ int bsbfly_inSet(enum bs_e arg0){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bFly/func_802A37F8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bFly/func_802A3820.s")
-// void func_802A3820(void){
-//     func_8028A274(0x45, 1.4f);
-// }
+void bsbfly_enter_init(void){
+    func_8028A274(ANIM_BANJO_FLY_ENTER, 1.4f);
+    func_8029C7F4(1,1,3,6);
+    if(func_8029B2E8() != 0.0f)
+        yaw_setIdeal(func_8029B33C());
+    
+    func_8029797C(yaw_getIdeal());
+    func_80297A0C(0);
+    func_80297970(0.0f);
+    gravity_set(-1200.0f);
+    func_8029E070(1);
+    func_80299BD4();
+    D_8037D344 = 0;
+    D_8037D346 = 0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bFly/func_802A38DC.s")
+void bsbfly_enter_update(void){
+    enum bs_e sp1C = 0;
+    AnimCtrl * aCtrl = player_getAnimCtrlPtr();
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bFly/func_802A3994.s")
+    switch(D_8037D344){
+    case 0:
+        if(func_802878E8(aCtrl, 0.2416f)){
+            animctrl_setDuration(aCtrl, 2.4f);
+            player_setYVelocity(1600.0f);
+            func_8030E58C(0xC, 0.7f);
+            D_8037D344 = 1;
+        }
+        break;
+    default:
+        func_802A36D0();
+        if(func_80297AAC() < 0.0f)
+            sp1C = BS_FLY;
+        break;
+    }
+
+    bs_setState(sp1C);
+}
+
+void bsbfly_enter_end(void){
+    func_80295610(8);
+    func_8029E070(0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bFly/func_802A39BC.s")
 
