@@ -3,7 +3,6 @@
 #include "variables.h"
 
 void func_8025901C(f32, f32 *, f32 *, f32);
-void func_80298CE0(f32);
 
 extern f32 D_8037C690;
 extern f32 D_8037C694;
@@ -62,7 +61,7 @@ void func_80299594(s32 arg0, f32 arg1){
         func_8025901C(player_getYaw(), sp2C, sp20, arg1);
     }
     pitch_setIdeal(sp20[0]);
-    func_80298CE0(sp20[2]);
+    roll_setIdeal(sp20[2]);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_11DE0/func_80299628.s")

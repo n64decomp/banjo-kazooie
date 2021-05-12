@@ -20,22 +20,3 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_11870/func_80298A64.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_11870/func_80298A84.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_11870/func_80298AD0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_11870/func_80298C70.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_11870/func_80298CB4.s")
-
-//player_setIdealRoll
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_11870/func_80298CE0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_11870/func_80298D04.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_11870/func_80298D28.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_11870/player_getRoll.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_11870/func_80298D48.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_11870/func_80298D54.s")

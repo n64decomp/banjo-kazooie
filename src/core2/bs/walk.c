@@ -7,8 +7,7 @@ void func_80289EA8(f32, f32);
 f32 func_80297AB8(void);
 void func_802927E0(f32, f32);
 void pitch_setAngVel(f32, f32);
-void func_80298D54(f32, f32);
-void func_80298CE0(f32);
+void roll_setAngularVelocity(f32, f32);
 void func_8028A010(s32, f32);
 f32 func_8029B2E8(void);
 int func_80297C04(f32);
@@ -374,7 +373,7 @@ void bswalk_fast_init(void){
     func_80289EA8(0.3f, 1.5f);
     func_80289EC8(D_80364D7C, D_80364D80, D_80364DA8, D_80364DAC);
     pitch_setAngVel(1000.0f, 12.0f);
-    func_80298D54(1000.0f, 12.0f);
+    roll_setAngularVelocity(1000.0f, 12.0f);
     func_802B6EB0(0.3f);
     
 }
@@ -444,7 +443,7 @@ void bswalk_fast_update(void){
 
 void bswalk_fast_end(void){
     pitch_setIdeal(0.0f);
-    func_80298CE0(0.0f);
+    roll_setIdeal(0.0f);
 }
 
 void bswalk_mud_init(void){

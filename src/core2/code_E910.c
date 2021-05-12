@@ -202,7 +202,7 @@ void func_80295914(void){
     pitch_reset();
     climbClear();
     func_8029887C();
-    func_80298C70();
+    roll_reset();
     func_802992F0();
     func_80294DD8();
     func_8029CF6C();
@@ -288,7 +288,7 @@ void func_80295C14(void){
     func_802932EC();
     func_80293F0C();
     pitch_update();
-    func_80298CB4();
+    roll_update();
     func_802993C8();
     func_802906D8();
     func_80289E00();

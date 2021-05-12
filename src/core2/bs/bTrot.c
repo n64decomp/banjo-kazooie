@@ -102,7 +102,7 @@ void func_802A8A40(void){
     func_8029E070(1);
     func_8029E064(1);
     pitch_setAngVel(1000.0f, 12.0f);
-    func_80298D54(1000.0f, 12.0f);
+    roll_setAngularVelocity(1000.0f, 12.0f);
     func_802933E8(3);
     func_8029CF48(4,1,0.24f);
     func_80292090(2);
@@ -139,7 +139,7 @@ void func_802A8BB0(void){
     func_8029E070(0);
     func_8029E064(0);
     pitch_setIdeal(0.0f);
-    func_80298CE0(0.0f);
+    roll_setIdeal(0.0f);
     func_802933FC(3);
     if(next_state != BS_LOADZONE)
         func_802917E4(3, 0.0f);
@@ -508,7 +508,7 @@ void bsbtrot_slide_init(void){
     func_8029E070(1);
     func_8029E064(1);
     pitch_setAngVel(1000.0f, 12.0f);
-    func_80298D54(1000.0f, 12.0f);
+    roll_setAngularVelocity(1000.0f, 12.0f);
     func_80297970(0.0f);
     func_80299AAC();
     D_8037D3A0 = 1.0f;

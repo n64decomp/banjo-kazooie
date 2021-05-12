@@ -64,7 +64,7 @@ void func_802A5374(void){
     func_8029E064(1);
     func_8029E0F4(1);
     pitch_setAngVel(1000.0f, 12.0f);
-    func_80298D54(1000.0f, 12.0f);
+    roll_setAngularVelocity(1000.0f, 12.0f);
     func_802933E8(3);
 }
 
@@ -79,7 +79,7 @@ void func_802A5404(void){
     func_8029E0F4(0);
     func_80292090(1);
     pitch_setIdeal(0.0f);
-    func_80298CE0(0.0f);
+    roll_setIdeal(0.0f);
     func_802917C4(2);
     func_803219F4(1);
     func_802933FC(3);
@@ -414,7 +414,7 @@ void bsblongleg_slide_init(void){
     func_8029E070(1);
     func_8029E064(1);
     pitch_setAngVel(1000.0f, 12.0f);
-    func_80298D54(1000.0f, 12.0f);
+    roll_setAngularVelocity(1000.0f, 12.0f);
     func_80297970(0.0f);
     func_80299AAC();
     D_8037D358 = 1.0f;

@@ -15,8 +15,7 @@ void player_setYVelocity(f32);
 void func_8028A010(s32, f32);
 void pitch_setAngVel(f32, f32);
 void func_802921BC(f32);
-void func_80298CE0(f32);
-void func_80298D54(f32, f32);
+void roll_setAngularVelocity(f32, f32);
 void func_80297BF8(f32);
 void func_802BFE50(f32, f32, f32);
 void func_80299234(f32, f32);
@@ -103,7 +102,7 @@ void _bsbeefly_end(void){
     if(bsBeeFly_inSet(bs_getNextState()))
         return;
     func_802921BC(0.0f);
-    func_80298CE0(0.0f);
+    roll_setIdeal(0.0f);
     pitch_setIdeal(0.0f);
     func_80291548();
     gravity_reset();
@@ -117,7 +116,7 @@ void func_802A07F8(void){
         return;
     func_802921BC(65.0f);
     func_802991A8(3);
-    func_80298D54(500.0f, 2.0f);
+    roll_setAngularVelocity(500.0f, 2.0f);
     func_802A0724();
     gravity_set(-300.0f);
     func_80297BF8(-99.9f);
@@ -142,7 +141,7 @@ void _bsBeeFly_updateYaw(void){
         sp34 = 3.0f;
         sp30 = 65.0f;
     }
-    func_80298CE0(mlMap_f(stickX, -1.0f, 1.0f, -sp30, sp30));
+    roll_setIdeal(mlMap_f(stickX, -1.0f, 1.0f, -sp30, sp30));
     player_setMovingYaw(mlNormalizeAngle(player_getMovingYaw() + mlMap_f(stickX, -1.0f, 1.0f, sp34, -sp34)));
 }
 

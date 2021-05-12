@@ -89,7 +89,7 @@ void player_setMovingYaw(f32);
 
 void func_80299BFC(f32);
 
-f32 player_getRoll(void);
+f32 roll_get(void);
 
 f32 player_getYaw(void);
 f32 player_getMovingYaw(void);
@@ -256,8 +256,8 @@ void func_80298528(f32);
 f32  func_802987C4(void);
 f32  func_802987D4(void);
 f32  func_802987E4(void);
-void func_80298CE0(f32);
-void func_80298D54(f32, f32);
+void roll_setIdeal(f32);
+void roll_setAngularVelocity(f32, f32);
 void func_802991D8(f32);
 void func_80299234(f32, f32);
 void func_80299254(f32);

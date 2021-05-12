@@ -124,7 +124,7 @@ void bsdie_end(void){
     gravity_reset();
     func_8029E070(0);
     pitch_setIdeal(0.0f);
-    func_80298CE0(0.0f);
+    roll_setIdeal(0.0f);
     func_80291548();
     func_80292EA4();
 }

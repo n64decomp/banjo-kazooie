@@ -5,7 +5,6 @@
 void func_8028A010(s32, f32);
 f32 func_8029B41C(void);
 void func_8029E3C0(s32, f32);
-void func_80298CE0(f32);
 void player_setYVelocity(f32);
 void func_80299628(s32);
 void func_802991FC(void);
@@ -505,7 +504,7 @@ void func_802A1FC8(void){
 
 void func_802A2014(void){
     pitch_setIdeal(0.0f);
-    func_80298CE0(0.0f);
+    roll_setIdeal(0.0f);
     func_8029C748();
     func_802A02C0();
 }
