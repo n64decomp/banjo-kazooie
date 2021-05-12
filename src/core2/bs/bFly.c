@@ -145,7 +145,15 @@ void bsbfly_enter_end(void){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bFly/func_802A503C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bFly/func_802A505C.s")
+void func_802A505C(void){
+    if(bs_getInterruptType() == 9){
+        func_8029A86C(2);
+        func_802933E8(7);
+        func_8029CCC4();
+    }else{
+        func_80296608();
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bFly/func_802A50B0.s")
 
