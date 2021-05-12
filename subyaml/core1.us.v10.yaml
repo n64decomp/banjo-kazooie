@@ -71,7 +71,7 @@ segments:
   - [0x1F610, c, done/audio/n_synaddplayer]
   - [0x1F7E0, c, done/audio/n_synallocvoice]
   - [0x1F9E0, c, done/audio/n_synsetvol]
-  - [0x1FA80, c, code_1FA80]
+  - [0x1FA80, c, done/audio/n_synstartvoice]
   - [0x1FB00, c, done/audio/n_synsetpan]
   - [0x1FB80, c, done/audio/n_synsetpitch]
   - [0x1FC00, c, done/audio/n_synsetfxmix]

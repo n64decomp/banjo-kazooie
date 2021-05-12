@@ -50,6 +50,7 @@ alEvtqNew           = 0x8025CFAC;
 n_alSynAddSeqPlayer = 0x8025D030;
 n_alSynAddSndPlayer = 0x8025D130;
 n_alSynAddPlayer    = 0x8025D1A4;
+n_alSynStartVoice   = 0x8025D4A0;
 _n_allocatePVoice     = 0x8025D200;
 n_alSynAllocVoice     = 0x8025D208;
 n_alSynSetVol         = 0x8025D400;
