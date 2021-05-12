@@ -3,6 +3,24 @@
 #include <ultra64.h>
 #include <n_libaudio.h>
 #include "synthInternals.h"
+#include <n_abi.h>
+
+#define SAMPLES               184
+#define SAMPLE184(delta)      (((delta) + (SAMPLES / 2)) / SAMPLES) * SAMPLES
+#define FIXED_SAMPLE          SAMPLES
+
+#define N_AL_DECODER_IN	        0
+#define	N_AL_RESAMPLER_OUT	0
+#define N_AL_TEMP_0	        0
+#define	N_AL_DECODER_OUT        368
+#define	N_AL_TEMP_1	        368
+#define	N_AL_TEMP_2	        736
+#define	N_AL_MAIN_L_OUT	        1248
+#define	N_AL_MAIN_R_OUT	        1616
+#define	N_AL_AUX_L_OUT	        1984
+#define	N_AL_AUX_R_OUT	        2352
+
+#define N_AL_DIVIDED            368
 
 typedef struct N_ALLoadFilter_s{
     //ALFilter                    filter;
