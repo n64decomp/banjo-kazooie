@@ -10,10 +10,10 @@ n_alLoadParam(N_PVoice *v, s32 paramID, void *param)
     
     switch (paramID) {
         case (AL_FILTER_SET_WAVETABLE):
-            v->decoder.table = (ALWaveTable *) param;
-            v->decoder.memin = (s32) v->decoder.table->base;
-            v->decoder.sample = 0;
-            switch (v->decoder.table->type){
+            v->dc_table = (ALWaveTable *) param;
+            v->dc_memin = (s32) v->dc_table->base;
+            v->dc_sample = 0;
+            switch (v->dc_table->type){
                 case (AL_ADPCM_WAVE):
 
                     /*
@@ -24,30 +24,30 @@ n_alLoadParam(N_PVoice *v, s32 paramID, void *param)
                      * Make sure the table length is an integer number of
                      * frames
                      */
-                    v->decoder.table->len = ADPCMFBYTES *
-                        ((s32) (v->decoder.table->len/ADPCMFBYTES));
+                    v->dc_table->len = ADPCMFBYTES *
+                        ((s32) (v->dc_table->len/ADPCMFBYTES));
                     
-                    v->decoder.bookSize = 2*v->decoder.table->waveInfo.adpcmWave.book->order*
-                    v->decoder.table->waveInfo.adpcmWave.book->npredictors*ADPCMVSIZE;
-                    if (v->decoder.table->waveInfo.adpcmWave.loop) {
-                        v->decoder.loop.start = v->decoder.table->waveInfo.adpcmWave.loop->start;
-                        v->decoder.loop.end = v->decoder.table->waveInfo.adpcmWave.loop->end;
-                        v->decoder.loop.count = v->decoder.table->waveInfo.adpcmWave.loop->count;
-                        alCopy(v->decoder.table->waveInfo.adpcmWave.loop->state,
-                               v->decoder.lstate, sizeof(ADPCM_STATE));
+                    v->dc_bookSize = 2*v->dc_table->waveInfo.adpcmWave.book->order*
+                    v->dc_table->waveInfo.adpcmWave.book->npredictors*ADPCMVSIZE;
+                    if (v->dc_table->waveInfo.adpcmWave.loop) {
+                        v->dc_loop.start = v->dc_table->waveInfo.adpcmWave.loop->start;
+                        v->dc_loop.end = v->dc_table->waveInfo.adpcmWave.loop->end;
+                        v->dc_loop.count = v->dc_table->waveInfo.adpcmWave.loop->count;
+                        alCopy(v->dc_table->waveInfo.adpcmWave.loop->state,
+                               v->dc_lstate, sizeof(ADPCM_STATE));
                     } else {
-                        v->decoder.loop.start = v->decoder.loop.end = v->decoder.loop.count = 0;
+                        v->dc_loop.start = v->dc_loop.end = v->dc_loop.count = 0;
                     }
                     break;
                     
                 case (AL_RAW16_WAVE):
                     //f->handler = alRaw16Pull;
-                    if (v->decoder.table->waveInfo.rawWave.loop) {
-                        v->decoder.loop.start = v->decoder.table->waveInfo.rawWave.loop->start;
-                        v->decoder.loop.end = v->decoder.table->waveInfo.rawWave.loop->end;
-                        v->decoder.loop.count = v->decoder.table->waveInfo.rawWave.loop->count;
+                    if (v->dc_table->waveInfo.rawWave.loop) {
+                        v->dc_loop.start = v->dc_table->waveInfo.rawWave.loop->start;
+                        v->dc_loop.end = v->dc_table->waveInfo.rawWave.loop->end;
+                        v->dc_loop.count = v->dc_table->waveInfo.rawWave.loop->count;
                     } else {
-                        v->decoder.loop.start = v->decoder.loop.end = v->decoder.loop.count = 0;
+                        v->dc_loop.start = v->dc_loop.end = v->dc_loop.count = 0;
                     }
                     break;
                     
@@ -58,24 +58,24 @@ n_alLoadParam(N_PVoice *v, s32 paramID, void *param)
             break;
             
         case (AL_FILTER_RESET):
-            v->decoder.lastsam = 0;
-            v->decoder.first   = 1;
-            v->decoder.sample = 0;
+            v->dc_lastsam = 0;
+            v->dc_first   = 1;
+            v->dc_sample = 0;
 	    
 	    /* sct 2/14/96 - Check table since it is initialized to null and */
 	    /* Get loop info according to table type. */
-	    if (v->decoder.table)
+	    if (v->dc_table)
 	    {
-		v->decoder.memin  = (s32) v->decoder.table->base;
-		if (v->decoder.table->type == AL_ADPCM_WAVE)
+		v->dc_memin  = (s32) v->dc_table->base;
+		if (v->dc_table->type == AL_ADPCM_WAVE)
 		{
-		    if (v->decoder.table->waveInfo.adpcmWave.loop)
-			v->decoder.loop.count = v->decoder.table->waveInfo.adpcmWave.loop->count;
+		    if (v->dc_table->waveInfo.adpcmWave.loop)
+			v->dc_loop.count = v->dc_table->waveInfo.adpcmWave.loop->count;
 		}
-		else if (v->decoder.table->type == AL_RAW16_WAVE)
+		else if (v->dc_table->type == AL_RAW16_WAVE)
 		{
-		    if (v->decoder.table->waveInfo.rawWave.loop)
-			v->decoder.loop.count = v->decoder.table->waveInfo.rawWave.loop->count;
+		    if (v->dc_table->waveInfo.rawWave.loop)
+			v->dc_loop.count = v->dc_table->waveInfo.rawWave.loop->count;
 		}
 	    }
 	    

@@ -93,8 +93,8 @@ segments:
   - [0x21C50, c, done/audio/n_synallocfx]
   - [0x21CB0, c, n_reverb]
   - [0x22740, c, done/audio/n_auxbus]
-  - [0x227F0, c, code_227F0]
-  - [0x22D50, c, code_22D50]
+  - [0x227F0, c, done/audio/n_drvrNew]
+  - [0x22D50, c, done/audio/n_save]
   - [0x22DA0, c, done/audio/n_envresample]
   - [0x22E40, c, code_22E40]
   - [0x25360, c, done/audio/n_synstartvoiceparam]
@@ -233,10 +233,14 @@ segments:
   vram:  0x80275610
   subsegments:
   - [0x37BF0, bin, data_37BF0] #data Section
+  - [0x39470, .data, done/audio/n_drvrNew]
+  - [0x39600, bin, data_39600]
   - [0x39A10, .data, done/audio/env]
   - [0x39B10, bin, data_39B10]
   - [0x3A9C0, bin, data_3A9C0] #.rodata, done/audio/n_csplayer]
   - [0x3AD30, bin, data_3AD30]
+  - [0x3AD60, .rodata, done/audio/n_drvrNew]
+  - [0x3AD80, bin, data_3AD80]
   #- [0x3B2C0, .rodata, gu/rotate] #need to resolve .data section first
   #- [0x3B2D0, bin, data_3B2D0]
   - [0x3B3A0, .rodata, done/audio/synthesizer]
