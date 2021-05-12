@@ -36,7 +36,7 @@ void n_alCSPNew(N_ALCSPlayer *seqp, ALSeqpConfig *c)
      */
     seqp->bank          = 0;
     seqp->target        = NULL;
-    seqp->drvr          = D_80276E84;
+    seqp->drvr          = n_syn;
     seqp->chanMask      = 0xffff;
     seqp->uspt          = 488;
     seqp->nextDelta     = 0;

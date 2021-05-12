@@ -69,7 +69,7 @@ typedef struct audio_0_struct{
     ALPlayer *unk70;
 } AL0s; //modified ALSynth?
 
-extern AL0s *D_80276E84;
+extern AL0s *n_syn;
 
 /*
  * prototypes for private driver functions
