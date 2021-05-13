@@ -12,12 +12,12 @@ int bstwirl_hitboxActive(void){
 
 void bstwirl_init(void){
     AnimCtrl *aCtrl = player_getAnimCtrlPtr();
-    func_802874AC(aCtrl);
-    func_80287684(aCtrl, 0);
+    animctrl_reset(aCtrl);
+    animctrl_setSmoothTransition(aCtrl, 0);
     animctrl_setIndex(aCtrl, ANIM_BANJO_ROLL);
     animctrl_setDuration(aCtrl, 0.9f);
-    func_802876CC(aCtrl, 0.0f, 1.0f);
-    func_80287674(aCtrl, 1);
+    animctrl_setSubRange(aCtrl, 0.0f, 1.0f);
+    animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
     func_802875AC(aCtrl, "bstwirl.c", 0x46);
     func_80289F10(1);
     func_802991A8(1);
@@ -49,7 +49,7 @@ void bstwirl_update(void){
                 func_8029AE74(0);
                 func_8029E3C0(0, 0.12f);
             }
-            if(func_802878E8(aCtrl, 0.8011f)){
+            if(animctrl_isAt(aCtrl, 0.8011f)){
                 animctrl_setDuration(aCtrl, 2.5f);
                 func_80297970(0.0f);
                 _bstwirlHitboxActive = 0;
@@ -57,7 +57,7 @@ void bstwirl_update(void){
             }
             //??? missing break
         case 3://L802B6C38
-            if(func_802878C4(aCtrl))
+            if(animctrl_isStopped(aCtrl))
                 sp1C = BS_IDLE;
             break;
     }//L802B6C4C

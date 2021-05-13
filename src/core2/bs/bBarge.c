@@ -65,12 +65,12 @@ void bsbarge_init(void){
     AnimCtrl *plyrMvmnt;
 
     plyrMvmnt = player_getAnimCtrlPtr();
-    func_802874AC(plyrMvmnt);
-    func_80287684(plyrMvmnt, 0);
+    animctrl_reset(plyrMvmnt);
+    animctrl_setSmoothTransition(plyrMvmnt, 0);
     animctrl_setIndex(plyrMvmnt, ANIM_BANJO_BBARGE);
     animctrl_setDuration(plyrMvmnt, 1.0f);
-    func_802876CC(plyrMvmnt, 0, 0.375f);
-    func_80287674(plyrMvmnt, 1);
+    animctrl_setSubRange(plyrMvmnt, 0, 0.375f);
+    animctrl_setPlaybackType(plyrMvmnt,  ANIMCTRL_ONCE);
     func_802875AC(plyrMvmnt, "bsbbarge.c", 0x98);
     D_8037D2A4 = 0;
     func_8029C7F4(1,1,3,3);
@@ -97,10 +97,10 @@ void bsbarge_update(void){
         func_802933E8(0xA);
     switch(D_8037D2A5){
         case 0:
-            if(func_802878E8(plyrMvmnt, 0.1392f))
+            if(animctrl_isAt(plyrMvmnt, 0.1392f))
                 func_80299BD4();
             
-            if(!func_802878C4(plyrMvmnt))
+            if(!animctrl_isStopped(plyrMvmnt))
                 break;
 
             if(func_802933D0(0xA)){
@@ -136,7 +136,7 @@ void bsbarge_update(void){
             break;
         case 2:
             func_80297970(D_8037D2A0);
-            if(func_802878C4(plyrMvmnt)){
+            if(animctrl_isStopped(plyrMvmnt)){
                 animctrl_setDuration(plyrMvmnt, 2.0f);
                 func_8028A37C(0.6f);
                 func_8029E3C0(0, 0.1f);
@@ -160,12 +160,12 @@ void bsbarge_update(void){
         case 4:
             if(!func_8028B2E8())
                 sp24 = BS_FALL;
-            if(func_802878E8(plyrMvmnt, 0.7f)){
+            if(animctrl_isAt(plyrMvmnt, 0.7f)){
                 D_8037D2A0 = 0.0f;
                 D_8037D2A6 = 0;
             }
             func_80297970(D_8037D2A0);
-            if(func_802878E8(plyrMvmnt, 0.9193f))
+            if(animctrl_isAt(plyrMvmnt, 0.9193f))
                 sp24 = BS_LANDING;
             break;
     }

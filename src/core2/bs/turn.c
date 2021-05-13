@@ -9,11 +9,11 @@ void bsturn_init(void){
     AnimCtrl *aCtrl = player_getAnimCtrlPtr();
     f32 sp28[3];
 
-    func_802874AC(aCtrl);
+    animctrl_reset(aCtrl);
     animctrl_setIndex(aCtrl, ANIM_BANJO_TURN);
     animctrl_setDuration(aCtrl, 0.3f);
-    func_802876C0(aCtrl,0.1f);
-    func_80287674(aCtrl, 1);
+    animctrl_setTransitionDuration(aCtrl,0.1f);
+    animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
     func_802875AC(aCtrl, "bsturn.c", 0x37);
     func_80289F10(1);
     func_802991A8(1);
@@ -46,7 +46,7 @@ void bsturn_update(void){
             break;
     }//L802B6978
 
-    if(func_802878C4(player_getAnimCtrlPtr()))
+    if(animctrl_isStopped(player_getAnimCtrlPtr()))
         sp2C = BS_WALK_FAST;
 
     if(button_held(BUTTON_Z))

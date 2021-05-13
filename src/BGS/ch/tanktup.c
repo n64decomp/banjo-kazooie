@@ -161,10 +161,10 @@ void func_8038FBF8(Actor *this){
         func_803300A8(this->marker, NULL, NULL, func_8038FB84);
     }
     if(this->unk10_31 == 2){
-        if(func_802878E8(this->animctrl, 0.65f)){
+        if(animctrl_isAt(this->animctrl, 0.65f)){
             func_8030E540(0x7C);
         }
-        if(func_802878C4(this->animctrl)){
+        if(animctrl_isStopped(this->animctrl)){
             marker_despawn(this->marker);
         }
     }

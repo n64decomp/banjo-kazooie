@@ -56,10 +56,10 @@ void bscrouch_init(void){
             sp24 = 0.0f;
             break;
     }
-    func_802874AC(aCtrl);
+    animctrl_reset(aCtrl);
     animctrl_setIndex(aCtrl, ANIM_BANJO_CROUCH);
     animctrl_setDuration(aCtrl, 0.5f);
-    func_80287674(aCtrl, 1);
+    animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
     func_8028774C(aCtrl, sp24);
     func_802875AC(aCtrl, "bscrouch.c", 0xa0);
     func_80289F10(1);
@@ -124,7 +124,7 @@ void bscrouch_update(void){
             if(temp_f2 != 0.0f){
                 func_802AD6D0();
             }else{
-                if(func_802878C4(aCtrl))
+                if(animctrl_isStopped(aCtrl))
                     func_802AD728();
             }
             break;
@@ -137,11 +137,11 @@ void bscrouch_update(void){
                 break;
 
             if((f64)func_802877D8(aCtrl) <= 0.5){
-                func_802876CC(aCtrl, 0.0f, 0.5f);
+                animctrl_setSubRange(aCtrl, 0.0f, 0.5f);
             }else{
-                func_802876CC(aCtrl, 0.0f, 1.0f);
+                animctrl_setSubRange(aCtrl, 0.0f, 1.0f);
             }
-            func_80287674(aCtrl,1);
+            animctrl_setPlaybackType(aCtrl,1);
             D_8037D404 = 3;
             break;
 
@@ -149,11 +149,11 @@ void bscrouch_update(void){
             func_802AD768(aCtrl, temp_f2);
             func_802AD7B0(aCtrl);
             if(temp_f2 != 0.0f){
-                func_802876CC(aCtrl, 0.0f, 1.0f);
-                func_80287674(aCtrl, 2);
+                animctrl_setSubRange(aCtrl, 0.0f, 1.0f);
+                animctrl_setPlaybackType(aCtrl,  ANIMCTRL_LOOP);
                 D_8037D404 = 4;
             }else{
-                if(func_802878C4(aCtrl)){
+                if(animctrl_isStopped(aCtrl)){
                     yaw_setIdeal(yaw_get());
                     func_802AD728();
                 }

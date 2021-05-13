@@ -3,7 +3,7 @@
 
 #include "prop.h"
 s32  func_80289680(void);
-s32  func_80289688(Animation *this);
+enum asset_e  anim_getIndex(Animation *this);
 f32  func_80289690(Animation *this);
 f32  func_80289698(Animation *this);
 void func_802896EC(Animation *this, s32 arg1);

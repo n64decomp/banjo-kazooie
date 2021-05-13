@@ -51,7 +51,7 @@ void func_802A2790(s32 arg0, f32 arg1, s32 arg2) {
 void func_802A2810(void) {
     AnimCtrl *plyrMvPtr;
     plyrMvPtr = player_getAnimCtrlPtr();
-    if (func_802878E8(plyrMvPtr, 0.9f)) {
+    if (animctrl_isAt(plyrMvPtr, 0.9f)) {
         D_8037D301++;
     }
 }
@@ -95,7 +95,7 @@ void func_802A298C(void){
         func_802A2790(0x4e, 1.24f, 0x4e20);
     }
 
-    if((0.7 < D_8037D308) && func_802878E8(sp1c, 0.5698f)){
+    if((0.7 < D_8037D308) && animctrl_isAt(sp1c, 0.5698f)){
         func_802A2790(0x47, 1.0f, 0x55f0);
     }
 }
@@ -112,11 +112,11 @@ void bsbflap_update(void){
             func_80293350();
             func_802A2900();
             func_802A298C();
-            if(func_802878E8(sp18, 0.9f)){
-                func_80287684(sp18, 0);
+            if(animctrl_isAt(sp18, 0.9f)){
+                animctrl_setSmoothTransition(sp18, 0);
                 animctrl_setIndex(sp18, ANIM_BANJO_BFLAP);
                 animctrl_setDuration(sp18, func_802A2858());
-                func_80287674(sp18, 2);
+                animctrl_setPlaybackType(sp18,  ANIMCTRL_LOOP);
                 func_8028774C(sp18, 0.0f);
                 func_802875AC(sp18, "bsbflap.c", 0xe1);
                 player_setYVelocity(D_80364A10);

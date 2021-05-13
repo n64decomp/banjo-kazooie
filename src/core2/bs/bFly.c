@@ -68,7 +68,7 @@ void bsbfly_enter_update(void){
 
     switch(D_8037D344){
     case 0:
-        if(func_802878E8(aCtrl, 0.2416f)){
+        if(animctrl_isAt(aCtrl, 0.2416f)){
             animctrl_setDuration(aCtrl, 2.4f);
             player_setYVelocity(1600.0f);
             func_8030E58C(0xC, 0.7f);
@@ -170,7 +170,7 @@ void bsbfly_update(void){
             }
             break;
     }//L802A3CB8
-    if(func_802878E8(aCtrl, 0.1358f)){
+    if(animctrl_isAt(aCtrl, 0.1358f)){
         func_8030EBC8(2, 0.6f, 0.7f, 0x2710, 0x2ee0);
     }
     gravity_set(-300.0f);

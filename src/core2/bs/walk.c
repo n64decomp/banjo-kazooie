@@ -124,15 +124,15 @@ void bswalk_creep_init(void){
     f32 sp20;
 
     if(bs_getPrevState() == BS_WALK_SLOW){
-        sp20 = func_80289690(func_80287464(s0));
+        sp20 = func_80289690(animctrl_getAnimPtr(s0));
     }else{
         sp20 = 0.0f;
     }
-    func_802874AC(s0);
+    animctrl_reset(s0);
     animctrl_setIndex(s0, ANIM_BANJO_WALK_CREEP);
     animctrl_setDuration(s0, 0.43f);
     func_8028774C(s0, sp20);
-    func_80287674(s0, 2);
+    animctrl_setPlaybackType(s0,  ANIMCTRL_LOOP);
     func_802875AC(s0, "bswalk.c", 0xe4);
     func_8029C7F4(2,1,1,2);
     func_80289EA8(0.3f, 1.5f);
@@ -197,15 +197,15 @@ void bswalk_slow_init(void){
     f32 sp20;
 
     if(bs_getPrevState() == 3){
-        sp20 = func_80289690(func_80287464(s0));
+        sp20 = func_80289690(animctrl_getAnimPtr(s0));
     }else{
         sp20 = 0.0f;
     }
-    func_802874AC(s0);
+    animctrl_reset(s0);
     animctrl_setIndex(s0, ANIM_BANJO_WALK);
     animctrl_setDuration(s0, 0.43f);
     func_8028774C(s0, sp20);
-    func_80287674(s0, 2);
+    animctrl_setPlaybackType(s0,  ANIMCTRL_LOOP);
     func_802875AC(s0, "bswalk.c", 0x168);
     func_8029C7F4(2,1,1,2);
     func_80289EA8(0.3f, 1.5f);
@@ -275,15 +275,15 @@ void bswalk_init(void){
             break;
         case 2:
         case 4:
-            sp20 = func_80289690(func_80287464(s0));
+            sp20 = func_80289690(animctrl_getAnimPtr(s0));
             break;
     }
-    func_802874AC(s0);
+    animctrl_reset(s0);
     animctrl_setIndex(s0, ANIM_BANJO_RUN);
     animctrl_setDuration(s0, 0.66f);
-    func_802876C0(s0, 0.14f);
+    animctrl_setTransitionDuration(s0, 0.14f);
     func_8028774C(s0, sp20);
-    func_80287674(s0, 2);
+    animctrl_setPlaybackType(s0,  ANIMCTRL_LOOP);
     func_802875AC(s0, "bswalk.c", 0x1ed);
     func_8029C7F4(2,1,1,2);
     func_80289EA8(0.3f, 1.5f);
@@ -357,17 +357,17 @@ void bswalk_fast_init(void){
             sp24 = 0;
             break;
         case 3:
-            sp28 = func_80289690(func_80287464(s0));
+            sp28 = func_80289690(animctrl_getAnimPtr(s0));
 
             break;
     }
-    func_802874AC(s0);
-    func_80287684(s0, sp24);
+    animctrl_reset(s0);
+    animctrl_setSmoothTransition(s0, sp24);
     animctrl_setIndex(s0, ANIM_BANJO_RUN);
     animctrl_setDuration(s0, 0.66f);
-    func_802876C0(s0, 0.1f);
+    animctrl_setTransitionDuration(s0, 0.1f);
     func_8028774C(s0, sp28);
-    func_80287674(s0, 2);
+    animctrl_setPlaybackType(s0,  ANIMCTRL_LOOP);
     func_802875AC(s0, "bswalk.c", 0x27d);
     func_8029C7F4(2,1,1,2);
     func_80289EA8(0.3f, 1.5f);

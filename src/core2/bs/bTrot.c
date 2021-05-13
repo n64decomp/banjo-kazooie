@@ -158,7 +158,7 @@ int func_802A8C60(void){
 }
 
 void _bsbtrot_802A8C98(AnimCtrl *aCtrl, enum asset_e arg1){
-    if(func_80287790(aCtrl) != arg1){
+    if(animctrl_getIndex(aCtrl) != arg1){
         animctrl_setIndex(aCtrl, arg1);
         func_8028774C(aCtrl, func_802877D8(aCtrl));
         func_802875AC(aCtrl, "bsbtrot.c", 0x12e);
@@ -223,7 +223,7 @@ void bsbtrot_enter_update(void){
     AnimCtrl *aCtrl = player_getAnimCtrlPtr();
     func_802952A8(0,1);
     func_80299628(1);
-    if(func_802878C4(aCtrl))
+    if(animctrl_isStopped(aCtrl))
         next_state = BS_BTROT_IDLE;
 
     if(0.5 <  func_802877D8(aCtrl))
@@ -295,11 +295,11 @@ void bsbtrot_walk_update(void){
     _bsbtrot_802A8C98(aCtrl, func_802A9030());
     func_80299628(1);
     func_802A89D4();
-    if(func_802878E8(aCtrl, 0.2781f))
+    if(animctrl_isAt(aCtrl, 0.2781f))
         func_802A880C(1);
 
     func_8029AD28(0.2781f, 4);
-    if(func_802878E8(aCtrl, 0.7781f))
+    if(animctrl_isAt(aCtrl, 0.7781f))
         func_802A880C(0);
 
     func_8029AD28(0.7781f, 3);
@@ -307,7 +307,7 @@ void bsbtrot_walk_update(void){
         func_802A87C0();
     }
     else{
-        if(func_802878E8(aCtrl, 0.2115f) || func_802878E8(aCtrl, 0.7115f))
+        if(animctrl_isAt(aCtrl, 0.2115f) || animctrl_isAt(aCtrl, 0.7115f))
             func_802A87C0();
     }
     if(!func_8029B300() && func_80297C04(1.0f))
@@ -341,13 +341,13 @@ void func_802A9320(void){}
 void bsbtrot_jump_init(void){
     AnimCtrl * aCtrl = player_getAnimCtrlPtr();
 
-    func_802874AC(aCtrl);
+    animctrl_reset(aCtrl);
     animctrl_setIndex(aCtrl, ANIM_BANJO_BTROT_JUMP);
     animctrl_setDuration(aCtrl, 1.4f);
-    func_802876C0(aCtrl, 0.1f);
+    animctrl_setTransitionDuration(aCtrl, 0.1f);
     func_8028774C(aCtrl, 0.2f);
-    func_802876CC(aCtrl, 0.0f,  0.4002f);
-    func_80287674(aCtrl, 1);
+    animctrl_setSubRange(aCtrl, 0.0f,  0.4002f);
+    animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
     func_802875AC(aCtrl, "bsbtrot.c", 0x272);
     func_802A8A40();
     func_80289F10(1);
@@ -385,18 +385,18 @@ void bsbtrot_jump_update(void){
     
     switch(D_8037D3A4){
         case 0://L802A9530
-            if(func_802878C4(aCtrl)){
-                func_802876CC(aCtrl, 0.0f, 0.4653f);
+            if(animctrl_isStopped(aCtrl)){
+                animctrl_setSubRange(aCtrl, 0.0f, 0.4653f);
                 animctrl_setDuration(aCtrl, 10.0f);
-                func_80287674(aCtrl, 1);
+                animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
                 D_8037D3A4 = 1;
             }
             break;
         case 1://L802A9578
             if(func_8028B254(0x8C)){
-                func_802876CC(aCtrl, 0.0f, 0.7328f);
+                animctrl_setSubRange(aCtrl, 0.0f, 0.7328f);
                 animctrl_setDuration(aCtrl, 1.4f);
-                func_80287674(aCtrl, 1);
+                animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
                 D_8037D3A4 = 2;
             }
             break;
@@ -404,9 +404,9 @@ void bsbtrot_jump_update(void){
             func_80299628(1);
             if(func_8028B2E8()){
                 func_8029C5E8();
-                func_802876CC(aCtrl, 0.0f, 0.8798f);
+                animctrl_setSubRange(aCtrl, 0.0f, 0.8798f);
                 animctrl_setDuration(aCtrl, 0.9f);
-                func_80287674(aCtrl, 1);
+                animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
                 func_8029957C(1);
                 D_8037D3A4 = 3;
                 if(220.0f < func_80297A64())
@@ -419,10 +419,10 @@ void bsbtrot_jump_update(void){
                 func_80299AAC();
             func_802A9320();
             func_80299628(1);
-            if(func_802878C4(aCtrl)){
-                func_802876CC(aCtrl, 0.0f, 0.8898f);
+            if(animctrl_isStopped(aCtrl)){
+                animctrl_setSubRange(aCtrl, 0.0f, 0.8898f);
                 animctrl_setDuration(aCtrl, 2.0f);
-                func_80287674(aCtrl, 1);
+                animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
                 D_8037D3A4 = 4;
             }
             func_8029C22C();
@@ -433,10 +433,10 @@ void bsbtrot_jump_update(void){
             
             func_802A9320();
             func_80299628(1);
-            if(func_802878C4(aCtrl)){
-                func_802876CC(aCtrl, 0.0f, 1.0f);
+            if(animctrl_isStopped(aCtrl)){
+                animctrl_setSubRange(aCtrl, 0.0f, 1.0f);
                 animctrl_setDuration(aCtrl, 1.2f);
-                func_80287674(aCtrl, 1);
+                animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
                 D_8037D3A4 = 5;
             }
             func_8029C22C();
@@ -446,7 +446,7 @@ void bsbtrot_jump_update(void){
                 func_80299AAC();
             func_802A9320();
             func_80299628(1);
-            if(func_802878C4(aCtrl))
+            if(animctrl_isStopped(aCtrl))
                 sp2C = BS_BTROT_IDLE;
             break;
     }//LL802A97D0
@@ -484,7 +484,7 @@ void bsbtrot_exit_init(void){
 
 void bsbtrot_exit_update(void){
     enum bs_e sp1C = 0;
-    if(func_802878C4(player_getAnimCtrlPtr()))
+    if(animctrl_isStopped(player_getAnimCtrlPtr()))
         sp1C = BS_IDLE;
 
     bs_setState(sp1C);
@@ -496,10 +496,10 @@ void bsbtrot_exit_end(void){
 
 void bsbtrot_slide_init(void){
     AnimCtrl *aCtrl = player_getAnimCtrlPtr();
-    func_802874AC(aCtrl);
+    animctrl_reset(aCtrl);
     animctrl_setIndex(aCtrl, ANIM_BANJO_BTROT_JUMP);
     func_8028774C(aCtrl, 0.069f);
-    func_80287674(aCtrl, 3);
+    animctrl_setPlaybackType(aCtrl,  ANIMCTRL_STOPPED);
     func_802875AC(aCtrl, "bsbtrot.c", 0x382);
     func_802A8A40();
     func_8029C7F4(1,1,3,3);
@@ -563,11 +563,11 @@ int bsbtrot_inSet(s32 move_indx){
 
 void bsbtrot_fall_init(void){
     AnimCtrl * aCtrl = player_getAnimCtrlPtr();
-    func_802874AC(aCtrl);
+    animctrl_reset(aCtrl);
     animctrl_setIndex(aCtrl, ANIM_BANJO_BTROT_JUMP);
     animctrl_setDuration(aCtrl, 1.4f);
     func_8028774C(aCtrl, 0.4653f);
-    func_80287674(aCtrl, 3);
+    animctrl_setPlaybackType(aCtrl,  ANIMCTRL_STOPPED);
     func_802875AC(aCtrl, "bsbtrot.c", 0x400);
     func_802A8A40();
     func_8029C7F4(1,1,3,6);
@@ -594,9 +594,9 @@ void bsbtrot_fall_update(void){
     switch (D_8037D3A4){
     case 0://L802A9D90
         if(func_8028B254(0x8C)){
-            func_802876CC(aCtrl, 0.0f, 0.7328f);
+            animctrl_setSubRange(aCtrl, 0.0f, 0.7328f);
             animctrl_setDuration(aCtrl, 1.4f);
-            func_80287674(aCtrl, 1);
+            animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
             D_8037D3A4 = 1;
         }
         break;
@@ -604,9 +604,9 @@ void bsbtrot_fall_update(void){
         func_80299628(1);
         if(func_8028B2E8()){
             func_8029C5E8();
-            func_802876CC(aCtrl, 0.0f, 0.8798f);
+            animctrl_setSubRange(aCtrl, 0.0f, 0.8798f);
             animctrl_setDuration(aCtrl, 0.9f);
-            func_80287674(aCtrl, 1);
+            animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
             func_8029957C(1);
             if(220.0f < func_80297A64()){
                 func_80299AAC();
@@ -621,10 +621,10 @@ void bsbtrot_fall_update(void){
         
         func_802A9320();
         func_80299628(1);
-        if(func_802878C4(aCtrl)){
-            func_802876CC(aCtrl, 0.0f, 0.8898f);
+        if(animctrl_isStopped(aCtrl)){
+            animctrl_setSubRange(aCtrl, 0.0f, 0.8898f);
             animctrl_setDuration(aCtrl, 2.0f);
-            func_80287674(aCtrl, 1);
+            animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
             D_8037D3A4 = 3;
         }
         func_8029C22C();
@@ -635,10 +635,10 @@ void bsbtrot_fall_update(void){
 
         func_802A9320();
         func_80299628(1);
-        if(func_802878C4(aCtrl)){
-            func_802876CC(aCtrl, 0.0f, 1.0f);
+        if(animctrl_isStopped(aCtrl)){
+            animctrl_setSubRange(aCtrl, 0.0f, 1.0f);
             animctrl_setDuration(aCtrl, 1.2f);
-            func_80287674(aCtrl, 1);
+            animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
             D_8037D3A4 = 4;
         }
         func_8029C22C();
@@ -649,7 +649,7 @@ void bsbtrot_fall_update(void){
         
         func_802A9320();
         func_80299628(1);
-        if(func_802878C4(aCtrl))
+        if(animctrl_isStopped(aCtrl))
             sp2C = BS_BTROT_IDLE;
         break;
     }//LL802A9FE8
@@ -739,7 +739,7 @@ void bsbtrot_ow_update(void){
     if(func_8028B2E8() && func_80289FC4())
         sp1C = BS_BTROT_IDLE;
 
-    if(func_802878C4(player_getAnimCtrlPtr()) && player_inWater())
+    if(animctrl_isStopped(player_getAnimCtrlPtr()) && player_inWater())
         sp1C = BS_SWIM_IDLE;
 
     bs_setState(sp1C);

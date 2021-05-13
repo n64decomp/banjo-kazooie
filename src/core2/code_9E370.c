@@ -140,7 +140,7 @@ Actor *func_8032811C(s32 id, f32 *pos, f32* rot){
     if(animInfo->index){
         if(arg0->animctrl == NULL){
             arg0->animctrl = animctrl_new(0);
-            func_802874AC(arg0->animctrl);
+            animctrl_reset(arg0->animctrl);
         }
         animctrl_setIndex(arg0->animctrl, animInfo->index);
         animctrl_setDuration(arg0->animctrl, animInfo->duration);
@@ -148,7 +148,7 @@ Actor *func_8032811C(s32 id, f32 *pos, f32* rot){
     }
     else{
         if(arg0->animctrl){
-            func_80287674(arg0->animctrl, 3);
+            animctrl_setPlaybackType(arg0->animctrl,  ANIMCTRL_STOPPED);
             animctrl_setDirection(arg0->animctrl, mvmt_dir_forwards);
         }
     }
@@ -183,7 +183,7 @@ void func_80328A84(Actor * arg0, u32 arg1){
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80328AEC.s")
 // void func_80328AEC(Actor * arg0, u32 arg1){
 //     if(func_80328508(arg0, arg1) && arg0->animctrl){
-//         func_80287674(arg0->animctrl, 2);
+//         animctrl_setPlaybackType(arg0->animctrl,  ANIMCTRL_LOOP);
 //         func_803289EC(arg0, NULL, 1); //li zero instead of move?
 //     }
 // }
@@ -276,7 +276,7 @@ s32 func_80329054(s32 arg0, s32 arg1) {
 //actor_loopAnimation
 void func_803298D8(Actor *this){
     if(this->animctrl)
-        func_80287674(this->animctrl, 2);
+        animctrl_setPlaybackType(this->animctrl,  ANIMCTRL_LOOP);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80329904.s")

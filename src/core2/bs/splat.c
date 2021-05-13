@@ -55,17 +55,17 @@ void bssplat_update(void){
         if(func_8028B094())
             sp1C = BS_FALL;
 
-        if(func_802878C4(aCtrl)){
+        if(animctrl_isStopped(aCtrl)){
             func_8028A180(0xd2, 2.25f);
             D_8037D530 = 1;
         }
         break;
     
     case 1://L802B47C8
-        if(func_802878E8(aCtrl, 0.63f))
+        if(animctrl_isAt(aCtrl, 0.63f))
             sp1C = BS_LANDING;
 
-        if(func_802878C4(aCtrl))
+        if(animctrl_isStopped(aCtrl))
             sp1C = BS_IDLE;
 
         if(func_8028B094())

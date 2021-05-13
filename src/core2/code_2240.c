@@ -5,7 +5,7 @@
 #include "animation.h"
 
 //function declarations
-void func_8028977C(Animation *this, s32 arg1);
+void anim_setIndex(Animation *this, enum asset_e arg1);
 s32  func_802897A0(Animation *this);
 s32  func_802892FC(Animation *this);
 void func_8033AA50(s32, f32, s32);
@@ -118,7 +118,7 @@ s32 func_80289680(void){
     return 0x20;
 }
 
-s32  func_80289688(Animation *this){
+enum asset_e anim_getIndex(Animation *this){
     return this->index;
 }
 
@@ -140,7 +140,7 @@ void func_802896A0(Animation *this){
 
 void func_802896EC(Animation *this, s32 arg1){
     this->unk1D = arg1;
-    func_8028977C(this,0);
+    anim_setIndex(this,0);
     func_80289784(this, 0.0f);
     func_802897C8(this, 1.0f);
     func_80289790(this, NULL);
@@ -154,7 +154,7 @@ void func_802896EC(Animation *this, s32 arg1){
     }
 }
 
-void func_8028977C(Animation *this, s32 arg1){
+void anim_setIndex(Animation *this, enum asset_e arg1){
     this->index = arg1;
 }
 

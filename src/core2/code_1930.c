@@ -79,7 +79,7 @@ vector(struct2s) **func_802890FC(void){
 void func_8028914C(vector(struct2s) **arg0, AnimCtrl *arg1){
     struct2s *iPtr;
     for(iPtr = vla_getBegin(*arg0); iPtr != (struct2s*)vla_getEnd(*arg0); iPtr++){
-        if(func_802878E8(arg1, iPtr->unk0))
+        if(animctrl_isAt(arg1, iPtr->unk0))
             func_80288B98(arg0, iPtr);
     }
 }

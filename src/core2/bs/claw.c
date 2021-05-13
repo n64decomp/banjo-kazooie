@@ -29,28 +29,28 @@ void bsclaw_update(void){
     f32 sp24;
     
     sp24 = func_802877D8(aCtrl);
-    _bsclawHitboxActive = func_802878E8(aCtrl, 0.1488f) != 0
+    _bsclawHitboxActive = animctrl_isAt(aCtrl, 0.1488f) != 0
               || (0.04879999999999998 < sp24 && sp24 < 0.2488)
-              || func_802878E8(aCtrl, 0.3288f) != 0
+              || animctrl_isAt(aCtrl, 0.3288f) != 0
               || (0.22879999999999998 < sp24 && sp24 < 0.42879999999999998)
-              || func_802878E8(aCtrl, 0.5788f) != 0
+              || animctrl_isAt(aCtrl, 0.5788f) != 0
               || (0.4788 < sp24 && sp24 < 0.6788);
-    if(func_802878E8(aCtrl, 0.5788f))
+    if(animctrl_isAt(aCtrl, 0.5788f))
         func_80297970(0.0f);
 
     func_8029AD28(0.08f, 3);
     func_8029AD28(0.34f, 4);
     func_8029AD28(0.53f, 3);
-    if(func_802878E8(aCtrl, 0.1188f))
+    if(animctrl_isAt(aCtrl, 0.1188f))
         func_8030EB00(2, 0.98f, 1.0f);
 
-    if(func_802878E8(aCtrl, 0.2888f))
+    if(animctrl_isAt(aCtrl, 0.2888f))
         func_8030EB00(2, 1.04f, 1.06f);
 
-    if(func_802878E8(aCtrl, 0.4888f))
+    if(animctrl_isAt(aCtrl, 0.4888f))
         func_8030EB00(2, 1.1f, 1.12f);
 
-    if(func_802878C4(aCtrl))
+    if(animctrl_isStopped(aCtrl))
         sp2C = BS_IDLE;
 
     if(!func_8028B2E8())

@@ -27,11 +27,11 @@ void _bsbflip_802A2DC0(void){
     AnimCtrl *aCtrl = player_getAnimCtrlPtr();
     f32 sp20[3];
 
-    func_802874AC(aCtrl);
+    animctrl_reset(aCtrl);
     animctrl_setIndex(aCtrl, ANIM_BANJO_BFLIP);
     animctrl_setDuration(aCtrl, 2.2f);
     func_8028774C(aCtrl, 0.8566f);
-    func_80287674(aCtrl, 1);
+    animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
     func_802875AC(aCtrl, "bsbflip.c", 0x69); //nice
     func_802978DC(3);
     func_80297970(0.0f);
@@ -42,13 +42,13 @@ void _bsbflip_802A2DC0(void){
 
 void bsbflip_init(void){
     AnimCtrl *aCtrl = player_getAnimCtrlPtr();
-    func_802874AC(aCtrl);
-    func_80287684(aCtrl, 0);
+    animctrl_reset(aCtrl);
+    animctrl_setSmoothTransition(aCtrl, 0);
     animctrl_setIndex(aCtrl, ANIM_BANJO_BFLIP);
     animctrl_setDuration(aCtrl, 2.3f);
-    func_802876CC(aCtrl, 0.0f, 0.7866f);
+    animctrl_setSubRange(aCtrl, 0.0f, 0.7866f);
     func_8028774C(aCtrl, 0.0f);
-    func_80287674(aCtrl, 1);
+    animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
     func_802875AC(aCtrl, "bsbflip.c", 0x80);
     func_8029C7F4(1,1,2,3);
     func_8029B324(0, 0.03f);
@@ -62,16 +62,16 @@ void bsbflip_update(void){
     enum bs_e sp24 = 0;
     AnimCtrl *aCtrl = player_getAnimCtrlPtr();
 
-    if( func_802878E8(aCtrl, 0.2394f)
-        && func_802877B0(aCtrl) != 2
-        && func_80287790(aCtrl) == 0x4B
+    if( animctrl_isAt(aCtrl, 0.2394f)
+        && animctrl_getPlaybackType(aCtrl) != 2
+        && animctrl_getIndex(aCtrl) == 0x4B
     ){
         func_8030E760(2, 0.558f, 22000);
     }
 
     switch(D_8037D310){
     case 0://L802A2FD4
-        if(func_802878E8(aCtrl, 0.1837f)){
+        if(animctrl_isAt(aCtrl, 0.1837f)){
             if(func_8029B2E8() != 0.0f){
                 func_802991A8(2);
                 func_8029957C(3);
@@ -97,12 +97,12 @@ void bsbflip_update(void){
         break;
     case 1://L802A30F8
         _bsbflip_802A2D60();
-        if(func_802878C4(aCtrl)){
-            func_802874AC(aCtrl);
-            func_80287684(aCtrl, 0);
+        if(animctrl_isStopped(aCtrl)){
+            animctrl_reset(aCtrl);
+            animctrl_setSmoothTransition(aCtrl, 0);
             animctrl_setIndex(aCtrl, 0x4C);
             animctrl_setDuration(aCtrl, 0.13f);
-            func_80287674(aCtrl, 2);
+            animctrl_setPlaybackType(aCtrl,  ANIMCTRL_LOOP);
             func_802875AC(aCtrl, "bsbflip.c", 0xd9);
             D_8037D310 = 2;
         }//L802A316C
@@ -114,11 +114,11 @@ void bsbflip_update(void){
         if(func_8028B424())
             sp24 = BS_FALL_TUMBLING;
         if(button_released(BUTTON_A)){
-            func_802874AC(aCtrl);
-            func_80287684(aCtrl, 0);
+            animctrl_reset(aCtrl);
+            animctrl_setSmoothTransition(aCtrl, 0);
             animctrl_setIndex(aCtrl, 0x61);
             animctrl_setDuration(aCtrl, 0.8f);
-            func_80287674(aCtrl, 1);
+            animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
             func_802875AC(aCtrl, "bsbflip.c", 0xee);
             func_80297B94();
             D_8037D310 = 3;
@@ -146,7 +146,7 @@ void bsbflip_update(void){
         }
         break;
     case 4://L802A32C0
-        if(func_802878C4(aCtrl))
+        if(animctrl_isStopped(aCtrl))
             sp24 = BS_WALK_SLOW;
         sp24 = func_8029C9C0(sp24);
         break;

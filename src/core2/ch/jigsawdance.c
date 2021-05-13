@@ -31,15 +31,15 @@ void func_802C811C(Actor * this){
             player_getPosition(this->position);
             this->yaw = func_8028EBA4();
             plyrMvmt = func_8028E78C();
-            func_80287684(this->animctrl, 0);
-            animctrl_setIndex(this->animctrl, func_80287790(plyrMvmt));
+            animctrl_setSmoothTransition(this->animctrl, 0);
+            animctrl_setIndex(this->animctrl, animctrl_getIndex(plyrMvmt));
             func_8028774C(this->animctrl,func_802877D8(plyrMvmt));
             animctrl_setDuration(this->animctrl, 1000.0f);
             func_802875AC(this->animctrl, "chjigsawdance.c", 0x59);
             break;
         case 3:
             plyrMvmt = func_8028E78C();
-            func_80287684(this->animctrl, 0);
+            animctrl_setSmoothTransition(this->animctrl, 0);
             func_8028774C(this->animctrl,func_802877D8(plyrMvmt));
             animctrl_setDuration(this->animctrl, 1000.0f);
             func_802875AC(this->animctrl, "chjigsawdance.c", 0x62);
@@ -48,7 +48,7 @@ void func_802C811C(Actor * this){
             player_getPosition(this->position);
             this->yaw = func_8028EBA4();
             plyrMvmt = func_8028E78C();
-            func_80287684(this->animctrl, 0);
+            animctrl_setSmoothTransition(this->animctrl, 0);
             func_8028774C(this->animctrl,func_802877D8(plyrMvmt));
             animctrl_setDuration(this->animctrl, 1000.0f);
             func_802875AC(this->animctrl, "chjigsawdance.c", 0x6e);
@@ -64,7 +64,7 @@ void func_802C82C0(Actor * this, u32 arg1){
         case 3:
             if(this->unk10_31 == 1){
                 func_80328A84(this, 2);
-                func_80287674(this->animctrl, 1);
+                animctrl_setPlaybackType(this->animctrl,  ANIMCTRL_ONCE);
             }
             break;
         case 2:
@@ -76,7 +76,7 @@ void func_802C82C0(Actor * this, u32 arg1){
         case 4:
             player_getPosition(this->position);
             this->yaw = func_8028EBA4();
-            func_80287684(this->animctrl, 0);
+            animctrl_setSmoothTransition(this->animctrl, 0);
             func_8028774C(this->animctrl, func_802877D8(func_8028E78C()));
             animctrl_setDuration(this->animctrl, 1000.0f);
             func_802875AC(this->animctrl, "chjigsawdance.c", 0x97);

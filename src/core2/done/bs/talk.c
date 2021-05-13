@@ -12,9 +12,9 @@ void func_802B6130(void){
     f32 target_pos[3];
 
     plyr_mvmt = player_getAnimCtrlPtr();
-    func_802874AC(plyr_mvmt);
+    animctrl_reset(plyr_mvmt);
     func_8029C848(plyr_mvmt);
-    func_80287674(plyr_mvmt, 2);
+    animctrl_setPlaybackType(plyr_mvmt,  ANIMCTRL_LOOP);
     func_802875AC(plyr_mvmt, D_80375B00, 0x38);
     _player_getPosition(plyr_pos);
     func_802949F8(target_pos);

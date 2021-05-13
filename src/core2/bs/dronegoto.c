@@ -69,9 +69,9 @@ void func_802AECE4(void){
     }
 
     if( 250.0f <= gu_sqrtf(sp20[0]*sp20[0] + sp20[2]*sp20[2])
-        && func_80287790(aCtrl) == 3
+        && animctrl_getIndex(aCtrl) == ANIM_BANJO_WALK
     ){
-        func_802874AC(aCtrl);
+        animctrl_reset(aCtrl);
         animctrl_setIndex(aCtrl, ANIM_BANJO_RUN);
         func_802875AC(aCtrl, "bsdronegoto.c", 0x9d);
     }

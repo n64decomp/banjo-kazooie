@@ -68,7 +68,7 @@ void func_802A0630(void){
     mvmnt = player_getAnimCtrlPtr();
     switch(D_8037D2C0){
         case 0:
-            if(!func_802878E8(mvmnt, 0.266f))
+            if(!animctrl_isAt(mvmnt, 0.266f))
                 break;
             player_setYVelocity(1600.0f);
             func_8030E58C(0xc, 0.7f);
@@ -76,7 +76,7 @@ void func_802A0630(void){
             break;
         case 1:
             func_802A04F0();
-            if(func_802878C4(mvmnt))
+            if(animctrl_isStopped(mvmnt))
                 func_8028A010(0x1dc, 0.38f);
             if(func_80297AAC() < 0.0f)
                 next_state = BS_BEE_FLY;

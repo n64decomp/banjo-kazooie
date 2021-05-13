@@ -4,5 +4,6 @@
 #include "core2/timedfunc.h"
 #include "gc/gc.h"
 #include "core2/code_6DA30.h"
+#include "core2/animctrl.h"
 
 #endif

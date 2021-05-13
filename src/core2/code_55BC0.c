@@ -59,7 +59,7 @@ void func_802DCC90(Actor *this){
         func_803300D8(this->marker, func_802DCC78);
     }
 
-    if(func_802878C4(this->animctrl)){
+    if(animctrl_isStopped(this->animctrl)){
         func_80328B8C(this, 2, 0.0f, 1);
         func_803298D8(this);
     }

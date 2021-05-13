@@ -89,11 +89,11 @@ void func_802A5404(void){
 
 void func_802A54A8(void){
     AnimCtrl *aCtrl = player_getAnimCtrlPtr();
-    func_802874AC(aCtrl);
-    func_80287684(aCtrl, 0);
+    animctrl_reset(aCtrl);
+    animctrl_setSmoothTransition(aCtrl, 0);
     animctrl_setIndex(aCtrl, ANIM_BANJO_LONGLEG_ENTER_AS_BIRD);
     animctrl_setDuration(aCtrl, 1.0f);
-    func_80287674(aCtrl, 1);
+    animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
     func_802875AC(aCtrl, "bsblongleg.c", 0xe1);
     func_802917E4(2, D_8037D35C);
     func_803219F4(2);
@@ -103,11 +103,11 @@ void func_802A54A8(void){
 
 void func_802A5548(void){
     AnimCtrl *aCtrl = player_getAnimCtrlPtr();
-    func_802874AC(aCtrl);
-    func_80287684(aCtrl, 0);
+    animctrl_reset(aCtrl);
+    animctrl_setSmoothTransition(aCtrl, 0);
     animctrl_setIndex(aCtrl, ANIM_BANJO_LONGLEG_ENTER_AS_BEAR);
     animctrl_setDuration(aCtrl, 0.5f);
-    func_80287674(aCtrl, 1);
+    animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
     func_802875AC(aCtrl, "bsblongleg.c", 0xf6);
     D_8037D360 = 0;
 }
@@ -134,11 +134,11 @@ void bsblongleg_enter_update(void){
     func_80299594(1, 0.5f);
     switch(D_8037D360){
         case 0:
-            if(func_802878C4(aCtrl))
+            if(animctrl_isStopped(aCtrl))
                 func_802A54A8();
             break;
         case 1:
-            if(func_802878C4(aCtrl))
+            if(animctrl_isStopped(aCtrl))
                 sp1C = BS_LONGLEG_IDLE;
             break;
     }
@@ -194,9 +194,9 @@ void bsblongleg_stand_end(void){
 void bsblongleg_walk_init(void){
     AnimCtrl *aCtrl = player_getAnimCtrlPtr();
 
-    func_802874AC(aCtrl);
+    animctrl_reset(aCtrl);
     animctrl_setIndex(aCtrl, ANIM_BANJO_LONGLEG_WALK);
-    func_80287674(aCtrl, 2);
+    animctrl_setPlaybackType(aCtrl,  ANIMCTRL_LOOP);
     func_802875AC(aCtrl, "bsblongleg.c", 0x1a1);
     func_8029C7F4(2,1,1,2);
     func_80289EC8(D_80364A40, D_80364A44, D_80364A48, D_80364A4C);
@@ -209,10 +209,10 @@ void bsblongleg_walk_update(void){
     func_80299594(1, 0.5f);
     func_8029AD28(0.47f, 4);
     func_8029AD28(0.97f, 3);
-    if(func_802878E8(aCtrl, 0.7781f))
+    if(animctrl_isAt(aCtrl, 0.7781f))
         func_802A5208(0);
 
-    if(func_802878E8(aCtrl, 0.2781f))
+    if(animctrl_isAt(aCtrl, 0.2781f))
         func_802A5208(1);
     
     func_802A524C();
@@ -243,12 +243,12 @@ void bsblongleg_walk_end(void){
 
 void func_802A5AB0(void){
     AnimCtrl *aCtrl = player_getAnimCtrlPtr();
-    func_802874AC(aCtrl);
-    func_80287684(aCtrl, 0);
+    animctrl_reset(aCtrl);
+    animctrl_setSmoothTransition(aCtrl, 0);
     animctrl_setDirection(aCtrl, 0);
     animctrl_setIndex(aCtrl, ANIM_BANJO_LONGLEG_ENTER_AS_BIRD);
     animctrl_setDuration(aCtrl, 1.0f);
-    func_80287674(aCtrl, 1);
+    animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
     func_802875AC(aCtrl, "bsblongleg.c", 0x200);
     D_8037D360 = 0;
 }
@@ -256,11 +256,11 @@ void func_802A5AB0(void){
 void func_802A5B34(void){
     AnimCtrl *aCtrl = player_getAnimCtrlPtr();
 
-    func_802874AC(aCtrl);
-    func_80287684(aCtrl, 0);
+    animctrl_reset(aCtrl);
+    animctrl_setSmoothTransition(aCtrl, 0);
     animctrl_setIndex(aCtrl, ANIM_BANJO_BTROT_EXIT);
     animctrl_setDuration(aCtrl, 0.6f);
-    func_80287674(aCtrl, 1);
+    animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
     func_802875AC(aCtrl, "bsblongleg.c", 0x210);
     D_8037D360 = 1;
 }
@@ -282,15 +282,15 @@ void bsblongleg_exit_update(void){
     func_80299628(1);
     switch(D_8037D360){
         case 0://L802A5C7C
-            if(func_802878E8(aCtrl, 0.68f))
+            if(animctrl_isAt(aCtrl, 0.68f))
                 func_8030E2C4(D_8037D361);
             
-            if(func_802878C4(aCtrl))
+            if(animctrl_isStopped(aCtrl))
                 func_802A5B34();
 
             break;
         case 1://L802A5CB4
-            if(func_802878C4(aCtrl))
+            if(animctrl_isStopped(aCtrl))
                 sp1C = BS_IDLE;
             break;
     }
@@ -310,13 +310,13 @@ void bsblongleg_exit_end(void){
 void bsblongleg_jump_init(void){
     AnimCtrl * aCtrl = player_getAnimCtrlPtr();
     D_8037D350 = 0.14f;
-    func_802874AC(aCtrl);
+    animctrl_reset(aCtrl);
     animctrl_setIndex(aCtrl, ANIM_BANJO_LONGLEG_JUMP);
-    func_802876C0(aCtrl, 0.134f);
+    animctrl_setTransitionDuration(aCtrl, 0.134f);
     animctrl_setDuration(aCtrl, 1.0f);
     func_8028774C(aCtrl, D_8037D350);
-    func_802876CC(aCtrl, 0.0f, 0.42f);
-    func_80287674(aCtrl, 1);
+    animctrl_setSubRange(aCtrl, 0.0f, 0.42f);
+    animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
     func_802875AC(aCtrl, "bsblongleg.c", 0x27F);
     func_8029C7F4(1,1,3,6);
     if(func_8029B2E8() != 0.0f)
@@ -348,10 +348,10 @@ void bsblongleg_jump_update(void){
             if((sp34[1] < 100.0f) || sp30 < 10.0f)
                 animctrl_setDuration(aCtrl, 0.4f);
 
-            if(func_802878C4(aCtrl)){
-                func_802876CC(aCtrl, 0.0f, 0.5282f);
+            if(animctrl_isStopped(aCtrl)){
+                animctrl_setSubRange(aCtrl, 0.0f, 0.5282f);
                 animctrl_setDuration(aCtrl, 4.5f);
-                func_80287674(aCtrl, 1);
+                animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
                 D_8037D360 = 1;
             }
             break;
@@ -359,7 +359,7 @@ void bsblongleg_jump_update(void){
             if((0.4 < func_802877D8(aCtrl)) && sp30  < 70.0f){
                 D_8037D350 = func_802877D8(aCtrl);
                 D_8037D354 = sp30;
-                func_80287674(aCtrl, 3);
+                animctrl_setPlaybackType(aCtrl,  ANIMCTRL_STOPPED);
                 D_8037D360 = 2;
             }
             break;
@@ -368,15 +368,15 @@ void bsblongleg_jump_update(void){
             func_80299594(1, 0.5f);
             if(func_8028B2E8()){
                 func_8029C5E8();
-                func_802876CC(aCtrl, 0.0f, 1.0f);
+                animctrl_setSubRange(aCtrl, 0.0f, 1.0f);
                 animctrl_setDuration(aCtrl, 1.3f);
-                func_80287674(aCtrl, 1);
+                animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
                 D_8037D360 = 3;
             }
             break;
         case 3://L802A60AC
             func_80299594(1, 0.5f);
-            if(func_802878C4(aCtrl))
+            if(animctrl_isStopped(aCtrl))
                 sp44 = BS_LONGLEG_IDLE;
 
             if(button_pressed(BUTTON_A))
@@ -403,9 +403,9 @@ void bsblongleg_jump_end(void){
 void bsblongleg_slide_init(void){
     AnimCtrl * aCtrl = player_getAnimCtrlPtr();
 
-    func_802874AC(aCtrl);
+    animctrl_reset(aCtrl);
     animctrl_setIndex(aCtrl, ANIM_BANJO_LONGLEG_JUMP);
-    func_80287674(aCtrl, 3);
+    animctrl_setPlaybackType(aCtrl,  ANIMCTRL_STOPPED);
     func_8028774C(aCtrl, 0.0865f);
     func_802875AC(aCtrl, "bsblongleg.c", 0x339);
     func_8029C7F4(1,1,3,3);

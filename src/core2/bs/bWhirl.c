@@ -92,7 +92,7 @@ void bsbwhirl_enter_init(void){
 void bsbwhirl_enter_update(void){
     enum bs_e sp1C = 0;
     func_802952A8(1,1);
-    if(func_802878C4(player_getAnimCtrlPtr()))
+    if(animctrl_isStopped(player_getAnimCtrlPtr()))
         sp1C = BS_WONDERWING_IDLE;
     bs_setState(sp1C);
 }
@@ -169,13 +169,13 @@ void bsbwhirl_walk_end(void){
 void bsbwhirl_jump_init(void){
     AnimCtrl * aCtrl = player_getAnimCtrlPtr();
     
-    func_802874AC(aCtrl);
+    animctrl_reset(aCtrl);
     animctrl_setIndex(aCtrl, ANIM_BANJO_WONDERWING_JUMP);
     animctrl_setDuration(aCtrl, 0.8f);
-    func_802876C0(aCtrl, 0.134f);
+    animctrl_setTransitionDuration(aCtrl, 0.134f);
     func_8028774C(aCtrl, 0.14f);
-    func_802876CC(aCtrl, 0.0f, 0.4495f);
-    func_80287674(aCtrl, 1);
+    animctrl_setSubRange(aCtrl, 0.0f, 0.4495f);
+    animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
     func_802875AC(aCtrl, "bsbwhirl.c", 0x181);
     func_8029C7F4(1,1,3,6);
     if(func_8029B2E8() != 0.0f)
@@ -204,9 +204,9 @@ void bsbwhirl_jump_update(void){
     switch(D_8037D3B4){
         case 0://L802AAB48
             if(func_8028B254(0x82)){
-                func_802876CC(aCtrl, 0.0f, 1.0f);
+                animctrl_setSubRange(aCtrl, 0.0f, 1.0f);
                 animctrl_setDuration(aCtrl, 0.8f);
-                func_80287674(aCtrl, 1);
+                animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
                 D_8037D3B4 = 1;
             }
             break;
@@ -220,7 +220,7 @@ void bsbwhirl_jump_update(void){
             }
             break;
         case 2://L802AABC8
-            if(func_802878C4(aCtrl))
+            if(animctrl_isStopped(aCtrl))
                 sp2C = BS_WONDERWING_IDLE;
             sp2C = func_802AA510(sp2C);
             break;
@@ -240,12 +240,12 @@ void bsbwhirl_jump_end(void){
 void bsbwhirl_exit_init(void){
     AnimCtrl *aCtrl = player_getAnimCtrlPtr();
 
-    func_802874AC(aCtrl);
-    func_80287684(aCtrl, 0);
+    animctrl_reset(aCtrl);
+    animctrl_setSmoothTransition(aCtrl, 0);
     animctrl_setDirection(aCtrl, 0);
     animctrl_setIndex(aCtrl, ANIM_BANJO_WONDERWING_EXIT);
     animctrl_setDuration(aCtrl, 0.5f);
-    func_80287674(aCtrl, 1);
+    animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
     func_802875AC(aCtrl, "bsbwhirl.c", 0x201);
     func_80289F10(1);
     func_8029957C(2);
@@ -256,7 +256,7 @@ void bsbwhirl_exit_init(void){
 void bsbwhirl_exit_update(void){
     enum bs_e sp1C = 0;
     
-    if(func_802878C4(player_getAnimCtrlPtr()))
+    if(animctrl_isStopped(player_getAnimCtrlPtr()))
         sp1C = BS_IDLE;
 
     bs_setState(sp1C);

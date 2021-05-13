@@ -147,7 +147,7 @@ void func_80388FA0(Actor *this, s32 arg1){
             func_8028F918(0);
             break;
         case 1:
-            func_80287684(this->animctrl, 0);
+            animctrl_setSmoothTransition(this->animctrl, 0);
             break;
         case 5:
             func_80388F24(this);
@@ -162,7 +162,7 @@ void func_80388FA0(Actor *this, s32 arg1){
              myOther = this->unk100;
             if(myOther && other && myOther->unk14_20 == 0xB8)
                  func_80328B8C(other, 2, 0.0001f, 1);
-            func_80287684(this->animctrl, 1);
+            animctrl_setSmoothTransition(this->animctrl, 1);
             func_803298AC(this);
             this->unk44_31 = func_8030D90C();
             func_8030DA80(this->unk44_31, 0x3f9);
@@ -513,7 +513,7 @@ void func_803899B0(Actor * this){
             ) 
             && randf() < 0.2
         ){
-            animctrl_setDirection(this->animctrl, func_802877B8(this->animctrl)^1);
+            animctrl_setDirection(this->animctrl, animctrl_isPlayedForwards(this->animctrl)^1);
         }//L8038A088
         else if( func_8032886C(this, 0.25f)
             || func_8032886C(this, 0.28f)

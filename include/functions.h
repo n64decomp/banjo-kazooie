@@ -51,9 +51,6 @@ float gu_sqrtf(float val);
 
 BKSpriteFrame *spriteGetFramePtr(BKSprite *, u32); 
 
-void func_802876CC(AnimCtrl *, f32,f32);
-void animctrl_setDuration(AnimCtrl *, f32);
-AnimCtrl *player_getAnimCtrlPtr(void);
 s32  func_80289FE8(f32);
 void func_8028A180(s32 animation, f32 duration);
 void func_8028A37C(f32);
@@ -210,13 +207,7 @@ f32  mlDiffDegF(f32, f32);
 void func_8025A6EC(enum comusic_e, s32);
 void func_8025A70C(enum comusic_e);
 void comusic_8025AB44(enum comusic_e comusic_id, s32 arg1, s32 arg2);
-int func_802878E8(AnimCtrl *, f32);
 
-void animctrl_setIndex(AnimCtrl *this, enum asset_e index);
-void func_802875AC(AnimCtrl * this, char *file, s32 line);
-void func_802876C0(AnimCtrl *this, f32 arg1);
-void func_8028774C(AnimCtrl *, f32);
-f32  func_802877D8(AnimCtrl *);
 void func_8028A010(s32, f32);
 void func_8028A1F4(s32, f32, f32);
 void func_8028A274(enum asset_e, f32);
@@ -302,7 +293,6 @@ void func_80292078(s32, f32);
 void func_80299594(s32, f32);
 void func_8029E180(s32, f32);
 int func_80291700(s32, f32);
-void func_8028764C(AnimCtrl *, f32);
 
 
 #endif

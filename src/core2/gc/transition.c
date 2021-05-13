@@ -69,10 +69,10 @@ void _gctranstion_changeState(s32 state, struct9s *arg1){
 
     if(arg1 != NULL && arg1->unkC != NULL){
         D_80382430.animctrl = animctrl_new(0);
-        func_802874AC(D_80382430.animctrl);
+        animctrl_reset(D_80382430.animctrl);
         animctrl_setIndex(D_80382430.animctrl, arg1->unkC);
         animctrl_setDuration(D_80382430.animctrl, arg1->unk4);
-        func_80287674(D_80382430.animctrl, 1);
+        animctrl_setPlaybackType(D_80382430.animctrl,  ANIMCTRL_ONCE);
         if(state == 5){
             animctrl_setDirection(D_80382430.animctrl, 0);
             func_8028F7C8(1); //player_noControl(true)
@@ -300,7 +300,7 @@ void gctransition_update(void){
         return;
     
     if(D_80382430.animctrl != NULL){
-        func_802873C0(D_80382430.animctrl);
+        animctrl_update(D_80382430.animctrl);
         if(D_80382430.unk8 == 4){
             switch(D_80382430.unk1C){
                 case 0:
@@ -344,7 +344,7 @@ void gctransition_update(void){
         D_80382430.timer += sp24;
     }
     if(D_80382430.unk4->unk4 < D_80382430.timer
-        || (D_80382430.animctrl!= NULL && func_802878C4(D_80382430.animctrl))
+        || (D_80382430.animctrl!= NULL && animctrl_isStopped(D_80382430.animctrl))
     ){
         D_80382430.timer = D_80382430.unk4->unk4;
         if(D_80382430.unk8 == 4 || D_80382430.unk8 == 5){

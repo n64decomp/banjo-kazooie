@@ -55,12 +55,12 @@ void bsbbuster_init(void){
     AnimCtrl *aCtrl = player_getAnimCtrlPtr();
     f32 sp20[3];
     
-    func_802874AC(aCtrl);
-    func_80287684(aCtrl, 0);
+    animctrl_reset(aCtrl);
+    animctrl_setSmoothTransition(aCtrl, 0);
     animctrl_setIndex(aCtrl, ANIM_BANJO_BBUSTER);
     animctrl_setDuration(aCtrl, 1.02f);
-    func_802876CC(aCtrl, 0.0f, 0.35f);
-    func_80287674(aCtrl, 1);
+    animctrl_setSubRange(aCtrl, 0.0f, 0.35f);
+    animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
     func_802875AC(aCtrl, "bsbbuster.c", 0x81);
     func_8029C7F4(1,1,3,6);
     gravity_set(0.0f);
@@ -88,12 +88,12 @@ void bsbbuster_update(void){
     s32 sp24[3];
 
     D_8037D2B8 = 0;
-    if(func_802878E8(aCtrl, 0.24f))
+    if(animctrl_isAt(aCtrl, 0.24f))
         func_80299BD4();
 
     switch(D_8037D2BA){
         case 0://8029FDF0
-            if(func_802878C4(player_getAnimCtrlPtr())){
+            if(animctrl_isStopped(player_getAnimCtrlPtr())){
                 animctrl_setDuration(aCtrl, 0.4f);
                 D_8037D2BA = 1;
             }
@@ -167,24 +167,24 @@ void bsbbuster_update(void){
                     gravity_set(D_8036499C);
                 }
             
-                func_802876CC(aCtrl, 0.0f, 0.7299f);
+                animctrl_setSubRange(aCtrl, 0.0f, 0.7299f);
                 animctrl_setDuration(aCtrl, 1.9f);
-                func_80287674(aCtrl, 1);
+                animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
                 D_8037D2BA = 4;
             }
             break;
         
         case 4://802A01CC
             func_802B6FA8();
-            if(func_802878C4(aCtrl)){
-                func_802876CC(aCtrl, 0.0f, 0.74f);
+            if(animctrl_isStopped(aCtrl)){
+                animctrl_setSubRange(aCtrl, 0.0f, 0.74f);
                 animctrl_setDuration(aCtrl, 15.0f);
-                func_80287674(aCtrl, 1);
+                animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
             }
             if(func_8028B2E8()){
-                func_802876CC(aCtrl, 0.0f, 1.0f);
+                animctrl_setSubRange(aCtrl, 0.0f, 1.0f);
                 animctrl_setDuration(aCtrl, 1.9f);
-                func_80287674(aCtrl, 1);
+                animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
                 sp44 = BS_LANDING;
             }
             break;

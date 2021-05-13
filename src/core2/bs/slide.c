@@ -61,9 +61,9 @@ void bsslide_init(void){
             }
         }
     }
-    func_802874AC(aCtrl);
+    animctrl_reset(aCtrl);
     animctrl_setIndex(aCtrl, D_8037D520);
-    func_80287674(aCtrl, 3);
+    animctrl_setPlaybackType(aCtrl,  ANIMCTRL_STOPPED);
     animctrl_setDuration(aCtrl, 1.0f);
     func_802875AC(aCtrl, "bsslide.c", 0x7f);
     func_8029C7F4(1,1,3,3);

@@ -41,21 +41,21 @@ void bsjump_init(void){
     }
 
     if(sp30 == BS_BPECK){
-        func_802876CC(aCtrl, 0.0f, 0.6667f);
+        animctrl_setSubRange(aCtrl, 0.0f, 0.6667f);
         func_8028774C(aCtrl, 0.5042f);
         animctrl_setDuration(aCtrl, 8.0f);
-        func_80287674(aCtrl, 1);
+        animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
         D_8037D4C0 = 1;
     } 
     else {
         D_8037D4C1 = (sp30 == BS_SWIM_IDLE) || (sp30 == BS_SWIM);
-        func_802874AC(aCtrl);
+        animctrl_reset(aCtrl);
         animctrl_setIndex(aCtrl, ANIM_BANJO_JUMP);
         animctrl_setDuration(aCtrl, 1.9f);
-        func_802876C0(aCtrl, 0.134f);
+        animctrl_setTransitionDuration(aCtrl, 0.134f);
         func_8028774C(aCtrl, 0.3f);
-        func_802876CC(aCtrl, 0.0f, 0.5042f);
-        func_80287674(aCtrl, 1);
+        animctrl_setSubRange(aCtrl, 0.0f, 0.5042f);
+        animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
         func_802875AC(aCtrl, D_80375960, 0x95);
         func_8029C7F4(1,1,3,6);
         if(func_8029B2E8() != 0.0f){
@@ -101,16 +101,16 @@ void bsjump_update(void){
 
     switch(D_8037D4C0){
         case 0://L802B1428
-            if(func_802878C4(aCtrl)){
-                func_802876CC(aCtrl, 0.0f, 0.6667);
+            if(animctrl_isStopped(aCtrl)){
+                animctrl_setSubRange(aCtrl, 0.0f, 0.6667);
                 animctrl_setDuration(aCtrl, 4.0f);
-                func_80287674(aCtrl, 1);
+                animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
                 D_8037D4C0 = 1;
             }
             if(func_8028B254(0x82)){
-                func_802876CC(aCtrl, 0.0f, 1.0f);
+                animctrl_setSubRange(aCtrl, 0.0f, 1.0f);
                 animctrl_setDuration(aCtrl, 1.4f);
-                func_80287674(aCtrl, 1);
+                animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
                 D_8037D4C0 = 2;
             }
             break;
@@ -123,9 +123,9 @@ void bsjump_update(void){
                 sp34 = BS_BSHOCK_CHARGE;
             }
             if(func_8028B254(0x5A)){
-                func_802876CC(aCtrl, 0.0, 1.0f);
+                animctrl_setSubRange(aCtrl, 0.0, 1.0f);
                 animctrl_setDuration(aCtrl, 2.0f);
-                func_80287674(aCtrl, 1);
+                animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
                 D_8037D4C0 = 2;
             }
             break;

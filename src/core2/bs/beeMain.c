@@ -138,13 +138,13 @@ void func_802A12FC(void){
 
     s0 = player_getAnimCtrlPtr();
     func_802A0340();
-    func_802874AC(s0);
-    func_80287684(s0, 0);
+    animctrl_reset(s0);
+    animctrl_setSmoothTransition(s0, 0);
     animctrl_setIndex(s0, ANIM_BEE_JUMP);
-    func_802876CC(s0, 0, 0.34f);
+    animctrl_setSubRange(s0, 0, 0.34f);
     func_8028774C(s0, 0.1f);
     animctrl_setDuration(s0, 1.2f);
-    func_80287674(s0, 1);
+    animctrl_setPlaybackType(s0,  ANIMCTRL_ONCE);
     func_802875AC(s0, "bsbeemain.c", 0x15b);
     func_8029C7F4(1,1,3,6);
     if(func_8029B2E8() != 0.0f){
@@ -178,7 +178,7 @@ void func_802A1438(void){
             func_8028A3B8(0.715f, 0.7f);
             D_8037D2D4 = 2;
         }else{
-            if(func_802878C4(sp28)){
+            if(animctrl_isStopped(sp28)){
                 func_8028A3B8(0.51f, 4.0f);
                 D_8037D2D4 = 1;
             }
@@ -200,7 +200,7 @@ void func_802A1438(void){
         break;
     case 3:
         func_80299628(0);
-        if(func_802878C4(sp28)){
+        if(animctrl_isStopped(sp28)){
             func_80297970(0.0f);
             sp2c = BS_BEE_IDLE;
         }
@@ -233,12 +233,12 @@ void func_802A1664(void){
 
     s0 = player_getAnimCtrlPtr();
     func_802A0340();
-    func_802874AC(s0);
+    animctrl_reset(s0);
     animctrl_setIndex(s0, ANIM_BEE_JUMP);
     func_8028774C(s0, 0.34f);
     animctrl_setDuration(s0, 8.0f);
-    func_802876CC(s0, 0, 0.51f);
-    func_80287674(s0, 1);
+    animctrl_setSubRange(s0, 0, 0.51f);
+    animctrl_setPlaybackType(s0,  ANIMCTRL_ONCE);
     func_802875AC(s0, "bsbeemain.c", 0x1e2);
     func_8029C7F4(1,1,3,6);
     D_8037D2D4 = 0;
@@ -272,7 +272,7 @@ void func_802A170C(void){
             break;
         case 2:
             func_80299628(0);
-            if(func_802878C4(sp28)){
+            if(animctrl_isStopped(sp28)){
                 func_80297970(0.0f);
                 sp2c = BS_BEE_IDLE;
             }
@@ -312,11 +312,11 @@ void func_802A18E8(s32 arg0){
     //sp40 = arg0;
     sp3C = player_getAnimCtrlPtr();
     func_802A0340();
-    func_802874AC(sp3C);
+    animctrl_reset(sp3C);
     animctrl_setIndex(sp3C, ANIM_BEE_OW);
     animctrl_setDuration(sp3C, 1.0f);
-    func_802876CC(sp3C, 0, 0.7518f);
-    func_80287674(sp3C, 1);
+    animctrl_setSubRange(sp3C, 0, 0.7518f);
+    animctrl_setPlaybackType(sp3C,  ANIMCTRL_ONCE);
     func_802875AC(sp3C, "bsbeemain.c", 0x269);
     if(arg0 == 1){
         func_8030E58C(0x38, 1.8f);
@@ -405,12 +405,12 @@ void bsbeemain_die_init(void){
     sp3C = player_getAnimCtrlPtr();
     func_8029B930();
     func_802A0340();
-    func_802874AC(sp3C);
-    func_80287684(sp3C, 0);
+    animctrl_reset(sp3C);
+    animctrl_setSmoothTransition(sp3C, 0);
     animctrl_setIndex(sp3C, ANIM_BEE_DIE);
-    func_802876CC(sp3C, 0, 0.3966f);
+    animctrl_setSubRange(sp3C, 0, 0.3966f);
     animctrl_setDuration(sp3C, 1.7f);
-    func_80287674(sp3C, 1);
+    animctrl_setPlaybackType(sp3C,  ANIMCTRL_ONCE);
     func_802875AC(sp3C, "bsbeemain.c", 0x2ef);
     func_8029C7F4(1,1,2,3);
     _player_getPosition(sp2C);

@@ -12,12 +12,12 @@ void bsow_init(void){
     AnimCtrl *plyr_mvmnt;
 
     plyr_mvmnt = player_getAnimCtrlPtr();
-    func_802874AC(plyr_mvmnt);
-    func_80287684(plyr_mvmnt, 0);
-    func_802876CC(plyr_mvmnt, 0.0f, 0.534399986267f);
+    animctrl_reset(plyr_mvmnt);
+    animctrl_setSmoothTransition(plyr_mvmnt, 0);
+    animctrl_setSubRange(plyr_mvmnt, 0.0f, 0.534399986267f);
     animctrl_setIndex(plyr_mvmnt, ANIM_BANJO_OW);
     animctrl_setDuration(plyr_mvmnt, 1.70000004768f);
-    func_80287674(plyr_mvmnt, 1);
+    animctrl_setPlaybackType(plyr_mvmnt,  ANIMCTRL_ONCE);
     func_802875AC(plyr_mvmnt, "bsow.c", 0x50);
     func_80299BFC(1.0f);
     func_802B360C();

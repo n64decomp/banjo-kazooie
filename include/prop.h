@@ -4,6 +4,7 @@
 #include <ultra64.h>
 
 #include "structs.h"
+#include "core2/animctrl.h"
 
 enum ch_id{
     ch_id_bigbutt = 4
@@ -79,53 +80,6 @@ typedef struct actorMarker_s{
     s32         unk5C;
 } ActorMarker;
 
-
-
-/*typedef struct mtx_array{
-    u32 count;
-    u32 size;
-    float mtx[];
-} MtxArray;*/
-
-typedef struct animation_s{
-    void (* matrices)(s32, s32);
-    s32     unk4;
-    u8      unk8;
-    u8      unk9;
-    s16     unkA;
-    s16     unkC;
-    s16     unkE;
-    u32     index;
-    f32     timer;
-    f32     duration;
-    u8      unk1C;
-    u8      unk1D;
-    u8      unk1E;
-    u8      unk1F;
-} Animation;
-
-typedef struct animctrl_s{
-    Animation *animation;
-    f32     timer;
-    f32     duration_min;
-    f32     duration_max;
-    f32     animation_timer;
-    f32     transition_timer;
-    float     unk18;
-    s32     index;
-    u8      playback_type;
-    u8      playback_direction;
-    u8      unk22;
-    u8      unk23;
-    u8      unk24;
-    u8      unk25;
-    u8      pad26[2];
-} AnimCtrl;
-
-typedef struct actorAnimCtrl_s{
-    AnimCtrl animctrl;
-    Animation animation;
-} ActorAnimCtrl;
 
 typedef struct chmrvile_s{
     u8  pad0[0x4];

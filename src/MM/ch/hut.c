@@ -105,7 +105,7 @@ void    chhut_update(Actor *this){
             break;
         case 1: //L80386C2C
             if(func_802877D8(this->animctrl) > 0.99){
-                func_802876C0(this->animctrl, 0.0f);
+                animctrl_setTransitionDuration(this->animctrl, 0.0f);
                 func_80328A84(this, 2);
                 this->position_y -= 160.0f;
             }

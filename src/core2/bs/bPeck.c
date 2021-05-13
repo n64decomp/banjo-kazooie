@@ -87,37 +87,37 @@ void bsbpeck_update(void){
 
     switch(D_8037D374){
         case 0://L802A6770
-            if(func_802878E8(aCtrl, 0.9126f)){
+            if(animctrl_isAt(aCtrl, 0.9126f)){
                 animctrl_setIndex(aCtrl, ANIM_BANJO_BPECK_ENTER);
                 func_8028774C(aCtrl, 0.0f);
                 animctrl_setDuration(aCtrl, 0.35f);
-                func_80287674(aCtrl, 2);
+                animctrl_setPlaybackType(aCtrl,  ANIMCTRL_LOOP);
                 func_802875AC(aCtrl, D_803755E0, 0xbd);
                 D_8037D370 = 0.5f;
                 D_8037D374 = 1;
             }
             break;
         case 1://L802A67E8
-            if(func_802878E8(aCtrl, 0.1621f))
+            if(animctrl_isAt(aCtrl, 0.1621f))
                 func_802A664C();
             
-            if(func_802878E8(aCtrl, 0.7f))
+            if(animctrl_isAt(aCtrl, 0.7f))
                 func_802A664C();
 
             D_8037D370 -= func_8033DD9C();
             if(D_8037D370 < 0.0f){
-                func_802874AC(aCtrl);
-                func_80287684(aCtrl, 0);
+                animctrl_reset(aCtrl);
+                animctrl_setSmoothTransition(aCtrl, 0);
                 animctrl_setIndex(aCtrl, ANIM_BANJO_BPECK);
                 animctrl_setDirection(aCtrl, 0);
                 animctrl_setDuration(aCtrl, 0.2f);
-                func_80287674(aCtrl, 1);
+                animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
                 func_802875AC(aCtrl, D_803755EC, 0xd4);
                 D_8037D374 = 2;
             }
             break;
         case 2://L802A68C4
-            if(func_802878C4(aCtrl))
+            if(animctrl_isStopped(aCtrl))
                 sp24 = BS_FALL;
             break;
     }//L802A68D8

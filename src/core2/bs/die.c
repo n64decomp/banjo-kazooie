@@ -23,12 +23,12 @@ void bsdie_init(void){
     f32 sp2C[3];
     f32 sp20[3];
 
-    func_802874AC(aCtrl);
-    func_80287684(aCtrl, 0);
+    animctrl_reset(aCtrl);
+    animctrl_setSmoothTransition(aCtrl, 0);
     animctrl_setIndex(aCtrl, ANIM_BANJO_DIE);
-    func_802876CC(aCtrl, 0.0f, 0.3356f);
+    animctrl_setSubRange(aCtrl, 0.0f, 0.3356f);
     animctrl_setDuration(aCtrl, 2.0f);
-    func_80287674(aCtrl, 1);
+    animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
     func_802875AC(aCtrl, "bsdie.c", 0x7e);
     func_8029B930();
     func_8030E58C(0x36, 1.0f);
@@ -66,8 +66,8 @@ void bsdie_update(void){
     switch(D_8037D414){
         case 0://L802AE0B8
             if(_bsdie_802ADE00()){
-                func_802876CC(aCtrl, 0.0f, 1.0f);
-                func_80287674(aCtrl, 1);
+                animctrl_setSubRange(aCtrl, 0.0f, 1.0f);
+                animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
                 player_setYVelocity(400.0f);
                 func_80299DB8();
                 func_8030E624(0x7ff19039);
@@ -89,10 +89,10 @@ void bsdie_update(void){
             if(140.0f < D_8037D410)
                 func_802929F8();
 
-            if(func_802878E8(aCtrl, 0.6538f))
+            if(animctrl_isAt(aCtrl, 0.6538f))
                 animctrl_setDuration(aCtrl, 4.0f);
 
-            if(func_802878C4(aCtrl)){
+            if(animctrl_isStopped(aCtrl)){
                 D_8037D410 = 0.0f;
                 D_8037D414 = 3;
             }
@@ -106,7 +106,7 @@ void bsdie_update(void){
     if( func_8029E270(0) != 0.0f 
         && func_80294574() 
         && ( D_8037D414
-             || ( func_802878C4(aCtrl) 
+             || ( animctrl_isStopped(aCtrl) 
                   && ( player_getYPosition() < (func_80294500() - 150.0f)) 
                 )
            )

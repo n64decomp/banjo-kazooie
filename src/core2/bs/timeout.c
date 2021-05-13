@@ -23,18 +23,18 @@ void func_802B6270(void){
 
 void func_802B6314(void){
     AnimCtrl *aCtrl = player_getAnimCtrlPtr();
-    if(func_802878E8(aCtrl, 0.0625f))
+    if(animctrl_isAt(aCtrl, 0.0625f))
         func_80292E48();
 
-    if(func_802878E8(aCtrl, 0.18f))
+    if(animctrl_isAt(aCtrl, 0.18f))
         func_8030E624(0x7ff193eb);
 
-    if(func_802878E8(aCtrl, 0.8421f)){
+    if(animctrl_isAt(aCtrl, 0.8421f)){
         func_80292E80(0, 0.3f);
         func_80292E80(1, 0.3f);
     }
 
-    if(func_802878E8(aCtrl, 0.84f))
+    if(animctrl_isAt(aCtrl, 0.84f))
         func_8029B6F0();
 }
 
@@ -46,9 +46,9 @@ void func_802B63C8(void){
 
 void func_802B63F8(void){
     AnimCtrl *aCtrl = player_getAnimCtrlPtr();
-    func_802874AC(aCtrl);
+    animctrl_reset(aCtrl);
     func_8029C848(aCtrl);
-    func_80287674(aCtrl, 2);
+    animctrl_setPlaybackType(aCtrl,  ANIMCTRL_LOOP);
     func_802875AC(aCtrl, "bstimeout.c", 0x7e);
     func_8029C7F4(1,1,3,7);
     func_80297970(0.0f);

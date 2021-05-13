@@ -28,7 +28,7 @@ segments:
   start: 0x00000000
   vram:  0x80286F90 # via https://hack64.net/wiki/doku.php?id=player_kazooie:ram_map
   subsegments:
-  - [0x0000, c, code_0]
+  - [0x0000, c, animctrl]
   - [0x0AD0, c, code_AD0]
   - [0x1930, c, code_1930]
   - [0x2240, c, code_2240]
@@ -358,7 +358,7 @@ segments:
   - [0x000DDB60, bin, data_DDB60]
   - [0x000E2350, .data, code_73640]
   - [0x000E2790, bin, data_E2790]
-  - [0x000ECE70, ".rodata", code_0]
+  - [0x000ECE60, ".rodata", animctrl]
   - [0x000ECE90, bin, data_ECE90]
   - [0x000ED410, .rodata, code_6B30]
   - [0x000ED500, bin, data_ED500]
