@@ -58,6 +58,7 @@ n_alEnvmixerPull    = 0x80260C3C;
 alN_PVoiceNew       = 0x80260210;
 n_alSavePull        = 0x80260770;
 n_alMainBusPull     = 0x80262E60;
+n_alResamplePull    = 0x80263684;
 _n_allocatePVoice     = 0x8025D200;
 n_alSynAllocVoice     = 0x8025D208;
 n_alSynSetVol         = 0x8025D400;

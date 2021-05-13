@@ -120,6 +120,23 @@ typedef struct audio_0_struct{
     ALPlayer *unk70;
 } AL0s; //modified ALSynth?
 
+
+typedef Acmd *(*N_ALCmdHandler)(s32, Acmd *);
+
+typedef struct N_ALFilter_s {
+    struct N_ALFilter_s   *source;
+    N_ALCmdHandler        handler;
+    ALSetParam          setParam;
+    s16                 inp;
+    s16                 outp;
+    s32                 type;
+} N_ALFilter;
+
+
+typedef struct N_ALMainBus_s {
+    N_ALFilter           filter;
+} N_ALMainBus;
+
 typedef struct N_ALAuxBus_s {
     ALFilter            filter;
     s32                 sourceCount;
