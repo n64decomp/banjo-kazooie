@@ -414,6 +414,8 @@ build/us.v10/src/core1/done/audio/%.c.o: INCLUDE_CFLAGS = -I . -I include -I inc
 build/us.v10/src/core1/done/audio/%.c.o: OPT_FLAGS = -O3
 # build/us.v10/src/core1/code_21CB0.c.o: INCLUDE_CFLAGS = -I . -I include -I include/2.0L -I include/2.0L/PR
 # build/us.v10/src/core1/code_21CB0.c.o: OPT_FLAGS = -O3
+build/us.v10/src/core1/done/io/sptask.c.o: OPT_FLAGS = -O1
+
 build/us.v10/src/bk_boot_27F0.c.o: OPT_FLAGS = -O2
 build/us.v10/src/done/destroythread.c.o: OPT_FLAGS := -O1
 build/us.v10/src/done/pirawdma.c.o: OPT_FLAGS := -O1
