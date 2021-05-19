@@ -11,12 +11,15 @@ void gravity_set(f32);
 void func_80299B58(f32, f32);
 f32 func_8029B2E8(void);
 f32 func_8029B33C(void);
+void func_80297A88(f32 *);
 
 extern f32 D_80364CD0;
 extern f32 D_80364CD4;
 extern f32 D_80364CE4;
 
 extern char D_80375960[];
+extern char D_8037596C[];
+extern char D_80375978[];
 extern f32 D_8037599C;
 extern f32 D_803759A0;
 
@@ -167,11 +170,84 @@ void bsjump_end(void){
         gravity_reset();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/jump/func_802B1660.s")
+void bsjump_fall_init(void){
+    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    int sp20;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/jump/func_802B1750.s")
+    if(func_802933C0(7) && 700.0f < func_80297AAC())
+        player_setYVelocity(700.0f);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/jump/func_802B1920.s")
+    sp20 = (bs_getPrevState() == BS_BFLIP)? 0 : 1;
+    animctrl_reset(aCtrl);
+    animctrl_setSmoothTransition(aCtrl, sp20);
+    animctrl_setIndex(aCtrl, 0xb0);
+    animctrl_setTransitionDuration(aCtrl, 0.3f);
+    animctrl_setDuration(aCtrl, 0.38f);
+    func_802875AC(aCtrl, D_8037596C, 0x188);
+    func_8029C7F4(1,1,3,6);
+    D_8037D4C0 = 0;
+}
+
+void bsjump_fall_update(void){
+    enum bs_e sp2C = 0;
+    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    f32 sp1C[3];
+
+    if(func_802933C0(0xf))
+        func_802978A4();
+    else
+        func_802B6FA8();
+
+    func_80297A88(sp1C);
+
+    switch(D_8037D4C0){
+        case 0://L802B17B8
+            if(func_8028B254(0x5a)){
+                animctrl_reset(aCtrl);
+                animctrl_setIndex(aCtrl, 8);
+                func_8028774C(aCtrl, 0.6667f);
+                animctrl_setDuration(aCtrl, 2.0f);
+                animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
+                func_802875AC(aCtrl, D_80375978, 0x1b5);
+                D_8037D4C0 = 1;
+            }
+            break;
+        case 1:
+            break;
+    }//L802B1824
+    if(func_802933D0(0xf)){
+        if(func_8028B424())
+            sp2C = BS_FALL_TUMBLING;
+
+        if(func_802950E0() && func_802933D0(5))
+            sp2C = BS_BFLAP;
+
+        if(func_80295158())
+            sp2C = BS_BPECK;
+        
+        if(func_80294F3C())
+            sp2C = BS_BBUSTER;
+        
+        if(player_inWater())
+            sp2C = BS_LANDING_IN_WATER;
+    }
+    else if(player_inWater()){
+        func_8029CCC4();
+        if(func_802933C0(6) || func_802933C0(0x14)){
+            sp2C = BS_TIMEOUT;
+        }
+
+    }//L802B18E8
+
+    if(func_8028B2E8()){
+        func_8029C5E8();
+        sp2C = BS_LANDING;
+    }
+
+    bs_setState(sp2C);
+}
+
+void bsjump_fall_end(void){};
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/jump/func_802B1928.s")
 

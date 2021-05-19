@@ -182,9 +182,9 @@ void func_802B5B18(void);
 void func_802B5C40(void);
 void func_802B5E10(void);
 //BS_FALL(void);
-void func_802B1660(void);
-void func_802B1750(void);
-void func_802B1920(void);
+void bsjump_fall_init(void);
+void bsjump_fall_update(void);
+void bsjump_fall_end(void);
 //BS_DIVE_ENTER
 void func_802A7DAC(void);
 void func_802A7E2C(void);
