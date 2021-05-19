@@ -85,7 +85,54 @@ void bsjig_jiggy_update(void){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/jig/func_802B0CD8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/jig/func_802B0D1C.s")
+void bsjig_jiggy_end(void){
+    s32 sp2C;
+    s32 sp28 = 4;
+    int sp24;
+    sp2C = 0;
+    sp24  = marker_getActor(D_8037D4B4)->unk38_31;
+    if(D_8037D4B0 == 0)
+        func_80345F24(0xe);
+
+    func_802B0CD8();
+    func_8029E070(0);
+    func_80291548();
+
+    if(bs_getNextState() != BS_JIG_NOTEDOOR){
+        func_8025A2FC(-1, 0xfa0);
+        func_8024BD08(1);
+    }
+    func_8028D5F4();
+    if( jiggyscore_total() == 100 
+        && func_8031FF1C(0xFC) 
+        && bs_getNextState() != BS_JIG_NOTEDOOR
+    ){
+        func_8028F918(2);
+        func_802E4078(MAP_CS_END_ALL_100, 0, 1);
+    } else {//L802B0DFC
+        if( jiggyscore_total() == 2
+            && func_803348C0() == 2
+        ){
+            sp2C = 0xb51;
+            sp28 = 0xe;
+        }
+        else{//L802B0E34
+            switch(sp24){
+                case 0x13:
+                    sp2C = 0xa16;
+                    break;
+                case 0x17:
+                    if(!levelSpecificFlags_get(0) || !levelSpecificFlags_get(1))
+                        sp2C = 0xd2d;
+                    break;
+            }
+        }//L802B0E88
+        if(sp2C != 0){
+            func_80311480(sp2C, sp28, 0, 0, 0, 0);
+        }
+    }//L802B0EA4
+    func_80298A64();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/jig/func_802B0EBC.s")
 
