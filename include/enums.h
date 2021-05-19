@@ -626,6 +626,7 @@ enum item_e
 {
     item_note = 0xC,
     ITEM_EGGS = 0xD,
+    ITEM_JIGGY = 0xE,
     ITEM_RED_FEATHER = 0xF,
     ITEM_GOLD_FEATHER = 0x10,
     ITEM_JINJOS = 0x12,

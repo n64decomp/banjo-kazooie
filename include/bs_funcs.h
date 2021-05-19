@@ -270,7 +270,7 @@ void func_8029F068(void);
 void func_8029F218(void);
 void func_8029F348(void);
 //BS_JIG_JIGGY
-void func_802B0A78(void);
+void bsjig_jiggy_init(void);
 void func_802B0BE4(void);
 void func_802B0D1C(void);
 void func_802B0EBC(void);

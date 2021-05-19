@@ -72,7 +72,7 @@ bsMap D_80363824[] ={
     {BS_DIE,        bsdie_init,     bsdie_update,   bsdie_end,      func_80296590},
     {BS_DINGPOT,    func_802A5120, func_802A5190, func_802A51C0, func_80296590},
     {BS_ANT_DIE,    func_8029F068, func_8029F218, func_8029F348, func_80296590},
-    {BS_JIG_JIGGY,  func_802B0A78, func_802B0BE4, func_802B0D1C, func_802B0EBC},
+    {BS_JIG_JIGGY,  bsjig_jiggy_init, func_802B0BE4, func_802B0D1C, func_802B0EBC},
     {BS_BTROT_SLIDE, bsbtrot_slide_init, bsbtrot_slide_update, bsbtrot_slide_end, func_802B5350},
     {0x46,          func_802A2098, func_802A2130, func_802A2054, func_80296590},
     {BS_PUMPKIN_IDLE,   func_802B2384, func_802B242C, func_802B24AC, func_802B5350},
