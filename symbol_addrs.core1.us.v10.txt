@@ -71,9 +71,9 @@ __n_CSPVoiceHandler = 0x8025E438;
 n_alCSPNew =          0x8025EABC;
 alCSPSetBank =      0x8025EC30;
 alCSPStop =         0x8025EC70;
-alCSeqNextEvent =   0x8025EDC4;
-alCSeqNew =         0x8025F0BC;
-alCSeqNewMarker =   0x8025F1D0;
+n_alCSeqNextEvent =   0x8025EDC4;
+n_alCSeqNew =         0x8025F0BC;
+n_alCSeqNewMarker =   0x8025F1D0;
 alCSPSetSeq =       0x8025F340;
 alCSPPlay =         0x8025F380;
 alCSPSetVol =       0x8025F3B0;
@@ -320,6 +320,15 @@ osContGetReadData = 0x80266A74;
 __osContLastCmd = 0x80285950;
 __osContPifRam = 0x80285910;
 __osMaxControllers = 0x80285951;
+
+alCSeqGetLoc = 0x80267320;
+alCSeqSetLoc = 0x802673C0;
+alCSeqNextEvent = 0x80267584;
+alCSeqNew = 0x8026787C;
+alCSeqNewMarker = 0x80267990;
+alCSeqSecToTicks = 0x80267B04;
+alCSeqTicksToSec = 0x80267C00;
+
 write_file_blocks = 0x80255B30;
 load_file_blocks = 0x80255BAC;
 

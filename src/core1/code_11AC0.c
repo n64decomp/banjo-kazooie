@@ -136,7 +136,7 @@ void func_8024F890(u8 arg0, s32 arg1){
             D_80281720[arg0].unk192[i] = 0;
         }
         func_8024F764(D_80281720[arg0].index);
-        alCSeqNew(&D_80281720[arg0].cseq, D_802820E0[D_80281720[arg0].index]);
+        n_alCSeqNew(&D_80281720[arg0].cseq, D_802820E0[D_80281720[arg0].index]);
         
         D_80281720[arg0].cseqp.chanMask = func_80250474(arg0);
         alCSPSetSeq(&D_80281720[arg0].cseqp, &D_80281720[arg0].cseq);
@@ -262,7 +262,7 @@ void func_8024FE44(u8 arg0, f32 arg1, f32 arg2){
 }
 
 void func_8024FEEC(u8 arg0){
-    func_80267AFC(&D_80281720[arg0].cseq);
+    alCSeqGetTicks(&D_80281720[arg0].cseq);
 }
 
 void func_8024FF34(void){
