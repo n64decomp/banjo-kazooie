@@ -280,6 +280,45 @@ void bsjump_tumble_init(void){
     D_8037D4C0 = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/jump/func_802B1E80.s")
+void bsjump_tumble_update(void){
+    enum bs_e sp1C = 0;
+    if(func_8029E1A8(1))
+        func_80299CF4(0x63, 1.0f, 32000);
+    
+    func_8029E1A8(0);
+    func_802B6FA8();
+    if(func_8029E384(1)){
+        pitch_setIdeal(pitch_getIdeal() + 20.0f);
+    }
+    if(func_8029E348(0)){
+        if(func_802950E0())
+            sp1C = BS_BFLAP;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/jump/func_802B1F6C.s")
+        if(func_80295158())
+            sp1C = BS_BPECK;
+
+        if(func_80294F3C())
+            sp1C = BS_BBUSTER;
+    }//L802B1F2C
+
+    if(player_inWater())
+        sp1C = BS_LANDING_IN_WATER;
+
+    if(func_8028B2E8())
+        sp1C = BS_SPLAT;
+
+    bs_setState(sp1C);
+}
+
+void bsjump_tumble_end(void){
+    enum bs_e next_state = bs_getNextState();
+    if( next_state == BS_BBUSTER
+        || next_state == BS_BFLAP
+        || next_state == BS_BPECK
+    ){
+        func_80293240(3);
+    }
+    func_8029CB84();
+    func_802921BC(0.0f);
+    func_80299E6C();
+}
