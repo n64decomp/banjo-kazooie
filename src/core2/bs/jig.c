@@ -3,6 +3,8 @@
 #include "variables.h"
 
 extern char D_80375948[];
+extern f32 D_80375950;
+extern f32 D_80375954;
 
 extern u8 D_8037D4B2;
 
@@ -47,4 +49,15 @@ void bsjig_notedoor_init(void){
     func_8028D5DC();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/jig/func_802B1090.s")
+void bsjig_notedoor_update(void){
+    enum bs_e sp1C = 0;
+
+    if(func_80289FE8(D_80375950) || func_80289FE8(D_80375954))
+        func_80299CF4(0x3ea, 1.0f, 30000);
+
+    if(func_80289FC4())
+        sp1C = BS_IDLE;
+
+    bs_setState(sp1C);
+}
+
