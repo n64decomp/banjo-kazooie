@@ -83,7 +83,12 @@ void bsjig_jiggy_update(void){
     bs_setState(sp1C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/jig/func_802B0CD8.s")
+void func_802B0CD8(void){
+    if(D_8037D4B4){
+        func_802C82C0(marker_getActor(D_8037D4B4), 5);
+        D_8037D4B4 = NULL;
+    }
+}
 
 void bsjig_jiggy_end(void){
     s32 sp2C;
