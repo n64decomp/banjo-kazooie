@@ -204,7 +204,7 @@ void func_802B9B14(void);
 void func_802B9AAC(void);
 void func_802B9D00(void);
 //BS_JIG_NOTEDOOR(void);
-void func_802B0F88(void);
+void bsjig_notedoor_init(void);
 void func_802B1090(void);
 void func_802B0EF0(void);
 //BS_ANT_IDLE

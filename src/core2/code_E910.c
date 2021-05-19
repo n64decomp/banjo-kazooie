@@ -56,7 +56,7 @@ bsMap D_80363824[] ={
     {BS_ROLL,       bstwirl_init,   bstwirl_update, bstwirl_end, func_802B5350},
     {BS_SLIDE,      bsslide_init,   bsslide_update, bsslide_end, func_802B5350},
     {0x33,          func_802B9ACC, func_802B9B14, func_802B9AAC, func_802B9D00},
-    {BS_JIG_NOTEDOOR, func_802B0F88, func_802B1090, func_802B0EF0, func_80296590},
+    {BS_JIG_NOTEDOOR, bsjig_notedoor_init, func_802B1090, func_802B0EF0, func_80296590},
     {BS_ANT_IDLE,   func_8029E618, func_8029E6B0, func_8029E73C, func_802B5350},
     {BS_ANT_WALK,   func_8029E764, func_8029E7D4, func_8029E8A0, func_802B5350},
     {BS_ANT_JUMP,   func_8029E8C8, func_8029EA04, func_8029EB94, func_802B5350},
