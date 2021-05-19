@@ -48,9 +48,11 @@ void bsjig_jiggy_init(void){
     D_8037D4B0 = 0;
 }
 
-void func_802B0BA8(void);
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/jig/func_802B0BA8.s")
-
+void func_802B0BA8(void){
+    if(D_8037D4B4){
+        func_802C82C0(marker_getActor(D_8037D4B4), 4);
+    }
+}
 
 void bsjig_jiggy_update(void){
     enum bs_e sp1C = 0;
