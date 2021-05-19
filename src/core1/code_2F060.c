@@ -3,4 +3,4 @@
 #include "variables.h"
 
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_2F060/func_8026CA80.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_2F060/__osSpGetStatus.s")

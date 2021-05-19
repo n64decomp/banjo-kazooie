@@ -23,6 +23,7 @@ __freePVoice        = 0x8026AD90;
 
 __stack_align = 0x80254470;
 osViGetNextFrameBuffer = 0x802664B0;
+osViGetCurrFrameBuffer = 0x80265880;
 __osEnqueueAndYield = 0x8026A90C;
 __osEnqueueThread = 0x8026AA0C;
 __osPopThread = 0x8026AA54;
