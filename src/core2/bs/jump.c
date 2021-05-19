@@ -12,6 +12,8 @@ void func_80299B58(f32, f32);
 f32 func_8029B2E8(void);
 f32 func_8029B33C(void);
 void func_80297A88(f32 *);
+void func_802921BC(f32);
+void func_8028A084(s32, f32);
 
 extern f32 D_80364CD0;
 extern f32 D_80364CD4;
@@ -263,7 +265,20 @@ void bsjump_fall_end(void){};
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/jump/func_802B1DC4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/jump/func_802B1DD0.s")
+void bsjump_tumble_init(void){
+    func_8028A084(0x68, 0.35f);
+    func_8029C7F4(1,1,3,6);
+    func_802921BC(60.0f);
+    if(func_80293234() == 1){
+        func_8029E3C0(0, 0.5f);
+        func_8029E3C0(1, 0.41f);
+        func_80299CF4(0x52, 1.0f, 22000);
+    }else{
+        func_8029E3C0(0, 0.0f);
+        func_8029E3C0(1, 0.01f);
+    }
+    D_8037D4C0 = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/jump/func_802B1E80.s")
 

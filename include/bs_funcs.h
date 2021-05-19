@@ -238,7 +238,7 @@ void func_802B61E0(void);
 void func_802B6218(void);
 void func_802B6220(void);
 //BS_FALL_TUMBLING(void);
-void func_802B1DD0(void);
+void bsjump_tumble_init(void);
 void func_802B1E80(void);
 void func_802B1F6C(void);
 //BS_ANT_FALL(void);
