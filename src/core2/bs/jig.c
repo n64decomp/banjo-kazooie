@@ -2,6 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
+void func_80295C08(void (* arg0)(void));
+
 extern char D_80375940[];
 extern char D_80375948[];
 extern f32 D_80375950;
@@ -46,9 +48,38 @@ void bsjig_jiggy_init(void){
     D_8037D4B0 = 0;
 }
 
+void func_802B0BA8(void);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/jig/func_802B0BA8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/jig/func_802B0BE4.s")
+
+void bsjig_jiggy_update(void){
+    enum bs_e sp1C = 0;
+    AnimCtrl * aCtrl = player_getAnimCtrlPtr();
+    
+    yaw_setIdeal(func_8029B41C());
+    
+    if(animctrl_isAt(aCtrl, 0.6502f))
+        func_80299BD4();
+
+    if(animctrl_isAt(aCtrl, 0.835f)){
+        D_8037D4B0++;
+        func_80345F24(0xe);
+        func_8030E58C(0x4b, 1.3f);
+    }
+
+    if(animctrl_isAt(aCtrl, 0.94f))
+        func_8030E484(0x3ea);
+
+    if(animctrl_isStopped(aCtrl)){
+        if(D_8037D4B1)
+            sp1C =  BS_JIG_NOTEDOOR;
+        else
+            sp1C =  BS_IDLE;
+    }
+
+    func_80295C08(func_802B0BA8);
+    bs_setState(sp1C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/jig/func_802B0CD8.s")
 
