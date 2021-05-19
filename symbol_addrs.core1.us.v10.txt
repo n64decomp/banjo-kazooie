@@ -328,6 +328,10 @@ alCSeqNew = 0x8026787C;
 alCSeqNewMarker = 0x80267990;
 alCSeqSecToTicks = 0x80267B04;
 alCSeqTicksToSec = 0x80267C00;
+alHeapInit = 0x80264200;
+
+sinf = 0x80263FF0;
+__libm_qnan_f = 0x80278DB0;
 
 write_file_blocks = 0x80255B30;
 load_file_blocks = 0x80255BAC;

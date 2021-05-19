@@ -108,8 +108,10 @@ segments:
   - [0x261C0, asm, os/writebackdcacheall]
   - [0x261F0, c, os/initialize]
   - [0x26480, c, os/createthread]
-  - [0x265D0, c, gu/sinf]
-  - [0x26790, c, code_26790]
+  - [0x265D0, c, done/gu/sinf]
+  - [0x26790, c, done/audio/cents2ratio]
+  - [0x267E0, c, done/audio/heapinit]
+  - [0x26820, bin, padding] # 0x60 bytes of zeroes?
   - [0x26880, c, os/createmesgqueue]
   - [0x268B0, c, code_268B0]
   - [0x26A10, c, done/audio/sl]
@@ -247,7 +249,9 @@ segments:
   - [0x3AD60, .rodata, done/audio/n_drvrNew]
   - [0x3AD80, bin, data_3AD80]
   - [0x3B180, .rodata, done/audio/n_resample]
-  - [0x3B190, bin, data_3B190]
+  - [0x3B190, .rodata, done/gu/sinf]
+  - [0x3B1E0, .rodata, done/audio/cents2ratio]
+  - [0x3B1F0, bin, data_3B1F0]
   #- [0x3B2C0, .rodata, gu/rotate] #need to resolve .data section first
   #- [0x3B2D0, bin, data_3B2D0]
   - [0x3B2D0, .rodata, done/audio/cseq]

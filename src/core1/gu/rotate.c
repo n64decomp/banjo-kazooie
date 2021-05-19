@@ -4,7 +4,7 @@
 
 extern f32 D_80285900;
 
-f32 func_80263FF0(f32);
+f32 sinf(f32);
 f32 func_80265360(f32);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/gu/rotate/guRotateF.s")
@@ -19,7 +19,7 @@ f32 func_80265360(f32);
 	
 // 	guNormalize(&x, &y, &z);
 // 	a *= D_80285900;
-// 	sine = func_80263FF0(a);
+// 	sine = sinf(a);
 // 	cosine = func_80265360(a);
 // 	t = (1-cosine);
 // 	ab = x*y*t;
