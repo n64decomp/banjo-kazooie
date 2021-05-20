@@ -2,17 +2,13 @@
 #include "functions.h"
 #include "variables.h"
 
-void func_8028A010(s32, f32);
 f32 func_8029B41C(void);
 void func_8029E3C0(s32, f32);
-void player_setYVelocity(f32);
 void func_80299628(s32);
 void func_802991FC(void);
 void func_8029797C(f32);
 f32 func_80297A64(void);
 void func_802979AC(f32, f32);
-void gravity_set(f32);
-void pitch_setAngVel(f32, f32);
 void func_802BF2C0(f32);
 
 f32 func_80289F70(void);
@@ -63,7 +59,7 @@ void func_802A1020(void){
 
 void func_802A1080(void){
     func_802A0340();
-    func_8028A010(anim_beeBanjo_idle,3.0f);
+    func_8028A010(ANIM_BEE_IDLE,3.0f);
     func_8029C7F4(1,1,1,2);
     func_80297970(0.0f);
     func_802900B4();
@@ -99,7 +95,7 @@ void func_802A117C(void){
 
 void func_802A11A4(void){
     func_802A0340();
-    func_8028A010(anim_beeBanjo_walking, 0.38f);
+    func_8028A010(ANIM_BEE_WALK, 0.38f);
     func_8029C7F4(2,1,1,2);
     func_80289EC8(D_803649E0, D_803649E4, D_803649E8, D_803649EC);
     func_802900B4();
@@ -482,7 +478,7 @@ void func_802A1F2C(void){
 
 void func_802A1F6C(void){
     func_802A0340();
-    func_8028A010(0x1DE, 3.0f);
+    func_8028A010(ANIM_BEE_IDLE, 3.0f);
     func_8029C7F4(1,1,3,2);
     func_80297970(0.0f);
     func_8029C674();
@@ -519,7 +515,7 @@ void func_802A2054(void){
 
 void func_802A2098(void){
     func_802933FC(0x1A);
-    func_8028A010(0x1DE, 3.0f);
+    func_8028A010(ANIM_BEE_IDLE, 3.0f);
     yaw_setIdeal(func_8029B41C());
     func_8029C7F4(1,1,3,2);
     func_80297970(0.0f);

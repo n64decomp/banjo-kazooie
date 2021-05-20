@@ -208,8 +208,8 @@ void bsjig_notedoor_init(void);
 void bsjig_notedoor_update(void);
 void bsjig_notedoor_end(void);
 //BS_ANT_IDLE
-void func_8029E618(void);
-void func_8029E6B0(void);
+void bsant_idle_init(void);
+void bsant_idle_update(void);
 void func_8029E73C(void);
 //BS_ANT_WALK
 void func_8029E764(void);

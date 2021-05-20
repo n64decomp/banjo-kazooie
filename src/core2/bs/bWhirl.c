@@ -103,7 +103,7 @@ void bsbwhirl_enter_end(void){
 }
 
 void bsbwhirl_stand_init(void){
-    func_8028A010(0x23, 1.0f);
+    func_8028A010(ANIM_BANJO_WONDERWING_IDLE, 1.0f);
     func_8029C7F4(1,1,1,2);
     func_80297970(0.0f);
 }
@@ -129,7 +129,7 @@ void bsbwhirl_stand_end(void){
 }
 
 void bsbwhirl_walk_init(void){
-    func_8028A010(0x11, 0.53f);
+    func_8028A010(ANIM_BANJO_WONDERWING_WALK, 0.53f);
     func_80289EC8(D_80364AD0, D_80364AD4, D_80364AD8, D_80364ADC);
     func_8029C7F4(2,1,1,2);
 
@@ -281,7 +281,7 @@ void func_802AAD94(void){
 }
 
 void func_802AADBC(void){
-    func_8028A010(0x23, 1.0f);
+    func_8028A010(ANIM_BANJO_WONDERWING_IDLE, 1.0f);
     func_8029C7F4(1,1,3,2);
     func_80297970(0.0f);
     func_8029C674();

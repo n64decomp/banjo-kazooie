@@ -151,7 +151,7 @@ void bsblongleg_enter_end(void){
 }
 
 void bsblongleg_stand_enter(void){
-    func_8028A010(0x41, 1.0f);
+    func_8028A010(ANIM_BANJO_LONGLEG_IDLE, 1.0f);
     func_8029C7F4(1,1,1,2);
     func_80297970(0.0f);
     func_80292090(2);
@@ -458,7 +458,7 @@ void func_802A6388(f32 arg0){
 }
 
 void func_802A6394(void){
-    func_8028A010(0x41, 1.0f);
+    func_8028A010(ANIM_BANJO_LONGLEG_IDLE, 1.0f);
     func_8029C7F4(1,1,3,2);
     func_80297970(0.0f);
     func_802A5374();

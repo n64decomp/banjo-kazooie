@@ -239,7 +239,7 @@ void bsbtrot_enter_end(void){
 }
 
 void bsbtrot_stand_init(void){
-    func_8028A010(0x26, 1.2f);
+    func_8028A010(ANIM_BANJO_BTROT_IDLE, 1.2f);
     func_8029C7F4(1,1,1,2);
     func_80297970(0.0f);
     func_802A8A40();
@@ -676,7 +676,7 @@ void bsbtrot_fall_end(void){
 }
 
 void bsbtrot_unk79_init(void){
-    func_8028A010(0x26, 1.2f);
+    func_8028A010(ANIM_BANJO_BTROT_IDLE, 1.2f);
     func_8029C7F4(1,1,3,2);
     func_80297970(0.0f);
     func_802A8A40();

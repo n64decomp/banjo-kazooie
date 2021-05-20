@@ -673,7 +673,7 @@ enum game_mode_e
 
 enum asset_e
 {
-    ANIM_BANJO_CROUCH = 0x1,
+    ANIM_BANJO_CROUCH_ENTER = 0x1,
     ANIM_BANJO_WALK_CREEP = 0x2,
     ANIM_BANJO_WALK = 0x3,
 
@@ -681,9 +681,13 @@ enum asset_e
     ANIM_BANJO_JUMP = 0x8,
     ANIM_BANJO_DIE = 0x9,
 
+    ANIM_BANJO_WALK_MUD = 0xb,
     ANIM_BANJO_RUN = 0xc,
 
     ANIM_BANJO_TURN = 0xe,
+
+    ANIM_BANJO_WONDERWING_WALK = 0x11,
+
 
     ANIM_BANJO_LONGLEG_ENTER_AS_BEAR = 0x16,
     ANIM_BANJO_BFLAP = 0x17,
@@ -695,23 +699,25 @@ enum asset_e
     ANIM_BANJO_BBUSTER = 0x1D,
     
     ANIM_BANJO_WONDERWING_EXIT = 0x22,
+    ANIM_BANJO_WONDERWING_IDLE = 0x23,
 
+    ANIM_BANJO_BTROT_IDLE = 0x26,
     ANIM_BANJO_BTROT_JUMP = 0x27,
     
     ANIM_BANJO_BJIG_JIGGY = 0x2e,
 
     ANIM_BANJO_FLY = 0x38,
 
-    ANIM_BANJO_LONGLEG_JUMP = 0x3D,
+    ANIM_BANJO_LONGLEG_JUMP     = 0x3D,
 
     ANIM_BANJO_LONGLEG_ENTER_AS_BIRD = 0x40,
+    ANIM_BANJO_LONGLEG_IDLE     = 0x41,
+    ANIM_BANJO_LONGLEG_WALK     = 0x42,
 
-    ANIM_BANJO_LONGLEG_WALK = 0x42,
+    ANIM_BANJO_FLY_ENTER        = 0x45,
 
-    ANIM_BANJO_FLY_ENTER = 0x45,
-
-    ANIM_BANJO_BSHOCK_CHARGE = 0x48,
-    ANIM_BANJO_BSHOCK_JUMP = 0x49,
+    ANIM_BANJO_BSHOCK_CHARGE    = 0x48,
+    ANIM_BANJO_BSHOCK_JUMP      = 0x49,
 
     ANIM_BANJO_BFLIP    = 0x4B,
 
@@ -729,13 +735,19 @@ enum asset_e
     ANIM_BANJO_SLIDE_BACK = 0x59,
     ANIM_BANJO_SLIDE_FRONT = 0x5A,
 
+    ANIM_TERMITE_IDLE = 0x5E,
+
     ANIM_GRUBLIN_DIE = 0x94,
+
+    ANIM_BANJO_CROUCH = 0x10C,
+
+    ANIM_BANJO_CROUCH_NOINPUT = 0x116,
 
     ANIM_ZOOMBOX = 0x138,
 
-    anim_beeBanjo_flying    = 0x1dc,
-    anim_beeBanjo_walking   = 0x1dd,
-    anim_beeBanjo_idle      = 0x1de,
+    ANIM_BEE_FLY    = 0x1dc,
+    ANIM_BEE_WALK   = 0x1dd,
+    ANIM_BEE_IDLE      = 0x1de,
 
     ANIM_BEE_OW        = 0x1e0,
     ANIM_BEE_DIE     = 0x1e1,

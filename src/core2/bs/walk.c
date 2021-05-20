@@ -6,9 +6,6 @@ f32 func_80289690(s32);
 void func_80289EA8(f32, f32);
 f32 func_80297AB8(void);
 void func_802927E0(f32, f32);
-void pitch_setAngVel(f32, f32);
-void roll_setAngularVelocity(f32, f32);
-void func_8028A010(s32, f32);
 f32 func_8029B2E8(void);
 int func_80297C04(f32);
 void func_8029AD28(f32, s32);
@@ -447,7 +444,7 @@ void bswalk_fast_end(void){
 }
 
 void bswalk_mud_init(void){
-    func_8028A010(0xb, 0.43f);
+    func_8028A010(ANIM_BANJO_WALK_MUD, 0.43f);
     func_8029C7F4(2,1,1,2);
     func_80289EA8(0.3f, 1.5f);
     func_80289EC8(D_80364D84, D_80364D88, D_80364DB0, D_80364DB4);

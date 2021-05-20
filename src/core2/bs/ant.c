@@ -24,9 +24,36 @@ int bsant_inSet(s32 move_indx){
     || (move_indx == 0x92);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/ant/func_8029E618.s")
+void bsant_idle_init(void){
+    func_8029E554();
+    func_8028A010(ANIM_TERMITE_IDLE, 1.2f);
+    func_8029C7F4(1,1,1,2);
+    func_80297970(0.0f);
+    pitch_setAngVel(1000.0f, 12.0f);
+    roll_setAngularVelocity(1000.0f, 12.0f);
+    func_802933E8(3);
+    func_802933E8(4);
+    func_802900B4();
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/ant/func_8029E6B0.s")
+void bsant_idle_update(void){
+    enum bs_e new_state = 0;
+    func_80299628(0);
+    
+    if(func_8028B094())
+        new_state = BS_ANT_FALL;
+
+    if(func_80294F78())
+        new_state = func_802926C0();
+
+    if(func_8029B300() > 0)
+        new_state = BS_ANT_WALK;
+
+    if(button_pressed(BUTTON_A))
+        new_state = BS_ANT_JUMP;
+
+    bs_setState(new_state);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/ant/func_8029E73C.s")
 

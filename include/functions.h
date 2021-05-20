@@ -208,7 +208,7 @@ void func_8025A6EC(enum comusic_e, s32);
 void func_8025A70C(enum comusic_e);
 void comusic_8025AB44(enum comusic_e comusic_id, s32 arg1, s32 arg2);
 
-void func_8028A010(s32, f32);
+void func_8028A010(enum asset_e anim_id, f32 duration);
 void func_8028A1F4(s32, f32, f32);
 void func_8028A274(enum asset_e, f32);
 int  func_8028AED4(f32*, f32);

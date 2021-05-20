@@ -7,14 +7,8 @@ f32  func_8029B2E8(void);
 f32 func_8029B33C(void);
 void func_8029797C(f32);
 void func_80297970(f32);
-void gravity_set(f32);
 
-void player_setYVelocity(f32);
-
-void func_8028A010(s32, f32);
-void pitch_setAngVel(f32, f32);
 void func_802921BC(f32);
-void roll_setAngularVelocity(f32, f32);
 void func_80297BF8(f32);
 void func_802BFE50(f32, f32, f32);
 void func_80299234(f32, f32);
@@ -24,7 +18,6 @@ f32 func_80297A64(void);
 void func_802979AC(f32, f32);
 void func_8028FDC8(f32);
 void func_80290B40(f32);
-f32 pitch_getIdeal(void);
 void func_80290A6C(void);
 
 
@@ -77,7 +70,7 @@ void func_802A0630(void){
         case 1:
             func_802A04F0();
             if(animctrl_isStopped(mvmnt))
-                func_8028A010(0x1dc, 0.38f);
+                func_8028A010(ANIM_BEE_FLY, 0.38f);
             if(func_80297AAC() < 0.0f)
                 next_state = BS_BEE_FLY;
             break;
@@ -158,7 +151,7 @@ void bsbeefly_enter(void){
     s32 mvmnt;
 
     mvmnt = bs_getPrevState();
-    func_8028A010(anim_beeBanjo_flying, 0.38);
+    func_8028A010(ANIM_BEE_FLY, 0.38);
     func_8029C7F4(1, 1, 3, 3);
     if(func_802933C0(9))
         func_80297970(0.0f);
