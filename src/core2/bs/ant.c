@@ -21,6 +21,7 @@ extern f32 D_8037D290;
 extern u8 D_8037D294;
 extern s32 D_8037D298;
 
+/* .code */
 void func_8029E3E0(void){
     func_8030EB88(D_8036497C[D_80364978], 1.75f, 1.85f);
     if(++D_80364978 > 2)
@@ -330,7 +331,40 @@ void bsant_die_init(void){
     func_8029E3C0(0, 2.9f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/ant/func_8029F218.s")
+void bsant_die_update(void){
+    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+
+    func_80297970(D_8037D290);
+    func_80299628(0);
+    switch(D_8037D294){
+        case 0://L8029F270
+            if(func_8028B2E8()){
+                func_8028A37C(1.0f);
+                func_8030E624(0x6651901f);
+                func_8030E624(0xe6319039);
+                D_8037D290 = 0.0f;
+                D_8037D294 = 1;
+            }
+            break;
+        case 1://L8029F2C0
+            if(animctrl_isAt(aCtrl, 0.72f)){
+                D_8037D290 = 0.0f;
+                D_8037D294 = 2;
+            }
+            break;
+        case 2://L8029F2F0
+            if(animctrl_isAt(aCtrl, 0.77f)){
+                func_8030E624(0x6651901f);
+                func_8030E624(0xe6319038);
+            }
+            break;
+    }
+
+    if(func_8029E1A8(0))
+        func_8029B890();
+
+    bs_setState(0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/ant/func_8029F348.s")
 

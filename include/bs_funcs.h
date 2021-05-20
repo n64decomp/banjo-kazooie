@@ -267,7 +267,7 @@ void func_802A5190(void);
 void func_802A51C0(void);
     //BS_ANT_DIE
 void bsant_die_init(void);
-void func_8029F218(void);
+void bsant_die_update(void);
 void func_8029F348(void);
 //BS_JIG_JIGGY
 void bsjig_jiggy_init(void);
