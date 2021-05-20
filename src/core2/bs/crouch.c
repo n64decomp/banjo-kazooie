@@ -183,7 +183,7 @@ enum bs_e func_802ADCD4(enum bs_e arg0){
     if(button_released(BUTTON_Z)){
         arg0 = BS_IDLE;
         
-        if(button_pressed(BUTTON_B) && func_8028A9E0())
+        if(button_pressed(BUTTON_B) && can_claw())
             arg0 = BS_CLAW;
 
         if(button_pressed(BUTTON_A))

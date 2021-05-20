@@ -6,11 +6,11 @@ extern u32 D_8037C300;
 extern f32 D_8037C304;
 
 int should_beak_barge(void){
-    return button_pressed(BUTTON_B) && func_8028A960();
+    return button_pressed(BUTTON_B) && can_beak_barge();
 }
 
 int should_beak_bust(void){
-    return button_pressed(BUTTON_Z) && func_8028A9A0();
+    return button_pressed(BUTTON_Z) && can_beak_bust();
 }
 
 int func_80294F78(void){
@@ -30,37 +30,39 @@ int func_8029502C(void){
 }
 
 int should_poop_egg(void){
-    return button_pressed(BUTTON_C_DOWN) && func_8028AA98();
+    return button_pressed(BUTTON_C_DOWN) && can_egg();
 }
 
 int should_shoot_egg(void){
-    return button_pressed(BUTTON_C_UP) && func_8028AA98();
+    return button_pressed(BUTTON_C_UP) && can_egg();
 }
 
 int should_flap(void){
-    return button_pressed(BUTTON_A) && func_8028AAB8();
+    return button_pressed(BUTTON_A) && can_flap();
 }
 
 int should_flip(void){
-    return button_pressed(BUTTON_A) && func_8028AB08();
+    return button_pressed(BUTTON_A) && can_flip();
 }
 
 int should_peck(void){
-    return button_pressed(BUTTON_B) && func_8028AB68();
+    return button_pressed(BUTTON_B) && can_peck();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_DF70/func_80295194.s")
+int func_80295194(void){
+    return button_pressed(BUTTON_B) && (D_8037C304 == 0.0f) && func_8028AA20();
+}
 
 int func_802951FC(s32 arg0){
     return D_8037C300  & (1 << arg0);
 }
 
 int should_trot(void){
-    return button_pressed(BUTTON_C_LEFT) && func_8028AC78();
+    return button_pressed(BUTTON_C_LEFT) && can_trot();
 }
 
 int should_wonderwing(void){
-    return button_pressed(BUTTON_C_RIGHT) && func_8028ACB8();
+    return button_pressed(BUTTON_C_RIGHT) && can_wonderwing();
 }
 
 void func_8029528C(void){

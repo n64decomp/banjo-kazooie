@@ -50,7 +50,7 @@ s32 func_802B488C(s32 arg0){
     if(button_held(BUTTON_Z))
         retVal = BS_CROUCH;
 
-    if(button_pressed(BUTTON_B) && func_8028A9E0())
+    if(button_pressed(BUTTON_B) && can_claw())
         retVal = BS_CLAW;
 
     if(button_pressed(BUTTON_A))

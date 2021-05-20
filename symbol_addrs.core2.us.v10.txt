@@ -28,7 +28,15 @@ player_isSliding = 0x8028B338;
 player_getTransformation = 0x8028E7CC;
 ability_isUnlocked = 0x8028F190;
 ability_unlock = 0x8028F3B8;
-
+can_beak_barge = 0x8028A960;
+can_beak_bust = 0x8028A9A0;
+can_claw = 0x8028A9E0;
+can_egg = 0x8028AA98;
+can_flap = 0x8028AAB8;
+can_flip = 0x8028AB08;
+can_peck = 0x8028AB68;
+can_trot = 0x8028AC78;
+can_wonderwing = 0x8028ACB8;
 player_inWater = 0x8028B51C;
 player_getMarker = 0x8028D5D0;
 carriedObject_setActorID = 0x8028D658;

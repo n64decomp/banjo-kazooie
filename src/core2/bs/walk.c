@@ -104,7 +104,7 @@ s32 func_802B6F20(s32 arg0){
             if(func_8028AC18())
                 arg0 = BS_ROLL;
         }else{//L802B6F74
-            if(func_8028A9E0())
+            if(can_claw())
                 arg0 = BS_CLAW;
         }
     }

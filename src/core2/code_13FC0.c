@@ -129,8 +129,8 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029C748.s")
 
-s32 func_8029C780(void){
-    if(button_held(BUTTON_Z) && func_8028AB08())
+enum bs_e func_8029C780(void){
+    if(button_held(BUTTON_Z) && can_flip())
         return BS_BFLIP;
 
     if(func_802933C0(2))
@@ -157,7 +157,7 @@ s32 func_8029C9C0(s32 arg0){
     if(button_pressed(BUTTON_A))
         arg0 = func_8029C780();
 
-    if(button_pressed(BUTTON_B) && func_8028A9E0())
+    if(button_pressed(BUTTON_B) && can_claw())
         arg0 = BS_CLAW;
 
     if(button_held(BUTTON_Z) && should_beak_barge())

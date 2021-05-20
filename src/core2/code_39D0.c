@@ -8,7 +8,7 @@ extern s32 carriedObject_actorID;
 extern ActorMarker *D_8037BF70;
 
 
-s32 func_8028A960(void){ //beak_barge_unlocked
+s32 can_beak_barge(void){ //beak_barge_unlocked
     return func_802957D8(ABILITY_BARGE);
 }
 
@@ -16,7 +16,7 @@ s32 func_8028A980(void){ //beak_bomb_unlocked
     return func_802957D8(ABILITY_BEAK_BOMB);
 }
 
-s32 func_8028A9A0(void){ //beak_buster_unlocked
+s32 can_beak_bust(void){ //beak_buster_unlocked
     return func_802957D8(ABILITY_BEAK_BUSTER);
 }
 
@@ -24,7 +24,7 @@ s32 func_8028A9C0(void){
     return func_802957D8(ABILITY_CAMERA_CONTROL);
 }
 
-s32 func_8028A9E0(void){ 
+s32 can_claw(void){ 
     return func_802957D8(ABILITY_BEAR_PUNCH);
 }
 
@@ -34,17 +34,17 @@ s32 func_8028AA00(void){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028AA20.s")
 
-s32 func_8028AA98(void){ 
+s32 can_egg(void){ 
     return func_802957D8(ABILITY_EGGS);
 }
 
-int func_8028AAB8(void){
+int can_flap(void){
     return func_802933D0(0x12) 
         && func_802933D0(0x5) 
         && func_802957D8(ABILITY_FLAP);
 }
 
-s32 func_8028AB08(void){
+s32 can_flip(void){
     return func_802957D8(ABILITY_FLIP);
 }
 
@@ -56,7 +56,7 @@ s32 func_8028AB48(void){
     return func_802957D8(ABILITY_HOLD_A_JUMP_HIGHER);
 }
 
-int func_8028AB68(void){
+int can_peck(void){
     return func_802933D0(0x5)
         && func_802933D0(0x12)
         && func_802957D8(ABILITY_RATATAT_RAP);
@@ -76,7 +76,7 @@ s32 func_8028AC58(void){
     return func_802957D8(ABILITY_WADING_BOOTS);
 }
 
-s32 func_8028AC78(void){
+s32 can_trot(void){
     return func_802957D8(ABILITY_TALON_TROT);
 }
 
@@ -84,7 +84,7 @@ s32 func_8028AC98(void){
     return func_802957D8(ABILITY_TALON_TROT);
 }
 
-s32 func_8028ACB8(void){
+s32 can_wonderwing(void){
     return func_802957D8(ABILTIY_WONDERWING);
 }
 
