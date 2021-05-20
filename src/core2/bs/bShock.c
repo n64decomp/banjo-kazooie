@@ -89,10 +89,10 @@ void bsbshock_charge_update(void){
             func_80297970(0.0f);
     }
     else{//L802A6D18
-        if(func_802950E0())
+        if(should_flap())
             sp2C = BS_BFLAP;
         
-        if(func_80294F3C())
+        if(should_beak_bust())
             sp2C = BS_BBUSTER;
     }//L802A6D44
     if(animctrl_isAt( aCtrl, 0.3637f) && D_8037D380)
@@ -171,10 +171,10 @@ void bsbshock_update(void){
         if(func_8028B424())
             sp2C = BS_FALL_TUMBLING;
 
-        if(func_802950E0())
+        if(should_flap())
             sp2C = BS_BFLAP;
 
-        if(func_80294F3C())
+        if(should_beak_bust())
             sp2C =BS_BBUSTER;
     }
 

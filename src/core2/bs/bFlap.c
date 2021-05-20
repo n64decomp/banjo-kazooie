@@ -176,7 +176,7 @@ void bsbflap_update(void){
     if(func_8029E384(0))
         sp1c = BS_FALL;
     
-    if(func_80294F3C())
+    if(should_beak_bust())
         sp1c = BS_BBUSTER;
 
     if(func_8028B2E8()){

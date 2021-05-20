@@ -144,13 +144,13 @@ void bsjump_update(void){
     if(button_released(BUTTON_A))
         D_8037D4C2 = 0;
 
-    if(func_802950E0())
+    if(should_flap())
         sp34 = BS_BFLAP;
 
-    if(func_80295158())
+    if(should_peck())
         sp34 = BS_BPECK;
 
-    if(func_80294F3C())
+    if(should_beak_bust())
         sp34 = BS_BBUSTER;
 
     if(func_8028B2E8()){
@@ -221,13 +221,13 @@ void bsjump_fall_update(void){
         if(func_8028B424())
             sp2C = BS_FALL_TUMBLING;
 
-        if(func_802950E0() && func_802933D0(5))
+        if(should_flap() && func_802933D0(5))
             sp2C = BS_BFLAP;
 
-        if(func_80295158())
+        if(should_peck())
             sp2C = BS_BPECK;
         
-        if(func_80294F3C())
+        if(should_beak_bust())
             sp2C = BS_BBUSTER;
         
         if(player_inWater())
@@ -291,13 +291,13 @@ void bsjump_tumble_update(void){
         pitch_setIdeal(pitch_getIdeal() + 20.0f);
     }
     if(func_8029E348(0)){
-        if(func_802950E0())
+        if(should_flap())
             sp1C = BS_BFLAP;
 
-        if(func_80295158())
+        if(should_peck())
             sp1C = BS_BPECK;
 
-        if(func_80294F3C())
+        if(should_beak_bust())
             sp1C = BS_BBUSTER;
     }//L802B1F2C
 

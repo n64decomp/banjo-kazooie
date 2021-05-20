@@ -190,22 +190,22 @@ enum bs_e func_802ADCD4(enum bs_e arg0){
             arg0 = func_8029C780();
 
     }else{
-        if(func_80295250())
+        if(should_wonderwing())
             func_80346C10(&arg0, -1, BS_WONDERWING_ENTER, ITEM_GOLD_FEATHER, 1);
 
-        if(func_80295214())
+        if(should_trot())
             arg0 = BS_BTROT_ENTER;
 
-        if(func_80295068())
+        if(should_poop_egg())
             func_80346C10(&arg0, -1, BS_EGG_ASS, ITEM_EGGS, 0);
 
-        if(func_802950A4())
+        if(should_shoot_egg())
             func_80346C10(&arg0, -1, BS_EGG_HEAD, ITEM_EGGS, 0);
 
-        if(func_8029511C())
+        if(should_flip())
             arg0 = BS_BFLIP;
 
-        if(func_80294F00())
+        if(should_beak_barge())
             arg0 = BS_BBARGE;
 
 

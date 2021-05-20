@@ -106,7 +106,7 @@ void bsbflip_update(void){
             func_802875AC(aCtrl, "bsbflip.c", 0xd9);
             D_8037D310 = 2;
         }//L802A316C
-        if(func_80294F3C()){
+        if(should_beak_bust()){
             sp24 =BS_BBUSTER;
         }
         break;
@@ -128,7 +128,7 @@ void bsbflip_update(void){
             sp24 = func_8029C9C0(sp24);
             D_8037D310 = 4;
         }
-        else if(func_80294F3C()){
+        else if(should_beak_bust()){
             sp24 = BS_BBUSTER;
         }
         break;
@@ -141,7 +141,7 @@ void bsbflip_update(void){
             sp24 = func_8029C9C0(sp24);
             D_8037D310 = 4;
         }
-        else if(func_80294F3C()){
+        else if(should_beak_bust()){
             sp24 = BS_BBUSTER;
         }
         break;

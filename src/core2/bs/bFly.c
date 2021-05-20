@@ -198,7 +198,7 @@ void bsbfly_update(void){
     func_8029797C(yaw_get());
     func_80297970(sp38);
 
-    if(func_80294F3C())
+    if(should_beak_bust())
         sp54 = BS_BBUSTER;
 
     D_8037D320 = max_f(D_8037D320 - func_8033DD9C(), 0.0f);

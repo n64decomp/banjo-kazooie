@@ -160,7 +160,7 @@ s32 func_8029C9C0(s32 arg0){
     if(button_pressed(BUTTON_B) && func_8028A9E0())
         arg0 = BS_CLAW;
 
-    if(button_held(BUTTON_Z) && func_80294F00())
+    if(button_held(BUTTON_Z) && should_beak_barge())
         arg0 = BS_BBARGE;
 
     if(func_80294F78())

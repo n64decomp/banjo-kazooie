@@ -451,7 +451,7 @@ void bsbtrot_jump_update(void){
             break;
     }//LL802A97D0
 
-    if(func_80295158())
+    if(should_peck())
         sp2C = BS_BPECK;
 
     if(func_8028B424())

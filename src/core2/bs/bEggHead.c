@@ -31,7 +31,7 @@ void bsegghead_update(void) {
     next_state = 0;
     aCtrl = player_getAnimCtrlPtr();
     has_eggs = (item_empty(ITEM_EGGS) == 0);
-    if (func_802950A4()) {
+    if (should_shoot_egg()) {
         if (has_eggs)
             D_8037D2F0 = func_80258948(D_8037D2F0 + 1, 3);
         else 
