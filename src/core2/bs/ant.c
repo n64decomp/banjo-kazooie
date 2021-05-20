@@ -13,11 +13,16 @@ extern s16 D_8036497C[3];
 
 
 extern char D_803752A0[];
+extern char D_803752A8[];
+extern char D_803752B0[];
+extern char D_803752B8[];
 extern f32 D_803752C0;
 extern f32 D_803752C4;
 extern f32 D_803752C8;
 
+extern f32 D_8037D290;
 extern u8 D_8037D294;
+extern s32 D_8037D298;
 
 void func_80293D48(f32,f32);
 void func_8030EAAC(s32, f32, s32, s32);
@@ -227,13 +232,57 @@ void bsant_jump_end(void){
     func_8029E4EC();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/ant/func_8029EBBC.s")
+void bsant_fall_init(void){
+    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    func_8029E554();
+    D_8037D298 = 0;
+    animctrl_reset(aCtrl);
+    animctrl_setIndex(aCtrl, ANIM_TERMITE_JUMP);
+    animctrl_setDuration(aCtrl, 1.9f);
+    func_8028774C(aCtrl, 0.4423f);
+    animctrl_setPlaybackType(aCtrl, ANIMCTRL_STOPPED);
+    func_802875AC(aCtrl, D_803752A8, 0x208);
+    func_8029C7F4(1,1,3,6);
+    D_8037D294 = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/ant/func_8029EC5C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/ant/func_8029ED3C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/ant/func_8029ED5C.s")
+void func_8029ED5C(int take_damage){
+    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    f32 sp38;
+    f32 sp2C[3];
+    f32 sp20[3];
+
+    func_8029E554();
+    animctrl_reset(aCtrl);
+    animctrl_setIndex(aCtrl, ANIM_TERMITE_OW);
+    animctrl_setDuration(aCtrl, 1.4f);
+    animctrl_setSubRange(aCtrl, 0.0f, 0.4899f);
+    animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
+    func_802875AC(aCtrl, D_803752B0, 0x272);
+    if(take_damage == 1)
+        func_8030E58C(0x38, 1.8f);
+    else
+        func_8030E58C(0x56, 1.8f);
+    
+    _player_getPosition(sp2C);
+    func_80294980(sp20);
+    func_80257F18(sp20, sp2C, &sp38);
+    yaw_setIdeal(mlNormalizeAngle(sp38 + 180.0f));
+    func_802991FC();
+    func_80297970(200.0f);
+    func_8029797C(sp38);
+    func_802979AC(sp38, func_80297A64());
+    func_8029C7F4(1,1,2,3);
+    player_setYVelocity(510.0f);
+    gravity_set(-1200.0f);
+    func_8028D5DC();
+    func_80292E48();
+    D_8037D294 = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/ant/func_8029EEC8.s")
 
@@ -251,7 +300,42 @@ void bsant_jump_end(void){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/ant/func_8029F048.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/ant/func_8029F068.s")
+void bsant_die_init(void){
+    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    f32 sp38;
+    f32 sp2C[3];
+    f32 sp20[3];
+    func_8029E554();
+    func_8029B930();
+    animctrl_reset(aCtrl);
+    animctrl_setSmoothTransition(aCtrl, 0);
+    animctrl_setIndex(aCtrl, ANIM_TERMITE_DIE);
+    animctrl_setSubRange(aCtrl, 0.0f, 0.523f);
+    animctrl_setDuration(aCtrl, 1.6f);
+    animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
+    func_802875AC(aCtrl, D_803752B8, 0x2f6);
+    func_8030E58C(0x36, 1.8f);
+    _player_getPosition(sp2C);
+    func_80294980(sp20);
+    func_80257F18(sp20, sp2C, &sp38);
+    D_8037D290 = 250.0f;
+    yaw_setIdeal(mlNormalizeAngle(sp38 + 180.0f));
+    func_802991FC();
+    func_80297970(D_8037D290);
+    func_8029797C(sp38);
+    func_802979AC(sp38, func_80297A64());
+    func_8029C7F4(1,1,2,3);
+    player_setYVelocity(510.0f);
+    gravity_set(-1200.0f);
+    pitch_setAngVel(1000.0f, 12.0f);
+    func_802914CC(0xd);
+    func_802BF2C0(30.0f);
+    func_8029C984();
+    D_8037D294 = 0;
+    func_8028D5DC();
+    func_80292E48();
+    func_8029E3C0(0, 2.9f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/ant/func_8029F218.s")
 

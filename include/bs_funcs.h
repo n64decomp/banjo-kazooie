@@ -242,7 +242,7 @@ void bsjump_tumble_init(void);
 void bsjump_tumble_update(void);
 void bsjump_tumble_end(void);
 //BS_ANT_FALL(void);
-void func_8029EBBC(void);
+void bsant_fall_init(void);
 void func_8029EC5C(void);
 void func_8029ED3C(void);
 //BS_ANT_OW
@@ -266,7 +266,7 @@ void func_802A5120(void);
 void func_802A5190(void);
 void func_802A51C0(void);
     //BS_ANT_DIE
-void func_8029F068(void);
+void bsant_die_init(void);
 void func_8029F218(void);
 void func_8029F348(void);
 //BS_JIG_JIGGY

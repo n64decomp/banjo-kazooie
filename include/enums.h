@@ -703,6 +703,8 @@ enum asset_e
 
     ANIM_BANJO_BTROT_IDLE = 0x26,
     ANIM_BANJO_BTROT_JUMP = 0x27,
+    ANIM_TERMITE_OW = 0x28,
+    ANIM_TERMITE_DIE = 0x29,
     
     ANIM_BANJO_BJIG_JIGGY = 0x2e,
 
