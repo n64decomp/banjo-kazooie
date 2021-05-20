@@ -295,5 +295,6 @@ void func_80299594(s32, f32);
 void func_8029E180(s32, f32);
 int func_80291700(s32, f32);
 
+AnimCtrl *player_getAnimCtrlPtr(void);
 
 #endif

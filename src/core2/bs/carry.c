@@ -14,7 +14,6 @@ extern char D_8037574C[];
 extern f32  D_80375758;
 extern f32  D_8037575C;
 
-
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/carry/func_802AAE80.s")
 
 void func_802AAEE0(void){
@@ -31,7 +30,7 @@ void bscarry_idle_init(void){
     animctrl_reset(aCtrl);
     animctrl_setIndex(aCtrl, 0x72);
     animctrl_setDuration(aCtrl, 1.2f);
-    func_802875AC(aCtrl, D_80375740, 0x6f);
+    func_802875AC(aCtrl, "bscarry.c", 0x6f);
     func_8029C7F4(1,1,1,2);
     func_80297970(0.0f);
     pitch_setAngVel(1000.0f, 12.0f);
@@ -60,15 +59,15 @@ void bscarry_walk_init(void){
     animctrl_setIndex(aCtrl, 0x73);
     animctrl_setDuration(aCtrl, 0.8f);
     animctrl_setPlaybackType(aCtrl, ANIMCTRL_LOOP);
-    func_802875AC(aCtrl, D_8037574C, 0xac);
+    func_802875AC(aCtrl, "bscarry.c", 0xac);
     func_8029C7F4(2,1,1,2);
     func_80289EC8(D_80364AF0, D_80364AF4, D_80364AF8, D_80364AFC);
 }
 
 void bscarry_walk_update(void){
     enum bs_e sp1C = 0;
-    func_8029AD28(D_80375758, 4);
-    func_8029AD28(D_8037575C, 3);
+    func_8029AD28(0.4f, 4);
+    func_8029AD28(0.9f, 3);
     func_802AAE80();
     if(func_8029B300() == 0 && func_80297C04(1.0f))
         sp1C = BS_CARRY_IDLE;
@@ -88,4 +87,30 @@ int bscarry_inSet(enum bs_e state){
         || state == BS_CARRY_WALK; 
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/carry/func_802AB1A4.s")
+void bscarry_interrupt(void){
+    switch(bs_getInterruptType()){
+        case 7:
+            func_802948F8(func_8028D688());
+            break;
+        case 8:
+            func_8029A86C(2);
+            bs_setState(0x3C);
+            break;
+        case 0x12:
+            func_8028DE6C(carriedObject_getActorID());
+            break;
+        case 0x16:
+            if(func_802916CC(1)){
+                bs_setState(BS_CARRY_THROW);
+                func_8029A86C(2);
+            }
+            else{
+                func_8029A86C(1);
+            }
+            break;
+        default://L802AB260
+            func_802948E0();
+            func_80296608();
+            break;
+    }
+}

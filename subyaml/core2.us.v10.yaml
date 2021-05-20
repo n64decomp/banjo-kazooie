@@ -382,7 +382,7 @@ segments:
   - [0x000EE6A0, bin, data_EE6A0]
   - [0x000EE710, .rodata, bs/bTrot]
   - [0x000EE780, .rodata, bs/bWhirl]
-  - [0x000EE7B0, bin, data_EE7B0]
+  - [0x000EE7B0, .rodata, bs/carry]
   - [0x000EE7D0, .rodata, bs/claw]
   - [0x000EE810, bin, data_EE810]
   - [0x000EE880, .rodata, bs/crouch]

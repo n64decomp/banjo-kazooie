@@ -227,7 +227,7 @@ void func_802A7BA8(void);
 void bscarry_idle_init(void);
 void bscarry_idle_update(void);
 void bscarry_idle_end(void);
-void func_802AB1A4(void);
+void bscarry_interrupt(void);
 //BS_CARRY_WALK(void);
 void bscarry_walk_init(void);
 void bscarry_walk_update(void);

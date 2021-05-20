@@ -126,6 +126,7 @@ bsbeemain_die_init = 0x802A1C28;
 bsbfly_inSet = 0x802A3778;
 bslongleg_inSet = 0x802A52AC;
 bsbtrot_inSet = 0x802A9B98;
+bscarry_inSet = 0x802AB184;
 bsclimb_inSet = 0x802AB800;
 bsjig_inJiggyJig = 0x802B0A60;
 bsjig_setJiggyMarkerPtr = 0x802B0A6C;
