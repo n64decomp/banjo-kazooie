@@ -77,7 +77,12 @@ s32 func_8028AB48(void){
     return func_802957D8(move_variable_jump);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028AB68.s")
+//#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028AB68.s")
+int func_8028AB68(void){
+    return func_802933D0(0x5)
+        && func_802933D0(0x12)
+        && func_802957D8(move_ratatat_rap);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028ABB8.s")
 
