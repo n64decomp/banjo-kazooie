@@ -683,6 +683,8 @@ enum asset_e
 
     ANIM_BANJO_BTROT_JUMP = 0x27,
     
+    ANIM_BANJO_BJIG_JIGGY = 0x2e,
+
     ANIM_BANJO_FLY = 0x38,
 
     ANIM_BANJO_LONGLEG_JUMP = 0x3D,

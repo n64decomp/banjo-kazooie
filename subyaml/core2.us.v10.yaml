@@ -390,6 +390,8 @@ segments:
   - [0x000EE8C0, bin, data_EE8C0]
   - [0x000EE8D0, .rodata, bs/dronegoto]
   - [0x000EE8E0, bin, data_EE8E0]
+  - [0x000EE9B0, .rodata, bs/jig]
+  - [0x000EE9D0, bin, data_EE9D0]
   - [0x000EEA20, .rodata, bs/ow]
   - [0x000EEA30, bin, data_EEA30]
   - [0x000EEAD0, .rodata, bs/slide]

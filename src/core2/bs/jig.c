@@ -2,21 +2,19 @@
 #include "functions.h"
 #include "variables.h"
 
-void func_80295C08(void (* arg0)(void));
-
-extern char D_80375940[];
-extern char D_80375948[];
-extern f32 D_80375950;
-extern f32 D_80375954;
-
+/* .bss */
 extern u8 D_8037D4B0;
 extern u8 D_8037D4B1;
 extern u8 D_8037D4B2;
 extern ActorMarker *D_8037D4B4;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/jig/func_802B0A60.s")
+int bsjig_inJiggyJig(enum bs_e state){
+    return state == BS_JIG_JIGGY;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/jig/func_802B0A6C.s")
+void bsjig_setJiggyMarkerPtr(ActorMarker * jiggyMarkerPtr){
+    D_8037D4B4 = jiggyMarkerPtr;
+}
 
 void bsjig_jiggy_init(void){
     AnimCtrl *aCtrl = player_getAnimCtrlPtr();
@@ -24,10 +22,10 @@ void bsjig_jiggy_init(void){
 
     animctrl_reset(aCtrl);
     animctrl_setSmoothTransition(aCtrl, FALSE);
-    animctrl_setIndex(aCtrl, 0x2e);
+    animctrl_setIndex(aCtrl, ANIM_BANJO_BJIG_JIGGY);
     animctrl_setDuration(aCtrl, 4.3f);
     animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
-    func_802875AC(aCtrl, D_80375940, 0x7f);
+    func_802875AC(aCtrl, "bsjig.c", 0x7f);
     yaw_setIdeal(func_8029B41C()); //face camera
     func_8029C7F4(1,1,3,2);
     func_80297970(0.0f);
@@ -168,7 +166,7 @@ void bsjig_notedoor_init(void){
     animctrl_setIndex(aCtrl, 0x282);
     animctrl_setDuration(aCtrl, 3.6f);
     animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
-    func_802875AC(aCtrl, D_80375948, 0x14d);
+    func_802875AC(aCtrl, "bsjig.c", 0x14d);
     yaw_setIdeal(func_8029B41C());
     func_8029C7F4(1,1,3,2);
     func_80297970(0.0f);
@@ -186,7 +184,7 @@ void bsjig_notedoor_init(void){
 void bsjig_notedoor_update(void){
     enum bs_e sp1C = 0;
 
-    if(func_80289FE8(D_80375950) || func_80289FE8(D_80375954))
+    if(func_80289FE8(0.59f) || func_80289FE8(0.84f))
         func_80299CF4(0x3ea, 1.0f, 30000);
 
     if(func_80289FC4())
