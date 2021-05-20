@@ -36,12 +36,12 @@ void func_8024BE30(void){
     func_8024C428();
     osCreateViManager(0xfe);
     if(D_80000300 != 1)
-        func_80265DF0(&D_80275CD0); //PAL  
+        osViSetMode(&D_80275CD0); //PAL  
     else
-        func_80265DF0(&D_80275C80); //NTSC
+        osViSetMode(&D_80275C80); //NTSC
         
-    func_80266230(0x40);
-    func_80266230(0x2);
+    osViSetSpecialFeatures(OS_VI_DITHER_FILTER_ON);
+    osViSetSpecialFeatures(OS_VI_GAMMA_OFF);
     osViSwapBuffer(&D_803A5D00);
     osCreateMesgQueue(&D_80280770, (&D_80280770 + 1), 10);
     osCreateMesgQueue(&D_802807B0, (&D_802807B0 + 1), 1);

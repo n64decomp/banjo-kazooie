@@ -8,7 +8,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_22E40/func_80260BD4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_22E40/func_80260C3C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_22E40/n_alEnvmixerPull.s")
 
 void __postNextSeqEvent(ALSeqPlayer *seqp) 
 {

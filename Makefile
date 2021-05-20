@@ -116,7 +116,7 @@ BIN_OBJS          := $(filter-out $(OVERLAY_RZIP_OBJS),$(BIN_OBJS))
 ALL_OBJS          := $(C_OBJS) $(ASM_OBJS) $(BIN_OBJS) $(OVERLAY_RZIP_OBJS)
 SYMBOL_ADDRS      := symbol_addrs.$(VERSION).txt
 SYMBOL_ADDR_FILES := $(filter-out $(SYMBOL_ADDRS), $(wildcard symbol_addrs.*.$(VERSION).txt))
-MIPS3_OBJS        := $(BUILD_DIR)/$(SRC_ROOT)/done/ll.c.o
+MIPS3_OBJS        := $(BUILD_DIR)/$(SRC_ROOT)/done/ll.c.o $(BUILD_DIR)/$(SRC_ROOT)/core1/done/ll.c.o
 # Object files for the rom itself
 MAIN_C_OBJS       := $(addprefix $(BUILD_DIR)/,$(MAIN_C_SRCS:.c=.c.o))
 MAIN_ASM_OBJS     := $(addprefix $(BUILD_DIR)/,$(MAIN_ASM_SRCS:.s=.s.o))
@@ -175,7 +175,7 @@ endef
 # Build tool flags
 CFLAGS         := -c -Wab,-r4300_mul -non_shared -G 0 -Xfullwarn -Xcpluscomm  -signed $(OPT_FLAGS) $(MIPSBIT) -D_FINALROM -DF3DEX_GBI
 CFLAGS         += -woff 649,838,807
-CPPFLAGS       := -D_FINALROM
+CPPFLAGS       := -D_FINALROM -DN_MICRO
 INCLUDE_CFLAGS := -I . -I include -I include/2.0L -I include/2.0L/PR -I include/libc -I src/libultra/os -I src/libultra/audio
 OPT_FLAGS      := -O2 
 MIPSBIT        := -mips2
@@ -412,6 +412,12 @@ build/us.v10/src/core1/gu/mtxutil.c.o: OPT_FLAGS = -O2
 build/us.v10/src/core1/gu/rotate.c.o: OPT_FLAGS = -O2
 build/us.v10/src/core1/done/audio/%.c.o: INCLUDE_CFLAGS = -I . -I include -I include/2.0L -I include/2.0L/PR
 build/us.v10/src/core1/done/audio/%.c.o: OPT_FLAGS = -O3
+# build/us.v10/src/core1/code_21CB0.c.o: INCLUDE_CFLAGS = -I . -I include -I include/2.0L -I include/2.0L/PR
+# build/us.v10/src/core1/code_21CB0.c.o: OPT_FLAGS = -O3
+build/us.v10/src/core1/done/io/sptask.c.o: OPT_FLAGS = -O1
+build/us.v10/src/core1/done/ll.c.o: OPT_FLAGS := -O1
+build/us.v10/src/core1/done/ll.c.o: MIPSBIT := -mips3 -o32
+
 build/us.v10/src/bk_boot_27F0.c.o: OPT_FLAGS = -O2
 build/us.v10/src/done/destroythread.c.o: OPT_FLAGS := -O1
 build/us.v10/src/done/pirawdma.c.o: OPT_FLAGS := -O1

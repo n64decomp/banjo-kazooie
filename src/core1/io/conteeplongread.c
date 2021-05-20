@@ -1,5 +1,5 @@
 #include <ultra64.h>
-#include "io/controller.h"
+#include "src/core1/done/io/controller.h"
 
 s32 osEepromLongRead(OSMesgQueue *mq, u8 address, u8 *buffer, int length)
 {

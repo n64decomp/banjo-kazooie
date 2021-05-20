@@ -17,7 +17,7 @@ void    n_alSynSetPitch( N_ALVoice *v, f32 pitch)
         /*
          * set offset and pitch data
          */
-        update->delta  = D_80276E84->synth.paramSamples + v->pvoice->offset;
+        update->delta  = n_syn->synth.paramSamples + v->pvoice->offset;
         update->type   = AL_FILTER_SET_PITCH;
         update->data.f = pitch;
         update->next   = 0;

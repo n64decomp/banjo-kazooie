@@ -15,6 +15,6 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/audio/drvrNew/alEnvmixerNew.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/audio/drvrNew/init_lpfilter.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core1/audio/drvrNew/_init_lpfilter.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/audio/drvrNew/alFxNew.s")

@@ -75,6 +75,40 @@ void alCSeqNextEvent(ALCSeq *seq,ALEvent *evt)
 
 }
 
+
+/*
+  Note: If there are no valid tracks (ie. all tracks have
+  reached the end of their data stream), then return FALSE
+  to indicate that there is no next event.
+*/
+char __alCSeqNextDelta(ALCSeq *seq, s32 *pDeltaTicks)
+{
+    u32     i;
+    u32	    firstTime = 0xFFFFFFFF;
+    u32     lastTicks = seq->lastDeltaTicks;
+
+    if (!seq->validTracks)
+	return FALSE;
+
+    for(i = 0; i < 16 ; i++)
+    {
+	if((seq->validTracks >> i) & 1)
+        {
+	    if(seq->deltaFlag)
+		seq->evtDeltaTicks[i] -= lastTicks;
+
+	    if(seq->evtDeltaTicks[i] < firstTime)
+		firstTime = seq->evtDeltaTicks[i];
+        }
+    }
+ 
+    seq->deltaFlag = 0;
+    *pDeltaTicks = firstTime;
+
+    return TRUE;
+}
+
+/* only call alCSeqGetTrackEvent with a valid track !! */
 static u32 __alCSeqGetTrackEvent(ALCSeq *seq, u32 track, ALEvent *event) 
 {
     u32     offset;
@@ -185,6 +219,24 @@ static u32 __alCSeqGetTrackEvent(ALCSeq *seq, u32 track, ALEvent *event)
     return TRUE;
 }
 
+f32 alCSeqTicksToSec(ALCSeq *seq, s32 ticks, u32 tempo)
+{
+    return ((f32) (((f32)(ticks) * (f32)(tempo)) /
+                     ((f32)(seq->base->division) * 1000000.0)));
+}
+
+u32 alCSeqSecToTicks(ALCSeq *seq, f32 sec, u32 tempo)
+{
+    return (u32)(((sec * 1000000.0) * seq->base->division) / tempo);
+}
+
+
+s32 alCSeqGetTicks(ALCSeq *seq)
+{
+    return seq->lastTicks; 
+}
+
+
 void alCSeqNewMarker(ALCSeq *seq, ALCSeqMarker *m, u32 ticks)
 {
     ALEvent     evt;
@@ -217,8 +269,43 @@ void alCSeqNewMarker(ALCSeq *seq, ALCSeqMarker *m, u32 ticks)
 
 }
 
+void alCSeqSetLoc(ALCSeq *seq, ALCSeqMarker *m)
+{
+    s32     i;
+    
+    seq->validTracks    = m->validTracks;
+    seq->lastTicks      = m->lastTicks;
+    seq->lastDeltaTicks = m->lastDeltaTicks;
 
+    for(i=0;i<16;i++)
+    {
+        seq->curLoc[i]        = m->curLoc[i];
+        seq->curBUPtr[i]      = m->curBUPtr[i];
+        seq->curBULen[i]      = m->curBULen[i];
+        seq->lastStatus[i]    = m->lastStatus[i];
+        seq->evtDeltaTicks[i] = m->evtDeltaTicks[i];
+    }
+}
 
+void alCSeqGetLoc(ALCSeq *seq, ALCSeqMarker *m)
+{
+    s32     i;
+    
+    m->validTracks    = seq->validTracks;
+    m->lastTicks      = seq->lastTicks;
+    m->lastDeltaTicks = seq->lastDeltaTicks;
+
+    for(i=0;i<16;i++)
+    {
+        m->curLoc[i]        = seq->curLoc[i];
+        m->curBUPtr[i]      = seq->curBUPtr[i];
+        m->curBULen[i]      = seq->curBULen[i];
+        m->lastStatus[i]    = seq->lastStatus[i];
+        m->evtDeltaTicks[i] = seq->evtDeltaTicks[i];
+    }
+}
+
+/* non-aligned byte reading routines */
 static u8 __getTrackByte(ALCSeq *seq,u32 track)
 {
     u8      theByte;

@@ -2,38 +2,67 @@
 #include "synthInternals.h"
 #include "n_synth.h"
 
-extern AL0s *D_80276E84;
+extern AL0s *n_syn;
 
-void n_alSynAddPlayer(ALPlayer *client)
+void n_alSynAddPlayer( ALPlayer *client)
 {
     OSIntMask mask = osSetIntMask(OS_IM_NONE);
 
-    client->samplesLeft = D_80276E84->synth.curSamples;
-    client->next = D_80276E84->synth.head;
-    D_80276E84->synth.head = client;
-    if(D_80276E84->synth.n_seqp1 == 0){
-        D_80276E84->synth.n_seqp1 = client;
+    client->samplesLeft = n_syn->synth.curSamples;
+
+    client->next = n_syn->synth.head;
+    n_syn->synth.head   = client;
+
+    osSetIntMask(mask);
+}
+
+void n_alSynAddSndPlayer( ALPlayer *client)
+{
+    OSIntMask mask = osSetIntMask(OS_IM_NONE);
+
+    client->samplesLeft = n_syn->synth.curSamples;
+
+#if 1
+    client->next = n_syn->synth.head;
+    n_syn->synth.head   = client;
+#endif
+
+    if( !(n_syn->synth.n_sndp) )
+      n_syn->synth.n_sndp = client;
+
+    osSetIntMask(mask);
+}
+
+void n_alSynAddSeqPlayer(ALPlayer *client)
+{
+    OSIntMask mask = osSetIntMask(OS_IM_NONE);
+
+    client->samplesLeft = n_syn->synth.curSamples;
+    client->next = n_syn->synth.head;
+    n_syn->synth.head = client;
+    if(n_syn->synth.n_seqp1 == 0){
+        n_syn->synth.n_seqp1 = client;
     }
-    else if(D_80276E84->synth.n_seqp2 == 0){
-        D_80276E84->synth.n_seqp2 = client;
+    else if(n_syn->synth.n_seqp2 == 0){
+        n_syn->synth.n_seqp2 = client;
     }
-    else if(D_80276E84->unk5C == 0){
-        D_80276E84->unk5C = client;
+    else if(n_syn->unk5C == 0){
+        n_syn->unk5C = client;
     }
-    else if(D_80276E84->unk60 == 0){
-        D_80276E84->unk60 = client;
+    else if(n_syn->unk60 == 0){
+        n_syn->unk60 = client;
     }
-    else if(D_80276E84->unk64 == 0){
-        D_80276E84->unk64 = client;
+    else if(n_syn->unk64 == 0){
+        n_syn->unk64 = client;
     }
-    else if(D_80276E84->unk68 == 0){
-        D_80276E84->unk68 = client;
+    else if(n_syn->unk68 == 0){
+        n_syn->unk68 = client;
     }
-    else if(D_80276E84->unk6C == 0){
-        D_80276E84->unk6C = client;
+    else if(n_syn->unk6C == 0){
+        n_syn->unk6C = client;
     }
-    else if(D_80276E84->unk70 == 0){
-        D_80276E84->unk70 = client;
+    else if(n_syn->unk70 == 0){
+        n_syn->unk70 = client;
     }
 
     osSetIntMask(mask);

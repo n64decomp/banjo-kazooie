@@ -85,7 +85,7 @@ void mlMtxIdent(void){
     if (yaw == 0.0f)
         return;
 
-    sin = func_80263FF0(yaw*0.0174533);
+    sin = sinf(yaw*0.0174533);
     cos = func_80265360(yaw*0.0174533);
     phi_v0 = D_80282FD0;
     for(phi_v1 = 0; phi_v1 < 0xC; phi_v1 += 4){

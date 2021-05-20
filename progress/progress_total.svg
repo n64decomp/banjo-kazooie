@@ -9,7 +9,11 @@
     </mask>
     <g mask="url(#anybadge_1)">
         <path fill="#555" d="M0 0h150v20H0z"/>
+<<<<<<< HEAD
         <path fill="#ff5300" d="M150 0h67v20H150z"/>
+=======
+        <path fill="#ff5700" d="M150 0h67v20H150z"/>
+>>>>>>> a6b56e5e2c99538cf1b07347feb639aa76150b89
         <path fill="url(#b)" d="M0 0h217v20H0z"/>
     </g>
     <g fill="#fff" text-anchor="middle" font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="11">
@@ -17,7 +21,12 @@
         <text x="75.0" y="14">Banjo-Kazooie (us.v10)</text>
     </g>
     <g fill="#fff" text-anchor="middle" font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="11">
+<<<<<<< HEAD
         <text x="184.5" y="15" fill="#010101" fill-opacity=".3">16.2850%</text>
         <text x="183.5" y="14">16.2850%</text>
+=======
+        <text x="184.5" y="15" fill="#010101" fill-opacity=".3">17.0053%</text>
+        <text x="183.5" y="14">17.0053%</text>
+>>>>>>> a6b56e5e2c99538cf1b07347feb639aa76150b89
     </g>
 </svg>

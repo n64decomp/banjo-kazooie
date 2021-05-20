@@ -41,7 +41,7 @@ s32 n_alSynAllocVoice( N_ALVoice *voice, ALVoiceConfig *vc)
              * ramp down stolen voice
              */
             update = __n_allocParam();
-            update->delta      = D_80276E84->synth.paramSamples;
+            update->delta      = n_syn->synth.paramSamples;
             update->type       = AL_FILTER_SET_VOLUME;
             update->data.i     = 0;
             update->moredata.i = pvoice->offset - 64;
@@ -52,7 +52,7 @@ s32 n_alSynAllocVoice( N_ALVoice *voice, ALVoiceConfig *vc)
              */
             update = __n_allocParam();
             if (update) {
-                update->delta  = D_80276E84->synth.paramSamples + pvoice->offset;
+                update->delta  = n_syn->synth.paramSamples + pvoice->offset;
                 update->type   = AL_FILTER_STOP_VOICE;
                 update->next   = 0;
                 n_alEnvmixerResampleParam(voice->pvoice, AL_FILTER_ADD_UPDATE, update);
@@ -79,16 +79,16 @@ s32 _n_allocatePVoice(N_PVoice **pvoice, s16 priority)
     N_PVoice      *pv;
     s32         stolen = 0;
     
-    if ((dl = D_80276E84->synth.pLameList.next) != 0) { /* check the lame list first */
+    if ((dl = n_syn->synth.pLameList.next) != 0) { /* check the lame list first */
         *pvoice = (N_PVoice *) dl;
         alUnlink(dl);
-        alLink(dl, &D_80276E84->synth.pAllocList);        
-    } else if ((dl = D_80276E84->synth.pFreeList.next) != 0) { /* from the free list */
+        alLink(dl, &n_syn->synth.pAllocList);        
+    } else if ((dl = n_syn->synth.pFreeList.next) != 0) { /* from the free list */
         *pvoice = (N_PVoice *) dl;
         alUnlink(dl);
-        alLink(dl, &D_80276E84->synth.pAllocList);        
+        alLink(dl, &n_syn->synth.pAllocList);        
     } else { /* steal one */
-        for (dl = D_80276E84->synth.pAllocList.next; dl != 0; dl = dl->next) {
+        for (dl = n_syn->synth.pAllocList.next; dl != 0; dl = dl->next) {
             pv = (PVoice *)dl;
 
             /*
