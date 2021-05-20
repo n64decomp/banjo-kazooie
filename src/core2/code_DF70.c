@@ -15,7 +15,9 @@ int func_80294F78(void){
     return button_pressed(BUTTON_C_UP) && func_8028ACD8();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_DF70/func_80294FB4.s")
+int func_80294FB4(void){
+    return button_pressed(BUTTON_C_LEFT) && func_802951FC(0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_DF70/func_80294FF0.s")
 
