@@ -139,7 +139,10 @@ void bsjig_jiggy_end(void){
     func_80298A64();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/jig/func_802B0EBC.s")
+void bsjig_jiggy_interrupt(void){
+    if(bs_getInterruptType() == 0x26)
+        func_80296608();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/jig/func_802B0EF0.s")
 

@@ -273,7 +273,7 @@ void func_8029F348(void);
 void bsjig_jiggy_init(void);
 void bsjig_jiggy_update(void);
 void bsjig_jiggy_end(void);
-void func_802B0EBC(void);
+void bsjig_jiggy_interrupt(void);
 //BS_BTROT_SLIDE
 void bsbtrot_slide_init(void);
 void bsbtrot_slide_update(void);
