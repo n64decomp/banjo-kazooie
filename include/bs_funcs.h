@@ -248,7 +248,7 @@ void bsant_fall_end(void);
 //BS_ANT_OW
 void bsant_ow_init(void);
 void bsant_ow_update(void);
-void func_8029EFE8(void);
+void bsant_ow_end(void);
     //0x3F
 void func_802B1BF4(void);
 void func_802B1CF8(void);
