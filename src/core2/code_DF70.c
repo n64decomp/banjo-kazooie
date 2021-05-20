@@ -75,7 +75,10 @@ void func_802952A8(s32 arg0, int arg1){
         D_8037C300 &= ~(1 <<arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_DF70/func_802952F4.s")
+void func_802952F4(s32 arg0, s32 arg1, int arg2){
+    func_802952A8(arg0, arg2);
+    func_802952A8(arg1, arg2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_DF70/func_80295328.s")
 
