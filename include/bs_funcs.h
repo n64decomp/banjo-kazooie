@@ -216,9 +216,9 @@ void bsant_walk_init(void);
 void bsant_walk_update(void);
 void bsant_walk_end(void);
 //BS_ANT_JUMP
-void func_8029E8C8(void);
-void func_8029EA04(void);
-void func_8029EB94(void);
+void bsant_jump_init(void);
+void bsant_jump_update(void);
+void bsant_jump_end(void);
 //BS_DIVE_A
 void func_802A7A54(void);
 void func_802A7AB0(void);

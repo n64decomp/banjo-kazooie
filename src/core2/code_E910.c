@@ -59,7 +59,7 @@ bsMap D_80363824[] ={
     {BS_JIG_NOTEDOOR, bsjig_notedoor_init, bsjig_notedoor_update, bsjig_notedoor_end, func_80296590},
     {BS_ANT_IDLE,   bsant_idle_init, bsant_idle_update, bsant_idle_end, func_802B5350},
     {BS_ANT_WALK,   bsant_walk_init, bsant_walk_update, bsant_walk_end, func_802B5350},
-    {BS_ANT_JUMP,   func_8029E8C8, func_8029EA04, func_8029EB94, func_802B5350},
+    {BS_ANT_JUMP,   bsant_jump_init, bsant_jump_update, bsant_jump_end, func_802B5350},
     {BS_DIVE_A,     func_802A7A54, func_802A7AB0, func_802A7BA8, func_80296608},
     {BS_CARRY_IDLE, bscarry_idle_init, bscarry_idle_update, bscarry_idle_end, bscarry_interrupt},
     {BS_CARRY_WALK, bscarry_walk_init, bscarry_walk_update, bscarry_walk_end, bscarry_interrupt},

@@ -737,6 +737,7 @@ enum asset_e
 
     ANIM_TERMITE_IDLE = 0x5E,
     ANIM_TERMITE_WALK = 0x5F,
+    ANIM_TERMITE_JUMP = 0x60,
 
     ANIM_GRUBLIN_DIE = 0x94,
 
