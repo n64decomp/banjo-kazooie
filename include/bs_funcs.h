@@ -213,7 +213,7 @@ void bsant_idle_update(void);
 void bsant_idle_end(void);
 //BS_ANT_WALK
 void bsant_walk_init(void);
-void func_8029E7D4(void);
+void bsant_walk_update(void);
 void func_8029E8A0(void);
 //BS_ANT_JUMP
 void func_8029E8C8(void);

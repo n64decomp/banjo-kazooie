@@ -87,7 +87,30 @@ void bsant_walk_init(void){
     func_802900B4();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/ant/func_8029E7D4.s")
+void bsant_walk_update(void){
+    enum bs_e sp1C = 0;
+    AnimCtrl * aCtrl = player_getAnimCtrlPtr();
+
+    func_80299628(0);
+    func_8029E48C();
+
+    if(animctrl_isAt(aCtrl, 0.7781f))
+        func_8029E448(0);
+
+    if(animctrl_isAt(aCtrl, 0.2781f))
+        func_8029E448(1);
+
+    if(func_8029B300() == 0 && func_80297C04(1.0f))
+        sp1C = BS_ANT_IDLE;
+
+    if(func_8028B094())
+        sp1C = BS_ANT_FALL;
+
+    if(button_pressed(BUTTON_A))
+        sp1C = BS_ANT_JUMP;
+
+    bs_setState(sp1C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/ant/func_8029E8A0.s")
 
