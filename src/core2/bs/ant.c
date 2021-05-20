@@ -2,6 +2,12 @@
 #include "functions.h"
 #include "variables.h"
 
+extern f32 D_80364960;
+extern f32 D_80364964;
+extern f32 D_80364968;
+extern f32 D_8036496C;
+
+void func_80293D48(f32,f32);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/ant/func_8029E3E0.s")
 
@@ -9,9 +15,22 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/ant/func_8029E48C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/ant/func_8029E4EC.s")
+void func_8029E4EC(void){
+    if(!bsant_inSet(bs_getNextState())){
+        func_8029B0C0();
+        func_8029E070(0);
+        func_8029E064(0);
+        func_802933FC(3);
+        func_802933FC(4);
+        func_80293D74();
+    }
+    func_80289F10(1);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/ant/func_8029E554.s")
+void func_8029E554(void){
+    if(!bsant_inSet(bs_getPrevState()))
+        func_80293D48(50.0f, 25.0f);
+}
 
 int bsant_inSet(s32 move_indx){
     return (move_indx == BS_ANT_IDLE)
@@ -60,7 +79,13 @@ void bsant_idle_end(void){
     func_8029E4EC();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/ant/func_8029E764.s")
+void bsant_walk_init(void){
+    func_8029E554();
+    func_8028A010(ANIM_TERMITE_WALK, 0.8f);
+    func_8029C7F4(2,1,1,2);
+    func_80289EC8(D_80364960, D_80364964, D_80364968, D_8036496C);
+    func_802900B4();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/ant/func_8029E7D4.s")
 

@@ -736,6 +736,7 @@ enum asset_e
     ANIM_BANJO_SLIDE_FRONT = 0x5A,
 
     ANIM_TERMITE_IDLE = 0x5E,
+    ANIM_TERMITE_WALK = 0x5F,
 
     ANIM_GRUBLIN_DIE = 0x94,
 
