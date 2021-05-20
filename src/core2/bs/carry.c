@@ -79,7 +79,10 @@ void bscarry_walk_update(void){
     bs_setState(sp1C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/carry/func_802AB164.s")
+void bscarry_walk_end(void){
+    func_802AAEE0();
+}
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/carry/func_802AB184.s")
 

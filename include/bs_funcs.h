@@ -231,7 +231,7 @@ void func_802AB1A4(void);
 //BS_CARRY_WALK(void);
 void bscarry_walk_init(void);
 void bscarry_walk_update(void);
-void func_802AB164(void);
+void bscarry_walk_end(void);
 //0x3C (void);
 void func_802B6130(void);
 void func_802B61E0(void);
