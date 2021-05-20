@@ -214,7 +214,7 @@ void bsant_idle_end(void);
 //BS_ANT_WALK
 void bsant_walk_init(void);
 void bsant_walk_update(void);
-void func_8029E8A0(void);
+void bsant_walk_end(void);
 //BS_ANT_JUMP
 void func_8029E8C8(void);
 void func_8029EA04(void);

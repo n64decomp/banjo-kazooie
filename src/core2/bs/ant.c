@@ -112,7 +112,10 @@ void bsant_walk_update(void){
     bs_setState(sp1C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/ant/func_8029E8A0.s")
+void bsant_walk_end(void){
+    func_8029E4EC();
+    func_802900FC();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/ant/func_8029E8C8.s")
 
