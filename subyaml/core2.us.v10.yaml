@@ -368,6 +368,7 @@ segments:
   - [0x000EDC80, .rodata, roll]
   - [0x000EDCA0, .rodata, yaw]
   - [0x000EDD00, bin, data_EDD00]
+  - [0x000EE310, .rodata, bs/ant]
   - [0x000EE340, .rodata, bs/bBarge]
   - [0x000EE380, .rodata, bs/bbuster]
   - [0x000EE3C0, .rodata, bs/beeFly]

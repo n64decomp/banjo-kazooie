@@ -12,14 +12,6 @@ extern u8 D_80364978;
 extern s16 D_8036497C[3];
 
 
-extern char D_803752A0[];
-extern char D_803752A8[];
-extern char D_803752B0[];
-extern char D_803752B8[];
-extern f32 D_803752C0;
-extern f32 D_803752C4;
-extern f32 D_803752C8;
-
 extern f32 D_8037D290;
 extern u8 D_8037D294;
 extern s32 D_8037D298;
@@ -35,7 +27,7 @@ void func_8029E3E0(void){
 }
 
 void func_8029E448(int arg0){
-    func_8030EAAC(0x3d, arg0 ? D_803752C0 : D_803752C4, 0x36b0, 8);
+    func_8030EAAC(0x3d, arg0 ? 0.96f : 1.04f, 0x36b0, 8);
     
 }
 
@@ -162,7 +154,7 @@ void bsant_jump_init(void){
     func_8028774C(aCtrl, 0.2987f);
     animctrl_setSubRange(aCtrl, 0.0f, 0.4423f);
     animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
-    func_802875AC(aCtrl, D_803752A0, 0x17c);
+    func_802875AC(aCtrl, "bsant.c", 0x17c);
     func_8029C7F4(1,1,3,6);
     if(func_8029B2E8() != 0.0f)
         yaw_setIdeal(func_8029B33C());
@@ -191,7 +183,7 @@ void bsant_jump_update(void){
         case 0://L8029EA88
             if(animctrl_isStopped(aCtrl)){
                 animctrl_setDuration(aCtrl, 5.0f);
-                func_8028A37C(D_803752C8);
+                func_8028A37C(0.5026f);
                 D_8037D294 = 1;
             }
             break;
@@ -241,7 +233,7 @@ void bsant_fall_init(void){
     animctrl_setDuration(aCtrl, 1.9f);
     func_8028774C(aCtrl, 0.4423f);
     animctrl_setPlaybackType(aCtrl, ANIMCTRL_STOPPED);
-    func_802875AC(aCtrl, D_803752A8, 0x208);
+    func_802875AC(aCtrl, "bsant.c", 0x208);
     func_8029C7F4(1,1,3,6);
     D_8037D294 = 0;
 }
@@ -262,7 +254,7 @@ void func_8029ED5C(int take_damage){
     animctrl_setDuration(aCtrl, 1.4f);
     animctrl_setSubRange(aCtrl, 0.0f, 0.4899f);
     animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
-    func_802875AC(aCtrl, D_803752B0, 0x272);
+    func_802875AC(aCtrl, "bsant.c", 0x272);
     if(take_damage == 1)
         func_8030E58C(0x38, 1.8f);
     else
@@ -313,7 +305,7 @@ void bsant_die_init(void){
     animctrl_setSubRange(aCtrl, 0.0f, 0.523f);
     animctrl_setDuration(aCtrl, 1.6f);
     animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
-    func_802875AC(aCtrl, D_803752B8, 0x2f6);
+    func_802875AC(aCtrl, "bsant.c", 0x2f6);
     func_8030E58C(0x36, 1.8f);
     _player_getPosition(sp2C);
     func_80294980(sp20);
