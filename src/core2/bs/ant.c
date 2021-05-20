@@ -366,7 +366,14 @@ void bsant_die_update(void){
     bs_setState(0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/ant/func_8029F348.s")
+void bsant_die_end(void){
+    func_8024BD08(0);
+    gravity_reset();
+    pitch_setIdeal(0.0f);
+    roll_setIdeal(0.0f);
+    func_80291548();
+    func_80292EA4();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/ant/func_8029F398.s")
 
