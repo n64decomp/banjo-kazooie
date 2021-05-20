@@ -2,6 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
+extern u32 D_8037C300;
 
 int func_80294F00(void){
     return button_pressed(BUTTON_B) && func_8028A960();
@@ -49,7 +50,9 @@ int func_80295158(void){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_DF70/func_80295194.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_DF70/func_802951FC.s")
+int func_802951FC(s32 arg0){
+    return D_8037C300  & (1 << arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_DF70/func_80295214.s")
 
