@@ -59,7 +59,11 @@ s32 func_8028AA98(void){
     return func_802957D8(move_eggs);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028AAB8.s")
+int func_8028AAB8(void){
+    return func_802933D0(0x12) 
+        && func_802933D0(0x5) 
+        && func_802957D8(move_feathery_flap);
+}
 
 s32 func_8028AB08(void){
     return func_802957D8(move_flip_flap);
