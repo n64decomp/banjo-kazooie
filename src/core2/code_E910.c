@@ -154,7 +154,7 @@ bsMap D_80363824[] ={
     {0x0000009C, func_802B990C, func_802B9934, func_802B9954, func_802AE490},
     {0x0000009D, func_802A0478, func_802A04A0, func_802A04C0, func_802AE490},
     {0x0000009E, func_802ABCCC, func_802ABD0C, func_802ABD40, func_802ABD60},
-    {BS_ANT_BOUNCE, func_8029F008, func_8029F028, func_8029F048, func_80296590},
+    {BS_ANT_BOUNCE, bsant_bounce_init, bsant_bounce_update, bsant_bounce_end, func_80296590},
     {BS_PUMPKIN_BOUNCE, func_802B303C, func_802B305C, func_802B307C, func_80296590},
     {BS_CROC_BOUNCE, func_802ACB98, func_802ACBB8, func_802ACBD8, func_80296590},
     {BS_WALRUS_BOUNCE, func_802B8CE4, func_802B8D04, func_802B8D24, func_80296590},

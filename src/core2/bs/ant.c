@@ -312,7 +312,7 @@ void func_8029ED5C(int take_damage){
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/ant/func_8029EF68.s")
 
 void bsant_ow_init(void){
-    func_8029ED5C(TRUE);
+    func_8029ED5C(1);
 }
 
 void bsant_ow_update(void){
@@ -323,11 +323,17 @@ void bsant_ow_end(void){
     func_8029EF68();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/ant/func_8029F008.s")
+void bsant_bounce_init(void){
+    func_8029ED5C(2);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/ant/func_8029F028.s")
+void bsant_bounce_update(void){
+    func_8029EEC8();
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/ant/func_8029F048.s")
+void bsant_bounce_end(void){
+    func_8029EF68();
+}
 
 void bsant_die_init(void){
     AnimCtrl *aCtrl = player_getAnimCtrlPtr();

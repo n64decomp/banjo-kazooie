@@ -667,9 +667,9 @@ void func_802ABD0C(void);
 void func_802ABD40(void);
 void func_802ABD60(void);
 //0x0000009F
-void func_8029F008(void);
-void func_8029F028(void);
-void func_8029F048(void);
+void bsant_bounce_init(void);
+void bsant_bounce_update(void);
+void bsant_bounce_end(void);
 void func_80296590(void);
 //0x000000A0
 void func_802B303C(void);
