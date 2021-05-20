@@ -67,6 +67,7 @@ ALL_C_SRCS        := $(shell find $(SRC_ROOT) -type f -iname '*.c' 2> /dev/null)
 ALL_ASM_SRCS      := $(filter-out $(ASM_ROOT)/$(NONMATCHINGS), $(shell find $(ASM_ROOT) -name $(NONMATCHINGS) -prune -o -iname '*.s' 2> /dev/null))
 ALL_BINS          := $(shell find $(BIN_ROOT) -type f -iname '*.bin' 2> /dev/null)
 # Files referenced in the splat files
+YAML_CALL := $(SPLAT_INPUTS) $(BASENAME).$(VERSION).yaml $(addprefix $(SUBYAML)/, $(addsuffix .$(VERSION).yaml, $(OVERLAYS)))
 YAML_SRCS   := $(shell $(SPLAT_INPUTS) $(BASENAME).$(VERSION).yaml $(addprefix $(SUBYAML)/, $(addsuffix .$(VERSION).yaml, $(OVERLAYS))))
 YAML_C_SRCS := $(filter %.c, $(YAML_SRCS))
 YAML_ASM_SRCS := $(filter %.s, $(YAML_SRCS))
@@ -176,7 +177,7 @@ endef
 CFLAGS         := -c -Wab,-r4300_mul -non_shared -G 0 -Xfullwarn -Xcpluscomm  -signed $(OPT_FLAGS) $(MIPSBIT) -D_FINALROM -DF3DEX_GBI
 CFLAGS         += -woff 649,838,807
 CPPFLAGS       := -D_FINALROM -DN_MICRO
-INCLUDE_CFLAGS := -I . -I include -I include/2.0L -I include/2.0L/PR -I include/libc -I src/libultra/os -I src/libultra/audio
+INCLUDE_CFLAGS := -I . -I include -I include/2.0L -I include/2.0L/PR
 OPT_FLAGS      := -O2 
 MIPSBIT        := -mips2
 ASFLAGS        := -EB -mtune=vr4300 -march=vr4300 -mabi=32 -I include
@@ -302,7 +303,7 @@ $(OVERLAY_RZIP_OBJS) : $(BUILD_DIR)/$(BIN_ROOT)/%.$(VERSION).rzip.bin.o : $(BUIL
 # .c -> .o
 $(BUILD_DIR)/%.c.o : %.c | $(C_BUILD_DIRS)
 	$(call print2,Compiling:,$<,$@)
-	@$(CC) $(CFLAGS) $(CPPFLAGS) $(INCLUDE_CFLAGS) $(OPT_FLAGS) $(MIPSBIT) -o $@ $<
+	$(CC) $(CFLAGS) $(CPPFLAGS) $(INCLUDE_CFLAGS) $(OPT_FLAGS) $(MIPSBIT) -o $@ $<
 
 # .c -> .o (mips3)
 $(MIPS3_OBJS) : $(BUILD_DIR)/%.c.o : %.c | $(C_BUILD_DIRS)
@@ -392,7 +393,9 @@ clean:
 	@$(RM) -rf $(BIN_ROOT)
 	@$(RM) -rf $(NONMATCHING_DIR)
 	@$(RM) -rf $(ASM_ROOT)/*.s
-	@$(RM) -rf $(addprefix $(ASM_ROOT)/,$(OVERLAYS))
+	@$(RM) -rf $(addprefix $(ASM_ROOT)/,$(filter-out core1,$(OVERLAYS)))
+	@$(RM) -rf $(ASM_ROOT)/core1/*.s
+	@$(RM) -rf $(ASM_ROOT)/core1/os
 	@$(RM) -f undefined_syms_auto* undefined_funcs_auto*
 	@$(RM) -f *.ld
 	@$(RM) -f $(SYMBOL_ADDRS)

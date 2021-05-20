@@ -5,8 +5,12 @@ baseroms/*
 *.v64
 
 #compiled or ripped asm
-asm/*
+asm/nonmatchings
+asm/*.s
+asm/*/*.s
+asm/core1/os
 !asm/ultra
+!asm/core1/ultra
 build/*
 build/
 
