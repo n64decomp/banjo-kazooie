@@ -55,7 +55,10 @@ void bsant_idle_update(void){
     bs_setState(new_state);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/ant/func_8029E73C.s")
+void bsant_idle_end(void){
+    func_802900FC();
+    func_8029E4EC();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/ant/func_8029E764.s")
 
