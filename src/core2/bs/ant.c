@@ -269,7 +269,9 @@ void bsant_fall_update(void){
     bs_setState(sp2C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/ant/func_8029ED3C.s")
+void bsant_fall_end(void){
+    func_8029E4EC();
+}
 
 void func_8029ED5C(int take_damage){
     AnimCtrl *aCtrl = player_getAnimCtrlPtr();
@@ -309,7 +311,9 @@ void func_8029ED5C(int take_damage){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/ant/func_8029EF68.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/ant/func_8029EFA8.s")
+void bsant_ow_init(void){
+    func_8029ED5C(TRUE);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/ant/func_8029EFC8.s")
 

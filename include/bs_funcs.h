@@ -244,9 +244,9 @@ void bsjump_tumble_end(void);
 //BS_ANT_FALL(void);
 void bsant_fall_init(void);
 void bsant_fall_update(void);
-void func_8029ED3C(void);
+void bsant_fall_end(void);
 //BS_ANT_OW
-void func_8029EFA8(void);
+void bsant_ow_init(void);
 void func_8029EFC8(void);
 void func_8029EFE8(void);
     //0x3F
