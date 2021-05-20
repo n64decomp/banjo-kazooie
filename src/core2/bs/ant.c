@@ -307,7 +307,28 @@ static void __bsant_recoil_init(int take_damage){
     D_8037D294 = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/ant/func_8029EEC8.s")
+static void __bsant_recoil_update(void){
+    enum bs_e sp1C = 0;
+    
+    if(func_80289FE8(0.5f))
+        func_80292EA4();
+
+    switch(D_8037D294){
+        case 0:
+            if(func_8028B254(0x5a)){
+                func_8028A37C(1.0f);
+                D_8037D294 = 1;
+            }
+            break;
+        case 1:
+            break;
+    }
+    
+    if(func_8028B2E8())
+        sp1C = BS_ANT_IDLE;
+
+    bs_setState(sp1C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/ant/func_8029EF68.s")
 
@@ -316,7 +337,7 @@ void bsant_ow_init(void){
 }
 
 void bsant_ow_update(void){
-    func_8029EEC8();
+    __bsant_recoil_update();
 }
 
 void bsant_ow_end(void){
@@ -328,7 +349,7 @@ void bsant_bounce_init(void){
 }
 
 void bsant_bounce_update(void){
-    func_8029EEC8();
+    __bsant_recoil_update();
 }
 
 void bsant_bounce_end(void){
