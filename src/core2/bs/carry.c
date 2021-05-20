@@ -3,16 +3,10 @@
 #include "variables.h"
 
 /* .data */
-extern f32  D_80364AF0;
-extern f32  D_80364AF4;
-extern f32  D_80364AF8;
-extern f32  D_80364AFC;
-
-/* .rodata */
-extern char D_80375740[];
-extern char D_8037574C[];
-extern f32  D_80375758;
-extern f32  D_8037575C;
+const f32  D_80364AF0 = 30.0f;
+const f32  D_80364AF4 = 300.0f;
+const f32  D_80364AF8 = 0.84f;
+const f32  D_80364AFC = 0.4f;
 
 void func_802AAE80(void){
     f32 sp1C = func_8029B30C();
