@@ -144,7 +144,21 @@ void bsjig_jiggy_interrupt(void){
         func_80296608();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/jig/func_802B0EF0.s")
+void bsjig_notedoor_end(void){
+    func_8028D5F4();
+    func_8025A2FC(-1, 0xfa0);
+    func_8024BD08(1);
+    func_8029E070(0);
+    func_80291548();
+    if( D_8037D4B2 
+        && jiggyscore_total() == 100
+        && func_8031FF1C(0xFC)
+    ){
+        func_8028F918(2);
+        func_802E4078(MAP_CS_END_ALL_100, 0, 1);
+    }
+    func_80298A64();
+}
 
 void bsjig_notedoor_init(void){
     AnimCtrl *aCtrl = player_getAnimCtrlPtr();

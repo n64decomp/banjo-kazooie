@@ -206,7 +206,7 @@ void func_802B9D00(void);
 //BS_JIG_NOTEDOOR(void);
 void bsjig_notedoor_init(void);
 void bsjig_notedoor_update(void);
-void func_802B0EF0(void);
+void bsjig_notedoor_end(void);
 //BS_ANT_IDLE
 void func_8029E618(void);
 void func_8029E6B0(void);
