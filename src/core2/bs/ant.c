@@ -273,7 +273,7 @@ void bsant_fall_end(void){
     func_8029E4EC();
 }
 
-void func_8029ED5C(int take_damage){
+static void __bsant_recoil_init(int take_damage){
     AnimCtrl *aCtrl = player_getAnimCtrlPtr();
     f32 sp38;
     f32 sp2C[3];
@@ -312,7 +312,7 @@ void func_8029ED5C(int take_damage){
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/ant/func_8029EF68.s")
 
 void bsant_ow_init(void){
-    func_8029ED5C(1);
+    __bsant_recoil_init(1);
 }
 
 void bsant_ow_update(void){
@@ -324,7 +324,7 @@ void bsant_ow_end(void){
 }
 
 void bsant_bounce_init(void){
-    func_8029ED5C(2);
+    __bsant_recoil_init(2);
 }
 
 void bsant_bounce_update(void){
