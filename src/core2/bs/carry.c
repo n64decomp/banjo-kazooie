@@ -83,7 +83,9 @@ void bscarry_walk_end(void){
     func_802AAEE0();
 }
 
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/carry/func_802AB184.s")
+int bscarry_inSet(enum bs_e state){
+    return state == BS_CARRY_IDLE 
+        || state == BS_CARRY_WALK; 
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/carry/func_802AB1A4.s")
