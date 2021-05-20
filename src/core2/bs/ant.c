@@ -315,7 +315,9 @@ void bsant_ow_init(void){
     func_8029ED5C(TRUE);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/ant/func_8029EFC8.s")
+void bsant_ow_update(void){
+    func_8029EEC8();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/ant/func_8029EFE8.s")
 
