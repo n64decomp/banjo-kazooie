@@ -2,23 +2,24 @@
 #include "functions.h"
 #include "variables.h"
 
-extern f32 D_80364960;
-extern f32 D_80364964;
-extern f32 D_80364968;
-extern f32 D_8036496C;
-extern f32 D_80364970; //ant initial jump y velocity
-extern f32 D_80364974; //ant jump gravity
-extern u8 D_80364978;
-extern s16 D_8036497C[3];
-
-
-extern f32 D_8037D290;
-extern u8 D_8037D294;
-extern s32 D_8037D298;
-
 void func_80293D48(f32,f32);
 void func_8030EAAC(s32, f32, s32, s32);
 void func_8030EB88(int, f32, f32);
+
+/* .data */
+const f32 D_80364960 = 30.0f;
+const f32 D_80364964 = 500.0f;
+const f32 D_80364968 = 0.44f;
+const f32 D_8036496C = 0.2f;
+const f32 D_80364970 = 693.5f; //ant initial jump y velocity
+const f32 D_80364974 = -1200.0f; //ant jump gravity
+u8  D_80364978 = 0;
+s16 D_8036497C[3] = {0x54, 0x55, 0x56};
+
+/* .bss */
+extern f32 D_8037D290;
+extern u8 D_8037D294;
+extern s32 D_8037D298;
 
 void func_8029E3E0(void){
     func_8030EB88(D_8036497C[D_80364978], 1.75f, 1.85f);

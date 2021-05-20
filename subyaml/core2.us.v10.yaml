@@ -346,6 +346,7 @@ segments:
   - [0x000DC600, bin, data_DC600]
   - [0x000DC890, .data, code_E910]
   - [0x000DD4B0, bin, data_DD4B0]
+  - [0x000DD9D0, .data, bs/ant]
   - [0x000DDA00, .data, bs/bbuster]
   - [0x000DDA20, bin, data_DDA20]
   - [0x000DDA80, .data, bs/bFlap]
