@@ -4,14 +4,11 @@
 
 f32 func_80294438(void);
 void func_8029797C(f32);
-void player_setYVelocity(f32);
 void func_802979AC(f32, f32);
 f32 func_80297A64(void);
-void gravity_set(f32);
 void func_80299B58(f32, f32);
 f32 func_8029B2E8(void);
 f32 func_8029B33C(void);
-void _get_velocity(f32 *);
 void func_802921BC(f32);
 void func_8028A084(s32, f32);
 
@@ -99,7 +96,7 @@ void bsjump_update(void){
         func_802B6FA8();
     }
 
-    _get_velocity(sp24);
+    _get_velocity(&sp24);
     if((button_released(BUTTON_A) && 0.0f < sp24[1] && !D_8037D4C2) || !func_8028AB48()){
         gravity_reset();
     }
@@ -200,7 +197,7 @@ void bsjump_fall_update(void){
     else
         func_802B6FA8();
 
-    _get_velocity(sp1C);
+    _get_velocity(&sp1C);
 
     switch(D_8037D4C0){
         case 0://L802B17B8

@@ -52,7 +52,7 @@ void bsbshock_charge_update(void){
         func_8029C348();
     }
     func_802B6FA8();
-    _get_velocity(sp1C);
+    _get_velocity(&sp1C);
     if(button_released(BUTTON_A) && 0.0f < sp1C[1]){
         gravity_reset();
     }
@@ -154,7 +154,7 @@ void bsbshock_update(void){
     AnimCtrl * aCtrl = player_getAnimCtrlPtr();
 
     func_802B6FA8();
-    _get_velocity(sp20);
+    _get_velocity(&sp20);
     if(animctrl_isAt(aCtrl, 0.7f))
         func_8030E484(0x53);
 

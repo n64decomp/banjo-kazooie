@@ -297,5 +297,5 @@ void func_8029E180(s32, f32);
 int func_80291700(s32, f32);
 
 AnimCtrl *player_getAnimCtrlPtr(void);
-
+void _get_velocity(f32 (*dst)[3]);
 #endif

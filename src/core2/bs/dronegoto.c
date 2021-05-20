@@ -63,7 +63,7 @@ void func_802AECE4(void){
     f32 sp20[3];
     AnimCtrl *aCtrl = player_getAnimCtrlPtr();
 
-    _get_velocity(sp20);
+    _get_velocity(&sp20);
     if(func_8025801C(sp20, &sp2C)){
         yaw_setIdeal(sp2C);
     }

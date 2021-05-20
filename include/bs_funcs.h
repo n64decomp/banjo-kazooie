@@ -243,7 +243,7 @@ void bsjump_tumble_update(void);
 void bsjump_tumble_end(void);
 //BS_ANT_FALL(void);
 void bsant_fall_init(void);
-void func_8029EC5C(void);
+void bsant_fall_update(void);
 void func_8029ED3C(void);
 //BS_ANT_OW
 void func_8029EFA8(void);

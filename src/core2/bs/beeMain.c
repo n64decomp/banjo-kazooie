@@ -13,7 +13,6 @@ void func_802BF2C0(f32);
 
 f32 func_80289F70(void);
 void func_8028A3B8(f32, f32);
-void _get_velocity(f32 *);
 f32 func_8029B2E8(void);
 f32 func_8029B33C(void);
 f32 func_80257C48(f32, f32, f32);
@@ -163,7 +162,7 @@ void func_802A1438(void){
     sp2c = 0;
     sp28 = player_getAnimCtrlPtr();
     func_802A1020();
-    _get_velocity(sp1c);
+    _get_velocity(&sp1c);
     if(button_released(BUTTON_A) && (0.0f < sp1c[1])){
         gravity_reset();
     }
@@ -249,7 +248,7 @@ void func_802A170C(void){
     sp28 = player_getAnimCtrlPtr();
     func_80299628(0);
     func_802A1020();
-    _get_velocity(sp1c);
+    _get_velocity(&sp1c);
     switch(D_8037D2D4){
         case 0:
             if(func_8028B254(0x82)){

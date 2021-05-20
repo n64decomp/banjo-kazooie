@@ -176,7 +176,7 @@ void bsant_jump_update(void){
     f32 sp1C[3];
 
     func_8029E48C();
-    _get_velocity(sp1C);
+    _get_velocity(&sp1C);
 
     if(button_released(BUTTON_A) && 0.0f < sp1C[1])
         gravity_reset();
@@ -239,7 +239,35 @@ void bsant_fall_init(void){
     D_8037D294 = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/ant/func_8029EC5C.s")
+void bsant_fall_update(void){
+    enum bs_e sp2C = 0;
+    AnimCtrl * aCtrl = player_getAnimCtrlPtr();
+    f32 sp1C[3];
+
+    func_80299628(0);
+    if(D_8037D298)
+        func_8029E48C();
+
+    _get_velocity(&sp1C);
+    switch(D_8037D294){
+        case 0:
+            if(func_8028B254(0x5A)){
+                animctrl_setDuration(aCtrl, 2.0f);
+                func_8028A37C(1.0f);
+                D_8037D294 = 1;
+            }
+            break;
+        case 1:
+            break;
+    }
+    if(func_8028B2E8()){
+        if(func_802933C0(0x19))
+            sp2C = func_80292738();
+        else
+            sp2C = BS_ANT_IDLE;
+    }
+    bs_setState(sp2C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/ant/func_8029ED3C.s")
 
@@ -261,7 +289,7 @@ void func_8029ED5C(int take_damage){
     else
         func_8030E58C(0x56, 1.8f);
     
-    _player_getPosition(sp2C);
+    _player_getPosition(&sp2C);
     func_80294980(sp20);
     func_80257F18(sp20, sp2C, &sp38);
     yaw_setIdeal(mlNormalizeAngle(sp38 + 180.0f));
@@ -308,7 +336,7 @@ void bsant_die_init(void){
     animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
     func_802875AC(aCtrl, "bsant.c", 0x2f6);
     func_8030E58C(0x36, 1.8f);
-    _player_getPosition(sp2C);
+    _player_getPosition(&sp2C);
     func_80294980(sp20);
     func_80257F18(sp20, sp2C, &sp38);
     D_8037D290 = 250.0f;

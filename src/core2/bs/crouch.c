@@ -70,7 +70,7 @@ void bscrouch_init(void){
     func_802978DC(3);
     func_8029E3C0(0, 0.7f);
     func_8029E3C0(1, 0.2f);
-    _get_velocity(sp28);
+    _get_velocity(&sp28);
     D_8037D400 = gu_sqrtf(sp28[0]*sp28[0] + sp28[2]*sp28[2]);
     if(140.0f < D_8037D400)
         func_80299AAC();
