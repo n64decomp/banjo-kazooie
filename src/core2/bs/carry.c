@@ -32,7 +32,9 @@ void bscarry_idle_update(void){
     bs_setState(sp1C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/carry/func_802AB018.s")
+void bscarry_idle_end(void){
+    func_802AAEE0();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/carry/func_802AB038.s")
 
