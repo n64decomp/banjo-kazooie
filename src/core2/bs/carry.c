@@ -6,7 +6,14 @@ extern char D_80375740[];
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/carry/func_802AAE80.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/carry/func_802AAEE0.s")
+void func_802AAEE0(void){
+    enum bs_e state = bs_getNextState();
+
+    if(state != BS_CARRY_IDLE && state != BS_CARRY_WALK)
+        func_8029B0C0();
+    
+    func_80289F10(1);
+}
 
 void bscarry_idle_init(void){
     AnimCtrl *aCtrl = player_getAnimCtrlPtr();
