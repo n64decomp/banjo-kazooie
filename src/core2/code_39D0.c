@@ -6,108 +6,86 @@
 
 extern s32 carriedObject_actorID;
 extern ActorMarker *D_8037BF70;
-enum moves_e{
-    move_beak_barge,
-    move_beak_bomb,
-    move_beak_buster,
-    move_camera_control,
-    move_bear_punch,
-    move_climb,
-    move_eggs,
-    move_feathery_flap,
-    move_flip_flap,
-    move_flight,
-    move_variable_jump,
-    move_ratatat_rap,
-    move_roll,
-    move_shock_jump,
-    move_wading_boots,
-    move_dive,
-    move_talon_trot,
-    move_turbo_talon_trot,
-    move_wonderwing,
-    move_1st_note_door
-};
+
 
 s32 func_8028A960(void){ //beak_barge_unlocked
-    return func_802957D8(move_beak_barge);
+    return func_802957D8(ABILITY_BARGE);
 }
 
 s32 func_8028A980(void){ //beak_bomb_unlocked
-    return func_802957D8(move_beak_bomb);
+    return func_802957D8(ABILITY_BEAK_BOMB);
 }
 
 s32 func_8028A9A0(void){ //beak_buster_unlocked
-    return func_802957D8(move_beak_buster);
+    return func_802957D8(ABILITY_BEAK_BUSTER);
 }
 
 s32 func_8028A9C0(void){ 
-    return func_802957D8(move_camera_control);
+    return func_802957D8(ABILITY_CAMERA_CONTROL);
 }
 
 s32 func_8028A9E0(void){ 
-    return func_802957D8(move_bear_punch);
+    return func_802957D8(ABILITY_BEAR_PUNCH);
 }
 
 s32 func_8028AA00(void){ 
-    return func_802957D8(move_climb);
+    return func_802957D8(ABILITY_CLIMB);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028AA20.s")
 
 s32 func_8028AA98(void){ 
-    return func_802957D8(move_eggs);
+    return func_802957D8(ABILITY_EGGS);
 }
 
 int func_8028AAB8(void){
     return func_802933D0(0x12) 
         && func_802933D0(0x5) 
-        && func_802957D8(move_feathery_flap);
+        && func_802957D8(ABILITY_FLAP);
 }
 
 s32 func_8028AB08(void){
-    return func_802957D8(move_flip_flap);
+    return func_802957D8(ABILITY_FLIP);
 }
 
 s32 func_8028AB28(void){
-    return func_802957D8(move_flight);
+    return func_802957D8(ABILITY_FLY);
 }
 
 s32 func_8028AB48(void){
-    return func_802957D8(move_variable_jump);
+    return func_802957D8(ABILITY_HOLD_A_JUMP_HIGHER);
 }
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028AB68.s")
 int func_8028AB68(void){
     return func_802933D0(0x5)
         && func_802933D0(0x12)
-        && func_802957D8(move_ratatat_rap);
+        && func_802957D8(ABILITY_RATATAT_RAP);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028ABB8.s")
 
 s32 func_8028AC18(void){
-    return func_802957D8(move_roll);
+    return func_802957D8(ABILITY_ROLL);
 }
 
 s32 func_8028AC38(void){
-    return func_802957D8(move_shock_jump);
+    return func_802957D8(ABILITY_SHOCK_JUMP);
 }
 
 s32 func_8028AC58(void){
-    return func_802957D8(move_wading_boots);
+    return func_802957D8(ABILITY_WADING_BOOTS);
 }
 
 s32 func_8028AC78(void){
-    return func_802957D8(move_talon_trot);
+    return func_802957D8(ABILITY_TALON_TROT);
 }
 
 s32 func_8028AC98(void){
-    return func_802957D8(move_talon_trot);
+    return func_802957D8(ABILITY_TALON_TROT);
 }
 
 s32 func_8028ACB8(void){
-    return func_802957D8(move_wonderwing);
+    return func_802957D8(ABILTIY_WONDERWING);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028ACD8.s")

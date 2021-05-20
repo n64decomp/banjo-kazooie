@@ -130,7 +130,7 @@ void _bsBeeFly_updateYaw(void){
     f32 stickX;
     stickX = func_8029B2D0();
     func_802BFE50(2.0f, 2000.0f, 350.0f);
-    if(button_held(button_R)){
+    if(button_held(BUTTON_R)){
         func_80299234(500.0f, 30.0f);
         sp34 = 6.0f;
         sp30 = 85.0f;

@@ -3,11 +3,17 @@
 #include "variables.h"
 
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_DF70/func_80294F00.s")
+int func_80294F00(void){
+    return button_pressed(BUTTON_B) && func_8028A960();
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_DF70/func_80294F3C.s")
+int func_80294F3C(void){
+    return button_pressed(BUTTON_Z) && func_8028A9A0();
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_DF70/func_80294F78.s")
+int func_80294F78(void){
+    return button_pressed(BUTTON_C_UP) && func_8028ACD8();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_DF70/func_80294FB4.s")
 

@@ -7,14 +7,7 @@
 #define SPRITE_TYPE_RGBA32 (1 << 11)
 
 
-enum button{
-    BUTTON_START = 0x0,
-    BUTTON_Z = 0x1,
 
-    button_R = 0x3,
-    BUTTON_A = 0x8,
-    BUTTON_B = 0x9
-};
 
 enum transformation_E
 {
@@ -36,15 +29,37 @@ enum ABILITY_E
     ABILITY_CAMERA_CONTROL = 0x3,
     ABILITY_BEAR_PUNCH = 0x4,
     ABILITY_CLIMB = 0x5,
-
+    ABILITY_EGGS = 0x6,
     ABILITY_FLAP = 0x7,
     ABILITY_FLIP = 0x8,
-
+    ABILITY_FLY = 0x9, 
     ABILITY_HOLD_A_JUMP_HIGHER = 0xA,
     ABILITY_RATATAT_RAP = 0xB,
     ABILITY_ROLL = 0xC,
+    ABILITY_SHOCK_JUMP = 0xD,
+    ABILITY_WADING_BOOTS = 0xE,
+    ABILITY_DIVE = 0xF,
+    ABILITY_TALON_TROT = 0x10,
+    ABILITY_TURBO_TALON = 0x11,
+    ABILTIY_WONDERWING = 0x12,
+    ABILITY_1ST_NOTEDOOR = 0x13
+};
 
-    ABILITY_DIVE = 0xF
+enum button_e{
+    BUTTON_START = 0x0,
+    BUTTON_Z = 0x1,
+    BUTTON_L = 0x2,
+    BUTTON_R = 0x3,
+    BUTTON_D_UP = 0x4, 
+    BUTTON_D_DOWN = 0x5, 
+    BUTTON_D_LEFT = 0x6,
+    BUTTON_D_RIGHT = 0x7,
+    BUTTON_A = 0x8,
+    BUTTON_B = 0x9,
+    BUTTON_C_LEFT = 0xA,
+    BUTTON_C_DOWN = 0xB,
+    BUTTON_C_UP = 0xC,
+    BUTTON_C_RIGHT = 0xD
 };
 
 enum MAP_E
