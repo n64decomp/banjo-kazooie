@@ -44,7 +44,7 @@ u32 player_getTransformation(void){
     return func_8029A8F4();
 }
 
-void func_8028E7EC(f32 *arg0){
+void func_8028E7EC(f32 (* arg0)[3]){
     climbGetBottom(arg0);
 }
 

@@ -52,6 +52,6 @@ s32 func_80321664(void){
 
 void func_803216B4(s32 *size, u8 **addr){
     *size = 0x10;
-    *addr = &D_803832F0; 
+    *addr = D_803832F0; 
 }
 

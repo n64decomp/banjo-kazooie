@@ -9,5 +9,6 @@ typedef struct SnS_Payload_s{
 }SnSPayload;
 
 void SnSPayload_rewind(void);
+SnSPayload *SnSPayload_scan(void);
 
 #endif

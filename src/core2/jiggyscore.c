@@ -62,12 +62,12 @@ void jiggyscore_80321120(s32 indx, s32 val) {
     u8 *temp_v0_2;
 
     if (val) {
-        temp_v0 = ((s32) (indx - 1) / 8) + 0xD;
+        temp_v0 = (u8*)(((s32) (indx - 1) / 8) + 0xD);
         temp_v0 += (s32) D_803832C0;
         *temp_v0 |= (1 << (indx & 7));
         return;
     }
-    temp_v0_2 = ((s32) (indx - 1) / 8) + 0xD;
+    temp_v0_2 = (u8*)(((s32) (indx - 1) / 8) + 0xD);
     temp_v0_2 += (s32)D_803832C0;
     *temp_v0_2 &=  ~(1 << (indx & 7));
 }

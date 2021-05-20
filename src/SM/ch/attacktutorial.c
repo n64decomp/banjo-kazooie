@@ -218,4 +218,4 @@ void func_80387764(ActorMarker * marker){
 
     func_80311480(sp34, sp2C, &actor->unk1C, actor->marker, func_80387690, NULL);
     actor->unk38_31++;
-}//*/
+}

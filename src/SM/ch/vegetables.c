@@ -196,7 +196,7 @@ Actor *func_80387DF4(ActorMarker *marker, Gfx **gdl, Mtx **mptr, s32 arg3){
 }
 
 void func_80387E64(Actor *this){
-    ChVeg *local = &this->local;
+    ChVeg *local = (ChVeg *)&this->local;
 
     this->unk1C = randf2(-50.0f, 50.0f);
     this->unk20 = randf2(-50.0f, 50.0f);
@@ -208,7 +208,7 @@ void func_80387E64(Actor *this){
 }
 
 void func_80387F00(Actor *this){
-    ChVeg *local = &this->local;
+    ChVeg *local = (ChVeg *)&this->local;
     
     this->position_y += (mapSpecificFlags_get(0xC) || func_803203FC(0xC1, this)) ? 120.0 : 180.0;
     local->unk0_x = this->position_x;
@@ -245,7 +245,7 @@ void func_80388080(Actor *this){
     f32 sp6C[3];
     f32 sp60[3];
     f32 sp54[3];
-    ChVeg *local = this->local; //sp38
+    ChVeg *local = (ChVeg *)&this->local; //sp38
     f32 sp30;
 
     

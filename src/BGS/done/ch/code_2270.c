@@ -12,7 +12,7 @@ void func_80324E38(f32, s32);
 void func_80324E60(f32, s32);
 void func_80324E88(f32);
 void func_803300A8(ActorMarker *, void(*)(ActorMarker *), void(*)(ActorMarker *), void(*)(ActorMarker *));
-void func_80335924(s32, s32, f32, f32);
+void func_80335924(void *, s32, f32, f32);
 void func_803888E4(Actor *this, s32 arg1);
 
 extern s16 D_80390854[];
@@ -251,7 +251,7 @@ void func_80388FFC(ActorMarker *this, s32 *arg1, f32* arg2){
 }
 
 void func_80389080(Actor *this){
-    s32 sp44[3];
+    f32 sp44[3];
     ActorLocal_BGS_2270 *unqPtr;
     f32 sp3C;
     f32 sp38;

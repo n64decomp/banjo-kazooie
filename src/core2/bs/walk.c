@@ -1,8 +1,8 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "animation.h"
 
-f32 func_80289690(s32);
 void func_80289EA8(f32, f32);
 f32 func_80297AB8(void);
 void func_802927E0(f32, f32);

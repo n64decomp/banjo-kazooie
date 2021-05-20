@@ -10,7 +10,7 @@ s32 func_802E9F60(struct1Fs *arg0){
 
     for(i = 0; i < arg0->count; ++i){
         v1 += v0->count;
-        v0 = &v0->data[v0->count];
+        v0 = (struct20s *)&v0->data[v0->count];
         
     }
     return v1;
@@ -24,7 +24,7 @@ struct20s * func_802E9F9C(struct1Fs *arg0, s32 arg1){
         if(v1->uid == arg1){
             return v1;
         }
-        v1 = &v1->data[v1->count];
+        v1 = (struct20s *)&v1->data[v1->count];
     }
     return 0;
 }

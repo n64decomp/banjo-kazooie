@@ -72,7 +72,7 @@ TimedFunction* __timedFuncQueue_insert(f32 time, s32 cnt, void(* funcPtr)(s32, s
         if(iPtr->time > time)
             break;
     }
-    retVal = (TimedFunction * )vla_insertNew(&D_80383380, ((s32)iPtr - (s32)startPtr)/(s32)sizeof(TimedFunction));
+    retVal = (TimedFunction * )vla_insertNew((vector(TimedFunction)**)&D_80383380, ((s32)iPtr - (s32)startPtr)/(s32)sizeof(TimedFunction));
     retVal->time = time;
     retVal->arg_cnt = cnt;
     retVal->func5 = funcPtr;
@@ -114,7 +114,7 @@ void func_80324A68(s32 arg0, s32 arg1, s32 arg2){
 }
 
 void func_80324AA4(timefuncqueue_Struct2 *arg0){
-    func_8030E9C4(arg0->unk0, arg0->unk4, arg0->unk8, &arg0->unkC, arg0->unk18, arg0->unk1C);
+    func_8030E9C4(arg0->unk0, arg0->unk4, arg0->unk8, (f32 *)&arg0->unkC, arg0->unk18, arg0->unk1C);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/timedfuncqueue/func_80324AEC.s")

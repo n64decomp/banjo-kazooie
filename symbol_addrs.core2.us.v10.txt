@@ -61,6 +61,7 @@ button_held = 0x8029557C;
 button_released = 0x80295590;
 ability_setHasUsed = 0x802957B8;
 player_setYVelocity = 0x802979A0;
+_get_velocity = 0x80297A88;
 gravity_reset = 0x80297B70;
 gravity_set = 0x80297BEC;
 __pitch_update = 0x80297D30;

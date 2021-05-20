@@ -288,7 +288,7 @@ typedef struct actor_s{
     u32 pad10_8:4;
     u32 unk10_4:4;
     u32 pad10_0:1;
-    ActorAnimCtrl *animctrl;
+    AnimCtrl *animctrl;
     ActorAnimationInfo *unk18;
     union{
         struct{

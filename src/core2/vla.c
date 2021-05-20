@@ -13,7 +13,7 @@ void *vla_getBegin(VLA *this){
 }
 
 void *vla_at(VLA *this, u32 n){
-    return (u32) this->begin + n*this->elem_size;
+    return (void *)((u32) this->begin + n*this->elem_size);
 }
 
 s32 vla_getIndex(VLA *this, void *elemPtr){
@@ -45,7 +45,7 @@ void *vla_pushBackNew(VLA **thisPtr){
         *thisPtr = this; 
     }
     retVal = this->end;
-    this->end = (s32)this->end + this->elem_size;
+    this->end = (void *)((s32)this->end + this->elem_size);
     return retVal;
 }
 
@@ -59,7 +59,7 @@ void *vla_insertNew(VLA **thisPtr, s32 indx){
     while(indx < --i){
         func_80254608((s32)this->begin + (i)*this->elem_size, (s32)this->begin + (i -1)*this->elem_size, this->elem_size);
     }
-    return (s32)this->begin +  indx*this->elem_size;
+    return (void *)((s32)this->begin +  indx*this->elem_size);
 }
 
 void vla_free(VLA *this){
@@ -87,7 +87,7 @@ VLA *vla_new(u32 elemSize, u32 cnt){
 
 
 void vla_popBack_n(VLA *this, u32 n){
-    this->end = (u32)this->end - n * this->elem_size;
+    this->end = (void *)((u32)this->end - n * this->elem_size);
 }
 
 void vla_assign(VLA *this, s32 indx, void* value){
@@ -100,9 +100,9 @@ VLA * vla_802ED9E0(VLA *this){
 
    oldSize = (s32) this->end - (s32)this->begin;
    oldMemSize = (s32) this->mem_end - (s32)this->begin;
-   this = func_802555DC(this);
+   this = (VLA *)func_802555DC(this);
    this->begin = &this->data;
-   this->end = (s32)this->begin + oldSize;
-   this->mem_end = (s32)this->begin + oldMemSize;
+   this->end = (void *)((s32)this->begin + oldSize);
+   this->mem_end = (void *)((s32)this->begin + oldMemSize);
    return this;
 }

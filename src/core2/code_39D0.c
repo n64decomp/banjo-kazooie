@@ -173,8 +173,6 @@ void func_8028BA2C(s32 arg0) {
     func_802F379C(arg0 + 4);
 }
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028BA2C.s")
-
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028BAB0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028BB1C.s")

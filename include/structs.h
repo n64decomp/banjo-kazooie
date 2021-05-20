@@ -83,12 +83,8 @@ typedef struct struct_0_s{ //floor
     u16     vtx3;
     u8      padA[0x6];
     s16     unk10[6];
-    f32     unk1C;
-    f32     unk20;
-    f32     unk24;
-    f32     unk28;
-    f32     unk2C;
-    f32     unk30;
+    f32     unk1C[3];
+    f32     unk28[3];
     f32     normX;
     f32     normY;
     f32     normZ;

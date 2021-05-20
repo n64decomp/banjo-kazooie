@@ -557,5 +557,5 @@ void func_802C4014(void (* arg0)(void), s32 arg1, s32 arg2, s32 arg3, s32 arg4, 
 
 void func_802C4320(FunctionQueue *arg0){
     if((arg0 = D_80365DC8) != NULL)
-        D_80365DC8 = func_802555DC();
+        D_80365DC8 = (FunctionQueue *)func_802555DC();
 }

@@ -379,7 +379,7 @@ void bsbtrot_jump_update(void){
     else
         func_802A89D4();
 
-    func_80297A88(sp1C);
+    _get_velocity(sp1C);
     if(button_released(BUTTON_A) && 0.0f < sp1C[1])
         gravity_reset();
     
@@ -590,7 +590,7 @@ void bsbtrot_fall_update(void){
     else
         func_802A89D4();
 
-    func_80297A88(sp1C);
+    _get_velocity(sp1C);
     switch (D_8037D3A4){
     case 0://L802A9D90
         if(func_8028B254(0x8C)){

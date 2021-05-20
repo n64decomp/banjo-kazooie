@@ -176,7 +176,7 @@ void bsant_jump_update(void){
     f32 sp1C[3];
 
     func_8029E48C();
-    func_80297A88(sp1C);
+    _get_velocity(sp1C);
 
     if(button_released(BUTTON_A) && 0.0f < sp1C[1])
         gravity_reset();
@@ -216,7 +216,6 @@ void bsant_jump_update(void){
         if(button_pressed(BUTTON_A))
             sp2C = BS_ANT_JUMP;
     }
-
 
     bs_setState(sp2C);
 }

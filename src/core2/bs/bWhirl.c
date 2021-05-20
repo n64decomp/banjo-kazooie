@@ -197,7 +197,7 @@ void bsbwhirl_jump_update(void){
 
     __bsbwhirl_spawnSparkle();
     func_802AA400();
-    func_80297A88(sp1C);
+    _get_velocity(sp1C);
     if(button_released(BUTTON_A) && 0.0f < sp1C[1])
         gravity_reset();
     

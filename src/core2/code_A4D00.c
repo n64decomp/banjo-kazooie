@@ -216,7 +216,7 @@ s32 func_8032D9C0(Cube *this, Prop* prop){
 
 
 void func_8032F430(ActorMarker *this){
-    func_8032D9C0(this->cubePtr, this->propPtr);
+    func_8032D9C0(this->cubePtr, (Prop *)this->propPtr);
     func_80332B2C(this);
 }
 

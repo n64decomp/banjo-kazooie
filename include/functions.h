@@ -40,7 +40,7 @@ void* realloc(void* ptr, s32 size);
 f32 mlMap_f(f32 val, f32 in_min, f32 in_max, f32 out_min, f32 out_max);
 float mlNormalizeAngle(float);
 f32 max_f(f32, f32);
-void copy_vec3f(f32* dst, f32* src);
+void copy_vec3f(f32 (* dst)[3], f32 (* src)[3]);
 
 void func_80258C48(f32 *arg0, f32 *arg1, f32 *arg2);
 void func_80258C7C(f32 *arg0, f32 arg1);
@@ -61,9 +61,9 @@ ActorMarker *player_getMarker(void);
 
 u32 player_getTransformation(void);
 
-void func_8028E7EC(f32 *arg0);
+void func_8028E7EC(f32 (* arg0)[3]);
 
-void _player_getPosition(f32 *dst);
+void _player_getPosition(f32 (* dst)[3]);
 void player_getPosition(f32 *dst);
 void player_getRotation(f32 *dst);
 
@@ -80,7 +80,7 @@ void func_80297970(f32);
 
 f32  func_80297AAC(void);
 
-void climbGetBottom(f32 *arg0);
+void climbGetBottom(f32 (* dst)[3]);
 
 void yaw_setIdeal(f32);
 
@@ -128,7 +128,7 @@ void func_803272F8(s32 *, s32, ActorInfo*, u32);
 Actor *marker_getActor(ActorMarker *);
 
 f32 func_8033DD9C(void);
-void jiggySpawn(u32 indx, f32* pos);
+void jiggySpawn(u32 indx, f32 (* pos)[3]);
 
 struct8s *func_802FD320(s32);
 void func_802FD330(s32, struct8s *);
@@ -198,6 +198,7 @@ void func_802EFA18(Actor *, s32);
 
 OSMesgQueue *func_8024F344(void);
 
+void clear_vec3f(f32 (* arg0)[3]);
 void func_80250D94(f32, f32, f32);
 f32  func_80257C48(f32, f32, f32);
 f32  mlAbsF(f32);

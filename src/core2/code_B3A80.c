@@ -256,7 +256,7 @@ void func_8033BB84(void){
     D_80383CDC = malloc(150*sizeof(s16));
     D_80370A14 = 0;
     D_80383CC0 = malloc(sizeof(AssetROMHead));
-    D_80383CC8 = &D_5E90;
+    D_80383CC8 = (u32) &D_5E90;
     func_802405F0(D_80383CC0, D_80383CC8, sizeof(AssetROMHead));
     D_80383CC4 = malloc(D_80383CC0->count*sizeof(AssetFileMeta));
     func_802405F0(D_80383CC4, D_80383CC8 + sizeof(AssetROMHead),D_80383CC0->count*sizeof(AssetFileMeta));

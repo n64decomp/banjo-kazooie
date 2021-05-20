@@ -338,7 +338,7 @@ void bsblongleg_jump_update(void){
 
     func_802A531C();
     func_802A524C();
-    func_80297A88(sp34);
+    _get_velocity(sp34);
     if(button_released(BUTTON_A) && 0.0f < sp34[1])
         gravity_reset();
 

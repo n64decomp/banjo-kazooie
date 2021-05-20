@@ -132,9 +132,9 @@ void func_8038679C(f32 *arg0, s32 arg1, f32 *arg2) {
     func_802EF5C8(temp_s0, arg1);
 }
 
-void func_803868A0(s32 arg0, s32 arg1) {
-    s32 temp_s0;
-    s32 temp_v0;
+void func_803868A0(f32 *arg0, s32 arg1) {
+    Actor *temp_s0;
+    Actor *temp_v0;
 
     temp_v0 = func_802F0BD0(1);
     temp_s0 = temp_v0;
@@ -147,9 +147,9 @@ void func_803868A0(s32 arg0, s32 arg1) {
     func_802EFC28(temp_s0, &D_803915E8);
 }
 
-void func_80386934(s32 arg0, s32 arg1) {
-    s32 temp_s0;
-    s32 temp_v0;
+void func_80386934(f32 *arg0, s32 arg1) {
+    Actor * temp_s0;
+    Actor * temp_v0;
 
     temp_v0 = func_802F0BD0(1);
     temp_s0 = temp_v0;
@@ -369,7 +369,7 @@ void func_80388110(ActorMarker *arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/fight/code_180/func_80388184.s")
 
-void func_8038856C(Actor *actor, s32 *arg1) {
+void func_8038856C(Actor *actor, f32 *arg1) {
     f32 vec[3];
     ActorMarker *marker;
 

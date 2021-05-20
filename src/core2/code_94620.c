@@ -185,7 +185,7 @@ s32 func_8031BCF4(struct0 *this) {
         return 4;
     }
     temp_f0 = this->posY;
-    if (temp_f0 < this->unk20) {
+    if (temp_f0 < this->unk1C[1]) {
         return 2;
     }
     temp_f2 = temp_f0 - this->posX;
