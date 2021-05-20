@@ -14,7 +14,13 @@ extern char D_8037574C[];
 extern f32  D_80375758;
 extern f32  D_8037575C;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/carry/func_802AAE80.s")
+void func_802AAE80(void){
+    f32 sp1C = func_8029B30C();
+    if(func_8029B300() == 0)
+        func_80297970(0.0f);
+    else
+        func_80297970(func_80257C48(sp1C, D_80364AF0, D_80364AF4));
+}
 
 void func_802AAEE0(void){
     enum bs_e state = bs_getNextState();
