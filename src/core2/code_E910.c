@@ -62,7 +62,7 @@ bsMap D_80363824[] ={
     {BS_ANT_JUMP,   func_8029E8C8, func_8029EA04, func_8029EB94, func_802B5350},
     {BS_DIVE_A,     func_802A7A54, func_802A7AB0, func_802A7BA8, func_80296608},
     {BS_CARRY_IDLE, bscarry_idle_init, bscarry_idle_update, bscarry_idle_end, func_802AB1A4},
-    {BS_CARRY_WALK, func_802AB038, func_802AB0DC, func_802AB164, func_802AB1A4},
+    {BS_CARRY_WALK, bscarry_walk_init, bscarry_walk_update, func_802AB164, func_802AB1A4},
     {0x3C,          func_802B6130, func_802B61E0, func_802B6218, func_802B6220},
     {BS_FALL_TUMBLING,  bsjump_tumble_init, bsjump_tumble_update, bsjump_tumble_end, func_80296608},
     {BS_ANT_FALL,   func_8029EBBC, func_8029EC5C, func_8029ED3C, func_80296590},
