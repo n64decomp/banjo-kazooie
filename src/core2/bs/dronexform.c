@@ -3,18 +3,31 @@
 #include "variables.h"
 
 void player_setYPosition(f32);
-void func_802AFB94(f32);
-void func_802AFBA0(f32);
-void func_802AFBAC(f32);
 void func_8024E3A8(f32 (*)[3], f32);
-void func_802AFBB8(f32 (*)[3]);
 void func_802991FC(void);
 void func_802978DC(int);
 void func_8030E624(u32);
 void func_8030E6D4(int);
+void func_802EFF50(Actor *, f32);
+f32 func_80257A44(f32, f32);
+f32 cosf(f32);
+f32 func_802588B0(f32, f32);
+
+extern u8 D_80364BB0;
+extern u8 D_80364BE0;
+extern u8 D_80364C10;
+extern u8 D_80364C40;
+extern u8 D_80364C70;
+extern u8 D_80364CA0;
 
 extern struct {
-    u8 pad0[0x1C];
+    Actor *unk0;
+    Actor *unk4;
+    f32 unk8;
+    f32 unkC;
+    f32 unk10;
+    f32 unk14;
+    f32 unk18;
     u8 unk1C;
     u8 pad1D[0x3];
     f32 unk20;
@@ -26,30 +39,159 @@ extern struct {
     u8 unk32;
 } D_8037D470;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/dronexform/func_802AF7A0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/dronexform/func_802AF88C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/dronexform/func_802AF900.s")
+void func_802AF7A0(Actor *arg0, enum asset_e arg1){
+    func_802F0D54();
+    func_802EF950(arg0, arg1);
+    func_802EF9AC(arg0, 0.0f, -50.0f, 0.0f, 0.0f, -50.0f, 0.0f);
+    func_802EFA5C(arg0, 0.4f, 0.8f);
+    func_802EFB84(arg0, 0.03f, 0.03f);
+    func_802EFE24(arg0, 0.0f, 0.0f, 300.0f, 0.0f, 0.0f, 300.0f);
+    func_802EFEC0(arg0, 0.65f, 0.65f);
+    func_802EFF50(arg0, 1.0f);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/dronexform/func_802AFADC.s")
+void func_802AF88C(Actor * arg0, f32 arg1, f32 arg2){
+    func_802EFED4(arg0, arg1*30.0f, 10.0f, arg2*30.0f, arg1*30.0f, 10.0f, arg2*30.0f);
+    func_802EFB70(arg0, D_8037D470.unk14, D_8037D470.unk14);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/dronexform/func_802AFB0C.s")
+void func_802AF900(void){
+    f32 sp4C;
+    f32 sp48;
+    f32 sp44;
+    f32 sp40;
+    f32 sp3C;
+    f32 sp30[3];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/dronexform/func_802AFB94.s")
+    player_getPosition(&sp30);
+    sp3C = D_8037D470.unk8;
+    sp48 = func_80257A44(sp3C, 0.38f);
+    sp4C = sp48 * 6.283185308;
+    sp40 = sinf(sp4C);
+    sp44 = cosf(sp4C);
+    sp30[0] += sp40 * D_8037D470.unk18;
+    sp30[1] += func_80257C48(func_80257A44(sp3C, 1.14f), 0.0f, 130.0f);
+    sp30[2] += sp44 * D_8037D470.unk18;
+    func_802AF88C(D_8037D470.unk4, sp40, sp44);
+    func_802EFB54(D_8037D470.unk4, &sp30);
+    func_802EF5C8(D_8037D470.unk4, 1);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/dronexform/func_802AFBA0.s")
+    player_getPosition(&sp30);
+    sp4C = (1.0 - func_802588B0(sp48 + 0.5, 1.0f))* 6.283185308;
+    sp30[0] -= sinf(sp4C) * D_8037D470.unk18;
+    sp30[1] += func_80257C48(func_80257A44(sp3C, 1.14f), 130.0f, 0.0f);
+    sp30[2] -= cosf(sp4C) * D_8037D470.unk18;
+    func_802AF88C(D_8037D470.unk0, sp40, sp44);
+    func_802EFB54(D_8037D470.unk0, &sp30);
+    func_802EF5C8(D_8037D470.unk0, 1);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/dronexform/func_802AFBAC.s")
+void func_802AFADC(void){
+    func_802F0C78(D_8037D470.unk4);
+    func_802F0C78(D_8037D470.unk0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/dronexform/func_802AFBB8.s")
+void func_802AFB0C(void){
+    D_8037D470.unk0 = func_802F0BD0(0x32);
+    func_802AF7A0(D_8037D470.unk0, 0x476); //blue glow
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/dronexform/func_802AFFAC.s")
+    D_8037D470.unk4 = func_802F0BD0(0x32);
+    func_802AF7A0(D_8037D470.unk4, 0x477); //orange glow
+
+    D_8037D470.unkC = 1.0f;
+    D_8037D470.unk10 = 0.0f;
+    D_8037D470.unk8 = 0.0f;
+    D_8037D470.unk18 = 55.0f;
+    D_8037D470.unk14 = 0.35f;
+    D_8037D470.unk1C = 0;
+}
+
+void func_802AFB94(f32 arg0){
+    D_8037D470.unkC = arg0;
+}
+
+void func_802AFBA0(f32 arg0){
+    D_8037D470.unk18 = arg0;
+}
+
+void func_802AFBAC(f32 arg0){
+    D_8037D470.unk14 = arg0;
+}
+
+void func_802AFBB8(f32 (* arg0)[3]){
+    Actor* s0 = func_802F0BD0(1);
+    func_802EF950(s0, 0x6c4); //yellow blast
+    func_802EFA5C(s0, 0.7f, 0.8f);
+    func_802EFA9C(s0, 12.0f, 12.0f);
+    func_802EFB54(s0, arg0);
+    func_802EFB70(s0, 3.2f, 3.2f);
+    func_802EFB84(s0, 3.2f, 3.2f);
+    func_802EFEC0(s0, 0.8f, 0.8f);
+    func_802EF5C8(s0, 1);
+    
+    s0 = func_802F0BD0(1);
+    func_802EF950(s0, 0x6c2); //smoke
+    func_802EFA5C(s0, 0.1f, 0.8f);
+    func_802EFA9C(s0, 15.0f, 15.0f);
+    func_802EFB54(s0, arg0);
+    func_802EFB70(s0, 3.0f, 3.0f);
+    func_802EFB84(s0, 3.0f, 3.0f);
+    func_802EFEC0(s0, 0.65f, 0.65f);
+    func_802EF5C8(s0, 1);
+
+    s0 = func_802F0BD0(0x11);
+    func_802EF950(s0, 0x713); //sparkle
+    func_802EFC84(s0, &D_80364BB0);
+    func_802EFA5C(s0, 0.0f, 0.6f);
+    func_802EFB70(s0, 0.28f, 0.32f);
+    func_802EFB84(s0, 0.03f, 0.03f);
+    func_802EFE24(s0, 0.0f, 0.0f, 300.0f, 0.0f, 0.0f, 300.0f);
+    func_802EFEC0(s0, 2.0f, 2.0f);
+    func_802EFF50(s0, 1.0f);
+    func_802EFB54(s0, arg0);
+    func_802EF5C8(s0, 8);
+    func_802EFC84(s0, &D_80364BE0);
+    func_802EF5C8(s0, 5);
+    func_802EFC84(s0, &D_80364C10);
+    func_802EF9F8(s0, 0.4f);
+    func_802EFA18(s0, 3);
+    func_802EF5C8(s0, 4);
+
+    s0 = func_802F0BD0(0x11);
+    func_802EF950(s0, 0x716); //sparkle
+    func_802EFC84(s0, &D_80364C40);
+    func_802EFA5C(s0, 0.0f, 0.6f);
+    func_802EFB70(s0, 0.28f, 0.32f);
+    func_802EFB84(s0, 0.03f, 0.03f);
+    func_802EFE24(s0, 0.0f, 0.0f, 300.0f, 0.0f, 0.0f, 300.0f);
+    func_802EFEC0(s0, 2.0f, 2.0f);
+    func_802EFF50(s0, 1.0f);
+    func_802EFB54(s0, arg0);
+    func_802EF5C8(s0, 8);
+    func_802EFC84(s0, &D_80364C70);
+    func_802EF5C8(s0, 5);
+    func_802EFC84(s0, &D_80364CA0);
+    func_802EF9F8(s0, 0.4f);
+    func_802EFA18(s0, 3);
+    func_802EF5C8(s0, 4);
+}
+
+void func_802AFFAC(void){
+    D_8037D470.unk10 -= func_8033DD9C();
+    while(D_8037D470.unk10 < 0.0f){
+        func_802AF900();
+        D_8037D470.unk8 += 0.017 * D_8037D470.unkC;
+        D_8037D470.unk10 += 0.017;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/dronexform/func_802B0060.s")
 
+
 void func_802B014C(void){
-    func_80289EBC(0);
+    func_80289EBC(NULL);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/dronexform/func_802B016C.s")

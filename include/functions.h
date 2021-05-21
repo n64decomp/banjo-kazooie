@@ -64,7 +64,7 @@ u32 player_getTransformation(void);
 void func_8028E7EC(f32 (* arg0)[3]);
 
 void _player_getPosition(f32 (* dst)[3]);
-void player_getPosition(f32 *dst);
+void player_getPosition(f32 (* dst)[3]);
 void player_getRotation(f32 *dst);
 
 void func_80291A60(s32 arg0, f32* arg1);
@@ -183,6 +183,7 @@ void func_802BB3DC(s32, f32, f32);
 void func_802C3F04(void (* arg0)(void), s32, s32, s32, s32);
 void func_802C4140();
 void func_8030DA44(u8);
+
 void func_802EFB1C(Actor *, f32, f32, f32, f32, f32, f32);
 void func_802EF9AC(Actor *, f32, f32, f32, f32, f32, f32);
 void func_802EFED4(Actor *, f32, f32, f32, f32, f32, f32);
@@ -196,18 +197,23 @@ void func_802EFA5C(Actor *, f32, f32);
 void func_802EFA9C(Actor *, f32, f32);
 void func_802EFA18(Actor *, s32);
 
+void func_8024E3A8(f32 (*)[3], f32);
 OSMesgQueue *func_8024F344(void);
 
 void clear_vec3f(f32 (* arg0)[3]);
 void func_80250D94(f32, f32, f32);
+f32  func_80257A44(f32, f32);
 f32  func_80257C48(f32, f32, f32);
 f32  mlAbsF(f32);
-f32 mlClamp_f(f32, f32, f32);
+f32  mlClamp_f(f32, f32, f32);
+f32  func_802588B0(f32, f32);
 void func_802589E4(f32 *, f32, f32);
 f32  mlDiffDegF(f32, f32);
 void func_8025A6EC(enum comusic_e, s32);
 void func_8025A70C(enum comusic_e);
 void comusic_8025AB44(enum comusic_e comusic_id, s32 arg1, s32 arg2);
+
+f32  cosf(f32);
 
 void func_8028A010(enum asset_e anim_id, f32 duration);
 void func_8028A1F4(s32, f32, f32);
@@ -231,6 +237,7 @@ f32  func_80294438(void);
 f32  func_80294A40(void);
 f32  func_80294500(void);
 void func_80295C08(void (* arg0)(void));
+void func_802978DC(int);
 void func_80297970(f32);
 void func_8029797C(f32);
 void player_setYVelocity(f32);
@@ -252,6 +259,7 @@ f32  func_802987E4(void);
 void roll_setIdeal(f32);
 void roll_setAngularVelocity(f32, f32);
 void yaw_set(f32);
+void func_802991FC(void);
 void func_80299234(f32, f32);
 void func_80299254(f32);
 void func_8029932C(f32);
@@ -278,10 +286,13 @@ void func_8029E090(s32, f32);
 void func_8029E3C0(s32, f32);
 f32  func_8029E270(s32);
 void func_802BF2C0(f32);
+void func_802EFF50(Actor *, f32);
 void func_8030DBB4(s32, f32);
 void func_8030E04C(s32, f32, f32, f32);
 void func_8030E58C(s32, f32);
 void func_8030E5F4(s32, f32);
+void func_8030E624(u32);
+void func_8030E6D4(int);
 void func_8030E760(s32, f32, s32);
 void func_8030EBC8(s32, f32, f32, s32, s32);
 
@@ -298,4 +309,6 @@ int func_80291700(s32, f32);
 
 AnimCtrl *player_getAnimCtrlPtr(void);
 void _get_velocity(f32 (*dst)[3]);
+void player_setYPosition(f32);
+
 #endif

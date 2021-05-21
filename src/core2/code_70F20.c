@@ -27,7 +27,7 @@ void func_802F7EB0(struct3s *this){
     if(vla_size(this->unk20) >= this->unk24)
         return;
 
-    player_getPosition(plyrPos);
+    player_getPosition(&plyrPos);
     func_8024C5A8(camNorm);
     func_8024C764(camRot);
     sp50 = vla_pushBackNew(&this->unk20);

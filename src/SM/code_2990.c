@@ -138,7 +138,7 @@ void func_80388FA0(Actor *this, s32 arg1){
             myOther = this->unk100;
             if(myOther && other && myOther->unk14_20 == 0xB8)
                 func_80328B8C(other, 3, 0.0001f, 1);
-            func_803298AC(this);
+            actor_playAnimationOnce(this);
             this->unk44_31 = func_8030D90C();
             func_8030DA80(this->unk44_31, 0x3f9);
             func_8030DD14(this->unk44_31, 2);
@@ -155,7 +155,7 @@ void func_80388FA0(Actor *this, s32 arg1){
             func_80389610(this);
             break;
         case 3:
-            func_803298D8(this);
+            actor_loopAnimation(this);
             break;
         case 2:
              other = func_80329980(this);
@@ -163,7 +163,7 @@ void func_80388FA0(Actor *this, s32 arg1){
             if(myOther && other && myOther->unk14_20 == 0xB8)
                  func_80328B8C(other, 2, 0.0001f, 1);
             animctrl_setSmoothTransition(this->animctrl, 1);
-            func_803298AC(this);
+            actor_playAnimationOnce(this);
             this->unk44_31 = func_8030D90C();
             func_8030DA80(this->unk44_31, 0x3f9);
             func_8030DD14(this->unk44_31, 2);
@@ -427,7 +427,7 @@ void func_803899B0(Actor * this){
     }//L80389B64
 
     func_8024E55C(0,sp50); //get face buttons press counters
-    player_getPosition(sp44);
+    player_getPosition(&sp44);
     switch (this->unk10_31)
     {
     case 1://L80389BAC

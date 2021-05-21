@@ -123,23 +123,23 @@ void func_803885D0(Actor *this){
                         func_80311480(0xb3f, 0xe, this->position, NULL, NULL, NULL);
                         this->unk138_24 = 1;
                     }//L80388774
-                    func_803298D8(this);
+                    actor_loopAnimation(this);
                     func_80328BD4(this, 2, 0.0f, -1, D_80389C30);
                 }
                 break;
             case 2: //L803887A4
                 func_80388300(&this);
-                func_803298AC(this);
+                actor_playAnimationOnce(this);
                 if(func_8032886C(this, 0.99f)){
                     func_80328B8C(this,1,0.0f,-1);
                 }
                 break;
             case 4: //L803887E4
-                func_803298D8(this);
+                actor_loopAnimation(this);
                 break;
             case 3: //L803887F4
                 func_80343DEC(this);
-                func_803298D8(this);
+                actor_loopAnimation(this);
                 if(D_80389C38 <= this->unk48){
                     mapSpecificFlags_set(0, 1);
                 }

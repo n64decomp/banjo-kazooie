@@ -3,7 +3,6 @@
 #include "variables.h"
 
 /* TODO move declarations to respective headers*/
-void player_getPosition(f32 *);
 Actor *func_8032813C(u32, f32 *, f32*);
 f32 func_8028E80C(u32);
 void func_8028F710(u32, f32);
@@ -84,7 +83,7 @@ void func_8038EB8C(Actor *this){
         switch(this->unk10_31){
             case 1:
                 this->marker->propPtr->unk8_3 = 1;
-                player_getPosition(plyrPos);
+                player_getPosition(&plyrPos);
                 diffPos[0] = plyrPos[0] - this->position_x;
                 diffPos[1] = plyrPos[1] - this->position_y;
                 diffPos[2] = plyrPos[2] - this->position_z;
@@ -103,7 +102,7 @@ void func_8038EB8C(Actor *this){
                     func_8030E8B4(0x7FFB585B, this->position, 0xBB8012C);
                     func_80328A84(this, 2);
                     this->marker->propPtr->unk8_3 = 0;
-                    func_803298AC(this);
+                    actor_playAnimationOnce(this);
                     if(tmp == 5){
                         func_8025A6EC(JINGLE_PUZZLE_SOLVED_FANFARE, 28000);
                     }

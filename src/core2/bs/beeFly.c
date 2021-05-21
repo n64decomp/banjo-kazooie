@@ -31,7 +31,7 @@ int bsBeeFly_inSet(s32);
 void func_802A04F0(void){
     f32 plyrPos[3]; //sp1C
 
-    _player_getPosition(plyrPos);
+    _player_getPosition(&plyrPos);
     plyrPos[0] += randf2(-30.0f, 30.0f);
     plyrPos[1] += 30.0f + randf2(0.0f, 30.0f);
     plyrPos[2] += randf2(-30.0f, 30.0f);

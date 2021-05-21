@@ -93,7 +93,7 @@ extern MapSavestate *D_8037E650[];
         
 //     }
 //     //if(sp38);
-//     *tmp = func_80329CBC(*tmp, *tmp + 4*((iBit + 0x7F) >> 7));   
+//     *tmp = actors_appendToSavestate(*tmp, *tmp + 4*((iBit + 0x7F) >> 7));   
 // }  
 
 //mapSavestate_apply

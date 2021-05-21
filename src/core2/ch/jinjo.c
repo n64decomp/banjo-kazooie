@@ -56,7 +56,7 @@ void func_802CDBA8(ActorMarker *this, s32 arg1){
         func_80328B8C(actorPtr, 6, 0.0f , -1);
         if(func_803463D4(ITEM_JINJOS, 1 << (this->unk14_20 + 6) ) == 0x1f)
             localPtr->unk4 = 1;
-        func_803298D8(actorPtr);
+        actor_loopAnimation(actorPtr);
         this->collidable = 0;
     }
 }
@@ -130,7 +130,7 @@ void func_802CDD78(Actor * this){
                 }else{
                     func_80328B8C(this, 2, 0.0f, -1);
                 }
-                func_803298AC(this);
+                actor_playAnimationOnce(this);
             }//L802CDF24
             break;
 
@@ -164,7 +164,7 @@ void func_802CDD78(Actor * this){
             func_802CDC9C(this, sp66);
             if(func_8032886C(this, 0.0f) && --(local->unk0) == 0){
                 func_80328B8C(this, 7, 0.0f, -1);
-                func_803298AC(this);
+                actor_playAnimationOnce(this);
                 if(local->unk4){
                     sp40[0] = this->position_x;
                     sp40[1] = this->position_y;
@@ -269,14 +269,14 @@ void func_802CDD78(Actor * this){
             if(sp50){
                 if(func_8032886C(this, 0.96f) || func_8032886C(this, 0.99f)){
                     func_80328B8C(this, 8, 0.0f, -1);
-                    func_803298AC(this);
+                    actor_playAnimationOnce(this);
                 }
             }
             break;
     }//L802CE5F0
     if(this->unk10_31 < 4 &&  !(((sp66 >= 0)? sp66: -sp66) <= 0x100)){
         func_80328B8C(this, 4, 0.0f, -1);
-        func_803298AC(this);
+        actor_playAnimationOnce(this);
     }//L802CE630
     if(!func_803114B0()){
         switch(D_803671B0[this->unk10_31].index){

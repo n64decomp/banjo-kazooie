@@ -140,7 +140,7 @@ void func_8038FB40(ActorMarker *this, s32 arg1){
 
     thisActor = marker_getActor(this);
     func_80328A84(thisActor, 2);
-    func_803298AC(thisActor);
+    actor_playAnimationOnce(thisActor);
     func_8030E624(0x665ff80A);
 }
 

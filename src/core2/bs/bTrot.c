@@ -708,7 +708,7 @@ void bsbtrot_ow_init(void){
     func_80298760(func_80296560());
     func_8028A274(0x66, 1.1f);
     func_80299BFC(1.0f);
-    _player_getPosition(sp30);
+    _player_getPosition(&sp30);
     func_80294980(sp24);
     func_80257F18(sp24, sp30, &sp3C);
     yaw_setIdeal(mlNormalizeAngle(sp3C + 180.0f));\

@@ -335,7 +335,7 @@ void func_80387F70(Actor *actor, f32 *arg1, f32 arg2) {
     f32 vec[3];
     f32 playerPos[3];
 
-    player_getPosition(playerPos);
+    player_getPosition(&playerPos);
     vec[0] = D_803927D0[temp_v0->pad5][0] - playerPos[0];
     vec[1] = D_803927D0[temp_v0->pad5][1] - playerPos[1];
     vec[2] = D_803927D0[temp_v0->pad5][2] - playerPos[2];

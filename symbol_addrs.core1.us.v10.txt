@@ -126,6 +126,7 @@ guMtxIdentF = 0x802651E0;
 guMtxIdent = 0x80265268;
 guMtxL2F = 0x80265298;
 gu_sqrtf = 0x80265350;
+cosf = 0x80265360;
 osSetTimer = 0x802659B0;
 osSetEventMesg = 0x80265E60;
 osCreateViManager = 0x80265ED0;

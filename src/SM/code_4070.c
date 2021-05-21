@@ -127,7 +127,7 @@ void func_8038A5D8(Actor *this){
                 this->sm_4070.unk0 = 0;
             }
         }//L8038A828
-        player_getPosition(sp5C);
+        player_getPosition(&sp5C);
         sp5C[0] = this->velocity_x;
         sp5C[2] = this->velocity_z;
         func_8028FAB0(sp5C);

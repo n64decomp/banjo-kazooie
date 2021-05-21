@@ -80,7 +80,7 @@ int func_80386ED0(Actor * this){
     if(!this->unk10_12)
         return 0;
 
-    player_getPosition(plyrPos);
+    player_getPosition(&plyrPos);
     if(plyrPos[1] < 300.0f || 600.0f < plyrPos[1])
         return 0;
 
@@ -203,7 +203,7 @@ void func_803873C8(ActorMarker *congaMarker){
     orangePtr = func_8032811C(actor_orange_projectile, conga_localPtr->orangeSpawnPosition, congaPtr->yaw);
 
     if(orangePtr != NULL){
-        player_getPosition(plyr.pos);
+        player_getPosition(&plyr.pos);
         orangePtr->velocity_x = plyr.pos_x - orangePtr->position_x;
         orangePtr->velocity_y = (60.0)*((conga_state == 7) ? 0.5: 1.0);
         orangePtr->velocity_z = plyr.pos_z - orangePtr->position_z;
@@ -261,7 +261,7 @@ void func_803873C8(ActorMarker *congaMarker){
 //         && this->unk10_31 > 3
 //     ){
 //         if(this->unk10_31 < 8){
-//             func_803298D8(this);
+//             actor_loopAnimation(this);
 //             func_80328B8C(this, 1, 0.76f, 1);
 //         }
 //         return;
@@ -284,7 +284,7 @@ void func_803873C8(ActorMarker *congaMarker){
 
 //     switch(this->unk10_31){
 //         case 1:
-//             func_803298D8(this);
+//             actor_loopAnimation(this);
 //             func_80386FB0(this);
 //             func_80386FE8();
 //             if(func_8032886C(this, 0) || func_8032886C(this, 0.45f)){

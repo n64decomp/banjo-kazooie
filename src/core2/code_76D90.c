@@ -155,7 +155,7 @@ void func_802FDEE0(s32 arg0, struct8s *arg1, Gfx **arg2, Mtx **arg3, s32 *arg4){
         gSPMatrix((*arg2)++, 0x80000000 + (*arg3)++, G_MTX_NOPUSH | G_MTX_MUL | G_MTX_MODELVIEW);
         
         phi_f24 = _76D90_MIN(_76D90_MAX(D_803815C8, 0.0),1.0);
-        sp134 = temp_f18 = ((f64) func_80265360((f32) ((f64) (*(void *)0x803815CC + sp110) * D_803773B0)) * (phi_f24 * D_803773B8) * D_803815D0);
+        sp134 = temp_f18 = ((f64) cosf((f32) ((f64) (*(void *)0x803815CC + sp110) * D_803773B0)) * (phi_f24 * D_803773B8) * D_803815D0);
         gSPVertex((*arg2)++, *arg4, 4, 0);
         do{
             for(phi_v0 = 0; phi_v0 < phi_s4; phi_v0++){

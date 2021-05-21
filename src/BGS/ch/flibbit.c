@@ -49,7 +49,7 @@ u32 func_80386564(Actor *this){
     f32 sp3C[3]; //sp3C
     f32 sp30[3]; //sp30
 
-    player_getPosition(plyrPos);
+    player_getPosition(&plyrPos);
     func_80258A4C(this->position, this->yaw - 90.0f, plyrPos, &sp48, &sp44, &sp40);
     if(func_80329210(this, plyrPos)){
         if((D_80390DF0 <= sp40) && (sp40 <= D_80390DF8)){
@@ -79,7 +79,7 @@ u32 func_80386A34(Actor * this){
     if(func_803203FC(0xC1))
         return 0;
     
-    player_getPosition(plyrPos);
+    player_getPosition(&plyrPos);
     if(func_80329210(this, plyrPos)){
         if(!(out = func_80386564(this)) && (0.5 < randf ())){
             return 0;

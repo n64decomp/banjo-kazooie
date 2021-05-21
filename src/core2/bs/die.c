@@ -32,7 +32,7 @@ void bsdie_init(void){
     func_802875AC(aCtrl, "bsdie.c", 0x7e);
     func_8029B930();
     func_8030E58C(0x36, 1.0f);
-    _player_getPosition(sp2C);
+    _player_getPosition(&sp2C);
     func_80294980(sp20);
     func_80257F18(sp20, sp2C, &sp38);
     D_8037D410 = 250.0f;

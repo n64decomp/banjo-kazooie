@@ -29,7 +29,7 @@ void func_8028A410(void){
 s32 func_8028A41C(f32 x, f32 z, f32 dist){
     f32 plyrPos[3];
 
-    _player_getPosition(plyrPos);
+    _player_getPosition(&plyrPos);
     return func_80259254(plyrPos, x, z, dist);
 }
 
@@ -38,7 +38,7 @@ s32 func_8028A45C(void){
     s32 nextState = 0;
     f32 plyrPos[3];
 
-    _player_getPosition(plyrPos);
+    _player_getPosition(&plyrPos);
     if(func_8028B470() || func_803203FC(0xC1)){ //(swimming || ???)
         if(plyrPos[1] < 600.0f
             && !func_8028A41C(D_80373EC0, D_80373EC4, 1750.0f) //within 1750 of sandcastle center

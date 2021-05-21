@@ -36,7 +36,7 @@ void func_803889A0(ActorMarker *this, s32 arg1){
 
     actorPtr = marker_getActor(this);
     func_80328B8C(actorPtr, 5, 0.0f, 1);
-    func_803298AC(actorPtr);
+    actor_playAnimationOnce(actorPtr);
     func_8030E8B4(0x7FFF40C2, actorPtr->position, 0x9C404e2);
     actor_collisionOff(actorPtr);
 }

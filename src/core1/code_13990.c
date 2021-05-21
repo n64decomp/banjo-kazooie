@@ -8,7 +8,7 @@ extern Mtx *D_80282FD0;
 extern Mtx_t D_80282810;
 
 f32 func_80263FF0(f32);
-f32 func_80265360(f32);
+f32 cosf(f32);
 extern f64 D_80278220;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_802513B0.s")
@@ -86,7 +86,7 @@ void mlMtxIdent(void){
         return;
 
     sin = sinf(yaw*0.0174533);
-    cos = func_80265360(yaw*0.0174533);
+    cos = cosf(yaw*0.0174533);
     phi_v0 = D_80282FD0;
     for(phi_v1 = 0; phi_v1 < 0xC; phi_v1 += 4){
         phi_v0 = (u32)D_80282FD0 + phi_v1;

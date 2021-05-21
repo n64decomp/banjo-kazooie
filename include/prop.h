@@ -26,7 +26,7 @@ typedef struct actor_prop_s{
     u32 pad8_15:11;
     u32 unk8_4:1;
     u32 unk8_3:1;
-    u32 pad8_2:1;
+    u32 unk8_2:1;
     u32 unk8_1:1;
     u32 unk8_0:1;
     //u8 padC;
@@ -286,7 +286,8 @@ typedef struct actor_s{
     u32 unk10_18:6;
     u32 unk10_12:4;
     u32 pad10_8:4;
-    u32 unk10_4:4;
+    u32 pad10_4:3;
+    u32 unk10_1:1;
     u32 pad10_0:1;
     AnimCtrl *animctrl;
     ActorAnimationInfo *unk18;
@@ -301,9 +302,11 @@ typedef struct actor_s{
     f32 unk28; //used in cheggs
     TUPLE(f32, velocity);
     u32  unk38_31:10;
-    u32  pad38_21:21;
+    u32  pad38_21:18;
+    u32  unk38_3:3; //animctrlPlaybackType
     u32  unk38_0:1;
-    u8  pad3C[0x8];
+    u8  pad3C[0x4];
+    s32 unk40;
     u32 unk44_31:8;
     u32 modelCacheIndex:10; //modelCacheIndex
     s32 unk44_4:10;
@@ -313,12 +316,18 @@ typedef struct actor_s{
     u8  pad4c[0x4];
     f32 yaw; //0x50
     f32 unk54; //0x54
-    u8  pad58[0x8];//0x58, 0x5C, 0x60
+    u32 pad58_31: 15;
+    u32 unk58_16: 14; //animctrlAnimIndex;
+    u32 pad58_2: 3;
+    u8  pad5C[0x4];
     f32 unk60; //0x60
     f32 yaw_moving; //0x64
     f32 pitch;//0x68
     f32 unk6C;
-    u8  pad70[0xC];
+    u8  pad70[0x8];
+    u32 pad78_31:30;
+    u32 unk78_1:1; //animCtrlDirection
+    u32 unk78_0:1; //animCtrlSmoothTransition
     union
     {
         ActorLocal_Jiggy    jiggy;
@@ -345,15 +354,23 @@ typedef struct actor_s{
         
     };
     //u8  padAC[0x44];
-    u8  padEC[0x8];
-    u32 unkF4_31:10;
+    f32 unkEC; //animCtrl???
+    f32 unkF0; //animCtrlDuration
+    u32 padF4_31:3;
+    u32 unkF4_28:1; //saved marker->propPtr->unk8_3
+    u32 unkF4_27:1; //saved marker->propPtr->unk8_2
+    u32 unkF4_26:1; //saved marker->unk2C_1
+    u32 unkF4_25:1; //saved marker->collidable
+    u32 padF4_24:3;
     u32 initialized:1; //unkF4_21;
     u32 unkF4_20:12;
     u32 unkF4_8:9;
-    u8  padF8[0x8];
+    f32 unkF8; //animCtrl_SubRangeStart
+    f32 unkFC; //animCtrl_SubRangeEnd
     ActorMarker *unk100;
     ActorMarker *unk104;
-    u8  pad108[8];
+    void ( *unk108)(struct actorMarker_s *, s32); //saved from marker->unkC
+    s32 unk10C; //saved marker->unk10
     f32 roll;//110
     f32 sound_timer;
     f32 spawn_position_x;
@@ -369,18 +386,28 @@ typedef struct actor_s{
     u32  unk124_0:1; //read in bsbbuster func 
     f32 scale;
     u8  pad12C[0x8];
-    vector(struct2s) **unk134; //vector<struct2s>
+    vector(struct2s) **unk134; //vector<struct2s> //saved marker->unk1C
     u32 unk138_31:1;
-    u32 unk138_30:6;
+    u32 pad138_30:2;
+    u32 unk138_28:1;
+    u32 pad138_27:3;
     u32 unk138_24:1;
     u32 unk138_23:1;
-    u32 pad138_23:23;
-    u8  pad13C[0xC];
+    u32 pad138_22:3;
+    u32 unk138_19:10; //saved maker->unk14_20
+    u32 pad138_9:10;
+    void (*unk13C)(struct actorMarker_s *);//saved marker->unk30
+    u8  pad140[0x8];
     void *unk148;
     void *unk14C;
     void *unk150;
-    u8  pad14C[0x18];
-    u32  pad16C_31:27;
+    u8  pad154[0x4];
+    void *unk158;
+    void *unk15C;
+    s32 unk160; //saved marker->unk54
+    u8  pad164[0x4];
+    s32 unk168; //saved marker->unk58
+    u32  unk16C_31:27; //saved s1->marker->unk5C
     u32  unk16C_4:1;
     u32  pad16C_3:3;
     u32  unk16C_0:1;

@@ -11,7 +11,6 @@ void func_80324E38(f32, u32);
 void func_80324E60(f32, u32);
 void timedFunc_set_0(f32, void(*)(void));
 void func_80324E88(f32);
-void player_getPosition(f32 *);
 void mapSpecificFlags_set(u32, u32);
 
 
@@ -173,7 +172,7 @@ void func_8038CEE8(Actor *this){
         bgs6730->unkC += D_80391240[3];
         D_80391240[3] = 0;
     }
-    player_getPosition(sp34);
+    player_getPosition(&sp34);
     sp28 = (sp34[1] < 500.0f) && (func_80329210(this,sp34) != 0);
     if(this->unk10_31 == 1){
         if(sp28 && ((bgs6730->unk8 > 0) || (bgs6730->unkC > 0)) && !func_8028FB48(0xe000)){

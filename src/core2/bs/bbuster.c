@@ -144,7 +144,7 @@ void bsbbuster_update(void){
                 D_8037D2B8 = 1;
                 D_8037D2B0 = 0.09f;
                 D_8037D2BA = 3;
-                _player_getPosition(sp24);
+                _player_getPosition(&sp24);
                 func_8032728C(sp24, 150.0f, 2, func_8029FB20);
                 if(func_802931DC(&sp3C)){
                     sp44 = BS_SPLAT;

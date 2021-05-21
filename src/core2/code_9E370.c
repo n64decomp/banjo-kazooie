@@ -3,11 +3,14 @@
 #include "variables.h"
 
 #include "prop.h"
-
+void func_80254608(void *, void *, u32);
 Actor *func_803056FC(s32, f32*, f32*);
 
-ActorArray *D_8036E560;
-extern u32 D_80378E08;
+ActorArray *D_8036E560; //actorArrayPtr
+extern char D_80378DFC[];
+extern char D_80378E08[]; // "subaddie.c"
+extern char D_80378E20[];
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80325300.s")
 
@@ -129,34 +132,37 @@ Actor *func_8032811C(s32 id, f32 *pos, f32* rot){
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80328478.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80328508.s")
-/*u32 func_80328508(Actor * arg0, u32 arg1){
+/*int func_80328508(Actor * arg0, u32 arg1){
     ActorAnimationInfo *animInfo;
 
     arg0->unk10_31 = arg1;
     if(!arg0->unk18)
         return 0;
 
-    (animInfo = &arg0->unk18[arg1]);
+    animInfo = &arg0->unk18[arg1];
     if(animInfo->index){
         if(arg0->animctrl == NULL){
-            arg0->animctrl = animctrl_new(0);
-            animctrl_reset(arg0->animctrl);
+            animctrl_reset(arg0->animctrl = animctrl_new(0));
         }
         animctrl_setIndex(arg0->animctrl, animInfo->index);
         animctrl_setDuration(arg0->animctrl, animInfo->duration);
         animctrl_setDirection(arg0->animctrl, mvmt_dir_forwards);
     }
-    else{
-        if(arg0->animctrl){
-            animctrl_setPlaybackType(arg0->animctrl,  ANIMCTRL_STOPPED);
-            animctrl_setDirection(arg0->animctrl, mvmt_dir_forwards);
-        }
+    else if(arg0->animctrl){
+        animctrl_setPlaybackType(arg0->animctrl,  ANIMCTRL_STOPPED);
+        animctrl_setDirection(arg0->animctrl, mvmt_dir_forwards);
     }
     return 1;
     
 }//*/
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_803285E8.s")
+void func_803285E8(Actor *this, f32 arg1, int arg2){
+    func_8028774C(this->animctrl, arg1);
+    if(arg2 != -1){
+        animctrl_setDirection(this->animctrl, arg2);
+    }
+    this->sound_timer = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032863C.s")
 
@@ -166,27 +172,27 @@ Actor *func_8032811C(s32 id, f32 *pos, f32* rot){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032886C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_803289EC.s")
+void func_803289EC(Actor *this , f32 arg1, int arg2){
+    func_803285E8(this, arg1, arg2);
+    func_802875AC(this->animctrl, D_80378DFC, 0x6b1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80328A2C.s")
 
-
-
 void func_80328A84(Actor * arg0, u32 arg1){
     if(func_80328508(arg0, arg1) && arg0->animctrl){
-        func_802875AC(arg0->animctrl, &D_80378E08, 0X6CA);
+        func_802875AC(arg0->animctrl, D_80378E08, 0X6CA);
     }
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80328AC8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80328AEC.s")
-// void func_80328AEC(Actor * arg0, u32 arg1){
-//     if(func_80328508(arg0, arg1) && arg0->animctrl){
-//         animctrl_setPlaybackType(arg0->animctrl,  ANIMCTRL_LOOP);
-//         func_803289EC(arg0, NULL, 1); //li zero instead of move?
-//     }
-// }
+void func_80328AEC(Actor * arg0, u32 arg1){
+    if(func_80328508(arg0, arg1) && arg0->animctrl){
+        animctrl_setPlaybackType(arg0->animctrl,  ANIMCTRL_LOOP);
+        func_803289EC(arg0, 0.0f, 1);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80328B38.s")
 
@@ -271,10 +277,12 @@ s32 func_80329054(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80329878.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_803298AC.s")
+void actor_playAnimationOnce(Actor *this){
+    if(this->animctrl)
+        animctrl_setPlaybackType(this->animctrl, ANIMCTRL_ONCE);
+}
 
-//actor_loopAnimation
-void func_803298D8(Actor *this){
+void actor_loopAnimation(Actor *this){
     if(this->animctrl)
         animctrl_setPlaybackType(this->animctrl,  ANIMCTRL_LOOP);
 }
@@ -296,7 +304,22 @@ Actor *marker_getActor(ActorMarker *this){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_803299B4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80329B68.s")
+void func_80329B68(Actor *this){
+    if(this->animctrl == NULL)
+        return;
+
+    if(this->unk38_3){
+        animctrl_setPlaybackType(this->animctrl, this->unk38_3);
+    }
+    animctrl_setIndex(this->animctrl, this->unk58_16);
+    animctrl_setDirection(this->animctrl, this->unk78_1);
+    animctrl_setSmoothTransition(this->animctrl, this->unk78_0);
+    animctrl_setDuration(this->animctrl, this->unkF0);
+    func_8028774C(this->animctrl, this->unkEC);
+    animctrl_setSubRange(this->animctrl, this->unkF8, this->unkFC);
+    func_802875AC(this->animctrl, D_80378E20, 0x8fd);
+    func_80287800(this->animctrl, this->sound_timer);
+}
 
 void actor_copy(Actor *dst, Actor *src){
     dst->marker = src->marker;
@@ -308,7 +331,81 @@ void actor_copy(Actor *dst, Actor *src){
     func_80254608(src, dst, sizeof(Actor));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80329CBC.s")
+
+#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/actors_appendToSavestate.s")
+/*void *actors_appendToSavestate(void * begin, u32 end){
+    void *sp3C = begin;
+    Actor* s0;
+    Actor* s1;
+    u32 sp30; //SavedActorDataSize
+    u32 sp2C; //SavedActorDataOffset
+    u32 tmp;
+   
+    if(D_8036E560){
+        sp30 = 0;
+        for(s1 = (u32)D_8036E560 + 8; (u32)s1 < (u32)D_8036E560 + D_8036E560->cnt*sizeof(Actor) + 8; s1++){
+            if( s1->marker
+                && s1->unk10_1 == 1
+                && s1->despawn_flag == 0
+                && s1->unk40 == 0
+            ){
+                sp30++;
+            }
+        }
+        sp2C = end - (u32)sp3C;
+        sp3C = realloc(sp3C, sp2C + sizeof(u32) + sp30*sizeof(Actor));
+
+        end = (u32)sp3C + sp2C;
+        *(u32 *)end = sp30;
+        s0 = (Actor *)((u8*)end + sizeof(u32));
+        for(s1 = D_8036E560->data; s1 < &D_8036E560->data[D_8036E560->cnt]; s1++){
+            if( s1->marker
+                && s1->unk10_1 == 1
+                && s1->despawn_flag == 0
+                && s1->unk40 == 0
+            ){
+                func_80254608(s0, s1, 0x180);
+                s0->unk40 = 0;
+                s0->unk138_28 = 1;
+                s0->unk150 = NULL;
+                s0->unk14C = NULL;
+                s0->unk148 = NULL;
+                s0->unk16C_4 = 0;
+                s0->unk44_31 = 0;
+                s0->unk104 = NULL;
+                s0->unk100 = NULL;
+                s0->unk158 = NULL;
+                s0->unk15C = NULL;
+                s0->unk138_19 = s1->marker->unk14_20;
+                s0->unk108 = s1->marker->unkC;
+                s0->unk10C = s1->marker->unk10;
+                s0->unk134 = s1->marker->unk1C;
+                s0->unk160 = s1->marker->unk54;
+                s0->unk168 = s1->marker->unk58;
+                s0->unk13C = s1->marker->unk30;
+                s0->unk16C_31 = s1->marker->unk5C;
+                s0->unkF4_26 = s1->marker->unk2C_1;
+                s0->unkF4_25 = s1->marker->collidable;
+                s0->unkF4_28 = s1->marker->propPtr->unk8_3;
+                s0->unkF4_27 = s1->marker->propPtr->unk8_2;
+                //80329F94
+                if(s0->animctrl){
+                    s0->unk58_16 = animctrl_getIndex(s0->animctrl);
+                    s0->unk38_3 = animctrl_getPlaybackType(s0->animctrl);
+                    s0->unk78_1 = animctrl_isPlayedForwards(s0->animctrl);
+                    s0->unk78_0 = animctrl_isSmoothTransistion(s0->animctrl);
+                    s0->unkF0 = animctrl_getDuration(s0->animctrl);
+                    s0->unkEC = func_802877D8(s0->animctrl);
+                    animctrl_getSubRange(s0->animctrl, &s0->unkF8, &s0->unkFC);
+                }
+                s0->animctrl = NULL;
+                s0->marker = NULL;
+                s0++;
+            }
+        }
+    }
+    return sp3C;
+}//*/
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032A09C.s")
 

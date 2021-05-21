@@ -23,7 +23,7 @@ void func_8038A3B0(Actor *this){
     actor_collisionOff(this);
     if(this->unk10_31 == 2 && levelSpecificFlags_get(sp24 + 0x35)){
         func_80328A84(this, 1);
-        func_803298AC(this);
+        actor_playAnimationOnce(this);
     }
 
 }

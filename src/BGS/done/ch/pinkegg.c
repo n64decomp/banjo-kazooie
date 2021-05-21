@@ -3,7 +3,7 @@
 #include "variables.h"
 
 void  func_80326224(Actor *);
-void  func_803298AC(Actor *);
+void  actor_playAnimationOnce(Actor *);
 void chPinkEggDraw(ActorMarker *this, Gfx ** gdl, Mtx** mptr, u32 arg3);
 void  func_80387AB0(ActorMarker *this, u32 arg1);
 void func_80387B80(Actor *this);
@@ -76,7 +76,7 @@ void func_80387AB0(ActorMarker *this, u32 arg1){
     this->propPtr->unk8_3 = 0;
     func_8030E510(0xAA, 28000);
     func_80328A84(thisActor, 3);
-    func_803298AC(thisActor);
+    actor_playAnimationOnce(thisActor);
     this->collidable = 0;
     thisActor->unk124_6 = 0;
     if(D_803906C4[(tmp = &thisActor->pinkEgg)->unk0]){

@@ -55,13 +55,13 @@ void func_802DCC90(Actor *this){
         this->unk124_9 = 0;
         actor_collisionOff(this);
         func_80328B8C(this, 1, 0.0f, 1);
-        func_803298AC(this);
+        actor_playAnimationOnce(this);
         func_803300D8(this->marker, func_802DCC78);
     }
 
     if(animctrl_isStopped(this->animctrl)){
         func_80328B8C(this, 2, 0.0f, 1);
-        func_803298D8(this);
+        actor_loopAnimation(this);
     }
 }
 

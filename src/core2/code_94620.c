@@ -465,7 +465,7 @@ void func_8031CD44(s32 arg0, s32 arg1, f32 arg2, f32 arg3, s32 arg4) {
 void func_8031CE28(s32 arg0, s32 arg1, f32 arg2) {
     f32 vec[3];
 
-    player_getPosition(vec);
+    player_getPosition(&vec);
     func_8031CD44(arg0, arg1, vec[1], arg2, 0x25);
 }
 
@@ -481,7 +481,7 @@ void func_8031CE70(f32 *arg0, s32 arg1, s32 arg2) {
         } else {
             phi_s0 = NULL;
         }
-        player_getPosition(playerPos);
+        player_getPosition(&playerPos);
         if (phi_s0 != NULL) {
             func_80304D68(&phi_s0->unk0, sp38);
             phi_f2 = 500.0f;

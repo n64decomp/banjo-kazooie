@@ -76,7 +76,7 @@ void    chhut_update(Actor *this){
     }
     switch(this->unk10_31){
         case 0: //L80386AA4
-            player_getPosition(sp30);
+            player_getPosition(&sp30);
             sp3C[0] = sp30[0] - this->position_x;
             sp3C[1] = sp30[1] - this->position_y;
             sp3C[2] = sp30[2] - this->position_z;
@@ -91,7 +91,7 @@ void    chhut_update(Actor *this){
                 sp3C[1] += 125.0;
                 func_8030E484(0x5B);
                 func_80328A84(this, 1);
-                func_803298AC(this);
+                actor_playAnimationOnce(this);
                 func_802C3C88(func_803869EC, this->marker);
                 func_802C8F70(this->yaw);
                 if(D_8037DCB0 < 5){

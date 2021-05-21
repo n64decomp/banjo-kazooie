@@ -7,19 +7,18 @@
 void func_802BAE4C(void);
 void func_802BAE20(f32);
 
-
 typedef struct timed_function_queue_s{
     f32 time;
     u8  arg_cnt;
     u8  pad5[3];
-    union { 
-        void (* func0)(void);
-        void (* func1)(s32);
-        void (* func2)(s32, s32);
-        void (* func3)(s32, s32, s32);
-        void (* func4)(s32, s32, s32, s32);
-        void (* func5)(s32, s32, s32, s32, s32);
-        void (* func6)(s32*);
+    union {
+        TFQM0 func0;
+        TFQM1 func1;
+        TFQM2 func2;
+        TFQM3 func3;
+        TFQM4 func4;
+        TFQM5 func5;
+        TFQM6 func6;
     };
     s32  arg[25];
     
@@ -45,7 +44,7 @@ typedef struct delayed_jiggy_s{
 } DelayedJiggyInfo;
 
 //void __spawnjiggy(DelayedJiggyInfo *);
-TimedFunction* __timedFuncQueue_insert(f32, s32, void(* func)(s32, s32, s32, s32, s32), s32, s32, s32, s32, s32);
+TimedFunction* __timedFuncQueue_insert(f32, s32, void *funcPtr, s32, s32, s32, s32, s32);
 void func_8030E9C4(u32, u32, u32, f32 *, f32, f32);
 void func_80324BA0(s32);
 
@@ -54,7 +53,7 @@ void func_802BE720(void);
 extern TimedFunctionArray D_80383380;
 
 
-TimedFunction* __timedFuncQueue_insert(f32 time, s32 cnt, void(* funcPtr)(s32, s32, s32, s32, s32), s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4){
+TimedFunction* __timedFuncQueue_insert(f32 time, s32 cnt, void *funcPtr, s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4){
     TimedFunction * startPtr;
     TimedFunction *retVal;
     TimedFunction * iPtr;
@@ -75,7 +74,7 @@ TimedFunction* __timedFuncQueue_insert(f32 time, s32 cnt, void(* funcPtr)(s32, s
     retVal = (TimedFunction * )vla_insertNew((vector(TimedFunction)**)&D_80383380, ((s32)iPtr - (s32)startPtr)/(s32)sizeof(TimedFunction));
     retVal->time = time;
     retVal->arg_cnt = cnt;
-    retVal->func5 = funcPtr;
+    retVal->func5 = (TFQM5) funcPtr;
     retVal->arg[0] = arg0;
     retVal->arg[1] = arg1;
     retVal->arg[2] = arg2;
@@ -159,7 +158,7 @@ void func_80324CFC(f32 time, s32 id, s32 volume){
 }
 
 void func_80324D2C(f32 time, enum comusic_e arg0){
-    timedFunc_set_1(time, func_80324A48, arg0);
+    timedFunc_set_1(time, (TFQM1) func_80324A48, arg0);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/timedfuncqueue/func_80324D54.s")
@@ -180,42 +179,42 @@ void func_80324D2C(f32 time, enum comusic_e arg0){
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/timedfuncqueue/func_80324DBC.s")
 
 void func_80324E38(f32 time, s32 arg0){
-    timedFunc_set_1(time, func_80324BA0, arg0);
+    timedFunc_set_1(time, (TFQM1) func_80324BA0, arg0);
 }
 
 void func_80324E60(f32 time, s32 arg0){
-    timedFunc_set_1(time, func_802BAE20, arg0);
+    timedFunc_set_1(time, (TFQM1) func_802BAE20, arg0);
 }
 
 void func_80324E88(f32 time){
-    timedFunc_set_0(time, func_802BAE4C);
+    timedFunc_set_0(time, (TFQM0) func_802BAE4C);
 }
 
-void timedFunc_set_0(f32 time, void(*funcPtr)(void)){
-    __timedFuncQueue_insert(time, 0, funcPtr, 0, 0, 0, 0, 0);
+void timedFunc_set_0(f32 time, TFQM0 funcPtr){
+    __timedFuncQueue_insert(time, 0, (void *) funcPtr, 0, 0, 0, 0, 0);
 }
 
-void timedFunc_set_1(f32 time, void(*funcPtr)(s32), s32 arg0){
-    __timedFuncQueue_insert(time, 1, funcPtr, arg0, 0, 0, 0, 0);
+void timedFunc_set_1(f32 time, TFQM1 funcPtr, s32 arg0){
+    __timedFuncQueue_insert(time, 1, (void *) funcPtr, arg0, 0, 0, 0, 0);
 }
 
-void timedFunc_set_2(f32 time, void(*funcPtr)(s32, s32), s32 arg0, s32 arg1){
-    __timedFuncQueue_insert(time, 2, funcPtr, arg0, arg1, 0, 0, 0);
+void timedFunc_set_2(f32 time, TFQM2 funcPtr, s32 arg0, s32 arg1){
+    __timedFuncQueue_insert(time, 2, (void *) funcPtr, arg0, arg1, 0, 0, 0);
 }
 
-void timedFunc_set_3(f32 time, void(*funcPtr)(s32, s32, s32), s32 arg0, s32 arg1, s32 arg2){
-    __timedFuncQueue_insert(time, 3, funcPtr, arg0, arg1, arg2, 0, 0);
+void timedFunc_set_3(f32 time, TFQM3 funcPtr, s32 arg0, s32 arg1, s32 arg2){
+    __timedFuncQueue_insert(time, 3, (void *) funcPtr, arg0, arg1, arg2, 0, 0);
 }
 
-void timedFunc_set_4(f32 time, void(*funcPtr)(s32, s32, s32, s32), s32 arg0, s32 arg1, s32 arg2, s32 arg3){
-    __timedFuncQueue_insert(time, 4, funcPtr, arg0, arg1, arg2, arg3, 0);
+void timedFunc_set_4(f32 time, TFQM4 funcPtr, s32 arg0, s32 arg1, s32 arg2, s32 arg3){
+    __timedFuncQueue_insert(time, 4, (void *) funcPtr, arg0, arg1, arg2, arg3, 0);
 }
 
-void timedFunc_set_5(f32 time, void(*funcPtr)(s32, s32, s32, s32, s32), s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4){
-    __timedFuncQueue_insert(time, 5, funcPtr, arg0, arg1, arg2, arg3, arg4);
+void timedFunc_set_5(f32 time, TFQM5 funcPtr, s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4){
+    __timedFuncQueue_insert(time, 5, (void *) funcPtr, arg0, arg1, arg2, arg3, arg4);
 }
 
-void timedFunc_set_6(f32 time, void(*funcPtr)(s32, s32, s32, s32, s32, s32), s32* argPtr ){
+void timedFunc_set_6(f32 time, TFQM6 funcPtr, void* argPtr ){
     TimedFunction *q = __timedFuncQueue_insert(time, 6, funcPtr, 0, 0, 0, 0, 0);
     func_80254608(&q->arg[5], argPtr, 0x50);
 }
@@ -228,7 +227,7 @@ void timedJiggySpawn(f32 time, s32 jiggyId, f32 *position){
     jiggyInfo.pos[1] = position[1];
     jiggyInfo.pos[2] = position[2];
 
-    timedFunc_set_6(time, __spawnjiggy, &jiggyInfo);
+    timedFunc_set_6(time, (TFQM6) __spawnjiggy, (void*) &jiggyInfo);
 }
 
 //timerFuncQueue_Empty

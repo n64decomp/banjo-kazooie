@@ -173,7 +173,7 @@ void func_80387C28(Actor * this){
     actor_collisionOff(this);
     if(local->unkC != 3){
         func_80328B8C(this, 3, 0.0f, 1);
-        func_803298AC(this);
+        actor_playAnimationOnce(this);
     }
     else{
         marker_despawn(this->marker);

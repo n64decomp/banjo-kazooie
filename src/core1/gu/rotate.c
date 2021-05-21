@@ -5,7 +5,7 @@
 extern f32 D_80285900;
 
 f32 sinf(f32);
-f32 func_80265360(f32);
+f32 cosf(f32);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/gu/rotate/guRotateF.s")
 // MATCHING but need to resolve core1 data section for static D_80285900
@@ -20,7 +20,7 @@ f32 func_80265360(f32);
 // 	guNormalize(&x, &y, &z);
 // 	a *= D_80285900;
 // 	sine = sinf(a);
-// 	cosine = func_80265360(a);
+// 	cosine = cosf(a);
 // 	t = (1-cosine);
 // 	ab = x*y*t;
 // 	bc = y*z*t;

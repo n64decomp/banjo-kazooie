@@ -281,7 +281,7 @@ void func_80389080(Actor *this){
             marker_despawn(this->marker);
     }
     else{
-        player_getPosition(sp44);
+        player_getPosition(&sp44);
         if(func_8033567C(this->unk148) == 0x12c && func_80335794(this->unk148) > 0){
             func_80335924(this->unk148, 0x12b, 1.0f, 9.0f);
             unqPtr->unkC = randf2(5.0f, 15.0f);
