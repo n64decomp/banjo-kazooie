@@ -26,14 +26,6 @@ extern struct {
     u8 unk32;
 } D_8037D470;
 
-extern u8  D_8037D48C;
-
-extern f32 D_8037D49C;
-
-extern u8  D_8037D4A0;
-extern u8  D_8037D4A1;
-extern u8  D_8037D4A2;
-
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/dronexform/func_802AF7A0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/dronexform/func_802AF88C.s")
@@ -113,8 +105,8 @@ static void __bsdronexform_setState(int arg0){
                 yaw_setIdeal(yaw_get() + 180.0f);
                 func_802991FC();
             }
-            func_8029A95C(func_80294A4C());
-            func_80291D04();
+            func_8029A95C(func_80294A4C()); //set player transformation
+            func_80291D04(); //update player model
             func_8029BD44(&sp34, &sp30);
             func_8028A010(sp34, sp30);
             func_8029E3C0(0, 0.1f);
@@ -152,10 +144,10 @@ void bsdronexform_init(void){
     func_80294378(6);
     func_802AFB0C();
     func_802B016C();
-    D_8037D4A1 = func_8029A8F4();
-    D_8037D4A0 = func_80294A4C();
+    D_8037D470.unk31 = func_8029A8F4();
+    D_8037D470.unk30 = func_80294A4C();
     func_802933E8(0x1b);
-    D_8037D4A2 = 0;
+    D_8037D470.unk32 = 0;
     __bsdronexform_setState(1);
 }
 
@@ -165,14 +157,14 @@ f32 func_802B051C(s32 arg0, f32 arg1, f32 arg2, f32 arg3){
 
 void bsdronexform_update(void){
     int sp24;
-    if(D_8037D48C)
+    if(D_8037D470.unk1C)
         func_802AFFAC();
 
     func_802B01C8();
-    switch(D_8037D4A2){
+    switch(D_8037D470.unk32){
         case 1: 
             sp24 = func_8029E1A8(0);
-            player_setYPosition(func_802B051C(0, 2.8f, 0.0f, 90.0f) + D_8037D49C);
+            player_setYPosition(func_802B051C(0, 2.8f, 0.0f, 90.0f) + D_8037D470.unk2C);
             func_802AFB94(func_802B051C(0, 2.8f, 0.28f, 1.0f));
             func_802AFBA0(func_802B051C(0, 2.8f, 180.0f, 55.0f));
             func_802AFBAC(func_802B051C(0, 2.8f, 0.04f, 0.35f));
@@ -248,7 +240,7 @@ void bsdronexform_update(void){
 
         case 9:
             sp24 = func_8029E1A8(0);
-            player_setYPosition(func_802B051C(0, 0.7f, 90.0f, 0.0f) + D_8037D49C);
+            player_setYPosition(func_802B051C(0, 0.7f, 90.0f, 0.0f) + D_8037D470.unk2C);
             if(sp24)
                 bs_setState(func_8029BF78());
             break;
