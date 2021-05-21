@@ -99,10 +99,10 @@ segments:
   - [0x26740, c, bs/crouch]
   - [0x26E70, c, bs/die]
   - [0x273E0, c, bs/drone]
-  - [0x27550, c, code_27550]
+  - [0x27550, c, code_27550] #dronefalldie???
   - [0x27BD0, c, bs/dronegoto]
-  - [0x27F40, c, code_27F40]
-  - [0x28220, c, code_28220]
+  - [0x27F40, c, code_27F40] #dronelook
+  - [0x28220, c, code_28220] #dronevanish???
   - [0x28810, c, bs/dronexform]
   - [0x29AD0, c, bs/jig]
   - [0x2A170, c, bs/jump]

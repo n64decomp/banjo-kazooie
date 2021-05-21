@@ -6,8 +6,6 @@ void player_setYPosition(f32);
 void func_802AFB94(f32);
 void func_802AFBA0(f32);
 void func_802AFBAC(f32);
-void func_802B01BC(f32);
-void func_802B01B0(f32);
 void func_8024E3A8(f32 (*)[3], f32);
 void func_802AFBB8(f32 (*)[3]);
 void func_802991FC(void);
@@ -19,7 +17,9 @@ extern struct {
     u8 pad0[0x1C];
     u8 unk1C;
     u8 pad1D[0x3];
-    u8 pad20[0xC];
+    f32 unk20;
+    f32 unk24;
+    f32 unk28;
     f32 unk2C;
     u8 unk30;
     u8 unk31;
@@ -48,15 +48,29 @@ extern struct {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/dronexform/func_802B0060.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/dronexform/func_802B014C.s")
+void func_802B014C(void){
+    func_80289EBC(0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/dronexform/func_802B016C.s")
+/* void func_802B016C(void){
+    D_8037D470.unk20 = 0.0f;
+    D_8037D470.unk28 = 0.0f;
+    D_8037D470.unk24 = 1.0f;
+    func_80289EBC(func_802B0060);
+}//*/
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/dronexform/func_802B01B0.s")
+void func_802B01B0(f32 arg0){
+   D_8037D470.unk28 = arg0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/dronexform/func_802B01BC.s")
+void func_802B01BC(f32 arg0){
+   D_8037D470.unk24 = arg0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/dronexform/func_802B01C8.s")
+void func_802B01C8(void){
+   D_8037D470.unk20 += func_8033DD9C();
+}
 
 static void __bsdronexform_setState(int arg0){
     enum asset_e sp34;
