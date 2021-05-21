@@ -330,7 +330,13 @@ static void __bsant_recoil_update(void){
     bs_setState(sp1C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/ant/func_8029EF68.s")
+static void __bsant_recoil_end(void){
+    func_80297CA8();
+    gravity_reset();
+    func_8028D5F4();
+    func_80292EA4();
+    func_8029E4EC();
+}
 
 void bsant_ow_init(void){
     __bsant_recoil_init(1);
@@ -341,7 +347,7 @@ void bsant_ow_update(void){
 }
 
 void bsant_ow_end(void){
-    func_8029EF68();
+    __bsant_recoil_end();
 }
 
 void bsant_bounce_init(void){
@@ -353,7 +359,7 @@ void bsant_bounce_update(void){
 }
 
 void bsant_bounce_end(void){
-    func_8029EF68();
+    __bsant_recoil_end();
 }
 
 void bsant_die_init(void){
@@ -437,14 +443,41 @@ void bsant_die_end(void){
     func_80292EA4();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/ant/func_8029F398.s")
+void func_8029F398(void){
+    func_8029E554();
+    func_8028A010(ANIM_TERMITE_IDLE, 2.0f);
+    func_8029C7F4(1,1,3,2);
+    func_80297970(0.0f);
+    func_8029C674();
+    func_802B3A50();
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/ant/func_8029F3F4.s")
+void func_8029F3F4(void){
+    enum bs_e sp1C = 0;
+    func_802B3A50();
+    func_80299628(0);
+    func_8029C6D0();
+    if(!func_80298850())
+       sp1C = BS_ANT_IDLE;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/ant/func_8029F440.s")
+    bs_setState(sp1C);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/ant/func_8029F468.s")
+void func_8029F440(void){
+    func_8029C748();
+    func_8029E4EC();
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/ant/func_8029F490.s")
+void func_8029F468(void){
+    func_8029E554();
+    func_802AE3D0();
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/ant/func_8029F4B0.s")
+void func_8029F490(void){
+    func_802AE410();
+}
+
+void func_8029F4B0(void){
+    func_802AE450();
+    func_8029E4EC();
+}
