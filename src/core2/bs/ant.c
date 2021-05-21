@@ -468,16 +468,16 @@ void func_8029F440(void){
     func_8029E4EC();
 }
 
-void func_8029F468(void){
+void bsant_drone_init(void){
     func_8029E554();
-    func_802AE3D0();
+    bsdrone_init();
 }
 
-void func_8029F490(void){
-    func_802AE410();
+void bsant_drone_update(void){
+    bsdrone_update();
 }
 
-void func_8029F4B0(void){
-    func_802AE450();
+void bsant_drone_end(void){
+    bsdrone_end();
     func_8029E4EC();
 }

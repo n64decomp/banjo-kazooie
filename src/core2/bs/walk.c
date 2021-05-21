@@ -487,8 +487,8 @@ void bswalk_mud_update(void){
     bs_setState(s0);
 }
 
-void bswalk_unk98_init(void){
-    func_802AE3D0();
+void bswalk_drone_init(void){
+    bsdrone_init();
     if(func_80289F94(3)){
         func_80289F10(2);
         func_80289EA8(0.3f, 1.5f);
@@ -496,10 +496,10 @@ void bswalk_unk98_init(void){
     }
 }
 
-void bswalk_unk98_update(void){
-    func_802AE410();
+void bswalk_drone_update(void){
+    bsdrone_update();
 }
 
-void bswalk_unk98_end(void){
-    func_802AE450();
+void bswalk_drone_end(void){
+    bsdrone_end();
 }

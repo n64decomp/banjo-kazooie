@@ -28,7 +28,7 @@ static void __bsbwhirl_end(void){
           || state == BS_WONDERWING_WALK
           || state == BS_WONDERWING_JUMP
           || state == BS_WONDERWING_EXIT
-          || state == BS_WONDERWING_UNKA4
+          || state == BS_WONDERWING_DRONE
           || state == BS_WONDERWING_UNKA5
         )
     ){
@@ -266,17 +266,17 @@ void bsbwhirl_exit_end(void){
     __bsbwhirl_end();
 }
 
-void func_802AAD4C(void){
-    func_802AE3D0();
+void bsbwhirl_drone_init(void){
+    bsdrone_init();
 }
 
-void func_802AAD6C(void){
+void bsbwhirl_drone_update(void){
     __bsbwhirl_spawnSparkle();
-    func_802AE410();
+    bsdrone_update();
 }
 
-void func_802AAD94(void){
-    func_802AE450();
+void bsbwhirl_drone_end(void){
+    bsdrone_end();
     __bsbwhirl_end();
 }
 

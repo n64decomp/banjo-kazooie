@@ -101,7 +101,6 @@ void bsbwhirl_stand_end(void);
 void bsbwhirl_walk_init(void);
 void bsbwhirl_walk_update(void);
 void bsbwhirl_walk_end(void);
-void func_80296608(void);
 //BS_WONDERWING_JUMP
 void bsbwhirl_jump_init(void);
 void bsbwhirl_jump_update(void);
@@ -337,7 +336,7 @@ void func_80296590(void);
 void bsblongleg_slide_init(void);
 void bsblongleg_slide_update(void);
 void bsblongleg_slide_end(void);
-void func_802B5350(void);
+
     //0x56
 void func_802B3868(void);
 void func_802B3954(void);
@@ -372,27 +371,26 @@ void func_802B66F8(void);
 void func_802AC0D4(void);
 void func_802AC178(void);
 void func_802AC224(void);
-void func_802B5350(void);
+
     //0x5F
 void func_802AC24C(void);
 void func_802AC2BC(void);
 void func_802AC380(void);
-void func_802B5350(void);
+
     //0x60
 void func_802AC3A8(void);
 void func_802AC4DC(void);
 void func_802AC6D0(void);
-void func_802B5350(void);
+
     //0x61
 void func_802AC6F8(void);
 void func_802AC78C(void);
 void func_802AC8CC(void);
-void func_802B5350(void);
+
     //0x62
 void func_802A6394(void);
 void func_802A63F0(void);
 void func_802A6450(void);
-void func_80296608(void);
     //0x63
 void func_802ACB38(void);
 void func_802ACB58(void);
@@ -407,27 +405,26 @@ void func_80296590(void);
 void func_802B8284(void);
 void func_802B8330(void);
 void func_802B83BC(void);
-void func_802B5350(void);
+
     //0x68
 void func_802B83E4(void);
 void func_802B8454(void);
 void func_802B84F0(void);
-void func_802B5350(void);
+
     //0x69
 void func_802B8518(void);
 void func_802B8654(void);
 void func_802B8888(void);
-void func_802B5350(void);
+
     //0x6A
 void func_802B88B0(void);
 void func_802B894C(void);
 void func_802B8AB4(void);
-void func_802B5350(void);
+
     //0x6B
 void func_802A1F6C(void);
 void func_802A1FC8(void);
 void func_802A2014(void);
-void func_80296608(void); 
 //0x0000006C
 void func_802B8C84(void);
 void func_802B8CA4(void);
@@ -442,22 +439,21 @@ void func_80296590(void);
 void func_802ACFCC(void);
 void func_802AD024(void);
 void func_802AD168(void);
-void func_802B5350(void);
+
 //0x0000006F
 void func_802AD18C(void);
 void func_802AD1D4(void);
 void func_802AD288(void);
-void func_802B5350(void);
+
 //0x00000070
 void func_802AD328(void);
 void func_802AD3AC(void);
 void func_802AD530(void);
-void func_802B5350(void);
+
 //0x00000071
 void bsbtrot_fall_init(void);
 void bsbtrot_fall_update(void);
 void bsbtrot_fall_end(void);
-void func_80296608(void);
 //0x00000072
 void bssplat_init(void);
 void bssplat_update(void);
@@ -467,37 +463,36 @@ void func_80296590(void);
 void func_802B3CEC(void);
 void func_802B3D1C(void);
 void func_802B3D6C(void);
-void func_80296608(void);
 //0x00000074
 void func_802B3E2C(void);
 void func_802B3E64(void);
 void func_802B3EF4(void);
-void func_80296608(void);
+
 //0x00000075
 void func_802B3D8C(void);
 void func_802B3DBC(void);
 void func_802B3E0C(void);
-void func_80296608(void);
+
 //0x00000076
 void func_802A4F74(void);
 void func_802A4FC8(void);
 void func_802A503C(void);
-void func_80296608(void);
+
 //0x00000077
 void func_802B5E8C(void);
 void func_802B5EFC(void);
 void func_802B5F38(void);
-void func_80296608(void);
+
 //0x00000078
 void func_802A83C0(void);
 void func_802A8410(void);
 void func_802A844C(void);
-void func_80296608(void);
+
 //0x00000079
 void bsbtrot_unk79_init(void);
 void bsbtrot_unk79_update(void);
 void bsbtrot_unk79_end(void);
-void func_80296608(void);
+
 //0x0000007A
 void bswalk_mud_init(void);
 void bswalk_mud_update(void);
@@ -545,27 +540,27 @@ void func_802B98C0(void);
 void func_802A1080(void);
 void func_802A10D4(void);
 void func_802A117C(void);
-void func_802B5350(void);
+
 //0x00000086
 void func_802A11A4(void);
 void func_802A1214(void);
 void func_802A12D4(void);
-void func_802B5350(void);
+
 //0x00000087
 void func_802A12FC(void);
 void func_802A1438(void);
 void func_802A163C(void);
-void func_802B5350(void);
+
 //0x00000088
 void func_802A1664(void);
 void func_802A170C(void);
 void func_802A18C8(void);
-void func_802B5350(void);
+
 //0x00000089
 void func_802A1B68(void);
 void func_802A1B88(void);
 void func_802A1BA8(void);
-void func_802B5350(void);
+
 //0x0000008A
 void bsbeemain_die_init(void);
 void func_802A1DD8(void);
@@ -575,92 +570,92 @@ void func_80296590(void);
 void func_802A0590(void);
 void func_802A0630(void);
 void func_802A0704(void);
-void func_802B5350(void);
+
 //0x0000008C
 void bsbeefly_enter(void);
 void bsbeefly_update(void);
 void bsbeefly_end(void);
-void func_802B5350(void);
+
 //0x0000008D
 void func_802AD56C(void);
 void func_802AD5C0(void);
 void func_802AD614(void);
-void func_802B5350(void);
+
 //0x0000008E
 void func_8029F398(void);
 void func_8029F3F4(void);
 void func_8029F440(void);
-void func_802B5350(void);
+
 //0x0000008F
 void func_802B34A0(void);
 void func_802B34F8(void);
 void func_802B353C(void);
-void func_802B5350(void);
+
 //0x00000091
 void func_802A4D30(void);
 void func_802A4D50(void);
 void func_802A4D70(void);
 void func_802A505C(void);
 //0x00000092
-void func_8029F468(void);
-void func_8029F490(void);
-void func_8029F4B0(void);
-void func_802AE490(void);
+void bsant_drone_init(void);
+void bsant_drone_update(void);
+void bsant_drone_end(void);
+void bsdrone_interrupt(void);
 //0x00000093
 void func_802B3564(void);
 void func_802B3584(void);
 void func_802B35A4(void);
-void func_802AE490(void);
+void bsdrone_interrupt(void);
 //0x00000094
 void func_802AD654(void);
 void func_802AD674(void);
 void func_802AD69C(void);
-void func_802AE490(void);
+void bsdrone_interrupt(void);
 //0x00000095
 void func_802B9060(void);
 void func_802B9088(void);
 void func_802B90A8(void);
-void func_802AE490(void);
+void bsdrone_interrupt(void);
 //0x00000096
 void func_802B5F58(void);
 void func_802B5F80(void);
 void func_802B5FA0(void);
-void func_802AE490(void);
+void bsdrone_interrupt(void);
 //0x00000097
 void func_802A874C(void);
 void func_802A8774(void);
 void func_802A8794(void);
-void func_802AE490(void);
+void bsdrone_interrupt(void);
 //0x00000098
-void bswalk_unk98_init(void);
-void bswalk_unk98_update(void);
-void bswalk_unk98_end(void);
-void func_802AE490(void);
+void bswalk_drone_init(void);
+void bswalk_drone_update(void);
+void bswalk_drone_end(void);
+void bsdrone_interrupt(void);
 //0x00000099
 void func_802A50B0(void);
 void func_802A50D8(void);
 void func_802A50F8(void);
-void func_802AE490(void);
+void bsdrone_interrupt(void);
 //0x0000009A
-void bsbtrot_unk9A_init(void);
-void bsbtrot_unk9A_update(void);
-void bsbtrot_unk9A_end(void);
-void func_802AE490(void);
+void bsbtrot_drone_init(void);
+void bsbtrot_drone_update(void);
+void bsbtrot_drone_end(void);
+void bsdrone_interrupt(void);
 //0x0000009B
-void func_802A6478(void);
-void func_802A64A0(void);
-void func_802A64E0(void);
-void func_802AE490(void);
+void bsblongleg_drone_init(void);
+void bsblongleg_drone_update(void);
+void bsblongleg_drone_end(void);
+void bsdrone_interrupt(void);
 //0x0000009C
 void func_802B990C(void);
 void func_802B9934(void);
 void func_802B9954(void);
-void func_802AE490(void);
+void bsdrone_interrupt(void);
 //0x0000009D
-void func_802A0478(void);
-void func_802A04A0(void);
-void func_802A04C0(void);
-void func_802AE490(void);
+void bsbee_drone_init(void);
+void bsbee_drone_update(void);
+void bsbee_drone_end(void);
+void bsdrone_interrupt(void);
 //0x0000009E
 void func_802ABCCC(void);
 void func_802ABD0C(void);
@@ -692,14 +687,29 @@ void func_802A1BE8(void);
 void func_802A1C08(void);
 void func_80296590(void);
 //0x000000A4
-void func_802AAD4C(void);
-void func_802AAD6C(void);
-void func_802AAD94(void);
-void func_80296608(void);
+void bsbwhirl_drone_init(void);
+void bsbwhirl_drone_update(void);
+void bsbwhirl_drone_end(void);
+
 //0x000000A5
 void func_802AADBC(void);
 void func_802AAE08(void);
 void func_802AAE4C(void);
-void func_80296608(void);
 
+void func_802AEDE8(void);
+void func_802AEE48(void);
+void func_802AEE9C(void);
+void func_802AEEF4(void);
+void func_802AEFB0(void);
+void func_802AF164(void);
+void bsdronexform_init(void);
+void bsdronexform_update(void);
+void bsdronexform_end(void);
+void bsdronexform_interrupt(void);
+void func_802AE9C8(void);
+void func_802AEA2C(void);
+void func_802AEB24(void);
+void func_802AF604(void);
+void func_802AF668(void);
+void func_802AF768(void);
 #endif

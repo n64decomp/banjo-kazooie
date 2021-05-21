@@ -49,16 +49,16 @@ int bsbee_inSet(s32 move_idx){
 }
 
 
-void func_802A0478(void){
+void bsbee_drone_init(void){
     func_802A0340();
-    func_802AE3D0();
+    bsdrone_init();
 }
 
-void func_802A04A0(void){
-    func_802AE410();
+void bsbee_drone_update(void){
+    bsdrone_update();
 }
 
-void func_802A04C0(void){
-    func_802AE450();
+void bsbee_drone_end(void){
+    bsdrone_end();
     func_802A02C0();
 }

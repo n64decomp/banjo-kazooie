@@ -753,18 +753,18 @@ void bsbtrot_ow_end(void){
     func_802A8BB0();
 }
 
-void bsbtrot_unk9A_init(void){
+void bsbtrot_drone_init(void){
     func_802A8AD8();
     func_802A8A40();
-    func_802AE3D0();
+    bsdrone_init();
 }
 
-void bsbtrot_unk9A_update(void){
-    func_802AE410();
+void bsbtrot_drone_update(void){
+    bsdrone_update();
     func_802A8AD8();
 }
 
-void bsbtrot_unk9A_end(void){
-    func_802AE450();
+void bsbtrot_drone_end(void){
+    bsdrone_end();
     func_802A8BB0();
 }

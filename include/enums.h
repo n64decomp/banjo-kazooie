@@ -610,25 +610,25 @@ enum bs_e
     //0x8E, //[142] = "Locked", -- Jiggy podium, Bottles' text outside Mumbo's
     BS_PUMPKIN_LOCKED = 0x8F,
     BS_FLY_OW = 0x91,
-    BS_ANT_LOCKED = 0x92,
+    BS_ANT_DRONE = 0x92,
     //0x93 BS_PUMPKIN_LOCKED_2?
     BS_TRANSFORMING = 0x94,
     BS_WALRUS_LOCKED = 0x95,
     BS_SWIM_LOCKED = 0x96,
     BS_DIVE_LOCKED = 0x97,
-    // [152] = "Locked", -- Loading zone, Mumbo transformation
+    BS_WALK_DRONE = 0x98,
 	BS_BFLY_UNK99=  0x99,
-	// [154] = "Locked", -- Talon Trot
-	BS_LONGLEG_UNK9B = 0x9B,
+    BS_BTROT_DRONE = 0x9A,
+	BS_LONGLEG_DRONE = 0x9B,
 	// --[156] = "Locked??", -- In WalrusSled Set
-	// [157] = "Locked", -- Bee?
+    BS_BEE_DRONE = 0x9D,
 	// [158] = "Locked", -- Climbing
     BS_ANT_BOUNCE = 0x9F,
     BS_PUMPKIN_BOUNCE = 0xA0,
     BS_CROC_BOUNCE = 0xA1,
     BS_WALRUS_BOUNCE = 0xA2,
 	BS_BEE_BOUNCE = 0xA3,
-    BS_WONDERWING_UNKA4 = 0xA4,
+    BS_WONDERWING_DRONE = 0xA4,
     BS_WONDERWING_UNKA5 = 0xA5
 };
 

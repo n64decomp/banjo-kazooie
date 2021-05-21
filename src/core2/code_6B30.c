@@ -59,7 +59,7 @@ s32 func_8028DB14(ActorMarker *arg0){
         case BS_WONDERWING_WALK:
         case BS_WONDERWING_JUMP:
         case BS_WONDERWING_EXIT:
-        case BS_WONDERWING_UNKA4:
+        case BS_WONDERWING_DRONE:
         case BS_WONDERWING_UNKA5://L8028DC98
             return 6;
             break;

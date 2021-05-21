@@ -46,7 +46,7 @@ int bslongleg_inSet(s32 move_indx){
     || (move_indx == BS_LONGLEG_JUMP)
     || (move_indx == BS_LONGLEG_EXIT)
     || (move_indx == BS_LONGLEG_SLIDE)
-    || (move_indx == BS_LONGLEG_UNK9B)
+    || (move_indx == BS_LONGLEG_DRONE)
     || (move_indx == BS_LONGLEG_UNK62);
 }
 
@@ -486,20 +486,20 @@ void func_802A6450(void){
     func_802A5404();
 }
 
-void func_802A6478(void){
+void bsblongleg_drone_init(void){
     func_802A5374();
-    func_802AE3D0();
+    bsdrone_init();
 }
 
-void func_802A64A0(void){
+void bsblongleg_drone_update(void){
     func_802A531C();
-    func_802AE410();
+    bsdrone_update();
     if(func_802916CC(2))
         bs_setState(BS_LONGLEG_EXIT);
 }
 
-void func_802A64E0(void){
-    func_802AE450();
+void bsblongleg_drone_end(void){
+    bsdrone_end();
     func_802A5404();
 }
 
