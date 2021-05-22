@@ -104,7 +104,7 @@ void func_80328028(ActorMarker *arg0, Actor *arg1){
         func_80254608(arg1, arrayEnd, 0x180); //memcpy
     arg1->marker->actrArrayIdx = arg0->actrArrayIdx;
     D_8036E560->cnt--;
-    if(D_8036E560->cnt + 8 <= D_8036E560->unk4){
+    if((s32)D_8036E560->cnt + 8 <= D_8036E560->unk4){
         D_8036E560->unk4 = D_8036E560->cnt + 4;
         D_8036E560 = (ActorArray *)realloc(D_8036E560, D_8036E560->unk4*sizeof(Actor) + sizeof(ActorArray));
     }
@@ -331,19 +331,16 @@ void actor_copy(Actor *dst, Actor *src){
     func_80254608(src, dst, sizeof(Actor));
 }
 
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/actors_appendToSavestate.s")
-/*void *actors_appendToSavestate(void * begin, u32 end){
+void *actors_appendToSavestate(void * begin, u32 end){
     void *sp3C = begin;
     Actor* s0;
     Actor* s1;
     u32 sp30; //SavedActorDataSize
     u32 sp2C; //SavedActorDataOffset
-    u32 tmp;
    
     if(D_8036E560){
         sp30 = 0;
-        for(s1 = (u32)D_8036E560 + 8; (u32)s1 < (u32)D_8036E560 + D_8036E560->cnt*sizeof(Actor) + 8; s1++){
+        for(s1 = D_8036E560->data; s1 < &D_8036E560->data[D_8036E560->cnt]; s1++){
             if( s1->marker
                 && s1->unk10_1 == 1
                 && s1->despawn_flag == 0
@@ -364,7 +361,7 @@ void actor_copy(Actor *dst, Actor *src){
                 && s1->despawn_flag == 0
                 && s1->unk40 == 0
             ){
-                func_80254608(s0, s1, 0x180);
+                func_80254608(s0, s1, sizeof(Actor));
                 s0->unk40 = 0;
                 s0->unk138_28 = 1;
                 s0->unk150 = NULL;
@@ -405,7 +402,7 @@ void actor_copy(Actor *dst, Actor *src){
         }
     }
     return sp3C;
-}//*/
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032A09C.s")
 
