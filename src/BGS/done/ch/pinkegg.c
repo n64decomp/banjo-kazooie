@@ -48,7 +48,7 @@ void chPinkEggSpawnNext(ActorMarker * arg0, u32 arg1){
     Actor *actorPtr;
     Actor *unkActor;
     actorPtr = marker_getActor(arg0);
-    unkActor = func_8032818C( D_803906C4[arg1], &actorPtr);
+    unkActor = spawn_child_actor( D_803906C4[arg1], &actorPtr);
 
     unkActor->pinkEgg.unk0 = arg1 + 1;
     unkActor->pinkEgg.unk4 = 5;

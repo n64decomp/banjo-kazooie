@@ -6,7 +6,7 @@ Actor *func_80325888(ActorMarker *, Gfx **, Mtx**, u32);
 void func_8028E668(f32 *, f32, f32, f32);
 int func_80311480(s32 text_id, s32 arg1, f32 *pos, ActorMarker *marker, void(*callback)(ActorMarker *, s32, s32), void(*arg5)(ActorMarker *, s32, s32));
 void func_80328BD4(Actor *, s32, f32, s32, f32);
-int func_8032886C(Actor *, f32);
+int actor_animationIsAt(Actor *, f32);
 void func_80328B8C(Actor *, s32, f32, s32);
 void func_80324E88(f32);
 void func_80324E38(f32,s32);
@@ -130,7 +130,7 @@ void func_803885D0(Actor *this){
             case 2: //L803887A4
                 func_80388300(&this);
                 actor_playAnimationOnce(this);
-                if(func_8032886C(this, 0.99f)){
+                if(actor_animationIsAt(this, 0.99f)){
                     func_80328B8C(this,1,0.0f,-1);
                 }
                 break;

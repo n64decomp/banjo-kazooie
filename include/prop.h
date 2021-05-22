@@ -463,7 +463,7 @@ typedef struct cude_s{
 }Cube;
 
 typedef struct actor_array{
-    s32 cnt;
+    u32 cnt;
     s32 unk4;
     Actor data[]; //variable size array
 }ActorArray;

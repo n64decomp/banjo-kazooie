@@ -4,7 +4,7 @@
 
 void func_80328B8C(Actor *, s32, f32 , s32);
 f32 func_80309B24(f32*);
-int func_8032886C(Actor *, f32);
+int actor_animationIsAt(Actor *, f32);
 
 void func_80329904(ActorMarker*, s32, f32*);
 void func_8030E9C4(s32, f32, s32, f32*, f32, f32);
@@ -136,13 +136,13 @@ void func_802CDD78(Actor * this){
 
         case 2: /* 46FA0 802CDF30 3C053F7D */
         case 3:
-            if(func_8032886C(this, 0.99f)){
+            if(actor_animationIsAt(this, 0.99f)){
                 func_80328B8C(this, 1, 0.0f, -1);
             }
             break;
         
         case 4: /* 46FD8 802CDF68 3C053F7D */
-            if(func_8032886C(this, 0.99f)){
+            if(actor_animationIsAt(this, 0.99f)){
                 func_80328B8C(this, 1, 0.0f, -1);
             }else{//L802CDF9C
                 tmp_f0 = this->yaw;
@@ -162,7 +162,7 @@ void func_802CDD78(Actor * this){
             break;
         case 6:/* 47094 802CE024 02002025 */
             func_802CDC9C(this, sp66);
-            if(func_8032886C(this, 0.0f) && --(local->unk0) == 0){
+            if(actor_animationIsAt(this, 0.0f) && --(local->unk0) == 0){
                 func_80328B8C(this, 7, 0.0f, -1);
                 actor_playAnimationOnce(this);
                 if(local->unk4){
@@ -216,7 +216,7 @@ void func_802CDD78(Actor * this){
                 if(func_802877D8(this->animctrl) < 0.9)
                     func_802CDC9C(this, sp66);
 
-                if(func_8032886C(this, 0.1f)){
+                if(actor_animationIsAt(this, 0.1f)){
                     local->unkC = func_802F9AA8(0x18);
                     func_802F9EC4(local->unkC, sp30, 500, 2000);
                     func_802F9F80(local->unkC, 0.0f, 9000000000.0f, 0.0f);
@@ -226,24 +226,24 @@ void func_802CDD78(Actor * this){
                     func_8030E9C4(0xc7, 0.8f, 0x7FFF, sp30, 300.0f, 2000.0f);
                 }//L802CE3C4
 
-                if(func_8032886C(this, 0.434f)){
+                if(actor_animationIsAt(this, 0.434f)){
                     func_8030E9C4(0xc7, 0.9f, 0x7fff, sp30, 300.0f, 2000.0f);
                 }//L802CE408
                 
-                if(func_8032886C(this, 0.811f)){
+                if(actor_animationIsAt(this, 0.811f)){
                     func_8030E9C4(0xc7, 1.0f, 0x7fff, sp30, 300.0f, 2000.0f);
                 }
 
             }else{//L802CE450
-                if(func_8032886C(this,0.214f)){
+                if(actor_animationIsAt(this,0.214f)){
                     func_8030E9C4(0xc7, 1.1f, 0x7fff, sp30, 300.0f, 2000.0f);
                 }//L802CE490
 
-                if(func_8032886C(this,0.55f)){
+                if(actor_animationIsAt(this,0.55f)){
                     func_8030E9C4(0x53, 1.5f, 0x7fff, sp30, 300.0f, 2000.0f);
                 }//L802CE4D0
 
-                if(func_8032886C(this,0.75f)){ 
+                if(actor_animationIsAt(this,0.75f)){ 
                     func_80326310(this);
                     if(local->unk4 == 0){
                         func_8032BB88(this, -1, 4000);
@@ -251,7 +251,7 @@ void func_802CDD78(Actor * this){
                     }
                 }//L802CE518
 
-                if(func_8032886C(this,0.85f)){ 
+                if(actor_animationIsAt(this,0.85f)){ 
                     if(local->unk4){
                         func_802F9D38();
                         local->unk4 = 0;
@@ -260,14 +260,14 @@ void func_802CDD78(Actor * this){
                     func_8025A7DC(SFX_ENTER_MAP_GLITTER);
                 }//L802CE558
 
-                if(local->unk4 && func_8032886C(this,0.95f)){
+                if(local->unk4 && actor_animationIsAt(this,0.95f)){
                     func_8032BB88(this, -1, 4000);
                     func_8024BD08(1);
                 }
             }//L802CE598
 
             if(sp50){
-                if(func_8032886C(this, 0.96f) || func_8032886C(this, 0.99f)){
+                if(actor_animationIsAt(this, 0.96f) || actor_animationIsAt(this, 0.99f)){
                     func_80328B8C(this, 8, 0.0f, -1);
                     actor_playAnimationOnce(this);
                 }
@@ -281,7 +281,7 @@ void func_802CDD78(Actor * this){
     if(!func_803114B0()){
         switch(D_803671B0[this->unk10_31].index){
             case 0x31: 
-                if(func_8032886C(this, 0.6f)){
+                if(actor_animationIsAt(this, 0.6f)){
                     if(local->unk8){
                         func_8030E988(8, 1.8f, 18000, sp30, 120.0f, 1200.0f);
                     }else{
@@ -290,7 +290,7 @@ void func_802CDD78(Actor * this){
                 }
                 break;
             case 0x2D: //L802CE6F4
-                if(func_8032886C(this, 0.2f)){
+                if(actor_animationIsAt(this, 0.2f)){
                     if(local->unk8){
                         func_8030E988(0x17, 1.0f, 22000, sp30, 120.0f, 1200.0f);
                     }else{
@@ -299,7 +299,7 @@ void func_802CDD78(Actor * this){
                 }
                 break;
             case 0x2F: //L802CE760
-                if(func_8032886C(this, 0.2f)){
+                if(actor_animationIsAt(this, 0.2f)){
                     if(local->unk8){
                         func_8030E988(0x27, 1.0f, 22000, sp30, 120.0f, 1200.0f);
                     }else{

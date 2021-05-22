@@ -141,7 +141,7 @@ void func_802896A0(Animation *this){
 void func_802896EC(Animation *this, s32 arg1){
     this->unk1D = arg1;
     anim_setIndex(this,0);
-    func_80289784(this, 0.0f);
+    anim_setTimer(this, 0.0f);
     func_802897C8(this, 1.0f);
     func_80289790(this, NULL);
     this->unk1C = 0;
@@ -158,7 +158,7 @@ void anim_setIndex(Animation *this, enum asset_e arg1){
     this->index = arg1;
 }
 
-void func_80289784(Animation *this, f32 arg1){
+void anim_setTimer(Animation *this, f32 arg1){
     this->timer = arg1;
 }
 

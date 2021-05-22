@@ -5,7 +5,7 @@ void func_8034DE60(s32, f32, f32, f32, s32);
 
 void func_8038D280(ActorMarker *arg0) {
     Actor *sp1C = marker_getActor(arg0);
-    Actor *temp_v0 = func_8032818C(0x3A1, &sp1C);
+    Actor *temp_v0 = spawn_child_actor(0x3A1, &sp1C);
 
     temp_v0->unkF4_8 = sp1C->unkF4_8;
     temp_v0->position_y = temp_v0->position_y + 172.0f;

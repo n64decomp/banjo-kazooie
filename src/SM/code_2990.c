@@ -9,7 +9,7 @@ void func_803300D8(Actor *, void *);
 void func_8028E668(f32*, f32, f32, f32);
 void func_80328FB0(Actor *, f32);
 f32 func_80256064(f32 *, f32 *);
-int func_8032886C(Actor *, f32);
+int actor_animationIsAt(Actor *, f32);
 
 void func_8030E878(s32, f32, s32, f32*, f32, f32);
 void func_8030DA44(u8);
@@ -359,7 +359,7 @@ void func_80389948(ActorMarker * marker){
     s32      pad;
 
     actor = marker_getActor(marker);
-    other = func_8032818C(0x12c, &actor);
+    other = spawn_child_actor(0x12c, &actor);
     actor->unk100 = other->marker;
     
     if(marker);
@@ -485,20 +485,20 @@ void func_803899B0(Actor * this){
         ){
             func_8030E2C4(this->unk44_31);
         }//L80389EA0
-        if(func_8032886C(this, 0.9999f)){
+        if(actor_animationIsAt(this, 0.9999f)){
             if(!mapSpecificFlags_get(1)){
                 func_80389610(this);
             }
             func_80388FA0(this, 3);
         }//L80389EE0
-        else if(func_8032886C(this, 0.14f)){
+        else if(actor_animationIsAt(this, 0.14f)){
             func_8030E8B4(0x997770c6, this->position, 0x9C404e2);
         }
-        else if(func_8032886C(this, 0.4f)){ //L80389F14
+        else if(actor_animationIsAt(this, 0.4f)){ //L80389F14
             func_8030E8B4(0x9977702c, this->position, 0x9C404e2);
-        }else if(func_8032886C(this, 0.75f)){//L80389F48
+        }else if(actor_animationIsAt(this, 0.75f)){//L80389F48
             func_8030E8B4(0x7fff40c5, this->position, 0x9C404e2);
-        }else if(func_8032886C(this, 0.35f)){//L80389F78
+        }else if(actor_animationIsAt(this, 0.35f)){//L80389F78
             if(mapSpecificFlags_get(1)){
                 func_80389610(this);
             }
@@ -507,26 +507,26 @@ void func_803899B0(Actor * this){
     case 3://L80389FAC
         this->yaw_moving = func_80329784(this);
         func_80328FB0(this, 4.0f);
-        if( ( func_8032886C(this, 0.37f)
-              || func_8032886C(this, 0.66f)
-              || func_8032886C(this, 0.85f)
+        if( ( actor_animationIsAt(this, 0.37f)
+              || actor_animationIsAt(this, 0.66f)
+              || actor_animationIsAt(this, 0.85f)
             ) 
             && randf() < 0.2
         ){
             animctrl_setDirection(this->animctrl, animctrl_isPlayedForwards(this->animctrl)^1);
         }//L8038A088
-        else if( func_8032886C(this, 0.25f)
-            || func_8032886C(this, 0.28f)
-            || func_8032886C(this, 0.31f)
+        else if( actor_animationIsAt(this, 0.25f)
+            || actor_animationIsAt(this, 0.28f)
+            || actor_animationIsAt(this, 0.31f)
         ){
             func_8030E878(0x6f, randf2(1.4f, 1.55f), 0x3e80, this->position, 1250.0f, 2500.0f);
         } //L8038A0D8
-        else if( func_8032886C(this, 0.45f)
-            || func_8032886C(this, 0.48f)
-            || func_8032886C(this, 0.51f)
-            || func_8032886C(this, 0.7f)
-            || func_8032886C(this, 0.73f)
-            || func_8032886C(this, 0.76f)
+        else if( actor_animationIsAt(this, 0.45f)
+            || actor_animationIsAt(this, 0.48f)
+            || actor_animationIsAt(this, 0.51f)
+            || actor_animationIsAt(this, 0.7f)
+            || actor_animationIsAt(this, 0.73f)
+            || actor_animationIsAt(this, 0.76f)
         ){
             func_8030E878(0x6f, randf2(1.35f, 1.5f), 0x1770, this->position, 1250.0f, 2500.0f);
         }//L8038A194
@@ -564,7 +564,7 @@ void func_803899B0(Actor * this){
         ){
             func_8030E2C4(this->unk44_31);
         }else{//L8038A378
-            if(func_8032886C(this, 0.9999f)){
+            if(actor_animationIsAt(this, 0.9999f)){
                 func_80388FA0(this, 1);
                 func_80386540();
             }

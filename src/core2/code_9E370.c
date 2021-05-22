@@ -3,13 +3,22 @@
 #include "variables.h"
 
 #include "prop.h"
-void func_80254608(void *, void *, u32);
-Actor *func_803056FC(s32, f32*, f32*);
+
+extern void func_80254608(void *, void *, u32);
+extern Actor *func_803056FC(s32, s32 (*)[3], s32);
+
+void func_80328B8C(Actor * this, int arg1, f32 arg2, int arg3);
 
 ActorArray *D_8036E560; //actorArrayPtr
+u8 D_8036E574;
+u8 D_8036E578;
+
 extern char D_80378DFC[];
 extern char D_80378E08[]; // "subaddie.c"
+extern char D_80378E14[];
 extern char D_80378E20[];
+
+
 
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80325300.s")
@@ -94,40 +103,100 @@ extern char D_80378E20[];
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_803272F8.s")
 
-//actor_free
-void func_80328028(ActorMarker *arg0, Actor *arg1){
+static void __actor_free(ActorMarker *arg0, Actor *arg1){
     s32 arrayEnd;
 
+    //copy deleted actor to end of actor array
     arrayEnd = &D_8036E560->data[D_8036E560->cnt - 1];
     func_80325FE8(arg1);
     if((s32)arg1 != arrayEnd)
         func_80254608(arg1, arrayEnd, 0x180); //memcpy
     arg1->marker->actrArrayIdx = arg0->actrArrayIdx;
+
+    //remove last actor from actor array
     D_8036E560->cnt--;
-    if(D_8036E560->cnt + 8 <= D_8036E560->unk4){
+    if((s32)D_8036E560->cnt + 8 <= D_8036E560->unk4){
         D_8036E560->unk4 = D_8036E560->cnt + 4;
         D_8036E560 = (ActorArray *)realloc(D_8036E560, D_8036E560->unk4*sizeof(Actor) + sizeof(ActorArray));
     }
-    func_8032F430(arg0);//marker_free
+
+    marker_free(arg0);
 }
 
-Actor *func_8032811C(s32 id, f32 *pos, f32* rot){
+Actor *func_8032811C(enum actor_e id, s32 (* pos)[3], s32 rot){
     return func_803056FC(id, pos, rot);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032813C.s")
+Actor *func_8032813C(enum actor_e id, f32 (* pos)[3], s32 rot){
+    s32 sp24[3];
+    int i;
+    for(i = 0; i< 3; i++){
+        sp24[i] = (*pos)[i];
+    }
+    func_803056FC(id, &sp24, rot);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032818C.s")
+Actor * spawn_child_actor(enum actor_e id, Actor ** parent){
+    Actor *child;
+    ActorMarker * sp28 =  (*parent)->marker;
+    s32 sp1C[3];
+    sp1C[0] = (*parent)->position_x;
+    sp1C[1] = (*parent)->position_y;
+    sp1C[2] = (*parent)->position_z;
+    child = func_803056FC(id, sp1C, (*parent)->yaw);
+    *parent = marker_getActor(sp28);
+    return child;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80328230.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_803282AC.s")
+Actor *func_803282AC(enum actor_e id, s16 (* pos)[3], s32 yaw){
+    s32 sp24[3];
+    int i;
+    for(i = 0; i< 3; i++){
+        sp24[i] = (*pos)[i];
+    }
+    func_803056FC(id, &sp24, yaw);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/marker_despawn.s")
+void marker_despawn(ActorMarker *marker){
+    Actor * actor = marker_getActor(marker);
+    if(D_8036E574){
+        actor->despawn_flag = 1;
+        D_8036E578++;
+        if(actor->unk104 && actor->modelCacheIndex != 0x108){
+            marker_getActor(actor->unk104)->despawn_flag = 1;
+            marker_getActor(actor->unk104)->unk104 = NULL;
+            D_8036E578++;
+            actor->unk104 = NULL;
+        }
+    }
+    else{
+        __actor_free(marker, actor);
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_803283BC.s")
+void func_803283BC(void){
+    D_8036E574 = 1;
+    D_8036E578 = 0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_803283D4.s")
+//actorArray_flushDespawns
+void func_803283D4(void){
+    int i;
+    Actor *iPtr;
+    if(D_8036E574){
+        if(D_8036E578)
+            for(i = D_8036E560->cnt-1; i >= 0 ; i--){
+                iPtr = &D_8036E560->data[i];
+                if(iPtr->despawn_flag)
+                    __actor_free(iPtr->marker, iPtr);
+            }
+    }
+    D_8036E574 = 0;
+    D_8036E578 = 0;
+
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80328478.s")
 
@@ -156,10 +225,10 @@ Actor *func_8032811C(s32 id, f32 *pos, f32* rot){
     
 }//*/
 
-void func_803285E8(Actor *this, f32 arg1, int arg2){
+void func_803285E8(Actor *this, f32 arg1, int direction){
     func_8028774C(this->animctrl, arg1);
-    if(arg2 != -1){
-        animctrl_setDirection(this->animctrl, arg2);
+    if(direction != -1){
+        animctrl_setDirection(this->animctrl, direction);
     }
     this->sound_timer = arg1;
 }
@@ -168,12 +237,42 @@ void func_803285E8(Actor *this, f32 arg1, int arg2){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80328748.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032881C.s")
+int func_8032881C(Actor *this){
+    if(this->animctrl){
+        if(animctrl_getPlaybackType(this->animctrl) == 1){
+            return animctrl_isStopped(this->animctrl);
+        }
+    }
+    return 0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032886C.s")
+int actor_animationIsAt(Actor *this, f32 arg1){
+    f32 f2 = func_802877D8(this->animctrl);
+    if(f2 == this->sound_timer){
+        return 0;
+    }
+    else {
+        if(animctrl_isPlayedForwards(this->animctrl)){
+            if(this->sound_timer < f2){
+                return this->sound_timer <= arg1 && arg1 < f2;
+            }
+            else{//L8032892C
+                return this->sound_timer <= arg1 || arg1 < f2;
+            }
+        }
+        else{
+            if(f2 < this->sound_timer){
+                return arg1 <= this->sound_timer && f2 < arg1;
+            }
+            else{//L8032892C
+                return arg1 <= this->sound_timer || f2 < arg1;
+            }
+        }
+    }
+}
 
-void func_803289EC(Actor *this , f32 arg1, int arg2){
-    func_803285E8(this, arg1, arg2);
+void func_803289EC(Actor *this , f32 arg1, int direction){
+    func_803285E8(this, arg1, direction);
     func_802875AC(this->animctrl, D_80378DFC, 0x6b1);
 }
 
@@ -185,7 +284,9 @@ void func_80328A84(Actor * arg0, u32 arg1){
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80328AC8.s")
+void func_80328AC8(Actor * arg0, int arg1){
+    func_80328B8C(arg0, arg1, 0.0f, 1);
+}
 
 void func_80328AEC(Actor * arg0, u32 arg1){
     if(func_80328508(arg0, arg1) && arg0->animctrl){
@@ -194,13 +295,41 @@ void func_80328AEC(Actor * arg0, u32 arg1){
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80328B38.s")
+/* actor - maybe plays actor's animation with set probability */
+int func_80328B38(Actor *this, int myAnimId, f32 chance){
+    if(randf() < chance){
+        func_80328A84(this, myAnimId);
+        return 1;
+    }
+    return 0;
+}
 
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80328B8C.s")
+#else
+void func_80328B8C(Actor * this, int myAnimId, f32 arg2, int direction){
+    if(func_80328508(this, myAnimId) && this->animctrl)
+        func_803289EC(this->animctrl, arg2, direction);
+}
+#endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80328BD4.s")
+int func_80328BD4(Actor * this, int myAnimId, f32 arg2, int arg3, f32 arg4){
+    if(randf() < arg4){
+        if(func_80328508(this, myAnimId) && this->animctrl){
+            func_803285E8(this, arg2, arg3);
+            func_802875AC(this->animctrl, D_80378E14, 0x705);
+        }
+        return 1;
+    }
+    return 0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80328C64.s")
+void func_80328C64(Actor * this, int arg1){
+    int retVal = arg1;
+    while(retVal < 0) retVal += 0x168;
+    while(retVal >= 0x168) retVal -= 0x168;
+    this->yaw_moving = retVal;
+}
 
 void func_80328CA8(Actor *arg0, s32 angle) {
     s32 fixedAngle = angle;
@@ -213,7 +342,13 @@ void func_80328CA8(Actor *arg0, s32 angle) {
     arg0->unk6C = fixedAngle;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80328CEC.s")
+void func_80328CEC(Actor * this, int arg1, int min, int max){
+    f32 f12;
+    int abs;
+    f12 = (randf() - 0.5)*(max - min)*2;
+    abs = (0.0f <= f12) ? min : -min;
+    func_80328C64(this, abs + (arg1 + f12));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80328DAC.s")
 
@@ -332,8 +467,7 @@ void actor_copy(Actor *dst, Actor *src){
 }
 
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/actors_appendToSavestate.s")
-/*void *actors_appendToSavestate(void * begin, u32 end){
+void *actors_appendToSavestate(void * begin, u32 end){
     void *sp3C = begin;
     Actor* s0;
     Actor* s1;
@@ -343,8 +477,7 @@ void actor_copy(Actor *dst, Actor *src){
    
     if(D_8036E560){
         sp30 = 0;
-        for(s1 = (u32)D_8036E560 + 8; (u32)s1 < (u32)D_8036E560 + D_8036E560->cnt*sizeof(Actor) + 8; s1++){
-            if( s1->marker
+        for(s1 = D_8036E560->data; s1 < &D_8036E560->data[D_8036E560->cnt]; s1++){            if( s1->marker
                 && s1->unk10_1 == 1
                 && s1->despawn_flag == 0
                 && s1->unk40 == 0

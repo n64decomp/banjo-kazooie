@@ -283,13 +283,13 @@ void func_803872F8(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/fight/code_180/func_80387340.s")
 
-s32 func_8032886C(Actor *, f32);
+s32 actor_animationIsAt(Actor *, f32);
 
 void func_803873DC(Actor *actor, s32 arg1, s32 arg2) {
     f32 vec[3];
     ActorMarker *marker;
 
-    if (func_8032886C(actor, 0.5f) != 0) {
+    if (actor_animationIsAt(actor, 0.5f) != 0) {
         marker = actor->marker;
         if (marker->unk14_21) {
             func_8034A174(marker->unk44, 6, vec);
@@ -418,13 +418,11 @@ void func_803898A4(s32 arg0) {
     func_802C3C88(&func_80389720, *arg0ptr);
 }
 
-Actor *func_8032818C(s32, Actor**);
-
 void func_803898D0(ActorMarker *marker) {
     Actor *actor;
 
     actor = marker_getActor(marker);
-    actor->unk100 = func_8032818C(0x3AB, &actor)->marker;
+    actor->unk100 = spawn_child_actor(0x3AB, &actor)->marker;
     D_803927C5 = (u8)1;
 }
 
@@ -520,7 +518,7 @@ void func_8038BCB8(ActorMarker *arg0) {
     Actor *sp1C;
 
     sp1C = marker_getActor(arg0);
-    D_803927A4 = func_8032818C(0x3AF, &sp1C)->marker;
+    D_803927A4 = spawn_child_actor(0x3AF, &sp1C)->marker;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/fight/code_180/func_8038BCF0.s")

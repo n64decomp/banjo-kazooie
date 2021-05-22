@@ -46,7 +46,7 @@ static void __animctrl_update_looped(AnimCtrl *this){
          tmp += 1.0f;
      }
      tmp -= (f32)(s32)tmp;//0.0f to 1.0f
-     func_80289784(anim, tmp);
+     anim_setTimer(anim, tmp);
 }
 
 void func_802870E0(AnimCtrl *this){
@@ -69,7 +69,7 @@ void func_802870E0(AnimCtrl *this){
          f_percent = (tmpf14 - this->subrange_start)/f_range;
          tmpf14 = this->subrange_start + (f_percent - (f32)(s32)f_percent)*f_range;
      }
-     func_80289784(anim, tmpf14);
+     anim_setTimer(anim, tmpf14);
 }
 
 
@@ -104,7 +104,7 @@ void func_802871A4(AnimCtrl *this){
             phi_f0 = phi_f0 - (f32) (s32) phi_f0;
         }
     }
-    func_80289784(anim, phi_f0);
+    anim_setTimer(anim, phi_f0);
 }
 
 AnimCtrl *animctrl_new(s32 arg0){ //new
@@ -190,12 +190,12 @@ void animctrl_reset(AnimCtrl *this){
 void func_8028752C(AnimCtrl *this){
     if(this->unk25){
         if(this->playback_direction)
-            func_80289784(this->animation, 0.0f);
+            anim_setTimer(this->animation, 0.0f);
         else
-            func_80289784(this->animation, 0.99999899f);
+            anim_setTimer(this->animation, 0.99999899f);
     }
     else
-        func_80289784(this->animation, this->unk18);
+        anim_setTimer(this->animation, this->unk18);
     this->timer = func_80289690(this->animation);
 }
 
@@ -214,7 +214,7 @@ void func_802875AC(AnimCtrl * this, char *file, s32 line){
 }
 
 void func_8028764C(AnimCtrl *this, f32 timer){
-    func_80289784(this->animation, timer);
+    anim_setTimer(this->animation, timer);
 }
 
 void animctrl_setPlaybackType(AnimCtrl *this, enum animctrl_playback_e arg1){

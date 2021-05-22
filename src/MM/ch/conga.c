@@ -287,12 +287,12 @@ void func_803873C8(ActorMarker *congaMarker){
 //             actor_loopAnimation(this);
 //             func_80386FB0(this);
 //             func_80386FE8();
-//             if(func_8032886C(this, 0) || func_8032886C(this, 0.45f)){
+//             if(actor_animationIsAt(this, 0) || actor_animationIsAt(this, 0.45f)){
 //                 if(randf() < D_80389BC0){
 //                     animctrl_setDirection(this->animctrl, (this->animctrl, 0.65625f)?0:1);
 //                 };
 //             }//L80387A18
-//             if(func_8032886C(this, 0.66f)){
+//             if(actor_animationIsAt(this, 0.66f)){
 
 //                 func_80328BD4(this, 6, 0, 1, D_80389BC8);
 //             }

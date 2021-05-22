@@ -27,7 +27,7 @@ ActorInfo D_8038AC20 = { 0x12B, ACTOR_ATTACK_TUTORIAL, 0, 1, NULL,
 void __chAttackTutorial_spawnEnemy(ActorMarker *marker, s32 enemy_id){
     Actor *actor = marker_getActor(marker);
     s32 pad;
-    Actor *other = func_8032818C(enemy_id, &actor);
+    Actor *other = spawn_child_actor(enemy_id, &actor);
 
     actor->unk100 = other->marker;
     other->unk100 = actor->marker;

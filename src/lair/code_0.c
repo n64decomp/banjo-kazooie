@@ -4,7 +4,7 @@
 
 #include "prop.h"
 
-int func_8032886C(Actor *, f32);
+int actor_animationIsAt(Actor *, f32);
 void func_80328B8C(Actor *, s32, f32, s32);
 void func_802D4830(Actor *, s32, f32);
 
@@ -90,7 +90,7 @@ void func_803863F0(Actor *this){
         }
     }//L8038645C
     if(this->unk10_31 == 0xC){
-        if(func_8032886C(this, 0.95f)){
+        if(actor_animationIsAt(this, 0.95f)){
             func_80328B8C(this, 0xd, 0.98f, 1);
             func_80326310(this);
         }
@@ -107,7 +107,7 @@ void func_803864B0(Actor *this){
         }
     }//L8038645C
     if(this->unk10_31 == 0xF){
-        if(func_8032886C(this, 0.90f)){
+        if(actor_animationIsAt(this, 0.90f)){
             func_80328B8C(this, 0x10, 0.98f, 1);
             func_80326310(this);
         }

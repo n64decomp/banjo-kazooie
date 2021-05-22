@@ -172,7 +172,7 @@ void func_80301754(s32, struct8s *);
 
 void marker_despawn(ActorMarker *marker);
 
-Actor *func_8032818C(s32, Actor**);
+Actor * spawn_child_actor(enum actor_e id, Actor ** parent);
 
 
 void func_80324D2C(f32, enum comusic_e);

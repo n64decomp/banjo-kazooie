@@ -5,7 +5,7 @@
 
 void func_80326224(Actor *);
 Actor*  func_80325888(ActorMarker *, Gfx **, Mtx**, u32);
-s32 func_8032886C(Actor *, f32);
+s32 actor_animationIsAt(Actor *, f32);
 void func_80328B8C(Actor *, s32, f32, s32);
 
 void func_80388A80(Actor *);
@@ -63,10 +63,10 @@ void func_80388A80(Actor *this) {
     }
     func_802DB5A0(this);
     if (this->unk10_31 == 5) {
-        if (func_8032886C(this, 0.18f)) {
+        if (actor_animationIsAt(this, 0.18f)) {
             func_8030E8B4(0x7FFB5802, this->position, 0x9C404E2);
         }
-        if (func_8032886C(this, 0.7f)) {
+        if (actor_animationIsAt(this, 0.7f)) {
             func_8030E8B4(0x7FFB581F, this->position, 0x9C404E2);
         }
     }

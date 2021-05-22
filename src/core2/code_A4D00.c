@@ -215,7 +215,7 @@ s32 func_8032D9C0(Cube *this, Prop* prop){
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032F3D4.s")
 
 
-void func_8032F430(ActorMarker *this){
+void marker_free(ActorMarker *this){
     func_8032D9C0(this->cubePtr, (Prop *)this->propPtr);
     func_80332B2C(this);
 }

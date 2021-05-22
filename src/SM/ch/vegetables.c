@@ -7,7 +7,7 @@
 //external
 void func_80326224(Actor *);
 void func_803300A8(ActorMarker *, void(*)(ActorMarker *), void(*)(ActorMarker *), void(*)(ActorMarker *));
-int func_8032886C(Actor*, f32);
+int actor_animationIsAt(Actor*, f32);
 f32 func_80309724(f32*);
 void func_80256A24(f32 *, f32);
 f32 func_80256064(f32 *, f32 *);
@@ -433,15 +433,15 @@ void func_80388080(Actor *this){
         }//L80388B68
         func_80328FB0(this, 0x40000000);
         
-        if(local->unkC != 3 && func_8032886C(this, 0.3f))
+        if(local->unkC != 3 && actor_animationIsAt(this, 0.3f))
             func_8030E8B4(0x7FF57BF2, this->position, 0x7D003E8);
         
-        if(local->unkC == 3 && func_8032886C(this, 0.4f)){
+        if(local->unkC == 3 && actor_animationIsAt(this, 0.4f)){
             func_8030E8B4(0x7307D002, this->position, 0x7D003E8);
         }
         break;
     case 3: //L80388BFC
-        if(func_8032886C(this, (local->unkC == 2) ? 0.4 : 0.05)){
+        if(actor_animationIsAt(this, (local->unkC == 2) ? 0.4 : 0.05)){
             sp54[0] = this->position_x;
             sp54[1] = this->position_y;
             sp54[2] = this->position_z;
@@ -451,7 +451,7 @@ void func_80388080(Actor *this){
             func_80387A80(func_802F0BD0(3), sp54, 3, (local->unkC == 1)? 0x4f0: 0x4f1);
         }//L80388CC4
         
-        if(func_8032886C(this, 0.75f))
+        if(actor_animationIsAt(this, 0.75f))
             func_80326310(this);
         break;
     }//L80388CE0

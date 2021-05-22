@@ -23,7 +23,7 @@ void func_80387D18(ActorMarker * arg0, u32 arg1){
     Actor* nextActPtr;
 
     actPtr = marker_getActor(arg0);
-    nextActPtr = func_8032818C(0x6A, &actPtr);
+    nextActPtr = spawn_child_actor(0x6A, &actPtr);
     nextActPtr->unk10_31 = 2;
     nextActPtr->unkF4_8 = 0x8C;
     nextActPtr->unk60 = 3.0f;
