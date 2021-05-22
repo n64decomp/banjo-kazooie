@@ -106,7 +106,7 @@ extern char D_80378E20[];
 static void __actor_free(ActorMarker *arg0, Actor *arg1){
     s32 arrayEnd;
 
-    //copy deleted actor to end of actor array
+    //copy last actor over actor to delete
     arrayEnd = &D_8036E560->data[D_8036E560->cnt - 1];
     func_80325FE8(arg1);
     if((s32)arg1 != arrayEnd)
@@ -115,9 +115,11 @@ static void __actor_free(ActorMarker *arg0, Actor *arg1){
 
     //remove last actor from actor array
     D_8036E560->cnt--;
-    if((s32)D_8036E560->cnt + 8 <= D_8036E560->unk4){
-        D_8036E560->unk4 = D_8036E560->cnt + 4;
-        D_8036E560 = (ActorArray *)realloc(D_8036E560, D_8036E560->unk4*sizeof(Actor) + sizeof(ActorArray));
+
+    //shrink actor array capacity
+    if((s32)D_8036E560->cnt + 8 <= D_8036E560->max_cnt){
+        D_8036E560->max_cnt = D_8036E560->cnt + 4;
+        D_8036E560 = (ActorArray *)realloc(D_8036E560, D_8036E560->max_cnt*sizeof(Actor) + sizeof(ActorArray));
     }
 
     marker_free(arg0);

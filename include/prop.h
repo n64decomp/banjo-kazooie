@@ -464,7 +464,7 @@ typedef struct cude_s{
 
 typedef struct actor_array{
     u32 cnt;
-    s32 unk4;
+    s32 max_cnt;
     Actor data[]; //variable size array
 }ActorArray;
 
