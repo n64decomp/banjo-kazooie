@@ -137,20 +137,20 @@ extern ActorInfo D_8038AB24;
 
 void func_80386810(void)
 {
-    func_803053E8(&D_8038AB00,  func_803272F8, 0X2000180);
-    func_803053E8(&D_8038ABF0,  func_803272F8, 0X80);
-    func_803053E8(&D_8038AC20,  func_803272F8, 0);
-    func_803053E8(&D_8038AC78,  func_803272F8, 0X2000121);
-    func_803053E8(&D_8038ACE8,  func_803272F8, 0X2000121);
-    func_803053E8(&D_8038AD58,  func_803272F8, 0X2200121);
-    func_803053E8(&D_8038AC9C,  func_803272F8, 0X2000121);
-    func_803053E8(&D_8038AD0C,  func_803272F8, 0X2000121);
-    func_803053E8(&D_8038AD7C,  func_803272F8, 0X2200121);
-    func_803053E8(&D_8038AF90,  func_803272F8, 0X100);
-    func_803053E8(&D_8038B0B0,  func_803272F8, 0);
-    func_803053E8(&D_8038B0E0,  func_803272F8, 0);
-    func_803053E8(&D_8038B008,  func_803272F8, 0X6C8);
-    func_803053E8(&D_8038B044,  func_803272F8, 0X6C8);
-    func_803053E8(&D_8038B080,  func_803272F8, 0X6C8);
-    func_803053E8(&D_8038AB24,  func_803272F8, 0X400);
+    func_803053E8(&D_8038AB00,  actor_new, 0X2000180);
+    func_803053E8(&D_8038ABF0,  actor_new, 0X80);
+    func_803053E8(&D_8038AC20,  actor_new, 0);
+    func_803053E8(&D_8038AC78,  actor_new, 0X2000121);
+    func_803053E8(&D_8038ACE8,  actor_new, 0X2000121);
+    func_803053E8(&D_8038AD58,  actor_new, 0X2200121);
+    func_803053E8(&D_8038AC9C,  actor_new, 0X2000121);
+    func_803053E8(&D_8038AD0C,  actor_new, 0X2000121);
+    func_803053E8(&D_8038AD7C,  actor_new, 0X2200121);
+    func_803053E8(&D_8038AF90,  actor_new, 0X100);
+    func_803053E8(&D_8038B0B0,  actor_new, 0);
+    func_803053E8(&D_8038B0E0,  actor_new, 0);
+    func_803053E8(&D_8038B008,  actor_new, 0X6C8);
+    func_803053E8(&D_8038B044,  actor_new, 0X6C8);
+    func_803053E8(&D_8038B080,  actor_new, 0X6C8);
+    func_803053E8(&D_8038AB24,  actor_new, 0X400);
 }

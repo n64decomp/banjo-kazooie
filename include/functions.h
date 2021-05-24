@@ -123,7 +123,7 @@ void actor_collisionOff(Actor *);
 
 void *assetcache_get(s32 arg0);
 
-Actor *func_803272F8(s32 (* position)[3], s32, ActorInfo*, u32);
+Actor *actor_new(s32 (* position)[3], s32 yaw, ActorInfo *actorInfo, u32 flags);
 
 Actor *marker_getActor(ActorMarker *);
 

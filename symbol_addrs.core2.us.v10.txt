@@ -236,6 +236,7 @@ timedFunc_set_6 = 0x80325048;
 timedJiggySpawn = 0x80325098;
 func_80325340 = 0x80325340;
 func_80326224 = 0x80326224;
+actor_new = 0x803272F8;
 spawn_child_actor = 0x8032818C;
 marker_despawn = 0x803282F4;
 actor_animationIsAt = 0x8032886C;
