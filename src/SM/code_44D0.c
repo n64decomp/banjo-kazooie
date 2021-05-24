@@ -33,11 +33,11 @@ void func_8038A8F8(Actor *this){
     if(!this->unk16C_4){
         other = func_80304C38(0x3be, this);
         if(!other){
-            this->unk1C = this->position_x;
-            this->unk20 = this->position_y;
-            this->unk24 = this->position_z;
+            this->unk1C_x = this->position_x;
+            this->unk1C_y = this->position_y;
+            this->unk1C_z = this->position_z;
         }else{
-            func_80304D68(other, &this->unk1C);
+            func_80304D68(other, &this->unk1C_x);
         }
         actor_collisionOff(this);
         this->unk16C_4 = 1;
@@ -51,8 +51,8 @@ void func_8038A8F8(Actor *this){
         if( !mapSpecificFlags_get(2) 
             || (mapSpecificFlags_get(3) && !mapSpecificFlags_get(0xf))
         ){ //L8038AA54
-            this->yaw_moving = func_80256064(this->velocity, &this->unk1C) / 150.0;
-            func_8028F3D8(&this->unk1C, this->yaw_moving, func_8038A8C0, this->marker);
+            this->yaw_moving = func_80256064(this->velocity, &this->unk1C_x) / 150.0;
+            func_8028F3D8(&this->unk1C_x, this->yaw_moving, func_8038A8C0, this->marker);
             mapSpecificFlags_set(0x10, 1);
         }
     }

@@ -26,7 +26,6 @@ void func_802E1790(void);
 void func_802C3BDC(void);
 void func_802C3BE8(void);
 
-void func_803272F8(s32 *, s32, ActorInfo*, u32);
 void func_802C8A54(s32 *, s32, ActorInfo*, u32);
 void func_802C8AA8(s32 *, s32, ActorInfo*, u32);
 void func_802C8AF8(s32 *, s32, ActorInfo*, u32);

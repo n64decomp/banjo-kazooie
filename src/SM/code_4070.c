@@ -46,7 +46,7 @@ void func_8038A4DC(Actor *this, s32 arg1){
         }else{//L8038A560
             func_8038A460(this);
             ability_unlock(ABILITY_HOLD_A_JUMP_HIGHER);
-            func_80311480(0xdf6, 0xe, &this->unk1C, this->marker, func_8038A488, NULL);
+            func_80311480(0xdf6, 0xe, &this->unk1C_x, this->marker, func_8038A488, NULL);
             this->sm_4070.unk0 = 0xe1a;
             mapSpecificFlags_set(8, 0);
         }
@@ -68,14 +68,14 @@ void func_8038A5D8(Actor *this){
     if(!this->initialized){
         temp_v0 = func_80326D68(this->position, 0x12b, -1, &sp40);
         if(temp_v0){
-            this->unk1C = temp_v0->position_x;
-            this->unk20 = temp_v0->position_y;
-            this->unk24 = temp_v0->position_z;
+            this->unk1C_x = temp_v0->position_x;
+            this->unk1C_y = temp_v0->position_y;
+            this->unk1C_z = temp_v0->position_z;
         }
         else{//L8038A630
-            this->unk1C = this->position_x;
-            this->unk20 = this->position_y;
-            this->unk24 = this->position_z;
+            this->unk1C_x = this->position_x;
+            this->unk1C_y = this->position_y;
+            this->unk1C_z = this->position_z;
         }//L8038A644
         this->initialized = 1;
     }//L8038A650
@@ -98,7 +98,7 @@ void func_8038A5D8(Actor *this){
             if(mapSpecificFlags_get(8)){
                 func_8038A460(this);
                 ability_unlock(ABILITY_FLAP);
-                func_80311480(0xdf7, 0xa, &this->unk1C, this->marker, func_8038A488, NULL);
+                func_80311480(0xdf7, 0xa, &this->unk1C_x, this->marker, func_8038A488, NULL);
                 this->sm_4070.unk0 = 0xe1b;
                 mapSpecificFlags_set(8,0);
             }//L8038A730
@@ -106,14 +106,14 @@ void func_8038A5D8(Actor *this){
             if(mapSpecificFlags_get(9)){
                 func_8038A460(this);
                 ability_unlock(ABILITY_FLIP);
-                func_80311480(0xdf8, 0xa, &this->unk1C, this->marker, func_8038A488, NULL);
+                func_80311480(0xdf8, 0xa, &this->unk1C_x, this->marker, func_8038A488, NULL);
                 this->sm_4070.unk0 = 0xe1c;
                 mapSpecificFlags_set(9,0);
             }//L8038A794
 
             if(mapSpecificFlags_get(0xa)){
                 func_8038A460(this);
-                func_8028F94C(2, &this->unk1C);
+                func_8028F94C(2, &this->unk1C_x);
                 
                 if(!mapSpecificFlags_get(3) && func_802DA498()){
                     mapSpecificFlags_set(3,1);
@@ -122,7 +122,7 @@ void func_8038A5D8(Actor *this){
                     temp_a0 = 0xdf9;
                 }
 
-                func_80311480(temp_a0, 0xe, &this->unk1C, this->marker, func_8038A488, NULL);
+                func_80311480(temp_a0, 0xe, &this->unk1C_x, this->marker, func_8038A488, NULL);
                 mapSpecificFlags_set(0xa,0);
                 this->sm_4070.unk0 = 0;
             }

@@ -52,8 +52,8 @@ void func_8038E260(ActorMarker *arg0) {
     Actor *sp24 = marker_getActor(arg0);
 
     func_802BB3DC(0, 18.0f, 0.92f);
-    func_802C3F04(&func_802C4140, 0x3AD, *(u32 *)(&sp24->unk1C), *(u32 *)(&sp24->unk20), *(u32 *)(&sp24->unk24));
-    func_8038E03C(&sp24->unk1C, 0x10);
+    func_802C3F04(&func_802C4140, 0x3AD, *(u32 *)(&sp24->unk1C_x), *(u32 *)(&sp24->unk1C_y), *(u32 *)(&sp24->unk1C_z));
+    func_8038E03C(&sp24->unk1C_x, 0x10);
 }
 
 void func_8038E2CC(ActorMarker *arg0) {
@@ -197,9 +197,9 @@ void func_8038FB84(ActorMarker *arg0, f32 *arg1, f32 *arg2, f32 *arg3) {
     temp_v0->velocity_x = arg2[0];
     temp_v0->velocity_y = arg2[1];
     temp_v0->velocity_z = arg2[2];
-    temp_v0->unk1C = arg3[0];
-    temp_v0->unk20 = arg3[1];
-    temp_v0->unk24 = arg3[2];
+    temp_v0->unk1C_x = arg3[0];
+    temp_v0->unk1C_y = arg3[1];
+    temp_v0->unk1C_z = arg3[2];
 }
 
 extern u8 D_803928E0;

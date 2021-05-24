@@ -75,10 +75,10 @@ void chAttackTutorial_setState(Actor * this, s32 arg1){
     case 5:
         if(this->unk10_12 == 0){
             ability_unlock(ABILITY_BEAR_PUNCH);
-            func_80311480(0xDFF, 0xE, &this->unk1C, this->marker, func_80387288, func_80387258);
+            func_80311480(0xDFF, 0xE, &this->unk1C_x, this->marker, func_80387288, func_80387258);
         }
         else{
-            func_80311480((this->unk10_12 == 1) ? 0xe15 : 0xe17, 0xE, &this->unk1C, this->marker, func_80387288, NULL);
+            func_80311480((this->unk10_12 == 1) ? 0xe15 : 0xe17, 0xE, &this->unk1C_x, this->marker, func_80387288, NULL);
         }
         break;
     case 2://L803873E0
@@ -117,13 +117,13 @@ void chAttackTutorial_update(Actor *this){
     if(!this->initialized){ 
         colliPtr = func_80326D68(this->position, 0x12b, -1, &sp2C);
         if(colliPtr){
-            this->unk1C = colliPtr->position_x;
-            this->unk20 = colliPtr->position_y;
-            this->unk24 = colliPtr->position_z;
+            this->unk1C_x = colliPtr->position_x;
+            this->unk1C_y = colliPtr->position_y;
+            this->unk1C_z = colliPtr->position_z;
         }else{
-            {this->unk1C = this->position_x;
-            this->unk20 = this->position_y;
-            this->unk24 = this->position_z;}
+            {this->unk1C_x = this->position_x;
+            this->unk1C_y = this->position_y;
+            this->unk1C_z = this->position_z;}
         }
         this->unk10_12 = (ability_isUnlocked(ABILITY_ROLL))? 2 : (ability_isUnlocked(ABILITY_BEAR_PUNCH)? 1:0);
         this->initialized = 1;
@@ -205,7 +205,7 @@ void func_80387764(ActorMarker * marker){
         break;
     }//L8038782C
     if(sp34 == 0xe19){ 
-        func_8028F94C(2, &actor->unk1C);
+        func_8028F94C(2, &actor->unk1C_x);
     }
     //L80387848
     if(!mapSpecificFlags_get(3) && func_802DA498() && temp_a2){
@@ -216,6 +216,6 @@ void func_80387764(ActorMarker * marker){
         func_80324E60(0.0f, 6);
     }//L803878B0
 
-    func_80311480(sp34, sp2C, &actor->unk1C, actor->marker, func_80387690, NULL);
+    func_80311480(sp34, sp2C, &actor->unk1C_x, actor->marker, func_80387690, NULL);
     actor->unk38_31++;
 }

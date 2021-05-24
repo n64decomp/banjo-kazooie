@@ -3,7 +3,7 @@
 #include "variables.h"
 #include "prop.h"
 
-void func_803272F8(s32 *, s32, ActorInfo*, u32);
+void func_803272F8(s32 (* position)[3], s32, ActorInfo*, u32);
 
 extern ActorInfo D_80390804;
 extern ActorInfo D_80390690;

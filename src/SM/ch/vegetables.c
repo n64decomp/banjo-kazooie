@@ -198,13 +198,13 @@ Actor *func_80387DF4(ActorMarker *marker, Gfx **gdl, Mtx **mptr, s32 arg3){
 void func_80387E64(Actor *this){
     ChVeg *local = (ChVeg *)&this->local;
 
-    this->unk1C = randf2(-50.0f, 50.0f);
-    this->unk20 = randf2(-50.0f, 50.0f);
-    this->unk24 = randf2(-50.0f, 50.0f);
+    this->unk1C_x = randf2(-50.0f, 50.0f);
+    this->unk1C_y = randf2(-50.0f, 50.0f);
+    this->unk1C_z = randf2(-50.0f, 50.0f);
 
-    this->unk1C = local->unk0_x + this->unk1C;
-    this->unk20 = local->unk0_y + this->unk20;
-    this->unk24 = local->unk0_z + this->unk24;
+    this->unk1C_x = local->unk0_x + this->unk1C_x;
+    this->unk1C_y = local->unk0_y + this->unk1C_y;
+    this->unk1C_z = local->unk0_z + this->unk1C_z;
 }
 
 void func_80387F00(Actor *this){
@@ -266,9 +266,9 @@ void func_80388080(Actor *this){
         }
         actor_collisionOff(this);
         func_803300A8(this->marker, NULL, NULL, func_80387DCC);
-        this->unk1C = this->position_x;
-        this->unk20 = this->position_y;
-        this->unk24 = this->position_z;
+        this->unk1C_x = this->position_x;
+        this->unk1C_y = this->position_y;
+        this->unk1C_z = this->position_z;
         this->position_y -= 200.f;
 
         do{//L80388154
@@ -296,9 +296,9 @@ void func_80388080(Actor *this){
         if(mapSpecificFlags_get(0xC) || func_803203FC(0xC1) || this->unk10_12){
             //L803882E4
             if(mapSpecificFlags_get(0xC) || func_803203FC(0xC1)){ //L8038830C
-                this->unk20 += (local->unkC == 3)? 120.0 : 0.0;
+                this->unk1C_y += (local->unkC == 3)? 120.0 : 0.0;
             }else{//L80388350
-                this->unk20 += (local->unkC == 3)? 270.0 : 85.0;
+                this->unk1C_y += (local->unkC == 3)? 270.0 : 85.0;
             }
             //L80388384
             func_80328A84(this, 4);
@@ -310,7 +310,7 @@ void func_80388080(Actor *this){
         this->position_z = this->velocity_z + this->position_z;
         this->velocity_y -= 5.0f;
         this->scale = MIN(this->scale + 0.05, 1.0);
-        if(this->velocity_y < 0.0f && this->position_y < this->unk20){
+        if(this->velocity_y < 0.0f && this->position_y < this->unk1C_y){
             this->position_y = func_80309724(this->position);
             if(local->unkC == 3)
                 func_80387F00(this);
@@ -369,9 +369,9 @@ void func_80388080(Actor *this){
                 }
             }else{//L80388730
                 sp78 = func_8033DD9C();
-                sp6C[0] = this->unk1C - this->position_x;
-                sp6C[1] = this->unk20 - this->position_y;
-                sp6C[2] = this->unk24 - this->position_z;
+                sp6C[0] = this->unk1C_x - this->position_x;
+                sp6C[1] = this->unk1C_y - this->position_y;
+                sp6C[2] = this->unk1C_z - this->position_z;
                 if( gu_sqrtf(sp6C[0]*sp6C[0] + sp6C[1]*sp6C[1] + sp6C[2]*sp6C[2] ) < 40.0f){
                     func_80256A24(sp6C, 400.0f);
                 }
@@ -387,7 +387,7 @@ void func_80388080(Actor *this){
                 if(gu_sqrtf(this->velocity_z*this->velocity_z + (this->velocity_x*this->velocity_x + this->velocity_y*this->velocity_y)) > 50.0f){
                     func_80256A24(this->velocity, 50.0f);
                 }
-                if(func_80256064(this->position, &this->unk1C) < 20.0f){
+                if(func_80256064(this->position, &this->unk1C_x) < 20.0f){
                     func_80387E64(this);
                 }
                 this->unk28 = 5.0f;
@@ -402,9 +402,9 @@ void func_80388080(Actor *this){
                         this->position_x -= local->unk0_x;
                         this->position_y -= local->unk0_y; 
                         this->position_z -= local->unk0_z; 
-                        this->unk1C -= local->unk0_x;
-                        this->unk20 -= local->unk0_y;
-                        this->unk24 -= local->unk0_z;
+                        this->unk1C_x -= local->unk0_x;
+                        this->unk1C_y -= local->unk0_y;
+                        this->unk1C_z -= local->unk0_z;
                         TUPLE_ASSIGN(sp60, this->unk28, 0.0f, 0.0f);
                         func_80256900(sp60, sp60, this->yaw - 90.0);
                         local->unk0_x = sp60[0] + local->unk0_x;
@@ -413,9 +413,9 @@ void func_80388080(Actor *this){
                         this->position_x = local->unk0_x + this->position_x;
                         this->position_y = local->unk0_y + this->position_y;
                         this->position_z = local->unk0_z + this->position_z;
-                        this->unk1C = local->unk0_x + this->unk1C;
-                        this->unk20 = local->unk0_y + this->unk20;
-                        this->unk24 = local->unk0_z + this->unk24;
+                        this->unk1C_x = local->unk0_x + this->unk1C_x;
+                        this->unk1C_y = local->unk0_y + this->unk1C_y;
+                        this->unk1C_z = local->unk0_z + this->unk1C_z;
                     }//L80388AD8
                     if(func_803292E0(this)){
                         this->yaw_moving = func_80329784(this);

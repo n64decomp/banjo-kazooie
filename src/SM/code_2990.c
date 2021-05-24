@@ -391,12 +391,12 @@ void func_803899B0(Actor * this){
         if(this->unkF4_8 == 1 || this->unkF4_8 == 8){//L80389A30
             sp40 = func_80304C38(0x349, this);
             if(!sp40){
-                this->unk1C = this->position_x;
-                this->unk20 = this->position_y;
-                this->unk24 = this->position_z;
+                this->unk1C_x = this->position_x;
+                this->unk1C_y = this->position_y;
+                this->unk1C_z = this->position_z;
                 this->unk28 = 300.0f;
             } else{ //L80389A68
-                func_80304D68(sp40, &this->unk1C);
+                func_80304D68(sp40, &this->unk1C_x);
                 this->unk28 = func_80304D3C(sp40);
             }//L80389A8C
             if(this->unkF4_8 == 1){
@@ -438,7 +438,7 @@ void func_803899B0(Actor * this){
             || (this->unkF4_8 == 8 && mapSpecificFlags_get(3) && !mapSpecificFlags_get(0xF))
         ){//L80389C50
             
-            if( ((func_80256064(sp44, &this->unk1C) < this->unk28) && func_8028F20C())
+            if( ((func_80256064(sp44, &this->unk1C_x) < this->unk28) && func_8028F20C())
                 || mapSpecificFlags_get(0x10)
             ){//L80389C8C
                 if(func_80329530(this, 0x96))

@@ -143,7 +143,7 @@ void func_803875F0(Actor * this){
             marker_despawn(this->marker);
         }
         else if(mapSpecificFlags_get(0)){
-            this->unk20 = this->position_y;
+            this->unk1C_y = this->position_y;
             func_802BAFE4(0x2A);
             func_80320004(0x1E, 1);
             this->unk16C_4 = 1;
@@ -158,7 +158,7 @@ void func_803875F0(Actor * this){
         }
         //L803876CC
         this->position_y += 4.0f;
-        if(this->unk20 + 380.0f < this->position_y){
+        if(this->unk1C_y + 380.0f < this->position_y){
             func_802D48B8(this);
             func_8030E624(0x7FF0987F);
             marker_despawn(this->marker);

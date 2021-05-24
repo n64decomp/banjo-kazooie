@@ -58,7 +58,7 @@ void func_80387FF4(Actor * this){
             temp_f2 = func_80309724(this->position);
             if(this->position_y < temp_f2){
                 this->position_y = temp_f2;
-                this->unk20 = temp_f2;
+                this->unk1C_y = temp_f2;
                 func_8030E6D4(0x2F);
                 
                 this->unk28 = 1.0f;
@@ -86,7 +86,7 @@ Actor *func_80388188(ActorMarker *this, Gfx **dl, Mtx **mptr){
 
     if(actorPtr->unk10_31 == 2){
         sp48[0] = actorPtr->position_x;
-        sp48[1] = actorPtr->unk20 + 3.0f;
+        sp48[1] = actorPtr->unk1C_y + 3.0f;
         sp48[2] = actorPtr->position_z;
         func_8033A410( (s32) MIN(255.0f, actorPtr->unk60) );
         func_8033A4CC(1);

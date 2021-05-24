@@ -8,7 +8,7 @@ void func_802D6EA0(Actor *this){
         this->initialized = 1;
         this->marker->collidable = 0;
     }
-    if(!this->despawn_flag && this->unk1C < (f32)(func_8023DB5C() - 1) ){
+    if(!this->despawn_flag && this->unk1C_x < (f32)(func_8023DB5C() - 1) ){
         if(this->unk104){
             marker_getActor(this->unk104)->unk104 = 0;
         }
