@@ -413,27 +413,27 @@ void bswalrus_walk_end(void);
 
     //0x69
 void bswalrus_jump_init(void);
-void func_802B8654(void);
-void func_802B8888(void);
+void bswalrus_jump_update(void);
+void bswalrus_jump_end(void);
 
     //0x6A
-void func_802B88B0(void);
-void func_802B894C(void);
-void func_802B8AB4(void);
+void bswalrus_fall_init(void);
+void bswalrus_fall_update(void);
+void bswalrus_fall_end(void);
 
     //0x6B
 void func_802A1F6C(void);
 void func_802A1FC8(void);
 void func_802A2014(void);
 //0x0000006C
-void func_802B8C84(void);
-void func_802B8CA4(void);
-void func_802B8CC4(void);
+void bswalrus_ow_init(void);
+void bswalrus_ow_update(void);
+void bswalrus_ow_end(void);
 void func_80296590(void);
 //0x0000006D
-void func_802B8D44(void);
-void func_802B8F04(void);
-void func_802B9010(void);
+void bswalrus_die_init(void);
+void bswalrus_die_update(void);
+void bswalrus_die_end(void);
 void func_80296590(void);
 //0x0000006E
 void bscroc_bite_init(void);
@@ -507,14 +507,14 @@ void func_802B4004(void);
 void func_802B4038(void);
 void func_802B4080(void);
 //0x0000007D
-void func_802B91A4(void);
-void func_802B9214(void);
-void func_802B92DC(void);
+void bswalrus_sled_init(void);
+void bswalrus_sled_update(void);
+void bswalrus_sled_end(void);
 void func_802B98C0(void);
 //0x0000007E
-void func_802B9304(void);
-void func_802B9440(void);
-void func_802B9578(void);
+void bswalrus_sled_jump_init(void);
+void bswalrus_sled_jump_update(void);
+void bswalrus_sled_jump_end(void);
 void func_802B98C0(void);
 //0x0000007F
 void func_802A7BD0(void);
@@ -612,9 +612,9 @@ void bscroc_drone_update(void);
 void bscroc_drone_end(void);
 void bsdrone_interrupt(void);
 //0x00000095
-void func_802B9060(void);
-void func_802B9088(void);
-void func_802B90A8(void);
+void bswalrus_drone_init(void);
+void bswalrus_drone_update(void);
+void bswalrus_drone_end(void);
 void bsdrone_interrupt(void);
 //0x00000096
 void func_802B5F58(void);
@@ -647,9 +647,9 @@ void bsblongleg_drone_update(void);
 void bsblongleg_drone_end(void);
 void bsdrone_interrupt(void);
 //0x0000009C
-void func_802B990C(void);
-void func_802B9934(void);
-void func_802B9954(void);
+void bswalrus_sled_drone_init(void);
+void bswalrus_sled_drone_update(void);
+void bswalrus_sled_drone_end(void);
 void bsdrone_interrupt(void);
 //0x0000009D
 void bsbee_drone_init(void);
@@ -677,9 +677,9 @@ void bscroc_bounce_update(void);
 void bscroc_bounce_end(void);
 void func_80296590(void);
 //0x000000A2
-void func_802B8CE4(void);
-void func_802B8D04(void);
-void func_802B8D24(void);
+void bswalrus_bounce_init(void);
+void bswalrus_bounce_update(void);
+void bswalrus_bounce_end(void);
 void func_80296590(void);
 //0x000000A3
 void func_802A1BC8(void);

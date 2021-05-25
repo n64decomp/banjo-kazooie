@@ -591,7 +591,7 @@ enum bs_e
     BS_WALK_MUD = 0x7A,
     BS_BTROT_OW = 0x7B,
     //0x7C locked FP scarf sled
-    BS_WALRUS_SLED_IDLE = 0x7D,
+    BS_WALRUS_SLED = 0x7D,
     BS_WALRUS_SLED_JUMP = 0x7E,
     BS_DIVE_OW = 0x7F,
     //BS_WALRUS_SLED_LOSE = 0x80,
@@ -613,14 +613,14 @@ enum bs_e
     BS_ANT_DRONE = 0x92,
     //0x93 BS_PUMPKIN_LOCKED_2?
     BS_CROC_DRONE = 0x94,
-    BS_WALRUS_LOCKED = 0x95,
+    BS_WALRUS_DRONE = 0x95,
     BS_SWIM_LOCKED = 0x96,
     BS_DIVE_LOCKED = 0x97,
     BS_WALK_DRONE = 0x98,
 	BS_BFLY_UNK99=  0x99,
     BS_BTROT_DRONE = 0x9A,
 	BS_LONGLEG_DRONE = 0x9B,
-	// --[156] = "Locked??", -- In WalrusSled Set
+    BS_WALRUS_SLED_DRONE = 0x9C,
     BS_BEE_DRONE = 0x9D,
 	// [158] = "Locked", -- Climbing
     BS_ANT_BOUNCE = 0x9F,
