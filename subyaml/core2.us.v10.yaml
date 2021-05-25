@@ -390,6 +390,7 @@ segments:
   - [0x000EE7B0, .rodata, bs/carry]
   - [0x000EE7D0, .rodata, bs/claw]
   - [0x000EE810, bin, data_EE810]
+  - [0x000EE820, .rodata, bs/croc]
   - [0x000EE880, .rodata, bs/crouch]
   - [0x000EE8B0, .rodata, bs/die]
   - [0x000EE8C0, bin, data_EE8C0]

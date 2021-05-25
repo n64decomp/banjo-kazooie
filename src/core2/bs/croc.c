@@ -24,23 +24,6 @@ extern f32 D_80364B1C; //jump gravity
 extern u8  D_80364B20;
 extern s16 D_80364B24[];
 
-/* .rodata */
-extern char D_803757B0[];
-extern char D_803757BC[];
-extern char D_803757C8[];
-extern char D_803757D4[];
-extern f32 D_803757E0;
-extern f32 D_803757E4;
-extern f32 D_803757E8;
-extern f32 D_803757EC;
-extern f32 D_803757F0;
-extern f32 D_803757F4;
-extern f32 D_803757F8;
-extern f32 D_803757FC;
-extern f32 D_80375800;
-extern f64 D_80375808;
-
-
 /* .bss */
 extern f32 D_8037D3E0;
 extern u8 _bscrocHitboxActive; //8037D3e4
@@ -175,8 +158,8 @@ void bscroc_walk_update(void){
     func_80299628(0);
     func_802ABF54();
 
-    func_8029AD28(D_803757E0, 4);
-    func_8029AD28(D_803757E4, 3);
+    func_8029AD28(0.1f, 4);
+    func_8029AD28(0.6f, 3);
     if(func_8029B300() == 0 && func_80297C04(1.0f))
         next_state = BS_CROC_IDLE;
 
@@ -207,7 +190,7 @@ void bscroc_jump_init(void){
     animctrl_setDuration(aCtrl, 1.0f);
     func_8028774C(aCtrl, 0.1f);
     animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
-    func_802875AC(aCtrl, D_803757B0, 0x1ac);
+    func_802875AC(aCtrl, "bscroc.c", 0x1ac);
     func_8029C7F4(1,1,3,6);
     if(func_8029B2E8() != 0.0f){
         yaw_setIdeal(func_8029B33C());
@@ -236,18 +219,18 @@ void bscroc_jump_update(void){
         case 0:
             if(func_8028B254(0x82))
             {
-                func_8028A3B8(D_803757E8, D_803757EC);
+                func_8028A3B8(0.6538f, 0.7f);
                 D_8037D3EC = 2;
             }
             else if(animctrl_isStopped(aCtrl))
             {
-                func_8028A3B8(D_803757F0, 3.0f);
+                func_8028A3B8(0.5036f, 3.0f);
                 D_8037D3EC = 1;
             }
             break;
         case 1:
             if(func_8028B254(0x82)){
-                func_8028A3B8(D_803757F4, 1.0f);
+                func_8028A3B8(0.6538f, 1.0f);
                 D_8037D3EC = 2;
             }
             break;
@@ -295,7 +278,7 @@ void bscroc_fall_init(void){
     func_8028774C(aCtrl, 0.5036f);
     animctrl_setDuration(aCtrl, 0.7f);
     animctrl_setPlaybackType(aCtrl, ANIMCTRL_STOPPED);
-    func_802875AC(aCtrl, D_803757BC, 0x235);
+    func_802875AC(aCtrl, "bscroc.c", 0x235);
     func_8029C7F4(1,1,3,6);
     D_8037D3EC = 0;
 }
@@ -313,7 +296,7 @@ void bscroc_fall_update(void){
     switch(D_8037D3EC){
         case 0:
             if(func_8028B254(0x82)){
-                func_8028A37C(D_803757F8);
+                func_8028A37C(0.6538f);
                 D_8037D3EC = 1;
             }
             break;
@@ -356,7 +339,7 @@ static void __bscroc_recoil_init(s32 damage){
     animctrl_setDuration(aCtrl, 1.0f);
     animctrl_setSubRange(aCtrl, 0.0f, 0.7518f);
     animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
-    func_802875AC(aCtrl, D_803757C8, 0x2a5);
+    func_802875AC(aCtrl, "bscroc.c", 0x2a5);
     if(damage == 1)
         func_8030E58C(0x38, 1.8f);
     else
@@ -445,7 +428,7 @@ void bscroc_die_init(void){
     animctrl_setSubRange(aCtrl, 0.0f, 0.3966f);
     animctrl_setDuration(aCtrl, 1.7f);
     animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
-    func_802875AC(aCtrl, D_803757D4, 0x32b);
+    func_802875AC(aCtrl, "bscroc.c", 0x32b);
     func_8029C7F4(1,1,2,3);
     _player_getPosition(&sp2C);
     func_80294980(&sp20);
@@ -477,7 +460,7 @@ void bscroc_die_update(void){
     switch(D_8037D3EC){
         case 0:
             if(func_8028B2E8()){
-                func_8028A37C(D_803757FC);
+                func_8028A37C(0.7453f);
                 func_8030E624(0x6651901F);
                 func_8030E624(0xe6319039);
                 player_setYVelocity(400.0f);
@@ -648,7 +631,7 @@ void bscroc_eat_good_update(void){
     AnimCtrl *aCtrl = player_getAnimCtrlPtr();
 
     func_802ABE70();
-    D_8037D3F0 = max_f(D_80375800, D_8037D3F0 - D_80375808);
+    D_8037D3F0 = max_f(0.1f, D_8037D3F0 - 0.05);
     func_80299628(0);
     func_802ABF54();
     if(animctrl_isAt(aCtrl, 0.99f)){
