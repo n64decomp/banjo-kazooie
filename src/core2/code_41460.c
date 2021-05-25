@@ -60,8 +60,6 @@ void func_802C83F0(ActorMarker *);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_41460/func_802C8484.s")
 
-
-
 Actor *func_802C8580(s32 (* position)[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
     struct25s *s1 =  malloc(sizeof(struct25s) + D_8037DD90 * sizeof(struct24s));
     Actor *actor = actor_new(position, yaw, actorInfo, flags);
@@ -170,15 +168,55 @@ Actor *func_802C8A54(s32 (* position)[3], s32 yaw, ActorInfo* actorInfo, u32 fla
     return func_802C8580(position, yaw, actorInfo, flags);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_41460/func_802C8AA8.s")
+Actor *func_802C8AA8(s32 (* position)[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
+    D_8037DD90 = 0x19;
+    D_8037DD94 = 0;
+    D_8037DD98 = 0xFA;
+    *(&D_8037DD98 + 1) = 0xFA;
+    *(&D_8037DD98 + 2) = 0xFA;
+    *(&D_8037DD98 + 3) = 0x78;
+    return func_802C8580(position, yaw, actorInfo, flags);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_41460/func_802C8AF8.s")
+Actor *func_802C8AF8(s32 (* position)[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
+    D_8037DD90 = 0x19;
+    D_8037DD94 = 3;
+    D_8037DD98 = 0xFA;
+    *(&D_8037DD98 + 1) = 0xFA;
+    *(&D_8037DD98 + 2) = 0xFA;
+    *(&D_8037DD98 + 3) = 0x78;
+    return func_802C8580(position, yaw, actorInfo, flags);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_41460/func_802C8B4C.s")
+Actor *func_802C8B4C(s32 (* position)[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
+    D_8037DD90 = 0xF;
+    D_8037DD94 = 2;
+    D_8037DD98 = 0x95;
+    *(&D_8037DD98 + 1) = 0x55;
+    *(&D_8037DD98 + 2) = 0x2B;
+    *(&D_8037DD98 + 3) = 0x9B;
+    return func_802C8580(position, yaw, actorInfo, flags);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_41460/func_802C8BA8.s")
+Actor *func_802C8BA8(s32 (* position)[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
+    D_8037DD90 = 0x19;
+    D_8037DD94 = 4;
+    D_8037DD98 = 0x95;
+    *(&D_8037DD98 + 1) = 0x55;
+    *(&D_8037DD98 + 2) = 0x2B;
+    *(&D_8037DD98 + 3) = 0x9B;
+    return func_802C8580(position, yaw, actorInfo, flags);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_41460/func_802C8C04.s")
+Actor *func_802C8C04(s32 (* position)[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
+    D_8037DD90 = 0xf;
+    D_8037DD94 = 5;
+    D_8037DD98 = 0xC8;
+    *(&D_8037DD98 + 1) = 0xC8;
+    *(&D_8037DD98 + 2) = 0xA0;
+    *(&D_8037DD98 + 3) = 0x9B;
+    return func_802C8580(position, yaw, actorInfo, flags);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_41460/func_802C8C5C.s")
 
