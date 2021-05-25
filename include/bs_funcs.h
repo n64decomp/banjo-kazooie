@@ -368,38 +368,38 @@ void func_802B65E0(void);
 void func_802B66AC(void);
 void func_802B66F8(void);
     //0x5E
-void func_802AC0D4(void);
-void func_802AC178(void);
-void func_802AC224(void);
+void bscroc_idle_init(void);
+void bscroc_idle_update(void);
+void bscroc_idle_end(void);
 
     //0x5F
-void func_802AC24C(void);
-void func_802AC2BC(void);
-void func_802AC380(void);
+void bscroc_walk_init(void);
+void bscroc_walk_update(void);
+void bscroc_walk_end(void);
 
     //0x60
-void func_802AC3A8(void);
-void func_802AC4DC(void);
-void func_802AC6D0(void);
+void bscroc_jump_init(void);
+void bscroc_jump_update(void);
+void bscroc_jump_end(void);
 
     //0x61
-void func_802AC6F8(void);
-void func_802AC78C(void);
-void func_802AC8CC(void);
+void bscroc_fall_init(void);
+void bscroc_fall_update(void);
+void bscroc_fall_end(void);
 
     //0x62
 void func_802A6394(void);
 void func_802A63F0(void);
 void func_802A6450(void);
     //0x63
-void func_802ACB38(void);
-void func_802ACB58(void);
-void func_802ACB78(void);
+void bscroc_ow_init(void);
+void bscroc_ow_update(void);
+void bscroc_ow_end(void);
 void func_80296590(void);
     //0x64
-void func_802ACBF8(void);
-void func_802ACDA0(void);
-void func_802ACEFC(void);
+void bscroc_die_init(void);
+void bscroc_die_update(void);
+void bscroc_die_end(void);
 void func_80296590(void);
     //0x67
 void func_802B8284(void);
@@ -436,19 +436,19 @@ void func_802B8F04(void);
 void func_802B9010(void);
 void func_80296590(void);
 //0x0000006E
-void func_802ACFCC(void);
-void func_802AD024(void);
-void func_802AD168(void);
+void bscroc_bite_init(void);
+void bscroc_bite_update(void);
+void bscroc_bite_end(void);
 
 //0x0000006F
-void func_802AD18C(void);
-void func_802AD1D4(void);
-void func_802AD288(void);
+void bscroc_eat_bad_init(void);
+void bscroc_eat_bad_update(void);
+void bscroc_eat_bad_end(void);
 
 //0x00000070
-void func_802AD328(void);
-void func_802AD3AC(void);
-void func_802AD530(void);
+void bscroc_eat_good_init(void);
+void bscroc_eat_good_update(void);
+void bscroc_eat_good_end(void);
 
 //0x00000071
 void bsbtrot_fall_init(void);
@@ -607,9 +607,9 @@ void func_802B3584(void);
 void func_802B35A4(void);
 void bsdrone_interrupt(void);
 //0x00000094
-void func_802AD654(void);
-void func_802AD674(void);
-void func_802AD69C(void);
+void bscroc_drone_init(void);
+void bscroc_drone_update(void);
+void bscroc_drone_end(void);
 void bsdrone_interrupt(void);
 //0x00000095
 void func_802B9060(void);
@@ -672,9 +672,9 @@ void func_802B305C(void);
 void func_802B307C(void);
 void func_80296590(void);
 //0x000000A1
-void func_802ACB98(void);
-void func_802ACBB8(void);
-void func_802ACBD8(void);
+void bscroc_bounce_init(void);
+void bscroc_bounce_update(void);
+void bscroc_bounce_end(void);
 void func_80296590(void);
 //0x000000A2
 void func_802B8CE4(void);

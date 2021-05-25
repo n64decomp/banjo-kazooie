@@ -2,106 +2,727 @@
 #include "functions.h"
 #include "variables.h"
 
-extern u8 _bscrocHitboxActive;
+extern void func_80257F18(f32 (* arg0)[3], f32 (* arg1)[3], f32 * arg2);
+extern void func_8028A100(enum asset_e, f32, f32);
+extern void func_8028A3B8(f32, f32);
+extern void func_80293D48(f32, f32);
+extern void func_80294980(f32 (* arg0)[3]);
+extern void func_8030EB00(s32, f32, f32);
+extern void func_803391A4(Gfx**, Mtx**, f32 (*)[3], f32(*)[3], f32, f32*, void*);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/croc/func_802ABDC0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/croc/func_802ABE04.s")
+int bscroc_inSet(enum bs_e state);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/croc/func_802ABE70.s")
+/* .data */
+extern f32 D_80364B00;
+extern f32 D_80364B04;
+extern f32 D_80364B08;
+extern f32 D_80364B0C;
+extern f32 D_80364B10;
+extern f32 D_80364B18; //jump initial velocity
+extern f32 D_80364B1C; //jump gravity
+extern u8  D_80364B20;
+extern s16 D_80364B24[];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/croc/func_802ABF54.s")
+/* .rodata */
+extern char D_803757B0[];
+extern char D_803757BC[];
+extern char D_803757C8[];
+extern char D_803757D4[];
+extern f32 D_803757E0;
+extern f32 D_803757E4;
+extern f32 D_803757E8;
+extern f32 D_803757EC;
+extern f32 D_803757F0;
+extern f32 D_803757F4;
+extern f32 D_803757F8;
+extern f32 D_803757FC;
+extern f32 D_80375800;
+extern f64 D_80375808;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/croc/func_802ABFBC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/croc/func_802AC024.s")
+/* .bss */
+extern f32 D_8037D3E0;
+extern u8 _bscrocHitboxActive; //8037D3e4
+extern void *D_8037D3E8;
+extern u8 D_8037D3EC;
+extern f32 D_8037D3F0;
+extern u8 D_8037D3F4;
+extern u8 D_8037D3F5;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/croc/func_802AC0D4.s")
+/* .code */
+f32 func_802ABDC0(void){
+    if(func_80291670(3) != 0.0f)
+        return D_80364B08;
+    else
+        return D_80364B04;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/croc/func_802AC178.s")
+void func_802ABE04(void){
+    func_8030EB00(D_80364B24[D_80364B20], 1.35f, 1.45f);
+    if(!(++D_80364B20 < 3))
+        D_80364B20 = 0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/croc/func_802AC224.s")
+void func_802ABE70(void){
+    f32 sp1C = func_80291670(3);
+    func_80299650(func_80291684(3), sp1C);
+    if(func_802933C0(0x10) && bs_getState() != BS_BTROT_EXIT){
+        func_802933FC(0x10);
+        func_802917E4(3, func_80294A40());
+        func_8025A6EC(JINGLE_GETTING_TURBO_TRAINERS, -1);
+        func_8029E0DC(1);
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/croc/func_802AC24C.s")
+    if(sp1C != 0.0f ){
+        func_8029C3E8(0.0f, 30.0f);
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/croc/func_802AC2BC.s")
+    if(func_80291700(3, 0.01f)){
+        func_8029E0DC(0);
+        func_8030E58C(0x3eb, 1.35f);
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/croc/func_802AC380.s")
+void func_802ABF54(void){
+    f32 sp1C = func_8029B30C();
+    if(func_8029B300() == 0){
+        func_80297970(0.0f);
+    }
+    else{
+        func_80297970(func_80257C48(sp1C, D_80364B00, func_802ABDC0()));
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/croc/func_802AC3A8.s")
+void func_802ABFBC(void){
+    if(!bscroc_inSet(bs_getNextState())){
+        func_8029B0C0();
+        func_8029E070(0);
+        func_8029E064(0);
+        func_802933FC(3);
+        func_802933FC(4);
+        func_80293D74();
+    }
+    func_80289F10(1);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/croc/func_802AC4DC.s")
+int bscroc_inSet(enum bs_e state){
+    return state == BS_CROC_IDLE
+        || state == BS_CROC_WALK
+        || state == BS_CROC_JUMP
+        || state == BS_CROC_FALL
+        || state == BS_CROC_OW
+        || state == BS_CROC_DIE
+        || state == BS_CROC_BITE
+        || state == BS_CROC_EAT_BAD
+        || state == BS_CROC_EAT_GOOD
+        || state == BS_CROC_LOCKED
+        || state == BS_CROC_DRONE;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/croc/func_802AC6D0.s")
+void bscroc_idle_init(void){
+    func_8028A010(0xe1, 1.0f);
+    func_8029C7F4(1,1,1,2);
+    func_80297970(0.0f);
+    pitch_setAngVel(1000.0f, 12.0f);
+    roll_setAngularVelocity(1000.0f, 12.0f);
+    func_80293D48(50.0f, 25.0f);
+    func_802933E8(3);
+    func_802933E8(4);
+    func_802900B4();
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/croc/func_802AC6F8.s")
+void bscroc_idle_update(void){
+    enum bs_e next_state = 0;
+    func_802ABE70();
+    func_80299628(0);
+    if(func_8028B094())
+        next_state = BS_CROC_FALL;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/croc/func_802AC78C.s")
+    if(func_80294F78())
+        next_state = func_802926C0();
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/croc/func_802AC8CC.s")
+    if(func_8029B300() > 0)
+        next_state = BS_CROC_WALK;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/croc/func_802AC8EC.s")
+    if(button_pressed(BUTTON_B))
+        next_state = BS_CROC_BITE;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/croc/func_802ACA50.s")
+    if(button_pressed(BUTTON_A))
+        next_state = BS_CROC_JUMP;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/croc/func_802ACAF8.s")
+    next_state = func_8029CA94(next_state);
+    bs_setState(next_state);
+    
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/croc/func_802ACB38.s")
+void bscroc_idle_end(void){
+    func_802ABFBC();
+    func_802900FC();
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/croc/func_802ACB58.s")
+void bscroc_walk_init(void){
+    func_8028A100(0xe0, 0.8f, 0.4f);
+    func_8029C7F4(2,1,1,2);
+    func_80289EC8(D_80364B00, D_80364B04, D_80364B0C, D_80364B10);
+    func_802900B4();
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/croc/func_802ACB78.s")
+void bscroc_walk_update(void){
+    enum bs_e next_state = 0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/croc/func_802ACB98.s")
+    func_802ABE70();
+    func_80299628(0);
+    func_802ABF54();
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/croc/func_802ACBB8.s")
+    func_8029AD28(D_803757E0, 4);
+    func_8029AD28(D_803757E4, 3);
+    if(func_8029B300() == 0 && func_80297C04(1.0f))
+        next_state = BS_CROC_IDLE;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/croc/func_802ACBD8.s")
+    if(func_8028B094())
+        next_state = BS_CROC_FALL;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/croc/func_802ACBF8.s")
+    if(button_pressed(BUTTON_B))
+        next_state = BS_CROC_BITE;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/croc/func_802ACDA0.s")
+    if(button_pressed(BUTTON_A))
+        next_state = BS_CROC_JUMP;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/croc/func_802ACEFC.s")
+    bs_setState(next_state);
+}
+
+void bscroc_walk_end(void){
+    func_802ABFBC();
+    func_802900FC();
+}
+
+void bscroc_jump_init(void){
+    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+
+    animctrl_reset(aCtrl);
+    animctrl_setSmoothTransition(aCtrl, FALSE);
+    animctrl_setIndex(aCtrl, 0x11C);
+    animctrl_setSubRange(aCtrl, 0.0f, 0.35f);
+    animctrl_setDuration(aCtrl, 1.0f);
+    func_8028774C(aCtrl, 0.1f);
+    animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
+    func_802875AC(aCtrl, D_803757B0, 0x1ac);
+    func_8029C7F4(1,1,3,6);
+    if(func_8029B2E8() != 0.0f){
+        yaw_setIdeal(func_8029B33C());
+    }
+    func_8029797C(yaw_getIdeal());
+    func_802ABF54();
+    func_802979AC(yaw_getIdeal(), func_80297A64());
+    player_setYVelocity(D_80364B18);
+    gravity_set(D_80364B1C);
+    func_802ABE04();
+    D_8037D3EC = 0;
+}
+
+void bscroc_jump_update(void){
+    enum bs_e sp2C = 0;
+    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    f32 sp1C[3];
+
+    func_802ABE70();
+    func_802ABF54();
+    _get_velocity(&sp1C);
+    if(button_released(BUTTON_A) && 0.0f < sp1C[1])
+        gravity_reset();
+
+    switch(D_8037D3EC){
+        case 0:
+            if(func_8028B254(0x82))
+            {
+                func_8028A3B8(D_803757E8, D_803757EC);
+                D_8037D3EC = 2;
+            }
+            else if(animctrl_isStopped(aCtrl))
+            {
+                func_8028A3B8(D_803757F0, 3.0f);
+                D_8037D3EC = 1;
+            }
+            break;
+        case 1:
+            if(func_8028B254(0x82)){
+                func_8028A3B8(D_803757F4, 1.0f);
+                D_8037D3EC = 2;
+            }
+            break;
+        case 2:
+            func_80299628(0);
+            if(func_8028B2E8()){
+                func_8029AE48();
+                func_8028A3B8(1.0f, 1.0f);
+                D_8037D3EC = 3;
+            }
+            break;
+        case 3:
+            func_80299628(0);
+            if(animctrl_isStopped(aCtrl)){
+                func_80297970(0.0f);
+                sp2C = BS_CROC_IDLE;
+            }
+            break;
+    }//L802AC66C
+
+    if(func_8028B2E8()){
+        if(func_8029B300() > 0)
+            sp2C = BS_CROC_WALK;
+        
+        if(button_pressed(BUTTON_A))
+            sp2C = BS_CROC_JUMP;
+    }
+
+    if(button_pressed(BUTTON_B))
+            sp2C = BS_CROC_BITE;
+
+    bs_setState(sp2C);
+}
+
+void bscroc_jump_end(void){
+    gravity_reset();
+    func_802ABFBC();
+}
+
+void bscroc_fall_init(void){
+    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+
+    animctrl_reset(aCtrl);
+    animctrl_setIndex(aCtrl, 0x11C);
+    func_8028774C(aCtrl, 0.5036f);
+    animctrl_setDuration(aCtrl, 0.7f);
+    animctrl_setPlaybackType(aCtrl, ANIMCTRL_STOPPED);
+    func_802875AC(aCtrl, D_803757BC, 0x235);
+    func_8029C7F4(1,1,3,6);
+    D_8037D3EC = 0;
+}
+
+void bscroc_fall_update(void){
+    enum bs_e next_state = 0;
+    AnimCtrl * aCtrl = player_getAnimCtrlPtr();
+    f32 velocity[3];
+
+    func_802ABE70();
+    func_80299628(0);
+    func_802ABF54();
+    _get_velocity(&velocity);
+    
+    switch(D_8037D3EC){
+        case 0:
+            if(func_8028B254(0x82)){
+                func_8028A37C(D_803757F8);
+                D_8037D3EC = 1;
+            }
+            break;
+        case 1:
+            if(func_8028B2E8()){
+                func_8029AE48();
+                func_80297970(0.0f);
+                func_8028A3B8(1.0f, 1.0f);
+                D_8037D3EC = 2;
+            }
+        case 2:
+            break;
+    }//L802AC850
+
+    if(func_8028B2E8()){
+        if(func_8029B300() > 0 || (D_8037D3EC == 2 && animctrl_isStopped(aCtrl))){
+            if(func_802933C0(0x19)){
+                next_state = func_80292738();
+            }else{
+                next_state = BS_CROC_IDLE;
+            }
+        }
+    }//L802AC8B4
+
+    bs_setState(next_state);
+}
+
+void bscroc_fall_end(void){
+    func_802ABFBC();
+}
+
+static void __bscroc_recoil_init(s32 damage){
+    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    f32 sp38;
+    f32 sp2C[3];
+    f32 sp20[3];
+
+    animctrl_reset(aCtrl);
+    animctrl_setIndex(aCtrl, 0x11d);
+    animctrl_setDuration(aCtrl, 1.0f);
+    animctrl_setSubRange(aCtrl, 0.0f, 0.7518f);
+    animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
+    func_802875AC(aCtrl, D_803757C8, 0x2a5);
+    if(damage == 1)
+        func_8030E58C(0x38, 1.8f);
+    else
+        func_8030E58C(0x56, 1.8f);
+    
+    _player_getPosition(&sp2C);
+    func_80294980(&sp20);
+    func_80257F18(&sp20, &sp2C, &sp38);
+    yaw_setIdeal(mlNormalizeAngle(sp38 + 180.0f));
+    func_802991FC();
+    func_80297970(200.0f);
+    func_8029797C(sp38);
+    func_802979AC(sp38, func_80297A64());
+    func_8029C7F4(1,1,2,3);
+    player_setYVelocity(510.0f);
+    gravity_set(-1200.0f);
+    func_8028D5DC();
+    func_80292E48();
+    D_8037D3EC = 0;
+}
+
+static void __bscroc_recoil_update(void){
+    enum bs_e next_state = 0;
+    func_802ABE70();
+    if(func_80289FE8(0.5f))
+        func_80292EA4();
+    
+    switch(D_8037D3EC){
+        case 0:
+            if(func_8028B254(0x5A)){
+                func_8028A37C(1.0f);
+                D_8037D3EC = 1;
+            }
+            break;
+        case 1:
+            break;
+    }
+    if(func_8028B2E8())
+        next_state = BS_CROC_IDLE;
+
+    bs_setState(next_state);
+}
+
+void __bscroc_recoil_end(void){
+    func_80297CA8();
+    gravity_reset();
+    func_8028D5F4();
+    func_80292EA4();
+    func_802ABFBC();
+}
+
+void bscroc_ow_init(void){
+    __bscroc_recoil_init(1);
+}
+
+void bscroc_ow_update(void){
+    __bscroc_recoil_update();
+}
+
+void bscroc_ow_end(void){
+    __bscroc_recoil_end();
+}
+
+void bscroc_bounce_init(void){
+    __bscroc_recoil_init(2);
+}
+
+void bscroc_bounce_update(void){
+    __bscroc_recoil_update();
+}
+
+void bscroc_bounce_end(void){
+    __bscroc_recoil_end();
+}
+
+void bscroc_die_init(void){
+    AnimCtrl * aCtrl = player_getAnimCtrlPtr();
+    f32 sp38;
+    f32 sp2C[3];
+    f32 sp20[3];
+
+    func_8029B930();
+    animctrl_reset(aCtrl);
+    animctrl_setSmoothTransition(aCtrl, FALSE);
+    animctrl_setIndex(aCtrl, 0x11e);
+    animctrl_setSubRange(aCtrl, 0.0f, 0.3966f);
+    animctrl_setDuration(aCtrl, 1.7f);
+    animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
+    func_802875AC(aCtrl, D_803757D4, 0x32b);
+    func_8029C7F4(1,1,2,3);
+    _player_getPosition(&sp2C);
+    func_80294980(&sp20);
+    func_80257F18(&sp20, &sp2C, &sp38);
+    yaw_setIdeal(mlNormalizeAngle(sp38 + 180.0f));
+    func_802991FC();
+    D_8037D3E0 = 250.0f;
+    func_80297970(D_8037D3E0);
+    func_8029797C(sp38);
+    func_802979AC(sp38, func_80297A64());
+    player_setYVelocity(420.0f);
+    gravity_set(-1200.0f);
+    pitch_setAngVel(1000.0f, 12.0f);
+    func_8028D5DC();
+    func_80292E48();
+    func_802914CC(0xd);
+    func_802BF2C0(30.0f);
+    func_8029C984();
+    func_8030E58C(0x36, 1.8f);
+    func_8029E3C0(0, 2.9f);
+    D_8037D3EC = 0;
+}
+
+void bscroc_die_update(void){
+    enum bs_e next_state = 0;
+    func_802ABE70();
+    func_80297970(D_8037D3E0);
+    func_80299628(0);
+    switch(D_8037D3EC){
+        case 0:
+            if(func_8028B2E8()){
+                func_8028A37C(D_803757FC);
+                func_8030E624(0x6651901F);
+                func_8030E624(0xe6319039);
+                player_setYVelocity(400.0f);
+                D_8037D3EC = 1;
+            }
+            break;
+        case 1:
+            if(func_8028B2E8()){
+                func_8028A37C(1.0f);
+                func_8030E624(0x6651901F);
+                func_8030E624(0xe6319039);
+                D_8037D3EC = 2;
+            }
+            break;
+        case 2:
+            D_8037D3EC = 3;
+            break;
+        case 3:
+            if(0.0f < D_8037D3E0)
+                D_8037D3E0 = max_f(0.0f, D_8037D3E0 - 10.0f);
+            break;
+    }//L802ACECC
+
+    if(func_8029E1A8(0))
+        func_8029B890();
+
+    bs_setState(next_state);
+}
+
+void bscroc_die_end(void){
+    func_8024BD08(0);
+    gravity_reset();
+    pitch_setIdeal(0.0f);
+    roll_setIdeal(0.0f);
+    func_80291548();
+    func_80292EA4();
+}
 
 int bscroc_hitboxActive(void){
     return _bscrocHitboxActive;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/croc/func_802ACF58.s")
+static void func_802ACF58(void){
+    f32 sp2C;
+    f32 sp20[3];
+    sp2C = func_8028B2E8() ? 500.0f : 400.0f;
+    func_802589E4(&sp20, yaw_get(), sp2C);
+    sp20[1] = 200.0f;
+    func_80297A0C(&sp20);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/croc/func_802ACFCC.s")
+void bscroc_bite_init(void){
+    func_8028A100(0x122, 0.25f, 0.2f);
+    func_8029C7F4(1,1,1,3);
+    func_802ACF58();
+    D_8037D3F4 = 0;
+    _bscrocHitboxActive = TRUE;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/croc/func_802AD024.s")
+void bscroc_bite_update(void){
+    enum bs_e next_state = 0;
+    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/croc/func_802AD168.s")
+    func_802ABE70();
+    func_80299628(0);
+    if(animctrl_isAt(aCtrl, 0.99f)){
+        switch(++D_8037D3F4){
+            case 1:
+                func_802ACF58();
+                animctrl_setDuration(aCtrl, 0.28f);
+                break;
+            case 2:
+                func_802ACF58();
+                animctrl_setDuration(aCtrl, 0.32f);
+                animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
+                break;
+        }
+    }
+    if(animctrl_isAt(aCtrl, 0.6f)){
+        func_8030EB00(0x6d, 1.0f, 1.1f);
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/croc/func_802AD18C.s")
+    if(D_8037D3F4 == 3){
+        if(func_8028B094())
+            next_state =  BS_CROC_FALL;
+        else
+            next_state = BS_CROC_WALK;
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/croc/func_802AD1D4.s")
+    if(func_8028B2E8() && button_pressed(BUTTON_A))
+        next_state = BS_CROC_JUMP;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/croc/func_802AD288.s")
+    bs_setState(next_state);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/croc/func_802AD2A8.s")
+void bscroc_bite_end(void){
+    _bscrocHitboxActive = FALSE;
+    func_802ABFBC();
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/croc/func_802AD318.s")
+void bscroc_eat_bad_init(void){
+    func_8028A180(0x123, 2.41f);
+    func_8029C7F4(1,1,2,3);
+    func_80297970(0.0f);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/croc/func_802AD328.s")
+void bscroc_eat_bad_update(void){
+    enum bs_e next_state = 0;
+    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/croc/func_802AD3A0.s")
+    func_802ABE70();
+    func_80299628(0);
+    if(animctrl_isAt(aCtrl, 0.3518f)){
+        func_8030E58C(0xA0, 0.9f);
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/croc/func_802AD3AC.s")
+    if(animctrl_isAt(aCtrl, 0.5282f)){
+        func_8030E58C(0xA0, 0.85f);
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/croc/func_802AD530.s")
+    if(animctrl_isAt(aCtrl, 0.6671f)){
+        func_8030E484(0xc6);
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/croc/func_802AD56C.s")
+    if(animctrl_isStopped(aCtrl)){
+        next_state = BS_CROC_IDLE;
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/croc/func_802AD5C0.s")
+    bs_setState(next_state);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/croc/func_802AD614.s")
+void bscroc_eat_bad_end(void){
+    func_802ABFBC();
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/croc/func_802AD654.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/croc/func_802AD674.s")
+void func_802AD2A8(Gfx **gdl, Mtx **mPtr, void *arg2){
+    f32 sp34[3];
+    f32 sp28[3];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/croc/func_802AD69C.s")
+    player_getRotation(&sp34);
+    func_8028E9C4(2, &sp28);
+    func_8033A4CC(1);
+    func_803391A4(gdl, mPtr, &sp28, &sp34, D_8037D3F0, NULL, D_8037D3E8);
+
+}
+
+void func_802AD318(void){
+    D_8037D3F5 = 1;
+}
+
+void bscroc_eat_good_init(void){
+    func_8028A010(0x122, 0.25f);
+    func_8029C7F4(1,1,1,2);
+    func_80292188(func_802AD2A8);
+    D_8037D3E8 = assetcache_get(func_80294974());
+    D_8037D3F0 = 1.0f;
+    D_8037D3F5 = 0;
+    D_8037D3F4 = 0;
+}
+
+int func_802AD3A0(void){
+    return D_8037D3F5;
+}
+
+void bscroc_eat_good_update(void){
+    enum bs_e next_state = 0;
+    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+
+    func_802ABE70();
+    D_8037D3F0 = max_f(D_80375800, D_8037D3F0 - D_80375808);
+    func_80299628(0);
+    func_802ABF54();
+    if(animctrl_isAt(aCtrl, 0.99f)){
+        switch(++D_8037D3F4){
+            case 1:
+                animctrl_setDuration(aCtrl, 0.28f);
+                break;
+            case 2:
+                animctrl_setDuration(aCtrl, 0.32f);
+                animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
+                break;
+            case 3:
+                if(D_8037D3F5)
+                    next_state = BS_CROC_EAT_BAD;
+                else
+                    next_state = BS_CROC_IDLE;
+                break;
+        }
+    }//L802AD4B0
+
+    if(animctrl_isAt(aCtrl, 0.62f))
+        func_8030EB00(0x4C, 1.2f, 1.3f);
+
+    if(D_8037D3F4 == 2 && animctrl_isAt(aCtrl, 0.9))
+        func_8030EB00(0xae, 1.45f, 1.55f);
+
+    bs_setState(next_state);
+}
+
+void bscroc_eat_good_end(void){
+    D_8037D3F5 = 0;
+    assetcache_release(D_8037D3E8);
+    func_80292188(0);
+    func_802ABFBC();
+}
+
+void func_802AD56C(void){
+    func_8028A010(0xe1, 1.0f);
+    func_8029C7F4(1,1,3,2);
+    func_80297970(0.0f);
+    func_8029C674();
+    func_802B3A50();
+}
+
+void func_802AD5C0(void){
+    enum bs_e next_state = 0;
+    func_802ABE70();
+    func_802B3A50();
+    func_80299628(0);
+    func_8029C6D0();
+    if(!func_80298850()){
+        next_state = BS_CROC_IDLE;
+    }
+    
+    bs_setState(next_state);
+}
+
+void func_802AD614(void){
+    pitch_setIdeal(0.0f);
+    roll_setIdeal(0.0f);
+    func_8029C748();
+    func_802ABFBC();
+}
+
+void bscroc_drone_init(void){
+    bsdrone_init();
+}
+
+void bscroc_drone_update(void){
+    func_802ABE70();
+    bsdrone_update();
+}
+
+void bscroc_drone_end(void){
+    bsdrone_end();
+    func_802ABFBC();
+}

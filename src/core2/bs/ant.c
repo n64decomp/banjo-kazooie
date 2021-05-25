@@ -66,10 +66,10 @@ int bsant_inSet(s32 move_indx){
     || (move_indx == BS_ANT_WALK)
     || (move_indx == BS_ANT_JUMP)
     || (move_indx == BS_ANT_FALL)
-    || (move_indx == 0x3e)
-    || (move_indx == 0x43)
+    || (move_indx == BS_ANT_OW)
+    || (move_indx == BS_ANT_DIE)
     || (move_indx == 0x8e)
-    || (move_indx == 0x92);
+    || (move_indx == BS_ANT_DRONE);
 }
 
 void bsant_idle_init(void){
