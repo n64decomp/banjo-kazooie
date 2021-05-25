@@ -210,6 +210,8 @@ void clear_vec3f(f32 (* arg0)[3]);
 void func_80250D94(f32, f32, f32);
 f32  func_80257A44(f32, f32);
 f32  func_80257C48(f32, f32, f32);
+void func_80257F18(f32 (* arg0)[3], f32 (* arg1)[3], f32 * arg2);
+
 f32  mlAbsF(f32);
 f32  mlClamp_f(f32, f32, f32);
 f32  func_802588B0(f32, f32);
@@ -221,15 +223,20 @@ void comusic_8025AB44(enum comusic_e comusic_id, s32 arg1, s32 arg2);
 
 f32  cosf(f32);
 
+
 void func_8028A010(enum asset_e anim_id, f32 duration);
+void func_8028A100(enum asset_e anim_id, f32, f32);
 void func_8028A1F4(s32, f32, f32);
 void func_8028A274(enum asset_e, f32);
+void func_8028A3B8(f32, f32);
 int  func_8028AED4(f32*, f32);
 
 f32  func_80291670(s32);
 f32  func_80291684(s32);
+int  func_80291700(s32, f32);
 void func_802917E4(s32, f32);
 
+void func_80292078(s32, f32);
 void func_80292158(f32);
 f32  func_80292230(void);
 
@@ -239,9 +246,11 @@ void func_80292974(f32, f32, f32);
 void func_80292900(f32, f32);
 
 void func_80292E80(s32, f32);
+void func_80293D48(f32, f32);
 f32  func_80294438(void);
-f32  func_80294A40(void);
 f32  func_80294500(void);
+void func_80294980(f32 (* arg0)[3]);
+f32  func_80294A40(void);
 void func_80295C08(void (* arg0)(void));
 void func_802978DC(int);
 void func_80297970(f32);
@@ -269,6 +278,7 @@ void func_802991FC(void);
 void func_80299234(f32, f32);
 void func_80299254(f32);
 void func_8029932C(f32);
+void func_80299594(s32, f32);
 void func_80299628(s32);
 void func_80299650(f32, f32);
 void func_80299B58(f32, f32);
@@ -289,6 +299,7 @@ f32  func_8029B41C(void);
 void func_8029C3E8(f32, f32);
 void func_8029CF48(s32, s32, f32);
 void func_8029E090(s32, f32);
+void func_8029E180(s32, f32);
 void func_8029E3C0(s32, f32);
 f32  func_8029E270(s32);
 void func_802BF2C0(f32);
@@ -300,18 +311,18 @@ void func_8030E5F4(s32, f32);
 void func_8030E624(u32);
 void func_8030E6D4(int);
 void func_8030E760(s32, f32, s32);
+void func_8030EB00(s32, f32, f32);
 void func_8030EBC8(s32, f32, f32, s32, s32);
 
 void func_8032728C(f32*, f32, s32, s32(*)(Actor *));
+
+void func_803391A4(Gfx**, Mtx**, f32 (*)[3], f32(*)[3], f32, f32*, void*);
 
 void func_80346C10(enum bs_e *retVal, enum bs_e fail_state, enum bs_e success_state, enum item_e item_id, int use_item);
 
 void func_80352CF4(f32 *, f32 *, f32, f32);
 
-void func_80292078(s32, f32);
-void func_80299594(s32, f32);
-void func_8029E180(s32, f32);
-int func_80291700(s32, f32);
+
 
 AnimCtrl *player_getAnimCtrlPtr(void);
 void _get_velocity(f32 (*dst)[3]);

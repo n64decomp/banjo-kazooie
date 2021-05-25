@@ -357,7 +357,7 @@ segments:
   - [0x000DDAF0, bin, data_DDAF0]
   - [0x000DDB40, .data, bs/bWhirl]
   - [0x000DDB60, .data, bs/carry]
-  - [0x000DDB70, bin, data_DDB70]
+  - [0x000DDB70, .data, bs/croc]
   - [0x000DDBA0, .data, bs/drone]
   - [0x000DDC20, bin, data_DDC20]
   - [0x000E2350, .data, code_73640]

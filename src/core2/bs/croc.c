@@ -2,27 +2,20 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void func_80257F18(f32 (* arg0)[3], f32 (* arg1)[3], f32 * arg2);
-extern void func_8028A100(enum asset_e, f32, f32);
-extern void func_8028A3B8(f32, f32);
-extern void func_80293D48(f32, f32);
-extern void func_80294980(f32 (* arg0)[3]);
-extern void func_8030EB00(s32, f32, f32);
-extern void func_803391A4(Gfx**, Mtx**, f32 (*)[3], f32(*)[3], f32, f32*, void*);
-
 
 int bscroc_inSet(enum bs_e state);
 
 /* .data */
-extern f32 D_80364B00;
-extern f32 D_80364B04;
-extern f32 D_80364B08;
-extern f32 D_80364B0C;
-extern f32 D_80364B10;
-extern f32 D_80364B18; //jump initial velocity
-extern f32 D_80364B1C; //jump gravity
-extern u8  D_80364B20;
-extern s16 D_80364B24[];
+const f32 D_80364B00 = 30.0f;
+const f32 D_80364B04 = 375.0f;
+const f32 D_80364B08 = 500.0f;
+const f32 D_80364B0C = 0.5f;
+const f32 D_80364B10 = 0.3f;
+const f32 D_80364B14 = 0.2f;
+const f32 D_80364B18 = 693.5f; //jump initial velocity
+const f32 D_80364B1C = -1200.0f; //jump gravity
+u8  D_80364B20 = 0;
+s16 D_80364B24[] = {0x54, 0x55, 0x56};
 
 /* .bss */
 extern f32 D_8037D3E0;
