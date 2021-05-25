@@ -93,7 +93,7 @@ bsMap D_80363824[] ={
     {0x58, func_802A4748, func_802A48B4, func_802A4A40, func_80296590},
     {0x59, func_802A4CD0, func_802A4CF0, func_802A4D10, func_802A505C},
     {BS_SWIM_DIE, func_802A7F6C, func_802A8098, func_802A82D4, func_80296590},
-    {BS_CARRY_THROW, func_802B6540, func_802B65E0, func_802B66AC, func_802B66F8},
+    {BS_CARRY_THROW, bsthrow_init, bsthrow_update, bsthrow_end, bsthrow_interrupt},
     {BS_CROC_IDLE, bscroc_idle_init, bscroc_idle_update, bscroc_idle_end, func_802B5350},
     {BS_CROC_WALK, bscroc_walk_init, bscroc_walk_update, bscroc_walk_end, func_802B5350},
     {BS_CROC_JUMP, bscroc_jump_init, bscroc_jump_update, bscroc_jump_end, func_802B5350},

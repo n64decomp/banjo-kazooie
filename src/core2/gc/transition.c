@@ -8,7 +8,6 @@ void func_8028764C(AnimCtrl*, f32);
 void func_8025AC20(s32, s32, s32, f32, char*, s32);
 f32 func_80257618(void);
 void func_8024CE60(f32, f32);
-void func_803391A4(Gfx **, Mtx **, f32*, f32*, f32, s32, void *);
 
 struct{
     s32 unk0; //times drawn?

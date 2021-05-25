@@ -6,7 +6,6 @@
 
 void func_80335924(void *, u32, f32, f32);
 void func_80335A24(void *, u32, f32, f32);
-void func_803391A4(Gfx **, Mtx**, f32*, u32, f32, u32, u32);
 void func_8033A4CC(u32);
 Actor *mrVileDraw(ActorMarker*, Gfx **, Mtx **);
 void func_8038C48C(ActorMarker *);

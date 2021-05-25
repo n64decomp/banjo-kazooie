@@ -10,7 +10,6 @@ extern u32 D_8037DE84;
 void func_80328B8C(Actor *, s32, f32, s32);
 void func_803253A0(Actor *);
 void func_80325794(ActorMarker *);
-void func_803391A4(Gfx **, Mtx **, f32*, s32, f32, f32 *, void *);
 Actor *func_8032813C(s32 id, s32, s32);
 
 extern f32 D_80376F10;

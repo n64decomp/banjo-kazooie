@@ -363,10 +363,10 @@ void func_802A8098(void);
 void func_802A82D4(void);
 void func_80296590(void);
     //0x5B
-void func_802B6540(void);
-void func_802B65E0(void);
-void func_802B66AC(void);
-void func_802B66F8(void);
+void bsthrow_init(void);
+void bsthrow_update(void);
+void bsthrow_end(void);
+void bsthrow_interrupt(void);
     //0x5E
 void bscroc_idle_init(void);
 void bscroc_idle_update(void);

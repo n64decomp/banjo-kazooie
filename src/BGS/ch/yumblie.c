@@ -7,7 +7,6 @@ f32 func_80335684(void *);
 u32 func_8025773C(f32*, f32);
 void func_803253A0(Actor *);
 void func_80325794(ActorMarker *);
-void func_803391A4(Gfx**, Mtx**, f32*, f32*, f32, f32*, void*);
 void func_8038B6D0(Actor *);
 Actor *func_8038B528(ActorMarker*, Gfx **, Mtx **, u32 arg3);
 void func_8030E878(u32,f32,u32,f32*, f32, f32);

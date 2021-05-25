@@ -9,7 +9,6 @@
 
 /* extern functions */
 void func_80326224(Actor *);
-void func_803391A4(Gfx **, Mtx **, f32*, f32*, f32, f32*, s32);
 void func_803300A8(ActorMarker *, void(*)(ActorMarker *), void(*)(ActorMarker *), void(*)(ActorMarker *));
 f32 func_80309724(f32*);
 Actor *func_80325E78(ActorMarker *);

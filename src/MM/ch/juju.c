@@ -4,7 +4,6 @@
 
 /* extern functions */
 void func_80326224(Actor *);
-void func_803391A4(Gfx **, Mtx **, f32*, f32*, f32, f32*, s32);
 void func_80256900(f32*, f32*, f32);
 int func_80353064(f32*, f32);
 void  func_802BB3DC(s32, f32, f32);

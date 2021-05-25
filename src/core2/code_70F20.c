@@ -7,7 +7,6 @@ s32 func_8024DD34(f32,f32, f32);
 void func_80256900(f32*, f32*, f32);
 
 void func_802F9FD0(void *, f32, f32, f32);
-void func_803391A4(s32, s32, struct4s *, s32, f32, s32, s32);
 
 extern f32 D_803772C0;
 extern f64 D_803772C8;
