@@ -411,7 +411,8 @@ segments:
   - [0x000EF040, ".rodata", code_3BB80]
   - [0x000EF090, bin, data_EF090]
   - [0x000EF3E0, .rodata, ch/jigsawdance]
-  - [0x000EF450, bin, data_EF450]
+  - [0x000EF450, .rodata, code_41460]
+  - [0x000EF480, bin, data_EF480]
   - [0x000EF5D0, .rodata, ch/jinjo]
   - [0x000EF5F0, bin, data_EF5F0] #part of ch/jinjo .rodata
   - [0x000EF640, bin, data_EF640]
