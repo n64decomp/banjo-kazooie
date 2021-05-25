@@ -575,7 +575,7 @@ enum bs_e
     BS_WALRUS_FALL = 0x6A,
     //unk0x6B //[107] = "Locked", -- Bee, Mumbo Transform Cutscene
     BS_WALRUS_OW = 0x6C,
-    BS_WALRUC_DIE = 0x6D,
+    BS_WALRUS_DIE = 0x6D,
     BS_CROC_BITE = 0x6E,
     BS_CROC_EAT_BAD = 0x6F,
     BS_CROC_EAT_GOOD = 0x70,

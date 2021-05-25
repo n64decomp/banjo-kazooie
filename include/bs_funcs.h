@@ -402,17 +402,17 @@ void bscroc_die_update(void);
 void bscroc_die_end(void);
 void func_80296590(void);
     //0x67
-void func_802B8284(void);
-void func_802B8330(void);
-void func_802B83BC(void);
+void bswalrus_idle_init(void);
+void bswalrus_idle_update(void);
+void bswalrus_idle_end(void);
 
     //0x68
-void func_802B83E4(void);
-void func_802B8454(void);
-void func_802B84F0(void);
+void bswalrus_walk_init(void);
+void bswalrus_walk_update(void);
+void bswalrus_walk_end(void);
 
     //0x69
-void func_802B8518(void);
+void bswalrus_jump_init(void);
 void func_802B8654(void);
 void func_802B8888(void);
 
