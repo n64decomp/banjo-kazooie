@@ -199,7 +199,7 @@ enum bs_e func_802A8D84(enum bs_e arg0){
     if(button_pressed(BUTTON_A))
         arg0 = func_802A8D34(arg0);
 
-    if(func_8028B1E0())
+    if(player_shouldSlideTrot())
         arg0 = BS_BTROT_SLIDE;
 
     if(player_inWater())
@@ -322,7 +322,7 @@ void bsbtrot_walk_update(void){
     if(button_pressed(BUTTON_A))
         sp1C = func_802A8D34(sp1C);
 
-    if(func_8028B1E0())
+    if(player_shouldSlideTrot())
         sp1C = BS_BTROT_SLIDE;
 
     if(player_inWater())
@@ -464,7 +464,7 @@ void bsbtrot_jump_update(void){
         if(button_pressed(BUTTON_A))
             sp2C = func_802A8D34(sp2C);
         
-        if(func_8028B1E0())
+        if(player_shouldSlideTrot())
             sp2C = BS_BTROT_SLIDE;
     }
 
@@ -524,7 +524,7 @@ void bsbtrot_slide_update(void){
         func_802A87C0();
     func_80299AAC();
     D_8037D3A0 = max_f(D_8037D3A0-func_8033DD9C(), 0.0f);
-    if(func_8028B1E0()){
+    if(player_shouldSlideTrot()){
         func_80294480(sp30);
         func_8025801C(sp30, &sp2C);
         func_80299628(1);
@@ -664,7 +664,7 @@ void bsbtrot_fall_update(void){
         if(button_pressed(BUTTON_A))
             sp2C = func_802A8D34(sp2C);
 
-        if(func_8028B1E0())
+        if(player_shouldSlideTrot())
             sp2C = BS_BTROT_SLIDE;
     }
 

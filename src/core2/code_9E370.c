@@ -4,7 +4,6 @@
 
 #include "prop.h"
 
-extern void func_80254608(void *, void *, u32);
 extern Actor *func_803056FC(s32, s32 (*)[3], s32);
 
 extern void func_8032B5C0(void);
@@ -200,16 +199,16 @@ Actor *actor_new(s32 (* position)[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
     clear_vec3f(&D_80383390->unk1C);
     clear_vec3f(&D_80383390->velocity);
     clear_vec3f(&D_80383390->spawn_position);
-    D_80383390->unk58_16 = 0;
+    D_80383390->stored_animctrl_index = 0;
     D_80383390->unk58_2 = 1;
-    D_80383390->unk38_3 = 0;
-    D_80383390->unk78_1 = 0;
-    D_80383390->unk78_0 = 0;
-    D_80383390->unkF0 = 0.0f;
+    D_80383390->stored_animctrl_playbackType_ = 0;
+    D_80383390->stored_animctrl_forwards = 0;
+    D_80383390->stored_animctrl_smoothTransistion = 0;
+    D_80383390->stored_animctrl_duration = 0.0f;
     D_80383390->unkEC = 0.0f;
     D_80383390->unk138_19 = 0;
-    D_80383390->unkF8 = 0.0f;
-    D_80383390->unkFC = 1.0f;
+    D_80383390->stored_animctrl_subrangeMin = 0.0f;
+    D_80383390->stored_animctrl_subrangeMax = 1.0f;
     D_80383390->unkF4_22 = 0;
     D_80383390->unk58_1 = 0;
     D_80383390->unk138_29 = 0;
@@ -722,15 +721,15 @@ void func_80329B68(Actor *this){
     if(this->animctrl == NULL)
         return;
 
-    if(this->unk38_3){
-        animctrl_setPlaybackType(this->animctrl, this->unk38_3);
+    if(this->stored_animctrl_playbackType_){
+        animctrl_setPlaybackType(this->animctrl, this->stored_animctrl_playbackType_);
     }
-    animctrl_setIndex(this->animctrl, this->unk58_16);
-    animctrl_setDirection(this->animctrl, this->unk78_1);
-    animctrl_setSmoothTransition(this->animctrl, this->unk78_0);
-    animctrl_setDuration(this->animctrl, this->unkF0);
+    animctrl_setIndex(this->animctrl, this->stored_animctrl_index);
+    animctrl_setDirection(this->animctrl, this->stored_animctrl_forwards);
+    animctrl_setSmoothTransition(this->animctrl, this->stored_animctrl_smoothTransistion);
+    animctrl_setDuration(this->animctrl, this->stored_animctrl_duration);
     func_8028774C(this->animctrl, this->unkEC);
-    animctrl_setSubRange(this->animctrl, this->unkF8, this->unkFC);
+    animctrl_setSubRange(this->animctrl, this->stored_animctrl_subrangeMin, this->stored_animctrl_subrangeMax);
     func_802875AC(this->animctrl, D_80378E20, 0x8fd);
     func_80287800(this->animctrl, this->sound_timer);
 }
@@ -796,18 +795,18 @@ void *actors_appendToSavestate(void * begin, u32 end){
                 s0->unk13C = s1->marker->unk30;
                 s0->unk16C_31 = s1->marker->unk5C;
                 s0->unkF4_26 = s1->marker->unk2C_1;
-                s0->unkF4_25 = s1->marker->collidable;
+                s0->stored_marker_collidable = s1->marker->collidable;
                 s0->unkF4_28 = s1->marker->propPtr->unk8_3;
                 s0->unkF4_27 = s1->marker->propPtr->unk8_2;
                 //80329F94
                 if(s0->animctrl){
-                    s0->unk58_16 = animctrl_getIndex(s0->animctrl);
-                    s0->unk38_3 = animctrl_getPlaybackType(s0->animctrl);
-                    s0->unk78_1 = animctrl_isPlayedForwards(s0->animctrl);
-                    s0->unk78_0 = animctrl_isSmoothTransistion(s0->animctrl);
-                    s0->unkF0 = animctrl_getDuration(s0->animctrl);
+                    s0->stored_animctrl_index = animctrl_getIndex(s0->animctrl);
+                    s0->stored_animctrl_playbackType_ = animctrl_getPlaybackType(s0->animctrl);
+                    s0->stored_animctrl_forwards = animctrl_isPlayedForwards(s0->animctrl);
+                    s0->stored_animctrl_smoothTransistion = animctrl_isSmoothTransistion(s0->animctrl);
+                    s0->stored_animctrl_duration = animctrl_getDuration(s0->animctrl);
                     s0->unkEC = func_802877D8(s0->animctrl);
-                    animctrl_getSubRange(s0->animctrl, &s0->unkF8, &s0->unkFC);
+                    animctrl_getSubRange(s0->animctrl, &s0->stored_animctrl_subrangeMin, &s0->stored_animctrl_subrangeMax);
                 }
                 s0->animctrl = NULL;
                 s0->marker = NULL;

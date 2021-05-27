@@ -50,7 +50,10 @@ void func_803184C8(gczoombox_t *, f32, s32, s32, f32, s32, s32);
 int func_803114B0(void);
 
 /*rodata*/
+extern f64 D_803784C0;
+
 extern f32 D_80378534;
+
 
 void func_8030C790(f32 *arg0){
     if(func_8028F1D4())
@@ -210,7 +213,11 @@ void func_8030E58C(s32 arg0, f32 arg1){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_85800/func_8030E5F4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_85800/func_8030E624.s")
+
+void func_8030E624(u32 arg0){
+    f32 f6 = (arg0 >> 0x15) & 0x7ff;
+    func_8030D6C4(arg0 & 0x7FF, f6/D_803784C0, (arg0 >> 6) & 0x7fe0, 0, 2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_85800/func_8030E6A4.s")
 

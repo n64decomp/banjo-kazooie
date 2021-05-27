@@ -23,6 +23,7 @@ mlMap_f = 0x80257B18;
 mlClamp_f = 0x80257ED8;
 mlNormalizeAngle = 0x8025881C;
 max_f = 0x802588DC;
+min_f = 0x80258904;
 mlAbsF = 0x80258964;
 
 clear_vec3f = 0x80258B8C;

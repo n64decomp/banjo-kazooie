@@ -9,7 +9,7 @@
 
 
 
-enum transformation_E
+enum transformation_e
 {
     unknown,
     TRANSFORM_BANJO,

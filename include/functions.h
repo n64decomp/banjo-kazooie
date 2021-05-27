@@ -10,7 +10,9 @@
 
 #include "prop.h"
 
+#include "core1/core1.h"
 #include "core2/core2.h"
+
 #include "ml/mtx.h"
 #include "bs_funcs.h"
 
@@ -35,7 +37,7 @@ void _guMtxIdentF_80245D44(float mf[4][4]); //static should NOT be here
 
 void * malloc(s32 size);
 void free(void*);
-void* realloc(void* ptr, s32 size);
+void *realloc(void* ptr, s32 size);
 
 f32 mlMap_f(f32 val, f32 in_min, f32 in_max, f32 out_min, f32 out_max);
 float mlNormalizeAngle(float);
@@ -44,8 +46,7 @@ void copy_vec3f(f32 (* dst)[3], f32 (* src)[3]);
 
 void func_80258C48(f32 *arg0, f32 *arg1, f32 *arg2);
 void func_80258C7C(f32 *arg0, f32 arg1);
-void mlScale(f32 *, f32 *, f32);
-
+void mlScale(f32 (* dst)[3], f32 (* src)[3], f32 scale);
 
 float gu_sqrtf(float val);
 
@@ -233,6 +234,7 @@ int  func_8028AED4(f32*, f32);
 
 f32  func_80291670(s32);
 f32  func_80291684(s32);
+u32 func_80291698(int);
 int  func_80291700(s32, f32);
 void func_802917E4(s32, f32);
 
@@ -250,6 +252,7 @@ void func_80293D48(f32, f32);
 f32  func_80294438(void);
 f32  func_80294500(void);
 void func_80294980(f32 (* arg0)[3]);
+f32  get_slope_timer(void);
 f32  func_80294A40(void);
 void func_80295C08(void (* arg0)(void));
 void func_802978DC(int);

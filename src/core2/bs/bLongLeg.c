@@ -171,7 +171,7 @@ void bsblongleg_stand_update(void){
     if(func_8029B300() > 0)
         next_state = BS_LONGLEG_WALK;
     
-    if(func_8028B1E0())
+    if(player_shouldSlideTrot())
         next_state = BS_LONGLEG_SLIDE;
     
     if(button_pressed(BUTTON_A) && func_8028B2E8())
@@ -222,7 +222,7 @@ void bsblongleg_walk_update(void){
     if(!func_8029B300() && func_80297C04(1.0f))
         sp1C = BS_LONGLEG_IDLE;
 
-    if(func_8028B1E0())
+    if(player_shouldSlideTrot())
         sp1C = BS_LONGLEG_SLIDE;
 
     if(button_pressed(BUTTON_A) && func_8028B2E8())

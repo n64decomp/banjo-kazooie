@@ -8,7 +8,6 @@ void func_80332B2C(ActorMarker * arg0);
 s32 func_803058C0(f32);
 void func_80305CD8(s32, s32);
 void func_80330104(Cube*);
-void func_80254608(void *, void *, s32);
 ActorMarker * func_80332A60(void);
 
 extern ModelCache *modelCache; //model pointer array pointer

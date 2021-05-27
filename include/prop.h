@@ -301,7 +301,7 @@ typedef struct actor_s{
     u32  unk38_31:10;
     u32  unk38_21:9;
     u32  unk38_13:9;
-    u32  unk38_3:3; //animctrlPlaybackType
+    u32  stored_animctrl_playbackType_:3; //animctrlPlaybackType
     u32  unk38_0:1;
     u32 unk3C;
     s32 unk40;
@@ -317,7 +317,7 @@ typedef struct actor_s{
     /* 0x50 */ f32 yaw; //0x50
     f32 unk54; //0x54
     u32 unk58_31: 15;
-    u32 unk58_16: 14; //animctrlAnimIndex;
+    u32 stored_animctrl_index: 14; //animctrlAnimIndex;
     u32 unk58_2: 1;
     u32 unk58_1: 1;
     u32 unk58_0: 1;
@@ -331,8 +331,8 @@ typedef struct actor_s{
     u32 unk78_31:9;
     u32 unk78_22:9;
     u32 unk78_13:12;
-    u32 unk78_1:1; //animCtrlDirection
-    u32 unk78_0:1; //animCtrlSmoothTransition
+    u32 stored_animctrl_forwards:1; //animCtrlDirection
+    u32 stored_animctrl_smoothTransistion:1; //animCtrlSmoothTransition
     union
     {
         ActorLocal_Jiggy    jiggy;
@@ -363,21 +363,21 @@ typedef struct actor_s{
     };
     //u8  padAC[0x44];
     f32 unkEC; //animCtrl???
-    f32 unkF0; //animCtrlDuration
+    f32 stored_animctrl_duration; //animCtrlDuration
     u32 unkF4_31:1;
     u32 unkF4_30:1;
     u32 unkF4_29:1;
     u32 unkF4_28:1; //saved marker->propPtr->unk8_3
     u32 unkF4_27:1; //saved marker->propPtr->unk8_2
     u32 unkF4_26:1; //saved marker->unk2C_1
-    u32 unkF4_25:1; //saved marker->collidable
+    u32 stored_marker_collidable:1; //saved marker->collidable
     u32 unkF4_24:2;
     u32 unkF4_22:1;
     u32 initialized:1; //unkF4_21;
     u32 unkF4_20:12;
     u32 unkF4_8:9;
-    f32 unkF8; //animCtrl_SubRangeStart
-    f32 unkFC; //animCtrl_SubRangeEnd
+    f32 stored_animctrl_subrangeMin; //animCtrl_SubRangeStart
+    f32 stored_animctrl_subrangeMax; //animCtrl_SubRangeEnd
     ActorMarker *unk100;
     ActorMarker *unk104;
     void ( *unk108)(struct actorMarker_s *, s32); //saved from marker->unkC

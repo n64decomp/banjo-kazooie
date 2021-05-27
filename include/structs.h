@@ -350,6 +350,4 @@ typedef struct struct_22_s{
     u8 pad35[0x3];
 } struct22s;//size 0x38
 
-
-
 #endif

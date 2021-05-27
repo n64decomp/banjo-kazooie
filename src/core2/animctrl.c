@@ -13,7 +13,7 @@ extern f64 D_80373DF8;
 extern u32 D_A0000238;
 
 
-f32 func_80258904(f32 arg0, f32 arg1);
+f32 min_f(f32 arg0, f32 arg1);
 
 /* .code */
 void func_80286F90(AnimCtrl *this){
@@ -24,7 +24,7 @@ void func_80286F90(AnimCtrl *this){
         anim = animctrl_getAnimPtr(this);
         duration = func_80289698(anim);
         if( duration < 1.0f ){
-            func_802897C8(anim, func_80258904(1.0f, func_8033DD9C()/animctrl_getTransistionDuration(this) + duration));
+            func_802897C8(anim, min_f(1.0f, func_8033DD9C()/animctrl_getTransistionDuration(this) + duration));
         }
     }
 }

@@ -114,13 +114,19 @@ s32 func_8028B120(void){return 0;}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028B16C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028B1E0.s")
+int player_shouldSlideTrot(void){
+    return func_80291698(6)
+        || (1.0 == get_slope_timer() && func_80294610(0x40));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028B254.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028B2E8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/player_isSliding.s")
+int player_isSliding(void){
+    return func_80291698(5) 
+        || 1.0 == get_slope_timer();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028B394.s")
 
