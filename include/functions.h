@@ -13,6 +13,7 @@
 #include "core1/core1.h"
 #include "core2/core2.h"
 
+#include "ml.h"
 #include "ml/mtx.h"
 #include "bs_funcs.h"
 
@@ -44,8 +45,8 @@ float mlNormalizeAngle(float);
 f32 max_f(f32, f32);
 void copy_vec3f(f32 (* dst)[3], f32 (* src)[3]);
 
-void func_80258C48(f32 *arg0, f32 *arg1, f32 *arg2);
-void func_80258C7C(f32 *arg0, f32 arg1);
+void func_80258C48(f32 (* arg0)[3], f32 (* arg1)[3], f32 (* arg2)[3]);
+void func_80258C7C(f32 (* arg0)[3], f32 scale);
 void mlScale(f32 (* dst)[3], f32 (* src)[3], f32 scale);
 
 float gu_sqrtf(float val);
@@ -211,12 +212,12 @@ void clear_vec3f(f32 (* arg0)[3]);
 void func_80250D94(f32, f32, f32);
 f32  func_80257A44(f32, f32);
 f32  func_80257C48(f32, f32, f32);
-void func_80257F18(f32 (* arg0)[3], f32 (* arg1)[3], f32 * arg2);
+int func_80257F18(f32 (* arg0)[3], f32 (* arg1)[3], f32 * arg2);
 
 f32  mlAbsF(f32);
 f32  mlClamp_f(f32, f32, f32);
 f32  func_802588B0(f32, f32);
-void func_802589E4(f32 *, f32, f32);
+void func_802589E4(f32 (* dst)[3], f32 yaw, f32 length);
 f32  mlDiffDegF(f32, f32);
 void func_8025A6EC(enum comusic_e, s32);
 void func_8025A70C(enum comusic_e);
