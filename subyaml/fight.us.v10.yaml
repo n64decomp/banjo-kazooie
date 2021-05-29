@@ -41,5 +41,5 @@ segments:
     start: 0x0000AF90
     vram: 0x80391380
     subsegments:
-      - [0x0000AF90, bin, data_AF90]
+      - [0x0000AF90, bin, fight_data_AF90]
   - [0x0000C350]

@@ -94,8 +94,8 @@ void banjo_getPosition(f32* dst){
     f32 tmp2[3];
     func_80291A60(5,tmp1);
     func_80291A60(6,tmp2);
-    func_80258C48(dst, tmp1, tmp2);
-    func_80258C7C(dst, 0.5);
+    ml_vec3f_add(dst, tmp1, tmp2);
+    ml_vec3f_scale(dst, 0.5);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AA60/func_802924B8.s")

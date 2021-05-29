@@ -21,13 +21,13 @@ void func_802B40D0(void){
 
     if(D_8037D524){
         sp28 = mlNormalizeAngle(yaw_get() + 90.0f);
-        func_802589E4(sp2C, sp28, randf()*10.0f + 20.0f);
+        ml_radial_to_cartisian(sp2C, sp28, randf()*10.0f + 20.0f);
         sp2C[1] = 0.0f;
     }
 
     switch(D_8037D524){
         case 1://L802B41A0
-            func_80258C7C(sp2C, -1.0f);
+            ml_vec3f_scale(sp2C, -1.0f);
             sp38[0] += sp2C[0];
             sp38[1] += sp2C[1];
             sp38[2] += sp2C[2];
@@ -40,7 +40,7 @@ void func_802B40D0(void){
         case 0://L802B4208
             break;
     }
-    func_802589E4(sp44, yaw_get(), 40.0f);
+    ml_radial_to_cartisian(sp44, yaw_get(), 40.0f);
     sp44[1] = 50.0f;
     func_80352CF4(sp38, sp44, 10.0f, 150.0f);
 }
@@ -95,7 +95,7 @@ void bsslide_update(void){
                 yaw_setIdeal(sp2C);
                 pitch_setIdeal(sp28);
             }
-            func_80297970(mlMap_f(sp28,20.0f, 60.0f, 550.0f, 700.0f));
+            func_80297970(ml_map_f(sp28,20.0f, 60.0f, 550.0f, 700.0f));
             func_8029797C(sp2C);
         }else{
             func_80297970(500.0f);

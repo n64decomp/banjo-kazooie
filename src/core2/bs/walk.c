@@ -76,7 +76,7 @@ void func_802B6D00(void){
 
 void func_802B6E44(void){
     if(func_8028B394()){
-        func_80289EF8(mlMap_f(func_80297AF0(), 0.0f, 1.0f, 0.5f, 0.9f));
+        func_80289EF8(ml_map_f(func_80297AF0(), 0.0f, 1.0f, 0.5f, 0.9f));
     }else{
         func_80289EF8(1.0f);
     }

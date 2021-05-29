@@ -59,7 +59,7 @@ void func_8030C790(f32 *arg0){
     if(func_8028F1D4())
         player_getPosition(arg0);
     else
-        clear_vec3f(arg0);
+        ml_vec3f_clear(arg0);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_85800/func_8030C7D0.s")

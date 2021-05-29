@@ -133,16 +133,16 @@ void _bsBeeFly_updateYaw(void){
         sp34 = 3.0f;
         sp30 = 65.0f;
     }
-    roll_setIdeal(mlMap_f(stickX, -1.0f, 1.0f, -sp30, sp30));
-    yaw_setIdeal(mlNormalizeAngle(yaw_getIdeal() + mlMap_f(stickX, -1.0f, 1.0f, sp34, -sp34)));
+    roll_setIdeal(ml_map_f(stickX, -1.0f, 1.0f, -sp30, sp30));
+    yaw_setIdeal(mlNormalizeAngle(yaw_getIdeal() + ml_map_f(stickX, -1.0f, 1.0f, sp34, -sp34)));
 }
 
 void _bsBeeFly_updatePitch(void){
     f32 stickY = func_8029B2DC();
     if(stickY < 0.0f){
-        pitch_setIdeal(mlMap_f(stickY, -1.0f, 0.0f, 300.0f, 360.0f));
+        pitch_setIdeal(ml_map_f(stickY, -1.0f, 0.0f, 300.0f, 360.0f));
     } else {
-        pitch_setIdeal(mlMap_f(stickY, 0.0f, 1.0f, 0.0f, 80.0f));
+        pitch_setIdeal(ml_map_f(stickY, 0.0f, 1.0f, 0.0f, 80.0f));
     }
     
 }
@@ -201,10 +201,10 @@ void bsbeefly_update(void){
     sp30 = 0.0f;
     if(func_80297AAC() < 0.0f){
         if(sp3C < 300.0f){
-            sp30 = mlMap_f(sp3C, 0.0f, 80.0f, 0.0f, 0.23f);
+            sp30 = ml_map_f(sp3C, 0.0f, 80.0f, 0.0f, 0.23f);
         }
         if(80.0f < sp3C){
-            sp30 = mlMap_f(sp3C, 300.0f, 360.0f, -0.2f, 0.0f);
+            sp30 = ml_map_f(sp3C, 300.0f, 360.0f, -0.2f, 0.0f);
         }
     }
     sp40 += sp30;
@@ -242,11 +242,11 @@ void bsbeefly_update(void){
         sp38 = 0.0f;
     }else{
         if(sp3C <= 80.0f){
-            func_80297BF8(mlMap_f(sp3C, 60.0f, 80.0f, -99.9, -1266.66));
-            sp38 = mlMap_f(sp3C, 60.0f, 80.0f, 600.0f, 60.0f);
+            func_80297BF8(ml_map_f(sp3C, 60.0f, 80.0f, -99.9, -1266.66));
+            sp38 = ml_map_f(sp3C, 60.0f, 80.0f, 600.0f, 60.0f);
         }else{
-            func_80297BF8(mlMap_f(sp3C, 300.0f, 310.0f, -399.99, -99.9));
-            sp38 = mlMap_f(sp3C, 300.0f, 340.0f, 0.0f, 600.0f);
+            func_80297BF8(ml_map_f(sp3C, 300.0f, 310.0f, -399.99, -99.9));
+            sp38 = ml_map_f(sp3C, 300.0f, 340.0f, 0.0f, 600.0f);
         }
     }
     func_8029797C(yaw_get());

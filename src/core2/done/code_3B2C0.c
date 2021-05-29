@@ -45,7 +45,7 @@ void func_802C22C0(f32 *arg0, f32 *arg1){
         return;
     
     if(D_8037DC44 == 1){
-        func_80258BF4(D_8037DC20, arg0);
+        ml_vec3f_diff(D_8037DC20, arg0);
         D_8037DC30[0] = mlDiffDegF(D_8037DC30[0], arg1[0]);
         D_8037DC30[1] = mlDiffDegF(D_8037DC30[1], arg1[1]);
         D_8037DC30[2] = 0.0f;
@@ -55,9 +55,9 @@ void func_802C22C0(f32 *arg0, f32 *arg1){
     if(D_8037DC3C <= 0.0f)
         D_8037DC44 = 0;
     else {
-        tmp = mlMap_f(D_8037DC3C, 0.0f, D_8037DC40, 0.0f, 1.0f);
-        mlScale(tmpf_1, D_8037DC20, tmp);
-        mlScale(tmpf_2, D_8037DC30, tmp);
+        tmp = ml_map_f(D_8037DC3C, 0.0f, D_8037DC40, 0.0f, 1.0f);
+        ml_vec3f_scale_copy(tmpf_1, D_8037DC20, tmp);
+        ml_vec3f_scale_copy(tmpf_2, D_8037DC30, tmp);
         arg0[0] += tmpf_1[0];
         arg0[1] += tmpf_1[1];
         arg0[2] += tmpf_1[2];
@@ -90,7 +90,7 @@ void func_802C24B4(void){
     f32 sp18[3];
 
     player_getPosition(&sp24);
-    func_80258BC0(sp18, D_8037DC50, sp24);
+    ml_vec3f_diff_copy(sp18, D_8037DC50, sp24);
     if( !(gu_sqrtf(sp18[0]*sp18[0] + sp18[1]*sp18[1] + sp18[2]*sp18[2]) < 2.0f)){
         func_80291488(2);
         func_802BD0D8(0xB);

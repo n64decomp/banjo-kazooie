@@ -12,15 +12,15 @@ extern u8 D_8037C590; //bool climbing
 extern u8 D_8037C591;
 
 void climbClear(void){ //climbClear
-    clear_vec3f(&climbPoleBottom);
-    clear_vec3f(&climbPoleTop);
+    ml_vec3f_clear(&climbPoleBottom);
+    ml_vec3f_clear(&climbPoleTop);
     D_8037C590 = 0;
     D_8037C58C = 0.0f;
     
 }
 
 void climbGetBottom(f32 (* dst)[3]){ //climbGetBottom
-    copy_vec3f(dst, &climbPoleBottom);
+    ml_vec3f_copy(dst, &climbPoleBottom);
 }
 
 f32 climbGetBottomY(void){ //climbGetBottomY
@@ -43,8 +43,8 @@ climbSet(f32 (* bottom)[3], f32(* top)[3], f32 radius, u32 arg3){
     if( !(D_8037C58C > 0.0f) || D_8037C580[0] != (*bottom)[0]
        || D_8037C580[1] != (*bottom)[1] || D_8037C580[2] != (*bottom)[2])
     {
-        copy_vec3f(&climbPoleBottom, bottom);
-        copy_vec3f(&climbPoleTop, top);
+        ml_vec3f_copy(&climbPoleBottom, bottom);
+        ml_vec3f_copy(&climbPoleTop, top);
         climbRadius = radius;
         D_8037C591 = arg3;
         D_8037C590 = 1;
@@ -61,6 +61,6 @@ void func_80298344(void){ //climbUpdateRegrab
 
 void climbRelease(void){ //climbRelease
     D_8037C590 = 0;
-    copy_vec3f(&D_8037C580, &climbPoleBottom);
+    ml_vec3f_copy(&D_8037C580, &climbPoleBottom);
     D_8037C58C = D_80374A30;
 }

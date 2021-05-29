@@ -72,7 +72,6 @@ void func_802870E0(AnimCtrl *this){
      anim_setTimer(anim, tmpf14);
 }
 
-
 void func_802871A4(AnimCtrl *this){
     Animation *anim;
     f32 phi_f0;

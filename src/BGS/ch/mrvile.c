@@ -4,12 +4,10 @@
 
 #include "prop.h"
 
-void func_80335924(void *, u32, f32, f32);
 void func_80335A24(void *, u32, f32, f32);
 void func_8033A4CC(u32);
-Actor *mrVileDraw(ActorMarker*, Gfx **, Mtx **);
+Actor *mrVileDraw(ActorMarker*, Gfx **, Mtx **, u32);
 void func_8038C48C(ActorMarker *);
-Actor *func_80325888(ActorMarker *);
 void func_80324C88(f32, u32, f32, u32);
 void func_8038BB40(ActorMarker *);
 
@@ -114,13 +112,13 @@ void func_8038C0C8(Actor * arg0, u32 arg1){
     arg0->unk10_31 = arg1; 
 }
 
-Actor *mrVileDraw(ActorMarker *this, Gfx **gdl, Mtx** mp){
+Actor *mrVileDraw(ActorMarker *this, Gfx **gdl, Mtx** mp, u32 arg3){
     Actor *thisActor;
     ActorLocal_MrVile *sp40;
     f32 sp34[3];
     
 
-    thisActor = func_80325888(this);
+    thisActor = func_80325888(this, gdl, mp, arg3);
     sp40 = &thisActor->mrVile;
     if (
         (sp40->unkC == 0x68) &&

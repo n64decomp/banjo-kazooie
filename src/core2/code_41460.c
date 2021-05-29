@@ -3,7 +3,6 @@
 #include "variables.h"
 
 f32 func_80309724(f32 (*)[3]);
-void func_80256900(f32 (*)[3], f32(*)[3], f32);
 
 typedef struct struct_24_s{
     u32 unk0;
@@ -146,12 +145,12 @@ Actor *func_802C8580(s32 (* position)[3], s32 yaw, ActorInfo* actorInfo, u32 fla
         s0->unk24 = randf2(0.05f, 0.4f);
         s0->unk28 = randf2(0.05f, 0.4f);
 
-        func_80256900(&s0->unk8, &s0->unk8, f24);
+        ml_vec3f_yaw_rotate_copy(&s0->unk8, &s0->unk8, f24);
         s0->unk8[0] += actor->position_x;
         s0->unk8[1] += actor->position_y;
         s0->unk8[2] += actor->position_z;
 
-        func_80256900(&s0->unk30, &s0->unk30, randf2(15.0f, 90.0f) + f24);
+        ml_vec3f_yaw_rotate_copy(&s0->unk30, &s0->unk30, randf2(15.0f, 90.0f) + f24);
     }//L802C8A08
     actor->unk40 = s1;
     func_803300D8(actor->marker, func_802C83F0);

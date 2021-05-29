@@ -171,7 +171,6 @@ void func_80386934(f32 *arg0, s32 arg1) {
 
 void func_8025727C(f32, f32, f32, f32, f32, f32, f32*, f32*);
 
-void func_80256900(f32 *, f32 *, f32, Actor *);
 
 void func_80386CF8(Actor *actor) {
     f32 sp4C[3];
@@ -186,7 +185,7 @@ void func_80386CF8(Actor *actor) {
     sp34[1] = 0.0f;
     sp34[0] = 0.0f;
     sp34[2] = 1000.0f;
-    func_80256900(sp34, sp34, actor->yaw, actor);
+    ml_vec3f_yaw_rotate_copy(&sp34, &sp34, actor->yaw);
     sp4C[0] = sp28[0] + sp34[0];
     sp4C[1] = sp28[1] + sp34[1];
     sp4C[2] = sp28[2] + sp34[2];
@@ -229,7 +228,6 @@ void func_80386E5C(ActorMarker *arg0);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/fight/code_180/func_80386E5C.s")
 
-void func_8030E878(s32, f32, s32, f32*, f32, f32);
 void func_803900DC(ActorMarker *, f32 *, f32, f32);
 
 void func_80386EC0(s32 arg0) {
@@ -339,7 +337,7 @@ void func_80387F70(Actor *actor, f32 *arg1, f32 arg2) {
     vec[0] = D_803927D0[temp_v0->pad5][0] - playerPos[0];
     vec[1] = D_803927D0[temp_v0->pad5][1] - playerPos[1];
     vec[2] = D_803927D0[temp_v0->pad5][2] - playerPos[2];
-    func_80256450(vec);
+    ml_vec3f_normalize(vec);
     arg1[0] = D_803927D0[temp_v0->pad5][0] + (arg2 * vec[0]);
     arg1[1] = D_803927D0[temp_v0->pad5][1] + (arg2 * vec[1]);
     arg1[2] = D_803927D0[temp_v0->pad5][2] + (arg2 * vec[2]);
@@ -349,7 +347,7 @@ void func_803880A0(Actor *actor, f32 arg1) {
     actor->velocity[2] = arg1;
     actor->velocity[1] = 0.0f;
     actor->velocity[0] = 0.0f;
-    func_80256900(actor->velocity, actor->velocity, actor->yaw, actor);
+    ml_vec3f_yaw_rotate_copy(actor->velocity, actor->velocity, actor->yaw);
 }
 
 void func_803880E0(ActorMarker *arg0, s32 arg1, s32 arg2) {

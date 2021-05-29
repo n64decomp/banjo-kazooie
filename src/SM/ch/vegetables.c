@@ -9,9 +9,7 @@ void func_80326224(Actor *);
 void func_803300A8(ActorMarker *, void(*)(ActorMarker *), void(*)(ActorMarker *), void(*)(ActorMarker *));
 int actor_animationIsAt(Actor*, f32);
 f32 func_80309724(f32*);
-void func_80256A24(f32 *, f32);
 f32 func_80256064(f32 *, f32 *);
-void func_80256900(f32*, f32*, f32);
 void func_802C4218(s32, f32, f32, f32);
 void func_803252D0(f32, s32);
 void func_80328B8C(Actor *, s32, f32, s32);
@@ -227,7 +225,7 @@ int func_80387FA8(Actor *this, ChVeg *local, s32 yaw, s32 arg3){
     sp18[0] = arg3;
     sp18[1] = 0.0f;
     sp18[2] = 0.0f;
-    func_80256900(sp18, sp18, yaw - 90.0);
+    ml_vec3f_yaw_rotate_copy(&sp18, &sp18, yaw - 90.0);
     sp24[0] = sp18[0] + local->unk0_x;
     sp24[1] = sp18[1] + local->unk0_y;
     sp24[2] = sp18[2] + local->unk0_z;
@@ -373,10 +371,10 @@ void func_80388080(Actor *this){
                 sp6C[1] = this->unk1C_y - this->position_y;
                 sp6C[2] = this->unk1C_z - this->position_z;
                 if( gu_sqrtf(sp6C[0]*sp6C[0] + sp6C[1]*sp6C[1] + sp6C[2]*sp6C[2] ) < 40.0f){
-                    func_80256A24(sp6C, 400.0f);
+                    ml_vec3f_set_length(sp6C, 400.0f);
                 }
                 else{
-                    func_80256A24(sp6C, 100.0f);
+                    ml_vec3f_set_length(sp6C, 100.0f);
                 }
                 this->position_x += this->velocity_x*sp78 + sp6C[0]*sp78*sp78;
                 this->position_y += this->velocity_y*sp78 + sp6C[1]*sp78*sp78;
@@ -385,7 +383,7 @@ void func_80388080(Actor *this){
                 this->velocity_y += sp6C[1]*sp78;
                 this->velocity_z += sp6C[2]*sp78;
                 if(gu_sqrtf(this->velocity_z*this->velocity_z + (this->velocity_x*this->velocity_x + this->velocity_y*this->velocity_y)) > 50.0f){
-                    func_80256A24(this->velocity, 50.0f);
+                    ml_vec3f_set_length(this->velocity, 50.0f);
                 }
                 if(func_80256064(this->position, &this->unk1C_x) < 20.0f){
                     func_80387E64(this);
@@ -406,7 +404,7 @@ void func_80388080(Actor *this){
                         this->unk1C_y -= local->unk0_y;
                         this->unk1C_z -= local->unk0_z;
                         TUPLE_ASSIGN(sp60, this->unk28, 0.0f, 0.0f);
-                        func_80256900(sp60, sp60, this->yaw - 90.0);
+                        ml_vec3f_yaw_rotate_copy(&sp60, &sp60, this->yaw - 90.0);
                         local->unk0_x = sp60[0] + local->unk0_x;
                         local->unk0_y = sp60[1] + local->unk0_y;
                         local->unk0_z = sp60[2] + local->unk0_z;

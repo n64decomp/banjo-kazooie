@@ -54,7 +54,7 @@ void func_8033DE60(ActorMarker *);
 //     if(!arg1)
 //         return -1;
     
-//     clear_vec3f(sp34);
+//     ml_vec3f_clear(sp34);
 //     D_80384FD0 = func_8033E368();
 //     if(D_80384FD0 < 0)
 //         return -1;

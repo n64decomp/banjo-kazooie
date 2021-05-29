@@ -65,7 +65,7 @@ void bsbbuster_init(void){
     func_8029C7F4(1,1,3,6);
     gravity_set(0.0f);
     func_80297970(0.0f);
-    clear_vec3f(sp20);
+    ml_vec3f_clear(sp20);
     func_80297A0C(sp20);
     func_8029E070(1);
     func_802A02B4(0);

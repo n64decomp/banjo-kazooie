@@ -91,8 +91,8 @@ struct0 *func_8031B9D8(void){
     struct0 *this;
 
     this = (struct0 *)malloc(0x60);
-    clear_vec3f(&(this->unk1C));
-    clear_vec3f(&(this->unk28));
+    ml_vec3f_clear(&(this->unk1C));
+    ml_vec3f_clear(&(this->unk28));
     this->normX = 0.0f;
     this->normZ = 0.0f;
     this->normY = 1.0f;
@@ -130,9 +130,9 @@ void func_8031BA9C(struct0 *this){
 //     void *temp_v1;
 //     void *phi_v0;
 
-//     copy_vec3f(&sp34, arg0);
+//     ml_vec3f_copy(&sp34, arg0);
 //     sp34[1] = sp34[1] + arg1;
-//     copy_vec3f(&sp28, arg0);
+//     ml_vec3f_copy(&sp28, arg0);
 //     sp28[1] = sp28[1] + arg2;
 //     if (arg3 == 0xF800FF0F) {
 //         phi_v0 = func_80309B48(&sp34, &sp28, arg4, arg3);
@@ -207,7 +207,7 @@ void func_8031BD98(struct0 *this, f32 arg1, s32 arg2, s32 arg3, f32 *normPtr, vo
     this->unk50 = arg3;
     this->posX = arg1;
     this->model = model;
-    copy_vec3f(&this->normX, normPtr);
+    ml_vec3f_copy(&this->normX, normPtr);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031BE0C.s")
@@ -262,7 +262,7 @@ s32 func_8031C5A4(struct0 *this){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031C5AC.s")
 // void func_8031C5AC(struct0 *this, f32 *dst){
-//     copy_vec3f(dst, &this->normX);
+//     ml_vec3f_copy(dst, &this->normX);
 // }
 
 f32 func_8031C5D4(struct0 *this){
@@ -292,7 +292,7 @@ void func_8031C608(struct0 *this){
 }
 
 void func_8031C618(struct0 *this, f32 *arg1){
-    copy_vec3f(&this->unk1C, arg1);
+    ml_vec3f_copy(&this->unk1C, arg1);
 }
 
 void func_8031C638(struct0 *this, s32 arg1){
@@ -381,7 +381,7 @@ Actor *func_80326EEC(s32);
 void func_803204E4(s32 arg0, s32 arg1);
 s32 func_8031FF44(s32 offset, s32 numBits);
 void func_8031CE70(f32 *arg0, s32 arg1, s32 arg2);
-void func_80258DA8(f32 *, s32);
+void ml_vec3h_to_vec3f(f32 *, s32);
 void func_8028F3D8(f32 *, f32,  void(*)(ActorMarker *), ActorMarker *);
 struct unkfunc_80304ED0 *func_80304ED0(void*, f32 *);
 f32 func_80256064(f32 *, f32 *);
@@ -431,7 +431,7 @@ void func_8031CC8C(s32 arg0, s32 arg1) {
     if ((D_80383190 == 0) && (getGameMode() != 8)) {
         if (getGameMode() != 7) {
             if (arg0 != 0) {
-                func_80258DA8(vec, arg0);
+                ml_vec3h_to_vec3f(vec, arg0);
                 func_8031CE70(vec, arg1 >> 8, arg1 & 0xFF);
             } else {
                 func_8031CE70(NULL, arg1 >> 8, arg1 & 0xFF);
@@ -450,7 +450,7 @@ void func_8031CD44(s32 arg0, s32 arg1, f32 arg2, f32 arg3, s32 arg4) {
     f32 sp24[3];
 
     player_getPosition((f32 *) &sp3C);
-    func_80256E24(sp24, 0.0f, arg3, 0.0f, 0.0f, mlMap_f((f32) arg4, 0.0f, 200.0f, 10.0f, 800.0f));
+    func_80256E24(sp24, 0.0f, arg3, 0.0f, 0.0f, ml_map_f((f32) arg4, 0.0f, 200.0f, 10.0f, 800.0f));
     sp24[0] = sp3C[0] + sp24[0];
     sp24[1] = sp3C[1] + sp24[1];
     sp24[2] = sp3C[2] + sp24[2];
@@ -834,7 +834,7 @@ void func_8031DC10(s32 arg0, s32 arg1) {
     f32 vec[3];
 
     if (player_getTransformation() == TRANSFORM_PUMPKIN) {
-        func_80258DA8(vec, arg0);
+        ml_vec3h_to_vec3f(vec, arg0);
         func_8028F6E4(0x2F, vec);
         timedFunc_set_0(D_80378D44, &func_8031DBE8);
     }

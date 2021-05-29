@@ -33,11 +33,11 @@ enum asset_e func_80294974(void){
 }
 
 void func_80294980(f32 (* dst)[3]){
-    copy_vec3f(dst, &D_8037C2A0);
+    ml_vec3f_copy(dst, &D_8037C2A0);
 }
 
 void func_802949A4(f32 (* dst)[3]){
-    copy_vec3f(dst, &D_8037C2D8);
+    ml_vec3f_copy(dst, &D_8037C2D8);
 }
 
 int func_802949C8(void){
@@ -49,11 +49,11 @@ f32 get_slope_timer(void){
 }
 
 void func_802949F8(f32 (* dst)[3]){
-    copy_vec3f(dst, &D_8037C2B0);
+    ml_vec3f_copy(dst, &D_8037C2B0);
 }
 
 void func_80294A1C(f32 (* dst)[3]){
-    copy_vec3f(dst, &D_8037C2C0);
+    ml_vec3f_copy(dst, &D_8037C2C0);
 }
 
 f32 func_80294A40(void){
@@ -72,7 +72,7 @@ void func_80294A58(enum asset_e asset_id){
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D9B0/func_80294A64.s")
 #else
 void func_80294A64(f32 (* src)[3]){
-    copy_vec3f(&D_8037C2A0, src);
+    ml_vec3f_copy(&D_8037C2A0, src);
 }
 #endif
 
@@ -84,7 +84,7 @@ void func_80294A8C(int arg0){
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D9B0/func_80294A98.s")
 #else
 void func_80294A98(f32 (* src)[3]){
-    copy_vec3f(&D_8037C2B0, src);
+    ml_vec3f_copy(&D_8037C2B0, src);
 }
 #endif
 
@@ -92,7 +92,7 @@ void func_80294A98(f32 (* src)[3]){
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D9B0/func_80294AC0.s")
 #else
 void func_80294AC0(f32 (* src)[3]){
-    copy_vec3f(&D_8037C2C0, src);
+    ml_vec3f_copy(&D_8037C2C0, src);
 }
 #endif
 
@@ -131,8 +131,8 @@ void func_80294B0C(void){
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D9B0/func_80294BDC.s")
 
 void func_80294DD8(void){
-    clear_vec3f(&D_8037C2A0);
-    clear_vec3f(&D_8037C2B0);
+    ml_vec3f_clear(&D_8037C2A0);
+    ml_vec3f_clear(&D_8037C2B0);
     _player_getPosition(&D_8037C2D8);
     D_8037C2ED = 0;
     D_8037C2E4 = 0.0f;

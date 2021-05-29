@@ -4,8 +4,6 @@
 
 s32 func_8024DD34(f32,f32, f32);
 
-void func_80256900(f32*, f32*, f32);
-
 void func_802F9FD0(void *, f32, f32, f32);
 
 extern f32 D_803772C0;
@@ -36,10 +34,10 @@ void func_802F7EB0(struct3s *this){
     sp4C[2] = -tmpf;
 
     if(gu_sqrtf(this->unk18*this->unk18 + (this->unk10*this->unk10 + this->unk14*this->unk14)) < 5.0f){
-        func_80256900(sp4C, sp4C, randf2(0.0f, 360.0f));
+        ml_vec3f_yaw_rotate_copy(&sp4C, &sp4C, randf2(0.0f, 360.0f));
     }
     else{
-        func_80256900(sp4C, sp4C, camRot[1]+ randf2(-70.0f, 70.0f));
+        ml_vec3f_yaw_rotate_copy(&sp4C, &sp4C, camRot[1]+ randf2(-70.0f, 70.0f));
     }
     sp4C[0] = plyrPos[0] + sp4C[0];
     sp4C[1] = plyrPos[1] + sp4C[1];

@@ -57,7 +57,7 @@ extern f32 D_8037C4E8; //gravity
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_FD60/func_80297A7C.s")
 
 void _get_velocity(f32 (*dst)[3]){
-    copy_vec3f(dst, &D_8037C4B8);
+    ml_vec3f_copy(dst, &D_8037C4B8);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_FD60/func_80297AAC.s")

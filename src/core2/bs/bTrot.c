@@ -270,7 +270,7 @@ void func_802A9054(void){
     f32 tmp = 1.0f;
     func_80289EC8(func_802A8900(), func_802A88B0(), func_802A8984(), func_802A8934());
     if(func_8028B394()){
-        tmp = mlMap_f(func_80297AF0(), 0.0f, 1.0f, 0.6f, 0.9f);
+        tmp = ml_map_f(func_80297AF0(), 0.0f, 1.0f, 0.6f, 0.9f);
         func_80289EF8(tmp);
     }
     else{
@@ -528,7 +528,7 @@ void bsbtrot_slide_update(void){
         func_80294480(sp30);
         func_8025801C(sp30, &sp2C);
         func_80299628(1);
-        func_80297970(mlMap_f(pitch_getIdeal(), 20.0f, 60.0f, 550.0f, 700.0f));
+        func_80297970(ml_map_f(pitch_getIdeal(), 20.0f, 60.0f, 550.0f, 700.0f));
         func_8029797C(sp2C);
         func_8029C22C();
     }else{

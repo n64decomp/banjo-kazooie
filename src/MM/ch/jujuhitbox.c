@@ -6,7 +6,6 @@
 /* extern functions */
 void func_80326224(Actor *);
 void func_80388DFC(ActorMarker *, s32);
-void func_8030E878(s32, f32, s32, f32*, f32, f32);
 s32  func_80329784(Actor *);
 void func_802C4140(s32, s32, s32, s32);
 void func_80353580(void *);

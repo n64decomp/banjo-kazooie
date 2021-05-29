@@ -2,9 +2,20 @@
 #include "functions.h"
 #include "variables.h"
 
+void func_8025108C(s32 arg0);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13640/func_80251060.s")
+/* .bss */
+s32 D_802827F0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13640/func_8025106C.s")
+/* .code */
+s32 func_80251060(void){
+    return D_802827F0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13640/func_8025108C.s")
+void func_8025106C(void){
+    func_8025108C(0);
+}
+
+void func_8025108C(s32 arg0){
+    D_802827F0 = arg0;
+}

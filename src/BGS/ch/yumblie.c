@@ -4,12 +4,10 @@
 
 #include "prop.h"
 f32 func_80335684(void *);
-u32 func_8025773C(f32*, f32);
 void func_803253A0(Actor *);
 void func_80325794(ActorMarker *);
 void func_8038B6D0(Actor *);
 Actor *func_8038B528(ActorMarker*, Gfx **, Mtx **, u32 arg3);
-void func_8030E878(u32,f32,u32,f32*, f32, f32);
 void func_8030E6A4(u32,f32, u32);
 
 f32 randf (void);
@@ -25,7 +23,6 @@ extern f32 D_80391038;
 extern f32 D_8039103C;
 
 void func_8038B220(Actor*, u32);
-void func_80335924(void*, u32, f32, f32);
 
 
 ActorInfo D_80390A40 = {0xC7, actor_yumblie, 0x3F6, 0x00, NULL,

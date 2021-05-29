@@ -180,13 +180,13 @@ void bsbfly_update(void){
         sp38 = 0.0f;
     }
     else if(sp3C <= 80.0f){
-        func_80297BF8(mlMap_f(sp3C, 60.0f, 80.0f, -99.9f, D_80375518));
-        gravity_set(mlMap_f(sp3C, 60.0f, 80.0f, -300.0f, -700.0f));
-        sp38 = mlMap_f(sp3C, 60.0f, 80.0f, 600.0f, 60.0f);
+        func_80297BF8(ml_map_f(sp3C, 60.0f, 80.0f, -99.9f, D_80375518));
+        gravity_set(ml_map_f(sp3C, 60.0f, 80.0f, -300.0f, -700.0f));
+        sp38 = ml_map_f(sp3C, 60.0f, 80.0f, 600.0f, 60.0f);
     }
     else{
-        func_80297BF8(mlMap_f(sp3C, 300.0f, 310.0f, -399.99f, D_8037551C));
-        sp38 = mlMap_f(sp3C, 300.0f, 340.0f, 0.0f, 600.0f);
+        func_80297BF8(ml_map_f(sp3C, 300.0f, 310.0f, -399.99f, D_8037551C));
+        sp38 = ml_map_f(sp3C, 300.0f, 340.0f, 0.0f, 600.0f);
     }//L802A3E18
 
     sp4C = func_802946F0();

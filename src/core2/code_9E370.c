@@ -196,9 +196,9 @@ Actor *actor_new(s32 (* position)[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
     func_803300E8(D_80383390->marker, actorInfo->modelId);
     func_803300C8(D_80383390->marker, actorInfo->update_func);
     func_803300D0(D_80383390->marker, actorInfo->unk10);
-    clear_vec3f(&D_80383390->unk1C);
-    clear_vec3f(&D_80383390->velocity);
-    clear_vec3f(&D_80383390->spawn_position);
+    ml_vec3f_clear(&D_80383390->unk1C);
+    ml_vec3f_clear(&D_80383390->velocity);
+    ml_vec3f_clear(&D_80383390->spawn_position);
     D_80383390->stored_animctrl_index = 0;
     D_80383390->unk58_2 = 1;
     D_80383390->stored_animctrl_playbackType_ = 0;
@@ -652,7 +652,10 @@ s32 func_80329054(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80329140.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80329210.s")
+int func_80329210(Actor * arg0, f32 (* arg1)[3]){
+    return arg0->unk10_25 < 1 
+        || func_80307258(arg1, arg0->unk10_25 - 1, arg0->unk10_18-1) != -1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80329260.s")
 

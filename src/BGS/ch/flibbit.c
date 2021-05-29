@@ -3,9 +3,7 @@
 #include "variables.h"
 
 void func_80258A4C(f32 *, f32, f32 *, f32 *, f32 *, f32 *);
-void func_80256A24(f32 *, f32);
 f32 func_80309724(f32 *);
-void func_80335924(void *, u32, f32,f32);
 void func_80324D54(f32, u32, f32, u32, f32 *, f32, f32);
 
 
@@ -56,7 +54,7 @@ u32 func_80386564(Actor *this){
             sp3C[0] = plyrPos[0] - this->position_x;
             sp3C[1] = plyrPos[1] - this->position_y;
             sp3C[2] = plyrPos[2] - this->position_z;
-            func_80256A24(sp3C,180.0f);
+            ml_vec3f_set_length(sp3C,180.0f);
             sp30[0] = sp3C[0] + this->position_x;
             sp30[1] = sp3C[1] + this->position_y;
             sp30[2] = sp3C[2] + this->position_z;

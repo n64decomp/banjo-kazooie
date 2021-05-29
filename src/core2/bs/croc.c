@@ -500,7 +500,7 @@ static void func_802ACF58(void){
     f32 sp2C;
     f32 sp20[3];
     sp2C = func_8028B2E8() ? 500.0f : 400.0f;
-    func_802589E4(&sp20, yaw_get(), sp2C);
+    ml_radial_to_cartisian(&sp20, yaw_get(), sp2C);
     sp20[1] = 200.0f;
     func_80297A0C(&sp20);
 }

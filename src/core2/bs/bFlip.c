@@ -35,7 +35,7 @@ void _bsbflip_802A2DC0(void){
     func_802875AC(aCtrl, "bsbflip.c", 0x69); //nice
     func_802978DC(3);
     func_80297970(0.0f);
-    clear_vec3f(sp20);
+    ml_vec3f_clear(sp20);
     func_80297A0C(sp20);
     func_8029C5E8();
 }

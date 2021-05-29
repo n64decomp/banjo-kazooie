@@ -308,7 +308,7 @@ void bsdronexform_init(void){
 }
 
 f32 func_802B051C(s32 arg0, f32 arg1, f32 arg2, f32 arg3){
-    return mlMap_f(func_8029E270(arg0), arg1, 0.0f, arg2, arg3);
+    return ml_map_f(func_8029E270(arg0), arg1, 0.0f, arg2, arg3);
 }
 
 void bsdronexform_update(void){

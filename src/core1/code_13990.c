@@ -34,11 +34,25 @@ void func_80251494(Mtx *mPtr){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_802515D4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_802516C8.s")
+void func_802516C8(void){
+    D_80282FD0--; 
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_802516E0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_80251738.s")
+void func_80251738(void){
+    s32 i;
+    f32 *v0 = ++D_80282FD0;
+    for(i = 0; i<3; i++){
+        v0[0] = 1.0f;
+        v0[1] = 0.0f;
+        v0[2] = 0.0f;
+        v0[3] = 0.0f;
+        v0[4] = 0.0f;
+        v0 += 5;
+    }
+    v0[0] = 1.0f; 
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_80251788.s")
 

@@ -31,7 +31,7 @@ segments:
   subsegments:
   - [0x00000000, c, code_0]
   - [0x0660, c, code_660]
-  - [0x07C0, c, code_7C0]
+  - [0x07C0, c, inflate]
   - [0x1D00, c, code_1D00]
   - [0x2BD0, c, code_2BD0]
   - [0x2DA0, c, code_2DA0]

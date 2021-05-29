@@ -4,6 +4,11 @@
 
 #include "gc/gctransition.h"
 
+
+void func_8023E00C(s32);
+void func_8023DFF0(s32);
+
+
 extern s32 D_80275610;
 extern u32 D_80275618;
 extern u32 D_8027A130;
@@ -66,9 +71,6 @@ s32 func_8023DB74(void){
 s32 func_8023DBA4(void){
     return 0x1F;
 }
-
-void func_8023E00C(s32);
-void func_8023DFF0(s32);
 
 void func_8023DBAC(void){
     func_8023E00C(func_8023DBA4());

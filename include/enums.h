@@ -799,4 +799,21 @@ enum asset_e
     text_flibbits_return = 0xc83
 };
 
+enum overlay_e{
+    OVERLAY_COSHOW  = 0x1,
+    OVERLAY_WHALE   = 0x2,
+    OVERLAY_HAUNTED = 0x3,
+    OVERLAY_DESERT  = 0x4,
+    OVERLAY_BEACH   = 0x5,
+    OVERLAY_JUNGLE  = 0x6,
+    OVERLAY_SWAMP   = 0x7,
+    OVERLAY_SHIP    = 0x8,
+    OVERLAY_SNOW    = 0x9,
+    OVERLAY_TREE    = 0xA,
+    OVERLAY_TRAINING = 0xB,
+    OVERLAY_INTRO   = 0xC,
+    OVERLAY_WITCH   = 0xD,
+    OVERLAY_BATTLE  = 0xE
+};
+
 #endif

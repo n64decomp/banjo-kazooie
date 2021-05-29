@@ -4,7 +4,6 @@
 
 /* extern functions */
 void func_80326224(Actor *);
-void func_80256900(f32*, f32*, f32);
 int func_80353064(f32*, f32);
 void  func_802BB3DC(s32, f32, f32);
 Actor *func_8032813C(s32, f32*, s32);
@@ -197,7 +196,7 @@ void    func_80389598(Actor *this){
             {sp28[0] = 100.0f;
             sp28[1] = 0.0f;
             sp28[2] = 0.0f;}
-            func_80256900(sp28, sp28, this->yaw + 90.0);
+            ml_vec3f_yaw_rotate_copy(&sp28, &sp28, this->yaw + 90.0);
             this->position_x += sp28[0];
             this->position_y += sp28[1];
             this->position_z += sp28[2];

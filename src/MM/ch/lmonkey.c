@@ -67,7 +67,7 @@ void func_80388300(Actor **arg0){
     f32 sp28;
     s32 v0 = 6;
 
-    sp2C = mlMap_f(func_8032970C(), D_80389C08, 343000000.0f, 18000.0f, 0.0f);
+    sp2C = ml_map_f(func_8032970C(), D_80389C08, 343000000.0f, 18000.0f, 0.0f);
     sp28 = randf();
     if(--D_80389A5C < 0){
         if(randf() < D_80389C10){

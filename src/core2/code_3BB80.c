@@ -185,21 +185,21 @@ void func_802C2B10(void){
 void func_802C2B5C(void){
     s32 loaded_asm_file;
 
-    loaded_asm_file = func_80251230();
+    loaded_asm_file = get_loaded_overlay_id();
     func_802C3BE8();
     D_80365DC4 = 0;
     func_802D1724();
     func_802E1790();
     switch(loaded_asm_file){
-        case 2:
+        case OVERLAY_WHALE:
             cc_func_803870E0();
             break;
-        case 4:
+        case OVERLAY_DESERT:
             gv_func_80387118();
             break;
-        case 5:
+        case OVERLAY_BEACH:
             break;
-        case 7:
+        case OVERLAY_SWAMP:
             bgs_func_803885DC();
             break;
         default:
@@ -229,7 +229,7 @@ void func_802C2B5C(void){
     func_803053E8(&D_80367A20, actor_new, 0x0000000);
     func_803053E8(&D_80366C80, actor_new, 0x0200040); //chhoneycarrier
     func_803053E8(&D_80366CA4, actor_new, 0x0200040); //chhoney
-    func_803053E8(&D_80366C50, actor_new, 0x0200000); //music_not
+    func_803053E8(&D_80366C50, actor_new, 0x0200000); //music_note
     func_803053E8(&D_80367D00, actor_new, 0x0200000); //egg
     func_803053E8(&D_80366340, func_802C8A54, 0x0000004);
     func_803053E8(&D_80366364, func_802C8AA8, 0x0000004);
@@ -352,46 +352,46 @@ void func_802C2B5C(void){
     switch(loaded_asm_file){
         default:
             break;
-        case 0xd:
+        case OVERLAY_WITCH:
             lair_func_8038A0C4();
             break;
-        case 0xe:
+        case OVERLAY_BATTLE:
             fight_func_803863F0();
             break;
-        case 0xc:
+        case OVERLAY_INTRO:
             cutscene_func_8038C4E0();
             break;
-        case 0xb:
+        case OVERLAY_TRAINING:
             sm_func_80386810();
             break;
-        case 0x3:
+        case OVERLAY_HAUNTED:
             mmm_func_803890E0();
             break;
-        case 0x2:
+        case OVERLAY_WHALE:
             cc_func_80387DA0();
             break;
-        case 0x4:
+        case OVERLAY_DESERT:
             gv_func_8038F154();
             break;
-        case 0x5:
+        case OVERLAY_BEACH:
             ttc_func_80388AC0();
             break;
-        case 0x6:
+        case OVERLAY_JUNGLE:
             mm_func_803888B0();
             break;
-        case 0x7:
+        case OVERLAY_SWAMP:
             bgs_func_8038F1E0();
             break;
-        case 0x8:
+        case OVERLAY_SHIP:
             rbb_func_80386C48();
             break;
-        case 0x9:
+        case OVERLAY_SNOW:
             fp_func_80391324();
             func_803053E8(&D_80367BC8, actor_new, 0x8);
             func_803053E8(&D_80367BEC, actor_new, 0x8);
             func_803053E8(&D_80367C10, actor_new, 0x8);
             break;
-        case 0xa:
+        case OVERLAY_TREE:
             ccw_func_8038DB6C();
             break;
     }

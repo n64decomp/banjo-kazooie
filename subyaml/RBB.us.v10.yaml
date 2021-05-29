@@ -46,6 +46,7 @@ segments:
       - [0x5F80, c, code_5F80]
       - [0x7A60, c, code_7A60]
       - [0x7B20, c, code_7B20]
+      - [0x7FD0, c, code_7FD0]
       - [0x8520, c, code_8520]
       - [0x99F0, c, code_99F0]
   - name: data
@@ -55,4 +56,8 @@ segments:
     vram: 0x80390050
     subsegments:
       - [0x00009C60, bin, data_9C60]
+      - [0x0000A930, .data, code_7B20]
+      - [0x0000A960, bin, data_A960]
+      - [0x0000AD80, .rodata, code_7B20]
+      - [0x0000ADB0, bin, data_ADB0]
   - [0x0000AE80]

@@ -32,7 +32,7 @@ void func_802AD728(void){
 }
 
 void func_802AD768(AnimCtrl *aCtrl, f32 arg1){
-    animctrl_setDuration(aCtrl, mlMap_f(arg1, 0.0f, 180.0f, 0.5, 0.2f));
+    animctrl_setDuration(aCtrl, ml_map_f(arg1, 0.0f, 180.0f, 0.5, 0.2f));
 }
 
 void func_802AD7B0(AnimCtrl *aCtrl){
@@ -92,7 +92,7 @@ void bscrouch_update(void){
     func_8029E1A8(0);
     func_8029E1A8(1);
     
-    sp30 = mlMap_f(func_8029E270(0), 0.0f, 0.3f, 0.0f, D_8037D400);
+    sp30 = ml_map_f(func_8029E270(0), 0.0f, 0.3f, 0.0f, D_8037D400);
     func_80297970(sp30);
     if(220.0f < sp30)
         func_802929F8();

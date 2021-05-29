@@ -12,7 +12,6 @@ void func_802EFB84(Actor*, f32, f32);
 void func_802EFE24(Actor*, f32, f32, f32, f32, f32, f32);
 void func_802EFE5C(Actor*, f32, f32);
 void func_802EFEC0(Actor*, f32, f32);
-void func_8030E878(u32,f32,u32,f32*, f32, f32);
 u32 actor_animationIsAt(Actor*, f32);
 void func_803869A0(Actor*, f32, f32);
 void func_802C4218(s32, f32, f32, f32);

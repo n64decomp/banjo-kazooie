@@ -364,7 +364,7 @@ void bsblongleg_jump_update(void){
             }
             break;
         case 2://L802A6020
-            func_8028764C(aCtrl, mlMap_f(sp30, D_8037D354, 1.0f, D_8037D350, 0.6703f));
+            func_8028764C(aCtrl, ml_map_f(sp30, D_8037D354, 1.0f, D_8037D350, 0.6703f));
             func_80299594(1, 0.5f);
             if(func_8028B2E8()){
                 func_8029C5E8();
@@ -433,7 +433,7 @@ void bsblongleg_slide_update(void){
         func_80294480(sp30);
         func_8025801C(sp30, &sp2C);
         func_80299594(1, 0.5f);
-        func_80297970(mlMap_f(pitch_getIdeal(), 20.0f, 60.0f, 550.0f, 700.0f));
+        func_80297970(ml_map_f(pitch_getIdeal(), 20.0f, 60.0f, 550.0f, 700.0f));
         func_8029797C(sp2C);
         func_8029C22C();
     }else{//L802A6304
