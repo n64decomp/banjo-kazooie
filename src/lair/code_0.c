@@ -4,7 +4,6 @@
 
 #include "prop.h"
 
-int actor_animationIsAt(Actor *, f32);
 void func_80328B8C(Actor *, s32, f32, s32);
 void func_802D4830(Actor *, s32, f32);
 

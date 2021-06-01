@@ -339,10 +339,22 @@ void func_8030E878(s32, f32, s32, f32 (*)[3], f32, f32);
 Actor *func_80325888(ActorMarker *, Gfx**, Mtx**, u32);
 void func_80335924(void *, s32, f32, f32);
 
+extern Actor *func_80325340(ActorMarker *, Gfx**, Mtx**, u32);
+void func_8032AA58(Actor *, f32);
+void func_8034DDF0(void *, f32 (*)[3], f32 (*)[3], f32, s32);
+void func_80324E38(f32, s32);
+void func_8034E1A4(void *, s32, f32, f32);
+void func_80324C88(f32, s32, f32, s32);
+f32 func_80256064(f32 (*)[3], f32 (*)[3]);
+void func_80324E60(f32, s32);
+void func_80324E88(f32);
+void func_8034DFB0(s32, s32(*)[4], s32(*)[4], f32);
+int actor_animationIsAt(Actor*, f32);
 
-
-
-
-
+void func_80250E94(f32, f32, f32, f32, f32, f32);
+void func_802EF3F4(Actor *, f32(*)[3], f32(*)[3], s32);
+void func_802EFB98(Actor *, f32(*)[3]);
+void func_802EFC84(Actor *, f32(*)[3]);
+void func_8034DC08(void *, f32 (*)[3], f32(*)[3], f32, s32);
 
 #endif

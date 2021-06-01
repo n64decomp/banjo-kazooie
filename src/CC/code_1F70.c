@@ -18,8 +18,6 @@ void func_80388664(void) {
     jiggySpawn(JIGGY_CC_MUTIE_SNIPPETS, D_80389C00);
 }
 
-void func_80324E38(f32, s32);
-void func_80324E60(f32, s32);
 void func_80324E88(f32);
 void func_80324DBC(f32, s32, s32, f32 *, ActorMarker *, void(*)(void), s32);
 

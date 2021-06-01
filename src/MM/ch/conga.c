@@ -21,9 +21,7 @@ void func_80328FB0(Actor *, f32);
 
 void func_80328B8C(Actor*, s32, f32, s32);
 void func_802C8F70(f32);
-void func_80324E60(f32, s32);
 void func_80324E88(f32);
-void func_80324E38(f32, s32);
 Actor *func_8032811C(s32 actor_id, s32* position, s32 yaw);
 void func_80387F44(void);
 

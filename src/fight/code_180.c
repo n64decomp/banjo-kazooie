@@ -79,8 +79,6 @@ void func_80386654(f32 arg0, s32 arg1, s32 arg2) {
     }
 }
 
-void func_8034DDF0(s32, s32*, s32*, f32, s32);
-
 void func_80386698(f32 arg0) {
     s32 temp_v0;
 
@@ -281,8 +279,6 @@ void func_803872F8(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/fight/code_180/func_80387340.s")
 
-s32 actor_animationIsAt(Actor *, f32);
-
 void func_803873DC(Actor *actor, s32 arg1, s32 arg2) {
     f32 vec[3];
     ActorMarker *marker;
@@ -429,7 +425,6 @@ void func_80389918(s32 arg0) {
     func_802C3C88(&func_803898D0, *arg0ptr);
 }
 
-void func_80324E38(f32, s32);
 
 void func_80389944(ActorMarker *marker, s32 arg1, s32 arg2) {
     Actor *actor;
@@ -545,7 +540,6 @@ f32 func_8038DFA0();
 void func_80324E88(f32);
 f32 func_80391240();
 
-void func_80324E60(f32, s32);
 
 // Very minor stack diff
 // void func_8038C148(void) {

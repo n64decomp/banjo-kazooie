@@ -4,8 +4,6 @@
 
 
 void func_80326224(Actor *);
-Actor *func_80325340(ActorMarker *, Gfx **, Mtx **, s32);
-f32 func_80256064(f32 *, f32 *);
 f32 func_8028E82C(void);
 void func_8028F3D8(f32 *, f32,  void(*)(ActorMarker *), ActorMarker *);
 

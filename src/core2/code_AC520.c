@@ -2,7 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-f32 func_80256064(s32, void *);
 
 extern struct {
     vector(struct22s) *unk0;

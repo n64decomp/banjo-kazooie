@@ -5,11 +5,9 @@
 /* chAttackTutorial - controls bottle teaching moves in spiral*/
 
 //external
-void func_80324E60(f32, s32);
 void func_80324E88(f32);
 void func_8028F918(s32);
 void func_80326224(Actor *);
-void func_80325340(ActorMarker *, Gfx**, Mtx**, s32);
 
 //public
 void func_80387764(ActorMarker *);

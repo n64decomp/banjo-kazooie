@@ -384,7 +384,6 @@ void func_8031CE70(f32 *arg0, s32 arg1, s32 arg2);
 void ml_vec3h_to_vec3f(f32 *, s32);
 void func_8028F3D8(f32 *, f32,  void(*)(ActorMarker *), ActorMarker *);
 struct unkfunc_80304ED0 *func_80304ED0(void*, f32 *);
-f32 func_80256064(f32 *, f32 *);
 void func_8031CD44(s32, s32, f32, f32, s32);
 void func_80256E24(f32 *, f32, f32, f32, f32, f32);
 

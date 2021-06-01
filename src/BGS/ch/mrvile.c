@@ -8,7 +8,6 @@ void func_80335A24(void *, u32, f32, f32);
 void func_8033A4CC(u32);
 Actor *mrVileDraw(ActorMarker*, Gfx **, Mtx **, u32);
 void func_8038C48C(ActorMarker *);
-void func_80324C88(f32, u32, f32, u32);
 void func_8038BB40(ActorMarker *);
 
 extern f32 D_80391040;

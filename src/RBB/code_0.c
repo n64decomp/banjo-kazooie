@@ -2,133 +2,125 @@
 #include "functions.h"
 #include "variables.h"
 
-#include "prop.h"
+extern void func_80324E88(f32);
 
-extern ActorInfo D_80390D20;
-extern ActorInfo D_80390050;
-extern ActorInfo D_80390200;
-extern ActorInfo D_80390270;
-extern ActorInfo D_80390D50;
-extern ActorInfo D_803906E0;
-extern ActorInfo D_80390738;
-extern ActorInfo D_803907D0;
-extern ActorInfo D_803907F4;
-extern ActorInfo D_80390818;
-extern ActorInfo D_8039083C;
-extern ActorInfo D_803904C0;
-extern ActorInfo D_803904E4;
-extern ActorInfo D_80390508;
-extern ActorInfo D_803903B0;
-extern ActorInfo D_803903D4;
-extern ActorInfo D_803903F8;
-extern ActorInfo D_80390640;
-extern ActorInfo D_80390664;
-extern ActorInfo D_80390688;
-extern ActorInfo D_803906B0;
-extern ActorInfo D_803908C0;
-extern ActorInfo D_803908E4;
-extern ActorInfo D_80390908;
-extern ActorInfo D_803909B0;
-extern ActorInfo D_803909D4;
-extern ActorInfo D_803909F8;
-extern ActorInfo D_80390A50;
-extern ActorInfo D_80390380;
-extern ActorInfo D_80390A80; //anchorswitch
-extern ActorInfo D_80390AB0; //dolphin
-extern ActorInfo D_80390AE0; //anchor
-extern ActorInfo D_80390B10;
-extern ActorInfo D_80390B40; //rarewareflag
-extern ActorInfo D_80390BD0;
-extern ActorInfo D_80390BF4;
-extern ActorInfo D_80390C18;
-extern ActorInfo D_80390C3C;
-extern ActorInfo D_80390CF0;
-extern ActorInfo D_80390D88;
-extern ActorInfo D_80390DAC; //TNTpart_IDStruct;
-extern ActorInfo D_80390E00;
-extern ActorInfo D_80390E34;
-extern ActorInfo D_80390E58;
-extern ActorInfo D_803900E0;
-extern ActorInfo D_80390104; //captcabinwooddoor
-extern ActorInfo D_80390128;
-extern ActorInfo D_8039014C;
-extern ActorInfo D_803901B8;
-extern ActorInfo D_803901DC;
-extern ActorInfo D_80390170;//skylight
-extern ActorInfo D_80390194;//honeycombswitch
+/* typedefs and declarations */
+typedef struct {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+    s32 unkC;
+}ActorLocal_RBB_0;
+
+typedef struct {
+    u8 unk0;
+    u8 unk1;
+    u8 unk2;
+    u8 pad3[1];
+    f32 unk4;
+    u8 pad8[8];
+}Struct_RBB_0_1;
 
 
+void func_803866F4(Actor *this, s32 arg1);
+void func_803868F0(Actor* this);
+
+/* .data */
+/* ActorInfo D_80390050 = {
+    0x182, 0x172, 0x402, 0x0, NULL,
+    func_803868F0, NULL, func_80325340,
+    {0, 0, 0, 0}, 0.0f, {0,0,0,0}
+};*/
+extern Struct_RBB_0_1 D_80390074[];
+
+/* .code */
 #pragma GLOBAL_ASM("asm/nonmatchings/RBB/code_0/func_803863F0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/RBB/code_0/func_803865A4.s")
+void func_803865A4(ActorMarker *marker, s32 arg1){
+    func_803866F4(marker_getActor(marker), arg1);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/RBB/code_0/func_803865D0.s")
+void func_803865D0(ActorMarker *marker){
+    Actor* actor = marker_getActor(marker);
+    ActorLocal_RBB_0 * local = (ActorLocal_RBB_0 *) &actor->local;
+    func_803863F0(actor, 1);
+    func_80324E60(0.0f, D_80390074[local->unk4].unk0);
+    timedFunc_set_2(0.75*D_80390074[local->unk4].unk4, (TFQM2) func_803865A4, actor->marker, 4);
+    func_80324E88(0.75*D_80390074[local->unk4].unk4);
+    func_80324E38(0.75*D_80390074[local->unk4].unk4, 0);
+    func_80324C88(D_80390074[local->unk4].unk4, 0x7f, 0.8f, 0x7fd0);
+}
 
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/RBB/code_0/func_803866F4.s")
+#else
+void func_803866F4(Actor *this, s32 arg1){
+    ActorLocal_RBB_0 *local = (ActorLocal_RBB_0 *) &this->local;
+    while(1){
+        if(arg1 == 2){
+            
+            func_8025A6EC(SFX_DING_B, 28000);
+            local = (ActorLocal_RBB_0 *) &this->local;
+            local->unkC = 3;
+        }
+        if(arg1 == 3){
+            local->unk8++;
+            func_8025A6EC(SFX_DING_B, 28000);
+            func_80324E38(0.0f, 3);
+            timedFunc_set_2(0.5f, (TFQM2) func_8025A6EC, JINGLE_PUZZLE_SOLVED_FANFARE, 28000);
+            timedFunc_set_1(1.0f,  (TFQM1) func_803865D0, this->marker);
+        }//L803867D4
+        if(arg1 == 4){
+            if(local->unk8 == 1 && D_80390074[local->unk4].unk2 > 0){
+                arg1 = 1;
+                continue;
+            }
+        }
+        break;
+    }
+    this->unk10_31 = arg1;
+}
+#endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/RBB/code_0/func_8038685C.s")
+void func_8038685C(ActorMarker *marker){
+    Actor *actor = marker_getActor(marker);
+    ActorLocal_RBB_0 *local = (ActorLocal_RBB_0 *) &actor->local;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/RBB/code_0/func_803868F0.s")
+    if(actor->unk10_31 == 1){
+        local->unk0++;
+        if( D_80390074[local->unk4].unk1 == local->unk0 
+            || D_80390074[local->unk4].unk1 + D_80390074[local->unk4].unk2 == local->unk0
+        ){
+            func_803866F4(actor, 3);
+        }else{
+            func_803866F4(actor, 2);
+        }
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/RBB/code_0/func_80386A30.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/RBB/code_0/func_80386A7C.s")
+void func_803868F0(Actor *this){
+    ActorLocal_RBB_0 *local = (ActorLocal_RBB_0 *) &this->local;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/RBB/code_0/func_80386B9C.s")
+    if(!this->unk16C_4){
+        this->unk16C_4 = 1;
+        if(this->unk10_31 == 0){
+            local->unk0 = 0;
+            local->unk4 = 0;
+            local->unk8 = 0;
+            local->unkC = 0;
+            local->unk4 = (this->unk78_13 == 0x15)? 0: local->unk4;
+            local->unk4 = (this->unk78_13 == 0x13)? 1: local->unk4;
+            local->unk4 = (this->unk78_13 == 0x14)? 2: local->unk4;
+            local->unk4 = (this->unk78_13 == 0xB)?  3: local->unk4;
+            func_803866F4(this, 1);
+        }
+        func_803863F0(this, 0);
+    }//L803869F4
+    if(this->unk10_31 == 2){
+        if(--local->unkC <= 0){
+            func_803866F4(this, 1);
+        }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/RBB/code_0/func_80386BF8.s")
-
-void rbb_func_80386C48(void){
-    func_803053E8(&D_80390D20, actor_new, 0x4880);
-    func_803053E8(&D_80390050, actor_new, 0);
-    func_803053E8(&D_80390200, actor_new, 0x80);
-    func_803053E8(&D_80390270, actor_new, 0x80);
-    func_803053E8(&D_80390D50, actor_new, 0x8004480);
-    func_803053E8(&D_803906E0, actor_new, 0x80);
-    func_803053E8(&D_80390738, actor_new, 0x80);
-    func_803053E8(&D_803907D0, actor_new, 0x6488);
-    func_803053E8(&D_803907F4, actor_new, 0x6488);
-    func_803053E8(&D_80390818, actor_new, 0x6488);
-    func_803053E8(&D_8039083C, actor_new, 0x6488);
-    func_803053E8(&D_803904C0, actor_new, 0x6408);
-    func_803053E8(&D_803904E4, actor_new, 0x6408);
-    func_803053E8(&D_80390508, actor_new, 0x6408);
-    func_803053E8(&D_803903B0, actor_new, 0x6408);
-    func_803053E8(&D_803903D4, actor_new, 0x6408);
-    func_803053E8(&D_803903F8, actor_new, 0x6408);
-    func_803053E8(&D_80390640, actor_new, 0x400);
-    func_803053E8(&D_80390664, actor_new, 0x400);
-    func_803053E8(&D_80390688, actor_new, 0x400);
-    func_803053E8(&D_803906B0, actor_new, 0);
-    func_803053E8(&D_803908C0, actor_new, 0x80);
-    func_803053E8(&D_803908E4, actor_new, 0x80);
-    func_803053E8(&D_80390908, actor_new, 0x80);
-    func_803053E8(&D_803909B0, actor_new, 0x880);
-    func_803053E8(&D_803909D4, actor_new, 0x880);
-    func_803053E8(&D_803909F8, actor_new, 0x880);
-    func_803053E8(&D_80390A50, actor_new, 0x80);
-    func_803053E8(&D_80390380, actor_new, 0x9aa);
-    func_803053E8(&D_80390A80, actor_new, 0x80); //anchorswitch
-    func_803053E8(&D_80390AB0, actor_new, 0x8C8); //dolphin
-    func_803053E8(&D_80390AE0, actor_new, 0xC80); //anchor
-    func_803053E8(&D_80390B10, actor_new, 0x80);
-    func_803053E8(&D_80390B40, actor_new, 0x880); //rarewareflag
-    func_803053E8(&D_80390BD0, actor_new, 0xc2c);
-    func_803053E8(&D_80390BF4, actor_new, 0xc2c);
-    func_803053E8(&D_80390C18, actor_new, 0xc2c);
-    func_803053E8(&D_80390C3C, actor_new, 0xc2c);
-    func_803053E8(&D_80390CF0, actor_new, 0x80);
-    func_803053E8(&D_80390D88, actor_new, 0x2000889);
-    func_803053E8(&D_80390DAC, actor_new, 0x2000889);
-    func_803053E8(&D_80390E00, actor_new, 0x80);
-    func_803053E8(&D_80390E34, actor_new, 0x80);
-    func_803053E8(&D_80390E58, actor_new, 0x80);
-    func_803053E8(&D_803900E0, actor_new, 0);
-    func_803053E8(&D_80390104, actor_new, 0x8600); //captcabinwooddoor
-    func_803053E8(&D_80390128, actor_new, 0);
-    func_803053E8(&D_8039014C, actor_new, 0);
-    func_803053E8(&D_803901B8, actor_new, 0x8600);
-    func_803053E8(&D_803901DC, actor_new, 0x8600);
-    func_803053E8(&D_80390170, actor_new, 0x8600); //skylight
-    func_803053E8(&D_80390194, actor_new, 0x8); //honeycombswitch
+    }
 }

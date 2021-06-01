@@ -71,5 +71,4 @@ segments:
       - [0x0000ADA0, .rodata, done/ch/mudhut]
       - [0x0000ADB0, .rodata, done/ch/code_8A60]
       - [0x0000ADC0, bin, data_ADC0]
-
   - [0x0000AE40]

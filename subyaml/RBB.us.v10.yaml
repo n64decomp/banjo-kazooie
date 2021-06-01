@@ -29,6 +29,7 @@ segments:
     vram: 0x803863F0
     subsegments:
       - [0x00000000, c, code_0]
+      - [0x640, c, code_640]
       - [0xCA0, c, code_CA0]
       - [0x1570, c, code_1570]
       - [0x1FC0, c, code_1FC0]
@@ -56,8 +57,12 @@ segments:
     vram: 0x80390050
     subsegments:
       - [0x00009C60, bin, data_9C60]
+      - [0x00009E10, .data, code_CA0]
+      - [0x00009E80, bin, data_9E80]
       - [0x0000A930, .data, code_7B20]
       - [0x0000A960, bin, data_A960]
+      - [0x0000AAC0, .rodata, code_1570]
+      - [0x0000AB20, bin, data_AB20]
       - [0x0000AD80, .rodata, code_7B20]
       - [0x0000ADB0, bin, data_ADB0]
   - [0x0000AE80]

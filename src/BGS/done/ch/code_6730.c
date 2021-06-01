@@ -4,12 +4,8 @@
 
 
 void func_8038CEE8(Actor *);
-Actor *func_80325340(ActorMarker*, Gfx **, Mtx **, u32);
 void func_8038CC08(Actor * arg0, u32 arg1);
 void func_8025A58C(u32, u32);
-void func_80324E38(f32, u32);
-void func_80324E60(f32, u32);
-void timedFunc_set_0(f32, void(*)(void));
 void func_80324E88(f32);
 void mapSpecificFlags_set(u32, u32);
 

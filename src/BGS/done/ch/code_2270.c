@@ -3,12 +3,9 @@
 #include "variables.h"
 
 
-f32  func_80256064(f32*, f32*);
 void func_80258A4C(f32*, f32, f32*, f32*, f32*, f32*);
 s32  func_80311480(s32, s32, f32 *, ActorMarker* , void(*)(void), s32);
 void func_80324DBC(f32, s32, s32, f32 *, ActorMarker *, void(*)(void), s32);
-void func_80324E38(f32, s32);
-void func_80324E60(f32, s32);
 void func_80324E88(f32);
 void func_803300A8(ActorMarker *, void(*)(ActorMarker *), void(*)(ActorMarker *), void(*)(ActorMarker *));
 void func_80335924(void *, s32, f32, f32);

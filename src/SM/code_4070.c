@@ -7,7 +7,6 @@ Actor *func_802D94B4(ActorMarker *, Gfx **, Mtx **, s32);
 void func_80326224(Actor *);
 void func_8024E55C(s32, void *);
 void func_80324E88(f32);
-void func_80324E60(f32,s32);
 
 //public
 void func_8038A5D8(Actor *this);
