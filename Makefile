@@ -261,7 +261,7 @@ define overlay_rules
   # .o -> .elf (overlay)
   $(BUILD_DIR)/$(1).elf : $$($(1)_ALL_OBJS) $(1).ld
 	$(call print1,Linking elf:,$$@)
-	@$(LD) -T $(1).ld -Map $(BUILD_DIR)/$(1).map $$(LDFLAGS_COMMON) -T symbol_addrs.$(1).$(VERSION).txt -T undefined_syms_auto.$(1).us.v10.txt -T undefined_funcs_auto.$(1).us.v10.txt -o $$@
+	@$(LD) -T $(1).ld -Map $(BUILD_DIR)/$(1).map $$(LDFLAGS_COMMON) -T undefined_syms_auto.$(1).us.v10.txt -T undefined_funcs_auto.$(1).us.v10.txt -o $$@
   # split overlay
   $(BUILD_DIR)/$(1)_SPLAT_TIMESTAMP : $(SUBYAML)/$(1).$(VERSION).yaml $(BUILD_DIR)/$(1).$(VERSION).bin $(SYMBOL_ADDRS)
 	$(call print1,Splitting bin:,$$<)
