@@ -49,6 +49,7 @@ segments:
       - [0x7B20, c, code_7B20]
       - [0x7FD0, c, code_7FD0]
       - [0x8520, c, code_8520]
+      - [0x9670, c, code_9670]
       - [0x99F0, c, code_99F0]
   - name: data
     dir: RBB
