@@ -44,7 +44,7 @@ void func_8038FC48(Actor *this){
         local->unk0 = func_802F9AA8(0x400);
         func_802F9DB8(local->unk0, 1.0f, 1.0f, 0.0f);
         func_802F9EC4(local->unk0, &this->position, 0x1f4, 0x3e8);
-        func_802F9F80(local->unk0, 0.0f, 0x50061c46, 0.0f);
+        func_802F9F80(local->unk0, 0.0f, 8999999488.0f, 0.0f);
         func_802FA060(local->unk0, 22000, 22000, 0.0f);
         func_8038FC30(this, 1);
     }
