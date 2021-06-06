@@ -2,9 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void func_8030DEB4(u8, f32, f32);
-extern void func_8030DB04(s32, s32, f32(*)[3], f32, f32);
-
 /* typedefs and declarations */
 typedef struct {
     u8 unk0;
