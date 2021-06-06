@@ -50,6 +50,7 @@ segments:
       - [0x7FD0, c, code_7FD0]
       - [0x8520, c, code_8520]
       - [0x9670, c, code_9670]
+      - [0x9840, c, code_9840]
       - [0x99F0, c, code_99F0]
   - name: data
     dir: RBB
@@ -65,9 +66,12 @@ segments:
       - [0x0000A930, .data, code_7B20]
       - [0x0000A960, .data, code_7FD0]
       - [0x0000A990, bin, data_A990]
+      - [0x0000AA10, .data, code_9670]
+      - [0x0000AA40, bin, data_AA40]
       - [0x0000AAC0, .rodata, code_1570]
       - [0x0000AB20, bin, data_AB20]
       - [0x0000AD80, .rodata, code_7B20]
       - [0x0000ADB0, .rodata, code_7FD0]
       - [0x0000AE00, bin, data_AE00]
+      - [0x0000AE70, .rodata, code_9670]
   - [0x0000AE80]

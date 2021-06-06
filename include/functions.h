@@ -356,5 +356,10 @@ void func_802EF3F4(Actor *, f32(*)[3], f32(*)[3], s32);
 void func_802EFB98(Actor *, f32(*)[3]);
 void func_802EFC84(Actor *, f32(*)[3]);
 void func_8034DC08(void *, f32 (*)[3], f32(*)[3], f32, s32);
-
+void func_802C8F70(f32);
+void func_802F9DB8(s32, f32, f32, f32);
+void func_802F9F80(s32, f32, s32, f32);
+void func_802FA060(s32, s32, s32, f32);
+Actor *func_80326EEC(s32);
+f32 func_8038A6B8(ActorMarker *);
 #endif
