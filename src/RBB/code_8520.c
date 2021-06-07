@@ -4,7 +4,6 @@
 
 extern f32 func_80309724(f32(*)[3]);
 extern void func_80255FE4(f32 (*)[3], f32 (*)[3], f32 (*)[3], f32);
-extern void func_80258A4C(f32 (* arg0)[3], f32 arg1, f32 (* arg2)[3], f32 * arg3, f32 *arg4, f32 *arg5);
 extern void func_802C8F70(f32);
 extern int  func_80309EB0(f32(*)[3], f32, f32 (*)[3]);
 extern void func_80324D54(f32, s32, f32, s32, f32(*)[3], f32, f32);

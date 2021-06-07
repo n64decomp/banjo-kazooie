@@ -11,7 +11,6 @@ void func_80328B8C(Actor *, s32, f32, s32);
 void func_80324E88(f32);
 void func_80324E38(f32,s32);
 void func_80324E60(f32, s32);
-void func_8030E6A4(s32, f32, s32);
 void func_8028F31C(f32 *, f32, s32, Actor **);
 void func_8028FA34(s32, Actor *);
 

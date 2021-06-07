@@ -8,7 +8,6 @@ void func_803253A0(Actor *);
 void func_80325794(ActorMarker *);
 void func_8038B6D0(Actor *);
 Actor *func_8038B528(ActorMarker*, Gfx **, Mtx **, u32 arg3);
-void func_8030E6A4(u32,f32, u32);
 
 f32 randf (void);
 

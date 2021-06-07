@@ -28,7 +28,7 @@ ActorInfo D_803903F8 = {
     {0, 0, 0, 0}, 0.0f, {0,0,0,0}
 };
 
-f32 D_8039041C[3] = {40.0f, -30.0f, 20.0f};
+f32 D_8039041C[3] = {40.0f, -30.0f, 20.0f}; //rotation rates (deg/sec);
 
 /* .code */
 void func_80388BD0(Actor *this, s32 arg1){

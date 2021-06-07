@@ -2,7 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-void func_80258A4C(f32 *, f32, f32 *, f32 *, f32 *, f32 *);
 f32 func_80309724(f32 *);
 void func_80324D54(f32, u32, f32, u32, f32 *, f32, f32);
 
