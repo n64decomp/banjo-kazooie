@@ -2,15 +2,52 @@
 #include "functions.h"
 #include "variables.h"
 
+void func_803899C0(Actor *this);
+
 /* .data */
-// 0000 A2C0: 01 94 01 BE 04 12 00 00  00 00 00 00 80 38 99 C0
-// 0000 A2D0: 00 00 00 00 80 32 58 88  00 00 00 00 00 00 00 00
-// 0000 A2E0: 00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00
+ActorInfo D_803906B0 = {
+    0x194, 0x1BE, 0x412, 0x0, NULL,
+    func_803899C0, NULL, func_80325888,
+    {0, 0, 0, 0}, 0.0f, {0,0,0,0}
+};
 
-#pragma GLOBAL_ASM("asm/nonmatchings/RBB/code_34B0/func_803898A0.s")
+/* .code */
+void func_803898A0(void){
+    mapSpecificFlags_set(0, 1);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/RBB/code_34B0/func_803898C4.s")
+void func_803898C4(Actor * this, s32 arg1){
+    this->unk10_31 = arg1;
+    if(this->unk10_31 == 2){
+        func_8030E6D4(0x90);
+        this->position_y -= 35.0f;
+        func_80324E38(1.0f, 3);
+        func_80324E60(1.0f, 0);
+        timedFunc_set_0(1.0f, func_803898A0);
+        func_80324E88(5.0f);
+        func_80324E38(5.0f, 0);
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/RBB/code_34B0/func_80389980.s")
+void func_80389980(ActorMarker *marker, s32 arg1){
+    Actor *actor = marker_getActor(marker);
+    if(actor->unk10_31 == 1){
+        func_803898C4(actor, 2);
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/RBB/code_34B0/func_803899C0.s")
+void func_803899C0(Actor *this){
+    if(!this->unk16C_4){
+        this->marker->propPtr->unk8_3 = 1;
+        this->unk16C_4 = 1;
+        mapSpecificFlags_set(0, 0);
+        func_803300A8(this->marker, NULL, func_80389980, NULL);
+        if(this->unk10_31 == 0){
+            this->position_x = -3209.95f;
+            this->position_y = 1164.5f;
+            this->position_z = -2649.95f;
+            this->yaw = -90.0f;
+            func_803898C4(this, 1);
+        }
+    }
+}
