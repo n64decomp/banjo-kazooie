@@ -26,7 +26,7 @@ ActorInfo D_80390E58 = {
 
 /*.code */
 void func_8038FC30(Actor *this, s32 arg1){
-    this->unk10_31 = arg1;
+    this->state = arg1;
 }
 
 void func_8038FC48(Actor *this){

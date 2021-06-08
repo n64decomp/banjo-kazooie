@@ -17,8 +17,8 @@ void func_803898A0(void){
 }
 
 void func_803898C4(Actor * this, s32 arg1){
-    this->unk10_31 = arg1;
-    if(this->unk10_31 == 2){
+    this->state = arg1;
+    if(this->state == 2){
         func_8030E6D4(0x90);
         this->position_y -= 35.0f;
         func_80324E38(1.0f, 3);
@@ -31,7 +31,7 @@ void func_803898C4(Actor * this, s32 arg1){
 
 void func_80389980(ActorMarker *marker, s32 arg1){
     Actor *actor = marker_getActor(marker);
-    if(actor->unk10_31 == 1){
+    if(actor->state == 1){
         func_803898C4(actor, 2);
     }
 }
@@ -42,7 +42,7 @@ void func_803899C0(Actor *this){
         this->unk16C_4 = 1;
         mapSpecificFlags_set(0, 0);
         func_803300A8(this->marker, NULL, func_80389980, NULL);
-        if(this->unk10_31 == 0){
+        if(this->state == 0){
             this->position_x = -3209.95f;
             this->position_y = 1164.5f;
             this->position_z = -2649.95f;

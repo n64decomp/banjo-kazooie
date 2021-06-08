@@ -26,7 +26,7 @@ void func_8038CB20(void){
 void func_8038CB48(ActorMarker *arg0, u32 arg1, u32 arg2){
     Actor *actPtr = marker_getActor(arg0);
     mapSpecificFlags_set(0x10, 0);
-    if(actPtr->unk10_31 == 4){
+    if(actPtr->state == 4){
         func_8038CC08(actPtr,5);
     }
     else{
@@ -77,7 +77,7 @@ void func_8038CC08(Actor * arg0, u32 arg1){
         }
     }
 
-    if(arg0->unk10_31 == 3){
+    if(arg0->state == 3){
         func_8028F8F8(0x12, 0);
         func_8028F8F8(0x1F, 1);
         if(arg1 == 1){
@@ -105,7 +105,7 @@ void func_8038CC08(Actor * arg0, u32 arg1){
         func_8028F8F8(0x12, 0);
         func_8028F8F8(0x1F, 1);
     }
-    arg0->unk10_31 = arg1;
+    arg0->state = arg1;
 }
 
 void func_8038CE88(void){
@@ -170,7 +170,7 @@ void func_8038CEE8(Actor *this){
     }
     player_getPosition(&sp34);
     sp28 = (sp34[1] < 500.0f) && (func_80329210(this,sp34) != 0);
-    if(this->unk10_31 == 1){
+    if(this->state == 1){
         if(sp28 && ((bgs6730->unk8 > 0) || (bgs6730->unkC > 0)) && !func_8028FB48(0xe000)){
             func_8038CC08(this,2);
         }
@@ -181,7 +181,7 @@ void func_8038CEE8(Actor *this){
             }
         }
     }
-    if(this->unk10_31 == 3){
+    if(this->state == 3){
         if(!sp28){
             func_8038CC08(this, 1);
         }else{
@@ -190,7 +190,7 @@ void func_8038CEE8(Actor *this){
             }
         }
     }
-    if(this->unk10_31 == 1 || this->unk10_31 == 3){
+    if(this->state == 1 || this->state == 3){
         if( (bgs6730->unk0) 
           && !jiggyscore_80320F7C(jiggy_bgs_flibbits)
           && !bgs6730->unk8

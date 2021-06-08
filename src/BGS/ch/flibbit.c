@@ -95,21 +95,21 @@ u32 func_80386A34(Actor * this){
 
 void func_80386E30(ActorMarker *this, u32 arg1){
     Actor *thisActor = marker_getActor(this);
-    if(thisActor->unk10_31 < 6){
+    if(thisActor->state < 6){
         func_80386AEC(thisActor, 4);
     }
 }
 
 void func_80386E70(ActorMarker *this, u32 arg1){
     Actor *thisActor = marker_getActor(this);
-    if(thisActor->unk10_31 < 6){
+    if(thisActor->state < 6){
         func_80386AEC(thisActor, 5);
     }
 }
 
 void func_80386EB0(ActorMarker *this, u32 arg1){
     Actor *thisActor = marker_getActor(this);
-    if(thisActor->unk10_31 < 6){
+    if(thisActor->state < 6){
         func_80386AEC(thisActor, 6);
     }
 }

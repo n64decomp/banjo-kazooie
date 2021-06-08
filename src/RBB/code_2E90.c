@@ -87,10 +87,10 @@ Struct_RBB_2E90_0 * func_80389280(Actor *this){
 void func_803892D8(Actor *this, s32 arg1){
     f32 pad;
     ActorLocal_RBB_2E90 *local = (ActorLocal_RBB_2E90 *)&this->local;
-    this->unk10_31 = arg1;
+    this->state = arg1;
 
     local->unk28 = 0.0f;
-    if(this->unk10_31 == 1){
+    if(this->state == 1){
         local->unk0[2] = 0.0f;
         local->unk0[1] = 0.0f;
         local->unk0[0] = 0.0f;
@@ -98,19 +98,19 @@ void func_803892D8(Actor *this, s32 arg1){
         ml_vec3f_copy(&local->unk1C, &local->unkC->unk1C);
     }//L8038935C
 
-    if(this->unk10_31 == 2){
+    if(this->state == 2){
         ml_vec3f_copy(&local->unk0, &local->unkC->unk28);
         ml_vec3f_copy(&local->unk1C, &local->unkC->unk10);
         local->unk28 = local->unkC->unk40;
     }//L803893A8
 
-    if(this->unk10_31 == 3){
+    if(this->state == 3){
         ml_vec3f_copy(&local->unk0, &local->unkC->unk28);
         ml_vec3f_copy(&local->unk1C, &local->unkC->unk1C);
         local->unk28 = local->unkC->unk40;
     }//L803893F4
 
-    if(this->unk10_31 == 4){
+    if(this->state == 4){
         ml_vec3f_copy(&local->unk0, &local->unkC->unk34);
         ml_vec3f_copy(&local->unk10, &local->unkC->unk1C);
         local->unk1C[2] = 0.0f;

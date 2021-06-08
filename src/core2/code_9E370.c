@@ -126,7 +126,7 @@ Actor *actor_new(s32 (* position)[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
     D_80383390->actor_info = actorInfo;
     D_80383390->unk10_25 = 0;
     D_80383390->unk10_18 = 0;
-    D_80383390->unk10_31 = actorInfo->startAnimation;
+    D_80383390->state = actorInfo->startAnimation;
     D_80383390->position_x = (f32)(*position)[0];
     D_80383390->position_y = (f32)(*position)[1];
     D_80383390->position_z = (f32)(*position)[2];
@@ -237,7 +237,7 @@ Actor *actor_new(s32 (* position)[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
     D_80383390->unk174 = 0.0f;
     D_80383390->unk178 = 0.0f;
     if( actorInfo->animations){
-        sp54 = &D_80383390->unk18[D_80383390->unk10_31];
+        sp54 = &D_80383390->unk18[D_80383390->state];
         if(sp54->index != 0){
             D_80383390->animctrl = animctrl_new(0);
             animctrl_reset(D_80383390->animctrl);
@@ -716,7 +716,11 @@ Actor *marker_getActor(ActorMarker *this){
     return &(D_8036E560->data[this->actrArrayIdx]);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80329980.s")
+Actor *func_80329980(Actor *this){
+    if(this->unk100 == NULL)
+        return NULL;
+    return marker_getActor(this->unk100);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_803299B4.s")
 

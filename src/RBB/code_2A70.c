@@ -62,16 +62,16 @@ void func_80388EB8(Actor *this, s32 arg1){
     ActorLocal_RBB_2A70 *local = (ActorLocal_RBB_2A70 *)&this->local;
     s32 sp30;
 
-    if(this->unk10_31 == 2)
+    if(this->state == 2)
         func_8030E8B4(0x665f407f, &this->position, 0x08fc03e8);
     
-    this->unk10_31 = arg1;
+    this->state = arg1;
     local->unk24 = 0.0f;
 
-    if(this->unk10_31 == 1)
+    if(this->state == 1)
         local->unk24 = local->unk0->unk14;
 
-    if(this->unk10_31 == 2){
+    if(this->state == 2){
         sp30 = func_802F9AA8(0x94);
         func_802F9DB8(sp30, 1.0f, 1.0f, 0.0f);
         func_802F9EC4(sp30, &local->unk0->unk18, 0x6A4, 0x9c4);
@@ -107,15 +107,15 @@ void func_803890BC(Actor *this){
         this->position[1] = local->unk0->unk4[1];
         this->position[2] = local->unk0->unk4[2];
         this->roll = local->unk0->unk10;
-        if(this->unk10_31 == 0)
+        if(this->state == 0)
             func_80388EB8(this, 1);
     }//L80389164
 
     if(func_8025773C(&local->unk24, sp38))
-        func_80388EB8(this, (this->unk10_31 == 1) ? 2 : 1);
+        func_80388EB8(this, (this->state == 1) ? 2 : 1);
     //L803891A8
 
-    if(this->unk10_31 == 2){
+    if(this->state == 2){
         local->unk1C += 0.25 * sp38;
         if(1.0f < local->unk1C)
             local->unk1C = 1.0f;

@@ -207,7 +207,7 @@ void func_8038756C(Actor *this, s32 arg1){
 
 void func_80387850(ActorMarker *marker, s32 arg1){
     Actor *actor = marker_getActor(marker);
-    if(actor->unk10_31 == 1){
+    if(actor->state == 1){
         func_8038756C(actor, 2);
     }
 }
@@ -225,7 +225,7 @@ void func_803878B0(Actor *this){
         func_8038756C(this, 1);
     }
 
-    if(this->unk10_31 == 3){
+    if(this->state == 3){
         if(item_empty(0)){
             func_8038756C(this, 4);
         }

@@ -110,7 +110,7 @@ void func_80388FA0(Actor *this, s32 arg1){
     Actor *other;
     ActorMarker *myOther;
 
-    switch(this->unk10_31){
+    switch(this->state){
         case 1://L80388FE8
             this->unk138_23 = 1;
             break;
@@ -231,10 +231,10 @@ void func_803892C8(ActorMarker *marker, s32 text_id, s32 arg2){
                 break;
 
             default:
-                if(actor->unk10_31 !=5 )
+                if(actor->state !=5 )
                     func_80311480(0xd38, 4, NULL, NULL, NULL, NULL);
                 
-                func_80388FA0(actor, actor->unk10_31 == 5 ? 1:4);
+                func_80388FA0(actor, actor->state == 5 ? 1:4);
                 break;
         }
     }
@@ -423,7 +423,7 @@ void func_803899B0(Actor * this){
 
     func_8024E55C(0,sp50); //get face buttons press counters
     player_getPosition(&sp44);
-    switch (this->unk10_31)
+    switch (this->state)
     {
     case 1://L80389BAC
         this->yaw_moving = (f32)func_80329784(this);

@@ -32,7 +32,7 @@ f32 D_8039041C[3] = {40.0f, -30.0f, 20.0f}; //rotation rates (deg/sec);
 
 /* .code */
 void func_80388BD0(Actor *this, s32 arg1){
-    this->unk10_31 = arg1;
+    this->state = arg1;
 }
 
 void func_80388BE8(Actor *actor){
@@ -60,7 +60,7 @@ void func_80388C20(Actor *this){
             func_8030DABC(local->unk0, 0);
             func_8030E2C4(local->unk0);
         }//L80388CFC
-        if(this->unk10_31 == 0){
+        if(this->state == 0){
             if(this->modelCacheIndex == 0x17B){
                 TUPLE_ASSIGN(this->position, 0.0f, -50.0f, 700.0f);
             }
@@ -73,7 +73,7 @@ void func_80388C20(Actor *this){
             func_80388BD0(this, 1);
         }
     }//L80388DA8
-    if(this->unk10_31 == 1){
+    if(this->state == 1){
         this->roll += D_8039041C[this->modelCacheIndex - 0x17B]*sp28;
         if(360.0f <= this->roll)
             this->roll -= 360.0f;

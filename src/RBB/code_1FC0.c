@@ -33,7 +33,7 @@ void func_803883B0(Actor *this, s32 arg1){
         func_80335924(this->unk148, 0x137, 0.0f, 0.8f);
         func_80335A8C(this->unk148, 2);
     }
-    this->unk10_31 = arg1;
+    this->state = arg1;
 }
 
 void func_80388430(ActorMarker * marker, s32 arg1){
@@ -52,7 +52,7 @@ Actor *func_8038846C(ActorMarker * marker, Gfx **gdl, Mtx **mptr, s32 arg3){
     f32 sp40[3];
     f32 sp34[3];
     
-    if(actor->unk10_31 == 0){
+    if(actor->state == 0){
         return actor;
     }
 
@@ -150,7 +150,7 @@ void func_80388620(Actor *this){
         }
     }//L803889F8
 
-    if(this->unk10_31 == 1){
+    if(this->state == 1){
         if( sp60 < 400.0f
             && -0.8 <= sp58
             && sp58  <= 0.8
@@ -161,7 +161,7 @@ void func_80388620(Actor *this){
         }
     }//L80388AB8
 
-    if(this->unk10_31 == 2){
+    if(this->state == 2){
         func_8033568C(this->unk148, &sp4C, &sp48);
         if(0.6 <= sp48)
             tmp_f2 = 1.0 - 2*(sp48 - 0.6);

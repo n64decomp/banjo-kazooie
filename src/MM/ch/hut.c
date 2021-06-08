@@ -44,8 +44,8 @@ Actor *chhut_draw(ActorMarker *this, Gfx **arg1, Mtx **arg2, u32 arg3){
 
     actorPtr = marker_getActor(this);
 
-    temp_a1 = actorPtr->unk10_31 != 2;
-    temp_a2 = actorPtr->unk10_31 == 0 || actorPtr->unk10_31 == 2;
+    temp_a1 = actorPtr->state != 2;
+    temp_a2 = actorPtr->state == 0 || actorPtr->state == 2;
     this->propPtr->unk8_3 = temp_a2;
     func_8033A45C(1, temp_a1, temp_a2);
 
@@ -74,7 +74,7 @@ void    chhut_update(Actor *this){
         this->marker->collidable = 0;
         this->initialized = 1;
     }
-    switch(this->unk10_31){
+    switch(this->state){
         case 0: //L80386AA4
             player_getPosition(&sp30);
             sp3C[0] = sp30[0] - this->position_x;

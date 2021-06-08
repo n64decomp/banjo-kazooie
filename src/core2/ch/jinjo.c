@@ -43,7 +43,7 @@ void func_802CDBA8(ActorMarker *this, s32 arg1){
     Actor *actorPtr = marker_getActor(this);
     ActorLocal_Jinjo *localPtr = &actorPtr->jinjo;
 
-    if(actorPtr->unk10_31 < 5){
+    if(actorPtr->state < 5){
         if(!func_8031FF1C(0xe)){
             func_80311480(func_802CDB50(actorPtr->marker->unk14_20), 4, 0, 0, 0, 0);
             func_80320004(0xe, 1);

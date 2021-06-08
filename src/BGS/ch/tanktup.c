@@ -120,7 +120,7 @@ s32 func_8038F570(s16 *arg0){
     pos[1] = (f32)arg0[1];
     pos[2] = (f32)arg0[2];
     spawnPtr = func_80326D68(pos, 0xe8, -1, 0);
-    return spawnPtr->unk10_31 == 3;
+    return spawnPtr->state == 3;
 
 
 }
@@ -160,7 +160,7 @@ void func_8038FBF8(Actor *this){
         this->marker->propPtr->unk8_3 = 1;
         func_803300A8(this->marker, NULL, NULL, func_8038FB84);
     }
-    if(this->unk10_31 == 2){
+    if(this->state == 2){
         if(animctrl_isAt(this->animctrl, 0.65f)){
             func_8030E540(0x7C);
         }

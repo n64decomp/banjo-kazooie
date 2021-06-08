@@ -52,8 +52,8 @@ Actor *func_8038EAD0(ActorMarker *this, Gfx** gdl, Mtx** mtx, u32 arg3){
     Actor *thisActor;
 
     thisActor = marker_getActor(this);
-    func_8033A45C(1, thisActor->unk10_31 == 1);
-    if(thisActor->unk10_31 == 3)
+    func_8033A45C(1, thisActor->state == 1);
+    if(thisActor->state == 3)
         return thisActor;
     
     return func_80325888(this, gdl, mtx, arg3);
@@ -80,7 +80,7 @@ void func_8038EB8C(Actor *this){
             this->initialized = 1;
         }
 
-        switch(this->unk10_31){
+        switch(this->state){
             case 1:
                 this->marker->propPtr->unk8_3 = 1;
                 player_getPosition(&plyrPos);
@@ -117,7 +117,7 @@ void func_8038EB8C(Actor *this){
             case 2:
                 this->marker->propPtr->unk8_3 = 0;
                 if(0.99 < func_802877D8(this->animctrl)){
-                    this->unk10_31 = 3;
+                    this->state = 3;
                 }
                 break;
             case 3:

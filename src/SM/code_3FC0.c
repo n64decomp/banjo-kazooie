@@ -21,7 +21,7 @@ void func_8038A3B0(Actor *this){
         func_8034A174(this->marker->unk44, 0x1f, D_80365E04[sp24]);
 
     actor_collisionOff(this);
-    if(this->unk10_31 == 2 && levelSpecificFlags_get(sp24 + 0x35)){
+    if(this->state == 2 && levelSpecificFlags_get(sp24 + 0x35)){
         func_80328A84(this, 1);
         actor_playAnimationOnce(this);
     }

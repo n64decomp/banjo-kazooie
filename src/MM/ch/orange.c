@@ -44,7 +44,7 @@ void func_80387FF4(Actor * this){
         this->marker->unk2C_1 = 1;
         func_803300A8(this->marker, NULL, func_80387F90, NULL);
     }
-    switch(this->unk10_31){
+    switch(this->state){
         case 1://L80388060
             this->position_x += this->velocity_x;
             temp_f0 = this->velocity_y - 5.0;
@@ -61,7 +61,7 @@ void func_80387FF4(Actor * this){
                 
                 this->unk28 = 1.0f;
                 this->unk60 = 340.0f;
-                this->unk10_31 = 2;
+                this->state = 2;
             }
             break;
         case 2://L8038810C
@@ -82,7 +82,7 @@ Actor *func_80388188(ActorMarker *this, Gfx **dl, Mtx **mptr){
     f32 sp54[3] = D_80389A00;
     f32 sp48[3];
 
-    if(actorPtr->unk10_31 == 2){
+    if(actorPtr->state == 2){
         sp48[0] = actorPtr->position_x;
         sp48[1] = actorPtr->unk1C_y + 3.0f;
         sp48[2] = actorPtr->position_z;

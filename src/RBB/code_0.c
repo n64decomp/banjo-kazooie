@@ -86,7 +86,7 @@ void func_8038685C(ActorMarker *marker){
     Actor *actor = marker_getActor(marker);
     ActorLocal_RBB_0 *local = (ActorLocal_RBB_0 *) &actor->local;
 
-    if(actor->unk10_31 == 1){
+    if(actor->state == 1){
         local->unk0++;
         if( D_80390074[local->unk4].unk1 == local->unk0 
             || D_80390074[local->unk4].unk1 + D_80390074[local->unk4].unk2 == local->unk0
@@ -104,7 +104,7 @@ void func_803868F0(Actor *this){
 
     if(!this->unk16C_4){
         this->unk16C_4 = 1;
-        if(this->unk10_31 == 0){
+        if(this->state == 0){
             local->unk0 = 0;
             local->unk4 = 0;
             local->unk8 = 0;
@@ -117,7 +117,7 @@ void func_803868F0(Actor *this){
         }
         func_803863F0(this, 0);
     }//L803869F4
-    if(this->unk10_31 == 2){
+    if(this->state == 2){
         if(--local->unkC <= 0){
             func_803866F4(this, 1);
         }

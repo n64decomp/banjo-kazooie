@@ -103,7 +103,7 @@ void func_803885D0(Actor *this){
         if(func_80329530(this, 0x2BC) && !func_803114B0()){
             func_803883AC(this);
         }//L8038865C
-        switch(this->unk10_31){
+        switch(this->state){
             case 1://L80388690
                 if(mapSpecificFlags_get(2)){
                     func_80328A84(this, 4);

@@ -41,7 +41,7 @@ void chchimpystump_update(Actor *this){
         this->position_y -= 134.0f;
         this->marker->propPtr->unk8_3 = 1;
     }
-    switch (this->unk10_31)
+    switch (this->state)
     {
     case 1:
         if(mapSpecificFlags_get(0))

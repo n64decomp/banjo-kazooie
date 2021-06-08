@@ -74,7 +74,7 @@ void func_8038E920(Actor *this){
 void func_8038E92C(Actor *this){
     ActorLocal_RBB_8520 *local = (ActorLocal_RBB_8520 *)&this->local;
 
-    if(this->unk10_31 == 2 && local->unk34 == 0)
+    if(this->state == 2 && local->unk34 == 0)
         return;
     if(func_8025773C( &local->unk30, func_8033DD9C()))
         func_8038F190(this, 3);
@@ -258,13 +258,13 @@ void func_8038F190(Actor *this, s32 arg1){
         func_8038E920(this);
 
     }//L8038F3C8
-    this->unk10_31 = arg1;
+    this->state = arg1;
 }
 
 
 void func_8038F3F0(ActorMarker *marker, s32 arg1){
     Actor* actor =  marker_getActor(marker);
-    if(actor->unk10_31 < 3){
+    if(actor->state < 3){
         func_8038F190(actor, 3);
     }
 }
@@ -273,7 +273,7 @@ void func_8038F430(ActorMarker *marker, s32 arg1){
     Actor* actor =  marker_getActor(marker);
     f32 sp18[3];
 
-    if(actor->unk10_31 < 3){
+    if(actor->state < 3){
         player_getPosition(&sp18);
         if(func_80256064(&actor->position, &sp18) < 300.0f)
             func_8028F55C(5, actor->marker);

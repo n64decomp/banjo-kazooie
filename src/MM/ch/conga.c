@@ -150,8 +150,8 @@ void func_80387168(ActorMarker *this, s32 arg1){
                 func_8030E624(0x665ff884);
                 func_8030E624(0x665ff884);
             }
-            else if( actorPtr->unk10_31 != 3
-                && actorPtr->unk10_31 != 8
+            else if( actorPtr->state != 3
+                && actorPtr->state != 8
             ){
                 func_8038708C(actorPtr, 2);
                 if(actorPtr->unk38_31 == 1){

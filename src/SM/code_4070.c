@@ -80,7 +80,7 @@ void func_8038A5D8(Actor *this){
     }//L8038A650
 
     func_8024E55C(0, sp44);
-    switch (this->unk10_31)
+    switch (this->state)
     {
     case 1://L8038A688
         if(func_8031FF1C(0xdb)){

@@ -282,7 +282,7 @@ typedef struct ch_sm_4070{
 typedef struct actor_s{
     ActorMarker* marker;
     TUPLE(f32,position);
-    u32 unk10_31:6; //current animation state
+    u32 state:6; /* unk10_31*/
     u32 unk10_25:7;
     u32 unk10_18:6;
     u32 unk10_12:4;

@@ -100,7 +100,7 @@ void func_80386D68(Actor *this){
 void func_80386EB4(ActorMarker *this, s32 arg1) {
     Actor *temp_v0;
     temp_v0 = marker_getActor(this);
-    if ((temp_v0->unk10_31 ) == 2) {
+    if ((temp_v0->state ) == 2) {
         func_80386D68(temp_v0);
     }
 }
@@ -115,7 +115,7 @@ void func_80386EF4(Actor *this) {
         this->unk138_31 = 1;
         this->unk16C_4 = 1;
     }
-    if ((this->unk10_31) == 1) {
+    if ((this->state) == 1) {
         temp_t3 = this->unk38_31++ ^ 2;
         if ((temp_t3) == 0) {
             temp_v0_2 = (u32 *)func_80326EEC(0x16E);

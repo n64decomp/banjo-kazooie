@@ -32,7 +32,7 @@ void func_8038FA9C(Actor *this, s32 arg1){
         func_80324E88(5.0f);
         func_80324E38(5.0f, 0);
     }
-    this->unk10_31 = arg1;
+    this->state = arg1;
 }
 
 void func_8038FB54(void){
@@ -50,12 +50,12 @@ void func_8038FB84(Actor *this){
         func_8038FA9C(this, 1);
     }
 
-    if(this->unk10_31 == 1){
+    if(this->state == 1){
         if(D_803912B0 > 0)
             func_8038FA9C(this, 2);
     }
 
-    if(this->unk10_31 == 2){
+    if(this->state == 2){
         if(D_803912B0 == 0)
             func_8038FA9C(this, 3);
     }

@@ -114,13 +114,13 @@ void func_803888E4(Actor *this, s32 arg1){
     struct7s *s1;
 
     unqPtr = &this->bgs_2270;
-    this->unk10_31 = arg1;
+    this->state = arg1;
     unqPtr->unkC = 0.0f;
-    if(this->unk10_31 == 1){
+    if(this->state == 1){
         func_80335924(this->unk148, 0x12B, 1.0f, 9.0f);
         unqPtr->unkC = randf2(5.0f, 15.0f);
     }
-    if(this->unk10_31 == 2){
+    if(this->state == 2){
         func_80335924(this->unk148, 0x12B, 1.0f, 9.0f);
         unqPtr->unkC = randf2(5.0f, 15.0f);
         if(!this->unk138_24){
@@ -136,7 +136,7 @@ void func_803888E4(Actor *this, s32 arg1){
             func_80311480(D_80390854[unqPtr->unkA], 0xf, this->position, this->marker,  func_80388784, 0);
         }
     }
-    if(this->unk10_31 == 3){
+    if(this->state == 3){
         unqPtr->unk0 = 0;
         vla_clear(unqPtr->unk4);
         func_80324E38(0.0f, 3);
@@ -162,11 +162,11 @@ void func_803888E4(Actor *this, s32 arg1){
         if(func_803203FC(2)){
             timedFunc_set_1(sp54, func_803886F4, this->marker);
         }else{
-            this->unk10_31 = 0x05;
+            this->state = 0x05;
         }
         mapSpecificFlags_set(0, 0);
     }//L80388C6C
-    if(this->unk10_31 == 4){
+    if(this->state == 4){
         
          unqPtr->unk0 = 0;
         func_80324E38(0.0f, 3);
@@ -181,9 +181,9 @@ void func_803888E4(Actor *this, s32 arg1){
         func_80324E88(tmpf += 2.5);
         func_80324E38(tmpf + 0.6,0);
         vla_clear(unqPtr->unk4);
-        this->unk10_31 = 0x05;
+        this->state = 0x05;
     }//L80388D8C
-    if(this->unk10_31 == 6){
+    if(this->state == 6){
         if(unqPtr->unkA == 3){
             func_8025A6EC(JINGLE_PUZZLE_SOLVED_FANFARE, 28000);
         }
@@ -285,7 +285,7 @@ void func_80389080(Actor *this){
         }
         func_80258A4C(this->position, this->yaw - 90.0f, &sp44, &sp38, &sp34, &sp30);
         this->yaw = this->yaw + 5.0f*sp30;
-        if(this->unk10_31 == 1){
+        if(this->state == 1){
             if(func_803203FC(2)){
                 if(func_803203FC(3)){
                     func_80324E38(0.0f,0);
@@ -298,7 +298,7 @@ void func_80389080(Actor *this){
                 }
             }
         }
-        if(this->unk10_31 == 5){
+        if(this->state == 5){
             if(func_803203FC(2)){
                 if(item_empty(0)){
                     func_80346414(6,1);
@@ -311,7 +311,7 @@ void func_80389080(Actor *this){
                     func_803888E4(this, 1);
             }
         }//L803893A0
-        if(this->unk10_31 == 6){
+        if(this->state == 6){
             if(func_80256064(this->position, &sp44) < 300.0f && !unqPtr->unk8){
                 unqPtr->unk8 = 1;
                 func_80311480(0xc7d, 4, 0, 0, 0, 0);

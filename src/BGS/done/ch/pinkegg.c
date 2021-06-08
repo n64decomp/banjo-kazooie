@@ -61,7 +61,7 @@ void chPinkEggDraw(ActorMarker *this, Gfx ** gdl, Mtx** mptr, u32 arg3){
     u32 sp18;
     u32 t7;
 
-    t7 = marker_getActor(this)->unk10_31 == 3;
+    t7 = marker_getActor(this)->state == 3;
     func_8033A45C(1, (sp18 = t7) ^ 1);
     func_8033A45C(2, sp18);
     func_80325888(this, gdl, mptr, arg3);
@@ -96,7 +96,7 @@ void func_80387B80(Actor *this){
         this->initialized = 1;
     }
 
-    switch(this->unk10_31){
+    switch(this->state){
         case 1:
             if(!this->pinkEgg.unk4){
                 this->marker->collidable = 1;

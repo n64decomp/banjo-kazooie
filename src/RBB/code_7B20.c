@@ -28,7 +28,7 @@ void func_8038DF10(Actor *this, int arg1){
     if(arg1 == 1){
         func_80335924(this->unk148, 0x16a, 0, 1.2f);
     }
-    this->unk10_31 = arg1;
+    this->state = arg1;
 }
 
 void func_8038DF6C(Actor* this){
@@ -105,7 +105,7 @@ void func_8038DF6C(Actor* this){
 
     if(local->unk4){
         other = marker_getActor(local->unk4);
-        if(!(other->unk10_31 < 7)){
+        if(!(other->state < 7)){
             local->unk4 = NULL;
         }else{
             other->pitch = sp5C[0];

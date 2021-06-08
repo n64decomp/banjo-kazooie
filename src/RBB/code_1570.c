@@ -199,8 +199,8 @@ void func_80388154(ActorMarker *marker){
 }
 
 void func_803881E8(Actor *this, s32 arg1){
-    this->unk10_31 = arg1;
-    if(this->unk10_31 == 2){
+    this->state = arg1;
+    if(this->state == 2){
         func_80387960(0.05f);
         timedFunc_set_2(0.05f, (TFQM2)func_80387BEC, 0x19f, 0x1f4);
         timedFunc_set_2(0.1f, (TFQM2)func_8025A6EC, SFX_DING_B, 28000);
@@ -213,7 +213,7 @@ void func_803881E8(Actor *this, s32 arg1){
 
 void func_803882B4(ActorMarker *marker, s32 arg1){
     Actor *actor = marker_getActor(marker);
-    if(actor->unk10_31 == 1)
+    if(actor->state == 1)
         func_803881E8(actor, 2);
 }
 

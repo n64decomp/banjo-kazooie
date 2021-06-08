@@ -32,7 +32,7 @@ void func_80389ADC(Actor *this, s32 arg1){
         local->unkC = func_80389A90();
         local->unk4 = func_80389A90();
     }
-    this->unk10_31 = arg1;
+    this->state = arg1;
 }
 
 int func_80389B44(ActorMarker* marker, s32 arg1){
@@ -114,7 +114,7 @@ void func_80389C78(Actor *this){
     if(this->pitch < 0.0f)
         this->pitch += 360.0f;
     
-    if(this->unk10_31 == 1){
+    if(this->state == 1){
         local->unk4 = func_80389A90();
         if(local->unkC < local->unk4){
             local->unkC += 75*sp34;

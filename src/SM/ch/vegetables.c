@@ -285,7 +285,7 @@ void func_80388080(Actor *this){
         this->initialized = 1;
         this->scale = 0.5;
     }//L80388278
-    switch (this->unk10_31)
+    switch (this->state)
     {
     case 1: //L803882B0
         if(mapSpecificFlags_get(0xC) || func_803203FC(0xC1) || this->unk10_12){

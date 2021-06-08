@@ -61,7 +61,7 @@ void func_80388A80(Actor *this) {
         func_80388A04(this);
     }
     func_802DB5A0(this);
-    if (this->unk10_31 == 5) {
+    if (this->state == 5) {
         if (actor_animationIsAt(this, 0.18f)) {
             func_8030E8B4(0x7FFB5802, this->position, 0x9C404E2);
         }

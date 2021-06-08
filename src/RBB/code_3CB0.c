@@ -38,14 +38,14 @@ void func_8038A0A0(Actor *this, s32 arg1){
     ActorLocal_RBB_3CB0 *local = (ActorLocal_RBB_3CB0 *)&this->local;
 
     if(arg1 == 1)
-        if(this->unk10_31 == 2)
+        if(this->state == 2)
             this->position_y += 40.0f;
     
     if(arg1 == 2){ 
-        if(this->unk10_31 == 1)
+        if(this->state == 1)
             func_8030E6D4(0x90);
         this->position_y -= 40.0f;
-        if(this->unk10_31 == 1){
+        if(this->state == 1){
             levelSpecificFlags_set(local->unk0->unk8, 1);
             func_803228D8();
             timedFunc_set_1(1.1f, (TFQM1)func_8028F9DC, 2);
@@ -55,15 +55,15 @@ void func_8038A0A0(Actor *this, s32 arg1){
         }
     }//L8038A1A0
 
-    this->unk10_31 = arg1;
+    this->state = arg1;
 }
 
 void func_8038A1C8(ActorMarker *marker, s32 arg1){
     Actor *actor = marker_getActor(marker);
-    if(actor->unk10_31 == 1){
+    if(actor->state == 1){
         func_8038A0A0(actor, 2);
     }
-    else if(actor->unk10_31 == 2){
+    else if(actor->state == 2){
         func_8038FF40();
     }
 }
@@ -115,7 +115,7 @@ void func_8038A324(Actor *this){
         else
             func_8038A0A0(this, 1);
     }//L8038A47C
-    if(this->unk10_31 == 2){
+    if(this->state == 2){
         if( !levelSpecificFlags_get(local->unk0->unkA)
             && !levelSpecificFlags_get(3)
             && !levelSpecificFlags_get(4)

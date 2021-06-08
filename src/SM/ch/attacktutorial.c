@@ -127,7 +127,7 @@ void chAttackTutorial_update(Actor *this){
         this->initialized = 1;
     }
 
-    switch(this->unk10_31){
+    switch(this->state){
         case 1://L80387610
             if(mapSpecificFlags_get(4))
                 chAttackTutorial_setState(this, 5);

@@ -57,12 +57,12 @@ void func_80388BEC(s16 *arg0, void *arg1){
     sp30 = func_80326D68(&sp20, 0x11, -1, &sp34);
     if( sp30 != NULL
         && !( sp34 > 500.0f )
-        && (sp30->unk10_31 ==3)
+        && (sp30->state ==3)
     ){
         temp_v0 = marker_getActor(sp30->juju_ctl.unk8[sp30->juju_ctl.unk4]);
         if(temp_v0 != NULL){
             if(func_80388B30(temp_v0, 90.0f)){
-                sp30->unk10_31 = 1;
+                sp30->state = 1;
                 sp30->juju_ctl.unk4++;
                 func_803892A8(sp30->juju_ctl.unk8);
                 func_80353580(arg1);
@@ -83,7 +83,7 @@ void func_80388D60(Actor *this){
     if(!func_8038941C(jujuCtlPtr->unk8)){
         jujuCtlPtr->unk18 *= 1.05;
     }
-    this->unk10_31 = 3;
+    this->state = 3;
 }
 
 Actor*  func_80388DC0(ActorMarker *this, Gfx **dl, Mtx**mPtr, u32 arg3){
@@ -126,7 +126,7 @@ void func_80388E20(Actor *this){
             }
         }
 
-        if(this->unk10_31 == 1){
+        if(this->state == 1){
             if(func_8038948C(jujuCtlPtr->unk8)){
                 func_80388D60(this);
             }

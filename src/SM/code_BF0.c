@@ -11,7 +11,7 @@ void func_80386FE0(Actor *this){
         actor_collisionOff(this);
     }
 
-    switch(this->unk10_31){
+    switch(this->state){
         case 1://L80387064
             if(this->unk38_31++ == 2){
                 this->unk10_12 = func_80326F58(0x16f);

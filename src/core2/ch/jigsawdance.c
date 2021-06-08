@@ -24,7 +24,7 @@ void func_802C811C(Actor * this){
     ActorAnimCtrl *plyrMvmt;
 
     this->marker->collidable = 0;
-    switch(this->unk10_31){
+    switch(this->state){
         case 1:
             break;
         case 2:
@@ -62,7 +62,7 @@ void func_802C811C(Actor * this){
 void func_802C82C0(Actor * this, u32 arg1){
     switch(arg1){
         case 3:
-            if(this->unk10_31 == 1){
+            if(this->state == 1){
                 func_80328A84(this, 2);
                 animctrl_setPlaybackType(this->animctrl,  ANIMCTRL_ONCE);
             }

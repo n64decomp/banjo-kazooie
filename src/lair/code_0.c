@@ -88,7 +88,7 @@ void func_803863F0(Actor *this){
             return;
         }
     }//L8038645C
-    if(this->unk10_31 == 0xC){
+    if(this->state == 0xC){
         if(actor_animationIsAt(this, 0.95f)){
             func_80328B8C(this, 0xd, 0.98f, 1);
             func_80326310(this);
@@ -105,7 +105,7 @@ void func_803864B0(Actor *this){
             return;
         }
     }//L8038645C
-    if(this->unk10_31 == 0xF){
+    if(this->state == 0xF){
         if(actor_animationIsAt(this, 0.90f)){
             func_80328B8C(this, 0x10, 0.98f, 1);
             func_80326310(this);

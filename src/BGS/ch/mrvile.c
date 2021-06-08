@@ -108,7 +108,7 @@ void func_8038C0C8(Actor * arg0, u32 arg1){
         reg_v0->unk24 = 300.0f;
         func_8038BBA0(arg0, 0x66);
     }
-    arg0->unk10_31 = arg1; 
+    arg0->state = arg1; 
 }
 
 Actor *mrVileDraw(ActorMarker *this, Gfx **gdl, Mtx** mp, u32 arg3){
