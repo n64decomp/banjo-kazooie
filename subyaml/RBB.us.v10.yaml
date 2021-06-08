@@ -76,7 +76,7 @@ segments:
       - [0x0000A480, .data, code_47D0]
       - [0x0000A560, bin, data_A560] # .data, code_4C70]
       - [0x0000A660, .data, code_5060]
-      - [0x0000A690, bin, data_A690]
+      - [0x0000A690, .data, code_52F0]
       - [0x0000A6C0, bin, data_A6C0]
       - [0x0000A6F0, .data, code_5AB0]
       - [0x0000A720, bin, data_A720]

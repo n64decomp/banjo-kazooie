@@ -2,15 +2,37 @@
 #include "functions.h"
 #include "variables.h"
 
-//D_80390AB0
-// 0000 A690: 00 2F 01 C7 04 1B 00 00  00 00 00 00 80 38 B7 E8  ./...... .....8..  
-// 0000 A6A0: 00 00 00 00 80 32 58 88  00 00 00 00 00 00 00 00  .....2X. ........  
-// 0000 A6B0: 00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  ........ ........  
+void func_8038B7E8(Actor *this);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/RBB/code_52F0/func_8038B6E0.s")
+/* .data */
+ActorInfo D_80390A80 = {
+    0x2F, 0x1C7, 0x41B, 0x0, NULL,
+    func_8038B7E8, NULL, func_80325888,
+    {0, 0, 0, 0}, 0.0f, {0,0,0,0}
+};
 
-void func_8038B7BC(ActorMarker *marker, s32 arg1);
-#pragma GLOBAL_ASM("asm/nonmatchings/RBB/code_52F0/func_8038B7BC.s")
+/* .code */
+void func_8038B6E0(Actor *this, s32 arg1){
+    if(arg1 == 2){
+        if(this->state == 1){
+            func_8030E6D4(0x90);
+        }
+        actor_collisionOff(this);
+        this->position_y -= 35.0f;
+        if(this->state == 1){
+            levelSpecificFlags_set(0x30, TRUE);
+            func_803204E4(0xe, 1);
+            timedFunc_set_0(1.0f, func_803228D8);
+            timedFunc_set_3(1.0f, (TFQM3)func_802E4078, MAP_RBB_RUSTY_BUCKET_BAY, 0, 0);
+        }
+    }
+    this->state = arg1;
+}
+
+void func_8038B7BC(ActorMarker *marker, s32 arg1){
+    Actor *actor = marker_getActor(marker);
+    func_8038B6E0(actor, 2);
+}
 
 void func_8038B7E8(Actor *this){
     if(!this->unk16C_4){
