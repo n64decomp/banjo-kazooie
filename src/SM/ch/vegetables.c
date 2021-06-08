@@ -162,7 +162,7 @@ void func_80387C28(Actor * this){
     if(this->unk38_31){
         this->position_y += 100.0f;
         func_802CA1CC(0x17);
-        func_802C3F04(func_802C4218, 0x1f, *(s32 *)&this->position_x, *(s32 *)&this->position_y, *(s32 *)&this->position_z);
+        func_802C3F04(func_802C4218, 0x1f, *(s32 *)&this->position_x, *(s32 *)&this->position_y, *(s32 *)(&this->position_z));
     }//L80387D64
     func_803252D0(1.5f, 7);
     actor_collisionOff(this);
@@ -368,10 +368,10 @@ void func_80388080(Actor *this){
                 sp6C[1] = this->unk1C_y - this->position_y;
                 sp6C[2] = this->unk1C_z - this->position_z;
                 if( gu_sqrtf(sp6C[0]*sp6C[0] + sp6C[1]*sp6C[1] + sp6C[2]*sp6C[2] ) < 40.0f){
-                    ml_vec3f_set_length(sp6C, 400.0f);
+                    ml_vec3f_set_length(&sp6C, 400.0f);
                 }
                 else{
-                    ml_vec3f_set_length(sp6C, 100.0f);
+                    ml_vec3f_set_length(&sp6C, 100.0f);
                 }
                 this->position_x += this->velocity_x*sp78 + sp6C[0]*sp78*sp78;
                 this->position_y += this->velocity_y*sp78 + sp6C[1]*sp78*sp78;
@@ -380,9 +380,9 @@ void func_80388080(Actor *this){
                 this->velocity_y += sp6C[1]*sp78;
                 this->velocity_z += sp6C[2]*sp78;
                 if(gu_sqrtf(this->velocity_z*this->velocity_z + (this->velocity_x*this->velocity_x + this->velocity_y*this->velocity_y)) > 50.0f){
-                    ml_vec3f_set_length(this->velocity, 50.0f);
+                    ml_vec3f_set_length(&this->velocity, 50.0f);
                 }
-                if(func_80256064(this->position, &this->unk1C_x) < 20.0f){
+                if(func_80256064(&this->position, &this->unk1C) < 20.0f){
                     func_80387E64(this);
                 }
                 this->unk28 = 5.0f;

@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-void func_8034DEB4(Actor *, f32);
+void func_8034DEB4(void *, f32);
 
 /* .code */
 void func_80388CF0(void){

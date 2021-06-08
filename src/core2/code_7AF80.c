@@ -98,21 +98,21 @@ s32 func_80304984(s32 arg0, u32 *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_803049CC.s")
 
-void func_80304C38(s32 arg0, f32 *arg1) {
+Actor *func_80304C38(s32 arg0, Actor *arg1){
     s32 vec[3];
     s32 *phi_a1;
 
     if (arg1 != 0) {
-        vec[0] = arg1[1];
-        vec[1] = arg1[2];
-        vec[2] = arg1[3];
+        vec[0] = arg1->position_x;
+        vec[1] = arg1->position_y;
+        vec[2] = arg1->position_z;
     }
     if (arg1 == 0) {
         phi_a1 = NULL;
     } else {
         phi_a1 = vec;
     }
-    func_803049CC(arg0, phi_a1);
+    return func_803049CC(arg0, phi_a1);
 }
 
 void func_80304CAC(s32 arg0, f32 *arg1) {

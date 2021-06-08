@@ -40,8 +40,8 @@ void func_8038A8F8(Actor *this){
         actor_collisionOff(this);
         this->unk16C_4 = 1;
     }//L8038A968
-    player_getPosition(this->velocity);
-    sp2C = func_80256064(this->velocity, this->position);
+    player_getPosition(&this->velocity);
+    sp2C = func_80256064(&this->velocity, &this->position);
     if(sp2C < (f32) this->unkF4_8)
         func_80388D48();
 
@@ -49,7 +49,7 @@ void func_8038A8F8(Actor *this){
         if( !mapSpecificFlags_get(2) 
             || (mapSpecificFlags_get(3) && !mapSpecificFlags_get(0xf))
         ){ //L8038AA54
-            this->yaw_moving = func_80256064(this->velocity, &this->unk1C_x) / 150.0;
+            this->yaw_moving = func_80256064(&this->velocity, &this->unk1C) / 150.0;
             func_8028F3D8(&this->unk1C_x, this->yaw_moving, func_8038A8C0, this->marker);
             mapSpecificFlags_set(0x10, 1);
         }

@@ -331,6 +331,10 @@ void func_80352CF4(f32 *, f32 *, f32, f32);
 AnimCtrl *player_getAnimCtrlPtr(void);
 void _get_velocity(f32 (*dst)[3]);
 void player_setYPosition(f32);
+
+Actor *func_80304C38(s32 arg0, Actor *arg1);
+Actor *func_80326D68(f32 (*)[3], s32, s32, f32 *);
+Actor *func_80329980(Actor *);
  
  /* used in RBB */
  void func_8025686C(f32 (* arg0)[3], f32 (* arg1)[3], f32 arg2);

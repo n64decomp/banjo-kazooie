@@ -36,7 +36,7 @@ void func_8038A4DC(Actor *this, s32 arg1){
     switch(arg1){
     case 2://L8038A50C
         this->sm_4070.unk0 = 0;
-        player_getPosition(this->velocity);
+        player_getPosition(&this->velocity);
         func_8028F918(0);
         if(ability_isUnlocked(ABILITY_FLAP)){
             mapSpecificFlags_set(9,1);
@@ -65,7 +65,7 @@ void func_8038A5D8(Actor *this){
     s32 temp_a0;
 
     if(!this->initialized){
-        temp_v0 = func_80326D68(this->position, 0x12b, -1, &sp40);
+        temp_v0 = func_80326D68(&this->position, 0x12b, -1, &sp40);
         if(temp_v0){
             this->unk1C_x = temp_v0->position_x;
             this->unk1C_y = temp_v0->position_y;

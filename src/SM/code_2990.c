@@ -5,12 +5,12 @@
 //external
 Actor *func_802D94B4(ActorMarker*, Gfx**, Mtx**, s32);
 void func_80326224(Actor * this);
-void func_803300D8(Actor *, void *);
+void func_803300D8(ActorMarker *, void *);
 void func_8028E668(f32*, f32, f32, f32);
 void func_80328FB0(Actor *, f32);
 void func_8030DA44(u8);
 void func_80324E88(f32);
-void func_80328B8C(ActorMarker *, s32, f32, s32);
+void func_80328B8C(Actor *, s32, f32, s32);
 void func_8030DBB4(s32, f32);
 
 
@@ -107,7 +107,7 @@ void func_80388F24(Actor *this){
 }
 
 void func_80388FA0(Actor *this, s32 arg1){
-    ActorMarker *other;
+    Actor *other;
     ActorMarker *myOther;
 
     switch(this->unk10_31){
@@ -433,7 +433,7 @@ void func_803899B0(Actor * this){
             || (this->unkF4_8 == 8 && mapSpecificFlags_get(3) && !mapSpecificFlags_get(0xF))
         ){//L80389C50
             
-            if( ((func_80256064(sp44, &this->unk1C_x) < this->unk28) && func_8028F20C())
+            if( ((func_80256064(&sp44, &this->unk1C) < this->unk28) && func_8028F20C())
                 || mapSpecificFlags_get(0x10)
             ){//L80389C8C
                 if(func_80329530(this, 0x96))
@@ -514,7 +514,7 @@ void func_803899B0(Actor * this){
             || actor_animationIsAt(this, 0.28f)
             || actor_animationIsAt(this, 0.31f)
         ){
-            func_8030E878(0x6f, randf2(1.4f, 1.55f), 0x3e80, this->position, 1250.0f, 2500.0f);
+            func_8030E878(0x6f, randf2(1.4f, 1.55f), 0x3e80, &this->position, 1250.0f, 2500.0f);
         } //L8038A0D8
         else if( actor_animationIsAt(this, 0.45f)
             || actor_animationIsAt(this, 0.48f)
@@ -523,7 +523,7 @@ void func_803899B0(Actor * this){
             || actor_animationIsAt(this, 0.73f)
             || actor_animationIsAt(this, 0.76f)
         ){
-            func_8030E878(0x6f, randf2(1.35f, 1.5f), 0x1770, this->position, 1250.0f, 2500.0f);
+            func_8030E878(0x6f, randf2(1.35f, 1.5f), 0x1770, &this->position, 1250.0f, 2500.0f);
         }//L8038A194
 
         if(mapSpecificFlags_get(5)){
