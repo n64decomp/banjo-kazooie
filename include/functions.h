@@ -370,6 +370,6 @@ void func_8030E6A4(s32, f32, s32);
 void func_803300A8(ActorMarker *, void (*)(ActorMarker *, s32), void (*)(ActorMarker *, s32), void (*)(ActorMarker *, s32));
 void func_8033568C(void *, f32 *, f32*);
 extern void func_802E4078(enum MAP_E map, s32 exit, s32 transition);
-extern void levelSpecificFlags_set(int, s32);
+extern void levelSpecificFlags_set(s32, s32);
 extern void func_8030E988(s32, f32, s32, f32 (*)[3], f32, f32);
 #endif

@@ -8,8 +8,6 @@ void func_80329904(ActorMarker*, s32, f32*);
 void func_8030E9C4(s32, f32, s32, f32*, f32, f32);
 void func_80326310(Actor *);
 void func_8032BB88(Actor *, s32, s32);
-void func_8030E988(s32, f32, s32, f32 *, f32, f32);
-
 
 extern ActorAnimationInfo D_803671B0[];
 
