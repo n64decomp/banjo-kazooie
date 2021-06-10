@@ -670,7 +670,7 @@ enum game_mode_e
     game_mode_normal = 3,
     GAME_MODE_PAUSED = 4,
     game_mode_file_playback = 6,
-    game_mode_attract_demo = 7,
+    GAME_MODE_ATTRACT_DEMO = 7,
     game_mode_bottles_bonus = 8,
     game_mode_BANJO_AND_KAZOOIE = 9,
     game_mode_SnS_picture = 10
