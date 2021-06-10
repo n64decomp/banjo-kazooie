@@ -426,7 +426,10 @@ enum jiggy_e
 
     jiggy_bgs_tiptup    = 0x27,
 
-    JIGGY_RBB_SNORKEL   = 0x53
+    JIGGY_RBB_SNORKEL   = 0x53,
+    JIGGY_RBB_WHISTLE   = 0x54,
+
+    JIGGY_RBB_BOSS_BOOM_BOX = 0x56
 };
 
 enum actor_e
