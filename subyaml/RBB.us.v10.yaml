@@ -97,6 +97,7 @@ segments:
       - [0x0000ABD0, bin, data_ABD0]
       - [0x0000ACD0, .rodata, code_5AB0]
       - [0x0000ACE0, bin, data_ACE0]
+      - [0x0000ACF0, .rodata, code_5F80]
       - [0x0000AD80, .rodata, code_7B20]
       - [0x0000ADB0, .rodata, code_7FD0]
       - [0x0000AE00, bin, data_AE00]
