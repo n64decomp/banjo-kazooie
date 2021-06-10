@@ -52,9 +52,11 @@ extern Struct_RBB_4C70 D_80390950[];
     0000 A620: 00 00 00 00 00 00 00 00  00 00 00 00 
 }; */
 
-extern f32 D_80390A1C[3]; // = {1.0f, 2.0f, 3.0f};
+extern f32 D_80390A1C[3] = {1.0f, 2.0f, 3.0f};
+
+// 5.0f, 0.05f, 0.1f, 1.5f, 2.5f, 0.0f, 0.5f};
 /* D_80390A1C = {
-    3F 80 00 00
+                                                    3F 80 00 00
     0000 A630: 40 00 00 00 40 40 00 00  40 A0 00 00 3D 4C CC CD
     0000 A640: 3D CC CC CD 3F C0 00 00  40 20 00 00 00 00 00 00
     0000 A650: 3F 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00
@@ -126,7 +128,6 @@ Actor *func_8038B230(ActorMarker *marker, Gfx** gdl, Mtx** mptr, s32 arg3){
     local->unk4[0] -= 60.0f;
     return actor;
 }
-
 
 void func_8038B340(Actor * this){
     ActorLocal_RBB_4C70 *local = (ActorLocal_RBB_4C70 *)&this->local;
