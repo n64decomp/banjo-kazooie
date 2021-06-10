@@ -379,4 +379,6 @@ void func_8030E988(s32, f32, s32, f32 (*)[3], f32, f32);
 void func_803228D8(void);
 void func_802EFFC4(Actor *, f32);
 void func_803253A0(Actor *);
+void mapSpecificFlags_set(s32, s32);
+
 #endif
