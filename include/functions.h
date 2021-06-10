@@ -185,7 +185,7 @@ Actor * spawn_child_actor(enum actor_e id, Actor ** parent);
 
 void func_80324D2C(f32, enum comusic_e);
 void func_802EF950(Actor *, s32);
-void func_802EFB54(Actor *, f32*);
+void func_802EFB54(Actor *, f32 (*)[3]);
 Actor *func_802F0BD0(u32);
 void func_802BB3DC(s32, f32, f32);
 void func_802C3F04(void (* arg0)(void), s32, s32, s32, s32);
@@ -377,5 +377,6 @@ void func_802E4078(enum MAP_E map, s32 exit, s32 transition);
 void levelSpecificFlags_set(s32, s32);
 void func_8030E988(s32, f32, s32, f32 (*)[3], f32, f32);
 void func_803228D8(void);
-
+void func_802EFFC4(Actor *, f32);
+void func_803253A0(Actor *);
 #endif
