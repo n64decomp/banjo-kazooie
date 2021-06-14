@@ -4,6 +4,7 @@
 
 extern void func_8028F9DC(s32);
 extern void func_803253A0(Actor *);
+extern void func_8033A2D4(void(*)(Actor *), Actor *);
 
 /* typedefs and declarations */
 typedef struct {
@@ -68,16 +69,14 @@ void func_8038A1C8(ActorMarker *marker, s32 arg1){
     }
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/RBB/code_3CB0/func_8038A224.s")
-#else
 Actor *func_8038A224(ActorMarker *marker, Gfx **gdl, Mtx **mptr, s32 arg3){
     Actor *actor = marker_getActor(marker);
     ActorLocal_RBB_3CB0 *local = (ActorLocal_RBB_3CB0 *)&actor->local;
 
-    if(actor->unk10_31 == 0)
+    if(actor->state == 0){
         return actor;
-    
+    }
+
     func_8033A2D4(func_803253A0, actor);
     if(local->unk4){
         func_803391A4(gdl, mptr, &actor->position, NULL, 1.0f, NULL, local->unk4);
@@ -87,7 +86,6 @@ Actor *func_8038A224(ActorMarker *marker, Gfx **gdl, Mtx **mptr, s32 arg3){
     }
     return actor;
 }
-#endif
 
 void func_8038A2F8(Actor *actor){
     ActorLocal_RBB_3CB0 *local = (ActorLocal_RBB_3CB0 *)&actor->local;

@@ -104,4 +104,5 @@ segments:
       - [0x0000ADB0, .rodata, code_7FD0]
       - [0x0000AE00, bin, data_AE00]
       - [0x0000AE70, .rodata, code_9670]
+      #- [0x0000AE80, .bss, code_99F0]
   - [0x0000AE80]
