@@ -5,9 +5,9 @@
 extern ActorInfo D_80390FD0;
 
 typedef struct {
-    u8 pad0[2];
+    s16 unk0;
     s16 unk2;
-    ActorInfo *unk4;
+    u8 *unk4;
 }ActorLocal_RBB_5060;
 
 void func_8038B654(Actor * this);
@@ -19,23 +19,57 @@ ActorInfo D_80390A50 = {
     {0, 0, 0, 0}, 0.0f, {0,0,0,0}
 };
 
-f32 D_80390A74[3]  = {-3820.0f,   850.0f, 0.0f};
-
+f32 D_80390A74[3]  = {-3820.0f,   850.0f, 0.0f}; //whistle jiggy spawn position
 
 /* .code */
 void func_8038B450(Actor *actor, s32 arg1){
     actor->state = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/RBB/code_5060/func_8038B468.s")
+void func_8038B468(void){
+    func_802C8F70(225.0f);
+    jiggySpawn(JIGGY_RBB_WHISTLE, D_80390A74);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/RBB/code_5060/func_8038B4A0.s")
+void func_8038B4A0(void){
+    func_8025A6EC(SFX_DING_B, 28000);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/RBB/code_5060/func_8038B4C4.s")
+void func_8038B4C4(ActorMarker *marker){
+    func_8025A6EC(SFX_BUZZER, 28000);
+    func_8028F530(0xD);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/RBB/code_5060/func_8038B4F4.s")
+void func_8038B4F4(void){
+    func_8025A6EC(JINGLE_PUZZLE_SOLVED_FANFARE, 28000);
+    func_80324E38(1.0f, 3);
+    func_80324E60(2.0f, 10);
+    timedFunc_set_0(2.2f, func_8038B468);
+    func_80324E88(5.0f);
+    func_80324E38(5.0f, 0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/RBB/code_5060/func_8038B56C.s")
+s32 func_8038B56C(Actor *this, s32 id, Actor *other){
+    ActorLocal_RBB_5060 *local = (ActorLocal_RBB_5060 *)&this->local;
+
+    if(this->state != 1)
+        return 0;
+
+    if(id + 0x30 == local->unk4[local->unk0]){
+        if(local->unk4[++local->unk0] == 0){
+            timedFunc_set_0(0.6f, func_8038B4F4);
+            func_8038B450(this, 2);
+            return 3;
+        }else{
+            timedFunc_set_0(0.6f, func_8038B4A0);
+            return 1;
+        }
+    }
+    
+    timedFunc_set_1(1.0f, func_8038B4C4, other->marker);
+    local->unk0 = 0;
+    return 2;
+}
 
 void func_8038B654(Actor *this){
     ActorLocal_RBB_5060 *local = (ActorLocal_RBB_5060 *)&this->local;
@@ -43,7 +77,7 @@ void func_8038B654(Actor *this){
     if(!this->unk16C_4){
         this->unk16C_4 = 1;
         local->unk2 = 1;
-        local->unk4 = &D_80390FD0;
+        local->unk4 = "312111";
         if(jiggyscore_80320F7C(JIGGY_RBB_WHISTLE))
             func_8038B450(this, 2);
         else
