@@ -49,15 +49,15 @@ void func_8038B4F4(void){
     func_80324E38(5.0f, 0);
 }
 
-s32 func_8038B56C(Actor *this, s32 id, Actor *other){
+s32 func_8038B56C(Actor *this, s32 whistle_id, Actor *other){
     ActorLocal_RBB_5060 *local = (ActorLocal_RBB_5060 *)&this->local;
 
     if(this->state != 1)
         return 0;
 
-    if(id + 0x30 == local->unk4[local->unk0]){
-        if(local->unk4[++local->unk0] == 0){
-            timedFunc_set_0(0.6f, func_8038B4F4);
+    if(whistle_id + 0x30 == local->unk4[local->unk0]){ //correct
+        if(local->unk4[++local->unk0] == 0){ //end of string
+            timedFunc_set_0(0.6f, func_8038B4F4); //spawn jiggy
             func_8038B450(this, 2);
             return 3;
         }else{
@@ -65,10 +65,11 @@ s32 func_8038B56C(Actor *this, s32 id, Actor *other){
             return 1;
         }
     }
-    
-    timedFunc_set_1(1.0f, func_8038B4C4, other->marker);
-    local->unk0 = 0;
-    return 2;
+    else{ //wrong
+        timedFunc_set_1(1.0f, func_8038B4C4, other->marker);
+        local->unk0 = 0;
+        return 2;
+    }
 }
 
 void func_8038B654(Actor *this){

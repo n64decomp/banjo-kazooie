@@ -58,13 +58,27 @@ extern ActorInfo D_80390170;//skylight
 extern ActorInfo D_80390194;//honeycombswitch
 
 
-#pragma GLOBAL_ASM("asm/nonmatchings/RBB/code_640/func_80386A30.s")
+s32 func_80386A30(f32 (*arg0)[3]){
+    s32 r; 
+    
+    r = ((*arg0)[0] < 0.0f)? 0 : 1;
+
+    return (((*arg0)[2] < 0.0f)? 0 : 2) + r;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/RBB/code_640/func_80386A7C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/RBB/code_640/func_80386B9C.s")
+Actor *func_80386B9C(ActorMarker *marker, Gfx **gdl, Mtx **mptr, s32 arg3){
+    Actor *actor = marker_getActor(marker);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/RBB/code_640/func_80386BF8.s")
+    return (actor->unk38_0) ? func_80325E78(marker, gdl, mptr, arg3): NULL;
+}
+
+void func_80386BF8(s32 arg0){
+    if(!mapSpecificFlags_get(0) && func_803212E4(0xF))
+        mapSpecificFlags_set(0, TRUE);
+    func_802D4A9C(arg0, 0);
+}
 
 void rbb_func_80386C48(void){
     func_803053E8(&D_80390D20, actor_new, 0x4880);
