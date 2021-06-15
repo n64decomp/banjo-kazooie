@@ -9,7 +9,7 @@ extern void func_80325794(ActorMarker *);
 extern void func_8030E394(u8);
 extern void func_80324DBC(f32, s32, s32, f32 (*)[3], ActorMarker *, void *, void *);
 extern void func_80326310(Actor *);
-extern void func_803342AC(f32 (*)[3], f32(*)[3], f32);
+extern int func_803342AC(f32 (*)[3], f32(*)[3], f32);
 extern void func_802EFA70(Actor *, s32);
 extern void func_802EFAC8(Actor *, s32);
 
@@ -204,7 +204,7 @@ void func_8038CBC0(void){
         func_802C8090(actor);
 }
 
-s32 func_8038CBF0(Actor *this){
+int func_8038CBF0(Actor *this){
     f32 sp2C[3];
     f32 sp20[3];
     ActorLocal_RBB_5F80 *local = (ActorLocal_RBB_5F80 *) &this->local;
@@ -219,7 +219,7 @@ s32 func_8038CBF0(Actor *this){
 
     sp2C[1] += 300.0f * local->unk0->unk4;
     sp20[1] += 300.0f * local->unk0->unk4;
-    func_803342AC(&sp2C, &sp20, local->unk0->unk4 * 400.0f);
+    return func_803342AC(&sp2C, &sp20, local->unk0->unk4 * 400.0f);
 
 }
 

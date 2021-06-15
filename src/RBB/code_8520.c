@@ -45,28 +45,7 @@ extern s32 D_80390DDC[4];
 extern s32 D_80390DEC[4];
 
 /* .rodata */
-extern f64 D_803911F0;
-extern f32 D_803911F8;
-extern f32 D_803911FC;
-extern f64 D_80391200;
-extern f64 D_80391208;
-// extern f64 0.1;
-// extern f64 0.6;
-// extern f64 0.1;
-// 0.6;
-// extern f64 0.6;
-// extern f32 -0.05f;
-// extern f32 0.05f;
-// extern f64 1.1;
-// extern f64 0.1;
 
-// 0000 AE00: 4066800000000000 BDCCCCCD3DCCCCCD
-// 0000 AE10: 3FD999999999999A 3FD3333333333333
-// 0000 AE20: 3FB999999999999A 3FE3333333333333
-// 0000 AE30: 3FB999999999999A 3FE3333333333333
-// 0000 AE40: 3FE3333333333333 BD4CCCCD 3D4CCCCD
-// 0000 AE50: 3FB999999999999A 3FF199999999999A
-// 0000 AE60: 3FB999999999999A 0000000000000000
 
 /* .bss */
 extern f32 D_803912A0[3];
@@ -186,7 +165,7 @@ int func_8038EF08(Actor *this, f32 (*position)[3], f32 arg2){
     sp54[0] = (*position)[0] - this->position_x;
     sp54[1] = (*position)[1] - this->position_y;
     sp54[2] = (*position)[2] - this->position_z;
-    if(D_803911F0 < gu_sqrtf(sp54[0]*sp54[0] + sp54[1]*sp54[1] + sp54[2]*sp54[2]))
+    if(180.0 < gu_sqrtf(sp54[0]*sp54[0] + sp54[1]*sp54[1] + sp54[2]*sp54[2]))
         ml_vec3f_set_length(&sp54, 150.0f);
     
     local->unk20[0] = sp54[0] + this->position_x;
@@ -223,7 +202,7 @@ int func_8038EF08(Actor *this, f32 (*position)[3], f32 arg2){
             local->unk20[2] = this->position_z;
         }
     }
-    func_80335924(this->unk148, 0x147, 0.1f, randf2(D_803911F8, D_803911FC) + (1.0/arg2)*D_80391200);
+    func_80335924(this->unk148, 0x147, 0.1f, randf2(-0.1f, 0.1f) + (1.0/arg2)*0.4);
     func_80335A8C(this->unk148, 2);
     local->unk14[0] = this->position_x; 
     local->unk14[1] = this->position_y; 
@@ -250,7 +229,7 @@ void func_8038F190(Actor *this, s32 arg1){
     if(arg1 == 2){
         int sp3C = 0;
         if(func_80329210(this, &sp44)){
-            local->unk4 += D_80391208;
+            local->unk4 += 0.3;
             if(*local->unk0 < local->unk4)
                 local->unk4 = *local->unk0;
             sp3C = func_8038EF08(this, &sp44, local->unk4);
