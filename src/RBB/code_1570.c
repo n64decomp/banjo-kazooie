@@ -45,10 +45,12 @@ void func_80387960(f32 arg0){
     void * temp_v0;
     f32 sp24[3];
     
-    TUPLE_ASSIGN(sp34, 0.0f, 0.0f, 0.0f);
-    TUPLE_ASSIGN(sp24, 0.0f, 0.0f, -40.0f);
+    sp34[1] = 0.0f;
+    sp34[0] = 0.0f;
+    sp24[0] = 0.0f;
+    sp24[1] = 0.0f;
+    sp34[2] = 0.0f;
     sp24[2] = -40.0f;
-
     
     if(temp_v0 = func_8034C528(0x19e)){
         func_8034DDF0(temp_v0, &sp34, &sp24, arg0, 1);

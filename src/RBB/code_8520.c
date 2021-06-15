@@ -5,9 +5,9 @@
 extern f32 func_80309724(f32(*)[3]);
 extern void func_80255FE4(f32 (*)[3], f32 (*)[3], f32 (*)[3], f32);
 extern void func_802C8F70(f32);
-extern int  func_80309EB0(f32(*)[3], f32, f32 (*)[3]);
+extern int  func_80309EB0(f32(*)[3], f32, f32 (*)[3], s32);
 extern void func_80324D54(f32, s32, f32, s32, f32(*)[3], f32, f32);
-extern void func_803342AC(f32(*)[3], f32(*)[3],f32);
+extern int func_803342AC(f32(*)[3], f32(*)[3],f32);
 
 /* typedefs and declarations */
 typedef struct {
@@ -46,16 +46,27 @@ extern s32 D_80390DEC[4];
 
 /* .rodata */
 extern f64 D_803911F0;
+extern f32 D_803911F8;
+extern f32 D_803911FC;
+extern f64 D_80391200;
 extern f64 D_80391208;
-extern f64 D_80391210;
-extern f64 D_80391218;
-extern f64 D_80391220;
+// extern f64 0.1;
+// extern f64 0.6;
+// extern f64 0.1;
+// 0.6;
+// extern f64 0.6;
+// extern f32 -0.05f;
+// extern f32 0.05f;
+// extern f64 1.1;
+// extern f64 0.1;
 
-extern f64 D_80391230;
-extern f32 D_80391238;
-extern f32 D_8039123C;
-extern f64 D_80391248;
-extern f64 D_80391250;
+// 0000 AE00: 4066800000000000 BDCCCCCD3DCCCCCD
+// 0000 AE10: 3FD999999999999A 3FD3333333333333
+// 0000 AE20: 3FB999999999999A 3FE3333333333333
+// 0000 AE30: 3FB999999999999A 3FE3333333333333
+// 0000 AE40: 3FE3333333333333 BD4CCCCD 3D4CCCCD
+// 0000 AE50: 3FB999999999999A 3FF199999999999A
+// 0000 AE60: 3FB999999999999A 0000000000000000
 
 /* .bss */
 extern f32 D_803912A0[3];
@@ -145,7 +156,7 @@ void func_8038ED3C(Actor * actor, s32 arg1){
     func_802EF5C8(other, 0xa);
 }
 
-void func_8038EE90(Actor *this){
+int func_8038EE90(Actor *this){
     f32 sp2C[3];
     f32 sp20[3];
     ActorLocal_RBB_8520 *local = (ActorLocal_RBB_8520 *)&this->local;
@@ -160,19 +171,17 @@ void func_8038EE90(Actor *this){
 
     sp2C[1] += 75.0f;
     sp20[1] += 75.0f;
-    func_803342AC(&sp2C, &sp20, 100.0f);
+    return func_803342AC(&sp2C, &sp20, 100.0f);
 }
 
-#ifndef NONMATCHING
-int func_8038EF08(Actor *this, f32 (*position)[3], f32 arg2);
-#pragma GLOBAL_ASM("asm/nonmatchings/RBB/code_8520/func_8038EF08.s")
-#else
 int func_8038EF08(Actor *this, f32 (*position)[3], f32 arg2){
     f32 sp54[3];
     int sp50;
     ActorLocal_RBB_8520 *local = (ActorLocal_RBB_8520 *)&this->local;
     f32 sp40[3];
+    f32 sp3C;
     f32 sp30[3];
+    
 
     sp54[0] = (*position)[0] - this->position_x;
     sp54[1] = (*position)[1] - this->position_y;
@@ -189,25 +198,38 @@ int func_8038EF08(Actor *this, f32 (*position)[3], f32 arg2){
     sp40[0] = local->unk20[0];
     sp40[1] = local->unk20[1] + this->scale*100.0f;
     sp40[2] = local->unk20[2];
-    if(func_80309EB0(&sp40, this->scale*60.0f, &sp30)){
+    sp3C = this->scale*60.0f;
+    if(func_80309EB0(&sp40, sp3C, &sp30, 0)){
         sp50 = 1;
     }else{
         sp50 = 0;
     }
-    if( func_80329210(this, &local->unk20) 
-        || (local->unk2C + 30.0f) < local->unk20[1] 
+    if( !func_80329210(this, &local->unk20) 
+        || ((local->unk2C + 30.0f) < local->unk20[1])
         || sp50
     ){
         local->unk20[0] = this->position_x;
         local->unk20[1] = this->position_y;
         local->unk20[2] = this->position_z;
-        if(local->unk39 < 3);
+        if(local->unk39 < 3 && ++local->unk39 == 3){
+            local->unk39 = 0;
+            return 0;
+        }
+    }else{
+        local->unk34 = func_8038EE90(this);
+        if(local->unk34 == 0){
+            local->unk20[0] = this->position_x;
+            local->unk20[1] = this->position_y;
+            local->unk20[2] = this->position_z;
+        }
     }
-    // else{//L8038F0CC
-
-    // }
+    func_80335924(this->unk148, 0x147, 0.1f, randf2(D_803911F8, D_803911FC) + (1.0/arg2)*D_80391200);
+    func_80335A8C(this->unk148, 2);
+    local->unk14[0] = this->position_x; 
+    local->unk14[1] = this->position_y; 
+    local->unk14[2] = this->position_z;
+    return 1;
 }
-#endif
 
 void func_8038F190(Actor *this, s32 arg1){
     f32 sp44[3];
@@ -355,13 +377,13 @@ void func_8038F618(Actor *this){
         func_8038FB54();
     }
     func_8038E92C(this);
-    if(this->unk10_31 == 1){
+    if(this->state == 1){
         if(sp78 && func_80256064(&this->position, &sp7C) < 500.0f){
             func_8038F190(this, 2);
         }
     }//L8038F7A0
 
-    if(this->unk10_31 == 2){
+    if(this->state == 2){
         sp5C[0] = this->position_x;
         sp5C[1] = this->position_y;
         sp5C[2] = this->position_z;
@@ -374,19 +396,21 @@ void func_8038F618(Actor *this){
 
         func_8033568C(this->unk148, &sp6C, &sp68);
 
-        if(D_80391210 <= sp68 && sp68 <= D_80391218)
-            func_80255FE4(&this->position, &local->unk14, local->unk20, (sp68 - D_80391210) /0.5 );
-        
-        if(sp6C < D_80391230 && sp6C <= D_80391220)
-            func_8030E878(0x6C, randf2(D_80391238, D_8039123C) + D_80391248, 20000, &this->position, 500.0f, 1000.0f);
+        if(0.1 <= sp68 && sp68 <= 0.6)
+            func_80255FE4(&this->position, &local->unk14, &local->unk20, (sp68 - 0.1) /0.5 );
+        if(0.6);
+        if(sp6C < 0.6 && sp68 <= 0.1)
+            func_8030E878(0x6C, (f64)1.1f + randf2(-0.05f, 0.05f), 20000, &this->position, 500.0f, 1000.0f);
 
-        if(sp6C < D_80391250 && D_80391250 <= sp68)
+        if(sp6C < 0.1 && 0.1 <= sp68)
             func_8038E998(this);
 
         sp50[0] = local->unk20[0] - local->unk14[0];
         sp50[1] = local->unk20[1] - local->unk14[1];
         sp50[2] = local->unk20[2] - local->unk14[2];
+
         func_80258A4C(&D_80390DEC,sp50[0] - 90.0f, &sp50, &sp4C, &sp48, &sp44);
+        
         this->yaw += (sp44*400.0f)*sp70;
         if(func_80335794(this->unk148) > 0){
             if(func_80256064(&this->position, &local->unk8) < 10.0f){
