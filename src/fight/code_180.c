@@ -516,10 +516,10 @@ void func_8038BCB8(ActorMarker *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/fight/code_180/func_8038BCF0.s")
 
-void func_8038C0DC(f32 *arg0) {
-    arg0[0] = D_80392798[0];
-    arg0[1] = D_80392798[1];
-    arg0[2] = D_80392798[2];
+void func_8038C0DC(f32 (*arg0)[3]) {
+    (*arg0)[0] = D_80392798[0];
+    (*arg0)[1] = D_80392798[1];
+    (*arg0)[2] = D_80392798[2];
 }
 
 void func_8038C100() {
