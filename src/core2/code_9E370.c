@@ -386,7 +386,7 @@ static void __actor_free(ActorMarker *arg0, Actor *arg1){
     arrayEnd = &D_8036E560->data[D_8036E560->cnt - 1];
     func_80325FE8(arg1);
     if((s32)arg1 != arrayEnd)
-        func_80254608(arg1, arrayEnd, 0x180); //memcpy
+        memcpy(arg1, arrayEnd, 0x180); //memcpy
     arg1->marker->actrArrayIdx = arg0->actrArrayIdx;
 
     //remove last actor from actor array
@@ -748,7 +748,7 @@ void actor_copy(Actor *dst, Actor *src){
     dst->unk148 = src->unk148;
     dst->unk14C = src->unk14C;
     dst->unk150 = src->unk150;
-    func_80254608(src, dst, sizeof(Actor));
+    memcpy(src, dst, sizeof(Actor));
 }
 
 void *actors_appendToSavestate(void * begin, u32 end){
@@ -781,7 +781,7 @@ void *actors_appendToSavestate(void * begin, u32 end){
                 && s1->despawn_flag == 0
                 && s1->unk40 == 0
             ){
-                func_80254608(s0, s1, sizeof(Actor));
+                memcpy(s0, s1, sizeof(Actor));
                 s0->unk40 = 0;
                 s0->unk138_28 = 1;
                 s0->unk150 = NULL;

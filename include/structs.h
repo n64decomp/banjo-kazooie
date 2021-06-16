@@ -350,4 +350,132 @@ typedef struct struct_22_s{
     u8 pad35[0x3];
 } struct22s;//size 0x38
 
+//particle
+typedef struct struct_2F_s{
+    f32 unk0[3];
+    f32 unkC;
+    f32 unk10;
+    f32 unk14;
+    f32 unk18[3];
+    f32 unk24[3];
+    f32 unk30;
+    f32 unk34;
+    f32 unk38;
+    f32 unk3C[3];
+    f32 unk48;
+    f32 unk4C;
+    f32 unk50[3];
+    u8 unk5C;
+    u8 pad5D[3];
+} struct2Fs;
+
+//particle_ctrl
+typedef struct struct_30_s{
+    u32 pad0_31:8;
+    u32 unk0_23:7;
+    u32 unk0_16:1;
+    u32 unk0_15:14;
+    u32 unk0_1:1;
+    u32 unk0_0:1;
+    f32 unk4[3];
+    f32 unk10;
+    f32 unk14;
+    s32 unk18;
+    Sprite *unk1C;
+    void *unk20;
+    f32 unk24;
+    f32 unk28[3];
+    s32 unk34;
+    f32 unk38;
+    s32 unk3C[3];
+    u8  unk48;
+    u8  unk49;
+    u8  pad4A[0x2];
+    f32 unk4C[3];
+    f32 unk58[3];
+    s16 unk64;
+    s16 unk66;
+    f32 unk68;
+    f32 unk6C;
+    f32 unk70;
+    f32 unk74;
+    f32 unk78;
+    s32 unk7C;
+    void  (*unk80)(struct struct_30_s *, f32 (*)[3]);
+    s32 unk84;
+    s32 unk88;
+    f32 unk8C;
+    f32 unk90;
+    f32 unk94[3];
+    f32 unkA0[3];
+    f32 unkAC[2];
+    f32 unkB4[2];
+    f32 unkBC[3];
+    f32 unkC8[3];
+    f32 unkD4;
+    f32 unkD8;
+    f32 unkDC[2];
+    f32 unkE4[2];
+    f32 unkEC[2];
+    f32 unkF4[2];
+    f32 unkFC;
+    s32 unk100;
+    s16 unk104;
+    u8 pad106[0x2];
+    f32 unk108;
+    f32 unk10C[3];
+    f32 unk118[3];
+    struct2Fs *unk124;
+    struct2Fs *unk128;
+    struct2Fs *unk12C; //end ptr;
+    struct2Fs data[];//end of struct 0x130 
+} struct30s;
+
+typedef struct struct_31_s{
+    f32 unk0[2];
+    f32 unk8[2];
+    f32 unk10[2];
+    f32 unk18[2];
+    f32 unk20;
+    f32 unk24;
+} struct31s;
+
+typedef struct struct_32_s{
+    f32 unk0[2];
+    f32 unk8[2];
+    f32 unk10[2];
+} struct32s;
+
+typedef struct struct_33_s{
+    f32 unk0[3];
+    f32 unkC[3];
+} struct33s;
+
+typedef struct struct_34_s{
+    f32 unk0[3];
+    f32 unkC[3];
+} struct34s;
+
+typedef struct struct_40_s{
+    struct31s unk0;
+    f32 unk28;
+    f32 unk2C;
+} struct40s;
+
+typedef struct struct_41_s{
+    struct32s unk0;
+    struct33s unk18;
+} struct41s;
+
+typedef struct struct_42_s{
+    struct32s unk0;
+    struct34s unk18;
+} struct42s;
+
+typedef struct struct_43_s{
+    struct32s unk0;
+    struct33s unk18;
+    struct34s unk30;
+} struct43s;
+
 #endif

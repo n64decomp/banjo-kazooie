@@ -90,7 +90,7 @@ void func_8025456C(StackHeader * arg0){
     func_8025449C(arg0);
 }
 
-void func_80254608(void * dst, void *src, int size){
+void memcpy(void * dst, void *src, int size){
     while(size > 0){
         *(u8*)dst = *(u8*)src;
         size--;

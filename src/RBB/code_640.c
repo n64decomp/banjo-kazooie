@@ -68,6 +68,7 @@ s32 func_80386A30(f32 (*arg0)[3]){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/RBB/code_640/func_80386A7C.s")
 
+
 Actor *func_80386B9C(ActorMarker *marker, Gfx **gdl, Mtx **mptr, s32 arg3){
     Actor *actor = marker_getActor(marker);
 

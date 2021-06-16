@@ -8,17 +8,16 @@ void func_802991FC(void);
 void func_802978DC(int);
 void func_8030E624(u32);
 void func_8030E6D4(int);
-void func_802EFF50(Actor *, f32);
 f32 func_80257A44(f32, f32);
 f32 cosf(f32);
 f32 func_802588B0(f32, f32);
 
-extern u8 D_80364BB0;
-extern u8 D_80364BE0;
-extern u8 D_80364C10;
-extern u8 D_80364C40;
-extern u8 D_80364C70;
-extern u8 D_80364CA0;
+extern struct41s D_80364BB0;
+extern struct41s D_80364BE0;
+extern struct41s D_80364C10;
+extern struct41s D_80364C40;
+extern struct41s D_80364C70;
+extern struct41s D_80364CA0;
 
 extern struct {
     Actor *unk0;
@@ -121,7 +120,7 @@ void func_802AFBAC(f32 arg0){
 }
 
 void func_802AFBB8(f32 (* arg0)[3]){
-    Actor* s0 = func_802F0BD0(1);
+    struct30s* s0 = func_802F0BD0(1);
     func_802EF950(s0, 0x6c4); //yellow blast
     func_802EFA5C(s0, 0.7f, 0.8f);
     func_802EFA9C(s0, 12.0f, 12.0f);

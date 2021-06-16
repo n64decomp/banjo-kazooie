@@ -10,8 +10,6 @@ f32 func_80309724(f32*);
 void func_802C4218(s32, f32, f32, f32);
 void func_803252D0(f32, s32);
 void func_80328B8C(Actor *, s32, f32, s32);
-void func_802EF9F8(Actor *, f32);
-void func_802EFE24(Actor *, f32, f32, f32, f32, f32, f32);
 
 //typedefs
 typedef struct ch_vegatable{
@@ -83,16 +81,16 @@ ActorInfo D_8038AD7C = { 0x1E8, ACTOR_COLLYWOBBLE_B, MODEL_COLLYWOBBLE, 1, chCau
 extern f32 D_8038ADA0[3];
 
 extern s32 D_8038ADAC;
-extern s32 D_8038ADD4;
+extern struct42s D_8038ADD4;
 
 extern s32 D_8038AE04;
-extern s32 D_8038AE2C;
+extern struct43s D_8038AE2C;
 
 extern s32 D_8038AE74;
-extern s32 D_8038AE9C;
+extern struct43s D_8038AE9C;
 
 extern s32 D_8038AEE4;
-extern s32 D_8038AF0C;
+extern struct43s D_8038AF0C;
 
 /* .code */
 void func_80387910(Actor *arg0, f32 *arg1, s32 arg2){

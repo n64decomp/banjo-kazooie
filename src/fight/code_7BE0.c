@@ -14,10 +14,10 @@ void func_8038DFD0(ActorMarker *arg0) {
 }
 
 extern s32 D_80391A64;
-extern s32 D_80391A98;
-extern s32 D_80391A70;
+extern struct42s D_80391A98;
+extern struct31s D_80391A70;
 extern u32 D_80391B48;
-extern u32 D_80391B54;
+extern struct42s D_80391B54;
 extern u32 D_80391B94;
 extern u32 D_80391B84;
 
@@ -25,7 +25,7 @@ void func_80386654(f32, void *, void *);
 void func_8038E03C(f32*, u32);
 
 void func_8038E03C(f32 *arg0, u32 arg1) {
-    Actor *temp_v0 = func_802F0BD0(arg1);
+    struct30s *temp_v0 = func_802F0BD0(arg1);
 
     func_802EF950(temp_v0, 0x70E);
     func_802EFFA8(temp_v0, &D_80391A64);
@@ -104,7 +104,7 @@ void func_8038EB90(ActorMarker *arg0, f32 *arg1) {
 }
 
 void func_8038EBE0(f32 *arg0, u32 arg1, s32 arg2, f32 *arg3, f32 *arg4, f32 *arg5, f32 *arg6, f32 *arg7, f32 *arg8) {
-    Actor *temp_v0 = func_802F0BD0(arg1);
+    struct30s *temp_v0 = func_802F0BD0(arg1);
 
     func_802EF950(temp_v0, arg2);
     func_802EFA90(temp_v0, 1, 6);
@@ -126,7 +126,7 @@ void func_8038EBE0(f32 *arg0, u32 arg1, s32 arg2, f32 *arg3, f32 *arg4, f32 *arg
 }
 
 void func_8038ED9C(f32 *arg0, u32 arg1, s32 arg2, s32 *arg3, f32 *arg4, f32 *arg5, f32 *arg6, f32 *arg7) {
-    Actor *temp_v0 = func_802F0BD0(arg2);
+    struct30s *temp_v0 = func_802F0BD0(arg2);
 
     func_802EF950(temp_v0, arg1);
     func_802EFA90(temp_v0, arg3[0], arg3[1]);
@@ -145,7 +145,7 @@ void func_8038ED9C(f32 *arg0, u32 arg1, s32 arg2, s32 *arg3, f32 *arg4, f32 *arg
 }
 
 void func_8038EEFC(f32 *arg0, u32 arg1, f32 *arg2) {
-    Actor *temp_v0 = func_802F0BD0(arg1);
+    struct30s *temp_v0 = func_802F0BD0(arg1);
 
     func_802EF950(temp_v0, 0x70E);
     func_802EFFA8(temp_v0, &D_80391B48);

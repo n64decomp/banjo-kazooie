@@ -12,11 +12,11 @@ void func_8038D280(ActorMarker *arg0) {
     sp1C->unk100 = temp_v0->marker;
 }
 
-s32 D_803919B4;
-s32 D_803919C0;
+s32 D_803919B4[3];
+struct31s D_803919C0;
 
 void func_8038D2EC(f32 *arg0, s32 arg1) {
-    Actor *temp_v0 = func_802F0BD0(arg1);
+    struct30s *temp_v0 = func_802F0BD0(arg1);
     
     func_802EF950(temp_v0, 0x70E);
     func_802EFFA8(temp_v0, &D_803919B4);

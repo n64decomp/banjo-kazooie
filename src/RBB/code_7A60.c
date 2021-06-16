@@ -3,6 +3,16 @@
 #include "variables.h"
 
 
+void func_8038DE68(Actor *this);
+
+/* .data */
+ActorInfo D_80390CF0 = {
+    0x1C0, 0x2AD, 0x0, 0x0, NULL,
+    func_8038DE68, NULL, func_80325340,
+    {0, 0, 0, 0}, 0.0f, {0,0,0,0}
+};
+
+/* .code */
 void func_8038DE50(Actor *this, s32 new_state){
     this->state = new_state;
 }

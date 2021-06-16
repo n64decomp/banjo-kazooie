@@ -6,12 +6,16 @@ extern void func_80324DBC(f32, s32, s32, f32 (*)[3], ActorMarker *, void (*)(Act
 
 void func_8038C0FC(Actor *this, s32 new_state);
 
-/* .data */
-extern f32 D_80390B34[3];
+void func_8038C204(Actor *this);
 
-/* .rodata */
-extern f32 D_803910D0;
-extern f32 D_803910D4;
+/* .data */
+ActorInfo D_80390B10 = {
+    0x199, 0x1CB, 0x0, 0x0, NULL,
+    func_8038C204, NULL, func_80325340,
+    {0, 0, 0, 0}, 0.0f, {0,0,0,0}
+};
+
+f32 D_80390B34[3] = {-5100.0f, -2550.0f, 1470.0f};
 
 /* .code */
 void func_8038C000(void){
@@ -39,8 +43,8 @@ void func_8038C0FC(Actor *this, s32 new_state){
         func_80324E38(0.0f, 3);
         timedFunc_set_0(1.0f, func_8038C000);
         timedFunc_set_2(1.0f, (TFQM2)mapSpecificFlags_set, 8, TRUE);
-        func_80324C88(D_803910D0,0x3f6, 0.6f, 0x7fbc);
-        timedFunc_set_2(D_803910D4, (TFQM2)mapSpecificFlags_set, 4, TRUE);
+        func_80324C88(2.1f, 0x3f6, 0.6f, 0x7fbc);
+        timedFunc_set_2(2.7f, (TFQM2)mapSpecificFlags_set, 4, TRUE);
         timedFunc_set_0(3.0f, func_8038C058);
         func_80324DBC(3.0f, 0xb9C, 7, NULL, this->marker, func_8038C0A8, NULL);
     }//L8038C1D8

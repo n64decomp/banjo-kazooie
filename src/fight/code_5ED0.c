@@ -5,8 +5,8 @@
 extern void func_80386654(f32, void *, void *);
 
 
-extern f32 D_803918D0;
-extern f32 D_80391918;
+extern struct43s D_803918D0;
+extern struct42s D_80391918;
 extern s32 D_80391948;
 extern s32 D_80391958;
 
@@ -19,7 +19,7 @@ extern f32 D_80392520;
 
 /* .code */
 void func_8038C2C0(f32 (*arg0)[3], s32 arg1, enum asset_e id, f32 arg3){
-    Actor * temp_s0 = func_802F0BD0(arg1);
+    struct30s * temp_s0 = func_802F0BD0(arg1);
     f32 sp24;
 
     func_802EF950(temp_s0, id);
@@ -39,7 +39,7 @@ void func_8038C2C0(f32 (*arg0)[3], s32 arg1, enum asset_e id, f32 arg3){
 }
 
 void func_8038C424(f32 (*arg0)[3], s32 arg1, enum asset_e id, f32 arg3){
-    Actor * temp_s0 = func_802F0BD0(arg1);
+    struct30s * temp_s0 = func_802F0BD0(arg1);
     f32 sp24;
 
     func_802EF950(temp_s0, id);

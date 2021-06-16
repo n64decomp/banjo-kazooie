@@ -57,7 +57,7 @@ void *vla_insertNew(VLA **thisPtr, s32 indx){
     this = *thisPtr;
     i = ((s32)this->end - (s32)this->begin)/this->elem_size;
     while(indx < --i){
-        func_80254608((s32)this->begin + (i)*this->elem_size, (s32)this->begin + (i -1)*this->elem_size, this->elem_size);
+        memcpy((s32)this->begin + (i)*this->elem_size, (s32)this->begin + (i -1)*this->elem_size, this->elem_size);
     }
     return (void *)((s32)this->begin +  indx*this->elem_size);
 }
@@ -81,7 +81,7 @@ VLA *vla_new(u32 elemSize, u32 cnt){
 //     u32 nextOffset = (u32)this->begin + (indx + 1) * this->elem_size;
 //     u32 size = (u32)this->end - (u32)this->begin;
     
-//     func_80254608( elemOffset, nextOffset, size - (indx + 1) * this->elem_size);
+//     memcpy( elemOffset, nextOffset, size - (indx + 1) * this->elem_size);
 //     this->end = (u32)this->end - this->elem_size;
 // }
 
@@ -91,7 +91,7 @@ void vla_popBack_n(VLA *this, u32 n){
 }
 
 void vla_assign(VLA *this, s32 indx, void* value){
-    func_80254608((s32)this->begin + indx * this->elem_size, value, this->elem_size);
+    memcpy((s32)this->begin + indx * this->elem_size, value, this->elem_size);
 }
 
 VLA * vla_802ED9E0(VLA *this){

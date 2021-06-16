@@ -422,6 +422,8 @@ segments:
   - [0x000EF5D0, .rodata, ch/jinjo]
   - [0x000EF5F0, bin, data_EF5F0] #part of ch/jinjo .rodata
   - [0x000EF640, bin, data_EF640]
+  - [0x000F0220, .rodata, code_67650]
+  - [0x000F0240, bin, data_F0240]
   - [0x000F03D0, .rodata, code_73640]
   - [0x000F0400, bin, data_F0400]
   - [0x000F0420, bin, data_F0420] #this is first part of [.rodata, code_76D90], COMBINE WITH FOLLOWING SECTION ONCE CODE DONE

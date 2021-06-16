@@ -6,10 +6,16 @@ extern void func_80335A24(void *, s32, f32, f32);
 extern f32 func_80335684(void *);
 extern s32 func_802EDD8C(f32 (*)[3], f32, f32);
 
-// 0000 A6C0: 00 30 01 C8 04 1C 00 00  00 00 00 00 00 00 00 00  .0.
-// 0000 A6D0: 80 38 B9 00 80 32 58 88  00 00 00 00 00 00 00 00  .8.
-// 0000 A6E0: 00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  ...
+void func_8038B900(Actor *this);
 
+/* .data */
+ActorInfo D_80390AB0 = {
+    0x30, 0x1C8, 0x41C, 0x0, NULL,
+    NULL, func_8038B900, func_80325888,
+    {0, 0, 0, 0}, 0.0f, {0,0,0,0}
+};
+
+/* .code */
 void func_8038B880(Actor *this, s32 new_state){
     if(new_state == 1)
         func_80335924(this->unk148, 0x13f, 0.0f, 5.5f);
@@ -25,7 +31,7 @@ void func_8038B900(Actor *this){
     f32 sp58;
     f32 sp54;
     f32 sp48[3];
-    Actor *other;
+    struct30s *other;
 
     this->marker->propPtr->unk8_3 = 1;
     if(this->marker->unk14_21){

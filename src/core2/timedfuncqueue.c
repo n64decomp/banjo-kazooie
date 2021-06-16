@@ -216,7 +216,7 @@ void timedFunc_set_5(f32 time, TFQM5 funcPtr, s32 arg0, s32 arg1, s32 arg2, s32 
 
 void timedFunc_set_6(f32 time, TFQM6 funcPtr, void* argPtr ){
     TimedFunction *q = __timedFuncQueue_insert(time, 6, funcPtr, 0, 0, 0, 0, 0);
-    func_80254608(&q->arg[5], argPtr, 0x50);
+    memcpy(&q->arg[5], argPtr, 0x50);
 }
 
 //timedJiggySpawn
@@ -242,7 +242,7 @@ void func_80325104(void){
 
     while(vla_size(D_80383380.ptr) > 0){
         iPtr = vla_getBegin(D_80383380.ptr);
-        func_80254608(&iFunc, iPtr, sizeof(TimedFunction));
+        memcpy(&iFunc, iPtr, sizeof(TimedFunction));
         vla_remove(D_80383380.ptr, 0);
         __timedFunc_execute(&iFunc);
     }
@@ -273,7 +273,7 @@ void func_803251D4(void){
         iPtr = vla_getBegin(D_80383380.ptr);
         if(D_80383380.time < iPtr->time)
             break;
-        func_80254608(&iFunc, iPtr, sizeof(TimedFunction));
+        memcpy(&iFunc, iPtr, sizeof(TimedFunction));
         vla_remove(D_80383380.ptr, 0);
         __timedFunc_execute(&iFunc);
     }

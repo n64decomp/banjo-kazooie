@@ -83,7 +83,7 @@ s32 func_8032D9C0(Cube *this, Prop* prop){
             func_80305CD8(func_803058C0(prop->unk6), -1);
         }
         if((prop - this->prop2Ptr) < (this->prop2Cnt - 1)){
-            func_80254608(prop, prop + 1, (s32)(&this->prop2Ptr[this->prop2Cnt-1]) - (s32)(prop));
+            memcpy(prop, prop + 1, (s32)(&this->prop2Ptr[this->prop2Cnt-1]) - (s32)(prop));
         }
         this->prop2Cnt--;
         if(this->prop2Cnt){

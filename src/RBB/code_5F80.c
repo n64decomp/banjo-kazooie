@@ -10,18 +10,18 @@ extern void func_8030E394(u8);
 extern void func_80324DBC(f32, s32, s32, f32 (*)[3], ActorMarker *, void *, void *);
 extern void func_80326310(Actor *);
 extern int func_803342AC(f32 (*)[3], f32(*)[3], f32);
-extern void func_802EFA70(Actor *, s32);
-extern void func_802EFAC8(Actor *, s32);
+extern void func_802EFAC8(struct30s *, s32);
+
 
 typedef struct{
     s16 unk0;
-    u8 pad2[2];
+    //u8 pad2[2];
     f32 unk4;
     f32 unk8;
     u8 unkC;
     u8 unkD;
     u8 unkE;
-    u8 padF[1];
+    //u8 padF[1];
     f32 unk10;
     f32 unk14;
 } Struct_RBB_5F80;
@@ -39,19 +39,55 @@ typedef struct{
 
 void func_8038CC9C(Actor *this, s32 new_state);
 void func_8038D7E8(ActorMarker *marker, s32 arg1);
+Actor *func_8038D638(ActorMarker *marker, Gfx **gdl, Mtx ** mptr, s32 arg3);
+void func_8038D8BC(Actor *this);
 
 /* .data */
-extern Struct_RBB_5F80 D_80390B70[];
+Struct_RBB_5F80 D_80390B70[4] = {
+    {0x281, 1.1f,  1.0f, 0x14, 0x01, 0x5, 0.9f, 0.8f},
+    {0x282, 0.75f, 1.0f,  0xF, 0x02, 0x4, 1.1f, 0.9f},
+    {0x283, 0.5f,  2.0f,  0xA, 0x02, 0x3, 1.3f, 1.0f},
+    {0x284, 0.25f, 2.0f,  0x5, 0x02, 0x2, 1.5f, 1.1f},
+};
 
-extern s32 D_80390C60;
-extern s32 D_80390C6C;
-extern s32 D_80390C9C;
-extern s32 D_80390CA8;
+ActorInfo D_80390BD0 = {
+    0x1A1, 0x281, 0x428, 0x0, NULL,
+    func_8038D8BC, NULL, func_8038D638,
+    {0, 0, 0, 0}, 0.0f, {0,0,0,0}
+};
 
-extern struct{
-   u8 pad0[0x18];
-   u8 unk18;
-}D_8037DCB8;
+ActorInfo D_80390BF4 = {
+    0x1A2, 0x282, 0x428, 0x0, NULL,
+    func_8038D8BC, NULL, func_8038D638,
+    {0, 0, 0, 0}, 0.0f, {0,0,0,0}
+};
+
+ActorInfo D_80390C18 = {
+    0x1A3, 0x283, 0x428, 0x0, NULL,
+    func_8038D8BC, NULL, func_8038D638,
+    {0, 0, 0, 0}, 0.0f, {0,0,0,0}
+};
+
+ActorInfo D_80390C3C = {
+    0x1A4, 0x284, 0x428, 0x0, NULL,
+    func_8038D8BC, NULL, func_8038D638,
+    {0, 0, 0, 0}, 0.0f, {0,0,0,0}
+};
+
+s32 D_80390C60[3] = {0xDE, 0xA7, 0x71};
+
+struct41s D_80390C6C = {
+    { {-200.0f, 200.0f}, {-200.0f, 200.0f}, {500.0f, 200.0f} },
+    { {0.0f, -800.0f, 0.0f}, {0.0f, -800.0f, 0.0f} }
+};
+
+s32 D_80390C9C[3] = {0xDE, 0xA7, 0x71};
+
+struct43s D_80390CA8 = {
+    { {-200.0f, 0.0f}, {-200.0f, 200.0f}, {-50.0f, 200.0f} },
+    { {0.0f, 200.0f, 0.0f}, {0.0f, 400.0f, 0.0f} },
+    { {-10.0f, -10.0f, -10.0f}, {10.0f, 10.0f, 10.0f} }
+};
 
 /* .bss */
 extern u8 D_80391280;
@@ -65,7 +101,7 @@ void func_8038C370(ActorMarker *marker, s32 arg1){
 
 void func_8038C39C(Actor *this){
     ActorLocal_RBB_5F80 *local = (ActorLocal_RBB_5F80 *) &this->local;
-    Actor *other = func_802F0BD0(local->unk0->unkE);
+    struct30s *other = func_802F0BD0(local->unk0->unkE);
     func_802EF950(other, 0x70e);
     func_802EFA5C(other, 0.0f, 0.1f);
     func_802EFA90(other, 0, 7);
@@ -87,7 +123,7 @@ void func_8038C39C(Actor *this){
 
 void func_8038C538(Actor *this){
     ActorLocal_RBB_5F80 *local = (ActorLocal_RBB_5F80 *) &this->local;
-    Actor *other = func_802F0BD0(3*local->unk0->unkE);
+    struct30s *other = func_802F0BD0(3*local->unk0->unkE);
     func_802EF950(other, 0x70e);
     func_802EFA5C(other, 0.1f, 0.3f);
     func_802EFA70(other, 4);
@@ -111,7 +147,7 @@ void func_8038C538(Actor *this){
 
 void func_8038C70C(Actor *this){
     ActorLocal_RBB_5F80 *local = (ActorLocal_RBB_5F80 *) &this->local;
-    Actor *other = func_802F0BD0(0xa);
+    struct30s *other = func_802F0BD0(0xa);
 
     func_802EF9F8(other, 0.6f);
     func_802EFA18(other, 3);
@@ -136,7 +172,7 @@ void func_8038C70C(Actor *this){
 
 void func_8038C8A8(Actor * this){
     ActorLocal_RBB_5F80 *local = (ActorLocal_RBB_5F80 *) &this->local;
-    Actor *other = func_802F0BD0(5);
+    struct30s *other = func_802F0BD0(5);
     f32 sp24[3];
     
 

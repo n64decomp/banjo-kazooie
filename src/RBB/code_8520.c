@@ -24,25 +24,28 @@ typedef struct {
 }ActorLocal_RBB_8520;
 
 void func_8038F190(Actor *this, s32 arg1);
+void func_8038F4B0(ActorMarker *marker, Gfx **gdl, Mtx **mptr, s32 arg3);
 void func_8038F618(Actor *this);
 
 
 /* .data */
-extern f32 D_80390D80[2]; // = {1.8f, 1.0f};  
-extern ActorInfo D_80390D88;/* = {
+f32 D_80390D80[2] = {1.8f, 1.0f};  
+
+ActorInfo D_80390D88 = {
     0x1B7, 0x2A4, 0x48C, 0x0, NULL,
     func_8038F618, NULL, func_8038F4B0,
     {0, 0, 0, 0}, 0.0f, {0,0,0,0}
-};*/
+};
 
-extern ActorInfo D_80390DAC;/* = {
+ActorInfo D_80390DAC = {
     0x1B7, 0x30D, 0x48C, 0x0, NULL,
     func_8038F618, NULL, func_8038F4B0,
     {0, 0, 0, 0}, 0.0f, {0,0,0,0}
-};*/
-extern f32 D_80390DD0[3];
-extern s32 D_80390DDC[4];
-extern s32 D_80390DEC[4];
+};
+
+s32 D_80390DD0[3] = {0xDE, 0xA7, 0x71};
+s32 D_80390DDC[4] = {0xFF, 0xFF, 0xFF, 0xFF};
+s32 D_80390DEC[4] = {0,0,0,0};
 
 /* .rodata */
 
@@ -71,7 +74,7 @@ void func_8038E92C(Actor *this){
 }
 
 void func_8038E998(Actor *this){
-    Actor *other = func_802F0BD0(2);
+    struct30s *other = func_802F0BD0(2);
     f32 temp_f0;
 
     func_802EF950(other, 0x70e);
@@ -87,7 +90,7 @@ void func_8038E998(Actor *this){
 }
 
 void func_8038EAB4(Actor *this){
-    Actor *other;
+    struct30s *other;
     func_802BB3DC(0, 60.0f, 0.9f);
     other = func_802F0BD0(1);
     func_802EF950(other, 0x4a0);
@@ -105,7 +108,7 @@ void func_8038EAB4(Actor *this){
 }
 
 void func_8038EC14(Actor *this){
-    Actor *other;
+    struct30s *other;
     other = func_802F0BD0(6);
     func_802EF950(other, 0x70e);
     func_802EFA5C(other, 0.05f, 0.1f);
@@ -121,7 +124,7 @@ void func_8038EC14(Actor *this){
 }
 
 void func_8038ED3C(Actor * actor, s32 arg1){
-    Actor *other = func_802F0BD0(0xa);
+    struct30s *other = func_802F0BD0(0xa);
     func_802EF9AC(other, 0.0f, -800.0f, 0.0f, 0.0f, -800.0f, 0.0f);
     func_802EF9F8(other, 0.6f);
     func_802EFA18(other, 3);

@@ -184,26 +184,36 @@ Actor * spawn_child_actor(enum actor_e id, Actor ** parent);
 
 
 void func_80324D2C(f32, enum comusic_e);
-void func_802EF950(Actor *, s32);
-void func_802EFB54(Actor *, f32 (*)[3]);
-Actor *func_802F0BD0(u32);
+void func_802EF950(struct30s *, enum asset_e);
+void func_802EFB54(struct30s *, f32 (*)[3]);
+struct30s *func_802F0BD0(u32);
 void func_802BB3DC(s32, f32, f32);
 void func_802C3F04(void (* arg0)(void), s32, s32, s32, s32);
 void func_802C4140();
 void func_8030DA44(u8);
 
-void func_802EFB1C(Actor *, f32, f32, f32, f32, f32, f32);
-void func_802EF9AC(Actor *, f32, f32, f32, f32, f32, f32);
-void func_802EFED4(Actor *, f32, f32, f32, f32, f32, f32);
-void func_802EFE24(Actor *, f32, f32, f32, f32, f32, f32);
-void func_802EFB70(Actor *, f32, f32);
-void func_802EFB84(Actor *, f32, f32);
-void func_802EF9F8(Actor *, f32);
-void func_802EFE5C(Actor *, f32, f32);
-void func_802EFEC0(Actor *, f32, f32);
-void func_802EFA5C(Actor *, f32, f32);
-void func_802EFA9C(Actor *, f32, f32);
-void func_802EFA18(Actor *, s32);
+
+void func_802EF3F4(struct30s *, f32(*)[3], f32(*)[3], s32);
+void func_802EF9AC(struct30s *, f32, f32, f32, f32, f32, f32);
+void func_802EF9F8(struct30s *, f32);
+void func_802EFA18(struct30s *, s32);
+void func_802EFA5C(struct30s *, f32, f32);
+void func_802EFA70(struct30s *, s32);
+void func_802EFA90(struct30s *this, s32 arg1, s32 arg2);
+void func_802EFA9C(struct30s *, f32, f32);
+void func_802EFB1C(struct30s *, f32, f32, f32, f32, f32, f32);
+void func_802EFB70(struct30s *, f32, f32);
+void func_802EFB84(struct30s *, f32, f32);
+void func_802EFB98(struct30s *, struct31s *);
+void func_802EFC84(struct30s *, struct41s *);
+void func_802EFD00(struct30s *this, struct42s *arg1);
+void func_802EFE24(struct30s *, f32, f32, f32, f32, f32, f32);
+void func_802EFE5C(struct30s *, f32, f32);
+void func_802EFEC0(struct30s *, f32, f32);
+void func_802EFED4(struct30s *, f32, f32, f32, f32, f32, f32);
+void func_802EFF50(struct30s *, f32);
+void func_802EFFA8(struct30s *this, s32 (*arg1)[3]);
+void func_802EFFC4(struct30s *, f32);
 
 void func_8024E3A8(f32 (*)[3], f32);
 OSMesgQueue *func_8024F344(void);
@@ -307,7 +317,7 @@ void func_8029E180(s32, f32);
 void func_8029E3C0(s32, f32);
 f32  func_8029E270(s32);
 void func_802BF2C0(f32);
-void func_802EFF50(Actor *, f32);
+
 void func_8030DBB4(s32, f32);
 void func_8030E04C(s32, f32, f32, f32);
 void func_8030E58C(s32, f32);
@@ -356,9 +366,8 @@ void func_8034DFB0(s32, s32(*)[4], s32(*)[4], f32);
 int actor_animationIsAt(Actor*, f32);
 
 void func_80250E94(f32, f32, f32, f32, f32, f32);
-void func_802EF3F4(Actor *, f32(*)[3], f32(*)[3], s32);
-void func_802EFB98(Actor *, f32(*)[3]);
-void func_802EFC84(Actor *, f32(*)[3]);
+
+
 void func_8034DC08(void *, f32 (*)[3], f32(*)[3], f32, s32);
 void func_802C8F70(f32);
 void func_802F9DB8(s32, f32, f32, f32);
@@ -377,7 +386,7 @@ void func_802E4078(enum MAP_E map, s32 exit, s32 transition);
 void levelSpecificFlags_set(s32, s32);
 void func_8030E988(s32, f32, s32, f32 (*)[3], f32, f32);
 void func_803228D8(void);
-void func_802EFFC4(Actor *, f32);
+
 void func_803253A0(Actor *);
 void mapSpecificFlags_set(s32, s32);
 

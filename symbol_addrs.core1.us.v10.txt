@@ -16,6 +16,7 @@ mlMtxRotYaw = 0x80251D84;
 mlMtxRotRoll = 0x80251E80;
 mlMtxScale = 0x802521C0;
 mlMtxTranslate = 0x80252980;
+memcpy = 0x80254608;
 comusic_8025AB44 = 0x8025AB44;
 comusic_8025AB78 = 0x8025AB78;
 malloc = 0x80254CA8;

@@ -450,7 +450,7 @@ typedef struct actor_info_s{
     ActorAnimationInfo*   animations;
     void    (* update_func)(Actor *);
     void    (* unk10)(Actor *);
-    Actor*  (* draw_func)(ActorMarker *, Gfx **, Mtx**, u32);
+    Actor*  (* draw_func)(ActorMarker *, Gfx **, Mtx**, s32);
     u8      pad18[4];
     f32     shadow_scale;
     u8      pad20[4];

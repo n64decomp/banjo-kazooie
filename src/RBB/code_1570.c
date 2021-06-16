@@ -10,32 +10,46 @@ void func_803881E8(Actor *this, s32 arg1);
 void func_803882F4(Actor *this);
 
 /* .data */
-extern ActorInfo D_80390270;/* = {
+ActorInfo D_80390270 = {
     0x184, 0x174, 0x402, 0x0, NULL,
     func_803882F4, NULL, func_80325340,
     {0, 0, 0, 0}, 0.0f, {0,0,0,0}
-};*/
+};
 
-extern s32 D_80390294[4]; /* = { 0xff, 0, 0, 0xff}; */
-extern s32 D_803902A4[4]; /* = { 0x76, 0, 0, 0xff}; */
-extern s32 D_803902B4[4]; /* = { 0x76, 0, 0, 0xff}; */
-extern s32 D_803902C4[4]; /* = { 0xff, 0, 0, 0xff}; */
+s32 D_80390294[4] = { 0xff, 0, 0, 0xff};
+s32 D_803902A4[4] = { 0x76, 0, 0, 0xff};
+s32 D_803902B4[4] = { 0x76, 0, 0, 0xff};
+s32 D_803902C4[4] = { 0xff, 0, 0, 0xff};
 
 
-extern f32 D_803902D4[3]; // = {4500.0f, 0.0f, 500.0f};
-extern f32 D_803902E0[3]; // = {4500.0f, 0.0f, 500.0f}; 
-extern f32 D_803902EC[3]; // = {4000.0f, -600.0f, 0.0f};
-extern f32 D_803902F8[3]; // = {4500.0f, 0.0f, 500.0f};
-extern f32 D_80390304[];  // = {5.0f, 5.0f, 5.0f};
-// D_80390310: 5.0f 0.0f 0.01f 3.0f
-// D_80390320: 5.0f 0.0f 0.1f 
-extern f32 D_8039032C[3]; // = {3700.0f, -300.0f, -300.0f};  
-extern f32 D_80390338[3]; // = {4500.0f, 100.0f, 400.0f}; 
-extern f32 D_80390344[]; // = {-700.0f, 200.0f, -700.0f};
-// 0000 9F60: 700.0f 500.0f  700.0f 0.0f
-// 0000 9F70: -800.0f 0.0f  0.0f -800.0f
-// 0000 9F80: 0.0f 0.0f  0.0f 0.0f
+f32 D_803902D4[3] = {4500.0f, 0.0f, 500.0f};
+f32 D_803902E0[3] = {4500.0f, 0.0f, 500.0f}; 
+f32 D_803902EC[3] = {4000.0f, -600.0f, 0.0f};
+f32 D_803902F8[3] = {4500.0f, 0.0f, 500.0f};
+struct31s D_80390304 = {
+    { 5.0f, 5.0f},
+    { 5.0f, 5.0f},
+    { 0.0f, 0.01f},
+    { 3.0f, 5.0f},
+    0.0f, 
+    0.1f
+};
 
+f32 D_8039032C[3] = {3700.0f, -300.0f, -300.0f};  
+f32 D_80390338[3] = {4500.0f, 100.0f, 400.0f}; 
+struct41s D_80390344= {
+    {
+        {-700.0f, 200.0f}, 
+        {-700.0f, 700.0f},
+        { 500.0f, 700.0f}
+    }, 
+    {   
+        { 0.0f, -800.0f, 0.0f},
+        { 0.0f, -800.0f, 0.0f}
+    }
+};
+
+/*.code */
 #ifndef NONMATCHING
 void func_80387960(f32 arg0);
 #pragma GLOBAL_ASM("asm/nonmatchings/RBB/code_1570/func_80387960.s")
@@ -121,7 +135,7 @@ void func_80387BEC(s32 arg0, s32 arg1){
 }
 
 void func_80387C5C(void){
-    Actor *actor;
+    struct30s *actor;
 
     func_802BB3DC(0, 60.0f, 0.9f);
     actor = func_802F0BD0(1);
@@ -138,7 +152,7 @@ void func_80387C5C(void){
 }
 
 void func_80387D80(void){
-    Actor *actor = func_802F0BD0(3);
+    struct30s *actor = func_802F0BD0(3);
     func_802EF950(actor, 0x70e);
     func_802EFA90(actor, 0, 7);
     func_802EFB98(actor, &D_80390304);
@@ -147,7 +161,7 @@ void func_80387D80(void){
 }
 
 void func_80387E20(void){
-    Actor *actor = func_802F0BD0(0x19);
+    struct30s *actor = func_802F0BD0(0x19);
     func_802EF9F8(actor, 0.6f);
     func_802EFA18(actor, 3);
     func_802EFAC8(actor, 0x427);
