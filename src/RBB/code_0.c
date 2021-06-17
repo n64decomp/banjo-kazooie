@@ -16,9 +16,12 @@ typedef struct {
     u8 unk0;
     u8 unk1;
     u8 unk2;
-    u8 pad3[1];
+    //u8 pad3[1];
     f32 unk4;
-    u8 pad8[8];
+    s16 unk8;
+    s16 unkA;
+    s16 unkC;
+    //u8 padE[2];
 }Struct_RBB_0_1;
 
 
@@ -26,15 +29,60 @@ void func_803866F4(Actor *this, s32 arg1);
 void func_803868F0(Actor* this);
 
 /* .data */
-/* ActorInfo D_80390050 = {
+ActorInfo D_80390050 = {
     0x182, 0x172, 0x402, 0x0, NULL,
     func_803868F0, NULL, func_80325340,
     {0, 0, 0, 0}, 0.0f, {0,0,0,0}
-};*/
-extern Struct_RBB_0_1 D_80390074[];
+};
+extern Struct_RBB_0_1 D_80390074[4] = {
+    {0x0, 0x2, 0x4, 3.0f,   550, 200, -300},
+    {0x1, 0x4, 0x0, 4.0f,  -600,   0,    0},
+    {0x2, 0x6, 0x0, 4.0f,  -700,   0,    0},
+    {0x3, 0x8, 0x0, 4.0f, -1010,   0,    0}
+};
 
 /* .code */
-#pragma GLOBAL_ASM("asm/nonmatchings/RBB/code_0/func_803863F0.s")
+void func_803863F0(Actor *actor, s32 arg1){
+    ActorLocal_RBB_0 * local = (ActorLocal_RBB_0 *) &actor->local;
+    void *temp_a0;
+    f32 sp3C[3];
+    f32 sp30[3];
+
+    temp_a0 = func_8034C528(local->unk4 + 0x190);
+    if(temp_a0){
+        if(local->unk8 == 0){
+            sp3C[2] = 0.0f;
+            sp30[0] = 0.0f;
+            sp30[1] = 0.0f;
+            sp3C[0] = sp3C[1] = sp3C[2];
+            sp30[2] = (f32) D_80390074[local->unk4].unk8;
+        }
+        else if(local->unk8 == 1){
+            sp3C[0] = 0.0f;
+            sp3C[1] = 0.0f;
+            sp3C[2] = (f32) D_80390074[local->unk4].unk8;
+            sp30[1] = 0.0f;
+            sp30[0] = 0.0f;
+            sp30[2] = (f32) D_80390074[local->unk4].unkA;
+        }
+        else{
+            sp3C[0] = 0.0f;
+            sp3C[1] = 0.0f;
+            sp3C[2] = (f32) D_80390074[local->unk4].unkA;
+            sp30[1] = 0.0f;
+            sp30[0] = 0.0f;
+            sp30[2] = (f32) D_80390074[local->unk4].unkC;
+
+        }
+        if(arg1){
+            func_8034DDF0(temp_a0, &sp3C, &sp30, D_80390074[local->unk4].unk4, 1);
+            func_8034E174(temp_a0);
+        }
+        else{
+            func_8034DDF0(temp_a0, &sp3C, &sp30, 0.0f, 1);
+        }
+    }
+}
 
 void func_803865A4(ActorMarker *marker, s32 arg1){
     func_803866F4(marker_getActor(marker), arg1);
@@ -97,7 +145,6 @@ void func_8038685C(ActorMarker *marker){
         }
     }
 }
-
 
 void func_803868F0(Actor *this){
     ActorLocal_RBB_0 *local = (ActorLocal_RBB_0 *) &this->local;

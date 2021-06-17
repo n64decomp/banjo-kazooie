@@ -350,10 +350,10 @@ Actor *func_80329980(Actor *);
  void func_8025686C(f32 (* arg0)[3], f32 (* arg1)[3], f32 arg2);
 int func_8025773C(f32 *arg0, f32 arg1);
 void func_8030E878(s32, f32, s32, f32 (*)[3], f32, f32);
-Actor *func_80325888(ActorMarker *, Gfx**, Mtx**, u32);
+Actor *func_80325888(ActorMarker *, Gfx**, Mtx**, s32);
 void func_80335924(void *, s32, f32, f32);
 
-extern Actor *func_80325340(ActorMarker *, Gfx**, Mtx**, u32);
+extern Actor *func_80325340(ActorMarker *, Gfx**, Mtx**, s32);
 void func_8032AA58(Actor *, f32);
 void func_8034DDF0(void *, f32 (*)[3], f32 (*)[3], f32, s32);
 void func_80324E38(f32, s32);

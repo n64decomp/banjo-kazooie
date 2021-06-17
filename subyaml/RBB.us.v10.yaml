@@ -62,7 +62,8 @@ segments:
     start: 0x00009C60
     vram: 0x80390050
     subsegments:
-      - [0x00009C60, bin, data_9C60]
+      - [0x00009C60, .data, code_0]
+      - [0x00009CE0, .data, code_640]
       - [0x00009E10, .data, code_CA0]
       - [0x00009E80, .data, code_1570]
       - [0x00009F90, .data, code_1FC0]

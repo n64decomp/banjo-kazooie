@@ -58,6 +58,74 @@ extern ActorInfo D_80390170;//skylight
 extern ActorInfo D_80390194;//honeycombswitch
 
 
+
+extern void func_802D3D54(Actor *);
+extern Actor *func_80325E78(ActorMarker *marker, Gfx **gdl, Mtx **mptr, s32 arg3);
+extern void func_80326224(Actor *);
+
+void func_80386A7C(Actor *);
+void func_80386BF8(Actor *arg0);
+Actor *func_80386B9C(ActorMarker *marker, Gfx **gdl, Mtx **mptr, s32 arg3);
+
+
+/* .data */
+ActorAnimationInfo D_803900C0[4] = {
+    {0, 0.0f},
+    {0, 0.0f},
+    {0xD4, 0.15f},
+    {0xD5, 0.5f}
+};
+
+ActorInfo D_803900E0 = {
+    0x107, 0x21D, 0x493, 0x1, NULL,
+    func_802D3D54, func_80326224, func_80325E78,
+    {0, 0, 0, 0}, 0.0f, {0,0,0,0}
+};
+
+ActorInfo D_80390104 = {
+    0x108, 0x21C, 0x492, 0x1, NULL,
+    func_802D3D54, func_80326224, func_80325E78,
+    {0, 0, 0, 0}, 0.0f, {0,0,0,0}
+};
+
+ActorInfo D_80390128 = {
+    0x22D, 0x266, 0x4BA, 0x1, NULL,
+    func_802D3D54, func_80326224, func_80325E78,
+    {0, 0, 0, 0}, 0.0f, {0,0,0,0}
+};
+
+ActorInfo D_8039014C = {
+    0x22E, 0x267, 0x4BB, 0x1, NULL,
+    func_802D3D54, func_80326224, func_80325E78,
+    {0, 0, 0, 0}, 0.0f, {0,0,0,0}
+};
+
+ActorInfo D_80390170 = {
+    0x235, 0x23F, 0x4E2, 0x1, NULL,
+    func_802D3D54, func_80326224, func_80325E78,
+    {0, 0, 0, 0}, 0.0f, {0,0,0,0}
+};
+
+ActorInfo D_80390194 = {
+    0x15F, 0x18F, 0x42F, 0x1, D_803900C0,
+    func_80386BF8, func_80326224, func_80325888,
+    {0, 0, 0, 0}, 0.0f, {0,0,0,0}
+};
+
+ActorInfo D_803901B8 = {
+    0x22F, 0x263, 0x4DB, 0x1, NULL,
+    func_80386A7C, func_80326224, func_80386B9C,
+    {0, 0, 0, 0}, 0.0f, {0,0,0,0}
+};
+
+ActorInfo D_803901DC = {
+    0x230, 0x264, 0x4DE, 0x1, NULL,
+    func_80386A7C, func_80326224, func_80386B9C,
+    {0, 0, 0, 0}, 0.0f, {0,0,0,0}
+};
+
+
+/* .code */
 s32 func_80386A30(f32 (*arg0)[3]){
     s32 r; 
     
@@ -75,7 +143,7 @@ Actor *func_80386B9C(ActorMarker *marker, Gfx **gdl, Mtx **mptr, s32 arg3){
     return (actor->unk38_0) ? func_80325E78(marker, gdl, mptr, arg3): NULL;
 }
 
-void func_80386BF8(s32 arg0){
+void func_80386BF8(Actor *arg0){
     if(!mapSpecificFlags_get(0) && func_803212E4(0xF))
         mapSpecificFlags_set(0, TRUE);
     func_802D4A9C(arg0, 0);
