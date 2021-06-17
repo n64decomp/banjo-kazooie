@@ -5,6 +5,7 @@
 
 /* typedefs and declarations */
 void func_803878B0(Actor *this);
+void func_8038756C(Actor *this, s32 arg1);
 
 /* .data */
 ActorInfo D_80390200 = {
@@ -20,14 +21,6 @@ s32 D_80390254[4] = { 0xff, 0, 0, 0xff};
 
 f32 D_80390264[3] = {-4900.0f, 0.0f, 0.0f};
 
-/* .rodata */
-extern f64 D_80390E90;
-extern f64 D_80390E98;
-extern f32 D_80390EA0;
-extern f32 D_80390EA4;
-extern f32 D_80390EA8;
-extern f32 D_80390EAC;
-
 /* .code */
 void func_80387090(ActorMarker *marker, s32 arg1){
     func_8038756C(marker_getActor(marker), arg1);
@@ -37,7 +30,7 @@ void func_803870BC(s32 arg0, s32 arg1){
     s32 temp_v0;
 
     if(temp_v0 = func_8034C528(arg0))
-        func_8034DFB0(temp_v0, &D_80390224, &D_80390234, (f64)arg1/D_80390E90);
+        func_8034DFB0(temp_v0, &D_80390224, &D_80390234, (f64)arg1/1000.0);
 }
 
 void func_8038711C(s32 arg0, s32 arg1){
@@ -45,23 +38,18 @@ void func_8038711C(s32 arg0, s32 arg1){
 
     func_8030E6D4(0x90);
     if(temp_v0 = func_8034C528(arg0))
-        func_8034DFB0(temp_v0, &D_80390244, &D_80390254, (f64)arg1/D_80390E98);
+        func_8034DFB0(temp_v0, &D_80390244, &D_80390254, (f64)arg1/1000.0);
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/RBB/code_CA0/func_8038718C.s")
-#else
 void func_8038718C(ActorMarker *marker){
     void *sp44;
     f32 sp38[3];
     f32 sp2C[3];
 
     if(sp44 = func_8034C528(0x19a)){
-        sp38[1] = 0.0f;
-        sp38[0] = 0.0f;
+        sp38[0] = sp38[1] = sp38[2] = 0.0f;
         sp2C[0] = 0.0f;
         sp2C[2] = 0.0f;
-        sp38[2] = 0.0f;
         sp2C[1] = 450.0f;
         func_8034DDF0(sp44, &sp38, &sp2C, 4.0f, 1);
         func_8034E1A4(sp44, 0xd8, 1.0f, 1.0f);
@@ -78,7 +66,6 @@ void func_8038718C(ActorMarker *marker){
     func_80324E38(5.0f, 0);
     timedFunc_set_2(5.0f, (TFQM2) func_80387090, (s32) marker, 3);
 }
-#endif
 
 void func_80387308(ActorMarker *marker){
     Actor *actor = marker_getActor(marker);
@@ -124,43 +111,36 @@ void func_80387488(ActorMarker *marker){
     timedFunc_set_1(0.5f, (TFQM1) func_80387308, (s32) actor->marker);
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/RBB/code_CA0/func_8038756C.s")
-#else
 void func_8038756C(Actor *this, s32 arg1){
     f32 sp6C[3];
     f32 sp60[3];
     void * temp_v0;
     f32 sp50[3];
     f32 sp44[3];
+    f32 sp40;
     void * sp3C;
     f32 sp30[3];
     f32 sp24[3];
-
     
-
-    if(arg1 == 1 && this->unk10_31 != 0){
-        sp6C[0] = 0.0f;
-        sp6C[1] = 0.0f;
-        sp6C[2] = -40.0f;
-
-        sp60[1] = 0.0f;
-        sp60[0] = 0.0f;
-        sp60[2] = 0.0f;
-        if(temp_v0 = func_8034C528(0x19C))
-            func_8034DDF0(temp_v0, &sp6C, &sp60, 0.1f, 1);
-        
-        if(temp_v0 = func_8034C528(0x19D))
-            func_8034DDF0(temp_v0, &sp6C, &sp60, 0.1f, 1);
-        
+    if(arg1 == 1){
+        if(this->state != 0){
+            sp6C[0] = 0.0f;
+            sp6C[1] = 0.0f;
+            sp6C[2] = -40.0f;
+            sp60[0] = sp60[1] = sp60[2] = 0.0f;
+            
+            if(temp_v0 = func_8034C528(0x19C))
+                func_8034DDF0(temp_v0, &sp6C, &sp60, 0.1f, 1);
+            
+            if(temp_v0 = func_8034C528(0x19D))
+                func_8034DDF0(temp_v0, &sp6C, &sp60, 0.1f, 1);
+        }
     }//L80387610
 
     if(arg1 == 2){
-        sp50[1] = 0.0f;
-        sp50[0] = 0.0f;
-        sp44[0] = 0.0f;
+        sp50[0] = sp50[1] = sp50[2] = 0.0f;
+        sp44[0] =  0.0f;
         sp44[1] = 0.0f;
-        sp50[2] = 0.0f;
         sp44[2] = -40.0f;
         
         if(temp_v0 = func_8034C528(0x19C))
@@ -169,10 +149,10 @@ void func_8038756C(Actor *this, s32 arg1){
         if(temp_v0 = func_8034C528(0x19D))
             func_8034DDF0(temp_v0, &sp50, &sp44, 0.1f, 1);
         
-        timedFunc_set_2(D_80390EA0, func_8038711C, 0x19d, 0x1f4);
-        timedFunc_set_2(D_80390EA4, func_8025A6EC, SFX_DING_B, 28000);
-        func_80324E38(D_80390EA8, 3);
-        timedFunc_set_1(D_80390EAC, func_8038718C, this->marker);
+        timedFunc_set_2(0.1f, func_8038711C, 0x19d, 0x1f4);
+        timedFunc_set_2(0.1f, func_8025A6EC, SFX_DING_B, 28000);
+        func_80324E38(0.2f, 3);
+        timedFunc_set_1(1.1f, func_8038718C, this->marker);
     }//L80387704
 
     if(arg1 == 3){
@@ -180,7 +160,7 @@ void func_8038756C(Actor *this, s32 arg1){
         func_80346414(0, 0x3bf);
     }
 
-    if(this->unk10_31 == 3){
+    if(this->state == 3){
         func_80346414(6, 0);
     }
 
@@ -188,11 +168,13 @@ void func_8038756C(Actor *this, s32 arg1){
         sp3C = func_8034C528(0x19a);
         if(sp3C){
             sp30[0] = 0.0f;
+            sp30[1] = 450.0f;
             sp30[2] = 0.0f;
             sp24[0] = 0.0f;
-            sp24[1] = 0.0f;
-            sp24[2] = 200.0f;
-            sp30[1] = 450.0f;
+            sp24[1] = 200.0f;
+            sp24[2] = 0.0f;
+            
+            
             func_8034DDF0(sp3C, &sp30, &sp24, 3.0f, 1);
             func_8034E1A4(sp3C, 0xd8, 1.0f, 1.0f);
         }//L803877D4
@@ -201,9 +183,8 @@ void func_8038756C(Actor *this, s32 arg1){
         timedFunc_set_1(4.0f, func_80387488, this->marker);
     }//L80387828
 
-    this->unk10_31 = arg1;
+    this->state = arg1;
 }
-#endif
 
 void func_80387850(ActorMarker *marker, s32 arg1){
     Actor *actor = marker_getActor(marker);

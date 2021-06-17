@@ -22,6 +22,8 @@ void func_802D6EA0(Actor *this){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/ch/badShad/func_802D7124.s")
 
+void func_802D71A0(ActorMarker *marker, s32 arg1);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/ch/badShad/func_802D71A0.s")
 
+void func_802D729C(Actor *this, s32 arg1);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/ch/badShad/func_802D729C.s")

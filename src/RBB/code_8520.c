@@ -292,22 +292,21 @@ void func_8038F4B0(ActorMarker *marker, Gfx **gdl, Mtx **mptr, s32 arg3){
     Actor *actor = marker_getActor(marker);
     ActorLocal_RBB_8520 *local = (ActorLocal_RBB_8520 *)&actor->local;
     f32 temp_f2;
-    s32 sp28[3];
-    s32 temp_v0;
+    s32 sp28[4];
+    //s32 temp_v0;
     func_8033A45C(1,2);
     func_8033A45C(3,1);
     func_8033A45C(6,1);
     func_8033A45C(7,1);
     if(0.0f < local->unk30 && local->unk30 <= 1.0){
-        temp_f2 = local->unk30 * 3.0f;
-        temp_f2 = (local->unk30 * 3.0f - (f32)(s32)(local->unk30 * 3.0f))*2;
-        if( 1.0f < temp_f2)
-            temp_f2 = 2.0f - temp_f2;
-    
-        temp_v0 = (s32) (temp_f2 * 255.0f);
-        sp28[0] = temp_v0;
-        sp28[1] = temp_v0;
-        sp28[2] = temp_v0;
+        temp_f2 = 3.0f*local->unk30;
+        temp_f2 = 2*(local->unk30 * 3.0f - (s32)(local->unk30 * 3.0f));
+        temp_f2 = (temp_f2 > 1.0f) ? 2.0f - temp_f2 : temp_f2;
+        
+        sp28[0] = (s32) (255 * temp_f2);
+        sp28[1] = (s32) (255 * temp_f2);
+        sp28[2] = (s32) (255 * temp_f2);
+        sp28[3] = 255;
         D_803912A0[0] = actor->pitch;
         D_803912A0[1] = actor->yaw;
         D_803912A0[2] = actor->roll;

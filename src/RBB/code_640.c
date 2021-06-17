@@ -134,8 +134,29 @@ s32 func_80386A30(f32 (*arg0)[3]){
     return (((*arg0)[2] < 0.0f)? 0 : 2) + r;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/RBB/code_640/func_80386A7C.s")
+void func_80386A7C(Actor *this){
+    f32 sp2C[3];
+    s32 sp28;
+    s32 temp_v0;
 
+    func_802D3D74(this);
+    this->unk124_9 = 1;
+    func_8024C5CC(&sp2C);
+    sp28 = func_80386A30(&this->position);
+    temp_v0 = func_80386A30(&sp2C);
+    this->unk38_0 = 0;
+    if(sp2C[0] + 8000.0f < this->position_x || this->position_x < sp2C[0] - 8000.0f)
+        return;
+        
+    if( !(  (sp28 ^ temp_v0) & 2
+            && (-5000.0f < sp2C[0] && sp2C[0] < 6000.0f)
+            && (sp2C[2] < -600.0f || 600.0f < sp2C[2])
+        )
+        && ( sp28 ^ temp_v0) != 3
+    ){
+            this->unk38_0 = 1;
+    }
+}
 
 Actor *func_80386B9C(ActorMarker *marker, Gfx **gdl, Mtx **mptr, s32 arg3){
     Actor *actor = marker_getActor(marker);

@@ -104,9 +104,9 @@ void func_803865D0(ActorMarker *marker){
 #else
 void func_803866F4(Actor *this, s32 arg1){
     ActorLocal_RBB_0 *local = (ActorLocal_RBB_0 *) &this->local;
+    
     while(1){
         if(arg1 == 2){
-            
             func_8025A6EC(SFX_DING_B, 28000);
             local = (ActorLocal_RBB_0 *) &this->local;
             local->unkC = 3;
@@ -126,7 +126,7 @@ void func_803866F4(Actor *this, s32 arg1){
         }
         break;
     }
-    this->unk10_31 = arg1;
+    this->state = arg1;
 }
 #endif
 

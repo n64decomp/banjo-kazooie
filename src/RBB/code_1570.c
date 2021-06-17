@@ -50,20 +50,14 @@ struct41s D_80390344= {
 };
 
 /*.code */
-#ifndef NONMATCHING
-void func_80387960(f32 arg0);
-#pragma GLOBAL_ASM("asm/nonmatchings/RBB/code_1570/func_80387960.s")
-#else
 void func_80387960(f32 arg0){
     f32 sp34[3]; 
     void * temp_v0;
     f32 sp24[3];
     
-    sp34[1] = 0.0f;
-    sp34[0] = 0.0f;
+    sp34[0] = sp34[1] = sp34[2] =0.0f;
     sp24[0] = 0.0f;
     sp24[1] = 0.0f;
-    sp34[2] = 0.0f;
     sp24[2] = -40.0f;
     
     if(temp_v0 = func_8034C528(0x19e)){
@@ -73,7 +67,6 @@ void func_80387960(f32 arg0){
         func_8034DDF0(temp_v0, &sp34, &sp24, arg0, 1);
     }
 }
-#endif
 
 void func_803879F0(void){
     s32 temp_v0 = func_8034C528(0x19b);

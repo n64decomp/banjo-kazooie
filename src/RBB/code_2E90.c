@@ -133,7 +133,7 @@ void func_8038944C(Actor *this){
         this->marker->propPtr->unk8_3 = 1;
         this->unk16C_4 = TRUE;
         local->unkC = func_80389280(this);
-        if(this->unk10_31 == 0){
+        if(this->state == 0){
             ml_vec3f_copy(&this->position, &local->unkC->unk4);
         }
         local->unk0[2] = 0.0f;
@@ -153,13 +153,13 @@ void func_8038944C(Actor *this){
     }//L80389508
 
     if(func_8025773C(&local->unk28, tick)){
-        if(this->unk10_31 == 2)
+        if(this->state == 2)
             func_803892D8(this, 3);
-        else if(this->unk10_31 == 3)
+        else if(this->state == 3)
             func_803892D8(this, 2);
     }//L80389568
 
-    switch (this->unk10_31)
+    switch (this->state)
     {
     case 1:
     case 2:
@@ -202,7 +202,7 @@ void func_8038944C(Actor *this){
         break;
     }//L80389860
 
-    if(this->unk10_31 == 1 && mapSpecificFlags_get(0)){
+    if(this->state == 1 && mapSpecificFlags_get(0)){
         func_803892D8(this, 2);
     }
 }
