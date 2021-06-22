@@ -2,7 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-void  func_80326224(Actor *);
 void  actor_playAnimationOnce(Actor *);
 void chPinkEggDraw(ActorMarker *this, Gfx ** gdl, Mtx** mptr, u32 arg3);
 void  func_80387AB0(ActorMarker *this, u32 arg1);

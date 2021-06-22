@@ -7,7 +7,6 @@
 //external
 void func_80324E88(f32);
 void func_8028F918(s32);
-void func_80326224(Actor *);
 
 //public
 void func_80387764(ActorMarker *);

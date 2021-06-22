@@ -15,7 +15,6 @@
 #define SQUARE(s) ((s)*(s))
 #endif
 
-void func_80326224(Actor *);
 Actor*  func_80325888(ActorMarker *, Gfx **, Mtx**, u32);
 void func_80328FB0(Actor *, f32);
 

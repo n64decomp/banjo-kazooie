@@ -3,7 +3,6 @@
 #include "variables.h"
 
 /* extern functions */
-void func_80326224(Actor *);
 int func_80353064(f32*, f32);
 void  func_802BB3DC(s32, f32, f32);
 Actor *func_8032813C(s32, f32*, s32);

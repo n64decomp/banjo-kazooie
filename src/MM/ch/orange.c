@@ -8,7 +8,6 @@
 #endif
 
 /* extern functions */
-void func_80326224(Actor *);
 f32 func_80309724(f32*);
 Actor *func_80325E78(ActorMarker *);
 

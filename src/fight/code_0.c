@@ -3,20 +3,20 @@
 #include "variables.h"
 
 #include "prop.h"
+extern ActorInfo D_80366F68;
 
-extern ActorInfo D_80391B00;
-extern ActorInfo D_80391DC0;
 extern ActorInfo D_80391500;
 extern ActorInfo D_80391840;
 extern ActorInfo D_80391864;
 extern ActorInfo D_80391888;
 extern ActorInfo D_803918AC;
-extern ActorInfo D_80391A10;
 extern ActorInfo D_80391990;
+extern ActorInfo D_80391A10;
 extern ActorInfo D_80391A40;
-extern ActorInfo D_80391B24;
 extern ActorInfo D_80391AD0;
-extern ActorInfo D_80366F68;
+extern ActorInfo D_80391B00;
+extern ActorInfo D_80391B24;
+extern ActorInfo D_80391DC0;
 extern ActorInfo D_80392018;
 extern ActorInfo D_80392090;
 

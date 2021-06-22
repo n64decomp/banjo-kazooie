@@ -6,8 +6,6 @@
 
 Actor* func_80325888(ActorMarker *, Gfx **, Mtx**, u32);
 
-void   func_80326224(Actor *);
-
 Actor* func_8032813C(s32, f32*, s32);
 void func_80328B8C(f32*, s32, f32, s32);
 

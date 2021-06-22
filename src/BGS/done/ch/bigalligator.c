@@ -3,7 +3,6 @@
 #include "variables.h"
 
 
-void func_80326224(Actor *);
 Actor* func_80325888(ActorMarker *, Gfx **, Mtx**, u32);
 
 

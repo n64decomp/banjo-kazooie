@@ -5,7 +5,6 @@
 
 
 //external
-void func_80326224(Actor *);
 f32 func_80309724(f32*);
 void func_802C4218(s32, f32, f32, f32);
 void func_803252D0(f32, s32);

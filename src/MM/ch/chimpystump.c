@@ -7,7 +7,6 @@
 
 /* external function declarations */
 Actor*  func_80325E78(ActorMarker *, Gfx **, Mtx**, u32);
-void func_80326224(Actor *);
 void func_80353064(f32 *, f32);
 void func_802BB3DC(s32, f32, f32);
 void func_80244BB0(s32, s32, s32, f32);

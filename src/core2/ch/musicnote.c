@@ -2,8 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-
-extern void func_80326224(Actor* this);
 extern Actor *func_80325934(ActorMarker*, Gfx **, Mtx **, u32);
 
 void func_802C9C30(Actor* this);

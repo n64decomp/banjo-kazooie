@@ -390,4 +390,6 @@ void func_803228D8(void);
 void func_803253A0(Actor *);
 void mapSpecificFlags_set(s32, s32);
 
+/* used in fight */
+void func_80326224(Actor *this);
 #endif

@@ -61,7 +61,6 @@ extern ActorInfo D_80390194;//honeycombswitch
 
 extern void func_802D3D54(Actor *);
 extern Actor *func_80325E78(ActorMarker *marker, Gfx **gdl, Mtx **mptr, s32 arg3);
-extern void func_80326224(Actor *);
 
 void func_80386A7C(Actor *);
 void func_80386BF8(Actor *arg0);

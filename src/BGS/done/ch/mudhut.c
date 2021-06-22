@@ -10,7 +10,6 @@ void func_8028F710(u32, f32);
 void func_802C4218(u32,f32,f32,f32);
 void func_8030E8B4(u32,f32*, u32);
 void func_80328A84(Actor *, u32);
-void func_80326224(ActorMarker *);
 
 /* local declarations */
 Actor *func_8038EAD0(ActorMarker *this, Gfx** gdl, Mtx** mtx, u32 arg3);

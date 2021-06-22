@@ -35,6 +35,8 @@ segments:
       - [0x7580, c, code_7580]
       - [0x7BE0, c, code_7BE0]
       - [0x9850, c, code_9850]
+      - [0x9D40, c, code_9D40]
+      - [0xAED0, c, code_AED0]
   - name: data
     dir: fight
     type: code
@@ -42,4 +44,14 @@ segments:
     vram: 0x80391380
     subsegments:
       - [0x0000AF90, bin, fight_data_AF90]
+      - [0x0000B9D0, .data, code_9850]
+      - [0x0000BBC0, bin, fight_data_BBC0]
+      - [0x0000BCA0, .data, code_AED0]
+      - [0x0000BCD0, bin, fight_data_BCD0]
+      - [0xC220, .rodata, code_9850]
+      - [0xC230, .rodata, code_9D40]
+      #- [0x0000C260, .rodata, code_9850]
+      #- [0x0000C270, .rodata, code_9850]
+      - [0x0000C260, bin, fight_data_C2B0]
+      - [0x0000C340, .rodata, code_AED0]
   - [0x0000C350]
