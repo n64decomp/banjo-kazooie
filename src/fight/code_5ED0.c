@@ -2,13 +2,13 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void func_80386654(f32, void *, void *);
+extern void func_80386654(f32 arg0, f32 (*arg1)[4], f32 (*arg2)[4]);
 
 
 extern struct43s D_803918D0;
 extern struct42s D_80391918;
-extern s32 D_80391948;
-extern s32 D_80391958;
+extern f32 D_80391948[4];
+extern f32 D_80391958[4];
 
 
 extern f64 D_80392480;

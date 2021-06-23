@@ -2,8 +2,9 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void func_80386654(f32, s32, s32);
+extern void func_80386654(f32 arg0, f32 (*arg1)[4], f32 (*arg2)[4]);
 extern void func_80387470(Actor *, f32 (*)[3], f32, f32, f32, f32, f32);
+extern Actor *func_80325CAC(ActorMarker *, Gfx **, Mtx **, s32);
 
 void func_8038FE94(Actor *this);
 Actor *func_8038FC40(ActorMarker *marker, Gfx **gdl, Mtx **mptr, s32 arg3);

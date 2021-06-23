@@ -4,7 +4,7 @@
 
 extern f64 D_80392470;
 extern f32 D_80392478;
-extern f32 D_80392758[];
+extern f32 D_80392758[3];
 extern f32 D_80392768[];
 extern f32 D_80392778[];
 extern f32 D_80392798[];
@@ -15,8 +15,8 @@ extern u8 D_803927C5;
 extern u8 D_803927C7;
 extern u8 D_803927C8;
 extern u8 D_803927C9;
-extern s32 D_80391524;
-extern s32 D_80391530;
+extern f32 D_80391524[3];
+extern f32 D_80391530[3];
 extern struct31s D_8039153C;
 extern struct43s D_80391564;
 extern s32 D_803915AC[3];
@@ -41,7 +41,7 @@ extern f32 D_803920EC;
 extern f32 D_803920F0;
 extern f32 D_803920F4;
 
-void func_80386570(ActorMarker *arg0, s32 arg1, s32 arg2, s32 arg3) {
+void func_80386570(ActorMarker *arg0, Gfx **arg1, Mtx **arg2, s32 arg3) {
     Actor *temp_v0;
     ActorLocal_fight_180 *localActor;
 
@@ -70,7 +70,7 @@ void func_80386628(ActorMarker *arg0, s32 arg1) {
 
 void func_8034DF30(s32, s32, s32, f32);
 
-void func_80386654(f32 arg0, s32 arg1, s32 arg2) {
+void func_80386654(f32 arg0, f32 (*arg1)[4], f32 (*arg2)[4]) {
     s32 temp_v0;
 
     temp_v0 = func_8034C528(0x190); // TODO sizeof?
@@ -88,7 +88,7 @@ void func_80386698(f32 arg0) {
     }
 }
 
-void func_803866E4(s32 arg0, s32 arg1, s32 arg2) {
+void func_803866E4(f32 (*arg0)[3], s32 arg1, s32 arg2) {
     struct30s *temp_s0;
     struct30s *temp_v0;
 
@@ -103,7 +103,7 @@ void func_803866E4(s32 arg0, s32 arg1, s32 arg2) {
     func_802EF5C8(temp_s0, arg2);
 }
 
-void func_8038679C(f32 *arg0, s32 arg1, f32 *arg2) {
+void func_8038679C(f32 (*arg0)[3], s32 arg1, f32 (*arg2)[4]) {
     struct30s *temp_s0;
     struct30s *temp_v0;
 
@@ -114,8 +114,8 @@ void func_8038679C(f32 *arg0, s32 arg1, f32 *arg2) {
     func_802EFA90(temp_s0, 0, 7);
     func_802EFB54(temp_s0, arg0);
     func_802EFD00(temp_s0, &D_803915B8);
-    func_802EFB70(temp_s0, arg2[0], arg2[1]);
-    func_802EFB84(temp_s0, arg2[2], arg2[3]);
+    func_802EFB70(temp_s0, (*arg2)[0], (*arg2)[1]);
+    func_802EFB84(temp_s0, (*arg2)[2], (*arg2)[3]);
     func_802EFE5C(temp_s0, 0.0f, 0.01f);
     func_802EFEC0(temp_s0, 2.8f, 3.2f);
     func_802EFA5C(temp_s0, 0.3f, 0.4f);
@@ -123,13 +123,11 @@ void func_8038679C(f32 *arg0, s32 arg1, f32 *arg2) {
     func_802EF5C8(temp_s0, arg1);
 }
 
-void func_803868A0(f32 *arg0, s32 arg1) {
-    Actor *temp_s0;
-    Actor *temp_v0;
+void func_803868A0(f32 (*arg0)[3], s32 (*arg1)[3]) {
+    struct30s * temp_s0;
 
-    temp_v0 = func_802F0BD0(1);
-    temp_s0 = temp_v0;
-    func_802EF950(temp_v0, 0x45A);
+    temp_s0 = func_802F0BD0(1);
+    func_802EF950(temp_s0, 0x45A);
     func_802EFA90(temp_s0, 2, 2);
     func_802EFFA8(temp_s0, arg1);
     func_802EFB54(temp_s0, arg0);
@@ -138,13 +136,11 @@ void func_803868A0(f32 *arg0, s32 arg1) {
     func_802EFC28(temp_s0, &D_803915E8);
 }
 
-void func_80386934(f32 *arg0, s32 arg1) {
-    Actor * temp_s0;
-    Actor * temp_v0;
+void func_80386934(f32 (*arg0)[3], enum asset_e arg1) {
+    struct30s * temp_s0;
 
-    temp_v0 = func_802F0BD0(1);
-    temp_s0 = temp_v0;
-    func_802EF950(temp_v0, arg1);
+    temp_s0 = func_802F0BD0(1);
+    func_802EF950(temp_s0, arg1);
     func_802EFA90(temp_s0, 1, 6);
     func_802EFB54(temp_s0, arg0);
     func_802EFA78(temp_s0, 1);
@@ -224,9 +220,9 @@ void func_803900DC(ActorMarker *, f32 *, f32, f32);
 void func_80386EC0(s32 arg0) {
     ActorMarker *marker;
 
-    marker = func_8032813C(0x38A, D_80392758, 0)->marker;
-    func_8030E878(0x147, randf2(D_803920C8, D_803920CC), 0x7D00, D_80392758, D_803920D0, D_803920D4);
-    func_803900DC(marker, D_80392758, D_80392768[1], D_80392768[2]);
+    marker = func_8032813C(0x38A, &D_80392758, 0)->marker;
+    func_8030E878(0x147, randf2(D_803920C8, D_803920CC), 0x7D00, &D_80392758, D_803920D0, D_803920D4);
+    func_803900DC(marker, &D_80392758, D_80392768[1], D_80392768[2]);
 }
 
 void func_802C3C88(void (* arg0)(ActorMarker*), s32 arg1);
@@ -336,7 +332,7 @@ void func_803880A0(Actor *actor, f32 arg1) {
     actor->velocity[2] = arg1;
     actor->velocity[1] = 0.0f;
     actor->velocity[0] = 0.0f;
-    ml_vec3f_yaw_rotate_copy(actor->velocity, actor->velocity, actor->yaw);
+    ml_vec3f_yaw_rotate_copy(&actor->velocity, &actor->velocity, actor->yaw);
 }
 
 void func_803880E0(ActorMarker *arg0, s32 arg1, s32 arg2) {

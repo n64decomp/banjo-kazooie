@@ -15,7 +15,7 @@ void func_8038D280(ActorMarker *arg0) {
 s32 D_803919B4[3];
 struct31s D_803919C0;
 
-void func_8038D2EC(f32 *arg0, s32 arg1) {
+void func_8038D2EC(f32 (*arg0)[3], s32 arg1) {
     struct30s *temp_v0 = func_802F0BD0(arg1);
     
     func_802EF950(temp_v0, 0x70E);
@@ -31,7 +31,7 @@ void func_8038D2EC(f32 *arg0, s32 arg1) {
 void func_8034DE60(s32, f32, f32, f32, s32);
 
 void func_8038D3DC(Actor* this, s32 arg1, f32 arg2, f32 arg3, f32 arg4){
-    void * tmp = func_8034C2C4(this->marker, arg1);
+    s32 tmp = func_8034C2C4(this->marker, arg1);
     
     if(tmp){
         func_8034DE60(tmp, arg2, arg3, arg4, 1);
