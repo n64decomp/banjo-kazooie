@@ -34,6 +34,7 @@ segments:
       - [0x6E90, c, code_6E90]
       - [0x7580, c, code_7580]
       - [0x7BE0, c, code_7BE0]
+      - [0x8390, c, code_8390]
       - [0x87A0, c, code_87A0]
       - [0x9850, c, code_9850]
       - [0x9D40, c, code_9D40]
@@ -45,12 +46,14 @@ segments:
     vram: 0x80391380
     subsegments:
       - [0x0000AF90, bin, fight_data_AF90]
+      - [0x0000B6E0, .data, code_8390]
       - [0x0000B710, .data, code_87A0]
       - [0x0000B9D0, .data, code_9850]
       - [0x0000BBC0, bin, fight_data_BBC0]
       - [0x0000BCA0, .data, code_AED0]
       - [0x0000BCD0, bin, fight_data_BCD0]
-      #- [0xC1D0, .rodata, code_87A0]
+      - [0xC1C0, .rodata, code_8390]
+      - [0xC1D0, bin, fight_data_C1D0] #- [0xC1D0, .rodata, code_87A0]
       - [0xC220, .rodata, code_9850]
       - [0xC230, .rodata, code_9D40]
       #- [0x0000C260, .rodata, code_9850]

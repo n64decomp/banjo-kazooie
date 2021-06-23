@@ -2,17 +2,13 @@
 #include "functions.h"
 #include "variables.h"
 
+
 void func_8034DE60(s32, f32, f32, f32, s32);
-void func_80386654(f32 arg0, f32 (*arg1)[4], f32 (*arg2)[4]);
 
 /* .data */
-
 extern s32 D_80391A64[3];
 extern struct42s D_80391A98;
 extern struct31s D_80391A70;
-
-extern ActorInfo D_80391AD0;
-
 
 /* .code */ 
 void func_8038DFD0(ActorMarker *arg0) {
@@ -62,35 +58,5 @@ void func_8038E2CC(ActorMarker *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/fight/code_7BE0/func_8038E2FC.s")
 
-void func_8038E780(ActorMarker *arg0, s32 arg1) {
-    Actor *sp1C;
-    ActorLocal_fight_7BE0 *sp18;
-
-    sp1C = marker_getActor(arg0);
-    sp18 = &sp1C->fight_7BE0;
-    sp1C->fight_7BE0.unk0 = 0xFF;
-    sp1C->fight_7BE0.unk4 = 0;
-    if (func_8030E3FC(sp1C->fight_7BE0.unk10) == 0) {
-        func_8030E2C4(sp18->unk10);
-    }
-    if (func_8030E3FC(sp1C->unk44_31) == 0) {
-        func_8030E2C4(sp1C->unk44_31);
-    }
-}
-
-void func_8038E7EC(Actor *arg0) {
-    ActorLocal_fight_7BE0 *temp_v0 = &arg0->fight_7BE0;
-
-    if ((u8)arg0->unk44_31) {
-        func_8030DA44(arg0->unk44_31);
-        arg0->unk44_31 = 0;
-    }
-    if (temp_v0->unk10 != 0) {
-        func_8030DA44(temp_v0->unk10);
-        temp_v0->unk10 = (u8)0;
-    }
-}
-
-#pragma GLOBAL_ASM("asm/nonmatchings/fight/code_7BE0/func_8038E844.s")
 
 

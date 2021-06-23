@@ -2,7 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-Actor *func_80325888(ActorMarker *, Gfx **, Mtx**, u32);
 void func_8028E668(f32 *, f32, f32, f32);
 int func_80311480(s32 text_id, s32 arg1, f32 *pos, ActorMarker *marker, void(*callback)(ActorMarker *, s32, s32), void(*arg5)(ActorMarker *, s32, s32));
 void func_80328BD4(Actor *, s32, f32, s32, f32);

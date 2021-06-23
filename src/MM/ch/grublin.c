@@ -3,7 +3,6 @@
 #include "functions.h"
 #include "variables.h"
 
-Actor*  func_80325888(ActorMarker *, Gfx **, Mtx**, u32);
 void func_80328B8C(Actor *, s32, f32, s32);
 
 void func_80388A80(Actor *);

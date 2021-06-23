@@ -258,22 +258,7 @@ typedef struct ch_fight_6E90_s{
     u8 unk0;
 }ActorLocal_fight_6E90;
 
-typedef struct ch_fight_7BE0_s{
-    s32 unk0;
-    u8 unk4;
-    u8 unk5;
-    u8 unk6;
-    u8 unk7;
-    u8 unk8;
-    u8 unk9;
-    u8 unkA;
-    u8 unkB;
-    u8 unkC;
-    u8 unkD;
-    u8 unkE;
-    u8 unkF;
-    u8 unk10;
-}ActorLocal_fight_7BE0;
+
 
 typedef struct ch_sm_4070{
     s32 unk0;
@@ -352,7 +337,6 @@ typedef struct actor_s{
         ActorLocal_CC_530 CC_530;
         ActorLocal_fight_180 fight_180;
         ActorLocal_fight_6E90 fight_6E90;
-        ActorLocal_fight_7BE0 fight_7BE0;
         ActorLocal_SM_4070 sm_4070;
         u8  local[1];
         struct{ 

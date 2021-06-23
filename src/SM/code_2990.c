@@ -4,7 +4,6 @@
 
 //external
 Actor *func_802D94B4(ActorMarker*, Gfx**, Mtx**, s32);
-void func_803300D8(ActorMarker *, void *);
 void func_8028E668(f32*, f32, f32, f32);
 void func_80328FB0(Actor *, f32);
 void func_8030DA44(u8);
