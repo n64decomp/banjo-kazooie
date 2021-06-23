@@ -3,8 +3,6 @@
 #include "variables.h"
 
 f32 func_80309724(f32 *);
-void func_80324D54(f32, u32, f32, u32, f32 *, f32, f32);
-
 
 extern f32 D_80390DD0;
 extern f32 D_80390DD4;

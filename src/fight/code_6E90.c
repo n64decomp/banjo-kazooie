@@ -1,7 +1,6 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
-void func_8034DE60(s32, f32, f32, f32, s32);
 
 void func_8038D280(ActorMarker *arg0) {
     Actor *sp1C = marker_getActor(arg0);
@@ -42,8 +41,6 @@ extern f32 D_80392530;
 extern f32 D_80392534;
 
 void func_8038D3DC(Actor *, s32, f32, f32, f32);
-void func_80324D54(f32, u32, f32, u32, f32 *, f32, f32);
-
 void func_8038D428(ActorMarker *arg0, s32 arg1) {
     Actor *temp_v0;
     Actor *s0;
@@ -56,7 +53,7 @@ void func_8038D428(ActorMarker *arg0, s32 arg1) {
             func_80328A84(temp_v0, 3);
             func_8038DE98(temp_v0->unk100);
             func_8038D3DC(temp_v0, 0x19A, -100.0f, 0.0f, D_80392530);
-            func_80324D54(D_80392534, 0x90, 1.0f, 0x7D00, &temp_v0->position_x, 1000.0f, 2000.0f);
+            func_80324D54(D_80392534, 0x90, 1.0f, 0x7D00, &temp_v0->position, 1000.0f, 2000.0f);
         }
     }
 }

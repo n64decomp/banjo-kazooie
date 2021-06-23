@@ -6,7 +6,6 @@ extern f32 func_80309724(f32(*)[3]);
 extern void func_80255FE4(f32 (*)[3], f32 (*)[3], f32 (*)[3], f32);
 extern void func_802C8F70(f32);
 extern int  func_80309EB0(f32(*)[3], f32, f32 (*)[3], s32);
-extern void func_80324D54(f32, s32, f32, s32, f32(*)[3], f32, f32);
 extern int func_803342AC(f32(*)[3], f32(*)[3],f32);
 
 /* typedefs and declarations */

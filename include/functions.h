@@ -393,4 +393,7 @@ void mapSpecificFlags_set(s32, s32);
 /* used in fight */
 void func_80326224(Actor *this);
 void func_803300D8(ActorMarker *, void (*)(Actor *));
+void func_8034DE60(s32, f32, f32, f32, s32);
+void func_802F9FD0(s32, f32, f32, f32);
+void func_80324D54(f32, s32, f32, s32, f32 (*)[3], f32, f32);
 #endif

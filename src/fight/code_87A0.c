@@ -3,11 +3,9 @@
 #include "variables.h"
 
 extern void func_80324CFC(f32, s32, s32);
-extern void func_8034DE60(s32, f32, f32, f32, s32);
 extern void func_80386654(f32 arg0, f32 (*arg1)[4], f32 (*arg2)[4]);
 extern void func_8038E03C(f32*, u32);
 extern Actor *func_80325CAC(ActorMarker*, Gfx**, Mtx**, s32);
-extern void func_80324D54(f32, s32, f32, s32, f32 (*)[3], f32, f32);
 int func_80320C94(f32 (*)[3], f32(*)[3], f32, s32, s32, u32);
 f32 func_8033229C(ActorMarker *);
 void func_8038CED8(f32 (*)[3], s32, f32, f32);
