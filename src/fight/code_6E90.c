@@ -9,7 +9,7 @@ typedef struct {
 void func_8038D568(Actor *this);
 
 /* .data */
-extern ActorInfo D_80391990 = {
+ActorInfo D_80391990 = {
     0x27A, 0x3A2, 0x543, 0x1, NULL,
     func_8038D568, func_80326224, func_80325888,
     {0, 0, 0x8, 0}, 0.0f, {0,0,0,0}

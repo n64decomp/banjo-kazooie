@@ -46,6 +46,7 @@ segments:
     vram: 0x80391380
     subsegments:
       - [0x0000AF90, bin, fight_data_AF90]
+      - [0xB420, .data, code_5ED0]
       - [0xB5A0, .data, code_6E90]
       - [0xB600, bin, fight_data_B620]
       - [0xB650, .data, code_7BE0]
