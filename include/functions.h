@@ -26,6 +26,12 @@ extern f32 fabsf(f32);
     out[2] = c;\
 }
 
+#define TUPLE_COPY(dst, src) {\
+    dst[0] = src[0];\
+    dst[1] = src[1];\
+    dst[2] = src[2];\
+}
+
 #define TUPLE_OP(out, a, op, b) {\
     out##_x = a##_x op b##_x;\
     out##_y = a##_y op b##_y;\

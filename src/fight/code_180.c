@@ -2,19 +2,9 @@
 #include "functions.h"
 #include "variables.h"
 
-extern f64 D_80392470;
-extern f32 D_80392478;
-extern f32 D_80392758[3];
-extern f32 D_80392768[];
-extern f32 D_80392778[];
-extern f32 D_80392798[];
-extern ActorMarker *D_803927A4;
-extern ActorMarker *D_803927A8;
-extern u8 D_803927C4;
-extern u8 D_803927C5;
-extern u8 D_803927C7;
-extern u8 D_803927C8;
-extern u8 D_803927C9;
+
+/* .data */
+extern ActorInfo D_80391500;
 extern f32 D_80391524[3];
 extern f32 D_80391530[3];
 extern struct31s D_8039153C;
@@ -41,6 +31,22 @@ extern f32 D_803920EC;
 extern f32 D_803920F0;
 extern f32 D_803920F4;
 
+/* .bss */
+extern f64 D_80392470;
+extern f32 D_80392478;
+extern f32 D_80392758[3];
+extern f32 D_80392768[];
+extern f32 D_80392778[];
+extern f32 D_80392798[];
+extern ActorMarker *D_803927A4;
+extern ActorMarker *D_803927A8;
+extern u8 D_803927C4;
+extern u8 D_803927C5;
+extern u8 D_803927C7;
+extern u8 D_803927C8;
+extern u8 D_803927C9;
+
+/* .code */
 void func_80386570(ActorMarker *arg0, Gfx **arg1, Mtx **arg2, s32 arg3) {
     Actor *temp_v0;
     ActorLocal_fight_180 *localActor;

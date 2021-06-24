@@ -254,12 +254,6 @@ typedef struct ch_fight_180_s{
     u8 unkF;
 }ActorLocal_fight_180;
 
-typedef struct ch_fight_6E90_s{
-    u8 unk0;
-}ActorLocal_fight_6E90;
-
-
-
 typedef struct ch_sm_4070{
     s32 unk0;
 }ActorLocal_SM_4070;
@@ -336,7 +330,6 @@ typedef struct actor_s{
         ActorLocal_Juju juju;
         ActorLocal_CC_530 CC_530;
         ActorLocal_fight_180 fight_180;
-        ActorLocal_fight_6E90 fight_6E90;
         ActorLocal_SM_4070 sm_4070;
         u8  local[1];
         struct{ 
