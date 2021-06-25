@@ -244,6 +244,7 @@ segments:
   - [0x851D0, c, code_851D0]
   - [0x857B0, c, code_857B0]
   - [0x85800, c, code_85800]
+  - [0x87E30, c, code_87E30]
   - [0x8A7B0, c, gc/pauseMenu]
   - [0x8DC20, c, code_8DC20]
   - [0x8E270, c, gc/zoombox]
@@ -430,7 +431,8 @@ segments:
   - [0x000F0440, .rodata, code_76D90]
   - [0x000F0470, bin, data_F0470]
   - [0x000F14C0, .rodata, gc/transition]
-  - [0x000F1520, bin, data_F1520]
+  - [0x000F1520, .rodata, code_85800]
+  - [0x000F1540, bin, data_F1540]
   #- [0x000F18F0, .rodata, gc/zoombox]
   - [0x000F18F0, bin]
 - [0xf2c00] # core2 end

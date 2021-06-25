@@ -9,8 +9,6 @@ void func_80328FB0(Actor *, f32);
 void func_8030DA44(u8);
 void func_80324E88(f32);
 void func_80328B8C(Actor *, s32, f32, s32);
-void func_8030DBB4(s32, f32);
-
 
 //static types
 typedef struct sm_2900_struct{
@@ -490,7 +488,7 @@ void func_803899B0(Actor * this){
         else if(actor_animationIsAt(this, 0.4f)){ //L80389F14
             func_8030E8B4(0x9977702c, this->position, 0x9C404e2);
         }else if(actor_animationIsAt(this, 0.75f)){//L80389F48
-            func_8030E8B4(0x7fff40c5, this->position, 0x9C404e2);
+            FUNC_8030E8B4(0x3ff, 0x3e8, 0xc5, &this->position, 0x9c4, 0x4e2);
         }else if(actor_animationIsAt(this, 0.35f)){//L80389F78
             if(mapSpecificFlags_get(1)){
                 func_80389610(this);

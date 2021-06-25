@@ -26,7 +26,7 @@ typedef struct timed_function_queue_s{
 
 typedef struct tfq_struct_2_s{
     u32 unk0;
-    u32 unk4;
+    f32 unk4;
     u32 unk8;
     f32 unkC[3];
     f32 unk18;
@@ -45,7 +45,6 @@ typedef struct delayed_jiggy_s{
 
 //void __spawnjiggy(DelayedJiggyInfo *);
 TimedFunction* __timedFuncQueue_insert(f32, s32, void *funcPtr, s32, s32, s32, s32, s32);
-void func_8030E9C4(u32, u32, u32, f32 *, f32, f32);
 void func_80324BA0(s32);
 
 void func_802BE720(void);
@@ -113,7 +112,7 @@ void func_80324A68(s32 arg0, s32 arg1, s32 arg2){
 }
 
 void func_80324AA4(timefuncqueue_Struct2 *arg0){
-    func_8030E9C4(arg0->unk0, arg0->unk4, arg0->unk8, (f32 *)&arg0->unkC, arg0->unk18, arg0->unk1C);
+    func_8030E9C4(arg0->unk0, arg0->unk4, arg0->unk8, (f32 (*)[3])&arg0->unkC, arg0->unk18, arg0->unk1C);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/timedfuncqueue/func_80324AEC.s")
@@ -162,7 +161,7 @@ void func_80324D2C(f32 time, enum comusic_e arg0){
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/timedfuncqueue/func_80324D54.s")
-// void func_80324D54(f32 time, s32 arg1, s32 arg2, s32 arg3, f32 * arg4, f32 arg5, f32 arg6){
+// void func_80324D54(f32 time, s32 arg1, f32 arg2, s32 arg3, f32 * arg4, f32 arg5, f32 arg6){
 //     timefuncqueue_Struct2 argStruct;
 //     argStruct.unk0 = arg1;
 //     //argStruct.unk4 = arg2;

@@ -144,7 +144,7 @@ void func_80387C28(Actor * this){
     ChVeg * local = &this->local;
     f32 sp30[3];
 
-    func_8030E8B4(0x7FFF4111, this->position, 0x7d003e8);
+    FUNC_8030E8B4(0x3ff, 0x3e8, 0x111, this->position, 0x7d0, 0x3e8);
     if(local->unkC == 3){
         sp30[0] = this->position_x;
         sp30[1] = this->position_y;
@@ -313,7 +313,7 @@ void func_80388080(Actor *this){
 
         if(!this->unk138_23){
             if(0.0f < this->position_y){
-                func_8030E8B4(0x7FFF40C5, this->position, 0x7D003E8);
+                FUNC_8030E8B4(0x3ff, 0x3e8, 0xc5, this->position, 0x7d0, 0x3e8);
                 this->unk138_23 = 1;
                 this->scale = 1.0f;
             }
@@ -426,10 +426,10 @@ void func_80388080(Actor *this){
         func_80328FB0(this, 0x40000000);
         
         if(local->unkC != 3 && actor_animationIsAt(this, 0.3f))
-            func_8030E8B4(0x7FF57BF2, this->position, 0x7D003E8);
+            FUNC_8030E8B4(0x3ff, 0x2af, 0x3f2, &this->position, 0x7d0, 0x3e8);
         
         if(local->unkC == 3 && actor_animationIsAt(this, 0.4f)){
-            func_8030E8B4(0x7307D002, this->position, 0x7D003E8);
+            FUNC_8030E8B4(0x398, 0xfa, 0x2, &this->position, 0x7d0, 0x3e8);
         }
         break;
     case 3: //L80388BFC

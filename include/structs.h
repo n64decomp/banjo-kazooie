@@ -478,4 +478,10 @@ typedef struct struct_43_s{
     struct34s unk30;
 } struct43s;
 
+typedef struct {
+    u32 unk0_31:11;
+    u32 unk0_20:10;
+    u32 unk0_10:11;
+}struct44s;
+
 #endif

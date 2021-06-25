@@ -7,7 +7,6 @@
 void func_802EF5C8(Actor*, s32);
 void func_803869A0(Actor*, f32, f32);
 void func_802C4218(s32, f32, f32, f32);
-void func_8030DBB4(s32, f32);
 
 
 extern struct43s D_8038AB48;

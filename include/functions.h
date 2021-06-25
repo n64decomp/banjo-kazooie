@@ -38,6 +38,12 @@ extern f32 fabsf(f32);
     out##_z = a##_z op b##_z;\
 }
 
+#define FUNC_8030E8B4(a, b, c, d, e, f) func_8030E8B4(\
+    _SHIFTL(a, 21, 11) | _SHIFTL(b, 11, 10) | _SHIFTL(c, 0, 10), \
+    d, \
+    _SHIFTL(e, 16, 16) | _SHIFTL(f, 0, 16) \
+)
+
 void func_80241304(Mtx *m, float x, float y, float z);
 
 void _guMtxIdentF_80245D44(float mf[4][4]); //static should NOT be here
@@ -49,6 +55,7 @@ void *realloc(void* ptr, s32 size);
 f32 ml_map_f(f32 val, f32 in_min, f32 in_max, f32 out_min, f32 out_max);
 float mlNormalizeAngle(float);
 f32 max_f(f32, f32);
+f32 min_f(f32, f32);
 void ml_vec3f_copy(f32 (* dst)[3], f32 (* src)[3]);
 
 void ml_vec3f_add(f32 (* arg0)[3], f32 (* arg1)[3], f32 (* arg2)[3]);
@@ -179,10 +186,13 @@ void func_80301348(s32, struct8s *);
 void func_80300D0C(s32, struct8s *, Gfx**, Mtx**, s32);
 void func_80300C70(s32, struct8s *);
 
+
 struct8s *func_8030179C(s32);
 void func_80301DE4(s32, struct8s *);
 void func_803017D0(s32, struct8s *, Gfx**, Mtx**, s32);
 void func_80301754(s32, struct8s *);
+
+void func_8030E9C4(s32 arg0, f32 arg1, u32 arg2, f32 (*arg3)[3], f32 arg4, f32 arg5);
 
 void marker_despawn(ActorMarker *marker);
 
@@ -324,12 +334,13 @@ void func_8029E3C0(s32, f32);
 f32  func_8029E270(s32);
 void func_802BF2C0(f32);
 
-void func_8030DBB4(s32, f32);
-void func_8030E04C(s32, f32, f32, f32);
+void func_8030DBB4(u8, f32);
+void func_8030E04C(u8, f32, f32, f32);
+void func_8030E394(u8 indx);
 void func_8030E58C(s32, f32);
 void func_8030E5F4(s32, f32);
 void func_8030E624(u32);
-void func_8030E6D4(int);
+void func_8030E6D4(s32 arg0);
 void func_8030E760(s32, f32, s32);
 void func_8030EB00(s32, f32, f32);
 void func_8030EBC8(s32, f32, f32, s32, s32);
@@ -355,7 +366,7 @@ Actor *func_80329980(Actor *);
  /* used in RBB */
  void func_8025686C(f32 (* arg0)[3], f32 (* arg1)[3], f32 arg2);
 int func_8025773C(f32 *arg0, f32 arg1);
-void func_8030E878(s32, f32, s32, f32 (*)[3], f32, f32);
+void func_8030E878(s32 arg0, f32 arg1, u32 arg2, f32 (*arg3)[3], f32 arg4, f32 arg5);
 Actor *func_80325888(ActorMarker *, Gfx**, Mtx**, s32);
 void func_80335924(void *, s32, f32, f32);
 
@@ -383,14 +394,14 @@ Actor *func_80326EEC(s32);
 f32 func_8038A6B8(ActorMarker *);
 void func_80255FE4(f32 (*)[3], f32 (*)[3], f32 (*)[3], f32);\
 void func_8030DEB4(u8, f32, f32);
-void func_8030DB04(s32, s32, f32(*)[3], f32, f32);
+void func_8030DB04(u8, s32, f32(*)[3], f32, f32);
 void func_80258A4C(f32 (*)[3], f32, f32 (*)[3], f32 *, f32 *, f32 *);
 void func_8030E6A4(s32, f32, s32);
 void func_803300A8(ActorMarker *, void (*)(ActorMarker *, s32), void (*)(ActorMarker *, s32), void (*)(ActorMarker *, s32));
 void func_8033568C(void *, f32 *, f32*);
 void func_802E4078(enum MAP_E map, s32 exit, s32 transition);
 void levelSpecificFlags_set(s32, s32);
-void func_8030E988(s32, f32, s32, f32 (*)[3], f32, f32);
+void func_8030E988(s32 arg0, f32 arg1, u32 arg2, f32 (*arg3)[3], f32 arg4, f32 arg5);
 void func_803228D8(void);
 
 void func_803253A0(Actor *);
