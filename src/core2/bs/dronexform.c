@@ -7,7 +7,6 @@ void func_8024E3A8(f32 (*)[3], f32);
 void func_802991FC(void);
 void func_802978DC(int);
 void func_8030E624(u32);
-void func_8030E6D4(int);
 f32 func_80257A44(f32, f32);
 f32 cosf(f32);
 f32 func_802588B0(f32, f32);

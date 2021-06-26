@@ -6,7 +6,6 @@
 
 void func_802915CC(f32);
 void func_8029AD28(f32, s32);
-void func_8030EB00(s32, f32, f32);
 
 extern u8 _bsclawHitboxActive;
 

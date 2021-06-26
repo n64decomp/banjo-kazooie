@@ -17,7 +17,6 @@ f32 func_8029B2E8(void);
 f32 func_8029B33C(void);
 f32 func_80257C48(f32, f32, f32);
 f32 func_8029B30C();
-void func_8030EB00(s32, f32, f32);
 
 extern f32 D_803649E0;
 extern f32 D_803649E4;
