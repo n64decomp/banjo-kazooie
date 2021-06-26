@@ -2,9 +2,57 @@
 #include "functions.h"
 #include "variables.h"
 
+extern void func_8028E668(f32 (*)[3], f32, f32, f32);
+
+typedef struct{
+    s32 unk0;
+    s32 unk4;
+    f32 unk8;
+}ActorLocal_CC_BF0;
+
+void func_803870F8(Actor *this);
+
+/* .data */
+extern ActorInfo D_80389B00 = {
+    0x4C, 0x44, 0x309, 0, NULL,
+    func_803870F8, func_80326224, func_80325888,
+    {0,0,0,0}, 0.0f, {0,0,0,0}
+};
+
+extern ActorInfo D_80389B24 = {
+    0x4D, 0x45, 0x30A, 0, NULL,
+    func_803870F8, func_80326224, func_80325888,
+    {0,0,0,0}, 0.0f, {0,0,0,0}
+};
+
+/* .bss */
 u8 D_80389F80;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/CC/code_BF0/func_80386FE0.s")
+/* .code */
+void func_80386FE0(Actor *this, s32 next_state){
+    ActorLocal_CC_BF0 *local = (ActorLocal_CC_BF0 *)&this->local;
+    s32 prev_state = this->state;
+    this->state = next_state;
+    local->unk8 = 0.0f;
+    if(this->state == 2){
+        func_8025A6EC(JINGLE_PUZZLE_SOLVED_FANFARE, 28000);
+    }
+    else if(this->state == 3){
+        if(prev_state == 2){
+            levelSpecificFlags_set((local->unk0 == 1) ? 0 : 1, 1);
+        }
+        if(local->unk0 == 1){
+            this->yaw = -30.0f;
+            this->pitch = -90.0f;
+            this->roll = -5.0f;
+        }
+        else{
+            this->yaw = 30.0f;
+            this->pitch = 90.0f;
+            this->roll = 5.0f;
+        }
+    }
+}
 
 void func_803870E0(void) {
     D_80389F80 = 0;
@@ -14,8 +62,84 @@ void func_803870EC(s32 arg0) {
     D_80389F80 = arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/CC/code_BF0/func_803870F8.s")
+void func_803870F8(Actor *this){
+    ActorMarker *marker = this->marker;
+    f32 sp70[3];
+    ActorLocal_CC_BF0 *local = (ActorLocal_CC_BF0 *)&this->local;
+    f32 sp68 = func_8033DD9C();
+    f32 sp5C[3];
+    f32 sp50[3];
+    f32 temp_f2;
+    s32 flagCnt;
+    f32 sp3C[3];
+    
 
-#pragma GLOBAL_ASM("asm/nonmatchings/CC/code_BF0/func_80387510.s")
+    if(!this->unk16C_4){
+        this->unk16C_4 = 1;
+        marker->propPtr->unk8_3 = 1;
+        this->pitch = 0.0f;
+        this->yaw = 0.0f;
+        this->roll = 0.0f;
+        local->unk0 = (marker->modelId == 0x309) ? 1 : 2;
+        local->unk4 = 0;
+        func_80386FE0(this, 1);
+        if(levelSpecificFlags_get((local->unk0 == 1)? 0: 1)){
+            func_80386FE0(this, 3);
+        }
+    }//L803871D8
+    player_getPosition(&sp70);
+    local->unk8 += sp68;
+    if(this->state == 2){
+        temp_f2 = local->unk8/1;
+        if(local->unk0 == 1){
+            this->yaw = -temp_f2*30.0f;
+            this->pitch = -temp_f2*90.0f;
+            this->roll = -temp_f2*5.0f;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/CC/code_BF0/func_80387584.s")
+        }//L8038726C
+        else{
+            this->yaw = temp_f2*30.0f;
+            this->pitch = temp_f2*90.0f;
+            this->roll = temp_f2*5.0f;
+        }
+    }//L803872A0
+
+    if(local->unk0 == 1){
+        func_80388B78(&sp5C, &sp50);
+    }
+    else{
+        func_80388BBC(&sp5C, &sp50);
+    }//L803872D4
+    TUPLE_COPY(this->position, sp5C);
+
+    if(this->state == 1)
+        func_8028E668(&this->position, 290.0f, -10.0f, 150.0f);
+    
+    if(this->state == 1 && D_80389F80 == local->unk0){
+        D_80389F80 = 0;
+        local->unk4++;
+        if(local->unk4 == 3){
+            func_80386FE0(this, 2);
+        }else{
+            func_8025A6EC(SFX_DING_B, 28000);
+        }
+    }
+    else if(this->state == 2 && 1.0f <= local->unk8){
+        flagCnt = levelSpecificFlags_get(0) + levelSpecificFlags_get(1);
+        if(!jiggyscore_isCollected(0x1B)){
+            func_80311480((local->unk0 == 1)? 
+                ((flagCnt == 0)? 0xd30 : 0xd31) :
+                ((flagCnt == 0)? 0xd2e : 0xd2f), 4, NULL, NULL, NULL, NULL);
+        }
+        func_80386FE0(this, 3);
+    }//L80387474
+
+    if(this->state == 3){
+        sp3C[0] = this->position_x;
+        sp3C[1] = this->position_y + 100;
+        sp3C[2] = this->position_z;
+        if(func_80256064(&sp3C, &sp70) < 120.0f){
+            func_8031D04C(0x22, (local->unk0  == 1)? 7 : 6);
+        }
+    }//L80387500
+}

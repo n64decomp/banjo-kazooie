@@ -31,6 +31,7 @@ segments:
       - [0x00000000, c, code_0]
       - [0x530, c, code_530]
       - [0xBF0, c, code_BF0]
+      - [0x1120, c, code_1120]
       - [0x13C0, c, code_13C0]
       - [0x19B0, c, code_19B0]
       - [0x1B90, c, code_1B90]
@@ -44,7 +45,8 @@ segments:
     subsegments:
       - [0x000036B0, .data, code_0]
       - [0x000036E0, .data, code_530]
-      - [0x00003710, bin, data_3710]
+      - [0x00003710, .data, code_BF0]
+      - [0x00003760, bin, data_3760]
       - [0x00003AC0, bin, rodata_0] # - [0x00003AC0, .rodata, code_0]
       - [0x00003B10, .rodata, code_530]
       - [0x00003B20, bin, data_3B20]
