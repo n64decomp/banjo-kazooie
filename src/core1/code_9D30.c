@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-
+extern s16 D_80275BCC;
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_9D30/func_80247750.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_9D30/func_8024776C.s")
@@ -31,7 +31,10 @@ void func_8024792C(void){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_9D30/func_80247F24.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_9D30/func_80247F9C.s")
+void func_80247F9C(s32 arg0){
+    func_80247D80(D_80275BCC, arg0, 2);
+    func_802484D0();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_9D30/func_80247FD0.s")
 

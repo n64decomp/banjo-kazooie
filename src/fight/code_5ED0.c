@@ -284,7 +284,7 @@ void func_8038C840(Actor *this){
                 }
                 
                 if(actor_animationIsAt(this, 0.1f)){
-                    this->unk44_31 = func_8030ED2C(0x18, 3);
+                    this->unk44_31 = func_8030ED2C(SFX_018_ELECTRIC_NOISE, 3);
                     func_8030E2C4(this->unk44_31);
                     func_8025A6EC(SFX_ENTER_MAP_GLITTER, 0x7fff);
                     func_8030E8B4(0x665ff8c7, &this->position, 0x07d0012C);

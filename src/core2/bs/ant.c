@@ -3,8 +3,6 @@
 #include "variables.h"
 
 void func_80293D48(f32,f32);
-void func_8030EAAC(s32, f32, s32, s32);
-void func_8030EB88(int, f32, f32);
 
 /* .data */
 const f32 D_80364960 = 30.0f;

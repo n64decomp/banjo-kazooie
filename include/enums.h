@@ -821,4 +821,10 @@ enum overlay_e{
     OVERLAY_BATTLE  = 0xE
 };
 
+enum sfx_e{
+    SFX_018_ELECTRIC_NOISE = 0x18,
+    
+    SFX_0C2_GRUBLIN_OW = 0xC2
+};
+
 #endif

@@ -46,8 +46,7 @@ Actor*  func_80389014(ActorMarker *this, Gfx **dl, Mtx **mPtr, u32 arg2){
     return actorPtr;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/MM/ch/juju/func_803890A0.s")
-/*void func_803890A0(ActorMarker *arg0, s32 arg1){
+void func_803890A0(ActorMarker *arg0, s32 arg1){
     int s1;
     Actor* actorPtr = marker_getActor(arg0);
     f32 sp5C[3];
@@ -63,7 +62,7 @@ Actor*  func_80389014(ActorMarker *this, Gfx **dl, Mtx **mPtr, u32 arg2){
         jujuPtr->marker->collidable = 0;
         actorPtr = marker_getActor(arg0);
         func_80388DE8(actorPtr, i, jujuPtr);
-        s1 = !(i < arg1); //THIS LINE NEEDS xori NOT sltiu
+        s1 = (i >= arg1); //THIS LINE NEEDS xori NOT sltiu
         func_80388FD0(jujuPtr, sp5C, actorPtr->position, (s1)? 1 : 2);
         if(s1){
             sp5C[1] += 250.0f;
@@ -72,7 +71,7 @@ Actor*  func_80389014(ActorMarker *this, Gfx **dl, Mtx **mPtr, u32 arg2){
             jujuPtr->juju.unk18 = 1;
         }
     }
-}//*/
+}
 
 void func_803891E8(s32 x, s32 y, s32 z, s32 yaw){
     f32 sp1C[3];

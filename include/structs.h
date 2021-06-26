@@ -484,4 +484,9 @@ typedef struct {
     u32 unk0_10:11;
 }struct44s;
 
+typedef struct {
+    s32 unk0;
+    s32 unk4;
+}struct46s;
+
 #endif

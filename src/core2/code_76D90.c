@@ -10,7 +10,6 @@ f32 func_802FDE60(f32);
 void timedFunc_set_1(f32, void (*)(s32), s32);
 void timedFunc_set_2(f32, void (*)(s32,s32), s32, s32);
 void func_80345F24(s32);
-void func_8030E484(s32);
 void func_80314AC8(s32);
 void func_80346414(s32, s32);
 
