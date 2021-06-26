@@ -6,9 +6,12 @@
 void func_80326224(Actor *);
 int func_80311480(s32 text_id, s32 arg1, f32 *pos, ActorMarker *marker, void(*callback)(ActorMarker *, s32, s32), void(*arg5)(ActorMarker *, s32, s32));
 void func_80329904(ActorMarker *, s32, void *);
+extern void func_802EFA20(struct30s *, f32, f32);
+
 
 /* public functions */
 void func_80386768(Actor *);
+
 
 
 /* .data */
@@ -17,6 +20,7 @@ ActorInfo chorangepadInfo = { 0x66, actor_orange_pad, model_orange_pad, 0, NULL,
     {0,0,0,0}, 0.0f, {0,0,0,0}
 };
 
+extern f32 D_80389B40;
 extern f64 D_80389B48;
 
 /*.code */
@@ -25,19 +29,75 @@ void func_803863F0(s32 x, s32 y, s32 z){
 
     TUPLE_ASSIGN(pos, x, y, z);
     
-    jiggySpawn(jiggy_mm_orange_pads, pos);
+    jiggySpawn(JIGGY_MM_ORANGE_PADS, &pos);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/MM/ch/orangepad/func_80386444.s")
+void func_80386444(ActorMarker *arg0){
+    f32 sp54;
+    Actor *actor;
+    f32 sp44[3];
+    struct30s *s0;
+    s32 temp_a0;
 
-void func_80386744(s32 arg0, s32 arg1) {
+    sp44[0] = arg0->propPtr->x;
+    sp44[1] = arg0->propPtr->y;
+    sp44[2] = arg0->propPtr->z;
+    actor = func_80326D68(&sp44, 0x57, 1, &sp54);
+    
+
+    if(actor && !(500.0f < sp54)){
+        actor->state = 1;
+        if(func_80326D68(&sp44, 0x57, 1, &sp54)){
+            func_8025A6EC(SFX_DING_B, 22000);
+        }else{
+            temp_a0 = (actor->unk78_13 == 0x106) ? 0x10 : (actor->unk78_13 == 0x76) ? 0xf : 0xe;
+
+            func_802BAFE4(temp_a0);
+            sp44[1] += 50.0f;
+            timedFunc_set_3(0.6f, (TFQM3) func_803863F0, (s32)sp44[0], (s32)sp44[1], (s32)sp44[2]);
+            func_8025A6EC(JINGLE_PUZZLE_SOLVED_FANFARE, 0x7FFF);
+            if(!jiggyscore_isCollected(JIGGY_MM_ORANGE_PADS)){
+                func_80311480(0xB3B, 4, NULL, NULL, NULL, NULL);
+            }
+        }// L803865D8
+
+        s0 = func_802F0BD0(0x1e);
+        func_802EFB54(s0, &actor->position);
+        func_802EFAC8(s0, 0x89f);
+        func_802EFB70(s0, 0.09f, 0.19f);
+        func_802EFB84(s0, 0.0f, 0.0f);
+
+        func_802EFED4(s0,
+            -200.0f, 500.0f, -200.0f,
+            200.0f, 700.0f, 200.0f
+        );
+
+        func_802EF9AC(s0, 
+            0.0f, -1200.0f, 0.0f,
+            0.0f, -1200.0f, 0.0f
+        );
+
+        func_802EFE24(s0, 
+            -600.0f, -600.0f, -600.0f,
+            600.0f, 600.0f, 600.0f
+        );
+        func_802EFE5C(s0, 0.0f, 0.01f);
+        func_802EFEC0(s0, 4.0f, 4.0f);
+        func_802EF9F8(s0, 0.01f);
+        func_802EFA18(s0, 3);
+        func_802EFA20(s0, 1.0f, 1.3f);
+        func_802EF5C8(s0, 0x1e);
+    }
+}
+
+void func_80386744(s32 arg0, ActorMarker *arg1) {
     func_80386444(arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/MM/ch/orangepad/func_80386768.s")
-/*void func_80386768(Actor * this){
+void func_80386768(Actor * this){
     Actor *sp3C;
-    f32 *sp34;
+    f32 pad;
+    f32 sp34;
     
 
     if(!this->initialized){
@@ -47,7 +107,7 @@ void func_80386744(s32 arg0, s32 arg1) {
     }//L803867B0
 
     if(!this->unk16C_4){
-        this->unk100 = func_80326D68(this->position, 8,-1, &sp34)->marker;
+        this->unk100 = func_80326D68(&this->position, 8,-1, &sp34)->marker;
         this->unk16C_4 = 1;
     }//L803867E0
 
@@ -58,23 +118,24 @@ void func_80386744(s32 arg0, s32 arg1) {
     if( func_80329530(this, 0x28)
         && !func_8028ECAC()
         && !mapSpecificFlags_get(6)
-        && sp3C->unk10_31 != 3
+        && sp3C->state != 3
     ){
         if(func_80311480(0xb3d, 0, NULL, NULL, NULL, NULL))
             mapSpecificFlags_set(6,1);
     }
 
-    if(this->unk10_31 == 1){
+    if(this->state == 1){
             if(this->unk60 < 72.0f){
                 func_8033E73C(this->marker, 5, func_80329904);
                 func_8033E3F0(9, this->marker->unk14_21);
             }
-            this->unk60 = MIN(D_80389B48, this->unk60 + 7.0);
+            this->unk60 = MIN(255.0, this->unk60 + 7.0);
 
-            if(D_80389B48 == this->unk60){
+            if(255.0 == this->unk60){
                 marker_despawn(this->marker);
             }
+    }else{
     }//L80386928
-    else{ }
+
     func_8032628C(this, 0xFF - (s32)this->unk60);
 }//*/

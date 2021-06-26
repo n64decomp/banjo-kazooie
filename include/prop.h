@@ -230,11 +230,6 @@ typedef struct juju_s{
     s32     unk18;
 }ActorLocal_Juju;
 
-typedef struct ch_CC_530_s{
-    u8     unk0;
-    u8     unk1;
-}ActorLocal_CC_530;
-
 typedef struct ch_fight_180_s{
     u8 unk0;
     u8 pad1;
@@ -328,7 +323,6 @@ typedef struct actor_s{
         ActorLocal_Jinjo jinjo;
         ActorLocal_JujuHitbox juju_ctl;
         ActorLocal_Juju juju;
-        ActorLocal_CC_530 CC_530;
         ActorLocal_fight_180 fight_180;
         ActorLocal_SM_4070 sm_4070;
         u8  local[1];

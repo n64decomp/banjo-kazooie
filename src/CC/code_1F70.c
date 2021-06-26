@@ -15,7 +15,7 @@ extern f32 D_80389C00[];
 extern s32 D_80389FD4;
 
 void func_80388664(void) {
-    jiggySpawn(JIGGY_CC_MUTIE_SNIPPETS, D_80389C00);
+    jiggySpawn(JIGGY_CC_CLANKER_RAISED, D_80389C00);
 }
 
 void func_80324E88(f32);

@@ -111,22 +111,22 @@ void func_803870D0(Actor *this, ActorMarker *arg1){
 }
 
 void func_80387100(ActorMarker *this);
-// #if NONMATCHING
-// {
-//     Actor* actorPtr;
-//     f32 sp1C[3];
+#ifdef NONMATCHING
+void func_80387100(ActorMarker *this){
+    Actor* actorPtr;
+    f32 sp1C[3];
 
-//     actorPtr = marker_getActor(this);
-//     sp1C[0] = actorPtr->position_x;
-//     sp1C[1] = actorPtr->position_y + 60.0f;
-//     sp1C[2] = actorPtr->position_z;
-//     func_802C8F70(0.0f);
-//     func_80333270(0xA, sp1C, func_803870D0, this);
+    actorPtr = marker_getActor(this);
+    sp1C[0] = actorPtr->position_x;
+    sp1C[1] = actorPtr->position_y + 60.0f;
+    sp1C[2] = actorPtr->position_z;
+    func_802C8F70(0.0f);
+    func_80333270(0xA, sp1C, func_803870D0, this);
 
-// }
-// #else
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/MM/ch/conga/func_80387100.s")
-//#endif
+#endif
 
 void func_80387168(ActorMarker *this, s32 arg1){
     Actor *actorPtr;
@@ -179,7 +179,8 @@ void func_80387370(ActorMarker *this, s32 arg1, s32 arg2){
     func_80324E38(D_80389B84, 0);
 }
 
-#if NONMATCHING
+void func_803873C8(ActorMarker *congaMarker);
+#ifdef NONMATCHING
 void func_803873C8(ActorMarker *congaMarker){
     Actor * congaPtr = marker_getActor(congaMarker);
     ActorLocal_Conga *conga_localPtr;
@@ -224,95 +225,98 @@ void func_803873C8(ActorMarker *congaMarker){
 #pragma GLOBAL_ASM("asm/nonmatchings/MM/ch/conga/func_803873C8.s")
 #endif
 
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/MM/ch/conga/func_803876D0.s")
-// void func_803876D0(Actor *this){
-//     s32 sp40;
-//     s32 sp3C;
-//     s32 sp38;
+#else
+void func_803876D0(Actor *this){
+    s32 sp40;
+    s32 sp3C;
+    s32 sp38;
 
-//     this->marker->propPtr->unk8_3 = (func_803250DC(this))?1:0;
-//     if(!this->initialized){
-//         this->conga.unkC = 1;
-//         this->unk16C_0 = 1;
-//         this->initialized = 1;
-//         this->velocity_x = 0.0f;
-//         this->unk28 = 0.0f;
-//         sp40 = func_80304C38(0x150, this);
-//         this->conga.unk1C = func_80304D3C(sp40);
-//         func_80304D4C(sp40, &this->conga.unk10);
-//     }
-//     if(0.0f == this->unk28){
-//         this->unk28 = (func_80326CCC(0x36))? 2.0f: 1.0f;
-//     }
-//     if(0.0f != this->velocity_x){
-//         this->velocity_x -= 1.0f; 
-//         if(0.0f == this->velocity_x){
-//             func_802C3C88(func_80387100, this->marker);
-//         }
-//     }
-//     func_803300A8(this->marker, 0, 0, func_80387168);
-//     if( !func_80329530(this, 0x834)
-//         && this->unk10_31 != 2
-//         && this->unk10_31 != 8
-//         && this->unk10_31 > 3
-//     ){
-//         if(this->unk10_31 < 8){
-//             actor_loopAnimation(this);
-//             func_80328B8C(this, 1, 0.76f, 1);
-//         }
-//         return;
-//     }
+    this->marker->propPtr->unk8_3 = (func_803250DC(this))?1:0;
+    if(!this->initialized){
+        this->conga.unkC = 1;
+        this->unk16C_0 = 1;
+        this->initialized = 1;
+        this->velocity_x = 0.0f;
+        this->unk28 = 0.0f;
+        sp40 = func_80304C38(0x150, this);
+        this->conga.unk1C = func_80304D3C(sp40);
+        func_80304D4C(sp40, &this->conga.unk10);
+    }
+    if(0.0f == this->unk28){
+        this->unk28 = (func_80326CCC(0x36))? 2.0f: 1.0f;
+    }
+    if(0.0f != this->velocity_x){
+        this->velocity_x -= 1.0f; 
+        if(0.0f == this->velocity_x){
+            func_802C3C88(func_80387100, this->marker);
+        }
+    }
+    func_803300A8(this->marker, 0, 0, func_80387168);
+    if( !func_80329530(this, 0x834)
+        && this->state != 2
+        && this->state != 8
+        && this->state > 3
+    ){
+        if(this->state < 8){
+            actor_loopAnimation(this);
+            func_80328B8C(this, 1, 0.76f, 1);
+        }
+        return;
+    }
 
-//     sp3C = func_80329530(this, 0x3E8);
-//     if( func_8032A9E4(this->conga.unk10, this->conga.unk18, this->conga.unk1C) 
-//         && this->unk138_24 < 0
-//         && func_80311480(text_conga_safe_up_here, 0, 0, 0, 0, 0)
-//     ){
-//         this->unk138_24 = 1;
-//         mapSpecificFlags_set(0xA, 1);
-//     }//L803878F8
+    sp3C = func_80329530(this, 0x3E8);
+    if( func_8032A9E4(this->conga.unk10, this->conga.unk18, this->conga.unk1C) 
+        && this->unk138_24 < 0
+        && func_80311480(text_conga_safe_up_here, 0, 0, 0, 0, 0)
+    ){
+        this->unk138_24 = 1;
+        mapSpecificFlags_set(0xA, 1);
+    }//L803878F8
 
-//     if( sp3C && !this->unk138_24){
-//         sp38 = (player_getTransformation()== TRANSFORM_TERMITE) ? text_conga_meet_as_termite : text_conga_meet;
-//         func_80311480(sp38, 0, this->position, 0,0,0);
-//         this->unk138_24 = 1;
-//     } //L80387968
+    if( sp3C && !this->unk138_24){
+        sp38 = (player_getTransformation()== TRANSFORM_TERMITE) ? text_conga_meet_as_termite : text_conga_meet;
+        func_80311480(sp38, 0, this->position, 0,0,0);
+        this->unk138_24 = 1;
+    } //L80387968
 
-//     switch(this->unk10_31){
-//         case 1:
-//             actor_loopAnimation(this);
-//             func_80386FB0(this);
-//             func_80386FE8();
-//             if(actor_animationIsAt(this, 0) || actor_animationIsAt(this, 0.45f)){
-//                 if(randf() < D_80389BC0){
-//                     animctrl_setDirection(this->animctrl, (this->animctrl, 0.65625f)?0:1);
-//                 };
-//             }//L80387A18
-//             if(actor_animationIsAt(this, 0.66f)){
+    switch(this->state){
+        case 1:
+            actor_loopAnimation(this);
+            func_80386FB0(this);
+            func_80386FE8();
+            if(actor_animationIsAt(this, 0) || actor_animationIsAt(this, 0.45f)){
+                if(randf() < D_80389BC0){
+                    animctrl_setDirection(this->animctrl, (this->animctrl, 0.65625f)?0:1);
+                };
+            }//L80387A18
+            if(actor_animationIsAt(this, 0.66f)){
 
-//                 func_80328BD4(this, 6, 0, 1, D_80389BC8);
-//             }
-//             if( sp3C
-//                 && func_8028ECAC() != 1
-//                 && func_80386ED0(this)
-//                 && func_803250DC()
-//                 && !func_8032A9E4(this->conga.unk10, this->conga.unk18, this->conga.unk1C)
-//                 && !func_803872EC()
-//             ){
-//                 func_80328B8C(this, 0, 4, 1);
-//             }
-//             if( func_8028ECAC() != 1
-//                 && func_80386ED0(this)
-//                 && this->unk38_31 != 0
-//             ){
-//                 func_80328B8C(this, 7, 0, 1);
-//             }
-//             break;
-//         case 2:
-//             break;
-//     }//L80387E38
-//     if(this->unk10_31 == 4){
+                func_80328BD4(this, 6, 0, 1, D_80389BC8);
+            }
+            if( sp3C
+                && func_8028ECAC() != 1
+                && func_80386ED0(this)
+                && func_803250DC()
+                && !func_8032A9E4(this->conga.unk10, this->conga.unk18, this->conga.unk1C)
+                && !func_803872EC()
+            ){
+                func_80328B8C(this, 0, 4, 1);
+            }
+            if( func_8028ECAC() != 1
+                && func_80386ED0(this)
+                && this->unk38_31 != 0
+            ){
+                func_80328B8C(this, 7, 0, 1);
+            }
+            break;
+        case 2:
+            break;
+    }//L80387E38
+    if(this->state == 4){
 
-//     }
-//     func_802C3C88(func_803873C8, this->marker); //spawn orange
-// }
+    }
+    func_802C3C88(func_803873C8, this->marker); //spawn orange
+}
+#endif

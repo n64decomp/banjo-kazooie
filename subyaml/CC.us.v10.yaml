@@ -43,4 +43,8 @@ segments:
     vram: 0x80389AA0
     subsegments:
       - [0x000036B0, bin, data_36B0]
+      - [0x000036E0, .data, code_530]
+      - [0x00003710, bin, data_3710]
+      - [0x00003B10, .rodata, code_530]
+      - [0x00003B20, bin, data_3B20]
   - [0x00003B80]

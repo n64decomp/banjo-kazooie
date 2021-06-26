@@ -412,10 +412,10 @@ enum jiggy_e
     JIGGY_MM_JUJU       = 0x04,
     jiggy_mm_huts       = 0x05,
 
-    jiggy_mm_orange_pads    = 0x08,
+    JIGGY_MM_ORANGE_PADS    = 0x08,
     JIGGY_MM_CHIMPY     = 0x9,
 
-    JIGGY_CC_MUTIE_SNIPPETS = 0x17,
+    JIGGY_CC_CLANKER_RAISED = 0x17,
 
     jiggy_bgs_elevated_walkway = 0x20,
     jiggy_bgs_pinkegg   = 0x21,
@@ -823,7 +823,7 @@ enum overlay_e{
 
 enum sfx_e{
     SFX_018_ELECTRIC_NOISE = 0x18,
-    
+
     SFX_0C2_GRUBLIN_OW = 0xC2
 };
 

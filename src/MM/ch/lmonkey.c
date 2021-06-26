@@ -44,6 +44,11 @@ extern f32 D_80389C30;
 extern f64 D_80389C38;
 extern f64 D_80389C40;
 extern f64 D_80389C48;
+// 0000 3810: 3F99999A 3F99999A 49742400 00000000
+// 0000 3820: 3FC99999 9999999A 3FEB3333 33333333
+// 0000 3830: 40133333 4039999A 4089999A 4089999A
+// 0000 3840: 3CA3D70A 00000000 3FC851EB 851EB852
+// 0000 3850: 3FCEB851 EB851EB8 3FEFAE14 7AE147AE
 
 void func_80388300(Actor **arg0){
     func_8028F31C((*arg0)->position, 800.0f, 0x29, arg0);
@@ -59,8 +64,10 @@ void func_80388300(Actor **arg0){
     if(arg0);
 }
 
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/MM/ch/lmonkey/func_803883AC.s")
-/*void func_803883AC(Actor *this){
+#else
+void func_803883AC(Actor *this){
     f32 sp2C;
     f32 sp28;
     s32 v0 = 6;
@@ -73,7 +80,8 @@ void func_80388300(Actor **arg0){
             func_8030E6A4(((sp28 < 0.5) ? 0x58 : 0x59 ), randf()*0.25 + D_80389C18, sp2C);
         }
     }
-}//*/
+}
+#endif
 
 
 void func_803884C0(s32 x, s32 y, s32 z){
