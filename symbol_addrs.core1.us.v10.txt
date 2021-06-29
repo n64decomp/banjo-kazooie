@@ -54,11 +54,6 @@ ml_vec3h_to_vec3f = 0x80258DA8;
 ml_vec3f_to_vec3w = 0x80258DE8;
 ml_vec3f_to_vec3h = 0x80258E24;
 mlDiffDegF = 0x802591D8;
-SnSPayload_validatePayload = 0x8025BE30;
-SnSPayload_scan            = 0x8025BE84;
-SnSPayload_rewind          = 0x8025C010;
-SnSPayload_getWord         = 0x8025C01C;
-SnSPayload_calcChecksum    = 0x8025C100;
 _n_timeToSamples    = 0x8025C378;
 _n_freePVoice       = 0x8025C3D8;
 _n_collectPVoices   = 0x8025C40C;
@@ -420,6 +415,35 @@ __libm_qnan_f = 0x80278DB0;
 write_file_blocks = 0x80255B30;
 load_file_blocks = 0x80255BAC;
 
+sns_init_base_payloads            = 0x8025B280;
+sns_get_or_set_key                = 0x8025B2EC;
+sns_unlock_parsed_items           = 0x8025B69C;
+sns_generate_payload              = 0x8025B6C0;
+sns_write_payload_over_heap       = 0x8025B700;
+sns_stub                          = 0x8025B808;
+DEBUG_use_special_bootmap         = 0x8025B810;
+sns_get_item_state                = 0x8025B820;
+sns_set_item_state                = 0x8025B998;
+sns_set_item_and_update_payload   = 0x8025BBD4;
+snspayload_validate               = 0x8025BE30;
+snspayload_find_payload_in_ram    = 0x8025BE84;
+snspayload_rewind_incoming        = 0x8025C010;
+snspayload_get_next_key           = 0x8025C01C;
+snsToRestoreItems                 = 0x80276E40;
+snsBasePayloadPtr1                = 0x80276E44;
+snsBasePayloadPtr2                = 0x80276E48;
+snsBasePayloadPtr3                = 0x80276E4C;
+snsBasePayloadPtr4                = 0x80276E50;
+snsPayloadOutCurrPos              = 0x80276E60;
+snsParsedKeys                     = 0x80283390;
+snsMinKeyToParse                  = 0x80283420;
+snsMaxKeyToParse                  = 0x80283424;
+snsParsedCurrPos                  = 0x80283428;
+snsBackedUpItems                  = 0x8028342C;
+gSaveData                         = 0x80283400;
+snsPayloadInCurrPos               = 0x80283430;
+
+glcrc_calc_checksum = 0x8025C100;
 
 D_8027BEEC = 0x8027BEEC;
 D_803688E0 = 0x803688E0;
@@ -434,3 +458,6 @@ D_80378F68 = 0x80378F68;
 carriedObject_actorID = 0x8037BF78;
 D_8037C564 = 0x8037C564;
 D_A0000238 = 0xA0000238;
+
+
+

@@ -22,7 +22,7 @@ extern u8 D_80286F90;
 void func_8023DA20(s32 arg0){
     bzero(&D_8027A130, &D_80286F90 - (u8*)&D_8027A130);
     osWriteBackDCacheAll();
-    func_8025B1E0();
+    sns_find_and_parse_payload();
     osInitialize();
     func_80240BE0();
 }
@@ -65,7 +65,7 @@ void func_8023DB68(void){
 }
 
 s32 func_8023DB74(void){
-    return (func_8025B810())? 0x80 : 0x91;
+    return (DEBUG_use_special_bootmap())? 0x80 : 0x91;
 }
 
 s32 func_8023DBA4(void){
@@ -123,7 +123,7 @@ extern s16 D_803A5D00[];
 //     s32 *s2;
 
 //     if ((func_8023DB5C() & 0x7F) == 0x11) {
-//         func_8025B700();
+//         sns_write_payload_over_heap();
 //     }
 //     func_8023DA74();
 //     if ((D_8027A130 != 3) || (getGameMode() != 4)) {
@@ -175,7 +175,7 @@ extern s16 D_803A5D00[];
 
 void func_8023DF9C(void *arg0){ 
     func_8023DC0C();
-    func_8025B700();
+    sns_write_payload_over_heap();
     while(1){ //main loop
         func_8023DD0C();
     }

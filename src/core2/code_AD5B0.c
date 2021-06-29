@@ -349,7 +349,7 @@ s32 func_80334ECC(void) {
             func_802C79C4();
         }
         func_8032AABC();
-        func_8025B808();
+        sns_stub();
         return 1;
     }
 }

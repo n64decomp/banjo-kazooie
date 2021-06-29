@@ -428,4 +428,6 @@ void func_803300D8(ActorMarker *, void (*)(Actor *));
 void func_8034DE60(s32, f32, f32, f32, s32);
 void func_802F9FD0(s32, f32, f32, f32);
 void func_80324D54(f32, s32, f32, s32, f32 (*)[3], f32, f32);
+
+void glcrc_calc_checksum(void *start, void *end, u32 *checksum);
 #endif
