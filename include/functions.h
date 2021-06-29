@@ -56,11 +56,11 @@ f32 ml_map_f(f32 val, f32 in_min, f32 in_max, f32 out_min, f32 out_max);
 float mlNormalizeAngle(float);
 f32 max_f(f32, f32);
 f32 min_f(f32, f32);
-void ml_vec3f_copy(f32 (* dst)[3], f32 (* src)[3]);
+void ml_vec3f_copy(f32 dst[3], f32 src[3]);
 
-void ml_vec3f_add(f32 (* arg0)[3], f32 (* arg1)[3], f32 (* arg2)[3]);
-void ml_vec3f_scale(f32 (* arg0)[3], f32 scale);
-void ml_vec3f_scale_copy(f32 (* dst)[3], f32 (* src)[3], f32 scale);
+void ml_vec3f_add(f32 dst[3], f32 src1[3], f32 src2[3]);
+void ml_vec3f_scale(f32 vec[3], f32 scale);
+void ml_vec3f_scale_copy(f32 dst[3], f32 src[3], f32 scale);
 
 float gu_sqrtf(float val);
 
@@ -235,16 +235,16 @@ void func_802EFFC4(struct30s *, f32);
 void func_8024E3A8(f32 (*)[3], f32);
 OSMesgQueue *func_8024F344(void);
 
-void ml_vec3f_clear(f32 (* arg0)[3]);
+void ml_vec3f_clear(f32 dst[3]);
 void func_80250D94(f32, f32, f32);
 f32  func_80257A44(f32, f32);
 f32  func_80257C48(f32, f32, f32);
-int func_80257F18(f32 (* arg0)[3], f32 (* arg1)[3], f32 * arg2);
+int func_80257F18(f32 src[3], f32 target[3], f32 *yaw);
 
 f32  mlAbsF(f32);
 f32  mlClamp_f(f32, f32, f32);
 f32  func_802588B0(f32, f32);
-void ml_radial_to_cartisian(f32 (* dst)[3], f32 yaw, f32 length);
+void func_802589E4(f32 dst[3], f32 yaw, f32 length);
 f32  mlDiffDegF(f32, f32);
 void func_8025A6EC(enum comusic_e, s32);
 void func_8025A70C(enum comusic_e);
@@ -382,7 +382,7 @@ Actor *func_80326D68(f32 (*)[3], s32, s32, f32 *);
 Actor *func_80329980(Actor *);
  
  /* used in RBB */
- void func_8025686C(f32 (* arg0)[3], f32 (* arg1)[3], f32 arg2);
+ void func_8025686C(f32 dst[3], f32 src[3], f32 yaw);
 int func_8025773C(f32 *arg0, f32 arg1);
 Actor *func_80325888(ActorMarker *, Gfx**, Mtx**, s32);
 void func_80335924(void *, s32, f32, f32);
@@ -393,7 +393,7 @@ void func_8034DDF0(void *, f32 (*)[3], f32 (*)[3], f32, s32);
 void func_80324E38(f32, s32);
 void func_8034E1A4(void *, s32, f32, f32);
 void func_80324C88(f32, s32, f32, s32);
-f32 func_80256064(f32 (*)[3], f32 (*)[3]);
+f32 func_80256064(f32 [3], f32 [3]);
 void func_80324E60(f32, s32);
 void func_80324E88(f32);
 void func_8034DFB0(s32, s32(*)[4], s32(*)[4], f32);
@@ -409,10 +409,10 @@ void func_802F9F80(s32, f32, f32, f32);
 void func_802FA060(s32, s32, s32, f32);
 Actor *func_80326EEC(s32);
 f32 func_8038A6B8(ActorMarker *);
-void func_80255FE4(f32 (*)[3], f32 (*)[3], f32 (*)[3], f32);\
+void func_80255FE4(f32 [3], f32 [3], f32 [3], f32);
 void func_8030DEB4(u8, f32, f32);
 void func_8030DB04(u8, s32, f32(*)[3], f32, f32);
-void func_80258A4C(f32 (*)[3], f32, f32 (*)[3], f32 *, f32 *, f32 *);
+void func_80258A4C(f32 [3], f32, f32 [3], f32 *, f32 *, f32 *);
 void func_803300A8(ActorMarker *, void (*)(ActorMarker *, s32), void (*)(ActorMarker *, s32), void (*)(ActorMarker *, s32));
 void func_8033568C(void *, f32 *, f32*);
 void func_802E4078(enum MAP_E map, s32 exit, s32 transition);

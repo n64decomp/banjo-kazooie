@@ -21,7 +21,7 @@ void func_802B40D0(void){
 
     if(D_8037D524){
         sp28 = mlNormalizeAngle(yaw_get() + 90.0f);
-        ml_radial_to_cartisian(sp2C, sp28, randf()*10.0f + 20.0f);
+        func_802589E4(sp2C, sp28, randf()*10.0f + 20.0f);
         sp2C[1] = 0.0f;
     }
 
@@ -40,7 +40,7 @@ void func_802B40D0(void){
         case 0://L802B4208
             break;
     }
-    ml_radial_to_cartisian(sp44, yaw_get(), 40.0f);
+    func_802589E4(sp44, yaw_get(), 40.0f);
     sp44[1] = 50.0f;
     func_80352CF4(sp38, sp44, 10.0f, 150.0f);
 }
