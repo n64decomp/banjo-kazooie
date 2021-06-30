@@ -365,12 +365,12 @@ enum comusic_e
     JINGLE_GETTING_TURBO_TRAINERS,
     SFX_DEACTIVATE_BRENTILDA,
     SFX_JINJONATOR_POWERUP,
-    JINGLE_MENACING_GRUNTILDA_A,
+    JINGLE_MENACING_GRUNTY_A,
     MUSIC_CREDITS,
-    JINGLE_MENACING_GRUNTILDA_B,
+    JINGLE_MENACING_GRUNTY_B,
     JINGLE_END_OF_INTRO = 0x90,
-    MUSIC_GRUNTILDA_FALLING,
-    SFX_GRUNTILDA_SPELL_POWERUP,
+    MUSIC_GRUNTY_FALLING,
+    SFX_GRUNTY_SPELL_POWERUP,
     SFX_AIR_METER_DROPPING,
     MUSIC_BBONUS,
     JINGLE_BBONUS_A,
@@ -398,6 +398,593 @@ enum comusic_e
     JINGLE_JINJOATOR_FINAL_HIT,
     JINGLE_GOOD_ENDING = 0xAC
 };
+
+// SFXR_ = Repeating SFX
+enum SFX_E
+{
+    SFX_BLOOP = 0x0000,
+    SFX_MUMBO_UMENAKA,
+    SFX_CLAW_SWIPE,
+    SFX_DULL_CANNON_SHOT,
+    // Long Beakbarge 2nd Part
+    SFX_KAZOOIE_RUUUUUH, 
+    SFX_BANJO_LANDING_01,
+    SFX_BANJO_LANDING_02,
+    SFX_BANJO_LANDING_03, 
+    SFX_BANJO_LANDING_04, 
+    SFX_SQUEAKY_TOY,
+    SFX_BANJO_LANDING_05,
+    SFX_BANJO_LANDING_06,
+    SFX_TAKING_FLIGHT_LIFTOFF,
+    SFX_EGGSHELL_BREAKING,
+    SFX_SHOCKSPRING_BOING,
+    SFX_SMALL_WATER_SPLASH,
+    // shallow water
+    SFX_BANJO_LANDING_07 = 0x0010,
+    // Blubber's Ship's Trapdoor eg.
+    SFX_WOOD_BREAKING_1, 
+    SFX_WATER_PADDLING_1,
+    SFX_BEAKBUSTER_GROUND,
+    // sounds like a muffled frying pan
+    SFX_METALLIC_HIT_1,
+    // less frying pan-ish
+    SFX_METALLIC_HIT_2,
+    // In the Opening Musical, when Mumbo's Xylophone drops
+    SFX_HEAVY_FALL_VIBRATO, 
+    SFX_JINJO_WHISTLE,
+    // might also be sliding
+    SFXR_ELECTRIC_STATIC, 
+    SFX_BANJO_LANDING_08,
+    SFX_BIG_THINGS_FALL_OVER,
+    // from the sea-mines
+    SFX_EXPLOSION_1, 
+    SFXR_ALARMCLOCK,
+    // hitting the Bull eg.
+    SFX_HITTING_AN_ENEMY_1,
+    // might also be used for breaking boulders
+    SFX_HITTING_AN_ENEMY_2,
+    // hitting a Gruntling eg.
+    SFX_HITTING_AN_ENEMY_3,
+    // Cauldrons make this sound when landing
+    SFX_METAL_CLANK_1 = 0x0020, 
+    SFX_EGG_BOUNCE_1,
+    SFX_KONGA_NOISE_1,
+    SFX_KONGA_NOISE_2,
+    SFX_KONGA_NOISE_3,
+    // might be part of Clankers Bolt
+    SFX_METAL_SLIDING_OVER_SMTH, 
+    SFX_BANJO_LANDING_09,
+    SFX_JINJO_HI,
+    SFX_RUSTLING_NOISE,
+    SFX_GRUBLIN_NYAHAHA,
+    SFX_CLOCK_TIC_1,
+    // passive version
+    SFX_BULL_MOO_1,
+    // when Trunker or the CCW plant grow eg.
+    SFX_PULLING_NOISE, 
+    // incomplete cauldron spitout AND Banjo pulling on Kazooies Throat in Idle Anim
+    SFX_KABOING, 
+    SFX_GOBI_RUNNING,
+    SFX_ORANGE_SPLAT,
+    SFX_MAGIC_POOF = 0x0030,
+    // starting to ride the FP sled to rescue Boggy
+    SFX_BANJO_OHHWAAOOO, 
+    // when rolling AND when taking damage (I think)
+    SFX_BANJO_EGHEE, 
+    // inital Shockspring Jump
+    SFX_BANJO_AHOO, 
+    // taking damage
+    SFX_BANJO_AGHOAA, 
+    // taking damage
+    SFX_BANJO_WOAH, 
+    // death inducing hit
+    SFX_BANJO_DOH,
+    // damage
+    SFX_BANJO_OHWW,
+    // less intense version, damage
+    SFX_BANJO_AYE_1,
+    // more intense version, damage
+    SFX_BANJO_AYE_2,
+    // probably damage
+    SFX_BANJO_HOUW,
+    // damage
+    SFX_BANJO_GAAH,
+    SFX_BULL_GROWN,
+    SFX_TICKER_WALKING,
+    // might be eggpoop
+    SFX_POOP_NOISE, 
+    // higher pitch
+    SFX_CAULDRON_SQEAK_1, 
+    // lower pitch
+    SFX_CAULDRON_SQEAK_2 = 0x0040, 
+    // waking up
+    SFX_MUMBO_ERGHHH, 
+    // short and dull
+    SFX_KAZOOIE_RAH, 
+    // Short Beakbarge 2nd Part
+    SFX_KAZOOIE_RUH, 
+    // peeking out of the backpack
+    SFX_KAZOOIE_AUW, 
+    // Beakbbuster going down ?
+    SFX_KAZOOIE_HUGHH, 
+    // egg shot 1st Part
+    SFX_KAZOOIE_CHOKING_UP, 
+    // FeatherFlap exhausting
+    SFX_KAZOOIE_EUGH, 
+    // TalonTrot Jump
+    SFX_KAZOOIE_RUUH, 
+    // TalonTrot Walking
+    SFX_KAZOOIE_RA, 
+    // the CCW Birds when comming out
+    SFX_CLUCKER_AHH, 
+    SFX_GULPING,
+    // eating yumblies
+    SFX_LIP_SMACK, 
+    // like when a fish flops around in shallow water
+    SFX_WET_WIGGLING, 
+    // sounds like split-up from Tooie
+    SFX_KAZOOIE_BRUIII, 
+    // selecting a SaveFile
+    SFX_BANJO_WAHOO, 
+    // during Beakbomb
+    SFX_KAZOOIE_RRRUH = 0x0050, 
+    SFX_CLOCK_TIC_2,
+    // starting a Beakbomb
+    SFX_BANJO_YAH_OH, 
+    // shockspring jump liftoff
+    SFX_BANJO_HUIII,
+    // jumping 
+    SFX_BANJO_HOO_1,
+    // jumping
+    SFX_BANJO_HOO_2,
+    // jumping
+    SFX_BANJO_HUI,
+    // egg shot 2nd part
+    SFX_KAZOOIE_HEGH, 
+    SFX_CHIMPY_NOISE_1,
+    SFX_CHIMPY_NOISE_2,
+    SFX_CHIMPY_NOISE_3,
+    SFX_HEAVY_STUFF_FALLING,
+    SFX_HEAVY_STUFF_FALLING_DELAYED,
+    // sleeping while snoring, inhale
+    SFX_BANJO_RAAOWW, 
+    // sleeping while snoring, exhale
+    SFX_BANJO_PHEWWW,
+    // while channeling a spell
+    SFXR_MUMBO_BUGABUGOW_MUFFLED,
+    // in the GameOver CS when Mumbo appears
+    SFX_MUMBO_SKIDDING = 0x0060,
+    // in the Musical when the buzzbomb falls (slowed down)
+    SFX_CARTOONY_FALL,
+    // annoyed at Kazooie, Idle Animation
+    SFX_BANJO_ERGHH, 
+    // huge fall starts
+    SFX_BANJO_UWAAAAOOH,
+    // in the Musical, when the Bulls run across
+    SFXR_STAMPEDE,
+    SFX_METALLIC_SCRATCH,
+    SFX_BIRD_AUUGHH,
+    SFX_BEEHIVE_CLONK,
+    SFX_CLUCKER_AAEEGHH,
+    SFX_WHIPCRACK_CREAKING,
+    // flagpoles during the boggy races
+    SFX_FLAGPOLE_WOBBLE,
+    SFX_LOCKUP_OPENING,
+    SFX_LOCKUP_CLOSING,
+    SFX_CROC_BITE,
+    SFX_VILE_EGH,
+    // bottles uses this too I think
+    SFX_BANJO_HEADSCRATCH,
+    SFX_WALKING_NOISE_1 = 0x0070,
+    SFX_WALKING_NOISE_2,
+    SFX_WALKING_NOISE_3,
+    SFX_WALKING_NOISE_4,
+    SFX_WALKING_NOISE_5,
+    SFX_WALKING_NOISE_6,
+    SFX_WALKING_NOISE_7,
+    SFX_WALKING_NOISE_8,
+    SFX_EAGLECRY,
+    SFX_TICKER_DEATH,
+    // SFX_TICKER_DEATH but higher pitch
+    SFX_TERMITE_DEATH,
+    SFX_ICE_BREAKING_1,
+    // entering a cauldron
+    SFX_CHEBOOF,
+    // RBB, might be cranes aswell
+    SFXR_ANCHOR_LIFTING,
+    SFX_CREAKY_DOOR_OPENING,
+    SFX_HEAVYDOOR_SLAM,
+    SFX_YUMYUM_CLACK = 0x0080,
+    // like polishing glass
+    SFX_UUU,
+    // when gates are broken, and probably when clankers bolt lands
+    SFX_METAL_BREAK,
+    SFX_BLUBBER_CRYING,
+    SFX_GOBI_CRYING,
+    SFX_ROUGH_COUGH,
+    SFX_TIPTUP_CHORUS_AH,
+    // when beakbustering his feet
+    SFX_TANKTUP_OOOHW,
+    SFX_WOZZA_NOISE,
+    // unsure
+    SFX_PARTYTOOL,
+    // unsure, sounds like tooie's
+    SFX_ALTERNATIVE_EGG_SHOT,
+    // when Banjo pulls on her throat in the idle anim
+    SFX_KAZOOIE_RAWW,
+    SFX_BOGGY_WAHEY,
+    SFX_BOGGY_OHWW,
+    // tooie mingy sounds super similar
+    SFX_GRUNTLING_DAMAGE,
+    SFX_SNOWBALL_FLYING,
+    SFX_SWITCH_PRESS = 0x0090,
+    // might be clankers bolt landing
+    SFX_METALLIC_SOUND,
+    SFX_TOILET_FLUSH,
+    // or some elevator
+    SFXR_MICROWAVE,
+    SFXR_COGS_ROTATING,
+    SFX_BANJO_TALKING,
+    SFX_HOTSAND_EEL_HISS,
+    // twinklies box maybe
+    SFX_DEAF_THUD,
+    SFX_METALLIC_THUD,
+    // grunty fight
+    SFXR_MECHANICAL_CLOSING,
+    SFX_BOULDER_BREAKING_1,
+    SFX_BOULDER_BREAKING_2,
+    SFX_BOULDER_BREAKING_3,
+    // might be enemys hitting the ground
+    SFX_BOULDER_BREAKING_4,
+    SFXR_GENERATOR_RUNNING,
+    // Tanktup maybe
+    SFX_COUGHING = 0x00A0,
+    SFX_BANJO_COUGHING,
+    SFX_BANJO_AHOOA,
+    // from the idle anim
+    SFX_BANJO_DOUBLE_COUGH,
+    // from the idle anim, but only once
+    SFX_BANJO_SINGLE_COUGH,
+    SFX_EYRIE_CRY,
+    // final part of entering a cauldron warp
+    SFX_MAGICAL_FINISH,
+    SFX_WOODEN_SWOSH,
+    SFX_BLUBBER_DOUBLE_CRY,
+    SFX_BLUBBER_SINGLE_CRY,
+    // this sounds like the used version
+    SFX_BGS_EGG_BREAKING_1,
+    SFX_BGS_EGG_BREAKING_2,
+    SFX_GOLDFEATHER_TALKING,
+    SFX_CATERPILLAR_SQUEAK,
+    SFX_YUMYUM_TALKING,
+    SFX_BANJO_CATCHING_BREATH,
+    // might be from the grunty machine's doors
+    SFXR_SIZZLING_NOISE = 0x00B0,
+    SFX_BOGGY_KID_CRYING,
+    SFX_BOGGY_KID_HAPPY,
+    SFX_ORANGE_TALKING,
+    SFX_BOTTLES_TALKING_1,
+    SFX_THUNDERBOLT,
+    // 1-6 are getting increasingly higher in pitch
+    SFX_GLASS_BREAKING_1,
+    // 1-6 are getting increasingly higher in pitch
+    SFX_GLASS_BREAKING_2,
+    // 1-6 are getting increasingly higher in pitch
+    SFX_GLASS_BREAKING_3,
+    // 1-6 are getting increasingly higher in pitch
+    SFX_GLASS_BREAKING_4,
+    // 1-6 are getting increasingly higher in pitch
+    SFX_GLASS_BREAKING_5,
+    // 1-6 are getting increasingly higher in pitch
+    SFX_GLASS_BREAKING_6,
+    SFX_BOTTLES_TALKING_2,
+    SFX_BOTTLES_TALKING_3,
+    SFXR_WATERFALL,
+    SFX_EYRIE_SLEEPING_1,
+    SFX_EYRIE_SLEEPING_2 = 0x00C0,
+    // from the opening CS
+    SFX_BUZZBOMB_ATTACK,
+    // death
+    SFX_GRUBLIN_EGH,
+    // some talking ?
+    SFX_HEGH,
+    SFX_TWINKLY_MUNCHER_GRR,
+    SFX_TWINKLY_POP,
+    // when eating the wrong yumblie
+    SFX_SHAKING_MOUTH,
+    // from the jinjo's flying
+    SFX_SHWOOP,
+    // eating twinklies
+    SFX_CRUNCH,
+    SFX_PAUSEMENU_ENTER,
+    SFX_BANJO_DROWNING_1,
+    SFX_BANJO_DROWNING_2,
+    // also the scrolling sound
+    SFX_PAUSEMENU_ENTER_SUBMENU,
+    SFX_PAUSEMENU_LEAVE_SUBMENU,
+    // when the page is changed
+    SFX_PAUSEMENU_HOIP,
+    SFX_PAUSEMENU_SHWOOP,
+    SFX_GRIMLET_SQUEAK = 0x00D0,
+    SFX_SNORKEL_WAH,
+    // barely noticable
+    SFX_QUIET_METALLIC,
+    SFX_JINXIE_SNIFFLING_1,
+    SFX_JINXIE_SNIFFLING_2,
+    SFX_JINXIE_SNEEZING,
+    SFX_UGH,
+    SFX_GRABBA_DEATH,
+    SFXR_CRANE,
+    SFX_WOODEN_CRATE_BREAKING_1,
+    SFX_WOODEN_CRATE_BREAKING_2,
+    SFX_WOODEN_CRATE_BREAKING_3,
+    SFX_IDLE_PADDLING,
+    SFX_JINJO_TALKING,
+    SFX_WOOD_SQUEAK,
+    SFX_KAZOOIE_TALKING_1,
+    SFX_KAZOOIE_TALKING_2 = 0x00E0,
+    SFX_KAZOOIE_TALKING_3,
+    SFX_KAZOOIE_TALKING_4,
+    SFX_KONGA_TALKING_1,
+    SFX_KONGA_TALKING_2,
+    // extra life talking ?
+    SFX_MEEP_1,
+    // extra life talking ?
+    SFX_MEEP_2,
+    SFX_TOOTY_TALKING_1,
+    SFX_TOOTY_TALKING_2,
+    // from enter_Lair CS
+    SFX_GRUNTY_LAUGH_1,
+    // from Gameover CS
+    SFX_GRUNTY_LAUGH_2,
+    SFX_GRUNTY_TALKING_1,
+    SFX_GRUNTY_TALKING_2,
+    SFX_GRUNTY_TALKING_3,
+    SFX_TIPTUP_TALKING,
+    // pages flipping
+    SFX_CHEATO_IDLE_1 = 0x00F0,
+    // book closing thud
+    SFX_CHEATO_IDLE_2,
+    SFX_CUCKOO_CLOCK,
+    SFX_TRUNKER_TALKING,
+    SFX_TAP,
+    SFX_BLUBBER_TALKING_1,
+    SFX_BLUBBER_TALKING_2,
+    SFX_BLUBBER_TALKING_3,
+    SFX_BLUBBER_TALKING_4,
+    SFX_GRUNTLING_NOISE_1,
+    SFX_GRUNTLING_NOISE_2,
+    SFX_GRUNTLING_NOISE_3,
+    SFX_RUBEE_TALKING_1,
+    SFX_RUBEE_TALKING_2,
+    SFX_RUBEE_TALKING_3,
+    SFX_TANKTUP_TALKING_1,
+    SFX_TANKTUP_TALKING_2,
+    SFX_TANKTUP_TALKING_3 = 0x0100,
+    SFX_LOGGO_TALKING,
+    SFX_ZUBBA_TALKING,
+    SFX_FLOTSAM_DEATH,
+    // might also be zubba wings or similar
+    SFXR_PROPELLER_NOISE,
+    SFX_EYRIE_YAWN,
+    SFX_EYRIE_LIPSMACK,
+    // full version
+    SFX_CAULDRON_ACTIVATION_1,
+    // abbreviated version
+    SFX_CAULDRON_ACTIVATION_2,
+    SFX_LOGGO_LID_CLAP,
+    SFX_TUMBLAR_TALKING,
+    SFX_GNAWTY_TALKING,
+    SFX_MUMMY_TALKING,
+    SFX_ANCIENT_ONE_TALKING,
+    SFX_TWINKLY_TALKING,
+    SFX_BOGGY_TALKING,
+    SFX_TWINKLY_DEATH = 0x0110,
+    SFX_WHIPCRACK_DEATH,
+    SFX_TINKER_ATTENTION,
+    SFX_PAD_APPEARS,
+    SFX_BRICKWALL_BREAKING,
+    SFX_BUZZBOMB_DEATH,
+    SFX_DEAF_RUSTLING,
+    SFX_LIMBO_COLLAPSING,
+    SFX_LIMBO_REASSEMBLING,
+    SFX_FISH_DEATH,
+    SFX_MATROSE_GRUBLIN_AYE,
+    // 1-6 are getting increasingly shorter
+    SFX_TUMBLAR_DISAPPEARING_1,
+    // 1-6 are getting increasingly shorter
+    SFX_TUMBLAR_DISAPPEARING_2,
+    // 1-6 are getting increasingly shorter
+    SFX_TUMBLAR_DISAPPEARING_3,
+    // 1-6 are getting increasingly shorter
+    SFX_TUMBLAR_DISAPPEARING_4,
+    // 1-6 are getting increasingly shorter
+    SFX_TUMBLAR_DISAPPEARING_5,
+    // 1-6 are getting increasingly shorter
+    SFX_TUMBLAR_DISAPPEARING_6 = 0x0120,
+    // sounds like an OOT sound
+    SFX_AWAWAU,
+    SFX_TOOTY_TALKING_3,
+    // on rooftiles
+    SFX_BANJO_LANDING_10,
+    // shorter version
+    SFX_AUDIENCE_CHEERING_1,
+    // longer version
+    SFX_AUDIENCE_CHEERING_2,
+    // sounds like the kickball noises from tooie
+    SFX_AUDIENCE_BOOING,
+    // sounds like the kickball noises from tooie
+    SFX_AUDIENCE_MIXED,
+    SFXR_FIRE_CRACKING,
+    // like a broom swipe
+    SFX_SWOOSH,
+    SFX_GRUNTY_AH,
+    SFXR_BOILING_AND_BUBBLING,
+    SFX_FF_QUESTION_START,
+    SFX_CAMERA_ZOOM_CLOSEST,
+    SFX_CAMERA_ZOOM_MEDIUM,
+    SFX_FUUUCK_YOUUU,
+    // from her final fall
+    SFX_GRUNTY_ECHOING_CRY = 0x0130,
+    SFX_GRUNTY_WEEEGH,
+    SFX_GRUNTY_YOW,
+    SFX_GRUNTY_OHW,
+    SFXR_FREEZING_SHIVER,
+    // FileSelect, when Banjo's Bed ejects him
+    SFX_CARTOONY_SPRING,
+    SFX_GAMEBOY_STARTUP,
+    SFX_GAMEBOY_BOIN,
+    SFX_GAMEBOY_BOIOIN,
+    SFX_GAMEBOY_GLITCH,
+    SFX_GLASS_BREAKING_7,
+    // 1-6 are getting increasingly distant
+    SFX_GRUNTY_FINAL_SCREAM_1,
+    // 1-6 are getting increasingly distant
+    SFX_GRUNTY_FINAL_SCREAM_2,
+    // 1-6 are getting increasingly distant
+    SFX_GRUNTY_FINAL_SCREAM_3,
+    // 1-6 are getting increasingly distant
+    SFX_GRUNTY_FINAL_SCREAM_4,
+    // 1-6 are getting increasingly distant
+    SFX_GRUNTY_FINAL_SCREAM_5,
+    // 1-6 are getting increasingly distant
+    SFX_GRUNTY_FINAL_SCREAM_6 = 0x0140,
+    SFXR_MECHANICAL_WINCH,
+    // pretty short
+    SFX_GRUNTY_LAUGH_3,
+    SFX_BULL_DAMAGE,
+    SFX_DOUBLE_CAMERA_CLICK,
+    SFX_SINGLE_CAMERA_CLICK,
+    // the normal attack
+    SFX_GRUNTY_SPELL_ATTACK_1,
+    // the homing attack
+    SFX_GRUNTY_SPELL_ATTACK_2,
+    SFX_GRUNTY_SPELL_LANDING,
+    SFX_CHEATO_TALKING_1,
+    SFX_CHEATO_TALKING_2,
+    // when attacking with the broom
+    SFX_GRUNTY_LAUGH_4,
+    SFX_BRENTILDA_TALKING,
+    SFX_BANJO_FREEZING,
+    SFX_SOFT_EXPLOSION,
+    // grunty's spell attacks flying
+    SFX_FIREWORK_WHISTLING,
+    SFX_PORCELAIN_CRASH = 0x0150,
+    // FileSelect, when Banjo's Bed ejects him
+    SFX_CAT_MEOW,
+    // Grunty's Broom; 01-16 getting shorter, more delay
+    SFX_MOTOR_BREAKDOWN_01,
+    // Grunty's Broom; 01-16 getting shorter, more delay
+    SFX_MOTOR_BREAKDOWN_02,
+    // Grunty's Broom; 01-16 getting shorter, more delay
+    SFX_MOTOR_BREAKDOWN_03,
+    // Grunty's Broom; 01-16 getting shorter, more delay
+    SFX_MOTOR_BREAKDOWN_04,
+    // Grunty's Broom; 01-16 getting shorter, more delay
+    SFX_MOTOR_BREAKDOWN_05,
+    // Grunty's Broom; 01-16 getting shorter, more delay
+    SFX_MOTOR_BREAKDOWN_06,
+    // Grunty's Broom; 01-16 getting shorter, more delay
+    SFX_MOTOR_BREAKDOWN_07,
+    // Grunty's Broom; 01-16 getting shorter, more delay
+    SFX_MOTOR_BREAKDOWN_08,
+    // Grunty's Broom; 01-16 getting shorter, more delay
+    SFX_MOTOR_BREAKDOWN_09,
+    // Grunty's Broom; 01-16 getting shorter, more delay
+    SFX_MOTOR_BREAKDOWN_10,
+    // Grunty's Broom; 01-16 getting shorter, more delay
+    SFX_MOTOR_BREAKDOWN_11,
+    // Grunty's Broom; 01-16 getting shorter, more delay
+    SFX_MOTOR_BREAKDOWN_12,
+    // Grunty's Broom; 01-16 getting shorter, more delay
+    SFX_MOTOR_BREAKDOWN_13,
+    // Grunty's Broom; 01-16 getting shorter, more delay
+    SFX_MOTOR_BREAKDOWN_14,
+    // Grunty's Broom; 01-16 getting shorter, more delay
+    SFX_MOTOR_BREAKDOWN_15 = 0x0160,
+    // Grunty's Broom; 01-16 getting shorter, more delay
+    SFX_MOTOR_BREAKDOWN_16,
+    // Grunty's Broom
+    SFX_MOTOR_RUCKUS,
+    SFX_GRUNTY_WILD_SCREAM,
+    SFX_EH,
+    // 00-15 getting increasingly delayed and shorter
+    SFX_HEAVY_THUNDERSTORM_01,
+    // 00-15 getting increasingly delayed and shorter
+    SFX_HEAVY_THUNDERSTORM_02,
+    // 00-15 getting increasingly delayed and shorter
+    SFX_HEAVY_THUNDERSTORM_03,
+    // 00-15 getting increasingly delayed and shorter
+    SFX_HEAVY_THUNDERSTORM_04,
+    // 00-15 getting increasingly delayed and shorter
+    SFX_HEAVY_THUNDERSTORM_05,
+    // 00-15 getting increasingly delayed and shorter
+    SFX_HEAVY_THUNDERSTORM_06,
+    // 00-15 getting increasingly delayed and shorter
+    SFX_HEAVY_THUNDERSTORM_07,
+    // 00-15 getting increasingly delayed and shorter
+    SFX_HEAVY_THUNDERSTORM_08,
+    // 00-15 getting increasingly delayed and shorter
+    SFX_HEAVY_THUNDERSTORM_09,
+    // 00-15 getting increasingly delayed and shorter
+    SFX_HEAVY_THUNDERSTORM_10 = 0x0170,
+    // 00-15 getting increasingly delayed and shorter
+    SFX_HEAVY_THUNDERSTORM_11,
+    // 00-15 getting increasingly delayed and shorter
+    SFX_HEAVY_THUNDERSTORM_12,
+    // 00-15 getting increasingly delayed and shorter
+    SFX_HEAVY_THUNDERSTORM_13,
+    // 00-15 getting increasingly delayed and shorter
+    SFX_HEAVY_THUNDERSTORM_14,
+    // 00-15 getting increasingly delayed and shorter
+    SFX_HEAVY_THUNDERSTORM_15,
+    // 1-3 are having less and less echo
+    SFX_JINJONATOR_JINJOOO_1,
+    // 1-3 are having less and less echo
+    SFX_JINJONATOR_JINJOOO_2,
+    // 1-3 are having less and less echo
+    SFX_JINJONATOR_JINJOOO_3,
+    SFX_GRUNTY_DAMAGE,
+    SFX_SHIPHORN,
+    SFX_AIRPLANE_FALLING,
+    SFX_GRUNTY_FALLING_OFF_1,
+    SFX_GRUNTY_FALLING_OFF_2,
+    // 01-14 are getting slower and lower pitch
+    SFX_MUMBO_TRANSFORMATION_01,
+    // 01-14 are getting slower and lower pitch
+    SFX_MUMBO_TRANSFORMATION_02,
+    // 01-14 are getting slower and lower pitch
+    SFX_MUMBO_TRANSFORMATION_03 = 0x0180,
+    // 01-14 are getting slower and lower pitch
+    SFX_MUMBO_TRANSFORMATION_04,
+    // 01-14 are getting slower and lower pitch
+    SFX_MUMBO_TRANSFORMATION_05,
+    // 01-14 are getting slower and lower pitch
+    SFX_MUMBO_TRANSFORMATION_06,
+    // 01-14 are getting slower and lower pitch
+    SFX_MUMBO_TRANSFORMATION_07,
+    // 01-14 are getting slower and lower pitch
+    SFX_MUMBO_TRANSFORMATION_08,
+    // 01-14 are getting slower and lower pitch
+    SFX_MUMBO_TRANSFORMATION_09,
+    // 01-14 are getting slower and lower pitch
+    SFX_MUMBO_TRANSFORMATION_10,
+    // 01-14 are getting slower and lower pitch
+    SFX_MUMBO_TRANSFORMATION_11,
+    // 01-14 are getting slower and lower pitch
+    SFX_MUMBO_TRANSFORMATION_12,
+    // 01-14 are getting slower and lower pitch
+    SFX_MUMBO_TRANSFORMATION_13,
+    // 01-14 are getting slower and lower pitch
+    SFX_MUMBO_TRANSFORMATION_14,
+    SFX_EYRIE_MAMA,
+    SFX_SEXY_GRUNTY_TALKING_1,
+    SFX_SEXY_GRUNTY_TALKING_2,
+    SFX_FREEZE_FRAME,
+    SFX_GULP = 0x0190,
+    SFXR_STATIC
+};
+
 
 enum level_e
 {
@@ -482,12 +1069,12 @@ enum bs_e
     BS_CROUCH = 0x7,
     BS_BTROT_JUMP = 0x8,
     BS_EGG_HEAD = 0x9,
-    BS_EGG_ASS = 0xa,
+    BS_EGG_ASS = 0xA,
 
-    BS_SKID = 0xc,
-    BS_TIMEOUT = 0xd,
-    BS_OW = 0xe,
-    BS_BBUSTER = 0xf,
+    BS_SKID = 0xC,
+    BS_TIMEOUT = 0xD,
+    BS_OW = 0xE,
+    BS_BBUSTER = 0xF,
     BS_BFLAP = 0x10,
     BS_BPECK = 0x11,
     BS_BFLIP = 0x12,
