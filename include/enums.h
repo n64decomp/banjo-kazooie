@@ -365,9 +365,9 @@ enum comusic_e
     JINGLE_GETTING_TURBO_TRAINERS,
     SFX_DEACTIVATE_BRENTILDA,
     SFX_JINJONATOR_POWERUP,
-    JINGLE_MENACING_GRUNTY_A,
+    JINGLE_MENACING_GRUNTILDA_A,
     MUSIC_CREDITS,
-    JINGLE_MENACING_GRUNTY_B,
+    JINGLE_MENACING_GRUNTILDA_B,
     JINGLE_END_OF_INTRO = 0x90,
     MUSIC_GRUNTY_FALLING,
     SFX_GRUNTY_SPELL_POWERUP,
@@ -469,29 +469,24 @@ enum SFX_E
     SFX_MAGIC_POOF = 0x0030,
     // starting to ride the FP sled to rescue Boggy
     SFX_BANJO_OHHWAAOOO, 
-    // when rolling AND when taking damage (I think)
+    // when rolling AND when taking damage
     SFX_BANJO_EGHEE, 
     // inital Shockspring Jump
     SFX_BANJO_AHOO, 
-    // taking damage
-    SFX_BANJO_AGHOAA, 
-    // taking damage
+    SFX_BANJO_AGHOAA,
     SFX_BANJO_WOAH, 
-    // death inducing hit
+    // death inducing damage
     SFX_BANJO_DOH,
-    // damage
     SFX_BANJO_OHWW,
-    // less intense version, damage
+    // less intense version
     SFX_BANJO_AYE_1,
-    // more intense version, damage
+    // more intense version
     SFX_BANJO_AYE_2,
-    // probably damage
     SFX_BANJO_HOUW,
-    // damage
     SFX_BANJO_GAAH,
     SFX_BULL_GROWN,
     SFX_TICKER_WALKING,
-    // might be eggpoop
+    // egg pooping ?
     SFX_POOP_NOISE, 
     // higher pitch
     SFX_CAULDRON_SQEAK_1, 
@@ -510,7 +505,7 @@ enum SFX_E
     // egg shot 1st Part
     SFX_KAZOOIE_CHOKING_UP, 
     // FeatherFlap exhausting
-    SFX_KAZOOIE_EUGH, 
+    SFX_KAZOOIE_HEUGH, 
     // TalonTrot Jump
     SFX_KAZOOIE_RUUH, 
     // TalonTrot Walking
@@ -816,7 +811,7 @@ enum SFX_E
     // sounds like the kickball noises from tooie
     SFX_AUDIENCE_MIXED,
     SFXR_FIRE_CRACKING,
-    // like a broom swipe
+    // might be skeleton grimlets riiping the painting
     SFX_SWOOSH,
     SFX_GRUNTY_AH,
     SFXR_BOILING_AND_BUBBLING,
