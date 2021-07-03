@@ -426,6 +426,9 @@ enum jiggy_e
 
     jiggy_bgs_tiptup    = 0x27,
 
+    JIGGY_35_LAIR_CC_WITCH_SWITCH = 0x35,
+    JIGGY_37_LAIR_BGS_WITCH_SWITCH = 0x37,
+
     JIGGY_RBB_SNORKEL   = 0x53,
     JIGGY_RBB_WHISTLE   = 0x54,
 
@@ -447,6 +450,7 @@ enum actor_e
     
     actor_orange_projectile = 0x14,
 
+    ACTOR_004C_UNK          = 0x4C,
     actor_steam_2           = 0x4D,
 
     actor_orange_pad        = 0x57,

@@ -1057,7 +1057,7 @@ void func_80314320(Gfx **gdl, Mtx **mptr, s32 arg2){
         if(D_80383010.unk3C[0]){//L80314690
             sp7C = func_8033DD9C();
             for(i = 1; i<7; i++){
-                if(func_8025B820(i, 0)){
+                if(sns_get_item_state(i, 0)){
                     D_80383010.unk3C[i] = (s16) ((f32)D_80383010.unk3C[i] + D_80383010.unk4A[i]*sp7C);
                     if(360.0 < (f64)D_80383010.unk3C[i]){
                         D_80383010.unk3C[i] = D_80383010.unk3C[i] - 360.0;
@@ -1100,7 +1100,7 @@ void func_80314320(Gfx **gdl, Mtx **mptr, s32 arg2){
                     func_8024C904(gdl, mptr);
                 }
             }//L80314880
-            if(func_8025B820(7,0)){
+            if(sns_get_item_state(7,0)){
                 D_80383010.unk3C[1]  += D_80383010.unk4A[1] *  sp7C;
                 if(360.0 < D_80383010.unk3C[1]){
                     D_80383010.unk3C[1] -= 360.0;

@@ -3,10 +3,13 @@
 #include "variables.h"
 
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1D590/func_8025AFB0.s")
+void func_8025AFB0(void) {}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1D590/func_8025AFB8.s")
+void func_8025AFB8(void) {}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1D590/func_8025AFC0.s")
+void func_8025AFC0(u32 arg0, u32 arg1, u32 arg2) {}
 
-s32 func_8025AFD0(void){ return 0; }
+s32 func_8025AFD0(void)
+{
+    return 0;
+}

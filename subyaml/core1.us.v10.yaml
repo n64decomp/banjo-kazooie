@@ -274,7 +274,7 @@ segments:
   - [0x3A800, bin, data_3A800] # .rodata, code_13990]
   - [0x3A820, bin, data_3A820] # .rodata, code_18350]
   - [0x3A920, bin, data_3A920] # .rodata, code_1BE90]
-  - [0x3A950, bin, data_3A950] # .rodata, code_1D5D0]
+  - [0x3A950, .rodata, code_1D5D0]
   - [0x3A9B0, bin, data_3A9B0] # .rodata, n_synthesizer]
   - [0x3A9C0, bin, data_3A9C0] # .rodata, done/audio/n_csplayer]
   - [0x3AD30, bin, data_3AD30]
