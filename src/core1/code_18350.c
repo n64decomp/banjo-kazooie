@@ -27,7 +27,7 @@ extern f64 D_802782E8;
 
 extern void *D_80276CB8;
 
-void func_80256990(f32 arg0[3], f32 arg1[3], f32);
+void ml_vec3f_roll_rotate_copy(f32 arg0[3], f32 arg1[3], f32);
 f32  func_8024C788(void);
 
 #define _SQ2(x, y)     ((x) * (x)  +  (y) * (y))
@@ -98,8 +98,8 @@ void func_80255E58(f32 vec1[3], f32 vec2[3], f32 vec3[3], f32 vec4[3])
     tmp[2] = vec3[2] - vec1[2];
 
     ml_vec3f_yaw_rotate_copy(tmp, tmp, -vec2[1]);
-    func_8025686C( tmp, tmp, -vec2[0]);
-    func_80256990(vec4, tmp, -vec2[2]);
+    ml_vec3f_pitch_rotate_copy( tmp, tmp, -vec2[0]);
+    ml_vec3f_roll_rotate_copy(vec4, tmp, -vec2[2]);
 }
 
 f32 func_80255F14(f32 vec1[3], f32 vec2[3])
@@ -130,8 +130,7 @@ void func_80255FE4(f32 dst[3], f32 vec1[3], f32 vec2[3], f32 scale)
     dst[2] = vec1[2] + (vec2[2] - vec1[2]) * scale;
 }
 
-//ml_vec3f_dot_product
-f32 func_80256034(f32 vec1[3], f32 vec2[3])
+f32 ml_vec3f_dot_product(f32 vec1[3], f32 vec2[3])
 {
     return vec1[0] * vec2[0]
          + vec1[1] * vec2[1]
@@ -283,15 +282,15 @@ void func_80256740(f32 vec[3])
     }
 }
 
-void func_8025686C(f32 dst[3], f32 src[3], f32 yaw)
+void ml_vec3f_pitch_rotate_copy(f32 dst[3], f32 src[3], f32 pitch)
 {
     f32 cos, sin;
     f32 val;
 
-    yaw *= D_80278250; // M_DTOR
+    pitch *= D_80278250; // M_DTOR
 
-    cos = cosf(yaw);
-    sin = sinf(yaw);
+    cos = cosf(pitch);
+    sin = sinf(pitch);
 
     // weird temp needed for match
     dst[0] =  src[0];
@@ -300,15 +299,15 @@ void func_8025686C(f32 dst[3], f32 src[3], f32 yaw)
     dst[1] = val;
 }
 
-void ml_vec3f_yaw_rotate_copy(f32 dst[3], f32 src[3], f32 pitch)
+void ml_vec3f_yaw_rotate_copy(f32 dst[3], f32 src[3], f32 yaw)
 {
     f32 cos, sin;
     f32 val;
 
-    pitch *= D_80278258; // M_DTOR
+    yaw *= D_80278258; // M_DTOR
 
-    cos = cosf(pitch);
-    sin = sinf(pitch);
+    cos = cosf(yaw);
+    sin = sinf(yaw);
 
     // weird temp needed for match
     val    = (src[2] * sin) + (src[0] * cos);
@@ -317,7 +316,7 @@ void ml_vec3f_yaw_rotate_copy(f32 dst[3], f32 src[3], f32 pitch)
     dst[0] = val;
 }
 
-void func_80256990(f32 dst[3], f32 src[3], f32 roll)
+void ml_vec3f_roll_rotate_copy(f32 dst[3], f32 src[3], f32 roll)
 {
     f32 cos, sin;
     f32 val;
@@ -348,16 +347,18 @@ void ml_vec3f_set_length(f32 arg0[3], f32 arg1)
     }
 }
 
-f32 func_80256AB4(f32 a, f32 b, f32 c, f32 d)
+//ml_f_sin_of_angle_between_points_2D
+f32 func_80256AB4(f32 x1, f32 y1, f32 x2, f32 y2)
 {
-    f32 val = gu_sqrtf(b * b + a * a) * gu_sqrtf(c * c + d * d);
+    f32 val = gu_sqrtf(y1 * y1 + x1 * x1) * gu_sqrtf(x2 * x2 + y2 * y2);
 
     if (val)
-        return (b * c - a * d) / val;
+        return (y1 * x2 - x1 * y2) / val;
 
     return 0;
 }
 
+//ml_vec3f_sin_of_angle_between_vectors
 f32 func_80256B54(f32 vec1[3], f32 vec2[3])
 {
     f32 a = gu_sqrtf(_SQ3v1(vec1));
@@ -417,8 +418,8 @@ void func_80256F44(f32 vec1[3], f32 vec2[3], f32 vec3[3], f32 dst[3])
     f32 tmp1[3];
     f32 tmp2[3];
 
-    func_80256990(tmp1, vec3, vec2[2]);
-    func_8025686C(tmp2, tmp1, vec2[0]);
+    ml_vec3f_roll_rotate_copy(tmp1, vec3, vec2[2]);
+    ml_vec3f_pitch_rotate_copy(tmp2, tmp1, vec2[0]);
     ml_vec3f_yaw_rotate_copy(tmp1, tmp2, vec2[1]);
 
     dst[0] = vec1[0] + tmp1[0];
@@ -524,7 +525,39 @@ int func_8025773C(f32 *arg0, f32 arg1)
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_18350/func_8025778C.s")
+void func_8025778C(f32 dst[3], f32 arg1[3], f32 arg2[9]){
+    f32 sp54;
+    f32 sp50;
+    f32 sp4C;
+    f32 sp40[3];
+    f32 sp34[3];
+    f32 sp28[3];
+
+    func_802596AC(sp40, arg2, &arg2[3], arg1);
+    func_802596AC(sp34, &arg2[3], &arg2[6], arg1);
+    func_802596AC(sp28, &arg2[6], arg2, arg1);
+
+    sp54 = func_80256280(sp40, arg1);
+    sp50 = func_80256280(sp34, arg1);
+    sp4C = func_80256280(sp28, arg1);
+
+    if(sp54 < sp50){
+        if(sp4C < sp54){
+            ml_vec3f_copy(dst, sp28);
+        }
+        else{
+            ml_vec3f_copy(dst, sp40);
+        }
+    }
+    else{//L80257868
+        if(sp4C < sp50)
+            ml_vec3f_copy(dst, sp28);
+        else
+            ml_vec3f_copy(dst, sp34);
+    }
+
+    
+}
 
 void func_802578A4(f32 dst[3], f32 vec1[3], f32 vec2[3])
 {
@@ -539,7 +572,14 @@ void func_802578A4(f32 dst[3], f32 vec1[3], f32 vec2[3])
     func_80257918(dst, vec1, vec2, tmp3);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_18350/func_80257918.s")
+func_80257918(f32 arg0[3], f32 arg1[3], f32 arg2[3], f32 arg3[3]){
+    f32 sp2C[3];
+    f32 scale;
+
+    scale = _SQ3v2(arg3, arg1) - _SQ3v2(arg3, arg2);
+    ml_vec3f_scale_copy(sp2C, arg3, scale);
+    ml_vec3f_diff_copy(arg0, arg1, sp2C);
+}
 
 bool func_802579B0(f32 vec[3], f32 x1, f32 z1, f32 x2, f32 z2)
 {
@@ -613,21 +653,21 @@ f32 func_80257C48(f32 arg0, f32 arg1, f32 arg2)
     return arg0 * (arg2 - arg1) + arg1;
 }
 
-void func_80257C60(f32 a, f32 b, f32 c, f32 d, f32 e, f32 (*func)(f32))
+f32 func_80257C60(f32 a, f32 b, f32 c, f32 d, f32 e, f32 (*func)(f32))
 {
     f32 val = func(ml_f_map(a, b, c, 0.f, 1.f));
 
-    ml_f_map(val, 0, 1, d, e);
+    return ml_f_map(val, 0, 1, d, e);
 }
 
-void func_80257CC0(f32 a, f32 b, f32 c, f32 d, f32 e)
+f32 func_80257CC0(f32 a, f32 b, f32 c, f32 d, f32 e)
 {
-    func_80257C60(a, b, c, d, e, func_802575BC);
+    return func_80257C60(a, b, c, d, e, func_802575BC);
 }
 
-void func_80257CF8(f32 a, f32 b, f32 c, f32 d, f32 e)
+f32 func_80257CF8(f32 a, f32 b, f32 c, f32 d, f32 e)
 {
-    func_80257C60(a, b, c, d, e, func_80257658);
+    return func_80257C60(a, b, c, d, e, func_80257658);
 }
 
 void func_80257D30(f32 a, f32 b, f32 c, f32 d, f32 e)
@@ -644,7 +684,7 @@ void func_80257DB0(f32 arg0[3], f32 arg1[3], f32 arg2[3])
     f32 tmp[3];
 
     ml_vec3f_scale_copy(arg0, arg1, -1);
-    dot_product = func_80256034(arg0, arg2);
+    dot_product = ml_vec3f_dot_product(arg0, arg2);
     ml_vec3f_scale_copy(tmp, arg2, 2 * dot_product);
     ml_vec3f_diff_copy(arg0, tmp, arg0);
 }
@@ -1085,7 +1125,7 @@ void func_80258E60(f32 dst[3], f32 src[3], f32 amount)
     vec[1] = amount;
     vec[2] = 0;
 
-    func_8025686C(vec, vec, src[0]);
+    ml_vec3f_pitch_rotate_copy(vec, vec, src[0]);
     ml_vec3f_yaw_rotate_copy(vec, vec, src[1]);
 
     dst[0] += vec[0];
@@ -1101,7 +1141,7 @@ void func_80258EF4(f32 dst[3], f32 src[3], f32 amount)
     vec[1] = 0;
     vec[2] = amount;
 
-    func_8025686C(vec, vec, src[0]);
+    ml_vec3f_pitch_rotate_copy(vec, vec, src[0]);
     ml_vec3f_yaw_rotate_copy(vec, vec, src[1]);
 
     dst[0] += vec[0];
@@ -1117,7 +1157,7 @@ void func_80258F88(f32 dst[3], f32 src[3], f32 amount)
     vec[1] = 0;
     vec[2] = 0;
 
-    func_8025686C(vec, vec, src[0]);
+    ml_vec3f_pitch_rotate_copy(vec, vec, src[0]);
     ml_vec3f_yaw_rotate_copy(vec, vec, src[1]);
 
     dst[0] += vec[0];
@@ -1125,7 +1165,36 @@ void func_80258F88(f32 dst[3], f32 src[3], f32 amount)
     dst[2] += vec[2];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_18350/func_8025901C.s")
+void func_8025901C(f32 arg0, f32 arg1[3], f32 arg2[3], f32 arg3){
+    f32 sp44;
+    f32 sp40;
+    f32 sp3C;
+    f32 diff;
+    int tmp;
+
+    ml_vec3f_clear(arg2);
+    tmp = func_80258108(arg1, &sp40, &sp44);
+    sp44 *= arg3;
+    if(tmp){
+        diff = arg0 - sp40;
+        if(diff < -180.0f)
+            diff += 360.0f;
+        
+        if(180.0f <= diff)
+            diff -= 360.0f;
+
+        sp3C = (0.0f <= diff)?diff:-diff;
+        arg2[0] = ml_map_f(sp3C, 0.0f, 180.0f, sp44, -sp44);
+        if(sp3C < 90.0f){
+            arg2[2] = ml_map_f(sp3C, 0.0f, 90.0f, 0.0f, sp44);
+        }
+        else{
+            arg2[2] = ml_map_f(sp3C, 90.0f, 180.0f, sp44, 0.0f);
+        }
+        if(diff < 0.0f)
+            arg2[2] = -arg2[2];
+    }//L80259184
+}
 
 f32 func_80259198(f32 arg0, f32 arg1)
 {
@@ -1281,4 +1350,9 @@ bool func_80259808(f32 a0)
     return func_8025975C(a0) < 0xB4;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_18350/func_8025982C.s")
+void func_8025982C(f32 dst[3], f32 arg1[3], f32 arg2[3], f32 arg3){
+    int i;
+    for(i=0; i< 3; i++){
+        dst[i] = arg1[i] + (arg2[i]-arg1[i])*arg3;
+    }
+}

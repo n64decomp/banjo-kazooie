@@ -12,6 +12,8 @@ ActorMarker * func_80332A60(void);
 
 extern ModelCache *modelCache; //model pointer array pointer
 extern u32 D_80383444;
+vector(u32) *D_80383550;
+vector(u32) *D_80383554;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032BC90.s")
 
@@ -55,15 +57,36 @@ extern u32 D_80383444;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032D190.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032D330.s")
+void func_8032D330(void){
+    D_80383550 = vla_new(sizeof(u32),2);
+    D_80383554 = vla_new(sizeof(u32),2);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032D36C.s")
+void func_8032D36C(void){
+    vla_free(D_80383550);
+    D_80383550 = NULL;
+    vla_free(D_80383554);
+    D_80383554 = NULL;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032D3A8.s")
+void func_8032D3A8(void){
+    vla_clear(D_80383550);
+    vla_clear(D_80383554);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032D3D8.s")
+void func_8032D3D8(Gfx **gdl, Mtx **mptr, Vtx **vptr){
+    int i;
+    for(i = 0; i < vla_size(D_80383550); i++){
+       func_8032D190(*(u32*) vla_at(D_80383550, i), gdl, mptr, vptr);
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032D474.s")
+void func_8032D474(Gfx **gdl, Mtx **mptr, Vtx **vptr){
+    int i;
+    for(i = 0; i < vla_size(D_80383554); i++){
+       func_8032D190(*(u32*) vla_at(D_80383554, i), gdl, mptr, vptr);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032D510.s")
 

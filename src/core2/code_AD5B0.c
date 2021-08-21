@@ -13,79 +13,79 @@ void func_8024CE60(f32, f32);
 void func_80335140(s32);
 void func_8033520C(s32);
 
-void func_80334540(s32 arg0, s32 arg1, s32 arg2) {
+void func_80334540(Gfx** gdl, Mtx **mptr, Vtx **vptr) {
     f32 sp44;
     f32 sp40;
 
     if (D_803835E0 == 0) {
-        func_80254084(arg0, 0, 0, D_80276588, D_8027658C, 0, 0, 0);
+        func_80254084(gdl, 0, 0, D_80276588, D_8027658C, 0, 0, 0);
         func_802BBD2C(&sp44, &sp40);
         func_8024CE60(sp44, sp40);
-        func_8024C904(arg0, arg1);
+        func_8024C904(gdl, mptr);
         return;
     }
     if (func_80320708() == 0) {
         write_file_blocks(0, 0, 0x80BC7230, EEPROM_MAXBLOCKS);
     }
     func_802C3BDC();
-    func_8030B0AC(arg0, arg1, arg2);
+    func_8030B0AC(gdl, mptr, vptr);
     func_802BBD2C(&sp44, &sp40);
     func_8024CE60(sp44, sp40);
-    func_8024C904(arg0, arg1);
+    func_8024C904(gdl, mptr);
     if (func_80309F78() != 0) {
-        func_803091D4(arg0, arg1, arg2);
+        func_803091D4(gdl, mptr, vptr);
         if (func_802E49F0() == 0) {
-            func_80322E64(arg0, arg1, arg2);
+            func_80322E64(gdl, mptr, vptr);
         }
         if (func_802E49F0() == 0) {
-            func_8028E6A4(arg0, arg1, arg2);
+            func_8028E6A4(gdl, mptr, vptr);
         }
         if (func_802E49F0() == 0) {
-            func_80302C94(arg0, arg1, arg2);
+            func_80302C94(gdl, mptr, vptr);
         }
         if (func_802E49F0() == 0) {
-            func_80332F4C(arg0, arg1, arg2);
+            func_80332F4C(gdl, mptr, vptr);
         }
         if (func_802E49F0() == 0) {
-            func_803500D8(arg0, arg1, arg2);
+            func_803500D8(gdl, mptr, vptr);
         }
         if (func_802E49F0() == 0) {
-            func_802F2ED0(func_8032994C(), arg0, arg1, arg2);
+            func_802F2ED0(func_8032994C(), gdl, mptr, vptr);
         }
         if (func_802E49F0() == 0) {
-            func_802F0A34(arg0, arg1, arg2);
+            func_802F0A34(gdl, mptr, vptr);
         }
         if (func_802E49F0() == 0) {
-            func_80309628(arg0, arg1, arg2);
+            func_80309628(gdl, mptr, vptr);
         }
         if (func_802E49F0() == 0) {
-            func_8032D3D8(arg0, arg1, arg2);
+            func_8032D3D8(gdl, mptr, vptr);
         }
         if (func_802E49F0() == 0) {
-            func_802F0AE8(arg0, arg1, arg2);
+            func_802F0AE8(gdl, mptr, vptr);
         }
         if (func_802E49F0() == 0) {
-            func_8034F6F0(arg0, arg1, arg2);
+            func_8034F6F0(gdl, mptr, vptr);
         }
-        func_802D520C(arg0, arg1, arg2);
+        func_802D520C(gdl, mptr, vptr);
     } else {
-        func_803091D4(arg0, arg1, arg2);
-        func_80322E64(arg0, arg1, arg2);
-        func_8034F6F0(arg0, arg1, arg2);
-        func_8028E6A4(arg0, arg1, arg2);
-        func_80302C94(arg0, arg1, arg2);
-        func_8032D3D8(arg0, arg1, arg2);
-        func_80332F4C(arg0, arg1, arg2);
-        func_803500D8(arg0, arg1, arg2);
-        func_802F2ED0(func_8032994C(), arg0, arg1, arg2);
-        func_802D520C(arg0, arg1, arg2);
-        func_802F0B98(arg0, arg1, arg2);
+        func_803091D4(gdl, mptr, vptr);
+        func_80322E64(gdl, mptr, vptr);
+        func_8034F6F0(gdl, mptr, vptr);
+        func_8028E6A4(gdl, mptr, vptr);
+        func_80302C94(gdl, mptr, vptr);
+        func_8032D3D8(gdl, mptr, vptr);
+        func_80332F4C(gdl, mptr, vptr);
+        func_803500D8(gdl, mptr, vptr);
+        func_802F2ED0(func_8032994C(), gdl, mptr, vptr);
+        func_802D520C(gdl, mptr, vptr);
+        func_802F0B98(gdl, mptr, vptr);
     }
     if (func_802E49F0() == 0) {
-        func_80350818(arg0, arg1, arg2);
+        func_80350818(gdl, mptr, vptr);
     }
     if (func_802E49F0() == 0) {
-        func_802BBD0C(arg0, arg1, arg2);
+        func_802BBD0C(gdl, mptr, vptr);
     }
     func_802C3BE8();
 }
@@ -118,7 +118,7 @@ void func_80334910(void) {
     func_803500E8();
     func_80350BC8();
     func_8030F1D0();
-    func_8031B2F0();
+    func_8031B2F0();//null
     func_80322F7C();
     func_803518E8();
     func_802D48F0();

@@ -70,7 +70,7 @@ int func_80386ED0(Actor * this){
     f32 plyrPos[3];
     f32 tmpz;
 
-    if(func_803348C0() != MAP_MM_MUMBOS_MOUNTAIN)
+    if(func_803348C0() != MAP_2_MM_MUMBOS_MOUNTAIN)
         return 0;
 
     if(!this->unk10_12)

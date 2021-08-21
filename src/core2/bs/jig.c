@@ -107,7 +107,7 @@ void bsjig_jiggy_end(void){
     }
     func_8028D5F4();
     if( jiggyscore_total() == 100 
-        && func_8031FF1C(0xFC) 
+        && func_8031FF1C(BKPROG_FC_DEFEAT_GRUNTY) 
         && bs_getNextState() != BS_JIG_NOTEDOOR
     ){
         func_8028F918(2);
@@ -150,7 +150,7 @@ void bsjig_notedoor_end(void){
     func_80291548();
     if( D_8037D4B2 
         && jiggyscore_total() == 100
-        && func_8031FF1C(0xFC)
+        && func_8031FF1C(BKPROG_FC_DEFEAT_GRUNTY)
     ){
         func_8028F918(2);
         func_802E4078(MAP_CS_END_ALL_100, 0, 1);

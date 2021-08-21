@@ -73,7 +73,7 @@ s32 func_80345FB4(s32 item, s32 diff, s32 arg2){
     (newVal = ((D_80385F30[item] + diff) < 0)? 0 : D_80385F30[item] + diff);
     D_80385F30[item] = newVal;
 
-    sp34 = (func_8031FF1C(0xb9))? 2 : 1 ;
+    sp34 = (func_8031FF1C(BKPROG_B9_DOUBLE_HEALTH))? 2 : 1 ;
     D_80385F30[item_health_total] = (D_80385F30[item_health_total] > sp34*8)? sp34*8 : D_80385F30[item_health_total];
 
     D_80385F30[item_health]= (D_80385F30[item_health_total] < D_80385F30[item_health])? D_80385F30[item_health_total]: D_80385F30[item_health];
@@ -86,15 +86,15 @@ s32 func_80345FB4(s32 item, s32 diff, s32 arg2){
 
     switch(item){
         case ITEM_EGGS:
-            sp38 = (func_8031FF1C(0xbe))? 200 : 100;
+            sp38 = (func_8031FF1C(BKPROG_BE_CHEATO_BLUEEGGS))? 200 : 100;
             break;
 
         case ITEM_RED_FEATHER:
-            sp38 = (func_8031FF1C(0xbf))? 100 : 50;
+            sp38 = (func_8031FF1C(BKPROG_BF_CHEATO_REDFEATHERS))? 100 : 50;
             break;
 
         case ITEM_GOLD_FEATHER:
-            sp38 = (func_8031FF1C(0xc0))? 20 : 10;
+            sp38 = (func_8031FF1C(BKPROG_C0_CHEATO_GOLDFEATHERS))? 20 : 10;
             break;
 
         default:
@@ -136,7 +136,7 @@ s32 func_80345FB4(s32 item, s32 diff, s32 arg2){
             }
             break;
         case item_note:
-            sp28 = func_80346F34(func_80321900());
+            sp28 = func_80346F34(level_get());
             func_80346DB4(D_80385F30[item]);
             if(D_80385F30[item] == 100 && sp28 != 100){
                 func_8025A6EC(JINGLE_100TH_NOTE_COLLECTED, 20000);

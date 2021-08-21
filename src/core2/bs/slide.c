@@ -115,7 +115,7 @@ void bsslide_update(void){
 }
 
 void bsslide_end(void){
-    if(func_80321900() != 6)
+    if(level_get() != 6)
         func_80295610(6);
     pitch_setIdeal(0.0f);
 }

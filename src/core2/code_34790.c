@@ -13,7 +13,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_34790/func_802BBC58.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_34790/func_802BBD0C.s")
+void func_802BBD0C(Gfx **gdl, Mtx **mptr, Vtx **vptr){
+    func_802BEE2C(gdl, mptr, vptr);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_34790/func_802BBD2C.s")
 

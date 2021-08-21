@@ -104,7 +104,7 @@ struct3s *func_802F8264(s32 arg0){
     ptr->unk20 = vla_new(sizeof(struct4s), arg0);
     ptr->unk24 = arg0;
     ptr->unk28 = 0;
-    ptr->unk2C = assetcache_get(0x898);
+    ptr->unk2C = assetcache_get(0x898); //rain
     ptr->unk30 = D_803772D4;
     return ptr;
 }

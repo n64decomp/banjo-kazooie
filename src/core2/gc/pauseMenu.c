@@ -15,7 +15,7 @@ f32 func_8024DE1C(f32, f32, f32 *, f32 *);
 void func_80251494(Mtx*);
 void func_80310D2C(void);
 
-s32 func_80321900(void);
+s32 level_get(void);
 void func_80316EF4(gczoombox_t *);
 void func_8024E6E0(s32, void *);
 void func_8024E60C(s32, void *);
@@ -439,7 +439,7 @@ void func_803120FC(s32 arg0){
             D_80383010.unk0_1 = 1;
             func_803117A0();
             func_80311954();
-            if(D_80383010.unk0_15 ==  func_80312034(func_80321900())){
+            if(D_80383010.unk0_15 ==  func_80312034(level_get())){
                 func_802F5060(0x6e7);
             }
             if(D_80383010.unk0_15 != 0){
@@ -484,7 +484,7 @@ void func_803120FC(s32 arg0){
             break;
 
         case 0xB:
-            if(D_80383010.unk0_15 != 0 && D_80383010.unk0_15 == func_80312034(func_80321900())){
+            if(D_80383010.unk0_15 != 0 && D_80383010.unk0_15 == func_80312034(level_get())){
                 func_802F5188();
             }
             func_803117A0();
@@ -504,11 +504,11 @@ void func_803120FC(s32 arg0){
         case 0xD:/* 8B694 80312624 3C128038 */
             D_80383010.unk6 = 0xFF;
             D_80383010.unk0_5 = 1;
-            if(D_80383010.unk0_15 != 0 && D_80383010.unk0_15 == func_80312034(func_80321900())){
+            if(D_80383010.unk0_15 != 0 && D_80383010.unk0_15 == func_80312034(level_get())){
                 func_802F5188();
             }
             D_80383010.unk0_15 = D_80383010.unk9;
-            if(D_80383010.unk0_15 != 0 && D_80383010.unk0_15 == func_80312034(func_80321900())){
+            if(D_80383010.unk0_15 != 0 && D_80383010.unk0_15 == func_80312034(level_get())){
                 func_802F5060(0x6e7);
             }
             if(D_80383010.unk0_15 != 0)
@@ -625,11 +625,11 @@ s32 func_80313380(void){
     s32 sp60[3];
     s32 sp50[4];
     f32 sp48[2];
-    s32 level = func_80321900(); //sp44
+    s32 level = level_get(); //sp44
     s32 i;
     
     
-    if(getGameMode() != GAME_MODE_PAUSED)
+    if(getGameMode() != GAME_MODE_4_PAUSED)
         return 0;
     
     func_8024E55C(0, sp6C);
@@ -758,13 +758,13 @@ s32 func_80313380(void){
                     func_803120FC(0x13);
                     break;
                 case 2://L80313978
-                    D_80383010.unk0_15 = func_80312034(func_80321900());
+                    D_80383010.unk0_15 = func_80312034(level_get());
                     func_803120FC(7);
                     break;
                 case 3://L8031399C
                     func_802C5994();
                     func_803204E4(0,0);
-                    if(!func_8031FF1C(0xBD) || func_8031FF1C(0xA6)){
+                    if(!func_8031FF1C(BKPROG_BD_ENTER_LAIR_CUTSCENE) || func_8031FF1C(BKPROG_A6_FURNACE_FUN_COMPLETE)){
                         func_803120FC(0x14);
                     }else{
                         func_802E412C(1,0);
@@ -1010,7 +1010,7 @@ void func_80314320(Gfx **gdl, Mtx **mptr, s32 arg2){
     s32 j;
     f32 sp7C;
 
-    if(getGameMode() != GAME_MODE_PAUSED){
+    if(getGameMode() != GAME_MODE_4_PAUSED){
         if(!D_8036C620)
             func_803151D0(gdl, mptr, arg2);
         D_8036C620 = 1;
@@ -1169,7 +1169,7 @@ void func_80314B24(void){
 }
 
 void func_80314B30(void){
-    s32 level = func_80321900();
+    s32 level = level_get();
     if(0 < level && level < 0xC && D_8036C560[level-1].map != -1){
         func_803204E4(0x16, 1);
         func_802E4078(D_8036C560[level-1].map, D_8036C560[level-1].exit, 1);

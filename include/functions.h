@@ -382,7 +382,7 @@ Actor *func_80326D68(f32 (*)[3], s32, s32, f32 *);
 Actor *func_80329980(Actor *);
  
  /* used in RBB */
- void func_8025686C(f32 dst[3], f32 src[3], f32 yaw);
+void ml_vec3f_pitch_rotate_copy(f32 dst[3], f32 src[3], f32 pitch);
 int func_8025773C(f32 *arg0, f32 arg1);
 Actor *func_80325888(ActorMarker *, Gfx**, Mtx**, s32);
 void func_80335924(void *, s32, f32, f32);
@@ -422,6 +422,8 @@ void func_803228D8(void);
 void func_803253A0(Actor *);
 void mapSpecificFlags_set(s32, s32);
 
+struct0 *func_8031B9D8(void);
+
 /* used in fight */
 void func_80326224(Actor *this);
 void func_803300D8(ActorMarker *, void (*)(Actor *));
@@ -430,4 +432,7 @@ void func_802F9FD0(s32, f32, f32, f32);
 void func_80324D54(f32, s32, f32, s32, f32 (*)[3], f32, f32);
 
 void glcrc_calc_checksum(void *start, void *end, u32 *checksum);
+f32 climbGetBottomY(void);
+f32 climbGetTopY(void);
+void func_802596AC(f32 a0[3], f32 a1[3], f32 a2[3], f32 a3[3]);
 #endif

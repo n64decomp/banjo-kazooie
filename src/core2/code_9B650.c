@@ -2,6 +2,12 @@
 #include "functions.h"
 #include "variables.h"
 
+typedef struct{
+    s16 level_id;
+    s16 overlay_id;
+}level_overlay_map_elem;
+
+extern level_overlay_map_elem D_8036E2C0[];
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_803225E0.s")
 
@@ -137,7 +143,14 @@ void func_80322BE4(void){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322E64.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322E94.s")
+enum overlay_e level_2_overlay(enum level_e lvl){
+    int i;
+    for(i = 0; D_8036E2C0[i].level_id; i++){
+        if(D_8036E2C0[i].level_id == lvl)
+            return D_8036E2C0[i].overlay_id;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322EDC.s")
 

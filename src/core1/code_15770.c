@@ -17,7 +17,7 @@ void func_80253190(Gfx **gdl){
 }
 
 void func_80253208(Gfx **gdl, s32 x, s32 y, s32 w, s32 h, void *color_buffer){
-    if( D_80282FE0.unk0 != NULL && (getGameMode() != GAME_MODE_PAUSED || func_80335134())){
+    if( D_80282FE0.unk0 != NULL && (getGameMode() != GAME_MODE_4_PAUSED || func_80335134())){
         //draw z_buffer
         gDPPipeSync((*gdl)++);
         gDPSetColorImage((*gdl)++, G_IM_FMT_RGBA, G_IM_SIZ_16b, D_80276588, OS_K0_TO_PHYSICAL(D_80282FE0.unk0));
@@ -67,7 +67,7 @@ void func_802534A8(int arg0){
 
 //zBuffer_set
 void func_802534CC(Gfx **gdl){
-    if(D_80282FE0.unk0 && getGameMode() != GAME_MODE_PAUSED){
+    if(D_80282FE0.unk0 && getGameMode() != GAME_MODE_4_PAUSED){
         gDPPipeSync((*gdl)++);
         gDPSetDepthImage((*gdl)++, D_80282FE0.unk0);
     }

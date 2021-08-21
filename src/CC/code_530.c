@@ -120,7 +120,7 @@ void func_80386B28(Actor *this){
             sp38[0] = 0.0f;
             sp38[1] = 0.0f;
             sp38[2] = -200.0f;
-            func_8025686C(&sp38, &sp38, this->pitch);
+            ml_vec3f_pitch_rotate_copy(&sp38, &sp38, this->pitch);
 
             sp44[0] = local->unk4[0] - D_80389AF4[0]; 
             sp44[1] = local->unk4[1] - D_80389AF4[1]; 

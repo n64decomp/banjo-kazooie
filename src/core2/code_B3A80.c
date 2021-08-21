@@ -198,7 +198,7 @@ void func_8033B788(void ){
 
     if(D_80383CC4[arg0].compFlag & 0x0001){//compressed
         func_8033BAB0(arg0, 0, 0x10, &D_80383CB0);
-        D_80370A10 = func_8023E080(&D_80383CB0);
+        D_80370A10 = rarezip_get_uncompressed_size(&D_80383CB0);
         uncomp_size = D_80370A10;
         ALIGN10(uncomp_size);
         if (func_8025498C(comp_size + uncomp_size) && !sp28) {
@@ -219,7 +219,7 @@ void func_8033B788(void ){
     }
     func_802405F0(compressed_file, D_80383CC4[arg0].offset + D_80383CCC, sp3C);
     if(D_80383CC4[arg0].compFlag & 0x0001){//decompress
-        func_8023E0A0(compressed_file, uncompressed_file);
+        rarezip_inflate(compressed_file, uncompressed_file);
         realloc(uncompressed_file, D_80370A10);
         osWritebackDCache(uncompressed_file, D_80370A10);
         if (sp33 == 2) {

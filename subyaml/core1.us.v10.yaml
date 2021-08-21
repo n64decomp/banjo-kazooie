@@ -245,6 +245,8 @@ segments:
   vram:  0x80275610
   subsegments:
   - [0x37BF0, bin, data_37BF0] #data Section
+  - [0x38BA0, .data, code_18310]
+  - [0x39290, bin, data_39290]
   - [0x39470, .data, done/audio/n_drvrNew]
   - [0x39600, bin, data_39600]
   - [0x39730, .data, done/io/aisetnextbuf]

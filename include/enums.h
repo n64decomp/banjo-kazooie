@@ -6,8 +6,239 @@
 #define SPRITE_TYPE_RGBA16 (1 << 10)
 #define SPRITE_TYPE_RGBA32 (1 << 11)
 
+enum BKPROG_E{
+    
+    // {index=0x03, type="Prog", level=6, name="1st Note Text"}, -- 0x00 > 3
+	// {index=0x04, type="Prog", level=6, name="1st Mumbo Token Text"}, -- 0x00 > 4
+	// {index=0x05, type="Prog", level=6, name="1st Egg Text"}, -- 0x00 > 5
+	// {index=0x06, type="Prog", level=6, name="1st Red Feather Text"}, -- 0x00 > 6
+	// {index=0x07, type="Prog", level=6, name="1st Gold Feather Text"}, -- 0x00 > 7
+	// {index=0x08, type="Prog", level=6, name="1st Gold Bullion Text"}, -- 0x01 > 1 (flipped, but only for this byte, no idea why)
+	// {index=0x09, type="Prog", level=6, name="1st Orange Text"}, -- 0x01 > 0 (flipped, but only for this byte, no idea why)
+	// {index=0x0A, type="Prog", level=6, name="1st Honeycomb Text"}, -- 0x01 > 2
+	// {index=0x0B, type="Prog", level=6, name="1st Empty Honeycomb Text"}, -- 0x01 > 3
+	// {index=0x0C, type="Prog", level=6, name="1st Extra Life Text"},
+	// {index=0x0D, type="Prog", level=6, name="1st Beehive Text"},
+	BKPROG_0E_JINJO_TEXT =  0xE,
+	// {index=0x0F, type="Prog", level=6, name="1st Time Pirahana Text"},
+	// {index=0x10, type="Prog", level=6, name="1st Sand Eel Text"}, -- 0x02 > 0
+	// {index=0x11, type="Prog", level=6, name="1st Meeting Mumbo Text"}, -- 0x02 > 1
+	// {index=0x12, type="Prog", level=6, name="1st Post XForm Mumbo Text"},
 
+	// {index=0x14, type="Prog", level=6, name="1st FP Icy Water Text"},
+	// {index=0x15, type="Prog", level=6, name="1st Time in Mansion Text"},
+	// {index=0x16, type="Prog", level=6, name="1st Time in Jigsaw Text"},
+	// {index=0x17, type="Prog", level=6, name="1st Time Enough Pieces Jigsaw Text"},
+	// {index=0x18, type="Prog", level=6, name="MM WS Jiggy Spawned"},
+	// {index=0x19, type="Prog", level=6, name="MMM WS Jiggy Spawned"},
+	// {index=0x1A, type="Prog", level=6, name="TTC WS Jiggy Spawned"},
+	// {index=0x1B, type="Prog", level=6, name="CC WS Jiggy Spawned"},
+	// {index=0x1C, type="Prog", level=6, name="RBB WS Jiggy Spawned"},
+	// {index=0x1D, type="Prog", level=10, name="MMM Diningroom Cutscene"},
+	// {index=0x1E, type="Prog", level=6, name="Grate to BGS Puzzle Open"},
+	// {index=0x1F, type="Prog", level=6, name="CC Lobby Pipe 1 Raised"},
+	// {index=0x20, type="Prog", level=6, name="CC Lobby Pipe 2 Raised"},
+	// {index=0x21, type="Prog", level=6, name="CC Lobby Pipe 3 Raised"},
+	// {index=0x22, type="Prog", level=6, name="Water Switch 1 Pressed"},
+	// {index=0x23, type="Prog", level=6, name="Lair Water Level 1"},
+	// {index=0x24, type="Prog", level=6, name="Water Switch 2 Pressed"},
+	// {index=0x25, type="Prog", level=6, name="Lair Water Level 2"},
+	// {index=0x26, type="Prog", level=6, name="Water Switch 3 Pressed"},
+	// {index=0x27, type="Prog", level=6, name="Lair Water Level 3"},
 
+	BKPROG_31_MM_OPEN = 0x31,
+	BKPROG_32_TTC_OPEN,
+	BKPROG_33_CC_OPEN,
+	BKPROG_34_BGS_OPEN,
+	BKPROG_35_FP_OPEN,
+	BKPROG_36_GV_OPEN,
+	BKPROG_37_MMM_OPEN,
+	BKPROG_38_RBB_OPEN,
+	BKPROG_39_CCW_OPEN,
+	BK_PROG_3A_NOTE_DOOR_50_OPEN,
+	BK_PROG_3B_NOTE_DOOR_180_OPEN,
+	BK_PROG_3C_NOTE_DOOR_260_OPEN,
+	BK_PROG_3D_NOTE_DOOR_350_OPEN,
+	BK_PROG_3E_NOTE_DOOR_450_OPEN,
+	BK_PROG_3F_NOTE_DOOR_640_OPEN,
+	BK_PROG_40_NOTE_DOOR_765_OPEN = 0x40,
+	BK_PROG_41_NOTE_DOOR_810_OPEN,
+	BK_PROG_42_NOTE_DOOR_828_OPEN,
+	BK_PROG_43_NOTE_DOOR_846_OPEN,
+	BK_PROG_44_NOTE_DOOR_864_OPEN,
+	BK_PROG_45_NOTE_DOOR_882_OPEN,
+	// {index=0x46, type="Prog", level=6, name="CCW WS Jiggy Spawned"},
+
+	// {index=0x48, type="Prog", level=6, name="FP WS Advent Door Open"},
+	// {index=0x49, type="Prog", level=6, name="Pink Cauldron 1 Active"},
+	// {index=0x4A, type="Prog", level=6, name="Pink Cauldron 2 Active"},
+	// {index=0x4B, type="Prog", level=6, name="Green Cauldron 1 Active"},
+	// {index=0x4C, type="Prog", level=6, name="Green Cauldron 2 Active"},
+	// {index=0x4D, type="Prog", level=6, name="Red Cauldron 1 Active"},
+	// {index=0x4E, type="Prog", level=6, name="Red Cauldron 2 Active"},
+	// -- 0x4F - Unused Cauldron Pair?
+	// -- 0x50 - Unused Cauldron Pair?
+	// {index=0x51, type="Prog", level=6, name="Yellow Cauldron 1 Active"},
+	// {index=0x52, type="Prog", level=6, name="Yellow Cauldron 2 Active"},
+	// {index=0x53, type="Prog", level=6, name="CCW Puzzle Podium Switch Pressed"},
+	// {index=0x54, type="Prog", level=6, name="CCW Puzzle Podium Active"},
+	// {index=0x55, type="Prog", level=6, name="1st FF BK Square Text"},
+	// {index=0x56, type="Prog", level=6, name="1st FF Pic Square Text"},
+	// {index=0x57, type="Prog", level=6, name="1st FF Music Square Text"},
+	// {index=0x58, type="Prog", level=6, name="1st FF Mini-Game Square Text"},
+	// {index=0x59, type="Prog", level=6, name="1st FF Grunty Square Text"},
+	// {index=0x5A, type="Prog", level=6, name="1st FF Death Square Text"},
+	// {index=0x5B, type="Prog", level=6, name="1st FF Joker Square Text"},
+
+	// {index=0x5C, type="Prog", level=6, name="??FF Pattern Set"},
+
+	// -- Pieces places in puzzles info
+	// -- TODO: Read/write these as ints?
+	// {index=0x5D, type="Prog", level=6, name="Puzzle: # Pieces in MM Puzzle (2^0)"},
+	// {index=0x5E, type="Prog", level=6, name="Puzzle: # Pieces in TTC Puzzle (2^0)"},
+	// {index=0x5F, type="Prog", level=6, name="Puzzle: # Pieces in TTC Puzzle (2^1)"},
+	// {index=0x60, type="Prog", level=6, name="Puzzle: # Pieces in CC Puzzle (2^0)"},
+	// {index=0x61, type="Prog", level=6, name="Puzzle: # Pieces in CC Puzzle (2^1)"},
+	// {index=0x62, type="Prog", level=6, name="Puzzle: # Pieces in CC Puzzle (2^2)"},
+	// {index=0x63, type="Prog", level=6, name="Puzzle: # Pieces in BGS Puzzle (2^0)"},
+	// {index=0x64, type="Prog", level=6, name="Puzzle: # Pieces in BGS Puzzle (2^1)"},
+	// {index=0x65, type="Prog", level=6, name="Puzzle: # Pieces in BGS Puzzle (2^2)"},
+	// {index=0x66, type="Prog", level=6, name="Puzzle: # Pieces in FP Puzzle (2^0)"},
+	// {index=0x67, type="Prog", level=6, name="Puzzle: # Pieces in FP Puzzle (2^1)"},
+	// {index=0x68, type="Prog", level=6, name="Puzzle: # Pieces in FP Puzzle (2^2)"},
+	// {index=0x69, type="Prog", level=6, name="Puzzle: # Pieces in FP Puzzle (2^3)"},
+	// {index=0x6A, type="Prog", level=6, name="Puzzle: # Pieces in GV Puzzle (2^0)"},
+	// {index=0x6B, type="Prog", level=6, name="Puzzle: # Pieces in GV Puzzle (2^1)"},
+	// {index=0x6C, type="Prog", level=6, name="Puzzle: # Pieces in GV Puzzle (2^2)"},
+	// {index=0x6D, type="Prog", level=6, name="Puzzle: # Pieces in GV Puzzle (2^3)"},
+	// {index=0x6E, type="Prog", level=6, name="Puzzle: # Pieces in MMM Puzzle (2^0)"},
+	// {index=0x6F, type="Prog", level=6, name="Puzzle: # Pieces in MMM Puzzle (2^1)"},
+	// {index=0x70, type="Prog", level=6, name="Puzzle: # Pieces in MMM Puzzle (2^2)"},
+	// {index=0x71, type="Prog", level=6, name="Puzzle: # Pieces in MMM Puzzle (2^3)"},
+	// {index=0x72, type="Prog", level=6, name="Puzzle: # Pieces in RBB Puzzle (2^0)"},
+	// {index=0x73, type="Prog", level=6, name="Puzzle: # Pieces in RBB Puzzle (2^1)"},
+	// {index=0x74, type="Prog", level=6, name="Puzzle: # Pieces in RBB Puzzle (2^2)"},
+	// {index=0x75, type="Prog", level=6, name="Puzzle: # Pieces in RBB Puzzle (2^3)"},
+	// {index=0x76, type="Prog", level=6, name="Puzzle: # Pieces in CCW Puzzle (2^0)"},
+	// {index=0x77, type="Prog", level=6, name="Puzzle: # Pieces in CCW Puzzle (2^1)"},
+	// {index=0x78, type="Prog", level=6, name="Puzzle: # Pieces in CCW Puzzle (2^2)"},
+	// {index=0x79, type="Prog", level=6, name="Puzzle: # Pieces in CCW Puzzle (2^3)"},
+	// {index=0x7A, type="Prog", level=6, name="Puzzle: # Pieces in DoG Puzzle (2^0)"},
+	// {index=0x7B, type="Prog", level=6, name="Puzzle: # Pieces in DoG Puzzle (2^1)"},
+	// {index=0x7C, type="Prog", level=6, name="Puzzle: # Pieces in DoG Puzzle (2^2)"},
+	// {index=0x7D, type="Prog", level=6, name="Puzzle: # Pieces in DoG Puzzle (2^3)"},
+	// {index=0x7E, type="Prog", level=6, name="Puzzle: # Pieces in DoG Puzzle (2^4)"},
+	// {index=0x7F, type="Prog", level=6, name="Puzzle: # Pieces in Double Health Puzzle (2^0)"},
+	// {index=0x80, type="Prog", level=6, name="Puzzle: # Pieces in Double Health Puzzle (2^1)"},
+	// {index=0x81, type="Prog", level=6, name="Puzzle: # Pieces in Double Health Puzzle (2^2)"},
+
+	// {index=0x84, type="Prog", level=6, name="Mumbo's Magic All Gone Text"},
+	// {index=0x85, type="Prog", level=6, name="Lair Crypt Gate Open"},
+	// {index=0x86, type="Prog", level=10, name="1st Thorn Hedge Text"},
+
+	// {index=0x88, type="Prog", level=10, name="1st Exiting Loggo Text"},
+
+	// {index=0x8B, type="Prog", level=8, name="CCW Spring Open"},
+	// {index=0x8C, type="Prog", level=8, name="CCW Summer Open"},
+	// {index=0x8D, type="Prog", level=8, name="CCW Autumn Open"},
+	// {index=0x8E, type="Prog", level=8, name="CCW Winter Open"},
+	// {index=0x8F, type="Prog", level=8, name="Mumbo's Magic Getting Weak Text"},
+	// {index=0x90, type="Prog", level=1, name="Termite Tokens Paid"},
+	// {index=0x91, type="Prog", level=10, name="Pumpkin Tokens Paid"},
+	// {index=0x92, type="Prog", level=5, name="Walrus Tokens Paid"},
+	// {index=0x93, type="Prog", level=4, name="Croc Tokens Paid"},
+	// {index=0x94, type="Prog", level=8, name="Bee Tokens Paid"},
+
+	// {index=0x96, type="Prog", level=6, name="1st Time Brentilda Text"},
+	// {index=0x97, type="Prog", level=6, name="1st Time In Lair Text"},
+	// {index=0x98, type="Prog", level=6, name="1st Time Exit Level Text"},
+	// {index=0x99, type="Prog", level=6, name="1st Time Past 50 ND Text"},
+
+	// {index=0x9B, type="Prog", level=6, name="CC WS Eyes Active"},
+	// {index=0x9C, type="Prog", level=6, name="CC WS Left Eye Pressed"},
+	// {index=0x9D, type="Prog", level=6, name="CC WS Right Eye Pressed"},
+	// {index=0x9E, type="Prog", level=6, name="Crypt Coffin Lid Open"},
+
+	// {index=0xA1, type="Prog", level=6, name="Statue Hat Open"},
+	// {index=0xA2, type="Prog", level=6, name="GV Lobby Coffin Open"},
+
+    BKPROG_A6_FURNACE_FUN_COMPLETE = 0xA6,
+	// {index=0xA7, type="Prog", level=6, name="Near Puzzle Podium Text"},
+	// {index=0xA8, type="Prog", level=6, name="1st Death Text"},
+	// {index=0xA9, type="Prog", level=9, name="1st RBB Oven Text"},
+	// {index=0xAA, type="Prog", level=8, name="1st CCW Bramble Field Text"},
+	// {index=0xAB, type="Prog", level=9, name="Oily Water Surface Text"},
+	// {index=0xAC, type="Prog", level=9, name="Oily Water Underwater Text"},
+	// {index=0xAD, type="Prog", level=6, name="Cheato: BLUEEGGS Unlocked"},
+	// {index=0xAE, type="Prog", level=6, name="Cheato: REDFEATHERS Unlocked"},
+	// {index=0xAF, type="Prog", level=6, name="Cheato: GOLDFEATHERS Unlocked"},
+	// {index=0xB0, type="Prog", level=1, name="Has Been in MM"},
+	// {index=0xB1, type="Prog", level=4, name="Has Been in BGS"},
+	// {index=0xB2, type="Prog", level=2, name="Has Been in TTC"},
+	// {index=0xB3, type="Prog", level=7, name="Has Been in GV"},
+	// {index=0xB4, type="Prog", level=9, name="Has Been in RBB"},
+	// {index=0xB5, type="Prog", level=8, name="Has Been in CCW"},
+	// {index=0xB6, type="Prog", level=5, name="Has Been in FP"},
+	// {index=0xB7, type="Prog", level=10, name="Has Been in MMM"},
+	// {index=0xB8, type="Prog", level=2, name="Has Been in CC"},
+	BKPROG_B9_DOUBLE_HEALTH = 0xB9,
+	// {index=0xBA, type="Prog", level=6, name="1st Time T. Rex"},
+
+	BKPROG_BD_ENTER_LAIR_CUTSCENE =  0xBD,
+    BKPROG_BE_CHEATO_BLUEEGGS = 0xBE,
+    BKPROG_BF_CHEATO_REDFEATHERS = 0xBF,
+    BKPROG_C0_CHEATO_GOLDFEATHERS = 0xC0,
+
+	// {index=0xC2, type="Prog", level=6, name="Grate to RBB Puzzle Open"},
+	// {index=0xC3, type="Prog", level=6, name="Ice Ball To Cheato Broken"},
+	// {index=0xC4, type="Prog", level=6, name="Statue Eye Broken"},
+	// {index=0xC5, type="Prog", level=6, name="Rareware Box Broken"},
+	// {index=0xC6, type="Prog", level=6, name="Jump Pad Switch Pressed"},
+	// {index=0xC7, type="Prog", level=6, name="Jump Pad Active"},
+	// {index=0xC8, type="Prog", level=6, name="Wall to Wading Boots Broken"},
+	// {index=0xC9, type="Prog", level=6, name="Wall to Jump Pad Switch Broken"},
+	// {index=0xCA, type="Prog", level=6, name="Cobweb to Purple Cauldron Broken"},
+	// {index=0xCB, type="Prog", level=6, name="Cobweb to Flight Pad Broken"},
+	// {index=0xCC, type="Prog", level=6, name="Cobweb to Green Cauldron Broken"},
+	// {index=0xCD, type="Prog", level=6, name="Grate to Water Switch 3 Open"},
+	// {index=0xCE, type="Prog", level=6, name="Grate by MMM Puzzle Open"},
+
+	// {index=0xD1, type="Prog", level=12, name="Fight 1st Jinjo Statue Activated Cutscene"},
+	// {index=0xD2, type="Prog", level=12, name="Fight 1st Jinjo Statue Rising Cutscene"},
+
+	// {index=0xD3, type="Prog", level=6, name="??FF PATTERN 2^0"},
+	// {index=0xD4, type="Prog", level=6, name="??FF PATTERN 2^1"},
+	// {index=0xD5, type="Prog", level=6, name="??FF PATTERN 2^2"},
+	// {index=0xD6, type="Prog", level=6, name="??FF PATTERN 2^3"},
+	// {index=0xD7, type="Prog", level=6, name="??FF PATTERN 2^4"},
+	// {index=0xD8, type="Prog", level=6, name="??FF PATTERN 2^5"},
+	// {index=0xD9, type="Prog", level=6, name="??FF PATTERN 2^6"},
+	// {index=0xDA, type="Prog", level=6, name="??FF PATTERN 2^7"},
+
+	// {index=0xDC, type="Prog", level=6, name="In Mumbo's With Enough Tokens Text"},
+	// {index=0xDD, type="Prog", level=8, name="1st CCW Icy Water Text"},
+
+	// {index=0xDF, type="Prog", level=6, name="Remove Puzzle Piece Text"},
+	// {index=0xE0, type="Prog", level=6, name="Place All Puzzle Pieces Text"},
+
+	// {index=0xE2, type="Prog", level=6, name="DoG Open"},
+	// {index=0xE3, type="Prog", level=8, name="CCW Flower Spring"},
+	// {index=0xE4, type="Prog", level=8, name="CCW Flower Summer"},
+	// {index=0xE5, type="Prog", level=8, name="CCW Flower Autumn"},
+	// {index=0xE6, type="Prog", level=8, name="Spring Eyrie Hatched"},
+	// {index=0xE7, type="Prog", level=8, name="Summer Eyrie Fed"},
+	// {index=0xE8, type="Prog", level=8, name="Autumn Eyrie Fed"},
+
+	// {index=0xF3, type="Prog", level=6, name="Talked to Dingpot"},
+	// {index=0xF4, type="Prog", level=6, name="1st Time FF Cutscene"},
+
+	// {index=0xF6, type="Prog", level=6, name="1st Time Near DoG Puzzle Podium"},
+	// {index=0xF7, type="Prog", level=10, name="Pumpkin Making Mumbo Hungry Text"},
+	// {index=0xF8, type="Prog", level=12, name="King Sandybutt Pyramid State (2^0)"},
+	// {index=0xF9, type="Prog", level=12, name="King Sandybutt Pyramid State (2^1)"},
+
+	BKPROG_FC_DEFEAT_GRUNTY = 0xFC
+};
 
 enum transformation_e
 {
@@ -65,12 +296,12 @@ enum button_e{
 enum MAP_E
 {
     MAP_SM_SPIRAL_MOUNTAIN = 0x01,
-    MAP_MM_MUMBOS_MOUNTAIN = 0x02,
+    MAP_2_MM_MUMBOS_MOUNTAIN = 0x02,
     // Unused
     // Unused
     MAP_TTC_BLUBBERS_SHIP  = 0x05,
     MAP_TTC_NIPPERS_SHELL = 0x06,
-    MAP_TTC_TREASURE_TROVE_COVE = 0x07,
+    MAP_7_TTC_TREASURE_TROVE_COVE = 0x07,
     // Unused
     // Unused
     MAP_TTC_SANDCASTLE = 0x0A,
@@ -90,11 +321,11 @@ enum MAP_E
     // Unused
     // Unused
     MAP_GV_INSIDE_JINXY = 0x1A,
-    MAP_MMM_MAD_MONSTER_MANSION = 0x1B,
+    MAP_1B_MMM_MAD_MONSTER_MANSION = 0x1B,
     MAP_MMM_CHURCH = 0x1C,
     MAP_MMM_CELLAR = 0x1D,
     MAP_CS_START_NINTENDO = 0x1E,
-    MAP_CS_START_RAREWARE = 0x1F,
+    MAP_1F_CS_START_RAREWARE = 0x1F,
     MAP_CS_END_NOT_100 = 0x20,
     MAP_CC_WITCH_SWITCH_ROOM = 0x21,
     MAP_CC_INSIDE_CLANKER = 0x22,
@@ -208,7 +439,7 @@ enum MAP_E
     MAP_GL_FURNACE_FUN = 0x8E,
     MAP_TTC_SHARKFOOD_ISLAND = 0x8F,
     MAP_GL_BATTLEMENTS = 0x90,
-    MAP_FILE_SELECT = 0x91,
+    MAP_91_FILE_SELECT = 0x91,
     MAP_GV_SNS_CHAMBER = 0x92,
     MAP_GL_DINGPOT = 0x93,
     MAP_CS_INTRO_SPIRAL_7 = 0x94,
@@ -335,11 +566,11 @@ enum comusic_e
     MUSIC_INTRO_TOWER_SCENE,
     MUSIC_CCW_GNAWTYS_HOUSE,
     MUSIC_GAME_SELECT,
-    MUSIC_PAUSE_SCREEN,
+    COMUSIC_6F_PAUSE_SCREEN,
     MUSIC_MMM_INSIDE_LOGGO = 0x70,
     MUSIC_FF,
     MUSIC_BGS_FLIBBIT_FIGHT,
-    MUSIC_GAMEBOY,
+    COMUSIC_73_GAMEBOY,
     MUSIC_GL_FINAL_SECTION,
     SFX_RED_FEATHER_REFILL,
     SFX_GOLD_FEATHER_REFILL,
@@ -983,10 +1214,12 @@ enum SFX_E
 
 enum level_e
 {
-    LEVEL_MUMBOS_MOUNTAIN = 0x1,
-    level_lair = 0x6,
-    LEVEL_SPIRAL_MOUNTAIN = 0xB,
-    level_boss = 0xC
+    LEVEL_1_MUMBOS_MOUNTAIN = 0x1,
+    LEVEL_6_LAIR = 0x6,
+    LEVEL_9_RUSTY_BUCKET_BAY = 0x9,
+    LEVEL_B_SPIRAL_MOUNTAIN = 0xB,
+    LEVEL_C_BOSS = 0xC,
+    LEVEL_D_CUTSCENE = 0xD
 };
 
 enum jiggy_e
@@ -1253,13 +1486,13 @@ enum animctrl_direction_e
 
 enum game_mode_e
 {
-    game_mode_normal = 3,
-    GAME_MODE_PAUSED = 4,
+    GAME_MODE_3_NORMAL = 3,
+    GAME_MODE_4_PAUSED = 4,
     game_mode_file_playback = 6,
     GAME_MODE_ATTRACT_DEMO = 7,
-    game_mode_bottles_bonus = 8,
+    GAME_MODE_8_BOTTLES_BONUS = 8,
     game_mode_BANJO_AND_KAZOOIE = 9,
-    game_mode_SnS_picture = 10
+    GAME_MODE_A_SNS_PICTURE = 10
 };
 
 enum asset_e

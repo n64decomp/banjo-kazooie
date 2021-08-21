@@ -179,9 +179,9 @@ void gczoombox_draw(gczoombox_t *this, Gfx **gdl, Mtx ** mptr, void *vptr){
           func_803162B4(this);
           func_803163A8(this, gdl, mptr);
           if( this->unk139 == 2
-               || ( getGameMode() != game_mode_normal
-                    && getGameMode() != game_mode_bottles_bonus
-                    && getGameMode() != game_mode_SnS_picture
+               || ( getGameMode() != GAME_MODE_3_NORMAL
+                    && getGameMode() != GAME_MODE_8_BOTTLES_BONUS
+                    && getGameMode() != GAME_MODE_A_SNS_PICTURE
                     && !func_803203FC(0x1F))
           ){//L80316C64
                func_80316764(this, 0);

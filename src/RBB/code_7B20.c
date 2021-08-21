@@ -111,7 +111,7 @@ void func_8038DF6C(Actor* this){
             other->pitch = sp5C[0];
             other->roll = sp5C[2];
             TUPLE_ASSIGN(sp5C, 0.0f, 48.0f, 0.0f);
-            func_8025686C(&sp5C, &sp5C, this->pitch);
+            ml_vec3f_pitch_rotate_copy(&sp5C, &sp5C, this->pitch);
             ml_vec3f_yaw_rotate_copy(&sp5C, &sp5C, this->yaw);
         
             other->position_x = sp5C[0] + this->position_x;

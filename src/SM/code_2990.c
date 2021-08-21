@@ -284,7 +284,7 @@ void func_80389610(Actor * this){
             break;
         case 8://L80389720
             if(mapSpecificFlags_get(3)){
-                if(func_8031FF1C(0xa6)){
+                if(func_8031FF1C(BKPROG_A6_FURNACE_FUN_COMPLETE)){
                     sp2C = 0xe37;
                     sp28 |= 1;
                 }else{//L80389758

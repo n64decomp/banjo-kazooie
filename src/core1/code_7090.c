@@ -2,6 +2,10 @@
 #include "functions.h"
 #include "variables.h"
 
+extern void func_8030DABC(u8, s32);
+extern void func_8030E2C4(u8);
+
+
 typedef struct struct_27_s{
     s16 unk0;
     u8 pad2[0x12];
@@ -38,7 +42,25 @@ void func_80244B3C(void){
 
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_7090/func_80244BB0.s")
+void func_80244BB0(s32 arg0, s32 arg1, s32 arg2, f32 arg3){
+    s32 i;
+    u8 indx;
+    if(func_8030ED70(func_80255D44(arg1))){
+        i = func_8030D90C();
+        indx = i;
+        if(i){
+            func_8030DA80(indx, func_80255D44(arg1));
+            func_8030DBB4(indx, arg3);
+            func_8030DABC(indx, arg2);
+            func_8030E2C4(indx);
+            func_80244C78(arg0);
+            D_802758E0[arg0] = indx;
+        }
+    }
+    else{
+        func_8030E6A4(func_80255D44(arg1), arg3, arg2);
+    }
+}
 
 void func_80244C78(int arg0){
     if(D_802758E0[arg0]){

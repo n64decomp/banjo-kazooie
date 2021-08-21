@@ -39,6 +39,24 @@ u8 *func_8030AD6C(enum MAP_E map){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_83D70/func_8030AF58.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_83D70/func_8030AFA0.s")
+void func_8030AFA0(enum MAP_E arg0){
+    s32 level = map_getLevel(arg0);
+    if(level > 0 && level < LEVEL_C_BOSS){
+        func_80332BEC(arg0);
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_83D70/func_8030AFD8.s")
+void func_8030AFD8(s32 arg0){
+    s32 sp1C = level_get();
+    func_80321918(0);
+    if(arg0){
+        func_802C5994();
+    }
+    if(sp1C > 0 && sp1C < 0xC){
+        func_8033301C();
+    }
+    func_8034789C();
+    func_80250FC0(); //stop controller motor
+    func_80314B24();
+    func_80347A70();
+}

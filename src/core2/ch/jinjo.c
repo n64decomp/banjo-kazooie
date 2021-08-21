@@ -43,9 +43,9 @@ void func_802CDBA8(ActorMarker *this, s32 arg1){
     ActorLocal_Jinjo *localPtr = &actorPtr->jinjo;
 
     if(actorPtr->state < 5){
-        if(!func_8031FF1C(0xe)){
+        if(!func_8031FF1C(BKPROG_0E_JINJO_TEXT)){
             func_80311480(func_802CDB50(actorPtr->marker->unk14_20), 4, 0, 0, 0, 0);
-            func_80320004(0xe, 1);
+            func_80320004(BKPROG_0E_JINJO_TEXT, 1);
         }
         func_80328B8C(actorPtr, 6, 0.0f , -1);
         if(func_803463D4(ITEM_JINJOS, 1 << (this->unk14_20 + 6) ) == 0x1f)
@@ -164,7 +164,7 @@ void func_802CDD78(Actor * this){
                     sp40[1] = this->position_y;
                     sp40[2] = this->position_z;
                     sp40[1] += 50.0f;
-                    jiggySpawn(10*func_80321900()-9, sp40);
+                    jiggySpawn(10*level_get()-9, sp40);
                 }//L802CE0CC
                 func_8024BD08(0);
                 func_8032BB88(this, 0, 4000);

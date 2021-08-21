@@ -392,7 +392,7 @@ void func_80310D2C(void){
     if(D_80382E20.unk128_5)
         func_80310BFC();
 
-    if(getGameMode() == game_mode_normal || func_802E4A08()){
+    if(getGameMode() == GAME_MODE_3_NORMAL || func_802E4A08()){
         if(D_80382E20.unk128_5)
             return;
 

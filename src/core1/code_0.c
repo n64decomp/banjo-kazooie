@@ -69,7 +69,7 @@ s32 func_8023DB74(void){
 }
 
 s32 func_8023DBA4(void){
-    return 0x1F;
+    return MAP_1F_CS_START_RAREWARE;
 }
 
 void func_8023DBAC(void){
@@ -85,7 +85,7 @@ void func_8023DBDC(void){
 void func_8023DC0C(void){
     func_80255C30();
     func_8023E00C(func_8023DBA4());
-    func_8023E08C();
+    rarezip_init(); //initialize decompressor's huft table
     func_8024BE30();
     func_80251308();
     D_8027BEF0 = D_8027A538;

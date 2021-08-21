@@ -159,7 +159,13 @@ typedef struct struct_4_s{
 } struct4s;
 
 typedef struct struct_5_s{
-    u8 pad0[0x38];
+    s32 unk0;
+    f32 unk4[3];
+    f32 unk10[3];
+    f32 unk1C[3];
+    f32 unk28[3];
+    u8 unk34;
+    u8 pad35[0x3];
 }struct5s;
 
 typedef struct struct_6_s{
@@ -174,10 +180,7 @@ typedef struct struct_6_s{
     s16 unk20;
     u8 unk22;
     u8 pad23[1];
-    void *unk24;
-    void *unk28;
-    void *unk2C;
-    void *unk30;
+    void *unk24[4];
     u8    unk34;
     u8 pad35[0x3];
     f32 unk38;
@@ -488,5 +491,19 @@ typedef struct {
     s32 unk0;
     s32 unk4;
 }struct46s;
+
+
+typedef struct {
+    s16 unk0;
+    u8 pad2[0x2];
+    f32 unk4;
+    f32 unk8;
+}struct47s;
+
+typedef struct {
+    s16 map;
+    u8 pad2[2];
+    struct47s unk4[3];
+}struct48s;
 
 #endif

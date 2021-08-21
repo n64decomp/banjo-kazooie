@@ -168,13 +168,13 @@ void func_802FA724(void) {
 }
 
 
-void func_802FAB54(Gfx **arg0, Mtx ** arg1, s32 arg2){
+void func_802FAB54(Gfx **gdl, Mtx ** mptr, s32 vptr){
     s32 i;
-    if(D_803810B0 && func_80321900() != 0xd){
+    if(D_803810B0 && level_get() != 0xd){
         for(i = 0; i < 0x2C; i++){
             if(!func_802E4A08() || i < 6){
                 if(func_802FB0D4(D_803692F8[i].unk14)){
-                    D_803692F8[i].unk8(i, D_803692F8[i].unk14, arg0, arg1, arg2);
+                    D_803692F8[i].unk8(i, D_803692F8[i].unk14, gdl, mptr, vptr);
                 }
             }
         }

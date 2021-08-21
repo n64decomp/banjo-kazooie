@@ -78,7 +78,7 @@ s32 func_8028A5C0(void){
     s32 tmp;
     f32 sp30[3];
 
-    if(gctransition_8030BDC0() || getGameMode() != game_mode_normal)
+    if(gctransition_8030BDC0() || getGameMode() != GAME_MODE_3_NORMAL)
         return 0;
 
     if(func_8034BB48() && func_802DE41C() != 7){
@@ -129,7 +129,7 @@ s32 func_8028A5C0(void){
 //snacker_updateState
 void func_8028A8D0(void){
     switch(func_803348C0()){
-        case MAP_TTC_TREASURE_TROVE_COVE:
+        case MAP_7_TTC_TREASURE_TROVE_COVE:
             D_8037BF50 = func_8028A45C();
             break;
         case MAP_RBB_RUSTY_BUCKET_BAY:

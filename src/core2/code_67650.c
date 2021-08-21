@@ -135,7 +135,10 @@ void func_802EEA9C(struct30s *this, struct2Fs *particle){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_67650/func_802EEE3C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_67650/func_802EF3A8.s")
+void func_802EF3A8(struct30s *this, Gfx **gdl, Mtx **mPtr, Vtx **vPtr){
+    func_802EEE3C(this, gdl, mPtr, vPtr, 4);
+    func_802EEE3C(this, gdl, mPtr, vPtr, 0);
+}
 
 void func_802EF3F4(struct30s *this, f32 (* arg1)[3], f32 (*arg2)[3], s32 arg3){
     for(arg3; arg3 > 0; arg3--){
@@ -653,11 +656,24 @@ void func_802F0898(void){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_67650/func_802F08A0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_67650/func_802F0A34.s")
+void func_802F0A34(Gfx **gdl, Mtx **mptr, Vtx **vptr){
+    int i;
+    for(i = 0; i < D_803689B4; i++){
+        func_802EEE3C(D_803689B0[i], gdl, mptr, vptr, 4);
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_67650/func_802F0AE8.s")
+void func_802F0AE8(Gfx **gdl, Mtx **mptr, Vtx **vptr){
+    int i;
+    for(i = 0; i < D_803689B4; i++){
+        func_802EEE3C(D_803689B0[i], gdl, mptr, vptr, 0);
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_67650/func_802F0B98.s")
+void func_802F0B98(Gfx **gdl, Mtx **mptr, Vtx **vptr){
+    func_802F0A34(gdl, mptr, vptr);
+    func_802F0AE8(gdl, mptr, vptr);
+}
 
 struct30s *func_802F0BD0(u32 arg0){
     D_803689B0 = realloc(D_803689B0, (++D_803689B4)*4);
@@ -689,7 +705,9 @@ void func_802F0D64(struct30s *this){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_67650/func_802F0D74.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_67650/func_802F0E58.s")
+void func_802F0E58(void){
+    D_803689B0 = (struct30s **)func_802555DC(D_803689B0);
+}
 
 void func_802F0E80(void* arg0, s32 arg1){
     D_80380924 = (arg1 == 2) ? 1 : 0;

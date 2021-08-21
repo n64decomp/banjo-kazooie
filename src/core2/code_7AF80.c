@@ -350,6 +350,22 @@ extern ActorSpawn *D_8036A9B4;
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80308FDC.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_803091D4.s")
+// void func_803091D4(Gfx **gdl, Mtx **mptr, Vtx **vptr){
+//     if( func_80320708() 
+//         && levelSpecificFlags_validateCRC2() 
+//         && func_80320248()
+//     ){
+//         if(func_8030A068() == 0x14cf){
+//             func_8033A45C(1, 0);
+//             func_8033A45C(2, 1);
+//         }
+
+//         switch(func_803348C0())
+//         {
+
+//         }
+//     }
+// }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80309628.s")
 

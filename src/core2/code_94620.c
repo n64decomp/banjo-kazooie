@@ -1681,7 +1681,7 @@ void func_8031FA90(s32 arg0, s32 arg1) {
 }
 
 void func_8031FAB4(s32 arg0, s32 arg1) {
-    if ((func_8031FF1C(0xFC) != 0) && (jiggyscore_total() == 100)) {
+    if ((func_8031FF1C(BKPROG_FC_DEFEAT_GRUNTY) != 0) && (jiggyscore_total() == 100)) {
         func_8031CC8C(arg0, 0x9501);
     } else {
         func_8031CC8C(arg0, 0x9001);
@@ -1689,10 +1689,10 @@ void func_8031FAB4(s32 arg0, s32 arg1) {
 }
 
 void func_8031FB14(s32 arg0, s32 arg1) {
-    if (func_8031FF1C(0xBD) != 0) {
+    if (func_8031FF1C(BKPROG_BD_ENTER_LAIR_CUTSCENE) != 0) {
         func_8031CC8C(arg0, 0x6912);
     } else {
-        func_80320004(0xBD, 1);
+        func_80320004(BKPROG_BD_ENTER_LAIR_CUTSCENE, 1);
         func_8031CC8C(arg0, 0x8204);
     }
 }

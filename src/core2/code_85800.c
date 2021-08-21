@@ -312,7 +312,7 @@ s32 func_8030D10C(u8 indx){
         func_8030C83C(ptr, 1 << 3);
         func_8030C83C(ptr, 1 << 4);
     }//L8030D2E0
-    if(getGameMode() == GAME_MODE_PAUSED)
+    if(getGameMode() == GAME_MODE_4_PAUSED)
         sp24++;
 
     return sp24;

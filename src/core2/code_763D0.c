@@ -104,7 +104,7 @@ void func_802FDAF4(s32 arg0, struct8s *arg1, Gfx **arg2, Mtx **arg3, s32 arg4){
     sp38 = func_802FAE1C(arg0);
     sp34 = 0.0f;
     if(arg0 == item_note){
-        if(func_80321900() == level_lair || func_80321900() == level_boss){
+        if(level_get() == LEVEL_6_LAIR || level_get() == LEVEL_C_BOSS){
             sp38 = func_80346EEC();
         }
     }
