@@ -354,7 +354,7 @@ void func_8039049C(Actor *this){
                 func_8030E624(0x7ffb5802);
             
             if(actor_animationIsAt(this, 0.8f)){
-                sp4C = func_802F9AA8(0x141);
+                sp4C = func_802F9AA8(SFX_141_MECHANICAL_WINCH);
                 func_802F9F80(sp4C, 0.0f, 5.92f, 0.0f);
                 func_802F9E44(sp4C, 0.1f, 5.92f, 0.3f, 1.0f);
                 func_802FA060(sp4C, 32000, 32000, 0.0f);

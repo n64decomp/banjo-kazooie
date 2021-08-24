@@ -10,7 +10,7 @@ typedef void (* TFQM4)(s32, s32, s32, s32);
 typedef void (* TFQM5)(s32, s32, s32, s32, s32);
 typedef void (* TFQM6)(void *);
 
-#define reinterrupt_cast(type, var) (*((type *)&var))
+#define reinterpret_cast(type, var) (*((type *)&var))
 
 
 void timedFunc_set_0(f32 time, TFQM0 funcPtr);

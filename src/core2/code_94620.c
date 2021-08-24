@@ -820,7 +820,7 @@ void func_8031DB88(s32 arg0, s32 arg1) {
 }
 
 void func_8031DBAC(s32 arg0, s32 arg1) {
-    if (player_getTransformation() == TRANSFORM_PUMPKIN) {
+    if (player_getTransformation() == TRANSFORM_3_PUMPKIN) {
         func_8031CC8C(arg0, arg1 + 0x2F00);
     }
 }
@@ -832,7 +832,7 @@ void func_8031DBE8(void) {
 void func_8031DC10(s32 arg0, s32 arg1) {
     f32 vec[3];
 
-    if (player_getTransformation() == TRANSFORM_PUMPKIN) {
+    if (player_getTransformation() == TRANSFORM_3_PUMPKIN) {
         ml_vec3h_to_vec3f(vec, arg0);
         func_8028F6E4(0x2F, vec);
         timedFunc_set_0(D_80378D44, &func_8031DBE8);
@@ -844,7 +844,7 @@ void func_8031DC68(s32 arg0, s32 arg1) {
 }
 
 void func_8031DC8C(s32 arg0, s32 arg1) {
-    if (player_getTransformation() == TRANSFORM_CROC) {
+    if (player_getTransformation() == TRANSFORM_5_CROC) {
         func_8031CC8C(arg0, arg1 + 0x1000);
     }
 }
@@ -1440,13 +1440,13 @@ void func_8031F238(s32 arg0, s32 arg1) {
 }
 
 void func_8031F25C(s32 arg0, s32 arg1) {
-    if (player_getTransformation() == TRANSFORM_PUMPKIN) {
+    if (player_getTransformation() == TRANSFORM_3_PUMPKIN) {
         func_8031CC8C(arg0, 0x7A01);
     }
 }
 
 void func_8031F294(s32 arg0, s32 arg1) {
-    if (player_getTransformation() == TRANSFORM_PUMPKIN) {
+    if (player_getTransformation() == TRANSFORM_3_PUMPKIN) {
         func_8031CC8C(arg0, 0x7503);
     }
 }
@@ -1512,7 +1512,7 @@ void func_8031F4C4(s32 arg0, s32 arg1) {
 }
 
 void func_8031F4E8(s32 arg0, s32 arg1) {
-    if (player_getTransformation() == TRANSFORM_BEE) {
+    if (player_getTransformation() == TRANSFORM_6_BEE) {
         func_8031CC8C(arg0, 0x5B01);
     }
 }
@@ -1575,25 +1575,25 @@ void func_8031F708(s32 arg0, s32 arg1) {
 }
 
 void func_8031F72C(s32 arg0, s32 arg1) {
-    if (player_getTransformation() == TRANSFORM_PUMPKIN) {
+    if (player_getTransformation() == TRANSFORM_3_PUMPKIN) {
         func_8031CC8C(arg0, 0x2504);
     }
 }
 
 void func_8031F764(s32 arg0, s32 arg1) {
-    if (player_getTransformation() == TRANSFORM_PUMPKIN) {
+    if (player_getTransformation() == TRANSFORM_3_PUMPKIN) {
         func_8031CC8C(arg0, 0x1B13);
     }
 }
 
 void func_8031F79C(s32 arg0, s32 arg1) {
-    if (player_getTransformation() == TRANSFORM_PUMPKIN) {
+    if (player_getTransformation() == TRANSFORM_3_PUMPKIN) {
         func_8031CC8C(arg0, 0x2C04);
     }
 }
 
 void func_8031F7D4(s32 arg0, s32 arg1) {
-    if (player_getTransformation() == TRANSFORM_PUMPKIN) {
+    if (player_getTransformation() == TRANSFORM_3_PUMPKIN) {
         func_8031CC60(0x8D04);
     }
 }

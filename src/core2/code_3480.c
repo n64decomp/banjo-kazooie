@@ -132,7 +132,7 @@ void func_8028A8D0(void){
         case MAP_7_TTC_TREASURE_TROVE_COVE:
             D_8037BF50 = func_8028A45C();
             break;
-        case MAP_RBB_RUSTY_BUCKET_BAY:
+        case MAP_31_RBB_RUSTY_BUCKET_BAY:
             D_8037BF50 = func_8028A504();
             break;
         case MAP_SM_BANJOS_HOUSE:

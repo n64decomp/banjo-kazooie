@@ -34,7 +34,7 @@ typedef struct {
 }struct45s;
 
 u8   func_8030D90C(void);
-void func_8030DA80(u8 indx, enum sfx_e uid);
+void func_8030DA80(u8 indx, enum SFX_E uid);
 void func_8030DABC(u8, s32);
 void func_8030DD14(u8, int);
 void func_8030DD90(u8, s32);
@@ -43,7 +43,7 @@ void func_8030DFF0(u8, int);
 void func_8030E0B4(u8, f32, f32);
 f32  func_8030E200(u8);
 void func_8030E2C4(u8);
-int func_8030ED70(enum sfx_e uid);
+int func_8030ED70(enum SFX_E uid);
 void func_8030EDAC(f32, f32);
 
 /* .bss */
@@ -415,7 +415,7 @@ void func_8030D644(void){
     }
 }
 
-void func_8030D6C4(enum sfx_e uid, f32 arg1, s32 arg2, s32 arg3, s32 arg4){
+void func_8030D6C4(enum SFX_E uid, f32 arg1, s32 arg2, s32 arg3, s32 arg4){
     u8 indx = func_8030D90C();
     if(indx){
         func_8030DA80(indx, uid);
@@ -512,7 +512,7 @@ void func_8030DA44(u8 indx){
     func_8030C7F8(sp1C, 3);
 }
 
-void func_8030DA80(u8 indx, enum sfx_e uid){
+void func_8030DA80(u8 indx, enum SFX_E uid){
     if(indx)
         func_8030C8B8(indx)->sfx_uid = uid;
 }
@@ -721,7 +721,7 @@ void func_8030E0FC(u8 indx, f32 arg1, f32 arg2, f32 arg3){
     }
 }
 
-enum sfx_e func_8030E188(u8 indx){
+enum SFX_E func_8030E188(u8 indx){
     struct45s *ptr;
 
     if(!indx)
@@ -838,39 +838,39 @@ int func_8030E3FC(u8 indx){
     }
 }
 
-void func_8030E484(enum sfx_e uid){
+void func_8030E484(enum SFX_E uid){
     func_8030D6C4(uid, 1.0f, 22000, 0, 2);
 }
 
-void func_8030E4B4(enum sfx_e uid){
+void func_8030E4B4(enum SFX_E uid){
     func_8030D6C4(uid, 1.0f, 22000, 0, 1);
 }
 
-void func_8030E4E4(enum sfx_e uid){
+void func_8030E4E4(enum SFX_E uid){
     func_8030D6C4(uid, 1.0f, 22000, 0, 0);
 }
 
-void func_8030E510(enum sfx_e uid, s32 arg1){
+void func_8030E510(enum SFX_E uid, s32 arg1){
     func_8030D6C4(uid, 1.0f, arg1, 0, 2);
 }
 
-void func_8030E540(enum sfx_e uid){
+void func_8030E540(enum SFX_E uid){
     func_8030E510(uid, 0x7ff8);
 }
 
-void func_8030E560(enum sfx_e uid, s32 arg1){
+void func_8030E560(enum SFX_E uid, s32 arg1){
     func_8030D6C4(uid, 1.0f, arg1, 0, 0);
 }
 
-void func_8030E58C(enum sfx_e uid, f32 arg1){
+void func_8030E58C(enum SFX_E uid, f32 arg1){
     func_8030D6C4(uid, arg1, 22000, 0, 2);
 }
 
-void func_8030E5C0(enum sfx_e uid, f32 arg1){
+void func_8030E5C0(enum SFX_E uid, f32 arg1){
     func_8030D6C4(uid, arg1, 22000, 0, 1);
 }
 
-void func_8030E5F4(enum sfx_e uid, f32 arg1){
+void func_8030E5F4(enum SFX_E uid, f32 arg1){
     func_8030D6C4(uid, arg1, 22000, 0, 0);
 }
 
@@ -879,27 +879,27 @@ void func_8030E624(u32 arg0){
     func_8030D6C4(arg0 & 0x7FF, f6/1023.0, (arg0 >> 6) & 0x7fe0, 0, 2);
 }
 
-void func_8030E6A4(enum sfx_e uid, f32 arg1, s32 arg2){
+void func_8030E6A4(enum SFX_E uid, f32 arg1, s32 arg2){
     func_8030D6C4(uid, arg1, arg2, 0, 2);
 }
 
-void func_8030E6D4(enum sfx_e uid){
+void func_8030E6D4(enum SFX_E uid){
     func_8030D6C4(uid, 1.0f, 0x7ff8, 0, 2);
 }
 
-void func_8030E704(enum sfx_e uid){
+void func_8030E704(enum SFX_E uid){
     func_8030D6C4(uid, 1.0f, 0x7ff8, 0, 0);
 }
 
-void func_8030E730(enum sfx_e uid, f32 arg1, s32 arg2){
+void func_8030E730(enum SFX_E uid, f32 arg1, s32 arg2){
     func_8030D6C4(uid, arg1, arg2, 0, 1);
 }
 
-void func_8030E760(enum sfx_e uid, f32 arg1, s32 arg2){
+void func_8030E760(enum SFX_E uid, f32 arg1, s32 arg2){
     func_8030D6C4(uid, arg1, arg2, 0, 0);
 }
 
-void func_8030E78C(enum sfx_e uid, f32 arg1, u32 arg2, f32(*arg3)[3], f32 arg4, f32 arg5, s32 arg6){
+void func_8030E78C(enum SFX_E uid, f32 arg1, u32 arg2, f32(*arg3)[3], f32 arg4, f32 arg5, s32 arg6){
     u8 s0;
     f32 sp20[3];
     
@@ -922,7 +922,7 @@ void func_8030E78C(enum sfx_e uid, f32 arg1, u32 arg2, f32(*arg3)[3], f32 arg4, 
     }
 }
 
-void func_8030E878(enum sfx_e id, f32 arg1, u32 arg2, f32 (*arg3)[3], f32 arg4, f32 arg5){
+void func_8030E878(enum SFX_E id, f32 arg1, u32 arg2, f32 (*arg3)[3], f32 arg4, f32 arg5){
     func_8030E78C(id, arg1, arg2, arg3, arg4, arg5, 2);
 }
 
@@ -934,51 +934,51 @@ void func_8030E8B4(u32 arg0, f32 (*arg1)[3], u32 arg2){
     );
 }
 
-void func_8030E988(enum sfx_e uid, f32 arg1, u32 arg2, f32 (*arg3)[3], f32 arg4, f32 arg5){
+void func_8030E988(enum SFX_E uid, f32 arg1, u32 arg2, f32 (*arg3)[3], f32 arg4, f32 arg5){
     func_8030E78C(uid, arg1, arg2, arg3, arg4, arg5, 1);
 }
 
-void func_8030E9C4(enum sfx_e uid, f32 arg1, u32 arg2, f32 (*arg3)[3], f32 arg4, f32 arg5){
+void func_8030E9C4(enum SFX_E uid, f32 arg1, u32 arg2, f32 (*arg3)[3], f32 arg4, f32 arg5){
     func_8030E78C(uid, arg1, arg2, arg3, arg4, arg5, 0);
 }
 
-void func_8030E9FC(enum sfx_e uid, f32 arg1, f32 arg2, u32 arg3, f32 (*arg4)[3], f32 arg5, f32 arg6){
+void func_8030E9FC(enum SFX_E uid, f32 arg1, f32 arg2, u32 arg3, f32 (*arg4)[3], f32 arg5, f32 arg6){
     func_8030E78C(uid, func_8034A788(arg1, arg2), arg3, arg4, arg5, arg6, 2);
 }
 
-void func_8030EA54(enum sfx_e uid, f32 arg1, f32 arg2, u32 arg3, f32 (*arg4)[3], f32 arg5, f32 arg6){
+void func_8030EA54(enum SFX_E uid, f32 arg1, f32 arg2, u32 arg3, f32 (*arg4)[3], f32 arg5, f32 arg6){
     func_8030E78C(uid, func_8034A788(arg1, arg2), arg3, arg4, arg5, arg6, 1);
 }
 
-void func_8030EAAC(enum sfx_e uid, f32 arg1, s32 arg2, s32 arg3){
+void func_8030EAAC(enum SFX_E uid, f32 arg1, s32 arg2, s32 arg3){
     func_8030D6C4(uid, arg1, arg2, arg3, 2);
 }
 
-void func_8030EAD8(enum sfx_e uid, f32 arg1, s32 arg2, s32 arg3){
+void func_8030EAD8(enum SFX_E uid, f32 arg1, s32 arg2, s32 arg3){
     func_8030D6C4(uid, arg1, arg2, arg3, 0);
 }
 
-void func_8030EB00(enum sfx_e uid, f32 arg1, f32 arg2){
+void func_8030EB00(enum SFX_E uid, f32 arg1, f32 arg2){
     func_8030D6C4(uid, func_8034A788(arg1, arg2), 22000, 0, 2);
 }
 
-void func_8030EB44(enum sfx_e uid, f32 arg1, f32 arg2){
+void func_8030EB44(enum SFX_E uid, f32 arg1, f32 arg2){
     func_8030D6C4(uid, func_8034A788(arg1, arg2), 22000, 0, 1);
 }
 
-void func_8030EB88(enum sfx_e uid, f32 arg1, f32 arg2){
+void func_8030EB88(enum SFX_E uid, f32 arg1, f32 arg2){
     func_8030D6C4(uid, func_8034A788(arg1, arg2), 22000, 0, 0);
 }
 
-void func_8030EBC8(enum sfx_e uid, f32 arg1, f32 arg2, s32 arg3, s32 arg4){
+void func_8030EBC8(enum SFX_E uid, f32 arg1, f32 arg2, s32 arg3, s32 arg4){
     func_8030D6C4(uid, func_8034A788(arg1, arg2), func_8034A80C(arg3, arg4), 0, 2);
 }
 
-void func_8030EC20(enum sfx_e uid, f32 arg1, f32 arg2, u32 arg3, u32 arg4){
+void func_8030EC20(enum SFX_E uid, f32 arg1, f32 arg2, u32 arg3, u32 arg4){
     func_8030D6C4(uid, func_8034A788(arg1, arg2), func_8034A80C(arg3, arg4), 0, 0);
 }
 
-void func_8030EC74(enum sfx_e uid, f32 arg1, f32 arg2, u32 arg3, u32 arg4, f32 (*arg5)[3]){
+void func_8030EC74(enum SFX_E uid, f32 arg1, f32 arg2, u32 arg3, u32 arg4, f32 (*arg5)[3]){
     u8 indx = func_8030D90C();
     if(indx){
         func_8030DA80(indx, uid);
@@ -994,14 +994,14 @@ void func_8030ED0C(void){
     func_8030D644();
 }
 
-u8 func_8030ED2C(enum sfx_e uid, s32 arg1){
+u8 func_8030ED2C(enum SFX_E uid, s32 arg1){
     u8 indx = func_8030D90C();
     func_8030DA80(indx, uid);
     func_8030DD14(indx, arg1);
     return indx;
 }
 
-int func_8030ED70(enum sfx_e uid){
+int func_8030ED70(enum SFX_E uid){
     if(!(uid < 0x3e9)){
         return func_80335520(uid - 0x3e9);
     }

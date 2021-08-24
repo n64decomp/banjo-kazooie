@@ -123,9 +123,13 @@ typedef struct struct_1_s{
 
 typedef struct struct_2_s{
     f32 unk0;
-    u8 pad4[1];
+    u8 unk4; //argument_count
     u8 unk5;
-    u8 pad6[0x12];
+    u8 pad6[2];
+    u32 unk8;
+    s32 unkC;
+    s32 unk10;
+    void *unk14; //function_ptr
 } struct2s;
 
 typedef struct struct_3_s{
@@ -191,9 +195,14 @@ typedef struct struct_7_s{
 }struct7s;
 
 typedef struct struct_8_s{
-    u8 pad0[0x14];
+    s32 unk0;
+    s32 unk4;
+    f32 unk8;
+    f32 unkC;
+    f32 unk10;
     s32 unk14;
-    u8 pad18[0x8];
+    s32 unk18;
+    f32 unk1C;
     u32 unk20;
     s32 unk24; //asset_index
     u32 unk28;
@@ -505,5 +514,45 @@ typedef struct {
     u8 pad2[2];
     struct47s unk4[3];
 }struct48s;
+
+
+
+typedef struct{
+    f32 unk0[3];
+    f32 unkC[3];
+    u8 unk18;
+    u8 pad19[3];
+    struct struct_4D_s *unk1C;
+}struct4Cs;
+
+typedef struct struct_4D_s{
+    u8 unk0[0x18];
+}struct4Ds;
+
+typedef struct{
+    u8 unk0;
+    u8 pad1[0x3];
+    f32 unk4;
+    f32 unk8;
+    f32 unkC;
+    f32 unk10;
+    f32 unk14;
+    f32 unk18;
+    f32 unk1C;
+    f32 unk20;
+    f32 unk24;
+    f32 unk28;
+    f32 unk2C;
+    f32 unk30;
+    f32 unk34;
+    s16 unk38;
+    s16 unk3A;
+    u8 unk3C;
+    u8 unk3D;
+    u8 unk3E;
+    u8 unk3F;
+}struct4Es;
+
+
 
 #endif

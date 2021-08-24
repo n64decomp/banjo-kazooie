@@ -227,7 +227,7 @@ void func_80311BD4(s32 level, s32 *valPtr, s32 *maxPtr){
 
 void func_80311C0C(s32 level, s32 *valPtr, s32 *maxPtr){
     *valPtr = func_803213F8(level);
-    *maxPtr = (level == LEVEL_SPIRAL_MOUNTAIN)? 6 : 2;
+    *maxPtr = (level == LEVEL_B_SPIRAL_MOUNTAIN)? 6 : 2;
 }
 
 u8 *func_80311C64(int time){

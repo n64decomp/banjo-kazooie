@@ -177,7 +177,7 @@ s32 func_8029CA94(s32 arg0){
         arg0 = func_80292738();
     
     if(func_802933C0(0x1A))
-        arg0 = (player_getTransformation() == TRANSFORM_BEE) ? 0x46 : BS_JIG_NOTEDOOR;
+        arg0 = (player_getTransformation() == TRANSFORM_6_BEE) ? 0x46 : BS_JIG_NOTEDOOR;
 
     if(func_802933C0(0xE))
         arg0 = BS_LONGLEG_ENTER;
@@ -192,7 +192,7 @@ s32 func_8029CA94(s32 arg0){
         arg0 = BS_JIG_JIGGY;
 
     if(func_802933C0(0x14))
-        arg0 = (player_getTransformation() == TRANSFORM_WALRUS) ? 0x80 : 0x53;
+        arg0 = (player_getTransformation() == TRANSFORM_4_WALRUS) ? 0x80 : 0x53;
     
     func_802933FC(0xF);
 

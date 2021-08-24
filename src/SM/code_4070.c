@@ -37,13 +37,13 @@ void func_8038A4DC(Actor *this, s32 arg1){
         this->sm_4070.unk0 = 0;
         player_getPosition(&this->velocity);
         func_8028F918(0);
-        if(ability_isUnlocked(ABILITY_FLAP)){
+        if(ability_isUnlocked(ABILITY_7_FLAP)){
             mapSpecificFlags_set(9,1);
-        }else if(ability_isUnlocked(ABILITY_HOLD_A_JUMP_HIGHER)){//L8038A540
+        }else if(ability_isUnlocked(ABILITY_A_HOLD_A_JUMP_HIGHER)){//L8038A540
             mapSpecificFlags_set(8,1);
         }else{//L8038A560
             func_8038A460(this);
-            ability_unlock(ABILITY_HOLD_A_JUMP_HIGHER);
+            ability_unlock(ABILITY_A_HOLD_A_JUMP_HIGHER);
             func_80311480(0xdf6, 0xe, &this->unk1C_x, this->marker, func_8038A488, NULL);
             this->sm_4070.unk0 = 0xe1a;
             mapSpecificFlags_set(8, 0);
@@ -95,7 +95,7 @@ void func_8038A5D8(Actor *this){
         if(!func_803114B0()){
             if(mapSpecificFlags_get(8)){
                 func_8038A460(this);
-                ability_unlock(ABILITY_FLAP);
+                ability_unlock(ABILITY_7_FLAP);
                 func_80311480(0xdf7, 0xa, &this->unk1C_x, this->marker, func_8038A488, NULL);
                 this->sm_4070.unk0 = 0xe1b;
                 mapSpecificFlags_set(8,0);
@@ -103,7 +103,7 @@ void func_8038A5D8(Actor *this){
 
             if(mapSpecificFlags_get(9)){
                 func_8038A460(this);
-                ability_unlock(ABILITY_FLIP);
+                ability_unlock(ABILITY_8_FLIP);
                 func_80311480(0xdf8, 0xa, &this->unk1C_x, this->marker, func_8038A488, NULL);
                 this->sm_4070.unk0 = 0xe1c;
                 mapSpecificFlags_set(9,0);

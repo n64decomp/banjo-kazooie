@@ -55,11 +55,11 @@ void func_80387288(ActorMarker *marker, s32 text_id, s32 arg2){
     func_8028F918(0);
     switch(text_id){
         case 0xe15://L803872C8
-            ability_unlock(ABILITY_ROLL);
+            ability_unlock(ABILITY_C_ROLL);
             chAttackTutorial_setState(actor, 2);
             break;
         case 0xe17://L803872E4
-            ability_unlock(ABILITY_RATATAT_RAP);
+            ability_unlock(ABILITY_B_RATATAT_RAP);
             chAttackTutorial_setState(actor, 2);
             break;
     }//L803872FC
@@ -71,7 +71,7 @@ void chAttackTutorial_setState(Actor * this, s32 arg1){
     {
     case 5:
         if(this->unk10_12 == 0){
-            ability_unlock(ABILITY_BEAR_PUNCH);
+            ability_unlock(ABILITY_4_BEAR_PUNCH);
             func_80311480(0xDFF, 0xE, &this->unk1C_x, this->marker, func_80387288, func_80387258);
         }
         else{
@@ -101,9 +101,9 @@ void chAttackTutorial_setState(Actor * this, s32 arg1){
 }
 
 int func_803874C4(void){
-    return ability_isUnlocked(ABILITY_BEAR_PUNCH)
-        && ability_isUnlocked(ABILITY_ROLL)
-        && ability_isUnlocked(ABILITY_RATATAT_RAP);
+    return ability_isUnlocked(ABILITY_4_BEAR_PUNCH)
+        && ability_isUnlocked(ABILITY_C_ROLL)
+        && ability_isUnlocked(ABILITY_B_RATATAT_RAP);
 }
 
 void chAttackTutorial_update(Actor *this){
@@ -122,7 +122,7 @@ void chAttackTutorial_update(Actor *this){
             this->unk1C_y = this->position_y;
             this->unk1C_z = this->position_z;}
         }
-        this->unk10_12 = (ability_isUnlocked(ABILITY_ROLL))? 2 : (ability_isUnlocked(ABILITY_BEAR_PUNCH)? 1:0);
+        this->unk10_12 = (ability_isUnlocked(ABILITY_C_ROLL))? 2 : (ability_isUnlocked(ABILITY_4_BEAR_PUNCH)? 1:0);
         this->initialized = 1;
     }
 
@@ -157,11 +157,11 @@ void func_80387690(ActorMarker *marker, s32 text_id, s32 arg2){
             func_803871FC(actor, actor->unk10_12);
             break;
         case 0xE15:
-            ability_unlock(ABILITY_ROLL);
+            ability_unlock(ABILITY_C_ROLL);
             chAttackTutorial_setState(actor, 2);
             break;
         case 0xE17:
-            ability_unlock(ABILITY_RATATAT_RAP);
+            ability_unlock(ABILITY_B_RATATAT_RAP);
             chAttackTutorial_setState(actor, 2);
             break;
         case 0xE12:

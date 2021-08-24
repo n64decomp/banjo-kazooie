@@ -493,7 +493,7 @@ void func_803882B0(Actor *this)
     }
 }
 
-void func_80388404(s32 flag, enum sfx_e sfx, f32 a2, s32 a3)
+void func_80388404(s32 flag, enum SFX_E sfx, f32 a2, s32 a3)
 {
     if (func_8031FF1C(flag) == FALSE)
         func_8030E6A4(sfx, a2, a3);

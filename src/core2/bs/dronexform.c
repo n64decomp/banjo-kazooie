@@ -384,7 +384,7 @@ void bsdronexform_update(void){
                 (s32)func_802B051C(0, 1.0f, 80.0f, 255.0f)
             );
             if(func_8029E1A8(0)){
-                if(player_getTransformation() == TRANSFORM_WISHWASHY){
+                if(player_getTransformation() == TRANSFORM_7_WISHWASHY){
                     bs_setState(0x33);
                 }else{
                     __bsdronexform_setState(9);

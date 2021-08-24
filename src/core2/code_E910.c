@@ -88,7 +88,7 @@ bsMap D_80363824[] ={
     {0x52,          func_802B5FD0, func_802B6064, func_802B60D0, func_802B60D8},
     {BS_TIMEOUT_UNK53, func_802B6270, func_802B6314, func_802B63C8, func_80296590},
     {BS_LONGLEG_SLIDE, bsblongleg_slide_init, bsblongleg_slide_update, bsblongleg_slide_end, func_802B5350},
-    {BS_RECOIL, func_802B3868, func_802B3954, func_802B3A20, func_80296590},
+    {BS_56_RECOIL, func_802B3868, func_802B3954, func_802B3A20, func_80296590},
     {BS_BOMB_END, func_802A4430, func_802A4548, func_802A4664, func_802A505C},
     {0x58, func_802A4748, func_802A48B4, func_802A4A40, func_80296590},
     {0x59, func_802A4CD0, func_802A4CF0, func_802A4D10, func_802A505C},

@@ -6,12 +6,6 @@ extern int func_8024DD34(f32, f32, f32);
 #define _SQ3(x, y, z)  (((x) * (x)) + ((y) * (y)) + ((z) * (z)))
 #define _SQ3v1(v)      (v[0] * v[0] + v[1] * v[1] + v[2] * v[2])
 
-/*.rodata */
-extern f64 D_80377320;
-extern f32 D_80377328;
-extern f64 D_80377330;
-extern f32 D_80377338;
-
 /*.code*/
 void func_802F87B0(struct6s *this){
     f32 plyrPos[3]; //sp7C
@@ -44,7 +38,7 @@ void func_802F87B0(struct6s *this){
     sp4C[0] += plyrPos[0];
     sp4C[1] += plyrPos[1];
     sp4C[2] += plyrPos[2];
-    if(f20 < D_80377320){
+    if(f20 < 600.0){
         for(i = 0; i <10 && func_8024DD34(sp4C[0], sp4C[1] - 10.0f, sp4C[2]); i++){
             sp4C[1] += 100.0f;
         }
@@ -121,7 +115,7 @@ struct6s * func_802F8BE0(s32 arg0){
     this->unk24[2] = assetcache_get(0x89B); //brown_leaf
     this->unk24[3] = assetcache_get(0x89C); //green_leaf
     this->unk34 = 0;
-    this->unk38 = D_80377328;
+    this->unk38 = 0.1f;
     return this;
 }
 
@@ -176,7 +170,7 @@ void func_802F8CD0(struct6s * this){
     this->unk18++;
     if((s32)this->unk18 < vla_size(this->unk1C)){
         iPtr = vla_at(this->unk1C, this->unk18);
-        if(D_80377330 < func_80256064(iPtr->unk4, plyr_pos)){
+        if(1320.0 < func_80256064(iPtr->unk4, plyr_pos)){
             vla_remove(this->unk1C, this->unk18);
         }
     }
@@ -187,6 +181,6 @@ void func_802F8CD0(struct6s * this){
     if(func_8025773C(&this->unk38, f20)){
         if(this->unk22 == 1 && !func_802BEF64())
             func_802F87B0(this);
-        this->unk38 = D_80377338;
+        this->unk38 = 0.1f;
     }
 }

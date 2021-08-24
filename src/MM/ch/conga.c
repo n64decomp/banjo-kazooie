@@ -276,7 +276,7 @@ void func_803876D0(Actor *this){
     }//L803878F8
 
     if( sp3C && !this->unk138_24){
-        sp38 = (player_getTransformation()== TRANSFORM_TERMITE) ? text_conga_meet_as_termite : text_conga_meet;
+        sp38 = (player_getTransformation()== TRANSFORM_2_TERMITE) ? text_conga_meet_as_termite : text_conga_meet;
         func_80311480(sp38, 0, this->position, 0,0,0);
         this->unk138_24 = 1;
     } //L80387968

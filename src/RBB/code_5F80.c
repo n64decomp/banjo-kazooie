@@ -377,12 +377,12 @@ void func_8038CC9C(Actor *this, s32 new_state){
             sp68[0] = this->position_x + 200.0f*local->unk0->unk4;
             sp68[1] = this->position_y + 80.0f*local->unk0->unk4;
             sp68[2] = this->position_z;
-            func_802C3F04(func_802C4140, local->unk0->unk0 + 1,  reinterrupt_cast(s32, sp68[0]), reinterrupt_cast(s32, sp68[1]), reinterrupt_cast(s32, sp68[2]));
+            func_802C3F04(func_802C4140, local->unk0->unk0 + 1,  reinterpret_cast(s32, sp68[0]), reinterpret_cast(s32, sp68[1]), reinterpret_cast(s32, sp68[2]));
 
             sp68[0] = this->position_x - 200.0f*local->unk0->unk4;
             sp68[1] = this->position_y + 80.0f*local->unk0->unk4;
             sp68[2] = this->position_z;
-            func_802C3F04(func_802C4140, local->unk0->unk0 + 1, reinterrupt_cast(s32, sp68[0]), reinterrupt_cast(s32, sp68[1]), reinterrupt_cast(s32, sp68[2]));
+            func_802C3F04(func_802C4140, local->unk0->unk0 + 1, reinterpret_cast(s32, sp68[0]), reinterpret_cast(s32, sp68[1]), reinterpret_cast(s32, sp68[2]));
         }
     }//L8038D378
 

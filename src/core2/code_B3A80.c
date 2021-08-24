@@ -4,6 +4,27 @@
 
 #include "assets.h"
 
+extern u8 D_80370A1C;
+extern u8 D_80370A14; //assetCache_size;
+extern u8 D_80370A18;
+extern s32 D_80370A10;
+
+extern s32 D_80383CB0;
+extern AssetROMHead *D_80383CC0;
+extern AssetFileMeta *D_80383CC4;
+extern u32 D_80383CC8;
+extern s32 D_80383CCC; //asset_data_rom_offset
+extern void** D_80383CD0; //assetCache_ptrs;
+extern s32 *D_80383CD4;
+extern u8* D_80383CD8; //assetCache_dependencies;
+extern s16 *D_80383CDC; //assetCache_indexs
+
+struct {
+    vector(struct21s) *unk0;
+    vector(struct21s) *unk4;
+}D_80383CE0;
+s32 assetcache_release(void * arg0);
+
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B3A80/func_8033AA10.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B3A80/func_8033AA50.s")
@@ -27,27 +48,6 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B3A80/func_8033B020.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B3A80/func_8033B0D0.s")
-
-extern u8 D_80370A1C;
-extern u8 D_80370A14; //assetCache_size;
-extern u8 D_80370A18;
-extern s32 D_80370A10;
-
-extern s32 D_80383CB0;
-extern AssetROMHead *D_80383CC0;
-extern AssetFileMeta *D_80383CC4;
-extern u32 D_80383CC8;
-extern s32 D_80383CCC; //asset_data_rom_offset
-extern void** D_80383CD0; //assetCache_ptrs;
-extern s32 *D_80383CD4;
-extern u8* D_80383CD8; //assetCache_dependencies;
-extern s16 *D_80383CDC; //assetCache_indexs
-
-struct {
-    vector(struct21s) *unk0;
-    vector(struct21s) *unk4;
-}D_80383CE0;
-s32 assetcache_release(void * arg0);
 
 void func_8033B180(void){
     D_80383CE0.unk0 = vla_new(sizeof(struct21s), 0x10);
@@ -277,7 +277,10 @@ s32 func_8033BCB4(s32 arg0){
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B3A80/func_8033BD20.s")
+void func_8033BD20(void **arg0){
+    func_8033B020(*arg0);
+    *arg0 = NULL;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B3A80/func_8033BD4C.s")
 

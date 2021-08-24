@@ -41,12 +41,12 @@ ActorInfo D_8038AF90 = { 0xB7, 0x12B, 0x387, 1, D_8038AF60, //bottles
 
 SM2900Struct D_8038AFB4[8] = {
     {0xdf3, 0xe08, 1, -1},
-    {0xdf4, 0xdf5, 3, ABILITY_CAMERA_CONTROL},
-    {0xdfb, 0xdfe, 5, ABILITY_DIVE},
-    {   -1, 0xe00, 6, ABILITY_RATATAT_RAP},
-    {0xe04, 0xe06, 8, ABILITY_BARGE},
-    {   -1, 0xdf8, 4, ABILITY_FLIP},
-    {0xe01, 0xe03, 7, ABILITY_CLIMB},
+    {0xdf4, 0xdf5, 3, ABILITY_3_CAMERA_CONTROL},
+    {0xdfb, 0xdfe, 5, ABILITY_F_DIVE},
+    {   -1, 0xe00, 6, ABILITY_B_RATATAT_RAP},
+    {0xe04, 0xe06, 8, ABILITY_0_BARGE},
+    {   -1, 0xdf8, 4, ABILITY_8_FLIP},
+    {0xe01, 0xe03, 7, ABILITY_5_CLIMB},
     {0xe10, 0xe11, 0x11, -1},
 };
 
@@ -55,40 +55,40 @@ s32 D_8038AFE4 = 0;
 
 /* .code */
 int func_80388D80(void){
-    return ability_isUnlocked(ABILITY_DIVE)
-        || ability_isUnlocked(ABILITY_BEAR_PUNCH)
-        || ability_isUnlocked(ABILITY_ROLL)
-        || ability_isUnlocked(ABILITY_RATATAT_RAP)
-        || ability_isUnlocked(ABILITY_BARGE)
-        || ability_isUnlocked(ABILITY_HOLD_A_JUMP_HIGHER)
-        || ability_isUnlocked(ABILITY_FLAP)
-        || ability_isUnlocked(ABILITY_FLIP)
-        || ability_isUnlocked(ABILITY_CLIMB);
+    return ability_isUnlocked(ABILITY_F_DIVE)
+        || ability_isUnlocked(ABILITY_4_BEAR_PUNCH)
+        || ability_isUnlocked(ABILITY_C_ROLL)
+        || ability_isUnlocked(ABILITY_B_RATATAT_RAP)
+        || ability_isUnlocked(ABILITY_0_BARGE)
+        || ability_isUnlocked(ABILITY_A_HOLD_A_JUMP_HIGHER)
+        || ability_isUnlocked(ABILITY_7_FLAP)
+        || ability_isUnlocked(ABILITY_8_FLIP)
+        || ability_isUnlocked(ABILITY_5_CLIMB);
 }
 
 void func_80388E48(void){
-    ability_unlock(ABILITY_CAMERA_CONTROL);
-    ability_setHasUsed(ABILITY_BARGE);
-    ability_setHasUsed(ABILITY_BEAK_BOMB);
-    ability_setHasUsed(ABILITY_BEAK_BUSTER);
-    ability_setHasUsed(ABILITY_CAMERA_CONTROL);
-    ability_setHasUsed(ABILITY_BEAR_PUNCH);
-    ability_setHasUsed(ABILITY_CLIMB);
-    ability_setHasUsed(ABILITY_RATATAT_RAP);
-    ability_setHasUsed(ABILITY_ROLL);
-    ability_setHasUsed(ABILITY_HOLD_A_JUMP_HIGHER);
+    ability_unlock(ABILITY_3_CAMERA_CONTROL);
+    ability_setHasUsed(ABILITY_0_BARGE);
+    ability_setHasUsed(ABILITY_3_BEAK_BOMB);
+    ability_setHasUsed(ABILITY_2_BEAK_BUSTER);
+    ability_setHasUsed(ABILITY_3_CAMERA_CONTROL);
+    ability_setHasUsed(ABILITY_4_BEAR_PUNCH);
+    ability_setHasUsed(ABILITY_5_CLIMB);
+    ability_setHasUsed(ABILITY_B_RATATAT_RAP);
+    ability_setHasUsed(ABILITY_C_ROLL);
+    ability_setHasUsed(ABILITY_A_HOLD_A_JUMP_HIGHER);
 }
 
 void func_80388EB0(void){
-    ability_unlock(ABILITY_DIVE);
-    ability_unlock(ABILITY_BEAR_PUNCH);
-    ability_unlock(ABILITY_ROLL);
-    ability_unlock(ABILITY_RATATAT_RAP);
-    ability_unlock(ABILITY_BARGE);
-    ability_unlock(ABILITY_HOLD_A_JUMP_HIGHER);
-    ability_unlock(ABILITY_FLAP);
-    ability_unlock(ABILITY_FLIP);
-    ability_unlock(ABILITY_CLIMB);
+    ability_unlock(ABILITY_F_DIVE);
+    ability_unlock(ABILITY_4_BEAR_PUNCH);
+    ability_unlock(ABILITY_C_ROLL);
+    ability_unlock(ABILITY_B_RATATAT_RAP);
+    ability_unlock(ABILITY_0_BARGE);
+    ability_unlock(ABILITY_A_HOLD_A_JUMP_HIGHER);
+    ability_unlock(ABILITY_7_FLAP);
+    ability_unlock(ABILITY_8_FLIP);
+    ability_unlock(ABILITY_5_CLIMB);
     func_80388E48();
     mapSpecificFlags_set(3,1);
 }
@@ -313,9 +313,9 @@ void func_80389610(Actor * this){
             break;
             
         case 4://L80389848
-            if( !ability_isUnlocked(ABILITY_BEAR_PUNCH)
-                || !ability_isUnlocked(ABILITY_ROLL)
-                || !ability_isUnlocked(ABILITY_RATATAT_RAP)
+            if( !ability_isUnlocked(ABILITY_4_BEAR_PUNCH)
+                || !ability_isUnlocked(ABILITY_C_ROLL)
+                || !ability_isUnlocked(ABILITY_B_RATATAT_RAP)
             ){//L803898D4
                 mapSpecificFlags_set(4, 1);
             }
@@ -325,9 +325,9 @@ void func_80389610(Actor * this){
             break;
         
         case 6://L803898A0
-            if( !ability_isUnlocked(ABILITY_HOLD_A_JUMP_HIGHER)
-                || !ability_isUnlocked(ABILITY_FLAP)
-                || !ability_isUnlocked(ABILITY_FLIP)
+            if( !ability_isUnlocked(ABILITY_A_HOLD_A_JUMP_HIGHER)
+                || !ability_isUnlocked(ABILITY_7_FLAP)
+                || !ability_isUnlocked(ABILITY_8_FLIP)
             ){//L803898D4
                 mapSpecificFlags_set(0xE, 1);
             }
