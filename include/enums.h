@@ -1381,7 +1381,7 @@ enum bs_e
     BS_BOMB_END = 0x57,
     //0x58,
     BS_BFLY_UNK59 = 0x59,
-    BS_LOADZONE = 0x5A,
+    BS_5A_LOADZONE = 0x5A,
     BS_CARRY_THROW = 0x5B,
     
     BS_CROC_IDLE = 0x5E,

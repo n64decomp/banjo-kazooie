@@ -141,7 +141,7 @@ void func_802A8BB0(void){
     pitch_setIdeal(0.0f);
     roll_setIdeal(0.0f);
     func_802933FC(3);
-    if(next_state != BS_LOADZONE)
+    if(next_state != BS_5A_LOADZONE)
         func_802917E4(3, 0.0f);
     func_802A8AD8();
     func_80289F10(1);

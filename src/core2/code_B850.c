@@ -2,6 +2,11 @@
 #include "functions.h"
 #include "variables.h"
 
+void func_80293350(void);
+
+f32 D_8037C1B0[3];
+u8  D_8037C1BC;
+s32 D_8037C1C0[2];
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B850/func_802927E0.s")
 
@@ -57,10 +62,31 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B850/func_80293240.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B850/func_80293284.s")
+void func_80293284(f32 arg0[3]){
+    ml_vec3f_copy(D_8037C1B0, arg0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B850/func_802932AC.s")
+void func_802932AC(void){
+    _player_getPosition(D_8037C1B0);
+    D_8037C1BC = 0;
+    func_80293240(1);
+    D_8037C1C0[0] = 0;
+    D_8037C1C0[1] = 0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B850/func_802932EC.s")
+void func_802932EC(void){
+    s32 sp1C;
+    sp1C = func_8028ECAC();
+    if(func_8028B2E8() || func_8028EE84() || sp1C == 0xA){
+        func_80293350();
+        func_80293240(1);
+    }
+    func_80293190();
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B850/func_80293350.s")
+void func_80293350(void){
+    f32 sp1C[3];
+
+    _player_getPosition(sp1C);
+    func_80293284(sp1C);
+}

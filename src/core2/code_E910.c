@@ -252,7 +252,7 @@ void func_80295B04(void){
 
     func_8029A980(tmp_a1);
     func_8029A974(sp24);
-    bs_setState(BS_LOADZONE);
+    bs_setState(BS_5A_LOADZONE);
     func_8028D2BC();
     func_8029065C();
     func_8029175C();

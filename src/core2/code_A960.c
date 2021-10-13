@@ -2,11 +2,33 @@
 #include "functions.h"
 #include "variables.h"
 
+void func_80291930(s32);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A960/func_802918F0.s")
+int func_802918F0(void){
+    return func_802933C0(0x15);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A960/func_80291910.s")
+void func_80291910(void){
+    func_80291930(0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A960/func_80291930.s")
+void func_80291930(s32 arg0){
+    if(!func_802918F0()){
+        func_802933E8(0x15);
+        if(arg0){
+            func_8029E3C0(5, 2.0f);
+            func_8029C984();
+            bs_setState(BS_5A_LOADZONE);
+            func_802921C8(0);
+            func_802978DC(7);
+            func_8029151C(6);
+        }
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A960/func_802919A0.s")
+void func_802919A0(void){
+    if(func_802918F0() && func_8029E1A8(5)){
+        func_8029B890();
+        func_80291930(0);
+    }
+}
