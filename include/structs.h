@@ -553,6 +553,22 @@ typedef struct{
     u8 unk3F;
 }struct4Es;
 
+typedef struct{
+    u8 unk0;
+    u8 unk1;
+    f32 unk4[3];
+}struct50s;
 
+typedef struct{
+    s16 unk0;
+    u8 pad2[4];
+    s16 unk6;
+    u8 pad8[4];
+}struct51s;
+
+typedef struct{
+    s32 unk0;
+    u8 pad4[8];
+}struct52s;
 
 #endif

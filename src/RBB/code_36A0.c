@@ -96,7 +96,7 @@ void func_80389C78(Actor *this){
             func_80324E88(4.5f);
             func_80324E38(4.5f, 0);
             timedFunc_set_2(4.5f, (TFQM2)levelSpecificFlags_set, local->unk8 ? 0x4 : 0x3, 0);
-            timedFunc_set_3(4.5f, (TFQM3)func_802E4078, MAP_RBB_ENGINE_ROOM, !local->unk8 ? 3 : 2, 0);
+            timedFunc_set_3(4.5f, (TFQM3)func_802E4078, MAP_34_RBB_ENGINE_ROOM, !local->unk8 ? 3 : 2, 0);
             func_803228D8();
         }
     }//L80389EA8

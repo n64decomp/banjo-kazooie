@@ -34,7 +34,7 @@ ActorInfo D_80390B68 = {0xD5, actor_mud_hut, model_mudhut_top, 0x01, D_80390B30,
 
 /* .code section */
 void func_8038EA30(void){
-    if((getGameMode() != GAME_MODE_ATTRACT_DEMO) && (1.5 < func_8028E80C(2)) ){
+    if((getGameMode() != GAME_MODE_7_ATTRACT_DEMO) && (1.5 < func_8028E80C(2)) ){
         func_8028F710(2, 1.5);
     }
 }

@@ -64,25 +64,25 @@ s32 func_80345FB4(s32 item, s32 diff, s32 arg2){
 
     if(diff < 0){
         if( (item == ITEM_EGGS && func_803203FC(0x74))
-            || (item == ITEM_LIFE && func_803203FC(0x73))
+            || (item == ITEM_16_LIFE && func_803203FC(0x73))
             || (item == ITEM_RED_FEATHER && func_803203FC(0x75))
             || (item == ITEM_GOLD_FEATHER && func_803203FC(0x76))
-            || (item == item_air && func_803203FC(0x96))) 
+            || (item == ITEM_17_AIR && func_803203FC(0x96))) 
             diff = 0;
     }
     (newVal = ((D_80385F30[item] + diff) < 0)? 0 : D_80385F30[item] + diff);
     D_80385F30[item] = newVal;
 
     sp34 = (func_8031FF1C(BKPROG_B9_DOUBLE_HEALTH))? 2 : 1 ;
-    D_80385F30[item_health_total] = (D_80385F30[item_health_total] > sp34*8)? sp34*8 : D_80385F30[item_health_total];
+    D_80385F30[ITEM_15_HEALTH_TOTAL] = (D_80385F30[ITEM_15_HEALTH_TOTAL] > sp34*8)? sp34*8 : D_80385F30[ITEM_15_HEALTH_TOTAL];
 
-    D_80385F30[item_health]= (D_80385F30[item_health_total] < D_80385F30[item_health])? D_80385F30[item_health_total]: D_80385F30[item_health];
+    D_80385F30[ITEM_14_HEALTH]= (D_80385F30[ITEM_15_HEALTH_TOTAL] < D_80385F30[ITEM_14_HEALTH])? D_80385F30[ITEM_15_HEALTH_TOTAL]: D_80385F30[ITEM_14_HEALTH];
 
-    D_80385F30[item_air] = (0xe10 < D_80385F30[item_air])? 0xe10 : D_80385F30[item_air];
+    D_80385F30[ITEM_17_AIR] = (0xe10 < D_80385F30[ITEM_17_AIR])? 0xe10 : D_80385F30[ITEM_17_AIR];
     
     D_80385F30[item_mumbo_token_total] = D_80385F30[item_mumbo_token];
 
-    D_80385F30[ITEM_LIFE] = (0xFF < D_80385F30[ITEM_LIFE])? 0xFF : D_80385F30[ITEM_LIFE];
+    D_80385F30[ITEM_16_LIFE] = (0xFF < D_80385F30[ITEM_16_LIFE])? 0xFF : D_80385F30[ITEM_16_LIFE];
 
     switch(item){
         case ITEM_EGGS:
@@ -106,8 +106,8 @@ s32 func_80345FB4(s32 item, s32 diff, s32 arg2){
     }
     if(!arg2){
         func_802FACA4(item); //displays item on HUD
-        if(item == item_health || item == item_air)
-            func_802FACA4(ITEM_LIFE);
+        if(item == ITEM_14_HEALTH || item == ITEM_17_AIR)
+            func_802FACA4(ITEM_16_LIFE);
     }
 
     sp3C = item_empty(item);
@@ -115,11 +115,11 @@ s32 func_80345FB4(s32 item, s32 diff, s32 arg2){
         D_80385F30[item + 6] = 0;
 
     switch(item){
-        case item_health:
+        case ITEM_14_HEALTH:
             if(sp3C)
                 D_80385FE4 = 1;
             break;
-        case item_air:
+        case ITEM_17_AIR:
             sp30 = func_80301D24(oldVal);
             sp2C = func_80301D24(newVal);
             if(sp3C){
@@ -140,7 +140,7 @@ s32 func_80345FB4(s32 item, s32 diff, s32 arg2){
             func_80346DB4(D_80385F30[item]);
             if(D_80385F30[item] == 100 && sp28 != 100){
                 func_8025A6EC(JINGLE_100TH_NOTE_COLLECTED, 20000);
-                func_80345F24(ITEM_LIFE);
+                func_80345F24(ITEM_16_LIFE);
             }
             break;
         case item_jiggy_total:

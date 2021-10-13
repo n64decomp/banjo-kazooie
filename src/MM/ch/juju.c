@@ -108,7 +108,7 @@ void func_803892A8(ActorMarker **ptr){
                 func_8025A6EC(JINGLE_PUZZLE_SOLVED_FANFARE, 0x6d60);
             }
             else{//L80389384
-                func_8025A6EC(SFX_DING_B, 0x7fff);
+                func_8025A6EC(COMUSIC_2B_DING_B, 0x7fff);
             }
             for(s2 = 3, j = i + 1; j < 4; s2+=5, j++){
                 actorPtr = marker_getActor(ptr[j]);

@@ -62,7 +62,7 @@ void func_8038D428(ActorMarker *arg0, s32 arg1) {
 
     temp_v0 = marker_getActor(arg0);
     if (temp_v0->state != 3) {
-        func_8025A70C(SFX_DING_B);
+        func_8025A70C(COMUSIC_2B_DING_B);
         temp_v0->unk38_31++;
         if (temp_v0->unk38_31 >= 3) {
             func_80328A84(temp_v0, 3);

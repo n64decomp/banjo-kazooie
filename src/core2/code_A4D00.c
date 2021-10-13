@@ -3,6 +3,7 @@
 #include "variables.h"
 #include "structs.h"
 
+Prop *func_80303F7C(s32, f32, s32, s32);
 s32 func_8032D9C0(Cube*, Prop*);
 void func_80332B2C(ActorMarker * arg0);
 s32 func_803058C0(f32);
@@ -12,6 +13,7 @@ ActorMarker * func_80332A60(void);
 
 extern ModelCache *modelCache; //model pointer array pointer
 extern u32 D_80383444;
+extern int D_80383448;
 vector(u32) *D_80383550;
 vector(u32) *D_80383554;
 
@@ -101,7 +103,7 @@ s32 func_8032D9C0(Cube *this, Prop* prop){
 
     sp24 = 0;
     if(this->prop2Cnt != 0){
-        sp24 = prop->pad8_1; 
+        sp24 = prop->unk8_1; 
         if(func_80305D14()){
             func_80305CD8(func_803058C0(prop->unk6), -1);
         }
@@ -262,7 +264,16 @@ void func_8032F470(s32 *pos, ActorMarker *arg1){
         func_80307CA0(arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032F528.s")
+Prop *func_8032F528(void){
+    Prop * prop = func_80303F7C(0, 0, 0, 1);
+    if(prop != NULL){
+        D_80383448 = TRUE;
+    }
+    else{
+        D_80383448 = FALSE;
+    }
+    return prop;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032F578.s")
 

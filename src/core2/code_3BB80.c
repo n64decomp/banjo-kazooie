@@ -178,7 +178,7 @@ extern ActorInfo D_80367BEC;
 extern ActorInfo D_80367C10;
 
 void func_802C2B10(void){
-    u32 tmp = (func_803348C0() == 0x90)? 0x32: 0xF;
+    u32 tmp = (func_803348C0() == MAP_90_GL_BATTLEMENTS)? 0x32: 0xF;
     D_80365DC8 = (FunctionQueue *) malloc(tmp * sizeof(FunctionQueue));
 }
 
@@ -191,15 +191,15 @@ void func_802C2B5C(void){
     func_802D1724();
     func_802E1790();
     switch(loaded_asm_file){
-        case OVERLAY_WHALE:
+        case OVERLAY_2_WHALE:
             cc_func_803870E0();
             break;
-        case OVERLAY_DESERT:
+        case OVERLAY_4_DESERT:
             gv_func_80387118();
             break;
-        case OVERLAY_BEACH:
+        case OVERLAY_5_BEACH:
             break;
-        case OVERLAY_SWAMP:
+        case OVERLAY_7_SWAMP:
             bgs_func_803885DC();
             break;
         default:
@@ -352,46 +352,46 @@ void func_802C2B5C(void){
     switch(loaded_asm_file){
         default:
             break;
-        case OVERLAY_WITCH:
+        case OVERLAY_D_WITCH:
             lair_func_8038A0C4();
             break;
-        case OVERLAY_BATTLE:
+        case OVERLAY_E_BATTLE:
             fight_func_803863F0();
             break;
-        case OVERLAY_INTRO:
+        case OVERLAY_C_INTRO:
             cutscene_func_8038C4E0();
             break;
-        case OVERLAY_TRAINING:
+        case OVERLAY_B_TRAINING:
             sm_func_80386810();
             break;
-        case OVERLAY_HAUNTED:
+        case OVERLAY_3_HAUNTED:
             mmm_func_803890E0();
             break;
-        case OVERLAY_WHALE:
+        case OVERLAY_2_WHALE:
             cc_func_80387DA0();
             break;
-        case OVERLAY_DESERT:
+        case OVERLAY_4_DESERT:
             gv_func_8038F154();
             break;
-        case OVERLAY_BEACH:
+        case OVERLAY_5_BEACH:
             ttc_func_80388AC0();
             break;
-        case OVERLAY_JUNGLE:
+        case OVERLAY_6_JUNGLE:
             mm_func_803888B0();
             break;
-        case OVERLAY_SWAMP:
+        case OVERLAY_7_SWAMP:
             bgs_func_8038F1E0();
             break;
-        case OVERLAY_SHIP:
+        case OVERLAY_8_SHIP:
             rbb_func_80386C48();
             break;
-        case OVERLAY_SNOW:
+        case OVERLAY_9_SNOW:
             fp_func_80391324();
             func_803053E8(&D_80367BC8, actor_new, 0x8);
             func_803053E8(&D_80367BEC, actor_new, 0x8);
             func_803053E8(&D_80367C10, actor_new, 0x8);
             break;
-        case OVERLAY_TREE:
+        case OVERLAY_A_TREE:
             ccw_func_8038DB6C();
             break;
     }
@@ -466,7 +466,7 @@ void func_802C3BE8(void){
 }
 
 void func_802C3BF8(void (* arg0)(void)){
-    u32 tmp = (func_803348C0() == 0x90)? 0x32: 0xF;
+    u32 tmp = (func_803348C0() == MAP_90_GL_BATTLEMENTS)? 0x32: 0xF;
     if(tmp != D_80365DC4){
         D_80365DC8[D_80365DC4].func0 = arg0;
         D_80365DC8[D_80365DC4].arg_cnt = 0;
@@ -475,7 +475,7 @@ void func_802C3BF8(void (* arg0)(void)){
 }
 
 void func_802C3C88(void (* arg0)(void), s32 arg1){
-    u32 tmp = (func_803348C0() == 0x90)? 0x32: 0xF;
+    u32 tmp = (func_803348C0() == MAP_90_GL_BATTLEMENTS)? 0x32: 0xF;
     if(tmp != D_80365DC4){
         D_80365DC8[D_80365DC4].func0 = arg0;
         D_80365DC8[D_80365DC4].arg[0] = arg1;
@@ -485,7 +485,7 @@ void func_802C3C88(void (* arg0)(void), s32 arg1){
 }
 
 void func_802C3D3C(void (* arg0)(void), s32 arg1, s32 arg2){
-    u32 tmp = (func_803348C0() == 0x90)? 0x32: 0xF;
+    u32 tmp = (func_803348C0() == MAP_90_GL_BATTLEMENTS)? 0x32: 0xF;
     if(tmp != D_80365DC4){
         D_80365DC8[D_80365DC4].func0 = arg0;
         D_80365DC8[D_80365DC4].arg[0] = arg1;
@@ -496,7 +496,7 @@ void func_802C3D3C(void (* arg0)(void), s32 arg1, s32 arg2){
 }
 
 void func_802C3E10(void (* arg0)(void), s32 arg1, s32 arg2, s32 arg3){
-    u32 tmp = (func_803348C0() == 0x90)? 0x32: 0xF;
+    u32 tmp = (func_803348C0() == MAP_90_GL_BATTLEMENTS)? 0x32: 0xF;
     if(tmp != D_80365DC4){
         D_80365DC8[D_80365DC4].func0 = arg0;
         D_80365DC8[D_80365DC4].arg[0] = arg1;
@@ -508,7 +508,7 @@ void func_802C3E10(void (* arg0)(void), s32 arg1, s32 arg2, s32 arg3){
 }
 
 void func_802C3F04(void (* arg0)(void), s32 arg1, s32 arg2, s32 arg3, s32 arg4){
-    u32 tmp = (func_803348C0() == 0x90)? 0x32: 0xF;
+    u32 tmp = (func_803348C0() == MAP_90_GL_BATTLEMENTS)? 0x32: 0xF;
     if(tmp != D_80365DC4){
         D_80365DC8[D_80365DC4].func0 = arg0;
         D_80365DC8[D_80365DC4].arg[0] = arg1;
@@ -521,7 +521,7 @@ void func_802C3F04(void (* arg0)(void), s32 arg1, s32 arg2, s32 arg3, s32 arg4){
 }
 
 void func_802C4014(void (* arg0)(void), s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5){
-    u32 tmp = (func_803348C0() == 0x90)? 0x32: 0xF;
+    u32 tmp = (func_803348C0() == MAP_90_GL_BATTLEMENTS)? 0x32: 0xF;
     if(tmp != D_80365DC4){
         D_80365DC8[D_80365DC4].func0 = arg0;
         D_80365DC8[D_80365DC4].arg[0] = arg1;

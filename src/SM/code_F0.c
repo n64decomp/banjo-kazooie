@@ -35,7 +35,7 @@ u32 func_803864E0(void){
 
 void func_803864FC(s32 arg0){
     u32 *addr;
-    if(getGameMode() != GAME_MODE_ATTRACT_DEMO){
+    if(getGameMode() != GAME_MODE_7_ATTRACT_DEMO){
         addr = func_803864E0();
         *addr = 1 << arg0;
     }

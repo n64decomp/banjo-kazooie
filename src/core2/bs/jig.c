@@ -111,10 +111,10 @@ void bsjig_jiggy_end(void){
         && bs_getNextState() != BS_JIG_NOTEDOOR
     ){
         func_8028F918(2);
-        func_802E4078(MAP_CS_END_ALL_100, 0, 1);
+        func_802E4078(MAP_95_CS_END_ALL_100, 0, 1);
     } else {//L802B0DFC
         if( jiggyscore_total() == 2
-            && func_803348C0() == 2
+            && func_803348C0() == MAP_2_MM_MUMBOS_MOUNTAIN
         ){
             sp2C = 0xb51;
             sp28 = 0xe;
@@ -153,7 +153,7 @@ void bsjig_notedoor_end(void){
         && func_8031FF1C(BKPROG_FC_DEFEAT_GRUNTY)
     ){
         func_8028F918(2);
-        func_802E4078(MAP_CS_END_ALL_100, 0, 1);
+        func_802E4078(MAP_95_CS_END_ALL_100, 0, 1);
     }
     func_80298A64();
 }

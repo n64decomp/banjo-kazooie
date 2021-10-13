@@ -241,7 +241,7 @@ void func_802FE844(s32 arg0, struct8s *arg1){
                         D_803815E4 = 0;
                         D_803815E0 = 0.9999f;
                         func_803463D4(0x13, -6);
-                        timedFunc_set_2(0.25f, func_8025A6EC, SFX_DING_B, 28000);
+                        timedFunc_set_2(0.25f, func_8025A6EC, COMUSIC_2B_DING_B, 28000);
                         func_803463D4(0x14, 0);
                         timedFunc_set_1(1.25f, func_80345F24, 0x15);
                         timedFunc_set_1(1.25f, func_8030E484, 0x3EA);

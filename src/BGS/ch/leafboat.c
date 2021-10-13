@@ -30,7 +30,7 @@ Actor *func_8038FD10(ActorMarker *this, Gfx** gdl, Mtx** mtx, u32 arg3){
 }
 
 void func_8038FD88(ActorMarker *this, u32 arg1){
-    this->unk3C_1 = 1;
+    this->unk3E_1 = 1;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/BGS/ch/leafboat/func_8038FD9C.s")

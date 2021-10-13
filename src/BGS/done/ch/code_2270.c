@@ -46,7 +46,7 @@ void func_803886F4(ActorMarker *this){
 }
 
 void func_8038873C(void){
-    func_8025A6EC(SFX_DING_B, 28000);
+    func_8025A6EC(COMUSIC_2B_DING_B, 28000);
 }
 
 void func_80388760(void){

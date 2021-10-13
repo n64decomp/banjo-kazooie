@@ -79,7 +79,7 @@ void func_8038E120(ActorMarker * marker, s32 arg1){
     if(actor->state != 3){
         if(local->unk0[indx]){
             local->unk0[indx]--;
-            func_8025A70C(SFX_DING_B);
+            func_8025A70C(COMUSIC_2B_DING_B);
             if(local->unk0[indx] <= 0){
                 func_8038E0D4(actor, indx + 0x19a, -100.0f, 0.0f, 1.2f);
                 func_80324D54(1.2f, 0x90, 1.0f, 0x7d00, &actor->position, 1000.0f, 2000.0f);

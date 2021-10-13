@@ -57,7 +57,7 @@ void func_802A1020(void){
 
 void func_802A1080(void){
     func_802A0340();
-    func_8028A010(ANIM_BEE_IDLE,3.0f);
+    func_8028A010(ASSET_1DE_ANIM_BEE_IDLE,3.0f);
     func_8029C7F4(1,1,1,2);
     func_80297970(0.0f);
     func_802900B4();
@@ -93,7 +93,7 @@ void func_802A117C(void){
 
 void func_802A11A4(void){
     func_802A0340();
-    func_8028A010(ANIM_BEE_WALK, 0.38f);
+    func_8028A010(ASSET_1DD_ANIM_BEE_WALK, 0.38f);
     func_8029C7F4(2,1,1,2);
     func_80289EC8(D_803649E0, D_803649E4, D_803649E8, D_803649EC);
     func_802900B4();
@@ -134,7 +134,7 @@ void func_802A12FC(void){
     func_802A0340();
     animctrl_reset(s0);
     animctrl_setSmoothTransition(s0, 0);
-    animctrl_setIndex(s0, ANIM_BEE_JUMP);
+    animctrl_setIndex(s0, ASSET_1E2_ANIM_BEE_JUMP);
     animctrl_setSubRange(s0, 0, 0.34f);
     func_8028774C(s0, 0.1f);
     animctrl_setDuration(s0, 1.2f);
@@ -228,7 +228,7 @@ void func_802A1664(void){
     s0 = player_getAnimCtrlPtr();
     func_802A0340();
     animctrl_reset(s0);
-    animctrl_setIndex(s0, ANIM_BEE_JUMP);
+    animctrl_setIndex(s0, ASSET_1E2_ANIM_BEE_JUMP);
     func_8028774C(s0, 0.34f);
     animctrl_setDuration(s0, 8.0f);
     animctrl_setSubRange(s0, 0, 0.51f);
@@ -307,7 +307,7 @@ void func_802A18E8(s32 arg0){
     sp3C = player_getAnimCtrlPtr();
     func_802A0340();
     animctrl_reset(sp3C);
-    animctrl_setIndex(sp3C, ANIM_BEE_OW);
+    animctrl_setIndex(sp3C, ASSET_1E0_ANIM_BEE_OW);
     animctrl_setDuration(sp3C, 1.0f);
     animctrl_setSubRange(sp3C, 0, 0.7518f);
     animctrl_setPlaybackType(sp3C,  ANIMCTRL_ONCE);
@@ -401,7 +401,7 @@ void bsbeemain_die_init(void){
     func_802A0340();
     animctrl_reset(sp3C);
     animctrl_setSmoothTransition(sp3C, 0);
-    animctrl_setIndex(sp3C, ANIM_BEE_DIE);
+    animctrl_setIndex(sp3C, ASSET_1E1_ANIM_BEE_DIE);
     animctrl_setSubRange(sp3C, 0, 0.3966f);
     animctrl_setDuration(sp3C, 1.7f);
     animctrl_setPlaybackType(sp3C,  ANIMCTRL_ONCE);
@@ -476,7 +476,7 @@ void func_802A1F2C(void){
 
 void func_802A1F6C(void){
     func_802A0340();
-    func_8028A010(ANIM_BEE_IDLE, 3.0f);
+    func_8028A010(ASSET_1DE_ANIM_BEE_IDLE, 3.0f);
     func_8029C7F4(1,1,3,2);
     func_80297970(0.0f);
     func_8029C674();
@@ -513,7 +513,7 @@ void func_802A2054(void){
 
 void func_802A2098(void){
     func_802933FC(0x1A);
-    func_8028A010(ANIM_BEE_IDLE, 3.0f);
+    func_8028A010(ASSET_1DE_ANIM_BEE_IDLE, 3.0f);
     yaw_setIdeal(func_8029B41C());
     func_8029C7F4(1,1,3,2);
     func_80297970(0.0f);

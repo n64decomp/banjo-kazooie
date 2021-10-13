@@ -54,10 +54,10 @@ ItemPrint D_803692F8[0x2C] = {
     { func_802FD320, func_802FD330, func_802FD33C, func_802FD350, 0, NULL }, //17
     { func_802FF090, func_802FFA50, func_802FF3B8, func_802FF358, 3, NULL }, //18
     { func_802FDE2C, func_802FE844, func_802FDEE0, func_802FDDC4, 0, NULL }, //19
-    { func_80300CD8, func_80301348, func_80300D0C, func_80300C70, 0, NULL }, //item_health
-    { func_802FD320, func_802FD330, func_802FD33C, func_802FD350, 0, NULL }, //item_health_total
-    { func_802FFE4C, func_803005BC, func_802FFF34, func_802FFED4, 6, NULL }, //ITEM_LIFE
-    { func_8030179C, func_80301DE4, func_803017D0, func_80301754, 0, NULL }, //item_air
+    { func_80300CD8, func_80301348, func_80300D0C, func_80300C70, 0, NULL }, //ITEM_14_HEALTH
+    { func_802FD320, func_802FD330, func_802FD33C, func_802FD350, 0, NULL }, //ITEM_15_HEALTH_TOTAL
+    { func_802FFE4C, func_803005BC, func_802FFF34, func_802FFED4, 6, NULL }, //ITEM_16_LIFE
+    { func_8030179C, func_80301DE4, func_803017D0, func_80301754, 0, NULL }, //ITEM_17_AIR
     { func_803007C0, func_8030081C, func_80300974, func_80300BB4, 2, NULL }, //24
     { func_803007C0, func_8030081C, func_80300974, func_80300BB4, 2, NULL }, //25
     { func_802FD7B0, func_802FD80C, func_802FDAF4, func_802FDC80, 6, NULL }, //26
@@ -191,7 +191,7 @@ void func_802FAC3C(void){
 
 
 void func_802FACA4(s32 itemId){
-    if(func_802FB0D4(D_803692F8[itemId].unk14) == 2 || itemId < 6 || itemId == item_air ){
+    if(func_802FB0D4(D_803692F8[itemId].unk14) == 2 || itemId < 6 || itemId == ITEM_17_AIR ){
         D_803810B8[itemId] += ((f32)item_getCount(itemId) - D_803810B8[itemId] )*0.7;
     }
     func_802FB020(D_803692F8[itemId].unk14, 1);

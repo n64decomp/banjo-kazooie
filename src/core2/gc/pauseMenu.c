@@ -198,9 +198,9 @@ void func_80311A84(void){
 
     if(func_802FD2D4()){
         D_80383010.unk70_30 = 1;
-        func_802FAD64(ITEM_LIFE);
+        func_802FAD64(ITEM_16_LIFE);
     }else{
-        func_802FACA4(ITEM_LIFE);
+        func_802FACA4(ITEM_16_LIFE);
     }
 }
 
@@ -212,7 +212,7 @@ void func_80311B44(void){
         func_802FAD64(D_8036C604[i]);
     }
     func_802FAD64(ITEM_JINJOS);
-    func_802FAD64(ITEM_LIFE);
+    func_802FAD64(ITEM_16_LIFE);
 }
 
 void func_80311B9C(s32 level, s32 *valPtr, s32 *maxPtr){
@@ -664,7 +664,7 @@ s32 func_80313380(void){
                 D_80383010.unk70_31 = 0;
             }//L8031350C
             if(D_80383010.unk70_30 && !func_802FD2D4()){
-                func_802FACA4(ITEM_LIFE);
+                func_802FACA4(ITEM_16_LIFE);
                 D_80383010.unk70_30 = 0;
             }
             if(func_8024E67C(BUTTON_START) == 1){

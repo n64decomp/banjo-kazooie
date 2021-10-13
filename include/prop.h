@@ -11,25 +11,33 @@ enum ch_id{
 };
 
 typedef struct sprite_prop_s{
-    u8 pad0[0xC];
+    u32 unk0_31:0xC;
+    u32 pad0_19:0x14;
+    u8 pad4[0x4];
+    u32 pad8_31: 27;
+    u32 unk8_4: 1;
+    u32 pad8_3: 2;
+    u32 unk8_1:1;
+    u32 unk8_0:1;
 } SpriteProp;
 
 typedef struct prop_prop_s{
-    u8 pad0[0xC];
+    u32 unk0_31:0xC;
+    u32 pad0_19:0x14;
+    u8 pad4[0x8];
 } PropProp;
 
 typedef struct actor_prop_s{
     struct actorMarker_s* marker;
     s16 x;
     s16 y;
-    s32 z:16;
-    u32 pad8_15:11;
-    u32 unk8_4:1;
-    u32 unk8_3:1;
-    u32 unk8_2:1;
-    u32 unk8_1:1;
-    u32 unk8_0:1;
-    //u8 padC;
+    s16 z;
+    u16 pad8_15:11;
+    u16 unk8_4:1;
+    u16 unk8_3:1;
+    u16 unk8_2:1;
+    u16 unk8_1:1;
+    u16 unk8_0:1;
 } ActorProp;
 
 typedef struct actorMarker_s{
@@ -56,13 +64,13 @@ typedef struct actorMarker_s{
     u32         collidable:1;
     void        (*unk30)(struct actor_s *);
     s32         unk34;
-    u16         unk38;
-    u16         unk3A;
-    u32         unk3C_31:16;
-    u32         pad3C_23:1;
-    u32         modelId:13;
-    u32         unk3C_1:1;
-    u32         unk3C_0:1;
+    s16         unk38;
+    s16         unk3A;
+    s16         unk3C;
+    u16         pad3E_15:1;
+    u16         modelId:13;
+    u16         unk3E_1:1;
+    u16         unk3E_0:1;
     u32         unk40_31:4;
     u32         pad40_27:1;
     u32         unk40_26:3;
@@ -435,18 +443,18 @@ typedef struct actor_spawn_s{
 
 typedef union prop_s
 {
-    ActorProp   actor;
-    SpriteProp  sprite;
-    PropProp    prop;
+    ActorProp   actorProp;
+    SpriteProp  spriteProp;
+    PropProp    propProp;
     struct{
         u8 pad0[6];
         s16 unk6;
-        s32 pad8_31: 30;
-        u32 pad8_1:1;
-        s32 markerFlag: 1;
+        s32 pad8_31: 29;
+        u32 unk8_2: 1;
+        u32 unk8_1: 1;
+        u32 markerFlag: 1;
     };
 } Prop;
-
 
 typedef struct cude_s{
     u32 x:5;

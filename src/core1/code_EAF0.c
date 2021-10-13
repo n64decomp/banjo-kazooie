@@ -178,17 +178,17 @@ void func_8024E7C8(void){
     D_802812D0.stick_x = D_802812B8[0].stick_x;
     D_802812D0.stick_y = D_802812B8[0].stick_y;
     D_802812D0.button = D_802812B8[0].button;
-    if( getGameMode() == game_mode_file_playback
-        || getGameMode() == GAME_MODE_ATTRACT_DEMO
+    if( getGameMode() == GAME_MODE_6_FILE_PLAYBACK
+        || getGameMode() == GAME_MODE_7_ATTRACT_DEMO
         || getGameMode() == GAME_MODE_8_BOTTLES_BONUS
         || getGameMode() == GAME_MODE_A_SNS_PICTURE
-        || getGameMode() == game_mode_BANJO_AND_KAZOOIE
+        || getGameMode() == GAME_MODE_9_BANJO_AND_KAZOOIE
     ){
         s0 = START_BUTTON;
         if(gctransition_8030BD98()){
             D_802816E0 += func_8033DD9C();
         }
-        if(D_802816E0 < 1.0 || getGameMode() == game_mode_BANJO_AND_KAZOOIE){
+        if(D_802816E0 < 1.0 || getGameMode() == GAME_MODE_9_BANJO_AND_KAZOOIE){
             s0 = 0;
         }
 

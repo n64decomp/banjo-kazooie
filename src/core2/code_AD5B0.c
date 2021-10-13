@@ -185,7 +185,7 @@ void func_80334B20(s32 arg0, s32 arg1, s32 arg2) {
     func_80335128(1);
     func_802D2CB8();
     func_80244AB0();
-    if (func_803348C0() == 0x8E) {
+    if (func_803348C0() == MAP_8E_GL_FURNACE_FUN) {
         func_8038E7C4();
     }
     if (func_80322914() == 0) {
@@ -307,7 +307,7 @@ s32 func_80334ECC(void) {
         } else {
             phi_v1 = 0x1F;
         }
-        if (((phi_v1 & phi_v0) == 3) && (get_loaded_overlay_id() == OVERLAY_BEACH)) {
+        if (((phi_v1 & phi_v0) == 3) && (get_loaded_overlay_id() == OVERLAY_5_BEACH)) {
             if ((func_8038BF8C() == 0) || (D_80370250 != 0)) {
                 D_80370250 = (u8)1;
                 for (phi_v0 = 0; phi_v0 != 0x8F0D180; phi_v0++){

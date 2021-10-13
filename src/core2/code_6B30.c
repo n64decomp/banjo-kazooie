@@ -55,7 +55,7 @@ s32 func_8028DB14(ActorMarker *arg0){
             return __maybe(func_802A6510(),5);
             break;
         case BS_WONDERWING_ENTER:
-        case BS_WONDERWING_IDLE:
+        case BS_1B_WONDERWING_IDLE:
         case BS_WONDERWING_WALK:
         case BS_WONDERWING_JUMP:
         case BS_WONDERWING_EXIT:

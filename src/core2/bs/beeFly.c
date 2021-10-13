@@ -70,7 +70,7 @@ void func_802A0630(void){
         case 1:
             func_802A04F0();
             if(animctrl_isStopped(mvmnt))
-                func_8028A010(ANIM_BEE_FLY, 0.38f);
+                func_8028A010(ASSET_1DC_ANIM_BEE_FLY, 0.38f);
             if(func_80297AAC() < 0.0f)
                 next_state = BS_BEE_FLY;
             break;
@@ -151,7 +151,7 @@ void bsbeefly_enter(void){
     s32 mvmnt;
 
     mvmnt = bs_getPrevState();
-    func_8028A010(ANIM_BEE_FLY, 0.38);
+    func_8028A010(ASSET_1DC_ANIM_BEE_FLY, 0.38);
     func_8029C7F4(1, 1, 3, 3);
     if(func_802933C0(9))
         func_80297970(0.0f);

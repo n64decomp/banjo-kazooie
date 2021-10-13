@@ -107,13 +107,13 @@ void func_803866F4(Actor *this, s32 arg1){
     
     while(1){
         if(arg1 == 2){
-            func_8025A6EC(SFX_DING_B, 28000);
+            func_8025A6EC(COMUSIC_2B_DING_B, 28000);
             local = (ActorLocal_RBB_0 *) &this->local;
             local->unkC = 3;
         }
         if(arg1 == 3){
             local->unk8++;
-            func_8025A6EC(SFX_DING_B, 28000);
+            func_8025A6EC(COMUSIC_2B_DING_B, 28000);
             func_80324E38(0.0f, 3);
             timedFunc_set_2(0.5f, (TFQM2) func_8025A6EC, JINGLE_PUZZLE_SOLVED_FANFARE, 28000);
             timedFunc_set_1(1.0f,  (TFQM1) func_803865D0, this->marker);

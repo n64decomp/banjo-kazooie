@@ -670,12 +670,12 @@ f32 func_80257CF8(f32 a, f32 b, f32 c, f32 d, f32 e)
     return func_80257C60(a, b, c, d, e, func_80257658);
 }
 
-void func_80257D30(f32 a, f32 b, f32 c, f32 d, f32 e)
+f32 func_80257D30(f32 a, f32 b, f32 c, f32 d, f32 e)
 {
     if (a < 0)
-        ml_f_map(a, -b, -c, -d, -e);
+        return ml_f_map(a, -b, -c, -d, -e);
     else
-        ml_f_map(a, b, c, d, e);
+        return ml_f_map(a, b, c, d, e);
 }
 
 void func_80257DB0(f32 arg0[3], f32 arg1[3], f32 arg2[3])

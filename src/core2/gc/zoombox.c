@@ -172,7 +172,7 @@ void gczoombox_draw(gczoombox_t *this, Gfx **gdl, Mtx ** mptr, void *vptr){
      if(!this)
           return;
 
-     if(getGameMode() == game_mode_BANJO_AND_KAZOOIE)
+     if(getGameMode() == GAME_MODE_9_BANJO_AND_KAZOOIE)
           func_8034A900();
      //L80316BCC
      if(this->unk1A4_28 && this->unk135 && this->unkF0){
@@ -208,7 +208,7 @@ void gczoombox_draw(gczoombox_t *this, Gfx **gdl, Mtx ** mptr, void *vptr){
                this->unk168 = MIN(this->unk168, 0xff);
           }
      }//L80316DD8
-     if(getGameMode() == game_mode_BANJO_AND_KAZOOIE){
+     if(getGameMode() == GAME_MODE_9_BANJO_AND_KAZOOIE){
           func_8034A964();
      }
 

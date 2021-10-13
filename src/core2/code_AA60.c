@@ -3,10 +3,18 @@
 #include "variables.h"
 
 void func_80254008(void);
+extern void func_80256E24(f32[3], f32, f32, f32, f32, f32);
 void assetcache_release(void *); //assetcache_free
+
+
+extern s32 D_80363780;
 
 extern void *D_8037C0E0; //playerModelPtr
 extern s16 D_8037C0E4; //playerModel asset_id
+extern u8 D_8037C0E8;
+extern f32 D_8037C100[3];
+extern f32 D_8037C114;
+extern f32 D_8037C130[0][4];
 
 //public
 void playerModel_set(s32 asset_id);
@@ -34,7 +42,32 @@ void func_80291D04(void){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AA60/func_80291E88.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AA60/func_80291ECC.s")
+
+
+void func_80291ECC(void){
+    f32 sp1C;
+    f32 temp_f0;
+
+    sp1C = D_8037C114 - D_8037C100[1];
+    temp_f0 = mlAbsF(sp1C);
+    if( temp_f0 < 0.01){
+        D_8037C100[1] = D_8037C114;
+    }
+    else{
+        if(5.0f < temp_f0){
+            temp_f0 = 1.0f;
+        }
+        if(0.0f < sp1C){
+            D_8037C100[1] += temp_f0;
+        }
+        else{
+            D_8037C100[1] -= temp_f0; 
+        }
+        {//L80291F7C
+            player_getMarker()->unk14_21 = 0;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AA60/func_80291FA0.s")
 
@@ -87,7 +120,51 @@ void playerModel_set(s32 asset_id){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AA60/func_80292260.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AA60/func_80292284.s")
+void func_80292284(f32 arg0[3], s32 arg1){
+    f32 sp44[3];
+    f32 sp38[3];
+
+    if(player_getMarker()->unk14_21 && D_8037C0E8){
+        switch(func_80291FAC()){
+            case 0x34D:
+            case 0x34E:
+            case ASSET_34F_MODEL_BANJO_TERMITE: //802922E8
+            case ASSET_359_MODEL_BANJO_WALRUS: //802922E8
+            case ASSET_362_MODEL_BANJO_BEE:
+            case ASSET_36F_MODEL_BANJO_PUMPKIN:
+            case ASSET_374_MODEL_BANJO_CROC:
+                func_8034A174(D_80363780, arg1 + 1, arg0);
+                if(func_802582EC(arg0)){
+                    _player_getPosition(arg0);
+                }
+                
+                arg0[1] += D_8037C130[arg1][0];
+                if(D_8037C130[arg1][1] != 0.0f){
+                    func_80256E24(sp44, D_8037C130[arg1][2],  mlNormalizeAngle(yaw_get() + D_8037C130[arg1][3]), 0.0f, 0.0f, D_8037C130[arg1][1]);
+                    arg0[0] += sp44[0]; 
+                    arg0[1] += sp44[1]; 
+                    arg0[2] += sp44[2]; 
+                }
+                func_802976C0(sp38);
+                arg0[0] = arg0[0] + sp38[0];
+                arg0[1] = arg0[1] + sp38[1];
+                arg0[2] = arg0[2] + sp38[2];
+                break;
+            default: ////80292400
+                _player_getPosition(arg0);
+                break;
+        }
+    }
+    else{//L80292410
+        _player_getPosition(arg0);
+        if(arg1){
+            arg0[1] += 33.0f;
+        }
+        else{
+            arg0[1] += 75.0f;
+        }
+    }
+}
 
 void banjo_getPosition(f32* dst){
     f32 tmp1[3];

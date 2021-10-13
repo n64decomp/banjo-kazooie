@@ -150,11 +150,11 @@ void func_802C5740(Actor * this){
 
 void func_802C5994(void){
     s32 sp1C = level_get();
-    s32 t6 = func_803348C0() == 0x83;
+    s32 t6 = func_803348C0() == MAP_83_CS_GAME_OVER_MACHINE_ROOM;
     s32 a1 = (0 < sp1C && sp1C < 0xd);
     if( a1 || t6)
     {
-        if(D_80365E00 != -1 && !func_802E4A08() && func_803348C0() != 0x91){
+        if(D_80365E00 != -1 && !func_802E4A08() && func_803348C0() != MAP_91_FILE_SELECT){
             func_8033D17C(D_80365E00);
             func_8033CFD4(D_80365E00);
         }

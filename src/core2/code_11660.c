@@ -8,17 +8,17 @@ s32 func_802985F0(void){
     switch(func_8029A8F4())
     {
         case TRANSFORM_2_TERMITE: //80298624
-            return 0x34F;
+            return ASSET_34F_MODEL_BANJO_TERMITE;
         case TRANSFORM_3_PUMPKIN: //8029862C
-            return 0x36f;
+            return ASSET_36F_MODEL_BANJO_PUMPKIN;
         case TRANSFORM_5_CROC: //80298634
-            return 0x374;
+            return ASSET_374_MODEL_BANJO_CROC;
         case TRANSFORM_4_WALRUS: //8029863C
-            return 0x359;
+            return ASSET_359_MODEL_BANJO_WALRUS;
         case TRANSFORM_6_BEE: //80298644
-            return 0x362;
+            return ASSET_362_MODEL_BANJO_BEE;
         case TRANSFORM_7_WISHWASHY: //8029864C
-            return 0x356;
+            return ASSET_356_MODEL_BANJO_WISHYWASHY;
         case TRANSFORM_1_BANJO: //80298654
         default:
         {

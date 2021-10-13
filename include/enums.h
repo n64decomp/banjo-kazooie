@@ -163,7 +163,7 @@ enum BKPROG_E{
 	// {index=0xA2, type="Prog", level=6, name="GV Lobby Coffin Open"},
 
     BKPROG_A6_FURNACE_FUN_COMPLETE = 0xA6,
-	// {index=0xA7, type="Prog", level=6, name="Near Puzzle Podium Text"},
+    BKPROG_A7_NEAR_PUZZLE_PODIUM_TEXT = 0xA7,
 	// {index=0xA8, type="Prog", level=6, name="1st Death Text"},
 	// {index=0xA9, type="Prog", level=9, name="1st RBB Oven Text"},
 	// {index=0xAA, type="Prog", level=8, name="1st CCW Bramble Field Text"},
@@ -346,7 +346,7 @@ enum MAP_E
     MAP_31_RBB_RUSTY_BUCKET_BAY = 0x31,
     // Unused
     // Unused
-    MAP_RBB_ENGINE_ROOM = 0x34,
+    MAP_34_RBB_ENGINE_ROOM = 0x34,
     MAP_RBB_WAREHOUSE = 0x35,
     MAP_RBB_BOATHOUSE = 0x36,
     MAP_RBB_CONTAINER_1 = 0x37,
@@ -399,7 +399,7 @@ enum MAP_E
     MAP_CCW_SUMMER_WHIPCRACK_ROOM = 0x66,
     MAP_CCW_AUTUMN_WHIPCRACK_ROOM = 0x67,
     MAP_CCW_WINTER_WHIPCRACK_ROOM = 0x68,
-    MAP_GL_MM_LOBBY = 0x69,
+    MAP_69_GL_MM_LOBBY = 0x69,
     MAP_GL_TTC_AND_CC_PUZZLE = 0x6A,
     MAP_GL_180_NOTE_DOOR = 0x6B,
     MAP_GL_RED_CAULDRON_ROOM = 0x6C,
@@ -436,18 +436,18 @@ enum MAP_E
     MAP_8B_RBB_ANCHOR_ROOM = 0x8B,
     MAP_SM_BANJOS_HOUSE = 0x8C,
     MAP_MMM_INSIDE_LOGGO = 0x8D,
-    MAP_GL_FURNACE_FUN = 0x8E,
+    MAP_8E_GL_FURNACE_FUN = 0x8E,
     MAP_TTC_SHARKFOOD_ISLAND = 0x8F,
-    MAP_GL_BATTLEMENTS = 0x90,
+    MAP_90_GL_BATTLEMENTS = 0x90,
     MAP_91_FILE_SELECT = 0x91,
     MAP_GV_SNS_CHAMBER = 0x92,
     MAP_GL_DINGPOT = 0x93,
-    MAP_CS_INTRO_SPIRAL_7 = 0x94,
-    MAP_CS_END_ALL_100 = 0x95,
-    MAP_CS_END_BEACH_1 = 0x96,
-    MAP_CS_END_BEACH_2 = 0x97,
-    MAP_CS_END_SPIRAL_MOUNTAIN_1 = 0x98,
-    MAP_CS_END_SPIRAL_MOUNTAIN_2 = 0x99 // The same thing ?
+    MAP_94_CS_INTRO_SPIRAL_7 = 0x94,
+    MAP_95_CS_END_ALL_100 = 0x95,
+    MAP_96_CS_END_BEACH_1 = 0x96,
+    MAP_97_CS_END_BEACH_2 = 0x97,
+    MAP_98_CS_END_SPIRAL_MOUNTAIN_1 = 0x98,
+    MAP_99_CS_END_SPIRAL_MOUNTAIN_2 = 0x99 // The same thing ?
 };
 
 // SFX      = Short Sound Effect
@@ -476,11 +476,11 @@ enum comusic_e
     MUSIC_TTC_NIPPER,
     MUSIC_INSIDE_SANDCASTLE,
     SFX_GOLD_FEATHER_COLLECTED,
-    SFX_EXTRA_LIFE_COLLECTED,
-    SFX_HONEYCOMB_COLLECTED,
-    SFX_EMPTY_HONEYCOMB_COLLECTED,
+    COMUSIC_15_EXTRA_LIFE_COLLECTED,
+    COMUSIC_16_HONEYCOMB_COLLECTED,
+    COMUSIC_17_EMPTY_HONEYCOMB_COLLECTED,
     JINGLE_HEALTH_UPGRADE,
-    MUSIC_LOW_PITCH_FLUTES,
+    COMUSIC_19_LOW_PITCH_FLUTES,
     JINGLE_DEATH,
     MUSIC_MYSTERIOUS_INDOORS,
     MUSIC_CC_ALTERNATIVE,
@@ -498,7 +498,7 @@ enum comusic_e
     MUSIC_SOMETHING_AQUATIC,
     MUSIC_CCW_SUMMER,
     MUSIC_CCW_WINTER,
-    SFX_DING_B,
+    COMUSIC_2B_DING_B,
     SFX_BUZZER,
     JINGLE_PUZZLE_SOLVED_FANFARE,
     MUSIC_CCW_FALL_AQUATIC,
@@ -591,7 +591,7 @@ enum comusic_e
     MUSIC_FP_SNS,
     MUSIC_MMM_SNS,
     MUSIC_MMM_SNS_HAPPIER,
-    MUSIC_BIG_SNS_FANFARE,
+    COMUSIC_88_BIG_SNS_FANFARE,
     SFX_JINJO_STATUE_POWERUP,
     JINGLE_GETTING_TURBO_TRAINERS,
     SFX_DEACTIVATE_BRENTILDA,
@@ -843,7 +843,7 @@ enum SFX_E
     // tooie mingy sounds super similar
     SFX_GRUNTLING_DAMAGE,
     SFX_SNOWBALL_FLYING,
-    SFX_SWITCH_PRESS = 0x0090,
+    SFX_90_SWITCH_PRESS = 0x0090,
     // might be clankers bolt landing
     SFX_METALLIC_SOUND,
     SFX_TOILET_FLUSH,
@@ -1038,9 +1038,9 @@ enum SFX_E
     // longer version
     SFX_AUDIENCE_CHEERING_2,
     // sounds like the kickball noises from tooie
-    SFX_AUDIENCE_BOOING,
+    SFX_126_AUDIENCE_BOOING = 0x0126,
     // sounds like the kickball noises from tooie
-    SFX_AUDIENCE_MIXED,
+    SFX_127_AUDIENCE_MIXED = 0x0127,
     SFXR_FIRE_CRACKING,
     // might be skeleton grimlets riiping the painting
     SFX_SWOOSH,
@@ -1318,7 +1318,7 @@ enum bs_e
     BS_FLY_KNOCKBACK = 0x18,
 
     BS_WONDERWING_ENTER = 0x1A,
-    BS_WONDERWING_IDLE = 0x1B,
+    BS_1B_WONDERWING_IDLE = 0x1B,
     BS_WONDERWING_WALK = 0x1C,
     BS_WONDERWING_JUMP = 0x1D,
     BS_WONDERWING_EXIT = 0x1E,
@@ -1469,10 +1469,11 @@ enum item_e
     ITEM_RED_FEATHER = 0xF,
     ITEM_GOLD_FEATHER = 0x10,
     ITEM_JINJOS = 0x12,
-    item_health = 0x14,
-    item_health_total = 0x15,
-    ITEM_LIFE = 0x16,
-    item_air = 0x17,
+    ITEM_13_EMPTY_HONEYCOMB = 0x13,
+    ITEM_14_HEALTH = 0x14,
+    ITEM_15_HEALTH_TOTAL = 0x15,
+    ITEM_16_LIFE = 0x16,
+    ITEM_17_AIR = 0x17,
     ITEM_ORANGE = 0x19,
     item_mumbo_token = 0x1C,
     item_mumbo_token_total = 0x25,
@@ -1488,10 +1489,10 @@ enum game_mode_e
 {
     GAME_MODE_3_NORMAL = 3,
     GAME_MODE_4_PAUSED = 4,
-    game_mode_file_playback = 6,
-    GAME_MODE_ATTRACT_DEMO = 7,
+    GAME_MODE_6_FILE_PLAYBACK = 6,
+    GAME_MODE_7_ATTRACT_DEMO = 7,
     GAME_MODE_8_BOTTLES_BONUS = 8,
-    game_mode_BANJO_AND_KAZOOIE = 9,
+    GAME_MODE_9_BANJO_AND_KAZOOIE = 9,
     GAME_MODE_A_SNS_PICTURE = 10
 };
 
@@ -1573,19 +1574,31 @@ enum asset_e
 
     ANIM_ZOOMBOX = 0x138,
 
-    ANIM_BEE_FLY    = 0x1dc,
-    ANIM_BEE_WALK   = 0x1dd,
-    ANIM_BEE_IDLE      = 0x1de,
+    ASSET_1DC_ANIM_BEE_FLY    = 0x1dc,
+    ASSET_1DD_ANIM_BEE_WALK,
+    ASSET_1DE_ANIM_BEE_IDLE,
 
-    ANIM_BEE_OW        = 0x1e0,
-    ANIM_BEE_DIE     = 0x1e1,
-    ANIM_BEE_JUMP     = 0x1e2,
+    ASSET_1E0_ANIM_BEE_OW     = 0x1e0,
+    ASSET_1E1_ANIM_BEE_DIE,
+    ASSET_1E2_ANIM_BEE_JUMP,
     
     model_orange            = 0x2d2, //projectile
 
     model_juju              = 0x2e6,
 
     model_orange_pad        = 0x2eb,
+
+    ASSET_34F_MODEL_BANJO_TERMITE = 0x34F,
+
+    ASSET_356_MODEL_BANJO_WISHYWASHY = 0x356,
+
+    ASSET_359_MODEL_BANJO_WALRUS = 0x359,
+
+    ASSET_362_MODEL_BANJO_BEE = 0x362,
+
+    ASSET_36F_MODEL_BANJO_PUMPKIN = 0x36f,
+
+    ASSET_374_MODEL_BANJO_CROC = 0x374,
 
     model_conga             = 0x35c,
     model_chimpy            = 0x35d,
@@ -1624,20 +1637,20 @@ enum asset_e
 };
 
 enum overlay_e{
-    OVERLAY_COSHOW  = 0x1,
-    OVERLAY_WHALE   = 0x2,
-    OVERLAY_HAUNTED = 0x3,
-    OVERLAY_DESERT  = 0x4,
-    OVERLAY_BEACH   = 0x5,
-    OVERLAY_JUNGLE  = 0x6,
-    OVERLAY_SWAMP   = 0x7,
-    OVERLAY_SHIP    = 0x8,
-    OVERLAY_SNOW    = 0x9,
-    OVERLAY_TREE    = 0xA,
-    OVERLAY_TRAINING = 0xB,
-    OVERLAY_INTRO   = 0xC,
-    OVERLAY_WITCH   = 0xD,
-    OVERLAY_BATTLE  = 0xE
+    OVERLAY_1_COSHOW   = 0x1,
+    OVERLAY_2_WHALE    = 0x2,
+    OVERLAY_3_HAUNTED  = 0x3,
+    OVERLAY_4_DESERT   = 0x4,
+    OVERLAY_5_BEACH    = 0x5,
+    OVERLAY_6_JUNGLE   = 0x6,
+    OVERLAY_7_SWAMP    = 0x7,
+    OVERLAY_8_SHIP     = 0x8,
+    OVERLAY_9_SNOW     = 0x9,
+    OVERLAY_A_TREE     = 0xA,
+    OVERLAY_B_TRAINING = 0xB,
+    OVERLAY_C_INTRO    = 0xC,
+    OVERLAY_D_WITCH    = 0xD,
+    OVERLAY_E_BATTLE   = 0xE
 };
 
 #endif

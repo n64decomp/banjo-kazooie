@@ -24,7 +24,7 @@ void func_802AA400(void){
 
 static void __bsbwhirl_end(void){
     enum bs_e state = bs_getNextState();
-    if(!( state == BS_WONDERWING_IDLE
+    if(!( state == BS_1B_WONDERWING_IDLE
           || state == BS_WONDERWING_WALK
           || state == BS_WONDERWING_JUMP
           || state == BS_WONDERWING_EXIT
@@ -93,7 +93,7 @@ void bsbwhirl_enter_update(void){
     enum bs_e sp1C = 0;
     func_802952A8(1,1);
     if(animctrl_isStopped(player_getAnimCtrlPtr()))
-        sp1C = BS_WONDERWING_IDLE;
+        sp1C = BS_1B_WONDERWING_IDLE;
     bs_setState(sp1C);
 }
 
@@ -143,7 +143,7 @@ void bsbwhirl_walk_update(void){
     func_802AA400();
 
     if(!func_8029B300() && func_80297C04(1.0f))
-        sp1C = BS_WONDERWING_IDLE;
+        sp1C = BS_1B_WONDERWING_IDLE;
 
     if(button_released(BUTTON_Z))
         sp1C = BS_WONDERWING_EXIT;
@@ -221,7 +221,7 @@ void bsbwhirl_jump_update(void){
             break;
         case 2://L802AABC8
             if(animctrl_isStopped(aCtrl))
-                sp2C = BS_WONDERWING_IDLE;
+                sp2C = BS_1B_WONDERWING_IDLE;
             sp2C = func_802AA510(sp2C);
             break;
     }//L802AABE8
@@ -292,7 +292,7 @@ void func_802AAE08(void){
     __bsbwhirl_spawnSparkle();
     func_8029C6D0();
     if(!func_80298850())
-        sp1C = BS_WONDERWING_IDLE;
+        sp1C = BS_1B_WONDERWING_IDLE;
     
     bs_setState(sp1C);
 }

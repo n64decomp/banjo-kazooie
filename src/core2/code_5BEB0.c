@@ -505,10 +505,10 @@ s32 func_802E48D8(void){
     if(D_8037E8E0.game_mode == 4)
         func_80311740();
     switch(get_loaded_overlay_id()){
-        case OVERLAY_WHALE:
+        case OVERLAY_2_WHALE:
             func_803894A0();
             break;
-        case OVERLAY_WITCH:
+        case OVERLAY_D_WITCH:
             func_80350E00();
             break;
     }

@@ -48,10 +48,10 @@ extern s32 D_803820B8;
 
 extern s32 D_80382148;
 
-void func_80303D78(s32, f32);
+void func_80303D78(ActorMarker *, f32);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80303F7C.s")
-// s32 func_80303F7C(s32 arg0, f32 arg1, s32 arg2, s32 arg3) {
+// Prop *func_80303F7C(ActorMarker *arg0, f32 arg1, s32 arg2, s32 arg3) {
 //     s32 temp_v1;
 
 //     if (arg3 == 0) {

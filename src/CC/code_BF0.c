@@ -121,7 +121,7 @@ void func_803870F8(Actor *this){
         if(local->unk4 == 3){
             func_80386FE0(this, 2);
         }else{
-            func_8025A6EC(SFX_DING_B, 28000);
+            func_8025A6EC(COMUSIC_2B_DING_B, 28000);
         }
     }
     else if(this->state == 2 && 1.0f <= local->unk8){

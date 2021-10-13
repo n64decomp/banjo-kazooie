@@ -50,7 +50,7 @@ void func_80386920(Actor *this, s32 next_state){
     }
     
     if(next_state == 2 || next_state == 4){
-        func_8025A6EC(SFX_DING_B, 0x7fff);
+        func_8025A6EC(COMUSIC_2B_DING_B, 0x7fff);
         player_getPosition(&sp28);
         TUPLE_COPY(sp20, sp28);
         func_802F3A60(&sp20);

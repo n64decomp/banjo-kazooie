@@ -29,7 +29,7 @@ bsMap D_80363824[] ={
     {BS_BTROT_EXIT, bsbtrot_exit_init,  bsbtrot_exit_update,    bsbtrot_exit_end,   func_802B5350},
     {BS_FLY_KNOCKBACK,  func_802A4D90,      func_802A4EC8, func_802A4F44, func_80296608},
     {BS_WONDERWING_ENTER,   bsbwhirl_enter_init,    bsbwhirl_enter_update,  bsbwhirl_enter_end, func_80296608},
-    {BS_WONDERWING_IDLE,    bsbwhirl_stand_init,    bsbwhirl_stand_update,  bsbwhirl_stand_end, func_80296608},
+    {BS_1B_WONDERWING_IDLE,    bsbwhirl_stand_init,    bsbwhirl_stand_update,  bsbwhirl_stand_end, func_80296608},
     {BS_WONDERWING_WALK,    bsbwhirl_walk_init,     bsbwhirl_walk_update,   bsbwhirl_walk_end,  func_80296608},
     {BS_WONDERWING_JUMP,    bsbwhirl_jump_init,     bsbwhirl_jump_update,   bsbwhirl_jump_end,  func_80296608},
     {BS_WONDERWING_EXIT,    bsbwhirl_exit_init,     bsbwhirl_exit_update,   bsbwhirl_exit_end,  func_80296608},

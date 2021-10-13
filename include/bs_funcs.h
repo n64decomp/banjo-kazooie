@@ -93,7 +93,7 @@ void func_802A4F44(void);
 void bsbwhirl_enter_init(void);
 void bsbwhirl_enter_update(void);
 void bsbwhirl_enter_end(void);
-//BS_WONDERWING_IDLE
+//BS_1B_WONDERWING_IDLE
 void bsbwhirl_stand_init(void);
 void bsbwhirl_stand_update(void);
 void bsbwhirl_stand_end(void);

@@ -34,7 +34,7 @@ void bssplat_init(void){
     func_80299CF4(0x38, 1.0f, 0x6D60);
     func_802B4570();
     func_802BB3DC(0, 45.0f, 0.71f);
-    if(item_getCount(item_health) == 0)
+    if(item_getCount(ITEM_14_HEALTH) == 0)
         bs_setState(BS_DIE);
 
     D_8037D530 = 0;

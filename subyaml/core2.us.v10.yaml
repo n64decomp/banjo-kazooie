@@ -40,7 +40,7 @@ segments:
   - [0x6B30, c, code_6B30]
   - [0x7060, c, code_7060] #DONE
   - [0x9450, c, code_9450]
-  - [0x9900, c, code_9900]
+  - [0x9900, c, code_9900] #DONE
   - [0x9BD0, c, code_9BD0] #DONE
   - [0xA600, c, code_A600] #DONE
   - [0xA960, c, code_A960]
@@ -57,19 +57,19 @@ segments:
   - [0xE910, c, code_E910] #DONE
   - [0xEE40, c, code_EE40]
   - [0xFD60, c, code_FD60]
-  - [0x10DA0, c, pitch] #DONE
+  - [0x10DA0, c, pitch]      #DONE
   - [0x11040, c, code_11040] #DONE
   - [0x11250, c, done/climb] #DONE
   - [0x11460, c, code_11460] #DONE
   - [0x11660, c, code_11660] #DONE
-  - [0x117D0, c, code_117D0]
-  - [0x11870, c, code_11870]
-  - [0x11B40, c, roll] #DONE
-  - [0x11DE0, c, yaw] #DONE
-  - [0x12360, c, code_12360]
+  - [0x117D0, c, code_117D0] #DONE
+  - [0x11870, c, code_11870] #DONE
+  - [0x11B40, c, roll]       #DONE
+  - [0x11DE0, c, yaw]        #DONE
+  - [0x12360, c, code_12360] #DONE
   - [0x126C0, c, code_126C0]
   - [0x12F30, c, code_12F30]
-  - [0x13670, c, bsList] #DONE
+  - [0x13670, c, bsList]     #DONE
   - [0x13780, c, code_13780] #DONE
   - [0x13900, c, code_13900]
   - [0x13FC0, c, code_13FC0]
@@ -348,8 +348,12 @@ segments:
   vram:  0x80363590
   subsegments:
   - [0x000DC600, bin, data_DC600]
+  #- [0x000DC6A0, .data, code_39D0]
+  - [0x000DC6F0, bin, data_DC6F0]
   - [0x000DC890, .data, code_E910]
   - [0x000DD4B0, bin, data_DD4B0]
+  - [0x000DD4C0, .data, code_117D0]
+  - [0x000DD5D0, bin, data_DD5D0]
   - [0x000DD9D0, .data, bs/ant]
   - [0x000DDA00, .data, bs/bbuster]
   - [0x000DDA20, bin, data_DDA20]
@@ -374,16 +378,23 @@ segments:
   - [0x000ECE90, bin, data_ECE90]
   - [0x000ECEA0, .rodata, code_1930]
   - [0x000ECEC0, bin, data_ECEC0]
+  #- [0x000ECFD0, .rodata, code_39D0] #need func_8028BCA0 to match
+  - [0x000ED3F0, bin, data_ED3F0]
   - [0x000ED410, .rodata, code_6B30]
   - [0x000ED500, bin, data_ED500]
+  - [0x000ED660, .rodata, code_9900]
+  - [0x000ED670, bin, data_ED670]
+  - [0x000ED6B0, .rodata, code_AA60]
+  - [0x000ED760, bin, data_ED7D0]
   - [0x000EDA60, .rodata, pitch]
   - [0x000EDA90, .rodata, code_11040]
   - [0x000EDAA0, bin, data_EDAA0]
   - [0x000EDAB0, .rodata, code_11660]
-  - [0x000EDC70, bin, data_EDC70]
+  - [0x000EDC70, .rodata, code_11870]
   - [0x000EDC80, .rodata, roll]
   - [0x000EDCA0, .rodata, yaw]
-  - [0x000EDD00, bin, data_EDD00]
+  - [0x000EDD00, .rodata, code_12360]
+  - [0x000EDD30, bin, data_EDD30]
   - [0x000EE310, .rodata, bs/ant]
   - [0x000EE340, .rodata, bs/bBarge]
   - [0x000EE380, .rodata, bs/bbuster]
