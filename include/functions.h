@@ -329,12 +329,17 @@ f32  func_8029B33C(void);
 f32  func_8029B41C(void);
 void func_8029C3E8(f32, f32);
 void func_8029CF48(s32, s32, f32);
+f32  func_8029DFC8(void);
+f32  func_8029DFD4(void);
 void func_8029E090(s32, f32);
+void func_8029E0C4(f32);
+void func_8029E0D0(f32);
 void func_8029E180(s32, f32);
 void func_8029E3C0(s32, f32);
 f32  func_8029E270(s32);
 void func_802BF2C0(f32);
 
+struct30s *func_802F0D74(struct30s *);
 
 void func_8030DA80(u8 indx, enum SFX_E uid);
 void func_8030DBB4(u8, f32);
