@@ -2,11 +2,17 @@
 #include "functions.h"
 #include "variables.h"
 
+/* .data */
 extern f32 D_80364440; //defaultGravity
 
+/* .rodata */
+
+/* .bss */
 extern f32 D_8037C4B8[3]; //velocity?
 
 extern f32 D_8037C4E8; //gravity
+
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_FD60/func_80296CF0.s")
 
@@ -89,15 +95,3 @@ void gravity_set(f32 arg0){
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_FD60/func_80297C04.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_FD60/func_80297C48.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_FD60/func_80297C60.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_FD60/func_80297C6C.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_FD60/func_80297C78.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_FD60/func_80297CA8.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_FD60/func_80297CCC.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_FD60/func_80297CF8.s")

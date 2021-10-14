@@ -60,6 +60,7 @@ segments:
   - [0xE910, c, code_E910] #DONE
   - [0xEE40, c, code_EE40]
   - [0xFD60, c, code_FD60]
+  - [0x10CD0, c, code_10CD0] #DONE
   - [0x10DA0, c, pitch]      #DONE
   - [0x11040, c, code_11040] #DONE
   - [0x11250, c, done/climb] #DONE
@@ -395,6 +396,7 @@ segments:
   - [0x000ED790, .rodata, code_BD20]
   - [0x000ED7B0, .rodata, code_C0E0]
   - [0x000ED7D0, bin, data_ED7D0]
+  - [0x000EDA50, .rodata, code_10CD0]
   - [0x000EDA60, .rodata, pitch]
   - [0x000EDA90, .rodata, code_11040]
   - [0x000EDAA0, bin, data_EDAA0]
