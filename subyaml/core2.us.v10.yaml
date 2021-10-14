@@ -391,6 +391,7 @@ segments:
   - [0x000ED670, bin, data_ED670]
   - [0x000ED6B0, .rodata, code_AA60]
   - [0x000ED760, bin, data_ED760]
+  - [0x000ED770, .rodata, code_B850]
   - [0x000ED790, .rodata, code_BD20]
   - [0x000ED7B0, .rodata, code_C0E0]
   - [0x000ED7D0, bin, data_ED7D0]
