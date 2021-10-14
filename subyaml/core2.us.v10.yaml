@@ -50,7 +50,7 @@ segments:
   - [0xBB50, c, code_BB50] #DONE
   - [0xBD20, c, code_BD20] #DONE
   - [0xC0E0, c, code_C0E0] #DONE
-  - [0xC3F0, c, code_C3F0]
+  - [0xC3F0, c, code_C3F0] #DONE
   - [0xC4B0, c, code_C4B0]
   - [0xD800, c, code_D800]
   - [0xD9B0, c, code_D9B0]
