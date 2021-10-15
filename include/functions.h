@@ -314,6 +314,7 @@ void func_80299628(s32);
 void func_80299650(f32, f32);
 void func_80299B58(f32, f32);
 void func_80299CF4(s32, f32, s32);
+void func_80299D2C(s32, f32, s32);
 void func_80289EC8(f32, f32, f32, f32);
 void func_80289EF8(f32);
 f32  func_8029A900(void);
@@ -337,7 +338,11 @@ void func_8029E0D0(f32);
 void func_8029E180(s32, f32);
 void func_8029E3C0(s32, f32);
 f32  func_8029E270(s32);
+void func_802BD8A4(f32, f32, f32);
 void func_802BF2C0(f32);
+
+void func_802C1B20(f32);
+int  func_802C1DB0(f32);
 
 struct30s *func_802F0D74(struct30s *);
 

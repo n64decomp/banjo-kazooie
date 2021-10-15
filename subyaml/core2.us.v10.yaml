@@ -59,7 +59,7 @@ segments:
   - [0xE680, c, code_E680] #DONE
   - [0xE910, c, code_E910] #DONE
   - [0xEE40, c, code_EE40] #DONE
-  - [0xEF50, c, code_EF50]
+  - [0xEF50, c, code_EF50] #DONE
   - [0xFD60, c, code_FD60]
   - [0x10CD0, c, code_10CD0] #DONE
   - [0x10DA0, c, pitch]      #DONE
