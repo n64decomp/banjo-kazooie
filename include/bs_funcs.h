@@ -244,7 +244,7 @@ void bsjump_tumble_end(void);
 void bsant_fall_init(void);
 void bsant_fall_update(void);
 void bsant_fall_end(void);
-//BS_ANT_OW
+//BS_3E_ANT_OW
 void bsant_ow_init(void);
 void bsant_ow_update(void);
 void bsant_ow_end(void);
@@ -260,11 +260,11 @@ void func_802B2D50(void);
 void bsdie_init(void);
 void bsdie_update(void);
 void bsdie_end(void);
-    //BS_DINGPOT
+    //BS_42_DINGPOT
 void func_802A5120(void);
 void func_802A5190(void);
 void func_802A51C0(void);
-    //BS_ANT_DIE
+    //BS_43_ANT_DIE
 void bsant_die_init(void);
 void bsant_die_update(void);
 void bsant_die_end(void);
@@ -331,7 +331,7 @@ void func_802B60D8(void);
 void func_802B6270(void);
 void func_802B6314(void);
 void func_802B63C8(void);
-void func_80296590(void);
+
     //0x55
 void bsblongleg_slide_init(void);
 void bsblongleg_slide_update(void);
@@ -341,7 +341,7 @@ void bsblongleg_slide_end(void);
 void func_802B3868(void);
 void func_802B3954(void);
 void func_802B3A20(void);
-void func_80296590(void);
+
     //0x57
 void func_802A4430(void);
 void func_802A4548(void);
@@ -351,7 +351,7 @@ void func_802A505C(void);
 void func_802A4748(void);
 void func_802A48B4(void);
 void func_802A4A40(void);
-void func_80296590(void);
+
     //0x59
 void func_802A4CD0(void);
 void func_802A4CF0(void);
@@ -361,7 +361,7 @@ void func_802A505C(void);
 void func_802A7F6C(void);
 void func_802A8098(void);
 void func_802A82D4(void);
-void func_80296590(void);
+
     //0x5B
 void bsthrow_init(void);
 void bsthrow_update(void);
@@ -395,12 +395,12 @@ void func_802A6450(void);
 void bscroc_ow_init(void);
 void bscroc_ow_update(void);
 void bscroc_ow_end(void);
-void func_80296590(void);
+
     //0x64
 void bscroc_die_init(void);
 void bscroc_die_update(void);
 void bscroc_die_end(void);
-void func_80296590(void);
+
     //0x67
 void bswalrus_idle_init(void);
 void bswalrus_idle_update(void);
@@ -429,12 +429,12 @@ void func_802A2014(void);
 void bswalrus_ow_init(void);
 void bswalrus_ow_update(void);
 void bswalrus_ow_end(void);
-void func_80296590(void);
+
 //0x0000006D
 void bswalrus_die_init(void);
 void bswalrus_die_update(void);
 void bswalrus_die_end(void);
-void func_80296590(void);
+
 //0x0000006E
 void bscroc_bite_init(void);
 void bscroc_bite_update(void);
@@ -458,7 +458,7 @@ void bsbtrot_fall_end(void);
 void bssplat_init(void);
 void bssplat_update(void);
 void bssplat_end(void);
-void func_80296590(void);
+
 //0x00000073
 void func_802B3CEC(void);
 void func_802B3D1C(void);
@@ -500,7 +500,7 @@ void bswalk_mud_update(void);
 void bsbtrot_ow_init(void);
 void bsbtrot_ow_update(void);
 void bsbtrot_ow_end(void);
-void func_80296590(void);
+
 //0x0000007C
 void func_802B3FA4(void);
 void func_802B4004(void);
@@ -520,12 +520,12 @@ void func_802B98C0(void);
 void func_802A7BD0(void);
 void func_802A7CA8(void);
 void func_802A7D74(void);
-void func_80296590(void);
+
 //0x00000080
 void func_802B978C(void);
 void func_802B9830(void);
 void func_802B9880(void);
-void func_80296590(void);
+
 //0x00000081
 void func_802B90D0(void);
 void func_802B9130(void);
@@ -565,7 +565,7 @@ void func_802A1BA8(void);
 void bsbeemain_die_init(void);
 void func_802A1DD8(void);
 void func_802A1F2C(void);
-void func_80296590(void);
+
 //0x0000008B
 void func_802A0590(void);
 void func_802A0630(void);
@@ -665,27 +665,27 @@ void func_802ABD60(void);
 void bsant_bounce_init(void);
 void bsant_bounce_update(void);
 void bsant_bounce_end(void);
-void func_80296590(void);
+
 //0x000000A0
 void func_802B303C(void);
 void func_802B305C(void);
 void func_802B307C(void);
-void func_80296590(void);
+
 //0x000000A1
 void bscroc_bounce_init(void);
 void bscroc_bounce_update(void);
 void bscroc_bounce_end(void);
-void func_80296590(void);
+
 //0x000000A2
 void bswalrus_bounce_init(void);
 void bswalrus_bounce_update(void);
 void bswalrus_bounce_end(void);
-void func_80296590(void);
+
 //0x000000A3
 void func_802A1BC8(void);
 void func_802A1BE8(void);
 void func_802A1C08(void);
-void func_80296590(void);
+
 //0x000000A4
 void bsbwhirl_drone_init(void);
 void bsbwhirl_drone_update(void);

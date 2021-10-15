@@ -113,7 +113,7 @@ void bsdie_update(void){
         && player_inWater()
         && 100.0f < (func_80294500() - func_80294438())
     ){
-        sp28 = BS_SWIM_DIE;
+        sp28 = BS_54_SWIM_DIE;
     }
 
     bs_setState(sp28);

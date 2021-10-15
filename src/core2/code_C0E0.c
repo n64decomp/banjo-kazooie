@@ -62,15 +62,15 @@ s32 func_802930C0(struct_C0E0 *arg0, s32 arg1){
         return 0;
     else{
         switch(func_8029A8F4()){
-            case 2: //L80293110 
+            case TRANSFORM_2_TERMITE: //L80293110 
                 return func_80293070(arg0, arg1, &D_803637F0);
-            case 3: //L80293124
+            case TRANSFORM_3_PUMPKIN: //L80293124
                 return func_80293070(arg0, arg1, &D_803637F0);
-            case 5: //L80293138  
+            case TRANSFORM_5_CROC: //L80293138  
                 return func_80293070(arg0, arg1, &D_803637F0);
-            case 4: //L8029314C
+            case TRANSFORM_4_WALRUS: //L8029314C
                 return func_80293070(arg0, arg1, &D_803637F0);
-            case 6: //L80293160
+            case TRANSFORM_6_BEE: //L80293160
                 return func_80293070(arg0, arg1, &D_803637F0);
             default:
                 return func_80293070(arg0, arg1, &D_803637F0);

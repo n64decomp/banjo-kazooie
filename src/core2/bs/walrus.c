@@ -65,11 +65,11 @@ void func_802B8110(void){
 
 int func_802B8190(enum bs_e state){
     return state == 0x81
-        || state == BS_WALRUS_SLED
-        || state == BS_WALRUS_SLED_JUMP
+        || state == BS_7D_WALRUS_SLED
+        || state == BS_7E_WALRUS_SLED
         || state == 0x82
         || state == 0x80
-        || state == BS_WALRUS_SLED_DRONE;
+        || state == BS_7D_WALRUS_SLED_DRONE;
 }
 
 int func_802B81F0(enum bs_e state){
@@ -487,7 +487,7 @@ void func_802B9130(void){
     func_80299628(0);
     func_8029C6D0();
     if(!func_80298850())
-        next_state = BS_WALRUS_SLED;
+        next_state = BS_7D_WALRUS_SLED;
 
     bs_setState(next_state);
 }
@@ -524,7 +524,7 @@ void bswalrus_sled_update(void){
         next_state = func_802926C0();
 
     if(button_pressed(BUTTON_A))
-        next_state = BS_WALRUS_SLED_JUMP;
+        next_state = BS_7E_WALRUS_SLED;
 
     next_state = func_8029CA94(next_state);
     bs_setState(next_state);
@@ -585,14 +585,14 @@ void bswalrus_sled_jump_update(void){
         break;
     case 2://L802B951C
         if(animctrl_isStopped(aCtrl)){
-            next_state = BS_WALRUS_SLED;
+            next_state = BS_7D_WALRUS_SLED;
         }
         break;
     }//L802B9530
 
     if(func_8028B2E8()){
         if(button_pressed(BUTTON_A))
-            next_state = BS_WALRUS_SLED_JUMP;
+            next_state = BS_7E_WALRUS_SLED;
         
         next_state = func_8029CA94(next_state);
     }
@@ -649,11 +649,11 @@ void func_802B963C(void){
         if( func_8029B300() > 0 
             || (D_8037D5C8 == 2 && animctrl_isStopped(aCtrl))
         ){
-            next_state = BS_WALRUS_SLED;
+            next_state = BS_7D_WALRUS_SLED;
         }
 
         if(button_pressed(BUTTON_A))
-            next_state = BS_WALRUS_SLED_JUMP;
+            next_state = BS_7E_WALRUS_SLED;
 
         next_state = func_8029CA94(next_state);
     }//L802B9754

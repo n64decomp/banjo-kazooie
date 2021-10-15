@@ -33,7 +33,7 @@ extern struct {
     f32 unk28;
     f32 unk2C;
     u8 unk30;
-    u8 unk31;
+    u8 unk31; //enum bs_e
     u8 unk32;
 } D_8037D470;
 

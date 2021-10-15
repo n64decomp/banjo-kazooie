@@ -347,7 +347,7 @@ void func_802B5350(void){
         bs_setState(0x52);
     }
     if(sp1C == 0x7){
-        if(func_8029A8F4() != 1)
+        if(func_8029A8F4() != TRANSFORM_1_BANJO)
             func_8029A86C(1);
         else{
             func_802948F8(func_8028D688());
@@ -356,7 +356,7 @@ void func_802B5350(void){
     }
     else if(sp1C == 0x12){//L802B53D0
         func_8029A86C(1);
-        if( func_8029A8F4() == 1 && !func_802933C0(0xF) && func_802916CC(0)){
+        if( func_8029A8F4() == TRANSFORM_1_BANJO && !func_802933C0(0xF) && func_802916CC(0)){
             func_8028DE6C(carriedObject_getActorID());
             func_8029A86C(2);
         }

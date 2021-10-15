@@ -1271,7 +1271,8 @@ enum actor_e
     actor_orange_pad        = 0x57,
 
     ACTOR_JUJU              = 0x59,
-    
+    ACTOR_5A_JIGGY_IN_HAND,
+
     actor_chimpy_stump      = 0xC5,
     
     actor_leafboat          = 0xF1,
@@ -1353,12 +1354,12 @@ enum bs_e
     BS_CARRY_WALK = 0x3B,
     //unk3C,
     BS_FALL_TUMBLING = 0x3D,
-    BS_ANT_OW = 0x3E,
+    BS_3E_ANT_OW = 0x3E,
     //unk3F
     //BS_PUMPKIN_unk40,
     BS_DIE = 0x41,
-    BS_DINGPOT = 0x42,
-    BS_ANT_DIE = 0x43,
+    BS_42_DINGPOT = 0x42,
+    BS_43_ANT_DIE = 0x43,
     BS_JIG_JIGGY = 0x44,
     BS_BTROT_SLIDE = 0x45,
     //unk46
@@ -1375,7 +1376,7 @@ enum bs_e
     BS_CLIMB_EXIT = 0x51,
     //unk52 //tumblar??? a.k.a bssurf
     BS_TIMEOUT_UNK53 = 0x53,    
-    BS_SWIM_DIE = 0x54,
+    BS_54_SWIM_DIE = 0x54,
     BS_LONGLEG_SLIDE = 0x55,
     BS_56_RECOIL = 0x56,
     BS_BOMB_END = 0x57,
@@ -1402,7 +1403,7 @@ enum bs_e
     BS_WALRUS_DIE = 0x6D,
     BS_CROC_BITE = 0x6E,
     BS_CROC_EAT_BAD = 0x6F,
-    BS_CROC_EAT_GOOD = 0x70,
+    BS_70_CROC_EAT_GOOD = 0x70,
     BS_BTROT_FALL = 0x71,
     BS_SPLAT    = 0x72, //get up after fall damage
     //0x73 locked_cutscene
@@ -1415,12 +1416,12 @@ enum bs_e
     BS_WALK_MUD = 0x7A,
     BS_BTROT_OW = 0x7B,
     //0x7C locked FP scarf sled
-    BS_WALRUS_SLED = 0x7D,
-    BS_WALRUS_SLED_JUMP = 0x7E,
+    BS_7D_WALRUS_SLED = 0x7D,
+    BS_7E_WALRUS_SLED = 0x7E,
     BS_DIVE_OW = 0x7F,
-    //BS_WALRUS_SLED_LOSE = 0x80,
-    //BS_WALRUS_SLED_LOCKED = 0x81,
-    //BS_WALRUS_SLED_LOSE_IN_AIR = 0x82,
+    //BS_7D_WALRUS_SLED_LOSE = 0x80,
+    //BS_7D_WALRUS_SLED_LOCKED = 0x81,
+    //BS_7D_WALRUS_SLED_LOSE_IN_AIR = 0x82,
 
     BS_BEE_IDLE = 0x85,
     BS_BEE_WALK = 0x86,
@@ -1444,7 +1445,7 @@ enum bs_e
 	BS_BFLY_UNK99=  0x99,
     BS_BTROT_DRONE = 0x9A,
 	BS_LONGLEG_DRONE = 0x9B,
-    BS_WALRUS_SLED_DRONE = 0x9C,
+    BS_7D_WALRUS_SLED_DRONE = 0x9C,
     BS_BEE_DRONE = 0x9D,
 	// [158] = "Locked", -- Climbing
     BS_ANT_BOUNCE = 0x9F,
