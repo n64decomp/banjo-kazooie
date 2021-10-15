@@ -277,11 +277,11 @@ void func_80295C14(void){
     func_80298A84();
     func_80291804();
     func_8029E100();
-    func_8024E7C8();
+    func_8024E7C8();//controller_update
     func_8023E06C();
     func_80295448();
     func_8029B174();
-    func_8029533C();
+    func_8029533C(); //dive_cooldown_update
     bs_updateState();
     func_80297744();
     func_8029858C();
@@ -289,11 +289,11 @@ void func_80295C14(void){
     func_80293F0C();
     pitch_update();
     roll_update();
-    func_802993C8();
+    func_802993C8();//yaw update
     func_802906D8();
     func_80289E00();
     func_8029A554();
-    func_80298344();
+    func_80298344(); //climb_cooldown_update
     func_80290108();
     func_80292C1C();
     func_80292EDC();
@@ -306,14 +306,14 @@ void func_80295C14(void){
     func_8029D968();
     func_80297CF8();
     func_80294E60();
-    func_80291358();
+    func_80291358();//camera_update
     func_802919A0();
     if(D_8037C3B0){
         D_8037C3B0();
         D_8037C3B0 = NULL;
     }
     func_80299A8C();
-    func_80295E74();
+    func_80295E74();//voidOut_update
 }
 
 void func_80295D74(void){

@@ -351,13 +351,9 @@ void player_setYVelocity(f32 arg0){
     D_8037C4B8[1] = arg0;
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_FD60/func_802979AC.s")
-#else
-void func_802979AC(f32 arg0, f32 arg1){
-    func_80256D0C(0.0f, arg0, 0.0f, 0.0f, arg1, &D_8037C4B8[0], &D_8037C4B8[1], &D_8037C4B8[2]);
+void func_802979AC(f32 arg0, f32 arg1)
+{ func_80256D0C(0.0f, arg0, 0.0f, 0.0f, arg1, &D_8037C4B8[0], &D_8037C4B8[1], &D_8037C4B8[2]);
 }
-#endif
 
 void func_80297A0C(f32 arg0[3]){
     if(arg0)
@@ -436,13 +432,9 @@ void func_80297BB8(f32 arg0){
     D_8037C508.unk1C = arg0;
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_FD60/func_80297BC4.s")
-#else
-void func_80297BC4(f32 src[3]){
-    ml_vec3f_copy(D_8037C508.unk10, src);
+void func_80297BC4(f32 src[3])
+{ ml_vec3f_copy(D_8037C508.unk10, src);
 }
-#endif
 
 void gravity_set(f32 arg0){
     D_8037C4E8 = arg0;

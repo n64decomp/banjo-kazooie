@@ -260,10 +260,9 @@ s32 func_8031C5A4(struct0 *this){
     return this->unk50;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031C5AC.s")
-// void func_8031C5AC(struct0 *this, f32 *dst){
-//     ml_vec3f_copy(dst, &this->normX);
-// }
+void func_8031C5AC(struct0 *this, f32 *dst)
+{ ml_vec3f_copy(dst, &this->normX);
+}
 
 f32 func_8031C5D4(struct0 *this){
     return this->posX;

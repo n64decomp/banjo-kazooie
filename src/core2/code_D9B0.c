@@ -68,33 +68,21 @@ void func_80294A58(enum asset_e asset_id){
     D_8037C2E8 = asset_id;
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D9B0/func_80294A64.s")
-#else
-void func_80294A64(f32 (* src)[3]){
-    ml_vec3f_copy(&D_8037C2A0, src);
+void func_80294A64(f32 (* src)[3])
+{ ml_vec3f_copy(&D_8037C2A0, src);
 }
-#endif
 
 void func_80294A8C(int arg0){
     D_8037C2EC = arg0;
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D9B0/func_80294A98.s")
-#else
-void func_80294A98(f32 (* src)[3]){
-    ml_vec3f_copy(&D_8037C2B0, src);
+void func_80294A98(f32 (* src)[3])
+{ ml_vec3f_copy(&D_8037C2B0, src);
 }
-#endif
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D9B0/func_80294AC0.s")
-#else
-void func_80294AC0(f32 (* src)[3]){
-    ml_vec3f_copy(&D_8037C2C0, src);
+void func_80294AC0(f32 (* src)[3])
+{ ml_vec3f_copy(&D_8037C2C0, src);
 }
-#endif
 
 void func_80294AE8(f32 arg0){
     D_8037C2CC = arg0;
