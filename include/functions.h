@@ -252,6 +252,12 @@ void comusic_8025AB44(enum comusic_e comusic_id, s32 arg1, s32 arg2);
 
 f32  cosf(f32);
 
+struct54s * func_80287CA8(void);
+void func_80287F50(struct54s *, struct53s *, s32);
+void func_80287FD0(struct54s *, f32);
+void func_80287F7C(struct54s *arg0, s32 arg1);
+void func_80287F98(struct54s *arg0, s32 arg1);
+void func_80287FDC(struct54s *arg0, s32 arg1);
 
 void func_8028A010(enum asset_e anim_id, f32 duration);
 void func_8028A100(enum asset_e anim_id, f32, f32);

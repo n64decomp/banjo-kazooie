@@ -166,21 +166,17 @@ void func_80288FD8(vector(struct2s) **arg0, f32 arg1, s32 arg2){
     func_80288D40(arg0, arg1, func_80288AE0, arg2);
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_1930/func_80289008.s")
-#else
 void func_80289008(vector(struct2s) **arg0, f32 arg1, s32 arg2, s32 arg3){
-    func_80288D84(arg0, arg1, func_80288B34, arg2, arg3);
+    do{
+        func_80288D84(arg0, arg1, func_80288B34, arg2, arg3);
+    }while(0);
 }
-#endif
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_1930/func_80289048.s")
-#else
 void func_80289048(vector(struct2s) **arg0, f32 arg1, s32 arg2, s32 arg3, s32 arg4){
-    func_80288DCC(arg0, arg1, func_80288B60, arg2, arg3, arg4);
+    do{
+        func_80288DCC(arg0, arg1, func_80288B60, arg2, arg3, arg4);
+    }while(0);
 }
-#endif
 
 void func_80289090(vector(struct2s) **arg0, f32 arg1, s32 arg2, s32 arg3){
     func_80288D84(arg0, arg1, func_802888C0, arg2, arg3);

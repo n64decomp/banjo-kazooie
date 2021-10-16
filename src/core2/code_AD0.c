@@ -2,11 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-void func_80287F50(struct54s *, struct53s *, s32);
-void func_80287FD0(struct54s *, f32);
-void func_80287F7C(struct54s *arg0, s32 arg1);
-void func_80287F98(struct54s *arg0, s32 arg1);
-void func_80287FDC(struct54s *arg0, s32 arg1);
 
 /* .bss */
 struct54s D_80379BA0[40];

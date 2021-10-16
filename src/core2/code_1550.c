@@ -44,17 +44,20 @@ void func_802885E8(void){ //animationCache_free
     }
 }
 
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_1550/func_8028863C.s")
-// void func_8028863C(void){
-//     s32 i;
-//     for(i = 0; i < 0x2CA; i++){
-//         D_8037A8C0[i].unk0 = NULL;
-//         D_8037A8C0[i].unk4_15 = 0;
-//         D_8037A8C0[i].unk4_0 = 0;
-//     }
-//     func_802884E0();
-//     func_80288530();
-// }
+#else
+void func_8028863C(void){
+    s32 i;
+    for(i = 0; i < 0x2CA; i++){
+        D_8037A8C0[i].unk0 = NULL;
+        D_8037A8C0[i].unk4_15 = 0;
+        D_8037A8C0[i].unk4_0 = 0;
+    }
+    func_802884E0();
+    func_80288530();
+}
+#endif
 
 void func_8028873C(s32 arg0){
     s32 i;
