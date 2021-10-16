@@ -571,4 +571,22 @@ typedef struct{
     u8 pad4[8];
 }struct52s;
 
+typedef struct{
+    u8 unk0;
+    u8 unk1;
+} struct53s;
+
+typedef struct{
+    struct53s *unk0;
+    f32 unk4;
+    f32 unk8;
+    u32 unkC_31:7;
+    u32 unkC_24:7;
+    u32 unkC_17:7;
+    u32 unkC_10:7; 
+    u32 unkC_3:2;
+    u32 unkC_1:1;
+    u32 unkC_0:1;
+} struct54s;
+
 #endif

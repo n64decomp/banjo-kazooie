@@ -17,15 +17,15 @@ int func_80294F78(void){
     return button_pressed(BUTTON_C_UP) && func_8028ACD8();
 }
 
-int func_80294FB4(void){
+int should_rotate_camera_left(void){
     return button_pressed(BUTTON_C_LEFT) && func_802951FC(0);
 }
 
-int func_80294FF0(void){
+int should_rotate_camera_right(void){
     return button_pressed(BUTTON_C_RIGHT) && func_802951FC(1);
 }
 
-int func_8029502C(void){
+int should_zoom_out_camera(void){
     return button_pressed(BUTTON_C_DOWN) && func_802951FC(5);
 }
 

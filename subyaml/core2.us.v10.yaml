@@ -29,7 +29,7 @@ segments:
   vram:  0x80286F90 # via https://hack64.net/wiki/doku.php?id=player_kazooie:ram_map
   subsegments:
   - [0x0000, c, animctrl] #DONE
-  - [0x0AD0, c, code_AD0]
+  - [0x0AD0, c, code_AD0] #DONE
   - [0x10E0, c, code_10E0] #DONE
   - [0x1550, c, code_1550]
   - [0x1930, c, code_1930]
@@ -39,7 +39,7 @@ segments:
   - [0x39D0, c, code_39D0]
   - [0x6B30, c, code_6B30]
   - [0x7060, c, code_7060] #DONE
-  - [0x9450, c, code_9450]
+  - [0x9450, c, code_9450] #DONE
   - [0x9900, c, code_9900] #DONE
   - [0x9BD0, c, code_9BD0] #DONE
   - [0xA600, c, code_A600] #DONE
@@ -382,13 +382,14 @@ segments:
   - [0x000E2840, .data, code_74290]
   - [0x000E2870, bin, data_E2870]
   - [0x000ECE60, ".rodata", animctrl]
-  - [0x000ECE90, bin, data_ECE90]
+  - [0x000ECE90, .rodata, code_AD0]
   - [0x000ECEA0, .rodata, code_1930]
   - [0x000ECEC0, bin, data_ECEC0]
   #- [0x000ECFD0, .rodata, code_39D0] #need func_8028BCA0 to match
   - [0x000ED3F0, bin, data_ED3F0]
   - [0x000ED410, .rodata, code_6B30]
   - [0x000ED500, bin, data_ED500]
+  - [0x000ED630, .rodata, code_9450]
   - [0x000ED660, .rodata, code_9900]
   - [0x000ED670, .rodata, code_9BD0]
   - [0x000ED6B0, .rodata, code_AA60]

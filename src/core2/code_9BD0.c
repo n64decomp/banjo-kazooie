@@ -120,7 +120,7 @@ void func_80290F14(void){
     if( !func_80298850() 
         && func_8028ECAC() != 4
         && func_8029E270(7) == 0.0f
-        && func_8029502C()
+        && should_zoom_out_camera()
     ){
         switch(D_8037C061){
             case 1://L80290FA4
@@ -154,13 +154,13 @@ int func_8029105C(s32 arg0){
     if(func_80298850())
         return FALSE;
 
-    if(func_80294FB4() && func_802C1DB0(-45.0f)){
+    if(should_rotate_camera_left() && func_802C1DB0(-45.0f)){
         func_80291488(arg0);
         func_8029103C();
         return TRUE;
     }
     
-    if(func_80294FF0() && func_802C1DB0(45.0f)){
+    if(should_rotate_camera_right() && func_802C1DB0(45.0f)){
         func_80291488(arg0);
         func_8029103C();
         return TRUE;

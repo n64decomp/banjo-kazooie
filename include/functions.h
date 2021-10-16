@@ -328,6 +328,7 @@ f32  func_8029B30C(void);
 void func_8029B324(s32, f32);
 f32  func_8029B33C(void);
 f32  func_8029B41C(void);
+struct30s *func_8029B950(f32[3],f32);
 void func_8029C3E8(f32, f32);
 void func_8029CF48(s32, s32, f32);
 f32  func_8029DFC8(void);
