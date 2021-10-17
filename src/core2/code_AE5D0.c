@@ -6,6 +6,8 @@
 extern u8 D_80370338[];
 extern u32 D_80383634;
 extern u32 D_80383638;
+extern s32 D_80383640;
+extern s32 D_80383644;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AE5D0/func_80335560.s")
 
@@ -308,13 +310,18 @@ void func_80336904(Gfx **gdl, Mtx *mptr, BKSprite *sp, u32 frame){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AE5D0/func_803382D8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AE5D0/func_803382E4.s")
+void func_803382E4(s32 arg0){
+    D_80383634 = arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AE5D0/func_803382F0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AE5D0/func_803382FC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AE5D0/func_80338308.s")
+void func_80338308(s32 arg0, s32 arg1){
+    D_80383640 = arg0;
+    D_80383644 = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AE5D0/func_8033831C.s")
 

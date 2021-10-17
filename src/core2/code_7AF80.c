@@ -417,23 +417,114 @@ extern ActorSpawn *D_8036A9B4;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_8030A2D0.s")
 
+typedef struct{
+    BKModel *unk0;
+    s32 unk4;
+    f32 unk8;
+}struct_7AF80_0;
+
+typedef struct{
+    BKSprite *unk0;
+    BKSpriteDisplayData *unk4;
+    s32 unk8;
+    f32 unkC;
+}struct_7AF80_1;
+
+s32 D_8036B800;
+struct_7AF80_0 *D_80382390; //prop models ???
+struct_7AF80_1 *D_80382394; //prop_sprites ???
+
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_8030A350.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_8030A428.s")
+void *func_8030A428(s32 arg0){
+    if(D_80382390[arg0].unk0 == NULL){
+        D_80382390[arg0].unk0 = assetcache_get(0x2d1 + arg0);
+    }
+    D_80382390[arg0].unk4 = func_8023DB5C();
+    return D_80382390[arg0].unk0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_8030A4B4.s")
+BKModel *func_8030A4B4(s32 arg0){
+    return D_80382390[arg0].unk0;
+}
 
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_8030A4D4.s")
+#else
+BKSpriteDisplayData *func_8030A4D4(s32 arg0){
+    struct_7AF80_1 *ptr;
+    if((ptr = D_80382394[arg0].unk0) == NULL){
+        D_80382394[arg0].unk0 = func_8033B6C4(arg0 + 0x572, &ptr->unk4);
+    }
+    D_80382394[arg0].unk8 = func_8023DB5C();
+    return D_80382394[arg0].unk4;
+}
+#endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_8030A55C.s")
+BKSprite *func_8030A55C(s32 arg0){
+    func_8030A4D4(arg0);
+    return D_80382394[arg0].unk0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_8030A590.s")
+f32 func_8030A590(Prop *arg0){
+    if(arg0->unk8_1){
+        PropProp* propProp = &arg0->propProp;
+        return D_80382390[propProp->unk0_31].unk8;
+    }
+    else{//L8030A65C
+        SpriteProp *spriteProp = &arg0->spriteProp;
+        return D_80382394[spriteProp->unk0_31].unkC;
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_8030A5EC.s")
+void func_8030A5EC(Prop *arg0, f32 arg1){
+    if(arg0->unk8_1){
+        PropProp* propProp = &arg0->propProp;
+        D_80382390[propProp->unk0_31].unk8 = (f32)propProp->unkA*arg1/100.0f;
+    }
+    else{//L8030A65C
+        SpriteProp *spriteProp = &arg0->spriteProp;
+        D_80382394[spriteProp->unk0_31].unkC = (f32)spriteProp->unk0_9*arg1/100.0f;
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_8030A6B0.s")
+void func_8030A6B0(void){//clear
+    struct_7AF80_0* iPtr;
+    struct_7AF80_1* jPtr;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_8030A78C.s")
+    for(iPtr = D_80382390; iPtr < &D_80382390[0x2A2]; iPtr++){
+        if(iPtr->unk0){
+            assetcache_release(iPtr->unk0);
+        }
+    }
+    for(jPtr = D_80382394; jPtr < &D_80382394[0x168]; jPtr++){
+        if(jPtr->unk0){
+            func_8033B338(&jPtr->unk0, &jPtr->unk4);
+        }
+    }
+    free(D_80382390);
+    D_80382390 = NULL;
+    free(D_80382394);
+    D_80382394 = NULL;
+}
+
+
+void func_8030A78C(void){//init
+    struct_7AF80_0* iPtr;
+    struct_7AF80_1* jPtr;
+
+    D_80382390 = (struct_7AF80_0 *)malloc(0x2A2 * sizeof(struct_7AF80_0));
+    D_80382394 = (struct_7AF80_1 *)malloc(0x168 * sizeof(struct_7AF80_1));
+    D_8036B800 = 0;
+    for(iPtr = D_80382390; iPtr < &D_80382390[0x2A2]; iPtr++){
+        iPtr->unk0 = NULL;
+        iPtr->unk8 = 0.0f;
+    }
+    for(jPtr = D_80382394; jPtr < &D_80382394[0x168]; jPtr++){
+        jPtr->unk0 = NULL;
+        jPtr->unkC = 0.0f;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_8030A850.s")
 

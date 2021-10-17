@@ -2,7 +2,7 @@
 #define STRUCTS_H
 
 #include <ultra64.h>
-
+#include "model.h"
 #define MERGE(a, b) a ## b
 
 
@@ -38,6 +38,15 @@ typedef struct bk_sprite_s{
     s16 unkA;
     u8 unkC[4];
 } BKSprite;
+
+typedef struct{
+    Gfx *gfx; //gfx_offset
+    Vtx *vtx; //vtx_offset
+}BKSpriteFrameDisplayData;
+typedef struct{
+    BKSprite *sprite;
+    BKSpriteFrameDisplayData frame[];
+}BKSpriteDisplayData;
 
 typedef struct bk_sprite_frame_s{
     s16 unk0;
@@ -297,10 +306,6 @@ typedef struct struct_17_s{
     s8 unk3;
     struct18s soundInfo[5];
 }struct17s;
-
-typedef struct struct_19_s{
-    s16 unk0;
-}struct19s;
 
 typedef struct struct_1A_s{
     u8  pad0[0x8];

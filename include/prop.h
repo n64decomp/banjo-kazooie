@@ -12,7 +12,9 @@ enum ch_id{
 
 typedef struct sprite_prop_s{
     u32 unk0_31:0xC;
-    u32 pad0_19:0x14;
+    u32 pad0_19:0xA;
+    u32 unk0_9:0x8;
+    u32 pad0_1:0x2;
     u8 pad4[0x4];
     u32 pad8_31: 27;
     u32 unk8_4: 1;
@@ -24,7 +26,9 @@ typedef struct sprite_prop_s{
 typedef struct prop_prop_s{
     u32 unk0_31:0xC;
     u32 pad0_19:0x14;
-    u8 pad4[0x8];
+    u8 pad4[0x6];
+    u8 unkA;
+    u8 padB[1];
 } PropProp;
 
 typedef struct actor_prop_s{

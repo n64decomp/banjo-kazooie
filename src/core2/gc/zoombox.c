@@ -101,13 +101,33 @@ void _gczoombox_memClear(u8 *arg0, s32 size){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/zoombox/func_8031594C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/zoombox/func_80315BC0.s")
+u8 func_80315BC0(gczoombox_t *this, enum SFX_E uid, s32 arg2){
+     u8 sp1F = func_8030ED2C(uid, arg2) & 0xff;
+     func_8030DD90(sp1F, 0);
+     if(this->portrait_id == 0x66){
+          func_8030DCCC(sp1F, 0x40);
+     }
+     return sp1F;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/zoombox/func_80315C1C.s")
+void func_80315C1C(gczoombox_t *this){
+     int i;
+     func_80315200(this);
+     func_80315300(this);
+     for(i = 0 ; i < 8; i++){
+          this->unk13C[i] = 0;
+     }
+     this->unk135 = 0;
+     this->unk137 = this->unk1A4_20 = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/zoombox/func_80315C90.s")
 
+extern f64 D_803788C8;
+extern f32 D_803788D0;
+extern f64 D_803788D8;
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/zoombox/func_803160A8.s")
+
 
 void func_803162B4(gczoombox_t *this){
      func_802F7B90(this->unk168, this->unk168, this->unk168);
@@ -230,7 +250,7 @@ s32 func_80316ED4(u8 *arg0){
 //_gczoombox_loadSprite
 void func_80317C90(gczoombox_t *this, s32 portrait_id){
      this->unkF8 = func_8033B6C4(D_8036C6C0[portrait_id].uid, &this->unkFC);
-     this->unk188 = this->unkF8->unk0;
+     this->unk188 = this->unkF8->frameCnt;
      func_803382E4(-1);
      
      func_80338308(func_802510A0(this->unkF8), func_802510A8(this->unkF8));
@@ -267,7 +287,7 @@ void func_80317D10(gczoombox_t *this, s32 portrait_id){
      }
 }
 
-#if NONMATCHING
+#ifdef NONMATCHING
 gczoombox_t *gczoombox_new(s32 arg0, s32 portrait_id, s32 arg2, s32 arg3, void (*arg4)(s32, s32)){
      gczoombox_t *this;
      u8 temp_a1 = 0;
@@ -283,11 +303,8 @@ gczoombox_t *gczoombox_new(s32 arg0, s32 portrait_id, s32 arg2, s32 arg3, void (
      this->portrait_id = portrait_id;
      this->unk13A = 0x20;
      this->unk139 = arg2;
-     for(i = 0; i < 2; i++){
-          this->unk13C[i].unkC = 0;
-          this->unk13C[i].unk8 = 0;
-          this->unk13C[i].unk4 = 0;
-          this->unk13C[i].unk0 = 0;
+     for(i = 0; i < 8; i++){
+          this->unk13C[i] = 0;
      }
      this->unk15E = 0;
      this->unk15D = 0;
@@ -317,11 +334,13 @@ gczoombox_t *gczoombox_new(s32 arg0, s32 portrait_id, s32 arg2, s32 arg3, void (
      this->unk180 = 0;
      this->unk172 = this->unk164;
      this->unk18C = 0.0f;
-     this->unk19C = 0.0f;
-     this->unk194 = 0.999f;
+     //this->unk194 = 0.999f;
+     this->unk194 = D_80378938;
      this->unk198 = 1.0f;
+     this->unk19C = 0.0f;
+     this->unk1A0 = D_8037893C;
      this->unk1A4_13 = 0;
-     this->unk1A0 = 1.0f/30.0f;
+     //this->unk1A0 = 1.0f/30.0f;
      
      tmp = this->unk1A4_19;
      this->unk1A4_14 = tmp;
@@ -346,7 +365,8 @@ gczoombox_t *gczoombox_new(s32 arg0, s32 portrait_id, s32 arg2, s32 arg3, void (
      animctrl_reset(this->unkF4);
      animctrl_setIndex(this->unkF4, ANIM_ZOOMBOX);
      func_802875AC(this->unkF4, D_80378880, 0x6fd);
-     func_803184C8(this, 15.0f, 5, 2, 0.4f, 0, 0);
+     //func_803184C8(this, 15.0f, 5, 2, 0.4f, 0, 0);
+     func_803184C8(this, 15.0f, 5, 2, D_80378940, 0, 0);
      this->unk176 = D_8036C6C0[portrait_id].unk2;
      this->unk177 = D_8036C6C0[portrait_id].unk3;
      this->unk179 = 0;
@@ -477,7 +497,55 @@ int func_8031877C(gczoombox_t *this){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/zoombox/func_80318964.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/zoombox/func_803189C4.s")
+int func_803189C4(gczoombox_t *this, s32 arg1){
+     if( this == NULL
+         || arg1 == this->portrait_id
+         || ( this->unk135 != 6
+              && this->unk135 != 0xa
+              && this->unk135 != 0xb
+              && this->unk135 != 0x9
+     )){
+          return FALSE;
+     }
+     
+     if(this->unk135 == 0xb || this->unk135 == 0x9){
+          if(this->unkF8){
+               assetcache_release(this->unkF8);
+               this->unkF8 = NULL;
+          }
+          func_803152C4(this);
+          func_80317C90(this, arg1);
+          this->unk176 = D_8036C6C0[arg1].unk2;
+          this->unk177 = D_8036C6C0[arg1].unk3;
+          func_80315200(this);
+          func_80317D10(this, arg1);
+          this->portrait_id = arg1;
+     }
+     else{//L80318AAC
+          if(this->unk100){
+               assetcache_release(this->unk100);
+               this->unk100 = NULL;
+          }
+          if(this->unkF8){
+               this->unk100 = this->unkF8;
+          }
+          if(this->unkFC){
+               this->unk104 = this->unkFC;
+          }
+          this->unk178 = this->unk176;
+          this->unk179 = this->unk177;
+          func_80317C90(this, arg1);
+          this->unk176 = D_8036C6C0[arg1].unk2;
+          this->unk177 = D_8036C6C0[arg1].unk3;
+          func_80315200(this);
+          func_80317D10(this, arg1);
+          this->unk1A4_14 = 1;
+          this->portrait_id = arg1;
+          this->unk1A4_13 = 1;
+          this->unk17C = 1.0f;
+     }//L80318B64
+     return TRUE;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/zoombox/func_80318B7C.s")
 

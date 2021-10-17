@@ -4,6 +4,7 @@
 
 #include "assets.h"
 
+
 extern u8 D_80370A1C;
 extern u8 D_80370A14; //assetCache_size;
 extern u8 D_80370A18;
@@ -15,7 +16,7 @@ extern AssetFileMeta *D_80383CC4;
 extern u32 D_80383CC8;
 extern s32 D_80383CCC; //asset_data_rom_offset
 extern void** D_80383CD0; //assetCache_ptrs;
-extern s32 *D_80383CD4;
+extern BKSpriteDisplayData **D_80383CD4;
 extern u8* D_80383CD8; //assetCache_dependencies;
 extern s16 *D_80383CDC; //assetCache_indexs
 
@@ -158,19 +159,27 @@ s32 func_8033B6A4(s32 arg0){ //asset_compressed?
     return (D_80383CC4[arg0].compFlag & 1) !=0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B3A80/func_8033B6C4.s")
+//returns raw sprite(as saved in ROM) and points arg1 to a parsed sprite(?)
+BKSprite *func_8033B6C4(enum asset_e sprite_id, BKSpriteDisplayData **arg1){
+    BKSprite *s0;
+    s0 = assetcache_get(sprite_id);
+    if(D_80383CD4[D_80370A18] == NULL){
+        func_803382E4(-1);
+        func_80338308(func_802510A0(s0), func_802510A8(s0));
+        D_80383CD4[D_80370A18] = func_80344A1C(s0);
+    }
+    *arg1 = D_80383CD4[D_80370A18];
+    return s0;
+}
 
 void func_8033B788(void ){
     D_80370A1C = 1;
 }
 
-#define ALIGN10(s) {\
-    if(((u32)(s) & 0xF))\
-        (s) = (s) - ((u32)(s) & 0xF) +  0x10;\
-}
-
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B3A80/assetcache_get.s")
-/*void *assetcache_get(s32 arg0) {
+#else
+void *assetcache_get(s32 arg0) {
     s32 comp_size;//sp_44
     s32 i;
     volatile s32 sp3C; //sp3C
@@ -200,7 +209,11 @@ void func_8033B788(void ){
         func_8033BAB0(arg0, 0, 0x10, &D_80383CB0);
         D_80370A10 = rarezip_get_uncompressed_size(&D_80383CB0);
         uncomp_size = D_80370A10;
-        ALIGN10(uncomp_size);
+        if(uncomp_size & 0xF){
+            uncomp_size -= uncomp_size & 0xF;
+            uncomp_size += 0x10;
+        }
+        
         if (func_8025498C(comp_size + uncomp_size) && !sp28) {
             sp33 = 1;
             uncompressed_file = malloc(comp_size + uncomp_size);
@@ -234,7 +247,8 @@ void func_8033B788(void ){
     D_80383CDC[D_80370A14] = arg0;
     D_80370A14++;
     return uncompressed_file;
-}//*/
+}
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B3A80/func_8033BAB0.s")
 
