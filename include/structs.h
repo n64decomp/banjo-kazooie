@@ -295,7 +295,7 @@ typedef struct struct_16_s{
 }struct16s;
 
 typedef struct struct_18_s{
-    s16 uid;
+    s16 uid; /* enum SFX_E */
     s16 unk2;
     f32 unk4;
 }struct18s;

@@ -635,7 +635,7 @@ enum SFX_E
 {
     SFX_BLOOP = 0x0000,
     SFX_MUMBO_UMENAKA,
-    SFX_CLAW_SWIPE,
+    SFX_2_CLAW_SWIPE,
     SFX_DULL_CANNON_SHOT,
     // Long Beakbarge 2nd Part
     SFX_KAZOOIE_RUUUUUH, 
@@ -644,7 +644,7 @@ enum SFX_E
     SFX_BANJO_LANDING_03, 
     SFX_BANJO_LANDING_04, 
     SFX_SQUEAKY_TOY,
-    SFX_BANJO_LANDING_05,
+    SFX_A_BANJO_LANDING_05,
     SFX_BANJO_LANDING_06,
     SFX_TAKING_FLIGHT_LIFTOFF,
     SFX_EGGSHELL_BREAKING,
@@ -673,7 +673,7 @@ enum SFX_E
     // hitting the Bull eg.
     SFX_HITTING_AN_ENEMY_1,
     // might also be used for breaking boulders
-    SFX_HITTING_AN_ENEMY_2,
+    SFX_1E_HITTING_AN_ENEMY_2,
     // hitting a Gruntling eg.
     SFX_HITTING_AN_ENEMY_3,
     // Cauldrons make this sound when landing
@@ -797,7 +797,7 @@ enum SFX_E
     SFX_FLAGPOLE_WOBBLE,
     SFX_LOCKUP_OPENING,
     SFX_LOCKUP_CLOSING,
-    SFX_CROC_BITE,
+    SFX_6D_CROC_BITE,
     SFX_VILE_EGH,
     // bottles uses this too I think
     SFX_BANJO_HEADSCRATCH,
@@ -926,11 +926,11 @@ enum SFX_E
     SFX_BANJO_DROWNING_1,
     SFX_BANJO_DROWNING_2,
     // also the scrolling sound
-    SFX_PAUSEMENU_ENTER_SUBMENU,
-    SFX_PAUSEMENU_LEAVE_SUBMENU,
+    SFX_CC_PAUSEMENU_ENTER_SUBMENU,
+    SFX_CD_PAUSEMENU_LEAVE_SUBMENU,
     // when the page is changed
-    SFX_PAUSEMENU_HOIP,
-    SFX_PAUSEMENU_SHWOOP,
+    SFX_CE_PAUSEMENU_HOIP,
+    SFX_CF_PAUSEMENU_SHWOOP,
     SFX_GRIMLET_SQUEAK = 0x00D0,
     SFX_SNORKEL_WAH,
     // barely noticable
@@ -939,7 +939,7 @@ enum SFX_E
     SFX_JINXIE_SNIFFLING_2,
     SFX_JINXIE_SNEEZING,
     SFX_UGH,
-    SFX_GRABBA_DEATH,
+    SFX_D7_GRABBA_DEATH,
     SFXR_CRANE,
     SFX_WOODEN_CRATE_BREAKING_1,
     SFX_WOODEN_CRATE_BREAKING_2,
