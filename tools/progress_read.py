@@ -5,6 +5,26 @@ import sys
 import csv
 import anybadge
 
+# Read using `mips-linux-gnu-readelf -S`
+overlay_sizes = {
+    'bk_boot'   : (0x5BE0 - 0x1000),
+    'core1'     : 0x034b70 + 0x003080,
+    'core2'     : 0x0dc600,
+    'CC'        : 0x0036b0,
+    'MMM'       : 0x0055f0,
+    'GV'        : 0x00a7e0,
+    'TTC'       : 0x005fc0,
+    'MM'        : 0x0034a0,
+    'BGS'       : 0x00a2a0,
+    'RBB'       : 0x009c60,
+    'FP'        : 0x00b600,
+    'SM'        : 0x0046d0,
+    'cutscenes' : 0x006f60,
+    'lair'      : 0x00c8c0,
+    'fight'     : 0x00af90,
+    'CCW'       : 0x008760,
+}
+
 def RGB_to_hex(RGB):
     ''' [255,255,255] -> "#FFFFFF" '''
     # Components need to be integers for hex to make sense
@@ -17,18 +37,22 @@ def main(csv_name, version, overlay):
         csv_reader = csv.DictReader(csv_file)
         line_count = 0
         total_func = 0
-        done_func = 0
-        total_byte = 0
-        done_byte = 0
+        incomplete_func = 0
+        if overlay == 'total':
+            total_byte = sum(overlay_sizes.values())
+        else:
+            total_byte = overlay_sizes[overlay]
+        incomplete_byte = 0
         for row in csv_reader:
             if(row["version"] == version):
                 total_func += 1
-                total_byte += int(row['length'])
-                if row['matching'] == 'yes':
-                    done_func += 1
-                    done_byte += int(row['length'])
+                if row['matching'] != 'yes':
+                    incomplete_func += 1
+                    incomplete_byte += int(row['length'])
+        done_byte = total_byte - incomplete_byte
+        done_func = total_func - incomplete_func
         percent = ((done_byte/total_byte) * 100)
-        print("%s: bytes: %3.4f%% (%d/%d), funcs: %3.4f%% (%d/%d)" % (overlay, percent, done_byte, total_byte,((done_func/total_func) *100), done_func, total_func ))
+        print("%s: bytes: %3.4f%% (%d/%d), nonstatic funcs: %3.4f%% (%d/%d)" % (overlay, percent, done_byte, total_byte,((done_func/total_func) *100), done_func, total_func ))
         green = min(255, round(min(1, (percent / 100) * 2) * 256))
         red = min(255, round(min(1, ((100 - percent) / 100) * 2) * 256))
         color = RGB_to_hex([red, green, 0])

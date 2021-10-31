@@ -175,7 +175,7 @@ endef
 
 # Build tool flags
 CFLAGS         := -c -Wab,-r4300_mul -non_shared -G 0 -Xfullwarn -Xcpluscomm  -signed $(OPT_FLAGS) $(MIPSBIT) -D_FINALROM -DF3DEX_GBI
-CFLAGS         += -woff 649,838,807
+CFLAGS         += -woff 649,654,838,807
 CPPFLAGS       := -D_FINALROM -DN_MICRO
 INCLUDE_CFLAGS := -I . -I include -I include/2.0L -I include/2.0L/PR
 OPT_FLAGS      := -O2 
