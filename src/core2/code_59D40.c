@@ -30,39 +30,3 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_59D40/func_802E17E8.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_59D40/func_802E1A04.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_59D40/func_802E1AC0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_59D40/func_802E1B24.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_59D40/func_802E1BD0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_59D40/func_802E1CB8.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_59D40/func_802E1DA0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_59D40/func_802E1DE8.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_59D40/func_802E1E20.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_59D40/func_802E1E5C.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_59D40/func_802E1EB4.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_59D40/func_802E1F70.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_59D40/func_802E1FD0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_59D40/func_802E208C.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_59D40/func_802E20E8.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_59D40/func_802E2630.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_59D40/func_802E26A4.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_59D40/func_802E2748.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_59D40/func_802E28A4.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_59D40/func_802E28D0.s")

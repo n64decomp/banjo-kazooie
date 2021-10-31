@@ -391,17 +391,17 @@ typedef struct struct_30_s{
     u32 pad0_31:8;
     u32 unk0_23:7;
     u32 unk0_16:1;
-    u32 unk0_15:14;
+    u32 unk0_15:14; //uid
     u32 unk0_1:1;
     u32 unk0_0:1;
     f32 unk4[3];
     f32 unk10;
     f32 unk14;
     s32 unk18;
-    Sprite *unk1C;
-    void *unk20;
+    Sprite *unk1C; //sprite_ptr
+    void *unk20; //model_ptr
     f32 unk24;
-    f32 unk28[3];
+    f32 unk28[3]; //position
     s32 unk34;
     f32 unk38;
     s32 unk3C[3];
@@ -413,8 +413,8 @@ typedef struct struct_30_s{
     s16 unk64;
     s16 unk66;
     f32 unk68;
-    f32 unk6C;
-    f32 unk70;
+    f32 unk6C; //scale_min?
+    f32 unk70; //scale_max?
     f32 unk74;
     f32 unk78;
     s32 unk7C;
@@ -423,9 +423,9 @@ typedef struct struct_30_s{
     s32 unk88;
     f32 unk8C;
     f32 unk90;
-    f32 unk94[3];
-    f32 unkA0[3];
-    f32 unkAC[2];
+    f32 unk94[3]; //sSpawnRange
+    f32 unkA0[3]; //lSpawnRange
+    f32 unkAC[2]; 
     f32 unkB4[2];
     f32 unkBC[3];
     f32 unkC8[3];
@@ -442,9 +442,9 @@ typedef struct struct_30_s{
     f32 unk108;
     f32 unk10C[3];
     f32 unk118[3];
-    struct2Fs *unk124;
-    struct2Fs *unk128;
-    struct2Fs *unk12C; //end ptr;
+    struct2Fs *unk124; //start_ptr?
+    struct2Fs *unk128; //end_ptr
+    struct2Fs *unk12C; //capacity_end_ptr;
     struct2Fs data[];//end of struct 0x130 
 } struct30s;
 

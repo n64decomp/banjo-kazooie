@@ -842,7 +842,7 @@ enum SFX_E
     SFX_BOGGY_OHWW,
     // tooie mingy sounds super similar
     SFX_GRUNTLING_DAMAGE,
-    SFX_SNOWBALL_FLYING,
+    SFX_8F_SNOWBALL_FLYING,
     SFX_90_SWITCH_PRESS = 0x0090,
     // might be clankers bolt landing
     SFX_METALLIC_SOUND,
@@ -1277,6 +1277,11 @@ enum actor_e
     
     actor_leafboat          = 0xF1,
     actor_bigalligator      = 0xF6,
+
+    ACTOR_124_SIR_SLUSH     = 0x124,
+    ACTOR_125_SNOWBALL,
+    ACTOR_126_SIR_SLUSH_HAT,
+
     actor_yellow_flibbit_controller = 0x136,
     actor_yumblie           = 0x139,
 
@@ -1285,6 +1290,7 @@ enum actor_e
     ACTOR_TOPPER_A            = 0x166,
     ACTOR_ATTACK_TUTORIAL   = 0x167,
 
+    ACTOR_1CC_GRILL_CHOMPA = 0x1CC,
 
     ACTOR_COLLYWOBBLE_B     = 0x36D,
     ACTOR_BAWL_B            = 0x36E,
@@ -1569,6 +1575,9 @@ enum asset_e
 
     ANIM_GRUBLIN_DIE = 0x94,
 
+    ASSET_108_ANIM_SIR_SLUSH_IDLE = 0x108,
+    ASSET_109_ANIM_SIR_SLUSH_ATTACK,
+
     ANIM_BANJO_CROUCH = 0x10C,
 
     ANIM_BANJO_CROUCH_NOINPUT = 0x116,
@@ -1583,6 +1592,8 @@ enum asset_e
     ASSET_1E1_ANIM_BEE_DIE,
     ASSET_1E2_ANIM_BEE_JUMP,
     
+    ASSET_220_ANIM_SIR_SLUSH_DIE = 0x220,
+
     model_orange            = 0x2d2, //projectile
 
     model_juju              = 0x2e6,
@@ -1595,18 +1606,24 @@ enum asset_e
 
     ASSET_359_MODEL_BANJO_WALRUS = 0x359,
 
+    model_conga             = 0x35c,
+    model_chimpy            = 0x35d,
+
+
     ASSET_362_MODEL_BANJO_BEE = 0x362,
 
     ASSET_36F_MODEL_BANJO_PUMPKIN = 0x36f,
 
     ASSET_374_MODEL_BANJO_CROC = 0x374,
 
-    model_conga             = 0x35c,
-    model_chimpy            = 0x35d,
+    ASSET_377_MODEL_SIR_SLUSH = 0x377,
+    ASSET_378_MODEL_SNOWBALL,
 
     model_grublin           = 0x3c5,
 
     model_chimpy_stump      = 0x3c8,
+
+    ASSET_430_MODEL_GRILL_CHOMPA = 0x430,
 
     MODEL_TOPPER            = 0x4ed,
     MODEL_COLLYWOBBLE       = 0x4ee,

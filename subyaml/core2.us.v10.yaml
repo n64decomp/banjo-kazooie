@@ -202,6 +202,8 @@ segments:
   - [0x599E0, c, code_599E0]
   - [0x59A80, c, code_59A80]
   - [0x59D40, c, code_59D40]
+  - [0x5AB30, c, ch/code_5AB30]
+  - [0x5B6A0, c, code_5B6A0]
   - [0x5BD90, c, code_5BD90]
   - [0x5BEB0, c, code_5BEB0]
   - [0x5DBC0, c, code_5DBC0] #DONE
