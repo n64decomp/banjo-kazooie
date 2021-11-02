@@ -1323,7 +1323,9 @@ enum actor_e
 
     ACTOR_COLLYWOBBLE_B     = 0x36D,
     ACTOR_BAWL_B            = 0x36E,
-    ACTOR_TOPPER_B          = 0x36F
+    ACTOR_TOPPER_B          = 0x36F,
+
+    ACTOR_3BA_UNKOWN        = 0x3ba
 };
 
 enum bs_e

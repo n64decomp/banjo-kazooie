@@ -31,8 +31,13 @@ void func_802D75B4(s32 *, s32, ActorInfo*, u32);
 void func_802D7610(s32 *, s32, ActorInfo*, u32);
 void func_802DEB18(s32 *, s32, ActorInfo*, u32);
 
+extern ActorInfo D_80365E58; //banjo.without_right_hand
+extern ActorInfo D_80365EAC; //banjo.playing_gameboy
+extern ActorInfo D_80365F00; //banjo.cooking
 extern ActorInfo D_80365F60;
 extern ActorInfo D_80365F84; //turbotrainers
+extern ActorInfo D_80365FB0; //shrapnel
+extern ActorInfo D_80365FE0;
 extern ActorInfo D_80366090; //bigbutt
 extern ActorInfo D_803660B4; //brownbull
 extern ActorInfo D_803662A8; //jiggy
@@ -43,10 +48,14 @@ extern ActorInfo D_80366388;
 extern ActorInfo D_803663AC;
 extern ActorInfo D_803663D0;
 extern ActorInfo D_803663F4;
+extern ActorInfo D_80366430; //extralife
 extern ActorInfo D_80366C50; //music_note
 extern ActorInfo D_80366C80; //chhoneycarrier
 extern ActorInfo D_80366CA4; //chhoney
 extern ActorInfo D_80366EC0;
+extern ActorInfo D_80366EF0; //large_shadow
+extern ActorInfo D_80366F20; //chshockjump
+extern ActorInfo D_80366F44; //flight_pad
 extern ActorInfo D_80367160;
 extern ActorInfo D_80367184;
 extern ActorInfo D_80367200; //jingo_blue
@@ -55,39 +64,75 @@ extern ActorInfo D_80367248; //jingo_yellow
 extern ActorInfo D_8036726C; //jingo_pink
 extern ActorInfo D_80367290; //jingo_orange
 extern ActorInfo D_803672E0; //chbeehive
-extern ActorInfo D_80367310; //bees
+extern ActorInfo D_80367310; //chswarm
 extern ActorInfo D_80367390; //chwaterfallfx
+extern ActorInfo D_80367468; //gloop
 extern ActorInfo D_803674E0; //mumbo
+extern ActorInfo D_80367530; //mumbo_token_sign.5
+extern ActorInfo D_80367554; //mumbo_toke_sign.10
+extern ActorInfo D_80367578; //mumbo_toke_sign.15
+extern ActorInfo D_8036759C; //mumbo_toke_sign.20
+extern ActorInfo D_803675C0; //mumbo_toke_sign.25
 extern ActorInfo D_803675F0;
-extern ActorInfo D_80367A20;//wading boots
+extern ActorInfo D_80367760;
+extern ActorInfo D_80367784;
+extern ActorInfo D_803677A8; //ice_key
+extern ActorInfo D_803677CC; //mumbo_transform_pad
+extern ActorInfo D_803677F0;
+extern ActorInfo D_80367814; //SnS_egg
+extern ActorInfo D_80367838; //level_entry_disk
+extern ActorInfo D_8036785C; //witch_switch.mm;
+extern ActorInfo D_80367880; //witch_switch.mmm
+extern ActorInfo D_803678A4; //witch_switch.ttc
+extern ActorInfo D_803678C8; //witch_switch.rbb
+extern ActorInfo D_803678EC; //witch_switch.ccw
+extern ActorInfo D_80367910; //witch_switch.fp
+extern ActorInfo D_80367934; //witch_switch.cc
+extern ActorInfo D_80367958; //witch_switch.bgs
+extern ActorInfo D_8036797C; //witch_switch.gv
+extern ActorInfo D_80367A20; //wading boots
+extern ActorInfo D_80367A50; //chbadshad
 extern ActorInfo D_80367AB0;
 extern ActorInfo D_80367AD4;
 extern ActorInfo D_80367AF8;
+extern ActorInfo D_80367B20; //chclimbbase
+extern ActorInfo D_80367B80; //orange
+extern ActorInfo D_80367BA4; //gold_bullion
 extern ActorInfo D_80367C60;
-extern ActorInfo D_80367D00; //egg
-
-extern ActorInfo D_80366430; //extralife
-extern ActorInfo D_80365FB0; //shrapnel
-extern ActorInfo D_80367A50; //chbadshad
-extern ActorInfo D_803685A0; //mumbotoken
-extern ActorInfo D_80367F30;
-extern ActorInfo D_80365FE0;
-extern ActorInfo D_80367468; //gloop
-extern ActorInfo D_80366F20; //chshockjump
-extern ActorInfo D_80366F44; //flight_pad
-extern ActorInfo D_80367D24; //redfeather
-extern ActorInfo D_80367D48; //goldfeather 
 extern ActorInfo D_80367C90; //spent_redfeather
 extern ActorInfo D_80367CB4; //spent_goldfeather
+extern ActorInfo D_80367D00; //egg
+extern ActorInfo D_80367D24; //redfeather
+extern ActorInfo D_80367D48; //goldfeather 
 extern ActorInfo D_80367DA0; //bottles
 extern ActorInfo D_80367E20; //chmolehill
-extern ActorInfo D_80373DC0;
 extern ActorInfo D_80367E70;
+extern ActorInfo D_80367F30;
+extern ActorInfo D_8036804C;//GAME_OVER
+extern ActorInfo D_8036807C;//THE_END
+extern ActorInfo D_803680AC;//player_KAZOOIE
+extern ActorInfo D_803680DC;//copyright_info
+extern ActorInfo D_80368124;//PRESS_START
+extern ActorInfo D_80368174;//NO_CONTROLLER)
+extern ActorInfo D_803682D0;//jiggy_picture
+extern ActorInfo D_8036833C; 
+extern ActorInfo D_8036838C;
+extern ActorInfo D_80368418;//banjos_hand_BB
+extern ActorInfo D_80368450;//fire_sparkle
+extern ActorInfo D_80368474;
+extern ActorInfo D_80368498;
+extern ActorInfo D_803684BC;//roysten
+extern ActorInfo D_803684E0;//cuckoo_clock
+extern ActorInfo D_80368504;
+extern ActorInfo D_80368528;
+extern ActorInfo D_8036854C;
+extern ActorInfo D_80368570;
+extern ActorInfo D_803685A0; //mumbotoken
 extern ActorInfo D_80368620; //snacker
-extern ActorInfo D_80366EF0; //large_shadow
-extern ActorInfo D_80367B20; //chclimbbase
-extern ActorInfo D_80367BA4; //gold_bullion
-extern ActorInfo D_80367B80; //orange
+extern ActorInfo D_80368710;//snowball
+extern ActorInfo D_803687C0;//sir_slush_hat
+extern ActorInfo D_80372810;
+extern ActorInfo D_8036D970; //boombox
 extern ActorInfo D_80372970; //leaf_particle
 extern ActorInfo D_80372994;
 extern ActorInfo D_803729B8; //rain
@@ -96,69 +141,23 @@ extern ActorInfo D_80372A00; //snow
 extern ActorInfo D_80372A24; 
 extern ActorInfo D_80372A48; 
 extern ActorInfo D_80372A6C; 
-extern ActorInfo D_8036D970; //boombox
-extern ActorInfo D_803677A8; //ice_key
-extern ActorInfo D_80367814; //SnS_egg
 extern ActorInfo D_80372A90; //fire
-extern ActorInfo D_80367838; //level_entry_disk
-extern ActorInfo D_80367760;
-extern ActorInfo D_80367784;
-extern ActorInfo D_80365E58; //banjo.without_right_hand
-extern ActorInfo D_80365EAC; //banjo.playing_gameboy
-extern ActorInfo D_80365F00; //banjo.cooking
-extern ActorInfo D_803677CC;//mumbo_transform_pad
-extern ActorInfo D_803677F0;
-extern ActorInfo D_803731B0;
-extern ActorInfo D_80368710;//snowball
-extern ActorInfo D_803687C0;//sir_slush_hat
 extern ActorInfo D_80372AC0;//water_drops
 extern ActorInfo D_80372BA4;//ice_cube
-extern ActorInfo D_8036804C;//GAME_OVER
-extern ActorInfo D_8036807C;//THE_END
-extern ActorInfo D_803680AC;//player_KAZOOIE
-extern ActorInfo D_803680DC;//copyright_info
-extern ActorInfo D_80368124;//PRESS_START
-extern ActorInfo D_803682D0;//jiggy_picture
-extern ActorInfo D_8036833C; 
-extern ActorInfo D_8036838C;
-extern ActorInfo D_80368418;//banjos_hand_BB
-extern ActorInfo D_80368174;//NO_CONTROLLER)
-extern ActorInfo D_80367530;//mumbo_token_sign.5
-extern ActorInfo D_80367554;//mumbo_toke_sign.10
-extern ActorInfo D_80367578;//mumbo_toke_sign.15
-extern ActorInfo D_8036759C;//mumbo_toke_sign.20
-extern ActorInfo D_803675C0;//mumbo_toke_sign.25
-extern ActorInfo D_8036785C;//witch_switch.mm;
-extern ActorInfo D_80367880;//witch_switch.mmm
-extern ActorInfo D_803678A4;//witch_switch.ttc
-extern ActorInfo D_803678C8;//witch_switch.rbb
-extern ActorInfo D_803678EC;//witch_switch.ccw
-extern ActorInfo D_80367910;//witch_switch.fp
-extern ActorInfo D_80367934;//witch_switch.cc
-extern ActorInfo D_80367958;//witch_switch.bgs
-extern ActorInfo D_8036797C;//witch_switch.gv
-extern ActorInfo D_80368450;//fire_sparkle
-extern ActorInfo D_803684BC;//roysten
-extern ActorInfo D_803684E0;//cuckoo_clock
-extern ActorInfo D_80368504;
-extern ActorInfo D_80368528;
-extern ActorInfo D_8036854C;
-extern ActorInfo D_80368570;
-extern ActorInfo D_80368474;
-extern ActorInfo D_80368498;
-extern ActorInfo D_803732E0;
-extern ActorInfo D_80372810;
-extern ActorInfo D_80373100;
-extern ActorInfo D_80373134;
-extern ActorInfo D_80373158;
-extern ActorInfo D_80372EE0;
-
-extern ActorInfo D_80372F50; //ticker
-extern ActorInfo D_80372C80; //floatsam
 extern ActorInfo D_80372C18; //teehee
+extern ActorInfo D_80372C80; //floatsam
+extern ActorInfo D_80372EE0;
+extern ActorInfo D_80372F50; //ticker
 extern ActorInfo D_80372FC0;
 extern ActorInfo D_80372FE4;
 extern ActorInfo D_803730D8; //nibbly
+extern ActorInfo D_80373100;
+extern ActorInfo D_80373134;
+extern ActorInfo D_80373158;
+extern ActorInfo D_803731B0;
+extern ActorInfo D_803732E0;
+extern ActorInfo D_80373DC0;
+
 extern ActorInfo D_80367130; //buzzbomb
 extern ActorInfo D_80372B80;
 extern ActorInfo D_80367404; //scrapnel

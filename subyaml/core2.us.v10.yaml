@@ -350,6 +350,7 @@ segments:
   - [0xDA3A0, c, code_DA3A0]
   - [0xDA760, c, code_DA760]
   - [0xDB010, c, code_DB010]
+  - [0xDC4B0, c, code_DC4B0] #DONE
 - type: code
   name: data
   dir: core2
@@ -398,6 +399,7 @@ segments:
   - [0x000E2870, bin, data_E2870]
   - [0x000EB8B0, .data, ch/code_CFA60]
   - [0x000EB8E0, bin, data_EB8E0]
+  - [0x000ECE30, .data, code_DC4B0]
   - [0x000ECE60, ".rodata", animctrl]
   - [0x000ECE90, .rodata, code_AD0]
   - [0x000ECEA0, .rodata, code_1930]

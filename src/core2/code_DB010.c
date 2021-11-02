@@ -3,6 +3,8 @@
 #include "variables.h"
 
 
+
+
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_DB010/func_80361FA0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_DB010/func_80362084.s")
@@ -56,11 +58,3 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_DB010/func_80363330.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_DB010/func_80363388.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_DB010/func_80363440.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_DB010/func_80363470.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_DB010/func_803634BC.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_DB010/func_80363500.s")
