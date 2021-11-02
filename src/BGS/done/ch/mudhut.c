@@ -27,7 +27,7 @@ ActorAnimationInfo D_80390B30[4] = {
 extern u32 D_80390B50[6] = {0xA, 0xA, 0xB, 0xA, 0xA, 0xC
 };
 
-ActorInfo D_80390B68 = {0xD5, actor_mud_hut, model_mudhut_top, 0x01, D_80390B30,
+ActorInfo D_80390B68 = {0xD5, ACTOR_C_MUD_HUT, model_mudhut_top, 0x01, D_80390B30,
     func_8038EB8C, func_80326224, func_8038EAD0,
     {0,0,0,0}, 0.0f, {0,0,0,0}
 };
@@ -62,7 +62,7 @@ void func_8038EB4C(ActorMarker *this){
     Actor *thisActor;
 
     thisActor = marker_getActor(this);
-    thisActor = func_8032813C(actor_wood_demolished, thisActor->position, NULL);
+    thisActor = func_8032813C(ACTOR_D_WOOD_DEMOLISHED, thisActor->position, NULL);
     thisActor = func_8032813C(actor_steam_2, thisActor->position, NULL);
     if(this);
 }

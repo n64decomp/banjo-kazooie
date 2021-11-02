@@ -4,7 +4,6 @@
 
 void func_8028E668(f32 *, f32, f32, f32);
 int func_80311480(s32 text_id, s32 arg1, f32 *pos, ActorMarker *marker, void(*callback)(ActorMarker *, s32, s32), void(*arg5)(ActorMarker *, s32, s32));
-void func_80328BD4(Actor *, s32, f32, s32, f32);
 int actor_animationIsAt(Actor *, f32);
 void func_80328B8C(Actor *, s32, f32, s32);
 void func_80324E88(f32);
@@ -26,7 +25,7 @@ ActorAnimationInfo chlmonkeyAnimations[5] = {
 };
 
 
-ActorInfo chlmonkeyInfo = { 0xA, actor_chimpy, model_chimpy, 1, chlmonkeyAnimations,
+ActorInfo chlmonkeyInfo = { 0xA, ACTOR_F_CHIMPY, model_chimpy, 1, chlmonkeyAnimations,
     NULL, func_803885D0, func_80325888,
     {0x09,0xC4,0,0}, 0.8f, {0,0,0,0}
 };

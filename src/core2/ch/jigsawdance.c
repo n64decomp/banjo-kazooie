@@ -4,8 +4,6 @@
 
 f32 func_8028EBA4();
 
-void func_80328A84(Actor*, u32);
-
 //TODO move data
 
 Actor *func_802C80C0(ActorMarker *this, Gfx **gdl, Mtx **mptr, u32 arg3){

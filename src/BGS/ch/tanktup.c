@@ -5,7 +5,6 @@
 #include "prop.h"
 
 Actor* func_8032813C(s32, f32*, s32);
-void func_80328B8C(f32*, s32, f32, s32);
 
 void func_80324E88(f32);
 

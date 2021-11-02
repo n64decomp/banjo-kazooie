@@ -8,7 +8,6 @@ extern void func_80324CFC(f32, s32, s32);
 extern void func_8030E8B4(s32, f32 (*)[3], f32);
 extern void func_802F9E44(s32, f32, f32, f32, f32);
 extern void func_80387470(Actor *, f32 (*)[3], f32, f32, f32, f32, f32);
-extern void func_8034A174(s32, s32, f32 (*)[3]);
 
 
 typedef struct{

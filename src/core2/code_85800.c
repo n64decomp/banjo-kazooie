@@ -36,7 +36,6 @@ typedef struct {
 u8   func_8030D90C(void);
 void func_8030DA80(u8 indx, enum SFX_E uid);
 void func_8030DABC(u8, s32);
-void func_8030DD14(u8, int);
 void func_8030DD90(u8, s32);
 void func_8030DCCC(u8, s32);
 void func_8030DFF0(u8, int);

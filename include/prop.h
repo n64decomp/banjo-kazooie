@@ -407,7 +407,8 @@ typedef struct actor_s{
     void *unk158;
     void *unk15C;
     s32 unk160; //saved marker->unk54
-    s8  unk164[0x3];
+    s8  unk164[0x2];
+    u8  unk166;
     s8  pad167[0x1];
     s32 unk168; //saved marker->unk58
     u32  unk16C_31:27; //saved s1->marker->unk5C

@@ -31,9 +31,9 @@ ActorAnimationInfo chCongaAnimations[9] = {
     {0, 0.0f},
     {anim_conga_idle, 3.8f},
     {anim_conga_ow, 1.0f},
-    {anim_conga_defeat, 2.0f},
+    {ASSET_53_ANIM_CONGA_DEFEAT, 2.0f},
     {0x54, 1.4f},
-    {anim_conga_beat_chest, 0.4f},
+    {ASSET_55_ANIM_CONGA_BEAT_CHEST, 0.4f},
     {anim_conga_raise_arms, 0.9f},
     {0xA2, 1.6f},
     {anim_conga_ow, 1.0f}

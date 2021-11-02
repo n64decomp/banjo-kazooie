@@ -423,7 +423,7 @@ void func_80388080(Actor *this){
 
             }
         }//L80388B68
-        func_80328FB0(this, 0x40000000);
+        func_80328FB0(this, 2.0f);
         
         if(local->unkC != 3 && actor_animationIsAt(this, 0.3f))
             FUNC_8030E8B4(0x3f2, 0x3ff, 0x2af, &this->position, 0x7d0, 0x3e8);

@@ -8,7 +8,7 @@ extern Actor *func_803056FC(s32, s32 (*)[3], s32);
 
 extern void func_8032B5C0(void);
 
-void func_80328B8C(Actor * this, int arg1, f32 arg2, int arg3);
+void func_80328B8C(Actor * this, s32 arg1, f32 arg2, s32 arg3);
 
 extern s32 D_803255FC;
 
@@ -574,7 +574,7 @@ void func_80328AEC(Actor * arg0, u32 arg1){
 }
 
 /* actor - maybe plays actor's animation with set probability */
-int func_80328B38(Actor *this, int myAnimId, f32 chance){
+int func_80328B38(Actor *this, s32 myAnimId, f32 chance){
     if(randf() < chance){
         func_80328A84(this, myAnimId);
         return 1;
@@ -591,7 +591,7 @@ void func_80328B8C(Actor * this, int myAnimId, f32 arg2, int direction){
 }
 #endif
 
-int func_80328BD4(Actor * this, int myAnimId, f32 arg2, int arg3, f32 arg4){
+int func_80328BD4(Actor * this, s32 myAnimId, f32 arg2, s32 arg3, f32 arg4){
     if(randf() < arg4){
         if(func_80328508(this, myAnimId) && this->animctrl){
             func_803285E8(this, arg2, arg3);
@@ -620,7 +620,7 @@ void func_80328CA8(Actor *arg0, s32 angle) {
     arg0->unk6C = fixedAngle;
 }
 
-void func_80328CEC(Actor * this, int arg1, int min, int max){
+void func_80328CEC(Actor * this, s32 arg1, s32 min, s32 max){
     f32 f12;
     int abs;
     f12 = (randf() - 0.5)*(max - min)*2;
@@ -640,7 +640,7 @@ void func_80328FF0(Actor *arg0, f32 arg1) {
     arg0->pitch = func_80328DCC(arg0, arg0->pitch, arg0->unk6C, (s32) arg1);
 }
 
-s32 func_80329030(s32 arg0, s32 arg1) {
+int func_80329030(Actor *arg0, s32 arg1) {
     return !func_8032CA80(arg0, arg1);
 }
 

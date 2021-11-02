@@ -157,7 +157,7 @@ void func_8038D568(Actor *this){
 
             }
             else{//L8038D8E0
-                func_80328A84(this, 2, other);
+                func_80328A84(this, 2);
                 func_8030DA44(this->unk44_31);
                 this->unk44_31 = 0;
                 func_8030DA44(local->unk0);

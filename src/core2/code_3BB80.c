@@ -210,7 +210,7 @@ void func_802C2B5C(void){
     func_803062D0();
     func_80325F8C();
     func_8030538C();
-    func_803053E8(&D_80367160, actor_new, 0x0000000);
+    func_803053E8(&D_80367160, actor_new, 0x0000000); //cutscene Trigger?
     func_803053E8(&D_803675F0, actor_new, 0x0000040);
     func_803053E8(&D_80366090, actor_new, 0x2010103);
     func_803053E8(&D_803660B4, actor_new, 0x0000103);

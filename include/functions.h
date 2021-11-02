@@ -353,9 +353,12 @@ int  func_802C1DB0(f32);
 
 struct30s *func_802F0D74(struct30s *);
 
+u8   func_8030D90C(void);
 void func_8030DA80(u8 indx, enum SFX_E uid);
 void func_8030DBB4(u8, f32);
+void func_8030DD14(u8, int);
 void func_8030E04C(u8, f32, f32, f32);
+void func_8030E2C4(u8);
 void func_8030E394(u8 indx);
 void func_8030E484(enum SFX_E uid);
 void func_8030E4E4(enum SFX_E uid);
@@ -381,6 +384,20 @@ u8 func_8030ED2C(enum SFX_E uid, s32 arg1);
 
 
 void func_8032728C(f32*, f32, s32, s32(*)(Actor *));
+
+int  func_8032863C(AnimCtrl *, f32, f32);
+int  func_80328A2C(Actor *, f32, s32, f32);
+void func_80328A84(Actor *, u32);
+int  func_80328B38(Actor *, s32, f32);
+void func_80328B8C(Actor *, s32, f32, s32);
+int  func_80328BD4(Actor *, s32, f32, s32, f32 );
+void func_80328CEC(Actor *, s32, s32, s32);
+void func_80328FB0(Actor *, f32);
+int  func_80329030(Actor *, s32);
+int  func_80329078(Actor *, s32, s32);
+int  func_80329480(Actor *);
+s32  func_80329784(Actor *);
+void func_80329878(Actor *, f32);
 
 void func_803391A4(Gfx**, Mtx**, f32 (*)[3], f32(*)[3], f32, f32*, void*);
 
@@ -440,6 +457,11 @@ void func_803253A0(Actor *);
 void mapSpecificFlags_set(s32, s32);
 
 struct0 *func_8031B9D8(void);
+
+extern int  func_80259808(f32);
+void func_8034A174(s32, s32, f32[3]);
+void actor_playAnimationOnce(Actor *);
+void actor_loopAnimation(Actor *);
 
 /* used in fight */
 void func_80326224(Actor *this);

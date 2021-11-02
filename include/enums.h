@@ -34,7 +34,7 @@ enum BKPROG_E{
 	// {index=0x1A, type="Prog", level=6, name="TTC WS Jiggy Spawned"},
 	// {index=0x1B, type="Prog", level=6, name="CC WS Jiggy Spawned"},
 	// {index=0x1C, type="Prog", level=6, name="RBB WS Jiggy Spawned"},
-	// {index=0x1D, type="Prog", level=10, name="MMM Diningroom Cutscene"},
+	BKPROG_1D_MMM_DINNING_ROOM_CUTSCENE = 0x1D,
 	// {index=0x1E, type="Prog", level=6, name="Grate to BGS Puzzle Open"},
 	// {index=0x1F, type="Prog", level=6, name="CC Lobby Pipe 1 Raised"},
 	// {index=0x20, type="Prog", level=6, name="CC Lobby Pipe 2 Raised"},
@@ -230,6 +230,7 @@ enum BKPROG_E{
 	// {index=0xE8, type="Prog", level=8, name="Autumn Eyrie Fed"},
 
 	// {index=0xF3, type="Prog", level=6, name="Talked to Dingpot"},
+    BKPROG_F4_ENTER_FF_CUTSCENE = 0xF4,
 	// {index=0xF4, type="Prog", level=6, name="1st Time FF Cutscene"},
 
 	// {index=0xF6, type="Prog", level=6, name="1st Time Near DoG Puzzle Podium"},
@@ -332,7 +333,7 @@ enum MAP_E
     MAP_CC_GOLDFEATHER_ROOM = 0x23,
     MAP_MMM_TUMBLARS_SHED = 0x24,
     MAP_MMM_WELL = 0x25,
-    MAP_MMM_NAPPERS_ROOM = 0x26,
+    MAP_26_MMM_NAPPERS_ROOM = 0x26,
     MAP_27_FP_FREEZEEZY_PEAK = 0x27,
     MAP_MMM_EGG_ROOM = 0x28,
     MAP_MMM_NOTE_ROOM = 0x29,
@@ -663,9 +664,8 @@ enum SFX_E
     // In the Opening Musical, when Mumbo's Xylophone drops
     SFX_HEAVY_FALL_VIBRATO, 
     SFX_JINJO_WHISTLE,
-    // might also be sliding
-    SFXR_ELECTRIC_STATIC, 
-    SFX_BANJO_LANDING_08,
+    SFX_18_BIGBUTT_SLIDE, 
+    SFX_19_BANJO_LANDING_08,
     SFX_BIG_THINGS_FALL_OVER,
     // from the sea-mines
     SFX_EXPLOSION_1, 
@@ -690,12 +690,12 @@ enum SFX_E
     SFX_GRUBLIN_NYAHAHA,
     SFX_CLOCK_TIC_1,
     // passive version
-    SFX_BULL_MOO_1,
+    SFX_2B_BULL_MOO_1,
     // when Trunker or the CCW plant grow eg.
     SFX_PULLING_NOISE, 
     // incomplete cauldron spitout AND Banjo pulling on Kazooies Throat in Idle Anim
     SFX_KABOING, 
-    SFX_GOBI_RUNNING,
+    SFX_2E_BIGBUTT_RUNNING,
     SFX_ORANGE_SPLAT,
     SFX_MAGIC_POOF = 0x0030,
     // starting to ride the FP sled to rescue Boggy
@@ -715,7 +715,7 @@ enum SFX_E
     SFX_BANJO_AYE_2,
     SFX_BANJO_HOUW,
     SFX_BANJO_GAAH,
-    SFX_BULL_GROWN,
+    SFX_3C_BULL_GROWN,
     SFX_TICKER_WALKING,
     // egg pooping ?
     SFX_POOP_NOISE, 
@@ -921,7 +921,7 @@ enum SFX_E
     // from the jinjo's flying
     SFX_SHWOOP,
     // eating twinklies
-    SFX_CRUNCH,
+    SFX_C8_CRUNCH,
     SFX_PAUSEMENU_ENTER,
     SFX_BANJO_DROWNING_1,
     SFX_BANJO_DROWNING_2,
@@ -1045,7 +1045,7 @@ enum SFX_E
     // might be skeleton grimlets riiping the painting
     SFX_SWOOSH,
     SFX_GRUNTY_AH,
-    SFXR_BOILING_AND_BUBBLING,
+    SFX_BOILING_AND_BUBBLING,
     SFX_FF_QUESTION_START,
     SFX_CAMERA_ZOOM_CLOSEST,
     SFX_CAMERA_ZOOM_MEDIUM,
@@ -1055,7 +1055,7 @@ enum SFX_E
     SFX_GRUNTY_WEEEGH,
     SFX_GRUNTY_YOW,
     SFX_GRUNTY_OHW,
-    SFXR_FREEZING_SHIVER,
+    SFX_FREEZING_SHIVER,
     // FileSelect, when Banjo's Bed ejects him
     SFX_CARTOONY_SPRING,
     SFX_GAMEBOY_STARTUP,
@@ -1078,7 +1078,7 @@ enum SFX_E
     SFX_141_MECHANICAL_WINCH,
     // pretty short
     SFX_GRUNTY_LAUGH_3,
-    SFX_BULL_DAMAGE,
+    SFX_143_BULL_DAMAGE,
     SFX_DOUBLE_CAMERA_CLICK,
     SFX_SINGLE_CAMERA_CLICK,
     // the normal attack
@@ -1208,7 +1208,7 @@ enum SFX_E
     SFX_SEXY_GRUNTY_TALKING_2,
     SFX_FREEZE_FRAME,
     SFX_GULP = 0x0190,
-    SFXR_STATIC
+    SFX_STATIC
 };
 
 
@@ -1252,16 +1252,20 @@ enum jiggy_e
 
 enum actor_e
 {
+    ACTOR_4_BIGBUTT         = 0x4,
+
     actor_grublin           = 0x6,
 
     actor_conga             = 0x8,
     actor_MM_hut            = 0x9,
 
-    actor_mud_hut           = 0xC,
-    actor_wood_demolished   = 0xD,
+    ACTOR_C_MUD_HUT         = 0xC,
+    ACTOR_D_WOOD_DEMOLISHED,
+    ACTOR_E_BULL_INTRO,
+    ACTOR_F_CHIMPY            = 0xF,
 
-    actor_chimpy            = 0xF,
     ACTOR_JUJU_HITBOX       = 0x11,
+    ACTOR_12_BEEHIVE,
     
     actor_orange_projectile = 0x14,
 
@@ -1273,7 +1277,7 @@ enum actor_e
     ACTOR_JUJU              = 0x59,
     ACTOR_5A_JIGGY_IN_HAND,
 
-    actor_chimpy_stump      = 0xC5,
+    ACTOR_F_CHIMPY_stump      = 0xC5,
     
     actor_leafboat          = 0xF1,
     actor_bigalligator      = 0xF6,
@@ -1518,6 +1522,7 @@ enum asset_e
 
     ANIM_BANJO_TURN = 0xe,
 
+    ASSET_10_ANIM_BIGBUTT_RUN = 0x10,
     ANIM_BANJO_WONDERWING_WALK = 0x11,
 
 
@@ -1530,6 +1535,7 @@ enum asset_e
     ANIM_BANJO_BBARGE = 0x1C,
     ANIM_BANJO_BBUSTER = 0x1D,
     
+    ASSET_21_ANIM_BIGBUTT_SLIDE = 0x21,
     ANIM_BANJO_WONDERWING_EXIT = 0x22,
     ANIM_BANJO_WONDERWING_IDLE = 0x23,
 
@@ -1539,6 +1545,12 @@ enum asset_e
     ANIM_TERMITE_DIE = 0x29,
     
     ANIM_BANJO_BJIG_JIGGY = 0x2e,
+
+    ASSET_32_ANIM_BIGBUTT_ATTACK = 0x32,
+    ASSET_33_ANIM_BIGBUTT_EAT,
+    ASSET_34_ANIM_BIGBUTT_DIE,
+    ASSET_35_ANIM_BIGBUTT_ALERT,
+    ASSET_36_ANIM_BIGBUTT_WALK,
 
     ANIM_BANJO_FLY = 0x38,
 
@@ -1561,9 +1573,9 @@ enum asset_e
 
     anim_conga_idle     = 0x51,
     anim_conga_ow       = 0x52,
-    anim_conga_defeat   = 0x53,
-
-    anim_conga_beat_chest = 0x55,
+    ASSET_53_ANIM_CONGA_DEFEAT   = 0x53,
+    ASSET_54_ANIM_CONGA_THROW,
+    ASSET_55_ANIM_CONGA_BEAT_CHEST = 0x55,
     anim_conga_raise_arms = 0x56,
     
     ANIM_BANJO_SLIDE_BACK = 0x59,
@@ -1572,6 +1584,8 @@ enum asset_e
     ANIM_TERMITE_IDLE = 0x5E,
     ANIM_TERMITE_WALK = 0x5F,
     ANIM_TERMITE_JUMP = 0x60,
+
+    ASSET_65_ANIM_BEEHIVE_DIE = 0x65,
 
     ANIM_GRUBLIN_DIE = 0x94,
 
@@ -1584,6 +1598,8 @@ enum asset_e
 
     ANIM_ZOOMBOX = 0x138,
 
+    ASSET_165_ANIM_BEEHIVE_IDLE = 0x165,
+
     ASSET_1DC_ANIM_BEE_FLY    = 0x1dc,
     ASSET_1DD_ANIM_BEE_WALK,
     ASSET_1DE_ANIM_BEE_IDLE,
@@ -1594,6 +1610,10 @@ enum asset_e
     
     ASSET_220_ANIM_SIR_SLUSH_DIE = 0x220,
 
+    ASSET_253_ANIM_BIGBUTT_OW   = 0x253,
+    ASSET_254_ANIM_BIGBUTT_FALL,
+    ASSET_255_ANIM_BIGBUTT_GET_UP,
+
     model_orange            = 0x2d2, //projectile
 
     model_juju              = 0x2e6,
@@ -1601,6 +1621,9 @@ enum asset_e
     model_orange_pad        = 0x2eb,
 
     ASSET_34F_MODEL_BANJO_TERMITE = 0x34F,
+
+    ASSET_353_MODEL_BIGBUTT = 0x353,
+    ASSET_354_MODEL_BULL_INTRO = 0x354,
 
     ASSET_356_MODEL_BANJO_WISHYWASHY = 0x356,
 
@@ -1611,6 +1634,8 @@ enum asset_e
 
 
     ASSET_362_MODEL_BANJO_BEE = 0x362,
+
+    ASSET_364_MODEL_BEEHIVE = 0x364,
 
     ASSET_36F_MODEL_BANJO_PUMPKIN = 0x36f,
 
