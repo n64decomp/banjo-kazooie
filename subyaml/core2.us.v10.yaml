@@ -381,6 +381,8 @@ segments:
   - [0x000DDC20, bin, data_DDC20]
   - [0x000DF080, .data, ch/bigbutt]
   - [0x000DF160, bin, data_DF160]
+  - [0x000DF340, .data, ch/jigsawdance]
+  - [0x000DF3A0, bin, data_DF3A0]
   - [0x000DFCC0, .data, ch/musicnote]
   - [0x000DFCF0, bin, data_DFCF0]
   - [0x000E01D0, .data, ch/code_468E0]
