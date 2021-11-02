@@ -1284,6 +1284,8 @@ enum actor_e
     
     actor_orange_projectile = 0x14,
 
+    ACTOR_46_JIGGY          = 0x46,
+
     ACTOR_4A_WOOD_EXPLOSION = 0x4A,
 
     ACTOR_4C_STEAM          = 0x4C,
@@ -1647,7 +1649,7 @@ enum asset_e
     ASSET_34F_MODEL_BANJO_TERMITE = 0x34F,
 
     ASSET_353_MODEL_BIGBUTT = 0x353,
-    ASSET_354_MODEL_BULL_INTRO = 0x354,
+    ASSET_354_MODEL_BULL_INTRO,
 
     ASSET_356_MODEL_BANJO_WISHYWASHY = 0x356,
 
@@ -1656,6 +1658,7 @@ enum asset_e
     model_conga             = 0x35c,
     model_chimpy            = 0x35d,
 
+    ASSET_35F_MODEL_JIGGY = 0x35F,
 
     ASSET_362_MODEL_BANJO_BEE = 0x362,
 

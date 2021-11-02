@@ -23,7 +23,6 @@ int func_802C8088(Actor *this);
 
 
 /* .data */
-
 ActorAnimationInfo D_80366290[] = {
     {0, 0.0f},
     {0, 0.0f},
@@ -31,7 +30,7 @@ ActorAnimationInfo D_80366290[] = {
 };
 
 ActorInfo D_803662A8 = {
-    0x52, 0x46, 0x35F, 
+    0x52, ACTOR_46_JIGGY, ASSET_35F_MODEL_JIGGY, 
     1, D_80366290, 
     func_802C7DC0, func_802C7D98, func_802C7D0C,
     {0,0,0,0}, 0.9f, {0,0,0,0}
