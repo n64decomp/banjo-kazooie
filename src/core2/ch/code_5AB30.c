@@ -176,9 +176,10 @@ int func_802E1F70(ActorMarker *marker, s32 arg1){
 
 void func_802E1FD0(ActorMarker *marker, s32 arg1){
     Actor *actor = marker_getActor(marker);
-    func_8030E8B4(0x7ffd4815, actor->position, 0x119405DC);
-    func_8030E8B4(0x7ffd4bea, actor->position, 0x119405DC);
-    func_8030E8B4(0x7ffd482f, actor->position, 0x119405DC);
+    FUNC_8030E8B4(SFX_15_METALLIC_HIT_2, 0x3A9, 0x3ff, actor->position, 1500, 4500);
+    FUNC_8030E8B4(0x3EA, 0x3A9, 0x3ff, actor->position, 1500, 4500);
+    FUNC_8030E8B4(SFX_2F_ORANGE_SPLAT, 0x3A9, 0x3ff, actor->position, 1500, 4500);
+
     func_802C3C88(func_802E1BD0, actor->marker);
     if(func_803348C0() == MAP_27_FP_FREEZEEZY_PEAK)
         func_8038A978();

@@ -143,7 +143,7 @@ void func_8038FB84(ActorMarker *this, s32 arg1){
     Actor *thisActor;
 
     thisActor = marker_getActor(this);
-    func_8030E8B4(0x7FFFF887, thisActor->position, 0x0BB803E8);
+    FUNC_8030E8B4( SFX_87_TANKTUP_OOOHW, 0x7FF, 0x3FF, thisActor->position, 1000, 3000);
     timedFunc_set_2(D_803911C0, func_8038FB40, this, arg1);
     func_8038F51C(thisActor);
     this->collidable = 0;

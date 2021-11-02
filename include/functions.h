@@ -356,6 +356,8 @@ u8   func_8030D90C(void);
 void func_8030DA80(u8 indx, enum SFX_E uid);
 void func_8030DBB4(u8, f32);
 void func_8030DD14(u8, int);
+void func_8030DF68(u8, f32[3]);
+void func_8030DFF0(u8, s32);
 void func_8030E04C(u8, f32, f32, f32);
 void func_8030E2C4(u8);
 void func_8030E394(u8 indx);

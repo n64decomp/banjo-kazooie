@@ -661,7 +661,7 @@ enum SFX_E
     // sounds like a muffled frying pan
     SFX_METALLIC_HIT_1,
     // less frying pan-ish
-    SFX_METALLIC_HIT_2,
+    SFX_15_METALLIC_HIT_2,
     // In the Opening Musical, when Mumbo's Xylophone drops
     SFX_HEAVY_FALL_VIBRATO, 
     SFX_JINJO_WHISTLE,
@@ -697,7 +697,7 @@ enum SFX_E
     // incomplete cauldron spitout AND Banjo pulling on Kazooies Throat in Idle Anim
     SFX_KABOING, 
     SFX_2E_BIGBUTT_RUNNING,
-    SFX_ORANGE_SPLAT,
+    SFX_2F_ORANGE_SPLAT,
     SFX_MAGIC_POOF = 0x0030,
     // starting to ride the FP sled to rescue Boggy
     SFX_BANJO_OHHWAAOOO, 
@@ -771,7 +771,7 @@ enum SFX_E
     SFX_CHIMPY_NOISE_1,
     SFX_CHIMPY_NOISE_2,
     SFX_CHIMPY_NOISE_3,
-    SFX_HEAVY_STUFF_FALLING,
+    SFX_5B_HEAVY_STUFF_FALLING,
     SFX_HEAVY_STUFF_FALLING_DELAYED,
     // sleeping while snoring, inhale
     SFX_BANJO_RAAOWW, 
@@ -831,7 +831,7 @@ enum SFX_E
     SFX_ROUGH_COUGH,
     SFX_TIPTUP_CHORUS_AH,
     // when beakbustering his feet
-    SFX_TANKTUP_OOOHW,
+    SFX_87_TANKTUP_OOOHW,
     SFX_WOZZA_NOISE,
     // unsure
     SFX_PARTYTOOL,
@@ -1038,15 +1038,13 @@ enum SFX_E
     SFX_AUDIENCE_CHEERING_1,
     // longer version
     SFX_AUDIENCE_CHEERING_2,
-    // sounds like the kickball noises from tooie
-    SFX_126_AUDIENCE_BOOING = 0x0126,
-    // sounds like the kickball noises from tooie
-    SFX_127_AUDIENCE_MIXED = 0x0127,
-    SFXR_FIRE_CRACKING,
+    SFX_126_AUDIENCE_BOOING,
+    SFX_127_AUDIENCE_MIXED,
+    SFX_128_FIRE_CRACKING,
     // might be skeleton grimlets riiping the painting
     SFX_SWOOSH,
     SFX_GRUNTY_AH,
-    SFX_BOILING_AND_BUBBLING,
+    SFX_12B_BOILING_AND_BUBBLING,
     SFX_FF_QUESTION_START,
     SFX_CAMERA_ZOOM_CLOSEST,
     SFX_CAMERA_ZOOM_MEDIUM,
@@ -1297,7 +1295,11 @@ enum actor_e
     ACTOR_TOPPER_A            = 0x166,
     ACTOR_ATTACK_TUTORIAL   = 0x167,
 
-    ACTOR_1CC_GRILL_CHOMPA = 0x1CC,
+    ACTOR_1CC_GRILL_CHOMPA  = 0x1CC,
+
+    ACTOR_28B_SOUND_SOURCE  = 0x28B,
+
+    ACTOR_34D_BEE_SWARM     = 0x34D,
 
     ACTOR_COLLYWOBBLE_B     = 0x36D,
     ACTOR_BAWL_B            = 0x36E,

@@ -177,7 +177,7 @@ segments:
   - [0x46BC0, c, ch/jinjo]
   - [0x47850, c, ch/beehive] #DONE
   - [0x47BD0, c, code_47BD0]
-  - [0x49570, c, code_49570]
+  - [0x49570, c, ch/soundsource] #DONE
   - [0x49A70, c, code_49A70] #DONE
   - [0x4A420, c, code_4A420]
   - [0x4BD70, c, code_4BD70]
@@ -387,6 +387,8 @@ segments:
   - [0x000E0220, bin, data_E0220]
   - [0x000E0330, .data, ch/beehive]
   - [0x000E0380, bin, data_E0380]
+  - [0x000E03B0, .data, ch/soundsource]
+  - [0x000E0430, bin, data_E0430]
   - [0x000E2350, .data, code_73640]
   - [0x000E2790, .data, code_74090]
   - [0x000E2840, .data, code_74290]

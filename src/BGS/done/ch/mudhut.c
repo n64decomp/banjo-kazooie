@@ -97,8 +97,7 @@ void func_8038EB8C(Actor *this){
                     diffPos[2] = this->position_z;
                     diffPos[1] += 130.0;
 
-                    
-                    func_8030E8B4(0x7FFB585B, this->position, 0xBB8012C);
+                    FUNC_8030E8B4(SFX_5B_HEAVY_STUFF_FALLING, 875, 0x3ff, this->position, 0x12C, 0xBB8);
                     func_80328A84(this, 2);
                     this->marker->propPtr->unk8_3 = 0;
                     actor_playAnimationOnce(this);

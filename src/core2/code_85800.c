@@ -38,7 +38,6 @@ void func_8030DA80(u8 indx, enum SFX_E uid);
 void func_8030DABC(u8, s32);
 void func_8030DD90(u8, s32);
 void func_8030DCCC(u8, s32);
-void func_8030DFF0(u8, int);
 void func_8030E0B4(u8, f32, f32);
 f32  func_8030E200(u8);
 void func_8030E2C4(u8);
@@ -657,7 +656,7 @@ void func_8030DF18(u8 indx, f32 arg1){
     }
 }
 
-void func_8030DF68(u8 indx, f32 (*arg1)[3]){
+void func_8030DF68(u8 indx, f32 arg1[3]){
     struct45s *ptr;
     if(indx){
         ptr = func_8030C8B8(indx);
@@ -674,7 +673,7 @@ void func_8030DFB4(u8 indx, s32 arg1){
     }
 }
 
-void func_8030DFF0(u8 indx, int arg1){
+void func_8030DFF0(u8 indx, s32 arg1){
     struct45s *ptr;
     if(indx){
         ptr = func_8030C8B8(indx);
