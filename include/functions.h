@@ -39,11 +39,10 @@ extern f32 fabsf(f32);
 }
 
 #define FUNC_8030E8B4(sfx_e, b, c, d, e, f) func_8030E8B4(\
-    _SHIFTL(b, 21, 11) | _SHIFTL(c, 11, 10) | _SHIFTL(sfx_e, 0, 10), \
+    _SHIFTL(c, 21, 11) | _SHIFTL(b, 11, 10) | _SHIFTL(sfx_e, 0, 10), \
     d, \
-    _SHIFTL(e, 16, 16) | _SHIFTL(f, 0, 16) \
+    _SHIFTL(f, 16, 16) | _SHIFTL(e, 0, 16) \
 )
-
 void func_80241304(Mtx *m, float x, float y, float z);
 
 void _guMtxIdentF_80245D44(float mf[4][4]); //static should NOT be here

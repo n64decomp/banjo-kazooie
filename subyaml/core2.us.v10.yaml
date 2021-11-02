@@ -159,7 +159,7 @@ segments:
   - [0x3D3D0, c, ch/gameSelect]
   - [0x3EAD0, c, code_3EAD0]
   - [0x3ECE0, c, code_3ECE0]
-  - [0x3EEF0, c, ch/bigbutt]
+  - [0x3EEF0, c, ch/bigbutt] #DONE
   - [0x400F0, c, code_400F0]
   - [0x40AA0, c, ch/jiggy]
   - [0x41130, c, ch/jigsawdance] #DONE
@@ -175,7 +175,7 @@ segments:
   - [0x45310, c, code_45310]
   - [0x468E0, c, ch/code_468E0] #DONE
   - [0x46BC0, c, ch/jinjo]
-  - [0x47850, c, code_47850]
+  - [0x47850, c, ch/beehive] #DONE
   - [0x47BD0, c, code_47BD0]
   - [0x49570, c, code_49570]
   - [0x49A70, c, code_49A70] #DONE
@@ -385,6 +385,8 @@ segments:
   - [0x000DFCF0, bin, data_DFCF0]
   - [0x000E01D0, .data, ch/code_468E0]
   - [0x000E0220, bin, data_E0220]
+  - [0x000E0330, .data, ch/beehive]
+  - [0x000E0380, bin, data_E0380]
   - [0x000E2350, .data, code_73640]
   - [0x000E2790, .data, code_74090]
   - [0x000E2840, .data, code_74290]
@@ -471,7 +473,8 @@ segments:
   - [0x000EF4D0, bin, data_EF4D0]
   - [0x000EF5D0, .rodata, ch/jinjo]
   - [0x000EF5F0, bin, data_EF5F0] #part of ch/jinjo .rodata
-  - [0x000EF640, bin, data_EF640]
+  - [0x000EF640, .rodata, ch/beehive]
+  - [0x000EF650, bin, data_EF650]
   - [0x000F0220, .rodata, code_67650]
   - [0x000F0240, bin, data_F0240]
   - [0x000F0390, .rodata, code_71820]

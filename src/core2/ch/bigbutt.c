@@ -105,8 +105,8 @@ void func_802C61C0(ActorMarker *marker, s32 arg1){
         && actor->state != 0xf
     ){
         func_80328AC8(actor, 0xd);
-        FUNC_8030E8B4(SFX_143_BULL_DAMAGE, 0x3FF, 500, actor->position, 2000, 0);
-        FUNC_8030E8B4(SFX_143_BULL_DAMAGE, 0x3FF, 500, actor->position, 2000, 0);
+        FUNC_8030E8B4(SFX_143_BULL_DAMAGE, 500, 0x3FF, actor->position, 0, 2000);
+        FUNC_8030E8B4(SFX_143_BULL_DAMAGE, 500, 0x3FF, actor->position, 0, 2000);
     }
 }
 

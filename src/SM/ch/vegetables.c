@@ -144,7 +144,7 @@ void func_80387C28(Actor * this){
     ChVeg * local = &this->local;
     f32 sp30[3];
 
-    FUNC_8030E8B4(0x111, 0x3ff, 0x3e8, this->position, 0x7d0, 0x3e8);
+    FUNC_8030E8B4(SFX_111_WHIPCRACK_DEATH, 1000, 0x3ff, this->position, 1000, 2000);
     if(local->unkC == 3){
         sp30[0] = this->position_x;
         sp30[1] = this->position_y;
@@ -313,7 +313,7 @@ void func_80388080(Actor *this){
 
         if(!this->unk138_23){
             if(0.0f < this->position_y){
-                FUNC_8030E8B4(0xc5, 0x3ff, 0x3e8, this->position, 0x7d0, 0x3e8);
+                FUNC_8030E8B4(SFX_C5_TWINKLY_POP, 1000, 0x3ff, this->position, 1000, 2000);
                 this->unk138_23 = 1;
                 this->scale = 1.0f;
             }
@@ -426,10 +426,10 @@ void func_80388080(Actor *this){
         func_80328FB0(this, 2.0f);
         
         if(local->unkC != 3 && actor_animationIsAt(this, 0.3f))
-            FUNC_8030E8B4(0x3f2, 0x3ff, 0x2af, &this->position, 0x7d0, 0x3e8);
+            FUNC_8030E8B4(0x3f2, 0x2af, 0x3ff, &this->position, 1000, 2000);
         
         if(local->unkC == 3 && actor_animationIsAt(this, 0.4f)){
-            FUNC_8030E8B4(0x2, 0x398, 0xfa, &this->position, 0x7d0, 0x3e8);
+            FUNC_8030E8B4(SFX_2_CLAW_SWIPE, 250, 0x398, &this->position, 1000, 2000);
         }
         break;
     case 3: //L80388BFC

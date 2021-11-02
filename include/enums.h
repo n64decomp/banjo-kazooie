@@ -19,6 +19,7 @@ enum BKPROG_E{
 	// {index=0x0B, type="Prog", level=6, name="1st Empty Honeycomb Text"}, -- 0x01 > 3
 	// {index=0x0C, type="Prog", level=6, name="1st Extra Life Text"},
 	// {index=0x0D, type="Prog", level=6, name="1st Beehive Text"},
+    BKPROG_D_BEEHIVE_TEXT = 0xD,
 	BKPROG_0E_JINJO_TEXT =  0xE,
 	// {index=0x0F, type="Prog", level=6, name="1st Time Pirahana Text"},
 	// {index=0x10, type="Prog", level=6, name="1st Sand Eel Text"}, -- 0x02 > 0
@@ -648,13 +649,13 @@ enum SFX_E
     SFX_A_BANJO_LANDING_05,
     SFX_BANJO_LANDING_06,
     SFX_TAKING_FLIGHT_LIFTOFF,
-    SFX_EGGSHELL_BREAKING,
+    SFX_D_EGGSHELL_BREAKING,
     SFX_SHOCKSPRING_BOING,
     SFX_SMALL_WATER_SPLASH,
     // shallow water
     SFX_BANJO_LANDING_07 = 0x0010,
     // Blubber's Ship's Trapdoor eg.
-    SFX_WOOD_BREAKING_1, 
+    SFX_11_WOOD_BREAKING_1, 
     SFX_WATER_PADDLING_1,
     SFX_BEAKBUSTER_GROUND,
     // sounds like a muffled frying pan
@@ -790,7 +791,7 @@ enum SFX_E
     SFXR_STAMPEDE,
     SFX_METALLIC_SCRATCH,
     SFX_BIRD_AUUGHH,
-    SFX_BEEHIVE_CLONK,
+    SFX_67_BEEHIVE_CLONK,
     SFX_CLUCKER_AAEEGHH,
     SFX_WHIPCRACK_CREAKING,
     // flagpoles during the boggy races
@@ -845,7 +846,7 @@ enum SFX_E
     SFX_8F_SNOWBALL_FLYING,
     SFX_90_SWITCH_PRESS = 0x0090,
     // might be clankers bolt landing
-    SFX_METALLIC_SOUND,
+    SFX_91_METALLIC_SOUND,
     SFX_TOILET_FLUSH,
     // or some elevator
     SFXR_MICROWAVE,
@@ -915,7 +916,7 @@ enum SFX_E
     // some talking ?
     SFX_HEGH,
     SFX_TWINKLY_MUNCHER_GRR,
-    SFX_TWINKLY_POP,
+    SFX_C5_TWINKLY_POP,
     // when eating the wrong yumblie
     SFX_SHAKING_MOUTH,
     // from the jinjo's flying
@@ -1006,7 +1007,7 @@ enum SFX_E
     SFX_TWINKLY_TALKING,
     SFX_BOGGY_TALKING,
     SFX_TWINKLY_DEATH = 0x0110,
-    SFX_WHIPCRACK_DEATH,
+    SFX_111_WHIPCRACK_DEATH,
     SFX_TINKER_ATTENTION,
     SFX_PAD_APPEARS,
     SFX_BRICKWALL_BREAKING,
@@ -1269,7 +1270,9 @@ enum actor_e
     
     actor_orange_projectile = 0x14,
 
-    ACTOR_004C_UNK          = 0x4C,
+    ACTOR_4A_WOOD_EXPLOSION = 0x4A,
+
+    ACTOR_4C_STEAM          = 0x4C,
     actor_steam_2           = 0x4D,
 
     actor_orange_pad        = 0x57,
@@ -1676,7 +1679,12 @@ enum asset_e
 
     text_flibbits_meet   = 0xc81,
     text_flibbits_defeat = 0xc82,
-    text_flibbits_return = 0xc83
+    text_flibbits_return = 0xc83,
+
+    ASSET_D96_TEXT_BEEHIVE = 0xd96,
+
+    ASSET_DA6_TEXT_BEEHIVE_WITH_BEES = 0xda6
+
 };
 
 enum overlay_e{
