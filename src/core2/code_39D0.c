@@ -522,12 +522,12 @@ void func_8028BCA0(Prop *prop){
 
             case 0xF5: //L8028BFB0
                 if(spC4 == 1)
-                    func_8028BAB0(jiggy_bgs_elevated_walkway, 1, 3, 7);
+                    func_8028BAB0(JIGGY_20_BGS_ELEVATED_WALKWAY, 1, 3, 7);
                 break;
                 
             case 0xFD: //L8028BFD4
                 if(spC4 == 1)
-                    func_8028BAB0(jiggy_bgs_maze, 0xa, 0xc, 8);
+                    func_8028BAB0(JIGGY_25_BGS_MAZE, 0xa, 0xc, 8);
                 break;
                 
             case 0xEC: //L8028BFF8

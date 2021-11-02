@@ -106,7 +106,7 @@ void func_80386B28(Actor *this){
         this->position_x = 5700.0f;
         this->position_y = -2620.0f;
         this->position_z = -20.0f;
-        if(jiggyscore_80320F7C(JIGGY_CC_CLANKER_RAISED)){
+        if(jiggyscore_80320F7C(JIGGY_17_CC_CLANKER_RAISED)){
             func_80386920(this, 5);
         }
         else{

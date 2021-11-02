@@ -698,7 +698,7 @@ enum SFX_E
     SFX_KABOING, 
     SFX_2E_BIGBUTT_RUNNING,
     SFX_2F_ORANGE_SPLAT,
-    SFX_MAGIC_POOF = 0x0030,
+    SFX_30_MAGIC_POOF = 0x0030,
     // starting to ride the FP sled to rescue Boggy
     SFX_BANJO_OHHWAAOOO, 
     // when rolling AND when taking damage
@@ -1229,19 +1229,35 @@ enum jiggy_e
     JIGGY_MM_ORANGE_PADS    = 0x08,
     JIGGY_MM_CHIMPY     = 0x9,
 
-    JIGGY_CC_CLANKER_RAISED = 0x17,
+    JIGGY_13_TTC_LOCKUP = 0x13,
 
-    jiggy_bgs_elevated_walkway = 0x20,
-    jiggy_bgs_pinkegg   = 0x21,
+    JIGGY_17_CC_CLANKER_RAISED = 0x17,
 
-    jiggy_bgs_huts      = 0x23,
-    jiggy_bgs_flibbits  = 0x24,
-    jiggy_bgs_maze      = 0x25,
+    JIGGY_1C_CC_RINGS   = 0x1C,
+    JIGGY_1D_CC_SLOW_SAWBLADES ,
 
-    jiggy_bgs_tiptup    = 0x27,
+    JIGGY_20_BGS_ELEVATED_WALKWAY = 0x20,
+    JIGGY_21_BGS_PINKEGG,
+    JIGGY_22_CROCTUS,
+    JIGGY_23_BGS_HUTS,
+    JIGGY_24_BGS_FLIBBITS,
+    JIGGY_25_BGS_MAZE,
+    JIGGY_26_BGS_TANKTUP,
+    JIGGY_27_BGS_TIPTUP,
+
+    JIGGY_2F_FP_XMAS_TREE = 0x2f,
 
     JIGGY_35_LAIR_CC_WITCH_SWITCH = 0x35,
-    JIGGY_37_LAIR_BGS_WITCH_SWITCH = 0x37,
+    JIGGY_36_LAIR_TTC_WITCH_SWITCH,
+    JIGGY_37_LAIR_BGS_WITCH_SWITCH,
+
+    JIGGY_3E_GV_GRABBA = 0x3e,
+
+    JIGGY_41_GV_MAZE    = 0x41,
+
+    JIGGY_49_CCW_EYRIE  = 0x49,
+
+    JIGGY_4D_CCW_FLOWER = 0x4D,
 
     JIGGY_RBB_SNORKEL   = 0x53,
     JIGGY_RBB_WHISTLE   = 0x54,
@@ -1289,6 +1305,8 @@ enum actor_e
 
     actor_yellow_flibbit_controller = 0x136,
     actor_yumblie           = 0x139,
+
+    ACTOR_14F_DESTROYED_JIGGY = 0x14f,
 
     ACTOR_COLLYWOBBLE_A       = 0x164,
     ACTOR_BAWL_A              = 0x165,
@@ -1479,6 +1497,7 @@ enum map_flags_e
 
 enum item_e
 {
+    ITEM_0_TIMER = 0x0,
     item_note = 0xC,
     ITEM_EGGS = 0xD,
     ITEM_JIGGY = 0xE,

@@ -159,13 +159,13 @@ segments:
   - [0x3D3D0, c, ch/gameSelect]
   - [0x3EAD0, c, code_3EAD0]
   - [0x3ECE0, c, code_3ECE0]
-  - [0x3EEF0, c, ch/bigbutt] #DONE
+  - [0x3EEF0, c, ch/bigbutt]  #DONE
   - [0x400F0, c, code_400F0]
-  - [0x40AA0, c, ch/jiggy]
+  - [0x40AA0, c, ch/jiggy]    #DONE
   - [0x41130, c, ch/jigsawdance] #DONE
   - [0x41460, c, code_41460]
   - [0x41FB0, c, code_41FB0]
-  - [0x42CA0, c, ch/musicnote] #DONE
+  - [0x42CA0, c, ch/musicnote]  #DONE
   - [0x42CB0, c, code_42CB0]
   - [0x43250, c, code_43250]
   - [0x43390, c, code_43390]
@@ -381,6 +381,7 @@ segments:
   - [0x000DDC20, bin, data_DDC20]
   - [0x000DF080, .data, ch/bigbutt]
   - [0x000DF160, bin, data_DF160]
+  - [0x000DF300, .data, ch/jiggy]
   - [0x000DF340, .data, ch/jigsawdance]
   - [0x000DF3A0, bin, data_DF3A0]
   - [0x000DFCC0, .data, ch/musicnote]
@@ -470,6 +471,7 @@ segments:
   - [0x000EF090, bin, data_EF090]
   - [0x000EF220, .rodata, ch/bigbutt]
   - [0x000EF300, bin, data_EF300]
+  - [0x000EF360, .rodata, ch/jiggy]
   - [0x000EF3E0, .rodata, ch/jigsawdance]
   - [0x000EF450, .rodata, code_41460]
   - [0x000EF480, bin, data_EF480]

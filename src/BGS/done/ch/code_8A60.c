@@ -10,7 +10,7 @@ void func_8038EE50(void){
     f32 sp24[3];
 
     if(func_80304E24(0x14d, sp24)){
-        jiggySpawn(jiggy_bgs_elevated_walkway, sp24);
+        jiggySpawn(JIGGY_20_BGS_ELEVATED_WALKWAY, sp24);
         func_802C3F04(func_802C4140, 0x4C, *((u32 *) &sp24[0]), *((u32 *) &sp24[1]), *((u32 *) &sp24[2]));
     }
 }
@@ -49,7 +49,7 @@ void func_8038F018(void){
     f32 sp24[3];
 
     if(func_80304E24(0x1fc, sp24)){
-        jiggySpawn(jiggy_bgs_maze, sp24);
+        jiggySpawn(JIGGY_25_BGS_MAZE, sp24);
         func_802C3F04(func_802C4140, 0x4C, *((u32 *) &sp24[0]), *((u32 *) &sp24[1]), *((u32 *) &sp24[2]));
     }
 }

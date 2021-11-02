@@ -54,7 +54,7 @@ typedef struct actorMarker_s{
     u32         pad14_22:1;
     u32         unk14_21:1;
     u32         unk14_20:10; //contains jingo_id for chjinjo
-    u32         pad14_19:11;
+    u32         unk14_19:11; //used in ch/jiggy
     u32         unk18;
     s32         unk1C;
     s32         unk20;
@@ -183,10 +183,6 @@ typedef struct chleafboat_s{
     f32 unk6C;
 } ActorLocal_Leafboat;
 
-typedef struct chjiggy_s{
-    u32 unk0;
-    u32 index;
-} ActorLocal_Jiggy;
 
 typedef struct actor_anim_info_s{
     u32     index;
@@ -320,8 +316,7 @@ typedef struct actor_s{
     u32 stored_animctrl_forwards:1; //animCtrlDirection
     u32 stored_animctrl_smoothTransistion:1; //animCtrlSmoothTransition
     union
-    {
-        ActorLocal_Jiggy    jiggy;
+    { //DON'T DO THIS JUST DEFINE STATICLY IN ch/ FILE AND CAST FROM &Actor->local
         ActorLocal_MrVile   mrVile; 
         ActorLocal_PinkEgg  pinkEgg; 
         ActorLocal_Yumblie  yumblie; 

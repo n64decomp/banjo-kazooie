@@ -108,7 +108,7 @@ void func_8038EB8C(Actor *this){
                     if(tmp < 5){
                         func_802C3F04(func_802C4218,D_80390B50[tmp], ((u32 *)diffPos)[0], ((u32 *)diffPos)[1], ((u32 *)diffPos)[2]);
                     } else {
-                        jiggySpawn(jiggy_bgs_huts, diffPos);
+                        jiggySpawn(JIGGY_23_BGS_HUTS, diffPos);
                     }
                 }
                 break;

@@ -19,7 +19,7 @@ extern f32 D_80391090;
 extern u8 D_80391240[4];
 
 void func_8038CB20(void){
-    jiggySpawn(jiggy_bgs_flibbits, D_80390AD4);
+    jiggySpawn(JIGGY_24_BGS_FLIBBITS, D_80390AD4);
 }
 
 void func_8038CB48(ActorMarker *arg0, u32 arg1, u32 arg2){
@@ -141,7 +141,7 @@ void func_8038CEE8(Actor *this){
         D_80391240[3] = 0;
         mapSpecificFlags_set(0x12, 0);
         mapSpecificFlags_set(0x10, 0);
-        if(jiggyscore_80320F7C(jiggy_bgs_flibbits)){
+        if(jiggyscore_80320F7C(JIGGY_24_BGS_FLIBBITS)){
             func_8038CC08(this,6);
             return;
         }else{
@@ -191,7 +191,7 @@ void func_8038CEE8(Actor *this){
     }
     if(this->state == 1 || this->state == 3){
         if( (bgs6730->unk0) 
-          && !jiggyscore_80320F7C(jiggy_bgs_flibbits)
+          && !jiggyscore_80320F7C(JIGGY_24_BGS_FLIBBITS)
           && !bgs6730->unk8
           && !bgs6730->unkC
         ){
