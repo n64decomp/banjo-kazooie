@@ -350,6 +350,9 @@ void func_802BF2C0(f32);
 void func_802C1B20(f32);
 int  func_802C1DB0(f32);
 
+void func_802EFA20(struct30s *, f32, f32);
+
+
 struct30s *func_802F0D74(struct30s *);
 
 u8   func_8030D90C(void);

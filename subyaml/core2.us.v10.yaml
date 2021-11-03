@@ -496,9 +496,11 @@ segments:
   - [0x000F14C0, .rodata, gc/transition]
   - [0x000F1520, .rodata, code_85800]
   - [0x000F1540, bin, data_F1540]
-  - [0x000F2580, .rodata, ch/code_CFA60]
-  - [0x000F25D0, bin, data_F25D0]
-  #- [0x000F18F0, .rodata, gc/zoombox]
+  #- [0x000F18F0, .rodata, gc/zoombox] 
   #- [0x000F1900, .rodata, gc/zoombox]
   #- [0x000F1918, bin]
+  - [0x000F2580, .rodata, ch/code_CFA60]
+  - [0x000F25D0, bin, data_F25D0]
+  - [0x000F2B30, .rodata, code_DB010] #code_DB010 - func_80362E94
+  #- [0x000F2BC0, bin, data_F2BC0]
 - [0xf2c00] # core2 end

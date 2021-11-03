@@ -56,6 +56,10 @@ extern ActorInfo D_80366EC0;
 extern ActorInfo D_80366EF0; //large_shadow
 extern ActorInfo D_80366F20; //chshockjump
 extern ActorInfo D_80366F44; //flight_pad
+extern ActorInfo D_803670B8; //snippet
+extern ActorInfo D_803670DC; //black_snippet
+extern ActorInfo D_80367100; //mutie_snippet
+extern ActorInfo D_80367130; //buzzbomb
 extern ActorInfo D_80367160;
 extern ActorInfo D_80367184;
 extern ActorInfo D_80367200; //jingo_blue
@@ -66,6 +70,7 @@ extern ActorInfo D_80367290; //jingo_orange
 extern ActorInfo D_803672E0; //chbeehive
 extern ActorInfo D_80367310; //chswarm
 extern ActorInfo D_80367390; //chwaterfallfx
+extern ActorInfo D_80367404; //scrapnel
 extern ActorInfo D_80367468; //gloop
 extern ActorInfo D_803674E0; //mumbo
 extern ActorInfo D_80367530; //mumbo_token_sign.5
@@ -98,6 +103,9 @@ extern ActorInfo D_80367AF8;
 extern ActorInfo D_80367B20; //chclimbbase
 extern ActorInfo D_80367B80; //orange
 extern ActorInfo D_80367BA4; //gold_bullion
+extern ActorInfo D_80367BC8;
+extern ActorInfo D_80367BEC;
+extern ActorInfo D_80367C10;
 extern ActorInfo D_80367C60;
 extern ActorInfo D_80367C90; //spent_redfeather
 extern ActorInfo D_80367CB4; //spent_goldfeather
@@ -114,24 +122,28 @@ extern ActorInfo D_803680AC;//player_KAZOOIE
 extern ActorInfo D_803680DC;//copyright_info
 extern ActorInfo D_80368124;//PRESS_START
 extern ActorInfo D_80368174;//NO_CONTROLLER)
-extern ActorInfo D_803682D0;//jiggy_picture
+extern ActorInfo D_803682D0; //jiggy_picture
 extern ActorInfo D_8036833C; 
 extern ActorInfo D_8036838C;
-extern ActorInfo D_80368418;//banjos_hand_BB
-extern ActorInfo D_80368450;//fire_sparkle
+extern ActorInfo D_80368418; //banjos_hand_BB
+extern ActorInfo D_80368450; //fire_sparkle
 extern ActorInfo D_80368474;
 extern ActorInfo D_80368498;
-extern ActorInfo D_803684BC;//roysten
-extern ActorInfo D_803684E0;//cuckoo_clock
+extern ActorInfo D_803684BC; //roysten
+extern ActorInfo D_803684E0; //cuckoo_clock
 extern ActorInfo D_80368504;
 extern ActorInfo D_80368528;
 extern ActorInfo D_8036854C;
 extern ActorInfo D_80368570;
 extern ActorInfo D_803685A0; //mumbotoken
 extern ActorInfo D_80368620; //snacker
-extern ActorInfo D_80368710;//snowball
-extern ActorInfo D_803687C0;//sir_slush_hat
+extern ActorInfo D_80368670; //sirslush
+extern ActorInfo D_80368710; //snowball
+extern ActorInfo D_803687C0; //sir_slush_hat
 extern ActorInfo D_80372810;
+extern ActorInfo D_80372840; //grillchompa
+extern ActorInfo D_80372870; //clucker
+extern ActorInfo D_803728A0; //scarab
 extern ActorInfo D_8036D970; //boombox
 extern ActorInfo D_80372970; //leaf_particle
 extern ActorInfo D_80372994;
@@ -144,8 +156,12 @@ extern ActorInfo D_80372A6C;
 extern ActorInfo D_80372A90; //fire
 extern ActorInfo D_80372AC0;//water_drops
 extern ActorInfo D_80372BA4;//ice_cube
+extern ActorInfo D_80372B80;
 extern ActorInfo D_80372C18; //teehee
 extern ActorInfo D_80372C80; //floatsam
+extern ActorInfo D_80372D78; //limbo
+extern ActorInfo D_80372DF8; //grublin_hood
+extern ActorInfo D_80372E78; //mummum
 extern ActorInfo D_80372EE0;
 extern ActorInfo D_80372F50; //ticker
 extern ActorInfo D_80372FC0;
@@ -158,23 +174,6 @@ extern ActorInfo D_803731B0;
 extern ActorInfo D_803732E0;
 extern ActorInfo D_80373DC0;
 
-extern ActorInfo D_80367130; //buzzbomb
-extern ActorInfo D_80372B80;
-extern ActorInfo D_80367404; //scrapnel
-extern ActorInfo D_80372D78; //limbo
-extern ActorInfo D_80372DF8; //grublin_hood
-extern ActorInfo D_80372E78; //mummum
-extern ActorInfo D_80372840; //grillchompa
-extern ActorInfo D_803670B8; //snippet
-extern ActorInfo D_803670DC; //black_snippet
-extern ActorInfo D_80367100; //mutie_snippet
-extern ActorInfo D_80372870; //clucker
-extern ActorInfo D_803728A0; //scarab
-extern ActorInfo D_80368670; //sirslush
-
-extern ActorInfo D_80367BC8;
-extern ActorInfo D_80367BEC;
-extern ActorInfo D_80367C10;
 
 void func_802C2B10(void){
     u32 tmp = (func_803348C0() == MAP_90_GL_BATTLEMENTS)? 0x32: 0xF;
