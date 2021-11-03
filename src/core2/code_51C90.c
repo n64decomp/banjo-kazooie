@@ -93,6 +93,8 @@ Actor *func_802D8F50(ActorMarker *this, Gfx **gdl, Mtx **mptr, u32 arg3){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_51C90/func_802D9018.s")
 
+//hasLearnedAllMovesInLevel
+//int func_802D9220(enum level_e level);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_51C90/func_802D9220.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_51C90/func_802D9304.s")

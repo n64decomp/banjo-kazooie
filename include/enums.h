@@ -20,7 +20,7 @@ enum BKPROG_E{
 	// {index=0x0C, type="Prog", level=6, name="1st Extra Life Text"},
 	// {index=0x0D, type="Prog", level=6, name="1st Beehive Text"},
     BKPROG_D_BEEHIVE_TEXT = 0xD,
-	BKPROG_0E_JINJO_TEXT =  0xE,
+	BKPROG_E_JINJO_TEXT,
 	// {index=0x0F, type="Prog", level=6, name="1st Time Pirahana Text"},
 	// {index=0x10, type="Prog", level=6, name="1st Sand Eel Text"}, -- 0x02 > 0
 	// {index=0x11, type="Prog", level=6, name="1st Meeting Mumbo Text"}, -- 0x02 > 1
@@ -62,7 +62,7 @@ enum BKPROG_E{
 	BK_PROG_3D_NOTE_DOOR_350_OPEN,
 	BK_PROG_3E_NOTE_DOOR_450_OPEN,
 	BK_PROG_3F_NOTE_DOOR_640_OPEN,
-	BK_PROG_40_NOTE_DOOR_765_OPEN = 0x40,
+	BK_PROG_40_NOTE_DOOR_765_OPEN,
 	BK_PROG_41_NOTE_DOOR_810_OPEN,
 	BK_PROG_42_NOTE_DOOR_828_OPEN,
 	BK_PROG_43_NOTE_DOOR_846_OPEN,
@@ -164,7 +164,7 @@ enum BKPROG_E{
 	// {index=0xA2, type="Prog", level=6, name="GV Lobby Coffin Open"},
 
     BKPROG_A6_FURNACE_FUN_COMPLETE = 0xA6,
-    BKPROG_A7_NEAR_PUZZLE_PODIUM_TEXT = 0xA7,
+    BKPROG_A7_NEAR_PUZZLE_PODIUM_TEXT,
 	// {index=0xA8, type="Prog", level=6, name="1st Death Text"},
 	// {index=0xA9, type="Prog", level=9, name="1st RBB Oven Text"},
 	// {index=0xAA, type="Prog", level=8, name="1st CCW Bramble Field Text"},
@@ -186,9 +186,9 @@ enum BKPROG_E{
 	// {index=0xBA, type="Prog", level=6, name="1st Time T. Rex"},
 
 	BKPROG_BD_ENTER_LAIR_CUTSCENE =  0xBD,
-    BKPROG_BE_CHEATO_BLUEEGGS = 0xBE,
-    BKPROG_BF_CHEATO_REDFEATHERS = 0xBF,
-    BKPROG_C0_CHEATO_GOLDFEATHERS = 0xC0,
+    BKPROG_BE_CHEATO_BLUEEGGS,
+    BKPROG_BF_CHEATO_REDFEATHERS,
+    BKPROG_C0_CHEATO_GOLDFEATHERS,
 
 	// {index=0xC2, type="Prog", level=6, name="Grate to RBB Puzzle Open"},
 	// {index=0xC3, type="Prog", level=6, name="Ice Ball To Cheato Broken"},
@@ -1214,8 +1214,15 @@ enum SFX_E
 enum level_e
 {
     LEVEL_1_MUMBOS_MOUNTAIN = 0x1,
-    LEVEL_6_LAIR = 0x6,
+    LEVEL_2_TREASURE_TROVE_COVE,
+    LEVEL_3_CLANKERS_CAVERN,
+    LEVEL_4_BUBBLEGLOOP_SWAMP,
+    LEVEL_5_FREEZEEZY_PEAK,
+    LEVEL_6_LAIR,
+    LEVEL_7_GOBIS_VALLEY,
+
     LEVEL_9_RUSTY_BUCKET_BAY = 0x9,
+
     LEVEL_B_SPIRAL_MOUNTAIN = 0xB,
     LEVEL_C_BOSS = 0xC,
     LEVEL_D_CUTSCENE = 0xD
