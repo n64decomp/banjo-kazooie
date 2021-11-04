@@ -286,7 +286,7 @@ s32 func_8038F5BC(f32 *arg0, f32 arg1) {
 }
 
 void func_8038F5F8(s32 arg0) {
-    func_80324D2C(0.0f, SFX_ENTER_MAP_GLITTER);
+    func_80324D2C(0.0f, COMUSIC_43_ENTER_LEVEL_GLITTER);
 }
 
 #ifndef NONMATCHING

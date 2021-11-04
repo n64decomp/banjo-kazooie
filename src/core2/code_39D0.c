@@ -818,7 +818,7 @@ void func_8028BCA0(Prop *prop){
                         break;
                     }
                     func_8025A70C(COMUSIC_88_BIG_SNS_FANFARE);
-                    func_8030E624(0x664EA114);
+                    FUNC_8030E624(SFX_114_BRICKWALL_BREAKING, 0x1D4, 0x332);
                     tmp_f0 = 0.9f;
                     {
                         

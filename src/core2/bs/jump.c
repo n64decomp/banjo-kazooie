@@ -269,7 +269,7 @@ void bsjump_tumble_init(void){
     if(func_80293234() == 1){
         func_8029E3C0(0, 0.5f);
         func_8029E3C0(1, 0.41f);
-        func_80299CF4(0x52, 1.0f, 22000);
+        func_80299CF4(SFX_52_BANJO_YAH_OH, 1.0f, 22000);
     }else{
         func_8029E3C0(0, 0.0f);
         func_8029E3C0(1, 0.01f);
@@ -280,7 +280,7 @@ void bsjump_tumble_init(void){
 void bsjump_tumble_update(void){
     enum bs_e sp1C = 0;
     if(func_8029E1A8(1))
-        func_80299CF4(0x63, 1.0f, 32000);
+        func_80299CF4(SFX_63_BANJO_UWAAAAOOH, 1.0f, 32000);
     
     func_8029E1A8(0);
     func_802B6FA8();

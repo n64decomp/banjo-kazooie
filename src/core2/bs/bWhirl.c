@@ -68,7 +68,7 @@ void func_802AA58C(enum bs_e *arg0){
         D_8037D3B0 = 0.0f;
         func_80346C10(arg0, BS_WONDERWING_EXIT, -1, ITEM_10_GOLD_FEATHER, 1);
         if(*arg0 != BS_WONDERWING_EXIT){
-            func_8030E624(0x665b5be9);
+            FUNC_8030E624(SFX_3E9_UNKNOWN, 875, 0x332);
             func_802D8BE4(1);
         }
     }

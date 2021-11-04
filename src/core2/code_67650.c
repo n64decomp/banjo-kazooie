@@ -154,6 +154,7 @@ void func_802EF3F4(struct30s *this, f32 (* arg1)[3], f32 (*arg2)[3], s32 arg3){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_67650/func_802EF4AC.s")
 
+
 void func_802EF5C8(struct30s *this, int arg1){
     for(arg1; arg1 > 0; arg1--){
         if(this->unk128 < this->unk12C){

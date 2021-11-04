@@ -38,8 +38,12 @@ extern f32 fabsf(f32);
     out##_z = a##_z op b##_z;\
 }
 
+#define FUNC_8030E624(sfx_e, b, c) func_8030E624(\
+    _SHIFTL(c, 21, 11) | _SHIFTL(b, 11, 10) | _SHIFTL(sfx_e, 0, 11)\
+)
+
 #define FUNC_8030E8B4(sfx_e, b, c, d, e, f) func_8030E8B4(\
-    _SHIFTL(c, 21, 11) | _SHIFTL(b, 11, 10) | _SHIFTL(sfx_e, 0, 10), \
+    _SHIFTL(c, 21, 11) | _SHIFTL(b, 11, 10) | _SHIFTL(sfx_e, 0, 11), \
     d, \
     _SHIFTL(f, 16, 16) | _SHIFTL(e, 0, 16) \
 )
@@ -318,7 +322,7 @@ void func_80299594(s32, f32);
 void func_80299628(s32);
 void func_80299650(f32, f32);
 void func_80299B58(f32, f32);
-void func_80299CF4(s32, f32, s32);
+void func_80299CF4(enum SFX_E, f32, s32);
 void func_80299D2C(s32, f32, s32);
 void func_80289EC8(f32, f32, f32, f32);
 void func_80289EF8(f32);

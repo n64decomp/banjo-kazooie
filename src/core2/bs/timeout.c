@@ -15,7 +15,7 @@ void func_802B6270(void){
     yaw_setIdeal(func_8029B41C() + 35.0f);
     func_802BF2C0(80.0f);
     func_8025A58C(0,0xfa0);
-    func_8025A70C(JINGLE_MINIGAME_LOSS);
+    func_8025A70C(COMUSIC_3C_MINIGAME_LOSS);
     func_8024BD08(0);
     func_8029E070(1);
     func_8028D5DC();
@@ -27,7 +27,7 @@ void func_802B6314(void){
         func_80292E48();
 
     if(animctrl_isAt(aCtrl, 0.18f))
-        func_8030E624(0x7ff193eb);
+        FUNC_8030E624(SFX_3EB_UNKNOWN, 0x232, 0x3ff);
 
     if(animctrl_isAt(aCtrl, 0.8421f)){
         func_80292E80(0, 0.3f);
@@ -56,7 +56,7 @@ void func_802B63F8(void){
     yaw_setIdeal(func_8029B41C() + 35.0f);
     func_802BF2C0(80.0f);
     func_8025A58C(0,0xfa0);
-    func_8025A70C(JINGLE_MINIGAME_LOSS);
+    func_8025A70C(COMUSIC_3C_MINIGAME_LOSS);
     func_8024BD08(0);
     func_8028D5DC();
     func_8029E3C0(0, 2.9f);

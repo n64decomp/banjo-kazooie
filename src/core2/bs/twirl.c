@@ -27,7 +27,7 @@ void bstwirl_init(void){
     func_802978DC(3);
     D_8037D5A0 = func_80297A64();
     func_80297970(600.0f);
-    func_80299CF4(0x32, 1.0f, 0x6590);
+    func_80299CF4(SFX_32_BANJO_EGHEE, 1.0f, 0x6590);
     _bstwirlHitboxActive = TRUE;
     func_8029E3C0(0, 0.01f);
     D_8037D5A4 = 0;

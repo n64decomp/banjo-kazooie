@@ -454,8 +454,8 @@ void bscroc_die_update(void){
         case 0:
             if(func_8028B2E8()){
                 func_8028A37C(0.7453f);
-                func_8030E624(0x6651901F);
-                func_8030E624(0xe6319039);
+                FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 0x232, 0x332);
+                FUNC_8030E624(SFX_39_BANJO_AYE_2, 0x232, 0x731);
                 player_setYVelocity(400.0f);
                 D_8037D3EC = 1;
             }
@@ -463,8 +463,8 @@ void bscroc_die_update(void){
         case 1:
             if(func_8028B2E8()){
                 func_8028A37C(1.0f);
-                func_8030E624(0x6651901F);
-                func_8030E624(0xe6319039);
+                FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 0x232, 0x332);
+                FUNC_8030E624(SFX_39_BANJO_AYE_2, 0x232, 0x731);
                 D_8037D3EC = 2;
             }
             break;

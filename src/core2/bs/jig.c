@@ -174,7 +174,7 @@ void bsjig_notedoor_init(void){
         func_8024BD08(0);
         func_8025A2FC(0,0xfa0);
     }
-    func_8025A6EC(JINGLE_NOTEDOOR_OPENING_FANFARE,-1);
+    func_8025A6EC(COMUSIC_42_NOTEDOOR_OPENING_FANFARE,-1);
     func_8029151C(0xc);
     func_8029E070(1);
     func_8030E6D4(0x33);
@@ -185,7 +185,7 @@ void bsjig_notedoor_update(void){
     enum bs_e sp1C = 0;
 
     if(func_80289FE8(0.59f) || func_80289FE8(0.84f))
-        func_80299CF4(0x3ea, 1.0f, 30000);
+        func_80299CF4(SFX_3EA_UNKNOWN, 1.0f, 30000);
 
     if(func_80289FC4())
         sp1C = BS_IDLE;

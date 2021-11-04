@@ -803,7 +803,7 @@ void func_8031DAE0(s32 arg0, s32 arg1) {
         func_803204E4(0xAD, 1);
         func_80244C78(0);
         mapSpecificFlags_set(2, 1);
-        func_8025A6EC(JINGLE_MINIGAME_VICTORY, 0x6D60);
+        func_8025A6EC(COMUSIC_3B_MINIGAME_VICTORY, 0x6D60);
         func_8028F918(1);
         timedFunc_set_2(D_80378D40, &func_8031DAA8, 0x1C, 1);
         func_802D6924();

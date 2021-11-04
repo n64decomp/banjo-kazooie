@@ -4,7 +4,6 @@
 #include "bsint.h"
 
 void func_80292900(f32, f32);
-void func_80299CF4(s32, f32, s32);
 void func_80250D94(f32, f32, f32);
 
 extern u8 D_8037D530;
@@ -24,14 +23,14 @@ void bssplat_init(void){
     func_802931DC(&sp1C);
     func_803463D4(0x14, -sp1C);
     if(func_8029CEB0() == 4){
-        func_8030E624(0x599f4116);
-        func_8030E624(0x665f4116);
+        FUNC_8030E624(SFX_116_DEAF_RUSTLING, 1000, 0x2cc);
+        FUNC_8030E624(SFX_116_DEAF_RUSTLING, 1000, 0x332);
         func_80250D94(0.75f, 0.25f, 0.3f);
     }else{
-        func_8030E624(0x665ff81f);
+        FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 0x3FF, 0x332);
         func_80250D94(1.0f, 0.5f, 0.4f);
     }
-    func_80299CF4(0x38, 1.0f, 0x6D60);
+    func_80299CF4(SFX_38_BANJO_AYE_1, 1.0f, 28000);
     func_802B4570();
     func_802BB3DC(0, 45.0f, 0.71f);
     if(item_getCount(ITEM_14_HEALTH) == 0)
@@ -56,7 +55,7 @@ void bssplat_update(void){
             sp1C = BS_FALL;
 
         if(animctrl_isStopped(aCtrl)){
-            func_8028A180(0xd2, 2.25f);
+            func_8028A180(ASSET_D2_ANIM_BANJO_GETTING_UP, 2.25f);
             D_8037D530 = 1;
         }
         break;

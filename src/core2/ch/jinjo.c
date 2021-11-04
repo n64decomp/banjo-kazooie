@@ -169,7 +169,7 @@ void func_802CDD78(Actor * this){
                 func_8024BD08(0);
                 func_8032BB88(this, 0, 4000);
                 if(local->unk4){
-                    func_8025A6EC(JINGLE_5TH_JINJO_COLLECTED, 28000);
+                    func_8025A6EC(COMUSIC_30_5TH_JINJO_COLLECTED, 28000);
                 }else{
                     func_8025A6EC(SFX_JINJO_COLLECTED, 28000);
                 }
@@ -215,8 +215,8 @@ void func_802CDD78(Actor * this){
                     func_802F9EC4(local->unkC, sp30, 500, 2000);
                     func_802F9F80(local->unkC, 0.0f, 0x50061c46, 0.0f);
                     func_802FA0B0(local->unkC, 0);
-                    func_8025A6EC(SFX_ENTER_MAP_GLITTER, 0x7FFF);
-                    func_8025AABC(SFX_ENTER_MAP_GLITTER);
+                    func_8025A6EC(COMUSIC_43_ENTER_LEVEL_GLITTER, 0x7FFF);
+                    func_8025AABC(COMUSIC_43_ENTER_LEVEL_GLITTER);
                     func_8030E9C4(0xc7, 0.8f, 0x7FFF, sp30, 300.0f, 2000.0f);
                 }//L802CE3C4
 
@@ -251,7 +251,7 @@ void func_802CDD78(Actor * this){
                         local->unk4 = 0;
                     }
                     func_8030E4E4(0x19);
-                    func_8025A7DC(SFX_ENTER_MAP_GLITTER);
+                    func_8025A7DC(COMUSIC_43_ENTER_LEVEL_GLITTER);
                 }//L802CE558
 
                 if(local->unk4 && actor_animationIsAt(this,0.95f)){

@@ -27,7 +27,7 @@ enum BKPROG_E{
 	// {index=0x12, type="Prog", level=6, name="1st Post XForm Mumbo Text"},
 
 	// {index=0x14, type="Prog", level=6, name="1st FP Icy Water Text"},
-	// {index=0x15, type="Prog", level=6, name="1st Time in Mansion Text"},
+    BKPROG_15_ENTER_MMM_TEXT = 0x15,
 	// {index=0x16, type="Prog", level=6, name="1st Time in Jigsaw Text"},
 	// {index=0x17, type="Prog", level=6, name="1st Time Enough Pieces Jigsaw Text"},
 	// {index=0x18, type="Prog", level=6, name="MM WS Jiggy Spawned"},
@@ -37,9 +37,9 @@ enum BKPROG_E{
 	// {index=0x1C, type="Prog", level=6, name="RBB WS Jiggy Spawned"},
 	BKPROG_1D_MMM_DINNING_ROOM_CUTSCENE = 0x1D,
 	// {index=0x1E, type="Prog", level=6, name="Grate to BGS Puzzle Open"},
-	// {index=0x1F, type="Prog", level=6, name="CC Lobby Pipe 1 Raised"},
-	// {index=0x20, type="Prog", level=6, name="CC Lobby Pipe 2 Raised"},
-	// {index=0x21, type="Prog", level=6, name="CC Lobby Pipe 3 Raised"},
+	BKPROG_1F_CC_LOBBY_PIPE_1_RAISED = 0x1F,
+    BKPROG_20_CC_LOBBY_PIPE_2_RAISED,
+    BKPROG_21_CC_LOBBY_PIPE_3_RAISED,
 	// {index=0x22, type="Prog", level=6, name="Water Switch 1 Pressed"},
 	// {index=0x23, type="Prog", level=6, name="Lair Water Level 1"},
 	// {index=0x24, type="Prog", level=6, name="Water Switch 2 Pressed"},
@@ -56,18 +56,18 @@ enum BKPROG_E{
 	BKPROG_37_MMM_OPEN,
 	BKPROG_38_RBB_OPEN,
 	BKPROG_39_CCW_OPEN,
-	BK_PROG_3A_NOTE_DOOR_50_OPEN,
-	BK_PROG_3B_NOTE_DOOR_180_OPEN,
-	BK_PROG_3C_NOTE_DOOR_260_OPEN,
-	BK_PROG_3D_NOTE_DOOR_350_OPEN,
-	BK_PROG_3E_NOTE_DOOR_450_OPEN,
-	BK_PROG_3F_NOTE_DOOR_640_OPEN,
-	BK_PROG_40_NOTE_DOOR_765_OPEN,
-	BK_PROG_41_NOTE_DOOR_810_OPEN,
-	BK_PROG_42_NOTE_DOOR_828_OPEN,
-	BK_PROG_43_NOTE_DOOR_846_OPEN,
-	BK_PROG_44_NOTE_DOOR_864_OPEN,
-	BK_PROG_45_NOTE_DOOR_882_OPEN,
+	BKPROG_3A_NOTE_DOOR_50_OPEN,
+	BKPROG_3B_NOTE_DOOR_180_OPEN,
+	BKPROG_3C_NOTE_DOOR_260_OPEN,
+	BKPROG_3D_NOTE_DOOR_350_OPEN,
+	BKPROG_3E_NOTE_DOOR_450_OPEN,
+	BKPROG_3F_NOTE_DOOR_640_OPEN,
+	BKPROG_40_NOTE_DOOR_765_OPEN,
+	BKPROG_41_NOTE_DOOR_810_OPEN,
+	BKPROG_42_NOTE_DOOR_828_OPEN,
+	BKPROG_43_NOTE_DOOR_846_OPEN,
+	BKPROG_44_NOTE_DOOR_864_OPEN,
+	BKPROG_45_NOTE_DOOR_882_OPEN,
 	// {index=0x46, type="Prog", level=6, name="CCW WS Jiggy Spawned"},
 
 	// {index=0x48, type="Prog", level=6, name="FP WS Advent Door Open"},
@@ -151,17 +151,19 @@ enum BKPROG_E{
 	// {index=0x94, type="Prog", level=8, name="Bee Tokens Paid"},
 
 	// {index=0x96, type="Prog", level=6, name="1st Time Brentilda Text"},
-	// {index=0x97, type="Prog", level=6, name="1st Time In Lair Text"},
-	// {index=0x98, type="Prog", level=6, name="1st Time Exit Level Text"},
+	BKPROG_97_ENTERED_LAIR_TEXT = 0x97,
+	BKPROG_98_EXITED_LEVEL_TEXT,
 	// {index=0x99, type="Prog", level=6, name="1st Time Past 50 ND Text"},
 
 	// {index=0x9B, type="Prog", level=6, name="CC WS Eyes Active"},
 	// {index=0x9C, type="Prog", level=6, name="CC WS Left Eye Pressed"},
 	// {index=0x9D, type="Prog", level=6, name="CC WS Right Eye Pressed"},
 	// {index=0x9E, type="Prog", level=6, name="Crypt Coffin Lid Open"},
+    BKPROG_9E_CRYPT_COFFIN_LID_OPEN = 0x9E,
 
 	// {index=0xA1, type="Prog", level=6, name="Statue Hat Open"},
-	// {index=0xA2, type="Prog", level=6, name="GV Lobby Coffin Open"},
+    BKPROG_A1_STATUE_HAT_OPEN = 0xA1,
+    BKPROG_A2_GV_LOBBY_COFFIN_OPEN,
 
     BKPROG_A6_FURNACE_FUN_COMPLETE = 0xA6,
     BKPROG_A7_NEAR_PUZZLE_PODIUM_TEXT,
@@ -190,10 +192,10 @@ enum BKPROG_E{
     BKPROG_BF_CHEATO_REDFEATHERS,
     BKPROG_C0_CHEATO_GOLDFEATHERS,
 
-	// {index=0xC2, type="Prog", level=6, name="Grate to RBB Puzzle Open"},
-	// {index=0xC3, type="Prog", level=6, name="Ice Ball To Cheato Broken"},
-	// {index=0xC4, type="Prog", level=6, name="Statue Eye Broken"},
-	// {index=0xC5, type="Prog", level=6, name="Rareware Box Broken"},
+    BKPROG_C2_GRATE_TO_RBB_PUZZLE_OPEN = 0xc2,
+    BKPROG_C3_ICE_BALL_TO_CHEATO_BROKEN,
+    BKPROG_C4_STATUE_EYE_BROKEN,
+    BKPROG_C5_RAREWARE_BOX_BROKEN,
 	// {index=0xC6, type="Prog", level=6, name="Jump Pad Switch Pressed"},
 	// {index=0xC7, type="Prog", level=6, name="Jump Pad Active"},
 	// {index=0xC8, type="Prog", level=6, name="Wall to Wading Boots Broken"},
@@ -201,12 +203,11 @@ enum BKPROG_E{
 	// {index=0xCA, type="Prog", level=6, name="Cobweb to Purple Cauldron Broken"},
 	// {index=0xCB, type="Prog", level=6, name="Cobweb to Flight Pad Broken"},
 	// {index=0xCC, type="Prog", level=6, name="Cobweb to Green Cauldron Broken"},
-	// {index=0xCD, type="Prog", level=6, name="Grate to Water Switch 3 Open"},
-	// {index=0xCE, type="Prog", level=6, name="Grate by MMM Puzzle Open"},
+	BKPROG_CD_GRATE_TO_WATER_SWITCH_3_OPEN = 0xcd,
+    BKPROG_CE_GRATE_TO_MMM_PUZZLE_OPEN,
 
 	// {index=0xD1, type="Prog", level=12, name="Fight 1st Jinjo Statue Activated Cutscene"},
 	// {index=0xD2, type="Prog", level=12, name="Fight 1st Jinjo Statue Rising Cutscene"},
-
 	// {index=0xD3, type="Prog", level=6, name="??FF PATTERN 2^0"},
 	// {index=0xD4, type="Prog", level=6, name="??FF PATTERN 2^1"},
 	// {index=0xD5, type="Prog", level=6, name="??FF PATTERN 2^2"},
@@ -505,38 +506,38 @@ enum comusic_e
     JINGLE_PUZZLE_SOLVED_FANFARE,
     MUSIC_CCW_FALL_AQUATIC,
     MUSIC_CCW_HUBROOM,
-    JINGLE_5TH_JINJO_COLLECTED = 0x30,
-    JINGLE_GAME_OVER,
-    MUSIC_STARTUP_LOGO_SCENE,
-    MUSIC_RBB_ALTERNATIVE,
-    MUSIC_SNACKER_DANGER,
-    MUSIC_RBB_MASCHINE_ROOM_AQUATIC,
-    JINGLE_100TH_NOTE_COLLECTED,
-    JINGLE_DOUBLE_HEALTH_UPGRADE,
-    JINGLE_MOTZAND_BEATEN,
-    MUSIC_DK64_FUNGHI_FOREST,
-    MUSIC_FP_BOGGY_RACE,
-    JINGLE_MINIGAME_VICTORY,
-    JINGLE_MINIGAME_LOSS,
-    SFX_JIGGY_SPAWN,
-    SFX_SANDYBUTT_FAILURE,
-    SFX_MAGIC_CARPET_RISING,
-    SFX_MAGIC_CARPET_SINKING = 0x40,
-    MUSIC_MUMBOS_HUT,
-    JINGLE_NOTEDOOR_OPENING_FANFARE,
-    SFX_ENTER_MAP_GLITTER, // Looping
-    MUSIC_CCW_NABNUT,
-    MUSIC_CCW_NABNUT_ATTIC_A,
-    MUSIC_CCW_SPRING,
-    MUSIC_BGS_INSIDE_TANKTUP,
-    MUSIC_CCW_ALTERNATIVE_A,
-    MUSIC_CCW_ALTERNATIVE_QUICK,
-    MUSIC_RBB_INSIDE_CONTAINER,
-    MUSIC_CCW_ZUBBA_FIGHT,
-    MUSIC_RBB_CREWMATE_CABIN,
-    MUSIC_MUMBO_DANCE,
-    SFX_IN_TRANSITION,
-    SFX_OUT_TRANSITION,
+    COMUSIC_30_5TH_JINJO_COLLECTED = 0x30,
+    COMUSIC_31_GAME_OVER,
+    COMUSIC_32_STARTUP_LOGO_SCENE,
+    COMUSIC_33_RBB_ALTERNATIVE,
+    COMUSIC_34_SNACKER_DANGER,
+    COMUSIC_35_RBB_MASCHINE_ROOM_AQUATIC,
+    COMUSIC_36_100TH_NOTE_COLLECTED,
+    COMUSIC_37_DOUBLE_HEALTH_UPGRADE,
+    COMUSIC_38_MOTZAND_BEATEN,
+    COMUSIC_39_DK64_FUNGI_FOREST,
+    COMUSIC_3A_FP_BOGGY_RACE,
+    COMUSIC_3B_MINIGAME_VICTORY,
+    COMUSIC_3C_MINIGAME_LOSS,
+    COMUSIC_3D_JIGGY_SPAWN,
+    COMUSIC_3E_SANDYBUTT_FAILURE,
+    COMUSIC_3F_MAGIC_CARPET_RISING,
+    COMUSIC_40_MAGIC_CARPET_SINKING,
+    COMUSIC_41_MUMBOS_HUT,
+    COMUSIC_42_NOTEDOOR_OPENING_FANFARE,
+    COMUSIC_43_ENTER_LEVEL_GLITTER, // Looping
+    COMUSIC_44_CCW_NABNUT,
+    COMUSIC_45_CCW_NABNUT_ATTIC_A,
+    COMUSIC_46_CCW_SPRING,
+    COMUSIC_47_BGS_INSIDE_TANKTUP,
+    COMUSIC_48_CCW_ALTERNATIVE_A,
+    COMUSIC_49_CCW_ALTERNATIVE_QUICK,
+    COMUSIC_4A_RBB_INSIDE_CONTAINER,
+    COMUSIC_4B_CCW_ZUBBA_FIGHT,
+    COMUSIC_4C_RBB_CREWMATE_CABIN,
+    COMUSIC_4D_MUMBO_DANCE,
+    COMUSIC_4E_IN_TRANSITION,
+    COMUSIC_4F_OUT_TRANSITION,
     MUSIC_GL_TTC_VERSION = 0x50,
     MUSIC_GL_CCW_VERSION,
     MUSIC_GL_BGS_RBB_VERSION,
@@ -635,174 +636,174 @@ enum comusic_e
 // SFXR_ = Repeating SFX
 enum SFX_E
 {
-    SFX_BLOOP = 0x0000,
-    SFX_MUMBO_UMENAKA,
+    SFX_0_BLOOP = 0x0000,
+    SFX_1_MUMBO_UMENAKA,
     SFX_2_CLAW_SWIPE,
-    SFX_DULL_CANNON_SHOT,
+    SFX_3_DULL_CANNON_SHOT,
     // Long Beakbarge 2nd Part
-    SFX_KAZOOIE_RUUUUUH, 
-    SFX_BANJO_LANDING_01,
-    SFX_BANJO_LANDING_02,
-    SFX_BANJO_LANDING_03, 
-    SFX_BANJO_LANDING_04, 
-    SFX_SQUEAKY_TOY,
+    SFX_4_KAZOOIE_RUUUUUH, 
+    SFX_5_BANJO_LANDING_01,
+    SFX_6_BANJO_LANDING_02,
+    SFX_7_BANJO_LANDING_03, 
+    SFX_8_BANJO_LANDING_04, 
+    SFX_9_SQUEAKY_TOY,
     SFX_A_BANJO_LANDING_05,
-    SFX_BANJO_LANDING_06,
+    SFX_B_BANJO_LANDING_06,
     SFX_C_TAKING_FLIGHT_LIFTOFF,
     SFX_D_EGGSHELL_BREAKING,
-    SFX_SHOCKSPRING_BOING,
-    SFX_SMALL_WATER_SPLASH,
+    SFX_E_SHOCKSPRING_BOING,
+    SFX_F_SMALL_WATER_SPLASH,
     // shallow water
-    SFX_BANJO_LANDING_07 = 0x0010,
+    SFX_10_BANJO_LANDING_07,
     // Blubber's Ship's Trapdoor eg.
     SFX_11_WOOD_BREAKING_1, 
-    SFX_WATER_PADDLING_1,
-    SFX_BEAKBUSTER_GROUND,
+    SFX_12_WATER_PADDLING_1,
+    SFX_13_BEAKBUSTER_GROUND,
     // sounds like a muffled frying pan
-    SFX_METALLIC_HIT_1,
+    SFX_14_METALLIC_HIT_1,
     // less frying pan-ish
     SFX_15_METALLIC_HIT_2,
     // In the Opening Musical, when Mumbo's Xylophone drops
-    SFX_HEAVY_FALL_VIBRATO, 
-    SFX_JINJO_WHISTLE,
+    SFX_16_HEAVY_FALL_VIBRATO, 
+    SFX_17_JINJO_WHISTLE,
     SFX_18_BIGBUTT_SLIDE, 
     SFX_19_BANJO_LANDING_08,
-    SFX_BIG_THINGS_FALL_OVER,
+    SFX_1A_BIG_THINGS_FALL_OVER,
     // from the sea-mines
-    SFX_EXPLOSION_1, 
-    SFXR_ALARMCLOCK,
+    SFX_1B_EXPLOSION_1, 
+    SFX_1C_ALARMCLOCK,
     // hitting the Bull eg.
-    SFX_HITTING_AN_ENEMY_1,
+    SFX_1D_HITTING_AN_ENEMY_1,
     // might also be used for breaking boulders
     SFX_1E_HITTING_AN_ENEMY_2,
     // hitting a Gruntling eg.
-    SFX_HITTING_AN_ENEMY_3,
+    SFX_1F_HITTING_AN_ENEMY_3,
     // Cauldrons make this sound when landing
-    SFX_METAL_CLANK_1 = 0x0020, 
-    SFX_EGG_BOUNCE_1,
-    SFX_KONGA_NOISE_1,
-    SFX_KONGA_NOISE_2,
-    SFX_KONGA_NOISE_3,
+    SFX_20_METAL_CLANK_1, 
+    SFX_21_EGG_BOUNCE_1,
+    SFX_22_KONGA_NOISE_1,
+    SFX_23_KONGA_NOISE_2,
+    SFX_24_KONGA_NOISE_3,
     // might be part of Clankers Bolt
-    SFX_METAL_SLIDING_OVER_SMTH, 
-    SFX_BANJO_LANDING_09,
-    SFX_JINJO_HI,
-    SFX_RUSTLING_NOISE,
-    SFX_GRUBLIN_NYAHAHA,
-    SFX_CLOCK_TIC_1,
+    SFX_25_METAL_SLIDING_OVER_SMTH, 
+    SFX_26_BANJO_LANDING_09,
+    SFX_27_JINJO_HI,
+    SFX_28_RUSTLING_NOISE,
+    SFX_29_GRUBLIN_NYAHAHA,
+    SFX_2A_CLOCK_TIC_1,
     // passive version
     SFX_2B_BULL_MOO_1,
     // when Trunker or the CCW plant grow eg.
     SFX_2C_PULLING_NOISE, 
     // incomplete cauldron spitout AND Banjo pulling on Kazooies Throat in Idle Anim
-    SFX_KABOING, 
+    SFX_2D_KABOING, 
     SFX_2E_BIGBUTT_RUNNING,
     SFX_2F_ORANGE_SPLAT,
-    SFX_30_MAGIC_POOF = 0x0030,
+    SFX_30_MAGIC_POOF,
     // starting to ride the FP sled to rescue Boggy
-    SFX_BANJO_OHHWAAOOO, 
+    SFX_31_BANJO_OHHWAAOOO, 
     // when rolling AND when taking damage
-    SFX_BANJO_EGHEE, 
+    SFX_32_BANJO_EGHEE, 
     // inital Shockspring Jump
-    SFX_BANJO_AHOO, 
-    SFX_BANJO_AGHOAA,
-    SFX_BANJO_WOAH, 
+    SFX_33_BANJO_AHOO, 
+    SFX_34_BANJO_AGHOAA,
+    SFX_35_BANJO_WOAH, 
     // death inducing damage
-    SFX_BANJO_DOH,
-    SFX_BANJO_OHWW,
+    SFX_36_BANJO_DOH,
+    SFX_37_BANJO_OHWW,
     // less intense version
-    SFX_BANJO_AYE_1,
+    SFX_38_BANJO_AYE_1,
     // more intense version
-    SFX_BANJO_AYE_2,
-    SFX_BANJO_HOUW,
-    SFX_BANJO_GAAH,
+    SFX_39_BANJO_AYE_2,
+    SFX_3A_BANJO_HOUW,
+    SFX_3B_BANJO_GAAH,
     SFX_3C_BULL_GROWN,
-    SFX_TICKER_WALKING,
+    SFX_3D_TICKER_WALKING,
     // egg pooping ?
-    SFX_POOP_NOISE, 
+    SFX_3E_POOP_NOISE, 
     // higher pitch
-    SFX_CAULDRON_SQEAK_1, 
+    SFX_3F_CAULDRON_SQEAK_1, 
     // lower pitch
-    SFX_CAULDRON_SQEAK_2 = 0x0040, 
+    SFX_40_CAULDRON_SQEAK_2, 
     // waking up
-    SFX_MUMBO_ERGHHH, 
+    SFX_41_MUMBO_ERGHHH, 
     // short and dull
-    SFX_KAZOOIE_RAH, 
+    SFX_42_KAZOOIE_RAH, 
     // Short Beakbarge 2nd Part
-    SFX_KAZOOIE_RUH, 
+    SFX_43_KAZOOIE_RUH, 
     // peeking out of the backpack
-    SFX_KAZOOIE_AUW, 
+    SFX_44_KAZOOIE_AUW, 
     // Beakbbuster going down ?
-    SFX_KAZOOIE_HUGHH, 
+    SFX_45_KAZOOIE_HUGHH, 
     // egg shot 1st Part
-    SFX_KAZOOIE_CHOKING_UP, 
+    SFX_46_KAZOOIE_CHOKING_UP, 
     // FeatherFlap exhausting
-    SFX_KAZOOIE_HEUGH, 
+    SFX_47_KAZOOIE_HEUGH, 
     // TalonTrot Jump
-    SFX_KAZOOIE_RUUH, 
+    SFX_48_KAZOOIE_RUUH, 
     // TalonTrot Walking
-    SFX_KAZOOIE_RA, 
+    SFX_49_KAZOOIE_RA, 
     // the CCW Birds when comming out
-    SFX_CLUCKER_AHH, 
-    SFX_GULPING,
+    SFX_4A_CLUCKER_AHH, 
+    SFX_4B_GULPING,
     // eating yumblies
-    SFX_LIP_SMACK, 
+    SFX_4C_LIP_SMACK, 
     // like when a fish flops around in shallow water
-    SFX_WET_WIGGLING, 
+    SFX_4D_WET_WIGGLING, 
     // sounds like split-up from Tooie
-    SFX_KAZOOIE_BRUIII, 
+    SFX_4E_KAZOOIE_BRUIII, 
     // selecting a SaveFile
-    SFX_BANJO_WAHOO, 
+    SFX_4F_BANJO_WAHOO, 
     // during Beakbomb
-    SFX_KAZOOIE_RRRUH = 0x0050, 
-    SFX_CLOCK_TIC_2,
+    SFX_50_KAZOOIE_RRRUH, 
+    SFX_51_CLOCK_TIC_2,
     // starting a Beakbomb
-    SFX_BANJO_YAH_OH, 
+    SFX_52_BANJO_YAH_OH, 
     // shockspring jump liftoff
-    SFX_BANJO_HUIII,
+    SFX_53_BANJO_HUIII,
     // jumping 
-    SFX_BANJO_HOO_1,
+    SFX_54_BANJO_HOO_1,
     // jumping
-    SFX_BANJO_HOO_2,
+    SFX_55_BANJO_HOO_2,
     // jumping
-    SFX_BANJO_HUI,
+    SFX_56_BANJO_HUI,
     // egg shot 2nd part
-    SFX_KAZOOIE_HEGH, 
-    SFX_CHIMPY_NOISE_1,
-    SFX_CHIMPY_NOISE_2,
-    SFX_CHIMPY_NOISE_3,
+    SFX_57_KAZOOIE_HEGH, 
+    SFX_58_CHIMPY_NOISE_1,
+    SFX_59_CHIMPY_NOISE_2,
+    SFX_5A_CHIMPY_NOISE_3,
     SFX_5B_HEAVY_STUFF_FALLING,
-    SFX_HEAVY_STUFF_FALLING_DELAYED,
+    SFX_5C_HEAVY_STUFF_FALLING_DELAYED,
     // sleeping while snoring, inhale
-    SFX_BANJO_RAAOWW, 
+    SFX_5D_BANJO_RAAOWW, 
     // sleeping while snoring, exhale
-    SFX_BANJO_PHEWWW,
+    SFX_5E_BANJO_PHEWWW,
     // while channeling a spell
-    SFXR_MUMBO_BUGABUGOW_MUFFLED,
+    SFX_5F_MUMBO_BUGABUGOW_MUFFLED,
     // in the GameOver CS when Mumbo appears
-    SFX_MUMBO_SKIDDING = 0x0060,
+    SFX_60_MUMBO_SKIDDING,
     // in the Musical when the buzzbomb falls (slowed down)
-    SFX_CARTOONY_FALL,
+    SFX_61_CARTOONY_FALL,
     // annoyed at Kazooie, Idle Animation
-    SFX_BANJO_ERGHH, 
+    SFX_62_BANJO_ERGHH, 
     // huge fall starts
-    SFX_BANJO_UWAAAAOOH,
+    SFX_63_BANJO_UWAAAAOOH,
     // in the Musical, when the Bulls run across
-    SFXR_STAMPEDE,
-    SFX_METALLIC_SCRATCH,
-    SFX_BIRD_AUUGHH,
+    SFX_64_STAMPEDE,
+    SFX_65_METALLIC_SCRATCH,
+    SFX_66_BIRD_AUUGHH,
     SFX_67_BEEHIVE_CLONK,
-    SFX_CLUCKER_AAEEGHH,
-    SFX_WHIPCRACK_CREAKING,
+    SFX_68_CLUCKER_AAEEGHH,
+    SFX_69_WHIPCRACK_CREAKING,
     // flagpoles during the boggy races
-    SFX_FLAGPOLE_WOBBLE,
-    SFX_LOCKUP_OPENING,
-    SFX_LOCKUP_CLOSING,
+    SFX_6A_FLAGPOLE_WOBBLE,
+    SFX_6B_LOCKUP_OPENING,
+    SFX_6C_LOCKUP_CLOSING,
     SFX_6D_CROC_BITE,
-    SFX_VILE_EGH,
+    SFX_6E_VILE_EGH,
     // bottles uses this too I think
     SFX_6F_BANJO_HEADSCRATCH,
-    SFX_WALKING_NOISE_1 = 0x0070,
+    SFX_70_WALKING_NOISE_1,
     SFX_WALKING_NOISE_2,
     SFX_WALKING_NOISE_3,
     SFX_WALKING_NOISE_4,
@@ -819,32 +820,32 @@ enum SFX_E
     SFX_CHEBOOF,
     // RBB, might be cranes aswell
     SFX_7D_ANCHOR_LIFTING,
-    SFX_CREAKY_DOOR_OPENING,
-    SFX_HEAVYDOOR_SLAM,
-    SFX_YUMYUM_CLACK = 0x0080,
+    SFX_7E_CREAKY_DOOR_OPENING,
+    SFX_7F_HEAVYDOOR_SLAM,
+    SFX_80_YUMYUM_CLACK = 0x0080,
     // like polishing glass
-    SFX_UUU,
+    SFX_81_UUU,
     // when gates are broken, and probably when clankers bolt lands
-    SFX_METAL_BREAK,
-    SFX_BLUBBER_CRYING,
-    SFX_GOBI_CRYING,
-    SFX_ROUGH_COUGH,
-    SFX_TIPTUP_CHORUS_AH,
+    SFX_82_METAL_BREAK,
+    SFX_83_BLUBBER_CRYING,
+    SFX_84_GOBI_CRYING,
+    SFX_85_ROUGH_COUGH,
+    SFX_86_TIPTUP_CHORUS_AH,
     // when beakbustering his feet
     SFX_87_TANKTUP_OOOHW,
-    SFX_WOZZA_NOISE,
+    SFX_88_WOZZA_NOISE,
     // unsure
-    SFX_PARTYTOOL,
+    SFX_89_PARTYTOOL,
     // unsure, sounds like tooie's
-    SFX_ALTERNATIVE_EGG_SHOT,
+    SFX_8A_ALTERNATIVE_EGG_SHOT,
     // when Banjo pulls on her throat in the idle anim
-    SFX_KAZOOIE_RAWW,
-    SFX_BOGGY_WAHEY,
-    SFX_BOGGY_OHWW,
+    SFX_8B_KAZOOIE_RAWW,
+    SFX_8C_BOGGY_WAHEY,
+    SFX_8D_BOGGY_OHWW,
     // tooie mingy sounds super similar
-    SFX_GRUNTLING_DAMAGE,
+    SFX_8E_GRUNTLING_DAMAGE,
     SFX_8F_SNOWBALL_FLYING,
-    SFX_90_SWITCH_PRESS = 0x0090,
+    SFX_90_SWITCH_PRESS,
     // might be clankers bolt landing
     SFX_91_METALLIC_SOUND,
     SFX_TOILET_FLUSH,
@@ -865,11 +866,11 @@ enum SFX_E
     SFX_BOULDER_BREAKING_4,
     SFXR_GENERATOR_RUNNING,
     // Tanktup maybe
-    SFX_COUGHING = 0x00A0,
-    SFX_BANJO_COUGHING,
-    SFX_BANJO_AHOOA,
+    SFX_A0_COUGHING = 0x00A0,
+    SFX_A1_BANJO_COUGHING,
+    SFX_A2_BANJO_AHOOA,
     // from the idle anim
-    SFX_BANJO_DOUBLE_COUGH,
+    SFX_A3_BANJO_DOUBLE_COUGH,
     // from the idle anim, but only once
     SFX_BANJO_SINGLE_COUGH,
     SFX_EYRIE_CRY,
@@ -922,7 +923,7 @@ enum SFX_E
     SFX_SHWOOP,
     // eating twinklies
     SFX_C8_CRUNCH,
-    SFX_PAUSEMENU_ENTER,
+    SFX_C9_PAUSEMENU_ENTER,
     SFX_BANJO_DROWNING_1,
     SFX_BANJO_DROWNING_2,
     // also the scrolling sound
@@ -953,6 +954,7 @@ enum SFX_E
     SFX_KAZOOIE_TALKING_4,
     SFX_KONGA_TALKING_1,
     SFX_KONGA_TALKING_2,
+    SFX_KONGA_TALKING_3,
     // extra life talking ?
     SFX_MEEP_1,
     // extra life talking ?
@@ -960,7 +962,7 @@ enum SFX_E
     SFX_TOOTY_TALKING_1,
     SFX_TOOTY_TALKING_2,
     // from enter_Lair CS
-    SFX_GRUNTY_LAUGH_1,
+    SFX_EA_GRUNTY_LAUGH_1,
     // from Gameover CS
     SFX_GRUNTY_LAUGH_2,
     SFX_GRUNTY_TALKING_1,
@@ -1005,29 +1007,29 @@ enum SFX_E
     SFX_ANCIENT_ONE_TALKING,
     SFX_TWINKLY_TALKING,
     SFX_BOGGY_TALKING,
-    SFX_TWINKLY_DEATH = 0x0110,
+    SFX_110_TWINKLY_DEATH = 0x0110,
     SFX_111_WHIPCRACK_DEATH,
     SFX_112_TINKER_ATTENTION,
     SFX_113_PAD_APPEARS,
-    SFX_BRICKWALL_BREAKING,
-    SFX_BUZZBOMB_DEATH,
-    SFX_DEAF_RUSTLING,
-    SFX_LIMBO_COLLAPSING,
-    SFX_LIMBO_REASSEMBLING,
-    SFX_FISH_DEATH,
-    SFX_MATROSE_GRUBLIN_AYE,
+    SFX_114_BRICKWALL_BREAKING,
+    SFX_115_BUZZBOMB_DEATH,
+    SFX_116_DEAF_RUSTLING,
+    SFX_117_LIMBO_COLLAPSING,
+    SFX_118_LIMBO_REASSEMBLING,
+    SFX_119_FISH_DEATH,
+    SFX_11A_MATROSE_GRUBLIN_AYE,
     // 1-6 are getting increasingly shorter
-    SFX_TUMBLAR_DISAPPEARING_1,
+    SFX_11B_TUMBLAR_DISAPPEARING_1,
     // 1-6 are getting increasingly shorter
-    SFX_TUMBLAR_DISAPPEARING_2,
+    SFX_11C_TUMBLAR_DISAPPEARING_2,
     // 1-6 are getting increasingly shorter
-    SFX_TUMBLAR_DISAPPEARING_3,
+    SFX_11D_TUMBLAR_DISAPPEARING_3,
     // 1-6 are getting increasingly shorter
-    SFX_TUMBLAR_DISAPPEARING_4,
+    SFX_11E_TUMBLAR_DISAPPEARING_4,
     // 1-6 are getting increasingly shorter
-    SFX_TUMBLAR_DISAPPEARING_5,
+    SFX_11F_TUMBLAR_DISAPPEARING_5,
     // 1-6 are getting increasingly shorter
-    SFX_TUMBLAR_DISAPPEARING_6 = 0x0120,
+    SFX_120_TUMBLAR_DISAPPEARING_6,
     // sounds like an OOT sound
     SFX_AWAWAU,
     SFX_TOOTY_TALKING_3,
@@ -1151,34 +1153,34 @@ enum SFX_E
     // 00-15 getting increasingly delayed and shorter
     SFX_HEAVY_THUNDERSTORM_09,
     // 00-15 getting increasingly delayed and shorter
-    SFX_HEAVY_THUNDERSTORM_10 = 0x0170,
+    SFX_170_HEAVY_THUNDERSTORM_10 = 0x170,
     // 00-15 getting increasingly delayed and shorter
-    SFX_HEAVY_THUNDERSTORM_11,
+    SFX_171_HEAVY_THUNDERSTORM_11,
     // 00-15 getting increasingly delayed and shorter
-    SFX_HEAVY_THUNDERSTORM_12,
+    SFX_172_HEAVY_THUNDERSTORM_12,
     // 00-15 getting increasingly delayed and shorter
-    SFX_HEAVY_THUNDERSTORM_13,
+    SFX_173_HEAVY_THUNDERSTORM_13,
     // 00-15 getting increasingly delayed and shorter
-    SFX_HEAVY_THUNDERSTORM_14,
+    SFX_174_HEAVY_THUNDERSTORM_14,
     // 00-15 getting increasingly delayed and shorter
-    SFX_HEAVY_THUNDERSTORM_15,
+    SFX_175_HEAVY_THUNDERSTORM_15,
     // 1-3 are having less and less echo
-    SFX_JINJONATOR_JINJOOO_1,
+    SFX_176_JINJONATOR_JINJOOO_1,
     // 1-3 are having less and less echo
-    SFX_JINJONATOR_JINJOOO_2,
+    SFX_177_JINJONATOR_JINJOOO_2,
     // 1-3 are having less and less echo
-    SFX_JINJONATOR_JINJOOO_3,
-    SFX_GRUNTY_DAMAGE,
-    SFX_SHIPHORN,
-    SFX_AIRPLANE_FALLING,
-    SFX_GRUNTY_FALLING_OFF_1,
-    SFX_GRUNTY_FALLING_OFF_2,
+    SFX_178_JINJONATOR_JINJOOO_3,
+    SFX_179_GRUNTY_DAMAGE,
+    SFX_17A_SHIPHORN,
+    SFX_17B_AIRPLANE_FALLING,
+    SFX_17C_GRUNTY_FALLING_OFF_1,
+    SFX_17D_GRUNTY_FALLING_OFF_2,
     // 01-14 are getting slower and lower pitch
-    SFX_MUMBO_TRANSFORMATION_01,
+    SFX_17E_MUMBO_TRANSFORMATION_01,
     // 01-14 are getting slower and lower pitch
-    SFX_MUMBO_TRANSFORMATION_02,
+    SFX_17F_MUMBO_TRANSFORMATION_02,
     // 01-14 are getting slower and lower pitch
-    SFX_MUMBO_TRANSFORMATION_03 = 0x0180,
+    SFX_180_MUMBO_TRANSFORMATION_03,
     // 01-14 are getting slower and lower pitch
     SFX_MUMBO_TRANSFORMATION_04,
     // 01-14 are getting slower and lower pitch
@@ -1208,7 +1210,15 @@ enum SFX_E
     SFX_GULP = 0x0190,
     SFX_STATIC,
 
-    SFX_3F9_UNKNOWN = 0x3f9
+    SFX_3E9_UNKNOWN = 0x3e9, //bsbwhirl
+    SFX_3EA_UNKNOWN,         //chjig
+    SFX_3EB_UNKNOWN,         //bstimeout
+
+    SFX_3F1_UNKNOWN = 0x3f1, //bsstand
+
+    SFX_3F6_UNKNOWN = 0x3f6, //lair/code_0 func_803880BC
+
+    SFX_3F9_UNKNOWN = 0x3f9  //chmole
 };
 
 
@@ -1221,12 +1231,12 @@ enum level_e
     LEVEL_5_FREEZEEZY_PEAK,
     LEVEL_6_LAIR,
     LEVEL_7_GOBIS_VALLEY,
-
-    LEVEL_9_RUSTY_BUCKET_BAY = 0x9,
-
-    LEVEL_B_SPIRAL_MOUNTAIN = 0xB,
-    LEVEL_C_BOSS = 0xC,
-    LEVEL_D_CUTSCENE = 0xD
+    LEVEL_8_CLICK_CLOCK_WOOD,
+    LEVEL_9_RUSTY_BUCKET_BAY,
+    LEVEL_A_MAD_MONSTER_MANSION,
+    LEVEL_B_SPIRAL_MOUNTAIN,
+    LEVEL_C_BOSS,
+    LEVEL_D_CUTSCENE
 };
 
 enum jiggy_e
@@ -1632,6 +1642,8 @@ enum asset_e
     ASSET_65_ANIM_BEEHIVE_DIE = 0x65,
 
     ANIM_GRUBLIN_DIE = 0x94,
+
+    ASSET_D2_ANIM_BANJO_GETTING_UP = 0xD2,
 
     ASSET_108_ANIM_SIR_SLUSH_IDLE = 0x108,
     ASSET_109_ANIM_SIR_SLUSH_ATTACK,

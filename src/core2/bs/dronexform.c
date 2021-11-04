@@ -6,7 +6,6 @@ void player_setYPosition(f32);
 void func_8024E3A8(f32 (*)[3], f32);
 void func_802991FC(void);
 void func_802978DC(int);
-void func_8030E624(u32);
 f32 func_80257A44(f32, f32);
 f32 cosf(f32);
 f32 func_802588B0(f32, f32);
@@ -228,7 +227,7 @@ static void __bsdronexform_setState(int arg0){
             func_802B01B0(0.05f);
             func_802978DC(7);
             func_8029E3C0(0, 2.8f);
-            func_8030E624(0x7feea17e);
+            FUNC_8030E624(SFX_17E_MUMBO_TRANSFORMATION_01, 0x1D4, 0x3FF);
             break; 
         
         case 2:// 802B02A8
@@ -272,7 +271,7 @@ static void __bsdronexform_setState(int arg0){
 
         case 8: // 802B03FC
             if(D_8037D470.unk30 == 1 && D_8037D470.unk31 == 1){
-                func_8025A6EC(JINGLE_MINIGAME_LOSS, 28000);
+                func_8025A6EC(COMUSIC_3C_MINIGAME_LOSS, 28000);
             }
             func_8029E3C0(0, 1.0f);
             break;

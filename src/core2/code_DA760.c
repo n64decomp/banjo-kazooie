@@ -16,17 +16,17 @@ ActorInfo D_803731B0= {
 int func_803616F0(Actor *this){
     switch(this->unkF4_8){
         case 1:// L80361728
-            return func_8031FF1C(0x31) && !func_802D9220(LEVEL_1_MUMBOS_MOUNTAIN);
+            return func_8031FF1C(BKPROG_31_MM_OPEN) && !func_802D9220(LEVEL_1_MUMBOS_MOUNTAIN);
         case 2:// L80361750
-            return func_8031FF1C(0x32) && !func_802D9220(LEVEL_2_TREASURE_TROVE_COVE);
+            return func_8031FF1C(BKPROG_32_TTC_OPEN) && !func_802D9220(LEVEL_2_TREASURE_TROVE_COVE);
         case 3:// L80361778
-            return func_8031FF1C(0x33) && !func_802D9220(LEVEL_3_CLANKERS_CAVERN);
+            return func_8031FF1C(BKPROG_33_CC_OPEN) && !func_802D9220(LEVEL_3_CLANKERS_CAVERN);
         case 4:// L803617A0
-            return func_8031FF1C(0x34) && !func_802D9220(LEVEL_4_BUBBLEGLOOP_SWAMP);
+            return func_8031FF1C(BKPROG_34_BGS_OPEN) && !func_802D9220(LEVEL_4_BUBBLEGLOOP_SWAMP);
         case 5:// L803617C8
-            return func_8031FF1C(0x35) && !func_802D9220(LEVEL_5_FREEZEEZY_PEAK);
+            return func_8031FF1C(BKPROG_35_FP_OPEN) && !func_802D9220(LEVEL_5_FREEZEEZY_PEAK);
         case 6:// L803617F0
-            return func_8031FF1C(0x36) && !func_802D9220(LEVEL_7_GOBIS_VALLEY);
+            return func_8031FF1C(BKPROG_36_GV_OPEN) && !func_802D9220(LEVEL_7_GOBIS_VALLEY);
         default:
             return FALSE;
     }

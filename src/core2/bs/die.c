@@ -70,7 +70,7 @@ void bsdie_update(void){
                 animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
                 player_setYVelocity(400.0f);
                 func_80299DB8();
-                func_8030E624(0x7ff19039);
+                FUNC_8030E624(SFX_39_BANJO_AYE_2, 0x232, 0x3FF);
                 func_80250D94(1.0f, 1.0f, 0.4f);
                 _bsdie_802ADE20();
                 D_8037D414 = 1;
@@ -79,7 +79,7 @@ void bsdie_update(void){
         case 1://L802AE134
             if(_bsdie_802ADE00()){
                 func_80299E00();
-                func_8030E624(0x7ff19038);
+                FUNC_8030E624(SFX_38_BANJO_AYE_1, 0x232, 0x3FF);
                 func_80250D94(1.0f, 0.5f, 0.4f);
                 D_8037D414 = 2;
             }

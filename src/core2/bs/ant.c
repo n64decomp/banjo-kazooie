@@ -406,8 +406,8 @@ void bsant_die_update(void){
         case 0://L8029F270
             if(func_8028B2E8()){
                 func_8028A37C(1.0f);
-                func_8030E624(_SHIFTL(0x332, 21, 11) | _SHIFTL(0x4640 >> 5, 11, 10) | _SHIFTL(0x1F, 0, 11));
-                func_8030E624(_SHIFTL(0x731, 21, 11) | _SHIFTL(0x4640 >> 5, 11, 10) | _SHIFTL(0x39, 0, 11));
+                FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 0x232, 0x332);
+                FUNC_8030E624(SFX_39_BANJO_AYE_2, 0x232, 0x731);
                 D_8037D290 = 0.0f;
                 D_8037D294 = 1;
             }
@@ -420,8 +420,8 @@ void bsant_die_update(void){
             break;
         case 2://L8029F2F0
             if(animctrl_isAt(aCtrl, 0.77f)){
-                func_8030E624(_SHIFTL(0x332, 21, 11) | _SHIFTL(0x4640 >> 5, 11, 10) | _SHIFTL(0x1F, 0, 11));
-                func_8030E624(_SHIFTL(0x731, 21, 11) | _SHIFTL(0x4640 >> 5, 11, 10) | _SHIFTL(0x38, 0, 11));
+                FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 0x232, 0x332);
+                FUNC_8030E624(SFX_38_BANJO_AYE_1, 0x232, 0x731);
             }
             break;
     }

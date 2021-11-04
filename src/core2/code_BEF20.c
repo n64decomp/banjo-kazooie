@@ -139,7 +139,7 @@ s32 func_80345FB4(s32 item, s32 diff, s32 arg2){
             sp28 = func_80346F34(level_get());
             func_80346DB4(D_80385F30[item]);
             if(D_80385F30[item] == 100 && sp28 != 100){
-                func_8025A6EC(JINGLE_100TH_NOTE_COLLECTED, 20000);
+                func_8025A6EC(COMUSIC_36_100TH_NOTE_COLLECTED, 20000);
                 func_80345F24(ITEM_16_LIFE);
             }
             break;

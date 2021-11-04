@@ -25,9 +25,9 @@ void func_8038C000(void){
 }
 
 void func_8038C058(void){
-    func_8030E760(SFX_HEAVYDOOR_SLAM, 0.8f, 0x55f0);
-    func_8030E760(SFX_HEAVYDOOR_SLAM, 0.9f, 0x55f0);
-    func_8030E760(SFX_HEAVYDOOR_SLAM, 1.0f, 0x55f0);
+    func_8030E760(SFX_7F_HEAVYDOOR_SLAM, 0.8f, 0x55f0);
+    func_8030E760(SFX_7F_HEAVYDOOR_SLAM, 0.9f, 0x55f0);
+    func_8030E760(SFX_7F_HEAVYDOOR_SLAM, 1.0f, 0x55f0);
 }
 
 void func_8038C0A8(ActorMarker *marker, s32 arg1, s32 arg2){

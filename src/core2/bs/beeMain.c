@@ -32,7 +32,8 @@ extern f32 D_8037D2D0;
 extern u8 D_8037D2D4;
 
 void func_802A0F90(void){
-    func_8030E624(0xb307d02f);
+    FUNC_8030E624(SFX_2F_ORANGE_SPLAT, 0xFA, 0x598);
+
 }
 
 void func_802A0FB4(void){
@@ -437,8 +438,8 @@ void func_802A1DD8(void){
             if(!func_8028B2E8())
                 break;
             func_8028A37C(0.7453f);
-            func_8030E624(0x6651901F);
-            func_8030E624(0xe6319039);
+            FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 0x232, 0x332);
+            FUNC_8030E624(SFX_39_BANJO_AYE_2, 0x232, 0x731);
             player_setYVelocity(400.0f);
             D_8037D2D4 = 1;
             break;
@@ -446,8 +447,8 @@ void func_802A1DD8(void){
             if(!func_8028B2E8())
                 break;
             func_8028A37C(1.0f);
-            func_8030E624(0x6651901f);
-            func_8030E624(0xe6319039);
+            FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 0x232, 0x332);
+            FUNC_8030E624(SFX_39_BANJO_AYE_2, 0x232, 0x731);
             D_8037D2D4 = 2;
             break;
         case 2:
@@ -519,7 +520,7 @@ void func_802A2098(void){
     func_80297970(0.0f);
     func_8024BD08(0);
     func_8025A2FC(0, 0xFA0);
-    func_8025A6EC(JINGLE_NOTEDOOR_OPENING_FANFARE, -1);
+    func_8025A6EC(COMUSIC_42_NOTEDOOR_OPENING_FANFARE, -1);
     func_8029151C(0xC);
     func_8028D5DC();
     func_8029E3C0(0, 3.0f);

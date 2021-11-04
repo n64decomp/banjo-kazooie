@@ -279,7 +279,7 @@ void func_803875F0(Actor * this)
         if (this->position_y > this->unk1C_y + 380.0f)
         {
             func_802D48B8(this);
-            func_8030E624(0x7FF0987F);
+            FUNC_8030E624(SFX_7F_HEAVYDOOR_SLAM, 0x213, 0x3FF);
             marker_despawn(this->marker);
         }
     }
@@ -398,7 +398,7 @@ void func_803880BC(Actor *this)
         func_802C3C88(func_80387E94, this->marker);
 
         if (func_803203FC(0xBC) && !func_8031FF1C(0x9A))
-            func_8030E624(0x5FFD4BF6);
+            FUNC_8030E624(SFX_3F6_UNKNOWN, 0x3A9, 0x2FF);
     }
 
     if (func_8031FF1C(0x9B))
@@ -482,7 +482,7 @@ void func_803882B0(Actor *this)
     if (this->unk60 == 0 && this->pitch > 42.f)
     {
         this->unk60 = 1.f;
-        func_8025A6EC(SFX_JIGGY_SPAWN, 0x7FFF);
+        func_8025A6EC(COMUSIC_3D_JIGGY_SPAWN, 0x7FFF);
     }
 
     if (this->pitch > 90.f)
@@ -493,7 +493,7 @@ void func_803882B0(Actor *this)
     }
 }
 
-void func_80388404(s32 flag, enum SFX_E sfx, f32 a2, s32 a3)
+void func_80388404(enum BKPROG_E flag, enum SFX_E sfx, f32 a2, s32 a3)
 {
     if (func_8031FF1C(flag) == FALSE)
         func_8030E6A4(sfx, a2, a3);
@@ -551,7 +551,7 @@ void func_80388FC8(Actor *this)
 
     if (!this->unk16C_4)
     {
-        if (func_8031FF1C(this->modelCacheIndex == 0x215 ? 0x1F : 0x20))
+        if (func_8031FF1C(this->modelCacheIndex == 0x215 ? BKPROG_1F_CC_LOBBY_PIPE_1_RAISED : BKPROG_20_CC_LOBBY_PIPE_2_RAISED))
         {
             this->position_y = this->unk1C[1];
             return;
@@ -565,7 +565,7 @@ void func_80388FC8(Actor *this)
                 if (1);  // oof
             }
 
-            func_80320004(this->modelCacheIndex == 0x215 ? 0x1F : 0x20, TRUE);
+            func_80320004(this->modelCacheIndex == 0x215 ? BKPROG_1F_CC_LOBBY_PIPE_1_RAISED : BKPROG_20_CC_LOBBY_PIPE_2_RAISED, TRUE);
 
             this->unk16C_4 = 1;
             this->unk38_31 = 12;
@@ -582,7 +582,7 @@ void func_80388FC8(Actor *this)
 
             if (this->modelCacheIndex == 0x215)
             {
-                func_8030E624(0x4CBB5825);
+                FUNC_8030E624(SFX_25_METAL_SLIDING_OVER_SMTH, 875, 0x265);
                 func_802D4830(this, 0x3EC, 0.1f);
             }
         }
@@ -596,7 +596,7 @@ void func_80388FC8(Actor *this)
             if (this->modelCacheIndex == 0x215)
             {
                 func_802D48B8(this);
-                func_8030E540(0x7F);
+                func_8030E540(SFX_7F_HEAVYDOOR_SLAM);
             }
 
             this->unk60 = 1.f;
@@ -628,7 +628,7 @@ void func_80389204(Actor *this)
 
     if (!this->unk16C_4)
     {
-        if (func_8031FF1C(0x21))
+        if (func_8031FF1C(BKPROG_21_CC_LOBBY_PIPE_3_RAISED))
         {
             this->position_y = this->unk1C[1];
             return;
@@ -637,7 +637,7 @@ void func_80389204(Actor *this)
         if (mapSpecificFlags_get(2))
         {
             func_802BAFE4(0x2C);
-            func_80320004(0x21, TRUE);
+            func_80320004(BKPROG_21_CC_LOBBY_PIPE_3_RAISED, TRUE);
 
             this->unk16C_4 = 1;
             this->unk38_31 = 12;
@@ -651,8 +651,7 @@ void func_80389204(Actor *this)
 
             if (this->unk38_31)
                 return;
-
-            func_8030E624(0x599B5825);
+            FUNC_8030E624(SFX_25_METAL_SLIDING_OVER_SMTH, 875, 0x2CC);
             func_802D4830(this, 0x3EC, 0.2f);
         }
 
@@ -663,7 +662,7 @@ void func_80389204(Actor *this)
             this->position_y = this->unk1C[1];
 
             func_802D48B8(this);
-            func_8030E540(0x7F);
+            func_8030E540(SFX_7F_HEAVYDOOR_SLAM);
 
             this->unk60 = 1.f;
         }
@@ -699,7 +698,7 @@ void func_803893B8(Actor *this)
         if (this->position_y > this->unk1C[1] + 200.f)
         {
             func_802D48B8(this);
-            func_8030E624(0x7FFC507F);
+            FUNC_8030E624(SFX_7F_HEAVYDOOR_SLAM, 0x38A, 0x3FF);
             marker_despawn(this->marker);
         }
     }
@@ -720,7 +719,7 @@ void func_803894B0(Actor *this)
         this->unk16C_4 = TRUE;
         this->unk1C[0] = 0;
 
-        if (func_8031FF1C(0xA1))
+        if (func_8031FF1C(BKPROG_A1_STATUE_HAT_OPEN))
         {
             marker_despawn(this->marker);
             return;
@@ -735,8 +734,8 @@ void func_803894B0(Actor *this)
     if (--this->unk1C[0] == 0)
     {
         func_80320004(0xA1, TRUE);
-        func_80324C88(0.5f, 0x3F9, 1.f, 0x7D00);
-        func_8030E624(0x665F4114);
+        func_80324C88(0.5f, 0x3F9, 1.f, 32000);
+        FUNC_8030E624(SFX_114_BRICKWALL_BREAKING, 1000, 0x332);
         func_802EE2E8(this, 0xB, 0x19, 0x000, D_80394FC0, D_80394FC4, 3.f);
         func_802EE2E8(this, 0xB, 0x17, 0x0B4, 0.5f,       D_80394FC8, 3.f);
         func_802EE2E8(this, 0xB, 0x15, 0x168, D_80394FCC, D_80394FD0, 3.f);
@@ -793,7 +792,7 @@ void func_8038982C(Actor *this)
 
         this->initialized = TRUE;
 
-        if (!func_8031FF1C(0x9E))
+        if (!func_8031FF1C(BKPROG_9E_CRYPT_COFFIN_LID_OPEN))
             func_802C3C88(func_803897D4, this->marker);
     }
 }
@@ -810,7 +809,7 @@ void func_80389898(Actor *this)
             {
                 func_80328AC8(this, 0x13);
                 func_803298AC(this);
-                func_80320004(0x9E, TRUE);
+                func_80320004(BKPROG_9E_CRYPT_COFFIN_LID_OPEN, TRUE);
             }
 
             break;
@@ -836,7 +835,7 @@ void func_80389934(Actor *this)
 
         this->unk16C_4 = TRUE;
 
-        if (func_8031FF1C(0xA2))
+        if (func_8031FF1C(BKPROG_A2_GV_LOBBY_COFFIN_OPEN))
             func_80328B8C(this, 0x18, 0.999f, 1);
     }
 
@@ -849,7 +848,7 @@ void func_80389934(Actor *this)
                 this->unk1C[0] = 25;
 
                 func_80328AC8(this, 0x16);
-                func_80320004(0xA2, TRUE);
+                func_80320004(BKPROG_A2_GV_LOBBY_COFFIN_OPEN, TRUE);
             }
 
             break;
@@ -860,8 +859,8 @@ void func_80389934(Actor *this)
             {
                 func_80328AC8(this, 0x17);
                 func_803298AC(this);
-                func_8030E624(0x4CBF43F6);
-                func_8025A6EC(0x3D, 0x7FFF);
+                FUNC_8030E624(SFX_3F6_UNKNOWN, 1000, 0x265);
+                func_8025A6EC(COMUSIC_3D_JIGGY_SPAWN, 0x7FFF);
             }
 
             break;
@@ -871,7 +870,7 @@ void func_80389934(Actor *this)
             if (func_8032886C(this, 0.95f))
             {
                 func_80328B8C(this, 0x18, 0.999f, 1);
-                func_8030E624(0x7FF9607F);
+                FUNC_8030E624(SFX_7F_HEAVYDOOR_SLAM, 0x32C, 0x3FF);
             }
 
             break;
@@ -935,7 +934,7 @@ void func_80389D08(Actor *this)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/lair/code_0/func_80389E10.s")
 
-void func_80389FA8(Actor *this, s32 flag)
+void func_80389FA8(Actor *this, enum BKPROG_E flag)
 {
     if (!this->initialized)
     {
@@ -948,34 +947,34 @@ void func_80389FA8(Actor *this, s32 flag)
 
 void func_80389FF4(Actor *this)
 {
-    func_80389FA8(this, 0xC2);
+    func_80389FA8(this, BKPROG_C2_GRATE_TO_RBB_PUZZLE_OPEN);
 }
 
 void func_8038A014(Actor *this)
 {
-    func_80389FA8(this, 0xC3);
+    func_80389FA8(this, BKPROG_C3_ICE_BALL_TO_CHEATO_BROKEN);
 }
 
 void func_8038A034(Actor *this)
 {
     this->unk124_9 = 2;
 
-    func_80389FA8(this, 0xC4);
+    func_80389FA8(this, BKPROG_C4_STATUE_EYE_BROKEN);
 }
 
 void func_8038A064(Actor *this)
 {
-    func_80389FA8(this, 0xC5);
+    func_80389FA8(this, BKPROG_C5_RAREWARE_BOX_BROKEN);
 }
 
 void func_8038A084(Actor *this)
 {
-    func_80389FA8(this, 0xCD);
+    func_80389FA8(this, BKPROG_CD_GRATE_TO_WATER_SWITCH_3_OPEN);
 }
 
 void func_8038A0A4(Actor *this)
 {
-    func_80389FA8(this, 0xCE);
+    func_80389FA8(this, BKPROG_CE_GRATE_TO_MMM_PUZZLE_OPEN);
 }
 
 void func_8038A0C4(void)
