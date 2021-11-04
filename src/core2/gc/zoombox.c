@@ -823,7 +823,7 @@ gczoombox_t *gczoombox_new(s32 arg0, s32 portrait_id, s32 arg2, s32 arg3, void (
      func_80317C90(this, portrait_id);
      this->unkF4 = animctrl_new(0);
      animctrl_reset(this->unkF4);
-     animctrl_setIndex(this->unkF4, ANIM_ZOOMBOX);
+     animctrl_setIndex(this->unkF4, ASSET_138_ANIM_ZOOMBOX);
      func_802875AC(this->unkF4, "gczoombox.c", 0x6fd);
 
      func_803184C8(this, 15.0f, 5, 2, 0.4f, 0, 0); //func_803184C8(this, 15.0f, 5, 2, D_80378940, 0, 0);

@@ -190,8 +190,8 @@ segments:
   - [0x517A0, c, code_517A0]
   - [0x51950, c, code_51950]
   - [0x51C90, c, code_51C90]
-  - [0x52290, c, ch/mole]
-  - [0x535D0, c, code_535D0]
+  - [0x52290, c, ch/mole]     #DONE
+  - [0x535D0, c, ch/molehill] #DONE
   - [0x53A10, c, code_53A10]
   - [0x53C10, c, code_53C10]
   - [0x55180, c, code_55180]
@@ -397,7 +397,8 @@ segments:
   - [0xE03B0, .data, ch/soundsource]
   - [0xE0430, bin, data_E0430]
   - [0xE0DE0, .data, ch/mole]
-  - [0xE0E70, bin, data_E0E70]
+  - [0xE0E70, .data, ch/molehill]
+  - [0xE0EE0, bin, data_E0EE0]
   - [0xE2350, .data, code_73640]
   - [0xE2790, .data, code_74090]
   - [0xE2840, .data, code_74290]

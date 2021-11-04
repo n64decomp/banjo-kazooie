@@ -16,11 +16,11 @@ typedef struct{
 /* .data */
 ActorAnimationInfo D_80367D70[]= {
     {0, 0.0f},
-    {0x13A, 2000000000.0f},  
-    {0x13A, 4.5f},
-    {0x13B, 7.0f},  
-    {0x139, 1.7f},
-    {0x13A, 2000000000.0f},
+    {ASSET_13A_ANIM_BOTTLES_ENTER,  2000000000.0f},  
+    {ASSET_13A_ANIM_BOTTLES_ENTER,  4.5f},
+    {ASSET_13B_ANIM_BOTTLES_IDLE,   7.0f},  
+    {ASSET_139_ANIM_BOTTLES_EXIT,   1.7f},
+    {ASSET_13A_ANIM_BOTTLES_ENTER,  2000000000.0f},
 };
 
 ActorInfo D_80367DA0= {
@@ -261,7 +261,7 @@ void func_802D9C1C(Actor *this){
 
 void func_802D9C54(ActorMarker *marker){
     Actor *actor = marker_getActor(marker);
-    Actor *other = spawn_child_actor(0x12C, &actor);
+    Actor *other = spawn_child_actor(ACTOR_12C_MOLEHILL, &actor);
     f32 pad[1];
 
     actor->unk100 = other->marker;
