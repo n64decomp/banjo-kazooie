@@ -2,8 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-
-s32  func_80311480(s32, s32, f32 *, ActorMarker* , void(*)(void), s32);
 void func_80324DBC(f32, s32, s32, f32 *, ActorMarker *, void(*)(void), s32);
 void func_80324E88(f32);
 void func_80335924(void *, s32, f32, f32);

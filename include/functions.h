@@ -415,7 +415,7 @@ AnimCtrl *player_getAnimCtrlPtr(void);
 void _get_velocity(f32 (*dst)[3]);
 void player_setYPosition(f32);
 
-Actor *func_80304C38(s32 arg0, Actor *arg1);
+void *func_80304C38(s32 arg0, Actor *arg1);
 Actor *func_80326D68(f32 (*)[3], s32, s32, f32 *);
 Actor *func_80329980(Actor *);
  
@@ -478,4 +478,12 @@ void glcrc_calc_checksum(void *start, void *end, u32 *checksum);
 f32 climbGetBottomY(void);
 f32 climbGetTopY(void);
 void func_802596AC(f32 a0[3], f32 a1[3], f32 a2[3], f32 a3[3]);
+
+void func_8024E55C(s32, void *);
+void func_802C3C88(void (*)(ActorMarker *), ActorMarker *);
+void func_802FAD64(enum item_e);
+void func_80304D68(s16 *, f32[3]);
+int func_80311480(s32 text_id, s32 arg1, f32 *pos, ActorMarker *marker, void(*callback)(ActorMarker *, enum asset_e, s32), void(*arg5)(ActorMarker *, enum asset_e, s32));
+void func_80347A14(s32);
+void ability_unlock(enum ABILITY_E);
 #endif

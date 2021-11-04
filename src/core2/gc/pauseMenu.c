@@ -191,9 +191,9 @@ void func_80311A84(void){
 
     if(func_802FC3C4()){
         D_80383010.unk70_31 = 1;
-        func_802FAD64(ITEM_JINJOS);
+        func_802FAD64(ITEM_12_JINJOS);
     }else{
-        func_802FACA4(ITEM_JINJOS);
+        func_802FACA4(ITEM_12_JINJOS);
     }
 
     if(func_802FD2D4()){
@@ -211,7 +211,7 @@ void func_80311B44(void){
     for(i = 0; i<7; i++){
         func_802FAD64(D_8036C604[i]);
     }
-    func_802FAD64(ITEM_JINJOS);
+    func_802FAD64(ITEM_12_JINJOS);
     func_802FAD64(ITEM_16_LIFE);
 }
 
@@ -660,7 +660,7 @@ s32 func_80313380(void){
             break;
         case 2: //open
             if(D_80383010.unk70_31 && !func_802FC3C4()){
-                func_802FACA4(ITEM_JINJOS);
+                func_802FACA4(ITEM_12_JINJOS);
                 D_80383010.unk70_31 = 0;
             }//L8031350C
             if(D_80383010.unk70_30 && !func_802FD2D4()){

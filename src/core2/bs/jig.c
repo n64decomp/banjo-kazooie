@@ -31,7 +31,7 @@ void bsjig_jiggy_init(void){
     func_80297970(0.0f);
     func_8024BD08(0);
     func_8025A2FC(0,0xfa0);
-    tmp = (item_getCount(ITEM_JIGGY) == 9); 
+    tmp = (item_getCount(ITEM_E_JIGGY) == 9); 
     if(tmp == 0) //weird if...
         tmp = 0;
     D_8037D4B1 =  tmp;

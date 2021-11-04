@@ -14,4 +14,5 @@ ccw_func_8038DB6C = 0x8038DB6C;
 lair_func_8038A0C4 = 0x8038A0C4;
 fight_func_803863F0 = 0x803863F0;
 cutscene_func_8038C4E0 = 0x8038C4E0;
+func_802DA498 = 0x802DA498;
 

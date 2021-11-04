@@ -48,7 +48,7 @@ void func_802CDBA8(ActorMarker *this, s32 arg1){
             func_80320004(BKPROG_E_JINJO_TEXT, 1);
         }
         func_80328B8C(actorPtr, 6, 0.0f , -1);
-        if(func_803463D4(ITEM_JINJOS, 1 << (this->unk14_20 + 6) ) == 0x1f)
+        if(func_803463D4(ITEM_12_JINJOS, 1 << (this->unk14_20 + 6) ) == 0x1f)
             localPtr->unk4 = 1;
         actor_loopAnimation(actorPtr);
         this->collidable = 0;

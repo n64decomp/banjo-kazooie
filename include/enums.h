@@ -257,7 +257,7 @@ enum transformation_e
 enum ABILITY_E
 {
     ABILITY_0_BARGE = 0x0,
-    ABILITY_3_BEAK_BOMB = 0x1,
+    ABILITY_1_BEAK_BOMB = 0x1,
     ABILITY_2_BEAK_BUSTER = 0x2,
     ABILITY_3_CAMERA_CONTROL = 0x3,
     ABILITY_4_BEAR_PUNCH = 0x4,
@@ -274,7 +274,7 @@ enum ABILITY_E
     ABILITY_F_DIVE = 0xF,
     ABILITY_10_TALON_TROT = 0x10,
     ABILITY_11_TURBO_TALON = 0x11,
-    ABILTIY_12_WONDERWING = 0x12,
+    ABILITY_12_WONDERWING = 0x12,
     ABILITY_13_1ST_NOTEDOOR = 0x13
 };
 
@@ -298,18 +298,18 @@ enum button_e{
 enum MAP_E
 {
     MAP_1_SM_SPIRAL_MOUNTAIN = 0x01,
-    MAP_2_MM_MUMBOS_MOUNTAIN = 0x02,
+    MAP_2_MM_MUMBOS_MOUNTAIN,
     // Unused
     // Unused
     MAP_TTC_BLUBBERS_SHIP  = 0x05,
     MAP_TTC_NIPPERS_SHELL = 0x06,
-    MAP_7_TTC_TREASURE_TROVE_COVE = 0x07,
+    MAP_7_TTC_TREASURE_TROVE_COVE,
     // Unused
     // Unused
     MAP_TTC_SANDCASTLE = 0x0A,
-    MAP_B_CC_CLANKERS_CAVERN = 0x0B,
+    MAP_B_CC_CLANKERS_CAVERN,
     MAP_MM_TICKERS_TOWER = 0x0C,
-    MAP_D_BGS_BUBBLEGLOOP_SWAMP = 0x0D,
+    MAP_D_BGS_BUBBLEGLOOP_SWAMP,
     MAP_MM_MUMBOS_SKULL = 0x0E,
     // Unused
     MAP_BGS_MR_VILE = 0x10,
@@ -648,7 +648,7 @@ enum SFX_E
     SFX_SQUEAKY_TOY,
     SFX_A_BANJO_LANDING_05,
     SFX_BANJO_LANDING_06,
-    SFX_TAKING_FLIGHT_LIFTOFF,
+    SFX_C_TAKING_FLIGHT_LIFTOFF,
     SFX_D_EGGSHELL_BREAKING,
     SFX_SHOCKSPRING_BOING,
     SFX_SMALL_WATER_SPLASH,
@@ -693,7 +693,7 @@ enum SFX_E
     // passive version
     SFX_2B_BULL_MOO_1,
     // when Trunker or the CCW plant grow eg.
-    SFX_PULLING_NOISE, 
+    SFX_2C_PULLING_NOISE, 
     // incomplete cauldron spitout AND Banjo pulling on Kazooies Throat in Idle Anim
     SFX_KABOING, 
     SFX_2E_BIGBUTT_RUNNING,
@@ -801,7 +801,7 @@ enum SFX_E
     SFX_6D_CROC_BITE,
     SFX_VILE_EGH,
     // bottles uses this too I think
-    SFX_BANJO_HEADSCRATCH,
+    SFX_6F_BANJO_HEADSCRATCH,
     SFX_WALKING_NOISE_1 = 0x0070,
     SFX_WALKING_NOISE_2,
     SFX_WALKING_NOISE_3,
@@ -917,8 +917,7 @@ enum SFX_E
     SFX_HEGH,
     SFX_TWINKLY_MUNCHER_GRR,
     SFX_C5_TWINKLY_POP,
-    // when eating the wrong yumblie
-    SFX_SHAKING_MOUTH,
+    SFX_C6_SHAKING_MOUTH, //bottles leaving/entering molehill
     // from the jinjo's flying
     SFX_SHWOOP,
     // eating twinklies
@@ -1008,8 +1007,8 @@ enum SFX_E
     SFX_BOGGY_TALKING,
     SFX_TWINKLY_DEATH = 0x0110,
     SFX_111_WHIPCRACK_DEATH,
-    SFX_TINKER_ATTENTION,
-    SFX_PAD_APPEARS,
+    SFX_112_TINKER_ATTENTION,
+    SFX_113_PAD_APPEARS,
     SFX_BRICKWALL_BREAKING,
     SFX_BUZZBOMB_DEATH,
     SFX_DEAF_RUSTLING,
@@ -1207,7 +1206,9 @@ enum SFX_E
     SFX_SEXY_GRUNTY_TALKING_2,
     SFX_FREEZE_FRAME,
     SFX_GULP = 0x0190,
-    SFX_STATIC
+    SFX_STATIC,
+
+    SFX_3F9_UNKNOWN = 0x3f9
 };
 
 
@@ -1312,6 +1313,8 @@ enum actor_e
     ACTOR_125_SNOWBALL,
     ACTOR_126_SIR_SLUSH_HAT,
 
+    ACTOR_12C_MOLEHILL      = 0x12C,
+
     actor_yellow_flibbit_controller = 0x136,
     actor_yumblie           = 0x139,
 
@@ -1331,6 +1334,8 @@ enum actor_e
     ACTOR_COLLYWOBBLE_B     = 0x36D,
     ACTOR_BAWL_B            = 0x36E,
     ACTOR_TOPPER_B          = 0x36F,
+
+    ACTOR_37A_BOTTLES       = 0x37a,
 
     ACTOR_3BA_UNKOWN        = 0x3ba
 };
@@ -1509,17 +1514,21 @@ enum map_flags_e
 enum item_e
 {
     ITEM_0_TIMER = 0x0,
-    item_note = 0xC,
-    ITEM_EGGS = 0xD,
-    ITEM_JIGGY = 0xE,
-    ITEM_RED_FEATHER = 0xF,
-    ITEM_GOLD_FEATHER = 0x10,
-    ITEM_JINJOS = 0x12,
-    ITEM_13_EMPTY_HONEYCOMB = 0x13,
-    ITEM_14_HEALTH = 0x14,
-    ITEM_15_HEALTH_TOTAL = 0x15,
-    ITEM_16_LIFE = 0x16,
-    ITEM_17_AIR = 0x17,
+
+    ITEM_3_PROPELLOR_TIMER = 0x3,
+
+    ITEM_C_NOTE = 0xC,
+    ITEM_D_EGGS,
+    ITEM_E_JIGGY,
+    ITEM_F_RED_FEATHER,
+    ITEM_10_GOLD_FEATHER,
+
+    ITEM_12_JINJOS = 0x12,
+    ITEM_13_EMPTY_HONEYCOMB,
+    ITEM_14_HEALTH,
+    ITEM_15_HEALTH_TOTAL,
+    ITEM_16_LIFE,
+    ITEM_17_AIR,
     ITEM_ORANGE = 0x19,
     item_mumbo_token = 0x1C,
     item_mumbo_token_total = 0x25,
@@ -1679,6 +1688,8 @@ enum asset_e
 
     ASSET_377_MODEL_SIR_SLUSH = 0x377,
     ASSET_378_MODEL_SNOWBALL,
+
+    ASSET_387_MODEL_BOTTLES = 0x387,
 
     model_grublin           = 0x3c5,
 

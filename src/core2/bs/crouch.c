@@ -191,16 +191,16 @@ enum bs_e func_802ADCD4(enum bs_e arg0){
 
     }else{
         if(should_wonderwing())
-            func_80346C10(&arg0, -1, BS_WONDERWING_ENTER, ITEM_GOLD_FEATHER, 1);
+            func_80346C10(&arg0, -1, BS_WONDERWING_ENTER, ITEM_10_GOLD_FEATHER, 1);
 
         if(should_trot())
             arg0 = BS_BTROT_ENTER;
 
         if(should_poop_egg())
-            func_80346C10(&arg0, -1, BS_EGG_ASS, ITEM_EGGS, 0);
+            func_80346C10(&arg0, -1, BS_EGG_ASS, ITEM_D_EGGS, 0);
 
         if(should_shoot_egg())
-            func_80346C10(&arg0, -1, BS_EGG_HEAD, ITEM_EGGS, 0);
+            func_80346C10(&arg0, -1, BS_EGG_HEAD, ITEM_D_EGGS, 0);
 
         if(should_flip())
             arg0 = BS_BFLIP;

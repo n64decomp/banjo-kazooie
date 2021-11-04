@@ -4,7 +4,6 @@
 
 /* extern functions */
 void func_80326224(Actor *);
-int func_80311480(s32 text_id, s32 arg1, f32 *pos, ActorMarker *marker, void(*callback)(ActorMarker *, s32, s32), void(*arg5)(ActorMarker *, s32, s32));
 void func_80329904(ActorMarker *, s32, void *);
 extern void func_802EFA20(struct30s *, f32, f32);
 

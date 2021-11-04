@@ -63,10 +63,10 @@ s32 func_80345FB4(s32 item, s32 diff, s32 arg2){
         diff = 0;
 
     if(diff < 0){
-        if( (item == ITEM_EGGS && func_803203FC(0x74))
+        if( (item == ITEM_D_EGGS && func_803203FC(0x74))
             || (item == ITEM_16_LIFE && func_803203FC(0x73))
-            || (item == ITEM_RED_FEATHER && func_803203FC(0x75))
-            || (item == ITEM_GOLD_FEATHER && func_803203FC(0x76))
+            || (item == ITEM_F_RED_FEATHER && func_803203FC(0x75))
+            || (item == ITEM_10_GOLD_FEATHER && func_803203FC(0x76))
             || (item == ITEM_17_AIR && func_803203FC(0x96))) 
             diff = 0;
     }
@@ -85,15 +85,15 @@ s32 func_80345FB4(s32 item, s32 diff, s32 arg2){
     D_80385F30[ITEM_16_LIFE] = (0xFF < D_80385F30[ITEM_16_LIFE])? 0xFF : D_80385F30[ITEM_16_LIFE];
 
     switch(item){
-        case ITEM_EGGS:
+        case ITEM_D_EGGS:
             sp38 = (func_8031FF1C(BKPROG_BE_CHEATO_BLUEEGGS))? 200 : 100;
             break;
 
-        case ITEM_RED_FEATHER:
+        case ITEM_F_RED_FEATHER:
             sp38 = (func_8031FF1C(BKPROG_BF_CHEATO_REDFEATHERS))? 100 : 50;
             break;
 
-        case ITEM_GOLD_FEATHER:
+        case ITEM_10_GOLD_FEATHER:
             sp38 = (func_8031FF1C(BKPROG_C0_CHEATO_GOLDFEATHERS))? 20 : 10;
             break;
 
@@ -135,7 +135,7 @@ s32 func_80345FB4(s32 item, s32 diff, s32 arg2){
                 }
             }
             break;
-        case item_note:
+        case ITEM_C_NOTE:
             sp28 = func_80346F34(level_get());
             func_80346DB4(D_80385F30[item]);
             if(D_80385F30[item] == 100 && sp28 != 100){

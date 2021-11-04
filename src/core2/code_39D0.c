@@ -43,7 +43,7 @@ s32 can_beak_barge(void){
 }
 
 s32 func_8028A980(void){
-    return func_802957D8(ABILITY_3_BEAK_BOMB);
+    return func_802957D8(ABILITY_1_BEAK_BOMB);
 }
 
 s32 can_beak_bust(void){
@@ -125,7 +125,7 @@ s32 func_8028AC98(void){
 }
 
 s32 can_wonderwing(void){
-    return func_802957D8(ABILTIY_12_WONDERWING);
+    return func_802957D8(ABILITY_12_WONDERWING);
 }
 
 int func_8028ACD8(void){
@@ -370,11 +370,11 @@ void func_8028BA00(s32 arg0){
 
 void func_8028BA2C(s32 arg0) {
     if (func_802FADD4(0x1B) == 0) {
-        func_80345F24(item_note);
+        func_80345F24(ITEM_C_NOTE);
     } else {
-        func_803463F4(item_note, 1);
+        func_803463F4(ITEM_C_NOTE, 1);
     }
-    if (item_getCount(item_note) < 100) {
+    if (item_getCount(ITEM_C_NOTE) < 100) {
         func_8025A6EC(SFX_NOTE_COLLECTED, 0x3E80);
         timedFunc_set_1(0.75f, func_8035644C, 3);
     }

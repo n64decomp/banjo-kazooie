@@ -231,8 +231,6 @@ void func_80386EC0(s32 arg0) {
     func_803900DC(marker, &D_80392758, D_80392768[1], D_80392768[2]);
 }
 
-void func_802C3C88(void (* arg0)(ActorMarker*), s32 arg1);
-
 // void func_80386F5C(s32 arg0, f32 *arg1, f32 arg2, f32 arg3) {
 //     arg1[1] = (f32) (arg1[1] + 100.0f);
 //     D_80392758[0] = (f32) arg1[0];

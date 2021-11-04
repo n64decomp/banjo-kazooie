@@ -3,7 +3,6 @@
 #include "variables.h"
 
 void func_8028E668(f32 *, f32, f32, f32);
-int func_80311480(s32 text_id, s32 arg1, f32 *pos, ActorMarker *marker, void(*callback)(ActorMarker *, s32, s32), void(*arg5)(ActorMarker *, s32, s32));
 int actor_animationIsAt(Actor *, f32);
 void func_80328B8C(Actor *, s32, f32, s32);
 void func_80324E88(f32);

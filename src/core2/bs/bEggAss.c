@@ -26,7 +26,7 @@ void bseggass_update(void) {
 
     next_state = 0;
     plyr_mvmt = player_getAnimCtrlPtr();
-    has_eggs = (item_empty(ITEM_EGGS) == 0);
+    has_eggs = (item_empty(ITEM_D_EGGS) == 0);
     if (should_poop_egg()) {
         if (has_eggs)
             D_8037D2E0 = func_80258948(D_8037D2E0 + 1, 3);

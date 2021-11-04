@@ -3,7 +3,7 @@
 #include "variables.h"
 
 //external
-Actor *func_802D94B4(ActorMarker*, Gfx**, Mtx**, s32);
+Actor *func_802D94B4(ActorMarker*, Gfx**, Mtx**, Vtx**);
 void func_8028E668(f32*, f32, f32, f32);
 void func_80328FB0(Actor *, f32);
 void func_8030DA44(u8);
@@ -69,7 +69,7 @@ int func_80388D80(void){
 void func_80388E48(void){
     ability_unlock(ABILITY_3_CAMERA_CONTROL);
     ability_setHasUsed(ABILITY_0_BARGE);
-    ability_setHasUsed(ABILITY_3_BEAK_BOMB);
+    ability_setHasUsed(ABILITY_1_BEAK_BOMB);
     ability_setHasUsed(ABILITY_2_BEAK_BUSTER);
     ability_setHasUsed(ABILITY_3_CAMERA_CONTROL);
     ability_setHasUsed(ABILITY_4_BEAR_PUNCH);
@@ -367,7 +367,7 @@ void func_80389984(Actor * this){
 void func_803899B0(Actor * this){
     s32 sp50[6]; //face buttons
     f32 sp44[3]; //player position
-    Actor *sp40;
+    void *sp40;
     int sp34;
     int sp38;
     

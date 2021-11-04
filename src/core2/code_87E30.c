@@ -434,7 +434,7 @@ void func_80310D2C(void){
                 if(item_getCount(0x6) != 0)
                     func_802FACA4(0x28);
                 else
-                    func_802FAD64(0);
+                    func_802FAD64(ITEM_0_TIMER);
             }
             else {
                 if(func_802FADD4(3)){
@@ -442,7 +442,7 @@ void func_80310D2C(void){
                         func_802FACA4(0x28);
                     }
                     else{
-                        func_802FAD64(0x3);
+                        func_802FAD64(ITEM_3_PROPELLOR_TIMER);
                     }
                 }
             }
@@ -551,7 +551,7 @@ int func_80311174(s32 text_id, s32 arg1, f32 *pos, ActorMarker *marker, void(*ca
 }
 
 
-int func_80311480(s32 text_id, s32 arg1, f32 *pos, ActorMarker *marker, void(*callback)(ActorMarker *, s32, s32), void(*arg5)(ActorMarker *, s32, s32)){
+int func_80311480(s32 text_id, s32 arg1, f32 *pos, ActorMarker *marker, void(*callback)(ActorMarker *, enum asset_e, s32), void(*arg5)(ActorMarker *, enum asset_e, s32)){
     return func_80311174(text_id, arg1, pos, marker, callback, arg5, 0);
 }
 

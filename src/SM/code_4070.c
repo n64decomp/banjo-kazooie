@@ -3,7 +3,7 @@
 #include "variables.h"
 
 //extern
-Actor *func_802D94B4(ActorMarker *, Gfx **, Mtx **, s32);
+Actor *func_802D94B4(ActorMarker *, Gfx **, Mtx **, Vtx**);
 void func_8024E55C(s32, void *);
 void func_80324E88(f32);
 

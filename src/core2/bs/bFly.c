@@ -132,7 +132,7 @@ void bsbfly_update(void){
 
     if(D_8037D347 && func_8023DB5C()%3 == 0){
         D_8037D347 = 0;
-        func_80346C10(&sp2C, 0, BS_IDLE, ITEM_RED_FEATHER, 1);
+        func_80346C10(&sp2C, 0, BS_IDLE, ITEM_F_RED_FEATHER, 1);
     }
 
     if(sp2C || D_8037D346){
@@ -207,7 +207,7 @@ void bsbfly_update(void){
         && func_8028A980()
     ){
         sp2C = 0;
-        func_80346C10(&sp2C, 0, 1, ITEM_RED_FEATHER, 1);
+        func_80346C10(&sp2C, 0, 1, ITEM_F_RED_FEATHER, 1);
         if(sp2C)
             sp54 = BS_BOMB;
     }

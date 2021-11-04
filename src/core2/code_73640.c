@@ -46,11 +46,11 @@ ItemPrint D_803692F8[0x2C] = {
     { func_802FD320, func_802FD330, func_802FD33C, func_802FD350, 0, NULL }, //9
     { func_802FD320, func_802FD330, func_802FD33C, func_802FD350, 0, NULL }, //10
     { func_802FD320, func_802FD330, func_802FD33C, func_802FD350, 0, NULL }, //11
-    { func_802FD7B0, func_802FD80C, func_802FDAF4, func_802FDC80, 1, NULL }, //item_note
-    { func_802FD7B0, func_802FD80C, func_802FDAF4, func_802FDC80, 1, NULL }, //ITEM_EGGS
+    { func_802FD7B0, func_802FD80C, func_802FDAF4, func_802FDC80, 1, NULL }, //ITEM_C_NOTE
+    { func_802FD7B0, func_802FD80C, func_802FDAF4, func_802FDC80, 1, NULL }, //ITEM_D_EGGS
     { func_803007C0, func_8030081C, func_80300974, func_80300BB4, 3, NULL }, //14
-    { func_802FD7B0, func_802FD80C, func_802FDAF4, func_802FDC80, 1, NULL }, //ITEM_RED_FEATHER
-    { func_802FD7B0, func_802FD80C, func_802FDAF4, func_802FDC80, 1, NULL }, //ITEM_GOLD_FEATHER
+    { func_802FD7B0, func_802FD80C, func_802FDAF4, func_802FDC80, 1, NULL }, //ITEM_F_RED_FEATHER
+    { func_802FD7B0, func_802FD80C, func_802FDAF4, func_802FDC80, 1, NULL }, //ITEM_10_GOLD_FEATHER
     { func_802FD320, func_802FD330, func_802FD33C, func_802FD350, 0, NULL }, //17
     { func_802FF090, func_802FFA50, func_802FF3B8, func_802FF358, 3, NULL }, //18
     { func_802FDE2C, func_802FE844, func_802FDEE0, func_802FDDC4, 0, NULL }, //19
@@ -197,7 +197,7 @@ void func_802FACA4(s32 itemId){
     func_802FB020(D_803692F8[itemId].unk14, 1);
 }
 
-void func_802FAD64(s32 itemId){
+void func_802FAD64(enum item_e itemId){
     func_802FB020(D_803692F8[itemId].unk14, 3);
 }
 

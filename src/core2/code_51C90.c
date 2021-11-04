@@ -71,7 +71,7 @@ void func_802D8EDC(ActorProp *arg0){
     func_802F39D8(&arg0->x);
     if(arg0->unk8_0)
         actPtr = marker_getActor(arg0->marker);
-    func_802D8D48(actPtr, 7, 0xDA0, SFX_GOLD_FEATHER_COLLECTED, ITEM_GOLD_FEATHER, 6.0f);
+    func_802D8D48(actPtr, 7, 0xDA0, SFX_GOLD_FEATHER_COLLECTED, ITEM_10_GOLD_FEATHER, 6.0f);
 }
 
 Actor *func_802D8F50(ActorMarker *this, Gfx **gdl, Mtx **mptr, u32 arg3){
@@ -92,47 +92,3 @@ Actor *func_802D8F50(ActorMarker *this, Gfx **gdl, Mtx **mptr, u32 arg3){
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_51C90/func_802D9018.s")
-
-//hasLearnedAllMovesInLevel
-//int func_802D9220(enum level_e level);
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_51C90/func_802D9220.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_51C90/func_802D9304.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_51C90/func_802D93EC.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_51C90/func_802D94B4.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_51C90/func_802D9530.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_51C90/func_802D9600.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_51C90/func_802D9658.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_51C90/func_802D9698.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_51C90/func_802D9830.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_51C90/func_802D997C.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_51C90/func_802D9ADC.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_51C90/func_802D9BD8.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_51C90/func_802D9C1C.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_51C90/func_802D9C54.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_51C90/func_802D9C90.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_51C90/func_802D9CBC.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_51C90/func_802D9D60.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_51C90/func_802DA498.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_51C90/func_802DA560.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_51C90/func_802DA634.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_51C90/func_802DA740.s")

@@ -98,7 +98,7 @@ s32 func_80304984(s32 arg0, u32 *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_803049CC.s")
 
-Actor *func_80304C38(s32 arg0, Actor *arg1){
+void *func_80304C38(s32 arg0, Actor *arg1){
     s32 vec[3];
     s32 *phi_a1;
 
@@ -143,7 +143,7 @@ void func_80304D4C(s16 *arg0, s32 *arg1) {
     arg1[2] = arg0[2];
 }
 
-void func_80304D68(s16 *arg0, f32 *arg1) {
+void func_80304D68(s16 *arg0, f32 arg1[3]) {
     arg1[0] = arg0[0];
     arg1[1] = arg0[1];
     arg1[2] = arg0[2];

@@ -505,7 +505,7 @@ void func_80388450(Actor *actor1, Actor *actor2)
 {
     f32 vec1[3];
     f32 vec2[3];
-    Actor *actor3 = func_80304C38(0x22A, actor1);
+    void *actor3 = func_80304C38(0x22A, actor1);
     s32 val = func_80304DA8(actor3);
 
     actor2->yaw = val;

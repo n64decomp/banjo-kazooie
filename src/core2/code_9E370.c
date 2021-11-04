@@ -716,6 +716,7 @@ Actor *marker_getActor(ActorMarker *this){
     return &(D_8036E560->data[this->actrArrayIdx]);
 }
 
+//actor_getChild
 Actor *func_80329980(Actor *this){
     if(this->unk100 == NULL)
         return NULL;
