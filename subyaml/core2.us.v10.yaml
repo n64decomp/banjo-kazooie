@@ -192,8 +192,9 @@ segments:
   - [0x51C90, c, code_51C90]
   - [0x52290, c, ch/mole]     #DONE
   - [0x535D0, c, ch/molehill] #DONE
-  - [0x53A10, c, code_53A10]
+  - [0x53A10, c, code_53A10]  #DONE
   - [0x53C10, c, code_53C10]
+  - [0x54D50, c, code_54D50]  #DONE
   - [0x55180, c, code_55180]
   - [0x556C0, c, code_556C0]
   - [0x55850, c, code_55850]
@@ -398,7 +399,10 @@ segments:
   - [0xE0430, bin, data_E0430]
   - [0xE0DE0, .data, ch/mole]
   - [0xE0E70, .data, ch/molehill]
-  - [0xE0EE0, bin, data_E0EE0]
+  - [0xE0EE0, .data, code_53A10]
+  - [0xE0F10, bin, data_E0F10]
+  - [0xE0FA0, .data, code_54D50]
+  - [0xE1050, bin, data_E1050]
   - [0xE2350, .data, code_73640]
   - [0xE2790, .data, code_74090]
   - [0xE2840, .data, code_74290]
@@ -493,6 +497,8 @@ segments:
   - [0xEF650, bin, data_EF650]
   - [0xEFE30, .rodata, ch/mole]
   - [0xEFED0, bin, data_EFED0]
+  - [0xEFF40, .rodata, code_54D50]
+  - [0xEFF60, bin, data_EFF60]
   - [0xF0220, .rodata, code_67650]
   - [0xF0240, bin, data_F0240]
   - [0xF0390, .rodata, code_71820]

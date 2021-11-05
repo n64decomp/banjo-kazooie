@@ -38,11 +38,3 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_53C10/func_802DB548.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_53C10/func_802DB5A0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_53C10/func_802DBCE0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_53C10/func_802DBE9C.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_53C10/func_802DBF94.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_53C10/func_802DC018.s")
