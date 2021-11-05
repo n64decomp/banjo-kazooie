@@ -286,7 +286,7 @@ extern struct43s D_80373D78 = {
 
 void func_803627F8(f32 arg0[3]){
     struct30s *pCtrl = func_802F0BD0(11);
-    func_802EF950(pCtrl, ASSET_70D_SPRITE_DUST);
+    func_802EF950(pCtrl, ASSET_70D_SPRITE_SMOKE);
     func_802EFA90(pCtrl, 1, 6);
     func_802EFFA8(pCtrl, D_80373820);
     func_802EF9E4(pCtrl, 120);
@@ -308,7 +308,7 @@ void func_8036288C(f32 arg0[3]){
 
 void func_80362920(f32 arg0[3]){
     struct30s *pCtrl = func_802F0BD0(0xd);
-    func_802EF950(pCtrl, ASSET_70D_SPRITE_DUST);
+    func_802EF950(pCtrl, ASSET_70D_SPRITE_SMOKE);
     func_802EFA90(pCtrl, 1, 6);
     func_802EFFA8(pCtrl, D_80373928);
     func_802EF9E4(pCtrl, 60);
@@ -330,7 +330,7 @@ void func_803629B4(f32 arg0[3]){
 
 void func_80362A48(f32 arg0[3]){
     struct30s *pCtrl = func_802F0BD0(1);
-    func_802EF950(pCtrl, ASSET_70D_SPRITE_DUST);
+    func_802EF950(pCtrl, ASSET_70D_SPRITE_SMOKE);
     func_802EFA90(pCtrl, 1, 6);
     func_802EFFA8(pCtrl, D_80373A30);
     func_802EF9E4(pCtrl, 40);
@@ -341,7 +341,7 @@ void func_80362A48(f32 arg0[3]){
 
 void func_80362ADC(f32 arg0[3]){
     struct30s *pCtrl = func_802F0BD0(1);
-    func_802EF950(pCtrl, ASSET_70D_SPRITE_DUST);
+    func_802EF950(pCtrl, ASSET_70D_SPRITE_SMOKE);
     func_802EFA90(pCtrl, 1, 6);
     func_802EFFA8(pCtrl, D_80373AB4);
     func_802EF9E4(pCtrl, 40);
@@ -352,7 +352,7 @@ void func_80362ADC(f32 arg0[3]){
 
 void func_80362B70(f32 arg0[3]){
     struct30s *pCtrl = func_802F0BD0(1);
-    func_802EF950(pCtrl, ASSET_70D_SPRITE_DUST);
+    func_802EF950(pCtrl, ASSET_70D_SPRITE_SMOKE);
     func_802EFA90(pCtrl, 1, 6);
     func_802EFFA8(pCtrl, D_80373B38);
     func_802EF9E4(pCtrl, 110);
@@ -363,7 +363,7 @@ void func_80362B70(f32 arg0[3]){
 
 void func_80362C04(f32 arg0[3]){
     struct30s *pCtrl = func_802F0BD0(1);
-    func_802EF950(pCtrl, ASSET_70D_SPRITE_DUST);
+    func_802EF950(pCtrl, ASSET_70D_SPRITE_SMOKE);
     func_802EFA90(pCtrl, 1, 6);
     func_802EFFA8(pCtrl, D_80373BBC);
     func_802EF9E4(pCtrl, 40);
@@ -374,7 +374,7 @@ void func_80362C04(f32 arg0[3]){
 
 void func_80362C98(f32 arg0[3]){
     struct30s *pCtrl = func_802F0BD0(1);
-    func_802EF950(pCtrl, ASSET_70D_SPRITE_DUST);
+    func_802EF950(pCtrl, ASSET_70D_SPRITE_SMOKE);
     func_802EFA90(pCtrl, 1, 6);
     func_802EFFA8(pCtrl, D_80373C40);
     func_802EF9E4(pCtrl, 140);
@@ -385,7 +385,7 @@ void func_80362C98(f32 arg0[3]){
 
 void func_80362D2C(f32 arg0[3]){
     struct30s *pCtrl = func_802F0BD0(1);
-    func_802EF950(pCtrl, ASSET_70D_SPRITE_DUST);
+    func_802EF950(pCtrl, ASSET_70D_SPRITE_SMOKE);
     func_802EFA90(pCtrl, 4, 6);
     func_802EFFA8(pCtrl, D_80373CC4);
     func_802EF9E4(pCtrl, 140);

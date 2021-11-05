@@ -339,7 +339,8 @@ segments:
   - [0xCF7E0, c, code_CF7E0]
   - [0xCFA60, c, ch/code_CFA60] #DONE
   - [0xD01C0, c, code_D01C0]
-  - [0xD2500, c, code_D2500]
+  - [0xD2500, c, ch/firefx]
+  - [0xD2AB0, c, code_D2AB0]
   - [0xD2E10, c, code_D2E10]
   - [0xD4050, c, code_D4050]
   - [0xD50F0, c, code_D50F0]
@@ -409,6 +410,8 @@ segments:
   - [0xE2870, bin, data_E2870]
   - [0xEB8B0, .data, ch/code_CFA60]
   - [0xEB8E0, bin, data_EB8E0]
+  - [0xEBB00, .data, ch/firefx]
+  - [0xEBB30, bin, data_EBB30]
   - [0xEC220, .data, code_DA760]
   - [0xEC250, bin, code_EC250]
   - [0xECE30, .data, code_DC4B0]
@@ -517,6 +520,8 @@ segments:
   #- [0xF1918, bin]
   - [0xF2580, .rodata, ch/code_CFA60]
   - [0xF25D0, bin, data_F25D0]
+  - [0xF2700, .rodata, ch/firefx]
+  - [0xF2740, bin, data_F2740]
   - [0xF2B00, .rodata, code_DA760]
   - [0xF2B20, bin, data_F2B20]
   - [0xF2B30, .rodata, code_DB010] #code_DB010 - func_80362E94
