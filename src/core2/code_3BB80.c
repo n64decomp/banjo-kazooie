@@ -154,7 +154,7 @@ extern ActorInfo D_80372A24;
 extern ActorInfo D_80372A48; 
 extern ActorInfo D_80372A6C; 
 extern ActorInfo gChFireFxInfo; //fire
-extern ActorInfo D_80372AC0;//water_drops
+extern ActorInfo gChDripsInfo;//water_drops
 extern ActorInfo D_80372BA4;//ice_cube
 extern ActorInfo D_80372B80;
 extern ActorInfo D_80372C18; //teehee
@@ -287,7 +287,7 @@ void func_802C2B5C(void){
     func_803053E8(&D_803731B0, actor_new, 0x0);
     func_803053E8(&D_80368710, actor_new, 0x100044);//snowball
     func_803053E8(&D_803687C0, actor_new, 0x4);//sir_slush_hat
-    func_803053E8(&D_80372AC0, actor_new, 0x400);//water_drops
+    func_803053E8(&gChDripsInfo, actor_new, 0x400);//water_drops
     func_803053E8(&D_80372BA4, actor_new, 0x2020141);//ice_cube
     func_803053E8(&D_8036804C, actor_new, 0x508604);//GAME_OVER
     func_803053E8(&D_8036807C, actor_new, 0x508604);//THE_END

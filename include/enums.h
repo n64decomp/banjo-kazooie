@@ -1346,6 +1346,8 @@ enum actor_e
 
     ACTOR_34D_BEE_SWARM     = 0x34D,
 
+    ACTOR_354_DRIPS         = 0x354,
+
     ACTOR_COLLYWOBBLE_B     = 0x36D,
     ACTOR_BAWL_B            = 0x36E,
     ACTOR_TOPPER_B          = 0x36F,
