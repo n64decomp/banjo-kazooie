@@ -23,7 +23,25 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_72B0/func_802453DC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_72B0/func_8024549C.s")
+//over_water?
+int func_8024549C(f32 arg0[3], f32 arg1){
+    f32 sp44[3];
+    f32 sp38[3];
+    f32 sp2C[3];
+    f32 sp20[3];
+    int sp1C;
+
+    sp20[0] = sp20[1] = sp20[2] = 0.0f;
+    sp20[1] = arg1;
+
+    ml_vec3f_diff_copy(sp2C, arg0, sp20);
+    ml_vec3f_add(sp38, arg0, sp20);
+    sp1C = func_80309B48(sp2C, sp38, sp44, 0xf800ff0f);
+    if(sp1C){
+        ml_vec3f_copy(arg0, sp38);
+    }
+    return sp1C;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_72B0/func_80245524.s")
 
