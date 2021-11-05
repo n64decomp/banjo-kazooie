@@ -153,7 +153,7 @@ extern ActorInfo D_80372A00; //snow
 extern ActorInfo D_80372A24; 
 extern ActorInfo D_80372A48; 
 extern ActorInfo D_80372A6C; 
-extern ActorInfo D_80372A90; //fire
+extern ActorInfo gChFireFxInfo; //fire
 extern ActorInfo D_80372AC0;//water_drops
 extern ActorInfo D_80372BA4;//ice_cube
 extern ActorInfo D_80372B80;
@@ -275,7 +275,7 @@ void func_802C2B5C(void){
     func_803053E8(&D_8036D970, actor_new, 0x80); //boombox
     func_803053E8(&D_803677A8, actor_new, 0x8600); //ice_key
     func_803053E8(&D_80367814, actor_new, 0x8600); //SnS_egg
-    func_803053E8(&D_80372A90, actor_new, 0x0); //fire
+    func_803053E8(&gChFireFxInfo, actor_new, 0x0); //fire
     func_803053E8(&D_80367838, actor_new, 0x8600); //level_entry_disk
     func_803053E8(&D_80367760, actor_new, 0x1000);
     func_803053E8(&D_80367784, actor_new, 0x1000);

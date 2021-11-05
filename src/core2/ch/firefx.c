@@ -7,8 +7,8 @@ extern int  func_8024DB50(f32 arg0[3], f32 arg1);
 void chfirefx_update(Actor *this);
 
 /* .data */
-ActorInfo D_80372A90 = {
-    0x256, 0x383, 0x526, 
+ActorInfo gChFireFxInfo = {
+    0x256, ACTOR_383_FIRE_FX, ASSET_526_SPRITE_FIRE, 
     0, NULL, 
     chfirefx_update, func_80326224, func_80325888,
     {0,0,0,0}, 0.0f, {0,0,0,0}

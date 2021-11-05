@@ -1342,6 +1342,8 @@ enum actor_e
 
     ACTOR_28B_SOUND_SOURCE  = 0x28B,
 
+    ACTOR_383_FIRE_FX       = 0x383,
+
     ACTOR_34D_BEE_SWARM     = 0x34D,
 
     ACTOR_COLLYWOBBLE_B     = 0x36D,
@@ -1722,6 +1724,8 @@ enum asset_e
     MODEL_COLLYWOBBLE       = 0x4ee,
     MODEL_BAWL              = 0x4ef,
 
+    ASSET_526_SPRITE_FIRE   = 0x526,
+
     SPRITE_DIALOG_FONT_ALPHAMASK = 0x6eb,
     SPRITE_BOLD_FONT_LETTERS_ALPHAMASK = 0x6ec,
     SPRITE_BOLD_FONT_NUMBERS_ALPHAMASK = 0x6ed,
@@ -1738,6 +1742,8 @@ enum asset_e
 
     model_MM_hut     = 0x7d7,
     model_mudhut_top = 0x7d8,
+
+    ASSET_8A0_SPRITE_WATER_DROP = 0x8a0,
 
     text_conga_safe_up_here     = 0xb37,
     text_conga_defeat           = 0xb38,
