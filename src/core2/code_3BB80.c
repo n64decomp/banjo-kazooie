@@ -155,8 +155,8 @@ extern ActorInfo D_80372A48;
 extern ActorInfo D_80372A6C; 
 extern ActorInfo gChFireFxInfo; //fire
 extern ActorInfo gChDripsInfo;//water_drops
-extern ActorInfo D_80372BA4;//ice_cube
 extern ActorInfo D_80372B80;
+extern ActorInfo D_80372BA4;//ice_cube
 extern ActorInfo D_80372C18; //teehee
 extern ActorInfo D_80372C80; //floatsam
 extern ActorInfo D_80372D78; //limbo

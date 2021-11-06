@@ -52,7 +52,7 @@ void func_802DBCE0(struct30s *pCtrl, f32 arg1[3]){
         func_8030E878(SFX_413_UNKNOWN, randf2(1.0f, 1.4f), 0x4e20, arg1, 0.0f, 3500.0f);
     }
     else{//L802DBDF4
-        func_802EF950(other, ASSET_700_SPRITE_DUST_1);
+        func_802EF950(other, ASSET_700_SPRITE_DUST);
         func_802EFA90(other, 0, 7);
         func_802EFFA8(other, D_80367F54);
         func_802EFB54(other, arg1);
