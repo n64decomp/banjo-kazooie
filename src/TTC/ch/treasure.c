@@ -5,22 +5,22 @@
 void chtreasure_update(Actor *this);
 
 /* .data */
-ActorAnimationInfo D_8038CC90[]={
+ActorAnimationInfo gChTreasureAnim[]={
     {0, 0.0f},
     {ASSET_153_ANIM_BURIED_TREASURE_APPEAR, 2.0f},
     {ASSET_166_ANIM_BURIED_TREASURE_BOUNCE, 0.33f},
     {0, 0.0}
 };
 
-ActorInfo D_8038CCB0 = {
+ActorInfo gChTreasureInfo = {
     0xDB, ACTOR_F4_BURIED_TREASURE, ASSET_42C_MODEL_BURIED_TREASURE, 
-    1, D_8038CC90, 
+    1, gChTreasureAnim, 
     chtreasure_update, func_80326224, func_80325888,
     {0,0,0,0}, 1.7f, {0,0,0,0}
 }; 
 
 /* .code */
-void __chtreasure_die(ActorMarker *marker, ActorMarker *other){
+void __chtreasure_die(ActorMarker *marker, ActorMarker *otherMarker){
     Actor *this = marker_getActor(marker);
     func_802C3F04(func_802C4140, 0x4C, reinterpret_cast(s32, this->position[0]), reinterpret_cast(s32, this->position[1]), reinterpret_cast(s32, this->position[2]));
     func_802EE278(this, 3, 0xf, 0x3C, 0.2f, 1.2f);

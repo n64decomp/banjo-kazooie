@@ -21,7 +21,7 @@ extern ActorInfo D_8038C7D8;
 extern ActorInfo D_8038C8B0;
 extern ActorInfo D_8038C8D4;
 extern ActorInfo D_8038C8F8;
-extern ActorInfo D_8038CCB0;
+extern ActorInfo gChTreasureInfo;
 
 void func_80388AC0(void)
 {
@@ -36,7 +36,7 @@ void func_80388AC0(void)
     spawnableActorList_add(&D_8038C8B0, actor_new, 0X400);
     spawnableActorList_add(&D_8038C8D4, actor_new, 0X400);
     spawnableActorList_add(&D_8038C8F8, actor_new, 0X400);
-    spawnableActorList_add(&D_8038CCB0, actor_new, 0X2000048);
+    spawnableActorList_add(&gChTreasureInfo, actor_new, 0X2000048);
     spawnableActorList_add(&D_8038C628, actor_new, 0X8680);
     spawnableActorList_add(&D_8038C64C, actor_new, 0X400);
     spawnableActorList_add(&D_8038C670, actor_new, 0X20404);
