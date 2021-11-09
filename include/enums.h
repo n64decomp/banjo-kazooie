@@ -1285,6 +1285,7 @@ enum jiggy_e
 
     JIGGY_MM_ORANGE_PADS    = 0x08,
     JIGGY_MM_CHIMPY     = 0x9,
+    JIGGY_A_MM_CONGA,
 
     JIGGY_13_TTC_LOCKUP = 0x13,
 
