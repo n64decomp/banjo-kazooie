@@ -15,7 +15,7 @@ void func_80244BB0(s32, s32, s32, f32);
 void chchimpystump_update(Actor *this);
 
 /* .data */
-ActorInfo chchimpystump = { 0x95, ACTOR_C5_CHIMPY_STUMP, model_chimpy_stump, 1, NULL,
+ActorInfo chchimpystump = { 0x95, ACTOR_C5_CHIMPY_STUMP, ASSET_3C8_MODEL_CHIMPY_STUMP, 1, NULL,
     chchimpystump_update, func_80326224, func_80325E78,
     {0,0,0,0}, 0.0f, {0,0,0,0}
 };

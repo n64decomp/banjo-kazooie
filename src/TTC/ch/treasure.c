@@ -2,30 +2,25 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void func_802EE278(Actor *, s32, s32, s32, f32, f32);
-extern void func_802F3BF4(s16[3]);
-extern void actor_collisionOn(Actor *);
-extern void func_80328AC8(Actor *, s32);
- 
-void func_8038C154(Actor *this);
+void chtreasure_update(Actor *this);
 
 /* .data */
 ActorAnimationInfo D_8038CC90[]={
     {0, 0.0f},
-    {0x153, 2.0f},
-    {0x166, 0.33f},
+    {ASSET_153_ANIM_BURIED_TREASURE_APPEAR, 2.0f},
+    {ASSET_166_ANIM_BURIED_TREASURE_BOUNCE, 0.33f},
     {0, 0.0}
 };
 
 ActorInfo D_8038CCB0 = {
-    0xDB, 0xF4, 0x42C, 
+    0xDB, ACTOR_F4_BURIED_TREASURE, ASSET_42C_MODEL_BURIED_TREASURE, 
     1, D_8038CC90, 
-    func_8038C154, func_80326224, func_80325888,
+    chtreasure_update, func_80326224, func_80325888,
     {0,0,0,0}, 1.7f, {0,0,0,0}
 }; 
 
 /* .code */
-void func_8038BFC0(ActorMarker *marker, ActorMarker *other){
+void __chtreasure_die(ActorMarker *marker, ActorMarker *other){
     Actor *this = marker_getActor(marker);
     func_802C3F04(func_802C4140, 0x4C, reinterpret_cast(s32, this->position[0]), reinterpret_cast(s32, this->position[1]), reinterpret_cast(s32, this->position[2]));
     func_802EE278(this, 3, 0xf, 0x3C, 0.2f, 1.2f);
@@ -34,7 +29,7 @@ void func_8038BFC0(ActorMarker *marker, ActorMarker *other){
     marker_despawn(marker);
 }
 
-void func_8038C054(Actor *this){
+void __chtreasure_updatePosition(Actor *this){
     this->position[0] = this->unk1C[0];\
     this->position[1] = this->unk1C[1];\
     this->position[2] = this->unk1C[2];
@@ -47,7 +42,7 @@ void func_8038C054(Actor *this){
     this->yaw = this->unk60*180.0/M_PI;
 }
 
-void func_8038C154(Actor *this){
+void chtreasure_update(Actor *this){
     f32 sp3C[3];
     s16 sp34[3];
 
@@ -66,9 +61,9 @@ void func_8038C154(Actor *this){
         this->unk1C[2] = this->position[2];
         
         actor_playAnimationOnce(this);
-        func_803300A8(this->marker, NULL, NULL, func_8038BFC0);
+        func_803300A8(this->marker, NULL, NULL, __chtreasure_die);
     }//L8038C214
-    func_8038C054(this);
+    __chtreasure_updatePosition(this);
     func_8034A174(this->marker->unk44, 5, sp3C);
     sp34[0] = (s16)sp3C[0];
     sp34[1] = (s16)sp3C[1];

@@ -490,4 +490,10 @@ void func_80304D68(s16 *, f32[3]);
 int func_80311480(s32 text_id, s32 arg1, f32 *pos, ActorMarker *marker, void(*callback)(ActorMarker *, enum asset_e, s32), void(*arg5)(ActorMarker *, enum asset_e, s32));
 void func_80347A14(s32);
 void ability_unlock(enum ABILITY_E);
+
+extern void func_802EE278(Actor *, s32, s32, s32, f32, f32);
+extern void func_802F3BF4(s16[3]);
+extern void actor_collisionOn(Actor *);
+extern void func_80328AC8(Actor *, s32);
+
 #endif

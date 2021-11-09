@@ -562,7 +562,7 @@ void func_80328A84(Actor * arg0, u32 arg1){
     }
 }
 
-void func_80328AC8(Actor * arg0, int arg1){
+void func_80328AC8(Actor * arg0, s32 arg1){
     func_80328B8C(arg0, arg1, 0.0f, 1);
 }
 

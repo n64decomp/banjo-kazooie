@@ -1362,6 +1362,9 @@ enum actor_e
     ACTOR_C5_CHIMPY_STUMP      = 0xC5,
     
     actor_leafboat          = 0xF1,
+
+    ACTOR_F4_BURIED_TREASURE = 0xF4,
+
     actor_bigalligator      = 0xF6,
 
     ACTOR_124_SIR_SLUSH     = 0x124,
@@ -1726,7 +1729,10 @@ enum asset_e
     ASSET_13A_ANIM_BOTTLES_ENTER,
     ASSET_13B_ANIM_BOTTLES_IDLE,
 
+    ASSET_153_ANIM_BURIED_TREASURE_APPEAR = 0x153,
+
     ASSET_165_ANIM_BEEHIVE_IDLE = 0x165,
+    ASSET_166_ANIM_BURIED_TREASURE_BOUNCE,
 
     ASSET_1DC_ANIM_BEE_FLY    = 0x1dc,
     ASSET_1DD_ANIM_BEE_WALK,
@@ -1778,9 +1784,11 @@ enum asset_e
     ASSET_387_MODEL_BOTTLES = 0x387,
     ASSET_388_MODEL_MOLEHILL,
 
-    model_grublin           = 0x3c5,
+    ASSET_3C5_MODEL_GRUBLIN           = 0x3c5,
 
-    model_chimpy_stump      = 0x3c8,
+    ASSET_3C8_MODEL_CHIMPY_STUMP      = 0x3c8,
+
+    ASSET_42C_MODEL_BURIED_TREASURE = 0x42C,
 
     ASSET_430_MODEL_GRILL_CHOMPA = 0x430,
 
