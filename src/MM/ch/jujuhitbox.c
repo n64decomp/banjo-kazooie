@@ -15,7 +15,7 @@ Actor*  func_80388DC0(ActorMarker *, Gfx **, Mtx**, u32);
 void    func_80388DE8(Actor* this, s32 slave_id, Actor *slavePtr);
 
 /* .data */
-ActorInfo chjujuhitboxInfo = { 0x67, ACTOR_JUJU_HITBOX, 0, 3, NULL,
+ActorInfo chjujuhitboxInfo = { 0x67, ACTOR_11_JUJU_CTRL, 0, 3, NULL,
     func_80388E20, func_80326224, func_80388DC0,
     {0,0,0,0}, 0.0f, {0,0,0,0}
 };
@@ -119,7 +119,7 @@ void func_80388E20(Actor *this){
             && !func_8028ECAC()
         ){
             if( !this->unk138_24 ){
-                if(func_80311480(text_juju_meet, 0, 0, 0, NULL, NULL)){
+                if(func_80311480(ASSET_B44_TEXT_JUJU_MEET, 0, 0, 0, NULL, NULL)){
                     this->unk138_24 = 1;
                 }
             }

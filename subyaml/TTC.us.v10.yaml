@@ -36,7 +36,7 @@ segments:
       - [0x30D0, c, code_30D0]
       - [0x35D0, c, code_35D0]
       - [0x3E30, c, code_3E30]
-      - [0x5BD0, c, code_5BD0]
+      - [0x5BD0, c, ch/treasure]
   - name: data
     dir: TTC
     type: code
@@ -44,4 +44,7 @@ segments:
     vram: 0x8038C3B0
     subsegments:
       - [0x00005FC0, bin, data_5FC0]
+      - [0x000068A0, .data, ch/treasure]
+      - [0x000068F0, bin, data_68F0]
+      - [0x000072B0, .rodata, ch/treasure]
   - [0x00007300]

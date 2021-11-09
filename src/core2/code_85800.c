@@ -920,7 +920,7 @@ void func_8030E78C(enum sfx_e uid, f32 arg1, u32 arg2, f32(*arg3)[3], f32 arg4, 
     }
 }
 
-void func_8030E878(enum sfx_e id, f32 arg1, u32 arg2, f32 (*arg3)[3], f32 arg4, f32 arg5){
+void func_8030E878(enum sfx_e id, f32 arg1, u32 arg2, f32 arg3[3], f32 arg4, f32 arg5){
     func_8030E78C(id, arg1, arg2, arg3, arg4, arg5, 2);
 }
 

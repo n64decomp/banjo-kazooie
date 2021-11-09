@@ -152,7 +152,7 @@ Actor *func_802C8C04(s32 (* position)[3], s32 yaw, ActorInfo* actorInfo, u32 fla
 Actor *marker_getActor(ActorMarker *);
 
 f32 func_8033DD9C(void);
-void jiggySpawn(u32 indx, f32 (* pos)[3]);
+void jiggySpawn(u32 indx, f32 pos[3]);
 
 struct8s *func_802FD320(s32);
 void func_802FD330(s32, struct8s *);
@@ -380,7 +380,7 @@ void func_8030E6A4(enum sfx_e uid, f32 arg1, s32 arg2);
 void func_8030E6D4(enum sfx_e uid);
 void func_8030E704(enum sfx_e uid);
 void func_8030E760(enum sfx_e uid, f32 arg1, s32 arg2);
-void func_8030E878(enum sfx_e uid, f32 arg1, u32 arg2, f32 (*arg3)[3], f32 arg4, f32 arg5);
+void func_8030E878(enum sfx_e uid, f32 arg1, u32 arg2, f32 arg3[3], f32 arg4, f32 arg5);
 void func_8030E988(enum sfx_e uid, f32 arg1, u32 arg2, f32 (*arg3)[3], f32 arg4, f32 arg5);
 void func_8030E9C4(enum sfx_e uid, f32 arg1, u32 arg2, f32 (*arg3)[3], f32 arg4, f32 arg5);
 void func_8030EAAC(enum sfx_e uid, f32 arg1, s32 arg2, s32 arg3);

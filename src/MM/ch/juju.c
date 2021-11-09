@@ -12,7 +12,7 @@ void    func_80389598(Actor *this);
 Actor*  func_80389014(ActorMarker *, Gfx **, Mtx**, u32);
 
 /* .data */
-ActorInfo chjujuInfo = { 0x67, ACTOR_JUJU, model_juju, 0, NULL,
+ActorInfo chjujuInfo = { 0x67, ACTOR_59_JUJU, model_juju, 0, NULL,
     func_80389598, func_80326224, func_80389014,
     {0,0,0,0}, 0.0f, {0,0,0,0}
 };
@@ -58,7 +58,7 @@ void func_803890A0(ActorMarker *arg0, s32 arg1){
     sp5C[1] = actorPtr->position_y;
     sp5C[2] = actorPtr->position_z;
     for(i = 0; i < 4; i++){
-        jujuPtr = func_8032813C(ACTOR_JUJU, actorPtr->position, actorPtr->yaw);
+        jujuPtr = func_8032813C(ACTOR_59_JUJU, actorPtr->position, actorPtr->yaw);
         jujuPtr->marker->collidable = 0;
         actorPtr = marker_getActor(arg0);
         func_80388DE8(actorPtr, i, jujuPtr);
@@ -206,7 +206,7 @@ void    func_80389598(Actor *this){
             this->position_y -= 25.0;
             if(jujuPtr->unk8_y == this->position_y){
                 jujuPtr->unk0 = 1;
-                func_8030E484(3);
+                func_8030E484(SFX_3_DULL_CANNON_SHOT);
                 func_802BB3DC(0, 10.0f, 0.8f);
                 if(jujuPtr->unk18)
                     func_80353064(this->position, 24.0f);

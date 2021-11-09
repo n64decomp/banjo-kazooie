@@ -314,9 +314,9 @@ void func_802A18E8(s32 arg0){
     animctrl_setPlaybackType(sp3C,  ANIMCTRL_ONCE);
     func_802875AC(sp3C, "bsbeemain.c", 0x269);
     if(arg0 == 1){
-        func_8030E58C(0x38, 1.8f);
+        func_8030E58C(SFX_38_BANJO_AYE_1, 1.8f);
     }else{
-        func_8030E58C(0x56, 1.8f);
+        func_8030E58C(SFX_56_BANJO_HUI, 1.8f);
     }
     _player_getPosition(&sp2C);
     func_80294980(sp20);
@@ -425,7 +425,7 @@ void bsbeemain_die_init(void){
     func_802914CC(0xd);
     func_802BF2C0(30.0f);
     func_8029C984();
-    func_8030E58C(0x36, 1.8f);
+    func_8030E58C(SFX_36_BANJO_DOH, 1.8f);
     func_8029E3C0(0, 2.9f);
     D_8037D2D4 = 0;
 }

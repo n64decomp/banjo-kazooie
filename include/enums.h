@@ -908,22 +908,22 @@ enum sfx_e
     // from the idle anim
     SFX_A3_BANJO_DOUBLE_COUGH,
     // from the idle anim, but only once
-    SFX_BANJO_SINGLE_COUGH,
-    SFX_EYRIE_CRY,
+    SFX_A4_BANJO_SINGLE_COUGH,
+    SFX_A5_EYRIE_CRY,
     // final part of entering a cauldron warp
-    SFX_MAGICAL_FINISH,
-    SFX_WOODEN_SWOSH,
-    SFX_BLUBBER_DOUBLE_CRY,
-    SFX_BLUBBER_SINGLE_CRY,
+    SFX_A6_MAGICAL_FINISH,
+    SFX_A7_WOODEN_SWOSH,
+    SFX_A8_BLUBBER_DOUBLE_CRY,
+    SFX_A9_BLUBBER_SINGLE_CRY,
     // this sounds like the used version
-    SFX_BGS_EGG_BREAKING_1,
-    SFX_BGS_EGG_BREAKING_2,
-    SFX_GOLDFEATHER_TALKING,
-    SFX_CATERPILLAR_SQUEAK,
-    SFX_YUMYUM_TALKING,
-    SFX_BANJO_CATCHING_BREATH,
+    SFX_AA_BGS_EGG_BREAKING_1,
+    SFX_AB_BGS_EGG_BREAKING_2,
+    SFX_AC_GOLDFEATHER_TALKING,
+    SFX_AD_CATERPILLAR_SQUEAK,
+    SFX_AE_YUMYUM_TALKING,
+    SFX_AF_BANJO_CATCHING_BREATH,
     // might be from the grunty machine's doors
-    SFX_B0_SIZZLING_NOISE = 0x00B0,
+    SFX_B0_SIZZLING_NOISE,
     SFX_B1_BOGGY_KID_CRYING,
     SFX_B2_BOGGY_KID_HAPPY,
     SFX_B3_ORANGE_TALKING,
@@ -947,28 +947,28 @@ enum sfx_e
     SFX_BF_EYRIE_SLEEPING_1,
     SFX_C0_EYRIE_SLEEPING_2,
     // from the opening CS
-    SFX_BUZZBOMB_ATTACK,
+    SFX_C1_BUZZBOMB_ATTACK,
     // death
-    SFX_GRUBLIN_EGH,
+    SFX_C2_GRUBLIN_EGH,
     // some talking ?
-    SFX_HEGH,
-    SFX_TWINKLY_MUNCHER_GRR,
+    SFX_C3_HEGH,
+    SFX_C4_TWINKLY_MUNCHER_GRR,
     SFX_C5_TWINKLY_POP,
     SFX_C6_SHAKING_MOUTH, //bottles leaving/entering molehill
     // from the jinjo's flying
-    SFX_SHWOOP,
+    SFX_C7_SHWOOP,
     // eating twinklies
     SFX_C8_CRUNCH,
     SFX_C9_PAUSEMENU_ENTER,
-    SFX_BANJO_DROWNING_1,
-    SFX_BANJO_DROWNING_2,
+    SFX_CA_BANJO_DROWNING_1,
+    SFX_CB_BANJO_DROWNING_2,
     // also the scrolling sound
     SFX_CC_PAUSEMENU_ENTER_SUBMENU,
     SFX_CD_PAUSEMENU_LEAVE_SUBMENU,
     // when the page is changed
     SFX_CE_PAUSEMENU_HOIP,
     SFX_CF_PAUSEMENU_SHWOOP,
-    SFX_GRIMLET_SQUEAK = 0x00D0,
+    SFX_D0_GRIMLET_SQUEAK,
     SFX_SNORKEL_WAH,
     // barely noticable
     SFX_QUIET_METALLIC,
@@ -1249,13 +1249,16 @@ enum sfx_e
     SFX_3E9_UNKNOWN = 0x3e9, //bsbwhirl
     SFX_3EA_UNKNOWN,         //chjig
     SFX_3EB_UNKNOWN,         //bstimeout
-    SFX_3EC_CCW_DOOR_OPENING,         //ccw
+    SFX_3EC_CCW_DOOR_OPENING,         //ccw and GV opening
 
     SFX_3F1_UNKNOWN = 0x3f1, //bsstand
+    SFX_3F2_UNKNOWN, //gold_chest_ttc
 
     SFX_3F6_UNKNOWN = 0x3f6, //lair/code_0 func_803880BC
 
     SFX_3F9_UNKNOWN = 0x3f9, //chmole
+
+    SFX_3FB_UNKNOWN = 0x3fb, //conga
 
     SFX_413_UNKNOWN = 0x413 //water ripple?
 };
@@ -1283,11 +1286,13 @@ enum jiggy_e
     JIGGY_MM_JUJU       = 0x04,
     jiggy_mm_huts       = 0x05,
 
-    JIGGY_MM_ORANGE_PADS    = 0x08,
-    JIGGY_MM_CHIMPY     = 0x9,
+    JIGGY_8_MM_ORANGE_PADS    = 0x08,
+    JIGGY_9_MM_CHIMPY,
     JIGGY_A_MM_CONGA,
 
-    JIGGY_13_TTC_LOCKUP = 0x13,
+    JIGGY_11_TTC_RED_X = 0x11,
+    JIGGY_12_TTC_NIPPER,
+    JIGGY_13_TTC_LOCKUP,
 
     JIGGY_17_CC_CLANKER_RAISED = 0x17,
 
@@ -1327,34 +1332,34 @@ enum actor_e
 {
     ACTOR_4_BIGBUTT         = 0x4,
 
-    actor_grublin           = 0x6,
+    ACTOR_6_GRUBLIN           = 0x6,
 
-    actor_conga             = 0x8,
-    actor_MM_hut            = 0x9,
+    ACTOR_8_CONGA             = 0x8,
+    ACTOR_9_MM_HUT,
 
     ACTOR_C_MUD_HUT         = 0xC,
     ACTOR_D_WOOD_DEMOLISHED,
     ACTOR_E_BULL_INTRO,
     ACTOR_F_CHIMPY            = 0xF,
 
-    ACTOR_JUJU_HITBOX       = 0x11,
+    ACTOR_11_JUJU_CTRL       = 0x11,
     ACTOR_12_BEEHIVE,
     
-    actor_orange_projectile = 0x14,
+    ACTOR_14_ORANGE_PROJECTILE = 0x14,
 
     ACTOR_46_JIGGY          = 0x46,
 
     ACTOR_4A_WOOD_EXPLOSION = 0x4A,
 
     ACTOR_4C_STEAM          = 0x4C,
-    actor_steam_2           = 0x4D,
+    ACTOR_4D_STEAM_2,
 
-    actor_orange_pad        = 0x57,
+    ACTOR_57_ORANGE_PAD        = 0x57,
 
-    ACTOR_JUJU              = 0x59,
+    ACTOR_59_JUJU              = 0x59,
     ACTOR_5A_JIGGY_IN_HAND,
 
-    ACTOR_F_CHIMPY_stump      = 0xC5,
+    ACTOR_C5_CHIMPY_STUMP      = 0xC5,
     
     actor_leafboat          = 0xF1,
     actor_bigalligator      = 0xF6,
@@ -1689,12 +1694,12 @@ enum asset_e
     anim_mudhut_smashing = 0x4E,
     ANIM_BANJO_ROLL = 0x4F,
 
-    anim_conga_idle     = 0x51,
-    anim_conga_ow       = 0x52,
-    ASSET_53_ANIM_CONGA_DEFEAT   = 0x53,
+    ASSET_51_ANIM_CONGA_IDLE     = 0x51,
+    ASSET_52_ANIM_CONGA_OW,
+    ASSET_53_ANIM_CONGA_DEFEAT,
     ASSET_54_ANIM_CONGA_THROW,
-    ASSET_55_ANIM_CONGA_BEAT_CHEST = 0x55,
-    anim_conga_raise_arms = 0x56,
+    ASSET_55_ANIM_CONGA_BEAT_CHEST,
+    ASSET_56_ANIM_CONGA_RAISE_ARMS,
     
     ANIM_BANJO_SLIDE_BACK = 0x59,
     ANIM_BANJO_SLIDE_FRONT = 0x5A,
@@ -1705,7 +1710,7 @@ enum asset_e
 
     ASSET_65_ANIM_BEEHIVE_DIE = 0x65,
 
-    ANIM_GRUBLIN_DIE = 0x94,
+    ASSET_94_ANIM_GRUBLIN_DIE = 0x94,
 
     ASSET_D2_ANIM_BANJO_GETTING_UP = 0xD2,
 
@@ -1809,18 +1814,19 @@ enum asset_e
 
     ASSET_8A0_SPRITE_WATER_DROP = 0x8a0,
 
-    text_conga_safe_up_here     = 0xb37,
-    text_conga_defeat           = 0xb38,
-    text_conga_hit_by_egg       = 0xb39,
-    text_conga_hits_player      = 0xb3a,
-    text_conga_orange_pad_jiggy = 0xb3b,
-    text_conga_meet             = 0xb3c,
+    ASSET_B37_TEXT_CONGA_SAFE_UP_HERE     = 0xb37,
+    ASSET_B38_TEXT_CONGA_DEFEAT,
+    ASSET_B39_TEXT_CONGA_HIT_BY_EGG,
+    ASSET_B3A_TEXT_CONGA_HITS_PLAYER      = 0xb3a,
+    ASSET_B3B_TEXT_CONGA_ORANGE_PAD_JIGGY = 0xb3b,
+    ASSET_B3C_TEXT_CONGA_MEET             = 0xb3c,
 
-    text_conga_meet_as_termite  = 0xb3e,
-    text_juju_meet              = 0xb44,
-    text_jiggy_collect_10       = 0xb45, 
+    ASSET_B3E_TEXT_CONGA_MEET_AS_TERMITE  = 0xb3e,
 
-    text_bottles_how_to_exit_level = 0xb51,
+    ASSET_B44_TEXT_JUJU_MEET              = 0xb44,
+    ASSET_B45_TEXT_JIGGY_COLLECT_10, 
+
+    ASSET_B51_TEXT_BOTTLES_HOW_TO_EXIT_LEVEL = 0xb51,
 
     text_flibbits_meet   = 0xc81,
     text_flibbits_defeat = 0xc82,

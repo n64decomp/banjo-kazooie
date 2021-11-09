@@ -3,10 +3,17 @@
 #include "variables.h"
 #include "prop.h"
 
+extern ActorInfo D_8038C3D0;
+extern ActorInfo D_8038C510;
+extern ActorInfo D_8038C580;
 extern ActorInfo D_8038C5E0;
 extern ActorInfo D_8038C604;
-extern ActorInfo D_8038C580;
-extern ActorInfo D_8038C510;
+extern ActorInfo D_8038C628;
+extern ActorInfo D_8038C64C;
+extern ActorInfo D_8038C670;
+extern ActorInfo D_8038C694;
+extern ActorInfo D_8038C6B8;
+extern ActorInfo D_8038C6DC;
 extern ActorInfo D_8038C718;
 extern ActorInfo D_8038C790;
 extern ActorInfo D_8038C7B4;
@@ -15,13 +22,6 @@ extern ActorInfo D_8038C8B0;
 extern ActorInfo D_8038C8D4;
 extern ActorInfo D_8038C8F8;
 extern ActorInfo D_8038CCB0;
-extern ActorInfo D_8038C628;
-extern ActorInfo D_8038C64C;
-extern ActorInfo D_8038C670;
-extern ActorInfo D_8038C694;
-extern ActorInfo D_8038C6B8;
-extern ActorInfo D_8038C6DC;
-extern ActorInfo D_8038C3D0;
 
 void func_80388AC0(void)
 {

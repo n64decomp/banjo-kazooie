@@ -139,7 +139,7 @@ void bsbshock_init(void){
     func_802979AC(yaw_getIdeal(), func_80297A64());
     player_setYVelocity(D_80364A70);
     gravity_set(D_80364A74);
-    func_8030E484(0xe);
+    func_8030E484(SFX_E_SHOCKSPRING_BOING);
     func_8029E064(1);
     func_8029E070(1);
     func_80295610(9);
@@ -156,7 +156,7 @@ void bsbshock_update(void){
     func_802B6FA8();
     _get_velocity(&sp20);
     if(animctrl_isAt(aCtrl, 0.7f))
-        func_8030E484(0x53);
+        func_8030E484(SFX_53_BANJO_HUIII);
 
     if(button_released(BUTTON_A) && 0.0f < sp20[1])
         gravity_reset();

@@ -64,7 +64,7 @@ void func_802A0630(void){
             if(!animctrl_isAt(mvmnt, 0.266f))
                 break;
             player_setYVelocity(1600.0f);
-            func_8030E58C(0xc, 0.7f);
+            func_8030E58C(SFX_C_TAKING_FLIGHT_LIFTOFF, 0.7f);
             D_8037D2C0 = 1;
             break;
         case 1:

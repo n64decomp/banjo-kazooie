@@ -14,7 +14,7 @@ void func_80386768(Actor *);
 
 
 /* .data */
-ActorInfo chorangepadInfo = { 0x66, actor_orange_pad, model_orange_pad, 0, NULL,
+ActorInfo chorangepadInfo = { 0x66, ACTOR_57_ORANGE_PAD, model_orange_pad, 0, NULL,
     func_80386768, func_80326224, func_80325888,
     {0,0,0,0}, 0.0f, {0,0,0,0}
 };
@@ -28,7 +28,7 @@ void func_803863F0(s32 x, s32 y, s32 z){
 
     TUPLE_ASSIGN(pos, x, y, z);
     
-    jiggySpawn(JIGGY_MM_ORANGE_PADS, &pos);
+    jiggySpawn(JIGGY_8_MM_ORANGE_PADS, &pos);
 }
 
 void func_80386444(ActorMarker *arg0){
@@ -55,7 +55,7 @@ void func_80386444(ActorMarker *arg0){
             sp44[1] += 50.0f;
             timedFunc_set_3(0.6f, (TFQM3) func_803863F0, (s32)sp44[0], (s32)sp44[1], (s32)sp44[2]);
             func_8025A6EC(JINGLE_PUZZLE_SOLVED_FANFARE, 0x7FFF);
-            if(!jiggyscore_isCollected(JIGGY_MM_ORANGE_PADS)){
+            if(!jiggyscore_isCollected(JIGGY_8_MM_ORANGE_PADS)){
                 func_80311480(0xB3B, 4, NULL, NULL, NULL, NULL);
             }
         }// L803865D8

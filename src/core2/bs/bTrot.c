@@ -32,9 +32,9 @@ void func_802A87C0(void){
 
 void func_802A880C(s32 arg0){
     if(arg0)
-        func_8030E58C(0x49, 0.96f);
+        func_8030E58C(SFX_49_KAZOOIE_RA, 0.96f);
     else
-        func_8030E58C(0x49, 1.04f);
+        func_8030E58C(SFX_49_KAZOOIE_RA, 1.04f);
 }
 
 void func_802A8850(void){
@@ -362,7 +362,7 @@ void bsbtrot_jump_init(void){
     func_802979AC(yaw_getIdeal(), func_80297A64());
     player_setYVelocity(D_80364ABC);
     gravity_set(D_80364AC0);
-    func_8030E484(0x48);
+    func_8030E484(SFX_48_KAZOOIE_RUUH);
     D_8037D3A4 = 0;
 }
 

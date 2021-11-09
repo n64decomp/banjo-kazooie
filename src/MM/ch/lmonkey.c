@@ -63,7 +63,7 @@ void func_803883AC(Actor *this){
 void func_803884C0(s32 x, s32 y, s32 z){
     f32 sp1C[3];
     TUPLE_ASSIGN(sp1C, x, y, z);
-    jiggySpawn(JIGGY_MM_CHIMPY, sp1C);
+    jiggySpawn(JIGGY_9_MM_CHIMPY, sp1C);
 }
 
 void func_80388514(ActorMarker *marker, s32 arg1, s32 arg2){
@@ -90,7 +90,7 @@ void func_803885D0(Actor *this){
             case 1://L80388690
                 if(mapSpecificFlags_get(2)){
                     func_80328A84(this, 4);
-                    if(!jiggyscore_isCollected(JIGGY_MM_CHIMPY)){
+                    if(!jiggyscore_isCollected(JIGGY_9_MM_CHIMPY)){
                         func_80311480(0xB40, 0xE, this->position, this->marker, func_80388514, NULL);
                     }else{//L803886E8
                         func_80388514(this->marker, 0xB40, -1);

@@ -509,7 +509,7 @@ void func_8028BCA0(Prop *prop){
 
             case 0x28: //L8028BF74
                 if( spC4 == 6){
-                    func_8030E484(0x20);
+                    func_8030E484(SFX_20_METAL_CLANK_1);
                 }
                 else{
                     func_8030E6D4(0x65);

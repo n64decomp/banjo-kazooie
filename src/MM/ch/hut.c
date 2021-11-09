@@ -29,7 +29,7 @@ ActorAnimationInfo chhutAnimations[3] = {
 
 s32 D_803898D8[6] = { 0, 1, 2, 3, 6, 4};
 
-ActorInfo chhutInfo = { 0x51, actor_MM_hut, model_MM_hut, 0, chhutAnimations,
+ActorInfo chhutInfo = { 0x51, ACTOR_9_MM_HUT, model_MM_hut, 0, chhutAnimations,
     chhut_update, func_80326224, chhut_draw,
     {0,0,1,0}, 0.0f, {0,0,0,0}
 };
@@ -57,7 +57,7 @@ void func_803869EC(ActorMarker *this){
 
     actorPtr = marker_getActor(this);
     actorPtr = func_8032813C(0x4B, actorPtr->position, 0);
-    func_8032813C(actor_steam_2, actorPtr->position, 0);
+    func_8032813C(ACTOR_4D_STEAM_2, actorPtr->position, 0);
     
     if(this);
 }
@@ -88,7 +88,7 @@ void    chhut_update(Actor *this){
                 sp3C[1] = this->position_y;
                 sp3C[2] = this->position_z;
                 sp3C[1] += 125.0;
-                func_8030E484(0x5B);
+                func_8030E484(SFX_5B_HEAVY_STUFF_FALLING);
                 func_80328A84(this, 1);
                 actor_playAnimationOnce(this);
                 func_802C3C88(func_803869EC, this->marker);

@@ -63,7 +63,7 @@ void func_8038EB4C(ActorMarker *this){
 
     thisActor = marker_getActor(this);
     thisActor = func_8032813C(ACTOR_D_WOOD_DEMOLISHED, thisActor->position, NULL);
-    thisActor = func_8032813C(actor_steam_2, thisActor->position, NULL);
+    thisActor = func_8032813C(ACTOR_4D_STEAM_2, thisActor->position, NULL);
     if(this);
 }
 

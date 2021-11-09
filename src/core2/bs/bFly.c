@@ -71,7 +71,7 @@ void bsbfly_enter_update(void){
         if(animctrl_isAt(aCtrl, 0.2416f)){
             animctrl_setDuration(aCtrl, 2.4f);
             player_setYVelocity(1600.0f);
-            func_8030E58C(0xC, 0.7f);
+            func_8030E58C(SFX_C_TAKING_FLIGHT_LIFTOFF, 0.7f);
             D_8037D344 = 1;
         }
         break;

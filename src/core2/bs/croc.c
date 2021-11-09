@@ -334,9 +334,9 @@ static void __bscroc_recoil_init(s32 damage){
     animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
     func_802875AC(aCtrl, "bscroc.c", 0x2a5);
     if(damage == 1)
-        func_8030E58C(0x38, 1.8f);
+        func_8030E58C(SFX_38_BANJO_AYE_1, 1.8f);
     else
-        func_8030E58C(0x56, 1.8f);
+        func_8030E58C(SFX_56_BANJO_HUI, 1.8f);
     
     _player_getPosition(&sp2C);
     func_80294980(&sp20);
@@ -440,7 +440,7 @@ void bscroc_die_init(void){
     func_802914CC(0xd);
     func_802BF2C0(30.0f);
     func_8029C984();
-    func_8030E58C(0x36, 1.8f);
+    func_8030E58C(SFX_36_BANJO_DOH, 1.8f);
     func_8029E3C0(0, 2.9f);
     D_8037D3EC = 0;
 }
@@ -567,15 +567,15 @@ void bscroc_eat_bad_update(void){
     func_802ABE70();
     func_80299628(0);
     if(animctrl_isAt(aCtrl, 0.3518f)){
-        func_8030E58C(0xA0, 0.9f);
+        func_8030E58C(SFX_A0_COUGHING, 0.9f);
     }
 
     if(animctrl_isAt(aCtrl, 0.5282f)){
-        func_8030E58C(0xA0, 0.85f);
+        func_8030E58C(SFX_A0_COUGHING, 0.85f);
     }
 
     if(animctrl_isAt(aCtrl, 0.6671f)){
-        func_8030E484(0xc6);
+        func_8030E484(SFX_C6_SHAKING_MOUTH);
     }
 
     if(animctrl_isStopped(aCtrl)){
@@ -646,10 +646,10 @@ void bscroc_eat_good_update(void){
     }//L802AD4B0
 
     if(animctrl_isAt(aCtrl, 0.62f))
-        func_8030EB00(0x4C, 1.2f, 1.3f);
+        func_8030EB00(SFX_4C_LIP_SMACK, 1.2f, 1.3f);
 
     if(D_8037D3F4 == 2 && animctrl_isAt(aCtrl, 0.9))
-        func_8030EB00(0xae, 1.45f, 1.55f);
+        func_8030EB00(SFX_AE_YUMYUM_TALKING, 1.45f, 1.55f);
 
     bs_setState(next_state);
 }

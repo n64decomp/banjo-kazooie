@@ -29,17 +29,17 @@ void func_803876D0(Actor *);
 /* .data */
 ActorAnimationInfo chCongaAnimations[9] = {
     {0, 0.0f},
-    {anim_conga_idle, 3.8f},
-    {anim_conga_ow, 1.0f},
+    {ASSET_51_ANIM_CONGA_IDLE, 3.8f},
+    {ASSET_52_ANIM_CONGA_OW, 1.0f},
     {ASSET_53_ANIM_CONGA_DEFEAT, 2.0f},
-    {0x54, 1.4f},
+    {ASSET_54_ANIM_CONGA_THROW, 1.4f},
     {ASSET_55_ANIM_CONGA_BEAT_CHEST, 0.4f},
-    {anim_conga_raise_arms, 0.9f},
+    {ASSET_56_ANIM_CONGA_RAISE_ARMS, 0.9f},
     {0xA2, 1.6f},
-    {anim_conga_ow, 1.0f}
+    {ASSET_52_ANIM_CONGA_OW, 1.0f}
 };
 
-ActorInfo D_80389998 = { 0x7, actor_conga, model_conga, 1, chCongaAnimations,
+ActorInfo D_80389998 = { 0x7, ACTOR_8_CONGA, model_conga, 1, chCongaAnimations,
     func_803876D0, func_80326224, func_80325888,
     {0x00,0x00,0x03,0x33}, 0.0f, {0,0,0,0}
 };
@@ -77,13 +77,13 @@ void func_80386FE8(void){
         && 0.85 < randf ()
         && !func_803114B0()
     ){
-        func_8030E58C(((s32)(randf ()*256.0f) & 1)? 0x22: 0x23, 1.0f);
+        func_8030E58C(((s32)(randf ()*256.0f) & 1)? SFX_22_KONGA_NOISE_1: SFX_23_KONGA_NOISE_2, 1.0f);
     }
 }
 
 void func_8038708C(Actor *this, s32 anim_id){
     func_80328B8C(this, anim_id, 0.0f, 1);
-    func_8030E58C(0x24, randf2(0.9f, 1.1f));
+    func_8030E58C(SFX_24_KONGA_NOISE_3, randf2(0.9f, 1.1f));
 }
 
 void func_803870D0(Actor *this, ActorMarker *arg1){
@@ -116,7 +116,7 @@ void func_80387168(ActorMarker *this, s32 arg1){
 
             actorPtr->unk10_12 = MIN(actorPtr->unk38_31, 0xA);
             if( actorPtr->unk38_31 == 3 
-                && !jiggyscore_isCollected(0xA)
+                && !jiggyscore_isCollected(JIGGY_A_MM_CONGA)
             ){
                 func_80328B8C(actorPtr, 8, 0 ,1);
                 func_80324E60(0.0f, 0x10);
@@ -129,7 +129,7 @@ void func_80387168(ActorMarker *this, s32 arg1){
             ){
                 func_8038708C(actorPtr, 2);
                 if(actorPtr->unk38_31 == 1){
-                    func_80311480(text_conga_hit_by_egg, 4, actorPtr->position, 0, 0, 0);
+                    func_80311480(ASSET_B39_TEXT_CONGA_HIT_BY_EGG, 4, actorPtr->position, 0, 0, 0);
                 }
             }
         }
@@ -140,12 +140,12 @@ void func_80387168(ActorMarker *this, s32 arg1){
 int func_803872EC(void){
     s32 text_id = func_803114C4();
 
-    return text_id == text_conga_safe_up_here
-        || text_id == text_conga_defeat
+    return text_id == ASSET_B37_TEXT_CONGA_SAFE_UP_HERE
+        || text_id == ASSET_B38_TEXT_CONGA_DEFEAT
         || func_803203FC(0x1F)
-        || text_id == text_conga_orange_pad_jiggy
-        || text_id == text_jiggy_collect_10
-        || text_id == text_bottles_how_to_exit_level;
+        || text_id == ASSET_B3B_TEXT_CONGA_ORANGE_PAD_JIGGY
+        || text_id == ASSET_B45_TEXT_JIGGY_COLLECT_10
+        || text_id == ASSET_B51_TEXT_BOTTLES_HOW_TO_EXIT_LEVEL;
 }
 
 void func_80387370(ActorMarker *this, s32 arg1, s32 arg2){
@@ -172,7 +172,7 @@ void func_803873C8(ActorMarker *congaMarker){
     congaPtr->unk10_12 -= (congaPtr->unk10_12 && ( conga_state == 7));
     func_80387F44();
     congaPtr->unk28 = 2.0f;
-    orangePtr = func_8032811C(actor_orange_projectile, conga_localPtr->orangeSpawnPosition, congaPtr->yaw);
+    orangePtr = func_8032811C(ACTOR_14_ORANGE_PROJECTILE, conga_localPtr->orangeSpawnPosition, congaPtr->yaw);
 
     if(orangePtr != NULL){
         player_getPosition(&plyr.pos);
@@ -222,7 +222,7 @@ void func_803876D0(Actor *this){
         }
     }
     func_803300A8(this->marker, 0, 0, func_80387168);
-    if( !func_80329530(this, 0x834)
+    if( !func_80329530(this, 2100)
         && this->state != 2
         && this->state != 8
     ){
@@ -233,17 +233,17 @@ void func_803876D0(Actor *this){
         return;
     }
 
-    sp3C = func_80329530(this, 0x3E8);
+    sp3C = func_80329530(this, 1000);
     if( func_8032A9E4(this->conga.unk10, this->conga.unk18, this->conga.unk1C) 
         && !this->unk138_23
-        && func_80311480(text_conga_safe_up_here, 0, 0, 0, 0, 0)
+        && func_80311480(ASSET_B37_TEXT_CONGA_SAFE_UP_HERE, 0, 0, 0, 0, 0)
     ){
         this->unk138_23 = 1;
         mapSpecificFlags_set(0xA, 1);
     }//L803878F8
 
     if( sp3C && !this->unk138_24){
-        if(func_80311480((player_getTransformation()== TRANSFORM_2_TERMITE) ? text_conga_meet_as_termite : text_conga_meet, 0, this->position, 0,0,0)){
+        if(func_80311480((player_getTransformation()== TRANSFORM_2_TERMITE) ? ASSET_B3E_TEXT_CONGA_MEET_AS_TERMITE : ASSET_B3C_TEXT_CONGA_MEET, 0, this->position, 0,0,0)){
             this->unk138_24 = 1;
         }
     } //L80387968
@@ -305,7 +305,7 @@ void func_803876D0(Actor *this){
             if( actor_animationIsAt(this, 0.9f)
                 || actor_animationIsAt(this, 0.4f)
             ){
-                func_8030E6D4(0x3fb);
+                func_8030E6D4(SFX_3FB_UNKNOWN);
             }
             break;
 
@@ -335,7 +335,7 @@ void func_803876D0(Actor *this){
             actor_playAnimationOnce(this);
             if(actor_animationIsAt(this, 0.99f)){
                 func_80328B8C(this, 3, 0.0f, 1);
-                func_80311480(0xb38, 0xe, this->position, this->marker, func_80387370, NULL);
+                func_80311480(ASSET_B38_TEXT_CONGA_DEFEAT, 0xe, this->position, this->marker, func_80387370, NULL);
             }
             break;
 

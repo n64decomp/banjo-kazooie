@@ -49,7 +49,7 @@ segments:
       - [0x34D0, .data, ch/hut]
       - [0x3530, .data, ch/chimpystump]
       - [0x3560, .data, ch/conga]
-      - [0x35D0, bin, data_35D0]
+      - [0x35D0, .data, code_1AD0]
       - [0x35E0, .data, ch/orange]
       - [0x3620, .data, ch/lmonkey]
       - [0x3670, .data, ch/grublin]
