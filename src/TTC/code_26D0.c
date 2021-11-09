@@ -25,25 +25,25 @@ extern ActorInfo D_8038C3D0;
 
 void func_80388AC0(void)
 {
-    func_803053E8(&D_8038C5E0, actor_new, 0);
-    func_803053E8(&D_8038C604, actor_new, 0);
-    func_803053E8(&D_8038C580, actor_new, 0X4100168);
-    func_803053E8(&D_8038C510, actor_new, 0X4000101);
-    func_803053E8(&D_8038C718, actor_new, 0X188);
-    func_803053E8(&D_8038C790, actor_new, 0X148);
-    func_803053E8(&D_8038C7B4, actor_new, 0X148);
-    func_803053E8(&D_8038C7D8, actor_new, 0X148);
-    func_803053E8(&D_8038C8B0, actor_new, 0X400);
-    func_803053E8(&D_8038C8D4, actor_new, 0X400);
-    func_803053E8(&D_8038C8F8, actor_new, 0X400);
-    func_803053E8(&D_8038CCB0, actor_new, 0X2000048);
-    func_803053E8(&D_8038C628, actor_new, 0X8680);
-    func_803053E8(&D_8038C64C, actor_new, 0X400);
-    func_803053E8(&D_8038C670, actor_new, 0X20404);
-    func_803053E8(&D_8038C694, actor_new, 0X400);
-    func_803053E8(&D_8038C6B8, actor_new, 0X400);
-    func_803053E8(&D_8038C6DC, actor_new, 0X400);
-    func_803053E8(&D_8038C3D0, actor_new, 0X2000041);
+    spawnableActorList_add(&D_8038C5E0, actor_new, 0);
+    spawnableActorList_add(&D_8038C604, actor_new, 0);
+    spawnableActorList_add(&D_8038C580, actor_new, 0X4100168);
+    spawnableActorList_add(&D_8038C510, actor_new, 0X4000101);
+    spawnableActorList_add(&D_8038C718, actor_new, 0X188);
+    spawnableActorList_add(&D_8038C790, actor_new, 0X148);
+    spawnableActorList_add(&D_8038C7B4, actor_new, 0X148);
+    spawnableActorList_add(&D_8038C7D8, actor_new, 0X148);
+    spawnableActorList_add(&D_8038C8B0, actor_new, 0X400);
+    spawnableActorList_add(&D_8038C8D4, actor_new, 0X400);
+    spawnableActorList_add(&D_8038C8F8, actor_new, 0X400);
+    spawnableActorList_add(&D_8038CCB0, actor_new, 0X2000048);
+    spawnableActorList_add(&D_8038C628, actor_new, 0X8680);
+    spawnableActorList_add(&D_8038C64C, actor_new, 0X400);
+    spawnableActorList_add(&D_8038C670, actor_new, 0X20404);
+    spawnableActorList_add(&D_8038C694, actor_new, 0X400);
+    spawnableActorList_add(&D_8038C6B8, actor_new, 0X400);
+    spawnableActorList_add(&D_8038C6DC, actor_new, 0X400);
+    spawnableActorList_add(&D_8038C3D0, actor_new, 0X2000041);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/TTC/code_26D0/func_80388C78.s")

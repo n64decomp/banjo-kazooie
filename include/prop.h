@@ -6,10 +6,6 @@
 #include "structs.h"
 #include "core2/animctrl.h"
 
-enum ch_id{
-    ch_id_bigbutt = 4
-};
-
 typedef struct sprite_prop_s{
     u32 unk0_31:0xC;
     u32 pad0_19:0xA;
@@ -44,19 +40,21 @@ typedef struct actor_prop_s{
     u16 unk8_0:1;
 } ActorProp;
 
+typedef void(*MarkerCollisionFunc)(struct actorMarker_s *this, struct actorMarker_s *other);
+
 typedef struct actorMarker_s{
     ActorProp*  propPtr;
     struct cude_s*     cubePtr;
     s32         unk8;
-    void       ( *unkC)(struct actorMarker_s *, s32);
-    s32         unk10;
+    MarkerCollisionFunc unkC; //ow_func
+    MarkerCollisionFunc unk10;
     u32         yaw:9;
-    u32         pad14_22:1;
+    u32         unk14_22:1;
     u32         unk14_21:1;
     u32         unk14_20:10; //contains jingo_id for chjinjo
     u32         unk14_19:11; //used in ch/jiggy
     u32         unk18;
-    s32         unk1C;
+    MarkerCollisionFunc unk1C; //die_func
     s32         unk20;
     s32         unk24;
     s32         unk28;
@@ -437,7 +435,7 @@ typedef struct actor_info_s{
 
 typedef struct actor_spawn_s{
     ActorInfo   *infoPtr;
-    Actor *(*spawnFunc)(f32*, f32*, void*, s32);
+    Actor *(*spawnFunc)(s32[3], s32, ActorInfo*, u32);
     s32         unk8;
 } ActorSpawn;
 

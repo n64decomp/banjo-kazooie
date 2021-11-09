@@ -16,7 +16,7 @@ void func_802F9AA0(struct4Es *this, s32 arg1){
     this->unk3E = arg1;
 }
 
-s32 func_802F9AA8(enum SFX_E arg0){
+s32 func_802F9AA8(enum sfx_e arg0){
     s32 indx;
     struct4Es *iPtr;
     struct4Es *endPtr;

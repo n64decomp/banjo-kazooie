@@ -54,7 +54,7 @@ void func_80288AE0(s32 arg0){
     func_8025A6EC((u16) (arg0 >> 16), (u16)arg0 - 1);
 }
 
-void func_80288B14(enum SFX_E arg0){
+void func_80288B14(enum sfx_e arg0){
     func_8025A7DC(arg0);
 }
 
@@ -158,7 +158,7 @@ void func_80288F78(vector(struct2s) **arg0, f32 arg1, s32 arg2){
     func_80288D40(arg0, arg1, func_802889F4, arg2);
 }
 
-void func_80288FA8(vector(struct2s) **arg0, f32 arg1, enum SFX_E sfx_id){
+void func_80288FA8(vector(struct2s) **arg0, f32 arg1, enum sfx_e sfx_id){
     func_80288D40(arg0, arg1, func_80288B14, sfx_id);
 }
 

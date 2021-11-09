@@ -110,23 +110,19 @@ void func_803870D0(Actor *this, ActorMarker *arg1){
     marker_getActor(arg1)->unk100 = this->marker;
 }
 
-void func_80387100(ActorMarker *this);
-#ifdef NONMATCHING
 void func_80387100(ActorMarker *this){
+    ActorMarker *m = *(ActorMarker **)&this;
     Actor* actorPtr;
     f32 sp1C[3];
 
-    actorPtr = marker_getActor(this);
+    actorPtr = marker_getActor(m);
     sp1C[0] = actorPtr->position_x;
     sp1C[1] = actorPtr->position_y + 60.0f;
     sp1C[2] = actorPtr->position_z;
     func_802C8F70(0.0f);
-    func_80333270(0xA, sp1C, func_803870D0, this);
+    func_80333270(0xA, sp1C, func_803870D0, m);
 
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/MM/ch/conga/func_80387100.s")
-#endif
 
 void func_80387168(ActorMarker *this, s32 arg1){
     Actor *actorPtr;

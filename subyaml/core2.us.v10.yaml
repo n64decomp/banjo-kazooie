@@ -493,6 +493,7 @@ segments:
   - [0xEF360, .rodata, ch/jiggy]
   - [0xEF3E0, .rodata, ch/jigsawdance]
   - [0xEF450, .rodata, code_41460]
+  #- [0xEF480, .rodata, code_41FB0] #temp
   - [0xEF480, bin, data_EF480]
   - [0xEF4C0, .rodata, ch/musicnote]
   - [0xEF4D0, bin, data_EF4D0]
@@ -500,6 +501,8 @@ segments:
   - [0xEF5F0, bin, data_EF5F0] #part of ch/jinjo .rodata
   - [0xEF640, .rodata, ch/beehive]
   - [0xEF650, bin, data_EF650]
+  - [0xEFB10, .rodata, code_4C020]
+  - [0xEFDB0, bin, data_EFDB0]
   - [0xEFE30, .rodata, ch/mole]
   - [0xEFED0, bin, data_EFED0]
   - [0xEFF40, .rodata, code_54D50]

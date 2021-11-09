@@ -316,8 +316,8 @@ void func_8038CC9C(Actor *this, s32 new_state){
         func_80324C88(1.35f, 0x6C, 1.0f, 0x7d00);
         func_80324C88(1.8f, 0x6C, 1.0f, 0x7d00);
         if(func_803203FC(2)){
-            func_80346414(6, 1);
-            func_80346414(0, 0x1067);
+            func_80346414(ITEM_6_HOURGLASS, 1);
+            func_80346414(ITEM_0_HOURGLASS_TIMER, 0x1067);
             func_80324E88(2.4f);
             func_80324E38(2.4f, 0);
             timedFunc_set_2(2.4f, (TFQM2)func_8038C370, (s32)this->marker, 3);
@@ -363,7 +363,7 @@ void func_8038CC9C(Actor *this, s32 new_state){
                 comusic_8025AB44(MUSIC_RBB_BOOMBOX, 0, 0x190);
                 func_8025AABC(MUSIC_RBB_BOOMBOX);
                 if(func_803203FC(2)){
-                    func_80346414(6, 0);
+                    func_80346414(ITEM_6_HOURGLASS, 0);
                     func_803204E4(3, 0);
                     func_803204E4(5, 1);
                 }
@@ -575,7 +575,7 @@ void func_8038D8BC(Actor *this){
 
     if(this->state == 3 || this->state == 4){
         if(func_803203FC(2)){
-            if(item_empty(0)){
+            if(item_empty(ITEM_0_HOURGLASS_TIMER)){
                 func_803204E4(3, 0);
                 func_803204E4(5, 0);
                 func_8038CC9C(this, 8);

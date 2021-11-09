@@ -82,7 +82,7 @@ u32 func_8034A054(void){
     return D_803860D8*sizeof(DemoInput);
 }
 
-void demo_load(enum MAP_E map, s32 demo_id){
+void demo_load(enum map_e map, s32 demo_id){
     if(D_803860D4)
         demo_free();
     D_803860D4 = assetcache_get(0x504 + map_getLevel(map) + demo_id*0xD);

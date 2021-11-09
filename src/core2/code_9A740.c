@@ -15,7 +15,7 @@ extern u8 D_80383301;
 #ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9A740/func_803216D0.s")
 #else
-void func_803216D0(enum MAP_E map){
+void func_803216D0(enum map_e map){
     s32 prev_lvl = D_80383301;
     D_80383301 = map_getLevel(map);
     load_overlay(level_2_overlay(D_80383301));

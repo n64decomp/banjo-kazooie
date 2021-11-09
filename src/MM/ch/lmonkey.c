@@ -11,10 +11,10 @@ void func_80324E60(f32, s32);
 void func_8028F31C(f32 *, f32, s32, Actor **);
 void func_8028FA34(s32, Actor *);
 
-extern s32 D_80389A5C;
 
 void func_803885D0(Actor *);
 
+/* .data */
 ActorAnimationInfo chlmonkeyAnimations[5] = {
     {0, 0.0f},
     {0x5C, 2.3f},
@@ -23,31 +23,12 @@ ActorAnimationInfo chlmonkeyAnimations[5] = {
     {0x5C, 2.3f}
 };
 
-
 ActorInfo chlmonkeyInfo = { 0xA, ACTOR_F_CHIMPY, model_chimpy, 1, chlmonkeyAnimations,
     NULL, func_803885D0, func_80325888,
     {0x09,0xC4,0,0}, 0.8f, {0,0,0,0}
 };
 
-extern f32 D_80389C00;
-extern f32 D_80389C04;
-extern f32 D_80389C08;
-extern f64 D_80389C10;
-extern f64 D_80389C18;
-extern f32 D_80389C20;
-extern f32 D_80389C24;
-extern f32 D_80389C28;
-extern f32 D_80389C2C;
-extern f32 D_80389C30;
-extern f64 D_80389C38;
-extern f64 D_80389C40;
-extern f64 D_80389C48;
-// 0000 3810: 3F99999A 3F99999A 49742400 00000000
-// 0000 3820: 3FC99999 9999999A 3FEB3333 33333333
-// 0000 3830: 40133333 4039999A 4089999A 4089999A
-// 0000 3840: 3CA3D70A 00000000 3FC851EB 851EB852
-// 0000 3850: 3FCEB851 EB851EB8 3FEFAE14 7AE147AE
-
+/* .code */
 void func_80388300(Actor **arg0){
     func_8028F31C((*arg0)->position, 800.0f, 0x29, arg0);
     if( func_80329530(*arg0, 0x159) 
@@ -56,31 +37,28 @@ void func_80388300(Actor **arg0){
     ){
         func_8028FA34(0xc6, *arg0);
         (*arg0)->unk138_24 = 1;
-        func_80324E60(D_80389C00, 0xF);
-        func_80324E38(D_80389C04, 3);
+        func_80324E60(1.2f, 0xF);
+        func_80324E38(1.2f, 3);
     }
     if(arg0);
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/MM/ch/lmonkey/func_803883AC.s")
-#else
 void func_803883AC(Actor *this){
     f32 sp2C;
     f32 sp28;
-    s32 v0 = 6;
+    static D_80389A5C = 0;
+    
 
-    sp2C = ml_map_f(func_8032970C(), D_80389C08, 343000000.0f, 18000.0f, 0.0f);
+    sp2C = ml_map_f(func_8032970C(this), 1000000.0f, 343000000.0f, 18000.0f, 0.0f);
     sp28 = randf();
-    if(--D_80389A5C < 0){
-        if(randf() < D_80389C10){
-            D_80389A5C = v0;
-            func_8030E6A4(((sp28 < 0.5) ? 0x58 : 0x59 ), randf()*0.25 + D_80389C18, sp2C);
+    D_80389A5C--;
+    if(D_80389A5C < 0){
+        if(randf() < 0.2){
+            D_80389A5C = 6;
+            func_8030E6A4(((sp28 < 0.5) ? SFX_58_CHIMPY_NOISE_1 : SFX_59_CHIMPY_NOISE_2 ), randf()*0.25 + 0.85, sp2C);
         }
     }
 }
-#endif
-
 
 void func_803884C0(s32 x, s32 y, s32 z){
     f32 sp1C[3];
@@ -92,10 +70,10 @@ void func_80388514(ActorMarker *marker, s32 arg1, s32 arg2){
     Actor * actor = marker_getActor(marker);
     mapSpecificFlags_set(4,1);
     func_80328A84(actor, 3);
-    func_80324E60(D_80389C20, 0x12);
-    timedFunc_set_3(D_80389C24,func_803884C0, actor->position_x, actor->position_y + 150.0f, actor->position_z);
-    func_80324E88(D_80389C28);
-    func_80324E38(D_80389C2C, 0);
+    func_80324E60(2.3f, 0x12);
+    timedFunc_set_3(2.9f,func_803884C0, actor->position_x, actor->position_y + 150.0f, actor->position_z);
+    func_80324E88(4.3f);
+    func_80324E38(4.3f, 0);
 }
 
 void func_803885D0(Actor *this){
@@ -128,7 +106,7 @@ void func_803885D0(Actor *this){
                         this->unk138_24 = 1;
                     }//L80388774
                     actor_loopAnimation(this);
-                    func_80328BD4(this, 2, 0.0f, -1, D_80389C30);
+                    func_80328BD4(this, 2, 0.0f, -1, 0.02f);
                 }
                 break;
             case 2: //L803887A4
@@ -144,17 +122,16 @@ void func_803885D0(Actor *this){
             case 3: //L803887F4
                 func_80343DEC(this);
                 actor_loopAnimation(this);
-                if(D_80389C38 <= this->unk48){
+                if(0.19 <= this->unk48){
                     mapSpecificFlags_set(0, 1);
                 }
-                if(D_80389C40 <= this->unk48){
+                if(0.24 <= this->unk48){
                     mapSpecificFlags_set(3, 1);
                 }
-                if(D_80389C48 <= this->unk48){
+                if(0.99 <= this->unk48){
                     marker_despawn(this->marker);
                 }
                 break;
-            
         }
     }//L80388898
 }

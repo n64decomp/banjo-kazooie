@@ -16,7 +16,7 @@ struct
     f32 unk1C;
 }D_80382410;
 
-struct48s * func_8030B060(enum MAP_E map_id){
+struct48s * func_8030B060(enum map_e map_id){
     struct48s * v1 = D_8036BD40;
     while(v1->map){
         if(map_id == v1->map){

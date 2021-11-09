@@ -5,7 +5,7 @@
 void func_802D07C8(Actor *this);
 
 typedef struct{
-    s32 unk0; //enum SFX_E
+    s32 unk0; //enum sfx_e
     s16 unk4;
     s16 unk6;
     s32 unk8;

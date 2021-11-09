@@ -60,17 +60,16 @@ Actor *func_802E1AC0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     func_80325888(marker, gfx, mtx, vtx);
 }
 
-#ifndef NONMATCHING
-void func_802E1B24(ActorMarker *marker);
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/ch/code_5AB30/func_802E1B24.s")
-#else
 void func_802E1B24(ActorMarker *marker){
-    Actor *actor = marker_getActor(marker);
-    Actor *other = spawn_child_actor(ACTOR_125_SNOWBALL, &actor);
+    Actor *actor;
+    Actor *other;
     f32 sp1C[3];
-    
-    if(marker->unk14_21){
-        func_8034A174(marker->unk44, 5, sp1C);
+    ActorMarker *m = *(ActorMarker **)&marker;
+
+    actor = marker_getActor(m);
+    other = spawn_child_actor(ACTOR_125_SNOWBALL, &actor);
+    if(m->unk14_21){
+        func_8034A174(m->unk44, 5, sp1C);
     }
     else{
         sp1C[0] = actor->position[0];
@@ -82,33 +81,33 @@ void func_802E1B24(ActorMarker *marker){
     other->position[1] = sp1C[1];
     other->position[2] = sp1C[2];
 }
-#endif
 
-#ifndef NONMATCHING
-void func_802E1BD0(ActorMarker *marker);
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/ch/code_5AB30/func_802E1BD0.s")
-#else
 void func_802E1BD0(ActorMarker *marker){
-    Actor *actor = marker_getActor(marker);
-    Actor *other = spawn_child_actor(ACTOR_126_SIR_SLUSH_HAT, &actor);
+    Actor *actor;
+    Actor *other;
     f32 sp2C[3];
+    s32 sp28;
+    ActorMarker *m = *(ActorMarker **)&marker;
 
-    func_8034A174(marker->unk44, 6, sp2C);
-    if(1){
+    actor = marker_getActor(m);
+    other = spawn_child_actor(ACTOR_126_SIR_SLUSH_HAT, &actor);
+
+    func_8034A174(m->unk44, 6, sp2C);
+
     other->position[0] = sp2C[0];
     other->position[1] = sp2C[1];
     other->position[2] = sp2C[2];
-    }
+    
 
     other->yaw = actor->yaw + 180.0f;
     other->velocity[0] = other->velocity[1] = other->velocity[2] = 0.0f;
 
     other->velocity[0] = 34.0f;
 
-    ml_vec3f_yaw_rotate_copy(other->velocity, other->velocity, other->yaw - ((func_8023DB5C() & 1)? 0x3C : 0x78));
+    sp28 = (func_8023DB5C() & 1)? 0x3C : 0x78;
+    ml_vec3f_yaw_rotate_copy(other->velocity, other->velocity, other->yaw - sp28);
     other->velocity[1] = 30.0f;
 }
-#endif
 
 void func_802E1CB8(f32 position[3], s32 count){
     struct30s *particleSpawner = func_802F0BD0(count);
@@ -318,6 +317,4 @@ void func_802E20E8(Actor *this){
             }
             break;
     }
-
 }
-

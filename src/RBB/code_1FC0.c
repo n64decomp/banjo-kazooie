@@ -39,7 +39,7 @@ void func_803883B0(Actor *this, s32 arg1){
 void func_80388430(ActorMarker * marker, s32 arg1){
     Actor * actor = marker_getActor(marker);
     ActorLocal_RBB_1FC0 *local = (ActorLocal_RBB_1FC0 *) &actor->local;
-    func_8030E6D4(0x111);
+    func_8030E6D4(SFX_111_WHIPCRACK_DEATH);
     local->unk5 = 1;
 }
 

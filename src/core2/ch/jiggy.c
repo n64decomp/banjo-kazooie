@@ -75,7 +75,7 @@ void func_802C7B6C(u32 arg0){
 void func_802C7B8C(Actor *this, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6){
     if( !mapSpecificFlags_get(arg1)
         && mapSpecificFlags_get(arg2)
-        && item_getCount(ITEM_0_TIMER) == 0
+        && item_getCount(ITEM_0_HOURGLASS_TIMER) == 0
     ){
         func_8028FCC8(1);
         actor_collisionOff(this);

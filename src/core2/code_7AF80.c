@@ -4,6 +4,8 @@
 
 #include "prop.h"
 
+extern f32 func_803243D0(struct56s *arg0, f32 arg1[3]);
+
 extern s32 D_803820B8;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80301F10.s")
@@ -196,44 +198,119 @@ s32 func_80304E24(s32 arg0, f32 *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_8030526C.s")
 
+extern ActorInfo D_803675F0;
+extern ActorInfo D_80367838;
+
+extern s32 sSpawnableActorSize; //0x8036A9B0
+extern ActorSpawn *sSpawnableActorList; //0x8036A9B4
+extern struct {
+    struct55s *unk0;
+    u8 pad4[0x24];
+    s32 unk28;
+} D_80381FA0;
+
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80305290.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80305344.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_8030538C.s")
+void spawnableActorList_new(void){
+    sSpawnableActorList = malloc(0);
+    sSpawnableActorSize = 0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_803053B8.s")
+void spawnableActorList_free(void){
+    free(sSpawnableActorList);
+    sSpawnableActorList = NULL;
+    sSpawnableActorSize = 0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_803053E8.s")
+void spawnableActorList_add(ActorInfo *arg0, Actor *(*arg1)(s32[3], s32, ActorInfo *, u32), u32 arg2){
+    sSpawnableActorSize++;
+    sSpawnableActorList = realloc(sSpawnableActorList, sSpawnableActorSize*sizeof(ActorSpawn));
+    sSpawnableActorList[sSpawnableActorSize - 1].infoPtr = arg0;
+    sSpawnableActorList[sSpawnableActorSize - 1].spawnFunc = arg1;
+    sSpawnableActorList[sSpawnableActorSize - 1].unk8 = arg2;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_803054A4.s")
+void spawnableActorList_addIfMapVisited(ActorInfo *arg0, Actor *(*arg1)(s32[3], s32, ActorInfo *, u32), u32 arg2, enum map_e arg3){
+    if( level_get() != LEVEL_6_LAIR
+        || (level_get() == LEVEL_6_LAIR && func_802D6A38(arg3))
+    ){
+        spawnableActorList_add(arg0, arg1, arg2);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80305510.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_803055E0.s")
+Actor * func_803055E0(enum actor_e arg0, s32 arg1[3], s32 arg2, s32 arg3){
+    Actor *actor = func_803056FC(arg0, arg1, arg2);
+    s16 *tmp;
+    s32 sp34[3];
+    f32 sp28[3];
 
-extern s32 D_8036A9B0;
-extern ActorSpawn *D_8036A9B4;
+    if(actor){
+        tmp = func_80305510(arg3);
+        if(tmp){
+            func_80304D4C(tmp, sp34);
+            actor->unk44_14 = func_80341D5C(arg1, sp34);
+        }
+        else{
+            actor->unk44_14 = func_80341C78(arg1);
+        }
+        if(!(actor->unk44_14  < 0)){
+            sp28[0] = (f32)arg1[0];
+            sp28[1] = (f32)arg1[1];
+            sp28[2] = (f32)arg1[2];
+            actor->unk48 = func_803243D0(func_80342038(actor->unk44_14), sp28);
+            actor->marker->unk2C_2 = TRUE;
+        }
+    }
+    return actor;
+}
 
+
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_803056FC.s")
-// Actor *func_803056FC(s32 arg0, f32 *arg1, f32 *arg2) {
-//     s32 phi_a3;
-//     s32 i;
-//     ActorSpawn *cur;
-//     ActorSpawn *next;
-//     ActorInfo *tmp;
+#else
+Actor *func_803056FC(enum actor_e arg0, s32 arg1[3], s32 arg2) {
+    s32 i;
 
-//     if (func_80320248() == 0) {
-//         arg0 = ch_id_bigbutt;
-//     }
-//     for(i=0; i < D_8036A9B0; i++){
-//         if(arg0 == D_8036A9B4[i].infoPtr->actorId)
-//             return D_8036A9B4[i].spawnFunc(arg1, arg2, D_8036A9B4[i].infoPtr, D_8036A9B4[i].unk8);
-//     }
-//     return NULL;
-// }
+    if (func_80320248() == 0) {
+        arg0 = ACTOR_4_BIGBUTT;
+    }
+    for(i=0; i < sSpawnableActorSize; i++){
+        if(arg0 == sSpawnableActorList[i].infoPtr->actorId)
+            return sSpawnableActorList[i].spawnFunc(arg1, arg2, sSpawnableActorList[i].infoPtr, sSpawnableActorList[i].unk8);
+    }
+    return NULL;
+}
+#endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_8030578C.s")
+void func_8030578C(void){
+    int i;
+    u32 sp40;
+    struct55s *iPtr;
+    
+    if(getGameMode() != GAME_MODE_7_ATTRACT_DEMO){
+        osPiReadIo(0xE38, &sp40);
+        sp40 ^= 0x828A;
+        if( (sp40 & 0xffff)
+            && (sSpawnableActorList != NULL)
+        ){
+            for(i = 0; i < sSpawnableActorSize - 1; i++){
+                if(sSpawnableActorList[i].infoPtr == &D_80367838){
+                    sSpawnableActorList[i].infoPtr = &D_803675F0;
+                    sSpawnableActorList[i].spawnFunc = actor_new;
+                    sSpawnableActorList[i].unk8 = 0;
+                    break;
+                }
+            }
+        }
+    }//L80305850
+    for(iPtr = D_80381FA0.unk0; iPtr < D_80381FA0.unk0 + D_80381FA0.unk28; iPtr++){
+        func_80330208(iPtr);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_803058C0.s")
 

@@ -59,8 +59,7 @@ segments:
       - [0x3760, .rodata, ch/hut]
       - [0x3770, bin, data_3770]
       - [0x37F0, .rodata, ch/orange]
-      #- [0x3810, .rodata, ch/lmonkey]
-      - [0x3810, bin, data_3810] #chlmonkey.rodata continued
+      - [0x3810, .rodata, ch/lmonkey]
       - [0x3860, .rodata, ch/grublin]
       - [0x3870, .rodata, ch/jujuhitbox]
       - [0x3880, .rodata, ch/juju]

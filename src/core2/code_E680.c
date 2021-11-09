@@ -29,24 +29,24 @@ void func_80295610(s32 arg0){
             sp28 = 1;
             break;
         case 0x3://L8029569C //
-            if(func_803348C0() == 1){
+            if(func_803348C0() == MAP_1_SM_SPIRAL_MOUNTAIN){
                 sp2C = 0xDFC;
             }
             break;
         case 0x4://L802956B8 //
-            if(func_803348C0() == 1){
+            if(func_803348C0() == MAP_1_SM_SPIRAL_MOUNTAIN){
                 sp2C = 0xE02;
             }
             break;
         case 0x5://L802956D4 //barge
-            if(func_803348C0() == 1){
+            if(func_803348C0() == MAP_1_SM_SPIRAL_MOUNTAIN){
                 sp2C = 0xE05;
             }
             break;
         case 0x6://L802956F0 //slide
             sp28 = 0;
             if(!ability_isUnlocked(ABILITY_10_TALON_TROT)){
-                if(func_803348C0() == 2){
+                if(func_803348C0() == MAP_2_MM_MUMBOS_MOUNTAIN){
                     sp2C = 0xB4D;
                 }
                 else

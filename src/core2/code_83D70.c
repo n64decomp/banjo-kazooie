@@ -13,15 +13,15 @@ extern u8 D_80378434[];
 
 extern u8 D_803823A0[];
 
-MapInfo * func_8030AD00(enum MAP_E map);
+MapInfo * func_8030AD00(enum map_e map);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_83D70/func_8030AD00.s")
 
-enum level_e map_getLevel(enum MAP_E map){
+enum level_e map_getLevel(enum map_e map){
     return func_8030AD00(map)->level_id;
 };
 
 /* returns string containing the map name and index */
-u8 *func_8030AD6C(enum MAP_E map){
+u8 *func_8030AD6C(enum map_e map){
     MapInfo *map_info = func_8030AD00(map);
     D_803823A0[0] = 0;
     strcat(D_803823A0, map_info->name);
@@ -39,7 +39,7 @@ u8 *func_8030AD6C(enum MAP_E map){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_83D70/func_8030AF58.s")
 
-void func_8030AFA0(enum MAP_E arg0){
+void func_8030AFA0(enum map_e arg0){
     s32 level = map_getLevel(arg0);
     if(level > 0 && level < LEVEL_C_BOSS){
         func_80332BEC(arg0);

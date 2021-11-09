@@ -5,6 +5,7 @@
 #include "model.h"
 #define MERGE(a, b) a ## b
 
+typedef int unk_type;
 
 typedef struct{
     f32 x;
@@ -295,7 +296,7 @@ typedef struct struct_16_s{
 }struct16s;
 
 typedef struct struct_18_s{
-    s16 uid; /* enum SFX_E */
+    s16 uid; /* enum sfx_e */
     s16 unk2;
     f32 unk4;
 }struct18s;
@@ -593,5 +594,15 @@ typedef struct{
     u32 unkC_1:1;
     u32 unkC_0:1;
 } struct54s;
+
+typedef struct{
+    u8 pad0[0xC];
+}struct55s;
+
+typedef struct{
+    s32 unk0;
+    u8 pad4[4];
+    f32 unk8[0][3];
+} struct56s;
 
 #endif

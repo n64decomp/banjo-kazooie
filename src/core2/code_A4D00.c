@@ -369,17 +369,44 @@ ActorMarker * func_8032FBE4(f32 *pos, void *arg1, int arg2, enum asset_e model_i
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032FDDC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032FFB4.s")
+int func_8032FFB4(ActorMarker *this, s32 arg1){
+    this->unk14_20 = arg1;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032FFD4.s")
+//marker_setActorArrayIndex
+void func_8032FFD4(ActorMarker *this, s32 arg1){
+    this->actrArrayIdx = arg1;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032FFEC.s")
+void func_8032FFEC(ActorMarker *this, s32 arg1){
+    this->unk28 = arg1;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032FFF4.s")
+void func_8032FFF4(ActorMarker *this, ActorMarker *other, s32 type){
+    switch(type){
+        case 0: //ow
+            if(this->unkC)
+                this->unkC(this, other); 
+            break;
+        case 1:
+            if(this->unk10)
+                this->unk10(this, other);
+            break;
+        case 2: //die
+            if(this->unk1C)
+                this->unk1C(this, other);
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_80330078.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_803300A8.s")
+//marker_setCollisionMethods
+void func_803300A8(ActorMarker *this, MarkerCollisionFunc ow_func, MarkerCollisionFunc arg2, MarkerCollisionFunc die_func){
+    this->unkC = ow_func;
+    this->unk10 = arg2;
+    this->unk1C = die_func;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_803300B8.s")
 
@@ -390,6 +417,8 @@ ActorMarker * func_8032FBE4(f32 *pos, void *arg1, int arg2, enum asset_e model_i
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_803300D0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_803300D8.s")
+
+#define AssetCacheSize 0x3D5
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_803300E0.s")
 
@@ -412,8 +441,8 @@ void func_803300E8(ActorMarker *this, s32 modelIndex){
 void func_803305AC(void){
     s32 i;
 
-    modelCache = (ModelCache *)malloc(0x3D5 * sizeof(ModelCache));
-    for(i = 0; i<0x3D5; i++){
+    modelCache = (ModelCache *)malloc(AssetCacheSize * sizeof(ModelCache));
+    for(i = 0; i<AssetCacheSize; i++){
         modelCache[i].modelPtr = NULL;
         modelCache[i].unk4 = 0;
         modelCache[i].unk8 = 0;
@@ -424,7 +453,29 @@ void func_803305AC(void){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_803306C8.s")
 
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_803308A0.s")
+#else
+void func_803308A0(void){
+    s32 i = 0;
+    do{
+        if(modelCache[i].modelPtr){
+            assetcache_release(modelCache[i].modelPtr);
+            modelCache[i].modelPtr = NULL;
+        }
+        if(modelCache[i].unk4){
+            func_8033B388(&modelCache[i].unk4, &modelCache[i].unk8);
+        }
+        if(modelCache[i].unkC){
+            func_80349CD8(modelCache[i].unkC);
+            modelCache[i].unkC = NULL;
+        }
+        i++;
+    }while(i < AssetCacheSize);
+    free(modelCache);
+    modelCache = NULL;
+}
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_80330974.s")
 

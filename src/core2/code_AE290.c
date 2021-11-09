@@ -40,7 +40,7 @@ void func_80335220(void){
 }
 #endif
 
-int func_8033531C(enum SFX_E uid, struct46s *arg1){
+int func_8033531C(enum sfx_e uid, struct46s *arg1){
     return func_80244608(D_80383604, (s16) (uid + 1), arg1);
 }
 

@@ -6,7 +6,7 @@
 #define SPRITE_TYPE_RGBA16 (1 << 10)
 #define SPRITE_TYPE_RGBA32 (1 << 11)
 
-enum BKPROG_E{
+enum bkprog_e{
     
     // {index=0x03, type="Prog", level=6, name="1st Note Text"}, -- 0x00 > 3
 	// {index=0x04, type="Prog", level=6, name="1st Mumbo Token Text"}, -- 0x00 > 4
@@ -40,12 +40,12 @@ enum BKPROG_E{
 	BKPROG_1F_CC_LOBBY_PIPE_1_RAISED = 0x1F,
     BKPROG_20_CC_LOBBY_PIPE_2_RAISED,
     BKPROG_21_CC_LOBBY_PIPE_3_RAISED,
-	// {index=0x22, type="Prog", level=6, name="Water Switch 1 Pressed"},
-	// {index=0x23, type="Prog", level=6, name="Lair Water Level 1"},
-	// {index=0x24, type="Prog", level=6, name="Water Switch 2 Pressed"},
-	// {index=0x25, type="Prog", level=6, name="Lair Water Level 2"},
-	// {index=0x26, type="Prog", level=6, name="Water Switch 3 Pressed"},
-	// {index=0x27, type="Prog", level=6, name="Lair Water Level 3"},
+    BKPROG_22_WATER_SWITCH_1_PRESSED,
+    BKPROG_23_LAIR_WATER_LEVEL_1,
+    BKPROG_24_WATER_SWITCH_2_PRESSED,
+    BKPROG_25_LAIR_WATER_LEVEL_2 = 0x25,
+    BKPROG_26_WATER_SWITCH_3_PRESSED,
+    BKPROG_27_LAIR_WATER_LEVEL_3 = 0x27,
 
 	BKPROG_31_MM_OPEN = 0x31,
 	BKPROG_32_TTC_OPEN,
@@ -153,6 +153,7 @@ enum BKPROG_E{
 	// {index=0x96, type="Prog", level=6, name="1st Time Brentilda Text"},
 	BKPROG_97_ENTERED_LAIR_TEXT = 0x97,
 	BKPROG_98_EXITED_LEVEL_TEXT,
+    BKPROG_99_PAST_50_NOTE_DOOR_TEXT,
 	// {index=0x99, type="Prog", level=6, name="1st Time Past 50 ND Text"},
 
 	// {index=0x9B, type="Prog", level=6, name="CC WS Eyes Active"},
@@ -175,16 +176,16 @@ enum BKPROG_E{
 	// {index=0xAD, type="Prog", level=6, name="Cheato: BLUEEGGS Unlocked"},
 	// {index=0xAE, type="Prog", level=6, name="Cheato: REDFEATHERS Unlocked"},
 	// {index=0xAF, type="Prog", level=6, name="Cheato: GOLDFEATHERS Unlocked"},
-	// {index=0xB0, type="Prog", level=1, name="Has Been in MM"},
-	// {index=0xB1, type="Prog", level=4, name="Has Been in BGS"},
-	// {index=0xB2, type="Prog", level=2, name="Has Been in TTC"},
-	// {index=0xB3, type="Prog", level=7, name="Has Been in GV"},
-	// {index=0xB4, type="Prog", level=9, name="Has Been in RBB"},
-	// {index=0xB5, type="Prog", level=8, name="Has Been in CCW"},
-	// {index=0xB6, type="Prog", level=5, name="Has Been in FP"},
-	// {index=0xB7, type="Prog", level=10, name="Has Been in MMM"},
-	// {index=0xB8, type="Prog", level=2, name="Has Been in CC"},
-	BKPROG_B9_DOUBLE_HEALTH = 0xB9,
+    BKPROG_B0_HAS_ENTERED_MM = 0xb0,
+	BKPROG_B1_HAS_ENTERED_BGS,
+	BKPROG_B2_HAS_ENTERED_TTC,
+	BKPROG_B3_HAS_ENTERED_GV,
+	BKPROG_B4_HAS_ENTERED_RBB,
+	BKPROG_B5_HAS_ENTERED_CCW,
+	BKPROG_B6_HAS_ENTERED_FP,
+	BKPROG_B7_HAS_ENTERED_MMM,
+	BKPROG_B8_HAS_ENTERED_CC,
+	BKPROG_B9_DOUBLE_HEALTH,
 	// {index=0xBA, type="Prog", level=6, name="1st Time T. Rex"},
 
 	BKPROG_BD_ENTER_LAIR_CUTSCENE =  0xBD,
@@ -243,6 +244,40 @@ enum BKPROG_E{
 	BKPROG_FC_DEFEAT_GRUNTY = 0xFC
 };
 
+enum unkflags_1{
+    UNKFLAGS1_73_SANDCASTLE_INFINITE_LIVES = 0x73,
+    UNKFLAGS1_74_SANDCASTLE_INFINITE_EGGS,
+    UNKFLAGS1_75_SANDCASTLE_INFINITE_RED_FEATHERS,
+    UNKFLAGS1_76_SANDCASTLE_INFINITE_GOLD_FEATHERS,
+
+    UNKFLAGS1_78_SANDCASTLE_NO_BONUS = 0x78,
+
+    UNKFLAGS1_7F_SANDCASTLE_OPEN_CC = 0x7F,
+
+    UNKFLAGS1_86_SANDCASTLE_SHOCKSPRING_JUMP_UNLOCKED = 0x86,
+    UNKFLAGS1_87_SANDCASTLE_OPEN_GV,//	0X87
+
+    UNKFLAGS1_8A_SANDCASTLE_FLIGHT_UNLOCKED = 0x8A,//	0X8A
+    UNKFLAGS1_8B_SANDCASTLE_OPEN_FP,//	0X8B
+    UNKFLAGS1_8C_SANDCASTLE_OPEN_MMM,//	0X8C
+    UNKFLAGS1_8D_SANDCASTLE_REMOVE_CRYPT_GATE,//	0X8D
+    UNKFLAGS1_8E_SANDCASTLE_REMOVE_CRYPT_COFFIN_LID,//	0X8E
+    UNKFLAGS1_8F_SANDCASTLE_REMOVE_GRATE_NEAR_WATER_SWITCH,//	0X8F
+    UNKFLAGS1_90_SANDCASTLE_OPEN_RBB,
+
+    UNKFLAGS1_93_SANDCASTLE_OPEN_CCW = 0x93,
+    UNKFLAGS1_94_SANDCASTLE_INFINITE_HEALTH,//	0X94
+    UNKFLAGS1_95_SANDCASTLE_INFINTE_MUMBO_TOKENS,//	0X95
+    UNKFLAGS1_96_SANDCASTLE_INFINITE_AIR,//	0X96
+    UNKFLAGS1_97_SANDCASTLE_BOTTLES_BONUS_1,//	0X97
+    UNKFLAGS1_98_SANDCASTLE_BOTTLES_BONUS_2,//	0X98
+    UNKFLAGS1_99_SANDCASTLE_BOTTLES_BONUS_3,//	0X99
+    UNKFLAGS1_9A_SANDCASTLE_BOTTLES_BONUS_4,//	0X9A
+    UNKFLAGS1_9B_SANDCASTLE_BOTTLES_BONUS_5,//	0X9B
+    UNKFLAGS1_9C_SANDCASTLE_BOTTLES_BONUS_6,//	0X9C
+    UNKFLAGS1_9D_SANDCASTLE_WISHY_WASHY//	0X9D
+};
+
 enum transformation_e
 {
     unknown,
@@ -296,7 +331,7 @@ enum button_e{
     BUTTON_C_RIGHT = 0xD
 };
 
-enum MAP_E
+enum map_e
 {
     MAP_1_SM_SPIRAL_MOUNTAIN = 0x01,
     MAP_2_MM_MUMBOS_MOUNTAIN,
@@ -361,7 +396,7 @@ enum MAP_E
     MAP_RBB_NAVIGATION_ROOM = 0x3D,
     MAP_RBB_CONTAINER_2 = 0x3E,
     MAP_RBB_CAPTAINS_CABIN = 0x3F,
-    MAP_CCW_HUB = 0x40,
+    MAP_40_CCW_HUB = 0x40,
     MAP_FP_BOGGYS_IGLOO = 0x41,
     // Unused
     MAP_43_CCW_SPRING = 0x43,
@@ -403,29 +438,29 @@ enum MAP_E
     MAP_CCW_AUTUMN_WHIPCRACK_ROOM = 0x67,
     MAP_CCW_WINTER_WHIPCRACK_ROOM = 0x68,
     MAP_69_GL_MM_LOBBY = 0x69,
-    MAP_GL_TTC_AND_CC_PUZZLE = 0x6A,
-    MAP_GL_180_NOTE_DOOR = 0x6B,
-    MAP_GL_RED_CAULDRON_ROOM = 0x6C,
-    MAP_GL_TTC_LOBBY = 0x6D,
-    MAP_GL_GV_LOBBY = 0x6E,
-    MAP_GL_FP_LOBBY = 0x6F,
-    MAP_GL_CC_LOBBY = 0x70,
-    MAP_GL_STATUE_ROOM = 0x71,
-    MAP_GL_BGS_LOBBY = 0x72,
+    MAP_6A_GL_TTC_AND_CC_PUZZLE = 0x6A,
+    MAP_6B_GL_180_NOTE_DOOR = 0x6B,
+    MAP_6C_GL_RED_CAULDRON_ROOM = 0x6C,
+    MAP_6D_GL_TTC_LOBBY = 0x6D,
+    MAP_6E_GL_GV_LOBBY = 0x6E,
+    MAP_6F_GL_FP_LOBBY = 0x6F,
+    MAP_70_GL_CC_LOBBY = 0x70,
+    MAP_71_GL_STATUE_ROOM,
+    MAP_72_GL_BGS_LOBBY,
     // Unused
-    MAP_GL_GV_PUZZLE = 0x74,
-    MAP_GL_MMM_LOBBY = 0x75,
-    MAP_GL_640_NOTE_DOOR = 0x76,
-    MAP_GL_RBB_LOBBY = 0x77,
-    MAP_GL_RBB_AND_MMM_PUZZLE = 0x78,
-    MAP_GL_CCW_LOBBY = 0x79,
-    MAP_GL_CRYPT = 0x7A,
-    MAP_7B_CS_INTRO_GL_DINGPOT_1 = 0x7B,
-    MAP_7C_CS_INTRO_BANJOS_HOUSE_1 = 0x7C,
-    MAP_7D_CS_SPIRAL_MOUNTAIN_1 = 0x7D,
-    MAP_7E_CS_SPIRAL_MOUNTAIN_2 = 0x7E,
-    MAP_FP_WOZZAS_CAVE = 0x7F,
-    MAP_GL_FF_ENTRANCE = 0x80,
+    MAP_74_GL_GV_PUZZLE = 0x74,
+    MAP_75_GL_MMM_LOBBY,
+    MAP_76_GL_640_NOTE_DOOR,
+    MAP_77_GL_RBB_LOBBY,
+    MAP_78_GL_RBB_AND_MMM_PUZZLE,
+    MAP_79_GL_CCW_LOBBY,
+    MAP_7A_GL_CRYPT,
+    MAP_7B_CS_INTRO_GL_DINGPOT_1,
+    MAP_7C_CS_INTRO_BANJOS_HOUSE_1,
+    MAP_7D_CS_SPIRAL_MOUNTAIN_1,
+    MAP_7E_CS_SPIRAL_MOUNTAIN_2,
+    MAP_7F_FP_WOZZAS_CAVE,
+    MAP_80_GL_FF_ENTRANCE,
     MAP_81_CS_INTRO_GL_DINGPOT_2,
     MAP_82_CS_ENTERING_GL_MACHINE_ROOM,
     MAP_83_CS_GAME_OVER_MACHINE_ROOM,
@@ -558,7 +593,7 @@ enum comusic_e
     JINGLE_CHRISTMAS_TREE_LIGHTS_UP,
     MUSIC_RBB_BOOMBOX,
     MUSIC_GL_FF_VERSION,
-    JINGLE_WORLD_OPENING_A,
+    COMUSIC_64_WORLD_OPENING_A,
     JINGLE_WORLD_OPENING_B,
     MUSIC_FP_INSIDE_WOZZAS_CAVE,
     SFX_INSERTING_JIGGY,
@@ -634,7 +669,7 @@ enum comusic_e
 };
 
 // SFXR_ = Repeating SFX
-enum SFX_E
+enum sfx_e
 {
     SFX_0_BLOOP = 0x0000,
     SFX_1_MUMBO_UMENAKA,
@@ -1214,6 +1249,7 @@ enum SFX_E
     SFX_3E9_UNKNOWN = 0x3e9, //bsbwhirl
     SFX_3EA_UNKNOWN,         //chjig
     SFX_3EB_UNKNOWN,         //bstimeout
+    SFX_3EC_CCW_DOOR_OPENING,         //ccw
 
     SFX_3F1_UNKNOWN = 0x3f1, //bsstand
 
@@ -1340,7 +1376,23 @@ enum actor_e
 
     ACTOR_1CC_GRILL_CHOMPA  = 0x1CC,
 
+    ACTOR_20E_MM_ENTRANCE_DOOR = 0x20E,
+    ACTOR_20F_RBB_ENTRANCE_DOOR,
+    ACTOR_210_BGS_ENTRANCE_DOOR,
+    ACTOR_211_CHEST_LID, //CC ENTRANCE
+    ACTOR_212_IRON_BARS, //TTC_ENTRANCE
+
+    ACTOR_234_CCW_ENTRANCE_DOOR = 0x234,
+
+    ACTOR_226_GV_ENTRANCE   = 0x226,
+
+    ACTOR_228_INVISIBLE_WALL = 0x228, //MMM ENTRANCE DOOR???
+
+    ACTOR_235_FP_ENTANCE_DOOR = 0x235,
+
     ACTOR_28B_SOUND_SOURCE  = 0x28B,
+
+    ACTOR_2E5_WOODEN_DOOR   = 0x2e5,
 
     ACTOR_383_FIRE_FX       = 0x383,
 
@@ -1530,9 +1582,13 @@ enum map_flags_e
 
 enum item_e
 {
-    ITEM_0_TIMER = 0x0,
+    ITEM_0_HOURGLASS_TIMER = 0x0,
 
     ITEM_3_PROPELLOR_TIMER = 0x3,
+
+    ITEM_6_HOURGLASS = 0x6,
+
+    ITEM_9_PROPELLOR = 0x9,
 
     ITEM_C_NOTE = 0xC,
     ITEM_D_EGGS,

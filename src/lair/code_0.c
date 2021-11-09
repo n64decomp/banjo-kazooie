@@ -221,7 +221,7 @@ void func_80386D20(Actor *this)
 void func_80386D40(void)
 {
     func_802D68F0(0xC);
-    func_80346414(0x06, 1);
+    func_80346414(ITEM_6_HOURGLASS, 1);
     mapSpecificFlags_set(1, TRUE);
 }
 
@@ -493,7 +493,7 @@ void func_803882B0(Actor *this)
     }
 }
 
-void func_80388404(enum BKPROG_E flag, enum SFX_E sfx, f32 a2, s32 a3)
+void func_80388404(enum bkprog_e flag, enum sfx_e sfx, f32 a2, s32 a3)
 {
     if (func_8031FF1C(flag) == FALSE)
         func_8030E6A4(sfx, a2, a3);
@@ -934,7 +934,7 @@ void func_80389D08(Actor *this)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/lair/code_0/func_80389E10.s")
 
-void func_80389FA8(Actor *this, enum BKPROG_E flag)
+void func_80389FA8(Actor *this, enum bkprog_e flag)
 {
     if (!this->initialized)
     {
@@ -979,74 +979,74 @@ void func_8038A0A4(Actor *this)
 
 void func_8038A0C4(void)
 {
-    func_803053E8(&D_80392F40, actor_new, 0x18628);
-    func_803053E8(&D_80392F64, actor_new, 0x18608);
-    func_803053E8(&D_803932E8, actor_new, 0x8600);
-    func_803053E8(&D_80393408, actor_new, 0x96C0);
-    func_803053E8(&D_80392F88, actor_new, 0x8600);
-    func_803053E8(&D_80392FAC, actor_new, 0x8600);
-    func_803053E8(&D_80392FD0, actor_new, 0x8600);
-    func_803053E8(&D_80393018, actor_new, 0x8600);
-    func_803053E8(&D_8039303C, actor_new, 0x8600);
-    func_803053E8(&D_80393060, actor_new, 0x8604);
-    func_803053E8(&D_803931EC, actor_new, 0x8600);
-    func_803053E8(&D_80393210, actor_new, 0x8600);
-    func_803053E8(&D_80392EF8, actor_new, 0x8600);
-    func_803053E8(&D_8039339C, actor_new, 0x8600);
-    func_803053E8(&D_803933C0, actor_new, 0x8600);
-    func_803053E8(&D_80392DB4, actor_new, 0x8608);
-    func_803053E8(&D_80392DD8, actor_new, 0x8608);
-    func_803053E8(&D_80392DFC, actor_new, 0x8608);
-    func_803053E8(&D_80392E20, actor_new, 0x8608);
-    func_803053E8(&D_80392E44, actor_new, 0x8608);
-    func_803053E8(&D_80392E68, actor_new, 0x8608);
-    func_803053E8(&D_80392E8C, actor_new, 0x8608);
-    func_803053E8(&D_803930F0, actor_new, 0x8600);
-    func_803053E8(&D_80393234, actor_new, 0x8600);
-    func_803053E8(&D_80393258, actor_new, 0x8600);
-    func_803053E8(&D_80392FF4, actor_new, 0x8600);
-    func_803053E8(&D_8039327C, actor_new, 0x8600);
-    func_803053E8(&D_803932A0, actor_new, 0x8600);
-    func_803053E8(&D_803932C4, actor_new, 0x8600);
-    func_803053E8(&D_8039315C, actor_new, 0x8600);
-    func_803053E8(&D_80393180, actor_new, 0x8600);
-    func_803053E8(&D_803931A4, actor_new, 0x8600);
-    func_803053E8(&D_8039330C, actor_new, 0x8600);
-    func_803053E8(&D_80393330, actor_new, 0x8600);
-    func_803053E8(&D_80393114, actor_new, 0);
-    func_803053E8(&D_80393138, actor_new, 0x8600);
-    func_803053E8(&D_803930CC, actor_new, 0x8600);
-    func_803053E8(&D_803931C8, actor_new, 0x28600);
-    func_803053E8(&D_80393560, actor_new, 0x97AA);
-    func_803053E8(&D_80393584, actor_new, 0x87AA);
-    func_803053E8(&D_803933E4, actor_new, 0x8608);
-    func_803053E8(&D_80393378, actor_new, 0x8640);
-    func_803053E8(&D_803947B0, actor_new, 0xA1480);
-    func_803053E8(&D_803947D4, actor_new, 0xA1480);
-    func_803053E8(&D_80393730, actor_new, 0x140);
-    func_803053E8(&D_80394A80, actor_new, 0);
-    func_803053E8(&D_80394AB0, actor_new, 0x44);
-    func_803053E8(&D_80392EB0, actor_new, 0x8608);
-    func_803053E8(&D_80393084, actor_new, 0x8680);
-    func_803053E8(&D_80392ED4, actor_new, 0x8608);
-    func_803053E8(&D_803930A8, actor_new, 0xC680);
-    func_803053E8(&D_80394870, actor_new, 0x1A0);
-    func_803053E8(&D_80394894, actor_new, 0x1A0);
-    func_803053E8(&D_803948B8, actor_new, 0x1A0);
-    func_803053E8(&D_80394910, actor_new, 0x10C0);
-    func_803053E8(&D_80394934, actor_new, 200);
-    func_803053E8(&D_80394958, actor_new, 200);
-    func_803053E8(&D_80392F1C, actor_new, 0x8608);
-    func_803053E8(&D_80394A08, actor_new, 0x2010129);
-    func_803053E8(&D_80394A2C, actor_new, 0x2010129);
-    func_803053E8(&D_80394A50, actor_new, 0x2010129);
-    func_803053E8(&D_80394980, actor_new, 0x80);
-    func_803053E8(&D_80394C28, actor_new, 0x400);
-    func_803053E8(&D_80394C4C, actor_new, 0x400);
-    func_803053E8(&D_80394C70, actor_new, 0x400);
-    func_803053E8(&D_80394D20, actor_new, 0);
-    func_803053E8(&D_80394CF0, actor_new, 0x80508);
-    func_803053E8(&D_80394C94, actor_new, 0x500);
-    func_803053E8(&D_80393354, actor_new, 0x8602);
-    func_803053E8(&D_80392D90, actor_new, 0x20000);
+    spawnableActorList_add(&D_80392F40, actor_new, 0x18628);
+    spawnableActorList_add(&D_80392F64, actor_new, 0x18608);
+    spawnableActorList_add(&D_803932E8, actor_new, 0x8600);
+    spawnableActorList_add(&D_80393408, actor_new, 0x96C0);
+    spawnableActorList_add(&D_80392F88, actor_new, 0x8600);
+    spawnableActorList_add(&D_80392FAC, actor_new, 0x8600);
+    spawnableActorList_add(&D_80392FD0, actor_new, 0x8600);
+    spawnableActorList_add(&D_80393018, actor_new, 0x8600);
+    spawnableActorList_add(&D_8039303C, actor_new, 0x8600);
+    spawnableActorList_add(&D_80393060, actor_new, 0x8604);
+    spawnableActorList_add(&D_803931EC, actor_new, 0x8600);
+    spawnableActorList_add(&D_80393210, actor_new, 0x8600);
+    spawnableActorList_add(&D_80392EF8, actor_new, 0x8600);
+    spawnableActorList_add(&D_8039339C, actor_new, 0x8600);
+    spawnableActorList_add(&D_803933C0, actor_new, 0x8600);
+    spawnableActorList_add(&D_80392DB4, actor_new, 0x8608);
+    spawnableActorList_add(&D_80392DD8, actor_new, 0x8608);
+    spawnableActorList_add(&D_80392DFC, actor_new, 0x8608);
+    spawnableActorList_add(&D_80392E20, actor_new, 0x8608);
+    spawnableActorList_add(&D_80392E44, actor_new, 0x8608);
+    spawnableActorList_add(&D_80392E68, actor_new, 0x8608);
+    spawnableActorList_add(&D_80392E8C, actor_new, 0x8608);
+    spawnableActorList_add(&D_803930F0, actor_new, 0x8600);
+    spawnableActorList_add(&D_80393234, actor_new, 0x8600);
+    spawnableActorList_add(&D_80393258, actor_new, 0x8600);
+    spawnableActorList_add(&D_80392FF4, actor_new, 0x8600);
+    spawnableActorList_add(&D_8039327C, actor_new, 0x8600);
+    spawnableActorList_add(&D_803932A0, actor_new, 0x8600);
+    spawnableActorList_add(&D_803932C4, actor_new, 0x8600);
+    spawnableActorList_add(&D_8039315C, actor_new, 0x8600);
+    spawnableActorList_add(&D_80393180, actor_new, 0x8600);
+    spawnableActorList_add(&D_803931A4, actor_new, 0x8600);
+    spawnableActorList_add(&D_8039330C, actor_new, 0x8600);
+    spawnableActorList_add(&D_80393330, actor_new, 0x8600);
+    spawnableActorList_add(&D_80393114, actor_new, 0);
+    spawnableActorList_add(&D_80393138, actor_new, 0x8600);
+    spawnableActorList_add(&D_803930CC, actor_new, 0x8600);
+    spawnableActorList_add(&D_803931C8, actor_new, 0x28600);
+    spawnableActorList_add(&D_80393560, actor_new, 0x97AA);
+    spawnableActorList_add(&D_80393584, actor_new, 0x87AA);
+    spawnableActorList_add(&D_803933E4, actor_new, 0x8608);
+    spawnableActorList_add(&D_80393378, actor_new, 0x8640);
+    spawnableActorList_add(&D_803947B0, actor_new, 0xA1480);
+    spawnableActorList_add(&D_803947D4, actor_new, 0xA1480);
+    spawnableActorList_add(&D_80393730, actor_new, 0x140);
+    spawnableActorList_add(&D_80394A80, actor_new, 0);
+    spawnableActorList_add(&D_80394AB0, actor_new, 0x44);
+    spawnableActorList_add(&D_80392EB0, actor_new, 0x8608);
+    spawnableActorList_add(&D_80393084, actor_new, 0x8680);
+    spawnableActorList_add(&D_80392ED4, actor_new, 0x8608);
+    spawnableActorList_add(&D_803930A8, actor_new, 0xC680);
+    spawnableActorList_add(&D_80394870, actor_new, 0x1A0);
+    spawnableActorList_add(&D_80394894, actor_new, 0x1A0);
+    spawnableActorList_add(&D_803948B8, actor_new, 0x1A0);
+    spawnableActorList_add(&D_80394910, actor_new, 0x10C0);
+    spawnableActorList_add(&D_80394934, actor_new, 200);
+    spawnableActorList_add(&D_80394958, actor_new, 200);
+    spawnableActorList_add(&D_80392F1C, actor_new, 0x8608);
+    spawnableActorList_add(&D_80394A08, actor_new, 0x2010129);
+    spawnableActorList_add(&D_80394A2C, actor_new, 0x2010129);
+    spawnableActorList_add(&D_80394A50, actor_new, 0x2010129);
+    spawnableActorList_add(&D_80394980, actor_new, 0x80);
+    spawnableActorList_add(&D_80394C28, actor_new, 0x400);
+    spawnableActorList_add(&D_80394C4C, actor_new, 0x400);
+    spawnableActorList_add(&D_80394C70, actor_new, 0x400);
+    spawnableActorList_add(&D_80394D20, actor_new, 0);
+    spawnableActorList_add(&D_80394CF0, actor_new, 0x80508);
+    spawnableActorList_add(&D_80394C94, actor_new, 0x500);
+    spawnableActorList_add(&D_80393354, actor_new, 0x8602);
+    spawnableActorList_add(&D_80392D90, actor_new, 0x20000);
 }

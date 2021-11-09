@@ -63,11 +63,11 @@ s32 func_80345FB4(s32 item, s32 diff, s32 arg2){
         diff = 0;
 
     if(diff < 0){
-        if( (item == ITEM_D_EGGS && func_803203FC(0x74))
-            || (item == ITEM_16_LIFE && func_803203FC(0x73))
-            || (item == ITEM_F_RED_FEATHER && func_803203FC(0x75))
-            || (item == ITEM_10_GOLD_FEATHER && func_803203FC(0x76))
-            || (item == ITEM_17_AIR && func_803203FC(0x96))) 
+        if( (item == ITEM_D_EGGS && func_803203FC(UNKFLAGS1_74_SANDCASTLE_INFINITE_EGGS))
+            || (item == ITEM_16_LIFE && func_803203FC(UNKFLAGS1_73_SANDCASTLE_INFINITE_LIVES))
+            || (item == ITEM_F_RED_FEATHER && func_803203FC(UNKFLAGS1_75_SANDCASTLE_INFINITE_RED_FEATHERS))
+            || (item == ITEM_10_GOLD_FEATHER && func_803203FC(UNKFLAGS1_76_SANDCASTLE_INFINITE_GOLD_FEATHERS))
+            || (item == ITEM_17_AIR && func_803203FC(UNKFLAGS1_96_SANDCASTLE_INFINITE_AIR))) 
             diff = 0;
     }
     (newVal = ((D_80385F30[item] + diff) < 0)? 0 : D_80385F30[item] + diff);

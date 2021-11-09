@@ -207,146 +207,146 @@ void func_802C2B5C(void){
     func_80305D38(); 
     func_803062D0();
     func_80325F8C();
-    func_8030538C();
-    func_803053E8(&D_80367160, actor_new, 0x0000000); //cutscene Trigger?
-    func_803053E8(&D_803675F0, actor_new, 0x0000040);
-    func_803053E8(&D_80366090, actor_new, 0x2010103);
-    func_803053E8(&D_803660B4, actor_new, 0x0000103);
-    func_803053E8(&D_803674E0, actor_new, 0x0000182);
-    func_803053E8(&D_803672E0, actor_new, 0x2000108);
-    func_803053E8(&D_80367310, actor_new, 0x0020001);
-    func_803053E8(&D_80367390, actor_new, 0x0080084);
-    func_803053E8(&D_80367248, actor_new, 0x0000140);
-    func_803053E8(&D_80367290, actor_new, 0x0000140);
-    func_803053E8(&D_80367200, actor_new, 0x0000140);
-    func_803053E8(&D_8036726C, actor_new, 0x0000140);
-    func_803053E8(&D_80367224, actor_new, 0x0000140);
-    func_803053E8(&D_803662A8, actor_new, 0x02000C0);
-    func_803053E8(&D_80366300, actor_new, 0x0000004);
-    func_803053E8(&D_80367C60, actor_new, 0x0000004);
-    func_803053E8(&D_80367A20, actor_new, 0x0000000);
-    func_803053E8(&D_80366C80, actor_new, 0x0200040); //chhoneycarrier
-    func_803053E8(&D_80366CA4, actor_new, 0x0200040); //chhoney
-    func_803053E8(&D_80366C50, actor_new, 0x0200000); //music_note
-    func_803053E8(&D_80367D00, actor_new, 0x0200000); //egg
-    func_803053E8(&D_80366340, func_802C8A54, 0x0000004);
-    func_803053E8(&D_80366364, func_802C8AA8, 0x0000004);
-    func_803053E8(&D_80366388, func_802C8AF8, 0x0000004);
-    func_803053E8(&D_803663AC, func_802C8B4C, 0x0000004);
-    func_803053E8(&D_803663D0, func_802C8BA8, 0x0000004);
-    func_803053E8(&D_803663F4, func_802C8C04, 0x0000004);
-    func_803053E8(&D_80367AB0, func_802D7558, 0x0000004);
-    func_803053E8(&D_80367AD4, func_802D75B4, 0x0000004);
-    func_803053E8(&D_80367AF8, func_802D7610, 0x0000004);
-    func_803053E8(&D_80366EC0, actor_new, 0x0000000);
-    func_803053E8(&D_80365F60, actor_new, 0x0000004);
-    func_803053E8(&D_80365F84, actor_new, 0x0000004); //turbotrainers
-    func_803053E8(&D_80367184, actor_new, 0x0000000);
-    func_803053E8(&D_80366430, actor_new, 0x0200000); //extralife
-    func_803053E8(&D_80365FB0, actor_new, 0x0000004); //shrapnel
-    func_803053E8(&D_80367A50, actor_new, 0x0000004); //chbadshad
-    func_803053E8(&D_803685A0, actor_new, 0x0000040); //mumbotoken
-    func_803053E8(&D_80367F30, actor_new, 0x0000400);
-    func_803053E8(&D_80365FE0, actor_new, 0x0000004);
-    func_803053E8(&D_80367468, actor_new, 0x000008A); //gloop
-    func_803053E8(&D_80366F20, actor_new, 0x0000000); //chshockjump
-    func_803053E8(&D_80366F44, actor_new, 0x0000000); //flight_pad
-    func_803053E8(&D_80367D24, actor_new, 0x0200000); //redfeather
-    func_803053E8(&D_80367D48, actor_new, 0x0200000); //goldfeather 
-    func_803053E8(&D_80367C90, actor_new, 0x0000004); //spent_redfeather
-    func_803053E8(&D_80367CB4, actor_new, 0x0000004); //spent_goldfeather
-    func_803053E8(&D_80367DA0, actor_new, 0x0000180); //bottles
-    func_803053E8(&D_80367E20, actor_new, 0x44); //chmolehill
-    func_803053E8(&D_80373DC0, actor_new, 0x80000);
-    func_803053E8(&D_80367E70, actor_new, 0x0);
-    func_803053E8(&D_80368620, actor_new, 0x10004); //snacker
-    func_803053E8(&D_80366EF0, actor_new, 0x20004); //large_shadow
-    func_803053E8(&D_80367B20, actor_new, 0x80); //chclimbbase
-    func_803053E8(&D_80367BA4, actor_new, 0x40); //gold_bullion
-    func_803053E8(&D_80367B80, actor_new, 0x2); //orange
-    func_803053E8(&D_80372970, actor_new, 0x80); //leaf_particle
-    func_803053E8(&D_80372994, actor_new, 0x80);
-    func_803053E8(&D_803729B8, actor_new, 0x80); //rain
-    func_803053E8(&D_803729DC, actor_new, 0x80);
-    func_803053E8(&D_80372A00, actor_new, 0x80); //snow
-    func_803053E8(&D_80372A24, actor_new, 0x80); 
-    func_803053E8(&D_80372A48, actor_new, 0x81); 
-    func_803053E8(&D_80372A6C, actor_new, 0x81); 
-    func_803053E8(&D_8036D970, actor_new, 0x80); //boombox
-    func_803053E8(&D_803677A8, actor_new, 0x8600); //ice_key
-    func_803053E8(&D_80367814, actor_new, 0x8600); //SnS_egg
-    func_803053E8(&gChFireFxInfo, actor_new, 0x0); //fire
-    func_803053E8(&D_80367838, actor_new, 0x8600); //level_entry_disk
-    func_803053E8(&D_80367760, actor_new, 0x1000);
-    func_803053E8(&D_80367784, actor_new, 0x1000);
-    func_803053E8(&D_80365E58, actor_new, 0x20480); //banjo.without_right_hand
-    func_803053E8(&D_80365EAC, actor_new, 0x20480); //banjo.playing_gameboy
-    func_803053E8(&D_80365F00, actor_new, 0x20480); //banjo.cooking
-    func_803053E8(&D_803677CC, actor_new, 0x8680);//mumbo_transform_pad
-    func_803053E8(&D_803677F0, actor_new, 0x8680);
-    func_803053E8(&D_803731B0, actor_new, 0x0);
-    func_803053E8(&D_80368710, actor_new, 0x100044);//snowball
-    func_803053E8(&D_803687C0, actor_new, 0x4);//sir_slush_hat
-    func_803053E8(&gChDripsInfo, actor_new, 0x400);//water_drops
-    func_803053E8(&D_80372BA4, actor_new, 0x2020141);//ice_cube
-    func_803053E8(&D_8036804C, actor_new, 0x508604);//GAME_OVER
-    func_803053E8(&D_8036807C, actor_new, 0x508604);//THE_END
-    func_803053E8(&D_803680AC, actor_new, 0x508604);//player_KAZOOIE
-    func_803053E8(&D_803680DC, actor_new, 0x508604);//copyright_info
-    func_803053E8(&D_80368124, actor_new, 0x508604);//PRESS_START
-    func_803053E8(&D_803682D0, func_802DEB18, 0x509604);//jiggy_picture
-    func_803053E8(&D_8036833C, actor_new, 0x508604); 
-    func_803053E8(&D_8036838C, actor_new, 0x509604);
-    func_803053E8(&D_80368418, actor_new, 0x508644);//banjos_hand_BB
-    func_803053E8(&D_80368174, actor_new, 0x508604);//NO_CONTROLLER);
-    func_803053E8(&D_80367530, actor_new, 0x0);//mumbo_token_sign.5
-    func_803053E8(&D_80367554, actor_new, 0x0);//mumbo_toke_sign.10
-    func_803053E8(&D_80367578, actor_new, 0x0);//mumbo_toke_sign.15
-    func_803053E8(&D_8036759C, actor_new, 0x0);//mumbo_toke_sign.20
-    func_803053E8(&D_803675C0, actor_new, 0x0);//mumbo_toke_sign.25
-    func_803053E8(&D_8036785C, actor_new, 0x0);//witch_switch.mm;
-    func_803053E8(&D_80367880, actor_new, 0x0);//witch_switch.mmm
-    func_803053E8(&D_803678A4, actor_new, 0x0);//witch_switch.ttc
-    func_803053E8(&D_803678C8, actor_new, 0x0);//witch_switch.rbb
-    func_803053E8(&D_803678EC, actor_new, 0x0);//witch_switch.ccw
-    func_803053E8(&D_80367910, actor_new, 0x0);//witch_switch.fp
-    func_803053E8(&D_80367934, actor_new, 0x0);//witch_switch.cc
-    func_803053E8(&D_80367958, actor_new, 0x0);//witch_switch.bgs
-    func_803053E8(&D_8036797C, actor_new, 0x400);//witch_switch.gv
-    func_803053E8(&D_80368450, actor_new, 0x20000);//fire_sparkle
-    func_803053E8(&D_803684BC, actor_new, 0x180);//roysten
-    func_803053E8(&D_803684E0, actor_new, 0x0);//cuckoo_clock
-    func_803053E8(&D_80368504, actor_new, 0x0);
-    func_803053E8(&D_80368528, actor_new, 0x0);
-    func_803053E8(&D_8036854C, actor_new, 0x0);
-    func_803053E8(&D_80368570, actor_new, 0x0);
-    func_803053E8(&D_80368474, actor_new, 0xC8);
-    func_803053E8(&D_80368498, actor_new, 0x0);
-    func_803053E8(&D_803732E0, actor_new, 0x0);
-    func_803053E8(&D_80372810, actor_new, 0x8008A8);
-    func_803053E8(&D_80373100, actor_new, 0x28008A8);
-    func_803053E8(&D_80373134, actor_new, 0x880);
-    func_803053E8(&D_80373158, actor_new, 0x880);
-    func_803053E8(&D_80372EE0, actor_new, 0x2000141);
-    func_803054A4(&D_80372F50, actor_new, 0x2010101, 2); //ticker
-    func_803054A4(&D_80372C80, actor_new, 0x2010981,0x31); //floatsam
-    func_803054A4(&D_80372C18, actor_new, 0x211A9,0x1B); //teehee
-    func_803054A4(&D_80372FC0, actor_new, 0x2010001,0x1b);
-    func_803054A4(&D_80372FE4, actor_new, 0x2010401,0x1b);
-    func_803054A4(&D_803730D8, actor_new, 0x2200021,0x1b); //nibbly
-    func_803054A4(&D_80367130, actor_new, 0x20009a9,0xd); //buzzbomb
-    func_803054A4(&D_80372B80, actor_new, 0x2020141,0x27);
-    func_803054A4(&D_80367404, actor_new, 0x2000101,7); //scrapnel
-    func_803054A4(&D_80372D78, actor_new, 0x3010121,0x1b); //limbo
-    func_803054A4(&D_80372DF8, actor_new, 0x2010121,0x31); //grublin_hood
-    func_803054A4(&D_80372E78, actor_new, 0x3010129,0x12); //mummum
-    func_803054A4(&D_80372840, actor_new, 0x2800960,0xb); //grillchompa
-    func_803054A4(&D_803670B8, actor_new, 0x3000121,7); //snippet
-    func_803054A4(&D_803670DC, actor_new, 0x30000a0,7); //black_snippet
-    func_803054A4(&D_80367100, actor_new, 0x3001021,7); //mutie_snippet
-    func_803054A4(&D_80372870, actor_new, 0x2800820,0x40); //clucker
-    func_803054A4(&D_803728A0, actor_new, 0x2000981,0x12); //scarab
-    func_803054A4(&D_80368670, actor_new, 0x2000460,0x27); //sirslush
+    spawnableActorList_new();
+    spawnableActorList_add(&D_80367160, actor_new, 0x0000000); //cutscene Trigger?
+    spawnableActorList_add(&D_803675F0, actor_new, 0x0000040);
+    spawnableActorList_add(&D_80366090, actor_new, 0x2010103);
+    spawnableActorList_add(&D_803660B4, actor_new, 0x0000103);
+    spawnableActorList_add(&D_803674E0, actor_new, 0x0000182);
+    spawnableActorList_add(&D_803672E0, actor_new, 0x2000108);
+    spawnableActorList_add(&D_80367310, actor_new, 0x0020001);
+    spawnableActorList_add(&D_80367390, actor_new, 0x0080084);
+    spawnableActorList_add(&D_80367248, actor_new, 0x0000140);
+    spawnableActorList_add(&D_80367290, actor_new, 0x0000140);
+    spawnableActorList_add(&D_80367200, actor_new, 0x0000140);
+    spawnableActorList_add(&D_8036726C, actor_new, 0x0000140);
+    spawnableActorList_add(&D_80367224, actor_new, 0x0000140);
+    spawnableActorList_add(&D_803662A8, actor_new, 0x02000C0);
+    spawnableActorList_add(&D_80366300, actor_new, 0x0000004);
+    spawnableActorList_add(&D_80367C60, actor_new, 0x0000004);
+    spawnableActorList_add(&D_80367A20, actor_new, 0x0000000);
+    spawnableActorList_add(&D_80366C80, actor_new, 0x0200040); //chhoneycarrier
+    spawnableActorList_add(&D_80366CA4, actor_new, 0x0200040); //chhoney
+    spawnableActorList_add(&D_80366C50, actor_new, 0x0200000); //music_note
+    spawnableActorList_add(&D_80367D00, actor_new, 0x0200000); //egg
+    spawnableActorList_add(&D_80366340, func_802C8A54, 0x0000004);
+    spawnableActorList_add(&D_80366364, func_802C8AA8, 0x0000004);
+    spawnableActorList_add(&D_80366388, func_802C8AF8, 0x0000004);
+    spawnableActorList_add(&D_803663AC, func_802C8B4C, 0x0000004);
+    spawnableActorList_add(&D_803663D0, func_802C8BA8, 0x0000004);
+    spawnableActorList_add(&D_803663F4, func_802C8C04, 0x0000004);
+    spawnableActorList_add(&D_80367AB0, func_802D7558, 0x0000004);
+    spawnableActorList_add(&D_80367AD4, func_802D75B4, 0x0000004);
+    spawnableActorList_add(&D_80367AF8, func_802D7610, 0x0000004);
+    spawnableActorList_add(&D_80366EC0, actor_new, 0x0000000);
+    spawnableActorList_add(&D_80365F60, actor_new, 0x0000004);
+    spawnableActorList_add(&D_80365F84, actor_new, 0x0000004); //turbotrainers
+    spawnableActorList_add(&D_80367184, actor_new, 0x0000000);
+    spawnableActorList_add(&D_80366430, actor_new, 0x0200000); //extralife
+    spawnableActorList_add(&D_80365FB0, actor_new, 0x0000004); //shrapnel
+    spawnableActorList_add(&D_80367A50, actor_new, 0x0000004); //chbadshad
+    spawnableActorList_add(&D_803685A0, actor_new, 0x0000040); //mumbotoken
+    spawnableActorList_add(&D_80367F30, actor_new, 0x0000400);
+    spawnableActorList_add(&D_80365FE0, actor_new, 0x0000004);
+    spawnableActorList_add(&D_80367468, actor_new, 0x000008A); //gloop
+    spawnableActorList_add(&D_80366F20, actor_new, 0x0000000); //chshockjump
+    spawnableActorList_add(&D_80366F44, actor_new, 0x0000000); //flight_pad
+    spawnableActorList_add(&D_80367D24, actor_new, 0x0200000); //redfeather
+    spawnableActorList_add(&D_80367D48, actor_new, 0x0200000); //goldfeather 
+    spawnableActorList_add(&D_80367C90, actor_new, 0x0000004); //spent_redfeather
+    spawnableActorList_add(&D_80367CB4, actor_new, 0x0000004); //spent_goldfeather
+    spawnableActorList_add(&D_80367DA0, actor_new, 0x0000180); //bottles
+    spawnableActorList_add(&D_80367E20, actor_new, 0x44); //chmolehill
+    spawnableActorList_add(&D_80373DC0, actor_new, 0x80000);
+    spawnableActorList_add(&D_80367E70, actor_new, 0x0);
+    spawnableActorList_add(&D_80368620, actor_new, 0x10004); //snacker
+    spawnableActorList_add(&D_80366EF0, actor_new, 0x20004); //large_shadow
+    spawnableActorList_add(&D_80367B20, actor_new, 0x80); //chclimbbase
+    spawnableActorList_add(&D_80367BA4, actor_new, 0x40); //gold_bullion
+    spawnableActorList_add(&D_80367B80, actor_new, 0x2); //orange
+    spawnableActorList_add(&D_80372970, actor_new, 0x80); //leaf_particle
+    spawnableActorList_add(&D_80372994, actor_new, 0x80);
+    spawnableActorList_add(&D_803729B8, actor_new, 0x80); //rain
+    spawnableActorList_add(&D_803729DC, actor_new, 0x80);
+    spawnableActorList_add(&D_80372A00, actor_new, 0x80); //snow
+    spawnableActorList_add(&D_80372A24, actor_new, 0x80); 
+    spawnableActorList_add(&D_80372A48, actor_new, 0x81); 
+    spawnableActorList_add(&D_80372A6C, actor_new, 0x81); 
+    spawnableActorList_add(&D_8036D970, actor_new, 0x80); //boombox
+    spawnableActorList_add(&D_803677A8, actor_new, 0x8600); //ice_key
+    spawnableActorList_add(&D_80367814, actor_new, 0x8600); //SnS_egg
+    spawnableActorList_add(&gChFireFxInfo, actor_new, 0x0); //fire
+    spawnableActorList_add(&D_80367838, actor_new, 0x8600); //level_entry_disk
+    spawnableActorList_add(&D_80367760, actor_new, 0x1000);
+    spawnableActorList_add(&D_80367784, actor_new, 0x1000);
+    spawnableActorList_add(&D_80365E58, actor_new, 0x20480); //banjo.without_right_hand
+    spawnableActorList_add(&D_80365EAC, actor_new, 0x20480); //banjo.playing_gameboy
+    spawnableActorList_add(&D_80365F00, actor_new, 0x20480); //banjo.cooking
+    spawnableActorList_add(&D_803677CC, actor_new, 0x8680);//mumbo_transform_pad
+    spawnableActorList_add(&D_803677F0, actor_new, 0x8680);
+    spawnableActorList_add(&D_803731B0, actor_new, 0x0);
+    spawnableActorList_add(&D_80368710, actor_new, 0x100044);//snowball
+    spawnableActorList_add(&D_803687C0, actor_new, 0x4);//sir_slush_hat
+    spawnableActorList_add(&gChDripsInfo, actor_new, 0x400);//water_drops
+    spawnableActorList_add(&D_80372BA4, actor_new, 0x2020141);//ice_cube
+    spawnableActorList_add(&D_8036804C, actor_new, 0x508604);//GAME_OVER
+    spawnableActorList_add(&D_8036807C, actor_new, 0x508604);//THE_END
+    spawnableActorList_add(&D_803680AC, actor_new, 0x508604);//player_KAZOOIE
+    spawnableActorList_add(&D_803680DC, actor_new, 0x508604);//copyright_info
+    spawnableActorList_add(&D_80368124, actor_new, 0x508604);//PRESS_START
+    spawnableActorList_add(&D_803682D0, func_802DEB18, 0x509604);//jiggy_picture
+    spawnableActorList_add(&D_8036833C, actor_new, 0x508604); 
+    spawnableActorList_add(&D_8036838C, actor_new, 0x509604);
+    spawnableActorList_add(&D_80368418, actor_new, 0x508644);//banjos_hand_BB
+    spawnableActorList_add(&D_80368174, actor_new, 0x508604);//NO_CONTROLLER);
+    spawnableActorList_add(&D_80367530, actor_new, 0x0);//mumbo_token_sign.5
+    spawnableActorList_add(&D_80367554, actor_new, 0x0);//mumbo_toke_sign.10
+    spawnableActorList_add(&D_80367578, actor_new, 0x0);//mumbo_toke_sign.15
+    spawnableActorList_add(&D_8036759C, actor_new, 0x0);//mumbo_toke_sign.20
+    spawnableActorList_add(&D_803675C0, actor_new, 0x0);//mumbo_toke_sign.25
+    spawnableActorList_add(&D_8036785C, actor_new, 0x0);//witch_switch.mm;
+    spawnableActorList_add(&D_80367880, actor_new, 0x0);//witch_switch.mmm
+    spawnableActorList_add(&D_803678A4, actor_new, 0x0);//witch_switch.ttc
+    spawnableActorList_add(&D_803678C8, actor_new, 0x0);//witch_switch.rbb
+    spawnableActorList_add(&D_803678EC, actor_new, 0x0);//witch_switch.ccw
+    spawnableActorList_add(&D_80367910, actor_new, 0x0);//witch_switch.fp
+    spawnableActorList_add(&D_80367934, actor_new, 0x0);//witch_switch.cc
+    spawnableActorList_add(&D_80367958, actor_new, 0x0);//witch_switch.bgs
+    spawnableActorList_add(&D_8036797C, actor_new, 0x400);//witch_switch.gv
+    spawnableActorList_add(&D_80368450, actor_new, 0x20000);//fire_sparkle
+    spawnableActorList_add(&D_803684BC, actor_new, 0x180);//roysten
+    spawnableActorList_add(&D_803684E0, actor_new, 0x0);//cuckoo_clock
+    spawnableActorList_add(&D_80368504, actor_new, 0x0);
+    spawnableActorList_add(&D_80368528, actor_new, 0x0);
+    spawnableActorList_add(&D_8036854C, actor_new, 0x0);
+    spawnableActorList_add(&D_80368570, actor_new, 0x0);
+    spawnableActorList_add(&D_80368474, actor_new, 0xC8);
+    spawnableActorList_add(&D_80368498, actor_new, 0x0);
+    spawnableActorList_add(&D_803732E0, actor_new, 0x0);
+    spawnableActorList_add(&D_80372810, actor_new, 0x8008A8);
+    spawnableActorList_add(&D_80373100, actor_new, 0x28008A8);
+    spawnableActorList_add(&D_80373134, actor_new, 0x880);
+    spawnableActorList_add(&D_80373158, actor_new, 0x880);
+    spawnableActorList_add(&D_80372EE0, actor_new, 0x2000141);
+    spawnableActorList_addIfMapVisited(&D_80372F50, actor_new, 0x2010101, MAP_2_MM_MUMBOS_MOUNTAIN); //ticker
+    spawnableActorList_addIfMapVisited(&D_80372C80, actor_new, 0x2010981, MAP_31_RBB_RUSTY_BUCKET_BAY); //floatsam
+    spawnableActorList_addIfMapVisited(&D_80372C18, actor_new, 0x211A9,   MAP_1B_MMM_MAD_MONSTER_MANSION); //teehee
+    spawnableActorList_addIfMapVisited(&D_80372FC0, actor_new, 0x2010001, MAP_1B_MMM_MAD_MONSTER_MANSION);
+    spawnableActorList_addIfMapVisited(&D_80372FE4, actor_new, 0x2010401, MAP_1B_MMM_MAD_MONSTER_MANSION);
+    spawnableActorList_addIfMapVisited(&D_803730D8, actor_new, 0x2200021, MAP_1B_MMM_MAD_MONSTER_MANSION); //nibbly
+    spawnableActorList_addIfMapVisited(&D_80367130, actor_new, 0x20009a9, MAP_D_BGS_BUBBLEGLOOP_SWAMP); //buzzbomb
+    spawnableActorList_addIfMapVisited(&D_80372B80, actor_new, 0x2020141, MAP_27_FP_FREEZEEZY_PEAK);
+    spawnableActorList_addIfMapVisited(&D_80367404, actor_new, 0x2000101, MAP_7_TTC_TREASURE_TROVE_COVE); //scrapnel
+    spawnableActorList_addIfMapVisited(&D_80372D78, actor_new, 0x3010121, MAP_1B_MMM_MAD_MONSTER_MANSION); //limbo
+    spawnableActorList_addIfMapVisited(&D_80372DF8, actor_new, 0x2010121, MAP_31_RBB_RUSTY_BUCKET_BAY); //grublin_hood
+    spawnableActorList_addIfMapVisited(&D_80372E78, actor_new, 0x3010129, MAP_12_GV_GOBIS_VALLEY); //mummum
+    spawnableActorList_addIfMapVisited(&D_80372840, actor_new, 0x2800960, MAP_B_CC_CLANKERS_CAVERN); //grillchompa
+    spawnableActorList_addIfMapVisited(&D_803670B8, actor_new, 0x3000121, MAP_7_TTC_TREASURE_TROVE_COVE); //snippet
+    spawnableActorList_addIfMapVisited(&D_803670DC, actor_new, 0x30000a0, MAP_7_TTC_TREASURE_TROVE_COVE); //black_snippet
+    spawnableActorList_addIfMapVisited(&D_80367100, actor_new, 0x3001021, MAP_7_TTC_TREASURE_TROVE_COVE); //mutie_snippet
+    spawnableActorList_addIfMapVisited(&D_80372870, actor_new, 0x2800820, MAP_40_CCW_HUB); //clucker
+    spawnableActorList_addIfMapVisited(&D_803728A0, actor_new, 0x2000981, MAP_12_GV_GOBIS_VALLEY); //scarab
+    spawnableActorList_addIfMapVisited(&D_80368670, actor_new, 0x2000460, MAP_27_FP_FREEZEEZY_PEAK); //sirslush
     switch(loaded_asm_file){
         default:
             break;
@@ -385,9 +385,9 @@ void func_802C2B5C(void){
             break;
         case OVERLAY_9_SNOW:
             fp_func_80391324();
-            func_803053E8(&D_80367BC8, actor_new, 0x8);
-            func_803053E8(&D_80367BEC, actor_new, 0x8);
-            func_803053E8(&D_80367C10, actor_new, 0x8);
+            spawnableActorList_add(&D_80367BC8, actor_new, 0x8);
+            spawnableActorList_add(&D_80367BEC, actor_new, 0x8);
+            spawnableActorList_add(&D_80367C10, actor_new, 0x8);
             break;
         case OVERLAY_A_TREE:
             ccw_func_8038DB6C();
@@ -403,7 +403,7 @@ void func_802C2B5C(void){
 }
 
 void func_802C398C(void){
-    func_803053B8();
+    spawnableActorList_free();
     func_80326124();
     func_80305D94();
     free(D_80365DC8);

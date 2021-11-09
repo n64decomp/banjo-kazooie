@@ -270,7 +270,7 @@ void func_8031594C(gczoombox_t * this, u8 *str, s32 arg2, s32 arg3){
 #endif
 
 
-u8 func_80315BC0(gczoombox_t *this, enum SFX_E uid, s32 arg2){
+u8 func_80315BC0(gczoombox_t *this, enum sfx_e uid, s32 arg2){
      u8 sp1F = func_8030ED2C(uid, arg2) & 0xff;
      func_8030DD90(sp1F, 0);
      if(this->portrait_id == 0x66){

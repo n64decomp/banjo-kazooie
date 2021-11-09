@@ -17,14 +17,14 @@ void func_8038FDE0(s32 arg0){
     if(arg0 == 1)  D_803912CC = 6.5f;
 
     if(arg0 == 2){
-        func_80346414(3, 0xf3b);
-        func_80346414(9, 1);
+        func_80346414(ITEM_3_PROPELLOR_TIMER, 0xf3b);
+        func_80346414(ITEM_9_PROPELLOR, 1);
     }
 
     if(arg0 == 3 || arg0 == 4){
         levelSpecificFlags_set(0x27, FALSE);
         levelSpecificFlags_set(0x28, FALSE);
-        func_80346414(9,0);
+        func_80346414(ITEM_9_PROPELLOR,0);
         if(arg0 == 3 && !jiggyscore_isCollected(0x57)){
             timedFunc_set_1(0.5f, (TFQM1)func_802FAD64, 3);
             func_80324DBC(1.0f, 0xb9d, 4, NULL, NULL, NULL, NULL);

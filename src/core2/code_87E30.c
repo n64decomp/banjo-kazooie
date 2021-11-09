@@ -434,7 +434,7 @@ void func_80310D2C(void){
                 if(item_getCount(0x6) != 0)
                     func_802FACA4(0x28);
                 else
-                    func_802FAD64(ITEM_0_TIMER);
+                    func_802FAD64(ITEM_0_HOURGLASS_TIMER);
             }
             else {
                 if(func_802FADD4(3)){

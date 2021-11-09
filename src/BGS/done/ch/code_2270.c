@@ -38,8 +38,8 @@ void func_803886F4(ActorMarker *this){
     Actor *thisActor;
     
     thisActor = marker_getActor(this);
-    func_80346414(6, 1);
-    func_80346414(0, 0x707);
+    func_80346414(ITEM_6_HOURGLASS, 1);
+    func_80346414(ITEM_0_HOURGLASS_TIMER, 0x707);
     func_803888E4(thisActor, 5);
 }
 
@@ -91,7 +91,7 @@ void func_80388848(ActorMarker *this){
         return;
 
     if(func_803203FC(2)){
-        func_80346414(6,0);
+        func_80346414(ITEM_6_HOURGLASS,0);
         func_803204E4(3,0);
         func_803204E4(5,1);
     }
@@ -298,8 +298,8 @@ void func_80389080(Actor *this){
         }
         if(this->state == 5){
             if(func_803203FC(2)){
-                if(item_empty(0)){
-                    func_80346414(6,1);
+                if(item_empty(ITEM_0_HOURGLASS_TIMER)){
+                    func_80346414(ITEM_6_HOURGLASS,1);
                     func_803204E4(3,0);
                     func_803204E4(5,0);
                 }

@@ -245,7 +245,7 @@ void func_802FE844(s32 arg0, struct8s *arg1){
                         func_803463D4(0x14, 0);
                         timedFunc_set_1(1.25f, func_80345F24, 0x15);
                         timedFunc_set_1(1.25f, func_8030E484, 0x3EA);
-                        timedFunc_set_2(1.25f, func_80346414, 0x14, item_getCount(0x15)+1);
+                        timedFunc_set_2(1.25f, func_80346414, ITEM_14_HEALTH, item_getCount(ITEM_15_HEALTH_TOTAL)+1);
                         timedFunc_set_1(1.5f, func_80314AC8, 1);
                     }
                     break;

@@ -128,7 +128,7 @@ void func_802E2ED4(void){
 
 //mapSavestate_apply
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5BEB0/func_802E30AC.s")
-// void func_802E30AC(enum MAP_E map){
+// void func_802E30AC(enum map_e map){
 //     u32 **mssp = D_8037E650 + map;
 //     int s0;
 //     int val;
@@ -166,7 +166,7 @@ void func_802E35D0(void){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5BEB0/func_802E3854.s")
 
-void func_802E38E8(enum MAP_E map, s32 exit, s32 reset_on_load){
+void func_802E38E8(enum map_e map, s32 exit, s32 reset_on_load){
     if(reset_on_load || level_get() != map_getLevel(map)){
         func_8030AFD8(1);
         func_80321854();
@@ -359,7 +359,7 @@ void func_802E4048(s32 map, s32 exit, s32 transition){
 }
 
 //take me there
-extern void func_802E4078(enum MAP_E map, s32 exit, s32 transition){
+extern void func_802E4078(enum map_e map, s32 exit, s32 transition){
     func_802E40D0(map, exit);
     func_802E40E8(transition);
     func_802E40C4(1);

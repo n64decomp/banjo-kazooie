@@ -330,12 +330,12 @@ void func_80296608(void){
             sp2C = 2;
             break;
         case 0x2c: //L80296738
-            func_80346414(0x14, 0);
+            func_80346414(ITEM_14_HEALTH, 0);
             func_80291930(1);
             sp2C = 2;
             break;
         case 0x13: //L80296760
-            func_80346414(0x14, 0);
+            func_80346414(ITEM_14_HEALTH, 0);
             /* missing break ? */
         case 0xb:  //L8029676C
             func_8029622C();
@@ -343,7 +343,7 @@ void func_80296608(void){
             sp2C = 2;
             break;
         case 0x26: //L8029678C  
-            func_80346414(0x14, 0);
+            func_80346414(ITEM_14_HEALTH, 0);
             func_8029B930();
             func_8029B890();
             sp2C = 2;
@@ -500,7 +500,7 @@ void func_80296608(void){
             sp2C = 2;
             break;
         case 0x30: //L80296B88
-            func_80346414(0x14, 0);
+            func_80346414(ITEM_14_HEALTH, 0);
             func_802933E8(6);
             sp24 = func_8029B504();
             sp2C = 2;

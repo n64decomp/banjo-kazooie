@@ -224,7 +224,7 @@ void func_8025A58C(s32 arg0, s32 arg1){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025A5AC.s")
 
-void func_8025A6CC(s32 arg0, s32 arg1){
+void func_8025A6CC(enum comusic_e arg0, s32 arg1){
     func_8025A5AC(arg0, arg1, 0);
 }
 
