@@ -43,15 +43,15 @@ segments:
     start: 0x00005FC0
     vram: 0x8038C3B0
     subsegments:
-      - [0x00005FC0, bin, data_5FC0]
+      - [0x00005FC0, bin, ttc_data_5FC0]
       - [0x00006370, .data, ch/lockup]
-      - [0x00006430, bin, data_6430]
+      - [0x00006430, bin, ttc_data_6430]
       - [0x000064C0, .data, code_35D0]
-      - [0x00006590, bin, data_6590]
+      - [0x00006590, bin, ttc_data_6590]
       - [0x000068A0, .data, ch/treasure]
-      - [0x000068F0, bin, data_68F0]
+      - [0x000068F0, bin, ttc_data_68F0]
       - [0x00006A00, .rodata, ch/lockup]
-      - [0x6A30, bin, bin_6A30] #- [0x00006A30, .rodata, code_35D0]
+      - [0x6A30, bin, ttc_data_6A30] #- [0x00006A30, .rodata, code_35D0]
       - [0x00006A60, bin, data_6A60]
       - [0x000072B0, .rodata, ch/treasure]
       #- [0x00007310, .bss, code_35D0]
