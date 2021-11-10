@@ -46,6 +46,7 @@ carriedObject_getActorID = 0x8028D670;
 func_8028E7EC9 = 0x8028E7EC9;
 player_getPosition = 0x8028E9A4;
 player_getRotation = 0x8028EC24;
+func_8028F45C = 0x8028F45C;
 func_80291A60 = 0x80291A60;
 banjo_getPosition = 0x80292468;
 func_802947CC = 0x802947CC;

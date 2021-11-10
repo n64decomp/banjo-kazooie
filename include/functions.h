@@ -32,6 +32,12 @@ extern f32 fabsf(f32);
     dst[2] = src[2];\
 }
 
+#define v3Copy(dst, src) {\
+    dst[0] = src[0];\
+    dst[1] = src[1];\
+    dst[2] = src[2];\
+}
+
 #define TUPLE_OP(out, a, op, b) {\
     out##_x = a##_x op b##_x;\
     out##_y = a##_y op b##_y;\
@@ -426,7 +432,7 @@ Actor *func_80329980(Actor *);
  /* used in RBB */
 void ml_vec3f_pitch_rotate_copy(f32 dst[3], f32 src[3], f32 pitch);
 int func_8025773C(f32 *arg0, f32 arg1);
-Actor *func_80325888(ActorMarker *, Gfx**, Mtx**, s32);
+Actor *func_80325888(ActorMarker *, Gfx**, Mtx**, Vtx **);
 void func_80335924(void *, s32, f32, f32);
 
 extern Actor *func_80325340(ActorMarker *, Gfx**, Mtx**, s32);
