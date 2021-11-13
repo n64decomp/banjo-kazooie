@@ -19,6 +19,7 @@ u64 D_8027BEF0;
 u64 D_8027A538;
 extern u8 D_80286F90;
 
+
 void func_8023DA20(s32 arg0){
     bzero(&D_8027A130, &D_80286F90 - (u8*)&D_8027A130);
     osWriteBackDCacheAll();
@@ -56,7 +57,7 @@ u32 func_8023DB4C(u32 arg0){
     return D_80275618 & arg0;
 }
 
-u32 func_8023DB5C(void){
+s32 func_8023DB5C(void){
     return D_80275618;
 }
 
@@ -65,7 +66,7 @@ void func_8023DB68(void){
 }
 
 s32 func_8023DB74(void){
-    return (DEBUG_use_special_bootmap())? 0x80 : 0x91;
+    return (DEBUG_use_special_bootmap())? MAP_80_GL_FF_ENTRANCE : MAP_91_FILE_SELECT;
 }
 
 s32 func_8023DBA4(void){
@@ -113,65 +114,74 @@ void func_8023DCF4(void){
     D_80275618--;
 }
 
-extern s16 D_803A5D00[];
+extern u8 D_803A5D00[2][0x1ECC0];
 
-// void func_8023DD0C(void) {
-//     s16 temp_t1;
-//     s16 *temp_a0;
-//     s32 phi_s3;
-//     s32 s0_2;
-//     s32 *s2;
-
-//     if ((func_8023DB5C() & 0x7F) == 0x11) {
-//         sns_write_payload_over_heap();
-//     }
-//     func_8023DA74();
-//     if ((D_8027A130 != 3) || (getGameMode() != 4)) {
-//         func_8023DCDC();
-//     }
-//     if (D_8027BEEC == 0) {
-//         func_8024E7C8();
-//     }
-//     D_8027BEEC = 0;
-//     func_80250C08();
-//     if (mapSpecificFlags_validateCRC1() == 0) {
-//         write_file_blocks(0, 0, 0x80397AD0, 0x40);
-//     }
-//     if (3 != D_8027A130) {
-//         if (D_8027A130 == 4) {
-//             func_802E35D8();
-//         }
-//     } else {
-//         func_80255524();
-//         func_80255ACC();
-//         func_802C3A18();
-//         if (func_802E4424() != 0) {
-//             func_802E3F8C(0);
-//         }
-//         func_802C3A38();
-//     }
-//     if (D_80275610 != 0) {
-//         func_8023DA9C(D_80275610 - 1);
-//         D_80275610 = 0;
-//     }
-//     if ((func_8032056C() == 0) || (levelSpecificFlags_validateCRC1() == 0) || (func_80320240() == 0)) {
-//         for (phi_s3 = 30; phi_s3 < (D_8027658C - 30); phi_s3++) {
-//             s32 s2 = ((phi_s3 >> 3) & 0x1f) << 0x6;
-//             s32 tmp2 = phi_s3 * phi_s3;
-//             for (s0_2 = 20; s0_2 < 235; s0_2++) {
-//                 s32 tmp = func_8023DB5C();
-//                 temp_a0 = &((u8*)D_803A5D00)[(((D_80276588 - 0xFF) / 2) + s0_2 + (phi_s3 * D_80276588))];
-//                 // s0 = s0 + 1;
-//                 temp_t1 = ((((s32) ((tmp * 8) + tmp2 + (s0_2 * s0_2)) >> 3) & 0x1F)) | ((s0_2 >> 3) << 0xb) | (s2) | 1;
-//                 // temp_t1 = GPACK_RGBA5551(s0_2, phi_s3, tmp * 8 + s0_2 * s0_2 + phi_s3 * phi_s3, 1);
-//                 temp_a0[0] = temp_t1;
-//                 temp_a0[63072] = temp_t1;
-//             }
-//         }
-//     }
-// }
-
+#ifndef NOMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_0/func_8023DD0C.s")
+#else
+void func_8023DD0C(void){
+    s32 x;
+    s32 y;
+    s32 r;
+    s32 g;
+    s32 b;
+
+    if((func_8023DB5C() & 0x7f) == 0x11)
+        sns_write_payload_over_heap();
+    func_8023DA74();
+
+    if(D_8027A130 != 3 || getGameMode() != GAME_MODE_4_PAUSED)
+        func_8023DCDC();
+    
+    if(!D_8027BEEC)
+        func_8024E7C8();
+    D_8027BEEC = 0;
+    func_80250C08();
+
+    if(!mapSpecificFlags_validateCRC1()){
+        write_file_blocks(0, 0, 0x80397AD0, 0x40);
+    }
+
+    switch(D_8027A130){
+        case 4:
+            func_802E35D8();
+            break;
+        case 3:
+            func_80255524();
+            func_80255ACC();
+            func_802C3A18();
+            if(func_802E4424())
+                func_802E3F8C(0);
+            func_802C3A38();
+            break;
+    }//L8023DE34
+
+    if(D_80275610){
+        func_8023DA9C(D_80275610 - 1);
+        D_80275610 = 0;
+    }//L8023DE54
+    if( !func_8032056C()
+        || !levelSpecificFlags_validateCRC1()
+        || !func_80320240()
+    ){
+        //render weird CRC failure image
+        for(x= 0x1e; x< D_8027658C - 0x1e; x++){//L8023DEB4
+            for(y = 0x14; y < 0xeb; y++){
+                b = ((func_8023DB5C() << 3) + y*y + x*x) >> 3;
+                g = x >> 3;
+                r = y >> 3;
+                *(u16*)&D_803A5D00[1][((D_80276588 - 0xff)/2 + y + x*D_80276588)*2] =
+                *(u16*)&D_803A5D00[0][((D_80276588 - 0xff)/2 + y + x*D_80276588)*2] =
+                    _SHIFTL(b, 1, 5) 
+                    | _SHIFTL(g, 6, 5) 
+                    | _SHIFTL(r, 11, 5) 
+                    | _SHIFTL(1, 0, 1 )
+                    ;
+            }
+        }
+    }//L8023DF70
+}
+#endif
 
 void func_8023DF9C(void *arg0){ 
     func_8023DC0C();

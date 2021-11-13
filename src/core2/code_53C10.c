@@ -33,7 +33,13 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_53C10/func_802DB440.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_53C10/func_802DB4E0.s")
+void func_802DB4E0(ActorMarker *marker, s32 arg1){
+    Actor * actor = marker_getActor(marker);
+    func_80328B8C(actor, 9, 0.0f, 1);
+    actor_playAnimationOnce(actor);
+    actor_collisionOff(actor);
+    actor->unk60 = randf2(3.0f, 6.0f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_53C10/func_802DB548.s")
 

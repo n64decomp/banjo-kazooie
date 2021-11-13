@@ -67,7 +67,7 @@ typedef struct bk_sprite_texture_block_s{
 } BKSpriteTextureBlock;
 
 typedef struct model_cache_s{
-    void * modelPtr;
+    BKModelBin * modelPtr;
     s32     unk4; 
     s32     unk8;
     u32     unkC;

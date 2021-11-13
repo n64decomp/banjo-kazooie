@@ -507,6 +507,8 @@ segments:
   - [0xEFED0, bin, data_EFED0]
   - [0xEFF40, .rodata, code_54D50]
   - [0xEFF60, bin, data_EFF60]
+  #- [0xF0180, .rodata, code_5BEB0]
+  - [0xF0180, bin, data_F0180]
   - [0xF0220, .rodata, code_67650]
   - [0xF0240, bin, data_F0240]
   - [0xF0390, .rodata, code_71820]

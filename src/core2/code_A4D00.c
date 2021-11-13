@@ -422,7 +422,7 @@ void func_803300A8(ActorMarker *this, MarkerCollisionFunc ow_func, MarkerCollisi
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_803300E0.s")
 
-//actorMarker_setModelId
+//marker_setModelId
 void func_803300E8(ActorMarker *this, s32 modelIndex){
     this->modelId = modelIndex;
 }
@@ -481,10 +481,10 @@ void func_803308A0(void){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_80330B10.s")
 
-//ActorMarker_getModelPtr
-void *func_80330B1C(ActorMarker *this){
+//marker_loadModelBin
+BKModelBin *func_80330B1C(ActorMarker *this){
     Actor* thisActor;
-    void * model;
+    BKModelBin * model;
     ModelCache *modelInfo;
 
     if(this->modelId == 0)
@@ -579,6 +579,11 @@ void *func_80330E28(Actor* this){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_80332764.s")
 
+extern ActorMarker *D_8036E7C8;
+extern u32 D_8036E804[8];
+extern u8 D_80383428[];
+
+
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_80332790.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_803327A8.s")
@@ -591,31 +596,25 @@ void *func_80330E28(Actor* this){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8033297C.s")
 
-extern ActorMarker *D_8036E7C8;
-extern u32 D_8036E804[8];
-extern u8 D_80383428[];
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_803329AC.s")
-// void func_803329AC(void){
-//     u8 *iPtr;
-//     s32 i;
+//MarkerList_Init
+void func_803329AC(void){
+    s32 i;
     
-//     D_8036E7C8 = (ActorMarker *)malloc(0xE0*sizeof(ActorMarker));
-//     // for(i = 0; i < 0xE0/8; i++){
-//     //     (&D_80383428)[i] = 0;
-//     // }
-//     if(iPtr = &D_80383428);
-//     do{
-//         *(iPtr++) = 0;
-//     }while((u32)iPtr < (u32)&D_80383444);
+    D_8036E7C8 = (ActorMarker *)malloc(0xE0*sizeof(ActorMarker));
+
+    for( i = 0; i < 0x1C; i++){
+        D_80383428[i] = 0;
+    }
        
-//     for(i =0; i<0xE0; i++){
-//         D_8036E7C8[i].unk5C = 0;
-//     }
-// }
+    for(i =0; i<0xE0; i++){
+        D_8036E7C8[i].unk5C = 0;
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_80332A38.s")
-
+void func_80332A38(void){
+    free(D_8036E7C8);
+    D_8036E7C8 = NULL;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_80332A60.s")
 

@@ -36,12 +36,12 @@ void func_8038B4A0(void){
 }
 
 void func_8038B4C4(ActorMarker *marker){
-    func_8025A6EC(SFX_BUZZER, 28000);
+    func_8025A6EC(COMUSIC_2C_BUZZER, 28000);
     func_8028F530(0xD);
 }
 
 void func_8038B4F4(void){
-    func_8025A6EC(JINGLE_PUZZLE_SOLVED_FANFARE, 28000);
+    func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);
     func_80324E38(1.0f, 3);
     func_80324E60(2.0f, 10);
     timedFunc_set_0(2.2f, func_8038B468);

@@ -444,6 +444,7 @@ snsBasePayloadPtr2                = 0x80276E48;
 snsBasePayloadPtr3                = 0x80276E4C;
 snsBasePayloadPtr4                = 0x80276E50;
 snsPayloadOutCurrPos              = 0x80276E60;
+D_80283008                        = 0x80283008;
 snsParsedKeys                     = 0x80283390;
 snsMinKeyToParse                  = 0x80283420;
 snsMaxKeyToParse                  = 0x80283424;
@@ -466,6 +467,8 @@ D_80378F64 = 0x80378F64;
 D_80378F68 = 0x80378F68;
 carriedObject_actorID = 0x8037BF78;
 D_8037C564 = 0x8037C564;
+D_80397AD0 = 0x80397AD0;
+
 D_A0000238 = 0xA0000238;
 
 

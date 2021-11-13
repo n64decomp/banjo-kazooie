@@ -704,7 +704,27 @@ void func_802F0D64(struct30s *this){
     this->unk0_0 = TRUE;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_67650/func_802F0D74.s")
+struct30s * func_802F0D74(struct30s *this){
+    int i;
+    s32 a3;
+
+    if(this){
+        a3 = (s32)this;
+        i = 0;
+        while(D_803689B0[i] != this && i < D_803689B4){
+            i++;
+        }
+        this = (struct30s *)func_802555DC(this);
+        this->unk124 = (s32)this + (u32)((s32)this->unk124 - a3);
+        this->unk128 = (s32)this + (u32)((s32)this->unk128 - a3);
+        this->unk12C = (s32)this + (u32)((s32)this->unk12C - a3);
+        if(i < D_803689B4){
+            D_803689B0[i] = this;
+        }
+
+    }//L802F0E44
+    return this;
+}
 
 void func_802F0E58(void){
     D_803689B0 = (struct30s **)func_802555DC(D_803689B0);

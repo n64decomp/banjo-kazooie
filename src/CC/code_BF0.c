@@ -35,7 +35,7 @@ void func_80386FE0(Actor *this, s32 next_state){
     this->state = next_state;
     local->unk8 = 0.0f;
     if(this->state == 2){
-        func_8025A6EC(JINGLE_PUZZLE_SOLVED_FANFARE, 28000);
+        func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);
     }
     else if(this->state == 3){
         if(prev_state == 2){

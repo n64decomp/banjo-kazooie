@@ -2,21 +2,54 @@
 #include "functions.h"
 #include "variables.h"
 
-typedef struct {
-    u8 pad0[0x4];
-    u32 unk4;
-    u8 pad8[0x14];
-}stuct5DBC0_1s;
 
 typedef struct {
-    stuct5DBC0_1s *unk0;
-    u8 pad4[0x8];
-    s32 unkC;
-}stuct5DBC0s;
+    u8 pad0[0xD];
+    u8 unkD;
+    u8 padE[0x2];
+}struct5DBC0_2s;
 
-stuct5DBC0s * D_8037E900;
+typedef struct {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+    u16 unkC;
+    u8  unkE;
+    u8  padF[1];
+    u8 unk10[0xC];
+}struct5DBC0_1s;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5DBC0/func_802E4B50.s")
+typedef struct {
+    struct5DBC0_1s *    unk0;
+    struct5DBC0_2s *    unk4;
+    u8 *                unk8;
+    s32                 unkC;
+    s32                 unk10;
+    s32                 unk14;
+    s32                 unk18;
+    u8                  unk1C[3];
+    u8                  pad1F[1];
+}struct5DBC0s;
+
+extern u8 D_80368830[3] = {0,0,0};
+
+extern struct5DBC0s * D_8037E900;
+
+struct5DBC0s *func_802E4B50(void){
+    u8 sp24[3] = D_80368830;
+    D_8037E900 = (struct5DBC0s *)malloc(sizeof(struct5DBC0s));
+    D_8037E900->unk0 = (struct5DBC0_1s *) malloc(sizeof(struct5DBC0_1s));
+    D_8037E900->unkC = 0;
+    D_8037E900->unk4 = (struct5DBC0_2s *) malloc(sizeof(struct5DBC0_2s));
+    D_8037E900->unk10 = 0;
+    D_8037E900->unk8 = (u8 *) malloc(sizeof(u8));
+    D_8037E900->unk14 = 0;
+    D_8037E900->unk18 = 0;
+    D_8037E900->unk1C[0] = sp24[0];
+    D_8037E900->unk1C[1] = sp24[1];
+    D_8037E900->unk1C[2] = sp24[2];
+    return D_8037E900;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5DBC0/func_802E4C0C.s")
 
@@ -34,7 +67,10 @@ stuct5DBC0s * D_8037E900;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5DBC0/func_802E502C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5DBC0/func_802E5188.s")
+void func_802E5188(void){
+    D_8037E900->unkC = 0;
+    D_8037E900->unk14 = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5DBC0/func_802E51A4.s")
 

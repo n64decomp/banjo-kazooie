@@ -8,16 +8,20 @@ void func_8024CE60(f32, f32);
 
 
 void func_802E40A8(s32 map, s32 exit);
+void func_802E40C4( s32 arg0);
 void func_802E40D0(s32 map, s32 exit);
 void func_802E40E8(s32 transition);
-int func_802E4A08(void);
+int  func_802E4A08(void);
 
 f32 func_8033DC20(void);
 void func_8033DC9C(f32);
 extern void func_80324C58(void);
 
 
+extern f32 D_80377110;
 extern f32 D_80377114;
+
+extern s32 D_8037E8EC;
 
 extern struct{
     s32 unk0;
@@ -162,7 +166,16 @@ void func_802E35D0(void){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5BEB0/func_802E35D8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5BEB0/func_802E3800.s")
+extern void func_8024C510(f32);
+extern void func_8024CDF8(f32, f32, f32);
+extern void func_8024CE40(f32, f32, f32);
+
+void func_802E3800(void){
+    func_8024CDF8(0.0f, 0.0f, 0.0f);
+    func_8024CE40(-30.0f, 30.0f, 0.0f);
+    func_8024C510(D_80377110);
+    func_8024CFD4();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5BEB0/func_802E3854.s")
 
@@ -350,7 +363,32 @@ void func_802E3E7C(enum game_mode_e mode){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5BEB0/func_802E3F80.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5BEB0/func_802E3F8C.s")
+//game_draw
+void func_802E3F8C(s32 arg0){
+    Gfx *sp34;
+    Gfx *sp30;
+    Gfx *sp2C;
+    Mtx *sp28;
+    Vtx *sp24;
+    if(arg0){
+        func_80254348();
+    }
+
+    func_80254404(&sp34, &sp28, &sp24);
+    if(D_8037E8EC == 1){
+        func_80254404(&sp34, &sp28, &sp24);
+    }
+    sp30 = sp34;
+    func_802E39D0(&sp34, &sp28, &sp24, func_8024BDA0(), arg0);
+    if(D_8037E8EC == 0){
+        sp2C = sp34;
+        func_8024C1DC();
+        func_80253EC4(sp30, sp2C);
+        if(arg0){
+            func_80254348();
+        }
+    }
+}
 
 void func_802E4048(s32 map, s32 exit, s32 transition){
     func_802E40A8(map, exit);
@@ -371,7 +409,9 @@ void func_802E40A8(s32 map, s32 exit){
     D_8037E8E0.unk16 = exit;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5BEB0/func_802E40C4.s")
+void func_802E40C4( s32 arg0){
+    D_8037E8E0.unk14 = arg0;   
+}
 
 void func_802E40D0(s32 map, s32 exit){
     D_8037E8E0.unk18 = 0;
@@ -415,53 +455,56 @@ void func_802E4170(void){
     func_8030D8DC();
 }
 
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5BEB0/func_802E4214.s")
+#else
 // //99.9% there
-// void func_802E4214(s32 arg0){
-//     D_8037E8E0.unk14 = 0;
-//     D_8037E8E0.unk18 = 0;
-//     D_8037E8E0.unk19 = 0;
-//     D_8037E8E0.unk17 = 0;
-//     D_8037E8E0.unk16 = 0;
-//     D_8037E8E0.unk15 = 0;
-//     D_8037E8E0.unk1A = 0;
-//     D_8037E8E0.unk1B = 0;
-//     D_8037E8E0.unkC = 0;
-//     D_8037E8E0.unk1C = 0;
-//     func_8033C070();
-//     sns_save_and_update_global_data();
-//     func_8030D86C();
-//     func_80259A24();
-//     func_80322764();
-//     func_803251A0();
-//     func_802F9CD8();
-//     func_8031B62C();
-//     if(!func_802E4A08())
-//         func_802F51B8();
-//     func_802E5F38();
-//     func_802407C0();
-//     func_8033A1A4();
-//     func_80253428(1);
-//     func_80288070();
-//     func_8024CCC4();
-//     func_8024CE60(1.0f, D_80377114);
-//     func_8034A6B4();
-//     func_80254348();
-//     func_80253FE8();
-//     func_8033DC70();
-//     func_8033DC04();
-//     func_8031FBA0();
-//     D_8037E8E0.game_mode = 2; //save to t0 instead of t6
-//     D_8037E8E0.unk8 = 0.0f;
-//     func_8033DC9C(0.0f);
-//     func_8033DD04(0);
-//     func_803216D0(arg0);
-//     func_8030AFA0(arg0);
-//     func_802E3854();
-//     func_802E38E8(arg0, 0, 0);
-//     D_8037E8E0.unk0 = 0;
-//     func_802E3BF8(3,1);
-// }
+void func_802E4214(s32 arg0){
+    D_8037E8E0.unk14 = 0;
+    D_8037E8E0.unk18 = 0;
+    D_8037E8E0.unk19 = 0;
+    D_8037E8E0.unk17 = 0;
+    D_8037E8E0.unk16 = 0;
+    D_8037E8E0.unk15 = 0;
+    D_8037E8E0.unk1A = 0;
+    D_8037E8E0.unk1B = 0;
+    D_8037E8E0.unkC = 0;
+    D_8037E8E0.unk1C = 0;
+    func_8033C070();
+    func_8025B0E4();
+    func_8030D86C();
+    func_80259A24();
+    func_80322764();
+    func_803251A0();
+    func_802F9CD8();
+    func_8031B62C();
+    if(!func_802E4A08())
+        func_802F51B8();
+    func_802E5F38();
+    func_802407C0();
+    func_8033A1A4();
+    func_80253428(1);
+    func_80288070();
+    func_8024CCC4();
+    func_8024CE60(1.0f, D_80377114);
+    func_8034A6B4();
+    func_80254348();
+    func_80253FE8();
+    func_8033DC70();
+    func_8033DC04();
+    func_8031FBA0();
+    D_8037E8E0.game_mode = 2;
+    D_8037E8E0.unk8 = 0.0f;
+    func_8033DC9C(0.0f);
+    func_8033DD04(0);
+    func_803216D0(arg0);
+    func_8030AFA0(arg0);
+    func_802E3854();
+    func_802E38E8(arg0, 0, 0);
+    D_8037E8E0.unk0 = 0;
+    func_802E3BF8(3,1);
+}
+#endif
 
 void func_802E4384(void){
     if(D_8037E8E0.unk8 == 0.0f){

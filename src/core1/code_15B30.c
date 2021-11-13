@@ -2,14 +2,20 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void *D_80276580;
-extern void *D_80276584;
-extern void *D_80282FF0;
-extern void *D_80282FF4;
-extern void *D_80282FF8;
-extern void *D_80282FFC;
+typedef struct {
+    s32 unk0;
+    s32 unk4;
+    Gfx **unk8;
+    Gfx **unkC;
+    u8 unk10[0x8];
+}Struct_Core1_15B30;
+
+extern Gfx *D_80276580[2];
+extern Mtx *D_80282FF0[2];
+extern Vtx *D_80282FF8[2];
 extern s32 D_80283000;
 extern s32 D_80283004;
+extern Struct_Core1_15B30 D_80283008[];
 extern s32 D_802831E8;
 extern OSMesgQueue D_802831F0;
 extern OSMesg D_80283208;
@@ -25,9 +31,13 @@ void func_80254348(void);
 void func_80254464(void);
 
 /* .code */
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_15B30/func_80253550.s")
+void func_80253550(void){
+    osRecvMesg(&D_802831F0, NULL, OS_MESG_BLOCK);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_15B30/func_8025357C.s")
+void func_8025357C(void){
+    osSendMesg(&D_802831F0, NULL, OS_MESG_BLOCK);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_15B30/func_802535A8.s")
 
@@ -80,11 +90,24 @@ void func_80253DE0(Gfx **gdl) {
     gSPEndDisplayList((*gdl)++);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_15B30/func_80253E14.s")
+void func_80253E14(Gfx **arg0, Gfx **arg1, s32 arg2){
+    Struct_Core1_15B30 *sp1C;
+    func_80253550();
+    sp1C = D_80283008 + D_802831E8;
+    D_802831E8 = (D_802831E8 + 1) % 0x14;
+    func_8025357C();
+    sp1C->unk0 = 1;
+    sp1C->unk4 = arg2;
+    sp1C->unk8 = arg0;
+    sp1C->unkC = arg1;
+    func_80246670((OSMesg) sp1C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_15B30/func_80253EA4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_15B30/func_80253EC4.s")
+void func_80253EC4(Gfx **arg0, Gfx **arg1){
+    func_80253E14(arg0, arg1, 0x40000000);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_15B30/func_80253EE4.s")
 
@@ -118,25 +141,25 @@ void func_80254028(void){
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_15B30/func_80254084.s")
 
 void func_802541E8(void){
-    if(D_80276580){
-        free(D_80276580);
-        free(D_80276584);
-        free(D_80282FF0);
-        free(D_80282FF4);
-        free(D_80282FF8);
-        free(D_80282FFC);
-        D_80276580 = NULL;
+    if(D_80276580[0]){
+        free(D_80276580[0]);
+        free(D_80276580[1]);
+        free(D_80282FF0[0]);
+        free(D_80282FF0[1]);
+        free(D_80282FF8[0]);
+        free(D_80282FF8[1]);
+        D_80276580[0] = NULL;
     }
 }
 
 void func_8025425C(void){
-    if(D_80276580 == NULL){
-        D_80276580 = malloc(29600);
-        D_80276584 = malloc(29600);
-        D_80282FF0 = malloc(44800);
-        D_80282FF4 = malloc(44800);
-        D_80282FF8 = malloc(6880);
-        D_80282FFC = malloc(6880);
+    if(D_80276580[0] == NULL){
+        D_80276580[0] = (Gfx *)malloc(29600);
+        D_80276580[1] = (Gfx *)malloc(29600);
+        D_80282FF0[0] = (Mtx *)malloc(44800);
+        D_80282FF0[1] = (Mtx *)malloc(44800);
+        D_80282FF8[0] = malloc(6880);
+        D_80282FF8[1] = malloc(6880);
         func_80254464();
     }
     D_80283000 = 0;
@@ -156,7 +179,11 @@ void func_802543EC(void){
     D_80283004 = ret_val < 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_15B30/func_80254404.s")
-
+void func_80254404(Gfx **gfx, Mtx **mtx, Vtx **vtx){
+    D_80283000 = (1 - D_80283000);
+    *gfx = D_80276580[D_80283000];
+    *mtx = D_80282FF0[D_80283000];
+    *vtx = D_80282FF8[D_80283000];
+}
 
 void func_80254464(void){}

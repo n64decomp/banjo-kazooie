@@ -105,7 +105,7 @@ void func_803892A8(ActorMarker **ptr){
             if(i == 3){
                 func_80314AC8(0);
                 timedFunc_set_4(1.25f, func_80389244, jujuPtr->unk8_x, jujuPtr->unk8_y, jujuPtr->unk8_z, actorPtr->yaw);
-                func_8025A6EC(JINGLE_PUZZLE_SOLVED_FANFARE, 0x6d60);
+                func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 0x6d60);
             }
             else{//L80389384
                 func_8025A6EC(COMUSIC_2B_DING_B, 0x7fff);

@@ -554,7 +554,15 @@ void func_803289EC(Actor *this , f32 arg1, int direction){
     func_802875AC(this->animctrl, D_80378DFC, 0x6b1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80328A2C.s")
+int func_80328A2C(Actor *this, f32 arg1, s32 direction, f32 probability){
+    if(randf() < probability){
+        func_803289EC(this, arg1, direction);
+        return 1;
+    }
+    else{
+        return 0;
+    }
+}
 
 void func_80328A84(Actor * arg0, u32 arg1){
     if(func_80328508(arg0, arg1) && arg0->animctrl){
@@ -582,14 +590,10 @@ int func_80328B38(Actor *this, s32 myAnimId, f32 chance){
     return 0;
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80328B8C.s")
-#else
-void func_80328B8C(Actor * this, int myAnimId, f32 arg2, int direction){
+void func_80328B8C(Actor * this, s32 myAnimId, f32 arg2, s32 direction){
     if(func_80328508(this, myAnimId) && this->animctrl)
-        func_803289EC(this->animctrl, arg2, direction);
+        func_803289EC(this, arg2, direction);
 }
-#endif
 
 int func_80328BD4(Actor * this, s32 myAnimId, f32 arg2, s32 arg3, f32 arg4){
     if(randf() < arg4){
@@ -630,11 +634,12 @@ void func_80328CEC(Actor * this, s32 arg1, s32 min, s32 max){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80328DAC.s")
 
+f32 func_80328DCC(Actor *, f32, f32, s32);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80328DCC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80328FB0.s")
-
-f32 func_80328DCC(Actor *, f32, f32, s32);
+void func_80328FB0(Actor *this, f32 arg1){
+    this->yaw = func_80328DCC(this, this->yaw, this->yaw_moving, (s32)arg1);
+}
 
 void func_80328FF0(Actor *arg0, f32 arg1) {
     arg0->pitch = func_80328DCC(arg0, arg0->pitch, arg0->unk6C, (s32) arg1);

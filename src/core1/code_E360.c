@@ -4,6 +4,7 @@
 
 
 
+void func_8024BF94(s32 arg0);
 void func_8024C2F8(void *);
 
 extern u32 D_80000300;
@@ -16,10 +17,11 @@ extern struct1 D_80280730[2];
 extern OSMesgQueue D_80280770;
 extern OSMesgQueue D_802807B0;
 extern OSMesgQueue D_802807D0;
-extern u32 D_802808D8;
+extern s32 D_802808D8;
+extern s32 D_802808DC;
 extern OSThread D_802808E0;
-extern u8 D_80280E90;
-extern u8 D_803A5D00; //framebuffer
+extern s32 D_80280E90;
+extern u8 D_803A5D00[2][0x1ECC0]; //framebuffer
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_E360/func_8024BD80.s")
 
@@ -63,17 +65,56 @@ void func_8024BE30(void){
     osStartThread(&D_802808E0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_E360/func_8024BF94.s")
+void func_8024BF94(s32 arg0){
+    D_802808DC = arg0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_E360/func_8024BFA0.s")
+s32 func_8024BFA0(void){
+    return D_802808DC;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_E360/func_8024BFAC.s")
+void func_8024BFAC(void){
+    osSendMesg(&D_802807B0, 0, OS_MESG_NOBLOCK);
+}
 
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_E360/func_8024BFD8.s")
+#else
+void func_8024BFD8(s32 arg0){
+    osSetThreadPri(NULL, 0x7f);
+    func_802408EC(0x1E);
+    func_80240874();
+    if(arg0){
+        osRecvMesg(&D_802807B0, NULL, OS_MESG_BLOCK);
+    }
+
+    while((s32)D_802808D8 < func_8024BFA0() - D_80280E90){
+        osRecvMesg(&D_802807D0, NULL, OS_MESG_BLOCK);
+    }
+
+    while(D_802807D0.validCount){
+        osRecvMesg(&D_802807D0, NULL, OS_MESG_NOBLOCK);
+    }
+    
+    osViSwapBuffer(D_803A5D00[D_80280720 = func_8024BD80()]);
+    D_80280E90 = 0;
+    while(!(osDpGetStatus() & 2) && osViGetCurrFrameBuffer() != osViGetNextFrameBuffer()){
+        osRecvMesg(&D_802807D0, NULL, OS_MESG_BLOCK);
+        D_80280E90++;
+    }//L8024C178
+    D_80280724 = D_802808D8;
+    D_802808D8 = 0;
+    func_802408B0();
+    osSetThreadPri(NULL, 0x14);
+    func_802408EC(0xA);
+}
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_E360/func_8024C1B4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_E360/func_8024C1DC.s")
+void func_8024C1DC(void){
+    func_8024BFD8(1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_E360/func_8024C1FC.s")
 

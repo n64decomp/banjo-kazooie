@@ -58,7 +58,7 @@ void func_80386920(Actor *this, s32 next_state){
 
     if(next_state == 4){
         func_8038868C();
-        func_8025A6EC(JINGLE_PUZZLE_SOLVED_FANFARE, 0x7FFF);
+        func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 0x7FFF);
     }
 
     if(this->state == 4)

@@ -403,7 +403,7 @@ int  func_8032863C(AnimCtrl *, f32, f32);
 int  func_80328A2C(Actor *, f32, s32, f32);
 void func_80328A84(Actor *, u32);
 int  func_80328B38(Actor *, s32, f32);
-void func_80328B8C(Actor *, s32, f32, s32);
+void func_80328B8C(Actor * this, s32 myAnimId, f32 arg2, s32 direction);
 int  func_80328BD4(Actor *, s32, f32, s32, f32 );
 void func_80328CEC(Actor *, s32, s32, s32);
 void func_80328FB0(Actor *, f32);

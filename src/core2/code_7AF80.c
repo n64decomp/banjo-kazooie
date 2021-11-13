@@ -422,6 +422,12 @@ void func_8030578C(void){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80308F54.s")
 
+extern s32 D_80382360;
+extern s32 D_80382364;
+extern s32 D_80382368;
+extern s32 D_8038236C;
+extern s32 D_80382374;
+
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80308F90.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80308FDC.s")
@@ -452,9 +458,17 @@ void func_8030578C(void){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80309724.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80309744.s")
+s32 func_80309744(s32 arg0){
+    return (arg0) ? D_80382364 : D_80382360;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80309764.s")
+s32 func_80309764(s32 arg0){
+    if(arg0 == 0)
+        return D_80382368;
+    if(arg0 == 1)
+        return D_8038236C;
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80309794.s")
 
@@ -482,7 +496,20 @@ void func_8030578C(void){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80309FA4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80309FF0.s")
+void func_80309FF0(void){
+    assetcache_release(D_80382368);
+
+    if(D_8038236C)
+        assetcache_release(D_8038236C);
+    
+    if(D_80382360)
+        func_8033F5D8(D_80382360);
+
+    if(D_80382364)
+        func_8033F5D8(D_80382364);
+
+    func_8034A2A8(D_80382374);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_8030A068.s")
 
@@ -495,7 +522,7 @@ void func_8030578C(void){
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_8030A2D0.s")
 
 typedef struct{
-    BKModel *unk0;
+    BKModelBin *unk0;
     s32 unk4;
     f32 unk8;
 }struct_7AF80_0;
@@ -521,7 +548,7 @@ void *func_8030A428(s32 arg0){
     return D_80382390[arg0].unk0;
 }
 
-BKModel *func_8030A4B4(s32 arg0){
+BKModelBin *func_8030A4B4(s32 arg0){
     return D_80382390[arg0].unk0;
 }
 

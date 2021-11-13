@@ -59,7 +59,11 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A104.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A110.s")
+void *func_8033A110(BKModelBin *arg0){
+    if(arg0->unk2C == 0)
+        return NULL;
+    return (s32)arg0 + arg0->unk2C;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A12C.s")
 

@@ -308,7 +308,7 @@ s32 func_80334ECC(void) {
             phi_v1 = 0x1F;
         }
         if (((phi_v1 & phi_v0) == 3) && (get_loaded_overlay_id() == OVERLAY_5_BEACH)) {
-            if ((func_8038BF8C() == 0) || (D_80370250 != 0)) {
+            if ((ttc_func_8038BF8C() == 0) || (D_80370250 != 0)) {
                 D_80370250 = (u8)1;
                 for (phi_v0 = 0; phi_v0 != 0x8F0D180; phi_v0++){
                 }

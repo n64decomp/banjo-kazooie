@@ -54,7 +54,7 @@ void func_80386444(ActorMarker *arg0){
             func_802BAFE4(temp_a0);
             sp44[1] += 50.0f;
             timedFunc_set_3(0.6f, (TFQM3) func_803863F0, (s32)sp44[0], (s32)sp44[1], (s32)sp44[2]);
-            func_8025A6EC(JINGLE_PUZZLE_SOLVED_FANFARE, 0x7FFF);
+            func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 0x7FFF);
             if(!jiggyscore_isCollected(JIGGY_8_MM_ORANGE_PADS)){
                 func_80311480(0xB3B, 4, NULL, NULL, NULL, NULL);
             }

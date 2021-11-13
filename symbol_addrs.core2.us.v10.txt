@@ -162,6 +162,7 @@ func_802D1724 = 0x802D1724;
 func_802DA498 = 0x802DA498;
 mapSavestate_clearAll = 0x802E2E7C;
 getGameMode = 0x802E49FC;
+vtxList_getVertices = 0x802EC450;
 vla_clear = 0x802ED620;
 vla_getBegin = 0x802ED62C;
 vla_at = 0x802ED634;

@@ -102,7 +102,7 @@ void func_8038EB8C(Actor *this){
                     this->marker->propPtr->unk8_3 = 0;
                     actor_playAnimationOnce(this);
                     if(tmp == 5){
-                        func_8025A6EC(JINGLE_PUZZLE_SOLVED_FANFARE, 28000);
+                        func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);
                     }
                     func_802C3C88(func_8038EB4C, this->marker);
                     if(tmp < 5){

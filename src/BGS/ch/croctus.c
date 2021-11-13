@@ -46,7 +46,7 @@ void func_80387D18(ActorMarker * arg0, u32 arg1){
 //     arg0->propPtr->unk8_3 = 0;
 //     func_802BAFE4(0x19);
 //     jiggySpawn(0x22, spawnPos);
-//     func_8025A6EC(JINGLE_PUZZLE_SOLVED_FANFARE, 0x7FFF);
+//     func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 0x7FFF);
 // }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/BGS/ch/croctus/func_80387E00.s")

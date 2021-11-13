@@ -2,12 +2,31 @@
 #include "functions.h"
 #include "variables.h"
 
+Vtx *vtxList_getVertices(BKVertexList *vtxList){
+    return (Vtx *)&vtxList->vtx_18[0];
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_654C0/func_802EC450.s")
+//vtxList_getBoundingBox
+void func_802EC458(BKVertexList *vtxList, s32 min[3], s32 max[3]){
+    min[0] = vtxList->minCoord_0[0];
+    min[1] = vtxList->minCoord_0[1];
+    min[2] = vtxList->minCoord_0[2];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_654C0/func_802EC458.s")
+    max[0] = vtxList->maxCoord_6[0];
+    max[1] = vtxList->maxCoord_6[1];
+    max[2] = vtxList->maxCoord_6[2];
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_654C0/func_802EC48C.s")
+//vtxList_getBoundingBox_f
+void func_802EC48C(BKVertexList *vtxList, f32 min[3], f32 max[3]){
+    min[0] = (f32) vtxList->minCoord_0[0];
+    min[1] = (f32) vtxList->minCoord_0[1];
+    min[2] = (f32) vtxList->minCoord_0[2];
+
+    max[0] = (f32) vtxList->maxCoord_6[0];
+    max[1] = (f32) vtxList->maxCoord_6[1];
+    max[2] = (f32) vtxList->maxCoord_6[2];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_654C0/func_802EC508.s")
 
