@@ -293,7 +293,7 @@ segments:
   - [0xB66D0, c, string]
   - [0xB6C60, c, code_B6C60]
   - [0xB6CE0, c, code_B6CE0] #DONE
-  - [0xB6EA0, c, code_B6EA0]
+  - [0xB6EA0, c, code_B6EA0] #DONE
   - [0xB7B20, c, code_B7B20]
   - [0xB7F40, c, code_B7F40]
   - [0xB8020, c, code_B8020]
@@ -412,7 +412,8 @@ segments:
   - [0xE7870, .data, code_A4D00]
   - [0xE78A0, bin, data_E78A0]
   - [0xEAE90, .data, code_B6CE0]
-  - [0xEAEA0, bin, data_EAEA0]
+  - [0xEAEA0, .data, code_B6EA0]
+  - [0xEAED0, bin, data_EAED0]
   - [0xEB8B0, .data, ch/code_CFA60]
   - [0xEB8E0, bin, data_EB8E0]
   - [0xEBB00, .data, ch/firefx]

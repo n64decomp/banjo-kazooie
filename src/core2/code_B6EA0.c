@@ -6,14 +6,16 @@ extern s32 func_8033FA84(void);
 extern s32 func_8035287C(void);
 extern s32 func_80344CDC(void);
 extern void func_8032FFEC(s32, s32);
-extern void func_80352A38(s32, s32);
+extern void func_80352A38(s32, u32);
 extern void func_8033FFB8(s32 , s32);
 extern void func_8033FF10(s32 , f32[3]);
-extern void func_8032F64C(s32 , s32);
+extern void func_8032F64C(f32[3] , s32);
 extern void func_8033FB64(s32);
 extern void func_80287D60(s32);
 extern void func_803529DC(s32);
 extern void func_80344D70(s32);
+extern void func_80352B20(s32);
+
 
 
 extern void (*func_80352614)(void);
@@ -64,7 +66,7 @@ extern void (*func_80355C4C)(void);
 
 typedef struct particle_struct_0_s{
     u8 pad0[0x30];
-    ActorMarker *unk30;
+    ActorMarker *marker_30;
     struct54s *unk34;
     s32 unk38;
     s32 unk3C;
@@ -76,24 +78,31 @@ typedef struct particle_struct_0_s{
 } ParticleStruct0s;
 
 typedef struct {
-    u8 pad0[1];
+    u8 unk0;
     u8 unk1;
-    u8 pad2[0x2];
+    //u8 pad2[0x2];
     f32 unk4;
 }Struct_Core2_B6CE0_1;
 
 void func_8033E6D4(s32 arg0);
 
 /* .data */
-extern Struct_Core2_B6CE0_1 D_80371E30[];
+Struct_Core2_B6CE0_1 D_80371E30[] ={
+    {0, 0, 0.0f},
+    {1, 0, 0.07f},
+    {2, 1, 0.29f},
+    {3, 2, 0.15f},
+    {4, 1, 0.05f}
+};
 
-
+/* .bss */
 extern ParticleStruct0s D_80384490[];
 extern s32 D_80384FD0;
 extern struct {
     s32 unk0;
     s32 unk4;
 } D_80384FD8;
+extern u8 D_80384FE0;
 
 /* .code */
 f32 func_8033DE30(s32 arg0){
@@ -131,7 +140,7 @@ void func_8033DEA0(void){
     func_80352BD4(0xe,  &func_803543FC, &func_8035451C, &func_803543F4, 0, 8);
     func_80352BD4(0xf,  &func_80355864, &func_80355B00, &func_80355C4C, 0, 8);
     func_80352BD4(0x10, &func_80355D58, &func_80355E80, &func_80355D50, 0, 8);
-    func_80352BD4(0x11, &func_8035261C, &func_803526DC, &func_80352614, 0, 8);
+    func_80352BD4(0x11, &func_8035261C, &func_803526DC, &func_80352614, 0, 8); //mumbotoken sparkle
 }
 
 void func_8033E184(void){
@@ -143,10 +152,6 @@ void func_8033E184(void){
     }
 }
 
-extern u8 D_80384FE0;
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B6EA0/func_8033E1E0.s")
-#else
 void func_8033E1E0(void){
     f32 sp4C[3];
     int i;
@@ -161,7 +166,7 @@ void func_8033E1E0(void){
                     func_8033FEC8(D_80384490[D_80384FD0].unk45, sp4C);
                     func_80287DC8(D_80384490[D_80384FD0].unk34);
                     func_8033FFB8(D_80384490[D_80384FD0].unk45, func_80287FFC(D_80384490[D_80384FD0].unk34));
-                    func_8032F64C(sp4C, D_80384490[D_80384FD0].unk30);
+                    func_8032F64C(sp4C, D_80384490[D_80384FD0].marker_30);
                 }
                 else{
                     func_8033E6D4(i);
@@ -170,7 +175,6 @@ void func_8033E1E0(void){
         }
     }
 }
-#endif
 
 s32 func_8033E368(void){
     int i;
@@ -183,12 +187,9 @@ s32 func_8033E368(void){
     return -1;
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B6EA0/func_8033E3F0.s")
-#else
 int func_8033E3F0(s32 particle_id, int arg1){
     f32 sp34[3];
-    s32 tmp;
+    s32 a0;
 
     if(!arg1)
         return -1;
@@ -203,52 +204,52 @@ int func_8033E3F0(s32 particle_id, int arg1){
     D_80384490[D_80384FD0].unk34 = func_80287CA8();
     D_80384490[D_80384FD0].unk46 = func_8035287C();
     D_80384490[D_80384FD0].unk47 = func_80344CDC();
-    if( D_80384490[D_80384FD0].unk45 == 0
-        || D_80384490[D_80384FD0].unk34 == 0
-        || D_80384490[D_80384FD0].unk46 == 0
-        || D_80384490[D_80384FD0].unk47 == 0
+    
+    if( ( !(a0 = D_80384490[D_80384FD0].unk45)
+          || !D_80384490[D_80384FD0].unk34
+          || !D_80384490[D_80384FD0].unk46
+          || !D_80384490[D_80384FD0].unk47
+        )
     ){//L8033E4DC
-        tmp = D_80384490[D_80384FD0].unk45;
-        if(tmp){
-            func_8033FB64(tmp);
+        if(a0){
+            func_8033FB64(a0);
         }
-        tmp = D_80384490[D_80384FD0].unk34;
-        if(tmp){
-            func_80287D60(tmp);
+        a0 = D_80384490[D_80384FD0].unk34;
+        if(a0){
+            func_80287D60(a0);
         }
-        tmp = D_80384490[D_80384FD0].unk46;
-        if(tmp){
-            func_803529DC(tmp);
+        a0 = D_80384490[D_80384FD0].unk46;
+        if(a0){
+            func_803529DC(a0);
         }
-        tmp = D_80384490[D_80384FD0].unk47;
-        if(tmp){
-            func_80344D70(tmp);
+        a0 = D_80384490[D_80384FD0].unk47;
+        if(a0){
+            func_80344D70(a0);
         }
         D_80384490[D_80384FD0].unk44 = 0;
         return -1;
     }
     
     //L8033E5B4
-    D_80384490[D_80384FD0].unk30 = func_8032FBE4(sp34, func_8033DE60, 1, func_80352C7C(particle_id));
-    D_80384490[D_80384FD0].unk30->unk40_22 = 1;
-    func_8032FFEC(D_80384490[D_80384FD0].unk30, D_80384FD0);
-    D_80384490[D_80384FD0].unk30->collidable = 0;
+    D_80384490[D_80384FD0].marker_30 = func_8032FBE4(sp34, func_8033DE60, 1, func_80352C7C(particle_id));
+    D_80384490[D_80384FD0].marker_30->unk40_22 = 1;
+    func_8032FFEC(D_80384490[D_80384FD0].marker_30, (u32)D_80384FD0);
+    D_80384490[D_80384FD0].marker_30->collidable = 0;
     func_80352A38(D_80384490[D_80384FD0].unk46, particle_id);
     func_8033FFB8(D_80384490[D_80384FD0].unk45, func_80287FFC(D_80384490[D_80384FD0].unk34));
     func_8033FF10(D_80384490[D_80384FD0].unk45, sp34);
-    func_8032F64C(sp34, D_80384490[D_80384FD0].unk30);
+    func_8032F64C(sp34, D_80384490[D_80384FD0].marker_30);
     return D_80384FD0;
     
 }
-#endif
 
 void func_8033E6D4(s32 arg0){
     func_803529DC(D_80384490[arg0].unk46);
     func_80344D70(D_80384490[arg0].unk47);
     func_8033FB64(D_80384490[arg0].unk45);
     func_80287D60(D_80384490[arg0].unk34);
-    marker_free(D_80384490[arg0].unk30);
-    D_80384490[arg0].unk30 = NULL;
+    marker_free(D_80384490[arg0].marker_30);
+    D_80384490[arg0].marker_30 = NULL;
     D_80384490[arg0].unk38 = 0;
     D_80384490[arg0].unk44 = 0;
 }
@@ -277,7 +278,7 @@ void func_8033E7CC(s32 arg0){
 }
 
 ActorMarker *func_8033E840(void){
-    return D_80384490[D_80384FD0].unk30;
+    return D_80384490[D_80384FD0].marker_30;
 }
 
 s32 func_8033E864(void){
@@ -333,7 +334,6 @@ void func_8033E9F4(void){
     D_80384FD0 = D_80384FD8.unk0;
     D_80384FD8.unk0 = D_80384FD8.unk4;
 }
-
 
 f32 func_8033EA14(s32 arg0){
     return *((f32 *)func_8033E960() + arg0);
