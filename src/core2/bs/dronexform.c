@@ -180,7 +180,7 @@ void func_802AFBB8(f32 (* arg0)[3]){
 }
 
 void func_802AFFAC(void){
-    D_8037D470.unk10 -= func_8033DD9C();
+    D_8037D470.unk10 -= time_getDelta();
     while(D_8037D470.unk10 < 0.0f){
         func_802AF900();
         D_8037D470.unk8 += 0.017 * D_8037D470.unkC;
@@ -212,7 +212,7 @@ void func_802B01BC(f32 arg0){
 }
 
 void func_802B01C8(void){
-   D_8037D470.unk20 += func_8033DD9C();
+   D_8037D470.unk20 += time_getDelta();
 }
 
 static void __bsdronexform_setState(int arg0){

@@ -16,7 +16,7 @@ void func_80298D70(f32 arg0) {
     f32 sp24;
     f32 sp20;
 
-    arg0 *= func_8033DD9C();
+    arg0 *= time_getDelta();
     sp24 = D_8037C694 - D_8037C690;
     if (mlAbsF(sp24) > 180.0f) {
         sp24 += (sp24 < 0.0f) ? 360.0 : -360.0;
@@ -41,7 +41,7 @@ void func_80298D70(f32 arg0) {
 static void func_80298F14(f32 limit, f32 step_percent){
         f32 diff;
         f32 val;
-        f32 tick = func_8033DD9C();
+        f32 tick = time_getDelta();
         f32 max;
         
         max = limit*tick;

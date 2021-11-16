@@ -32,7 +32,7 @@ void func_8038E3D8(Actor *this){
     f32 sp68[3];
     ActorLocal_RBB_7FD0 *local = (ActorLocal_RBB_7FD0 *) &this->local;
     int i;
-    f32 sp5C = func_8033DD9C();
+    f32 sp5C = time_getDelta();
     f32 sp50[3];
     f32 sp44[3];
     

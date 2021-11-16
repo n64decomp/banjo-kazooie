@@ -25,7 +25,7 @@ f32 func_80290890(f32 arg0){
 }
 
 f32 func_80290920(f32 arg0, f32 arg1, f32 arg2){
-    f32 tick = func_8033DD9C();
+    f32 tick = time_getDelta();
     if(arg0 < arg1){
         arg0 += tick*arg2;
         if(arg1 < arg0){
@@ -60,7 +60,7 @@ void func_802909C4(void){
 }
 
 void func_80290A6C(void){
-    D_8037C058 += func_8033DD9C();
+    D_8037C058 += time_getDelta();
     D_8037C048.unk0 = func_80290920(D_8037C048.unk0, D_8037C050.unk0, 0.3f);
     D_8037C048.unk4 = func_80290920((f32)D_8037C048.unk4, (f32)D_8037C050.unk4, 100.0f);
     func_8030DBB4(D_8037C040, func_80290890(D_8037C058) + D_8037C048.unk0);

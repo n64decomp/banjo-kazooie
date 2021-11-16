@@ -35,7 +35,7 @@ void func_8038DF6C(Actor* this){
     f32 sp7C[3];
     f32 sp70[3];
     f32 sp6C;
-    f32 sp68 = func_8033DD9C();
+    f32 sp68 = time_getDelta();
     f32 sp5C[3];
     f32 sp58;
     ActorLocal_7B20 *local = (ActorLocal_7B20 *)&this->local;

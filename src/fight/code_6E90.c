@@ -89,7 +89,7 @@ void func_8038D510(Actor *arg0) {
 void func_8038D568(Actor *this){
     ActorLocal_fight_6E90 *local = (ActorLocal_fight_6E90 *)&this->local;
 
-    f32 sp48 = func_8033DD9C();
+    f32 sp48 = time_getDelta();
     u32 sp44 = func_8023DB5C() & 0xF;
     Actor *other; //sp40
     f32 sp3C;

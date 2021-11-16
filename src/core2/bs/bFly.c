@@ -201,7 +201,7 @@ void bsbfly_update(void){
     if(should_beak_bust())
         sp54 = BS_BBUSTER;
 
-    D_8037D320 = max_f(D_8037D320 - func_8033DD9C(), 0.0f);
+    D_8037D320 = max_f(D_8037D320 - time_getDelta(), 0.0f);
     if( D_8037D320 == 0.0f
         && button_pressed(BUTTON_B)
         && func_8028A980()

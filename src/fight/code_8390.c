@@ -64,7 +64,7 @@ void func_8038E7EC(Actor *arg0) {
 
 void func_8038E844(Actor *this){
     ActorLocal_fight_8390 *local = (ActorLocal_fight_8390 *)&this->local;
-    f32 sp38 = func_8033DD9C();
+    f32 sp38 = time_getDelta();
     ActorMarker *temp_v0;
 
     if(!this->unk16C_4){

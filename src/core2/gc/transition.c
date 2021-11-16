@@ -294,7 +294,7 @@ void gctransition_update(void){
     f32 tmp;
     
 
-    sp24 = func_8033DD9C();
+    sp24 = time_getDelta();
     if(D_80382430.unk4 == NULL)
         return;
     

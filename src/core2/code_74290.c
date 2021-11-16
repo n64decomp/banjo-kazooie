@@ -37,7 +37,7 @@ void func_802FB244(s32 arg0, struct8s *arg1){
             break;
         case 2://L802FB2E4
             if(getGameMode() != GAME_MODE_4_PAUSED){
-                arg1->unk10 -= func_8033DD9C();
+                arg1->unk10 -= time_getDelta();
                 if(arg1->unk10 < 0.0f){
                     arg1->unk0 = 3;
                 }

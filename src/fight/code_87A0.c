@@ -294,7 +294,7 @@ void func_8038F5F8(s32 arg0) {
 #else
 void func_8038F620(Actor *this){
     ActorLocal_fight_87A0 * local = (ActorLocal_fight_87A0 *)&this->local;
-    f32 sp40 = func_8033DD9C();
+    f32 sp40 = time_getDelta();
     //static f32 D_80392914;
 
     if(!this->unk16C_4){

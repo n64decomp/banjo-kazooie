@@ -95,7 +95,7 @@ void func_802D07C8(Actor *this){
             func_802D05A0(this, 1);
         }
         if(this->unk1C[0] != this->unk1C[1]){
-            this->unk1C[0] += func_8033DD9C();
+            this->unk1C[0] += time_getDelta();
             if(this->unk1C[1] < this->unk1C[0]){
                 this->unk1C[0] = this->unk1C[1];
             }

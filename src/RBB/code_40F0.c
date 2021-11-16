@@ -103,7 +103,7 @@ L8038A560:
 #pragma GLOBAL_ASM("asm/nonmatchings/RBB/code_40F0/func_8038A724.s")
 #else
 void func_8038A724(Actor *this){
-    f32 sp1C = func_8033DD9C();
+    f32 sp1C = time_getDelta();
     ActorLocal_RBB_40F0 *local = (ActorLocal_RBB_40F0 *)&this->local;
     
     int i;

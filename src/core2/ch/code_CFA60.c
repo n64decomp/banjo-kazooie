@@ -88,7 +88,7 @@ void func_80356CCC(Actor *this){
     f32 sp44;
     f32 sp40;
     
-    sp50 = func_8033DD9C();
+    sp50 = time_getDelta();
     if(!this->unk16C_4){
         this->unk16C_4 = 1;
         this->unk16C_0 = 1;

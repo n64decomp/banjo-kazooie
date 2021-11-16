@@ -16,8 +16,8 @@ typedef struct item_print_s{
 
 
 s32 func_802FAD9C(s32 itemId);
-f32 func_8033DD9C(void);
-f32 func_8033DD9C(void);
+f32 time_getDelta(void);
+f32 time_getDelta(void);
 
 extern s32 D_803810B0;
 extern f32 D_803810B8[0x2C];
@@ -123,9 +123,9 @@ void func_802FA724(void) {
                 diff = (f32) item_getCount(i) - D_803810B8[i];
                 sign = (diff >= 0.0f) ? 1.0f : -1.0f;
                 if (D_80381378[i] != 0) {
-                    D_803810B8[i] += sign *_73640_MIN(func_8033DD9C() * 6.0f, 1.0);
+                    D_803810B8[i] += sign *_73640_MIN(time_getDelta() * 6.0f, 1.0);
                 } else {
-                    D_803810B8[i] += (sign * _73640_MIN(func_8033DD9C() * _73640_MAX(diff, 8.0f), 1.0));
+                    D_803810B8[i] += (sign * _73640_MIN(time_getDelta() * _73640_MAX(diff, 8.0f), 1.0));
                 }
                 if ((D_80381168[i] != 0) && ((func_8023DB5C() & 7) == 0)) {
                     func_8025A6EC(D_80381168[i], 0x7D00);

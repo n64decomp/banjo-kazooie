@@ -186,7 +186,7 @@ void func_8024E7C8(void){
     ){
         s0 = START_BUTTON;
         if(gctransition_8030BD98()){
-            D_802816E0 += func_8033DD9C();
+            D_802816E0 += time_getDelta();
         }
         if(D_802816E0 < 1.0 || getGameMode() == GAME_MODE_9_BANJO_AND_KAZOOIE){
             s0 = 0;

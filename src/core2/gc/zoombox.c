@@ -438,7 +438,7 @@ void func_80316EF4(gczoombox_t *this){
      if( !this->unk1A4_10 ){
           func_8024E55C(0, &sp58);
           func_8024E60C(0, &sp4C);
-          tmp_f0 = func_8033DD9C();
+          tmp_f0 = time_getDelta();
      }
      else{
           func_8024E5A8(0, &sp58);

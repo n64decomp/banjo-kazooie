@@ -24,7 +24,7 @@ void func_80286F90(AnimCtrl *this){
         anim = animctrl_getAnimPtr(this);
         duration = func_80289698(anim);
         if( duration < 1.0f ){
-            func_802897C8(anim, min_f(1.0f, func_8033DD9C()/animctrl_getTransistionDuration(this) + duration));
+            func_802897C8(anim, min_f(1.0f, time_getDelta()/animctrl_getTransistionDuration(this) + duration));
         }
     }
 }
@@ -37,7 +37,7 @@ static void __animctrl_update_looped(AnimCtrl *this){
      anim = animctrl_getAnimPtr(this);
      func_80286F90(this);
      this->timer = func_80289690(anim);
-     delta = func_8033DD9C() / animctrl_getDuration(this);
+     delta = time_getDelta() / animctrl_getDuration(this);
      if(this->playback_direction == 0){
          delta = -delta;
      }
@@ -59,7 +59,7 @@ void func_802870E0(AnimCtrl *this){
      anim = animctrl_getAnimPtr(this);
      func_80286F90(this);
      this->timer = func_80289690(anim);;
-     delta =  func_8033DD9C() / animctrl_getDuration(this);
+     delta =  time_getDelta() / animctrl_getDuration(this);
      if(this->playback_direction == 0){
          delta = -delta;
      }
@@ -81,7 +81,7 @@ void func_802871A4(AnimCtrl *this){
     anim = animctrl_getAnimPtr(this);
     func_80286F90(this);
     this->timer = func_80289690(anim);
-    phi_f2 = func_8033DD9C() / animctrl_getDuration(this);
+    phi_f2 = time_getDelta() / animctrl_getDuration(this);
     if (this->playback_direction == 0) {
         phi_f2 = -phi_f2;
     }

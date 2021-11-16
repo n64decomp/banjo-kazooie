@@ -81,7 +81,7 @@ void func_802A28CC(void){
 
 void func_802A2900(void){
     D_8037D304 = D_8037D308;
-    D_8037D308 += func_8033DD9C();
+    D_8037D308 += time_getDelta();
 }
 
 int func_802A293C(f32 arg0){

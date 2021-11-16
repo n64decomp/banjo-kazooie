@@ -249,7 +249,7 @@ void func_8035AA40(Actor *this){
 }
 
 void chicecube_update(Actor *this){
-    f32 sp3C = func_8033DD9C();
+    f32 sp3C = time_getDelta();
     f32 sp30[3];
 
     if(func_803348C0() == MAP_27_FP_FREEZEEZY_PEAK){

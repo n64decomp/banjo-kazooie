@@ -103,7 +103,7 @@ void func_80296CF0(void){
     ml_vec3f_scale_copy(sp84, sp60, func_8029CED0());
     ml_vec3f_scale_copy(sp78, sp6C, func_8029CED0());
     ml_vec3f_diff(sp84, sp78);
-    ml_vec3f_scale(sp84, func_8033DD9C()/D_80374988);
+    ml_vec3f_scale(sp84, time_getDelta()/D_80374988);
     D_8037C4B8[0] += sp84[0];
     D_8037C4B8[1] += sp84[1];
     D_8037C4B8[2] += sp84[2];
@@ -117,12 +117,12 @@ void func_80296CF0(void){
     if(mlAbsF(D_8037C4B8[2]) < D_80374998)
         D_8037C4B8[2] = 0;
 
-    D_8037C4B8[1] = func_8033DD9C()*D_8037C4E8 + D_8037C4B8[1];
+    D_8037C4B8[1] = time_getDelta()*D_8037C4E8 + D_8037C4B8[1];
     if(D_8037C4B8[1] < D_8037C4EC)
         D_8037C4B8[1] = D_8037C4EC;
 
     D_8037C4D8[1] = D_8037C4B8[1] + D_8037C4D8[1];
-    ml_vec3f_scale(D_8037C4D8, func_8033DD9C());
+    ml_vec3f_scale(D_8037C4D8, time_getDelta());
     D_8037C4A8[0] += D_8037C4D8[0]; 
     D_8037C4A8[1] += D_8037C4D8[1]; 
     D_8037C4A8[2] += D_8037C4D8[2]; 
@@ -132,7 +132,7 @@ void func_80296CF0(void){
 void func_80297094(void){
     f32 sp24[3];
     ml_vec3f_diff_copy(sp24, D_8037C4C8, D_8037C4B8);
-    ml_vec3f_scale(sp24, func_8033DD9C()*D_8037C4F8);
+    ml_vec3f_scale(sp24, time_getDelta()*D_8037C4F8);
     if(_SQ3v1(sp24) < 0.02){
         ml_vec3f_copy(D_8037C4B8, D_8037C4C8);
     }
@@ -144,7 +144,7 @@ void func_80297094(void){
     D_8037C4D8[0] = D_8037C4B8[0];
     D_8037C4D8[1] = D_8037C4B8[1];
     D_8037C4D8[2] = D_8037C4B8[2];
-    ml_vec3f_scale( D_8037C4D8, func_8033DD9C());
+    ml_vec3f_scale( D_8037C4D8, time_getDelta());
 
     D_8037C4A8[0] += D_8037C4D8[0];
     D_8037C4A8[1] += D_8037C4D8[1];
@@ -155,14 +155,14 @@ void func_80297094(void){
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_FD60/func_802971DC.s")
 #else
 void func_802971DC(void){
-    D_8037C4B8[1] += func_8033DD9C()*D_8037C4E8;
+    D_8037C4B8[1] += time_getDelta()*D_8037C4E8;
     if(D_8037C4B8[1] < D_8037C4EC)
         D_8037C4B8[1] = D_8037C4EC;
     
     D_8037C4D8[0] = D_8037C4B8[0];
     D_8037C4D8[1] = D_8037C4B8[1];
     D_8037C4D8[2] = D_8037C4B8[2];
-    ml_vec3f_scale(D_8037C4D8, func_8033DD9C());
+    ml_vec3f_scale(D_8037C4D8, time_getDelta());
 
     D_8037C4A8[0] += D_8037C4D8[0];
     D_8037C4A8[1] += D_8037C4D8[1];
@@ -197,7 +197,7 @@ void func_8029737C(void){
     D_8037C4D8[0] = D_8037C4B8[0];
     D_8037C4D8[1] = D_8037C4B8[1];
     D_8037C4D8[2] = D_8037C4B8[2];
-    ml_vec3f_scale(D_8037C4D8, func_8033DD9C());
+    ml_vec3f_scale(D_8037C4D8, time_getDelta());
     D_8037C4A8[0] += D_8037C4D8[0];
     D_8037C4A8[1] += D_8037C4D8[1];
     D_8037C4A8[2] += D_8037C4D8[2];
@@ -208,7 +208,7 @@ void func_8029740C(void){
     D_8037C4D8[1] = D_8037C4B8[1];
     D_8037C4D8[2] = D_8037C4B8[2];
     ml_vec3f_clear(D_8037C4B8);
-    ml_vec3f_scale(D_8037C4D8, func_8033DD9C());
+    ml_vec3f_scale(D_8037C4D8, time_getDelta());
     D_8037C4A8[0] += D_8037C4D8[0];
     D_8037C4A8[1] += D_8037C4D8[1];
     D_8037C4A8[2] += D_8037C4D8[2];
@@ -227,14 +227,14 @@ void func_802974A0(void){
             func_80297A0C(0);
             break;
         case 2: //L80297510
-            D_8037C508.unk20 += func_8033DD9C();
+            D_8037C508.unk20 += time_getDelta();
             sp2C = ml_map_f(D_8037C508.unk20, 0.0f, D_8037C508.unk1C, 0.0f, 1.0f);
             ml_vec3f_copy(D_8037C4B8, D_8037C4A8);
             D_8037C4A8[0] = func_80257C48(sp2C, D_8037C508.unk4[0], D_8037C508.unk10[0]);
             D_8037C4A8[1] = func_80257C48(sp2C, D_8037C508.unk4[1], D_8037C508.unk10[1]);
             D_8037C4A8[2] = func_80257C48(sp2C, D_8037C508.unk4[2], D_8037C508.unk10[2]);
             ml_vec3f_diff_copy(D_8037C4B8, D_8037C4A8, D_8037C4B8);
-            ml_vec3f_scale(D_8037C4B8, 1.0/func_8033DD9C());
+            ml_vec3f_scale(D_8037C4B8, 1.0/time_getDelta());
             if(1.0 == sp2C){
                 func_80297A0C(0);
                 D_8037C508.unk0 = 3;
@@ -248,7 +248,7 @@ void func_802974A0(void){
 void func_80297638(void){
     f32 temp_f0;
 
-    D_8037C500 += func_8033DD9C();
+    D_8037C500 += time_getDelta();
     temp_f0 = func_80257A44(D_8037C500, 1.2f);
     temp_f0 = ml_sin_deg(temp_f0*360.0f);
     D_8037C4A8[1] = 5.0*temp_f0 + D_8037C4FC;

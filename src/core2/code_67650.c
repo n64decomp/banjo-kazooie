@@ -620,7 +620,7 @@ void func_802EFFDC(ParticleEmitter *this){
 
 void particleEmitter_update(ParticleEmitter *this){
     Particle *iPtr;
-    f32 tick = func_8033DD9C();
+    f32 tick = time_getDelta();
     f32 temp_f0;
     f32 sp78[3];
     f32 sp6C[3];
@@ -790,7 +790,7 @@ void func_802F08A0(void){
     int i;
     ParticleEmitter *iPtr;
 
-    D_80380920 = MAX(0.0, D_80380920 - func_8033DD9C());
+    D_80380920 = MAX(0.0, D_80380920 - time_getDelta());
     if(D_803689B0){
         for(i = 0; i < D_803689B4; i++){
             iPtr = D_803689B0[i];

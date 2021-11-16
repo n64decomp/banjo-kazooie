@@ -88,7 +88,7 @@ void func_802B6EB0(f32 arg0){
 }
 
 void func_802B6EBC(void){
-   D_8037D5B0 = max_f(0.0f, D_8037D5B0 - func_8033DD9C());
+   D_8037D5B0 = max_f(0.0f, D_8037D5B0 - time_getDelta());
 }
 
 int func_802B6EF4(void){

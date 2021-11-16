@@ -63,7 +63,7 @@ void func_802DAA14(Actor *this){
     }
 
     if(0.0f < this->unk60){
-        this->unk60 -= func_8033DD9C();
+        this->unk60 -= time_getDelta();
         return;
     }
 

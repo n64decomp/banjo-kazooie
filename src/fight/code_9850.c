@@ -88,7 +88,7 @@ void func_8038FCF0(ActorMarker *marker, s32 arg1){
 }
 
 void func_8038FE94(Actor *this){
-    f32 sp54 = func_8033DD9C();
+    f32 sp54 = time_getDelta();
     f32 sp48[3];
 
     if(!this->unk16C_4){

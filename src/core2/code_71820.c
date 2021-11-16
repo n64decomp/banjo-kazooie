@@ -129,7 +129,7 @@ void func_802F8CB0(struct6s *this){
 
 void func_802F8CD0(struct6s * this){
     f32 plyr_pos[3];//sp64
-    f32 f20 = func_8033DD9C();
+    f32 f20 = time_getDelta();
     int i;
     struct5s *iPtr;
 

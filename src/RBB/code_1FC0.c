@@ -89,7 +89,7 @@ void func_80388620(Actor *this){
     f32 sp5C;
     f32 sp58;
     ActorLocal_RBB_1FC0 *local = (ActorLocal_RBB_1FC0 *)&this->local;
-    f32 sp50 = func_8033DD9C();
+    f32 sp50 = time_getDelta();
     f32 sp4C;
     f32 sp48;
     f32 tmp_f2;

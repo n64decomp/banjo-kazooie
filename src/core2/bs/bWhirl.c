@@ -63,7 +63,7 @@ enum bs_e func_802AA510(enum bs_e arg0){
 }
 
 void func_802AA58C(enum bs_e *arg0){
-    D_8037D3B0 += func_8033DD9C();
+    D_8037D3B0 += time_getDelta();
     if(2.0 < D_8037D3B0){
         D_8037D3B0 = 0.0f;
         func_80346C10(arg0, BS_WONDERWING_EXIT, -1, ITEM_10_GOLD_FEATHER, 1);

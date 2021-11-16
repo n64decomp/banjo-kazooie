@@ -36,7 +36,7 @@ void __chtreasure_updatePosition(Actor *this){
 
     this->position[0] += this->unk5C*cosf(this->unk60);
     this->position[2] += this->unk5C*sinf(this->unk60);
-    this->unk60 += 2.0*func_8033DD9C()*this->unk5C/300.0;
+    this->unk60 += 2.0*time_getDelta()*this->unk5C/300.0;
     if(2*M_PI <= this->unk60)
         this->unk60 -= 2*M_PI;
     this->yaw = this->unk60*180.0/M_PI;

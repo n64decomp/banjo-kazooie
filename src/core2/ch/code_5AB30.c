@@ -202,7 +202,7 @@ void func_802E20E8(Actor *this){
     f32 sp38;
 
 
-    sp38 = func_8033DD9C();
+    sp38 = time_getDelta();
     if(!this->unk16C_4){
         this->unk16C_4 = TRUE;
         this->marker->propPtr->unk8_3 = 0;

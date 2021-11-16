@@ -18,13 +18,13 @@ int func_8029E1A8(s32 arg0){
     if(0.0f == D_8037D250.unk0[arg0]){
         return 0;
     }
-    D_8037D250.unk0[arg0] = max_f(0.0f, D_8037D250.unk0[arg0] - func_8033DD9C());
+    D_8037D250.unk0[arg0] = max_f(0.0f, D_8037D250.unk0[arg0] - time_getDelta());
     return D_8037D250.unk0[arg0] == 0.0f;
 }
 
 void func_8029E22C(s32 arg0){
     D_8037D250.unk20[arg0] = D_8037D250.unk0[arg0];
-    D_8037D250.unk0[arg0] += func_8033DD9C();
+    D_8037D250.unk0[arg0] += time_getDelta();
 }
 
 f32 func_8029E270(s32 arg0){

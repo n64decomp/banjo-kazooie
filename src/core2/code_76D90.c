@@ -5,7 +5,7 @@
 #define _76D90_MAX(s,t) ((s < t)? t : s)
 #define _76D90_MIN(s,t) ((s > t)? t : s)
 
-f32 func_8033DD9C(void);
+f32 time_getDelta(void);
 f32 func_802FDE60(f32);
 void timedFunc_set_1(f32, void (*)(s32), s32);
 void timedFunc_set_2(f32, void (*)(s32,s32), s32, s32);
@@ -192,7 +192,7 @@ void func_802FE844(s32 arg0, struct8s *arg1){
     s32 sp20;
     s32 tmp;
 
-    sp24 = func_8033DD9C();
+    sp24 = time_getDelta();
     sp20 = func_802FB0D4(arg1);
     if(sp20){
         D_803815D4 = func_802FAE1C(arg0);
@@ -205,7 +205,7 @@ void func_802FE844(s32 arg0, struct8s *arg1){
             D_803815E8 = _76D90_MIN(D_803815E8 + 0x10, 0xFF);
         }
     }//L802FE9A0
-    //sp24 = func_8033DD9C();
+    //sp24 = time_getDelta();
     switch(sp20){
         case 1:
             if(D_8036A010 == NULL)

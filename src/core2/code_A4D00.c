@@ -341,8 +341,8 @@ ActorMarker * func_8032F9DC(s32 *pos, MarkerDrawFunc arg1, int arg2, int arg3, i
     marker->unk40_19 = 0;
     marker->unk40_21 = 0;
     marker->unkC = NULL;
-    marker->unk10 = 0;
-    marker->unk1C = 0;
+    marker->unk10 = NULL;
+    marker->unk1C = NULL;
     marker->unk54 = 0;
     marker->unk58 = 0;
     marker->unk18 = 0;
@@ -363,7 +363,7 @@ ActorMarker * func_8032F9DC(s32 *pos, MarkerDrawFunc arg1, int arg2, int arg3, i
     return marker;
 }
 
-ActorMarker * func_8032FB80(f32 *pos, void *arg1, int arg2, enum asset_e model_id, int arg4){
+ActorMarker * func_8032FB80(f32 *pos, MarkerDrawFunc arg1, int arg2, enum asset_e model_id, int arg4){
     s32 sp24[3];
     sp24[0] = pos[0];
     sp24[1] = pos[1];
@@ -371,7 +371,7 @@ ActorMarker * func_8032FB80(f32 *pos, void *arg1, int arg2, enum asset_e model_i
     func_8032F9DC(sp24, arg1, arg2, model_id, arg4);
 }
 
-ActorMarker * func_8032FBE4(f32 *pos, void *arg1, int arg2, enum asset_e model_id){
+ActorMarker * func_8032FBE4(f32 *pos, MarkerDrawFunc arg1, int arg2, enum asset_e model_id){
     return func_8032FB80(pos, arg1, arg2, model_id, 0);
 }
 

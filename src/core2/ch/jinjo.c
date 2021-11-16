@@ -59,7 +59,7 @@ void func_802CDC9C(Actor *this, s16 arg1){
     f32 tmpf; 
 
     tmpf = this->yaw;
-    tmpf -= func_8033DD9C()*arg1/45.0;
+    tmpf -= time_getDelta()*arg1/45.0;
     
     if(tmpf >= 360.0f)
         tmpf -= 360.0f;
@@ -87,7 +87,7 @@ void func_802CDD78(Actor * this){
     s16 sp66;
     s32 sp60;
     f32 sp5C;
-    f32 sp58 = func_8033DD9C();
+    f32 sp58 = time_getDelta();
     int sp50;
     //f32 sp4C; //unused
     f32 sp40[3];

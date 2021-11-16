@@ -10,7 +10,7 @@ extern f32 D_8037C68C; //roll_ideal
 static void __roll_update(f32 limit, f32 step_percent){
         f32 diff;
         f32 val;
-        f32 tick = func_8033DD9C();
+        f32 tick = time_getDelta();
         f32 max;
         
         max = limit*tick;

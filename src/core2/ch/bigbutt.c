@@ -297,7 +297,7 @@ void func_802C6240(Actor *this){
 
         case 0xe: //L802C6C7C
             actor_playAnimationOnce(this);
-            this->unk60 -= func_8033DD9C();
+            this->unk60 -= time_getDelta();
             if(this->unk60 <= 0.0f){
                 this->unk166 = 0x63;
                 func_80328AC8(this, 0xF);

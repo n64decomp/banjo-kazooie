@@ -187,7 +187,7 @@ void func_802FA0F8(void){
     struct4Es *endPtr;
     f32 f20;
 
-    tick = func_8033DD9C();
+    tick = time_getDelta();
     startPtr = vla_getBegin(D_803810A0);
     endPtr = vla_getEnd(D_803810A0);
 

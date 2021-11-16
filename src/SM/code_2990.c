@@ -529,7 +529,7 @@ void func_803899B0(Actor * this){
         }//L8038A1B8
         sp38 = -1;
         if(this->unk38_0){
-            this->unk60 += func_8033DD9C();
+            this->unk60 += time_getDelta();
             if(func_803114C4() != 0xe1d){
                 if(sp50[0] == 1) 
                     sp38 = 1; //A button pressed

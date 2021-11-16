@@ -642,7 +642,7 @@ s32 func_80313380(void){
     }
 
     
-    D_80383010.unkC += func_8033DD9C();
+    D_80383010.unkC += time_getDelta();
     switch(D_80383010.unk0_31){
         case 0: //closed
             func_803120FC(1); 
@@ -1055,7 +1055,7 @@ void func_80314320(Gfx **gdl, Mtx **mptr, s32 arg2){
 
         //L80314664
         if(D_80383010.unk3C[0]){//L80314690
-            sp7C = func_8033DD9C();
+            sp7C = time_getDelta();
             for(i = 1; i<7; i++){
                 if(sns_get_item_state(i, 0)){
                     D_80383010.unk3C[i] = (s16) ((f32)D_80383010.unk3C[i] + D_80383010.unk4A[i]*sp7C);

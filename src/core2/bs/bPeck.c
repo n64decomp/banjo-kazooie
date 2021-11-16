@@ -104,7 +104,7 @@ void bsbpeck_update(void){
             if(animctrl_isAt(aCtrl, 0.7f))
                 func_802A664C();
 
-            D_8037D370 -= func_8033DD9C();
+            D_8037D370 -= time_getDelta();
             if(D_8037D370 < 0.0f){
                 animctrl_reset(aCtrl);
                 animctrl_setSmoothTransition(aCtrl, 0);

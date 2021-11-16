@@ -67,7 +67,7 @@ void func_803864D4(Actor *this){
     ActorMarker *marker = this->marker;//sp58;
     f32 sp4C[3];
     f32 sp40[3];
-    f32 sp3C = func_8033DD9C();
+    f32 sp3C = time_getDelta();
     f32 sp30[3];
     f32 sp2C;
     f32 sin_result;

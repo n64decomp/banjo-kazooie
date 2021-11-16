@@ -427,7 +427,7 @@ void bsblongleg_slide_update(void){
 
     func_802A531C();
     func_80299AAC();
-    D_8037D358 = max_f(D_8037D358 - func_8033DD9C(), 0.0f);
+    D_8037D358 = max_f(D_8037D358 - time_getDelta(), 0.0f);
 
     if(player_isSliding()){
         func_80294480(sp30);

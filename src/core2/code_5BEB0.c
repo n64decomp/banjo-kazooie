@@ -517,7 +517,7 @@ void func_802E4384(void){
     }
     func_8033DC10();
     
-    D_8037E8E0.unk8 += func_8033DD9C();
+    D_8037E8E0.unk8 += time_getDelta();
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5BEB0/func_802E4424.s")

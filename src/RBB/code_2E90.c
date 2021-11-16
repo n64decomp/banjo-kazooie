@@ -127,7 +127,7 @@ void func_8038944C(Actor *this){
     f32 sp50[3];
     f32 sp44[3];
     int i;
-    f32 tick = func_8033DD9C();
+    f32 tick = time_getDelta();
 
     if(!this->unk16C_4){
         this->marker->propPtr->unk8_3 = 1;

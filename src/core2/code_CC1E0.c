@@ -46,7 +46,7 @@ void func_803537B8(void){
     sp96 = func_8033E93C();
     sp78 = func_8033EA14(1);
     tmp_f24 = func_8033EA14(2);
-    tmp_f24 -= func_8033DD9C();
+    tmp_f24 -= time_getDelta();
     sp6C = ml_map_f(sp78, 0.0f, 2.0f, 0.0333f, D_80379434);
     while(tmp_f24 <= 0.0f){//L80353868
         tmp_f24 += sp6C;
@@ -81,7 +81,7 @@ void func_803537B8(void){
     tmp_f20 = func_8033EA14(0);
     func_8033FFE4(s1, (s32) tmp_f20, (s32) tmp_f20);
     func_8033EA40(0, min_f(tmp_f20 + 4.0f, 50.0f));
-    sp78 += func_8033DD9C();
+    sp78 += time_getDelta();
     func_8033EA40(1, sp78);
     if(2.0 < sp78){
         func_8033E984();

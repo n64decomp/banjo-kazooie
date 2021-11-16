@@ -158,7 +158,7 @@ void func_803904A8(void){
     Struct_GV_9DB0_1 * sp44;
     f32 sp38[3];
 
-    sp5C = func_8033DD9C();
+    sp5C = time_getDelta();
     if(!D_80391AE0.state_9)
         return;
 

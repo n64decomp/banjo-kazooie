@@ -1270,7 +1270,7 @@ bool func_80259400(f32 a0)
 
 void func_80259430(f32 *val)
 {
-    *val -= func_8033DD9C();
+    *val -= time_getDelta();
  
     if (*val < 0)
         *val = 0;

@@ -11,7 +11,7 @@ void func_80287A60(struct54s *arg0){
 }
 
 void func_80287ACC(struct54s *arg0){
-    arg0->unk4 -= func_8033DD9C();
+    arg0->unk4 -= time_getDelta();
     while(arg0->unk4 <= 0.0f){
         arg0->unkC_24++;
         if(arg0->unkC_24 >= arg0->unkC_31)
@@ -21,7 +21,7 @@ void func_80287ACC(struct54s *arg0){
 }
 
 void func_80287B84(struct54s *arg0){
-    arg0->unk4 -= func_8033DD9C();
+    arg0->unk4 -= time_getDelta();
     while(arg0->unk4 <= 0.0f){
         arg0->unkC_24++;
         if(arg0->unkC_31 <= arg0->unkC_24){

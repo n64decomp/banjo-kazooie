@@ -90,7 +90,7 @@ void func_80386B28(Actor *this){
     int temp_a0;
     
 
-    f32 tick = func_8033DD9C();
+    f32 tick = time_getDelta();
     if(!this->unk16C_4){
         this->unk16C_4 = 1;
         func_803300A8(this->marker, NULL, func_80386AD0, NULL);

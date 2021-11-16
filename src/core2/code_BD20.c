@@ -84,7 +84,7 @@ void func_80292EDC(void){
     f32 temp_f0;
     int i;
 
-    temp_f22 = func_8033DD9C();
+    temp_f22 = time_getDelta();
     for(i = 0; i < 4; i++){
         temp_f0 = func_80292CB0(i);
         switch(D_8037C190[i].unk4){

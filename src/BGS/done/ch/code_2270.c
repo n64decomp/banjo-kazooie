@@ -251,7 +251,7 @@ void func_80389080(Actor *this){
     f32 sp30;
 
     unqPtr = &this->bgs_2270;
-    sp3C = func_8033DD9C();
+    sp3C = time_getDelta();
     if(!this->unk16C_4){
         this->unk16C_4 = 1;
         this->marker->unk30 = func_80388FC0;

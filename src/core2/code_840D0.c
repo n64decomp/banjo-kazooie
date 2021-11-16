@@ -89,5 +89,5 @@ void func_8030B2EC(void){
 }
 
 void func_8030B3C8(void){
-    D_80382410.unk1C += func_8033DD9C();
+    D_80382410.unk1C += time_getDelta();
 }

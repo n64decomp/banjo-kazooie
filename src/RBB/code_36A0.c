@@ -65,7 +65,7 @@ void func_80389C44(Actor *actor){
 void func_80389C78(Actor *this){ 
     ActorLocal_RBB_36A0 * local = (ActorLocal_RBB_36A0 *)&this->local;
     f32 tmp;
-    f32 sp34 = func_8033DD9C();
+    f32 sp34 = time_getDelta();
 
     if(!this->unk16C_4){
         this->unk16C_4 = 1;

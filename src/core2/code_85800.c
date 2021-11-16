@@ -333,7 +333,7 @@ void func_8030D310(u8 indx){
             case 0:
                 break;
             case 1: //L8030D388[
-                ptr->unk34 += ptr->unk1C*func_8033DD9C();
+                ptr->unk34 += ptr->unk1C*time_getDelta();
                 if(0.0f < ptr->unk1C)
                     ptr->unk34 = min_f(ptr->unk34, ptr->unk20);
                 else
@@ -341,7 +341,7 @@ void func_8030D310(u8 indx){
                 func_8030C82C(ptr, 1 << 2);
                 break;
             case 2: //L8030D3E8
-                sp24 = func_8033DD9C();
+                sp24 = time_getDelta();
                 ptr->unk34 +=  func_8034A788(-ptr->unk24, ptr->unk24)*sp24;
                 ptr->unk34 = mlClamp_f(ptr->unk34, ptr->unk20, ptr->unk1C);
                 func_8030C82C(ptr, 1 << 2);

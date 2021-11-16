@@ -266,7 +266,7 @@ void func_803251D4(void){
     if(vla_size(D_80383380.ptr) == 0)
         return;
 
-    D_80383380.time += func_8033DD9C();
+    D_80383380.time += time_getDelta();
 
     while(vla_size(D_80383380.ptr) > 0){
         iPtr = vla_getBegin(D_80383380.ptr);

@@ -91,7 +91,7 @@ void func_802C7B8C(Actor *this, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5
 
 //chjiggy_updateRotate
 void func_802C7CA4(Actor *this){
-    f32 delta = func_8033DD9C();
+    f32 delta = time_getDelta();
     this->yaw += delta * 230.0f;
     if(360.0f <= this->yaw){
         this->yaw -= 360.0f;

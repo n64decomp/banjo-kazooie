@@ -523,7 +523,7 @@ void bsbtrot_slide_update(void){
     if(func_80291698(3))
         func_802A87C0();
     func_80299AAC();
-    D_8037D3A0 = max_f(D_8037D3A0-func_8033DD9C(), 0.0f);
+    D_8037D3A0 = max_f(D_8037D3A0-time_getDelta(), 0.0f);
     if(player_shouldSlideTrot()){
         func_80294480(sp30);
         func_8025801C(sp30, &sp2C);

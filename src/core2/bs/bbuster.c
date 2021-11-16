@@ -99,7 +99,7 @@ void bsbbuster_update(void){
             }
             break;
         case 1://8029FE24
-            D_8037D2B0 -= func_8033DD9C();
+            D_8037D2B0 -= time_getDelta();
             if(D_8037D2B0 <= 0.0f){
                 gravity_reset();
                 func_80297BF8(D_803649A8);
@@ -157,7 +157,7 @@ void bsbbuster_update(void){
                 func_80297CCC(0.9f);
             }
             
-            D_8037D2B0 -= func_8033DD9C();
+            D_8037D2B0 -= time_getDelta();
             if(D_8037D2B0 <= 0.0f){
                 if(D_8037D2BB){
                     player_setYVelocity(D_80364990);

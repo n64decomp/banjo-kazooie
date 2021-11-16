@@ -126,7 +126,7 @@ Actor *func_8038AD9C(ActorMarker *marker, Gfx **gdl, Mtx **mptr, s32 arg3){
 
 void func_8038AEB8(Actor *this){
     ActorLocal_RBB_47D0 *local = (ActorLocal_RBB_47D0 *)&this->local;
-    f32 sp20 = func_8033DD9C();
+    f32 sp20 = time_getDelta();
     s32 tmp;
     
     if(!this->unk16C_4){

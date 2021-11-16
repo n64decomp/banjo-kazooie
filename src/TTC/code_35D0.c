@@ -110,7 +110,7 @@ void func_80389E84(void){
 }
 
 void func_80389E90(Actor *this){
-    f32 tick = func_8033DD9C();
+    f32 tick = time_getDelta();
     ActorLocal_TreasureHunt *local = (ActorLocal_TreasureHunt*)&this->local;
     f64 tmp_f12;
 

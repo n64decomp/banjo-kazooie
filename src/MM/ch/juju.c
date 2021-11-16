@@ -171,7 +171,7 @@ void    func_80389598(Actor *this){
     switch(jujuPtr->unk0){
         case 1: //L80389624
             sp34 = this->yaw;
-            this->yaw += ((0xb - D_80389C90*2)*func_8033DD9C()*60.0f)/2;
+            this->yaw += ((0xb - D_80389C90*2)*time_getDelta()*60.0f)/2;
             if(360.0f < this->yaw){
                 sp38 = 1;
                 this->yaw -= 360.0f;

@@ -66,7 +66,7 @@ void func_803870F8(Actor *this){
     ActorMarker *marker = this->marker;
     f32 sp70[3];
     ActorLocal_CC_BF0 *local = (ActorLocal_CC_BF0 *)&this->local;
-    f32 sp68 = func_8033DD9C();
+    f32 sp68 = time_getDelta();
     f32 sp5C[3];
     f32 sp50[3];
     f32 temp_f2;

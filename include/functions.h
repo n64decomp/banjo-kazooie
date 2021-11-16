@@ -157,7 +157,7 @@ Actor *func_802C8C04(s32 (* position)[3], s32 yaw, ActorInfo* actorInfo, u32 fla
 
 Actor *marker_getActor(ActorMarker *);
 
-f32 func_8033DD9C(void);
+f32 time_getDelta(void);
 void jiggySpawn(u32 indx, f32 pos[3]);
 
 struct8s *func_802FD320(s32);

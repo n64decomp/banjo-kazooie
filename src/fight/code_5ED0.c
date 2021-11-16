@@ -182,7 +182,7 @@ void func_8038C674(Actor *this){
 
 void func_8038C6FC(Actor *this, s16 arg1){
     f32 temp_f2 = this->yaw;
-    f32 tick = func_8033DD9C();
+    f32 tick = time_getDelta();
     
 
     temp_f2 -= (tick*arg1)/D_80392498;
@@ -214,7 +214,7 @@ void func_8038C79C(Actor *this){
 #pragma GLOBAL_ASM("asm/nonmatchings/fight/code_5ED0/func_8038C840.s")
 #else
 void func_8038C840(Actor *this){
-    f32 sp74 = func_8033DD9C();
+    f32 sp74 = time_getDelta();
     f32 sp68[3];
     f32 sp5C[3];
     f32 sp50[3];

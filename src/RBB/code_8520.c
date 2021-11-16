@@ -68,7 +68,7 @@ void func_8038E92C(Actor *this){
 
     if(this->state == 2 && local->unk34 == 0)
         return;
-    if(func_8025773C( &local->unk30, func_8033DD9C()))
+    if(func_8025773C( &local->unk30, time_getDelta()))
         func_8038F190(this, 3);
 }
 
@@ -322,7 +322,7 @@ void func_8038F618(Actor *this){
     f32 sp7C[3];
     int sp78;
     ActorLocal_RBB_8520 *local = (ActorLocal_RBB_8520 *)&this->local;
-    f32 sp70 = func_8033DD9C();
+    f32 sp70 = time_getDelta();
     f32 sp6C;
     f32 sp68;
     f32 sp5C[3];

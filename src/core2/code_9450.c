@@ -22,7 +22,7 @@ void func_802903E0(void){
 }
 
 void func_80290444(void){
-    D_8037C030 -= func_8033DD9C();
+    D_8037C030 -= time_getDelta();
     if(D_8037C030 < 0.0f){
         D_8037C030 = 0.0f;
     }
@@ -95,7 +95,7 @@ void func_802906D8(void){
     }
 
     if(tmp_a0 && D_8037C03E != 4){
-        sp1C = func_8033DD9C();
+        sp1C = time_getDelta();
         if(D_8037C03C){
             D_8037C038 -= sp1C;
             if( D_8037C038< 0.0f){

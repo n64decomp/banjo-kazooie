@@ -44,7 +44,7 @@ void func_80388BE8(Actor *actor){
 
 void func_80388C20(Actor *this){
     ActorLocal_RBB_27E0 *local = (ActorLocal_RBB_27E0 *)&this->local;
-    f32 sp28 = func_8033DD9C();
+    f32 sp28 = time_getDelta();
     if(!this->unk16C_4){
         actor_collisionOff(this);
         this->marker->propPtr->unk8_3 = 1;

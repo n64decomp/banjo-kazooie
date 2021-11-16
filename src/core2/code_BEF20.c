@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-f32 func_8033DD9C(void);
+f32 time_getDelta(void);
 void func_80346DB4(s32);
 
 void func_803463D4(s32 item, s32 diff);
@@ -16,7 +16,7 @@ extern s32 D_80385FE4;
 
 void func_80345EB0(s32 item){
     if(func_802FAFE8(item)){
-        func_803463D4(item, (s32)(-func_8033DD9C()*60.0f * D_80379100));
+        func_803463D4(item, (s32)(-time_getDelta()*60.0f * D_80379100));
     }else{
         func_802FACA4(item);
     }

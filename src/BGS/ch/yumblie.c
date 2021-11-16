@@ -142,7 +142,7 @@ u32 func_8038B684(ActorMarker * arg0){
 //     f32 tmp;
     
 
-//     sp4C = func_8033DD9C();
+//     sp4C = time_getDelta();
 //     s0 = &this->yumblie;
 //     if(!this->unk16C_4){
 //         this->unk16C_4 = 1;

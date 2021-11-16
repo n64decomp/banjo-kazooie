@@ -96,7 +96,7 @@ void func_80388EB8(Actor *this, s32 arg1){
 
 void func_803890BC(Actor *this){
     ActorLocal_RBB_2A70 *local = (ActorLocal_RBB_2A70 *)&this->local;
-    f32 sp38 = func_8033DD9C();
+    f32 sp38 = time_getDelta();
     f32 sp2C[3];
     if(!this->unk16C_4){
         actor_collisionOff(this);

@@ -51,7 +51,7 @@ void func_802C22C0(f32 *arg0, f32 *arg1){
         D_8037DC30[2] = 0.0f;
         D_8037DC44 = 2;
     }
-    D_8037DC3C -= func_8033DD9C();
+    D_8037DC3C -= time_getDelta();
     if(D_8037DC3C <= 0.0f)
         D_8037DC44 = 0;
     else {

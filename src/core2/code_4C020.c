@@ -278,7 +278,7 @@ void func_802D5628(void){
                 if(D_80367684 && D_80367684 == func_803348C0()){
                     func_80319EA4();
                     if(0.0f < D_8037DE08){
-                        D_8037DE08 -= func_8033DD9C();
+                        D_8037DE08 -= time_getDelta();
                     }
                     else{//L802D5B24
                         func_8024E55C(0, sp50); //get button inputs
@@ -328,7 +328,7 @@ void func_802D5628(void){
                     && func_803348C0() != MAP_90_GL_BATTLEMENTS
                     && !func_8031FF1C(BKPROG_FC_DEFEAT_GRUNTY)
                 ){
-                    D_8037DE04 += func_8033DD9C();
+                    D_8037DE04 += time_getDelta();
                     if(D_80367680 < D_8037DE04 && !func_803203FC(0x16)){
                         if(func_8031FF1C(BKPROG_A6_FURNACE_FUN_COMPLETE)){
                             sp4C = 0xF9D;

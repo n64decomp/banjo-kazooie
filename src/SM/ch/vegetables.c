@@ -360,7 +360,7 @@ void func_80388080(Actor *this){
                     }
                 }
             }else{//L80388730
-                sp78 = func_8033DD9C();
+                sp78 = time_getDelta();
                 sp6C[0] = this->unk1C_x - this->position_x;
                 sp6C[1] = this->unk1C_y - this->position_y;
                 sp6C[2] = this->unk1C_z - this->position_z;

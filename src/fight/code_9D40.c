@@ -175,7 +175,7 @@ void func_803903C4(Actor *this){
 #else
 void func_8039040C(Actor *this){
     ActorLocal_fight_9850 *local = (ActorLocal_fight_9850 *)&this->local;
-    f32 tick = func_8033DD9C();
+    f32 tick = time_getDelta();
     
     local->unk14 = MIN(1.99, local->unk14 + local->unk18*tick);
     func_8030DBB4(this->unk44_31, local->unk14);
@@ -198,7 +198,7 @@ void func_8039049C(Actor *this){
     f32 sp48;
     f32 sp2C[3];
 
-    sp58 = func_8033DD9C();
+    sp58 = time_getDelta();
     sp54 = animctrl_getDuration(this->animctrl);
     
     if(!this->unk16C_4){

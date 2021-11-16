@@ -408,7 +408,7 @@ void func_80362DC0(f32 arg0[3]){
 }
 
 void func_80362E94(Actor *this){
-    f32 tick = func_8033DD9C();
+    f32 tick = time_getDelta();
 
     switch(this->unkF4_8){
         case 0x3: //L80362ED8
