@@ -53,8 +53,8 @@ def main(csv_name, version, overlay):
         done_func = total_func - incomplete_func
         percent = ((done_byte/total_byte) * 100)
         print("%s: bytes: %3.4f%% (%d/%d), nonstatic funcs: %3.4f%% (%d/%d)" % (overlay, percent, done_byte, total_byte,((done_func/total_func) *100), done_func, total_func ))
-        green = min(255, round(min(1, (percent / 100) * 2) * 256))
-        red = min(255, round(min(1, ((100 - percent) / 100) * 2) * 256))
+        green = min(255, round(min(1, (percent / 100) * 2) * 224))
+        red = min(255, round(min(1, ((100 - percent) / 100) * 2) * 224))
         color = RGB_to_hex([red, green, 0])
         if overlay == 'total':
             badge = anybadge.Badge("Banjo-Kazooie (us.v10)", "%3.4f%%" % (percent), default_color=color)
