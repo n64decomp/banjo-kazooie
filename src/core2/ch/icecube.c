@@ -104,53 +104,53 @@ int func_80359FEC(f32 arg0[3], f32 arg1[3], s32 arg2){
 }
 
 void func_8035A04C(f32 position[3], s32 cnt, enum asset_e model_id, f32 scale){
-    struct30s *pCtrl = func_802F0BD0(cnt);
+    ParticleEmitter *pCtrl = func_802F0BD0(cnt);
 
-    func_802EFAC8(pCtrl, model_id);
-    func_802EFB54(pCtrl, position);
-    func_802EFB1C(pCtrl, -100.0f*scale, 0.0f, -100.0f*scale, 100.0f*scale, 200.0f*scale, 100.0f*scale);
-    func_802EF9AC(pCtrl, 0.0f, -1000.0f, 0.0f, 0.0f, -1000.0f, 0.0f);
-    func_802EFED4(pCtrl, -400.0f*scale, 450.0f*scale, -400.0f*scale, 400.0f*scale, 600.0f*scale, 400.0f*scale);
+    particleEmitter_setModel(pCtrl, model_id);
+    particleEmitter_setPosition(pCtrl, position);
+    particleEmitter_setParticleSpawnPositionRange(pCtrl, -100.0f*scale, 0.0f, -100.0f*scale, 100.0f*scale, 200.0f*scale, 100.0f*scale);
+    particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -1000.0f, 0.0f, 0.0f, -1000.0f, 0.0f);
+    particleEmitter_setParticleVelocityRange(pCtrl, -400.0f*scale, 450.0f*scale, -400.0f*scale, 400.0f*scale, 600.0f*scale, 400.0f*scale);
     func_802EFE24(pCtrl, 100.0f*scale, 100.0f*scale, 100.0f*scale, 250.0f*scale, 250.0f*scale, 250.0f*scale);
     func_802EFB70(pCtrl, scale*0.2, scale*0.4);
-    func_802EFE5C(pCtrl, 0.0f, 0.02f);
+    particleEmitter_setSpawnIntervalRange(pCtrl, 0.0f, 0.02f);
     func_802EFEC0(pCtrl, 2.2f, 2.2f);
     func_802EFA5C(pCtrl, 0.0f, 0.3f);
-    func_802EF5C8(pCtrl, cnt);
+    particleEmitter_emitN(pCtrl, cnt);
 }
 
 void func_8035A228(f32 position[3], s32 cnt, enum asset_e sprite_id, f32 scale){
-    struct30s *pCtrl = func_802F0BD0(cnt);
+    ParticleEmitter *pCtrl = func_802F0BD0(cnt);
 
     func_802EFFA8(pCtrl, D_80372BC8);
-    func_802EF950(pCtrl, sprite_id);
-    func_802EFB54(pCtrl, position);
-    func_802EFB1C(pCtrl, -50.0f*scale, 0.0f, -50.0f*scale, 50.0f*scale, 200.0f*scale, 50.0f*scale);
-    func_802EF9AC(pCtrl, 0.0f, -10.0f, 0.0f, 0.0f, -10.0f, 0.0f);
-    func_802EFED4(pCtrl, -280.0f*scale, 0.0f, -280.0f*scale, 280.0f*scale, 280.0f*scale, 280.0f*scale);
+    particleEmitter_setSprite(pCtrl, sprite_id);
+    particleEmitter_setPosition(pCtrl, position);
+    particleEmitter_setParticleSpawnPositionRange(pCtrl, -50.0f*scale, 0.0f, -50.0f*scale, 50.0f*scale, 200.0f*scale, 50.0f*scale);
+    particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -10.0f, 0.0f, 0.0f, -10.0f, 0.0f);
+    particleEmitter_setParticleVelocityRange(pCtrl, -280.0f*scale, 0.0f, -280.0f*scale, 280.0f*scale, 280.0f*scale, 280.0f*scale);
     func_802EFB70(pCtrl, scale*0.6, scale*0.8);
     func_802EFB84(pCtrl, scale*1.0, scale*1.4);
-    func_802EFE5C(pCtrl, 0.0f, 0.01f);
+    particleEmitter_setSpawnIntervalRange(pCtrl, 0.0f, 0.01f);
     func_802EFEC0(pCtrl, 1.2f, 1.8f);
     func_802EFA5C(pCtrl, 0.0f, 0.01f);
-    func_802EF5C8(pCtrl, cnt);
+    particleEmitter_emitN(pCtrl, cnt);
 }
 
 void func_8035A3F8(f32 position[3], s32 cnt, enum asset_e sprite_id, f32 scale){
-    struct30s *pCtrl = func_802F0BD0(cnt);
+    ParticleEmitter *pCtrl = func_802F0BD0(cnt);
 
     func_802EFFA8(pCtrl, D_80372BD4);
-    func_802EF950(pCtrl, sprite_id);
-    func_802EFB54(pCtrl, position);
-    func_802EF9AC(pCtrl, 0.0f, -10.0f, 0.0f, 0.0f, -10.0f, 0.0f);
-    func_802EFED4(pCtrl, -60.0f*scale, 0.0f, -60.0f*scale, 60.0f*scale, 60.0f*scale, 60.0f*scale);
+    particleEmitter_setSprite(pCtrl, sprite_id);
+    particleEmitter_setPosition(pCtrl, position);
+    particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -10.0f, 0.0f, 0.0f, -10.0f, 0.0f);
+    particleEmitter_setParticleVelocityRange(pCtrl, -60.0f*scale, 0.0f, -60.0f*scale, 60.0f*scale, 60.0f*scale, 60.0f*scale);
     func_802EFB70(pCtrl, scale*0.4, scale*0.6);
     func_802EFB84(pCtrl, scale*0.8, scale*1.2);
-    func_802EFE5C(pCtrl, 0.0f, 0.01f);
+    particleEmitter_setSpawnIntervalRange(pCtrl, 0.0f, 0.01f);
     func_802EFEC0(pCtrl, 0.5f, 0.7f);
     func_802EFA5C(pCtrl, 0.0f, 0.3f);
     func_802EFA70(pCtrl, 4);
-    func_802EF5C8(pCtrl, cnt);
+    particleEmitter_emitN(pCtrl, cnt);
 }
 
 void func_8035A594(f32 position[3], f32 arg1, f32 arg2){
@@ -181,7 +181,7 @@ void func_8035A694(Actor *this){
         this->yaw -= 360.0f;
     if(this->marker->unk14_21 && !(tmp_v0 & 1)){
         func_8034A174(this->marker->unk44, 5, sp28);
-        func_8035A3F8(sp28, 1, ASSET_70D_SPRITE_SMOKE, this->scale);
+        func_8035A3F8(sp28, 1, ASSET_70D_SPRITE_SMOKE_1, this->scale);
     }
     func_8035A594(this->position, this->yaw, sp3C);
 

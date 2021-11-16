@@ -19,6 +19,19 @@ typedef struct{
     t n[3];\
 }
 
+#define PAIR(t, n) union{\
+    struct{ t n##_first; t n##_second;};\
+    struct{ t n##_min; t n##_max;};\
+    struct{ t n##_x; t n##_y;};\
+    t n[2];\
+}
+
+#define TUPLE_PAIR(t, n) union{\
+    struct{ TUPLE(t, n##_min);  TUPLE(t, n##_max);};\
+    t n[2][3];\
+}
+
+
 typedef struct variable_length_array{
     s32 elem_size;
     void * begin;
@@ -372,70 +385,71 @@ typedef struct struct_22_s{
 typedef struct struct_2F_s{
     f32 unk0[3];
     f32 unkC;
-    f32 unk10;
-    f32 unk14;
-    f32 unk18[3];
+    f32 frame_10; //frame
+    f32 framerate_14; //framerate
+    f32 position_18[3];
     f32 unk24[3];
-    f32 unk30;
-    f32 unk34;
-    f32 unk38;
+    f32 size_30; //size
+    f32 initialSize_34; //initial_size
+    f32 finalSizeDiff; //delta_size
     f32 unk3C[3];
-    f32 unk48;
-    f32 unk4C;
-    f32 unk50[3];
+    f32 age_48;
+    f32 lifetime_4C;
+    f32 velocity_50[3];
     u8 unk5C;
     u8 pad5D[3];
-} struct2Fs;
+} Particle;
 
 //particle_ctrl
 typedef struct struct_30_s{
     u32 pad0_31:8;
-    u32 unk0_23:7;
+    u32 doneSpawning_0_23:7; //doneSpawning
     u32 unk0_16:1;
-    u32 unk0_15:14; //uid
+    u32 assetId_0_15:14; //uid
     u32 unk0_1:1;
     u32 unk0_0:1;
     f32 unk4[3];
     f32 unk10;
     f32 unk14;
-    s32 unk18;
-    Sprite *unk1C; //sprite_ptr
-    void *unk20; //model_ptr
-    f32 unk24;
-    f32 unk28[3]; //position
-    s32 unk34;
-    f32 unk38;
+    u32 unk18;
+    BKSprite *sprite_1C; //sprite_ptr
+    BKModelBin *model_20; //model_ptr
+    f32 particleSpawnTimer_24; //particleSpawnTimer?
+    f32 postion_28[3]; //position
+    BKSpriteDisplayData *unk34;
+    f32 spawnIntervalTimer_38; //spawnIntervalTimer
     s32 unk3C[3];
-    u8  unk48;
+    u8  sphericalParticleVelocity_48; //sphericalParticalVelocity
     u8  unk49;
     u8  pad4A[0x2];
-    f32 unk4C[3];
-    f32 unk58[3];
+    TUPLE_PAIR(f32, particleAccerationRange_4C);
     s16 unk64;
     s16 unk66;
     f32 unk68;
-    f32 unk6C; //scale_min?
-    f32 unk70; //scale_max?
+    f32 unk6C;
+    f32 unk70;
     f32 unk74;
     f32 unk78;
     s32 unk7C;
-    void  (*unk80)(struct struct_30_s *, f32 (*)[3]);
-    s32 unk84;
-    s32 unk88;
-    f32 unk8C;
-    f32 unk90;
-    f32 unk94[3]; //sSpawnRange
-    f32 unkA0[3]; //lSpawnRange
-    f32 unkAC[2]; 
-    f32 unkB4[2];
+    void  (*particleCallback_80)(struct struct_30_s *, f32 [3]); //particleCallback
+    PAIR(s32, particleStartingFrameRange_84);
+    PAIR(f32, particleFramerateRange_8C);
+    TUPLE_PAIR(f32, particleSpawnPositionRange_94);
+    PAIR(f32, particleStartingScaleRange_AC);
+    PAIR(f32, particleFinalScaleRange_B4);
     f32 unkBC[3];
     f32 unkC8[3];
-    f32 unkD4;
-    f32 unkD8;
-    f32 unkDC[2];
-    f32 unkE4[2];
-    f32 unkEC[2];
-    f32 unkF4[2];
+    PAIR(f32, spawnIntervalRange_D4);
+    f32 unkDC[2]; //particleLifetimeRange
+    union
+    {
+        TUPLE_PAIR(f32, cartisian);
+        struct{
+            PAIR(f32, yaw);
+            PAIR(f32, pitch);
+            PAIR(f32, radius);
+        }spherical;
+    } particleVelocityRange_E4;
     f32 unkFC;
     s32 unk100;
     s16 unk104;
@@ -443,11 +457,11 @@ typedef struct struct_30_s{
     f32 unk108;
     f32 unk10C[3];
     f32 unk118[3];
-    struct2Fs *unk124; //start_ptr?
-    struct2Fs *unk128; //end_ptr
-    struct2Fs *unk12C; //capacity_end_ptr;
-    struct2Fs data[];//end of struct 0x130 
-} struct30s;
+    Particle *pList_start_124; //start_ptr?
+    Particle *pList_end_128; //end_ptr
+    Particle *pList_capacity_12C; //capacity_end_ptr;
+    Particle data[];//end of struct 0x130 
+} ParticleEmitter;
 
 typedef struct struct_31_s{
     f32 unk0[2];

@@ -101,21 +101,21 @@ extern f32 D_80392720;
 extern s32 D_80392920;
 
 /* .code */
-void func_80390130(f32 (*arg0)[3], int arg1, int arg2){
-    struct30s *s0 = func_802F0BD0(arg1);
-    func_802EF950(s0, arg2);
-    func_802EFA90(s0, 1, 6);
-    func_802EFB54(s0, arg0);
-    func_802EF9AC(s0, 0.0f, -200.0f, 0.0f, 0.0f, -200.0f, 0.0f);
-    func_802EFED4(s0, -100.0f, -100.0f, -100.0f, 100.0f, 100.0f, 100.0f);
+void func_80390130(f32 position[3], int count, enum asset_e sprite_id){
+    ParticleEmitter *s0 = func_802F0BD0(count);
+    particleEmitter_setSprite(s0, sprite_id);
+    particleEmitter_setStartingFrameRange(s0, 1, 6);
+    particleEmitter_setPosition(s0, position);
+    particleEmitter_setParticleAccelerationRange(s0, 0.0f, -200.0f, 0.0f, 0.0f, -200.0f, 0.0f);
+    particleEmitter_setParticleVelocityRange(s0, -100.0f, -100.0f, -100.0f, 100.0f, 100.0f, 100.0f);
     func_802EFB70(s0, 0.5f, 0.65f);
     func_802EFB84(s0, 0.0f, 0.0f);
-    func_802EFE5C(s0, 0.0f, 0.01f);
+    particleEmitter_setSpawnIntervalRange(s0, 0.0f, 0.01f);
     func_802EFEC0(s0, 0.65f, 0.85f);
     func_802EFA5C(s0, 0.0f, 0.35f);
     func_802EFA78(s0, 1);
     func_802EFA70(s0, 4);
-    func_802EF5C8(s0, arg1);
+    particleEmitter_emitN(s0, count);
 }
 
 void func_80390278(Actor *this){
@@ -124,7 +124,7 @@ void func_80390278(Actor *this){
     for(i = 0; i < 4; i++){
         if(randf() < 0.3){
             func_8034A174(this->marker->unk44, i + 5, &sp34);
-            func_80390130(&sp34, 1, 0x718);
+            func_80390130(&sp34, 1, ASSET_718_SPRITE_SPARKLE_WHITE_2);
         }
     }
 }
@@ -136,28 +136,28 @@ void func_80390318(Actor *this, s32 arg1){
     switch(arg1){
         case 1:
         case 5:
-            sp1C = 0x71b;
-            sp18 = 0x6c5;
+            sp1C = ASSET_71B_SPRITE_SPARKLE_ORANGE_2;
+            sp18 = ASSET_6C5_SPRITE_SMOKE_ORANGE;
             break;
         case 2:
         case 6:
-            sp1C = 0x719;
-            sp18 = 0x6c3;
+            sp1C = ASSET_719_SPRITE_SPARKLE_GREEN_2;
+            sp18 = ASSET_6C3_SPRITE_SMOKE_GREEN;
             break;
         case 3:
         case 7:
-            sp1C = 0x71a;
-            sp18 = 0x6c6;
+            sp1C = ASSET_71A_SPRITE_SPARKLE_PINK_2;
+            sp18 = ASSET_6C6_SPRITE_SMOKE_PINK;
             break;
         case 4:
         case 8:
-            sp1C = 0x717;
-            sp18 = 0x6c4;
+            sp1C = ASSET_717_SPRITE_SPARKLE_YELLOW_2;
+            sp18 = ASSET_6C4_SPRITE_SMOKE_YELLOW;
             break;
         case 9:
         case 10:
-            sp1C = 0x718;
-            sp18 = 0x6c2;
+            sp1C = ASSET_718_SPRITE_SPARKLE_WHITE_2;
+            sp18 = ASSET_6C2_SPRITE_SMOKE_WHITE;
             break;
     }
     func_8038C5F0(this, sp1C, sp18, 0x40000000);

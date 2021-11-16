@@ -53,16 +53,16 @@ Actor *func_802DA560(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     return actor;
 }
 
-void func_802DA634(struct30s *pCtrl, f32 arg1[3], s32 cnt){
-    func_802EF9AC(pCtrl, 0.0f, -600.0f, 0.0f, 0.0f, -600.0f, 0.0f);
-    func_802EFAC8(pCtrl, 0x344);
-    func_802EFB54(pCtrl, arg1);
+void func_802DA634(ParticleEmitter *pCtrl, f32 arg1[3], s32 cnt){
+    particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -600.0f, 0.0f, 0.0f, -600.0f, 0.0f);
+    particleEmitter_setModel(pCtrl, 0x344);
+    particleEmitter_setPosition(pCtrl, arg1);
     func_802EFE24(pCtrl, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
-    func_802EFED4(pCtrl, -150.0f, 150.0f, -150.0f, 150.0f, 360.0f, 150.0f);
+    particleEmitter_setParticleVelocityRange(pCtrl, -150.0f, 150.0f, -150.0f, 150.0f, 360.0f, 150.0f);
     func_802EFB98(pCtrl, &D_80367E44);
     func_802EF9F8(pCtrl, 0.01f);
     func_802EFA18(pCtrl, 3);
-    func_802EF5C8(pCtrl, cnt);
+    particleEmitter_emitN(pCtrl, cnt);
 }
 
 void func_802DA740(Actor *this){

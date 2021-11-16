@@ -92,52 +92,52 @@ extern s32 D_8038AEE4;
 extern struct43s D_8038AF0C;
 
 /* .code */
-void func_80387910(Actor *arg0, f32 *arg1, s32 arg2){
+void func_80387910(ParticleEmitter *arg0, f32 *arg1, s32 arg2){
     f32 sp24[3] = D_8038ADA0;
     func_802EFFA8(arg0, sp24);
-    func_802EF950(arg0, 0x700);
-    func_802EFA90(arg0, 0, 7);
-    func_802EFB54(arg0, arg1);
+    particleEmitter_setSprite(arg0, ASSET_700_SPRITE_DUST);
+    particleEmitter_setStartingFrameRange(arg0, 0, 7);
+    particleEmitter_setPosition(arg0, arg1);
     func_802EFB98(arg0, &D_8038ADAC);
-    func_802EFD00(arg0, &D_8038ADD4);
-    func_802EF5C8(arg0, arg2);
+    particleEmitter_setPositionAndVelocityRanges(arg0, &D_8038ADD4);
+    particleEmitter_emitN(arg0, arg2);
 }
 
-void func_803879B8(Actor *arg0, f32 *arg1, s32 arg2, s32 arg3){
+void func_803879B8(ParticleEmitter *arg0, f32 *arg1, s32 arg2, enum asset_e model_id){
     func_802EF9F8(arg0, 0.6f);
     func_802EFA18(arg0, 2);
-    func_802EFAC8(arg0, arg3);
-    func_802EFB54(arg0, arg1);
+    particleEmitter_setModel(arg0, model_id);
+    particleEmitter_setPosition(arg0, arg1);
     func_802EFA70(arg0, 2);
     func_802EFE24(arg0, -300.0f, -300.0f, -300.0f, 300.0f, 300.0f, 300.0f);
     func_802EFB98(arg0, &D_8038AE04);
-    func_802EFD7C(arg0, &D_8038AE2C);
-    func_802EF5C8(arg0, arg2);
+    particleEmitter_setPositionVelocityAndAccelerationRanges(arg0, &D_8038AE2C);
+    particleEmitter_emitN(arg0, arg2);
 }
 
-void func_80387A80(Actor *arg0, f32 *arg1, s32 arg2, s32 arg3){
+void func_80387A80(ParticleEmitter *arg0, f32 *arg1, s32 arg2, enum asset_e model_id){
     func_802EF9F8(arg0, 0.6f);
     func_802EFA18(arg0, 3);
-    func_802EFAC8(arg0, arg3);
-    func_802EFB54(arg0, arg1);
+    particleEmitter_setModel(arg0, model_id);
+    particleEmitter_setPosition(arg0, arg1);
     func_802EFA70(arg0, 2);
     func_802EFE24(arg0, -300.0f, -300.0f, -300.0f, 300.0f, 300.0f, 300.0f);
     func_802EFB98(arg0, &D_8038AE74);
-    func_802EFD7C(arg0, &D_8038AE9C);
-    func_802EF5C8(arg0, arg2);
+    particleEmitter_setPositionVelocityAndAccelerationRanges(arg0, &D_8038AE9C);
+    particleEmitter_emitN(arg0, arg2);
 }
 
-void func_80387B48(Actor *arg0, f32 *arg1, s32 arg2, s32 arg3){
+void func_80387B48(ParticleEmitter *arg0, f32 arg1[3], s32 arg2, enum asset_e model_id){
     func_802EF9F8(arg0, 0.7f);
     func_802EFA18(arg0, 4);
-    func_802EFAC8(arg0, arg3);
-    func_802EFB54(arg0, arg1);
+    particleEmitter_setModel(arg0, model_id);
+    particleEmitter_setPosition(arg0, arg1);
     func_802EFA70(arg0, 2);
     func_802EFE24(arg0, 150.0f, -300.0f, -300.0f, 300.0f, 300.0f, -150.0f);
     func_802EF9EC(arg0, 0x1f, 0x1f40);
     func_802EFB98(arg0, &D_8038AEE4);
-    func_802EFD7C(arg0, &D_8038AF0C);
-    func_802EF5C8(arg0, arg2);
+    particleEmitter_setPositionVelocityAndAccelerationRanges(arg0, &D_8038AF0C);
+    particleEmitter_emitN(arg0, arg2);
 }
 
 void func_80387C28(Actor * this){

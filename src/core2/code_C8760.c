@@ -5,7 +5,7 @@
 void func_8030DE44(u8, s32, f32);
 
 struct {
-    struct30s *unk0;
+    ParticleEmitter *unk0;
     u8 unk4;
     u8 unk5;
     u8 pad6[2];
@@ -38,15 +38,15 @@ void func_8034F774(void){
     if( !s0 || !s1){
         D_803720A0.unk0 = NULL;
     }else{
-        D_803720A0.unk0 = func_802EF6AC(0xA);
-        func_802EF950(D_803720A0.unk0, 0x70E);
-        func_802EFA90(D_803720A0.unk0, 0, 4);
-        func_802EFA9C(D_803720A0.unk0, 15.0f, 30.0f);
-        func_802EFE5C(D_803720A0.unk0, 0.0f, 1.0f);
+        D_803720A0.unk0 = particleEmitter_new(0xA);
+        particleEmitter_setSprite(D_803720A0.unk0, ASSET_70E_SPRITE_SMOKE_2);
+        particleEmitter_setStartingFrameRange(D_803720A0.unk0, 0, 4);
+        particleEmitter_setParticleFramerateRange(D_803720A0.unk0, 15.0f, 30.0f);
+        particleEmitter_setSpawnIntervalRange(D_803720A0.unk0, 0.0f, 1.0f);
         func_802EFEC0(D_803720A0.unk0, D_803792F0, D_803792F0);
         func_802EFB70(D_803720A0.unk0, 1.8f, 2.2f);
         func_802EF4AC(D_803720A0.unk0, &sp38, &sp2C, 0xA);
-        func_802EFFC4(D_803720A0.unk0, 0.0f);
+        particleEmitter_setSpawnInterval(D_803720A0.unk0, 0.0f);
         D_803720A0.unk5 = func_8030D90C();
 
         sp44[0] = (sp38[0] + sp2C[0])/2;
@@ -64,5 +64,5 @@ void func_8034F774(void){
 
 void func_8034F918(void){
     if(D_803720A0.unk0)
-       func_802EFFE4(D_803720A0.unk0);
+       particleEmitter_update(D_803720A0.unk0);
 }

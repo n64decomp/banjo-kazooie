@@ -19,7 +19,7 @@ u32 func_802510B8(BKSprite *this){
     return this->unk4;
 }
 
-u32 spriteGetFrameCount(BKSprite *this){
+s32 spriteGetFrameCount(BKSprite *this){
     return this->frameCnt;
 }
 

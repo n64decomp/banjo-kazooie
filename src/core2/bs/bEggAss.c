@@ -31,13 +31,13 @@ void bseggass_update(void) {
         if (has_eggs)
             D_8037D2E0 = func_80258948(D_8037D2E0 + 1, 3);
         else 
-            func_80346C10(&sp28, -1, 0, 0xD, 0);
+            func_80346C10(&sp28, -1, 0, ITEM_D_EGGS, 0);
     }
     if (has_eggs) {
         if (animctrl_isAt(plyr_mvmt, 0.3837f)) {
-            func_8030E760(0x3E, 1.4f, 0x6D60);
+            func_8030E760(SFX_3E_POOP_NOISE, 1.4f, 28000);
             func_8033E3F0(4, 1);
-            func_80345F44(0xD);
+            func_80345F44(ITEM_D_EGGS);
             func_80295610(7);
         }
         if ((animctrl_isAt(plyr_mvmt,  0.4885f)) &&  (D_8037D2E1 < D_8037D2E0)) {

@@ -65,7 +65,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029B930.s")
 
-struct30s *func_8029B950(f32[3],f32);
+ParticleEmitter *func_8029B950(f32[3],f32);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029B950.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029B984.s")

@@ -193,9 +193,9 @@ void *func_803866D8(s32 a0)
     ptr = func_802F0BD0(0x28);
 
     func_802F0D54(ptr);
-    func_802EF950(ptr, 0x710);
+    particleEmitter_setSprite(ptr, ASSET_710_SPRITE_SPARKLE_PURPLE);
     func_802EFB98(ptr, &D_8039342C);
-    func_802EFED4(ptr, 0.f, 70.f, 0.f, 0.f, 140.f, 0.f);
+    particleEmitter_setParticleVelocityRange(ptr, 0.f, 70.f, 0.f, 0.f, 140.f, 0.f);
 
     colour[0] = a0 * 0xFF;
     colour[1] = 0xFF;

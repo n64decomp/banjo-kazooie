@@ -5,7 +5,7 @@
 /* extern functions */
 void func_80326224(Actor *);
 void func_80329904(ActorMarker *, s32, void *);
-extern void func_802EFA20(struct30s *, f32, f32);
+extern void func_802EFA20(ParticleEmitter *, f32, f32);
 
 
 /* public functions */
@@ -35,7 +35,7 @@ void func_80386444(ActorMarker *arg0){
     f32 sp54;
     Actor *actor;
     f32 sp44[3];
-    struct30s *s0;
+    ParticleEmitter *s0;
     s32 temp_a0;
 
     sp44[0] = arg0->propPtr->x;
@@ -61,17 +61,17 @@ void func_80386444(ActorMarker *arg0){
         }// L803865D8
 
         s0 = func_802F0BD0(0x1e);
-        func_802EFB54(s0, &actor->position);
-        func_802EFAC8(s0, 0x89f);
+        particleEmitter_setPosition(s0, &actor->position);
+        particleEmitter_setModel(s0, 0x89f);
         func_802EFB70(s0, 0.09f, 0.19f);
         func_802EFB84(s0, 0.0f, 0.0f);
 
-        func_802EFED4(s0,
+        particleEmitter_setParticleVelocityRange(s0,
             -200.0f, 500.0f, -200.0f,
             200.0f, 700.0f, 200.0f
         );
 
-        func_802EF9AC(s0, 
+        particleEmitter_setParticleAccelerationRange(s0, 
             0.0f, -1200.0f, 0.0f,
             0.0f, -1200.0f, 0.0f
         );
@@ -80,12 +80,12 @@ void func_80386444(ActorMarker *arg0){
             -600.0f, -600.0f, -600.0f,
             600.0f, 600.0f, 600.0f
         );
-        func_802EFE5C(s0, 0.0f, 0.01f);
+        particleEmitter_setSpawnIntervalRange(s0, 0.0f, 0.01f);
         func_802EFEC0(s0, 4.0f, 4.0f);
         func_802EF9F8(s0, 0.01f);
         func_802EFA18(s0, 3);
         func_802EFA20(s0, 1.0f, 1.3f);
-        func_802EF5C8(s0, 0x1e);
+        particleEmitter_emitN(s0, 0x1e);
     }
 }
 

@@ -4,7 +4,7 @@
 
 #include "prop.h"
 
-void func_802EF5C8(Actor*, s32);
+void particleEmitter_emitN(Actor*, s32);
 void func_803869A0(Actor*, f32, f32);
 void func_802C4218(s32, f32, f32, f32);
 
@@ -44,30 +44,30 @@ void func_80386B04(Actor *this, f32 *arg1, s32 arg2, f32 arg3) {
     func_802EF9F8(this, 0.6f);
     func_802EFA18(this, 4);
     func_802EFA5C(this, 0.00f, 0.75f);
-    func_802EFAC8(this, 0x42E);
-    func_802EFB54(this, arg1);
+    particleEmitter_setModel(this, 0x42E);
+    particleEmitter_setPosition(this, arg1);
     func_802EFA70(this, 2);
     func_802EFB70(this, arg3, arg3);
     func_802EFB84(this, arg3, arg3);
     func_802EFE24(this, -100.0f, -100.0f, -100.0f, 100.0f, 100.0f, 100.0f);
-    func_802EFE5C(this, 0.00f, 0.01f);
+    particleEmitter_setSpawnIntervalRange(this, 0.00f, 0.01f);
     func_802EFEC0(this, 2.0f, 2.0f);
-    func_802EFD7C(this, &D_8038AB48);
-    func_802EF5C8(this, arg2);
+    particleEmitter_setPositionVelocityAndAccelerationRanges(this, &D_8038AB48);
+    particleEmitter_emitN(this, arg2);
 }
 
 void func_80386C2C(Actor *this, f32 *arg1, s32 arg2, f32 arg3) {
     func_802EFFA8(this, &D_8038AB90);
-    func_802EF950(this, 0x700);
+    particleEmitter_setSprite(this, ASSET_700_SPRITE_DUST);
     func_802EFA5C(this, 0.00f, 0.01f);
-    func_802EFA90(this, 0, 7);
-    func_802EFB54(this, arg1);
+    particleEmitter_setStartingFrameRange(this, 0, 7);
+    particleEmitter_setPosition(this, arg1);
     func_802EFB70(this, (arg3 * 0.1), (arg3 * 0.5));
     func_802EFB84(this, (arg3 * 1.5), (arg3 * 3.0));
-    func_802EFE5C(this, 0.0f, 0.01f);
+    particleEmitter_setSpawnIntervalRange(this, 0.0f, 0.01f);
     func_802EFEC0(this, 1.5f, 2.0f);
-    func_802EFD7C(this, &D_8038AB9C);
-    func_802EF5C8(this, arg2);
+    particleEmitter_setPositionVelocityAndAccelerationRanges(this, &D_8038AB9C);
+    particleEmitter_emitN(this, arg2);
 }
 
 void func_80386D68(Actor *this){

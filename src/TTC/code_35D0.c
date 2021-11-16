@@ -79,7 +79,7 @@ struct42s D_8038C950 = {
 #pragma GLOBAL_ASM("asm/nonmatchings/TTC/code_35D0/func_8038A0D0.s")
 #else
 void func_80389CC4(s16 arg0[3], s32 arg1){
-    static struct30s *D_8038D700;
+    static ParticleEmitter *D_8038D700;
     static f32 D_8038D708[3];
 
     if(D_8037DCB4 == 5 && func_803899C0()){
@@ -90,12 +90,12 @@ void func_80389CC4(s16 arg0[3], s32 arg1){
         func_802C3F04(func_802C4140, 0xF4, reinterpret_cast(s32, D_8038D708[0]), reinterpret_cast(s32, D_8038D708[1]), reinterpret_cast(s32, D_8038D708[2]));
         D_8038D700 = func_802F0BD0(3);
         func_802EFFA8(D_8038D700, D_8038C91C);
-        func_802EF950(D_8038D700, ASSET_700_SPRITE_DUST);
-        func_802EFA90(D_8038D700, 0, 7);
-        func_802EFB54(D_8038D700, D_8038D708);
-        func_802EFD00(D_8038D700, &D_8038C950);
+        particleEmitter_setSprite(D_8038D700, ASSET_700_SPRITE_DUST);
+        particleEmitter_setStartingFrameRange(D_8038D700, 0, 7);
+        particleEmitter_setPosition(D_8038D700, D_8038D708);
+        particleEmitter_setPositionAndVelocityRanges(D_8038D700, &D_8038C950);
         func_802EFB98(D_8038D700, &D_8038C928);
-        func_802EF5C8(D_8038D700, 5);
+        particleEmitter_emitN(D_8038D700, 5);
         D_8038D708[2] += 300.0f;
         func_80314AC8(0);
         timedFunc_set_2(0.1f, (TFQM2) func_8028F45C, 9, (s32)&D_8038D708);

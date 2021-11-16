@@ -3,7 +3,7 @@
 #include "variables.h"
 
 extern int func_802592C4(f32[3], f32[3], f32);
-extern void func_802EFA20(struct30s *, f32, f32);
+extern void func_802EFA20(ParticleEmitter *, f32, f32);
 extern void func_80328B8C(Actor *, s32, f32, s32);
 extern void func_80328FB0(Actor *, f32);
 extern void func_803300C0(ActorMarker *, void *);
@@ -110,18 +110,18 @@ void func_802E1BD0(ActorMarker *marker){
 }
 
 void func_802E1CB8(f32 position[3], s32 count){
-    struct30s *particleSpawner = func_802F0BD0(count);
+    ParticleEmitter *particleSpawner = func_802F0BD0(count);
 
-    func_802EFAC8(particleSpawner, ASSET_378_MODEL_SNOWBALL);
-    func_802EFB54(particleSpawner, position);
-    func_802EFD7C(particleSpawner, &D_803686BC);
+    particleEmitter_setModel(particleSpawner, ASSET_378_MODEL_SNOWBALL);
+    particleEmitter_setPosition(particleSpawner, position);
+    particleEmitter_setPositionVelocityAndAccelerationRanges(particleSpawner, &D_803686BC);
     func_802EFE24(particleSpawner, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
     func_802EF9F8(particleSpawner, 0.01f);
     func_802EFA18(particleSpawner, 3);
     func_802EFA20(particleSpawner, 1.0f, 1.3f);
     func_802EF9EC(particleSpawner, 0x2f, 16000);
     func_802EFB98(particleSpawner, &D_80368694);
-    func_802EF5C8(particleSpawner, count);
+    particleEmitter_emitN(particleSpawner, count);
 }
 
 void func_802E1DA0(Actor *this){

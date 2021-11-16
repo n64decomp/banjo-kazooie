@@ -128,41 +128,41 @@ void func_80387BEC(s32 arg0, s32 arg1){
 }
 
 void func_80387C5C(void){
-    struct30s *actor;
+    ParticleEmitter *actor;
 
     func_802BB3DC(0, 60.0f, 0.9f);
     actor = func_802F0BD0(1);
-    func_802EF950(actor, 0x4a0);
+    particleEmitter_setSprite(actor, ASSET_4A0_SPRITE_EXPLOSION);
     func_802EFA5C(actor, 0.1f, 0.2f);
     func_802EFA70(actor, 8);
-    func_802EFA90(actor, 0, 0);
-    func_802EFA9C(actor, 4.0f, 4.0f);
+    particleEmitter_setStartingFrameRange(actor, 0, 0);
+    particleEmitter_setParticleFramerateRange(actor, 4.0f, 4.0f);
     func_802EFB70(actor, 10.0f, 10.0f);
     func_802EFB84(actor, 15.0f, 20.0f);
     func_802EFEC0(actor, 4.0f, 4.0f);
-    func_802EFED4(actor, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
+    particleEmitter_setParticleVelocityRange(actor, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
     func_802EF3F4(actor, &D_803902D4, &D_803902E0, 1);
 }
 
 void func_80387D80(void){
-    struct30s *actor = func_802F0BD0(3);
-    func_802EF950(actor, 0x70e);
-    func_802EFA90(actor, 0, 7);
+    ParticleEmitter *actor = func_802F0BD0(3);
+    particleEmitter_setSprite(actor, ASSET_70E_SPRITE_SMOKE_2);
+    particleEmitter_setStartingFrameRange(actor, 0, 7);
     func_802EFB98(actor, &D_80390304);
-    func_802EFED4(actor, 0.0f, 100.0f, 0.0f, 0.0f, 200.0f ,0.0f);
+    particleEmitter_setParticleVelocityRange(actor, 0.0f, 100.0f, 0.0f, 0.0f, 200.0f ,0.0f);
     func_802EF3F4(actor, &D_803902EC, &D_803902F8, 3);
 }
 
 void func_80387E20(void){
-    struct30s *actor = func_802F0BD0(0x19);
+    ParticleEmitter *actor = func_802F0BD0(0x19);
     func_802EF9F8(actor, 0.6f);
     func_802EFA18(actor, 3);
-    func_802EFAC8(actor, 0x427);
+    particleEmitter_setModel(actor, 0x427);
     func_802EFB70(actor, 0.05f, 0.4f);
     func_802EFE24(actor, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
-    func_802EFE5C(actor, 0.0f, 0.01f);
+    particleEmitter_setSpawnIntervalRange(actor, 0.0f, 0.01f);
     func_802EFEC0(actor, 10.0f, 10.0f);
-    func_802EFC84(actor, &D_80390344);
+    particleEmitter_setVelocityAndAccelerationRanges(actor, &D_80390344);
     func_802EF3F4(actor, &D_8039032C, &D_80390338, 0x19);
 }
 

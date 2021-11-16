@@ -35,17 +35,17 @@ struct43s D_80372B00 = {
 
 /* .code */
 void func_80359A40(f32 position[3], struct_core2_D2AB0 *arg1, s32 cnt){
-    struct30s *pCtrl = func_802F0BD0(cnt);
-    func_802EF950(pCtrl, ASSET_70C_SPRITE_RIPPLE);
+    ParticleEmitter *pCtrl = func_802F0BD0(cnt);
+    particleEmitter_setSprite(pCtrl, ASSET_70C_SPRITE_RIPPLE);
     func_802EFA70(pCtrl, 1);
     func_802EFFA8(pCtrl, D_80372AE4);
-    func_802EFB54(pCtrl, position);
+    particleEmitter_setPosition(pCtrl, position);
     func_802EFB70(pCtrl, 0.1f, 0.1f);
     func_802EFB84(pCtrl, 1.0f, 1.4f);
-    func_802EFE5C(pCtrl, arg1->unk0, arg1->unk4);
+    particleEmitter_setSpawnIntervalRange(pCtrl, arg1->unk0, arg1->unk4);
     func_802EFEC0(pCtrl, arg1->unk8, arg1->unkC);
     func_802EFA5C(pCtrl, 0.0f, 0.5f);
-    func_802EF5C8(pCtrl, cnt);
+    particleEmitter_emitN(pCtrl, cnt);
 }
 
 void __chdrips_particleCallback(struct31s *pCtrl, f32 position[3]){
@@ -66,7 +66,7 @@ int __chdrips_playerWithinDist(Actor *this, s32 arg1){
 }
 
 void chdrips_update(Actor *this){
-    struct30s *pCtrl;
+    ParticleEmitter *pCtrl;
 
     if(!this->unk16C_4){
         this->unk16C_4 = TRUE;
@@ -75,15 +75,15 @@ void chdrips_update(Actor *this){
     }
     if(__chdrips_playerWithinDist(this, 5000) && randf() < this->unk60){
         pCtrl = func_802F0BD0(1);
-        func_802EFAC8(pCtrl, ASSET_8A0_SPRITE_WATER_DROP);
-        func_802EFB54(pCtrl, this->position);
-        func_802EFD7C(pCtrl, &D_80372B00);
+        particleEmitter_setModel(pCtrl, ASSET_8A0_SPRITE_WATER_DROP);
+        particleEmitter_setPosition(pCtrl, this->position);
+        particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_80372B00);
         func_802EFA18(pCtrl, 1);
-        func_802EFA10(pCtrl, __chdrips_particleCallback);
-        func_802EFE5C(pCtrl, 0.0f, 0.01f);
+        particleEmitter_setParticleCallback(pCtrl, __chdrips_particleCallback);
+        particleEmitter_setSpawnIntervalRange(pCtrl, 0.0f, 0.01f);
         func_802EFEC0(pCtrl, 7.0f, 7.0f);
         func_802EFB70(pCtrl, 0.1f, 0.1f);
         func_802EFB84(pCtrl, 0.1f, 0.1f);
-        func_802EF5C8(pCtrl, 1);
+        particleEmitter_emitN(pCtrl, 1);
     }
 }  

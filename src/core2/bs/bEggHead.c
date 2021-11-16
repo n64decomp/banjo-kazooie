@@ -35,18 +35,18 @@ void bsegghead_update(void) {
         if (has_eggs)
             D_8037D2F0 = func_80258948(D_8037D2F0 + 1, 3);
         else 
-            func_80346C10(&sp28, -1, 0, 0xD, 0);
+            func_80346C10(&sp28, -1, 0, ITEM_D_EGGS, 0);
     }
     if (has_eggs) {
         if (animctrl_isAt(aCtrl, 0.1f))
-            func_8030E760(0x46, 1.0f, 0x7fff);
+            func_8030E760(SFX_46_KAZOOIE_CHOKING_UP, 1.0f, 0x7fff);
 
         if (animctrl_isAt(aCtrl, 0.4f))
-            func_8030E760(0x57, 1.0f, 0x7fff);
+            func_8030E760(SFX_57_KAZOOIE_HEGH, 1.0f, 0x7fff);
 
         if (animctrl_isAt(aCtrl, 0.4704f)){
             func_8033E3F0(1, 1);
-            func_80345F44(0xD);
+            func_80345F44(ITEM_D_EGGS);
             func_80295610(7);
         }
         if ((animctrl_isAt(aCtrl,  0.5919f)) &&  (D_8037D2F1 < D_8037D2F0)) {

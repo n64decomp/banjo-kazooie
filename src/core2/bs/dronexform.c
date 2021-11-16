@@ -18,8 +18,8 @@ extern struct41s D_80364C70;
 extern struct41s D_80364CA0;
 
 extern struct {
-    Actor *unk0;
-    Actor *unk4;
+    ParticleEmitter *unk0;
+    ParticleEmitter *unk4;
     f32 unk8;
     f32 unkC;
     f32 unk10;
@@ -38,10 +38,10 @@ extern struct {
 
 
 
-void func_802AF7A0(Actor *arg0, enum asset_e arg1){
-    func_802F0D54();
-    func_802EF950(arg0, arg1);
-    func_802EF9AC(arg0, 0.0f, -50.0f, 0.0f, 0.0f, -50.0f, 0.0f);
+void func_802AF7A0(ParticleEmitter *arg0, enum asset_e arg1){
+    func_802F0D54(arg0);
+    particleEmitter_setSprite(arg0, arg1);
+    particleEmitter_setParticleAccelerationRange(arg0, 0.0f, -50.0f, 0.0f, 0.0f, -50.0f, 0.0f);
     func_802EFA5C(arg0, 0.4f, 0.8f);
     func_802EFB84(arg0, 0.03f, 0.03f);
     func_802EFE24(arg0, 0.0f, 0.0f, 300.0f, 0.0f, 0.0f, 300.0f);
@@ -50,7 +50,7 @@ void func_802AF7A0(Actor *arg0, enum asset_e arg1){
 }
 
 void func_802AF88C(Actor * arg0, f32 arg1, f32 arg2){
-    func_802EFED4(arg0, arg1*30.0f, 10.0f, arg2*30.0f, arg1*30.0f, 10.0f, arg2*30.0f);
+    particleEmitter_setParticleVelocityRange(arg0, arg1*30.0f, 10.0f, arg2*30.0f, arg1*30.0f, 10.0f, arg2*30.0f);
     func_802EFB70(arg0, D_8037D470.unk14, D_8037D470.unk14);
 }
 
@@ -72,8 +72,8 @@ void func_802AF900(void){
     sp30[1] += func_80257C48(func_80257A44(sp3C, 1.14f), 0.0f, 130.0f);
     sp30[2] += sp44 * D_8037D470.unk18;
     func_802AF88C(D_8037D470.unk4, sp40, sp44);
-    func_802EFB54(D_8037D470.unk4, &sp30);
-    func_802EF5C8(D_8037D470.unk4, 1);
+    particleEmitter_setPosition(D_8037D470.unk4, &sp30);
+    particleEmitter_emitN(D_8037D470.unk4, 1);
 
     player_getPosition(&sp30);
     sp4C = (1.0 - func_802588B0(sp48 + 0.5, 1.0f))* 6.283185308;
@@ -81,8 +81,8 @@ void func_802AF900(void){
     sp30[1] += func_80257C48(func_80257A44(sp3C, 1.14f), 130.0f, 0.0f);
     sp30[2] -= cosf(sp4C) * D_8037D470.unk18;
     func_802AF88C(D_8037D470.unk0, sp40, sp44);
-    func_802EFB54(D_8037D470.unk0, &sp30);
-    func_802EF5C8(D_8037D470.unk0, 1);
+    particleEmitter_setPosition(D_8037D470.unk0, &sp30);
+    particleEmitter_emitN(D_8037D470.unk0, 1);
 }
 
 void func_802AFADC(void){
@@ -92,10 +92,10 @@ void func_802AFADC(void){
 
 void func_802AFB0C(void){
     D_8037D470.unk0 = func_802F0BD0(0x32);
-    func_802AF7A0(D_8037D470.unk0, 0x476); //blue glow
+    func_802AF7A0(D_8037D470.unk0, ASSET_476_SPRITE_BLUE_GLOW); //blue glow
 
     D_8037D470.unk4 = func_802F0BD0(0x32);
-    func_802AF7A0(D_8037D470.unk4, 0x477); //orange glow
+    func_802AF7A0(D_8037D470.unk4, ASSET_477_SPRITE_YELLOW_GLOW); //orange glow
 
     D_8037D470.unkC = 1.0f;
     D_8037D470.unk10 = 0.0f;
@@ -118,61 +118,65 @@ void func_802AFBAC(f32 arg0){
 }
 
 void func_802AFBB8(f32 (* arg0)[3]){
-    struct30s* s0 = func_802F0BD0(1);
-    func_802EF950(s0, 0x6c4); //yellow blast
+    ParticleEmitter* s0 = func_802F0BD0(1);
+    particleEmitter_setSprite(s0, ASSET_6C4_SPRITE_SMOKE_YELLOW); //yellow blast
     func_802EFA5C(s0, 0.7f, 0.8f);
-    func_802EFA9C(s0, 12.0f, 12.0f);
-    func_802EFB54(s0, arg0);
+    particleEmitter_setParticleFramerateRange(s0, 12.0f, 12.0f);
+    particleEmitter_setPosition(s0, arg0);
     func_802EFB70(s0, 3.2f, 3.2f);
     func_802EFB84(s0, 3.2f, 3.2f);
     func_802EFEC0(s0, 0.8f, 0.8f);
-    func_802EF5C8(s0, 1);
+    particleEmitter_emitN(s0, 1);
     
     s0 = func_802F0BD0(1);
-    func_802EF950(s0, 0x6c2); //smoke
+    particleEmitter_setSprite(s0, ASSET_6C2_SPRITE_SMOKE_WHITE); //smoke
     func_802EFA5C(s0, 0.1f, 0.8f);
-    func_802EFA9C(s0, 15.0f, 15.0f);
-    func_802EFB54(s0, arg0);
+    particleEmitter_setParticleFramerateRange(s0, 15.0f, 15.0f);
+    particleEmitter_setPosition(s0, arg0);
     func_802EFB70(s0, 3.0f, 3.0f);
     func_802EFB84(s0, 3.0f, 3.0f);
     func_802EFEC0(s0, 0.65f, 0.65f);
-    func_802EF5C8(s0, 1);
+    particleEmitter_emitN(s0, 1);
 
     s0 = func_802F0BD0(0x11);
-    func_802EF950(s0, 0x713); //sparkle
-    func_802EFC84(s0, &D_80364BB0);
+    particleEmitter_setSprite(s0, ASSET_713_SPRITE_SPARKLE_YELLOW); //sparkle
+    particleEmitter_setVelocityAndAccelerationRanges(s0, &D_80364BB0);
     func_802EFA5C(s0, 0.0f, 0.6f);
     func_802EFB70(s0, 0.28f, 0.32f);
     func_802EFB84(s0, 0.03f, 0.03f);
     func_802EFE24(s0, 0.0f, 0.0f, 300.0f, 0.0f, 0.0f, 300.0f);
     func_802EFEC0(s0, 2.0f, 2.0f);
     func_802EFF50(s0, 1.0f);
-    func_802EFB54(s0, arg0);
-    func_802EF5C8(s0, 8);
-    func_802EFC84(s0, &D_80364BE0);
-    func_802EF5C8(s0, 5);
-    func_802EFC84(s0, &D_80364C10);
+    particleEmitter_setPosition(s0, arg0);
+    particleEmitter_emitN(s0, 8);
+
+    particleEmitter_setVelocityAndAccelerationRanges(s0, &D_80364BE0);
+    particleEmitter_emitN(s0, 5);
+    
+    particleEmitter_setVelocityAndAccelerationRanges(s0, &D_80364C10);
     func_802EF9F8(s0, 0.4f);
     func_802EFA18(s0, 3);
-    func_802EF5C8(s0, 4);
+    particleEmitter_emitN(s0, 4);
 
     s0 = func_802F0BD0(0x11);
-    func_802EF950(s0, 0x716); //sparkle
-    func_802EFC84(s0, &D_80364C40);
+    particleEmitter_setSprite(s0, ASSET_716_SPRITE_SPARKLE_WHITE); //sparkle
+    particleEmitter_setVelocityAndAccelerationRanges(s0, &D_80364C40);
     func_802EFA5C(s0, 0.0f, 0.6f);
     func_802EFB70(s0, 0.28f, 0.32f);
     func_802EFB84(s0, 0.03f, 0.03f);
     func_802EFE24(s0, 0.0f, 0.0f, 300.0f, 0.0f, 0.0f, 300.0f);
     func_802EFEC0(s0, 2.0f, 2.0f);
     func_802EFF50(s0, 1.0f);
-    func_802EFB54(s0, arg0);
-    func_802EF5C8(s0, 8);
-    func_802EFC84(s0, &D_80364C70);
-    func_802EF5C8(s0, 5);
-    func_802EFC84(s0, &D_80364CA0);
+    particleEmitter_setPosition(s0, arg0);
+    particleEmitter_emitN(s0, 8);
+    
+    particleEmitter_setVelocityAndAccelerationRanges(s0, &D_80364C70);
+    particleEmitter_emitN(s0, 5);
+    
+    particleEmitter_setVelocityAndAccelerationRanges(s0, &D_80364CA0);
     func_802EF9F8(s0, 0.4f);
     func_802EFA18(s0, 3);
-    func_802EF5C8(s0, 4);
+    particleEmitter_emitN(s0, 4);
 }
 
 void func_802AFFAC(void){

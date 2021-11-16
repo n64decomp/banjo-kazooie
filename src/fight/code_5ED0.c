@@ -95,43 +95,43 @@ extern f32 D_8039251C;
 extern f32 D_80392520;
 
 /* .code */
-void func_8038C2C0(f32 (*arg0)[3], s32 arg1, enum asset_e id, f32 arg3){
-    struct30s * temp_s0 = func_802F0BD0(arg1);
+void func_8038C2C0(f32 position[3], s32 count, enum asset_e id, f32 arg3){
+    ParticleEmitter * temp_s0 = func_802F0BD0(count);
     f32 sp24;
 
-    func_802EF950(temp_s0, id);
-    func_802EFA90(temp_s0, 1, 6);
-    func_802EFB54(temp_s0, arg0);
+    particleEmitter_setSprite(temp_s0, id);
+    particleEmitter_setStartingFrameRange(temp_s0, 1, 6);
+    particleEmitter_setPosition(temp_s0, position);
     func_802EFE24(temp_s0, -300.0f, -300.0f, -300.0f, 300.0f, 300.0f, 300.0f);
     func_802EFB70(temp_s0, arg3*D_80392480, arg3*D_80392488);
     func_802EFB84(temp_s0, 0.0f, 0.0f);
     func_802EF9F8(temp_s0, 0.5f);
     func_802EFA18(temp_s0, 3);
-    func_802EFE5C(temp_s0, 0.0f, 0.01f);
+    particleEmitter_setSpawnIntervalRange(temp_s0, 0.0f, 0.01f);
     func_802EFEC0(temp_s0, 3.0f, 3.3f);
     func_802EFA5C(temp_s0, 0.0f, 0.35f);
-    func_802EFD7C(temp_s0, &D_803918D0);
+    particleEmitter_setPositionVelocityAndAccelerationRanges(temp_s0, &D_803918D0);
     func_802EFA70(temp_s0, 4);
-    func_802EF5C8(temp_s0, arg1);
+    particleEmitter_emitN(temp_s0, count);
 }
 
-void func_8038C424(f32 (*arg0)[3], s32 arg1, enum asset_e id, f32 arg3){
-    struct30s * temp_s0 = func_802F0BD0(arg1);
+void func_8038C424(f32 position[3], s32 count, enum asset_e id, f32 arg3){
+    ParticleEmitter * temp_s0 = func_802F0BD0(count);
     f32 sp24;
 
-    func_802EF950(temp_s0, id);
-    func_802EFA90(temp_s0, 0, 9);
-    func_802EFA9C(temp_s0, 12.0f, 12.0f);
-    func_802EFB54(temp_s0, arg0);
-    func_802EFD00(temp_s0, &D_80391918);
+    particleEmitter_setSprite(temp_s0, id);
+    particleEmitter_setStartingFrameRange(temp_s0, 0, 9);
+    particleEmitter_setParticleFramerateRange(temp_s0, 12.0f, 12.0f);
+    particleEmitter_setPosition(temp_s0, position);
+    particleEmitter_setPositionAndVelocityRanges(temp_s0, &D_80391918);
     sp24 = arg3 * 5.0;
     func_802EFB70(temp_s0, sp24, sp24);
     func_802EFB84(temp_s0, sp24, sp24);
-    func_802EFE5C(temp_s0, 0.0f, 0.0f);
+    particleEmitter_setSpawnIntervalRange(temp_s0, 0.0f, 0.0f);
     func_802EFEC0(temp_s0, (arg3*0.5), (arg3*0.5)*1.5);
     func_802EFA5C(temp_s0, 0.7f, 0.8f);
     func_802EFA70(temp_s0, 0x10);
-    func_802EF5C8(temp_s0, arg1);
+    particleEmitter_emitN(temp_s0, count);
 }
 
 void func_8038C588(void){
@@ -145,8 +145,8 @@ void func_8038C5BC(void){
 void func_8038C5F0(Actor *this, enum asset_e arg1, enum asset_e arg2, f32 arg3){
     f32 sp1C[3];
     func_8038C0DC(&sp1C);
-    func_8038C2C0(&this->position, 0x20, arg1, arg3);
-    func_8038C424(&this->position, 4, arg2, arg3);
+    func_8038C2C0(this->position, 0x20, arg1, arg3);
+    func_8038C424(this->position, 4, arg2, arg3);
     timedFunc_set_0(0.0f, func_8038C588);
     timedFunc_set_0(D_80392490, func_8038C5BC);
 }
@@ -156,24 +156,24 @@ void func_8038C674(Actor *this){
     s32 a2;
     switch(this->marker->unk14_20){
         default:
-            a1 = 0x718;
-            a2 = 0x6c2;
+            a1 = ASSET_718_SPRITE_SPARKLE_WHITE_2;
+            a2 = ASSET_6C2_SPRITE_SMOKE_WHITE;
             break;
         case 0x27b:
-            a1 = 0x71b;
-            a2 = 0x6c5;
+            a1 = ASSET_71B_SPRITE_SPARKLE_ORANGE_2;
+            a2 = ASSET_6C5_SPRITE_SMOKE_ORANGE;
             break;
         case 0x27c:
-            a1 = 0x719;
-            a2 = 0x6c3;
+            a1 = ASSET_719_SPRITE_SPARKLE_GREEN_2;
+            a2 = ASSET_6C3_SPRITE_SMOKE_GREEN;
             break;
         case 0x27d:
-            a1 = 0x71a;
-            a2 = 0x6c6;
+            a1 = ASSET_71A_SPRITE_SPARKLE_PINK_2;
+            a2 = ASSET_6C6_SPRITE_SMOKE_PINK;
             break;
         case 0x27e:
-            a1 = 0x717;
-            a2 = 0x6c4;
+            a1 = ASSET_717_SPRITE_SPARKLE_YELLOW_2;
+            a2 = ASSET_6C4_SPRITE_SMOKE_YELLOW;
             break;
     }
     func_8038C5F0(this, a1, a2, 1.0f);
@@ -349,7 +349,7 @@ void func_8038C840(Actor *this){
 #endif
 
 void func_8038CED8(f32 (*arg0)[3], s32 arg1, f32 arg2, f32 arg3){
-    struct30s *s0 = func_802F0BD0(1);
+    ParticleEmitter *s0 = func_802F0BD0(1);
     f32 sp40[3];
     f32 sp34[3];
 
@@ -360,9 +360,9 @@ void func_8038CED8(f32 (*arg0)[3], s32 arg1, f32 arg2, f32 arg3){
     sp34[2] = sp40[2] - (*arg0)[2];
     ml_vec3f_set_length(&sp34, 20.0f);
     
-    func_802EFAC8(s0, arg1);
-    func_802EFB54(s0, arg0);
-    func_802EFED4(s0, sp34[0], sp34[1], sp34[2], sp34[0], sp34[1], sp34[2]);
+    particleEmitter_setModel(s0, arg1);
+    particleEmitter_setPosition(s0, arg0);
+    particleEmitter_setParticleVelocityRange(s0, sp34[0], sp34[1], sp34[2], sp34[0], sp34[1], sp34[2]);
     D_80391968.unk20 = arg3;
     D_80391968.unk0[0] *= arg2;
     D_80391968.unk24 = arg3;
@@ -372,7 +372,7 @@ void func_8038CED8(f32 (*arg0)[3], s32 arg1, f32 arg2, f32 arg3){
     func_802EFB98(s0, &D_80391968);
     func_802EFA70(s0, 0x10);
     func_802EFA78(s0, 1);
-    func_802EF5C8(s0, 1);
+    particleEmitter_emitN(s0, 1);
 }
 
 void func_8038D014(Actor *this){

@@ -31,7 +31,7 @@ void func_8038B900(Actor *this){
     f32 sp58;
     f32 sp54;
     f32 sp48[3];
-    struct30s *other;
+    ParticleEmitter *other;
 
     this->marker->propPtr->unk8_3 = 1;
     if(this->marker->unk14_21){
@@ -58,9 +58,9 @@ void func_8038B900(Actor *this){
                 other = func_802EDD8C(&sp48, 0.0f, -1300.0f);
                 func_802EFB70(other, 0.04f, 0.04f);
                 func_802EFB84(other, 0.18f, 0.18f);
-                func_802EFB1C(other, -10.0f, 0.0f, -10.0f, 10.0f, 20.0f, 10.0f);
-                func_802EFED4(other, 0.0f, 31.0f, 0.0f, 0.0f, 37.0f, 0.0f);
-                func_802EF5C8(other, 1);
+                particleEmitter_setParticleSpawnPositionRange(other, -10.0f, 0.0f, -10.0f, 10.0f, 20.0f, 10.0f);
+                particleEmitter_setParticleVelocityRange(other, 0.0f, 31.0f, 0.0f, 0.0f, 37.0f, 0.0f);
+                particleEmitter_emitN(other, 1);
             }
         }
     }////L8038BBFC

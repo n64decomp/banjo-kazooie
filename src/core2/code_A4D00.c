@@ -10,6 +10,7 @@ s32 func_803058C0(f32);
 void func_80305CD8(s32, s32);
 void func_80330104(Cube*);
 ActorMarker * func_80332A60(void);
+extern void func_8032F3D4(f32 [3], ActorMarker *, s32);
 
 extern ModelCache *modelCache; //model pointer array pointer
 extern u32 D_80383444;
@@ -313,23 +314,32 @@ void func_8032F6A4(s32 *pos, ActorMarker * marker, s32 *rot){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032F7EC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032F9DC.s")
-/*ActorMarker * func_8032F9DC(s32 *pos, void *arg1, int arg2, enum asset_e model_id, int arg4){
+
+
+ActorMarker * func_8032F9DC(s32 *pos, void *arg1, int arg2, int arg3, int arg4){
     ActorMarker * marker = func_80332A60();
     marker->propPtr = NULL;
     marker->cubePtr = NULL;
     marker->unk8 = arg1;
-    marker->unk14_20 ^= marker->unk14_20;
+    marker->unk14_20 = arg3;
     marker->unk40_23 = arg4;
     func_8032F3D4(pos, marker, arg2);
     marker->actrArrayIdx = 0;
-    marker->modelId= model_id;
-    marker->unk3C_1 = 0;
-    marker->collidable = 0;
-
-    marker->unk40_31 = 3;
-    marker->unk40_26 = 0;
+    marker->unk14_10 = 0;
+    marker->modelId = 0;
+    marker->unk3E_1 = 0;
+    marker->unk14_22 = 0;
+    marker->unk14_21 = 0;
+    marker->yaw = 0;
+    marker->pitch =  0;
+    marker->roll = 0;
+    marker->unk2C_2 = 0;
+    marker->unk2C_1 = 0;
+    marker->collidable = 1;
+    marker->unk3E_0 = 0; 
     marker->unk40_22 = 0;
+    marker->unk40_19 = 0;
+    marker->unk40_21 = 0;
     marker->unkC = NULL;
     marker->unk10 = 0;
     marker->unk1C = 0;
@@ -342,7 +352,7 @@ void func_8032F6A4(s32 *pos, ActorMarker * marker, s32 *rot){
     marker->unk34 = 0;
     marker->unk38 = 0;
     marker->unk3A = 0;
-    marker->unk3C_31 = 0;
+    marker->unk3C = 0;
     marker->unk44 = 0;
     marker->unk20 = 0;
     marker->unk50 = 0;
@@ -351,7 +361,7 @@ void func_8032F6A4(s32 *pos, ActorMarker * marker, s32 *rot){
     marker->unk40_20 = 0;
     marker->unk40_31 = 0;
     return marker;
-}//*/
+}
 
 ActorMarker * func_8032FB80(f32 *pos, void *arg1, int arg2, enum asset_e model_id, int arg4){
     s32 sp24[3];
@@ -616,7 +626,28 @@ void func_80332A38(void){
     D_8036E7C8 = NULL;
 }
 
+extern s32 D_8036E800;
+
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_80332A60.s")
+// ActorMarker * func_80332A60(void){
+//     int i;
+//     int j;
+//     int tmp_a2;
+//     ActorMarker *marker;
+//     //static s32 D_8036E800; ???
+
+//     for(i = 0; i < 0x1C && D_80383428[i] == 0xff; i++);
+//     if(i == 0x1C)
+//         return NULL;
+
+//     tmp_a2 = 0x80;
+//     for(j = 0; D_80383428[i] & tmp_a2; j++){tmp_a2 >>= 1;}
+//     D_80383428[i] |= tmp_a2;
+//     marker = D_8036E7C8 + 8*i + j;
+//     marker->unk5C = D_8036E800;
+//     D_8036E800++;
+//     return marker;
+// }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_80332B2C.s")
 // void func_80332B2C(ActorMarker * arg0){

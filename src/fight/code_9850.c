@@ -71,11 +71,11 @@ void func_8038FCF0(ActorMarker *marker, s32 arg1){
     func_8030E8B4(0x7fff401b, &actor->position, 0x0dac03e8);
     timedFunc_set_0(0.0f, func_8038FC88);
     timedFunc_set_0(0.3f, func_8038FCBC);
-    func_8038EBE0(&actor->position, 4, 0x710,
+    func_8038EBE0(&actor->position, 4, ASSET_710_SPRITE_SPARKLE_PURPLE,
         &D_80391E5C, &D_80391E74, &D_80391E8C,
         &D_80391EA4, &D_80391EB4, &D_80391EC4
     );
-    func_8038EBE0(&actor->position, 4, 0x711,
+    func_8038EBE0(&actor->position, 4, ASSET_711_SPRITE_SPARKLE_DARK_BLUE,
         &D_80391E5C, &D_80391E74, &D_80391E8C,
         &D_80391EA4, &D_80391EB4, &D_80391EC4
     );
@@ -102,13 +102,13 @@ void func_8038FE94(Actor *this){
     this->roll += 20.0f; 
     if(func_8023DB5C()%4 == 1){
         if(randf() < 0.5){
-            func_8038EBE0(&this->position, 4, 0x718, 
+            func_8038EBE0(&this->position, 4, ASSET_718_SPRITE_SPARKLE_WHITE_2, 
                 &D_80391F3C, &D_80391F54, &D_80391F6C, 
                 &D_80391F84, &D_80391F94, &D_80391FA4
             );
         }
         else{//L8038FFE0
-            func_8038EBE0(&this->position, 4, 0x719, 
+            func_8038EBE0(&this->position, 4, ASSET_719_SPRITE_SPARKLE_GREEN_2, 
                 &D_80391F3C, &D_80391F54, &D_80391F6C, 
                 &D_80391F84, &D_80391F94, &D_80391FA4
             );

@@ -36,16 +36,16 @@ void func_8038D280(ActorMarker *arg0) {
 }
 
 void func_8038D2EC(f32 (*arg0)[3], s32 arg1) {
-    struct30s *temp_v0 = func_802F0BD0(arg1);
+    ParticleEmitter *temp_v0 = func_802F0BD0(arg1);
     
-    func_802EF950(temp_v0, 0x70E);
+    particleEmitter_setSprite(temp_v0, ASSET_70E_SPRITE_SMOKE_2);
     func_802EFFA8(temp_v0, &D_803919B4);
-    func_802EFA90(temp_v0, 0, 7);
-    func_802EFB54(temp_v0, arg0);
-    func_802EFB1C(temp_v0, -90.0f, 0.0f, -80.0f, 80.0f, 60.0f, 80.0f);
-    func_802EFED4(temp_v0, -170.0f, 0.0f, -170.0f, 170.0f, 100.0f, 170.0f);
+    particleEmitter_setStartingFrameRange(temp_v0, 0, 7);
+    particleEmitter_setPosition(temp_v0, arg0);
+    particleEmitter_setParticleSpawnPositionRange(temp_v0, -90.0f, 0.0f, -80.0f, 80.0f, 60.0f, 80.0f);
+    particleEmitter_setParticleVelocityRange(temp_v0, -170.0f, 0.0f, -170.0f, 170.0f, 100.0f, 170.0f);
     func_802EFB98(temp_v0, &D_803919C0);
-    func_802EF5C8(temp_v0, arg1);
+    particleEmitter_emitN(temp_v0, arg1);
 }
 
 void func_8038D3DC(Actor* this, s32 arg1, f32 arg2, f32 arg3, f32 arg4){

@@ -10,7 +10,7 @@ struct43s  D_803637A0 = {
 };
 
 /* .bss */
-struct30s *D_8037C180;
+ParticleEmitter *D_8037C180;
 
 /*.code */
 void func_80292AE0(Gfx **gPtr, Mtx **mPtr, Vtx **vPtr){
@@ -22,24 +22,24 @@ void func_80292B18(void){
 }
 
 void func_80292B3C(void){
-    D_8037C180 = func_802EF6AC(0x14);
-    func_802EFAC8(D_8037C180, 0x360);
+    D_8037C180 = particleEmitter_new(0x14);
+    particleEmitter_setModel(D_8037C180, 0x360);
     func_802EF9F8(D_8037C180, 0.6f);
     func_802EFA18(D_8037C180, 0);
     func_802EFB70(D_8037C180, 0.8f, 1.0f);
     func_802EFE24(D_8037C180, 400.0f, 400.0f, 400.0f, 800.0f, 800.0f, 800.0f);
-    func_802EFE5C(D_8037C180, 0.0f, 0.01f);
+    particleEmitter_setSpawnIntervalRange(D_8037C180, 0.0f, 0.01f);
     func_802EFEC0(D_8037C180, 1.5f, 1.5f);
-    func_802EFD7C(D_8037C180, &D_803637A0);
+    particleEmitter_setPositionVelocityAndAccelerationRanges(D_8037C180, &D_803637A0);
 }
 
 void func_80292C1C(void){
-    func_802EFFE4(D_8037C180);
+    particleEmitter_update(D_8037C180);
 }
 
 void func_80292C40(f32 arg0[3]){
-    func_802EFB54(D_8037C180, arg0);
-    func_802EF5C8(D_8037C180, 5);
+    particleEmitter_setPosition(D_8037C180, arg0);
+    particleEmitter_emitN(D_8037C180, 5);
 }
 
 void func_80292C78(void){

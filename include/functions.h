@@ -210,36 +210,36 @@ Actor * spawn_child_actor(enum actor_e id, Actor ** parent);
 
 
 void func_80324D2C(f32, enum comusic_e);
-void func_802EF950(struct30s *, enum asset_e);
-void func_802EFB54(struct30s *, f32 (*)[3]);
-struct30s *func_802F0BD0(u32);
+void particleEmitter_setSprite(ParticleEmitter *, enum asset_e);
+void particleEmitter_setPosition(ParticleEmitter *, f32[3]);
+ParticleEmitter *func_802F0BD0(u32);
 void func_802BB3DC(s32, f32, f32);
 void func_802C3F04(void (* arg0)(void), s32, s32, s32, s32);
 void func_802C4140();
 void func_8030DA44(u8);
 
 
-void func_802EF3F4(struct30s *, f32(*)[3], f32(*)[3], s32);
-void func_802EF9AC(struct30s *, f32, f32, f32, f32, f32, f32);
-void func_802EF9F8(struct30s *, f32);
-void func_802EFA18(struct30s *, s32);
-void func_802EFA5C(struct30s *, f32, f32);
-void func_802EFA70(struct30s *, s32);
-void func_802EFA90(struct30s *this, s32 arg1, s32 arg2);
-void func_802EFA9C(struct30s *, f32, f32);
-void func_802EFB1C(struct30s *, f32, f32, f32, f32, f32, f32);
-void func_802EFB70(struct30s *, f32, f32);
-void func_802EFB84(struct30s *, f32, f32);
-void func_802EFB98(struct30s *, struct31s *);
-void func_802EFC84(struct30s *, struct41s *);
-void func_802EFD00(struct30s *this, struct42s *arg1);
-void func_802EFE24(struct30s *, f32, f32, f32, f32, f32, f32);
-void func_802EFE5C(struct30s *, f32, f32);
-void func_802EFEC0(struct30s *, f32, f32);
-void func_802EFED4(struct30s *, f32, f32, f32, f32, f32, f32);
-void func_802EFF50(struct30s *, f32);
-void func_802EFFA8(struct30s *this, s32 (*arg1)[3]);
-void func_802EFFC4(struct30s *, f32);
+void func_802EF3F4(ParticleEmitter *, f32[3], f32[3], s32);
+void particleEmitter_setParticleAccelerationRange(ParticleEmitter *, f32, f32, f32, f32, f32, f32);
+void func_802EF9F8(ParticleEmitter *, f32);
+void func_802EFA18(ParticleEmitter *, s32);
+void func_802EFA5C(ParticleEmitter *, f32, f32);
+void func_802EFA70(ParticleEmitter *, s32);
+void particleEmitter_setStartingFrameRange(ParticleEmitter *this, s32 arg1, s32 arg2);
+void particleEmitter_setParticleFramerateRange(ParticleEmitter *, f32, f32);
+void particleEmitter_setParticleSpawnPositionRange(ParticleEmitter *, f32, f32, f32, f32, f32, f32);
+void func_802EFB70(ParticleEmitter *, f32, f32);
+void func_802EFB84(ParticleEmitter *, f32, f32);
+void func_802EFB98(ParticleEmitter *, struct31s *);
+void particleEmitter_setVelocityAndAccelerationRanges(ParticleEmitter *, struct41s *);
+void particleEmitter_setPositionAndVelocityRanges(ParticleEmitter *this, struct42s *arg1);
+void func_802EFE24(ParticleEmitter *, f32, f32, f32, f32, f32, f32);
+void particleEmitter_setSpawnIntervalRange(ParticleEmitter *, f32, f32);
+void func_802EFEC0(ParticleEmitter *, f32, f32);
+void particleEmitter_setParticleVelocityRange(ParticleEmitter *, f32, f32, f32, f32, f32, f32);
+void func_802EFF50(ParticleEmitter *, f32);
+void func_802EFFA8(ParticleEmitter *this, s32 arg1[3]);
+void particleEmitter_setSpawnInterval(ParticleEmitter *, f32);
 
 void func_8024E3A8(f32 (*)[3], f32);
 OSMesgQueue *func_8024F344(void);
@@ -343,7 +343,7 @@ f32  func_8029B30C(void);
 void func_8029B324(s32, f32);
 f32  func_8029B33C(void);
 f32  func_8029B41C(void);
-struct30s *func_8029B950(f32[3],f32);
+ParticleEmitter *func_8029B950(f32[3],f32);
 void func_8029C3E8(f32, f32);
 void func_8029CF48(s32, s32, f32);
 f32  func_8029DFC8(void);
@@ -360,10 +360,10 @@ void func_802BF2C0(f32);
 void func_802C1B20(f32);
 int  func_802C1DB0(f32);
 
-void func_802EFA20(struct30s *, f32, f32);
+void func_802EFA20(ParticleEmitter *, f32, f32);
 
 
-struct30s *func_802F0D74(struct30s *);
+ParticleEmitter *func_802F0D74(ParticleEmitter *);
 
 u8   func_8030D90C(void);
 void func_8030DA80(u8 indx, enum sfx_e uid);

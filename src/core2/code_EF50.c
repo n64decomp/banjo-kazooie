@@ -133,7 +133,7 @@ void func_802961B4(s32 arg0){
     sp20[2] = sp2C[2];
     func_80294A64(sp20);
     if(arg0){
-        func_80345F44(0x14);
+        func_80345F44(ITEM_14_HEALTH);
     }
 
 }
@@ -148,7 +148,7 @@ void func_8029622C(void){
     sp28[1] += sp34[1];
     sp28[2] += sp34[2];
     func_80294A64(sp28);
-    func_80345F44(0x14);
+    func_80345F44(ITEM_14_HEALTH);
 }
 
 enum bs_e func_802962BC(u32 arg0){
@@ -383,7 +383,7 @@ void func_80296608(void){
             if(func_80297C6C() != 3 && func_8028D60C()){
         case 0x31: //L8029688C
                 func_802960C4(2);
-                func_80345F44(0x14);
+                func_80345F44(ITEM_14_HEALTH);
                 sp24 = func_802962BC(0);
                 sp2C = 2;   
             }
@@ -392,7 +392,7 @@ void func_80296608(void){
             if(func_80297C6C() != 3){
         case 0x33: //L802968C8
                 func_802960C4(0);
-                func_80345F44(0x14);
+                func_80345F44(ITEM_14_HEALTH);
                 sp24 = func_802962BC(0);
                 sp2C = 2;   
             }
@@ -400,14 +400,14 @@ void func_80296608(void){
         case 0x20: //L802968F0
             if(func_80297C6C() != 3){
                 func_802960C4(1);
-                func_80345F44(0x14);
+                func_80345F44(ITEM_14_HEALTH);
                 sp24 = func_802962BC(0);
                 sp2C = 2;   
             }
             break;
         case 0x2e: //L8029692C  
             func_802960C4(3);
-            func_80345F44(0x14);
+            func_80345F44(ITEM_14_HEALTH);
             sp24 = func_802962BC(0);
             sp2C = 2;
             break;

@@ -163,6 +163,27 @@ func_802DA498 = 0x802DA498;
 mapSavestate_clearAll = 0x802E2E7C;
 getGameMode = 0x802E49FC;
 vtxList_getVertices = 0x802EC450;
+
+__particleEmitter_initParticle                      = 0x802EEA9C;
+particleEmitter_emitN                               = 0x802EF5C8;
+particleEmitter_new                                 = 0x802EF6AC;
+particleEmitter_setSprite                           = 0x802EF950;
+particleEmitter_setParticleAccelerationRange        = 0x802EF9AC;
+particleEmitter_setParticleCallback                 = 0x802EFA10;
+particleEmitter_setStartingFrameRange               = 0x802EFA90;
+particleEmitter_setParticleFramerateRange           = 0x802EFA9C;
+particleEmitter_setModel                            = 0x802EFAC8;
+particleEmitter_setParticleSpawnPositionRange       = 0x802EFB1C;
+particleEmitter_setPosition                         = 0x802EFB54;
+particleEmitter_setVelocityAndAccelerationRanges    = 0x802EFC84;
+particleEmitter_setPositionAndVelocityRanges        = 0x802EFD00;
+particleEmitter_setPositionVelocityAndAccelerationRanges    = 0x802EFD7C;
+particleEmitter_setSpawnIntervalRange               = 0x802EFE5C;
+particleEmitter_setParticleVelocityRange            = 0x802EFED4;
+particleEmitter_setSphericalParticleVelocityRange   = 0x802EFF10;
+particleEmitter_setSpawnInterval                    = 0x802EFFC4;
+particleEmitter_update                              = 0x802EFFE4;
+
 vla_clear = 0x802ED620;
 vla_getBegin = 0x802ED62C;
 vla_at = 0x802ED634;

@@ -48,15 +48,15 @@ void func_8038DFD0(ActorMarker *arg0) {
 }
 
 void func_8038E03C(f32 (*arg0)[3], u32 arg1) {
-    struct30s *temp_v0 = func_802F0BD0(arg1);
+    ParticleEmitter *temp_v0 = func_802F0BD0(arg1);
 
-    func_802EF950(temp_v0, 0x70E);
+    particleEmitter_setSprite(temp_v0, ASSET_70E_SPRITE_SMOKE_2);
     func_802EFFA8(temp_v0, &D_80391A64);
-    func_802EFA90(temp_v0, 0, 7);
-    func_802EFB54(temp_v0, arg0);
-    func_802EFD00(temp_v0, &D_80391A98);
+    particleEmitter_setStartingFrameRange(temp_v0, 0, 7);
+    particleEmitter_setPosition(temp_v0, arg0);
+    particleEmitter_setPositionAndVelocityRanges(temp_v0, &D_80391A98);
     func_802EFB98(temp_v0, &D_80391A70);
-    func_802EF5C8(temp_v0, arg1);
+    particleEmitter_emitN(temp_v0, arg1);
 }
 
 void func_8038E0D4(Actor *arg0, s32 arg1, f32 arg2, f32 arg3, f32 arg4) {
