@@ -408,6 +408,8 @@ segments:
   - [0xE2790, .data, code_74090]
   - [0xE2840, .data, code_74290]
   - [0xE2870, bin, data_E2870]
+  - [0xE7870, .data, code_A4D00]
+  - [0xE78A0, bin, data_E78A0]
   - [0xEB8B0, .data, ch/code_CFA60]
   - [0xEB8E0, bin, data_EB8E0]
   - [0xEBB00, .data, ch/firefx]

@@ -590,8 +590,10 @@ void *func_80330E28(Actor* this){
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_80332764.s")
 
 extern ActorMarker *D_8036E7C8;
-extern u32 D_8036E804[8];
-extern u8 D_80383428[];
+//extern s32 D_8036E800;
+// extern u32 D_8036E804[8];
+
+extern u8 D_80383428[0x1C];
 
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_80332790.s")
@@ -626,35 +628,32 @@ void func_80332A38(void){
     D_8036E7C8 = NULL;
 }
 
-extern s32 D_8036E800;
+ActorMarker * func_80332A60(void){
+    static s32 D_8036E800 = 0x387FB;
+    int i;
+    int j;
+    int tmp_a2;
+    ActorMarker *marker;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_80332A60.s")
-// ActorMarker * func_80332A60(void){
-//     int i;
-//     int j;
-//     int tmp_a2;
-//     ActorMarker *marker;
-//     //static s32 D_8036E800; ???
+    for(i = 0; i < 0x1C && D_80383428[i] == 0xff; i++);
+    if(i == 0x1C)
+        return NULL;
 
-//     for(i = 0; i < 0x1C && D_80383428[i] == 0xff; i++);
-//     if(i == 0x1C)
-//         return NULL;
+    tmp_a2 = 0x80;
+    for(j = 0; D_80383428[i] & tmp_a2; j++){tmp_a2 >>= 1;}
+    D_80383428[i] |= tmp_a2;
+    marker = D_8036E7C8 + 8*i + j;
+    marker->unk5C = D_8036E800;
+    D_8036E800++;
+    return marker;
+}
 
-//     tmp_a2 = 0x80;
-//     for(j = 0; D_80383428[i] & tmp_a2; j++){tmp_a2 >>= 1;}
-//     D_80383428[i] |= tmp_a2;
-//     marker = D_8036E7C8 + 8*i + j;
-//     marker->unk5C = D_8036E800;
-//     D_8036E800++;
-//     return marker;
-// }
+void func_80332B2C(ActorMarker * arg0){
+    static s32 D_8036E804[8] = {0x7F, 0xBF, 0xDF, 0xEF, 0xF7, 0xFB, 0xFD, 0xFE};
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_80332B2C.s")
-// void func_80332B2C(ActorMarker * arg0){
-//     s32 index = ((s32)arg0 - (s32)(D_8036E7C8))/(s32)sizeof(ActorMarker);
-//     arg0->unk5C = 0;
-    
-//     D_80383428[index >> 3] &= D_8036E804[index & 7];
-// }
+    s32 index = (arg0 - D_8036E7C8);
+    arg0->unk5C = 0;
+    D_80383428[index >> 3] =  D_80383428[index >> 3] & D_8036E804[index & 7];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_80332B7C.s")
