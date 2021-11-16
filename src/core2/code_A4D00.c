@@ -316,7 +316,7 @@ void func_8032F6A4(s32 *pos, ActorMarker * marker, s32 *rot){
 
 
 
-ActorMarker * func_8032F9DC(s32 *pos, void *arg1, int arg2, int arg3, int arg4){
+ActorMarker * func_8032F9DC(s32 *pos, MarkerDrawFunc arg1, int arg2, int arg3, int arg4){
     ActorMarker * marker = func_80332A60();
     marker->propPtr = NULL;
     marker->cubePtr = NULL;
@@ -628,6 +628,7 @@ void func_80332A38(void){
     D_8036E7C8 = NULL;
 }
 
+//MarkerList_getFreeMarker
 ActorMarker * func_80332A60(void){
     static s32 D_8036E800 = 0x387FB;
     int i;
@@ -656,4 +657,6 @@ void func_80332B2C(ActorMarker * arg0){
     D_80383428[index >> 3] =  D_80383428[index >> 3] & D_8036E804[index & 7];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_80332B7C.s")
+void func_80332B7C(void){
+    return;
+}

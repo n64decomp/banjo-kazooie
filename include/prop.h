@@ -41,11 +41,13 @@ typedef struct actor_prop_s{
 } ActorProp;
 
 typedef void(*MarkerCollisionFunc)(struct actorMarker_s *this, struct actorMarker_s *other);
+typedef struct actor_s *(*MarkerDrawFunc)(struct actorMarker_s *, Gfx **, Mtx **, Vtx **);
+typedef void (*ActorUpdateFunc)(struct actor_s *);
 
 typedef struct actorMarker_s{
     ActorProp*  propPtr;
     struct cude_s*     cubePtr;
-    s32         unk8;
+    MarkerDrawFunc      unk8;
     MarkerCollisionFunc unkC; //ow_func
     MarkerCollisionFunc unk10;
     u32         yaw:9;
@@ -56,7 +58,7 @@ typedef struct actorMarker_s{
     u32         unk18;
     MarkerCollisionFunc unk1C; //die_func
     s32         unk20;
-    s32         unk24;
+    ActorUpdateFunc     unk24;
     s32         unk28;
     u32         actrArrayIdx:11; //unk2C
     u32         pitch:9;
