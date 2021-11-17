@@ -1192,4 +1192,5 @@ s32 func_8028D688(void){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028D71C.s")
 
+extern void func_8028D7B8(s32 arg0, ActorMarker *arg1, s32 arg2);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028D7B8.s")

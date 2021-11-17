@@ -298,6 +298,7 @@ segments:
   - [0xB7F40, c, code_B7F40] #DONE
   - [0xB8020, c, code_B8020]
   - [0xB8070, c, code_B8070]
+  - [0xB8860, c, code_B8860] #DONE
   - [0xB9090, c, code_B9090]
   - [0xB9770, c, code_B9770]
   - [0xBD100, c, code_BD100] #DONE
