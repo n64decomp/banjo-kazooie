@@ -4,7 +4,7 @@
 
 extern void func_80252188(f32, f32, f32);
 extern void func_80252330(f32, f32, f32);
-extern void func_80251494(Mtx **);
+extern void func_80251494(Mtx *);
 
 typedef struct {
     void *unk0;
