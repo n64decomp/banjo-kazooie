@@ -2,6 +2,10 @@
 #include "functions.h"
 #include "variables.h"
 
+#ifndef ABS
+#define	ABS(d)		((d) >= 0) ? (d) : -(d)
+#endif
+
 /* typedefs and declarations */
 typedef struct {
     f32 unk0[3];
@@ -97,16 +101,23 @@ L8038A560:
 }
 #endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/RBB/code_40F0/func_8038A6B8.s")
-
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/RBB/code_40F0/func_8038A724.s")
-#else
-void func_8038A724(Actor *this){
-    f32 sp1C = time_getDelta();
-    ActorLocal_RBB_40F0 *local = (ActorLocal_RBB_40F0 *)&this->local;
-    
+f32 func_8038A6B8(ActorMarker *marker){
+    Actor *actor = marker_getActor(marker);
+    ActorLocal_RBB_40F0 *local = (ActorLocal_RBB_40F0 *)&actor->local;
     int i;
+    f32 f12 = 0;
+
+    for(i = 0; i < 3; i++){
+        f12 += ABS(local->unk4[i]);
+    }
+    return f12/500.0f;
+}
+
+void func_8038A724(Actor *this){
+    ActorLocal_RBB_40F0 *local = (ActorLocal_RBB_40F0 *)&this->local;
+    int i;
+    f32 sp1C = time_getDelta();
+    
 
     if(!this->unk16C_4){
         this->marker->propPtr->unk8_3 = 1;
@@ -130,23 +141,23 @@ void func_8038A724(Actor *this){
     for(i = 0; i < 3; i++){//L8038A8D4
         if(local->unk10[i] < local->unk4[i]){
             local->unk4[i] -= 75.0f*sp1C;
-            local->unk4[i] = MAX(local->unk4[i], local->unk10[i]);
+            local->unk4[i] = MAX(local->unk10[i], local->unk4[i]);
         }//L8038A924
-        if(local->unk4[i] < local->unk10[i]){
+        else if(local->unk4[i] < local->unk10[i]){
             local->unk4[i] += 75.0f*sp1C;
             local->unk4[i] = MIN(local->unk10[i], local->unk4[i]);
         }
     }
 
     if(this->state == 1){
-        local->unk10[0] = func_8038A4E0()*D_80390760[local->unk0].unkC[0];
-        local->unk10[1] = func_8038A4E0()*D_80390760[local->unk0].unkC[1];
-        local->unk10[2] = func_8038A4E0()*D_80390760[local->unk0].unkC[2];
+        local->unk10[0] = D_80390760[local->unk0].unkC[0]*func_8038A4E0();
+        local->unk10[1] = D_80390760[local->unk0].unkC[1]*func_8038A4E0();
+        local->unk10[2] = D_80390760[local->unk0].unkC[2]*func_8038A4E0();
     }
     
     if(this->state == 2){
         if(0.0f < local->unk1C){
-            if(func_8025773C(&sp1C, sp1C)){
+            if(func_8025773C(&local->unk1C, sp1C)){
                 func_8038A524(this, 3);
             }//L8038AA8C
         }else{
@@ -161,7 +172,7 @@ void func_8038A724(Actor *this){
     
     if(this->state == 3){
         if(0.0f < local->unk1C){
-            if(func_8025773C(&sp1C, sp1C)){
+            if(func_8025773C(&local->unk1C, sp1C)){
                 func_8038A524(this, 2);
             }//L8038AA8C
         }else{
@@ -174,4 +185,3 @@ void func_8038A724(Actor *this){
         }
     }
 }
-#endif

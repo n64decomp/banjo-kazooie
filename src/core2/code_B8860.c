@@ -2,19 +2,19 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void func_80252188(f32, f32, f32);
+extern void mlMtxRotate(f32, f32, f32);
 extern void func_80252330(f32, f32, f32);
 extern void func_80251494(Mtx *);
 
 typedef struct {
-    void *unk0;
+    BKSprite *sprite_0;
     f32 unk4[3];
     f32 unk10[3];
     f32 unk1C;
     s16 unk20[2];
     u8 unk24[3];
     u8  unk27;
-    u32 unk28_31:8;
+    u32 frame_28_31:8;
     u32 unk28_23:2;
     u32 unk28_21:8;
     u32 unk28_13:1;
@@ -48,7 +48,7 @@ void func_8033F7F0(u8 arg0, Gfx **gfx, Mtx **mtx, Vtx **vtx){
         else{
             mlMtxIdent();
         }
-        func_80252188(sp54->unk10[0], sp54->unk10[1], sp54->unk10[2]);
+        mlMtxRotate(sp54->unk10[0], sp54->unk10[1], sp54->unk10[2]);
         func_80252330(sp30[0], sp30[1], sp30[2]);
         func_80251494(*mtx);
         gSPMatrix((*gfx)++, OS_PHYSICAL_TO_K0((*mtx)++), G_MTX_PUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
@@ -58,7 +58,7 @@ void func_8033F7F0(u8 arg0, Gfx **gfx, Mtx **mtx, Vtx **vtx){
         func_80338308(sp54->unk20[0], sp54->unk20[1]);
         func_8033837C(1);
         func_80338370();
-        func_80336904(gfx, vtx, sp54->unk0, sp54->unk28_31);
+        func_80336904(gfx, vtx, sp54->sprite_0, sp54->frame_28_31);
         gSPPopMatrix((*gfx)++, G_MTX_MODELVIEW);
     }
 }
@@ -85,11 +85,11 @@ u8 func_8033FA84(void){
         if(!D_80385000[i].unk28_13){
             ml_vec3f_clear(D_80385000[i].unk4);
             ml_vec3f_clear(D_80385000[i].unk10);
-            D_80385000[i].unk28_31 = 0;
+            D_80385000[i].frame_28_31 = 0;
             D_80385000[i].unk28_13 = TRUE;
             D_80385000[i].unk28_23 = 0;
             D_80385000[i].unk28_21 = 0xb;
-            D_80385000[i].unk0 = NULL;
+            D_80385000[i].sprite_0 = NULL;
             D_80385000[i].unk28_12 = TRUE;
             D_80385000[i].unk20[0] = 100;
             D_80385000[i].unk20[1] = 100;
@@ -105,18 +105,18 @@ u8 func_8033FA84(void){
 }
 
 void func_8033FB64(u8 arg0){
-    if(D_80385000[arg0].unk0){
-        func_8033BD4C(D_80385000[arg0].unk0);
+    if(D_80385000[arg0].sprite_0){
+        func_8033BD4C(D_80385000[arg0].sprite_0);
     }
-    D_80385000[arg0].unk0 = NULL;
+    D_80385000[arg0].sprite_0 = NULL;
     D_80385000[arg0].unk28_13 = 0;
 }
 
 void func_8033FBC8(u8 arg0, enum asset_e arg1){
-    if(D_80385000[arg0].unk0){
-        func_8033BD4C(D_80385000[arg0].unk0);
+    if(D_80385000[arg0].sprite_0){
+        func_8033BD4C(D_80385000[arg0].sprite_0);
     }
-    D_80385000[arg0].unk0 = assetcache_get(arg1);
+    D_80385000[arg0].sprite_0 = assetcache_get(arg1);
 }
 
 void func_8033FC34(u8 arg0, s32 arg1){
@@ -145,10 +145,12 @@ s32 func_8033FD64(u8 arg0){
     return D_80385000[arg0].unk28_23;
 }
 
+//projectile?_setRotation
 void func_8033FD98(u8 arg0, f32 arg1[3]){
     ml_vec3f_copy(D_80385000[arg0].unk10, arg1);
 }
 
+//projectile?_getRotation
 void func_8033FDE0(u8 arg0, f32 arg1[3]){
     ml_vec3f_copy(arg1, D_80385000[arg0].unk10);
 }
@@ -157,10 +159,12 @@ void func_8033FE2C(u8 arg0, f32 arg1){
     func_8033FE6C(arg0, mlNormalizeAngle(func_8033FE9C(arg0) + arg1));
 }
 
+//projectile?_setRoll
 void func_8033FE6C(u8 arg0, f32 arg1){
     D_80385000[arg0].unk10[2] = arg1;
 }
 
+//projectile?_getRoll
 f32 func_8033FE9C(u8 arg0){
     return D_80385000[arg0].unk10[2];
 }
@@ -182,7 +186,7 @@ f32 func_8033FF8C(u8 arg0){
 }
 
 void func_8033FFB8(u8 arg0, s32 arg1){
-    D_80385000[arg0].unk28_31 = arg1;
+    D_80385000[arg0].frame_28_31 = arg1;
 }
 
 void func_8033FFE4(u8 arg0, s32 arg1, s32 arg2){

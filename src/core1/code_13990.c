@@ -121,13 +121,21 @@ void mlMtxIdent(void){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_8025208C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_80252188.s")
+void mlMtxRotate(f32 pitch, f32 yaw, f32 roll){
+    mlMtxRotYaw(yaw);
+    mlMtxRotPitch(pitch);
+    mlMtxRotRoll(roll);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/mlMtxScale.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_80252280.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_80252330.s")
+void func_80252330(f32 x, f32 y, f32 z){
+    reinterpret_cast(f32, D_80282FD0->m[3][0]) = x;
+    reinterpret_cast(f32, D_80282FD0->m[3][1]) = y;
+    reinterpret_cast(f32, D_80282FD0->m[3][2]) = z;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_8025235C.s")
 

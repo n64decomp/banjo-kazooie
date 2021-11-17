@@ -23,7 +23,7 @@ typedef struct {
 }ActorLocal_RBB_8520;
 
 void func_8038F190(Actor *this, s32 arg1);
-void func_8038F4B0(ActorMarker *marker, Gfx **gdl, Mtx **mptr, s32 arg3);
+Actor *func_8038F4B0(ActorMarker *marker, Gfx **gdl, Mtx **mptr, s32 arg3);
 void func_8038F618(Actor *this);
 
 
@@ -287,7 +287,7 @@ void func_8038F430(ActorMarker *marker, s32 arg1){
 #ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/RBB/code_8520/func_8038F4B0.s")
 #else
-void func_8038F4B0(ActorMarker *marker, Gfx **gdl, Mtx **mptr, s32 arg3){
+Actor * func_8038F4B0(ActorMarker *marker, Gfx **gdl, Mtx **mptr, s32 arg3){
     Actor *actor = marker_getActor(marker);
     ActorLocal_RBB_8520 *local = (ActorLocal_RBB_8520 *)&actor->local;
     f32 temp_f2;
@@ -299,11 +299,11 @@ void func_8038F4B0(ActorMarker *marker, Gfx **gdl, Mtx **mptr, s32 arg3){
     func_8033A45C(7,1);
     if(0.0f < local->unk30 && local->unk30 <= 1.0){
         temp_f2 = 3.0f*local->unk30;
-        temp_f2 = 2*(local->unk30 * 3.0f - (s32)(local->unk30 * 3.0f));
+        temp_f2 = 2*(temp_f2 - (s32)(temp_f2));
         temp_f2 = (temp_f2 > 1.0f) ? 2.0f - temp_f2 : temp_f2;
         
-        sp28[0] = (s32) (255 * temp_f2);
-        sp28[1] = (s32) (255 * temp_f2);
+        sp28[0] = (s32) (255 * temp_f2);\
+        sp28[1] = (s32) (255 * temp_f2);\
         sp28[2] = (s32) (255 * temp_f2);
         sp28[3] = 255;
         D_803912A0[0] = actor->pitch;
@@ -311,7 +311,7 @@ void func_8038F4B0(ActorMarker *marker, Gfx **gdl, Mtx **mptr, s32 arg3){
         D_803912A0[2] = actor->roll;
         func_8033A334(&sp28, &D_80390DDC);
     }//L8038F5F8
-    func_80325888(marker, gdl, mptr, arg3);
+    return func_80325888(marker, gdl, mptr, arg3);
 }
 #endif
 
