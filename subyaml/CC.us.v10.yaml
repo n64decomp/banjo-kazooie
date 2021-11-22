@@ -36,6 +36,7 @@ segments:
       - [0x19B0, c, code_19B0]
       - [0x1B90, c, code_1B90]
       - [0x1F70, c, code_1F70]
+      - [0x3130, c, ch/sawblade] #Done
       - [0x3400, c, code_3400]
   - name: data
     dir: CC
@@ -47,6 +48,8 @@ segments:
       - [0x000036E0, .data, code_530]
       - [0x00003710, .data, code_BF0]
       - [0x00003760, bin, data_3760]
+      - [0x00003840, bin, ch/sawblade]
+      - [0x00003A50, bin, data_3A50]
       - [0x00003AC0, bin, rodata_0] # - [0x00003AC0, .rodata, code_0]
       - [0x00003B10, .rodata, code_530]
       - [0x00003B20, bin, data_3B20]

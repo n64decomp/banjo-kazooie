@@ -104,8 +104,8 @@ void func_803865D0(ActorMarker *marker){
 #else
 void func_803866F4(Actor *this, s32 arg1){
     ActorLocal_RBB_0 *local = (ActorLocal_RBB_0 *) &this->local;
-        
-    do{
+    
+    while(1){
         if(arg1 == 2){
             func_8025A6EC(COMUSIC_2B_DING_B, 28000);
             local = (ActorLocal_RBB_0 *) &this->local;
@@ -125,7 +125,7 @@ void func_803866F4(Actor *this, s32 arg1){
             }
         }
         break;
-    }while(1);
+    }
     this->state = arg1;
 }
 #endif

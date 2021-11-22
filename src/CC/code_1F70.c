@@ -2,7 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-
 #pragma GLOBAL_ASM("asm/nonmatchings/CC/code_1F70/func_80388360.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/CC/code_1F70/func_80388428.s")
@@ -68,8 +67,3 @@ void func_80388B4C(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/CC/code_1F70/func_803894A0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/CC/code_1F70/func_80389520.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/CC/code_1F70/func_8038954C.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/CC/code_1F70/func_80389594.s")
