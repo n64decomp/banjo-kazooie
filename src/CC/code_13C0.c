@@ -2,6 +2,18 @@
 #include "functions.h"
 #include "variables.h"
 
+typedef struct{
+    void (*unk0)(s32 arg0);
+    u8 pad4[0x14];
+    s32 unk10;
+    u8 pad14[0x4];
+    f32 unk18[3];
+    u8 unk24[8];
+}Struct_CC_13C0_0;
+
+extern Struct_CC_13C0_0 D_8036E834[];
+
+extern s32 D_80383568;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/CC/code_13C0/func_803877B0.s")
 
@@ -27,6 +39,31 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/CC/code_13C0/func_80387A40.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/CC/code_13C0/func_80387CC0.s")
+void func_80387CC0(void){
+    f32 sp1C[3];
+    s32 tmp_v0;
+    if(getGameMode() == GAME_MODE_7_ATTRACT_DEMO)
+        return;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/CC/code_13C0/func_80387D4C.s")
+    func_8024C764(sp1C);
+    tmp_v0 = func_8023DB4C(0x7F);
+    if(tmp_v0 >= 0x40){
+        tmp_v0 = 0x7F - tmp_v0;
+    }
+    sp1C[2] += tmp_v0 + 0x94;
+    if(360.0f <= sp1C[2]){
+        sp1C[2] -= 360.0f;
+    }
+    func_8024CE18(sp1C);
+
+}
+
+void func_80387D4C(void){
+    u32 sp1C;
+    u32 tmp_v0;
+    osPiReadIo(0x504, &sp1C);
+    sp1C = (sp1C & 0xffff) + 0xffff5BA0;
+    if(sp1C){
+        func_80387CC0();
+    }
+}

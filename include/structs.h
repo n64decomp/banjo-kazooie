@@ -619,4 +619,9 @@ typedef struct{
     f32 unk8[0][3];
 } struct56s;
 
+typedef struct{
+    u8 pad0[8];
+    s32 unk8;
+}struct57s;
+
 #endif

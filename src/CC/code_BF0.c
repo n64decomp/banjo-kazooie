@@ -6,7 +6,7 @@ extern void func_8028E668(f32 (*)[3], f32, f32, f32);
 
 typedef struct{
     s32 unk0;
-    s32 unk4;
+    s32 egg_count;
     f32 unk8;
 }ActorLocal_CC_BF0;
 
@@ -14,13 +14,15 @@ void func_803870F8(Actor *this);
 
 /* .data */
 extern ActorInfo D_80389B00 = {
-    0x4C, 0x44, 0x309, 0, NULL,
+    0x4C, ACTOR_44_CLANKER_TOKEN_TOOTH_EXTERIOR, ASSET_309_MODEL_CLANKER_TOKEN_TOOTH_EXTERIOR, 
+    0, NULL,
     func_803870F8, func_80326224, func_80325888,
     {0,0,0,0}, 0.0f, {0,0,0,0}
 };
 
 extern ActorInfo D_80389B24 = {
-    0x4D, 0x45, 0x30A, 0, NULL,
+    0x4D, ACTOR_45_CLANKER_JIGGY_TOOTH_EXTERIOR, ASSET_30A_MODEL_CLANKER_JIGGY_TOOTH_EXTERIOR, 
+    0, NULL,
     func_803870F8, func_80326224, func_80325888,
     {0,0,0,0}, 0.0f, {0,0,0,0}
 };
@@ -81,9 +83,9 @@ void func_803870F8(Actor *this){
         this->yaw = 0.0f;
         this->roll = 0.0f;
         local->unk0 = (marker->modelId == 0x309) ? 1 : 2;
-        local->unk4 = 0;
+        local->egg_count = 0;
         func_80386FE0(this, 1);
-        if(levelSpecificFlags_get((local->unk0 == 1)? 0: 1)){
+        if(levelSpecificFlags_get((local->unk0 == 1)? LEVEL_FLAG_0_CC_TOKEN_TOOTH_OPEN: LEVEL_FLAG_1_CC_JIGGY_TOOTH_OPEN)){
             func_80386FE0(this, 3);
         }
     }//L803871D8
@@ -117,16 +119,16 @@ void func_803870F8(Actor *this){
     
     if(this->state == 1 && D_80389F80 == local->unk0){
         D_80389F80 = 0;
-        local->unk4++;
-        if(local->unk4 == 3){
+        local->egg_count++;
+        if(local->egg_count == 3){
             func_80386FE0(this, 2);
         }else{
             func_8025A6EC(COMUSIC_2B_DING_B, 28000);
         }
     }
     else if(this->state == 2 && 1.0f <= local->unk8){
-        flagCnt = levelSpecificFlags_get(0) + levelSpecificFlags_get(1);
-        if(!jiggyscore_isCollected(0x1B)){
+        flagCnt = levelSpecificFlags_get(LEVEL_FLAG_0_CC_TOKEN_TOOTH_OPEN) + levelSpecificFlags_get(LEVEL_FLAG_1_CC_JIGGY_TOOTH_OPEN);
+        if(!jiggyscore_isCollected(JIGGY_1B_CC_TOOTH)){
             func_80311480((local->unk0 == 1)? 
                 ((flagCnt == 0)? 0xd30 : 0xd31) :
                 ((flagCnt == 0)? 0xd2e : 0xd2f), 4, NULL, NULL, NULL, NULL);

@@ -357,4 +357,6 @@ D_8037DDA4 = 0x8037DDA4;
 _gcbound_red = 0x80380900;
 _gcbound_green = 0x80380901;
 _gcbound_blue = 0x80380902;
+D_80370600 = 0x80370600;
+D_803837D0  = 0x803837D0;
 

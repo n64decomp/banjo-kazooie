@@ -44,7 +44,15 @@ void func_802EC48C(BKVertexList *vtxList, f32 min[3], f32 max[3]){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_654C0/func_802EC994.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_654C0/func_802EC9B4.s")
+BKVertexList *func_802EC9B4(BKVertexList *vtxList){
+    BKVertexList *out_v0;
+    size_t list_size;
+    
+    list_size = sizeof(BKVertexList) + vtxList->unk14*sizeof(Vtx);
+    out_v0 = (BKVertexList *) malloc(list_size);
+    func_80254630(out_v0, vtxList, list_size);
+    return out_v0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_654C0/func_802EC9FC.s")
 

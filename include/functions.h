@@ -413,7 +413,7 @@ int  func_80329480(Actor *);
 s32  func_80329784(Actor *);
 void func_80329878(Actor *, f32);
 
-int func_803391A4(Gfx**, Mtx**, f32 [3], f32[3], f32, f32*, void*);
+int func_803391A4(Gfx**, Mtx**, f32 [3], f32[3], f32, f32*, BKModelBin*);
 
 void func_80346C10(enum bs_e *retVal, enum bs_e fail_state, enum bs_e success_state, enum item_e item_id, int use_item);
 

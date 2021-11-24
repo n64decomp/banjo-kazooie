@@ -291,7 +291,7 @@ s32 func_8033BCB4(s32 arg0){
     return 0;
 }
 
-void func_8033BD20(void **arg0){
+void func_8033BD20(BKModelBin **arg0){
     func_8033B020(*arg0);
     *arg0 = NULL;
 }

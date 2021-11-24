@@ -8,6 +8,10 @@ typedef struct {
     s16 unk4[]; //vtx indices
 } BKMesh;
 
+typedef struct {
+    s32 cmd_0;
+    s32 size_4;
+}BKGeoList;
 
 typedef struct {
     s16 meshCount_0;
@@ -17,9 +21,44 @@ typedef struct {
 typedef struct {
     s16 minCoord_0[3];
     s16 maxCoord_6[3];
-    u8 padC[0xC];
+    u8 padC[0x6];
+    s16 unk12;
+    s16 unk14;
+    s16 unk16;
     BKMesh vtx_18[];
 } BKVertexList;
+
+typedef struct {
+    u8 pad0[0];
+}BKCollisionList;
+
+typedef struct {
+    u8 pad0[0];
+}BKEffectsList;
+
+typedef struct {
+    u8 pad0[0];
+}BKAnimationList;
+
+typedef struct {
+    u8 pad0[8];
+    Gfx list[];
+} BKGfxList;
+
+typedef struct {
+    s32 offset_0;
+    s16 type_4;
+    u8 pad6[2];
+    u8 width_8;
+    u8 height_9;
+    u8 padA[6];
+}BKTextureHeader;
+
+typedef struct {
+    s32 size_0;
+    s16 cnt_4;
+    u8 pad6[2];
+}BKTextureList;
 
 typedef struct {
     BKMeshList *meshList_0;
@@ -27,7 +66,18 @@ typedef struct {
 } BKModel;
 
 typedef struct{
-    u8 pad0[0x2C];
+    u8 pad0[0x4];
+    s32 geo_list_offset_4;
+    s16 texture_list_offset_8;
+    s16 geo_typ_A;
+    s32 gfx_list_offset_C;
+    s32 vtx_list_offset_10;
+    u8 pad14[0x4];
+    s32 animation_list_offset_18;
+    s32 collision_list_offset_1C;
+    s32 unk20;
+    s32 effects_list_setup_24;
+    s32 unk28;
     s32 unk2C;
 }BKModelBin;
 #endif

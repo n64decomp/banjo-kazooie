@@ -312,7 +312,7 @@ void gctransition_update(void){
                     func_80335128(0);
                     break;
                 case 3:
-                    func_802FEF48(D_80382430.unkC);
+                    func_802FEF48(D_80382430.unkC); //framebuffer to model texture list
                     break;
                 case 4:
                     osViBlack(0);
@@ -331,8 +331,8 @@ void gctransition_update(void){
                 case 1:
                     break;
                 case 2:
-                    func_80335128(0);
-                    func_802FEF48(D_80382430.unkC);
+                    func_80335128(0); 
+                    func_802FEF48(D_80382430.unkC); //framebuffer to model texture list
                     break;
                 
             }
