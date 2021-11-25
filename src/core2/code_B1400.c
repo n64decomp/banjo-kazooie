@@ -105,6 +105,22 @@ typedef struct {
 typedef struct {
     s32 cmd_0;
     s32 size_4;
+    s16 unk8;
+    s16 unkA;
+    s32 unkC[];
+}GeoCmdC;
+
+typedef struct {
+    s32 cmd_0;
+    s32 size_4;
+    s16 unk8[3];
+    s16 unkE[3];
+    s16 unk14;
+}GeoCmdD;
+
+typedef struct {
+    s32 cmd_0;
+    s32 size_4;
     s16 unk8[3];
     s16 unkE;
     s16 unk10;
@@ -638,14 +654,6 @@ void func_80338BFC(Gfx **gfx, Mtx **mtx, void *arg2){
     }
 }
 
-typedef struct {
-    s32 cmd_0;
-    s32 size_4;
-    s16 unk8;
-    s16 unkA;
-    s32 unkC[];
-}GeoCmdC;
-
 //CmdC_SELECTOR
 #ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_80338CD0.s")
@@ -682,14 +690,6 @@ void func_80338CD0(Gfx **gfx, Mtx **mtx, void *arg2){
     }//L80338DA8
 }
 #endif
-
-typedef struct {
-    s32 cmd_0;
-    s32 size_4;
-    s16 unk8[3];
-    s16 unkE[3];
-    s16 unk14;
-}GeoCmdD;
 
 //CmdD_DRAW_DISTANCE
 void func_80338DCC(Gfx ** gfx, Mtx ** mtx, void *arg2){
