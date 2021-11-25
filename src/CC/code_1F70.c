@@ -14,16 +14,21 @@ extern int func_802E805C(BKCollisionList *, BKVertexList *, f32[3], s32, f32, s3
 extern void func_80340200(s32, f32[3], s32, f32, s32, s32, BKVertexList *, s32);
 extern void func_802E9118(BKCollisionList *, BKVertexList *, f32[3], s32, f32, s32, s32, f32, s32, s32, s32);
 extern void func_802E9DD8(BKCollisionList *, BKVertexList *, f32[3], s32, f32, s32, f32, s32, s32);
+extern int func_80340020(s32, f32[3], s32, f32, s32, BKVertexList *, f32[3], f32[3]);
 
 
 /* .data */
 extern f32 D_80389C00[3];
+extern f32 D_80389C0C[3];
+extern f32 D_80389C18[3];
 extern f32 D_80389C24[3];
 
 /* .rodata */
 extern f32 D_80389F30;
 extern f32 D_80389F34;
-extern f32 D_80389FD8;
+extern f32 D_80389F38;
+extern f64 D_80389F40;
+extern f64 D_80389F48;
 extern f32 D_80389F50;
 extern f32 D_80389F54;
 extern f64 D_80389F58;
@@ -128,7 +133,94 @@ void func_8038868C(void) {
     func_80324E38(18.0f, 0);
 }
 
+
+
+
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/CC/code_1F70/func_80388760.s")
+#else
+void func_80388760(Gfx **gfx, Mtx **mtx, s32 arg2){
+    s32 tmp_v0;
+    s32 s1;
+    f32 spA4[3];
+    f32 sp98[3];
+    int i;
+    s32 tmp_s0;
+    f32 sp84[3];
+    f32 sp74[3];
+    f32 sp68[3];
+    f32 sp5C[3];
+    
+
+    if(D_80389FA0.unk21 == 0)
+        return;
+    
+    func_8024C5CC(sp98);
+        
+    if(sp98[0] <  D_80389F34 || D_80389F38 < sp98[0])
+        return;
+
+    s1 = func_803356A0(D_80389FA0.unk0);
+    func_8033A670(s1, 0x40, sp84);
+    for( i = 0; i < 3; i++){
+        sp84[i] = sp84[i] + (D_80389F40 - sp84[i])*D_80389FA0.unk8;
+    }
+
+    func_8033A928(s1, 0x40, sp84);
+
+    if(D_80389FA0.unk21 == 1){
+        func_8033A9A8(s1, 0x44, D_80389C0C);
+        func_8033A9A8(s1, 0x45, D_80389C0C);
+        func_8033A9A8(s1, 0x46, D_80389C0C);
+
+        func_8033A9A8(s1, 0x47, D_80389C18);
+        func_8033A9A8(s1, 0x48, D_80389C18);
+        func_8033A9A8(s1, 0x49, D_80389C18);
+    }
+
+    player_getPosition(spA4);
+
+    for(i = 0; i < 2; i++){//L803888FC
+        func_8034A174(D_80389FA0.unk34, (i == 0) ? 0x10 : 0xf, sp74);
+        sp68[0] = spA4[0] - sp74[0];
+        sp68[1] = spA4[1] - sp74[1];
+        sp68[2] = spA4[2] - sp74[2];
+        ml_vec3f_normalize(sp68);
+
+        sp5C[0] = 0.0f;
+        sp5C[1] = sp68[2]*45.0f;
+        sp5C[2] = -sp68[0]*45.0f;
+        func_8033A9A8(s1, (i == 0)?0x42:0x43, sp5C);
+    }
+    tmp_v0 = D_80389FA0.unk40;
+    D_80389FA0.unk40 = D_80389FA0.unk44;
+    D_80389FA0.unk44 = tmp_v0;
+
+    func_8033A45C(1, (D_80389FA0.unk21 == 3) ? 1 : 0);
+    tmp_s0 = (sp98[0] < 100.0f)? 0 : 1;
+    func_8033A45C(2, 1);
+    func_8033A45C(3, 1);
+    func_8033A45C(4, tmp_s0);
+    func_8033A45C(5, tmp_s0);
+    func_8033A45C(6, tmp_s0);
+    func_8033A45C(7, tmp_s0);
+    func_8033A45C(8, tmp_s0);
+    if(tmp_s0){
+        tmp_s0 = (s32)(D_80389FA0.unk4C*D_80389F48 + 1.0);
+        func_8033A45C(2, tmp_s0);
+        func_8033A45C(3, tmp_s0);
+    }
+    func_8033A238(s1);
+    func_8033A450(D_80389FA0.unk34);
+    func_8033A4C0(D_80389FA0.unk40);
+    func_8033A4CC(1);
+    func_803391A4(gfx, mtx, D_80389FA0.unk28, NULL, 1.0f, NULL, D_80389FA0.unk24);
+    if(func_80340020(D_80389FA0.unk18, D_80389FA0.unk28, 0, 1.0f, 0, D_80389FA0.unk40, spA4, spA4)){
+        func_8028FAB0(spA4);
+        func_802921D4(spA4);
+    }
+}
+#endif
 
 void func_80388B4C(s32 arg0) {
     func_8034A174(D_80389FA0.unk34, 5, arg0);

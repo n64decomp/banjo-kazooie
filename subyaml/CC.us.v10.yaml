@@ -29,11 +29,11 @@ segments:
     vram: 0x803863F0
     subsegments:
       - [0x00000000, c, code_0]
-      - [0x530, c, code_530]
-      - [0xBF0, c, code_BF0]
+      - [0x530, c, code_530] #Done
+      - [0xBF0, c, code_BF0] #Done
       - [0x1120, c, ch/tooth] #Done
       - [0x13C0, c, code_13C0]
-      - [0x19B0, c, code_19B0]
+      - [0x19B0, c, code_19B0] #Done
       - [0x1B90, c, code_1B90] #Done
       - [0x1F70, c, code_1F70]
       - [0x3130, c, ch/sawblade] #Done

@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void func_8024128C(Mtx *, s32, s32, s32, f32, f32, f32, f32, f32, f32, f32);
+extern void func_8024128C(Mtx *, s32, f32, f32, f32, f32, f32, f32, f32, f32, f32);
 extern void func_802ED52C(s32, f32[3], f32);
 extern void func_80252AF0(f32[3], f32[3], f32[3], f32, f32[3]);
 extern void mlMtxRotate(f32, f32, f32);
@@ -14,8 +14,8 @@ extern void func_8024CFD4(void);
 extern void func_8033BD4C(BKModelBin *);
 extern s32 func_8024DB50(f32[3], f32);
 extern void func_80251788(f32, f32, f32);
-extern void func_80252280(f32);
-extern void func_80251494(Mtx* mtx);
+extern void mlMtxScale(f32);
+extern void mlMtxApply(Mtx* mtx);
 
 typedef struct{
     s32 env_r;
@@ -29,8 +29,8 @@ typedef struct{
 } Struct_Core2_B1400_0;
 
 typedef struct{
-    void (* unk0)(s32);
-    s32 unk4;
+    void (* unk0)(Actor *);
+    Actor *unk4;
 } Struct_Core2_B1400_1;
 
 typedef void (*GeoListFunc)(Gfx **, Mtx **, void *);
@@ -69,8 +69,47 @@ typedef struct {
 typedef struct {
     s32 cmd_0;
     s32 size_4;
+    s16 unk8[];
+}GeoCmd5;
+
+typedef struct {
+    s32 cmd_0;
+    s32 size_4;
     s32 unk8;
 }GeoCmd6;
+
+typedef struct {
+    s32 cmd_0;
+    s32 size_4;
+    u8  pad8;
+    s16 unkA;
+}GeoCmd7;
+
+typedef struct {
+    s32 cmd_0;
+    s32 size_4;
+    f32 max_8;
+    f32 min_C;
+    f32 unk10[3];
+    s32 subgeo_offset_1C;
+}GeoCmd8;
+
+typedef struct {
+    s32 cmd_0;
+    s32 size_4;
+    s16 unk8;
+    s16 unkA;
+    f32 unkC[3];
+}GeoCmd9;
+
+typedef struct {
+    s32 cmd_0;
+    s32 size_4;
+    s16 unk8[3];
+    s16 unkE;
+    s16 unk10;
+    s16 unk12;
+}GeoCmdE;
 
 typedef struct {
     s32 cmd_0;
@@ -95,7 +134,7 @@ void func_80338904(Gfx **, Mtx **, void *);
 void func_80338498(Gfx **, Mtx **, void *);
 void func_80338970(Gfx **, Mtx **, void *);
 void func_80338AC4(Gfx **, Mtx **, void *);
-void func_80338AE8(Gfx **, Mtx **, void *);
+void func_80338AE8(Gfx **, Mtx **, GeoCmd7 *cmd);
 void func_80338B50(Gfx **, Mtx **, void *);
 void func_80338498(Gfx **, Mtx **, void *);
 void func_80338BFC(Gfx **, Mtx **, void *);
@@ -259,13 +298,20 @@ extern u8 D_80370800;
 // 000E 9920: B9 00 03 1D 0C 18 41 D8  B8 00 00 00 00 00 00 00  ......A. ........  
 // 000E 9930: B9 00 03 1D 0C 18 43 D8  B8 00 00 00 00 00 00 00  ......C. ........  
 
-extern Gfx D_803708D0[];
-// 000E 9940: F5 10 10 00 02 00 00 00  F2 00 00 00 02 07 C0 7C  ........ .......|  
-// 000E 9950: F5 10 11 00 03 00 04 01  F2 00 00 00 03 03 C0 3C  ........ .......<  
-// 000E 9960: F5 10 11 04 04 00 08 02  F2 00 00 00 04 01 C0 1C  ........ ........  
-// 000E 9970: F5 10 11 06 05 00 0C 03  F2 00 00 00 05 00 C0 0C  ........ ........  
-// 000E 9980: F5 10 11 07 06 00 10 04  F2 00 00 00 06 00 40 04  ........ ......@.  
-// 000E 9990: B8 00 00 00 00 00 00 00  
+extern Gfx D_803708D0[] = 
+{
+    gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0x0000, 2, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD),
+    gsDPSetTileSize(2, 0, 0, 0x007C, 0x007C),
+    gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0x0100, 3, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, 1, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, 1),
+    gsDPSetTileSize(3, 0, 0, 0x003C, 0x003C),
+    gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0x0104, 4, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, 2, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, 2),
+    gsDPSetTileSize(4, 0, 0, 0x001C, 0x001C),
+    gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0x0106, 5, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, 3, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, 3),
+    gsDPSetTileSize(5, 0, 0, 0x000C, 0x000C),
+    gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0x0107, 6, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, 4, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, 4),
+    gsDPSetTileSize(6, 0, 0, 0x0004, 0x0004),
+    gsSPEndDisplayList()
+};
 
 extern Gfx D_80370928[] =
 {
@@ -314,6 +360,7 @@ extern f32 D_80378F4C;
 
 /* .bss */
 extern s32 D_80383650;
+extern s32 D_80383658[];
 extern s32 D_80383700;
 extern s32 D_80383704;
 extern f32 D_80383708;
@@ -340,7 +387,12 @@ extern struct{
 extern s32 D_80383770;
 extern f32 D_80383774[3];
 extern f32 D_80383780[3];
-Struct_Core2_B1400_1 D_80383790[2];
+extern struct{
+    void (* unk0)(Actor *);
+    Actor *unk4;
+    void (* unk8)(ActorMarker *);
+    ActorMarker *unkC;
+} D_80383790;
 extern Struct_Core2_B1400_0 D_803837A0;
 extern struct {
     s32 unk0;
@@ -356,8 +408,8 @@ extern struct {
     u8 pad20[0x3E0];
     LookAt *unk400;
     s32 unk404;
-    s32 unk408;
-    s32 unk40C;
+    f32 unk408;
+    f32 unk40C;
     f32 unk410;
 } D_803837E0;
 extern Mtx D_80383BF8;
@@ -369,6 +421,7 @@ extern f32 D_80383C64;
 extern f32 D_80383C68[3];
 extern f32 D_80383C78[3];
 extern f32 D_80383C88[3];
+extern f32 D_80383C98[3];
 
 void func_80338390(void){
     D_80383700 = 0;
@@ -384,8 +437,8 @@ void func_80338390(void){
     D_80383724 = 0;
     D_80383728 = 0;
     D_8038372C = 0;
-    D_80383790[0].unk0 = NULL;
-    D_80383790[1].unk0 = NULL;
+    D_80383790.unk0 = NULL;
+    D_80383790.unk8 = NULL;
     D_803837B0.unk0 = 0;
     D_803837C8 = 0;
     D_803837D8 = 0;
@@ -415,12 +468,12 @@ void func_803384A8(Gfx **gfx, Mtx **mtx, void *arg2){
         if(!cmd->unkA){
             mlMtxRotPitch(D_80383C48[0]);
         }
-        func_80252280(D_80383734);
+        mlMtxScale(D_80383734);
         mlMtxTranslate(-cmd->unkC[0], -cmd->unkC[1], -cmd->unkC[2]);
-        func_80251494(*mtx);
+        mlMtxApply(*mtx);
         gSPMatrix((*gfx)++, (*mtx)++, G_MTX_PUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
         func_80339124(gfx, mtx, (s32)cmd + cmd->unk8);
-        func_802516C8();
+        mlMtxPop();
         gSPPopMatrix((*gfx)++, G_MTX_MODELVIEW);
     }
 }
@@ -472,8 +525,6 @@ void func_803385BC(Gfx **gfx, Mtx **mtx, void *arg2){
     }
 }
 
-
-
 //cmd10_???
 void func_8033878C(Gfx **gfx, Mtx **mtx, void *arg2){
     GeoCmd10 *cmd = (GeoCmd10 *)arg2;
@@ -495,7 +546,7 @@ void func_803387F8(Gfx **gfx, Mtx **mtx, void *arg2){
     if(D_8038371C){
         func_802519C8(&D_80383BF8, func_802EA110(D_8038371C, cmd->unk9));
         if(D_80370990){
-            func_80251494(*mtx);
+            mlMtxApply(*mtx);
             gSPMatrix((*gfx)++, (*mtx)++, G_MTX_PUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
         }
     }//L80338890
@@ -503,34 +554,41 @@ void func_803387F8(Gfx **gfx, Mtx **mtx, void *arg2){
         func_80339124(gfx, mtx, (u8*)cmd + cmd->unk8);
     }
     if(D_8038371C){
-        func_802516C8();
+        mlMtxPop();
         if(D_80370990){
             gSPPopMatrix((*gfx)++, G_MTX_MODELVIEW);
         }
     }
 }   
 
-
-
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_80338904.s")
-#else
 //cmd3_LOAD_DL
 void func_80338904(Gfx **gfx, Mtx **mtx, void *arg2){
     GeoCmd3 *cmd = (GeoCmd3 *)arg2;
-    s32 ptr;
-    s32 size;
+    s32 vptr;
 
     if(D_80370990){
-        size = sizeof(Gfx)*cmd->unk8;
-        ptr = (s32)D_80383718 + sizeof(BKGfxList);
-        gSPDisplayList((*gfx)++, osVirtualToPhysical(ptr + size));
+        vptr = (s32)D_80383718  + sizeof(Gfx)*cmd->unk8 + sizeof(BKGfxList);
+        gSPDisplayList((*gfx)++, osVirtualToPhysical(vptr));
     }
 }
-#endif
 
 //Cmd5_SKINNING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_80338970.s")
+void func_80338970(Gfx **gfx, Mtx **mtx, void *arg2){
+    GeoCmd5 *cmd = (GeoCmd5 *)arg2;
+    int i;
+
+    if(D_80370990){
+        gSPDisplayList((*gfx)++, osVirtualToPhysical((s32)D_80383718  + sizeof(Gfx)*cmd->unk8[0] + sizeof(BKGfxList)));
+    }
+
+    if(D_80370990){
+        for(i = 1; cmd->unk8[i]; i++){
+            mlMtxApply(*mtx);
+            gSPMatrix((*gfx)++, (*mtx)++, G_MTX_PUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
+            gSPDisplayList((*gfx)++, osVirtualToPhysical((s32)D_80383718  + sizeof(Gfx)*cmd->unk8[i] + sizeof(BKGfxList)));
+        }
+    }
+}
 
 //Cmd6_???
 void func_80338AC4(Gfx **gfx, Mtx **mtx, void *arg2){
@@ -538,23 +596,160 @@ void func_80338AC4(Gfx **gfx, Mtx **mtx, void *arg2){
     func_80339124(gfx, mtx, (s32)cmd + cmd->unk8);
 }
 
-//Cmd7_???
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_80338AE8.s")
+//Cmd7_LOAD_DL???
+void func_80338AE8(Gfx **gfx, Mtx **mtx, GeoCmd7 *cmd){
+    if(D_80370990){
+        gSPDisplayList((*gfx)++, osVirtualToPhysical((s32)D_80383718  + sizeof(Gfx)*cmd->unkA + sizeof(BKGfxList)));
+    }
+}
 
 //Cmd8_LOD
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_80338B50.s")
+void func_80338B50(Gfx **gfx, Mtx **mtx, void *arg2){
+    GeoCmd8 *cmd = (GeoCmd8 *)arg2;
+    f32 dist;
+    
+    if(cmd->subgeo_offset_1C){
+        func_8025235C(D_80383C98, cmd->unk10);
+        dist = gu_sqrtf(D_80383C98[0]*D_80383C98[0] + D_80383C98[1]*D_80383C98[1] + D_80383C98[2]*D_80383C98[2]);
+        if(cmd->min_C < dist && dist <= cmd->max_8){
+            func_80339124(gfx, mtx, (s32)cmd + cmd->subgeo_offset_1C);
+        }
+    }
+}
 
 //CmdA_REFERENCE_POINT
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_80338BFC.s")
+void func_80338BFC(Gfx **gfx, Mtx **mtx, void *arg2){
+    GeoCmd9 *cmd = (GeoCmd9 *)arg2;
+    f32 sp20[3];
+
+    if(D_80383650){
+        if(D_8038371C){
+            func_802519C8(&D_80383BF8, func_802EA110(D_8038371C, cmd->unkA));
+            func_8025235C(sp20, cmd->unkC);
+            mlMtxPop();
+        }
+        else{
+            func_8025235C(sp20, cmd->unkC);
+        }
+        sp20[0] += D_80383C38[0];
+        sp20[1] += D_80383C38[1];
+        sp20[2] += D_80383C38[2];
+        func_8034A308(D_80383650, cmd->unk8, sp20);
+    }
+}
+
+typedef struct {
+    s32 cmd_0;
+    s32 size_4;
+    s16 unk8;
+    s16 unkA;
+    s32 unkC[];
+}GeoCmdC;
 
 //CmdC_SELECTOR
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_80338CD0.s")
+#else
+void func_80338CD0(Gfx **gfx, Mtx **mtx, void *arg2){
+    GeoCmdC *cmd = (GeoCmdC *)arg2;
+    s32 tmp_v0;
+    s32 indx;
+    s32 s2;
+    s32 s1;
+    s32* s0;
+    
+    tmp_v0 = cmd->unkA;
+    indx = D_80383658[tmp_v0];
+    if(tmp_v0){
+        if(indx == 0){
+            
+        }else if(indx > 0){
+            if(cmd->unk8 >= indx){
+                func_80339124(gfx, mtx, (s32)cmd + cmd->unkC[--indx]);
+            }
+            
+        }else{//L80338D5C
+            s1 = -indx;
+            s0 = cmd->unkC;
+            for(s2 = 0; s2 < cmd->unk8; s2++){//L80338D6C
+                if(s1 & 1){
+                    func_80339124(gfx, mtx, (s32)cmd + *s0);
+                }
+                s1 >>= 1;
+                s0++;
+            }
+        }
+    }//L80338DA8
+}
+#endif
+
+typedef struct {
+    s32 cmd_0;
+    s32 size_4;
+    s16 unk8[3];
+    s16 unkE[3];
+    s16 unk14;
+}GeoCmdD;
 
 //CmdD_DRAW_DISTANCE
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_80338DCC.s")
+void func_80338DCC(Gfx ** gfx, Mtx ** mtx, void *arg2){
+    f32 sp2C[3];
+    f32 sp20[3];
+    GeoCmdD * cmd = (GeoCmdD *)arg2;
+    if(cmd->unk14){
+        sp2C[0] = (f32)cmd->unk8[0] * D_80383734;
+        sp2C[1] = (f32)cmd->unk8[1] * D_80383734;
+        sp2C[2] = (f32)cmd->unk8[2] * D_80383734;
+
+        sp20[0] = (f32)cmd->unkE[0] * D_80383734;
+        sp20[1] = (f32)cmd->unkE[1] * D_80383734;
+        sp20[2] = (f32)cmd->unkE[2] * D_80383734;
+        if(func_8024D374(sp2C, sp20)){
+            func_80339124(gfx, mtx, (s32)cmd + cmd->unk14);
+        }
+    }
+}
 
 //cmdE_???
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_80338EB8.s")
+void func_80338EB8(Gfx ** gfx, Mtx ** mtx, void *arg2){
+    f32 sp34[3];
+    f32 sp30;
+    GeoCmdE * cmd = (GeoCmdE *)arg2;
+
+    if(cmd->unk12 == -1){
+        sp34[0] = (f32)cmd->unk8[0] * D_80383734;
+        sp34[1] = (f32)cmd->unk8[1] * D_80383734;
+        sp34[2] = (f32)cmd->unk8[2] * D_80383734;
+        sp30 = (f32)cmd->unkE*D_80383734;
+        if(func_8024DB50(sp34, sp30) && cmd->unk10){
+            func_80339124(gfx, mtx, (s32)cmd + cmd->unk10);
+        }
+    }
+    else{
+        sp34[0] = (f32)cmd->unk8[0];
+        sp34[1] = (f32)cmd->unk8[1];
+        sp34[2] = (f32)cmd->unk8[2];
+
+        sp30 = (f32)cmd->unkE*D_80383734;
+        if(D_8038371C){
+            func_802519C8(&D_80383BF8, func_802EA110(D_8038371C, cmd->unk12));
+            func_8025235C(sp34, sp34);
+            mlMtxPop();
+        }
+        else{
+            func_8025235C(sp34, sp34);
+        }
+
+        sp34[0] += D_80383C38[0];
+        sp34[1] += D_80383C38[1];
+        sp34[2] += D_80383C38[2];
+        if(func_8024DB50(sp34, sp30) && cmd->unk10){
+            func_80339124(gfx, mtx, (s32)cmd + cmd->unk10);
+        }
+
+    }//L8033908C
+
+}
 
 //cmdF_??? (processes model_setup offset_0x20)
 void func_8033909C(Gfx ** gfx, Mtx ** mtx, void *arg2){
@@ -681,8 +876,8 @@ int func_803391A4(Gfx **gfx, Mtx **mtx, f32 arg2[3], f32 arg3[3], f32 arg4, f32*
         return 0;
     }
 
-    if(D_80383790[0].unk0){
-        D_80383790[0].unk0(D_80383790[0].unk4);
+    if(D_80383790.unk0){
+        D_80383790.unk0(D_80383790.unk4);
     }
     func_80349AD0();
     if(model_bin == NULL){
@@ -800,7 +995,7 @@ int func_803391A4(Gfx **gfx, Mtx **mtx, f32 arg2[3], f32 arg3[3], f32 arg4, f32*
             func_802EA060(&D_80383730, (s32)model_bin + model_bin->animation_list_offset_18);
         }
         else{//L80339E38
-            func_802EA1A8(&D_80383730, (s32)model_bin + model_bin->animation_list_offset_18);
+            func_802EA1A8(&D_80383730, (s32)model_bin + model_bin->animation_list_offset_18, D_80383700);
         }//L80339E48
         D_8038371C = D_80383730;
     }//L80339E58
@@ -826,7 +1021,7 @@ int func_803391A4(Gfx **gfx, Mtx **mtx, f32 arg2[3], f32 arg3[3], f32 arg4, f32*
     }//L80339F2C
 
     func_802513B0(&D_80383BF8);
-    func_80251494(*mtx);
+    mlMtxApply(*mtx);
     gSPMatrix((*gfx)++, (*mtx)++, G_MTX_PUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
     D_80383734 = arg4;
     
@@ -842,8 +1037,8 @@ int func_803391A4(Gfx **gfx, Mtx **mtx, f32 arg2[3], f32 arg3[3], f32 arg4, f32*
     func_80339124(gfx, mtx, (s32)model_bin + model_bin->geo_list_offset_4);
     gSPPopMatrix((*gfx)++, G_MTX_MODELVIEW);
 
-    if(D_80383790[1].unk0){
-        D_80383790[1].unk0(D_80383790[1].unk4);
+    if(D_80383790.unk8){
+        D_80383790.unk8(D_80383790.unkC);
     }
 
     if(D_803837C8){
@@ -857,11 +1052,17 @@ int func_803391A4(Gfx **gfx, Mtx **mtx, f32 arg2[3], f32 arg3[3], f32 arg4, f32*
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A048.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A064.s")
+s32 func_8033A064(void){
+    return D_80383700;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A070.s")
+s32 func_8033A070(BKModelBin *arg0){
+    return arg0->geo_typ_A;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A078.s")
+BKGfxList *func_8033A078(BKModelBin *arg0){
+    return (BKGfxList *)((s32)arg0 + arg0->gfx_list_offset_C);
+}
 
 BKCollisionList *func_8033A084(BKModelBin *arg0){
     if(arg0 == NULL)
@@ -889,7 +1090,9 @@ BKAnimationList *func_8033A0D4(BKModelBin *arg0){
     return (BKAnimationList *)((s32)arg0 + arg0->animation_list_offset_18);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A0F0.s")
+s32 func_8033A0F0(s32 arg0){
+    return D_80383658[arg0];
+}
 
 BKTextureList *func_8033A104(BKModelBin *arg0){
     return (BKTextureList *)((s32)arg0 + arg0->texture_list_offset_8);
@@ -909,9 +1112,14 @@ BKVertexList *func_8033A148(BKModelBin *arg0){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A154.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A170.s")
+s32 func_8033A170(void){
+    return D_80370990;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A17C.s")
+void func_8033A17C(void){
+    func_802EA134(D_80383730);
+    D_80383730 = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A1A4.s")
 
@@ -929,13 +1137,26 @@ BKVertexList *func_8033A148(BKModelBin *arg0){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A298.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A2D4.s")
+void func_8033A2D4(void(*func)(Actor *), Actor* actor){
+    D_80383790.unk0 = func;
+    D_80383790.unk4 = actor;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A2E8.s")
+void func_8033A2E8(void(*func)(ActorMarker *), ActorMarker* marker){
+    D_80383790.unk8 = func;
+    D_80383790.unkC = marker;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A2FC.s")
+void func_8033A2FC(BKGfxList *gfx_list){
+    D_80383718 = gfx_list;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A308.s")
+void func_8033A308(f32 arg0[3]){
+    D_803837B0.unk0 = TRUE;
+    D_803837B0.unk4[0] = arg0[0];
+    D_803837B0.unk4[1] = arg0[1];
+    D_803837B0.unk4[2] = arg0[2];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A334.s")
 

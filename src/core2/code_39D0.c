@@ -375,7 +375,7 @@ void func_8028BA2C(s32 arg0) {
         func_803463F4(ITEM_C_NOTE, 1);
     }
     if (item_getCount(ITEM_C_NOTE) < 100) {
-        func_8025A6EC(SFX_NOTE_COLLECTED, 0x3E80);
+        func_8025A6EC(COMUSIC_9_NOTE_COLLECTED, 0x3E80);
         timedFunc_set_1(0.75f, func_8035644C, 3);
     }
     func_802F379C(arg0 + 4);
@@ -732,7 +732,7 @@ void func_8028BCA0(Prop *prop){
                             func_8028B848();
                         }
 
-                        if(func_8025AD7C(0x30)){
+                        if(func_8025AD7C(COMUSIC_30_5TH_JINJO_COLLECTED)){
                             func_8028B8DC();
                         }
 
@@ -1099,8 +1099,8 @@ void func_8028D2E4(void){
     Prop *sp58[2];
 
     if ((D_8037BF88 != 0)){
-        temp_s0 = func_8024FEEC(func_8025ADD4(0x30) & 0xFF);
-        if((func_80259B8C() < 4 && temp_s0 >= 0xBB9) || !func_8025AD7C(0x30)){
+        temp_s0 = func_8024FEEC(func_8025ADD4(COMUSIC_30_5TH_JINJO_COLLECTED) & 0xFF);
+        if((func_80259B8C() < 4 && temp_s0 >= 0xBB9) || !func_8025AD7C(COMUSIC_30_5TH_JINJO_COLLECTED)){
             func_8028F918(0);
             D_8037BF88 = 0;
         }

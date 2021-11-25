@@ -2,9 +2,84 @@
 #include "functions.h"
 #include "variables.h"
 
+extern void func_8028F4B8(s32, f32, f32);
+
+void func_8038BCF0(Actor *this);
+void func_80386570(ActorMarker *arg0, Gfx **arg1, Mtx **arg2, s32 arg3);
+
 
 /* .data */
-extern ActorInfo D_80391500;
+extern f32 D_80391380[4];
+extern f32 D_80391390[4];
+extern ActorAnimationInfo D_803913A0[] =
+{
+    { 0, 0.0f},
+    { 0x1C5, 0.6f},
+    { 0x1C5, 0.6f},
+    { 0x1C5, 0.6f},
+    { 0x1C5, 0.8f},
+    { 0x1C5, 0.6f},
+    { 0x25C, 1.0f},
+    { 0x25C, 1.0f},
+    { 0x25E, 6.5f},
+    { 0x25E, 6.5f},
+    { 0x25A, 1.1f},
+    { 0x1C5, 1.0f},
+    { 0x257, 2.5f},
+    { 0x259, 1.4f},
+    { 0x1C5, 0.6f},
+    { 0x1C5, 0.8f},
+    { 0x25A, 1.1f},
+    { 0x257, 2.5f},
+    { 0x1C5, 0.8f},
+    { 0x258, 1.0f},
+    { 0x259, 1.4f},
+    { 0x1C5, 0.6f},
+    { 0x1C5, 0.8f},
+    { 0x1C5, 0.8f},
+    { 0x25A, 1.1f},
+    { 0x259, 1.4f},
+    { 0x267, 3.0f},
+    { 0x1C5, 0.8f},
+    { 0x1C5, 0.6f},
+    { 0x1C5, 0.8f},
+    { 0x25A, 1.1f},
+    { 0x1C5, 0.8f},
+    { 0x259, 1.4f},
+    { 0x263, 0.5f},
+    { 0x25D, 7.0f},
+    { 0x25F, 1.0f},
+    { 0x25F, 1.0f},
+    { 0x260, 1.1f},
+    { 0x261, 2.5f},
+    { 0x25F, 1.0f},
+    { 0x279, 3.0f},
+    { 0x283, 0.25f},
+    { 0x27A, 1.0f},
+    { 0x266, 4.0f}
+};
+
+extern ActorInfo D_80391500 = {
+    0x25E, 0x38B, 0x53D, 
+    1,  D_803913A0,
+    func_8038BCF0, func_80326224, func_80386570,
+    { 0, 0, 0, 0} , 0.0f, {0, 0, 0, 0}
+};
+//             00 00 00 00  C1 00 00 00 43 C8 00 00
+// 00 00 00 00 C1 00 00 00  00 00 00 00 3F 80 00 00
+// 3F 80 00 00 3F 80 00 00  3F 80 00 00 00 00 00 00
+// 3C 23 D7 0A 40 33 33 33  40 4C CC CD 3F 00 00 00
+// 3F 33 33 33 C3 96 00 00  C3 96 00 00 C3 96 00 00
+// 43 96 00 00 43 FA 00 00  43 96 00 00 00 00 00 00
+// C4 96 00 00 00 00 00 00  00 00 00 00 C4 96 00 00
+// 00 00 00 00 C2 C8 00 00  C1 A0 00 00 C2 C8 00 00
+// 42 C8 00 00 42 C8 00 00  42 C8 00 00 00 00 00 24
+// 00 00 00 24 00 00 00 24  C2 8C 00 00 C2 48 00 00
+// C2 8C 00 00 42 8C 00 00  42 48 00 00 42 8C 00 00
+// C2 C8 00 00 C1 A0 00 00  C2 C8 00 00 42 C8 00 00
+// 42 C8 00 00 42 C8 00 00  3F E6 66 66 40 06 66 66
+// 3F A6 66 66 3F B3 33 33  00 00 00 00 3C 23 D7 0A
+// 3F 8C CC CD 3F A6 66 66  3E 19 99 9A 3E 99 99 9A
 extern f32 D_80391524[3];
 extern f32 D_80391530[3];
 extern struct31s D_8039153C;
@@ -18,6 +93,7 @@ extern struct43s D_80391678;
 extern s32 D_803916F4;
 extern s32 D_80391700;
 extern s32 D_8039170C;
+extern s32 D_80391804;
 extern f32 D_803920C8;
 extern f32 D_803920CC;
 extern f32 D_803920D0;
@@ -37,11 +113,17 @@ extern f32 D_80392478;
 extern f32 D_80392758[3];
 extern f32 D_80392768[];
 extern f32 D_80392778[];
+extern f32 D_80392788[3];
 extern f32 D_80392798[];
 extern ActorMarker *D_803927A4;
 extern ActorMarker *D_803927A8;
+extern s32 D_803927B0;
+extern s32 D_803927B4;
+extern s32 D_803927B8;
+extern s32 D_803927BC;
 extern u8 D_803927C4;
 extern u8 D_803927C5;
+extern u8 D_803927C6;
 extern u8 D_803927C7;
 extern u8 D_803927C8;
 extern u8 D_803927C9;
@@ -292,7 +374,7 @@ void func_803873DC(Actor *actor, s32 arg1, s32 arg2) {
 #pragma GLOBAL_ASM("asm/nonmatchings/fight/code_180/func_80387470.s")
 
 void func_8038770C(Actor *actor) {
-    actor->fight_180.pad1 = 0;
+    actor->fight_180.unk1 = 0;
     actor->fight_180.pad2 = 0;
     actor->fight_180.pad3 = 0;
     actor->fight_180.pad4 = 0;
@@ -351,7 +433,7 @@ void func_80388110(ActorMarker *arg0, s32 arg1, s32 arg2) {
     actorLocal = &actor->fight_180;
     func_802BAE4C();
     func_80311480(randi2(0, 5) + 0x1101, 4, 0, actor->marker, func_803880E0, 0);
-    actorLocal->pad9 = (u8)1;
+    actorLocal->unk9 = (u8)1;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/fight/code_180/func_80388184.s")
@@ -385,6 +467,7 @@ s32 func_8038871C(Actor *arg0, f32 arg1, f32 arg2) {
     }
 }
 
+void func_80388758(ActorMarker *marker);
 #pragma GLOBAL_ASM("asm/nonmatchings/fight/code_180/func_80388758.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/fight/code_180/func_803891E4.s")
@@ -394,6 +477,7 @@ void func_80389358(s32 arg0, s32 arg1, s32 arg2) {
     func_802C3C88(&func_80386E5C, *arg0ptr);
 }
 
+void func_8038938C(ActorMarker *marker);
 #pragma GLOBAL_ASM("asm/nonmatchings/fight/code_180/func_8038938C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/fight/code_180/func_80389720.s")
@@ -435,6 +519,7 @@ void func_80389B44(s32 arg0) {
     func_802C3C88(&func_80386DE4, *arg0ptr);
 }
 
+void func_80389B70(ActorMarker *marker);
 #pragma GLOBAL_ASM("asm/nonmatchings/fight/code_180/func_80389B70.s")
 
 void func_80389F54(void) {
@@ -446,6 +531,7 @@ void func_80389F54(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/fight/code_180/func_8038A4E8.s")
 
+void func_8038A5F4(ActorMarker *marker);
 #pragma GLOBAL_ASM("asm/nonmatchings/fight/code_180/func_8038A5F4.s")
 
 void func_80328B8C(Actor *, s32, f32, s32);
@@ -461,9 +547,10 @@ void func_8038AF84(ActorMarker *arg0) {
 }
 
 void func_8038AFB0(void) {
-    func_802E4078(0x87, 0, 1);
+    func_802E4078(MAP_87_CS_SPIRAL_MOUNTAIN_5, 0, 1);
 }
 
+void func_8038AFD8(ActorMarker *marker);
 #pragma GLOBAL_ASM("asm/nonmatchings/fight/code_180/func_8038AFD8.s")
 
 void func_80324E88(f32);
@@ -492,12 +579,15 @@ void func_8038B780(ActorMarker *arg0) {
     func_80311480(randi2(0, 5) + 0x10E8, 0x2B, &sp24->position_x, sp24->marker, &func_8038B730, 0);
 }
 
-void func_8038B82C(s32 arg0) { }
+void func_8038B82C(ActorMarker *arg0) { return; }
 
+void func_8038B834(ActorMarker *, ActorMarker *);
 #pragma GLOBAL_ASM("asm/nonmatchings/fight/code_180/func_8038B834.s")
 
+void func_8038B9AC(ActorMarker *, ActorMarker *);
 #pragma GLOBAL_ASM("asm/nonmatchings/fight/code_180/func_8038B9AC.s")
 
+void func_8038BB8C(ActorMarker *, ActorMarker *);
 #pragma GLOBAL_ASM("asm/nonmatchings/fight/code_180/func_8038BB8C.s")
 
 void func_8038BCB8(ActorMarker *arg0) {
@@ -507,7 +597,120 @@ void func_8038BCB8(ActorMarker *arg0) {
     D_803927A4 = spawn_child_actor(0x3AF, &sp1C)->marker;
 }
 
+extern f32 D_80392450;
+
+#ifndef NONMATHCING
 #pragma GLOBAL_ASM("asm/nonmatchings/fight/code_180/func_8038BCF0.s")
+#else
+void func_8038BCF0(Actor *this){
+    ActorLocal_fight_180 *local = (ActorLocal_fight_180 *) &this->local;
+    int i;
+    s32 tmp_s0;
+    Actor *other;
+    f32 sp4C[3];
+    f32 sp40[3];
+    f32 sp34[3];
+
+    if(!this->unk16C_4){
+        this->unk16C_4 = TRUE;
+        func_803300C0(this->marker, func_8038B834);
+        func_803300A8(this->marker, func_8038BB8C, func_8038B9AC, NULL);
+        this->marker->propPtr->unk8_3 = 0;
+        actor_collisionOn(this);
+        for(i = 0x38C; i < 0x39F; i++){
+            func_80304E24(i, D_803927D0[i - 0x38C]);
+        }
+        D_803927A8 = 0;
+        D_803927A4 = 0;
+        D_803927C4 = 0;
+        D_803927C5 = 0;
+        D_803927C6 = 0;
+        D_803927C7 = 0;
+        D_803927C8 = 0;
+        D_803927C9 = 0;
+
+        local->unk8 = 0;
+        local->unk9 = 0;
+        local->unkB = 0;
+
+        D_803927B4 = 0;
+        D_803927B0 = 0;
+        D_803927B8 = 0;
+        D_803927BC = 0;
+        func_802C3C88(func_8038BCB8, this->marker);
+        func_80387728(this->marker, 0);
+        local->unk1 = 0;
+        func_80386600(this->marker, 0);
+        func_80386628(this->marker, 1);
+        func_8038FC00();
+
+        func_80386654(1.0f, D_80391380, D_80391390);
+        func_8028F784(1);
+        func_8028F4B8(&D_80391804, 2000.0f, -2800.0f);
+        func_8028FA14(0x93, 2);
+        func_8034C9B0(0);
+        func_80386698(2.0f);
+        tmp_s0 = func_802F9AA8(0x9A);
+        func_802F9DB8(tmp_s0, D_80392450, D_80392450, 0.0f);
+        func_802F9FD0(tmp_s0, 0.0f, 2.0f, 0.0f);
+        func_802FA060(tmp_s0, 25000, 25000, 0);
+        func_80324C88(2.0f, SFX_7F_HEAVYDOOR_SLAM, 1.0f, 32000);
+    }//L8038BF0C
+    switch(local->unk0){
+        case 0:
+            func_8038B82C(this->marker);
+            break;
+        case 1:
+            func_80388758(this->marker);
+            break;
+        case 2:
+            func_8038938C(this->marker);
+            break;
+        case 3:
+            func_80389B70(this->marker);
+            break;
+        case 4:
+            func_8038A5F4(this->marker);
+            break;
+        case 5:
+            func_8038AFD8(this->marker);
+            break;
+    }
+    func_80320524(0x23, local->unk0, 3);
+    player_getPosition(D_80392788);
+    D_80392798[0] = this->position[0];
+    D_80392798[1] = this->position[1];
+    D_80392798[2] = this->position[2];
+    if(this->unk100 && D_803927C5){
+        func_8038EB90(this->unk100, this->position);
+    }
+
+    if(D_803927A4){
+        other = marker_getActor(D_803927A4);
+        sp4C[0] = this->position[0];\
+        sp4C[1] = this->position[1];\
+        sp4C[2] = this->position[2];
+        sp4C[1] = 200.0f;
+
+        sp34[0] = this->position[0];\
+        sp34[1] = this->position[1];\
+        sp34[2] = this->position[2];
+        sp34[1] = -50.0f;
+        if(func_80309B48(sp4C, sp34, sp40, 0)){
+            sp34[1] += 6.0f;
+            other->position_x = sp34[0];\
+            other->position_y = sp34[1];\
+            other->position_z = sp34[2];
+            other->unk1C[0] = this->position_y - sp34[1];
+            other->scale = this->scale;
+            other->unk58_0 = 1;
+        }
+        else{//L8038C0B8
+            other->unk58_0 = 0;
+        }
+    }//L8038C0C8
+}
+#endif
 
 void func_8038C0DC(f32 (*arg0)[3]) {
     (*arg0)[0] = D_80392798[0];

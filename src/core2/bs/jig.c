@@ -35,7 +35,7 @@ void bsjig_jiggy_init(void){
     if(tmp == 0) //weird if...
         tmp = 0;
     D_8037D4B1 =  tmp;
-    func_8025A6EC(JINGLE_JIGGY_COLLECTED, -1);
+    func_8025A6EC(COMUSIC_D_JINGLE_JIGGY_COLLECTED, -1);
     func_8029151C(0xC);
     func_8029E070(1);
     func_8030E6D4(0x33);

@@ -440,7 +440,7 @@ void func_8032AA58(Actor *, f32);
 void func_8034DDF0(void *, f32 (*)[3], f32 (*)[3], f32, s32);
 void func_80324E38(f32, s32);
 void func_8034E1A4(void *, s32, f32, f32);
-void func_80324C88(f32, s32, f32, s32);
+void func_80324C88(f32, enum sfx_e, f32, s32);
 f32 func_80256064(f32 [3], f32 [3]);
 void func_80324E60(f32, s32);
 void func_80324E88(f32);

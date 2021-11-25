@@ -36,7 +36,7 @@ static void __bsbwhirl_end(void){
         func_8029E070(0);
         func_8025A55C(-1, 0xfa0, 0xd);
         func_8024BD08(1);
-        func_8025A7DC(MUSIC_USING_GOLD_FEATHERS);
+        func_8025A7DC(COMUSIC_25_USING_GOLD_FEATHERS);
     }  
     func_80289F10(1);
 }
@@ -250,7 +250,7 @@ void bsbwhirl_exit_init(void){
     func_80289F10(1);
     func_8029957C(2);
     func_80297970(0.0f);
-    comusic_8025AB44(MUSIC_USING_GOLD_FEATHERS, 0.0f, 0xFA0);
+    comusic_8025AB44(COMUSIC_25_USING_GOLD_FEATHERS, 0.0f, 0xFA0);
 }
 
 void bsbwhirl_exit_update(void){

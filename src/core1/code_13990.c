@@ -26,7 +26,7 @@ Mtx *func_80251488(void){
     return D_80282FD0;
 }
 
-void func_80251494(Mtx *mPtr){
+void mlMtxApply(Mtx *mPtr){
     func_80245A7C(D_80282FD0, mPtr);
 }
 
@@ -34,7 +34,7 @@ void func_80251494(Mtx *mPtr){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_802515D4.s")
 
-void func_802516C8(void){
+void mlMtxPop(void){
     D_80282FD0--; 
 }
 
@@ -54,7 +54,31 @@ void func_80251738(void){
     v0[0] = 1.0f; 
 }
 
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_80251788.s")
+#else
+f32 *func_80251788(f32 arg0, f32 arg1, f32 arg2){
+    f32 (* v0)[4][4] = (f32 *) ++D_80282FD0;
+
+    (*v0)[0][3] = 0.0f;
+    (*v0)[0][2] = 0.0f;
+    (*v0)[0][1] = 0.0f;
+    (*v0)[1][3] = 0.0f;
+    (*v0)[1][2] = 0.0f;
+    (*v0)[1][0] = 0.0f;
+    (*v0)[2][3] = 0.0f;
+    (*v0)[2][1] = 0.0f;
+    (*v0)[2][0] = 0.0f;
+    (*v0)[0][0] = 1.0f;
+    (*v0)[1][1] = 1.0f;
+    (*v0)[2][2] = 1.0f;
+    (*v0)[3][3] = 1.0f;
+    (*v0)[3][2] = arg2;
+    (*v0)[3][1] = arg1;
+    (*v0)[3][0] = arg0;
+    return &(*v0)[3][3];
+}
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_802517F8.s")
 
@@ -127,9 +151,23 @@ void mlMtxRotate(f32 pitch, f32 yaw, f32 roll){
     mlMtxRotRoll(roll);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/mlMtxScale.s")
+void mlMtxScale_xyz(f32 x, f32 y, f32 z){
+    int i;
+    for(i = 0; i < 3; i++){
+        reinterpret_cast(f32, D_80282FD0->m[0][i]) *= x;
+        reinterpret_cast(f32, D_80282FD0->m[1][i]) *= y;
+        reinterpret_cast(f32, D_80282FD0->m[2][i]) *= z;
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_80252280.s")
+void mlMtxScale(f32 scale){
+    int i;
+    for(i = 0; i < 3; i++){
+        reinterpret_cast(f32, D_80282FD0->m[0][i]) *= scale;
+        reinterpret_cast(f32, D_80282FD0->m[1][i]) *= scale;
+        reinterpret_cast(f32, D_80282FD0->m[2][i]) *= scale;
+    }
+}
 
 void func_80252330(f32 x, f32 y, f32 z){
     reinterpret_cast(f32, D_80282FD0->m[3][0]) = x;
@@ -179,7 +217,7 @@ void func_80252C08(f32 arg0[3], f32 arg1[3], f32 scale, f32 arg3[3]){
     }
 
     if(scale != 1.0f){
-        mlMtxScale(scale, scale, scale);
+        mlMtxScale_xyz(scale, scale, scale);
     }
 
     if(arg3 != NULL)
@@ -192,7 +230,7 @@ void func_80252CC4(f32 arg0[3], f32 arg1[3], f32 scale, f32 arg3[3]){
         mlMtxTranslate(arg3[0], arg3[1], arg3[2]);
     
     if(scale != 1.0f){
-        mlMtxScale(1.0f/scale, 1.0f/scale, 1.0f/scale);
+        mlMtxScale_xyz(1.0f/scale, 1.0f/scale, 1.0f/scale);
     }
 
     if(arg1 != NULL){

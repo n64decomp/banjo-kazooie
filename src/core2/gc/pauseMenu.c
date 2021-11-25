@@ -12,7 +12,7 @@
 
 void func_803204E4(s32, s32);
 f32 func_8024DE1C(f32, f32, f32 *, f32 *);
-void func_80251494(Mtx*);
+void mlMtxApply(Mtx*);
 void func_80310D2C(void);
 
 s32 level_get(void);
@@ -982,8 +982,8 @@ void __pause_drawSprite(Gfx** gdl, Mtx** mptr, void* vptr, BKSprite* sprite, s32
     mlMtxRotYaw(sp44[1]); //mtx_rot_yaw
     mlMtxRotPitch(sp44[0]); //mtx_rot_pitch
     mlMtxRotRoll(sp44[2]); //mtx_rot_roll
-    mlMtxScale((sp34 * w)/sp2C, (sp34 * h)/sp28, sp34);
-    func_80251494(*mptr); //add matrix;
+    mlMtxScale_xyz((sp34 * w)/sp2C, (sp34 * h)/sp28, sp34);
+    mlMtxApply(*mptr); //add matrix;
     gSPMatrix((*gdl)++, (*mptr)++, G_MTX_PUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
     func_80338308((s32)sp2C, (s32)sp28);
     func_80336904(gdl, vptr, sprite, frame);

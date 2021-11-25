@@ -107,7 +107,7 @@ void func_80324A48(enum comusic_e arg0){
     func_8025A7DC(arg0);
 }
 
-void func_80324A68(s32 arg0, s32 arg1, s32 arg2){
+void func_80324A68(enum sfx_e arg0, s32 arg1, s32 arg2){
     func_8030E760(arg0, arg1/1000.0f, arg2);
 }
 
@@ -144,7 +144,7 @@ f32 func_80324C7C(void){
     return D_80383380.time;
 }
 
-void func_80324C88(f32 time, s32 arg0, f32 arg1, s32 arg2){
+void func_80324C88(f32 time, enum sfx_e arg0, f32 arg1, s32 arg2){
     timedFunc_set_3(time, func_80324A68, arg0, (s32)(arg1*1000.0f), arg2);
 }
 

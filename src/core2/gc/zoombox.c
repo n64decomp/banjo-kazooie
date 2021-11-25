@@ -345,8 +345,8 @@ void func_803164B0(gczoombox_t *, Gfx **, Mtx **, s32, s32, s32, f32);
      }
      //L80316640
      func_80252330(sp2C*4.0f - D_80276588*2.0f, D_8027658C*2.0f - ((f32)this->unk172 + (f32)arg4*this->unk198)*4.0f, -10.0f);
-     mlMtxScale(this->unk198 * D_803788E0, this->unk198 * D_803788E0, 1.0f);
-     func_80251494(*mptr);
+     mlMtxScale_xyz(this->unk198 * D_803788E0, this->unk198 * D_803788E0, 1.0f);
+     mlMtxApply(*mptr);
      gSPMatrix((*gdl)++, (*mptr)++, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
      func_8033A4CC(0);
      func_80344090(arg5, this->unk186, gdl);

@@ -221,7 +221,7 @@ void func_802FE844(s32 arg0, struct8s *arg1){
                         if(6.0f <= D_803815D4 && D_80381610 && D_803815E8 == 0xFF){
                             D_803815C0 = 1;
                             D_803815DC = 20.0f;
-                            func_8025A6EC(JINGLE_HEALTH_UPGRADE, 28000);
+                            func_8025A6EC(COMUSIC_18_HEALTH_UPGRADE, 28000);
                         }else{
                             if(1.0f < D_803815D4 &&  !D_80381610){
                                 D_803815D8 += _76D90_MAX((((D_803815D4 - 1.0f) * 60.0 - D_803815D8) * sp24 * 3.0), 2.0);

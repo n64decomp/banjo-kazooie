@@ -53,7 +53,7 @@ u32 func_802D8D48(Actor* actor, u32 arg1, enum asset_e dialogId, enum comusic_e 
 //     func_802F3808(&arg0->x);
 //     if(arg0->unk8_0)
 //         actPtr = marker_getActor(arg0->marker);
-//     func_802D8D48(actPtr, 5, 0xD9E, SFX_EGG_COLLECTED, 0xD, 2.0f);
+//     func_802D8D48(actPtr, 5, 0xD9E, COMUSIC_C_EGG_COLLECTED, 0xD, 2.0f);
 // }
 
 //readFeather_collision
@@ -62,7 +62,7 @@ void func_802D8E68(ActorProp *arg0){
     func_802F38F0(&arg0->x);
     if(arg0->unk8_0)
         actPtr = marker_getActor(arg0->marker);
-    func_802D8D48(actPtr, 6, 0xD9F, SFX_RED_FEATHER_COLLECTED, 0xF, 4.0f);
+    func_802D8D48(actPtr, 6, 0xD9F, COMUSIC_B_RED_FEATHER_COLLECTED, 0xF, 4.0f);
 }
 
 //goldFeather_collision
@@ -71,7 +71,7 @@ void func_802D8EDC(ActorProp *arg0){
     func_802F39D8(&arg0->x);
     if(arg0->unk8_0)
         actPtr = marker_getActor(arg0->marker);
-    func_802D8D48(actPtr, 7, 0xDA0, SFX_GOLD_FEATHER_COLLECTED, ITEM_10_GOLD_FEATHER, 6.0f);
+    func_802D8D48(actPtr, 7, 0xDA0, COMUSIC_14_GOLD_FEATHER_COLLECTED, ITEM_10_GOLD_FEATHER, 6.0f);
 }
 
 Actor *func_802D8F50(ActorMarker *this, Gfx **gdl, Mtx **mptr, u32 arg3){

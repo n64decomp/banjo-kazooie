@@ -178,7 +178,7 @@ void func_802897C8(Animation *this, f32 arg1){
     this->duration = arg1;
 }
 
-void func_802897D4(Animation *this, void *arg0, Animation *dst){
+void func_802897D4(Animation *this, BKAnimationList *arg0, Animation *dst){
     func_802EA1A8(this, arg0, func_802892FC(dst));
 }
 

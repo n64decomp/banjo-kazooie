@@ -5,7 +5,7 @@ void mlMtxIdent(void);
 void mlMtxRotPitch(f32 pitch);
 void mlMtxRotYaw(f32 yaw);
 void mlMtxRotRoll(f32 roll);
-void mlMtxScale(f32 x, f32 y, f32);
+void mlMtxScale_xyz(f32 x, f32 y, f32);
 void mlMtxTranslate(f32 x, f32 y, f32 z);
 
 #endif

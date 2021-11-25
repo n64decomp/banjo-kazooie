@@ -402,7 +402,7 @@ void func_802D6114(void){
             func_802E4A70();
         }//L802D6194
         func_803204E4(0x21, 1);
-        if(sp24 != 0x1C || !func_8025ADBC(0x23)){
+        if(sp24 != 0x1C || !func_8025ADBC(COMUSIC_23_MMM_INSIDE_CHURCH)){
             func_803228D8();
         }
         func_802E4078(sp24, sp20, 0);

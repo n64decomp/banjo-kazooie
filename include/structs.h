@@ -186,7 +186,7 @@ typedef struct struct_4_s{
 } struct4s;
 
 typedef struct struct_5_s{
-    s32 unk0;
+    BKModelBin *unk0;
     f32 unk4[3];
     f32 unk10[3];
     f32 unk1C[3];
@@ -623,5 +623,14 @@ typedef struct{
     u8 pad0[8];
     s32 unk8;
 }struct57s;
+
+typedef struct{
+    f32 unk0[3];
+    u8 padC[0x34];
+    s32 size_40;
+    s32 capacity_44;
+    Mtx data[];
+}struct58s;
+
 
 #endif

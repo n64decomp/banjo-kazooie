@@ -5,6 +5,9 @@
 extern CoMusic *D_80276E30; //active track ptr
 extern int D_80276E34;
 
+
+void func_8025AE50(s32, f32);
+
 //.rodata
 extern char D_80278340[]; //"comusic.c"
 extern char D_8027834C[]; //"comusic.c"
@@ -23,7 +26,7 @@ void func_8025ABB8(enum comusic_e, s32, s32, s32);
 struct12s *func_802EDAA4(s32 *, s32*);
 
 
-CoMusic *func_802598B0(s32 track_id) {
+CoMusic *func_802598B0(enum comusic_e track_id) {
     CoMusic *iMusPtr;
     CoMusic *freeSlotPtr;
 
@@ -121,7 +124,7 @@ s32 func_80259B8C(void){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_80259F7C.s")
 
-void func_8025A104(s32 arg0, s32 arg1){
+void func_8025A104(enum comusic_e arg0, s32 arg1){
     if (arg0 != D_80276E30[0].unk10){
         func_8024FC1C(0, arg0);
     }
@@ -135,7 +138,7 @@ void func_8025A104(s32 arg0, s32 arg1){
     func_80259994(&D_80276E30[0], arg1);
 }
 
-void func_8025A1A8(s32 arg0){
+void func_8025A1A8(enum comusic_e  arg0){
 
     if (arg0 != D_80276E30[0].unk10){
         func_8024FC1C(0, arg0);
@@ -222,7 +225,40 @@ void func_8025A58C(s32 arg0, s32 arg1){
     func_8025A55C(arg0, arg1, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025A5AC.s")
+
+void func_8025A5AC(enum comusic_e comusic_id, s32 arg1, s32 arg2){
+    CoMusic *tmp_a2;
+    s32 sp20;
+
+    if(arg1 == -1){
+        arg1 = func_80250034(comusic_id);
+    }
+
+    tmp_a2 = func_802598B0(comusic_id);
+    if(tmp_a2 == NULL)
+        return;
+
+    sp20 = (tmp_a2 - D_80276E30);
+    if(tmp_a2->unk10 < 0 || arg2){
+        switch(comusic_id){
+            case COMUSIC_15_EXTRA_LIFE_COLLECTED:
+                if(func_803348C0() != MAP_10_BGS_MR_VILE){
+            case COMUSIC_3B_MINIGAME_VICTORY:
+            case COMUSIC_3C_MINIGAME_LOSS:
+                    func_8025AE50(4000, 2.0f);
+                }//L8025A668
+        }
+        tmp_a2->unk10 = comusic_id;
+        tmp_a2->unk12 = 0;
+        tmp_a2->unk15 = 0;
+        tmp_a2->unk4 = 0.0f;
+        func_80259994(tmp_a2, arg1);
+        func_8024FC1C(sp20, comusic_id);
+    }
+    func_8024FD28(sp20, (s16) arg1);
+    tmp_a2->unk8 = arg1;
+
+}
 
 void func_8025A6CC(enum comusic_e arg0, s32 arg1){
     func_8025A5AC(arg0, arg1, 0);
@@ -382,17 +418,20 @@ void func_8025AC7C(enum comusic_e comusic_id, s32 arg1, s32 arg2, f32 arg3, s32 
 }
 
 //comusic_trackQueued
-int func_8025AD7C(s32 arg0){
+int func_8025AD7C(enum comusic_e arg0){
     CoMusic * trackPtr = func_802598B0(arg0);
     return (trackPtr == NULL || trackPtr->unk10 == -1)? 0 : 1;
 }
 
 //comusic_isPrimaryTrack
-int func_8025ADBC(s32 arg0){
+int func_8025ADBC(enum comusic_e arg0){
     return D_80276E30[0].unk10 == arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025ADD4.s")
+s32 func_8025ADD4(enum comusic_e id){
+    CoMusic * ptr = func_802598B0(id);
+    return ptr - D_80276E30;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025AE0C.s")
 

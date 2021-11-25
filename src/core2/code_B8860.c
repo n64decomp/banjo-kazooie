@@ -4,7 +4,7 @@
 
 extern void mlMtxRotate(f32, f32, f32);
 extern void func_80252330(f32, f32, f32);
-extern void func_80251494(Mtx *);
+extern void mlMtxApply(Mtx *);
 
 typedef struct {
     BKSprite *sprite_0;
@@ -50,7 +50,7 @@ void func_8033F7F0(u8 arg0, Gfx **gfx, Mtx **mtx, Vtx **vtx){
         }
         mlMtxRotate(sp54->unk10[0], sp54->unk10[1], sp54->unk10[2]);
         func_80252330(sp30[0], sp30[1], sp30[2]);
-        func_80251494(*mtx);
+        mlMtxApply(*mtx);
         gSPMatrix((*gfx)++, OS_PHYSICAL_TO_K0((*mtx)++), G_MTX_PUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
         func_803382E4(sp54->unk28_21);
         func_80338338(sp54->unk24[0], sp54->unk24[1],sp54->unk24[2]);

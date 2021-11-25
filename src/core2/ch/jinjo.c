@@ -171,7 +171,7 @@ void func_802CDD78(Actor * this){
                 if(local->unk4){
                     func_8025A6EC(COMUSIC_30_5TH_JINJO_COLLECTED, 28000);
                 }else{
-                    func_8025A6EC(SFX_JINJO_COLLECTED, 28000);
+                    func_8025A6EC(COMUSIC_A_JINJO_COLLECTED, 28000);
                 }
             }//L802CE114
             break;

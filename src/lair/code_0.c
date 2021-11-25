@@ -734,7 +734,7 @@ void func_803894B0(Actor *this)
     if (--this->unk1C[0] == 0)
     {
         func_80320004(0xA1, TRUE);
-        func_80324C88(0.5f, 0x3F9, 1.f, 32000);
+        func_80324C88(0.5f, SFX_3F9_UNKNOWN, 1.f, 32000);
         FUNC_8030E624(SFX_114_BRICKWALL_BREAKING, 1000, 0x332);
         func_802EE2E8(this, 0xB, 0x19, 0x000, D_80394FC0, D_80394FC4, 3.f);
         func_802EE2E8(this, 0xB, 0x17, 0x0B4, 0.5f,       D_80394FC8, 3.f);

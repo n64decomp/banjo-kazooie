@@ -308,7 +308,7 @@ void func_8038F620(Actor *this){
             actor_collisionOff(this);
             func_803300D8(this->marker, func_8038F5F8);
             func_80324CFC(0.0f, 0x43, 32000);
-            func_80324C88(0.0f, 0x113, 1.0f, 32000);
+            func_80324C88(0.0f, SFX_113_PAD_APPEARS, 1.0f, 32000);
             func_80324C88(0.75f, 0x415, 1.0f, 32000);
             func_80324C88(2.0f, 0x415, 1.0f, 32000);
 

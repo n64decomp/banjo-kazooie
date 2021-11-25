@@ -37,7 +37,15 @@ typedef struct {
 }BKEffectsList;
 
 typedef struct {
-    u8 pad0[0];
+    f32 unk0[3];
+    s16 unkC;
+    s16 unkE;
+}BKAnimation;
+
+typedef struct {
+    f32 unk0;
+    s16 cnt_4;
+    BKAnimation anim[];
 }BKAnimationList;
 
 typedef struct {

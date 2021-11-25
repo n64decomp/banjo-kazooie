@@ -240,17 +240,17 @@ typedef struct juju_s{
 
 typedef struct ch_fight_180_s{
     u8 unk0;
-    u8 pad1;
+    u8 unk1;
     u8 pad2;
     u8 pad3;
     u8 pad4;
     u8 pad5;
     u8 pad6;
     u8 pad7;
-    u8 pad8;
-    u8 pad9;
+    u8 unk8;
+    u8 unk9;
     u8 padA;
-    u8 padB;
+    u8 unkB;
     u8 unkC;
     u8 unkD;
     u8 unkE;
