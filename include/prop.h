@@ -419,8 +419,6 @@ typedef struct actor_s{
     u32 pad17C_30:31;
 } Actor;
 
-
-
 typedef struct actor_info_s{
     s16     unk0;
     s16     actorId;

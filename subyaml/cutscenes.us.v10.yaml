@@ -29,8 +29,10 @@ segments:
     vram: 0x803863F0
     subsegments:
       - [0x00000000, c, code_0]
-      - [0x60F0, c, code_60F0]
-      - [0x69F0, c, code_69F0]
+      - [0x60F0, c, code_60F0] #DONE
+      - [0x6730, c, code_6730] #DONE
+      - [0x69F0, c, code_69F0] #DONE
+      - [0x6C90, c, code_6C90] #DONE
   - name: data
     dir: cutscenes
     type: code
@@ -38,4 +40,12 @@ segments:
     vram: 0x8038D350
     subsegments:
       - [0x00006F60, bin, data_6F60]
+      - [0x000078A0, .data, code_60F0]
+      - [0x00008310, .data, code_6730]
+      - [0x000083B0, .data, code_69F0]
+      - [0x000084A0, .data, code_6C90]
+      - [0x00008540, bin, data_8540]
+      - [0x000085C0, .rodata, code_6730]
+      - [0x000085D0, .rodata, code_69F0]
+      - [0x000085E0, .rodata, code_6C90]
   - [0x000085F0]

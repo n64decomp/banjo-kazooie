@@ -2,22 +2,55 @@
 #include "functions.h"
 #include "variables.h"
 
+/* .rodata */
+extern f32 D_8038E930;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cutscenes/code_0/func_803863F0.s")
+/* .code */
+void func_803863F0(void){
+    func_8025A2D8();
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cutscenes/code_0/func_80386410.s")
+void func_80386410(void){
+    func_8025A2FC(0, 0x96);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cutscenes/code_0/func_80386434.s")
+void func_80386434(void){
+    comusic_8025AB44(COMUSIC_43_ENTER_LEVEL_GLITTER, 0, 300);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cutscenes/code_0/func_8038645C.s")
+void func_8038645C(void){
+    comusic_8025AB44(COMUSIC_32_STARTUP_LOGO_SCENE, 25000, 2000);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cutscenes/code_0/func_80386484.s")
+void func_80386484(void){
+    comusic_8025AB44(COMUSIC_32_STARTUP_LOGO_SCENE, 0, 2000);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cutscenes/code_0/func_803864AC.s")
+void func_803864AC(void){
+    s32 sp1C;
+    
+    sp1C = func_802F9AA8(SFX_93_MICROWAVE);
+    func_802F9F80(sp1C, 0.3f, 2.3f, 0.7f);
+    func_802FA060(sp1C, 20000, 20000, 0.0f);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cutscenes/code_0/func_80386504.s")
+void func_80386504(void){
+    s32 sp1C;
+    
+    sp1C = func_802F9AA8(SFX_134_FREEZING_SHIVER);
+    func_802F9F80(sp1C, 0.05f, 4.0f, 0.95f);
+    func_802FA060(sp1C, 15000, 15000, 0.0f);
+    func_802F9DB8(sp1C, D_8038E930, D_8038E930, 0.0f);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cutscenes/code_0/func_80386578.s")
+void func_80386578(s32 arg0){
+    s32 sp1C;
+    
+    sp1C = func_802F9AA8(SFX_134_FREEZING_SHIVER);
+    func_802F9F80(sp1C, 0.1f, 3.5f, 0.95f);
+    func_802FA060(sp1C, 8000, 8000, 0.0f);
+    func_802F9DB8(sp1C, 1.1f, 1.2f, 0.01f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/cutscenes/code_0/func_803865F0.s")
 
