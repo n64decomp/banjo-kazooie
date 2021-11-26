@@ -136,5 +136,5 @@ void func_80386768(Actor * this){
     }else{
     }//L80386928
 
-    func_8032628C(this, 0xFF - (s32)this->unk60);
+    actor_setOpacity(this, 0xFF - (s32)this->unk60);
 }//*/

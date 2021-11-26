@@ -169,7 +169,7 @@ segments:
   - [0x42CB0, c, code_42CB0]
   - [0x43250, c, code_43250]
   - [0x43390, c, code_43390]
-  - [0x43A40, c, code_43A40]
+  - [0x43A40, c, code_43A40] #DONE
   - [0x43CD0, c, mapspecificflags]
   - [0x440B0, c, code_440B0]
   - [0x45310, c, code_45310]
@@ -394,6 +394,8 @@ segments:
   - [0xDF3A0, bin, data_DF3A0]
   - [0xDFCC0, .data, ch/musicnote]
   - [0xDFCF0, bin, data_DFCF0]
+  - [0xDFF90, .data, code_43A40]
+  - [0xE0070, bin, data_E0070]
   - [0xE01D0, .data, ch/code_468E0]
   - [0xE0220, bin, data_E0220]
   - [0xE0330, .data, ch/beehive]

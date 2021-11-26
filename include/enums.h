@@ -1347,7 +1347,8 @@ enum actor_e
     ACTOR_8_CONGA             = 0x8,
     ACTOR_9_MM_HUT,
 
-    ACTOR_C_MUD_HUT         = 0xC,
+    ACTOR_B_SHOCKSPRING_PAD = 0xB,
+    ACTOR_C_MUD_HUT,
     ACTOR_D_WOOD_DEMOLISHED,
     ACTOR_E_BULL_INTRO,
     ACTOR_F_CHIMPY            = 0xF,
@@ -1384,6 +1385,8 @@ enum actor_e
 
     ACTOR_C5_CHIMPY_STUMP      = 0xC5,
     
+    ACTOR_E4_FLIGHT_PAD     = 0xE4,
+
     actor_leafboat          = 0xF1,
 
     ACTOR_F4_BURIED_TREASURE = 0xF4,
@@ -1449,6 +1452,8 @@ enum actor_e
     ACTOR_TOPPER_B          = 0x36F,
 
     ACTOR_37A_BOTTLES       = 0x37a,
+
+    ACTOR_39F_FIGHT_FLIGHT_PAD = 0x39F,
 
     ACTOR_3BA_UNKOWN        = 0x3ba
 };
@@ -1844,6 +1849,9 @@ enum asset_e
 
 
     ASSET_47B_MODEL_ROCK    = 0x47b,
+
+    ASSET_489_MODEL_SHOCKSPRING_PAD = 0x489,
+    ASSET_48A_MODEL_FLIGHT_PAD,
 
     ASSET_4A0_SPRITE_EXPLOSION = 0x4A0,
 

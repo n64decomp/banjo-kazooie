@@ -95,7 +95,7 @@ void func_8038E844(Actor *this){
         else{
             local->unk0 = 0;
             local->unk4 = 1;
-            func_8032628C(this, 0);
+            actor_setOpacity(this, 0);
             this->unk58_0 = 0;
             this->unk60 =  2.0f;
         }
@@ -127,7 +127,7 @@ void func_8038E844(Actor *this){
                     this->unk60 = 0.25f;
                 }
             }//L8038EB74
-            func_8032628C(this, local->unk0);
+            actor_setOpacity(this, local->unk0);
         }
     }
     //L8038EB80

@@ -138,7 +138,7 @@ void func_80389E90(Actor *this){
                 marker_despawn(this->marker);
             break;
     }//L8038A094
-    func_8032628C(this, (s32)this->unk60);
+    actor_setOpacity(this, (s32)this->unk60);
     this->unk124_9 = 2;
 }
 

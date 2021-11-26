@@ -382,8 +382,8 @@ void func_8038D014(Actor *this){
         this->unk16C_4 = 1;
         this->marker->propPtr->unk8_3 = 0;
         actor_collisionOff(this);
-        this->unk124_19 = 0x7d;
-        func_8032628C(this, this->unk124_19);
+        this->alpha_124_19 = 0x7d;
+        actor_setOpacity(this, this->alpha_124_19);
         this->scale = (f64)this->scale + this->scale;
         func_80328B8C(this, 5, 0.001f, 1);
         func_80343DEC(this);

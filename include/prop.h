@@ -364,8 +364,8 @@ typedef struct actor_s{
     f32 sound_timer;
     TUPLE(f32, spawn_position); //0x118
     u32 unk124_31:12;
-    u32 unk124_19:8;
-    u32 unk124_11:2;
+    u32 alpha_124_19:8;
+    u32 unk124_11:2; //blend_mode? 
     u32 unk124_9:2;
     u32 unk124_7:1;
     u32 unk124_6:1;

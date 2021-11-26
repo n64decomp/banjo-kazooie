@@ -6,6 +6,8 @@
 
 extern struct56s **D_80371E70;
 extern s32 D_80371E78;
+extern s32 D_80371E7C;
+
 
 f32 func_80340700(f32, f32, f32);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B9770/func_80340700.s")
@@ -108,15 +110,31 @@ int func_80342064(s32 arg0){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B9770/func_803431D0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B9770/func_80343654.s")
+s32 func_80343654(Actor *this){
+    s32 tmp_v1;
+    s32 tmp_a0;
+    tmp_v1 = this->unk10_8 ? 0x800 : 0x100;
+    tmp_a0 = this->unk10_7 ? 0x1000 : 0x200;
+    return tmp_a0 + tmp_v1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B9770/func_80343694.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B9770/func_803438E0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B9770/func_80343D50.s")
+int func_80343D50(Actor *this, s32 arg1, s32 arg2, s32 arg3){
+    s32 s0;
+    s0 = 0;
+    do{
+        D_80371E7C = 0; 
+        s0 += func_803438E0(this, arg1, arg2, arg3);
+    }while(D_80371E7C);
+    return s0 ? 1 : 0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B9770/func_80343DEC.s")
+void func_80343DEC(Actor *this){
+    func_80343D50(this, func_80343654(this), 0x19, 0x19);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B9770/func_80343E20.s")
 

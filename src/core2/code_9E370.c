@@ -64,19 +64,38 @@ Actor *D_80383390;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80326218.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80326224.s")
+void func_80326224(Actor *this){
+    func_80343DEC(this);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80326244.s")
+void func_80326244(Actor *this){
+    actor_collisionOff(this);
+    this->marker->unk2C_1 = 1;
+    func_80343DEC(this);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032627C.s")
+s32 func_8032627C(Actor *this){
+    return this->alpha_124_19;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032628C.s")
+void actor_setOpacity(Actor *this, s32 alpha){
+    this->unk124_11 = 3; //blend mode?
+    this->alpha_124_19 = alpha;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_803262B8.s")
+void func_803262B8(Actor *this){
+    this->unk124_11 = 0;
+    this->alpha_124_19 = 0xff;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_803262E4.s")
+void func_803262E4(Actor *this){
+    this->alpha_124_19 = 0;
+    this->unk124_11 = 1;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80326310.s")
+void func_80326310(Actor *this){
+    this->unk124_11 = 2;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80326324.s")
 
@@ -247,7 +266,7 @@ Actor *actor_new(s32 (* position)[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
         }
     }//L80327BA8
     D_80383390->unk124_11 = 0;
-    D_80383390->unk124_19 = 0xff;
+    D_80383390->alpha_124_19 = 0xff;
     D_80383390->unk124_9 = 1;
     D_80383390->unk124_0 = D_80383390->unk138_31 = 1;
     for(i = 0; i < 0x10; i++){

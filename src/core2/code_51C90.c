@@ -3,7 +3,7 @@
 #include "variables.h"
 
 u32 func_802D8D48(Actor*, u32, enum asset_e, enum comusic_e, enum item_e, f32);
-void func_8032628C(Actor*,s32);
+void actor_setOpacity(Actor*,s32);
 void func_8035644C(u32);
 
 void func_802D8C20(Actor *arg0, u32 arg1){
@@ -83,7 +83,7 @@ Actor *func_802D8F50(ActorMarker *this, Gfx **gdl, Mtx **mptr, u32 arg3){
             if(thisActor->unk28 == 255.0f){
                 func_803262B8(thisActor);
             } else{
-                func_8032628C(thisActor, thisActor->unk28);
+                actor_setOpacity(thisActor, thisActor->unk28);
             }
         }
         return func_80325934(this, gdl, mptr, arg3);

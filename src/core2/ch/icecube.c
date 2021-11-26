@@ -52,27 +52,27 @@ int func_80359DF4(Actor *this, s32 arg1){
 
 int func_80359E38(Actor *this, s32 arg1, s32 arg2){
     int sp1C = 0;
-    if(arg1 < this->unk124_19 + arg2){
-        this->unk124_19 = arg1;
+    if(arg1 < this->alpha_124_19 + arg2){
+        this->alpha_124_19 = arg1;
         sp1C = 1;
     }
     else{
-        this->unk124_19 += arg2;
+        this->alpha_124_19 += arg2;
     }
-    func_8032628C(this, this->unk124_19);
+    actor_setOpacity(this, this->alpha_124_19);
     return sp1C;
 }
 
 int func_80359EBC(Actor *this, s32 arg1, s32 arg2){
     int sp1C = 0;
-    if((this->unk124_19 - arg2) < arg1){
-        this->unk124_19 = arg1;
+    if((this->alpha_124_19 - arg2) < arg1){
+        this->alpha_124_19 = arg1;
         sp1C = 1;
     }
     else{
-        this->unk124_19 -= arg2;
+        this->alpha_124_19 -= arg2;
     }
-    func_8032628C(this, this->unk124_19);
+    actor_setOpacity(this, this->alpha_124_19);
     return sp1C;
 }
 
@@ -271,8 +271,8 @@ void chicecube_update(Actor *this){
         func_803300A8(this->marker, __chicecube_ow, NULL, __chicecube_die);
         this->marker->propPtr->unk8_3 = FALSE;
         actor_collisionOff(this);
-        this->unk124_19 = 0x50;
-        func_8032628C(this, this->unk124_19);
+        this->alpha_124_19 = 0x50;
+        actor_setOpacity(this, this->alpha_124_19);
         this->unk38_31 = 0;
         this->unk60 = 1.0f;
     }//L8035ABC0
