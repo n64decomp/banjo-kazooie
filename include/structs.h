@@ -625,8 +625,7 @@ typedef struct{
 }struct57s;
 
 typedef struct{
-    f32 unk0[3];
-    u8 padC[0x34];
+    Mtx mtx_0;
     s32 size_40;
     s32 capacity_44;
     Mtx data[];
