@@ -1104,7 +1104,11 @@ void *func_8033A110(BKModelBin *arg0){
     return (s32)arg0 + arg0->unk2C;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A12C.s")
+BKModelUnk14List *func_8033A12C(BKModelBin *this){
+    if(this->unk14 == 0)
+        return 0;
+    return (BKModelUnk14List *)((s32)this + this->unk14);
+}
 
 BKVertexList *func_8033A148(BKModelBin *arg0){
     return (BKVertexList *)((s32)arg0 + arg0->vtx_list_offset_10);

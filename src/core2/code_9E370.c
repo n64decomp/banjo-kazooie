@@ -21,14 +21,29 @@ extern char D_80378DFC[];
 extern char D_80378E08[]; // "subaddie.c"
 extern char D_80378E14[];
 extern char D_80378E20[];
+extern f64 D_80378E58;
+
 
 Actor *D_80383390;
 
 
+//marker_getActorAndRotation
+Actor * func_80325300(ActorMarker *marker,f32 rotation[3])
+{   Actor *actor = &D_8036E560->data[marker->actrArrayIdx];
+    rotation[0] = actor->pitch;
+    rotation[1] = actor->yaw;
+    rotation[2] = actor->roll;
+    return actor;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80325300.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80325340.s")
+Actor *func_80325340(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
+    BKModelBin * model_bin =  func_80330DE4(marker);
+    if(model_bin && func_8033A12C(model_bin)){
+        if(marker->collidable)
+            func_80330B1C(marker);
+    }
+    return NULL;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_803253A0.s")
 
@@ -119,11 +134,16 @@ void func_80326310(Actor *this){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80326FC0.s")
 
+void func_803270B8(f32 arg0[3], f32 arg1, s32 arg2, int (*arg3)(Actor *), ActorMarker *);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_803270B8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032728C.s")
+void func_8032728C(f32 arg0[3], f32 arg1, s32 arg2, int (*arg3)(Actor *)){
+    func_803270B8(arg0, arg1, arg2, arg3, player_getMarker());
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_803272D0.s")
+void func_803272D0(f32 arg0[3], f32 arg1, s32 arg2, int (*arg3)(Actor *)){
+    func_803270B8(arg0, arg1, arg2, arg3, NULL);
+}
 
 Actor *actor_new(s32 (* position)[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
     ActorAnimationInfo * sp54;
@@ -445,7 +465,18 @@ Actor * spawn_child_actor(enum actor_e id, Actor ** parent){
     return child;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80328230.s")
+Actor *func_80328230(enum actor_e id, f32 pos[3], f32 rot[3]){
+    int i;
+    s32 sp30[3];
+    Actor *actor;
+
+    for(i = 0; i < 3; i++){
+        sp30[i] = (s32)pos[i];
+    }
+    actor = func_803055E0(id, sp30, (f32) rot[1], 0, 0);
+    actor->pitch = rot[0];
+    return actor;
+}
 
 Actor *func_803282AC(enum actor_e id, s16 (* pos)[3], s32 yaw){
     s32 sp24[3];
@@ -453,7 +484,7 @@ Actor *func_803282AC(enum actor_e id, s16 (* pos)[3], s32 yaw){
     for(i = 0; i< 3; i++){
         sp24[i] = (*pos)[i];
     }
-    func_803056FC(id, &sp24, yaw);
+    return func_803056FC(id, &sp24, yaw);
 }
 
 void marker_despawn(ActorMarker *marker){
@@ -495,7 +526,18 @@ void func_803283D4(void){
 
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80328478.s")
+
+void func_80328478(f32 arg0[3], f32 arg1, f32 arg2){
+    f32 sp1C[3];
+    sp1C[0] = arg2;
+    sp1C[1] = 0.0f;
+    sp1C[2] = 0.0f;
+    ml_vec3f_yaw_rotate_copy(sp1C, sp1C, arg1 - D_80378E58);
+
+    arg0[0] += sp1C[0]; 
+    arg0[1] += sp1C[1]; 
+    arg0[2] += sp1C[2]; 
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80328508.s")
 /*int func_80328508(Actor * arg0, u32 arg1){
@@ -536,7 +578,7 @@ void func_803285E8(Actor *this, f32 arg1, int direction){
 
 int func_8032881C(Actor *this){
     if(this->animctrl){
-        if(animctrl_getPlaybackType(this->animctrl) == 1){
+        if(animctrl_getPlaybackType(this->animctrl) == ANIMCTRL_ONCE){
             return animctrl_isStopped(this->animctrl);
         }
     }
@@ -865,7 +907,11 @@ void *actors_appendToSavestate(void * begin, u32 end){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032A9E4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032AA58.s")
+//actor_setScale
+void func_8032AA58(Actor *this, f32 arg1){
+    this->scale = arg1;
+    this->marker->unk14_10 = 0;
+}
 
 void actor_collisionOff(Actor* this){
     this->marker->collidable = 0;
@@ -875,9 +921,33 @@ void actor_collisionOn(Actor* this){
     this->marker->collidable = 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032AA9C.s")
+void func_8032AA9C(void){
+    func_802C3BDC();
+}
 
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032AABC.s")
+#else
+void func_8032AABC(void)
+{
+    int i;
+    Actor * sp18 = (s32)D_8036E560 + sizeof(ActorArray);
+    s32 a2;
+    
+    func_802C3BE8();
+
+    
+    if(D_8036E560 == NULL)
+        return;
+    a2 = D_8036E560->cnt;
+    
+    for(i = 0; i != a2; i++){
+        sp18->marker->unk14_21 = 0;
+        sp18++;
+    }
+    
+}
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032AB84.s")
 

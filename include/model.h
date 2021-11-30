@@ -69,6 +69,10 @@ typedef struct {
 }BKTextureList;
 
 typedef struct {
+    u8 pad0[0];
+}BKModelUnk14List;
+
+typedef struct {
     BKMeshList *meshList_0;
     BKVertexList *vtxList_4;
 } BKModel;
@@ -80,7 +84,7 @@ typedef struct{
     s16 geo_typ_A;
     s32 gfx_list_offset_C;
     s32 vtx_list_offset_10;
-    u8 pad14[0x4];
+    s32 unk14;
     s32 animation_list_offset_18;
     s32 collision_list_offset_1C;
     s32 unk20;

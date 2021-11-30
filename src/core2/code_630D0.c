@@ -2,8 +2,34 @@
 #include "functions.h"
 #include "variables.h"
 
+typedef struct {
+    u8 pad0[0x40];
+    s32 unk40;
+    s32 unk44;
+    Mtx data[];
+} Struct_Core2_630D0_1;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_630D0/func_802EA060.s")
+void func_802EA060(Struct_Core2_630D0_1 **arg0, BKAnimationList *anim_list){
+    Struct_Core2_630D0_1 * sp24;
+    Mtx *tmp_s1;
+    Mtx *tmp_s0;
+    int i;
+
+    
+    sp24 = *arg0;
+    if(sp24->unk44 < anim_list->cnt_4){
+        sp24 = (Struct_Core2_630D0_1 *)realloc(sp24, anim_list->cnt_4 * sizeof(Mtx) + sizeof(Struct_Core2_630D0_1));
+        sp24->unk44 = anim_list->cnt_4;
+        (*arg0) = sp24;
+    }
+
+    sp24->unk40 = anim_list->cnt_4;
+    tmp_s1 = (Mtx *)(sp24->unk40*sizeof(Mtx) + (s32)sp24 +sizeof(Struct_Core2_630D0_1));
+    mlMtxIdent();
+    for(tmp_s0 = (Mtx *)((s32)sp24 +sizeof(Struct_Core2_630D0_1)); tmp_s0 < tmp_s1; tmp_s0++){
+        func_802513B0(tmp_s0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_630D0/func_802EA110.s")
 

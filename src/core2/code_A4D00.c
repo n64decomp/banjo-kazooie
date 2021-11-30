@@ -528,12 +528,12 @@ BKModelBin *func_80330B1C(ActorMarker *this){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_80330DC4.s")
 
-void *func_80330DE4(ActorMarker *this){
+BKModelBin *func_80330DE4(ActorMarker *this){
     Actor *thisActor = marker_getActor(this);
     return (modelCache + thisActor->modelCacheIndex)->modelPtr;
 }
 
-void *func_80330E28(Actor* this){
+BKModelBin *func_80330E28(Actor* this){
     return (modelCache + this->modelCacheIndex)->modelPtr;
 }
 

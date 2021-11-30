@@ -242,7 +242,7 @@ void spawnableActorList_addIfMapVisited(ActorInfo *arg0, Actor *(*arg1)(s32[3], 
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80305510.s")
 
-Actor * func_803055E0(enum actor_e arg0, s32 arg1[3], s32 arg2, s32 arg3){
+Actor * func_803055E0(enum actor_e arg0, s32 arg1[3], s32 arg2, s32 arg3, s32 arg4){
     Actor *actor = func_803056FC(arg0, arg1, arg2);
     s16 *tmp;
     s32 sp34[3];

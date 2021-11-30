@@ -365,6 +365,8 @@ void func_802EFA20(ParticleEmitter *, f32, f32);
 
 ParticleEmitter *func_802F0D74(ParticleEmitter *);
 
+Actor * func_803055E0(enum actor_e id, s32 pos[3], s32 arg2, s32 arg3, s32 arg4);
+
 u8   func_8030D90C(void);
 void func_8030DA80(u8 indx, enum sfx_e uid);
 void func_8030DBB4(u8, f32);
@@ -397,7 +399,7 @@ void func_8030EC20(enum sfx_e uid, f32 arg1, f32 arg2, u32 arg3, u32 arg4);
 u8 func_8030ED2C(enum sfx_e uid, s32 arg1);
 
 
-void func_8032728C(f32*, f32, s32, s32(*)(Actor *));
+void func_8032728C(f32[3], f32, s32, int(*)(Actor *));
 
 int  func_8032863C(AnimCtrl *, f32, f32);
 int  func_80328A2C(Actor *, f32, s32, f32);
@@ -435,7 +437,7 @@ int func_8025773C(f32 *arg0, f32 arg1);
 Actor *func_80325888(ActorMarker *, Gfx**, Mtx**, Vtx **);
 void func_80335924(void *, s32, f32, f32);
 
-extern Actor *func_80325340(ActorMarker *, Gfx**, Mtx**, s32);
+Actor *func_80325340(ActorMarker *, Gfx **, Mtx **, Vtx **);
 void func_8032AA58(Actor *, f32);
 void func_8034DDF0(void *, f32 (*)[3], f32 (*)[3], f32, s32);
 void func_80324E38(f32, s32);
