@@ -308,7 +308,7 @@ segments:
   - [0xC2C20, c, code_C2C20]
   - [0xC2F30, c, code_C2F30]
   - [0xC31A0, c, code_C31A0] #DONE
-  - [0xC3400, c, code_C3400]
+  - [0xC3400, c, rand]
   - [0xC3A40, c, code_C3A40]
   - [0xC3B20, c, code_C3B20]
   - [0xC4320, c, code_C4320]
@@ -537,6 +537,8 @@ segments:
   #- [0xF1918, bin]
   - [0xF2000, .rodata, code_B6CE0]
   - [0xF2030, bin, data_F2030]
+  - [0xF21C0, .rodata, rand]
+  - [0xF21E0, bin, data_F21E0]
   - [0xF2580, .rodata, ch/code_CFA60]
   - [0xF25D0, bin, data_F25D0]
   - [0xF2700, .rodata, ch/firefx]
