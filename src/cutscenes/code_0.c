@@ -2,8 +2,16 @@
 #include "functions.h"
 #include "variables.h"
 
+void func_802F9E44(s32, f32, f32, f32, f32);
+
 /* .rodata */
 extern f32 D_8038E930;
+extern f32 D_8038E934;
+extern f32 D_8038E938;
+extern f32 D_8038E93C;
+extern f32 D_8038E940;
+extern f32 D_8038E944;
+extern f32 D_8038E948;
 
 /* .code */
 void func_803863F0(void){
@@ -52,25 +60,98 @@ void func_80386578(s32 arg0){
     func_802F9DB8(sp1C, 1.1f, 1.2f, 0.01f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cutscenes/code_0/func_803865F0.s")
+void func_803865F0(void){
+    s32 sp1C;
+    
+    sp1C = func_802F9AA8(SFX_B0_SIZZLING_NOISE);
+    func_802F9F80(sp1C, 0.05f, 0.8f, 0.95f);
+    func_802FA060(sp1C, 20000, 20000, 0.0f);
+    func_802F9DB8(sp1C, 1.0f, 1.0f, 0.0f);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cutscenes/code_0/func_80386668.s")
+void func_80386668(void){
+    s32 indx;
+    
+    indx = func_802F9AA8(SFX_141_MECHANICAL_WINCH);
+    func_802F9F80(indx, 0.25f, 20.8f, 0.95f);
+    func_802FA060(indx, 28000, 28000, 0.0f);
+    func_802F9E44(indx, 0.0f, 5.0f, 0.2f, 0.5f);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cutscenes/code_0/func_803866E0.s")
+void func_803866E0(void){
+    s32 indx;
+    
+    indx = func_802F9AA8(SFX_141_MECHANICAL_WINCH);
+    func_802F9F80(indx, 0.25f, 14.0f, 0.85f);
+    func_802FA060(indx, 20000, 20000, 0.0f);
+    func_802F9E44(indx, 0.0f, 14.0f, D_8038E934, D_8038E934);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cutscenes/code_0/func_80386750.s")
+void func_80386750(void){
+    s32 indx;
+    
+    indx = func_802F9AA8(SFX_141_MECHANICAL_WINCH);
+    func_802F9F48(indx, 1);
+    func_802F9F80(indx, 0.25f, 5.5f, 0.8f);
+    func_802FA060(indx, 15000, 15000, 0.0f);
+    func_802F9E44(indx, 0.0f, 4.0f, 0.2f, D_8038E938);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cutscenes/code_0/func_803867D0.s")
+void func_803867D0(void){
+    s32 indx;
+    
+    indx = func_802F9AA8(SFX_17A_SHIPHORN);
+    func_802F9F48(indx, 1);
+    func_802F9F80(indx, 0.25f, 5.5f, 0.8f);
+    func_802FA060(indx, 18000, 18000, 0.0f);
+    func_802F9E44(indx, 0.0f, 5.5f, 0.5f, D_8038E93C);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cutscenes/code_0/func_8038684C.s")
+void func_8038684C(void){
+    s32 indx;
+    
+    indx = func_802F9AA8(SFX_41A_UNKNOWN);
+    func_802F9F80(indx, 0.25f, 4.0f, 0.5f);
+    func_802FA060(indx, 15000, 15000, 0.0f);
+    func_802F9E44(indx, 0.0f, 14.0f, 1.0f, D_8038E940);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cutscenes/code_0/func_803868B8.s")
+void func_803868B8(void){
+    s32 indx;
+    
+    indx = func_802F9AA8(SFX_41A_UNKNOWN);
+    func_802F9F80(indx, 0.25f, 2.0f, 0.5f);
+    func_802FA060(indx, 15000, 15000, 0.0f);
+    func_802F9E44(indx, 0.0f, 3.0f, 1.0f, D_8038E944);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cutscenes/code_0/func_80386924.s")
+void func_80386924(void){
+    s32 indx;
+    
+    indx = func_802F9AA8(SFX_191_STATIC);
+    func_802F9F80(indx, 0.3f, 5.0f, 1.5f);
+    func_802FA060(indx, 12000, 12000, 0.0f);
+    func_802F9DB8(indx, 1.0f, 1.1f, 0.04f);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cutscenes/code_0/func_80386990.s")
+void func_80386990(void){
+    s32 indx;
+    
+    indx = func_802F9AA8(SFX_191_STATIC);
+    func_802F9F80(indx, 0.3f, 4.0f, 0.5f);
+    func_802FA060(indx, 15000, 15000, 0.0f);
+    func_802F9DB8(indx, 0.6f, 0.7f, 0.04f);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cutscenes/code_0/func_80386A00.s")
+void func_80386A00(void){
+    s32 indx;
+    
+    indx = func_802F9AA8(SFX_191_STATIC);
+    func_802F9F80(indx, 0.3f, 4.0f, 0.5f);
+    func_802FA060(indx, 15000, 15000, 0.0f);
+    func_802F9DB8(indx, 1.0f, 1.1f, 0.04f);
+    func_802F9E44(indx, 1.0f, 4.0f, 1.1f, D_8038E948);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/cutscenes/code_0/func_80386A90.s")
 

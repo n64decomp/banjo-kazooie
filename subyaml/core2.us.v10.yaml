@@ -308,7 +308,7 @@ segments:
   - [0xC2C20, c, code_C2C20]
   - [0xC2F30, c, code_C2F30]
   - [0xC31A0, c, code_C31A0] #DONE
-  - [0xC3400, c, rand]
+  - [0xC3400, c, rand]       #DONE
   - [0xC3A40, c, code_C3A40]
   - [0xC3B20, c, code_C3B20]
   - [0xC4320, c, code_C4320]

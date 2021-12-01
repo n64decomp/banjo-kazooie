@@ -17,6 +17,7 @@ extern s32 D_80386104;
 extern s32 D_80386108;
 extern s32 D_8038610C;
 
+/* .code */
 f32 randf(void){
     f32 out;
     if(D_803860E4 & 3){

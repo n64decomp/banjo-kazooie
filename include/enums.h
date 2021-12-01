@@ -1247,8 +1247,8 @@ enum sfx_e
     SFX_SEXY_GRUNTY_TALKING_1,
     SFX_SEXY_GRUNTY_TALKING_2,
     SFX_FREEZE_FRAME,
-    SFX_GULP = 0x0190,
-    SFX_STATIC,
+    SFX_190_GULP = 0x0190,
+    SFX_191_STATIC,
 
     SFX_3E9_UNKNOWN = 0x3e9, //bsbwhirl
     SFX_3EA_UNKNOWN,         //chjig
@@ -1265,7 +1265,9 @@ enum sfx_e
 
     SFX_3FB_UNKNOWN = 0x3fb, //conga
 
-    SFX_413_UNKNOWN = 0x413 //water ripple?
+    SFX_413_UNKNOWN = 0x413, //water ripple?
+
+    SFX_41A_UNKNOWN = 0x41a,
 };
 
 
