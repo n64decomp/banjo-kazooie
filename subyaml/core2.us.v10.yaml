@@ -307,7 +307,7 @@ segments:
   - [0xC0CF0, c, code_C0CF0]
   - [0xC2C20, c, code_C2C20]
   - [0xC2F30, c, code_C2F30]
-  - [0xC31A0, c, code_C31A0]
+  - [0xC31A0, c, code_C31A0] #DONE
   - [0xC3400, c, code_C3400]
   - [0xC3A40, c, code_C3A40]
   - [0xC3B20, c, code_C3B20]
