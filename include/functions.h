@@ -475,7 +475,7 @@ void mapSpecificFlags_set(s32, s32);
 struct0 *func_8031B9D8(void);
 
 extern int  func_80259808(f32);
-void func_8034A174(s32, s32, f32[3]);
+void func_8034A174(struct5Bs *this, s32 indx,f32 dst[3]);
 void actor_playAnimationOnce(Actor *);
 void actor_loopAnimation(Actor *);
 

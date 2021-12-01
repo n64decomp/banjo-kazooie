@@ -631,5 +631,8 @@ typedef struct{
     Mtx data[];
 }struct58s;
 
-
+typedef struct {
+    f32 (*unk0)[3];
+    f32 (*unk4)[3];
+}struct5Bs;
 #endif
