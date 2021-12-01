@@ -55,5 +55,6 @@ segments:
     start: 0x0000B600
     vram: 0x803919F0
     subsegments:
-      - [0x0000B600, bin, data_B600]
+      - [0x0000B600, .data, code_0]
+      - [0x0000B650, bin, data_B650]
   - [0x0000CB20]

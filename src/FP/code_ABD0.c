@@ -4,7 +4,12 @@
 
 #include "prop.h"
 
+extern ActorInfo D_80367FE0;
+
+extern ActorInfo D_80391A10;
+extern ActorInfo D_80391A60;
 extern ActorInfo D_80391AB0;
+extern ActorInfo D_80391B50;
 extern ActorInfo D_80391BB0;
 extern ActorInfo D_80391C18;
 extern ActorInfo D_80391C58;
@@ -18,28 +23,22 @@ extern ActorInfo D_80391FD0;
 extern ActorInfo D_80391FF4;
 extern ActorInfo D_803920E8;
 extern ActorInfo D_803923D0;
-extern ActorInfo D_80391B50;
 extern ActorInfo D_80392420;
 extern ActorInfo D_80392470;
 extern ActorInfo D_803924B0;
 extern ActorInfo D_803924D4;
 extern ActorInfo D_803924F8;
-extern ActorInfo D_80391A10;
-extern ActorInfo D_80391A60;
 extern ActorInfo D_80392588;
 extern ActorInfo D_80392628;
 extern ActorInfo D_80392690;
 extern ActorInfo D_803926C0;
 extern ActorInfo D_80392700;
-extern ActorInfo D_80392840;
 extern ActorInfo D_80392730;
-extern ActorInfo D_80367FE0;
+extern ActorInfo D_80392840;
 extern ActorInfo D_803928E0;
 extern ActorInfo D_80392904;
 extern ActorInfo D_80392928;
 extern ActorInfo D_8039294C;
-extern ActorInfo D_80392B20;
-extern ActorInfo D_80392B44;
 extern ActorInfo D_80392970;
 extern ActorInfo D_80392994;
 extern ActorInfo D_803929B8;
@@ -52,6 +51,8 @@ extern ActorInfo D_80392A90;
 extern ActorInfo D_80392AB4;
 extern ActorInfo D_80392AD8;
 extern ActorInfo D_80392AFC;
+extern ActorInfo D_80392B20;
+extern ActorInfo D_80392B44;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/FP/code_ABD0/func_80390FC0.s")
 
@@ -119,4 +120,6 @@ void func_80391324(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/FP/code_ABD0/func_8039180C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_ABD0/func_80391894.s")
+void func_80391894(Actor *this){
+      func_802D3D74(this);
+}
