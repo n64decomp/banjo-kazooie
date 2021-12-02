@@ -13,8 +13,8 @@ options:
     #include "functions.h"
     #include "variables.h"
   create_detected_syms: yes
-  undefined_syms_path: FP/undefined_syms.FP.us.v10.txt
-  symbol_addrs_path:   FP/symbol_addrs.FP.us.v10.txt
+  undefined_syms_path: undefined_syms.us.v10.txt
+  symbol_addrs_path:   symbol_addrs.us.v10.txt
   undefined_funcs_auto_path: undefined_funcs_auto.FP.us.v10.txt
   undefined_syms_auto_path: undefined_syms_auto.FP.us.v10.txt
   base_path: .
@@ -30,6 +30,7 @@ segments:
     subsegments:
       - [0x00000000, c, code_0]
       - [0x4D0, c, code_4D0]
+      - [0x790, c, code_790]
       - [0xA40, c, code_A40]
       - [0x11F0, c, code_11F0]
       - [0x19E0, c, code_19E0]
@@ -56,5 +57,6 @@ segments:
     vram: 0x803919F0
     subsegments:
       - [0x0000B600, .data, code_0]
-      - [0x0000B650, bin, data_B650]
+      - [0x0000B650, .data, code_4D0]
+      - [0x0000B6A0, bin, data_B6A0]
   - [0x0000CB20]

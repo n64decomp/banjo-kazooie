@@ -32,7 +32,7 @@ void func_8038C058(void){
 
 void func_8038C0A8(ActorMarker *marker, s32 arg1, s32 arg2){
     Actor *actor = marker_getActor(marker);
-    jiggySpawn(JIGGY_RBB_SNORKEL, &D_80390B34);
+    jiggySpawn(JIGGY_53_RBB_SNORKEL, &D_80390B34);
     func_80324E60(0.5f, 0xb);
     func_8038C0FC(actor, 3);
 }
@@ -59,7 +59,7 @@ void func_8038C204(Actor *this){
         else
             func_8038C0FC(this, 1);
         
-        if(jiggyscore_80320F7C(JIGGY_RBB_SNORKEL))
+        if(jiggyscore_80320F7C(JIGGY_53_RBB_SNORKEL))
             marker_despawn(this->marker);
     }//L8038C27C
 

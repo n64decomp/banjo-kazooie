@@ -28,7 +28,7 @@ void func_8038B450(Actor *actor, s32 arg1){
 
 void func_8038B468(void){
     func_802C8F70(225.0f);
-    jiggySpawn(JIGGY_RBB_WHISTLE, D_80390A74);
+    jiggySpawn(JIGGY_54_RBB_WHISTLE, D_80390A74);
 }
 
 void func_8038B4A0(void){
@@ -79,7 +79,7 @@ void func_8038B654(Actor *this){
         this->unk16C_4 = 1;
         local->unk2 = 1;
         local->unk4 = "312111";
-        if(jiggyscore_80320F7C(JIGGY_RBB_WHISTLE))
+        if(jiggyscore_80320F7C(JIGGY_54_RBB_WHISTLE))
             func_8038B450(this, 2);
         else
             func_8038B450(this, 1);

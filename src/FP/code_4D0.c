@@ -2,19 +2,92 @@
 #include "functions.h"
 #include "variables.h"
 
+Actor *func_803868C0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
+void func_80386AA4(Actor *this);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_4D0/func_803868C0.s")
+/* .data */
+ActorAnimationInfo D_80391A40 []= {
+    { ASSET_1A1_AMIN_SLED, 1.0f},
+    { ASSET_1A1_AMIN_SLED, 1.0f},
+    { ASSET_1A1_AMIN_SLED, 1.0f},
+    { ASSET_1A1_AMIN_SLED, 1.0f}
+};
 
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_4D0/func_80386920.s")
+ActorInfo D_80391A60 = { 
+    0x3c, ACTOR_182_RACE_SLED, ASSET_352_MODEL_SLED, 
+    0x0, D_80391A40, 
+    func_80386AA4, NULL, func_803868C0, 
+    { 0x3, 0xe8, 0x0, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+};
 
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_4D0/func_803869FC.s")
+/* .code */
+Actor *func_803868C0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
+    Actor *this = marker_getActor(marker);
+    if(this->unk10_12 == FALSE){
+        return func_80325888(marker, gfx, mtx, vtx);
+    }
+    return this;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_4D0/func_80386AA4.s")
+void func_80386920(Actor *this, s32 next_state){
+    if(this->state != 1 || next_state != 1){
+        func_80328A84(this, next_state);
+        switch(next_state){
+            case 1: //L8038697C
+                this->unk10_12 = TRUE;
+                this->marker->propPtr->unk8_3 = FALSE;
+                break;
+            case 2: //L803869A4
+                this->unk10_12 = FALSE;
+                this->marker->propPtr->unk8_3 = TRUE;
+                break;
+            case 3: //L803869CC
+                this->unk10_12 = TRUE;
+                this->marker->propPtr->unk8_3 = FALSE;
+                break;
+        }
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_4D0/func_80386B80.s")
+void func_803869FC(ActorMarker *this_marker, ActorMarker *other_marker){
+    Actor *this = marker_getActor(this_marker);
+    f32 plyr_pos[3];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_4D0/func_80386BEC.s")
+    if(this->state == 2){
+        player_getPosition(plyr_pos);
+        if( this->position_y + 20.0f < plyr_pos[1] 
+            && func_8028F20C()
+            && player_getTransformation() == TRANSFORM_4_WALRUS
+            && func_8028F68C(0x29, this->marker)
+        ){
+            func_80386920(this, 3); //start_race
+        }
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_4D0/func_80386CB8.s")
+void func_80386AA4(Actor *this){
+    s32 sp24;
+    if(!this->initialized){
+        this->initialized = TRUE;
+        func_803300A8(this->marker, func_803869FC, NULL, NULL);
+        func_80386920(this, 1);
+    }
+    
+    sp24 = mapSpecificFlags_get(4);
+    if(sp24 == 0){
+        func_80386920(this, 1);
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_4D0/func_80386CF8.s")
+    switch (this->state){
+    case 1://L80386B38
+        if(sp24){
+            func_80386920(this, 2);
+        }
+        break;
+    case 3://L80386B50
+        if(func_8028ECAC() != 0xC){
+            func_80386920(this, 2);
+        }
+        break;
+    }
+}

@@ -87,8 +87,8 @@ u32 player_getTransformation(void);
 
 void func_8028E7EC(f32 (* arg0)[3]);
 
-void _player_getPosition(f32 (* dst)[3]);
-void player_getPosition(f32 (* dst)[3]);
+void _player_getPosition(f32 dst[3]);
+void player_getPosition(f32 dst[3]);
 void player_getRotation(f32 *dst);
 
 void func_80291A60(s32 arg0, f32* arg1);

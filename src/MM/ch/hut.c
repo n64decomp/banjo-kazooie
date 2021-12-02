@@ -97,7 +97,7 @@ void    chhut_update(Actor *this){
                     func_802C3F04(func_802C4218, D_803898D8[D_8037DCB0], *(s32*)(&sp3C[0]),*(s32*)(&sp3C[1]),*(s32*)(&sp3C[2]));
                 }
                 else{
-                    jiggySpawn(jiggy_mm_huts, sp3C);
+                    jiggySpawn(JIGGY_5_MM_HUTS, sp3C);
                 }
                 D_8037DCB0 = ( D_8037DCB0 + 1 ) % 6;
             }

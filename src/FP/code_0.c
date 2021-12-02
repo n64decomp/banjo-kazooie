@@ -8,14 +8,14 @@ void func_803867BC(Actor *this);
 
 /* .data */
 ActorAnimationInfo D_803919F0[] ={
-    0x1A1, 1.0f,
-    0x1A1, 1.0f,
-    0x1A1, 1.0f,
-    0x1A1, 1.0f
+    {ASSET_1A1_AMIN_SLED, 1.0f},
+    {ASSET_1A1_AMIN_SLED, 1.0f},
+    {ASSET_1A1_AMIN_SLED, 1.0f},
+    {ASSET_1A1_AMIN_SLED, 1.0f}
 };
 
 ActorInfo D_80391A10 = {
-    0x3B, 0x181, 0x352,
+    0x3B, ACTOR_181_SCARF_SLED, ASSET_352_MODEL_SLED,
     0, D_803919F0,
     NULL,  func_803867BC, func_80325888,
     {0x03, 0xE8, 00, 00},  0.0f, {0,0,0,0}
@@ -38,14 +38,14 @@ void func_803867BC(Actor *this){
         func_803300A8(this->marker, func_803864F4, NULL, NULL);
         this->marker->propPtr->unk8_3 = TRUE;
         this->unk10_12 = 0;
-        func_80258B8C(this->velocity);
+        ml_vec3f_clear(this->velocity);
         func_803863F0(this, 1);
     }
 
     if(!this->unk16C_4){
         this->unk16C_4 = TRUE;
-        if(func_80320FE0(0x2A)){
-            func_803282F4(this->marker);
+        if(jiggyscore_isCollected(JIGGY_2A_FP_BOGGY_1)){
+            marker_despawn(this->marker);
             return;
         }
     }

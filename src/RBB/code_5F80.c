@@ -199,7 +199,7 @@ void func_8038C9F0(s32 arg0, s32 arg1, s32 arg2){
     D_80391288[0] = (f32)arg0;
     D_80391288[1] = (f32)(arg1 + 0x28);
     D_80391288[2] = (f32)arg2;
-    jiggySpawn(JIGGY_RBB_BOSS_BOOM_BOX, &D_80391288);
+    jiggySpawn(JIGGY_56_RBB_BOSS_BOOM_BOX, &D_80391288);
 }
 
 void func_8038CA70(Actor *this, f32(*arg1)[3]){
@@ -525,7 +525,7 @@ void func_8038D8BC(Actor *this){
             func_8038CC9C(this, 7);
         }
 
-        if(jiggyscore_80320F7C(JIGGY_RBB_BOSS_BOOM_BOX) && !func_803203FC(2))
+        if(jiggyscore_80320F7C(JIGGY_56_RBB_BOSS_BOOM_BOX) && !func_803203FC(2))
             marker_despawn(this->marker);
         
         if(func_803203FC(2))
