@@ -1504,6 +1504,8 @@ enum actor_e
 
     ACTOR_2E5_WOODEN_DOOR   = 0x2e5,
 
+    ACTOR_30F_WHIPCRACK     = 0x30f,
+
     ACTOR_383_FIRE_FX       = 0x383,
 
     ACTOR_34D_BEE_SWARM     = 0x34D,
@@ -1944,6 +1946,11 @@ enum asset_e
     MODEL_TOPPER            = 0x4ed,
     MODEL_COLLYWOBBLE       = 0x4ee,
     MODEL_BAWL              = 0x4ef,
+
+    ASSET_4FD_MODEL_WHIPCRACK = 0x4fd,
+    ASSET_4FE_MODEL_WHIPCRACK_PART_1,
+    ASSET_4FF_MODEL_WHIPCRACK_PART_2,
+    ASSET_500_MODEL_WHIPCRACK_PART_3,
 
     ASSET_504_ICECUBE       = 0x504,
     ASSET_505_ICECUBE_CHUNK = 0x505,
