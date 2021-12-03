@@ -241,10 +241,12 @@ void func_802EFF50(ParticleEmitter *, f32);
 void func_802EFFA8(ParticleEmitter *this, s32 arg1[3]);
 void particleEmitter_setSpawnInterval(ParticleEmitter *, f32);
 
+int  func_8024DC04(f32, f32, f32);
 void func_8024E3A8(f32 (*)[3], f32);
 OSMesgQueue *func_8024F344(void);
 
 void ml_vec3f_clear(f32 dst[3]);
+void ml_vec3f_roll_rotate_copy(f32[3], f32[3], f32);
 void func_80250D94(f32, f32, f32);
 f32  func_80257A44(f32, f32);
 f32  func_80257C48(f32, f32, f32);
@@ -256,6 +258,7 @@ f32  mlClamp_f(f32, f32, f32);
 f32  func_802588B0(f32, f32);
 void func_802589E4(f32 dst[3], f32 yaw, f32 length);
 f32  mlDiffDegF(f32, f32);
+
 void func_8025A6EC(enum comusic_e, s32);
 void func_8025A70C(enum comusic_e);
 void comusic_8025AB44(enum comusic_e comusic_id, s32 arg1, s32 arg2);
@@ -372,6 +375,8 @@ void func_802EFA20(ParticleEmitter *, f32, f32);
 
 
 ParticleEmitter *func_802F0D74(ParticleEmitter *);
+
+extern s32 func_802F9AA8(enum sfx_e);
 
 Actor * func_803055E0(enum actor_e id, s32 pos[3], s32 arg2, s32 arg3, s32 arg4);
 
@@ -492,7 +497,7 @@ void func_80326224(Actor *this);
 void func_803300D8(ActorMarker *, void (*)(Actor *));
 void func_8034DE60(s32, f32, f32, f32, s32);
 void func_802F9FD0(s32, f32, f32, f32);
-void func_80324D54(f32, s32, f32, s32, f32 (*)[3], f32, f32);
+void func_80324D54(f32, enum sfx_e, f32, s32, f32 (*)[3], f32, f32);
 
 void glcrc_calc_checksum(void *start, void *end, u32 *checksum);
 f32 climbGetBottomY(void);

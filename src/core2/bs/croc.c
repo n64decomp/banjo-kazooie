@@ -15,7 +15,11 @@ const f32 D_80364B14 = 0.2f;
 const f32 D_80364B18 = 693.5f; //jump initial velocity
 const f32 D_80364B1C = -1200.0f; //jump gravity
 u8  D_80364B20 = 0;
-s16 D_80364B24[] = {0x54, 0x55, 0x56};
+s16 D_80364B24[] = {
+    SFX_54_BANJO_HOO_1, 
+    SFX_55_BANJO_HOO_2, 
+    SFX_56_BANJO_HUI
+};
 
 /* .bss */
 extern f32 D_8037D3E0;
@@ -533,7 +537,7 @@ void bscroc_bite_update(void){
         }
     }
     if(animctrl_isAt(aCtrl, 0.6f)){
-        func_8030EB00(0x6d, 1.0f, 1.1f);
+        func_8030EB00(SFX_6D_CROC_BITE, 1.0f, 1.1f);
     }
 
     if(D_8037D3F4 == 3){

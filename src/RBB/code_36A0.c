@@ -107,9 +107,9 @@ void func_80389C78(Actor *this){
         || (180.0f < tmp && this->pitch <= 180.0f)
     ){
         if(levelSpecificFlags_get(3) || levelSpecificFlags_get(4))
-            func_8030E760(2, 0.4f, 0x4e20);
+            func_8030E760(SFX_2_CLAW_SWIPE, 0.4f, 0x4e20);
         else
-            func_8030E988(2, 0.4f, 0x4e20, &this->position, 500.0f, 1000.0f);
+            func_8030E988(SFX_2_CLAW_SWIPE, 0.4f, 0x4e20, &this->position, 500.0f, 1000.0f);
     }//L80389F94
     if(this->pitch < 0.0f)
         this->pitch += 360.0f;

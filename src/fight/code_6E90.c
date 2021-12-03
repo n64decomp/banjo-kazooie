@@ -68,7 +68,7 @@ void func_8038D428(ActorMarker *arg0, s32 arg1) {
             func_80328A84(temp_v0, 3);
             func_8038DE98(temp_v0->unk100);
             func_8038D3DC(temp_v0, 0x19A, -100.0f, 0.0f, 1.2f);
-            func_80324D54(1.2f, 0x90, 1.0f, 0x7D00, &temp_v0->position, 1000.0f, 2000.0f);
+            func_80324D54(1.2f, SFX_90_SWITCH_PRESS, 1.0f, 0x7D00, &temp_v0->position, 1000.0f, 2000.0f);
         }
     }
 }

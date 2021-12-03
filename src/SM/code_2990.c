@@ -511,7 +511,7 @@ void func_803899B0(Actor * this){
             || actor_animationIsAt(this, 0.28f)
             || actor_animationIsAt(this, 0.31f)
         ){
-            func_8030E878(0x6f, randf2(1.4f, 1.55f), 0x3e80, &this->position, 1250.0f, 2500.0f);
+            func_8030E878(SFX_6F_BANJO_HEADSCRATCH, randf2(1.4f, 1.55f), 0x3e80, &this->position, 1250.0f, 2500.0f);
         } //L8038A0D8
         else if( actor_animationIsAt(this, 0.45f)
             || actor_animationIsAt(this, 0.48f)
@@ -520,7 +520,7 @@ void func_803899B0(Actor * this){
             || actor_animationIsAt(this, 0.73f)
             || actor_animationIsAt(this, 0.76f)
         ){
-            func_8030E878(0x6f, randf2(1.35f, 1.5f), 0x1770, &this->position, 1250.0f, 2500.0f);
+            func_8030E878(SFX_6F_BANJO_HEADSCRATCH, randf2(1.35f, 1.5f), 0x1770, &this->position, 1250.0f, 2500.0f);
         }//L8038A194
 
         if(mapSpecificFlags_get(5)){

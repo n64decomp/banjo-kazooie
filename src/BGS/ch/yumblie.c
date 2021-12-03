@@ -64,9 +64,9 @@ void func_8038B220(Actor* this, u32 state){
         func_80335924(this->unk148, (s0->unk4)? 0x12A : 0x127, 0.1f, randf2(0.5f, 1.0f));
         func_80335A8C(this->unk148, 1);
         if(s0->unk4){
-            func_8030E6A4(0xc4,randf2(1.0f, D_80391018), 0x7530);
+            func_8030E6A4(SFX_C4_TWINKLY_MUNCHER_GRR,randf2(1.0f, D_80391018), 0x7530);
         }else{
-            func_8030E878(0xc3,randf2(1.0f, D_8039101C), 0x7530, this->position, 500.0f, D_80391020);
+            func_8030E878(SFX_C3_HEGH,randf2(1.0f, D_8039101C), 0x7530, this->position, 500.0f, D_80391020);
         }
     }
     
@@ -78,7 +78,7 @@ void func_8038B220(Actor* this, u32 state){
     if(state == 5){
         s0->unk8 = randf2(10.0f, 20.0f);
         func_8038ACFC(s0->unkC, this->marker);
-        func_8030E878((s0->unk4)? 0xc4: 0xc3, 1.4f, 0x7D00, this->position, 500.0f, D_80391024);
+        func_8030E878((s0->unk4)? SFX_C4_TWINKLY_MUNCHER_GRR: SFX_C3_HEGH, 1.4f, 0x7D00, this->position, 500.0f, D_80391024);
     }
     this->state = state;
 }

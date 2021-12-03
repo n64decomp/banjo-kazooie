@@ -315,11 +315,11 @@ void func_8038F620(Actor *this){
 
         }
         else{//L8038F738
-            func_80324D54(0.26f, 0x14f, 1.0f, 0x61A8,
+            func_80324D54(0.26f, SFX_14F_FIREWORK_WHISTLING, 1.0f, 0x61A8,
                 &this->position, 1000.0f, 7500.0f
             );
 
-            func_80324D54(0.4f, 0x14e, 1.0f, 0x61A8,
+            func_80324D54(0.4f, SFX_14E_SOFT_EXPLOSION, 1.0f, 0x61A8,
                 &this->position, 500.0f, 4500.0f
             );
         }

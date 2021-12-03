@@ -309,7 +309,7 @@ void func_80386EC0(s32 arg0) {
     ActorMarker *marker;
 
     marker = func_8032813C(0x38A, &D_80392758, 0)->marker;
-    func_8030E878(0x147, randf2(D_803920C8, D_803920CC), 0x7D00, &D_80392758, D_803920D0, D_803920D4);
+    func_8030E878(SFX_147_GRUNTY_SPELL_ATTACK_2, randf2(D_803920C8, D_803920CC), 0x7D00, &D_80392758, D_803920D0, D_803920D4);
     func_803900DC(marker, &D_80392758, D_80392768[1], D_80392768[2]);
 }
 
@@ -329,7 +329,7 @@ void func_80386FD8(s32 arg0) {
     ActorMarker *marker;
 
     marker = func_8032813C(0x389, D_80392758, 0)->marker;
-    func_8030E878(0x146, randf2(D_803920D8, D_803920DC), 0x7D00, D_80392758, D_803920E0, D_803920E4);
+    func_8030E878(SFX_146_GRUNTY_SPELL_ATTACK_1, randf2(D_803920D8, D_803920DC), 0x7D00, D_80392758, D_803920E0, D_803920E4);
     func_8038FB84(marker, D_80392758, D_80392768, D_80392778);
 }
 
@@ -337,7 +337,7 @@ void func_80387074(s32 arg0) {
     ActorMarker *marker;
 
     marker = func_8032813C(0x3AA, D_80392758, 0)->marker;
-    func_8030E878(0x146, randf2(D_803920E8, D_803920EC), 0x7D00, D_80392758, D_803920F0, D_803920F4);
+    func_8030E878(SFX_146_GRUNTY_SPELL_ATTACK_1, randf2(D_803920E8, D_803920EC), 0x7D00, D_80392758, D_803920F0, D_803920F4);
     func_8038FB84(marker, D_80392758, D_80392768, D_80392778);
 }
 
@@ -650,7 +650,7 @@ void func_8038BCF0(Actor *this){
         func_8028FA14(0x93, 2);
         func_8034C9B0(0);
         func_80386698(2.0f);
-        tmp_s0 = func_802F9AA8(0x9A);
+        tmp_s0 = func_802F9AA8(SFX_9A_MECHANICAL_CLOSING);
         func_802F9DB8(tmp_s0, D_80392450, D_80392450, 0.0f);
         func_802F9FD0(tmp_s0, 0.0f, 2.0f, 0.0f);
         func_802FA060(tmp_s0, 25000, 25000, 0);

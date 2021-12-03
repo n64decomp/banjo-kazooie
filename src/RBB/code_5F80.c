@@ -477,7 +477,7 @@ void func_8038D7E8(ActorMarker *marker, s32 arg1){
     ActorLocal_RBB_5F80 *local = (ActorLocal_RBB_5F80 *) &actor->local;
 
     func_8030E8B4(0x7ff3881e, &actor->position, 0x07d003e8);
-    func_8030E6A4(0xd7, local->unk0->unk10, 0x7530);
+    func_8030E6A4(SFX_D7_GRABBA_DEATH, local->unk0->unk10, 0x7530);
     local->unk4 += (arg1) ? 1 : 5;
     if(local->unk4 >= local->unk0->unkC)
         func_8038CC9C(actor, 5);
@@ -565,7 +565,7 @@ void func_8038D8BC(Actor *this){
         if(func_8033567C(this->unk148) == 0x147){
             func_8033568C(this->unk148, &sp5C, &sp58);
             if(sp5C < 0.6 && 0.6 <= sp58){
-                func_8030E878(0x6C, randf2(-0.05f, 0.05f) + local->unk0->unk14, 0x4e20, &this->position, 500.0f, 1000.0f);
+                func_8030E878(SFX_6C_LOCKUP_CLOSING, randf2(-0.05f, 0.05f) + local->unk0->unk14, 0x4e20, &this->position, 500.0f, 1000.0f);
             }//L8038DC04
             if(sp5C < 0.1 && 0.1 <= sp58){
                 func_8038C39C(this);

@@ -66,7 +66,7 @@ void bsbflip_update(void){
         && animctrl_getPlaybackType(aCtrl) != 2
         && animctrl_getIndex(aCtrl) == 0x4B
     ){
-        func_8030E760(2, 0.558f, 22000);
+        func_8030E760(SFX_2_CLAW_SWIPE, 0.558f, 22000);
     }
 
     switch(D_8037D310){

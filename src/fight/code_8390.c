@@ -77,7 +77,7 @@ void func_8038E844(Actor *this){
         local->unk4 = 1;
         this->unk124_9 = 0;
         this->scale = 0.0f;
-        this->unk44_31 = func_8030ED2C(0x142, 3);
+        this->unk44_31 = func_8030ED2C(SFX_142_GRUNTY_LAUGH_3, 3);
         func_8030DB04(this->unk44_31, 32000, &this->position, 4000.0f, 12000.0f);
         func_8030DBB4(this->unk44_31, 1.0f);
         local->unk10 = func_8030ED2C(0x415, 3);

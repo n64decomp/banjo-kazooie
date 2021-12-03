@@ -248,7 +248,7 @@ void func_8038F190(Actor *this, s32 arg1){
     if(arg1 == 3){
         func_8038FB6C();
         actor_collisionOff(this);
-        func_80324D54(0.0f, 0x1b, 1.0f, 0x7d00, &this->position, 1000.0f, 2000.0f);
+        func_80324D54(0.0f, SFX_1B_EXPLOSION_1, 1.0f, 0x7d00, &this->position, 1000.0f, 2000.0f);
         func_80335924(this->unk148, 0x148, 0.2f, 1.0f);
         func_80335A8C(this->unk148, 2);
         func_8038EAB4(this);
@@ -380,7 +380,7 @@ void func_8038F618(Actor *this){
             func_80255FE4(&this->position, &local->unk14, &local->unk20, (sp68 - 0.1) /0.5 );
         if(0.6);
         if(sp6C < 0.6 && sp68 <= 0.1)
-            func_8030E878(0x6C, (f64)1.1f + randf2(-0.05f, 0.05f), 20000, &this->position, 500.0f, 1000.0f);
+            func_8030E878(SFX_6C_LOCKUP_CLOSING, (f64)1.1f + randf2(-0.05f, 0.05f), 20000, &this->position, 500.0f, 1000.0f);
 
         if(sp6C < 0.1 && 0.1 <= sp68)
             func_8038E998(this);

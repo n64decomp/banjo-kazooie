@@ -79,7 +79,7 @@ void func_8038DF6C(Actor* this){
 
     if(func_8025773C(&local->unk24[2], sp68)){
         local->unk24[2] = randf2(3.5f, 5.5f);
-        func_8030E878(0x69, randf2(1.1f, 1.2f), 0x55f0, this->position, 500.0f, 1500.0f);
+        func_8030E878(SFX_69_WHIPCRACK_CREAKING, randf2(1.1f, 1.2f), 0x55f0, this->position, 500.0f, 1500.0f);
     }//L8038E184
 
     local->unk24[0] += sp68;

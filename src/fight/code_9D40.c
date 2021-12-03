@@ -207,7 +207,7 @@ void func_8039049C(Actor *this){
         local->unk14 = 0.7f;
         func_8025A6EC(JINGLE_MENACING_GRUNTILDA_B, 20000);
         func_8025A58C(0, 0x7fff);
-        this->unk44_31 = func_8030ED2C(0x17A, 3);
+        this->unk44_31 = func_8030ED2C(SFX_17A_SHIPHORN, 3);
         func_8030DABC(this->unk44_31, 25000);
         func_8030DBB4(this->unk44_31, local->unk14);
         func_8030E2C4(this->unk44_31);
@@ -306,7 +306,7 @@ void func_8039049C(Actor *this){
                 if(--local->unk28 <= 0){
                 func_803903C4(this);
                 func_8030E8B4(0x7fff4135, &this->position, 0.250298f);
-                func_80324D54(D_803926C8,0xc1, 0.85f, 32000, &this->position, D_803926CC, D_803926D0);
+                func_80324D54(D_803926C8, SFX_C1_BUZZBOMB_ATTACK, 0.85f, 32000, &this->position, D_803926CC, D_803926D0);
                 if(this->unk44_31){
                     func_8030E394(this->unk44_31);
                     func_8030DA44(this->unk44_31);
@@ -339,7 +339,7 @@ void func_8039049C(Actor *this){
                 func_8034A174(this->marker->unk44, 0x1f, &this->position);
                 func_803903C4(this);
                 func_8030E8B4(0x7fff4135, &this->position, 0.250298f);
-                func_80324D54(D_803926EC, 0xc1, 0.85f, 32000, &this->position, D_803926F0, D_803926F4);
+                func_80324D54(D_803926EC, SFX_C1_BUZZBOMB_ATTACK, 0.85f, 32000, &this->position, D_803926F0, D_803926F4);
                 sp2C[2] = 0.0f;
                 sp2C[1] = 0.0f;
                 sp2C[0] = 0.0f;

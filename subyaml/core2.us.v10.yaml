@@ -353,7 +353,7 @@ segments:
   - [0xD7D10, c, code_D7D10]
   - [0xD89E0, c, code_D89E0]
   - [0xD9DA0, c, code_D9DA0]
-  - [0xDA3A0, c, code_DA3A0]
+  - [0xDA3A0, c, code_DA3A0] #DONE
   - [0xDA760, c, code_DA760] #DONE
   - [0xDAAA0, c, code_DAAA0]
   - [0xDB010, c, code_DB010]
@@ -424,6 +424,7 @@ segments:
   - [0xEBB30, .data, ch/drips]
   - [0xEBBC0, .data, ch/icecube]
   - [0xEBC50, bin, data_EBC50]
+  - [0xEC1A0, .data, code_DA3A0]
   - [0xEC220, .data, code_DA760]
   - [0xEC250, bin, code_EC250]
   - [0xECE30, .data, code_DC4B0]
@@ -545,6 +546,7 @@ segments:
   - [0xF2740, .rodata, ch/drips]
   - [0xF2760, .rodata, ch/icecube]
   - [0xF2810, bin, data_F2810]
+  - [0xF2AF0, .rodata, code_DA3A0]
   - [0xF2B00, .rodata, code_DA760]
   - [0xF2B20, bin, data_F2B20]
   - [0xF2B30, .rodata, code_DB010] #code_DB010 - func_80362E94

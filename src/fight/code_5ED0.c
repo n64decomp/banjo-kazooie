@@ -244,7 +244,7 @@ void func_8038C840(Actor *this){
 
         case 2: // 8038C980
             if(actor_animationIsAt(this, 0.44f))
-                func_8030E878(0x105, randf2(0.95f, D_803924D0), 32000, &this->position, 1000.0f, D_803924D4);
+                func_8030E878(SFX_105_EYRIE_YAWN, randf2(0.95f, D_803924D0), 32000, &this->position, 1000.0f, D_803924D4);
             
             if(actor_animationIsAt(this, 0.999f)){
                 func_80328B8C(this, 3, 0.001f, 1);
@@ -326,7 +326,7 @@ void func_8038C840(Actor *this){
                     animctrl_setSmoothTransition(this->animctrl, FALSE);
                     func_80328B8C(this, 5, 0.001f, 1);
                     func_8030E8B4(0x7fff4135, &this->position, 0x3e802710);
-                    func_80324D54(D_80392500, 0xc1, 0.85f, 32000, &this->position, D_80392504, D_80392508);
+                    func_80324D54(D_80392500, SFX_C1_BUZZBOMB_ATTACK, 0.85f, 32000, &this->position, D_80392504, D_80392508);
                     func_8034A174(this->marker->unk44, 0x1f, &this->position);
                     this->velocity_x = (this->position_x - this->unk1C[0])/ sp74;
                     this->velocity_y = (this->position_y - this->unk1C[1])/ sp74;

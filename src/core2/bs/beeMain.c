@@ -25,7 +25,7 @@ extern f32 D_803649EC;
 extern f32 D_803649F0;
 extern f32 D_803649F4;
 extern u8  D_803649F8;
-extern s16 D_803649FC[];
+extern s16 D_803649FC[2] = {SFX_54_BANJO_HOO_1, SFX_55_BANJO_HOO_2};
 
 
 extern f32 D_8037D2D0;

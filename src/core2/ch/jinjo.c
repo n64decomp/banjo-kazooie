@@ -211,30 +211,30 @@ void func_802CDD78(Actor * this){
                     func_802CDC9C(this, sp66);
 
                 if(actor_animationIsAt(this, 0.1f)){
-                    local->unkC = func_802F9AA8(0x18);
+                    local->unkC = func_802F9AA8(SFX_18_BIGBUTT_SLIDE);
                     func_802F9EC4(local->unkC, sp30, 500, 2000);
                     func_802F9F80(local->unkC, 0.0f, 0x50061c46, 0.0f);
                     func_802FA0B0(local->unkC, 0);
                     func_8025A6EC(COMUSIC_43_ENTER_LEVEL_GLITTER, 0x7FFF);
                     func_8025AABC(COMUSIC_43_ENTER_LEVEL_GLITTER);
-                    func_8030E9C4(0xc7, 0.8f, 0x7FFF, sp30, 300.0f, 2000.0f);
+                    func_8030E9C4(SFX_C7_SHWOOP, 0.8f, 0x7FFF, sp30, 300.0f, 2000.0f);
                 }//L802CE3C4
 
                 if(actor_animationIsAt(this, 0.434f)){
-                    func_8030E9C4(0xc7, 0.9f, 0x7fff, sp30, 300.0f, 2000.0f);
+                    func_8030E9C4(SFX_C7_SHWOOP, 0.9f, 0x7fff, sp30, 300.0f, 2000.0f);
                 }//L802CE408
                 
                 if(actor_animationIsAt(this, 0.811f)){
-                    func_8030E9C4(0xc7, 1.0f, 0x7fff, sp30, 300.0f, 2000.0f);
+                    func_8030E9C4(SFX_C7_SHWOOP, 1.0f, 0x7fff, sp30, 300.0f, 2000.0f);
                 }
 
             }else{//L802CE450
                 if(actor_animationIsAt(this,0.214f)){
-                    func_8030E9C4(0xc7, 1.1f, 0x7fff, sp30, 300.0f, 2000.0f);
+                    func_8030E9C4(SFX_C7_SHWOOP, 1.1f, 0x7fff, sp30, 300.0f, 2000.0f);
                 }//L802CE490
 
                 if(actor_animationIsAt(this,0.55f)){
-                    func_8030E9C4(0x53, 1.5f, 0x7fff, sp30, 300.0f, 2000.0f);
+                    func_8030E9C4(SFX_53_BANJO_HUIII, 1.5f, 0x7fff, sp30, 300.0f, 2000.0f);
                 }//L802CE4D0
 
                 if(actor_animationIsAt(this,0.75f)){ 
@@ -277,7 +277,7 @@ void func_802CDD78(Actor * this){
             case 0x31: 
                 if(actor_animationIsAt(this, 0.6f)){
                     if(local->unk8){
-                        func_8030E988(8, 1.8f, 18000, sp30, 120.0f, 1200.0f);
+                        func_8030E988(SFX_8_BANJO_LANDING_04, 1.8f, 18000, sp30, 120.0f, 1200.0f);
                     }else{
                         func_8030E8B4(0xE6319008, sp30, 0x4B00078);
                     }
@@ -286,7 +286,7 @@ void func_802CDD78(Actor * this){
             case 0x2D: //L802CE6F4
                 if(actor_animationIsAt(this, 0.2f)){
                     if(local->unk8){
-                        func_8030E988(0x17, 1.0f, 22000, sp30, 120.0f, 1200.0f);
+                        func_8030E988(SFX_17_JINJO_WHISTLE, 1.0f, 22000, sp30, 120.0f, 1200.0f);
                     }else{
                         func_8030E8B4(0x7FF57827, sp30, 0x4B00078);
                     }
@@ -295,7 +295,7 @@ void func_802CDD78(Actor * this){
             case 0x2F: //L802CE760
                 if(actor_animationIsAt(this, 0.2f)){
                     if(local->unk8){
-                        func_8030E988(0x27, 1.0f, 22000, sp30, 120.0f, 1200.0f);
+                        func_8030E988(SFX_27_JINJO_HI, 1.0f, 22000, sp30, 120.0f, 1200.0f);
                     }else{
                         func_8030E8B4(0x7FF57817, sp30, 0x4B00078);
                     }

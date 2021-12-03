@@ -291,7 +291,7 @@ void bsblongleg_exit_update(void){
             break;
         case 1://L802A5CB4
             if(animctrl_isStopped(aCtrl))
-                sp1C = BS_IDLE;
+                sp1C = BS_1_IDLE;
             break;
     }
 

@@ -17,7 +17,7 @@ extern struct43s D_8038AB9C;
 
 void func_803869A0(Actor *this, f32 arg1, f32 arg2) {
     if (actor_animationIsAt(this, arg1)) {
-        func_8030E878(0x98, arg2, 0x7D00, this->position, 2000.0f, 4000.0f);
+        func_8030E878(SFX_98_DEAF_THUD, arg2, 0x7D00, this->position, 2000.0f, 4000.0f);
     }
 }
 

@@ -82,7 +82,7 @@ void func_8038E120(ActorMarker * marker, s32 arg1){
             func_8025A70C(COMUSIC_2B_DING_B);
             if(local->unk0[indx] <= 0){
                 func_8038E0D4(actor, indx + 0x19a, -100.0f, 0.0f, 1.2f);
-                func_80324D54(1.2f, 0x90, 1.0f, 0x7d00, &actor->position, 1000.0f, 2000.0f);
+                func_80324D54(1.2f, SFX_90_SWITCH_PRESS, 1.0f, 0x7d00, &actor->position, 1000.0f, 2000.0f);
             }
         }//L8038E210
         remaining = local->unk0[0] + local->unk0[1] + local->unk0[2] + local->unk0[3];

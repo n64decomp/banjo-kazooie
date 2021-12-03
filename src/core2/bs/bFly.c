@@ -171,7 +171,7 @@ void bsbfly_update(void){
             break;
     }//L802A3CB8
     if(animctrl_isAt(aCtrl, 0.1358f)){
-        func_8030EBC8(2, 0.6f, 0.7f, 0x2710, 0x2ee0);
+        func_8030EBC8(SFX_2_CLAW_SWIPE, 0.6f, 0.7f, 0x2710, 0x2ee0);
     }
     gravity_set(-300.0f);
     if(func_802933C0(9)){

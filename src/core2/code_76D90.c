@@ -198,7 +198,7 @@ void func_802FE844(s32 arg0, struct8s *arg1){
         D_803815D4 = func_802FAE1C(arg0);
         tmp = ((D_803815D4 - 1.0f) * 60.00000000 == func_802FDE60(D_803815D8));
         if(!D_80381610 && tmp && (D_803815D4 != 1.0f))
-            func_8030E760(0x90, 1.3f, 0x7FF8);
+            func_8030E760(SFX_90_SWITCH_PRESS, 1.3f, 0x7FF8);
         D_803815EC = (D_803815D4 == item_getCount(arg0));
         D_80381610 = tmp;
         if(D_803815EC && D_80381610){

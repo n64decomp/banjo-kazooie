@@ -12,7 +12,11 @@ const f32 D_8036496C = 0.2f;
 const f32 D_80364970 = 693.5f; //ant initial jump y velocity
 const f32 D_80364974 = -1200.0f; //ant jump gravity
 u8  D_80364978 = 0;
-s16 D_8036497C[3] = {0x54, 0x55, 0x56};
+s16 D_8036497C[3] = {
+    SFX_54_BANJO_HOO_1, 
+    SFX_55_BANJO_HOO_2,
+    SFX_56_BANJO_HUI
+};
 
 /* .bss */
 extern f32 D_8037D290;
@@ -27,7 +31,7 @@ void func_8029E3E0(void){
 }
 
 void func_8029E448(int arg0){
-    func_8030EAAC(0x3d, arg0 ? 0.96f : 1.04f, 0x36b0, 8);
+    func_8030EAAC(SFX_3D_TICKER_WALKING, arg0 ? 0.96f : 1.04f, 0x36b0, 8);
     
 }
 

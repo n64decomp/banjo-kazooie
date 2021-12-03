@@ -161,7 +161,7 @@ void func_80324D2C(f32 time, enum comusic_e arg0){
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/timedfuncqueue/func_80324D54.s")
-// void func_80324D54(f32 time, s32 arg1, f32 arg2, s32 arg3, f32 * arg4, f32 arg5, f32 arg6){
+// void func_80324D54(f32 time, enum sfx_e arg1, f32 arg2, s32 arg3, f32 * arg4, f32 arg5, f32 arg6){
 //     timefuncqueue_Struct2 argStruct;
 //     argStruct.unk0 = arg1;
 //     //argStruct.unk4 = arg2;

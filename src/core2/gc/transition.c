@@ -93,7 +93,7 @@ void _gctranstion_changeState(s32 state, struct9s *arg1){
     }//L8030B67C
     else if(state == 5){
         if(D_80382430.unk4->uid == 0xA){
-            func_8030E704(0xeb);
+            func_8030E704(SFX_EB_GRUNTY_LAUGH_2);
         }
         else{
             if(func_802D4608() == 0){

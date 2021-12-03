@@ -41,13 +41,13 @@ void bsclaw_update(void){
     func_8029AD28(0.34f, 4);
     func_8029AD28(0.53f, 3);
     if(animctrl_isAt(aCtrl, 0.1188f))
-        func_8030EB00(2, 0.98f, 1.0f);
+        func_8030EB00(SFX_2_CLAW_SWIPE, 0.98f, 1.0f);
 
     if(animctrl_isAt(aCtrl, 0.2888f))
-        func_8030EB00(2, 1.04f, 1.06f);
+        func_8030EB00(SFX_2_CLAW_SWIPE, 1.04f, 1.06f);
 
     if(animctrl_isAt(aCtrl, 0.4888f))
-        func_8030EB00(2, 1.1f, 1.12f);
+        func_8030EB00(SFX_2_CLAW_SWIPE, 1.1f, 1.12f);
 
     if(animctrl_isStopped(aCtrl))
         sp2C = BS_1_IDLE;

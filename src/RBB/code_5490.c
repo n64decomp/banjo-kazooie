@@ -79,11 +79,11 @@ void func_8038B900(Actor *this){
     else{//L8038BC74
         func_8033568C(this->unk148, &sp5C, &sp58);
         if( sp5C < 0.22 && 0.22 <= sp58 ){
-            func_8030E988(0xd1, randf2(0.8f, 0.9f), 0x3a98, &this->position, 1500.0f, 2000.0f);
+            func_8030E988(SFX_D1_SNORKEL_WAH, randf2(0.8f, 0.9f), 0x3a98, &this->position, 1500.0f, 2000.0f);
         }
 
         if( sp5C < 0.54 && 0.54 <= sp58 ){
-            func_8030E988(0xd1, randf2(0.9f, 1.0f), 0x4a38, &this->position, 1500.0f, 2000.0f);
+            func_8030E988(SFX_D1_SNORKEL_WAH, randf2(0.9f, 1.0f), 0x4a38, &this->position, 1500.0f, 2000.0f);
         }
 
         if(this->state == 1){
