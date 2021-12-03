@@ -73,7 +73,7 @@ void func_80387AB0(ActorMarker *this, u32 arg1){
     
     thisActor = marker_getActor(this);
     this->propPtr->unk8_3 = 0;
-    func_8030E510(0xAA, 28000);
+    func_8030E510(SFX_AA_BGS_EGG_BREAKING_1, 28000);
     func_80328A84(thisActor, 3);
     actor_playAnimationOnce(thisActor);
     this->collidable = 0;

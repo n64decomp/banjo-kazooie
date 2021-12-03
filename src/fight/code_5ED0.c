@@ -310,7 +310,7 @@ void func_8038C840(Actor *this){
                 if(actor_animationIsAt(this, 0.85f)){
                     if(func_8030E3FC(this->unk44_31))
                         func_8030E394(this->unk44_31);
-                    func_8030E484(0x19);
+                    func_8030E484(SFX_19_BANJO_LANDING_08);
                     func_8025A7DC(0x43);
                 }//L8038CD20
             }

@@ -27,9 +27,9 @@ int func_802A51D0(void){
 
 void func_802A5208(int arg0){
     if(arg0)
-        func_8030E5F4(0x49, 0.88f);
+        func_8030E5F4(SFX_49_KAZOOIE_RA, 0.88f);
     else
-        func_8030E5F4(0x49, 0.96f);
+        func_8030E5F4(SFX_49_KAZOOIE_RA, 0.96f);
 }
 
 void func_802A524C(void){
@@ -114,7 +114,7 @@ void func_802A5548(void){
 
 void bsblongleg_enter_init(void){
     D_8037D361 = func_8030D90C();
-    func_8030DA80(D_8037D361, 0x2C);
+    func_8030DA80(D_8037D361, SFX_2C_PULLING_NOISE);
     func_8030E04C(D_8037D361, 0.8f, 1.9f, 1.2f);
     func_802933FC(0xe);
     if(bsbtrot_inSet(bs_getPrevState()))
@@ -271,7 +271,7 @@ void bsblongleg_exit_init(void){
     func_8029957C(2);
     func_80297970(0.0f);
     D_8037D361 = func_8030D90C();
-    func_8030DA80(D_8037D361, 0x2C);
+    func_8030DA80(D_8037D361, SFX_2C_PULLING_NOISE);
     func_8030E04C(D_8037D361, 1.4f, 0.4f, -1.2f);
 }
 

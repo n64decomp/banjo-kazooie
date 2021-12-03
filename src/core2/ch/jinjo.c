@@ -250,7 +250,7 @@ void func_802CDD78(Actor * this){
                         func_802F9D38();
                         local->unk4 = 0;
                     }
-                    func_8030E4E4(0x19);
+                    func_8030E4E4(SFX_19_BANJO_LANDING_08);
                     func_8025A7DC(COMUSIC_43_ENTER_LEVEL_GLITTER);
                 }//L802CE558
 

@@ -285,9 +285,9 @@ static void __bsant_recoil_init(int take_damage){
     animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
     func_802875AC(aCtrl, "bsant.c", 0x272);
     if(take_damage == 1)
-        func_8030E58C(0x38, 1.8f);
+        func_8030E58C(SFX_38_BANJO_AYE_1, 1.8f);
     else
-        func_8030E58C(0x56, 1.8f);
+        func_8030E58C(SFX_56_BANJO_HUI, 1.8f);
     
     _player_getPosition(&sp2C);
     func_80294980(sp20);
@@ -374,7 +374,7 @@ void bsant_die_init(void){
     animctrl_setDuration(aCtrl, 1.6f);
     animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
     func_802875AC(aCtrl, "bsant.c", 0x2f6);
-    func_8030E58C(0x36, 1.8f);
+    func_8030E58C(SFX_36_BANJO_DOH, 1.8f);
     _player_getPosition(&sp2C);
     func_80294980(sp20);
     func_80257F18(sp20, sp2C, &sp38);

@@ -116,9 +116,9 @@ void bsbarge_update(void){
             func_8029E1A8(1);
             if(func_802933D0(0xB) && func_8029E2E0(1, 0.1f)){
                 if(func_802933C0(0xC)){
-                    func_8030E560(4, 0x7530);
+                    func_8030E560(SFX_4_KAZOOIE_RUUUUUH, 0x7530);
                 }else{
-                    func_8030E560(0x43, 0x7530);
+                    func_8030E560(SFX_43_KAZOOIE_RUH, 0x7530);
                 }
                 func_802933E8(0xB);
             }

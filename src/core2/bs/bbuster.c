@@ -111,11 +111,11 @@ void bsbbuster_update(void){
             break;
         case 2://8029FEA0
             if(D_8037D2B5 == 0 && func_80297AAC() < 0.0f){
-                func_8030E760(0x45, 1.2f, 0x7530);
+                func_8030E760(SFX_45_KAZOOIE_HUGHH, 1.2f, 0x7530);
                 D_8037D2B5++;
             }
             if(D_8037D2B4 == 0 && func_8028B254(0x8c)){
-                func_8030E5F4(0x13, 1.0f);
+                func_8030E5F4(SFX_13_BEAKBUSTER_GROUND, 1.0f);
                 D_8037D2B4++;
             }
             if(D_8037D2B6 == 0 && func_8028B254(0x4b)){

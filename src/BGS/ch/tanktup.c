@@ -157,7 +157,7 @@ void func_8038FBF8(Actor *this){
     }
     if(this->state == 2){
         if(animctrl_isAt(this->animctrl, 0.65f)){
-            func_8030E540(0x7C);
+            func_8030E540(SFX_7C_CHEBOOF);
         }
         if(animctrl_isStopped(this->animctrl)){
             marker_despawn(this->marker);

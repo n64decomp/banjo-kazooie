@@ -91,7 +91,7 @@ void bsbflip_update(void){
             gravity_set(D_80364A24);
             func_80297BF8(D_80364A28);
             animctrl_setDuration(aCtrl, 1.9f);
-            func_8030E4E4(0x33);
+            func_8030E4E4(SFX_33_BANJO_AHOO);
             D_8037D310 = 1;
         }
         break;

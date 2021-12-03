@@ -64,7 +64,7 @@ void bsjig_jiggy_update(void){
     if(animctrl_isAt(aCtrl, 0.835f)){
         D_8037D4B0++;
         func_80345F24(0xe);
-        func_8030E58C(0x4b, 1.3f);
+        func_8030E58C(SFX_4B_GULPING, 1.3f);
     }
 
     if(animctrl_isAt(aCtrl, 0.94f))
