@@ -124,21 +124,21 @@ void func_80290F14(void){
     ){
         switch(D_8037C061){
             case 1://L80290FA4
-                func_80299D2C(0x12E, 1.0f, 12000);
+                func_80299D2C(SFX_12E_CAMERA_ZOOM_MEDIUM, 1.0f, 12000);
                 func_80290B60(2);
                 break;
             case 2://L80290FBC
                 if(D_8037C07C){
-                    func_80299D2C(0x12E, 1.2f, 12000);
+                    func_80299D2C(SFX_12E_CAMERA_ZOOM_MEDIUM, 1.2f, 12000);
                     func_80290B60(3);
                 }
                 else{
-                    func_80299D2C(0x12D, 1.0f, 12000);
+                    func_80299D2C(SFX_12D_CAMERA_ZOOM_CLOSEST, 1.0f, 12000);
                     func_80290B60(1);
                 }
                 break;
             case 3://L80291008
-                func_80299D2C(0x12D, 1.0f, 12000);
+                func_80299D2C(SFX_12D_CAMERA_ZOOM_CLOSEST, 1.0f, 12000);
                 func_80290B60(1);
                 break;
         }

@@ -70,7 +70,7 @@ s32 func_8028DB14(ActorMarker *arg0){
         case BS_CROC_BITE://L8028DCBC
             return __maybe(bscroc_hitboxActive(),9);
             break;
-        case BS_JUMP://8028DCD8
+        case BS_5_JUMP://8028DCD8
         case BS_FALL_TUMBLING:
             if(func_80297AAC() < 0.0f && !func_8028B2E8())
                 return 0xa;

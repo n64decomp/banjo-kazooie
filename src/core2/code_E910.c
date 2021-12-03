@@ -7,11 +7,11 @@
 
 u8 D_80363820 = 0;
 bsMap D_80363824[] ={
-    {BS_IDLE,       bsstand_init,       bsstand_update,     bsstand_end,        func_802B5350},
+    {BS_1_IDLE,       bsstand_init,       bsstand_update,     bsstand_end,        func_802B5350},
     {BS_WALK_SLOW,  bswalk_slow_init,   bswalk_slow_upate,  NULL,               func_802B5350},
     {BS_WALK,       bswalk_init,        bswalk_update,      NULL,               func_802B5350},
     {BS_WALK_FAST,  bswalk_fast_init,   bswalk_fast_update, bswalk_fast_end,    func_802B5350},
-    {BS_JUMP,       bsjump_init,        bsjump_update,      bsjump_end,         func_80296608},
+    {BS_5_JUMP,       bsjump_init,        bsjump_update,      bsjump_end,         func_80296608},
     {BS_CLAW,       bsclaw_init,        bsclaw_update,      bsclaw_end,         func_80296608},
     {BS_CROUCH,     bscrouch_init,      bscrouch_update,    bscrouch_end,       func_802B5350},
     {BS_BTROT_JUMP, bsbtrot_jump_init,  bsbtrot_jump_update,bsbtrot_jump_end,   func_802B5350},
@@ -82,9 +82,9 @@ bsMap D_80363824[] ={
     {BS_LANDING_IN_WATER, func_802A846C, func_802A85EC, func_802A872C, func_80296608},
     {BS_PUMPKIN_OW,     func_802B2FDC, func_802B2FFC, func_802B301C, func_80296590},
     {BS_PUMPKIN_DIE,    func_802B309C, func_802B3240, func_802B3448, func_80296590},
-    {BS_CLIMB_IDLE, func_802AB830, func_802AB8DC, func_802ABA10, func_802ABD60},
-    {BS_CLIMB_MOVE, func_802ABA30, func_802ABAA4, func_802ABCAC, func_802ABD60},
-    {BS_CLIMB_EXIT, func_802B1928, func_802B1A54, func_802B1BCC, func_80296608},
+    {BS_4F_CLIMB_IDLE, bsclimb_idle_init, bsclimb_idle_update, bsclimb_idle_end, func_802ABD60},
+    {BS_50_CLIMB_MOVE, bsclimb_move_init, bsclimb_move_update, bsclimb_move_end, func_802ABD60},
+    {BS_51_CLIMB_EXIT, func_802B1928, func_802B1A54, func_802B1BCC, func_80296608},
     {0x52,          func_802B5FD0, func_802B6064, func_802B60D0, func_802B60D8},
     {BS_TIMEOUT_UNK53, func_802B6270, func_802B6314, func_802B63C8, func_80296590},
     {BS_LONGLEG_SLIDE, bsblongleg_slide_init, bsblongleg_slide_update, bsblongleg_slide_end, func_802B5350},

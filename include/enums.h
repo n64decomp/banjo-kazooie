@@ -843,25 +843,25 @@ enum sfx_e
     // bottles uses this too I think
     SFX_6F_BANJO_HEADSCRATCH,
     SFX_70_WALKING_NOISE_1,
-    SFX_WALKING_NOISE_2,
-    SFX_WALKING_NOISE_3,
-    SFX_WALKING_NOISE_4,
-    SFX_WALKING_NOISE_5,
-    SFX_WALKING_NOISE_6,
-    SFX_WALKING_NOISE_7,
-    SFX_WALKING_NOISE_8,
-    SFX_EAGLECRY,
-    SFX_TICKER_DEATH,
+    SFX_71_WALKING_NOISE_2,
+    SFX_72_WALKING_NOISE_3,
+    SFX_73_WALKING_NOISE_4,
+    SFX_74_WALKING_NOISE_5,
+    SFX_75_WALKING_NOISE_6,
+    SFX_76_WALKING_NOISE_7,
+    SFX_77_WALKING_NOISE_8,
+    SFX_78_EAGLECRY,
+    SFX_79_TICKER_DEATH,
     // SFX_TICKER_DEATH but higher pitch
-    SFX_TERMITE_DEATH,
-    SFX_ICE_BREAKING_1,
+    SFX_7A_TERMITE_DEATH,
+    SFX_7B_ICE_BREAKING_1,
     // entering a cauldron
-    SFX_CHEBOOF,
+    SFX_7C_CHEBOOF,
     // RBB, might be cranes aswell
     SFX_7D_ANCHOR_LIFTING,
     SFX_7E_CREAKY_DOOR_OPENING,
     SFX_7F_HEAVYDOOR_SLAM,
-    SFX_80_YUMYUM_CLACK = 0x0080,
+    SFX_80_YUMYUM_CLACK,
     // like polishing glass
     SFX_81_UUU,
     // when gates are broken, and probably when clankers bolt lands
@@ -1117,25 +1117,25 @@ enum sfx_e
     SFX_GRUNTY_FINAL_SCREAM_6 = 0x0140,
     SFX_141_MECHANICAL_WINCH,
     // pretty short
-    SFX_GRUNTY_LAUGH_3,
+    SFX_142_GRUNTY_LAUGH_3,
     SFX_143_BULL_DAMAGE,
-    SFX_DOUBLE_CAMERA_CLICK,
-    SFX_SINGLE_CAMERA_CLICK,
+    SFX_144_DOUBLE_CAMERA_CLICK,
+    SFX_145_SINGLE_CAMERA_CLICK,
     // the normal attack
-    SFX_GRUNTY_SPELL_ATTACK_1,
+    SFX_146_GRUNTY_SPELL_ATTACK_1,
     // the homing attack
-    SFX_GRUNTY_SPELL_ATTACK_2,
-    SFX_GRUNTY_SPELL_LANDING,
-    SFX_CHEATO_TALKING_1,
-    SFX_CHEATO_TALKING_2,
+    SFX_147_GRUNTY_SPELL_ATTACK_2,
+    SFX_148_GRUNTY_SPELL_LANDING,
+    SFX_149_CHEATO_TALKING_1,
+    SFX_14A_CHEATO_TALKING_2,
     // when attacking with the broom
-    SFX_GRUNTY_LAUGH_4,
-    SFX_BRENTILDA_TALKING,
-    SFX_BANJO_FREEZING,
-    SFX_SOFT_EXPLOSION,
+    SFX_14B_GRUNTY_LAUGH_4,
+    SFX_14C_BRENTILDA_TALKING,
+    SFX_14D_BANJO_FREEZING,
+    SFX_14E_SOFT_EXPLOSION,
     // grunty's spell attacks flying
-    SFX_FIREWORK_WHISTLING,
-    SFX_PORCELAIN_CRASH = 0x0150,
+    SFX_14F_FIREWORK_WHISTLING,
+    SFX_150_PORCELAIN_CRASH,
     // FileSelect, when Banjo's Bed ejects him
     SFX_CAT_MEOW,
     // Grunty's Broom; 01-16 getting shorter, more delay
@@ -1523,11 +1523,11 @@ enum actor_e
 
 enum bs_e
 {
-    BS_IDLE = 0x1,
+    BS_1_IDLE = 0x1,
     BS_WALK_SLOW = 0x2,
     BS_WALK = 0x3,
     BS_WALK_FAST = 0x4,
-    BS_JUMP = 0x5,
+    BS_5_JUMP = 0x5,
     BS_CLAW = 0x6,
     BS_CROUCH = 0x7,
     BS_BTROT_JUMP = 0x8,
@@ -1601,9 +1601,9 @@ enum bs_e
     BS_LANDING_IN_WATER = 0x4c,
     BS_PUMPKIN_OW = 0x4D,
     BS_PUMPKIN_DIE = 0x4E,
-    BS_CLIMB_IDLE = 0x4f,
-    BS_CLIMB_MOVE = 0x50,
-    BS_CLIMB_EXIT = 0x51,
+    BS_4F_CLIMB_IDLE,
+    BS_50_CLIMB_MOVE,
+    BS_51_CLIMB_EXIT,
     //unk52 //tumblar??? a.k.a bssurf
     BS_TIMEOUT_UNK53 = 0x53,    
     BS_54_SWIM_DIE = 0x54,
@@ -1677,7 +1677,7 @@ enum bs_e
 	BS_LONGLEG_DRONE = 0x9B,
     BS_7D_WALRUS_SLED_DRONE = 0x9C,
     BS_BEE_DRONE = 0x9D,
-	// [158] = "Locked", -- Climbing
+	BS_9E_CLIMB_UNKOWN_9E,
     BS_ANT_BOUNCE = 0x9F,
     BS_PUMPKIN_BOUNCE = 0xA0,
     BS_CROC_BOUNCE = 0xA1,
@@ -1745,9 +1745,9 @@ enum asset_e
     ANIM_BANJO_BTROT_EXIT = 0x7,
     ANIM_BANJO_JUMP = 0x8,
     ANIM_BANJO_DIE = 0x9,
-
-    ANIM_BANJO_WALK_MUD = 0xb,
-    ANIM_BANJO_RUN = 0xc,
+    ASSET_A_ANIM_BANJO_CLIMB_MOVE,
+    ANIM_BANJO_WALK_MUD,
+    ANIM_BANJO_RUN,
 
     ANIM_BANJO_TURN = 0xe,
 
@@ -1817,6 +1817,9 @@ enum asset_e
     ASSET_65_ANIM_BEEHIVE_DIE = 0x65,
 
     ASSET_94_ANIM_GRUBLIN_DIE = 0x94,
+
+    ASSET_B1_ANIM_BANJO_CLIMB_IDLE_1 = 0xb1,
+    ASSET_B2_ANIM_BANJO_CLIMB_IDLE_2,
 
     ASSET_D2_ANIM_BANJO_GETTING_UP = 0xD2,
 

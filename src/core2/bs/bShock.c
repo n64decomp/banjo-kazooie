@@ -77,7 +77,7 @@ void bsbshock_charge_update(void){
                 animctrl_setDuration(aCtrl, 1.4f);
             
             if(animctrl_isStopped(aCtrl))
-                sp2C = BS_IDLE;
+                sp2C = BS_1_IDLE;
             break;
     }//L802A6CAC
 

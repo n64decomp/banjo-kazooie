@@ -65,7 +65,7 @@ void bssplat_update(void){
             sp1C = BS_LANDING;
 
         if(animctrl_isStopped(aCtrl))
-            sp1C = BS_IDLE;
+            sp1C = BS_1_IDLE;
 
         if(func_8028B094())
             sp1C = BS_FALL;

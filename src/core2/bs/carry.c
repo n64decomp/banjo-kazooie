@@ -44,7 +44,7 @@ void bscarry_idle_update(void){
         sp1C = BS_CARRY_WALK;
 
     if(func_802948EC() == 0)
-        sp1C = BS_IDLE;
+        sp1C = BS_1_IDLE;
 
     bs_setState(sp1C);
 }
@@ -73,7 +73,7 @@ void bscarry_walk_update(void){
         sp1C = BS_CARRY_IDLE;
 
     if(!func_802948EC())
-        sp1C = BS_IDLE;
+        sp1C = BS_1_IDLE;
 
     bs_setState(sp1C);
 }

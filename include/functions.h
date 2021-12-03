@@ -248,7 +248,8 @@ void ml_vec3f_clear(f32 dst[3]);
 void func_80250D94(f32, f32, f32);
 f32  func_80257A44(f32, f32);
 f32  func_80257C48(f32, f32, f32);
-int func_80257F18(f32 src[3], f32 target[3], f32 *yaw);
+f32  func_80257D30(f32, f32, f32, f32, f32);
+int  func_80257F18(f32 src[3], f32 target[3], f32 *yaw);
 
 f32  mlAbsF(f32);
 f32  mlClamp_f(f32, f32, f32);
@@ -267,6 +268,9 @@ void func_80287FD0(struct54s *, f32);
 void func_80287F7C(struct54s *arg0, s32 arg1);
 void func_80287F98(struct54s *arg0, s32 arg1);
 void func_80287FDC(struct54s *arg0, s32 arg1);
+
+void func_80289EA8(f32, f32);
+
 
 void func_8028A010(enum asset_e anim_id, f32 duration);
 void func_8028A100(enum asset_e anim_id, f32, f32);
@@ -291,6 +295,7 @@ void func_80292974(f32, f32, f32);
 void func_80292900(f32, f32);
 
 void func_80292E80(s32, f32);
+void func_80293350(void);
 void func_80293D48(f32, f32);
 f32  func_80294438(void);
 f32  func_80294500(void);
@@ -304,10 +309,12 @@ void func_8029797C(f32);
 void player_setYVelocity(f32);
 void func_802979AC(f32, f32);
 f32  func_80297A64(void);
+f32  func_80297A70(void);
 f32  func_80297A7C(void);
 f32  func_80297AB8(void);
 f32  func_80297AF0(void);
 void gravity_set(f32);
+void func_80297B64(f32);
 void func_80297BF8(f32);
 int  func_80297C04(f32);
 void func_80297CCC(f32);
@@ -329,7 +336,7 @@ void func_80299628(s32);
 void func_80299650(f32, f32);
 void func_80299B58(f32, f32);
 void func_80299CF4(enum sfx_e, f32, s32);
-void func_80299D2C(s32, f32, s32);
+void func_80299D2C(enum sfx_e, f32, s32);
 void func_80289EC8(f32, f32, f32, f32);
 void func_80289EF8(f32);
 f32  func_8029A900(void);
@@ -338,6 +345,7 @@ void func_8029A968(f32);
 void func_8029A980(s32);
 void func_8029A974(f32);
 void func_8029AD28(f32, s32);
+f32  func_8029B2DC(void);
 f32  func_8029B2E8(void);
 f32  func_8029B30C(void);
 void func_8029B324(s32, f32);

@@ -168,7 +168,7 @@ void bscrouch_update(void){
         sp34 = BS_FALL;
 
     sp34 = func_802ADCD4(sp34);
-    if(sp34 == BS_IDLE && func_8029E348(1))
+    if(sp34 == BS_1_IDLE && func_8029E348(1))
         sp34 = 0;
 
     if(player_inWater())
@@ -181,7 +181,7 @@ void bscrouch_end(void){}
 
 enum bs_e func_802ADCD4(enum bs_e arg0){
     if(button_released(BUTTON_Z)){
-        arg0 = BS_IDLE;
+        arg0 = BS_1_IDLE;
         
         if(button_pressed(BUTTON_B) && can_claw())
             arg0 = BS_CLAW;

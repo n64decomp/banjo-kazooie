@@ -68,7 +68,7 @@ void func_8038AC18(Actor *this, s32 new_state){
     Actor *other;
     local->unk8 = 0.0f;
     if(new_state == 2){
-        func_8030E6D4(0x90);
+        func_8030E6D4(SFX_90_SWITCH_PRESS);
         local->unkC = func_802EC9B4(func_8033A148(func_80330B1C(this->marker)));
         
         mapSpecificFlags_set(local->unk4->unk10, TRUE);

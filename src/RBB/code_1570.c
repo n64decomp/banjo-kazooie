@@ -121,7 +121,7 @@ void func_80387B8C(s32 arg0, s32 arg1){
 
 void func_80387BEC(s32 arg0, s32 arg1){
     s32 v0;
-    func_8030E6D4(0x90);
+    func_8030E6D4(SFX_90_SWITCH_PRESS);
     if(v0 = func_8034C528(arg0)){
         func_8034DFB0(v0, &D_803902B4, &D_803902C4, (f64)arg1/1000.0);
     }

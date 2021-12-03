@@ -102,7 +102,7 @@ void bsslide_update(void){
         }
         func_802B40D0();
     }else{//L802B44C4
-        sp3C = BS_IDLE;
+        sp3C = BS_1_IDLE;
     }//L802B44C8
 
     if(player_inWater())

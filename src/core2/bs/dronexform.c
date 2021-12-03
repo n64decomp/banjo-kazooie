@@ -257,7 +257,7 @@ static void __bsdronexform_setState(int arg0){
 
         case 6: // 802B033C
             func_802BB3DC(2, 80.0f, 0.85f);
-            func_8030E6D4(0x147);
+            func_8030E6D4(SFX_147_GRUNTY_SPELL_ATTACK_2);
             if(D_8037D470.unk30 == 7 || D_8037D470.unk31 == 7){
                 yaw_setIdeal(yaw_get() + 180.0f);
                 func_802991FC();

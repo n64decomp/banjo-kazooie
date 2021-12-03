@@ -80,54 +80,54 @@ segments:
   - [0x13FC0, c, code_13FC0]
   - [0x15F20, c, code_15F20]
   - [0x16010, c, code_16010]
-  - [0x16C60, c, code_16C60] #DONE
-  - [0x171F0, c, code_171F0] #DONE
-  - [0x17450, c, bs/ant] #DONE
-  - [0x18550, c, bs/bBarge] #DONE
-  - [0x18B90, c, bs/bbuster] #DONE
-  - [0x19330, c, bs/bee] #DONE
-  - [0x19560, c, bs/beeFly] #DONE
-  - [0x1A000, c, bs/beeMain] #DONE
-  - [0x1B1E0, c, bs/bEggAss] #DONE
+  - [0x16C60, c, code_16C60]  #DONE
+  - [0x171F0, c, code_171F0]  #DONE
+  - [0x17450, c, bs/ant]      #DONE
+  - [0x18550, c, bs/bBarge]   #DONE
+  - [0x18B90, c, bs/bbuster]  #DONE
+  - [0x19330, c, bs/bee]      #DONE
+  - [0x19560, c, bs/beeFly]   #DONE
+  - [0x1A000, c, bs/beeMain]  #DONE
+  - [0x1B1E0, c, bs/bEggAss]  #DONE
   - [0x1B450, c, bs/bEggHead] #DONE
-  - [0x1B700, c, bs/bFlap] #DONE
-  - [0x1BDD0, c, bs/bFlip] #DONE
+  - [0x1B700, c, bs/bFlap]    #DONE
+  - [0x1BDD0, c, bs/bFlip]    #DONE
   - [0x1C3C0, c, bs/bFly]
   - [0x1E240, c, bs/bLongLeg] #DONE
-  - [0x1F580, c, bs/bPeck] #DONE
-  - [0x1FA20, c, bs/bShock] #DONE
+  - [0x1F580, c, bs/bPeck]    #DONE
+  - [0x1FA20, c, bs/bShock]   #DONE
   - [0x201B0, c, bs/bSwim]
-  - [0x21830, c, bs/bTrot] #DONE
-  - [0x23470, c, bs/bWhirl] #DONE
-  - [0x23EF0, c, bs/carry] #DONE
-  - [0x242F0, c, bs/claw] #DONE
-  - [0x24630, c, bs/climb]
-  - [0x24E30, c, bs/croc] #DONE
-  - [0x26740, c, bs/crouch] #DONE
-  - [0x26E70, c, bs/die]
-  - [0x273E0, c, bs/drone] #DONE
+  - [0x21830, c, bs/bTrot]    #DONE
+  - [0x23470, c, bs/bWhirl]   #DONE
+  - [0x23EF0, c, bs/carry]    #DONE
+  - [0x242F0, c, bs/claw]     #DONE
+  - [0x24630, c, bs/climb]    #DONE
+  - [0x24E30, c, bs/croc]     #DONE
+  - [0x26740, c, bs/crouch]   #DONE
+  - [0x26E70, c, bs/die]      #DONE
+  - [0x273E0, c, bs/drone]    #DONE
   - [0x27550, c, code_27550] #dronefalldie???
   - [0x27BD0, c, bs/dronegoto] #DONE
   - [0x27F40, c, code_27F40] #dronelook
   - [0x28220, c, code_28220] #dronevanish???
   - [0x28810, c, bs/dronexform]
-  - [0x29AD0, c, bs/jig] #DONE
+  - [0x29AD0, c, bs/jig]      #DONE
   - [0x2A170, c, bs/jump]
-  - [0x2B040, c, bs/ow] #DONE
+  - [0x2B040, c, bs/ow]       #DONE
   - [0x2B240, c, bs/pumpkin]
   - [0x2C640, c, bs/rebound]
   - [0x2CAC0, c, bs/rest]
   - [0x2CF90, c, code_2CF90]
-  - [0x2D140, c, bs/slide] #DONE
-  - [0x2D5E0, c, bs/splat] #DONE
+  - [0x2D140, c, bs/slide]    #DONE
+  - [0x2D5E0, c, bs/splat]    #DONE
   - [0x2D8E0, c, bs/stand]
   - [0x2E4F0, c, bs/swim]
   - [0x2F040, c, bs/surf]
   - [0x2F1A0, c, done/bs/talk] #DONE
-  - [0x2F2E0, c, bs/timeout] #DONE
-  - [0x2F5B0, c, bs/throw] #DONE
-  - [0x2F7D0, c, bs/turn] #DONE
-  - [0x2FAB0, c, bs/twirl] #DONE
+  - [0x2F2E0, c, bs/timeout]  #DONE
+  - [0x2F5B0, c, bs/throw]    #DONE
+  - [0x2F7D0, c, bs/turn]     #DONE
+  - [0x2FAB0, c, bs/twirl]    #DONE
   - [0x2FD70, c, bs/walk]
   - [0x30E70, c, bs/walrus]
   - [0x329F0, c, code_329F0]
@@ -476,7 +476,7 @@ segments:
   - [0xEE780, .rodata, bs/bWhirl]
   - [0xEE7B0, .rodata, bs/carry]
   - [0xEE7D0, .rodata, bs/claw]
-  - [0xEE810, bin, data_EE810]
+  - [0xEE810, .rodata, bs/climb]
   - [0xEE820, .rodata, bs/croc]
   - [0xEE880, .rodata, bs/crouch]
   - [0xEE8B0, .rodata, bs/die]

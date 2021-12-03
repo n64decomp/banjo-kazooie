@@ -36,7 +36,7 @@ void func_803870BC(s32 arg0, s32 arg1){
 void func_8038711C(s32 arg0, s32 arg1){
     s32 temp_v0;
 
-    func_8030E6D4(0x90);
+    func_8030E6D4(SFX_90_SWITCH_PRESS);
     if(temp_v0 = func_8034C528(arg0))
         func_8034DFB0(temp_v0, &D_80390244, &D_80390254, (f64)arg1/1000.0);
 }

@@ -38,7 +38,7 @@ void bsjig_jiggy_init(void){
     func_8025A6EC(COMUSIC_D_JINGLE_JIGGY_COLLECTED, -1);
     func_8029151C(0xC);
     func_8029E070(1);
-    func_8030E6D4(0x33);
+    func_8030E6D4(SFX_33_BANJO_AHOO);
     func_802933FC(7);
     func_802933FC(0xf);
     func_8028D5DC();
@@ -74,7 +74,7 @@ void bsjig_jiggy_update(void){
         if(D_8037D4B1)
             sp1C =  BS_JIG_NOTEDOOR;
         else
-            sp1C =  BS_IDLE;
+            sp1C =  BS_1_IDLE;
     }
 
     func_80295C08(func_802B0BA8);
@@ -177,7 +177,7 @@ void bsjig_notedoor_init(void){
     func_8025A6EC(COMUSIC_42_NOTEDOOR_OPENING_FANFARE,-1);
     func_8029151C(0xc);
     func_8029E070(1);
-    func_8030E6D4(0x33);
+    func_8030E6D4(SFX_33_BANJO_AHOO);
     func_8028D5DC();
 }
 
@@ -188,7 +188,7 @@ void bsjig_notedoor_update(void){
         func_80299CF4(SFX_3EA_UNKNOWN, 1.0f, 30000);
 
     if(func_80289FC4())
-        sp1C = BS_IDLE;
+        sp1C = BS_1_IDLE;
 
     bs_setState(sp1C);
 }

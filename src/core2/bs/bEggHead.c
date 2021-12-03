@@ -56,7 +56,7 @@ void bsegghead_update(void) {
         }
     }
     if (animctrl_isStopped(aCtrl)) {
-        next_state = (button_held(BUTTON_Z))? BS_CROUCH : BS_IDLE;
+        next_state = (button_held(BUTTON_Z))? BS_CROUCH : BS_1_IDLE;
 
     } else if (0.65 < (f64) func_802877D8(aCtrl)) {
         next_state = func_802ADCD4(0);

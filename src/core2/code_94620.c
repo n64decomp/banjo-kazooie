@@ -1697,7 +1697,7 @@ void func_8031FB14(s32 arg0, s32 arg1) {
 }
 
 void func_8031FB6C(s32 arg0, s32 arg1) {
-    func_8030E6D4(0x7C);
+    func_8030E6D4(SFX_7C_CHEBOOF);
     func_8031CC8C(arg0, 0x7104);
 }
 

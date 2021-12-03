@@ -512,7 +512,7 @@ void func_8028BCA0(Prop *prop){
                     func_8030E484(SFX_20_METAL_CLANK_1);
                 }
                 else{
-                    func_8030E6D4(0x65);
+                    func_8030E6D4(SFX_65_METALLIC_SCRATCH);
                 }
 
                 if(spC4 != 6){

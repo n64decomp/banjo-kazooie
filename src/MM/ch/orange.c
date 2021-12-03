@@ -56,7 +56,7 @@ void func_80387FF4(Actor * this){
             if(this->position_y < temp_f2){
                 this->position_y = temp_f2;
                 this->unk1C_y = temp_f2;
-                func_8030E6D4(0x2F);
+                func_8030E6D4(SFX_2F_ORANGE_SPLAT);
                 
                 this->unk28 = 1.0f;
                 this->unk60 = 340.0f;

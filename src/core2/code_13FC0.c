@@ -135,12 +135,12 @@ enum bs_e func_8029C780(void){
         return BS_BFLIP;
 
     if(func_802933C0(2))
-        return BS_JUMP;
+        return BS_5_JUMP;
 
     if(func_802933C0(1))
         return BS_FLY_ENTER;
 
-    return BS_JUMP;
+    return BS_5_JUMP;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029C7F4.s")

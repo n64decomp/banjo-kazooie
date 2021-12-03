@@ -485,7 +485,7 @@ void bsbtrot_exit_init(void){
 void bsbtrot_exit_update(void){
     enum bs_e sp1C = 0;
     if(animctrl_isStopped(player_getAnimCtrlPtr()))
-        sp1C = BS_IDLE;
+        sp1C = BS_1_IDLE;
 
     bs_setState(sp1C);
 }

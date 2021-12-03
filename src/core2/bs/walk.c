@@ -149,7 +149,7 @@ void bswalk_creep_update(void){
     switch(func_8029B300()){
         case 0://L802B7160
             if(func_80297C04(1.0f))
-                s0 = BS_IDLE;
+                s0 = BS_1_IDLE;
             break;
         case 2://L802B7180
             s0 = BS_WALK_SLOW;
@@ -222,7 +222,7 @@ void bswalk_slow_upate(void){
     switch(func_8029B300()){
         case 0://L802B7160
             if(func_80297C04(3.0f))
-                s0 = BS_IDLE;
+                s0 = BS_1_IDLE;
             break;
         case 1://L802B7180
             s0 = BS_WALK_CREEP;
@@ -386,7 +386,7 @@ void bswalk_fast_update(void){
     switch(func_8029B300()){
         case 0://L802B79EC
             if(func_80297C04(18.0f))
-                s0 = BS_IDLE;
+                s0 = BS_1_IDLE;
 
             if(func_80294F78())
                 s0 = func_802926C0();
@@ -460,7 +460,7 @@ void bswalk_mud_update(void){
         s0 = BS_WALK_SLOW;
 
     if(!func_8029B300())
-        s0 = BS_IDLE;
+        s0 = BS_1_IDLE;
 
     if(func_80294F78())
         s0 = func_802926C0();

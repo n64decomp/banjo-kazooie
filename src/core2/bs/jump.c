@@ -74,7 +74,7 @@ void bsjump_init(void){
         gravity_set(D_80364CD4);
         D_8037D4C0 = 0;
         if(D_8037D4C2){
-            func_8030E6D4(0x33);
+            func_8030E6D4(SFX_33_BANJO_AHOO);
         } else{
             func_802B1100();
         }

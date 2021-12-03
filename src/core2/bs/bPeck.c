@@ -34,7 +34,7 @@ void bsbpeck_init(void){
         case BS_BTROT_JUMP://L802A656C
             D_8037D377++;
             break;
-        case BS_JUMP:
+        case BS_5_JUMP:
         case BS_FALL:
         case BS_FALL_TUMBLING:
         case BS_BOMB_END:
@@ -124,7 +124,7 @@ void bsbpeck_update(void){
 
     if(func_8028B2E8()){
         func_8029C5E8();
-        sp24 = BS_IDLE;
+        sp24 = BS_1_IDLE;
     }
 
     if(player_inWater())

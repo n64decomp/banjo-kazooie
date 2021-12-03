@@ -7,7 +7,6 @@ extern f32 func_8029B2E8(void);
 void func_80299234(f32, f32);
 
 void func_802875AC(AnimCtrl *, char*, s32);
-void func_80299D2C(s32, f32, s32);
 
 void func_802900B4(void);
 void func_80250D94(f32, f32, f32);
@@ -332,7 +331,7 @@ void bsstand_landing_update(void){
     }
     //L802B531C
     if(animctrl_isStopped(sp18))
-        sp1C = BS_IDLE;
+        sp1C = BS_1_IDLE;
 
     bs_setState(func_802B488C(sp1C));
 }

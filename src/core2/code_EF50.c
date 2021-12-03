@@ -417,7 +417,7 @@ void func_80296608(void){
             sp2C = 2;
             break;
         case 0x14: //L80296974
-            sp24 = BS_JUMP;
+            sp24 = BS_5_JUMP;
             sp2C = 2;
             break;
         case 0x35: //L80296984
@@ -442,7 +442,7 @@ void func_80296608(void){
                 && !func_802933C0(0xf)
                 && !func_8028B2E8()
             ){
-                sp24 = BS_CLIMB_IDLE;
+                sp24 = BS_4F_CLIMB_IDLE;
                 sp2C = 2;
                 
             }

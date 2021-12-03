@@ -15,7 +15,7 @@ ActorInfo D_80390A80 = {
 void func_8038B6E0(Actor *this, s32 arg1){
     if(arg1 == 2){
         if(this->state == 1){
-            func_8030E6D4(0x90);
+            func_8030E6D4(SFX_90_SWITCH_PRESS);
         }
         actor_collisionOff(this);
         this->position_y -= 35.0f;

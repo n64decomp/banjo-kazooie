@@ -309,16 +309,16 @@ void func_802B301C(void);
 void func_802B309C(void);
 void func_802B3240(void);
 void func_802B3448(void);
-//BS_CLIMB_IDLE
-void func_802AB830(void);
-void func_802AB8DC(void);
-void func_802ABA10(void);
+//BS_4F_CLIMB_IDLE
+void bsclimb_idle_init(void);
+void bsclimb_idle_update(void);
+void bsclimb_idle_end(void);
 void func_802ABD60(void);
-//BS_CLIMB_MOVE
-void func_802ABA30(void);
-void func_802ABAA4(void);
-void func_802ABCAC(void);
-//BS_CLIMB_EXIT
+//BS_50_CLIMB_MOVE
+void bsclimb_move_init(void);
+void bsclimb_move_update(void);
+void bsclimb_move_end(void);
+//BS_51_CLIMB_EXIT
 void func_802B1928(void);
 void func_802B1A54(void);
 void func_802B1BCC(void);

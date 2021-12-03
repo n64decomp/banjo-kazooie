@@ -44,7 +44,7 @@ void func_8038A0A0(Actor *this, s32 arg1){
     
     if(arg1 == 2){ 
         if(this->state == 1)
-            func_8030E6D4(0x90);
+            func_8030E6D4(SFX_90_SWITCH_PRESS);
         this->position_y -= 40.0f;
         if(this->state == 1){
             levelSpecificFlags_set(local->unk0->unk8, 1);

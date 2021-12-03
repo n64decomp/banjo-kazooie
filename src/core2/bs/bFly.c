@@ -132,7 +132,7 @@ void bsbfly_update(void){
 
     if(D_8037D347 && func_8023DB5C()%3 == 0){
         D_8037D347 = 0;
-        func_80346C10(&sp2C, 0, BS_IDLE, ITEM_F_RED_FEATHER, 1);
+        func_80346C10(&sp2C, 0, BS_1_IDLE, ITEM_F_RED_FEATHER, 1);
     }
 
     if(sp2C || D_8037D346){
@@ -216,13 +216,15 @@ void bsbfly_update(void){
         sp54 = BS_SWIM_IDLE;
 
     if(func_802A3350())
-        sp54 = BS_IDLE;
+        sp54 = BS_1_IDLE;
 
     func_8028FFF0();
     bs_setState(sp54);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bFly/func_802A3F70.s")
+void func_802A3F70(void){
+    func_802A34C8();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bFly/func_802A3F90.s")
 

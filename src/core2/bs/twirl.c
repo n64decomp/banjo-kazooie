@@ -58,7 +58,7 @@ void bstwirl_update(void){
             //??? missing break
         case 3://L802B6C38
             if(animctrl_isStopped(aCtrl))
-                sp1C = BS_IDLE;
+                sp1C = BS_1_IDLE;
             break;
     }//L802B6C4C
 

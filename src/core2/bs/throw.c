@@ -46,14 +46,14 @@ void bsthrow_update(void){
     }
 
     if(animctrl_isStopped(aCtrl))
-        next_state = BS_IDLE;
+        next_state = BS_1_IDLE;
 
     bs_setState(next_state);
 }
 
 void bsthrow_end(void){
     D_8037D580 = 0;
-    if(bs_getNextState() == BS_IDLE){
+    if(bs_getNextState() == BS_1_IDLE){
         func_802917E4(0, 0.14f);
         func_802917E4(1, 0.28f);
     }

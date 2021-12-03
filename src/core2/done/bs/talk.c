@@ -32,7 +32,7 @@ void func_802B61E0(void){
     s32 tmp = 0;
 
     if (D_8037D570 == 0)
-        tmp = BS_IDLE;
+        tmp = BS_1_IDLE;
     D_8037D570 = 0;
     bs_setState(tmp);
 }

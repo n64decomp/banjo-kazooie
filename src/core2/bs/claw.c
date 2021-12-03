@@ -50,7 +50,7 @@ void bsclaw_update(void){
         func_8030EB00(2, 1.1f, 1.12f);
 
     if(animctrl_isStopped(aCtrl))
-        sp2C = BS_IDLE;
+        sp2C = BS_1_IDLE;
 
     if(!func_8028B2E8())
         sp2C = BS_FALL;
