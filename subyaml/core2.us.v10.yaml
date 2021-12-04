@@ -271,7 +271,7 @@ segments:
   - [0x9A320, c, code_9A320] #DONE
   - [0x9A580, c, code_9A580]
   - [0x9A740, c, code_9A740]
-  - [0x9A9D0, c, code_9A9D0]
+  - [0x9A9D0, c, code_9A9D0] #DONE
   - [0x9AD00, c, levelspecificflags]
   - [0x9B180, c, code_9B180]
   - [0x9B650, c, code_9B650]
@@ -537,6 +537,8 @@ segments:
   #- [0xF18F0, .rodata, gc/zoombox] 
   #- [0xF1900, .rodata, gc/zoombox]
   #- [0xF1918, bin]
+  - [0xF1DC0, .rodata, code_9A9D0]
+  - [0xF1DF0, bin, data_F1DF0]
   - [0xF2000, .rodata, code_B6CE0]
   - [0xF2030, bin, data_F2030]
   - [0xF21C0, .rodata, rand]

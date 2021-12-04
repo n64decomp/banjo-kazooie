@@ -282,6 +282,8 @@ void func_8028A274(enum asset_e, f32);
 void func_8028A3B8(f32, f32);
 int  func_8028AED4(f32*, f32);
 
+f32 func_8028E80C(s32);
+
 f32  func_80291670(s32);
 f32  func_80291684(s32);
 u32 func_80291698(int);
