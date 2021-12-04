@@ -2,7 +2,11 @@
 #include "functions.h"
 #include "variables.h"
 
-void  actor_playAnimationOnce(Actor *);
+typedef struct chpinkegg_s{
+    u32 unk0;
+    u32 unk4;
+} ActorLocal_PinkEgg;
+
 void chPinkEggDraw(ActorMarker *this, Gfx ** gdl, Mtx** mptr, u32 arg3);
 void  func_80387AB0(ActorMarker *this, u32 arg1);
 void func_80387B80(Actor *this);
@@ -43,14 +47,15 @@ ActorInfo D_80390788 = {0xD9, 0xF0, 0x384, 0x01, D_803906D8,
 
 //pinkEgg_spawnNextEgg
 void chPinkEggSpawnNext(ActorMarker * arg0, u32 arg1){
-    u32   tmp;
+    ActorLocal_PinkEgg *local;
     Actor *actorPtr;
     Actor *unkActor;
     actorPtr = marker_getActor(arg0);
+    local = (ActorLocal_PinkEgg *)&actorPtr->local;
     unkActor = spawn_child_actor( D_803906C4[arg1], &actorPtr);
 
-    unkActor->pinkEgg.unk0 = arg1 + 1;
-    unkActor->pinkEgg.unk4 = 5;
+    ((ActorLocal_PinkEgg *) &unkActor->local)->unk0 = arg1 + 1;
+    ((ActorLocal_PinkEgg *) &unkActor->local)->unk4 = 5;
     unkActor->marker->collidable = 0;
     
 }
@@ -78,7 +83,7 @@ void func_80387AB0(ActorMarker *this, u32 arg1){
     actor_playAnimationOnce(thisActor);
     this->collidable = 0;
     thisActor->unk124_6 = 0;
-    if(D_803906C4[(tmp = &thisActor->pinkEgg)->unk0]){
+    if(D_803906C4[(tmp = (ActorLocal_PinkEgg *) &thisActor->local)->unk0]){
         // !!! thisActor->unk7C loading into a2 too soon 
         func_802C3D3C(chPinkEggSpawnNext, thisActor->marker, tmp->unk0);
     } else {
@@ -97,12 +102,12 @@ void func_80387B80(Actor *this){
 
     switch(this->state){
         case 1:
-            if(!this->pinkEgg.unk4){
+            if(!((ActorLocal_PinkEgg *) &this->local)->unk4){
                 this->marker->collidable = 1;
                 func_80328A84(this,2);
                 
             }else{
-                this->pinkEgg.unk4--;
+                ((ActorLocal_PinkEgg *) &this->local)->unk4--;
             }
             break;
         case 3:

@@ -9,9 +9,14 @@ extern f32 D_80378DE0;
 extern f32 func_80256280(f32 [3], f32 [3]);
 extern void func_80341180(f32, s32, s32, f32 *, f32 [3]);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9C170/func_80323100.s")
+/* .code */
+void func_80323100(void){
+    func_8024AED8();
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9C170/func_80323120.s")
+void func_80323120(void){
+    func_8024AE74();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9C170/func_80323140.s")
 

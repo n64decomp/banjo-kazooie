@@ -3,6 +3,24 @@
 #include "functions.h"
 #include "variables.h"
 
+typedef struct chgrublin_s{
+    f32     unk0;
+    f32     unk4;
+    u8      unk8;
+    u8      unk9;
+    u8      unkA;
+    u8      unkB;
+    u32     unkC_31:3;
+    u32     unkC_28:1;
+    u32     padC_27:28;
+    s16     unk10;
+    s16     unk12;
+    f32     unk14; //90
+    u8      unk18[0x18];
+    s32     unk30;
+    void    (*unk34)(ActorMarker *, s32);
+}ActorLocal_Grublin;
+
 void func_80328B8C(Actor *, s32, f32, s32);
 
 void func_80388A80(Actor *);
@@ -39,19 +57,20 @@ void func_803889A0(ActorMarker *this, s32 arg1){
 }
 
 void func_80388A04(Actor *this){
-    this->grublin.unk0 = 1.5f;
-    this->grublin.unk4 = 2.3f;
-    this->grublin.unk8 = 5;
-    this->grublin.unk9 = 7;
-    this->grublin.unkC_31 = 2;
-    this->grublin.unkA = 9;
-    this->grublin.unkB = 9;
-    this->grublin.unk10 = 0x29;
-    this->grublin.unk12 = 25000;
-    this->grublin.unkC_28 = 1;
-    this->grublin.unk30 = 0;
-    this->grublin.unk34 = func_803889A0;
-    this->grublin.unk14 = 1.0f;
+    ActorLocal_Grublin *local = (ActorLocal_Grublin *)&this->local;
+    local->unk0 = 1.5f;
+    local->unk4 = 2.3f;
+    local->unk8 = 5;
+    local->unk9 = 7;
+    local->unkC_31 = 2;
+    local->unkA = 9;
+    local->unkB = 9;
+    local->unk10 = 0x29;
+    local->unk12 = 25000;
+    local->unkC_28 = 1;
+    local->unk30 = 0;
+    local->unk34 = func_803889A0;
+    local->unk14 = 1.0f;
 }
 
 void func_80388A80(Actor *this) {

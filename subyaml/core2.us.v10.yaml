@@ -552,6 +552,7 @@ segments:
   - [0xF2740, .rodata, ch/drips]
   - [0xF2760, .rodata, ch/icecube]
   - [0xF2810, bin, data_F2810]
+  - [0xF2A60, .rodata, code_D89E0]
   - [0xF2AD0, .rodata, ch/whipcrack]
   - [0xF2AF0, .rodata, code_DA3A0]
   - [0xF2B00, .rodata, code_DA760]

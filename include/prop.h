@@ -110,11 +110,6 @@ typedef struct chmrvile_s{
     f32 unk30;
 } ActorLocal_MrVile;
 
-typedef struct chpinkegg_s{
-    u32 unk0;
-    u32 unk4;
-} ActorLocal_PinkEgg;
-
 typedef struct chyumblie_s{
     f32 unk0;
     u8  unk4;
@@ -188,24 +183,6 @@ typedef struct actor_anim_info_s{
     u32     index;
     f32     duration;
 } ActorAnimationInfo;
-
-typedef struct chgrublin_s{
-    f32     unk0;
-    f32     unk4;
-    u8      unk8;
-    u8      unk9;
-    u8      unkA;
-    u8      unkB;
-    u32     unkC_31:3;
-    u32     unkC_28:1;
-    u32     padC_27:28;
-    s16     unk10;
-    s16     unk12;
-    f32     unk14; //90
-    u8      unk18[0x18];
-    s32     unk30;
-    void    (*unk34)(ActorMarker *, s32);
-}ActorLocal_Grublin;
 
 typedef struct chconga_s{
     TUPLE(s32, orangeSpawnPosition);
@@ -318,14 +295,12 @@ typedef struct actor_s{
     union
     { //DON'T DO THIS JUST DEFINE STATICLY IN ch/ FILE AND CAST FROM &Actor->local
         ActorLocal_MrVile   mrVile; 
-        ActorLocal_PinkEgg  pinkEgg; 
         ActorLocal_Yumblie  yumblie; 
         ActorLocal_Leafboat leafboat;
         ActorLocal_BGS_2270 bgs_2270;
         ActorLocal_BGS_6730 bgs_6730;
         ActorLocal_Flibbit  flibbit;
         ActorLocal_TanktupBody tanktup;
-        ActorLocal_Grublin grublin;
         ActorLocal_Conga conga;
         ActorLocal_Jinjo jinjo;
         ActorLocal_JujuHitbox juju_ctl;
