@@ -50,7 +50,7 @@ void func_802ABE70(void){
     if(func_802933C0(0x10) && bs_getState() != BS_BTROT_EXIT){
         func_802933FC(0x10);
         func_802917E4(3, func_80294A40());
-        func_8025A6EC(JINGLE_GETTING_TURBO_TRAINERS, -1);
+        func_8025A6EC(COMUSIC_8A_GETTING_TURBO_TRAINERS, -1);
         func_8029E0DC(1);
     }
 

@@ -275,6 +275,7 @@ segments:
   - [0x9AD00, c, levelspecificflags]
   - [0x9B180, c, code_9B180]
   - [0x9B650, c, code_9B650]
+  - [0x9B990, c, code_9B990] #DONE
   - [0x9C170, c, code_9C170]
   - [0x9D760, c, code_9D760]
   - [0x9D860, c, timedfuncqueue]
@@ -412,6 +413,8 @@ segments:
   - [0xE2790, .data, code_74090]
   - [0xE2840, .data, code_74290]
   - [0xE2870, bin, data_E2870]
+  - [0xE7330, .data, code_9B990]
+  - [0xE7490, bin, data_E7490]
   - [0xE7870, .data, code_A4D00]
   - [0xE78A0, bin, data_E78A0]
   - [0xEAE90, .data, code_B6CE0]

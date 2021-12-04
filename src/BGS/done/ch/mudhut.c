@@ -4,7 +4,6 @@
 
 /* TODO move declarations to respective headers*/
 Actor *func_8032813C(u32, f32 *, f32*);
-f32 func_8028E80C(u32);
 void func_8028F710(u32, f32);
 
 void func_802C4218(u32,f32,f32,f32);

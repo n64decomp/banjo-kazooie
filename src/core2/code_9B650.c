@@ -1,13 +1,42 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "SnS.h"
 
 typedef struct{
-    s16 level_id;
-    s16 overlay_id;
-}level_overlay_map_elem;
+    s16 unk0;
+    s16 unk2;
+    s16 unk4;
+    s16 unk6;
+}Struct_Core2_9B650_1s;
 
-extern level_overlay_map_elem D_8036E2C0[];
+typedef struct{
+    s16 map_id;
+    s16 unk2;
+    s16 sns_id;
+}Struct_Core2_9B650_0s;
+
+extern Struct_Core2_9B650_0s D_8036E2A0[] = 
+{
+    {MAP_CCW_WINTER_NABNUTS_HOUSE, -1, SNS_ITEM_EGG_YELLOW},
+    {MAP_RBB_CAPTAINS_CABIN, -2, SNS_ITEM_EGG_RED},
+    {MAP_MMM_BATHROOM, -3, SNS_ITEM_EGG_GREEN},
+    {0, 0, 1}
+};
+
+extern Struct_Core2_9B650_1s D_8036DE80[] = {
+    {-1, 0x87, -1, 0},
+    {-2, 0x84, -1, 0},
+    {-3, 0x86, -1, 0},
+    {0}
+};
+
+extern struct {
+    s16 unk0;
+    s16 unk2;
+    s16 unk4;
+} D_80383340;
+extern int D_80383348;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_803225E0.s")
 
@@ -23,166 +52,22 @@ extern level_overlay_map_elem D_8036E2C0[];
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322758.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322764.s")
+void func_80322764(void){
+    D_80383348 = FALSE;
+    D_80383340.unk4 = 0;
+    D_80383340.unk2 = D_80383340.unk4;
+    D_80383340.unk0 = D_80383340.unk2;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_8032278C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_803228D8.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322914.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322920.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322930.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322960.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322990.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_803229C0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_803229E0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322A00.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322A28.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322A50.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322A78.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322A84.s")
-
-void func_80322A94(void){
-    func_8038FF60();
-    func_803900F8();
-    func_803903EC(); //gv_matchingGame_reset
-    func_803909EC();
-}
-
-void func_80322ACC(void){
-    func_8038FF68();
-    func_80390100();
-    func_8039040C(); //gv_matchingGame_init
-    func_803909F4();
-}
-
-void func_80322B04(void){
-    func_8038FFF4();
-    func_80390138();
-    func_803904A8(); //gv_matchingGame_update
-    func_80390A94();
-}
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322B3C.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322B48.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322B58.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322B78.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322B98.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322BB8.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322BC4.s")
-
-void func_80322BD4(void){}
-
-void func_80322BDC(void){}
-
-void func_80322BE4(void){}
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322BEC.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322BF8.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322C18.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322C38.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322C58.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322C78.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322C84.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322C94.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322C9C.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322CA4.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322CAC.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322CB8.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322CC8.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322CD0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322CD8.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322CE0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322CEC.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322CFC.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322D04.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322D0C.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322D14.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322D20.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322D30.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322D38.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322D8C.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322D94.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322DA0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322DB0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322DE8.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322E20.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322E58.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322E64.s")
-
-enum overlay_e level_2_overlay(enum level_e lvl){
-    int i;
-    for(i = 0; D_8036E2C0[i].level_id; i++){
-        if(D_8036E2C0[i].level_id == lvl)
-            return D_8036E2C0[i].overlay_id;
+void func_803228D8(void){
+    if(!D_80383348){
+        func_8024BD08(0);
+        D_80383348 = TRUE;
     }
-    return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322EDC.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322F1C.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322F5C.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322F7C.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322F9C.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322FBC.s")
-
-void func_80322FDC(void){}
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322FE4.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80323098.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_803230C8.s")
+int func_80322914(void){
+    return D_80383348;
+}

@@ -3,6 +3,8 @@
 #include "variables.h"
 
 
+extern s32 D_802806F0;
+
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_CE60/func_8024A880.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_CE60/func_8024A8AC.s")
@@ -27,6 +29,13 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_CE60/func_8024AF48.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_CE60/func_8024BD08.s")
+void func_8024BD08(s32 arg0){
+    if(arg0){
+        D_802806F0++;
+    }
+    else{
+        D_802806F0--;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_CE60/func_8024BD40.s")

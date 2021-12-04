@@ -337,7 +337,7 @@ s32 func_80334ECC(void) {
         func_8031B65C();
         func_80310D2C();
         func_8031B0B0();
-        func_803230C8();
+        overlay_update();
         func_80321924();
         func_80334428();
         func_8031C880();
@@ -345,7 +345,7 @@ s32 func_80334ECC(void) {
         func_803306C8(1);
         func_8032AD7C(1);
         func_80322490();
-        if (map_getLevel(D_803835D0[1]) == 0xD) {
+        if (map_getLevel(D_803835D0[1]) == LEVEL_D_CUTSCENE) {
             func_802C79C4();
         }
         func_8032AABC();
