@@ -2,7 +2,9 @@
 #include "functions.h"
 #include "variables.h"
 
+int func_802458E0(f32 arg0[3], Actor *arg1, s32 arg2);
 
+/* .code */
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_72B0/func_80244CD0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_72B0/func_80244D94.s")
@@ -55,6 +57,23 @@ int func_8024549C(f32 arg0[3], f32 arg1){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_72B0/func_8024587C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_72B0/func_802458A8.s")
+int func_802458A8(f32 arg0[3], ActorMarker *arg1, s32 arg2){
+    return func_802458E0(arg0, marker_getActor(arg1), arg2);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_72B0/func_802458E0.s")
+int func_802458E0(f32 arg0[3], Actor *arg1, s32 arg2){
+    f32 sp34[3];
+    f32 sp28[3];
+    f32 sp1C[3];
+
+    ml_vec3f_copy(sp28, arg0);
+    ml_vec3f_copy(sp1C, arg1->position);
+    sp1C[1] += (f32)arg2;
+    if(sp1C[1] < sp28[1])
+        return FALSE;
+
+    if(func_80320B98(sp28, sp1C, sp34, 0x25e0000)){
+        return FALSE;
+    }
+    return TRUE;
+}
