@@ -158,6 +158,7 @@ segments:
   - [0x3BB80, c, code_3BB80]
   - [0x3D3D0, c, ch/gameSelect]
   - [0x3EAD0, c, code_3EAD0]
+  - [0x3EC30, c, code_3EC30]
   - [0x3ECE0, c, code_3ECE0]
   - [0x3EEF0, c, ch/bigbutt]  #DONE
   - [0x400F0, c, code_400F0]
@@ -342,6 +343,8 @@ segments:
   - [0xCF7E0, c, code_CF7E0]
   - [0xCFA60, c, ch/code_CFA60] #DONE
   - [0xD01C0, c, code_D01C0]
+  - [0xD0CA0, c, code_D0CA0]
+  - [0xD2180, c, code_D2180]
   - [0xD2500, c, ch/firefx]  #DONE
   - [0xD2AB0, c, ch/drips]   #DONE
   - [0xD2E10, c, ch/icecube] #DONE
@@ -351,6 +354,7 @@ segments:
   - [0xD5FD0, c, code_D5FD0]
   - [0xD6180, c, code_D6180]
   - [0xD6600, c, code_D6600]
+  - [0xD7040, c, code_D7040]
   - [0xD7D10, c, code_D7D10]
   - [0xD89E0, c, code_D89E0]
   - [0xD9DA0, c, ch/whipcrack] #DONE

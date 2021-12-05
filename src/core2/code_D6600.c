@@ -2,7 +2,18 @@
 #include "functions.h"
 #include "variables.h"
 
+void func_8035DA1C(Actor *this);
 
+/* .data */
+extern ActorAnimationInfo D_80372EA0[];
+extern ActorInfo D_80372EE0 = { 
+    0x69, 0xA, 0x36B, 
+    0x2, D_80372EA0, 
+    func_8035DA1C, func_80326224, func_80325888, 
+    { 0xB, 0xB8, 0x0, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+};
+
+/* .code */
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D6600/func_8035D590.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D6600/func_8035D608.s")
@@ -20,31 +31,3 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D6600/func_8035D95C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D6600/func_8035DA1C.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D6600/func_8035DFD0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D6600/func_8035E008.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D6600/func_8035E0D0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D6600/func_8035E150.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D6600/func_8035E1B0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D6600/func_8035E2A8.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D6600/func_8035E360.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D6600/func_8035E44C.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D6600/func_8035E540.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D6600/func_8035E634.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D6600/func_8035E724.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D6600/func_8035E750.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D6600/func_8035E810.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D6600/func_8035E84C.s")

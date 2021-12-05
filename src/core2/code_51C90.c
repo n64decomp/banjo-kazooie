@@ -2,10 +2,37 @@
 #include "functions.h"
 #include "variables.h"
 
-u32 func_802D8D48(Actor*, u32, enum asset_e, enum comusic_e, enum item_e, f32);
-void actor_setOpacity(Actor*,s32);
-void func_8035644C(u32);
 
+extern void actor_setOpacity(Actor*,s32);
+extern void func_8035644C(u32);
+
+u32 func_802D8D48(Actor*, u32, enum asset_e, enum comusic_e, enum item_e, f32);
+Actor *func_802D8F50(ActorMarker *this, Gfx **gdl, Mtx **mptr, Vtx **arg3);
+void func_802D9018(Actor *this);
+
+/* .data */
+extern ActorInfo D_80367D00 = {
+    0x60, 0x52, 0x36D,
+    0, NULL, 
+    func_802D9018, func_80326224, func_802D8F50, 
+    { 0x0, 0x0, 0x0, 0x0}, 0.7f, { 0x0, 0x0, 0x0, 0x0}
+};
+
+extern ActorInfo D_80367D24 = {
+    0xB5, 0x129, 0x580,
+    0, NULL, 
+    func_802D9018, func_80326224, func_802D8F50, 
+    { 0x0, 0x0, 0x0, 0x0}, 0.5f, { 0x0, 0x0, 0x0, 0x0}
+};
+
+extern ActorInfo D_80367D48 = {
+    0x1E5, 0x370, 0x6D1,
+    0, NULL, 
+    func_802D9018, func_80326224, func_802D8F50, 
+    { 0x0, 0x0, 0x0, 0x0}, 0.5f, { 0x0, 0x0, 0x0, 0x0}
+};
+
+/* .code */
 void func_802D8C20(Actor *arg0, u32 arg1){
     switch(arg1){
         default:
@@ -74,7 +101,7 @@ void func_802D8EDC(ActorProp *arg0){
     func_802D8D48(actPtr, 7, 0xDA0, COMUSIC_14_GOLD_FEATHER_COLLECTED, ITEM_10_GOLD_FEATHER, 6.0f);
 }
 
-Actor *func_802D8F50(ActorMarker *this, Gfx **gdl, Mtx **mptr, u32 arg3){
+Actor *func_802D8F50(ActorMarker *this, Gfx **gdl, Mtx **mptr, Vtx **arg3){
     Actor *thisActor = marker_getActor(this);
 
     if(thisActor->unk28 != 0.0f){

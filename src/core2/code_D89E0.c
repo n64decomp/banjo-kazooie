@@ -10,6 +10,18 @@ typedef struct {
     f32 unk4;
 } ActorLocal_Core2_D89E0;
 
+void func_80360828(Actor *this);
+
+/* .data */
+extern ActorAnimationInfo D_80373090[];
+extern ActorInfo D_803730D8 = { 
+    0x127, 0x163, 0x3CA, 
+    0x1, D_80373090, 
+    func_80360828, func_80326224, func_80325888, 
+    { 0x9, 0xC4, 0x0, 0x0}, 0.9f, { 0x0, 0x0, 0x0, 0x0}
+};
+
+
 /* .rodata */
 extern f64 D_803799C0;
 extern f64 D_803799C8;

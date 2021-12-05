@@ -2,13 +2,21 @@
 #include "functions.h"
 #include "variables.h"
 
-void func_80328B8C(Actor *, s32, f32 , s32);
-f32 func_80309B24(f32*);
-void func_80329904(ActorMarker*, s32, f32*);
-void func_80326310(Actor *);
-void func_8032BB88(Actor *, s32, s32);
+extern void func_80328B8C(Actor *, s32, f32 , s32);
+extern f32 func_80309B24(f32*);
+extern void func_80329904(ActorMarker*, s32, f32*);
+extern void func_80326310(Actor *);
+extern void func_8032BB88(Actor *, s32, s32);
 
+void func_802CDD78(Actor *this);
+
+/* .data */
 extern ActorAnimationInfo D_803671B0[];
+extern ActorInfo D_80367200 = { 0x5A, 0x60, 0x3C0, 0x1, D_803671B0, func_802CDD78, func_80326224, func_80325888, { 0x0, 0x0, 0x0, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_80367224 = { 0x5B, 0x62, 0x3C2, 0x1, D_803671B0, func_802CDD78, func_80326224, func_80325888, { 0x0, 0x0, 0x0, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_80367248 = { 0x5E, 0x5E, 0x3BB, 0x1, D_803671B0, func_802CDD78, func_80326224, func_80325888, { 0x0, 0x0, 0x0, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_8036726C = { 0x5D, 0x61, 0x3C1, 0x1, D_803671B0, func_802CDD78, func_80326224, func_80325888, { 0x0, 0x0, 0x0, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_80367290 = { 0x5C, 0x5F, 0x3BC, 0x1, D_803671B0, func_802CDD78, func_80326224, func_80325888, { 0x0, 0x0, 0x0, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
 
 /*.rodata */
 //jumptable D_80376560

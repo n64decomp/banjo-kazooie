@@ -2,9 +2,17 @@
 #include "functions.h"
 #include "variables.h"
 
-// 000E 69E0: 01 E1 03 76 00 00 00 01  00 00 00 00 80 31 A9 E4
-// 000E 69F0: 80 32 62 24 80 32 53 40  00 00 00 00 00 00 00 00
+void func_8031A9E4(Actor *this);
 
+/* .data */
+extern ActorInfo D_8036D970 = { 
+    0x1E1, 0x376, 0x0, 
+    0x1, NULL,
+    func_8031A9E4, func_80326224, func_80325340, 
+    { 0x0, 0x0, 0x0, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+};
+
+/* .code */
 int func_8031A580(void){
     switch(func_803348C0()){
         case MAP_3A_RBB_BOSS_BOOM_BOX:

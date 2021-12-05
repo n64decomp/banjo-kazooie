@@ -2,7 +2,41 @@
 #include "functions.h"
 #include "variables.h"
 
+Actor *func_802DCB50(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
+void func_802DCC90(Actor *this);
+Actor *func_802DCE00(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
+void func_802DCF20(Actor *this);
+Actor *func_802DD188(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
+void func_802DE4CC(Actor *this);
+
+/* .data */
+extern ActorAnimationInfo D_80368100[];
 extern ActorAnimationInfo D_80368118[];
+
+extern ActorInfo D_80368124 = { 
+    0x177, 0x1DE, 0x55C, 
+    0x0, D_80368100,
+    func_802DCC90, func_80326224, func_802DCB50,
+    { 0x0, 0x0, 0x0, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+};
+
+extern ActorAnimationInfo D_80368150[];
+extern ActorInfo D_80368174 = { 
+    0x178, 0x1DF, 0x55D, 
+    0x0, D_80368150,
+    func_802DCF20, func_80326224, func_802DCE00,
+    { 0x0, 0x0, 0x0, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+};
+
+extern ActorAnimationInfo D_80368220[];
+extern ActorInfo D_803682D0 = {
+    0x179, 0x1E0, 0x46C,
+    0x1, D_80368220,
+    func_802DE4CC, func_80326224, func_802DD188,
+    { 0x0, 0x0, 0x0, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+};
+
+
 
 extern u32 D_8037DE80;
 extern u32 D_8037DE84;
@@ -14,7 +48,8 @@ Actor *func_8032813C(s32 id, s32, s32);
 
 extern f32 D_80376F10;
 
-Actor *func_802DCB50(ActorMarker *marker, Gfx **gdl, Mtx **mptr, s32* vptr){
+/* .code */
+Actor *func_802DCB50(ActorMarker *marker, Gfx **gdl, Mtx **mptr, Vtx **vptr){
     Actor * actor;
     f32 sp58[3];
     f32 sp4C[3];
@@ -79,6 +114,8 @@ void func_802DCD78(s32 arg0, s32 arg1){
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_55BC0/func_802DCDB0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_55BC0/func_802DCDC0.s")
+
+// BREAK??? 
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_55BC0/func_802DCE00.s")
 

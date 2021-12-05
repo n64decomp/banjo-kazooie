@@ -2,7 +2,19 @@
 #include "functions.h"
 #include "variables.h"
 
+void func_8035B900(Actor *this);
 
+/* .data */
+extern ActorAnimationInfo D_80372BE0[];
+extern ActorInfo D_80372C18 = { 
+    0x99, 0xCA, 0x3CB, 
+    0x1, D_80372BE0, 
+    func_8035B900, func_80326224, func_80325888, 
+    { 0x19, 0x64, 0x0, 0x0}, 0.9f, { 0x0, 0x0, 0x0, 0x0}
+};
+
+
+/* .code */
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D4050/func_8035AFE0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D4050/func_8035B1CC.s")

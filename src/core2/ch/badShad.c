@@ -2,10 +2,22 @@
 #include "functions.h"
 #include "variables.h"
 
+Actor *func_802D6F48(ActorMarker *this, Gfx **gdl, Mtx **mptr, Vtx **arg3);
+void func_802D6EA0(Actor *this);
+
+/* .data */
+extern ActorInfo D_80367A50 = { 
+    0x9B, 0x108, 0x3BF,
+    0x1, NULL, 
+    func_802D6EA0, func_80326224, func_802D6F48,
+    { 0x0, 0x0, 0x0, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+};
+
+/* .bss */
 extern f32 D_8037DE10[3];
 extern f32 D_8037DE20[3];
 
-
+/* .code */
 void func_802D6EA0(Actor *this){
     s32 iVar1;
     if(!this->initialized){

@@ -2,6 +2,47 @@
 #include "functions.h"
 #include "variables.h"
 
+
+void func_802D3D54(Actor *this);
+void func_802D3DA4(Actor *this);
+Actor *func_802D3F48(ActorMarker *this, Gfx **gdl, Mtx **mptr, Vtx **arg3);
+void func_802D3FD4(Actor *this);
+Actor *func_802D41C4(ActorMarker *this, Gfx **gdl, Mtx **mptr, Vtx **arg3);
+void func_802D4250(Actor *this);
+void func_802D4388(Actor *this);
+Actor *func_802D4588(ActorMarker *this, Gfx **gdl, Mtx **mptr, Vtx **arg3);
+void func_802D4680(Actor *this);
+void func_802D4B94(Actor *this);
+void func_802D4BBC(Actor *this);
+void func_802D4BE4(Actor *this);
+void func_802D4C0C(Actor *this);
+void func_802D4C34(Actor *this);
+void func_802D4C5C(Actor *this);
+void func_802D4C84(Actor *this);
+void func_802D4CAC(Actor *this);
+void func_802D4CD4(Actor *this);
+
+
+/* .data */
+extern ActorAnimationInfo D_803676B0[];
+extern ActorInfo D_80367760 = { 0x26E, 0x2D9, 0x3B4,  0x1, NULL,       func_802D3D54, func_80326224, func_80325E78, { 0x0, 0x0, 0x0, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_80367784 = { 0x26F, 0x2DA, 0x3B5,  0x1, NULL,       func_802D3D54, func_80326224, func_80325E78, { 0x0, 0x0, 0x0, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_803677A8 = { 0x168, 0x25D, 0x50C,  0x1, NULL,       func_802D4250, func_80326224, func_80325E78, { 0x0, 0x0, 0x0, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_803677CC = { 0x233, 0x23D, 0x4DD, 0x12, D_803676B0, func_802D4388, func_80326224, func_802D4588, { 0x0, 0x0, 0x0, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_803677F0 = { 0x16A, 0x242,   0x0,  0x0, NULL,       func_802D4680,          NULL, func_80325340, { 0x0, 0x0, 0x0, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_80367814 = { 0x169, 0x25E, 0x50D,  0x1, NULL,       func_802D3FD4,          NULL, func_802D41C4, { 0x0, 0x0, 0x0, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_80367838 = { 0x265, 0x2E4, 0x55A,  0x1, NULL,       func_802D3DA4,          NULL, func_802D3F48, { 0x0, 0x0, 0x0, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_8036785C = { 0x103, 0x204, 0x4DC,  0x1, D_803676B0, func_802D4B94, func_80326224, func_80325888, { 0x0, 0x0, 0x0, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_80367880 = { 0x104, 0x206, 0x4DC,  0x1, D_803676B0, func_802D4C34, func_80326224, func_80325888, { 0x0, 0x0, 0x0, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_803678A4 = { 0x105, 0x208, 0x4DC,  0x1, D_803676B0, func_802D4C5C, func_80326224, func_80325888, { 0x0, 0x0, 0x0, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_803678C8 = { 0x106, 0x20B, 0x4DC,  0x1, D_803676B0, func_802D4C84, func_80326224, func_80325888, { 0x0, 0x0, 0x0, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_803678EC = { 0x22A, 0x237, 0x4DC,  0x1, D_803676B0, func_802D4CAC, func_80326224, func_80325888, { 0x0, 0x0, 0x0, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_80367910 = { 0x22B, 0x239, 0x4DC,  0x1, D_803676B0, func_802D4CD4, func_80326224, func_80325888, { 0x0, 0x0, 0x0, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_80367934 = { 0x166, 0x25B, 0x4DC,  0x1, D_803676B0, func_802D4BBC, func_80326224, func_80325888, { 0x0, 0x0, 0x0, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_80367958 = { 0x162, 0x257, 0x4DC,  0x1, D_803676B0, func_802D4BE4, func_80326224, func_80325888, { 0x0, 0x0, 0x0, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_8036797C = { 0x161, 0x256, 0x4DC,  0x1, D_803676B0, func_802D4C0C, func_80326224, func_80325888, { 0x0, 0x0, 0x0, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+
+
 extern f32 D_80367680;
 extern s32 D_80367684; //enum map_e
 extern s32 D_80367688;
@@ -41,13 +82,13 @@ extern int D_8037DE00;
 extern f32 D_8037DE04;
 extern f32 D_8037DE08;
 
-void func_802D6114(void);;
+void func_802D6114(void);
 void func_802D6264(f32 arg0, enum map_e arg1, s32 arg2, s32 arg3, s32 arg4, enum bkprog_e arg5);
 void func_802D6344(void);
 void func_802D63D4(void);
 void func_802D6750(void);
 
-
+/* .code */
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_4C020/func_802D2FB0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_4C020/func_802D3138.s")

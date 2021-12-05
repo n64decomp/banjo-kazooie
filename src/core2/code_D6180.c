@@ -2,7 +2,18 @@
 #include "functions.h"
 #include "variables.h"
 
+void func_8035D3D8(Actor *this);
 
+/* .data */ 
+extern ActorAnimationInfo D_80372E20[];
+extern ActorInfo D_80372E78 = { 
+    0x219, 0x34F, 0x4C7, 
+    0x1, D_80372E20, 
+    func_8035D3D8, func_80326224, func_80325888, 
+    { 0x9, 0xC4, 0x0, 0x0}, 1.0f, { 0x0, 0x0, 0x0, 0x0}
+};
+
+/* .code */
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D6180/func_8035D110.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D6180/func_8035D1F0.s")
@@ -17,6 +28,9 @@ void func_8035D2C0(ActorMarker *marker, s32 arg1){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D6180/func_8035D3D8.s")
 
+
+
+/* BREAK??? */
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D6180/func_8035D490.s")
 
 void func_8035D4F0(ActorMarker *marker, s32 arg1){

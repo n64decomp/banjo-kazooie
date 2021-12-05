@@ -5,13 +5,28 @@
 void func_8031FBF8(void);
 void func_8031FBA0(void);
 void func_803184C8(gczoombox_t *, f32, s32, s32, f32, s32, s32);
+
+Actor *func_802C4360(ActorMarker *, Gfx **, Mtx **, Vtx **);
+Actor *func_802C4464(ActorMarker *, Gfx **, Mtx **, Vtx **);
+void func_802C4C14(Actor *this);
+void func_802C5740(Actor *this);
+
+/* .data */
 extern f32 D_80365DD0[3];
 extern s32 D_80365DF4[];
 extern s32 D_80365DF8[];
 extern s32 D_80365E00;
 extern f32 D_80365E04[3];
+extern ActorAnimationInfo D_80365E28[];
+extern ActorInfo D_80365E58 = { 0xE4, 0x195, 0x532, 0x1, D_80365E28, func_802C5740, func_80326224, func_802C4464, { 0x0, 0x0, 0x0, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorAnimationInfo D_80365E7C[];
+extern ActorInfo D_80365EAC = { 0xE5, 0x196, 0x532, 0x1, D_80365E7C, func_802C4C14, func_80326224, func_802C4360, { 0x0, 0x0, 0x0, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorAnimationInfo D_80365ED0[];
+extern ActorInfo D_80365F00 = { 0xE6, 0x197, 0x532, 0x1, D_80365ED0, func_802C4C14, func_80326224, func_802C4360, { 0x0, 0x0, 0x0, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
 
 extern f32 D_80376190;
+
+
 
 extern struct {
     s32 unk0;
@@ -30,7 +45,7 @@ extern f32 D_8037DD30;
 extern f32 D_8037DD34;
 
 /* .code */
-s32 func_802C4360(ActorMarker *marker, Gfx **arg1, Mtx **arg2, s32 arg3){
+Actor *func_802C4360(ActorMarker *marker, Gfx **arg1, Mtx **arg2, Vtx **arg3){
     s32 sp1C = marker->unk14_20 - 0xe4;
     func_8033A45C(3, sp1C);
     func_8033A45C(1, 1);
@@ -48,11 +63,11 @@ s32 func_802C4360(ActorMarker *marker, Gfx **arg1, Mtx **arg2, s32 arg3){
     else{
         func_8033A388(0x64, 0x64, 0x64, 0xFF);
     }
-    func_80325888(marker, arg1, arg2, arg3);
+    return func_80325888(marker, arg1, arg2, arg3);
 }
 
-s32 func_802C4464(ActorMarker *marker, Gfx **arg1, Mtx **arg2, s32 arg3){
-    s32 ret_val = func_802C4360(marker, arg1, arg2, arg3);
+Actor *func_802C4464(ActorMarker *marker, Gfx **arg1, Mtx **arg2, Vtx **arg3){
+    Actor *ret_val = func_802C4360(marker, arg1, arg2, arg3);
     if(D_8037DCF4)
         gczoombox_draw(D_8037DCF4, arg1, arg2, arg3);
     if(D_8037DCF0)
