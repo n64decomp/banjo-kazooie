@@ -43,6 +43,7 @@ segments:
   - [0x9900, c, code_9900] #DONE
   - [0x9BD0, c, code_9BD0] #DONE
   - [0xA600, c, code_A600] #DONE
+  - [0xA6E0, c, code_A6E0]
   - [0xA960, c, code_A960] #DONE
   - [0xAA60, c, code_AA60]
   - [0xB650, c, code_B650] #DONE

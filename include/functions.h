@@ -286,7 +286,7 @@ f32 func_8028E80C(s32);
 
 f32  func_80291670(s32);
 f32  func_80291684(s32);
-u32 func_80291698(int);
+int func_80291698(s32);
 int  func_80291700(s32, f32);
 void func_802917E4(s32, f32);
 

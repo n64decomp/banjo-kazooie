@@ -2,45 +2,54 @@
 #include "functions.h"
 #include "variables.h"
 
+void func_802915B8(void);
+void func_802915E4(void);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A600/func_80291590.s")
+/* .bss */
+extern f32 D_8037C090;
+extern f32 D_8037C094;
+extern s32 D_8037C098;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A600/func_802915B8.s")
+/* .code */
+void func_80291590(void){
+    func_802915B8();
+    func_802915E4();
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A600/func_802915CC.s")
+void func_802915B8(void){
+    D_8037C090 = 30.0f;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A600/func_802915D8.s")
+void func_802915CC(f32 arg0){
+    D_8037C090 = arg0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A600/func_802915E4.s")
+f32 func_802915D8(void){
+    return D_8037C090;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A600/func_802915F8.s")
+void func_802915E4(void){
+    D_8037C094 = 100.0f;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A600/func_80291604.s")
+void func_802915F8(f32 arg0){
+    D_8037C094 = arg0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A600/func_80291610.s")
+f32 func_80291604(void){
+    return D_8037C094;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A600/func_80291634.s")
+void func_80291610(ActorMarker *this_marker){
+    func_8028F55C(1);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A600/func_80291658.s")
+void func_80291634(ActorMarker *this_marker){
+    func_8028F428(2);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A600/func_80291660.s")
+void func_80291658(s32 arg0){ return; }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A600/func_80291670.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A600/func_80291684.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A600/func_80291698.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A600/func_802916CC.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A600/func_80291700.s")
-
-void func_8029175C(void){}
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A600/func_80291764.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A600/func_802917C4.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A600/func_802917E4.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A600/func_80291804.s")
+s32 func_80291660(void){
+    return D_8037C098;
+}
