@@ -299,7 +299,7 @@ void func_8038CC9C(Actor *this, s32 new_state){
     }
     
     if(this->state == 1){
-        func_80335924(this->unk148, 0x146, 0.0f, 2.0f);
+        func_80335924(this->unk148, ASSET_146_ANIM_BOSS_BOOMBOX_APPEAR, 0.0f, 2.0f);
         func_80335A8C(this->unk148, 4);
     }
 
@@ -307,7 +307,7 @@ void func_8038CC9C(Actor *this, s32 new_state){
         func_8025A58C(0, 0xfa0);
         func_8025A6EC(MUSIC_RBB_BOOMBOX, -1);
         func_8025AABC(MUSIC_RBB_BOOMBOX);
-        func_80335924(this->unk148, 0x146, 0.0f, 2.4f);
+        func_80335924(this->unk148, ASSET_146_ANIM_BOSS_BOOMBOX_APPEAR, 0.0f, 2.4f);
         func_80335A8C(this->unk148, 2);
         func_80324E38(0.0f, 3);
         func_80324E60(0.0f, 0);
@@ -330,7 +330,7 @@ void func_8038CC9C(Actor *this, s32 new_state){
 
     if(this->state == 3 || this->state == 4){
         func_8030E878(0x3f2, local->unk0->unk14, 0x6d60, &this->position, 500.0f, 1000.0f);
-        func_80335924(this->unk148, 0x147, 0.2f, (1.0/(local->unk0->unk8)*randf2(1.0f, 1.1f)));
+        func_80335924(this->unk148, ASSET_147_ANIM_BOOMBOX_MOVE, 0.2f, (1.0/(local->unk0->unk8)*randf2(1.0f, 1.1f)));
         func_80335A8C(this->unk148, 2);
         ml_vec3f_set_length(sp80, (this->state == 4)? -0x32*(2 + func_80326218()) : 300.0f/local->unk0->unk8);
         local->unk14[0] = sp80[0] + this->position_x;
@@ -343,7 +343,7 @@ void func_8038CC9C(Actor *this, s32 new_state){
     if(this->state == 5){
         actor_collisionOff(this);
         func_80324C88(0.2f, SFX_D9_WOODEN_CRATE_BREAKING_1, 0.9f, 0x7530);
-        func_80335924(this->unk148, 0x148, 0.2f, 1.0f);
+        func_80335924(this->unk148, ASSET_148_ANIM_BOOMBOX_DIE, 0.2f, 1.0f);
         func_80335A8C(this->unk148, 2);
         ml_vec3f_set_length(sp80, -300.f);
         local->unk14[0] = sp80[0] + this->position_x;
@@ -389,7 +389,7 @@ void func_8038CC9C(Actor *this, s32 new_state){
     if(this->state == 7){
         actor_collisionOff(this);
         func_803262E4(this);
-        func_80335924(this->unk148, 0x147, 0.0f, 1.0f);
+        func_80335924(this->unk148, ASSET_147_ANIM_BOOMBOX_MOVE, 0.0f, 1.0f);
         func_80335A8C(this->unk148, 2);
         local->unk8[0] = this->position_x;
         local->unk8[1] = this->position_y;
@@ -533,7 +533,7 @@ void func_8038D8BC(Actor *this){
 
         if(func_803203FC(0x1F)){
             func_8038CBC0();
-            func_80335924(this->unk148, 0x146, 0.0f, 2.4f);
+            func_80335924(this->unk148, ASSET_146_ANIM_BOSS_BOOMBOX_APPEAR, 0.0f, 2.4f);
             func_80335A8C(this->unk148, 2);
             this->state = 2;
         }
@@ -555,14 +555,14 @@ void func_8038D8BC(Actor *this){
     }//L8038DAD8
 
     if(this->state == 2){
-        if(func_8033567C(this->unk148) == 0x146 && func_80335794(this->unk148) > 0){
-            func_80335924(this->unk148, 0x147, 0.2, 1.0f);
+        if(func_8033567C(this->unk148) == ASSET_146_ANIM_BOSS_BOOMBOX_APPEAR && func_80335794(this->unk148) > 0){
+            func_80335924(this->unk148, ASSET_147_ANIM_BOOMBOX_MOVE, 0.2, 1.0f);
             func_80335A8C(this->unk148, 1);
         }
     }//L8038DB30
 
     if( this->state == 2 || this->state == 3 || this->state == 4){
-        if(func_8033567C(this->unk148) == 0x147){
+        if(func_8033567C(this->unk148) == ASSET_147_ANIM_BOOMBOX_MOVE){
             func_8033568C(this->unk148, &sp5C, &sp58);
             if(sp5C < 0.6 && 0.6 <= sp58){
                 func_8030E878(SFX_6C_LOCKUP_CLOSING, randf2(-0.05f, 0.05f) + local->unk0->unk14, 0x4e20, &this->position, 500.0f, 1000.0f);

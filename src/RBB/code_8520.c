@@ -204,7 +204,7 @@ int func_8038EF08(Actor *this, f32 (*position)[3], f32 arg2){
             local->unk20[2] = this->position_z;
         }
     }
-    func_80335924(this->unk148, 0x147, 0.1f, randf2(-0.1f, 0.1f) + (1.0/arg2)*0.4);
+    func_80335924(this->unk148, ASSET_147_ANIM_BOOMBOX_MOVE, 0.1f, randf2(-0.1f, 0.1f) + (1.0/arg2)*0.4);
     func_80335A8C(this->unk148, 2);
     local->unk14[0] = this->position_x; 
     local->unk14[1] = this->position_y; 
@@ -224,7 +224,7 @@ void func_8038F190(Actor *this, s32 arg1){
     }
 
     if(arg1 == 1){
-        func_80335924(this->unk148, 0x147, 0.2f, 1.0f);
+        func_80335924(this->unk148, ASSET_147_ANIM_BOOMBOX_MOVE, 0.2f, 1.0f);
         func_80335A8C(this->unk148, 4);
     }//L8038F204
 
@@ -249,7 +249,7 @@ void func_8038F190(Actor *this, s32 arg1){
         func_8038FB6C();
         actor_collisionOff(this);
         func_80324D54(0.0f, SFX_1B_EXPLOSION_1, 1.0f, 0x7d00, &this->position, 1000.0f, 2000.0f);
-        func_80335924(this->unk148, 0x148, 0.2f, 1.0f);
+        func_80335924(this->unk148, ASSET_148_ANIM_BOOMBOX_DIE, 0.2f, 1.0f);
         func_80335A8C(this->unk148, 2);
         func_8038EAB4(this);
         func_8038EC14(this);

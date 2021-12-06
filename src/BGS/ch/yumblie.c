@@ -56,12 +56,12 @@ void func_8038B220(Actor* this, u32 state){
         this->yaw = randf2(0.0f, 360.0f);
         s0->unk4 = func_8038B160(this);
         func_8038AC54(s0->unkC, this->marker, this->position, s0->unk4);
-        func_80335924(this->unk148, (s0->unk4)? 0x128 : 0x125, 0.0f, 1.5f);
+        func_80335924(this->unk148, (s0->unk4)? ASSET_128_ANIM_GRUMBLIE_APPEAR : ASSET_125_ANIM_YUMBLIE_APPEAR, 0.0f, 1.5f);
         func_80335A8C(this->unk148, 2);
     }
     if(state == 3){
         s0->unk8 = randf2(5.0f, 10.0f);
-        func_80335924(this->unk148, (s0->unk4)? 0x12A : 0x127, 0.1f, randf2(0.5f, 1.0f));
+        func_80335924(this->unk148, (s0->unk4)? ASSET_12A_ANIM_GRUMBLIE_IDLE : ASSET_127_ANIM_YUMBLIE_IDLE, 0.1f, randf2(0.5f, 1.0f));
         func_80335A8C(this->unk148, 1);
         if(s0->unk4){
             func_8030E6A4(SFX_C4_TWINKLY_MUNCHER_GRR,randf2(1.0f, D_80391018), 0x7530);
@@ -72,7 +72,7 @@ void func_8038B220(Actor* this, u32 state){
     
     if(state == 4){
         func_8038ACFC(s0->unkC, this->marker);
-        func_80335924(this->unk148, (s0->unk4)? 0x129 : 0x126, 0.1f, 0.5f);
+        func_80335924(this->unk148, (s0->unk4)? ASSET_129_ANIM_GRUMBLIE_HIDE : ASSET_126_ANIM_YUMBLIE_HIDE, 0.1f, 0.5f);
         func_80335A8C(this->unk148, 2);
     }
     if(state == 5){

@@ -130,7 +130,7 @@ segments:
   - [0x2FAB0, c, bs/twirl]    #DONE
   - [0x2FD70, c, bs/walk]
   - [0x30E70, c, bs/walrus]
-  - [0x329F0, c, code_329F0]
+  - [0x329F0, c, code_329F0] #DONE
   - [0x32DB0, c, code_32DB0]
   - [0x33250, c, code_33250]
   - [0x33AB0, c, code_33AB0]
@@ -339,8 +339,8 @@ segments:
   - [0xCD0A0, c, code_CD0A0]
   - [0xCD3F0, c, code_CD3F0]
   - [0xCECD0, c, code_CECD0]
-  - [0xCF3E0, c, code_CF3E0] 
-  - [0xCF7E0, c, ch/clankerwhipcrack]
+  - [0xCF3E0, c, code_CF3E0] #DONE
+  - [0xCF7E0, c, ch/clankerwhipcrack] #DONE
   - [0xCFA60, c, ch/code_CFA60] #DONE
   - [0xD01C0, c, ch/clucker] #DONE
   - [0xD0CA0, c, code_D0CA0]
@@ -507,7 +507,9 @@ segments:
   - [0xEEBA0, .rodata, bs/turn]
   - [0xEEBC0, .rodata, bs/twirl]
   - [0xEEBE0, .rodata, bs/walk]
-  - [0xEEC70, bin]
+  - [0xEEC70, bin, data_EEC70]
+  - [0xEECD0, .rodata, code_329F0]
+  - [0xEED30, bin, data_EED30]
   - [0xEF040, ".rodata", code_3BB80]
   - [0xEF090, bin, data_EF090]
   - [0xEF220, .rodata, ch/bigbutt]

@@ -14,10 +14,10 @@ ActorInfo D_80390AE0 = {
 /* .code */
 void func_8038BEA0(Actor *this, s32 arg1){
     if(arg1 == 1)
-        func_80335924(this->unk148, 0x141, 0.0f, 5.5f);
+        func_80335924(this->unk148, ASSET_141_ANIM_ANCHOR_LOWERED, 0.0f, 5.5f);
     
     if(arg1 == 2){
-        func_80335924(this->unk148, 0x142, 0.0f, 8.0f);
+        func_80335924(this->unk148, ASSET_142_ANIM_ANCHOR_RISING, 0.0f, 8.0f);
         func_80335A8C(this->unk148, 2);
     }
     this->state = arg1;

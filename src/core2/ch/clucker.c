@@ -101,7 +101,7 @@ void func_80357264(Actor *this, s32 next_state){
             func_80324E38(2.0f, 0);
         }//L80357518
         func_8030E6D4(SFX_1E_HITTING_AN_ENEMY_2);
-        func_80335924(this->unk148, 0x186, 0.05f, 2.0f);
+        func_80335924(this->unk148, ASSET_186_ANIM_CLUCKER_DIE, 0.05f, 2.0f);
     }//L80357540
 
     this->state = next_state;

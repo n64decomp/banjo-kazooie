@@ -4,7 +4,6 @@
 
 void func_80324DBC(f32, s32, s32, f32 *, ActorMarker *, void(*)(void), s32);
 void func_80324E88(f32);
-void func_80335924(void *, s32, f32, f32);
 void func_803888E4(Actor *this, s32 arg1);
 
 extern s16 D_80390854[];
@@ -115,11 +114,11 @@ void func_803888E4(Actor *this, s32 arg1){
     this->state = arg1;
     unqPtr->unkC = 0.0f;
     if(this->state == 1){
-        func_80335924(this->unk148, 0x12B, 1.0f, 9.0f);
+        func_80335924(this->unk148, ASSET_12B_ANIM_TIPTUP_IDLE, 1.0f, 9.0f);
         unqPtr->unkC = randf2(5.0f, 15.0f);
     }
     if(this->state == 2){
-        func_80335924(this->unk148, 0x12B, 1.0f, 9.0f);
+        func_80335924(this->unk148, ASSET_12B_ANIM_TIPTUP_IDLE, 1.0f, 9.0f);
         unqPtr->unkC = randf2(5.0f, 15.0f);
         if(!this->unk138_24){
             this->unk138_24 = 1;
@@ -274,12 +273,12 @@ void func_80389080(Actor *this){
     }
     else{
         player_getPosition(&sp44);
-        if(func_8033567C(this->unk148) == 0x12c && func_80335794(this->unk148) > 0){
-            func_80335924(this->unk148, 0x12b, 1.0f, 9.0f);
+        if(func_8033567C(this->unk148) == ASSET_12C_ANIM_TIPTUP_TAPPING && func_80335794(this->unk148) > 0){
+            func_80335924(this->unk148, ASSET_12B_ANIM_TIPTUP_IDLE, 1.0f, 9.0f);
             unqPtr->unkC = randf2(5.0f, 15.0f);
         }
         if(func_8025773C(&unqPtr->unkC, sp3C)){
-            func_80335924(this->unk148, 0x12c, 1.0f, 4.0f);
+            func_80335924(this->unk148, ASSET_12C_ANIM_TIPTUP_TAPPING, 1.0f, 4.0f);
         }
         func_80258A4C(this->position, this->yaw - 90.0f, &sp44, &sp38, &sp34, &sp30);
         this->yaw = this->yaw + 5.0f*sp30;

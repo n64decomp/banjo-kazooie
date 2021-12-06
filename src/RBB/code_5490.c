@@ -18,10 +18,10 @@ ActorInfo D_80390AB0 = {
 /* .code */
 void func_8038B880(Actor *this, s32 new_state){
     if(new_state == 1)
-        func_80335924(this->unk148, 0x13f, 0.0f, 5.5f);
+        func_80335924(this->unk148, ASSET_13F_ANIM_SNORKEL_STUCK, 0.0f, 5.5f);
 
     if(new_state == 2)
-        func_80335A24(this->unk148, 0x13e, 1.0f, 0.65f);
+        func_80335A24(this->unk148, ASSET_13E_ANIM_SNORKEL_SWIM, 1.0f, 0.65f);
 
     this->state = new_state;
 }

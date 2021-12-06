@@ -456,7 +456,7 @@ Actor *func_80329980(Actor *);
 void ml_vec3f_pitch_rotate_copy(f32 dst[3], f32 src[3], f32 pitch);
 int func_8025773C(f32 *arg0, f32 arg1);
 Actor *func_80325888(ActorMarker *, Gfx**, Mtx**, Vtx **);
-void func_80335924(void *, s32, f32, f32);
+void func_80335924(void *, enum asset_e anim_id, f32, f32);
 
 Actor *func_80325340(ActorMarker *, Gfx **, Mtx **, Vtx **);
 void func_8032AA58(Actor *, f32);

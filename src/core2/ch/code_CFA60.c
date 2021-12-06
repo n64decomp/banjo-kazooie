@@ -27,7 +27,7 @@ void func_803569F0(Actor *this, s32 next_state){
     this->marker->unk14_20 = 0x1cf;
     actor_collisionOff(this);
     if(next_state == 1 || next_state == 2){
-        func_80335924(this->unk148, 0x15A, 0, 2.5f);
+        func_80335924(this->unk148, ASSET_15A_ANIM_GRILL_CHOMPA_ATTACK, 0, 2.5f);
         func_80335A74(this->unk148, 0.99f);
         func_80335A8C(this->unk148, 4);
         if(this->state == 4){
@@ -46,14 +46,14 @@ void func_803569F0(Actor *this, s32 next_state){
     if(next_state == 4){
         this->marker->unk14_20 = 0x29;
         actor_collisionOn(this);
-        func_80335924(this->unk148, 0x15A, 0, randf2(2.3f, 2.7f));
+        func_80335924(this->unk148, ASSET_15A_ANIM_GRILL_CHOMPA_ATTACK, 0, randf2(2.3f, 2.7f));
         func_80335A8C(this->unk148, 2);
         func_8030E760(0x3ef, 1.1f, 25000);
         func_8030E760(0x3ef, 1.1f, 25000);
     }//L80356B90
     if(next_state == 5){
         func_8030E760(SFX_1E_HITTING_AN_ENEMY_2, 1.0f, 32000);
-        func_80335924(this->unk148, 0x15b, 0.05f, 2.0f);
+        func_80335924(this->unk148, ASSET_15B_ANIM_GRILL_CHOMPA_DIE, 0.05f, 2.0f);
         func_80335A8C(this->unk148, 2);
     }
     this->state = next_state;
