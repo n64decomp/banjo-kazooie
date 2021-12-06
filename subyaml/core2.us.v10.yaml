@@ -340,7 +340,7 @@ segments:
   - [0xCD3F0, c, code_CD3F0]
   - [0xCECD0, c, code_CECD0]
   - [0xCF3E0, c, code_CF3E0] 
-  - [0xCF7E0, c, code_CF7E0]
+  - [0xCF7E0, c, ch/clankerwhipcrack]
   - [0xCFA60, c, ch/code_CFA60] #DONE
   - [0xD01C0, c, ch/clucker] #DONE
   - [0xD0CA0, c, code_D0CA0]
@@ -425,6 +425,7 @@ segments:
   - [0xEAEA0, .data, code_B6EA0]
   - [0xEAED0, .data, code_B7F40]
   - [0xEAEE0, bin, data_EAEE0]
+  - [0xEB880, .data, ch/clankerwhipcrack]
   - [0xEB8B0, .data, ch/code_CFA60]
   - [0xEB8E0, .data, ch/clucker]
   - [0xEB910, bin, data_EB910]
@@ -552,6 +553,7 @@ segments:
   - [0xF2030, bin, data_F2030]
   - [0xF21C0, .rodata, rand]
   - [0xF21E0, bin, data_F21E0]
+  - [0xF2560, .rodata, ch/clankerwhipcrack]
   - [0xF2580, .rodata, ch/code_CFA60]
   - [0xF25D0, .rodata, ch/clucker]
   - [0xF2670, bin, data_F2670]

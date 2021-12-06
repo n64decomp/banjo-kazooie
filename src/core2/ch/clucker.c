@@ -56,7 +56,7 @@ void func_80357264(Actor *this, s32 next_state){
     this->marker->unk14_20 = 0x1d0;
     actor_collisionOff(this);
     if(next_state == 1 || next_state == 2){
-        func_80335924(this->unk148, 0x184, 0.0f, 2.5f);
+        func_80335924(this->unk148, ASSET_184_ANIM_CLUCKER_ATTACK_SHORT, 0.0f, 2.5f);
         func_80335A74(this->unk148, 0.99f);
         func_80335A8C(this->unk148, 4);
         if(this->state == 4){
@@ -83,9 +83,9 @@ void func_80357264(Actor *this, s32 next_state){
         actor_collisionOn(this);
         local->unk0 = (local->unk0 + 1) % 3; 
         if(local->unk0 < 2)
-            func_80335924(this->unk148, 0x184, 0.0f, randf2( 0.6f, 1.0f));
+            func_80335924(this->unk148, ASSET_184_ANIM_CLUCKER_ATTACK_SHORT, 0.0f, randf2( 0.6f, 1.0f));
         else
-            func_80335924(this->unk148, 0x185, 0.0f, randf2( 2.3f, 2.7f));
+            func_80335924(this->unk148, ASSET_185_ANIM_CLUCKER_ATTACK_LONG, 0.0f, randf2( 2.3f, 2.7f));
         func_80335A8C(this->unk148, 2);
         func_8030E6A4(SFX_4A_CLUCKER_AHH, randf2(0.85f, 0.95f), 32000);
     }

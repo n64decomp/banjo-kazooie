@@ -69,10 +69,10 @@ void __chwhipcrack_spawnSmoke(Actor *this, s32 cnt){
 
 void __chwhipcrack_setState(Actor *this, s32 next_state){
     if(next_state == 1)
-        func_80335924(this->unk148, 0x22A, 0.5f, 1.0f);
+        func_80335924(this->unk148, ASSET_22A_ANIM_WHIPCRACK_IDLE, 0.5f, 1.0f);
     
     if(next_state == 2)
-        func_80335924(this->unk148, 0x229, 0.5f, 1.0f);
+        func_80335924(this->unk148, ASSET_229_ANIM_WHIPCRACK_ATTACK, 0.5f, 1.0f);
 
     if(next_state == 3){
         __chwhipcrack_spawnPieces(this, ASSET_4FE_MODEL_WHIPCRACK_PART_1, 4);
