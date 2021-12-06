@@ -8,17 +8,17 @@
 
 enum bkprog_e{
     
-    // {index=0x03, type="Prog", level=6, name="1st Note Text"}, -- 0x00 > 3
-	// {index=0x04, type="Prog", level=6, name="1st Mumbo Token Text"}, -- 0x00 > 4
-	// {index=0x05, type="Prog", level=6, name="1st Egg Text"}, -- 0x00 > 5
-	// {index=0x06, type="Prog", level=6, name="1st Red Feather Text"}, -- 0x00 > 6
-	// {index=0x07, type="Prog", level=6, name="1st Gold Feather Text"}, -- 0x00 > 7
-	// {index=0x08, type="Prog", level=6, name="1st Gold Bullion Text"}, -- 0x01 > 1 (flipped, but only for this byte, no idea why)
-	// {index=0x09, type="Prog", level=6, name="1st Orange Text"}, -- 0x01 > 0 (flipped, but only for this byte, no idea why)
-	// {index=0x0A, type="Prog", level=6, name="1st Honeycomb Text"}, -- 0x01 > 2
-	// {index=0x0B, type="Prog", level=6, name="1st Empty Honeycomb Text"}, -- 0x01 > 3
-	// {index=0x0C, type="Prog", level=6, name="1st Extra Life Text"},
-	// {index=0x0D, type="Prog", level=6, name="1st Beehive Text"},
+    // BKPROG_03_ "1st Note Text"}, -- 0x00 > 3
+	// BKPROG_04_ "1st Mumbo Token Text"}, -- 0x00 > 4
+	// BKPROG_05_ "1st Egg Text"}, -- 0x00 > 5
+	// BKPROG_06_ "1st Red Feather Text"}, -- 0x00 > 6
+	// BKPROG_07_ "1st Gold Feather Text"}, -- 0x00 > 7
+	// BKPROG_08_ "1st Gold Bullion Text"}, -- 0x01 > 1 (flipped, but only for this byte, no idea why)
+	// BKPROG_09_ "1st Orange Text"}, -- 0x01 > 0 (flipped, but only for this byte, no idea why)
+	// BKPROG_0A_ "1st Honeycomb Text"}, -- 0x01 > 2
+	// BKPROG_0B_ "1st Empty Honeycomb Text"}, -- 0x01 > 3
+	// BKPROG_0C_ "1st Extra Life Text"},
+	// BKPROG_0D_ "1st Beehive Text"},
     BKPROG_D_BEEHIVE_TEXT = 0xD,
 	BKPROG_E_JINJO_TEXT,
 	// {index=0x0F, type="Prog", level=6, name="1st Time Pirahana Text"},
@@ -1518,6 +1518,10 @@ enum actor_e
 
     ACTOR_37A_BOTTLES       = 0x37a,
 
+    ACTOR_37F_LOGGO = 0x37F,
+    ACTOR_380_SCARAB_BEETLE,
+
+
     ACTOR_39F_FIGHT_FLIGHT_PAD = 0x39F,
 
     ACTOR_3BA_UNKOWN        = 0x3ba
@@ -1953,7 +1957,17 @@ enum asset_e
     ASSET_500_MODEL_WHIPCRACK_PART_3,
 
     ASSET_504_ICECUBE       = 0x504,
-    ASSET_505_ICECUBE_CHUNK = 0x505,
+    ASSET_505_ICECUBE_CHUNK,
+
+    ASSET_519_MODEL_LOGGO = 0x519,
+    ASSET_51A_MODEL_LEAKY,
+    ASSET_51B_MODEL_SCARAB_BEETLE,
+    ASSET_51C_MODEL_SCARAB_BEETLE_PART_1,
+
+    ASSET_51E_MODEL_SCARAB_BEETLE_PART_2 = 0x51e,
+    ASSET_51F_MODEL_SCARAB_BEETLE_PART_3,
+    ASSET_520_MODEL_SCARAB_BEETLE_PART_4,
+
 
     ASSET_526_SPRITE_FIRE   = 0x526,
 

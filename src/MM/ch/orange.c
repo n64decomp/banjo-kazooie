@@ -9,11 +9,10 @@
 
 /* extern functions */
 f32 func_80309724(f32*);
-Actor *func_80325E78(ActorMarker *);
 
 /* public functions */
 void    func_80387FF4(Actor *this);
-Actor*  func_80388188(ActorMarker *, Gfx **, Mtx**);
+Actor*  func_80388188(ActorMarker *, Gfx **, Mtx**, Vtx**);
 
 /* .data */
 ActorInfo chorangeInfo = { 0xC, ACTOR_14_ORANGE_PROJECTILE, model_orange, 1, NULL,
@@ -75,8 +74,8 @@ void func_80387FF4(Actor * this){
     }
 }
 
-Actor *func_80388188(ActorMarker *this, Gfx **dl, Mtx **mptr){
-    Actor* actorPtr = func_80325E78(this);
+Actor *func_80388188(ActorMarker *this, Gfx **dl, Mtx **mptr, Vtx **vtx){
+    Actor* actorPtr = func_80325E78(this, dl, mptr, vtx);
     f32 sp60[3] = D_803899F4;
     f32 sp54[3] = D_80389A00;
     f32 sp48[3];

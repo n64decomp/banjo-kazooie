@@ -8,7 +8,7 @@ void func_80358684(Actor *this);
 
 /* .data */
 extern ActorInfo D_803728A0 = { 
-    0x253, 0x380, 0x51B, 
+    0x253, ACTOR_380_SCARAB_BEETLE, ASSET_51B_MODEL_SCARAB_BEETLE, 
     0, NULL, 
     func_80358684, NULL, func_80358344, 
     { 0x0, 0x0, 0x0, 0x0}, 1.0f, { 0x0, 0x0, 0x0, 0x0}
