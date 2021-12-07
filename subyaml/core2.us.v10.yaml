@@ -230,7 +230,7 @@ segments:
   - [0x69F60, c, code_69F60] #DONE
   - [0x6A4B0, c, code_6A4B0] #DONE
   - [0x6AEF0, c, code_6AEF0] #DONE
-  - [0x6CD20, c, code_6CD20]
+  - [0x6CD20, c, code_6CD20] #DONE
   - [0x6CEC0, c, code_6CEC0] #DONE
   - [0x6D030, c, code_6D030] #DONE
   - [0x6D270, c, code_6D270]
@@ -416,6 +416,7 @@ segments:
   - [0xE0F10, bin, data_E0F10]
   - [0xE0FA0, .data, code_54D50]
   - [0xE1050, bin, data_E1050]
+  - [0xE1DF0, .data, code_6CD20]
   - [0xE1E40, .data, code_6D030]
   - [0xE1E50, bin, data_E1E50]
   - [0xE2350, .data, code_73640]
