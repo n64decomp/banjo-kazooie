@@ -933,7 +933,7 @@ void func_8028BCA0(Prop *prop){
             case 0x11: //L8028CE8C
                 if(func_8028BC20(marker))
                     return;
-                if(func_8029A8F4() != TRANSFORM_1_BANJO)
+                if(_player_getTransformation() != TRANSFORM_1_BANJO)
                     return;
                 if(func_8028F170())
                     return;
@@ -955,7 +955,7 @@ void func_8028BCA0(Prop *prop){
                     if(func_8028BC20(marker))
                         return;
 
-                    tmp = func_8029A8F4();
+                    tmp = _player_getTransformation();
                     if(tmp != TRANSFORM_1_BANJO && tmp != TRANSFORM_5_CROC)
                         return;
                     
@@ -1141,7 +1141,7 @@ void func_8028D2E4(void){
 }
 #endif
 
-ActorMarker *player_getMarker(void){ //player_getMarker
+ActorMarker *_player_getMarker(void){ //_player_getMarker
     return playerMarker;
 }
 

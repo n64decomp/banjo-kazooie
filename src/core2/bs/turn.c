@@ -6,7 +6,7 @@ extern f32 D_8037D590;
 extern s32 D_8037D594;
 
 void bsturn_init(void){
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     f32 sp28[3];
 
     animctrl_reset(aCtrl);
@@ -28,7 +28,7 @@ void bsturn_init(void){
 void bsturn_update(void){
     enum bs_e sp2C = 0;
 
-    func_80297970(ml_map_f(func_802877D8(player_getAnimCtrlPtr()), 0.18f, 1.0f, D_8037D590, 0.0f));
+    func_80297970(ml_map_f(func_802877D8(_player_getAnimCtrlPtr()), 0.18f, 1.0f, D_8037D590, 0.0f));
 
     D_8037D594++;
     if(!(D_8037D594 < 6))
@@ -46,7 +46,7 @@ void bsturn_update(void){
             break;
     }//L802B6978
 
-    if(animctrl_isStopped(player_getAnimCtrlPtr()))
+    if(animctrl_isStopped(_player_getAnimCtrlPtr()))
         sp2C = BS_WALK_FAST;
 
     if(button_held(BUTTON_Z))

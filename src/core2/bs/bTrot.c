@@ -220,7 +220,7 @@ void bsbtrot_enter_init(void){
 
 void bsbtrot_enter_update(void){
     enum bs_e next_state = 0;
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     func_802952A8(0,1);
     func_80299628(1);
     if(animctrl_isStopped(aCtrl))
@@ -287,7 +287,7 @@ void bsbtrot_walk_init(void){
 
 void bsbtrot_walk_update(void){
     enum bs_e sp1C = 0;
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
 
     func_802A8850();
     func_802A9054();
@@ -339,7 +339,7 @@ void bsbtrot_walk_end(void){
 void func_802A9320(void){}
 
 void bsbtrot_jump_init(void){
-    AnimCtrl * aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl * aCtrl = _player_getAnimCtrlPtr();
 
     animctrl_reset(aCtrl);
     animctrl_setIndex(aCtrl, ANIM_BANJO_BTROT_JUMP);
@@ -368,7 +368,7 @@ void bsbtrot_jump_init(void){
 
 void bsbtrot_jump_update(void){
     enum bs_e sp2C = 0;
-    AnimCtrl * aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl * aCtrl = _player_getAnimCtrlPtr();
     f32 sp1C[3];
     func_802A8AD8();
     if(func_80291698(3))
@@ -484,7 +484,7 @@ void bsbtrot_exit_init(void){
 
 void bsbtrot_exit_update(void){
     enum bs_e sp1C = 0;
-    if(animctrl_isStopped(player_getAnimCtrlPtr()))
+    if(animctrl_isStopped(_player_getAnimCtrlPtr()))
         sp1C = BS_1_IDLE;
 
     bs_setState(sp1C);
@@ -495,7 +495,7 @@ void bsbtrot_exit_end(void){
 }
 
 void bsbtrot_slide_init(void){
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     animctrl_reset(aCtrl);
     animctrl_setIndex(aCtrl, ANIM_BANJO_BTROT_JUMP);
     func_8028774C(aCtrl, 0.069f);
@@ -562,7 +562,7 @@ int bsbtrot_inSet(s32 move_indx){
 }
 
 void bsbtrot_fall_init(void){
-    AnimCtrl * aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl * aCtrl = _player_getAnimCtrlPtr();
     animctrl_reset(aCtrl);
     animctrl_setIndex(aCtrl, ANIM_BANJO_BTROT_JUMP);
     animctrl_setDuration(aCtrl, 1.4f);
@@ -579,7 +579,7 @@ void bsbtrot_fall_init(void){
 
 void bsbtrot_fall_update(void){
     enum bs_e sp2C = 0;
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     f32 sp1C[3];
     func_802A8AD8();
     if(func_80291698(3))
@@ -739,7 +739,7 @@ void bsbtrot_ow_update(void){
     if(func_8028B2E8() && func_80289FC4())
         sp1C = BS_BTROT_IDLE;
 
-    if(animctrl_isStopped(player_getAnimCtrlPtr()) && player_inWater())
+    if(animctrl_isStopped(_player_getAnimCtrlPtr()) && player_inWater())
         sp1C = BS_SWIM_IDLE;
 
     bs_setState(sp1C);

@@ -2,55 +2,61 @@
 #include "functions.h"
 #include "variables.h"
 
+struct {
+    f32 unk0;
+    f32 unk4;
+    u8  xform_8;
+} D_8037D180;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13900/func_8029A890.s")
+u8 D_8037D18C;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13900/func_8029A8B0.s")
+/* .code */
+void func_8029A890(void){
+    func_802957FC();
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13900/func_8029A8F4.s")
+void func_8029A8B0(void){
+    func_80295804();
+    D_8037D180.unk0 = D_8037D180.unk4 = 0.0f;
+    D_8037D180.xform_8 = TRANSFORM_1_BANJO;
+    D_8037D18C = FALSE;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13900/func_8029A900.s")
+enum transformation_e _player_getTransformation(void){
+    return D_8037D180.xform_8;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13900/func_8029A90C.s")
+f32 func_8029A900(void){
+    return D_8037D180.unk0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13900/func_8029A918.s")
+f32 func_8029A90C(void){
+    return D_8037D180.unk4;
+}
+
+s32 func_8029A918(void){
+    return D_8037D18C;
+}
 
 void func_8029A924(void){}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13900/func_8029A92C.s")
+void func_8029A92C(void){
+    func_8029A968(0.0f);
+    func_8029A974(0.0f);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13900/func_8029A95C.s")
+void func_8029A95C(enum transformation_e xform_id){
+    D_8037D180.xform_8 = xform_id;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13900/func_8029A968.s")
+void func_8029A968(f32 arg0){
+    D_8037D180.unk0 = arg0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13900/func_8029A974.s")
+void func_8029A974(f32 arg0){
+    D_8037D180.unk4 = arg0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13900/func_8029A980.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13900/func_8029A990.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13900/func_8029AA3C.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13900/func_8029AB14.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13900/func_8029AC34.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13900/func_8029ACD4.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13900/func_8029AD28.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13900/func_8029AD68.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13900/func_8029ADA8.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13900/func_8029ADCC.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13900/func_8029AE1C.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13900/func_8029AE48.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13900/func_8029AE74.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13900/func_8029AEE4.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13900/func_8029AF1C.s")
+void func_8029A980(s32 arg0){
+    D_8037D18C = arg0;
+}

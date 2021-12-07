@@ -64,7 +64,7 @@ void bsbfly_enter_init(void){
 
 void bsbfly_enter_update(void){
     enum bs_e sp1C = 0;
-    AnimCtrl * aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl * aCtrl = _player_getAnimCtrlPtr();
 
     switch(D_8037D344){
     case 0:
@@ -113,7 +113,7 @@ void bsbfly_init(void){
 
 void bsbfly_update(void){
     enum bs_e sp54 = 0;
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     int sp4C;
     f32 sp40[3];
     f32 sp3C;

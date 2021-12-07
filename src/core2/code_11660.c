@@ -5,7 +5,7 @@
 void *D_8037C5D0;
 
 s32 func_802985F0(void){
-    switch(func_8029A8F4())
+    switch(_player_getTransformation())
     {
         case TRANSFORM_2_TERMITE: //80298624
             return ASSET_34F_MODEL_BANJO_TERMITE;

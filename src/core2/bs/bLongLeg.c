@@ -88,7 +88,7 @@ void func_802A5404(void){
 }
 
 void func_802A54A8(void){
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     animctrl_reset(aCtrl);
     animctrl_setSmoothTransition(aCtrl, 0);
     animctrl_setIndex(aCtrl, ANIM_BANJO_LONGLEG_ENTER_AS_BIRD);
@@ -102,7 +102,7 @@ void func_802A54A8(void){
 }
 
 void func_802A5548(void){
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     animctrl_reset(aCtrl);
     animctrl_setSmoothTransition(aCtrl, 0);
     animctrl_setIndex(aCtrl, ANIM_BANJO_LONGLEG_ENTER_AS_BEAR);
@@ -129,7 +129,7 @@ void bsblongleg_enter_init(void){
 
 void bsblongleg_enter_update(void){
     enum bs_e sp1C = 0;
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     func_802A531C();
     func_80299594(1, 0.5f);
     switch(D_8037D360){
@@ -192,7 +192,7 @@ void bsblongleg_stand_end(void){
 }
 
 void bsblongleg_walk_init(void){
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
 
     animctrl_reset(aCtrl);
     animctrl_setIndex(aCtrl, ANIM_BANJO_LONGLEG_WALK);
@@ -204,7 +204,7 @@ void bsblongleg_walk_init(void){
 
 void bsblongleg_walk_update(void){
     enum bs_e sp1C = 0;
-    AnimCtrl * aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl * aCtrl = _player_getAnimCtrlPtr();
     func_802A531C();
     func_80299594(1, 0.5f);
     func_8029AD28(0.47f, 4);
@@ -242,7 +242,7 @@ void bsblongleg_walk_end(void){
 }
 
 void func_802A5AB0(void){
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     animctrl_reset(aCtrl);
     animctrl_setSmoothTransition(aCtrl, 0);
     animctrl_setDirection(aCtrl, 0);
@@ -254,7 +254,7 @@ void func_802A5AB0(void){
 }
 
 void func_802A5B34(void){
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
 
     animctrl_reset(aCtrl);
     animctrl_setSmoothTransition(aCtrl, 0);
@@ -277,7 +277,7 @@ void bsblongleg_exit_init(void){
 
 void bsblongleg_exit_update(void){
     enum bs_e sp1C = 0;
-    AnimCtrl * aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl * aCtrl = _player_getAnimCtrlPtr();
     func_802A531C();
     func_80299628(1);
     switch(D_8037D360){
@@ -308,7 +308,7 @@ void bsblongleg_exit_end(void){
 }
 
 void bsblongleg_jump_init(void){
-    AnimCtrl * aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl * aCtrl = _player_getAnimCtrlPtr();
     D_8037D350 = 0.14f;
     animctrl_reset(aCtrl);
     animctrl_setIndex(aCtrl, ANIM_BANJO_LONGLEG_JUMP);
@@ -332,7 +332,7 @@ void bsblongleg_jump_init(void){
 
 void bsblongleg_jump_update(void){
     enum bs_e sp44 = 0;
-    AnimCtrl * aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl * aCtrl = _player_getAnimCtrlPtr();
     f32 sp34[3];
     f32 sp30;
 
@@ -401,7 +401,7 @@ void bsblongleg_jump_end(void){
 }
 
 void bsblongleg_slide_init(void){
-    AnimCtrl * aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl * aCtrl = _player_getAnimCtrlPtr();
 
     animctrl_reset(aCtrl);
     animctrl_setIndex(aCtrl, ANIM_BANJO_LONGLEG_JUMP);

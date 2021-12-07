@@ -81,7 +81,7 @@ void func_8028A37C(f32);
 
 int player_inWater(void);
 
-ActorMarker *player_getMarker(void);
+ActorMarker *_player_getMarker(void);
 
 u32 player_getTransformation(void);
 
@@ -284,9 +284,11 @@ int  func_8028AED4(f32*, f32);
 
 f32 func_8028E80C(s32);
 
+f32  func_802915D8(void);
+f32  func_80291604(void);
 f32  func_80291670(s32);
 f32  func_80291684(s32);
-int func_80291698(s32);
+int  func_80291698(s32);
 int  func_80291700(s32, f32);
 void func_802917E4(s32, f32);
 
@@ -369,6 +371,7 @@ void func_8029E3C0(s32, f32);
 f32  func_8029E270(s32);
 void func_802BD8A4(f32, f32, f32);
 void func_802BF2C0(f32);
+f32  func_802B6F9C(void);
 
 void func_802C1B20(f32);
 int  func_802C1DB0(f32);
@@ -444,7 +447,7 @@ void func_80352CF4(f32 *, f32 *, f32, f32);
 
 
 
-AnimCtrl *player_getAnimCtrlPtr(void);
+AnimCtrl *_player_getAnimCtrlPtr(void);
 void _get_velocity(f32 (*dst)[3]);
 void player_setYPosition(f32);
 
@@ -518,7 +521,7 @@ void func_802FAD64(enum item_e);
 void func_80304D68(s16 *, f32[3]);
 int func_80311480(s32 text_id, s32 arg1, f32 *pos, ActorMarker *marker, void(*callback)(ActorMarker *, enum asset_e, s32), void(*arg5)(ActorMarker *, enum asset_e, s32));
 void func_80347A14(s32);
-void ability_unlock(enum ABILITY_E);
+void ability_unlock(enum ability_e);
 
 extern void func_802EE278(Actor *, s32, s32, s32, f32, f32);
 extern void func_802F3BF4(s16[3]);

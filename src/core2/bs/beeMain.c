@@ -131,7 +131,7 @@ void func_802A12D4(void){
 void func_802A12FC(void){
     AnimCtrl * s0;
 
-    s0 = player_getAnimCtrlPtr();
+    s0 = _player_getAnimCtrlPtr();
     func_802A0340();
     animctrl_reset(s0);
     animctrl_setSmoothTransition(s0, 0);
@@ -160,7 +160,7 @@ void func_802A1438(void){
     f32 sp1c[3];
 
     sp2c = 0;
-    sp28 = player_getAnimCtrlPtr();
+    sp28 = _player_getAnimCtrlPtr();
     func_802A1020();
     _get_velocity(&sp1c);
     if(button_released(BUTTON_A) && (0.0f < sp1c[1])){
@@ -226,7 +226,7 @@ void func_802A163C(void){
 void func_802A1664(void){
     AnimCtrl * s0;
 
-    s0 = player_getAnimCtrlPtr();
+    s0 = _player_getAnimCtrlPtr();
     func_802A0340();
     animctrl_reset(s0);
     animctrl_setIndex(s0, ASSET_1E2_ANIM_BEE_JUMP);
@@ -245,7 +245,7 @@ void func_802A170C(void){
     f32 sp1c[3];
 
     sp2c = 0;
-    sp28 = player_getAnimCtrlPtr();
+    sp28 = _player_getAnimCtrlPtr();
     func_80299628(0);
     func_802A1020();
     _get_velocity(&sp1c);
@@ -305,7 +305,7 @@ void func_802A18E8(s32 arg0){
     f32 sp20[3];
 
     //sp40 = arg0;
-    sp3C = player_getAnimCtrlPtr();
+    sp3C = _player_getAnimCtrlPtr();
     func_802A0340();
     animctrl_reset(sp3C);
     animctrl_setIndex(sp3C, ASSET_1E0_ANIM_BEE_OW);
@@ -397,7 +397,7 @@ void bsbeemain_die_init(void){
     f32 sp2C[3];
     f32 sp20[3];
     
-    sp3C = player_getAnimCtrlPtr();
+    sp3C = _player_getAnimCtrlPtr();
     func_8029B930();
     func_802A0340();
     animctrl_reset(sp3C);

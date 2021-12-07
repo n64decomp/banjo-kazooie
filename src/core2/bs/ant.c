@@ -120,7 +120,7 @@ void bsant_walk_init(void){
 
 void bsant_walk_update(void){
     enum bs_e sp1C = 0;
-    AnimCtrl * aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl * aCtrl = _player_getAnimCtrlPtr();
 
     func_80299628(0);
     func_8029E48C();
@@ -149,7 +149,7 @@ void bsant_walk_end(void){
 }
 
 void bsant_jump_init(void){
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     func_8029E554();
     animctrl_reset(aCtrl);
     animctrl_setIndex(aCtrl, ANIM_TERMITE_JUMP);
@@ -173,7 +173,7 @@ void bsant_jump_init(void){
 
 void bsant_jump_update(void){
     enum bs_e sp2C = 0;
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
 
     f32 sp1C[3];
 
@@ -228,7 +228,7 @@ void bsant_jump_end(void){
 }
 
 void bsant_fall_init(void){
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     func_8029E554();
     D_8037D298 = 0;
     animctrl_reset(aCtrl);
@@ -243,7 +243,7 @@ void bsant_fall_init(void){
 
 void bsant_fall_update(void){
     enum bs_e sp2C = 0;
-    AnimCtrl * aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl * aCtrl = _player_getAnimCtrlPtr();
     f32 sp1C[3];
 
     func_80299628(0);
@@ -276,7 +276,7 @@ void bsant_fall_end(void){
 }
 
 static void __bsant_recoil_init(int take_damage){
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     f32 sp38;
     f32 sp2C[3];
     f32 sp20[3];
@@ -365,7 +365,7 @@ void bsant_bounce_end(void){
 }
 
 void bsant_die_init(void){
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     f32 sp38;
     f32 sp2C[3];
     f32 sp20[3];
@@ -402,7 +402,7 @@ void bsant_die_init(void){
 }
 
 void bsant_die_update(void){
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
 
     func_80297970(D_8037D290);
     func_80299628(0);

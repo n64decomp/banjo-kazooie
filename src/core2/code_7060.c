@@ -34,53 +34,112 @@ void func_8028E644(void){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028E76C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028E78C.s")
 
-ActorMarker *func_8028E7AC(void){
-    return player_getMarker();
+AnimCtrl *player_getAnimCtrlPtr(void){
+    return _player_getAnimCtrlPtr();
+}
+
+ActorMarker *player_getMarker(void){
+    return _player_getMarker();
 }
 
 u32 player_getTransformation(void){
-    return func_8029A8F4();
+    return _player_getTransformation();
 }
 
 void func_8028E7EC(f32 (* arg0)[3]){
     climbGetBottom(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028E80C.s")
+f32 func_8028E80C(s32 arg0){
+    return func_80291670(arg0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028E82C.s")
+f32 func_8028E82C(void){
+    return func_80294438();
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028E84C.s")
+void func_8028E84C(f32 arg0[3]){
+    func_80294480(arg0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028E86C.s")
+ActorMarker *func_8028E86C(void){
+    return func_802948EC();
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028E88C.s")
+s32 func_8028E88C(void){
+    ActorMarker *marker;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028E8C0.s")
+    marker = func_802948EC();
+    if(marker){
+        return marker->unk14_20;
+    }
+    return 0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028E904.s")
+enum actor_e func_8028E8C0(void){
+    ActorMarker *marker;
+    Actor *actor;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028E924.s")
+    marker = func_802948EC();
+    
+    if(marker){
+        actor = marker_getActor(marker);
+        return actor->modelCacheIndex;
+    }
+    return 0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028E964.s")
+f32 func_8028E904(void){
+    return func_802915D8();
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028E984.s")
+f32 func_8028E924(f32 arg0[3], s32 arg1){
+    s32 *sp1C;
+    
+    func_80292284(arg0, arg1);
+    func_8028D6F0(&sp1C);
+    return (f32) sp1C[arg1];
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/player_getPosition.s")
+void func_8028E964(f32 arg0[3]){
+    func_8028E924(arg0, 0);
+}
+
+f32 func_8028E984(void){
+    return func_80291604();
+}
+
+void player_getPosition(f32 dst[3]){
+    _player_getPosition(dst);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028E9C4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028EB3C.s")
+void func_8028EB3C(s32 arg0[3]){
+    f32 plyr_pos[3];
+    player_getPosition(plyr_pos);
+    arg0[0] = (s32)plyr_pos[0];
+    arg0[1] = (s32)plyr_pos[1];
+    arg0[2] = (s32)plyr_pos[2];
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028EBA4.s")
+//player_getYaw
+f32 func_8028EBA4(void){
+    return yaw_get();
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028EBC4.s")
+f32 func_8028EBC4(void){
+    return func_802B6F9C();
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028EBE4.s")
+f32 func_8028EBE4(void){
+    return pitch_get();
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028EC04.s")
+int func_8028EC04(void){
+    return func_80298850();
+}
 
 void player_getRotation(f32 *dst){
     dst[0] = pitch_get();
@@ -88,7 +147,14 @@ void player_getRotation(f32 *dst){
     dst[2] = roll_get();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028EC64.s")
+f32 func_8028EC64(f32 arg0[3]){
+    f32 sp1C;
+    f32 sp18;
+    func_80293D2C(&sp18, &sp1C);
+    _player_getPosition(arg0);
+    arg0[1] += sp18;
+    return sp1C;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028ECAC.s")
 
@@ -128,7 +194,9 @@ void player_getRotation(f32 *dst){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028F170.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/ability_isUnlocked.s")
+int ability_isUnlocked(enum ability_e uid){
+    return func_802957D8(uid);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028F1B0.s")
 
@@ -154,7 +222,9 @@ void player_getRotation(f32 *dst){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028F364.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/ability_unlock.s")
+void ability_unlock(enum ability_e uid){
+    func_80295818(uid, TRUE);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028F3D8.s")
 

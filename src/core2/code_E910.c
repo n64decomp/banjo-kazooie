@@ -108,7 +108,7 @@ bsMap D_80363824[] ={
     {0x6B, func_802A1F6C, func_802A1FC8, func_802A2014, func_80296608},
     {BS_WALRUS_OW, bswalrus_ow_init, bswalrus_ow_update, bswalrus_ow_end, func_80296590},
     {BS_WALRUS_DIE, bswalrus_die_init, bswalrus_die_update, bswalrus_die_end, func_80296590},
-    {BS_CROC_BITE, bscroc_bite_init, bscroc_bite_update, bscroc_bite_end, func_802B5350},
+    {BS_6E_CROC_BITE, bscroc_bite_init, bscroc_bite_update, bscroc_bite_end, func_802B5350},
     {BS_CROC_EAT_BAD, bscroc_eat_bad_init, bscroc_eat_bad_update, bscroc_eat_bad_end, func_802B5350},
     {BS_70_CROC_EAT_GOOD, bscroc_eat_good_init, bscroc_eat_good_update, bscroc_eat_good_end, func_802B5350},
     {BS_BTROT_FALL, bsbtrot_fall_init, bsbtrot_fall_update, bsbtrot_fall_end, func_80296608},
@@ -159,8 +159,8 @@ bsMap D_80363824[] ={
     {BS_CROC_BOUNCE, bscroc_bounce_init, bscroc_bounce_update, bscroc_bounce_end, func_80296590},
     {BS_WALRUS_BOUNCE, bswalrus_bounce_init, bswalrus_bounce_update, bswalrus_bounce_end, func_80296590},
     {BS_BEE_BOUNCE, func_802A1BC8, func_802A1BE8, func_802A1C08, func_80296590},
-    {BS_WONDERWING_DRONE, bsbwhirl_drone_init, bsbwhirl_drone_update, bsbwhirl_drone_end, func_80296608},
-    {BS_WONDERWING_UNKA5, func_802AADBC, func_802AAE08, func_802AAE4C, func_80296608},
+    {BS_A4_WONDERWING_DRONE, bsbwhirl_drone_init, bsbwhirl_drone_update, bsbwhirl_drone_end, func_80296608},
+    {BS_A5_WONDERWING_UNKA5, func_802AADBC, func_802AAE08, func_802AAE4C, func_80296608},
     {0}
 };
 

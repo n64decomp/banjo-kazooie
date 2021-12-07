@@ -26,7 +26,7 @@ void func_802AAEE0(void){
 }
 
 void bscarry_idle_init(void){
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     animctrl_reset(aCtrl);
     animctrl_setIndex(aCtrl, 0x72);
     animctrl_setDuration(aCtrl, 1.2f);
@@ -54,7 +54,7 @@ void bscarry_idle_end(void){
 }
 
 void bscarry_walk_init(void){
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     animctrl_reset(aCtrl);
     animctrl_setIndex(aCtrl, 0x73);
     animctrl_setDuration(aCtrl, 0.8f);

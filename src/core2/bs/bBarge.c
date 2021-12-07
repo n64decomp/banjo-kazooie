@@ -64,7 +64,7 @@ s32 func_8029F644(void){
 void bsbarge_init(void){
     AnimCtrl *plyrMvmnt;
 
-    plyrMvmnt = player_getAnimCtrlPtr();
+    plyrMvmnt = _player_getAnimCtrlPtr();
     animctrl_reset(plyrMvmnt);
     animctrl_setSmoothTransition(plyrMvmnt, 0);
     animctrl_setIndex(plyrMvmnt, ANIM_BANJO_BBARGE);
@@ -92,7 +92,7 @@ void bsbarge_update(void){
     AnimCtrl *plyrMvmnt;
     
     sp24 = 0;
-    plyrMvmnt = player_getAnimCtrlPtr();
+    plyrMvmnt = _player_getAnimCtrlPtr();
     if(button_released(BUTTON_B))
         func_802933E8(0xA);
     switch(D_8037D2A5){

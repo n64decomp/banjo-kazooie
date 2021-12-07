@@ -88,7 +88,7 @@ void bsclimb_idle_init(void){
 
 void bsclimb_idle_update(void){
     s32 next_state = 0;
-    AnimCtrl *anim_ctrl = player_getAnimCtrlPtr();
+    AnimCtrl *anim_ctrl = _player_getAnimCtrlPtr();
     func_80293350();
     switch(D_8037D3D0){
         case 0:

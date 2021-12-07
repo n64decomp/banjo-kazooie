@@ -78,7 +78,7 @@ void func_802A664C(void){
 
 void bsbpeck_update(void){
     enum bs_e sp24 = 0;
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
 
     func_802B6FA8();
     if(D_8037D377){

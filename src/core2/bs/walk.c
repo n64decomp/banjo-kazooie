@@ -117,7 +117,7 @@ void func_802B6FA8(void){
 }
 
 void bswalk_creep_init(void){
-    AnimCtrl * s0 = player_getAnimCtrlPtr();
+    AnimCtrl * s0 = _player_getAnimCtrlPtr();
     f32 sp20;
 
     if(bs_getPrevState() == BS_WALK_SLOW){
@@ -190,7 +190,7 @@ void bswalk_creep_update(void){
 }
 
 void bswalk_slow_init(void){
-    AnimCtrl * s0 = player_getAnimCtrlPtr();
+    AnimCtrl * s0 = _player_getAnimCtrlPtr();
     f32 sp20;
 
     if(bs_getPrevState() == 3){
@@ -263,7 +263,7 @@ void bswalk_slow_upate(void){
 }
 
 void bswalk_init(void){
-    AnimCtrl * s0 = player_getAnimCtrlPtr();
+    AnimCtrl * s0 = _player_getAnimCtrlPtr();
     f32 sp20 = 0.0f;
 
     switch(bs_getPrevState()){
@@ -339,7 +339,7 @@ void bswalk_update(void){
 }
 
 void bswalk_fast_init(void){
-    AnimCtrl * s0 = player_getAnimCtrlPtr();
+    AnimCtrl * s0 = _player_getAnimCtrlPtr();
     f32 sp28 = 0.0f;
     int sp24 = 1;
     

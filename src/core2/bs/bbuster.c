@@ -52,7 +52,7 @@ s32 func_8029FC58(void){
 }
 
 void bsbbuster_init(void){
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     f32 sp20[3];
     
     animctrl_reset(aCtrl);
@@ -82,7 +82,7 @@ void bsbbuster_init(void){
 
 void bsbbuster_update(void){
     enum bs_e sp44 = 0;
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     s32 sp3C;
     f32 sp30[3];
     s32 sp24[3];
@@ -93,7 +93,7 @@ void bsbbuster_update(void){
 
     switch(D_8037D2BA){
         case 0://8029FDF0
-            if(animctrl_isStopped(player_getAnimCtrlPtr())){
+            if(animctrl_isStopped(_player_getAnimCtrlPtr())){
                 animctrl_setDuration(aCtrl, 0.4f);
                 D_8037D2BA = 1;
             }

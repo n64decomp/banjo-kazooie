@@ -46,7 +46,7 @@ void func_802B40D0(void){
 }
 
 void bsslide_init(void){
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     f32 sp30[3];
     f32 sp2C;
     f32 sp28;

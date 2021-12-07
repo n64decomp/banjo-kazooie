@@ -33,7 +33,7 @@ void func_802B1100(void){
 }
 
 void bsjump_init(void){
-    AnimCtrl *aCtrl =  player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl =  _player_getAnimCtrlPtr();
     enum bs_e sp30;
 
     D_8037D4C2 = func_802933C0(2);
@@ -83,7 +83,7 @@ void bsjump_init(void){
 
 void bsjump_update(void){
     enum bs_e sp34 = 0;
-    AnimCtrl *aCtrl =  player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl =  _player_getAnimCtrlPtr();
     f32 sp24[3];
 
 
@@ -170,7 +170,7 @@ void bsjump_end(void){
 }
 
 void bsjump_fall_init(void){
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     int sp20;
 
     if(func_802933C0(7) && 700.0f < func_80297AAC())
@@ -189,7 +189,7 @@ void bsjump_fall_init(void){
 
 void bsjump_fall_update(void){
     enum bs_e sp2C = 0;
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     f32 sp1C[3];
 
     if(func_802933C0(0xf))

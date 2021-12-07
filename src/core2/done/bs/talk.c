@@ -11,7 +11,7 @@ void func_802B6130(void){
     f32 plyr_pos[3];
     f32 target_pos[3];
 
-    plyr_mvmt = player_getAnimCtrlPtr();
+    plyr_mvmt = _player_getAnimCtrlPtr();
     animctrl_reset(plyr_mvmt);
     func_8029C848(plyr_mvmt);
     animctrl_setPlaybackType(plyr_mvmt,  ANIMCTRL_LOOP);

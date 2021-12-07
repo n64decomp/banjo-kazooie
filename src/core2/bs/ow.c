@@ -11,7 +11,7 @@ void func_802B1FD0(s32 arg0){}
 void bsow_init(void){
     AnimCtrl *plyr_mvmnt;
 
-    plyr_mvmnt = player_getAnimCtrlPtr();
+    plyr_mvmnt = _player_getAnimCtrlPtr();
     animctrl_reset(plyr_mvmnt);
     animctrl_setSmoothTransition(plyr_mvmnt, 0);
     animctrl_setSubRange(plyr_mvmnt, 0.0f, 0.534399986267f);

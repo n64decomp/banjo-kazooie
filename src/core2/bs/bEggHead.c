@@ -29,7 +29,7 @@ void bsegghead_update(void) {
     s32 fill2;
 
     next_state = 0;
-    aCtrl = player_getAnimCtrlPtr();
+    aCtrl = _player_getAnimCtrlPtr();
     has_eggs = (item_empty(ITEM_D_EGGS) == 0);
     if (should_shoot_egg()) {
         if (has_eggs)

@@ -42,7 +42,7 @@ void bssplat_init(void){
 
 void bssplat_update(void){
     enum bs_e sp1C = 0;
-    AnimCtrl *aCtrl =  player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl =  _player_getAnimCtrlPtr();
     func_80297970(max_f(0.0f, func_80297A64() - 15.0f));
 
     switch (D_8037D530)

@@ -68,7 +68,7 @@ int func_80291AAC(s32 arg0, s32 arga, s32 arg2, s32 arg3){
 }
 
 void func_80291AC4(int arg0){
-    player_getMarker()->unk14_21 = 1;
+    _player_getMarker()->unk14_21 = 1;
 }
 
 void func_80291AF0(Gfx **gfx, Mtx **mtx, Vtx **vtx){
@@ -183,7 +183,7 @@ void func_80291ECC(void){
             D_8037C100[1] -= temp_f0; 
         }
         {//L80291F7C
-            player_getMarker()->unk14_21 = 0;
+            _player_getMarker()->unk14_21 = 0;
         }
     }
 }
@@ -298,7 +298,7 @@ void func_80292284(f32 arg0[3], s32 arg1){
     f32 sp44[3];
     f32 sp38[3];
 
-    if(player_getMarker()->unk14_21 && D_8037C0E8){
+    if(_player_getMarker()->unk14_21 && D_8037C0E8){
         switch(func_80291FAC()){
             case 0x34D:
             case 0x34E:

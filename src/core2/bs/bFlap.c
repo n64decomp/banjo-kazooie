@@ -50,7 +50,7 @@ void func_802A2790(s32 arg0, f32 arg1, s32 arg2) {
 
 void func_802A2810(void) {
     AnimCtrl *plyrMvPtr;
-    plyrMvPtr = player_getAnimCtrlPtr();
+    plyrMvPtr = _player_getAnimCtrlPtr();
     if (animctrl_isAt(plyrMvPtr, 0.9f)) {
         D_8037D301++;
     }
@@ -75,7 +75,7 @@ f32 func_802A2858(void){
 }
 
 void func_802A28CC(void){
-    AnimCtrl *sp1c = player_getAnimCtrlPtr();
+    AnimCtrl *sp1c = _player_getAnimCtrlPtr();
     animctrl_setDuration(sp1c, func_802A2858());
 }
 
@@ -90,7 +90,7 @@ int func_802A293C(f32 arg0){
 
 void func_802A298C(void){
     AnimCtrl * sp1c;
-    sp1c = player_getAnimCtrlPtr();
+    sp1c = _player_getAnimCtrlPtr();
     if(func_802A293C(0.08f)){
         func_802A2790(0x4e, 1.24f, 0x4e20);
     }
@@ -105,7 +105,7 @@ void bsbflap_update(void){
     AnimCtrl * sp18;
 
     sp1c = 0;
-    sp18 = player_getAnimCtrlPtr();
+    sp18 = _player_getAnimCtrlPtr();
     func_802B6FA8();
     switch(D_8037D300){
         case 0:

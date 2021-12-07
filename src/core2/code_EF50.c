@@ -75,7 +75,7 @@ enum bs_e func_80295EE0(enum bs_e arg0){
 }
 
 enum bs_e func_80296038(void){
-    switch(func_8029A8F4()){
+    switch(_player_getTransformation()){
         case TRANSFORM_3_PUMPKIN:// L8029606C
             return BS_PUMPKIN_BOUNCE;
         case TRANSFORM_2_TERMITE:// L80296074
@@ -157,7 +157,7 @@ enum bs_e func_802962BC(u32 arg0){
 
     sp24 =  item_getCount(ITEM_14_HEALTH);
     sp1C = arg0 < 1 && sp24 != 0;
-    switch(func_8029A8F4()){
+    switch(_player_getTransformation()){
         case TRANSFORM_2_TERMITE: //L80296314
             if(sp1C)
                 return BS_3E_ANT_OW;

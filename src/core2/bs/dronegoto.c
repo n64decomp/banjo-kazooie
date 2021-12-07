@@ -61,7 +61,7 @@ void func_802AEC78(void){
 void func_802AECE4(void){
     f32 sp2C;
     f32 sp20[3];
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
 
     _get_velocity(&sp20);
     if(func_8025801C(sp20, &sp2C)){

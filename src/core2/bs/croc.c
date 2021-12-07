@@ -93,7 +93,7 @@ int bscroc_inSet(enum bs_e state){
         || state == BS_CROC_FALL
         || state == BS_CROC_OW
         || state == BS_CROC_DIE
-        || state == BS_CROC_BITE
+        || state == BS_6E_CROC_BITE
         || state == BS_CROC_EAT_BAD
         || state == BS_70_CROC_EAT_GOOD
         || state == BS_CROC_LOCKED
@@ -126,7 +126,7 @@ void bscroc_idle_update(void){
         next_state = BS_CROC_WALK;
 
     if(button_pressed(BUTTON_B))
-        next_state = BS_CROC_BITE;
+        next_state = BS_6E_CROC_BITE;
 
     if(button_pressed(BUTTON_A))
         next_state = BS_CROC_JUMP;
@@ -164,7 +164,7 @@ void bscroc_walk_update(void){
         next_state = BS_CROC_FALL;
 
     if(button_pressed(BUTTON_B))
-        next_state = BS_CROC_BITE;
+        next_state = BS_6E_CROC_BITE;
 
     if(button_pressed(BUTTON_A))
         next_state = BS_CROC_JUMP;
@@ -178,7 +178,7 @@ void bscroc_walk_end(void){
 }
 
 void bscroc_jump_init(void){
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
 
     animctrl_reset(aCtrl);
     animctrl_setSmoothTransition(aCtrl, FALSE);
@@ -203,7 +203,7 @@ void bscroc_jump_init(void){
 
 void bscroc_jump_update(void){
     enum bs_e sp2C = 0;
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     f32 sp1C[3];
 
     func_802ABE70();
@@ -257,7 +257,7 @@ void bscroc_jump_update(void){
     }
 
     if(button_pressed(BUTTON_B))
-            sp2C = BS_CROC_BITE;
+            sp2C = BS_6E_CROC_BITE;
 
     bs_setState(sp2C);
 }
@@ -268,7 +268,7 @@ void bscroc_jump_end(void){
 }
 
 void bscroc_fall_init(void){
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
 
     animctrl_reset(aCtrl);
     animctrl_setIndex(aCtrl, 0x11C);
@@ -282,7 +282,7 @@ void bscroc_fall_init(void){
 
 void bscroc_fall_update(void){
     enum bs_e next_state = 0;
-    AnimCtrl * aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl * aCtrl = _player_getAnimCtrlPtr();
     f32 velocity[3];
 
     func_802ABE70();
@@ -326,7 +326,7 @@ void bscroc_fall_end(void){
 }
 
 static void __bscroc_recoil_init(s32 damage){
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     f32 sp38;
     f32 sp2C[3];
     f32 sp20[3];
@@ -413,7 +413,7 @@ void bscroc_bounce_end(void){
 }
 
 void bscroc_die_init(void){
-    AnimCtrl * aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl * aCtrl = _player_getAnimCtrlPtr();
     f32 sp38;
     f32 sp2C[3];
     f32 sp20[3];
@@ -519,7 +519,7 @@ void bscroc_bite_init(void){
 
 void bscroc_bite_update(void){
     enum bs_e next_state = 0;
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
 
     func_802ABE70();
     func_80299628(0);
@@ -566,7 +566,7 @@ void bscroc_eat_bad_init(void){
 
 void bscroc_eat_bad_update(void){
     enum bs_e next_state = 0;
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
 
     func_802ABE70();
     func_80299628(0);
@@ -625,7 +625,7 @@ int func_802AD3A0(void){
 
 void bscroc_eat_good_update(void){
     enum bs_e next_state = 0;
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
 
     func_802ABE70();
     D_8037D3F0 = max_f(0.1f, D_8037D3F0 - 0.05);

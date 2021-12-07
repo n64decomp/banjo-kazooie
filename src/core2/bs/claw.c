@@ -24,7 +24,7 @@ void bsclaw_init(void){
 
 void bsclaw_update(void){
     enum bs_e sp2C = 0;
-    AnimCtrl * aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl * aCtrl = _player_getAnimCtrlPtr();
     f32 sp24;
     
     sp24 = func_802877D8(aCtrl);

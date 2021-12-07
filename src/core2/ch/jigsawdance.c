@@ -47,7 +47,7 @@ void func_802C811C(Actor * this){
         case 2:
             player_getPosition(this->position);
             this->yaw = func_8028EBA4();
-            plyrMvmt = func_8028E78C();
+            plyrMvmt = player_getAnimCtrlPtr();
             animctrl_setSmoothTransition(this->animctrl, 0);
             animctrl_setIndex(this->animctrl, animctrl_getIndex(plyrMvmt));
             func_8028774C(this->animctrl,func_802877D8(plyrMvmt));
@@ -55,7 +55,7 @@ void func_802C811C(Actor * this){
             func_802875AC(this->animctrl, "chjigsawdance.c", 0x59);
             break;
         case 3:
-            plyrMvmt = func_8028E78C();
+            plyrMvmt = player_getAnimCtrlPtr();
             animctrl_setSmoothTransition(this->animctrl, 0);
             func_8028774C(this->animctrl,func_802877D8(plyrMvmt));
             animctrl_setDuration(this->animctrl, 1000.0f);
@@ -64,7 +64,7 @@ void func_802C811C(Actor * this){
         case 4:
             player_getPosition(this->position);
             this->yaw = func_8028EBA4();
-            plyrMvmt = func_8028E78C();
+            plyrMvmt = player_getAnimCtrlPtr();
             animctrl_setSmoothTransition(this->animctrl, 0);
             func_8028774C(this->animctrl,func_802877D8(plyrMvmt));
             animctrl_setDuration(this->animctrl, 1000.0f);
@@ -94,7 +94,7 @@ void func_802C82C0(Actor * this, u32 arg1){
             player_getPosition(this->position);
             this->yaw = func_8028EBA4();
             animctrl_setSmoothTransition(this->animctrl, 0);
-            func_8028774C(this->animctrl, func_802877D8(func_8028E78C()));
+            func_8028774C(this->animctrl, func_802877D8(player_getAnimCtrlPtr()));
             animctrl_setDuration(this->animctrl, 1000.0f);
             func_802875AC(this->animctrl, "chjigsawdance.c", 0x97);
             break;

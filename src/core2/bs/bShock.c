@@ -10,7 +10,7 @@ extern u8 D_8037D381;
 extern u8 D_8037D382;
 
 void bsbshock_charge_init(void){
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     animctrl_reset(aCtrl);
     animctrl_setIndex(aCtrl, ANIM_BANJO_BSHOCK_CHARGE);
     animctrl_setTransitionDuration(aCtrl, 0.4f);
@@ -40,7 +40,7 @@ void bsbshock_charge_init(void){
 
 void bsbshock_charge_update(void){
     enum bs_e sp2C = 0;
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     f32 sp1C[3];
 
     if(func_8028B2E8()){ 
@@ -120,7 +120,7 @@ void bsbshock_charge_end(void){
 }
 
 void bsbshock_init(void){
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     animctrl_reset(aCtrl);
     animctrl_setSmoothTransition(aCtrl, 0);
     animctrl_setIndex(aCtrl, ANIM_BANJO_BSHOCK_JUMP);
@@ -151,7 +151,7 @@ void bsbshock_init(void){
 void bsbshock_update(void){
     enum bs_e sp2C = 0;
     f32 sp20[3];
-    AnimCtrl * aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl * aCtrl = _player_getAnimCtrlPtr();
 
     func_802B6FA8();
     _get_velocity(&sp20);

@@ -11,7 +11,7 @@ int bstwirl_hitboxActive(void){
 }
 
 void bstwirl_init(void){
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     animctrl_reset(aCtrl);
     animctrl_setSmoothTransition(aCtrl, 0);
     animctrl_setIndex(aCtrl, ANIM_BANJO_ROLL);
@@ -35,7 +35,7 @@ void bstwirl_init(void){
 
 void bstwirl_update(void){
     enum bs_e sp1C = 0;
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
 
     switch(D_8037D5A4){
         case 0:

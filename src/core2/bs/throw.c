@@ -7,7 +7,7 @@ extern u8 D_8037D580;
 
 /* .code */
 void bsthrow_init(void){
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
 
     animctrl_reset(aCtrl);
     animctrl_setIndex(aCtrl, 0x11b);
@@ -26,7 +26,7 @@ void bsthrow_init(void){
 
 void bsthrow_update(void){
     enum bs_e next_state = 0;
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     f32 sp34[3];
     f32 sp28[3];
     f32 sp24;

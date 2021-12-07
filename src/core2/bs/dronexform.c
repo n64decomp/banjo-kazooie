@@ -301,7 +301,7 @@ void bsdronexform_init(void){
     func_80294378(6);
     func_802AFB0C();
     func_802B016C();
-    D_8037D470.unk31 = func_8029A8F4();
+    D_8037D470.unk31 = _player_getTransformation();
     D_8037D470.unk30 = func_80294A4C();
     func_802933E8(0x1b);
     D_8037D470.unk32 = 0;

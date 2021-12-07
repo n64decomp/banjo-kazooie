@@ -61,7 +61,7 @@ s32 func_802930C0(struct_C0E0 *arg0, s32 arg1){
     if(arg1 < 0)
         return 0;
     else{
-        switch(func_8029A8F4()){
+        switch(_player_getTransformation()){
             case TRANSFORM_2_TERMITE: //L80293110 
                 return func_80293070(arg0, arg1, &D_803637F0);
             case TRANSFORM_3_PUMPKIN: //L80293124

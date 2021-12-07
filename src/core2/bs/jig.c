@@ -17,7 +17,7 @@ void bsjig_setJiggyMarkerPtr(ActorMarker * jiggyMarkerPtr){
 }
 
 void bsjig_jiggy_init(void){
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     int tmp;
 
     animctrl_reset(aCtrl);
@@ -54,7 +54,7 @@ void func_802B0BA8(void){
 
 void bsjig_jiggy_update(void){
     enum bs_e sp1C = 0;
-    AnimCtrl * aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl * aCtrl = _player_getAnimCtrlPtr();
     
     yaw_setIdeal(func_8029B41C());
     
@@ -159,7 +159,7 @@ void bsjig_notedoor_end(void){
 }
 
 void bsjig_notedoor_init(void){
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     D_8037D4B2 = (bs_getPrevState() == BS_JIG_JIGGY);
     func_802933FC(0x1A);
     animctrl_reset(aCtrl);

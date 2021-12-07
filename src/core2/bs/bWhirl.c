@@ -28,8 +28,8 @@ static void __bsbwhirl_end(void){
           || state == BS_WONDERWING_WALK
           || state == BS_WONDERWING_JUMP
           || state == BS_WONDERWING_EXIT
-          || state == BS_WONDERWING_DRONE
-          || state == BS_WONDERWING_UNKA5
+          || state == BS_A4_WONDERWING_DRONE
+          || state == BS_A5_WONDERWING_UNKA5
         )
     ){
         func_8029B0C0();
@@ -92,7 +92,7 @@ void bsbwhirl_enter_init(void){
 void bsbwhirl_enter_update(void){
     enum bs_e sp1C = 0;
     func_802952A8(1,1);
-    if(animctrl_isStopped(player_getAnimCtrlPtr()))
+    if(animctrl_isStopped(_player_getAnimCtrlPtr()))
         sp1C = BS_1B_WONDERWING_IDLE;
     bs_setState(sp1C);
 }
@@ -167,7 +167,7 @@ void bsbwhirl_walk_end(void){
 }
 
 void bsbwhirl_jump_init(void){
-    AnimCtrl * aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl * aCtrl = _player_getAnimCtrlPtr();
     
     animctrl_reset(aCtrl);
     animctrl_setIndex(aCtrl, ANIM_BANJO_WONDERWING_JUMP);
@@ -192,7 +192,7 @@ void bsbwhirl_jump_init(void){
 
 void bsbwhirl_jump_update(void){
     enum bs_e sp2C = 0;
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     f32 sp1C[3];
 
     __bsbwhirl_spawnSparkle();
@@ -238,7 +238,7 @@ void bsbwhirl_jump_end(void){
 }
 
 void bsbwhirl_exit_init(void){
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
 
     animctrl_reset(aCtrl);
     animctrl_setSmoothTransition(aCtrl, 0);
@@ -256,7 +256,7 @@ void bsbwhirl_exit_init(void){
 void bsbwhirl_exit_update(void){
     enum bs_e sp1C = 0;
     
-    if(animctrl_isStopped(player_getAnimCtrlPtr()))
+    if(animctrl_isStopped(_player_getAnimCtrlPtr()))
         sp1C = BS_1_IDLE;
 
     bs_setState(sp1C);

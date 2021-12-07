@@ -24,7 +24,7 @@ void _bsbflip_802A2D60(void){
 }
 
 void _bsbflip_802A2DC0(void){
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     f32 sp20[3];
 
     animctrl_reset(aCtrl);
@@ -41,7 +41,7 @@ void _bsbflip_802A2DC0(void){
 }
 
 void bsbflip_init(void){
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     animctrl_reset(aCtrl);
     animctrl_setSmoothTransition(aCtrl, 0);
     animctrl_setIndex(aCtrl, ANIM_BANJO_BFLIP);
@@ -60,7 +60,7 @@ void bsbflip_init(void){
 
 void bsbflip_update(void){
     enum bs_e sp24 = 0;
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
 
     if( animctrl_isAt(aCtrl, 0.2394f)
         && animctrl_getPlaybackType(aCtrl) != 2

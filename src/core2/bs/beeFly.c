@@ -58,7 +58,7 @@ void func_802A0630(void){
     s32 next_state = 0;
     AnimCtrl * mvmnt; //sp1C
 
-    mvmnt = player_getAnimCtrlPtr();
+    mvmnt = _player_getAnimCtrlPtr();
     switch(D_8037D2C0){
         case 0:
             if(!animctrl_isAt(mvmnt, 0.266f))
@@ -182,7 +182,7 @@ void bsbeefly_update(void){
    
 
     sp4C = 0;
-    sp48 = player_getAnimCtrlPtr();
+    sp48 = _player_getAnimCtrlPtr();
     _bsBeeFly_updateYaw();
     _bsBeeFly_updatePitch();
     pitch_get(); //return value never used

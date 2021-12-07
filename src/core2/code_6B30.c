@@ -59,15 +59,15 @@ s32 func_8028DB14(ActorMarker *arg0){
         case BS_WONDERWING_WALK:
         case BS_WONDERWING_JUMP:
         case BS_WONDERWING_EXIT:
-        case BS_WONDERWING_DRONE:
-        case BS_WONDERWING_UNKA5://L8028DC98
+        case BS_A4_WONDERWING_DRONE:
+        case BS_A5_WONDERWING_UNKA5://L8028DC98
             return 6;
             break;
         //8028DCA0
         case BS_ROLL:
             return __maybe(bstwirl_hitboxActive(),7);
             break;
-        case BS_CROC_BITE://L8028DCBC
+        case BS_6E_CROC_BITE://L8028DCBC
             return __maybe(bscroc_hitboxActive(),9);
             break;
         case BS_5_JUMP://8028DCD8

@@ -18,7 +18,7 @@ void _bsdie_802ADE20(void){
 }
 
 void bsdie_init(void){
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     f32 sp38;
     f32 sp2C[3];
     f32 sp20[3];
@@ -59,7 +59,7 @@ void bsdie_init(void){
 }
 
 void bsdie_update(void){
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     enum bs_e sp28 = 0;
     func_80297970(D_8037D410);
     func_80299628(0);

@@ -154,7 +154,7 @@ void bswalrus_walk_end(void){
 }
 
 void bswalrus_jump_init(void){
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
 
     animctrl_reset(aCtrl);
     animctrl_setSmoothTransition(aCtrl, FALSE);
@@ -179,7 +179,7 @@ void bswalrus_jump_init(void){
 
 void bswalrus_jump_update(void){
     enum bs_e next_state = 0;
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     f32 sp1C[3];
 
     func_802B7E6C();
@@ -246,7 +246,7 @@ void bswalrus_jump_end(void){
 }
 
 void bswalrus_fall_init(void){
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     animctrl_reset(aCtrl);
     animctrl_setIndex(aCtrl, 0x121);
     func_8028774C(aCtrl, 0.662f);
@@ -260,7 +260,7 @@ void bswalrus_fall_init(void){
 
 void bswalrus_fall_update(void){
     enum bs_e next_state = 0;
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     f32 sp1C[3];
 
     func_80299628(0);
@@ -379,7 +379,7 @@ void bswalrus_bounce_end(void){
 }
 
 void bswalrus_die_init(void){
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     f32 sp38;
     f32 sp2C[3];
     f32 sp20[3];
@@ -536,7 +536,7 @@ void bswalrus_sled_end(void){
 }
  
 void bswalrus_sled_jump_init(void){
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     animctrl_reset(aCtrl);
     animctrl_setSmoothTransition(aCtrl, FALSE);
     animctrl_setIndex(aCtrl, 0x19f);
@@ -560,7 +560,7 @@ void bswalrus_sled_jump_init(void){
 
 void bswalrus_sled_jump_update(void){
     enum bs_e next_state = 0;
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     f32 sp1C[3];
 
     func_802B7F28();
@@ -606,7 +606,7 @@ void bswalrus_sled_jump_end(void){
 }
 
 void func_802B95A0(void){
-    enum bs_e aCtrl = player_getAnimCtrlPtr();
+    enum bs_e aCtrl = _player_getAnimCtrlPtr();
     animctrl_reset(aCtrl);
     animctrl_setIndex(aCtrl, 0x19f);
     animctrl_setSubRange(aCtrl, 0.0f, 0.5058f);
@@ -620,7 +620,7 @@ void func_802B95A0(void){
 
 void func_802B963C(void){
     enum bs_e next_state = 0;
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     f32 sp1C[3];
 
     func_80299628(0);

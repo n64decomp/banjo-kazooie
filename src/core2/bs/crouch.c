@@ -41,7 +41,7 @@ void func_802AD7B0(AnimCtrl *aCtrl){
 }
 
 void bscrouch_init(void){
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     f32 sp28[3];
     f32 sp24;
     f32 sp20;
@@ -84,7 +84,7 @@ void bscrouch_init(void){
 void bscrouch_update(void){
     enum bs_e sp34 = 0;
     f32 sp30;
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr(); //sp2C
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr(); //sp2C
     f32 temp_f2;
     f32 pad;
     f32 sp20;

@@ -138,7 +138,7 @@ void func_803270B8(f32 arg0[3], f32 arg1, s32 arg2, int (*arg3)(Actor *), ActorM
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_803270B8.s")
 
 void func_8032728C(f32 arg0[3], f32 arg1, s32 arg2, int (*arg3)(Actor *)){
-    func_803270B8(arg0, arg1, arg2, arg3, player_getMarker());
+    func_803270B8(arg0, arg1, arg2, arg3, _player_getMarker());
 }
 
 void func_803272D0(f32 arg0[3], f32 arg1, s32 arg2, int (*arg3)(Actor *)){

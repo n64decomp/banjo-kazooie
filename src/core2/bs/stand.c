@@ -166,7 +166,7 @@ void func_802B4A10(AnimCtrl *arg0){
 /*void bsstand_update(void){
     s32 temp_v1;
     s32 sp24 = 0;
-    AnimCtrl * sp20 = player_getAnimCtrlPtr();
+    AnimCtrl * sp20 = _player_getAnimCtrlPtr();
     f32 sp1C;
     s32 sp18;
     
@@ -317,7 +317,7 @@ void bsstand_landing_init(void){
 //bsStand_Land_update
 void bsstand_landing_update(void){
     s32 sp1C = 0;
-    AnimCtrl * sp18 = player_getAnimCtrlPtr();
+    AnimCtrl * sp18 = _player_getAnimCtrlPtr();
 
     if(animctrl_getIndex(sp18) == 0xd2){
         if(animctrl_isAt(sp18, 0.8264f)){
@@ -344,7 +344,7 @@ void func_802B5350(void){
         bs_setState(0x52);
     }
     if(sp1C == 0x7){
-        if(func_8029A8F4() != TRANSFORM_1_BANJO)
+        if(_player_getTransformation() != TRANSFORM_1_BANJO)
             func_8029A86C(1);
         else{
             func_802948F8(func_8028D688());
@@ -353,7 +353,7 @@ void func_802B5350(void){
     }
     else if(sp1C == 0x12){//L802B53D0
         func_8029A86C(1);
-        if( func_8029A8F4() == TRANSFORM_1_BANJO && !func_802933C0(0xF) && func_802916CC(0)){
+        if( _player_getTransformation() == TRANSFORM_1_BANJO && !func_802933C0(0xF) && func_802916CC(0)){
             func_8028DE6C(carriedObject_getActorID());
             func_8029A86C(2);
         }

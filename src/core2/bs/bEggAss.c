@@ -25,7 +25,7 @@ void bseggass_update(void) {
     s32 fill2;
 
     next_state = 0;
-    plyr_mvmt = player_getAnimCtrlPtr();
+    plyr_mvmt = _player_getAnimCtrlPtr();
     has_eggs = (item_empty(ITEM_D_EGGS) == 0);
     if (should_poop_egg()) {
         if (has_eggs)

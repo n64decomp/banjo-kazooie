@@ -22,7 +22,7 @@ void func_802B6270(void){
 }
 
 void func_802B6314(void){
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     if(animctrl_isAt(aCtrl, 0.0625f))
         func_80292E48();
 
@@ -45,7 +45,7 @@ void func_802B63C8(void){
 }
 
 void func_802B63F8(void){
-    AnimCtrl *aCtrl = player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     animctrl_reset(aCtrl);
     func_8029C848(aCtrl);
     animctrl_setPlaybackType(aCtrl,  ANIMCTRL_LOOP);
