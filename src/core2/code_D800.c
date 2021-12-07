@@ -4,16 +4,36 @@
 
 #include "prop.h"
 
-extern float D_8037C290;
+
+void func_80294924(f32 arg0, f32 arg1);
+
+extern struct {
+    f32 unk0;
+    f32 unk4;
+} D_8037C290;
 extern float D_8037C294;
 extern ActorMarker* D_8037C298;
+extern u8 D_8037C29C;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D800/func_80294790.s")
+/* .code */
+void func_80294790(void){
+    D_8037C298 = NULL;
+    D_8037C29C = 0;
+    func_80294924(0.0f, 0.0f);
+}
 
 void func_802947C4(void){}
 
-void func_802947CC(ActorMarker*, float*, float*);// func definition
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D800/func_802947CC.s")
+void func_802947CC(ActorMarker *marker, f32 arg1[3], f32 arg2[3]){
+    Actor * actor = marker_getActor(marker);
+    if(actor->unk138_22){
+        actor->position_x = arg1[0];
+        actor->position_y = arg1[1];
+        actor->position_z = arg1[2];
+
+        actor->yaw = arg2[1];
+    }
+}
 
 void func_80294828(void){
     f32 banjoPos[3];
@@ -22,17 +42,38 @@ void func_80294828(void){
     
     player_getRotation(banjoRot);
     banjo_getPosition(banjoPos);
-    banjoRot[1] = mlNormalizeAngle(banjoRot[1] + D_8037C294);
-    banjoPos[1] += D_8037C290;
+    banjoRot[1] = mlNormalizeAngle(banjoRot[1] + D_8037C290.unk4);
+    banjoPos[1] += D_8037C290.unk0;
     func_802947CC(D_8037C298, banjoPos, banjoRot);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D800/func_80294890.s")
+int func_80294890(void){
+    if(D_8037C298){
+        if(D_8037C29C == 0){
+            D_8037C298 = NULL;
+        }
+        else{
+            func_80294828();
+            D_8037C29C = 0;
+        }
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D800/func_802948E0.s")
+void func_802948E0(void){
+    D_8037C298 = NULL;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D800/func_802948EC.s")
+ActorMarker *func_802948EC(void){
+   return D_8037C298; 
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D800/func_802948F8.s")
+void func_802948F8(ActorMarker *arg0){
+    D_8037C298 = arg0;
+    func_80294828();
+    D_8037C29C = 1;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D800/func_80294924.s")
+void func_80294924(f32 arg0, f32 arg1){
+    D_8037C290.unk0 = arg0;
+    D_8037C290.unk4 = arg1;
+}
