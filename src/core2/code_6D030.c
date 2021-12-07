@@ -39,7 +39,7 @@ ParticleEmitter *func_802F4094(f32 pos[3], f32 arg1){
     ParticleEmitter *pCtrl;
 
     pCtrl = func_802F0EF0(D_80380A90);
-    particleEmitter_setSprite(pCtrl, ASSET_70B_SPRITE_BUBBLE);
+    particleEmitter_setSprite(pCtrl, ASSET_70B_SPRITE_BUBBLE_2);
     func_802EF9E4(pCtrl, 180);
     particleEmitter_setParticleAccelerationRange(pCtrl,
         0.0f, -1300.0f, 0.0f,

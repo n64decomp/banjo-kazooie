@@ -2,23 +2,126 @@
 #include "functions.h"
 #include "variables.h"
 
+typedef struct {
+    f32 unk0;
+    ParticleEmitter *p_emitter;
+    u32 unk8_31:1;
+    u32 capacity:10;
+    u32 pad8_20:21;
+} Struct_Core2_69F60_0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_69F60/func_802F0EF0.s")
+void func_802F1190(u8 arg0);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_69F60/func_802F0F78.s")
+/* .bss*/
+extern u8 D_80380930;
+extern Struct_Core2_69F60_0 D_80380938[];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_69F60/func_802F10A4.s")
+/* .code */
+ParticleEmitter *func_802F0EF0(u8 arg0){
+    if(D_80380938[arg0].p_emitter == NULL){
+        D_80380930 = arg0;
+        D_80380938[arg0].p_emitter = func_802F0BD0(D_80380938[arg0].capacity);
+        func_802F0D54(D_80380938[arg0].p_emitter);
+        D_80380930 = 0;
+    }
+    D_80380938[arg0].unk0 = 1.0f;
+    return D_80380938[arg0].p_emitter;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_69F60/func_802F1104.s")
+u8 func_802F0F78(s32 cnt){
+    int i;
+    for(i = 1; i < 16; i++){
+        if(D_80380938[i].unk8_31 == 0){
+            D_80380938[i].unk8_31++;
+            D_80380938[i].p_emitter = NULL;
+            D_80380938[i].capacity = cnt;
+            return i;
+        }
+    }
+    return 0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_69F60/func_802F1190.s")
+void func_802F10A4(void){
+    int i;
+    for(i = 1; i < 16; i++){
+        if(D_80380938[i].unk8_31 != 0){
+            func_802F1190(i);
+        }
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_69F60/func_802F11E8.s")
+void func_802F1104(void){
+    int i;
+    for(i = 1; i < 16; i++){
+        D_80380938[i].unk8_31 = 0;
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_69F60/func_802F1294.s")
+void func_802F1190(u8 arg0){
+    if(D_80380938[arg0].p_emitter){
+        func_802F0C78(D_80380938[arg0].p_emitter);
+    }
+    D_80380938[arg0].unk8_31 = 0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_69F60/func_802F1320.s")
+void func_802F11E8(void){
+    int i;
+    for(i = 1; i < 16; i++){
+        if( D_80380938[i].unk8_31 != 0
+            && D_80380938[i].p_emitter != NULL
+            && func_802EF648(D_80380938[i].p_emitter)
+        ){
+           D_80380938[i].unk0 -= time_getDelta();
+           if(D_80380938[i].unk0 <= 0.0f){
+                func_802F0C78(D_80380938[i].p_emitter);
+                D_80380938[i].p_emitter = NULL;
+           }
+        }
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_69F60/func_802F1388.s")
+void func_802F1294(void){
+    int i;
+    for(i = 1; i < 16; i++){
+        if( D_80380938[i].unk8_31 != 0
+            && D_80380938[i].p_emitter != NULL
+            && i != D_80380930
+        ){
+           func_802F0C78(D_80380938[i].p_emitter);
+           D_80380938[i].p_emitter = NULL;
+        }
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_69F60/func_802F13E0.s")
+void func_802F1320(void){
+    int i;
+    for(i = 1; i < 16; i++){
+        if( D_80380938[i].unk8_31 != 0
+            && D_80380938[i].p_emitter != NULL
+        ){
+           D_80380938[i].p_emitter = func_802F0D74(D_80380938[i].p_emitter);
+        }
+    }
+}
+
+void func_802F1388(void){
+    func_802EDD20();
+    func_802F35B4();
+    func_802F1E80();
+    func_802F3C64();
+    func_802F404C();
+    func_802F422C();
+    func_802EE684();
+    func_802F3CB0();
+}
+
+void func_802F13E0(void){
+    func_802EDD44();
+    func_802F35D8();
+    func_802F1EA4();
+    func_802F3C84();
+    func_802F4070();
+    func_802F4250();
+    func_802EE63C();
+    func_802F3CD4();
+}

@@ -2,8 +2,12 @@
 #include "functions.h"
 #include "variables.h"
 
+ParticleEmitter * func_802EDD8C(f32[3], f32, f32);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029AF50.s")
+
+f32 func_8029AF50(f32 arg0, f32 arg1, f32 arg2){
+    return (arg0 - arg1)/(arg2 - arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029AF68.s")
 
@@ -65,8 +69,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029B930.s")
 
-ParticleEmitter *func_8029B950(f32[3],f32);
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029B950.s")
+ParticleEmitter *func_8029B950(f32 pos[3],f32 arg1){
+    return func_802EDD8C(pos, arg1, func_80294500());
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029B984.s")
 
