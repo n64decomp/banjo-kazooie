@@ -2,6 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
+extern f32 func_802944A8(void);
+
 extern f32 D_8037C2A0[3]; //recoil_target_position
 extern f32 D_8037C2B0[3]; //talk_target_position
 extern f32 D_8037C2C0[3]; //throw_target_position
@@ -133,4 +135,21 @@ void func_80294E54(int arg0){
     D_8037C2ED = arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D9B0/func_80294E60.s")
+void func_80294E60(void){
+    if(func_8028B2E8()){
+        _player_getPosition(D_8037C2D8);
+    }
+
+    if(func_8028B2E8() || bsclimb_inSet(bs_getState())){
+        func_802933FC(5);
+        func_802933FC(0x12);
+    }
+
+    if(player_inWater()){
+        func_802933FC(5);
+        func_802933FC(0x12);
+    }
+
+    func_80294BDC();
+    func_80294B0C();
+}

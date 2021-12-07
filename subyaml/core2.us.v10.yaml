@@ -53,7 +53,7 @@ segments:
   - [0xC0E0, c, code_C0E0] #DONE
   - [0xC3F0, c, code_C3F0] #DONE
   - [0xC4B0, c, code_C4B0]
-  - [0xD800, c, code_D800]
+  - [0xD800, c, code_D800] #DONE
   - [0xD9B0, c, code_D9B0]
   - [0xDF70, c, code_DF70] #DONE
   - [0xE410, c, code_E410]
