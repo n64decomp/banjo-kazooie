@@ -73,7 +73,7 @@ segments:
   - [0x11B40, c, roll]       #DONE
   - [0x11DE0, c, yaw]        #DONE
   - [0x12360, c, code_12360] #DONE
-  - [0x126C0, c, code_126C0]
+  - [0x126C0, c, code_126C0] #DONE
   - [0x12F30, c, code_12F30]
   - [0x13670, c, bsList]     #DONE
   - [0x13780, c, code_13780] #DONE
@@ -380,7 +380,8 @@ segments:
   - [0xDC890, .data, code_E910]
   - [0xDD4B0, bin, data_DD4B0]
   - [0xDD4C0, .data, code_117D0]
-  - [0xDD5D0, bin, data_DD5D0]
+  - [0xDD5D0, .data, code_126C0]
+  - [0xDD5F0, bin, data_DD5F0]
   - [0xDD9D0, .data, bs/ant]
   - [0xDDA00, .data, bs/bbuster]
   - [0xDDA20, bin, data_DDA20]
@@ -475,7 +476,8 @@ segments:
   - [0xEDC80, .rodata, roll]
   - [0xEDCA0, .rodata, yaw]
   - [0xEDD00, .rodata, code_12360]
-  - [0xEDD30, bin, data_EDD30]
+  - [0xEDD30, .rodata, code_126C0]
+  - [0xEDD60, bin, data_EDD60]
   - [0xEE310, .rodata, bs/ant]
   - [0xEE340, .rodata, bs/bBarge]
   - [0xEE380, .rodata, bs/bbuster]

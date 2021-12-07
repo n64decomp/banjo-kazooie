@@ -2,8 +2,9 @@
 #include "functions.h"
 #include "variables.h"
 
-extern s32 D_80364560 = 0;
-extern s16 D_80364564[8] = {
+/* .data */
+s32 D_80364560 = 0;
+s16 D_80364564[8] = {
     SFX_32_BANJO_EGHEE,
     SFX_34_BANJO_AGHOAA,
     SFX_35_BANJO_WOAH,
@@ -14,27 +15,19 @@ extern s16 D_80364564[8] = {
     SFX_3B_BANJO_GAAH
 };
 
-extern s16 D_80364574[3] = {
+s16 D_80364574[3] = {
     SFX_54_BANJO_HOO_1,
     SFX_55_BANJO_HOO_2,
     SFX_56_BANJO_HUI,
 };
 
-/*.rodata */
-extern f32 D_80374CC0;
-extern f64 D_80374CC8;
-extern f64 D_80374CD0;
-extern f32 D_80374CD8;
-extern f32 D_80374CDC;
-extern f32 D_80374CE0;
 
+/* .bss */
 extern u8 D_8037C6C0;
 extern u8 D_8037C6C1;
 extern u8 D_8037C6C2;
 extern u8 D_8037C6C3;
 extern u8 D_8037C6C4;
-
-
 extern u32 D_8037C6C8;
 extern f32 D_8037C6CC;
 extern struct{
@@ -49,17 +42,14 @@ extern struct{
 } D_8037C6D0;
 
 /* .code */
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_126C0/func_80299650.s")
-#else
 void func_80299650(f32 arg1, f32 arg2){
     f32 f20;
-    u8 unks0;
+    s32 unks0;
     if(arg2 == 0.0f){
         func_8030E394(D_8037C6C4);
     } 
     else if(arg2 < 1.0) {
-        if(1.0f <= arg1){
+        if(1.0 <= arg1){
             func_8030DA80(D_8037C6C4, SFX_1C_ALARMCLOCK);
             func_8030DABC(D_8037C6C4, 0x7fff);
             func_8030E2C4(D_8037C6C4);
@@ -67,18 +57,19 @@ void func_80299650(f32 arg1, f32 arg2){
     }
     else{
         unks0 = 0;
-        for(f20 = 5.0f; f20 > 0.0f; f20 -= ml_map_f(f20, 0.0f, 5.0f, D_80374CC0, 0.25f)){
+        f20 = 5.0f;
+        while(f20 > 0.0f){
             if(f20 <= arg1 && arg2 < f20){
                 func_8030DA80(D_8037C6C4, (unks0) ? SFX_2A_CLOCK_TIC_1 : SFX_51_CLOCK_TIC_2);
                 func_8030DABC(D_8037C6C4, 0x7fff);
-                func_8030DABC(D_8037C6C4);
+                func_8030E2C4(D_8037C6C4);
                 return;
             }
             unks0 ^= 1;
+            f20 -= ml_map_f(f20, 0.0f, 5.0f, 0.1f, 0.25f);
         }
     }
 }
-#endif
 
 void func_802997E8(void){
     f32 f12;
@@ -151,15 +142,15 @@ void func_80299A8C(void){
 }
 
 void func_80299AAC(void){
-    D_8037C6CC += randf()*D_80374CC8 - D_80374CD0;
-    D_8037C6CC = max_f(D_8037C6CC, D_80374CD8);
+    D_8037C6CC += randf()*0.1 - 0.05;
+    D_8037C6CC = max_f(D_8037C6CC, 0.9f);
     D_8037C6CC = min_f(D_8037C6CC, 1.5f);
     func_8030DBB4(D_8037C6C1, D_8037C6CC);
     func_8030E2C4(D_8037C6C1);
 }
 
 void func_80299B58(f32 arg0, f32 arg1){
-    func_80299CF4(D_80364574[D_80364560], randf2(D_80374CDC, D_80374CE0), 25000);
+    func_80299CF4(D_80364574[D_80364560], randf2(0.93f, 1.09f), 25000);
     D_80364560++;
     if(D_80364560 >= 3)
         D_80364560 = 0;
