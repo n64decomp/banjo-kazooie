@@ -74,13 +74,3 @@ ParticleEmitter *func_802EDD8C(f32 pos[3], f32 xz_range, f32 arg2){
 
     return pCtrl;
 }
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_66AB0/func_802EDF40.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_66AB0/func_802EE238.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_66AB0/func_802EE278.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_66AB0/func_802EE2E8.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_66AB0/func_802EE354.s")
