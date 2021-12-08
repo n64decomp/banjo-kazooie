@@ -7,6 +7,6 @@
 
 void gcbound_draw(Gfx **dl);
 void gcbound_alpha(s32 a);
-void gcbound_color(u8 r, u8 g, u8 b);
+void gcbound_color(s32 r, s32 g, s32 b);
 void gcbound_reset(void);
 #endif
