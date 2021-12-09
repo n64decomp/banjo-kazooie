@@ -3,7 +3,12 @@
 #include "variables.h"
 
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_33250/func_802BA1E0.s")
+// #prgma GLOBAL_ASM("asm/nonmatchings/core2/code_33250/func_802BA1E0.s")
+s32 * func_802BA1E0(void){
+    s32 * sp1C = malloc(4);
+    func_802BA23C(sp1C, 1);
+    return sp1C;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_33250/func_802BA214.s")
 
