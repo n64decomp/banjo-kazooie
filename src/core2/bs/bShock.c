@@ -93,7 +93,7 @@ void bsbshock_charge_update(void){
             sp2C = BS_BFLAP;
         
         if(should_beak_bust())
-            sp2C = BS_BBUSTER;
+            sp2C = BS_F_BBUSTER;
     }//L802A6D44
     if(animctrl_isAt( aCtrl, 0.3637f) && D_8037D380)
         sp2C = BS_BSHOCK_JUMP;
@@ -105,7 +105,7 @@ void bsbshock_charge_update(void){
     }
 
     if(sp1C[1] < 0.0f && player_inWater())
-        sp2C = BS_LANDING_IN_WATER;
+        sp2C = BS_4C_LANDING_IN_WATER;
     bs_setState(sp2C);
 }
 
@@ -175,14 +175,14 @@ void bsbshock_update(void){
             sp2C = BS_BFLAP;
 
         if(should_beak_bust())
-            sp2C =BS_BBUSTER;
+            sp2C =BS_F_BBUSTER;
     }
 
     bs_setState(sp2C);
 }
 
 void bsbshock_end(void){
-    if(bs_getNextState() != BS_BPECK)
+    if(bs_getNextState() != BS_11_BPECK)
         gravity_reset();
 
     func_8029E064(0);

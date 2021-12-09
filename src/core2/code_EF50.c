@@ -195,7 +195,7 @@ enum bs_e func_802962BC(u32 arg0){
                     return BS_FLY_OW;
                 return BS_OW;
             }
-            return BS_DIE;
+            return BS_41_DIE;
     }
 }
 
@@ -468,12 +468,12 @@ void func_80296608(void){
         case 0x15: //L80296AB0
             sp2C = 2;
             if(bsbfly_inSet(sp28)){
-                sp24 = BS_FLY;
+                sp24 = BS_24_FLY;
             }
             else{
                 switch(func_8028EE84()){
                     case 1:
-                        sp24 = BS_SWIM_IDLE;
+                        sp24 = BS_2D_SWIM_IDLE;
                         break;
                     case 2:
                         sp24 = BS_DIVE_IDLE;

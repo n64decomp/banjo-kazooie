@@ -128,7 +128,7 @@ void bsbpeck_update(void){
     }
 
     if(player_inWater())
-        sp24 = BS_LANDING_IN_WATER;
+        sp24 = BS_4C_LANDING_IN_WATER;
 
     bs_setState(sp24);
 }

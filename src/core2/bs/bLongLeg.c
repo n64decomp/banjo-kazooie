@@ -181,7 +181,7 @@ void bsblongleg_stand_update(void){
         next_state = BS_LONGLEG_EXIT;
 
     if(func_802A51D0())
-        next_state = BS_LANDING_IN_WATER;
+        next_state = BS_4C_LANDING_IN_WATER;
 
     bs_setState(next_state);
 
@@ -232,7 +232,7 @@ void bsblongleg_walk_update(void){
         sp1C = BS_LONGLEG_EXIT;
 
     if(func_802A51D0())
-        sp1C = BS_LANDING_IN_WATER;
+        sp1C = BS_4C_LANDING_IN_WATER;
 
     bs_setState(sp1C);
 }
@@ -296,7 +296,7 @@ void bsblongleg_exit_update(void){
     }
 
     if(func_802A51D0())
-        sp1C = BS_LANDING_IN_WATER;
+        sp1C = BS_4C_LANDING_IN_WATER;
     
     bs_setState(sp1C);
     
@@ -390,7 +390,7 @@ void bsblongleg_jump_update(void){
 
 
     if(func_802A51D0())
-        sp44 = BS_LANDING_IN_WATER;
+        sp44 = BS_4C_LANDING_IN_WATER;
 
     bs_setState(sp44);
 }
@@ -444,7 +444,7 @@ void bsblongleg_slide_update(void){
         sp3C = BS_LONGLEG_JUMP;
 
     if(func_802A51D0())
-        sp3C = BS_LANDING_IN_WATER;
+        sp3C = BS_4C_LANDING_IN_WATER;
 
     bs_setState(sp3C);
 }
@@ -476,7 +476,7 @@ void func_802A63F0(void){
         sp1C = BS_LONGLEG_IDLE;
     
     if(func_802A51D0())
-        sp1C = BS_LANDING_IN_WATER;
+        sp1C = BS_4C_LANDING_IN_WATER;
 
     bs_setState(sp1C);
 }

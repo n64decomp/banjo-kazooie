@@ -203,7 +203,7 @@ enum bs_e func_802A8D84(enum bs_e arg0){
         arg0 = BS_BTROT_SLIDE;
 
     if(player_inWater())
-        arg0 = BS_SWIM_IDLE;
+        arg0 = BS_2D_SWIM_IDLE;
 
     return arg0;
 }
@@ -326,7 +326,7 @@ void bsbtrot_walk_update(void){
         sp1C = BS_BTROT_SLIDE;
 
     if(player_inWater())
-        sp1C = BS_SWIM_IDLE;
+        sp1C = BS_2D_SWIM_IDLE;
 
     sp1C = func_8029CA94(sp1C);
     bs_setState(sp1C);
@@ -452,13 +452,13 @@ void bsbtrot_jump_update(void){
     }//LL802A97D0
 
     if(should_peck())
-        sp2C = BS_BPECK;
+        sp2C = BS_11_BPECK;
 
     if(func_8028B424())
         sp2C = BS_FALL_TUMBLING;
 
     if(player_inWater())
-        sp2C = BS_LANDING_IN_WATER;
+        sp2C = BS_4C_LANDING_IN_WATER;
     
     if(func_8028B2E8()){
         if(button_pressed(BUTTON_A))
@@ -535,7 +535,7 @@ void bsbtrot_slide_update(void){
         sp3C = BS_BTROT_IDLE;
     }
     if(player_inWater())
-        sp3C = BS_SWIM_IDLE;
+        sp3C = BS_2D_SWIM_IDLE;
 
     if(D_8037D3A0 == 0.0f && button_pressed(BUTTON_A) && func_8028B2E8())
         sp3C = func_802A8D34(sp3C);
@@ -655,7 +655,7 @@ void bsbtrot_fall_update(void){
     }//LL802A9FE8
 
     if(player_inWater())
-        sp2C = BS_LANDING_IN_WATER;
+        sp2C = BS_4C_LANDING_IN_WATER;
     
     if(func_8028B424())
         sp2C = BS_FALL_TUMBLING;
@@ -740,7 +740,7 @@ void bsbtrot_ow_update(void){
         sp1C = BS_BTROT_IDLE;
 
     if(animctrl_isStopped(_player_getAnimCtrlPtr()) && player_inWater())
-        sp1C = BS_SWIM_IDLE;
+        sp1C = BS_2D_SWIM_IDLE;
 
     bs_setState(sp1C);
 }

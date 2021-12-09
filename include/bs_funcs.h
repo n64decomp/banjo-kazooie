@@ -120,7 +120,7 @@ void bseggass_end(void);
 //BS_WALK_CREEP(void);
 void bswalk_creep_init(void);
 void bswalk_creep_update(void);
-//BS_LANDING(void);
+//BS_20_LANDING(void);
 void bsstand_landing_init(void);
 void bsstand_landing_update(void);
 //BS_BSHOCK_CHARGE(void);
@@ -172,7 +172,7 @@ void func_802A7718(void);
 void func_802A7738(void);
 void func_802A7838(void);
 void func_802A7A2C(void);
-//BS_SWIM_IDLE,  
+//BS_2D_SWIM_IDLE,  
 void func_802B5774(void);
 void func_802B5950(void);
 void func_802B5AF8(void);
@@ -256,7 +256,7 @@ void func_802B1DA4(void);
 void func_802B2BF0(void);
 void func_802B2C58(void);
 void func_802B2D50(void);
-    //BS_DIE
+    //BS_41_DIE
 void bsdie_init(void);
 void bsdie_update(void);
 void bsdie_end(void);
@@ -297,7 +297,7 @@ void func_802B2990(void);
 void func_802B29C0(void);
 void func_802B2A5C(void);
 void func_802B2BD0(void);
-//BS_LANDING_IN_WATER
+//BS_4C_LANDING_IN_WATER
 void func_802A846C(void);
 void func_802A85EC(void);
 void func_802A872C(void);

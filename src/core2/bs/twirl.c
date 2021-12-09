@@ -69,7 +69,7 @@ void bstwirl_update(void){
         sp1C = BS_FALL;
 
     if(player_inWater())
-        sp1C = BS_LANDING_IN_WATER;
+        sp1C = BS_4C_LANDING_IN_WATER;
 
     sp1C = func_8029CA94(sp1C);
 

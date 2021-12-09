@@ -185,12 +185,12 @@ void bsbbuster_update(void){
                 animctrl_setSubRange(aCtrl, 0.0f, 1.0f);
                 animctrl_setDuration(aCtrl, 1.9f);
                 animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
-                sp44 = BS_LANDING;
+                sp44 = BS_20_LANDING;
             }
             break;
     }
     if(player_inWater())
-        sp44 = BS_LANDING_IN_WATER;
+        sp44 = BS_4C_LANDING_IN_WATER;
 
     bs_setState(sp44);
 }//L802A024C

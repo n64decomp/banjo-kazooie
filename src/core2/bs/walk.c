@@ -184,7 +184,7 @@ void bswalk_creep_update(void){
     s0 = func_8029CA94(s0);
 
     if(player_inWater())
-        s0 = BS_SWIM_IDLE;
+        s0 = BS_2D_SWIM_IDLE;
 
     bs_setState(s0);
 }
@@ -257,7 +257,7 @@ void bswalk_slow_upate(void){
     s0 = func_8029CA94(s0);
 
     if(player_inWater())
-        s0 = BS_SWIM_IDLE;
+        s0 = BS_2D_SWIM_IDLE;
 
     bs_setState(s0);
 }
@@ -333,7 +333,7 @@ void bswalk_update(void){
     s0 = func_8029CA94(s0);
 
     if(player_inWater())
-        s0 = BS_SWIM_IDLE;
+        s0 = BS_2D_SWIM_IDLE;
 
     bs_setState(s0);
 }
@@ -433,7 +433,7 @@ void bswalk_fast_update(void){
     s0 = func_8029CA94(s0);
 
     if(player_inWater())
-        s0 = BS_SWIM_IDLE;
+        s0 = BS_2D_SWIM_IDLE;
 
     bs_setState(s0);
 }
@@ -482,7 +482,7 @@ void bswalk_mud_update(void){
     s0 = func_8029CA94(s0);
 
     if(player_inWater())
-        s0 = BS_SWIM_IDLE;
+        s0 = BS_2D_SWIM_IDLE;
 
     bs_setState(s0);
 }

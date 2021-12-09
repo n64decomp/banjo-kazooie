@@ -34,7 +34,7 @@ void bssplat_init(void){
     func_802B4570();
     func_802BB3DC(0, 45.0f, 0.71f);
     if(item_getCount(ITEM_14_HEALTH) == 0)
-        bs_setState(BS_DIE);
+        bs_setState(BS_41_DIE);
 
     D_8037D530 = 0;
     func_8028D5DC();
@@ -62,7 +62,7 @@ void bssplat_update(void){
     
     case 1://L802B47C8
         if(animctrl_isAt(aCtrl, 0.63f))
-            sp1C = BS_LANDING;
+            sp1C = BS_20_LANDING;
 
         if(animctrl_isStopped(aCtrl))
             sp1C = BS_1_IDLE;
@@ -73,7 +73,7 @@ void bssplat_update(void){
     }//L802B4808
 
     if(func_8028B2E8() == 0 && player_inWater())
-        sp1C = BS_SWIM_IDLE;
+        sp1C = BS_2D_SWIM_IDLE;
 
     bs_setState(sp1C);
 

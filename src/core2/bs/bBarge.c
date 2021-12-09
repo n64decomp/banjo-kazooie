@@ -166,14 +166,14 @@ void bsbarge_update(void){
             }
             func_80297970(D_8037D2A0);
             if(animctrl_isAt(plyrMvmnt, 0.9193f))
-                sp24 = BS_LANDING;
+                sp24 = BS_20_LANDING;
             break;
     }
     if(D_8037D2A6)
         func_8029F60C();
 
     if(player_inWater())
-        sp24 = BS_LANDING_IN_WATER;
+        sp24 = BS_4C_LANDING_IN_WATER;
     bs_setState(sp24);
 }
 

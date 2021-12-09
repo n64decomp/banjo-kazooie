@@ -21,11 +21,11 @@ typedef struct {
 typedef struct {
     s16 minCoord_0[3];
     s16 maxCoord_6[3];
-    u8 padC[0x6];
+    s16 unkC[3];
     s16 unk12;
-    s16 unk14;
+    s16 cnt_14;
     s16 unk16;
-    BKMesh vtx_18[];
+    Vtx vtx_18[];
 } BKVertexList;
 
 typedef struct {

@@ -3,10 +3,10 @@
 #include "variables.h"
 
 Vtx *vtxList_getVertices(BKVertexList *vtxList){
-    return (Vtx *)&vtxList->vtx_18[0];
+    return &vtxList->vtx_18[0];
 }
 
-//vtxList_getBoundingBox
+//vtxList_getBoundingBox_i
 void func_802EC458(BKVertexList *vtxList, s32 min[3], s32 max[3]){
     min[0] = vtxList->minCoord_0[0];
     min[1] = vtxList->minCoord_0[1];
@@ -32,23 +32,43 @@ void func_802EC48C(BKVertexList *vtxList, f32 min[3], f32 max[3]){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_654C0/func_802EC680.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_654C0/func_802EC8FC.s")
+//vtxList_getBeginAndEndPtrs
+void func_802EC8FC(BKVertexList *this, Vtx **vtx, Vtx **vtx_end){
+    *vtx = &this->vtx_18[0];
+    *vtx_end = &(*vtx)[this->cnt_14];
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_654C0/func_802EC918.s")
+//vtxList_getVtxCount
+s32 func_802EC918(BKVertexList *this){
+    return this->cnt_14;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_654C0/func_802EC920.s")
+f32 func_802EC920(BKVertexList *this){
+    return (f32)this->unk16;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_654C0/func_802EC930.s")
+void func_802EC930(BKVertexList *this, f32 arg1[3], f32 *arg2){
+    arg1[0] = (f32)this->unkC[0];
+    arg1[1] = (f32)this->unkC[1];
+    arg1[2] = (f32)this->unkC[2];
+    *arg2 = this->unk12; 
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_654C0/func_802EC984.s")
+f32 func_802EC984(BKVertexList *this){
+    return (f32)this->unk12;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_654C0/func_802EC994.s")
+//vtxList_free
+void func_802EC994(BKVertexList *vtxList){
+    free(vtxList);
+}
 
+//vtxList_clone
 BKVertexList *func_802EC9B4(BKVertexList *vtxList){
     BKVertexList *out_v0;
     size_t list_size;
     
-    list_size = sizeof(BKVertexList) + vtxList->unk14*sizeof(Vtx);
+    list_size = sizeof(BKVertexList) + vtxList->cnt_14*sizeof(Vtx);
     out_v0 = (BKVertexList *) malloc(list_size);
     func_80254630(out_v0, vtxList, list_size);
     return out_v0;

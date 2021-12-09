@@ -33,32 +33,15 @@ int func_802E74A0(f32[3], f32, s32, s32);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5FD90/func_802E75D0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5FD90/func_802E76B0.s")
-// int func_802E76B0(BKCollisionList *arg0, BKVertexList *arg1, f32 arg2[3], f32 arg3[3], s32 arg4, s32 arg5){
-//     s32 sp18C;
-//     s32 sp184;
 
-//     int i;
-//     s32 sp158[3];
-//     s32 sp14C[3];
-//     f32 sp140[3];
 
-//     func_802E75D0(arg2, arg3, sp158, sp14C, sp140);
-//     for(i = 0; i < 3; i++){//L802E773C
-//         if(sp14C[i] > -arg1->unk16 || arg1->unk16 <= sp158[i]){
-//             return 0;
-//         }
-//         func_802E70FC(arg0, sp158, sp14C, &sp18C, &sp184);
-
-//     }
-// }
-
-int func_802E805C(BKCollisionList *arg0, BKVertexList *arg1, f32 arg2[3], s32 arg3, f32 arg4, s32 arg5, s32 arg6, s32 arg7, s32 arg8){
+int func_802E805C(BKCollisionList *arg0, BKVertexList *vtxList, f32 arg2[3], s32 arg3, f32 arg4, s32 arg5, s32 arg6, s32 arg7, s32 arg8){
     f32 sp44[3];
     f32 sp38[3];
     int sp34;
     int i;
 
-    if(!func_802E74A0(arg2, arg1->unk16*arg4, arg5, arg6)){
+    if(!func_802E74A0(arg2, vtxList->unk16*arg4, arg5, arg6)){
         return 0;
     }
     else{
@@ -66,7 +49,7 @@ int func_802E805C(BKCollisionList *arg0, BKVertexList *arg1, f32 arg2[3], s32 ar
         func_80252CC4(arg2, arg3, arg4, 0);
         func_8025235C(sp44, arg5);
         func_8025235C(sp38, arg6);
-        sp34 = func_802E76B0(arg0, arg1, sp44, sp38, arg7, arg8);
+        sp34 = func_802E76B0(arg0, vtxList, sp44, sp38, arg7, arg8);
         if(!sp34){
             return 0;
         }

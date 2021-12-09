@@ -172,7 +172,7 @@ void bscrouch_update(void){
         sp34 = 0;
 
     if(player_inWater())
-        sp34 = BS_SWIM_IDLE;
+        sp34 = BS_2D_SWIM_IDLE;
 
     bs_setState(sp34);
 }//*/

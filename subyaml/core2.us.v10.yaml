@@ -217,7 +217,7 @@ segments:
   - [0x5FD80, c, code_5FD80]
   - [0x5FD90, c, code_5FD90]
   - [0x62FD0, c, code_62FD0] #DONE
-  - [0x630D0, c, code_630D0]
+  - [0x630D0, c, code_630D0] #DONE
   - [0x63410, c, code_63410]
   - [0x63690, c, code_63690]
   - [0x637D0, c, code_637D0]

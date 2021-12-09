@@ -177,7 +177,7 @@ void bsbflap_update(void){
         sp1c = BS_FALL;
     
     if(should_beak_bust())
-        sp1c = BS_BBUSTER;
+        sp1c = BS_F_BBUSTER;
 
     if(func_8028B2E8()){
         func_8029C5E8();
@@ -185,7 +185,7 @@ void bsbflap_update(void){
     }
 
     if(player_inWater())
-        sp1c = BS_LANDING_IN_WATER;
+        sp1c = BS_4C_LANDING_IN_WATER;
 
     bs_setState(sp1c);
 }

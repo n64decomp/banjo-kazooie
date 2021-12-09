@@ -42,7 +42,7 @@ void bsjump_init(void){
         climbRelease();
     }
 
-    if(sp30 == BS_BPECK){
+    if(sp30 == BS_11_BPECK){
         animctrl_setSubRange(aCtrl, 0.0f, 0.6667f);
         func_8028774C(aCtrl, 0.5042f);
         animctrl_setDuration(aCtrl, 8.0f);
@@ -50,7 +50,7 @@ void bsjump_init(void){
         D_8037D4C0 = 1;
     } 
     else {
-        D_8037D4C1 = (sp30 == BS_SWIM_IDLE) || (sp30 == BS_SWIM);
+        D_8037D4C1 = (sp30 == BS_2D_SWIM_IDLE) || (sp30 == BS_SWIM);
         animctrl_reset(aCtrl);
         animctrl_setIndex(aCtrl, ANIM_BANJO_JUMP);
         animctrl_setDuration(aCtrl, 1.9f);
@@ -145,18 +145,18 @@ void bsjump_update(void){
         sp34 = BS_BFLAP;
 
     if(should_peck())
-        sp34 = BS_BPECK;
+        sp34 = BS_11_BPECK;
 
     if(should_beak_bust())
-        sp34 = BS_BBUSTER;
+        sp34 = BS_F_BBUSTER;
 
     if(func_8028B2E8()){
         func_8029C5E8();
-        sp34 = BS_LANDING;
+        sp34 = BS_20_LANDING;
     }
 
     if(sp24[1] < 0.0f && player_inWater())
-        sp34 = BS_LANDING_IN_WATER;
+        sp34 = BS_4C_LANDING_IN_WATER;
 
     bs_setState(sp34);
 }
@@ -165,7 +165,7 @@ void bsjump_end(void){
     if(func_802957D8(0xa))
         func_80295610(0);
 
-    if(bs_getNextState() != BS_BPECK)
+    if(bs_getNextState() != BS_11_BPECK)
         gravity_reset();
 }
 
@@ -222,13 +222,13 @@ void bsjump_fall_update(void){
             sp2C = BS_BFLAP;
 
         if(should_peck())
-            sp2C = BS_BPECK;
+            sp2C = BS_11_BPECK;
         
         if(should_beak_bust())
-            sp2C = BS_BBUSTER;
+            sp2C = BS_F_BBUSTER;
         
         if(player_inWater())
-            sp2C = BS_LANDING_IN_WATER;
+            sp2C = BS_4C_LANDING_IN_WATER;
     }
     else if(player_inWater()){
         func_8029CCC4();
@@ -240,7 +240,7 @@ void bsjump_fall_update(void){
 
     if(func_8028B2E8()){
         func_8029C5E8();
-        sp2C = BS_LANDING;
+        sp2C = BS_20_LANDING;
     }
 
     bs_setState(sp2C);
@@ -292,14 +292,14 @@ void bsjump_tumble_update(void){
             sp1C = BS_BFLAP;
 
         if(should_peck())
-            sp1C = BS_BPECK;
+            sp1C = BS_11_BPECK;
 
         if(should_beak_bust())
-            sp1C = BS_BBUSTER;
+            sp1C = BS_F_BBUSTER;
     }//L802B1F2C
 
     if(player_inWater())
-        sp1C = BS_LANDING_IN_WATER;
+        sp1C = BS_4C_LANDING_IN_WATER;
 
     if(func_8028B2E8())
         sp1C = BS_SPLAT;
@@ -309,9 +309,9 @@ void bsjump_tumble_update(void){
 
 void bsjump_tumble_end(void){
     enum bs_e next_state = bs_getNextState();
-    if( next_state == BS_BBUSTER
+    if( next_state == BS_F_BBUSTER
         || next_state == BS_BFLAP
-        || next_state == BS_BPECK
+        || next_state == BS_11_BPECK
     ){
         func_80293240(3);
     }

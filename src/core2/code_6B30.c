@@ -31,7 +31,7 @@ s32 func_8028DB14(ActorMarker *arg0){
     
     switch(bs_getState()){
 
-        case BS_BBUSTER: //8028DBA4
+        case BS_F_BBUSTER: //8028DBA4
             return __maybe(func_8029FC58(),1);
             break;
         case BS_BBARGE://8028DBC0
@@ -49,7 +49,7 @@ s32 func_8028DB14(ActorMarker *arg0){
                 return retVal;
             return 8;
             break;
-        case BS_BPECK://8028DC50
+        case BS_11_BPECK://8028DC50
             if(arg0 && !func_8028AED4(marker_getActor(arg0)->position, 60.0f))
                 return 0;
             return __maybe(func_802A6510(),5);

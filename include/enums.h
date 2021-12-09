@@ -1545,9 +1545,9 @@ enum bs_e
     BS_SKID = 0xC,
     BS_TIMEOUT = 0xD,
     BS_OW = 0xE,
-    BS_BBUSTER = 0xF,
+    BS_F_BBUSTER = 0xF,
     BS_BFLAP = 0x10,
-    BS_BPECK = 0x11,
+    BS_11_BPECK = 0x11,
     BS_BFLIP = 0x12,
     BS_BBARGE = 0x13, 
     BS_BTROT_ENTER = 0x14,
@@ -1562,11 +1562,11 @@ enum bs_e
     BS_WONDERWING_JUMP = 0x1D,
     BS_WONDERWING_EXIT = 0x1E,
     BS_WALK_CREEP = 0x1F,
-    BS_LANDING = 0x20,
+    BS_20_LANDING = 0x20,
     BS_BSHOCK_CHARGE = 0x21,
     BS_BSHOCK_JUMP = 0x22,
     BS_FLY_ENTER = 0x23,
-    BS_FLY = 0x24,
+    BS_24_FLY = 0x24,
     BS_LONGLEG_ENTER = 0x25,
     BS_LONGLEG_IDLE = 0x26,
     BS_LONGLEG_WALK = 0x27,
@@ -1575,7 +1575,7 @@ enum bs_e
     BS_BOMB = 0x2A,
     BS_DIVE_IDLE = 0x2B,
     BS_DIVE_B = 0x2C,
-    BS_SWIM_IDLE = 0x2D,
+    BS_2D_SWIM_IDLE = 0x2D,
     BS_SWIM = 0x2E,
     BS_FALL = 0x2F,
     BS_DIVE_ENTER = 0x30,
@@ -1595,7 +1595,7 @@ enum bs_e
     BS_3E_ANT_OW = 0x3E,
     //unk3F
     //BS_PUMPKIN_unk40,
-    BS_DIE = 0x41,
+    BS_41_DIE = 0x41,
     BS_42_DINGPOT = 0x42,
     BS_43_ANT_DIE = 0x43,
     BS_JIG_JIGGY = 0x44,
@@ -1606,7 +1606,7 @@ enum bs_e
     BS_PUMPKIN_WALK = 0x49,
     BS_PUMPKIN_JUMP = 0x4A,
     BS_PUMPKIN_FALL = 0x4B,
-    BS_LANDING_IN_WATER = 0x4c,
+    BS_4C_LANDING_IN_WATER = 0x4c,
     BS_PUMPKIN_OW = 0x4D,
     BS_PUMPKIN_DIE = 0x4E,
     BS_4F_CLIMB_IDLE,
@@ -1619,7 +1619,7 @@ enum bs_e
     BS_56_RECOIL = 0x56,
     BS_BOMB_END = 0x57,
     //0x58,
-    BS_BFLY_UNK59 = 0x59,
+    BS_59_BFLY_UNK59 = 0x59,
     BS_5A_LOADZONE = 0x5A,
     BS_CARRY_THROW = 0x5B,
     
@@ -1796,6 +1796,7 @@ enum asset_e
     ANIM_BANJO_LONGLEG_ENTER_AS_BIRD = 0x40,
     ANIM_BANJO_LONGLEG_IDLE     = 0x41,
     ANIM_BANJO_LONGLEG_WALK     = 0x42,
+    ASSET_43_ANIM_BANJO_BEAKBOMB_START,
 
     ANIM_BANJO_FLY_ENTER        = 0x45,
 
@@ -1831,6 +1832,8 @@ enum asset_e
 
     ASSET_C3_ANIM_CLANKER_IDLE = 0xC3,
     ASSET_C4_ANIM_CLANKER_BITE,
+
+    ASSET_CC_ANIM_BANJO_BEAKBOMB_END = 0xCC,
 
     ASSET_D2_ANIM_BANJO_GETTING_UP = 0xD2,
 

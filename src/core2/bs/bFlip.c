@@ -107,7 +107,7 @@ void bsbflip_update(void){
             D_8037D310 = 2;
         }//L802A316C
         if(should_beak_bust()){
-            sp24 =BS_BBUSTER;
+            sp24 =BS_F_BBUSTER;
         }
         break;
     case 2://L802A3184
@@ -129,7 +129,7 @@ void bsbflip_update(void){
             D_8037D310 = 4;
         }
         else if(should_beak_bust()){
-            sp24 = BS_BBUSTER;
+            sp24 = BS_F_BBUSTER;
         }
         break;
     case 3://L802A3258
@@ -142,7 +142,7 @@ void bsbflip_update(void){
             D_8037D310 = 4;
         }
         else if(should_beak_bust()){
-            sp24 = BS_BBUSTER;
+            sp24 = BS_F_BBUSTER;
         }
         break;
     case 4://L802A32C0
@@ -153,7 +153,7 @@ void bsbflip_update(void){
     }//L802A32E0
 
     if(player_inWater())
-        sp24 = BS_LANDING_IN_WATER;
+        sp24 = BS_4C_LANDING_IN_WATER;
 
     bs_setState(sp24);
 }

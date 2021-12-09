@@ -56,7 +56,7 @@ void bsclaw_update(void){
         sp2C = BS_FALL;
     
     if(player_inWater())
-        sp2C = BS_LANDING_IN_WATER;
+        sp2C = BS_4C_LANDING_IN_WATER;
 
     if(button_pressed(BUTTON_A))
         sp2C = func_8029C780();

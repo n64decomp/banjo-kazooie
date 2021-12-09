@@ -62,7 +62,7 @@ s32 func_802B488C(s32 arg0){
     retVal = func_8029CA94(retVal);
 
     if(player_inWater())
-        retVal = BS_SWIM_IDLE;
+        retVal = BS_2D_SWIM_IDLE;
     
     return retVal;
 }
