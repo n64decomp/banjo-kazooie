@@ -223,7 +223,7 @@ segments:
   - [0x637D0, c, code_637D0]
   - [0x654C0, c, code_654C0]
   - [0x66490, c, code_66490]
-  - [0x66690, c, vla]
+  - [0x66690, c, vla] #DONE
   - [0x66AB0, c, code_66AB0]
   - [0x66FB0, c, code_66FB0] #DONE
   - [0x67490, c, gc/bound]   #DONE
