@@ -39,10 +39,21 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_400F0/func_802C7718.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_400F0/func_802C775C.s")
+void func_802C775C(s32 arg0){
+    func_802C75C8(arg0, 3);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_400F0/func_802C777C.s")
+void func_802C777C(s32 arg0){
+    func_802C75C8(arg0, 2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_400F0/func_802C779C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_400F0/func_802C79C4.s")
+void func_802C79C4(void){
+    int i;
+    for(i = 0; i < 0x20; i++){
+        if(mapSpecificFlags_get(i) && func_802C779C(i)){
+            mapSpecificFlags_set(i, FALSE);
+        }
+    }
+}

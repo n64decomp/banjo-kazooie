@@ -32,7 +32,9 @@ typedef struct actor_prop_s{
     s16 x;
     s16 y;
     s16 z;
-    u16 pad8_15:11;
+    u16 unk8_15:5;
+    u16 pad8_10:5;
+    u16 unk8_5:1;
     u16 unk8_4:1;
     u16 unk8_3:1;
     u16 unk8_2:1;

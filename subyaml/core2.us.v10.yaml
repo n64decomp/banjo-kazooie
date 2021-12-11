@@ -159,10 +159,10 @@ segments:
   - [0x3B5C0, c, code_3B5C0]
   - [0x3BB80, c, code_3BB80]
   - [0x3D3D0, c, ch/gameSelect]
-  - [0x3EAD0, c, code_3EAD0]
-  - [0x3EC30, c, code_3EC30]
-  - [0x3ECE0, c, code_3ECE0]
-  - [0x3EEF0, c, ch/bigbutt]  #DONE
+  - [0x3EAD0, c, code_3EAD0] #DONE
+  - [0x3EC30, c, code_3EC30] #DONE
+  - [0x3ECE0, c, code_3ECE0] #DONE
+  - [0x3EEF0, c, ch/bigbutt] #DONE
   - [0x400F0, c, code_400F0]
   - [0x40AA0, c, ch/jiggy]    #DONE
   - [0x41130, c, ch/jigsawdance] #DONE
@@ -397,6 +397,9 @@ segments:
   - [0xDDB70, .data, bs/croc]
   - [0xDDBA0, .data, bs/drone]
   - [0xDDC20, bin, data_DDC20]
+  - [0xDEFA0, .data, code_3EAD0]
+  - [0xDF020, .data, code_3EC30]
+  - [0xDF050, .data, code_3ECE0]
   - [0xDF080, .data, ch/bigbutt]
   - [0xDF160, bin, data_DF160]
   - [0xDF300, .data, ch/jiggy]
@@ -526,7 +529,7 @@ segments:
   - [0xEF040, ".rodata", code_3BB80]
   - [0xEF090, bin, data_EF090]
   - [0xEF1B0, .rodata, ch/gameSelect]
-  - [0xEF210, bin, data_EF1D0]
+  - [0xEF210, .rodata, code_3ECE0]
   - [0xEF220, .rodata, ch/bigbutt]
   - [0xEF300, bin, data_EF300]
   - [0xEF360, .rodata, ch/jiggy]
