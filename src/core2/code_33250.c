@@ -2,19 +2,26 @@
 #include "functions.h"
 #include "variables.h"
 
+void func_802BA23C(s32 *arg0, s32 arg1);
 
-// #prgma GLOBAL_ASM("asm/nonmatchings/core2/code_33250/func_802BA1E0.s")
+/* .code */
 s32 * func_802BA1E0(void){
     s32 * sp1C = malloc(4);
     func_802BA23C(sp1C, 1);
     return sp1C;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_33250/func_802BA214.s")
+void func_802BA214(s32 *arg0){
+    free(arg0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_33250/func_802BA234.s")
+s32 func_802BA234(s32 *arg0){
+    return *arg0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_33250/func_802BA23C.s")
+void func_802BA23C(s32 *arg0, s32 arg1){
+    *arg0 = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_33250/func_802BA244.s")
 

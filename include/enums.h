@@ -1097,12 +1097,12 @@ enum sfx_e
     SFX_133_GRUNTY_OHW,
     SFX_134_FREEZING_SHIVER,
     // FileSelect, when Banjo's Bed ejects him
-    SFX_CARTOONY_SPRING,
-    SFX_GAMEBOY_STARTUP,
-    SFX_GAMEBOY_BOIN,
-    SFX_GAMEBOY_BOIOIN,
-    SFX_GAMEBOY_GLITCH,
-    SFX_GLASS_BREAKING_7,
+    SFX_135_CARTOONY_SPRING,
+    SFX_136_GAMEBOY_STARTUP,
+    SFX_137_GAMEBOY_BOIN,
+    SFX_138_GAMEBOY_BOIOIN,
+    SFX_139_GAMEBOY_GLITCH,
+    SFX_13A_GLASS_BREAKING_7,
     // 1-6 are getting increasingly distant
     SFX_GRUNTY_FINAL_SCREAM_1,
     // 1-6 are getting increasingly distant
@@ -1137,7 +1137,7 @@ enum sfx_e
     SFX_14F_FIREWORK_WHISTLING,
     SFX_150_PORCELAIN_CRASH,
     // FileSelect, when Banjo's Bed ejects him
-    SFX_CAT_MEOW,
+    SFX_151_CAT_MEOW,
     // Grunty's Broom; 01-16 getting shorter, more delay
     SFX_MOTOR_BREAKDOWN_01,
     // Grunty's Broom; 01-16 getting shorter, more delay
