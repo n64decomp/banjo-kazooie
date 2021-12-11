@@ -15,7 +15,7 @@ Actor *func_802C4464(ActorMarker *, Gfx **, Mtx **, Vtx **);
 void func_802C4C14(Actor *this);
 void func_802C5740(Actor *this);
 
-extern s32 func_802C71F0(Actor *);
+extern void func_802C71F0(Actor *);
 extern void func_802C74F4(Actor *, s32, f32 );
 extern void func_8031FB14(s32, s32);
 extern void func_8031F678(s32, s32);
