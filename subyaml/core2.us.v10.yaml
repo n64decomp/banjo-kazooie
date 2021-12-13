@@ -352,8 +352,8 @@ segments:
   - [0xD2500, c, ch/firefx]  #DONE
   - [0xD2AB0, c, ch/drips]   #DONE
   - [0xD2E10, c, ch/icecube] #DONE
-  - [0xD4050, c, code_D4050] #DONE
-  - [0xD50F0, c, code_D50F0]
+  - [0xD4050, c, ch/ghost]   #DONE
+  - [0xD50F0, c, ch/flotsam] #DONE
   - [0xD5D10, c, code_D5D10]
   - [0xD5FD0, c, code_D5FD0]
   - [0xD6180, c, code_D6180]
@@ -447,8 +447,9 @@ segments:
   - [0xEBB00, .data, ch/firefx]
   - [0xEBB30, .data, ch/drips]
   - [0xEBBC0, .data, ch/icecube]
-  - [0xEBC50, .data, code_D4050]
-  - [0xEBCF0, bin, data_EBCF0]
+  - [0xEBC50, .data, ch/ghost]
+  - [0xEBCF0, .data, ch/flotsam]
+  - [0xEBD90, bin, data_EBD90]
   - [0xEC170, .data, ch/whipcrack]
   - [0xEC1A0, .data, code_DA3A0]
   - [0xEC220, .data, code_DA760]
@@ -587,8 +588,9 @@ segments:
   - [0xF2700, .rodata, ch/firefx]
   - [0xF2740, .rodata, ch/drips]
   - [0xF2760, .rodata, ch/icecube]
-  - [0xF2810, .rodata, code_D4050]
-  - [0xF2880, bin, data_F2880]
+  - [0xF2810, .rodata, ch/ghost]
+  - [0xF2880, .rodata, ch/flotsam]
+  - [0xF28C0, bin, data_F28C0]
   - [0xF2A60, .rodata, code_D89E0]
   - [0xF2AD0, .rodata, ch/whipcrack]
   - [0xF2AF0, .rodata, code_DA3A0]
