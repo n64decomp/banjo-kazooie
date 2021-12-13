@@ -1439,6 +1439,8 @@ enum actor_e
 
     ACTOR_C5_CHIMPY_STUMP      = 0xC5,
     
+    ACTOR_CA_TEEHEE = 0xCA,
+
     ACTOR_E4_FLIGHT_PAD     = 0xE4,
 
     actor_leafboat          = 0xF1,
@@ -1526,7 +1528,9 @@ enum actor_e
 
     ACTOR_39F_FIGHT_FLIGHT_PAD = 0x39F,
 
-    ACTOR_3BA_UNKOWN        = 0x3ba
+    ACTOR_3BA_UNKOWN        = 0x3ba,
+
+    ACTOR_3C1_PURPLE_TEEHEE = 0x3C1
 };
 
 enum bs_e
@@ -1837,6 +1841,11 @@ enum asset_e
 
     ASSET_D2_ANIM_BANJO_GETTING_UP = 0xD2,
 
+    ASSET_9E_ANIM_TEEHEE_IDLE = 0x9E,
+    ASSET_9F_ANIM_TEEHEE_ALERTED,
+
+    ASSET_AC_ANIM_TEEHEE_CHASE = 0xAC,
+
     ASSET_108_ANIM_SIR_SLUSH_IDLE = 0x108,
     ASSET_109_ANIM_SIR_SLUSH_ATTACK,
 
@@ -1906,6 +1915,8 @@ enum asset_e
 
     ASSET_281_ANIM_WISHYWASHY_DOOOH = 0x281,
 
+    ASSET_2AB_ANIM_TEEHEE_DIE = 0x2AB,
+
     model_orange            = 0x2d2, //projectile
 
     model_juju              = 0x2e6,
@@ -1951,6 +1962,9 @@ enum asset_e
     ASSET_3C5_MODEL_GRUBLIN           = 0x3c5,
 
     ASSET_3C8_MODEL_CHIMPY_STUMP      = 0x3c8,
+
+    ASSET_3CB_MODEL_TEEHEE            = 0x3cb,
+
 
     ASSET_3E9_MODEL_RED_ARROW         = 0x3e9,
     ASSET_3EA_MODEL_RED_X,
@@ -2013,6 +2027,8 @@ enum asset_e
 
 
     ASSET_526_SPRITE_FIRE   = 0x526,
+
+    ASSET_564_MODEL_PURPLE_TEEHEE = 0x564,
 
     ASSET_6C1_SPRITE_SMOKE = 0x6C1,
     ASSET_6C2_SPRITE_SMOKE_WHITE,

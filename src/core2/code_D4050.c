@@ -13,23 +13,23 @@ void func_8035BD48(Actor *this);
 /* .data */
 ActorAnimationInfo D_80372BE0[] ={
     {0x00, 0.0f},
-    {0x9E, 2.0f},
-    {0x9F, 1.5f},
-    {0xAC, 1.0f},
-    {0x9E, 2.0f},
-    {0x9E, 2.0f},
-    {0x2AB, 1.0f}
+    {ASSET_9E_ANIM_TEEHEE_IDLE, 2.0f},
+    {ASSET_9F_ANIM_TEEHEE_ALERTED, 1.5f},
+    {ASSET_AC_ANIM_TEEHEE_CHASE, 1.0f},
+    {ASSET_9E_ANIM_TEEHEE_IDLE, 2.0f},
+    {ASSET_9E_ANIM_TEEHEE_IDLE, 2.0f},
+    {ASSET_2AB_ANIM_TEEHEE_DIE, 1.0f}
 };
 
-ActorInfo D_80372C18 = { 
-    0x99, 0xCA, 0x3CB, 
+ActorInfo D_80372C18 = { //TEEHEE
+    0x99, ACTOR_CA_TEEHEE, ASSET_3CB_MODEL_TEEHEE, 
     0x1, D_80372BE0, 
     func_8035B900, func_80326224, func_80325888, 
     { 0x19, 0x64, 0x0, 0x0}, 0.9f, { 0x0, 0x0, 0x0, 0x0}
 };
 
-ActorInfo D_80372C3C = { 
-    0x296, 0x3C1, 0x564, 
+ActorInfo D_80372C3C = { //PURPLE_TEEHEE (inside tumblar)
+    0x296, ACTOR_3C1_PURPLE_TEEHEE, ASSET_564_MODEL_PURPLE_TEEHEE, 
     0x1, D_80372BE0, 
     func_8035B900, func_8035BD48, func_80325888, 
     { 0x19, 0x64, 0x0, 0x0}, 0.9f, { 0x0, 0x0, 0x0, 0x0}
