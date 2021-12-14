@@ -216,7 +216,7 @@ void func_80311B44(void){
 }
 
 void func_80311B9C(s32 level, s32 *valPtr, s32 *maxPtr){
-    *valPtr = func_80346F34(level); //get note highscore
+    *valPtr = notescore_getLevelScore(level); //get note highscore
     *maxPtr = 100;
 }
 
@@ -293,7 +293,7 @@ void func_80311D74(s32 level){
 #endif
 
 void func_80311ED0(s32 *dst){
-    *dst = func_80346EEC(); //note_total
+    *dst = notescore_getTotal(); //note_total
 }
 
 void func_80311EF8(s32 *dst){

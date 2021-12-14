@@ -158,9 +158,9 @@ void func_802C4768(s32 arg0){
             strcat(D_8037DD68, D_803760D0);
         }
         strcat(D_8037DD68, D_803760D4);
-        strIToA(D_8037DD68, func_80346EEC());
+        strIToA(D_8037DD68, notescore_getTotal());
         strcat(D_8037DD68, D_803760D8);
-        if(func_80346EEC() != 1){
+        if(notescore_getTotal() != 1){
             strcat(D_8037DD68, D_803760E0);
         }
         strcat(D_8037DD68, D_803760E4);

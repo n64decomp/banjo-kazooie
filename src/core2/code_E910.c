@@ -39,7 +39,7 @@ bsMap D_80363824[] ={
     {BS_20_LANDING,        bsstand_landing_init,   bsstand_landing_update, NULL,           func_802B5350},
     {BS_BSHOCK_CHARGE,  bsbshock_charge_init,   bsbshock_charge_update, bsbshock_charge_end,    func_80296608},
     {BS_BSHOCK_JUMP,    bsbshock_init,          bsbshock_update,        bsbshock_end,           func_80296608},
-    {BS_FLY_ENTER,  bsbfly_enter_init, bsbfly_enter_update, bsbfly_enter_end, func_802A505C},
+    {BS_23_FLY_ENTER,  bsbfly_enter_init, bsbfly_enter_update, bsbfly_enter_end, func_802A505C},
     {BS_24_FLY,        bsbfly_init, bsbfly_update, func_802A3F70, func_802A505C},
     {BS_LONGLEG_ENTER,  bsblongleg_enter_init,  bsblongleg_enter_update, bsblongleg_enter_end, func_802B5350},
     {BS_LONGLEG_IDLE,   bsblongleg_stand_enter, bsblongleg_stand_update, bsblongleg_stand_end, func_802B5350},

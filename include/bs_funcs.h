@@ -131,7 +131,7 @@ void bsbshock_charge_end(void);
 void bsbshock_init(void);
 void bsbshock_update(void);
 void bsbshock_end(void);
-//BS_FLY_ENTER(void);
+//BS_23_FLY_ENTER(void);
 void bsbfly_enter_init(void);
 void bsbfly_enter_update(void);
 void bsbfly_enter_end(void);

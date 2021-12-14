@@ -178,7 +178,7 @@ enum bs_e func_802A8D34(enum bs_e arg0){
         return arg0;
     
     if(func_802933C0(1)) 
-        return BS_FLY_ENTER;
+        return BS_23_FLY_ENTER;
 
     return BS_BTROT_JUMP; 
 }

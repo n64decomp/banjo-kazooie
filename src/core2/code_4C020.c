@@ -176,7 +176,7 @@ void func_802D4D3C(s32 arg0, s32 arg1);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_4C020/func_802D5058.s")
 
 void func_802D5140(ActorMarker *caller, enum asset_e text_id, s32 arg2){
-    func_80346F34(func_80320424(0x19, 4));
+    notescore_getLevelScore(func_80320424(0x19, 4));
 }
 
 void func_802D5178(s32 arg0, enum bkprog_e arg1, s32 arg2, enum map_e arg3, s32 arg4, s32 arg5, enum actor_e arg6, s32 arg7){

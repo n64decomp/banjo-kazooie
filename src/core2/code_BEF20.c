@@ -5,18 +5,23 @@
 f32 time_getDelta(void);
 void func_80346DB4(s32);
 
-void func_803463D4(s32 item, s32 diff);
+s32 func_803463D4(s32 item, s32 diff);
+s32 notescore_getLevelScore(enum level_e lvl_id);
 
 extern s32 D_80385F30[];
-extern s32 D_80385FE8;
-extern f64 D_80379100;
+extern s32 D_80385FE0;
 extern s32 D_80385FE4;
+extern s32 D_80385FE8;
+extern f32 D_80385FEC;
+extern u8 D_80385FF0[];
+extern f32 D_80386000[];
+
 
 
 
 void func_80345EB0(s32 item){
     if(func_802FAFE8(item)){
-        func_803463D4(item, (s32)(-time_getDelta()*60.0f * D_80379100));
+        func_803463D4(item, (s32)(-time_getDelta()*60.0f * 1.1));
     }else{
         func_802FACA4(item);
     }
@@ -40,7 +45,7 @@ s32 item_getCount(s32 item){
 }
 
 
-#if 0
+#ifdef NONMATCHING
 /* &D_80385F30[item] saving to sp18 but should be sp1C, 
 cannot access sp1C with newVal at sp18.
 may be -O3 issue given func_803465DC() is null
@@ -70,19 +75,15 @@ s32 func_80345FB4(s32 item, s32 diff, s32 arg2){
             || (item == ITEM_17_AIR && func_803203FC(UNKFLAGS1_96_SANDCASTLE_INFINITE_AIR))) 
             diff = 0;
     }
-    (newVal = ((D_80385F30[item] + diff) < 0)? 0 : D_80385F30[item] + diff);
+    newVal = MAX(0, D_80385F30[item] + diff);
     D_80385F30[item] = newVal;
 
     sp34 = (func_8031FF1C(BKPROG_B9_DOUBLE_HEALTH))? 2 : 1 ;
-    D_80385F30[ITEM_15_HEALTH_TOTAL] = (D_80385F30[ITEM_15_HEALTH_TOTAL] > sp34*8)? sp34*8 : D_80385F30[ITEM_15_HEALTH_TOTAL];
-
-    D_80385F30[ITEM_14_HEALTH]= (D_80385F30[ITEM_15_HEALTH_TOTAL] < D_80385F30[ITEM_14_HEALTH])? D_80385F30[ITEM_15_HEALTH_TOTAL]: D_80385F30[ITEM_14_HEALTH];
-
-    D_80385F30[ITEM_17_AIR] = (0xe10 < D_80385F30[ITEM_17_AIR])? 0xe10 : D_80385F30[ITEM_17_AIR];
-    
-    D_80385F30[item_mumbo_token_total] = D_80385F30[item_mumbo_token];
-
-    D_80385F30[ITEM_16_LIFE] = (0xFF < D_80385F30[ITEM_16_LIFE])? 0xFF : D_80385F30[ITEM_16_LIFE];
+    D_80385F30[ITEM_15_HEALTH_TOTAL] = MIN(sp34*8, D_80385F30[ITEM_15_HEALTH_TOTAL]);
+    D_80385F30[ITEM_14_HEALTH]= MIN(D_80385F30[ITEM_15_HEALTH_TOTAL], D_80385F30[ITEM_14_HEALTH]);
+    D_80385F30[ITEM_17_AIR] = MIN(3600, D_80385F30[ITEM_17_AIR]);
+    D_80385F30[ITEM_25_MUMBO_TOKEN_TOTAL] = D_80385F30[ITEM_1C_MUMBO_TOKEN];
+    D_80385F30[ITEM_16_LIFE] = MIN(0xFF, D_80385F30[ITEM_16_LIFE]);
 
     switch(item){
         case ITEM_D_EGGS:
@@ -102,7 +103,7 @@ s32 func_80345FB4(s32 item, s32 diff, s32 arg2){
             break;
     }
     if(sp38){
-        D_80385F30[item] = (sp38 < D_80385F30[item])? sp38 :  D_80385F30[item];
+        D_80385F30[item] = MIN(sp38, D_80385F30[item]);
     }
     if(!arg2){
         func_802FACA4(item); //displays item on HUD
@@ -112,7 +113,7 @@ s32 func_80345FB4(s32 item, s32 diff, s32 arg2){
 
     sp3C = item_empty(item);
     if(item < 6 && sp3C)
-        D_80385F30[item + 6] = 0;
+        D_80385F30[item + ITEM_6_HOURGLASS] = 0;
 
     switch(item){
         case ITEM_14_HEALTH:
@@ -136,14 +137,14 @@ s32 func_80345FB4(s32 item, s32 diff, s32 arg2){
             }
             break;
         case ITEM_C_NOTE:
-            sp28 = func_80346F34(level_get());
+            sp28 = notescore_getLevelScore(level_get());
             func_80346DB4(D_80385F30[item]);
             if(D_80385F30[item] == 100 && sp28 != 100){
                 func_8025A6EC(COMUSIC_36_100TH_NOTE_COLLECTED, 20000);
                 func_80345F24(ITEM_16_LIFE);
             }
             break;
-        case item_jiggy_total:
+        case ITEM_26_JIGGY_TOTAL:
             D_80385F30[0x2b] += diff;
             break;
     }
@@ -153,7 +154,7 @@ s32 func_80345FB4(s32 item, s32 diff, s32 arg2){
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_80345FB4.s")
 #endif
 
-void func_803463D4(s32 item, s32 diff){
+s32 func_803463D4(s32 item, s32 diff){
     func_80345FB4(item, diff, 0);
 }
 
@@ -169,49 +170,176 @@ void func_80346448(s32 item){
     func_803463D4(item, 9999999);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_8034646C.s")
+void func_8034646C(void){
+    int i;
+    for(i = 0; i < 0x2C; i++){
+        D_80385F30[i] = 0;
+    }
+    D_80385F30[ITEM_D_EGGS] = 0;
+    D_80385F30[ITEM_F_RED_FEATHER] = 0;
+    D_80385F30[ITEM_10_GOLD_FEATHER] = 0;
+    D_80385F30[ITEM_14_HEALTH] = D_80385F30[ITEM_15_HEALTH_TOTAL] =  5;
+    D_80385F30[ITEM_16_LIFE] = 3;
+    D_80385F30[ITEM_17_AIR] = 3600;
+    D_80385F30[ITEM_1C_MUMBO_TOKEN] = 0;
+    D_80385F30[0x2B] = 0;
+    D_80385F30[ITEM_26_JIGGY_TOTAL] = 0;
+    func_80346D78();
+    func_80347060();
+    D_80385FE4 = FALSE;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_803464F8.s")
-// void func_803464F8(s32 level){
-//     s32 *tmp;
-//     D_80385F30[0] = 0;
-//     D_80385F30[6] = 0;
-//     D_80385F30[1] = 0;
-//     D_80385F30[7] = 0;
+void func_803464F8(s32 level){
+    int i;
     
-//     tmp = &D_80385F30[2];
-//     D_80385F30[3] = 0;
-//     D_80385F30[9] = 0;
-//     D_80385F30[4] = 0;
-//     D_80385F30[10] = 0;
-//     D_80385F30[5] = 0;
-//     D_80385F30[11] = 0;
-//     D_80385F30[2] = 0;
-//     D_80385F30[8] = 0;
-//     D_80385F30[12] = 0;
-//     D_80385F30[14] = jiggyscore_leveltotal(level);
-//     D_80385F30[18] = 0;
-//     D_80385F30[23] = 0xe10;
-//     D_80385F30[24] = 0;
-//     D_80385F30[25] = 0;
-//     D_80385F30[35] = 0;
-//     D_80385F30[26] = 0;
-//     D_80385F30[27] = 0;
-//     D_80385F30[31] = 0;
-//     D_80385F30[32] = 0;
-//     D_80385F30[33] = 0;
-//     D_80385F30[34] = 0;
-//     func_802FA5D0();
-//     D_80385FE8 = 1;
-// }
+    for(i = 0; i < 6; i++){
+        D_80385F30[ITEM_0_HOURGLASS_TIMER + i] = 0;
+        D_80385F30[ITEM_6_HOURGLASS + i] = 0;
+    }
+    
+    D_80385F30[ITEM_C_NOTE] = 0;
+    D_80385F30[ITEM_E_JIGGY] = jiggyscore_leveltotal(level);
+    D_80385F30[ITEM_12_JINJOS] = 0;
+    D_80385F30[ITEM_17_AIR] = 3600;
+    D_80385F30[ITEM_18_GOLLD_BULLIONS] = 0;
+    D_80385F30[ITEM_19_ORANGE] = 0;
+    D_80385F30[ITEM_23_ACORNS] = 0;
+    D_80385F30[ITEM_1A_PLAYER_VILE_SCORE] = 0;
+    D_80385F30[ITEM_1B_VILE_VILE_SCORE] = 0;
+    D_80385F30[ITEM_1F_GREEN_PRESENT] = 0;
+    D_80385F30[ITEM_20_BLUE_PRESENT] = 0;
+    D_80385F30[ITEM_21_RED_PRESENT] = 0;
+    D_80385F30[ITEM_22_CATERPILLAR] = 0;
+    func_802FA5D0();
+    D_80385FE8 = 1;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_803465BC.s")
+void func_803465BC(void){
+    func_802FBDFC();
+}
 
 void func_803465DC(void){}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_803465E4.s")
+void func_803465E4(void){
+    s32 sp54 = bs_getState();
+    s32 sp50 = 0;
+    s32 sp4C = level_get();
+    s32 i;
+    int sp44;
+    int sp40;
+    int sp38;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_80346C10.s")
+    if(func_80334904() != 2) return;
+    if(D_80385FE8){
+        if( func_802BC248() != 3
+            && func_8028F070()
+            && func_803348C0() != MAP_33_UNUSED
+            && func_803348C0() != MAP_91_FILE_SELECT
+        ){
+            D_80385FE0 = TRUE;
+        }//L80346674
+        D_80385FE8 = FALSE;
+    }//L8034667C
+    
+    if(D_80385FE0){
+        if(gctransition_8030BD98() || func_803203FC(0)){
+            if(D_80385FE4){
+                func_80345F44(ITEM_16_LIFE);
+                func_802FACA4(ITEM_14_HEALTH);
+            }
+            D_80385FE4 = FALSE;
+            sp50 = TRUE;
+            D_80385FE0 = FALSE;
+        }
+    }
+    else{//L803466E8
+        if( D_80385F30[ITEM_14_HEALTH] != 0
+            && D_80385F30[ITEM_14_HEALTH] < 3
+            && func_80347A4C()
+        ){
+            sp50 = TRUE;
+        }
+    }//L80346710
+
+    if(sp50){
+        func_803463D4(ITEM_14_HEALTH, 0);
+    }
+
+    if(sp54 == BS_24_FLY || sp54 == BS_23_FLY_ENTER){
+        func_803463D4(ITEM_F_RED_FEATHER, 0);
+    }
+
+    if(!func_8028EC04() && func_8028F070()){
+        if(level_get() != LEVEL_2_TREASURE_TROVE_COVE || !levelSpecificFlags_get(5)){
+            sp44 = (func_8028EE84() == 2);
+            sp40 = (func_8028EE84() == 1);
+            sp38 = ((level_get() == LEVEL_9_RUSTY_BUCKET_BAY) || (func_803348C0() == MAP_46_CCW_WINTER));
+            if( sp38 && (sp44 || sp40)){ //L803467EC
+                D_80385FEC = 2.0f;
+            }
+            else{//L80346804
+                D_80385FEC = MAX(0.0, D_80385FEC - time_getDelta());
+            }//L80346870
+            if( (!sp38 && sp44) || (sp38 && sp40) ){//L80346894
+                func_803463D4(ITEM_17_AIR, (s32)((f64)((-time_getDelta())*60.0f)*1.1));
+            }
+            else{ 
+                if(sp38 && sp44){//L803468D8
+                    func_803463D4(ITEM_17_AIR, (s32)(f64)((-time_getDelta()*60.0f)*2.1));
+                }//L80346930
+                if(!sp38 || D_80385FEC == 0.0f){
+                    if(!D_80385FE4 && D_80385F30[ITEM_17_AIR] < 3600){
+                        func_803463D4(ITEM_17_AIR, (s32)(((time_getDelta()*60.0f)*100.0)*1.1));
+                        D_80385F30[ITEM_17_AIR] = MIN(D_80385F30[ITEM_17_AIR], 3600);
+                    }
+                }
+            }
+        }//L803469E4
+    }//L803469E4
+
+    if(!func_803203FC(0xbf)){
+        for(i = 0; i < 6; i++){
+            if(D_80385F30[ITEM_6_HOURGLASS + i]){
+                func_80345EB0(ITEM_0_HOURGLASS_TIMER + i);
+            }
+        }
+    }//L80346A2C
+
+    if( getGameMode() != GAME_MODE_4_PAUSED
+        && func_8028F070()
+    ){
+        if(sp4C == 0xC)
+            sp4C = 6;
+        if(sp4C > 0  && sp4C < 0xC && func_803348C0() != MAP_91_FILE_SELECT){
+            D_80386000[sp4C] = MAX(1.0, MIN(65535.0, D_80386000[sp4C] + time_getDelta()));
+        }
+    }//L80346B6C
+
+    if((func_8023DB5C() & 7) == 6){
+        if(!func_80320708() || !func_80320248()){
+            D_80385F30[randi2(0, 0x2C)] = 1;
+            D_80385FF0[randi2(0, 0xE)] = 1;
+            D_80386000[randi2(0, 0xE)] = 1.0f;
+        }
+    }
+}
+
+void func_80346C10(enum bs_e *retVal, enum bs_e fail_state, enum bs_e success_state, enum item_e item_id, int use_item){
+    if(item_empty(item_id)){
+        func_803463D4(item_id, 0);
+        func_8025A6EC(COMUSIC_2C_BUZZER, 22000);
+        if(fail_state != -1){
+            *retVal = fail_state;
+        }
+    }
+    else{
+        if(use_item){
+            func_80345F44(item_id);
+        }
+        if(success_state != -1)
+            *retVal = success_state;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_80346CA8.s")
 
@@ -223,9 +351,18 @@ void func_803465DC(void){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_80346DB4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_80346EEC.s")
+s32 notescore_getTotal(void){
+    int i = 1;
+    s32 total = 0;
+    do{
+        total += D_80385FF0[i++];
+    }while(i < 0xe);
+    return total;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_80346F34.s")
+s32 notescore_getLevelScore(enum level_e lvl_id){
+    return D_80385FF0[lvl_id];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_80346F44.s")
 
@@ -271,6 +408,6 @@ void func_80347984(void){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_80347B80.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_80347C5C.s")
+void func_80347C5C(s32 arg0, s32 arg1, s32 arg2, s32 arg3){}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_80347C70.s")
+void func_80347C70(s32 arg0){}

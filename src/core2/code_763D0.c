@@ -105,7 +105,7 @@ void func_802FDAF4(s32 arg0, struct8s *arg1, Gfx **arg2, Mtx **arg3, s32 arg4){
     sp34 = 0.0f;
     if(arg0 == ITEM_C_NOTE){
         if(level_get() == LEVEL_6_LAIR || level_get() == LEVEL_C_BOSS){
-            sp38 = func_80346EEC();
+            sp38 = notescore_getTotal();
         }
     }
     if(arg0 < 6){
@@ -114,7 +114,7 @@ void func_802FDAF4(s32 arg0, struct8s *arg1, Gfx **arg2, Mtx **arg3, s32 arg4){
     if(arg0 == 0x1B && 9 < sp38){
         sp34 = -16.0f;
     }
-    if(arg0 == item_mumbo_token || arg0 == item_mumbo_token_total){
+    if(arg0 == ITEM_1C_MUMBO_TOKEN || arg0 == ITEM_25_MUMBO_TOKEN_TOTAL){
         if(sp38 >= 100){
             sp38 = 99;
         }

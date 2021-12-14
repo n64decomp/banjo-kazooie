@@ -388,8 +388,8 @@ enum map_e
     MAP_MMM_WATERDRAIN_BARREL = 0x2F,
     MAP_MMM_MUMBOS_SKULL = 0x30,
     MAP_31_RBB_RUSTY_BUCKET_BAY = 0x31,
-    // Unused
-    // Unused
+    MAP_32_UNUSED,
+    MAP_33_UNUSED,
     MAP_34_RBB_ENGINE_ROOM = 0x34,
     MAP_RBB_WAREHOUSE = 0x35,
     MAP_RBB_BOATHOUSE = 0x36,
@@ -1569,7 +1569,7 @@ enum bs_e
     BS_20_LANDING = 0x20,
     BS_BSHOCK_CHARGE = 0x21,
     BS_BSHOCK_JUMP = 0x22,
-    BS_FLY_ENTER = 0x23,
+    BS_23_FLY_ENTER = 0x23,
     BS_24_FLY = 0x24,
     BS_LONGLEG_ENTER = 0x25,
     BS_LONGLEG_IDLE = 0x26,
@@ -1726,10 +1726,21 @@ enum item_e
     ITEM_15_HEALTH_TOTAL,
     ITEM_16_LIFE,
     ITEM_17_AIR,
-    ITEM_ORANGE = 0x19,
-    item_mumbo_token = 0x1C,
-    item_mumbo_token_total = 0x25,
-    item_jiggy_total = 0x26
+    ITEM_18_GOLLD_BULLIONS,
+    ITEM_19_ORANGE,
+    ITEM_1A_PLAYER_VILE_SCORE,
+    ITEM_1B_VILE_VILE_SCORE,
+    ITEM_1C_MUMBO_TOKEN,
+    ITEM_1D_GRUMBLIE,
+    ITEM_1E_YUMBLIE,
+    ITEM_1F_GREEN_PRESENT,
+    ITEM_20_BLUE_PRESENT,
+    ITEM_21_RED_PRESENT,
+    ITEM_22_CATERPILLAR,
+    ITEM_23_ACORNS,
+    
+    ITEM_25_MUMBO_TOKEN_TOTAL = 0x25,
+    ITEM_26_JIGGY_TOTAL = 0x26
 };
 
 enum animctrl_direction_e

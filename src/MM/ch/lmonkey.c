@@ -99,7 +99,7 @@ void func_803885D0(Actor *this){
                     func_80388300(&this);
                     if( func_80329530(this, 0x159)
                         && !func_80329530(this, 0x96)
-                        && !item_getCount(ITEM_ORANGE)
+                        && !item_getCount(ITEM_19_ORANGE)
                         && !this->unk138_24
                     ){
                         func_80311480(0xb3f, 0xe, this->position, NULL, NULL, NULL);

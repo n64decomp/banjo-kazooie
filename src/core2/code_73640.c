@@ -62,7 +62,7 @@ ItemPrint D_803692F8[0x2C] = {
     { func_803007C0, func_8030081C, func_80300974, func_80300BB4, 2, NULL }, //25
     { func_802FD7B0, func_802FD80C, func_802FDAF4, func_802FDC80, 6, NULL }, //26
     { func_802FD7B0, func_802FD80C, func_802FDAF4, func_802FDC80, 0, NULL }, //27
-    { func_802FD7B0, func_802FD80C, func_802FDAF4, func_802FDC80, 2, NULL }, //item_mumbo_token
+    { func_802FD7B0, func_802FD80C, func_802FDAF4, func_802FDC80, 2, NULL }, //ITEM_1C_MUMBO_TOKEN
     { func_803007C0, func_8030081C, func_80300974, func_80300BB4, 0, NULL }, //29
     { func_803007C0, func_8030081C, func_80300974, func_80300BB4, 0, NULL }, //30
     { func_803007C0, func_8030081C, func_80300974, func_80300BB4, 2, NULL }, //31
@@ -71,8 +71,8 @@ ItemPrint D_803692F8[0x2C] = {
     { func_803007C0, func_8030081C, func_80300974, func_80300BB4, 2, NULL }, //34
     { func_803007C0, func_8030081C, func_80300974, func_80300BB4, 2, NULL }, //35
     { func_803007C0, func_8030081C, func_80300974, func_80300BB4, 0, NULL }, //36
-    { func_802FD7B0, func_802FD80C, func_802FDAF4, func_802FDC80, 4, NULL }, //item_mumbo_token_total
-    { func_803007C0, func_8030081C, func_80300974, func_80300BB4, 4, NULL }, //item_jiggy_total
+    { func_802FD7B0, func_802FD80C, func_802FDAF4, func_802FDC80, 4, NULL }, //ITEM_25_MUMBO_TOKEN_TOTAL
+    { func_803007C0, func_8030081C, func_80300974, func_80300BB4, 4, NULL }, //ITEM_26_JIGGY_TOTAL
     { func_802FD7B0, func_802FD80C, func_802FDAF4, func_802FDC80, 2, NULL }, //39
     { func_802FD7B0, func_802FD80C, func_802FD33C, func_802FDC80, 5, NULL }, //40
     { func_802FD7B0, func_802FD80C, func_802FD33C, func_802FDC80, 3, NULL }, //41

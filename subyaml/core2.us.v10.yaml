@@ -260,7 +260,7 @@ segments:
   - [0x840D0, c, code_840D0]
   - [0x84470, c, gc/transition] #DONE
   - [0x851D0, c, code_851D0]
-  - [0x857B0, c, code_857B0]
+  - [0x857B0, c, code_857B0] #DONE
   - [0x85800, c, code_85800]
   - [0x87E30, c, code_87E30]
   - [0x8A7B0, c, gc/pauseMenu]
@@ -578,6 +578,8 @@ segments:
   - [0xF1DF0, bin, data_F1DF0]
   - [0xF2000, .rodata, code_B6CE0]
   - [0xF2030, bin, data_F2030]
+  - [0xF2170, .rodata, code_BEF20]
+  - [0xF21B0, bin, data_F21B0]
   - [0xF21C0, .rodata, rand]
   - [0xF21E0, bin, data_F21E0]
   - [0xF2560, .rodata, ch/clankerwhipcrack]
