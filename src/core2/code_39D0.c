@@ -297,8 +297,6 @@ s32 *func_8028B750(void){
         }
     }
 }
-#endif
-
 
 void func_8028B7F4(void){
     yaw_setIdeal(func_8029B41C());
@@ -1055,7 +1053,6 @@ void func_8028BCA0(Prop *prop){
         }
     }
 }
-#endif
 
 //player_initMarker
 void func_8028D1FC(void){
