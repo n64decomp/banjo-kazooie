@@ -659,38 +659,38 @@ void func_8028BCA0(Prop *prop){
                 func_8028BB1C(spC4, 0xA3, 0x92, 0x7F, 0x1A, 0xA, 0xA4);
                 break;
 
-            case 0x161: //L8028C384
+            case MARKER_161_GV_WITCH_SWITCH: //L8028C384
                 func_8028BB1C(spC4, 0x4000BE, 0x6E, 0x7D, 0x19, 0x14, 0xA0);
                 break;
 
-            case 0x162: //L8028C3BC
+            case MARKER_162_BGS_WITCH_SWITCH: //L8028C3BC
                 func_8028BB1C(spC4, 0x4000BD, 0x71, 0x7C, 0x18, 0x14, 0x9F);
                 break;
-            case 0x166: //L8028C3F4
+            case MARKER_166_CC_WITCH_SWITCH: //L8028C3F4
                 func_8028BB1C(spC4, 0x4000BC, 0x6A, 0x7A, 0x17, 0x14, 0x9A);
                 break;
            
-            case 0x22B: //L8028C42C
+            case MARKER_22B_FP_WITCH_SWITCH: //L8028C42C
                 func_8028BB1C(spC4, 0x4000BB, 0x6F, 0x3A, 0x13, 0x15, 0x47);
                 break;
 
-            case 0x22A: //L8028C464
+            case MARKER_22A_CCW_WITCH_SWITCH: //L8028C464
                 func_8028BB1C(spC4, 0x4000BA, 0x79, 0x39, 0x12, 0x15, 0x46);
                 break;
 
-            case 0x103: //L8028C49C
+            case MARKER_103_MM_WITCH_SWITCH: //L8028C49C
                 func_8028BB1C(spC4, 0x4000B6, 0x69, 0x26, 1, 4, 0x18);
                 break;
                 
-            case 0x104: //L8028C4D4
+            case MARKER_104_MMM_WITCH_SWITCH: //L8028C4D4
                 func_8028BB1C(spC4, 0x4000B7, 0x6F, 0x27, 2, 0x14, 0x19);
                 break;
                 
-            case 0x105: //L8028C50C
+            case MARKER_105_TTC_WITCH_SWITCH: //L8028C50C
                 func_8028BB1C(spC4, 0x4000B8, 0x6D, 0x28, 3, 0x14, 0x1A);
                 break;
                 
-            case 0x106: //L8028C544
+            case MARKER_106_RBB_WITCH_SWITCH: //L8028C544
                 func_8028BB1C(spC4, 0x4000B9, 0x76, 0x29, 4, 0xe, 0x1C);
                 break;
                 
@@ -718,19 +718,19 @@ void func_8028BCA0(Prop *prop){
                 break;
 
 
-            case 0x52: //L8028C66C
+            case MARKER_52_JIGGY: //L8028C66C
                 {
                     if(func_8028BC20(marker))
                         return;
                     
                     player_getPosition(spA0);
                     sp9C = func_802C8088(actor);
-                    if( sp9C != 0x2F
+                    if( sp9C != JIGGY_2F_FP_XMAS_TREE
                         || (func_8028B2E8() && !(3600.0f < func_80256280(actor->position, spA0)))
                     ){
                         jiggyscore_8032108C(sp9C, 1);
                         func_803463F4(0x26, 1);
-                        if(sp9C == 0x20 || sp9C == 0x25){
+                        if(sp9C == JIGGY_20_BGS_ELEVATED_WALKWAY || sp9C == JIGGY_25_BGS_MAZE){
                             func_802D6924();
                         }
                         if(jiggyscore_total() < 3){
@@ -747,7 +747,7 @@ void func_8028BCA0(Prop *prop){
                 }
                 break;
 
-            case 0x53: //L8028C774
+            case MARKER_53_EMPTY_HONEYCOMB: //L8028C774
                 {
                     
                     if(func_8028BC20(marker))
@@ -775,7 +775,7 @@ void func_8028BCA0(Prop *prop){
                 marker_despawn(marker);
                 break;
 
-            case 0x55: //L8028C86C
+            case MARKER_55_HONEYCOMB: //L8028C86C
                 if(func_8028BC20(marker))
                     return;
                 
@@ -794,7 +794,7 @@ void func_8028BCA0(Prop *prop){
                 marker_despawn(marker);
                 break;
 
-            case 0x169: //L8028C908
+            case MARKER_169_SNS_EGG: //L8028C908
                 { //ONLY THIS CASE DOESN'T MATCH
                     switch (map_get())
                     {
@@ -859,7 +859,7 @@ void func_8028BCA0(Prop *prop){
                     marker_despawn(marker);
                 }
                 break;
-            case 0x168: //L8028CC7C
+            case MARKER_168_ICE_KEY: //L8028CC7C
                 sns_set_item_and_update_payload(7, 0, 1);
                 func_8025A70C(COMUSIC_88_BIG_SNS_FANFARE);
                 func_80324DBC(2.5f, 0xDB5, 0x20, 0, 0, 0, 0);
@@ -888,7 +888,7 @@ void func_8028BCA0(Prop *prop){
                 }
                 break;
 
-            case 0x61: //L8028CD50
+            case MARKER_61_EXTRA_LIFE: //L8028CD50
                 if(func_8028BC20(marker))
                     return;
                 if( map_get() == MAP_8E_GL_FURNACE_FUN
@@ -929,7 +929,7 @@ void func_8028BCA0(Prop *prop){
                 }
                 break;
 
-            case 0x11: //L8028CE8C
+            case MARKER_11_WADING_BOOTS: //L8028CE8C
                 if(func_8028BC20(marker))
                     return;
                 if(_player_getTransformation() != TRANSFORM_1_BANJO)
@@ -948,7 +948,7 @@ void func_8028BCA0(Prop *prop){
                 func_802D6E54(actor);
                 break;
 
-            case 0x38: //L8028CF38
+            case MARKER_38_TURBO_TALON_TRAINERS: //L8028CF38
                 if(func_8028BC20(marker))
                     return;
 

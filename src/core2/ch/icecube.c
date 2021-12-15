@@ -20,14 +20,14 @@ ActorAnimationInfo D_80372B50[] = {
 };
 
 ActorInfo D_80372B80 = {
-    0x250, 0x37D, ASSET_504_ICECUBE, 
+    0x250, 0x37D, ASSET_504_MODEL_ICECUBE, 
     1, D_80372B50, 
     chicecube_update, func_80326224, chicecube_draw,
     {0,0,0,0}, 0.0f, {0,0,0,0}
 }; 
 
 ActorInfo D_80372BA4 = {
-    0x25F, 0x3A0, ASSET_504_ICECUBE, 
+    0x25F, 0x3A0, ASSET_504_MODEL_ICECUBE, 
     1, D_80372B50, 
     chicecube_update, func_80326224, chicecube_draw,
     {0,0,0,0}, 0.0f, {0,0,0,0}
@@ -221,7 +221,7 @@ void __chicecube_die(ActorMarker *marker, s32 arg1){
     Actor *actor = marker_getActor(marker);
     FUNC_8030E8B4(SFX_B6_GLASS_BREAKING_1, 1000, 0x3ff, actor->position, 1500, 4500);
     actor->velocity[1] = 0.0f;
-    func_8035A04C(actor->position, 12, ASSET_505_ICECUBE_CHUNK, actor->scale);
+    func_8035A04C(actor->position, 12, ASSET_505_MODEL_ICECUBE_CHUNK, actor->scale);
     func_8035A228(actor->position, 6, ASSET_700_SPRITE_DUST, actor->scale);
     if(actor->unkF4_8 != 1){
         func_802C3C88(__chicecube_spawnHalfCubes, actor->marker);
