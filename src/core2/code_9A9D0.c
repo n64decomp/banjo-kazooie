@@ -63,7 +63,7 @@ void func_803219F4(s32 arg0){
             func_8025A8B8(COMUSIC_58_WADING_BOOTS, 1);
             break;
         case 4: //L80321B60
-            if(func_803348C0() == MAP_27_FP_FREEZEEZY_PEAK){
+            if(map_get() == MAP_27_FP_FREEZEEZY_PEAK){
                 D_80383314 = COMUSIC_8A_GETTING_TURBO_TRAINERS;
             }
             else{

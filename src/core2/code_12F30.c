@@ -29,7 +29,7 @@ void func_8029A47C(s32 arg0[3]){
 
 void func_8029A4D0(void){
     int i;
-    s32 map_id = func_803348C0();
+    s32 map_id = map_get();
     D_8037C6F0.unk0 = 0;
     D_8037C6F0.unk4[0] = 255.0f;
     D_8037C6F0.unk4[1] = 255.0f;

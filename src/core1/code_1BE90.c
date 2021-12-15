@@ -242,7 +242,7 @@ void func_8025A5AC(enum comusic_e comusic_id, s32 arg1, s32 arg2){
     if(tmp_a2->unk10 < 0 || arg2){
         switch(comusic_id){
             case COMUSIC_15_EXTRA_LIFE_COLLECTED:
-                if(func_803348C0() != MAP_10_BGS_MR_VILE){
+                if(map_get() != MAP_10_BGS_MR_VILE){
             case COMUSIC_3B_MINIGAME_VICTORY:
             case COMUSIC_3C_MINIGAME_LOSS:
                     func_8025AE50(4000, 2.0f);

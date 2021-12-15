@@ -69,8 +69,8 @@ int demo_writeInput(OSContPad* arg0, s32* arg1){
     func_80321854();
     func_8031FBF8();
     func_8031FBA0();
-    func_803216D0(func_803348C0());
-    func_8030AFA0(func_803348C0());
+    func_803216D0(map_get());
+    func_8030AFA0(map_get());
     func_803204E4(0xc4, 1);
     func_8024F224();
     func_8034A6B4();

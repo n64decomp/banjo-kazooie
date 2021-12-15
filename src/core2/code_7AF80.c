@@ -443,7 +443,7 @@ extern s32 D_80382374;
 //             func_8033A45C(2, 1);
 //         }
 
-//         switch(func_803348C0())
+//         switch(map_get())
 //         {
 
 //         }

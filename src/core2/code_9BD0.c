@@ -108,7 +108,7 @@ int func_80290E8C(void){
 
     func_802BD0D8(3);
     func_80291488(0xB);
-    if( func_803348C0() == MAP_B_CC_CLANKERS_CAVERN
+    if( map_get() == MAP_B_CC_CLANKERS_CAVERN
         && player_getYPosition() < 1201.0f
     ){
         func_802C1B20(1100.0f);

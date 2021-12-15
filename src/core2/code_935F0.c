@@ -14,7 +14,7 @@ extern ActorInfo D_8036D970 = {
 
 /* .code */
 int func_8031A580(void){
-    switch(func_803348C0()){
+    switch(map_get()){
         case MAP_3A_RBB_BOSS_BOOM_BOX:
             return 0;
         case MAP_10_BGS_MR_VILE:

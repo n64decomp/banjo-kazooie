@@ -36,6 +36,36 @@ extern ActorMarker *D_8037BF8C;
 extern u8 D_8037BF90;
 
 
+typedef struct 
+{
+    f32 unk0;
+    f32 unk1;
+    f32 unk2;
+}
+tmp_struct_type;
+
+s32 D_80363630[2] = {0x20, 0x1C};
+s32 D_80363638[2] = {0x1C, 0x16};
+s32 D_80363640[2] = {0x20, 0x01};
+s32 D_80363648[2] = {0x1C, 0x18};
+s32 D_80363650[2] = {0x20, 0x21};
+s32 D_80363658[2] = {0x20, 0x28};
+tmp_struct_type D_80363660 = {350.0f, 0.0f, 600.0f};
+u8 D_8036366C[] = {
+    0xff, 0xff, 0x00,
+    0xff, 0x00, 0x00,
+    0x00, 0xff, 0x00,
+    0x00, 0x00, 0xff,
+    0xff, 0x00, 0xff,
+    0x00, 0xff, 0xff,
+    0x00, 0x00 //, 0x00,
+    //0x00, 0x00, 0xff,
+    // 0x00, 0x00, 0x00,
+    // 0xff, 0x00, 0x00,
+    // 0x00, 0x00, 0xc8
+};
+
+/* .code */
 void func_8028D638(s32 arg0, s32 arg1);
 
 s32 can_beak_barge(void){
@@ -129,7 +159,7 @@ s32 can_wonderwing(void){
 }
 
 int func_8028ACD8(void){
-    if( func_803348C0() == MAP_27_FP_FREEZEEZY_PEAK && mapSpecificFlags_get(0xd)){
+    if( map_get() == MAP_27_FP_FREEZEEZY_PEAK && mapSpecificFlags_get(0xd)){
         return 0;
     }
 
@@ -150,7 +180,7 @@ int func_8028AD8C(void){
 }
 
 int func_8028ADB4(void){
-    return func_8032190C() && func_803348C0() != MAP_1_SM_SPIRAL_MOUNTAIN;
+    return func_8032190C() && map_get() != MAP_1_SM_SPIRAL_MOUNTAIN;
 }
 
 int func_8028ADF0(void){
@@ -234,34 +264,6 @@ void func_8028B6FC(void){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028B71C.s")
 
-
-
-#ifdef NONMATCHING
-s32 D_80363630[2] = {0x20, 0x1C};
-s32 D_80363638[2] = {0x1C, 0x16};
-s32 D_80363640[2] = {0x20, 0x01};
-s32 D_80363648[2] = {0x1C, 0x18};
-s32 D_80363650[2] = {0x20, 0x21};
-s32 D_80363658[2] = {0x20, 0x28};
-f32 D_80363660[3] = {350.0f, 0.0f, 600.0f};
-u8 D_8036366C[] = {
-    0xff, 0xff, 0x00,
-    0xff, 0x00, 0x00,
-    0x00, 0xff, 0x00,
-    0x00, 0x00, 0xff,
-    0xff, 0x00, 0xff,
-    0x00, 0xff, 0xff,
-    0x00, 0x00, 0x00,
-    0x00, 0x00, 0xff,
-    0x00, 0x00, 0x00,
-    0x00, 0xff, 0x00,
-    0x00, 0x00, 0xc8
-};
-#endif
-
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028B750.s")
-#else
 s32 *func_8028B750(void){
     if(D_8037BF80[0]){
         return D_8037BF80;
@@ -309,10 +311,10 @@ void func_8028B7F4(void){
 
 void func_8028B848(void){
     s32 s0 = 0;
-    if(func_803348C0() == MAP_69_GL_MM_LOBBY){
+    if(map_get() == MAP_69_GL_MM_LOBBY){
         s0 = 0xf57;
     }
-    else if(func_803348C0() == MAP_2_MM_MUMBOS_MOUNTAIN){
+    else if(map_get() == MAP_2_MM_MUMBOS_MOUNTAIN){
         s0 = 0xb45;
     }
 
@@ -427,21 +429,33 @@ int func_8028BC60(void){
     return D_8037BF90 == 1 && func_8028E76C(NULL) == 0x5;
 } 
 
-
-
-#ifndef NONMATCHING
-//collisionSwitchCase
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028BCA0.s")
-#else
 void func_8028BCA0(Prop *prop){
+    s32 spCC;
+    s32 spC8;
+    s32 spC4;
+    int i;
+    ActorMarker *marker; //0xbc
+    Actor *actor; //0xb8
+    f32 spAC[3];
+    f32 spA0[3];
+    s32 sp9C;
+    s32 sp98;
+    volatile s32 sp94;
+    s32 sp88[3]; //0
+    s32 tmp2;
+    s32 tmp3;
+    s32 sp7C; //+4
+    s32 sp78; //+4
+    s32 tmp_v0_2;
+    f32 tmp_f0;
+    tmp_struct_type sp64;
+    s32 tmp1;
+
     if(*((u32*)(((u32)prop) + 8)) & 1){
-        s32 spCC = 0;
-        s32 spC8 = 0;
-        s32 spC4;
-        f32 tmp_f0;
-        ActorMarker *marker = prop->actorProp.marker; //0xbc
-        Actor *actor = NULL; //0xb8
-        
+        spCC = 0;
+        spC8 = 0;
+        marker = prop->actorProp.marker;
+        actor = NULL;
         if(marker->unk3E_0){
             actor = marker_getActor(marker);
             if(actor->despawn_flag)
@@ -456,10 +470,6 @@ void func_8028BCA0(Prop *prop){
             return;
         
         switch(marker->unk14_20){
-            //L8028BD84 0x1E6 <= x < 0x245
-                //jtbl D_80373F88
-
-
             case 0x125: //L8028BE88
             case 0x126: //L8028BE88
                 spC8 = 1;
@@ -571,7 +581,6 @@ void func_8028BCA0(Prop *prop){
             case 0x231: //L8028C104
             case 0x244: //L8028C104
                 {
-                    f32 spAC[3];
 
                     if(func_8028ECAC() == 1)
                         return;
@@ -713,8 +722,6 @@ void func_8028BCA0(Prop *prop){
 
             case 0x52: //L8028C66C
                 {
-                    f32 spA0[3];
-                    s32 sp9C;
                     if(func_8028BC20(marker))
                         return;
                     
@@ -744,7 +751,7 @@ void func_8028BCA0(Prop *prop){
 
             case 0x53: //L8028C774
                 {
-                    s32 sp98;
+                    
                     if(func_8028BC20(marker))
                         return;
                     sp98 = func_802CA1C4(marker_getActor(marker));
@@ -774,7 +781,7 @@ void func_8028BCA0(Prop *prop){
                 if(func_8028BC20(marker))
                     return;
                 
-                if( func_803348C0() == MAP_8E_GL_FURNACE_FUN
+                if( map_get() == MAP_8E_GL_FURNACE_FUN
                     && func_803203FC(0)
                     && !func_8031FF1C(BKPROG_A6_FURNACE_FUN_COMPLETE)
                 ){
@@ -791,12 +798,7 @@ void func_8028BCA0(Prop *prop){
 
             case 0x169: //L8028C908
                 { //ONLY THIS CASE DOESN'T MATCH
-                    volatile s32 sp94;
-                    s32 sp88[3];
-                    s32 sp7C;
-                    s32 sp78;
-
-                    switch (func_803348C0())
+                    switch (map_get())
                     {
                     case 0x1D: //L8028C95C
                         sns_set_item_and_update_payload(6, 0, 1);
@@ -819,44 +821,43 @@ void func_8028BCA0(Prop *prop){
                     }
                     func_8025A70C(COMUSIC_88_BIG_SNS_FANFARE);
                     FUNC_8030E624(SFX_114_BRICKWALL_BREAKING, 0x1D4, 0x332);
-                    tmp_f0 = 0.9f;
-                    {
-                        
-                        s32 tmp_v0_2 = 3*(actor->unkF4_8 - 1);
-                        f32 sp64[3] = D_80363660;
-                        s32 sp60;
-                        sp78 = 0xA;
-                        sp94 = 0xAA;
+                    tmp_v0_2 = 3*(actor->unkF4_8 - 1);
+                    
+                    tmp_f0 = 0.9f;\
+                    sp64 = D_80363660;
+                    //+C
+                    sp78 = 0xA;
+                    sp94 = 0xAA;
 
-                        for(sp7C = 0; sp7C < 4; sp7C++){ //L8028CA4C
-                            int i;
-                            for(i = 0 ; i < 3; i++){
-                                sp88[i] = D_8036366C[tmp_v0_2 + i];
-                            }
-                            func_802EE354(actor, 0x3ED, 0x23, sp78, 0.2f, tmp_f0, 3.0f, sp88, 0, sp64);
-                            
-                            for(i = 0 ; i < 3; i++){
-                                sp88[i] = 0xFF;
-                            }
-                            func_802EE354(actor, 0x3ED, 0xe, sp78, 0.2f, tmp_f0, 3.0f, sp88, 0, sp64);
-                            
-                            sp78 += 0x32;
-                            tmp_f0 += -0.15;
-                            if(tmp_f0 < 0.01){
-                                tmp_f0 = 0.01f;
-                            }
-                    
-                            sp64[0] -= 50.0f;
-                            sp64[2] += 260.0f;
-                            sp94 -= 0x1e;
+                    for(sp7C = 0; sp7C < 4; sp7C++){ //L8028CA4C
+                        
+                        for(i = 0 ; i < 3; i++){
+                            sp88[i] = D_8036366C[tmp_v0_2 + i];
                         }
-                    
-                        sp60 = sns_get_item_state(1, 0) + sns_get_item_state(2, 0) + sns_get_item_state(3, 0)
-                            + sns_get_item_state(4, 0) + sns_get_item_state(5, 0) + sns_get_item_state(6, 0);
-                        if(sp60 < 3){
-                            func_80324DBC(2.5f, 0xDB2 + sp60, 0x20, 0, 0, 0, 0);
+                        func_802EE354(actor, 0x3ED, 0x23, sp78, 0.2f, tmp_f0, 3.0f, sp88, 0, &sp64);
+                        
+                        for(i = 0 ; i < 3; i++){
+                            sp88[i] = 0xFF;
                         }
+                        func_802EE354(actor, 0x3ED, 0xe, sp78, 0.2f, tmp_f0, 3.0f, sp88, 0, &sp64);
+                        
+                        sp78 += 0x32;
+                        tmp_f0 += -0.15;
+                        if(tmp_f0 < 0.01){
+                            tmp_f0 = 0.01f;
+                        }
+                
+                        sp64.unk0 -= 50.0f;
+                        sp64.unk2 += 260.0f;
+                        sp94 -= 0x1e;
                     }
+                
+                    tmp1 = sns_get_item_state(1, 0) + sns_get_item_state(2, 0) + sns_get_item_state(3, 0)
+                        + sns_get_item_state(4, 0) + sns_get_item_state(5, 0) + sns_get_item_state(6, 0);
+                    if(tmp1 < 3){
+                        func_80324DBC(2.5f, 0xDB2 + tmp1, 0x20, 0, 0, 0, 0);
+                    }
+                    
                     marker_despawn(marker);
                 }
                 break;
@@ -892,7 +893,7 @@ void func_8028BCA0(Prop *prop){
             case 0x61: //L8028CD50
                 if(func_8028BC20(marker))
                     return;
-                if( func_803348C0() == MAP_8E_GL_FURNACE_FUN
+                if( map_get() == MAP_8E_GL_FURNACE_FUN
                     && func_803203FC(0)
                     && !func_8031FF1C(BKPROG_A6_FURNACE_FUN_COMPLETE)
                 ){
@@ -950,30 +951,27 @@ void func_8028BCA0(Prop *prop){
                 break;
 
             case 0x38: //L8028CF38
-                {
-                    s32 tmp;
-                    if(func_8028BC20(marker))
-                        return;
+                if(func_8028BC20(marker))
+                    return;
 
-                    tmp = _player_getTransformation();
-                    if(tmp != TRANSFORM_1_BANJO && tmp != TRANSFORM_5_CROC)
-                        return;
-                    
-                    if(func_8028F25C())
-                        return;
+                tmp1 = _player_getTransformation();
+                if(tmp1 != TRANSFORM_1_BANJO && tmp1 != TRANSFORM_5_CROC)
+                    return;
+                
+                if(func_8028F25C())
+                    return;
 
-                    if(func_8028F170())
-                        return;
-                    
-                    if(func_802CA708(actor) == 0)
-                        return;
+                if(func_8028F170())
+                    return;
+                
+                if(func_802CA708(actor) == 0)
+                    return;
 
-                    func_802933E8(0x10);
-                    func_80294AE8(func_802CA748(actor));
-                    bs_checkInterrupt(0x1A);
-                    func_802C3F04(func_802C418C, 0x4E, reinterpret_cast(u32, prop->actorProp.x), reinterpret_cast(u32, prop->actorProp.y), reinterpret_cast(u32, prop->actorProp.z));
-                    func_802CA750(actor);
-                }
+                func_802933E8(0x10);
+                func_80294AE8(func_802CA748(actor));
+                bs_checkInterrupt(0x1A);
+                func_802C3F04(func_802C418C, 0x4E, reinterpret_cast(u32, prop->actorProp.x), reinterpret_cast(u32, prop->actorProp.y), reinterpret_cast(u32, prop->actorProp.z));
+                func_802CA750(actor);
                 break;
 
             case 0x1AE: //L8028CFEC
@@ -1009,8 +1007,8 @@ void func_8028BCA0(Prop *prop){
     }
     else if(prop->unk8_1)//L8028D0B0 //PropProp
     {
-        s32 tmp = prop->propProp.unk0_31 + 0x2D1;
-        switch (tmp)
+        tmp2 = prop->propProp.unk0_31 + 0x2D1;
+        switch (tmp2)
         {
         case 0x2E8:
             func_802933E8(1); //on flight pad
@@ -1019,13 +1017,13 @@ void func_8028BCA0(Prop *prop){
             func_802933E8(2);
             break;
         default:
-            func_80332790(tmp);
+            func_80332790(tmp2);
             break;
         }
     }
     else{//L8028D10C //SpriteProp
-        s32 tmp = prop->spriteProp.unk0_31 + 0x572;
-        switch (tmp)
+        tmp3 = prop->spriteProp.unk0_31 + 0x572;
+        switch (tmp3)
         {
         case 0x6D6: //L8028D144
             if(!func_8028BC60()){
@@ -1052,7 +1050,7 @@ void func_8028BCA0(Prop *prop){
             }
             break;
         default:
-            func_80332790(tmp);
+            func_80332790(tmp3);
             break;
         }
     }
@@ -1192,5 +1190,63 @@ s32 func_8028D688(void){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028D71C.s")
 
-extern void func_8028D7B8(s32 arg0, ActorMarker *arg1, s32 arg2);
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028D7B8.s")
+extern void func_8028D7B8(s32 arg0, ActorMarker *arg1, s32 arg2){
+    s32 sp24;
+    s32 sp20 = func_8033D594(arg2);
+    s32 sp1C = 0;
+    Actor *sp18 = marker_getActor(arg1);
+    s32 tmp_v0;
+
+    if(func_8033D5A4(arg2))
+        func_802933E8(8);
+
+    if((func_80297C6C() != 3 && func_8028F1E0()) || !sp20){
+        if(!func_8028F25C()){
+            sp24 = func_8033D564(arg2);
+            if(0 < sp24 && sp24 < 6){
+                sp1C = 2;
+                sp20 = MAX(0, sp20 - 1);
+            }//L8028D884
+
+            if(6 < sp24 && sp24 < 0xC){
+                if(!(1 < func_8033D5A4(arg2)) || (func_8033D574(arg2) != -1 && sp18->unk164[func_8033D574(arg2)])){
+                    sp1C = 1;
+                }//L8028D8E8
+            }//L8028D8E8
+
+            if(sp20){
+                if(func_8033D594(arg2) == 3){
+                    func_803463D4(ITEM_14_HEALTH, -item_getCount(ITEM_14_HEALTH));
+                }
+                else{//L8028D92C
+                    func_803463D4(ITEM_14_HEALTH, -sp20);
+                }
+            }//L8028D948
+
+            if(item_getCount(ITEM_14_HEALTH) == 0){
+                sp1C = 2;
+            }
+
+            switch(sp1C){
+                case 1://L8028D98C
+                    sp24 = (7 < ((sp24 < 0xb) ? sp24 : 0xb)) ? ((sp24 < 0xb) ? sp24 : 0xb): 0x7;
+                    sp24 -= 7;
+                    func_8028F428(sp24 +8, arg1);
+                    func_80250D94(0.8f, sp24 + 0.2, 0.3f);
+                    break;
+                case 2://L8028DA10
+                    sp24 = (1 < ((sp24 < 5) ? sp24 : 5)) ? ((sp24 < 5) ? sp24 : 5): 1;
+                    sp24--;
+                    func_8028F55C(sp24 + 3, arg1);
+                    func_80250D94(1.0f, sp24 + 0.3, 0.5f);
+                    if(sp18->unk16C_2 || sp18->unk16C_1){
+                        func_8028D71C();
+                    }
+                    break;
+                case 0:
+                    break;
+            }
+        }//L8028DAB0
+    }//L8028DAB0
+}
+

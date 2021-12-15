@@ -252,7 +252,7 @@ void chicecube_update(Actor *this){
     f32 sp3C = time_getDelta();
     f32 sp30[3];
 
-    if(func_803348C0() == MAP_27_FP_FREEZEEZY_PEAK){
+    if(map_get() == MAP_27_FP_FREEZEEZY_PEAK){
         if(func_8038BFA0()){
             actor_collisionOff(this);
             this->unk58_0 = FALSE;

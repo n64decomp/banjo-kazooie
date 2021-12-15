@@ -101,7 +101,7 @@ void func_80356CCC(Actor *this){
     sp58 = func_80256064(this->position, sp5C);
     if( this->state == 1){
         if( sp58 < this->scale*400.0f
-            && (func_803348C0() != MAP_RBB_KITCHEN || this->position_z < sp5C[2])
+            && (map_get() != MAP_RBB_KITCHEN || this->position_z < sp5C[2])
         ){
             func_803569F0(this, 2);
         }

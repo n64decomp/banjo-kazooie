@@ -73,7 +73,7 @@ void func_8030B284(void){
 void func_8030B2EC(void){
     int i;
 
-    D_80382410.unk0 = func_8030B060(func_803348C0());
+    D_80382410.unk0 = func_8030B060(map_get());
     for(i = 0; i< 3; i++){
         D_80382410.unk4[i] = 0;
         D_80382410.unk10[i] = NULL;

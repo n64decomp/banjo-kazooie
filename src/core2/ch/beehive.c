@@ -42,7 +42,7 @@ void func_802CE8D4(Actor *this){
         this->unk16C_4 = 1;
         this->unk38_0 = func_803203FC(1)| func_803203FC(0x1F);
     }//L802CE960
-    if(func_803348C0() == MAP_27_FP_FREEZEEZY_PEAK){
+    if(map_get() == MAP_27_FP_FREEZEEZY_PEAK){
         if(func_8038BFA0()){
             this->unk58_0 = 0;
             return;

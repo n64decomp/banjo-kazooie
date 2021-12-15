@@ -749,7 +749,7 @@ s32 func_80313380(void){
                     break;
                 case 1://L80313908 //return to lair
                     func_803204E4(0x16, 1);
-                    if(func_803348C0() == MAP_LAIR_FURNACE_FUN){
+                    if(map_get() == MAP_LAIR_FURNACE_FUN){
                         func_803204E4(0,0);
                         func_802E4078(MAP_LAIR_FF_ENTRANCE, 2, 1);
                     }else{

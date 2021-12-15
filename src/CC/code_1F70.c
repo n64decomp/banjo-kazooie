@@ -275,7 +275,7 @@ void func_80388CB4(void){
 
 void func_80388D54(void){
     D_80389FA0.unk21 = 0;
-    if(func_803348C0() == MAP_B_CC_CLANKERS_CAVERN){
+    if(map_get() == MAP_B_CC_CLANKERS_CAVERN){
         D_80389FA0.unk0 = func_803358B4();
         D_80389FA0.unk4 = func_8030D90C();
         D_80389FA0.unk8 = 1.0f;

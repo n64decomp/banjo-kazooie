@@ -340,7 +340,7 @@ void func_80310A5C(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4){
 
 void func_80310B1C(s32 text_id, s32 arg1, ActorMarker *marker, void(*callback)(ActorMarker *, s32, s32), void(*arg4)(ActorMarker *, s32, s32), s32 arg5){
     func_803106BC(text_id, arg1, marker, callback, arg4, arg5);
-    if(func_803348C0() == MAP_90_GL_BATTLEMENTS && 0x10ec < text_id){
+    if(map_get() == MAP_90_GL_BATTLEMENTS && 0x10ec < text_id){
         func_80310A5C( 3, 4, 0x1e, arg1 & 2, arg1 & 0x80);
     }
     else{

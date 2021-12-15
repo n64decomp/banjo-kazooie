@@ -374,7 +374,7 @@ segments:
   vram:  0x80363590
   subsegments:
   - [0xDC600, bin, data_DC600]
-  #- [0xDC6A0, .data, code_39D0]
+  - [0xDC6A0, .data, code_39D0]
   - [0xDC6F0, bin, data_DC6F0]
   - [0xDC810, .data, code_BB50]
   - [0xDC860, .data, code_C0E0]
@@ -459,8 +459,7 @@ segments:
   - [0xECE90, .rodata, code_AD0]
   - [0xECEA0, .rodata, code_1930]
   - [0xECEC0, bin, data_ECEC0]
-  #- [0xECFD0, .rodata, code_39D0] #need func_8028BCA0 to match
-  - [0xED3F0, bin, data_ED3F0]
+  - [0xECFE0, .rodata, code_39D0]
   - [0xED410, .rodata, code_6B30]
   - [0xED500, bin, data_ED500]
   - [0xED630, .rodata, code_9450]
@@ -582,6 +581,8 @@ segments:
   - [0xF21B0, bin, data_F21B0]
   - [0xF21C0, .rodata, rand]
   - [0xF21E0, bin, data_F21E0]
+  - [0xF2490, .rodata, code_CBD10]
+  - [0xF24A0, bin, data_F24A0]
   - [0xF2560, .rodata, ch/clankerwhipcrack]
   - [0xF2580, .rodata, ch/code_CFA60]
   - [0xF25D0, .rodata, ch/clucker]

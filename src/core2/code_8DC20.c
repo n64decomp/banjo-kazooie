@@ -20,7 +20,7 @@ void func_80315084(Gfx **gfx, Mtx **mtx, Vtx **vtx){
 
 void func_80315110(Gfx **gfx, Mtx **mtx, Vtx **vtx){
     if(!D_803830A0){
-        if(func_803348C0() != MAP_90_GL_BATTLEMENTS){
+        if(map_get() != MAP_90_GL_BATTLEMENTS){
             func_803306C8(2);
             func_8032AD7C(2);
         }

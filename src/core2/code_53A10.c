@@ -21,7 +21,7 @@ void func_802DA9A0(ActorMarker *caller, enum asset_e text_id, s32 arg2){
         flag = BKPROG_15_ENTER_MMM_TEXT;
     }
     else{
-        if(func_803348C0() == MAP_69_GL_MM_LOBBY)
+        if(map_get() == MAP_69_GL_MM_LOBBY)
             tmp = BKPROG_97_ENTERED_LAIR_TEXT;
         else
             tmp = BKPROG_98_EXITED_LEVEL_TEXT;
@@ -45,7 +45,7 @@ void func_802DAA14(Actor *this){
         flag = BKPROG_15_ENTER_MMM_TEXT;
     }
     else{
-        if(func_803348C0() == MAP_69_GL_MM_LOBBY)
+        if(map_get() == MAP_69_GL_MM_LOBBY)
             tmp = BKPROG_97_ENTERED_LAIR_TEXT;
         else
             tmp = BKPROG_98_EXITED_LEVEL_TEXT;
@@ -72,7 +72,7 @@ void func_802DAA14(Actor *this){
             text_id = 0xadc;
         }
         else{
-            if(func_803348C0() == MAP_69_GL_MM_LOBBY)
+            if(map_get() == MAP_69_GL_MM_LOBBY)
                 tmp = 0xf66;
             else
                 tmp = 0xf67;

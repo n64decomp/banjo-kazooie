@@ -80,7 +80,7 @@ void func_803885D0(Actor *this){
     func_8028E668(this->position, 35.0f, 0.0f, 65.0f);
     actor_collisionOff(this);
     this->marker->propPtr->unk8_3 = 1;
-    if(func_803348C0() != MAP_2_MM_MUMBOS_MOUNTAIN){
+    if(map_get() != MAP_2_MM_MUMBOS_MOUNTAIN){
         func_80343DEC(this);
     }else{//L80388630
         if(func_80329530(this, 0x2BC) && !func_803114B0()){

@@ -233,4 +233,12 @@ Actor *func_802C8C04(s32 (* position)[3], s32 yaw, ActorInfo* actorInfo, u32 fla
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_41460/func_802C8C5C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_41460/func_802C8EC0.s")
+void func_802C8EC0(Actor *this){
+    if(!this->initialized){
+        func_8032AA58(this, 0.8f);
+        this->initialized = TRUE;
+        if(func_803203FC(1) || func_803203FC(2)){
+            marker_despawn(this->marker);
+        }
+    }
+}

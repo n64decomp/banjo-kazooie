@@ -285,7 +285,7 @@ void __overlay_bgs_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx){ return; }
 void func_80322D30(void){ return; }
 
 void func_80322D38(void){
-    if( func_803348C0() == MAP_10_BGS_MR_VILE
+    if( map_get() == MAP_10_BGS_MR_VILE
         && func_803203FC(2)
         && func_803203FC(7)
     ){

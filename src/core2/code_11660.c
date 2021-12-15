@@ -22,7 +22,7 @@ s32 func_802985F0(void){
         case TRANSFORM_1_BANJO: //80298654
         default:
         {
-            switch (func_803348C0())
+            switch (map_get())
             {
                 case MAP_20_CS_END_NOT_100:
                 case MAP_7B_CS_INTRO_GL_DINGPOT_1:

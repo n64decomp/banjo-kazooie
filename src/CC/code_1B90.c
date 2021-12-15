@@ -65,7 +65,7 @@ void func_803880D4(void){
 
 void func_80388104(void){
     D_80389F90.unk0 = 0;
-    if(func_803348C0() == MAP_22_CC_INSIDE_CLANKER){
+    if(map_get() == MAP_22_CC_INSIDE_CLANKER){
         if(jiggyscore_80320F7C(JIGGY_1C_CC_RINGS)){
             timedFunc_set_0(0.0f, func_80387F80);
         }

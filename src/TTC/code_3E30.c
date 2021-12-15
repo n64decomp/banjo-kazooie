@@ -108,7 +108,7 @@ void func_8038B094(void){
     void *sp2C;
     void *sp28;
 
-    if( func_803348C0() == MAP_7_TTC_TREASURE_TROVE_COVE
+    if( map_get() == MAP_7_TTC_TREASURE_TROVE_COVE
         && levelSpecificFlags_get(0x2)
     ){
         sp2C = func_8034C5AC(0x12C);
@@ -117,7 +117,7 @@ void func_8038B094(void){
         }
     }
     D_8038D720.unk0 = 0;
-    if(func_803348C0() != MAP_A_TTC_SANDCASTLE){
+    if(map_get() != MAP_A_TTC_SANDCASTLE){
         func_8038AB44();
     }
     else{

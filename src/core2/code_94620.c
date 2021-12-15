@@ -317,7 +317,7 @@ u32 func_8031C7C8(void);
 
 //checks is a cutscene can be inturrupted and performs take me there
 void func_8031C7EC(s32 cs_map, s32 arg1, s32 return_map, s32 return_exit, u32 (* condFunc)(void)){
-    if(func_803348C0() != cs_map)
+    if(map_get() != cs_map)
         return;
 
     if((condFunc && condFunc()) || mapSpecificFlags_get(arg1)){
@@ -352,7 +352,7 @@ s32 func_8031C880(void){
     func_8031C7EC(MAP_7C_CS_INTRO_BANJOS_HOUSE_1,   0xC, MAP_1_SM_SPIRAL_MOUNTAIN,      0x12, func_8031C640);
     func_8031C7EC(MAP_86_CS_SPIRAL_MOUNTAIN_4,      0xC, MAP_1_SM_SPIRAL_MOUNTAIN,      0x12, func_8031C640);
     func_8031C7EC(MAP_89_CS_INTRO_BANJOS_HOUSE_2,   0xC, MAP_1_SM_SPIRAL_MOUNTAIN,      0x12, func_8031C640);
-    if(func_803348C0() == MAP_95_CS_END_ALL_100 && mapSpecificFlags_get(1)){
+    if(map_get() == MAP_95_CS_END_ALL_100 && mapSpecificFlags_get(1)){
         func_8034B9E4();
         mapSpecificFlags_set(1, 0);
     }
@@ -397,7 +397,7 @@ void func_8031CB50(s32 arg0, s32 arg1, s32 arg2) {
     s32 sp1C;
 
     if ((D_80383190 == 0) && (getGameMode() != 8) && (getGameMode() != 7)) {
-        sp1C = func_803226E8(func_803348C0());
+        sp1C = func_803226E8(map_get());
         if ((func_803226E8(arg0) != sp1C) && (func_80322914() == 0)) {
             func_8025A388(0, 0x4E2);
             func_8025AB00();

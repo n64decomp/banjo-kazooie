@@ -48,7 +48,7 @@ void func_802885E8(void){ //animationCache_free
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_1550/func_8028863C.s")
 #else
 void func_8028863C(void){
-    s32 i;
+    s32 i = 0;
     for(i = 0; i < 0x2CA; i++){
         D_8037A8C0[i].unk0 = NULL;
         D_8037A8C0[i].unk4_15 = 0;

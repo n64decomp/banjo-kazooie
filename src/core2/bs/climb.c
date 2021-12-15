@@ -139,7 +139,7 @@ void bsclimb_move_update(void){
 
     func_80293350();
     func_802AB5C0();
-    map = func_803348C0();
+    map = map_get();
 
     if( map == MAP_B_CC_CLANKERS_CAVERN
         || map == MAP_1B_MMM_MAD_MONSTER_MANSION

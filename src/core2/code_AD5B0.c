@@ -3,7 +3,11 @@
 #include "variables.h"
 
 extern u8 D_80370250;
-extern s32 D_803835D0[];
+extern struct {
+    s32 unk0;
+    s32 map_4;
+    s32 unk8;
+}D_803835D0;
 extern s32 D_803835DC;
 extern u32 D_803835E0;
 
@@ -93,20 +97,20 @@ void func_80334540(Gfx** gdl, Mtx **mptr, Vtx **vptr) {
 void func_803348B0(s32 arg0, s32 arg1, s32 arg2){
 }
 
-s32 func_803348C0(){
-    return D_803835D0[1];
+enum map_e map_get(void){
+    return D_803835D0.map_4;
 }
 
 s32 func_803348CC(){
-    return D_803835D0[2];
+    return D_803835D0.unk8;
 }
 
 void func_803348D8(s32 arg0) {
-    func_802E4078(D_803835D0[1], arg0, 1);
+    func_802E4078(D_803835D0.map_4, arg0, 1);
 }
 
 s32 func_80334904(){
-    return D_803835D0[0];
+    return D_803835D0.unk0;
 }
 
 void func_80334E1C(s32);
@@ -166,7 +170,7 @@ void func_80334910(void) {
     func_8031B664();
     func_802986D0();
     if (func_80322914() == 0) {
-        func_8024F7C4(func_803226E8(D_803835D0[1]));
+        func_8024F7C4(func_803226E8(D_803835D0.map_4));
     }
     func_80244B3C();
     func_80349C8C();
@@ -176,20 +180,20 @@ void func_80334910(void) {
     func_802881AC();
 }
 
-void func_80334B20(s32 arg0, s32 arg1, s32 arg2) {
-    D_803835D0[0] = 3;
-    D_803835D0[1] = arg0;
-    D_803835D0[2] = arg1;
+void func_80334B20(enum map_e arg0, s32 arg1, s32 arg2) {
+    D_803835D0.unk0 = 3;
+    D_803835D0.map_4 = arg0;
+    D_803835D0.unk8 = arg1;
     func_80322FE4();
     func_80335110(1);
     func_80335128(1);
     func_802D2CB8();
     func_80244AB0();
-    if (func_803348C0() == MAP_8E_GL_FURNACE_FUN) {
+    if (map_get() == MAP_8E_GL_FURNACE_FUN) {
         func_8038E7C4();
     }
     if (func_80322914() == 0) {
-        func_8024F764(func_803226E8(D_803835D0[1]));
+        func_8024F764(func_803226E8(D_803835D0.map_4));
     }
     func_80320B84();
     func_80349CB0();
@@ -246,7 +250,7 @@ void func_80334B20(s32 arg0, s32 arg1, s32 arg2) {
     func_80350174();
     func_8031B354();
     func_80351998();
-    func_802BC2CC(D_803835D0[2]);
+    func_802BC2CC(D_803835D0.unk8);
     func_802D63D4();
     func_80255A04();
     func_802D6948();
@@ -260,26 +264,26 @@ void func_80334B20(s32 arg0, s32 arg1, s32 arg2) {
 
 void func_80334DC0(void) {
     func_80334910();
-    func_80334B20(D_803835D0[1], D_803835D0[2], 1);
+    func_80334B20(D_803835D0.map_4, D_803835D0.unk8, 1);
 }
 
 void func_80334DF8(void) {
-    func_8033520C(D_803835D0[1]);
+    func_8033520C(D_803835D0.map_4);
 }
 
 void func_80334E1C(s32 arg0) {
     func_80254008();
-    func_802BC21C(D_803835D0[0], arg0);
-    func_8028F7F4(D_803835D0[0], arg0);
-    func_8030D8A8(D_803835D0[0], arg0);
-    func_803045CC(D_803835D0[0], arg0);
-    func_80323140(D_803835D0[0], arg0);
-    func_80351A1C(D_803835D0[0], arg0);
-    func_803225B0(D_803835D0[0], arg0);
-    func_80323098(D_803835D0[0], arg0);
-    func_802F0E80(D_803835D0[0], arg0);
-    func_8033EA78(D_803835D0[0], arg0);
-    D_803835D0[0] = arg0;
+    func_802BC21C(D_803835D0.unk0, arg0);
+    func_8028F7F4(D_803835D0.unk0, arg0);
+    func_8030D8A8(D_803835D0.unk0, arg0);
+    func_803045CC(D_803835D0.unk0, arg0);
+    func_80323140(D_803835D0.unk0, arg0);
+    func_80351A1C(D_803835D0.unk0, arg0);
+    func_803225B0(D_803835D0.unk0, arg0);
+    func_80323098(D_803835D0.unk0, arg0);
+    func_802F0E80(D_803835D0.unk0, arg0);
+    func_8033EA78(D_803835D0.unk0, arg0);
+    D_803835D0.unk0 = arg0;
 }
 
 s32 func_80334ECC(void) {
@@ -345,7 +349,7 @@ s32 func_80334ECC(void) {
         func_803306C8(1);
         func_8032AD7C(1);
         func_80322490();
-        if (map_getLevel(D_803835D0[1]) == LEVEL_D_CUTSCENE) {
+        if (map_getLevel(D_803835D0.map_4) == LEVEL_D_CUTSCENE) {
             func_802C79C4();
         }
         func_8032AABC();

@@ -41,7 +41,7 @@ enum jiggy_e func_802C7A30(Actor *this){
     s32 id;
     s32 sp18[3];
     
-    id = func_803348C0();
+    id = map_get();
 
     sp18[0] = (s32)this->position[0];
     sp18[1] = (s32)this->position[1]; 

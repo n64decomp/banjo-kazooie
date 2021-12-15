@@ -305,7 +305,7 @@ void func_8035BD48(Actor *this){
         func_803300A8(this->marker, NULL, func_8035B3B4, func_8035B2C4);
         mapSpecificFlags_set(3, FALSE);
         mapSpecificFlags_set(4, FALSE);
-        if(func_803348C0() == MAP_24_MMM_TUMBLARS_SHED){
+        if(map_get() == MAP_24_MMM_TUMBLARS_SHED){
             if( jiggyscore_80320F7C(JIGGY_62_MMM_TUMBLAR)
                 || jiggyscore_isCollected(JIGGY_62_MMM_TUMBLAR)
             ){

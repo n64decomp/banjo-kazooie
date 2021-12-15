@@ -72,7 +72,7 @@ void func_802CAA44(Actor *this){
         actor_setOpacity(this, 0x5a);
     }
 
-    if(func_803348C0() == MAP_12_GV_GOBIS_VALLEY){
+    if(map_get() == MAP_12_GV_GOBIS_VALLEY){
         this->unk6C = 352.0f;
         this->pitch = 352.0f;
         this->yaw_moving = 90.0f;

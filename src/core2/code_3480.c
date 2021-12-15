@@ -128,7 +128,7 @@ s32 func_8028A5C0(void){
 
 //snacker_updateState
 void func_8028A8D0(void){
-    switch(func_803348C0()){
+    switch(map_get()){
         case MAP_7_TTC_TREASURE_TROVE_COVE:
             D_8037BF50 = func_8028A45C();
             break;

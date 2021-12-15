@@ -241,7 +241,7 @@ void gctransition_draw(Gfx **gdl, Mtx **mptr, Vtx **vptr){
 void gctransition_8030BD4C(void){
     struct10s *tmp_10s;
     struct9s *tmp_a1;
-    tmp_10s = _gctranstion_8030B44C(func_803348C0());
+    tmp_10s = _gctranstion_8030B44C(map_get());
     tmp_a1 = _gctranstion_8030B400(tmp_10s->unk1);
    _gctranstion_changeState(tmp_a1->unk1, tmp_a1);
 }
@@ -272,7 +272,7 @@ void gctransition_8030BE3C(void){
 
 void gctransition_8030BE60(void){
     struct9s *tmp_a1;
-    tmp_a1 = _gctranstion_8030B400(_gctranstion_8030B44C(func_803348C0())->unk2);
+    tmp_a1 = _gctranstion_8030B400(_gctranstion_8030B44C(map_get())->unk2);
    func_8030C180();
    _gctranstion_changeState(tmp_a1->unk1, tmp_a1);
 }

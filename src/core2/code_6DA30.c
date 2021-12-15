@@ -95,7 +95,7 @@ extern f32 D_80380FA8[];
 enum asset_e func_802F49C0(void){
     s32 i;
     for(i = 0; D_8036907C[i].mapID != 0 ; i++){
-        if(func_803348C0() == D_8036907C[i].mapID){
+        if(map_get() == D_8036907C[i].mapID){
             return D_8036907C[i].assetId;
         }
     }

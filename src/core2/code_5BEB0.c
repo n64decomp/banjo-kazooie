@@ -348,9 +348,9 @@ void func_802E3E7C(enum game_mode_e mode){
     sp28 = D_8037E8E0.unk16;
     prev_mode = D_8037E8E0.unk0;
     func_802E3BF8(2, 0);
-    if(!func_80320454(0x21, 0) || map_getLevel(func_803348C0()) == map_getLevel(D_8037E8E0.unk15)){
+    if(!func_80320454(0x21, 0) || map_getLevel(map_get()) == map_getLevel(D_8037E8E0.unk15)){
         if(!func_803203FC(0x1F))
-            func_802E2F2C(func_803348C0()); //mapSavestate_save;
+            func_802E2F2C(map_get()); //mapSavestate_save;
     }
     func_802E398C(1);
     func_802E38E8(sp2C, sp28, sp34);

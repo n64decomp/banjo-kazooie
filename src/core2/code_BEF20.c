@@ -7,6 +7,7 @@ void func_80346DB4(s32);
 
 s32 func_803463D4(s32 item, s32 diff);
 s32 notescore_getLevelScore(enum level_e lvl_id);
+void func_80347060(void);
 
 extern s32 D_80385F30[];
 extern s32 D_80385FE0;
@@ -233,8 +234,8 @@ void func_803465E4(void){
     if(D_80385FE8){
         if( func_802BC248() != 3
             && func_8028F070()
-            && func_803348C0() != MAP_33_UNUSED
-            && func_803348C0() != MAP_91_FILE_SELECT
+            && map_get() != MAP_33_UNUSED
+            && map_get() != MAP_91_FILE_SELECT
         ){
             D_80385FE0 = TRUE;
         }//L80346674
@@ -273,7 +274,7 @@ void func_803465E4(void){
         if(level_get() != LEVEL_2_TREASURE_TROVE_COVE || !levelSpecificFlags_get(5)){
             sp44 = (func_8028EE84() == 2);
             sp40 = (func_8028EE84() == 1);
-            sp38 = ((level_get() == LEVEL_9_RUSTY_BUCKET_BAY) || (func_803348C0() == MAP_46_CCW_WINTER));
+            sp38 = ((level_get() == LEVEL_9_RUSTY_BUCKET_BAY) || (map_get() == MAP_46_CCW_WINTER));
             if( sp38 && (sp44 || sp40)){ //L803467EC
                 D_80385FEC = 2.0f;
             }
@@ -310,7 +311,7 @@ void func_803465E4(void){
     ){
         if(sp4C == 0xC)
             sp4C = 6;
-        if(sp4C > 0  && sp4C < 0xC && func_803348C0() != MAP_91_FILE_SELECT){
+        if(sp4C > 0  && sp4C < 0xC && map_get() != MAP_91_FILE_SELECT){
             D_80386000[sp4C] = MAX(1.0, MIN(65535.0, D_80386000[sp4C] + time_getDelta()));
         }
     }//L80346B6C

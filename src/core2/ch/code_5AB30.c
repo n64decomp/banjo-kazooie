@@ -180,7 +180,7 @@ void func_802E1FD0(ActorMarker *marker, s32 arg1){
     FUNC_8030E8B4(SFX_2F_ORANGE_SPLAT, 0x3A9, 0x3ff, actor->position, 1500, 4500);
 
     func_802C3C88(func_802E1BD0, actor->marker);
-    if(func_803348C0() == MAP_27_FP_FREEZEEZY_PEAK)
+    if(map_get() == MAP_27_FP_FREEZEEZY_PEAK)
         func_8038A978();
     func_802E1CB8(actor->position, 0xC);
     marker_despawn(actor->marker);
@@ -188,7 +188,7 @@ void func_802E1FD0(ActorMarker *marker, s32 arg1){
 
 int func_802E208C(void){
     f32 sp1C[3];
-    if(func_803348C0() == MAP_46_CCW_WINTER){
+    if(map_get() == MAP_46_CCW_WINTER){
         player_getPosition(sp1C);
         if(func_802592C4(sp1C, D_80368704, 900.0f))
             return 1;
@@ -216,12 +216,12 @@ void func_802E20E8(Actor *this){
         animctrl_setTransitionDuration(this->animctrl, 0.8f);
         func_8028764C(this->animctrl, randf());
         func_8032BC18(this);
-        if(func_803348C0() == MAP_27_FP_FREEZEEZY_PEAK){
+        if(map_get() == MAP_27_FP_FREEZEEZY_PEAK){
             local->unk0 = func_80326EEC(0x336)->marker;
             func_8038A990();
         }
     }//L802E21D8
-    if(func_803348C0() == MAP_27_FP_FREEZEEZY_PEAK){
+    if(map_get() == MAP_27_FP_FREEZEEZY_PEAK){
         if(func_8038BFA0() || func_8038DD14()){
             actor_collisionOff(this);
             this->unk58_0 = 0;
@@ -248,7 +248,7 @@ void func_802E20E8(Actor *this){
                 func_802E1DE8(this);
             }
             else if( 
-                func_803348C0() != MAP_27_FP_FREEZEEZY_PEAK
+                map_get() != MAP_27_FP_FREEZEEZY_PEAK
                 || func_8038DD34(local->unk0) == 0
                 || func_8031FF1C(0x13)
             ){//L802E2318

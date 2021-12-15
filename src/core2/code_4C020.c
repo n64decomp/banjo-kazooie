@@ -190,7 +190,7 @@ void func_802D5178(s32 arg0, enum bkprog_e arg1, s32 arg2, enum map_e arg3, s32 
 }
 
 void func_802D520C(Gfx **gfx, Mtx **mtx, Vtx **vtx){
-    if(func_803203FC(1) && func_803348C0() != MAP_8E_GL_FURNACE_FUN){
+    if(func_803203FC(1) && map_get() != MAP_8E_GL_FURNACE_FUN){
         func_80319214(gfx, mtx, vtx);
     }
 }
@@ -210,8 +210,8 @@ void func_802D5628(void){
     s32 sp50[6];
     s32 sp4C;
 
-    if( func_803348C0() != MAP_8E_GL_FURNACE_FUN
-        && func_803348C0() != MAP_80_GL_FF_ENTRANCE
+    if( map_get() != MAP_8E_GL_FURNACE_FUN
+        && map_get() != MAP_80_GL_FF_ENTRANCE
     ){
         D_803676AC = 0;
     }
@@ -237,7 +237,7 @@ void func_802D5628(void){
             D_803679E8 = 0;
         }
     }//L802D5774
-    if(D_80367684 && func_803348C0() == D_80367684){
+    if(D_80367684 && map_get() == D_80367684){
         switch(D_8036768C){
             case 0x1: // L802D57C8
                 if(!D_80367690){
@@ -316,7 +316,7 @@ void func_802D5628(void){
 
             case 0x15:// L802D5AB4
             case 0x2d:// L802D5AB4
-                if(D_80367684 && D_80367684 == func_803348C0()){
+                if(D_80367684 && D_80367684 == map_get()){
                     func_80319EA4();
                     if(0.0f < D_8037DE08){
                         D_8037DE08 -= time_getDelta();
@@ -365,8 +365,8 @@ void func_802D5628(void){
             if( getGameMode() == GAME_MODE_3_NORMAL
                 || func_802E4A08()
             ){
-                if( func_803348C0() != MAP_8E_GL_FURNACE_FUN
-                    && func_803348C0() != MAP_90_GL_BATTLEMENTS
+                if( map_get() != MAP_8E_GL_FURNACE_FUN
+                    && map_get() != MAP_90_GL_BATTLEMENTS
                     && !func_8031FF1C(BKPROG_FC_DEFEAT_GRUNTY)
                 ){
                     D_8037DE04 += time_getDelta();
@@ -438,8 +438,8 @@ void func_802D6114(void){
     if(D_8036769C)
         func_80320004(D_8036769C, TRUE);
     func_802D6344();
-    if(func_803348C0() != sp24){
-        if(map_getLevel(sp24) != map_getLevel(func_803348C0())){
+    if(map_get() != sp24){
+        if(map_getLevel(sp24) != map_getLevel(map_get())){
             func_802E4A70();
         }//L802D6194
         func_803204E4(0x21, 1);
@@ -456,7 +456,7 @@ void func_802D6114(void){
 #endif
 
 void func_802D61FC(enum map_e arg0){
-    if( map_getLevel(arg0) != map_getLevel(func_803348C0()))
+    if( map_getLevel(arg0) != map_getLevel(map_get()))
         func_802E4A70();
     func_803228D8();
     func_802E4078(D_80367684, 0, 0);
@@ -469,7 +469,7 @@ void func_802D6264(f32 arg0, enum map_e arg1, s32 arg2, s32 arg3, s32 arg4, enum
     D_8036768C = arg3;
     D_80367690 = 0;
 
-    D_80367694 = func_803348C0();
+    D_80367694 = map_get();
     D_80367698 = arg4;
     D_8036769C = arg5;
     D_803676A0 = 0;
@@ -512,7 +512,7 @@ void func_802D63D4(void){
     if(D_80367684 == 0)
         return;
 
-    if(func_803348C0() != D_80367684)
+    if(map_get() != D_80367684)
         return;
 
     func_80347A14(0);
@@ -536,7 +536,7 @@ void func_802D63D4(void){
 
 
 void func_802D6494(void){
-    if( (!D_80367684 || (D_80367684 && (func_803348C0() == D_80367684)))
+    if( (!D_80367684 || (D_80367684 && (map_get() == D_80367684)))
     ){
         switch(D_803676A0){
             case ACTOR_2E5_WOODEN_DOOR:
@@ -550,13 +550,13 @@ void func_802D6494(void){
                 func_8025A6CC(COMUSIC_64_WORLD_OPENING_A, 32000);
                 break;
             case ACTOR_212_IRON_BARS:// L802D6550
-                if(func_803348C0() == MAP_70_GL_CC_LOBBY && !func_803203FC(UNKFLAGS1_7F_SANDCASTLE_OPEN_CC)){
+                if(map_get() == MAP_70_GL_CC_LOBBY && !func_803203FC(UNKFLAGS1_7F_SANDCASTLE_OPEN_CC)){
                     func_802D4830(func_80326EEC(ACTOR_212_IRON_BARS), SFX_9A_MECHANICAL_CLOSING, 0.5f);
                     func_8025A6CC(COMUSIC_64_WORLD_OPENING_A, 32000);
                 }
                 break;
             case ACTOR_234_CCW_ENTRANCE_DOOR:// L802D65A0
-                if(func_803348C0() == MAP_79_GL_CCW_LOBBY && !func_803203FC(UNKFLAGS1_93_SANDCASTLE_OPEN_CCW)){
+                if(map_get() == MAP_79_GL_CCW_LOBBY && !func_803203FC(UNKFLAGS1_93_SANDCASTLE_OPEN_CCW)){
                     func_802D485C(func_80326EEC(ACTOR_234_CCW_ENTRANCE_DOOR), SFX_3EC_CCW_DOOR_OPENING, 0.8f, 15000);
                     func_8025A6CC(COMUSIC_64_WORLD_OPENING_A, 32000);
                 }
@@ -568,13 +568,13 @@ void func_802D6494(void){
                 }
                 break;
             case ACTOR_235_FP_ENTANCE_DOOR:// L802D6624
-                if(func_803348C0() == MAP_6F_GL_FP_LOBBY && !func_803203FC(UNKFLAGS1_8B_SANDCASTLE_OPEN_FP)){
+                if(map_get() == MAP_6F_GL_FP_LOBBY && !func_803203FC(UNKFLAGS1_8B_SANDCASTLE_OPEN_FP)){
                     func_802D4830(func_80326EEC(ACTOR_235_FP_ENTANCE_DOOR), SFX_18_BIGBUTT_SLIDE, 0.5f);
                     func_8025A6CC(COMUSIC_64_WORLD_OPENING_A, 32000);
                 }
                 break;
             case ACTOR_226_GV_ENTRANCE:// L802D6674
-                if(func_803348C0() == MAP_6E_GL_GV_LOBBY && !func_803203FC(UNKFLAGS1_87_SANDCASTLE_OPEN_GV)){
+                if(map_get() == MAP_6E_GL_GV_LOBBY && !func_803203FC(UNKFLAGS1_87_SANDCASTLE_OPEN_GV)){
                     func_802D485C(func_80326EEC(ACTOR_226_GV_ENTRANCE), SFX_3EC_CCW_DOOR_OPENING, 0.8f, 15000);
                     func_8025A6CC(COMUSIC_64_WORLD_OPENING_A, 32000);
                 }
@@ -586,7 +586,7 @@ void func_802D6494(void){
                 }
                 break;
             case ACTOR_20F_RBB_ENTRANCE_DOOR:// L802D66F8
-                if(func_803348C0() == MAP_77_GL_RBB_LOBBY && !func_803203FC(UNKFLAGS1_90_SANDCASTLE_OPEN_RBB)){
+                if(map_get() == MAP_77_GL_RBB_LOBBY && !func_803203FC(UNKFLAGS1_90_SANDCASTLE_OPEN_RBB)){
                     func_802D4830(func_80326EEC(ACTOR_20F_RBB_ENTRANCE_DOOR), SFX_9A_MECHANICAL_CLOSING, 0.5f);
                     func_8025A6CC(COMUSIC_64_WORLD_OPENING_A, 32000);
                 }
@@ -648,7 +648,7 @@ int func_802D686C(void){
     if(func_803203FC(0x1E)){
         return FALSE;
     } 
-    return func_803348C0() == D_80367684;
+    return map_get() == D_80367684;
 }
 
 int func_802D68B4(void){
@@ -669,7 +669,7 @@ void func_802D6924(void){
 
 //update_has_entered_level_flags
 void func_802D6948(void){
-    switch(func_803348C0()){
+    switch(map_get()){
         case MAP_2_MM_MUMBOS_MOUNTAIN:
             func_80320004(BKPROG_B0_HAS_ENTERED_MM, TRUE);
             break;

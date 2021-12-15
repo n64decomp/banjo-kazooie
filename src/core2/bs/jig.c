@@ -114,7 +114,7 @@ void bsjig_jiggy_end(void){
         func_802E4078(MAP_95_CS_END_ALL_100, 0, 1);
     } else {//L802B0DFC
         if( jiggyscore_total() == 2
-            && func_803348C0() == MAP_2_MM_MUMBOS_MOUNTAIN
+            && map_get() == MAP_2_MM_MUMBOS_MOUNTAIN
         ){
             sp2C = 0xb51;
             sp28 = 0xe;

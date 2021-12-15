@@ -36,7 +36,7 @@ void func_8035D2C0(ActorMarker *marker, s32 arg1){
 void func_8035D4F0(ActorMarker *marker, s32 arg1){
     s32 pad;
     Actor *actor;
-    if(func_803348C0() == MAP_13_GV_MEMORY_GAME){
+    if(map_get() == MAP_13_GV_MEMORY_GAME){
         actor = marker_getActor(marker);
         if(actor->state != 9){
             if(func_8033F3E8(func_80309744(0), actor->position, 0x190, 0x1A0) == arg1){

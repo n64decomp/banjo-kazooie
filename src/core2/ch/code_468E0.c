@@ -44,7 +44,7 @@ void func_802CD8C0(Actor *this){
             marker_despawn(this->marker);
             return;
         }
-        if(func_803348C0() == MAP_26_MMM_NAPPERS_ROOM){
+        if(map_get() == MAP_26_MMM_NAPPERS_ROOM){
             if(func_8031FF1C(BKPROG_1D_MMM_DINNING_ROOM_CUTSCENE)){
                 marker_despawn(this->marker);
                 return;
@@ -55,7 +55,7 @@ void func_802CD8C0(Actor *this){
             }
         }
         //L802CD9C4
-        if(func_803348C0() == MAP_8E_GL_FURNACE_FUN){
+        if(map_get() == MAP_8E_GL_FURNACE_FUN){
             if(func_8031FF1C(BKPROG_F4_ENTER_FF_CUTSCENE)){
                 marker_despawn(this->marker);
                 return;
@@ -72,7 +72,7 @@ void func_802CD8C0(Actor *this){
             this->marker->unk2C_2 = 0;
             if(*(s32*)this->unkBC)
                 func_8028F918(0);
-            if(func_803348C0() == MAP_8E_GL_FURNACE_FUN){
+            if(map_get() == MAP_8E_GL_FURNACE_FUN){
                 mapSpecificFlags_set(4, TRUE);
             }
             else{
