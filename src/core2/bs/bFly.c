@@ -296,7 +296,7 @@ void bsbfly_update(void){
     D_8037D320 = max_f(D_8037D320 - time_getDelta(), 0.0f);
     if( D_8037D320 == 0.0f
         && button_pressed(BUTTON_B)
-        && func_8028A980()
+        && can_beak_bomb()
     ){
         sp2C = 0;
         func_80346C10(&sp2C, 0, 1, ITEM_F_RED_FEATHER, 1);
@@ -318,7 +318,8 @@ void func_802A3F70(void){
     func_802A34C8();
 }
 
-int func_802A3F90(void){
+
+int bsbfly_bombHitboxActive(void){
     return D_8037D345;
 }
 

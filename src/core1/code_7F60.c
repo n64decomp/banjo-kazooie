@@ -43,7 +43,7 @@ void _guMtxIdentF_80245D44(float mf[4][4]) //static
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_7F60/func_80245FB8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_7F60/func_802462D4.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_7F60/guPerspective.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_7F60/func_8024632C.s")
 

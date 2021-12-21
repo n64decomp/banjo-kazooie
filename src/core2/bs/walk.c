@@ -98,7 +98,7 @@ int func_802B6EF4(void){
 s32 func_802B6F20(s32 arg0){
     if(button_pressed(BUTTON_B)){
         if( D_80364D7C < func_80297A64()){
-            if(func_8028AC18())
+            if(can_roll())
                 arg0 = BS_ROLL;
         }else{//L802B6F74
             if(can_claw())

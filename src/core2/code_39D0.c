@@ -22,6 +22,8 @@ extern void func_80291634(ActorMarker *, s32);
 extern void func_80291610(ActorMarker *, s32);
 extern void func_80291AAC(void);
 extern void func_8028D7B8(s32 arg0, ActorMarker *arg1, s32 arg2);
+extern void func_802EE6CC(f32[3], s32, s32[4], s32, f32, f32, s32,s32,s32);
+
 
 extern s32 carriedObject_actorID;
 extern u8 D_8037BF60;
@@ -58,21 +60,19 @@ u8 D_8036366C[] = {
     0x00, 0x00, 0xff,
     0xff, 0x00, 0xff,
     0x00, 0xff, 0xff,
-    0x00, 0x00 //, 0x00,
-    //0x00, 0x00, 0xff,
-    // 0x00, 0x00, 0x00,
-    // 0xff, 0x00, 0x00,
-    // 0x00, 0x00, 0xc8
+    0x00, 0x00
 };
 
-/* .code */
+s32 D_80363680[4] = {0xff, 0xff, 0xff, 0xc8};
+
 void func_8028D638(s32 arg0, s32 arg1);
 
+/* .code */
 s32 can_beak_barge(void){
     return func_802957D8(ABILITY_0_BARGE);
 }
 
-s32 func_8028A980(void){
+s32 can_beak_bomb(void){
     return func_802957D8(ABILITY_1_BEAK_BOMB);
 }
 
@@ -92,7 +92,7 @@ s32 func_8028AA00(void){
     return func_802957D8(ABILITY_5_CLIMB);
 }
 
-int func_8028AA20(void){
+int can_dive(void){
     return func_802957D8(ABILITY_F_DIVE) 
         && !func_8029D66C() 
         && 100.0f < func_80294500() - func_80294438();
@@ -134,7 +134,7 @@ int func_8028ABB8(void){
         return 1;
 }
 
-s32 func_8028AC18(void){
+s32 can_roll(void){
     return func_802957D8(ABILITY_C_ROLL);
 }
 
@@ -220,7 +220,9 @@ int player_shouldSlideTrot(void){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028B254.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028B2E8.s")
+int func_8028B2E8(void){
+    return D_8037BF60 && func_80297AAC() < 0.0f;
+}
 
 int player_isSliding(void){
     return func_80291698(5) 
@@ -252,7 +254,17 @@ int func_8028B528(void){
     return D_8037BF62;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028B534.s")
+void func_8028B534(void){
+    s32 sp1C = func_8028ECAC();
+    if(player_inWater()){
+        D_8037BF62 = 1;
+    }
+    else{
+        if(func_8028B2E8() || sp1C == 0xA || sp1C == 5){
+            D_8037BF62 = 0;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028B59C.s")
 
@@ -262,7 +274,11 @@ void func_8028B6FC(void){
     D_8037BF62 = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028B71C.s")
+void func_8028B71C(void){
+    func_8028B59C();
+    D_8037BF60 = func_80294548();
+    func_8028B534();
+}
 
 s32 *func_8028B750(void){
     if(D_8037BF80[0]){
@@ -420,17 +436,17 @@ void func_8028BB1C(s32 arg0, u32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s
 }
 
 int func_8028BC20(ActorMarker *marker){
-    return D_8037BF90 == 1 && func_8028E76C(marker) == 0x5;
+    return D_8037BF90 == 1 && player_getActiveHitbox(marker) == HITBOX_5_PECK;
 }
 
 int func_8028BC60(void){
-    return D_8037BF90 == 1 && func_8028E76C(NULL) == 0x5;
+    return D_8037BF90 == 1 && player_getActiveHitbox(NULL) == HITBOX_5_PECK;
 } 
 
 void func_8028BCA0(Prop *prop){
-    s32 spCC;
-    s32 spC8;
-    s32 spC4;
+    s32 plyr_collision_type;
+    s32 obj_collision_type;
+    s32 plyr_hitbox_type;
     int i;
     ActorMarker *marker; //0xbc
     Actor *actor; //0xb8
@@ -450,8 +466,8 @@ void func_8028BCA0(Prop *prop){
     s32 tmp1;
 
     if(*((u32*)(((u32)prop) + 8)) & 1){
-        spCC = 0;
-        spC8 = 0;
+        plyr_collision_type = 0;
+        obj_collision_type = 0;
         marker = prop->actorProp.marker;
         actor = NULL;
         if(marker->unk3E_0){
@@ -463,19 +479,19 @@ void func_8028BCA0(Prop *prop){
                 return;
             
         }//L8028BD1C
-        spC4 = func_8028E76C(marker);
+        plyr_hitbox_type = player_getActiveHitbox(marker);
         if(func_8033D410(playerMarker, marker))
             return;
         
         switch(marker->unk14_20){
             case 0x125: //L8028BE88
             case 0x126: //L8028BE88
-                spC8 = 1;
+                obj_collision_type = 1;
                 break;
 
             case 0x97: //L8028BE94
-                spCC = 1;
-                spC8 = 1;
+                plyr_collision_type = 1;
+                obj_collision_type = 1;
                 break;
 
             case 0xBA: //L8028BEA8
@@ -486,12 +502,12 @@ void func_8028BCA0(Prop *prop){
                     || marker->unk40_31 == 5
                     || marker->unk40_31 == 6
                 ){
-                    spC8 = 1;
+                    obj_collision_type = 1;
                 }
                 break;
 
             case 0xB5: //L8028BEF4
-                if(func_8028BC20(marker))
+                if(func_8028BC20(marker) != HITBOX_0_NONE)
                     return;
                 if(func_802D8E68(prop)){
                     marker_despawn(marker);
@@ -509,44 +525,44 @@ void func_8028BCA0(Prop *prop){
             
             case 0x9E: //L8028BF54
             case 0xA1: //L8028BF54
-                if(spC4 == 1){
+                if(plyr_hitbox_type == HITBOX_1_BEAK_BUSTER){
                     func_802A02B4(1);
-                    spC8 = 2;
+                    obj_collision_type = 2;
                 }
                 break;
 
             case 0x28: //L8028BF74
-                if( spC4 == 6){
+                if( plyr_hitbox_type == HITBOX_6_WONDERWING){
                     func_8030E484(SFX_20_METAL_CLANK_1);
                 }
                 else{
                     func_8030E6D4(SFX_65_METALLIC_SCRATCH);
                 }
 
-                if(spC4 != 6){
-                    spCC = 2;
+                if(plyr_hitbox_type != HITBOX_6_WONDERWING){
+                    plyr_collision_type = 2;
                 }
                 break;
 
             case 0xF5: //L8028BFB0
-                if(spC4 == 1)
+                if(plyr_hitbox_type == HITBOX_1_BEAK_BUSTER)
                     func_8028BAB0(JIGGY_20_BGS_ELEVATED_WALKWAY, 1, 3, 7);
                 break;
                 
             case 0xFD: //L8028BFD4
-                if(spC4 == 1)
+                if(plyr_hitbox_type == HITBOX_1_BEAK_BUSTER)
                     func_8028BAB0(JIGGY_25_BGS_MAZE, 0xa, 0xc, 8);
                 break;
                 
             case 0xEC: //L8028BFF8
-                if(spC4 == 1){
+                if(plyr_hitbox_type == HITBOX_1_BEAK_BUSTER){
                     mapSpecificFlags_set(3, 1);
                     func_8030E6D4(SFX_90_SWITCH_PRESS);
                 }
                 break;
                 
             case 0xF2: //L8028C01C
-                if(spC4 == 1){
+                if(plyr_hitbox_type == HITBOX_1_BEAK_BUSTER){
                     if(!mapSpecificFlags_get(0xD)){
                         mapSpecificFlags_set(0xD, 1);
                         func_8030E6D4(SFX_90_SWITCH_PRESS);
@@ -557,7 +573,7 @@ void func_8028BCA0(Prop *prop){
                 break;
 
             case 0x15F: //L8028C070
-                if(spC4 == 1){
+                if(plyr_hitbox_type == HITBOX_1_BEAK_BUSTER){
                     if(!mapSpecificFlags_get(0)){
                         mapSpecificFlags_set(0,1);
                         func_8030E6D4(SFX_90_SWITCH_PRESS);
@@ -597,7 +613,7 @@ void func_8028BCA0(Prop *prop){
                 break;
 
             case 0xFE: //L8028C1A4
-                if(spC4 == 1){
+                if(plyr_hitbox_type == HITBOX_1_BEAK_BUSTER){
                     if(func_8028ECAC() == 1)
                         return;
                     if(!mapSpecificFlags_get(0)){
@@ -608,7 +624,7 @@ void func_8028BCA0(Prop *prop){
                 break;
             
             case 0x23F: //L8028C1EC
-                if(spC4 == 1){
+                if(plyr_hitbox_type == HITBOX_1_BEAK_BUSTER){
                     if(func_8028ECAC() == 1)
                         return;
                     if(!mapSpecificFlags_get(0)){
@@ -619,7 +635,7 @@ void func_8028BCA0(Prop *prop){
                 break;
 
             case 0x110: //L8028C238
-                if(spC4 == 1){
+                if(plyr_hitbox_type == HITBOX_1_BEAK_BUSTER){
                     if(func_8028ECAC() == 1)
                         return;
                     if(!mapSpecificFlags_get(0)){
@@ -630,7 +646,7 @@ void func_8028BCA0(Prop *prop){
                 break;
                 
             case 0x113: //L8028C284
-                if(spC4 == 1){
+                if(plyr_hitbox_type == HITBOX_1_BEAK_BUSTER){
                     if(func_8028ECAC() == 1)
                         return;
                     if(!mapSpecificFlags_get(1)){
@@ -641,7 +657,7 @@ void func_8028BCA0(Prop *prop){
                 break;
                 
             case 0x115: //L8028C2D0
-                if(spC4 == 1){
+                if(plyr_hitbox_type == HITBOX_1_BEAK_BUSTER){
                     if(func_8028ECAC() == 1)
                         return;
                     if(!mapSpecificFlags_get(2)){
@@ -652,68 +668,68 @@ void func_8028BCA0(Prop *prop){
                 break;
 
             case 0x241: //L8028C31C
-                func_8028BB1C(spC4, 0xC6, 0x6E, 0x81, 0x2C, 0xA, 0xC7);
+                func_8028BB1C(plyr_hitbox_type, 0xC6, 0x6E, 0x81, 0x2C, 0xA, 0xC7);
                 break;
 
             case 0x23C: //L8028C350
-                func_8028BB1C(spC4, 0xA3, 0x92, 0x7F, 0x1A, 0xA, 0xA4);
+                func_8028BB1C(plyr_hitbox_type, 0xA3, 0x92, 0x7F, 0x1A, 0xA, 0xA4);
                 break;
 
             case MARKER_161_GV_WITCH_SWITCH: //L8028C384
-                func_8028BB1C(spC4, 0x4000BE, 0x6E, 0x7D, 0x19, 0x14, 0xA0);
+                func_8028BB1C(plyr_hitbox_type, 0x4000BE, 0x6E, 0x7D, 0x19, 0x14, 0xA0);
                 break;
 
             case MARKER_162_BGS_WITCH_SWITCH: //L8028C3BC
-                func_8028BB1C(spC4, 0x4000BD, 0x71, 0x7C, 0x18, 0x14, 0x9F);
+                func_8028BB1C(plyr_hitbox_type, 0x4000BD, 0x71, 0x7C, 0x18, 0x14, 0x9F);
                 break;
             case MARKER_166_CC_WITCH_SWITCH: //L8028C3F4
-                func_8028BB1C(spC4, 0x4000BC, 0x6A, 0x7A, 0x17, 0x14, 0x9A);
+                func_8028BB1C(plyr_hitbox_type, 0x4000BC, 0x6A, 0x7A, 0x17, 0x14, 0x9A);
                 break;
            
             case MARKER_22B_FP_WITCH_SWITCH: //L8028C42C
-                func_8028BB1C(spC4, 0x4000BB, 0x6F, 0x3A, 0x13, 0x15, 0x47);
+                func_8028BB1C(plyr_hitbox_type, 0x4000BB, 0x6F, 0x3A, 0x13, 0x15, 0x47);
                 break;
 
             case MARKER_22A_CCW_WITCH_SWITCH: //L8028C464
-                func_8028BB1C(spC4, 0x4000BA, 0x79, 0x39, 0x12, 0x15, 0x46);
+                func_8028BB1C(plyr_hitbox_type, 0x4000BA, 0x79, 0x39, 0x12, 0x15, 0x46);
                 break;
 
             case MARKER_103_MM_WITCH_SWITCH: //L8028C49C
-                func_8028BB1C(spC4, 0x4000B6, 0x69, 0x26, 1, 4, 0x18);
+                func_8028BB1C(plyr_hitbox_type, 0x4000B6, 0x69, 0x26, 1, 4, 0x18);
                 break;
                 
             case MARKER_104_MMM_WITCH_SWITCH: //L8028C4D4
-                func_8028BB1C(spC4, 0x4000B7, 0x6F, 0x27, 2, 0x14, 0x19);
+                func_8028BB1C(plyr_hitbox_type, 0x4000B7, 0x6F, 0x27, 2, 0x14, 0x19);
                 break;
                 
             case MARKER_105_TTC_WITCH_SWITCH: //L8028C50C
-                func_8028BB1C(spC4, 0x4000B8, 0x6D, 0x28, 3, 0x14, 0x1A);
+                func_8028BB1C(plyr_hitbox_type, 0x4000B8, 0x6D, 0x28, 3, 0x14, 0x1A);
                 break;
                 
             case MARKER_106_RBB_WITCH_SWITCH: //L8028C544
-                func_8028BB1C(spC4, 0x4000B9, 0x76, 0x29, 4, 0xe, 0x1C);
+                func_8028BB1C(plyr_hitbox_type, 0x4000B9, 0x76, 0x29, 4, 0xe, 0x1C);
                 break;
                 
             case 0x11B: //L8028C57C
-                func_8028BB1C(spC4, 0x22, 0x77, 0x2D, 5, 0xA, 0x23);
+                func_8028BB1C(plyr_hitbox_type, 0x22, 0x77, 0x2D, 5, 0xA, 0x23);
                 break;
                 
             case 0x11C: //L8028C5B0
-                func_8028BB1C(spC4, 0x24, 0x77, 0x2E, 6, 0xA, 0x25);
+                func_8028BB1C(plyr_hitbox_type, 0x24, 0x77, 0x2E, 6, 0xA, 0x25);
                 break;
                 
             case 0x11D: //L8028C5E4
-                func_8028BB1C(spC4, 0x26, 0x76, 0x2F, 0x7, 0xA, 0x27);
+                func_8028BB1C(plyr_hitbox_type, 0x26, 0x76, 0x2F, 0x7, 0xA, 0x27);
                 break;
 
             case 0x232: //L8028C618
-                func_8028BB1C(spC4, 0x53, 0x6b, 0x3b, 0x14, 0x12, 0x54);
+                func_8028BB1C(plyr_hitbox_type, 0x53, 0x6b, 0x3b, 0x14, 0x12, 0x54);
                 break;
 
             case 0xF3: //L8028C64C
-                if(spC4 == 3){
+                if(plyr_hitbox_type == HITBOX_3_BEAK_BOMB){
                     mapSpecificFlags_set(6,1);
-                    spC8 = 1;
+                    obj_collision_type = 1;
                 }
                 break;
 
@@ -866,7 +882,7 @@ void func_8028BCA0(Prop *prop){
                 marker_despawn(marker);
                 break;
             
-            case 0x5F: //L8028CCC8
+            case MARKER_5F_MUSIC_NOTE: //L8028CCC8
                 if(func_8028BC20(marker))
                     return;
 
@@ -973,34 +989,34 @@ void func_8028BCA0(Prop *prop){
                 break;
 
             case 0x1AE: //L8028CFEC
-                switch(spC4){
-                    case 1:
-                    case 2:
-                    case 5:
-                    case 6:
-                        spC8 = 2;
+                switch(plyr_hitbox_type){
+                    case HITBOX_1_BEAK_BUSTER:
+                    case HITBOX_2_BEAK_BARGE:
+                    case HITBOX_5_PECK:
+                    case HITBOX_6_WONDERWING:
+                        obj_collision_type = 2;
                         break;
                     default:
-                        spCC = 2;
+                        plyr_collision_type = 2;
                         break;
                 }
                 break;
 
             case 0x1B1: //L8028D024
-                if(spC4 == 1)
-                    spC8 = 1;
+                if(plyr_hitbox_type == HITBOX_1_BEAK_BUSTER)
+                    obj_collision_type = 1;
                 break;
         }//L8028D034
         if(func_80297C6C() == 3){
-            spCC = 0;
+            plyr_collision_type = 0;
         }
-        if(spC8){
+        if(obj_collision_type){
             func_802933E8(8);
         }
-        func_8032FFF4(playerMarker, marker, spCC);
-        func_8032FFF4(marker, playerMarker, spC8);
+        func_8032FFF4(playerMarker, marker, plyr_collision_type);
+        func_8032FFF4(marker, playerMarker, obj_collision_type);
         if(marker->unk3E_0){
-            func_8032B258(actor, spC8);
+            func_8032B258(actor, obj_collision_type);
         }
     }
     else if(prop->unk8_1)//L8028D0B0 //PropProp
@@ -1055,7 +1071,7 @@ void func_8028BCA0(Prop *prop){
 }
 
 //player_initMarker
-void func_8028D1FC(void){
+void playerMarker_init(void){
     f32 sp1C[3];
     _player_getPosition(sp1C);
     playerMarker = func_8032FBE4(sp1C, func_80291AAC, 1, 0);
@@ -1072,8 +1088,7 @@ void func_8028D1FC(void){
     
 }
 
-//player_freeMarker
-void func_8028D2BC(void){
+void playerMarker_free(void){
     marker_free(playerMarker);
     playerMarker = NULL;
 }
@@ -1185,9 +1200,19 @@ s32 func_8028D688(void){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028D6F0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028D71C.s")
 
-extern void func_8028D7B8(s32 arg0, ActorMarker *arg1, s32 arg2){
+void func_8028D71C(void){
+    f32 sp3C[3];
+    f32 sp30[3];
+    
+    func_8028E9C4(5, sp30);
+    player_getPosition(sp3C);
+    sp3C[1] += (sp30[1] - sp3C[1])*0.75;
+    func_802EE6CC(sp3C, 0, D_80363680, 1, 0.75f, 0.0f, 0x7d, 0xfa, 0);
+
+}
+
+void func_8028D7B8(s32 arg0, ActorMarker *arg1, s32 arg2){
     s32 sp24;
     s32 sp20 = func_8033D594(arg2);
     s32 sp1C = 0;

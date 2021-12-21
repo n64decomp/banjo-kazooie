@@ -57,7 +57,7 @@ void func_8029F60C(void){
 }
 
 
-s32 func_8029F644(void){
+s32 bsbbarge_hitboxActive(void){
     return D_8037D2A6;
 }
 

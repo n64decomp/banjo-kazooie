@@ -49,8 +49,8 @@ int should_peck(void){
     return button_pressed(BUTTON_B) && can_peck();
 }
 
-int func_80295194(void){
-    return button_pressed(BUTTON_B) && (D_8037C304 == 0.0f) && func_8028AA20();
+int should_dive(void){
+    return button_pressed(BUTTON_B) && (D_8037C304 == 0.0f) && can_dive();
 }
 
 int func_802951FC(s32 arg0){

@@ -103,7 +103,7 @@ void func_80294B0C(void){
     int sp18 = func_8028ECAC();
     if( func_8028B2E8() 
         || player_inWater() 
-        || (sp18 == 0xa && func_8028E76C(0) != 3) 
+        || (sp18 == 0xa && player_getActiveHitbox(0) != HITBOX_3_BEAK_BOMB) 
         || sp18 == 0x5
     ){////L80294B74
         func_80294B00(1);

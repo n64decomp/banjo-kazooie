@@ -225,6 +225,7 @@ segments:
   - [0x66490, c, code_66490]
   - [0x66690, c, vla] #DONE
   - [0x66AB0, c, code_66AB0]
+  - [0x66D90, c, code_66D90] #DONE
   - [0x66FB0, c, code_66FB0] #DONE
   - [0x67490, c, gc/bound]   #DONE
   - [0x67650, c, code_67650]
@@ -248,7 +249,7 @@ segments:
   - [0x75480, c, code_75480]
   - [0x75930, c, code_75930]
   - [0x75E90, c, code_75E90]
-  - [0x76390, c, code_76390]
+  - [0x76390, c, code_76390] #DONE
   - [0x763D0, c, code_763D0]
   - [0x76D90, c, code_76D90]
   - [0x77E50, c, code_77E50]
@@ -375,7 +376,7 @@ segments:
   subsegments:
   - [0xDC600, bin, data_DC600]
   - [0xDC6A0, .data, code_39D0]
-  - [0xDC6F0, bin, data_DC6F0]
+  - [0xDC700, bin, data_DC700]
   - [0xDC810, .data, code_BB50]
   - [0xDC860, .data, code_C0E0]
   - [0xDC890, .data, code_E910]

@@ -47,7 +47,7 @@ s32 func_8029FC4C(void){
     return D_8037D2B8;
 }
 
-s32 func_8029FC58(void){
+s32 bsbbuster_hitboxActive(void){
     return D_8037D2B7;
 }
 

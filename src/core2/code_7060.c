@@ -32,8 +32,9 @@ void func_8028E644(void){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028E71C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028E76C.s")
-
+enum hitbox_e player_getActiveHitbox(ActorMarker *marker){
+    return func_8028DB14(marker);
+}
 
 AnimCtrl *player_getAnimCtrlPtr(void){
     return _player_getAnimCtrlPtr();

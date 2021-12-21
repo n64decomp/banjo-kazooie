@@ -10,6 +10,7 @@ func_802405F0 = 0x802405F0;
 guScaleF = 0x80240DF8;
 guScale = 0x80241304;
 _guMtxIdentF_80245D44 = 0x80245D44;
+guPerspective = 0x802462D4;
 spriteGetFrameCount = 0x802510C0;
 spriteGetFramePtr = 0x802510C8;
 get_loaded_overlay_id = 0x80251230;

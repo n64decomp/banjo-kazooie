@@ -167,7 +167,7 @@ void func_803904A8(void){
     }
 
     if(D_80391AE0.tile1_0 == NULL || D_80391AE0.tile2_4 == NULL){
-        if( func_8028E76C(0) == 1 && func_8028F20C()){
+        if( player_getActiveHitbox(0) == HITBOX_1_BEAK_BUSTER && func_8028F20C()){
             func_8028E9A4(sp50);
             sp4C = func_8033F3E8(func_80309744(0), sp50, 0x190, 0x1a0);
             if(sp4C){

@@ -5,14 +5,9 @@
 extern CoMusic *D_80276E30; //active track ptr
 extern int D_80276E34;
 
+extern func_8024FDDC(u8, s32);
 
 void func_8025AE50(s32, f32);
-
-//.rodata
-extern char D_80278340[]; //"comusic.c"
-extern char D_8027834C[]; //"comusic.c"
-extern char D_80278358[]; //"comusic.c"
-extern char D_80278364[]; //"comusic.c"
 
 
 void func_8024FD28(u8, s32);
@@ -23,7 +18,7 @@ void func_80259B14(void);
 void func_8025A55C(s32, s32, s32);
 void func_8025A7DC(enum comusic_e);
 void func_8025ABB8(enum comusic_e, s32, s32, s32);
-struct12s *func_802EDAA4(s32 *, s32*);
+void *func_802EDAA4(struct5Cs *, s32*);
 
 
 CoMusic *func_802598B0(enum comusic_e track_id) {
@@ -53,7 +48,7 @@ void func_80259914(CoMusic *this, s32 arg1, s32 arg2){
     for(i = 0; i < 0xE; i++){
         this->unk1C[i] = 0;
     }
-    tmp  = func_802EDAA4(&this->unk18, &sp2C);
+    tmp  = (struct12s *)func_802EDAA4(&this->unk18, &sp2C);
     tmp->unk0 = arg1;
     tmp->unk1 = arg2;
 }
@@ -87,7 +82,7 @@ void func_80259A24(void){
         iPtr->unk14 = 0;
         iPtr->unk15 = 0;
         iPtr->unk0 = 0.0f;
-        iPtr->unk18 = func_802EDC84(8,4);
+        iPtr->unk18 = func_802EDC84(sizeof(struct12s),4);
         for(i = 0; i < 0xE; i++){
             iPtr->unk1C[i] = 0;
         }
@@ -120,7 +115,25 @@ s32 func_80259B8C(void){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_80259BD0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_80259EA8.s")
+void func_80259EA8(CoMusic *this, s32 *arg1, s32 *arg2){
+    int i;
+    int cnt = func_802EDA94(this->unk18);
+    s32 tmp_s1 = 0x7FFF;
+    s32 tmp_s2 = 0x40000000;
+    struct12s *tmp_ptr;
+
+    for(i = 1; i < cnt; i++){
+        if(func_802EDC18(this->unk18, i)){
+            tmp_ptr = (struct12s*)func_802EDA7C(this->unk18, i);
+            if(tmp_ptr->unk0 < tmp_s1 || (tmp_s1 == tmp_ptr->unk0 && tmp_ptr->unk1 < tmp_s2)){
+                tmp_s1 = tmp_ptr->unk0;
+                tmp_s2 = tmp_ptr->unk1;
+            }//L80259F40
+        }
+    }
+    *arg1 = tmp_s1;
+    *arg2 = tmp_s2;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_80259F7C.s")
 
@@ -215,7 +228,21 @@ void func_8025A430(s32 arg0, s32 arg1, s32 arg2){
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025A4C4.s")
+void func_8025A4C4(s32 arg0, s32 arg1, s32 *arg2){
+    if(D_80276E30[0].unk10 >= 0){
+        func_80259F7C(&D_80276E30[0], &arg0, &arg1, arg2);
+        if(arg0 != D_80276E30[0].unk8){
+            if(D_80276E30[0].unk8 < arg0){
+                D_80276E30[0].unk12 = arg1;
+            }
+            else{
+                D_80276E30[0].unk12 = -arg1;
+            }
+            D_80276E30[0].unkC = arg0;
+            D_80276E34 = 1;
+        }
+    }
+}
 
 void func_8025A55C(s32 arg0, s32 arg1, s32 arg2){
     func_8025A4C4(arg0, arg1, &D_80276E30->unk1C[arg2]);
@@ -288,11 +315,9 @@ void func_8025A70C(enum comusic_e track_id){
 
 }
 
-
-
 void func_8025A788(enum comusic_e comusic_id, f32 delay1, f32 delay2){
-    timedFunc_set_1(delay1, &func_8025A70C, comusic_id);
-    timedFunc_set_1(delay1 + delay2, &func_8025A7DC, comusic_id);
+    timedFunc_set_1(delay1, (TFQM1) func_8025A70C, comusic_id);
+    timedFunc_set_1(delay1 + delay2, (TFQM1) func_8025A7DC, comusic_id);
 }
 
 void func_8025A7DC(enum comusic_e track_id){
@@ -349,11 +374,38 @@ void func_8025A904(void){
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025A96C.s")
+//dequeue_allTracks
+void func_8025A96C(void){
+    CoMusic *iPtr;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025A9D4.s")
+    for(iPtr = &D_80276E30[1]; iPtr < &D_80276E30[6]; iPtr++){
+        if(iPtr->unk10 >= 0){
+            func_802599B4(iPtr);
+        }
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025AA48.s")
+//dequeue_allTracks
+void func_8025A9D4(void){
+    CoMusic *iPtr;
+
+    for(iPtr = &D_80276E30[0]; iPtr < &D_80276E30[6]; iPtr++){
+        if(iPtr->unk10 >= 0 && !iPtr->unk14){
+            func_802599B4(iPtr);
+        }
+    }
+}
+
+//dequeue_nonmainTracks
+void func_8025AA48(void){
+    CoMusic *iPtr;
+
+    for(iPtr = &D_80276E30[1]; iPtr < &D_80276E30[6]; iPtr++){
+        if(iPtr->unk10 >= 0 && !iPtr->unk14){
+            func_802599B4(iPtr);
+        }
+    }
+}
 
 //dequeue_track?
 void func_8025AABC(enum comusic_e track_id){
@@ -374,19 +426,19 @@ void func_8025AB00(void){
 }
 
 void comusic_8025AB44(enum comusic_e comusic_id, s32 arg1, s32 arg2){
-    func_8025AC20(comusic_id, arg1, arg2, 0.0f, D_80278340, 0x39e);
+    func_8025AC20(comusic_id, arg1, arg2, 0.0f, "comusic.c", 0x39e);
 }
 
 void comusic_8025AB78(enum comusic_e comusic_id, s32 arg1, s32 arg2, s32 arg3){
-    func_8025AC7C(comusic_id, arg1, arg2, 0.0f, arg3, D_8027834C, 0x3a3);
+    func_8025AC7C(comusic_id, arg1, arg2, 0.0f, arg3, "comusic.c", 0x3a3);
 }
 
 void func_8025ABB8(enum comusic_e comusic_id, s32 arg1, s32 arg2, s32 arg3){
-    func_8025AC7C(comusic_id, arg1, arg2, 0.0f, (s32)&(func_802598B0(comusic_id)->unk1C[arg3]), D_80278358, 0x3aa);
+    func_8025AC7C(comusic_id, arg1, arg2, 0.0f, (s32)&(func_802598B0(comusic_id)->unk1C[arg3]), "comusic.c", 0x3aa);
 }
 
 void func_8025AC20(enum comusic_e comusic_id, s32 arg1, s32 arg2, f32 arg3, char* arg4, s32 char5){
-    func_8025AC7C(comusic_id, arg1, arg2, 0.0f, (s32) func_802598B0(comusic_id)->unk1C, D_80278364, 0x3b1);
+    func_8025AC7C(comusic_id, arg1, arg2, 0.0f, (s32) func_802598B0(comusic_id)->unk1C, "comusic.c", 0x3b1);
 }
 
 void func_8025AC7C(enum comusic_e comusic_id, s32 arg1, s32 arg2, f32 arg3, s32 arg4, char* arg5, s32 arg6){
@@ -433,12 +485,37 @@ s32 func_8025ADD4(enum comusic_e id){
     return ptr - D_80276E30;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025AE0C.s")
+void func_8025AE0C(s32 arg0, f32 arg1){
+    func_8025A58C(0, arg0);
+    timedFunc_set_2(arg1, (TFQM2)func_8025A58C, -1, arg0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025AE50.s")
+void func_8025AE50(s32 arg0, f32 arg1){
+    func_8025A430(0, arg0, 6);
+    timedFunc_set_3(arg1, (TFQM3)func_8025A430, -1, arg0, 6);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025AEA0.s")
+void func_8025AEA0(enum comusic_e track_id, s32 arg1){
+    CoMusic *ptr = func_802598B0(track_id);
+    
+    if(!ptr) return;
+    func_8024FDDC(ptr - D_80276E30, arg1);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025AEEC.s")
+int func_8025AEEC(void){
+    s32 out = func_802501A0(0, 0x6A, 0);
+    if(out)
+        func_80250170(0, 0x6A, 0);
+    return out;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_8025AF38.s")
+void func_8025AF38(void){
+    CoMusic *iPtr;
+
+    if(!D_80276E30) return;
+
+    for(iPtr = &D_80276E30[0]; iPtr < &D_80276E30[6]; iPtr++){
+        iPtr->unk18 = func_802EDD00(iPtr->unk18);
+    }
+    D_80276E30 = func_802555DC(D_80276E30);
+}

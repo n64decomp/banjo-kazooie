@@ -28,11 +28,11 @@ void bsclaw_update(void){
     f32 sp24;
     
     sp24 = func_802877D8(aCtrl);
-    _bsclawHitboxActive = animctrl_isAt(aCtrl, 0.1488f) != 0
+    _bsclawHitboxActive = animctrl_isAt(aCtrl, 0.1488f)
               || (0.04879999999999998 < sp24 && sp24 < 0.2488)
-              || animctrl_isAt(aCtrl, 0.3288f) != 0
+              || animctrl_isAt(aCtrl, 0.3288f)
               || (0.22879999999999998 < sp24 && sp24 < 0.42879999999999998)
-              || animctrl_isAt(aCtrl, 0.5788f) != 0
+              || animctrl_isAt(aCtrl, 0.5788f)
               || (0.4788 < sp24 && sp24 < 0.6788);
     if(animctrl_isAt(aCtrl, 0.5788f))
         func_80297970(0.0f);

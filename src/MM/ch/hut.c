@@ -80,7 +80,7 @@ void    chhut_update(Actor *this){
             sp3C[1] = sp30[1] - this->position_y;
             sp3C[2] = sp30[2] - this->position_z;
             if(150.0f < sp3C[1] 
-                && func_8028E76C(this->marker) == 1 
+                && player_getActiveHitbox(this->marker) == HITBOX_1_BEAK_BUSTER 
                 && func_8028F20C()
                 && gu_sqrtf(sp3C[0]*sp3C[0] + sp3C[1]*sp3C[1] + sp3C[2]*sp3C[2]) < 350.0f
             ){

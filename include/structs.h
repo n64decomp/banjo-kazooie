@@ -270,7 +270,7 @@ typedef struct struct_11_s{
     u8 unk14;
     u8 unk15;
     u8 pad16[0x2];
-    s32 unk18;
+    struct struct_5C_s *unk18;
     s32 unk1C[0xE];
 } CoMusic;
 
@@ -635,4 +635,10 @@ typedef struct {
     f32 (*unk0)[3];
     f32 (*unk4)[3];
 }struct5Bs;
+
+typedef struct struct_5C_s{
+    s16 elem_size;
+    s16 elem_cnt;
+    u8 unk4[];
+}struct5Cs;
 #endif

@@ -217,7 +217,7 @@ void func_80295914(void){
     func_80293DA4();
     func_80289D1C();
     func_80291D2C();
-    func_8028D1FC();
+    playerMarker_init();
     func_80299900();
     func_8029A4D0();
     func_8029ADCC();
@@ -253,7 +253,7 @@ void func_80295B04(void){
     func_8029A980(tmp_a1);
     func_8029A974(sp24);
     bs_setState(BS_5A_LOADZONE);
-    func_8028D2BC();
+    playerMarker_free();
     func_8029065C();
     func_8029175C();
     func_80292B18();

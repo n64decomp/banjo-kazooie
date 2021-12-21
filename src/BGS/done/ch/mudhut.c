@@ -86,7 +86,7 @@ void func_8038EB8C(Actor *this){
                 diffPos[1] = plyrPos[1] - this->position_y;
                 diffPos[2] = plyrPos[2] - this->position_z;
                 if( (150.0f < diffPos[1]) 
-                    && (func_8028E76C(this->marker) == 1) 
+                    && (player_getActiveHitbox(this->marker) == HITBOX_1_BEAK_BUSTER) 
                     && (func_8028F20C())
                     && (gu_sqrtf(diffPos[0]*diffPos[0] + diffPos[1]*diffPos[1] + diffPos[2]*diffPos[2]) < 350.f)
                 ){
