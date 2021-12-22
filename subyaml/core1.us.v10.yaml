@@ -245,6 +245,8 @@ segments:
   vram:  0x80275610
   subsegments:
   - [0x37BF0, bin, data_37BF0] #data Section
+  - [0x381F0, bin, data_381F0] # .data, code_CE60]
+  - [0x38260, bin, data_38260]
   - [0x38BA0, .data, code_18310]
   - [0x39290, bin, data_39290]
   - [0x39470, .data, done/audio/n_drvrNew]
@@ -270,7 +272,7 @@ segments:
   - [0x39CA0, bin, data_39CA0] # .rodata, code_72B0]
   - [0x39CD0, bin, data_39CD0] # .rodata, code_7F60]
   - [0x39CE0, bin, data_39CE0] # .rodata, code_9D30]
-  - [0x39D00, bin, data_39D00] # .rodata, code_CE60]
+  - [0x39D00, .rodata, code_CE60]
   - [0x39FD0, .rodata, code_EAF0]
   - [0x39FE0, bin, data_39FD0] # .rodata, code_EAF0] #continued
   - [0x3A760, bin, data_3A760] # .rodata, code_11AC0]
