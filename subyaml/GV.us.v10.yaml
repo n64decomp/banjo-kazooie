@@ -34,13 +34,13 @@ segments:
       - [0x1E80, c, code_1E80]
       - [0x25B0, c, code_25B0]
       - [0x2730, c, code_2730]
-      - [0x2B80, c, code_2B80]
-      - [0x2EE0, c, code_2EE0]
+      - [0x2B80, c, code_2B80] #DONE
+      - [0x2EE0, c, code_2EE0] #DONE
       - [0x30C0, c, code_30C0]
       - [0x3630, c, code_3630]
       - [0x3AA0, c, code_3AA0]
       - [0x3BB0, c, code_3BB0]
-      - [0x3D90, c, code_3D90]
+      - [0x3D90, c, code_3D90] #DONE
       - [0x43B0, c, code_43B0]
       - [0x4740, c, code_4740]
       - [0x5570, c, code_5570]
@@ -60,8 +60,15 @@ segments:
     vram: 0x80390BD0
     subsegments:
       - [0x0000A7E0, bin, data_A7E0]
+      - [0x0000A9A0, .data, code_2B80]
+      - [0x0000A9D0, .data, code_2EE0]
+      - [0x0000AA10, bin, data_AA10]
+      - [0x0000ABB0, .data, code_3D90]
+      - [0x0000AC10, bin, data_AC10]
       - [0x0000B230, .data, code_9860]
       - [0x0000B260, bin, data_B260]
+      - [0x0000B3C0, .rodata, code_3D90]
+      - [0x0000B3D0, bin, data_B3D0]
       - [0x0000B5D0, .rodata, code_9860]
       - [0x0000B610, bin, data_B610]
   - [0x0000B630]

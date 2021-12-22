@@ -418,10 +418,11 @@ void func_8030EBC8(enum sfx_e uid, f32 arg1, f32 arg2, s32 arg3, s32 arg4);
 void func_8030EC20(enum sfx_e uid, f32 arg1, f32 arg2, u32 arg3, u32 arg4);
 u8 func_8030ED2C(enum sfx_e uid, s32 arg1);
 
-void func_80326244(Actor *);
+Actor *func_80325300(ActorMarker *marker, f32 rotation[3]);
 Actor *func_80325934(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 Actor *func_80325E78(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 
+void func_80326244(Actor *);
 
 void func_8032728C(f32[3], f32, s32, int(*)(Actor *));
 
@@ -438,6 +439,8 @@ int  func_80329078(Actor *, s32, s32);
 int  func_80329480(Actor *);
 s32  func_80329784(Actor *);
 void func_80329878(Actor *, f32);
+
+BKModelBin *func_80330B1C(ActorMarker *marker);
 
 int func_803391A4(Gfx**, Mtx**, f32 [3], f32[3], f32, f32*, BKModelBin*);
 

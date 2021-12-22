@@ -8,7 +8,7 @@ void func_80389144(Actor *this);
 Actor *func_80389050(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 
 /* .data */
-extern ActorInfo D_80390D90 = { 
+ActorInfo D_80390D90 = { 
     MARKER_C0_TRUNKER, ACTOR_132_TRUNKER, ASSET_3DF_MODEL_TRUNKER, 
     0, NULL, 
     func_80389144, NULL, func_80389050, 
