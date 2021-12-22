@@ -238,8 +238,7 @@ enum bkprog_e{
 
 	// {index=0xF6, type="Prog", level=6, name="1st Time Near DoG Puzzle Podium"},
 	// {index=0xF7, type="Prog", level=10, name="Pumpkin Making Mumbo Hungry Text"},
-	// {index=0xF8, type="Prog", level=12, name="King Sandybutt Pyramid State (2^0)"},
-	// {index=0xF9, type="Prog", level=12, name="King Sandybutt Pyramid State (2^1)"},
+	BKPROG_F8_KING_SANDYBUTT_PYRAMID_STATE = 0xF8, // 0xF9
 
 	BKPROG_FC_DEFEAT_GRUNTY = 0xFC
 };
@@ -1472,8 +1471,12 @@ enum actor_e
 
     ACTOR_12C_MOLEHILL      = 0x12C,
 
+    ACTOR_132_TRUNKER = 0x132,
+
     actor_yellow_flibbit_controller = 0x136,
     actor_yumblie           = 0x139,
+
+    ACTOR_147_ANCIENT_ONE = 0x147,
 
     ACTOR_14F_DESTROYED_JIGGY = 0x14f,
 
@@ -1538,6 +1541,8 @@ enum actor_e
     ACTOR_2E5_WOODEN_DOOR   = 0x2e5,
 
     ACTOR_30F_WHIPCRACK     = 0x30f,
+
+    ACTOR_31D_SANDYBUTT_PYRAMID = 0x31D,
 
     ACTOR_383_FIRE_FX       = 0x383,
 
@@ -1871,6 +1876,11 @@ enum asset_e
 
     ASSET_94_ANIM_GRUBLIN_DIE = 0x94,
 
+    ASSET_9E_ANIM_TEEHEE_IDLE = 0x9E,
+    ASSET_9F_ANIM_TEEHEE_ALERTED,
+
+    ASSET_AC_ANIM_TEEHEE_CHASE = 0xAC,
+
     ASSET_B1_ANIM_BANJO_CLIMB_IDLE_1 = 0xb1,
     ASSET_B2_ANIM_BANJO_CLIMB_IDLE_2,
 
@@ -1881,10 +1891,9 @@ enum asset_e
 
     ASSET_D2_ANIM_BANJO_GETTING_UP = 0xD2,
 
-    ASSET_9E_ANIM_TEEHEE_IDLE = 0x9E,
-    ASSET_9F_ANIM_TEEHEE_ALERTED,
 
-    ASSET_AC_ANIM_TEEHEE_CHASE = 0xAC,
+    ASSET_FE_ANIM_TRUCKER_SHORT = 0xFE,
+    ASSET_FF_ANIM_TRUCKER_GROW,
 
     ASSET_108_ANIM_SIR_SLUSH_IDLE = 0x108,
     ASSET_109_ANIM_SIR_SLUSH_ATTACK,
@@ -2014,8 +2023,10 @@ enum asset_e
 
     ASSET_3CB_MODEL_TEEHEE            = 0x3cb,
 
+    ASSET_3DF_MODEL_TRUNKER           = 0x3df,
 
-    ASSET_3E9_MODEL_RED_ARROW         = 0x3e9,
+    ASSET_3E8_MODEL_ANCIENT_ONE       = 0x3e8,
+    ASSET_3E9_MODEL_RED_ARROW,
     ASSET_3EA_MODEL_RED_X,
     ASSET_3EB_MODEL_RED_QUESTION_MARK,
 
@@ -2083,6 +2094,8 @@ enum asset_e
     ASSET_526_SPRITE_FIRE   = 0x526,
 
     ASSET_564_MODEL_PURPLE_TEEHEE = 0x564,
+
+    ASSET_56B_MODEL_SANDYBUTT_PYRAMID = 0x56B,
 
     ASSET_6C1_SPRITE_SMOKE = 0x6C1,
     ASSET_6C2_SPRITE_SMOKE_WHITE,
@@ -2200,6 +2213,10 @@ enum marker_e{
     MARKER_5F_MUSIC_NOTE = 0x5F,
 
     MARKER_61_EXTRA_LIFE = 0x61,
+    
+    MARKER_C0_TRUNKER = 0xC0,
+
+    MARKER_F4_ANCIENT_ONE = 0xF4,
 
     MARKER_103_MM_WITCH_SWITCH = 0x103,
     MARKER_104_MMM_WITCH_SWITCH,
@@ -2213,6 +2230,8 @@ enum marker_e{
 
     MARKER_168_ICE_KEY = 0x168,
     MARKER_169_SNS_EGG,
+
+    MARKER_1D4_SANDYBUTT_PYRAMID =  0x1D4,
 
     MARKER_22A_CCW_WITCH_SWITCH = 0x22A,
     MARKER_22B_FP_WITCH_SWITCH

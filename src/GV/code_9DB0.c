@@ -2,7 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void func_80324EAC(f32, s32);
 extern void func_8034E120(void *, f32, f32, f32, s32);
 
 typedef struct {
@@ -68,7 +67,7 @@ void func_80390218(void *arg0){
 }
 
 void func_80390248(void){
-    func_803330C0(JIGGY_40_GV_MATCHING_GAME, D_803916D8);
+    jiggySpawn(JIGGY_40_GV_MATCHING_GAME, D_803916D8);
 }
 
 //matchingGame_setState
@@ -106,7 +105,7 @@ void func_80390270(s32 next_state){
             }
             func_80324E38(0.5f, 3);
             func_80324E60(1.5f, 2);
-            func_80324EAC(D_80391A00, func_80390248);
+            timedFunc_set_0(D_80391A00, func_80390248);
             func_80324E88(4.0f);
             func_80324E38(4.0f, 0);
 
@@ -125,7 +124,7 @@ void func_8039040C(void){
     Actor *actor;
     D_80391AE0.state_9 = 0;
     if(map_get() == MAP_13_GV_MEMORY_GAME){
-        if( !func_80320F7C(JIGGY_40_GV_MATCHING_GAME) //jiggy is collected
+        if( !jiggyscore_80320F7C(JIGGY_40_GV_MATCHING_GAME) //jiggy is collected
             ||  func_803203FC(2)                      //in FF minigame
         ){
             D_80391AE0.matchCnt_8 = 0;
