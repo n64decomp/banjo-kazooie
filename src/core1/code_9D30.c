@@ -2,7 +2,16 @@
 #include "functions.h"
 #include "variables.h"
 
+void func_8024A840(s32 arg0, s32 arg1, s32 arg2);
+void func_8024A85C(s32 arg0);
+
 extern s16 D_80275BCC;
+
+extern s32 D_802806E0;
+extern s32 D_802806E4;
+extern s32 D_802806E8;
+extern s32 D_802806EC;
+
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_9D30/func_80247750.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_9D30/func_8024776C.s")
@@ -102,10 +111,21 @@ void func_80247F9C(s32 arg0){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_9D30/func_8024A770.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_9D30/func_8024A810.s")
+void func_8024A810(void){
+    func_8024A840(0, 0x80, 0);
+    func_8024A85C(0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_9D30/func_8024A840.s")
+void func_8024A840(s32 arg0, s32 arg1, s32 arg2){
+    D_802806E0 = arg0;
+    D_802806E4 = arg1;
+    D_802806E8 = arg2;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_9D30/func_8024A85C.s")
+void func_8024A85C(s32 arg0){
+    D_802806EC = arg0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_9D30/func_8024A868.s")
+s32 func_8024A868(void){
+    return D_802806EC;
+}
