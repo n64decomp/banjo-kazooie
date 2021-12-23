@@ -39,7 +39,7 @@ segments:
       - [0x30C0, c, code_30C0]
       - [0x3630, c, code_3630]
       - [0x3AA0, c, code_3AA0]
-      - [0x3BB0, c, code_3BB0]
+      - [0x3BB0, c, code_3BB0] #DONE
       - [0x3D90, c, code_3D90] #DONE
       - [0x43B0, c, code_43B0] #DONE
       - [0x4740, c, code_4740]
@@ -63,11 +63,13 @@ segments:
       - [0x0000A9A0, .data, code_2B80]
       - [0x0000A9D0, .data, code_2EE0]
       - [0x0000AA10, bin, data_AA10]
+      - [0x0000AB50, .data, code_3BB0]
       - [0x0000ABB0, .data, code_3D90]
       - [0x0000AC10, .data, code_43B0]
       - [0x0000AC50, bin, data_AC50]
       - [0x0000B230, .data, code_9860]
       - [0x0000B260, bin, data_B260]
+      - [0x0000B3B0, .rodata, code_3BB0]
       - [0x0000B3C0, .rodata, code_3D90]
       - [0x0000B3D0, .rodata, code_43B0]
       - [0x0000B3E0, bin, data_B3E0]
