@@ -9,7 +9,7 @@ void func_8025A58C(u32, u32);
 void func_80324E88(f32);
 
 
-ActorInfo D_80390AB0 = {0xC4, actor_yellow_flibbit_controller, 0x00, 0x00, NULL,
+ActorInfo D_80390AB0 = {0xC4, ACTOR_136_YELLOW_FLIBBIT_CONTROLLER, 0x00, 0x00, NULL,
     func_8038CEE8, NULL, func_80325340,
     {0,0,0,0}, 0.0f, {0,0,0,0}
 };
