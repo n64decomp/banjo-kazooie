@@ -440,9 +440,15 @@ int  func_80329480(Actor *);
 s32  func_80329784(Actor *);
 void func_80329878(Actor *, f32);
 
+void func_80320044(s32, s32, s32);
+void func_803300D8(ActorMarker *, void (*)(Actor *));
+void func_803300A8(ActorMarker *this, MarkerCollisionFunc ow_func, MarkerCollisionFunc arg2, MarkerCollisionFunc die_func);
 BKModelBin *func_80330B1C(ActorMarker *marker);
+void func_8033568C(void *, f32 *, f32*);
+void func_80335924(void *, enum asset_e anim_id, f32, f32);
+void func_80335A74(void *, f32);
+int  func_803391A4(Gfx**, Mtx**, f32 [3], f32[3], f32, f32*, BKModelBin*);
 
-int func_803391A4(Gfx**, Mtx**, f32 [3], f32[3], f32, f32*, BKModelBin*);
 
 void func_80346C10(enum bs_e *retVal, enum bs_e fail_state, enum bs_e success_state, enum item_e item_id, int use_item);
 
@@ -462,7 +468,6 @@ Actor *func_80329980(Actor *);
 void ml_vec3f_pitch_rotate_copy(f32 dst[3], f32 src[3], f32 pitch);
 int func_8025773C(f32 *arg0, f32 arg1);
 Actor *func_80325888(ActorMarker *, Gfx**, Mtx**, Vtx **);
-void func_80335924(void *, enum asset_e anim_id, f32, f32);
 
 Actor *func_80325340(ActorMarker *, Gfx **, Mtx **, Vtx **);
 void func_8032AA58(Actor *, f32);
@@ -490,8 +495,8 @@ void func_80255FE4(f32 [3], f32 [3], f32 [3], f32);
 void func_8030DEB4(u8, f32, f32);
 void func_8030DB04(u8, s32, f32(*)[3], f32, f32);
 void func_80258A4C(f32 [3], f32, f32 [3], f32 *, f32 *, f32 *);
-void func_803300A8(ActorMarker *this, MarkerCollisionFunc ow_func, MarkerCollisionFunc arg2, MarkerCollisionFunc die_func);
-void func_8033568C(void *, f32 *, f32*);
+
+
 void func_802E4078(enum map_e map, s32 exit, s32 transition);
 void levelSpecificFlags_set(s32, s32);
 void func_803228D8(void);
@@ -508,7 +513,6 @@ void actor_loopAnimation(Actor *);
 
 /* used in fight */
 void func_80326224(Actor *this);
-void func_803300D8(ActorMarker *, void (*)(Actor *));
 void func_8034DE60(s32, f32, f32, f32, s32);
 void func_802F9FD0(s32, f32, f32, f32);
 void func_80324D54(f32, enum sfx_e, f32, s32, f32 (*)[3], f32, f32);
