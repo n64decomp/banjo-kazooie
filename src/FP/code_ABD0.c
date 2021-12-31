@@ -3,6 +3,7 @@
 #include "variables.h"
 
 #include "prop.h"
+#include "SnS.h"
 
 extern ActorInfo D_80367FE0;
 
@@ -53,6 +54,9 @@ extern ActorInfo D_80392AD8;
 extern ActorInfo D_80392AFC;
 extern ActorInfo D_80392B20;
 extern ActorInfo D_80392B44;
+
+extern f32 D_80392B68[3];
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/FP/code_ABD0/func_80390FC0.s")
 
@@ -116,9 +120,41 @@ void func_80391324(void)
       spawnableActorList_add(&D_80392AFC, actor_new, 0X400);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_ABD0/func_80391744.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_ABD0/func_8039180C.s")
+void func_80391744(Actor *this, Actor* other){
+      f32 sp34[3] = D_80392B68;
+      f32 sp28[3];
+      void *sp24;
+      f32 tmp_f0;
+
+      sp24 = func_80304C38(0x22A, this);
+      tmp_f0 = (f32)func_80304DA8(sp24);
+      other->yaw = tmp_f0;
+      this->yaw = tmp_f0;
+      ml_vec3f_yaw_rotate_copy(sp28, sp34, tmp_f0);
+      func_80304D68(sp24, sp34);
+      this->position_x = sp34[0] - sp28[0];
+      this->position_z = sp34[2] - sp28[2];
+
+      other->position_x = sp34[0] + sp28[0];
+      other->position_z = sp34[2] + sp28[2];
+}
+
+void func_8039180C(Actor *this){
+      ActorMarker *sp24;
+
+      if(!this->initialized){
+            sp24 = func_80326EEC(0x254);
+            if(sns_get_item_state(SNS_ITEM_ICE_KEY, 1) == 1){
+                  marker_despawn(this->marker);
+            }
+            else{
+                  func_802D3D74(this);
+                  func_80391744(this, sp24);
+                  this->initialized = TRUE;
+            }
+      }
+}
 
 void func_80391894(Actor *this){
       func_802D3D74(this);
