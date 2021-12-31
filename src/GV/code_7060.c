@@ -4,316 +4,132 @@
 
 #include "prop.h"
 
-extern ActorInfo D_80390BF0;
-extern ActorInfo D_80390C5C;
-extern ActorInfo D_80390C80;
-extern ActorInfo D_80390D30;
-extern ActorInfo D_80390D60;
-extern ActorInfo D_80390CB0;
-extern ActorInfo D_80390D00;
-extern ActorInfo D_80390D90;
-extern ActorInfo D_80390DD0;
-extern ActorInfo D_80390E30;
-extern ActorInfo D_80390E54;
-extern ActorInfo D_80390ED0;
-extern ActorInfo D_80390F00;
-extern ActorInfo D_80390FD0;
-extern ActorInfo D_80391010;
-extern ActorInfo D_80391098;
-extern ActorInfo D_80391158;
-extern ActorInfo D_803911C0;
-extern ActorInfo D_803911F4;
-extern ActorInfo D_80391218;
-extern ActorInfo D_8039123C;
-extern ActorInfo D_80391260;
-extern ActorInfo D_80391318;
-extern ActorInfo D_80391358;
-extern ActorInfo D_803912B8;
-extern ActorInfo D_80391390;
-extern ActorInfo D_803913B4;
-extern ActorInfo D_80390F40;
-extern ActorInfo D_80391494;
-extern ActorInfo D_803915C0;
-extern ActorInfo D_80391620;
-extern ActorInfo D_803914B8;
-extern ActorInfo D_803914DC;
-extern ActorInfo D_80391500;
-extern ActorInfo D_80391524;
-extern ActorInfo D_8039156C;
-extern ActorInfo D_80391428;
-extern ActorInfo D_8039144C;
-extern ActorInfo D_80391470;
-extern ActorInfo D_80391548;
-extern ActorInfo D_80391590;
-
-
-
 void func_8038D47C(Actor *this);
+
 /* .data */
-extern ActorAnimationInfo D_80391290[];
-extern ActorInfo D_803912B8 = { 0xF9, 0x1F7, 0x422, 
+ActorAnimationInfo D_80391290[] = {
+    {0, 0.0f},
+    {0x144, 32000000.0f},
+    {0x144, 0.95f},
+    {0x145, 1.92f},
+    {0x144, 32000000.0f}
+};
+ActorInfo D_803912B8 = { MARKER_F9_JINXY, ACTOR_1F7_JINXY, ASSET_422_MODEL_JINXY, 
     0x1, D_80391290, 
     func_8038D47C, func_80326224, func_80325888, 
     { 0x0, 0x0, 0x0, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}
 };
 
 /* .code */
-#pragma GLOBAL_ASM("asm/nonmatchings/GV/code_7060/func_8038D450.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/GV/code_7060/func_8038D47C.s")
-/* BREAK */
-
-void func_8038DBDC(Actor *this);
-Actor *func_8038DA18(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
-
-/* .data */
-extern ActorAnimationInfo D_803912E0[];
-extern ActorInfo D_80391318 = { 0xAA, 0x11C, 0x3DE, 
-    0x1, D_803912E0, 
-    func_8038DBDC, func_80326224, func_8038DA18, 
-    { 0x9, 0xC4, 0x0, 0x0}, 1.7f, { 0x0, 0x0, 0x0, 0x0}
-};
-
-/* .code */
-#pragma GLOBAL_ASM("asm/nonmatchings/GV/code_7060/func_8038D920.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/GV/code_7060/func_8038DA18.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/GV/code_7060/func_8038DB0C.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/GV/code_7060/func_8038DB4C.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/GV/code_7060/func_8038DB58.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/GV/code_7060/func_8038DB64.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/GV/code_7060/func_8038DB70.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/GV/code_7060/func_8038DB88.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/GV/code_7060/func_8038DBDC.s")
-
-void func_8038E1A0(Actor *this);
-void func_8038E1A8(Actor *this);
-
-/* .data */
-extern ActorAnimationInfo D_80391340[];
-extern ActorInfo D_80391358 = { 0xAE, 0x121, 0x3E6, 
-    0x1, D_80391340, 
-    func_8038E1A0, func_8038E1A8, func_80325888, 
-    { 0x9, 0xC4, 0x0, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}
-};
-
-/* .code */
-#pragma GLOBAL_ASM("asm/nonmatchings/GV/code_7060/func_8038E140.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/GV/code_7060/func_8038E178.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/GV/code_7060/func_8038E184.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/GV/code_7060/func_8038E18C.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/GV/code_7060/func_8038E1A0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/GV/code_7060/func_8038E1A8.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/GV/code_7060/func_8038E2FC.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/GV/code_7060/func_8038E344.s")
-
-void func_8038E3B0(Actor *this);
-
-/* .data */
-extern ActorAnimationInfo D_80391380[];
-extern ActorInfo D_80391390 = { 0xFA, 0x1F8, 0x423,
-    0x1, D_80391380,
-    func_8038E3B0, func_80326224, func_80325888,
-    { 0x0, 0x0, 0x1, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}
-};
-
-extern ActorInfo D_803913B4 = { 0xFB, 0x1F9, 0x424,
-    0x1, D_80391380,
-    func_8038E3B0, func_80326224, func_80325888,
-    { 0x0, 0x0, 0x1, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}
-};
-
-/* .code */
-#pragma GLOBAL_ASM("asm/nonmatchings/GV/code_7060/func_8038E3B0.s")
-
-extern void func_802D3D54(Actor *this);
-extern Actor *func_80325F2C(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
-
-void func_8038E460(Actor *this);
-void func_8038E4DC(Actor *this);
-void func_8038E648(Actor *this);
-void func_8038E914(Actor *this);
-void func_8038E97C(Actor *this);
-void func_8038EB40(Actor *this);
-void func_8038ED54(Actor *this);
-void func_8038EE10(Actor *this);
-void func_8038EEC4(Actor *this);
-void func_8038EF14(Actor *this);
-void func_8038EF3C(Actor *this);
-
-/* .data */
-extern ActorAnimationInfo D_803913E0[];
-extern ActorInfo D_80391428 = { 0xEC, 0x13F, 0x400, 
-    0x1, D_803913E0, 
-    func_8038ED54, func_80326224, func_80325888,
-    { 0x0, 0x0, 0x0, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}
-};
-
-extern ActorInfo D_8039144C = { 0xF1, 0x144, 0x3D7, 
-    0x1, D_803913E0, 
-    func_8038EE10, func_80326224, func_80325888,
-    { 0x0, 0x0, 0x0, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}
-};
-
-extern ActorInfo D_80391470 = { 0xF2, 0x145, 0x438, 
-    0x1, D_803913E0, 
-    func_8038EEC4, func_80326224, func_80325888,
-    { 0x0, 0x0, 0x0, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}
-};
-
-extern ActorInfo D_80391494 = { 0x23C, 0x245, 0x515, 
-    0x1, D_803913E0, 
-    func_8038EF14, func_80326224, func_80325888,
-    { 0x0, 0x0, 0x0, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}
-};
-
-extern ActorInfo D_803914B8 = { 0xEB, 0x6D, 0x3D8, 
-    0x1, 0x0, 
-    func_802D3D54, func_8038E460, func_80325F2C,
-    { 0x0, 0x0, 0x0, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}
-};
-
-extern ActorInfo D_803914DC = { 0xED, 0x140, 0x3FF, 
-    0x1, 0x0, 
-    func_802D3D54, func_8038E4DC, func_80325F2C,
-    { 0x0, 0x0, 0x0, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}
-};
-
-extern ActorInfo D_80391500 = { 0xF0, 0x143, 0x3D9, 
-    0x1, 0x0, 
-    func_8038EB40, func_80326224, func_80325F2C,
-    { 0x0, 0x0, 0x0, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}
-};
-
-extern ActorInfo D_80391524 = { 0xEF, 0x142, 0x3DB, 
-    0x1, 0x0, 
-    func_8038E648, func_80326224, func_80325F2C,
-    { 0x0, 0x0, 0x0, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}
-};
-
-extern ActorInfo D_80391548 = { 0xF3, 0x146, 0x3E2, 
-    0x1, 0x0, 
-    func_8038EF3C, func_80326224, func_80325E78,
-    { 0x0, 0x0, 0x4, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}
-};
-
-extern ActorInfo D_8039156C = { 0xF8, 0x1F5, 0x3D9, 
-    0x1, 0x0, 
-    func_8038E97C, func_80326224, func_80325F2C,
-    { 0x0, 0x0, 0x0, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}
-};
-
-extern ActorInfo D_80391590 = { 0x23A, 0x243, 0x514, 
-    0x1, 0x0, 
-    func_8038E914, func_80326224, func_80325F2C, 
-    { 0x0, 0x0, 0x0, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}
-};
-
-
-
-/* .code */
-#pragma GLOBAL_ASM("asm/nonmatchings/GV/code_7060/func_8038E3E0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/GV/code_7060/func_8038E408.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/GV/code_7060/func_8038E430.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/GV/code_7060/func_8038E460.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/GV/code_7060/func_8038E4DC.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/GV/code_7060/func_8038E648.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/GV/code_7060/func_8038E914.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/GV/code_7060/func_8038E97C.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/GV/code_7060/func_8038EB40.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/GV/code_7060/func_8038ED54.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/GV/code_7060/func_8038EE10.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/GV/code_7060/func_8038EEC4.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/GV/code_7060/func_8038EF14.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/GV/code_7060/func_8038EF3C.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/GV/code_7060/func_8038F004.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/GV/code_7060/func_8038F028.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/GV/code_7060/func_8038F10C.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/GV/code_7060/func_8038F130.s")
-
-void func_8038F154(void)
-{
-    spawnableActorList_add(&D_80390BF0, actor_new, 0X180);
-    spawnableActorList_add(&D_80390C5C, actor_new, 0X58A);
-    spawnableActorList_add(&D_80390C80, actor_new, 0X9A8);
-    spawnableActorList_add(&D_80390D30, actor_new, 0X880);
-    spawnableActorList_add(&D_80390D60, actor_new, 0X80);
-    spawnableActorList_add(&D_80390CB0, actor_new, 0XDA8);
-    spawnableActorList_add(&D_80390D00, actor_new, 0X9A8);
-    spawnableActorList_add(&D_80390D90, actor_new, 0XD80);
-    spawnableActorList_add(&D_80390DD0, actor_new, 0X4004);
-    spawnableActorList_add(&D_80390E30, actor_new, 0X448);
-    spawnableActorList_add(&D_80390E54, actor_new, 0X48);
-    spawnableActorList_add(&D_80390ED0, actor_new, 0X180);
-    spawnableActorList_add(&D_80390F00, actor_new, 0X80);
-    spawnableActorList_add(&D_80390FD0, actor_new, 0X4048);
-    spawnableActorList_add(&D_80391010, actor_new, 0X4048);
-    spawnableActorList_add(&D_80391098, actor_new, 0X10069);
-    spawnableActorList_add(&D_80391158, actor_new, 0X48);
-    spawnableActorList_add(&D_803911C0, actor_new, 8);
-    spawnableActorList_add(&D_803911F4, actor_new, 0X80988);
-    spawnableActorList_add(&D_80391218, actor_new, 0X80988);
-    spawnableActorList_add(&D_8039123C, actor_new, 0X80988);
-    spawnableActorList_add(&D_80391260, actor_new, 0X80);
-    spawnableActorList_add(&D_80391318, actor_new, 0X78A);
-    spawnableActorList_add(&D_80391358, actor_new, 0X518);
-    spawnableActorList_add(&D_803912B8, actor_new, 0X500);
-    spawnableActorList_add(&D_80391390, actor_new, 0X500);
-    spawnableActorList_add(&D_803913B4, actor_new, 0X500);
-    spawnableActorList_add(&D_80390F40, actor_new, 0);
-    spawnableActorList_add(&D_80391494, actor_new, 0X408);
-    spawnableActorList_add(&D_803915C0, actor_new, 0);
-    spawnableActorList_add(&D_80391620, actor_new, 0X400);
-    spawnableActorList_add(&D_803914B8, actor_new, 0X400);
-    spawnableActorList_add(&D_803914DC, actor_new, 0X400);
-    spawnableActorList_add(&D_80391500, actor_new, 0X400);
-    spawnableActorList_add(&D_80391524, actor_new, 0X400);
-    spawnableActorList_add(&D_8039156C, actor_new, 0X400);
-    spawnableActorList_add(&D_80391428, actor_new, 8);
-    spawnableActorList_add(&D_8039144C, actor_new, 8);
-    spawnableActorList_add(&D_80391470, actor_new, 8);
-    spawnableActorList_add(&D_80391548, actor_new, 0X400);
-    spawnableActorList_add(&D_80391590, actor_new, 0X400);
+void func_8038D450(ActorMarker *this_marker){
+    Actor *this = marker_getActor(this_marker);
+    func_80328AC8(this, 3);
 }
 
-s32 func_8038F4C0(Actor *arg0, s32 arg1){
-    if( getGameMode() != GAME_MODE_7_ATTRACT_DEMO 
-        && (0xDBF4E829 + *(s32*)PHYS_TO_K1(0x284))
-    ){
-        return arg1;
-    }
-    else{
-        return arg0->state;
-    }
+void func_8038D47C(Actor *this){
+    f32 sp3C[3];
+    s32 tmp_v0;
+    this->marker->propPtr->unk8_3 = TRUE;
+    actor_collisionOff(this);
+    func_80287784(this->animctrl, 0);
+    if(!this->initialized){
+        if(!func_80304E24(0x331, this->spawn_position)){
+            this->spawn_position_x = -2569.0f;
+            this->spawn_position_y = 2997.0f;
+            this->spawn_position_z = 5884.0f;
+        }//L8038D4FC
+        tmp_v0 = func_80304CAC(0x32f, this->spawn_position);
+        if(!tmp_v0){
+            this->unk1C_x = -1394.0f;
+            this->unk1C_y = 2811.0f;
+            this->unk1C_z = 6277.0f;
+        }
+        else{
+            func_80304D68(tmp_v0, this->unk1C);
+        }
+        
+        tmp_v0 = func_80304CAC(0x330, this->spawn_position);
+        if(!tmp_v0){
+            this->velocity_x = -1424.0f;
+            this->velocity_y = 2811.0f;
+            this->velocity_z = 5463.0f;
+        }
+        else{
+            func_80304D68(tmp_v0, this->velocity);
+        }
+
+        this->initialized = TRUE;
+    }//L8038D590
+
+    if(!this->unk16C_4){
+        mapSpecificFlags_set(0x10, 0);
+        this->unk16C_4 = TRUE;
+        if(func_803203FC(0xC1) && func_8031B4F4() == -3){
+            timedFunc_set_1(1.5f, func_8038D450, reinterpret_cast(s32, this->marker));
+        }
+    }//L8038D5EC
+
+    if(!mapSpecificFlags_get(0x14)){
+        player_getPosition(sp3C);
+        if(!func_8028ECAC()){
+            if( func_80256064(sp3C, this->unk1C) < 100.0f || func_80256064(sp3C, this->velocity) < 100.0f){
+                if(func_80311480(0xA7B, 0, NULL, NULL, NULL, NULL)){
+                    mapSpecificFlags_set(0x14, 1);
+                }
+            }
+        }
+    }//L8038D688
+    switch(this->state){
+        case 1: //L8038D6C0
+            if(!mapSpecificFlags_get(0xE) && mapSpecificFlags_get(0) + mapSpecificFlags_get(1) == 1){
+                mapSpecificFlags_set(0xE, TRUE);
+                func_80328AC8(this, 2);
+                this->unk38_31 = 1;
+            }
+            else if(!mapSpecificFlags_get(0xF) && mapSpecificFlags_get(0) + mapSpecificFlags_get(1) == 2){
+                mapSpecificFlags_set(0xF, TRUE);
+                func_8028F918(2);
+                func_80328AC8(this, 3);
+                func_802BAFE4(0);
+            }
+            break;
+        case 2: //L8038D78C
+            if( actor_animationIsAt(this, 0.2f)
+                || actor_animationIsAt(this, 0.45f)
+                || actor_animationIsAt(this, 0.8f)
+            ){
+                FUNC_8030E624(SFX_D4_JINXIE_SNIFFLING_2, 0x3e8, 0x332);
+            }
+            if( actor_animationIsAt(this, 0.99f) ){
+                if(--this->unk38_31 == 0){
+                    func_80311480(0xA7C, 4, NULL, NULL, NULL, NULL);
+                    mapSpecificFlags_set(0x14, TRUE);
+                    func_80328AC8(this, 1);
+                }
+            }
+            break;
+        case 3: //L8038D84C
+            if( actor_animationIsAt(this, 0.135f)
+                || actor_animationIsAt(this, 0.3f)
+            ){
+                FUNC_8030E624(SFX_D4_JINXIE_SNIFFLING_2, 0x3e8, 0x332);
+            }
+            if(actor_animationIsAt(this, 0.63f)){
+                FUNC_8030E624(SFX_D5_JINXIE_SNEEZING, 0x3ff, 0x332);
+            }
+            if(actor_animationIsAt(this, 0.83f)){
+                FUNC_8030E624(SFX_D6_UGH, 0x3ff, 0x332);
+            }
+            if(actor_animationIsAt(this, 0.94f)){
+                if(!func_803203FC(0xC1)){
+                    mapSpecificFlags_set(0x10, 1);
+                }
+            }
+            if(actor_animationIsAt(this, 0.99f)){
+                func_80328AC8(this, 1);
+            }
+            break;
+        case 4: //L8038D910
+            break;
+    }//L8038D910
 }
