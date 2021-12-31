@@ -1258,9 +1258,10 @@ enum sfx_e
     SFX_3F2_UNKNOWN, //gold_chest_ttc
 
     SFX_3F5_UNKNOWN = 0x3F5, //RBB/code_5F80
-    SFX_3F6_UNKNOWN = 0x3f6, //lair/code_0 func_803880BC
-
-    SFX_3F9_UNKNOWN = 0x3f9, //chmole
+    SFX_3F6_UNKNOWN, //lair/code_0 func_803880BC
+    SFX_3F7_UNKNOWN, //gv/histup
+    SFX_3F8_UNKNOWN, //gv/histup
+    SFX_3F9_UNKNOWN, //chmole
 
     SFX_3FB_UNKNOWN = 0x3fb, //conga
 
