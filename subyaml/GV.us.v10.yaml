@@ -81,6 +81,7 @@ segments:
       - [0x0000AE00, .data, code_6370]
       - [0x0000AE70, .data, code_6F80]
       - [0x0000AEA0, bin, gv_data_AEA0]
+      - [0x0000B1D0, .data, code_9130]
       - [0x0000B230, .data, code_9860]
       - [0x0000B260, bin, gv_data_B260]
       - [0x0000B300, bin, gv_data_B300] # .rodata, code_230]

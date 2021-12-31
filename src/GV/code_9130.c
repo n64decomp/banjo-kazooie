@@ -15,24 +15,15 @@ void __chmazectrl_setState(Actor *this, s32 next_state);
 void chmazectrl_update(Actor *this);
 
 /* .data */
-extern ActorInfo D_803915C0 = { 0x1CD, ACTOR_319_GV_MAZE_CTRL, 0x0,
+ActorInfo D_803915C0 = { 0x1CD, ACTOR_319_GV_MAZE_CTRL, 0x0,
     0, NULL, 
     chmazectrl_update, 0x0, func_80325340, 
     { 0x0, 0x0, 0x0, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}
 };
-extern f32 D_803915E4[3];
-extern f32 D_803915F0[3];
-extern f32 D_803915FC[3];
-extern f32 D_80391608[3];
-
-extern f32 D_803919A0;
-extern f32 D_803919A4;
-extern f32 D_803919A8;
-extern f32 D_803919AC;
-extern f32 D_803919B0;
-extern f32 D_803919B4;
-// 0000 B5B0: 44BB8000 3F99999A 3F99999A 3F99999A
-// 0000 B5C0: C4DAC000 C4D48000 00000000 00000000
+f32 D_803915E4[3] = {460.0f, 1400.0f, 0.0f};
+f32 D_803915F0[3] = {0.0f, 0.0f, 0.0f};
+f32 D_803915FC[3] = {0.0f, 0.0f, 0.0f};
+f32 D_80391608[3] = {460.0f, 1400.0f, 0.0f};
 
 /* .code */
 void func_8038F520(f32 arg0){

@@ -307,4 +307,13 @@ void func_8038F154(void)
     spawnableActorList_add(&D_80391590, actor_new, 0X400);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/GV/code_7060/func_8038F4C0.s")
+s32 func_8038F4C0(Actor *arg0, s32 arg1){
+    if( getGameMode() != GAME_MODE_7_ATTRACT_DEMO 
+        && (0xDBF4E829 + *(s32*)PHYS_TO_K1(0x284))
+    ){
+        return arg1;
+    }
+    else{
+        return arg0->state;
+    }
+}
