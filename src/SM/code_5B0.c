@@ -82,7 +82,7 @@ void func_80386D68(Actor *this){
     func_80386C2C(func_802F0BD0(0x10), this->position, 0x10, this->scale);
 
     if(this->unk100 && func_803870E8(this->unk100)){
-        func_802CA1CC(0x18);
+        func_802CA1CC(HONEYCOMB_18_SM_QUARRIES);
         func_802C3F04(func_802C4218, 0x1F, *(s32 *)(this->position), *(s32 *)(&this->position_y), *(s32 *)(&this->position_z));
     }
     marker_despawn(this->marker);

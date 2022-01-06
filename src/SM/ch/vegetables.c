@@ -158,7 +158,7 @@ void func_80387C28(Actor * this){
     }//L80387D18
     if(this->unk38_31){
         this->position_y += 100.0f;
-        func_802CA1CC(0x17);
+        func_802CA1CC(HONEYCOMB_17_SM_COLIWOBBLE);
         func_802C3F04(func_802C4218, 0x1f, *(s32 *)&this->position_x, *(s32 *)&this->position_y, *(s32 *)(&this->position_z));
     }//L80387D64
     func_803252D0(1.5f, 7);

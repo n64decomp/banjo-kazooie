@@ -50,7 +50,7 @@ segments:
       - [0x6370, c, code_6370] #DONE
       - [0x6F80, c, code_6F80] #DONE
       - [0x7060, c, code_7060] #DONE
-      - [0x7530, c, code_7530]
+      - [0x7530, c, code_7530] #DONE
       - [0x7D50, c, code_7D50]
       - [0x7FC0, c, code_7FC0] #DONE
       - [0x7FF0, c, code_7FF0]

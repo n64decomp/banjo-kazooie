@@ -3,6 +3,8 @@
 #include "variables.h"
 
 extern void func_8028F738(f32[3], f32[3], f32, s32);
+extern int func_8030E3FC(u8);
+
 
 void func_8038DBDC(Actor *this);
 Actor *func_8038DA18(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
@@ -88,21 +90,22 @@ void func_8038DB70(void){
     D_80391AB0.unk4++;
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/GV/code_7530/func_8038DB88.s")
-#else
+
 void func_8038DB88(Actor *this){
-    if(this->unk44_31){
-        if(func_8030E3FC(this->unk44_31)){
+    u8 tmp;
+    tmp = this->unk44_31;
+    if(tmp){
+        if(func_8030E3FC(tmp)){
             func_8030E394(this->unk44_31);
         }
         func_8030DA44(this->unk44_31);
         this->unk44_31 = 0;
     }
 }
-#endif
 
 void func_8038DBDC(Actor *this){
+    u8 tmp;
+    
     switch(this->state){
         case 1: //8038DC18
             if(!this->initialized){
@@ -214,8 +217,8 @@ void func_8038DBDC(Actor *this){
             else{ 
                 if(actor_animationIsAt(this, 0.42f))
                     func_8030E510(SFX_7C_CHEBOOF, 32000);
-
-                if(this->unk44_31 && func_8030E3FC(this->unk44_31)){
+                tmp = this->unk44_31;
+                if(tmp && func_8030E3FC(tmp)){
                     if(1.0 < this->unk1C[1]){
                         this->unk1C[1] -= 0.1;
                     }
