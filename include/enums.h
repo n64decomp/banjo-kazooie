@@ -165,6 +165,8 @@ enum bkprog_e{
 	// {index=0xA1, type="Prog", level=6, name="Statue Hat Open"},
     BKPROG_A1_STATUE_HAT_OPEN = 0xA1,
     BKPROG_A2_GV_LOBBY_COFFIN_OPEN,
+    BKPROG_A3_UNKOWN, //tied to actor_244/marker_23B
+    BKPROG_A4_UNKOWN, //tied to actor_244/marker_23B
 
     BKPROG_A6_FURNACE_FUN_COMPLETE = 0xA6,
     BKPROG_A7_NEAR_PUZZLE_PODIUM_TEXT,
