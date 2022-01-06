@@ -72,7 +72,7 @@ void chgobi2_setState(Actor *this, s32 next_state){
 
     if(next_state == 2){
         this->marker->propPtr->unk8_3 = TRUE;
-        func_80335924(this->unk148, ASSET_F4_ANIM_GOBI2_IDLE, 0.5f, 12.0f);
+        func_80335924(this->unk148, ASSET_F4_ANIM_GOBI_IDLE, 0.5f, 12.0f);
     }
 
     if(next_state == 3){
@@ -88,7 +88,7 @@ void chgobi2_setState(Actor *this, s32 next_state){
     }//L80387C94
 
     if(next_state == 4){
-        func_80335924(this->unk148, ASSET_FC_ANIM_GOBI2_SPITTING, 0.2f, 3.0f);
+        func_80335924(this->unk148, ASSET_FC_ANIM_GOBI_SPITTING, 0.2f, 3.0f);
         func_80335924(local->unk4, ASSET_100_ANIM_GOBI_SPIT, 0.0f, 3.0f);
     }
 
@@ -98,7 +98,7 @@ void chgobi2_setState(Actor *this, s32 next_state){
     }
 
     if(next_state == 6){
-        func_80335924(this->unk148, ASSET_F8_ANIM_GOBI2_RUNNING, 0.4f, 0.71f);
+        func_80335924(this->unk148, ASSET_F8_ANIM_GOBI_RUNNING, 0.4f, 0.71f);
         func_80335A8C(this->unk148, 1);
     }
 
@@ -108,7 +108,7 @@ void chgobi2_setState(Actor *this, s32 next_state){
 
     if(next_state == 8){
         FUNC_8030E8B4(SFX_84_GOBI_CRYING, 0x271, 0x398, this->position, 1500, 2500);
-        func_80335924(this->unk148, ASSET_242_ANIM_GOBI2_RELAXING, 0.2f, 0.5f);
+        func_80335924(this->unk148, ASSET_242_ANIM_GOBI_RELAXING, 0.2f, 0.5f);
     }
 
     this->state = next_state;
