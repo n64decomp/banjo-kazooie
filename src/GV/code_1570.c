@@ -174,7 +174,7 @@ void chgobi2_update(Actor *this){
         func_803300A8(this->marker, __chgobi2_ow, NULL, NULL);
         sp34->unk30 = __chgobi2_80387EFC;
         local->unk4 = func_803358B4();
-        local->unk8 = (BKModelBin*) assetcache_get(0x3f3);
+        local->unk8 = (BKModelBin*) assetcache_get(ASSET_3F3_MODEL_GOBI_SPIT);
         D_80391A50 = 0;
         this->unk1C[0] = 0.0f;
         this->unk1C[1] = 0.0f;
