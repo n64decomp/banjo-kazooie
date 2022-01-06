@@ -55,11 +55,11 @@ segments:
       - [0x7FC0, c, code_7FC0] #DONE
       - [0x7FF0, c, code_7FF0]
       - [0x9130, c, code_9130] #DONE
-      - [0x9860, c, code_9860] #done
+      - [0x9860, c, code_9860] #DONE
       - [0x9B70, c, code_9B70]
       - [0x9C10, c, code_9C10]
       - [0x9DB0, c, code_9DB0]
-      - [0xA490, c, code_A490]
+      - [0xA490, c, code_A490] #DONE
   - name: data
     dir: GV
     type: code
@@ -111,4 +111,5 @@ segments:
       - [0x0000B5B0, .rodata, code_9130]
       - [0x0000B5D0, .rodata, code_9860]
       - [0x0000B610, bin, gv_data_B610]
+      - [0x0000B620, .rodata, code_A490]
   - [0x0000B630]

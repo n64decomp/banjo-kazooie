@@ -2,8 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-void func_8034E71C(void *, s32, f32);
-
 typedef struct {
     u8 *unk0;
     u8 unk4[2];

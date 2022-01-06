@@ -453,6 +453,15 @@ int  func_803391A4(Gfx**, Mtx**, f32 [3], f32[3], f32, f32*, BKModelBin*);
 void func_8033A280(f32);
 
 void func_80346C10(enum bs_e *retVal, enum bs_e fail_state, enum bs_e success_state, enum item_e item_id, int use_item);
+void func_80347A14(s32);
+void func_8034A174(struct5Bs *this, s32 indx,f32 dst[3]);
+void func_8034DC08(void *, f32 (*)[3], f32(*)[3], f32, s32);
+void func_8034DDF0(void *, f32 (*)[3], f32 (*)[3], f32, s32);
+void func_8034DE60(s32, f32, f32, f32, s32);
+void func_8034DFB0(s32, s32(*)[4], s32(*)[4], f32);
+void func_8034E1A4(void *, s32, f32, f32);
+void func_8034E71C(void *, s32, f32);
+void func_8034E7B8(void *, s32, f32, s32, f32);
 
 void func_80352CF4(f32 *, f32 *, f32, f32);
 
@@ -473,20 +482,16 @@ Actor *func_80325888(ActorMarker *, Gfx**, Mtx**, Vtx **);
 
 Actor *func_80325340(ActorMarker *, Gfx **, Mtx **, Vtx **);
 void func_8032AA58(Actor *, f32);
-void func_8034DDF0(void *, f32 (*)[3], f32 (*)[3], f32, s32);
 void func_80324E38(f32, s32);
-void func_8034E1A4(void *, s32, f32, f32);
 void func_80324C88(f32, enum sfx_e, f32, s32);
 f32 func_80256064(f32 [3], f32 [3]);
 void func_80324E60(f32, s32);
 void func_80324E88(f32);
-void func_8034DFB0(s32, s32(*)[4], s32(*)[4], f32);
 int actor_animationIsAt(Actor*, f32);
 
 void func_80250E94(f32, f32, f32, f32, f32, f32);
 
 
-void func_8034DC08(void *, f32 (*)[3], f32(*)[3], f32, s32);
 void func_802C8F70(f32);
 void func_802F9DB8(s32, f32, f32, f32);
 void func_802F9F80(s32, f32, f32, f32);
@@ -509,13 +514,12 @@ void mapSpecificFlags_set(s32, s32);
 struct0 *func_8031B9D8(void);
 
 extern int  func_80259808(f32);
-void func_8034A174(struct5Bs *this, s32 indx,f32 dst[3]);
 void actor_playAnimationOnce(Actor *);
 void actor_loopAnimation(Actor *);
 
 /* used in fight */
 void func_80326224(Actor *this);
-void func_8034DE60(s32, f32, f32, f32, s32);
+
 void func_802F9FD0(s32, f32, f32, f32);
 void func_80324D54(f32, enum sfx_e, f32, s32, f32 (*)[3], f32, f32);
 
@@ -529,7 +533,6 @@ void func_802C3C88(void (*)(ActorMarker *), ActorMarker *);
 void func_802FAD64(enum item_e);
 void func_80304D68(s16 *, f32[3]);
 int func_80311480(s32 text_id, s32 arg1, f32 *pos, ActorMarker *marker, void(*callback)(ActorMarker *, enum asset_e, s32), void(*arg5)(ActorMarker *, enum asset_e, s32));
-void func_80347A14(s32);
 void ability_unlock(enum ability_e);
 
 extern void func_802EE278(Actor *, s32, s32, s32, f32, f32);
