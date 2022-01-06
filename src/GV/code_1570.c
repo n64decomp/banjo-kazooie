@@ -19,7 +19,7 @@ ActorInfo D_80390CB0 = { MARKER_BF_GOBI_2, ACTOR_131_GOBI_2, ASSET_3E0_MODEL_GOB
     { 0x0, 0x0, 0x5, 0x33}, 0.0f, { 0x0, 0x0, 0x0, 0x0}
 };
 f32 D_80390CD4[3] = {1475.0f, 442.0f, 8870.0f};
-f32 D_80390CE0[3] = {1150.0f, 1150.0f, 9200.0f}; //jiggy spawn position
+f32 chgobi2_jiggy_position[3] = {1150.0f, 1150.0f, 9200.0f}; //jiggy spawn position
 f32 D_80390CEC[3] = {1145.0f, 443.0f, 9197.0f};
 
 /* .bss */
@@ -35,7 +35,7 @@ void func_80387984(ActorMarker *this){
 }
 
 void __chgobi2_spawnJIggy(void){
-    jiggySpawn(JIGGY_45_GV_GOBI_2, D_80390CE0);
+    jiggySpawn(JIGGY_45_GV_GOBI_2, chgobi2_jiggy_position);
 }
 
 void func_803879D4(ActorMarker *this_marker){

@@ -13,7 +13,6 @@ extern f32 func_802D6E4C(Actor *);
 extern void func_80294AE8(f32);
 extern f32 func_802CA748(Actor *);
 extern int func_80259254(f32 vec[3], f32 x, f32 z, f32 val);
-extern void func_80324DBC(f32, s32, s32, s32, s32, s32, s32);
 extern void func_802EE354(Actor *, s32, s32, s32, f32, f32, f32, f32 arg8[3], s32, f32 arg10[2]);
 extern void func_802D6264(f32, s32, s32, s32, s32, s32);
 extern void func_8035644C(s32);

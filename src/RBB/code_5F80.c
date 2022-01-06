@@ -6,7 +6,6 @@ extern f32 func_80335684(void *);
 extern void func_803253A0(Actor *);
 extern void func_80325794(ActorMarker *);
 extern void func_8030E394(u8);
-extern void func_80324DBC(f32, s32, s32, f32 (*)[3], ActorMarker *, void *, void *);
 extern void func_80326310(Actor *);
 extern int func_803342AC(f32 (*)[3], f32(*)[3], f32);
 extern void particleEmitter_setModel(ParticleEmitter *, s32);
