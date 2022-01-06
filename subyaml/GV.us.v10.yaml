@@ -52,6 +52,7 @@ segments:
       - [0x7060, c, code_7060] #DONE
       - [0x7530, c, code_7530] #DONE
       - [0x7D50, c, code_7D50]
+      - [0x7DB0, c, code_7DB0]
       - [0x7FC0, c, code_7FC0] #DONE
       - [0x7FF0, c, code_7FF0]
       - [0x9130, c, code_9130] #DONE
@@ -88,7 +89,7 @@ segments:
       - [0x0000AE70, .data, code_6F80]
       - [0x0000AEA0, .data, code_7060]
       - [0x0000AEF0, .data, code_7530]
-      - [0x0000AF50, .data, code_7D50]
+      - [0x0000AF50, .data, code_7DB0]
       - [0x0000AF90, .data, code_7FC0]
       - [0x0000AFF0, bin, gv_data_AFF0]
       - [0x0000B1D0, .data, code_9130]
