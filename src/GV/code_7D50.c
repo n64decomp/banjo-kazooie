@@ -2,15 +2,26 @@
 #include "functions.h"
 #include "variables.h"
 
-extern s32 D_80391AB8;
+struct {
+    s32 unk0;
+    u8 pad4[4];
+    s32 unk8;
+}D_80391AB0;
 
 /* .code */
-#pragma GLOBAL_ASM("asm/nonmatchings/GV/code_7D50/func_8038E140.s")
+void func_8038E140(void){
+    D_80391AB0.unk0++;
+    func_8025A6EC(COMUSIC_2B_DING_B, 26000);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/GV/code_7D50/func_8038E178.s")
+s32 func_8038E178(void){
+    return D_80391AB0.unk0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/GV/code_7D50/func_8038E184.s")
+s32 func_8038E184(void){
+    return 5;
+}
 
 void func_8038E18C(void){
-    D_80391AB8 = TRUE;
+    D_80391AB0.unk8 = TRUE;
 }
