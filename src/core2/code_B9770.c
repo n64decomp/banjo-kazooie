@@ -17,6 +17,24 @@ f32 func_80340700(f32, f32, f32);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B9770/func_80340760.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B9770/func_80340A4C.s")
+// f32 func_80340A4C(f32 arg0, s32 arg1, f32 *arg2){
+//     s32 tmp_v1;
+//     s32 sp30;
+//     f32 sp24[3];
+//     f32 f20;
+
+//     sp30 = arg1 - 3;
+//     f20 = func_80340700( arg0, 0.0f, 1.0f)*sp30;
+//     tmp_v1 = f20;
+//     arg1 -= 4;
+//     tmp_v1 = MIN(tmp_v1, arg1);
+//     arg2 += tmp_v1;
+//     f20 -= tmp_v1;
+//     sp24[2] = -0.5*arg2[0] +  1.5*arg2[1] + -1.5*arg2[2] +  0.5*arg2[3];
+//     sp24[1] =  1.0*arg2[0] + -2.5*arg2[1] +  2.0*arg2[2] + -0.5*arg2[3];
+//     sp24[0] = -0.5*arg2[0] +  0.5*arg2[2];
+//     return f20*(sp24[0] + f20*(sp24[1] + f20*sp24[2])) + (f64)arg2[1];
+// }
 
 void func_80340BE4(f32 arg0, s32 arg1, s32 arg2, s32 arg3, f32 * arg4, f32 arg5[3]);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B9770/func_80340BE4.s")

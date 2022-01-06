@@ -1,6 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "animation.h"
 
 extern void func_8024128C(Mtx *, s32, f32, f32, f32, f32, f32, f32, f32, f32, f32);
 extern void func_802ED52C(s32, f32[3], f32);
@@ -1204,7 +1205,9 @@ void func_8033A308(f32 arg0[3]){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A750.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A8F0.s")
+void func_8033A8F0(Struct_B1400 **arg0, s32 arg1, f32 arg2[4]){
+    func_80345250(*arg0 + arg1, arg2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A928.s")
 

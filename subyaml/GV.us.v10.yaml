@@ -31,7 +31,7 @@ segments:
       - [0x0, c, code_0] #DONE
       - [0x230, c, code_230]
       - [0xD60, c, code_D60]
-      - [0x1570, c, code_1570]
+      - [0x1570, c, code_1570] #DONE
       - [0x1E80, c, code_1E80]
       - [0x25B0, c, code_25B0] #DONE
       - [0x2730, c, code_2730] #DONE
@@ -68,6 +68,8 @@ segments:
     subsegments:
       - [0x0000A7E0, .data, code_0]
       - [0x0000A830, bin, gv_data_A830]
+      - [0x0000A8C0, .data, code_1570]
+      - [0x0000A910, bin, gv_data_A910]
       - [0x0000A940, .data, code_25B0]
       - [0x0000A970, .data, code_2730]
       - [0x0000A9A0, .data, code_2B80]
@@ -86,7 +88,7 @@ segments:
       - [0x0000AE70, .data, code_6F80]
       - [0x0000AEA0, .data, code_7060]
       - [0x0000AEF0, .data, code_7530]
-      - [0x0000AF50, bin, gv_data_AF50]
+      - [0x0000AF50, .data, code_7D50]
       - [0x0000AF90, .data, code_7FC0]
       - [0x0000AFF0, bin, gv_data_AFF0]
       - [0x0000B1D0, .data, code_9130]
@@ -94,6 +96,8 @@ segments:
       - [0x0000B260, bin, gv_data_B260]
       - [0x0000B300, bin, gv_data_B300] # .rodata, code_230]
       - [0x0000B310, bin, gv_data_B310]
+      - [0x0000B330, .rodata, code_1570]
+      - [0x0000B350, bin, gv_data_B350]
       - [0x0000B390, .rodata, code_2730]
       - [0x0000B3A0, bin, gv_data_B3A0]
       - [0x0000B3B0, .rodata, code_3BB0]

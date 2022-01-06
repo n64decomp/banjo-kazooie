@@ -210,6 +210,7 @@ Actor * spawn_child_actor(enum actor_e id, Actor ** parent);
 
 
 void func_80324D2C(f32, enum comusic_e);
+extern void func_80324DBC(f32, s32, s32, f32 f32[3], ActorMarker *, void (*)(ActorMarker *, s32, s32), void(*)(ActorMarker *));
 void particleEmitter_setSprite(ParticleEmitter *, enum asset_e);
 void particleEmitter_setPosition(ParticleEmitter *, f32[3]);
 ParticleEmitter *func_802F0BD0(u32);
@@ -447,8 +448,9 @@ BKModelBin *func_80330B1C(ActorMarker *marker);
 void func_8033568C(void *, f32 *, f32*);
 void func_80335924(void *, enum asset_e anim_id, f32, f32);
 void func_80335A74(void *, f32);
+extern void func_80335A94(void *, f32, s32);
 int  func_803391A4(Gfx**, Mtx**, f32 [3], f32[3], f32, f32*, BKModelBin*);
-
+void func_8033A280(f32);
 
 void func_80346C10(enum bs_e *retVal, enum bs_e fail_state, enum bs_e success_state, enum item_e item_id, int use_item);
 

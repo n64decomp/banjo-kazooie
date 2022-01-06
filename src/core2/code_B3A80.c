@@ -3,12 +3,17 @@
 #include "variables.h"
 
 #include "assets.h"
+#include "animation.h"
 
+extern f32 func_80340A4C(f32, s32, f32 *);
 
+extern f32 D_803709E0[];
 extern u8 D_80370A1C;
 extern u8 D_80370A14; //assetCache_size;
 extern u8 D_80370A18;
 extern s32 D_80370A10;
+
+extern f32 D_80378F50;
 
 extern s32 D_80383CB0;
 extern AssetROMHead *D_80383CC0;
@@ -26,25 +31,97 @@ struct {
 }D_80383CE0;
 s32 assetcache_release(void * arg0);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B3A80/func_8033AA10.s")
+f32 func_8033ABA0(AnimationFile *anim_file, f32 arg1);
+f32 func_8033AC38(AnimationFile *anim_file, AnimationFileElement *arg1, f32 arg2);
+s32 func_8033AC0C(AnimationFile *this);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B3A80/func_8033AA50.s")
+/* .core2 */
+f32 func_8033AA10(AnimationFile *this, s32 arg1){
+    if(arg1 == this->unk2)
+        return D_80378F50;
+    return (f32)(arg1 - this->unk0)/(f32)(this->unk2 - this->unk0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B3A80/func_8033ABA0.s")
+void func_8033AA50(AnimationFile *anim_file, f32 arg1, s32 arg2){
+    s32 tmp_s1;
+    int i;
+    f32 tmp_f22;
+    AnimationFileElement *tmp_s0;
+    f32 sp54[3][3];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B3A80/func_8033ABCC.s")
+    tmp_f22 = func_8033ABA0(anim_file, arg1);
+    tmp_s0 = (s32)anim_file + sizeof(AnimationFile);
+    tmp_s1 = 0;
+    for(i = 0; i < anim_file->elem_cnt; i++){//L8033AAB8
+        if(tmp_s0->unk0_15 != tmp_s1){
+            if(tmp_s1)
+                func_8033AFB8(arg2, tmp_s1, sp54);
+            tmp_s1 = tmp_s0->unk0_15;
+            sp54[0][0] = sp54[0][1] = sp54[0][2] = 0.0f;
+            sp54[1][0] = sp54[1][1] = sp54[1][2] = 1.0f;
+            sp54[2][0] = sp54[2][1] = sp54[2][2] = 0.0f;
+        }
+        sp54[0][tmp_s0->unk0_3] = func_8033AC38(anim_file, tmp_s0, tmp_f22);
+        tmp_s0 += tmp_s0->data_cnt;
+        tmp_s0++;
+    }//L8033AB60
+    func_8033AFB8(arg2, tmp_s1, sp54);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B3A80/func_8033AC0C.s")
+f32 func_8033ABA0(AnimationFile *this, f32 arg1){
+    return this->unk0 + arg1*(this->unk2 - this->unk0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B3A80/func_8033AC14.s")
+f32 func_8033ABCC(AnimationFile *this){
+    f32 tmp = func_8033AC0C(this);
+    return (tmp - 1.0)/tmp;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B3A80/func_8033AC1C.s")
+s32 func_8033AC0C(AnimationFile *this){
+    return this->unk2;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B3A80/func_8033AC30.s")
+s32 func_8033AC14(AnimationFile *this){
+    return this->unk0;
+}
+
+s32 func_8033AC1C(AnimationFile *this){
+    return this->unk2 - this->unk0 + 1;
+}
+
+s32 func_8033AC30(AnimationFile *this){
+    return this->elem_cnt;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B3A80/func_8033AC38.s")
+// f32 func_8033AC38(AnimationFile *this, AnimationFileElement *elem, f32 arg2){
+//     f32 sp38[4];
+//     AnimationFileData *tmp_a0;
+//     int i;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B3A80/func_8033AFB8.s")
+//     if((s32)arg2 < elem->data[0].unk0_13){
+//         sp38[0] = sp38[1] = D_803709E0[elem->unk0_3];
+//         sp38[2] = (f32)elem->data[0].unk2/64;
+//         sp38[3] = (elem->data[0].unk0_15 == 1 && elem->unk2 >= 2) ? (f32)elem->data[1].unk2/64 : sp38[2];
+//         return func_80340A4C((arg2 - this->unk0)/(elem->data[0].unk0_13 - this->unk0), 4, sp38);
+//     }////L8033AD30
+
+//     tmp_a0 = &elem->data[elem->unk2];
+//     if(!((s32)arg2 < tmp_a0[-1].unk0_13)){
+//         sp38[1] = (f32)tmp_a0->unk2/ 64;
+//         sp38[0] = (tmp_a0->unk0_15 == 1 && tmp_a0->unk2 >= 2) ? (f32)elem->data[-1].unk2/64 : sp38[1];
+//         sp38[2] = sp38[3] = sp38[1];
+//         return func_80340A4C(64.0f - (f32)tmp_a0->unk0_13, 4, sp38);
+//     }//L8033AE0C
+// }
+
+func_8033AFB8(Struct_B1400 *arg0, s32 arg1, f32 arg2[3][3]){
+    f32 sp18[4]; 
+    func_80345CD4(sp18, arg2[0]);
+    func_8033A8F0(arg0, arg1, sp18);
+    func_8033A928(arg0, arg1, arg2[1]);
+    func_8033A968(arg0, arg1, arg2[2]);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B3A80/func_8033B020.s")
 

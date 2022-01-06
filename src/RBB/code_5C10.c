@@ -2,7 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void func_80324DBC(f32, s32, s32, f32 (*)[3], ActorMarker *, void (*)(ActorMarker *, s32, s32), void(*)(ActorMarker *));
 
 void func_8038C0FC(Actor *this, s32 new_state);
 
