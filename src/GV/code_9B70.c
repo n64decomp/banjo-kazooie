@@ -3,8 +3,18 @@
 #include "variables.h"
 
 
-#pragma GLOBAL_ASM("asm/nonmatchings/GV/code_9B70/func_8038FF60.s")
+void func_8038FF60(void){}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/GV/code_9B70/func_8038FF68.s")
+void func_8038FF68(void){
+    
+    if(map_get() != MAP_12_GV_GOBIS_VALLEY) return;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/GV/code_9B70/func_8038FFF4.s")
+    if(jiggyscore_isCollected(JIGGY_42_GV_WATER_PYRAMID)){
+        func_8034DE60(func_8034C528(0x190), 0.0f, 270.0f, 0.0f, 1);
+    }
+    else{
+        func_8034E71C(func_8034C5AC(0x130), -1500, 0.0f);
+    }
+}
+
+void func_8038FFF4(void){}

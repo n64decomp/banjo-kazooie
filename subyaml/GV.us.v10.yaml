@@ -56,7 +56,7 @@ segments:
       - [0x7FF0, c, code_7FF0]
       - [0x9130, c, code_9130] #DONE
       - [0x9860, c, code_9860] #DONE
-      - [0x9B70, c, code_9B70]
+      - [0x9B70, c, code_9B70] #DONE
       - [0x9C10, c, code_9C10] #DONE
       - [0x9DB0, c, code_9DB0] #DONE
       - [0xA490, c, code_A490] #DONE
