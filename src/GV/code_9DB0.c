@@ -11,7 +11,7 @@ typedef struct {
 }Struct_GV_9DB0_1;
 
 /* .data */
-extern Struct_GV_9DB0_1 D_80391650[] = {
+Struct_GV_9DB0_1 D_80391650[] = {
     {0x190, 1, 0 },
     {0x191, 5, 0 },
     {0x192, 3, 0 },
@@ -30,11 +30,7 @@ extern Struct_GV_9DB0_1 D_80391650[] = {
     {0x19F, 7, 0 },
     {0x000, 0, 0 },
 };
-f32 D_803916D8[3];
-
-/*.rodata */
-extern f32 D_80391A00;
-extern f64 D_80391A08;
+f32 D_803916D8[3] = {0.0f, 100.0f, 0.0f};
 
 /*.bss */
 extern struct {
@@ -105,7 +101,7 @@ void func_80390270(s32 next_state){
             }
             func_80324E38(0.5f, 3);
             func_80324E60(1.5f, 2);
-            timedFunc_set_0(D_80391A00, func_80390248);
+            timedFunc_set_0(1.7f, func_80390248);
             func_80324E88(4.0f);
             func_80324E38(4.0f, 0);
 
@@ -143,12 +139,6 @@ void func_8039040C(void){
     }
 }
 
-
-
-#ifndef NONMATCHING
-//matchingGame_update
-#pragma GLOBAL_ASM("asm/nonmatchings/GV/code_9DB0/func_803904A8.s")
-#else
 void func_803904A8(void){
     f32 sp5C;
     f32 sp50[3];
@@ -156,6 +146,7 @@ void func_803904A8(void){
     s32 sp48;
     Struct_GV_9DB0_1 * sp44;
     f32 sp38[3];
+    f32 pad34;
 
     sp5C = time_getDelta();
     if(!D_80391AE0.state_9)
@@ -167,7 +158,7 @@ void func_803904A8(void){
 
     if(D_80391AE0.tile1_0 == NULL || D_80391AE0.tile2_4 == NULL){
         if( player_getActiveHitbox(0) == HITBOX_1_BEAK_BUSTER && func_8028F20C()){
-            func_8028E9A4(sp50);
+            player_getPosition(sp50);
             sp4C = func_8033F3E8(func_80309744(0), sp50, 0x190, 0x1a0);
             if(sp4C){
                 sp48 = func_8034C528(sp4C);
@@ -195,7 +186,7 @@ void func_803904A8(void){
     if(D_80391AE0.tile1_0 && D_80391AE0.tile2_4){
         if( func_8034DC78(D_80391AE0.tile1_0->unk4) == 1 && func_8034DC78(D_80391AE0.tile2_4->unk4) == 1){
             if(0.0f < D_80391AE0.unkC){
-                if(D_80391A08 < D_80391AE0.unkC && D_80391AE0.unkC - sp5C <= D_80391A08){
+                if(0.6 < D_80391AE0.unkC && D_80391AE0.unkC - sp5C <= 0.6){
                     func_8025A6EC(COMUSIC_2C_BUZZER, 0x7fff);
                 }//L803906AC
                 D_80391AE0.unkC -= sp5C;
@@ -204,13 +195,12 @@ void func_803904A8(void){
                     func_8034E25C(D_80391AE0.tile1_0->unk4, 0);
                     func_8034E120(D_80391AE0.tile1_0->unk4, 180.0f, 0.0f, 0.5f, 2);
                     func_8034E120(D_80391AE0.tile2_4->unk4, 180.0f, 0.0f, 0.5f, 2);
-                    func_8028E9A4(sp38);
+                    player_getPosition(sp38);
                     sp48  = func_8033F3E8(func_80309744(0), sp38, 0x190, 0x1a0);
                     if(sp48 == D_80391AE0.tile1_0->unk0 || sp48 == D_80391AE0.tile2_4->unk0){
                         func_8028F66C(0x14);
                     }
-                    D_80391AE0.tile2_4 = NULL;
-                    D_80391AE0.tile1_0 = NULL;
+                    D_80391AE0.tile1_0 = D_80391AE0.tile2_4 = NULL;
                 }
             }//L80390788
             else{
@@ -222,8 +212,7 @@ void func_803904A8(void){
                     else{
                         func_8025A6EC(COMUSIC_2B_DING_B, 0x7fff);
                     }
-                    D_80391AE0.tile2_4 = NULL;
-                    D_80391AE0.tile1_0 = NULL;
+                    D_80391AE0.tile1_0 = D_80391AE0.tile2_4 = NULL;
                 }//L803907E4
                 else{
                     D_80391AE0.unkC = 1.0f;
@@ -241,10 +230,9 @@ void func_803904A8(void){
 
     if(D_80391AE0.state_9 == 2){
         if(D_80391AE0.tile1_0 == NULL || D_80391AE0.tile2_4 == NULL){
-            if(func_80345F74(ITEM_6_HOURGLASS)){
+            if(item_empty(ITEM_6_HOURGLASS)){
                 func_80390270(3);
             }
         }
     }
 }
-#endif
