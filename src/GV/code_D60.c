@@ -2,14 +2,15 @@
 #include "functions.h"
 #include "variables.h"
 
+extern func_802EBA98(s32, f32[3], s32, f32, s32, f32[3], f32, f32[3]);
+
 typedef struct {
-    u8 unk0;
-    u8 unk1;
+    u8 unk0[2];
     //u8 pad2[2];
     f32 unk4;
-    u8 pad8[4];
+    f32 unk8;
     f32 unkC;
-    u8 pad10[4];
+    f32 unk10;
     f32 unk14;
 }ActorLocal_GV_D60;
 
@@ -17,30 +18,26 @@ void func_80387408(Actor *this);
 Actor *func_803872F0(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 
 /* .data */
-extern ActorInfo D_80390C80 = { MARKER_BC_GOBI_1, ACTOR_12E_GOBI_1, ASSET_3E0_MODEL_GOBI, 
+ActorInfo D_80390C80 = { MARKER_BC_GOBI_1, ACTOR_12E_GOBI_1, ASSET_3E0_MODEL_GOBI, 
     0, NULL, 
     NULL, func_80387408, func_803872F0, 
     { 0x0, 0x0, 0x5, 0x33}, 0.0f, { 0x0, 0x0, 0x0, 0x0}
 };
 
-/* .rodata */
-extern f32 D_80391710;
-extern f32 D_80391714;
-
 /* .bss */
-extern u8 D_80391A40;
-extern u8 D_80391A41;
+struct {
+    u8 unk0;
+    u8 unk1;
+}D_80391A40;
+
 
 /* .code */
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/GV/code_D60/func_80387150.s")
-#else
 void func_80387150(Actor *this, s32 next_state){
     ActorLocal_GV_D60 *local = (ActorLocal_GV_D60 *)&this->local;
     
     this->state = next_state;
-    D_80391A40 = FALSE;
-    D_80391A41 = FALSE;
+    D_80391A40.unk0 = FALSE;
+    D_80391A40.unk1 = FALSE;
 
     if(this->state == 1){
         func_80335924(this->unk148, 0xd9, 0.5f, 4.0f);
@@ -49,15 +46,15 @@ void func_80387150(Actor *this, s32 next_state){
 
     if(this->state == 2){
         func_80335924(this->unk148, 0xda, 1.0f, 5.0f);
-        local->unkC = D_80391710;
-        D_80391A40 = TRUE;
+        local->unkC = 0.9f;
+        D_80391A40.unk0 = TRUE;
     }
 
     if(this->state == 3){
         func_8028F918(2);
         func_80335924(this->unk148, 0xf7, 1.0f, 5.33f);
-        local->unk14 = D_80391714;
-        D_80391A41 = TRUE;
+        local->unk14 = 0.01f;
+        D_80391A40.unk1 = TRUE;
     }
 
     if(this->state == 4){
@@ -69,7 +66,6 @@ void func_80387150(Actor *this, s32 next_state){
         func_80335924(this->unk148, 0x241, 0.2f, 0.5f);
     }
 }
-#endif
 
 Actor *func_803872F0(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     Actor *this = marker_getActor(this_marker);
@@ -82,18 +78,18 @@ Actor *func_803872F0(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 }
 
 s32 func_80387354(void){
-    return D_80391A40;
+    return D_80391A40.unk0;
 }
 
 s32 func_80387360(void){
-    return D_80391A41;
+    return D_80391A40.unk1;
 }
 
 void func_8038736C(Actor *this){
     ActorLocal_GV_D60 *local = (ActorLocal_GV_D60 *)&this->local;
     func_80387150(this, 0);
-    func_8030DA44(local->unk0);
-    func_8030DA44(local->unk1);
+    func_8030DA44(local->unk0[0]);
+    func_8030DA44(local->unk0[1]);
 }
 
 void func_803873B0(ActorMarker *this_marker, ActorMarker *other_marker){
@@ -105,4 +101,132 @@ void func_803873B0(ActorMarker *this_marker, ActorMarker *other_marker){
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/GV/code_D60/func_80387408.s")
+void func_80387408(Actor *this){
+    ActorMarker *marker = this->marker;
+    ActorLocal_GV_D60 *local = (ActorLocal_GV_D60 *)&this->local;
+    s32 sp6C = 0;
+    f32 tick; //sp68;
+    int i;
+    s32 tmp_s1;
+    f32 sp54[3];
+    f32 sp48[3];
+
+    tick = time_getDelta();
+    if(!this->unk16C_4){
+        this->unk16C_4 = TRUE;
+        func_803300A8(this->marker, func_803873B0, NULL, NULL);
+        marker->unk30 = func_8038736C;
+        marker->propPtr->unk8_3 = TRUE;
+        marker->collidable = TRUE;
+        D_80391A40.unk0 = 0;
+        D_80391A40.unk1 = 0;
+        local->unk0[0] = func_8030D90C();
+        local->unk0[1] = func_8030D90C();
+        local->unk8 = 0.0f;
+        local->unkC = 0.0f;
+        local->unk10 = 0.0f;
+        local->unk14 = 0.0f;
+        this->unk1C[0] = 0.0f;
+        this->unk1C[1] = 0.0f;
+        func_80387150(this, 1);
+        if(jiggyscore_80320F7C(JIGGY_44_GV_GOBI_1) && ! func_803203FC(1)){
+            marker_despawn(this->marker);
+        }
+        return;
+    }//L80387514
+
+    if(func_8025773C(&local->unk8, tick))
+        sp6C = 5;
+
+    if(func_8025773C(&local->unkC, tick))
+        FUNC_8030E8B4(SFX_84_GOBI_CRYING, 1000, 0x398, this->position, 1500, 2500);
+
+    if(func_8025773C(&local->unk10, tick)){
+        for(i = 0; i < 2; i++){
+            func_8030DA80(local->unk0[i], SFX_3F9_UNKNOWN);
+            func_8030DD14(local->unk0[i], 3);
+            func_8030DABC(local->unk0[i], 32000);
+            func_8030E2C4(local->unk0[i]);
+        }
+    }
+
+    if(func_8025773C(&local->unk14, tick)){
+        local->unk10 = 0.75f;
+        local->unk8 = 7.5f;
+        func_80324E60(0.5f, 0xa);
+        func_80324C88(1.0f, SFX_84_GOBI_CRYING, 1.1f, 30000);
+        func_80324C88(2.0f, SFX_84_GOBI_CRYING, 1.3f, 30000);
+        func_80324C88(2.5f, SFX_74_WALKING_NOISE_5, 0.5f, 30000);
+        func_80324DBC(3.0f, 0xa74, 0x2a, this->position, NULL, NULL, NULL);
+        func_80324C88(5.0f, SFX_2E_BIGBUTT_RUNNING, 1.0f, 20000);
+        func_80324C88(5.6f, SFX_2E_BIGBUTT_RUNNING, 1.0f, 20000);
+        func_80324C88(6.5f, SFX_2E_BIGBUTT_RUNNING, 1.0f, 20000);
+        func_80324E88(7.6f);
+    }
+
+    if(this->state == 1 || this->state == 2){
+        if(func_80388D78())
+            sp6C = 3;
+    }
+
+    if(this->state == 2){
+        if(func_80335794(this->unk148) > 0)
+            sp6C = 1;
+    }
+
+    if(this->state == 1 || this->state == 2){
+        if( !this->unk138_24
+            && func_80329530(this, 250)
+            && !func_80329530(this, 80)
+            && func_8028F2A0()
+            && func_80311480(0xa73, 0, NULL, NULL, NULL, NULL)
+        ){
+            this->unk138_24 = 1;
+        }
+    }//L803877A4
+
+    if(this->state == 1){
+        if(this->unk1C[0] != 0.0f && this->unk1C[1] == 0.0f ){
+            sp6C = 6;
+        }//L803877F0
+        else{
+            if(func_8025773C(&local->unk4, tick))
+                sp6C = 2;
+        }
+    }//L80387808
+
+    if(this->state == 3){
+        if(func_80335794(this->unk148) > 0)
+            sp6C = 4;
+    }//L80387830
+
+    if(this->state == 4){
+        func_80326224(this);
+        tmp_s1 = func_8033A12C(func_80330B1C(this->marker));
+        if(tmp_s1){
+            player_getPosition(sp54);
+            sp54[1] += 50.0f;
+            if(func_802EBA98(tmp_s1, this->position, 0, 1.0f, 0, sp54, 40.0f, sp48)){
+                func_8028F428(2, this->marker);
+            }
+        }
+    }
+
+    if(this->state == 5){
+        if(func_803250DC()){
+            func_8028F918(0);
+            marker_despawn(this->marker);
+        }
+    }
+
+    if(this->state == 6){
+        if(func_80335794(this->unk148) > 0)
+            sp6C = 1;
+    }
+
+    this->unk1C[1] = this->unk1C[0];
+    this->unk1C[0] = 0.0f;
+
+    if(sp6C)
+        func_80387150(this, sp6C);
+}

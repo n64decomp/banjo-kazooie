@@ -17,28 +17,62 @@ void func_803868C0(Actor *this);
 Actor *func_80386E70(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 
 /* .data */
-// 0000 A830: 00 05 00 06 00 07 00 08  00 00 00 00 00 00 00 00
-// 0000 A840: 00 00 00 00 00 00 00 00  00 00 00 00 00 00 
-extern s16 D_80390C1E[5] = {0};
-extern ActorMarker *D_80390C28[5] = {NULL};
-extern ActorAnimationInfo D_80390C3C[] = {
+s16 D_80390C20[4] = {5, 6, 7, 8};
+ActorMarker *D_80390C28[5] = {NULL};
+ActorAnimationInfo D_80390C3C[] = {
+    {0, 0.0f},
+    {0, 0.0f},
     {ASSET_ED_ANIM_ANCIENT_ONE, 2.0f},
     {ASSET_ED_ANIM_ANCIENT_ONE, 33000000.f}
 };
 
-extern ActorInfo D_80390C5C = { MARKER_F4_ANCIENT_ONE, ACTOR_147_ANCIENT_ONE, ASSET_3E8_MODEL_ANCIENT_ONE, 
+ActorInfo D_80390C5C = { MARKER_F4_ANCIENT_ONE, ACTOR_147_ANCIENT_ONE, ASSET_3E8_MODEL_ANCIENT_ONE, 
     0x1, D_80390C3C, 
     func_803868C0, func_80326224, func_80386E70, 
     { 0x0, 0x0, 0x1, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}
 };
 
-/* .rodata */
-extern f32 D_803916F0;
-extern f32 D_803916F4;
-extern f32 D_803916F8;
-
 /* .code */
-#pragma GLOBAL_ASM("asm/nonmatchings/GV/code_230/func_80386620.s")
+void func_80386620(Actor *this){
+    int i;
+    s32 *temp_v0;
+    s32 temp_a0;
+    s32 temp_a1;
+    Actor *temp_v0_3;
+    s32 phi_s2;
+    s32 phi_s1;
+    s32 phi_s3;
+
+    for(i = 0; i <5; i++){
+        if(D_80390C28[i] == NULL)
+            return;
+    }
+
+     D_80390C20[0] = 5;
+     D_80390C20[1] = 6;
+     D_80390C20[2] = 7;
+     D_80390C20[3] = 8;
+
+    phi_s3 = (randf() * 1.0737418e9f);
+    phi_s2 = 1;
+    phi_s1 = 0;
+    while(phi_s2 != 0x40000000){
+        if ((phi_s3 & phi_s2) != 0) {
+            temp_a1 = D_80390C20[phi_s1];
+            D_80390C20[phi_s1] = D_80390C20[phi_s1 + 1];
+            D_80390C20[phi_s1 + 1] = temp_a1;
+            temp_a0 = D_80390C28[phi_s1 + 1];
+            D_80390C28[phi_s1 + 1] = D_80390C28[phi_s1 + 2];
+            D_80390C28[phi_s1 + 2] = temp_a0;
+            temp_v0_3 = marker_getActor(D_80390C28[phi_s1 + 1]);
+            temp_v0_3->unkF4_8 = phi_s1 + 2;
+            temp_v0_3 = marker_getActor(D_80390C28[phi_s1 + 2]);
+            temp_v0_3->unkF4_8 = phi_s1 + 3;
+        }
+        phi_s1 = (phi_s1 == 2) ? 0 : phi_s1 + 1;
+        phi_s2 <<= 1;
+    };
+}
 
 void func_8038678C(void){
     func_80244BB0(3, 0x85, 0x7ff8, 1.0f);
@@ -69,14 +103,11 @@ void func_80386850(ActorMarker *caller_marker, enum asset_e text_id, s32 arg2){
     }
 }
 
-
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/GV/code_230/func_803868C0.s")
-#else
 void func_803868C0(Actor *this){
     f32 sp44[3];
     s32 sp40;
     s32 sp38;
+    s32 pad;
     f32 sp34;
 
     
@@ -91,8 +122,8 @@ void func_803868C0(Actor *this){
         if(D_80390C28[this->unkF4_8 - 1])
             return;
 
-        ;
-        this->position_y = (LOCAL_GV_230(this)->unk1C = this->position_y) - 1100.0f;
+        LOCAL_GV_230(this)->unk1C = this->position_y;
+        this->position_y -= 1100.0f;
         D_80390C28[this->unkF4_8 - 1] = this->marker;
         if(this->unkF4_8 != 1){
             this->marker->propPtr->unk8_4 = FALSE;
@@ -111,41 +142,41 @@ void func_803868C0(Actor *this){
                 sp40 = (0.0f <= sp44[0]*LOCAL_GV_230(this)->unk0[0] + sp44[1]*LOCAL_GV_230(this)->unk0[1] + sp44[2]*LOCAL_GV_230(this)->unk0[2]) ? 0 : 1;
                 if(LOCAL_GV_230(this)->unk1C <= this->position_y){
                     this->position_y = LOCAL_GV_230(this)->unk1C;
-                    if( (sp40 == (LOCAL_GV_230(this)->unk4_31 ^ 1)) 
-                        && (sp44[0]*sp44[0] + sp44[1]*sp44[1] + sp44[2]*sp44[2]) < (f32)LOCAL_GV_230(this)->unk4_30
-                    ){
-                        func_8025A6EC(COMUSIC_2B_DING_B, 28000);
-                        for(sp38= 7; sp38< 0xC && mapSpecificFlags_get(sp38);sp38++);
-                        mapSpecificFlags_set(sp38, TRUE);
-                        if(sp38== 0xB){
-                            if(!jiggyscore_isCollected(JIGGY_46_GV_ANCIENT_ONES)){
-                                func_80311480(0xA80, 0xE, NULL, this->marker, func_80386850, NULL);
-                            }
-                            else{
-                                func_80386850(this->marker, 0xA80, -1);
-                            }
-                        }//L80386B98
-                        else {   
-                            if(sp38== 7){
+                    if( sp40 == (LOCAL_GV_230(this)->unk4_31 ^ 1)){
+                        if((sp44[0]*sp44[0] + sp44[1]*sp44[1] + sp44[2]*sp44[2]) < (f32)LOCAL_GV_230(this)->unk4_30){
+                            func_8025A6EC(COMUSIC_2B_DING_B, 28000);
+                            for(sp38= 7; sp38< 0xC && mapSpecificFlags_get(sp38);sp38++);
+                            mapSpecificFlags_set(sp38, TRUE);
+                            if(sp38== 0xB){
                                 if(!jiggyscore_isCollected(JIGGY_46_GV_ANCIENT_ONES)){
-                                    func_80311480(0xA7F, 0x4, NULL, NULL, NULL, NULL);
+                                    func_80311480(0xA80, 0xE, NULL, this->marker, func_80386850, NULL);
                                 }
+                                else{
+                                    func_80386850(this->marker, 0xA80, -1);
+                                }
+                            }//L80386B98
+                            else {   
+                                if(sp38== 7){
+                                    if(!jiggyscore_isCollected(JIGGY_46_GV_ANCIENT_ONES)){
+                                        func_80311480(0xA7F, 0x4, NULL, NULL, NULL, NULL);
+                                    }
+                                }
+                                
+                                func_80328B8C(this, 2, 0.0f, 1);
+                                actor_playAnimationOnce(this);
+                                if(this->unkF4_8 < 5){
+                                    D_80390C28[this->unkF4_8]->propPtr->unk8_4 = TRUE;
+                                    func_802BAFE4(D_80390C20[this->unkF4_8 - 1]);
+                                    func_80244BB0(2, 0x86, 0x7ff8, 0.3f);
+                                    timedFunc_set_0(0.45f, func_8038678C);
+                                
+                                }//L80386DB0
                             }
-                            
-                            func_80328B8C(this, 2, 0.0f, 1);
-                            actor_playAnimationOnce(this);
-                            if(this->unkF4_8 < 5){
-                                D_80390C28[this->unkF4_8]->propPtr->unk8_4 = TRUE;
-                                func_802BAFE4(D_80390C1E[this->unkF4_8]);
-                                func_80244BB0(2, 0x86, 0x7ff8, 0.3f);
-                                timedFunc_set_0(0.45f, func_8038678C);
-                            
-                            }//L80386DB0
                         }
                     }
                 }
                 else{//L80386C64
-                    sp38 = func_8023DB5C() & 0xf;
+                    sp38 = func_8023DB5C() & 0xF;
                     sp34 = LOCAL_GV_230(this)->unk1C + 40.0f;
                     this->position_y += 18.0;
                     this->position_x += (sp38 & 1) ? 0x17 : -0x17;
@@ -182,8 +213,55 @@ void func_803868C0(Actor *this){
         }//L80386E60
     }//L80386E60
 }
-#endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/GV/code_230/func_80386E70.s")
+Actor *func_80386E70(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
+    Actor *this = marker_getActor(this_marker);
+    int sp58;
+    s32 sp4C[3];
+    s32 sp40[3];
+    s32 sp34[3];
+    f32 sp28[3];
+    s32 tmp_v0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/GV/code_230/func_80387118.s")
+    sp58 = (this->state == 3) ? 0 : 1;
+    func_8033A45C(3, sp58);
+    func_8033A45C(4, sp58);
+    func_80325888(this_marker, gfx, mtx, vtx);
+    if( !this->initialized && this_marker->unk14_21){
+        func_8034A1B4(func_80329934(), 5, sp4C);
+        func_8034A1B4(func_80329934(), 6, sp40);
+        func_8034A1B4(func_80329934(), 7, sp34);
+        sp4C[1] += 1100;
+        sp40[1] += 1100;
+        sp34[1] += 1100;
+        LOCAL_GV_230(this)->unk0[0] = (sp4C[0] - sp40[0]);
+        LOCAL_GV_230(this)->unk0[1] = (sp4C[1] - sp40[1]);
+        LOCAL_GV_230(this)->unk0[2] = (sp4C[2] - sp40[2]);
+        player_getPosition(sp28);
+
+        sp28[0] -= sp40[0];
+        sp28[1] -= sp40[1];
+        sp28[2] -= sp40[2];
+
+        if(0.0f <= sp28[0] *LOCAL_GV_230(this)->unk0[0] + sp28[1]*LOCAL_GV_230(this)->unk0[1] + sp28[2]*LOCAL_GV_230(this)->unk0[2])
+            LOCAL_GV_230(this)->unk4_31 = FALSE;
+        else
+            LOCAL_GV_230(this)->unk4_31 = TRUE;
+
+        LOCAL_GV_230(this)->unk10[0] = (f32)sp40[0];
+        LOCAL_GV_230(this)->unk10[1] = (f32)sp40[1];
+        LOCAL_GV_230(this)->unk10[2] = (f32)sp40[2];
+        tmp_v0 = (sp34[1]- sp40[1]);
+        LOCAL_GV_230(this)->unk4_30 = (s32)(0.95*(f32)(tmp_v0*tmp_v0));
+        this->initialized = TRUE;
+    }
+    return this;
+}
+
+
+void func_80387118(void){
+    int i;
+    for(i = 0; i < 5; i++){
+        D_80390C28[i] = NULL;
+    }
+}
