@@ -15,7 +15,7 @@ void __chmazectrl_setState(Actor *this, s32 next_state);
 void chmazectrl_update(Actor *this);
 
 /* .data */
-ActorInfo D_803915C0 = { 0x1CD, ACTOR_319_GV_MAZE_CTRL, 0x0,
+ActorInfo D_803915C0 = { MARKER_1CD_GV_MAZE_CTRL, ACTOR_319_GV_MAZE_CTRL, 0x0,
     0, NULL, 
     chmazectrl_update, 0x0, func_80325340, 
     { 0x0, 0x0, 0x0, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}

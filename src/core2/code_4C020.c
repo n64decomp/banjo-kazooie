@@ -657,9 +657,9 @@ int func_802D68B4(void){
 
 //BREAK????
 
-//set_hourglass_timer_minutes
-void func_802D68F0(s32 minutes){
-    func_80346414(ITEM_0_HOURGLASS_TIMER, minutes*60 - 1);
+//set_hourglass_timer_seconds
+void func_802D68F0(s32 seconds){
+    func_80346414(ITEM_0_HOURGLASS_TIMER, seconds*60 - 1);
 }
 
 //hide_hourglass_timer

@@ -5,7 +5,7 @@
 #include "model.h"
 #define MERGE(a, b) a ## b
 
-typedef int unk_type;
+#define UNK_TYPE(t) t
 
 typedef struct{
     f32 x;
