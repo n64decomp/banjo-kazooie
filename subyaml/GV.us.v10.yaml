@@ -44,7 +44,7 @@ segments:
       - [0x3BB0, c, code_3BB0] #DONE
       - [0x3D90, c, code_3D90] #DONE
       - [0x43B0, c, code_43B0] #DONE
-      - [0x4740, c, code_4740]
+      - [0x4740, c, code_4740] #DONE
       - [0x5570, c, code_5570]
       - [0x61E0, c, code_61E0] #DONE
       - [0x6370, c, code_6370] #DONE
@@ -105,7 +105,8 @@ segments:
       - [0x0000B3B0, .rodata, code_3BB0]
       - [0x0000B3C0, .rodata, code_3D90]
       - [0x0000B3D0, .rodata, code_43B0]
-      - [0x0000B3E0, bin, gv_data_B3E0]
+      - [0x0000B3E0, .rodata, code_4740]
+      - [0x0000B450, bin, gv_data_B430]
       - [0x0000B4A0, .rodata, code_6370]
       - [0x0000B500, .rodata, code_7060]
       - [0x0000B520, .rodata, code_7530]

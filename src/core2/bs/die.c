@@ -25,7 +25,7 @@ void bsdie_init(void){
 
     animctrl_reset(aCtrl);
     animctrl_setSmoothTransition(aCtrl, 0);
-    animctrl_setIndex(aCtrl, ANIM_BANJO_DIE);
+    animctrl_setIndex(aCtrl, ASSET_9_ANIM_BANJO_DIE);
     animctrl_setSubRange(aCtrl, 0.0f, 0.3356f);
     animctrl_setDuration(aCtrl, 2.0f);
     animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
