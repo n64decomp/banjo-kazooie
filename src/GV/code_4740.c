@@ -6,18 +6,35 @@ f32 func_80257204(f32, f32, f32, f32);
 void func_8038B124(Actor *this);
 
 /* .data */
-extern ActorAnimationInfo D_80391040[];
-extern ActorInfo D_80391098 = { 0xAD, 0x120, 0x376, 
+ActorAnimationInfo D_80391040[] ={
+    {0x00, 0.0f},
+    {0xE9, 800000.0f},
+    {0xE9, 0.8f},
+    {0xEA, 1.0f},
+    {0xEA, 2.0f},
+    {0xEB, 0.8f},
+    {0xEB, 800000.0f},
+    {0xEC, 1.2f},
+    {0xEF, 1.4f},
+    {0xEE, 1.4f},
+    {0xEE, 1.4f}
+};
+
+ActorInfo D_80391098 = { MARKER_AD_SLAPPA, ACTOR_120_SLAPPA, ASSET_376_MODEL_SLAPPA, 
     0x1, D_80391040, 
     func_8038B124, func_80326224, func_80325888, 
     { 0x0, 0x0, 0x0, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}
 };
-extern f32 D_803910C8[3];
-extern f32 D_803910BC[3];
-extern struct43s D_803910D4;
+s32 D_803910BC[3] = {175, 100, 0};
+s32 D_803910C8[3] = {175, 140, 0};
+struct43s D_803910D4 = {
+    {{-120.0f, 550.0f}, {-120.0f, 120.0f}, {950.0f, 120.0f}},
+    {{0.0f, -1400.0f, 0.0f}, {0.0f, -1400.0f, 0.0f}},
+    {{-100.0f, 0.0f, -100.0f}, {100.0f, 30.0f, 100.0f}}
+};
 
 /* .bss */
-extern f32 D_80391A70[3];
+f32 D_80391A70[3];
 
 /* .code */
 void func_8038AB30(ParticleEmitter *pCtrl, f32 position[3], s32 cnt){

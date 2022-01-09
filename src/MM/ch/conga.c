@@ -100,7 +100,7 @@ void func_80387100(ActorMarker *this){
     sp1C[1] = actorPtr->position_y + 60.0f;
     sp1C[2] = actorPtr->position_z;
     func_802C8F70(0.0f);
-    func_80333270(0xA, sp1C, func_803870D0, m);
+    func_80333270(JIGGY_A_MM_CONGA, sp1C, func_803870D0, m);
 
 }
 
