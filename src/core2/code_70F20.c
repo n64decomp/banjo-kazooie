@@ -19,13 +19,13 @@ void func_802F7EB0(struct3s *this){
     f32 sp4C[3];
 
 
-    if(vector_clearsize(this->unk20) >= this->unk24)
+    if(vector_size(this->unk20) >= this->unk24)
         return;
 
     player_getPosition(&plyrPos);
     func_8024C5A8(camNorm);
     func_8024C764(camRot);
-    sp50 = vector_clearpushBackNew(&this->unk20);
+    sp50 = vector_pushBackNew(&this->unk20);
     tmpf = randf2(50.0f, D_803772C0);
     sp4C[0] = 0.0f;
     sp4C[1] = randf2(200.0f, 300.0f);
@@ -58,7 +58,7 @@ void func_802F80E8(struct3s *this, u32 arg1){
 }
 
 void func_802F80F0(struct3s *this){
-    vector_clearclear(this->unk20);
+    vector_clear(this->unk20);
 }
 
 
@@ -67,8 +67,8 @@ void func_802F8110(struct3s *this, Gfx **gdl, Mtx **mptr, u32 arg3){
     struct4s * endPtr;
     struct4s * iPtr;
 
-    startPtr = vector_cleargetBegin(this->unk20);
-    endPtr = vector_cleargetEnd(this->unk20);
+    startPtr = vector_getBegin(this->unk20);
+    endPtr = vector_getEnd(this->unk20);
     for(iPtr = startPtr; iPtr < endPtr; iPtr++){
         func_8033A4CC(2);
         func_803391A4(gdl, mptr, iPtr, 0, 1.0f, 0, this->unk2C);
@@ -78,13 +78,13 @@ void func_802F8110(struct3s *this, Gfx **gdl, Mtx **mptr, u32 arg3){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_70F20/func_802F81D8.s")
 // s32 func_802F81D8(struct3s *this){
-//     return (this->unk28 ^ 1) && !vector_clearsize(this->unk20);
+//     return (this->unk28 ^ 1) && !vector_size(this->unk20);
 // }
 
 void func_802F8214(struct3s * this){
     if(this->unk0)
         func_802F9D38(this->unk0);
-    vector_clearfree(this->unk20);
+    vector_free(this->unk20);
     func_8033BD20(&this->unk2C);
     free(this);
 
@@ -101,7 +101,7 @@ struct3s *func_802F8264(s32 arg0){
     ptr->unk18 = 0.0f;
     ptr->unk14 = 0.0f;
     ptr->unk10 = 0.0f;
-    ptr->unk20 = vector_clearnew(sizeof(struct4s), arg0);
+    ptr->unk20 = vector_new(sizeof(struct4s), arg0);
     ptr->unk24 = arg0;
     ptr->unk28 = 0;
     ptr->unk2C = assetcache_get(0x898); //rain

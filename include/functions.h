@@ -127,20 +127,20 @@ void func_8029A86C(s32 arg0);
 s32 bs_getInterruptType(void);
 
 /* vla - variable length array*/
-void    vector_clearclear(VLA *this);
-void *  vector_cleargetBegin(VLA *this);
-void *  vector_clearat(VLA *this, u32 n);
-s32     vector_cleargetIndex(VLA *this, void *element);
-s32     vector_clearsize(VLA *this);
-void *  vector_cleargetEnd(VLA *this);
-void *  vector_clearpushBackNew(VLA **thisPtr);
-void *  vector_clearinsertNew(VLA **thisPtr, s32 indx);
-void    vector_clearfree(VLA *this);
-VLA *   vector_clearnew(u32 elemSize, u32 cnt);
-void    vector_clearremove(VLA *this, u32 indx);
-void    vector_clearpopBack_n(VLA *this, u32 n);
-void    vector_clearassign(VLA *this, s32 indx, void* value);
-VLA *   vector_clear802ED9E0(VLA *this);
+void    vector_clear(VLA *this);
+void *  vector_getBegin(VLA *this);
+void *  vector_at(VLA *this, u32 n);
+s32     vector_getIndex(VLA *this, void *element);
+s32     vector_size(VLA *this);
+void *  vector_getEnd(VLA *this);
+void *  vector_pushBackNew(VLA **thisPtr);
+void *  vector_insertNew(VLA **thisPtr, s32 indx);
+void    vector_free(VLA *this);
+VLA *   vector_new(u32 elemSize, u32 cnt);
+void    vector_remove(VLA *this, u32 indx);
+void    vector_popBack_n(VLA *this, u32 n);
+void    vector_assign(VLA *this, s32 indx, void* value);
+VLA *   vector_802ED9E0(VLA *this);
 
 
 void actor_collisionOff(Actor *);

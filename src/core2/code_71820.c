@@ -16,13 +16,13 @@ void func_802F87B0(struct6s *this){
     int i;
     f32 sp4C[3];
 
-    if(vector_clearsize(this->unk1C) >= this->unk20)
+    if(vector_size(this->unk1C) >= this->unk20)
         return;
     
     player_getPosition(&plyrPos);
     func_8024C5A8(camNorm);
     func_8024C764(camRot);
-    ptr = vector_clearpushBackNew(&this->unk1C);
+    ptr = vector_pushBackNew(&this->unk1C);
     f20 = randf2(50.0f, 1200.0f);
     sp4C[0] = 0.0f;
     sp4C[1] = randf2(200.0f, 500.0f);
@@ -69,13 +69,13 @@ void func_802F8A68(struct6s *this, s32 arg1){
 }
 
 void func_802F8A70(struct6s *this){
-    vector_clearclear(this->unk1C);
+    vector_clear(this->unk1C);
 }
 
 void func_802F8A90(struct6s *this, Gfx **gdl, Mtx **mptr, Vtx **vptr){
-    struct5s * startPtr = vector_cleargetBegin(this->unk1C);
+    struct5s * startPtr = vector_getBegin(this->unk1C);
     struct5s * iPtr;
-    struct5s * endPtr = vector_cleargetEnd(this->unk1C);
+    struct5s * endPtr = vector_getEnd(this->unk1C);
     for(iPtr = startPtr; iPtr < endPtr; iPtr++){
         func_8033A4CC(2);
         func_803391A4(gdl, mptr, iPtr->unk4, iPtr->unk1C, 1.0f, NULL, iPtr->unk0);
@@ -84,11 +84,11 @@ void func_802F8A90(struct6s *this, Gfx **gdl, Mtx **mptr, Vtx **vptr){
 }
 
 int func_802F8B50(struct6s *this){
-    return this->unk22 != 1  &&  (u32)vector_clearsize(this->unk1C) < 1;
+    return this->unk22 != 1  &&  (u32)vector_size(this->unk1C) < 1;
 }
 
 void func_802F8B8C(struct6s *this){
-    vector_clearfree(this->unk1C);
+    vector_free(this->unk1C);
     func_8033BD20(&this->unk24[0]);
     func_8033BD20(&this->unk24[1]);
     func_8033BD20(&this->unk24[2]);
@@ -106,7 +106,7 @@ struct6s * func_802F8BE0(s32 arg0){
     this->unk14 = 0.0f;
     this->unk10 = 0.0f;
     this->unkC = 0.0f;
-    vecPtr = vector_clearnew(sizeof(struct5s), arg0);
+    vecPtr = vector_new(sizeof(struct5s), arg0);
     this->unk1C = vecPtr;
     this->unk20 = arg0;
     this->unk22 = 0;
@@ -141,12 +141,12 @@ void func_802F8CD0(struct6s * this){
     this->unk4 = plyr_pos[1];
     this->unk8 = plyr_pos[2];
     if(func_802BEF64()){
-        vector_clearclear(this->unk1C);
+        vector_clear(this->unk1C);
     }
 
-    for(i = 0; i < vector_clearsize(this->unk1C); i++){
+    for(i = 0; i < vector_size(this->unk1C); i++){
         iPtr;
-        iPtr = vector_clearat(this->unk1C, i);
+        iPtr = vector_at(this->unk1C, i);
         iPtr->unk4[0] += iPtr->unk10[0]*f20;
         iPtr->unk4[1] += iPtr->unk10[1]*f20;
         iPtr->unk4[2] += iPtr->unk10[2]*f20;
@@ -163,15 +163,15 @@ void func_802F8CD0(struct6s * this){
         iPtr->unk28[2] += randf2(-300.0f, 300.0f)*f20;
 
         if(iPtr->unk4[1] < plyr_pos[1] - 500.0f && !iPtr->unk34){
-            vector_clearremove(this->unk1C, i);
+            vector_remove(this->unk1C, i);
             i--;
         }
     }
     this->unk18++;
-    if((s32)this->unk18 < vector_clearsize(this->unk1C)){
-        iPtr = vector_clearat(this->unk1C, this->unk18);
+    if((s32)this->unk18 < vector_size(this->unk1C)){
+        iPtr = vector_at(this->unk1C, this->unk18);
         if(1320.0 < func_80256064(iPtr->unk4, plyr_pos)){
-            vector_clearremove(this->unk1C, this->unk18);
+            vector_remove(this->unk1C, this->unk18);
         }
     }
     else{

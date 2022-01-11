@@ -128,8 +128,8 @@ func_8033AFB8(Struct_B1400 *arg0, s32 arg1, f32 arg2[3][3]){
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B3A80/func_8033B0D0.s")
 
 void func_8033B180(void){
-    D_80383CE0.unk0 = vector_clearnew(sizeof(struct21s), 0x10);
-    D_80383CE0.unk4 = vector_clearnew(sizeof(struct21s), 0x10);
+    D_80383CE0.unk0 = vector_new(sizeof(struct21s), 0x10);
+    D_80383CE0.unk4 = vector_new(sizeof(struct21s), 0x10);
 }
 
 
@@ -146,15 +146,15 @@ void func_8033B180(void){
     D_80383CE0.unk0 = tmp_v0;
     D_80383CE0.unk4 = tmp_a0;
     
-    endPtr = vector_cleargetEnd(D_80383CE0.unk0);
+    endPtr = vector_getEnd(D_80383CE0.unk0);
 
-    for(iPtr = vector_cleargetBegin(D_80383CE0.unk0); iPtr < endPtr; iPtr++){
+    for(iPtr = vector_getBegin(D_80383CE0.unk0); iPtr < endPtr; iPtr++){
         for(i = 0; i < iPtr->unk0; i++)
             assetcache_release(iPtr->unk1);
     }
     
 
-    vector_clearclear(D_80383CE0.unk0);
+    vector_clear(D_80383CE0.unk0);
 }//*/
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B3A80/func_8033B268.s")

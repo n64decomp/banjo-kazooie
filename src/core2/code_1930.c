@@ -101,11 +101,11 @@ void func_80288B98(vector(struct2s) **arg0, struct2s *arg1){
 }
 
 void func_80288C7C(vector(struct2s) **arg0){
-    vector_clearclear(*arg0);
+    vector_clear(*arg0);
 }
 
 s32 func_80288C9C( vector(struct2s) **arg0, f32 arg1, s32 arg_cnt, void *funcPtr, s32 arg4, s32 arg5, s32 arg6){
-    struct2s *ptr = (struct2s *) vector_clearpushBackNew(arg0);
+    struct2s *ptr = (struct2s *) vector_pushBackNew(arg0);
     ptr->unk0 = arg1;
     ptr->unk4 = arg_cnt;
     ptr->unk14 = funcPtr;
@@ -183,13 +183,13 @@ void func_80289090(vector(struct2s) **arg0, f32 arg1, s32 arg2, s32 arg3){
 }
 
 void func_802890D0(VLA** arg0){
-    vector_clearfree(*arg0);
+    vector_free(*arg0);
     free(arg0);
 }
 
 vector(struct2s) **func_802890FC(void){
     vector(struct2s) **ptr = (vector(struct2s) **)malloc(sizeof(vector(struct2s) **));
-    *ptr = vector_clearnew(sizeof(struct2s), 2);
+    *ptr = vector_new(sizeof(struct2s), 2);
     func_80288C7C(ptr);
     return ptr;
 }
@@ -201,7 +201,7 @@ void func_8028913C(vector(struct2s) **arg0, s32 arg1){
 
 void func_8028914C(vector(struct2s) **arg0, AnimCtrl *arg1){
     struct2s *iPtr;
-    for(iPtr = vector_cleargetBegin(*arg0); iPtr != (struct2s*)vector_cleargetEnd(*arg0); iPtr++){
+    for(iPtr = vector_getBegin(*arg0); iPtr != (struct2s*)vector_getEnd(*arg0); iPtr++){
         if(animctrl_isAt(arg1, iPtr->unk0))
             func_80288B98(arg0, iPtr);
     }

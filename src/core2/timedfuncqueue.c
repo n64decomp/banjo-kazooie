@@ -58,8 +58,8 @@ TimedFunction* __timedFuncQueue_insert(f32 time, s32 cnt, void *funcPtr, s32 arg
     TimedFunction * iPtr;
     TimedFunction * endPtr;
 
-    startPtr = (TimedFunction * )vector_cleargetBegin(D_80383380.ptr);
-    endPtr = (TimedFunction * )vector_cleargetEnd(D_80383380.ptr);
+    startPtr = (TimedFunction * )vector_getBegin(D_80383380.ptr);
+    endPtr = (TimedFunction * )vector_getEnd(D_80383380.ptr);
     if(endPtr == startPtr){
         D_80383380.time = 0.0f; 
     }
@@ -70,7 +70,7 @@ TimedFunction* __timedFuncQueue_insert(f32 time, s32 cnt, void *funcPtr, s32 arg
         if(iPtr->time > time)
             break;
     }
-    retVal = (TimedFunction * )vector_clearinsertNew((vector(TimedFunction)**)&D_80383380, ((s32)iPtr - (s32)startPtr)/(s32)sizeof(TimedFunction));
+    retVal = (TimedFunction * )vector_insertNew((vector(TimedFunction)**)&D_80383380, ((s32)iPtr - (s32)startPtr)/(s32)sizeof(TimedFunction));
     retVal->time = time;
     retVal->arg_cnt = cnt;
     retVal->func5 = (TFQM5) funcPtr;
@@ -137,7 +137,7 @@ void __spawnjiggy(DelayedJiggyInfo *jigInfo){
 }
 
 void func_80324C58(void){
-    vector_clearclear(D_80383380.ptr);
+    vector_clear(D_80383380.ptr);
 }
 
 f32 func_80324C7C(void){
@@ -231,7 +231,7 @@ void timedJiggySpawn(f32 time, s32 jiggyId, f32 *position){
 
 //timerFuncQueue_Empty
 u32 func_803250DC(void){
-    return !vector_clearsize(D_80383380.ptr);
+    return !vector_size(D_80383380.ptr);
 }
 
 //timedFuncQueue_Flush
@@ -239,22 +239,22 @@ void func_80325104(void){
     TimedFunction *iPtr;
     TimedFunction iFunc;
 
-    while(vector_clearsize(D_80383380.ptr) > 0){
-        iPtr = vector_cleargetBegin(D_80383380.ptr);
+    while(vector_size(D_80383380.ptr) > 0){
+        iPtr = vector_getBegin(D_80383380.ptr);
         memcpy(&iFunc, iPtr, sizeof(TimedFunction));
-        vector_clearremove(D_80383380.ptr, 0);
+        vector_remove(D_80383380.ptr, 0);
         __timedFunc_execute(&iFunc);
     }
 }
 
 //timedFuncQueue_Free
 void func_8032517C(void){
-    vector_clearfree(D_80383380.ptr);
+    vector_free(D_80383380.ptr);
 }
 
 //timedFuncQueue_Init
 void func_803251A0(void){
-    D_80383380.ptr = vector_clearnew(0x70, 0x10);
+    D_80383380.ptr = vector_new(0x70, 0x10);
     D_80383380.time = 0.0f;
 }
 
@@ -263,23 +263,23 @@ void func_803251D4(void){
     TimedFunction *iPtr;
     TimedFunction iFunc;
 
-    if(vector_clearsize(D_80383380.ptr) == 0)
+    if(vector_size(D_80383380.ptr) == 0)
         return;
 
     D_80383380.time += time_getDelta();
 
-    while(vector_clearsize(D_80383380.ptr) > 0){
-        iPtr = vector_cleargetBegin(D_80383380.ptr);
+    while(vector_size(D_80383380.ptr) > 0){
+        iPtr = vector_getBegin(D_80383380.ptr);
         if(D_80383380.time < iPtr->time)
             break;
         memcpy(&iFunc, iPtr, sizeof(TimedFunction));
-        vector_clearremove(D_80383380.ptr, 0);
+        vector_remove(D_80383380.ptr, 0);
         __timedFunc_execute(&iFunc);
     }
 }
 
 void func_80325288(void){
-    D_80383380.ptr = vector_clear802ED9E0(D_80383380.ptr);
+    D_80383380.ptr = vector_802ED9E0(D_80383380.ptr);
 }
 
 void func_803252B0(s32 arg0){
