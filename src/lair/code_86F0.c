@@ -9,9 +9,18 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/lair/code_86F0/func_8038EB58.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/lair/code_86F0/func_8038EB84.s")
+s32 func_8038EB84(Actor *this){
+    return this->unkF4_8 + 0x1B;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/lair/code_86F0/func_8038EB94.s")
+void func_8038EB94(void){
+    func_802FAFD4(ITEM_14_HEALTH, 0x417);
+    func_802FAFC0(ITEM_14_HEALTH, COMUSIC_2B_DING_B);
+    func_80320004(BKPROG_B9_DOUBLE_HEALTH, TRUE);
+    func_80347958();
+    func_803463D4(ITEM_14_HEALTH, 0);
+    func_80314AC8(1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/lair/code_86F0/func_8038EBEC.s")
 

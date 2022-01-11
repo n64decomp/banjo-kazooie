@@ -21,7 +21,7 @@ void bssplat_init(void){
     func_8028A274(0x149, 1.1f);
     func_8029C7F4(1,1,3,3);
     func_802931DC(&sp1C);
-    func_803463D4(0x14, -sp1C);
+    func_803463D4(ITEM_14_HEALTH, -sp1C);
     if(func_8029CEB0() == 4){
         FUNC_8030E624(SFX_116_DEAF_RUSTLING, 1000, 0x2cc);
         FUNC_8030E624(SFX_116_DEAF_RUSTLING, 1000, 0x332);
@@ -52,7 +52,7 @@ void bssplat_update(void){
             func_802929F8();
 
         if(func_8028B094())
-            sp1C = BS_FALL;
+            sp1C = BS_2F_FALL;
 
         if(animctrl_isStopped(aCtrl)){
             func_8028A180(ASSET_D2_ANIM_BANJO_GETTING_UP, 2.25f);
@@ -68,7 +68,7 @@ void bssplat_update(void){
             sp1C = BS_1_IDLE;
 
         if(func_8028B094())
-            sp1C = BS_FALL;
+            sp1C = BS_2F_FALL;
         break;
     }//L802B4808
 

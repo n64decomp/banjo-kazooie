@@ -8,6 +8,12 @@ typedef struct {
     u32 checksum;
 }SaveFile;
 
+typedef struct{
+    u8 unk0;
+    u8 unk1;
+    u8 pad2[0x76];
+}SaveData;
+
 typedef struct {
     u8 unk0[0x04];
     u8 unk4[0x18];

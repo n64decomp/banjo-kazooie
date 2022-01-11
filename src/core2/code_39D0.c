@@ -3,6 +3,7 @@
 #include "variables.h"
 
 #include "prop.h"
+#include "SnS.h"
 
 extern void func_803012F8(void);
 extern f32 func_80256280(f32 arg0[3], f32 arg1[3]);
@@ -68,61 +69,61 @@ void func_8028D638(s32 arg0, s32 arg1);
 
 /* .code */
 s32 can_beak_barge(void){
-    return func_802957D8(ABILITY_0_BARGE);
+    return ability_hasLearned(ABILITY_0_BARGE);
 }
 
 s32 can_beak_bomb(void){
-    return func_802957D8(ABILITY_1_BEAK_BOMB);
+    return ability_hasLearned(ABILITY_1_BEAK_BOMB);
 }
 
 s32 can_beak_bust(void){
-    return func_802957D8(ABILITY_2_BEAK_BUSTER);
+    return ability_hasLearned(ABILITY_2_BEAK_BUSTER);
 }
 
 s32 func_8028A9C0(void){ 
-    return func_802957D8(ABILITY_3_CAMERA_CONTROL);
+    return ability_hasLearned(ABILITY_3_CAMERA_CONTROL);
 }
 
 s32 can_claw(void){ 
-    return func_802957D8(ABILITY_4_BEAR_PUNCH);
+    return ability_hasLearned(ABILITY_4_BEAR_PUNCH);
 }
 
 s32 func_8028AA00(void){ 
-    return func_802957D8(ABILITY_5_CLIMB);
+    return ability_hasLearned(ABILITY_5_CLIMB);
 }
 
 int can_dive(void){
-    return func_802957D8(ABILITY_F_DIVE) 
+    return ability_hasLearned(ABILITY_F_DIVE) 
         && !func_8029D66C() 
         && 100.0f < func_80294500() - func_80294438();
 }
 
 s32 can_egg(void){ 
-    return func_802957D8(ABILITY_6_EGGS);
+    return ability_hasLearned(ABILITY_6_EGGS);
 }
 
 int can_flap(void){
     return func_802933D0(0x12) 
         && func_802933D0(0x5) 
-        && func_802957D8(ABILITY_7_FLAP);
+        && ability_hasLearned(ABILITY_7_FLAP);
 }
 
 s32 can_flip(void){
-    return func_802957D8(ABILITY_8_FLIP);
+    return ability_hasLearned(ABILITY_8_FLIP);
 }
 
 s32 func_8028AB28(void){
-    return func_802957D8(ABILITY_9_FLY);
+    return ability_hasLearned(ABILITY_9_FLY);
 }
 
 s32 func_8028AB48(void){
-    return func_802957D8(ABILITY_A_HOLD_A_JUMP_HIGHER);
+    return ability_hasLearned(ABILITY_A_HOLD_A_JUMP_HIGHER);
 }
 
 int can_peck(void){
     return func_802933D0(0x5)
         && func_802933D0(0x12)
-        && func_802957D8(ABILITY_B_RATATAT_RAP);
+        && ability_hasLearned(ABILITY_B_RATATAT_RAP);
 }
 
 int func_8028ABB8(void){
@@ -134,27 +135,27 @@ int func_8028ABB8(void){
 }
 
 s32 can_roll(void){
-    return func_802957D8(ABILITY_C_ROLL);
+    return ability_hasLearned(ABILITY_C_ROLL);
 }
 
 s32 func_8028AC38(void){
-    return func_802957D8(ABILITY_D_SHOCK_JUMP);
+    return ability_hasLearned(ABILITY_D_SHOCK_JUMP);
 }
 
 s32 func_8028AC58(void){
-    return func_802957D8(ABILITY_E_WADING_BOOTS);
+    return ability_hasLearned(ABILITY_E_WADING_BOOTS);
 }
 
 s32 can_trot(void){
-    return func_802957D8(ABILITY_10_TALON_TROT);
+    return ability_hasLearned(ABILITY_10_TALON_TROT);
 }
 
 s32 func_8028AC98(void){
-    return func_802957D8(ABILITY_10_TALON_TROT);
+    return ability_hasLearned(ABILITY_10_TALON_TROT);
 }
 
 s32 can_wonderwing(void){
-    return func_802957D8(ABILITY_12_WONDERWING);
+    return ability_hasLearned(ABILITY_12_WONDERWING);
 }
 
 int func_8028ACD8(void){
@@ -385,7 +386,7 @@ void func_8028BA00(s32 arg0){
 
 void func_8028BA2C(s32 arg0) {
     if (func_802FADD4(0x1B) == 0) {
-        func_80345F24(ITEM_C_NOTE);
+        item_inc(ITEM_C_NOTE);
     } else {
         func_803463F4(ITEM_C_NOTE, 1);
     }
@@ -560,7 +561,7 @@ void func_8028BCA0(Prop *prop){
                 }
                 break;
                 
-            case 0xF2: //L8028C01C
+            case MARKER_F2_HONEYCOMB_SWITCH: //L8028C01C
                 if(plyr_hitbox_type == HITBOX_1_BEAK_BUSTER){
                     if(!mapSpecificFlags_get(0xD)){
                         mapSpecificFlags_set(0xD, 1);
@@ -582,7 +583,7 @@ void func_8028BCA0(Prop *prop){
                 }
                 break;
 
-            case 0xF1: //L8028C0C8
+            case MARKER_F1_GV_STAR_SWITCH: //L8028C0C8
                 if(func_8028ECAC() == 1)
                     return;
                 if(!mapSpecificFlags_get(5)){
@@ -611,7 +612,7 @@ void func_8028BCA0(Prop *prop){
                 }
                 break;
 
-            case 0xFE: //L8028C1A4
+            case MARKER_FE_MMM_CLOCK_SWITCH: //L8028C1A4
                 if(plyr_hitbox_type == HITBOX_1_BEAK_BUSTER){
                     if(func_8028ECAC() == 1)
                         return;
@@ -622,7 +623,7 @@ void func_8028BCA0(Prop *prop){
                 }
                 break;
             
-            case 0x23F: //L8028C1EC
+            case MARKER_23F_LAIR_FLIGHT_PAD_SWITCH: //L8028C1EC
                 if(plyr_hitbox_type == HITBOX_1_BEAK_BUSTER){
                     if(func_8028ECAC() == 1)
                         return;
@@ -670,7 +671,7 @@ void func_8028BCA0(Prop *prop){
                 func_8028BB1C(plyr_hitbox_type, 0xC6, 0x6E, 0x81, 0x2C, 0xA, 0xC7);
                 break;
 
-            case 0x23C: //L8028C350
+            case MARKER_23C_GV_SNS_SWITCH: //L8028C350
                 func_8028BB1C(plyr_hitbox_type, 0xA3, 0x92, 0x7F, 0x1A, 0xA, 0xA4);
                 break;
 
@@ -709,15 +710,15 @@ void func_8028BCA0(Prop *prop){
                 func_8028BB1C(plyr_hitbox_type, 0x4000B9, 0x76, 0x29, 4, 0xe, 0x1C);
                 break;
                 
-            case 0x11B: //L8028C57C
+            case MARKER_11B_WATER_LEVEL_SWITCH_1: //L8028C57C
                 func_8028BB1C(plyr_hitbox_type, 0x22, 0x77, 0x2D, 5, 0xA, 0x23);
                 break;
                 
-            case 0x11C: //L8028C5B0
+            case MARKER_11C_WATER_LEVEL_SWITCH_2: //L8028C5B0
                 func_8028BB1C(plyr_hitbox_type, 0x24, 0x77, 0x2E, 6, 0xA, 0x25);
                 break;
                 
-            case 0x11D: //L8028C5E4
+            case MARKER_11D_WATER_LEVEL_SWITCH_3: //L8028C5E4
                 func_8028BB1C(plyr_hitbox_type, 0x26, 0x76, 0x2F, 0x7, 0xA, 0x27);
                 break;
 
@@ -725,7 +726,7 @@ void func_8028BCA0(Prop *prop){
                 func_8028BB1C(plyr_hitbox_type, 0x53, 0x6b, 0x3b, 0x14, 0x12, 0x54);
                 break;
 
-            case 0xF3: //L8028C64C
+            case MARKER_F3_GV_KAZOOIE_TARGET: //L8028C64C
                 if(plyr_hitbox_type == HITBOX_3_BEAK_BOMB){
                     mapSpecificFlags_set(6,1);
                     obj_collision_type = 1;
@@ -744,7 +745,7 @@ void func_8028BCA0(Prop *prop){
                         || (func_8028B2E8() && !(3600.0f < func_80256280(actor->position, spA0)))
                     ){
                         jiggyscore_8032108C(sp9C, 1);
-                        func_803463F4(0x26, 1);
+                        func_803463F4(ITEM_26_JIGGY_TOTAL, 1);
                         if(sp9C == JIGGY_20_BGS_ELEVATED_WALKWAY || sp9C == JIGGY_25_BGS_MAZE){
                             func_802D6924();
                         }
@@ -768,12 +769,12 @@ void func_8028BCA0(Prop *prop){
                     if(func_8028BC20(marker))
                         return;
                     sp98 = func_802CA1C4(marker_getActor(marker));
-                    if(sp98 != 0x12 || player_getTransformation() == TRANSFORM_3_PUMPKIN)
+                    if(sp98 != HONEYCOMB_12_MMM_FLOORBOARD || player_getTransformation() == TRANSFORM_3_PUMPKIN)
                     {
                         func_80321364(sp98, 1);
                         func_8025A6EC(COMUSIC_17_EMPTY_HONEYCOMB_COLLECTED, 28000);
                         timedFunc_set_1(2.0f, func_8035644C, 0xB);
-                        func_80345F24(ITEM_13_EMPTY_HONEYCOMB);
+                        item_inc(ITEM_13_EMPTY_HONEYCOMB);
                         if(!(item_getCount(ITEM_13_EMPTY_HONEYCOMB) < 6)){
                             func_80314AC8(0);
                         }
@@ -804,7 +805,7 @@ void func_8028BCA0(Prop *prop){
 
                 func_8025A6EC(COMUSIC_16_HONEYCOMB_COLLECTED, 28000);
                 timedFunc_set_1(0.75f, func_8035644C, 0xA);
-                func_80345F24(ITEM_14_HEALTH);
+                item_inc(ITEM_14_HEALTH);
                 func_802F373C(&prop->actorProp.x);
                 marker_despawn(marker);
                 break;
@@ -813,23 +814,23 @@ void func_8028BCA0(Prop *prop){
                 { //ONLY THIS CASE DOESN'T MATCH
                     switch (map_get())
                     {
-                    case 0x1D: //L8028C95C
-                        sns_set_item_and_update_payload(6, 0, 1);
+                    case MAP_1D_MMM_CELLAR: //L8028C95C
+                        sns_set_item_and_update_payload(SNS_ITEM_EGG_CYAN, 0, 1);
                         break;
-                    case 0x61: //L8028C974
-                        sns_set_item_and_update_payload(1, 0, 1);
+                    case MAP_61_CCW_WINTER_NABNUTS_HOUSE: //L8028C974
+                        sns_set_item_and_update_payload(SNS_ITEM_EGG_YELLOW, 0, 1);
                         break;
-                    case 0x2C: //L8028C988
-                        sns_set_item_and_update_payload(3, 0, 1);
+                    case MAP_2C_MMM_BATHROOM: //L8028C988
+                        sns_set_item_and_update_payload(SNS_ITEM_EGG_GREEN, 0, 1);
                         break;
-                    case 0x3F: //L8028C99C
-                        sns_set_item_and_update_payload(2, 0, 1);
+                    case MAP_3F_RBB_CAPTAINS_CABIN: //L8028C99C
+                        sns_set_item_and_update_payload(SNS_ITEM_EGG_RED, 0, 1);
                         break;
-                    case 0x92: //L8028C9B0
-                        sns_set_item_and_update_payload(4, 0, 1);
+                    case MAP_92_GV_SNS_CHAMBER: //L8028C9B0
+                        sns_set_item_and_update_payload(SNS_ITEM_EGG_BLUE, 0, 1);
                         break;
-                    case 0x8F: //L8028C9C4
-                        sns_set_item_and_update_payload(5, 0, 1);
+                    case MAP_8F_TTC_SHARKFOOD_ISLAND: //L8028C9C4
+                        sns_set_item_and_update_payload(SNS_ITEM_EGG_PINK, 0, 1);
                         break;
                     }
                     func_8025A70C(COMUSIC_88_BIG_SNS_FANFARE);
@@ -865,8 +866,8 @@ void func_8028BCA0(Prop *prop){
                         sp94 -= 0x1e;
                     }
                 
-                    tmp1 = sns_get_item_state(1, 0) + sns_get_item_state(2, 0) + sns_get_item_state(3, 0)
-                        + sns_get_item_state(4, 0) + sns_get_item_state(5, 0) + sns_get_item_state(6, 0);
+                    tmp1 = sns_get_item_state(SNS_ITEM_EGG_YELLOW, 0) + sns_get_item_state(SNS_ITEM_EGG_RED, 0) + sns_get_item_state(SNS_ITEM_EGG_GREEN, 0)
+                        + sns_get_item_state(SNS_ITEM_EGG_BLUE, 0) + sns_get_item_state(SNS_ITEM_EGG_PINK, 0) + sns_get_item_state(SNS_ITEM_EGG_CYAN, 0);
                     if(tmp1 < 3){
                         func_80324DBC(2.5f, 0xDB2 + tmp1, 0x20, 0, 0, 0, 0);
                     }
@@ -875,7 +876,7 @@ void func_8028BCA0(Prop *prop){
                 }
                 break;
             case MARKER_168_ICE_KEY: //L8028CC7C
-                sns_set_item_and_update_payload(7, 0, 1);
+                sns_set_item_and_update_payload(SNS_ITEM_ICE_KEY, 0, 1);
                 func_8025A70C(COMUSIC_88_BIG_SNS_FANFARE);
                 func_80324DBC(2.5f, 0xDB5, 0x20, 0, 0, 0, 0);
                 marker_despawn(marker);
@@ -916,7 +917,7 @@ void func_8028BCA0(Prop *prop){
                 func_8025A6EC(COMUSIC_15_EXTRA_LIFE_COLLECTED, 0x7FFF);
                 timedFunc_set_1(1.5f, func_8035646C, 0xC);
                 func_802F3B3C(&prop->actorProp.x);
-                func_80345F24(ITEM_16_LIFE);
+                item_inc(ITEM_16_LIFE);
                 marker_despawn(marker);
                 break;
             
@@ -1175,7 +1176,7 @@ void func_8028D64C(s32 arg0){
     D_8037BF74 = arg0;
 }
 
-void carriedObject_setActorID(s32 arg0){
+void carriedObject_setActorID(enum actor_e arg0){
     carriedObject_actorID = arg0;
 }
 
@@ -1183,7 +1184,7 @@ s32 func_8028D664(void){
     return D_8037BF74;
 }
 
-s32 carriedObject_getActorID(void){
+enum actor_e carriedObject_getActorID(void){
     return carriedObject_actorID;
 }
 

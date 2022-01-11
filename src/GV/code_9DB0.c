@@ -69,14 +69,14 @@ void func_80390248(void){
 //matchingGame_setState
 void func_80390270(s32 next_state){
     if(next_state == 2){
-        func_80346414(6, 1);
+        item_set(ITEM_6_HOURGLASS, 1);
         if(func_803203FC(2))
-            func_80346414(0, 4499);
+            item_set(ITEM_0_HOURGLASS_TIMER, 4499);
         else
-            func_80346414(0, 5999);
+            item_set(ITEM_0_HOURGLASS_TIMER, 5999);
     }
     if(D_80391AE0.state_9 == 2){
-        func_80346414(6, 0);
+        item_set(ITEM_6_HOURGLASS, 0);
     }
 
     if(next_state == 3){

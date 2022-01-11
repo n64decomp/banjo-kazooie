@@ -48,7 +48,7 @@ void bsow_update(void) {
         func_80292EA4();
     }
     if (func_8028B424() != 0) {
-        sp1C = BS_FALL_TUMBLING;
+        sp1C = BS_3D_FALL_TUMBLING;
     }
     if (func_8028B2E8() != 0) {
         sp1C = BS_WALK_SLOW;

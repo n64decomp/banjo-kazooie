@@ -60,7 +60,7 @@ void bsbshock_charge_update(void){
     switch(D_8037D381){
         case 0:
             if(func_8028B424())
-                sp2C = BS_FALL_TUMBLING;
+                sp2C = BS_3D_FALL_TUMBLING;
 
             if(func_8028B254(0x82)){
                 animctrl_setSubRange(aCtrl, 0.0f, 1.0f);
@@ -142,7 +142,7 @@ void bsbshock_init(void){
     func_8030E484(SFX_E_SHOCKSPRING_BOING);
     func_8029E064(1);
     func_8029E070(1);
-    func_80295610(9);
+    ability_use(9);
     func_80292158(-50.0f);
     func_80298528(-50.0f);
     D_8037D381 = 0;
@@ -164,12 +164,12 @@ void bsbshock_update(void){
     if(D_8037D381 == 0){
         func_8029C348();
         if(sp20[1] < 0.0f)
-            sp2C = BS_FALL;
+            sp2C = BS_2F_FALL;
     }
 
     if(!func_8028B2E8()){
         if(func_8028B424())
-            sp2C = BS_FALL_TUMBLING;
+            sp2C = BS_3D_FALL_TUMBLING;
 
         if(should_flap())
             sp2C = BS_BFLAP;

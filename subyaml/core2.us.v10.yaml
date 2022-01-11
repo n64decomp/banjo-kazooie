@@ -112,14 +112,14 @@ segments:
   - [0x27BD0, c, bs/dronegoto] #DONE
   - [0x27F40, c, code_27F40] #dronelook
   - [0x28220, c, code_28220] #dronevanish???
-  - [0x28810, c, bs/dronexform]
-  - [0x29AD0, c, bs/jig]      #DONE
+  - [0x28810, c, bs/dronexform] #DONE
+  - [0x29AD0, c, bs/jig]        #DONE
   - [0x2A170, c, bs/jump]
   - [0x2B040, c, bs/ow]       #DONE
   - [0x2B240, c, bs/pumpkin]
   - [0x2C640, c, bs/rebound]
   - [0x2CAC0, c, bs/rest]
-  - [0x2CF90, c, code_2CF90]
+  - [0x2CF90, c, bs/sled]     #DONE
   - [0x2D140, c, bs/slide]    #DONE
   - [0x2D5E0, c, bs/splat]    #DONE
   - [0x2D8E0, c, bs/stand]
@@ -223,8 +223,8 @@ segments:
   - [0x637D0, c, code_637D0]
   - [0x654C0, c, code_654C0]
   - [0x66490, c, code_66490]
-  - [0x66690, c, vla] #DONE
-  - [0x66AB0, c, code_66AB0]
+  - [0x66690, c, vla]        #DONE
+  - [0x66AB0, c, sla]
   - [0x66D90, c, code_66D90] #DONE
   - [0x66FB0, c, code_66FB0] #DONE
   - [0x67490, c, gc/bound]   #DONE

@@ -53,7 +53,7 @@ void bsclaw_update(void){
         sp2C = BS_1_IDLE;
 
     if(!func_8028B2E8())
-        sp2C = BS_FALL;
+        sp2C = BS_2F_FALL;
     
     if(player_inWater())
         sp2C = BS_4C_LANDING_IN_WATER;
@@ -65,7 +65,7 @@ void bsclaw_update(void){
 }
 
 void bsclaw_end(void){
-    func_80295610(0xB);
+    ability_use(0xB);
     _bsclawHitboxActive = 0;
     func_802915B8();
 

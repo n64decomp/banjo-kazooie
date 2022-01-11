@@ -221,7 +221,7 @@ void func_80386D20(Actor *this)
 void func_80386D40(void)
 {
     func_802D68F0(0xC);
-    func_80346414(ITEM_6_HOURGLASS, 1);
+    item_set(ITEM_6_HOURGLASS, TRUE);
     mapSpecificFlags_set(1, TRUE);
 }
 

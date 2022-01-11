@@ -5,7 +5,7 @@
 s32 D_8037C3A0;
 s32 D_8037C3A4;
 
-void func_80295610(s32 arg0){
+void ability_use(s32 arg0){
     s32 sp2C;
     s32 sp28;
 
@@ -72,15 +72,15 @@ void func_80295610(s32 arg0){
     D_8037C3A4 |= (1 << arg0);
 }
 
-s32 func_802957A0(s32 move){
+int ability_hasUsed(enum ability_e move){
     return (1 << move) & D_8037C3A4;
 }
 
-void ability_setHasUsed(s32 move){
+void ability_setHasUsed(enum ability_e move){
     D_8037C3A4 |= (1 << move); 
 }
 
-s32 func_802957D8(s32 move){
+int ability_hasLearned(enum ability_e move){
     return (1 << move) & D_8037C3A0;
 }
 
@@ -111,7 +111,7 @@ void func_80295870(s32 val){
     D_8037C3A4 = val;
 }
 
-void func_8029587C(s32 *size, void **addr){
+void func_8029587C(s32 *size, u8 **addr){
     *size = 8;
     *addr = &D_8037C3A0;
 }

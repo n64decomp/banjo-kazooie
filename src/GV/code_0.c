@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-void func_80386490(Actor *this);
+void chtoots_update(Actor *this);
 
 /* .data */
 ActorAnimationInfo D_80390BD0[] = {
@@ -14,7 +14,7 @@ ActorAnimationInfo D_80390BD0[] = {
 
 ActorInfo D_80390BF0 = { MARKER_1F4_TOOTS, ACTOR_1E4_TOOTS, ASSET_434_MODEL_TOOTS, 
     0x1, D_80390BD0, 
-    func_80386490, func_80326224, func_80325888, 
+    chtoots_update, func_80326224, func_80325888, 
     { 0x7, 0xD0, 0x0, 0x0}, 0.5f, { 0x0, 0x0, 0x0, 0x0}
 };
 
@@ -37,7 +37,7 @@ void func_80386464(Actor *this){
     func_80328B8C(this, 3, 0.0001f, 1);
 }
 
-void func_80386490(Actor *this){
+void chtoots_update(Actor *this){
     if(!this->unk16C_4){
         this->unk16C_4 = TRUE;
         D_80391A30 = 0;

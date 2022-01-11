@@ -75,6 +75,11 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bSwim/func_802A874C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bSwim/func_802A8774.s")
+void func_802A8774(void){
+    bsdrone_update();
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bSwim/func_802A8794.s")
+void func_802A8794(void){
+    bsdrone_end();
+    func_802A75B0();
+}

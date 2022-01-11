@@ -24,8 +24,8 @@ void func_803335F4(void){
 }
 
 s32 func_8033361C(void){
-    struct22s *startPtr = vla_getBegin(D_80383570.unk0);
-    struct22s *endPtr = vla_getEnd(D_80383570.unk0);
+    struct22s *startPtr = vector_cleargetBegin(D_80383570.unk0);
+    struct22s *endPtr = vector_cleargetEnd(D_80383570.unk0);
     struct22s *iPtr;
 
     for(iPtr = startPtr; iPtr < endPtr; iPtr++){
@@ -37,9 +37,9 @@ s32 func_8033361C(void){
 }
 
 s32 func_80333698(s32 index){
-    struct22s *startPtr = vla_getBegin(D_80383570.unk0);
-    struct22s *iPtr = vla_at(D_80383570.unk0, index - 1);
-    struct22s *endPtr = vla_getEnd(D_80383570.unk0);
+    struct22s *startPtr = vector_cleargetBegin(D_80383570.unk0);
+    struct22s *iPtr = vector_clearat(D_80383570.unk0, index - 1);
+    struct22s *endPtr = vector_cleargetEnd(D_80383570.unk0);
     
     for(++iPtr; iPtr < endPtr; iPtr++){
         if(iPtr->unk34){
@@ -50,32 +50,32 @@ s32 func_80333698(s32 index){
 }
 
 void func_80333734(s32 index, f32 *arg1){
-    struct22s *v0 = vla_at(D_80383570.unk0, index-1);
+    struct22s *v0 = vector_clearat(D_80383570.unk0, index-1);
     arg1[0] = v0->unk0[0];
     arg1[1] = v0->unk0[1];
     arg1[2] = v0->unk0[2];
 }
 
 void func_80333784(s32 index, f32 *arg1){
-    struct22s *v0 = vla_at(D_80383570.unk0, index-1);
+    struct22s *v0 = vector_clearat(D_80383570.unk0, index-1);
     arg1[0] = v0->unk18;
     arg1[1] = v0->unk1C;
 }
 
 void func_803337C8(s32 index, s32 *arg1){
-    struct22s *v0 = vla_at(D_80383570.unk0, index-1);
+    struct22s *v0 = vector_clearat(D_80383570.unk0, index-1);
     arg1[0] = v0->unk28[0];
     arg1[1] = v0->unk28[1];
     arg1[2] = v0->unk28[2];
 }
 
 s32 func_80333818(void){
-    return vla_size(D_80383570.unk0);
+    return vector_clearsize(D_80383570.unk0);
 }
 
 s32 func_8033383C(void){
-    struct22s *beginPtr = vla_getBegin(D_80383570.unk0);
-    struct22s *endPtr = vla_getEnd(D_80383570.unk0);
+    struct22s *beginPtr = vector_cleargetBegin(D_80383570.unk0);
+    struct22s *endPtr = vector_cleargetEnd(D_80383570.unk0);
     struct22s *iPtr;
 
     for(iPtr = beginPtr; iPtr < endPtr; iPtr++){
@@ -83,7 +83,7 @@ s32 func_8033383C(void){
             break;
     }
     if(iPtr == endPtr)
-        iPtr = vla_pushBackNew(&D_80383570.unk0);
+        iPtr = vector_clearpushBackNew(&D_80383570.unk0);
 
     iPtr->unk34 = 1;
     iPtr->unk28[0] = 0xff;
@@ -94,27 +94,27 @@ s32 func_8033383C(void){
     iPtr->unk0[0] = 0.0f;
     iPtr->unk18 = 150.0f;
     iPtr->unk1C = 300.0f;
-    return (iPtr - (struct22s *)vla_getBegin(D_80383570.unk0)) + 1;
+    return (iPtr - (struct22s *)vector_cleargetBegin(D_80383570.unk0)) + 1;
 }
 
 
 void func_80333918(void){
-    vla_free(D_80383570.unk0);
+    vector_clearfree(D_80383570.unk0);
 }
 
 void func_8033393C(void){
-    D_80383570.unk0 = vla_new(sizeof(struct22s), 0x10);
+    D_80383570.unk0 = vector_clearnew(sizeof(struct22s), 0x10);
     D_80383570.unk48 = &D_80383570.unk44;
 }
 
 void func_80333974(s32 index){
-    struct22s *v0 = vla_at(D_80383570.unk0, index-1);
+    struct22s *v0 = vector_clearat(D_80383570.unk0, index-1);
     v0->unk34 = 0;
 }
 
 s32 func_803339A4(s32 arg0){
-    struct22s *beginPtr = vla_getBegin(D_80383570.unk0);
-    struct22s *endPtr = vla_getEnd(D_80383570.unk0);
+    struct22s *beginPtr = vector_cleargetBegin(D_80383570.unk0);
+    struct22s *endPtr = vector_cleargetEnd(D_80383570.unk0);
     struct22s *iPtr;
     struct22s *tmp_s0 = NULL;
     
@@ -129,20 +129,20 @@ s32 func_803339A4(s32 arg0){
 }
 
 void func_80333A94(s32 index , f32 *arg1){
-    struct22s *v0 = vla_at(D_80383570.unk0, index-1);
+    struct22s *v0 = vector_clearat(D_80383570.unk0, index-1);
     v0->unk0[0] = arg1[0];
     v0->unk0[1] = arg1[1];
     v0->unk0[2] = arg1[2];
 }
 
 void func_80333AE4(s32 index , f32 *arg1){
-    struct22s *v0 = vla_at(D_80383570.unk0, index-1);
+    struct22s *v0 = vector_clearat(D_80383570.unk0, index-1);
     v0->unk18 = arg1[0];
     v0->unk1C = arg1[1];
 }
 
 void func_80333B28(s32 index , s32 *arg1){
-    struct22s *v0 = vla_at(D_80383570.unk0, index-1);
+    struct22s *v0 = vector_clearat(D_80383570.unk0, index-1);
     v0->unk28[0] = arg1[0];
     v0->unk28[1] = arg1[1];
     v0->unk28[2] = arg1[2];
@@ -151,8 +151,8 @@ void func_80333B28(s32 index , s32 *arg1){
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AC520/func_80333B78.s")
 
 s32 func_80333C78(s32 arg0){
-    struct22s *beginPtr = vla_getBegin(D_80383570.unk0);
-    struct22s *endPtr = vla_getEnd(D_80383570.unk0);
+    struct22s *beginPtr = vector_cleargetBegin(D_80383570.unk0);
+    struct22s *endPtr = vector_cleargetEnd(D_80383570.unk0);
     struct22s *iPtr;
 
     for(iPtr = beginPtr; iPtr < endPtr; iPtr++){

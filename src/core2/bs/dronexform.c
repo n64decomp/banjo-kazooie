@@ -2,13 +2,15 @@
 #include "functions.h"
 #include "variables.h"
 
-void player_setYPosition(f32);
-void func_8024E3A8(f32 (*)[3], f32);
-void func_802991FC(void);
-void func_802978DC(int);
-f32 func_80257A44(f32, f32);
-f32 cosf(f32);
-f32 func_802588B0(f32, f32);
+extern void player_setYPosition(f32);
+extern void func_8024E3A8(f32 (*)[3], f32);
+extern void func_802991FC(void);
+extern void func_802978DC(int);
+extern f32 func_80257A44(f32, f32);
+extern f32 cosf(f32);
+extern f32 func_802588B0(f32, f32);
+extern f32 func_80257AD4(f32, f32);
+
 
 extern struct41s D_80364BB0;
 extern struct41s D_80364BE0;
@@ -188,20 +190,27 @@ void func_802AFFAC(void){
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/dronexform/func_802B0060.s")
+void func_802B0060(UNK_TYPE(s32) arg0, UNK_TYPE(s32) arg1){
+    f32 sp4C[3];
+    int i;
+
+    for(i = 0; i < 3; i++){
+        sp4C[i] = func_80257AD4(D_8037D470.unk20 + ((f32)i/3.0)*0.5, 0.5f)*(D_8037D470.unk24*D_8037D470.unk28) + D_8037D470.unk24;
+    }
+    func_8033A928(arg0, 3, sp4C);
+}   
 
 
 void func_802B014C(void){
     func_80289EBC(NULL);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/dronexform/func_802B016C.s")
-/* void func_802B016C(void){
+void func_802B016C(void){
     D_8037D470.unk20 = 0.0f;
     D_8037D470.unk28 = 0.0f;
     D_8037D470.unk24 = 1.0f;
     func_80289EBC(func_802B0060);
-}//*/
+}
 
 void func_802B01B0(f32 arg0){
    D_8037D470.unk28 = arg0;

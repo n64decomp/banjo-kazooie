@@ -22,13 +22,13 @@ void func_80387F80(void){
 }
 
 void func_80387FB0(void){
-    func_80346414(ITEM_0_HOURGLASS_TIMER, 48*60 - 1);
-    func_80346414(ITEM_6_HOURGLASS, 1);
+    item_set(ITEM_0_HOURGLASS_TIMER, 48*60 - 1);
+    item_set(ITEM_6_HOURGLASS, 1);
     D_80389F90.unk1 = 1;
 }
 
 void func_80387FE8(void){
-    func_80346414(ITEM_6_HOURGLASS, 0);
+    item_set(ITEM_6_HOURGLASS, 0);
     D_80389F90.unk1 = 0;
 }
 

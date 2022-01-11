@@ -17,9 +17,6 @@ extern f32 D_80385FEC;
 extern u8 D_80385FF0[];
 extern f32 D_80386000[];
 
-
-
-
 void func_80345EB0(s32 item){
     if(func_802FAFE8(item)){
         func_803463D4(item, (s32)(-time_getDelta()*60.0f * 1.1));
@@ -28,11 +25,11 @@ void func_80345EB0(s32 item){
     }
 }
 
-void func_80345F24(s32 item){
+void item_inc(s32 item){
     func_803463D4(item, 1);
 }
 
-void func_80345F44(s32 item){
+void item_dec(s32 item){
     if(!func_802E4A08())
         func_803463D4(item, -1);
 }
@@ -142,7 +139,7 @@ s32 func_80345FB4(s32 item, s32 diff, s32 arg2){
             func_80346DB4(D_80385F30[item]);
             if(D_80385F30[item] == 100 && sp28 != 100){
                 func_8025A6EC(COMUSIC_36_100TH_NOTE_COLLECTED, 20000);
-                func_80345F24(ITEM_16_LIFE);
+                item_inc(ITEM_16_LIFE);
             }
             break;
         case ITEM_26_JIGGY_TOTAL:
@@ -163,7 +160,7 @@ void func_803463F4(s32 item, s32 diff){
     func_80345FB4(item, diff, 1);
 }
 
-void func_80346414(s32 item, s32 val){
+void item_set(s32 item, s32 val){
     func_803463D4(item, val - item_getCount(item));
 }
 
@@ -245,7 +242,7 @@ void func_803465E4(void){
     if(D_80385FE0){
         if(gctransition_8030BD98() || func_803203FC(0)){
             if(D_80385FE4){
-                func_80345F44(ITEM_16_LIFE);
+                item_dec(ITEM_16_LIFE);
                 func_802FACA4(ITEM_14_HEALTH);
             }
             D_80385FE4 = FALSE;
@@ -335,7 +332,7 @@ void func_80346C10(enum bs_e *retVal, enum bs_e fail_state, enum bs_e success_st
     }
     else{
         if(use_item){
-            func_80345F44(item_id);
+            item_dec(item_id);
         }
         if(success_state != -1)
             *retVal = success_state;
@@ -377,7 +374,18 @@ s32 notescore_getLevelScore(enum level_e lvl_id){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_8034722C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_80347630.s")
+extern u8 D_80386060[]; //saved item array
+
+//itemscore_getSavedItemArray
+void func_80347630(s32 *size, u8 **buffer){
+    D_80386060[0] = item_getCount(ITEM_1C_MUMBO_TOKEN);
+    D_80386060[1] = item_getCount(ITEM_D_EGGS);
+    D_80386060[2] = item_getCount(ITEM_F_RED_FEATHER);
+    D_80386060[3] = item_getCount(ITEM_10_GOLD_FEATHER);
+    D_80386060[4] = item_getCount(ITEM_26_JIGGY_TOTAL);
+    *size = 5;
+    *buffer = D_80386060;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_803476B0.s")
 

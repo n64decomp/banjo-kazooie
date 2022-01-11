@@ -112,7 +112,7 @@ void bsbflip_update(void){
         break;
     case 2://L802A3184
         if(func_8028B424())
-            sp24 = BS_FALL_TUMBLING;
+            sp24 = BS_3D_FALL_TUMBLING;
         if(button_released(BUTTON_A)){
             animctrl_reset(aCtrl);
             animctrl_setSmoothTransition(aCtrl, 0);
@@ -134,7 +134,7 @@ void bsbflip_update(void){
         break;
     case 3://L802A3258
         if(func_8028B424())
-            sp24 = BS_FALL_TUMBLING;
+            sp24 = BS_3D_FALL_TUMBLING;
         if(func_8028B2E8()){
             func_8029E070(0);
             _bsbflip_802A2DC0();
@@ -159,7 +159,7 @@ void bsbflip_update(void){
 }
 
 void bsbflip_end(void){
-    func_80295610(2);
+    ability_use(2);
     gravity_reset();
     func_80297B94();
     func_8029E070(0);

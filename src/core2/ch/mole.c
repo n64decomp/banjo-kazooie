@@ -195,7 +195,7 @@ void func_802D9830(ActorMarker *marker, enum asset_e arg1, s32 arg2){
             func_803463D4(ITEM_10_GOLD_FEATHER, 5);
             break;
         case 8:
-            func_80346414(ITEM_14_HEALTH, item_getCount(ITEM_15_HEALTH_TOTAL));
+            item_set(ITEM_14_HEALTH, item_getCount(ITEM_15_HEALTH_TOTAL));
             break;
         case 0xff:
             func_802D9658(actor);

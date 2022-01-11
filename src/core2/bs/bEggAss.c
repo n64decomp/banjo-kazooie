@@ -37,8 +37,8 @@ void bseggass_update(void) {
         if (animctrl_isAt(plyr_mvmt, 0.3837f)) {
             func_8030E760(SFX_3E_POOP_NOISE, 1.4f, 28000);
             func_8033E3F0(4, 1);
-            func_80345F44(ITEM_D_EGGS);
-            func_80295610(7);
+            item_dec(ITEM_D_EGGS);
+            ability_use(7);
         }
         if ((animctrl_isAt(plyr_mvmt,  0.4885f)) &&  (D_8037D2E1 < D_8037D2E0)) {
             func_8028774C(plyr_mvmt, 0.349f);
@@ -52,7 +52,7 @@ void bseggass_update(void) {
         next_state = func_802ADCD4(0);
     }
     if (func_8028B094())
-        next_state = BS_FALL;
+        next_state = BS_2F_FALL;
     bs_setState(next_state);
 }
 

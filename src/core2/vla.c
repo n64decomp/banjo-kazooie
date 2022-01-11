@@ -4,31 +4,31 @@
 
 /* VARIABLE LENGTH ARRAY */
 
-void vla_clear(VLA *this){
+void vector_clearclear(VLA *this){
     this->end = this->begin;
 }
 
-void *vla_getBegin(VLA *this){
+void *vector_cleargetBegin(VLA *this){
     return this->begin;
 }
 
-void *vla_at(VLA *this, u32 n){
+void *vector_clearat(VLA *this, u32 n){
     return (void *)((u32) this->begin + n*this->elem_size);
 }
 
-s32 vla_getIndex(VLA *this, void *elemPtr){
+s32 vector_cleargetIndex(VLA *this, void *elemPtr){
     return ((s32)elemPtr - (s32)this->begin)/(s32)this->elem_size;
 }
 
-s32 vla_size(VLA *this){
+s32 vector_clearsize(VLA *this){
     return ((s32)this->end - (s32)this->begin)/this->elem_size;
 }
 
-void *vla_getEnd(VLA *this){
+void *vector_cleargetEnd(VLA *this){
     return this->end;
 }
 
-void *vla_pushBackNew(VLA **thisPtr){
+void *vector_clearpushBackNew(VLA **thisPtr){
     void *retVal;
     VLA* this;
     s32 size;
@@ -49,11 +49,11 @@ void *vla_pushBackNew(VLA **thisPtr){
     return retVal;
 }
 
-void *vla_insertNew(VLA **thisPtr, s32 indx){
+void *vector_clearinsertNew(VLA **thisPtr, s32 indx){
     VLA *this;
     s32 i;
 
-    vla_pushBackNew(thisPtr);
+    vector_clearpushBackNew(thisPtr);
     this = *thisPtr;
     i = ((s32)this->end - (s32)this->begin)/this->elem_size;
     while(indx < --i){
@@ -62,11 +62,11 @@ void *vla_insertNew(VLA **thisPtr, s32 indx){
     return (void *)((s32)this->begin +  indx*this->elem_size);
 }
 
-void vla_free(VLA *this){
+void vector_clearfree(VLA *this){
     free(this);
 }
 
-VLA *vla_new(u32 elemSize, u32 cnt){
+VLA *vector_clearnew(u32 elemSize, u32 cnt){
     VLA *this = malloc(cnt*elemSize + sizeof(VLA));
     this->elem_size = elemSize;
     this->begin = &this->data;
@@ -75,7 +75,7 @@ VLA *vla_new(u32 elemSize, u32 cnt){
     return this;
 }
 
-void vla_remove(VLA *this, u32 indx){
+void vector_clearremove(VLA *this, u32 indx){
     u32 elemOffset = (u32)this->begin + indx * this->elem_size;\
     u32 nextOffset = (u32)this->begin + (indx + 1) * this->elem_size;\
     u32 size = (u32)this->end - (u32)this->begin;
@@ -85,15 +85,15 @@ void vla_remove(VLA *this, u32 indx){
 }
 
 
-void vla_popBack_n(VLA *this, u32 n){
+void vector_clearpopBack_n(VLA *this, u32 n){
     this->end = (void *)((u32)this->end - n * this->elem_size);
 }
 
-void vla_assign(VLA *this, s32 indx, void* value){
+void vector_clearassign(VLA *this, s32 indx, void* value){
     memcpy((s32)this->begin + indx * this->elem_size, value, this->elem_size);
 }
 
-VLA * vla_802ED9E0(VLA *this){
+VLA * vector_clear802ED9E0(VLA *this){
    s32 oldSize;
    s32 oldMemSize;
 

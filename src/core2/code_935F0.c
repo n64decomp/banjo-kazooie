@@ -81,7 +81,7 @@ void func_8031A9E4(Actor *this){
             case 2://L8031AB50
                 func_8028FA14(0x8E, 2);
                 if(item_getCount(ITEM_14_HEALTH) == 0)
-                    func_80346414(6, 0);
+                    item_set(ITEM_6_HOURGLASS, FALSE);
                 if(!func_803203FC(3)){
                     func_8031A7F4(this, 3);
                 }
@@ -90,6 +90,4 @@ void func_8031A9E4(Actor *this){
                 break;
         }
     }//L8031AB8C
-
-
 }

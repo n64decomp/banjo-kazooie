@@ -168,7 +168,7 @@ void bswalk_creep_update(void){
         s0 = func_802926C0();
 
     if(func_8028B094())
-        s0 = BS_FALL;
+        s0 = BS_2F_FALL;
 
     if(button_held(BUTTON_Z))
         s0 = BS_CROUCH;
@@ -241,7 +241,7 @@ void bswalk_slow_upate(void){
         s0 = func_802926C0();
 
     if(func_8028B094())
-        s0 = BS_FALL;
+        s0 = BS_2F_FALL;
 
     if(button_held(BUTTON_Z))
         s0 = BS_CROUCH;
@@ -317,7 +317,7 @@ void bswalk_update(void){
         s0 = func_802926C0();
 
     if(func_8028B094())
-        s0 = BS_FALL;
+        s0 = BS_2F_FALL;
 
     if(button_held(BUTTON_Z))
         s0 = BS_CROUCH;
@@ -417,7 +417,7 @@ void bswalk_fast_update(void){
     }
 
     if(func_8028B094())
-        s0 = BS_FALL;
+        s0 = BS_2F_FALL;
 
     if(button_held(BUTTON_Z))
         s0 = BS_CROUCH;
@@ -466,7 +466,7 @@ void bswalk_mud_update(void){
         s0 = func_802926C0();
 
     if(func_8028B094())
-        s0 = BS_FALL;
+        s0 = BS_2F_FALL;
 
     if(button_held(BUTTON_Z))
         s0 = BS_CROUCH;

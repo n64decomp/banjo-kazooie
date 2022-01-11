@@ -63,7 +63,7 @@ void bsjig_jiggy_update(void){
 
     if(animctrl_isAt(aCtrl, 0.835f)){
         D_8037D4B0++;
-        func_80345F24(0xe);
+        item_inc(ITEM_E_JIGGY);
         func_8030E58C(SFX_4B_GULPING, 1.3f);
     }
 
@@ -95,7 +95,7 @@ void bsjig_jiggy_end(void){
     sp2C = 0;
     sp24  = marker_getActor(D_8037D4B4)->unk38_31;
     if(D_8037D4B0 == 0)
-        func_80345F24(0xe);
+        item_inc(ITEM_E_JIGGY);
 
     func_802B0CD8();
     func_8029E070(0);

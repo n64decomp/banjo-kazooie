@@ -15,12 +15,12 @@ typedef struct {
 }ActorLocal_GV_D60;
 
 void func_80387408(Actor *this);
-Actor *func_803872F0(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
+Actor *chgobi1_draw(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 
 /* .data */
 ActorInfo D_80390C80 = { MARKER_BC_GOBI_1, ACTOR_12E_GOBI_1, ASSET_3E0_MODEL_GOBI, 
     0, NULL, 
-    NULL, func_80387408, func_803872F0, 
+    NULL, func_80387408, chgobi1_draw, 
     { 0x0, 0x0, 0x5, 0x33}, 0.0f, { 0x0, 0x0, 0x0, 0x0}
 };
 
@@ -67,7 +67,7 @@ void func_80387150(Actor *this, s32 next_state){
     }
 }
 
-Actor *func_803872F0(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
+Actor *chgobi1_draw(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     Actor *this = marker_getActor(this_marker);
     if(this->state == 0 || this->state == 5){
         return this;

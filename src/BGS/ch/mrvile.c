@@ -31,11 +31,11 @@ f32 D_80390A94[7] = {0.0f, 0.8f, 0.9f, 1.0f, 0.9f, 0.95f, 1.0f};
 
 void func_8038BB40(ActorMarker * arg0){
     if(func_8038A9E0(marker_getActor(arg0)->mrVile.unk8) >= 3){
-        func_80346414(ITEM_14_HEALTH, 0);
+        item_set(ITEM_14_HEALTH, 0);
         func_8028F66C(0xF);
     }
     else{
-        func_80345F44(ITEM_14_HEALTH);
+        item_dec(ITEM_14_HEALTH);
         func_8028F590(4, arg0);
     }
 }

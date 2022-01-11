@@ -9,9 +9,9 @@ f32 time_getDelta(void);
 f32 func_802FDE60(f32);
 void timedFunc_set_1(f32, void (*)(s32), s32);
 void timedFunc_set_2(f32, void (*)(s32,s32), s32, s32);
-void func_80345F24(s32);
+void item_inc(s32);
 void func_80314AC8(s32);
-void func_80346414(s32, s32);
+void item_set(s32, s32);
 
 
 f32 func_802FB0E4(s32);
@@ -195,7 +195,7 @@ void func_802FE844(s32 arg0, struct8s *arg1){
     sp24 = time_getDelta();
     sp20 = func_802FB0D4(arg1);
     if(sp20){
-        D_803815D4 = func_802FAE1C(arg0);
+        D_803815D4 = itemPrint_getValue(arg0);
         tmp = ((D_803815D4 - 1.0f) * 60.00000000 == func_802FDE60(D_803815D8));
         if(!D_80381610 && tmp && (D_803815D4 != 1.0f))
             func_8030E760(SFX_90_SWITCH_PRESS, 1.3f, 0x7FF8);
@@ -240,12 +240,12 @@ void func_802FE844(s32 arg0, struct8s *arg1){
                         D_803815C4 = func_8023DB5C();
                         D_803815E4 = 0;
                         D_803815E0 = 0.9999f;
-                        func_803463D4(0x13, -6);
+                        func_803463D4(ITEM_13_EMPTY_HONEYCOMB, -6);
                         timedFunc_set_2(0.25f, func_8025A6EC, COMUSIC_2B_DING_B, 28000);
-                        func_803463D4(0x14, 0);
-                        timedFunc_set_1(1.25f, func_80345F24, 0x15);
-                        timedFunc_set_1(1.25f, func_8030E484, 0x3EA);
-                        timedFunc_set_2(1.25f, func_80346414, ITEM_14_HEALTH, item_getCount(ITEM_15_HEALTH_TOTAL)+1);
+                        func_803463D4(ITEM_14_HEALTH, 0);
+                        timedFunc_set_1(1.25f, item_inc, ITEM_15_HEALTH_TOTAL);
+                        timedFunc_set_1(1.25f, func_8030E484, SFX_3EA_UNKNOWN);
+                        timedFunc_set_2(1.25f, item_set, ITEM_14_HEALTH, item_getCount(ITEM_15_HEALTH_TOTAL)+1);
                         timedFunc_set_1(1.5f, func_80314AC8, 1);
                     }
                     break;
@@ -260,7 +260,7 @@ void func_802FE844(s32 arg0, struct8s *arg1){
                     break;
             }
             if(D_803815C0 == 1)
-                func_803463D4(0x13, 0);
+                func_803463D4(ITEM_13_EMPTY_HONEYCOMB, 0);
             break;
     }
 }

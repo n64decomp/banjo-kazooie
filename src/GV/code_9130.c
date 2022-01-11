@@ -48,7 +48,7 @@ void __chmazectrl_markerSetState(ActorMarker *this_marker, s32 arg1){
 void __chmazectrl_8038F5E4(Actor *this){
     if(this->state == 2){
         comusic_8025AB44(COMUSIC_26_GV_SANDYBUTT_DANGER, 0, 30000);
-        func_80346414(6, 0);
+        item_set(ITEM_6_HOURGLASS, FALSE);
     }
 }
 
@@ -64,8 +64,8 @@ void __chmazectrl_setState(Actor *this, s32 next_state){
     if(next_state == 2){
         func_8025A58C(0, 4000);
         func_8025A6EC(COMUSIC_26_GV_SANDYBUTT_DANGER, 30000);
-        func_80346414(0, 0xdd3);
-        func_80346414(6, 1);
+        item_set(ITEM_0_HOURGLASS_TIMER, 0xdd3);
+        item_set(ITEM_6_HOURGLASS, TRUE);
         func_8038F520(1.0f);
         FUNC_8030E624(SFX_3F6_UNKNOWN, 0x30D, 0x332);
         FUNC_8030E624(SFX_3F6_UNKNOWN, 0x30D, 0x2CC);
@@ -91,7 +91,7 @@ void __chmazectrl_setState(Actor *this, s32 next_state){
         func_8025A58C(-1, 400);
         comusic_8025AB44(COMUSIC_26_GV_SANDYBUTT_DANGER, 0, 0x190);
         func_8025AABC(COMUSIC_26_GV_SANDYBUTT_DANGER);
-        func_80346414(6, 0);
+        item_set(ITEM_6_HOURGLASS, FALSE);
     }
 
     if(next_state == 3){
@@ -153,7 +153,7 @@ void chmazectrl_update(Actor *this){
         this->marker->unk30 = __chmazectrl_8038F5E4;
         if(this->state == 2){
             comusic_8025AB44(COMUSIC_26_GV_SANDYBUTT_DANGER, 30000, 30000);
-            func_80346414(6, 1);
+            item_set(ITEM_6_HOURGLASS, TRUE);
         }
         else{
             func_8038F56C(0.0f);

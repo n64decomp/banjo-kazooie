@@ -178,7 +178,7 @@ void bsbfly_enter_update(void){
 }
 
 void bsbfly_enter_end(void){
-    func_80295610(8);
+    ability_use(8);
     func_8029E070(0);
 }
 
@@ -358,7 +358,7 @@ void func_802A4078(void){
 
 s32 func_802A40E0(void){
     func_802A4078();
-    func_80345F44(ITEM_14_HEALTH);
+    item_dec(ITEM_14_HEALTH);
     if(item_getCount(ITEM_14_HEALTH))
         return BS_59_BFLY_UNK59;
     else

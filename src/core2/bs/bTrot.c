@@ -455,7 +455,7 @@ void bsbtrot_jump_update(void){
         sp2C = BS_11_BPECK;
 
     if(func_8028B424())
-        sp2C = BS_FALL_TUMBLING;
+        sp2C = BS_3D_FALL_TUMBLING;
 
     if(player_inWater())
         sp2C = BS_4C_LANDING_IN_WATER;
@@ -658,7 +658,7 @@ void bsbtrot_fall_update(void){
         sp2C = BS_4C_LANDING_IN_WATER;
     
     if(func_8028B424())
-        sp2C = BS_FALL_TUMBLING;
+        sp2C = BS_3D_FALL_TUMBLING;
 
     if(func_8028B2E8()){
         if(button_pressed(BUTTON_A))
@@ -734,7 +734,7 @@ void bsbtrot_ow_update(void){
         func_80292EA4();
 
     if(func_8028B424())
-        sp1C = BS_FALL_TUMBLING;
+        sp1C = BS_3D_FALL_TUMBLING;
 
     if(func_8028B2E8() && func_80289FC4())
         sp1C = BS_BTROT_IDLE;

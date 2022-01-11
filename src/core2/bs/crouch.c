@@ -165,7 +165,7 @@ void bscrouch_update(void){
         sp34 = BS_SLIDE;
 
     if(func_8028B094())
-        sp34 = BS_FALL;
+        sp34 = BS_2F_FALL;
 
     sp34 = func_802ADCD4(sp34);
     if(sp34 == BS_1_IDLE && func_8029E348(1))

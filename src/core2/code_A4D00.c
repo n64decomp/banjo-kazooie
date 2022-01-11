@@ -61,33 +61,33 @@ vector(u32) *D_80383554;
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032D190.s")
 
 void func_8032D330(void){
-    D_80383550 = vla_new(sizeof(u32),2);
-    D_80383554 = vla_new(sizeof(u32),2);
+    D_80383550 = vector_clearnew(sizeof(u32),2);
+    D_80383554 = vector_clearnew(sizeof(u32),2);
 }
 
 void func_8032D36C(void){
-    vla_free(D_80383550);
+    vector_clearfree(D_80383550);
     D_80383550 = NULL;
-    vla_free(D_80383554);
+    vector_clearfree(D_80383554);
     D_80383554 = NULL;
 }
 
 void func_8032D3A8(void){
-    vla_clear(D_80383550);
-    vla_clear(D_80383554);
+    vector_clearclear(D_80383550);
+    vector_clearclear(D_80383554);
 }
 
 void func_8032D3D8(Gfx **gdl, Mtx **mptr, Vtx **vptr){
     int i;
-    for(i = 0; i < vla_size(D_80383550); i++){
-       func_8032D190(*(u32*) vla_at(D_80383550, i), gdl, mptr, vptr);
+    for(i = 0; i < vector_clearsize(D_80383550); i++){
+       func_8032D190(*(u32*) vector_clearat(D_80383550, i), gdl, mptr, vptr);
     }
 }
 
 void func_8032D474(Gfx **gdl, Mtx **mptr, Vtx **vptr){
     int i;
-    for(i = 0; i < vla_size(D_80383554); i++){
-       func_8032D190(*(u32*) vla_at(D_80383554, i), gdl, mptr, vptr);
+    for(i = 0; i < vector_clearsize(D_80383554); i++){
+       func_8032D190(*(u32*) vector_clearat(D_80383554, i), gdl, mptr, vptr);
     }
 }
 

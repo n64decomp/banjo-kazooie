@@ -118,7 +118,7 @@ void bsjump_update(void){
             break;
         case 1://L802B14B4
             if( 500.0f < (player_getYPosition() - func_80294438())){
-                sp34 = BS_FALL;
+                sp34 = BS_2F_FALL;
             }
             if(D_8037D4C2){
                 D_8037D4C2 = 0;
@@ -136,7 +136,7 @@ void bsjump_update(void){
     }//L802B1548
 
     if(func_8028B424())
-        sp34 = BS_FALL_TUMBLING;
+        sp34 = BS_3D_FALL_TUMBLING;
 
     if(button_released(BUTTON_A))
         D_8037D4C2 = 0;
@@ -162,8 +162,8 @@ void bsjump_update(void){
 }
 
 void bsjump_end(void){
-    if(func_802957D8(0xa))
-        func_80295610(0);
+    if(ability_hasLearned(ABILITY_A_HOLD_A_JUMP_HIGHER))
+        ability_use(0);
 
     if(bs_getNextState() != BS_11_BPECK)
         gravity_reset();
@@ -216,7 +216,7 @@ void bsjump_fall_update(void){
     }//L802B1824
     if(func_802933D0(0xf)){
         if(func_8028B424())
-            sp2C = BS_FALL_TUMBLING;
+            sp2C = BS_3D_FALL_TUMBLING;
 
         if(should_flap() && func_802933D0(5))
             sp2C = BS_BFLAP;

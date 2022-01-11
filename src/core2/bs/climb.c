@@ -76,7 +76,7 @@ void bsclimb_idle_init(void){
         yaw_setIdeal(angle_towards_pole);
         func_802991FC();
     }
-    func_80295610(4);
+    ability_use(4);
     func_8028A010(ASSET_B2_ANIM_BANJO_CLIMB_IDLE_2, 2.64f);
     func_80289F10(1);
     func_802AB654();

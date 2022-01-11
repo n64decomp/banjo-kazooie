@@ -40,8 +40,17 @@ typedef struct variable_length_array{
     u8  data[];
 }VLA;
 
-#define vector(T) VLA
+#define vector(T) struct variable_length_array
 //^defined to keep element type with vla
+
+typedef struct static_length_array{
+    s16 elem_size;
+    s16 elem_cnt;
+    u8 unk4[];
+}SLA;
+
+#define array(T) struct static_length_array
+//^defined to keep element type with sla
 
 typedef struct bk_sprite_s{
     s16 frameCnt;
@@ -226,20 +235,20 @@ typedef struct struct_8_s{
     s32 unk14;
     s32 unk18;
     f32 unk1C;
-    u32 unk20;
-    s32 unk24; //asset_index
+    u32 unk20; //item_id
+    s32 unk24; //asset_id
     u32 unk28;
     s32 unk2C;
     f32 unk30;
     f32 unk34;
     f32 unk38; //added to x string print position (position?)
     f32 unk3C; //added to y string print position (position?)
-    u8 pad40[4];
+    f32 unk40; //scale???
     f32 unk44; //added to x string print position (sprite w)
     f32 unk48; //added to y string print position (sprite h)
     f32 unk4C; 
     u32 unk50; //asset_ptr (indx in unk24)
-    s8 unk54[0xC]; //value string
+    s8 string_54[0xC]; //value string
     f32 unk60;
 }struct8s;
 
@@ -270,7 +279,7 @@ typedef struct struct_11_s{
     u8 unk14;
     u8 unk15;
     u8 pad16[0x2];
-    struct struct_5C_s *unk18;
+    array(struct12s) *unk18;
     s32 unk1C[0xE];
 } CoMusic;
 
@@ -636,9 +645,4 @@ typedef struct {
     f32 (*unk4)[3];
 }struct5Bs;
 
-typedef struct struct_5C_s{
-    s16 elem_size;
-    s16 elem_cnt;
-    u8 unk4[];
-}struct5Cs;
 #endif

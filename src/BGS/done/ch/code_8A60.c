@@ -41,7 +41,7 @@ void func_8038EEA4(Actor *this){
     if( this->velocity_x != 0.0f && !mapSpecificFlags_get(3) && func_802BB270()){
         mapSpecificFlags_set(3,1);
         func_802D68F0(0x2D);
-        func_80346414(ITEM_6_HOURGLASS,1);
+        item_set(ITEM_6_HOURGLASS,1);
     } //L8038EFB4
 }
 
@@ -80,6 +80,6 @@ void func_8038F06C(Actor *this){
     if( this->velocity_x != 0.0f && !mapSpecificFlags_get(0xC) && func_802BB270()){
         mapSpecificFlags_set(0xC,1);
         func_802D68F0(0xA);
-        func_80346414(ITEM_6_HOURGLASS,1);
+        item_set(ITEM_6_HOURGLASS,1);
     } //L8038EFB4
 }

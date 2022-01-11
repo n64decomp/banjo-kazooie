@@ -90,7 +90,7 @@ void chAttackTutorial_setState(Actor * this, s32 arg1){
         break;
     case 4://L80387454
         mapSpecificFlags_set(0xC, 1);
-        if(!func_803212E4(0x17)){
+        if(!func_803212E4(HONEYCOMB_17_SM_COLIWOBBLE)){
             this->unk10_12 = 3;
             this->unk38_31 = 1;
             func_803871FC(this, this->unk10_12);

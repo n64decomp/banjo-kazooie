@@ -169,12 +169,12 @@ void bsbflap_update(void){
             break;
         case 4:
             if(func_8028B424())
-                sp1c = BS_FALL_TUMBLING;
+                sp1c = BS_3D_FALL_TUMBLING;
             break;
     }//L802A2C94
     func_8029E1A8(0);
     if(func_8029E384(0))
-        sp1c = BS_FALL;
+        sp1c = BS_2F_FALL;
     
     if(should_beak_bust())
         sp1c = BS_F_BBUSTER;
@@ -191,7 +191,7 @@ void bsbflap_update(void){
 }
 
 void bsbflap_end(void) {
-    func_80295610(1);
+    ability_use(1);
     gravity_reset();
     func_80297B94();
     func_8029E090(0, 0.2f);

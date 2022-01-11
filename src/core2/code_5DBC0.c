@@ -108,9 +108,14 @@ void func_802E5F10(Gfx **gdl){
     func_802E5188();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5DBC0/func_802E5F38.s")
+void func_802E5F38(void){
+    D_8037E900 = func_802E4B50();
+    func_802E4E54(0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5DBC0/func_802E5F68.s")
+void func_802E5F68(void){
+    func_802E4C78();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5DBC0/func_802E5F88.s")
 
@@ -122,9 +127,21 @@ void func_802E5F10(Gfx **gdl){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5DBC0/func_802E6270.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5DBC0/func_802E632C.s")
+void func_802E632C(u8 arg0, u8 arg1, u8 arg2){
+    D_8037E900->unk1C[0] = arg0;
+    D_8037E900->unk1C[1] = arg1;
+    D_8037E900->unk1C[2] = arg2;
+}
 
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5DBC0/func_802E635C.s")
+#else
+void func_802E635C(u16 arg0){
+    D_8037E900->unk1C[0] = (arg0 >> 0xb) << 3;
+    D_8037E900->unk1C[1] = (arg0 >> 0x1) << 3;
+    D_8037E900->unk1C[2] = (arg0 >> 0x6) << 3;
+}
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5DBC0/func_802E639C.s")
 

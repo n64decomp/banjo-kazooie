@@ -13,8 +13,8 @@ typedef struct {
 }ActorLocal_GV_230;
 #define LOCAL_GV_230(s) ((ActorLocal_GV_230 *)&s->local)
 
-void func_803868C0(Actor *this);
-Actor *func_80386E70(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
+void chancientone_update(Actor *this);
+Actor *chancientone_draw(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 
 /* .data */
 s16 D_80390C20[4] = {5, 6, 7, 8};
@@ -28,7 +28,7 @@ ActorAnimationInfo D_80390C3C[] = {
 
 ActorInfo D_80390C5C = { MARKER_F4_ANCIENT_ONE, ACTOR_147_ANCIENT_ONE, ASSET_3E8_MODEL_ANCIENT_ONE, 
     0x1, D_80390C3C, 
-    func_803868C0, func_80326224, func_80386E70, 
+    chancientone_update, func_80326224, chancientone_draw, 
     { 0x0, 0x0, 0x1, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}
 };
 
@@ -103,7 +103,7 @@ void func_80386850(ActorMarker *caller_marker, enum asset_e text_id, s32 arg2){
     }
 }
 
-void func_803868C0(Actor *this){
+void chancientone_update(Actor *this){
     f32 sp44[3];
     s32 sp40;
     s32 sp38;
@@ -214,7 +214,7 @@ void func_803868C0(Actor *this){
     }//L80386E60
 }
 
-Actor *func_80386E70(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
+Actor *chancientone_draw(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     Actor *this = marker_getActor(this_marker);
     int sp58;
     s32 sp4C[3];

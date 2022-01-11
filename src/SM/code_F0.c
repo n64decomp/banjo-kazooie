@@ -3,7 +3,7 @@
 #include "variables.h"
 #include "prop.h"
 
-int func_802957D8(s32);
+int ability_hasLearned(s32);
 
 extern s32 D_80275650;
 
@@ -29,7 +29,7 @@ extern u32 D_803FFE0C;
 
 u32 func_803864E0(void){
     s16 *addr;
-    addr = func_802957D8;
+    addr = ability_hasLearned;
     return (addr[1] << 0x10) + addr[3];
 }
 
@@ -49,8 +49,8 @@ void func_80386540(void){
     sp2C = func_803864E0();
     sp28 = *sp2C;
     *sp2C = 0;
-    if(func_802957D8(1)){
-        addr = func_802957D8;
+    if(ability_hasLearned(1)){
+        addr = ability_hasLearned;
         addr[2] = 0x03E00008; //jr $ra
         addr[3] = 0x00001025; //or $v0, $zero, $zero
         osWritebackDCache(addr, 0x10);

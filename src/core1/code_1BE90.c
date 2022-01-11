@@ -18,7 +18,7 @@ void func_80259B14(void);
 void func_8025A55C(s32, s32, s32);
 void func_8025A7DC(enum comusic_e);
 void func_8025ABB8(enum comusic_e, s32, s32, s32);
-void *func_802EDAA4(struct5Cs *, s32*);
+void *func_802EDAA4(SLA *, s32*);
 
 
 CoMusic *func_802598B0(enum comusic_e track_id) {
@@ -44,7 +44,7 @@ void func_80259914(CoMusic *this, s32 arg1, s32 arg2){
     s32 i;
     struct12s *tmp;
 
-    func_802EDA40(this->unk18);
+    array_clear(this->unk18);
     for(i = 0; i < 0xE; i++){
         this->unk1C[i] = 0;
     }
@@ -82,7 +82,7 @@ void func_80259A24(void){
         iPtr->unk14 = 0;
         iPtr->unk15 = 0;
         iPtr->unk0 = 0.0f;
-        iPtr->unk18 = func_802EDC84(sizeof(struct12s),4);
+        iPtr->unk18 = array_new(sizeof(struct12s),4);
         for(i = 0; i < 0xE; i++){
             iPtr->unk1C[i] = 0;
         }
@@ -96,7 +96,7 @@ void func_80259B14(void){
     func_8024F83C();
 
     for(iPtr = D_80276E30; iPtr < D_80276E30 + 6; iPtr++){
-        func_802EDC64(iPtr->unk18);
+        array_free(iPtr->unk18);
     }
     free(D_80276E30);
     D_80276E30 = NULL;

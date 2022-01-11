@@ -71,10 +71,10 @@ enum hitbox_e func_8028DB14(ActorMarker *arg0){
             return __maybe(bscroc_hitboxActive(),HITBOX_9_CROC_BITE);
             break;
         case BS_5_JUMP://8028DCD8
-        case BS_FALL_TUMBLING:
+        case BS_3D_FALL_TUMBLING:
             if(func_80297AAC() < 0.0f && !func_8028B2E8())
                 return HITBOX_A_FAST_FALLING;
-        case BS_FALL://8028DD10
+        case BS_2F_FALL://8028DD10
             if(func_80297AAC() < -1400.0f && !func_8028B2E8())
                 return HITBOX_A_FAST_FALLING;
         default://8028DD4C

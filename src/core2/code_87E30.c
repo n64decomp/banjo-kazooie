@@ -431,14 +431,14 @@ void func_80310D2C(void){
         ){
                 //L80310FF0
             if(func_802FADD4(0)){
-                if(item_getCount(0x6) != 0)
+                if(item_getCount(ITEM_6_HOURGLASS) != 0)
                     func_802FACA4(0x28);
                 else
                     func_802FAD64(ITEM_0_HOURGLASS_TIMER);
             }
             else {
                 if(func_802FADD4(3)){
-                    if(item_getCount(3) != 0){
+                    if(item_getCount(ITEM_3_PROPELLOR_TIMER) != 0){
                         func_802FACA4(0x28);
                     }
                     else{

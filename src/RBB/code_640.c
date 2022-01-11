@@ -163,7 +163,7 @@ Actor *func_80386B9C(ActorMarker *marker, Gfx **gdl, Mtx **mptr, s32 arg3){
 }
 
 void func_80386BF8(Actor *arg0){
-    if(!mapSpecificFlags_get(0) && func_803212E4(0xF))
+    if(!mapSpecificFlags_get(0) && func_803212E4(HONEYCOMB_F_RBB_BOAT_HOUSE))
         mapSpecificFlags_set(0, TRUE);
     func_802D4A9C(arg0, 0);
 }

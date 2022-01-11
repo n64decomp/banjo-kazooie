@@ -159,7 +159,7 @@ void bsbarge_update(void){
             break;
         case 4:
             if(!func_8028B2E8())
-                sp24 = BS_FALL;
+                sp24 = BS_2F_FALL;
             if(animctrl_isAt(plyrMvmnt, 0.7f)){
                 D_8037D2A0 = 0.0f;
                 D_8037D2A6 = 0;
@@ -178,7 +178,7 @@ void bsbarge_update(void){
 }
 
 void bsbarge_end(void){
-    func_80295610(5);
+    ability_use(5);
     func_8029E070(0);
     D_8037D2A6 = 0;
 }

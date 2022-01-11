@@ -3,4 +3,6 @@
 #include "variables.h"
 
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_26110/func_80263B30.s")
+n_alSynSetPriority(ALVoice *voice, s16 priority){
+    voice->priority = priority;
+}

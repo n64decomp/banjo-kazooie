@@ -29,7 +29,7 @@ ActorAnimationInfo chhutAnimations[3] = {
 
 s32 D_803898D8[6] = { 0, 1, 2, 3, 6, 4};
 
-ActorInfo chhutInfo = { 0x51, ACTOR_9_MM_HUT, model_MM_hut, 0, chhutAnimations,
+ActorInfo chhutInfo = { 0x51, ACTOR_9_MM_HUT, ASSET_7D7_MODEL_MM_HUT, 0, chhutAnimations,
     chhut_update, func_80326224, chhut_draw,
     {0,0,1,0}, 0.0f, {0,0,0,0}
 };

@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-#include "prop.h"
+#include "prop.h"q
 
 extern ActorInfo D_8038EB50;
 extern ActorInfo D_8038EB74;

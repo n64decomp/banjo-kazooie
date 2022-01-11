@@ -66,7 +66,7 @@ void bstwirl_update(void){
         sp1C = func_8029C780();
 
     if(0.6 < func_802877D8(aCtrl) && !func_8028B2E8())
-        sp1C = BS_FALL;
+        sp1C = BS_2F_FALL;
 
     if(player_inWater())
         sp1C = BS_4C_LANDING_IN_WATER;
@@ -77,6 +77,6 @@ void bstwirl_update(void){
 }
 
 void bstwirl_end(void){
-    func_80295610(0xC);
+    ability_use(0xC);
     _bstwirlHitboxActive = FALSE;
 }

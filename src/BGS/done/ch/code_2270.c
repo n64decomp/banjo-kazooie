@@ -27,7 +27,7 @@ void func_803886B4(ActorMarker *this, s32 arg1){
     actLocalPtr = &thisActor->bgs_2270;
     actLocalPtr->unkB = arg1;
     if(arg1){
-        tmpPtr = vla_pushBackNew(&actLocalPtr->unk4);
+        tmpPtr = vector_clearpushBackNew(&actLocalPtr->unk4);
         tmpPtr->unk0 = arg1;
     }
 }
@@ -36,8 +36,8 @@ void func_803886F4(ActorMarker *this){
     Actor *thisActor;
     
     thisActor = marker_getActor(this);
-    func_80346414(ITEM_6_HOURGLASS, 1);
-    func_80346414(ITEM_0_HOURGLASS_TIMER, 0x707);
+    item_set(ITEM_6_HOURGLASS, 1);
+    item_set(ITEM_0_HOURGLASS_TIMER, 0x707);
     func_803888E4(thisActor, 5);
 }
 
@@ -83,13 +83,13 @@ void func_80388848(ActorMarker *this){
 
     thisActor = marker_getActor(this);
     unqPtr = &thisActor->bgs_2270;
-    sp1C = vla_size(unqPtr->unk4);
+    sp1C = vector_clearsize(unqPtr->unk4);
     func_8038873C();
     if(sp1C != ++unqPtr->unk0)
         return;
 
     if(func_803203FC(2)){
-        func_80346414(ITEM_6_HOURGLASS,0);
+        item_set(ITEM_6_HOURGLASS,0);
         func_803204E4(3,0);
         func_803204E4(5,1);
     }
@@ -134,7 +134,7 @@ void func_803888E4(Actor *this, s32 arg1){
     }
     if(this->state == 3){
         unqPtr->unk0 = 0;
-        vla_clear(unqPtr->unk4);
+        vector_clearclear(unqPtr->unk4);
         func_80324E38(0.0f, 3);
         func_80324E60(0.5f, 0);
         tmpf = 0.5f;
@@ -168,15 +168,15 @@ void func_803888E4(Actor *this, s32 arg1){
         func_80324E38(0.0f, 3);
         func_80324E60(0.5f, 0);
         tmpf = 0.5f;
-        for(j = 0; j < vla_size(unqPtr->unk4); j++){
-            s1 = (struct7s *)vla_at(unqPtr->unk4,j);
+        for(j = 0; j < vector_clearsize(unqPtr->unk4); j++){
+            s1 = (struct7s *)vector_clearat(unqPtr->unk4,j);
             tmpf += randf2(1.0f, 1.5f);
             timedFunc_set_2(tmpf, func_803886B4, this->marker, s1->unk0);
             timedFunc_set_2(tmpf + 0.1, func_803886B4, this->marker, 0);
         }
         func_80324E88(tmpf += 2.5);
         func_80324E38(tmpf + 0.6,0);
-        vla_clear(unqPtr->unk4);
+        vector_clearclear(unqPtr->unk4);
         this->state = 0x05;
     }//L80388D8C
     if(this->state == 6){
@@ -205,11 +205,11 @@ void func_80388E94(ActorMarker *this, s32 arg1){
 
     thisActor = marker_getActor(this);
     unqPtr = &thisActor->bgs_2270;
-    if((s32)unqPtr->unk0 >= (s32) vla_size(unqPtr->unk4)){
+    if((s32)unqPtr->unk0 >= (s32) vector_clearsize(unqPtr->unk4)){
         if(!mapSpecificFlags_get(0) && func_80311480(0xc76, 0, 0, 0, 0, 0))
             mapSpecificFlags_set(0,1);
     }else{
-        tmp = (struct7s *)vla_at(unqPtr->unk4, unqPtr->unk0);
+        tmp = (struct7s *)vector_clearat(unqPtr->unk4, unqPtr->unk0);
         if(arg1 == tmp->unk0){
             timedFunc_set_1(0.5f, func_80388848, thisActor->marker);
         }
@@ -224,7 +224,7 @@ void func_80388E94(ActorMarker *this, s32 arg1){
 
 void func_80388FC0(Actor *this){
     func_80320044(0,this->bgs_2270.unkA, 2);
-    vla_free(this->bgs_2270.unk4);
+    vector_clearfree(this->bgs_2270.unk4);
 }
 
 void func_80388FFC(ActorMarker *this, s32 *arg1, f32* arg2){
@@ -256,7 +256,7 @@ void func_80389080(Actor *this){
         func_803300A8(this->marker, func_80388E44, NULL, NULL);
         
         unqPtr->unk0 = 0;
-        unqPtr->unk4 = vla_new(sizeof(struct7s), 8);
+        unqPtr->unk4 = vector_clearnew(sizeof(struct7s), 8);
         unqPtr->unk8 = 0;
         unqPtr->unk9 = 0;
         unqPtr->unkA = func_8031FF44(0,2);
@@ -297,7 +297,7 @@ void func_80389080(Actor *this){
         if(this->state == 5){
             if(func_803203FC(2)){
                 if(item_empty(ITEM_0_HOURGLASS_TIMER)){
-                    func_80346414(ITEM_6_HOURGLASS,1);
+                    item_set(ITEM_6_HOURGLASS,1);
                     func_803204E4(3,0);
                     func_803204E4(5,0);
                 }

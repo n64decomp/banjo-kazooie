@@ -127,20 +127,20 @@ void func_8029A86C(s32 arg0);
 s32 bs_getInterruptType(void);
 
 /* vla - variable length array*/
-void    vla_clear(VLA *this);
-void *  vla_getBegin(VLA *this);
-void *  vla_at(VLA *this, u32 n);
-s32     vla_getIndex(VLA *this, void *element);
-s32     vla_size(VLA *this);
-void *  vla_getEnd(VLA *this);
-void *  vla_pushBackNew(VLA **thisPtr);
-void *  vla_insertNew(VLA **thisPtr, s32 indx);
-void    vla_free(VLA *this);
-VLA *   vla_new(u32 elemSize, u32 cnt);
-void    vla_remove(VLA *this, u32 indx);
-void    vla_popBack_n(VLA *this, u32 n);
-void    vla_assign(VLA *this, s32 indx, void* value);
-VLA *   vla_802ED9E0(VLA *this);
+void    vector_clearclear(VLA *this);
+void *  vector_cleargetBegin(VLA *this);
+void *  vector_clearat(VLA *this, u32 n);
+s32     vector_cleargetIndex(VLA *this, void *element);
+s32     vector_clearsize(VLA *this);
+void *  vector_cleargetEnd(VLA *this);
+void *  vector_clearpushBackNew(VLA **thisPtr);
+void *  vector_clearinsertNew(VLA **thisPtr, s32 indx);
+void    vector_clearfree(VLA *this);
+VLA *   vector_clearnew(u32 elemSize, u32 cnt);
+void    vector_clearremove(VLA *this, u32 indx);
+void    vector_clearpopBack_n(VLA *this, u32 n);
+void    vector_clearassign(VLA *this, s32 indx, void* value);
+VLA *   vector_clear802ED9E0(VLA *this);
 
 
 void actor_collisionOff(Actor *);
@@ -162,13 +162,13 @@ void jiggySpawn(u32 indx, f32 pos[3]);
 
 struct8s *func_802FD320(s32);
 void func_802FD330(s32, struct8s *);
-void func_802FD33C(s32, struct8s *, Gfx**, Mtx**, s32);
+void func_802FD33C(enum item_e arg0, struct8s *arg1, Gfx **arg2, Mtx **arg3, Vtx **arg4);
 void func_802FD350(s32, struct8s *);
 
 struct8s *func_802FD7B0(s32);
 void func_802FD80C(s32, struct8s *);
-void func_802FDAF4(s32, struct8s *, Gfx**, Mtx**, s32);
-void func_802FDC80(s32, struct8s *);
+void func_802FDAF4(enum item_e, struct8s *, Gfx**, Mtx**, Vtx **);
+void func_802FDC80(enum item_e, struct8s *);
 
 struct8s *func_802FDE2C(s32);
 void func_802FE844(s32, struct8s *);
@@ -192,7 +192,7 @@ void func_80300BB4(s32, struct8s *);
 
 struct8s *func_80300CD8(s32);
 void func_80301348(s32, struct8s *);
-void func_80300D0C(s32, struct8s *, Gfx**, Mtx**, s32);
+void func_80300D0C(enum item_e item_id, struct8s *arg1, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void func_80300C70(s32, struct8s *);
 
 

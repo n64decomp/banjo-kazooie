@@ -196,7 +196,7 @@ f32 func_8028EC64(f32 arg0[3]){
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028F170.s")
 
 int ability_isUnlocked(enum ability_e uid){
-    return func_802957D8(uid);
+    return ability_hasLearned(uid);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028F1B0.s")

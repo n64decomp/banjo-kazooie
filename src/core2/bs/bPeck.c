@@ -35,8 +35,8 @@ void bsbpeck_init(void){
             D_8037D377++;
             break;
         case BS_5_JUMP:
-        case BS_FALL:
-        case BS_FALL_TUMBLING:
+        case BS_2F_FALL:
+        case BS_3D_FALL_TUMBLING:
         case BS_BOMB_END:
             break;
     }
@@ -118,7 +118,7 @@ void bsbpeck_update(void){
             break;
         case 2://L802A68C4
             if(animctrl_isStopped(aCtrl))
-                sp24 = BS_FALL;
+                sp24 = BS_2F_FALL;
             break;
     }//L802A68D8
 
@@ -135,7 +135,7 @@ void bsbpeck_update(void){
 
 void bsbpeck_end(void){
     D_8037D376 = 0;
-    func_80295610(0xa);
+    ability_use(0xa);
     func_80292048(1, 0.0f, 0.0f, 0.0f);
     func_80292048(0, 0.0f, 0.0f, 0.0f);
     func_8028D638(0, 0);

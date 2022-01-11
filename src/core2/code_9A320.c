@@ -17,7 +17,7 @@ u8 *func_803212D8(void){
     return D_803832E0;
 }
 
-s32 func_803212E4(s32 indx){
+int func_803212E4(enum honeycomb_e indx){
     if( indx <= 0 || indx >= 0x19)
         return 0;
     return (D_803832E0[(indx - 1) / 8] & (1 << (indx & 7))) != 0;
@@ -32,7 +32,7 @@ void func_80321340(void){
     }
 }
 
-void func_80321364(s32 indx,  s32 val){
+void func_80321364(enum honeycomb_e indx,  s32 val){
     if( 0 < indx && indx < 0x19){
         if(val)
             D_803832E0[(indx - 1) / 8] |= (1 << (indx & 7));

@@ -156,12 +156,12 @@ void func_8038756C(Actor *this, s32 arg1){
     }//L80387704
 
     if(arg1 == 3){
-        func_80346414(ITEM_6_HOURGLASS, 1);
-        func_80346414(ITEM_0_HOURGLASS_TIMER, 0x3bf);
+        item_set(ITEM_6_HOURGLASS, 1);
+        item_set(ITEM_0_HOURGLASS_TIMER, 0x3bf);
     }
 
     if(this->state == 3){
-        func_80346414(ITEM_6_HOURGLASS, 0);
+        item_set(ITEM_6_HOURGLASS, 0);
     }
 
     if(arg1 == 4){

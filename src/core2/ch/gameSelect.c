@@ -121,21 +121,21 @@ void func_802C44D0(s32 arg0, s32 arg1){
 s32 func_802C44EC(f32[3], f32[3], f32);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/ch/gameSelect/func_802C44EC.s")
 
-void func_802C4768(s32 arg0){
+void func_802C4768(s32 gamenum){
     struct {
         u8 *unk0;
         u8 *unk4;
     } sp20;
     func_8031FBF8();
-    D_80365E00 = arg0;
+    D_80365E00 = gamenum;
     func_8031FBA0();
-    if(func_8033D1BC(arg0)){
-        func_8033D13C(arg0);
-        D_8037DCCE[arg0] = (func_8034717C(6)) ? 1 : 0;
+    if(func_8033D1BC(gamenum)){
+        func_8033D13C(gamenum);
+        D_8037DCCE[gamenum] = (func_8034717C(6)) ? 1 : 0;
     
         strcpy(D_8037DD48, D_803760A8);
         strcat(D_8037DD48, D_803760AC);
-        switch(arg0){
+        switch(gamenum){
             case 0: //L802C4820
                 strIToA(D_8037DD48, 1);
                 break;
@@ -167,10 +167,10 @@ void func_802C4768(s32 arg0){
         strcat(D_8037DD68, D_803760E8);
     }//L802C49AC
     else{
-        D_8037DCCE[arg0] = 0;
+        D_8037DCCE[gamenum] = 0;
         strcpy(D_8037DD48, D_803760EC);
         strcat(D_8037DD48, D_803760F0);
-        switch (arg0){
+        switch (gamenum){
             case 0:
                 strIToA(D_8037DD48, 1);
                 break;

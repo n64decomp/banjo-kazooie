@@ -233,7 +233,7 @@ void func_8038E648(Actor *this){
                 this->unk38_31 = 600;
                 func_80244BB0(0, 0x6A, 0x7ff8, 0.3f);
                 func_802D68F0(25);
-                func_80346414(ITEM_6_HOURGLASS, 1);
+                item_set(ITEM_6_HOURGLASS, 1);
             }
             break;
 
@@ -379,7 +379,7 @@ void chSunSwitch_update(Actor *this){
     ){
         this->velocity_x = 1.0f;
         func_802D68F0(10);
-        func_80346414(6, 1);
+        item_set(ITEM_6_HOURGLASS, 1);
     }//L8038EDC8
 
     if( this->velocity_x == 1.0f
@@ -424,7 +424,7 @@ void chKazooieTarget_update(Actor *this){
     ){
         this->velocity_x = 1.0f;
         func_802D68F0(0x15);
-        func_80346414(6, 1);
+        item_set(ITEM_6_HOURGLASS, 1);
     }//L8038EDC8
 
     if( this->velocity_x == 1.0f

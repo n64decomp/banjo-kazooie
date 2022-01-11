@@ -180,7 +180,7 @@ void func_802B5AF8(void);
 void func_802B5B18(void);
 void func_802B5C40(void);
 void func_802B5E10(void);
-//BS_FALL(void);
+//BS_2F_FALL(void);
 void bsjump_fall_init(void);
 void bsjump_fall_update(void);
 void bsjump_fall_end(void);
@@ -236,7 +236,7 @@ void func_802B6130(void);
 void func_802B61E0(void);
 void func_802B6218(void);
 void func_802B6220(void);
-//BS_FALL_TUMBLING(void);
+//BS_3D_FALL_TUMBLING(void);
 void bsjump_tumble_init(void);
 void bsjump_tumble_update(void);
 void bsjump_tumble_end(void);
@@ -502,10 +502,10 @@ void bsbtrot_ow_update(void);
 void bsbtrot_ow_end(void);
 
 //0x0000007C
-void func_802B3FA4(void);
-void func_802B4004(void);
-void func_802B4038(void);
-void func_802B4080(void);
+void bssled_init(void);
+void bssled_update(void);
+void bssled_end(void);
+void bssled_interrupt(void);
 //0x0000007D
 void bswalrus_sled_init(void);
 void bswalrus_sled_update(void);

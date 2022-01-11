@@ -248,7 +248,7 @@ void func_80389494(Actor * this, s32* arg1, s32 *arg2){
         }else{//L8038956C
             *arg2 |= 1;
             *arg1 = D_8038AFB4[this->unkF4_8 -1].unk2;
-            if(*arg1 == 0xdfe && !func_802957A0(3)){
+            if(*arg1 == 0xdfe && !ability_hasUsed(ABILITY_3_CAMERA_CONTROL)){
                 *arg1 = 0xdfd;
             }
         }

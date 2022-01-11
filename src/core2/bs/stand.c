@@ -297,7 +297,7 @@ void func_802B4A10(AnimCtrl *arg0){
 
 
     if(func_8028B094())
-        sp24 = BS_FALL;
+        sp24 = BS_2F_FALL;
     bs_setState(sp24);
 
 }//*/

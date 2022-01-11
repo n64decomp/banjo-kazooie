@@ -46,8 +46,8 @@ void bsegghead_update(void) {
 
         if (animctrl_isAt(aCtrl, 0.4704f)){
             func_8033E3F0(1, 1);
-            func_80345F44(ITEM_D_EGGS);
-            func_80295610(7);
+            item_dec(ITEM_D_EGGS);
+            ability_use(7);
         }
         if ((animctrl_isAt(aCtrl,  0.5919f)) &&  (D_8037D2F1 < D_8037D2F0)) {
             func_8028774C(aCtrl, 0.3878f);
@@ -62,7 +62,7 @@ void bsegghead_update(void) {
         next_state = func_802ADCD4(0);
     }
     if (func_8028B094())
-        next_state = BS_FALL;
+        next_state = BS_2F_FALL;
     bs_setState(next_state);
 }
 

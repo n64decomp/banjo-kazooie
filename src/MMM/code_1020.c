@@ -19,7 +19,6 @@ extern ActorInfo D_8038BD90;
 extern ActorInfo D_8038BA20;
 extern ActorInfo D_8038BA68;
 extern ActorInfo D_8038BA90;
-extern ActorInfo D_80367E70;
 extern ActorInfo D_8038B9F8;
 extern ActorInfo D_8038BAD0;
 extern ActorInfo D_8038BE48;
@@ -28,6 +27,8 @@ extern ActorInfo D_8038BE90;
 extern ActorInfo D_8038BEB4;
 extern ActorInfo D_8038BED8;
 extern ActorInfo D_8038BEFC;
+
+extern ActorInfo D_80367E70;
 extern ActorInfo D_80372C3C;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/MMM/code_1020/func_80387410.s")

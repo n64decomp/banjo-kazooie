@@ -557,13 +557,13 @@ void func_8031D218(s32 arg0, s32 arg1) {
 }
 
 void func_8031D23C(s32 arg0, s32 arg1) {
-    func_80346414(ITEM_6_HOURGLASS, 0);
+    item_set(ITEM_6_HOURGLASS, 0);
     func_80244C78(1);
     func_8031CC8C(arg0, 0x1607);
 }
 
 void func_8031D27C(s32 arg0, s32 arg1) {
-    func_80346414(ITEM_6_HOURGLASS, 0);
+    item_set(ITEM_6_HOURGLASS, 0);
     func_8031CC8C(arg0, 0x1301);
 }
 
@@ -1517,7 +1517,7 @@ void func_8031F4E8(s32 arg0, s32 arg1) {
 }
 
 void func_8031F520(s32 arg0, s32 arg1) {
-    func_80346414(ITEM_6_HOURGLASS, 0);
+    item_set(ITEM_6_HOURGLASS, 0);
     func_8031CC8C(arg0, 0x6F02);
 }
 
