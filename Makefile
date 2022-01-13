@@ -315,10 +315,10 @@ $(OVERLAY_RZIP_OBJS) : $(BUILD_DIR)/$(BIN_ROOT)/%.$(VERSION).rzip.bin.o : $(BUIL
 $(BUILD_DIR)/bk_boot.full: $(BUILD_DIR)/bk_boot.elf
 	@mips-linux-gnu-objcopy -O binary --only-section .boot_bk_boot $(BUILD_DIR)/bk_boot.elf $@
 
-$(BUILD_DIR)/crc.bin : $(BUILD_DIR)/bk_boot.full $(BUILD_DIR)/core1.code $(BUILD_DIR)/core1.data
-	@$(BK_CRC) $(BUILD_DIR)/bk_boot.full > $(BUILD_DIR)/crc.bin
-	@$(BK_CRC) $(BUILD_DIR)/core1.code >> $(BUILD_DIR)/crc.bin
-	@$(BK_CRC) $(BUILD_DIR)/core1.data >> $(BUILD_DIR)/crc.bin
+$(BUILD_DIR)/crc.bin : $(BUILD_DIR)/bk_boot.full $(BUILD_DIR)/core1.code $(BUILD_DIR)/core1.data $(BK_CRC)
+	@$(BK_CRC) $< > $(BUILD_DIR)/crc.bin
+	@$(BK_CRC) $< >> $(BUILD_DIR)/crc.bin
+	@$(BK_CRC) $< >> $(BUILD_DIR)/crc.bin
 
 # .bin -> .o (overlay crc check)
 $(CRC_OBJS) : $(BUILD_DIR)/crc.bin
@@ -402,10 +402,10 @@ $(OVERLAY_DATA_BINS) : $(BUILD_DIR)/%.data : $(BUILD_DIR)/%.elf
 	@$(OBJCOPY) -O binary --only-section .data --only-section .*_data_* $< $@
 
 # .code to
-$(BUILD_DIR)/core2.code.crc : $(BUILD_DIR)/core2.code
+$(BUILD_DIR)/core2.code.crc : $(BUILD_DIR)/core2.code $(BK_CRC)
 	$(BK_CRC) -D CORE2_CODE $< > $@
 
-$(BUILD_DIR)/core2.data.crc : $(BUILD_DIR)/core2.data
+$(BUILD_DIR)/core2.data.crc : $(BUILD_DIR)/core2.data $(BK_CRC)
 	$(BK_CRC) -D CORE2_DATA $< > $@
 
 # .elf -> .full
@@ -445,6 +445,9 @@ $(BK_TOOLS)/gzip-1.2.4/Makefile:
 $(BK_TOOLS)/%: $(BK_TOOLS)/gzip-1.2.4/gzip
 	$(call print1,Compiling build tool:,$@)
 	@$(CD) $(BK_TOOLS) && $(MAKE) $*
+
+$(BK_CRC) :
+	gcc $@.c -o $@
 
 # Combined symbol addresses file
 $(SYMBOL_ADDRS): $(SYMBOL_ADDR_FILES)

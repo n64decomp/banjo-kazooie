@@ -19,7 +19,7 @@ assets/
 assets/*
 bin/
 bin/*
-
+tools/bk_crc/bk_crc
 
 # This folder will hold modified asset binaries
 # these assets will override the original game
