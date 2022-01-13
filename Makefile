@@ -447,7 +447,7 @@ $(BK_TOOLS)/%: $(BK_TOOLS)/gzip-1.2.4/gzip
 	@$(CD) $(BK_TOOLS) && $(MAKE) $*
 
 $(BK_CRC) :
-	gcc $@.c -o $@
+	gpp $@.cpp -o $@
 
 # Combined symbol addresses file
 $(SYMBOL_ADDRS): $(SYMBOL_ADDR_FILES)
