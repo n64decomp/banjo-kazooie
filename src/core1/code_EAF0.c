@@ -354,12 +354,13 @@ f32 func_8024DDD8(s32 arg0, f32 arg1){
     #define CORE2_DATA_CRC2 0
 #endif
 
+extern s32 D_803727F4 = CORE2_DATA_CRC2;
+
 extern s32 D_80276574;
 
 extern f32 D_80277A70;
-extern f32 D_80277A74 = CORE2_DATA_CRC2;
+extern f32 D_80277A74;
 
-extern s32 D_803727F4;
 
 extern struct {
     u8 pad0[4];

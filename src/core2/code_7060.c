@@ -255,7 +255,10 @@ void ability_unlock(enum ability_e uid){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028F66C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028F68C.s")
+void func_8028F68C(s32 arg0, ActorMarker *marker){
+    func_80296CA8(marker);
+    bs_checkInterrupt(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028F6B8.s")
 
