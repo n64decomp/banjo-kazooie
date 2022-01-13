@@ -32,12 +32,17 @@ segments:
   subsegments:
   - [0x0040, asm, boot]
   - [0x0B70, bin, boot2]
-- name:  boot/bk_boot
+- name:  entry
   type:  code
   start: 0x1000
   vram:  0x80000400
   subsegments:
   - [0x1000, hasm, entry]
+- name:  boot/bk_boot
+  type:  code
+  start: 0x1050
+  vram:  0x80000450
+  subsegments:
   - [0x1050, c, done/bk_boot_1050]
   - [0x1150, c, done/rarezip]
   - [0x12B0, c, done/inflate]
@@ -106,11 +111,16 @@ segments:
   - [0x5E70, .bss, done/pimgr]
   - [0x5E70, .bss, done/cartrominit]
   - [0x5E70, .bss, done/piacs]
-- name: assets
+- name: crc
   type: bin
   start: 0x5E70
   subsegments:
-  - [0x5E70, bin, assets]
+  - [0x5E70, bin, crc]
+- name: assets
+  type: bin
+  start: 0x5E90
+  subsegments:
+  - [0x5E90, bin, assets]
 - name: soundfont1
   type: bin
   start: 0xD846C0

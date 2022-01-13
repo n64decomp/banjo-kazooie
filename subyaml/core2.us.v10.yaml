@@ -440,6 +440,7 @@ segments:
   - [0xEAEA0, .data, code_B6EA0]
   - [0xEAED0, .data, code_B7F40]
   - [0xEAEE0, bin, data_EAEE0]
+  - [0xEB860, .data, code_CF3E0]
   - [0xEB880, .data, ch/clankerwhipcrack]
   - [0xEB8B0, .data, ch/code_CFA60]
   - [0xEB8E0, .data, ch/clucker]

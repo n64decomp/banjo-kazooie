@@ -350,7 +350,42 @@ f32 func_8024DDD8(s32 arg0, f32 arg1){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_EAF0/func_8024E3A8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_EAF0/func_8024E420.s")
+#ifndef CORE2_DATA_CRC2
+    #define CORE2_DATA_CRC2 0
+#endif
+
+extern s32 D_80276574;
+
+extern f32 D_80277A70;
+extern f32 D_80277A74 = CORE2_DATA_CRC2;
+
+extern s32 D_803727F4;
+
+extern struct {
+    u8 pad0[4];
+    s32 unk4; 
+    u8 pad8[4];
+    s32 unkC; 
+} D_80379B90;
+
+f32 func_8024E420(s32 arg0, s32 arg1, s32 arg2) {
+    f32 phi_f2;
+
+    phi_f2 = D_80277A70;
+    if ((D_80379B90.unk4 != D_803727F4) || (D_80379B90.unkC != D_80276574)) {
+        phi_f2 = D_80277A74;
+    }
+    if (arg0 > 0) {
+        arg0 = (arg2 < arg0) ? arg2 : (arg0 < arg1) ? arg1 : arg0;
+        arg0 = (s32) ((arg0 - arg1) * 0x50) / (s32) (arg2 - arg1);
+    } else {
+        if (arg0 < 0) {
+            arg0 = (arg0 < -arg2) ? -arg2 : (-arg1 < arg0) ? -arg1 : arg0;
+            arg0 = (s32) ((arg0 + arg1) * 0x50) / (s32) (arg2 - arg1);
+        }
+    }
+    return phi_f2 *= arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_EAF0/func_8024E55C.s")
 

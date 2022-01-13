@@ -2,6 +2,8 @@
 BASENAME := banjo
 VERSION  ?= us.v10
 
+IN_CFLAGS ?= -DCODE2_CODE_CRC2=0 -DCODE2_DATA_CRC2=0
+
 ### Tools ###
 
 # System tools
@@ -28,6 +30,7 @@ PRINT   := printf
 PATCH_LIB_MATH    := tools/patch_libultra_math
 ASM_PROCESSOR_DIR := tools/asm-processor
 BK_TOOLS          := tools/bk_tools
+BK_CRC            := tools/bk_crc/bk_crc
 BK_INFLATE        := $(BK_TOOLS)/bk_inflate_code
 BK_DEFLATE        := $(BK_TOOLS)/bk_deflate_code
 ASM_PROCESSOR     := $(PYTHON) $(ASM_PROCESSOR_DIR)/asm_processor.py
@@ -81,11 +84,14 @@ $(foreach overlay,$(OVERLAYS),$(eval $(call get_overlay_sources,$(overlay))))
 # Files for the rom itself
 MAIN_C_SRCS   := $(filter-out $(OVERLAY_C_SRCS),$(ALL_C_SRCS))
 MAIN_ASM_SRCS := $(filter-out $(OVERLAY_ASM_SRCS),$(ALL_ASM_SRCS))
-MAIN_BINS     := $(filter-out $(OVERLAY_BINS),$(ALL_BINS))
+MAIN_BINS     := $(filter-out $(OVERLAY_BINS) $(BIN_ROOT)/crc.bin ,$(ALL_BINS))
 # Files that need to be extracted for the rom itself
 MAIN_NEW_FILES := $(filter-out $(OVERLAY_NEW_FILES), $(NEW_FILES))
 # Any source files that have GLOBAL_ASM in them or do not exist before splitting
 GLOBAL_ASM_C_SRCS := $(shell $(GREP) GLOBAL_ASM $(SRC_ROOT) </dev/null) $(NEW_C_SRCS)
+CORE2_CODE_CRC_C_SRCS := $(shell $(GREP) CORE2_CODE_CRC2 $(SRC_ROOT) </dev/null)
+CORE2_DATA_CRC_C_SRCS := $(shell $(GREP) CORE2_DATA_CRC2 $(SRC_ROOT) </dev/null)
+
 
 # Build folders
 C_DIRS         := $(sort $(dir $(ALL_C_SRCS) $(NEW_C_SRCS)))
@@ -100,12 +106,15 @@ ALL_DIRS       := $(C_BUILD_DIRS) $(ASM_BUILD_DIRS) $(BIN_BUILD_DIRS) $(BUILD_DI
 BASEROM           := baserom.$(VERSION).z64
 C_OBJS            := $(addprefix $(BUILD_DIR)/,$(ALL_C_SRCS:.c=.c.o))
 GLOBAL_ASM_C_OBJS := $(addprefix $(BUILD_DIR)/,$(GLOBAL_ASM_C_SRCS:.c=.c.o))
+CORE2_CODE_CRC_C_OBJS := $(addprefix $(BUILD_DIR)/,$(CORE2_CODE_CRC_C_SRCS:.c=.c.o))
+CORE2_DATA_CRC_C_OBJS := $(addprefix $(BUILD_DIR)/,$(CORE2_DATA_CRC_C_SRCS:.c=.c.o))
 C_DEPS            := $(C_OBJS:.o=.d)
 ASM_OBJS          := $(addprefix $(BUILD_DIR)/,$(ALL_ASM_SRCS:.s=.s.o) $(NEW_ASM_SRCS:.s=.s.o))
 BIN_OBJS          := $(addprefix $(BUILD_DIR)/,$(ALL_BINS:.bin=.bin.o) $(NEW_BINS:.bin=.bin.o))
 Z64               := $(addprefix $(BUILD_DIR)/,$(BASENAME).$(VERSION).z64)
 ELF               := $(Z64:.z64=.elf)
 LD_SCRIPT         := $(BASENAME).ld
+BK_BOOT_LD_SCRIPT := bk_boot.ld
 OVERLAY_ELFS      := $(addprefix $(BUILD_DIR)/,$(addsuffix .elf,$(OVERLAYS)))
 OVERLAY_CODE_BINS := $(OVERLAY_ELFS:.elf=.code)
 OVERLAY_DATA_BINS := $(OVERLAY_ELFS:.elf=.data)
@@ -113,8 +122,9 @@ OVERLAY_BINS      := $(addprefix $(BUILD_DIR)/,$(addsuffix .$(VERSION).bin,$(OVE
 OVERLAY_RZIPS     := $(addprefix $(BIN_ROOT)/,$(addsuffix .$(VERSION).rzip.bin,$(OVERLAYS)))
 OVERLAY_RZIP_OUTS := $(addprefix $(BUILD_DIR)/,$(addsuffix .rzip.bin,$(OVERLAYS)))
 OVERLAY_RZIP_OBJS := $(addprefix $(BUILD_DIR)/$(BIN_ROOT)/,$(addsuffix .$(VERSION).rzip.bin.o,$(OVERLAYS)))
-BIN_OBJS          := $(filter-out $(OVERLAY_RZIP_OBJS),$(BIN_OBJS))
-ALL_OBJS          := $(C_OBJS) $(ASM_OBJS) $(BIN_OBJS) $(OVERLAY_RZIP_OBJS)
+CRC_OBJS          := $(BUILD_DIR)/$(BIN_ROOT)/crc.bin.o
+BIN_OBJS          := $(filter-out $(OVERLAY_RZIP_OBJS) $(CRC_OBJS),$(BIN_OBJS))
+ALL_OBJS          := $(C_OBJS) $(ASM_OBJS) $(BIN_OBJS) $(OVERLAY_RZIP_OBJS) $(CRC_OBJS)
 SYMBOL_ADDRS      := symbol_addrs.$(VERSION).txt
 SYMBOL_ADDR_FILES := $(filter-out $(SYMBOL_ADDRS), $(wildcard symbol_addrs.*.$(VERSION).txt))
 MIPS3_OBJS        := $(BUILD_DIR)/$(SRC_ROOT)/done/ll.c.o $(BUILD_DIR)/$(SRC_ROOT)/core1/done/ll.c.o
@@ -176,6 +186,7 @@ endef
 # Build tool flags
 CFLAGS         := -c -Wab,-r4300_mul -non_shared -G 0 -Xfullwarn -Xcpluscomm  -signed $(OPT_FLAGS) $(MIPSBIT) -D_FINALROM -DF3DEX_GBI
 CFLAGS         += -woff 649,654,838,807
+CFLAGS         += $(IN_CFLAGS)
 CPPFLAGS       := -D_FINALROM -DN_MICRO
 INCLUDE_CFLAGS := -I . -I include -I include/2.0L -I include/2.0L/PR
 OPT_FLAGS      := -O2 
@@ -259,8 +270,8 @@ verify-each: $(addprefix verify-,$(OVERLAYS))
 # per-overlay rules
 define overlay_rules
   # .o -> .elf (overlay)
-  $(BUILD_DIR)/$(1).elf : $$($(1)_ALL_OBJS) $(1).ld
-	$(call print1,Linking elf:,$$@)
+  $(BUILD_DIR)/$(1).temp.elf : $$($(1)_ALL_OBJS) $(1).ld
+	$(call print1,Linking temp elf:,$$@)
 	@$(LD) -T $(1).ld -Map $(BUILD_DIR)/$(1).map $$(LDFLAGS_COMMON) -T undefined_syms_auto.$(1).us.v10.txt -T undefined_funcs_auto.$(1).us.v10.txt -o $$@
   # split overlay
   $(BUILD_DIR)/$(1)_SPLAT_TIMESTAMP : $(SUBYAML)/$(1).$(VERSION).yaml $(BUILD_DIR)/$(1).$(VERSION).bin $(SYMBOL_ADDRS)
@@ -278,7 +289,8 @@ endef
 $(foreach overlay,$(OVERLAYS),$(eval $(call overlay_rules,$(overlay))))
 
 # Additional symbols for core2
-$(BUILD_DIR)/core2.elf: LDFLAGS_COMMON += -T level_symbols.us.v10.txt
+$(BUILD_DIR)/core2.elf: LDFLAGS_COMMON = -T symbol_addrs.core1.$(VERSION).txt -T symbol_addrs.core2.$(VERSION).txt -T symbol_addrs.global.$(VERSION).txt -T undefined_syms.$(VERSION).txt -T undefined_syms.libultra.txt --no-check-sections --accept-unknown-input-arch -T level_symbols.us.v10.txt
+$(BUILD_DIR)/core2.temp.elf: LDFLAGS_COMMON = -T symbol_addrs.core1.$(VERSION).txt -T symbol_addrs.core2.$(VERSION).txt -T symbol_addrs.global.$(VERSION).txt -T undefined_syms.$(VERSION).txt -T undefined_syms.libultra.txt --no-check-sections --accept-unknown-input-arch -T level_symbols.us.v10.txt
 
 # mkdir
 $(ALL_DIRS) :
@@ -297,6 +309,19 @@ $(BIN_OBJS) : $(BUILD_DIR)/%.bin.o : %.bin | $(BIN_BUILD_DIRS)
 
 # .bin -> .o (overlay)
 $(OVERLAY_RZIP_OBJS) : $(BUILD_DIR)/$(BIN_ROOT)/%.$(VERSION).rzip.bin.o : $(BUILD_DIR)/%.rzip.bin
+	$(call print2,Objcopying:,$<,$@)
+	@$(OBJCOPY) $(BINOFLAGS) $< $@
+
+$(BUILD_DIR)/bk_boot.full: $(BUILD_DIR)/bk_boot.elf
+	@mips-linux-gnu-objcopy -O binary --only-section .boot_bk_boot $(BUILD_DIR)/bk_boot.elf $@
+
+$(BUILD_DIR)/crc.bin : $(BUILD_DIR)/bk_boot.full $(BUILD_DIR)/core1.code $(BUILD_DIR)/core1.data
+	@$(BK_CRC) $(BUILD_DIR)/bk_boot.full > $(BUILD_DIR)/crc.bin
+	@$(BK_CRC) $(BUILD_DIR)/core1.code >> $(BUILD_DIR)/crc.bin
+	@$(BK_CRC) $(BUILD_DIR)/core1.data >> $(BUILD_DIR)/crc.bin
+
+# .bin -> .o (overlay crc check)
+$(CRC_OBJS) : $(BUILD_DIR)/crc.bin
 	$(call print2,Objcopying:,$<,$@)
 	@$(OBJCOPY) $(BINOFLAGS) $< $@
 
@@ -339,8 +364,35 @@ $(OVERLAY_BINS) : $(BUILD_DIR)/%.$(VERSION).bin : $(BIN_ROOT)/%.$(VERSION).rzip.
 	$(call print1,Decompressing rzip:,$<)
 	@$(BK_INFLATE) $< $@
 
+# .temp.elf -> .elf
+$(BUILD_DIR)/%.elf : $(BUILD_DIR)/%.temp.elf 
+	$(call print12,Copying .elf:,$@,$<)
+	$(CP) $< $@
+
+# .temp.elf -> .elf
+ifneq ($(CORE2_CODE_CRC_C_OBJS),)
+$(BUILD_DIR)/core2.elf : $(BUILD_DIR)/core2.code.crc $(core2_ALL_OBJS) core2.ld
+	$(call print1,Rebuilding CRC dependent objects:,$(CORE2_CODE_CRC_C_OBJS))
+	rm -f $(CORE2_CODE_CRC_C_OBJS)
+	$(eval NEW_FLAGS:=$(shell cat $<))
+	$(foreach obj, $(CORE2_CODE_CRC_C_OBJS), @$(MAKE) $(obj) IN_CFLAGS="$(NEW_FLAGS)")
+	$(call print1,Linking elf:,$@)
+	@$(LD) -T core2.ld -Map $(BUILD_DIR)/core2.map $(LDFLAGS_COMMON) -T undefined_syms_auto.core2.us.v10.txt -T undefined_funcs_auto.core2.us.v10.txt -o $@
+endif
+
+ifneq ($(CORE2_DATA_CRC_C_OBJS),)
+$(BUILD_DIR)/core1.elf : $(BUILD_DIR)/core2.data.crc $(core1_ALL_OBJS) core1.ld
+	$(call print1,Rebuilding CRC dependent objects:,$(CORE2_DATA_CRC_C_OBJS))
+	rm -f $(CORE2_DATA_CRC_C_OBJS)
+	$(eval NEW_FLAGS:=$(shell cat $<))
+	$(foreach obj, $(CORE2_DATA_CRC_C_OBJS), @$(MAKE) $(obj) IN_CFLAGS="$(NEW_FLAGS)")
+	$(call print1,Linking elf:,$@)
+	@$(LD) -T core1.ld -Map $(BUILD_DIR)/core1.map $(LDFLAGS_COMMON) -T undefined_syms_auto.core1.us.v10.txt -T undefined_funcs_auto.core1.us.v10.txt -o $@
+endif
+
+
 # .elf -> .code
-$(OVERLAY_CODE_BINS) : $(BUILD_DIR)/%.code : $(BUILD_DIR)/%.elf
+$(OVERLAY_CODE_BINS) : $(BUILD_DIR)/%.code : $(BUILD_DIR)/%.temp.elf
 	$(call print2,Converting overlay code:,$<,$@)
 	@$(OBJCOPY) -O binary --only-section .code --only-section .mips3 $< $@
 
@@ -348,6 +400,13 @@ $(OVERLAY_CODE_BINS) : $(BUILD_DIR)/%.code : $(BUILD_DIR)/%.elf
 $(OVERLAY_DATA_BINS) : $(BUILD_DIR)/%.data : $(BUILD_DIR)/%.elf
 	$(call print2,Converting overlay data:,$<,$@)
 	@$(OBJCOPY) -O binary --only-section .data --only-section .*_data_* $< $@
+
+# .code to
+$(BUILD_DIR)/core2.code.crc : $(BUILD_DIR)/core2.code
+	$(BK_CRC) -D CORE2_CODE $< > $@
+
+$(BUILD_DIR)/core2.data.crc : $(BUILD_DIR)/core2.data
+	$(BK_CRC) -D CORE2_DATA $< > $@
 
 # .elf -> .full
 $(BUILD_DIR)/%.full : $(BUILD_DIR)/%.elf
@@ -362,6 +421,14 @@ $(BUILD_DIR)/%.rzip.bin : $(BUILD_DIR)/%.code $(BUILD_DIR)/%.data $(BK_DEFLATE)
 $(ELF): $(MAIN_ALL_OBJS) $(LD_SCRIPT) $(OVERLAY_RZIP_OBJS) $(addprefix $(BUILD_DIR)/, $(addsuffix .full, $(OVERLAYS)))
 	$(call print1,Linking elf:,$@)
 	@$(LD) $(LDFLAGS) -T undefined_syms_auto.us.v10.txt -o $@
+
+$(BK_BOOT_LD_SCRIPT): $(LD_SCRIPT)
+	sed '\|$(CRC_OBJS)|d'  $< > $@
+
+# .o -> .elf (game)
+$(BUILD_DIR)/bk_boot.elf: $(filter-out $(CRC_OBJS),$(MAIN_ALL_OBJS)) $(BK_BOOT_LD_SCRIPT) $(OVERLAY_RZIP_OBJS) $(addprefix $(BUILD_DIR)/, $(addsuffix .full, $(OVERLAYS)))
+	$(call print1,Linking elf:,$@)
+	@$(LD) -T $(BK_BOOT_LD_SCRIPT) -Map $(ELF:.elf=.map) --no-check-sections --accept-unknown-input-arch -T undefined_syms.libultra.txt -T undefined_syms_auto.us.v10.txt -o $@
 
 # .elf -> .z64
 $(Z64) : $(ELF) $(OVERLAY_PROG_SVGS) $(MAIN_PROG_SVG) $(TOTAL_PROG_SVG)

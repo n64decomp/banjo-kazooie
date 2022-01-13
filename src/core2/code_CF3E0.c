@@ -76,20 +76,28 @@ void func_80356560(s32 arg0) {
     func_8035648C(arg0, 0xE);
 }
 
+//THIS VALUE 
+#ifndef CORE2_CODE_CRC2
+    #define CORE2_CODE_CRC2 0
+#endif
+
 // bk_boot segment start (skipping entry function)
 extern u8 D_00001050[];
 // bk_boot segment end
 extern u8 D_00005E70[];
 
 // bk_boot segment crc next word
-extern s32 D_803727FC;
+s32 D_803727F0 = 0;
+s32 D_803727F4 = CORE2_CODE_CRC2;
+s32 D_803727F8 = 0;
+s32 D_803727FC = 0;
 
 // bk_boot segment crc values
-extern s32 D_80372800;
-extern s32 D_80372804;
+s32 D_80372800 = 0;
+s32 D_80372804 = 0;
 
 // bk_boot segment crc remaining words
-extern s32 D_80372808;
+s32 D_80372808 = 0;
 
 // init bk_boot crc
 void func_80356580(void) {
