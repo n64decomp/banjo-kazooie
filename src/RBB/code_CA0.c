@@ -54,14 +54,14 @@ void func_8038718C(ActorMarker *marker){
         func_8034DDF0(sp44, &sp38, &sp2C, 4.0f, 1);
         func_8034E1A4(sp44, 0xd8, 1.0f, 1.0f);
     }
-    func_80324E60(0.0f, 4);
-    func_80324E60(2.5f, 5);
-    func_80324C88(4.0f, SFX_7F_HEAVYDOOR_SLAM, 0.5f, 19000);
-    func_80324C88(4.0f, SFX_7F_HEAVYDOOR_SLAM, 0.6f, 19000);
-    func_80324C88(4.0f, SFX_7F_HEAVYDOOR_SLAM, 0.7f, 19000);
-    func_80324C88(4.0f, SFX_7F_HEAVYDOOR_SLAM, 0.8f, 19000);
-    func_80324C88(4.0f, SFX_7F_HEAVYDOOR_SLAM, 0.9f, 19000);
-    func_80324C88(4.0f, SFX_7F_HEAVYDOOR_SLAM, 1.0f, 19000);\
+    timed_setCameraToNode(0.0f, 4);
+    timed_setCameraToNode(2.5f, 5);
+    timed_playSfx(4.0f, SFX_7F_HEAVYDOOR_SLAM, 0.5f, 19000);
+    timed_playSfx(4.0f, SFX_7F_HEAVYDOOR_SLAM, 0.6f, 19000);
+    timed_playSfx(4.0f, SFX_7F_HEAVYDOOR_SLAM, 0.7f, 19000);
+    timed_playSfx(4.0f, SFX_7F_HEAVYDOOR_SLAM, 0.8f, 19000);
+    timed_playSfx(4.0f, SFX_7F_HEAVYDOOR_SLAM, 0.9f, 19000);
+    timed_playSfx(4.0f, SFX_7F_HEAVYDOOR_SLAM, 1.0f, 19000);\
     func_80324E88(5.0f);
     func_80324E38(5.0f, 0);
     timedFunc_set_2(5.0f, (TFQM2) func_80387090, (s32) marker, 3);
@@ -80,12 +80,12 @@ void func_80387308(ActorMarker *marker){
         func_8034E1A4(sp40, 0xd8, 1.0f, 1.0f);
     }//L80387394
 
-    func_80324C88(0.5f, SFX_7F_HEAVYDOOR_SLAM, 0.5f, 19000);
-    func_80324C88(0.5f, SFX_7F_HEAVYDOOR_SLAM, 0.6f, 19000);
-    func_80324C88(0.5f, SFX_7F_HEAVYDOOR_SLAM, 0.7f, 19000);
-    func_80324C88(0.5f, SFX_7F_HEAVYDOOR_SLAM, 0.8f, 19000);
-    func_80324C88(0.5f, SFX_7F_HEAVYDOOR_SLAM, 0.9f, 19000);
-    func_80324C88(0.5f, SFX_7F_HEAVYDOOR_SLAM, 1.0f, 19000);
+    timed_playSfx(0.5f, SFX_7F_HEAVYDOOR_SLAM, 0.5f, 19000);
+    timed_playSfx(0.5f, SFX_7F_HEAVYDOOR_SLAM, 0.6f, 19000);
+    timed_playSfx(0.5f, SFX_7F_HEAVYDOOR_SLAM, 0.7f, 19000);
+    timed_playSfx(0.5f, SFX_7F_HEAVYDOOR_SLAM, 0.8f, 19000);
+    timed_playSfx(0.5f, SFX_7F_HEAVYDOOR_SLAM, 0.9f, 19000);
+    timed_playSfx(0.5f, SFX_7F_HEAVYDOOR_SLAM, 1.0f, 19000);
     timedFunc_set_2(0.5f, (TFQM2) func_80387090, (s32) actor->marker, 1);
     
     timedFunc_set_2(1.5f, (TFQM2) func_803870BC, 0x19d, 0x1f4);
@@ -107,7 +107,7 @@ void func_80387488(ActorMarker *marker){
         }
     }
     func_80324E38(0.0f, 3);
-    func_80324E60(0.0f, 6);
+    timed_setCameraToNode(0.0f, 6);
     timedFunc_set_1(0.5f, (TFQM1) func_80387308, (s32) actor->marker);
 }
 
@@ -178,8 +178,8 @@ void func_8038756C(Actor *this, s32 arg1){
             func_8034DDF0(sp3C, &sp30, &sp24, 3.0f, 1);
             func_8034E1A4(sp3C, 0xd8, 1.0f, 1.0f);
         }//L803877D4
-        func_80324C88(3.0f, SFX_7F_HEAVYDOOR_SLAM, 0.5f, 25000);
-        func_80324C88(3.0f, SFX_7F_HEAVYDOOR_SLAM, 0.6f, 25000);
+        timed_playSfx(3.0f, SFX_7F_HEAVYDOOR_SLAM, 0.5f, 25000);
+        timed_playSfx(3.0f, SFX_7F_HEAVYDOOR_SLAM, 0.6f, 25000);
         timedFunc_set_1(4.0f, func_80387488, this->marker);
     }//L80387828
 

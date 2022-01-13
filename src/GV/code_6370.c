@@ -47,9 +47,9 @@ void func_8038C760(Actor *this, s32 arg1){
     FUNC_8030E624(SFX_3F6_UNKNOWN, 0x36B, 0x2cc);
     FUNC_8030E624(SFX_3F6_UNKNOWN, 0x38A, 0x398);
     FUNC_8030E624(SFX_3F6_UNKNOWN, 0x3A9, 0x3FF);
-    func_80324E60(0.0f, 8);
+    timed_setCameraToNode(0.0f, 8);
     if(arg1 < 3){
-        func_80324E60(3.5f, arg1 + 0x15);
+        timed_setCameraToNode(3.5f, arg1 + 0x15);
         timedFunc_set_3(3.5f, (TFQM3)func_80320044, BKPROG_F8_KING_SANDYBUTT_PYRAMID_STATE, arg1, 2);
         func_80324E88(6.5f);
         func_80324E38(6.5f, 0);
@@ -95,7 +95,7 @@ void func_8038C8A0(Actor *this, s32 next_state){
         local->unk18[2] = this->position_z;
         if(this->state == 1){
             func_80250E94(0.0f, 0.6f, 1.0f, 0, 1.3f, 0.0f);
-            func_80324C88(1.0f, SFX_3F6_UNKNOWN, 0.8f, 30000);
+            timed_playSfx(1.0f, SFX_3F6_UNKNOWN, 0.8f, 30000);
         }
     }//L8038CA6C
 

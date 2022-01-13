@@ -119,7 +119,7 @@ void func_80387168(ActorMarker *this, s32 arg1){
                 && !jiggyscore_isCollected(JIGGY_A_MM_CONGA)
             ){
                 func_80328B8C(actorPtr, 8, 0 ,1);
-                func_80324E60(0.0f, 0x10);
+                timed_setCameraToNode(0.0f, 0x10);
                 func_80324E38(0.0f, 3);
                 func_8030E624(0x665ff884);
                 func_8030E624(0x665ff884);
@@ -150,7 +150,7 @@ int func_803872EC(void){
 
 void func_80387370(ActorMarker *this, s32 arg1, s32 arg2){
     marker_getActor(this)->velocity_x = 9.0f;
-    func_80324E60(0.0f, 0x11);
+    timed_setCameraToNode(0.0f, 0x11);
     func_80324E88(3.2f);
     func_80324E38(3.2f, 0);
 }

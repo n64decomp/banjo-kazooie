@@ -88,7 +88,7 @@ void func_8038817C(void){
         if(func_8025773C(&D_80389F90.unk8, sp20)){
             func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);
             func_80324E38(0.0f, 3);
-            func_80324E60(2.0f, 0);
+            timed_setCameraToNode(2.0f, 0);
             timedJiggySpawn(2.1f, JIGGY_1C_CC_RINGS, D_80389BF0);
             func_80324E38(5.0f, 0);
             func_80324E88(5.0f);

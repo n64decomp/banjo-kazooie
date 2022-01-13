@@ -62,20 +62,20 @@ void func_8038BB40(ActorMarker * arg0){
 //     if(arg1 == 0x67){
 //         func_80335A24(arg0->unk148, 0x124, 0.1f, 0.5f); //0x124 = croc_munch
 //         if(arg0->unk10_31 == 4){
-//             func_80324C88(D_80391040, 0x4C, 0.90f, 0x61A8);
+//             timed_playSfx(D_80391040, 0x4C, 0.90f, 0x61A8);
 //             timedFunc_set_1(D_80391044, func_8038BB40, arg0->marker);
 //         }
 //         else{
-//             func_80324C88(D_80391048, 0x4C, 0.90f, 0x61A8);
-//             func_80324C88(D_8039104C, 0x4C, 0.93f, 0x61A8);
-//             func_80324C88(D_80391050, 0x4C, 0.91f, 0x61A8);
+//             timed_playSfx(D_80391048, 0x4C, 0.90f, 0x61A8);
+//             timed_playSfx(D_8039104C, 0x4C, 0.93f, 0x61A8);
+//             timed_playSfx(D_80391050, 0x4C, 0.91f, 0x61A8);
 //         }
 //     }
 //     if(arg1 == 0x68){
 //         reg_s1->unk14 = 1.0f;
         
 //         //!!! bad reg for arg2; !!!
-//         func_80324C88(randf2(D_80391054, D_80391058), (0x97), randf2(D_8039105C, D_80391060), randi2(25000, 32000));
+//         timed_playSfx(randf2(D_80391054, D_80391058), (0x97), randf2(D_8039105C, D_80391060), randi2(25000, 32000));
 //     }
 //     reg_s1->unkC = arg1; 
 // }

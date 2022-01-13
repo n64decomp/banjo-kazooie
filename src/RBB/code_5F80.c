@@ -309,11 +309,11 @@ void func_8038CC9C(Actor *this, s32 new_state){
         func_80335924(this->unk148, ASSET_146_ANIM_BOSS_BOOMBOX_APPEAR, 0.0f, 2.4f);
         func_80335A8C(this->unk148, 2);
         func_80324E38(0.0f, 3);
-        func_80324E60(0.0f, 0);
-        func_80324C88(0.5f, SFX_3F5_UNKNOWN, 1.0f, 0x7fc6);
-        func_80324C88(1.25f, SFX_6C_LOCKUP_CLOSING, 1.05f, 0x7d00);
-        func_80324C88(1.35f, SFX_6C_LOCKUP_CLOSING, 1.0f, 0x7d00);
-        func_80324C88(1.8f, SFX_6C_LOCKUP_CLOSING, 1.0f, 0x7d00);
+        timed_setCameraToNode(0.0f, 0);
+        timed_playSfx(0.5f, SFX_3F5_UNKNOWN, 1.0f, 0x7fc6);
+        timed_playSfx(1.25f, SFX_6C_LOCKUP_CLOSING, 1.05f, 0x7d00);
+        timed_playSfx(1.35f, SFX_6C_LOCKUP_CLOSING, 1.0f, 0x7d00);
+        timed_playSfx(1.8f, SFX_6C_LOCKUP_CLOSING, 1.0f, 0x7d00);
         if(func_803203FC(2)){
             item_set(ITEM_6_HOURGLASS, 1);
             item_set(ITEM_0_HOURGLASS_TIMER, 0x1067);
@@ -341,7 +341,7 @@ void func_8038CC9C(Actor *this, s32 new_state){
 
     if(this->state == 5){
         actor_collisionOff(this);
-        func_80324C88(0.2f, SFX_D9_WOODEN_CRATE_BREAKING_1, 0.9f, 0x7530);
+        timed_playSfx(0.2f, SFX_D9_WOODEN_CRATE_BREAKING_1, 0.9f, 0x7530);
         func_80335924(this->unk148, ASSET_148_ANIM_BOOMBOX_DIE, 0.2f, 1.0f);
         func_80335A8C(this->unk148, 2);
         ml_vec3f_set_length(sp80, -300.f);

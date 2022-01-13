@@ -23,9 +23,9 @@ void func_803908C4(s32 arg0){
     D_80391B00.unk0 = arg0;
     if(D_80391B00.unk0 == 2){
         func_80324E38(0.0f, 3);
-        func_80324E60(0.0f, 0);
+        timed_setCameraToNode(0.0f, 0);
         timedFunc_set_0(3.0f, func_80390880);
-        func_80324E60(3.0f, 1);
+        timed_setCameraToNode(3.0f, 1);
         func_80324E38(6.0f, 0);
         tmp_v0 = func_8034C528(400);
         if(tmp_v0){

@@ -20,7 +20,7 @@ ActorInfo D_8038B0B0 = { 0x1ED, 0x3B9, 0, 1, NULL,
 
 /* .code */
 void func_8038A460(Actor *this){
-    func_80324E60(0.0f,4);
+    timed_setCameraToNode(0.0f,4);
 }
 
 void func_8038A488(ActorMarker *caller, s32 text_id, s32 arg2){

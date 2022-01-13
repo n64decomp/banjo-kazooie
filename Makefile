@@ -315,9 +315,9 @@ $(BUILD_DIR)/bk_boot.full: $(BUILD_DIR)/bk_boot.elf
 	@mips-linux-gnu-objcopy -O binary --only-section .boot_bk_boot $(BUILD_DIR)/bk_boot.elf $@
 
 $(BUILD_DIR)/crc.bin : $(BUILD_DIR)/bk_boot.full $(BUILD_DIR)/core1.code $(BUILD_DIR)/core1.data $(BK_CRC)
-	@$(BK_CRC) $< > $(BUILD_DIR)/crc.bin
-	@$(BK_CRC) $< >> $(BUILD_DIR)/crc.bin
-	@$(BK_CRC) $< >> $(BUILD_DIR)/crc.bin
+	@$(BK_CRC) $(BUILD_DIR)/bk_boot.full > $(BUILD_DIR)/crc.bin
+	@$(BK_CRC) $(BUILD_DIR)/core1.code >> $(BUILD_DIR)/crc.bin
+	@$(BK_CRC) $(BUILD_DIR)/core1.data >> $(BUILD_DIR)/crc.bin
 
 # .bin -> .o (overlay crc check)
 $(CRC_OBJS) : $(BUILD_DIR)/crc.bin

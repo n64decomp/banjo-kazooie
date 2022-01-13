@@ -144,7 +144,7 @@ f32 func_80324C7C(void){
     return D_80383380.time;
 }
 
-void func_80324C88(f32 time, enum sfx_e arg0, f32 arg1, s32 arg2){
+void timed_playSfx(f32 time, enum sfx_e arg0, f32 arg1, s32 arg2){
     timedFunc_set_3(time, func_80324A68, arg0, (s32)(arg1*1000.0f), arg2);
 }
 
@@ -181,7 +181,7 @@ void func_80324E38(f32 time, s32 arg0){
     timedFunc_set_1(time, (TFQM1) func_80324BA0, arg0);
 }
 
-void func_80324E60(f32 time, s32 arg0){
+void timed_setCameraToNode(f32 time, s32 arg0){
     timedFunc_set_1(time, (TFQM1) func_802BAE20, arg0);
 }
 

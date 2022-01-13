@@ -654,7 +654,7 @@ void func_8038BCF0(Actor *this){
         func_802F9DB8(tmp_s0, D_80392450, D_80392450, 0.0f);
         func_802F9FD0(tmp_s0, 0.0f, 2.0f, 0.0f);
         func_802FA060(tmp_s0, 25000, 25000, 0);
-        func_80324C88(2.0f, SFX_7F_HEAVYDOOR_SLAM, 1.0f, 32000);
+        timed_playSfx(2.0f, SFX_7F_HEAVYDOOR_SLAM, 1.0f, 32000);
     }//L8038BF0C
     switch(local->unk0){
         case 0:
@@ -761,17 +761,17 @@ f32 func_80391240();
 //     func_8038AC88(temp_v0, 0x27);
 //     temp_t6->pad8 = (u8)1;
 //     func_80324E38(0, 1);
-//     func_80324E60(0, phi_s0);
+//     timed_setCameraToNode(0, phi_s0);
 //     func_80324E88(temp_f20);
 //     timedFunc_set_0(temp_f20 * D_80392470, &func_8038C138);
-//     func_80324E60(temp_f20, phi_s0 + 1);
+//     timed_setCameraToNode(temp_f20, phi_s0 + 1);
 //     temp_f12 = temp_f20 + sp40;
 //     func_80324E88(temp_f12);
 //     timedFunc_set_1(temp_f12, func_8038C10C, (s32)temp_v0->marker);
-//     func_80324E60(temp_f12, phi_s0 + 2);
+//     timed_setCameraToNode(temp_f12, phi_s0 + 2);
 //     temp_f12_2 = temp_f12 + D_80392478;
 //     func_80324E88(temp_f12_2);
-//     func_80324E60(temp_f12_2, phi_s0 + 3);
+//     timed_setCameraToNode(temp_f12_2, phi_s0 + 3);
 // }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/fight/code_180/func_8038C148.s")

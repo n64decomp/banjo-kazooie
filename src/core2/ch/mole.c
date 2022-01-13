@@ -136,7 +136,7 @@ void func_802D9600(Actor * this){
 }
 
 void func_802D9658(Actor *this){
-    func_80324E60(0.0f, D_80367DC4[this->unkF4_8-9].unk4);
+    timed_setCameraToNode(0.0f, D_80367DC4[this->unkF4_8-9].unk4);
 }
 
 void func_802D9698(ActorMarker *marker, enum asset_e arg1, s32 arg2){
@@ -170,7 +170,7 @@ void func_802D9830(ActorMarker *marker, enum asset_e arg1, s32 arg2){
     Actor *actor = marker_getActor(marker);
     switch(arg2){
         case 1:
-            func_80324E60(0.0f, 0x11);
+            timed_setCameraToNode(0.0f, 0x11);
             levelSpecificFlags_set(0x1A, 1);
             break;
         case 2:
@@ -178,7 +178,7 @@ void func_802D9830(ActorMarker *marker, enum asset_e arg1, s32 arg2){
             func_802D9658(actor);
             break;
         case 3:
-            func_80324E60(0.0f, 0x29);
+            timed_setCameraToNode(0.0f, 0x29);
             levelSpecificFlags_set(0x1A, 1);
             break;
         case 4:

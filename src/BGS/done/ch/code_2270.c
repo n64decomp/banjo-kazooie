@@ -136,7 +136,7 @@ void func_803888E4(Actor *this, s32 arg1){
         unqPtr->unk0 = 0;
         vector_clear(unqPtr->unk4);
         func_80324E38(0.0f, 3);
-        func_80324E60(0.5f, 0);
+        timed_setCameraToNode(0.5f, 0);
         tmpf = 0.5f;
         i = 0;
         rand1 = 0;
@@ -166,7 +166,7 @@ void func_803888E4(Actor *this, s32 arg1){
         
          unqPtr->unk0 = 0;
         func_80324E38(0.0f, 3);
-        func_80324E60(0.5f, 0);
+        timed_setCameraToNode(0.5f, 0);
         tmpf = 0.5f;
         for(j = 0; j < vector_size(unqPtr->unk4); j++){
             s1 = (struct7s *)vector_at(unqPtr->unk4,j);
@@ -184,7 +184,7 @@ void func_803888E4(Actor *this, s32 arg1){
             func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);
         }
         func_80324E38(0.5f, 3);
-        func_80324E60(1.5f, 1);
+        timed_setCameraToNode(1.5f, 1);
         func_80324DBC(2.0f, D_8039085C[unqPtr->unkA++], 0xF, this->position, this->marker, func_80388784, 0);
     }
 }

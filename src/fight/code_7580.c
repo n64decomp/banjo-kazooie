@@ -47,9 +47,9 @@ void func_8038DE98(ActorMarker *marker){
             func_8038C0DC(&sp24);
             func_8028F94C(2, &sp24);
             func_8038C27C(1);
-            func_80324E60(0 * sp30, sp38);
+            timed_setCameraToNode(0 * sp30, sp38);
             func_80324E88(1 * sp30);
-            func_80324E60(1 * sp30, sp38 + 1);
+            timed_setCameraToNode(1 * sp30, sp38 + 1);
         }
     }//L8038DF8C
 }

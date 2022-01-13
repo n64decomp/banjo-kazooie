@@ -124,7 +124,7 @@ void func_8038B094(void){
         if(levelSpecificFlags_get(5)){
             func_8034E71C(sp2C, -500, 10.0f);
             func_80324E38(0.0f, 3);
-            func_80324E60(0.0f, 1);
+            timed_setCameraToNode(0.0f, 1);
             func_80324E88(2.0f);
             func_80324E38(2.0f, 0);
             func_803228D8();

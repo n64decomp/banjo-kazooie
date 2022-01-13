@@ -32,7 +32,7 @@ void func_8038C058(void){
 void func_8038C0A8(ActorMarker *marker, s32 arg1, s32 arg2){
     Actor *actor = marker_getActor(marker);
     jiggySpawn(JIGGY_53_RBB_SNORKEL, &D_80390B34);
-    func_80324E60(0.5f, 0xb);
+    timed_setCameraToNode(0.5f, 0xb);
     func_8038C0FC(actor, 3);
 }
 
@@ -42,7 +42,7 @@ void func_8038C0FC(Actor *this, s32 new_state){
         func_80324E38(0.0f, 3);
         timedFunc_set_0(1.0f, func_8038C000);
         timedFunc_set_2(1.0f, (TFQM2)mapSpecificFlags_set, 8, TRUE);
-        func_80324C88(2.1f, SFX_3F6_UNKNOWN, 0.6f, 0x7fbc);
+        timed_playSfx(2.1f, SFX_3F6_UNKNOWN, 0.6f, 0x7fbc);
         timedFunc_set_2(2.7f, (TFQM2)mapSpecificFlags_set, 4, TRUE);
         timedFunc_set_0(3.0f, func_8038C058);
         func_80324DBC(3.0f, 0xb9C, 7, NULL, this->marker, func_8038C0A8, NULL);

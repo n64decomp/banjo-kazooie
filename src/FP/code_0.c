@@ -34,18 +34,18 @@ void func_803863F0(Actor *this, s32 next_state){
     
     if(next_state == 2){
         mapSpecificFlags_set(0xB, TRUE);
-        func_80324E60(0.0f, 0x27);
-        func_80324C88(D_80392B80, SFX_52_BANJO_YAH_OH, 1.0f, 28000);
-        func_80324C88(1.25f, SFX_31_BANJO_OHHWAAOOO, 1.0f, 28000);
+        timed_setCameraToNode(0.0f, 0x27);
+        timed_playSfx(D_80392B80, SFX_52_BANJO_YAH_OH, 1.0f, 28000);
+        timed_playSfx(1.25f, SFX_31_BANJO_OHHWAAOOO, 1.0f, 28000);
 
-        func_80324E60(1.5f, 0x26);
-        func_80324E60(2.75f, 0x25);
-        func_80324C88(3.5f, SFX_63_BANJO_UWAAAAOOH, 1.0f, 28000);
+        timed_setCameraToNode(1.5f, 0x26);
+        timed_setCameraToNode(2.75f, 0x25);
+        timed_playSfx(3.5f, SFX_63_BANJO_UWAAAAOOH, 1.0f, 28000);
 
-        func_80324E60(3.75f, 0x24);
-        func_80324C88(4.25f, SFX_A7_WOODEN_SWOSH, 1.2f, 18000);
-        func_80324C88(D_80392B84, SFX_C1_BUZZBOMB_ATTACK, 1.0f, 0x7fff);
-        func_80324E60(4.75f, 0x23);
+        timed_setCameraToNode(3.75f, 0x24);
+        timed_playSfx(4.25f, SFX_A7_WOODEN_SWOSH, 1.2f, 18000);
+        timed_playSfx(D_80392B84, SFX_C1_BUZZBOMB_ATTACK, 1.0f, 0x7fff);
+        timed_setCameraToNode(4.75f, 0x23);
     }
 }
 

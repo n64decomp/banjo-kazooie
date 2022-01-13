@@ -238,7 +238,7 @@ void func_8039049C(Actor *this){
 
             if(actor_animationIsAt(this, 0.44f)){
                 func_8030E624(0x7FF86976);
-                func_80324C88(0.66f, SFX_176_JINJONATOR_JINJOOO_1, 0.9f, 25000);
+                timed_playSfx(0.66f, SFX_176_JINJONATOR_JINJOOO_1, 0.9f, 25000);
             }
 
             if(actor_animationIsAt(this, 0.999f)){
@@ -373,7 +373,7 @@ void func_8039049C(Actor *this){
 
             if(local->unk20 == 2 && actor_animationIsAt(this, 0.1f)){
                 func_8030E624(0x7fff4176);
-                func_80324C88(D_803926F8, SFX_176_JINJONATOR_JINJOOO_1, 0.9f, 32000);
+                timed_playSfx(D_803926F8, SFX_176_JINJONATOR_JINJOOO_1, 0.9f, 32000);
             }//L80390E90
 
             if(local->unk20 <= 0){

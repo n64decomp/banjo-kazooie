@@ -153,14 +153,14 @@ void func_80387408(Actor *this){
     if(func_8025773C(&local->unk14, tick)){
         local->unk10 = 0.75f;
         local->unk8 = 7.5f;
-        func_80324E60(0.5f, 0xa);
-        func_80324C88(1.0f, SFX_84_GOBI_CRYING, 1.1f, 30000);
-        func_80324C88(2.0f, SFX_84_GOBI_CRYING, 1.3f, 30000);
-        func_80324C88(2.5f, SFX_74_WALKING_NOISE_5, 0.5f, 30000);
+        timed_setCameraToNode(0.5f, 0xa);
+        timed_playSfx(1.0f, SFX_84_GOBI_CRYING, 1.1f, 30000);
+        timed_playSfx(2.0f, SFX_84_GOBI_CRYING, 1.3f, 30000);
+        timed_playSfx(2.5f, SFX_74_WALKING_NOISE_5, 0.5f, 30000);
         func_80324DBC(3.0f, 0xa74, 0x2a, this->position, NULL, NULL, NULL);
-        func_80324C88(5.0f, SFX_2E_BIGBUTT_RUNNING, 1.0f, 20000);
-        func_80324C88(5.6f, SFX_2E_BIGBUTT_RUNNING, 1.0f, 20000);
-        func_80324C88(6.5f, SFX_2E_BIGBUTT_RUNNING, 1.0f, 20000);
+        timed_playSfx(5.0f, SFX_2E_BIGBUTT_RUNNING, 1.0f, 20000);
+        timed_playSfx(5.6f, SFX_2E_BIGBUTT_RUNNING, 1.0f, 20000);
+        timed_playSfx(6.5f, SFX_2E_BIGBUTT_RUNNING, 1.0f, 20000);
         func_80324E88(7.6f);
     }
 

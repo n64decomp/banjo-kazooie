@@ -210,7 +210,7 @@ void func_80387764(ActorMarker * marker){
         sp34 = 0xE12;
     }//L80387898
     if(temp_a2){
-        func_80324E60(0.0f, 6);
+        timed_setCameraToNode(0.0f, 6);
     }//L803878B0
 
     func_80311480(sp34, sp2C, &actor->unk1C_x, actor->marker, func_80387690, NULL);

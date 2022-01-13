@@ -14,7 +14,7 @@ void func_80390000(s32 arg0){
     if(D_80391AD0 == 1){
         func_802BAE20(0x14);
         func_80324E38(0.0f, 3);
-        func_80324E60(4.0f, 0x15);
+        timed_setCameraToNode(4.0f, 0x15);
         func_80324E38(8.0f, 0);
         
         tmp_v0 = func_8034C5AC(0x130);

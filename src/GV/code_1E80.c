@@ -30,19 +30,19 @@ void func_80388298(Actor *this){
 void func_803882F0(ActorMarker *caller, enum asset_e text_id, s32 arg2){
     Actor *this = marker_getActor(caller);
     chgobi3_setState(this, 4);
-    func_80324C88(0.0f, SFX_2E_BIGBUTT_RUNNING, 1.0f, 20000);
-    func_80324C88(0.0f, SFX_2E_BIGBUTT_RUNNING, 1.0f, 20000);
+    timed_playSfx(0.0f, SFX_2E_BIGBUTT_RUNNING, 1.0f, 20000);
+    timed_playSfx(0.0f, SFX_2E_BIGBUTT_RUNNING, 1.0f, 20000);
 
-    func_80324C88(0.65f, SFX_2E_BIGBUTT_RUNNING, 1.0f, 20000);
-    func_80324C88(0.65f, SFX_2E_BIGBUTT_RUNNING, 1.0f, 20000);
-    func_80324C88(1.25f, SFX_2E_BIGBUTT_RUNNING, 1.0f, 15000);
-    func_80324C88(1.25f, SFX_2E_BIGBUTT_RUNNING, 1.0f, 15000);
+    timed_playSfx(0.65f, SFX_2E_BIGBUTT_RUNNING, 1.0f, 20000);
+    timed_playSfx(0.65f, SFX_2E_BIGBUTT_RUNNING, 1.0f, 20000);
+    timed_playSfx(1.25f, SFX_2E_BIGBUTT_RUNNING, 1.0f, 15000);
+    timed_playSfx(1.25f, SFX_2E_BIGBUTT_RUNNING, 1.0f, 15000);
 
-    func_80324C88(1.81f, SFX_2E_BIGBUTT_RUNNING, 1.0f, 10000);
-    func_80324C88(1.81f, SFX_2E_BIGBUTT_RUNNING, 1.0f, 10000);
+    timed_playSfx(1.81f, SFX_2E_BIGBUTT_RUNNING, 1.0f, 10000);
+    timed_playSfx(1.81f, SFX_2E_BIGBUTT_RUNNING, 1.0f, 10000);
 
-    func_80324C88(2.6f, SFX_2E_BIGBUTT_RUNNING, 1.0f, 5000);
-    func_80324C88(2.6f, SFX_2E_BIGBUTT_RUNNING, 1.0f, 5000);
+    timed_playSfx(2.6f, SFX_2E_BIGBUTT_RUNNING, 1.0f, 5000);
+    timed_playSfx(2.6f, SFX_2E_BIGBUTT_RUNNING, 1.0f, 5000);
 
     func_80324E88(3.0f);
     func_80324E38(3.0f, 0);
@@ -64,8 +64,8 @@ void chgobi3_setState(Actor *this, s32 next_state){
     if(next_state == 3){
         func_80324E38(0.0f, 3);
         timedFunc_set_1(0.02f, (TFQM1)func_80388270, (s32)this);
-        func_80324E60(0.1f, 0x12);
-        func_80324C88(0.2f, SFX_4C_LIP_SMACK, 1.0f, 32000);
+        timed_setCameraToNode(0.1f, 0x12);
+        timed_playSfx(0.2f, SFX_4C_LIP_SMACK, 1.0f, 32000);
         timedFunc_set_1(0.2f, (TFQM1)func_80388298, (s32)this);
         func_80335924(this->unk148, ASSET_FC_ANIM_GOBI_SPITTING, 0.2f, 1.0f);
     }

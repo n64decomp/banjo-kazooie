@@ -92,11 +92,11 @@ void func_803865D0(ActorMarker *marker){
     Actor* actor = marker_getActor(marker);
     ActorLocal_RBB_0 * local = (ActorLocal_RBB_0 *) &actor->local;
     func_803863F0(actor, 1);
-    func_80324E60(0.0f, D_80390074[local->unk4].unk0);
+    timed_setCameraToNode(0.0f, D_80390074[local->unk4].unk0);
     timedFunc_set_2(0.75*D_80390074[local->unk4].unk4, (TFQM2) func_803865A4, actor->marker, 4);
     func_80324E88(0.75*D_80390074[local->unk4].unk4);
     func_80324E38(0.75*D_80390074[local->unk4].unk4, 0);
-    func_80324C88(D_80390074[local->unk4].unk4, SFX_7F_HEAVYDOOR_SLAM, 0.8f, 0x7fd0);
+    timed_playSfx(D_80390074[local->unk4].unk4, SFX_7F_HEAVYDOOR_SLAM, 0.8f, 0x7fd0);
 }
 
 #ifndef NONMATCHING

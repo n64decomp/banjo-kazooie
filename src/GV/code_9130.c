@@ -72,14 +72,14 @@ void __chmazectrl_setState(Actor *this, s32 next_state){
         FUNC_8030E624(SFX_3F6_UNKNOWN, 0x30D, 0x1FF);
         if(1500.0f < plyr_pos[0]){
             func_80324E38(0.0f, 3);
-            func_80324E60(0.0f, 8);
-            func_80324C88(1.0f, SFX_7F_HEAVYDOOR_SLAM, 1.0f, 32000);
+            timed_setCameraToNode(0.0f, 8);
+            timed_playSfx(1.0f, SFX_7F_HEAVYDOOR_SLAM, 1.0f, 32000);
             func_80324CD8(1.2f);
             func_80324E88(1.2f);
             func_80324E38(1.2f, 0);
         }
         else{//L8038F754
-            func_80324C88(1.0f, SFX_7F_HEAVYDOOR_SLAM, 1.0f, 32000);
+            timed_playSfx(1.0f, SFX_7F_HEAVYDOOR_SLAM, 1.0f, 32000);
         }
         if(!levelSpecificFlags_get(0x16)){
             func_80311480(0xA82, 4, NULL, NULL, NULL, NULL);

@@ -100,7 +100,7 @@ void func_80390270(s32 next_state){
                 func_8035D490(D_80391AE0.unk10);
             }
             func_80324E38(0.5f, 3);
-            func_80324E60(1.5f, 2);
+            timed_setCameraToNode(1.5f, 2);
             timedFunc_set_0(1.7f, func_80390248);
             func_80324E88(4.0f);
             func_80324E38(4.0f, 0);

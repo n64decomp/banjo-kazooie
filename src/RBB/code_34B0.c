@@ -22,7 +22,7 @@ void func_803898C4(Actor * this, s32 arg1){
         func_8030E6D4(SFX_90_SWITCH_PRESS);
         this->position_y -= 35.0f;
         func_80324E38(1.0f, 3);
-        func_80324E60(1.0f, 0);
+        timed_setCameraToNode(1.0f, 0);
         timedFunc_set_0(1.0f, func_803898A0);
         func_80324E88(5.0f);
         func_80324E38(5.0f, 0);

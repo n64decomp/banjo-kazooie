@@ -43,7 +43,7 @@ void func_8038B4C4(ActorMarker *marker){
 void func_8038B4F4(void){
     func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);
     func_80324E38(1.0f, 3);
-    func_80324E60(2.0f, 10);
+    timed_setCameraToNode(2.0f, 10);
     timedFunc_set_0(2.2f, func_8038B468);
     func_80324E88(5.0f);
     func_80324E38(5.0f, 0);

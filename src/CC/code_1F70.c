@@ -118,12 +118,12 @@ void func_80388664(void) {
 
 void func_8038868C(void) {
     func_80324E38(0, 3);
-    func_80324E60(0, 0);
-    func_80324E60(5.5f, 1);
-    func_80324E60(7.0f, 2);
-    func_80324E60(12.5f, 3);
+    timed_setCameraToNode(0, 0);
+    timed_setCameraToNode(5.5f, 1);
+    timed_setCameraToNode(7.0f, 2);
+    timed_setCameraToNode(12.5f, 3);
     timedFunc_set_0(13.0f, &func_80388664);
-    func_80324E60(16.0f, 1);
+    timed_setCameraToNode(16.0f, 1);
     if (jiggyscore_isCollected(JIGGY_17_CC_CLANKER_RAISED) == 0) {
         func_80324DBC(18.0f, 0xD2C, 4, NULL, NULL, NULL, 0);
     }

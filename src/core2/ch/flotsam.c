@@ -170,7 +170,7 @@ void func_8035C080(Actor *this, s32 next_state){
     if(next_state == 8){
         actor_collisionOff(this);
         FUNC_8030E624(SFX_1D_HITTING_AN_ENEMY_1, 0x30D, 0x3FF);
-        func_80324C88(0.2f, SFX_103_FLOTSAM_DEATH, 1.0f, 32000);
+        timed_playSfx(0.2f, SFX_103_FLOTSAM_DEATH, 1.0f, 32000);
         sp38 = func_802F9AA8(SFX_104_PROPELLER_NOISE);
         func_802F9DB8(sp38, 1.0f, 1.3f, 0.05f);
         func_802F9EC4(sp38, this->position, 0x5dc, 0x9c4);

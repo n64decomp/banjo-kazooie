@@ -400,7 +400,7 @@ void func_8038D014(Actor *this){
 
             if(D_80392510 < this->unk48){
                 func_8030E6A4(0x3ee, randf2(1.0f, D_80392518), 32000);
-                func_80324C88(D_8039251C, 0x416, 0.6f, 32000);
+                timed_playSfx(D_8039251C, 0x416, 0.6f, 32000);
                 marker_despawn(this->marker);
                 switch (this->marker->unk14_20)
                 {

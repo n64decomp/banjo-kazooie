@@ -94,7 +94,7 @@ void func_8038CC08(Actor * arg0, u32 arg1){
     }
     if(arg1 == 5){
         func_80324E38(0.0f, 3);
-        func_80324E60(0.0f, 0x27);
+        timed_setCameraToNode(0.0f, 0x27);
         timedFunc_set_0(D_80391090, func_8038CB20);
         func_80324E88(3.0f);
         func_80324E38(3.0f, 0);

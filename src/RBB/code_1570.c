@@ -178,20 +178,20 @@ void func_80387F88(ActorMarker *marker){
     Actor *actor = marker_getActor(marker);
 
     timedFunc_set_0(0.0f, func_80387C5C);
-    func_80324C88(0.1f, SFX_1B_EXPLOSION_1, 1.0f, 22000);
-    func_80324C88(0.1f, SFX_1B_EXPLOSION_1, 1.0f, 22000);
+    timed_playSfx(0.1f, SFX_1B_EXPLOSION_1, 1.0f, 22000);
+    timed_playSfx(0.1f, SFX_1B_EXPLOSION_1, 1.0f, 22000);
     timedFunc_set_0(0.3f, func_80387E20);
     timedFunc_set_0(0.5f, func_80387A54);
     timedFunc_set_0(0.4f, func_80387B24);
-    func_80324C88(0.41f, SFX_1B_EXPLOSION_1, 0.8f, 22000);
-    func_80324C88(0.41f, SFX_1B_EXPLOSION_1, 0.8f, 22000);
+    timed_playSfx(0.41f, SFX_1B_EXPLOSION_1, 0.8f, 22000);
+    timed_playSfx(0.41f, SFX_1B_EXPLOSION_1, 0.8f, 22000);
     timedFunc_set_0(0.55f, func_80387D80);
-    func_80324C88(0.71f, SFX_1B_EXPLOSION_1, 0.6f, 22000);
-    func_80324C88(0.71f, SFX_1B_EXPLOSION_1, 0.6f, 22000);
+    timed_playSfx(0.71f, SFX_1B_EXPLOSION_1, 0.6f, 22000);
+    timed_playSfx(0.71f, SFX_1B_EXPLOSION_1, 0.6f, 22000);
     timedFunc_set_0(0.8f, func_80387D80);
-    func_80324C88(1.0f, SFX_1A_BIG_THINGS_FALL_OVER, 1.0f, 22000);
-    func_80324C88(2.0f, SFX_1A_BIG_THINGS_FALL_OVER, 0.8f, 22000);
-    func_80324C88(3.0f, SFX_1A_BIG_THINGS_FALL_OVER, 0.6f, 22000);
+    timed_playSfx(1.0f, SFX_1A_BIG_THINGS_FALL_OVER, 1.0f, 22000);
+    timed_playSfx(2.0f, SFX_1A_BIG_THINGS_FALL_OVER, 0.8f, 22000);
+    timed_playSfx(3.0f, SFX_1A_BIG_THINGS_FALL_OVER, 0.6f, 22000);
     func_80324E88(4.0f);
     func_80324E38(4.0f, 0);
     timedFunc_set_2(4.0f, (TFQM2) func_80387F18, (s32) actor->marker, 3);
@@ -201,9 +201,9 @@ void func_80388154(ActorMarker *marker){
     Actor *actor = marker_getActor(marker);
     func_803879F0();
     timedFunc_set_0(0.0f, (TFQM0) func_80387F44);
-    func_80324C88(0.0f, SFX_7F_HEAVYDOOR_SLAM, 1.0f, 0x7fc6);
+    timed_playSfx(0.0f, SFX_7F_HEAVYDOOR_SLAM, 1.0f, 0x7fc6);
     timedFunc_set_2(1.2f, (TFQM2) func_80387B8C, 0x19f, 0);
-    func_80324E60(1.2f, 8);
+    timed_setCameraToNode(1.2f, 8);
     timedFunc_set_1(1.5f, (TFQM1) func_80387F88, (s32) actor->marker);
 }
 
@@ -214,7 +214,7 @@ void func_803881E8(Actor *this, s32 arg1){
         timedFunc_set_2(0.05f, (TFQM2)func_80387BEC, 0x19f, 0x1f4);
         timedFunc_set_2(0.1f, (TFQM2)func_8025A6EC, COMUSIC_2B_DING_B, 28000);
         func_80324E38(0.2f, 3);
-        func_80324E60(1.1f, 7);
+        timed_setCameraToNode(1.1f, 7);
         timedFunc_set_1(1.6f, (TFQM1)func_80388154, (s32)this->marker);
         levelSpecificFlags_set(0x2D, 1);
     }

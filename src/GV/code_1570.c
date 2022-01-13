@@ -49,12 +49,12 @@ void func_80387A00(ActorMarker *this_marker){
 }
 
 void func_80387A2C(ActorMarker *caller, enum asset_e text_id, s32 arg2){
-    func_80324E60(0.0f, 0xC);
+    timed_setCameraToNode(0.0f, 0xC);
     timedFunc_set_1(0.5f, (TFQM1) func_80387984, caller);
-    func_80324C88(0.5f, SFX_2C_PULLING_NOISE, 0.9f, 32000);
-    func_80324C88(1.8f, SFX_2C_PULLING_NOISE, 1.0f, 32000);
-    func_80324C88(2.5f, SFX_2C_PULLING_NOISE, 1.1f, 32000);
-    func_80324E60(3.0f, 0xd);
+    timed_playSfx(0.5f, SFX_2C_PULLING_NOISE, 0.9f, 32000);
+    timed_playSfx(1.8f, SFX_2C_PULLING_NOISE, 1.0f, 32000);
+    timed_playSfx(2.5f, SFX_2C_PULLING_NOISE, 1.1f, 32000);
+    timed_setCameraToNode(3.0f, 0xd);
     timedFunc_set_0(3.5f, __chgobi2_spawnJIggy);
     func_80324E88(6.0f);
     timedFunc_set_1(6.0f, (TFQM1) func_80387A00, caller);
@@ -77,13 +77,13 @@ void chgobi2_setState(Actor *this, s32 next_state){
 
     if(next_state == 3){
         timedFunc_set_0(0.05f, func_80387960);
-        func_80324C88(0.05f, SFX_84_GOBI_CRYING, 1.1f, 32000);
+        timed_playSfx(0.05f, SFX_84_GOBI_CRYING, 1.1f, 32000);
         func_80324E38(0.051f, 1);
         timedFunc_set_1(0.06f, func_803879D4, this->marker);
-        func_80324E60(0.86f, 0xb);
-        func_80324C88(0.8f, SFX_4B_GULPING, 0.8f, 28000);
-        func_80324C88(1.4f, SFX_4B_GULPING, 0.8f, 28000);
-        func_80324C88(2.0f, SFX_4B_GULPING, 0.8f, 28000);
+        timed_setCameraToNode(0.86f, 0xb);
+        timed_playSfx(0.8f, SFX_4B_GULPING, 0.8f, 28000);
+        timed_playSfx(1.4f, SFX_4B_GULPING, 0.8f, 28000);
+        timed_playSfx(2.0f, SFX_4B_GULPING, 0.8f, 28000);
         func_80324DBC(3.0f, 0xA72, 0x2A, D_80390CEC, this->marker, func_80387A2C, NULL);
     }//L80387C94
 

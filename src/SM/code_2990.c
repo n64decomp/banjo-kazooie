@@ -95,10 +95,10 @@ void func_80388EB0(void){
 
 void func_80388F24(Actor *this){
     if(this->unkF4_8 == 1 && !mapSpecificFlags_get(1)){
-        func_80324E60(0.0f, 0x12);
+        timed_setCameraToNode(0.0f, 0x12);
     }
     else{ //L80388F68
-        func_80324E60(0.0f, D_8038AFB4[this->unkF4_8 -1].unk4);
+        timed_setCameraToNode(0.0f, D_8038AFB4[this->unkF4_8 -1].unk4);
     }
 }
 
@@ -171,13 +171,13 @@ void func_80389214(ActorMarker *marker, s32 text_id, s32 arg2){
     Actor *actor = marker_getActor(marker);
     switch(arg2){
         case 3:
-            func_80324E60(0.0f, 2);
+            timed_setCameraToNode(0.0f, 2);
             break;
         case 4:
             mapSpecificFlags_set(4,1);
             break;
         case 5:
-            func_80324E60(0.0f, 0x12);
+            timed_setCameraToNode(0.0f, 0x12);
             break;
         case 6:
             func_8025A70C(COMUSIC_2B_DING_B);
