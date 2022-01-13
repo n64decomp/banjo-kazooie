@@ -3,7 +3,6 @@ BASENAME := banjo
 VERSION  ?= us.v10
 
 IN_CFLAGS ?= -DCODE2_CODE_CRC2=0 -DCODE2_DATA_CRC2=0
-
 ### Tools ###
 
 # System tools

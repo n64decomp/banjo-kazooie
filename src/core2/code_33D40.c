@@ -2,25 +2,69 @@
 #include "functions.h"
 #include "variables.h"
 
+extern void func_8025727C(f32, f32, f32, f32, f32, f32, f32*, f32*);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_33D40/func_802BACD0.s")
+extern f32 D_8037D820[4];
+extern f32 D_8037D830[4];
+
+/* .code */
+void func_802BACD0(void){
+    ml_vec3f_clear(D_8037D820);
+    ml_vec3f_clear(D_8037D830);
+}
 
 void func_802BAD00(void){}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_33D40/func_802BAD08.s")
+void func_802BAD08(f32 arg0[3]){
+    func_8025727C(
+        arg0[0], arg0[1], arg0[2],
+        D_8037D820[0], D_8037D820[1], D_8037D820[2],
+        &D_8037D830[0], &D_8037D830[1]
+    );
+    D_8037D830[0] = mlNormalizeAngle(-D_8037D830[0]);
+    D_8037D830[2] = 0.0f;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_33D40/func_802BAD84.s")
+void func_802BAD84(f32 arg0[3]){
+    ml_vec3f_copy(D_8037D820, arg0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_33D40/func_802BADAC.s")
+void func_802BADAC(void){
+    func_8024CD88(D_8037D820);
+    func_8024CE18(D_8037D830);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_33D40/func_802BADDC.s")
+void func_802BADDC(s32 arg0){
+    UNK_TYPE(s32) sp1C;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_33D40/func_802BAE20.s")
+    sp1C = func_802B9E70(arg0);
+    func_802BAAA8(sp1C, D_8037D820);
+    func_802BAAF4(sp1C, D_8037D830);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_33D40/func_802BAE4C.s")
+void func_802BAE20(s32 arg0){
+    func_802BBC58(3);
+    func_802BADDC(arg0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_33D40/func_802BAE6C.s")
+void func_802BAE4C(void){
+    func_802BBC58(2);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_33D40/func_802BAEB4.s")
+void func_802BAE6C(f32 arg0[3], f32 arg1[3]){
+    func_802BBC58(3);
+    ml_vec3f_copy(D_8037D820, arg0);
+    ml_vec3f_copy(D_8037D830, arg1);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_33D40/func_802BAEF4.s")
+void func_802BAEB4(f32 arg0[3], f32 arg1[3]){
+    func_802BBC58(3);
+    ml_vec3f_copy(D_8037D820, arg0);
+    func_802BAD08(arg1);
+}
+
+void func_802BAEF4(f32 dst[3]){
+    dst[0] = D_8037D820[0];
+    dst[1] = D_8037D820[1];
+    dst[2] = D_8037D820[2];
+}
