@@ -34,14 +34,14 @@ Struct_Core2_D2180_0 D_80372940[] ={
     {4, func_803591A4}
 };
 
-ActorInfo D_80372970 = { 0x1C1, 0x2AE, 0x0, 0, NULL, func_8035933C, NULL, func_80325340,  { 0, 0, 0, 0}, 0.0f, { 0, 0, 0, 0}};
-ActorInfo D_80372994 = { 0x1C1, 0x2AF, 0x0, 0, NULL, func_8035933C, NULL, func_80325340,  { 0, 0, 0, 0}, 0.0f, { 0, 0, 0, 0}};
-ActorInfo D_803729B8 = { 0x1C1, 0x2B0, 0x0, 0, NULL, func_8035933C, NULL, func_80325340,  { 0, 0, 0, 0}, 0.0f, { 0, 0, 0, 0}};
-ActorInfo D_803729DC = { 0x1C1, 0x2B1, 0x0, 0, NULL, func_8035933C, NULL, func_80325340,  { 0, 0, 0, 0}, 0.0f, { 0, 0, 0, 0}};
-ActorInfo D_80372A00 = { 0x1C1, 0x2B2, 0x0, 0, NULL, func_8035933C, NULL, func_80325340,  { 0, 0, 0, 0}, 0.0f, { 0, 0, 0, 0}};
-ActorInfo D_80372A24 = { 0x1C1, 0x2B3, 0x0, 0, NULL, func_8035933C, NULL, func_80325340,  { 0, 0, 0, 0}, 0.0f, { 0, 0, 0, 0}};
-ActorInfo D_80372A48 = { 0x1C1, 0x316, 0x0, 0, NULL, func_80359424, NULL, func_80325340,  { 0, 0, 0, 0}, 0.0f, { 0, 0, 0, 0}};
-ActorInfo D_80372A6C = { 0x1C1, 0x317, 0x0, 0, NULL, func_80359454, NULL, func_80325340,  { 0, 0, 0, 0}, 0.0f, { 0, 0, 0, 0}};
+ActorInfo D_80372970 = { 0x1C1, 0x2AE, 0x0, 0, NULL, func_8035933C, NULL, func_80325340,  { 0, 0}, 0, 0.0f, { 0, 0, 0, 0}};
+ActorInfo D_80372994 = { 0x1C1, 0x2AF, 0x0, 0, NULL, func_8035933C, NULL, func_80325340,  { 0, 0}, 0, 0.0f, { 0, 0, 0, 0}};
+ActorInfo D_803729B8 = { 0x1C1, 0x2B0, 0x0, 0, NULL, func_8035933C, NULL, func_80325340,  { 0, 0}, 0, 0.0f, { 0, 0, 0, 0}};
+ActorInfo D_803729DC = { 0x1C1, 0x2B1, 0x0, 0, NULL, func_8035933C, NULL, func_80325340,  { 0, 0}, 0, 0.0f, { 0, 0, 0, 0}};
+ActorInfo D_80372A00 = { 0x1C1, 0x2B2, 0x0, 0, NULL, func_8035933C, NULL, func_80325340,  { 0, 0}, 0, 0.0f, { 0, 0, 0, 0}};
+ActorInfo D_80372A24 = { 0x1C1, 0x2B3, 0x0, 0, NULL, func_8035933C, NULL, func_80325340,  { 0, 0}, 0, 0.0f, { 0, 0, 0, 0}};
+ActorInfo D_80372A48 = { 0x1C1, 0x316, 0x0, 0, NULL, func_80359424, NULL, func_80325340,  { 0, 0}, 0, 0.0f, { 0, 0, 0, 0}};
+ActorInfo D_80372A6C = { 0x1C1, 0x317, 0x0, 0, NULL, func_80359454, NULL, func_80325340,  { 0, 0}, 0, 0.0f, { 0, 0, 0, 0}};
 
 /* .code */
 int func_80359110(Actor *this){

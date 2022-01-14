@@ -26,7 +26,7 @@ void func_8038B220(Actor*, u32);
 
 ActorInfo D_80390A40 = {0xC7, actor_yumblie, 0x3F6, 0x00, NULL,
     func_8038B6D0, NULL, func_8038B528,
-    {0,0,0,0}, 0.0f, {0,0,0,0}
+    {0,0}, 0, 0.0f, {0,0,0,0}
 };
 
 u32 func_8038B160(Actor *this){

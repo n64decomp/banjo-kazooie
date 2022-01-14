@@ -14,10 +14,10 @@ ActorAnimationInfo D_80391A40 []= {
 };
 
 ActorInfo D_80391A60 = { 
-    0x3c, ACTOR_182_RACE_SLED, ASSET_352_MODEL_SLED, 
+    MARKER_3C_RACE_SLED, ACTOR_182_RACE_SLED, ASSET_352_MODEL_SLED, 
     0x0, D_80391A40, 
     func_80386AA4, NULL, func_803868C0, 
-    { 0x3, 0xe8, 0x0, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+    { 0x3, 0xe8}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
 };
 
 /* .code */

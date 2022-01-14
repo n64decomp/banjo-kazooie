@@ -9,7 +9,7 @@ void chgobirope_update(Actor *this);
 ActorInfo D_80390D30 = { MARKER_BD_GOBI_ROPE, ACTOR_12F_GOBI_ROPE, ASSET_3E3_MODEL_GOBI_ROPE, 
     0, NULL, 
     chgobirope_update, func_80326224, func_80325888, 
-    { 0x0, 0x0, 0x5, 0x33}, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+    { 0x0, 0x0}, 0x533, 0.0f, { 0x0, 0x0, 0x0, 0x0}
 };
 
 /* .code */

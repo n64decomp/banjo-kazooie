@@ -10,7 +10,7 @@ Actor *chgobi3_draw(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 ActorInfo D_80390D00 = { MARKER_C3_GOBI_3, ACTOR_135_GOBI_3, ASSET_3E0_MODEL_GOBI, 
     0, NULL, 
     NULL, chgobi3_update, chgobi3_draw, 
-    { 0x0, 0x0, 0x0, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+    { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
 };
 
 /* .code */

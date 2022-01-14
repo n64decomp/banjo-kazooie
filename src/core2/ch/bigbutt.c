@@ -29,13 +29,13 @@ ActorAnimationInfo D_80366010[] ={
 ActorInfo D_80366090 = {0x3, ACTOR_4_BIGBUTT, ASSET_353_MODEL_BIGBUTT, 
     1, &D_80366010, 
     func_802C6240, func_80326224, func_802C6E84,
-    {0xC,0x80,0,0}, 0.0f, {0,0,0,0}
+    {0xC,0x80}, 0, 0.0f, {0,0,0,0}
 }; 
 
 ActorInfo D_803660B4 = {0x9, ACTOR_E_BULL_INTRO, ASSET_354_MODEL_BULL_INTRO, 
     1, &D_80366010, 
     func_802C6240, func_80326224, func_802C6E84,
-    {0xC,0x80,0,0}, 0.0f, {0,0,0,0}
+    {0xC,0x80}, 0, 0.0f, {0,0,0,0}
 }; 
 
 /* .code */

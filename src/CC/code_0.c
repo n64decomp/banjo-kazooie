@@ -16,7 +16,7 @@ void func_803864D4(Actor *this);
 ActorInfo D_80389AA0 = {
     0x4B, 0x43, 0x890, 0, NULL, 
     func_803864D4, func_80326224 , func_80325888,  
-    {0,0,0,0,}, 0.0f, {0,0,0,0}
+    {0,0}, 0, 0.0f, {0,0,0,0}
 };
 
 /* .rodata */

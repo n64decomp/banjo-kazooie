@@ -19,7 +19,7 @@ ActorAnimationInfo D_80391000[] = {
 ActorInfo D_80391010 = { MARKER_A7_MAGIC_CARPET_1, ACTOR_119_MAGIC_CARPET_1, ASSET_3DC_MODEL_MAGIC_CARPET, 
     0x1, D_80391000, 
     func_8038A948, func_8038A9C0, func_8038A7A0, 
-    { 0x9, 0xC4, 0x0, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+    { 0x9, 0xC4}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
 };
 
 

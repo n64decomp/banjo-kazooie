@@ -10,7 +10,7 @@ void func_8038FB84(Actor *this);
 ActorInfo D_80390E00 = {
     0x1B8, 0x2A5, 0x0, 0x0, NULL,
     func_8038FB84, NULL, func_80325340,
-    {0, 0, 0, 0}, 0.0f, {0,0,0,0}
+    {0, 0}, 0, 0.0f, {0,0,0,0}
 };
 
 /* .bss */

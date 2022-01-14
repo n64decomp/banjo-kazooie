@@ -7,7 +7,7 @@ void func_8038C300(Actor *this);
 ActorInfo D_80390B40 = {
     0x198, 0x1ca, 0x41e, 0x0, NULL,
     func_8038C300, NULL, func_80325888,
-    {0, 0, 0, 0}, 0.0f, {0,0,0,0}
+    {0, 0}, 0, 0.0f, {0,0,0,0}
 };
 
 void func_8038C300(Actor *this){

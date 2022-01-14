@@ -12,7 +12,7 @@ void func_8038B900(Actor *this);
 ActorInfo D_80390AB0 = {
     0x30, 0x1C8, 0x41C, 0x0, NULL,
     NULL, func_8038B900, func_80325888,
-    {0, 0, 0, 0}, 0.0f, {0,0,0,0}
+    {0, 0}, 0, 0.0f, {0,0,0,0}
 };
 
 /* .code */

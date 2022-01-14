@@ -14,9 +14,10 @@ void func_80386768(Actor *);
 
 
 /* .data */
-ActorInfo chorangepadInfo = { 0x66, ACTOR_57_ORANGE_PAD, model_orange_pad, 0, NULL,
+ActorInfo chorangepadInfo = { MARKER_66_ORANGE_PAD, ACTOR_57_ORANGE_PAD, ASSET_2EB_MODEL_ORANGE_PAD, 
+    0, NULL,
     func_80386768, func_80326224, func_80325888,
-    {0,0,0,0}, 0.0f, {0,0,0,0}
+    {0,0}, 0, 0.0f, {0,0,0,0}
 };
 
 extern f32 D_80389B40;

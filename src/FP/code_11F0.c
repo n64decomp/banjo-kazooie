@@ -12,7 +12,7 @@ extern ActorInfo D_80391BB0 = {
     0x124, ACTOR_160_BOGGY_ON_SLED, ASSET_38A_MODEL_BOGGY_ON_SLED, 
     0x1, D_80391B80, 
     func_8038774C, func_8038794C, func_803875E0, 
-    { 0x9, 0xc4, 0x0, 0x0}, 1.4f, { 0x0, 0x0, 0x0, 0x0}
+    { 0x9, 0xc4}, 0, 1.4f, { 0x0, 0x0, 0x0, 0x0}
 };
 
 #pragma GLOBAL_ASM("asm/nonmatchings/FP/code_11F0/func_803875E0.s")

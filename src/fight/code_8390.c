@@ -29,7 +29,7 @@ void func_8038E844(Actor *this);
 ActorInfo D_80391AD0 = {
     0x284, 0x3AB, 0x546, 0x1, NULL,
     func_8038E844, func_80326224, func_80325888,
-    {0, 0, 0, 0}, 0.0f, {0,0,0,0}
+    {0, 0}, 0, 0.0f, {0,0,0,0}
 };
 
 /* .code */

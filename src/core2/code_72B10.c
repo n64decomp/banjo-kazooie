@@ -2,7 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-f32 func_8030E200(s32);
 f32 func_8034A788(f32, f32);
 
 extern vector(struct4Es) *D_803810A0;

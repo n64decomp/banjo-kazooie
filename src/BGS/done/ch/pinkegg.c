@@ -22,27 +22,27 @@ ActorAnimationInfo D_803906D8[4] = {
 
 ActorInfo D_803906F8 = {0x6E, 0x5B, 0x380, 0x01, D_803906D8,
     func_80387B80, func_80326224, chPinkEggDraw,
-    {0,0,2,0xCC}, 6.0f, {0,0,0,0}
+    {0,0}, 0x2CC, 6.0f, {0,0,0,0}
 };
 
 ActorInfo D_8039071C = {0xD6, 0xED, 0x381, 0x01, D_803906D8,
     func_80387B80, func_80326224, chPinkEggDraw,
-    {0,0,2,0xCC}, 5.0f, {0,0,0,0}
+    {0,0}, 0x2CC, 5.0f, {0,0,0,0}
 };
 
 ActorInfo D_80390740 = {0xD7, 0xEE, 0x382, 0x01, D_803906D8,
     func_80387B80, func_80326224, chPinkEggDraw,
-    {0,0,2,0xCC}, 4.0f, {0,0,0,0}
+    {0,0}, 0x2CC, 4.0f, {0,0,0,0}
 };
 
 ActorInfo D_80390764 = {0xD8, 0xEF, 0x383, 0x01, D_803906D8,
     func_80387B80, func_80326224, chPinkEggDraw,
-    {0,0,2,0xCC}, 3.0f, {0,0,0,0}
+    {0,0}, 0x2CC, 3.0f, {0,0,0,0}
 };
 
 ActorInfo D_80390788 = {0xD9, 0xF0, 0x384, 0x01, D_803906D8,
     func_80387B80, func_80326224, chPinkEggDraw,
-    {0,0,2,0xCC}, 2.0f, {0,0,0,0}
+    {0,0}, 0x2CC, 2.0f, {0,0,0,0}
 };
 
 //pinkEgg_spawnNextEgg

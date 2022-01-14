@@ -28,7 +28,7 @@ extern u32 D_80390B50[6] = {0xA, 0xA, 0xB, 0xA, 0xA, 0xC
 
 ActorInfo D_80390B68 = {0xD5, ACTOR_C_MUD_HUT, ASSET_7D8_MODEL_MM_HUT_TOP, 0x01, D_80390B30,
     func_8038EB8C, func_80326224, func_8038EAD0,
-    {0,0,0,0}, 0.0f, {0,0,0,0}
+    {0,0}, 0, 0.0f, {0,0,0,0}
 };
 
 /* .code section */

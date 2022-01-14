@@ -23,7 +23,7 @@ extern ActorInfo D_80366CD0 = {
     0x3D, 0x183, 0,
     0, NULL,
     func_802CA1E0, func_80326224, func_80325340,
-    {0,0,0,0}, 0.0f, {0,0,0,0}
+    {0,0}, 0, 0.0f, {0,0,0,0}
 };
 
 extern Struct_Core2_43250_1 D_80366CF4 [16]= { 

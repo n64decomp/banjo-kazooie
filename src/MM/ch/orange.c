@@ -15,9 +15,10 @@ void    func_80387FF4(Actor *this);
 Actor*  func_80388188(ActorMarker *, Gfx **, Mtx**, Vtx**);
 
 /* .data */
-ActorInfo chorangeInfo = { 0xC, ACTOR_14_ORANGE_PROJECTILE, model_orange, 1, NULL,
+ActorInfo chorangeInfo = { MARKER_C_ORANGE_PROJECTILE, ACTOR_14_ORANGE_PROJECTILE, ASSET_2D2_MODEL_ORANGE, 
+    1, NULL,
     func_80387FF4, func_80326224, func_80388188,
-    {0,0,0,0}, 0.6f, {0,0,0,0}
+    {0,0}, 0, 0.6f, {0,0,0,0}
 };
 
 f32 D_803899F4[3] = {0.0f,-8.0f, 0.0f};

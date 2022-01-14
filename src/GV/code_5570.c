@@ -25,7 +25,7 @@ ActorAnimationInfo D_80391120[] ={
 ActorInfo D_80391158 = { MARKER_A6_GRABBA, ACTOR_118_GRABBA, ASSET_371_MODEL_GRABBA, 
     0x1, D_80391120, 
     func_8038BEA0, func_80326224, func_80325888, 
-    { 0x0, 0x0, 0x0, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+    { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
 };
 
 s32 D_8039117C[3] = {160, 100, 0};

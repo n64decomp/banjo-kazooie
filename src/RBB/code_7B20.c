@@ -19,7 +19,7 @@ void func_8038DF6C(Actor* this);
 ActorInfo D_80390D20 = {
     0x1AA, 0x296, 0x43B, 0x0, NULL,
     func_8038DF6C, NULL, func_80325888,
-    {0, 0, 0, 0}, 0.0f, {0,0,0,0}
+    {0, 0}, 0, 0.0f, {0,0,0,0}
 };
 
 

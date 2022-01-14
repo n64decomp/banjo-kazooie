@@ -2075,11 +2075,11 @@ enum asset_e
 
     ASSET_2AB_ANIM_TEEHEE_DIE = 0x2AB,
 
-    model_orange            = 0x2d2, //projectile
+    ASSET_2D2_MODEL_ORANGE            = 0x2d2, //projectile
 
-    model_juju              = 0x2e6,
+    ASSET_2E6_MODEL_JUJU              = 0x2e6,
 
-    model_orange_pad        = 0x2eb,
+    ASSET_2EB_MODEL_ORANGE_PAD        = 0x2eb,
 
     ASSET_309_MODEL_CLANKER_TOKEN_TOOTH_EXTERIOR = 0x309,
     ASSET_30A_MODEL_CLANKER_JIGGY_TOOTH_EXTERIOR,
@@ -2096,8 +2096,8 @@ enum asset_e
 
     ASSET_359_MODEL_BANJO_WALRUS = 0x359,
 
-    model_conga             = 0x35c,
-    model_chimpy            = 0x35d,
+    ASSET_35C_MODEL_CONGA   = 0x35c,
+    ASSET_35D_MODEL_CHIMPY            = 0x35d,
 
     ASSET_35F_MODEL_JIGGY = 0x35F,
 
@@ -2356,12 +2356,23 @@ enum overlay_e{
 };
 
 enum marker_e{
+    MARKER_5_GRUBLIN = 0x5,
+
+    MARKER_7_CONGA = 0x7,
+
+    MARKER_A_CHIMPY = 0xA,
+
+    MARKER_C_ORANGE_PROJECTILE = 0xC,
 
     MARKER_11_WADING_BOOTS = 0x11,
 
     MARKER_38_TURBO_TALON_TRAINERS = 0x38,
 
-    MARKER_52_JIGGY = 0x52,
+    MARKER_3B_SCARF_SLED = 0x3B,
+    MARKER_3C_RACE_SLED,
+
+    MARKER_51_MM_HUT = 0x51,
+    MARKER_52_JIGGY,
     MARKER_53_EMPTY_HONEYCOMB,
 
     MARKER_55_HONEYCOMB = 0x55,
@@ -2370,6 +2381,11 @@ enum marker_e{
 
     MARKER_61_EXTRA_LIFE = 0x61,
     
+    MARKER_66_ORANGE_PAD = 0x66,
+    MARKER_67_JUJU = 0x67,
+
+    MARKER_95_CHIMPY_STUMP = 0x95,
+
     MARKER_A6_GRABBA = 0xA6,
     MARKER_A7_MAGIC_CARPET_1,
 
@@ -2379,6 +2395,8 @@ enum marker_e{
 
     MARKER_AF_MAGIC_CARPET_SHADOW = 0xAF,
     MARKER_B0_MAGIC_CARPET_2,
+
+    MARKER_B9_FP_SNOWMAN_BUTTON = 0xB9,
 
     MARKER_BC_GOBI_1 = 0xBC,
     MARKER_BD_GOBI_ROPE,
@@ -2412,6 +2430,8 @@ enum marker_e{
     MARKER_11B_WATER_LEVEL_SWITCH_1 = 0x11B,
     MARKER_11C_WATER_LEVEL_SWITCH_2,
     MARKER_11D_WATER_LEVEL_SWITCH_3,
+
+    MARKER_12B_ATTACK_TUTORIAL = 0x12B,
 
     MARKER_161_GV_WITCH_SWITCH = 0x161,
     MARKER_162_BGS_WITCH_SWITCH,

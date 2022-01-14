@@ -59,4 +59,6 @@ segments:
       - [0x0000B600, .data, code_0]
       - [0x0000B650, .data, code_4D0]
       - [0x0000B6A0, bin, data_B6A0]
+      - [0x0000C790, .rodata, code_0]
+      - [0x0000C7A0, bin, data_C7A0]
   - [0x0000CB20]

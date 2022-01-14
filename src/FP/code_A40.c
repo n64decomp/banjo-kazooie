@@ -9,7 +9,7 @@ extern ActorInfo D_80391B50 = {
     0xba, ACTOR_15F_XMAS_TREE, ASSET_488_MODEL_XMAS_TREE, 
     0x1, NULL, 
     func_80387114, func_80326224, func_80386E30,
-    { 0x0, 0x0, 0x0, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+    { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
 };
 
 #pragma GLOBAL_ASM("asm/nonmatchings/FP/code_A40/func_80386E30.s")

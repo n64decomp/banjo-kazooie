@@ -15,9 +15,10 @@ Actor*  func_80388DC0(ActorMarker *, Gfx **, Mtx**, u32);
 void    func_80388DE8(Actor* this, s32 slave_id, Actor *slavePtr);
 
 /* .data */
-ActorInfo chjujuhitboxInfo = { 0x67, ACTOR_11_JUJU_CTRL, 0, 3, NULL,
+ActorInfo chjujuhitboxInfo = { MARKER_67_JUJU, ACTOR_11_JUJU_CTRL, 0, 
+    3, NULL,
     func_80388E20, func_80326224, func_80388DC0,
-    {0,0,0,0}, 0.0f, {0,0,0,0}
+    {0,0}, 0, 0.0f, {0,0,0,0}
 };
 
 int func_80388B30(Actor *this, float arg1){

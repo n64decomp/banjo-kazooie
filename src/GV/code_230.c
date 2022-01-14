@@ -29,7 +29,7 @@ ActorAnimationInfo D_80390C3C[] = {
 ActorInfo D_80390C5C = { MARKER_F4_ANCIENT_ONE, ACTOR_147_ANCIENT_ONE, ASSET_3E8_MODEL_ANCIENT_ONE, 
     0x1, D_80390C3C, 
     chancientone_update, func_80326224, chancientone_draw, 
-    { 0x0, 0x0, 0x1, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+    { 0x0, 0x0}, 0x100, 0.0f, { 0x0, 0x0, 0x0, 0x0}
 };
 
 /* .code */

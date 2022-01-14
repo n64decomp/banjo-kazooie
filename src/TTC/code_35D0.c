@@ -20,21 +20,21 @@ ActorInfo D_8038C8B0 = {
     0x62, ACTOR_53_RED_ARROW, ASSET_3E9_MODEL_RED_ARROW, 
     0, NULL, 
     func_80389E90, func_80326224, func_8038A0D0,
-    {0,0,0x04,0}, 0.0f, {0,0,0,0}
+    {0,0,}, 0x400, 0.0f, {0,0,0,0}
 }; 
 
 ActorInfo D_8038C8D4 = {
     0x63, ACTOR_54_RED_QUESTION_MARK, ASSET_3EB_MODEL_RED_QUESTION_MARK, 
     0, NULL, 
     func_80389E90, func_80326224, func_8038A0D0,
-    {0,0,0x04,0}, 0.0f, {0,0,0,0}
+    {0,0,}, 0x400, 0.0f, {0,0,0,0}
 }; 
 
 ActorInfo D_8038C8F8 = {
     0x64, ACTOR_55_RED_X, ASSET_3EA_MODEL_RED_X, 
     0, NULL, 
     func_80389E90, func_80326224, func_8038A0D0,
-    {0,0,0x04,0}, 0.0f, {0,0,0,0}
+    {0,0,}, 0x400, 0.0f, {0,0,0,0}
 }; 
 
 s32 D_8038C91C[3] = {160, 120, 20};

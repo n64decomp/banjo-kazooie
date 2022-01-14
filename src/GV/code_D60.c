@@ -21,7 +21,7 @@ Actor *chgobi1_draw(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 ActorInfo D_80390C80 = { MARKER_BC_GOBI_1, ACTOR_12E_GOBI_1, ASSET_3E0_MODEL_GOBI, 
     0, NULL, 
     NULL, func_80387408, chgobi1_draw, 
-    { 0x0, 0x0, 0x5, 0x33}, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+    { 0x0, 0x0}, 0x533, 0.0f, { 0x0, 0x0, 0x0, 0x0}
 };
 
 /* .bss */

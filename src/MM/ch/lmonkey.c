@@ -23,9 +23,10 @@ ActorAnimationInfo chlmonkeyAnimations[5] = {
     {0x5C, 2.3f}
 };
 
-ActorInfo chlmonkeyInfo = { 0xA, ACTOR_F_CHIMPY, model_chimpy, 1, chlmonkeyAnimations,
+ActorInfo chlmonkeyInfo = { MARKER_A_CHIMPY, ACTOR_F_CHIMPY, ASSET_35D_MODEL_CHIMPY, 
+    1, chlmonkeyAnimations,
     NULL, func_803885D0, func_80325888,
-    {0x09,0xC4,0,0}, 0.8f, {0,0,0,0}
+    {0x09,0xC4}, 0, 0.8f, {0,0,0,0}
 };
 
 /* .code */

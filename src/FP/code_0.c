@@ -2,10 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-extern f32 func_80309724(f32[3]);
-extern f32 func_8030E200(u8);
-extern void func_8030E0FC(u8, f32, f32, f32);
-
 void func_803867BC(Actor *this);
 
 /* .data */
@@ -17,16 +13,11 @@ ActorAnimationInfo D_803919F0[] ={
 };
 
 ActorInfo D_80391A10 = {
-    0x3B, ACTOR_181_SCARF_SLED, ASSET_352_MODEL_SLED,
+    MARKER_3B_SCARF_SLED, ACTOR_181_SCARF_SLED, ASSET_352_MODEL_SLED,
     0, D_803919F0,
     NULL,  func_803867BC, func_80325888,
-    {0x03, 0xE8, 00, 00},  0.0f, {0,0,0,0}
+    {0x03, 0xE8}, 0,  0.0f, {0,0,0,0}
 };
-
-extern f32 D_80392B80;
-extern f32 D_80392B84;
-extern f32 D_80392B88;
-extern f32 D_80392B8C;
 
 /* .code */
 void func_803863F0(Actor *this, s32 next_state){
@@ -35,7 +26,7 @@ void func_803863F0(Actor *this, s32 next_state){
     if(next_state == 2){
         mapSpecificFlags_set(0xB, TRUE);
         timed_setCameraToNode(0.0f, 0x27);
-        timed_playSfx(D_80392B80, SFX_52_BANJO_YAH_OH, 1.0f, 28000);
+        timed_playSfx(0.6f, SFX_52_BANJO_YAH_OH, 1.0f, 28000);
         timed_playSfx(1.25f, SFX_31_BANJO_OHHWAAOOO, 1.0f, 28000);
 
         timed_setCameraToNode(1.5f, 0x26);
@@ -44,7 +35,7 @@ void func_803863F0(Actor *this, s32 next_state){
 
         timed_setCameraToNode(3.75f, 0x24);
         timed_playSfx(4.25f, SFX_A7_WOODEN_SWOSH, 1.2f, 18000);
-        timed_playSfx(D_80392B84, SFX_C1_BUZZBOMB_ATTACK, 1.0f, 0x7fff);
+        timed_playSfx(4.45f, SFX_C1_BUZZBOMB_ATTACK, 1.0f, 0x7fff);
         timed_setCameraToNode(4.75f, 0x23);
     }
 }
@@ -123,8 +114,8 @@ void func_80386630(Actor *this){
         FUNC_8030E624(SFX_D_EGGSHELL_BREAKING, 0x30D, 0x3ff);
 
         sp7C[0] = -1000.0f;
-        sp7C[1] = D_80392B88;
-        sp7C[2] = D_80392B8C;
+        sp7C[1] = 1727.0f;
+        sp7C[2] = 6218.0f;
         func_8028F490(sp7C);
         marker_despawn(this->marker);
     }//L803867AC

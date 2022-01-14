@@ -46,7 +46,7 @@ extern ActorAnimationInfo D_80391FB0[] = {
 extern ActorInfo D_80392018 = {
     0x285, 0x3AC, 0x551, 0x1, D_80391FB0,
     func_8039049C, func_80326224, func_80325888,
-    {0, 0, 0, 0}, 1.0f, {0,0,0,0}
+    {0, 0}, 0, 1.0f, {0,0,0,0}
 };
 
 /*                                              00 00 00 DC

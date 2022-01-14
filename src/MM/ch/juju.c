@@ -12,9 +12,10 @@ void    func_80389598(Actor *this);
 Actor*  func_80389014(ActorMarker *, Gfx **, Mtx**, u32);
 
 /* .data */
-ActorInfo chjujuInfo = { 0x67, ACTOR_59_JUJU, model_juju, 0, NULL,
+ActorInfo chjujuInfo = { MARKER_67_JUJU, ACTOR_59_JUJU, ASSET_2E6_MODEL_JUJU, 
+    0, NULL,
     func_80389598, func_80326224, func_80389014,
-    {0,0,0,0}, 0.0f, {0,0,0,0}
+    {0,0}, 0, 0.0f, {0,0,0,0}
 };
 
 extern s32 D_80389C90;

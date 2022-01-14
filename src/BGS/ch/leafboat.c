@@ -14,7 +14,7 @@ u16 D_80390DA4 = 0x0101;
 
 ActorInfo D_80390DA8 = {0xDA, actor_leafboat, 0x30D, 0x01, NULL,
     func_8038FD9C, func_8038FD9C, func_8038FD10,
-    {0,0,0,0}, 0.0f, {0,0,0,0}
+    {0,0}, 0, 0.0f, {0,0,0,0}
 };
 
 

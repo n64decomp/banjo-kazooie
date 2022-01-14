@@ -19,7 +19,7 @@ ActorInfo gChDripsInfo = {
     0x246, ACTOR_354_DRIPS, 0, 
     0, NULL, 
     chdrips_update, func_80326224, func_80325340,
-    {0x13,0x88,0,0}, 0.0f, {0,0,0,0}
+    {0x13,0x88}, 0, 0.0f, {0,0,0,0}
 }; 
 
 s32 D_80372AE4[3] = {0xff, 0xff, 0xfe};

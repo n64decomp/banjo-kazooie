@@ -14,7 +14,7 @@ extern ActorAnimationInfo D_80390DC0[]={
 extern ActorInfo D_80390DD0 = { MARKER_AF_MAGIC_CARPET_SHADOW, ACTOR_122_MAGIC_CARPET_SHADOW, ASSET_3E7_MODEL_MAGIC_CARPET_SHADOW, 
     0x1, D_80390DC0, 
     func_8038938C, func_80326224, func_803892D0, 
-    { 0x9, 0xC4, 0x0, 0x0}, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+    { 0x9, 0xC4}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
 };
 
 /* .code */

@@ -387,7 +387,7 @@ ParticleEmitter *func_802F0D74(ParticleEmitter *);
 extern s32 func_802F9AA8(enum sfx_e);
 
 Actor * func_803055E0(enum actor_e id, s32 pos[3], s32 arg2, s32 arg3, s32 arg4);
-
+f32  func_80309724(f32[3]);
 u8   func_8030D90C(void);
 void func_8030DA80(u8 indx, enum sfx_e uid);
 void func_8030DBB4(u8, f32);
@@ -395,6 +395,8 @@ void func_8030DD14(u8, int);
 void func_8030DF68(u8, f32[3]);
 void func_8030DFF0(u8, s32);
 void func_8030E04C(u8, f32, f32, f32);
+void func_8030E0FC(u8, f32, f32, f32);
+f32  func_8030E200(u8);
 void func_8030E2C4(u8);
 void func_8030E394(u8 indx);
 void func_8030E484(enum sfx_e uid);

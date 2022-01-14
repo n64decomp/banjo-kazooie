@@ -28,7 +28,7 @@ struct49570s D_80367340[] = {
 ActorInfo D_80367390 = {0x1A8, ACTOR_28B_SOUND_SOURCE, 0, 
     0, NULL, 
     func_802D07C8, NULL, func_80325340,
-    {0,0,0,0}, 0.0f, {0,0,0,0}
+    {0,0}, 0, 0.0f, {0,0,0,0}
 }; 
 
 /* .code */

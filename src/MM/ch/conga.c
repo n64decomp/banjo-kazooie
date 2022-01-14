@@ -39,9 +39,10 @@ ActorAnimationInfo chCongaAnimations[9] = {
     {ASSET_52_ANIM_CONGA_OW, 1.0f}
 };
 
-ActorInfo D_80389998 = { 0x7, ACTOR_8_CONGA, model_conga, 1, chCongaAnimations,
+ActorInfo D_80389998 = { MARKER_7_CONGA, ACTOR_8_CONGA, ASSET_35C_MODEL_CONGA,
+    1, chCongaAnimations,
     func_803876D0, func_80326224, func_80325888,
-    {0x00,0x00,0x03,0x33}, 0.0f, {0,0,0,0}
+    {0x00,0x00}, 0x333, 0.0f, {0,0,0,0}
 };
 
 

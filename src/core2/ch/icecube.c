@@ -23,14 +23,14 @@ ActorInfo D_80372B80 = {
     0x250, 0x37D, ASSET_504_MODEL_ICECUBE, 
     1, D_80372B50, 
     chicecube_update, func_80326224, chicecube_draw,
-    {0,0,0,0}, 0.0f, {0,0,0,0}
+    {0,0}, 0, 0.0f, {0,0,0,0}
 }; 
 
 ActorInfo D_80372BA4 = {
     0x25F, 0x3A0, ASSET_504_MODEL_ICECUBE, 
     1, D_80372B50, 
     chicecube_update, func_80326224, chicecube_draw,
-    {0,0,0,0}, 0.0f, {0,0,0,0}
+    {0,0}, 0, 0.0f, {0,0,0,0}
 }; 
 
 s32 D_80372BC8[3] = {220, 220, 230};
