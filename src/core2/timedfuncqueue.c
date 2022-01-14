@@ -5,7 +5,7 @@
 #include "core2/timedfunc.h"
 
 void func_802BAE4C(void);
-void func_802BAE20(f32);
+void set_camera_to_node(s32);
 
 typedef struct timed_function_queue_s{
     f32 time;
@@ -182,7 +182,7 @@ void func_80324E38(f32 time, s32 arg0){
 }
 
 void timed_setCameraToNode(f32 time, s32 arg0){
-    timedFunc_set_1(time, (TFQM1) func_802BAE20, arg0);
+    timedFunc_set_1(time, (TFQM1) set_camera_to_node, arg0);
 }
 
 void func_80324E88(f32 time){

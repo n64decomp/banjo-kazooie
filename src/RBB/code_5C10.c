@@ -38,7 +38,7 @@ void func_8038C0A8(ActorMarker *marker, s32 arg1, s32 arg2){
 
 void func_8038C0FC(Actor *this, s32 new_state){
     if(new_state == 2){
-        func_802BAE20(0xC);
+        set_camera_to_node(0xC);
         func_80324E38(0.0f, 3);
         timedFunc_set_0(1.0f, func_8038C000);
         timedFunc_set_2(1.0f, (TFQM2)mapSpecificFlags_set, 8, TRUE);

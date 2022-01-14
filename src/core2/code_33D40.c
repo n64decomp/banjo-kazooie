@@ -42,7 +42,7 @@ void func_802BADDC(s32 arg0){
     func_802BAAF4(sp1C, D_8037D830);
 }
 
-void func_802BAE20(s32 arg0){
+void set_camera_to_node(s32 arg0){
     func_802BBC58(3);
     func_802BADDC(arg0);
 }

@@ -502,7 +502,7 @@ void func_802D6344(void){
 void func_802D6388(void){
     timedFunc_set_0(5.0f, func_802D6114);
     func_802BBC58(1);
-    func_802BAE20(D_80367688);
+    set_camera_to_node(D_80367688);
     D_8037DE08 = 0.5f;
 }
 

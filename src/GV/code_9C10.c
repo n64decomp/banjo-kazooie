@@ -12,7 +12,7 @@ void func_80390000(s32 arg0){
 
     D_80391AD0 = arg0;
     if(D_80391AD0 == 1){
-        func_802BAE20(0x14);
+        set_camera_to_node(0x14);
         func_80324E38(0.0f, 3);
         timed_setCameraToNode(4.0f, 0x15);
         func_80324E38(8.0f, 0);

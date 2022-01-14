@@ -90,7 +90,7 @@ void func_80389C78(Actor *this){
         local->unkC = 0.0f;
         func_80389ADC(this, 1);
         if(levelSpecificFlags_get(local->unk8 ? 4 : 3)){
-            func_802BAE20(9);
+            set_camera_to_node(9);
             func_80324E38(0.0f, 3);
             timedFunc_set_2(0.1f, (TFQM2)levelSpecificFlags_set, local->unk8 ? 0x28 : 0x27, 1);
             func_80324E88(4.5f);
