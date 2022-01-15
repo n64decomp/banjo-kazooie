@@ -8,21 +8,28 @@
 
 typedef struct sprite_prop_s{
     u32 unk0_31:0xC;
-    u32 pad0_19:0xA;
+    u32 pad0_19:0x1;
+    u32 unk0_18:0x3;
+    u32 unk0_15:0x3;
+    u32 unk0_12:0x3;
     u32 unk0_9:0x8;
-    u32 pad0_1:0x2;
-    u8 pad4[0x4];
-    u32 pad8_31: 27;
-    u32 unk8_4: 1;
-    u32 pad8_3: 2;
-    u32 unk8_1:1;
-    u32 unk8_0:1;
+    u32 unk0_1:0x1;
+    u32 pad0_0:0x1;
+    s16 unk4[3];
+    u16 unk8_15: 5;
+    u16 pad8_10: 6;
+    u16 unk8_4: 1;
+    u16 pad8_3: 2;
+    u16 unk8_1:1;
+    u16 unk8_0:1;
 } SpriteProp;
 
 typedef struct prop_prop_s{
-    u32 unk0_31:0xC;
-    u32 pad0_19:0x14;
-    u8 pad4[0x6];
+    u32 unk0_31:12;
+    u32 pad0_19:4;
+    u32 unk0_15:8;
+    u32 unk0_7:8;
+    s16 unk4[3];
     u8 unkA;
     u8 padB[1];
 } PropProp;
@@ -350,7 +357,7 @@ typedef struct actor_s{
     u32 unk124_3:3;
     u32 unk124_0:1; //read in bsbbuster func 
     f32 scale;
-    /* 0x12C */ struct actor_info *actor_info;
+    /* 0x12C */ struct actor_info_s *actor_info;
     void * unk130;
     vector(struct2s) **unk134; //vector<struct2s> //saved marker->unk1C
     u32 unk138_31:1;
@@ -425,7 +432,9 @@ typedef union prop_s
     struct{
         u8 pad0[6];
         s16 unk6;
-        s32 pad8_31: 29;
+        s32 pad8_31: 27;
+        s32 unk8_4: 1;
+        s32 pad8_3: 1;
         u32 unk8_2: 1;
         u32 unk8_1: 1;
         u32 markerFlag: 1;
@@ -433,12 +442,12 @@ typedef union prop_s
 } Prop;
 
 typedef struct cude_s{
-    u32 x:5;
-    u32 y:5;
-    u32 z:5;
+    s32 x:5;
+    s32 y:5;
+    s32 z:5;
     u32 prop1Cnt:6;
     u32 prop2Cnt:6;
-    u32 pad0:5;
+    u32 unk0_4:5;
     Prop *prop1Ptr;
     Prop *prop2Ptr;
 }Cube;

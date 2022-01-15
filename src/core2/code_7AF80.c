@@ -6,15 +6,98 @@
 
 extern f32 func_803243D0(struct56s *arg0, f32 arg1[3]);
 
+
+
+extern ActorInfo D_803675F0;
+extern ActorInfo D_80367838;
+
+extern s32 sSpawnableActorSize; //0x8036A9B0
+extern ActorSpawn *sSpawnableActorList; //0x8036A9B4
+
+extern UNK_TYPE(void *) D_8036A9E0;
+
+/* .rodata */
+extern f32 D_803774C4;
+
+extern struct {
+    Cube *cube_list;
+    f32 unk4;
+    s32 unk8[3];
+    s32 unk14[3];
+    s32 unk20;
+    s32 unk24;
+    s32 cubeCnt;
+    s32 unk2C;
+    s32 unk30;
+    s32 unk34;
+    s32 unk38;
+    Cube *unk3C;
+    Cube *unk40;
+    s32 unk44;
+} D_80381FA0;
+
 extern s32 D_803820B8;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80301F10.s")
+/* .code */
+void func_80301F10(Cube *cube, Gfx **gfx, Mtx **mtx, Vtx **vtx){
+    func_80308F0C(cube);
+    func_8032D510(cube, gfx, mtx, vtx);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80301F50.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80302634.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80302C94.s")
+// void func_80302C94(Gfx **gfx, Mtx **mtx, Vtx **vtx){
+//     f32 sp6C[3];
+//     s32 sp60[3];
+//     f32 sp54[3];
+//     int i;
+//     s32 sp44[3];
+//     s32 sp38[3];
+
+//     if(!mapSpecificFlags_validateCRC1())
+//         return;
+
+//     func_8032D3A8();
+//     func_8024C5CC(sp6C);
+//     func_8024C764(sp54);
+//     func_80256664(sp60);
+//     func_80303174(sp60, sp6C);
+//     sp60[0] -= D_80381FA0.unk8[0];\
+//     sp60[1] -= D_80381FA0.unk8[1];\
+//     sp60[2] -= D_80381FA0.unk8[2];
+//     if(250.0f < func_80308EC8()){
+
+//     }//L80302ED0
+
+//     for(i =  0; i < 3; i++){//L80303000
+//         if(sp60[i] - sp44[i] >= 5)
+//             sp44[i] = sp60[i] - 4;
+
+//         if(sp38[i] - sp60[i] >= 5)
+//             sp38[i] = sp60[i] + 4;
+//     }
+
+//     if(D_80381FA0.unk3C){
+//         func_8032D510(D_80381FA0.unk3C, gfx, mtx, vtx);
+//     }
+
+//     if(D_80381FA0.unk40){
+//         func_8032D510(D_80381FA0.unk40, gfx, mtx, vtx);
+//     }
+
+//     if( (45.0f <= sp54[1] && sp54[1] <= 135.0f)
+//         || (225.0f <= sp54[1] && sp54[1] <= D_803774C4)
+//     ){
+//         func_80301F50(gfx, mtx, vtx, sp60, sp44, sp38);
+//     }
+//     else{
+//         func_80302634(gfx, mtx, vtx, sp60, sp44, sp38);
+//     }
+//     func_80308D2C(gfx, mtx, vtx);
+// }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80303174.s")
 
@@ -32,12 +115,15 @@ extern s32 D_803820B8;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80303664.s")
 
+// void func_803036A0(void);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_803036A0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80303800.s")
 
+// void func_80303960(void);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80303960.s")
 
+// void func_80303AF0(void);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80303AF0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80303C54.s")
@@ -73,9 +159,121 @@ s32 func_80303FE4(s32 arg0, f32 arg1) {
     return D_803820B8;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80304010.s")
+void func_80304010(void){
+    Cube *iCube;
+    
+    for(iCube = D_80381FA0.cube_list; iCube < D_80381FA0.cube_list + D_80381FA0.cubeCnt; iCube++){
+        cube_free(iCube);
+    }
+    free(D_80381FA0.cube_list);
+    
+    if(D_80381FA0.unk3C){
+        cube_free(D_80381FA0.unk3C);
+        free(D_80381FA0.unk3C);
+    }
 
+    if(D_80381FA0.unk40){
+        cube_free(D_80381FA0.unk40);
+        free(D_80381FA0.unk40);
+    }
+    func_802CAEF4(D_8036A9E0);
+    D_8036A9E0 = NULL;
+}
+
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_803040EC.s")
+#else
+void func_803040EC(void){
+    int x, y, z;
+    int i, j, k;
+    Cube *iCube;
+    func_80303F38();
+    D_80381FA0.unk44 = 0;
+    func_803097AC(D_80381FA0.unk8, D_80381FA0.unk14);
+    D_80381FA0.unk2C = 0;
+    D_80381FA0.unk30 = D_80381FA0.unk14[0] - D_80381FA0.unk8[0] + 1;
+    D_80381FA0.unk34 = D_80381FA0.unk14[1] - D_80381FA0.unk8[1] + 1;
+    D_80381FA0.unk38 = D_80381FA0.unk14[2] - D_80381FA0.unk8[2] + 1;
+    D_80381FA0.unk20 = D_80381FA0.unk30;
+    D_80381FA0.unk24 = D_80381FA0.unk34*D_80381FA0.unk20;
+    D_80381FA0.cubeCnt = D_80381FA0.unk38*D_80381FA0.unk24;
+    D_80381FA0.cube_list = (Cube *)malloc(D_80381FA0.cubeCnt*sizeof(Cube));
+    for(x = D_80381FA0.unk8[0]; D_80381FA0.unk14[0] >= x; x++){ //sp2C
+        for(y = D_80381FA0.unk8[1]; D_80381FA0.unk14[1] >= y; y++){ //sp30
+            for(z = D_80381FA0.unk8[2]; D_80381FA0.unk14[2] >= z; z++){ //sp34
+                k = z - D_80381FA0.unk8[2]; //sp28
+                j = y - D_80381FA0.unk8[1]; //sp24
+                i = x - D_80381FA0.unk8[0]; //sp20
+                iCube = &D_80381FA0.cube_list[D_80381FA0.unk24*k + D_80381FA0.unk20*j + i];
+                iCube->x = x;
+                iCube->y = y;
+                iCube->z = z;
+                iCube->prop2Ptr = NULL;
+                iCube->prop1Ptr = NULL;
+                iCube->prop2Cnt = 0;
+                iCube->prop1Cnt = 0;
+                iCube->unk0_4 = 0;
+            }
+        }
+    }//L8030432C
+    D_80381FA0.unk3C = (Cube *)malloc(1*sizeof(Cube));
+    D_80381FA0.unk3C->x = 16;
+    D_80381FA0.unk3C->y = 16;
+    D_80381FA0.unk3C->z = 16;
+    D_80381FA0.unk3C->prop2Ptr = NULL;
+    D_80381FA0.unk3C->prop1Ptr = NULL;
+    D_80381FA0.unk3C->prop2Cnt = 0;
+    D_80381FA0.unk3C->prop1Cnt = 0;
+    D_80381FA0.unk3C->unk0_4 = 0;
+
+
+    D_80381FA0.unk40 = (Cube *)malloc(1*sizeof(Cube));
+    D_80381FA0.unk40->x = 16;
+    D_80381FA0.unk40->y = 16;
+    D_80381FA0.unk40->z = 16;
+    D_80381FA0.unk40->prop2Ptr = NULL;
+    D_80381FA0.unk40->prop1Ptr = NULL;
+    D_80381FA0.unk40->prop2Cnt = 0;
+    D_80381FA0.unk40->prop1Cnt = 0;
+    D_80381FA0.unk40->unk0_4 = 0;
+
+    sSpawnableActorSize = 0;
+    sSpawnableActorList = NULL;
+    if(map_get() == MAP_21_CC_WITCH_SWITCH_ROOM){
+        D_80381FA0.unk4 = 500.0f;
+    }
+    else if(map_get() == MAP_12_GV_GOBIS_VALLEY){
+        D_80381FA0.unk4 = 500.0f;
+    }
+    else if(map_get() == MAP_7F_FP_WOZZAS_CAVE){
+        D_80381FA0.unk4 = 500.0f;
+    }
+    else if(map_get() == MAP_D_BGS_BUBBLEGLOOP_SWAMP){
+        D_80381FA0.unk4 = 700.0f;
+    }
+    else if(map_get() == MAP_7_TTC_TREASURE_TROVE_COVE){
+        D_80381FA0.unk4 = 400.0f;
+    }
+    else if(map_get() == MAP_16_GV_RUBEES_CHAMBER){
+        D_80381FA0.unk4 = 400.0f;
+    }
+    else if(map_get() == MAP_2_MM_MUMBOS_MOUNTAIN){
+        D_80381FA0.unk4 = 250.0f;
+    }
+    else if(map_get() == MAP_27_FP_FREEZEEZY_PEAK){
+        D_80381FA0.unk4 = 250.0f;
+    }
+    else if(map_get() == MAP_92_GV_SNS_CHAMBER){
+        D_80381FA0.unk4 = 300.0f;
+    }
+    else{
+        D_80381FA0.unk4 = 200.0f;
+    }
+    func_80320B24(func_803036A0, func_80303960, func_80303AF0);
+    D_8036A9E0 = func_802CAEBC(0xF0);
+    func_8032E070();
+}
+#endif
 
 void func_803045CC(s32 arg0, s32 arg1){}
 
@@ -198,17 +396,6 @@ s32 func_80304E24(s32 arg0, f32 *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_8030526C.s")
 
-extern ActorInfo D_803675F0;
-extern ActorInfo D_80367838;
-
-extern s32 sSpawnableActorSize; //0x8036A9B0
-extern ActorSpawn *sSpawnableActorList; //0x8036A9B4
-extern struct {
-    struct55s *unk0;
-    u8 pad4[0x24];
-    s32 unk28;
-} D_80381FA0;
-
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80305290.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80305344.s")
@@ -289,7 +476,7 @@ Actor *func_803056FC(enum actor_e arg0, s32 arg1[3], s32 arg2) {
 void func_8030578C(void){
     int i;
     u32 sp40;
-    struct55s *iPtr;
+    Cube *iCube;
     
     if(getGameMode() != GAME_MODE_7_ATTRACT_DEMO){
         osPiReadIo(0xE38, &sp40);
@@ -307,8 +494,8 @@ void func_8030578C(void){
             }
         }
     }//L80305850
-    for(iPtr = D_80381FA0.unk0; iPtr < D_80381FA0.unk0 + D_80381FA0.unk28; iPtr++){
-        func_80330208(iPtr);
+    for(iCube = D_80381FA0.cube_list; iCube < D_80381FA0.cube_list + D_80381FA0.cubeCnt; iCube++){
+        func_80330208(iCube);
     }
 }
 
@@ -396,11 +583,23 @@ void func_8030578C(void){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80308224.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80308230.s")
+void func_80308230(s32 arg0) {
+    Cube *iCube;
+    for(iCube = D_80381FA0.cube_list; iCube < D_80381FA0.cube_list + D_80381FA0.cubeCnt; iCube++){
+        if (arg0 == 0) {
+            func_8032D158(iCube);
+        } else {
+            func_8032D120(iCube);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_803082D8.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_803083B0.s")
+
+extern s16 D_8036ABD4;
+extern s16 D_80382150[];
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_803084F0.s")
 

@@ -11,13 +11,39 @@ void func_80305CD8(s32, s32);
 void func_80330104(Cube*);
 ActorMarker * func_80332A60(void);
 extern void func_8032F3D4(f32 [3], ActorMarker *, s32);
+extern void func_8030A350(Gfx **, Mtx **, Vtx **, f32[3], f32, s32, Cube*,s32 ,s32, s32, s32, s32);  
+extern void func_8030A2D0(Gfx **, Mtx **, Vtx **, f32[3], f32[3], f32, s32, Cube*);
 
+typedef union{
+    struct{
+        u32 pad31: 27;
+        u32 unk4: 1;
+        u32 pad3: 1;
+        u32 unk2: 1;
+        u32 unk1: 1;
+        u32 unk0: 1;
+    };
+    u32 word;
+} tmp_bitfield;
+
+void func_8032CD60(Prop *);
+void func_8033A244(f32);
+
+/* .data */
+extern s32 D_8036E7B0;
+
+/* .rodata */
+extern f32 D_80378EA0;
+extern f32 D_80378EA4;
+
+/* .bss */
 extern ModelCache *modelCache; //model pointer array pointer
 extern u32 D_80383444;
 extern int D_80383448;
-vector(u32) *D_80383550;
-vector(u32) *D_80383554;
+vector(ActorMarker *) *D_80383550;
+vector(ActorMarker *) *D_80383554;
 
+/* .code */
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032BC90.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032BD64.s")
@@ -53,15 +79,64 @@ vector(u32) *D_80383554;
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032CB50.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032CD60.s")
+// void func_8032CD60(Prop *prop){
+//     s32 tmp_v0;
+//     if(prop->markerFlag){
+//         tmp_v0 = func_80330F50(prop->actorProp.marker);
+//     }
+//     else{
+//         tmp_v0 = func_8030A55C(prop->propProp.unk0_31);
+//     }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032D120.s")
+//     if(tmp_v0 == 0) return;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032D158.s")
+// }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032D190.s")
+void func_8032D120(Cube *cube){
+    if(cube->prop2Cnt >= 2)
+        func_8032CB50(cube, 1);
+}
+
+void func_8032D158(Cube *cube){
+    if(cube->prop2Cnt >= 2)
+        func_8032CB50(cube, 0);
+}
+
+void __marker_draw(ActorMarker *this, Gfx **gfx, Mtx **mtx, Vtx **vtx){
+    Actor *actor;
+    u32 draw_dist;
+    f32 draw_dist_f;
+    f32 percentage;
+    if(!this->unk3E_0){
+        this->unk8(this, gfx, mtx, vtx);
+        return;
+    }
+    actor =  marker_getActor(this);
+    func_8033A28C(actor->unk58_2);
+    if( actor->unk58_2 && !this->unk40_23 && !this->unk40_21 && !D_8036E7B0){
+        func_8033A244(D_80378EA0);
+    }
+    
+    if(actor->unk124_7 && !actor->despawn_flag && actor->unk58_0){
+        draw_dist = actor->actor_info->draw_distance;
+        if(draw_dist != 0){
+            percentage = (f32)draw_dist*(1/(f64)0x400);
+        }
+        else if(this->unk40_21){
+            percentage = 2.0f;
+        }
+        else{
+            percentage = 1.0f;
+        }
+        func_8033A280(percentage);
+        this->unk8(this, gfx, mtx, vtx);
+    }//L8032D300
+    func_8033A244(D_80378EA4);
+    func_8033A280(1.0f);
+}
 
 void func_8032D330(void){
-    D_80383550 = vector_new(sizeof(u32),2);
+    D_80383550 = vector_new(sizeof(ActorMarker *),2);
     D_80383554 = vector_new(sizeof(u32),2);
 }
 
@@ -80,18 +155,79 @@ void func_8032D3A8(void){
 void func_8032D3D8(Gfx **gdl, Mtx **mptr, Vtx **vptr){
     int i;
     for(i = 0; i < vector_size(D_80383550); i++){
-       func_8032D190(*(u32*) vector_at(D_80383550, i), gdl, mptr, vptr);
+       __marker_draw(*(u32*) vector_at(D_80383550, i), gdl, mptr, vptr);
     }
 }
 
 void func_8032D474(Gfx **gdl, Mtx **mptr, Vtx **vptr){
     int i;
     for(i = 0; i < vector_size(D_80383554); i++){
-       func_8032D190(*(u32*) vector_at(D_80383554, i), gdl, mptr, vptr);
+       __marker_draw(*(u32*) vector_at(D_80383554, i), gdl, mptr, vptr);
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032D510.s")
+void func_8032D510(Cube *cube, Gfx **gfx, Mtx **mtx, Vtx **vtx){
+    Prop *iProp;
+    int i;
+    f32 sp94[3];
+    f32 sp88[3];
+    tmp_bitfield tmp_v0;
+    int iOffset;
+    ActorMarker **markerPtr;
+
+    if(cube->prop2Cnt == 0 ) return;
+
+    func_8032CB50(cube, 0);
+    iOffset = 0;
+    for(i = 0; i < cube->prop2Cnt; i++){//L8032D5A0
+        iOffset = i*0xC;
+        iProp = ((s32)cube->prop2Ptr + iOffset);
+        tmp_v0.word = *(u32 *)((s32)iProp + 0x8);
+        if(!tmp_v0.unk4){
+        
+        }else{
+            if(!tmp_v0.unk1){
+                func_8032CD60(iProp);
+            }
+            tmp_v0.word = *(u32 *)((s32)iProp + 0x8);
+            if(tmp_v0.unk0){//actorProp;
+                if(iProp->actorProp.marker->unk40_22){
+                    markerPtr = (ActorMarker **)vector_pushBackNew(&D_80383550);
+                    *markerPtr = iProp->actorProp.marker;
+                }
+                else if(iProp->actorProp.marker->unk40_19){
+                    markerPtr = (ActorMarker **)vector_pushBackNew(&D_80383554);
+                    *markerPtr = iProp->actorProp.marker;
+                }
+                else{
+                    __marker_draw(iProp->actorProp.marker, gfx, mtx, vtx);
+                }//L8032D62C
+            }
+            else{//L8032D640
+                sp94[0] = (f32)iProp->propProp.unk4[0];
+                sp94[1] = (f32)iProp->propProp.unk4[1];
+                sp94[2] = (f32)iProp->propProp.unk4[2];
+                if(iProp->unk8_1){
+                    sp88[0] = 0.0f;
+                    sp88[1] = (f32)((s32)iProp->propProp.unk0_15*2);
+                    sp88[2] = (f32)((s32)iProp->propProp.unk0_7*2);
+                    func_8030A2D0(gfx, mtx, vtx, 
+                        sp94, sp88, (f32)iProp->propProp.unkA/100.0,
+                        iProp->propProp.unk0_31, cube
+                    );
+                }
+                else{//L8032D72C
+                    func_8030A350( gfx, mtx, vtx, 
+                        sp94, (f32)iProp->spriteProp.unk0_9/100.0, iProp->spriteProp.unk0_31, cube, 
+                        iProp->spriteProp.unk0_18, iProp->spriteProp.unk0_15, iProp->spriteProp.unk0_12,
+                        iProp->spriteProp.unk0_1, iProp->spriteProp.unk8_15
+                    );
+                }
+            }//L8032D7C4
+        }
+        iOffset+=0xC;
+    }//L8032D7D4
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032D80C.s")
 
@@ -178,30 +314,26 @@ s32 func_8032D9C0(Cube *this, Prop* prop){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032E070.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032E07C.s")
-// void func_8032E07C(Cube *this){
-//     s32 i;
-//     Prop *list_end;
-//     Prop *cur_ptr;
+void cube_free(Cube *this){
+    Prop *iProp;
 
-//     if(this->prop2Ptr){
-//         list_end = this->prop2Ptr + this->prop2Cnt;
-//         for(cur_ptr = this->prop2Ptr; cur_ptr != list_end; cur_ptr++){
-//             if(cur_ptr->markerFlag){
-//                 func_80332B2C(cur_ptr->actor.marker);
-//             }
-//         }
-//         free(this->prop2Ptr);
-//         this->prop2Ptr = NULL;
-//     }
-//     if(this->prop1Ptr){
-//         free(this->prop1Ptr);
-//         this->prop1Ptr = NULL;
-//     }
-//     this->prop2Cnt = 0;
-//     this->prop1Cnt = 0;
-//     this->pad0 = 0;
-// }
+    if(this->prop2Ptr){
+        for(iProp = this->prop2Ptr; iProp < this->prop2Ptr +this->prop2Cnt; iProp++){
+            if(iProp->markerFlag){
+                func_80332B2C(iProp->actorProp.marker);
+            }
+        }
+        free(this->prop2Ptr);
+        this->prop2Ptr = NULL;
+    }
+    if(this->prop1Ptr){
+        free(this->prop1Ptr);
+        this->prop1Ptr = NULL;
+    }
+    this->prop2Cnt = 0;
+    this->prop1Cnt = 0;
+    this->unk0_4 = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032E178.s")
 
