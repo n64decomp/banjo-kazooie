@@ -36,28 +36,37 @@ extern ActorInfo D_803926C0;
 extern ActorInfo D_80392700;
 extern ActorInfo D_80392730;
 extern ActorInfo D_80392840;
-extern ActorInfo D_803928E0;
-extern ActorInfo D_80392904;
-extern ActorInfo D_80392928;
-extern ActorInfo D_8039294C;
-extern ActorInfo D_80392970;
-extern ActorInfo D_80392994;
-extern ActorInfo D_803929B8;
-extern ActorInfo D_803929DC;
-extern ActorInfo D_80392A00;
-extern ActorInfo D_80392A24;
-extern ActorInfo D_80392A48;
-extern ActorInfo D_80392A6C;
-extern ActorInfo D_80392A90;
-extern ActorInfo D_80392AB4;
-extern ActorInfo D_80392AD8;
-extern ActorInfo D_80392AFC;
-extern ActorInfo D_80392B20;
-extern ActorInfo D_80392B44;
+
+void func_80391040(Actor *this);
+void func_80391180(Actor *this);
+void func_80391254(Actor *this);
+void func_803912EC(Actor *this);
+void func_8039180C(Actor *this);
+void func_80391894(Actor *this);
+
+/* .data */
+extern ActorInfo D_803928E0 = { 0x247, 0x355, 0x4E5, 0x0, NULL, func_80391040, func_80326224, func_80325888, { 0xB, 0xB8}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_80392904 = { 0x248, 0x356, 0x4E6, 0x0, NULL, func_80391040, func_80326224, func_80325888, { 0xB, 0xB8}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_80392928 = { 0x249, 0x357, 0x4E7, 0x0, NULL, func_80391040, func_80326224, func_80325888, { 0xB, 0xB8}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_8039294C = { 0x24A, 0x358, 0x4E8, 0x0, NULL, func_80391040, func_80326224, func_80325888, { 0xB, 0xB8}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_80392970 = { 0x21F, 0x22B, 0x4C4, 0x1, NULL, func_80391180, func_80326224, func_80325E78, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_80392994 = { 0x220, 0x22C, 0x4C5, 0x1, NULL, func_80391180, func_80326224, func_80325E78, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_803929B8 = { 0x221, 0x22D, 0x4C6, 0x1, NULL, func_80391254, func_80326224, func_80325E78, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_803929DC = { 0x222, 0x22E, 0x4C6, 0x1, NULL, func_80391254, func_80326224, func_80325E78, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_80392A00 = { 0x223, 0x22F, 0x4C6, 0x1, NULL, func_80391254, func_80326224, func_80325E78, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_80392A24 = { 0x24B, 0x35D, 0x4E9, 0x1, NULL, func_803912EC, func_80326224, func_80325E78, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_80392A48 = { 0x24C, 0x35E, 0x4EC, 0x1, NULL, func_803912EC, func_80326224, func_80325E78, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_80392A6C = { 0x24D, 0x35F, 0x4EA, 0x1, NULL, func_803912EC, func_80326224, func_80325E78, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_80392A90 = { 0x24E, 0x360, 0x4EB, 0x1, NULL, func_803912EC, func_80326224, func_80325E78, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_80392AB4 = { 0x23D, 0x253, 0x512, 0x1, NULL, func_8039180C, func_80326224, func_80325E78, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_80392AD8 = { 0x23E, 0x254, 0x513, 0x1, NULL, func_80391894, func_80326224, func_80325E78, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_80392AFC = { 0x286, 0x3AE, 0x55B, 0x1, NULL, func_80391180, func_80326224, func_80325E78, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_80392B20 = { 0x21D, 0x229, 0x4C3, 0x1, NULL, func_80391180, func_80326224, func_80325E78, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_80392B44 = { 0x289, 0x3B0, 0x56A, 0x1, NULL, func_80391180, func_80326224, func_80325E78, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
 
 extern f32 D_80392B68[3];
 
-
+/* .code */
 #pragma GLOBAL_ASM("asm/nonmatchings/FP/code_ABD0/func_80390FC0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/FP/code_ABD0/func_80391040.s")

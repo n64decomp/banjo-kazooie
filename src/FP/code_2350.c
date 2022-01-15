@@ -2,7 +2,20 @@
 #include "functions.h"
 #include "variables.h"
 
+Actor *func_80388740(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
+void func_80388F4C(Actor *this);
+void func_803896FC(Actor *this);
 
+/* .data */
+extern ActorAnimationInfo D_80391C80[];
+
+extern ActorInfo D_80391CE8 = { 0x97, 0xC8, 0x38A, 
+    0x1, D_80391C80, 
+    func_80388F4C, func_803896FC, func_80388740, 
+    { 0x0, 0x0}, 0, 1.4f, { 0x0, 0x0, 0x0, 0x0}
+};
+
+/* .code */
 #pragma GLOBAL_ASM("asm/nonmatchings/FP/code_2350/func_80388740.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/FP/code_2350/func_803888E4.s")
