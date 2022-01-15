@@ -222,7 +222,7 @@ void func_8038CA70(Actor *this, f32(*arg1)[3]){
 }
 
 void func_8038CB34(ActorMarker *marker, s32 arg1, s32 arg2){
-    comusic_8025AB44(MUSIC_RBB_BOOMBOX, -1, 0x12C);
+    comusic_8025AB44(COMUSIC_62_RBB_BOOMBOX, -1, 0x12C);
 }
 
 void func_8038CB68(ActorMarker *marker, s32 arg1, s32 arg2){
@@ -304,8 +304,8 @@ void func_8038CC9C(Actor *this, s32 new_state){
 
     if(this->state == 2){
         func_8025A58C(0, 0xfa0);
-        func_8025A6EC(MUSIC_RBB_BOOMBOX, -1);
-        func_8025AABC(MUSIC_RBB_BOOMBOX);
+        func_8025A6EC(COMUSIC_62_RBB_BOOMBOX, -1);
+        func_8025AABC(COMUSIC_62_RBB_BOOMBOX);
         func_80335924(this->unk148, ASSET_146_ANIM_BOSS_BOOMBOX_APPEAR, 0.0f, 2.4f);
         func_80335A8C(this->unk148, 2);
         func_80324E38(0.0f, 3);
@@ -322,7 +322,7 @@ void func_8038CC9C(Actor *this, s32 new_state){
             timedFunc_set_2(2.4f, (TFQM2)func_8038C370, (s32)this->marker, 3);
         }
         else{//L8038CEFC
-            timedFunc_set_3(2.4f, (TFQM3)comusic_8025AB44, MUSIC_RBB_BOOMBOX, 0x1f40, 0x12C);
+            timedFunc_set_3(2.4f, (TFQM3)comusic_8025AB44, COMUSIC_62_RBB_BOOMBOX, 0x1f40, 0x12C);
             func_80324DBC(2.4f, 0xb9e, 4, NULL, this->marker, func_8038CB34, func_8038CB68);
         }
     }//L8038CF60
@@ -359,8 +359,8 @@ void func_8038CC9C(Actor *this, s32 new_state){
         if(local->unk0->unk0 == 0x284){
             if(++D_80391280 == 8){
                 func_8025A58C(-1, 0x190);
-                comusic_8025AB44(MUSIC_RBB_BOOMBOX, 0, 0x190);
-                func_8025AABC(MUSIC_RBB_BOOMBOX);
+                comusic_8025AB44(COMUSIC_62_RBB_BOOMBOX, 0, 0x190);
+                func_8025AABC(COMUSIC_62_RBB_BOOMBOX);
                 if(func_803203FC(2)){
                     item_set(ITEM_6_HOURGLASS, 0);
                     func_803204E4(3, 0);

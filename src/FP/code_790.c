@@ -6,20 +6,35 @@ Actor *func_80386B80(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void func_80386CF8(Actor *this);
 
 /* .data */
-extern ActorAnimationInfo D_80391A90[];
-// 0000 B6A0: 00 00 00 00 00 00 00 00  00 00 01 43 49 43 50 00  ........ ...CICP.  
-// 0000 B6B0: 00 00 01 43 3F 00 00 00  00 00 01 43 49 43 50 00  ...C?... ...CICP.  
+ActorAnimationInfo D_80391A90[] ={
+    {0, 0.0},
+    {ASSET_143_ANIM_SNOWMAN_BUTTON, 800000.0f},
+    {ASSET_143_ANIM_SNOWMAN_BUTTON, 0.5f},
+    {ASSET_143_ANIM_SNOWMAN_BUTTON, 800000.0f}
+};
 
-extern ActorInfo D_80391AB0 = { 
+ActorInfo D_80391AB0 = { 
     MARKER_B9_FP_SNOWMAN_BUTTON, ACTOR_116_FP_SNOWMAN_BUTTON, ASSET_421_MODEL_FP_SNOWMAN_BUTTON, 
     0x1, D_80391A90, 
     func_80386CF8, func_80326224, func_80386B80, 
     { 0x0, 0x0}, 0x800, 0.0f, { 0x0, 0x0, 0x0, 0x0}
 };
 
-extern struct31s D_80391AD4;
-extern struct43s D_80391AFC;
-extern s32       D_80391B44[3];
+struct31s D_80391AD4 = {
+    {0.4f, 0.6f}, 
+    {1.8f, 3.6f}, 
+    {0.0f, 0.01f}, 
+    {0.5f, 1.4f},
+    0.0f, 0.01f, 
+};
+
+struct43s D_80391AFC = {
+    {{-300.0f, 350.0f}, {-300.0f, 300.0f}, {800.0f, 300.0f}},
+    {{0.0f, -800.0f, 0.0f}, {0.0f, -800.0f, 0.0f}},
+    {{-50.0f, -50.0f, -50.0f}, {50.0f, 50.0f, 50.0f}}
+};
+
+s32 D_80391B44[3] = {225, 225, 245};
 
 /* .code  */
 Actor *func_80386B80(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
