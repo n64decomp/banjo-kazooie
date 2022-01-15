@@ -25,7 +25,7 @@ extern f64 D_802782D8;
 extern f64 D_802782E0;
 extern f64 D_802782E8;
 
-extern void *D_80276CB8;
+extern u16 *D_80276CB8; //! ml_acosPrecValTblPtr
 
 void ml_vec3f_roll_rotate_copy(f32 arg0[3], f32 arg1[3], f32);
 f32  func_8024C788(void);
@@ -427,8 +427,42 @@ void func_80256F44(f32 vec1[3], f32 vec2[3], f32 vec3[3], f32 dst[3])
     dst[2] = vec1[2] + tmp1[2];
 }
 
+// ml_asinf?
+#ifndef NONMATCHING
 f32 ml_acosf(f32);
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_18350/ml_acosf.s")
+#else
+// very close, types/regalloc
+f32 ml_acosf(f32 x)
+{
+    extern f64 D_80278278; //! 65535.0
+    extern f64 D_80278280; //! 90.0
+    extern f64 D_80278288; //! 10000.0
+
+    u16 lowerIdx = 0;
+    u16 upperIdx = 10000;
+    u16 idx      = 10000;
+
+    f32 x_abs = x >= 0 ? x : -x;
+
+    u16 target = x_abs * D_80278278;
+
+    while (target != D_80276CB8[idx])
+    {
+        idx = (upperIdx + lowerIdx) / 2;
+
+        if (target < D_80276CB8[idx])
+            upperIdx = idx;
+        else
+            lowerIdx = idx;
+
+        if (upperIdx - lowerIdx < 2)
+            break;
+    }
+
+    return idx * D_80278280 / D_80278288;
+}
+#endif
 
 f32 func_8025715C(f32 val1, f32 val2)
 {
@@ -460,10 +494,101 @@ f32 func_80257248(f32 vec1[3], f32 vec2[3])
     return func_8025715C(vec2[0] - vec1[0], vec2[2] - vec1[2]);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_18350/func_8025727C.s")
+void func_8025727C(f32 x1, f32 y1, f32 z1, f32 x2, f32 y2, f32 z2, f32 *o1, f32 *o2)
+{
+    extern f64 D_80278290; //! 0.01
+    extern f64 D_80278298; //! 0.01
 
+    f32 ft1;
+    f32 ft2;
+    f32 ft3;
+    f32 pad1; // unused
+    f32 ft4;
+    f32 pad2; // unused
+
+    ft3 = x2 - x1;
+    ft1 = z2 - z1;
+    ft2 = (ft3 * ft3) + (ft1 * ft1);
+
+    ft4 = gu_sqrtf(ft2);
+
+    if (ft4 > D_80278290)
+    {
+        *o2 = ml_acosf(ft3 / ft4);
+
+        if (ft1 < 0)
+            *o2 = 180 - *o2;
+
+        if (ft3 < 0)
+            *o2 = 360 - *o2;
+    }
+    else
+    {
+        *o2 = 0;
+    }
+
+    ft3 = y2 - y1;
+
+    ft1 = gu_sqrtf((ft3 * ft3) + ft2);
+
+    if (ft1 > D_80278298)
+    {
+        *o1 = ml_acosf(ft3 / ft1);
+
+        if (ft4 < 0)
+            *o1 = 180 - *o1;
+
+        if (ft3 < 0)
+            *o1 = 360 - *o1;
+    }
+    else
+    {
+        *o1 = 0;
+    }
+}
+
+#ifndef NON_MATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_18350/func_80257424.s")
+#else
+/**
+ * Pre-generates the ushort table used for asin
+ */
+// probably needs .rodata to match, swapped cop1 double regs
+void func_80257424(void)
+{
+    extern f32 D_802782A0; //! 65535.f
+    extern f64 D_802782A8; //! 180.0
+    extern f64 D_802782B0; //! pi
+    extern f64 D_802782B8; //! 10000.0
+    extern f64 D_802782C0; //! 90.0
 
+    u16 i;
+
+    // Allocate table
+    D_80276CB8 = (u16 *)malloc(10001 * sizeof(u16));
+
+    {
+        f32 c1 = D_802782A0;
+        f64 c2 = D_802782A8;
+        f64 c3 = D_802782B0;
+        f64 c4 = D_802782B8;
+        f64 c5 = D_802782C0;
+
+        // Generate all entries in the table
+        for (i = 0; i < 10001; i++)
+        {
+            f64 angle = i * c5 / c4 * c3 / c2;
+
+            // Save value
+            D_80276CB8[i] = sinf(angle) * c1;
+        }
+    }
+}
+#endif
+
+/**
+ * Deallocates the ushort table used for asin
+ */
 void func_80257594(void)
 {
     free(D_80276CB8);
@@ -504,6 +629,7 @@ void func_802576F8(void)
     void *func_802555DC(void *);
 
     if (!func_802559A0() && D_80276CB8 != NULL)
+        // Updates heap location for asin/acos value table?
         D_80276CB8 = func_802555DC(D_80276CB8);
 }
 

@@ -330,8 +330,30 @@ void func_80387DA8(ActorMarker *marker, Gfx **dl, Mtx **m, u32 vptr)
     func_80325E78(marker, dl, m, vptr);
 }
 
+#ifndef NON_MATCHING
 void func_80387E94(ActorMarker *marker);
 #pragma GLOBAL_ASM("asm/nonmatchings/lair/code_0/func_80387E94.s")
+#else
+// very close
+void func_80387E94(ActorMarker *marker)
+{
+    Actor *actor1;
+    Actor *actor2;
+    Actor *actorNew;
+
+    actor1   = marker_getActor(reinterpret_cast(ActorMarker *, marker));
+    actorNew = func_8032813C(0x25A, &actor1->position, actor1->yaw);
+
+    // Grab the same pointer again for good measure :^)
+    actor2 = marker_getActor(reinterpret_cast(ActorMarker *, marker));
+
+    actorNew->unkF4_20 = actor2->unk78_13;
+
+    actor2->unk100 = actorNew->marker;
+
+    actorNew->unk1C[0] = 0;
+}
+#endif
 
 void func_80387F1C(void)
 {
@@ -780,8 +802,26 @@ void func_803897AC(Actor *this)
     func_802D4AC0(this, 0x800053, 0x54);
 }
 
+#ifndef NON_MATCHING
 void func_803897D4(ActorMarker *marker);
 #pragma GLOBAL_ASM("asm/nonmatchings/lair/code_0/func_803897D4.s")
+#else
+// very close
+void func_803897D4(ActorMarker *marker)
+{
+    ActorMarker *marker1, *marker2;
+    Actor *actor1, *actor2;
+
+    actor1 = marker_getActor(reinterpret_cast(ActorMarker *, marker));
+
+    actor1 = func_8032813C(0x258, &actor1->position, actor1->yaw);
+
+    // Grab the same pointer again for good measure
+    actor2 = marker_getActor(reinterpret_cast(ActorMarker *, marker));
+
+    actor1->scale = actor2->scale;
+}
+#endif
 
 void func_8038982C(Actor *this)
 {
@@ -881,8 +921,93 @@ void func_80389934(Actor *this)
     }
 }
 
-f32 func_80389AAC(Actor *, f32); //!
+#ifndef NON_MATCHING
+f32 func_80389AAC(Actor *, f32);
 #pragma GLOBAL_ASM("asm/nonmatchings/lair/code_0/func_80389AAC.s")
+#else
+// VERY close, just reduce stack from x68 to x60 - w
+f32 func_80389AAC(Actor *this, f32 a1)
+{
+    // defs
+    f32   func_8034A754(f32, f32);
+    void *func_80309B48(f32 *, f32 *, f32 *, u32);
+    extern f32 D_80394FE4, D_80394FE8, D_80394FEC; //!
+
+    f32 tmp;
+    f32 pad;
+
+    f32 vec3[3]; // $sp + 54
+    f32 vec2[3]; // $sp + 48
+    f32 vec1[3]; // $sp + 3C
+
+    if (!this->unk38_31)
+    {
+        this->unk38_31 = 1;
+        this->unk1C[1] = 71;
+    }
+
+    this->position_x -= 26;
+
+    tmp = this->position_x;
+    vec3[0] = tmp;
+    vec1[0] = tmp;
+
+    vec3[1] = this->position_y;
+
+    tmp = this->position_z;
+    if (1);if (1);if (1); //! fakematch, swaps $f0/$f2
+    vec3[2] = tmp;
+    vec1[2] = tmp;
+
+    this->position_y += this->unk1C[1];
+
+    this->unk1C[1] -= 7.0; // f64
+
+    vec1[1] = this->position_y - 400;
+
+    if (this->unk1C[1] < 0 && func_80309B48(vec3, vec1, vec2, 0) && this->position_y <= vec1[1])
+    {
+        this->position_y = vec1[1] + 6;
+
+        switch (this->unk38_31)
+        {
+            case 1:
+            {
+                this->unk38_31 = 2;
+                this->unk1C[1] = 38;
+
+                break;
+            }
+            case 2:
+            {
+                this->unk38_31 = 3;
+                this->unk1C[1] = 11;
+
+                break;
+            }
+            case 3:
+            {
+                func_80328A84(this, 5);
+
+                break;
+            }
+            default:
+                break;
+        }
+
+        func_8030E878(0x82, func_8034A754(D_80394FE4, D_80394FE8), 32760, &this->position, 100, D_80394FEC);
+
+        this->unk60 = 1;
+    }
+
+    a1 -= 4.5; // f64
+
+    while (a1 < 0)
+        a1 += 360;
+
+    return a1 <= 230 ? 230 : a1;
+}
+#endif
 
 void func_80389D08(Actor *this)
 {
