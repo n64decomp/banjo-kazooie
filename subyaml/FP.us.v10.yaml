@@ -52,7 +52,7 @@ segments:
       - [0xA1C0, c, code_A1C0]
       - [0xA240, c, code_A240]
       - [0xA500, c, code_A500]
-      - [0xA880, c, code_A880]
+      - [0xA880, c, code_A880] #DONE
       - [0xABD0, c, code_ABD0] #DONE
       - [0xB4D0, c, code_B4D0] #DONE
   - name: data

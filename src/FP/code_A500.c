@@ -25,4 +25,18 @@ extern ActorInfo D_80392730 = { 0x210, 0x340, 0x4D2,
 
 #pragma GLOBAL_ASM("asm/nonmatchings/FP/code_A500/func_80390B70.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_A500/func_80390BDC.s")
+void func_80390BDC(Actor *this){
+    this->marker->propPtr->unk8_3 = TRUE;
+    actor_collisionOff(this);
+    if(!this->unk16C_4){
+        this->unk16C_4 = TRUE;
+        if(jiggyscore_isCollected(JIGGY_2F_FP_XMAS_TREE)){
+            marker_despawn(this->marker);
+        }
+        else{
+            if(levelSpecificFlags_get(0x29)){
+                func_80390B70(this);
+            }
+        }
+    }
+}
