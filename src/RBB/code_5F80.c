@@ -524,7 +524,7 @@ void func_8038D8BC(Actor *this){
             func_8038CC9C(this, 7);
         }
 
-        if(jiggyscore_80320F7C(JIGGY_56_RBB_BOSS_BOOM_BOX) && !func_803203FC(2))
+        if(jiggyscore_isSpawned(JIGGY_56_RBB_BOSS_BOOM_BOX) && !func_803203FC(2))
             marker_despawn(this->marker);
         
         if(func_803203FC(2))

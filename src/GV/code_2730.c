@@ -111,7 +111,7 @@ void func_80388DC8(Actor *this){
             this->position_z = sp28->position_z;
         }
         func_80388B20(this, 1);
-        if(jiggyscore_80320F7C(JIGGY_44_GV_GOBI_1) && !func_803203FC(1)){
+        if(jiggyscore_isSpawned(JIGGY_44_GV_GOBI_1) && !func_803203FC(1)){
             marker_despawn(this->marker);
         }
     }

@@ -129,7 +129,7 @@ void func_80387408(Actor *this){
         this->unk1C[0] = 0.0f;
         this->unk1C[1] = 0.0f;
         func_80387150(this, 1);
-        if(jiggyscore_80320F7C(JIGGY_44_GV_GOBI_1) && ! func_803203FC(1)){
+        if(jiggyscore_isSpawned(JIGGY_44_GV_GOBI_1) && ! func_803203FC(1)){
             marker_despawn(this->marker);
         }
         return;

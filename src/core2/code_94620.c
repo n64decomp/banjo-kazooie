@@ -1705,7 +1705,7 @@ void func_8031FBA0(void) {
     func_8029A8B0();
     func_8031FFAC();
     func_8034646C();
-    jiggyscore_8032103C();
+    jiggyscore_clearAll();
     func_80321340();
     func_803215A0();
     func_8032048C();

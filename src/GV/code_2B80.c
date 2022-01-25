@@ -62,7 +62,7 @@ void func_80389144(Actor *this){
         marker->propPtr->unk8_3 = TRUE;
         actor_collisionOff(this);
         mapSpecificFlags_set(0xC, FALSE);
-        if(jiggyscore_80320F7C(JIGGY_45_GV_GOBI_2) && !func_803203FC(1)){
+        if(jiggyscore_isSpawned(JIGGY_45_GV_GOBI_2) && !func_803203FC(1)){
             func_80388F70(this, 3);
         }
         else{//L803891CC

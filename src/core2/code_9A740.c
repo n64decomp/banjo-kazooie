@@ -18,7 +18,7 @@ extern u8 D_80383301;
 void func_803216D0(enum map_e map){
     s32 prev_lvl = D_80383301;
     D_80383301 = map_getLevel(map);
-    load_overlay(level_2_overlay(D_80383301));
+    load_overlay(level_to_overlay(D_80383301));
     D_80383300 = 0;
     if(func_802E4A8C()){
         func_802E4A80();
@@ -31,7 +31,7 @@ void func_803216D0(enum map_e map){
     
         func_802E2E40();
         func_803464F8(D_80383301);
-        jiggyscore_80320F38();
+        jiggyscore_clearAllSpawned();
         levelSpecificFlags_clear();
         func_8029A92C();
         func_803219A8();

@@ -72,7 +72,7 @@ void func_8038B900(Actor *this){
         this->position_z = 1460.0f;
         this->yaw = 0.0f;
         func_8038B880(this, 1);
-        if(jiggyscore_80320F7C(JIGGY_53_RBB_SNORKEL)){
+        if(jiggyscore_isSpawned(JIGGY_53_RBB_SNORKEL)){
             marker_despawn(this->marker);
         }
     }
@@ -102,7 +102,7 @@ void func_8038B900(Actor *this){
         }
 
         if(this->state == 2){
-            if(jiggyscore_80320F7C(JIGGY_53_RBB_SNORKEL))
+            if(jiggyscore_isSpawned(JIGGY_53_RBB_SNORKEL))
                 func_8038B880(this, 3);
         }
 

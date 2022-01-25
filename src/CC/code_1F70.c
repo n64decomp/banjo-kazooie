@@ -299,7 +299,7 @@ void func_80388D54(void){
             D_80389FA0.unkC[1] = D_80389F54;
             D_80389FA0.unkC[2] = 0.0f;
         }
-        if(jiggyscore_80320F7C(JIGGY_17_CC_CLANKER_RAISED)){
+        if(jiggyscore_isSpawned(JIGGY_17_CC_CLANKER_RAISED)){
             func_80388518(3);
         }
         else{

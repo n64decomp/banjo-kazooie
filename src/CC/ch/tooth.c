@@ -80,7 +80,7 @@ extern void chTooth_update(Actor * this){
         }
     }
     else if(this->state == 2){//L803876B4
-        if(local->unk0->jiggy_id && !jiggyscore_80320F7C(local->unk0->jiggy_id)){
+        if(local->unk0->jiggy_id && !jiggyscore_isSpawned(local->unk0->jiggy_id)){
             player_getPosition(sp24);
             if(sp24[0] < 0.0f && 5400.0f < sp24[2]){
                 func_80333334(local->unk0->jiggy_id);

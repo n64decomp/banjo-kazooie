@@ -2,6 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
+extern void func_8028F7D4(f32, f32);
+
 void func_802D77D4(Actor *this);
 void func_802D8528(Actor *this);
 
@@ -74,14 +76,84 @@ extern ActorInfo D_80367C10 = {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/ch/climbBase/func_802D7DE8.s")
 
+void func_802D8030(Actor *this);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/ch/climbBase/func_802D8030.s")
 
+void func_802D8068(Actor *this);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/ch/climbBase/func_802D8068.s")
 
+void func_802D8374(Actor *this);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/ch/climbBase/func_802D8374.s")
 
+void func_802D83EC(Actor *this);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/ch/climbBase/func_802D83EC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/ch/climbBase/func_802D84F4.s")
+void func_802D84F4(Actor *this){
+    this->marker->propPtr->unk8_3 = ( this->state == 2 );
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/ch/climbBase/func_802D8528.s")
+void func_802D8528(Actor *this){
+    s32 marker_id;
+    if(this->despawn_flag) return;
+
+    if(!this->unk16C_4){
+        this->unk16C_4 = TRUE;
+        if( this->marker->unk14_20 == 0x1FD
+            || this->marker->unk14_20 == 0x1FE
+            || this->marker->unk14_20 == 0x1FF
+        ){
+            if(jiggyscore_isCollected(JIGGY_2E_FP_PRESENTS)){
+                marker_despawn(this->marker);
+                return;
+            }
+        }
+        if(this->unk138_22){
+            func_8028F7D4(0.0f, 0.0f);
+            func_80328A84(this, 3);
+        }
+    }//L802D85DC
+
+    switch(this->state){
+        case 5:// 802D8604
+            func_802D8030(this);
+            break;
+
+        case 1:// 802D8620
+            func_802D8068(this);
+            break;
+
+        case 2:// 802D863C
+            break;
+
+        case 3:// 802D8650
+            func_802D8374(this);
+            break;
+
+        case 4:// 802D866C
+            func_802D8068(this);
+            break;
+
+        default:
+            break;
+    }
+
+    marker_id = this->marker->unk14_20;
+
+    switch(this->marker->unk14_20){
+
+        case 0x37: //L802D86CC
+            func_802D83EC(this);
+            break;
+        case 0x36: //L802D86DC
+            if(mapSpecificFlags_get(3) && map_get() == MAP_2_MM_MUMBOS_MOUNTAIN){
+                marker_despawn(this->marker);
+            }
+            break;
+        
+        case 0x1FD:
+        case 0x1FE:
+        case 0x1FF:
+            func_802D84F4(this);
+            break;
+    }
+}

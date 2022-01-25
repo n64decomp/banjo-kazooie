@@ -744,7 +744,7 @@ void func_8028BCA0(Prop *prop){
                     if( sp9C != JIGGY_2F_FP_XMAS_TREE
                         || (func_8028B2E8() && !(3600.0f < func_80256280(actor->position, spA0)))
                     ){
-                        jiggyscore_8032108C(sp9C, 1);
+                        jiggyscore_setCollected(sp9C, 1);
                         func_803463F4(ITEM_26_JIGGY_TOTAL, 1);
                         if(sp9C == JIGGY_20_BGS_ELEVATED_WALKWAY || sp9C == JIGGY_25_BGS_MAZE){
                             func_802D6924();

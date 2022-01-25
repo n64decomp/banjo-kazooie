@@ -39,7 +39,7 @@ void func_8038B7E8(Actor *this){
         this->unk16C_4 = 1;
         this->marker->propPtr->unk8_3 = 1;
         func_803300A8(this->marker, NULL, func_8038B7BC, NULL);
-        if(jiggyscore_80320F7C(JIGGY_53_RBB_SNORKEL))
+        if(jiggyscore_isSpawned(JIGGY_53_RBB_SNORKEL))
             func_8038B6E0(this, 2);
         else
             func_8038B6E0(this, 1);

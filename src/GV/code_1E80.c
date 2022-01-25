@@ -127,7 +127,7 @@ void chgobi3_update(Actor *this){
     }
 
     if(this->state == 1){
-        if(jiggyscore_80320F7C(JIGGY_45_GV_GOBI_2))
+        if(jiggyscore_isSpawned(JIGGY_45_GV_GOBI_2))
             chgobi3_setState(this, 2);
     }
 

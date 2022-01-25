@@ -327,7 +327,7 @@ void func_80322E64(Gfx **gfx, Mtx **mtx, Vtx **vtx){
         D_80383350.unk10(gfx, mtx, vtx);
 }
 
-enum overlay_e level_2_overlay(enum level_e lvl){
+enum overlay_e level_to_overlay(enum level_e lvl){
     int i;
     for(i = 0; D_8036E2C0[i].level_id; i++){
         if(D_8036E2C0[i].level_id == lvl)

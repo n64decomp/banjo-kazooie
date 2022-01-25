@@ -48,7 +48,7 @@ void chgobirope_update(Actor *this){
             this->position_z = sp2C->position_z;
         }
         chgobirope_setState(this, 1);
-        if( jiggyscore_80320F7C(JIGGY_44_GV_GOBI_1)
+        if( jiggyscore_isSpawned(JIGGY_44_GV_GOBI_1)
             && !func_803203FC(1)
         ){
             marker_despawn(this->marker);

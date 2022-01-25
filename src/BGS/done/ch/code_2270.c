@@ -267,7 +267,7 @@ void func_80389080(Actor *this){
             this->position_y = this->position_y - 300.0f;
         }
         func_803888E4(this, 1);
-        if(jiggyscore_80320F7C(JIGGY_27_BGS_TIPTUP) && !func_803203FC(2) && !func_803203FC(1))
+        if(jiggyscore_isSpawned(JIGGY_27_BGS_TIPTUP) && !func_803203FC(2) && !func_803203FC(1))
             marker_despawn(this->marker);
     }
     else{
@@ -289,7 +289,7 @@ void func_80389080(Actor *this){
                 }
             }
             else{
-                if(func_80256064(this->position, &sp44) < 300.0f && player_getTransformation() == TRANSFORM_1_BANJO && !jiggyscore_80320F7C(JIGGY_27_BGS_TIPTUP)){
+                if(func_80256064(this->position, &sp44) < 300.0f && player_getTransformation() == TRANSFORM_1_BANJO && !jiggyscore_isSpawned(JIGGY_27_BGS_TIPTUP)){
                     func_803888E4(this, 2);
                 }
             }

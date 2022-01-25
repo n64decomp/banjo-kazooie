@@ -306,7 +306,7 @@ void func_8035BD48(Actor *this){
         mapSpecificFlags_set(3, FALSE);
         mapSpecificFlags_set(4, FALSE);
         if(map_get() == MAP_24_MMM_TUMBLARS_SHED){
-            if( jiggyscore_80320F7C(JIGGY_62_MMM_TUMBLAR)
+            if( jiggyscore_isSpawned(JIGGY_62_MMM_TUMBLAR)
                 || jiggyscore_isCollected(JIGGY_62_MMM_TUMBLAR)
             ){
                 marker_despawn(this->marker);

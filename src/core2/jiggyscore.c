@@ -2,73 +2,74 @@
 #include "functions.h"
 #include "variables.h"
 
-u32 jiggyscore_isCollected(s32);
+u32 jiggyscore_isCollected(enum jiggy_e);
 void jiggyscore_debug(void);
-void jiggyscore_8032103C(void);
-void jiggyscore_80321120(s32, s32);
+void jiggyscore_clearAll(void);
+void jiggyscore_setSpawned(s32, s32);
 
-extern u8 D_803832C0[];
-extern u8 D_803832CD[];
+extern struct {
+    u8 D_803832C0[0xD];
+    u8 D_803832CD[0xD];
+}jiggyscore;
 
-
-void jiggyscore_80320F10(void){ //jiggyScore_clear
+void jiggyscore_clearAll_debug(void){ //jiggyscore_clearAll
     jiggyscore_debug();
-    jiggyscore_8032103C();
+    jiggyscore_clearAll();
 }
 
-void *jiggyscore_80320F38(void) {
+void *jiggyscore_clearAllSpawned(void) {
     s32 i;
     for(i = 0; i < 0x0D; i++){
-        D_803832C0[i + 0xD] = 0;
+        jiggyscore.D_803832CD[i] = 0;
     }
 }
 
-u8* jiggyscore_80320F70(void){
-    return D_803832C0;
+u8* jiggyscore_getPtr(void){
+    return jiggyscore.D_803832C0;
 }
 
-int jiggyscore_80320F7C(s32 arg0) {
-    return ((D_803832CD[(arg0 - 1) / 8] & (1 << (arg0 & 7))) != 0) 
-           || (jiggyscore_isCollected(arg0) != 0);
+int jiggyscore_isSpawned(enum jiggy_e jiggy_id) {
+    return ((jiggyscore.D_803832CD[(jiggy_id - 1) / 8] & (1 << (jiggy_id & 7))) != 0) 
+           || (jiggyscore_isCollected(jiggy_id) != 0);
 }
 
-u32 jiggyscore_isCollected(s32 indx){
-    if( indx <= 0 || indx >= 0x65)
+u32 jiggyscore_isCollected(enum jiggy_e jiggy_id){
+    if( jiggy_id <= 0 || jiggy_id >= 0x65)
         return 0;
-    return (D_803832C0[(indx - 1) / 8] & (1 << (indx & 7))) != 0;
+    return (jiggyscore.D_803832C0[(jiggy_id - 1) / 8] & (1 << (jiggy_id & 7))) != 0;
 }
 
 void jiggyscore_debug(void){}
 
-void jiggyscore_8032103C(void){
+void jiggyscore_clearAll(void){
     s32 i;
     for(i = 0; i < 0x0D; i++){
-        D_803832C0[i] = 0;
+        jiggyscore.D_803832C0[i] = 0;
     }
-    jiggyscore_80320F38();
+    jiggyscore_clearAllSpawned();
 }
 
-void jiggyscore_8032108C(s32 indx,  s32 val){
+void jiggyscore_setCollected(s32 indx,  s32 val){
     if( 0 < indx && indx < 0x65){
         if(val)
-            D_803832C0[(indx - 1) / 8] |= (1 << (indx & 7));
+            jiggyscore.D_803832C0[(indx - 1) / 8] |= (1 << (indx & 7));
         else
-            D_803832C0[(indx - 1) / 8] &= ~(1 << (indx & 7));
+            jiggyscore.D_803832C0[(indx - 1) / 8] &= ~(1 << (indx & 7));
     }
 }
 
-void jiggyscore_80321120(s32 indx, s32 val) {
+void jiggyscore_setSpawned(s32 indx, s32 val) {
     u8 *temp_v0;
     u8 *temp_v0_2;
 
     if (val) {
         temp_v0 = (u8*)(((s32) (indx - 1) / 8) + 0xD);
-        temp_v0 += (s32) D_803832C0;
+        temp_v0 += (s32) jiggyscore.D_803832C0;
         *temp_v0 |= (1 << (indx & 7));
         return;
     }
     temp_v0_2 = (u8*)(((s32) (indx - 1) / 8) + 0xD);
-    temp_v0_2 += (s32)D_803832C0;
+    temp_v0_2 += (s32)jiggyscore.D_803832C0;
     *temp_v0_2 &=  ~(1 << (indx & 7));
 }
 
@@ -103,5 +104,5 @@ s32 jiggyscore_total(void) {
 
 void jiggyscore_info(s32 *size, u8 **addr){
     *size = 0x0D;
-    *addr = D_803832C0; 
+    *addr = jiggyscore.D_803832C0; 
 }

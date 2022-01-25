@@ -120,7 +120,7 @@ void func_8039040C(void){
     Actor *actor;
     D_80391AE0.state_9 = 0;
     if(map_get() == MAP_13_GV_MEMORY_GAME){
-        if( !jiggyscore_80320F7C(JIGGY_40_GV_MATCHING_GAME) //jiggy is collected
+        if( !jiggyscore_isSpawned(JIGGY_40_GV_MATCHING_GAME) //jiggy is collected
             ||  func_803203FC(2)                      //in FF minigame
         ){
             D_80391AE0.matchCnt_8 = 0;

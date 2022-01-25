@@ -375,6 +375,7 @@ s32 notescore_getLevelScore(enum level_e lvl_id){
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_8034722C.s")
 
 extern u8 D_80386060[]; //saved item array
+extern s32 D_80385F68;
 
 //itemscore_getSavedItemArray
 void func_80347630(s32 *size, u8 **buffer){
@@ -397,7 +398,10 @@ void func_80347630(s32 *size, u8 **buffer){
 
 void func_80347984(void){}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_8034798C.s")
+void func_8034798C(void){
+    D_80385F68 = jiggyscore_leveltotal(level_get());
+    func_802FA5D0();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_803479C0.s")
 

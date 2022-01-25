@@ -548,6 +548,8 @@ segments:
   - [0xEF650, bin, data_EF650]
   - [0xEFB10, .rodata, code_4C020]
   - [0xEFDB0, bin, data_EFDB0]
+  - [0xEFDF0, .rodata, ch/climbBase]
+  - [0xEFE10, bin, data_EFE10]
   - [0xEFE30, .rodata, ch/mole]
   - [0xEFED0, bin, data_EFED0]
   - [0xEFF40, .rodata, code_54D50]

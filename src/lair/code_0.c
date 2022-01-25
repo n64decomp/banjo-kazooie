@@ -381,7 +381,7 @@ void func_80387F78(Actor *this, u32 flag)
             func_80320004(flag, TRUE);
 
             if (flagState == FALSE
-                && !jiggyscore_80320F7C(JIGGY_35_LAIR_CC_WITCH_SWITCH)
+                && !jiggyscore_isSpawned(JIGGY_35_LAIR_CC_WITCH_SWITCH)
                 && func_8031FF1C(0x9C)
                 && func_8031FF1C(0x9D))
             {

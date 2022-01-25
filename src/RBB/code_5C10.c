@@ -58,7 +58,7 @@ void func_8038C204(Actor *this){
         else
             func_8038C0FC(this, 1);
         
-        if(jiggyscore_80320F7C(JIGGY_53_RBB_SNORKEL))
+        if(jiggyscore_isSpawned(JIGGY_53_RBB_SNORKEL))
             marker_despawn(this->marker);
     }//L8038C27C
 

@@ -21,7 +21,7 @@ void func_8038DE68(Actor *this){
     if(!this->unk16C_4){
 
         this->unk16C_4 = 1;
-        if(jiggyscore_80320F7C(JIGGY_56_RBB_BOSS_BOOM_BOX) && !func_803203FC(2)){
+        if(jiggyscore_isSpawned(JIGGY_56_RBB_BOSS_BOOM_BOX) && !func_803203FC(2)){
             marker_despawn(this->marker);
         }else{
             func_802C3F04(func_802C4140, 0x281, reinterpret_cast(s32,this->position_x), reinterpret_cast(s32,this->position_y), reinterpret_cast(s32,this->position_z));

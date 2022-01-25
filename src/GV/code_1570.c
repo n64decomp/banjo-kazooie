@@ -179,7 +179,7 @@ void chgobi2_update(Actor *this){
         this->unk1C[0] = 0.0f;
         this->unk1C[1] = 0.0f;
         chgobi2_setState(this, 1);
-        if(jiggyscore_80320F7C(JIGGY_45_GV_GOBI_2))
+        if(jiggyscore_isSpawned(JIGGY_45_GV_GOBI_2))
             marker_despawn(this->marker);
         return;
     }//L80388060

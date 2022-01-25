@@ -113,7 +113,7 @@ void chancientone_update(Actor *this){
     
     if(!this->unk16C_4){
         this->unk16C_4 = TRUE;
-        if(jiggyscore_80320F7C(JIGGY_46_GV_ANCIENT_ONES)){
+        if(jiggyscore_isSpawned(JIGGY_46_GV_ANCIENT_ONES)){
             marker_despawn(this->marker);
             return;
         }

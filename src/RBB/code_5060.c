@@ -79,7 +79,7 @@ void func_8038B654(Actor *this){
         this->unk16C_4 = 1;
         local->unk2 = 1;
         local->unk4 = "312111";
-        if(jiggyscore_80320F7C(JIGGY_54_RBB_WHISTLE))
+        if(jiggyscore_isSpawned(JIGGY_54_RBB_WHISTLE))
             func_8038B450(this, 2);
         else
             func_8038B450(this, 1);

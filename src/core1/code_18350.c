@@ -27,6 +27,7 @@ extern f64 D_802782E8;
 
 extern u16 *D_80276CB8; //! ml_acosPrecValTblPtr
 
+void func_80257918(f32 arg0[3], f32 arg1[3], f32 arg2[3], f32 arg3[3]);
 void ml_vec3f_roll_rotate_copy(f32 arg0[3], f32 arg1[3], f32);
 f32  func_8024C788(void);
 
@@ -698,7 +699,7 @@ void func_802578A4(f32 dst[3], f32 vec1[3], f32 vec2[3])
     func_80257918(dst, vec1, vec2, tmp3);
 }
 
-func_80257918(f32 arg0[3], f32 arg1[3], f32 arg2[3], f32 arg3[3]){
+void func_80257918(f32 arg0[3], f32 arg1[3], f32 arg2[3], f32 arg3[3]){
     f32 sp2C[3];
     f32 scale;
 
