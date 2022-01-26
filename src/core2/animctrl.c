@@ -198,7 +198,7 @@ void func_8028752C(AnimCtrl *this){
     this->timer = func_80289690(this->animation);
 }
 
-void func_802875AC(AnimCtrl * this, char *file, s32 line){
+void _func_802875AC(AnimCtrl * this, char *file, s32 line){
     if(this->smooth_transition && anim_getIndex(this->animation)){
         func_80289674(this->animation);
         anim_setIndex(this->animation, this->index);

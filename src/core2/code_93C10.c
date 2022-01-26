@@ -51,7 +51,7 @@ int func_8031B4CC(void){
 }
 
 int func_8031B4F4(void){
-    return (D_803830F0.unkC) ? D_803830F0.unkC->unk8 : 0;
+    return (D_803830F0.unkC) ? D_803830F0.unkC[1].unk0 : 0;
 }
 
 void func_8031B51C(void){

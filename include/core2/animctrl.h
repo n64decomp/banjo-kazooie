@@ -3,6 +3,12 @@
 
 #include <ultra64.h>
 
+#ifndef NONMATCHING
+#define func_802875AC(this, file, line) _func_802875AC(this, file, line)
+#else
+#define func_802875AC(this, file, line) _func_802875AC(this, __FILE__, __LINE__)
+#endif
+
 enum animctrl_playback_e{
     ANIMCTRL_ONCE = 1,
     ANIMCTRL_LOOP = 2,
@@ -61,7 +67,7 @@ void func_8028746C(AnimCtrl *this,  void (* arg1)(s32,s32));
 void func_8028748C(AnimCtrl *this, s32 arg1);
 void animctrl_reset(AnimCtrl *this);
 void func_8028752C(AnimCtrl *this);
-void func_802875AC(AnimCtrl * this, char *file, s32 line);
+void _func_802875AC(AnimCtrl * this, char *file, s32 line);
 void func_8028764C(AnimCtrl *this, f32 timer);
 void animctrl_setPlaybackType(AnimCtrl *this, enum animctrl_playback_e arg1);
 void animctrl_setDirection(AnimCtrl *this, s32 arg1);
