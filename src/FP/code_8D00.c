@@ -49,7 +49,7 @@ void func_8038F144(Actor *this){
             this->marker->collidable = FALSE;
             this->marker->propPtr->unk8_3 = FALSE;
         }
-        else{//L8038F1BC
+        else{
             this->unk38_31 = FALSE;
             this->marker->collidable = FALSE;
             this->marker->propPtr->unk8_3 = TRUE;

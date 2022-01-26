@@ -77,7 +77,7 @@ segments:
       - [0x0000C7A0, .rodata, code_A40]
       - [0x0000C800, bin, data_C800]
       - [0x0000CA80, .rodata, code_87E0]
-      - [0x0000CA90, bin, data_CA90]
+      - [0x0000CA90, .rodata, code_8E20]
       - [0x0000CAE0, .rodata, ch/wozzasjig]
       - [0x0000CB00, bin, data_CB00]
   - [0x0000CB20]
