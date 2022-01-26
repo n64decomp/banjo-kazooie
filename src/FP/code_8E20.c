@@ -8,7 +8,7 @@ void func_8038F7AC(Actor *this);
 /* .data */
 extern ActorAnimationInfo D_80392520[];
 
-extern ActorInfo D_80392588 = { 0x20B, 0x1F3, 0x494, 
+extern ActorInfo D_80392588 = { MARKER_20B_WOZZA, ACTOR_1F3_WOZZA, ASSET_494_MODEL_WOZZA, 
     0x1, D_80392520,
     func_8038F7AC, func_80326224, func_8038F210,
     { 0x0, 0x0}, 0, 1.6f, { 0x0, 0x0, 0x0, 0x0}

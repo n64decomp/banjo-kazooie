@@ -7,9 +7,12 @@ extern void func_8028E668(f32[3], f32, f32, f32);
 void func_80390630(Actor *this);
 
 /* .data */
-extern ActorAnimationInfo D_803926F0[];
+extern ActorAnimationInfo D_803926F0[]= {
+    {0, 0.0f},
+    {ASSET_221_ANIM_WOZZA_IN_CAVE, 5.0f}
+};
 
-extern ActorInfo D_80392700 = { 0x20F, 0x33F, 0x494,
+extern ActorInfo D_80392700 = { MARKER_20F_WOZZA_IN_CAVE, ACTOR_33F_WOZZA_IN_CAVE, ASSET_494_MODEL_WOZZA,
     0x1, D_803926F0,
     func_80390630, func_80326224, func_80325888,
     { 0x9, 0xC4}, 0, 1.6f, { 0x0, 0x0, 0x0, 0x0}
