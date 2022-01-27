@@ -83,7 +83,7 @@ $(foreach overlay,$(OVERLAYS),$(eval $(call get_overlay_sources,$(overlay))))
 # Files for the rom itself
 MAIN_C_SRCS   := $(filter-out $(OVERLAY_C_SRCS),$(ALL_C_SRCS))
 MAIN_ASM_SRCS := $(filter-out $(OVERLAY_ASM_SRCS),$(ALL_ASM_SRCS))
-MAIN_BINS     := $(filter-out $(OVERLAY_BINS) $(BIN_ROOT)/crc.bin ,$(ALL_BINS))
+MAIN_BINS     := $(filter-out $(OVERLAY_BINS),$(ALL_BINS))
 # Files that need to be extracted for the rom itself
 MAIN_NEW_FILES := $(filter-out $(OVERLAY_NEW_FILES), $(NEW_FILES))
 # Any source files that have GLOBAL_ASM in them or do not exist before splitting
