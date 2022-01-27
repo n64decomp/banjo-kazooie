@@ -4,6 +4,7 @@
 
 #include "prop.h"
 
+extern void func_802EE6CC(f32[3], s32[4], s32[4], s32, f32, f32, s32, s32, s32);
 extern Actor *func_803056FC(s32, s32 (*)[3], s32);
 
 extern void func_8032B5C0(void);
@@ -740,11 +741,26 @@ int func_80329210(Actor * arg0, f32 (* arg1)[3]){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032944C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80329480.s")
+bool func_80329480(Actor *this){
+    s32 v1;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_803294B4.s")
+    v1 = this->yaw - this->yaw_moving;
+    return ((-3 <= v1) && (v1 <= 3));
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_803294F0.s")
+bool func_803294B4(Actor *this, s32 arg1){
+    s32 v1;
+
+    v1 = this->yaw - this->yaw_moving;
+    return ((-arg1 <= v1) && (v1 <= arg1));
+}
+
+bool func_803294F0(Actor *this, s32 arg1, s32 arg2){
+    s32 v1;
+
+    v1 = this->yaw - arg2;
+    return ((-arg1 <= v1) && (v1 <= arg1));
+}
 
 bool func_80329530(Actor *this, s32 dist){
     if( func_8028F098() 
@@ -1001,12 +1017,29 @@ void func_8032AABC(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032B5C0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032BB88.s")
+void func_8032BB88(Actor *this, s32 arg1, s32 arg2){
+    s32 sp1C;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032BBE8.s")
+    sp1C = this->unk138_7;
+    func_8025A4C4(arg1, arg2, &sp1C);
+    this->unk138_7 = sp1C;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032BC18.s")
+bool func_8032BBE8(Actor *this){
+    if(this->unk16C_4){
+        return TRUE;
+    }
+    this->unk16C_4 = TRUE;
+    return FALSE;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032BC3C.s")
+void func_8032BC18(Actor *this){
+    func_80287784(this->animctrl, 0);
+}
+
+void func_8032BC3C(Actor *this, f32 arg1){
+    this->unk48 = arg1;
+    func_80344040(this);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032BC60.s")

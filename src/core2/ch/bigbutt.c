@@ -84,7 +84,7 @@ void func_802C60AC(ActorMarker *marker, s32 arg1){
     Actor *actor = marker_getActor(marker);
     if( actor->state == 4 
         && 5.0 <= actor->unk28 
-        && func_803294F0(actor, 0x50, func_80329784(actor))
+        && func_803294F0(actor, 80, func_80329784(actor))
     ){
         animctrl_setPlaybackType(actor->animctrl, ANIMCTRL_ONCE);
         func_80328A84(actor, 5);

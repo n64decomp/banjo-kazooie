@@ -2,7 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6AEF0/func_802F1E80.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6AEF0/func_802F1EA4.s")

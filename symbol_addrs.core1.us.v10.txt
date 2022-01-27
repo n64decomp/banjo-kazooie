@@ -26,9 +26,11 @@ mlMtxRotRoll    = 0x80251E80;
 mlMtxScale_xyz  = 0x802521C0;
 mlMtxScale      = 0x80252280; 
 mlMtxTranslate  = 0x80252980;
-memcpy = 0x80254608;
-comusic_8025AB44 = 0x8025AB44;
-comusic_8025AB78 = 0x8025AB78;
+
+memcpy          = 0x80254608;
+heap_get_size   = 0x802546D0;
+heap_init       = 0x80254710;
+
 malloc = 0x80254CA8;
 free = 0x802550F0;
 realloc = 0x80255358;
@@ -68,6 +70,8 @@ ml_vec3h_to_vec3f = 0x80258DA8;
 ml_vec3f_to_vec3w = 0x80258DE8;
 ml_vec3f_to_vec3h = 0x80258E24;
 mlDiffDegF = 0x802591D8;
+comusic_8025AB44 = 0x8025AB44;
+comusic_8025AB78 = 0x8025AB78;
 _n_timeToSamples    = 0x8025C378;
 _n_freePVoice       = 0x8025C3D8;
 _n_collectPVoices   = 0x8025C40C;
@@ -444,6 +448,10 @@ snspayload_validate               = 0x8025BE30;
 snspayload_find_payload_in_ram    = 0x8025BE84;
 snspayload_rewind_incoming        = 0x8025C010;
 snspayload_get_next_key           = 0x8025C01C;
+
+heap_occupiedBytes                = 0x80276590;
+
+
 snsToRestoreItems                 = 0x80276E40;
 snsBasePayloadPtr1                = 0x80276E44;
 snsBasePayloadPtr2                = 0x80276E48;
@@ -451,6 +459,7 @@ snsBasePayloadPtr3                = 0x80276E4C;
 snsBasePayloadPtr4                = 0x80276E50;
 snsPayloadOutCurrPos              = 0x80276E60;
 D_80283008                        = 0x80283008;
+heap_requested_size                        = 0x80283230;
 snsParsedKeys                     = 0x80283390;
 snsMinKeyToParse                  = 0x80283420;
 snsMaxKeyToParse                  = 0x80283424;

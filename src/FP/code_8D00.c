@@ -38,9 +38,6 @@ Actor *func_8038F0F0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_8D00/func_8038F144.s")
-#else
 void func_8038F144(Actor *this){
     if(!this->unk16C_4){
         this->unk16C_4 = TRUE;
@@ -55,7 +52,6 @@ void func_8038F144(Actor *this){
             this->marker->propPtr->unk8_3 = TRUE;
             func_8028764C(this->animctrl, randf());
         }
-        if(this);
     }
+    if (this) if (this);
 }
-#endif

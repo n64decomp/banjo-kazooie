@@ -1,5 +1,5 @@
 D_8023DF9C = 0x8023DF9C;
-__stack_align = 0x80254470;
+__heap_align = 0x80254470;
 func_8025FE6C = 0x8025FE6C;
 n_alAuxBusPull = 0x80260160;
 func_8026A2E0 = 0x8026A2E0;

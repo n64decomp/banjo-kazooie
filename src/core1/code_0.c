@@ -90,7 +90,7 @@ void func_8023DC0C(void){
     func_8024BE30();
     func_80251308();
     D_8027BEF0 = D_8027A538;
-    func_80254710();
+    heap_init();
     func_80254028();
     func_8025AFB0();
     func_8033EF58();

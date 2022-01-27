@@ -190,7 +190,10 @@ void func_80246C2C(void){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_8C50/func_802476DC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_8C50/func_802476EC.s")
+void func_802476EC(Gfx **gfx){
+    gDPPipeSync((*gfx)++);
+    gSPEndDisplayList((*gfx)++);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_8C50/func_80247720.s")
 

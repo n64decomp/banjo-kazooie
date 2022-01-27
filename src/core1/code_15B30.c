@@ -79,11 +79,31 @@ void func_802539AC(Gfx **gdl, s32 arg1){
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_15B30/func_80253A58.s")
+void func_80253A58(Gfx **gfx, s32 arg1){
+    gSPSegment((*gfx)++, 0x00, 0x00000000);
+    gDPSetColorImage((*gfx)++, G_IM_FMT_RGBA, G_IM_SIZ_16b, D_80276588, OS_PHYSICAL_TO_K0(arg1));
+    gSPClearGeometryMode((*gfx)++, G_ZBUFFER | G_SHADE | G_CULL_BOTH | G_FOG | G_LIGHTING | G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR | G_LOD | G_SHADING_SMOOTH);
+    gSPTexture((*gfx)++, 0, 0, 0, G_TX_RENDERTILE, G_OFF);
+    gSPSetGeometryMode((*gfx)++, G_ZBUFFER | G_SHADE | G_SHADING_SMOOTH);
+    gDPSetCycleType((*gfx)++, G_CYC_1CYCLE);
+    gDPPipelineMode((*gfx)++, G_PM_NPRIMITIVE);
+    gDPSetCombineMode((*gfx)++, G_CC_SHADE, G_CC_SHADE);
+    gDPSetAlphaCompare((*gfx)++, G_AC_NONE);
+    gDPSetColorDither((*gfx)++, G_CD_DISABLE);
+    gDPSetRenderMode((*gfx)++, G_RM_AA_ZB_XLU_LINE, G_RM_AA_ZB_XLU_LINE2);
+    gSPClipRatio((*gfx)++, FRUSTRATIO_1);
+    gDPSetScissor((*gfx)++, G_SC_NON_INTERLACE, D_8028320C, D_8028320E, D_80283210, D_80283212);
+    gDPPipeSync((*gfx)++);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_15B30/func_80253D60.s")
+void func_80253D60(Gfx **gfx, s32 arg1){
+    func_80254348();
+    func_80253A58(gfx, D_803A5D00[arg1]);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_15B30/func_80253DC0.s")
+void func_80253DC0(Gfx **gfx){
+    func_802476EC(gfx);
+}
 
 void func_80253DE0(Gfx **gdl) {
     gDPFullSync((*gdl)++);
@@ -138,7 +158,14 @@ void func_80254028(void){
     func_80254348();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_15B30/func_80254084.s")
+void func_80254084(Gfx **gfx, s32 x, s32 y, s32 w, s32 h, s32 r, s32 g, s32 b){
+    gDPPipeSync((*gfx)++);
+    gDPPipelineMode((*gfx)++, G_PM_NPRIMITIVE);
+    gDPSetCycleType((*gfx)++, G_CYC_FILL);
+    gDPSetFillColor((*gfx)++, GPACK_RGBA5551(r, g, b, 1) << 16 | GPACK_RGBA5551(r, g, b, 1));
+    gDPSetRenderMode((*gfx)++, G_RM_NOOP, G_RM_NOOP2);
+    gDPScisFillRectangle((*gfx)++,  x, y, x + w -1, y + h -1);
+}
 
 void func_802541E8(void){
     if(D_80276580[0]){

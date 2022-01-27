@@ -88,7 +88,7 @@ void func_802511C4(void){
     u32 tmp_v0;
 
     sp24 = func_80251178();
-    sp18 = func_802546D0();
+    sp18 = heap_get_size();
     sp20 = func_802546DC();
     sp1C = sp18 - sp20;
 
