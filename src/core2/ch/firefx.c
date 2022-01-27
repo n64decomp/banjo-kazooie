@@ -74,7 +74,7 @@ void chfirefx_update(Actor *this){
             this->unk1C[0] = 0.0f;
         }
     }//L80359934
-    if(func_80329588(this, 0x7d0)){
+    if(actor_playerIsWithinDist(this, 2000)){
         if( func_8024DB50(this->position, 50.0f) && this->unk38_31 ){
             if(!(func_8023DB5C() & 3) && randf() < 0.1){
                 __chfirefx_spawnSmoke(this->position, this->scale);

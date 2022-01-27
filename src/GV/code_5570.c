@@ -185,7 +185,7 @@ void func_8038BEA0(Actor *this){
         this->marker->propPtr->unk8_3 = FALSE;
     }//L8038BFF4
 
-    if(func_80329588(this, 4000) || this->state == 5){
+    if(actor_playerIsWithinDist(this, 4000) || this->state == 5){
         this->unk58_0 = TRUE;
         this->marker->propPtr->unk8_3 = TRUE;
         switch(this->state){

@@ -40,8 +40,6 @@
 #define SNS_PAYLOAD_DATALEN (0x1C)
 #define SNS_HEADER_MAGIC    (('2B1K' << 2 | 3)) /* 0xC908C52F */
 
-typedef int bool;
-
 enum StopNSwop_Item {
     SNS_ITEM_NULL,
 

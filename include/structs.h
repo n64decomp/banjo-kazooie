@@ -7,6 +7,8 @@
 
 #define UNK_TYPE(t) t
 
+typedef int bool;
+
 typedef struct{
     f32 x;
     f32 y;

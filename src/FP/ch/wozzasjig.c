@@ -8,7 +8,7 @@ void func_8038FF54(Actor *this);
 /* .data */
 extern ActorAnimationInfo D_803925C0[];
 
-extern ActorInfo D_80392628 = { 0x20C, 0x1F4, 0x495,
+extern ActorInfo D_80392628 = { MARKER_20C_WOZZAS_JIGGY, ACTOR_1F4_WOZZAS_JIGGY, ASSET_495_MODEL_WOZZAS_JIGGY,
     0x1, D_803925C0,
     func_8038FF54, func_80326224, func_8038FF00,
     { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
@@ -30,7 +30,7 @@ void func_8038FF54(Actor *this){
     ParticleEmitter *sp3C;
 
     if( func_8038BFA0() )               return;
-    if( !func_80329588(this, 4500) )    return;
+    if( !actor_playerIsWithinDist(this, 4500) )    return;
 
     this->marker->propPtr->unk8_3 = FALSE;
     actor_collisionOff(this);

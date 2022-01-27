@@ -233,7 +233,7 @@ void func_802E20E8(Actor *this){
 
         }
     }//L802E223C
-    if(!func_80329588(this, 0xFA0))
+    if(!actor_playerIsWithinDist(this, 4000))
         return;
 
     if(!local->unkB && this->marker->unk14_21){

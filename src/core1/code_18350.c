@@ -2,8 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-typedef int bool;
-
 extern f64 D_80278250;
 extern f64 D_80278258;
 extern f64 D_80278260;

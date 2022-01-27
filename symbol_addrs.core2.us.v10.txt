@@ -292,6 +292,7 @@ actor_new = 0x803272F8;
 spawn_child_actor = 0x8032818C;
 marker_despawn = 0x803282F4;
 actor_animationIsAt = 0x8032886C;
+actor_playerIsWithinDist = 0x80329588;
 actor_playAnimationOnce = 0x803298AC;
 actor_loopAnimation = 0x803298D8;
 marker_getActor = 0x80329958;

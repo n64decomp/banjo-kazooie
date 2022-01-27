@@ -9,6 +9,7 @@ extern Actor *func_803056FC(s32, s32 (*)[3], s32);
 extern void func_8032B5C0(void);
 
 void func_80328B8C(Actor * this, s32 arg1, f32 arg2, s32 arg3);
+int  actor_playerIsWithinDist(Actor *this, s32 dist);
 
 extern s32 D_803255FC;
 
@@ -745,9 +746,32 @@ int func_80329210(Actor * arg0, f32 (* arg1)[3]){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_803294F0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80329530.s")
+bool func_80329530(Actor *this, s32 dist){
+    if( func_8028F098() 
+        && !func_803203FC(0xBF) 
+        && actor_playerIsWithinDist(this, dist)
+    ){
+        return TRUE;
+    }
+    return FALSE;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80329588.s")
+bool actor_playerIsWithinDist(Actor *this, s32 dist){
+    f32 sp24[3];
+    f32 sp18[3];
+
+    func_8028E964(sp24);
+    _player_getPosition(sp18);
+    sp24[1] = sp18[1];
+    if( ( (this->position_x - sp24[0])*(this->position_x - sp24[0]) 
+          + (this->position_y - sp24[1])*(this->position_y - sp24[1])
+          + (this->position_z - sp24[2])*(this->position_z - sp24[2]) 
+        ) < dist*dist
+    ){
+        return TRUE;
+    }
+    return FALSE;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80329628.s")
 

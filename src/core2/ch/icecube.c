@@ -262,7 +262,7 @@ void chicecube_update(Actor *this){
         this->unk58_0 = TRUE;
     }//L8035AAF4
     
-    if(!func_80329588(this, 3000))
+    if(!actor_playerIsWithinDist(this, 3000))
         return;
 
     func_802D729C(this, 3.4 * this->scale);

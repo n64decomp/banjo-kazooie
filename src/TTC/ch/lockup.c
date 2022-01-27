@@ -78,8 +78,8 @@ void func_80389600(Actor *this){
     if( !this->unk138_24 
         && this->unkF4_8 == 0xA
         && !jiggyscore_isCollected(JIGGY_13_TTC_LOCKUP)
-        && func_80329530(this, 0x140)
-        && !func_80329530(this, 0xA0)
+        && func_80329530(this, 320)
+        && !func_80329530(this, 160)
         && !func_8028ECAC()
         && func_80311480(0xA15, 0, NULL, NULL, NULL, NULL)
     ){
@@ -114,7 +114,7 @@ void func_80389600(Actor *this){
             break;
 
         case 2: //L803897DC
-            if(func_80329588(this, 0x190) && func_8028FB48(0x8000000)){
+            if(actor_playerIsWithinDist(this, 400) && func_8028FB48(0x8000000)){
                 func_8028F428(0xA, this->marker);
             }
 

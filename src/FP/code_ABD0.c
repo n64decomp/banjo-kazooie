@@ -127,7 +127,7 @@ void func_80391180(Actor *this){
       this->unk58_0 = func_8038DD14() ? 0 : 1;
 
       if(this->marker->unk14_20 == 0x21F){
-            this->marker->unk40_22 = func_80329588(this, 2000) ? 1 : 0;
+            this->marker->unk40_22 = actor_playerIsWithinDist(this, 2000) ? 1 : 0;
       }
 }
 
