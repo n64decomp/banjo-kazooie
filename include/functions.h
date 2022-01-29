@@ -140,7 +140,7 @@ VLA *   vector_new(u32 elemSize, u32 cnt);
 void    vector_remove(VLA *this, u32 indx);
 void    vector_popBack_n(VLA *this, u32 n);
 void    vector_assign(VLA *this, s32 indx, void* value);
-VLA *   vector_802ED9E0(VLA *this);
+VLA *   vector_defrag(VLA *this);
 
 
 void actor_collisionOff(Actor *);

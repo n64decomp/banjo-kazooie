@@ -93,7 +93,7 @@ void vector_assign(VLA *this, s32 indx, void* value){
     memcpy((s32)this->begin + indx * this->elem_size, value, this->elem_size);
 }
 
-VLA * vector_802ED9E0(VLA *this){
+VLA * vector_defrag(VLA *this){
    s32 oldSize;
    s32 oldMemSize;
 

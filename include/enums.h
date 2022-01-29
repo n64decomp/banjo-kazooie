@@ -25,7 +25,7 @@ enum bkprog_e{
 	// {index=0x10, type="Prog", level=6, name="1st Sand Eel Text"}, -- 0x02 > 0
 	// {index=0x11, type="Prog", level=6, name="1st Meeting Mumbo Text"}, -- 0x02 > 1
 	// {index=0x12, type="Prog", level=6, name="1st Post XForm Mumbo Text"},
-
+    BKPROG_13 = 0x13, //something with xmas tree jiggy progress
 	// {index=0x14, type="Prog", level=6, name="1st FP Icy Water Text"},
     BKPROG_15_ENTER_MMM_TEXT = 0x15,
 	// {index=0x16, type="Prog", level=6, name="1st Time in Jigsaw Text"},
@@ -1270,7 +1270,7 @@ enum sfx_e
     SFX_413_UNKNOWN = 0x413, //water ripple?
 
     SFX_415_UNKNOWN = 0x415, //xmas tree
-
+    SFX_416,
     SFX_417_UNKNOWN = 0x417, //lair/func_8038EB94, double health
 
     SFX_41A_UNKNOWN = 0x41a

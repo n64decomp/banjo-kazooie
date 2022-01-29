@@ -54,10 +54,10 @@ extern u32 heap_occupiedBytes; //occupied heap size
 extern u8 D_80276594;
 extern u8 D_80276598;
 extern void *D_8027659C;
-extern u32 D_802765A0;
-extern u32 D_802765A4;
-extern u32 D_802765A8;
-extern u32 D_802765AC;
+extern void *D_802765A0;
+extern s32 D_802765A4;
+extern void *D_802765A8;
+extern s32 D_802765AC;
 extern UNK_TYPE(void *) D_802765B4;
 
 extern s32 D_80283220;
@@ -182,17 +182,17 @@ void heap_init(void){
     D_8002D500[0].next_free = &D_8002D500[1];
 
     D_8002D500[1].hdr.unkC_7 = 0;
-    D_8002D500[1].hdr.prev = D_8002D500;
+    D_8002D500[1].hdr.prev = &D_8002D500[0];
     D_8002D500[1].hdr.next = &D_8002D500[LAST_HEAP_BLOCK];
     D_8002D500[1].hdr.unusedBytes_C_31 = 0;
-    D_8002D500[1].prev_free = D_8002D500;
+    D_8002D500[1].prev_free = &D_8002D500[0];
     D_8002D500[1].next_free = &D_8002D500[LAST_HEAP_BLOCK];
 
     D_8002D500[LAST_HEAP_BLOCK].hdr.unkC_7 = 2;
-    D_8002D500[LAST_HEAP_BLOCK].hdr.prev = D_8002D500;
+    D_8002D500[LAST_HEAP_BLOCK].hdr.prev = &D_8002D500[0];
     D_8002D500[LAST_HEAP_BLOCK].hdr.next = &D_8002D500[LAST_HEAP_BLOCK + 1];
     D_8002D500[LAST_HEAP_BLOCK].hdr.unusedBytes_C_31 = 0;
-    D_8002D500[LAST_HEAP_BLOCK].prev_free = D_8002D500;
+    D_8002D500[LAST_HEAP_BLOCK].prev_free = &D_8002D500[0];
     D_8002D500[LAST_HEAP_BLOCK].next_free = NULL;
     sns_init_base_payloads();
 }
@@ -213,12 +213,12 @@ void *func_80254898(s32 arg0){
 }
 
 void func_80254908(void){
-    if((void *)D_802765A0){
+    if(D_802765A0){
         free(D_802765A0);
         D_802765A0 = NULL;
     }
 
-    if((void *)D_802765A8){
+    if(D_802765A8){
         free(D_802765A8);
         D_802765A8 = NULL;
     }
@@ -311,7 +311,7 @@ void *malloc(s32 size){
         return NULL;
 
     heap_requested_size = __heap_align((size > 0 )? size : 1); 
-    if(!(v1 = func_80254B84(0))){
+    if(!(v1 = func_80254B84(0))){ //remove stall cache ptrs
         D_80283234 = NULL;
         func_803306C8(2);
         if(!func_80254B84(0))
@@ -329,20 +329,20 @@ void *malloc(s32 size){
         if(!(v1 = func_80254B84(0))){
             func_8033B61C();
             func_802E49E0();
-            func_803306C8(3);
+            func_803306C8(3); //modelCache
 
             if(!func_80254B84(0))
-                func_8030A850(3);
+                func_8030A850(3); //propModelCache
             
             if(!func_80254B84(0))
-                func_8032AD7C(2);
+                func_8032AD7C(2); //actorArray
 
             if(!(v1 = func_80254B84(0))){
                 if(!func_80254B84(0))
-                    func_802F1294();
+                    func_802F1294(); //particleEmitters
                 
                 if(!func_80254B84(0))
-                    func_8028873C(1);
+                    func_8028873C(1); //animationCache
 
                 if(v1 = func_80254B84(0)){}
                 else
@@ -444,10 +444,10 @@ void free(void * ptr){
         func_8025456C(sPtr);
         
         if((u32)ptr == (u32)D_802765A0)
-            D_802765A0 = 0;
+            D_802765A0 = NULL;
 
         if((u32)ptr == (u32)D_802765A8)
-            D_802765A8 = 0;
+            D_802765A8 = NULL;
     }
 }
 
@@ -564,9 +564,36 @@ u32 func_80255498(void){
     return HEAP_SIZE - func_8025496C();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/memory/func_802554C0.s")
+s32 heap_findLargestEmptyBlock(s32 *size_ptr){
+    EmptyHeapBlock *v0;
+    s32 i;
+    s32 size;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/memory/func_80255524.s")
+    v0 = D_8002D500->next_free;
+    *size_ptr = 0;
+    i = 0;
+    while(v0 != &D_8002D500[LAST_HEAP_BLOCK]){
+        size = (s32)v0->hdr.next - (s32)v0;
+        *size_ptr = (size < *size_ptr) ? *size_ptr : size;
+        v0 = v0->next_free;
+        i++;
+    }
+    return i;
+}
+
+void func_80255524(void){
+    D_80283220 = (D_80276598)? -6000000 : 0;
+
+    if(D_802765A0 && D_802765A4 + 1 < D_802765AC){
+        free(D_802765A0);
+        D_802765A0 = NULL;
+
+        if(D_802765A8){
+            free(D_802765A8);
+            D_802765A8 = NULL;
+        }
+    }
+}
 
 void func_802555C4(void){
     D_8028322C = FALSE;
@@ -592,7 +619,7 @@ void *defrag(void *this){
     size = (s32)((HeapHeader*)this)[-1].next - (s32)this + 0x10;
 
     this_block = &((HeapHeader*)this)[-1];
-    if(D_80283220 + size >= 0xf4240){
+    if(D_80283220 + size >= 1000000){
         return this;
     }
     new_block = this_block->prev;
@@ -658,7 +685,7 @@ void *func_80255774(void *this){
     size = (s32)((HeapHeader*)this)[-1].next - (s32)this + 0x10;
     this_block = &((HeapHeader*)this)[-1];
 
-    if(D_80283220 + size >= 0xf4240)
+    if(D_80283220 + size >= 1000000)
         return this;
 
     prev_block = this_block->prev;
@@ -687,7 +714,7 @@ void *func_80255888(void *arg0){
     return sp1C;
 }
 
-void *func_802558D8(void *arg0, s32 arg1){
+void *func_802558D8(void *arg0, void *arg1){
     void *v1;
     v1 = func_80255888(arg0);
     if(v1 == arg0){
@@ -705,12 +732,13 @@ HeapHeader * func_80255978(void *ptr){
     return ((HeapHeader* )((s32)ptr - sizeof(HeapHeader)))->prev;
 }
 
-void func_80255980(u32 arg0, int arg1){
+void func_80255980(void *arg0, int arg1){
     D_802765A0 = arg0;
     D_802765A4 = D_802765AC;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/memory/func_802559A0.s")
+
 
 void func_80255A04(void){
     D_80276594 = 1;
@@ -721,16 +749,16 @@ void func_80255A14(void){
 }
 
 void func_80255A20(void){
-    D_80276598 = 1;
+    D_80276598 = TRUE;
 }
 
 void func_80255A30(void){
-    D_80276598 = 0;
+    D_80276598 = FALSE;
 }
 
 void func_80255A3C(void){
     func_80255524();
-    if(func_802559A0() && D_80276598 != 1)
+    if(func_802559A0() && D_80276598 != TRUE)
         return;
     
     if(!func_802559A0())
@@ -750,7 +778,7 @@ void func_80255ACC(void){
     D_802765AC++;
 }
 
-int func_80255AE4(void){
+bool func_80255AE4(void){
     return (D_802765A0) ? 1 : 0; 
 }
 

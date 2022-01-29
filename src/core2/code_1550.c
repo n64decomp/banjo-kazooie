@@ -31,7 +31,7 @@ AnimationFile *func_80288590(s32 asset_id){//animationFile_load
     if(!D_8037A8C0[asset_id].unk0){
         D_8037A8C0[asset_id].unk0 = assetcache_get(asset_id);
     }
-    D_8037A8C0[asset_id].unk4_15 = 0x1E;
+    D_8037A8C0[asset_id].unk4_15 = 30;
     return D_8037A8C0[asset_id].unk0;
 }
 
@@ -63,7 +63,7 @@ void func_8028873C(s32 arg0){
     s32 i;
     if(arg0){
         for(i = 0; i < 0x2CA; i++){
-            if(D_8037A8C0[i].unk0 && D_8037A8C0[i].unk4_0 && (D_8037A8C0[i].unk4_15 < 0x1E)){
+            if(D_8037A8C0[i].unk0 && D_8037A8C0[i].unk4_0 && (D_8037A8C0[i].unk4_15 < 30)){
                 assetcache_release(D_8037A8C0[i].unk0);
                 D_8037A8C0[i].unk0 = NULL;
                 D_8037A8C0[i].unk4_0 = 0;
@@ -72,7 +72,7 @@ void func_8028873C(s32 arg0){
     }
     else{
         for(i = 0; i < 0x2CA; i++){
-            if(D_8037A8C0[i].unk0 && !D_8037A8C0[i].unk4_0 && (D_8037A8C0[i].unk4_15 < 0x1E)){
+            if(D_8037A8C0[i].unk0 && !D_8037A8C0[i].unk4_0 && (D_8037A8C0[i].unk4_15 < 30)){
                 assetcache_release(D_8037A8C0[i].unk0);
                 D_8037A8C0[i].unk0 = NULL;
                 if(func_80254BC4(1))
@@ -85,9 +85,11 @@ void func_8028873C(s32 arg0){
 void func_80288834(void){
     s32 i;
     for(i = 0; i < 0x2CA; i++){
-        if(D_8037A8C0[i].unk0 && !D_8037A8C0[i].unk4_0 && !(D_8037A8C0[i].unk4_15-= 1)){
-            assetcache_release(D_8037A8C0[i].unk0);
-            D_8037A8C0[i].unk0 = NULL;
+        if(D_8037A8C0[i].unk0 && !D_8037A8C0[i].unk4_0){
+            if(--D_8037A8C0[i].unk4_15 == 0){
+                assetcache_release(D_8037A8C0[i].unk0);
+                D_8037A8C0[i].unk0 = NULL;
+            }
         }
     }
 }

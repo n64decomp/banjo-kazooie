@@ -1001,7 +1001,7 @@ void func_80314234(Gfx** gdl, Mtx** mptr, s32 vptr, BKSprite *sprite, s32 frame,
     __pause_drawSprite(gdl, mptr, vptr, sprite, frame, (x - w * 0.5), (y - h * 0.5), w, h, a);
 }
 
-#if NONMATCHING
+#ifdef NONMATCHING
 void func_80314320(Gfx **gdl, Mtx **mptr, s32 arg2){
     f32 sp98[3];
     f32 sp8C[3];
@@ -1016,7 +1016,7 @@ void func_80314320(Gfx **gdl, Mtx **mptr, s32 arg2){
         D_8036C620 = 1;
     }else{
         if(D_8036C620){
-            func_8033B61C(gdl);
+            func_8033B61C();
             func_80315084(gdl, mptr, arg2); //viBuffer_2_zBuffer
             D_8036C620 = 0;
         }else{

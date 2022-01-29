@@ -279,7 +279,7 @@ void func_803251D4(void){
 }
 
 void func_80325288(void){
-    D_80383380.ptr = vector_802ED9E0(D_80383380.ptr);
+    D_80383380.ptr = vector_defrag(D_80383380.ptr);
 }
 
 void func_803252B0(s32 arg0){

@@ -248,7 +248,7 @@ void func_802FA0F8(void){
 #endif
 
 void func_802FA4E0(void){
-    D_803810A0 = vector_802ED9E0(D_803810A0);
+    D_803810A0 = vector_defrag(D_803810A0);
 }
 
 void func_802FA508(void){

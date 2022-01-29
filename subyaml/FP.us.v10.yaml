@@ -43,10 +43,10 @@ segments:
       - [0x5CC0, c, code_5CC0]
       - [0x6AE0, c, code_6AE0]
       - [0x7980, c, code_7980]
-      - [0x8330, c, code_8330]
-      - [0x87E0, c, code_87E0]  #DONE
-      - [0x8D00, c, code_8D00]
-      - [0x8E20, c, code_8E20]  #DONE
+      - [0x8330, c, code_8330] #DONE
+      - [0x87E0, c, code_87E0] #DONE
+      - [0x8D00, c, code_8D00] #DONE
+      - [0x8E20, c, code_8E20] #DONE
       - [0x9B10, c, ch/wozzasjig] #DONE
       - [0x9EA0, c, code_9EA0] #DONE
       - [0xA1C0, c, code_A1C0] #DONE
