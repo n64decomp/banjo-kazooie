@@ -82,7 +82,7 @@ void __chmazectrl_setState(Actor *this, s32 next_state){
             timed_playSfx(1.0f, SFX_7F_HEAVYDOOR_SLAM, 1.0f, 32000);
         }
         if(!levelSpecificFlags_get(0x16)){
-            func_80311480(0xA82, 4, NULL, NULL, NULL, NULL);
+            func_80311480(ASSET_A82_TEXT_SANDYBUTT_START_MAZE, 4, NULL, NULL, NULL, NULL);
             levelSpecificFlags_set(0x16, TRUE);
         }
     }//L8038F794
@@ -132,7 +132,7 @@ void __chmazectrl_setState(Actor *this, s32 next_state){
             func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 0x7fff);
         
         if(!levelSpecificFlags_get(0x17)){
-            func_80311480(0xA83, 4, NULL, NULL, NULL, NULL);
+            func_80311480(ASSET_A83_TEXT_SANDYBUTT_DONE, 4, NULL, NULL, NULL, NULL);
             levelSpecificFlags_set(0x17, TRUE);
         }
     }
@@ -174,7 +174,7 @@ void chmazectrl_update(Actor *this){
         }
         if( !levelSpecificFlags_get(0x15) 
             && func_8025773C(&local->unk8, sp34)
-            && func_80311480(0xA81, 0, NULL, NULL, NULL, NULL)
+            && func_80311480(ASSET_A81_TEXT_SANDYBUTT_ENTER, 0, NULL, NULL, NULL, NULL)
         ){
             levelSpecificFlags_set(0x15, TRUE);
         }

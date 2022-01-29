@@ -182,7 +182,7 @@ segments:
   - [0x47BD0, c, code_47BD0]
   - [0x49570, c, ch/soundsource] #DONE
   - [0x49A70, c, code_49A70] #DONE
-  - [0x4A420, c, code_4A420] #DONE
+  - [0x4A420, c, ch/gloop] #DONE
   - [0x4A6F0, c, code_4A6F0]
   - [0x4BD70, c, code_4BD70]
   - [0x4BE10, c, code_4BE10]
@@ -417,6 +417,8 @@ segments:
   - [0xE0380, bin, data_E0380]
   - [0xE03B0, .data, ch/soundsource]
   - [0xE0430, bin, data_E0430]
+  - [0xE04A0, .data, ch/gloop]
+  - [0xE0500, bin, data_E0500]
   - [0xE0DE0, .data, ch/mole]
   - [0xE0E70, .data, ch/molehill]
   - [0xE0EE0, .data, code_53A10]
@@ -547,6 +549,8 @@ segments:
   - [0xEF5F0, bin, data_EF5F0] #part of ch/jinjo .rodata
   - [0xEF640, .rodata, ch/beehive]
   - [0xEF650, bin, data_EF650]
+  - [0xEF6D0, .rodata, ch/gloop]
+  - [0xEF6E0, bin, data_EF6E0]
   - [0xEFB10, .rodata, code_4C020]
   - [0xEFDB0, bin, data_EFDB0]
   - [0xEFDF0, .rodata, ch/climbBase]

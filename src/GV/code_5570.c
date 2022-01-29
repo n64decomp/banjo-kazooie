@@ -14,12 +14,12 @@ void func_8038BEA0(Actor *this);
 /* .data */
 ActorAnimationInfo D_80391120[] ={
     {0x00, 0.0f},
-    {0xC5, 8000000.0f},
-    {0xC5, 1.6f},
-    {0xC7, 1.8f},
-    {0xC6, 0.55f},
-    {0xC8, 0.8f},
-    {0xC7, 1.8f}
+    {ASSET_C5_ANIM_GRABBA_APPEAR,   8000000.0f},
+    {ASSET_C5_ANIM_GRABBA_APPEAR,   1.6f},
+    {ASSET_C7_ANIM_GRABBA_IDLE,     1.8f},
+    {ASSET_C6_ANIM_GRABBA_HIDE,     0.55f},
+    {ASSET_C8_ANIM_GRABBA_DEFEATED, 0.8f},
+    {ASSET_C7_ANIM_GRABBA_IDLE,     1.8f}
 };
 
 ActorInfo D_80391158 = { MARKER_A6_GRABBA, ACTOR_118_GRABBA, ASSET_371_MODEL_GRABBA, 
@@ -61,7 +61,7 @@ void func_8038BA08(Actor *this){
     if(func_8028ECAC() == 6)
         func_8028F710(3, 0.0f);
 
-    func_80311480(0xa79, 0xf, this->position, this->marker, func_8038B988, NULL);
+    func_80311480(ASSET_A79_TEXT_GRABBA_DEFEAT, 0xf, this->position, this->marker, func_8038B988, NULL);
     comusic_8025AB44(COMUSIC_57_TURBO_TRAINERS, 7000, 700);
 }
 
@@ -243,7 +243,7 @@ void func_8038BEA0(Actor *this){
                 }
                 else{
                     if(!this->unk138_24){
-                        if(func_80311480(0xa78, 0, NULL, NULL, NULL, NULL)){
+                        if(func_80311480(ASSET_A78_TEXT_GRABBA_MEET, 0, NULL, NULL, NULL, NULL)){
                             this->unk138_24 = TRUE;
                         }
                     }
@@ -274,7 +274,7 @@ void func_8038BEA0(Actor *this){
                         }
 
                         if(!this->unk138_23){
-                            if(func_80311480(0xa7a, 0, NULL, NULL, NULL, NULL)){
+                            if(func_80311480(ASSET_A7A_TEXT_GRABBA_TOO_FAST, 0, NULL, NULL, NULL, NULL)){
                                 this->unk138_23 = TRUE;
                             }
                         }

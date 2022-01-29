@@ -145,9 +145,9 @@ void func_802D9698(ActorMarker *marker, enum asset_e arg1, s32 arg2){
     if( arg1 == D_80367DC4[actor->unkF4_8-9].unk0 
         && item_getCount(ITEM_14_HEALTH) < item_getCount(ITEM_15_HEALTH_TOTAL)
     ){
-        func_80311480(0xd39, 7, 0, actor->marker, func_802D9698, func_802D9830);
+        func_80311480(ASSET_D39_TEXT_BOTTLES_REFILL_HEALTH, 7, 0, actor->marker, func_802D9698, func_802D9830);
     }//L802D9738
-    else if(arg1 == D_80367DC4[actor->unkF4_8-9].unk0 || arg1 == 0xd39){
+    else if(arg1 == D_80367DC4[actor->unkF4_8-9].unk0 || arg1 == ASSET_D39_TEXT_BOTTLES_REFILL_HEALTH){
         func_80311480(func_802D93EC()? 0xa87 : func_802D9304(), 7, 0, actor->marker, func_802D9698, NULL);
     }
     else{//L802D97BC

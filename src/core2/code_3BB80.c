@@ -71,7 +71,7 @@ extern ActorInfo D_803672E0; //chbeehive
 extern ActorInfo D_80367310; //chswarm
 extern ActorInfo D_80367390; //chwaterfallfx
 extern ActorInfo D_80367404; //scrapnel
-extern ActorInfo D_80367468; //gloop
+extern ActorInfo chGloop; //gloop
 extern ActorInfo D_803674E0; //mumbo
 extern ActorInfo D_80367530; //mumbo_token_sign.5
 extern ActorInfo D_80367554; //mumbo_toke_sign.10
@@ -248,7 +248,7 @@ void func_802C2B5C(void){
     spawnableActorList_add(&D_803685A0, actor_new, 0x0000040); //mumbotoken
     spawnableActorList_add(&D_80367F30, actor_new, 0x0000400);
     spawnableActorList_add(&D_80365FE0, actor_new, 0x0000004);
-    spawnableActorList_add(&D_80367468, actor_new, 0x000008A); //gloop
+    spawnableActorList_add(&chGloop, actor_new, 0x000008A); //gloop
     spawnableActorList_add(&D_80366F20, actor_new, 0x0000000); //chshockjump
     spawnableActorList_add(&D_80366F44, actor_new, 0x0000000); //flight_pad
     spawnableActorList_add(&D_80367D24, actor_new, 0x0200000); //redfeather

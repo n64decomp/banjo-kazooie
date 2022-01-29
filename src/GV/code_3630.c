@@ -29,14 +29,14 @@ void func_80389A20(ActorMarker *caller, enum asset_e text_id, s32 arg2){
 }
 
 void func_80389A60(Actor *this){
-    func_80311480(0xa70, 4, NULL, this->marker, func_80389A20, NULL);
+    func_80311480(ASSET_A70_TEXT_CHARMER_HELPED, 4, NULL, this->marker, func_80389A20, NULL);
     this->unk138_24 = TRUE;
     func_80328A84(this, 5);
 }
 
 void func_80389ABC(Actor *this){
     if(this->unk138_23){
-        func_80389A20(this->marker, 0xa70, -1);
+        func_80389A20(this->marker, ASSET_A70_TEXT_CHARMER_HELPED, -1);
     }
     else{
         this->unk138_23 = TRUE;
@@ -63,7 +63,7 @@ void func_80389B1C(Actor *this){
 
     if(this->state == 1 || this->state == 2){
         if(! this->unk138_24 && func_80329530(this, 250) && !func_80329530(this, 0x50)){
-            func_80311480(0xa6f, 0xe, this->position, NULL, NULL, NULL);
+            func_80311480(ASSET_A6F_TEXT_CHARMER_MEET, 0xe, this->position, NULL, NULL, NULL);
             this->unk138_24 = TRUE;
             mapSpecificFlags_set(0, TRUE);
         }

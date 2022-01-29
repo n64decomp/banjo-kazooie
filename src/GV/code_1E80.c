@@ -72,7 +72,7 @@ void chgobi3_setState(Actor *this, s32 next_state){
 
     if(next_state == 5){
         func_80335924(this->unk148, 0xd9, 0.5f, 4.0f);
-        func_80311480(0xA77, 0xe, this->position, this->marker, func_803882F0, NULL);
+        func_80311480(ASSET_A77_TEXT_GOBI3_DONE, 0xe, this->position, this->marker, func_803882F0, NULL);
     }
 
     if(next_state == 4){

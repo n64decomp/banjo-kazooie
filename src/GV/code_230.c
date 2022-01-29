@@ -149,7 +149,7 @@ void chancientone_update(Actor *this){
                             mapSpecificFlags_set(sp38, TRUE);
                             if(sp38== 0xB){
                                 if(!jiggyscore_isCollected(JIGGY_46_GV_ANCIENT_ONES)){
-                                    func_80311480(0xA80, 0xE, NULL, this->marker, func_80386850, NULL);
+                                    func_80311480(ASSET_A80_TEXT_ANICIENT_ONES_DONE, 0xE, NULL, this->marker, func_80386850, NULL);
                                 }
                                 else{
                                     func_80386850(this->marker, 0xA80, -1);
@@ -158,7 +158,7 @@ void chancientone_update(Actor *this){
                             else {   
                                 if(sp38== 7){
                                     if(!jiggyscore_isCollected(JIGGY_46_GV_ANCIENT_ONES)){
-                                        func_80311480(0xA7F, 0x4, NULL, NULL, NULL, NULL);
+                                        func_80311480(ASSET_A7F_TEXT_ANICIENT_ONES_MEET, 0x4, NULL, NULL, NULL, NULL);
                                     }
                                 }
                                 

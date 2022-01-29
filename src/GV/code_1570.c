@@ -84,7 +84,7 @@ void chgobi2_setState(Actor *this, s32 next_state){
         timed_playSfx(0.8f, SFX_4B_GULPING, 0.8f, 28000);
         timed_playSfx(1.4f, SFX_4B_GULPING, 0.8f, 28000);
         timed_playSfx(2.0f, SFX_4B_GULPING, 0.8f, 28000);
-        func_80324DBC(3.0f, 0xA72, 0x2A, D_80390CEC, this->marker, func_80387A2C, NULL);
+        func_80324DBC(3.0f, ASSET_A72_TEXT_TRUNKER_HELPED, 0x2A, D_80390CEC, this->marker, func_80387A2C, NULL);
     }//L80387C94
 
     if(next_state == 4){
@@ -202,7 +202,7 @@ void chgobi2_update(Actor *this){
         if(!this->unk138_24){
             if(func_80329530(this, 0xFA) && !func_80329530(this, 0x50)){
                 if(func_8028F2A0()){
-                    if(func_80311480(0xA75, 0, this->position, NULL, NULL, NULL))
+                    if(func_80311480(ASSET_A75_TEXT_GOBI2_MEET, 0, this->position, NULL, NULL, NULL))
                         this->unk138_24 = TRUE;
                 }
             }
