@@ -68,5 +68,5 @@ void func_802EDCDC(SLA *this, s32 indx){
 }
 
 SLA *func_802EDD00(SLA *this){
-    return func_802555DC(this);
+    return defrag(this);
 }

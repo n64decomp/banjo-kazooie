@@ -350,12 +350,12 @@ void func_802F53D0(void){
 }
 
 void func_802F542C(void){
-    D_80380AD0[0] = (FontLetter *)func_802555DC(D_80380AD0[0]);
-    D_80380AD0[1] = (FontLetter *)func_802555DC(D_80380AD0[1]);
+    D_80380AD0[0] = (FontLetter *)defrag(D_80380AD0[0]);
+    D_80380AD0[1] = (FontLetter *)defrag(D_80380AD0[1]);
     if(D_80380AD0[3]){
-        D_80380AD0[3] = (FontLetter *)func_802555DC(D_80380AD0[3]);
+        D_80380AD0[3] = (FontLetter *)defrag(D_80380AD0[3]);
     }
-    D_80380AE0 = (PrintBuffer *)func_802555DC(D_80380AE0);
+    D_80380AE0 = (PrintBuffer *)defrag(D_80380AE0);
 }
 
 //returns the pixel data and type for a given letter

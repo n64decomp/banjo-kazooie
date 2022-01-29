@@ -441,7 +441,7 @@ void func_803894A0(void){
         D_80389FA0.unk34 = func_8034A348(D_80389FA0.unk34);
     
     if(D_80389FA0.unk0)
-        D_80389FA0.unk0 =  func_802555DC(D_80389FA0.unk0);
+        D_80389FA0.unk0 =  defrag(D_80389FA0.unk0);
 
     if(D_80389FA0.unk18)
         D_80389FA0.unk18 = func_803406D4(D_80389FA0.unk18);

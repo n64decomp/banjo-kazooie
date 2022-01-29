@@ -622,10 +622,10 @@ void func_8031169C(void){
     for(i = 0; i< 2; i++){
         func_80318C0C(D_80382E20.zoombox[i]);
         if(D_80382E20.unk104[i]){
-            D_80382E20.unk104[i] = func_802555DC(D_80382E20.unk104[i]);
+            D_80382E20.unk104[i] = defrag(D_80382E20.unk104[i]);
         }
         if(D_80382E20.zoombox[i] != NULL){
-            D_80382E20.zoombox[i] = func_802555DC(D_80382E20.zoombox[i]);
+            D_80382E20.zoombox[i] = defrag(D_80382E20.zoombox[i]);
         }
     }
 }

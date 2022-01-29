@@ -176,7 +176,7 @@ void func_80334910(void) {
     func_80349C8C();
     func_80322FDC();
     func_8033BD6C();
-    func_80255198();
+    func_80255198();//heap_flush_free_queue
     func_802881AC();
 }
 

@@ -122,7 +122,7 @@ void func_80311740(void){
     for(i =0; i< 4; i++){
         if(D_80383010.zoombox[i]){
             func_80318C0C(D_80383010.zoombox[i]);
-            D_80383010.zoombox[i] = func_802555DC(D_80383010.zoombox[i]);
+            D_80383010.zoombox[i] = defrag(D_80383010.zoombox[i]);
         }
     }
 }

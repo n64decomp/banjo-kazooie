@@ -873,7 +873,7 @@ ParticleEmitter * func_802F0D74(ParticleEmitter *this){
         while(D_803689B0[i] != this && i < D_803689B4){
             i++;
         }
-        this = (ParticleEmitter *)func_802555DC(this);
+        this = (ParticleEmitter *)defrag(this);
         this->pList_start_124 = (Particle *)((s32)this + (u32)((s32)this->pList_start_124 - a3));
         this->pList_end_128 = (Particle *)((s32)this + (u32)((s32)this->pList_end_128 - a3));
         this->pList_capacity_12C = (Particle *)((s32)this + (u32)((s32)this->pList_capacity_12C - a3));
@@ -886,7 +886,7 @@ ParticleEmitter * func_802F0D74(ParticleEmitter *this){
 }
 
 void func_802F0E58(void){
-    D_803689B0 = (ParticleEmitter **)func_802555DC(D_803689B0);
+    D_803689B0 = (ParticleEmitter **)defrag(D_803689B0);
 }
 
 void func_802F0E80(void* arg0, s32 arg1){

@@ -114,7 +114,7 @@ void _gctranstion_changeState(s32 state, struct9s *arg1){
 
 void gctransition_8030B740(void){
     if(D_80382430.unkC != NULL)
-        D_80382430.unkC = func_80255724(D_80382430.unkC);
+        D_80382430.unkC = defrag_asset(D_80382430.unkC);
 }
 
 void gctransition_draw(Gfx **gdl, Mtx **mptr, Vtx **vptr){

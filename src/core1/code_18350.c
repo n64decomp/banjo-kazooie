@@ -625,11 +625,11 @@ f32 func_80257680(f32 val1, f32 val2, f32 val3)
 
 void func_802576F8(void)
 {
-    void *func_802555DC(void *);
+    void *defrag(void *);
 
     if (!func_802559A0() && D_80276CB8 != NULL)
         // Updates heap location for asin/acos value table?
-        D_80276CB8 = func_802555DC(D_80276CB8);
+        D_80276CB8 = defrag(D_80276CB8);
 }
 
 //ml_f_clamp_zero_to_one

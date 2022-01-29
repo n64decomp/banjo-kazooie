@@ -99,7 +99,7 @@ VLA * vector_802ED9E0(VLA *this){
 
    oldSize = (s32) this->end - (s32)this->begin;
    oldMemSize = (s32) this->mem_end - (s32)this->begin;
-   this = (VLA *)func_802555DC(this);
+   this = (VLA *)defrag(this);
    this->begin = &this->data;
    this->end = (void *)((s32)this->begin + oldSize);
    this->mem_end = (void *)((s32)this->begin + oldMemSize);

@@ -60,7 +60,7 @@ typedef struct actorAnimCtrl_s{
 AnimCtrl *animctrl_new(s32 arg0);
 void animctrl_free(AnimCtrl * this);
 void animctrl_update(AnimCtrl *this);
-AnimCtrl *func_80287434(AnimCtrl *this);
+AnimCtrl *animctrl_defrag(AnimCtrl *this);
 void animctrl_setIndex(AnimCtrl *this, enum asset_e index);
 Animation *animctrl_getAnimPtr(AnimCtrl *this);
 void func_8028746C(AnimCtrl *this,  void (* arg1)(s32,s32));

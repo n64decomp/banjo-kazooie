@@ -6,6 +6,7 @@
 extern u8 D_80370338[];
 extern u32 D_80383634;
 extern u32 D_80383638;
+extern s32 D_8038363C;
 extern s32 D_80383640;
 extern s32 D_80383644;
 
@@ -264,13 +265,11 @@ void func_80336904(Gfx **gfx, Vtx **vtx, BKSprite *sp, u32 frame){
 // // // //         temp_s2_2 = phi_s2 + 4;
 // // // //         phi_s2_3 = temp_s2_2;
 // // // //         if (temp_s2_2 == 0x10) {
-// // // //             if (arg4 != 0) {
-// // // //                 sp1B4->unk0 = 0x40040FF;
-// // // //                 sp1B4->unk4 = (s32) ((arg4 << 0x18) + (sp1B0 - sp184));
-// // // //             } else {
-// // // //                 sp1B4->unk0 = 0x40040FF;
-// // // //                 sp1B4->unk4 = sp1B0;
-// // // //             }
+            if (segment != 0) {
+                gSPVertex((*gfx)++, SEGMENT_ADDR(segment, *vtx - sp184, 16, 0);
+            } else {
+                gSPVertex((*gfx)++, 0x80001234, 16, 0);
+            }
 // // // //             temp_v1_73 = *arg0;
 // // // //             sp1B0 = temp_a3_3;
 // // // //             sp1B4 = temp_v1_73;
@@ -323,16 +322,23 @@ void func_803382E4(s32 arg0){
     D_80383634 = arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AE5D0/func_803382F0.s")
+void func_803382F0(s32 arg0){
+    D_80383638 = arg0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AE5D0/func_803382FC.s")
+void func_803382FC(s32 arg0){
+    D_8038363C = arg0;
+}
 
 void func_80338308(s32 arg0, s32 arg1){
     D_80383640 = arg0;
     D_80383644 = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AE5D0/func_8033831C.s")
+void func_8033831C(s32 *arg0, s32 *arg1){
+    *arg0 = D_80383640;
+    *arg1 = D_80383644;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AE5D0/func_80338338.s")
 

@@ -76,7 +76,7 @@ void func_802E2ED4(void){
     int i;
     for(i = 0; i < 0x9A; i++){
         if(D_8037E650[i]){
-            D_8037E650[i] = func_802555DC(D_8037E650[i]);
+            D_8037E650[i] = defrag(D_8037E650[i]);
         }
     }
 }

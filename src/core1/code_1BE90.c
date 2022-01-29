@@ -517,5 +517,5 @@ void func_8025AF38(void){
     for(iPtr = &D_80276E30[0]; iPtr < &D_80276E30[6]; iPtr++){
         iPtr->unk18 = func_802EDD00(iPtr->unk18);
     }
-    D_80276E30 = func_802555DC(D_80276E30);
+    D_80276E30 = defrag(D_80276E30);
 }

@@ -53,7 +53,7 @@ segments:
   - [0x13990, c, code_13990]
   - [0x15770, c, code_15770]
   - [0x15B30, c, code_15B30]
-  - [0x16A50, c, code_16A50]
+  - [0x16A50, c, memory]
   - [0x18110, c, code_18110]
   - [0x18210, c, code_18210]
   - [0x18310, c, code_18310]

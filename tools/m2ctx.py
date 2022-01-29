@@ -21,9 +21,6 @@ CPP_FLAGS = [
     "-D_FINALROM",
     "-DF3DEX_GBI",
     "-D_MIPS_SZLONG=32",
-    "-DSCRIPT(...)={}"
-    "-D__attribute__(...)=",
-    "-D__asm__(...)=",
     "-ffreestanding",
 ]
 

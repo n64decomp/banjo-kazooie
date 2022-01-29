@@ -100,5 +100,5 @@ void func_802EA1A8(struct58s **arg0, BKAnimationList *anim_list, s32 arg2){
 }
 
 struct58s *func_802EA374(struct58s *this){
-    return func_802555DC(this);
+    return defrag(this);
 }

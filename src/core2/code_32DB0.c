@@ -151,16 +151,16 @@ void func_802BA128(void){
         if(D_8037D5E0[i].unk3){
             switch(D_8037D5E0[i].unk0){
                 case 4:// L802BA17C
-                    D_8037D5E0[i].unk4 = func_802555DC(D_8037D5E0[i].unk4);
+                    D_8037D5E0[i].unk4 = defrag(D_8037D5E0[i].unk4);
                     break;
                 case 3:// L802BA18C
-                    D_8037D5E0[i].unk4 = func_802555DC(D_8037D5E0[i].unk4);
+                    D_8037D5E0[i].unk4 = defrag(D_8037D5E0[i].unk4);
                     break;
                 case 1:// L802BA19C
-                    D_8037D5E0[i].unk4 = func_802555DC(D_8037D5E0[i].unk4);
+                    D_8037D5E0[i].unk4 = defrag(D_8037D5E0[i].unk4);
                     break;
                 case 2:// L802BA1AC
-                    D_8037D5E0[i].unk4 = func_802555DC(D_8037D5E0[i].unk4);
+                    D_8037D5E0[i].unk4 = defrag(D_8037D5E0[i].unk4);
                     break;
                 case 0:// L802BA1B8
                     break;

@@ -30,7 +30,7 @@ void func_8023DA20(s32 arg0){
 
 void func_8023DA74(void){
     func_8033BD6C();
-    func_80255198();
+    func_80255198(); //heap_flush_free_queue
 }
 
 void func_8023DA9C(s32 arg0){

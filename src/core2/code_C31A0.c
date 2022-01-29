@@ -50,7 +50,7 @@ void func_8034A308(struct5Bs *this, s32 indx, f32 arg2[3]){
 
 struct5Bs *func_8034A348(struct5Bs *this){
     if(this){
-        this = (struct5Bs *)func_802555DC(this);
+        this = (struct5Bs *)defrag(this);
         this->unk0 = (f32(*)[3])(((s32)this + sizeof(struct5Bs)));
         this->unk4 = (f32(*)[3])((s32)this->unk0 + sizeof(f32[3])*CORE2_C31A0_VEC_COUNT);
     }

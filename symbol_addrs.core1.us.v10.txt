@@ -27,13 +27,18 @@ mlMtxScale_xyz  = 0x802521C0;
 mlMtxScale      = 0x80252280; 
 mlMtxTranslate  = 0x80252980;
 
-memcpy          = 0x80254608;
-heap_get_size   = 0x802546D0;
-heap_init       = 0x80254710;
+memcpy                  = 0x80254608;
+_heap_defragEmptyBlock  = 0x8025449C;
+heap_get_size           = 0x802546D0;
+heap_init               = 0x80254710;
+_heap_sortEmptyBlock    = 0x80254FD0;
 
-malloc = 0x80254CA8;
-free = 0x802550F0;
-realloc = 0x80255358;
+malloc                  = 0x80254CA8;
+free                    = 0x802550F0;
+realloc                 = 0x80255358;
+defrag                  = 0x802555DC;
+defrag_asset            = 0x80255724;
+
 ml_vec3f_dot_product = 0x80256034;
 ml_vec2f_length = 0x80256378;
 ml_vec3f_normalize_copy = 0x802563B8;

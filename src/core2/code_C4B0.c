@@ -264,6 +264,6 @@ void func_8029472C(void){
 
 void func_80294750(void){
      if(D_8037C200){
-          D_8037C200 = func_802555DC(D_8037C200);
+          D_8037C200 = defrag(D_8037C200);
      }
 }

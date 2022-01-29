@@ -194,7 +194,7 @@ s32 assetcache_release(void * arg0){
     }
 }
 
-void func_8033B574(void * arg0, void* arg1){
+void assetcache_update_ptr(void * arg0, void* arg1){
     s32 i;
 
     if((arg0 == NULL) || (arg1 == NULL) || (arg0 == arg1))
