@@ -1255,6 +1255,7 @@ enum sfx_e
     SFX_3EA_UNKNOWN,         //chjig
     SFX_3EB_UNKNOWN,         //bstimeout
     SFX_3EC_CCW_DOOR_OPENING,         //ccw and GV opening
+    SFX_3ED,
 
     SFX_3F1_UNKNOWN = 0x3f1, //bsstand
     SFX_3F2_UNKNOWN, //gold_chest_ttc
@@ -1488,6 +1489,9 @@ enum actor_e
     ACTOR_CA_TEEHEE = 0xCA,
 
     ACTOR_E4_FLIGHT_PAD     = 0xE4,
+
+    ACTOR_E6_GLOOP          = 0xE6,
+    ACTOR_E7_GLOOP_BUBBLE,
 
     actor_leafboat          = 0xF1,
 
@@ -2128,7 +2132,8 @@ enum asset_e
     ASSET_36E_MODEL_EXTRA_LIFE,
     ASSET_36F_MODEL_BANJO_PUMPKIN,
 
-    ASSET_371_MODEL_GRABBA = 0x371,
+    ASSET_371_MODEL_GRABBA  = 0x371,
+    ASSET_372_MODEL_GLOOP   = 0x372,
 
     ASSET_374_MODEL_BANJO_CROC = 0x374,
 
@@ -2401,6 +2406,8 @@ enum marker_e{
     
     MARKER_66_ORANGE_PAD = 0x66,
     MARKER_67_JUJU = 0x67,
+
+    MARKER_6A_GLOOP = 0x6A,
 
     MARKER_95_CHIMPY_STUMP = 0x95,
 
