@@ -10,6 +10,7 @@ typedef struct {
 }Struct_B5040;
 
 void savedata_clear(u8 *savedata);
+s32 savedata_verify(s32 arg0, SaveData *savedata);
 
 extern Struct_B5040 D_80370A20[];
 extern s32 D_80383CF0;
@@ -34,7 +35,19 @@ void func_8033BFD0(s32 buffer, s32 size){
     *(u32*)(buffer + size - 4) = sum;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B5040/func_8033C010.s")
+int _savedata_verify(SaveData *savedata, s32 size){
+    u32 result[2]; //sp28
+    u32 *crc_ptr;
+    u32 expect_crc; //sp20
+
+    crc_ptr = (u32*)((s32)savedata + size) - 1;
+    expect_crc = *crc_ptr;
+    glcrc_calc_checksum(savedata, crc_ptr, result);
+    *crc_ptr = expect_crc;
+    if((result[0]^result[1]) != expect_crc) 
+        return 0x6e382;
+    return 0;
+}
 
 void func_8033C070(void){ //savedata_init
     s32 sp54;
@@ -260,11 +273,39 @@ void func_8033C9A8(u8 *savedata){ //savedata_save_abilities
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B5040/func_8033CA2C.s")
+s32 func_8033CA2C(s32 filenum, SaveData *save_data){
+    s32 sp1C;
+    
+    sp1C = load_file_blocks(filenum, 0, save_data, 0xF);
+    if( sp1C 
+        || savedata_verify(0x78, save_data) 
+        || ((u8*)save_data)[D_80383CF0] != 0x11
+    ){
+        sp1C = 2;
+    }
+    return sp1C;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B5040/func_8033CA9C.s")
+s32 func_8033CA9C(SaveData *savedata){
+    s32 sp1C;
+    
+    sp1C = load_file_blocks(0, 0x3C, savedata, 0x4);
+    if( sp1C 
+        || savedata_verify(0x20, savedata) 
+    ){
+        sp1C = 2;
+    }
+    return sp1C;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B5040/func_8033CAF0.s")
+s32 savedata_verify(s32 size, SaveData *savedata){
+    s32 v1;
+
+    v1 = _savedata_verify(savedata, size);
+    if(v1)
+        v1 = 3;
+    return v1;
+}
 
 void saveData_load(SaveData *savedata){
     int i;

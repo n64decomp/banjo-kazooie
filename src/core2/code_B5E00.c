@@ -87,29 +87,16 @@ void func_8033D17C(s32 gamenum){
     saveData_create(&D_80383D20[filenum]);
 }
 
-int func_8033D1BC(s32 gamenum){
+bool func_8033D1BC(s32 gamenum){
     s32 filenum = D_80383F00[gamenum];
     return D_80383D20[filenum].unk0 != 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B5E00/func_8033D1EC.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B5E00/func_8033D240.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B5E00/func_8033D2A8.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B5E00/func_8033D2F4.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B5E00/func_8033D410.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B5E00/func_8033D564.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B5E00/func_8033D574.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B5E00/func_8033D584.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B5E00/func_8033D594.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B5E00/func_8033D5A4.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B5E00/func_8033D5B4.s")
+bool func_8033D1EC(void){
+    int i;
+    for(i = 0; i < 3; i++){
+        if(func_8033D1BC(i))
+            return TRUE;
+    }
+    return FALSE;
+}

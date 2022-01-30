@@ -295,8 +295,9 @@ segments:
   - [0xAE5D0, c, code_AE5D0]
   - [0xB1400, c, code_B1400]
   - [0xB3A80, c, code_B3A80]
-  - [0xB5040, c, code_B5040]
+  - [0xB5040, c, code_B5040] #DONE
   - [0xB5E00, c, code_B5E00]
+  - [0xB62B0, c, code_B62B0]
   - [0xB6640, c, code_B6640]
   - [0xB66D0, c, string]
   - [0xB6C60, c, code_B6C60]
