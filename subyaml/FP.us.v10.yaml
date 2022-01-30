@@ -42,7 +42,7 @@ segments:
       - [0x4770, c, code_4770]
       - [0x5CC0, c, code_5CC0]
       - [0x6AE0, c, code_6AE0]
-      - [0x7980, c, code_7980]
+      - [0x7980, c, code_7980] #DONE
       - [0x8330, c, code_8330] #DONE
       - [0x87E0, c, code_87E0] #DONE
       - [0x8D00, c, code_8D00] #DONE
@@ -66,6 +66,8 @@ segments:
       - [0x0000B6A0, .data, code_790]
       - [0x0000B760, .data, code_A40]
       - [0x0000B790, bin, data_B790]
+      - [0x0000BFA0, .data, code_7980]
+      - [0x0000C010, bin, data_C010]
       - [0x0000C080, .data, code_87E0]
       - [0x0000C0B0, .data, code_8D00]
       - [0x0000C130, bin, data_C130]
@@ -76,6 +78,7 @@ segments:
       - [0x0000C790, .rodata, code_0]
       - [0x0000C7A0, .rodata, code_A40]
       - [0x0000C800, bin, data_C800]
+      - [0x0000CA50, .rodata, code_7980]
       - [0x0000CA80, .rodata, code_87E0]
       - [0x0000CA90, .rodata, code_8E20]
       - [0x0000CAE0, .rodata, ch/wozzasjig]

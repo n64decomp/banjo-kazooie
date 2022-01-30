@@ -6,10 +6,10 @@ void func_803867BC(Actor *this);
 
 /* .data */
 ActorAnimationInfo D_803919F0[] ={
-    {ASSET_1A1_AMIN_SLED, 1.0f},
-    {ASSET_1A1_AMIN_SLED, 1.0f},
-    {ASSET_1A1_AMIN_SLED, 1.0f},
-    {ASSET_1A1_AMIN_SLED, 1.0f}
+    {ASSET_1A1_ANIM_SLED, 1.0f},
+    {ASSET_1A1_ANIM_SLED, 1.0f},
+    {ASSET_1A1_ANIM_SLED, 1.0f},
+    {ASSET_1A1_ANIM_SLED, 1.0f}
 };
 
 ActorInfo D_80391A10 = {

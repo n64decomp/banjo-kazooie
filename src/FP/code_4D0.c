@@ -7,10 +7,10 @@ void func_80386AA4(Actor *this);
 
 /* .data */
 ActorAnimationInfo D_80391A40 []= {
-    { ASSET_1A1_AMIN_SLED, 1.0f},
-    { ASSET_1A1_AMIN_SLED, 1.0f},
-    { ASSET_1A1_AMIN_SLED, 1.0f},
-    { ASSET_1A1_AMIN_SLED, 1.0f}
+    { ASSET_1A1_ANIM_SLED, 1.0f},
+    { ASSET_1A1_ANIM_SLED, 1.0f},
+    { ASSET_1A1_ANIM_SLED, 1.0f},
+    { ASSET_1A1_ANIM_SLED, 1.0f}
 };
 
 ActorInfo D_80391A60 = { 
