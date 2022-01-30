@@ -45,7 +45,9 @@ extern ActorInfo D_803920E8 = { 0x204, 0x336, 0x442,
 
 #pragma GLOBAL_ASM("asm/nonmatchings/FP/code_6AE0/func_8038D6C8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_6AE0/func_8038DD14.s")
+bool func_8038DD14(void){
+    return mapSpecificFlags_get(0xD);
+}
 
 bool func_8038DD34(ActorMarker *marker){
     Actor *this = marker_getActor(marker);

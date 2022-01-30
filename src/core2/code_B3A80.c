@@ -22,7 +22,7 @@ extern u32 D_80383CC8;
 extern s32 D_80383CCC; //asset_data_rom_offset
 extern void** D_80383CD0; //assetCache_ptrs;
 extern BKSpriteDisplayData **D_80383CD4;
-extern u8* D_80383CD8; //assetCache_dependencies;
+extern u8* assetCache_depCount; //assetCache_dependencies;
 extern s16 *D_80383CDC; //assetCache_indexs
 
 struct {
@@ -174,19 +174,19 @@ s32 assetcache_release(void * arg0){
             return 2;
 
         D_80370A18 = i;
-        if(D_80383CD8[i] == 1){
+        if(assetCache_depCount[i] == 1){
             if(D_80383CD4[i])
                 func_803449DC(D_80383CD4[i]);
             free(arg0);
             D_80370A14--;
-            D_80383CD8[i] = D_80383CD8[D_80370A14];
+            assetCache_depCount[i] = assetCache_depCount[D_80370A14];
             D_80383CD0[i] = D_80383CD0[D_80370A14];
             D_80383CD4[i] = D_80383CD4[D_80370A14];
             D_80383CDC[i] = D_80383CDC[D_80370A14];
             return 0;
         }
         else{
-            D_80383CD8[i]--;
+            assetCache_depCount[i]--;
             return 1;
         }
     } else{
@@ -232,7 +232,7 @@ s32 func_8033B684(s32 arg0){ //asset_size
     return D_80383CC4[arg0+1].offset - D_80383CC4[arg0].offset;
 }
 
-s32 func_8033B6A4(s32 arg0){ //asset_compressed?
+s32 func_8033B6A4(enum asset_e arg0){ //asset_compressed?
     return (D_80383CC4[arg0].compFlag & 1) !=0;
 }
 
@@ -253,9 +253,6 @@ void func_8033B788(void ){
     D_80370A1C = 1;
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B3A80/assetcache_get.s")
-#else
 void *assetcache_get(s32 arg0) {
     s32 comp_size;//sp_44
     s32 i;
@@ -274,7 +271,7 @@ void *assetcache_get(s32 arg0) {
         return NULL;
     
     if(i < D_80370A14){ //asset exists in array;
-        D_80383CD8[i]++;
+        assetCache_depCount[i]++;
         return D_80383CD0[i];
     }
     comp_size = D_80383CC4[arg0+1].offset - D_80383CC4[arg0].offset;
@@ -291,9 +288,9 @@ void *assetcache_get(s32 arg0) {
             uncomp_size += 0x10;
         }
         
-        if (func_8025498C(comp_size + uncomp_size) && !sp28) {
+        if (func_8025498C((u32)comp_size + uncomp_size) && !sp28) {
             sp33 = 1;
-            uncompressed_file = malloc(comp_size + uncomp_size);
+            uncompressed_file = malloc((u32)comp_size + uncomp_size);
             compressed_file = (s32) uncompressed_file + uncomp_size;
         } else {
             sp33 = 2;
@@ -314,18 +311,16 @@ void *assetcache_get(s32 arg0) {
         osWritebackDCache(uncompressed_file, D_80370A10);
         if (sp33 == 2) {
             free(compressed_file);
-
         }
     }
     D_80370A18 = D_80370A14;
-    D_80383CD8[D_80370A14] = 1;
+    assetCache_depCount[D_80370A14] = 1;
     D_80383CD0[D_80370A14] = uncompressed_file;
     D_80383CD4[D_80370A14] = 0;
     D_80383CDC[D_80370A14] = arg0;
     D_80370A14++;
     return uncompressed_file;
 }
-#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B3A80/func_8033BAB0.s")
 
@@ -337,13 +332,13 @@ void func_8033BB00(void *arg0, s32 arg1){
     D_80383CD0[i] = realloc(arg0, arg1);
 }
 
-//assetTable_init
+//assetCache_init
 void func_8033BB84(void){
     D_80370A1C = 0;
     func_8033B180();
     D_80383CD0 = malloc(600);
     D_80383CD4 = malloc(600);
-    D_80383CD8 = malloc(150);
+    assetCache_depCount = malloc(150);
     D_80383CDC = malloc(150*sizeof(s16));
     D_80370A14 = 0;
     D_80383CC0 = malloc(sizeof(AssetROMHead));
@@ -354,16 +349,16 @@ void func_8033BB84(void){
     D_80383CCC = D_80383CC8 + sizeof(AssetROMHead) + D_80383CC0->count*sizeof(AssetFileMeta);
 }
 
-s32 func_8033BC94(s32 arg0){ //asset_size
+s32 func_8033BC94(s32 arg0){ //asset_compressedSize
     return D_80383CC4[arg0+1].offset - D_80383CC4[arg0].offset;
 }
 
-s32 func_8033BCB4(s32 arg0){
+s32 func_8033BCB4(s32 arg0){ //asset_getDependencyCount
     s32 i;
 
     for(i = 0; i < D_80370A14  && arg0 != D_80383CDC[i]; i++);
     if(i < D_80370A14){
-        return D_80383CD8[i];
+        return assetCache_depCount[i];
     }
     return 0;
 }
