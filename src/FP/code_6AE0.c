@@ -47,4 +47,9 @@ extern ActorInfo D_803920E8 = { 0x204, 0x336, 0x442,
 
 #pragma GLOBAL_ASM("asm/nonmatchings/FP/code_6AE0/func_8038DD14.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_6AE0/func_8038DD34.s")
+bool func_8038DD34(ActorMarker *marker){
+    Actor *this = marker_getActor(marker);
+    if(func_80329530(this, 800))
+        return TRUE;
+    return FALSE;
+}
