@@ -644,4 +644,13 @@ typedef struct {
     f32 (*unk4)[3];
 }struct5Bs;
 
+typedef struct{
+    u16 unk0_15 : 4;
+    u16 unk0_11 : 2;
+    u16 unk0_9  : 3;
+    u16 unk0_6  : 2;
+    u16 unk0_4  : 3;
+    u16 unk0_1  : 2;
+}struct5Cs;
+
 #endif

@@ -46,7 +46,7 @@ int func_8033CFD4(s32 gamenum){
     bcopy(&D_80383D20[D_80383F00[prev]], &D_80383D20[next], 0x78);
     tmp_s2 = &D_80383D20[D_80383F04];
     tmp_s2->unk1 = gamenum + 1;
-    func_8033BFD0(tmp_s2, 0x78);
+    savedata_update_crc(tmp_s2, 0x78);
     for(i = 3; i > 0; i--){//L8033D070
         tmp_s1 = func_8033CC98(next, tmp_s2);
         if(!tmp_s1){

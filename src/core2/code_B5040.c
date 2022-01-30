@@ -16,18 +16,18 @@ extern Struct_B5040 D_80370A20[];
 extern s32 D_80383CF0;
 extern s32 D_80383CF4; //jiggy_offset
 extern s32 D_80383CF8; //honeycomb_offset
-extern s32 D_80383CFC;
-extern s32 D_80383D00;
-extern s32 D_80383D04;
+extern s32 D_80383CFC; //mumbotoken_offset
+extern s32 D_80383D00; //notescores_offset
+extern s32 D_80383D04; //timescores_offset
 extern s32 D_80383D08; //savedata_jiggy_offset
 extern s32 D_80383D0C; //saved_item_offset
-extern s32 D_80383D10;
-extern s32 D_80383D14;
+extern s32 D_80383D10; //abilities_offset
+extern s32 D_80383D14; //end_offset
 
 extern u8 D_80383D18;
 
 /* .code */
-void func_8033BFD0(s32 buffer, s32 size){
+void savedata_update_crc(s32 buffer, s32 size){
     u32 sp20[2];
     u32 sum;
     glcrc_calc_checksum(buffer, buffer + size - 4, sp20);
@@ -69,7 +69,7 @@ void func_8033C070(void){ //savedata_init
     
     jiggyscore_info(&sp54, &sp34);
     func_803214EC(&sp50, &sp30);
-    func_803216B4(&sp4C, &sp2C);
+    mumboscore_get_size_and_ptr(&sp4C, &sp2C);
     func_8032008C(&sp40, &sp28);
     func_80346F44(&sp48, &sp24);
     func_8034722C(&sp44, &sp20);
@@ -111,12 +111,12 @@ void __savedata_load_honeycombScore(u8 *savedata){ //savedata_save_honeycomb
     func_80347958();
 }
 
-void func_8033C2BC(u8 *savedata){
+void __savedata_load_mumboScore(u8 *savedata){
     s32 sp2C;
     u8 *sp28;
     int i;
     
-    func_803216B4(&sp2C, &sp28);
+    mumboscore_get_size_and_ptr(&sp2C, &sp28);
     for(i = D_80383CFC; i < D_80383CFC + sp2C; i++){
         sp28[i - D_80383CFC] = savedata[i];
     }
@@ -207,12 +207,12 @@ void __savedata_save_honeycombScore(u8 *savedata){ //savedata_save_honeycomb
     }
 }
 
-void func_8033C714(u8 *savedata){
+void __savedata_save_mumboScore(u8 *savedata){
     s32 sp2C;
     u8 *sp28;
     int i;
     
-    func_803216B4(&sp2C, &sp28);
+    mumboscore_get_size_and_ptr(&sp2C, &sp28);
     for(i = D_80383CFC; i < D_80383CFC + sp2C; i++){
         savedata[i] = sp28[i - D_80383CFC];
     }
@@ -312,7 +312,7 @@ void saveData_load(SaveData *savedata){
     func_8033C460(savedata);
     __savedata_load_jiggyScore(savedata);
     __savedata_load_honeycombScore(savedata);
-    func_8033C2BC(savedata);
+    __savedata_load_mumboScore(savedata);
     func_8033C348(savedata);
     func_8033C3D4(savedata);
     func_8033C4E4(savedata);
@@ -331,13 +331,13 @@ void saveData_create(SaveData *savedata){
     func_8033C5F4(savedata);
     __savedata_save_jiggyScore(savedata);
     __savedata_save_honeycombScore(savedata);
-    func_8033C714(savedata);
+    __savedata_save_mumboScore(savedata);
     func_8033C798(savedata);
     func_8033C81C(savedata);
     func_8033C8A0(savedata);
     func_8033C924(savedata);
     func_8033C9A8(savedata);
-    func_8033BFD0(savedata, sizeof(SaveData));
+    savedata_update_crc(savedata, sizeof(SaveData));
 }
 
 int func_8033CC98(s32 filenum, u8 *buffer){
@@ -360,7 +360,7 @@ int func_8033CCD0(s32 filenum){
 
 int func_8033CD0C(u8 *buffer){
     int out;
-    func_8033BFD0(buffer, 0x20);
+    savedata_update_crc(buffer, 0x20);
     out = write_file_blocks(0, 0x3C, buffer, 4);
     if(out){
         out = 1;

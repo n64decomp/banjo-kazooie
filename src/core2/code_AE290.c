@@ -48,13 +48,23 @@ int func_80335354(int uid, struct46s *arg1){
     return func_80244608(func_8024F758(), (s16) (uid + 1), arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AE290/func_80335394.s")
+void func_80335394(s32 arg0, f32 arg1){
+    func_80244978(arg0, 0x10, reinterpret_cast(s32, arg1));
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AE290/func_803353BC.s")
+void func_803353BC(s32 arg0, u16 arg1){
+    if(arg1 > 0x7fff)
+        arg1 = 0x7fff;
+    func_80244978(arg0, 0x8, arg1);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AE290/func_803353F4.s")
+void func_803353F4(s32 arg0, s32 arg1){
+    func_80244978(arg0, 0x100, arg1);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AE290/func_80335418.s")
+void func_80335418(s32 arg0, s32 arg1){
+    func_80244978(arg0, 0x4, arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AE290/func_8033543C.s")
 
