@@ -771,7 +771,7 @@ void func_8028BCA0(Prop *prop){
                     sp98 = func_802CA1C4(marker_getActor(marker));
                     if(sp98 != HONEYCOMB_12_MMM_FLOORBOARD || player_getTransformation() == TRANSFORM_3_PUMPKIN)
                     {
-                        func_80321364(sp98, 1);
+                        honeycombscore_set(sp98, 1);
                         func_8025A6EC(COMUSIC_17_EMPTY_HONEYCOMB_COLLECTED, 28000);
                         timedFunc_set_1(2.0f, func_8035644C, 0xB);
                         item_inc(ITEM_13_EMPTY_HONEYCOMB);

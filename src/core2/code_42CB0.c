@@ -2,6 +2,10 @@
 #include "functions.h"
 #include "variables.h"
 
+typedef struct{
+    s32 uid;
+}ActorLocal_EmptyHoneycomb;
+
 void func_802C9E70(Actor *this);
 
 /* .data */
@@ -26,6 +30,9 @@ extern ActorInfo D_80366CA4 = { MARKER_55_HONEYCOMB, ACTOR_50_HONEYCOMB, ASSET_3
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_42CB0/func_802C9E70.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_42CB0/func_802CA1C4.s")
+enum honeycomb_e func_802CA1C4(Actor *this){
+    ActorLocal_EmptyHoneycomb *local = (ActorLocal_EmptyHoneycomb *)&this->local;
+    return local->uid;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_42CB0/func_802CA1CC.s")

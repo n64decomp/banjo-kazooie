@@ -62,7 +62,7 @@ void func_802E2E40(void){
 }
 #endif
 
-void mapSavestate_clearAll(void){
+void mapSavestate_free_all(void){
     int i;
     for(i = 0; i < 0x9A; i++){
         if(D_8037E650[i]){
@@ -72,7 +72,7 @@ void mapSavestate_clearAll(void){
     }
 }
 
-void func_802E2ED4(void){
+void mapSavestate_defrag_all(void){
     int i;
     for(i = 0; i < 0x9A; i++){
         if(D_8037E650[i]){
@@ -177,7 +177,24 @@ void func_802E3800(void){
     func_8024CFD4();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5BEB0/func_802E3854.s")
+void func_802E3854(void){
+    int i;
+
+    func_8033B61C();
+    func_80254464();
+    for(i = 0; i < 0xF; i++){
+        func_802E6820(5);
+        func_8033A4D8();
+        mapSavestate_defrag_all();
+        gctransition_8030B740();
+        func_802F542C();
+        func_80350E00();
+        func_802FA4E0();
+        func_8033B5FC();
+        func_80325288();
+        func_8025AF38();
+    }
+}
 
 void func_802E38E8(enum map_e map, s32 exit, s32 reset_on_load){
     if(reset_on_load || level_get() != map_getLevel(map)){
@@ -238,7 +255,7 @@ void func_802E39D0(Gfx **gdl, Mtx **mptr, Vtx **vptr, s32 arg3, s32 arg4){
         func_802FAB54(gdl, mptr, vptr);
     }
 
-    func_802F6E94(gdl, mptr, vptr);
+    printbuffer_draw(gdl, mptr, vptr);
 
     if( D_8037E8E0.game_mode != GAME_MODE_A_SNS_PICTURE
         || D_8037E8E0.unk19 == 6

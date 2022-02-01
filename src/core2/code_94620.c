@@ -1706,7 +1706,7 @@ void func_8031FBA0(void) {
     func_8031FFAC();
     func_8034646C();
     jiggyscore_clearAll();
-    func_80321340();
+    honeycombscore_clear();
     mumboscore_clear();
     func_8032048C();
     func_802D6344();
@@ -1714,7 +1714,7 @@ void func_8031FBA0(void) {
 
 void func_8031FBF8(void) {
     mumboscore_debug();
-    func_80321338();
+    honeycombscore_debug();
     jiggyscore_debug();
     func_803465DC();
     func_8029A890();

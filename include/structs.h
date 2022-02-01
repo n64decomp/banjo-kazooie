@@ -653,4 +653,16 @@ typedef struct{
     u16 unk0_1  : 2;
 }struct5Cs;
 
+typedef struct struct_5d_s{
+    s32 unk0;
+    f32 unk4[3];
+    f32 unk10;
+    void (*unk14)(struct struct_5d_s *, s32);
+    void (*unk18)(struct struct_5d_s *, s32);
+    u8 unk1C;
+    u8 unk1D;
+    u8 unk1E;
+    u8 unk1F;
+}Struct5Ds;
+
 #endif

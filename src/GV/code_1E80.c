@@ -121,7 +121,7 @@ void chgobi3_update(Actor *this){
         this->unk1C[0] = 0.0f;
         this->unk1C[1] = 0.0f;
         chgobi3_setState(this, 1);
-        if(func_803212E4(HONEYCOMB_C_GV_GOBI_3))
+        if(honeycombscore_get(HONEYCOMB_C_GV_GOBI_3))
             marker_despawn(this->marker);
         return;
     }

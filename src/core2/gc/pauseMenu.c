@@ -226,7 +226,7 @@ void func_80311BD4(s32 level, s32 *valPtr, s32 *maxPtr){
 }
 
 void func_80311C0C(s32 level, s32 *valPtr, s32 *maxPtr){
-    *valPtr = func_803213F8(level);
+    *valPtr = honeycombscore_get_level_total(level);
     *maxPtr = (level == LEVEL_B_SPIRAL_MOUNTAIN)? 6 : 2;
 }
 
@@ -301,7 +301,7 @@ void func_80311EF8(s32 *dst){
 }
 
 void func_80311F20(s32 *dst){
-    *dst = func_8032149C(); //honeycomb_total
+    *dst = honeycombscore_get_total(); //honeycomb_total
 }
 
 #if NONMATCHING

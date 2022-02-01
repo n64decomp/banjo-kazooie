@@ -77,7 +77,7 @@ void func_80321854(void){
         }
         func_8029A924(); //null
         func_803465BC(); //null
-        mapSavestate_clearAll();
+        mapSavestate_free_all();
         func_8032196C();
     }
 }

@@ -237,6 +237,7 @@ segments:
   - [0x6CEC0, c, code_6CEC0] #DONE
   - [0x6D030, c, code_6D030] #DONE
   - [0x6D270, c, code_6D270]
+  - [0x6D490, c, code_6D490] #DONE
   - [0x6DA30, c, code_6DA30]
   - [0x70C30, c, code_70C30] #DONE
   - [0x70F20, c, code_70F20]
@@ -276,7 +277,7 @@ segments:
   - [0x999A0, c, code_999A0]
   - [0x99F80, c, jiggyscore] #DONE
   - [0x9A320, c, code_9A320] #DONE
-  - [0x9A580, c, code_9A580]
+  - [0x9A580, c, code_9A580] #DONE
   - [0x9A740, c, code_9A740]
   - [0x9A9D0, c, code_9A9D0] #DONE
   - [0x9AD00, c, levelspecificflags]
@@ -432,6 +433,8 @@ segments:
   - [0xE1DF0, .data, code_6CD20]
   - [0xE1E40, .data, code_6D030]
   - [0xE1E50, bin, data_E1E50]
+  - [0xE1E60, .data, code_6D490]
+  - [0xE2070, bin, data_E2070]
   - [0xE2350, .data, code_73640]
   - [0xE2790, .data, code_74090]
   - [0xE2840, .data, code_74290]
@@ -569,6 +572,7 @@ segments:
   - [0xF0280, .rodata, code_6CEC0]
   - [0xF0290, .rodata, code_6D030]
   - [0xF02A0, bin, data_F02A0]
+  - [0xF02B0, bin, data_F02B0] #.rodata, code_6DA30]
   - [0xF0390, .rodata, code_71820]
   - [0xF03B0, bin, data_F03B0]
   - [0xF03D0, .rodata, code_73640]

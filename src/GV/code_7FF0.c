@@ -406,7 +406,7 @@ void chStarSwitch_update(Actor *this){
 }
 
 void chHoneycombSwitch_update(Actor *this){
-    if(!mapSpecificFlags_get(0xd) && func_803212E4(HONEYCOMB_B_GV_CACTUS)){
+    if(!mapSpecificFlags_get(0xd) && honeycombscore_get(HONEYCOMB_B_GV_CACTUS)){
         mapSpecificFlags_set(0xd, TRUE);
     }
     func_802D4A9C(this, 0xd);

@@ -3,7 +3,7 @@
 #include "variables.h"
 
 #define MUMBO_TOKEN_COUNT 126
-#define MUMBOSCORE_SIZE (((MUMBO_TOKEN_COUNT + 7) & ~7)/8)
+#define MUMBOSCORE_SIZE (((MUMBO_TOKEN_COUNT-1 + 7) & ~7)/8)
 
 void mumboscore_debug(void);
 void mumboscore_clear(void);
@@ -43,7 +43,7 @@ void mumboscore_set(s32 indx,  bool val){
     }
 }
 
-s32 mumboscore_getTotal(void){
+s32 mumboscore_get_total(void){
     s32 i = 1;
     s32 cnt = 0;
 

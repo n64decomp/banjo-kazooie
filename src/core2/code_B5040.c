@@ -68,7 +68,7 @@ void func_8033C070(void){ //savedata_init
     u8 *sp18;
     
     jiggyscore_info(&sp54, &sp34);
-    func_803214EC(&sp50, &sp30);
+    honeycombscore_get_size_and_ptr(&sp50, &sp30);
     mumboscore_get_size_and_ptr(&sp4C, &sp2C);
     func_8032008C(&sp40, &sp28);
     func_80346F44(&sp48, &sp24);
@@ -104,7 +104,7 @@ void __savedata_load_honeycombScore(u8 *savedata){ //savedata_save_honeycomb
     u8 *sp28;
     int i;
     
-    func_803214EC(&sp2C, &sp28);
+    honeycombscore_get_size_and_ptr(&sp2C, &sp28);
     for(i = D_80383CF8; i < D_80383CF8 + sp2C; i++){
         sp28[i - D_80383CF8] = savedata[i];
     }
@@ -201,7 +201,7 @@ void __savedata_save_honeycombScore(u8 *savedata){ //savedata_save_honeycomb
     u8 *sp28;
     int i;
     
-    func_803214EC(&sp2C, &sp28);
+    honeycombscore_get_size_and_ptr(&sp2C, &sp28);
     for(i = D_80383CF8; i < D_80383CF8 + sp2C; i++){
         savedata[i] = sp28[i - D_80383CF8];
     }
