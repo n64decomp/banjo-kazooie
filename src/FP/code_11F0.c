@@ -2,10 +2,13 @@
 #include "functions.h"
 #include "variables.h"
 
+extern void func_80324CD8(f32);
+
 Actor *func_803875E0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void func_8038774C(Actor *this);
 void func_8038794C(Actor *this);
 
+/* .data */
 extern ActorAnimationInfo D_80391B80[];
 
 extern ActorInfo D_80391BB0 = { 
@@ -14,23 +17,183 @@ extern ActorInfo D_80391BB0 = {
     func_8038774C, func_8038794C, func_803875E0, 
     { 0x9, 0xc4}, 0, 1.4f, { 0x0, 0x0, 0x0, 0x0}
 };
+extern f32 D_80391BD4[3];
+extern f32 D_80391BE0[3];
+extern f32 D_80391BEC[5];
+extern f64 D_80392C00;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_11F0/func_803875E0.s")
+/* .rodata */
+extern f32 D_80392BF0;
+extern f32 D_80392BF4;
+extern f32 D_80392BF8;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_11F0/func_803876A4.s")
+/* .code */
+Actor *func_803875E0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
+    Actor *this = marker_getActor(marker);
+    
+    if(!this->unk38_31 || this->state == 5)
+        return this;
+    
+    func_8033A45C(1, 0);
+    func_8033A45C(3, 1);
+    this = func_80325888(marker, gfx, mtx, vtx);
+    if(marker->unk14_21){
+        func_8034A174(func_80329934(), 5, this->velocity);
+    }
+    return this;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_11F0/func_803876F8.s")
+void func_803876A4(Actor *this){
+    func_80328B8C(this, 2, 0.0001f, 1);
+    actor_playAnimationOnce(this);
+    FUNC_8030E8B4(SFX_8E_GRUNTLING_DAMAGE, 1000, 0x3ff, this->position, 1250, 2500);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_11F0/func_8038774C.s")
+void func_803876F8(Actor *this){
+    this->marker->propPtr->unk8_3 = FALSE;
+    func_80328B8C(this, 5, 0.0001f, 1);
+    this->unk48 = 0.0f;
+    func_80343DEC(this);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_11F0/func_80387754.s")
+void func_8038774C(Actor *this){}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_11F0/func_80387760.s")
+void func_80387754(ActorMarker *this_marker, ActorMarker *other_marker){}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_11F0/func_803877A8.s")
+void func_80387760(ActorMarker *marker){
+    Actor *other = func_80328230(ACTOR_C8_BOGGY_ON_SLED_2, D_80391BD4, D_80391BE0);
+    other->unk4C = 1.0f;
+    func_80343DEC(other);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_11F0/func_80387828.s")
+void func_803877A8(ActorMarker *caller, enum asset_e text_id, s32 arg2){
+    Actor *this = marker_getActor(caller);
+    
+    if(arg2 == 1){
+        jiggySpawn(JIGGY_2A_FP_BOGGY_1, this->velocity);
+    }
+    else if(arg2 == 2){
+        func_80328B8C(this, 4, 0.0001f, 1);
+        actor_loopAnimation(this);
+        actor_collisionOff(this);
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_11F0/func_8038787C.s")
+void func_80387828(ActorMarker *caller, enum asset_e text_id, s32 arg2){
+    Actor *this = marker_getActor(caller);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_11F0/func_8038794C.s")
+    if(text_id == 0xc00){
+        func_80311480(0xc2b, 0xf, NULL, this->marker, NULL, func_803877A8);
+    }
+}
+
+void func_8038787C(ActorMarker *marker){
+    Actor *this = marker_getActor(marker);
+    s32 s0;
+    f32 sp24;
+    s32 sp20;
+
+    s0 = func_802F9AA8(SFX_12B_BOILING_AND_BUBBLING);
+    sp24 = randf2(D_80392BF0, D_80392BF4);
+    sp20 = (s32)randf2(16000, D_80392BF8);
+    func_802F9DB8(s0, sp24, sp24, 0.0f);
+    func_802F9EC4(s0, this->position, 500, 1200);
+    func_802F9F80(s0, 0.05f, 0.2f, 0.3f);
+    func_802FA060(s0, sp20, sp20, 0.0f);
+}
+
+void func_8038794C(Actor *this){
+    int i;
+
+    if(!this->unk16C_4){
+        this->unk16C_4 = TRUE;
+        this->marker->propPtr->unk8_3 = TRUE;
+        func_803300A8(this->marker, NULL, func_80387754, NULL);
+        this->unk38_31 = 1;
+        ml_vec3f_copy(this->velocity, this->position);
+        
+        if(func_803203FC(1))
+            return;
+
+        if(!jiggyscore_isCollected(JIGGY_2A_FP_BOGGY_1) && jiggyscore_isSpawned(JIGGY_2A_FP_BOGGY_1)){
+            func_803876F8(this);
+            actor_collisionOff(this);
+        }
+
+        if(jiggyscore_isCollected(JIGGY_2A_FP_BOGGY_1)){
+            if(!jiggyscore_isCollected(JIGGY_2C_FP_BOGGY_3) && !jiggyscore_isSpawned(JIGGY_2C_FP_BOGGY_3)){
+                func_802C3C88(func_80387760, this->marker);
+            }
+            this->unk38_31 = 0;
+            actor_collisionOff(this);
+            this->marker->propPtr->unk8_3 = FALSE;
+        }
+    }//L80387A68
+    
+    if( !this->unk38_31 ) return;
+    switch(this->state){
+        case 1://L80387AB0
+            if(mapSpecificFlags_get(0xb))
+                this->unk138_24 = TRUE;
+
+            if(mapSpecificFlags_get(0x1)){
+                func_8028F94C(1, this->position);
+                timed_setCameraToNode(0.0f, 0x12);
+                func_80324DBC(1.0f, 0xc00, 0xe, NULL, this->marker, func_80387828, func_803877A8);
+                func_803876A4(this);
+                break;
+            }//L80387B38
+
+            if(!this->unk138_24 && func_80329530(this, 0x1f4)){
+                if(!func_8028ECAC() || func_8028ECAC() == 8){
+                    if(func_80311480(0xbff, 0x2a, this->position, NULL, NULL, NULL)){
+                        for(i = 0; i <5; i++ ){
+                            timedFunc_set_1(D_80391BEC[i], func_8038787C, (s32)this->marker);
+                        }
+                        this->unk138_24 = TRUE;
+                    }
+                }
+            }
+
+            break;
+        case 2://L80387BEC
+            func_8028FC8C(this->position);
+            if(actor_animationIsAt(this, 0.1f)){
+                FUNC_8030E8B4(SFX_F6_BLUBBER_TALKING_2, 1000, 0x3ff, this->position, 1250, 2500);
+            }
+            else if(actor_animationIsAt(this, 0.24f)){//L80387C2C
+                FUNC_8030E8B4(SFX_A0_COUGHING, 1000, 0x2CC, this->position, 1250, 2500);
+            }
+            else if(actor_animationIsAt(this, 0.52f)){//L80387C60
+                FUNC_8030E8B4(SFX_A0_COUGHING, 1000, 0x2AD, this->position, 1250, 2500);
+            }
+            else if(actor_animationIsAt(this, 0.61f)){//L80387C94
+                FUNC_8030E8B4(SFX_A0_COUGHING, 1000, 0x28E, this->position, 1250, 2500);
+            }
+            else if(actor_animationIsAt(this, 0.69f)){//L80387CC8
+                FUNC_8030E8B4(SFX_A0_COUGHING, 1000, 0x270, this->position, 1250, 2500);
+            }//L80387CF4
+
+            if(actor_animationIsAt(this, 0.9999f)){
+                func_80328B8C(this, 3, 0.0001f, 1);
+                actor_loopAnimation(this);
+            }
+            break;
+        case 4://L80387D2C
+            func_80343DEC(this);
+            func_8028FC8C(this->position);
+            if(D_80392C00 <= this->unk48){
+                func_8028F918(0);
+                func_80324CD8(0.0f);
+                func_80324E88(0.0f);
+                func_803876F8(this);
+            }
+            break;
+        case 5://L80387D90
+            if(jiggyscore_isCollected(JIGGY_2A_FP_BOGGY_1)){
+                this->unk38_31 = 0;
+                func_802C3C88(func_80387760, this->marker);
+            }
+            break;
+    }
+}

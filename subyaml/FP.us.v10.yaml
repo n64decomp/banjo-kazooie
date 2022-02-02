@@ -32,7 +32,7 @@ segments:
       - [0x4D0, c, code_4D0]    #DONE
       - [0x790, c, code_790]    #DONE
       - [0xA40, c, code_A40]    #DONE
-      - [0x11F0, c, code_11F0]  
+      - [0x11F0, c, code_11F0]  #DONE
       - [0x19E0, c, code_19E0]
       - [0x1FF0, c, code_1FF0]
       - [0x2350, c, code_2350]

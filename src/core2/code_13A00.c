@@ -170,7 +170,6 @@ void func_8029AEE4(s32 arg0){
     func_8029ACD4();
     D_8037D194 = arg0;
     func_802F4978(D_8037D190);
-
 }
 
 void func_8029AF1C(void){
