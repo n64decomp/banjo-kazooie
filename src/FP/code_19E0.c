@@ -23,7 +23,16 @@ extern f32 D_80392C10;
 extern f32 D_80392C14;
 
 /* .code */
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_19E0/func_80387DD0.s")
+Actor *func_80387DD0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
+    Actor *this = marker_getActor(marker);
+
+    if(this->velocity[0] == 0.0f || 0.0f != this->velocity[1])
+        return this;
+    func_8033A45C(2, this->velocity[0] == 1.0f ? 1 : 0);
+    func_8033A45C(3, this->velocity[0] == 3.0f ? 1 : 0);
+    func_8033A45C(4, this->velocity[0] == 2.0f ? 1 : 0);
+    return func_80325888(marker, gfx, mtx, vtx);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/FP/code_19E0/func_80387EE4.s")
 

@@ -28,13 +28,13 @@ segments:
     start: 0x00000000
     vram: 0x803863F0
     subsegments:
-      - [0x0, c, code_0]        #DONE
-      - [0x4D0, c, code_4D0]    #DONE
-      - [0x790, c, code_790]    #DONE
-      - [0xA40, c, code_A40]    #DONE
-      - [0x11F0, c, code_11F0]  #DONE
+      - [0x0, c, code_0]       #DONE
+      - [0x4D0, c, code_4D0]   #DONE
+      - [0x790, c, code_790]   #DONE
+      - [0xA40, c, code_A40]   #DONE
+      - [0x11F0, c, code_11F0] #DONE
       - [0x19E0, c, code_19E0]
-      - [0x1FF0, c, code_1FF0]
+      - [0x1FF0, c, code_1FF0] #DONE
       - [0x2350, c, code_2350]
       - [0x3E00, c, code_3E00]
       - [0x4400, c, code_4400]

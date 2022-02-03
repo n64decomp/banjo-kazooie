@@ -52,8 +52,35 @@ extern ActorInfo D_80391CE8 = { 0x97, 0xC8, 0x38A,
 
 #pragma GLOBAL_ASM("asm/nonmatchings/FP/code_2350/func_8038A09C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_2350/func_8038A0E4.s")
+void func_8038A0E4(UNK_TYPE(s32) arg0, ActorMarker *marker){
+    Actor *actor = marker_getActor(marker);
+    
+    if(actor){
+        if(actor->state != 7){
+            func_80328B8C(actor, 7, 0.0001f, 1);
+        }
+        else{
+            func_80328B8C(actor, 4, 0.0001f, 1);
+        }
+    };
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_2350/func_8038A150.s")
+void func_8038A150(UNK_TYPE(s32) arg0, ActorMarker *marker){
+    Actor *actor = marker_getActor(marker);
+    
+    if(actor && actor->state != 8){
+        func_80328B8C(actor, 8, 0.0001f, 1);
+    };
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_2350/func_8038A1A0.s")
+bool func_8038A1A0(ActorMarker *marker){
+    Actor *actor = marker_getActor(marker);
+    switch (actor->state){
+        case 9:
+        case 10:
+        case 11:
+            return TRUE;
+        default:
+            return FALSE;
+    }
+}

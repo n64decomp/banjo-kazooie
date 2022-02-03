@@ -12,7 +12,7 @@ void func_8038794C(Actor *this);
 extern ActorAnimationInfo D_80391B80[];
 
 extern ActorInfo D_80391BB0 = { 
-    0x124, ACTOR_160_BOGGY_ON_SLED, ASSET_38A_MODEL_BOGGY_ON_SLED, 
+    MARKER_124_BOGGY_1, ACTOR_160_BOGGY_1, ASSET_38A_MODEL_BOGGY_1, 
     0x1, D_80391B80, 
     func_8038774C, func_8038794C, func_803875E0, 
     { 0x9, 0xc4}, 0, 1.4f, { 0x0, 0x0, 0x0, 0x0}
@@ -61,7 +61,7 @@ void func_8038774C(Actor *this){}
 void func_80387754(ActorMarker *this_marker, ActorMarker *other_marker){}
 
 void func_80387760(ActorMarker *marker){
-    Actor *other = func_80328230(ACTOR_C8_BOGGY_ON_SLED_2, D_80391BD4, D_80391BE0);
+    Actor *other = func_80328230(ACTOR_C8_BOGGY_2, D_80391BD4, D_80391BE0);
     other->unk4C = 1.0f;
     func_80343DEC(other);
 }
