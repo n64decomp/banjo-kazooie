@@ -4,14 +4,16 @@
 
 extern void func_8028E668(f32[3], f32, f32, f32);
 
+extern f32 func_8038BE20(f32 arg0[3]);
+
 typedef struct {
-    s32 unk0;
-    s32 unk4;
+    ParticleEmitter *unk0;
+    ParticleEmitter *unk4;
     f32 unk8;
     f32 unkC;
     f32 unk10;
     f32 unk14;
-    u8  pad18[1];
+    u8  unk18;
     u8  unk19;
 }ActorLocal_FP_2350;
 
@@ -21,6 +23,7 @@ typedef struct {
 }Struct_FP_2350;
 
 Actor *func_80388740(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
+void func_80388EE8(ParticleEmitter *pCtrl);
 void func_80388F4C(Actor *this);
 void func_803896FC(Actor *this);
 
@@ -32,7 +35,11 @@ extern ActorInfo D_80391CE8 = { 0x97, 0xC8, 0x38A,
     func_80388F4C, func_803896FC, func_80388740, 
     { 0x0, 0x0}, 0, 1.4f, { 0x0, 0x0, 0x0, 0x0}
 };
-
+extern s32 D_80391D24[3];
+extern struct31s D_80391D30;
+extern struct42s D_80391D58;
+extern f32 D_80391D88[3];
+extern f32 D_80391D94[3];
 extern s32 D_80391DA0;
 extern s32 D_80391DAC;
 extern Struct_FP_2350 D_80391DB8[7];
@@ -41,39 +48,107 @@ extern f64 D_80392CB8;
 
 extern s32 D_80392F20[3];
 
+// 0000 C840: 3DCCCCCD 3DCCCCCD 3DCCCCCD 3DCCCCCD
+
 /* .code */
 #pragma GLOBAL_ASM("asm/nonmatchings/FP/code_2350/func_80388740.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/FP/code_2350/func_803888E4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_2350/func_80388A50.s")
+void func_80388A50(Actor *this){
+    ActorLocal_FP_2350 *local = (ActorLocal_FP_2350 *)&this->local;
+
+    func_80328B8C(this, 2, 0.0001f, 1);
+    timed_setCameraToNode(0.0f, 4);
+    local->unk18 = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/FP/code_2350/func_80388A94.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/FP/code_2350/func_80388B18.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_2350/func_80388C88.s")
+void func_80388C88(Actor *this){
+    ActorLocal_FP_2350 *local = (ActorLocal_FP_2350 *)&this->local;
+
+    this->unk10_12 = 0;
+    local->unk18 = 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/FP/code_2350/func_80388CA0.s")
 
-void func_80388D70(ActorMarker *this_marker, ActorMarker *other_marker);
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_2350/func_80388D70.s")
+void func_80388D70(ActorMarker *caller, enum asset_e text_id, s32 arg2){
+    Actor *this = marker_getActor(caller);
+    ActorLocal_FP_2350 *local = (ActorLocal_FP_2350 *)&this->local;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_2350/func_80388EE8.s")
+    func_80324E88(0.0f);
+    switch(text_id){
+        case 0xc03:
+        case 0xc06:
+        case 0xc28:
+        case 0xc29://L80388DC4
+            func_8025A6EC(COMUSIC_3A_FP_BOGGY_RACE, 25000);
+            func_8025A58C(0, 4000);
+            func_8024BD08(0);
+            func_802BE720();
+            local->unk0 = func_802F0BD0(16);
+            local->unk4 = func_802F0BD0(16);
+            func_80388EE8(local->unk0);
+            func_80388EE8(local->unk4);
+            func_80328B8C(this, 4, 0.0001f, 1);
+            local->unk14 = (local->unk19 == 2) ? 1.0f : 0.0f;
+            this->marker->unk40_23 = TRUE;
+            break;
+        default://L80388E78
+            switch(arg2){
+                case 1:
+                    func_803888E4(this);
+                    mapSpecificFlags_set(6, TRUE);
+                    break;
+                case 0:
+                    func_80328B8C(this, 1, 0.0001f, 1);
+                    break;
+                default:
+                    func_80328B8C(this, 1, 0.0001f, 1);
+                    break;
+            }
+            break;
+    }
+}
 
-f32 func_8038BE20(f32 arg0[3]);
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_2350/func_80388F4C.s")
+void func_80388EE8(ParticleEmitter *pCtrl){
+    particleEmitter_setSprite(pCtrl, ASSET_700_SPRITE_DUST);
+    func_802EFFA8(pCtrl, D_80391D24);
+    particleEmitter_setPositionAndVelocityRanges(pCtrl, &D_80391D58);
+    func_802EFB98(pCtrl, &D_80391D30);
+    func_802F0D54(pCtrl);
+}
 
-void func_80388F54(ActorMarker *marker);
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_2350/func_80388F54.s")
+void func_80388F4C(Actor *this){}
 
-// 0000 C840: 3DCCCCCD 3DCCCCCD 3DCCCCCD 3DCCCCCD
-// 0000 C850: 3F851EB8 3F8F5C29 3F851EB8 3F8F5C29
+void func_80388F54(ActorMarker *marker){
+    Actor *other  = func_80328230(ACTOR_C8_BOGGY_2, D_80391D88, D_80391D94);
+    func_80343DEC(other);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_2350/func_80388F90.s")
+void func_80388F90(Actor *this){
+    ActorLocal_FP_2350 *local = (ActorLocal_FP_2350 *)&this->local;
 
-bool func_80388FE8(Actor *this, f32, f32);
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_2350/func_80388FE8.s")
+    func_8030DB04(this->unk44_31, 32000, this->position, 1000.0f, 4000.0f);
+    func_8030DBB4(this->unk44_31, local->unk8);
+    func_8030E2C4(this->unk44_31);
+}
+
+bool func_80388FE8(Actor *this, f32 arg1, f32 arg2){
+    if(arg2 < 0.0f && 0.0f < arg1){
+        func_8030E878(SFX_8D_BOGGY_OHWW, randf2(1.04f, 1.12f), 32000, this->position, 600.0f, 1200.0f);
+        return TRUE;
+    }
+    else if( 0.0f < arg2 && arg1 < 0.0f){
+        func_8030E878(SFX_F9_GRUNTLING_NOISE_1, randf2(1.04f, 1.12f), 32000, this->position, 600.0f, 1200.0f);
+        return TRUE;
+    }
+    return FALSE;
+}
 
 void func_803890DC(Actor *this, u8 arg1){
     ActorLocal_FP_2350 *local = (ActorLocal_FP_2350 *)&this->local;
@@ -203,8 +278,8 @@ void func_803896FC(Actor *this){
         D_80392F20[1] = this->position_y;
         D_80392F20[2] = this->position_z;
         this->unk1C[0] = this->yaw;
-        local->unk0 = 0;
-        local->unk4 = 0;
+        local->unk0 = NULL;
+        local->unk4 = NULL;
        local->unk8 = 0.0f;
        local->unkC = 0.0f;
        local->unk10 = 0.0f;
