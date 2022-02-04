@@ -23,37 +23,95 @@ typedef struct {
 }Struct_FP_2350;
 
 Actor *func_80388740(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
+void func_80388D70(ActorMarker *caller, enum asset_e text_id, s32 arg2);
 void func_80388EE8(ParticleEmitter *pCtrl);
 void func_80388F4C(Actor *this);
 void func_803896FC(Actor *this);
 
 /* .data */
-extern ActorAnimationInfo D_80391C80[];
+ActorAnimationInfo D_80391C80[] = {
+    {0x000, 0.0f},
+    {0x150, 0.6f},
+    {0x150, 0.6f},
+    {0x150, 0.6f},
+    {0x150, 0.6f},
+    {0x179, 2.3f},
+    {0x17A, 1.3f},
+    {0x17B, 2.0f},
+    {0x150, 1.0f},
+    {0x1AA, 4.3f},
+    {0x1AB, 4.3f},
+    {0x150, 1.0f},
+    {0x150, 0.6f}
+};
 
-extern ActorInfo D_80391CE8 = { 0x97, 0xC8, 0x38A, 
+ActorInfo D_80391CE8 = { 0x97, ACTOR_C8_BOGGY_2, ASSET_38A_MODEL_BOGGY_1, 
     0x1, D_80391C80, 
     func_80388F4C, func_803896FC, func_80388740, 
     { 0x0, 0x0}, 0, 1.4f, { 0x0, 0x0, 0x0, 0x0}
 };
-extern s32 D_80391D24[3];
-extern struct31s D_80391D30;
-extern struct42s D_80391D58;
-extern f32 D_80391D88[3];
-extern f32 D_80391D94[3];
-extern s32 D_80391DA0;
-extern s32 D_80391DAC;
-extern Struct_FP_2350 D_80391DB8[7];
+f32 D_80391D0C[3] = {1842.0f, 658.0f, 5758.0f};
+f32 D_80391D18[3] = {1463.0f, 635.0f, 5193.0f};
+s32 D_80391D24[3] = {0xc8, 0xc8, 0xe6};
+struct31s D_80391D30 = {
+    {0.2f, 0.4f},
+    {1.2f, 1.6f},
+    {0.0f, 0.001f},
+    {0.3f, 0.45f},
+    0.0f, 0.01f
+};
 
-extern f64 D_80392CB8;
+struct42s D_80391D58 = {
+    {{-10.0f, 10.0f}, {-10.0f, 10.0f}, {240.0f, 10.0f}},
+    {{0.0f, 0.0f, 0.0f}, {0.0f, 20.0f, 0.0f}}
+};
 
-extern s32 D_80392F20[3];
+f32 D_80391D88[3] = { 1592.0f, 673.0f, 5895.0f};
+f32 D_80391D94[3] = {0.0f, 0.0f, 0.0f};
+s32 D_80391DA0[3] = {0x5F5, 0x292, 0x1539};
+s32 D_80391DAC[3] = {-0x11F8, 0x637, -0x1816};
+Struct_FP_2350 D_80391DB8[7]={
+    {0x361, 0x35D},
+    {0x365, 0x35D},
+    {0x362, 0x360},
+    {0x366, 0x35D},
+    {0x37B, 0x35D},
+    {0x363, 0x35F},
+    {0x364, 0x35E}
+};
 
-// 0000 C840: 3DCCCCCD 3DCCCCCD 3DCCCCCD 3DCCCCCD
+
+
+
+f64 D_80392CB8;
+
+s32 D_80392F20[3];
 
 /* .code */
 #pragma GLOBAL_ASM("asm/nonmatchings/FP/code_2350/func_80388740.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_2350/func_803888E4.s")
+void func_803888E4(Actor *this){
+    func_80328B8C(this, 0xC, 0.0001f, 1);
+    if(!jiggyscore_isSpawned(JIGGY_30_FP_BOGGY_2)){
+        if(mapSpecificFlags_get(5)){
+            func_80324DBC(0.1f, 0xc06, 0x2a, D_80391D18, this->marker, func_80388D70, NULL);
+        }
+        else{//L80388964
+            func_80324DBC(0.1f, 0xc03, 0x2a, D_80391D18, this->marker, func_80388D70, NULL);
+        }
+    }
+    else{//L803889A0
+        func_8028F490(D_80391D0C);
+        if(mapSpecificFlags_get(6)){
+            func_80324DBC(0.1f, 0xc29, 0x2a, D_80391D18, this->marker, func_80388D70, NULL);
+        }
+        else{
+            func_80324DBC(0.1f, 0xc28, 0x2a, D_80391D18, this->marker, func_80388D70, NULL);
+        }
+    }//L80388A30
+    mapSpecificFlags_set(5, TRUE);
+    func_8038B9C8();
+}
 
 void func_80388A50(Actor *this){
     ActorLocal_FP_2350 *local = (ActorLocal_FP_2350 *)&this->local;
@@ -234,7 +292,6 @@ void func_803893E4(Actor *this, f32 arg1, u8 arg2){
     func_803890DC(this, (u8)(arg2));
 }
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/FP/code_2350/func_803895E0.s")
 void func_803895E0(void){
     int i;
     s16 *s0;
@@ -246,8 +303,8 @@ void func_803895E0(void){
 
     for (i = 0; i< 7; i++){
         s0 = (i < 3) 
-            ? func_803049CC(D_80391DB8[i].unk0, &D_80391DA0) 
-            : func_803049CC(D_80391DB8[i].unk0, &D_80391DAC);
+            ? func_803049CC(D_80391DB8[i].unk0, D_80391DA0) 
+            : func_803049CC(D_80391DB8[i].unk0, D_80391DAC);
 
         func_80304D68(s0, sp64);
         f20 = (f32)func_80304DA8(s0);
