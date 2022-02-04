@@ -15,6 +15,11 @@ typedef struct {
     u8  unk19;
 }ActorLocal_FP_2350;
 
+typedef struct {
+    s32 unk0;
+    s32 actor_id;
+}Struct_FP_2350;
+
 Actor *func_80388740(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void func_80388F4C(Actor *this);
 void func_803896FC(Actor *this);
@@ -27,6 +32,12 @@ extern ActorInfo D_80391CE8 = { 0x97, 0xC8, 0x38A,
     func_80388F4C, func_803896FC, func_80388740, 
     { 0x0, 0x0}, 0, 1.4f, { 0x0, 0x0, 0x0, 0x0}
 };
+
+extern s32 D_80391DA0;
+extern s32 D_80391DAC;
+extern Struct_FP_2350 D_80391DB8[7];
+
+extern f64 D_80392CB8;
 
 extern s32 D_80392F20[3];
 
@@ -56,18 +67,121 @@ f32 func_8038BE20(f32 arg0[3]);
 void func_80388F54(ActorMarker *marker);
 #pragma GLOBAL_ASM("asm/nonmatchings/FP/code_2350/func_80388F54.s")
 
+// 0000 C840: 3DCCCCCD 3DCCCCCD 3DCCCCCD 3DCCCCCD
+// 0000 C850: 3F851EB8 3F8F5C29 3F851EB8 3F8F5C29
+
 #pragma GLOBAL_ASM("asm/nonmatchings/FP/code_2350/func_80388F90.s")
 
 bool func_80388FE8(Actor *this, f32, f32);
 #pragma GLOBAL_ASM("asm/nonmatchings/FP/code_2350/func_80388FE8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_2350/func_803890DC.s")
+void func_803890DC(Actor *this, u8 arg1){
+    ActorLocal_FP_2350 *local = (ActorLocal_FP_2350 *)&this->local;
 
-void func_803893E4(Actor *this, f32, s32);
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_2350/func_803893E4.s")
+    f32 yaw_to_target;
+    f32 yaw;
+    f32 f16;
+    f32 prev_roll;
+    f32 dyaw;
 
-void func_803895E0(void);
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_2350/func_803895E0.s")
+    yaw_to_target = (this->unk1C[0]  < 180.0f) ? this->unk1C[0] : this->unk1C[0] - 360.0f;
+    yaw = (this->yaw  < 180.0f) ? this->yaw : this->yaw - 360.0f;
+
+    prev_roll = this->roll;
+    f16 = (arg1 == 2) ? 1100.0f : 780.0f;
+    dyaw = yaw - yaw_to_target;
+    dyaw = (180.0f < dyaw) ? 360.0f - dyaw 
+        : (dyaw < -180.0f) ? 360.0f + dyaw 
+        : dyaw;
+
+    this->roll += (2.0*dyaw)*(this->unk4C / f16);
+
+    this->roll = (26.0f < this->roll)  ?  26.0f
+               : (this->roll < -26.0f) ? -26.0f
+               : this->roll;
+
+    this->roll += (this->roll < 0.0f) ?  1.8 
+                : (0.0f < this->roll) ? -1.8 
+                : 0.0;
+                
+    if(local->unk10 == 0.0){
+        if(this->state != 9 && this->state != 10 && this->state != 11){
+            if( (23.0f < this->roll && prev_roll < 23.0f)
+                || (this->roll < -23.0f && -23.0f < prev_roll)
+            ){//L8038933C
+                func_8030E878(SFX_8C_BOGGY_WAHEY, randf2(1.04f, 1.12f), 32000, this->position, 600.0f, 1500.0f);
+                local->unk10 = 1.5f;
+            }//L80389394
+        }
+    }//L80389398
+
+    if(this->roll <= 1.8 && -1.8 <= this->roll){
+        this->roll = 0.0f;
+    }
+}
+
+void func_803893E4(Actor *this, f32 arg1, u8 arg2){
+    ActorLocal_FP_2350 *local = (ActorLocal_FP_2350 *)&this->local;
+    f32 sp30;
+    f32 sp2C;
+    f32 sp28;
+    if((u8)arg2 != 2){
+        sp30 = 575.0f;
+        sp2C = 780.0f;
+        sp28 = 1.7f;
+    }
+    else{
+        sp30 = 700.0f;
+        sp2C = 1100.0f;
+        sp28 = 2.3f;
+    }
+
+    func_80343DEC(this);
+    if(this->state == 7){
+        this->unk4C += ((f32)D_80392F20[1] - this->position_y)*0.02;
+    }
+    else{
+        this->unk4C += ((f32)D_80392F20[1] - this->position_y)*0.03 + sp28*func_8038BE20(this->position);
+    }
+
+    if(this->unk4C < sp30){
+        this->unk4C = sp30;
+    }
+    if(sp2C < this->unk4C){
+        this->unk4C = sp2C;
+    }
+
+    if((u8)arg2 == 2 && func_8028ECAC() != 6){
+        this->unk4C = 1200.0f;
+    }
+
+    local->unk8 = ((this->unk4C - sp30)/(sp2C - sp30))*(0.6000000000000001) + 0.7;
+    func_803890DC(this, (u8)(arg2));
+}
+
+// #pragma GLOBAL_ASM("asm/nonmatchings/FP/code_2350/func_803895E0.s")
+void func_803895E0(void){
+    int i;
+    s16 *s0;
+    f32 sp64[3];
+    Actor *actor;
+    f32 f20;
+    f32 f22;
+    f32 f8;
+
+    for (i = 0; i< 7; i++){
+        s0 = (i < 3) 
+            ? func_803049CC(D_80391DB8[i].unk0, &D_80391DA0) 
+            : func_803049CC(D_80391DB8[i].unk0, &D_80391DAC);
+
+        func_80304D68(s0, sp64);
+        f20 = (f32)func_80304DA8(s0);
+        f8 = (f32)func_80304DB8(s0);
+        f22 = f8*0.01;
+        actor = func_8032813C(D_80391DB8[i].actor_id, sp64, (s32)f20);
+        actor->scale = f22;
+    }
+}
 
 void func_803896FC(Actor *this){
     ActorLocal_FP_2350 *local = (ActorLocal_FP_2350 *)&this->local;

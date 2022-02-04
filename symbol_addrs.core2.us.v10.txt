@@ -426,3 +426,7 @@ sHoneycombScore = 0x803832E0;
 sMumboTokenScore = 0x803832F0;
 assetCache_depCount = 0x80383CD8;
 
+D_80391DA0 = 0x80391DA0;
+D_80391DB8 = 0x80391DB8;
+D_80391DAC = 0x80391DAC;
+
