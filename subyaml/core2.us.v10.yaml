@@ -171,7 +171,7 @@ segments:
   - [0x42CA0, c, ch/musicnote]  #DONE
   - [0x42CB0, c, code_42CB0]
   - [0x43250, c, code_43250]
-  - [0x43390, c, code_43390]
+  - [0x43390, c, ch/trainers] #DONE
   - [0x43800, c, code_43800]
   - [0x43A40, c, code_43A40] #DONE
   - [0x43CD0, c, mapspecificflags]
@@ -188,7 +188,7 @@ segments:
   - [0x4BD70, c, code_4BD70]
   - [0x4BE10, c, code_4BE10]
   - [0x4C020, c, code_4C020]
-  - [0x4FB80, c, code_4FB80]
+  - [0x4FB80, c, ch/wadingboots] #DONE
   - [0x4FF10, c, ch/badShad]
   - [0x50490, c, code_50490]
   - [0x50750, c, ch/climbBase]

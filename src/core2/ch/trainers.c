@@ -27,7 +27,7 @@ Actor *chtrainers_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 }
 
 
-void func_802CA378(Actor *this, bool arg1){
+void _chtrainers_802CA378(Actor *this, bool arg1){
     f32 sp24[3];
     if(ability_isUnlocked(ABILITY_11_TURBO_TALON))
         actor_setOpacity(this, 0xff);
@@ -80,7 +80,7 @@ void chtrainers_update(Actor *this){
                         func_803204E4(0xf, TRUE);
                     }
                 }//L802CA620
-                func_802CA378(this, sp2C);
+                _chtrainers_802CA378(this, sp2C);
             }
             break;
 
