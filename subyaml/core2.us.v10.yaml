@@ -172,6 +172,7 @@ segments:
   - [0x42CB0, c, code_42CB0]
   - [0x43250, c, code_43250]
   - [0x43390, c, code_43390]
+  - [0x43800, c, code_43800]
   - [0x43A40, c, code_43A40] #DONE
   - [0x43CD0, c, mapspecificflags]
   - [0x440B0, c, code_440B0]

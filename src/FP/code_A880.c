@@ -17,10 +17,6 @@ s32 D_80392894[3];
 struct40s D_803928A0;
 s32 D_803928D0[3];
 
-/* .rodata */
-extern f64 D_80392F00;
-extern f64 D_80392F08;
-
 /* .code */
 void func_80390C70(f32 position[3]){
     ParticleEmitter *pCtrl = func_802F0BD0(1);
@@ -76,11 +72,11 @@ void func_80390EB0(Actor *this){
 
     if(func_8024DB50(this->position, 150.0f) || func_80329530(this, 1200))
     {
-        if( !(func_8023DB5C() & 3) && randf() < D_80392F00){
+        if( !(func_8023DB5C() & 3) && randf() < 0.2){
             func_80390C70(this->position);
         }
 
-        if( !(func_8023DB5C() & 3) && randf() < D_80392F08){
+        if( !(func_8023DB5C() & 3) && randf() < 0.7){
             func_80390D58(this->position);
         }
     }

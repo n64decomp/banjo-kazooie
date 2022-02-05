@@ -9,23 +9,25 @@ void func_8038774C(Actor *this);
 void func_8038794C(Actor *this);
 
 /* .data */
-extern ActorAnimationInfo D_80391B80[];
+ActorAnimationInfo D_80391B80[] = {
+    {0x000, 0.0f},
+    {0x14E, 2.0f},
+    {0x14D, 7.0f},
+    {0x14C, 2.0f},
+    {0x14F, 0.5f},
+    {0x14F, 1.0f}
+};
 
-extern ActorInfo D_80391BB0 = { 
+ActorInfo D_80391BB0 = { 
     MARKER_124_BOGGY_1, ACTOR_160_BOGGY_1, ASSET_38A_MODEL_BOGGY_1, 
     0x1, D_80391B80, 
     func_8038774C, func_8038794C, func_803875E0, 
     { 0x9, 0xc4}, 0, 1.4f, { 0x0, 0x0, 0x0, 0x0}
 };
-extern f32 D_80391BD4[3];
-extern f32 D_80391BE0[3];
-extern f32 D_80391BEC[5];
-extern f64 D_80392C00;
 
-/* .rodata */
-extern f32 D_80392BF0;
-extern f32 D_80392BF4;
-extern f32 D_80392BF8;
+f32 D_80391BD4[3] = {1592.0f, 673.0f, 5895.0f};
+f32 D_80391BE0[3] = { 0.0f, 0.0f, 0.0f};
+f32 D_80391BEC[5] = {2.0f, 2.8f, 4.3f, 5.1f, 5.7f};
 
 /* .code */
 Actor *func_803875E0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
@@ -94,8 +96,8 @@ void func_8038787C(ActorMarker *marker){
     s32 sp20;
 
     s0 = func_802F9AA8(SFX_12B_BOILING_AND_BUBBLING);
-    sp24 = randf2(D_80392BF0, D_80392BF4);
-    sp20 = (s32)randf2(16000, D_80392BF8);
+    sp24 = randf2(0.9f, 1.1f);
+    sp20 = (s32)randf2(16000.0f, 23000.0f);
     func_802F9DB8(s0, sp24, sp24, 0.0f);
     func_802F9EC4(s0, this->position, 500, 1200);
     func_802F9F80(s0, 0.05f, 0.2f, 0.3f);
@@ -182,7 +184,7 @@ void func_8038794C(Actor *this){
         case 4://L80387D2C
             func_80343DEC(this);
             func_8028FC8C(this->position);
-            if(D_80392C00 <= this->unk48){
+            if(0.99 <= this->unk48){
                 func_8028F918(0);
                 func_80324CD8(0.0f);
                 func_80324E88(0.0f);

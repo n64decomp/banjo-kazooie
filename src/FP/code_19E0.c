@@ -9,18 +9,18 @@ Actor *func_80387DD0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void func_803881AC(Actor *this);
 
 /* .data */
-extern ActorAnimationInfo D_80391C00[];
+ActorAnimationInfo D_80391C00[] = {
+    {0x000, 0.0f},
+    {0x152, 4.0f},
+    {0x151, 1.2f}
+};
 
-extern ActorInfo D_80391C18 = { 
+ActorInfo D_80391C18 = { 
     0x125, 0x161, 0x38b, 
     0x1, D_80391C00, 
     func_803881AC, func_80326224, func_80387DD0,
     { 0x0, 0x0}, 0, 0.35f, { 0x0, 0x0, 0x0, 0x0}
 };
-
-/* .rodata */
-extern f32 D_80392C10;
-extern f32 D_80392C14;
 
 /* .code */
 Actor *func_80387DD0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
@@ -44,7 +44,7 @@ void func_8038811C(ActorMarker *this_marker, ActorMarker *other_marker){
         return;
 
     func_80328B8C(this, 2, 0.0001, 1);
-    func_8030E878(SFX_6A_FLAGPOLE_WOBBLE, randf2(D_80392C10, D_80392C14), 32000, this->position, 1000.0f, 2000.0f);
+    func_8030E878(SFX_6A_FLAGPOLE_WOBBLE, randf2(0.9f, 1.1f), 32000, this->position, 1000.0f, 2000.0f);
 
 }
 

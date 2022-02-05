@@ -1642,8 +1642,6 @@ enum actor_e
 
     ACTOR_33F_WOZZA_IN_CAVE         = 0x33F,
 
-    ACTOR_383_FIRE_FX       = 0x383,
-
     ACTOR_34D_BEE_SWARM     = 0x34D,
 
     ACTOR_354_DRIPS         = 0x354,
@@ -1654,9 +1652,10 @@ enum actor_e
 
     ACTOR_37A_BOTTLES       = 0x37a,
 
-    ACTOR_37F_LOGGO = 0x37F,
+    ACTOR_37F_LOGGO         = 0x37F,
     ACTOR_380_SCARAB_BEETLE,
 
+    ACTOR_383_FIRE_FX       = 0x383,
 
     ACTOR_39F_FIGHT_FLIGHT_PAD = 0x39F,
 

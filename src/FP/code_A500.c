@@ -18,9 +18,6 @@ extern struct31s D_803927C4;
 extern struct43s D_803927EC;
 extern s32 D_80392834[3];
 
-/* .rodata */
-extern f32 D_80392EF0;
-
 /* .code */
 Actor *func_803908F0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     Actor *this = marker_getActor(marker);
@@ -75,7 +72,7 @@ void func_80390B2C(ActorMarker *marker){
 void func_80390B70(Actor *this){
     func_80324E38(0.0f, 3);
     timed_setCameraToNode(0.0f, 0);
-    timedFunc_set_1(D_80392EF0, (TFQM1)func_80390ABC, this->marker);
+    timedFunc_set_1(0.6f, (TFQM1)func_80390ABC, this->marker);
     timedFunc_set_1(2.5f, func_80390B2C, this->marker);
 }
 

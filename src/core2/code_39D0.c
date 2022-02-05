@@ -10,9 +10,9 @@ extern f32 func_80256280(f32 arg0[3], f32 arg1[3]);
 extern void func_8028BA00(s32);
 extern void func_802C418C(void);
 extern void func_802A6388(f32);
-extern f32 func_802D6E4C(Actor *);
+extern f32 chwadingboots_802D6E4C(Actor *);
 extern void func_80294AE8(f32);
-extern f32 func_802CA748(Actor *);
+extern f32 chtrainers_802CA748(Actor *);
 extern int func_80259254(f32 vec[3], f32 x, f32 z, f32 val);
 extern void func_802EE354(Actor *, s32, s32, s32, f32, f32, f32, f32 arg8[3], s32, f32 arg10[2]);
 extern void func_802D6264(f32, s32, s32, s32, s32, s32);
@@ -954,14 +954,14 @@ void func_8028BCA0(Prop *prop){
                     return;
                 if(func_8028F25C())
                     return;
-                if(func_802D6E0C(actor) == 0)
+                if(chwadingboots_802D6E0C(actor) == 0)
                     return;
                 
                 func_802933E8(0xe);
-                func_802A6388(func_802D6E4C(actor));
+                func_802A6388(chwadingboots_802D6E4C(actor));
                 bs_checkInterrupt(0x1B);
                 func_802C3F04(func_802C418C, 0x4E, reinterpret_cast(u32, prop->actorProp.x), reinterpret_cast(u32, prop->actorProp.y), reinterpret_cast(u32, prop->actorProp.z));
-                func_802D6E54(actor);
+                chwadingboots_802D6E54(actor);
                 break;
 
             case MARKER_38_TURBO_TALON_TRAINERS: //L8028CF38
@@ -978,14 +978,14 @@ void func_8028BCA0(Prop *prop){
                 if(func_8028F170())
                     return;
                 
-                if(func_802CA708(actor) == 0)
+                if(chtrainers_802CA708(actor) == 0)
                     return;
 
                 func_802933E8(0x10);
-                func_80294AE8(func_802CA748(actor));
+                func_80294AE8(chtrainers_802CA748(actor));
                 bs_checkInterrupt(0x1A);
                 func_802C3F04(func_802C418C, 0x4E, reinterpret_cast(u32, prop->actorProp.x), reinterpret_cast(u32, prop->actorProp.y), reinterpret_cast(u32, prop->actorProp.z));
-                func_802CA750(actor);
+                chtrainers_802CA750(actor);
                 break;
 
             case 0x1AE: //L8028CFEC
