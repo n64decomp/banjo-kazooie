@@ -76,7 +76,7 @@ void func_8038CCA8(Actor *this){
         this->unk16C_4 = TRUE;
         animctrl_setSmoothTransition(this->animctrl, 0);
         this->unk60 = this->yaw/4;
-        local->unk0 = func_802F0BD0(0xA0);
+        local->unk0 = partEmitList_pushNew(0xA0);
         func_8038CB20(local->unk0);
     }
 

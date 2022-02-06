@@ -102,7 +102,7 @@ extern s32 D_80392920;
 
 /* .code */
 void func_80390130(f32 position[3], int count, enum asset_e sprite_id){
-    ParticleEmitter *s0 = func_802F0BD0(count);
+    ParticleEmitter *s0 = partEmitList_pushNew(count);
     particleEmitter_setSprite(s0, sprite_id);
     particleEmitter_setStartingFrameRange(s0, 1, 6);
     particleEmitter_setPosition(s0, position);

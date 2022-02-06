@@ -61,7 +61,7 @@ void func_80386444(ActorMarker *arg0){
             }
         }// L803865D8
 
-        s0 = func_802F0BD0(0x1e);
+        s0 = partEmitList_pushNew(0x1e);
         particleEmitter_setPosition(s0, &actor->position);
         particleEmitter_setModel(s0, 0x89f);
         func_802EFB70(s0, 0.09f, 0.19f);

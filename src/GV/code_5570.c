@@ -118,7 +118,7 @@ void func_8038BBFC(ParticleEmitter *pCtrl, f32 position[3], s32 cnt){
 }
 
 void func_8038BC7C(f32 position[3], s32 cnt){
-    ParticleEmitter *pCtrl = func_802F0BD0(cnt);
+    ParticleEmitter *pCtrl = partEmitList_pushNew(cnt);
     func_8038BBFC(pCtrl, position, cnt);
     particleEmitter_setParticleSpawnPositionRange(pCtrl,
         -60.0f,  0.0f, -60.0f,
@@ -136,7 +136,7 @@ void func_8038BC7C(f32 position[3], s32 cnt){
 }
 
 void func_8038BD8C(f32 position[3], s32 cnt){
-    ParticleEmitter *pCtrl = func_802F0BD0(cnt);
+    ParticleEmitter *pCtrl = partEmitList_pushNew(cnt);
     func_8038BBFC(pCtrl, position, cnt);
     particleEmitter_setParticleSpawnPositionRange(pCtrl,
         -40.0f,  0.0f, -40.0f,

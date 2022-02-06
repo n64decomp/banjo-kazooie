@@ -35,7 +35,7 @@ struct43s D_80372B00 = {
 
 /* .code */
 void func_80359A40(f32 position[3], struct_core2_D2AB0 *arg1, s32 cnt){
-    ParticleEmitter *pCtrl = func_802F0BD0(cnt);
+    ParticleEmitter *pCtrl = partEmitList_pushNew(cnt);
     particleEmitter_setSprite(pCtrl, ASSET_70C_SPRITE_RIPPLE);
     func_802EFA70(pCtrl, 1);
     func_802EFFA8(pCtrl, D_80372AE4);
@@ -74,7 +74,7 @@ void chdrips_update(Actor *this){
         this->unk60 = this->yaw/360.0;
     }
     if(__chdrips_playerWithinDist(this, 5000) && randf() < this->unk60){
-        pCtrl = func_802F0BD0(1);
+        pCtrl = partEmitList_pushNew(1);
         particleEmitter_setModel(pCtrl, ASSET_8A0_SPRITE_WATER_DROP);
         particleEmitter_setPosition(pCtrl, this->position);
         particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_80372B00);

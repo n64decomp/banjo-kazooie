@@ -72,7 +72,7 @@ void func_8038E92C(Actor *this){
 }
 
 void func_8038E998(Actor *this){
-    ParticleEmitter *other = func_802F0BD0(2);
+    ParticleEmitter *other = partEmitList_pushNew(2);
     f32 temp_f0;
 
     particleEmitter_setSprite(other, ASSET_70E_SPRITE_SMOKE_2);
@@ -90,7 +90,7 @@ void func_8038E998(Actor *this){
 void func_8038EAB4(Actor *this){
     ParticleEmitter *other;
     func_802BB3DC(0, 60.0f, 0.9f);
-    other = func_802F0BD0(1);
+    other = partEmitList_pushNew(1);
     particleEmitter_setSprite(other, ASSET_4A0_SPRITE_EXPLOSION);
     func_802EFA5C(other, 0.1f, 0.2f);
     func_802EFA70(other, 8);
@@ -107,7 +107,7 @@ void func_8038EAB4(Actor *this){
 
 void func_8038EC14(Actor *this){
     ParticleEmitter *other;
-    other = func_802F0BD0(6);
+    other = partEmitList_pushNew(6);
     particleEmitter_setSprite(other, ASSET_70E_SPRITE_SMOKE_2);
     func_802EFA5C(other, 0.05f, 0.1f);
     particleEmitter_setStartingFrameRange(other, 0, 7);
@@ -122,7 +122,7 @@ void func_8038EC14(Actor *this){
 }
 
 void func_8038ED3C(Actor * actor, s32 arg1){
-    ParticleEmitter *other = func_802F0BD0(0xa);
+    ParticleEmitter *other = partEmitList_pushNew(0xa);
     particleEmitter_setParticleAccelerationRange(other, 0.0f, -800.0f, 0.0f, 0.0f, -800.0f, 0.0f);
     func_802EF9F8(other, 0.6f);
     func_802EFA18(other, 3);

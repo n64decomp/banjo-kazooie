@@ -48,7 +48,7 @@ extern ActorInfo D_80366388;
 extern ActorInfo D_803663AC;
 extern ActorInfo D_803663D0;
 extern ActorInfo D_803663F4;
-extern ActorInfo D_80366430; //extralife
+extern ActorInfo chExtraLife; //extralife
 extern ActorInfo D_80366C50; //music_note
 extern ActorInfo D_80366C80; //chhoneycarrier
 extern ActorInfo D_80366CA4; //chhoney
@@ -242,7 +242,7 @@ void func_802C2B5C(void){
     spawnableActorList_add(&D_80365F60, actor_new, 0x0000004);
     spawnableActorList_add(&D_80365F84, actor_new, 0x0000004); //turbotrainers
     spawnableActorList_add(&D_80367184, actor_new, 0x0000000);
-    spawnableActorList_add(&D_80366430, actor_new, 0x0200000); //extralife
+    spawnableActorList_add(&chExtraLife, actor_new, 0x0200000); //extralife
     spawnableActorList_add(&D_80365FB0, actor_new, 0x0000004); //shrapnel
     spawnableActorList_add(&D_80367A50, actor_new, 0x0000004); //chbadshad
     spawnableActorList_add(&D_803685A0, actor_new, 0x0000040); //mumbotoken

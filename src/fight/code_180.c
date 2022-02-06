@@ -180,7 +180,7 @@ void func_803866E4(f32 (*arg0)[3], s32 arg1, s32 arg2) {
     ParticleEmitter *temp_s0;
     ParticleEmitter *temp_v0;
 
-    temp_v0 = func_802F0BD0(arg2);
+    temp_v0 = partEmitList_pushNew(arg2);
     temp_s0 = temp_v0;
     particleEmitter_setModel(temp_v0, arg1);
     particleEmitter_setPosition(temp_s0, arg0);
@@ -195,7 +195,7 @@ void func_8038679C(f32 (*arg0)[3], s32 arg1, f32 (*arg2)[4]) {
     ParticleEmitter *temp_s0;
     ParticleEmitter *temp_v0;
 
-    temp_v0 = func_802F0BD0(arg1);
+    temp_v0 = partEmitList_pushNew(arg1);
     temp_s0 = temp_v0;
     particleEmitter_setSprite(temp_v0, ASSET_70E_SPRITE_SMOKE_2);
     func_802EFFA8(temp_s0, &D_803915AC);
@@ -214,7 +214,7 @@ void func_8038679C(f32 (*arg0)[3], s32 arg1, f32 (*arg2)[4]) {
 void func_803868A0(f32 (*arg0)[3], s32 (*arg1)[3]) {
     ParticleEmitter * temp_s0;
 
-    temp_s0 = func_802F0BD0(1);
+    temp_s0 = partEmitList_pushNew(1);
     particleEmitter_setSprite(temp_s0, ASSET_45A_SPRITE_GREEN_GLOW);
     particleEmitter_setStartingFrameRange(temp_s0, 2, 2);
     func_802EFFA8(temp_s0, arg1);
@@ -227,7 +227,7 @@ void func_803868A0(f32 (*arg0)[3], s32 (*arg1)[3]) {
 void func_80386934(f32 position[3], enum asset_e sprite_id) {
     ParticleEmitter * temp_s0;
 
-    temp_s0 = func_802F0BD0(1);
+    temp_s0 = partEmitList_pushNew(1);
     particleEmitter_setSprite(temp_s0, sprite_id);
     particleEmitter_setStartingFrameRange(temp_s0, 1, 6);
     particleEmitter_setPosition(temp_s0, position);

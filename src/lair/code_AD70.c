@@ -15,7 +15,7 @@ extern f32 D_803952D0; // .rodata : 0.2f
 
 void func_80391160(f32 pos[3], u32 count)
 {
-    ParticleEmitter *p = func_802F0BD0(count);
+    ParticleEmitter *p = partEmitList_pushNew(count);
     particleEmitter_setSprite(p, 0x70E);
     func_802EFFA8(p, D_80394AD4);
     func_802EF9E4(p, 0xEB);
@@ -29,7 +29,7 @@ void func_80391160(f32 pos[3], u32 count)
 
 void func_80391254(f32 pos[3], u32 count, enum asset_e sprite)
 {
-    ParticleEmitter *p = func_802F0BD0(count);
+    ParticleEmitter *p = partEmitList_pushNew(count);
     particleEmitter_setSprite(p, sprite);
     func_802EFA70(p, 8);
     particleEmitter_setStartingFrameRange(p, 0, 2);
@@ -45,7 +45,7 @@ void func_80391254(f32 pos[3], u32 count, enum asset_e sprite)
 
 void func_8039137C(f32 pos[3], u32 count, enum asset_e sprite)
 {
-    ParticleEmitter *p = func_802F0BD0(count);
+    ParticleEmitter *p = partEmitList_pushNew(count);
     particleEmitter_setSprite(p, sprite);
     particleEmitter_setPosition(p, pos);
     func_802EF9F8(p, 0.3f);
@@ -59,7 +59,7 @@ void func_8039137C(f32 pos[3], u32 count, enum asset_e sprite)
 
 void func_8039144C(f32 pos[3], u32 count)
 {
-    ParticleEmitter *p = func_802F0BD0(count);
+    ParticleEmitter *p = partEmitList_pushNew(count);
     particleEmitter_setSprite(p, 0x713);
     particleEmitter_setPosition(p, pos);
     particleEmitter_setParticleSpawnPositionRange(p, -40, -40, -40, 40, 40, 40);
@@ -79,7 +79,7 @@ void func_803915A4(f32 pos[3], s32 count, f32 scale)
 {
     extern f64 D_803952D8; // 4.0
 
-    ParticleEmitter *p = func_802F0BD0(count);
+    ParticleEmitter *p = partEmitList_pushNew(count);
     particleEmitter_setSprite(p, 0x4A0);
     func_802EFA5C(p, 0.1f, 0.2f);
     func_802EFA70(p, 8);
@@ -94,7 +94,7 @@ void func_803915A4(f32 pos[3], s32 count, f32 scale)
 
 
 void func_803916BC(f32 position[3], s32 cnt){
-    ParticleEmitter *pCtrl = func_802F0BD0(cnt);
+    ParticleEmitter *pCtrl = partEmitList_pushNew(cnt);
     particleEmitter_setSprite(pCtrl, ASSET_4A0_SPRITE_EXPLOSION);
     func_802EFA5C(pCtrl, 0.1f, 0.3f);
     func_802EFA70(pCtrl, 8);

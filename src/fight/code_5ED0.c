@@ -96,7 +96,7 @@ extern f32 D_80392520;
 
 /* .code */
 void func_8038C2C0(f32 position[3], s32 count, enum asset_e id, f32 arg3){
-    ParticleEmitter * temp_s0 = func_802F0BD0(count);
+    ParticleEmitter * temp_s0 = partEmitList_pushNew(count);
     f32 sp24;
 
     particleEmitter_setSprite(temp_s0, id);
@@ -116,7 +116,7 @@ void func_8038C2C0(f32 position[3], s32 count, enum asset_e id, f32 arg3){
 }
 
 void func_8038C424(f32 position[3], s32 count, enum asset_e id, f32 arg3){
-    ParticleEmitter * temp_s0 = func_802F0BD0(count);
+    ParticleEmitter * temp_s0 = partEmitList_pushNew(count);
     f32 sp24;
 
     particleEmitter_setSprite(temp_s0, id);
@@ -349,7 +349,7 @@ void func_8038C840(Actor *this){
 #endif
 
 void func_8038CED8(f32 (*arg0)[3], s32 arg1, f32 arg2, f32 arg3){
-    ParticleEmitter *s0 = func_802F0BD0(1);
+    ParticleEmitter *s0 = partEmitList_pushNew(1);
     f32 sp40[3];
     f32 sp34[3];
 

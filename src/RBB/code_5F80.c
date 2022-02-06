@@ -99,7 +99,7 @@ void func_8038C370(ActorMarker *marker, s32 arg1){
 
 void func_8038C39C(Actor *this){
     ActorLocal_RBB_5F80 *local = (ActorLocal_RBB_5F80 *) &this->local;
-    ParticleEmitter *other = func_802F0BD0(local->unk0->unkE);
+    ParticleEmitter *other = partEmitList_pushNew(local->unk0->unkE);
     particleEmitter_setSprite(other, ASSET_70E_SPRITE_SMOKE_2);
     func_802EFA5C(other, 0.0f, 0.1f);
     particleEmitter_setStartingFrameRange(other, 0, 7);
@@ -121,7 +121,7 @@ void func_8038C39C(Actor *this){
 
 void func_8038C538(Actor *this){
     ActorLocal_RBB_5F80 *local = (ActorLocal_RBB_5F80 *) &this->local;
-    ParticleEmitter *other = func_802F0BD0(3*local->unk0->unkE);
+    ParticleEmitter *other = partEmitList_pushNew(3*local->unk0->unkE);
     particleEmitter_setSprite(other, ASSET_70E_SPRITE_SMOKE_2);
     func_802EFA5C(other, 0.1f, 0.3f);
     func_802EFA70(other, 4);
@@ -145,7 +145,7 @@ void func_8038C538(Actor *this){
 
 void func_8038C70C(Actor *this){
     ActorLocal_RBB_5F80 *local = (ActorLocal_RBB_5F80 *) &this->local;
-    ParticleEmitter *other = func_802F0BD0(0xa);
+    ParticleEmitter *other = partEmitList_pushNew(0xa);
 
     func_802EF9F8(other, 0.6f);
     func_802EFA18(other, 3);
@@ -170,7 +170,7 @@ void func_8038C70C(Actor *this){
 
 void func_8038C8A8(Actor * this){
     ActorLocal_RBB_5F80 *local = (ActorLocal_RBB_5F80 *) &this->local;
-    ParticleEmitter *other = func_802F0BD0(5);
+    ParticleEmitter *other = partEmitList_pushNew(5);
     f32 sp24[3];
     
 

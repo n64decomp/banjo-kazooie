@@ -83,7 +83,7 @@ void func_802DA740(Actor *this){
             }
             else{
                 if(local->unk0 && actor_animationIsAt(this, 0.05f)){
-                    func_802DA634(func_802F0BD0(6), this->velocity, 6);
+                    func_802DA634(partEmitList_pushNew(6), this->velocity, 6);
                 }
             }
             break;
@@ -93,19 +93,19 @@ void func_802DA740(Actor *this){
             }
             else if(local->unk0){ 
                 if(actor_animationIsAt(this, 0.3f)){
-                    func_802DA634(func_802F0BD0(6), this->velocity, 6);
+                    func_802DA634(partEmitList_pushNew(6), this->velocity, 6);
                 }
                 else if(actor_animationIsAt(this, 0.4f)){
-                    func_802DA634(func_802F0BD0(4), this->unk1C, 4);
+                    func_802DA634(partEmitList_pushNew(4), this->unk1C, 4);
                 }
                 else if(actor_animationIsAt(this, 0.45f)){
-                    func_802DA634(func_802F0BD0(4), local->unk4, 4);
+                    func_802DA634(partEmitList_pushNew(4), local->unk4, 4);
                 }
                 else if(actor_animationIsAt(this, 0.5f)){
-                    func_802DA634(func_802F0BD0(4), local->unk10, 4);
+                    func_802DA634(partEmitList_pushNew(4), local->unk10, 4);
                 }
                 else if(actor_animationIsAt(this, 0.55f)){
-                    func_802DA634(func_802F0BD0(4), local->unk1C, 4);
+                    func_802DA634(partEmitList_pushNew(4), local->unk1C, 4);
                 }
             }
             break;

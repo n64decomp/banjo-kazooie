@@ -93,10 +93,10 @@ void func_802AFADC(void){
 }
 
 void func_802AFB0C(void){
-    D_8037D470.unk0 = func_802F0BD0(0x32);
+    D_8037D470.unk0 = partEmitList_pushNew(0x32);
     func_802AF7A0(D_8037D470.unk0, ASSET_476_SPRITE_BLUE_GLOW); //blue glow
 
-    D_8037D470.unk4 = func_802F0BD0(0x32);
+    D_8037D470.unk4 = partEmitList_pushNew(0x32);
     func_802AF7A0(D_8037D470.unk4, ASSET_477_SPRITE_YELLOW_GLOW); //orange glow
 
     D_8037D470.unkC = 1.0f;
@@ -120,7 +120,7 @@ void func_802AFBAC(f32 arg0){
 }
 
 void func_802AFBB8(f32 (* arg0)[3]){
-    ParticleEmitter* s0 = func_802F0BD0(1);
+    ParticleEmitter* s0 = partEmitList_pushNew(1);
     particleEmitter_setSprite(s0, ASSET_6C4_SPRITE_SMOKE_YELLOW); //yellow blast
     func_802EFA5C(s0, 0.7f, 0.8f);
     particleEmitter_setParticleFramerateRange(s0, 12.0f, 12.0f);
@@ -130,7 +130,7 @@ void func_802AFBB8(f32 (* arg0)[3]){
     func_802EFEC0(s0, 0.8f, 0.8f);
     particleEmitter_emitN(s0, 1);
     
-    s0 = func_802F0BD0(1);
+    s0 = partEmitList_pushNew(1);
     particleEmitter_setSprite(s0, ASSET_6C2_SPRITE_SMOKE_WHITE); //smoke
     func_802EFA5C(s0, 0.1f, 0.8f);
     particleEmitter_setParticleFramerateRange(s0, 15.0f, 15.0f);
@@ -140,7 +140,7 @@ void func_802AFBB8(f32 (* arg0)[3]){
     func_802EFEC0(s0, 0.65f, 0.65f);
     particleEmitter_emitN(s0, 1);
 
-    s0 = func_802F0BD0(0x11);
+    s0 = partEmitList_pushNew(0x11);
     particleEmitter_setSprite(s0, ASSET_713_SPRITE_SPARKLE_YELLOW); //sparkle
     particleEmitter_setVelocityAndAccelerationRanges(s0, &D_80364BB0);
     func_802EFA5C(s0, 0.0f, 0.6f);
@@ -160,7 +160,7 @@ void func_802AFBB8(f32 (* arg0)[3]){
     func_802EFA18(s0, 3);
     particleEmitter_emitN(s0, 4);
 
-    s0 = func_802F0BD0(0x11);
+    s0 = partEmitList_pushNew(0x11);
     particleEmitter_setSprite(s0, ASSET_716_SPRITE_SPARKLE_WHITE); //sparkle
     particleEmitter_setVelocityAndAccelerationRanges(s0, &D_80364C40);
     func_802EFA5C(s0, 0.0f, 0.6f);

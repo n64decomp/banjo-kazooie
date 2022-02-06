@@ -80,8 +80,8 @@ extern void func_8038CF50(Actor *this){
 
     if(!this->unk16C_4){
         this->unk16C_4 = TRUE;
-        local->unk0 = func_802F0BD0(6);
-        local->unk4 = func_802F0BD0(6);
+        local->unk0 = partEmitList_pushNew(6);
+        local->unk4 = partEmitList_pushNew(6);
 
         func_8038CDE0(local->unk0);
         func_8038CE98(local->unk4);

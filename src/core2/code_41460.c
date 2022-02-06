@@ -4,7 +4,7 @@
 
 typedef struct struct_24_s{
     u32 unk0;
-    void *unk4;
+    BKModelBin *model_bin;
     
     f32 unk8[3];
     
@@ -38,7 +38,6 @@ typedef struct struct_25_s{
 
 void func_802C8484(ActorMarker *, Gfx **, Mtx **, Vtx **);
 void func_802C8C5C(Actor *this);
-void func_802C8EC0(Actor *this);
 
 /* .data */
 extern ActorInfo D_80366340 = { 0x56,  0x4A,   0x0, 0x2, 0x0, func_802C8C5C, func_80326224, func_802C8484, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
@@ -47,7 +46,6 @@ extern ActorInfo D_80366388 = { 0x56,   0xD,   0x0, 0x2, 0x0, func_802C8C5C, fun
 extern ActorInfo D_803663AC = { 0x56, 0x11F,   0x0, 0x2, 0x0, func_802C8C5C, func_80326224, func_802C8484, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
 extern ActorInfo D_803663D0 = { 0x56, 0x14F,   0x0, 0x2, 0x0, func_802C8C5C, func_80326224, func_802C8484, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
 extern ActorInfo D_803663F4 = { 0x56, 0x3AD,   0x0, 0x2, 0x0, func_802C8C5C, func_80326224, func_802C8484, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
-extern ActorInfo D_80366430 = { MARKER_61_EXTRA_LIFE,  ACTOR_49_EXTRA_LIFE, ASSET_36E_MODEL_EXTRA_LIFE, 0x0, 0x0, func_802C8EC0, func_80326224, func_80325934, { 0x0, 0x0}, 0, 0.7f, { 0x0, 0x0, 0x0, 0x0}};
 
 /* .bss */
 extern s32 D_8037DD90;
@@ -106,15 +104,15 @@ Actor *func_802C8580(s32 (* position)[3], s32 yaw, ActorInfo* actorInfo, u32 fla
             s0->unk30[0] = randf2(125.0f, 175.0f);
             s0->unk30[1] = randf2(400.0f, 600.0f);
             s0->unk30[2] = randf2(125.0f, 175.0f);
-            s0->unk4 = assetcache_get(0x2e7);
+            s0->model_bin = (BKModelBin *) assetcache_get(0x2e7);
             s0->unk2C = 18.0f;
             break; 
         case 2: // 802C87A8
-            s0->unk4 = assetcache_get(0x344);
+            s0->model_bin = (BKModelBin *) assetcache_get(0x344);
             s0->unk2C = 2.0f;
             break; 
         case 4: // 802C87C4
-            s0->unk4 = assetcache_get(0x345);
+            s0->model_bin = (BKModelBin *) assetcache_get(0x345);
             s0->unk2C = 1.0f;
             s0->unk30[0] = randf2(20.0f, 100.0f);
             s0->unk30[1] = randf2(400.0f, 740.0f);
@@ -126,18 +124,18 @@ Actor *func_802C8580(s32 (* position)[3], s32 yaw, ActorInfo* actorInfo, u32 fla
             break; 
         case 0: // 802C883C
             if(0.5 < randf())
-                s0->unk4 = assetcache_get(0x2d1);
+                s0->model_bin = (BKModelBin *) assetcache_get(0x2d1);
             else
-                s0->unk4 = assetcache_get(0x2e5);
+                s0->model_bin = (BKModelBin *) assetcache_get(0x2e5);
 
             s0->unk2C = randf2(5.0f, 12.0f);
             break;
         case 3: // 802C88A0
-            s0->unk4 = assetcache_get(0x30e);
+            s0->model_bin = (BKModelBin *) assetcache_get(0x30e);
             s0->unk2C = randf2(9.0f, 15.0f);
             break;
         case 5: // 802C88C8
-            s0->unk4 = assetcache_get(0x8a2);
+            s0->model_bin = (BKModelBin *) assetcache_get(0x8a2);
             s0->unk2C = 2.0f;
             break;
         }//L802C88E0
@@ -230,13 +228,3 @@ Actor *func_802C8C04(s32 (* position)[3], s32 yaw, ActorInfo* actorInfo, u32 fla
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_41460/func_802C8C5C.s")
-
-void func_802C8EC0(Actor *this){
-    if(!this->initialized){
-        func_8032AA58(this, 0.8f);
-        this->initialized = TRUE;
-        if(func_803203FC(1) || func_803203FC(2)){
-            marker_despawn(this->marker);
-        }
-    }
-}

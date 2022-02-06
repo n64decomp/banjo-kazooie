@@ -67,7 +67,7 @@ void func_8038FF54(Actor *this){
             marker_despawn(this->marker);
        }
        else if(this->marker->unk14_21){//L8039016C
-            sp3C = func_802F0BD0(1);
+            sp3C = partEmitList_pushNew(1);
             func_8034A174(this->marker->unk44, 5, sp40);
             particleEmitter_setSprite(sp3C, ASSET_713_SPRITE_SPARKLE_YELLOW);
             particleEmitter_setStartingFrameRange(sp3C, 1, 6);

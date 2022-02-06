@@ -41,7 +41,7 @@ s32 D_8036889C[] = {
 
 /* .code */
 void func_802EDF40(f32 pos[3], s32 arg1, s32 cnt, f32 arg3, f32 arg4, f32 arg5, f32 arg6[3], f32 arg7[3]){
-    ParticleEmitter *pCtrl = func_802F0BD0(cnt);
+    ParticleEmitter *pCtrl = partEmitList_pushNew(cnt);
     f32 tmp_f0;
     if(arg1 < 0x3e7){
         particleEmitter_setModel(pCtrl, D_80368860[arg1]);

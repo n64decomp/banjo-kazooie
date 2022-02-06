@@ -110,7 +110,7 @@ void func_802E1BD0(ActorMarker *marker){
 }
 
 void func_802E1CB8(f32 position[3], s32 count){
-    ParticleEmitter *particleSpawner = func_802F0BD0(count);
+    ParticleEmitter *particleSpawner = partEmitList_pushNew(count);
 
     particleEmitter_setModel(particleSpawner, ASSET_378_MODEL_SNOWBALL);
     particleEmitter_setPosition(particleSpawner, position);

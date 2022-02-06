@@ -78,8 +78,8 @@ void func_80386D68(Actor *this){
     func_8030DABC(this->unk44_31, 0x7D00);
     func_8030DBB4(this->unk44_31, (0.01 < (2.0 - this->scale))? (2.0 - this->scale): 0.01);
     func_8030E2C4(this->unk44_31);
-    func_80386B04(func_802F0BD0(0xA), this->position, 0xA, this->scale);
-    func_80386C2C(func_802F0BD0(0x10), this->position, 0x10, this->scale);
+    func_80386B04(partEmitList_pushNew(0xA), this->position, 0xA, this->scale);
+    func_80386C2C(partEmitList_pushNew(0x10), this->position, 0x10, this->scale);
 
     if(this->unk100 && func_803870E8(this->unk100)){
         func_802CA1CC(HONEYCOMB_18_SM_QUARRIES);

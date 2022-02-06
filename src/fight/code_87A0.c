@@ -114,7 +114,7 @@ void func_8038EB90(ActorMarker *arg0, f32 *arg1) {
 }
 
 void func_8038EBE0(f32 (*arg0)[3], u32 arg1, enum asset_e arg2, f32 (*arg3)[6], f32 (*arg4)[6], f32 (*arg5)[6], f32 (*arg6)[4], f32 (*arg7)[4], f32 (*arg8)[2]) {
-    ParticleEmitter *temp_v0 = func_802F0BD0(arg1);
+    ParticleEmitter *temp_v0 = partEmitList_pushNew(arg1);
 
     particleEmitter_setSprite(temp_v0, arg2);
     particleEmitter_setStartingFrameRange(temp_v0, 1, 6);
@@ -136,7 +136,7 @@ void func_8038EBE0(f32 (*arg0)[3], u32 arg1, enum asset_e arg2, f32 (*arg3)[6], 
 }
 
 void func_8038ED9C(f32 (*arg0)[3], u32 arg1, s32 arg2, s32 (*arg3)[2], f32 (*arg4)[6], f32 (*arg5)[4], f32 (*arg6)[4], f32 (*arg7)[2]) {
-    ParticleEmitter *temp_v0 = func_802F0BD0(arg2);
+    ParticleEmitter *temp_v0 = partEmitList_pushNew(arg2);
 
     particleEmitter_setSprite(temp_v0, arg1);
     particleEmitter_setStartingFrameRange(temp_v0, (*arg3)[0], (*arg3)[1]);
@@ -155,7 +155,7 @@ void func_8038ED9C(f32 (*arg0)[3], u32 arg1, s32 arg2, s32 (*arg3)[2], f32 (*arg
 }
 
 void func_8038EEFC(f32 (*arg0)[3], u32 arg1, f32 *arg2) {
-    ParticleEmitter *temp_v0 = func_802F0BD0(arg1);
+    ParticleEmitter *temp_v0 = partEmitList_pushNew(arg1);
 
     particleEmitter_setSprite(temp_v0, ASSET_70E_SPRITE_SMOKE_2);
     func_802EFFA8(temp_v0, &D_80391B48);

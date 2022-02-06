@@ -190,7 +190,7 @@ void *func_803866D8(s32 a0)
     void *ptr;
     s32 colour[3];
 
-    ptr = func_802F0BD0(0x28);
+    ptr = partEmitList_pushNew(0x28);
 
     func_802F0D54(ptr);
     particleEmitter_setSprite(ptr, ASSET_710_SPRITE_SPARKLE_PURPLE);

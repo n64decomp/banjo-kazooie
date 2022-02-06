@@ -835,9 +835,9 @@ void func_802F0B98(Gfx **gdl, Mtx **mptr, Vtx **vptr){
     func_802F0AE8(gdl, mptr, vptr);
 }
 
-ParticleEmitter *func_802F0BD0(u32 arg0){
+ParticleEmitter *partEmitList_pushNew(u32 cnt){
     D_803689B0 = realloc(D_803689B0, (++D_803689B4)*4);
-    D_803689B0[D_803689B4 - 1] = particleEmitter_new(arg0);
+    D_803689B0[D_803689B4 - 1] = particleEmitter_new(cnt);
     D_803689B0[D_803689B4 - 1]->unk0_0 = TRUE;
     return D_803689B0[D_803689B4 - 1];
 }

@@ -19,7 +19,7 @@ s32 D_803928D0[3];
 
 /* .code */
 void func_80390C70(f32 position[3]){
-    ParticleEmitter *pCtrl = func_802F0BD0(1);
+    ParticleEmitter *pCtrl = partEmitList_pushNew(1);
     particleEmitter_setSprite(pCtrl, ASSET_70D_SPRITE_SMOKE_1);
     particleEmitter_setStartingFrameRange(pCtrl, 1, 6);
     func_802EFFA8(pCtrl, D_80392894);
@@ -37,7 +37,7 @@ void func_80390C70(f32 position[3]){
 }
 
 void func_80390D58(f32 position[3]){
-    ParticleEmitter *pCtrl = func_802F0BD0(1);
+    ParticleEmitter *pCtrl = partEmitList_pushNew(1);
     particleEmitter_setSprite(pCtrl, ASSET_713_SPRITE_SPARKLE_YELLOW);
     particleEmitter_setStartingFrameRange(pCtrl, 1, 6);
     func_802EFFA8(pCtrl, D_803928D0);

@@ -41,7 +41,7 @@ s32 D_80372C6C[3] = {0xFE, 0x46, 0xFE};
 
 /* .code */
 void func_8035AFE0(f32 scale, f32 pos[3], s32 cnt, enum asset_e sprite_id, s32 arg4[3]){
-    ParticleEmitter *pCtrl = func_802F0BD0(cnt);
+    ParticleEmitter *pCtrl = partEmitList_pushNew(cnt);
 
     particleEmitter_setSprite(pCtrl, sprite_id);
     func_802EFFA8(pCtrl, arg4);

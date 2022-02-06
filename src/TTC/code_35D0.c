@@ -88,7 +88,7 @@ void func_80389CC4(s16 arg0[3], s32 arg1){
         D_8038D708[2] = (f32)arg0[2];
         D_8038D708[1] =  func_80309724(D_8038D708);
         func_802C3F04(func_802C4140, 0xF4, reinterpret_cast(s32, D_8038D708[0]), reinterpret_cast(s32, D_8038D708[1]), reinterpret_cast(s32, D_8038D708[2]));
-        D_8038D700 = func_802F0BD0(3);
+        D_8038D700 = partEmitList_pushNew(3);
         func_802EFFA8(D_8038D700, D_8038C91C);
         particleEmitter_setSprite(D_8038D700, ASSET_700_SPRITE_DUST);
         particleEmitter_setStartingFrameRange(D_8038D700, 0, 7);

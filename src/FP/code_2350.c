@@ -145,8 +145,8 @@ void func_80388D70(ActorMarker *caller, enum asset_e text_id, s32 arg2){
             func_8025A58C(0, 4000);
             func_8024BD08(0);
             func_802BE720();
-            local->unk0 = func_802F0BD0(16);
-            local->unk4 = func_802F0BD0(16);
+            local->unk0 = partEmitList_pushNew(16);
+            local->unk4 = partEmitList_pushNew(16);
             func_80388EE8(local->unk0);
             func_80388EE8(local->unk4);
             func_80328B8C(this, 4, 0.0001f, 1);

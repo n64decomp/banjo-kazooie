@@ -203,6 +203,7 @@ particleEmitter_setParticleVelocityRange            = 0x802EFED4;
 particleEmitter_setSphericalParticleVelocityRange   = 0x802EFF10;
 particleEmitter_setSpawnInterval                    = 0x802EFFC4;
 particleEmitter_update                              = 0x802EFFE4;
+partEmitList_pushNew                                = 0x802F0BD0;
 
 vector_clear = 0x802ED620;
 vector_getBegin = 0x802ED62C;

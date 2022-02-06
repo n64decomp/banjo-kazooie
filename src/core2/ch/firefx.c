@@ -18,7 +18,7 @@ ActorInfo gChFireFxInfo = {
 void __chfirefx_spawnSmoke(f32 position[3], f32 scale){
     ParticleEmitter *pCtrl;
 
-    pCtrl = func_802F0BD0(1);
+    pCtrl = partEmitList_pushNew(1);
     particleEmitter_setSprite(pCtrl, ASSET_70D_SPRITE_SMOKE_1);
     particleEmitter_setStartingFrameRange(pCtrl, 1, 6);
     func_802EF9E4(pCtrl, 0x23);
@@ -37,7 +37,7 @@ void __chfirefx_spawnSmoke(f32 position[3], f32 scale){
 void __chfirefx_spawnSpark(f32 position[3], f32 scale){
     ParticleEmitter *pCtrl;
 
-    pCtrl = func_802F0BD0(1);
+    pCtrl = partEmitList_pushNew(1);
     particleEmitter_setSprite(pCtrl, ASSET_713_SPRITE_SPARKLE_YELLOW);
     particleEmitter_setStartingFrameRange(pCtrl, 1, 6);
     particleEmitter_setPosition(pCtrl, position);

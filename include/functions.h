@@ -213,7 +213,7 @@ void func_80324D2C(f32, enum comusic_e);
 void func_80324DBC(f32, s32, s32, f32 f32[3], ActorMarker *, void (*)(ActorMarker *, s32, s32), void(*)(ActorMarker *));
 void particleEmitter_setSprite(ParticleEmitter *, enum asset_e);
 void particleEmitter_setPosition(ParticleEmitter *, f32[3]);
-ParticleEmitter *func_802F0BD0(u32);
+ParticleEmitter *partEmitList_pushNew(u32);
 void func_802BB3DC(s32, f32, f32);
 void func_802C3F04(void (* arg0)(void), s32, s32, s32, s32);
 void func_802C4140();

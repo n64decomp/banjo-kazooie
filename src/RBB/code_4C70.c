@@ -75,7 +75,7 @@ void func_8038B0B8(Actor *this, s32 arg1){
         func_80335924(this->unk148, local->unk0->unk12, 0.0f, 0.5f);
         func_80335A8C(this->unk148, 2);
         timed_playSfx(0.1f, local->unk0->unk14, 1.0f, 0x7d00);
-        other = func_802F0BD0(0xa);
+        other = partEmitList_pushNew(0xa);
         particleEmitter_setSprite(other, ASSET_70E_SPRITE_SMOKE_2);
         particleEmitter_setParticleAccelerationRange(other, 
             0.0f, 100.0f, 0.0f,

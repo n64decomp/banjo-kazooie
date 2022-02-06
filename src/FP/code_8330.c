@@ -43,7 +43,7 @@ void func_8038E7CC(ActorMarker *this_marker, ActorMarker *other_marker){
 }
 
 void func_8038E840(f32 position[3], s32 cnt, enum asset_e sprite_id){
-    ParticleEmitter *pCtrl = func_802F0BD0(cnt);
+    ParticleEmitter *pCtrl = partEmitList_pushNew(cnt);
     particleEmitter_setSprite(pCtrl, sprite_id);
     particleEmitter_setPosition(pCtrl, position);
     particleEmitter_setParticleSpawnPositionRange(pCtrl,

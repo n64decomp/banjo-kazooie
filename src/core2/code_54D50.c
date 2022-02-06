@@ -38,7 +38,7 @@ struct43s D_80367F90 ={
 
 /* .code */
 void func_802DBCE0(ParticleEmitter *pCtrl, f32 arg1[3]){
-    ParticleEmitter *other = func_802F0BD0(1);
+    ParticleEmitter *other = partEmitList_pushNew(1);
     if(func_8024549C(arg1, 4.0f)){
         arg1[1] += 2.0f;
         particleEmitter_setSprite(other, ASSET_70C_SPRITE_RIPPLE);
@@ -91,7 +91,7 @@ void func_802DC018(Actor *this){
 
     if(!this->unk16C_4){
         actor_collisionOff(this);
-        local->unk0 = func_802F0BD0(16);
+        local->unk0 = partEmitList_pushNew(16);
         func_802DBE9C(this, local->unk0);
         this->unk16C_4 = TRUE;
     }

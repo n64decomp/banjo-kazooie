@@ -104,7 +104,7 @@ int func_80359FEC(f32 arg0[3], f32 arg1[3], s32 arg2){
 }
 
 void func_8035A04C(f32 position[3], s32 cnt, enum asset_e model_id, f32 scale){
-    ParticleEmitter *pCtrl = func_802F0BD0(cnt);
+    ParticleEmitter *pCtrl = partEmitList_pushNew(cnt);
 
     particleEmitter_setModel(pCtrl, model_id);
     particleEmitter_setPosition(pCtrl, position);
@@ -120,7 +120,7 @@ void func_8035A04C(f32 position[3], s32 cnt, enum asset_e model_id, f32 scale){
 }
 
 void func_8035A228(f32 position[3], s32 cnt, enum asset_e sprite_id, f32 scale){
-    ParticleEmitter *pCtrl = func_802F0BD0(cnt);
+    ParticleEmitter *pCtrl = partEmitList_pushNew(cnt);
 
     func_802EFFA8(pCtrl, D_80372BC8);
     particleEmitter_setSprite(pCtrl, sprite_id);
@@ -137,7 +137,7 @@ void func_8035A228(f32 position[3], s32 cnt, enum asset_e sprite_id, f32 scale){
 }
 
 void func_8035A3F8(f32 position[3], s32 cnt, enum asset_e sprite_id, f32 scale){
-    ParticleEmitter *pCtrl = func_802F0BD0(cnt);
+    ParticleEmitter *pCtrl = partEmitList_pushNew(cnt);
 
     func_802EFFA8(pCtrl, D_80372BD4);
     particleEmitter_setSprite(pCtrl, sprite_id);

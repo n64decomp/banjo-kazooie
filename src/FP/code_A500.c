@@ -27,7 +27,7 @@ Actor *func_803908F0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 }
 
 void func_80390944(f32 position[3], s32 cnt, enum asset_e model_id){
-    ParticleEmitter *pCtrl = func_802F0BD0(cnt);
+    ParticleEmitter *pCtrl = partEmitList_pushNew(cnt);
     particleEmitter_setModel(pCtrl, model_id);
     particleEmitter_setPosition(pCtrl, position);
     particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_8039277C);
@@ -44,7 +44,7 @@ void func_80390944(f32 position[3], s32 cnt, enum asset_e model_id){
 }
 
 void func_80390A30(f32 position[3], s32 cnt, enum asset_e sprite_id){
-    ParticleEmitter *pCtrl = func_802F0BD0(cnt);
+    ParticleEmitter *pCtrl = partEmitList_pushNew(cnt);
     func_802EFFA8(pCtrl, D_80392834);
     particleEmitter_setSprite(pCtrl, sprite_id);
     particleEmitter_setPosition(pCtrl, position);

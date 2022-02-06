@@ -16,7 +16,7 @@ s32 D_80373124[3] = {0xA0, 0x6B, 0x23};
 
 /* .code */
 void __chwhipcrack_spawnPieces(Actor *this, enum asset_e model_id, s32 cnt){
-    ParticleEmitter *pCtrl = func_802F0BD0(cnt);
+    ParticleEmitter *pCtrl = partEmitList_pushNew(cnt);
     
     particleEmitter_setParticleAccelerationRange(pCtrl,
         0.0f, -1000.0f, 0.0f,
@@ -47,7 +47,7 @@ void __chwhipcrack_spawnPieces(Actor *this, enum asset_e model_id, s32 cnt){
 }
 
 void __chwhipcrack_spawnSmoke(Actor *this, s32 cnt){
-    ParticleEmitter *pCtrl = func_802F0BD0(cnt);
+    ParticleEmitter *pCtrl = partEmitList_pushNew(cnt);
     particleEmitter_setSprite(pCtrl, ASSET_70E_SPRITE_SMOKE_2);
     func_802EFA5C(pCtrl, 0.05f, 0.1f);
     particleEmitter_setStartingFrameRange(pCtrl, 0, 7);

@@ -20,7 +20,7 @@ extern Struct_Core2_69F60_0 D_80380938[];
 ParticleEmitter *func_802F0EF0(u8 arg0){
     if(D_80380938[arg0].p_emitter == NULL){
         D_80380930 = arg0;
-        D_80380938[arg0].p_emitter = func_802F0BD0(D_80380938[arg0].capacity);
+        D_80380938[arg0].p_emitter = partEmitList_pushNew(D_80380938[arg0].capacity);
         func_802F0D54(D_80380938[arg0].p_emitter);
         D_80380930 = 0;
     }

@@ -45,7 +45,7 @@ void func_80361330(Actor *this, s32 next_state){
         local->unk4 = 3.0f;
 
     if(next_state == 2){
-        pctrl = func_802F0BD0(6);
+        pctrl = partEmitList_pushNew(6);
         sp40[0] = 1000.0f;
         sp40[1] = 100.0f;
         sp40[2] = 0.0f;

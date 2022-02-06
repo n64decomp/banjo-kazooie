@@ -51,7 +51,7 @@ void func_8038AB30(ParticleEmitter *pCtrl, f32 position[3], s32 cnt){
 }
 
 void func_8038ABD8(f32 position[3], s32 cnt){
-    ParticleEmitter *pCtrl = func_802F0BD0(cnt);
+    ParticleEmitter *pCtrl = partEmitList_pushNew(cnt);
     func_8038AB30(pCtrl, position, cnt);
     particleEmitter_setParticleSpawnPositionRange(pCtrl, 
         -40.0f, -5.0f, -40.0f,
@@ -69,7 +69,7 @@ void func_8038ABD8(f32 position[3], s32 cnt){
 }
 
 void func_8038ACEC(f32 pos[3], s32 cnt){
-    ParticleEmitter *pCtrl = func_802F0BD0(cnt);
+    ParticleEmitter *pCtrl = partEmitList_pushNew(cnt);
     func_8038AB30(pCtrl, pos, cnt);
     particleEmitter_setParticleSpawnPositionRange(pCtrl, 
         -80.0f, 20.0f, -80.0f,
@@ -87,7 +87,7 @@ void func_8038ACEC(f32 pos[3], s32 cnt){
 }
 
 void func_8038ADFC(f32 pos[3], s32 cnt){
-    ParticleEmitter *pCtrl = func_802F0BD0(cnt);
+    ParticleEmitter *pCtrl = partEmitList_pushNew(cnt);
     particleEmitter_setModel(pCtrl, 0x389);
     particleEmitter_setPosition(pCtrl, pos);
     particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_803910D4);

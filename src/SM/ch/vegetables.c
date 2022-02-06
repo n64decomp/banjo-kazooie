@@ -150,11 +150,11 @@ void func_80387C28(Actor * this){
         sp30[1] = this->position_y;
         sp30[2] = this->position_z;
         sp30[1] += 50.0f;
-        func_80387B48(func_802F0BD0(0xC), sp30, 0xC, 0x4F4);
-        func_803879B8(func_802F0BD0(4), sp30, 0x4, 0x4F2);
-        func_803879B8(func_802F0BD0(4), sp30, 0x4, 0x4F3);
+        func_80387B48(partEmitList_pushNew(0xC), sp30, 0xC, 0x4F4);
+        func_803879B8(partEmitList_pushNew(4), sp30, 0x4, 0x4F2);
+        func_803879B8(partEmitList_pushNew(4), sp30, 0x4, 0x4F3);
         sp30[1] += 50.0f;
-        func_80387910(func_802F0BD0(8), sp30, 8);
+        func_80387910(partEmitList_pushNew(8), sp30, 8);
     }//L80387D18
     if(this->unk38_31){
         this->position_y += 100.0f;
@@ -440,7 +440,7 @@ void func_80388080(Actor *this){
             if(local->unkC == 1)
                 sp54[1] += 150.0f;
             this->unk138_24 = 0;
-            func_80387A80(func_802F0BD0(3), sp54, 3, (local->unkC == 1)? 0x4f0: 0x4f1);
+            func_80387A80(partEmitList_pushNew(3), sp54, 3, (local->unkC == 1)? 0x4f0: 0x4f1);
         }//L80388CC4
         
         if(actor_animationIsAt(this, 0.75f))

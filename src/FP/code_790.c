@@ -47,7 +47,7 @@ Actor *func_80386B80(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 
 void func_80386BEC(Actor *this){
     f32 plyr_pos[3];
-    ParticleEmitter *pCtrl = func_802F0BD0(12);
+    ParticleEmitter *pCtrl = partEmitList_pushNew(12);
     
     player_getPosition(plyr_pos);
     func_80328B8C(this, 2, 0.01f, 1);

@@ -131,7 +131,7 @@ void func_80387C5C(void){
     ParticleEmitter *actor;
 
     func_802BB3DC(0, 60.0f, 0.9f);
-    actor = func_802F0BD0(1);
+    actor = partEmitList_pushNew(1);
     particleEmitter_setSprite(actor, ASSET_4A0_SPRITE_EXPLOSION);
     func_802EFA5C(actor, 0.1f, 0.2f);
     func_802EFA70(actor, 8);
@@ -145,7 +145,7 @@ void func_80387C5C(void){
 }
 
 void func_80387D80(void){
-    ParticleEmitter *actor = func_802F0BD0(3);
+    ParticleEmitter *actor = partEmitList_pushNew(3);
     particleEmitter_setSprite(actor, ASSET_70E_SPRITE_SMOKE_2);
     particleEmitter_setStartingFrameRange(actor, 0, 7);
     func_802EFB98(actor, &D_80390304);
@@ -154,7 +154,7 @@ void func_80387D80(void){
 }
 
 void func_80387E20(void){
-    ParticleEmitter *actor = func_802F0BD0(0x19);
+    ParticleEmitter *actor = partEmitList_pushNew(0x19);
     func_802EF9F8(actor, 0.6f);
     func_802EFA18(actor, 3);
     particleEmitter_setModel(actor, 0x427);
