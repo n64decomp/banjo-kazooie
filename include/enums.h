@@ -5,6 +5,7 @@
 #define SPRITE_TYPE_CI8 (1 << 2)
 #define SPRITE_TYPE_I4 (1 << 5)
 #define SPRITE_TYPE_I8 (1 << 6)
+
 #define SPRITE_TYPE_RGBA16 (1 << 10)
 #define SPRITE_TYPE_RGBA32 (1 << 11)
 
@@ -232,7 +233,8 @@ enum bkprog_e{
 	// {index=0xE3, type="Prog", level=8, name="CCW Flower Spring"},
 	// {index=0xE4, type="Prog", level=8, name="CCW Flower Summer"},
 	// {index=0xE5, type="Prog", level=8, name="CCW Flower Autumn"},
-	// {index=0xE6, type="Prog", level=8, name="Spring Eyrie Hatched"},
+    BKPROG_E6_SPRING_EYRIE_HATCHED = 0xE6,
+    BKPROG_E7_SUMMER_EYRIE_FED,
 	// {index=0xE7, type="Prog", level=8, name="Summer Eyrie Fed"},
 	// {index=0xE8, type="Prog", level=8, name="Autumn Eyrie Fed"},
 
@@ -1626,6 +1628,8 @@ enum actor_e
 
     ACTOR_29F_CLUCKER = 0x29F,
 
+    ACTOR_2A2_CATERPILLAR = 0x2A2,
+
     ACTOR_2E5_WOODEN_DOOR   = 0x2e5,
 
     ACTOR_30F_WHIPCRACK     = 0x30f,
@@ -2541,6 +2545,8 @@ enum marker_e{
 
     MARKER_168_ICE_KEY = 0x168,
     MARKER_169_SNS_EGG,
+
+    MARKER_1B5_CATERPILLAR = 0x1B5,
 
     MARKER_1CD_GV_MAZE_CTRL = 0x1CD,
 

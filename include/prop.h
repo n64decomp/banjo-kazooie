@@ -404,7 +404,7 @@ typedef struct actor_s{
 } Actor;
 
 typedef struct actor_info_s{
-    s16     unk0;
+    s16     markerId;
     s16     actorId;
     s16     modelId;
     s16     startAnimation;

@@ -9,7 +9,7 @@
     </mask>
     <g mask="url(#anybadge_1)">
         <path fill="#555" d="M0 0h34v20H0z"/>
-        <path fill="#e00e00" d="M34 0h60v20H34z"/>
+        <path fill="#e01500" d="M34 0h60v20H34z"/>
         <path fill="url(#b)" d="M0 0h94v20H0z"/>
     </g>
     <g fill="#fff" text-anchor="middle" font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="11">
@@ -17,7 +17,7 @@
         <text x="17.0" y="14">CCW</text>
     </g>
     <g fill="#fff" text-anchor="middle" font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="11">
-        <text x="65.0" y="15" fill="#010101" fill-opacity=".3">3.1510%</text>
-        <text x="64.0" y="14">3.1510%</text>
+        <text x="65.0" y="15" fill="#010101" fill-opacity=".3">4.6053%</text>
+        <text x="64.0" y="14">4.6053%</text>
     </g>
 </svg>

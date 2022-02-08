@@ -375,3 +375,6 @@ void func_8033BD20(BKModelBin **arg0){
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B3A80/func_8033BD8C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B3A80/func_8033BDAC.s")
+// void func_8033BDAC(enum asset_e id, void * dst, s32 size){
+
+// }

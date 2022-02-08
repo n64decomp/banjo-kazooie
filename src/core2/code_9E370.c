@@ -196,7 +196,7 @@ Actor *actor_new(s32 (* position)[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
     D_80383390->unk124_6 = 1;
     D_80383390->modelCacheIndex = actorInfo->actorId;
     D_80383390->unk44_2 = func_80326C18();
-    D_80383390->marker = func_8032F9DC(position, actorInfo->draw_func, (func_8033B64C(actorInfo->modelId) == 1) ? 0 : 1,  actorInfo->unk0, (flags & 0x400) ? 1 : 0);
+    D_80383390->marker = func_8032F9DC(position, actorInfo->draw_func, (func_8033B64C(actorInfo->modelId) == 1) ? 0 : 1,  actorInfo->markerId, (flags & 0x400) ? 1 : 0);
     D_80383390->marker->unk3E_0 = 1;
     D_80383390->unk138_28 = 1;
     D_80383390->unk10_3 = -1;

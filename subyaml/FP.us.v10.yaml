@@ -36,7 +36,7 @@ segments:
       - [0x19E0, c, code_19E0]
       - [0x1FF0, c, code_1FF0] #DONE
       - [0x2350, c, code_2350]
-      - [0x3E00, c, code_3E00]
+      - [0x3E00, c, code_3E00] #DONE
       - [0x4400, c, code_4400] #DONE
       - [0x45D0, c, code_45D0]
       - [0x4770, c, code_4770]

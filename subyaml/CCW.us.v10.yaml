@@ -33,6 +33,7 @@ segments:
       - [0x950, c, code_950]
       - [0x14B0, c, code_14B0]
       - [0x1B20, c, code_1B20]
+      - [0x3DA0, c, code_3DA0] #DONE
       - [0x4530, c, code_4530]
       - [0x4D00, c, code_4D00]
       - [0x50D0, c, code_50D0]
@@ -52,4 +53,8 @@ segments:
     vram: 0x8038EB50
     subsegments:
       - [0x00008760, bin, data_8760]
+      - [0x00008D70, .data, code_3DA0]
+      - [0x00008DA0, bin, data_8DA0]
+      - [0x00009770, .rodata, code_3DA0]
+      - [0x000097B0, bin, data_97B0]
   - [0x000099E0]
