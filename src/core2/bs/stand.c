@@ -348,7 +348,7 @@ void func_802B5350(void){
             func_8029A86C(1);
         else{
             func_802948F8(func_8028D688());
-            bs_setState(BS_CARRY_IDLE);
+            bs_setState(BS_3A_CARRY_IDLE);
         }
     }
     else if(sp1C == 0x12){//L802B53D0
