@@ -10,13 +10,13 @@ typedef struct {
     f32 unkC[3];
     f32 unk18[3];
     f32 unk24;
-} ActorLocal_CCW_3DA0;
+} ActorLocal_Caterpillar;
 
 void chcaterpillar_update(Actor *this);
 Actor*  chcaterpillar_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 
 /* .data */
-ActorInfo D_8038F160 = { 
+ActorInfo chCaterpillar = { 
     MARKER_1B5_CATERPILLAR, ACTOR_2A2_CATERPILLAR, ASSET_485_MODEL_CATERPILLAR, 
     0x0, NULL, 
     chcaterpillar_update, NULL, chcaterpillar_draw, 
@@ -37,7 +37,7 @@ f32 func_8038A190(Actor *this, f32 *arg1) {
 }
 
 void chcaterpillar_setState(Actor *this, s32 next_state) {
-    ActorLocal_CCW_3DA0 *local = (ActorLocal_CCW_3DA0 *)&this->local;
+    ActorLocal_Caterpillar *local = (ActorLocal_Caterpillar *)&this->local;
 
     if (next_state == 1) {
         func_80335924(this->unk148, 0x18D, 0.0f, randf2(1.9f, 2.1f));
@@ -73,7 +73,7 @@ Actor*  chcaterpillar_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx)
 
 void chcaterpillar_update(Actor *this){
     bool sp8C;
-    ActorLocal_CCW_3DA0 *local = (ActorLocal_CCW_3DA0 *)&this->local;
+    ActorLocal_Caterpillar *local = (ActorLocal_Caterpillar *)&this->local;
     f32  sp84;
     enum map_e map_id;
     f32 sp74[3];
