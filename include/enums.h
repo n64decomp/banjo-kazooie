@@ -140,7 +140,8 @@ enum bkprog_e{
 	// {index=0x85, type="Prog", level=6, name="Lair Crypt Gate Open"},
 	// {index=0x86, type="Prog", level=10, name="1st Thorn Hedge Text"},
 
-	// {index=0x88, type="Prog", level=10, name="1st Exiting Loggo Text"},
+    BKPROG_88_TRIED_LOGGO_AS_BEAR = 0x88,
+    BKPROG_89_ENTERED_LOGGO_AS_PUMPKIN,
 
 	// {index=0x8B, type="Prog", level=8, name="CCW Spring Open"},
 	// {index=0x8C, type="Prog", level=8, name="CCW Summer Open"},
@@ -2129,6 +2130,10 @@ enum asset_e
 
     ASSET_233_ANIM_ICECUBE  = 0x233,
 
+    ASSET_238_ANIM_LOGGO_IDLE = 0x238,
+
+    ASSET_240_ANIM_LOGGO_FLUSH = 0x240,
+
     ASSET_242_ANIM_GOBI_RELAXING  = 0x242,
 
     ASSET_253_ANIM_BIGBUTT_OW   = 0x253,
@@ -2415,6 +2420,9 @@ enum asset_e
     ASSET_A82_TEXT_SANDYBUTT_START_MAZE,
     ASSET_A83_TEXT_SANDYBUTT_DONE,
 
+    ASSET_ADE_TEXT_LOGGO_AS_BEAR  = 0xade,
+    ASSET_ADF_TEXT_ENTER_LOGGO,
+    ASSET_AE0_TEXT_EXIT_LOGGO,
 
     ASSET_B37_TEXT_CONGA_SAFE_UP_HERE     = 0xb37,
     ASSET_B38_TEXT_CONGA_DEFEAT,
@@ -2590,8 +2598,9 @@ enum marker_e{
 
     MARKER_23C_GV_SNS_SWITCH = 0x23C,
 
-    MARKER_23F_LAIR_FLIGHT_PAD_SWITCH = 0x23F
+    MARKER_23F_LAIR_FLIGHT_PAD_SWITCH = 0x23F,
 
+    MARKER_252_LOGGO = 0x252
 };
 
 enum hitbox_e{
