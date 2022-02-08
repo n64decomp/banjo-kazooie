@@ -12,14 +12,14 @@ typedef struct {
     f32 unk24;
 } ActorLocal_CCW_3DA0;
 
-void func_8038A37C(Actor *this);
-Actor*  func_8038A318(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
+void chcaterpillar_update(Actor *this);
+Actor*  chcaterpillar_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 
 /* .data */
 ActorInfo D_8038F160 = { 
     MARKER_1B5_CATERPILLAR, ACTOR_2A2_CATERPILLAR, ASSET_485_MODEL_CATERPILLAR, 
     0x0, NULL, 
-    func_8038A37C, NULL, func_8038A318, 
+    chcaterpillar_update, NULL, chcaterpillar_draw, 
     { 0x0, 0x0}, 0, 1.0f, { 0x0, 0x0, 0x0, 0x0}
 };
 
@@ -35,8 +35,8 @@ f32 func_8038A190(Actor *this, f32 *arg1) {
     }
     return temp_f0;
 }
-//chcaterpillar_setState
-void func_8038A1F8(Actor *this, s32 next_state) {
+
+void chcaterpillar_setState(Actor *this, s32 next_state) {
     ActorLocal_CCW_3DA0 *local = (ActorLocal_CCW_3DA0 *)&this->local;
 
     if (next_state == 1) {
@@ -63,7 +63,7 @@ void func_8038A1F8(Actor *this, s32 next_state) {
     this->state = next_state;
 }
 
-Actor*  func_8038A318(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
+Actor*  chcaterpillar_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     Actor *this = marker_getActor(marker);
     if(this->state == 5){
         return func_80325340(marker, gfx, mtx, vtx);
@@ -71,7 +71,7 @@ Actor*  func_8038A318(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     return func_80325888(marker, gfx, mtx, vtx);
 }
 
-void func_8038A37C(Actor *this){
+void chcaterpillar_update(Actor *this){
     bool sp8C;
     ActorLocal_CCW_3DA0 *local = (ActorLocal_CCW_3DA0 *)&this->local;
     f32  sp84;
@@ -94,16 +94,16 @@ void func_8038A37C(Actor *this){
         local->unk0[1] = this->position[1];
         local->unk0[2] = this->position[2];
         if(sp8C){
-            func_8038A1F8(this, 2);
+            chcaterpillar_setState(this, 2);
         }
         else{//L8038A408
             map_id = map_get();
             if ( !func_8031FF1C(BKPROG_E6_SPRING_EYRIE_HATCHED)
                  || ( map_id == MAP_45_CCW_AUTUMN && !func_8031FF1C(BKPROG_E7_SUMMER_EYRIE_FED))
             ) {
-                func_8038A1F8(this, 5);
+                chcaterpillar_setState(this, 5);
             } else {
-                func_8038A1F8(this, 1);
+                chcaterpillar_setState(this, 1);
             }//L8038A45C
         }
     }//L8038A45C
@@ -164,7 +164,7 @@ void func_8038A37C(Actor *this){
     if(this->state == 2){
         if(this->unk138_21){
             func_8028F010(ACTOR_2A2_CATERPILLAR);
-            func_8038A1F8(this, 3);
+            chcaterpillar_setState(this, 3);
         }
         else if(!sp8C){
             func_8028F050(ACTOR_2A2_CATERPILLAR);
@@ -181,7 +181,7 @@ void func_8038A37C(Actor *this){
         
         this->position[1] += 50.0f*sinf(local->unk24*3.141592654);
         if(1.0 == local->unk24){
-            func_8038A1F8(this, 4);
+            chcaterpillar_setState(this, 4);
         }
     }//L8038A8FC
 }
