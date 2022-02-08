@@ -2,6 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
+extern Actor *func_8032813C(enum actor_e, f32[3], s32);
 
 extern u8 D_8037BFA0;
 
@@ -83,16 +84,81 @@ enum hitbox_e func_8028DB14(ActorMarker *arg0){
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6B30/func_8028DD60.s")
+// break ?? //
+bool func_8028DD60(enum actor_e actor_id, Actor **arg1){
+    ActorMarker *m1;
+    ActorMarker *m2;
+    Actor *actor;
+    
+    m1 = (*arg1)->marker;
+    m2 = func_802948EC();
+    if(m2){
+        actor = marker_getActor(m2);
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6B30/func_8028DE0C.s")
+    if(m2 && actor->modelCacheIndex != actor_id)
+        return 0;
+    carriedObject_setActorID(actor_id);
+    if(!item_empty(func_80346CF4(actor_id))){
+        func_8028F66C(0x12);
+    }
+    *arg1 = marker_getActor(m1);
+    return 1;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6B30/func_8028DE6C.s")
+void func_8028DE0C(enum actor_e actor_id){
+    Actor *actor;
+    f32 sp20[3];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6B30/func_8028DEEC.s")
+    banjo_getPosition(sp20);
+    actor = func_8032813C(actor_id, sp20, (s32) yaw_get());
+    actor->unk138_22 = TRUE;
+    func_802948F8(actor->marker);
+    bs_setState(BS_3A_CARRY_IDLE);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6B30/func_8028DF20.s")
+void func_8028DE6C(enum actor_e actor_id){
+    ActorMarker *marker;
+    Actor *actor;
+    
+    marker = func_802948EC();
+    if(marker){
+        actor = marker_getActor(marker);
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6B30/func_8028DF48.s")
+    if(marker && actor->modelCacheIndex == actor_id){
+        func_802948F8(marker);
+    }
+    else{
+        func_802C3C88(func_8028DE0C, carriedObject_getActorID());
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6B30/func_8028DFB8.s")
+void func_8028DEEC(enum actor_e actor_id, Actor *actor){
+    f32 sp1C[3];
+
+    func_80304D68(func_80304C38(actor_id, actor), sp1C);
+    func_80294AC0(sp1C);
+}
+
+void func_8028DF20(enum actor_e actor_id){
+    item_inc(func_80346CF4(actor_id));
+}
+
+void func_8028DF48(enum actor_e actor_id){
+    ActorMarker *marker;
+    Actor* actor;
+
+    marker = func_802948EC();
+    if(marker)
+        actor = marker_getActor(marker);
+
+    if(marker && actor->modelCacheIndex == actor_id){
+        func_802948E0();
+    }
+    item_dec(func_80346CF4(actor_id));
+}
+
+void func_8028DFB8(enum actor_e actor_id){
+    func_803463D4(func_80346CF4(actor_id), 0);
+}

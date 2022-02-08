@@ -222,7 +222,7 @@ void bsant_jump_end(void);
 void func_802A7A54(void);
 void func_802A7AB0(void);
 void func_802A7BA8(void);
-//BS_CARRY_IDLE(void);
+//BS_3A_CARRY_IDLE(void);
 void bscarry_idle_init(void);
 void bscarry_idle_update(void);
 void bscarry_idle_end(void);

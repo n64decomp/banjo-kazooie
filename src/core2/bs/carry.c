@@ -19,7 +19,7 @@ void func_802AAE80(void){
 void func_802AAEE0(void){
     enum bs_e state = bs_getNextState();
 
-    if(state != BS_CARRY_IDLE && state != BS_CARRY_WALK)
+    if(state != BS_3A_CARRY_IDLE && state != BS_CARRY_WALK)
         func_8029B0C0();
     
     func_80289F10(1);
@@ -70,7 +70,7 @@ void bscarry_walk_update(void){
     func_8029AD28(0.9f, 3);
     func_802AAE80();
     if(func_8029B300() == 0 && func_80297C04(1.0f))
-        sp1C = BS_CARRY_IDLE;
+        sp1C = BS_3A_CARRY_IDLE;
 
     if(!func_802948EC())
         sp1C = BS_1_IDLE;
@@ -83,7 +83,7 @@ void bscarry_walk_end(void){
 }
 
 int bscarry_inSet(enum bs_e state){
-    return state == BS_CARRY_IDLE 
+    return state == BS_3A_CARRY_IDLE 
         || state == BS_CARRY_WALK; 
 }
 

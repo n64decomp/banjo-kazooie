@@ -2,8 +2,23 @@
 #include "functions.h"
 #include "variables.h"
 
+
+void func_8038658C(Actor *this);
+
+/* .data */
+extern ActorAnimationInfo D_8038B9E0[];
+
+extern ActorInfo D_8038B9F8 = {
+    0x252, 0x37F, 0x519, 
+    0x1, D_8038B9E0, 
+    func_8038658C, func_80326224, func_80325888, 
+    { 0x3, 0xE8}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+};
+
+/* .rodata */
 extern f32 D_8038C340;
 
+/* .code */
 void func_803863F0(ActorMarker* marker) {
     Actor* sp1C = marker_getActor(marker);
     func_8028F918(2);
@@ -12,8 +27,8 @@ void func_803863F0(ActorMarker* marker) {
     sp1C->unk60 = D_8038C340;
 }
 
-void func_8038644C(void* arg1, void* arg2, void* arg3) {
-    func_803863F0(arg1);
+void func_8038644C(ActorMarker* caller, enum asset_e text_id, s32 arg3) {
+    func_803863F0(caller);
 }
 
 void func_80386470(ActorMarker* this_marker, ActorMarker *other_marker) {

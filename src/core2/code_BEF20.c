@@ -343,7 +343,18 @@ void func_80346C10(enum bs_e *retVal, enum bs_e fail_state, enum bs_e success_st
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_80346CE8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_80346CF4.s")
+enum item_e func_80346CF4(enum actor_e actor_id){
+    switch(actor_id){
+        case ACTOR_29_ORANGE_COLLECTABLE:           return ITEM_19_ORANGE;
+        case ACTOR_2A9_ACORN:                       return ITEM_23_ACORNS;                              
+        case ACTOR_2A2_CATERPILLAR:                 return ITEM_22_CATERPILLAR;
+        case ACTOR_2A_GOLD_BULLION:                 return ITEM_18_GOLLD_BULLIONS;
+        case ACTOR_1ED_BLUE_PRESENT_COLLECTABLE:    return ITEM_20_BLUE_PRESENT;
+        case ACTOR_1EF_GREEN_PRESENT_COLLECTABLE:   return ITEM_1F_GREEN_PRESENT;
+        case ACTOR_1F1_RED_PRESENT_COLLECTABLE:     return ITEM_21_RED_PRESENT;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_80346D78.s")
 

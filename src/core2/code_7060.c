@@ -175,11 +175,17 @@ f32 func_8028EC64(f32 arg0[3]){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028EFEC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028F010.s")
+void func_8028F010(enum actor_e actor_id){
+    func_8028DF48(actor_id);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028F030.s")
+void func_8028F030(enum actor_e actor_id){
+    func_8028DF20(actor_id);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028F050.s")
+void func_8028F050(enum actor_e actor_id){
+    func_8028DFB8(actor_id);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028F070.s")
 
