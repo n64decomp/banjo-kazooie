@@ -23,19 +23,6 @@ ActorInfo D_8038F160 = {
     { 0x0, 0x0}, 0, 1.0f, { 0x0, 0x0, 0x0, 0x0}
 };
 
-/* .rodata */
-extern f32 D_8038FB60;
-extern f32 D_8038FB64;
-extern f64 D_8038FB68;
-extern f32 D_8038FB70;
-extern f32 D_8038FB74;
-extern f32 D_8038FB78;
-extern f64 D_8038FB80;
-extern f64 D_8038FB88;
-extern f64 D_8038FB90;
-extern f64 D_8038FB98;
-
-
 /* .code */
 f32 func_8038A190(Actor *this, f32 *arg1) {
     f32 temp_f0;
