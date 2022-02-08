@@ -41,7 +41,6 @@ void func_8038A1F8(Actor *this, s32 next_state) {
 
     if (next_state == 1) {
         func_80335924(this->unk148, 0x18D, 0.0f, randf2(1.9f, 2.1f));
-        // func_80335924(this->unk148, 0x18D, 0.0f, randf2(D_8038FB60, D_8038FB64));
     }
     if (next_state == 2) {
         func_8028F7D4(-25.0f, 90.0f);
@@ -72,9 +71,6 @@ Actor*  func_8038A318(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     return func_80325888(marker, gfx, mtx, vtx);
 }
 
-#ifdef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/CCW/code_3DA0/func_8038A37C.s")
-#else
 void func_8038A37C(Actor *this){
     bool sp8C;
     ActorLocal_CCW_3DA0 *local = (ActorLocal_CCW_3DA0 *)&this->local;
@@ -189,4 +185,3 @@ void func_8038A37C(Actor *this){
         }
     }//L8038A8FC
 }
-#endif
