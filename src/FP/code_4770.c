@@ -3,6 +3,7 @@
 #include "variables.h"
 
 extern void func_8028F710(s32, f32);
+extern Actor *func_8032813C(s32, f32[3], s32);
 
 typedef struct {
     ActorMarker *marker;
@@ -11,20 +12,32 @@ typedef struct {
 }Struct_FP_4770;
 
 /* .data */
+extern f32 D_80391ED0[3];
+extern f32 D_80391EDC;
+extern f32 D_80391EE0[3];
+extern f32 D_80391EEC;
+extern f32 D_80391EF0[3];
+extern f32 D_80391EFC;
+extern f32 D_80391F00[3];
+extern f32 D_80391F0C;
+extern f32 D_80391F10[3];
+extern f32 D_80391F1C;
 extern f32 D_80391F20[3];
 extern f32 D_80391F2C[3];
 extern f32 D_80391F38[3];
-
-/* .rodata */
-extern f32 D_80392D44;
 
 /* .bss */
 extern ActorMarker *D_80393590[5];
 extern struct {
     u8 unk0;
-    u8 pad1[0x13];
+    // u8 pad1[0x3];
+    s32 unk4;
+    s32 unk8;
+    s32 unkC;
+    s32 unk10;
     ActorMarker *unk14;
-    u8 pad18[2];
+    u8 unk18;
+    u8 unk19;
     u8 unk1A;
 }D_803935A8;
 extern Struct_FP_4770 D_80392F70[];
@@ -71,8 +84,8 @@ void func_8038AC90(s32 indx, s32 arg1){
     Actor *a1;
     Actor *a2;
     
-    m1 = *(ActorMarker **)func_8032813C(0x161, D_80392F70[indx].position, 0);
-    m2 = *(ActorMarker **)func_8032813C(0x162, D_80393280[indx].position, 0);
+    m1 = func_8032813C(0x161, D_80392F70[indx].position, 0)->marker;
+    m2 = func_8032813C(0x162, D_80393280[indx].position, 0)->marker;
     a1 = marker_getActor(m1);
     a2 = marker_getActor(m2);
     
@@ -108,8 +121,31 @@ void func_8038AEA0(void){
     }
 }
 
-void func_8038AEE0(s32 indx);
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_4770/func_8038AEE0.s")
+void func_8038AEE0(s32 indx){
+    Actor *sp1C;
+    switch(indx){
+        case 0:// L8038AF0C
+            sp1C = func_8032813C(0x22d, D_80391ED0, D_80391EDC);
+            break;
+
+        case 1:// L8038AF38
+            sp1C = func_8032813C(0x22e, D_80391EE0, D_80391EEC);
+            break;
+
+        case 2:// L8038AF64
+            sp1C = func_8032813C(0x22d, D_80391EF0, D_80391EFC);
+            break;
+
+        case 3:// L8038AF90
+            sp1C = func_8032813C(0x22d, D_80391F00, D_80391F0C);
+            break;
+
+        case 4:// L8038AFBC
+            sp1C = func_8032813C(0x22d, D_80391F10, D_80391F1C);
+            break;
+    }
+    D_80393590[indx] = sp1C->marker;
+}
 
 void func_8038B00C(s32 indx){
     func_802C3C88(func_8038AEE0, indx);
@@ -164,7 +200,7 @@ void func_8038B1D0(enum jiggy_e jiggy_id){
     timed_setCameraToNode(0.0f, 3);
     timedFunc_set_0(0.0f, func_8038AEA0);
     timedFunc_set_0(0.0f, func_8038B0B8);
-    timedFunc_set_1(D_80392D44, func_8038B130, jiggy_id);
+    timedFunc_set_1(0.1f, func_8038B130, jiggy_id);
     timedFunc_set_0(5.0f, func_8038B190);
     timedFunc_set_0(5.0f, func_8038B1C4);
     func_80324E88(5.0f);
@@ -179,8 +215,37 @@ void func_8038B268(void){
     func_8028F66C(0x2A);
 }
 
-void func_8038B2C8(ActorMarker *caller, enum asset_e text_id, s32 arg2);
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_4770/func_8038B2C8.s")
+void func_8038B2C8(ActorMarker *caller, enum asset_e text_id, s32 arg2){
+    Actor *actor;
+    if(D_803935A8.unk14){
+        actor = marker_getActor(D_803935A8.unk14);
+    }
+    
+    switch(text_id){
+        case 0xc04: //8038B318
+            func_8038B268();
+            break;
+
+        case 0xc07: //8038B328
+            func_8038B1D0(JIGGY_30_FP_BOGGY_2);
+            break;
+
+        case 0xc0b: //8038B338
+            func_8038B268();
+            break;
+
+        case 0xc0d: //8038B348
+            func_8038B1D0(JIGGY_2C_FP_BOGGY_3);
+            break;
+
+        case 0xc10: //8038B358
+            func_8038ABDC();
+            func_8028FA14(map_get(), 0x11);
+            func_8028F66C(0x2A);
+            timedFunc_set_0(0.0f, func_8038B1C4);
+            break;
+    }//L8038B38C
+}
 
 void func_8038B39C(void){
     if(jiggyscore_isCollected(JIGGY_30_FP_BOGGY_2) && func_8028ECAC() == 6){
@@ -221,21 +286,106 @@ void func_8038B410(void){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/FP/code_4770/func_8038B7A4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_4770/func_8038B8A8.s")
+void func_8038B8A8(){}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_4770/func_8038B8B0.s")
+void func_8038B8B0(ActorMarker *marker){
+    Actor *actor = marker_getActor(marker);
+    s32 tmp_a0;
+    
+    tmp_a0 = actor->unkF4_8 - 1;
+    if(tmp_a0 < 0x27){
+        D_80392F70[tmp_a0].marker = actor->marker;
+        D_80392F70[tmp_a0].position[0] = actor->position[0];
+        D_80392F70[tmp_a0].position[1] = actor->position[1];
+        D_80392F70[tmp_a0].position[2] = actor->position[2];
+        D_803935A8.unk4++;
+    }//L8038B920
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_4770/func_8038B930.s")
+void func_8038B930(ActorMarker *marker){
+    Actor *actor = marker_getActor(marker);
+    s32 tmp_a0;
+    
+    tmp_a0 = actor->unkF4_8 - 1;
+    if(tmp_a0 < 0x27){
+        D_80393280[tmp_a0].marker = actor->marker;
+        D_80393280[tmp_a0].position[0] = actor->position[0];
+        D_80393280[tmp_a0].position[1] = actor->position[1];
+        D_80393280[tmp_a0].position[2] = actor->position[2];
+        D_803935A8.unk4++;
+    }//L8038B9A0
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_4770/func_8038B9B0.s")
+void func_8038B9B0(ActorMarker *marker){
+    D_803935A8.unk14 = marker;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_4770/func_8038B9BC.s")
+void func_8038B9BC(void){
+    D_803935A8.unk14 = NULL;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/FP/code_4770/func_8038B9C8.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/FP/code_4770/func_8038BA88.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_4770/func_8038BC0C.s")
+void func_8038BC0C(s32 arg0){
+    s32 tmp_v0;
+    s32 tmp_v1;
+
+    if(D_803935A8.unkC - D_803935A8.unk8 < 4 || 0x23 < D_803935A8.unkC){
+        if(D_803935A8.unk14) 
+            marker_getActor(D_803935A8.unk14);
+
+        if(func_8038A1A0(D_803935A8.unk14))
+            return;
+
+        D_803935A8.unkC = arg0-1;
+        if(D_803935A8.unkC >= 0x26){
+            D_803935A8.unk10 = 1;
+            return;
+        }
+
+        if(D_803935A8.unk0 == 3)    return;
+        if(D_803935A8.unk0 == 4)    return;
+        if(D_803935A8.unkC >= 0x25) return;
+
+        tmp_v1 = D_803935A8.unkC - D_803935A8.unk8;
+        if(tmp_v1 != 2){
+            if(tmp_v1 != 3){
+                if(tmp_v1 == 4){
+                    if(D_803935A8.unk1A)
+                        return;
+                    D_803935A8.unk1A = TRUE;
+                    func_8038AB60(0);
+                    if(!func_8028F22C()){
+                        func_8028F918(2);
+                        func_80311480(0xc10, 0x20, NULL, NULL, func_8038B2C8, NULL);
+                    }//L8038BD40
+                    D_803935A8.unk0 = 4;
+                    return;
+                }
+                //goto L8038BE04
+            }else{//L8038BD50
+                if(!D_803935A8.unk19 && !func_8028F22C()){
+                    D_803935A8.unk19 = 1;
+                    func_80311480(0xc0f, 0x20, NULL, NULL, NULL, NULL);
+                }//L8038BD94
+                func_8025AEA0(0x3a, 0x411aa);
+                return;
+            }
+        }
+        else{//L8038BDAC
+            if(!D_803935A8.unk18 && !func_8028F22C()){
+                    D_803935A8.unk18 = 1;
+                    func_80311480(0xc0e, 0x20, NULL, NULL, NULL, NULL);
+            }//L8038BDF0
+            func_8025AEA0(0x3a, 0x493e0);
+            return;
+        }
+        //L8038BE04
+        func_8025AEA0(0x3a, 0x51615);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/FP/code_4770/func_8038BE20.s")
 
