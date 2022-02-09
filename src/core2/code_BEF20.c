@@ -346,7 +346,7 @@ void func_80346C10(enum bs_e *retVal, enum bs_e fail_state, enum bs_e success_st
 enum item_e func_80346CF4(enum actor_e actor_id){
     switch(actor_id){
         case ACTOR_29_ORANGE_COLLECTABLE:           return ITEM_19_ORANGE;
-        case ACTOR_2A9_ACORN:                       return ITEM_23_ACORNS;                              
+        case ACTOR_2A9_ACORN:                       return ITEM_23_ACORNS;
         case ACTOR_2A2_CATERPILLAR:                 return ITEM_22_CATERPILLAR;
         case ACTOR_2A_GOLD_BULLION:                 return ITEM_18_GOLLD_BULLIONS;
         case ACTOR_1ED_BLUE_PRESENT_COLLECTABLE:    return ITEM_20_BLUE_PRESENT;

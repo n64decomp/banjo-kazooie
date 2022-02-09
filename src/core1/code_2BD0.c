@@ -23,15 +23,15 @@ void func_802405F0(u32 arg0, u32 arg1, s32 size){
     for(i = 0; i < block_cnt; i++){
         osPiStartDma(&D_8027E090, OS_MESG_PRI_NORMAL, OS_READ, arg1, arg0, block_size, &D_8027E0AC);
         osRecvMesg(&D_8027E0AC, NULL, 1);
-        arg0 += block_size;
-        arg1 += block_size;
-
+        arg0 += 0x20000;
+        arg1 += 0x20000;
     }
 
-    block_remainder = size%block_size;
+    block_remainder = size%0x20000;
     osPiStartDma(&D_8027E090,  OS_MESG_PRI_NORMAL, OS_READ, arg1, arg0, block_remainder, &D_8027E0AC);
     osRecvMesg(&D_8027E0AC, NULL, 1);
     osInvalDCache(arg0, size);
+
 }
 #endif
 

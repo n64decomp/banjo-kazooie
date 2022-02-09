@@ -6,8 +6,8 @@ typedef struct struct_2a_s{
     char *name;
     u32 ram_start;
     u32 ram_end;
-    u32 unkC;
-    u32 unk10;
+    u32 unkC; //uncompressed_rom_range_start
+    u32 unk10; //uncompressed_rom_range_end
     u32 code_start;
     u32 code_end;
     u32 data_start;
@@ -43,7 +43,7 @@ extern struct2As D_802762D0[] = {
     {"battle",      0x803863F0, 0x80392930, 0x010A6FD0, 0x010B3320, 0x803863F0, 0x80391380, 0x80391380, 0x80392740, 0x80392740, 0x80392930},
 };
 extern s32 D_80276564 = 15;
-extern int D_80282800;
+extern enum overlay_e D_80282800;
 
 void func_802513A4(void);
 
@@ -111,24 +111,29 @@ int is_overlay_loaded(int overlay_id){
 #ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_136D0/load_overlay.s")
 #else
-int load_overlay(enum overlay_e overlay_id){
+bool load_overlay(enum overlay_e overlay_id){
     struct2As *rom_info;
+
     if(overlay_id == 0)
-        return 0;
+        return FALSE;
+
+    if(D_80282800); //value stored to non-temp reg, OR temp_reg off by 1
 
     if(overlay_id == D_80282800)
-        return 0;
+        return FALSE;
+
 
     D_80282800 = overlay_id;
-    rom_info = &D_802762D0[overlay_id];
+    rom_info = &D_802762D0[D_80282800];
     func_80253050(
         overlay_id, 
-        rom_info->unk4,  rom_info->unk8,  rom_info->unkC, 
-        rom_info->unk10, rom_info->unk14, rom_info->unk18,
-        rom_info->unk1C, rom_info->unk20, rom_info->unk24,
-        rom_info->unk28
+        rom_info->ram_start,  rom_info->ram_end,  
+        rom_info->unkC,       rom_info->unk10,     
+        rom_info->code_start, rom_info->code_end,
+        rom_info->data_start, rom_info->data_end,
+        rom_info->bss_start,  rom_info->bss_end
     );
-    return 1;
+    return TRUE;
 }
 #endif
 

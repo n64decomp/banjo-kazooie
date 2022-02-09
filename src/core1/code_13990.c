@@ -311,7 +311,7 @@ extern u8 D_8002D500;
 
 void func_80253050(
     s32 overlay_id, u32 ram_start, u32 ram_end, u32 rom_start, u32 rom_end, 
-    u32 arg5, u32 arg6, u32 arg7, u32 arg8, u32 bss_start, u32 bss_end
+    u32 code_start, u32 code_end, u32 data_start, u32 data_end, u32 bss_start, u32 bss_end
 ){
     u32 sp34;
     u32 sp30;
