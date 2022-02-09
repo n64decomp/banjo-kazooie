@@ -3,7 +3,11 @@
 #include "variables.h"
 
 
-#pragma GLOBAL_ASM("asm/nonmatchings/MMM/code_47D0/func_8038ABC0.s")
+void func_8038ABC0(s32 arg0) {
+    if (getGameMode() != 7) {
+        func_80295864(func_802957F0() & ~arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/MMM/code_47D0/func_8038AC04.s")
 

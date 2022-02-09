@@ -2,8 +2,36 @@
 #include "functions.h"
 #include "variables.h"
 
+extern f32 D_8038C470 = 0.3f;
+extern f32 D_8038C474 = 0.3f;
+extern f32 D_8038C478 = 0.3f;
+extern u8 D_8038C518;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/MMM/code_3D50/func_8038A140.s")
+void func_8038A140(UNK_TYPE(s32) arg0) {
+    if (arg0 == 2) {
+        func_80324E38(D_8038C470, 3);
+        timed_setCameraToNode(D_8038C474, 1);
+        timedFunc_set_2(D_8038C478, mapSpecificFlags_set, 3, 1);
+        func_80324E38(3.0f, 0);
+        func_80324E88(3.0f);
+        timedFunc_set_1(3.0f, func_8038A140, 3);
+    }
+    if (arg0 == 3) {
+        if (D_8038C518 == 1) {
+            mapSpecificFlags_set(3, 1);
+        }
+        item_set(0, 0x1193);
+        item_set(6, 1);
+    }
+    if (D_8038C518 == 3) {
+        item_set(6, 0);
+        mapSpecificFlags_set(4, 1);
+    }
+    if (arg0 == 4) {
+        func_8028F66C(0xF);
+    }
+    D_8038C518 = arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/MMM/code_3D50/func_8038A26C.s")
 
