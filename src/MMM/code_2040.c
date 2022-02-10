@@ -156,13 +156,18 @@ extern ActorInfo D_8038BDFC = {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/MMM/code_2040/func_80388BDC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/MMM/code_2040/func_80388FE4.s")
+void func_80388FE4(Actor *this) { 
+    func_802D4A9C(this,0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/MMM/code_2040/func_80389004.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/MMM/code_2040/func_80389060.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/MMM/code_2040/func_803890B8.s")
+void func_803890B8(Actor *this) {
+    func_802D3D54(this);
+    func_8038AC04();
+}
 
 void func_803890E0(void){
     spawnableActorList_add(&D_8038BC28, actor_new, 0);

@@ -14,15 +14,19 @@ extern ActorInfo D_8038BA68 = {
     { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
 };
 
+void func_803871B0() {
+    levelSpecificFlags_getN(0x39, 3);
+}
 
-/* .code */
-#pragma GLOBAL_ASM("asm/nonmatchings/MMM/code_DC0/func_803871B0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/MMM/code_DC0/func_803871D4.s")
+void func_803871D4(s32 arg0) {
+    levelSpecificFlags_setN(0x39, arg0, 3);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/MMM/code_DC0/func_803871FC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/MMM/code_DC0/func_80387260.s")
+void func_80387260() {
+    func_803871D4(5);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/MMM/code_DC0/func_80387280.s")
 
