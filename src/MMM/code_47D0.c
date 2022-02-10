@@ -13,7 +13,9 @@ void func_8038ABC0(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/MMM/code_47D0/func_8038AC40.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/MMM/code_47D0/func_8038AD10.s")
+void func_8038AD10(s32 arg0, s32 arg1, s32 arg2) {
+    func_8035179C(arg1, arg2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/MMM/code_47D0/func_8038AD38.s")
 
@@ -21,7 +23,9 @@ void func_8038ABC0(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/MMM/code_47D0/func_8038ADF0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/MMM/code_47D0/func_8038AF0C.s")
+void func_8038AF0C(s32 arg0, s32 arg1, s32 arg2) {
+    mapSpecificFlags_set(1, 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/MMM/code_47D0/func_8038AF3C.s")
 
@@ -35,7 +39,10 @@ void func_8038ABC0(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/MMM/code_47D0/func_8038B630.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/MMM/code_47D0/func_8038B6D4.s")
+void func_8038B6D4(f32* arg0) {
+    *arg0 = 1.0f;
+    func_8038B6FC();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/MMM/code_47D0/func_8038B6FC.s")
 

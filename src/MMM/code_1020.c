@@ -22,12 +22,22 @@ extern ActorInfo D_8038BA90 = {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/MMM/code_1020/func_80387520.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/MMM/code_1020/func_80387654.s")
+void func_80387654(ActorMarker* marker) {
+    Actor* actor = marker_getActor(marker);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/MMM/code_1020/func_8038769C.s")
+    if ((actor->state != 4) && (actor->state != 5)) {
+        func_80387434(actor, 4);
+    }
+}
+
+s32 func_8038769C(ActorMarker *marker) {
+    return marker_getActor(marker)->state == 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/MMM/code_1020/func_803876C8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/MMM/code_1020/func_80387720.s")
+void func_80387720(ActorMarker *marker) {
+    marker_getActor(marker)->unk7C[9] = 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/MMM/code_1020/func_80387748.s")

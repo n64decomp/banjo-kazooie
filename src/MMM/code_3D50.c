@@ -49,7 +49,9 @@ void func_8038A140(UNK_TYPE(s32) arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/MMM/code_3D50/func_8038A964.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/MMM/code_3D50/func_8038A994.s")
+void func_8038A994() {
+    func_8038A140(0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/MMM/code_3D50/func_8038A9B4.s")
 
