@@ -16,37 +16,123 @@ extern ActorInfo D_803920E8 = { 0x204, 0x336, 0x442,
     func_8038D6C8, func_80326224, func_8038CED0,
     { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
 };
+extern struct31s D_8039210C;
+extern struct43s D_80392134;
+extern struct31s D_8039217C;
+extern s32 D_803921A4[3];
+extern struct43s D_803921B0;
+extern struct31s D_803921F8;
+extern struct43s D_80392220;
+extern struct31s D_80392268;
+extern struct43s D_80392290;
+extern struct31s D_803922D8;
+extern s32 D_80392300[3];
+extern struct43s D_8039230C;
 extern f32 D_80392354[3];
 extern f32 D_80392360[3];
 extern enum actor_e D_8039236C[];
 extern f32 D_8039237C[3];
 
-/* .rodata */
-extern f32 D_80392E00;
-extern f32 D_80392E04;
-extern f32 D_80392E08;
-extern f32 D_80392E0C;
-
-
-// 3FD9999A 3FD9999A 40133333 3DCCCCCD
 /* .code */
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_6AE0/func_8038CED0.s")
+Actor *func_8038CED0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
+    Actor *this = marker_getActor(marker);
+    if( func_8038BFA0() || func_8031FF1C(BKPROG_13) ){
+        if(0.0f == this->velocity[1])
+            return this;
+    }
+    return func_80325888(marker, gfx, mtx, vtx);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_6AE0/func_8038CF54.s")
+void func_8038CF54(f32 position[3], s32 count, enum asset_e model_id){
+    ParticleEmitter *pCtrl;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_6AE0/func_8038D01C.s")
+    pCtrl = partEmitList_pushNew(count);
+    particleEmitter_setModel(pCtrl, model_id);
+    particleEmitter_setPosition(pCtrl, position);
+    particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_80392134);
+    func_802EFE24(pCtrl,
+        100.0f, 100.0f, 100.0f,
+        200.0f, 200.0f, 200.0f
+    );
+    func_802EFB98(pCtrl, &D_8039210C);
+    func_802EF9F8(pCtrl, 0.6f);
+    func_802EFA18(pCtrl, 3);
+    particleEmitter_emitN(pCtrl, count);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_6AE0/func_8038D0A8.s")
+void func_8038D01C(f32 position[3], s32 count, enum asset_e sprite_id){
+    ParticleEmitter *pCtrl;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_6AE0/func_8038D170.s")
+    pCtrl = partEmitList_pushNew(count);
+    func_802EFFA8(pCtrl, D_803921A4);
+    particleEmitter_setSprite(pCtrl, sprite_id);
+    particleEmitter_setPosition(pCtrl, position);
+    particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_803921B0);
+    func_802EFB98(pCtrl, &D_8039217C);
+    particleEmitter_emitN(pCtrl, count);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_6AE0/func_8038D208.s")
+void func_8038D0A8(f32 position[3], s32 count, enum asset_e model_id){
+    ParticleEmitter *pCtrl;
 
-void func_8038D294(ActorMarker *marker);
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_6AE0/func_8038D294.s")
+    pCtrl = partEmitList_pushNew(count);
+    particleEmitter_setModel(pCtrl, model_id);
+    particleEmitter_setPosition(pCtrl, position);
+    particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_80392220);
+    func_802EFE24(pCtrl,
+        200.0f, 200.0f, 200.0f,
+        300.0f, 300.0f, 300.0f
+    );
+    func_802EFB98(pCtrl, &D_803921F8);
+    func_802EF9F8(pCtrl, 0.2f);
+    func_802EFA18(pCtrl, 2);
+    particleEmitter_emitN(pCtrl, count);
+}
 
-void func_8038D324(Actor *this);
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_6AE0/func_8038D324.s")
+void func_8038D170(f32 position[3], s32 count, enum asset_e sprite_id){
+    ParticleEmitter *pCtrl;
+
+    pCtrl = partEmitList_pushNew(count);
+    particleEmitter_setSprite(pCtrl, sprite_id);
+    particleEmitter_setPosition(pCtrl, position);
+    particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_80392290);
+    func_802EFB98(pCtrl, &D_80392268);
+    func_802EF9F8(pCtrl, 0.2f);
+    func_802EFA18(pCtrl, 2);
+    particleEmitter_emitN(pCtrl, count);
+}
+
+void func_8038D208(f32 position[3], s32 count, enum asset_e sprite_id){
+    ParticleEmitter *pCtrl;
+
+    pCtrl = partEmitList_pushNew(count);
+    func_802EFFA8(pCtrl, D_80392300);
+    particleEmitter_setSprite(pCtrl, sprite_id);
+    particleEmitter_setPosition(pCtrl, position);
+    particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_8039230C);
+    func_802EFB98(pCtrl, &D_803922D8);
+    particleEmitter_emitN(pCtrl, count);
+}
+
+void func_8038D294(ActorMarker *marker){
+    Actor *this = marker_getActor(marker);
+    func_8038CF54(this->position, 12, ASSET_4D4_MODEL_TWINKLY_BOX_PAPER_SHARD);
+    func_8038D01C(this->position, 12, ASSET_700_SPRITE_DUST);
+    this->velocity[1] = 0.0f;
+    FUNC_8030E8B4(SFX_30_MAGIC_POOF, 1000, 0x3FF, this->position, 1000, 3500);
+    func_80311480(0xc13, 0, NULL, NULL, NULL, NULL);
+}
+
+void func_8038D324(Actor *this){
+    int i;
+
+    func_8038D0A8(this->position, 24, ASSET_4D4_MODEL_TWINKLY_BOX_PAPER_SHARD);
+    for(i = 0; i < 24; i++){
+        func_8038D170(this->position, 1, ASSET_710_SPRITE_SPARKLE_PURPLE + randi2(0, 10));
+    }
+    func_8038D208(this->position, 8, ASSET_700_SPRITE_DUST);
+    FUNC_8030E624(SFX_30_MAGIC_POOF, 1000, 0x3ff);
+}
 
 void func_8038D3B0(UNK_TYPE(s32) arg0){
     item_set(ITEM_6_HOURGLASS, FALSE);
