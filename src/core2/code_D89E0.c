@@ -158,7 +158,7 @@ void func_80360828(Actor *this){
 
     if(!this->initialized){
         this->initialized = TRUE;
-        func_803300A8(this->marker, NULL, func_803607FC, func_80360790);
+        marker_setCollisionScripts(this->marker, NULL, func_803607FC, func_80360790);
         this->unk38_0 = FALSE;
         this->unk28 = 0.0f;
         this->velocity_x = 0.0f;

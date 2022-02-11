@@ -514,7 +514,7 @@ void func_8038D8BC(Actor *this){
         if(local->unk0 == D_80390B70){
             this->yaw = 270.0f;
         }
-        func_803300A8(this->marker, func_8038D590, func_8038D5BC, func_8038D608);
+        marker_setCollisionScripts(this->marker, func_8038D590, func_8038D5BC, func_8038D608);
         func_803300D8(this->marker, func_8038D8B4);
         if(local->unk0->unk0 == 0x281){
             func_8038CC9C(this, 1);

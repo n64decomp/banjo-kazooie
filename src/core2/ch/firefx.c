@@ -63,7 +63,7 @@ void chfirefx_update(Actor *this){
         this->unk16C_4 = TRUE;
         this->marker->propPtr->unk8_3 = FALSE;
         actor_collisionOn(this);
-        func_803300A8(this->marker, __chfirefx_hiss, NULL, NULL);
+        marker_setCollisionScripts(this->marker, __chfirefx_hiss, NULL, NULL);
         this->unk38_31 = (0.0f != this->yaw) ? 1 : 0;
         if(this->unkF4_8 != 0x32){
             this->unk1C[0] = 1.0f;

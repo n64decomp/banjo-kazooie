@@ -316,6 +316,7 @@ actor_collisionOn = 0x8032AA88;
 __marker_draw = 0x8032D190;
 cube_free = 0x8032E07C;
 marker_free = 0x8032F430;
+marker_setCollisionScripts = 0x803300A8;
 map_get = 0x803348C0;
 jiggySpawn = 0x803330C0;
 assetcache_release = 0x8033B3D8;

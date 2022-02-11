@@ -69,7 +69,7 @@ void func_80386AA4(Actor *this){
     s32 sp24;
     if(!this->initialized){
         this->initialized = TRUE;
-        func_803300A8(this->marker, func_803869FC, NULL, NULL);
+        marker_setCollisionScripts(this->marker, func_803869FC, NULL, NULL);
         func_80386920(this, 1);
     }
     

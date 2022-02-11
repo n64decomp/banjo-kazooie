@@ -41,7 +41,7 @@ void func_803899C0(Actor *this){
         this->marker->propPtr->unk8_3 = 1;
         this->unk16C_4 = 1;
         mapSpecificFlags_set(0, 0);
-        func_803300A8(this->marker, NULL, func_80389980, NULL);
+        marker_setCollisionScripts(this->marker, NULL, func_80389980, NULL);
         if(this->state == 0){
             this->position_x = -3209.95f;
             this->position_y = 1164.5f;

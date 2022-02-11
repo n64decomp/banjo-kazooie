@@ -53,7 +53,7 @@ void func_802C5DA0(ActorMarker *this_marker, ActorMarker *other_marker){
 void func_802C5DDC(Actor *this){
     if(!this->initialized){
         this->initialized = TRUE;
-        func_803300A8(this->marker, func_802C5DA0, NULL, NULL);
+        marker_setCollisionScripts(this->marker, func_802C5DA0, NULL, NULL);
         func_803300D8(this->marker, func_802C5D54);
         func_802F32C4(func_8032994C(), this->position, 200.0f, this->marker, func_802C5C70);
         this->unk60 = 10.0f;

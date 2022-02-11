@@ -544,7 +544,7 @@ void func_8032FFF4(ActorMarker *this, ActorMarker *other, s32 type){
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_80330078.s")
 
 //marker_setCollisionMethods
-void func_803300A8(ActorMarker *this, MarkerCollisionFunc ow_func, MarkerCollisionFunc arg2, MarkerCollisionFunc die_func){
+void marker_setCollisionScripts(ActorMarker *this, MarkerCollisionFunc ow_func, MarkerCollisionFunc arg2, MarkerCollisionFunc die_func){
     this->unkC = ow_func;
     this->unk10 = arg2;
     this->unk1C = die_func;

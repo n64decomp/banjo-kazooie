@@ -117,7 +117,7 @@ void chgobi3_ow(ActorMarker *this_marker, ActorMarker *other_marker){
 void chgobi3_update(Actor *this){
     if(!this->unk16C_4){
         this->unk16C_4 = TRUE;
-        func_803300A8(this->marker, chgobi3_ow, NULL, NULL);
+        marker_setCollisionScripts(this->marker, chgobi3_ow, NULL, NULL);
         this->unk1C[0] = 0.0f;
         this->unk1C[1] = 0.0f;
         chgobi3_setState(this, 1);

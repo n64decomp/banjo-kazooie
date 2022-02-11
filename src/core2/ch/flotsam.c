@@ -260,7 +260,7 @@ void func_8035C8F4(Actor *this){
     if(this->state == 0){
         this->marker->unk14_21 = FALSE;
         this->marker->unk30 = func_8035C8C8;
-        func_803300A8(this->marker, func_8035C6C4, func_8035C6C4, func_8035C6F0);
+        marker_setCollisionScripts(this->marker, func_8035C6C4, func_8035C6C4, func_8035C6F0);
         local->unk4 = func_80309724(this->position);
         local->pCtrl_8 = NULL;
         local->unk34[0] = this->yaw;

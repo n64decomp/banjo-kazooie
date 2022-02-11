@@ -61,7 +61,7 @@ void chtreasure_update(Actor *this){
         this->unk1C[2] = this->position[2];
         
         actor_playAnimationOnce(this);
-        func_803300A8(this->marker, NULL, NULL, __chtreasure_die);
+        marker_setCollisionScripts(this->marker, NULL, NULL, __chtreasure_die);
     }//L8038C214
     __chtreasure_updatePosition(this);
     func_8034A174(this->marker->unk44, 5, sp3C);

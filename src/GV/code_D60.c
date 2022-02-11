@@ -114,7 +114,7 @@ void func_80387408(Actor *this){
     tick = time_getDelta();
     if(!this->unk16C_4){
         this->unk16C_4 = TRUE;
-        func_803300A8(this->marker, func_803873B0, NULL, NULL);
+        marker_setCollisionScripts(this->marker, func_803873B0, NULL, NULL);
         marker->unk30 = func_8038736C;
         marker->propPtr->unk8_3 = TRUE;
         marker->collidable = TRUE;

@@ -100,7 +100,7 @@ void func_80388DC8(Actor *this){
         this->unk16C_4 = TRUE;
         sp34->unk30 = func_80388D84;
         sp34->propPtr->unk8_3 = TRUE;
-        func_803300A8(this->marker, NULL, NULL, func_80388C24);
+        marker_setCollisionScripts(this->marker, NULL, NULL, func_80388C24);
         local->unkC = particleEmitter_new(20);
         local->unk10 = particleEmitter_new(30);
         D_80391A60 = FALSE;

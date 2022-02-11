@@ -50,7 +50,7 @@ void func_80388584(Actor *this){
             marker_despawn(this->marker);
             return;
         }
-        func_803300A8(this->marker, NULL, func_803884F4, NULL);
+        marker_setCollisionScripts(this->marker, NULL, func_803884F4, NULL);
         this->marker->propPtr->unk8_3 = FALSE;
         func_803289EC(this, randf(), 1);
         this->unk124_6 = 0;

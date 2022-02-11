@@ -1076,7 +1076,7 @@ void playerMarker_init(void){
     _player_getPosition(sp1C);
     playerMarker = func_8032FBE4(sp1C, func_80291AAC, 1, 0);
     playerMarker->unk2C_1 = 1;
-    func_803300A8(playerMarker, NULL, func_80291634, func_80291610);
+    marker_setCollisionScripts(playerMarker, NULL, func_80291634, func_80291610);
     func_803300B8(playerMarker, func_8028D7B8);
     func_802933FC(1);
     func_802933FC(2);

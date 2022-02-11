@@ -101,7 +101,7 @@ void chwhipcrack_update(Actor *this){
         this->unk16C_4 = TRUE;
         this->roll = this->yaw;
         this->yaw = 0.0f;
-        func_803300A8(this->marker, NULL, NULL, __chwhipcrack_die);
+        marker_setCollisionScripts(this->marker, NULL, NULL, __chwhipcrack_die);
         __chwhipcrack_setState(this, 1);
     }
     player_getPosition(plyr_pos);

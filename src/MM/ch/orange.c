@@ -41,7 +41,7 @@ void func_80387FF4(Actor * this){
 
     if(!this->initialized){
         this->marker->unk2C_1 = 1;
-        func_803300A8(this->marker, NULL, func_80387F90, NULL);
+        marker_setCollisionScripts(this->marker, NULL, func_80387F90, NULL);
     }
     switch(this->state){
         case 1://L80388060

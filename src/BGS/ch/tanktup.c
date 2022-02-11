@@ -153,7 +153,7 @@ void func_8038FBF8(Actor *this){
     if(!this->initialized){
         this->initialized = 1;
         this->marker->propPtr->unk8_3 = 1;
-        func_803300A8(this->marker, NULL, NULL, func_8038FB84);
+        marker_setCollisionScripts(this->marker, NULL, NULL, func_8038FB84);
     }
     if(this->state == 2){
         if(animctrl_isAt(this->animctrl, 0.65f)){

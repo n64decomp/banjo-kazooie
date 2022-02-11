@@ -93,7 +93,7 @@ void func_80386B28(Actor *this){
     f32 tick = time_getDelta();
     if(!this->unk16C_4){
         this->unk16C_4 = 1;
-        func_803300A8(this->marker, NULL, func_80386AD0, NULL);
+        marker_setCollisionScripts(this->marker, NULL, func_80386AD0, NULL);
         local->unk0 = func_8030D90C();
         local->unk1 = 0;
         local->unk2 = 0;

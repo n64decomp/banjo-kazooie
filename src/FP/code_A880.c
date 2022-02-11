@@ -67,7 +67,7 @@ void func_80390EB0(Actor *this){
     if(!this->unk16C_4){
         this->unk16C_4 = TRUE;
         actor_collisionOn(this);
-        func_803300A8(this->marker, func_80390E78, NULL, NULL);
+        marker_setCollisionScripts(this->marker, func_80390E78, NULL, NULL);
     }
 
     if(func_8024DB50(this->position, 150.0f) || func_80329530(this, 1200))

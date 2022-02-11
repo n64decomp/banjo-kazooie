@@ -104,7 +104,7 @@ void func_8038A324(Actor *this){
             local->unk4 = NULL;
         else
             local->unk4 = assetcache_get(local->unk0->unk6);
-        func_803300A8(this->marker, NULL, func_8038A1C8, NULL);
+        marker_setCollisionScripts(this->marker, NULL, func_8038A1C8, NULL);
         this->position_x = (f32)local->unk0->unk0[0];
         this->position_y = (f32)local->unk0->unk0[1];
         this->position_z = (f32)local->unk0->unk0[2];

@@ -222,7 +222,7 @@ void func_803876D0(Actor *this){
             func_802C3C88(func_80387100, this->marker);
         }
     }
-    func_803300A8(this->marker, 0, 0, func_80387168);
+    marker_setCollisionScripts(this->marker, 0, 0, func_80387168);
     if( !func_80329530(this, 2100)
         && this->state != 2
         && this->state != 8

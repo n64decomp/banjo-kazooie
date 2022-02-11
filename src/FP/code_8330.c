@@ -74,7 +74,7 @@ void func_8038E940(Actor *this){
         this->unk16C_4 = TRUE;
         this->marker->propPtr->unk8_3 = TRUE;
         this->marker->collidable = FALSE;
-        func_803300A8(this->marker, NULL, func_8038E7CC, NULL);
+        marker_setCollisionScripts(this->marker, NULL, func_8038E7CC, NULL);
         func_80328B8C(this, 1, 0.05f, 1);
         this->unk38_31 = 0;
         this->unk60 = 0.0f;

@@ -94,7 +94,7 @@ void func_80356CCC(Actor *this){
     if(!this->unk16C_4){
         this->unk16C_4 = 1;
         this->unk16C_0 = 1;
-        func_803300A8(this->marker, NULL, func_80356BF4, func_80356C24);
+        marker_setCollisionScripts(this->marker, NULL, func_80356BF4, func_80356C24);
         func_803569F0(this, (this->state < 5)? 1 : 6);
     }//L80356D48
     player_getPosition(sp5C);

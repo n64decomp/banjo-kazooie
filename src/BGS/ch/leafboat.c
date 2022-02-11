@@ -41,7 +41,7 @@ void func_8038FD88(ActorMarker *this, u32 arg1){
 //     s1 = &this->leafboat;
 //     if(!this->initialized){
 //         this->initialized = 1;
-//         func_803300A8(this->marker, func_8038FD88, NULL, NULL);
+//         marker_setCollisionScripts(this->marker, func_8038FD88, NULL, NULL);
 //         (s1 = &this->leafboat)->unk6C = randf2(80.0f, 100.0f);
 //         this->unk1C = 0.0f;
 //         this->unk20 = 0.0f;

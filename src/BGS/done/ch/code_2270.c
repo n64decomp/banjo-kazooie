@@ -253,7 +253,7 @@ void func_80389080(Actor *this){
     if(!this->unk16C_4){
         this->unk16C_4 = 1;
         this->marker->unk30 = func_80388FC0;
-        func_803300A8(this->marker, func_80388E44, NULL, NULL);
+        marker_setCollisionScripts(this->marker, func_80388E44, NULL, NULL);
         
         unqPtr->unk0 = 0;
         unqPtr->unk4 = vector_new(sizeof(struct7s), 8);

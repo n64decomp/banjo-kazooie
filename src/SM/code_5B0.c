@@ -101,7 +101,7 @@ void func_80386EF4(Actor *this) {
     u32 *temp_v0_2;
     if ((this->unk16C_4) <= 0) {
         this->marker->propPtr->unk8_3 = 1;
-        func_803300A8(this->marker, 0, 0, &func_80386EB4);
+        marker_setCollisionScripts(this->marker, 0, 0, &func_80386EB4);
         this->unk38_31 = 0;
         this->unk138_31 = 1;
         this->unk16C_4 = 1;

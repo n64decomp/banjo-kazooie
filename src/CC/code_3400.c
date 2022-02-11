@@ -76,7 +76,7 @@ void func_80389900(Actor * this){
         this->marker->propPtr->unk8_3 = 1;
         local->unk0 = &D_80389E40[this->modelCacheIndex - 0x28C];
         local->unk8 = 0;
-        func_803300A8(this->marker, NULL, func_80389890, func_803898BC);
+        marker_setCollisionScripts(this->marker, NULL, func_80389890, func_803898BC);
         func_803897F0(this, 1);
         if(this->modelCacheIndex == 0x28E && jiggyscore_isSpawned(JIGGY_18_CC_BOLT)){
             marker_despawn(this->marker);

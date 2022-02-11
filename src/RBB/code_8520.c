@@ -344,7 +344,7 @@ void func_8038F618(Actor *this){
         local->unk34 = 0;
         local->unk4 = 0.5f;
         local->unk30 = 0.0f;
-        func_803300A8(this->marker, func_8038F430, func_8038F3F0, func_8038F430);
+        marker_setCollisionScripts(this->marker, func_8038F430, func_8038F3F0, func_8038F430);
         func_8038F190(this, 1);
         return;
     }//L8038F714

@@ -160,7 +160,7 @@ void func_8038B124(Actor *this){
         if(this->state == 0xa)
             marker_despawn(this->marker);
 
-        func_803300A8(this->marker, func_8038B0BC, func_8038B08C, func_8038AFF4);
+        marker_setCollisionScripts(this->marker, func_8038B0BC, func_8038B08C, func_8038AFF4);
         this->marker->propPtr->unk8_3 = TRUE;
         actor_collisionOn(this);
         this->unk138_27 = 1;

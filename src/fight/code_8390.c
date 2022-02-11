@@ -69,7 +69,7 @@ void func_8038E844(Actor *this){
 
     if(!this->unk16C_4){
         this->unk16C_4 = 1;
-        func_803300A8(this->marker, NULL, func_8038E780, NULL);
+        marker_setCollisionScripts(this->marker, NULL, func_8038E780, NULL);
         func_803300D8(this->marker, func_8038E7EC);
         this->marker->propPtr->unk8_3 = 0;
         actor_collisionOn(this);

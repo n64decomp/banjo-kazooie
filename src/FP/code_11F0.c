@@ -110,7 +110,7 @@ void func_8038794C(Actor *this){
     if(!this->unk16C_4){
         this->unk16C_4 = TRUE;
         this->marker->propPtr->unk8_3 = TRUE;
-        func_803300A8(this->marker, NULL, func_80387754, NULL);
+        marker_setCollisionScripts(this->marker, NULL, func_80387754, NULL);
         this->unk38_31 = 1;
         ml_vec3f_copy(this->velocity, this->position);
         

@@ -96,7 +96,7 @@ void func_80387AB0(ActorMarker *this, u32 arg1){
 void func_80387B80(Actor *this){
     if(!this->initialized){
         this->marker->propPtr->unk8_3 = 1;
-        func_803300A8(this->marker, NULL, NULL, func_80387AB0);
+        marker_setCollisionScripts(this->marker, NULL, NULL, func_80387AB0);
         this->initialized = 1;
     }
 

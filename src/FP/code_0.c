@@ -125,7 +125,7 @@ void func_80386630(Actor *this){
 void func_803867BC(Actor *this){
     if(!this->initialized){
         this->initialized = TRUE;
-        func_803300A8(this->marker, func_803864F4, NULL, NULL);
+        marker_setCollisionScripts(this->marker, func_803864F4, NULL, NULL);
         this->marker->propPtr->unk8_3 = TRUE;
         this->unk10_12 = 0;
         ml_vec3f_clear(this->velocity);

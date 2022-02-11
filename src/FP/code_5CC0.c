@@ -39,6 +39,16 @@ extern struct43s D_80392028;
 extern f32 D_80392070[3];
 extern UNK_TYPE(u8) D_8039207C;
 
+extern f64 D_80392D80;
+extern f64 D_80392D88;
+extern f64 D_80392D90;
+extern f32 D_80392D98;
+extern f32 D_80392D9C;
+extern f32 D_80392DA0;
+extern f32 D_80392DA4;
+extern f32 D_80392DA8;
+extern f32 D_80392DAC;
+extern f32 D_80392DB0;
 extern f64 D_80392DB8;
 extern f64 D_80392DC0;
 extern f64 D_80392DC8;
@@ -119,8 +129,67 @@ void func_8038C398(f32 position[3], enum marker_e marker_id){
     func_8038C260(position, 4, ASSET_498_MODEL_TWINKLY_SHARD_YELLOW);
 }
 
-void func_8038C428(Actor *this, UNK_TYPE(s32) arg1, f32 arg2);
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/FP/code_5CC0/func_8038C428.s")
+#else
+void func_8038C428(Actor *this, f32 arg1[3], f32 arg2) {
+    u8 sp7F;
+    s32 sp78;
+    f32 sp74;
+    f32 sp70;
+    f32 sp5C[3];
+    f32 sp54;
+    f32 sp50;
+    f32 sp48;
+    f32 temp_f0_2;
+    f32 phi_f22;
+    f32 phi_f24;
+    f32 phi_f16;
+    s32 phi_v0;
+
+    sp74 = arg2;
+    sp70 = this->position[1];
+    sp7F = (arg2 == 0.0f) ? FALSE : TRUE;
+    phi_f22 = arg1[0] - this->position[0];
+    phi_f24 = arg1[2] - this->position[2];
+    sp78 = 0;
+    sp48 = phi_f22 / sp54;
+    sp50 = phi_f24 / sp54;
+    sp54 = gu_sqrtf((phi_f22 * phi_f22) + (phi_f24 * phi_f24));
+    if (sp7F) {
+        temp_f0_2 = randf2(130.0f, 150.0f);
+        if (!(sp54 < temp_f0_2)) {
+            sp54 = temp_f0_2;
+        }
+        phi_f22 = sp48 * sp54;
+        phi_f24 = sp50 * sp54;
+    }
+    sp5C[0] = this->position[0] + phi_f22;
+    sp5C[1] = this->position[1];
+    sp5C[2] = this->position[2] + phi_f24;
+    sp78 = 0;
+    if (sp7F) {
+        do {
+            sp70 += arg2 += D_80392D80;
+            sp78++;
+        } while (func_80309724(sp5C) < sp70 || arg2 > 0.0f);
+    } else {
+        sp74 = (f32) ((f64) (((arg1[1] + 40.0f) - this->position[1]) / 28.0f) - (D_80392D88 * (f64) 28.0f * 0.5));
+        sp78 = 0x1C;
+    }
+    func_8028764C(this->animctrl, 0.0f);
+    this->unk1C[0] = D_80392D90 / sp78;
+    this->velocity[1] = sp74;
+    this->velocity[0] = phi_f22 / sp78;
+    this->velocity[2] = phi_f24 / sp78;
+    if (sp7F) {
+        func_8030E878(SFX_3F2_UNKNOWN, randf2(D_80392D98, D_80392D9C), 32000, this->position, D_80392DA0, D_80392DA4);
+    }
+    else{
+        func_8030E878(SFX_53_BANJO_HUIII, randf2(D_80392DA8, 1.5f), 32000, this->position, D_80392DAC, D_80392DB0);
+    }
+}
+#endif
 
 bool func_8038C718(Actor *this, f32 arg1){
     f32 tmp;

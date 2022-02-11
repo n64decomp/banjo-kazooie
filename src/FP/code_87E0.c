@@ -65,7 +65,7 @@ void func_8038ECD8(Actor *this){
 
     if(!this->unk16C_4){
         this->unk16C_4 = TRUE;
-        func_803300A8(this->marker, NULL, func_8038EC34, NULL);
+        marker_setCollisionScripts(this->marker, NULL, func_8038EC34, NULL);
         this->marker->propPtr->unk8_3 = TRUE;
         player_getPosition(D_803935D0);
         local->unk1B = 0;

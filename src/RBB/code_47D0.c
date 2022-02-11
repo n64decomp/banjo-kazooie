@@ -133,7 +133,7 @@ void func_8038AEB8(Actor *this){
         this->unk16C_4 = 1;
         this->marker->propPtr->unk8_3 = 1;
         this->marker->unk30 = func_8038AD7C;
-        func_803300A8(this->marker, NULL, func_8038AD3C, NULL);
+        marker_setCollisionScripts(this->marker, NULL, func_8038AD3C, NULL);
         local->unk4 = func_8038ABC0(this);
         mapSpecificFlags_set(local->unk4->unk10, FALSE);
         this->position_x = local->unk4->unk4[0];

@@ -139,7 +139,7 @@ void func_8035765C(Actor *this){
         this->unk16C_4 = TRUE;
         this->unk16C_0 = TRUE;
         if(this->state != 6){
-            func_803300A8(this->marker, NULL, func_80357564, func_8035758C);
+            marker_setCollisionScripts(this->marker, NULL, func_80357564, func_8035758C);
             local->unk0 = 0xff;
             func_80357264(this, 1);
         }

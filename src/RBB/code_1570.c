@@ -235,7 +235,7 @@ void func_803882F4(Actor *this){
             func_80387B24();
             func_803881E8(this, 3);
         }else{
-            func_803300A8(this->marker, NULL, func_803882B4, NULL);
+            marker_setCollisionScripts(this->marker, NULL, func_803882B4, NULL);
             func_8032AA58(this, 1.1f);
             func_803881E8(this, 1);
         }

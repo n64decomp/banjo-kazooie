@@ -257,7 +257,7 @@ void func_80388080(Actor *this){
                 break;
         }
         actor_collisionOff(this);
-        func_803300A8(this->marker, NULL, NULL, func_80387DCC);
+        marker_setCollisionScripts(this->marker, NULL, NULL, func_80387DCC);
         this->unk1C_x = this->position_x;
         this->unk1C_y = this->position_y;
         this->unk1C_z = this->position_z;

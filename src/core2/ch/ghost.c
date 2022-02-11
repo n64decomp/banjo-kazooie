@@ -202,7 +202,7 @@ void func_8035B900(Actor *this){
     f32 sp2C = time_getDelta();
     if(!this->unk16C_4){
         this->unk16C_4 = TRUE;
-        func_803300A8(this->marker, NULL, func_8035B3B4, func_8035B1CC);
+        marker_setCollisionScripts(this->marker, NULL, func_8035B3B4, func_8035B1CC);
         this->marker->propPtr->unk8_3 = FALSE;
         actor_collisionOn(this);
         this->velocity_z = 0.0f;
@@ -302,7 +302,7 @@ void func_8035BD48(Actor *this){
         this->unk16C_4 = TRUE;
         this->marker->propPtr->unk8_3 = FALSE;
         actor_collisionOn(this);
-        func_803300A8(this->marker, NULL, func_8035B3B4, func_8035B2C4);
+        marker_setCollisionScripts(this->marker, NULL, func_8035B3B4, func_8035B2C4);
         mapSpecificFlags_set(3, FALSE);
         mapSpecificFlags_set(4, FALSE);
         if(map_get() == MAP_24_MMM_TUMBLARS_SHED){

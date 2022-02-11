@@ -138,7 +138,7 @@ void chSawblade_update(Actor *this){
         this->unk16C_4 = TRUE;
         this->roll = this->yaw;
         this->yaw =  0.0f;
-        func_803300A8(this->marker, func_80389520, NULL, func_8038954C);
+        marker_setCollisionScripts(this->marker, func_80389520, NULL, func_8038954C);
         local->unk0 = &D_80389C30[(this->modelCacheIndex < 0x43) ? this->modelCacheIndex - 0x3D : this->modelCacheIndex - 0x28A];
         local->unk4 = 0;
         func_80256C60(this->position, 100);

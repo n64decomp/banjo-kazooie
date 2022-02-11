@@ -36,7 +36,7 @@ void func_802CE7E0(ActorMarker *marker, s32 arg1){
 
 void func_802CE8D4(Actor *this){
     if(!this->unk16C_4){
-        func_803300A8(this->marker, NULL, NULL, func_802CE7E0);
+        marker_setCollisionScripts(this->marker, NULL, NULL, func_802CE7E0);
         this->marker->propPtr->unk8_3 = 1;
         this->unk44_31 = func_8030D90C();
         this->unk16C_4 = 1;

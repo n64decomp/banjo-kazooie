@@ -20,6 +20,8 @@
 extern f32 fabsf(f32);
 #pragma intrinsic (fabsf)
 
+#define NOT(boolean) boolean ^ 1
+
 #define TUPLE_ASSIGN(out, a, b, c) {\
     out[0] = a;\
     out[1] = b;\
@@ -445,7 +447,7 @@ void func_80329878(Actor *, f32);
 
 void func_80320044(s32, s32, s32);
 void func_803300D8(ActorMarker *, void (*)(Actor *));
-void func_803300A8(ActorMarker *this, MarkerCollisionFunc ow_func, MarkerCollisionFunc arg2, MarkerCollisionFunc die_func);
+void marker_setCollisionScripts(ActorMarker *this, MarkerCollisionFunc ow_func, MarkerCollisionFunc arg2, MarkerCollisionFunc die_func);
 BKModelBin *func_80330B1C(ActorMarker *marker);
 void func_8033568C(void *, f32 *, f32*);
 void func_80335924(void *, enum asset_e anim_id, f32, f32);
