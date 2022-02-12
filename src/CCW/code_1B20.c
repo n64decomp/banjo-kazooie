@@ -2,23 +2,48 @@
 #include "functions.h"
 #include "variables.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/CCW/code_1B20/func_80387F10.s")
+extern f32 D_8038EC94;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/CCW/code_1B20/func_80387F38.s")
+void func_80387F10() {
+    jiggySpawn(0x4DU, &D_8038EC94);
+}
+
+void func_80387F38(ActorMarker* marker, s32 arg1) {
+    func_80387F64(marker_getActor(marker), arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/CCW/code_1B20/func_80387F64.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/CCW/code_1B20/func_80388260.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/CCW/code_1B20/func_80388278.s")
+void func_80388278(s32 arg0, s32 arg1) {
+    func_8025A6EC(COMUSIC_2B_DING_B, 0x6D60);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/CCW/code_1B20/func_803882A4.s")
+void func_803882A4(ActorMarker* marker, s32 arg1) {
+    Actor* actor = marker_getActor(marker);
+    
+    if (map_get() == MAP_43_CCW_SPRING && actor->state == 1) {
+        func_80387F64(actor, 2);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/CCW/code_1B20/func_803882F4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/CCW/code_1B20/func_803883F4.s")
+void func_803883F4() {
+    Actor* actor = func_80326EEC(0x29D);
+    if (actor && actor->state == 1) {
+        func_80387F64(actor, 2);
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/CCW/code_1B20/func_80388438.s")
+s32 func_80388438() {
+    Actor* actor = func_80326EEC(0x29D);
+    if (actor && actor->state == 2) {
+        return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/CCW/code_1B20/func_80388478.s")
 
@@ -26,11 +51,19 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/CCW/code_1B20/func_803885F8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/CCW/code_1B20/func_80388660.s")
+void func_80388660(ActorMarker* marker, s32 arg1) {
+    func_8038868C(marker_getActor(marker), arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/CCW/code_1B20/func_8038868C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/CCW/code_1B20/func_8038894C.s")
+void func_8038894C(ActorMarker* marker, s32 arg1) {
+    Actor* actor = marker_getActor(marker);
+    if (actor->state == 1) {
+        actor_collisionOff(actor);
+        timedFunc_set_2(0.5f, func_80388660, actor->marker, 2);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/CCW/code_1B20/func_803889AC.s")
 
@@ -44,25 +77,48 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/CCW/code_1B20/func_80388FD4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/CCW/code_1B20/func_803891B0.s")
+void func_803891B0(void* marker) {
+    Actor* actor = marker_getActor(reinterpret_cast(ActorMarker*, marker));
+    actor->unk44_31 = func_8030ED2C(SFX_3EC_CCW_DOOR_OPENING, 3);
+    func_8030DD90(actor->unk44_31, 0);
+    func_8030DABC(actor->unk44_31, 0x2AF8);
+    func_8030DBB4(actor->unk44_31, 0.3f);
+    func_8030E2C4(actor->unk44_31);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/CCW/code_1B20/func_8038921C.s")
+void func_8038921C(void* marker) {
+    Actor* actor = marker_getActor(reinterpret_cast(ActorMarker*, marker));
+    func_8030E394(actor->unk44_31);
+    func_8030DA44(actor->unk44_31);
+    actor->unk44_31 = 0U;
+    func_8030E624(0x7FF8686CU);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/CCW/code_1B20/func_80389268.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/CCW/code_1B20/func_80389440.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/CCW/code_1B20/func_8038950C.s")
+void func_8038950C(ActorMarker* marker, s32 arg1) {
+    Actor* actor = marker_getActor(marker);
+    if (actor->state == 1) {
+        func_80389440(actor, 2);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/CCW/code_1B20/func_8038954C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/CCW/code_1B20/func_803895F4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/CCW/code_1B20/func_80389700.s")
+void func_80389700(s32 arg0, s32 arg1, s32 arg2) {
+    func_80324E88(0.5f);
+    func_80324E38(0.5f, 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/CCW/code_1B20/func_80389740.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/CCW/code_1B20/func_80389798.s")
+void func_80389798() {
+    func_8030E6D4(SFX_EYRIE_MAMA);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/CCW/code_1B20/func_803897B8.s")
 
