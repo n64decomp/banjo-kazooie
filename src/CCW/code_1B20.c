@@ -91,7 +91,7 @@ void func_8038921C(void* marker) {
     func_8030E394(actor->unk44_31);
     func_8030DA44(actor->unk44_31);
     actor->unk44_31 = 0U;
-    func_8030E624(0x7FF8686CU);
+    FUNC_8030E624(SFX_6C_LOCKUP_CLOSING, 0x30D, 0x3FF);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/CCW/code_1B20/func_80389268.s")

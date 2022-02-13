@@ -136,7 +136,7 @@ void func_8038FB40(ActorMarker *this, s32 arg1){
     thisActor = marker_getActor(this);
     func_80328A84(thisActor, 2);
     actor_playAnimationOnce(thisActor);
-    func_8030E624(0x665ff80A);
+    FUNC_8030E624(SFX_A_BANJO_LANDING_05, 0x3FF, 0x332);
 }
 
 void func_8038FB84(ActorMarker *this, s32 arg1){
