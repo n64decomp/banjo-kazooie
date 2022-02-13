@@ -85,7 +85,37 @@ f64 D_80392CB8;
 s32 D_80392F20[3];
 
 /* .code */
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_2350/func_80388740.s")
+Actor *func_80388740(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
+    Actor *this = marker_getActor(marker);
+    ActorLocal_FP_2350 * local = (ActorLocal_FP_2350 *) &this->local;
+    f32 sp2C[3];
+
+    func_8033A45C(1, 1);
+    func_8033A45C(3, 1);
+    this = func_80325888(marker, gfx, mtx, vtx);
+    if(this->unk16C_4 && marker->unk14_21){
+        if( this->state == 4
+            || this->state == 5
+            || this->state == 6
+            || this->state == 8
+        ){
+            if(this->unk4C != 0.0f && (func_8023DB5C() & 1)){
+                if(-2.0 < this->roll){
+                    func_8034A174(func_80329934(), 6, sp2C);
+                    particleEmitter_setPosition(local->unk0, sp2C);
+                    particleEmitter_emitN(local->unk0, 1);
+                }
+
+                if(this->roll < 2.0){
+                    func_8034A174(func_80329934(), 7, sp2C);
+                    particleEmitter_setPosition(local->unk4, sp2C);
+                    particleEmitter_emitN(local->unk4, 1);
+                }
+            }
+        }//L803888D4
+    }
+    return this;
+}
 
 void func_803888E4(Actor *this){
     func_80328B8C(this, 0xC, 0.0001f, 1);
@@ -118,9 +148,50 @@ void func_80388A50(Actor *this){
     local->unk18 = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_2350/func_80388A94.s")
+void func_80388A94(Actor *this){
+    func_80388A50(this);
+    if(mapSpecificFlags_get(6)){
+        func_80311480(0xc0a, 0xe, this->position, this->marker, func_80388D70, NULL);
+    }
+    else{
+        func_80311480(0xc09, 0xe, this->position, this->marker, func_80388D70, NULL);
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_2350/func_80388B18.s")
+void func_80388B18(Actor *this, u8 arg1){
+    if(arg1 == TRUE){
+        if(player_getTransformation() == TRANSFORM_4_WALRUS){
+            func_80388A50(this);
+            if(mapSpecificFlags_get(5)){
+                func_80311480(0xc05, 0xf, this->position, this->marker, func_80388D70, NULL);
+            }
+            else{
+                func_80311480(0xc02, 0xf, this->position, this->marker, func_80388D70, NULL);
+            }
+        }
+        else{//L80388BB8
+            if(!func_803203FC(0xb3)){
+                if(func_80311480(0xc01, 0xe, this->position, this->marker, func_80388D70, NULL)){
+                    func_803204E4(0xb3, TRUE);
+                    func_80388A50(this);
+                }
+            }
+        }
+    }
+    else{//L80388C08
+        if(player_getTransformation() == TRANSFORM_4_WALRUS){
+            if(!func_803203FC(0xb4)){
+                if(func_80311480(0xc08, 0xe, this->position, this->marker, func_80388D70, NULL)){
+                    func_803204E4(0xb4, TRUE);
+                    func_80388A50(this);
+                }
+            }
+        }
+        else{
+            func_80388A94(this);
+        }
+    }
+}
 
 void func_80388C88(Actor *this){
     ActorLocal_FP_2350 *local = (ActorLocal_FP_2350 *)&this->local;
@@ -129,7 +200,21 @@ void func_80388C88(Actor *this){
     local->unk18 = 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_2350/func_80388CA0.s")
+bool func_80388CA0(Actor *this){
+    ActorLocal_FP_2350 *local = (ActorLocal_FP_2350 *)&this->local;
+    u32 sp20;
+
+    if(func_8028ECAC() != 0 && func_8028ECAC() != 8)
+        return FALSE;
+
+    if( !func_80329530(this, 1100) ){
+        local->unk18 = TRUE;
+    }
+
+    sp20 = this->unk10_12;
+    this->unk10_12 = func_80329530(this, 0x1C2);
+    return (sp20 == 0 && this->unk10_12 && local->unk18);
+}
 
 void func_80388D70(ActorMarker *caller, enum asset_e text_id, s32 arg2){
     Actor *this = marker_getActor(caller);

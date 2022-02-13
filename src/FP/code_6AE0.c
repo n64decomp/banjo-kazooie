@@ -9,29 +9,110 @@ Actor *func_8038CED0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void func_8038D6C8(Actor *this);
 
 /* .data */
-extern ActorAnimationInfo D_803920C0[];
+ActorAnimationInfo D_803920C0[] ={
+    {0x000, 0.0f},
+    {0x16D, 10000000.0f},
+    {0x237, 2.0f},
+    {0x16D, 0.8f},
+    {0x16D, 0.8f}
+};
 
-extern ActorInfo D_803920E8 = { 0x204, 0x336, 0x442,
+ActorInfo D_803920E8 = { 0x204, 0x336, 0x442,
     0x1, D_803920C0,
     func_8038D6C8, func_80326224, func_8038CED0,
     { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
 };
-extern struct31s D_8039210C;
-extern struct43s D_80392134;
-extern struct31s D_8039217C;
-extern s32 D_803921A4[3];
-extern struct43s D_803921B0;
-extern struct31s D_803921F8;
-extern struct43s D_80392220;
-extern struct31s D_80392268;
-extern struct43s D_80392290;
-extern struct31s D_803922D8;
-extern s32 D_80392300[3];
-extern struct43s D_8039230C;
-extern f32 D_80392354[3];
-extern f32 D_80392360[3];
-extern enum actor_e D_8039236C[];
-extern f32 D_8039237C[3];
+
+struct31s D_8039210C = {
+    { 0.4f,  0.8f },
+    {-1.0f, -1.0f },
+    { 0.0f,  0.02f},
+    { 1.8f,  2.2f },
+    0.0f,  
+    0.7f
+};
+
+struct43s D_80392134 = {
+    {{-200.0f, 200.0f}, {-200.0f, 200.0f}, {400.0f, 200.0f}},
+    {{   0.0f, -800.0f,    0.0f}, {  0.0f, -800.0f,   0.0f}},
+    {{-100.0f,    0.0f, -100.0f}, {100.0f,  100.0f, 100.0f}}
+};
+
+struct31s D_8039217C = {
+    {0.8f, 1.2f },
+    {1.4f, 2.0f },
+    {0.0f, 0.01f},
+    {1.2f, 1.8f },
+    0.0f,
+    0.01f
+};
+
+s32 D_803921A4[3] = { 0xDC, 0xDC, 0xE6};
+
+struct43s D_803921B0 = {
+    {{-200.0f, 0.0f}, {-200.0f, 200.0f}, {200.0f, 200.0f}},
+    {{  0.0f, -10.0f,   0.0f}, { 0.0f, -10.0f,  0.0f}},
+    {{-50.0f,   0.0f, -50.0f}, {50.0f, 200.0f, 50.0f}}
+};
+
+struct31s D_803921F8 = {
+    { 0.2f,  0.3f },
+    {-1.0f, -1.0f },
+    { 0.0f,  0.02f},
+    { 2.0f,  2.5f },
+    0.0f, 0.3f
+};
+
+struct43s D_80392220 = {
+    {{-300.0f, 400.0f}, {-300.0f, 300.0f}, {800.0f, 300.0f}},
+    {{  0.0f, -800.0f,  0.0f}, { 0.0f, -800.0f,  0.0f}},
+    {{-80.0f,  80.0f, -80.0f}, {80.0f,   80.0f, 80.0f}}
+};
+
+struct31s D_80392268 ={
+    { 0.4f,  0.6f },
+    {-1.0f, -1.0f },
+    { 0.0f,  0.02f},
+    { 2.0f,  2.5f },
+    0.0f,
+    0.3f
+};
+
+struct43s D_80392290 = {
+    {{-300.0f, 400.0f}, {-300.0f, 300.0f}, {800.0f, 300.0f}},
+    {{  0.0f, -800.0f,   0.0f}, { 0.0f, -800.0f,  0.0f}},
+    {{-80.0f,   80.0f, -80.0f}, {80.0f,   80.0f, 80.0f}}
+};
+
+struct31s D_803922D8 = {
+    {0.5f, 0.7f },
+    {1.4f, 1.7f },
+    {0.0f, 0.01f},
+    {0.6f, 0.9f },
+    0.0f, 0.01f
+};
+
+s32 D_80392300[3] = { 0xDC, 0xDC, 0xE6};
+
+struct43s D_8039230C = {
+    {{-100.0f, 0.0f}, {-100.0f, 100.0f}, {100.0f, 100.0f}},
+    {{0.0f, -10.0f, 0.0f}, {0.0f, -10.0f, 0.0f}},
+    {{-80.0f, 0.0f, -80.0f}, {50.0f, 200.0f, 80.0f}}
+};
+
+f32 D_80392354[3] = {-4165.0f, 73.0f, 4483.0f};
+
+f32 D_80392360[3] = {-4292.0f, 73.0f, 5054.0f};
+
+enum actor_e D_8039236C[4] = {
+    ACTOR_332_TWINKLY_BLUE,
+    ACTOR_333_TWINKLY_GREEN,
+    ACTOR_334_TWINKLY_ORANGE, 
+    ACTOR_335_TWINKLY_RED,
+    
+};
+
+f32 D_8039237C[3] = {-3940.0f, 69.0f, 3570.0f};
 
 /* .code */
 Actor *func_8038CED0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
@@ -160,12 +241,6 @@ void func_8038D41C(ActorMarker *marker){
 }
 #endif
 
-#ifndef NONMATCHING
-// matches, but symbol D_8039236C conflict with `lair` overlay 
-// need .data defined
-void func_8038D474(ActorMarker *marker);
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_6AE0/func_8038D474.s")
-#else
 void func_8038D474(ActorMarker *marker){
     Actor *actor  = marker_getActor(reinterpret_cast(ActorMarker*, marker));
     Actor *child;
@@ -178,8 +253,6 @@ void func_8038D474(ActorMarker *marker){
     child = spawn_child_actor(D_8039236C[(s32)actor->unk1C[0]], &actor);
     child->unk100 = actor->marker;
 }
-#endif
-
 
 void func_8038D51C(Actor *marker){
     Actor *this = marker_getActor(marker);

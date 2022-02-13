@@ -121,7 +121,6 @@ void func_80386630(Actor *this){
     }//L803867AC
 }
 
-
 void func_803867BC(Actor *this){
     if(!this->initialized){
         this->initialized = TRUE;

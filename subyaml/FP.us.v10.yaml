@@ -35,7 +35,7 @@ segments:
       - [0x11F0, c, code_11F0] #DONE
       - [0x19E0, c, code_19E0]
       - [0x1FF0, c, code_1FF0] #DONE
-      - [0x2350, c, code_2350]
+      - [0x2350, c, code_2350] #DONE
       - [0x3E00, c, code_3E00] #DONE
       - [0x4400, c, code_4400] #DONE
       - [0x45D0, c, code_45D0]
@@ -71,6 +71,7 @@ segments:
       - [0x0000B890, .data, code_2350]
       - [0x0000BA00, .data, code_3E00]
       - [0x0000BAC0, bin, data_BAC0]
+      - [0x0000BCD0, .data, code_6AE0]
       - [0x0000BFA0, .data, code_7980]
       - [0x0000C010, bin, data_C010]
       - [0x0000C080, .data, code_87E0]
