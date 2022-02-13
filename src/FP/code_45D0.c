@@ -34,7 +34,7 @@ void func_8038AA58(void){}
 #ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/FP/code_45D0/func_8038AA60.s")
 #else
-void func_8038AA60(void){
+s32 func_8038AA60(void){
     switch(D_80392F50.unk0){
         case 0:
             break;

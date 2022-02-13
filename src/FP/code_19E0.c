@@ -2,6 +2,11 @@
 #include "functions.h"
 #include "variables.h"
 
+typedef struct {
+    u8 pad0[1];
+    u8 unk1;
+} ActorLocal_FP_19E0;
+
 void func_803289EC(Actor *, f32, s32);
 void func_8028E668(f32[3], f32, f32, f32);
 

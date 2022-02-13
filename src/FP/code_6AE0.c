@@ -226,11 +226,8 @@ void func_8038D3D8(void){
     func_8024BD08(1);
 }
 
-#ifndef NONMATCHING
-void func_8038D41C(ActorMarker *marker);
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_6AE0/func_8038D41C.s")
-#else
 void func_8038D41C(ActorMarker *marker){
+    s32 pad[2];
     ActorMarker *_marker = reinterpret_cast(ActorMarker *, marker);
     Actor *actor;
     
@@ -238,8 +235,8 @@ void func_8038D41C(ActorMarker *marker){
     actor->unk100 = _marker;
     actor = func_8032813C(ACTOR_337_TWINKLY_MUNCHER, D_80392360, 170);
     actor->unk100 = _marker;
+    if(pad[0]);
 }
-#endif
 
 void func_8038D474(ActorMarker *marker){
     Actor *actor  = marker_getActor(reinterpret_cast(ActorMarker*, marker));

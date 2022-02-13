@@ -34,10 +34,14 @@ extern ActorInfo D_80391FF4 = { MARKER_203_TWINKLY_RED, ACTOR_335_TWINKLY_RED, A
     { 0x0, 0x0}, 0, 1.0f, { 0x0, 0x0, 0x0, 0x0}
 };
 
-extern UNK_TYPE(u8) D_80392018;
+extern s32 D_80392018[4];
 extern struct43s D_80392028;
 extern f32 D_80392070[3];
-extern UNK_TYPE(u8) D_8039207C;
+extern f32 D_8039207C[3];
+extern f32 D_80392088[3];
+extern f32 D_80392094[3];
+extern s32 D_803920A0[4];
+extern s32 D_803920B0[4];
 
 extern f64 D_80392D80;
 extern f64 D_80392D88;
@@ -52,6 +56,20 @@ extern f32 D_80392DB0;
 extern f64 D_80392DB8;
 extern f64 D_80392DC0;
 extern f64 D_80392DC8;
+
+// C00999999999999A 
+// C00999999999999A
+// 3FEFFFEB074A771D 
+// 3F99999A 
+// 3FA66666
+// 44DAC000
+// 455AC000
+// 3FB33333
+// 44DAC000
+// 455AC000
+// C00999999999999A
+// 3FEFFF2E48E8A71E
+// 3FEFFFFDE7210BE9
 
 /* .code */
 Actor *func_8038C0B0(ActorMarker *marker, UNK_TYPE(s32) arg1, f32 arg2, UNK_TYPE(s32) arg3){
@@ -130,6 +148,7 @@ void func_8038C398(f32 position[3], enum marker_e marker_id){
 }
 
 #ifndef NONMATCHING
+void func_8038C428(Actor *this, f32 arg1[3], f32 arg2);
 #pragma GLOBAL_ASM("asm/nonmatchings/FP/code_5CC0/func_8038C428.s")
 #else
 void func_8038C428(Actor *this, f32 arg1[3], f32 arg2) {
@@ -146,17 +165,18 @@ void func_8038C428(Actor *this, f32 arg1[3], f32 arg2) {
     f32 phi_f24;
     f32 phi_f16;
     s32 phi_v0;
+    s32 phi_v1;
 
     sp74 = arg2;
     sp70 = this->position[1];
-    sp7F = (arg2 == 0.0f) ? FALSE : TRUE;
+    phi_v1 = (arg2 == 0.0f) ? FALSE : TRUE;
     phi_f22 = arg1[0] - this->position[0];
     phi_f24 = arg1[2] - this->position[2];
     sp78 = 0;
     sp48 = phi_f22 / sp54;
     sp50 = phi_f24 / sp54;
     sp54 = gu_sqrtf((phi_f22 * phi_f22) + (phi_f24 * phi_f24));
-    if (sp7F) {
+    if (sp7F = phi_v1) {
         temp_f0_2 = randf2(130.0f, 150.0f);
         if (!(sp54 < temp_f0_2)) {
             sp54 = temp_f0_2;
@@ -170,11 +190,13 @@ void func_8038C428(Actor *this, f32 arg1[3], f32 arg2) {
     sp78 = 0;
     if (sp7F) {
         do {
-            sp70 += arg2 += D_80392D80;
+            // sp70 += arg2 += D_80392D80;
+            // sp70 += arg2 += D_80392D80;
+            sp70 += arg2 += -3.2;
             sp78++;
         } while (func_80309724(sp5C) < sp70 || arg2 > 0.0f);
     } else {
-        sp74 = (f32) ((f64) (((arg1[1] + 40.0f) - this->position[1]) / 28.0f) - (D_80392D88 * (f64) 28.0f * 0.5));
+        sp74 = (f32) ((f64) (((arg1[1] + 40.0f) - this->position[1]) / 28.0f) - (-3.2 * (f64) 28.0f * 0.5));
         sp78 = 0x1C;
     }
     func_8028764C(this->animctrl, 0.0f);
@@ -243,44 +265,128 @@ void func_8038C94C(ActorMarker *caller, enum asset_e text_id, s32 arg2){
     }
 }
 
+#ifndef NONAMTCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/FP/code_5CC0/func_8038C9A0.s")
-// void func_8038C9A0(Actor *this){
-//     Actor *other; //sp34
-//     void * sp30;
+#else
+void func_8038C9A0(Actor *this){
+    Actor *other; //sp34
+    void * sp30;
 
-//     if(this->marker->unk14_20 == 0x200){
-//         sp30 = func_8034C2C4(this->marker, 0x190);
-//     }
-//     other = marker_getActor(this->unk100);
+    if(this->marker->unk14_20 == 0x200){
+        sp30 = func_8034C2C4(this->marker, 0x190);
+    }
+    other = marker_getActor(this->unk100);
 
-//     if(!this->unk16C_4){
-//         this->unk16C_4 = TRUE;
-//         this->marker->unk18 = &D_80392018;
-//         this->unk38_31 = 0;
-//         if(0.0f != other->velocity[0]){
-//             func_80328A84(this, 4);
-//             this->unk1C[1] = this->position_y + 50.0f;
-//             this->unk1C[2] = this->position_y;
-//         }
-//         else{
-//             this->velocity_x = 0.0f;
-//             this->velocity_y = 0.0f;
-//             this->velocity_z = 0.0f;
-//             this->unk1C[0] = 0.0f;
-//             func_8028764C(this->animctrl, 0.0f);
-//             func_8038C428(this, &D_8039207C, 0);
-//             return;
-//         }
-//     }//L8038CA9C
+    if(!this->unk16C_4){
+        this->unk16C_4 = TRUE;
+        this->marker->unk18 = &D_80392018;
+        this->unk38_31 = 0;
+        if(0.0f != other->velocity[0]){
+            func_80328A84(this, 4);
+            this->unk1C[1] = this->position_y + 50.0f;
+            this->unk1C[2] = this->position_y;
+        }
+        else{
+            this->velocity_x = 0.0f;
+            this->velocity_y = 0.0f;
+            this->velocity_z = 0.0f;
+            this->unk1C[0] = 0.0f;
+            func_8028764C(this->animctrl, 0.0f);
+            func_8038C428(this, &D_8039207C, 0);
+            return;
+        }
+    }//L8038CA9C
 
-//     if(1.0f == other->unk1C[1]){
-//         func_8038C398(this->position, this->marker->unk14_20);
-//         FUNC_8030E8B4(SFX_7B_ICE_BREAKING_1, 1000, 0x3ff, this->position, 0x6d6, 0xdac);\
-//         marker_despawn(this->marker);
-//         return;
-//     }//L8038CB04
+    if(1.0f == other->unk1C[1]){
+        func_8038C398(this->position, this->marker->unk14_20);
+        FUNC_8030E8B4(SFX_7B_ICE_BREAKING_1, 1000, 0x3ff, this->position, 0x6d6, 0xdac);\
+        marker_despawn(this->marker);
+        return;
+    }//L8038CB04
 
-//     switch(this->state){
+    switch(this->state){
+        case 1:// 8038CB2C
+            if(func_8038C718(this, 0))
+                break;
 
-//     }
-// }
+            func_80328B8C(this, 2, 0.001f, 1);
+            func_8038C428(this, D_80392088, randf2(20.0f, 24.0f));
+            this->unk60 = this->yaw;
+            break;
+
+        case 2:// 8038CB8C
+            this->yaw += 4.0f;
+            if(actor_animationIsAt(this, 0.999)){
+                func_8034DFB0(sp30, D_803920A0, D_803920B0, 0.14f);
+            }
+
+            if(actor_animationIsAt(this, 0.8f)){
+                func_8034DFB0(sp30, D_803920B0, D_803920A0, 0.14f);
+            }
+
+            if(0.8 < func_802877D8(this->animctrl) || func_802877D8(this->animctrl) < 0.2){
+                this->unk38_31 = TRUE;
+            }
+            else{
+                this->unk38_31 = FALSE;
+            }
+
+            if(func_8038C718(this, 0.0f))
+                return;
+
+            if(func_8038C844(this->position, D_80392088)){
+                func_80328B8C(this, 3, 0.001f, 1);
+                func_8038C428(this, D_80392094, 0.0f);
+            }
+            else{
+                func_8038C428(this, D_80392088, randf2(20.0f, 24.0f));
+            }
+            break;
+
+        case 3:// 8038CCFC
+            if(func_8038C718(this, 0.0f)) 
+                break;
+
+            if(other->unk38_31 != 0){
+                other->unk38_31--;
+            }
+            func_8025A6EC(COMUSIC_2B_DING_B, 28000);
+            marker_despawn(this->marker);
+            break;
+
+        case 4:// 8038CD58
+            this->position_y += 3.0f;
+            if(this->unk1C[1] <= this->position_y){
+                this->position_y = this->unk1C[1];
+                if(!func_8031FF1C(0x82)){
+                    func_80311480(0xc12, 0x2a, this->position, this->marker, func_8038C94C, NULL);
+                    func_80320004(0x82, TRUE);
+                }
+                else{
+                    func_80311480(0xc25, 0x2b, this->position, this->marker, func_8038C94C, NULL);
+                }
+                func_80328A84(this, 5);
+                this->pitch -= 3.0f;
+            }
+            break;
+
+        case 5:// 8038CE14
+            this->yaw_moving = (f32)func_80329784(this);
+            func_80328FB0(this, 8.0f);
+            if(func_8038C718(this, this->unk1C[1]))
+                break;
+            
+            this->velocity[1] = randf2(14.0f, 20.0f);
+            break;
+
+        case 6:// 8038CE64
+            this->position_y -= 5.0f;
+            if(this->position_y < this->unk1C[2] - 50.0f){
+                this->velocity_x = 0.0f;
+                marker_despawn(this->marker);
+                return;
+            }
+            break;
+    }//L8038CEB0
+}
+#endif
