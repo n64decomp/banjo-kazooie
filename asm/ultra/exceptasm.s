@@ -1,4 +1,4 @@
-// #include <sys/asm.h>
+#include <sys/asm.h>
 .include "macro.inc"
 
 # assembler directives
