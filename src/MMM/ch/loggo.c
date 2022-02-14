@@ -7,13 +7,13 @@ extern void ml_vec3f_assign(f32[3], f32, f32, f32);
 void chLoggo_update(Actor *this);
 
 /* .data */
-extern ActorAnimationInfo chLoggoAnimations[] = {
+ActorAnimationInfo chLoggoAnimations[] = {
     {0,                          0.0f},
     {ASSET_238_ANIM_LOGGO_IDLE,  0.8f},
     {ASSET_240_ANIM_LOGGO_FLUSH, 3.0f}
 };
 
-extern ActorInfo chLoggo = {
+ActorInfo chLoggo = {
     MARKER_252_LOGGO, ACTOR_37F_LOGGO, ASSET_519_MODEL_LOGGO, 
     0x1, chLoggoAnimations, 
     chLoggo_update, func_80326224, func_80325888, 
