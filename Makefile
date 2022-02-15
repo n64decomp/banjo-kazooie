@@ -67,6 +67,7 @@ NONMATCHINGS      := nonmatchings
 NONMATCHING_DIR   := $(ASM_ROOT)/$(NONMATCHINGS)
 BUILD_ROOT        := build
 BUILD_DIR         := $(BUILD_ROOT)/$(VERSION)
+ALL_ASSET_FILES   := $(shell find $(ASSET_ROOT) -type f -iname '*.*' 2> /dev/null)
 ALL_C_SRCS        := $(shell find $(SRC_ROOT) -type f -iname '*.c' 2> /dev/null)
 ALL_ASM_SRCS      := $(filter-out $(ASM_ROOT)/$(NONMATCHINGS), $(shell find $(ASM_ROOT) -name $(NONMATCHINGS) -prune -o -iname '*.s' 2> /dev/null))
 ALL_BINS          := $(shell find $(BIN_ROOT) -type f -iname '*.bin' 2> /dev/null)
@@ -120,12 +121,13 @@ OVERLAY_ELFS      := $(addprefix $(BUILD_DIR)/,$(addsuffix .elf,$(OVERLAYS)))
 OVERLAY_CODE_BINS := $(OVERLAY_ELFS:.elf=.code)
 OVERLAY_DATA_BINS := $(OVERLAY_ELFS:.elf=.data)
 OVERLAY_BINS      := $(addprefix $(BUILD_DIR)/,$(addsuffix .$(VERSION).bin,$(OVERLAYS)))
-ASSET_BIN         := $(BUILD_DIR)/$(BIN_ROOT)/assets.bin
+ASSET_BIN         := $(BUILD_DIR)/assets.bin
 OVERLAY_RZIPS     := $(addprefix $(BIN_ROOT)/,$(addsuffix .$(VERSION).rzip.bin,$(OVERLAYS)))
 OVERLAY_RZIP_OUTS := $(addprefix $(BUILD_DIR)/,$(addsuffix .rzip.bin,$(OVERLAYS)))
 OVERLAY_RZIP_OBJS := $(addprefix $(BUILD_DIR)/$(BIN_ROOT)/,$(addsuffix .$(VERSION).rzip.bin.o,$(OVERLAYS)))
 CRC_OBJS          := $(BUILD_DIR)/$(BIN_ROOT)/crc.bin.o
-BIN_OBJS          := $(filter-out $(OVERLAY_RZIP_OBJS) $(CRC_OBJS),$(BIN_OBJS))
+ASSET_OBJS        := $(BUILD_DIR)/$(BIN_ROOT)/assets.bin.o
+BIN_OBJS          := $(filter-out $(OVERLAY_RZIP_OBJS) $(CRC_OBJS) $(ASSET_OBJS),$(BIN_OBJS))
 ALL_OBJS          := $(C_OBJS) $(ASM_OBJS) $(BIN_OBJS) $(OVERLAY_RZIP_OBJS) $(CRC_OBJS)
 SYMBOL_ADDRS      := symbol_addrs.$(VERSION).txt
 SYMBOL_ADDR_FILES := $(filter-out $(SYMBOL_ADDRS), $(wildcard symbol_addrs.*.$(VERSION).txt))
@@ -419,8 +421,14 @@ $(BUILD_DIR)/%.rzip.bin : $(BUILD_DIR)/%.code $(BUILD_DIR)/%.data $(BK_DEFLATE)
 	$(call print1,Compressing overlay:,$@)
 	@cd $(BK_TOOLS) && ../../$(BK_DEFLATE) ../../$@ ../../$(BUILD_DIR)/$*.code ../../$(BUILD_DIR)/$*.data
 
+# .bin -> .yaml
+$(ASSET_ROOT)/assets.yaml : $(BIN_ROOT)/assets.bin $(BK_ASSET_TOOL)
+	$(call print1,Extracting Assets:,$@)
+	$(BK_ASSET_TOOL) -e $< $(ASSET_ROOT)
+
+# .yaml -> .bin
 ifneq (,$(shell which cargo))
-$(ASSET_BIN): $(ASSET_ROOT)/assets.yaml $(BK_ASSET_TOOL)
+$(ASSET_BIN): $(ASSET_ROOT)/assets.yaml $(BK_ASSET_TOOL) $(ALL_ASSET_FILES)
 	$(call print2,Constructing Asset Binary:,$<,$@)
 	$(BK_ASSET_TOOL) -c $< $@
 else
@@ -429,12 +437,13 @@ $(ASSET_BIN): $(BIN_ROOT)/assets.bin
 	@$(CP) $< $@
 endif
 
-$(ASSET_ROOT)/assets.yaml : $(BIN_ROOT)/assets.bin $(BK_ASSET_TOOL)
-	$(call print1,Extracting Assets:,$@)
-	$(BK_ASSET_TOOL) -e $< $(ASSET_ROOT)
+# .bin -> .o
+$(ASSET_OBJS): $(ASSET_BIN)
+	$(call print2,Objcopying:,$<,$@)
+	@$(OBJCOPY) $(BINOFLAGS) $< $@
 
 # .o -> .elf (game)
-$(ELF): $(MAIN_ALL_OBJS) $(LD_SCRIPT) $(OVERLAY_RZIP_OBJS) $(addprefix $(BUILD_DIR)/, $(addsuffix .full, $(OVERLAYS)))
+$(ELF): $(MAIN_ALL_OBJS) $(LD_SCRIPT) $(OVERLAY_RZIP_OBJS) $(addprefix $(BUILD_DIR)/, $(addsuffix .full, $(OVERLAYS))) $(ASSET_OBJS)
 	$(call print1,Linking elf:,$@)
 	@$(LD) $(LDFLAGS) -T undefined_syms_auto.us.v10.txt -o $@
 
