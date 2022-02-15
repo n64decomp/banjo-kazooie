@@ -2,22 +2,28 @@
 #include "functions.h"
 #include "variables.h"
 
+extern void func_80389484(ActorMarker *, f32);
+
+typedef struct {
+    f32 unk0;
+}ActorLocal_PortraitChompa;
+
 void func_80388028(Actor *this);
 Actor *func_80387AA0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 
 /* .data */
-extern ActorInfo D_8038BAD0 = { 0x254, 0x381, 0x521, 
+extern ActorInfo D_8038BAD0 = { 
+    MARKER_254_PORTRAIT_CHOMPA, ACTOR_381_PORTRAIT_CHOMPA, ASSET_521_MODEL_PORTRAIT_CHOMPA, 
     0x0, NULL,
     func_80388028, NULL, func_80387AA0,
     { 0x0, 0x0}, 0x0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
 };
 
+extern s32 D_8038BAF4[3];
 extern struct31s D_8038BB00;
+extern struct43s D_8038BB28;
 extern struct31s D_8038BB70;
-
-extern s32 D_8038BAF4;
-extern s32 D_8038BB28;
-extern s32 D_8038BB98;
+extern struct43s D_8038BB98;
 
 /* .code */
 Actor *func_80387AA0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
@@ -28,52 +34,213 @@ Actor *func_80387AA0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     return func_80325888(marker, gfx, mtx, vtx);
 }
 
+void func_80387B14(Actor *this, s32 next_state){
+    ActorLocal_PortraitChompa *local = (ActorLocal_PortraitChompa *) &this->local;
+    f32 tmp = 2.5f;
+    this->marker->unk14_20 = 0x1d1;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/MMM/code_16B0/func_80387B14.s")
+    if(next_state == 1 || next_state == 2){
+        func_80335924(this->unk148, 0x23e, 0.0f, 2.5f);
+        func_80335A74(this->unk148, 0.99f);
+        func_80335A8C(this->unk148, 4);
+        if(this->state == 4){
+            local->unk0 = randf2(0.5f, 1.0f);
+        }
+        else{
+            local->unk0 = 0.0f;
+        }
+    }//L80387BD0
 
-void func_80387CF4(s32 arg0, s32 arg1) {
+    if(this->state == 1 && next_state == 2){
+        FUNC_8030E624(SFX_3EF, 0x3FD, 0x398);
+    }
+
+    if(next_state == 3){
+        local->unk0 = 0.2f;
+    }
+
+    if(next_state == 4){
+        this->marker->unk14_20 = 0x254;
+        func_80335924(this->unk148, 0x23e, 0.0f, 2.5f);
+        func_80335A8C(this->unk148, 2);
+        if(this->unk100){
+            func_80389484(this->unk100, tmp + 0.55);
+        }
+        FUNC_8030E624(SFX_3EF, 0x30D, 0x465);
+        FUNC_8030E624(SFX_3EF, 0x30D, 0x465);
+    }//L80387CAC
+
+    if(next_state == 5){
+        func_8030E6D4(SFX_1E_HITTING_AN_ENEMY_2);
+        actor_collisionOff(this);
+    }
+    this->state = next_state;
+}
+
+
+void func_80387CF4(ActorMarker *this_marker, ActorMarker *other_marker) {
     func_8030E6D4(0x1E);
 }
 
-void func_80387D1C(ActorMarker* arg0, s32 arg1) {
-    func_80387B14(marker_getActor(arg0), 5);
+void func_80387D1C(ActorMarker* this_marker, ActorMarker *other_marker) {
+    Actor *this = marker_getActor(this_marker);
+    func_80387B14(this, 5);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/MMM/code_16B0/func_80387D48.s")
+void func_80387D48(ActorMarker *marker){
+    Actor *this = marker_getActor(reinterpret_cast(ActorMarker *, marker));
+    enum asset_e portrait_id;
+    Actor *portrait;
 
-void func_80387DF8(f32 *arg0, u32 arg1, s32 arg2) {
-    ParticleEmitter *temp_s0;
-    ParticleEmitter *temp_v0;
-
-    temp_v0 = partEmitList_pushNew(arg1);
-    temp_s0 = temp_v0;
-    func_802EFFA8(temp_v0, &D_8038BAF4);
-    particleEmitter_setSprite(temp_s0, arg2);
-    particleEmitter_setPosition(temp_s0, arg0);
-    particleEmitter_setPositionVelocityAndAccelerationRanges(temp_s0, &D_8038BB28);
-    func_802EFB98(temp_s0, &D_8038BB00);
-    particleEmitter_emitN(temp_s0, arg1);
+    switch(this->unkF4_8){
+        case 0x32:
+            portrait_id = 0x382;
+            break;
+        case 0x33:
+            portrait_id = 0x384;
+            break;
+        case 0x34:
+            portrait_id = 0x385;
+            break;
+        case 0x35:
+            portrait_id = 0x386;
+            break;
+        case 0x36:
+            portrait_id = 0x387;
+            break;
+        case 0x37:
+            portrait_id = 0x388;
+            break;
+        default:
+            portrait_id = 0x382;
+            break;
+    }
+    portrait = spawn_child_actor(portrait_id, &this);
+    portrait->yaw = this->yaw;
+    this->unk100 = portrait->marker;
+    portrait->unk10_1 = FALSE;
 }
 
-void func_80387E84(f32 *arg0, u32 arg1, s32 arg2) {
-    ParticleEmitter *temp_s0;
-    ParticleEmitter *temp_v0;
+void func_80387DF8(f32 position[3], s32 count, enum asset_e sprite_id) {
+    ParticleEmitter *pCtrl;
 
-    temp_v0 = partEmitList_pushNew(arg1);
-    temp_s0 = temp_v0;
-    particleEmitter_setModel(temp_v0, arg2);
-    particleEmitter_setPosition(temp_s0, arg0);
-    particleEmitter_setPositionVelocityAndAccelerationRanges(temp_s0, &D_8038BB98);
-    func_802EFE24(temp_s0, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
-    func_802EF9F8(temp_s0, 0.4f);
-    func_802EFA18(temp_s0, 3);
-    func_802EFA20(temp_s0, 1.0f, 1.3f);
-    func_802EF9EC(temp_s0, 0x2F, 0x3E80);
-    func_802EFA70(temp_s0, 2);
-    func_802EFB98(temp_s0, &D_8038BB70);
-    particleEmitter_emitN(temp_s0, arg1);
+    pCtrl = partEmitList_pushNew(count);
+    func_802EFFA8(pCtrl, &D_8038BAF4);
+    particleEmitter_setSprite(pCtrl, sprite_id);
+    particleEmitter_setPosition(pCtrl, position);
+    particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_8038BB28);
+    func_802EFB98(pCtrl, &D_8038BB00);
+    particleEmitter_emitN(pCtrl, count);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/MMM/code_16B0/func_80387F7C.s")
+void func_80387E84(f32 position[3], s32 count, enum asset_e model_id) {
+    ParticleEmitter *pCtrl;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/MMM/code_16B0/func_80388028.s")
+    pCtrl = partEmitList_pushNew(count);
+    particleEmitter_setModel(pCtrl, model_id);
+    particleEmitter_setPosition(pCtrl, position);
+    particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_8038BB98);
+    func_802EFE24(pCtrl, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
+    func_802EF9F8(pCtrl, 0.4f);
+    func_802EFA18(pCtrl, 3);
+    func_802EFA20(pCtrl, 1.0f, 1.3f);
+    func_802EF9EC(pCtrl, 0x2F, 0x3E80);
+    func_802EFA70(pCtrl, 2);
+    func_802EFB98(pCtrl, &D_8038BB70);
+    particleEmitter_emitN(pCtrl, count);
+}
+
+void func_80387F7C(Actor *this){
+    f32 sp2C[3];
+    f32 sp20[3];
+
+    if(!this->marker->unk14_21) return;
+
+    func_8034A174(this->marker->unk44, 5, sp2C);
+    func_8034A174(this->marker->unk44, 6, sp20);
+    func_80387E84(sp2C, 1, ASSET_523_MODEL_PORTRAIT_CHOMPA_TEETH);
+    func_80387E84(sp2C, 1, ASSET_524_MODEL_PORTRAIT_CHOMPA_HEAD);
+    func_80387E84(sp20, 6, ASSET_525_MODEL_PORTRAIT_CHOMPA_PART);
+    func_80387DF8(sp2C, 2, ASSET_700_SPRITE_DUST);
+    func_80387DF8(sp20, 2, ASSET_700_SPRITE_DUST);
+}
+
+void func_80388028(Actor *this){
+    ActorLocal_PortraitChompa *local = (ActorLocal_PortraitChompa *) &this->local;
+    f32 sp58 = time_getDelta();
+    f32 plyr_position[3];
+    f32 plyr_dist;
+    f32 sp44;
+    f32 sp40;
+
+    if(!this->unk16C_4){
+        this->unk16C_4 = TRUE;
+        this->unk16C_0 = TRUE;
+        marker_setCollisionScripts(this->marker, NULL, func_80387CF4, func_80387D1C);
+        func_802C3C88(func_80387D48, this->marker);
+        func_80387B14(this, (this->state < 5) ? 1 : 6);
+    }//L803880B4
+
+    player_getPosition(plyr_position);
+    plyr_dist = func_80256064(this->position, plyr_position);
+
+    if(this->state == 4)
+        actor_collisionOn(this);
+    else
+        actor_collisionOff(this);
+    
+    
+    if(this->state == 1 && plyr_dist < this->scale*400.0f){
+        func_80387B14(this, 2);
+    }
+
+    if(this->state == 2){
+        if(0.0f < local->unk0){
+            local->unk0 -= sp58;
+        }
+        else if(plyr_dist < this->scale*300.0f){
+            func_80387B14(this, 3);
+        }
+        else if(this->scale*500.0f < plyr_dist){
+            func_80387B14(this, 1);
+        }
+    }//L80388204
+
+    if(this->state == 3){
+        if(func_8025773C(&local->unk0, sp58)){
+            func_80387B14(this, 4);
+        }
+    }
+
+    if(this->state == 4){
+        func_8033568C(this->unk148, &sp44, &sp40);
+        if(sp44 < 0.56 && 0.56 <= sp40){
+            this->marker->unk14_20 = 0x1d1;
+        }
+
+        if(sp44 < 0.5 && 0.5 <= sp40){
+            FUNC_8030E624(SFX_2_CLAW_SWIPE, 0x3E8, 0x398);
+        }
+
+        if( (sp44 < 0.11 && 0.11 <= sp40)
+            || (sp44 < 0.32 && 0.32 <= sp40)
+            || (sp44 < 0.53 && 0.53 <= sp40)
+        ){
+            func_8030E6A4(SFX_6D_CROC_BITE, randf2(0.95f, 1.05f), 32000);
+        }
+
+        if(sp44 < 0.9 && 0.9 <= sp40){
+            func_8030E6D4(SFX_2_CLAW_SWIPE);
+        }
+        if(func_80335794(this->unk148) > 0){
+            func_80387B14(this, 2);
+        }
+    }
+
+    if(this->state == 5){
+        func_8030E6D4(SFX_D7_GRABBA_DEATH);
+        func_80387F7C(this);
+        func_80387B14(this, 6);
+    }
+
+}
