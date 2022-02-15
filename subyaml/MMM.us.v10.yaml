@@ -29,7 +29,7 @@ segments:
     vram: 0x803863F0
     subsegments:
       - [0x0000, c, ch/loggo] #DONE
-      - [0x0570, c, code_570]
+      - [0x0570, c, ch/napper]
       - [0x0DC0, c, code_DC0]
       - [0x1020, c, code_1020]
       - [0x16B0, c, code_16B0]
@@ -46,7 +46,9 @@ segments:
     vram: 0x8038B9E0
     subsegments:
       - [0x000055F0, .data, ch/loggo]
-      - [0x00005630, bin, data_5630]
+      - [0x00005630, .data, ch/napper]
+      - [0x00005660, bin, data_5660]
       - [0x00005F50, .rodata, ch/loggo]
-      - [0x00005F80, bin, data_5F80]
+      - [0x00005F80, .rodata, ch/napper]
+      - [0x00005FA0, bin, data_5FA0]
   - [0x000060D0]
