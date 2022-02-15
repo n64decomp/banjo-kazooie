@@ -30,7 +30,7 @@ segments:
     subsegments:
       - [0x0000, c, ch/loggo]  #DONE
       - [0x0570, c, ch/napper] #DONE
-      - [0x0DC0, c, code_DC0]
+      - [0x0DC0, c, code_DC0]  #DONE
       - [0x1020, c, code_1020]
       - [0x16B0, c, code_16B0]
       - [0x2040, c, code_2040]
