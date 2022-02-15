@@ -18,7 +18,7 @@ extern ActorInfo D_8038BCB8;
 extern ActorInfo D_8038BD90;
 extern ActorInfo chNapper;
 extern ActorInfo D_8038BA68;
-extern ActorInfo D_8038BA90;
+extern ActorInfo chMotzhand;
 extern ActorInfo chLoggo;
 extern ActorInfo D_8038BAD0;
 extern ActorInfo D_8038BE48;
@@ -186,7 +186,7 @@ void func_803890E0(void){
     spawnableActorList_add(&D_8038BD90, actor_new, 8);
     spawnableActorList_add(&chNapper, actor_new, 0x18A0);
     spawnableActorList_add(&D_8038BA68, actor_new, 0x100);
-    spawnableActorList_add(&D_8038BA90, actor_new, 0x20880);
+    spawnableActorList_add(&chMotzhand, actor_new, 0x20880);
     spawnableActorList_add(&D_80367E70, actor_new, 0);
     spawnableActorList_add(&chLoggo, actor_new, 0x108);
     spawnableActorList_add(&D_8038BAD0, actor_new, 0x2800960);

@@ -31,7 +31,7 @@ segments:
       - [0x0000, c, ch/loggo]  #DONE
       - [0x0570, c, ch/napper] #DONE
       - [0x0DC0, c, code_DC0]  #DONE
-      - [0x1020, c, code_1020]
+      - [0x1020, c, ch/motzhand] #DONE
       - [0x16B0, c, code_16B0]
       - [0x2040, c, code_2040]
       - [0x2F60, c, code_2F60]
@@ -48,8 +48,10 @@ segments:
       - [0x000055F0, .data, ch/loggo]
       - [0x00005630, .data, ch/napper]
       - [0x00005660, .data, code_DC0]
-      - [0x000056A0, bin, data_56A0]
+      - [0x000056A0, .data, ch/motzhand]
+      - [0x000056E0, bin, data_56E0]
       - [0x00005F50, .rodata, ch/loggo]
       - [0x00005F80, .rodata, ch/napper]
-      - [0x00005FA0, bin, data_5FA0]
+      - [0x00005FA0, .rodata, ch/motzhand]
+      - [0x00005FB0, bin, data_5FB0]
   - [0x000060D0]
