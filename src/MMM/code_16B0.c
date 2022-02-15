@@ -94,22 +94,22 @@ void func_80387D48(ActorMarker *marker){
 
     switch(this->unkF4_8){
         case 0x32:
-            portrait_id = 0x382;
+            portrait_id = ACTOR_382_PORTRAIT_OF_GRUNTY;
             break;
         case 0x33:
-            portrait_id = 0x384;
+            portrait_id = ACTOR_384_PORTRAIT_OF_BLACKEYE;
             break;
         case 0x34:
-            portrait_id = 0x385;
+            portrait_id = ACTOR_385_PORTRAIT_OF_TOWER;
             break;
         case 0x35:
-            portrait_id = 0x386;
+            portrait_id = ACTOR_386_PORTRAIT_OF_TREE_AND_MOON;
             break;
         case 0x36:
-            portrait_id = 0x387;
+            portrait_id = ACTOR_387_PORTRAIT_OF_TEEHEE;
             break;
         case 0x37:
-            portrait_id = 0x388;
+            portrait_id = ACTOR_388_PORTRAIT_OF_MINION;
             break;
         default:
             portrait_id = 0x382;

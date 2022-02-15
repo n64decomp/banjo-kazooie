@@ -13,3 +13,6 @@
 [submodule "tools/ido-static-recomp"]
 	path = tools/ido-static-recomp
 	url = https://github.com/Emill/ido-static-recomp.git
+[submodule "tools/bk_asset_tool"]
+	path = tools/bk_asset_tool
+	url = https://github.com/MittenzHugg/bk_asset_tool.git

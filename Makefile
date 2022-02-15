@@ -32,6 +32,7 @@ BK_TOOLS          := tools/bk_tools
 BK_CRC            := tools/bk_crc/bk_crc
 BK_INFLATE        := $(BK_TOOLS)/bk_inflate_code
 BK_DEFLATE        := $(BK_TOOLS)/bk_deflate_code
+BK_ASSET_TOOL     := tools/bk_asset_tool/bk_asset_tool
 ASM_PROCESSOR     := $(PYTHON) $(ASM_PROCESSOR_DIR)/asm_processor.py
 SPLAT_INPUTS      := $(PYTHON) tools/splat_inputs.py
 PROGRESS          := $(PYTHON) tools/progress.py
@@ -60,6 +61,7 @@ endef
 SRC_ROOT          := src
 ASM_ROOT          := asm
 BIN_ROOT          := bin
+ASSET_ROOT        := assets
 SUBYAML           := subyaml
 NONMATCHINGS      := nonmatchings
 NONMATCHING_DIR   := $(ASM_ROOT)/$(NONMATCHINGS)
@@ -118,6 +120,7 @@ OVERLAY_ELFS      := $(addprefix $(BUILD_DIR)/,$(addsuffix .elf,$(OVERLAYS)))
 OVERLAY_CODE_BINS := $(OVERLAY_ELFS:.elf=.code)
 OVERLAY_DATA_BINS := $(OVERLAY_ELFS:.elf=.data)
 OVERLAY_BINS      := $(addprefix $(BUILD_DIR)/,$(addsuffix .$(VERSION).bin,$(OVERLAYS)))
+ASSET_BIN         := $(BUILD_DIR)/$(BIN_ROOT)/assets.bin
 OVERLAY_RZIPS     := $(addprefix $(BIN_ROOT)/,$(addsuffix .$(VERSION).rzip.bin,$(OVERLAYS)))
 OVERLAY_RZIP_OUTS := $(addprefix $(BUILD_DIR)/,$(addsuffix .rzip.bin,$(OVERLAYS)))
 OVERLAY_RZIP_OBJS := $(addprefix $(BUILD_DIR)/$(BIN_ROOT)/,$(addsuffix .$(VERSION).rzip.bin.o,$(OVERLAYS)))
@@ -416,6 +419,20 @@ $(BUILD_DIR)/%.rzip.bin : $(BUILD_DIR)/%.code $(BUILD_DIR)/%.data $(BK_DEFLATE)
 	$(call print1,Compressing overlay:,$@)
 	@cd $(BK_TOOLS) && ../../$(BK_DEFLATE) ../../$@ ../../$(BUILD_DIR)/$*.code ../../$(BUILD_DIR)/$*.data
 
+ifneq (,$(shell which cargo))
+$(ASSET_BIN): $(ASSET_ROOT)/assets.yaml $(BK_ASSET_TOOL)
+	$(call print2,Constructing Asset Binary:,$<,$@)
+	$(BK_ASSET_TOOL) -c $< $@
+else
+$(ASSET_BIN): $(BIN_ROOT)/assets.bin
+	$(call print2,Copying Asset Binary (install cargo to construct instead):,$<,$@)
+	@$(CP) $< $@
+endif
+
+$(ASSET_ROOT)/assets.yaml : $(BIN_ROOT)/assets.bin $(BK_ASSET_TOOL)
+	$(call print1,Extracting Assets:,$@)
+	$(BK_ASSET_TOOL) -e $< $(ASSET_ROOT)
+
 # .o -> .elf (game)
 $(ELF): $(MAIN_ALL_OBJS) $(LD_SCRIPT) $(OVERLAY_RZIP_OBJS) $(addprefix $(BUILD_DIR)/, $(addsuffix .full, $(OVERLAYS)))
 	$(call print1,Linking elf:,$@)
@@ -439,6 +456,10 @@ $(BK_TOOLS)/gzip-1.2.4/gzip: $(BK_TOOLS)/gzip-1.2.4/Makefile
 
 $(BK_TOOLS)/gzip-1.2.4/Makefile:
 	@$(CD) $(BK_TOOLS)/gzip-1.2.4 && ./configure
+
+$(BK_ASSET_TOOL):
+	@$(CD) tools/bk_asset_tool && cargo build --release
+	@$(CP) tools/bk_asset_tool/target/release/bk_asset_tool $@
 
 # Build tools
 $(BK_TOOLS)/%: $(BK_TOOLS)/gzip-1.2.4/gzip

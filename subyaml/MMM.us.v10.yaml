@@ -32,7 +32,7 @@ segments:
       - [0x0570, c, ch/napper] #DONE
       - [0x0DC0, c, code_DC0]  #DONE
       - [0x1020, c, ch/motzhand] #DONE
-      - [0x16B0, c, code_16B0]
+      - [0x16B0, c, code_16B0]  #DONE
       - [0x2040, c, code_2040]
       - [0x2F60, c, code_2F60]
       - [0x3120, c, code_3120]
