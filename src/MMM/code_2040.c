@@ -147,16 +147,7 @@ extern ActorInfo D_8038BDFC = {
     { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
 };
 
-/* .rodata */
-extern f32 D_8038C428; //3.85058594f
-extern f64 D_8038C430; //0.023
-extern f64 D_8038C438; //1.09
-extern f32 D_8038C440; //0.1f
-extern f32 D_8038C444; //0.2f
-extern f32 D_8038C448; //0.2f
-
 /* .bss */
-extern s32 D_8038C4D0;
 extern s32 D_8038BE20[4];
 
 /* .code */
