@@ -55,5 +55,6 @@ segments:
       - [0x00005F80, .rodata, ch/napper]
       - [0x00005FA0, .rodata, ch/motzhand]
       - [0x00005FC0, .rodata, code_16B0]
-      - [0x00006010, bin, data_6010]
+      - [0x00006010, bin, data_6010] #.rodata, code_2040]
+      - [0x00006050, bin, data_6050]
   - [0x000060D0]

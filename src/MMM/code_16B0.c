@@ -112,7 +112,7 @@ void func_80387D48(ActorMarker *marker){
             portrait_id = ACTOR_388_PORTRAIT_OF_MINION;
             break;
         default:
-            portrait_id = 0x382;
+            portrait_id = ACTOR_382_PORTRAIT_OF_GRUNTY;
             break;
     }
     portrait = spawn_child_actor(portrait_id, &this);
