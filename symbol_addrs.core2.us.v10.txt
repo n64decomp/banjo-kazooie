@@ -319,6 +319,7 @@ marker_free = 0x8032F430;
 marker_setCollisionScripts = 0x803300A8;
 map_get = 0x803348C0;
 jiggySpawn = 0x803330C0;
+set_model_render_mode = 0x8033A4CC;
 assetcache_release = 0x8033B3D8;
 assetcache_update_ptr = 0x8033B574;
 assetcache_get = 0x8033B798;

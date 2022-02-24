@@ -2,12 +2,16 @@
 #include "functions.h"
 #include "variables.h"
 
-extern u8 D_8038C4FC;
-extern f32 D_8038C1E0;
+/* .data */
+extern f32 D_8038C1E0[3];
+
+/* .rodata */
 extern f32 D_8038C450;
 
+extern u8 D_8038C4FC;
+
 void func_80389810(s32 arg0, s32 arg1, s32 arg2) {
-    switch (D_8038C4FC) {                              /* irregular */
+    switch (D_8038C4FC) {
     case 2:
         func_80389A0C(3);
         return;
@@ -24,20 +28,20 @@ void func_80389810(s32 arg0, s32 arg1, s32 arg2) {
 }
 
 void func_803898A0() {
-    jiggySpawn(0x60U, &D_8038C1E0);
+    jiggySpawn(JIGGY_60_MMM_MOTZHAND, D_8038C1E0);
 }
 
 void func_803898C8() {
-    func_8025A58C(0, 0x1C2);
+    func_8025A58C(0, 450);
 }
 
 void func_803898EC() {
-    func_8025A58C(-1, 0x12C);
+    func_8025A58C(-1, 300);
 }
 
 void func_80389910() {
     func_80311480(0xAD5, 0xE, NULL, NULL, func_80389810, NULL);
-    timedFunc_set_2(0.0f, func_8025A6EC, 0x2D, 0x7FFF);
+    timedFunc_set_2(0.0f, func_8025A6EC, COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 0x7FFF);
     timed_setCameraToNode(2.0f, 0);
     timedFunc_set_0(D_8038C450, func_803898A0);
     timedFunc_set_0(6.0f, func_803898EC);

@@ -155,7 +155,7 @@ void gctransition_draw(Gfx **gdl, Mtx **mptr, Vtx **vptr){
         gDPSetTextureFilter((*gdl)++, G_TF_POINT);
         gDPSetColorDither((*gdl)++, G_CD_DISABLE);
         func_8028781C(D_80382430.animctrl, sp58, 1);
-        func_8033A4CC(1);
+        set_model_render_mode(1);
     }
     if(D_80382430.unk8 == 1 || D_80382430.unk8 == 6){
         func_803391A4(gdl, mptr, sp58, sp68, 1.0f, 0, D_80382430.unkC);

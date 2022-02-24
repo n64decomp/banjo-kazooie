@@ -86,7 +86,7 @@ Actor *func_80388188(ActorMarker *this, Gfx **dl, Mtx **mptr, Vtx **vtx){
         sp48[1] = actorPtr->unk1C_y + 3.0f;
         sp48[2] = actorPtr->position_z;
         func_8033A410( (s32) MIN(255.0f, actorPtr->unk60) );
-        func_8033A4CC(1);
+        set_model_render_mode(1);
         func_803391A4(dl, mptr, sp48, sp54, actorPtr->unk28, sp60, func_8030A428(0x18));
         actorPtr->position_y -= 1.9;
         if(actorPtr->unk28 < 2.428){

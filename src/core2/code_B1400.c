@@ -925,6 +925,7 @@ int func_803391A4(Gfx **gfx, Mtx **mtx, f32 arg2[3], f32 arg3[3], f32 arg4, f32*
         gSPClearGeometryMode((*gfx)++, G_ZBUFFER);
     }
 
+    //select RenderMode
     if(D_803837D8 == 0){
         spDC = &D_803703F0;
         spD8 = &D_80370660;
@@ -1185,7 +1186,9 @@ void func_8033A308(f32 arg0[3]){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A4C0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A4CC.s")
+void set_model_render_mode(s32 renderMode){
+    D_803837D8 = renderMode;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A4D8.s")
 

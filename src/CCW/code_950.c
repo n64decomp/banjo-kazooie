@@ -5,9 +5,13 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/CCW/code_950/func_80386D40.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/CCW/code_950/func_80387124.s")
+void func_80387124(ActorMarker* marker, s32 arg1) {
+    func_80386D40(marker_getActor(marker), 3);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/CCW/code_950/func_80387150.s")
+void func_80387150(ActorMarker* marker, s32 arg1) {
+    func_80386D40(marker_getActor(marker), 4);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/CCW/code_950/func_8038717C.s")
 

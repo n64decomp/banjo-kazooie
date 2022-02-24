@@ -20,7 +20,7 @@ extern f32 D_80376480;
 /* .code */
 void func_802CA790(Actor *this){
     func_8033A410(0xff);
-    func_8033A4CC(2);
+    set_model_render_mode(2);
 }
 
 Actor *func_802CA7BC(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){

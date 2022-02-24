@@ -348,7 +348,7 @@ void func_803164B0(gczoombox_t *, Gfx **, Mtx **, s32, s32, s32, f32);
      mlMtxScale_xyz(this->unk198 * D_803788E0, this->unk198 * D_803788E0, 1.0f);
      mlMtxApply(*mptr);
      gSPMatrix((*gdl)++, (*mptr)++, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
-     func_8033A4CC(0);
+     set_model_render_mode(0);
      func_80344090(arg5, this->unk186, gdl);
      func_8033687C(gdl);
      func_8024C904(gdl, mptr);

@@ -1093,7 +1093,7 @@ void func_80314320(Gfx **gdl, Mtx **mptr, s32 arg2){
                     sp80[1] = -50.0f;
                     sp80[2] = 0.0f;
                     
-                    func_8033A4CC(0);
+                    set_model_render_mode(0);
                     func_8033A410(D_80383010.unk3C[0]);
                     func_803391A4(gdl, mptr, sp98, sp8C, 0.8f, sp80, D_80383010.unk5C);
                     func_8024E2FC();
@@ -1129,7 +1129,7 @@ void func_80314320(Gfx **gdl, Mtx **mptr, s32 arg2){
                 sp80[0] = 0.0f;
                 sp80[1] = 120.0f;
                 sp80[2] = 0.0f;
-                func_8033A4CC(0);
+                set_model_render_mode(0);
                 func_8033A410(D_80383010.unk3C[0]);
                 func_803391A4(gdl, mptr, sp98, sp8C, 0.8f, sp80, D_80383010.unk60);
                 func_8024E2FC();
