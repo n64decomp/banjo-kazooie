@@ -34,8 +34,8 @@ segments:
       - [0x1020, c, ch/motzhand] #DONE
       - [0x16B0, c, code_16B0]  #DONE
       - [0x2040, c, code_2040]
-      - [0x2F60, c, code_2F60]
-      - [0x3120, c, code_3120]
+      - [0x2F60, c, code_2F60] #DONE
+      - [0x3120, c, code_3120] #DONE
       - [0x3420, c, code_3420]
       - [0x3D50, c, code_3D50]
       - [0x47D0, c, code_47D0]
@@ -50,11 +50,14 @@ segments:
       - [0x00005660, .data, code_DC0]
       - [0x000056A0, .data, ch/motzhand]
       - [0x000056E0, bin, data_56E0] #.data, code_16B0]
-      - [0x000057F0, bin, data_57F0]
+      - [0x000057F0, bin, data_57F0] #.data, code_2040]
+      - [0x00005A40, .data, code_2F60]
+      - [0x00005B30, bin, data_5B30]
       - [0x00005F50, .rodata, ch/loggo]
       - [0x00005F80, .rodata, ch/napper]
       - [0x00005FA0, .rodata, ch/motzhand]
       - [0x00005FC0, .rodata, code_16B0]
       - [0x00006010, bin, data_6010] #.rodata, code_2040]
-      - [0x00006050, bin, data_6050]
+      - [0x00006050, .rodata, code_3120]
+      - [0x00006060, bin, data_6060]
   - [0x000060D0]

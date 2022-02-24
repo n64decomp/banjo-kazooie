@@ -665,4 +665,16 @@ typedef struct struct_5d_s{
     u8 unk1F;
 }Struct5Ds;
 
+typedef struct struct_5e_s{
+    u8 pad0[0x8];
+    union{
+        u32 unk8;
+        struct{
+            u32 pad8_31 : 4;
+            s32 unk8_27 : 1;
+            u32 pad8_26 : 27;
+        };
+    };
+}Struct5Es;
+
 #endif

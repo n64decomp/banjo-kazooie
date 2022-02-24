@@ -39,6 +39,7 @@ void func_8038AF0C(s32 arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/MMM/code_47D0/func_8038B630.s")
 
+//wrong args (see func_80389D9C())
 void func_8038B6D4(f32* arg0) {
     *arg0 = 1.0f;
     func_8038B6FC();
