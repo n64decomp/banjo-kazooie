@@ -2,11 +2,15 @@
 #include "functions.h"
 #include "variables.h"
 
+/* .rodata */
 extern f32 D_8038C470 = 0.3f;
 extern f32 D_8038C474 = 0.3f;
 extern f32 D_8038C478 = 0.3f;
+
+/* .bss */
 extern u8 D_8038C518;
 
+/* .code */
 void func_8038A140(UNK_TYPE(s32) arg0) {
     if (arg0 == 2) {
         func_80324E38(D_8038C470, 3);
@@ -20,7 +24,7 @@ void func_8038A140(UNK_TYPE(s32) arg0) {
         if (D_8038C518 == 1) {
             mapSpecificFlags_set(3, 1);
         }
-        item_set(0, 0x1193);
+        item_set(ITEM_0_HOURGLASS_TIMER, 75*60 - 1);
         item_set(6, 1);
     }
     if (D_8038C518 == 3) {
