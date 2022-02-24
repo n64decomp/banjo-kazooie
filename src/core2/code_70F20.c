@@ -70,7 +70,7 @@ void func_802F8110(struct3s *this, Gfx **gdl, Mtx **mptr, u32 arg3){
     startPtr = vector_getBegin(this->unk20);
     endPtr = vector_getEnd(this->unk20);
     for(iPtr = startPtr; iPtr < endPtr; iPtr++){
-        func_8033A4CC(2);
+        set_model_render_mode(2);
         func_803391A4(gdl, mptr, iPtr, 0, 1.0f, 0, this->unk2C);
         iPtr->unk18 = func_8033A170();
     }

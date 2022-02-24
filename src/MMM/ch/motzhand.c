@@ -77,7 +77,7 @@ Actor *chMotzhand_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 
     sp3C[0] = sp3C[1] = sp3C[2] = 0.0f;
     sp3C[1] = 180.0f;
-    func_8033A4CC(1);
+    set_model_render_mode(1);
     func_803391A4(gfx, mtx, this->position, sp3C, 1.0f, NULL, func_80330B1C(marker));
     this->marker->unk14_21 = func_8033A170();
     return this;

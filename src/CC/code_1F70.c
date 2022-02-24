@@ -211,7 +211,7 @@ void func_80388760(Gfx **gfx, Mtx **mtx, s32 arg2){
     func_8033A238(s1);
     func_8033A450(D_80389FA0.unk34);
     func_8033A4C0(D_80389FA0.unk40);
-    func_8033A4CC(1);
+    set_model_render_mode(1);
     func_803391A4(gfx, mtx, D_80389FA0.unk28, NULL, 1.0f, NULL, D_80389FA0.unk24);
     if(func_80340020(D_80389FA0.unk18, D_80389FA0.unk28, 0, 1.0f, 0, D_80389FA0.unk40, spA4, spA4)){
         func_8028FAB0(spA4);

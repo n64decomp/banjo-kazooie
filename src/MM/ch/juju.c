@@ -41,7 +41,7 @@ Actor*  func_80389014(ActorMarker *this, Gfx **dl, Mtx **mPtr, u32 arg2){
     actorPtr = func_80325300(this, sp34);
     jujuPtr = &actorPtr->juju;
     if(jujuPtr->unk0 != 2){
-        func_8033A4CC(1);
+        set_model_render_mode(1);
         func_803391A4(dl, mPtr, actorPtr->position, sp34, jujuPtr->unk14, NULL, func_80330B1C(this));
     }
     return actorPtr;

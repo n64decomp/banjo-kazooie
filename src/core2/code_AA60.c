@@ -104,7 +104,7 @@ void func_80291AF0(Gfx **gfx, Mtx **mtx, Vtx **vtx){
         func_8033A280(2.0f);
         func_8033A2D4(func_80291AC4, 0);
         func_8033A450(D_80363780);
-        func_8033A4CC(1);
+        set_model_render_mode(1);
         if(D_8037C150.unk0){
             D_8037C150.unk0 = 0;
             func_803391A4(gfx, mtx, D_8037C150.unk4, sp5C, D_8037C0EC, sp38, D_8037C0E0);

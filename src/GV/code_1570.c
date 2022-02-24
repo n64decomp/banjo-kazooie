@@ -135,7 +135,7 @@ Actor *chgobi2_draw(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 
     if(this->state == 4){
         func_8033A238(func_803356A0(local->unk4));
-        func_8033A4CC(2);
+        set_model_render_mode(2);
         func_803391A4(gfx, mtx, this->position, sp3C, 1.0f, NULL, local->unk8);
     }
     return this;

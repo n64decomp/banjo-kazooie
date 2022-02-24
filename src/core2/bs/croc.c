@@ -600,7 +600,7 @@ void func_802AD2A8(Gfx **gdl, Mtx **mPtr, void *arg2){
 
     player_getRotation(&sp34);
     func_8028E9C4(2, &sp28);
-    func_8033A4CC(1);
+    set_model_render_mode(1);
     func_803391A4(gdl, mPtr, &sp28, &sp34, D_8037D3F0, NULL, D_8037D3E8);
 
 }
