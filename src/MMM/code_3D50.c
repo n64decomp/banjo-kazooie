@@ -15,33 +15,64 @@ extern void func_8028F620(Struct_MMM_3D50_0 *, f32, f32);
 typedef struct {
     u8 *unk0;
     u8 unk4;
-    // u8 pad5[3];
 }Struct_MMM_3D50_1;
 
 /* .data */
-extern Struct_MMM_3D50_0 D_8038C1F0[];
-extern Struct_MMM_3D50_1 D_8038C2F0[];
+Struct_MMM_3D50_0 D_8038C1F0[] = {
+    {0x01, 'X', 0, 0.0f},
+    {0x02, 'J', 0, 0.0f},
+    {0x03, 'X', 0, 0.0f},
+    {0x04, 'X', 0, 0.0f},
+    {0x05, 'X', 0, 0.0f},
+    {0x06, 'A', 0, 0.0f},
+    {0x07, 'X', 0, 0.0f},
+    {0x08, 'N', 0, 0.0f},
+    {0x09, 'X', 0, 0.0f},
+    {0x0A, 'O', 0, 0.0f},
+    {0x0B, 'X', 0, 0.0f},
+    {0x0C, 'X', 0, 0.0f},
+    {0x0D, 'X', 0, 0.0f},
+    {0x0E, 'K', 0, 0.0f},
+    {0x0F, 'X', 0, 0.0f},
+    {0x10, 'B', 0, 0.0f},
+    {0x11, 'X', 0, 0.0f},
+    {0x12, 'A', 0, 0.0f},
+    {0x13, 'X', 0, 0.0f},
+    {0x14, 'X', 0, 0.0f},
+    {0x15, 'Z', 0, 0.0f},
+    {0x16, 'X', 0, 0.0f},
+    {0x17, 'E', 0, 0.0f},
+    {0x18, 'X', 0, 0.0f},
+    {0x19, 'O', 0, 0.0f},
+    {0x1A, 'X', 0, 0.0f},
+    {0x1B, 'I', 0, 0.0f},
+    {0x1C, 'X', 0, 0.0f},
+    {0x1D, 'X', 0, 0.0f},
+    {0x1E, 'O', 0, 0.0f},
+    {0x1F, 'X', 0, 0.0f},
+    {0x00, 0x00, 0, 0.0f}
+};
 
-/* .rodata */
-extern f32 D_8038C470 = 0.3f;
-extern f32 D_8038C474 = 0.3f;
-extern f32 D_8038C478 = 0.3f;
+Struct_MMM_3D50_1 D_8038C2F0[] = {
+    {"BANJOKAZOOIE", 0},
+    {0},
+};
 
 /* .bss */
 extern struct {
     s32 unk0;
     Struct_MMM_3D50_0 *unk4;
     u8 unk8;
-    s32 unkC;
+    BKModel *unkC;
     s32 unk10;
 } D_8038C510;
 
 /* .code */
 void func_8038A140(UNK_TYPE(s32) arg0) {
     if (arg0 == 2) {
-        func_80324E38(D_8038C470, 3);
-        timed_setCameraToNode(D_8038C474, 1);
-        timedFunc_set_2(D_8038C478, mapSpecificFlags_set, 3, 1);
+        func_80324E38(0.3f, 3);
+        timed_setCameraToNode(0.3f, 1);
+        timedFunc_set_2(0.3f, mapSpecificFlags_set, 3, 1);
         func_80324E38(3.0f, 0);
         func_80324E88(3.0f);
         timedFunc_set_1(3.0f, func_8038A140, 3);
@@ -148,7 +179,7 @@ void func_8038A82C(Struct_MMM_3D50_0 * arg0){
     Struct_MMM_3D50_0 sp38;
     s32 pad;
 
-    if(arg0->unk2 == 0x58){
+    if(arg0->unk2 == 'X'){
         func_8038A54C(arg0, 1);
         player_getPosition(sp44);
         func_8038AD10(D_8038C510.unkC, D_8038C510.unk10, &sp38);
@@ -191,24 +222,24 @@ void func_8038A9B4(void){
     
     D_8038C510.unk8 = 0;
     
-    if(map_get() != MAP_24_MMM_TUMBLARS_SHED) return;
-    
-    D_8038C510.unkC = 0;
-    D_8038C510.unk0 = func_80309744(0);
-    D_8038C510.unk4 = NULL;
+    if(map_get() == MAP_24_MMM_TUMBLARS_SHED){
+        D_8038C510.unkC = NULL;
+        D_8038C510.unk0 = func_80309744(0);
+        D_8038C510.unk4 = NULL;
 
-    func_8038A2B8();
-    func_8038A964();
-    if(jiggyscore_isCollected(JIGGY_62_MMM_TUMBLAR)){
-        func_8038A140(6);
-    }
-    else{
-        func_8038A140(1);
+        func_8038A2B8();
+        func_8038A964();
+        if(jiggyscore_isCollected(JIGGY_62_MMM_TUMBLAR)){
+            func_8038A140(6);
+        }
+        else{
+            func_8038A140(1);
+        }
     }
 }
 #endif
 
-void func_8038AA30(s32 arg0, s32 arg1){
+void func_8038AA30(BKModel *arg0, s32 arg1){
     D_8038C510.unkC = arg0;
     D_8038C510.unk10 = arg1;
 }
@@ -239,7 +270,7 @@ void func_8038AA44(void){
         if(item_empty(ITEM_6_HOURGLASS)){
             func_8038A140(4);
         }
-        else if( D_8038C510.unkC != 0
+        else if( D_8038C510.unkC != NULL
             && func_8038AD4C(D_8038C510.unkC, D_8038C510.unk10)
         ){
             func_8038AD10(D_8038C510.unkC, D_8038C510.unk10, &sp28);

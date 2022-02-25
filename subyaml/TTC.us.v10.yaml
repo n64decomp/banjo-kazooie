@@ -29,6 +29,7 @@ segments:
     vram: 0x803863F0
     subsegments:
       - [0x00000000, c, code_0]
+      - [0x10A0, c, code_10A0]
       - [0x19D0, c, code_19D0]
       - [0x26D0, c, code_26D0]
       - [0x2B80, c, code_2B80]

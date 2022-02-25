@@ -3,7 +3,7 @@
 #include "variables.h"
 
 extern void func_8030DABC(u8, s16);
-
+extern s32 D_A00001D0;
 
 void func_8038B6FC(Struct5Fs *arg0, s32 arg1);
 
@@ -17,6 +17,11 @@ void func_8038ABC0(s32 arg0) {
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/MMM/code_47D0/func_8038AC04.s")
+// void func_8038AC04(void){
+//     if(D_A00001D0 + 0xCA945552 != 0){
+//         func_8038ABC0(0x820);
+//     }
+// }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/MMM/code_47D0/func_8038AC40.s")
 
