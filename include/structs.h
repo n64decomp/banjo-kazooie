@@ -677,4 +677,16 @@ typedef struct struct_5e_s{
     };
 }Struct5Es;
 
+typedef struct {
+    f32 unk0;
+    f32 unk4;
+    u8  unk8;
+    u8  unk9;
+    u8  unkA;
+    //u8 padB;
+    f32 unkC;
+    f32 unk10;
+    f32 unk14;
+} Struct5Fs;
+
 #endif

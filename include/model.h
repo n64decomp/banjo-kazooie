@@ -3,9 +3,16 @@
 #include <ultra64.h>
 
 typedef struct {
+    Vtx v;
+    s16 unk10;
+    u8 pad12[2];
+    u8 pad14[4];
+} BKVtxRef;
+
+typedef struct {
     s16 uid_0;
     s16 vtxCount_2;
-    s16 unk4[]; //vtx indices
+    BKVtxRef unk4[]; 
 } BKMesh;
 
 typedef struct {

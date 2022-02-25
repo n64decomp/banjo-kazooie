@@ -20,11 +20,30 @@ typedef struct {
 } Struct_B8070_0s;
 
 
+
+
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B8070/func_8033F000.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B8070/func_8033F010.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B8070/func_8033F120.s")
+// void func_8033F120(BKModel *arg0, s32 arg1, void (*arg2)(s16, BKMeshVtx *, Vtx *, s32), s32 arg3) {
+//     int i, j;
+//     BKMesh *phi_s1;
+//     Vtx *verts;
+
+//     verts = vtxList_getVertices(arg0->vtxList_4);
+//     phi_s1 = (s32)(arg0 + 1);
+//     for(i = 0; i < arg0->meshList_0->meshCount_0; i++){
+//         if (arg1 == phi_s1->uid_0) {
+//             for(j = 0; j < phi_s1->vtxCount_2; j++){
+//                 arg2(phi_s1->uid_0, &phi_s1->unk4[j], verts + phi_s1->unk4[j].unk10, arg3);
+//             }
+//         } else {
+//             phi_s1 =  (BKMesh*) &phi_s1->unk4[phi_s1->vtxCount_2 * 0x18];
+//         }
+//     };
+// }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B8070/func_8033F220.s")
 
