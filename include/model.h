@@ -12,7 +12,6 @@ typedef struct {
 typedef struct {
     s16 uid_0;
     s16 vtxCount_2;
-    BKVtxRef unk4[]; 
 } BKMesh;
 
 typedef struct {
@@ -22,7 +21,7 @@ typedef struct {
 
 typedef struct {
     s16 meshCount_0;
-    BKMesh mesh_2[];
+    //BKMesh mesh_2[];
 } BKMeshList;
 
 typedef struct {

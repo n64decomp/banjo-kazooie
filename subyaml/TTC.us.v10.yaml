@@ -28,7 +28,7 @@ segments:
     start: 0x00000000
     vram: 0x803863F0
     subsegments:
-      - [0x00000000, c, code_0]
+      - [0x0, c, code_0]       #DONE
       - [0x10A0, c, code_10A0]
       - [0x19D0, c, code_19D0]
       - [0x26D0, c, code_26D0]
@@ -50,7 +50,8 @@ segments:
       - [0x000064C0, .data, code_35D0]
       - [0x00006590, bin, ttc_data_6590]
       - [0x000068A0, .data, ch/treasure]
-      - [0x000068F0, bin, ttc_data_68F0]
+      - [0x000068F0, .rodata, code_0]
+      - [0x00006950, bin, ttc_data_6950]
       - [0x00006A00, .rodata, ch/lockup]
       - [0x6A30, bin, ttc_data_6A30] #- [0x00006A30, .rodata, code_35D0]
       - [0x00006A60, bin, data_6A60]

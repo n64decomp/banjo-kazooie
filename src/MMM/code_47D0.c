@@ -25,7 +25,7 @@ void func_8038ABC0(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/MMM/code_47D0/func_8038AC40.s")
 
-void func_8038AD10(s32 arg0, s32 arg1, s32 arg2) {
+void func_8038AD10(s32 arg0, s32 arg1, f32 arg2[3]) {
     func_8035179C(arg1, arg2);
 }
 
@@ -43,6 +43,7 @@ void func_8038AF0C(s32 arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/MMM/code_47D0/func_8038AF90.s")
 
+void func_8038B3F0(s32, s32, s32, s32);
 #pragma GLOBAL_ASM("asm/nonmatchings/MMM/code_47D0/func_8038B3F0.s")
 
 void func_8038B590(Struct5Fs *arg0, s32 arg1){
@@ -64,7 +65,7 @@ void func_8038B5D8(Struct5Fs *arg0, s32 arg1, s32 arg2, s32 arg3){
     arg0->unkC = 0.0f;
     arg0->unk10 = 0.0f;
     arg0->unk14 = 0.0f;
-    func_80351A14(arg1, &D_8038B3F0);
+    func_80351A14(arg1, func_8038B3F0);
 }
 
 void func_8038B630(Struct5Fs *arg0, s32 arg1){

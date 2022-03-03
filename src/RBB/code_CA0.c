@@ -52,7 +52,7 @@ void func_8038718C(ActorMarker *marker){
         sp2C[2] = 0.0f;
         sp2C[1] = 450.0f;
         func_8034DDF0(sp44, &sp38, &sp2C, 4.0f, 1);
-        func_8034E1A4(sp44, 0xd8, 1.0f, 1.0f);
+        func_8034E1A4(sp44, SFX_D8_CRANE, 1.0f, 1.0f);
     }
     timed_setCameraToNode(0.0f, 4);
     timed_setCameraToNode(2.5f, 5);
@@ -77,7 +77,7 @@ void func_80387308(ActorMarker *marker){
         TUPLE_ASSIGN(sp34, 0.0f,200.0f,0.0f);
         TUPLE_ASSIGN(sp28, 0.0f, 0.0f, 0.0f);
         func_8034DDF0(sp40, &sp34, &sp28, 0.5f, 1);
-        func_8034E1A4(sp40, 0xd8, 1.0f, 1.0f);
+        func_8034E1A4(sp40, SFX_D8_CRANE, 1.0f, 1.0f);
     }//L80387394
 
     timed_playSfx(0.5f, SFX_7F_HEAVYDOOR_SLAM, 0.5f, 19000);
@@ -176,7 +176,7 @@ void func_8038756C(Actor *this, s32 arg1){
             
             
             func_8034DDF0(sp3C, &sp30, &sp24, 3.0f, 1);
-            func_8034E1A4(sp3C, 0xd8, 1.0f, 1.0f);
+            func_8034E1A4(sp3C, SFX_D8_CRANE, 1.0f, 1.0f);
         }//L803877D4
         timed_playSfx(3.0f, SFX_7F_HEAVYDOOR_SLAM, 0.5f, 25000);
         timed_playSfx(3.0f, SFX_7F_HEAVYDOOR_SLAM, 0.6f, 25000);

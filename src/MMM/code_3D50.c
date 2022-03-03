@@ -175,16 +175,15 @@ void func_8038A750(void){
 
 void func_8038A82C(Struct_MMM_3D50_0 * arg0){
     f32 sp44[3];
+    f32 sp38[3];
     Struct_MMM_3D50_1 *iPtr;
-    Struct_MMM_3D50_0 sp38;
-    s32 pad;
 
     if(arg0->unk2 == 'X'){
         func_8038A54C(arg0, 1);
         player_getPosition(sp44);
-        func_8038AD10(D_8038C510.unkC, D_8038C510.unk10, &sp38);
-        sp38.unk4 = sp44[1];
-        func_8028F620(&sp38, 300.0f, -1500.0f);
+        func_8038AD10(D_8038C510.unkC, D_8038C510.unk10, sp38);
+        sp38[1] = sp44[1];
+        func_8028F620(sp38, 300.0f, -1500.0f);
         return;
     }
     for(iPtr = &D_8038C2F0[0]; iPtr->unk0 != 0; iPtr++){//L8038A8C8
@@ -245,9 +244,8 @@ void func_8038AA30(BKModel *arg0, s32 arg1){
 }
 
 void func_8038AA44(void){
-    s32 pad;
     s32 tmp_v0;
-    Struct_MMM_3D50_0 sp28;
+    f32 sp28[3];
     Struct_MMM_3D50_0 *sp24;
 
     if(D_8038C510.unk8 == 0) return;
@@ -273,8 +271,8 @@ void func_8038AA44(void){
         else if( D_8038C510.unkC != NULL
             && func_8038AD4C(D_8038C510.unkC, D_8038C510.unk10)
         ){
-            func_8038AD10(D_8038C510.unkC, D_8038C510.unk10, &sp28);
-            tmp_v0 = func_8033F3C0(D_8038C510.unk0, &sp28);
+            func_8038AD10(D_8038C510.unkC, D_8038C510.unk10, sp28);
+            tmp_v0 = func_8033F3C0(D_8038C510.unk0, sp28);
             if(tmp_v0){
                 sp24 = func_8038A26C(tmp_v0);
                 if( sp24 
