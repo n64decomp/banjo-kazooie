@@ -275,7 +275,7 @@ segments:
   - [0x935F0, c, code_935F0]
   - [0x93C10, c, code_93C10]
   - [0x94620, c, code_94620]
-  - [0x99860, c, code_99860]
+  - [0x99860, c, code_99860] #DONE
   - [0x999A0, c, code_999A0]
   - [0x99F80, c, jiggyscore] #DONE
   - [0x9A320, c, code_9A320] #DONE

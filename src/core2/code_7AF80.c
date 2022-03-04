@@ -36,7 +36,8 @@ extern struct {
     s32 unk44;
 } D_80381FA0;
 
-extern s32 D_803820B8;
+extern s32 D_803820B8; //ActorProp *, (maybe Prop *)
+extern s32 D_80382148;
 
 /* .code */
 void func_80301F10(Cube *cube, Gfx **gfx, Mtx **mtx, Vtx **vtx){
@@ -123,39 +124,56 @@ void func_80301F10(Cube *cube, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 // void func_80303960(void);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80303960.s")
 
+extern u8 D_80381FE8[];
+
 // void func_80303AF0(void);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80303AF0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80303C54.s")
 
+void func_80303D78(ActorMarker *, f32, s32 arg2);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80303D78.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80303F38.s")
+void func_80303F38(void){
+    int i;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80303F6C.s")
+    for(i = 0; i < 0x50; i++){
+        D_80381FE8[i] = 1;
+    }
+}
 
-extern s32 D_80382148;
+void func_80303F6C(s32 indx, s32 arg1){
+    D_80381FE8[indx] = arg1;
+}
 
-void func_80303D78(ActorMarker *, f32);
-
+#ifndef NONMATCHING
+Prop *func_80303F7C(ActorMarker *arg0, f32 arg1, s32 arg2, s32 arg3);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80303F7C.s")
-// Prop *func_80303F7C(ActorMarker *arg0, f32 arg1, s32 arg2, s32 arg3) {
-//     s32 temp_v1;
+#else
+Prop *func_80303F7C(ActorMarker *arg0, f32 arg1, s32 arg2, s32 arg3) {
+    s32 temp_v1;
+    s32 phi_a0;
 
-//     if (arg3 == 0) {
-//         func_80303D78(arg0, arg1);
-//         D_80382148 = 0;
-//         return 0;
-//     }
-//     temp_v1 = *(&D_803820B8 + D_80382148);
-//     if (temp_v1 != 0) {
-//         D_80382148++;
-//     }
-//     return temp_v1;
-// }
+    // phi_a0 = D_80382148;
+    if (arg3 == 0) {
+        func_80303D78(arg0, arg1, arg2);
+        D_80382148 = 0;
+        return 0;
+    }
+    else{
+        phi_a0 = D_80382148;
+        temp_v1 = *(&D_803820B8 + phi_a0);
+        phi_a0++;
+        if (temp_v1 != 0) {
+            D_80382148 = phi_a0;
+        }
+        return temp_v1;
+    }
+}
+#endif
 
-s32 func_80303FE4(s32 arg0, f32 arg1) {
-    func_80303D78(arg0, arg1);
+s32 func_80303FE4(s32 arg0, f32 arg1, s32 arg2) {
+    func_80303D78(arg0, arg1, arg2);
     return D_803820B8;
 }
 

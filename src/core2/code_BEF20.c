@@ -199,7 +199,7 @@ void func_803464F8(s32 level){
     D_80385F30[ITEM_E_JIGGY] = jiggyscore_leveltotal(level);
     D_80385F30[ITEM_12_JINJOS] = 0;
     D_80385F30[ITEM_17_AIR] = 3600;
-    D_80385F30[ITEM_18_GOLLD_BULLIONS] = 0;
+    D_80385F30[ITEM_18_GOLD_BULLIONS] = 0;
     D_80385F30[ITEM_19_ORANGE] = 0;
     D_80385F30[ITEM_23_ACORNS] = 0;
     D_80385F30[ITEM_1A_PLAYER_VILE_SCORE] = 0;
@@ -348,7 +348,7 @@ enum item_e func_80346CF4(enum actor_e actor_id){
         case ACTOR_29_ORANGE_COLLECTABLE:           return ITEM_19_ORANGE;
         case ACTOR_2A9_ACORN:                       return ITEM_23_ACORNS;
         case ACTOR_2A2_CATERPILLAR:                 return ITEM_22_CATERPILLAR;
-        case ACTOR_2A_GOLD_BULLION:                 return ITEM_18_GOLLD_BULLIONS;
+        case ACTOR_2A_GOLD_BULLION:                 return ITEM_18_GOLD_BULLIONS;
         case ACTOR_1ED_BLUE_PRESENT_COLLECTABLE:    return ITEM_20_BLUE_PRESENT;
         case ACTOR_1EF_GREEN_PRESENT_COLLECTABLE:   return ITEM_1F_GREEN_PRESENT;
         case ACTOR_1F1_RED_PRESENT_COLLECTABLE:     return ITEM_21_RED_PRESENT;
