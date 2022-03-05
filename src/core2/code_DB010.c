@@ -259,30 +259,166 @@ extern struct43s D_80373D78 = {
     {{-150.0f, -100.0f, -150.0f}, {150.0f,    5.0f, 150.0f}}
 };
 
+extern s32 D_80373304;
+
+extern s32 D_80373334;
+
+extern s32 D_803733E8;
+
+extern s32 D_803733F4;
+
+extern s32 D_80373424;
+
+extern s32 D_8037346C;
+
+extern s32 D_8037349C;
+
+extern s32 D_803737B4;
+
+extern s32 D_803737C0;
+
+extern struct42s D_803737F0;
+
+extern s32 D_803734E4;
+
+extern s32 D_80373514;
+
+extern s32 D_8037355C;
+
+extern s32 D_8037358C;
+
+extern s32 D_803735D4;
+
+extern struct42s D_80373604;
+
+extern s32 D_80373634;
+
+extern s32 D_80373640;
+
+extern struct42s D_80373670;
+
+extern s32 D_8037373C;
+
+extern s32 D_8037376C;
+
+extern s32 D_803736DC;
+
+extern struct42s D_8037370C;
+
 /* .code */
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_DB010/func_80361FA0.s")
+void func_80361FA0(f32 arg0[3]) {
+    ParticleEmitter *pCtrl = partEmitList_pushNew(0xFU);
+    particleEmitter_setModel(pCtrl, 0x441);
+    particleEmitter_setPosition(pCtrl, arg0);
+    func_802EFE24(pCtrl, -200.0f, 200.0f, -200.0f, 200.0f, 200.0f, 200.0f);
+    func_802EF9F8(pCtrl, 0.01f);
+    func_802EFA18(pCtrl, 3);
+    func_802EFA20(pCtrl, 1.0f, 1.3f);
+    func_802EF9EC(pCtrl, 0x2F, 0x3E80);
+    particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_80373334);
+    func_802EFC28(pCtrl, &D_80373304);
+    func_8030E624(0x4CBC507CU);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_DB010/func_80362084.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_DB010/func_8036215C.s")
+void func_8036215C(f32 arg0[3]) {
+    ParticleEmitter *pCtrl = partEmitList_pushNew(0xFU);
+    particleEmitter_setSprite(pCtrl, 0x700);
+    particleEmitter_setStartingFrameRange(pCtrl, 3, 4);
+    func_802EFFA8(pCtrl, &D_803733E8);
+    func_802EF9E4(pCtrl, 0x28);
+    particleEmitter_setPosition(pCtrl, arg0);
+    particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_80373424);
+    func_802EFC28(pCtrl, &D_803733F4);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_DB010/func_803621F0.s")
+void func_803621F0(f32 arg0[3]) {
+    ParticleEmitter *pCtrl = partEmitList_pushNew(0x12U);
+    particleEmitter_setSprite(pCtrl, 0x702);
+    particleEmitter_setStartingFrameRange(pCtrl, 3, 5);
+    func_802EF9E4(pCtrl, 0xD2);
+    particleEmitter_setPosition(pCtrl, arg0);
+    particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_8037349C);
+    func_802EFC28(pCtrl, &D_8037346C);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_DB010/func_80362274.s")
+void func_80362274(f32 arg0[3]) {
+    ParticleEmitter *pCtrl = partEmitList_pushNew(0xFU);
+    particleEmitter_setModel(pCtrl, 0x89B);
+    particleEmitter_setPosition(pCtrl, arg0);
+    func_802EFE24(pCtrl, -400.0f, -200.0f, -400.0f, 400.0f, -400.0f, 400.0f);
+    func_802EF9F8(pCtrl, 0.01f);
+    func_802EFA18(pCtrl, 3);
+    func_802EFA20(pCtrl, 1.0f, 1.3f);
+    particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_80373514);
+    func_802EFC28(pCtrl, &D_803734E4);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_DB010/func_8036233C.s")
+void func_8036233C(f32 arg0[3]) {
+    ParticleEmitter *pCtrl = partEmitList_pushNew(0xFU);
+    particleEmitter_setModel(pCtrl, 0x89A);
+    particleEmitter_setPosition(pCtrl, arg0);
+    func_802EFE24(pCtrl, -200.0f, 200.0f, -200.0f, 200.0f, 200.0f, 200.0f);
+    func_802EF9F8(pCtrl, 0.01f);
+    func_802EFA18(pCtrl, 3);
+    func_802EFA20(pCtrl, 1.0f, 1.3f);
+    particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_8037358C);
+    func_802EFC28(pCtrl, &D_8037355C);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_DB010/func_80362404.s")
+void func_80362404(f32 arg0[3]) {
+    ParticleEmitter *pCtrl = partEmitList_pushNew(1U);
+    particleEmitter_setSprite(pCtrl, 0x6DD);
+    particleEmitter_setStartingFrameRange(pCtrl, 2, 2);
+    particleEmitter_setPosition(pCtrl, arg0);
+    particleEmitter_setPositionAndVelocityRanges(pCtrl, &D_80373604);
+    func_802EFC28(pCtrl, &D_803735D4);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_DB010/func_8036247C.s")
+void func_8036247C(f32 arg0[3]) {
+    ParticleEmitter *pCtrl = partEmitList_pushNew(1U);
+    particleEmitter_setSprite(pCtrl, 0x70D);
+    particleEmitter_setStartingFrameRange(pCtrl, 1, 6);
+    func_802EFFA8(pCtrl, &D_80373634);
+    func_802EF9E4(pCtrl, 0x64);
+    particleEmitter_setPosition(pCtrl, arg0);
+    particleEmitter_setPositionAndVelocityRanges(pCtrl, &D_80373670);
+    func_802EFC28(pCtrl, &D_80373640);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_DB010/func_80362510.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_DB010/func_80362680.s")
+void func_80362680(f32 arg0[3]) {
+    ParticleEmitter *pCtrl = partEmitList_pushNew(1U);
+    particleEmitter_setSprite(pCtrl, 0x45A);
+    particleEmitter_setStartingFrameRange(pCtrl, 2, 2);
+    particleEmitter_setPosition(pCtrl, arg0);
+    particleEmitter_setPositionAndVelocityRanges(pCtrl, &D_8037370C);
+    func_802EFC28(pCtrl, &D_803736DC);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_DB010/func_803626F8.s")
+void func_803626F8(f32 arg0[3]) {
+    ParticleEmitter *pCtrl = partEmitList_pushNew(1U);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_DB010/func_80362770.s")
+    particleEmitter_setSprite(pCtrl, 0x713);
+    particleEmitter_setStartingFrameRange(pCtrl, 1, 6);
+    particleEmitter_setPosition(pCtrl, arg0);
+    particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_8037376C);
+    func_802EFC28(pCtrl, &D_8037373C);
+}
+
+
+void func_80362770(f32 arg0[3]) {
+    ParticleEmitter *pCtrl = partEmitList_pushNew(0x10U);
+
+    particleEmitter_setSprite(pCtrl, 0x714);
+    particleEmitter_setStartingFrameRange(pCtrl, 7, 8);
+    func_802EFFA8(pCtrl, &D_803737B4);
+    particleEmitter_setPosition(pCtrl, arg0);
+    particleEmitter_setPositionAndVelocityRanges(pCtrl, &D_803737F0);
+    func_802EFC28(pCtrl, &D_803737C0);
+}
 
 void func_803627F8(f32 arg0[3]){
     ParticleEmitter *pCtrl = partEmitList_pushNew(11);
