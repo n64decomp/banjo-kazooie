@@ -32,7 +32,7 @@ segments:
       - [0x10A0, c, code_10A0] #DONE
       - [0x19D0, c, code_19D0]
       - [0x26D0, c, code_26D0] #DONE
-      - [0x2B80, c, code_2B80]
+      - [0x2B80, c, code_2B80] #DONE
       - [0x3040, c, code_3040]
       - [0x30D0, c, ch/lockup]
       - [0x35D0, c, code_35D0]
