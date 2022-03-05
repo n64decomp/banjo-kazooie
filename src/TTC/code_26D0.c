@@ -2,6 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 #include "prop.h"
+#include "SnS.h"
 
 extern ActorInfo D_8038C3D0;
 extern ActorInfo D_8038C510;
@@ -110,12 +111,63 @@ void func_80388AC0(void)
     spawnableActorList_add(&D_8038C3D0, actor_new, 0X2000041);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/TTC/code_26D0/func_80388C78.s")
+void func_80388C78(Actor *this){
+    if(!this->initialized){
+        func_802D3D74(this);
+        this->initialized = TRUE;
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/TTC/code_26D0/func_80388CB8.s")
+void func_80388CB8(Actor *this){
+    if(!this->initialized){
+        func_802D3D74(this);
+        this->initialized = TRUE;
+        this->scale = 2.55f;
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/TTC/code_26D0/func_80388D04.s")
+void func_80388D04(s32 arg0){
+    ActorMarker *marker = reinterpret_cast(ActorMarker *, arg0);
+    Actor *this = marker_getActor(marker);
+    spawn_child_actor(0x2df, &this);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/TTC/code_26D0/func_80388D34.s")
+void func_80388D34(Actor *this){
+    func_80388C78(this);
+    if(!this->unk16C_4){
+        func_802C3C88(func_80388D04, this->marker);
+        this->unk16C_4 = TRUE;
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/TTC/code_26D0/func_80388D8C.s")
+void func_80388D8C(Actor *this){
+    f32 sp1C[3];
+
+    if(!this->initialized){
+        func_802D3CE8(this);
+        this->initialized = TRUE;
+        this->position_x = 0.412*(8831.0f - this->position_x) + this->position_x;
+        this->position_z = 0.412*(13535.0f - this->position_z) + this->position_z;
+        this->yaw = 199.0f;
+    }
+
+    if(!this->unk16C_4){
+        this->unk16C_4 = TRUE;
+        if(sns_get_item_state(SNS_ITEM_EGG_PINK, TRUE)){
+            this->position_y = 700.0f;
+        }
+        else{
+            this->position_y = -1000.0f;
+        }
+    }//L80388E7C
+
+    if(this->position_y == 700.0f){
+        player_getPosition(sp1C);
+        if( 695.0f <= sp1C[1] && sp1C[1] < 1000.0f
+            && (sp1C[0] - 5542.0f)*(sp1C[0] - 5542.0f) + (sp1C[2] - 8687.0f)*(sp1C[2] - 8687.0f) < 96100.0f
+            && (sp1C[0] - 6837.0f)*(sp1C[0] - 6837.0f) + (sp1C[2] - 12714.0f)*(sp1C[2] - 12714.0f) < 17640000.0f
+        ){
+            func_8031D04C(0x8f, 1);
+        }
+    }
+}
