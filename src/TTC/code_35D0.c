@@ -68,6 +68,9 @@ struct42s D_8038C950 = {
 #pragma GLOBAL_ASM("asm/nonmatchings/TTC/code_35D0/func_80389C74.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/TTC/code_35D0/func_80389C9C.s")
+// void func_80389C9C(ActorMarker *this, ActorMarker *arg1){
+//     func_80389B38(4);
+// }
 
 #ifndef NONMATCHING //matches but requires BOTH .rodata and .bss defined
 #pragma GLOBAL_ASM("asm/nonmatchings/TTC/code_35D0/func_80389CC4.s")

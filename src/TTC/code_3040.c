@@ -15,6 +15,7 @@ extern struct {
     s32 unkC;
 }D_8038D6F0;
 
+/* .code */
 void func_80389430(void){
     if(getGameMode() != GAME_MODE_7_ATTRACT_DEMO){
         func_8029CF48(2, 1, 0.0f);
