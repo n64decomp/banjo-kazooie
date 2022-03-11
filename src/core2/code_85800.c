@@ -924,7 +924,7 @@ void func_8030E878(enum sfx_e id, f32 arg1, u32 arg2, f32 arg3[3], f32 arg4, f32
     func_8030E78C(id, arg1, arg2, arg3, arg4, arg5, 2);
 }
 
-void func_8030E8B4(u32 arg0, f32 (*arg1)[3], u32 arg2){
+void func_8030E8B4(u32 arg0, f32 arg1[3], u32 arg2){
     func_8030E78C(
         (arg0 & 0x7ff), (f32)((arg0 >> 0x15) & 0x7ff)/1023.0, ((arg0 >> 0x6) & 0x7fe0),
         arg1, (f32)(arg2 & 0xffff), (f32)((arg2 >> 0x10) & 0xffff),
