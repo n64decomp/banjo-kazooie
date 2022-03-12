@@ -64,6 +64,8 @@ segments:
       - [0x0000A980, .data, done/ch/bigalligator]
       - [0x0000A9B0, .data, ch/leafboat]
       - [0x0000A9E0, bin, data_A9E0]
+      - [0x0000AAF0, .rodata, ch/croctus]
+      - [0x0000AB00, bin, data_AB00] #.rodata, ch/croctus]
       - [0x0000AB80, .rodata, done/ch/code_2270]
       - [0x0000ABF0, bin, data_ABF0]
       - [0x0000AC50, bin, data_AC50] #.rodata, ch/mrVile]
