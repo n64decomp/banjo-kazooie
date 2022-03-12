@@ -28,7 +28,7 @@ segments:
     start: 0x00000000
     vram: 0x803863F0
     subsegments:
-      - [0x0, c, ch/flibbit]
+      - [0x0, c, ch/flibbit] #done
       - [0x15F0, c, done/ch/pinkegg]
       - [0x18A0, c, ch/croctus]
       - [0x2270, c, done/ch/code_2270]
@@ -50,7 +50,7 @@ segments:
     vram: 0x80390690
     subsegments:
     #80390a40 #80390a70
-      - [0x0000A2A0, bin, data_A2A0]
+      - [0x0000A2A0, .data, ch/flibbit]
       - [0x0000A2D0, .data, done/ch/pinkegg]
       - [0x0000A3C0, bin, ch/croctus]
       - [0x0000A440, bin, data_A440]
@@ -63,7 +63,7 @@ segments:
       - [0x0000A830, .data, ch/tanktup]
       - [0x0000A980, .data, done/ch/bigalligator]
       - [0x0000A9B0, .data, ch/leafboat]
-      - [0x0000A9E0, bin, data_A9E0]
+      - [0x0000A9E0, .rodata, ch/flibbit]
       - [0x0000AAF0, .rodata, ch/croctus]
       - [0x0000AB00, bin, data_AB00] #.rodata, ch/croctus]
       - [0x0000AB80, .rodata, done/ch/code_2270]

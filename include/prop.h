@@ -144,13 +144,6 @@ typedef struct ch_bgs_6730_s{
     s32  unkC;
 } ActorLocal_BGS_6730;
 
-typedef struct chflibbit_s{
-    u8  pad0;
-    u8  unk1;
-    s16 unk2[3];
-    s16 unk8[3];
-}ActorLocal_Flibbit;
-
 typedef struct chtanktupbody_s{
     s32 unk0[4];
     s32 unk10;
@@ -308,7 +301,6 @@ typedef struct actor_s{
         ActorLocal_Leafboat leafboat;
         ActorLocal_BGS_2270 bgs_2270;
         ActorLocal_BGS_6730 bgs_6730;
-        ActorLocal_Flibbit  flibbit;
         ActorLocal_TanktupBody tanktup;
         ActorLocal_Conga conga;
         ActorLocal_Jinjo jinjo;
