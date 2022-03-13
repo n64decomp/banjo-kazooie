@@ -99,36 +99,31 @@ void func_803865D0(ActorMarker *marker){
     timed_playSfx(D_80390074[local->unk4].unk4, SFX_7F_HEAVYDOOR_SLAM, 0.8f, 0x7fd0);
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/RBB/code_0/func_803866F4.s")
-#else
 void func_803866F4(Actor *this, s32 arg1){
     ActorLocal_RBB_0 *local = (ActorLocal_RBB_0 *) &this->local;
     
-    while(1){
-        if(arg1 == 2){
-            func_8025A6EC(COMUSIC_2B_DING_B, 28000);
-            local = (ActorLocal_RBB_0 *) &this->local;
-            local->unkC = 3;
-        }
-        if(arg1 == 3){
-            local->unk8++;
-            func_8025A6EC(COMUSIC_2B_DING_B, 28000);
-            func_80324E38(0.0f, 3);
-            timedFunc_set_2(0.5f, (TFQM2) func_8025A6EC, COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);
-            timedFunc_set_1(1.0f,  (TFQM1) func_803865D0, this->marker);
-        }//L803867D4
-        if(arg1 == 4){
-            if(local->unk8 == 1 && D_80390074[local->unk4].unk2 > 0){
-                arg1 = 1;
-                continue;
-            }
-        }
-        break;
+
+    if(arg1 == 2){
+        func_8025A6EC(COMUSIC_2B_DING_B, 28000);
+        local = (ActorLocal_RBB_0 *) &this->local;
+        local->unkC = 3;
     }
+    if(arg1 == 3){
+        local->unk8++;
+        func_8025A6EC(COMUSIC_2B_DING_B, 28000);
+        func_80324E38(0.0f, 3);
+        timedFunc_set_2(0.5f, (TFQM2) func_8025A6EC, COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);
+        timedFunc_set_1(1.0f,  (TFQM1) func_803865D0, this->marker);
+    }//L803867D4
+    if(arg1 == 4){
+        if(local->unk8 == 1 && D_80390074[local->unk4].unk2 > 0){
+            func_803866F4(this, 1);
+            return;
+        }
+    }
+
     this->state = arg1;
 }
-#endif
 
 void func_8038685C(ActorMarker *marker){
     Actor *actor = marker_getActor(marker);

@@ -62,34 +62,26 @@ f32 func_8038A4E0(void){
     return D_80390860[2*levelSpecificFlags_get(0x27) + levelSpecificFlags_get(0x28)];
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/RBB/code_40F0/func_8038A524.s")
-#else
 void func_8038A524(Actor *this, s32 arg1){
     ActorLocal_RBB_40F0 *local = (ActorLocal_RBB_40F0 *)&this->local;
-    //Struct_RBB_40F0 *iPtr = D_80390760;
-    // while(1){
-    //     local->unk1C = 0.0f;
 
-    //     break;
-    // }
     local->unk1C = 0.0f;
-L8038A560:
+
     if(arg1 == 1){
         if(D_80390760[local->unk0].unk1A){
-            arg1 = 2;
-            goto L8038A560;
+            func_8038A524(this, 2);
+            return;
         }
-        local->unk10[0] = func_8038A4E0()*D_80390760[local->unk0].unkC[0];
-        local->unk10[1] = func_8038A4E0()*D_80390760[local->unk0].unkC[1];
-        local->unk10[2] = func_8038A4E0()*D_80390760[local->unk0].unkC[2];
+        local->unk10[0] = D_80390760[local->unk0].unkC[0]*func_8038A4E0();
+        local->unk10[1] = D_80390760[local->unk0].unkC[1]*func_8038A4E0();
+        local->unk10[2] = D_80390760[local->unk0].unkC[2]*func_8038A4E0();
     }
     
 
     if(arg1 == 2){
-        local->unk10[0] = func_8038A4E0()*D_80390760[local->unk0].unkC[0];
-        local->unk10[1] = func_8038A4E0()*D_80390760[local->unk0].unkC[1];
-        local->unk10[2] = func_8038A4E0()*D_80390760[local->unk0].unkC[2];
+        local->unk10[0] = D_80390760[local->unk0].unkC[0]*func_8038A4E0();
+        local->unk10[1] = D_80390760[local->unk0].unkC[1]*func_8038A4E0();
+        local->unk10[2] = D_80390760[local->unk0].unkC[2]*func_8038A4E0();
     }
 
     if(arg1 == 3){
@@ -99,7 +91,6 @@ L8038A560:
     }
     this->state = arg1;
 }
-#endif
 
 f32 func_8038A6B8(ActorMarker *marker){
     Actor *actor = marker_getActor(marker);
