@@ -43,7 +43,7 @@ segments:
       - [0x9080, c, ch/tanktup]
       - [0x9750, c, code_9750] #DONE
       - [0x98C0, c, done/ch/bigalligator]
-      - [0x9920, c, ch/leafboat]
+      - [0x9920, c, ch/leafboat] #DONE
   - name: data
     dir: BGS
     type: code
