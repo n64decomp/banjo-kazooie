@@ -230,3 +230,4 @@ void func_8038E034(Actor *this) {
         }
     }
 }
+ 
