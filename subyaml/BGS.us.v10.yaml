@@ -41,6 +41,7 @@ segments:
       - [0x8A60, c, done/ch/code_8A60]
       - [0x8DF0, c, done/code_8DF0]
       - [0x9080, c, ch/tanktup]
+      - [0x9750, c, code_9750] #DONE
       - [0x98C0, c, done/ch/bigalligator]
       - [0x9920, c, ch/leafboat]
   - name: data
@@ -61,6 +62,7 @@ segments:
       - [0x0000A740, .data, done/ch/mudhut]
       - [0x0000A7A0, bin, data_A7A0]
       - [0x0000A830, .data, ch/tanktup]
+      - [0x0000A860, .data, code_9750]
       - [0x0000A980, .data, done/ch/bigalligator]
       - [0x0000A9B0, .data, ch/leafboat]
       - [0x0000A9E0, .rodata, ch/flibbit]
@@ -73,4 +75,5 @@ segments:
       - [0x0000ADA0, .rodata, done/ch/mudhut]
       - [0x0000ADB0, .rodata, done/ch/code_8A60]
       - [0x0000ADC0, bin, data_ADC0]
+      - [0x0000ADE0, .rodata, ch/leafboat]
   - [0x0000AE40]

@@ -147,38 +147,9 @@ typedef struct ch_bgs_6730_s{
 typedef struct chtanktupbody_s{
     s32 unk0[4];
     s32 unk10;
+    s32 unk14;
+    f32 unk18[3];
 }ActorLocal_TanktupBody;
-
-typedef struct chleafboat_s{
-    f32 unk0;
-    f32 unk4;
-    f32 unk8;
-    f32 unkC;
-    f32 unk10;
-    f32 unk14;
-    f32 unk18;
-    f32 unk1C;
-    f32 unk20;
-    f32 unk24;
-    f32 unk28;
-    f32 unk2C;
-    f32 unk30;
-    f32 unk34;
-    f32 unk38;
-    f32 unk3C;
-    f32 unk40;
-    f32 unk44;
-    f32 unk48;
-    f32 unk4C;
-    f32 unk50;
-    f32 unk54;
-    f32 unk58;
-    f32 unk5C;
-    f32 unk60;
-    f32 unk64;
-    f32 unk68;
-    f32 unk6C;
-} ActorLocal_Leafboat;
 
 
 typedef struct actor_anim_info_s{
@@ -298,7 +269,6 @@ typedef struct actor_s{
     { //DON'T DO THIS JUST DEFINE STATICLY IN ch/ FILE AND CAST FROM &Actor->local
         ActorLocal_MrVile   mrVile; 
         ActorLocal_Yumblie  yumblie; 
-        ActorLocal_Leafboat leafboat;
         ActorLocal_BGS_2270 bgs_2270;
         ActorLocal_BGS_6730 bgs_6730;
         ActorLocal_TanktupBody tanktup;

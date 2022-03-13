@@ -7,7 +7,7 @@
 void func_80335A24(void *, u32, f32, f32);
 void set_model_render_mode(u32);
 Actor *mrVileDraw(ActorMarker*, Gfx **, Mtx **, u32);
-void func_8038C48C(ActorMarker *);
+void func_8038C48C(Actor *);
 void func_8038BB40(ActorMarker *);
 
 extern f32 D_80391040;
