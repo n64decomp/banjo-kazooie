@@ -2,8 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-#define RARE_PI 3.141592654
-
 typedef struct chleafboat_s{
     f32 unk0[3];
     f32 unkC[3];

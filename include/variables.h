@@ -1,6 +1,8 @@
 #ifndef VARIABLES_H
 #define VARIABLES_H
 
+#define RARE_PI 3.141592654
+
 struct Overlay {
     void *start;
     void *end;
