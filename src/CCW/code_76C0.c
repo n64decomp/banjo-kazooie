@@ -56,9 +56,35 @@ extern ActorInfo D_8038F81C;
 extern ActorInfo D_8038F840;
 extern ActorInfo D_8038F864;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/CCW/code_76C0/func_8038DAB0.s")
+void func_8038DB0C(Actor *this);
+void func_8038DAB0(Actor *this);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/CCW/code_76C0/func_8038DB0C.s")
+/* .data */
+extern ActorInfo D_8038F7D4 = { 0x263, 0x2E7, 0x518, 0x1, NULL, func_8038DAB0, func_80326224, func_80325E78, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_8038F81C = { 0x26B, 0x2DE, 0x531, 0x1, NULL, func_8038DB0C, func_80326224, func_80325E78, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_8038F840 = { 0x26C, 0x2DD, 0x53E, 0x1, NULL, func_8038DB0C, func_80326224, func_80325E78, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_8038F864 = { 0x26D, 0x2DC, 0x53F, 0x1, NULL, func_8038DB0C, func_80326224, func_80325E78, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+
+/* .code */
+void func_8038DAB0(Actor *this){
+    if(!this->initialized){
+        func_802D3CE8(this);
+        this->initialized = TRUE;
+        if(levelSpecificFlags_get(0x38)){
+            marker_despawn(this->marker);
+        }
+    }
+}
+
+void func_8038DB0C(Actor *this){
+    if(!this->initialized){
+        func_802D3D74(this);
+        this->initialized = TRUE;
+        this->position_x = 325.8f;
+        this->position_y = 600.0f;
+        this->position_z = 0.0f;
+    }
+}
 
 void func_8038DB6C(void)
 {
