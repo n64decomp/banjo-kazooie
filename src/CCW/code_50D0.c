@@ -2,17 +2,43 @@
 #include "functions.h"
 #include "variables.h"
 
-extern f32 D_8038FC30;
-extern f32 D_8038FC34;
-extern f32 D_8038FC38;
-extern f32 D_8038FC3C;
+void func_8038B87C(Actor *this);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/CCW/code_50D0/func_8038B4C0.s")
+/* .data */
+ActorInfo D_8038F300 = {
+    0x1BA, 0x2A7, 0x503,
+    0x0, NULL,
+    func_8038B87C, NULL, func_80325888,
+    { 0x0, 0x0}, 0, 2.0f, { 0x0, 0x0, 0x0, 0x0}
+};
+
+s32 D_8038F324[] = {
+    SFX_97_BLUBBER_BURPS,
+    SFX_3E_POOP_NOISE,
+    SFX_F6_BLUBBER_TALKING_2,
+    SFX_F7_BLUBBER_TALKING_3,
+    SFX_F8_BLUBBER_TALKING_4,
+    SFX_F5_BLUBBER_TALKING_1,
+    0
+};
+
+/* .code */
+void func_8038B4C0(ActorMarker *marker) {
+    Actor *this;
+    static s32 D_8038F340 = 0; 
+
+    this = marker_getActor(marker);
+    func_8030E878(D_8038F324[D_8038F340], randf2(1.1f, 1.2f), (s32) randf2(31000.0f, 32000.0f), this->position, 500.0f, 2500.0f);
+    D_8038F340++;
+    if (D_8038F324[D_8038F340] == 0) {
+        D_8038F340 = 0;
+    }
+}
 
 void func_8038B58C(ActorMarker* marker) {
     Actor* actor = marker_getActor(marker);
     
-    func_8030E878(0x81, randf2(1.0f, D_8038FC30), (u32) (s32) randf2(D_8038FC34, 32000.0f), actor->position, 500.0f, D_8038FC38);
+    func_8030E878(0x81, randf2(1.0f, 1.1f), (s32) randf2(31000.0f, 32000.0f), actor->position, 500.0f, 2500.0f);
 }
 
 void func_8038B610(ActorMarker* marker) {
@@ -22,17 +48,51 @@ void func_8038B610(ActorMarker* marker) {
     s32 sp20;
 
     actor = marker_getActor(marker);
-    temp_s0 = func_802F9AA8(0x12B);
+    temp_s0 = func_802F9AA8(SFX_12B_BOILING_AND_BUBBLING);
     sp24 = randf2(1.0f, 1.0f);
-    sp20 = randf2(D_8038FC3C, 32000.0f);
+    sp20 = randf2(29000.0f, 32000.0f);
     func_802F9DB8(temp_s0, sp24, sp24, 0.0f);
     func_802F9EC4(temp_s0, actor->position, 0xC8, 0x7D0);
     func_802F9F80(temp_s0, 0.05f, 0.2f, 0.3f);
     func_802FA060(temp_s0, sp20, sp20, 0.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/CCW/code_50D0/func_8038B6DC.s")
+void func_8038B6DC(ActorMarker *marker) {
+    Actor *this;
+    f32 phi_f20;
+    int i;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/CCW/code_50D0/func_8038B814.s")
+    this = marker_getActor(marker);
+    func_80335650(this->unk148);
+    phi_f20 = randf2(0.1f, 0.3f);
+    for(i = 0; i < 3; i++){
+        func_80335800(this->unk148, phi_f20, func_8038B610, this->marker);
+        phi_f20 += randf2(0.15f, 0.3f);
+        if(0.85 < phi_f20)
+            break;
+    }
+    func_80335800(this->unk148, 0.35f, func_8038B4C0, this->marker);
+    func_80335800(this->unk148, 0.63f, func_8038B58C, this->marker);
+    func_80335800(this->unk148, 0.9f, func_8038B6DC, this->marker);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/CCW/code_50D0/func_8038B87C.s")
+void func_8038B814(Actor *this, s32 next_state) {
+    if (next_state == 1) {
+        func_80335924(this->unk148, 0x22B, 0.2f, 11.0f);
+        func_8038B6DC(this->marker);
+    }
+    this->state = next_state;
+}
+
+void func_8038B87C(Actor *this) {
+    if (!this->unk16C_4) {
+        this->unk16C_4 = TRUE;
+        this->unk138_24 = FALSE;
+        func_8038B814(this, 1);
+    }
+    if (!this->unk138_24 && func_803292E0(this)) {
+        this->unk138_24 = TRUE;
+        func_80311480(0xCC9, 0, NULL, NULL, NULL, NULL);
+    }
+    func_8028E668(this->position, 300.0f, -50.0f, 120.0f);
+}

@@ -3,7 +3,6 @@
 #include "variables.h"
 
 extern ParticleEmitter *func_802EDD8C(f32[3], f32, f32);
-extern void func_80335800(void *, f32, void(*)(void), s32);
 
 typedef struct{
     s16 map_id;

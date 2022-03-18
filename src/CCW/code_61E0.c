@@ -3,7 +3,6 @@
 #include "variables.h"
 
 extern ActorMarker *func_8028E86C(void);
-extern void func_80335800(void *, f32, void(*)(ActorMarker *), ActorMarker *);
 
 typedef struct {
     f32 unk0[3];

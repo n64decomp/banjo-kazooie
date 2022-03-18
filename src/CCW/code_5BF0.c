@@ -3,7 +3,6 @@
 #include "variables.h"
 
 extern void func_8028E668(f32[3], f32, f32, f32);
-extern void func_80335800(void *, f32, void (*)(ActorMarker *), ActorMarker *);
 
 Actor *func_8038C380(ActorMarker* marker, Gfx** gfx, Mtx** mtx, Vtx** vtx);
 void func_8038C41C(Actor *this);

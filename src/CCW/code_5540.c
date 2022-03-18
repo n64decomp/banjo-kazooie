@@ -2,11 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void func_8028E668(f32[3], f32, f32, f32);
-extern void func_8028F364(f32[3], f32, f32, s32, Actor**);
-extern void func_8028FA54(f32[3]);
-extern f32  func_80335684(void *);
-
 typedef struct {
     s32 unk0;
 }ActorLocal_CCW_5540;

@@ -284,8 +284,10 @@ void func_8028A1F4(s32, f32, f32);
 void func_8028A274(enum asset_e, f32);
 void func_8028A3B8(f32, f32);
 int  func_8028AED4(f32*, f32);
-
-f32 func_8028E80C(s32);
+void func_8028E668(f32[3], f32, f32, f32);
+f32  func_8028E80C(s32);
+void func_8028F364(f32[3], f32, f32, s32, Actor**);
+void func_8028FA54(f32[3]);
 
 f32  func_802915D8(void);
 f32  func_80291604(void);
@@ -451,7 +453,9 @@ void func_80320044(s32, s32, s32);
 void func_803300D8(ActorMarker *, void (*)(Actor *));
 void marker_setCollisionScripts(ActorMarker *this, MarkerCollisionFunc ow_func, MarkerCollisionFunc arg2, MarkerCollisionFunc die_func);
 BKModelBin *func_80330B1C(ActorMarker *marker);
+f32  func_80335684(void *);
 void func_8033568C(void *, f32 *, f32*);
+void func_80335800(void *, f32, void (*)(ActorMarker *), ActorMarker *);
 void func_80335924(void *, enum asset_e anim_id, f32, f32);
 void func_80335A74(void *, f32);
 extern void func_80335A94(void *, f32, s32);
