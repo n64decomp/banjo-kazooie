@@ -2,18 +2,19 @@
 #include "functions.h"
 #include "variables.h"
 
+void func_8038DFB0(Actor *this);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/CCW/code_7BC0/func_8038DFB0.s")
 
-void func_8038DFE0(Actor* actor) {
-    func_80328B8C(actor, 1, 0.001f, 1);
-    actor->unk38_31 = randi2(0, 0);
+extern ActorAnimationInfo D_8038F8B0[];
+
+extern ActorInfo D_8038F8C0 = { 0x251, 0x37E, 0x506,
+    0x1, D_8038F8B0,
+    func_8038DFB0, func_80326224, func_80325888, 
+    { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+};
+
+/* .code */
+void func_8038DFB0(Actor *this){
+    this->marker->propPtr->unk8_3 = TRUE;
+    actor_collisionOff(this);
 }
-
-void func_8038E034(Actor* actor) {
-    func_80328B8C(actor, 2, 0.001f, 1);
-}
-
-#pragma GLOBAL_ASM("asm/nonmatchings/CCW/code_7BC0/func_8038E060.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/CCW/code_7BC0/func_8038E0C8.s")
