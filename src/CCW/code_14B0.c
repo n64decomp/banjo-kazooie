@@ -31,8 +31,6 @@ extern ActorInfo D_8038EC14 = { 0x1AF, 0x29C, 0x446, 0x0, NULL, func_80387A40, N
 void func_803878A0(Actor *this, s32 next_state) {
     ActorLocal_CCW_14B0 *local = (ActorLocal_CCW_14B0 *)&this->local;
     int i;
-    s32 temp_s0;
-    s32 phi_s0;
 
     if (next_state == 1) {
         if (func_8033567C(this->unk148) != 0x16F) {

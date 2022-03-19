@@ -31,7 +31,7 @@ segments:
       - [0x00000000, c, code_0] #DONE
       - [0x160, c, code_160]
       - [0x950, c, code_950]
-      - [0x14B0, c, code_14B0]
+      - [0x14B0, c, code_14B0] #DONE
       - [0x1B20, c, code_1B20] #DONE
       - [0x21A0, c, code_21A0] #DONE
       - [0x2270, c, code_2270] #DONE
