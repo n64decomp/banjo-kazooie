@@ -51,22 +51,3 @@ s32 func_80388438() {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/CCW/code_1B20/func_803885F8.s")
 
-void func_80388660(ActorMarker* marker, s32 arg1) {
-    func_8038868C(marker_getActor(marker), arg1);
-}
-
-#pragma GLOBAL_ASM("asm/nonmatchings/CCW/code_1B20/func_8038868C.s")
-
-void func_8038894C(ActorMarker* marker, s32 arg1) {
-    Actor* actor = marker_getActor(marker);
-    if (actor->state == 1) {
-        actor_collisionOff(actor);
-        timedFunc_set_2(0.5f, func_80388660, actor->marker, 2);
-    }
-}
-
-#pragma GLOBAL_ASM("asm/nonmatchings/CCW/code_1B20/func_803889AC.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/CCW/code_1B20/func_80388A70.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/CCW/code_1B20/func_80388AA0.s")

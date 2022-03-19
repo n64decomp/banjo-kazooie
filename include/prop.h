@@ -75,7 +75,7 @@ typedef struct actorMarker_s{
     u32         unk2C_2:1;
     u32         unk2C_1:1;
     u32         collidable:1;
-    void        (*unk30)(struct actor_s *);
+    void        (*unk30)(struct actor_s *); //actor free method
     s32         unk34;
     s16         unk38;
     s16         unk3A;
