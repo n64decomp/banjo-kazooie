@@ -70,6 +70,7 @@ segments:
       - [0x00008E80, bin, data_8E80] #.data, code_4D00]
       - [0x00008F10, .data, code_50D0]
       - [0x00008F60, bin, data_8F60]
+      - [0x00009660, .rodata, code_950]
       - [0x000096C0, .rodata, code_1B20]
       - [0x000096F0, .rodata, code_2270]
       - [0x00009720, .rodata, code_2B00]
