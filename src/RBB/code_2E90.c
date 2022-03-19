@@ -124,10 +124,12 @@ void func_803892D8(Actor *this, s32 arg1){
 #else
 void func_8038944C(Actor *this){
     ActorLocal_RBB_2E90 *local = (ActorLocal_RBB_2E90 *)&this->local;
+    f32 tick;
     f32 sp50[3];
     f32 sp44[3];
     int i;
-    f32 tick = func_8033DD9C();
+
+    tick = time_getDelta();
 
     if(!this->unk16C_4){
         this->marker->propPtr->unk8_3 = 1;
@@ -136,17 +138,9 @@ void func_8038944C(Actor *this){
         if(this->state == 0){
             ml_vec3f_copy(&this->position, &local->unkC->unk4);
         }
-        local->unk0[2] = 0.0f;
-        local->unk0[1] = 0.0f;
-        local->unk0[0] = 0.0f;
-
-        local->unk10[2] = 0.0f;
-        local->unk10[1] = 0.0f;
-        local->unk10[0] = 0.0f;
-
-        local->unk1C[2] = 0.0f;
-        local->unk1C[1] = 0.0f;
-        local->unk1C[0] = 0.0f;
+        local->unk0[0] = local->unk0[1] = local->unk0[2] = 0.0f;
+        local->unk10[0] = local->unk10[1] = local->unk10[2] = 0.0f;
+        local->unk1C[0] = local->unk1C[1] = local->unk1C[2] = 0.0f;
 
         local->unk28 = 0.0f;
         func_803892D8(this, 1);
@@ -168,9 +162,9 @@ void func_8038944C(Actor *this){
         sp50[0] = this->pitch;
         sp50[1] = this->yaw;
         sp50[2] = this->roll;
-        this->pitch += local->unk10[0] * tick;
-        this->yaw += local->unk10[1] * tick;
-        this->roll += local->unk10[2] * tick;
+        this->pitch += local->unk10[0]*tick ;
+        this->yaw   += local->unk10[1]*tick ;
+        this->roll  += local->unk10[2]*tick ;
 
         sp44[0] = this->pitch;
         sp44[1] = this->yaw;

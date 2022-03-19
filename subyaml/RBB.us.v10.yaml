@@ -106,6 +106,5 @@ segments:
       - [0x0000AD80, .rodata, code_7B20]
       - [0x0000ADB0, .rodata, code_7FD0]
       - [0x0000AE00, .rodata, code_8520]
-      - [0x0000AE20, bin, data_AE20] #.rodata, code_8520] #continued
       - [0x0000AE70, .rodata, code_9670]
   - [0x0000AE80]

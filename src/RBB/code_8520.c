@@ -283,40 +283,36 @@ void func_8038F430(ActorMarker *marker, s32 arg1){
     }//L8038F4A4
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/RBB/code_8520/func_8038F4B0.s")
-#else
 Actor * func_8038F4B0(ActorMarker *marker, Gfx **gdl, Mtx **mptr, s32 arg3){
-    Actor *actor = marker_getActor(marker);
-    ActorLocal_RBB_8520 *local = (ActorLocal_RBB_8520 *)&actor->local;
-    f32 temp_f2;
+    Actor *actor;
+    ActorLocal_RBB_8520 *local;
     s32 sp28[4];
+    f32 temp_f2;
     //s32 temp_v0;
+
+    actor = marker_getActor(marker);
+    local = (ActorLocal_RBB_8520 *)&actor->local;
     func_8033A45C(1,2);
     func_8033A45C(3,1);
     func_8033A45C(6,1);
     func_8033A45C(7,1);
-    if(0.0f < local->unk30 && local->unk30 <= 1.0){
-        temp_f2 = 3.0f*local->unk30;
-        temp_f2 = 2*(temp_f2 - (s32)(temp_f2));
-        temp_f2 = (temp_f2 > 1.0f) ? 2.0f - temp_f2 : temp_f2;
+    if(local->unk30 > 0.0f && local->unk30 <= 1.0){
+        temp_f2 = 2*(3*local->unk30 - (s32)(3*local->unk30));
+        if (temp_f2 > 1.0f) 
+            temp_f2 = 2 - temp_f2;
         
-        sp28[0] = (s32) (255 * temp_f2);\
-        sp28[1] = (s32) (255 * temp_f2);\
-        sp28[2] = (s32) (255 * temp_f2);
+        sp28[0] = (s32) (temp_f2*255);\
+        sp28[1] = (s32) (temp_f2*255);\
+        sp28[2] = (s32) (temp_f2*255);
         sp28[3] = 255;
         D_803912A0[0] = actor->pitch;
         D_803912A0[1] = actor->yaw;
         D_803912A0[2] = actor->roll;
-        func_8033A334(&sp28, &D_80390DDC);
+        func_8033A334(sp28, &D_80390DDC);
     }//L8038F5F8
     return func_80325888(marker, gdl, mptr, arg3);
 }
-#endif
 
-#ifndef NONMATCHING //needs .rodata defined
-#pragma GLOBAL_ASM("asm/nonmatchings/RBB/code_8520/func_8038F618.s")
-#else
 void func_8038F618(Actor *this){
     f32 sp7C[3];
     int sp78;
@@ -329,6 +325,7 @@ void func_8038F618(Actor *this){
     f32 sp4C;
     f32 sp48;
     f32 sp44;
+    f32 pad0;
     
 
     if(!this->unk16C_4){
@@ -376,10 +373,9 @@ void func_8038F618(Actor *this){
         func_8033568C(this->unk148, &sp6C, &sp68);
 
         if(0.1 <= sp68 && sp68 <= 0.6)
-            func_80255FE4(&this->position, &local->unk14, &local->unk20, (sp68 - 0.1) /0.5 );
-        if(0.6);
-        if(sp6C < 0.6 && sp68 <= 0.1)
-            func_8030E878(SFX_6C_LOCKUP_CLOSING, (f64)1.1f + randf2(-0.05f, 0.05f), 20000, &this->position, 500.0f, 1000.0f);
+            func_80255FE4(this->position, &local->unk14, &local->unk20, (sp68 - 0.1) /0.5 );
+        if(sp6C < 0.6 && 0.6 <= sp68)
+            func_8030E878(SFX_6C_LOCKUP_CLOSING, 1.1 + randf2(-0.05f, 0.05f), 20000, this->position, 500.0f, 1000.0f);
 
         if(sp6C < 0.1 && 0.1 <= sp68)
             func_8038E998(this);
@@ -388,7 +384,7 @@ void func_8038F618(Actor *this){
         sp50[1] = local->unk20[1] - local->unk14[1];
         sp50[2] = local->unk20[2] - local->unk14[2];
 
-        func_80258A4C(&D_80390DEC,sp50[0] - 90.0f, &sp50, &sp4C, &sp48, &sp44);
+        func_80258A4C(&D_80390DEC,this->yaw - 90.0f, &sp50, &sp4C, &sp48, &sp44);
         
         this->yaw += (sp44*400.0f)*sp70;
         if(func_80335794(this->unk148) > 0){
@@ -400,4 +396,3 @@ void func_8038F618(Actor *this){
         }
     }//L8038FA50
 }
-#endif
