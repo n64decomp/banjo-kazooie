@@ -381,6 +381,8 @@ f32  func_802B6F9C(void);
 void func_802C1B20(f32);
 int  func_802C1DB0(f32);
 
+void func_802D6264(f32, enum map_e, s32, s32, s32, enum bkprog_e);
+
 Actor *func_802DC7E0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 
 void func_802EFA20(ParticleEmitter *, f32, f32);
