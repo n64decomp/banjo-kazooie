@@ -2,7 +2,10 @@
 #include "functions.h"
 #include "variables.h"
 
-void func_802F9E44(s32, f32, f32, f32, f32);
+extern void func_802EFF5C(ParticleEmitter*, f32, f32, f32);
+extern void func_802EFF7C(ParticleEmitter*, f32, f32, f32);
+extern void func_802EFF9C(ParticleEmitter*, f32);
+extern void func_802F9E44(s32, f32, f32, f32, f32);
 
 /* .data */
 extern struct31s D_8038D350;
@@ -17,8 +20,30 @@ extern s32 D_8038D4A0[3];
 extern struct31s D_8038D4AC;
 extern struct42s D_8038D4DC;
 extern struct31s D_8038D50C;
-
-
+extern struct31s D_8038D534;
+extern struct31s D_8038D55C;
+extern s32 D_8038D584[3];
+extern struct31s D_8038D590;
+extern struct42s D_8038D5C0;
+extern struct31s D_8038D5F0;
+extern struct31s D_8038D618;
+extern struct31s D_8038D640;
+extern struct42s D_8038D670;
+extern s32 D_8038D6A0[3];
+extern struct31s D_8038D6AC;
+extern struct42s D_8038D6DC;
+extern struct31s D_8038D70C;
+extern struct42s D_8038D73C;
+extern s32 D_8038D76C[3];
+extern struct31s D_8038D778;
+extern struct42s D_8038D7A8;
+extern struct31s D_8038D7D8;
+extern struct42s D_8038D808;
+extern s32 D_8038D838[3];
+extern struct31s D_8038D844;
+extern struct42s D_8038D874;
+extern struct31s D_8038D8A4;
+extern struct42s D_8038D8D4;
 
 /* .rodata */
 extern f32 D_8038E950;
@@ -351,30 +376,250 @@ void func_80387424(ActorMarker *arg0) {
     particleEmitter_emitN(pCtrl, 8);
 }
 
+void func_80387560(ActorMarker *arg0) {
+    Actor *sp44;
+    ParticleEmitter *pCtrl;
+    f32 sp34[3];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cutscenes/code_0/func_80387560.s")
+    sp44 = marker_getActor(reinterpret_cast(ActorMarker *,arg0));
+    pCtrl = partEmitList_pushNew(11);
+    particleEmitter_setModel(pCtrl, 0x478);
+    func_8034A174((struct5Bs *) sp44->marker->unk44, 5, sp34);
+    particleEmitter_setPosition(pCtrl, sp34);
+    func_802EFE24(pCtrl, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
+    particleEmitter_setParticleVelocityRange(pCtrl, -30.0f, 130.0f, -30.0f, 130.0f, 45.0f, 30.0f);
+    func_802EFB98(pCtrl, &D_8038D534);
+    particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -500.0f, 0.0f, 0.0f, -500.0f, 0.0f);
+    particleEmitter_emitN(pCtrl, 11);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cutscenes/code_0/func_80387680.s")
+void func_80387680(ActorMarker *arg0) {
+    Actor *sp44;
+    ParticleEmitter *pCtrl;
+    f32 sp34[3];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cutscenes/code_0/func_803877A0.s")
+    sp44 = marker_getActor(reinterpret_cast(ActorMarker *,arg0));
+    pCtrl = partEmitList_pushNew(11);
+    particleEmitter_setSprite(pCtrl, 0x70B);
+    func_8034A174((struct5Bs *) sp44->marker->unk44, 5, sp34);
+    particleEmitter_setPosition(pCtrl, sp34);
+    func_802EFE24(pCtrl, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
+    particleEmitter_setParticleVelocityRange(pCtrl, -30.0f, 130.0f, -30.0f, 130.0f, 45.0f, 30.0f);
+    func_802EFB98(pCtrl, &D_8038D55C);
+    particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -500.0f, 0.0f, 0.0f, -500.0f, 0.0f);
+    particleEmitter_emitN(pCtrl, 11);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cutscenes/code_0/func_803878A4.s")
+void func_803877A0(ActorMarker *arg0) {
+    Actor *sp34;
+    ParticleEmitter *pCtrl;
+    f32 sp24[3];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cutscenes/code_0/func_803879E0.s")
+    sp34 = marker_getActor(reinterpret_cast(ActorMarker *,arg0));
+    pCtrl = partEmitList_pushNew(1);
+    particleEmitter_setSprite(pCtrl, 0x475);
+    particleEmitter_setStartingFrameRange(pCtrl, 1, 6);
+    func_802EFFA8(pCtrl, D_8038D584);
+    func_802EF9E4(pCtrl, 0xFF);
+    func_802EFF5C(pCtrl, 0.1f, 0.2f, 0.0f);
+    func_802EFF7C(pCtrl, 0.0f, 0.25f, 0.0f);
+    func_802EFF9C(pCtrl, 0.5f);
+    func_8034A174((struct5Bs *) sp34->marker->unk44, 6, sp24);
+    particleEmitter_setPosition(pCtrl, sp24);
+    particleEmitter_setPositionAndVelocityRanges(pCtrl, &D_8038D5C0);
+    func_802EFB98(pCtrl, &D_8038D590);
+    particleEmitter_emitN(pCtrl, 1);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cutscenes/code_0/func_80387B58.s")
+void func_803878A4(ActorMarker *arg0) {
+    Actor *sp44;
+    ParticleEmitter *pCtrl;
+    f32 sp34[3];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cutscenes/code_0/func_80387C64.s")
+    sp44 = marker_getActor(reinterpret_cast(ActorMarker *,arg0));
+    pCtrl = partEmitList_pushNew(1);
+    func_8034A174((struct5Bs *) sp44->marker->unk44, 8, sp34);
+    particleEmitter_setPosition(pCtrl, sp34);
+    particleEmitter_setModel(pCtrl, 0x47A);
+    func_802EFE24(pCtrl, -10.0f, -10.0f, -10.0f, 10.0f, 10.0f, 10.0f);
+    particleEmitter_setParticleVelocityRange(pCtrl, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
+    particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -1000.0f, 0.0f, 0.0f, -1000.0f, 0.0f);
+    func_802EF9F8(pCtrl, 0.3f);
+    func_802EFA18(pCtrl, 3);
+    func_802EFA70(pCtrl, 2);
+    func_802EFB98(pCtrl, &D_8038D5F0);
+    func_802EF9EC(pCtrl, 0x21, 0x3A98);
+    particleEmitter_emitN(pCtrl, 1);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cutscenes/code_0/func_80387D88.s")
+void func_803879E0(ActorMarker *arg0) {
+    Actor *sp44;
+    ParticleEmitter *pCtrl;
+    f32 sp34[3];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cutscenes/code_0/func_80387E9C.s")
+    sp44 = marker_getActor(reinterpret_cast(ActorMarker *,arg0));
+    pCtrl = partEmitList_pushNew(2);
+    func_8034A174((struct5Bs *) sp44->marker->unk44, 8, sp34);
+    particleEmitter_setPosition(pCtrl, sp34);
+    particleEmitter_setModel(pCtrl, 0x47A);
+    func_802EFE24(pCtrl, -10.0f, -10.0f, -10.0f, 10.0f, 10.0f, 10.0f);
+    particleEmitter_setParticleVelocityRange(pCtrl, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
+    particleEmitter_setParticleSpawnPositionRange(pCtrl, -40.0f, 0.0f, -40.0f, 40.0f, 20.0f, 40.0f);
+    particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -1000.0f, 0.0f, 0.0f, -1000.0f, 0.0f);
+    func_802EF9F8(pCtrl, 0.3f);
+    func_802EFA18(pCtrl, 3);
+    func_802EFA70(pCtrl, 2);
+    func_802EFB98(pCtrl, &D_8038D618);
+    func_802EF9EC(pCtrl, 0x21, 0x3A98);
+    particleEmitter_emitN(pCtrl, 2);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cutscenes/code_0/func_80387FC0.s")
+void func_80387B58(ActorMarker *arg0) {
+    Actor *sp44;
+    ParticleEmitter *pCtrl;
+    f32 sp34[3];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cutscenes/code_0/func_803880C8.s")
+    sp44 = marker_getActor(reinterpret_cast(ActorMarker *,arg0));
+    pCtrl = partEmitList_pushNew(1);
+    particleEmitter_setSprite(pCtrl, 0x702);
+    particleEmitter_setStartingFrameRange(pCtrl, 1, 6);
+    func_802EF9E4(pCtrl, 0x3C);
+    func_802EFE24(pCtrl, -60.0f, -60.0f, -60.0f, 60.0f, 60.0f, 60.0f);
+    particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -290.0f, 0.0f, 0.0f, -290.0f, 0.0f);
+    func_8034A174((struct5Bs *) sp44->marker->unk44, 5, sp34);
+    particleEmitter_setPosition(pCtrl, sp34);
+    particleEmitter_setPositionAndVelocityRanges(pCtrl, &D_8038D670);
+    func_802EFB98(pCtrl, &D_8038D640);
+    particleEmitter_emitN(pCtrl, 1);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cutscenes/code_0/func_803881CC.s")
+void func_80387C64(ActorMarker *arg0) {
+    Actor *sp44;
+    ParticleEmitter *pCtrl;
+    f32 sp34[3];
+
+    sp44 = marker_getActor(reinterpret_cast(ActorMarker *,arg0));
+    func_8034A174((struct5Bs *) sp44->marker->unk44, 5, sp34);
+    if (func_802582EC(sp34) == 0) {
+        pCtrl = partEmitList_pushNew(1);
+        particleEmitter_setSprite(pCtrl, 0x70D);
+        particleEmitter_setStartingFrameRange(pCtrl, 1, 6);
+        func_802EFFA8(pCtrl, D_8038D6A0);
+        func_802EF9E4(pCtrl, 0x64);
+        func_802EFE24(pCtrl, -60.0f, -60.0f, -60.0f, 60.0f, 60.0f, 60.0f);
+        particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -30.0f, 0.0f, 0.0f, -30.0f, 0.0f);
+        particleEmitter_setPosition(pCtrl, sp34);
+        particleEmitter_setPositionAndVelocityRanges(pCtrl, &D_8038D6DC);
+        func_802EFB98(pCtrl, &D_8038D6AC);
+        particleEmitter_emitN(pCtrl, 1);
+    }
+}
+
+void func_80387D88(ActorMarker *arg0) {
+    Actor *sp44;
+    ParticleEmitter *pCtrl;
+    f32 sp34[3];
+
+    sp44 = marker_getActor(reinterpret_cast(ActorMarker *,arg0));
+    func_8034A174((struct5Bs *) sp44->marker->unk44, 5, sp34);
+    if (func_802582EC(sp34) == 0) {
+        pCtrl = partEmitList_pushNew(25);
+        particleEmitter_setSprite(pCtrl, 0x713);
+        particleEmitter_setStartingFrameRange(pCtrl, 1, 6);
+        func_802EF9E4(pCtrl, 0xFF);
+        func_802EFE24(pCtrl, -60.0f, -60.0f, -60.0f, 60.0f, 60.0f, 60.0f);
+        particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -30.0f, 0.0f, 0.0f, -30.0f, 0.0f);
+        particleEmitter_setPosition(pCtrl, sp34);
+        particleEmitter_setPositionAndVelocityRanges(pCtrl, &D_8038D73C);
+        func_802EFB98(pCtrl, &D_8038D70C);
+        particleEmitter_emitN(pCtrl, 25);
+    }
+}
+
+void func_80387E9C(ActorMarker *arg0) {
+    Actor *sp44;
+    ParticleEmitter *pCtrl;
+    f32 sp34[3];
+
+    sp44 = marker_getActor(reinterpret_cast(ActorMarker *,arg0));
+    func_8034A174((struct5Bs *) sp44->marker->unk44, 5, sp34);
+    if (func_802582EC(sp34) == 0) {
+        pCtrl = partEmitList_pushNew(1);
+        particleEmitter_setSprite(pCtrl, 0x70D);
+        particleEmitter_setStartingFrameRange(pCtrl, 1, 6);
+        func_802EF9E4(pCtrl, 0xC8);
+        func_802EFFA8(pCtrl, D_8038D76C);
+        func_802EFE24(pCtrl, -60.0f, -60.0f, -60.0f, 60.0f, 60.0f, 60.0f);
+        particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -30.0f, 0.0f, 0.0f, -30.0f, 0.0f);
+        particleEmitter_setPosition(pCtrl, sp34);
+        particleEmitter_setPositionAndVelocityRanges(pCtrl, &D_8038D7A8);
+        func_802EFB98(pCtrl, &D_8038D778);
+        particleEmitter_emitN(pCtrl, 1);
+    }
+}
+
+void func_80387FC0(ActorMarker *arg0) {
+    Actor *sp44;
+    ParticleEmitter *pCtrl;
+    f32 sp34[3];
+
+    sp44 = marker_getActor(reinterpret_cast(ActorMarker *,arg0));
+    func_8034A174((struct5Bs *) sp44->marker->unk44, 5, sp34);
+    if (func_802582EC(sp34) == 0) {
+        pCtrl = partEmitList_pushNew(1);
+        particleEmitter_setSprite(pCtrl, 0x70D);
+        particleEmitter_setStartingFrameRange(pCtrl, 1, 6);
+        func_802EF9E4(pCtrl, 0x64);
+        func_802EFE24(pCtrl, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
+        particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, 200.0f, 0.0f, 0.0f, 200.0f, 0.0f);
+        particleEmitter_setPosition(pCtrl, sp34);
+        particleEmitter_setPositionAndVelocityRanges(pCtrl, &D_8038D808);
+        func_802EFB98(pCtrl, &D_8038D7D8);
+        particleEmitter_emitN(pCtrl, 1);
+    }
+}
+
+void func_803880C8(ActorMarker *arg0) {
+    Actor *sp34;
+    ParticleEmitter *pCtrl;
+    f32 sp24[3];
+
+    sp34 = marker_getActor(reinterpret_cast(ActorMarker *,arg0));
+    pCtrl = partEmitList_pushNew(1);
+    particleEmitter_setSprite(pCtrl, 0x47C);
+    particleEmitter_setStartingFrameRange(pCtrl, 1, 6);
+    func_802EFFA8(pCtrl, D_8038D838);
+    func_802EF9E4(pCtrl, 0x82);
+    func_802EFF5C(pCtrl, 0.1f, 0.2f, 0);
+    func_802EFF7C(pCtrl, 0, 0.25f, 0);
+    func_802EFF9C(pCtrl, 0.5f);
+    func_8034A174((struct5Bs *) sp34->marker->unk44, 5, sp24);
+    particleEmitter_setPosition(pCtrl, sp24);
+    particleEmitter_setPositionAndVelocityRanges(pCtrl, &D_8038D874);
+    func_802EFB98(pCtrl, &D_8038D844);
+    particleEmitter_emitN(pCtrl, 1);
+}
+
+void func_803881CC(ActorMarker *arg0) {
+    Actor *sp44;
+    ParticleEmitter *pCtrl;
+    f32 sp34[3];
+
+    sp44 = marker_getActor(reinterpret_cast(ActorMarker *,arg0));
+    func_8034A174((struct5Bs *) sp44->marker->unk44, 5, sp34);
+    if (func_802582EC(sp34) == 0) {
+        pCtrl = partEmitList_pushNew(2);
+        particleEmitter_setSprite(pCtrl, 0x70D);
+        particleEmitter_setStartingFrameRange(pCtrl, 1, 6);
+        func_802EF9E4(pCtrl, 0x50);
+        func_802EFE24(pCtrl, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
+        particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, 100.0f, 0.0f, 0.0f, 300.0f, 0.0f);
+        particleEmitter_setPosition(pCtrl, &sp34);
+        particleEmitter_setPositionAndVelocityRanges(pCtrl, &D_8038D8D4);
+        func_802EFB98(pCtrl, &D_8038D8A4);
+        particleEmitter_emitN(pCtrl, 2);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/cutscenes/code_0/func_803882D4.s")
 
