@@ -2,8 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void func_8028E668(f32 (*)[3], f32, f32, f32);
-
 typedef struct{
     s32 unk0;
     s32 egg_count;
