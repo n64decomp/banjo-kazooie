@@ -23,8 +23,6 @@ void func_80388AA0(Actor *this);
 extern Struct_CCW_2270_0 D_8038ECD0[];
 extern ActorInfo D_8038ECE8 = { 0x1B1, 0x29E, 0x3E0, 0x0, NULL, func_80388AA0, func_80388AA0, func_803889AC, { 0x0, 0x0}, 0, 1.0f, { 0x0, 0x0, 0x0, 0x0}};
 
-/* .rodata */
-
 /* .code */
 void func_80388660(ActorMarker* marker, s32 arg1) {
     func_8038868C(marker_getActor(marker), arg1);
@@ -186,10 +184,10 @@ void func_80388AA0(Actor *this) {
         if (func_8033567C(this->unk148) == 0x177) {
             func_8033568C(this->unk148, &sp44, &sp40);
             if ((sp44 < 0.1) && (0.1 <= (f64) sp40)) {
-                func_8030E8B4(0x664EA05E, this->position, 0x05DC01F4);
+                func_8030E8B4(0x664EA05E, this->position, 0x05DC01F4); //todo: use FUNC macro
             }
             if ((sp44 < 0.8) && (0.8 <= (f64) sp40)) {
-                func_8030E8B4(0x664EA05D, this->position, 0x05DC01F4);
+                func_8030E8B4(0x664EA05D, this->position, 0x05DC01F4); //todo: use FUNC macro
             }
         }
     }
