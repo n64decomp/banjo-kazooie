@@ -1231,31 +1231,31 @@ enum sfx_e
     // 01-14 are getting slower and lower pitch
     SFX_180_MUMBO_TRANSFORMATION_03,
     // 01-14 are getting slower and lower pitch
-    SFX_MUMBO_TRANSFORMATION_04,
+    SFX_181_MUMBO_TRANSFORMATION_04,
     // 01-14 are getting slower and lower pitch
-    SFX_MUMBO_TRANSFORMATION_05,
+    SFX_182_MUMBO_TRANSFORMATION_05,
     // 01-14 are getting slower and lower pitch
-    SFX_MUMBO_TRANSFORMATION_06,
+    SFX_183_MUMBO_TRANSFORMATION_06,
     // 01-14 are getting slower and lower pitch
-    SFX_MUMBO_TRANSFORMATION_07,
+    SFX_184_MUMBO_TRANSFORMATION_07,
     // 01-14 are getting slower and lower pitch
-    SFX_MUMBO_TRANSFORMATION_08,
+    SFX_185_MUMBO_TRANSFORMATION_08,
     // 01-14 are getting slower and lower pitch
-    SFX_MUMBO_TRANSFORMATION_09,
+    SFX_186_MUMBO_TRANSFORMATION_09,
     // 01-14 are getting slower and lower pitch
-    SFX_MUMBO_TRANSFORMATION_10,
+    SFX_187_MUMBO_TRANSFORMATION_10,
     // 01-14 are getting slower and lower pitch
-    SFX_MUMBO_TRANSFORMATION_11,
+    SFX_188_MUMBO_TRANSFORMATION_11,
     // 01-14 are getting slower and lower pitch
-    SFX_MUMBO_TRANSFORMATION_12,
+    SFX_189_MUMBO_TRANSFORMATION_12,
     // 01-14 are getting slower and lower pitch
-    SFX_MUMBO_TRANSFORMATION_13,
+    SFX_18A_MUMBO_TRANSFORMATION_13,
     // 01-14 are getting slower and lower pitch
-    SFX_MUMBO_TRANSFORMATION_14,
-    SFX_EYRIE_MAMA,
-    SFX_SEXY_GRUNTY_TALKING_1,
-    SFX_SEXY_GRUNTY_TALKING_2,
-    SFX_FREEZE_FRAME,
+    SFX_18B_MUMBO_TRANSFORMATION_14,
+    SFX_18C_EYRIE_MAMA,
+    SFX_18D_SEXY_GRUNTY_TALKING_1,
+    SFX_18E_SEXY_GRUNTY_TALKING_2,
+    SFX_18F_FREEZE_FRAME,
     SFX_190_GULP = 0x0190,
     SFX_191_STATIC,
 

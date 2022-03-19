@@ -108,22 +108,3 @@ void func_8038950C(ActorMarker* marker, s32 arg1) {
 #pragma GLOBAL_ASM("asm/nonmatchings/CCW/code_1B20/func_8038954C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/CCW/code_1B20/func_803895F4.s")
-
-void func_80389700(s32 arg0, s32 arg1, s32 arg2) {
-    func_80324E88(0.5f);
-    func_80324E38(0.5f, 0);
-}
-
-#pragma GLOBAL_ASM("asm/nonmatchings/CCW/code_1B20/func_80389740.s")
-
-void func_80389798() {
-    func_8030E6D4(SFX_EYRIE_MAMA);
-}
-
-#pragma GLOBAL_ASM("asm/nonmatchings/CCW/code_1B20/func_803897B8.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/CCW/code_1B20/func_80389B24.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/CCW/code_1B20/func_80389BD8.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/CCW/code_1B20/func_80389BFC.s")

@@ -33,6 +33,7 @@ segments:
       - [0x950, c, code_950]
       - [0x14B0, c, code_14B0]
       - [0x1B20, c, code_1B20]
+      - [0x3310, c, code_3310] #DONE
       - [0x3DA0, c, code_3DA0] #DONE
       - [0x4530, c, code_4530] #DONE
       - [0x4960, c, code_4960] #DONE
@@ -63,6 +64,7 @@ segments:
       - [0x00008E80, bin, data_8E80] #.data, code_4D00]
       - [0x00008F10, .data, code_50D0]
       - [0x00008F60, bin, data_8F60]
+      - [0x00009750, .rodata, code_3310]
       - [0x00009770, .rodata, code_3DA0]
       - [0x000097B0, .rodata, code_4530]
       - [0x000097F0, .rodata, code_4960]
