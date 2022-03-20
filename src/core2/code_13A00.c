@@ -2,7 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-extern ParticleEmitter *func_802F4094(f32[3], f32);
 extern void func_802F494C(void *, f32);
 extern void func_802F4884(void *, s32, f32);
 extern f32  func_80294500(void);

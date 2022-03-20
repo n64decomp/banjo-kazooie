@@ -389,6 +389,8 @@ void func_802EFA20(ParticleEmitter *, f32, f32);
 
 
 ParticleEmitter *func_802F0D74(ParticleEmitter *);
+ParticleEmitter *func_802F4094(f32[3], f32);
+
 
 extern s32 func_802F9AA8(enum sfx_e);
 
