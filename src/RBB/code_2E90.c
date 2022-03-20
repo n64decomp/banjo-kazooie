@@ -138,7 +138,7 @@ void func_8038944C(Actor *this){
         if(this->state == 0){
             ml_vec3f_copy(&this->position, &local->unkC->unk4);
         }
-        local->unk0[0] = local->unk0[1] = local->unk0[2] = 0.0f;
+        local->unk0[0]  = local->unk0[1]  = local->unk0[2]  = 0.0f;
         local->unk10[0] = local->unk10[1] = local->unk10[2] = 0.0f;
         local->unk1C[0] = local->unk1C[1] = local->unk1C[2] = 0.0f;
 
@@ -180,8 +180,8 @@ void func_8038944C(Actor *this){
             }
         }
         this->pitch += (360.0f <= this->pitch)? -360 : 0;
-        this->yaw += (360.0f <= this->yaw)? -360 : 0;
-        this->roll += (360.0f <= this->roll)? -360 : 0;
+        this->yaw   += (360.0f <= this->yaw)? -360 : 0;
+        this->roll  += (360.0f <= this->roll)? -360 : 0;
 
         for(i = 0; i < 3; i++){//L803897B8
             if( local->unk10[i] < local->unk1C[i] ){

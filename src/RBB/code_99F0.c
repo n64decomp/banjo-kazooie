@@ -4,7 +4,7 @@
 
 
 u8 D_803912C8;
-f32 D_803912CC;
+/* static */f32 D_803912CC;
 
 #ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/RBB/code_99F0/func_8038FDE0.s")
