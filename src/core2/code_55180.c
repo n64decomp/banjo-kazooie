@@ -2,36 +2,23 @@
 #include "functions.h"
 #include "variables.h"
 
-Actor *func_802DC320(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
-void func_802DC45C(Actor *this);
+void func_802DC208(Actor *this);
 
-/* .data */
-extern ActorInfo D_8036804C = {
-    0x174, 0x1DB, 0x54C, 
-    0x1, NULL, 
-    func_802DC45C, func_80326224, func_802DC320,
-    { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+extern ActorInfo D_8037FE0 = {
+    0x1F6, 0x1E6, 0,
+    0, NULL,
+    func_802DC208, func_80326224, func_80325340,
+    { 0x0B, 0xB8}, 0, 0.0f, {0,0,0,0}
 };
 
-/* .code */
+// 000E 1070: 00 00 00 00 3E 4C CC CD  3E CC CC CD 3F 4C CC CD  ....>L.. >...?L..
+// 000E 1080: 3F 80 00 00 00 00 00 00  3C 23 D7 0A 3D CC CC CD  ?....... <#..=...
+// 000E 1090: 3D F5 C2 8F 00 00 00 00  3F 33 33 33 40 80 00 00  =....... ?333@...
+// 000E 10A0: 3F 80 00 00 00 00 00 00  00 00 00 00 00 00 00 00  ?....... ........
+
+
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_55180/func_802DC110.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_55180/func_802DC188.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_55180/func_802DC208.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_55180/func_802DC320.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_55180/func_802DC430.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_55180/func_802DC45C.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_55180/func_802DC4C4.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_55180/func_802DC528.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_55180/func_802DC560.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_55180/func_802DC5B8.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_55180/func_802DC604.s")
