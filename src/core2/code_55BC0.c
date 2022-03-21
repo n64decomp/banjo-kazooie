@@ -94,3 +94,16 @@ void func_802DCD78(s32 arg0, s32 arg1){
         func_802C3BF8(func_802DCD34);
     }
 }
+
+void func_802DCDB0(void){
+    D_8037DE84 = TRUE;
+}
+
+void func_802DCDC0(s32 arg0, s32 arg1) {
+    ActorMarker *temp_a0;
+
+    temp_a0 = D_8037DE80;
+    if (temp_a0 != 0) {
+        func_80326310(marker_getActor(temp_a0));
+    }
+}
