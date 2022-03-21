@@ -5,20 +5,51 @@
 void func_802DCA30(Actor *this);
 
 /* .data */
-extern ActorInfo D_803680DC = { 
+f32 D_803680D0[3] = {0.0f, 0.0f, 0.0f};
+ActorInfo D_803680DC = { 
     0x176, 0x1DD, 0x54E, 
     0x1, NULL, 
     func_802DCA30, func_80326224, func_802DC7E0, 
     { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
 };
 
+/* .bss */
+s32 D_8037DE70;
+
 /* .code */
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_55A90/func_802DCA20.s")
+void func_802DCA20(Actor *this){
+    D_8037DE70 = NULL;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_55A90/func_802DCA30.s")
+void func_802DCA30(Actor *this){
+    if(!this->initialized){
+        this->initialized = TRUE;
+        this->unk124_9 = 0;
+        actor_collisionOff(this);
+        func_803300D8(this->marker, func_802DCA20);
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_55A90/func_802DCA90.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_55A90/func_802DCAD4.s")
+void func_802DCA90(void) {
+    Actor *actor;
+    if (D_8037DE70 == 0) {
+        actor = func_8032813C(0x1DD, D_803680D0, 0);
+        D_8037DE70 = actor->marker;
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_55A90/func_802DCB0C.s")
+void func_802DCAD4(s32 arg0, s32 arg1){
+    if(D_8037DE70 == NULL){
+        func_802C3BF8(func_802DCA90);
+    }
+}
+
+void func_802DCB0C(s32 arg0, s32 arg1) {
+    ActorMarker *temp_a0;
+
+    temp_a0 = D_8037DE70;
+    if (temp_a0 != 0) {
+        func_80326310(marker_getActor(temp_a0));
+    }
+}
