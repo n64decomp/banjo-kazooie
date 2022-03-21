@@ -204,7 +204,7 @@ segments:
   - [0x55180, c, code_55180] #DONE
   - [0x55390, c, code_55390] #DONE
   - [0x556C0, c, code_556C0] #DONE
-  - [0x55850, c, code_55850]
+  - [0x55850, c, code_55850] #DONE
   - [0x55A90, c, code_55A90]
   - [0x55BC0, c, code_55BC0]
   - [0x57C70, c, code_57C70]
@@ -442,7 +442,8 @@ segments:
   - [0xE1050, bin, data_E1050] #.data, code_55180]
   - [0xE10B0, .data, code_55390]
   - [0xE10E0, .data, code_556C0]
-  - [0xE1110, bin, data_E1110]
+  - [0xE1110, .data, code_55850]
+  - [0xE1140, bin, data_E1140]
   - [0xE18D0, .data, code_66FB0]
   - [0xE1950, .data, gc/bound]
   - [0xE19A0, bin, data_E19A0]
