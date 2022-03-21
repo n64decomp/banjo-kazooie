@@ -91,7 +91,7 @@ void func_802DC528(s32 arg0, s32 arg1){
 void func_802DC560(s32 arg0, s32 arg1){
     if(D_8037DE40 != NULL){
         comusic_8025AB44(COMUSIC_31_GAME_OVER, 0, 200);
-        func_8025AABC(COMUSIC_31_GAME_OVER);
+        func_8025AABC(0x31);
         func_80326310(marker_getActor(D_8037DE40));
     }
 }

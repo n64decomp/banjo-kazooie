@@ -678,7 +678,7 @@ enum comusic_e
     MUSIC_TOOTY,
     MUSIC_BEACH,
     JINGLE_JINJOATOR_FINAL_HIT,
-    JINGLE_GOOD_ENDING = 0xAC
+    COMUSIC_AC_GOOD_ENDING = 0xAC
 };
 
 // SFXR_ = Repeating SFX

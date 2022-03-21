@@ -2,23 +2,87 @@
 #include "functions.h"
 #include "variables.h"
 
+extern bool func_8024DB50(f32[3], f32);
+
 void func_802DC208(Actor *this);
 
-extern ActorInfo D_8037FE0 = {
+/* .data */
+ActorInfo D_8037FE0 = {
     0x1F6, 0x1E6, 0,
     0, NULL,
     func_802DC208, func_80326224, func_80325340,
     { 0x0B, 0xB8}, 0, 0.0f, {0,0,0,0}
 };
 
-// 000E 1070: 00 00 00 00 3E 4C CC CD  3E CC CC CD 3F 4C CC CD  ....>L.. >...?L..
-// 000E 1080: 3F 80 00 00 00 00 00 00  3C 23 D7 0A 3D CC CC CD  ?....... <#..=...
-// 000E 1090: 3D F5 C2 8F 00 00 00 00  3F 33 33 33 40 80 00 00  =....... ?333@...
-// 000E 10A0: 3F 80 00 00 00 00 00 00  00 00 00 00 00 00 00 00  ?....... ........
+struct40s D_80368004 = {
+    {{0.2f, 0.4f}, 
+    {0.8f, 1.0f},
+    {0.0f, 0.01f}, 
+    {0.1f, 0.12f},
+    0.0f, 0.7f},
+    4.0f, 1.0f
+};
+ 
+ /* .rodata */
+extern f64 D_80376EF0;
+
+/* .code */
+void func_802DC110(f32 *position, enum asset_e sprite_id) {
+    ParticleEmitter *pCtrl;
+
+    pCtrl = partEmitList_pushNew(1);
+    particleEmitter_setSprite(pCtrl, sprite_id);
+    particleEmitter_setStartingFrameRange(pCtrl, 1, 6);
+    particleEmitter_setPosition(pCtrl, position);
+    func_802EFA70(pCtrl, 0x10);
+    func_802EFC28(pCtrl, &D_80368004);
+}
+
+bool func_802DC188(void) {
+    f32 sp1C[3];
+
+    func_8028EF68(sp1C);
+    if((sp1C[0] == 0.0) && (sp1C[1] == -1.0) && (sp1C[2] == 0.0)) {
+        return FALSE;
+    }
+    return TRUE;
+}
 
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_55180/func_802DC110.s")
+void func_802DC208(Actor *this) {
+    f32 sp2C[3];
+    enum asset_e phi_a1;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_55180/func_802DC188.s")
+    if (!this->unk16C_4) {
+        this->unk16C_4 = TRUE;
+        actor_collisionOff(this);
+        this->marker->propPtr->unk8_3 = TRUE;
+    }
+    if( func_8024DB50(this->position, 50.0f) 
+        && func_802DC188() 
+        && !(func_8023DB5C() & 0x1F) 
+        && randf() < 0.1
+    ){
+        switch((s32)this->yaw){
+            case 0:
+                phi_a1 = ASSET_710_SPRITE_SPARKLE_PURPLE;
+                break;
+            
+            case 1:
+                phi_a1 = ASSET_711_SPRITE_SPARKLE_DARK_BLUE;
+                break;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_55180/func_802DC208.s")
+            case 2:
+                phi_a1 = 0x712;
+                break;
+
+            default:
+                phi_a1 = ASSET_711_SPRITE_SPARKLE_DARK_BLUE;
+                break;
+        }
+        sp2C[0] = this->position[0];
+        sp2C[1] = this->position[1];
+        sp2C[2] = this->position[2];
+        func_802DC110(sp2C, phi_a1);
+    }
+}
