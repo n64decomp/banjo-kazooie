@@ -150,7 +150,7 @@ Actor *func_802DD188(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     Actor *sp6C;
     f32 sp60[3];
     f32 sp54[3];
-    Gfx *sp50;
+    void *sp50;
 
     sp6C = marker_getActor(marker);
     sp50 = func_8030C704();
