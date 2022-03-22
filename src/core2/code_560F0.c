@@ -13,6 +13,15 @@ BKAnimationList *func_8033A0D4(BKModelBin *arg0);
 extern void func_8034BB08(s32);
 extern void func_803458E4(f32[4], f32[4], f32[4], f32);
 
+/* .extern symbols??? */
+extern u8 D_8037DCC0[7];
+extern u8 D_8037DCC7;
+extern u8 D_8037DCC8;
+extern u8 D_8037DCC9;
+extern u8 D_8037DCCA;
+extern u8 D_8037DCCB;
+extern u8 D_8037DCCC;
+
 typedef struct {
     f32 unk0;
 }ActorLocal_core2_560F0;
@@ -20,7 +29,7 @@ typedef struct {
 typedef struct{
     s32 unk0;
     s32 unk4; //text_id
-    u8 pad8[0x4];
+    s32 unk8;
     s32 anim_id;
 }Struct_core2_560F0_0;
 
@@ -43,28 +52,48 @@ Actor *func_802DD188(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void func_802DE4CC(Actor *this);
 
 /* .data */
-extern Struct_core2_560F0_0 D_803681A0[];
-extern ActorAnimationInfo D_80368220[];
-extern f32 D_80368250;
-extern s32 D_80368254[20];
-extern s32 D_803682A4[4];
-extern s32 D_803682B4[4];
-extern f32 D_803682C4[3];
-extern ActorInfo D_803682D0 = {
+Struct_core2_560F0_0 D_803681A0[] = {
+    {0x00, 0x000, 0, 0x211},
+    {0x63, 0xE27, 0, 0x2C1},
+    {0x63, 0xE29, 0, 0x2C2},
+    {0x63, 0xE2B, 0, 0x2C9},
+    {0x63, 0xE2D, 0, 0x2C3},
+    {0x63, 0xE2F, 0, 0x2C4},
+    {0x63, 0xE31, 0, 0x2C5},
+    {0x4B, 0xE34, 0, 0x007}
+};
+
+ActorAnimationInfo D_80368220[] ={
+    {0x000, 0.0f},
+    {0x211, 9000000000.0f},
+    {0x211, 2.0f},
+    {0x211, 9000000000.0f},
+    {0x211, 9000000000.0f},
+    {0x211, 9000000000.0f},
+};
+
+f32 D_80368250 = 0.999388993f;
+
+s32 D_80368254[20] = {
+    0x3C, 0x3D, 0x3F, 0x40,
+    0x42, 0x41, 0x43, 0x3A,
+    0x32, 0x30, 0x2E, 0x3E,
+    0x2A, 0x33, 0x2F, 0x31,
+    0x2D, 0x34, 0x3B, 0x39
+};
+
+s32 D_803682A4[4] = {0xD8, 0xD8, 0xD8, 0xFF};
+s32 D_803682B4[4] = {0xFF, 0x60, 0x50, 0xFF};
+f32 D_803682C4[3] = {0.0f, 0.0f, 0.0f};
+
+ActorInfo D_803682D0 = {
     0x179, 0x1E0, 0x46C,
     0x1, D_80368220,
     func_802DE4CC, func_80326224, func_802DD188,
     { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
 };
 
-/* .extern symbols??? */
-extern u8 D_8037DCC0[7];
-extern u8 D_8037DCC7;
-extern u8 D_8037DCC8;
-extern u8 D_8037DCC9;
-extern u8 D_8037DCCA;
-extern u8 D_8037DCCB;
-extern u8 D_8037DCCC;
+
 
 /* .bss */
 ActorMarker *D_8037DEA0;
