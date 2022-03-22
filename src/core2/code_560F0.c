@@ -57,18 +57,7 @@ extern ActorInfo D_803682D0 = {
     { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
 };
 
-/* .rodata */
-extern f32 D_80376F30;
-extern f32 D_80376F34;
-extern f32 D_80376F38;
-
-// D_80376F80;
-
-/* .bss */
-extern ActorMarker *D_8037DEA0;
-extern BKModelBin *D_8037DEA4;
-extern BKModelBin *D_8037DEA8;
-extern BKModel *D_8037DEAC;
+/* .extern symbols??? */
 extern u8 D_8037DCC0[7];
 extern u8 D_8037DCC7;
 extern u8 D_8037DCC8;
@@ -76,19 +65,24 @@ extern u8 D_8037DCC9;
 extern u8 D_8037DCCA;
 extern u8 D_8037DCCB;
 extern u8 D_8037DCCC;
-extern s32 D_8037DEB0;
-extern s32 D_8037DEB4;
-extern Struct_core2_560F0_1 *D_8037DEB8;
-extern Struct_core2_560F0_1 *D_8037DEBC;
-extern Struct_core2_560F0_1 *D_8037DEC0;
-extern Struct_core2_560F0_1 *D_8037DEC4;
-extern f32 D_8037DEC8[];
-extern f32 D_8037DF18[];
-extern s32 D_8037DF68;
-extern f32 D_8037DF70[3];
-extern f32 D_8037DF80[3];
-extern s32 D_8037DF90[];
 
+/* .bss */
+ActorMarker *D_8037DEA0;
+BKModelBin *D_8037DEA4;
+BKModelBin *D_8037DEA8;
+BKModel *D_8037DEAC;
+s32 D_8037DEB0;
+s32 D_8037DEB4;
+Struct_core2_560F0_1 *D_8037DEB8;
+Struct_core2_560F0_1 *D_8037DEBC;
+Struct_core2_560F0_1 *D_8037DEC0;
+Struct_core2_560F0_1 *D_8037DEC4;
+f32 D_8037DEC8[20];
+f32 D_8037DF18[20];
+s32 D_8037DF68;
+f32 D_8037DF70[3];
+f32 D_8037DF80[3];
+s32 D_8037DF90[20];
 
 /* .code */
 void func_802DD080(Gfx **gfx, Mtx **mtx) {
