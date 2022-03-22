@@ -26,10 +26,10 @@ void func_802E1790(void);
 void func_802C3BDC(void);
 void func_802C3BE8(void);
 
-void func_802D7558(s32 *, s32, ActorInfo*, u32);
-void func_802D75B4(s32 *, s32, ActorInfo*, u32);
-void func_802D7610(s32 *, s32, ActorInfo*, u32);
-void func_802DEB18(s32 *, s32, ActorInfo*, u32);
+Actor *func_802D7558(s32 *, s32, ActorInfo*, u32);
+Actor *func_802D75B4(s32 *, s32, ActorInfo*, u32);
+Actor *func_802D7610(s32 *, s32, ActorInfo*, u32);
+Actor *func_802DEB18(s32 *, s32, ActorInfo*, u32);
 
 extern ActorInfo D_80365E58; //banjo.without_right_hand
 extern ActorInfo D_80365EAC; //banjo.playing_gameboy

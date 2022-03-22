@@ -208,7 +208,7 @@ segments:
   - [0x55A90, c, code_55A90] #DONE
   - [0x55BC0, c, code_55BC0] #DONE
   - [0x55E20, c, code_55E70] #DONE
-  - [0x560F0, c, code_560F0]
+  - [0x560F0, c, code_560F0] #DONE
   - [0x57C70, c, code_57C70]
   - [0x581D0, c, code_581D0]
   - [0x584D0, c, code_584D0]
@@ -592,7 +592,8 @@ segments:
   - [0xEFF70, .rodata, code_55390]
   - [0xEFF80, .rodata, code_55BC0]
   - [0xEFF90, .rodata, code_55E70]
-  - [0xEFFA0, bin, data_EFFA0]
+  - [0xEFFA0, .rodata, code_560F0]
+  - [0xF0010, bin, data_F0010]
   #- [0xF0180, .rodata, code_5BEB0]
   - [0xF0180, bin, data_F0180]
   - [0xF0200, .rodata, code_66FB0]

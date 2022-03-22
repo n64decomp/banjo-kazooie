@@ -689,4 +689,14 @@ typedef struct {
     f32 unk14;
 } Struct5Fs;
 
+typedef struct {
+    u8 pad0[0x58];
+    f32 unk58[3];
+} Struct60s;
+
+typedef struct {
+    Struct60s *unk0;
+    u8 pad4[0xC];
+} Struct61s;
+
 #endif
