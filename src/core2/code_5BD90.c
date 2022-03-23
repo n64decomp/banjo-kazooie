@@ -5,7 +5,7 @@
 void func_802E2D20(Actor *this);
 
 /* .data */
-extern ActorInfo D_803687C0 = {
+ActorInfo D_803687C0 = {
     0xB3, 0x126, 0x379,
     0x1, NULL, 
     func_802E2D20, func_80326224, func_80325888, 
@@ -13,4 +13,27 @@ extern ActorInfo D_803687C0 = {
 };
 
 /* code */
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5BD90/func_802E2D20.s")
+void func_802E2D20(Actor *this){
+    switch(this->state){
+        case 1:
+            this->position[0] += this->velocity[0];
+            this->position[1] += this->velocity[1];
+            this->position[2] += this->velocity[2];
+
+            this->velocity[1] += -3.0f;
+
+            this->pitch += 10.0f;
+            if( 360.0f <= this->pitch)
+                this->pitch -= 360.0f;
+
+            if(this->position_y <= func_80309724(this->position)){
+                func_80328A84(this, 2);
+                FUNC_8030E8B4(SFX_1D_HITTING_AN_ENEMY_1, 0x3ff, 0x3ff, this->position, 2250, 4500);
+            }
+            break;
+
+        case 2:
+            func_80326310(this);
+            break;
+    }
+}

@@ -22,31 +22,35 @@ Actor *func_802E1AC0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx); //ch
 void func_802E20E8(Actor *this); //chSirSlush_update
 
 /* .data */
-extern ActorAnimationInfo D_80368650[] = {
+ActorAnimationInfo D_80368650[] = {
     {0, 0.0f},
     {ASSET_108_ANIM_SIR_SLUSH_IDLE,   0.8f},
     {ASSET_109_ANIM_SIR_SLUSH_ATTACK, 4.0f},
     {ASSET_220_ANIM_SIR_SLUSH_DIE,    1.6f}
 };
 
-extern ActorInfo D_80368670 = { 0xB1, ACTOR_124_SIR_SLUSH, ASSET_377_MODEL_SIR_SLUSH, 1, D_80368650,
+ActorInfo D_80368670 = { 
+    0xB1, ACTOR_124_SIR_SLUSH, ASSET_377_MODEL_SIR_SLUSH,
+    1, D_80368650,
     func_802E20E8, func_80326224, func_802E1AC0,
     {0,0}, 0x199, 0.0f, {0,0,0,0}
 };
-extern struct31s D_80368694;
-extern struct43s D_803686BC;
-extern f32 D_80368704[3];
 
-/* .rodata */
-extern f32 D_803770A0;
-extern f64 D_803770A8;
-extern f64 D_803770B0;
-extern f32 D_803770B8;
-extern f32 D_803770BC;
-extern f32 D_803770C0;
-extern f32 D_803770C4;
-extern f32 D_803770C8;
+struct31s D_80368694 = {
+    {0.4f, 1.55f},
+    {0.0f, 0.0f},
+    {0.0f, 0.01f},
+    {4.0f, 4.0f},
+    0.0f, 0.3f
+};
 
+struct43s D_803686BC = {
+    {{-250.0f, 600.0f}, {-250.0f, 350.0f}, {960.0f, 350.0f}},
+    {{0.0f, -1200.0f, 0.0f}, {0.0f, -1200.0f, 0.0f}},
+    {{-80.0f, 0.0f, -80.0f}, {80.0f, 200.0f, 80.0f}}
+};
+
+f32 D_80368704[3] = {350.0f, 600.0f, 65.0f};
 
 /* .code */
 Actor *func_802E1AC0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
@@ -128,7 +132,7 @@ void func_802E1DA0(Actor *this){
     ActorLocal_chSirSlush *local = (ActorLocal_chSirSlush *) &this->local;
     func_80328B8C(this, 1, 0.01f, 1);
     actor_loopAnimation(this);
-    local->unk4 = D_803770A0;
+    local->unk4 = 0.4f;
 }
 
 void func_802E1DE8(Actor *this){
@@ -276,7 +280,7 @@ void func_802E20E8(Actor *this){
                 func_802E1DE8(this);
             }//L802E240C
             else if( 
-                D_803770A8 < func_802877D8(this->animctrl)
+                0.98 < func_802877D8(this->animctrl)
                 || !func_802E1EB4(this, 0x1f4, 0xabe)
                 || func_8028EE84() == 2
                 || func_802E208C()
@@ -284,7 +288,7 @@ void func_802E20E8(Actor *this){
                 func_802E1DA0(this);
             }
             else{
-                if(func_802877D8(this->animctrl) < D_803770B0){
+                if(func_802877D8(this->animctrl) < 0.45){
                     func_802E1E20(this, 6.0f);
                 }
                 if( actor_animationIsAt(this, 0.19f)
@@ -294,7 +298,7 @@ void func_802E20E8(Actor *this){
                     func_8030E8B4(0xA63190A7, this->position, 0x0BEA0320);
                 }//L802E24FC
                 if(actor_animationIsAt(this, 0.15f)){
-                    func_8030E878(0x3f5, randf2(D_803770B8, 1.5f),32000, this->position, 800.0f, D_803770BC);
+                    func_8030E878(0x3f5, randf2(1.35f, 1.5f),32000, this->position, 800.0f, 3050.0f);
                 }//L802E2558
 
                 if(actor_animationIsAt(this, 0.45f)){
@@ -304,7 +308,7 @@ void func_802E20E8(Actor *this){
                     actor_animationIsAt(this, 0.58f)
                     && local->unkB
                 ){
-                    func_8030E878(SFX_8F_SNOWBALL_FLYING, randf2(D_803770C0, D_803770C4), 30000, this->position, 800.0f, D_803770C8);
+                    func_8030E878(SFX_8F_SNOWBALL_FLYING, randf2(0.95f, 1.05f), 30000, this->position, 800.0f, 3050.0f);
                     func_802C3C88(func_802E1B24, this->marker);
                     local->unk9 = FALSE;
                 }
