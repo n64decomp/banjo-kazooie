@@ -212,7 +212,7 @@ segments:
   - [0x57C70, c, code_57C70] #DONE
   - [0x581D0, c, code_581D0] #DONE
   - [0x584D0, c, code_584D0] #DONE
-  - [0x59780, c, code_59780]
+  - [0x59780, c, code_59780] #DONE
   - [0x599E0, c, code_599E0]
   - [0x59A80, c, code_59A80]
   - [0x59D40, c, code_59D40]
