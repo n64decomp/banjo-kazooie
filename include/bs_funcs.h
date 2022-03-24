@@ -164,11 +164,11 @@ void bsblongleg_exit_end(void);
 void func_802A3F9C(void);
 void func_802A411C(void);
 void func_802A4404(void);
-//BS_DIVE_IDLE(void);
+//BS_2B_DIVE_IDLE(void);
 void func_802A762C(void);
 void func_802A7674(void);
 void func_802A7718(void);
-//BS_DIVE_B(void);
+//BS_2C_DIVE_B(void);
 void func_802A7738(void);
 void func_802A7838(void);
 void func_802A7A2C(void);
@@ -176,7 +176,7 @@ void func_802A7A2C(void);
 void func_802B5774(void);
 void func_802B5950(void);
 void func_802B5AF8(void);
-//BS_SWIM(void);
+//BS_2E_SWIM(void);
 void func_802B5B18(void);
 void func_802B5C40(void);
 void func_802B5E10(void);
@@ -184,7 +184,7 @@ void func_802B5E10(void);
 void bsjump_fall_init(void);
 void bsjump_fall_update(void);
 void bsjump_fall_end(void);
-//BS_DIVE_ENTER
+//BS_30_DIVE_ENTER
 void func_802A7DAC(void);
 void func_802A7E2C(void);
 void func_802A7F4C(void);
@@ -218,7 +218,7 @@ void bsant_walk_end(void);
 void bsant_jump_init(void);
 void bsant_jump_update(void);
 void bsant_jump_end(void);
-//BS_DIVE_A
+//BS_39_DIVE_A
 void func_802A7A54(void);
 void func_802A7AB0(void);
 void func_802A7BA8(void);

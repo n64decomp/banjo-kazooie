@@ -18,8 +18,13 @@ void func_802888C0(s32 arg0, s32 arg1);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_1930/func_802888C0.s")
 #else
 void func_802888C0(s32 arg0, s32 arg1){
-    f32 f0 = reinterpret_cast(f32, arg1);
-    func_8031B908((u8)(arg0 >> 16), (u8)(arg0 >> 8), (u8)(arg0 >> 0), f0);
+    u8 sp1C[3];
+    f32 f0;
+    f0 = reinterpret_cast(f32, arg1);
+    sp1C[0] = (u8)(arg0 >> 16);
+    sp1C[1] = (u8)(arg0 >> 8);
+    sp1C[2] = (u8)(arg0 >> 0);
+    func_8031B908(sp1C[0], sp1C[1], sp1C[2], f0);
 }
 #endif
 
@@ -47,8 +52,19 @@ void func_802889C8(s32 arg0, s32 arg1){
     func_802BB3AC(arg0, f0);
 }
 
-void func_802889F4(s32);
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_1930/func_802889F4.s")
+void func_802889F4(s32 arg0) {
+    s32 sp18;
+    s32 temp_t6;
+    s32 phi_a3;
+
+    phi_a3 = arg0 >> 0x10;
+    if( !(phi_a3 == 0xF2 && map_get() == MAP_91_FILE_SELECT && func_802C5A30() != 0) 
+        && !((phi_a3 == 0x21 || phi_a3 == 0x3ED) && map_get() == MAP_91_FILE_SELECT && (func_802C5A30() == 1))
+    ){
+        func_8030E6A4(phi_a3, (f32) ((f64) ((arg0 >> 8) & 0xFF) * 0.0078125), (s32) ((f64) (arg0 & 0xFF) * 128.0));
+    }
+}
+
 
 void func_80288AE0(s32 arg0){
     func_8025A6EC((u16) (arg0 >> 16), (u16)arg0 - 1);

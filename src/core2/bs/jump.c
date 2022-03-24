@@ -50,7 +50,7 @@ void bsjump_init(void){
         D_8037D4C0 = 1;
     } 
     else {
-        D_8037D4C1 = (sp30 == BS_2D_SWIM_IDLE) || (sp30 == BS_SWIM);
+        D_8037D4C1 = (sp30 == BS_2D_SWIM_IDLE) || (sp30 == BS_2E_SWIM);
         animctrl_reset(aCtrl);
         animctrl_setIndex(aCtrl, ANIM_BANJO_JUMP);
         animctrl_setDuration(aCtrl, 1.9f);

@@ -4,6 +4,7 @@
 
 
 extern f32 func_80309724(f32[3]);
+extern f32 func_80257204(f32, f32, f32, f32);
 
 typedef struct {
     f32 unk0;
@@ -120,13 +121,53 @@ void func_80360130(Actor *this){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D89E0/func_80360198.s")
 
-f32 func_803603AC(Actor *this, s32 arg1, s32 arg2);
+#ifndef NONMATCHING
+f32 func_803603AC(Actor *this, s32 arg1, u8 arg2);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D89E0/func_803603AC.s")
+#else
+f32 func_803603AC(Actor *this, s32 arg1, u8 arg2){
+    f32 sp20[3];
+    f32 dx;
+    f32 dy;
+    f32 dz;
+    f32 num;
+    f32 den;
+    f32 phi_f2;
+
+    switch (arg2) {
+    case 1:
+        player_getPosition(sp20);
+        break;
+
+    case 2:
+        sp20[0] = this->unk1C[0];
+        sp20[1] = this->unk1C[1];
+        sp20[2] = this->unk1C[2];
+        break;
+    }
+    
+    dy =  (this->position[1] - sp20[1]);
+    num = dy - (f32)arg1;
+    dx =  (this->position[0] - sp20[0]);
+    dz =  (this->position[2] - sp20[2]);
+    den = dx*dx + dz*dz;
+    if(num == 0.0 || den == 0.0)
+        return 0.0f;
+    phi_f2 = -num/den;
+
+    if (phi_f2 >= 4.0f) {
+        phi_f2 = 4.0f;
+    } else if (phi_f2 <= -4.0f) {
+        phi_f2 = -4.0f;
+    }
+    return phi_f2;
+}
+#endif
 
 int func_803604E8(Actor *this){
     f32 tmp_f0;
     this->yaw_moving = (f32) func_80329784(this);
-    tmp_f0 = func_803603AC(this, 0xAA, 1);
+    tmp_f0 = func_803603AC(this, 170, 1);
     func_8035FFAC(this, tmp_f0);
     if(!func_80360198(this)){
         return 0;
@@ -134,7 +175,54 @@ int func_803604E8(Actor *this){
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D89E0/func_8036054C.s")
+bool func_8036054C(Actor *this) {
+    s32 phi_v0;
+    s32 phi_s1;
+    s32 phi_s2;
+
+    if (this->unk60 == 0.0f) {
+        this->yaw_moving = func_80257204(this->position[0], this->position[2], this->unk1C[0], this->unk1C[2]);
+        func_8035FFAC(this, func_803603AC(this, -110, 2));
+    }
+    else{
+        func_80328FB0(this, 5.0f);
+        func_80360044(this);
+        if (func_80329480(this) != 0) {
+            this->unk60 = 0.0f;
+        } else {
+            return TRUE;
+        }
+    }
+    for(phi_s2 = 0; !func_80360198(this) && phi_s2 < 1; phi_s2++){
+        this->unk60 = 45.0f;
+        func_80328CEC(this, (s32) this->yaw, 90, 180);
+        phi_s1 = 0;
+        do{
+            if (this->unk38_0) {
+                phi_v0 = func_80329140(this, (s32) this->yaw_moving, 0xC8);
+            } else {
+                phi_v0 = func_80329078(this, (s32) this->yaw_moving, 0xC8);
+            }
+
+            if(phi_v0 == 0){
+                phi_s1++;
+                this->yaw_moving += 30.0f;
+                if (this->yaw_moving >= 360.0f) {
+                    this->yaw_moving -= 360.0f;
+                }
+            }
+        } while ( phi_v0 == 0 && phi_s1 < 0xC);
+    }
+    if (this->position[1] < (this->unk1C[1] + -110.0f)) {
+        this->velocity[1] = 1.0f;
+    } else {
+        this->velocity[1] = (f32) randi2(0, 0);
+    }
+    if (this->position[1] <= func_80309724(this->position)) {
+        this->velocity[0] = 3.0f;
+    }
+    return TRUE;
+}
 
 void func_80360790(ActorMarker *this_marker, ActorMarker *other_marker){
     Actor *this = marker_getActor(this_marker);

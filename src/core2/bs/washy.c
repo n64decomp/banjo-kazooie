@@ -48,7 +48,6 @@ void func_802B9ACC(void){
     func_802B9980(0);
 }
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_329F0/func_802B9B14.s")
 void func_802B9B14(void){
     s32 next_state = 0;
     s32 sp18;

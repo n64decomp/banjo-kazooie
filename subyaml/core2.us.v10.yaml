@@ -37,6 +37,7 @@ segments:
   - [0x2890, c, code_2890] #DONE
   - [0x3480, c, code_3480] #DONE
   - [0x39D0, c, code_39D0]
+  - [0x47C0, c, code_47C0] #DONE
   - [0x6B30, c, code_6B30]
   - [0x7060, c, code_7060] 
   - [0x9450, c, code_9450] #DONE
@@ -132,7 +133,7 @@ segments:
   - [0x2FAB0, c, bs/twirl]    #DONE
   - [0x2FD70, c, bs/walk]
   - [0x30E70, c, bs/walrus]
-  - [0x329F0, c, code_329F0] #DONE
+  - [0x329F0, c, bs/washy] #DONE
   - [0x32DB0, c, code_32DB0] #DONE
   - [0x33250, c, code_33250]
   - [0x33AB0, c, code_33AB0]
@@ -376,7 +377,7 @@ segments:
   - [0xDA3A0, c, code_DA3A0] #DONE
   - [0xDA760, c, code_DA760] #DONE
   - [0xDAAA0, c, code_DAAA0]
-  - [0xDB010, c, code_DB010]
+  - [0xDB010, c, code_DB010] #DONE
   - [0xDC4B0, c, code_DC4B0] #DONE
 - type: code
   name: data
@@ -385,7 +386,7 @@ segments:
   vram:  0x80363590
   subsegments:
   - [0xDC600, bin, data_DC600]
-  - [0xDC6A0, .data, code_39D0]
+  - [0xDC6A0, .data, code_47C0]
   - [0xDC700, bin, data_DC700]
   - [0xDC810, .data, code_BB50]
   - [0xDC860, .data, code_C0E0]
@@ -496,12 +497,14 @@ segments:
   - [0xEC1A0, .data, code_DA3A0]
   - [0xEC220, .data, code_DA760]
   - [0xEC250, bin, code_EC250]
+  - [0xEC350, bin, code_EC350] #.data, code_DB010.c]
   - [0xECE30, .data, code_DC4B0]
   - [0xECE60, ".rodata", animctrl]
   - [0xECE90, .rodata, code_AD0]
   - [0xECEA0, .rodata, code_1930]
   - [0xECEC0, bin, data_ECEC0]
-  - [0xECFE0, .rodata, code_39D0]
+  - [0xECF50, .rodata, code_39D0]
+  - [0xECFE0, .rodata, code_47C0]
   - [0xED410, .rodata, code_6B30]
   - [0xED500, bin, data_ED500]
   - [0xED630, .rodata, code_9450]
@@ -566,7 +569,7 @@ segments:
   - [0xEEBC0, .rodata, bs/twirl]
   - [0xEEBE0, .rodata, bs/walk]
   - [0xEEC70, bin, data_EEC70]
-  - [0xEECD0, .rodata, code_329F0]
+  - [0xEECD0, .rodata, bs/washy]
   - [0xEED30, .rodata, code_32DB0]
   - [0xEED80, bin, data_EED80]
   - [0xEF040, ".rodata", code_3BB80]
@@ -663,7 +666,5 @@ segments:
   - [0xF2AD0, .rodata, ch/whipcrack]
   - [0xF2AF0, .rodata, code_DA3A0]
   - [0xF2B00, .rodata, code_DA760]
-  - [0xF2B20, bin, data_F2B20]
-  - [0xF2B30, .rodata, code_DB010] #code_DB010 - func_80362E94
-  #- [0xF2BC0, bin, data_F2BC0]
+  - [0xF2B20, .rodata, code_DB010]
 - [0xf2c00] # core2 end

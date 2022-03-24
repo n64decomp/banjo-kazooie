@@ -476,7 +476,7 @@ void func_80296608(void){
                         sp24 = BS_2D_SWIM_IDLE;
                         break;
                     case 2:
-                        sp24 = BS_DIVE_IDLE;
+                        sp24 = BS_2B_DIVE_IDLE;
                         break;
                     case 0://L80296B0C
                         if(func_8028B2E8())

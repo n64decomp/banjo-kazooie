@@ -3,6 +3,9 @@
 #include "variables.h"
 
 extern int func_8024DB50(f32[3], f32 );
+extern void func_802EFF5C(ParticleEmitter *, f32, f32, f32);
+extern void func_802EFF7C(ParticleEmitter *, f32, f32, f32);
+extern void func_802EFF9C(ParticleEmitter *, f32);
 
 void func_80363310(Actor *this);
 void func_80363330(Actor *this);
@@ -24,37 +27,65 @@ extern ActorInfo D_803732E0= {
     {0,0}, 0, 0.0f, {0,0,0,0}
 }; 
 
+extern struct40s D_80373304;
 // 000E C370:             3E CC CC CD  3F B3 33 33 00 00 00 00
 // 000E C380: 00 00 00 00 00 00 00 00  3C 23 D7 0A 40 80 00 00
 // 000E C390: 40 80 00 00 3F 00 00 00  3F 33 33 33 40 80 00 00
-// 000E C3A0: 41 70 00 00 C3 7A 00 00  44 16 00 00 C3 7A 00 00
+// 000E C3A0: 41 70 00 00 
+
+extern struct43s D_80373334;
+//                        C3 7A 00 00  44 16 00 00 C3 7A 00 00
 // 000E C3B0: 43 AF 00 00 44 70 00 00  43 AF 00 00 00 00 00 00
 // 000E C3C0: C4 96 00 00 00 00 00 00  00 00 00 00 C4 96 00 00
 // 000E C3D0: 00 00 00 00 C2 70 00 00  C1 F0 00 00 C2 70 00 00
-// 000E C3E0: 42 70 00 00 41 F0 00 00  42 70 00 00 00 00 00 32
-// 000E C3F0: 00 00 00 FF 00 00 00 32  3E 99 99 9A 3C F5 C2 8F
+// 000E C3E0: 42 70 00 00 41 F0 00 00  42 70 00 00 
+
+extern s32 D_8037337C[3] = {50, 255, 50};
+
+extern struct40s D_80373388;
+//                                     3E 99 99 9A 3C F5 C2 8F
 // 000E C400: 3F 00 00 00 3F 00 00 00  00 00 00 00 3C 23 D7 0A
 // 000E C410: 3F C0 00 00 40 00 00 00  3D 75 C2 8F 3F 33 33 33
-// 000E C420: 40 80 00 00 3F 80 00 00  C0 A0 00 00 42 C8 00 00
+// 000E C420: 40 80 00 00 3F 80 00 00  
+
+extern struct42s D_803733B8;
+//                                     C0 A0 00 00 42 C8 00 00
 // 000E C430: C0 A0 00 00 40 A0 00 00  42 C8 00 00 40 A0 00 00
 // 000E C440: C2 70 00 00 00 00 00 00  C2 70 00 00 42 70 00 00
-// 000E C450: 40 A0 00 00 42 70 00 00  00 00 00 B4 00 00 00 E6
-// 000E C460: 00 00 00 FF 3F 80 00 00  3F E6 66 66 40 0C CC CD
+// 000E C450: 40 A0 00 00 42 70 00 00  
+
+extern s32 D_803733E8[3] = {0xb4, 0xe6, 0xff};
+
+
+extern struct40s D_803733F4;
+//                        3F 80 00 00  3F E6 66 66 40 0C CC CD
 // 000E C470: 40 2C CC CD 00 00 00 00  3C 23 D7 0A 3F 4C CC CD
 // 000E C480: 3F 99 99 9A 3E D1 EB 85  3F 3A E1 48 40 80 00 00
-// 000E C490: 41 70 00 00 C3 96 00 00  44 16 00 00 C3 96 00 00
+// 000E C490: 41 70 00 00 
+
+extern struct43s D_80373424;
+//                        C3 96 00 00  44 16 00 00 C3 96 00 00
 // 000E C4A0: 43 96 00 00 44 7A 00 00  43 96 00 00 00 00 00 00
 // 000E C4B0: C4 96 00 00 00 00 00 00  00 00 00 00 C4 C8 00 00
 // 000E C4C0: 00 00 00 00 C1 20 00 00  00 00 00 00 C1 20 00 00
-// 000E C4D0: 41 20 00 00 00 00 00 00  41 20 00 00 3E 99 99 9A
+// 000E C4D0: 41 20 00 00 00 00 00 00  41 20 00 00 
+
+extern struct40s D_8037346C;
+//                                                 3E 99 99 9A
 // 000E C4E0: 3E CC CC CD 3F 00 00 00  3F 00 00 00 00 00 00 00
 // 000E C4F0: 3C 23 D7 0A 3F 4C CC CD  3F 99 99 9A 3F 68 F5 C3
-// 000E C500: 3F 7D 70 A4 40 80 00 00  41 90 00 00 C3 48 00 00
+// 000E C500: 3F 7D 70 A4 40 80 00 00  41 90 00 00
+
+extern struct43s D_8037349C;
+//                                                 C3 48 00 00
 // 000E C510: 44 61 00 00 C3 48 00 00  43 48 00 00 44 AF 00 00
 // 000E C520: 43 48 00 00 00 00 00 00  C4 E1 00 00 00 00 00 00
 // 000E C530: 00 00 00 00 C5 16 00 00  00 00 00 00 C1 20 00 00
 // 000E C540: C1 A0 00 00 C1 20 00 00  41 20 00 00 C1 A0 00 00
-// 000E C550: 41 20 00 00 40 4C CC CD  40 59 99 9A 00 00 00 00
+// 000E C550: 41 20 00 00 
+
+extern struct40s D_803734E4;
+//                        40 4C CC CD  40 59 99 9A 00 00 00 00
 // 000E C560: 00 00 00 00 00 00 00 00  3C 23 D7 0A 40 00 00 00
 // 000E C570: 40 00 00 00 00 00 00 00  3E 99 99 9A 40 80 00 00
 // 000E C580: 41 70 00 00 C4 6D 80 00  44 48 00 00 C3 7A 00 00
@@ -106,6 +137,43 @@ extern ActorInfo D_803732E0= {
 // 000E C860: C4 16 00 00 C4 16 00 00  C4 16 00 00 44 16 00 00
 // 000E C870: 44 16 00 00 44 16 00 00  00 00 00 00 41 F0 00 00
 // 000E C880: 00 00 00 00 00 00 00 00  41 F0 00 00 00 00 00 00
+
+
+
+extern s32 D_80373514;
+
+extern s32 D_8037355C;
+
+extern s32 D_8037358C;
+
+extern s32 D_803735D4;
+
+extern struct42s D_80373604;
+
+extern s32 D_80373634;
+
+extern s32 D_80373640;
+
+extern struct42s D_80373670;
+
+extern s32 D_803736A0[3];
+
+extern struct40s D_803736AC;
+
+extern s32 D_803736DC;
+
+extern struct42s D_8037370C;
+
+extern s32 D_8037373C;
+
+extern s32 D_8037376C;
+
+extern s32 D_803737B4;
+
+extern s32 D_803737C0;
+
+extern struct42s D_803737F0;
+
 
 extern s32 D_80373820[3] = {130, 155, 40};
 extern struct40s D_8037382C;
@@ -259,51 +327,7 @@ extern struct43s D_80373D78 = {
     {{-150.0f, -100.0f, -150.0f}, {150.0f,    5.0f, 150.0f}}
 };
 
-extern s32 D_80373304;
 
-extern s32 D_80373334;
-
-extern s32 D_803733E8;
-
-extern s32 D_803733F4;
-
-extern s32 D_80373424;
-
-extern s32 D_8037346C;
-
-extern s32 D_8037349C;
-
-extern s32 D_803737B4;
-
-extern s32 D_803737C0;
-
-extern struct42s D_803737F0;
-
-extern s32 D_803734E4;
-
-extern s32 D_80373514;
-
-extern s32 D_8037355C;
-
-extern s32 D_8037358C;
-
-extern s32 D_803735D4;
-
-extern struct42s D_80373604;
-
-extern s32 D_80373634;
-
-extern s32 D_80373640;
-
-extern struct42s D_80373670;
-
-extern s32 D_8037373C;
-
-extern s32 D_8037376C;
-
-extern s32 D_803736DC;
-
-extern struct42s D_8037370C;
 
 /* .code */
 void func_80361FA0(f32 arg0[3]) {
@@ -320,7 +344,22 @@ void func_80361FA0(f32 arg0[3]) {
     func_8030E624(0x4CBC507CU);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_DB010/func_80362084.s")
+void func_80362084(f32 position[3]) {
+    ParticleEmitter *pCtrl;
+
+    pCtrl = partEmitList_pushNew(1U);
+    particleEmitter_setSprite(pCtrl, 0x702);
+    particleEmitter_setStartingFrameRange(pCtrl, 3, 5);
+    func_802EFFA8(pCtrl, &D_8037337C);
+    func_802EF9E4(pCtrl, 0xA0);
+    particleEmitter_setPosition(pCtrl, position);
+    func_802EFF5C(pCtrl, 0.1f, 0.2f, 0.0f);
+    func_802EFF7C(pCtrl, 0.0f, 0.25f, 0.0f);
+    func_802EFF9C(pCtrl, 0.5f);
+    particleEmitter_setPositionAndVelocityRanges(pCtrl, &D_803733B8);
+    func_802EFC28(pCtrl, &D_80373388);
+}
+
 
 void func_8036215C(f32 arg0[3]) {
     ParticleEmitter *pCtrl = partEmitList_pushNew(0xFU);
@@ -387,7 +426,29 @@ void func_8036247C(f32 arg0[3]) {
     func_802EFC28(pCtrl, &D_80373640);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_DB010/func_80362510.s")
+void func_80362510(Actor *actor) {
+    ParticleEmitter *pCtrl;
+    f32 sp30[3];
+
+    pCtrl = partEmitList_pushNew(0x19U);
+    particleEmitter_setSprite(pCtrl, 0x70D);
+    particleEmitter_setStartingFrameRange(pCtrl, 0, 5);
+    func_802EFFA8(pCtrl, D_803736A0);
+    func_802EF9E4(pCtrl, 0x1E);
+    particleEmitter_setPosition(pCtrl, actor->position);
+    particleEmitter_setParticleSpawnPositionRange(pCtrl, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
+    sp30[0] = 1000.0f;
+    sp30[1] = 100.0f;
+    sp30[2] = 0.0f;
+    ml_vec3f_roll_rotate_copy(sp30, sp30, actor->roll);
+    ml_vec3f_yaw_rotate_copy(&sp30, &sp30, actor->yaw);
+    particleEmitter_setParticleVelocityRange(pCtrl, 
+        sp30[0] * 0.01, sp30[1] * 0.01, sp30[2] * 0.01, 
+        sp30[0] * 0.4, sp30[1] * 0.4, sp30[2] * 0.4
+    );
+    func_802EFC28(pCtrl, &D_803736AC);
+}
+
 
 void func_80362680(f32 arg0[3]) {
     ParticleEmitter *pCtrl = partEmitList_pushNew(1U);
