@@ -27,7 +27,8 @@ extern f32 D_80364444;
     extern f64 D_80374988;
     extern f64 D_80374990;
     extern f64 D_80374998;
-
+// 3FC999999999999A 3FA1110FF2BC4A9F
+// 3F1A36E2EB1C432D 3F1A36E2EB1C432D
 /* .bss */
 extern s32 D_8037C4A0;
 extern f32 D_8037C4A8[3];
@@ -53,11 +54,7 @@ struct {
     f32 unk20; 
 } D_8037C508;
 
-
-
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_FD60/func_80296CF0.s")
-#else
+/* .code */
 void func_80296CF0(void){
     f32 sp84[3];
     f32 sp78[3];
@@ -70,10 +67,10 @@ void func_80296CF0(void){
 
 
     func_80256D0C(0.0f, D_8037C4F4, 0.0f, 0.0f, D_8037C4F0, &D_8037C4C8[0], &D_8037C4C8[1], &D_8037C4C8[2]);
-    sp6C[0] = D_8037C4B8[0];
-    sp6C[1] = D_8037C4B8[1];
+    sp6C[0] = D_8037C4B8[0];\
+    sp6C[1] = 0.0f;\
     sp6C[2] = D_8037C4B8[2];
-    sp6C[1] = 0.0f;
+    // sp6C[1] = D_8037C4B8[1];
 
     ml_vec3f_copy(sp60, D_8037C4C8);
     sp60[1] = 0.0f;
@@ -94,7 +91,7 @@ void func_80296CF0(void){
                 ml_vec3f_scale(sp60, 1.0 + sp40);
             }
             else{//L80296E84
-                sp40 = sp44*D_80374980;
+                sp40 = sp44*0.2;
                 ml_vec3f_scale(sp60, sp40 + 1.0);
             }
         }//L80296EBC
@@ -103,31 +100,30 @@ void func_80296CF0(void){
     ml_vec3f_scale_copy(sp84, sp60, func_8029CED0());
     ml_vec3f_scale_copy(sp78, sp6C, func_8029CED0());
     ml_vec3f_diff(sp84, sp78);
-    ml_vec3f_scale(sp84, time_getDelta()/D_80374988);
-    D_8037C4B8[0] += sp84[0];
-    D_8037C4B8[1] += sp84[1];
+    ml_vec3f_scale(sp84, time_getDelta()/0.0333333);
+    D_8037C4B8[0] += sp84[0];\
+    D_8037C4B8[1] += sp84[1];\
     D_8037C4B8[2] += sp84[2];
 
     sp6C[0] = D_8037C4B8[0];
     sp6C[2] = D_8037C4B8[2];
     ml_vec3f_scale_copy(D_8037C4D8, sp6C, 1.0f);
-    if(mlAbsF(D_8037C4B8[0]) < D_80374990)
+    if(mlAbsF(D_8037C4B8[0]) < 0.0001)
         D_8037C4B8[0] = 0;
 
-    if(mlAbsF(D_8037C4B8[2]) < D_80374998)
+    if(mlAbsF(D_8037C4B8[2]) < 0.0001)
         D_8037C4B8[2] = 0;
 
-    D_8037C4B8[1] = time_getDelta()*D_8037C4E8 + D_8037C4B8[1];
+    D_8037C4B8[1] = D_8037C4B8[1] + time_getDelta()*D_8037C4E8 ;
     if(D_8037C4B8[1] < D_8037C4EC)
         D_8037C4B8[1] = D_8037C4EC;
 
-    D_8037C4D8[1] = D_8037C4B8[1] + D_8037C4D8[1];
+    D_8037C4D8[1] = D_8037C4D8[1] + D_8037C4B8[1];
     ml_vec3f_scale(D_8037C4D8, time_getDelta());
-    D_8037C4A8[0] += D_8037C4D8[0]; 
-    D_8037C4A8[1] += D_8037C4D8[1]; 
+    D_8037C4A8[0] += D_8037C4D8[0];\
+    D_8037C4A8[1] += D_8037C4D8[1];\
     D_8037C4A8[2] += D_8037C4D8[2]; 
 }
-#endif
 
 void func_80297094(void){
     f32 sp24[3];
@@ -137,42 +133,35 @@ void func_80297094(void){
         ml_vec3f_copy(D_8037C4B8, D_8037C4C8);
     }
     else{
-        D_8037C4B8[0] += sp24[0];
-        D_8037C4B8[1] += sp24[1];
+        D_8037C4B8[0] += sp24[0];\
+        D_8037C4B8[1] += sp24[1];\
         D_8037C4B8[2] += sp24[2];
     }
-    D_8037C4D8[0] = D_8037C4B8[0];
-    D_8037C4D8[1] = D_8037C4B8[1];
+    D_8037C4D8[0] = D_8037C4B8[0];\
+    D_8037C4D8[1] = D_8037C4B8[1];\
     D_8037C4D8[2] = D_8037C4B8[2];
     ml_vec3f_scale( D_8037C4D8, time_getDelta());
 
-    D_8037C4A8[0] += D_8037C4D8[0];
-    D_8037C4A8[1] += D_8037C4D8[1];
+    D_8037C4A8[0] += D_8037C4D8[0];\
+    D_8037C4A8[1] += D_8037C4D8[1];\
     D_8037C4A8[2] += D_8037C4D8[2];
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_FD60/func_802971DC.s")
-#else
 void func_802971DC(void){
-    D_8037C4B8[1] += time_getDelta()*D_8037C4E8;
+    D_8037C4B8[1] = D_8037C4B8[1] + time_getDelta()*D_8037C4E8;
     if(D_8037C4B8[1] < D_8037C4EC)
         D_8037C4B8[1] = D_8037C4EC;
     
-    D_8037C4D8[0] = D_8037C4B8[0];
-    D_8037C4D8[1] = D_8037C4B8[1];
+    D_8037C4D8[0] = D_8037C4B8[0];\
+    D_8037C4D8[1] = D_8037C4B8[1];\
     D_8037C4D8[2] = D_8037C4B8[2];
     ml_vec3f_scale(D_8037C4D8, time_getDelta());
 
-    D_8037C4A8[0] += D_8037C4D8[0];
-    D_8037C4A8[1] += D_8037C4D8[1];
+    D_8037C4A8[0] += D_8037C4D8[0];\
+    D_8037C4A8[1] += D_8037C4D8[1];\
     D_8037C4A8[2] += D_8037C4D8[2];
 }
-#endif
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_FD60/func_802972AC.s")
-#else
 void func_802972AC(void){
     f32 sp34[3];
     f32 sp28[3];
@@ -183,15 +172,14 @@ void func_802972AC(void){
     func_80256E24(sp34, 0.0f, yaw_get(), 0.0f, 0.0f, -climbGetRadius());
 
     D_8037C4B8[2] = 0.0f;
-    D_8037C4A8[0] = sp34[0] + D_8037C4A8[0]; 
-    D_8037C4A8[2] = sp34[2] + D_8037C4A8[2];
-    D_8037C4A8[1] = sp34[1] + D_8037C4A8[1];
+    D_8037C4A8[0] += sp34[0];\
+    D_8037C4A8[1] += sp34[1];\
+    D_8037C4A8[2] += sp34[2];
 
     
     D_8037C4B8[0] = D_8037C4C8[0] = D_8037C4C8[2] =  D_8037C4B8[2];
     func_80297094();
 }
-#endif
 
 void func_8029737C(void){
     D_8037C4D8[0] = D_8037C4B8[0];

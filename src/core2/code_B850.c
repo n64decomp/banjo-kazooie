@@ -20,10 +20,6 @@ void func_802927E0(f32 arg0, f32 arg1){
     func_80352CF4(sp18, sp24, 10.0f, 150.0f);
 }
 
-#ifndef NONMATCHING
-void func_80292864(f32 arg0, f32 arg1);
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B850/func_80292864.s")
-#else
 void func_80292864(f32 arg0, f32 arg1){
     f32 sp34[3];
     f32 sp28[3];
@@ -32,15 +28,10 @@ void func_80292864(f32 arg0, f32 arg1){
     ml_vec3f_assign(sp1C, 0.0f, 40.0f, 0.0f);
     _player_getPosition(sp28);
     func_802589E4(sp34, arg0, arg1);
-    // sp28[0] += sp34[0];
-    // sp28[1] += 10.0f;
     sp34[1] = 10.0f;
-    sp28[2] = sp28[2] + sp34[2];
-    sp28[1] = sp28[1] + sp34[1];
-    sp28[0] = sp28[0] + sp34[0];
+    sp28[0] += sp34[0]; sp28[1] += sp34[1]; sp28[2] += sp34[2];
     func_80352CF4(sp28, sp1C, 10.0f, 150.0f);
 }
-#endif
 
 void func_80292900(f32 arg0, f32 arg1){
     f32 sp24[3];

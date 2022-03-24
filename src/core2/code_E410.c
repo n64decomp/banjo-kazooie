@@ -18,10 +18,8 @@ void func_802953A0(void){
     s32 i;
 
     for(i = 0; i<0xe; i++){
-        D_8037C310.unk38[i] = 0;
-        D_8037C310.unk0[i] = 0;
-        D_8037C310.unk70[i] = 0;
-        D_8037C310.unk7E[i] = 0;
+        D_8037C310.unk0[i] = D_8037C310.unk38[i] = 0;
+        D_8037C310.unk70[i] = D_8037C310.unk7E[i] = 0;
     }
 }
 #endif

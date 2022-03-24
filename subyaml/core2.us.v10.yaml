@@ -38,7 +38,7 @@ segments:
   - [0x3480, c, code_3480] #DONE
   - [0x39D0, c, code_39D0]
   - [0x47C0, c, code_47C0] #DONE
-  - [0x6B30, c, code_6B30]
+  - [0x6B30, c, code_6B30] #DONE
   - [0x7060, c, code_7060] 
   - [0x9450, c, code_9450] #DONE
   - [0x9900, c, code_9900] #DONE
@@ -48,7 +48,7 @@ segments:
   - [0xA960, c, code_A960] #DONE
   - [0xAA60, c, code_AA60] #DONE
   - [0xB650, c, code_B650] #DONE
-  - [0xB850, c, code_B850]
+  - [0xB850, c, code_B850] #DONE
   - [0xBB50, c, code_BB50] #DONE
   - [0xBD20, c, code_BD20] #DONE
   - [0xC0E0, c, code_C0E0] #DONE
@@ -62,7 +62,7 @@ segments:
   - [0xE910, c, code_E910] #DONE
   - [0xEE40, c, code_EE40] #DONE
   - [0xEF50, c, code_EF50] #DONE
-  - [0xFD60, c, code_FD60]
+  - [0xFD60, c, code_FD60] #DONE
   - [0x10CD0, c, code_10CD0] #DONE
   - [0x10DA0, c, pitch]      #DONE
   - [0x11040, c, code_11040] #DONE
@@ -518,8 +518,7 @@ segments:
   - [0xED7D0, bin, data_ED7D0]
   - [0xED820, .rodata, code_E680]
   - [0xED850, .rodata, code_EF50]
-  - [0xED9F0, bin, data_ED9F0]
-  - [0xEDA10, .rodata, code_FD60]
+  - [0xED9F0, .rodata, code_FD60]
   - [0xEDA50, .rodata, code_10CD0]
   - [0xEDA60, .rodata, pitch]
   - [0xEDA90, .rodata, code_11040]

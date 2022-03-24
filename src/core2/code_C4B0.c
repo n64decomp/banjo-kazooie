@@ -9,13 +9,18 @@ extern void func_8031C5FC(struct0 *, f32);
 extern f32 func_80255D70(f32 arg0);
 extern s32 func_8029463C(void);
 
+
+void func_80294378(s32 arg0);
+void func_80294384(s32 arg0);
+
+
 extern f32 D_8037C1F0[2];
 extern f32 D_8037C1F8[2];
-
 extern struct0 * D_8037C200;
 extern s32 D_8037C204;
 extern f32 D_8037C218[3];
 extern f32 D_8037C228[3];
+extern f32 D_8037C248[3];
 extern f32 D_8037C258[3];
 extern f32 D_8037C268[3];
 extern s32 D_8037C274;
@@ -29,6 +34,7 @@ extern u8 D_8037C27E;
 extern u8 D_8037C27F;
 extern u8 D_8037C280;
 extern s32 D_8037C284;
+
 
 void func_80293440(void){
      f32 sp34[3];
@@ -70,13 +76,7 @@ void func_80293D48(f32 arg0, f32 arg1){
      D_8037C1F8[1] = D_8037C1F0[1];
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C4B0/func_80293D74.s")
-#else
-void func_80293D74(void){
-     func_80293D48(80.0f, 35.0f);
-}
-#endif
+void func_80293D74(void){ func_80293D48(80.0f, 35.0f);}
 
 #ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C4B0/func_80293DA4.s")
@@ -154,7 +154,21 @@ void func_80294384(s32 arg0){
      D_8037C284 = arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C4B0/func_80294390.s")
+void func_80294390(void) {
+    void *sp1C;
+
+    sp1C = func_8029463C();
+    if (sp1C != 0) {
+        if (func_803246B4(map_get(), ((s32*)sp1C)[2]) == 3) {
+            func_80294384(4);
+        }
+        else{
+            func_80294384(2);
+        }
+    }else{
+          func_80294384(2);
+    }
+}
 
 f32 func_80294404(void){
      return player_getYPosition() - func_8031C5D4(D_8037C200);
@@ -218,7 +232,9 @@ void func_80294574(void){
      func_8031C594(D_8037C200);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C4B0/func_80294598.s")
+bool func_80294598(void) {
+    return (D_8037C248[0] != 0.0f) || (D_8037C248[1] != 0.0f) || (D_8037C248[2] != 0.0f);
+}
 
 u32 func_80294610(u32 mask){
      return func_8031C59C(D_8037C200) & mask;

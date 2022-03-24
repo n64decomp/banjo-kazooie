@@ -207,10 +207,18 @@ s32 func_8029CA94(s32 arg0){
     return arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029CB84.s")
+void func_8029CB84(void){
+    pitch_setIdeal(0.0f);
+    pitch_applyIdeal();
 
-void func_8029CBC4(void);
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029CBC4.s")
+    roll_setIdeal(0.0f);
+    roll_applyIdeal();
+}
+
+void func_8029CBC4(void){
+    func_8025A55C(-1, 4000, 0xc);
+    func_8024BD08(1);
+}
 
 void func_8029CBF4(void){
     if(item_getCount(ITEM_E_JIGGY) == 10){
@@ -250,6 +258,8 @@ void func_8029CCC4(void){
     timedFunc_set_0(4.0f, func_8029CBF4);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029CDA0.s")
+void func_8029CDA0(void){
+    item_inc(ITEM_E_JIGGY);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029CDC0.s")
