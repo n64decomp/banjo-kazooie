@@ -200,7 +200,7 @@ s32 func_8031BCF4(struct0 *this) {
 
 void func_8031BD98(struct0 *this, f32 arg1, s32 arg2, s32 arg3, f32 *normPtr, void *model, s32 arg6){
     if(arg6){
-        func_8024587C(&this->vtx1, arg6);
+        func_8024587C(&this->unk4, arg6);
     }
     this->unk58 = 1;
     this->unk4C = arg2;
@@ -268,7 +268,7 @@ f32 func_8031C5D4(struct0 *this){
     return this->posX;
 }
 
-void *func_8031C5DC(struct0 *this){
+BKModelBin *func_8031C5DC(struct0 *this){
     return this->model;
 }
 
@@ -278,8 +278,8 @@ f32 func_8031C5E4(struct0 *this){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031C5EC.s")
 
-u16 *func_8031C5F4(struct0* this){
-    return &this->vtx1;
+Struct60s *func_8031C5F4(struct0* this){
+    return &this->unk4;
 }
 
 void func_8031C5FC(struct0* this, f32 arg1){

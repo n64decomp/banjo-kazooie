@@ -12,14 +12,16 @@ extern s32 func_8029463C(void);
 
 void func_80294378(s32 arg0);
 void func_80294384(s32 arg0);
-
+void func_80294390(void);
 
 extern f32 D_8037C1F0[2];
 extern f32 D_8037C1F8[2];
 extern struct0 * D_8037C200;
-extern s32 D_8037C204;
+extern Struct60s * D_8037C204;
+extern s32 D_8037C208;
 extern f32 D_8037C218[3];
 extern f32 D_8037C228[3];
+extern f32 D_8037C238[3];
 extern f32 D_8037C248[3];
 extern f32 D_8037C258[3];
 extern f32 D_8037C268[3];
@@ -124,21 +126,95 @@ f32 func_80293EAC(f32 arg0, f32 arg1, f32 arg2){
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C4B0/func_80293F0C.s")
 #else
 void func_80293F0C(void){
-     f32 sp44[3];
-     f32 sp38[3];
-     f32 sp2C[3];
-     
-     _player_getPosition(&sp44);
-     if(map_get() == MAP_34_RBB_ENGINE_ROOM && func_80258424(&sp44, -900.0f, -940.0f, 200.0f, 900.0f, 940.0f, 800.0f)){
-          func_8031C5FC(D_8037C200, 150.0f);
-     } else{
-          func_8031C608(D_8037C200);
-     }
+    f32 sp44[3];
+    f32 sp38[3];
+    f32 sp2C[3];
+    
+    _player_getPosition(sp44);
+    if(map_get() == MAP_34_RBB_ENGINE_ROOM && func_80258424(sp44, -900.0f, -940.0f, 200.0f, 900.0f, 940.0f, 800.0f)){
+        func_8031C5FC(D_8037C200, 150.0f);
+    } else{
+        func_8031C608(D_8037C200);
+    }
+    D_8037C27C = 0;
+    D_8037C27A = 1;
+    D_8037C27D = 0;
+    D_8037C204 = NULL;
+    D_8037C27B = D_8037C279;
+    D_8037C27E = 0;
+    D_8037C1F8[0] = func_80293EAC(D_8037C1F0[0], D_8037C1F8[0], 1.0f);
+    D_8037C1F8[1] = func_80293EAC(D_8037C1F0[1], D_8037C1F8[1], 1.0f);
 
-     D_8037C1F8 = func_80293EAC(D_8037C1F0, D_8037C1F8, 1.0f);
-     D_8037C1FC = func_80293EAC(D_8037C1F4, D_8037C1FC, 1.0f);
+    switch(D_8037C274){//D_80374788
+        case 1:
+        case 3:
+        case 4:
+            _player_getPosition(D_8037C218);
+            func_80298504(D_8037C228);
+            ml_vec3f_diff_copy(D_8037C238, D_8037C218, D_8037C228);
+            if ((D_8037C274 == 3) && func_8031C594(D_8037C200) && ((func_8031C5E4(D_8037C200) - 70.0f) < D_8037C218[1])) {
+                D_8037C218[1] = func_8031C5E4(D_8037C200) - 70.0f;
+                D_8037C27E = 1;
+                player_setYVelocity(1.0f);
+            }
+            func_80293668();
+            player_setPosition(&D_8037C218);
+            break;
 
-     ml_vec3f_diff_copy(&D_8037C268, &sp38, &sp2C);
+        case 5:
+            _player_getPosition(D_8037C218);
+            func_80298504(D_8037C228);
+            func_80293668();
+            func_80293440();
+            player_setPosition(D_8037C218);
+            break;
+
+        case 2:
+            break;
+    }//L80294148
+    if (func_8031C594(D_8037C200)) {
+        D_8037C278 = (D_8037C218[1] < func_8031C5E4(D_8037C200));
+    }
+    ml_vec3f_diff_copy(D_8037C248, D_8037C218, D_8037C228);
+    ml_vec3f_diff(D_8037C248, D_8037C238);
+    if (func_80294560()) {
+        D_8037C279 = 1;
+    }
+
+    if(D_8037C278 && D_8037C218[1] < (func_8031C5E4(D_8037C200) - 70.0f)){
+        func_80294384(3);
+        if(D_8037C279 && func_80297AAC() < 0.0f) {
+            player_setYVelocity(-1.0f);
+        }
+    }
+    else if(D_8037C279){
+        func_80294390();
+        if (func_80297AAC() < 0.0f) {
+            player_setYVelocity(-1.0f);
+        }
+    } else {
+        func_80294384(1);
+    }
+
+    if (D_8037C27F) {
+        player_setPosition(sp44);
+    }
+
+    D_8037C27A = 0;
+    
+    if (D_8037C27C) {
+        D_8037C280 = func_80258948(D_8037C280 + 1, 3);
+    } else {
+        D_8037C280 = 0;
+    }
+    func_80298504(sp2C);
+    _player_getPosition(sp38);
+    ml_vec3f_diff_copy(D_8037C268, sp38, sp2C);
+    // temp_a1 = D_8037C204;
+    if (D_8037C204) {
+        func_8024587C(&D_8037C208, D_8037C204);
+        D_8037C204 = &D_8037C208;
+    }
 }
 #endif
 
@@ -260,7 +336,7 @@ void func_802946CC(void){
      func_8031C5EC(D_8037C200);
 }
 
-s32 func_802946F0(void){
+Struct60s *func_802946F0(void){
      return D_8037C204;
 }
 

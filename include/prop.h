@@ -311,7 +311,7 @@ typedef struct actor_s{
     u32 unk124_31:12;
     u32 alpha_124_19:8;
     u32 unk124_11:2; //blend_mode? 
-    u32 unk124_9:2;
+    u32 unk124_9:2; //render_mode (passed to set_model_render_mode())
     u32 unk124_7:1;
     u32 unk124_6:1;
     u32 unk124_5:2;
@@ -319,7 +319,7 @@ typedef struct actor_s{
     u32 unk124_0:1; //read in bsbbuster func 
     f32 scale;
     /* 0x12C */ struct actor_info_s *actor_info;
-    void * unk130;
+    void (* unk130)(struct actor_s *);
     vector(struct2s) **unk134; //vector<struct2s> //saved marker->unk1C
     u32 unk138_31:1;
     u32 unk138_30:1;
@@ -341,8 +341,8 @@ typedef struct actor_s{
     f32 unk140;
     f32 unk144;
     void *unk148;
-    void *unk14C;
-    void *unk150;
+    void *unk14C[2];
+    // void *unk150;
     u32 unk154;
     void *unk158;
     void *unk15C;

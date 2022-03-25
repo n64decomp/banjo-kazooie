@@ -58,13 +58,11 @@ f32 func_802EC984(BKVertexList *this){
     return (f32)this->unk12;
 }
 
-//vtxList_free
-void func_802EC994(BKVertexList *vtxList){
+void vtxList_free(BKVertexList *vtxList){
     free(vtxList);
 }
 
-//vtxList_clone
-BKVertexList *func_802EC9B4(BKVertexList *vtxList){
+BKVertexList *vtxList_clone(BKVertexList *vtxList){
     BKVertexList *out_v0;
     size_t list_size;
     
@@ -74,17 +72,99 @@ BKVertexList *func_802EC9B4(BKVertexList *vtxList){
     return out_v0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_654C0/func_802EC9FC.s")
+// vtxList_copy_colors
+void func_802EC9FC(BKVertexList *dst, BKVertexList *src) {
+    Vtx *start_ptr;
+    Vtx *end_ptr;
+    Vtx *i_ptr;
+    Vtx *src_ptr;
+    s32 i;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_654C0/func_802ECA7C.s")
+    src_ptr = &src->vtx_18[0];
+    start_ptr = &dst->vtx_18[0];
+    end_ptr = start_ptr + dst->cnt_14;
+    for(i_ptr = start_ptr; i_ptr < end_ptr; i_ptr++, src_ptr++){
+            i_ptr->v.cn[0] = src_ptr->v.cn[0];
+            i_ptr->v.cn[1] = src_ptr->v.cn[1];
+            i_ptr->v.cn[2] = src_ptr->v.cn[2];
+            i_ptr->v.cn[3] = src_ptr->v.cn[3];
+    }
+    osWritebackDCache(start_ptr, ((s32)(end_ptr - start_ptr)) * sizeof(Vtx));
+}
+
+void vtxList_tint(BKVertexList *dst, s32 target_color[3], f32 amount, BKVertexList *src) {
+    Vtx *start_ptr;
+    Vtx *end_ptr;
+    Vtx *i_ptr;
+    Vtx *src_ptr;
+    s32 i;
+
+    start_ptr = &dst->vtx_18[0];
+    end_ptr = start_ptr + dst->cnt_14;
+    for(i_ptr = start_ptr, src_ptr = &src->vtx_18[0]; i_ptr < end_ptr; i_ptr++, src_ptr++){
+        for(i = 0; i < 3; i++){
+            i_ptr->v.cn[i] = src_ptr->v.cn[i] + (target_color[i] - src_ptr->v.cn[i]) * amount;
+        }
+    }
+    osWritebackDCache(start_ptr, ((s32)(end_ptr - start_ptr)) * sizeof(Vtx));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_654C0/func_802ECBD4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_654C0/func_802ECE30.s")
+void func_802ECE30(BKVertexList *arg0) {
+    Vtx *start_ptr;
+    Vtx *end_ptr;
+    Vtx *i_ptr;
+    s32 i;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_654C0/func_802ECF64.s")
+    start_ptr = &arg0->vtx_18[0];
+    end_ptr = start_ptr + arg0->cnt_14;
+    for(i_ptr = start_ptr; i_ptr < end_ptr; i_ptr++){
+        for(i = 0; i < 3; i++){
+            i_ptr->v.cn[i] = 0;
+        }
+        i_ptr->v.cn[0] = randf() * 255.0f;
+    }
+    osWritebackDCache(start_ptr, ((s32)(end_ptr - start_ptr)) * sizeof(Vtx));
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_654C0/func_802ED074.s")
+void func_802ECF64(BKVertexList *arg0) {
+    Vtx *start_ptr;
+    Vtx *end_ptr;
+    Vtx *i_ptr;
+    s32 i;
+    s32 phi_s0;
+
+    start_ptr = &arg0->vtx_18[0];
+    end_ptr = start_ptr + arg0->cnt_14;
+    for(i_ptr = start_ptr; i_ptr < end_ptr; i_ptr++){
+        for(i = 0; i < 3; i++){
+            phi_s0 = i_ptr->v.cn[i];
+            phi_s0 += randf()*21.0f - 10.0f;
+            phi_s0 = (phi_s0 > 0xff) ? 0xff : phi_s0;
+            phi_s0 =  (phi_s0 < 0) ? 0 : phi_s0;
+            i_ptr->v.cn[i] = phi_s0;
+        }
+    }
+    osWritebackDCache(start_ptr, ((s32)(end_ptr - start_ptr)) * sizeof(Vtx));
+}
+
+void vtxList_recolor(BKVertexList *arg0, s32 arg1[3]) {
+    Vtx *start_ptr;
+    Vtx *end_ptr;
+    Vtx *i_ptr;
+    s32 i;
+    s32 phi_s0;
+
+    start_ptr = &arg0->vtx_18[0];
+    end_ptr = start_ptr + arg0->cnt_14;
+    for(i_ptr = start_ptr; i_ptr < end_ptr; i_ptr++){
+        for(i = 0; i < 3; i++){
+            i_ptr->v.cn[i] = arg1[i];
+        }
+    }
+    osWritebackDCache(start_ptr, ((s32)(end_ptr - start_ptr)) * sizeof(Vtx));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_654C0/func_802ED108.s")
 
@@ -94,6 +174,21 @@ BKVertexList *func_802EC9B4(BKVertexList *vtxList){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_654C0/func_802ED180.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_654C0/func_802ED340.s")
+void func_802ED340(BKVertexList *arg0, s32 indx, f32 dst[3]){
+    Vtx *vtx;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_654C0/func_802ED38C.s")
+    vtx = (s32)(arg0 + 1) + (indx * sizeof(Vtx));
+    dst[0] = (f32) vtx->v.ob[0];
+    dst[1] = (f32) vtx->v.ob[1];
+    dst[2] = (f32) vtx->v.ob[2];
+}
+
+void func_802ED38C(BKVertexList *arg0, s32 indx, f32 arg2[3]){
+    Vtx *vtx;
+    s32 i;
+
+    vtx = (s32)(arg0 + 1) + (indx * sizeof(Vtx));
+    for(i = 0; i < 3; i++){
+        vtx->v.ob[i] = (arg2[i] >= 0.0) ? arg2[i] + 0.5 :  arg2[i] - 0.5;
+    }
+}

@@ -3,17 +3,31 @@
 #include "variables.h"
 
 
-extern struct {
-    vector(struct22s) *unk0;
-    u8 pad4[0x40];
-    s32 unk44;
-    void *unk48;
-} D_80383570;
+
 
 void func_80333918(void);
 void func_8033393C(void);
 
+typedef struct struct_22_s{
+    f32 unk0[3];
+    f32 unkC[3];
+    f32 unk18;
+    f32 unk1C;
+    f32 unk20;
+    f32 unk24;
+    s32 unk28[3];
+    u8 unk34;
+    u8 pad35[0x3];
+} Struct_core2_AC520_0;//size 0x38
 
+extern s32 D_8036F970[3];
+
+extern struct {
+    vector(Struct_core2_AC520_0) *unk0;
+    Struct_core2_AC520_0 *unk4[0x10];
+    Struct_core2_AC520_0 **unk44;
+    Struct_core2_AC520_0 **unk48;
+} D_80383570;
 
 //.code
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AC520/func_803334B0.s")
@@ -24,9 +38,9 @@ void func_803335F4(void){
 }
 
 s32 func_8033361C(void){
-    struct22s *startPtr = vector_getBegin(D_80383570.unk0);
-    struct22s *endPtr = vector_getEnd(D_80383570.unk0);
-    struct22s *iPtr;
+    Struct_core2_AC520_0 *startPtr = vector_getBegin(D_80383570.unk0);
+    Struct_core2_AC520_0 *endPtr = vector_getEnd(D_80383570.unk0);
+    Struct_core2_AC520_0 *iPtr;
 
     for(iPtr = startPtr; iPtr < endPtr; iPtr++){
         if(iPtr->unk34){
@@ -37,9 +51,9 @@ s32 func_8033361C(void){
 }
 
 s32 func_80333698(s32 index){
-    struct22s *startPtr = vector_getBegin(D_80383570.unk0);
-    struct22s *iPtr = vector_at(D_80383570.unk0, index - 1);
-    struct22s *endPtr = vector_getEnd(D_80383570.unk0);
+    Struct_core2_AC520_0 *startPtr = vector_getBegin(D_80383570.unk0);
+    Struct_core2_AC520_0 *iPtr = vector_at(D_80383570.unk0, index - 1);
+    Struct_core2_AC520_0 *endPtr = vector_getEnd(D_80383570.unk0);
     
     for(++iPtr; iPtr < endPtr; iPtr++){
         if(iPtr->unk34){
@@ -50,20 +64,20 @@ s32 func_80333698(s32 index){
 }
 
 void func_80333734(s32 index, f32 *arg1){
-    struct22s *v0 = vector_at(D_80383570.unk0, index-1);
+    Struct_core2_AC520_0 *v0 = vector_at(D_80383570.unk0, index-1);
     arg1[0] = v0->unk0[0];
     arg1[1] = v0->unk0[1];
     arg1[2] = v0->unk0[2];
 }
 
 void func_80333784(s32 index, f32 *arg1){
-    struct22s *v0 = vector_at(D_80383570.unk0, index-1);
+    Struct_core2_AC520_0 *v0 = vector_at(D_80383570.unk0, index-1);
     arg1[0] = v0->unk18;
     arg1[1] = v0->unk1C;
 }
 
 void func_803337C8(s32 index, s32 *arg1){
-    struct22s *v0 = vector_at(D_80383570.unk0, index-1);
+    Struct_core2_AC520_0 *v0 = vector_at(D_80383570.unk0, index-1);
     arg1[0] = v0->unk28[0];
     arg1[1] = v0->unk28[1];
     arg1[2] = v0->unk28[2];
@@ -74,9 +88,9 @@ s32 func_80333818(void){
 }
 
 s32 func_8033383C(void){
-    struct22s *beginPtr = vector_getBegin(D_80383570.unk0);
-    struct22s *endPtr = vector_getEnd(D_80383570.unk0);
-    struct22s *iPtr;
+    Struct_core2_AC520_0 *beginPtr = vector_getBegin(D_80383570.unk0);
+    Struct_core2_AC520_0 *endPtr = vector_getEnd(D_80383570.unk0);
+    Struct_core2_AC520_0 *iPtr;
 
     for(iPtr = beginPtr; iPtr < endPtr; iPtr++){
         if(!iPtr->unk34)
@@ -94,7 +108,7 @@ s32 func_8033383C(void){
     iPtr->unk0[0] = 0.0f;
     iPtr->unk18 = 150.0f;
     iPtr->unk1C = 300.0f;
-    return (iPtr - (struct22s *)vector_getBegin(D_80383570.unk0)) + 1;
+    return (iPtr - (Struct_core2_AC520_0 *)vector_getBegin(D_80383570.unk0)) + 1;
 }
 
 
@@ -103,20 +117,20 @@ void func_80333918(void){
 }
 
 void func_8033393C(void){
-    D_80383570.unk0 = vector_new(sizeof(struct22s), 0x10);
+    D_80383570.unk0 = vector_new(sizeof(Struct_core2_AC520_0), 0x10);
     D_80383570.unk48 = &D_80383570.unk44;
 }
 
 void func_80333974(s32 index){
-    struct22s *v0 = vector_at(D_80383570.unk0, index-1);
+    Struct_core2_AC520_0 *v0 = vector_at(D_80383570.unk0, index-1);
     v0->unk34 = 0;
 }
 
 s32 func_803339A4(s32 arg0){
-    struct22s *beginPtr = vector_getBegin(D_80383570.unk0);
-    struct22s *endPtr = vector_getEnd(D_80383570.unk0);
-    struct22s *iPtr;
-    struct22s *tmp_s0 = NULL;
+    Struct_core2_AC520_0 *beginPtr = vector_getBegin(D_80383570.unk0);
+    Struct_core2_AC520_0 *endPtr = vector_getEnd(D_80383570.unk0);
+    Struct_core2_AC520_0 *iPtr;
+    Struct_core2_AC520_0 *tmp_s0 = NULL;
     
     for(iPtr = beginPtr; iPtr < endPtr; iPtr++){
         if(iPtr->unk34){
@@ -129,20 +143,20 @@ s32 func_803339A4(s32 arg0){
 }
 
 void func_80333A94(s32 index , f32 *arg1){
-    struct22s *v0 = vector_at(D_80383570.unk0, index-1);
+    Struct_core2_AC520_0 *v0 = vector_at(D_80383570.unk0, index-1);
     v0->unk0[0] = arg1[0];
     v0->unk0[1] = arg1[1];
     v0->unk0[2] = arg1[2];
 }
 
 void func_80333AE4(s32 index , f32 *arg1){
-    struct22s *v0 = vector_at(D_80383570.unk0, index-1);
+    Struct_core2_AC520_0 *v0 = vector_at(D_80383570.unk0, index-1);
     v0->unk18 = arg1[0];
     v0->unk1C = arg1[1];
 }
 
 void func_80333B28(s32 index , s32 *arg1){
-    struct22s *v0 = vector_at(D_80383570.unk0, index-1);
+    Struct_core2_AC520_0 *v0 = vector_at(D_80383570.unk0, index-1);
     v0->unk28[0] = arg1[0];
     v0->unk28[1] = arg1[1];
     v0->unk28[2] = arg1[2];
@@ -151,9 +165,9 @@ void func_80333B28(s32 index , s32 *arg1){
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AC520/func_80333B78.s")
 
 s32 func_80333C78(s32 arg0){
-    struct22s *beginPtr = vector_getBegin(D_80383570.unk0);
-    struct22s *endPtr = vector_getEnd(D_80383570.unk0);
-    struct22s *iPtr;
+    Struct_core2_AC520_0 *beginPtr = vector_getBegin(D_80383570.unk0);
+    Struct_core2_AC520_0 *endPtr = vector_getEnd(D_80383570.unk0);
+    Struct_core2_AC520_0 *iPtr;
 
     for(iPtr = beginPtr; iPtr < endPtr; iPtr++){
         if(iPtr->unk34){
@@ -167,7 +181,60 @@ s32 func_80333C78(s32 arg0){
     return func_8034AF98(arg0, 0);
 }
 
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AC520/func_80333D48.s")
+#else
+extern void func_803334B0(s32, s32, f32, f32, f32);
+extern f32 func_802EC920();
+
+void func_80333D48(BKVertexList *arg0, f32 position[3], f32 rotation[3], f32 scale, f32 arg4, BKVertexList *arg5) {
+    Vtx *i_ptr;
+    Vtx *end_ptr;
+    Vtx *ref_ptr;
+    Struct_core2_AC520_0 **struct_ptr_ptr;
+    f32 sp74[3];
+    f32 sp68[3];
+    Struct_core2_AC520_0 *struct_ptr;
+    f32 temp_f0;
+    f32 temp_f2;
+
+    func_803334B0(position, rotation, scale, arg4, func_802EC920());
+    if (D_80383570.unk44 == (&D_80383570.unk4[0])) {
+        vtxList_recolor(arg0, &D_8036F970);
+        return;
+    }
+    ref_ptr = vtxList_getVertices(arg5);
+    func_802EC8FC(arg0, &i_ptr, &end_ptr);
+    for(; i_ptr < end_ptr; i_ptr++, ref_ptr++){
+
+        sp68[0] = sp68[1] = sp68[2] = 0.0f;
+        sp74[0] = ref_ptr->v.ob[0];\
+        sp74[1] = ref_ptr->v.ob[1];\
+        sp74[2] = ref_ptr->v.ob[2];
+
+        for(struct_ptr_ptr = &D_80383570.unk4[0]; struct_ptr_ptr < D_80383570.unk44;struct_ptr_ptr++){
+            struct_ptr = *struct_ptr_ptr;
+            temp_f0 = func_80256064(struct_ptr->unkC, sp74);
+            if (!(struct_ptr->unk24 <= temp_f0)) {
+                if (temp_f0 <= struct_ptr->unk20) {
+                    sp68[0] = sp68[0] + struct_ptr->unk28[0];
+                    sp68[1] = sp68[1] + struct_ptr->unk28[1];
+                    sp68[2] = sp68[2] + struct_ptr->unk28[2];
+                } else {
+                    temp_f2 = 1.0f - ((temp_f0 - struct_ptr->unk20) / (struct_ptr->unk24 - struct_ptr->unk20));
+                    sp68[0] += temp_f2 * struct_ptr->unk28[0];
+                    sp68[1] += temp_f2 * struct_ptr->unk28[1];
+                    sp68[2] += temp_f2 * struct_ptr->unk28[2];
+                }
+            }
+        }
+        
+        i_ptr->v.cn[0] = (s32)(ref_ptr->v.cn[0]*sp68[0]/256.0);
+        i_ptr->v.cn[1] = (s32)(ref_ptr->v.cn[1]*sp68[1]/256.0);
+        i_ptr->v.cn[2] = (s32)(ref_ptr->v.cn[2]*sp68[2]/256.0);
+    }
+} 
+#endif;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AC520/func_803340A0.s")
 

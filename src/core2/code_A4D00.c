@@ -652,7 +652,18 @@ BKModelBin *func_80330B1C(ActorMarker *this){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_80330C48.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_80330C74.s")
+BKVertexList *func_80330C74(Actor *actor){
+    ModelCache *model_cache_ptr;
+    model_cache_ptr = &modelCache[actor->modelCacheIndex];
+    if(model_cache_ptr->modelPtr == NULL)
+        return NULL;
+
+    if(actor->unkF4_30 && actor->unk14C[actor->unkF4_29]){
+        return actor->unk14C[actor->unkF4_29];
+    }else{
+        return func_8033A148(model_cache_ptr->modelPtr);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_80330CFC.s")
 

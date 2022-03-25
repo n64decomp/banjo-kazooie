@@ -6,6 +6,7 @@
 
 extern void func_802EE6CC(f32[3], s32[4], s32[4], s32, f32, f32, s32, s32, s32);
 extern Actor *func_803056FC(s32, s32 (*)[3], s32);
+extern void func_8033A410(s32);
 
 extern void func_8032B5C0(void);
 
@@ -15,6 +16,7 @@ int  actor_playerIsWithinDist(Actor *this, s32 dist);
 extern s32 D_803255FC;
 
 ActorArray *D_8036E560; //actorArrayPtr
+extern s32 D_8036E568;
 u8 D_8036E574;
 u8 D_8036E578;
 
@@ -27,7 +29,6 @@ extern f64 D_80378E58;
 
 
 Actor *D_80383390;
-
 
 //marker_getActorAndRotation
 Actor * func_80325300(ActorMarker *marker,f32 rotation[3])
@@ -47,7 +48,72 @@ Actor *func_80325340(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     return NULL;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_803253A0.s")
+void func_803253A0(Actor *this){
+    s32 pad;
+    BKModelBin *sp48;
+    bool sp44;
+    BKVertexList *sp40;
+    f32 sp34[3];
+    
+    sp48 = func_80330B1C(this->marker);
+    func_80330534(this);
+    if(this->animctrl != NULL){
+        func_8028781C(this->animctrl, this->position, 1);
+    }
+
+    if(this->marker->unk20 != NULL){
+        sp44 = FALSE;
+        if(this->unk148 != NULL){
+            func_802EA1A8(&this->marker->unk20, func_8033A0D4(sp48), func_803356A0(this->unk148));
+            sp44 = TRUE;
+        }//L8032542C
+        else if(this->animctrl != NULL && func_8033A0D4(sp48)){
+            func_802897D4(&this->marker->unk20, func_8033A0D4(sp48), animctrl_getAnimPtr(this->animctrl));
+            sp44 = TRUE;
+        }//L80325474
+
+        if(sp44){
+            func_8033A444(this->marker->unk20);
+        }
+    }//L8032548C
+
+    if(this->alpha_124_19 < 0xFF){
+        func_8033A410(this->alpha_124_19);
+    }
+
+    set_model_render_mode(this->unk124_9);
+    if(this->marker->unk44 != 0){
+        if(this->marker->unk44 == 1){
+            func_8033A450(D_8036E568);
+        }
+        else{
+            func_8033A450(this->marker->unk44);
+        }
+    }
+
+    if(this->unkF4_30){
+        sp40 = func_80330C74(this);
+        if(this->unk138_29){
+            sp34[0] = this->pitch;
+            sp34[1] = this->yaw;
+            sp34[2] = this->roll;
+            func_80333D48(sp40, this->position, sp34, this->scale, 0.0f, func_8033A148(sp48));
+        }//L80325560
+        func_8033A4C0(sp40);
+        this->unkF4_29 = NOT(this->unkF4_29);
+    }//L80325594
+
+    if(this->unk130){
+        this->unk130(this);
+    }
+
+    if(this->unk148 && !this->marker->unk20){
+        func_8033A238(func_803356A0(this->unk148));
+    }
+
+    func_8033056C(this);
+    func_8033A494(func_80330C48(this));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_803255FC.s")
 
@@ -267,8 +333,8 @@ Actor *actor_new(s32 (* position)[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
     D_80383390->unk16C_1 = 0;
     D_80383390->unk16C_0 = 0;
     D_80383390->unk17C_31 = 0;
-    D_80383390->unk14C = NULL;
-    D_80383390->unk150 = NULL;
+    D_80383390->unk14C[0] = NULL;
+    D_80383390->unk14C[1] = NULL;
     D_80383390->unk138_27 = 0;
     D_80383390->unk138_24 = 0;
     D_80383390->unk138_23 = 0;
@@ -859,8 +925,8 @@ void actor_copy(Actor *dst, Actor *src){
     dst->animctrl = src->animctrl;
     dst->unk44_14 = src->unk44_14;
     dst->unk148 = src->unk148;
-    dst->unk14C = src->unk14C;
-    dst->unk150 = src->unk150;
+    dst->unk14C[0] = src->unk14C[0];
+    dst->unk14C[1] = src->unk14C[1];
     memcpy(src, dst, sizeof(Actor));
 }
 
@@ -897,8 +963,8 @@ void *actors_appendToSavestate(void * begin, u32 end){
                 memcpy(s0, s1, sizeof(Actor));
                 s0->unk40 = 0;
                 s0->unk138_28 = 1;
-                s0->unk150 = NULL;
-                s0->unk14C = NULL;
+                s0->unk14C[0] =s0->unk14C[1] = NULL;
+                // s0->unk14C = NULL;
                 s0->unk148 = NULL;
                 s0->unk16C_4 = 0;
                 s0->unk44_31 = 0;

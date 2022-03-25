@@ -110,13 +110,16 @@ typedef struct portrait_info_s{
     PortraitVoice voiceInfo[5];
 } PortraitInfo;
 
+typedef struct struct_60_s{
+    s16 unk0[3];
+    s16 unk6;
+    s32 unk8;
+}Struct60s;
+
 typedef struct struct_0_s{ //floor
     void *  model;
-    u16     vtx1;
-    u16     vtx2;
-    u16     vtx3;
-    u8      padA[0x6];
-    s16     unk10[6];
+    Struct60s unk4;
+    Struct60s unk10;
     f32     unk1C[3];
     f32     unk28[3];
     f32     normX;
@@ -381,17 +384,6 @@ typedef struct struct_21_s{
     s32 unk0;
     void * unk1;
 }struct21s;
-
-typedef struct struct_22_s{
-    f32 unk0[3];
-    u8 padC[0xC];
-    f32 unk18;
-    f32 unk1C;
-    u8 pad20[0x8];
-    s32 unk28[3];
-    u8 unk34;
-    u8 pad35[0x3];
-} struct22s;//size 0x38
 
 //particle
 typedef struct struct_2F_s{
@@ -688,5 +680,8 @@ typedef struct {
     f32 unk10;
     f32 unk14;
 } Struct5Fs;
+
+//Struct60s moved to top
+
 
 #endif

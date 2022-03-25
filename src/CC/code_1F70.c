@@ -260,10 +260,10 @@ void func_80388CB4(void){
         func_8030DA44(D_80389FA0.unk4);
         func_80340690(D_80389FA0.unk18);
         func_8034A2A8(D_80389FA0.unk34);
-        if(func_8033A148(D_80389FA0.unk24) != (s32)D_80389FA0.unk40)
-            func_802EC994(D_80389FA0.unk40);
-        if(func_8033A148(D_80389FA0.unk24) != (s32)D_80389FA0.unk44)
-            func_802EC994(D_80389FA0.unk44);
+        if(func_8033A148(D_80389FA0.unk24) != D_80389FA0.unk40)
+            vtxList_free(D_80389FA0.unk40);
+        if(func_8033A148(D_80389FA0.unk24) != D_80389FA0.unk44)
+            vtxList_free(D_80389FA0.unk44);
         assetcache_release((void *)D_80389FA0.unk24);
         D_80389FA0.unk34 = NULL;
         D_80389FA0.unk0 = NULL;
@@ -284,7 +284,7 @@ void func_80388D54(void){
         D_80389FA0.unk34 = func_8034A2C8();
         D_80389FA0.unk3C = 1.0f;
         D_80389FA0.unk40 = func_8033A148(D_80389FA0.unk24);
-        D_80389FA0.unk44 = func_802EC9B4(D_80389FA0.unk40);
+        D_80389FA0.unk44 = vtxList_clone(D_80389FA0.unk40);
         D_80389FA0.unk48 = 0;
         D_80389FA0.unk49 = 0;
         D_80389FA0.unk50 = 0;

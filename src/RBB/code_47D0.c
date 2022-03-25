@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void func_802ECA7C(s32, s32 (*)[3], f32, s32);
+extern void vtxList_tint(s32, s32 (*)[3], f32, BKVertexList*);
 
 /* typedefs and declarations */
 typedef struct {
@@ -69,7 +69,7 @@ void func_8038AC18(Actor *this, s32 new_state){
     local->unk8 = 0.0f;
     if(new_state == 2){
         func_8030E6D4(SFX_90_SWITCH_PRESS);
-        local->unkC = func_802EC9B4(func_8033A148(func_80330B1C(this->marker)));
+        local->unkC = vtxList_clone(func_8033A148(func_80330B1C(this->marker)));
         
         mapSpecificFlags_set(local->unk4->unk10, TRUE);
         this->position_y -= 30.0f;
@@ -84,7 +84,7 @@ void func_8038AC18(Actor *this, s32 new_state){
         this->position_x = local->unk4->unk4[0];
         this->position_y = local->unk4->unk4[1];
         this->position_z = local->unk4->unk4[2];
-        func_802EC994(local->unkC);
+        vtxList_free(local->unkC);
     }
     this->state = new_state;
 }
@@ -115,9 +115,9 @@ Actor *func_8038AD9C(ActorMarker *marker, Gfx **gdl, Mtx **mptr, s32 arg3){
     ){
         temp_v0 = func_80330B1C(marker);
         sp1C = (local->unk0 == 2) ? &D_80390938 : &D_8039092C;
-        func_802ECA7C(local->unkC, sp1C, 
+        vtxList_tint(local->unkC, sp1C, 
             (local->unk4->unk4[1] - actor->position_y)/30.0, 
-            func_8033A148(temp_v0, sp1C)
+            func_8033A148(temp_v0)
         );
         func_8033A4C0(local->unkC);
     }

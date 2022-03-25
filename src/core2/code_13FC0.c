@@ -150,7 +150,12 @@ enum bs_e func_8029C780(void){
     return BS_5_JUMP;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029C7F4.s")
+void func_8029C7F4(s32 arg0, s32 arg1, s32 arg2, s32 arg3){
+    func_80289F10(arg0);
+    func_802991A8(arg1);
+    func_8029957C(arg2);
+    func_802978DC(arg3);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029C834.s")
 

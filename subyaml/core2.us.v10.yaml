@@ -55,7 +55,7 @@ segments:
   - [0xC3F0, c, code_C3F0] #DONE
   - [0xC4B0, c, code_C4B0]
   - [0xD800, c, code_D800] #DONE
-  - [0xD9B0, c, code_D9B0]
+  - [0xD9B0, c, code_D9B0] #DONE
   - [0xDF70, c, code_DF70] #DONE
   - [0xE410, c, code_E410]
   - [0xE680, c, code_E680] #DONE
@@ -516,6 +516,8 @@ segments:
   - [0xED790, .rodata, code_BD20]
   - [0xED7B0, .rodata, code_C0E0]
   - [0xED7D0, bin, data_ED7D0]
+  - [0xED7F0, bin, data_ED7F0] #.rodata, code_C4B0]
+  - [0xED810, .rodata, code_D9B0]
   - [0xED820, .rodata, code_E680]
   - [0xED850, .rodata, code_EF50]
   - [0xED9F0, .rodata, code_FD60]

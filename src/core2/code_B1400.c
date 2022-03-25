@@ -1184,7 +1184,9 @@ void func_8033A308(f32 arg0[3]){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A4A0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A4C0.s")
+void func_8033A4C0(BKVertexList *vertex_list){
+    D_80383728 = vertex_list;
+}
 
 void set_model_render_mode(s32 renderMode){
     D_803837D8 = renderMode;

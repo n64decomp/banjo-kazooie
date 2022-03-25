@@ -55,7 +55,13 @@ int func_8024549C(f32 arg0[3], f32 arg1){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_72B0/func_802457C4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_72B0/func_8024587C.s")
+void func_8024587C(Struct60s *dst, Struct60s *src){
+    dst->unk0[0] = src->unk0[0];
+    dst->unk0[1] = src->unk0[1];
+    dst->unk0[2] = src->unk0[2];
+    dst->unk8 = src->unk8;
+    dst->unk6 = src->unk6;
+}
 
 int func_802458A8(f32 arg0[3], ActorMarker *arg1, s32 arg2){
     return func_802458E0(arg0, marker_getActor(arg1), arg2);
