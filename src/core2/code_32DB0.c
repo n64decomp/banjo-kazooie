@@ -111,36 +111,36 @@ void func_802B9EBC(s32 arg0, s32 arg1){
 
 }
 
-void func_802B9FD0(s32 arg0, s32 arg1){
+void func_802B9FD0(Struct61s *file_ptr, s32 arg1){
     u8 sp27;
     func_802B9DD0(arg1);
-    func_8034B040(arg0, 2, &sp27);
+    func_8034B040(file_ptr, 2, &sp27);
     func_802B9EBC(arg1, sp27);
     switch(func_802B9E8C(arg1)){
         case 4:// L802BA030
-            func_802BA244(arg0, func_802B9E34(arg1));
+            func_802BA244(file_ptr, func_802B9E34(arg1));
             break;
         case 3:// L802BA04C
-            func_802BA550(arg0, func_802B9E48(arg1));
+            func_802BA550(file_ptr, func_802B9E48(arg1));
             break;
         case 1:// L802BA068
-            func_802BA93C(arg0, func_802B9E5C(arg1));
+            func_802BA93C(file_ptr, func_802B9E5C(arg1));
             break;
         case 2:// L802BA084
-            func_802BAB3C(arg0, func_802B9E70(arg1));
+            func_802BAB3C(file_ptr, func_802B9E70(arg1));
             break;
         case 0:// L802BA098
             break;
     }
 }
 
-void func_802BA0AC(s32 arg0){
+void func_802BA0AC(Struct61s *file_ptr){
     s16 sp26;
     func_802B9D80();
     func_802B9D40();
-    while(!func_8034AF98(arg0, 0)){
-        if(func_8034B220(arg0, 1, &sp26))
-            func_802B9FD0(arg0, sp26);
+    while(!func_8034AF98(file_ptr, 0)){
+        if(func_8034B220(file_ptr, 1, &sp26))
+            func_802B9FD0(file_ptr, sp26);
     }
 
 }

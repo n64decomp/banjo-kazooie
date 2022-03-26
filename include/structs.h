@@ -683,5 +683,16 @@ typedef struct {
 
 //Struct60s moved to top
 
+typedef struct{
+    void *unk0;
+    void *unk4;
+    void *unk8; //start_ptr
+    void *unkC; //current_ptr
+    void *unk10; //end_ptr
+    s32 unk14;
+    u8 pad18[0x64];
+    s32 unk7C;
+    s32 unk80;
+}Struct61s; //file stream
 
 #endif

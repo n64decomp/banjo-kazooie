@@ -375,22 +375,22 @@ s32 func_80335134(){
 }
 
 void func_80335140(enum map_e map_id) {
-    s32 s0;
+    Struct61s *fp;
 
     func_80254008();
-    s0 = func_8034AB6C(map_id);
-    while (func_8034AF98(s0, 0) == 0) {
-        if (func_8034AF98(s0, 2)) {
+    fp = func_8034AB6C(map_id);
+    while (func_8034AF98(fp, 0) == 0) {
+        if (func_8034AF98(fp, 2)) {
             
-        } else if (func_8034AF98(s0, 1)) {
-            func_803046A0(s0);
-        } else if (func_8034AF98(s0, 3)) {
-            func_802BA0AC(s0);
-        } else if (func_8034AF98(s0, 4)) {
-            func_80333B78(s0);
+        } else if (func_8034AF98(fp, 1)) {
+            func_803046A0(fp);
+        } else if (func_8034AF98(fp, 3)) {
+            func_802BA0AC(fp);
+        } else if (func_8034AF98(fp, 4)) {
+            func_80333B78(fp);
         }
     }
-    func_8034AAB0(s0);
+    func_8034AAB0(fp); //file close
 }
 
 void func_8033520C(s32 arg0){

@@ -5,8 +5,13 @@
 #include "prop.h"
 
 extern f32 func_803243D0(struct56s *arg0, f32 arg1[3]);
+extern void func_802CAF14(s32, s32, s32);
 
 
+typedef struct {
+    s32 unk0;
+    NodeProp *unk4;
+} Struct_core2_7AF80_0;
 
 extern ActorInfo D_803675F0;
 extern ActorInfo D_80367838;
@@ -104,7 +109,18 @@ void func_80301F10(Cube *cube, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80303228.s")
 
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80303384.s")
+#else
+Cube *func_80303384(s32 arg0[3]) {
+    if( (arg0[0] < D_80381FA0.unk8[0]) || (arg0[1] < D_80381FA0.unk8[1]) || (arg0[2] < D_80381FA0.unk8[2]) 
+        || (D_80381FA0.unk14[0] < arg0[0]) || (D_80381FA0.unk14[1] < arg0[1]) || (D_80381FA0.unk14[2] < arg0[2])) {
+        return D_80381FA0.unk3C;
+    }
+    return D_80381FA0.cube_list + (arg0[0] - D_80381FA0.unk8[0]) + (arg0[1] - D_80381FA0.unk8[1]) * D_80381FA0.unk20 +  (arg0[2] - D_80381FA0.unk8[2])*D_80381FA0.unk24;
+}
+#endif
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80303470.s")
 
@@ -297,9 +313,53 @@ void func_803045CC(s32 arg0, s32 arg1){}
 
 void func_803045D8(void){}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_803045E0.s")
+void func_803045E0(Cube *cube, Struct61s* file_ptr) {
+    s32 sp2C[3];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_803046A0.s")
+    while(!func_8034AF98(file_ptr, 1)) {
+        if (func_8034B190(file_ptr, 0, sp2C, 3)) {
+            func_8034ADB4(file_ptr, sp2C, 3);
+        } else if (!func_8034B190(file_ptr, 2, &sp2C, 3) && func_8034AF98(file_ptr, 3) 
+        ) {
+            func_8032EA24(file_ptr, cube);
+        }
+    }
+}
+
+void func_803046A0(Struct61s *file_ptr) {
+    s32 sp5C[3];
+    s32 sp50[3];
+    s32 sp44[3];
+    Cube *cube; //should be cube
+    NodeProp *iPtr;
+
+    func_8034B190(file_ptr, 1, sp50, 3);
+    func_8034ADB4(file_ptr, sp44, 3);
+    for(sp5C[0] = sp50[0]; sp5C[0] <= sp44[0]; sp5C[0]++){
+        for(sp5C[1] = sp50[1]; sp5C[1] <= sp44[1]; sp5C[1]++){
+            for(sp5C[2] = sp50[2]; sp5C[2] <= sp44[2]; sp5C[2]++){
+                func_803045E0(func_80303384(sp5C), file_ptr);
+            }
+        }
+    }
+    func_8034AF98(file_ptr, 0);
+    func_802CAFA8(D_8036A9E0, 0);
+    for(sp5C[0] = sp50[0]; sp5C[0] <= sp44[0]; sp5C[0]++){
+        for(sp5C[1] = sp50[1]; sp5C[1] <= sp44[1]; sp5C[1]++){
+            for(sp5C[2] = sp50[2]; sp5C[2] <= sp44[2]; sp5C[2]++){
+                cube = func_80303384(sp5C);
+                if (cube->unk0_4) {
+                    for(iPtr = cube->prop1Ptr; iPtr < &cube->prop1Ptr[cube->unk0_4] ;iPtr++){
+                        if (!(iPtr->unk4 & 1)) {
+                            func_802CAF14(D_8036A9E0, iPtr->unkA, 1);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    func_80308984();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_803048E0.s")
 

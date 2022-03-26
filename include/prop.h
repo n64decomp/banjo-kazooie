@@ -394,13 +394,38 @@ typedef union prop_s
         u8 pad0[6];
         s16 unk6;
         s32 pad8_31: 27;
-        s32 unk8_4: 1;
+        u32 unk8_4: 1;
         s32 pad8_3: 1;
         u32 unk8_2: 1;
         u32 unk8_1: 1;
         u32 markerFlag: 1;
     };
 } Prop;
+
+typedef struct {
+    u8 pad0[0x4];
+    union
+    {
+        u32 unk4;
+        struct{
+            u32 pad4_31: 14;
+            u32 unk4_17: 2;
+            u32 pad4_15: 9;
+            u32 unk4_6 : 5;
+            u32 unk4_0 : 1;
+        };
+    };
+    u8 pad8[0x2];
+    u8 unkA;
+    u8 padB[1];
+    u32 padC_31:31;
+    u32 unkC_0: 1;
+    u32 pad10_31 : 25;
+    u32 unk10_6 : 1;
+    u32 pad10_5 : 1;
+    u32 unk10_4 : 4;
+    u32 pad10_0 : 1;
+} NodeProp;
 
 typedef struct cude_s{
     s32 x:5;
@@ -409,7 +434,7 @@ typedef struct cude_s{
     u32 prop1Cnt:6;
     u32 prop2Cnt:6;
     u32 unk0_4:5;
-    Prop *prop1Ptr;
+    NodeProp *prop1Ptr;
     Prop *prop2Ptr;
 }Cube;
 

@@ -349,11 +349,156 @@ void cube_free(Cube *this){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032E6CC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032E784.s")
+void func_8032E784(Cube *cube, s32 cnt){
+    if(cube->prop1Ptr != NULL){
+        free(cube->prop1Ptr);
+    }
+    cube->prop1Cnt = cnt;
+    cube->unk0_4 = 0; 
+}
 
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032E7E8.s")
+#else
+void func_8032E7E8(NodeProp *node, Cube *cube, s32 cnt) {
+    s32 temp_a0;
+    s32 temp_s2;
+    s32 temp_s2_2;
+    s32 temp_v0;
+    s32 temp_v1;
+    u32 temp_t8;
+    void *temp_v0_2;
+    void *temp_v0_3;
+    void *temp_v0_4;
+    void *temp_v0_5;
+    void *temp_v1_2;
+    void *phi_s0;
+    NodeProp *iPtr;
+    s32 phi_s3;
+    s32 phi_s2;
+    s32 phi_a0;
+    s32 phi_s2_2;
+    s32 phi_a0_2;
+    void *phi_v1;
+    void *phi_v1_2;
+    void *phi_v1_3;
+    s32 phi_s2_3;
+    s32 i;
+    s32 val;
 
+    cube->unk0_4 = 0;
+    phi_s3 = cnt - 1;
+    for(i = 0; i < cnt; i++){
+        if( (node[i].unk4_6 == 6) 
+            || (node[i].unk4_6 == 8)
+            || (node[i].unk4_6 == 7) 
+            || (node[i].unk4_6 == 9) 
+            || (node[i].unk4_6 == 0xA) 
+            || (node[i].unk4_0 == 1)
+        ){
+            memcpy(&cube->prop1Ptr[phi_s3], &node[i], sizeof(NodeProp));
+            phi_s3--;
+        } else {
+            memcpy(&cube->prop1Ptr[cube->prop1Cnt], &node[i], sizeof(NodeProp));
+            cube->unk0_4++;
+        }
+    }
+    free(node);
+    
+    for(i = 0; i < cnt; i++){
+        iPtr = &cube->prop1Ptr[i];
+        if(!iPtr->unk4_0){
+            iPtr->unk10_6 = TRUE;
+        }
+    }
+}
+#endif
+
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032EA24.s")
+#else
+void func_8032EA24(Struct61s *file_ptr, Cube *cube) {
+    u8 sp47;
+    u8 sp46;
+    s32 sp34;
+    s32 sp2C;
+    s32 temp_s0_3;
+    s32 temp_v0_4;
+    s32 temp_v0_5;
+    u8 temp_t1;
+    NodeProp *temp_a0;
+    NodeProp *temp_s0;
+    NodeProp *phi_v1;
+    Prop *phi_v1_2;
+
+    cube_free(cube);
+    if (func_8034B040(file_ptr, 0xA, sp46)) {
+        func_8032E784(cube, sp46);
+        cube->prop1Ptr = malloc(sp46 *sizeof(NodeProp));
+        temp_s0 = malloc(sp46*sizeof(NodeProp));
+        func_8034B080(file_ptr, 0xB, temp_s0, cube->prop1Cnt * sizeof(NodeProp));
+        func_8032E7E8(temp_s0, cube, sp46);
+    } else if (func_8034B040(file_ptr, 6, sp46)) {
+        func_8032E784(cube, sp46);
+        cube->prop1Ptr = malloc(sp46 *sizeof(NodeProp));
+        temp_s0 = malloc(sp46*sizeof(NodeProp));
+        func_8034B080(file_ptr, 7, temp_s0, cube->prop1Cnt * sizeof(NodeProp));
+        for(phi_v1 = temp_s0; phi_v1 < temp_s0 + sp46; phi_v1++){
+            if (phi_v1->unk4_0 && !phi_v1->unkC_0) {
+                phi_v1->unk4_17 = 0;
+                phi_v1->unk10_4 = 0;
+            }
+        }
+        func_8032E7E8(temp_s0, cube, sp46);
+    }
+    if (func_8034B040(file_ptr, 8, &sp47)) {
+        temp_s0_3 = func_803203FC(2);
+        sp2C = func_803203FC(1);
+        sp34 = func_803203FC(0x1F) + sp2C + temp_s0_3;
+        if (sp34 != 0) {
+            if (func_8031B4CC() != 0) {
+                sp34 = 0;
+            }
+        }
+        if (cube->prop2Ptr != 0) {
+            free(cube->prop2Ptr);
+        }
+        cube->prop2Cnt = sp47;
+        cube->prop2Ptr = (Prop *) malloc(sp47 * sizeof(Prop));
+        func_8034B080(file_ptr, 9, cube->prop2Ptr, cube->prop2Cnt * sizeof(Prop));
+        for(phi_v1_2 = cube->prop2Ptr; phi_v1_2 < cube->prop2Ptr + sp47; phi_v1_2++){
+            phi_v1_2->unk8_4 = 1;
+            if(phi_v1_2->unk8_1){
+                phi_v1_2->actorProp.unk8_5 = 0;
+            }
+            if(sp34){
+                if(!phi_v1_2->markerFlag && !phi_v1_2->unk8_1){
+                    switch(phi_v1_2->spriteProp.unk0_31 + 0x572){
+                        case 0x580:
+                        case 0x6D1:
+                        case 0x6D6:
+                        case 0x6D7:
+                            phi_v1_2->spriteProp.unk8_4 = 0; 
+                            break;
+                    }
+                }
+            }
+        }
+
+    }
+
+    if ((cube->prop2Ptr != NULL) && (cube->prop2Cnt == 0)) {
+        free(cube->prop2Ptr);
+        cube->prop2Ptr = NULL;
+    }
+
+    if ((cube->prop1Ptr != NULL) && (cube->prop1Cnt == 0)) {
+        free(cube->prop1Ptr);
+        cube->prop1Ptr = NULL;
+        cube->unk0_4 = 0;
+    }
+}
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032EE0C.s")
 
