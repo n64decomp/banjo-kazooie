@@ -136,7 +136,7 @@ segments:
   - [0x329F0, c, bs/washy] #DONE
   - [0x32DB0, c, code_32DB0] #DONE
   - [0x33250, c, code_33250]
-  - [0x33AB0, c, code_33AB0]
+  - [0x33AB0, c, code_33AB0] #DONE
   - [0x33C30, c, code_33C30]
   - [0x33D40, c, code_33D40] #DONE
   - [0x33F90, c, code_33F90] #DONE

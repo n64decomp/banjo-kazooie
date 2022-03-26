@@ -14,7 +14,15 @@ typedef struct{
     s32 unk30;
 }Struct_core2_33250_1;
 
-
+typedef struct {
+    f32 unk0[3];
+    f32 unkC;
+    f32 unk10;
+    f32 unk14;
+    f32 unk18;
+    f32 unk1C[3];
+    s32 unk28;
+} Struct_core2_33250_2;
 
 void func_802BA23C(s32 *arg0, s32 arg1);
 
@@ -143,15 +151,7 @@ void func_802BA550(Struct61s *file_ptr, Struct_core2_33250_1 *arg1){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_33250/func_802BA91C.s")
 
-typedef struct {
-    f32 unk0[3];
-    f32 unkC;
-    f32 unk10;
-    f32 unk14;
-    f32 unk18;
-    f32 unk1C[3];
-    s32 unk28;
-} Struct_core2_33250_2;
+
 
 void func_802BA93C(Struct61s *file_ptr, Struct_core2_33250_2 *arg1){
     while(!func_8034AF98(file_ptr, 0)){
