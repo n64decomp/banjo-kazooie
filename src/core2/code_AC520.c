@@ -3,7 +3,7 @@
 #include "variables.h"
 
 
-
+extern void func_80252CC4(f32[3], f32[3], f32, f32[3]);
 
 void func_80333918(void);
 void func_8033393C(void);
@@ -30,7 +30,28 @@ extern struct {
 } D_80383570;
 
 //.code
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AC520/func_803334B0.s")
+extern void func_803334B0(f32 position[3], f32 rotation[3], f32 scale, f32 arg3[3], f32 arg4){
+    Struct_core2_AC520_0 * start_ptr;
+    Struct_core2_AC520_0 * end_ptr;
+    Struct_core2_AC520_0 * iPtr;
+
+    start_ptr = (Struct_core2_AC520_0 *)vector_getBegin(D_80383570.unk0);
+    end_ptr = (Struct_core2_AC520_0 *)vector_getEnd(D_80383570.unk0);
+    mlMtxIdent();
+    func_80252CC4(position, rotation, scale, arg3);
+    D_80383570.unk44 = &D_80383570.unk4;
+    iPtr = start_ptr;
+    for(; iPtr < end_ptr && D_80383570.unk44 < D_80383570.unk48; iPtr++){
+        if(iPtr->unk34 && func_80256064(position, iPtr->unk0) < iPtr->unk1C + arg4){
+            func_8025235C(iPtr->unkC, iPtr->unk0);
+            iPtr->unk20 = iPtr->unk18/scale;
+            iPtr->unk24 = iPtr->unk1C/scale;
+            *D_80383570.unk44 = iPtr;
+            D_80383570.unk44++;
+        }//L803335B0
+    }
+}
+
 
 void func_803335F4(void){
     func_80333918();
@@ -162,7 +183,25 @@ void func_80333B28(s32 index , s32 *arg1){
     v0->unk28[2] = arg1[2];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AC520/func_80333B78.s")
+void func_80333B78(s32 arg0){
+    f32 sp4C[3];
+    f32 sp44[2];
+    f32 sp38[3];
+    s32 indx;
+    func_803335F4();
+    while(!func_8034AF98(arg0, 0)){
+        if( func_8034AF98(arg0, 1)
+            && func_8034B108(arg0, 2, sp4C, 3)
+            && func_8034B108(arg0, 3, sp44, 2)
+            && func_8034B190(arg0, 4, sp38, 3)
+        ){
+            indx = func_8033383C();
+            func_80333A94(indx, sp4C);
+            func_80333AE4(indx, sp44);
+            func_80333B28(indx, sp38);
+        }
+    }
+}
 
 s32 func_80333C78(s32 arg0){
     Struct_core2_AC520_0 *beginPtr = vector_getBegin(D_80383570.unk0);
@@ -184,10 +223,10 @@ s32 func_80333C78(s32 arg0){
 #ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AC520/func_80333D48.s")
 #else
-extern void func_803334B0(s32, s32, f32, f32, f32);
-extern f32 func_802EC920();
+extern void func_803334B0(f32 position[3], f32 rotation[3], f32 scale, f32[3], f32);
+extern f32 func_802EC920(BKVertexList *arg0);
 
-void func_80333D48(BKVertexList *arg0, f32 position[3], f32 rotation[3], f32 scale, f32 arg4, BKVertexList *arg5) {
+void func_80333D48(BKVertexList *arg0, f32 position[3], f32 rotation[3], f32 scale, s32 arg4, BKVertexList *arg5) {
     Vtx *i_ptr;
     Vtx *end_ptr;
     Vtx *ref_ptr;
@@ -196,9 +235,9 @@ void func_80333D48(BKVertexList *arg0, f32 position[3], f32 rotation[3], f32 sca
     f32 sp68[3];
     Struct_core2_AC520_0 *struct_ptr;
     f32 temp_f0;
-    f32 temp_f2;
+    s8* tmp;
 
-    func_803334B0(position, rotation, scale, arg4, func_802EC920());
+    func_803334B0(position, rotation, scale, arg4, func_802EC920(arg0));
     if (D_80383570.unk44 == (&D_80383570.unk4[0])) {
         vtxList_recolor(arg0, &D_8036F970);
         return;
@@ -221,47 +260,17 @@ void func_80333D48(BKVertexList *arg0, f32 position[3], f32 rotation[3], f32 sca
                     sp68[1] = sp68[1] + struct_ptr->unk28[1];
                     sp68[2] = sp68[2] + struct_ptr->unk28[2];
                 } else {
-                    temp_f2 = 1.0f - ((temp_f0 - struct_ptr->unk20) / (struct_ptr->unk24 - struct_ptr->unk20));
-                    sp68[0] += temp_f2 * struct_ptr->unk28[0];
-                    sp68[1] += temp_f2 * struct_ptr->unk28[1];
-                    sp68[2] += temp_f2 * struct_ptr->unk28[2];
+                    temp_f0 = 1.0f - ((temp_f0 - struct_ptr->unk20) / (struct_ptr->unk24 - struct_ptr->unk20));
+                    sp68[0] += temp_f0 * struct_ptr->unk28[0];
+                    sp68[1] += temp_f0 * struct_ptr->unk28[1];
+                    sp68[2] += temp_f0 * struct_ptr->unk28[2];
                 }
             }
         }
         
-        i_ptr->v.cn[0] = (s32)(ref_ptr->v.cn[0]*sp68[0]/256.0);
-        i_ptr->v.cn[1] = (s32)(ref_ptr->v.cn[1]*sp68[1]/256.0);
-        i_ptr->v.cn[2] = (s32)(ref_ptr->v.cn[2]*sp68[2]/256.0);
+        i_ptr->v.cn[0] = (s8)((ref_ptr->v.cn[0]*sp68[0])/256.0);
+        i_ptr->v.cn[1] = (s8)((ref_ptr->v.cn[1]*sp68[1])/256.0);
+        i_ptr->v.cn[2] = (s8)((ref_ptr->v.cn[2]*sp68[2])/256.0);
     }
 } 
 #endif;
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AC520/func_803340A0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AC520/func_803342AC.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AC520/func_803343AC.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AC520/func_803343D0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AC520/func_803343F8.s")
-
-void func_80334428(void){}
-
-void func_80334430(s32 arg0, s32 arg1){}
-
-void func_8033443C(s32 arg0, s32 arg1){}
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AC520/func_80334448.s")
-
-s32 func_8033451C(s32 arg0){
-    return arg0 - 0x16;
-}
-
-s32 func_80334524(s32 arg0){
-    return arg0 + 0xcc;
-}
-
-s32 func_8033452C(s32 arg0){
-    return arg0 + 0x19d;
-}

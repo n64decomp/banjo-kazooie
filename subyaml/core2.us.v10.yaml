@@ -298,6 +298,7 @@ segments:
   - [0xA4D00, c, code_A4D00]
   - [0xABC00, c, code_ABC00]
   - [0xAC520, c, code_AC520]
+  - [0xAD110, c, code_AD110]
   - [0xAD5B0, c, code_AD5B0] #DONE
   - [0xAE290, c, code_AE290]
   - [0xAE5D0, c, code_AE5D0]

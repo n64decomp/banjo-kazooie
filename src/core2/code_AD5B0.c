@@ -14,7 +14,7 @@ extern u32 D_803835E0;
 void func_80335110(s32);
 void func_80335128(s32);
 void func_8024CE60(f32, f32);
-void func_80335140(s32);
+void func_80335140(enum map_e);
 void func_8033520C(s32);
 
 void func_80334540(Gfx** gdl, Mtx **mptr, Vtx **vptr) {
@@ -374,19 +374,19 @@ s32 func_80335134(){
     return D_803835E0;
 }
 
-void func_80335140(s32 arg0) {
+void func_80335140(enum map_e map_id) {
     s32 s0;
 
     func_80254008();
-    s0 = func_8034AB6C(arg0);
+    s0 = func_8034AB6C(map_id);
     while (func_8034AF98(s0, 0) == 0) {
-        if (func_8034AF98(s0, 2) != 0) {
+        if (func_8034AF98(s0, 2)) {
             
-        } else if (func_8034AF98(s0, 1) != 0) {
+        } else if (func_8034AF98(s0, 1)) {
             func_803046A0(s0);
-        } else if (func_8034AF98(s0, 3) != 0) {
+        } else if (func_8034AF98(s0, 3)) {
             func_802BA0AC(s0);
-        } else if (func_8034AF98(s0, 4) != 0) {
+        } else if (func_8034AF98(s0, 4)) {
             func_80333B78(s0);
         }
     }

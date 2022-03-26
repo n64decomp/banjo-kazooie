@@ -97,7 +97,7 @@ void func_803253A0(Actor *this){
             sp34[0] = this->pitch;
             sp34[1] = this->yaw;
             sp34[2] = this->roll;
-            func_80333D48(sp40, this->position, sp34, this->scale, 0.0f, func_8033A148(sp48));
+            func_80333D48(sp40, this->position, sp34, this->scale, 0, func_8033A148(sp48));
         }//L80325560
         func_8033A4C0(sp40);
         this->unkF4_29 = NOT(this->unkF4_29);
