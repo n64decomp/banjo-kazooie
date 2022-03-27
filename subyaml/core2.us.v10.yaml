@@ -135,14 +135,14 @@ segments:
   - [0x30E70, c, bs/walrus]
   - [0x329F0, c, bs/washy] #DONE
   - [0x32DB0, c, code_32DB0] #DONE
-  - [0x33250, c, code_33250]
+  - [0x33250, c, code_33250] #DONE
   - [0x33250, c, code_33310] #DONE
   - [0x336F0, c, code_336F0] #DONE
   - [0x33AB0, c, code_33AB0] #DONE
   - [0x33C30, c, code_33C30]
   - [0x33D40, c, code_33D40] #DONE
   - [0x33F90, c, code_33F90] #DONE
-  - [0x34790, c, code_34790] #DONE
+  - [0x34790, c, code_34790]
   - [0x35520, c, code_35520]
   - [0x356B0, c, code_356B0]
   - [0x379B0, c, code_379B0]
@@ -348,7 +348,7 @@ segments:
   - [0xC8760, c, code_C8760]
   - [0xC89C0, c, code_C89C0]
   - [0xC97F0, c, code_C97F0]
-  - [0xC9E70, c, code_C9E70]
+  - [0xC9E70, c, code_C9E70] #DONE
   - [0xC9F00, c, code_C9F00]
   - [0xCB050, c, code_CB050]
   - [0xCB610, c, code_CB610]
@@ -358,6 +358,7 @@ segments:
   - [0xCD0A0, c, code_CD0A0]
   - [0xCD3F0, c, code_CD3F0]
   - [0xCECD0, c, code_CECD0]
+  - [0xCF090, c, code_CF090] #DONE
   - [0xCF3E0, c, code_CF3E0] #DONE
   - [0xCF7E0, c, ch/clankerwhipcrack] #DONE
   - [0xCFA60, c, ch/code_CFA60] #DONE
