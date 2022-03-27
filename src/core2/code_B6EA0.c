@@ -293,7 +293,7 @@ s32 func_8033E8AC(void){
     return D_80384490[D_80384FD0].unk3C;
 }
 
-s32 func_8033E8D0(void){
+u8 func_8033E8D0(void){
     return D_80384490[D_80384FD0].unk45;
 }
 
