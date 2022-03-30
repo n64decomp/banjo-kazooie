@@ -24,13 +24,13 @@ enum bkprog_e{
 	// BKPROG_0D_ "1st Beehive Text"},
     BKPROG_D_BEEHIVE_TEXT = 0xD,
 	BKPROG_E_JINJO_TEXT,
-	// {index=0x0F, type="Prog", level=6, name="1st Time Pirahana Text"},
-	// {index=0x10, type="Prog", level=6, name="1st Sand Eel Text"}, -- 0x02 > 0
-	// {index=0x11, type="Prog", level=6, name="1st Meeting Mumbo Text"}, -- 0x02 > 1
+    BKPROG_F_HAS_TOUCHED_PIRAHANA_WATER,
+	BKPROG_10_HAS_TOUCHED_SAND_EEL_SAND,
+    // {index=0x11, type="Prog", level=6, name="1st Meeting Mumbo Text"}, -- 0x02 > 1
 	// {index=0x12, type="Prog", level=6, name="1st Post XForm Mumbo Text"},
     BKPROG_13 = 0x13, //something with xmas tree jiggy progress
-	// {index=0x14, type="Prog", level=6, name="1st FP Icy Water Text"},
-    BKPROG_15_ENTER_MMM_TEXT = 0x15,
+    BKPROG_14_HAS_TOUCHED_FP_ICY_WATER,
+    BKPROG_15_ENTER_MMM_TEXT,
 	// {index=0x16, type="Prog", level=6, name="1st Time in Jigsaw Text"},
 	// {index=0x17, type="Prog", level=6, name="1st Time Enough Pieces Jigsaw Text"},
 	// {index=0x18, type="Prog", level=6, name="MM WS Jiggy Spawned"},
@@ -138,7 +138,7 @@ enum bkprog_e{
 
 	// {index=0x84, type="Prog", level=6, name="Mumbo's Magic All Gone Text"},
 	// {index=0x85, type="Prog", level=6, name="Lair Crypt Gate Open"},
-	// {index=0x86, type="Prog", level=10, name="1st Thorn Hedge Text"},
+    BKPROG_86_HAS_TOUCHED_MMM_THORN_HEDGE = 0x86,
 
     BKPROG_88_TRIED_LOGGO_AS_BEAR = 0x88,
     BKPROG_89_ENTERED_LOGGO_AS_PUMPKIN,
@@ -175,7 +175,8 @@ enum bkprog_e{
     BKPROG_A6_FURNACE_FUN_COMPLETE = 0xA6,
     BKPROG_A7_NEAR_PUZZLE_PODIUM_TEXT,
     BKPROG_A8_HAS_DIED,
-	// {index=0xA9, type="Prog", level=9, name="1st RBB Oven Text"},
+    BKPROG_A9_HAS_TOUCHED_RBB_OVEN,
+    BKPROG_AA_HAS_TOUCHED_CCW_BRAMBLE_FIELD,
 	// {index=0xAA, type="Prog", level=8, name="1st CCW Bramble Field Text"},
 	// {index=0xAB, type="Prog", level=9, name="Oily Water Surface Text"},
 	// {index=0xAC, type="Prog", level=9, name="Oily Water Underwater Text"},
