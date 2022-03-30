@@ -183,17 +183,17 @@ void func_80333B28(s32 index , s32 *arg1){
     v0->unk28[2] = arg1[2];
 }
 
-void func_80333B78(s32 arg0){
+void func_80333B78(Struct61s *file_ptr){
     f32 sp4C[3];
     f32 sp44[2];
-    f32 sp38[3];
+    s32 sp38[3];
     s32 indx;
     func_803335F4();
-    while(!func_8034AF98(arg0, 0)){
-        if( func_8034AF98(arg0, 1)
-            && func_8034B108(arg0, 2, sp4C, 3)
-            && func_8034B108(arg0, 3, sp44, 2)
-            && func_8034B190(arg0, 4, sp38, 3)
+    while(!func_8034AF98(file_ptr, 0)){
+        if( func_8034AF98(file_ptr, 1)
+            && func_8034B108(file_ptr, 2, sp4C, 3)
+            && func_8034B108(file_ptr, 3, sp44, 2)
+            && func_8034B190(file_ptr, 4, sp38, 3)
         ){
             indx = func_8033383C();
             func_80333A94(indx, sp4C);

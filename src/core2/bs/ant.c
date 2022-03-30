@@ -67,7 +67,7 @@ int bsant_inSet(s32 move_indx){
     return (move_indx == BS_ANT_IDLE)
     || (move_indx == BS_ANT_WALK)
     || (move_indx == BS_ANT_JUMP)
-    || (move_indx == BS_ANT_FALL)
+    || (move_indx == BS_38_ANT_FALL)
     || (move_indx == BS_3E_ANT_OW)
     || (move_indx == BS_43_ANT_DIE)
     || (move_indx == 0x8e)
@@ -91,7 +91,7 @@ void bsant_idle_update(void){
     func_80299628(0);
     
     if(func_8028B094())
-        new_state = BS_ANT_FALL;
+        new_state = BS_38_ANT_FALL;
 
     if(func_80294F78())
         new_state = func_802926C0();
@@ -135,7 +135,7 @@ void bsant_walk_update(void){
         sp1C = BS_ANT_IDLE;
 
     if(func_8028B094())
-        sp1C = BS_ANT_FALL;
+        sp1C = BS_38_ANT_FALL;
 
     if(button_pressed(BUTTON_A))
         sp1C = BS_ANT_JUMP;

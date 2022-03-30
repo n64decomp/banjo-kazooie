@@ -76,7 +76,7 @@ int func_802B81F0(enum bs_e state){
     return state == BS_WALRUS_IDLE
         || state == BS_WALRUS_WALK
         || state == BS_WALRUS_JUMP
-        || state == BS_WALRUS_FALL
+        || state == BS_6A_WALRUS_FALL
         || state == BS_WALRUS_OW
         || state == BS_WALRUS_DIE
         || state == BS_WALRUS_DRONE
@@ -102,7 +102,7 @@ void bswalrus_idle_update(void){
     func_80299628(0);
 
     if(func_8028B094())
-        next_state = BS_WALRUS_FALL;
+        next_state = BS_6A_WALRUS_FALL;
 
     if(func_80294F78())
         next_state = func_802926C0();
@@ -140,7 +140,7 @@ void bswalrus_walk_update(void){
         next_state = BS_WALRUS_IDLE;
 
     if(func_8028B094())
-        next_state = BS_WALRUS_FALL;
+        next_state = BS_6A_WALRUS_FALL;
 
     if(button_pressed(BUTTON_A))
         next_state = BS_WALRUS_JUMP;

@@ -3,8 +3,26 @@
 #include "variables.h"
 
 ParticleEmitter * func_802EDD8C(f32[3], f32, f32);
+f32 func_8024DDD8(f32[3], f32);
 
+extern f32 D_8037D1A0;
+extern s32 D_8037D1A4;
+extern f32 D_8037D1A8[];
 
+extern f32 D_8037D1BC;
+extern f32 D_8037D1C0;
+extern f32 D_8037D1C4;
+extern f32 D_8037D1C8;
+extern s32 D_8037D1CC;
+extern s32 D_8037D1D0;
+extern u8 D_8037D1D4;
+
+extern struct {
+    s32 map_id;
+    s32 exit_id;
+}D_8037D1E0;
+
+/*.code */
 f32 func_8029AF50(f32 arg0, f32 arg1, f32 arg2){
     return (arg0 - arg1)/(arg2 - arg1);
 }
@@ -17,57 +35,187 @@ f32 func_8029AF50(f32 arg0, f32 arg1, f32 arg2){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029B174.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029B2D0.s")
+f32 func_8029B2D0(void){
+    return D_8037D1BC;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029B2DC.s")
+f32 func_8029B2DC(void){
+    return D_8037D1C0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029B2E8.s")
+f32 func_8029B2E8(void){
+    return D_8037D1C8;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029B2F4.s")
+f32 func_8029B2F4(void){
+    return D_8037D1C4;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029B300.s")
+s32 func_8029B300(void){
+    return D_8037D1A4;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029B30C.s")
+f32 func_8029B30C(void){
+    return D_8037D1A0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029B318.s")
+void func_8029B318(s32 arg0){
+    D_8037D1D4 = arg0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029B324.s")
+void func_8029B324(s32 arg0, f32 arg1){
+    D_8037D1A8[arg0] = arg1;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029B33C.s")
+f32 func_8029B33C(void){
+    f32 sp1C[3];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029B370.s")
+    _player_getPosition(sp1C);
+    return func_8024DDD8(sp1C, func_8029B2F4());
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029B37C.s")
+s32 func_8029B370(void){
+    return D_8037D1D0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029B388.s")
+s32 func_8029B37C(void){
+    return D_8037D1CC;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029B39C.s")
+bool func_8029B388(void){
+    return D_8037D1D0 == 1;
+}
+
+bool func_8029B39C(void){
+    return D_8037D1CC == 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029B3B0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029B41C.s")
+f32 func_8029B41C(void){
+    f32 sp2C[3];
+    f32 sp20[3];
+    f32 sp1C;
 
+    player_getPosition(sp2C);
+    func_8024C5CC(sp20);
+    func_80257F18(sp2C, sp20, &sp1C);
+    return sp1C;
+}
+
+#ifndef NONMATCHING //requires .rodata
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029B458.s")
+#else
+enum bs_e func_8029B458(void){
+    enum bs_e sp1C;
+    
+    sp1C = bs_getState();
+    switch(_player_getTransformation()){
+        case TRANSFORM_2_TERMITE:
+            return BS_38_ANT_FALL;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029B504.s")
+        case TRANSFORM_3_PUMPKIN:
+            return BS_4B_PUMPKIN_FALL;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029B564.s")
+        case TRANSFORM_5_CROC:
+            return BS_61_CROC_FALL;
+
+        case TRANSFORM_4_WALRUS:
+            if(func_802B8190())
+                return BS_82_WALRUS_SLED_LOSE_IN_AIR;
+            return BS_6A_WALRUS_FALL;
+
+        case TRANSFORM_6_BEE:
+            return BS_88_BEE_FALL;
+
+        default:
+            if(bsbtrot_inSet())
+                return BS_71_BTROT_FALL;
+            return BS_2F_FALL;
+    }
+}
+#endif
+
+enum bs_e func_8029B504(void){
+    enum bs_e sp1C;
+
+    if(func_802933C0(0xF))
+        return 0;
+
+    func_802933E8(0xF);
+    sp1C = func_8029B458();
+    if(bs_getState() != sp1C)
+        return sp1C;
+    return 0;
+
+}
+
+s32 func_8029B564(void){
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029B56C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029B5EC.s")
+void func_8029B5EC(void){
+    func_802DC560(0, 0);
+    func_802E412C(1, 0);
+    func_802E4078(MAP_1F_CS_START_RAREWARE, 0, 1);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029B62C.s")
+void func_8029B62C(void){
+    if(item_empty(ITEM_16_LIFE)){
+        if(!func_8031FF1C(BKPROG_BD_ENTER_LAIR_CUTSCENE) || func_8031FF1C(BKPROG_A6_FURNACE_FUN_COMPLETE)){
+            func_8025A430(-1, 0x7D0, 3);
+            func_8025A2B0();
+            func_802DC528(0, 0);
+            func_80324C58();
+            timedFunc_set_0(5.0f, func_8029B5EC);
+        }
+        else{
+            func_802E412C(1, 0);
+            func_802E4078(MAP_83_CS_GAME_OVER_MACHINE_ROOM, 0, 1);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029B6F0.s")
+        }
+    }
+    else{
+        func_802E4048(D_8037D1E0.map_id, D_8037D1E0.exit_id, 1);
+    }
+}
+
+void func_8029B6F0(void){
+    if(item_empty(ITEM_16_LIFE)){
+        func_8029B62C();
+    }
+    else{
+        func_802E4078(D_8037D1E0.map_id, D_8037D1E0.exit_id, 1);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029B73C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029B85C.s")
+void func_8029B85C(ActorMarker *caller, enum asset_e text_id, s32 arg2){
+    func_8030E6D4(SFX_EB_GRUNTY_LAUGH_2);
+    func_8029B62C();
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029B890.s")
+void func_8029B890(void){
+    if(!func_8031FF1C(BKPROG_A8_HAS_DIED) && !func_803203FC(2)){
+        func_803114D0();
+        if(bs_getState() == 0x54){
+            func_8029B62C();
+            return;
+        }
+        func_80311480(0xf81, 7, NULL, NULL, func_8029B85C, NULL);
+        func_80320004(BKPROG_A8_HAS_DIED, TRUE);
+    }
+    else{
+        func_8029B62C();
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029B930.s")
+void func_8029B930(void){
+    func_803114D0();
+}
 
 ParticleEmitter *func_8029B950(f32 pos[3],f32 arg1){
     return func_802EDD8C(pos, arg1, func_80294500());
@@ -161,7 +309,12 @@ void func_8029C7F4(s32 arg0, s32 arg1, s32 arg2, s32 arg3){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029C848.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029C984.s")
+void func_8029C984(void){
+    func_8025AB00();
+    func_8025A2FC(0, 4000);
+    func_8025A70C(COMUSIC_1A_DEATH);
+    func_8024BD08(0);
+}
 
 s32 func_8029C9C0(s32 arg0){
     if(func_802933C0(0xF))
@@ -193,7 +346,7 @@ s32 func_8029CA94(s32 arg0){
         arg0 = (player_getTransformation() == TRANSFORM_6_BEE) ? 0x46 : BS_JIG_NOTEDOOR;
 
     if(func_802933C0(0xE))
-        arg0 = BS_LONGLEG_ENTER;
+        arg0 = BS_25_LONGLEG_ENTER;
 
     if(func_802933C0(0x10))
         arg0 = BS_BTROT_ENTER;

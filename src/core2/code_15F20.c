@@ -3,7 +3,9 @@
 #include "variables.h"
 
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_15F20/func_8029CEB0.s")
+s32 func_8029CEB0(void){
+    return func_802944F4();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_15F20/func_8029CED0.s")
 

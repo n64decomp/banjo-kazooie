@@ -61,7 +61,9 @@ void func_8030C2D4(Gfx **gdl, Mtx **mptr, Vtx **vptr){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_851D0/func_8030C33C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_851D0/func_8030C704.s")
+s32 func_8030C704(void){
+    return D_80382450;
+}
 
 void func_8030C710(void){
     func_802542F4(0, 0xA0, 0, 0x80);

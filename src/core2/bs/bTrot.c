@@ -191,7 +191,7 @@ enum bs_e func_802A8D84(enum bs_e arg0){
         arg0 = func_802926C0();
 
     if(func_8028B094())
-        arg0 = BS_BTROT_FALL;
+        arg0 = BS_71_BTROT_FALL;
 
     if(func_802A8C60())
         arg0 = BS_BTROT_EXIT;
@@ -314,7 +314,7 @@ void bsbtrot_walk_update(void){
         sp1C = BS_BTROT_IDLE;
 
     if(func_8028B094())
-        sp1C = BS_BTROT_FALL;
+        sp1C = BS_71_BTROT_FALL;
 
     if(func_802A8C60())
         sp1C = BS_BTROT_EXIT;
@@ -557,7 +557,7 @@ int bsbtrot_inSet(s32 move_indx){
     || (move_indx == BS_BTROT_ENTER)
     || (move_indx == 0x79)
     || (move_indx == BS_BTROT_OW)
-    || (move_indx == BS_BTROT_FALL)
+    || (move_indx == BS_71_BTROT_FALL)
     || (move_indx == 0x9a);
 }
 

@@ -90,7 +90,7 @@ int bscroc_inSet(enum bs_e state){
     return state == BS_CROC_IDLE
         || state == BS_CROC_WALK
         || state == BS_CROC_JUMP
-        || state == BS_CROC_FALL
+        || state == BS_61_CROC_FALL
         || state == BS_CROC_OW
         || state == BS_CROC_DIE
         || state == BS_6E_CROC_BITE
@@ -117,7 +117,7 @@ void bscroc_idle_update(void){
     func_802ABE70();
     func_80299628(0);
     if(func_8028B094())
-        next_state = BS_CROC_FALL;
+        next_state = BS_61_CROC_FALL;
 
     if(func_80294F78())
         next_state = func_802926C0();
@@ -161,7 +161,7 @@ void bscroc_walk_update(void){
         next_state = BS_CROC_IDLE;
 
     if(func_8028B094())
-        next_state = BS_CROC_FALL;
+        next_state = BS_61_CROC_FALL;
 
     if(button_pressed(BUTTON_B))
         next_state = BS_6E_CROC_BITE;
@@ -542,7 +542,7 @@ void bscroc_bite_update(void){
 
     if(D_8037D3F4 == 3){
         if(func_8028B094())
-            next_state =  BS_CROC_FALL;
+            next_state =  BS_61_CROC_FALL;
         else
             next_state = BS_CROC_WALK;
     }

@@ -112,7 +112,7 @@ void func_802A1214(void){
         s0 = BS_BEE_IDLE;
     
     if(func_8028B094())
-        s0 = BS_BEE_FALL;
+        s0 = BS_88_BEE_FALL;
 
     if(button_pressed(BUTTON_A))
         s0 = BS_BEE_JUMP;

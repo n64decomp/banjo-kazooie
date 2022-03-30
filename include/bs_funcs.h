@@ -140,7 +140,7 @@ void func_802A505C(void);
 void bsbfly_init(void);
 void bsbfly_update(void);
 void func_802A3F70(void);
-//BS_LONGLEG_ENTER(void);
+//BS_25_LONGLEG_ENTER(void);
 void bsblongleg_enter_init(void);
 void bsblongleg_enter_update(void);
 void bsblongleg_enter_end(void);
@@ -240,7 +240,7 @@ void func_802B6220(void);
 void bsjump_tumble_init(void);
 void bsjump_tumble_update(void);
 void bsjump_tumble_end(void);
-//BS_ANT_FALL(void);
+//BS_38_ANT_FALL(void);
 void bsant_fall_init(void);
 void bsant_fall_update(void);
 void bsant_fall_end(void);
@@ -293,7 +293,7 @@ void func_802B2610(void);
 void func_802B2638(void);
 void func_802B2750(void);
 void func_802B2990(void);
-//BS_PUMPKIN_FALL
+//BS_4B_PUMPKIN_FALL
 void func_802B29C0(void);
 void func_802B2A5C(void);
 void func_802B2BD0(void);
