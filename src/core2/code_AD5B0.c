@@ -378,7 +378,7 @@ void func_80335140(enum map_e map_id) {
     Struct61s *fp;
 
     func_80254008();
-    fp = func_8034AB6C(map_id);
+    fp = func_8034AB6C(map_id); //LevelSetupFile_Open
     while (func_8034AF98(fp, 0) == 0) {
         if (func_8034AF98(fp, 2)) {
             

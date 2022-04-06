@@ -26,9 +26,9 @@ enum bkprog_e{
 	BKPROG_E_JINJO_TEXT,
     BKPROG_F_HAS_TOUCHED_PIRAHANA_WATER,
 	BKPROG_10_HAS_TOUCHED_SAND_EEL_SAND,
-    // {index=0x11, type="Prog", level=6, name="1st Meeting Mumbo Text"}, -- 0x02 > 1
-	// {index=0x12, type="Prog", level=6, name="1st Post XForm Mumbo Text"},
-    BKPROG_13 = 0x13, //something with xmas tree jiggy progress
+    BKPROG_11_HAS_MET_MUMBO, 
+    BKPROG_12_HAS_TRANSFORMED_BEFORE,
+    BKPROG_13, //something with xmas tree jiggy progress
     BKPROG_14_HAS_TOUCHED_FP_ICY_WATER,
     BKPROG_15_ENTER_MMM_TEXT,
 	// {index=0x16, type="Prog", level=6, name="1st Time in Jigsaw Text"},
@@ -136,7 +136,8 @@ enum bkprog_e{
 	// {index=0x80, type="Prog", level=6, name="Puzzle: # Pieces in Double Health Puzzle (2^1)"},
 	// {index=0x81, type="Prog", level=6, name="Puzzle: # Pieces in Double Health Puzzle (2^2)"},
 
-	// {index=0x84, type="Prog", level=6, name="Mumbo's Magic All Gone Text"},
+    BKPROG_83_MAGIC_GET_WEAK_TEXT = 0x83,
+    BKPROG_84_MAGIC_ALL_GONE_TEXT,
 	// {index=0x85, type="Prog", level=6, name="Lair Crypt Gate Open"},
     BKPROG_86_HAS_TOUCHED_MMM_THORN_HEDGE = 0x86,
 
@@ -194,7 +195,8 @@ enum bkprog_e{
 	BKPROG_B8_HAS_ENTERED_CC,
 	BKPROG_B9_DOUBLE_HEALTH,
 	// {index=0xBA, type="Prog", level=6, name="1st Time T. Rex"},
-
+    BK_PROG_BB_MUMBO_MISTAKE_INDEX = 0xBB, //2 bits
+    // BK_PROG_BC_MUMBO_MISTAKE_INDEX = 0xBC, //2 bits
 	BKPROG_BD_ENTER_LAIR_CUTSCENE =  0xBD,
     BKPROG_BE_CHEATO_BLUEEGGS,
     BKPROG_BF_CHEATO_REDFEATHERS,
@@ -225,7 +227,7 @@ enum bkprog_e{
 	// {index=0xD9, type="Prog", level=6, name="??FF PATTERN 2^6"},
 	// {index=0xDA, type="Prog", level=6, name="??FF PATTERN 2^7"},
 
-	// {index=0xDC, type="Prog", level=6, name="In Mumbo's With Enough Tokens Text"},
+    BKPROG_DC_HAS_HAD_ENOUGH_TOKENS_BEFORE = 0xDC,
 	// {index=0xDD, type="Prog", level=8, name="1st CCW Icy Water Text"},
 
 	// {index=0xDF, type="Prog", level=6, name="Remove Puzzle Piece Text"},
@@ -246,7 +248,9 @@ enum bkprog_e{
 
 	// {index=0xF6, type="Prog", level=6, name="1st Time Near DoG Puzzle Podium"},
 	// {index=0xF7, type="Prog", level=10, name="Pumpkin Making Mumbo Hungry Text"},
-	BKPROG_F8_KING_SANDYBUTT_PYRAMID_STATE = 0xF8, // 0xF9
+    BKPROG_F7_HAS_TRANSFORMED_IN_CRYPT = 0xF7,
+	BKPROG_F8_KING_SANDYBUTT_PYRAMID_STATE = 0xF8, //2bit
+	// BKPROG_F8_KING_SANDYBUTT_PYRAMID_STATE = 0xF9, //2bit
 
 	BKPROG_FC_DEFEAT_GRUNTY = 0xFC
 };
@@ -361,7 +365,7 @@ enum map_e
     MAP_B_CC_CLANKERS_CAVERN,
     MAP_C_MM_TICKERS_TOWER = 0x0C,
     MAP_D_BGS_BUBBLEGLOOP_SWAMP,
-    MAP_MM_MUMBOS_SKULL = 0x0E,
+    MAP_E_MM_MUMBOS_SKULL,
     // Unused
     MAP_10_BGS_MR_VILE = 0x10,
     MAP_11_BGS_TIPTUP,
