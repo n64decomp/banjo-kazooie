@@ -149,11 +149,11 @@ enum bkprog_e{
 	// {index=0x8D, type="Prog", level=8, name="CCW Autumn Open"},
 	// {index=0x8E, type="Prog", level=8, name="CCW Winter Open"},
 	// {index=0x8F, type="Prog", level=8, name="Mumbo's Magic Getting Weak Text"},
-	// {index=0x90, type="Prog", level=1, name="Termite Tokens Paid"},
-	// {index=0x91, type="Prog", level=10, name="Pumpkin Tokens Paid"},
-	// {index=0x92, type="Prog", level=5, name="Walrus Tokens Paid"},
-	// {index=0x93, type="Prog", level=4, name="Croc Tokens Paid"},
-	// {index=0x94, type="Prog", level=8, name="Bee Tokens Paid"},
+    BKPROG_90_PAID_TERMITE_COST = 0x90,
+    BKPROG_91_PAID_PUMPKIN_COST,
+    BKPROG_92_PAID_WALRUS_COST,
+    BKPROG_93_PAID_CROC_COST,
+    BKPROG_94_PAID_BEE_COST,
 
 	// {index=0x96, type="Prog", level=6, name="1st Time Brentilda Text"},
 	BKPROG_97_ENTERED_LAIR_TEXT = 0x97,
@@ -1681,6 +1681,12 @@ enum actor_e
 
     ACTOR_354_DRIPS         = 0x354,
 
+    ACTOR_368_5_MUMBO_TOKEN_SIGN = 0x368,
+    ACTOR_369_20_MUMBO_TOKEN_SIGN,
+    ACTOR_36A_15_MUMBO_TOKEN_SIGN,
+    ACTOR_36B_10_MUMBO_TOKEN_SIGN,
+    ACTOR_36C_25_MUMBO_TOKEN_SIGN,
+
     ACTOR_COLLYWOBBLE_B     = 0x36D,
     ACTOR_BAWL_B            = 0x36E,
     ACTOR_TOPPER_B          = 0x36F,
@@ -2175,6 +2181,12 @@ enum asset_e
 
     ASSET_2EB_MODEL_ORANGE_PAD        = 0x2eb,
 
+    ASSET_301_MODEL_5_MUMBO_TOKEN_SIGN = 0x301,
+    ASSET_302_MODEL_10_MUMBO_TOKEN_SIGN,
+    ASSET_303_MODEL_15_MUMBO_TOKEN_SIGN,
+    ASSET_304_MODEL_20_MUMBO_TOKEN_SIGN,
+    ASSET_305_MODEL_25_MUMBO_TOKEN_SIGN,
+
     ASSET_309_MODEL_CLANKER_TOKEN_TOOTH_EXTERIOR = 0x309,
     ASSET_30A_MODEL_CLANKER_JIGGY_TOOTH_EXTERIOR,
 
@@ -2640,6 +2652,8 @@ enum marker_e{
 
     MARKER_1D4_SANDYBUTT_PYRAMID =  0x1D4,
     MARKER_1D5_PALM_TREE,
+
+    MARKER_1E9_MUMBO_COST_SIGN = 0x1E9,
 
     MARKER_1F4_TOOTS = 0x1F4,
 
