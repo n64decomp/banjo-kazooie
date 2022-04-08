@@ -147,7 +147,7 @@ segments:
   - [0x356B0, c, code_356B0]
   - [0x379B0, c, code_379B0]
   - [0x37CD0, c, code_37CD0]
-  - [0x37E50, c, code_37E50]
+  - [0x37E50, c, code_37E50] #DONE
   - [0x38150, c, code_38150] #DONE
   - [0x382E0, c, code_382E0] #DONE
   - [0x38460, c, code_38460] #DONE
@@ -413,6 +413,8 @@ segments:
   - [0xDDB70, .data, bs/croc]
   - [0xDDBA0, .data, bs/drone]
   - [0xDDC20, bin, data_DDC20]
+  - [0xDEDD0, .data, code_37E50]
+  - [0xDEE00, bin, data_DEE00]
   - [0xDEFA0, .data, code_3EAD0]
   - [0xDF020, .data, code_3EC30]
   - [0xDF050, .data, code_3ECE0]
@@ -581,6 +583,8 @@ segments:
   - [0xEECD0, .rodata, bs/washy]
   - [0xEED30, .rodata, code_32DB0]
   - [0xEED80, bin, data_EED80]
+  - [0xEEF30, .rodata, code_37E50]
+  - [0xEEF50, bin, data_EEF50]
   - [0xEF040, ".rodata", code_3BB80]
   - [0xEF090, bin, data_EF090]
   - [0xEF1B0, .rodata, ch/gameSelect]
