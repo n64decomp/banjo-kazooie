@@ -5,6 +5,7 @@
 extern f32 func_802BA40C(void *);
 extern f32 func_802BA420(void *);
 
+/* .bss */
 extern f32 D_8037DAC0[3];
 extern f32 D_8037DAD0[3];
 extern f32 D_8037DADC;
