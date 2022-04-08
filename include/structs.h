@@ -80,7 +80,10 @@ typedef struct bk_sprite_frame_s{
     s16 h;
     s16 chunkCnt;
     s16 unkA;
-    u8  padC[8];
+    s16 unkC;
+    s16 unkE;
+    s16 unk10;
+    s16 unk12;
 } BKSpriteFrame;
 
 typedef struct bk_sprite_texture_block_s{
@@ -92,8 +95,8 @@ typedef struct bk_sprite_texture_block_s{
 
 typedef struct model_cache_s{
     BKModelBin * modelPtr;
-    s32     unk4; 
-    s32     unk8;
+    BKSprite   * unk4; 
+    BKSpriteDisplayData *unk8;
     u32     unkC;
     u32     unk10;
 } ModelCache;

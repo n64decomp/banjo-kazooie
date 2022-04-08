@@ -393,29 +393,29 @@ extern u32 D_8036DDD4;
 extern f32 D_80378D40;
 extern f32 D_80378D44;
 
-void func_8031CB50(s32 arg0, s32 arg1, s32 arg2) {
+void func_8031CB50(enum map_e map_id, s32 arg1, s32 arg2) {
     s32 sp1C;
 
     if ((D_80383190 == 0) && (getGameMode() != 8) && (getGameMode() != 7)) {
         sp1C = func_803226E8(map_get());
-        if ((func_803226E8(arg0) != sp1C) && (func_80322914() == 0)) {
+        if ((func_803226E8(map_id) != sp1C) && (func_80322914() == 0)) {
             func_8025A388(0, 0x4E2);
             func_8025AB00();
             func_8024BD08(0);
         }
         if (func_802E4A08() != 0) {
-            func_802E40D0(arg0, arg1);
+            func_802E40D0(map_id, arg1);
             func_802E40E8(1);
             func_802E40C4(0xB);
         } else {
-            func_802E4078(arg0, arg1, 1);
+            func_802E4078(map_id, arg1, 1);
         }
         func_80335110(arg2);
     }
 }
 
-void func_8031CC40(s32 arg0, s32 arg1) {
-    func_8031CB50(arg0, arg1, 0);
+void func_8031CC40(enum map_e map_id, s32 arg1) {
+    func_8031CB50(map_id, arg1, 0);
 }
 
 void func_8031CC60(s32 arg0) {

@@ -40,7 +40,7 @@ typedef struct actor_prop_s{
     s16 y;
     s16 z;
     u16 unk8_15:5;
-    u16 pad8_10:5;
+    u16 unk8_10:5;
     u16 unk8_5:1;
     u16 unk8_4:1;
     u16 unk8_3:1;
@@ -83,7 +83,7 @@ typedef struct actorMarker_s{
     u16         pad3E_15:1;
     u16         modelId:13;
     u16         unk3E_1:1;
-    u16         unk3E_0:1;
+    u16         unk3E_0:1; //scaled
     u32         unk40_31:4;
     u32         unk40_27:4;
     u32         unk40_23:1;
@@ -96,7 +96,7 @@ typedef struct actorMarker_s{
     s32         unk48;
     s32         unk4C;
     s32         unk50;
-    s32         unk54;
+    void        (*unk54)(struct actorMarker_s *);
     s32         unk58;
     s32         unk5C;
 } ActorMarker;

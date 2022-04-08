@@ -75,7 +75,35 @@ typedef struct {
 }BKTextureList;
 
 typedef struct {
-    u8 pad0[0];
+    s16 unk0[3];
+    s16 unk6[3];
+    s16 unkC[3];
+    u8 unk12[3];
+    u8 unk15;
+    u8 pad16[2];
+}BKModelUnk14_0;
+
+typedef struct {
+    s16 unk0;
+    s16 unk2;
+    s16 unk4[3];
+    u8 unkA[3];
+    u8 unkD;
+    u8 padE[2];
+}BKModelUnk14_1;
+
+typedef struct {
+    s16 unk0;
+    s16 unk2[3];
+    u8 unk8;
+    u8 pad9[3];
+}BKModelUnk14_2;
+
+typedef struct {
+    s16 cnt0; //number of BKModelUnk14_0 structs
+    s16 cnt2; //number of BKModelUnk14_1 structs
+    u8 pad4[2];
+    s16 unk6;
 }BKModelUnk14List;
 
 typedef struct {

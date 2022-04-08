@@ -817,7 +817,7 @@ struct_7AF80_1 *D_80382394; //prop_sprites ???
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_8030A350.s")
 
-void *func_8030A428(s32 arg0){
+BKModelBin *func_8030A428(s32 arg0){
     if(D_80382390[arg0].unk0 == NULL){
         D_80382390[arg0].unk0 = assetcache_get(0x2d1 + arg0);
     }

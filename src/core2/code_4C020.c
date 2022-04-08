@@ -2,6 +2,10 @@
 #include "functions.h"
 #include "variables.h"
 
+extern f32 func_80258640(f32 [3], f32[3]);
+extern void func_8025A788(enum comusic_e, f32, f32);
+extern void func_8031CC40(enum map_e, s32);
+extern void func_802F9D38(s32);
 
 void func_802D3D54(Actor *this);
 void func_802D3DA4(Actor *this);
@@ -52,7 +56,7 @@ extern s32 D_80367694; //enum map_e
 extern s32 D_80367698;
 extern s32 D_8036769C; //enum bkprog_e
 extern s32 D_803676A0; //enum actor_e
-
+extern s32 D_803676A8;
 extern u8  D_803676AC;
 
 extern s32 D_803679E8;
@@ -61,6 +65,10 @@ extern f32 D_803679F0;
 
 
 /* .rodata */
+extern f64 D_80376998;
+extern f64 D_803769A0;
+
+
 extern f32 D_803769B0;
 extern f64 D_803769B8; //3FA999999999999A
 extern f32 D_803769C0; //3F666666
@@ -72,6 +80,7 @@ extern f32 D_80376A84;
 extern f32 D_80376A88;
 extern f64 D_80376A90;
 extern f64 D_80376A98;
+
 
 // 3ECCCCCD 3ECCCCCD
 // 3ECCCCCD 3ECCCCCD  3ECCCCCD
@@ -117,18 +126,92 @@ void func_802D6750(void);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_4C020/func_802D42F8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_4C020/func_802D4388.s")
+void func_802D4388(Actor *this){
+    func_802D3CE8(this);
+    this->unk38_0 = ( map_get() == MAP_7A_GL_CRYPT || item_getCount(ITEM_1C_MUMBO_TOKEN) >= this->unkF4_8 || func_802D42F8(this)) ? TRUE : FALSE;
+    mapSpecificFlags_set(0x1F, (func_8028F20C() && func_8028FB48(0x78000000)) || func_8028ECAC() == 0xD);
+    switch(this->state){
+        case 0x12: //L802D4468
+            if(this->unk38_0 && mapSpecificFlags_get(0x1F)){
+                func_80328B8C(this, 0x13, 0.0f, 1);
+                actor_playAnimationOnce(this);
+                func_8030E6D4(SFX_90_SWITCH_PRESS);
+            }
+            break;
+
+        case 0x13: //L802D44B0
+            if(D_80376998 <= func_802877D8(this->animctrl)){
+                func_80328B8C(this, 0x14, 0.66f, 0);
+            }
+            break;
+
+        case 0x14: //L802D44F0
+            if(!this->unk38_0 || !mapSpecificFlags_get(0x1F)){
+                func_80328B8C(this, 0x15, 0.66f, 0);
+                actor_playAnimationOnce(this);
+            }
+            break;
+
+        case 0x15: //L802D4534
+             if(func_802877D8(this->animctrl) < D_803769A0){
+                func_80328B8C(this, 0x12, 0.0f, 1);
+            }
+            break;
+    }//L802D456C
+    mapSpecificFlags_set(0x1F, FALSE);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_4C020/func_802D4588.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_4C020/func_802D4608.s")
+bool func_802D4608(void){
+    return D_803676AC;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_4C020/func_802D4614.s")
+void func_802D4614(enum map_e map_id){
+    if(D_803676AC)
+        return;
+    D_803676AC = TRUE;
+    func_8028F918(2);
+    func_8025A788(COMUSIC_69_FF_WARP, 0.0f, 1.7f);
+    timedFunc_set_2(1.0f, (TFQM2) func_8031CC40, map_id, 2);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_4C020/func_802D4680.s")
+void func_802D4680(Actor *this){
+    f32 sp1C[3];
 
-void func_802D4794(Actor *arg0, enum sfx_e arg1, f32 arg2, s32 arg3, s32 arg4);
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_4C020/func_802D4794.s")
+    player_getPosition(sp1C);
+    switch(this->state){
+        case 0:
+            if(150.0f < func_80258640(this->position, sp1C)){
+                func_80328A84(this, 1);
+                D_803676AC = 0;
+            }
+            break;
+        case 1:
+            if(func_80258640(this->position, sp1C) < 150.0f && func_8028F20C()){
+                if(func_8028ECAC() == 0 ||  func_8028ECAC() == 8){
+                    if(map_get() == MAP_8E_GL_FURNACE_FUN){
+                        func_803204E4(0, 0);
+                        func_802D4614(MAP_80_GL_FF_ENTRANCE);
+                    }
+                    else{
+                        func_802D4614(MAP_8E_GL_FURNACE_FUN);
+                    }
+                }
+            }
+            break;
+    }
+}
+
+void func_802D4794(Actor *arg0, enum sfx_e sfx_id, f32 arg2, s32 arg3, s32 arg4){
+    if(arg0->unk44_31 != 0)
+        return;
+
+    arg0->unk44_31 = func_802F9AA8(sfx_id);
+    func_802FA060(arg0->unk44_31, arg3, arg3, 0.0f);
+    func_802F9DB8(arg0->unk44_31, arg2, arg2, 0.0f);
+    func_802F9F80(arg0->unk44_31, (f32)arg4, 1e+09f, 0.0f);
+}
 
 void func_802D4830(Actor *arg0, enum sfx_e arg1, f32 arg2){
     func_802D4794(arg0, arg1, arg2, 32000, 0);
@@ -138,40 +221,84 @@ void func_802D485C(Actor *arg0, enum sfx_e arg1, f32 arg2, s32 arg3){
     func_802D4794(arg0, arg1, arg2, arg3, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_4C020/func_802D4884.s")
+void func_802D4884(Actor *this, enum sfx_e sfx_id, f32 arg2, s32 arg3, f32 arg4){
+    func_802D4794(this, sfx_id, arg2, arg3, (s32)arg4);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_4C020/func_802D48B8.s")
+void func_802D48B8(Actor *this){
+    if(this->unk44_31){
+        func_802F9D38(this->unk44_31);
+        this->unk44_31 = 0;
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_4C020/func_802D48F0.s")
+void func_802D48F0(void){
+    if(D_803676A8){
+        func_802F9D38(D_803676A8);
+        D_803676A8 = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_4C020/func_802D4928.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_4C020/func_802D4A9C.s")
+void func_802D4A9C(Actor *this, s32 arg1){
+    func_802D4928(this, arg1, 2, 3);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_4C020/func_802D4AC0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_4C020/func_802D4B94.s")
+void func_802D4B94(Actor *this){
+    func_802D4AC0(this, 0x4000b6, BKPROG_18_MM_WITCH_SWITCH_JIGGY_SPAWNED);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_4C020/func_802D4BBC.s")
+void func_802D4BBC(Actor *this){
+    func_802D4AC0(this, 0x4000bc, 0x9A);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_4C020/func_802D4BE4.s")
+void func_802D4BE4(Actor *this){
+    func_802D4AC0(this, 0x4000bd, 0x9F);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_4C020/func_802D4C0C.s")
+void func_802D4C0C(Actor *this){
+    func_802D4AC0(this, 0x4000be, 0xA0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_4C020/func_802D4C34.s")
+void func_802D4C34(Actor *this){
+    func_802D4AC0(this, 0x4000b7, BKPROG_19_MMM_WITCH_SWITCH_JIGGY_SPAWNED);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_4C020/func_802D4C5C.s")
+void func_802D4C5C(Actor *this){
+    func_802D4AC0(this, 0x4000b8, BKPROG_1A_TTC_WITCH_SWITCH_JIGGY_SPAWNED);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_4C020/func_802D4C84.s")
+void func_802D4C84(Actor *this){
+    func_802D4AC0(this, 0x4000b9, BKPROG_1C_RBB_WITCH_SWITCH_JIGGY_SPAWNED);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_4C020/func_802D4CAC.s")
+void func_802D4CAC(Actor *this){
+    func_802D4AC0(this, 0x4000ba, BKPROG_46_CCW_WITCH_SWITCH_JIGGY_SPAWNED);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_4C020/func_802D4CD4.s")
+void func_802D4CD4(Actor *this){
+    if(map_get() == MAP_27_FP_FREEZEEZY_PEAK){
+        if(func_8038BFA0()){
+            this->unk58_0 = FALSE;
+            return;
+        }//L802D4D10
+        this->unk58_0 = TRUE;
+    }//L802D4D1C
+    func_802D4AC0(this, 0x4000bb, 0x47);
+}
 
 void func_802D4D3C(s32 arg0, s32 arg1);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_4C020/func_802D4D3C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_4C020/func_802D5000.s")
+void func_802D5000(void){
+    if(map_getLevel() != level_get())
+        func_802E4A70();
+    func_803228D8();
+    func_802E4078(D_80367684, 0x65, 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_4C020/func_802D5058.s")
 
