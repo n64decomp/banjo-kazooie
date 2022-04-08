@@ -29,8 +29,7 @@ extern struct {
     f32 unk4;
     s32 unk8[3];
     s32 unk14[3];
-    s32 unk20;
-    s32 unk24;
+    s32 unk20[2];
     s32 cubeCnt;
     s32 unk2C;
     s32 unk30;
@@ -109,24 +108,44 @@ void func_80301F10(Cube *cube, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80303228.s")
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80303384.s")
-#else
 Cube *func_80303384(s32 arg0[3]) {
     if( (arg0[0] < D_80381FA0.unk8[0]) || (arg0[1] < D_80381FA0.unk8[1]) || (arg0[2] < D_80381FA0.unk8[2]) 
         || (D_80381FA0.unk14[0] < arg0[0]) || (D_80381FA0.unk14[1] < arg0[1]) || (D_80381FA0.unk14[2] < arg0[2])) {
         return D_80381FA0.unk3C;
     }
-    return D_80381FA0.cube_list + (arg0[0] - D_80381FA0.unk8[0]) + (arg0[1] - D_80381FA0.unk8[1]) * D_80381FA0.unk20 +  (arg0[2] - D_80381FA0.unk8[2])*D_80381FA0.unk24;
+    return D_80381FA0.cube_list + (arg0[0] - D_80381FA0.unk8[0]) + (arg0[1] - D_80381FA0.unk8[1]) * D_80381FA0.unk20[0] +  (arg0[2] - D_80381FA0.unk8[2])*D_80381FA0.unk20[1];
 }
-#endif
+
+Cube *func_80303470(s32 position[3]) {
+    s32 sp1C[3];
+    s32 i;
+    // Cube *out;
+    s32 diff[3];
 
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80303470.s")
+    for(i = 0; i < 3; i++){
+        sp1C[i] = (position[i] >= 0) ? position[i]/1000 : position[i] / 1000 - 1;
+    }
+    if( (sp1C[0] < D_80381FA0.unk8[0]) || (sp1C[1] < D_80381FA0.unk8[1]) || (sp1C[2] < D_80381FA0.unk8[2])
+        || (D_80381FA0.unk14[0] < sp1C[0]) || (D_80381FA0.unk14[1] < sp1C[1]) || (D_80381FA0.unk14[2] < sp1C[2])
+    ){
+        return D_80381FA0.unk3C;
+    }
+    diff[0] = sp1C[0] - D_80381FA0.unk8[0];
+    diff[1] = sp1C[1] - D_80381FA0.unk8[1];
+    diff[2] = sp1C[2] - D_80381FA0.unk8[2];
+    return D_80381FA0.cube_list
+        + diff[0]
+        + diff[1]*D_80381FA0.unk20[0]
+        + diff[2]*D_80381FA0.unk20[1];
+}
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_803035F4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_8030364C.s")
+Cube *func_8030364C(void){
+    return D_80381FA0.unk40;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80303658.s")
 
