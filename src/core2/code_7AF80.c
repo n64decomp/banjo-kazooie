@@ -140,14 +140,22 @@ Cube *func_80303470(s32 position[3]) {
         + diff[2]*D_80381FA0.unk20[1];
 }
 
+Cube *func_803035F4(f32 position[3]){
+    s32 sp1C[3];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_803035F4.s")
+    sp1C[0] = (s32)position[0];
+    sp1C[1] = (s32)position[1];
+    sp1C[2] = (s32)position[2];
+    return func_80303470(sp1C);
+}
 
 Cube *func_8030364C(void){
     return D_80381FA0.unk40;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80303658.s")
+Cube *func_80303658(void){
+    return D_80381FA0.unk3C;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80303664.s")
 
