@@ -251,10 +251,13 @@ OSMesgQueue *func_8024F344(void);
 void ml_vec3f_clear(f32 dst[3]);
 void ml_vec3f_roll_rotate_copy(f32[3], f32[3], f32);
 void func_80250D94(f32, f32, f32);
+void func_80256E24(f32[3], f32, f32, f32, f32, f32);
+void func_8025727C(f32 x1, f32 y1, f32 z1, f32 x2, f32 y2, f32 z2, f32 *o1, f32 *o2);
 f32  func_80257A44(f32, f32);
 f32  func_80257C48(f32, f32, f32);
 f32  func_80257D30(f32, f32, f32, f32, f32);
 int  func_80257F18(f32 src[3], f32 target[3], f32 *yaw);
+void func_8025801C(f32[3], f32*);
 
 f32  mlAbsF(f32);
 f32  mlClamp_f(f32, f32, f32);
@@ -375,6 +378,9 @@ void func_8029E180(s32, f32);
 void func_8029E3C0(s32, f32);
 f32  func_8029E270(s32);
 void func_802BD8A4(f32, f32, f32);
+f32  func_802BD8D4(void);
+void func_802BE244(f32, f32);
+void func_802BE230(f32, f32);
 void func_802BF2C0(f32);
 f32  func_802B6F9C(void);
 

@@ -2,13 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void func_80256E24(f32[3], f32, f32, f32, f32, f32);
-extern void func_8025801C(f32[3], f32*);
-
-extern f32  func_802BD8D4(void);
-extern void func_802BE244(f32, f32);
-extern void func_802BE230(f32, f32);
-
 /* .rodata */
 extern f32 D_80375EE0;
 

@@ -149,9 +149,9 @@ segments:
   - [0x37CD0, c, code_37CD0]
   - [0x37E50, c, code_37E50]
   - [0x38150, c, code_38150] #DONE
-  - [0x382E0, c, code_382E0]
-  - [0x38460, c, code_38460]
-  - [0x38630, c, code_38630]
+  - [0x382E0, c, code_382E0] #DONE
+  - [0x38460, c, code_38460] #DONE
+  - [0x38630, c, code_38630] #DONE
   - [0x388E0, c, code_388E0]
   - [0x38F40, c, code_38F40]
   - [0x39190, c, code_39190]
