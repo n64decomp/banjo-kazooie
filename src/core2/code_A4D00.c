@@ -966,8 +966,7 @@ void marker_setCollisionScripts(ActorMarker *this, MarkerCollisionFunc ow_func, 
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_803300E0.s")
 
-//marker_setModelId
-void func_803300E8(ActorMarker *this, s32 modelIndex){
+void marker_setModelId(ActorMarker *this, enum asset_e modelIndex){
     this->modelId = modelIndex;
 }
 

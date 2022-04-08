@@ -677,7 +677,7 @@ void *func_80255774(void *this){
     if( this == NULL 
         || this == D_8027659C
         || D_802765A0
-        || func_8033BD8C()
+        || func_8033BD8C(this)
     ){
         return this;
     }

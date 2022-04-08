@@ -300,7 +300,7 @@ Actor *actor_new(s32 (* position)[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
     D_80383390->unkF4_20 = 0;
     D_80383390->sound_timer = 0.0f;
     func_8032FFD4(D_80383390->marker, D_8036E560->cnt - 1);
-    func_803300E8(D_80383390->marker, actorInfo->modelId);
+    marker_setModelId(D_80383390->marker, actorInfo->modelId);
     func_803300C8(D_80383390->marker, actorInfo->update_func);
     func_803300D0(D_80383390->marker, actorInfo->unk10);
     ml_vec3f_clear(&D_80383390->unk1C);
