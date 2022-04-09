@@ -583,6 +583,8 @@ segments:
   - [0xEECD0, .rodata, bs/washy]
   - [0xEED30, .rodata, code_32DB0]
   - [0xEED80, bin, data_EED80]
+  - [0xEEEF0, .rodata, code_356B0]
+  - [0xEEF00, bin, data_EEF00]
   - [0xEEF30, .rodata, code_37E50]
   - [0xEEF50, bin, data_EEF50]
   - [0xEF040, ".rodata", code_3BB80]
