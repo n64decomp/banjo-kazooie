@@ -18,14 +18,9 @@ typedef struct{
     f32 unkC;
 }Struct_CC_13C0_1;
 
-
 extern Struct_CC_13C0_0 D_8036E834[];
 
 extern s32 D_80383568;
-
-extern void func_8033A45C(s32, s32);
-extern void set_model_render_mode(s32 renderMode);
-extern int func_803391A4(Gfx **gfx, Mtx **mtx, f32 arg2[3], f32 arg3[3], f32 arg4, f32*arg5, BKModelBin* model_bin);
 
 void func_803877B0(Struct_CC_13C0_1* arg0, void* arg1, f32 arg2[3], f32 arg3[3], f32 arg4, BKModelBin* arg5, Gfx** gfx, Mtx** mtx) {
     s32 temp_v0 = arg0->unk4;
