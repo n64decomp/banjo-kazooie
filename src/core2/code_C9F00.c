@@ -2,6 +2,10 @@
 #include "functions.h"
 #include "variables.h"
 
+typedef struct {
+    u8 unk0[0x30]; // idk what this is yet
+    u8 unk30;
+} Struct_core2_C9F00_0;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C9F00/func_80350E90.s")
 
@@ -51,7 +55,10 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C9F00/func_80351998.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C9F00/func_80351A04.s")
+//#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C9F00/func_80351A04.s")
+void func_80351A04(Struct_core2_C9F00_0 *arg0, s32 arg1) {
+    arg0->unk30 = (u8)(arg0->unk30 | arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C9F00/func_80351A14.s")
 

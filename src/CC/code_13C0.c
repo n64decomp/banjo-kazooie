@@ -42,7 +42,14 @@ void func_803877B0(Struct_CC_13C0_1* arg0, void* arg1, f32 arg2[3], f32 arg3[3],
     func_803391A4(gfx, mtx, arg2, arg3, arg4, NULL, arg5);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/CC/code_13C0/func_803878AC.s")
+//#pragma GLOBAL_ASM("asm/nonmatchings/CC/code_13C0/func_803878AC.s")
+void func_803878AC(Struct_CC_13C0_1 *arg0, Struct_CC_13C0_1 *arg1, s32 arg2) {
+    arg0->unk4 = arg2;
+    arg0->unkC = 0.0f;
+    if ((arg2 == 2) || (arg2 == 3)) {
+        func_80351A04(arg1, 1);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/CC/code_13C0/func_803878F0.s")
 
