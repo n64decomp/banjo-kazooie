@@ -11,11 +11,36 @@ typedef struct{
     u8 unk24[8];
 }Struct_CC_13C0_0;
 
+typedef struct{
+    u8 pad0[0x4];
+    s32 unk4;
+    u8 pad8[0x4];
+    f32 unkC;
+}Struct_CC_13C0_1;
+
 extern Struct_CC_13C0_0 D_8036E834[];
 
 extern s32 D_80383568;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/CC/code_13C0/func_803877B0.s")
+void func_803877B0(Struct_CC_13C0_1* arg0, void* arg1, f32 arg2[3], f32 arg3[3], f32 arg4, BKModelBin* arg5, Gfx** gfx, Mtx** mtx) {
+    s32 temp_v0 = arg0->unk4;
+
+    if (temp_v0 == 3)
+        return;
+
+    if (temp_v0 == 0) {
+        func_8033A45C(1, 1);
+    } else if (temp_v0 == 1) {
+        func_8033A45C(1, 2);
+    } else if (temp_v0 == 2) {
+        func_8033A45C(1, 2);
+        arg3[2] += (arg0->unkC * 20.0f);
+        arg4 = arg4*(1.0f - arg0->unkC);
+    }
+    func_8033A45C(2, 0);
+    set_model_render_mode(1);
+    func_803391A4(gfx, mtx, arg2, arg3, arg4, NULL, arg5);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/CC/code_13C0/func_803878AC.s")
 
@@ -67,3 +92,4 @@ void func_80387D4C(void){
         func_80387CC0();
     }
 }
+
