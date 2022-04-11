@@ -12,9 +12,9 @@ typedef struct{
 }Struct_CC_13C0_0;
 
 typedef struct{
-    s32 unk0;
+    u8 pad0[0x4];
     s32 unk4;
-    s32 unk8;
+    u8 pad8[0x4];
     f32 unkC;
 }Struct_CC_13C0_1;
 
