@@ -144,7 +144,7 @@ segments:
   - [0x33F90, c, code_33F90] #DONE
   - [0x34790, c, code_34790]
   - [0x35520, c, code_35520]
-  - [0x356B0, c, code_356B0]
+  - [0x356B0, c, code_356B0] #DONE
   - [0x379B0, c, code_379B0]
   - [0x37CD0, c, code_37CD0] #DONE
   - [0x37E50, c, code_37E50] #DONE
@@ -583,8 +583,7 @@ segments:
   - [0xEECD0, .rodata, bs/washy]
   - [0xEED30, .rodata, code_32DB0]
   - [0xEED80, bin, data_EED80]
-  - [0xEEEF0, .rodata, code_356B0]
-  - [0xEEF00, bin, data_EEF00]
+  - [0xEEDE0, .rodata, code_356B0]
   - [0xEEF30, .rodata, code_37E50]
   - [0xEEF50, bin, data_EEF50]
   - [0xEF040, ".rodata", code_3BB80]

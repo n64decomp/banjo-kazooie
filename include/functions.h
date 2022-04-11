@@ -257,7 +257,7 @@ f32  func_80257A44(f32, f32);
 f32  func_80257C48(f32, f32, f32);
 f32  func_80257D30(f32, f32, f32, f32, f32);
 int  func_80257F18(f32 src[3], f32 target[3], f32 *yaw);
-void func_8025801C(f32[3], f32*);
+bool func_8025801C(f32[3], f32*);
 
 f32  mlAbsF(f32);
 f32  mlClamp_f(f32, f32, f32);

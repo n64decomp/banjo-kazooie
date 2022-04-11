@@ -3,7 +3,6 @@
 #include "variables.h"
 
 extern int func_8024DB50(f32 (*)[3], f32);
-extern void func_80256E24(f32 (*)[3], f32, f32, f32, f32, f32);
 extern s32 spriteGetFrameCount(BKSprite *);
 extern void func_80344720(s32 SpriteGfx, s32 frame, s32, f32[3], f32[3], f32[3], Gfx **, Mtx **);
 extern void func_80344424(s32 SpriteGfx, s32 frame, s32, f32[3], f32[3], f32, Gfx **, Mtx **);
