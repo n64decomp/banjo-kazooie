@@ -371,7 +371,7 @@ segments:
   - [0xD4050, c, ch/ghost]   #DONE
   - [0xD50F0, c, ch/flotsam] #DONE
   - [0xD5D10, c, code_D5D10] #DONE
-  - [0xD5FD0, c, code_D5FD0]
+  - [0xD5FD0, c, code_D5FD0] #DONE
   - [0xD6180, c, code_D6180]
   - [0xD6600, c, code_D6600]
   - [0xD7040, c, code_D7040]
