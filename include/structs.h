@@ -698,4 +698,16 @@ typedef struct{
     s32 unk80;
 }Struct61s; //file stream
 
+typedef struct {
+    s16 unk0;
+    // u8 pad2[2];
+    struct struct_63_s *unk4;
+}Struct62s;
+
+typedef struct struct_63_s{
+    s16 unk0;
+    // u8 pad2[2];
+    void (*unk4)(s32, struct actor_marker_s *);
+} Struct63s;
+
 #endif

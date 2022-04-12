@@ -303,7 +303,8 @@ typedef struct actor_s{
     f32 stored_animctrl_subrangeMax; //animCtrl_SubRangeEnd
     ActorMarker *unk100;
     ActorMarker *unk104;
-    void ( *unk108)(struct actorMarker_s *, s32); //saved from marker->unkC
+    Struct62s *unk108;
+    // void ( *unk108)(struct actorMarker_s *, s32); //saved from marker->unkC
     s32 unk10C; //saved marker->unk10
     f32 roll;//110
     f32 sound_timer;

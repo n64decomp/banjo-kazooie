@@ -380,7 +380,7 @@ segments:
   - [0xD9DA0, c, ch/whipcrack] #DONE
   - [0xDA3A0, c, code_DA3A0] #DONE
   - [0xDA760, c, code_DA760] #DONE
-  - [0xDAAA0, c, code_DAAA0]
+  - [0xDAAA0, c, code_DAAA0] #DONE
   - [0xDB010, c, code_DB010] #DONE
   - [0xDC4B0, c, code_DC4B0] #DONE
 - type: code
