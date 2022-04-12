@@ -370,7 +370,7 @@ segments:
   - [0xD2E10, c, ch/icecube] #DONE
   - [0xD4050, c, ch/ghost]   #DONE
   - [0xD50F0, c, ch/flotsam] #DONE
-  - [0xD5D10, c, code_D5D10]
+  - [0xD5D10, c, code_D5D10] #DONE
   - [0xD5FD0, c, code_D5FD0]
   - [0xD6180, c, code_D6180]
   - [0xD6600, c, code_D6600]
@@ -678,7 +678,8 @@ segments:
   - [0xF2760, .rodata, ch/icecube]
   - [0xF2810, .rodata, ch/ghost]
   - [0xF2880, .rodata, ch/flotsam]
-  - [0xF28C0, bin, data_F28C0]
+  - [0xF28C0, .rodata, code_D5D10]
+  - [0xF28D0, bin, data_F28D0]
   - [0xF2A60, .rodata, code_D89E0]
   - [0xF2AD0, .rodata, ch/whipcrack]
   - [0xF2AF0, .rodata, code_DA3A0]
