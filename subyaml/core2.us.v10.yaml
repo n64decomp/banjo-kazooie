@@ -374,7 +374,7 @@ segments:
   - [0xD5FD0, c, code_D5FD0] #DONE
   - [0xD6180, c, code_D6180]
   - [0xD6600, c, code_D6600] #DONE
-  - [0xD7040, c, code_D7040]
+  - [0xD7040, c, code_D7040] #DONE
   - [0xD7D10, c, code_D7D10]
   - [0xD89E0, c, code_D89E0]
   - [0xD9DA0, c, ch/whipcrack] #DONE
