@@ -12,7 +12,9 @@ typedef struct particle_struct_0_s{
     f32 unkC;
     u8 pad10[0x10];
     s32 unk20;
-    u8 pad24[0xc];
+    s32 unk24;
+    s32 unk28;
+    u8 pad24[0x4];
     ActorMarker *marker_30;
     struct54s *unk34;
     s32 unk38;

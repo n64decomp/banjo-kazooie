@@ -2,6 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
+extern Mtx D_80380A18;
+
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6AEF0/func_802F1E80.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6AEF0/func_802F1EA4.s")
@@ -22,7 +24,23 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6AEF0/func_802F2EC0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6AEF0/func_802F2ED0.s")
+void func_802F2ED0(Struct64s *arg0, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
+    Struct65s *phi_s0;
+    f32 sp38[3];
+
+    if (arg0 != NULL && arg0->unk4) {
+        func_8024C764(sp38);
+        mlMtxIdent();
+        mlMtxRotPitch(-sp38[0]);
+        mlMtxRotYaw(-sp38[1]);
+        func_802513B0(&D_80380A18);
+        for(phi_s0 = arg0->unk0; phi_s0 < arg0->unk0 + arg0->unk4; phi_s0++){
+            if (phi_s0->unk23_0) {
+                func_802F1FC0(phi_s0, gfx, mtx, vtx);
+            }
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6AEF0/func_802F2FCC.s")
 

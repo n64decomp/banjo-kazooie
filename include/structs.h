@@ -710,4 +710,16 @@ typedef struct struct_63_s{
     void (*unk4)(s32, struct actor_marker_s *);
 } Struct63s;
 
+typedef struct struct_64_s{
+    struct struct_65_s *unk0;
+    s32 unk4;
+} Struct64s;
+
+typedef struct struct_65_s{
+    u8 pad0[0x23];
+    u8 pad23_7:7;
+    u8 unk23_0:1;
+    u8 pad24[0x4];
+}Struct65s;
+
 #endif

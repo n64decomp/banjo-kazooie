@@ -29,9 +29,9 @@ extern struct{
     f32 unk8; 
     s32 unkC; //freeze_scene_flag (used for pause menu)
     f32 unk10;
-    u8 unk14; //map
-    u8 unk15; //exit
-    u8 unk16;
+    u8 unk14; //
+    u8 unk15; //map
+    u8 unk16; //exit
     u8 unk17; //reset_on_map_load
     u8 unk18;
     u8 unk19;
