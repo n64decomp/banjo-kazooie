@@ -71,7 +71,14 @@ void mapSpecificFlags_setAll(u32 arg0){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/mapspecificflags/func_802CAEF4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/mapspecificflags/func_802CAF14.s")
+void func_802CAF14(u32 *arg0, s32 arg1, bool arg2){
+    if(arg2){
+        arg0[(arg1 >> 5) + 1] |= 1 << (arg1 & (0x1F));
+    }
+    else{
+        arg0[(arg1 >> 5) + 1] -= arg0[(arg1 >> 5) + 1] & (1 << (arg1 & 0x1F));
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/mapspecificflags/func_802CAF70.s")
 

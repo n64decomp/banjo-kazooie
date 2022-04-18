@@ -6,7 +6,7 @@ typedef struct{
     u8 pad0[0xC];
 }Struct_Core2_5FD90_s;
 
-extern void func_80252C08(f32[3],s32, f32, s32);
+extern void func_80252C08(f32[3],f32[3], f32, f32[3]);
 extern void func_80252CC4(f32[3],s32, f32, s32);
 
 extern Struct_Core2_5FD90_s D_8037EAA8[];
@@ -35,7 +35,7 @@ int func_802E74A0(f32[3], f32, s32, s32);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5FD90/func_802E76B0.s")
 
 
-int func_802E805C(BKCollisionList *arg0, BKVertexList *vtxList, f32 arg2[3], s32 arg3, f32 arg4, s32 arg5, s32 arg6, s32 arg7, s32 arg8){
+int func_802E805C(BKCollisionList *arg0, BKVertexList *vtxList, f32 arg2[3], f32 arg3[3], f32 arg4, s32 arg5, s32 arg6, s32 arg7, s32 arg8){
     f32 sp44[3];
     f32 sp38[3];
     int sp34;
@@ -55,7 +55,7 @@ int func_802E805C(BKCollisionList *arg0, BKVertexList *vtxList, f32 arg2[3], s32
         }
         else{
             mlMtxIdent();
-            func_80252C08(arg2, arg3, arg4, 0);
+            func_80252C08(arg2, arg3, arg4, NULL);
             func_8025235C(arg6, sp38);
 
             mlMtxIdent();

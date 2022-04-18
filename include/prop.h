@@ -404,24 +404,20 @@ typedef union prop_s
 } Prop;
 
 typedef struct {
-    u8 pad0[0x4];
-    union
-    {
-        u32 unk4;
-        struct{
-            u32 pad4_31: 14;
-            u32 unk4_17: 2;
-            u32 pad4_15: 9;
-            u32 unk4_6 : 5;
-            u32 unk4_0 : 1;
-        };
-    };
-    u8 pad8[0x2];
+    s16 x;
+    s16 y;
+    s16 z;
+    u16 unk6_15: 9; //selector_value
+    u16 unk6_6:  6; //category
+    u16 unk6_0:  1;
+    u16 unk8;
     u8 unkA;
     u8 padB[1];
     u32 padC_31:31;
     u32 unkC_0: 1;
-    u32 pad10_31 : 25;
+    u32 unk10_31 : 12;
+    u32 pad10_19 : 12;
+    u32 unk10_7 : 1;
     u32 unk10_6 : 1;
     u32 pad10_5 : 1;
     u32 unk10_4 : 4;
