@@ -654,6 +654,8 @@ segments:
   - [0xF0420, bin, data_F0420] #this is first part of [.rodata, code_76D90], COMBINE WITH FOLLOWING SECTION ONCE CODE DONE
   - [0xF0440, .rodata, code_76D90]
   - [0xF0470, bin, data_F0470]
+  - [0xF0520, .rodata, code_7AF80]
+  - [0xF0540, bin, data_F0540]
   - [0xF14C0, .rodata, gc/transition]
   - [0xF1520, .rodata, code_85800]
   - [0xF1540, bin, data_F1540]

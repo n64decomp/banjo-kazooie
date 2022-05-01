@@ -9,7 +9,6 @@ extern struct17s D_8036C6C0[];
 extern s32 D_8036D924[];
 
 
-
 extern char D_80378880[];
 extern f64 D_80378890;
 extern f64 D_80378898;
@@ -18,6 +17,7 @@ extern f64 D_803788E0;
 extern f32 D_80378938;
 extern f32 D_8037893C;
 extern f32 D_80378940;
+extern u8  D_803830B0[];
 
 void func_8030DA44(u8);
 void func_80252330(f32, f32, f32);
@@ -27,7 +27,9 @@ void func_803382FC(u8);
 
 
 s32 func_80316ED4(u8*);
-void func_803184C8(gczoombox_t *, f32, s32, s32, f32, s32, s32);
+void func_80318498(gczoombox_t *this);
+void func_803184A8(gczoombox_t *this);
+void func_803184C8(gczoombox_t *, f32, s32, s32, f32, bool, bool);
 void func_80318760(gczoombox_t *this, s32 arg1);
 
 
@@ -867,25 +869,69 @@ void gczoombox_minimize(gczoombox_t *this){
      this->unk13A |= 0x8;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/zoombox/func_8031842C.s")
+void func_8031842C(gczoombox_t *this){
+     this->unk13A |= 0x20;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/zoombox/func_8031843C.s")
+void func_8031843C(gczoombox_t *this){
+    s32 temp_v0;
+    void *temp_v1;
+    void *phi_v1;
+    s32 phi_v0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/zoombox/func_80318478.s")
+    for(phi_v0 = 0; phi_v0 < 8; phi_v0++){
+        this->unk13C[phi_v0] = 0;
+    };
+    this->unk137 = 0;
+    this->unk13A &= 0xfb;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/zoombox/func_80318488.s")
+void func_80318478(gczoombox_t *this){
+    this->unk13A &= 0xfe;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/zoombox/func_80318498.s")
+void func_80318488(gczoombox_t *this){
+    this->unk13A &= 0xef;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/zoombox/func_803184A8.s")
+void func_80318498(gczoombox_t *this){
+    this->unk13A &= 0xfd;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/zoombox/func_803184B8.s")
+void func_803184A8(gczoombox_t *this){
+    this->unk13A &= 0xf7;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/zoombox/func_803184C8.s")
+void func_803184B8(gczoombox_t *this){
+    this->unk13A &= 0xdf;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/zoombox/func_8031857C.s")
+void func_803184C8(gczoombox_t *this, f32 arg1, s32 arg2, s32 arg3, f32 arg4, bool arg5, bool arg6) {
 
-void gczoombox_highlight(gczoombox_t *this, s32 arg1){
+    if (this != NULL) {
+        this->unk182 = arg2;
+        this->unk184 = arg3;
+        this->unk190 = 1.0 / arg1;
+        if (this->unkF4 != NULL) {
+            animctrl_setDuration(this->unkF4, arg4);
+        }
+        this->unk1A4_12 = arg5 ? TRUE : FALSE;
+        this->unk1A4_10 = arg6 ? TRUE : FALSE;
+    }
+}
+
+bool func_8031857C(gczoombox_t *this){
+     if(func_803183A4(this)){
+          gczoombox_open(this);
+          gczoombox_maximize(this);
+          gczoombox_minimize(this);
+          gczoombox_close(this);
+          return TRUE;
+     }
+     return FALSE;
+}
+
+void gczoombox_highlight(gczoombox_t *this, bool arg1){
      if(arg1)
           this->unk1A4_18 = 1;
      else
@@ -893,7 +939,7 @@ void gczoombox_highlight(gczoombox_t *this, s32 arg1){
 }
 
 //gczoombox_isHiglighted
-int func_80318604(gczoombox_t *this){
+bool func_80318604(gczoombox_t *this){
      return this->unk1A4_18;
 }
 
@@ -904,7 +950,26 @@ void func_80318614(gczoombox_t *this, int arg1){
           this->unk1A4_11 = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/zoombox/func_80318640.s")
+void func_80318640(gczoombox_t *this, s32 arg1, f32 arg2, f32 arg3, s32 arg4) {
+    s32 phi_v0;
+
+    if (this != NULL) {
+        if (this->unk1A4_24) {
+            this->unk174 = D_80276588 - arg1;
+            this->unk16A = arg1 + (8.0f * arg2);
+            this->unk170 = (D_80276588 - arg1) + 0x8B;
+        } else {
+            this->unk174 = arg1;
+            phi_v0 = arg4 ? 0x28 : 0x22;
+            this->unk16A = phi_v0 * arg2 + arg1;
+            this->unk170 = arg1 - 0x8B;
+        }
+        this->unk198 = arg2;
+        this->unk194 = arg3;
+        this->unk1A4_15 = (arg4) ? TRUE : FALSE;
+    }
+}
+
 
 void func_80318734(gczoombox_t *this, f32 arg1){
      if(this)
@@ -920,56 +985,61 @@ void func_80318774(gczoombox_t *this){
      this->unk13A = 0;
 }
 
-#if NONMATCHING
-int func_8031877C(gczoombox_t *this){
-    u32 val = 0;
-    if( !this 
-        || this->unk135 == 0 
-        || this->unk135 == 0xb
-        || this->unk135 == 0x9
-        || this->unk135 == 0x6
-        || this->unk135 == 0x7
+bool func_8031877C(gczoombox_t *this){
+    if( this == NULL 
+        || this->unk135 == 0 || this->unk135 == 0xb || this->unk135 == 0x9 || this->unk135 == 0x6 || this->unk135 == 0x7
     ){
-        return 0;
+        return FALSE;
     }
     _gczoombox_memClear(this->unk0, 0x30);
     _gczoombox_memClear(this->unk30, 0x30);
-  
-// /* 91884 80318814 A0C801A5 */  sb         (0 << 7) | (0x1a5($a2) & 0x7f), 0x1a5($a2)
-// /* 91898 80318828 A0CB01A4 */  sb         (0 << 7) | (0x1a4($a2) & 0x7f), 0x1a4($a2)
-// /* 918A4 80318834 A0C901A4 */  sb         ((0 << 2) & 0x04) | (0x1a4($a2) & 0xfb), 0x1a4($a2)
-// /* 918BC 8031884C A0CD01A4 */  sb         ((0 << 3) & 0x08) | (0x1a4($a2) & 0xf7), 0x1a4($a2)
-// /* 918C8 80318858 A0C801A4 */  sb         ((0 << 5) & 0x20) | (0x1a4($a2) & 0xdf), 0x1a4($a2)
-// /* 918CC 8031885C A0CB01A4 */  sb         ((0 << 6) & 0x40) | (0x1a4($a2) & 0xbf), 0x1a4($a2)
-
-    this->unk1A4_23 = 0;
-    this->unk1A4_31 = 0;
-    this->unk1A4_26 = 0;
-    this->unk1A4_27 = 0;
-    this->unk1A4_29 = 0;
-    this->unk1A4_30 = 0;
+    
+    this->unk1A4_30 = this->unk1A4_29 =\
+    this->unk1A4_27 = this->unk1A4_26 =\
+    this->unk1A4_31 =\
+    this->unk1A4_23 =\
     this->unk15D = 0;
-    if( this->unk135 == 0x10
-        || this->unk135 == 0x1
-        || this->unk135 == 0x2
-        || this->unk135 == 0x3
-        || this->unk135 == 0x4
-    ){
-        this->unk135 = 0xA;
+
+    if( this->unk135 == 10 || this->unk135 == 0x1 || this->unk135 == 0x2 || this->unk135 == 0x3 || this->unk135 == 0x4 ){
+        this->unk135 = 10;
         this->unk134 = 3;
     }
     func_8031843C(this);
-    return 1;
+    return TRUE;
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/zoombox/func_8031877C.s")
-#endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/zoombox/func_803188B4.s")
+bool func_803188B4(gczoombox_t *this) {
+    u8 temp_v0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/zoombox/func_80318964.s")
+    if ((this == NULL) || (this->unk135 == 0) || (this->unk135 == 7) || (this->unk135 == 9)) {
+        return FALSE;
+    }
+    if ((this->unk135 == 6) && (this->unk134 == 4)) {
+        return FALSE;
+    }
+    if (this->unk135 == 8) {
+        this->unk1A4_16 = FALSE;
+        this->unk135 = 6;
+    } else if (this->unk135 != 6) {
+        func_803155C8(this);
+    }
+    func_8031843C(this);
+    func_80318498(this);
+    return TRUE;
+}
 
-int func_803189C4(gczoombox_t *this, s32 arg1){
+
+bool func_80318964(gczoombox_t *this) {
+    if (this == NULL || this->unk135 == 0 || this->unk135 == 7 || this->unk135 == 9) {
+        return FALSE;
+    }
+    gczoombox_close(this);
+    func_8031842C(this);
+    func_803155C8(this);
+    return TRUE;
+}
+
+bool func_803189C4(gczoombox_t *this, s32 arg1){
      if( this == NULL
          || arg1 == this->portrait_id
          || ( this->unk135 != 6
@@ -1019,10 +1089,65 @@ int func_803189C4(gczoombox_t *this, s32 arg1){
      return TRUE;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/zoombox/func_80318B7C.s")
+void func_80318B7C(gczoombox_t *this, s32 arg1) {
+    s32 phi_v0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/zoombox/func_80318BEC.s")
+    if (this != NULL) {
+        this->unk164 = arg1;
+        this->unk172 = arg1;
+        phi_v0 = (this->unk1A4_19) ? 0x11 : 0x14;
+        this->unk166 = phi_v0 * this->unk198 + this->unk164;
+        func_80315484(this);
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/zoombox/func_80318C0C.s")
+bool func_80318BEC(gczoombox_t *this){
+     return this != NULL && !this->unk135;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/zoombox/func_80318C48.s")
+void func_80318C0C(gczoombox_t *this) {
+    AnimCtrl *temp_a0;
+
+    if (this != NULL) {
+        if (this->unkF4 != NULL) {
+            this->unkF4 = animctrl_defrag(this->unkF4);
+        }
+    }
+}
+
+void func_80318C48(gczoombox_t *this, s32 arg1) {
+    if (this != NULL) {
+        if (this->unk1A4_30) {
+            if (arg1 != 0) {
+                if (this->unk0[0] == 0xFD) {
+                    this->unk0[1] = 0x68;
+                } else {
+                    func_803153A8(&this->unk0[0], &D_803830B0, 0, 0x30);
+                    this->unk0[0] = 0xFD;
+                    this->unk0[1] = 0x68;
+                    func_803153A8(&D_803830B0, &this->unk0[2], 0, 0x2E);
+                }
+            }
+            else if (this->unk0[0] == 0xFD) {
+                    this->unk0[1] = 0x6C;
+            }
+        }
+        if (this->unk1A4_29) {
+            if (arg1 != 0) {
+                if (this->unk30[0] == 0xFD) {
+                    this->unk30[1] = 0x68;
+                    return;
+                }
+                else{
+                    func_803153A8(&this->unk30[0], &D_803830B0, 0, 0x30);
+                    this->unk30[0] = 0xFD;
+                    this->unk30[1] = 0x68;
+                    func_803153A8(&D_803830B0, &this->unk30[2], 0, 0x2E);
+                }
+            }
+            else if (this->unk30[0] == 0xFD) {
+                this->unk30[1] = 0x6C;
+            }
+        }
+    }
+}

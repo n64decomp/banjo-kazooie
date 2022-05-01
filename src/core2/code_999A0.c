@@ -3,7 +3,7 @@
 #include "variables.h"
 
 extern void func_80303F7C(ActorMarker *, f32, s32, s32);
-extern s32 func_80303FE4(ActorMarker *, f32, s32);
+extern ActorProp *func_80303FE4(ActorMarker *, f32, s32);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_999A0/func_80320930.s")
 

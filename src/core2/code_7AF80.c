@@ -4,9 +4,13 @@
 
 #include "prop.h"
 
+extern f32 func_80256280(f32[3], f32[3]);
+extern f32 func_802586B0(f32[3], f32[3]);
+
 extern f32 func_803243D0(struct56s *arg0, f32 arg1[3]);
 extern void func_802CAF14(u32*, s32, bool);
-
+extern void func_8032D510(Cube *, Gfx **, Mtx **, Vtx **);
+extern ActorProp *func_803322F0(Cube *, ActorMarker *, f32, s32, s32 *);
 
 typedef struct {
     s32 unk0;
@@ -29,10 +33,11 @@ typedef struct {
 } Struct_core2_7AF80_1;
 
 
-
+void func_80303174(s32 arg0[3], f32 arg1[3]);
 void func_80308984(void);
+void func_80308D2C(Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void func_80308F0C(Cube *cube);
-
+void func_80308EC8(void);
 
 /* .data */
 
@@ -65,7 +70,6 @@ extern s16 D_8036ABAC[];
 extern s16 D_8036ABC0[];
 
 /* .rodata */
-extern f32 D_803774C4;
 
 /* .bss */
 extern struct {
@@ -84,7 +88,8 @@ extern struct {
     s32 unk44;
 } D_80381FA0;
 
-extern s32 D_803820B8; //ActorProp *, (maybe Prop *)
+extern s32 D_803820B8[]; //ActorProp *, (maybe Prop *)
+extern s32 D_8038213C;
 extern s32 D_80382148;
 extern s16 D_80382150[];
 extern u32 D_803821E0[0x5B];
@@ -99,60 +104,144 @@ void func_80301F10(Cube *cube, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80302634.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80302C94.s")
-// void func_80302C94(Gfx **gfx, Mtx **mtx, Vtx **vtx){
-//     f32 sp6C[3];
-//     s32 sp60[3];
-//     f32 sp54[3];
-//     int i;
-//     s32 sp44[3];
-//     s32 sp38[3];
+void func_80302C94(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
+    f32 sp6C[3];
+    s32 sp60[3];
+    f32 sp54[3];
+    s32 i;
+    s32 sp44[3];
+    s32 sp38[3];
+    f32 temp_f18;
 
-//     if(!mapSpecificFlags_validateCRC1())
-//         return;
+    if (!mapSpecificFlags_validateCRC1())
+        return;
 
-//     func_8032D3A8();
-//     func_8024C5CC(sp6C);
-//     func_8024C764(sp54);
-//     func_80256664(sp60);
-//     func_80303174(sp60, sp6C);
-//     sp60[0] -= D_80381FA0.unk8[0];\
-//     sp60[1] -= D_80381FA0.unk8[1];\
-//     sp60[2] -= D_80381FA0.unk8[2];
-//     if(250.0f < func_80308EC8()){
+    func_8032D3A8();
+    func_8024C5CC(sp6C);
+    func_8024C764(sp54);
+    func_80256664(sp54);
+    func_80303174(sp60, sp6C);
+    sp60[0] -= D_80381FA0.unk8[0];\
+    sp60[1] -= D_80381FA0.unk8[1];\
+    sp60[2] -= D_80381FA0.unk8[2];
+    func_80308EC8();
+    sp44[0] = sp44[1] = sp44[2] = 0;
+    sp38[0] = D_80381FA0.unk30 - 1;\
+    sp38[1] = D_80381FA0.unk34 - 1;\
+    sp38[2] = D_80381FA0.unk38 - 1;
+    if ((sp54[0]> 250.0f) && (sp54[0]< 290.0f)) {
+        if ((sp54[1] >= 225.0f) && (sp54[1] <= 315.0f)) {
+            sp44[0] = (sp60[0] > sp44[0]) ? sp60[0] - 1 : sp44[0];
+        } else {
+            if ((sp54[1] >= 45.0f) && (sp54[1] <= 135.0f)) {
+                sp38[0] = sp60[0];
+            }
+        }
 
-//     }//L80302ED0
+        if ((sp54[0]>= 45.0f) && (sp54[0]<= 135.0f)) {
+            sp44[1] = sp60[1];
+        } else if ((sp54[0]>= 225.0f) && (sp54[0]<= 315.0f)) {
+            sp38[1] = sp60[1];
+        }
+        if ((sp54[1] >= 135.0f) && (sp54[1] <= 225.0f)) {
+            sp44[2] = (sp60[2] > sp44[2]) ? sp60[2] - 1 : sp44[2];
+        } else if ((315.0f <= sp54[1]) || (sp54[1] <= 45.0f)) {
+            sp38[2] = sp60[2];
+        }
+    } else {
+        if ((sp54[1] >= 225.0f) && (sp54[1] <= 315.0f)) {
+            sp44[0] = sp60[0];
+        } else {
+            if ((sp54[1] >= 45.0f) && (sp54[1] <= 135.0f)) {
+                sp38[0] = sp60[0];
+            }
+        }
 
-//     for(i =  0; i < 3; i++){//L80303000
-//         if(sp60[i] - sp44[i] >= 5)
-//             sp44[i] = sp60[i] - 4;
+        if ((sp54[0]>= 45.0f) && (sp54[0]<= 135.0f)) {
+            sp44[1] = sp60[1];
+        } else if ((sp54[0]>= 225.0f) && (sp54[0]<= 315.0f)) {
+            sp38[1] = sp60[1];
+        }
+        
+        if ((sp54[1] >= 135.0f) && (sp54[1] <= 225.0f)) {
+            sp44[2] = sp60[2];
+        } else if ((315.0f <= sp54[1]) || (sp54[1] <= 45.0f)) {
+            sp38[2] = sp60[2];
+        }
+    }
 
-//         if(sp38[i] - sp60[i] >= 5)
-//             sp38[i] = sp60[i] + 4;
-//     }
+    for(i = 0; i < 3; i++){
+        if(sp60[i] - sp44[i] >= 5){
+            sp44[i] = sp60[i] - 4;
+        }
+        if(sp38[i] - sp60[i] >= 5){
+            sp38[i] = sp60[i] + 4;
+        }
+    }
+    if (D_80381FA0.unk3C != NULL) {
+        func_8032D510(D_80381FA0.unk3C, gfx, mtx, vtx);
+    }
 
-//     if(D_80381FA0.unk3C){
-//         func_8032D510(D_80381FA0.unk3C, gfx, mtx, vtx);
-//     }
+    if (D_80381FA0.unk40 != NULL) {
+        func_8032D510(D_80381FA0.unk40, gfx, mtx, vtx);
+    }
+    if (((45.0f <= sp54[1]) && (sp54[1] <= 135.0f)) || ((225.0f <= sp54[1]) && (sp54[1] <= 315.0f))) {
+        func_80301F50(gfx, mtx, vtx, &sp60, &sp44, &sp38);
+    } else {
+        func_80302634(gfx, mtx, vtx, &sp60, &sp44, &sp38);
+    }
+    func_80308D2C(gfx, mtx, vtx);
+}
 
-//     if(D_80381FA0.unk40){
-//         func_8032D510(D_80381FA0.unk40, gfx, mtx, vtx);
-//     }
+//position_to_cube_indices
+void func_80303174(s32 arg0[3], f32 arg1[3]) {
+    s32 i;
 
-//     if( (45.0f <= sp54[1] && sp54[1] <= 135.0f)
-//         || (225.0f <= sp54[1] && sp54[1] <= D_803774C4)
-//     ){
-//         func_80301F50(gfx, mtx, vtx, sp60, sp44, sp38);
-//     }
-//     else{
-//         func_80302634(gfx, mtx, vtx, sp60, sp44, sp38);
-//     }
-//     func_80308D2C(gfx, mtx, vtx);
-// }
+    for(i = 0; i < 3; i++){
+        if (arg1[i]  >= 0.0f) {
+            arg0[i] = (s32) (arg1[i] / 1000.0f);
+        } else {
+            arg0[i] = (s32) ((arg1[i] / 1000.0f) + -1.0f);
+        }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80303174.s")
+        if (arg0[i] < D_80381FA0.unk8[i]) {
+            arg0[i] = D_80381FA0.unk8[i];
+        }
+        if (D_80381FA0.unk14[i] < arg0[i]) {
+            arg0[i] = D_80381FA0.unk14[i];
+        }
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80303228.s")
+void func_80303228(s32 arg0[3], s32 arg1[3], f32 arg2[3], f32 arg3[3], f32 arg4) {
+    s32 i;
+    f32 phi_f12;
+
+
+    for(i = 0; i < 3; i++){
+        phi_f12 = (arg2[i] <= arg3[i]) ? arg2[i] : arg3[i];
+        if (arg4 <= phi_f12) {
+            arg0[i] = (phi_f12 - arg4) / 1000.0f;
+        } else {
+            arg0[i] = (phi_f12 - arg4) / 1000.0f + -1.0f;
+        }
+        if (arg0[i] < D_80381FA0.unk8[i]) {
+            arg0[i] = D_80381FA0.unk8[i];
+        }
+
+        phi_f12 = (arg3[i] <= arg2[i]) ? arg2[i] : arg3[i];
+
+        if ((phi_f12 + arg4) >= 0.0f) {
+            arg1[i] = (phi_f12 + arg4) / 1000.0f;
+        } else {
+            arg1[i] = (phi_f12 + arg4) / 1000.0f + -1.0f;
+        }
+
+        if (D_80381FA0.unk14[i] < arg1[i]) {
+            arg1[i] = D_80381FA0.unk14[i];
+        }
+    }
+}
 
 Cube *func_80303384(s32 arg0[3]) {
     if( (arg0[0] < D_80381FA0.unk8[0]) || (arg0[1] < D_80381FA0.unk8[1]) || (arg0[2] < D_80381FA0.unk8[2]) 
@@ -203,7 +292,15 @@ Cube *func_80303658(void){
     return D_80381FA0.unk3C;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80303664.s")
+void func_80303664(s32 arg0[3], s32 arg1[3]){
+    arg0[0] = D_80381FA0.unk8[0];
+    arg0[1] = D_80381FA0.unk8[1];
+    arg0[2] = D_80381FA0.unk8[2];
+
+    arg1[0] = D_80381FA0.unk14[0];
+    arg1[1] = D_80381FA0.unk14[1];
+    arg1[2] = D_80381FA0.unk14[2];
+}
 
 // void func_803036A0(void);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_803036A0.s")
@@ -218,10 +315,50 @@ extern u8 D_80381FE8[];
 // void func_80303AF0(void);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80303AF0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80303C54.s")
+void func_80303C54(Cube *cube, ActorMarker *marker, f32 arg2, s32 arg3, s32 *arg4, s32 *arg5) {
+    ActorProp *phi_s0;
 
-void func_80303D78(ActorMarker *, f32, s32 arg2);
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80303D78.s")
+    if(cube->prop2Cnt == 0)
+        return;
+
+    *arg4 = 0;
+    while (*arg4 != -1){
+        phi_s0 = func_803322F0(cube, marker, arg2, arg3, arg4);
+        if (phi_s0 != NULL) {
+            if (phi_s0->unk8_0 && phi_s0->marker->unk58 != NULL) {
+                if (phi_s0->marker->unk58(phi_s0->marker, marker) == 0) {
+                    phi_s0 = NULL;
+                }
+            }
+            if (phi_s0 != NULL) {
+                D_803820B8[*arg5] = phi_s0;
+                *arg5 += 1;
+            }
+        }
+    };
+}
+
+void func_80303D78(ActorMarker *arg0, f32 arg1, UNK_TYPE(s32) arg2) {
+    s32 sp6C[3];
+    s32 sp60[3];
+    s32 sp5C;
+    f32 sp50[3];
+
+    sp5C = 0;
+    sp50[0] = (f32) arg0->propPtr->x;
+    sp50[1] = (f32) arg0->propPtr->y;
+    sp50[2] = (f32) arg0->propPtr->z;
+    func_80303174(sp60, sp50);
+    for(sp6C[2] = sp60[2] - 1; sp6C[2] <= sp60[2] + 1; sp6C[2]++){
+        for(sp6C[1] = sp60[1] - 1; sp6C[1] <= sp60[1] + 1; sp6C[1]++){
+            for(sp6C[0] = sp60[0] - 1; sp6C[0] <= sp60[0] + 1; sp6C[0]++){
+                    func_80303C54(func_80303384(sp6C), arg0, arg1, arg2, &D_8038213C, &sp5C);
+            }
+        }
+    }
+    func_80303C54(D_80381FA0.unk40, arg0, arg1, arg2, &D_8038213C, &sp5C);
+    D_803820B8[sp5C] = 0;
+}
 
 void func_80303F38(void){
     int i;
@@ -239,7 +376,7 @@ void func_80303F6C(s32 indx, s32 arg1){
 Prop *func_80303F7C(ActorMarker *arg0, f32 arg1, s32 arg2, s32 arg3);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80303F7C.s")
 #else
-Prop *func_80303F7C(ActorMarker *arg0, f32 arg1, s32 arg2, s32 arg3) {
+ActorProp *func_80303F7C(ActorMarker *arg0, f32 arg1, s32 arg2, s32 arg3) {
     s32 temp_v1;
     s32 phi_a0;
 
@@ -261,9 +398,9 @@ Prop *func_80303F7C(ActorMarker *arg0, f32 arg1, s32 arg2, s32 arg3) {
 }
 #endif
 
-s32 func_80303FE4(s32 arg0, f32 arg1, s32 arg2) {
+ActorProp *func_80303FE4(ActorMarker *arg0, f32 arg1, s32 arg2) {
     func_80303D78(arg0, arg1, arg2);
-    return D_803820B8;
+    return D_803820B8[0];
 }
 
 void func_80304010(void){
@@ -437,11 +574,11 @@ void func_803046A0(Struct61s *file_ptr) {
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_803048E0.s")
 
 s32 func_80304984(s32 arg0, u32 *arg1) {
-    u16 *temp_v0;
+    NodeProp *temp_v0;
 
     temp_v0 = func_803049CC(arg0, 0);
     if (temp_v0 != 0) {
-        *arg1 = (u32) ((u32) temp_v0[3] >> 7);
+        *arg1 = temp_v0->unk6_15;
         return 1;
     }
     return 0;
@@ -449,7 +586,7 @@ s32 func_80304984(s32 arg0, u32 *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_803049CC.s")
 
-void *func_80304C38(s32 arg0, Actor *arg1){
+NodeProp *func_80304C38(s32 arg0, Actor *arg1){
     s32 vec[3];
     s32 *phi_a1;
 
@@ -466,22 +603,22 @@ void *func_80304C38(s32 arg0, Actor *arg1){
     return func_803049CC(arg0, phi_a1);
 }
 
-void func_80304CAC(s32 arg0, f32 *arg1) {
+NodeProp *func_80304CAC(s32 arg0, f32 *arg1) {
     s32 vec[3];
 
     vec[0] = arg1[0];
     vec[1] = arg1[1];
     vec[2] = arg1[2];
-    func_803049CC(arg0, vec);
+    return func_803049CC(arg0, vec);
 }
 
-void func_80304D04(s32 arg0, s16 *arg1) {
+NodeProp *func_80304D04(s32 arg0, s16 *arg1) {
     s32 arr[3];
 
     arr[0] = arg1[0];
     arr[1] = arg1[1];
     arr[2] = arg1[2];
-    func_803049CC(arg0, arr);
+    return func_803049CC(arg0, arr);
 }
 
 u32 func_80304D3C(u16 *arg0) {
@@ -509,13 +646,13 @@ s32 func_80304DB8(u32 *arg0) {
 }
 
 s32 func_80304DD0(s32 arg0, s32 *arg1) {
-    s16 *temp_v0;
+    NodeProp *temp_v0;
 
     temp_v0 = func_803049CC(arg0, 0, arg1);
     if (temp_v0 != 0) {
-        arg1[0] = (s32) temp_v0[0];
-        arg1[1] = (s32) temp_v0[1];
-        arg1[2] = (s32) temp_v0[2];
+        arg1[0] = (s32) temp_v0->x;
+        arg1[1] = (s32) temp_v0->y;
+        arg1[2] = (s32) temp_v0->z;
         return 1;
     }
     return 0;
@@ -539,17 +676,77 @@ s32 func_80304E24(s32 arg0, f32 *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80304FC4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_8030508C.s")
+s32 func_8030508C(s32 arg0, f32 arg1[3], s32 arg2) {
+    Cube *phi_s0;
+    s32 phi_s1;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_8030515C.s")
+    phi_s0 = D_80381FA0.cube_list;
+    phi_s1 = 0;
+    while(phi_s0 < &D_80381FA0.cube_list[D_80381FA0.cubeCnt]){
+        phi_s1 += func_8032E5A8(phi_s0, arg0, (f32 *)(phi_s1*0xC + (s32)arg1), arg2 - phi_s1);
+        phi_s0++;
+    }
+    return phi_s1;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80305248.s")
+bool func_8030515C(f32 arg0[3], s32 arg1, s32 arg2, f32 (*arg3)(f32[3], f32[3])) {
+    f32 sp50[20][3];
+    f32 phi_f20;
+    s32 phi_s1;
+    s32 temp_v0;
+    f32 temp_f0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_8030526C.s")
+    ml_vec3f_clear(arg0);
+    phi_f20 = 3.40282347e+38f;
+    temp_v0 = func_8030508C(arg1, sp50[0], 0x14);
+    if (temp_v0 == 0) {
+        return 0;
+    }
+    for(phi_s1 = 0; phi_s1 < temp_v0; phi_s1++){
+        temp_f0 = arg3(arg2, sp50[phi_s1]);
+        if (temp_f0 < phi_f20) {
+            phi_f20 = temp_f0;
+            ml_vec3f_copy(arg0, sp50[phi_s1]);
+        }
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80305290.s")
+    if (phi_f20 == 3.40282347e+38f) return 0;
+    
+    return 1;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80305344.s")
+}
+
+bool func_80305248(f32 arg0[3], s32 arg1, s32 arg2){
+    return func_8030515C(arg0, arg1, arg2, func_80256280);
+}
+
+bool func_8030526C(f32 arg0[3], s32 arg1, s32 arg2){
+    return func_8030515C(arg0, arg1, arg2, func_802586B0);
+}
+
+bool func_80305290(UNK_TYPE(s32) arg0, UNK_TYPE(s32) arg1){
+    Cube *phi_s0;
+
+    phi_s0 = D_80381FA0.cube_list;
+    while (phi_s0 < &D_80381FA0.cube_list[D_80381FA0.cubeCnt]) {
+        if (func_8032E398(phi_s0, arg0, arg1) == 0) {
+            return 0;
+        }
+        phi_s0++;
+    }
+    return 1;
+}
+
+bool func_80305344(s32 arg0, u32 *arg1) {
+    NodeProp *temp_v0;
+
+    temp_v0 = func_803049CC(arg0, NULL);
+    if (temp_v0 != NULL) {
+        *arg1 = temp_v0->unkC_31;
+        return 1;
+    }
+    return 0;
+}
 
 void spawnableActorList_new(void){
     sSpawnableActorList = malloc(0);
@@ -1110,8 +1307,14 @@ void func_803086B4(void) {
     }
 }
 
+bool func_803088C8(s32 arg0) {
+    s32 i;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_803088C8.s")
+    for(i = 0; D_8036ABAC[i] != -1 && arg0 != D_8036ABAC[i] && arg0 != D_8036ABC0[i]; i++){
+    }
+
+    return (D_8036ABAC[i] == -1) ? FALSE : TRUE;
+}
 
 void func_8030895C(s32 arg0){
     D_80382150[D_8036ABD4] = arg0;

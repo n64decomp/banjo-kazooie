@@ -53,6 +53,7 @@ ml_vec3f_set_length = 0x80256A24;
 ml_acosf = 0x80256FE0;
 ml_map_f = 0x80257B18;
 mlClamp_f = 0x80257ED8;
+func_802586B0 = 0x802586B0;
 ml_sin_deg = 0x802587BC;
 ml_cos_deg = 0x802587EC;
 mlNormalizeAngle = 0x8025881C;
