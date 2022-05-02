@@ -189,7 +189,7 @@ void func_802C4768(s32 gamenum){
     func_8031877C(D_8037DCF4);
     func_80318284(D_8037DCF4, 2, &sp20);
     gczoombox_maximize(D_8037DCF4);
-    func_803184A8(D_8037DCF4);
+    gczoombox_resolve_minimize(D_8037DCF4);
 }
 
 void func_802C4AC8(s32 arg0){

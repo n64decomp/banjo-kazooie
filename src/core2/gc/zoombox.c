@@ -3,7 +3,12 @@
 #include "variables.h"
 #include "gc/gczoombox.h"
 
+extern f32 func_8024DE1C(f32, f32, f32[3], f32[3]);
+void func_80252330(f32, f32, f32);
 extern f32 func_8033DDB8(void);
+extern void func_8024E60C(s32, void *);
+extern void func_8024E640(s32, void *);
+extern void func_8024E5A8(s32, void *);
 
 extern struct17s D_8036C6C0[];
 extern s32 D_8036D924[];
@@ -13,22 +18,30 @@ extern char D_80378880[];
 extern f64 D_80378890;
 extern f64 D_80378898;
 extern f64 D_803788A0;
+extern f32 D_803788A8;
+extern f32 D_803788AC;
+extern f32 D_803788B0;
+extern f64 D_803788B8;
+extern f64 D_803788C0;
 extern f64 D_803788E0;
+extern f64 D_803788F0;
 extern f32 D_80378938;
 extern f32 D_8037893C;
 extern f32 D_80378940;
 extern u8  D_803830B0[];
 
 void func_8030DA44(u8);
-void func_80252330(f32, f32, f32);
 void func_80338338(s32, s32, s32);
 void func_803382FC(u8);
 
 
 
 s32 func_80316ED4(u8*);
+void func_8031843C(gczoombox_t *this);
+void func_80318478(gczoombox_t *this);
+void func_80318488(gczoombox_t *this);
 void func_80318498(gczoombox_t *this);
-void func_803184A8(gczoombox_t *this);
+void gczoombox_resolve_minimize(gczoombox_t *this);
 void func_803184C8(gczoombox_t *, f32, s32, s32, f32, bool, bool);
 void func_80318760(gczoombox_t *this, s32 arg1);
 
@@ -159,7 +172,7 @@ void func_803155C8(gczoombox_t *this){
         }
     }//L803156CC
     this->unk134 = 0;
-    func_803184A8(this);
+    gczoombox_resolve_minimize(this);
 }
 
 int func_803156F0(u8 arg0, u8 arg1){
@@ -195,9 +208,6 @@ s32 func_803158AC(u8 *arg0, s32 arg1){
      return i;
 }
 
-#ifndef NONMATCHING //needs .rodata defined
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/zoombox/func_8031594C.s")
-#else
 void func_8031594C(gczoombox_t * this, u8 *str, s32 arg2, s32 arg3){
      s32 s0; 
      gczoombox_t *s4;
@@ -269,8 +279,6 @@ void func_8031594C(gczoombox_t * this, u8 *str, s32 arg2, s32 arg3){
           func_8034A964();
      }
 }
-#endif
-
 
 u8 func_80315BC0(gczoombox_t *this, enum sfx_e uid, s32 arg2){
      u8 sp1F = func_8030ED2C(uid, arg2) & 0xff;
@@ -286,19 +294,122 @@ void func_80315C1C(gczoombox_t *this){
      func_80315200(this);
      func_80315300(this);
      for(i = 0 ; i < 8; i++){
-          this->unk13C[i] = 0;
+          this->unk13C[i] = NULL;
      }
      this->unk135 = 0;
      this->unk137 = this->unk1A4_20 = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/zoombox/func_80315C90.s")
+void func_80315C90(gczoombox_t *this, s32 arg1) {
+    s32 phi_s1;
+    s32 phi_s4;
+    f32 phi_f12;
+    f32 phi_f2;
+    f32 phi_f18;
+    f32 phi_f14;
+    s32 phi_s1_3;
+    s32 phi_s2;
+    s32 phi_a0;
+    s32 phi_a1;
 
-extern f64 D_803788C8;
-extern f32 D_803788D0;
-extern f64 D_803788D8;
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/zoombox/func_803160A8.s")
+    phi_s4 = 0U;
+    if (this != NULL && this->unk13B != 0 && this->unk1A4_11) {
+        if (this->portrait_id == 0x15) {
+            for(phi_s1 = 0; phi_s1 < 5; phi_s1++){
+                if(func_8030E3FC(this->unk108[phi_s1]))
+                    return;
+            }
+        }
 
+        if (this->unk110[0] == -1.0f) {
+            if (func_8025AD7C(this->unk108[0]) == 0) {
+                func_8025A70C(this->unk108[0]);
+            }
+        } else {
+            
+            for(phi_s1 = 0; phi_s1 < 5; phi_s1++){
+                if (func_8030E3FC(this->unk108[phi_s1])) {
+                    func_8030E394(this->unk108[phi_s1]);
+                }
+            }
+            if (this->unk13B != 1) {
+                do {
+                    phi_s4 = randi2(0, this->unk13B);
+                } while (phi_s4 == this->unk18B || this->unk124[phi_s4] == 0);
+            }
+            this->unk18B = phi_s4;
+
+            if (arg1 != 0) {
+                phi_s1_3 = 15000;
+                phi_s2 = 11000;
+                phi_f2 = -0.1f;
+                phi_f18 = -0.4f;
+            } else {
+                phi_s1_3 = 6000;
+                phi_s2 = 0;
+                phi_f2 = 0.2f;
+                phi_f18 = 0.0f;
+            }
+            phi_f14 = this->unk110[phi_s4];
+            if (phi_f14 < -1.0f) {
+                do {
+                    phi_f12 = (f32) randi2(-12, 0);
+                } while (phi_f12 == -11.0 || phi_f12 == -9.0 || phi_f12 == -7.0 || phi_f12 == -6.0 || phi_f12 == -4.0 || phi_f12 == -2.0 || phi_f12 == -1.0);
+
+                phi_f14 = this->unk110[phi_s4];
+                if ( -2.0f > phi_f14) {
+                    phi_f12 -= (phi_f14 - -2.0f);
+                }
+                func_8030DBB4(this->unk108[phi_s4], alCents2Ratio(phi_f12 *100.0f));
+            } else {
+                phi_f12 = (phi_f14 - phi_f2 < 0.1) ? 0.1 : phi_f14 - phi_f2;
+                phi_f12 = (phi_f12 >= 2.0)?  1.99 : phi_f12;
+
+                phi_f14 = (phi_f14 - phi_f18 < 2.0) ? phi_f14 - phi_f18 : 2.0;
+                phi_f14 = (0.1 < phi_f14) ? phi_f14 : 0.1;
+
+                func_8030DBB4(this->unk108[phi_s4], randf2(phi_f12, phi_f14));
+            }
+
+            phi_a0 = (this->unk124[phi_s4] - phi_s1_3 < 0)? 0 : this->unk124[phi_s4] - phi_s1_3;
+            phi_a1 = (this->unk124[phi_s4] - phi_s2 < 0)  ? 0 : this->unk124[phi_s4] - phi_s2;
+            func_8030DABC(this->unk108[phi_s4], randi2(phi_a0, phi_a1));
+            func_8030E2C4(this->unk108[phi_s4]);
+        }
+    }
+}
+
+void func_803160A8(gczoombox_t *this) {
+    f32 temp_f14;
+    f32 phi_f14;
+    s32 phi_a0;
+    s32 sp50;
+    s32 phi_a1;
+    s32 sound_index;
+    f32 tmp_f16;
+    f32 sp40;
+    f32 sp3C;
+
+    phi_a0 = 0;
+    phi_a1 = 0;
+    tmp_f16 = 0;
+    if (D_8036C6C0[this->portrait_id].soundInfo[0].unk4 != -1.0f) {
+        do {
+            sound_index = randi2(0, 5);
+            sp50 = D_8036C6C0[this->portrait_id].soundInfo[sound_index].unk2;
+        } while ( sp50 == 0);
+        temp_f14 = D_8036C6C0[this->portrait_id].soundInfo[sound_index].unk4;
+        sp40 = (temp_f14 - 0.2f < 0.1) ? 0.1 : temp_f14 - 0.2f;
+        sp40 = (sp40 >= 2.0) ? 1.99 : sp40;
+
+        sp3C = temp_f14 - tmp_f16;
+        sp3C = (sp3C < 2.0) ? sp3C : 2.0;
+        sp3C = (0.1 < sp3C) ? sp3C : 0.1;
+        if (func_8030ED70(D_8036C6C0[this->portrait_id].soundInfo[sound_index].uid) == 0) {
+            func_8030E760(D_8036C6C0[this->portrait_id].soundInfo[sound_index].uid, randf2(sp40, sp3C), randi2((sp50 - 6000 < 0) ? 0 : sp50 - 6000, (sp50 - phi_a1 < 0) ? 0: sp50 - phi_a1));
+        }
+    }
+}
 
 void func_803162B4(gczoombox_t *this){
      func_802F7B90(this->unk168, this->unk168, this->unk168);
@@ -322,42 +433,166 @@ void func_803162B4(gczoombox_t *this){
      func_802F7B90(0xff, 0xff, 0xff);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/zoombox/func_803163A8.s")
+void func_803163A8(gczoombox_t *this, Gfx **gfx, Mtx **mtx) {
+    f32 sp5C[3];
+    f32 sp50[3];
+    f32 sp44[3];
+    f32 sp38[3];
+    f32 sp34;
 
-void func_803164B0(gczoombox_t *, Gfx **, Mtx **, s32, s32, s32, f32);
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/zoombox/func_803164B0.s")
-/*void func_803164B0(gczoombox_t *this, Gfx **gdl, Mtx **mptr, s32 arg3, s32 arg4, s32 arg5, f32 arg6){
-     volatile f32 sp2C;
-     f32 temp_f12;
+    sp34 = func_8024DE1C(this->unk170, this->unk172, sp50, sp5C);
+    if (this->unk1A4_24) {
+        sp5C[1] += 180.0f;
+        sp5C[0] -= 2*sp5C[0];
+    }
+    sp38[0] = 0.0f; sp38[1] = 0.0f; sp38[2] = 0.0f;
+    sp44[0] = 0.0f; sp44[1] = 0.0f; sp44[2] = 0.0f;
+    func_8033A308(sp44);
+    set_model_render_mode(0);
+    if (this->unkF4 != NULL) {
+        func_8028781C(this->unkF4, sp50, 1);
+    }
+    func_803391A4(gfx, mtx, sp50, sp5C, this->unk198 * sp34, &sp38, this->unkF0);
+}
 
-     if(this->portrait_id == 0x46)
-          arg6 = 0.75;
-     //L803164F0
-     func_80338338(0xff, 0xff, 0xff);
-     func_803382FC(this->unk168 * arg6);
-     func_803382E4(5);
-     func_80335D30(gdl);
-     func_8024C7B8(gdl, mptr);
-     mlMtxIdent();
-     if(this->unk1A4_24){
-          mlMtxRotYaw(180.0f);
-          sp2C = this->unk170 - arg3*this->unk198;
-     }else{//L8031661C
-          sp2C = this->unk170 + arg3*this->unk198;
-     }
-     //L80316640
-     func_80252330(sp2C*4.0f - D_80276588*2.0f, D_8027658C*2.0f - ((f32)this->unk172 + (f32)arg4*this->unk198)*4.0f, -10.0f);
-     mlMtxScale_xyz(this->unk198 * D_803788E0, this->unk198 * D_803788E0, 1.0f);
-     mlMtxApply(*mptr);
-     gSPMatrix((*gdl)++, (*mptr)++, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
-     set_model_render_mode(0);
-     func_80344090(arg5, this->unk186, gdl);
-     func_8033687C(gdl);
-     func_8024C904(gdl, mptr);
-}//*/
+void func_803164B0(gczoombox_t *this, Gfx **gfx, Mtx **mtx, s32 arg3, s32 arg4, s32 arg5, f32 arg6) {
+    f32 sp2C[3];
+    f32 temp_f12;
 
+    if (this->portrait_id == 0x46) {
+        arg6 = 0.75f;
+    }
+    func_80338338(0xFF, 0xFF, 0xFF);
+    func_803382FC(this->unk168 * arg6);
+    func_803382E4(5);
+    func_80335D30(gfx);
+    func_8024C7B8(gfx, mtx);
+    mlMtxIdent();
+    if (this->unk1A4_24) {
+        mlMtxRotYaw(180.0f);
+        sp2C[0] = (f32) this->unk170 - ((f32) arg3 * this->unk198);
+    } else {
+        sp2C[0] = (f32) this->unk170 + ((f32) arg3 * this->unk198);
+    }
+    sp2C[1] = this->unk172 + ((f32) arg4 * this->unk198);
+    sp2C[2] = -10.0f;
+    func_80252330((sp2C[0] * 4.0f) - ((f32)D_80276588 * 2), ((f32)D_8027658C * 2) - (sp2C[1] * 4.0f), sp2C[2]);
+    temp_f12 = (f32) ((f64) this->unk198 * 0.8);
+    mlMtxScale_xyz(temp_f12, temp_f12, 1.0f);
+    mlMtxApply(*mtx);
+    gSPMatrix((*gfx)++, (*mtx)++, G_MTX_LOAD | G_MTX_MODELVIEW);
+    set_model_render_mode(0);
+    func_80344090(arg5, this->unk186, gfx);
+    func_8033687C(gfx);
+    func_8024C904(gfx, mtx);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/zoombox/func_80316764.s")
+void func_80316764(gczoombox_t *this, s32 arg1) {
+    s32 sp38[6];
+    f32 phi_f0;
+    s32 sp2C[2];
+    f32 pad0;
+
+    if (!this->unk1A4_10 ) {
+        func_8024E55C(0, sp38);
+        func_8024E60C(0, sp2C);
+        phi_f0 = time_getDelta();
+    } else {
+        func_8024E5A8(0, sp38);
+        func_8024E640(0, sp2C);
+        phi_f0 = func_8033DDB8();
+    }
+
+    if (this->unkFC == NULL) 
+        return;
+
+    if (this->unk139 == 1) {
+        this->unk19C += phi_f0;
+        while (this->unk1A0 < this->unk19C) {
+            this->unk186 += 1;
+            if (this->unk186 >= (s32) this->unk188) {
+                this->unk186 = 0;
+            }
+            this->unk19C -= this->unk1A0;
+        };
+        return;
+    }
+
+    if (arg1 && this->unk1A4_12 && sp38[BUTTON_START]) {
+        if (this->unk110[0] == -1.0f) {
+            func_80315C90(this, 1);
+        } else {
+            this->unk186++;
+            this->unk186 = this->unk186 % 4;
+            if (this->unk186 == 0) {
+                func_80315C90(this, 1);
+            }
+        }
+    }
+    else if (this->unk1A4_22 != 0) {
+        if (this->unk1A4_21) {
+            this->unk186--;
+            if ((this->unk188 - 4) >= this->unk186) {
+                this->unk1A4_21 = FALSE;
+                this->unk1A4_22 = FALSE;
+                this->unk186 = 0;
+            }
+        } else {
+            this->unk186++;
+            if (this->unk186 >= this->unk188) {
+                this->unk1A4_21 = TRUE;
+                this->unk186--;
+            }
+        }
+    }
+    else if (arg1) {
+        if (!this->unk1A4_12 || (sp2C[0] == 0) || !(func_8023DB5C() & 1)){
+            if (this->unk110[0] == -1.0f) {
+                func_80315C90(this, 1);
+            }
+            else if (this->unk13B != 0) {
+                if ((this->unk186 == 0) && (this->unk186 < this->unkB0[this->unk187])) {
+                    func_80315C90(this, 0);
+                }
+            }
+            this->unk1A4_22 = FALSE;
+            this->unk1A4_21 = FALSE;
+            if (this->unk186 == this->unkB0[this->unk187]) {
+                this->unk187++;
+                if (this->unk187 >= this->unk189) {
+                    this->unk187 = 0;
+                    this->unk1A4_23 = FALSE;
+                    if (randf() < 0.4) {
+                        this->unk1A4_22 = TRUE;
+                        this->unk186 = this->unk188 - 4;
+                    }
+                }
+            } else if (this->unk186 < this->unkB0[this->unk187]) {
+                this->unk186++;
+            } else {
+                this->unk186--;
+            }
+        }
+        else{return;}
+    } else if (this->unk1A4_22 == 0) {
+        if (this->unk186 > 0) {
+            this->unk186--;
+        } else {
+            // if (randf() < 0.01) { /* USE ONCE .RODATA DEFINED */
+            if (randf() < D_803788F0) {
+                this->unk1A4_22 = TRUE;
+                this->unk186 = this->unk188 - 4;
+            }
+        }
+    }
+    if (this->unk186 < 0) {
+        this->unk186 = 0;
+    }
+    if (this->unk186 >= this->unk188) {
+        this->unk186 = this->unk188 - 1;
+    }
+}
+
 
 void gczoombox_draw(gczoombox_t *this, Gfx **gdl, Mtx ** mptr, void *vptr){
      if(!this)
@@ -404,32 +639,43 @@ void gczoombox_draw(gczoombox_t *this, Gfx **gdl, Mtx ** mptr, void *vptr){
      }
 
      
-}//*/
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/zoombox/func_80316E08.s")
+void func_80316E08(gczoombox_t *this) {
+    this->unk135 = 8;
+    func_80318478(this);
+    if (this->unk1A4_24) {
+        this->unk170 = this->unk174 + 0x8B;
+    }
+    else{
+        this->unk170 = this->unk174 - 0x8B;
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/zoombox/func_80316E60.s")
+void func_80316E60(gczoombox_t *this){
+    this->unk135 = 9;
+    func_80318488(this);
+}
 
-void func_80316E84(gczoombox_t *, s32);
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/zoombox/func_80316E84.s")
+void func_80316E84(gczoombox_t *this, s32 arg1){
+    if(this->unk134 != arg1){
+        if(this->unk130 != NULL){
+            this->unk130(this->portrait_id, arg1);
+        }
+        this->unk134 = arg1;
+    }
+}
 
 s32 func_80316ED4(u8 *arg0){
     return strlen(arg0);
 }
 
-#ifndef NONMATCHING
+#ifndef NONMATCHING //matches requires .rodata which requires gczoombox_new() matching
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/zoombox/func_80316EF4.s")
 #else
 void func_80316EF4(gczoombox_t *this){
-     struct {
-          s32 unk0;
-          u8 pad4[0x10];
-          s32 unk14;
-     }sp58;
-     struct {
-          s32 unk0;
-          u8 pad4[0x8];
-     }sp4C;
+     s32 sp58[6];
+     s32 sp4C[3];
      s32 sp48;
      f32 sp44;
      f32 tmp_f0;
@@ -438,13 +684,13 @@ void func_80316EF4(gczoombox_t *this){
           return;
 
      if( !this->unk1A4_10 ){
-          func_8024E55C(0, &sp58);
-          func_8024E60C(0, &sp4C);
+          func_8024E55C(0, sp58);
+          func_8024E60C(0, sp4C);
           tmp_f0 = time_getDelta();
      }
      else{
-          func_8024E5A8(0, &sp58);
-          func_8024E640(0, &sp4C);
+          func_8024E5A8(0, sp58);
+          func_8024E640(0, sp4C);
           tmp_f0 = func_8033DDB8();
      }
 
@@ -492,7 +738,7 @@ void func_80316EF4(gczoombox_t *this){
 
                func_8031594C(this, this->unk60, 0, this->unk15C);
                this->unk135 = 2;
-               this->unk180 = this->unk15E = 0; //wrong reg;
+               this->unk180 = this->unk15E =  0; //wrong reg
                this->unk18C = 0.0f;
                if(this->unk1A4_19){
                     this->unk15E += 2;
@@ -506,17 +752,17 @@ void func_80316EF4(gczoombox_t *this){
                     if(this->unk1A4_19){
                          sp44 *= 1.5;
                     }
-                    if(sp58.unk0 && this->unk1A4_12){
+                    if(sp58[BUTTON_START] && this->unk1A4_12){
                          sp44 *= 0.5;
                     }
-                    else if(sp4C.unk0 && this->unk1A4_12){
+                    else if(sp4C[0] && this->unk1A4_12){
                          sp44 *= 2.0;
                     }
                     this->unk18C += tmp_f0;
                     while(sp44 < this->unk18C && this->unk15C >= this->unk15E){
                          this->unk15E++;
                          if(func_803156F0(this->unk60[this->unk15E], this->unk1A4_19)){
-                              this->unk18C -= (sp58.unk0 && this->unk1A4_12) ? 0.05 : 0.1;
+                              this->unk18C -= (sp58[BUTTON_START] && this->unk1A4_12) ? 0.05 : 0.1;
                          }//L803172B4
                          this->unk18C -= sp44;
                     }//L803172EC
@@ -535,7 +781,7 @@ void func_80316EF4(gczoombox_t *this){
                }
                break;
           case 0x3: //L80317360
-               if((sp58.unk0 && this->unk1A4_12) || this->unk181 < 0){
+               if((sp58[BUTTON_START] && this->unk1A4_12) || this->unk181 < 0){
                     this->unk135 = 4;
                     this->unk183 = 0.5*sp48*this->unk184;
 
@@ -544,11 +790,11 @@ void func_80316EF4(gczoombox_t *this){
                }
                break;
           case 0x4: //L80317470
-               if(sp58.unk0 && this->unk1A4_12){
+               if(sp58[BUTTON_START] && this->unk1A4_12){
                     this->unk183 = 0.5*sp48*(this->unk184 + 2);
                     this->unk1A4_23 = 0;
                }
-               else if(this->unk1A4_12 && sp4C.unk0){//L8031755C
+               else if(this->unk1A4_12 && sp4C[0]){//L8031755C
                      this->unk183 = 0.5*sp48*(this->unk184 - 1);
                }//L80317630
                this->unk1A4_17 = 0;
@@ -754,104 +1000,158 @@ void func_80317D10(gczoombox_t *this, s32 portrait_id){
 
 #ifdef NONMATCHING
 gczoombox_t *gczoombox_new(s32 arg0, s32 portrait_id, s32 arg2, s32 arg3, void (*arg4)(s32, s32)){
-     gczoombox_t *this;
-     s32 i;
+    gczoombox_t *this;
+    s32 i;
+    s32 temp_v1_2;
 
-     this = (gczoombox_t *)malloc(sizeof(gczoombox_t));
-     this->unk130 = arg4;
-     this->unk135 = 0xB;
-     this->portrait_id = portrait_id;
-     this->unk134  = this->unk137 = this->unk138 = 0;
-     this->unk139 = arg2;
-     this->unk13A = 0x20;
-     for(i = 0; i < 8; i++){
-          this->unk13C[i] = 0;
-     }
-     this->unk15E = 0;
-     this->unk15D = 0;
-     this->unk1A4_19 = 0;
-     this->unk15C = 0;
-     this->unk160 = 0;
-     this->unk166 = this->unk1A4_19;
-     this->unk164 = arg0;
-     this->unk168 = 0xFF;
-     this->unk1A4_24 = arg3;
-     if(this->unk1A4_24){
-          this->unk16A = 0x2D;
-          this->unk174 = D_80276588 - 0x25;
-          this->unk170 = D_80276588 + 0x66;
-     }else{
-          this->unk16A = 0x47;
-          this->unk174 = 0x25;
-          this->unk170 = -0x66;
-     }
-     this->unk18A = 0;
-     this->unk189 = 0;
-     this->unk187 = 0;
-     this->unk186 = 0;
-     this->unk185 = 0;
-     this->unk181 = 0;
-     this->unk180 = 0;
-     this->unk172 = this->unk164;
-     this->unk18C = 0.0f;
-     // // //this->unk194 = 0.999f;
-     this->unk194 = D_80378938;
-     this->unk198 = 1.0f;
-     this->unk19C = 0.0f;
-     this->unk1A0 = D_8037893C;
-     
-     
-     this->unk1A4_31 = \
-     this->unk1A4_30 = \
-     this->unk1A4_29 = \
-     this->unk1A4_28 = \
-     this->unk1A4_27 = \
-     this->unk1A4_26 = \
-     this->unk1A4_25 = \
-     this->unk1A4_23 = \
-     this->unk1A4_22 = \
-     this->unk1A4_21 = \
-     this->unk1A4_20 = \
-     this->unk1A4_17 = \
-     this->unk1A4_16 = \
-     this->unk1A4_15 = \
-     this->unk1A4_14 = \
-     this->unk1A4_13 =  0;
+    this = (gczoombox_t *)malloc(sizeof(gczoombox_t));
+    this->unk130 = arg4;
+    this->unk135 = 0xB;
+    this->portrait_id = portrait_id;
+    this->unk134  = this->unk137 = this->unk138 = 0;
+    this->unk139 = arg2;
+    this->unk13A = 0x20;
+    for(i = 0; i < 8; i++){
+        this->unk13C[i] = NULL;
+    }
+    this->unk15E = 0;
+    this->unk15D = 0;
+    this->unk1A4_19 = 0;
+    this->unk15C = 0;
+    this->unk160 = 0;
+    this->unk166 = this->unk1A4_19;
+    this->unk164 = arg0;
+    this->unk168 = 0xFF;
+    this->unk1A4_24 = arg3;
+    if(this->unk1A4_24){
+        this->unk16A = 0x2D;
+        this->unk174 = D_80276588 - 0x25;
+        this->unk170 = D_80276588 + 0x66;
+    }else{
+        this->unk16A = 0x47;
+        this->unk174 = 0x25;
+        this->unk170 = -0x66;
+    }
+    this->unk18A = 0;
+    this->unk189 = 0;
+    this->unk187 = 0;
+    this->unk186 = 0;
+    this->unk185 = 0;
+    this->unk181 = 0;
+    this->unk180 = 0;
+    this->unk172 = this->unk164;
+    this->unk18C = 0.0f;
+    this->unk194 = 0.999f;
+    //  this->unk194 = D_80378938;
+    this->unk198 = 1.0f;
+    this->unk19C = 0.0f;
+    this->unk1A0 = 0.0333333f;
+    //  this->unk1A0 = D_8037893C;
+
+    // this->unk1A4_31 = \
+    // this->unk1A4_30 = \ 
+    // this->unk1A4_29 = \
+    // this->unk1A4_28 = \
+    // this->unk1A4_27 = \
+    // this->unk1A4_26 = \
+    // this->unk1A4_25 = \
+    // this->unk1A4_23 = \
+    // this->unk1A4_22 = \
+    // this->unk1A4_21 = \
+    // this->unk1A4_20 = \
+    // this->unk1A4_17 = \
+    // this->unk1A4_16 = \
+    // this->unk1A4_15 = \
+    // this->unk1A4_14 = \
+    // this->unk1A4_13 = \
+    // 0;
+
+    // this->unk1A4_11 = this->unk1A4_18 = 1;
 
      
+    this->unk1A4_25 = \
+    this->unk1A4_23 = \
+    this->unk1A4_22 = \
+    this->unk1A4_21 = \
+    this->unk1A4_20 = \
+    this->unk1A4_17 = \
+    this->unk1A4_16 = \
+    this->unk1A4_15 = \
+    this->unk1A4_14 = \
+    this->unk1A4_13 = FALSE;
 
-     this->unk1A4_11 = this->unk1A4_18 = 1;
-     this->unkF0 = assetcache_get(0x89d);
-     func_80317C90(this, portrait_id);
-     this->unkF4 = animctrl_new(0);
-     animctrl_reset(this->unkF4);
-     animctrl_setIndex(this->unkF4, ASSET_138_ANIM_ZOOMBOX);
-     func_802875AC(this->unkF4, "gczoombox.c", 0x6fd);
+    temp_v1_2 = this->unk1A4_13;
 
-     func_803184C8(this, 15.0f, 5, 2, 0.4f, 0, 0); //func_803184C8(this, 15.0f, 5, 2, D_80378940, 0, 0);
-     this->unk176 = D_8036C6C0[portrait_id].unk2;
-     this->unk177 = D_8036C6C0[portrait_id].unk3;
-     this->unk100 = 0;
-     this->unk104 = 0;
-     this->unk17C = 1.0f;
-     this->unk178 = this->unk179 = 0;
-     
-     func_80317D10(this, portrait_id);
-     func_80318760(this, 18000);
-     _gczoombox_memClear( this->unk0, 0x30);
-     _gczoombox_memClear( this->unk30, 0x30);
-     _gczoombox_memClear( &this->unk60, 0x30);
-     _gczoombox_memClear( &this->unk90, 0x20);
-     _gczoombox_memClear( &this->unkB0, 0x40);
-     return this; 
+
+
+    this->unk1A4_31 = \
+    this->unk1A4_30 = \
+    this->unk1A4_29 = \
+    this->unk1A4_28 = \
+    this->unk1A4_27 = \
+    this->unk1A4_26 = temp_v1_2;
+
+    this->unk1A4_18 = TRUE;
+    this->unk1A4_11 = this->unk1A4_18;
+
+    this->unkF0 = assetcache_get(0x89d);
+    func_80317C90(this, portrait_id);
+    this->unkF4 = animctrl_new(0);
+    animctrl_reset(this->unkF4);
+    animctrl_setIndex(this->unkF4, ASSET_138_ANIM_ZOOMBOX);
+    func_802875AC(this->unkF4, "gczoombox.c", 0x6fd);
+
+    func_803184C8(this, 15.0f, 5, 2, 0.4f, 0, 0); //func_803184C8(this, 15.0f, 5, 2, D_80378940, 0, 0);
+    this->unk176 = D_8036C6C0[portrait_id].unk2;
+    this->unk177 = D_8036C6C0[portrait_id].unk3;
+    this->unk100 = 0;
+    this->unk104 = 0;
+    this->unk17C = 1.0f;
+    this->unk178 = this->unk179 = 0;
+    
+    func_80317D10(this, portrait_id);
+    func_80318760(this, 18000);
+    _gczoombox_memClear( this->unk0, 0x30);
+    _gczoombox_memClear( this->unk30, 0x30);
+    _gczoombox_memClear( &this->unk60, 0x30);
+    _gczoombox_memClear( &this->unk90, 0x20);
+    _gczoombox_memClear( &this->unkB0, 0x40);
+    return this; 
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/zoombox/gczoombox_new.s")
 #endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/zoombox/func_80318284.s")
+bool func_80318284(gczoombox_t *this, s32 arg1, u8 **arg2) {
+    s32 phi_v0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/zoombox/func_803183A4.s")
+    if ((this->unk13A & 4) || (arg2 == NULL) || (arg1 == 0)) {
+        return FALSE;
+    }
+    this->unk138 = 0;
+    this->unk137 = arg1;
+    for(phi_v0 = 0; phi_v0 < arg1; phi_v0++){
+        this->unk13C[phi_v0] = arg2[phi_v0];
+    }
+
+    for(phi_v0 = arg1; phi_v0 < 8; phi_v0++){
+        this->unk13C[phi_v0] = NULL;
+    }
+
+    this->unk13A |= 4;
+    return 1;
+}
+
+bool func_803183A4(gczoombox_t *this, u8 *arg1) {
+    u8 *sp1C;
+
+    if ((this->unk13A & 4) || (arg1 == NULL)) {
+        return FALSE;
+    }
+    sp1C = arg1;
+    return func_80318284(this, 1, &sp1C);
+}
+
 
 void gczoombox_open(gczoombox_t *this){
      this->unk13A |= 0x1;
@@ -874,13 +1174,12 @@ void func_8031842C(gczoombox_t *this){
 }
 
 void func_8031843C(gczoombox_t *this){
-    s32 temp_v0;
     void *temp_v1;
     void *phi_v1;
     s32 phi_v0;
 
     for(phi_v0 = 0; phi_v0 < 8; phi_v0++){
-        this->unk13C[phi_v0] = 0;
+        this->unk13C[phi_v0] = NULL;
     };
     this->unk137 = 0;
     this->unk13A &= 0xfb;
@@ -898,7 +1197,7 @@ void func_80318498(gczoombox_t *this){
     this->unk13A &= 0xfd;
 }
 
-void func_803184A8(gczoombox_t *this){
+void gczoombox_resolve_minimize(gczoombox_t *this){
     this->unk13A &= 0xf7;
 }
 
@@ -920,8 +1219,8 @@ void func_803184C8(gczoombox_t *this, f32 arg1, s32 arg2, s32 arg3, f32 arg4, bo
     }
 }
 
-bool func_8031857C(gczoombox_t *this){
-     if(func_803183A4(this)){
+bool func_8031857C(gczoombox_t *this, u8 *str){
+     if(func_803183A4(this, str)){
           gczoombox_open(this);
           gczoombox_maximize(this);
           gczoombox_minimize(this);
@@ -1009,7 +1308,6 @@ bool func_8031877C(gczoombox_t *this){
 }
 
 bool func_803188B4(gczoombox_t *this) {
-    u8 temp_v0;
 
     if ((this == NULL) || (this->unk135 == 0) || (this->unk135 == 7) || (this->unk135 == 9)) {
         return FALSE;

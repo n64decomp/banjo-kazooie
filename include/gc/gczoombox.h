@@ -13,7 +13,7 @@ typedef struct {
     u8 unk60[0x30];
     u8 unk90[0x20];
     u8 unkB0[0x40];
-    void *unkF0;
+    BKModelBin *unkF0;
     AnimCtrl *unkF4;
     BKSprite *unkF8;
     BKSpriteDisplayData *unkFC;
@@ -33,12 +33,12 @@ typedef struct {
     u8  unk139;
     u8  unk13A;
     u8  unk13B;     //sfx_count
-    s32 unk13C[8];
+    u8 *unk13C[8];
     u8 unk15C;
     u8 unk15D;
     u8 unk15E;
     u8 pad15F[0x1];
-    s32 unk160;
+    u8 *unk160;
     s16 unk164;
     s16 unk166; //top_transparency???
     s16 unk168; //rgb???
@@ -54,7 +54,7 @@ typedef struct {
     s8  unk179;
     u8  pad17A[0x2];
     f32 unk17C;
-    u8  unk180;
+    s8  unk180;
     s8  unk181;
     u8  unk182;
     u8  unk183;
