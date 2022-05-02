@@ -592,7 +592,7 @@ segments:
   - [0xEEF50, bin, data_EEF50]
   - [0xEF040, ".rodata", code_3BB80]
   - [0xEF090, bin, data_EF090]
-  - [0xEF1B0, .rodata, ch/gameSelect]
+  - [0xEF190, .rodata, ch/gameSelect]
   - [0xEF210, .rodata, code_3ECE0]
   - [0xEF220, .rodata, ch/bigbutt]
   - [0xEF300, .rodata, code_400F0]

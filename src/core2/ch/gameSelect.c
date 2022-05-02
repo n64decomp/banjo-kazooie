@@ -57,11 +57,12 @@ extern u8 D_803760EC[];
 extern u8 D_803760F0[];
 extern u8 D_803760F8[];
 extern u8 D_80376100[];
+extern f64 D_80376108;
+extern f64 D_80376110;
 extern f64 D_80376118;
 extern f32 D_80376120;
 extern f64 D_80376128;
-extern f64 D_80376130;
-extern f64 D_80376138;
+
 
 /* .bss */
 extern u8 D_8037DCCE[];
@@ -74,10 +75,14 @@ extern s32 D_8037DCEC;
 extern gczoombox_t *D_8037DCF0;
 extern gczoombox_t *D_8037DCF4;
 extern f32 D_8037DCF8[2][3];
+extern f32 D_8037DD10[2][3];
 extern void *D_8037DD28;
 extern s32 D_8037DD2C;
 extern f32 D_8037DD30;
 extern f32 D_8037DD34;
+extern s32 D_8037DD38;
+extern f32 D_8037DD3C;
+extern f32 D_8037DD40;
 extern u8 D_8037DD48[];
 extern u8 D_8037DD68[];
 
@@ -118,14 +123,41 @@ void func_802C44D0(s32 arg0, s32 arg1){
         D_8037DD2C = 0;
 }
 
+#ifndef NONMATCHING //matches but requires .bss defined
 s32 func_802C44EC(f32[3], f32[3], f32);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/ch/gameSelect/func_802C44EC.s")
+#else
+void *func_802C44EC(f32 arg0[3], f32 arg1[3], f32 arg2) {
+    f32 phi_f12;
+    f32 sp40[3];
+    s32 i;
+    static bool D_8037DD38;
+    static f32 D_8037DD3C;
+    static f32 D_8037DD40;
+
+    arg2 = (arg2 > 0.75) ? 0.75 : arg2;
+    sp40[0] = arg1[0] - arg0[0];
+    sp40[1] = arg1[1] - arg0[1];
+    sp40[2] = arg1[2] - arg0[2];
+    D_8037DD38 = D_8037DD38^1;
+    phi_f12 = gu_sqrtf(sp40[0]*sp40[0] + sp40[1]*sp40[1] + sp40[2]*sp40[2]);
+    if (phi_f12 < 10.0f) {
+        phi_f12 = 500.0f;
+    }
+    D_8037DD3C = 1.0 + (9.0f / gu_sqrtf(phi_f12));
+    D_8037DD40 = sinf(D_8037DD3C*1.5078);
+    for(i = 0; i < 3; i++){
+        D_8037DD10[D_8037DD38][i] = arg0[i] + ((arg1[i] - arg0[i])*sinf((((arg2 / 0.75) * 3.14159) / 2) * D_8037DD3C)) / D_8037DD40;
+        D_8037DCF8[D_8037DD38][i] += (D_8037DD10[D_8037DD38][i] - D_8037DCF8[D_8037DD38][i]) / 5.0;
+
+    }
+    return &D_8037DCF8[D_8037DD38];
+}
+#endif
+
 
 void func_802C4768(s32 gamenum){
-    struct {
-        u8 *unk0;
-        u8 *unk4;
-    } sp20;
+    u8 * sp20[2];
     func_8031FBF8();
     D_80365E00 = gamenum;
     func_8031FBA0();
@@ -184,10 +216,10 @@ void func_802C4768(s32 gamenum){
         strcat(D_8037DD48, D_803760F8);
         strcpy(D_8037DD68, D_80376100);
     }//L802C4A68
-    sp20.unk0 = D_8037DD48;\
-    sp20.unk4 = D_8037DD68;
+    sp20[0] = D_8037DD48;\
+    sp20[1] = D_8037DD68;
     func_8031877C(D_8037DCF4);
-    func_80318284(D_8037DCF4, 2, &sp20);
+    func_80318284(D_8037DCF4, 2, sp20);
     gczoombox_maximize(D_8037DCF4);
     gczoombox_resolve_minimize(D_8037DCF4);
 }
@@ -292,13 +324,14 @@ void func_802C4C14(Actor *this){
                         func_8030E510(SFX_5E_BANJO_PHEWWW, 8000);
                     break;
                 case 1://L802C4DD0
+                    // if(randf() < 0.1){
                     if(randf() < D_80376118){
-                        func_8030E6A4(MIN(2.0f, randf() *3.0f) + D_80376120, 1.0f, 12000);
+                        func_8030E6A4(MIN(2.0f, randf() *3.0f) + 311.0f, 1.0f, 12000);
                     }
                     break;
                 case 2://L802C4E74
-                    if(randf() < D_80376128){
-                        func_8030E6A4(0x3ed, randf()*D_80376130 + D_80376138, 15000);
+                    if(randf() < 0.03){
+                        func_8030E6A4(0x3ed, randf()*0.3 + 0.7, 15000);
                     }
                     break;
             }//L802C4ED4
