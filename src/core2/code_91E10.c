@@ -33,6 +33,7 @@ typedef struct {
     Struct_Core2_91E10_1 unk34;
 }Struct_Core2_91E10;
 
+void func_803197AC(s32 arg0);
 void func_80319E20(s32 arg0, s32 arg1);
 void func_8031A3E4(void);
 
@@ -40,32 +41,113 @@ extern u8 D_8036D940[];
 
 extern Struct_Core2_91E10 *D_803830E0;
 
-void func_80318DA0(void *, s32, s32, s32, s32);
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_91E10/func_80318DA0.s")
+void func_80318DA0(s8 *ptr, u8 min_indx, u8 max_indx, s32 min_value, s32 max_value){
+    s32 i;
+    s32 j;
+    s32 unique;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_91E10/func_80318E90.s")
+    for(i = min_indx; i <= max_indx; i++){
+            /* assign unique random value*/
+            do{
+                /*assign random value */
+                ptr[i] = randi2(min_value, max_value + 1);
+                unique = TRUE;
+                /* test uniqueness */
+                for(j = min_indx; j < i; j++){
+                    if (ptr[i] == ptr[j]) {
+                        unique = FALSE;
+                        break;
+                    }
+                }
+            }while(unique == FALSE);
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_91E10/func_80318ED8.s")
+void func_80318E90(void) {
+    D_803830E0->unk20[0] = 0;
+    func_80318DA0(D_803830E0->unk20, 1, 3, 1, 0x2C);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_91E10/func_80318F1C.s")
+s32 func_80318ED8(s32 arg0){
+    switch(arg0){
+        case 1: return 0x12DB;
+        case 2: return 0x13A3;
+        case 3: return 0x1407;
+    }
+    return 0x1213;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_91E10/func_80318F60.s")
+s32 func_80318F1C(s32 arg0){
+    switch(arg0){
+        case 1: return 0x12EE;
+        case 2: return 0x13D6;
+        case 3: return 0x1425;
+    }
+    return 0x1277;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_91E10/func_80318FB4.s")
+s32 func_80318F60(s32 arg0, s32 arg1, s32 arg2) {
+    s32 phi_v1;
+    s32 phi_a0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_91E10/func_80318FC0.s")
+    if (arg2 >= 0) {
+        phi_v1 = arg2;
+    } else {
+        if (arg0 == 3) {
+            phi_a0 = func_80320424((arg1 * 2) + 0x26, 2);
+        } else {
+            phi_a0 = 0;
+        }
+        phi_v1 = phi_a0;
+    }
+    return phi_v1;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_91E10/func_80319004.s")
+bool func_80318FB4(s32 arg0){
+    return arg0 == 2;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_91E10/func_8031901C.s")
+s32 func_80318FC0(s32 arg0){
+    switch(arg0){
+        case 1: return 40;
+        case 2: return 80;
+        case 3: return 120;
+    }
+    return 0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_91E10/func_80319028.s")
+s32 func_80319004(s32 arg0){
+    return arg0 == 0 ? 3 : 2;     
+}
+
+s32 func_8031901C(s32 arg0){
+    return 0;
+}
+
+bool func_80319028(s32 arg0){
+    return arg0 != 0 ? FALSE : TRUE;
+}
 
 f32 func_80319040(s32 arg0){
     return 0.4f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_91E10/func_80319050.s")
+void func_80319050(void) {
+    s32 i;
+
+    D_803830E0 = malloc(0x74);
+    D_803830E0->unkC = malloc(0x400);
+    D_803830E0->unk16 = 0x14U;
+    D_803830E0->unk17 = 0x1E;
+    D_803830E0->unk20[0] = 0;
+    D_803830E0->unk24[0] = gczoombox_new(func_80318FC0(0), 0, func_80319004(0), func_8031901C(0), func_80319E20);
+    func_803184C8(D_803830E0->unk24[0], (f32)D_803830E0->unk16, 5, 2, func_80319040(0), func_80319028(0), 0);
+    for(i = 1; i < 4; i++){
+        D_803830E0->unk20[i] = 0;
+        D_803830E0->unk24[i] = NULL;
+    }
+    func_803197AC(0);
+}
 
 void func_80319190(void) {
     s32 i;
@@ -313,7 +395,7 @@ bool func_8031A154(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, void (*arg5
         D_803830E0->unk4 = arg4;
         D_803830E0->unk8 = arg5;
         item_set(ITEM_6_HOURGLASS, 0);
-        func_80318DA0((s32)D_803830E0 + 0x1C, 1, 3, 1, 3);
+        func_80318DA0(D_803830E0->unk1C, 1, 3, 1, 3);
         func_8025A55C(6000, 500, 10);
         func_803197AC(1);
         return TRUE;
