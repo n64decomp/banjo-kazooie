@@ -28,12 +28,12 @@ typedef struct {
     u8  unk134;
     u8  unk135;
     u8  portrait_id; //0x136
-    u8  unk137;
-    u8  unk138;
+    u8  unk137; //string_cnt
+    u8  unk138; //current_string
     u8  unk139;
     u8  unk13A;
     u8  unk13B;     //sfx_count
-    u8 *unk13C[8];
+    u8 *unk13C[8]; //string_ptrs
     u8 unk15C;
     u8 unk15D;
     u8 unk15E;
