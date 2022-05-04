@@ -109,7 +109,7 @@ segments:
   - [0x26740, c, bs/crouch]   #DONE
   - [0x26E70, c, bs/die]      #DONE
   - [0x273E0, c, bs/drone]    #DONE
-  - [0x27550, c, code_27550] #dronefalldie???
+  - [0x27550, c, code_27550]  #DONE #drone_enter???
   - [0x27BD0, c, bs/dronegoto] #DONE
   - [0x27F40, c, code_27F40] #dronelook
   - [0x28220, c, code_28220] #dronevanish???
@@ -568,7 +568,7 @@ segments:
   - [0xEE820, .rodata, bs/croc]
   - [0xEE880, .rodata, bs/crouch]
   - [0xEE8B0, .rodata, bs/die]
-  - [0xEE8C0, bin, data_EE8C0]
+  - [0xEE8C0, .rodata, code_27550]
   - [0xEE8D0, .rodata, bs/dronegoto]
   - [0xEE8E0, bin, data_EE8E0]
   - [0xEE900, .rodata, bs/dronexform]
