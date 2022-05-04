@@ -525,7 +525,6 @@ void func_802B3448(void) {
     func_80291548();
 }
 
-
 void func_802B34A0(void) {
     func_8028A010(0xA0, 0.8f);
     func_8029C7F4(1, 1, 3, 2);
