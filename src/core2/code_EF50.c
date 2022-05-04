@@ -189,7 +189,7 @@ enum bs_e func_802962BC(u32 arg0){
                     return BS_BTROT_OW;
 
                 if(func_8028EE84() == 2)
-                    return BS_DIVE_OW;
+                    return BS_7F_DIVE_OW;
                 
                 if(func_8028ECAC() == 0xA)
                     return BS_FLY_OW;

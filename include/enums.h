@@ -1842,14 +1842,14 @@ enum bs_e
     //0x75 locked bottles
     BS_BFLY_UNK76 = 0x76,
     //0x77 locked swim
-    //0x78 locked dive
+    BS_78 = 0x78,//0x78 locked dive
     //0x79 locked holding jiggy in tt
     BS_WALK_MUD = 0x7A,
     BS_BTROT_OW = 0x7B,
     BS_7C_SLED,
     BS_7D_WALRUS_SLED,
     BS_7E_WALRUS_SLED,
-    BS_DIVE_OW = 0x7F,
+    BS_7F_DIVE_OW = 0x7F,
     //BS_7D_WALRUS_SLED_LOSE = 0x80,
     //BS_7D_WALRUS_SLED_LOCKED = 0x81,
     BS_82_WALRUS_SLED_LOSE_IN_AIR = 0x82,
@@ -1871,7 +1871,7 @@ enum bs_e
     BS_CROC_DRONE = 0x94,
     BS_WALRUS_DRONE = 0x95,
     BS_96_SWIM_LOCKED = 0x96,
-    BS_DIVE_LOCKED = 0x97,
+    BS_97_DIVE_LOCKED = 0x97,
     BS_WALK_DRONE = 0x98,
 	BS_BFLY_UNK99=  0x99,
     BS_BTROT_DRONE = 0x9A,

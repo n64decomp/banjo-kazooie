@@ -99,7 +99,7 @@ segments:
   - [0x1E240, c, bs/bLongLeg] #DONE
   - [0x1F580, c, bs/bPeck]    #DONE
   - [0x1FA20, c, bs/bShock]   #DONE
-  - [0x201B0, c, bs/bSwim]
+  - [0x201B0, c, bs/bSwim]    #DONE
   - [0x21830, c, bs/bTrot]    #DONE
   - [0x23470, c, bs/bWhirl]   #DONE
   - [0x23EF0, c, bs/carry]    #DONE
@@ -557,9 +557,9 @@ segments:
   - [0xEE510, .rodata, bs/bFlip]
   - [0xEE560, .rodata, bs/bFly]
   - [0xEE5C0, .rodata, bs/bLongLeg]
-  - [0xEE650, bin, data_EE650]
+  - [0xEE650, bin, data_EE650] ##.rodata bs/bPeck
   - [0xEE680, .rodata, bs/bShock]
-  - [0xEE6A0, bin, data_EE6A0]
+  - [0xEE6A0, .rodata, bs/bSwim]
   - [0xEE710, .rodata, bs/bTrot]
   - [0xEE780, .rodata, bs/bWhirl]
   - [0xEE7B0, .rodata, bs/carry]
