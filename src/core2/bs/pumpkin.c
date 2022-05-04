@@ -55,7 +55,6 @@ void func_802B229C(void) {
     func_80289F10(1);
 }
 
-
 int bspumpkin_inSet(s32 move_indx){
     return (move_indx == BS_48_PUMPKIN_IDLE)
     || (move_indx == BS_49_PUMPKIN_WALK)
