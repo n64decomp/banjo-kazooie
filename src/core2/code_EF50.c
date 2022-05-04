@@ -165,9 +165,9 @@ enum bs_e func_802962BC(u32 arg0){
                 return BS_43_ANT_DIE;
         case TRANSFORM_3_PUMPKIN: //L8029632C
             if(sp1C)
-                return BS_PUMPKIN_OW;
+                return BS_4D_PUMPKIN_OW;
             else
-                return BS_PUMPKIN_DIE; 
+                return BS_4E_PUMPKIN_DIE; 
         case TRANSFORM_5_CROC: //L80296344
             if(sp1C)
                 return BS_CROC_OW;

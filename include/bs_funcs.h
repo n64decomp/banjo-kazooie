@@ -281,15 +281,15 @@ void bsbtrot_slide_end(void);
 void func_802A2098(void);
 void func_802A2130(void);
 void func_802A2054(void);
-//BS_PUMPKIN_IDLE
+//BS_48_PUMPKIN_IDLE
 void func_802B2384(void);
 void func_802B242C(void);
 void func_802B24AC(void);
-//BS_PUMPKIN_WALK
+//BS_49_PUMPKIN_WALK
 void func_802B24D4(void);
 void func_802B2580(void);
 void func_802B2610(void);
-//BS_PUMPKIN_JUMP
+//BS_4A_PUMPKIN_JUMP
 void func_802B2638(void);
 void func_802B2750(void);
 void func_802B2990(void);
@@ -301,11 +301,11 @@ void func_802B2BD0(void);
 void func_802A846C(void);
 void func_802A85EC(void);
 void func_802A872C(void);
-//BS_PUMPKIN_OW
+//BS_4D_PUMPKIN_OW
 void func_802B2FDC(void);
 void func_802B2FFC(void);
 void func_802B301C(void);
-//BS_PUMPKIN_DIE
+//BS_4E_PUMPKIN_DIE
 void func_802B309C(void);
 void func_802B3240(void);
 void func_802B3448(void);
@@ -602,9 +602,9 @@ void bsant_drone_update(void);
 void bsant_drone_end(void);
 void bsdrone_interrupt(void);
 //0x00000093
-void func_802B3564(void);
-void func_802B3584(void);
-void func_802B35A4(void);
+void bspumpkin_drone_init(void);
+void bspumpkin_drone_update(void);
+void bspumpkin_drone_end(void);
 void bsdrone_interrupt(void);
 //0x00000094
 void bscroc_drone_init(void);

@@ -1795,13 +1795,13 @@ enum bs_e
     BS_BTROT_SLIDE = 0x45,
     //unk46
     //unk47
-    BS_PUMPKIN_IDLE = 0x48,
-    BS_PUMPKIN_WALK = 0x49,
-    BS_PUMPKIN_JUMP = 0x4A,
+    BS_48_PUMPKIN_IDLE = 0x48,
+    BS_49_PUMPKIN_WALK = 0x49,
+    BS_4A_PUMPKIN_JUMP = 0x4A,
     BS_4B_PUMPKIN_FALL = 0x4B,
     BS_4C_LANDING_IN_WATER = 0x4c,
-    BS_PUMPKIN_OW = 0x4D,
-    BS_PUMPKIN_DIE = 0x4E,
+    BS_4D_PUMPKIN_OW = 0x4D,
+    BS_4E_PUMPKIN_DIE = 0x4E,
     BS_4F_CLIMB_IDLE,
     BS_50_CLIMB_MOVE,
     BS_51_CLIMB_EXIT,
@@ -1864,10 +1864,10 @@ enum bs_e
     BS_BEE_FLY = 0x8c,
     BS_CROC_LOCKED = 0x8D,
     //0x8E, //[142] = "Locked", -- Jiggy podium, Bottles' text outside Mumbo's
-    BS_PUMPKIN_LOCKED = 0x8F,
+    BS_8F_PUMPKIN_LOCKED = 0x8F,
     BS_FLY_OW = 0x91,
     BS_ANT_DRONE = 0x92,
-    //0x93 BS_PUMPKIN_LOCKED_2?
+    BS_93_PUMPKIN_DRONE = 0x93,//0x93 BS_8F_PUMPKIN_LOCKED_2?
     BS_CROC_DRONE = 0x94,
     BS_WALRUS_DRONE = 0x95,
     BS_96_SWIM_LOCKED = 0x96,
