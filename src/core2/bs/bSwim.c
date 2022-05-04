@@ -2,12 +2,22 @@
 #include "functions.h"
 #include "variables.h"
 
+extern void particleEmitter_emitN(ParticleEmitter *, s32);
+extern f32 func_8029494C(void);
 
+/* .rodata */
+extern u8 D_8037563C[];
+extern u8 D_80375648[];
 extern f32 D_80375660;
 extern f32 D_8037566C;
 extern s8 D_80375630;
+
+extern f32 D_80375690;
+extern f64 D_80375698;
+
+/* .bss */
 extern f32 D_8037D390;
-extern f32 D_8037D390;
+extern f32 D_8037D398;
 
 void func_802A7140() {
     func_8029C7F4(1, 3, 3, 9);
@@ -160,19 +170,98 @@ void func_802A7BD0(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bSwim/func_802A8330.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bSwim/func_802A83C0.s")
+void func_802A83C0(void) {
+    func_8028A010(0x70, 2.0f);
+    func_802A7140();
+    func_80297930(0);
+    func_80297B64(D_80375690);
+    func_802A744C();
+    func_802A8330();
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bSwim/func_802A8410.s")
+void func_802A8410(void) {
+    s32 next_state;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bSwim/func_802A844C.s")
+    next_state = 0;
+    if (func_80298850() == 0) {
+        next_state = BS_2B_DIVE_IDLE;
+    }
+    func_802A8330();
+    bs_setState(next_state);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bSwim/func_802A846C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bSwim/func_802A85EC.s")
+void func_802A844C(void){
+    func_802A75B0();
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bSwim/func_802A872C.s")
+void func_802A846C(void) {
+    AnimCtrl *temp_s0;
+    f32 sp28;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/bSwim/func_802A874C.s")
+    temp_s0 = _player_getAnimCtrlPtr();
+    func_8029CCC4();
+    sp28 = func_8029494C();
+    if (bs_getPrevState() == 0xF) {
+        sp28 = max_f(sp28, 600.0f);
+    }
+    if (sp28 > 80.0f) {
+        animctrl_reset(temp_s0);
+        animctrl_setIndex(temp_s0, ANIM_BANJO_ROLL);
+        animctrl_setPlaybackType(temp_s0, ANIMCTRL_STOPPED);
+        animctrl_setDuration(temp_s0, 1.2f);
+        func_8028774C(temp_s0, 0.8204f);
+        func_802875AC(temp_s0, &D_8037563C, 0x417);
+    } else {
+        animctrl_reset(temp_s0);
+        animctrl_setIndex(temp_s0, 0x57);
+        animctrl_setPlaybackType(temp_s0, ANIMCTRL_LOOP);
+        animctrl_setDuration(temp_s0, 1.2f);
+        func_8028774C(temp_s0, 0.6412f);
+        func_802875AC(temp_s0, &D_80375648, 0x41E);
+    }
+    D_8037D398 = ml_map_f(sp28, 40.0f, 1000.0f, -300.0f, -1200.0f);
+    player_setYVelocity(D_8037D398);
+    func_8029C7F4(1, 3, 3, 9);
+    func_802A744C();
+    func_802978DC(6);
+}
+
+void func_802A85EC(void) {
+    s32 next_state;
+    f32 sp38[3];
+    ParticleEmitter *sp34;
+
+    next_state = 0;
+    _player_getPosition(sp38);
+    sp38[1] += 60.0f;
+    sp34 = func_8029B950(sp38, 20.0f);
+    particleEmitter_setParticleVelocityRange(sp34, -30.0f, -30.0f, -30.0f, 30.0f, 30.0f, 30.0f);
+    particleEmitter_emitN(sp34, 1);
+    if (D_8037D398 < 0.0f) {
+        D_8037D398 += max_f(mlAbsF(D_8037D398) * D_80375698, 50.0f);
+        player_setYVelocity(D_8037D398);
+    }
+    if (func_8028B2E8()) {
+        next_state = BS_2D_SWIM_IDLE;
+    }
+    if (!player_inWater()) {
+        next_state = BS_1_IDLE;
+    }
+    if (func_80297AAC() >= 0.0f) {
+        next_state = BS_2D_SWIM_IDLE;
+    }
+    bs_setState(next_state);
+}
+
+void func_802A872C(void){
+    func_802A75B0();
+}
+
+void func_802A874C(void){
+    func_802A744C();
+    bsdrone_init();
+}
 
 void func_802A8774(void){
     bsdrone_update();
