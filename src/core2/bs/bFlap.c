@@ -181,7 +181,7 @@ void bsbflap_update(void){
 
     if(func_8028B2E8()){
         func_8029C5E8();
-        sp1c = BS_WALK_SLOW;
+        sp1c = BS_2_WALK_SLOW;
     }
 
     if(player_inWater())

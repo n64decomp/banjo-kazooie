@@ -51,7 +51,7 @@ void bsow_update(void) {
         sp1C = BS_3D_FALL_TUMBLING;
     }
     if (func_8028B2E8() != 0) {
-        sp1C = BS_WALK_SLOW;
+        sp1C = BS_2_WALK_SLOW;
     }
     if ((player_inWater() != 0) && (func_80297AAC() <= 0.0f)) {
         sp1C = BS_4C_LANDING_IN_WATER;

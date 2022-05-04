@@ -147,7 +147,7 @@ void bsbflip_update(void){
         break;
     case 4://L802A32C0
         if(animctrl_isStopped(aCtrl))
-            sp24 = BS_WALK_SLOW;
+            sp24 = BS_2_WALK_SLOW;
         sp24 = func_8029C9C0(sp24);
         break;
     }//L802A32E0

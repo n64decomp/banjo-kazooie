@@ -95,7 +95,7 @@ segments:
   - [0x1B450, c, bs/bEggHead] #DONE
   - [0x1B700, c, bs/bFlap]    #DONE
   - [0x1BDD0, c, bs/bFlip]    #DONE
-  - [0x1C3C0, c, bs/bFly]
+  - [0x1C3C0, c, bs/bFly]     #DONE
   - [0x1E240, c, bs/bLongLeg] #DONE
   - [0x1F580, c, bs/bPeck]    #DONE
   - [0x1FA20, c, bs/bShock]   #DONE
@@ -555,7 +555,7 @@ segments:
   - [0xEE480, .rodata, bs/bEggHead]
   - [0xEE4A0, .rodata, bs/bFlap]
   - [0xEE510, .rodata, bs/bFlip]
-  - [0xEE560, bin, data_EE560]
+  - [0xEE560, .rodata, bs/bFly]
   - [0xEE5C0, .rodata, bs/bLongLeg]
   - [0xEE650, bin, data_EE650]
   - [0xEE680, .rodata, bs/bShock]

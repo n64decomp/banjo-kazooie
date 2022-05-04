@@ -89,7 +89,7 @@ enum bs_e func_80296038(void){
         case TRANSFORM_1_BANJO:// L80296094
         default:
             if(func_8028ECAC() == 0xA)
-                return BS_FLY_KNOCKBACK;
+                return BS_18_FLY_KNOCKBACK;
             return BS_56_RECOIL;
     }
 }

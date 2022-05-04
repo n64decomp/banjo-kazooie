@@ -8,7 +8,7 @@
 u8 D_80363820 = 0;
 bsMap D_80363824[] ={
     {BS_1_IDLE,       bsstand_init,       bsstand_update,     bsstand_end,        func_802B5350},
-    {BS_WALK_SLOW,  bswalk_slow_init,   bswalk_slow_upate,  NULL,               func_802B5350},
+    {BS_2_WALK_SLOW,  bswalk_slow_init,   bswalk_slow_upate,  NULL,               func_802B5350},
     {BS_WALK,       bswalk_init,        bswalk_update,      NULL,               func_802B5350},
     {BS_WALK_FAST,  bswalk_fast_init,   bswalk_fast_update, bswalk_fast_end,    func_802B5350},
     {BS_5_JUMP,       bsjump_init,        bsjump_update,      bsjump_end,         func_80296608},
@@ -27,7 +27,7 @@ bsMap D_80363824[] ={
     {BS_BTROT_IDLE, bsbtrot_stand_init, bsbtrot_stand_update,   bsbtrot_stand_end,  func_802B5350},
     {BS_BTROT_WALK, bsbtrot_walk_init,  bsbtrot_walk_update,    bsbtrot_walk_end,   func_802B5350},
     {BS_BTROT_EXIT, bsbtrot_exit_init,  bsbtrot_exit_update,    bsbtrot_exit_end,   func_802B5350},
-    {BS_FLY_KNOCKBACK,  func_802A4D90,      func_802A4EC8, func_802A4F44, func_80296608},
+    {BS_18_FLY_KNOCKBACK,  func_802A4D90,      func_802A4EC8, func_802A4F44, func_80296608},
     {BS_WONDERWING_ENTER,   bsbwhirl_enter_init,    bsbwhirl_enter_update,  bsbwhirl_enter_end, func_80296608},
     {BS_1B_WONDERWING_IDLE,    bsbwhirl_stand_init,    bsbwhirl_stand_update,  bsbwhirl_stand_end, func_80296608},
     {BS_WONDERWING_WALK,    bsbwhirl_walk_init,     bsbwhirl_walk_update,   bsbwhirl_walk_end,  func_80296608},
@@ -89,7 +89,7 @@ bsMap D_80363824[] ={
     {BS_TIMEOUT_UNK53, func_802B6270, func_802B6314, func_802B63C8, func_80296590},
     {BS_LONGLEG_SLIDE, bsblongleg_slide_init, bsblongleg_slide_update, bsblongleg_slide_end, func_802B5350},
     {BS_56_RECOIL, func_802B3868, func_802B3954, func_802B3A20, func_80296590},
-    {BS_BOMB_END, func_802A4430, func_802A4548, func_802A4664, func_802A505C},
+    {BS_57_BOMB_END, func_802A4430, func_802A4548, func_802A4664, func_802A505C},
     {0x58, func_802A4748, func_802A48B4, func_802A4A40, func_80296590},
     {0x59, func_802A4CD0, func_802A4CF0, func_802A4D10, func_802A505C},
     {BS_54_SWIM_DIE, func_802A7F6C, func_802A8098, func_802A82D4, func_80296590},

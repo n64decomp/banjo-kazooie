@@ -37,7 +37,7 @@ void bsbpeck_init(void){
         case BS_5_JUMP:
         case BS_2F_FALL:
         case BS_3D_FALL_TUMBLING:
-        case BS_BOMB_END:
+        case BS_57_BOMB_END:
             break;
     }
     if(func_80293234() == 1)

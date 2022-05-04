@@ -423,7 +423,7 @@ enum map_e
     MAP_45_CCW_AUTUMN = 0x45,
     MAP_46_CCW_WINTER = 0x46,
     MAP_47_BGS_MUMBOS_SKULL = 0x47,
-    MAP_FP_MUMBOS_SKULL = 0x48,
+    MAP_48_FP_MUMBOS_SKULL = 0x48,
     // Unused
     MAP_4A_CCW_SPRING_MUMBOS_SKULL = 0x4A,
     MAP_4B_CCW_SUMMER_MUMBOS_SKULL = 0x4B,
@@ -1725,7 +1725,7 @@ enum actor_e
 enum bs_e
 {
     BS_1_IDLE = 0x1,
-    BS_WALK_SLOW = 0x2,
+    BS_2_WALK_SLOW = 0x2,
     BS_WALK = 0x3,
     BS_WALK_FAST = 0x4,
     BS_5_JUMP = 0x5,
@@ -1747,7 +1747,7 @@ enum bs_e
     BS_BTROT_IDLE = 0x15,
     BS_BTROT_WALK = 0x16,
     BS_BTROT_EXIT = 0x17,
-    BS_FLY_KNOCKBACK = 0x18,
+    BS_18_FLY_KNOCKBACK = 0x18,
 
     BS_WONDERWING_ENTER = 0x1A,
     BS_1B_WONDERWING_IDLE = 0x1B,
@@ -1810,8 +1810,8 @@ enum bs_e
     BS_54_SWIM_DIE = 0x54,
     BS_LONGLEG_SLIDE = 0x55,
     BS_56_RECOIL = 0x56,
-    BS_BOMB_END = 0x57,
-    //0x58,
+    BS_57_BOMB_END = 0x57,
+    BS_58,
     BS_59_BFLY_UNK59 = 0x59,
     BS_5A_LOADZONE = 0x5A,
     BS_CARRY_THROW = 0x5B,

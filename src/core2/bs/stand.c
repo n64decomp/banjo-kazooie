@@ -35,7 +35,7 @@ s32 func_802B488C(s32 arg0){
             retVal = BS_WALK_CREEP;
             break;
         case 2: //L802B48D4
-            retVal = BS_WALK_SLOW;
+            retVal = BS_2_WALK_SLOW;
             break;
         case 3: //L802B48D4
             retVal = BS_WALK;

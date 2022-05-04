@@ -120,7 +120,7 @@ void bswalk_creep_init(void){
     AnimCtrl * s0 = _player_getAnimCtrlPtr();
     f32 sp20;
 
-    if(bs_getPrevState() == BS_WALK_SLOW){
+    if(bs_getPrevState() == BS_2_WALK_SLOW){
         sp20 = func_80289690(animctrl_getAnimPtr(s0));
     }else{
         sp20 = 0.0f;
@@ -152,7 +152,7 @@ void bswalk_creep_update(void){
                 s0 = BS_1_IDLE;
             break;
         case 2://L802B7180
-            s0 = BS_WALK_SLOW;
+            s0 = BS_2_WALK_SLOW;
             break;
         case 3://L802B7188
             s0 = BS_WALK;
@@ -300,7 +300,7 @@ void bswalk_update(void){
         case 1:
         case 2:
             if(func_80297C04(D_80364D78) && func_802B6EF4())
-                s0 = BS_WALK_SLOW;
+                s0 = BS_2_WALK_SLOW;
             break;
         case 4:
             s0 = BS_WALK_FAST;
@@ -395,7 +395,7 @@ void bswalk_fast_update(void){
         case 1:
         case 2://L802B7A28
             if(func_80297C04(D_80364D78))
-                s0 = BS_WALK_SLOW;
+                s0 = BS_2_WALK_SLOW;
 
             if(func_80294F78())
                 s0 = func_802926C0();
@@ -457,7 +457,7 @@ void bswalk_mud_update(void){
     func_8029AD28(0.9f, 3);
     func_802B6D00();
     if(!func_8028B128())
-        s0 = BS_WALK_SLOW;
+        s0 = BS_2_WALK_SLOW;
 
     if(!func_8029B300())
         s0 = BS_1_IDLE;
