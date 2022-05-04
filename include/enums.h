@@ -1741,7 +1741,7 @@ enum bs_e
     BS_F_BBUSTER = 0xF,
     BS_BFLAP = 0x10,
     BS_11_BPECK = 0x11,
-    BS_BFLIP = 0x12,
+    BS_12_BFLIP = 0x12,
     BS_BBARGE = 0x13, 
     BS_BTROT_ENTER = 0x14,
     BS_BTROT_IDLE = 0x15,

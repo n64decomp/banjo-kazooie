@@ -287,7 +287,7 @@ extern f32 D_80374D98;
 
 enum bs_e func_8029C780(void){
     if(button_held(BUTTON_Z) && can_flip())
-        return BS_BFLIP;
+        return BS_12_BFLIP;
 
     if(func_802933C0(2))
         return BS_5_JUMP;

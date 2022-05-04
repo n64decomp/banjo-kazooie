@@ -115,7 +115,7 @@ segments:
   - [0x28220, c, code_28220]  #DONE #dronevanish???
   - [0x28810, c, bs/dronexform] #DONE
   - [0x29AD0, c, bs/jig]        #DONE
-  - [0x2A170, c, bs/jump]
+  - [0x2A170, c, bs/jump]     #DONE
   - [0x2B040, c, bs/ow]       #DONE
   - [0x2B240, c, bs/pumpkin]
   - [0x2C640, c, bs/rebound]
@@ -413,6 +413,8 @@ segments:
   - [0xDDB70, .data, bs/croc]
   - [0xDDBA0, .data, bs/drone]
   - [0xDDC20, bin, data_DDC20]
+  - [0xDDD40, bin, data_DDD40] #.data, bs/jump]
+  - [0xDDD60, bin, data_DDD60]
   - [0xDEDD0, .data, code_37E50]
   - [0xDEE00, bin, data_DEE00]
   - [0xDEFA0, .data, code_3EAD0]
@@ -574,7 +576,7 @@ segments:
   - [0xEE8F0, .rodata, code_28220]
   - [0xEE900, .rodata, bs/dronexform]
   - [0xEE9B0, .rodata, bs/jig]
-  - [0xEE9D0, bin, data_EE9D0]
+  - [0xEE9D0, .rodata, bs/jump]
   - [0xEEA20, .rodata, bs/ow]
   - [0xEEA30, bin, data_EEA30]
   - [0xEEAD0, .rodata, bs/slide]
