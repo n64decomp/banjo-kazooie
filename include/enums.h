@@ -1841,7 +1841,7 @@ enum bs_e
     //0x74 locked jiggypad, xform, bottles
     //0x75 locked bottles
     BS_BFLY_UNK76 = 0x76,
-    //0x77 locked swim
+    BS_77 = 0x77, //0x77 locked swim
     BS_78 = 0x78,//0x78 locked dive
     //0x79 locked holding jiggy in tt
     BS_WALK_MUD = 0x7A,

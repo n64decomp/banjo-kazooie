@@ -119,7 +119,7 @@ segments:
   - [0x2B040, c, bs/ow]       #DONE
   - [0x2B240, c, bs/pumpkin]  #DONE
   - [0x2C640, c, bs/rebound]  #DONE
-  - [0x2CAC0, c, bs/rest]
+  - [0x2CAC0, c, bs/rest]     #DONE
   - [0x2CF90, c, bs/sled]     #DONE
   - [0x2D140, c, bs/slide]    #DONE
   - [0x2D5E0, c, bs/splat]    #DONE
@@ -580,7 +580,7 @@ segments:
   - [0xEEA20, .rodata, bs/ow]
   - [0xEEA30, .rodata, bs/pumpkin]
   - [0xEEAB0, .rodata, bs/rebound]
-  - [0xEEAC0, bin, data_EEAC0]
+  - [0xEEAC0, .rodata, bs/rest]
   - [0xEEAD0, .rodata, bs/slide]
   - [0xEEAE0, bin, data_EEAE0]
   - [0xEEB80, .rodata, bs/timeout]
