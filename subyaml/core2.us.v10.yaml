@@ -153,7 +153,8 @@ segments:
   - [0x382E0, c, code_382E0] #DONE
   - [0x38460, c, code_38460] #DONE
   - [0x38630, c, code_38630] #DONE
-  - [0x388E0, c, code_388E0]
+  - [0x388E0, c, code_388E0] #DONE
+  - [0x388E0, c, code_38AD0] #DONE
   - [0x38F40, c, code_38F40]
   - [0x39190, c, code_39190]
   - [0x39A10, c, code_39A10] #DONE
