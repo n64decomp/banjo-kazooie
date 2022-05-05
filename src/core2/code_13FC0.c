@@ -4,6 +4,7 @@
 
 ParticleEmitter * func_802EDD8C(f32[3], f32, f32);
 f32 func_8024DDD8(f32[3], f32);
+extern void func_80356074(f32[3], f32[3], f32, f32);
 
 extern f32 D_8037D1A0;
 extern s32 D_8037D1A4;
@@ -420,4 +421,15 @@ void func_8029CDA0(void){
     item_inc(ITEM_E_JIGGY);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029CDC0.s")
+void func_8029CDC0(void) {
+    f32 sp2C[3];
+    f32 sp20[3];
+
+    _player_getPosition(sp20);
+    sp20[0] += (randf() * 90.0f) - 45.0f;
+    sp20[2] += (randf() * 90.0f) - 45.0f;
+    sp2C[0]  = (randf() * 20.0f) - 10.0f;
+    sp2C[1]  = (randf() * 50.0f) + 120.0f;
+    sp2C[2]  = (randf() * 20.0f) - 10.0f;
+    func_80356074(&sp20, &sp2C, 80.0f, 220.0f);
+}

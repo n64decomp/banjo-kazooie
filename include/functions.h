@@ -371,7 +371,7 @@ void func_8029C3E8(f32, f32);
 void func_8029CF48(s32, s32, f32);
 f32  func_8029DFC8(void);
 f32  func_8029DFD4(void);
-void func_8029E090(s32, f32);
+void func_8029E090(bool, f32);
 void func_8029E0C4(f32);
 void func_8029E0D0(f32);
 void func_8029E180(s32, f32);
