@@ -109,7 +109,7 @@ void func_802A1214(void){
     func_8029AD28(0.94f, 4);
     func_8029AD28(0.44f, 3);
     if(func_8029B300() == 0 && func_80297C04(1.0f))
-        s0 = BS_BEE_IDLE;
+        s0 = BS_85_BEE_IDLE;
     
     if(func_8028B094())
         s0 = BS_88_BEE_FALL;
@@ -197,7 +197,7 @@ void func_802A1438(void){
         func_80299628(0);
         if(animctrl_isStopped(sp28)){
             func_80297970(0.0f);
-            sp2c = BS_BEE_IDLE;
+            sp2c = BS_85_BEE_IDLE;
         }
         break;
     }
@@ -269,7 +269,7 @@ void func_802A170C(void){
             func_80299628(0);
             if(animctrl_isStopped(sp28)){
                 func_80297970(0.0f);
-                sp2c = BS_BEE_IDLE;
+                sp2c = BS_85_BEE_IDLE;
             }
             break;
     }
@@ -352,7 +352,7 @@ void func_802A1A50(void){
             break;
     }
     if(func_8028B2E8())
-        sp1C = BS_BEE_IDLE;
+        sp1C = BS_85_BEE_IDLE;
     if(0.65 < func_80289F70() && player_inWater()){
         sp1C = 0x8C;
     }
@@ -492,7 +492,7 @@ void func_802A1FC8(void){
     func_80299628(0);
     func_8029C6D0();
     if(!func_80298850()){
-        sp1C = BS_BEE_IDLE;
+        sp1C = BS_85_BEE_IDLE;
     }
     bs_setState(sp1C);
 }
@@ -529,7 +529,7 @@ void func_802A2098(void){
 void func_802A2130(void){
     s32 next  = 0;
     if(func_8029E1A8(0)){
-        next = BS_BEE_IDLE;
+        next = BS_85_BEE_IDLE;
     }
     bs_setState(next);
 }

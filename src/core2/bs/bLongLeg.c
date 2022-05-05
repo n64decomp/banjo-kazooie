@@ -41,7 +41,7 @@ void func_802A524C(void){
 }
 
 int bslongleg_inSet(s32 move_indx){
-    return (move_indx == BS_LONGLEG_IDLE)
+    return (move_indx == BS_26_LONGLEG_IDLE)
     || (move_indx == BS_LONGLEG_WALK)
     || (move_indx == BS_LONGLEG_JUMP)
     || (move_indx == BS_LONGLEG_EXIT)
@@ -139,7 +139,7 @@ void bsblongleg_enter_update(void){
             break;
         case 1:
             if(animctrl_isStopped(aCtrl))
-                sp1C = BS_LONGLEG_IDLE;
+                sp1C = BS_26_LONGLEG_IDLE;
             break;
     }
     bs_setState(sp1C);
@@ -220,7 +220,7 @@ void bsblongleg_walk_update(void){
         func_802917C4(2);
 
     if(!func_8029B300() && func_80297C04(1.0f))
-        sp1C = BS_LONGLEG_IDLE;
+        sp1C = BS_26_LONGLEG_IDLE;
 
     if(player_shouldSlideTrot())
         sp1C = BS_LONGLEG_SLIDE;
@@ -377,7 +377,7 @@ void bsblongleg_jump_update(void){
         case 3://L802A60AC
             func_80299594(1, 0.5f);
             if(animctrl_isStopped(aCtrl))
-                sp44 = BS_LONGLEG_IDLE;
+                sp44 = BS_26_LONGLEG_IDLE;
 
             if(button_pressed(BUTTON_A))
                 sp44 = BS_LONGLEG_JUMP;
@@ -437,7 +437,7 @@ void bsblongleg_slide_update(void){
         func_8029797C(sp2C);
         func_8029C22C();
     }else{//L802A6304
-        sp3C = BS_LONGLEG_IDLE;
+        sp3C = BS_26_LONGLEG_IDLE;
     }
 
     if(D_8037D358 == 0.0f && button_pressed(BUTTON_A))
@@ -473,7 +473,7 @@ void func_802A63F0(void){
     func_80299628(1);
     
     if(func_80298850() == 0)
-        sp1C = BS_LONGLEG_IDLE;
+        sp1C = BS_26_LONGLEG_IDLE;
     
     if(func_802A51D0())
         sp1C = BS_4C_LANDING_IN_WATER;

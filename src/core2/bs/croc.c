@@ -87,7 +87,7 @@ void func_802ABFBC(void){
 }
 
 int bscroc_inSet(enum bs_e state){
-    return state == BS_CROC_IDLE
+    return state == BS_5E_CROC_IDLE
         || state == BS_CROC_WALK
         || state == BS_CROC_JUMP
         || state == BS_61_CROC_FALL
@@ -158,7 +158,7 @@ void bscroc_walk_update(void){
     func_8029AD28(0.1f, 4);
     func_8029AD28(0.6f, 3);
     if(func_8029B300() == 0 && func_80297C04(1.0f))
-        next_state = BS_CROC_IDLE;
+        next_state = BS_5E_CROC_IDLE;
 
     if(func_8028B094())
         next_state = BS_61_CROC_FALL;
@@ -243,7 +243,7 @@ void bscroc_jump_update(void){
             func_80299628(0);
             if(animctrl_isStopped(aCtrl)){
                 func_80297970(0.0f);
-                sp2C = BS_CROC_IDLE;
+                sp2C = BS_5E_CROC_IDLE;
             }
             break;
     }//L802AC66C
@@ -313,7 +313,7 @@ void bscroc_fall_update(void){
             if(func_802933C0(0x19)){
                 next_state = func_80292738();
             }else{
-                next_state = BS_CROC_IDLE;
+                next_state = BS_5E_CROC_IDLE;
             }
         }
     }//L802AC8B4
@@ -375,7 +375,7 @@ static void __bscroc_recoil_update(void){
             break;
     }
     if(func_8028B2E8())
-        next_state = BS_CROC_IDLE;
+        next_state = BS_5E_CROC_IDLE;
 
     bs_setState(next_state);
 }
@@ -583,7 +583,7 @@ void bscroc_eat_bad_update(void){
     }
 
     if(animctrl_isStopped(aCtrl)){
-        next_state = BS_CROC_IDLE;
+        next_state = BS_5E_CROC_IDLE;
     }
 
     bs_setState(next_state);
@@ -644,7 +644,7 @@ void bscroc_eat_good_update(void){
                 if(D_8037D3F5)
                     next_state = BS_CROC_EAT_BAD;
                 else
-                    next_state = BS_CROC_IDLE;
+                    next_state = BS_5E_CROC_IDLE;
                 break;
         }
     }//L802AD4B0
@@ -680,7 +680,7 @@ void func_802AD5C0(void){
     func_80299628(0);
     func_8029C6D0();
     if(!func_80298850()){
-        next_state = BS_CROC_IDLE;
+        next_state = BS_5E_CROC_IDLE;
     }
     
     bs_setState(next_state);

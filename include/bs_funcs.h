@@ -144,7 +144,7 @@ void func_802A3F70(void);
 void bsblongleg_enter_init(void);
 void bsblongleg_enter_update(void);
 void bsblongleg_enter_end(void);
-//BS_LONGLEG_IDLE(void);
+//BS_26_LONGLEG_IDLE(void);
 void bsblongleg_stand_enter(void);
 void bsblongleg_stand_update(void);
 void bsblongleg_stand_end(void);
@@ -206,7 +206,7 @@ void func_802B9D00(void);
 void bsjig_notedoor_init(void);
 void bsjig_notedoor_update(void);
 void bsjig_notedoor_end(void);
-//BS_ANT_IDLE
+//BS_35_ANT_IDLE
 void bsant_idle_init(void);
 void bsant_idle_update(void);
 void bsant_idle_end(void);

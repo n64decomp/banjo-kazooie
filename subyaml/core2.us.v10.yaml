@@ -80,7 +80,8 @@ segments:
   - [0x13780, c, code_13780] #DONE
   - [0x13900, c, code_13900] #DONE
   - [0x13A00, c, code_13A00] #DONE
-  - [0x13FC0, c, code_13FC0]
+  - [0x13FC0, c, code_13FC0] #DONE
+  - [0x13FC0, c, code_14420] #DONE
   - [0x15F20, c, code_15F20]  #DONE
   - [0x16010, c, code_16010]  #DONE
   - [0x16C60, c, code_16C60]  #DONE
@@ -547,6 +548,8 @@ segments:
   - [0xEDD00, .rodata, code_12360]
   - [0xEDD30, .rodata, code_126C0]
   - [0xEDD60, bin, data_EDD60]
+  - [0xEDD80, .rodata, code_13FC0]
+  - [0xEDD90, .rodata, code_14420]
   - [0xEDE10, .rodata, code_16010]
   - [0xEE270, .rodata, code_16C60]
   - [0xEE310, .rodata, bs/ant]

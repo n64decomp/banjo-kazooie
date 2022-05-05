@@ -255,7 +255,7 @@ void bsbeefly_update(void){
     }
     func_80297970(sp38);
     if(func_8028B2E8() && !player_inWater())
-        sp4C = BS_BEE_IDLE;
+        sp4C = BS_85_BEE_IDLE;
     func_8028FFF0();
     bs_setState(sp4C);
 }

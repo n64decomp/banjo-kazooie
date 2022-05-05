@@ -64,7 +64,7 @@ void func_8029E554(void){
 }
 
 int bsant_inSet(s32 move_indx){
-    return (move_indx == BS_ANT_IDLE)
+    return (move_indx == BS_35_ANT_IDLE)
     || (move_indx == BS_ANT_WALK)
     || (move_indx == BS_ANT_JUMP)
     || (move_indx == BS_38_ANT_FALL)
@@ -132,7 +132,7 @@ void bsant_walk_update(void){
         func_8029E448(1);
 
     if(func_8029B300() == 0 && func_80297C04(1.0f))
-        sp1C = BS_ANT_IDLE;
+        sp1C = BS_35_ANT_IDLE;
 
     if(func_8028B094())
         sp1C = BS_38_ANT_FALL;
@@ -207,7 +207,7 @@ void bsant_jump_update(void){
             break;
         case 3://L8029EB24
             if(animctrl_isStopped(aCtrl))
-                sp2C = BS_ANT_IDLE;
+                sp2C = BS_35_ANT_IDLE;
             break;
     }//L8029EB38
     if(func_8028B2E8()){
@@ -266,7 +266,7 @@ void bsant_fall_update(void){
         if(func_802933C0(0x19))
             sp2C = func_80292738();
         else
-            sp2C = BS_ANT_IDLE;
+            sp2C = BS_35_ANT_IDLE;
     }
     bs_setState(sp2C);
 }
@@ -327,7 +327,7 @@ static void __bsant_recoil_update(void){
     }
     
     if(func_8028B2E8())
-        sp1C = BS_ANT_IDLE;
+        sp1C = BS_35_ANT_IDLE;
 
     bs_setState(sp1C);
 }
@@ -460,7 +460,7 @@ void func_8029F3F4(void){
     func_80299628(0);
     func_8029C6D0();
     if(!func_80298850())
-       sp1C = BS_ANT_IDLE;
+       sp1C = BS_35_ANT_IDLE;
 
     bs_setState(sp1C);
 }

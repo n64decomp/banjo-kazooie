@@ -224,7 +224,7 @@ void bsbtrot_enter_update(void){
     func_802952A8(0,1);
     func_80299628(1);
     if(animctrl_isStopped(aCtrl))
-        next_state = BS_BTROT_IDLE;
+        next_state = BS_15_BTROT_IDLE;
 
     if(0.5 <  func_802877D8(aCtrl))
         next_state = func_802A8D84(next_state);
@@ -311,7 +311,7 @@ void bsbtrot_walk_update(void){
             func_802A87C0();
     }
     if(!func_8029B300() && func_80297C04(1.0f))
-        sp1C = BS_BTROT_IDLE;
+        sp1C = BS_15_BTROT_IDLE;
 
     if(func_8028B094())
         sp1C = BS_71_BTROT_FALL;
@@ -447,7 +447,7 @@ void bsbtrot_jump_update(void){
             func_802A9320();
             func_80299628(1);
             if(animctrl_isStopped(aCtrl))
-                sp2C = BS_BTROT_IDLE;
+                sp2C = BS_15_BTROT_IDLE;
             break;
     }//LL802A97D0
 
@@ -532,7 +532,7 @@ void bsbtrot_slide_update(void){
         func_8029797C(sp2C);
         func_8029C22C();
     }else{
-        sp3C = BS_BTROT_IDLE;
+        sp3C = BS_15_BTROT_IDLE;
     }
     if(player_inWater())
         sp3C = BS_2D_SWIM_IDLE;
@@ -549,7 +549,7 @@ void bsbtrot_slide_end(void){
 }
 
 int bsbtrot_inSet(s32 move_indx){
-    return (move_indx == BS_BTROT_IDLE)
+    return (move_indx == BS_15_BTROT_IDLE)
     || (move_indx == BS_BTROT_WALK)
     || (move_indx == BS_BTROT_JUMP)
     || (move_indx == BS_BTROT_EXIT)
@@ -650,7 +650,7 @@ void bsbtrot_fall_update(void){
         func_802A9320();
         func_80299628(1);
         if(animctrl_isStopped(aCtrl))
-            sp2C = BS_BTROT_IDLE;
+            sp2C = BS_15_BTROT_IDLE;
         break;
     }//LL802A9FE8
 
@@ -690,7 +690,7 @@ void bsbtrot_unk79_update(void){
     func_802A8AD8();
     func_80299628(1);
     if(!func_80298850())
-        sp1C = BS_BTROT_IDLE;
+        sp1C = BS_15_BTROT_IDLE;
     bs_setState(sp1C);
 }
 
@@ -737,7 +737,7 @@ void bsbtrot_ow_update(void){
         sp1C = BS_3D_FALL_TUMBLING;
 
     if(func_8028B2E8() && func_80289FC4())
-        sp1C = BS_BTROT_IDLE;
+        sp1C = BS_15_BTROT_IDLE;
 
     if(animctrl_isStopped(_player_getAnimCtrlPtr()) && player_inWater())
         sp1C = BS_2D_SWIM_IDLE;
