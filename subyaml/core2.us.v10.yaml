@@ -123,7 +123,7 @@ segments:
   - [0x2CF90, c, bs/sled]     #DONE
   - [0x2D140, c, bs/slide]    #DONE
   - [0x2D5E0, c, bs/splat]    #DONE
-  - [0x2D8E0, c, bs/stand]
+  - [0x2D8E0, c, bs/stand]    #DONE
   - [0x2E4F0, c, bs/swim]
   - [0x2F040, c, bs/surf]
   - [0x2F1A0, c, done/bs/talk] #DONE
