@@ -20,7 +20,6 @@ void func_802B5FD0(void) {
     D_8037D560 = 1;
 }
 
-
 void func_802B6064(void) {
     enum bs_e next_state;
 
