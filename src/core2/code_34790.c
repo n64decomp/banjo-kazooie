@@ -109,4 +109,8 @@ bool func_802BC428(void){
     return D_8037D8C6;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_34790/func_802BC434.s")
+void func_802BC434(f32 arg0[3], f32 arg1[3], f32 arg2[3]) {
+    func_8025727C(arg1[0], arg1[1], arg1[2], arg2[0], arg2[1], arg2[2], &arg0[0], &arg0[1]);
+    arg0[0] = mlNormalizeAngle(-arg0[0]);
+    arg0[2] = 0.0f;
+}

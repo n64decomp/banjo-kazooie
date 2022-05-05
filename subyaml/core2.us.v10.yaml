@@ -144,7 +144,7 @@ segments:
   - [0x33D40, c, code_33D40] #DONE
   - [0x33F90, c, code_33F90] #DONE
   - [0x34790, c, code_34790]
-  - [0x35520, c, code_35520]
+  - [0x35520, c, code_35520] #DONE
   - [0x356B0, c, code_356B0] #DONE
   - [0x379B0, c, code_379B0]
   - [0x37CD0, c, code_37CD0] #DONE
@@ -417,6 +417,8 @@ segments:
   - [0xDDD40, .data, bs/jump]
   - [0xDDD60, .data, bs/pumpkin]
   - [0xDDD90, bin, data_DDD90]
+  - [0xDE8A0, .data, code_35520]
+  - [0xDED40, bin, data_DED40]
   - [0xDEDD0, .data, code_37E50]
   - [0xDEE00, bin, data_DEE00]
   - [0xDEFA0, .data, code_3EAD0]
