@@ -2,8 +2,12 @@
 #include "functions.h"
 #include "variables.h"
 
-ParticleEmitter * func_802EDD8C(f32[3], f32, f32);
 f32 func_8024DDD8(f32[3], f32);
+extern f32 func_8028EBA4(void);
+extern void particleEmitter_setSphericalParticleVelocityRange(ParticleEmitter *this, f32 pitch_min, f32 yaw_min, f32 radial_min, f32 pitch_max, f32 yaw_max, f32 radial_max);
+ParticleEmitter * func_802EDD8C(f32[3], f32, f32);
+extern void func_80354030(f32[3], f32);
+extern void func_80354380(f32[3], f32);
 extern void func_80356074(f32[3], f32[3], f32, f32);
 
 extern f32 D_8037D1A0;
@@ -262,29 +266,135 @@ ParticleEmitter *func_8029B950(f32 pos[3],f32 arg1){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029BF78.s")
 
+extern f32 D_80374D98;
+
+extern u8 D_8037D1E8;
+
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029C0D0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029C22C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029C304.s")
+void func_8029C304(s32 arg0) {
+    f32 sp1C[3];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029C348.s")
+    _player_getPosition(sp1C);
+    sp1C[1] = func_80294500();
+    func_802F3584(arg0, sp1C, func_802946CC());
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029C3E8.s")
+void func_8029C348(void) {
+    f32 sp1C[3];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029C4E4.s")
+    _player_getPosition(&sp1C);
+    sp1C[0] += randf2(-30.0f, 30.0f);
+    sp1C[1] += randf2(60.0f, 70.0f);
+    sp1C[2] += randf2(-30.0f, 30.0f);
+    func_803541C0(2);
+    func_803541CC(0x50);
+    func_80354030(sp1C, 0.5);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029C5E8.s")
+void func_8029C3E8(f32 arg0, f32 arg1) {
+    f32 sp3C[3];
+    f32 sp30[3];
+    f32 sp2C;
+    f32 sp28;
 
+    _player_getPosition(sp30);
+    sp28 = ml_map_f(func_80297AB8(), 0.0f, 1000.0f, arg0, arg1);
+    sp2C = func_8028EBA4();
+    func_802589E4(&sp3C, sp2C, sp28);
+    sp3C[1] = 0.0f;
+    sp30[0] += sp3C[0];\
+    sp30[1] += sp3C[1];\
+    sp30[2] += sp3C[2];
+    sp30[0] += randf2(-10.0f, 10.0f);
+    sp30[1] += 4.0f;
+    sp30[2] += randf2(-10.0f, 10.0f);
+    func_80354380(sp30, 0.45f);
+}
+
+void func_8029C4E4(bool arg0) {
+    f32 sp3C[3];
+    f32 sp38;
+    ParticleEmitter *sp34;
+
+    if (func_80294574()) {
+        if (arg0) {
+            func_80292260(sp3C);
+        } else {
+            func_8029223C(sp3C);
+        }
+        sp3C[1] = func_80294500();
+        sp38 = yaw_get();
+        sp34 = func_802F4094(sp3C, 8.0f);
+        particleEmitter_setSphericalParticleVelocityRange(sp34, -140.0f, sp38 - 35.0f, 200.0f, -120.0f, sp38 + 35.0f, 250.0f);
+        particleEmitter_emitN(sp34, 3);
+        particleEmitter_setSphericalParticleVelocityRange(sp34, -100.0f, sp38 - 35.0f, 300.0f, -90.0f, sp38 + 35.0f, 400.0f);
+        particleEmitter_emitN(sp34, 2);
+    }
+}
+
+void func_8029C5E8(void){
+    func_8029AE1C();
+}
+
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029C608.s")
+#else
+void func_8029C608(void) {
+    enum level_e level_id;
+    enum map_e sp18;
+    s32 phi_v0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029C674.s")
+    level_id = level_get();
+    if ((level_id == 0) || (level_id == 6)) {
+        sp18 = map_get();
+        phi_v0 = func_803348CC();
+    } else {
+        sp18 = func_8030ADD8(level_id);
+        phi_v0 = func_8030AE24(level_id);
+    }
+    D_8037D1E0.exit_id = phi_v0;
+    D_8037D1E0.map_id = sp18;
+}
+#endif
 
-extern f32 D_80374D98;
+void func_8029C674(void) {
+    f32 sp1C[3];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029C6D0.s")
+    D_8037D1E8 = FALSE;
+    if (func_80298850() == 4) {
+        D_8037D1E8 = TRUE;
+        func_802933E8(0x17);
+        func_802BE8D8();
+        func_8028E9C4(5, sp1C);
+        func_802C2A64(sp1C);
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029C748.s")
+void func_8029C6D0(void) {
+    f32 sp3C[3];
+    f32 sp30[3];
+    f32 sp24[3];
+    f32 sp18[3];
+
+    if (func_80298850() == 4 && D_8037D1E8) {
+        func_8028E9C4(5, sp18);
+        func_802C2A64(sp18);
+        func_8028E9C4(5, sp30);
+        func_80298800(sp24);
+        func_802BC434(sp3C, sp24, sp30);
+        func_802C2A8C(sp3C);
+    }
+}
+
+void func_8029C748(void) {
+    if (D_8037D1E8) {
+        func_802933FC(0x17);
+        func_802BE91C();
+    }
+}
 
 enum bs_e func_8029C780(void){
     if(button_held(BUTTON_Z) && can_flip())
@@ -306,7 +416,10 @@ void func_8029C7F4(s32 arg0, s32 arg1, s32 arg2, s32 arg3){
     func_802978DC(arg3);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029C834.s")
+void func_8029C834(enum map_e map_id, s32 exit_id){
+    D_8037D1E0.map_id = map_id;
+    D_8037D1E0.exit_id = exit_id;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_13FC0/func_8029C848.s")
 
