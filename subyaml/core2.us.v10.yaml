@@ -140,7 +140,7 @@ segments:
   - [0x33250, c, code_33310] #DONE
   - [0x336F0, c, code_336F0] #DONE
   - [0x33AB0, c, code_33AB0] #DONE
-  - [0x33C30, c, code_33C30]
+  - [0x33C30, c, code_33C30] #DONE
   - [0x33D40, c, code_33D40] #DONE
   - [0x33F90, c, code_33F90] #DONE
   - [0x34790, c, code_34790]

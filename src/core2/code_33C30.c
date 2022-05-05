@@ -2,13 +2,44 @@
 #include "functions.h"
 #include "variables.h"
 
+extern void func_802BEA4C(f32[3], f32[3], f32, f32[3]);
+extern ActorProp *func_80320EB0(ActorMarker *, f32, s32);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_33C30/func_802BABC0.s")
+/* .bss */
+extern ActorMarker *D_8037D810;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_33C30/func_802BABD8.s")
+/* .code */
+Actor *func_802BABC0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
+    return NULL;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_33C30/func_802BAC10.s")
+void func_802BABD8(void){
+    if(D_8037D810 != NULL){
+        marker_free(D_8037D810);
+        D_8037D810 = NULL;
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_33C30/func_802BAC1C.s")
+void func_802BAC10(void){
+    D_8037D810 = NULL;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_33C30/func_802BAC58.s")
+bool func_802BAC1C(void) {
+    return (func_80320EB0(D_8037D810, 100.0f, 1) != NULL) ? TRUE : FALSE;
+}
+
+void func_802BAC58(void) {
+    f32 sp34[3];
+    f32 sp28[3];
+    f32 sp1C[3];
+
+    func_8024C5CC(sp34);
+    func_8024C764(sp28);
+    func_802BEA4C(sp28, sp34, 150.0f, sp1C);
+    if (D_8037D810 == NULL) {
+        D_8037D810 = func_8032FBE4(&sp1C, &func_802BABC0, 1, 0x15D);
+    }
+    else{
+        func_8032F64C(sp1C, D_8037D810);
+    }
+}
