@@ -13,16 +13,17 @@ void func_802921BC(f32);
 void func_8028A084(s32, f32);
 
 /* .data */
-extern f32 D_80364CD0;
-extern f32 D_80364CD4;
-extern f32 D_80364CDC;
-extern f32 D_80364CE0;
-extern f32 D_80364CE4;
+f32 D_80364CD0 =   710.0f;
+f32 D_80364CD4 = -1350.0f;
+f32 D_80364CD8 =     0.0f;
+f32 D_80364CDC =   710.0f;
+f32 D_80364CE0 = -1350.0f;
+f32 D_80364CE4 =   610.0f;
 
 /* .bss */
-extern u8 D_8037D4C0;
-extern u8 D_8037D4C1;
-extern u8 D_8037D4C2;
+u8 D_8037D4C0;
+u8 D_8037D4C1;
+u8 D_8037D4C2;
 
 /* .code */
 void func_802B1100(void){

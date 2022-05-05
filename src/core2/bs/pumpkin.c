@@ -7,20 +7,24 @@ extern void func_8028A084(s32, f32);
 extern void func_8029AD68(f32, s32);
 
 /* .data */
-extern f32 D_80364CF0;
-extern f32 D_80364CF4;
-extern f32 D_80364CF8;
-extern f32 D_80364CFC;
-extern f32 D_80364D00;
-extern f32 D_80364D04;
-extern u8  D_80364D08;
-extern s16 D_80364D0C[]; //enum sfx_e
+f32 D_80364CF0 = 30.0f;
+f32 D_80364CF4 = 500.0f;
+f32 D_80364CF8 = 0.44f;
+f32 D_80364CFC = 0.2f;
+f32 D_80364D00 = 693.5f;
+f32 D_80364D04 = -1200.0f;
+u8  D_80364D08 = 0;
+s16 D_80364D0C[] = {
+    SFX_54_BANJO_HOO_1,
+    SFX_55_BANJO_HOO_2,
+    SFX_56_BANJO_HUI
+}; //enum sfx_e
 
 /* .bss */
-extern u8  D_8037D4E0;
-extern s32 D_8037D4E4;
-extern f32 D_8037D4E8[3];
-extern f32 D_8037D4F4;
+u8  D_8037D4E0;
+s32 D_8037D4E4;
+f32 D_8037D4E8[3];
+f32 D_8037D4F4;
 
 /* .code */
 void func_802B21D0(void) {

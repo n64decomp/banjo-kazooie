@@ -3,9 +3,9 @@
 #include "variables.h"
 
 /* .bss */
-extern s32 D_8037D520;
-extern s32 D_8037D524;
-extern f32 D_8037D528;
+s32 D_8037D520;
+s32 D_8037D524;
+f32 D_8037D528;
 
 void func_802B40D0(void){
     f32 sp44[3];

@@ -8,8 +8,8 @@ extern f32 func_80297A4C(void);
 extern f32 func_8029B56C(f32, f32, f32, f32);
 
 /* .bss */
-extern s32 D_8037D500;
-extern f32 D_8037D504;
+s32 D_8037D500;
+f32 D_8037D504;
 
 /* .code */
 void func_802B35D0(s32 arg0){

@@ -6,8 +6,10 @@
 void func_80292900(f32, f32);
 void func_80250D94(f32, f32, f32);
 
-extern u8 D_8037D530;
+/* .bss */
+u8 D_8037D530;
 
+/* .code */
 void func_802B4570(void) {
     f32 i;
 
