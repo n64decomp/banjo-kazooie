@@ -125,7 +125,7 @@ segments:
   - [0x2D5E0, c, bs/splat]    #DONE
   - [0x2D8E0, c, bs/stand]    #DONE
   - [0x2E4F0, c, bs/swim]     #DONE
-  - [0x2F040, c, bs/surf]
+  - [0x2F040, c, bs/surf]     #DONE
   - [0x2F1A0, c, done/bs/talk] #DONE
   - [0x2F2E0, c, bs/timeout]  #DONE
   - [0x2F5B0, c, bs/throw]    #DONE
@@ -585,7 +585,7 @@ segments:
   - [0xEEAD0, .rodata, bs/slide]
   - [0xEEAE0, .rodata, bs/stand]
   - [0xEEB10, .rodata, bs/swim]
-  - [0xEEB60, bin, data_EEB60]
+  - [0xEEB60, .rodata, bs/surf]
   - [0xEEB70, bin, data_EEB70]
   - [0xEEB80, .rodata, bs/timeout]
   - [0xEEB90, .rodata, bs/throw]
