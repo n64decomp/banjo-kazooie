@@ -1825,7 +1825,7 @@ enum bs_e
     BS_CROC_DIE = 0x64, 
 
 
-    BS_WALRUS_IDLE = 0x67,
+    BS_67_WALRUS_IDLE = 0x67,
     BS_WALRUS_WALK = 0x68,
     BS_WALRUS_JUMP = 0x69,
     BS_6A_WALRUS_FALL = 0x6A,

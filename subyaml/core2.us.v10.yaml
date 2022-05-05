@@ -131,9 +131,9 @@ segments:
   - [0x2F5B0, c, bs/throw]    #DONE
   - [0x2F7D0, c, bs/turn]     #DONE
   - [0x2FAB0, c, bs/twirl]    #DONE
-  - [0x2FD70, c, bs/walk]
-  - [0x30E70, c, bs/walrus]
-  - [0x329F0, c, bs/washy] #DONE
+  - [0x2FD70, c, bs/walk]     #DONE
+  - [0x30E70, c, bs/walrus]   #DONE
+  - [0x329F0, c, bs/washy]   #DONE
   - [0x32DB0, c, code_32DB0] #DONE
   - [0x33250, c, code_33250] #DONE
   - [0x33250, c, code_33310] #DONE

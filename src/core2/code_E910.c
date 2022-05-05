@@ -101,7 +101,7 @@ bsMap D_80363824[] ={
     {BS_LONGLEG_UNK62, func_802A6394, func_802A63F0, func_802A6450, func_80296608},
     {BS_CROC_OW, bscroc_ow_init, bscroc_ow_update, bscroc_ow_end, func_80296590},
     {BS_CROC_DIE, bscroc_die_init, bscroc_die_update, bscroc_die_end, func_80296590},
-    {BS_WALRUS_IDLE, bswalrus_idle_init, bswalrus_idle_update, bswalrus_idle_end, func_802B5350},
+    {BS_67_WALRUS_IDLE, bswalrus_idle_init, bswalrus_idle_update, bswalrus_idle_end, func_802B5350},
     {BS_WALRUS_WALK, bswalrus_walk_init, bswalrus_walk_update, bswalrus_walk_end, func_802B5350},
     {BS_WALRUS_JUMP, bswalrus_jump_init, bswalrus_jump_update, bswalrus_jump_end, func_802B5350},
     {BS_6A_WALRUS_FALL, bswalrus_fall_init, bswalrus_fall_update, bswalrus_fall_end, func_802B5350},

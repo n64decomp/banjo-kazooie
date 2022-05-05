@@ -3,6 +3,7 @@
 #include "variables.h"
 
 extern void func_8029AD68(f32, s32);
+extern f32  ml_vec3f_dot_product(f32[3], f32[3]);
 
 int func_802B81F0(enum bs_e state);
 
@@ -13,9 +14,12 @@ extern f32 D_80364DC8;
 extern f32 D_80364DCC;
 extern f32 D_80364DD0;
 extern f32 D_80364DD4;
-
+extern f32 D_80364DD8;
+extern f32 D_80364DDC;
 extern f32 D_80364DE0;
 extern f32 D_80364DE4;
+extern u8 D_80364DF0;
+extern s16 D_80364DF4[]; //sfx_e
 
 /* .rodata */
 extern char D_80375C00[];
@@ -23,23 +27,76 @@ extern char D_80375C0C[];
 extern char D_80375C18[];
 extern char D_80375C24[];
 extern char D_80375C30[];
-
+extern f64 D_80375C40;
+extern f64 D_80375C48;
+extern f64 D_80375C50;
+extern f32 D_8037D5C0;
 extern f32 D_80375C58;
 extern f32 D_80375C5C;
 
 
 /* .bss */
+extern f32  D_8037D5C0;
 extern f32  D_8037D5C4;
 extern u8   D_8037D5C8;
 
 /* .code */
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/walrus/func_802B7E00.s")
+void func_802B7E00(void) {
+    u8 temp_t9;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/walrus/func_802B7E6C.s")
+    func_8030EB00(D_80364DF4[D_80364DF0], 1.35f, 1.45f);
+    D_80364DF0++;
+    if (D_80364DF0 >= 3) {
+        D_80364DF0 = 0;
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/walrus/func_802B7ECC.s")
+void func_802B7E6C(void) {
+    f32 sp1C;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/walrus/func_802B7F28.s")
+    sp1C = func_8029B30C();
+    if (func_8029B300() == 0) {
+        func_80297970(0.0f);
+        return;
+    }
+    func_80297970(func_80257C48(sp1C, D_80364DC0, D_80364DC4));
+}
+
+void func_802B7ECC(void) {
+    D_8037D5C0 = 0.0f;
+    if (func_80295530(8) < 3) {
+        D_8037D5C0 = 1.0f;
+    }
+    D_8037D5C0 = mlClamp_f(D_8037D5C0, 0.0f, 1.0f);
+}
+
+void func_802B7F28(void) {
+    f32 pad44;
+    f32 sp40;
+    f32 sp3C;
+    f32 sp38;
+    f32 sp2C[3];
+    f32 sp20[3];
+
+    sp38 = D_80364DD8;
+    sp3C = D_80364DDC;
+    sp40 = func_8029B30C();
+    func_802B7ECC();
+    _get_velocity(sp20);
+    sp20[1] = 0.0f;
+    if (D_80375C40 < sp20[0] * sp20[0] + sp20[1] * sp20[1] + sp20[2] * sp20[2]) {
+        ml_vec3f_normalize(sp20);
+        func_80294480(sp2C);
+        if ( ml_vec3f_dot_product(sp20, sp2C) < D_80375C48) {
+            sp3C += D_8037D5C0 * D_80375C50;
+        }
+    }
+    if (func_8029B300() == 0) {
+        func_80297970(0.0f);
+        return;
+    }
+    func_80297970(func_80257C48(sp40, sp38, sp3C));
+}
 
 void func_802B8048(void){
     if(!func_802B81F0(bs_getNextState())){
@@ -55,13 +112,24 @@ void func_802B8048(void){
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/walrus/func_802B80D0.s")
+void func_802B80D0(void) {
+    if (func_802B8190(bs_getNextState()) == 0) {
+        func_802B8048();
+        func_8029E0E8(0);
+    }
+}
 
 void func_802B8110(void){
     func_8029CF48(4, 1, 0.15f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/walrus/func_802B813C.s")
+void func_802B813C(void) {
+    if (func_802B8190(bs_getPrevState()) == 0) {
+        D_8037D5C0 = 0.0f;
+        func_8029E0E8(1);
+        func_8029CF48(4, 1, 0.15f);
+    }
+}
 
 int func_802B8190(enum bs_e state){
     return state == 0x81
@@ -73,7 +141,7 @@ int func_802B8190(enum bs_e state){
 }
 
 int func_802B81F0(enum bs_e state){
-    return state == BS_WALRUS_IDLE
+    return state == BS_67_WALRUS_IDLE
         || state == BS_WALRUS_WALK
         || state == BS_WALRUS_JUMP
         || state == BS_6A_WALRUS_FALL
@@ -137,7 +205,7 @@ void bswalrus_walk_update(void){
     func_8029AD68(D_80375C58, 4);
 
     if(func_8029B300() == 0 && func_80297C04(1.0f))
-        next_state = BS_WALRUS_IDLE;
+        next_state = BS_67_WALRUS_IDLE;
 
     if(func_8028B094())
         next_state = BS_6A_WALRUS_FALL;
@@ -224,7 +292,7 @@ void bswalrus_jump_update(void){
             func_80299628(0);
             if(animctrl_isStopped(aCtrl)){
                 func_80297970(0.0f);
-                next_state = BS_WALRUS_IDLE;
+                next_state = BS_67_WALRUS_IDLE;
             }
             break;
     }//L802B8838
@@ -297,7 +365,7 @@ void bswalrus_fall_update(void){
             if(func_802933C0(0x19))
                 next_state = func_80292738();
             else
-                next_state = BS_WALRUS_IDLE;
+                next_state = BS_67_WALRUS_IDLE;
         }
     }
 
@@ -342,7 +410,7 @@ static void __bswalrus_recoil_update(void){
         func_80292EA4();
     
     if(func_8028B2E8())
-        next_state = BS_WALRUS_IDLE;
+        next_state = BS_67_WALRUS_IDLE;
 
     bs_setState(next_state);
 }
@@ -666,13 +734,45 @@ void func_802B976C(void){
     func_802B8048();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/walrus/func_802B978C.s")
+void func_802B978C(void) {
+    func_8028A180(0x1A9, 3.2f);
+    func_8029C7F4(1, 1, 3, 7);
+    func_80297970(0.0f);
+    func_802914CC(0xD);
+    func_802BF2C0(60.0f);
+    func_8025A58C(0, 0xFA0);
+    func_8025A70C(COMUSIC_3C_MINIGAME_LOSS);
+    func_8024BD08(0);
+    func_8028D5DC();
+    func_8029E3C0(0, 2.9f);
+    func_802B813C();
+    func_80292E48();
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/walrus/func_802B9830.s")
+void func_802B9830(void) {
+    yaw_setIdeal(func_8029B41C() + 35.0f);
+    func_80299628(0);
+    if (func_8029E1A8(0) != 0) {
+        func_8029B6F0();
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/walrus/func_802B9880.s")
+void func_802B9880(void) {
+    func_80291548();
+    func_8024BD08(1);
+    func_8025A904();
+    func_80292EA4();
+    func_802B80D0();
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/bs/walrus/func_802B98C0.s")
+void func_802B98C0(void) {
+    if (bs_getInterruptType() == 0x2B) {
+        func_8029A86C(2);
+        bs_setState(BS_67_WALRUS_IDLE);
+        return;
+    }
+    func_80296608();
+}
 
 void bswalrus_sled_drone_init(void){
     func_802B813C();
