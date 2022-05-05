@@ -444,6 +444,7 @@ D_803794C8 = 0x803794C8;
 D_803794D0 = 0x803794D0;
 D_80379508 = 0x80379508;
 D_80379A78 = 0x80379A78;
+D_8037DB38 = 0x8037DB38;
 print_sFonts            = 0x80380AD0;
 print_sPrintBuffer      = 0x80380AE0;
 print_sCurrentPtr       = 0x80380AE4;
