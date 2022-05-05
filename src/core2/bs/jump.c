@@ -231,7 +231,7 @@ void bsjump_fall_update(void){
     else if(player_inWater()){
         func_8029CCC4();
         if(func_802933C0(6) || func_802933C0(0x14)){
-            sp2C = BS_TIMEOUT;
+            sp2C = BS_D_TIMEOUT;
         }
 
     }//L802B18E8

@@ -1736,7 +1736,7 @@ enum bs_e
     BS_EGG_ASS = 0xA,
 
     BS_SKID = 0xC,
-    BS_TIMEOUT = 0xD,
+    BS_D_TIMEOUT = 0xD,
     BS_OW = 0xE,
     BS_F_BBUSTER = 0xF,
     BS_BFLAP = 0x10,
@@ -1806,7 +1806,7 @@ enum bs_e
     BS_50_CLIMB_MOVE,
     BS_51_CLIMB_EXIT,
     //unk52 //tumblar??? a.k.a bssurf
-    BS_TIMEOUT_UNK53 = 0x53,    
+    BS_D_TIMEOUT_UNK53 = 0x53,    
     BS_54_SWIM_DIE = 0x54,
     BS_LONGLEG_SLIDE = 0x55,
     BS_56_RECOIL = 0x56,
