@@ -6,6 +6,7 @@
 
 extern f32 func_8024DDD8(f32[3], f32);
 extern int func_80259254(f32 vec[3], f32 x, f32 z, f32 val);
+extern f32 func_8028EBA4(void);
 
 extern u8 D_8037BF60;
 extern u8 D_8037BF61;
@@ -149,13 +150,6 @@ bool func_8028AE10(void) {
     }
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39D0/func_8028AED4.s")
-#else
-extern f64 D_80373ED0;
-extern f64 D_80373ED8;
-extern f32 func_8028EBA4(void);
-
 bool func_8028AED4(f32 arg0[3], f32 arg1) {
     f32 sp2C[3];
     f32 sp28;
@@ -166,14 +160,13 @@ bool func_8028AED4(f32 arg0[3], f32 arg1) {
 
     _player_getPosition(sp2C);
     func_80257F18(arg0, sp2C, &sp28);
-    sp26 = (u16) (sp28 * 182.044);
-    sp24 = (u16) (func_8028EBA4() * 182.044);
-    temp_v1 = (u16)((sp26 - sp24));
-    temp_v1 = 0x8000 - temp_v1;
+    sp26 = (u16) (sp28 * 182.044444);
+    sp24 = (u16) (func_8028EBA4() * 182.044444);
+    sp26 = (u16)((sp26 - sp24));
+    temp_v1 = 0x8000 - sp26;
     phi_a0 = (temp_v1 >= 0) ? temp_v1 : -temp_v1;
-    return ((f64) phi_a0 < ((f64) arg1 * 182.044));
+    return (phi_a0 < arg1 * 182.044444);
 }
-#endif
 
 int func_8028B094(void){
     return (60.0f < player_getYPosition() - func_80294438());
