@@ -32,6 +32,7 @@ extern f32 D_803636A4[3];
 extern u8  D_803636B0;
 extern f32 D_803636B4[3];
 extern f32 D_803636C0[3];
+
 /* .bss */
 extern f32 D_8037BFB0[2];
 extern u8  D_8037BFB8;
@@ -43,10 +44,6 @@ extern f32 D_8037BFCC;
 extern f32 D_8037BFD0;
 
 /* .code */
-#ifndef NONMATCHING
-bool func_8028DFF0(s32, s32[3]);
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028DFF0.s")
-#else
 bool func_8028DFF0(s32 arg0, s32 arg1[3]) {
     if (arg0 >= 0x80) {
         arg1[0] = func_802E4A98(arg0);
@@ -55,11 +52,9 @@ bool func_8028DFF0(s32 arg0, s32 arg1[3]) {
         return TRUE;
     }
     else{
-        return func_80304DD0(func_803084F0(), arg1);
+        return func_80304DD0(func_803084F0(arg0), arg1);
     }
 }
-#endif
-
 
 bool func_8028E060(s32 arg0, s32 *arg1){
     if(arg0 >= 0x80){

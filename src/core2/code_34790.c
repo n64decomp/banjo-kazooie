@@ -7,8 +7,8 @@ extern u8 D_8037D8C4;
 extern u8 D_8037D8C5;
 extern u8 D_8037D8C6;
 extern struct {
-    s32 unk0;
-    u8 pad4[0x2C];
+    s32 unk0[6];
+    f32 unk18[6];
     u8 unk30;
     u8 unk31;
 }D_8037D8D0;
@@ -34,7 +34,27 @@ void func_802BBD0C(Gfx **gdl, Mtx **mptr, Vtx **vptr){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_34790/func_802BBEA4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_34790/func_802BC044.s")
+void func_802BC044(void) {
+    s32 i;
+
+    D_8037D8C4 = 0;
+    D_8037D8C5 = 0;
+    D_8037D8C6 = 0;
+    D_8037D8D0.unk31 = 0;
+    D_8037D8D0.unk30 = 0;
+    for(i = 0; i < 6; i++){
+        D_8037D8D0.unk18[i] = 1000.0f;
+        D_8037D8D0.unk0[i] = 0;
+    }
+    func_802BAC10();
+    func_802BE940();
+    func_802BCBD4();
+    func_802BEF78();
+    func_802BB2A8();
+    D_8037D8C0 = 0;
+    func_802BBC58(2);
+}
+
 
 void func_802BC10C(void){
     func_802BB2A0();
