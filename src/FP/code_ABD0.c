@@ -68,7 +68,7 @@ ActorInfo D_80392B44 = { 0x289, 0x3B0, 0x56A, 0x1, NULL, func_80391180, func_803
 int func_80390FC0(void){
       f32 sp1C[3];
 
-      func_8028EF68(sp1C);
+      player_getVelocity(sp1C);
 
       if ( 0.0 == sp1C[0] && -1.0 == sp1C[1] && 0.0 == sp1C[2])
             return 0;

@@ -227,7 +227,7 @@ void func_80292090(s32 arg0){
     if(arg0 != D_8037C0E7){
         if(arg0 == 2 || 2 == D_8037C0E7){
             yaw_setIdeal(mlNormalizeAngle(yaw_get() + 180.0f));
-            func_802991FC();
+            yaw_applyIdeal();
         }
     }
     D_8037C0E7 = arg0;

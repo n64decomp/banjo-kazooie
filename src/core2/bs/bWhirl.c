@@ -25,9 +25,9 @@ void func_802AA400(void){
 static void __bsbwhirl_end(void){
     enum bs_e state = bs_getNextState();
     if(!( state == BS_1B_WONDERWING_IDLE
-          || state == BS_WONDERWING_WALK
-          || state == BS_WONDERWING_JUMP
-          || state == BS_WONDERWING_EXIT
+          || state == BS_1C_WONDERWING_WALK
+          || state == BS_1D_WONDERWING_JUMP
+          || state == BS_1E_WONDERWING_EXIT
           || state == BS_A4_WONDERWING_DRONE
           || state == BS_A5_WONDERWING_UNKA5
         )
@@ -47,13 +47,13 @@ static void __bsbwhirl_spawnSparkle(void){
 
 enum bs_e func_802AA510(enum bs_e arg0){
     if(func_8029B300(arg0) > 0)
-        arg0 = BS_WONDERWING_WALK;
+        arg0 = BS_1C_WONDERWING_WALK;
 
     if(button_released(BUTTON_Z))
-        arg0 = BS_WONDERWING_EXIT;
+        arg0 = BS_1E_WONDERWING_EXIT;
 
     if(button_pressed(BUTTON_A) && func_8028B2E8())
-        arg0 = BS_WONDERWING_JUMP;
+        arg0 = BS_1D_WONDERWING_JUMP;
 
     if(player_inWater())
         arg0 = BS_2D_SWIM_IDLE;
@@ -66,8 +66,8 @@ void func_802AA58C(enum bs_e *arg0){
     D_8037D3B0 += time_getDelta();
     if(2.0 < D_8037D3B0){
         D_8037D3B0 = 0.0f;
-        func_80346C10(arg0, BS_WONDERWING_EXIT, -1, ITEM_10_GOLD_FEATHER, 1);
-        if(*arg0 != BS_WONDERWING_EXIT){
+        func_80346C10(arg0, BS_1E_WONDERWING_EXIT, -1, ITEM_10_GOLD_FEATHER, 1);
+        if(*arg0 != BS_1E_WONDERWING_EXIT){
             FUNC_8030E624(SFX_3E9_UNKNOWN, 875, 0x332);
             func_802D8BE4(1);
         }
@@ -146,10 +146,10 @@ void bsbwhirl_walk_update(void){
         sp1C = BS_1B_WONDERWING_IDLE;
 
     if(button_released(BUTTON_Z))
-        sp1C = BS_WONDERWING_EXIT;
+        sp1C = BS_1E_WONDERWING_EXIT;
 
     if(button_pressed(BUTTON_A) && func_8028B2E8())
-        sp1C = BS_WONDERWING_JUMP;
+        sp1C = BS_1D_WONDERWING_JUMP;
 
     if(player_inWater())
         sp1C = BS_4C_LANDING_IN_WATER;

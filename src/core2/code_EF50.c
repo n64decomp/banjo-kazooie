@@ -18,7 +18,7 @@ typedef struct{
 
 void func_80296C90(f32 arg0);
 void func_80296C9C(f32 arg0);
-void func_80296CA8(s32 arg0);
+void func_80296CA8(ActorMarker *arg0);
 void func_80296CB4(s32 arg0);
 void func_80296CC0(f32 arg0[3]);
 
@@ -193,7 +193,7 @@ enum bs_e func_802962BC(u32 arg0){
                 
                 if(func_8028ECAC() == 0xA)
                     return BS_FLY_OW;
-                return BS_OW;
+                return BS_E_OW;
             }
             return BS_41_DIE;
     }
@@ -542,7 +542,7 @@ void func_80296C9C(f32 arg0){
     D_8037C3E0.unk4 = arg0;
 }
 
-void func_80296CA8(s32 arg0){
+void func_80296CA8(ActorMarker *arg0){
     D_8037C3E0.unk14 = arg0;
 }
 

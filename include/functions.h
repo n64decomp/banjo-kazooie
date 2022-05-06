@@ -289,7 +289,7 @@ void func_8028A3B8(f32, f32);
 int  func_8028AED4(f32*, f32);
 void func_8028E668(f32[3], f32, f32, f32);
 f32  func_8028E80C(s32);
-void func_8028F364(f32[3], f32, f32, s32, Actor**);
+bool func_8028F364(f32[3], f32, f32, enum actor_e actor_id, Actor**);
 void func_8028FA54(f32[3]);
 
 f32  func_802915D8(void);
@@ -342,7 +342,7 @@ f32  func_802987E4(void);
 void roll_setIdeal(f32);
 void roll_setAngularVelocity(f32, f32);
 void yaw_set(f32);
-void func_802991FC(void);
+void yaw_applyIdeal(void);
 void func_80299234(f32, f32);
 void func_80299254(f32);
 void func_8029932C(f32);

@@ -8,7 +8,7 @@ void func_80328B8C(Actor *, s32, f32, s32);
 void func_80324E88(f32);
 void func_80324E38(f32,s32);
 void timed_setCameraToNode(f32, s32);
-void func_8028F31C(f32 *, f32, s32, Actor **);
+s32 func_8028F31C(f32 *, f32, s32, Actor **);
 void func_8028FA34(s32, Actor *);
 
 
@@ -31,7 +31,7 @@ ActorInfo chlmonkeyInfo = { MARKER_A_CHIMPY, ACTOR_F_CHIMPY, ASSET_35D_MODEL_CHI
 
 /* .code */
 void func_80388300(Actor **arg0){
-    func_8028F31C((*arg0)->position, 800.0f, 0x29, arg0);
+    func_8028F31C((*arg0)->position, 800.0f, ACTOR_29_ORANGE_COLLECTABLE, arg0);
     if( func_80329530(*arg0, 0x159) 
         && func_8028E88C() == 0x36
         && func_8028FC34()

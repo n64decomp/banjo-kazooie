@@ -47,9 +47,9 @@ void bscrouch_init(void){
     f32 sp20;
 
     switch(bs_getPrevState()){
-        case BS_EGG_HEAD:
-        case BS_EGG_ASS:
-        case BS_WONDERWING_ENTER:
+        case BS_9_EGG_HEAD:
+        case BS_A_EGG_ASS:
+        case BS_1A_WONDERWING_ENTER:
             sp24 = 0.5357f;
             break;
         default:
@@ -191,16 +191,16 @@ enum bs_e func_802ADCD4(enum bs_e arg0){
 
     }else{
         if(should_wonderwing())
-            func_80346C10(&arg0, -1, BS_WONDERWING_ENTER, ITEM_10_GOLD_FEATHER, 1);
+            func_80346C10(&arg0, -1, BS_1A_WONDERWING_ENTER, ITEM_10_GOLD_FEATHER, 1);
 
         if(should_trot())
-            arg0 = BS_BTROT_ENTER;
+            arg0 = BS_14_BTROT_ENTER;
 
         if(should_poop_egg())
-            func_80346C10(&arg0, -1, BS_EGG_ASS, ITEM_D_EGGS, 0);
+            func_80346C10(&arg0, -1, BS_A_EGG_ASS, ITEM_D_EGGS, 0);
 
         if(should_shoot_egg())
-            func_80346C10(&arg0, -1, BS_EGG_HEAD, ITEM_D_EGGS, 0);
+            func_80346C10(&arg0, -1, BS_9_EGG_HEAD, ITEM_D_EGGS, 0);
 
         if(should_flip())
             arg0 = BS_12_BFLIP;

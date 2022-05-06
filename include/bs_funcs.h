@@ -89,7 +89,7 @@ void bsbtrot_exit_end(void);
 void func_802A4D90(void);
 void func_802A4EC8(void);
 void func_802A4F44(void);
-//BS_WONDERWING_ENTER
+//BS_1A_WONDERWING_ENTER
 void bsbwhirl_enter_init(void);
 void bsbwhirl_enter_update(void);
 void bsbwhirl_enter_end(void);
@@ -97,23 +97,23 @@ void bsbwhirl_enter_end(void);
 void bsbwhirl_stand_init(void);
 void bsbwhirl_stand_update(void);
 void bsbwhirl_stand_end(void);
-//BS_WONDERWING_WALK,
+//BS_1C_WONDERWING_WALK,
 void bsbwhirl_walk_init(void);
 void bsbwhirl_walk_update(void);
 void bsbwhirl_walk_end(void);
-//BS_WONDERWING_JUMP
+//BS_1D_WONDERWING_JUMP
 void bsbwhirl_jump_init(void);
 void bsbwhirl_jump_update(void);
 void bsbwhirl_jump_end(void);
-//BS_WONDERWING_EXIT
+//BS_1E_WONDERWING_EXIT
 void bsbwhirl_exit_init(void);
 void bsbwhirl_exit_update(void);
 void bsbwhirl_exit_end(void);
-//BS_EGG_HEAD
+//BS_9_EGG_HEAD
 void bsegghead_init(void);
 void bsegghead_update(void);
 void bsegghead_end(void);
-//BS_EGG_ASS
+//BS_A_EGG_ASS
 void bseggass_init(void);
 void bseggass_update(void);
 void bseggass_end(void);
@@ -202,7 +202,7 @@ void func_802B9ACC(void);
 void func_802B9B14(void);
 void func_802B9AAC(void);
 void func_802B9D00(void);
-//BS_JIG_NOTEDOOR(void);
+//BS_34_JIG_NOTEDOOR(void);
 void bsjig_notedoor_init(void);
 void bsjig_notedoor_update(void);
 void bsjig_notedoor_end(void);
@@ -268,12 +268,12 @@ void func_802A51C0(void);
 void bsant_die_init(void);
 void bsant_die_update(void);
 void bsant_die_end(void);
-//BS_JIG_JIGGY
+//BS_44_JIG_JIGGY
 void bsjig_jiggy_init(void);
 void bsjig_jiggy_update(void);
 void bsjig_jiggy_end(void);
 void bsjig_jiggy_interrupt(void);
-//BS_BTROT_SLIDE
+//BS_45_BTROT_SLIDE
 void bsbtrot_slide_init(void);
 void bsbtrot_slide_update(void);
 void bsbtrot_slide_end(void);

@@ -316,7 +316,7 @@ void func_803876D0(Actor *this){
             }
             func_80386FB0(this);
             if( !sp3C
-                || func_8028F108()
+                || player_is_in_jiggy_jig()
                 || func_80386ED0(this)
                 || !func_803250DC()
                 || func_803872EC()

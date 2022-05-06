@@ -255,7 +255,7 @@ void func_8038C840(Actor *this){
         case 4: // 8038CA48
             sp48 = (this->state == 3);
             if(!sp48 || D_803924E8 < func_802877D8(this->animctrl)){//L8038CA7C
-                func_8028EF68(&sp5C);
+                player_getVelocity(&sp5C);
                 sp5C[0] *=  sp74 * 6.0f;
                 sp5C[1] *=  sp74 * 6.0f;
                 sp5C[2] *=  sp74 * 6.0f;

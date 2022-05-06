@@ -64,7 +64,7 @@ void func_802B360C(void) {
             func_802978DC(6);
         }
     }
-    func_802991FC();
+    yaw_applyIdeal();
 }
 
 void func_802B37DC(void) {

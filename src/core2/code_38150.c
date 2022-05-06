@@ -47,7 +47,7 @@ void func_802BF1D4(void){
     f32 sp2C[3];
     s32 pad28;
 
-    func_8028EF68(sp44);
+    player_getVelocity(sp44);
     func_802BF0E0(sp5C);
     func_80256E24(sp38, 0.0f, D_8037DAA0, 0.0f, 0.0f,func_802BD8D4());
     ml_vec3f_add(sp50, sp5C, sp38);

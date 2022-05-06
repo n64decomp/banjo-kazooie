@@ -3,7 +3,7 @@
 #include "variables.h"
 
 extern void func_8028E668(f32[3], f32, f32, f32);
-extern void func_8028F31C(f32[3], f32, s32, Actor **);
+extern s32 func_8028F31C(f32[3], f32, s32, Actor **);
 
 typedef struct {
     s32 unk0;
@@ -47,8 +47,8 @@ Struct_FP_3E00 D_80391E80[] ={
 };
 
 /* .code */
-void func_8038A1F0(Actor **this_ptr, s32 arg1, s32 arg2, s32 arg3){
-    func_8028F31C((*this_ptr)->position, 600.0f, arg2, this_ptr);
+void func_8038A1F0(Actor **this_ptr, s32 arg1, enum actor_e actor_id, s32 arg3){
+    func_8028F31C((*this_ptr)->position, 600.0f, actor_id, this_ptr);
 
     if(!func_80329530(*this_ptr, 400)) return;
     if(func_8028E88C() != arg1)        return;

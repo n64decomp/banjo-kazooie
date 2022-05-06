@@ -37,7 +37,7 @@ void bsdie_init(void){
     func_80257F18(sp20, sp2C, &sp38);
     D_8037D410 = 250.0f;
     yaw_setIdeal(mlNormalizeAngle(sp38 + 180.0f));
-    func_802991FC();
+    yaw_applyIdeal();
     func_80297970(D_8037D410);
     func_8029797C(sp38);
     func_802979AC(sp38, func_80297A64());

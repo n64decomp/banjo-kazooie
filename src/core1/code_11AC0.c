@@ -142,7 +142,7 @@ void func_8024F890(u8 arg0, enum comusic_e arg1){
         alCSPSetSeq(&D_80281720[arg0].cseqp, &D_80281720[arg0].cseq);
         alCSPPlay(&D_80281720[arg0].cseqp);
         alCSPSetVol(&D_80281720[arg0].cseqp, D_80281720[arg0].unk0);
-        if(func_8028F1D4() && func_8028EE84() == 2){
+        if(player_is_present() && func_8028EE84() == 2){
             func_8025F3F0(&D_80281720[arg0].cseqp, 0.0f, 1.0f);
         }
         else{

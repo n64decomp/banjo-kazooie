@@ -638,13 +638,13 @@ void func_802A4A78(s32 arg0) {
     func_80294980(sp30);
     func_80257F18(sp30, sp3C, &sp28);
     yaw_setIdeal(mlNormalizeAngle(sp28 + 180.0f));
-    func_802991FC();
+    yaw_applyIdeal();
     func_80297970(sp20);
     func_8029797C(sp28);
     func_802979AC(sp28, func_80297A64());
     if ((arg0 == 1) && (map_get() == MAP_90_GL_BATTLEMENTS)) {
         yaw_setIdeal(mlNormalizeAngle(sp28));
-        func_802991FC();
+        yaw_applyIdeal();
     }
     func_8029C7F4(1, 1, 2, 3);
     player_setYVelocity(800.0f);
@@ -715,13 +715,13 @@ void func_802A4D90(void) {
     func_80294980(sp1C);
     func_80257F18(sp1C, sp28, &sp34);
     yaw_setIdeal(mlNormalizeAngle(sp34 + 180.0f));
-    func_802991FC();
+    yaw_applyIdeal();
     func_80297970(1300.0f);
     func_8029797C(sp34);
     func_802979AC(sp34, func_80297A64());
     if (map_get() == MAP_90_GL_BATTLEMENTS) {
         yaw_setIdeal(mlNormalizeAngle(sp34));
-        func_802991FC();
+        yaw_applyIdeal();
     }
     func_8029C7F4(1, 1, 2, 3);
     player_setYVelocity(400.0f);

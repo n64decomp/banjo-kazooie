@@ -709,19 +709,19 @@ s32 func_8029CA94(s32 arg0){
         arg0 = func_80292738();
     
     if(func_802933C0(0x1A))
-        arg0 = (player_getTransformation() == TRANSFORM_6_BEE) ? 0x46 : BS_JIG_NOTEDOOR;
+        arg0 = (player_getTransformation() == TRANSFORM_6_BEE) ? 0x46 : BS_34_JIG_NOTEDOOR;
 
     if(func_802933C0(0xE))
         arg0 = BS_25_LONGLEG_ENTER;
 
     if(func_802933C0(0x10))
-        arg0 = BS_BTROT_ENTER;
+        arg0 = BS_14_BTROT_ENTER;
 
     if(func_802933C0(0x6))
         arg0 = 0x53;
 
     if(func_802933C0(0x7))
-        arg0 = BS_JIG_JIGGY;
+        arg0 = BS_44_JIG_JIGGY;
 
     if(func_802933C0(0x14))
         arg0 = (player_getTransformation() == TRANSFORM_4_WALRUS) ? 0x80 : 0x53;

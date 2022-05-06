@@ -52,7 +52,7 @@ extern f32 D_80382E10;
 
 /* .code */
 void func_8030C790(f32 (*arg0)[3]){
-    if(func_8028F1D4())
+    if(player_is_present())
         player_getPosition(arg0);
     else
         ml_vec3f_clear(arg0);
@@ -261,11 +261,11 @@ void func_8030D004(s32 arg0, s32 arg1){
 s32 func_8030D038(struct45s *arg0, s32 arg1){
     if(func_8030C850(arg0, 1 << 6)){
         if(func_8030C850(arg0, 1 << 7)){
-            if(func_8028F1D4() && func_8028EE84() == 2)
+            if(player_is_present() && func_8028EE84() == 2)
                     arg1 *= arg0->unk3C;
         }
         else{//L8030D0B4
-            if(func_8028F1D4() && func_8028EE84() != 2)
+            if(player_is_present() && func_8028EE84() != 2)
                     arg1 *= arg0->unk38;
         }
     }

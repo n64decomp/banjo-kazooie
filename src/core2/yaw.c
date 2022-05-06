@@ -100,7 +100,7 @@ void func_802991D8(f32 arg0){
     D_8037C690 = mlNormalizeAngle(arg0);
 }
 
-void func_802991FC(void){
+void yaw_applyIdeal(void){
     D_8037C690 = D_8037C694;
 }
 

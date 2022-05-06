@@ -110,7 +110,7 @@ void func_802A8A40(void){
 
 void func_802A8AD8(void){
     func_80299650(func_80291684(3), func_80291670(3));
-    if(func_802933C0(0x10) &&(bs_getState() != BS_BTROT_EXIT)){
+    if(func_802933C0(0x10) &&(bs_getState() != BS_17_BTROT_EXIT)){
         func_802933FC(0x10);
         func_802917E4(3, func_80294A40());
         func_803219F4(4);
@@ -180,12 +180,12 @@ enum bs_e func_802A8D34(enum bs_e arg0){
     if(func_802933C0(1)) 
         return BS_23_FLY_ENTER;
 
-    return BS_BTROT_JUMP; 
+    return BS_8_BTROT_JUMP; 
 }
 
 enum bs_e func_802A8D84(enum bs_e arg0){
     if( func_8029B300(arg0) > 0)
-        arg0 = BS_BTROT_WALK;
+        arg0 = BS_16_BTROT_WALK;
 
     if(func_80294F78())
         arg0 = func_802926C0();
@@ -194,13 +194,13 @@ enum bs_e func_802A8D84(enum bs_e arg0){
         arg0 = BS_71_BTROT_FALL;
 
     if(func_802A8C60())
-        arg0 = BS_BTROT_EXIT;
+        arg0 = BS_17_BTROT_EXIT;
 
     if(button_pressed(BUTTON_A))
         arg0 = func_802A8D34(arg0);
 
     if(player_shouldSlideTrot())
-        arg0 = BS_BTROT_SLIDE;
+        arg0 = BS_45_BTROT_SLIDE;
 
     if(player_inWater())
         arg0 = BS_2D_SWIM_IDLE;
@@ -317,13 +317,13 @@ void bsbtrot_walk_update(void){
         sp1C = BS_71_BTROT_FALL;
 
     if(func_802A8C60())
-        sp1C = BS_BTROT_EXIT;
+        sp1C = BS_17_BTROT_EXIT;
 
     if(button_pressed(BUTTON_A))
         sp1C = func_802A8D34(sp1C);
 
     if(player_shouldSlideTrot())
-        sp1C = BS_BTROT_SLIDE;
+        sp1C = BS_45_BTROT_SLIDE;
 
     if(player_inWater())
         sp1C = BS_2D_SWIM_IDLE;
@@ -465,7 +465,7 @@ void bsbtrot_jump_update(void){
             sp2C = func_802A8D34(sp2C);
         
         if(player_shouldSlideTrot())
-            sp2C = BS_BTROT_SLIDE;
+            sp2C = BS_45_BTROT_SLIDE;
     }
 
     bs_setState(sp2C);
@@ -550,11 +550,11 @@ void bsbtrot_slide_end(void){
 
 int bsbtrot_inSet(s32 move_indx){
     return (move_indx == BS_15_BTROT_IDLE)
-    || (move_indx == BS_BTROT_WALK)
-    || (move_indx == BS_BTROT_JUMP)
-    || (move_indx == BS_BTROT_EXIT)
-    || (move_indx == BS_BTROT_SLIDE)
-    || (move_indx == BS_BTROT_ENTER)
+    || (move_indx == BS_16_BTROT_WALK)
+    || (move_indx == BS_8_BTROT_JUMP)
+    || (move_indx == BS_17_BTROT_EXIT)
+    || (move_indx == BS_45_BTROT_SLIDE)
+    || (move_indx == BS_14_BTROT_ENTER)
     || (move_indx == 0x79)
     || (move_indx == BS_BTROT_OW)
     || (move_indx == BS_71_BTROT_FALL)
@@ -665,7 +665,7 @@ void bsbtrot_fall_update(void){
             sp2C = func_802A8D34(sp2C);
 
         if(player_shouldSlideTrot())
-            sp2C = BS_BTROT_SLIDE;
+            sp2C = BS_45_BTROT_SLIDE;
     }
 
     bs_setState(sp2C);
@@ -712,7 +712,7 @@ void bsbtrot_ow_init(void){
     func_80294980(sp24);
     func_80257F18(sp24, sp30, &sp3C);
     yaw_setIdeal(mlNormalizeAngle(sp3C + 180.0f));\
-    func_802991FC();
+    yaw_applyIdeal();
     func_80297970(func_802987D4());
     func_8029797C(sp3C);
     func_802979AC(sp3C, func_80297A64());

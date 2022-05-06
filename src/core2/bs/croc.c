@@ -47,7 +47,7 @@ void func_802ABE04(void){
 void func_802ABE70(void){
     f32 sp1C = func_80291670(3);
     func_80299650(func_80291684(3), sp1C);
-    if(func_802933C0(0x10) && bs_getState() != BS_BTROT_EXIT){
+    if(func_802933C0(0x10) && bs_getState() != BS_17_BTROT_EXIT){
         func_802933FC(0x10);
         func_802917E4(3, func_80294A40());
         func_8025A6EC(COMUSIC_8A_GETTING_TURBO_TRAINERS, -1);
@@ -346,7 +346,7 @@ static void __bscroc_recoil_init(s32 damage){
     func_80294980(&sp20);
     func_80257F18(&sp20, &sp2C, &sp38);
     yaw_setIdeal(mlNormalizeAngle(sp38 + 180.0f));
-    func_802991FC();
+    yaw_applyIdeal();
     func_80297970(200.0f);
     func_8029797C(sp38);
     func_802979AC(sp38, func_80297A64());
@@ -431,7 +431,7 @@ void bscroc_die_init(void){
     func_80294980(&sp20);
     func_80257F18(&sp20, &sp2C, &sp38);
     yaw_setIdeal(mlNormalizeAngle(sp38 + 180.0f));
-    func_802991FC();
+    yaw_applyIdeal();
     D_8037D3E0 = 250.0f;
     func_80297970(D_8037D3E0);
     func_8029797C(sp38);

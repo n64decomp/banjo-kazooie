@@ -513,7 +513,7 @@ void func_802D2C24(s32 this, s32 gfx){
         return;
     func_80311480(func_8031FF74(BKPROG_84_MAGIC_ALL_GONE_TEXT, TRUE) ? 0xf5e: 0xf5d, 0xe, NULL, NULL, NULL, NULL);
     D_8037DDF1++;
-    func_8028FB88(1);
+    func_8028FB88(TRANSFORM_1_BANJO);
 }
 
 void func_802D2CB8(void){

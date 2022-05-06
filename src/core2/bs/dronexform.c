@@ -4,7 +4,7 @@
 
 extern void player_setYPosition(f32);
 extern void func_8024E3A8(f32 (*)[3], f32);
-extern void func_802991FC(void);
+extern void yaw_applyIdeal(void);
 extern void func_802978DC(int);
 extern f32 func_80257A44(f32, f32);
 extern f32 cosf(f32);
@@ -269,7 +269,7 @@ static void __bsdronexform_setState(int arg0){
             func_8030E6D4(SFX_147_GRUNTY_SPELL_ATTACK_2);
             if(D_8037D470.unk30 == 7 || D_8037D470.unk31 == 7){
                 yaw_setIdeal(yaw_get() + 180.0f);
-                func_802991FC();
+                yaw_applyIdeal();
             }
             func_8029A95C(func_80294A4C()); //set player transformation
             func_80291D04(); //update player model

@@ -3,8 +3,7 @@
 #include "variables.h"
 
 extern void func_8028E668(f32[3], f32, f32, f32);
-extern void func_8028F364(f32[3], f32, f32, s32, Actor**);
-extern void func_8028FA34(s32, Actor**);
+extern void func_8028FA34(s32, Actor*);
 extern  s32 func_802E0970(s32, f32, f32, f32, s32, s32, f32[3]);
 
 typedef struct {

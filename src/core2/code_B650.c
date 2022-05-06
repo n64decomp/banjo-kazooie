@@ -9,8 +9,8 @@ extern struct {
     u8 pad1[3];
     f32 unk4;
     f32 unk8[3];
-    void (*unk14)(s32);
-    s32 unk18;
+    void (*unk14)(ActorMarker *);
+    ActorMarker *unk18;
 }D_8037C160;
 
 /* .code */
@@ -32,7 +32,7 @@ enum bs_e func_80292630(void){
     return func_8029BD90();
 }
 
-enum bs_e func_80292658(f32 arg0[3], f32 arg1, void (*arg2)(s32), s32 arg3){
+enum bs_e func_80292658(f32 arg0[3], f32 arg1, void (*arg2)(ActorMarker *), ActorMarker *arg3){
     ml_vec3f_copy(D_8037C160.unk8, arg0);
     D_8037C160.unk4 = arg1;
     D_8037C160.unk14 = arg2;

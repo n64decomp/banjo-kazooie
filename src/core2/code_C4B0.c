@@ -57,7 +57,7 @@ void func_80293440(void){
      diff = mlAbsF(diff);
      if(1.0f < diff){
           yaw_setIdeal(sp28);
-          func_802991FC();
+          yaw_applyIdeal();
      }
 }
 

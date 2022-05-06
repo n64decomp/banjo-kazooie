@@ -55,11 +55,11 @@ enum hitbox_e func_8028DB14(ActorMarker *arg0){
                 return HITBOX_0_NONE;
             return __maybe(func_802A6510(),HITBOX_5_PECK);
             break;
-        case BS_WONDERWING_ENTER:
+        case BS_1A_WONDERWING_ENTER:
         case BS_1B_WONDERWING_IDLE:
-        case BS_WONDERWING_WALK:
-        case BS_WONDERWING_JUMP:
-        case BS_WONDERWING_EXIT:
+        case BS_1C_WONDERWING_WALK:
+        case BS_1D_WONDERWING_JUMP:
+        case BS_1E_WONDERWING_EXIT:
         case BS_A4_WONDERWING_DRONE:
         case BS_A5_WONDERWING_UNKA5://L8028DC98
             return HITBOX_6_WONDERWING;

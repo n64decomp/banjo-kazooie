@@ -5,7 +5,7 @@
 f32 func_8029B41C(void);
 void func_8029E3C0(s32, f32);
 void func_80299628(s32);
-void func_802991FC(void);
+void yaw_applyIdeal(void);
 void func_8029797C(f32);
 f32 func_80297A64(void);
 void func_802979AC(f32, f32);
@@ -322,7 +322,7 @@ void func_802A18E8(s32 arg0){
     func_80294980(sp20);
     func_80257F18(sp20, sp2C, &sp38);
     yaw_setIdeal(mlNormalizeAngle(sp38 + 180.0f));
-    func_802991FC();
+    yaw_applyIdeal();
     func_80297970(200.0f);
     func_8029797C(sp38);
     func_802979AC(sp38, func_80297A64());
@@ -412,7 +412,7 @@ void bsbeemain_die_init(void){
     func_80294980(sp20);
     func_80257F18(sp20, sp2C, &sp38);
     yaw_setIdeal(mlNormalizeAngle(sp38 + 180.0f));
-    func_802991FC();
+    yaw_applyIdeal();
     D_8037D2D0 = 250.f;
     func_80297970(D_8037D2D0);
     func_8029797C(sp38);

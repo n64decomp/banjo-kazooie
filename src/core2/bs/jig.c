@@ -9,7 +9,7 @@ extern u8 D_8037D4B2;
 extern ActorMarker *D_8037D4B4;
 
 int bsjig_inJiggyJig(enum bs_e state){
-    return state == BS_JIG_JIGGY;
+    return state == BS_44_JIG_JIGGY;
 }
 
 void bsjig_setJiggyMarkerPtr(ActorMarker * jiggyMarkerPtr){
@@ -72,7 +72,7 @@ void bsjig_jiggy_update(void){
 
     if(animctrl_isStopped(aCtrl)){
         if(D_8037D4B1)
-            sp1C =  BS_JIG_NOTEDOOR;
+            sp1C =  BS_34_JIG_NOTEDOOR;
         else
             sp1C =  BS_1_IDLE;
     }
@@ -101,14 +101,14 @@ void bsjig_jiggy_end(void){
     func_8029E070(0);
     func_80291548();
 
-    if(bs_getNextState() != BS_JIG_NOTEDOOR){
+    if(bs_getNextState() != BS_34_JIG_NOTEDOOR){
         func_8025A2FC(-1, 0xfa0);
         func_8024BD08(1);
     }
     func_8028D5F4();
     if( jiggyscore_total() == 100 
         && func_8031FF1C(BKPROG_FC_DEFEAT_GRUNTY) 
-        && bs_getNextState() != BS_JIG_NOTEDOOR
+        && bs_getNextState() != BS_34_JIG_NOTEDOOR
     ){
         func_8028F918(2);
         func_802E4078(MAP_95_CS_END_ALL_100, 0, 1);
@@ -160,7 +160,7 @@ void bsjig_notedoor_end(void){
 
 void bsjig_notedoor_init(void){
     AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
-    D_8037D4B2 = (bs_getPrevState() == BS_JIG_JIGGY);
+    D_8037D4B2 = (bs_getPrevState() == BS_44_JIG_JIGGY);
     func_802933FC(0x1A);
     animctrl_reset(aCtrl);
     animctrl_setIndex(aCtrl, 0x282);
@@ -170,7 +170,7 @@ void bsjig_notedoor_init(void){
     yaw_setIdeal(func_8029B41C());
     func_8029C7F4(1,1,3,2);
     func_80297970(0.0f);
-    if(bs_getPrevState() != BS_JIG_JIGGY){
+    if(bs_getPrevState() != BS_44_JIG_JIGGY){
         func_8024BD08(0);
         func_8025A2FC(0,0xfa0);
     }

@@ -40,12 +40,12 @@ f32 func_80291604(void){
     return D_8037C094;
 }
 
-void func_80291610(ActorMarker *this_marker){
-    func_8028F55C(1);
+void func_80291610(ActorMarker *this_marker, ActorMarker *other_marker){
+    func_8028F55C(1, other_marker);
 }
 
-void func_80291634(ActorMarker *this_marker){
-    func_8028F428(2);
+void func_80291634(ActorMarker *this_marker, ActorMarker *other_marker){
+    func_8028F428(2, other_marker);
 }
 
 void func_80291658(s32 arg0){ return; }

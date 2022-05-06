@@ -392,7 +392,7 @@ static void __bswalrus_recoil_init(s32 damage){
     func_80294980(&sp24);
     func_80257F18(&sp24, &sp30, &sp3C);
     yaw_setIdeal(mlNormalizeAngle(sp3C + 180.0f));
-    func_802991FC();
+    yaw_applyIdeal();
     func_80297970(func_802987D4());
     func_8029797C(sp3C);
     func_802979AC(sp3C, func_80297A64());
@@ -466,7 +466,7 @@ void bswalrus_die_init(void){
     func_80257F18(&sp20, &sp2C, &sp38);
     D_8037D5C4 = 250.0f;
     yaw_setIdeal(mlNormalizeAngle(sp38 + 180.0f));
-    func_802991FC();
+    yaw_applyIdeal();
     func_80297970(D_8037D5C4);
     func_8029797C(sp38);
     func_802979AC(sp38, func_80297A64());

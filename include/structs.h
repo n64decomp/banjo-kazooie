@@ -623,11 +623,6 @@ typedef struct{
 } struct56s;
 
 typedef struct{
-    u8 pad0[8];
-    s32 unk8;
-}struct57s;
-
-typedef struct{
     Mtx mtx_0;
     s32 size_40;
     s32 capacity_44;

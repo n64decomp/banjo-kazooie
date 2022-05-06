@@ -31,7 +31,7 @@ s32 func_802A6510(void){
 void bsbpeck_init(void){
     D_8037D377 = 0;
     switch(bs_getPrevState()){
-        case BS_BTROT_JUMP://L802A656C
+        case BS_8_BTROT_JUMP://L802A656C
             D_8037D377++;
             break;
         case BS_5_JUMP:

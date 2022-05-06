@@ -188,7 +188,7 @@ void func_802CDD78(Actor * this){
         case 8:
             sp50 = this->unk10_31 == 7;
             if(!sp50 || 0.8 < func_802877D8(this->animctrl)){//L802CE158
-                func_8028EF68(sp70);
+                player_getVelocity(sp70);
                 sp70[0] *= sp58*6.0f;
                 sp70[1] *= sp58*6.0f;
                 sp70[2] *= sp58*6.0f;

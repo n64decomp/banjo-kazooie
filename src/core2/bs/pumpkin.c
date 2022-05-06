@@ -320,7 +320,7 @@ void func_802B2C58(void) {
     sp38 = yaw_getIdeal();
     sp3C = ml_map_f(sp34, 0.0f, 2.3f, 0.0f, 45.0f);
     yaw_setIdeal(mlNormalizeAngle(sp38 + sp3C));
-    func_802991FC();
+    yaw_applyIdeal();
     func_802920FC(ml_map_f(sp34, 0.0f, 2.3f, 1.0f, 0.3f));
     ml_vec3f_copy(sp28, D_8037D4E8);
     sp28[1] = ml_map_f(sp34, 0.0f, 2.3f, D_8037D4E8[1], D_8037D4E8[1] - 50.0);
@@ -354,7 +354,7 @@ void func_802B2D80(s32 arg0) {
     func_80294980(sp20);
     func_80257F18(sp20, plyr_pos, &sp38);
     yaw_setIdeal(mlNormalizeAngle(sp38 + 180.0f));
-    func_802991FC();
+    yaw_applyIdeal();
     func_80297970(200.0f);
     func_8029797C(sp38);
     func_802979AC(sp38, func_80297A64());
@@ -443,7 +443,7 @@ void func_802B309C(void) {
     func_80257F18(sp20, plyr_pos, &sp38);
     D_8037D4F4 = 250.0f;
     yaw_setIdeal(mlNormalizeAngle(sp38 + 180.0f));
-    func_802991FC();
+    yaw_applyIdeal();
     func_80297970(D_8037D4F4);
     func_8029797C(sp38);
     func_802979AC(sp38, func_80297A64());

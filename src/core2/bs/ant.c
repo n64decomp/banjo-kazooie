@@ -297,7 +297,7 @@ static void __bsant_recoil_init(int take_damage){
     func_80294980(sp20);
     func_80257F18(sp20, sp2C, &sp38);
     yaw_setIdeal(mlNormalizeAngle(sp38 + 180.0f));
-    func_802991FC();
+    yaw_applyIdeal();
     func_80297970(200.0f);
     func_8029797C(sp38);
     func_802979AC(sp38, func_80297A64());
@@ -384,7 +384,7 @@ void bsant_die_init(void){
     func_80257F18(sp20, sp2C, &sp38);
     D_8037D290 = 250.0f;
     yaw_setIdeal(mlNormalizeAngle(sp38 + 180.0f));
-    func_802991FC();
+    yaw_applyIdeal();
     func_80297970(D_8037D290);
     func_8029797C(sp38);
     func_802979AC(sp38, func_80297A64());

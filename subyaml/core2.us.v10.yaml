@@ -529,7 +529,7 @@ segments:
   - [0xECF40, .rodata, code_39D0]
   - [0xECFE0, .rodata, code_47C0]
   - [0xED410, .rodata, code_6B30]
-  - [0xED500, bin, data_ED500]
+  - [0xED500, .rodata, code_7060]
   - [0xED630, .rodata, code_9450]
   - [0xED660, .rodata, code_9900]
   - [0xED670, .rodata, code_9BD0]

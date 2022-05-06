@@ -41,7 +41,7 @@ void func_802DC110(f32 *position, enum asset_e sprite_id) {
 bool func_802DC188(void) {
     f32 sp1C[3];
 
-    func_8028EF68(sp1C);
+    player_getVelocity(sp1C);
     if((sp1C[0] == 0.0) && (sp1C[1] == -1.0) && (sp1C[2] == 0.0)) {
         return FALSE;
     }
