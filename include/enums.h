@@ -1734,7 +1734,7 @@ enum bs_e
     BS_BTROT_JUMP = 0x8,
     BS_EGG_HEAD = 0x9,
     BS_EGG_ASS = 0xA,
-
+    BS_B_UNKOWN,
     BS_SKID = 0xC,
     BS_D_TIMEOUT = 0xD,
     BS_OW = 0xE,
