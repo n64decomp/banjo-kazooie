@@ -337,14 +337,3 @@ void func_8028F68C(s32 arg0, ActorMarker *marker){
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028FCC8.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028FCE8.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028FD30.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028FDC8.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028FEF0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028FFBC.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7060/func_8028FFF0.s")
-
