@@ -105,7 +105,6 @@ Actor *func_802C8FE4(s32 arg0, f32 position[3], Actor *arg2){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_41FB0/func_802C9334.s")
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_41FB0/func_802C937C.s")
 Actor *func_802C937C(s32 arg0, f32 position[3]){
     return func_802C8FE4(arg0, position, 0);
 }

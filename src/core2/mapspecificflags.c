@@ -4,11 +4,15 @@
 
 void mapSpecificFlags_set(s32 i, s32 val);
 
+/* .data */
+extern u32 D_80367000;
+
+/* .bss */
 extern u32 D_8037DDE0;
 extern u32 D_8037DDE4;
 extern u32 D_8037DDE8;
-extern u32 D_80367000;
 
+/* .code */
 u32 _mapSpecificFlags_calcCRC1(void){
     return D_80367000 ^ 0x1195E97;
 }
@@ -67,11 +71,19 @@ void mapSpecificFlags_setAll(u32 arg0){
     _mapSpecificFlags_updateCRCs();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/mapspecificflags/func_802CAEBC.s")
+s32 *func_802CAEBC(s32 arg0){
+    s32 *phi_v0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/mapspecificflags/func_802CAEF4.s")
+    phi_v0 = (s32*)malloc( (((arg0 + 0x1F)>>5) + 1)*sizeof(s32));
+    *phi_v0 = arg0;
+    return phi_v0;
+}
 
-void func_802CAF14(u32 *arg0, s32 arg1, bool arg2){
+void func_802CAEF4(s32 *arg0){
+    free(arg0);
+}
+
+void func_802CAF14(s32 *arg0, s32 arg1, bool arg2){
     if(arg2){
         arg0[(arg1 >> 5) + 1] |= 1 << (arg1 & (0x1F));
     }
@@ -80,9 +92,17 @@ void func_802CAF14(u32 *arg0, s32 arg1, bool arg2){
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/mapspecificflags/func_802CAF70.s")
+bool func_802CAF70(s32 *arg0, s32 arg1){
+    return (arg0[(arg1 >> 5) + 1] & (1 << (arg1 & 0x1F))) ? TRUE : FALSE;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/mapspecificflags/func_802CAFA8.s")
+void func_802CAFA8(s32 *arg0, bool arg1) {
+    s32 i;
+
+    for(i = 0; i < *arg0; i++){
+        func_802CAF14(arg0, i, arg1);
+    }
+}
 
 s32 mapSpecificFlags_validateCRC1(void){
     return _mapSpecificFlags_calcCRC1() == D_8037DDE0;
