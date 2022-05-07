@@ -347,7 +347,7 @@ $(GLOBAL_ASM_C_OBJS) : $(BUILD_DIR)/%.c.o : %.c | $(C_BUILD_DIRS)
 	@$(ASM_PROCESSOR) $(OPT_FLAGS) $< > $(BUILD_DIR)/$<
 	@$(CC) -32 $(CFLAGS) $(CPPFLAGS) $(INCLUDE_CFLAGS) $(OPT_FLAGS) $(MIPSBIT) -o $@ $(BUILD_DIR)/$<
 	@$(ASM_PROCESSOR) $(OPT_FLAGS) $< --post-process $@ \
-		--assembler "$(AS) $(ASFLAGS)" --asm-prelude $(ASM_PROCESSOR_DIR)/prelude.s
+		--assembler "$(AS) $(ASFLAGS)" --asm-prelude include/prelude.s
 
 # Split baserom
 $(BUILD_DIR)/SPLAT_TIMESTAMP: $(BASENAME).$(VERSION).yaml $(SYMBOL_ADDRS) | $(BUILD_DIR)
@@ -418,7 +418,7 @@ $(CORE2_DATA_CRC_C_OBJS) : $(BUILD_DIR)/%.o : % $(BUILD_DIR)/core2.data.crc | $(
 	@$(ASM_PROCESSOR) $(OPT_FLAGS) $< > $(BUILD_DIR)/$<
 	@$(CC) -32 $(CFLAGS) $(CPPFLAGS) $(INCLUDE_CFLAGS) $(OPT_FLAGS) $(MIPSBIT) $(shell cat $(BUILD_DIR)/core2.data.crc) -o $@ $(BUILD_DIR)/$<
 	@$(ASM_PROCESSOR) $(OPT_FLAGS) $< --post-process $@ \
-		--assembler "$(AS) $(ASFLAGS)" --asm-prelude $(ASM_PROCESSOR_DIR)/prelude.s
+		--assembler "$(AS) $(ASFLAGS)" --asm-prelude include/prelude.s
 
 # .elf -> .code
 $(OVERLAY_CODE_BINS) : $(BUILD_DIR)/%.code : $(BUILD_DIR)/%.elf
