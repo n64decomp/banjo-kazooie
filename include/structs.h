@@ -717,4 +717,9 @@ typedef struct struct_65_s{
     u8 pad24[0x4];
 }Struct65s;
 
+typedef struct struct_66_s{
+    u8 pad0[0x8];
+    s32 unk8;
+}Struct66s;
+
 #endif
