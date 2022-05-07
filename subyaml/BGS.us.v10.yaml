@@ -27,6 +27,7 @@ segments:
     type: code
     start: 0x00000000
     vram: 0x803863F0
+    # after: core2-data
     subsegments:
       - [0x0, c, ch/flibbit] #done
       - [0x15F0, c, done/ch/pinkegg]

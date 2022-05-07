@@ -19,7 +19,7 @@ CC      := ido/ido5.3_recomp/cc
 CPP     := cpp
 GCC     := $(CROSS)gcc
 AS      := $(CROSS)as
-LD      := $(CROSS)ld
+LD      := $(CROSS)ld -b elf32-tradbigmips
 OBJDUMP := $(CROSS)objdump
 OBJCOPY := $(CROSS)objcopy
 PYTHON  := python3
@@ -201,7 +201,7 @@ ASFLAGS        := -EB -mtune=vr4300 -march=vr4300 -mabi=32 -I include
 GCC_ASFLAGS    := -c -x assembler-with-cpp -mabi=32 -ffreestanding -mtune=vr4300 -march=vr4300 -mfix4300 -G 0 -O -mno-shared -fno-PIC -mno-abicalls
 LDFLAGS_COMMON := -T symbol_addrs.core1.$(VERSION).txt -T symbol_addrs.core2.$(VERSION).txt -T symbol_addrs.global.$(VERSION).txt -T undefined_syms.$(VERSION).txt -T undefined_syms.libultra.txt --no-check-sections --accept-unknown-input-arch
 LDFLAGS        := -T $(LD_SCRIPT) -Map $(ELF:.elf=.map) --no-check-sections --accept-unknown-input-arch -T undefined_syms.libultra.txt
-BINOFLAGS      := -I binary -O elf32-big
+BINOFLAGS      := -I binary -O elf32-tradbigmips
 
 ### Rules ###
 
@@ -277,12 +277,11 @@ verify-each: $(addprefix verify-,$(OVERLAYS))
 define overlay_rules
   # .o -> .elf (overlay)
   $(BUILD_DIR)/$(1).elf : $$($(1)_ALL_OBJS) $(1).ld
-	$(call print1,Linking elf:,$$@)
-	@$(LD) -T $(1).ld -Map $(BUILD_DIR)/$(1).map $$(LDFLAGS_COMMON) -T undefined_syms_auto.$(1).us.v10.txt -T undefined_funcs_auto.$(1).us.v10.txt -o $$@
+	$(LD) -T $(1).ld -R core2.elf --allow-multiple-definition -Map $(BUILD_DIR)/$(1).map $$(LDFLAGS_COMMON) -T undefined_syms_auto.$(1).us.v10.txt -T undefined_funcs_auto.$(1).us.v10.txt -o $$@
   # split overlay
   $(BUILD_DIR)/$(1)_SPLAT_TIMESTAMP : $(SUBYAML)/$(1).$(VERSION).yaml $(BUILD_DIR)/$(1).$(VERSION).bin $(SYMBOL_ADDRS)
 	$(call print1,Splitting bin:,$$<)
-	@$(SPLAT) --target $(BUILD_DIR)/$(1).$(VERSION).bin $(SUBYAML)/$(1).$(VERSION).yaml --basedir . > /dev/null
+	$(SPLAT) --target $(BUILD_DIR)/$(1).$(VERSION).bin $(SUBYAML)/$(1).$(VERSION).yaml --basedir .
 	@touch $$@
 	@touch $(1).ld
   # Dummy target to make sure extraction happens before compilation, mainly for extracted asm
@@ -319,7 +318,7 @@ $(OVERLAY_RZIP_OBJS) : $(BUILD_DIR)/$(BIN_ROOT)/%.$(VERSION).rzip.bin.o : $(BUIL
 	@$(OBJCOPY) $(BINOFLAGS) $< $@
 
 $(BUILD_DIR)/bk_boot.full: $(BUILD_DIR)/bk_boot.elf
-	@mips-linux-gnu-objcopy -O binary --only-section .boot_bk_boot $(BUILD_DIR)/bk_boot.elf $@
+	@mips-linux-gnu-objcopy -I elf32-tradbigmips -O binary --only-section .boot_bk_boot $(BUILD_DIR)/bk_boot.elf $@
 
 $(BUILD_DIR)/crc.bin : $(BUILD_DIR)/bk_boot.full $(BUILD_DIR)/core1.code $(BUILD_DIR)/core1.data $(BK_CRC)
 	@$(BK_CRC) $(BUILD_DIR)/bk_boot.full > $(BUILD_DIR)/crc.bin
@@ -424,16 +423,16 @@ $(CORE2_DATA_CRC_C_OBJS) : $(BUILD_DIR)/%.o : % $(BUILD_DIR)/core2.data.crc | $(
 # .elf -> .code
 $(OVERLAY_CODE_BINS) : $(BUILD_DIR)/%.code : $(BUILD_DIR)/%.elf
 	$(call print2,Converting overlay code:,$<,$@)
-	@$(OBJCOPY) -O binary --only-section .$*_code --only-section .$*_mips3 $< $@
+	@$(OBJCOPY) -I elf32-tradbigmips -O binary --only-section .$*_code --only-section .$*_mips3 $< $@
 
 # .elf -> .data
 $(OVERLAY_DATA_BINS) : $(BUILD_DIR)/%.data : $(BUILD_DIR)/%.elf
 	$(call print2,Converting overlay data:,$<,$@)
-	@$(OBJCOPY) -O binary --only-section .$*_data --only-section .*_data_* $< $@
+	@$(OBJCOPY) -I elf32-tradbigmips -O binary --only-section .$*_data --only-section .*_data_* $< $@
 
 # .elf -> .full
 $(BUILD_DIR)/%.full : $(BUILD_DIR)/%.elf
-	@$(OBJCOPY) -O binary $< $@
+	@$(OBJCOPY) -I elf32-tradbigmips -O binary $< $@
 
 # .data + .code -> .rzip.bin
 $(BUILD_DIR)/%.rzip.bin : $(BUILD_DIR)/%.code $(BUILD_DIR)/%.data $(BK_DEFLATE)
