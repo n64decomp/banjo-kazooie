@@ -16,8 +16,6 @@ extern void func_803529DC(s32);
 extern void func_80344D70(s32);
 extern void func_80352B20(s32);
 
-
-
 extern void (*func_80352614)(void);
 extern void (*func_8035261C)(void);
 extern void (*func_803526DC)(void);

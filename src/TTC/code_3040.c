@@ -8,7 +8,7 @@ extern s32 D_80276CB0;
 extern s32 D_8038C754;
 
 /* .bss */
-extern struct {
+struct {
     u8 pad0[4];
     s32 unk4;
     u8 pad8[4];

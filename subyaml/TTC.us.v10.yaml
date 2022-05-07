@@ -56,8 +56,9 @@ segments:
       - [0x000069A0, .rodata, code_26D0]
       - [0x000069E0, bin, ttc_data_69E0]
       - [0x00006A00, .rodata, ch/lockup]
-      - [0x6A30, bin, ttc_data_6A30] #- [0x00006A30, .rodata, code_35D0]
+      - [0x00006A30, .rodata, code_35D0] #- [0x6A30, bin, ttc_data_6A30] #
       - [0x00006A60, bin, data_6A60]
       - [0x000072B0, .rodata, ch/treasure]
-      #- [0x00007310, .bss, code_35D0]
+      - [0x7300, .bss, code_3040]
+      - [0x7300, .bss, code_35D0]
   - [0x00007300]
