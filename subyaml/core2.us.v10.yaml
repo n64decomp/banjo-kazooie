@@ -175,7 +175,7 @@ segments:
   - [0x400F0, c, code_400F0] #DONE
   - [0x40AA0, c, ch/jiggy]   #DONE
   - [0x41130, c, ch/jigsawdance] #DONE
-  - [0x41460, c, code_41460]
+  - [0x41460, c, code_41460]    #DONE
   - [0x41F30, c, code_41F30]    #DONE
   - [0x41FB0, c, code_41FB0]
   - [0x42CA0, c, ch/musicnote]  #DONE
