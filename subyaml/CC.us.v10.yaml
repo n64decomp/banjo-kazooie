@@ -3,7 +3,7 @@ options:
   find_file_boundaries: no
   compiler: "IDO"
   platform: n64
-  asm_endlabels: yes
+  asm_endlabels: no
   cpp_args:
     - "-Iinclude"
     - "-Iinclude/2.0L"
@@ -22,7 +22,7 @@ options:
   asset_path: bin
   build_path: build/us.v10
 segments:
-  - name: code
+  - name: CC-code
     dir: CC
     type: code
     start: 0x00000000
@@ -38,7 +38,7 @@ segments:
       - [0x1F70, c, code_1F70]
       - [0x3130, c, ch/sawblade] #Done
       - [0x3400, c, code_3400] #Done
-  - name: data
+  - name: CC-data
     dir: CC
     type: code
     start: 0x000036B0

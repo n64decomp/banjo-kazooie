@@ -3,7 +3,7 @@ options:
   find_file_boundaries: True
   compiler: "IDO"
   platform: n64
-  asm_endlabels: yes
+  asm_endlabels: no
   cpp_args:
     - "-Iinclude"
     - "-Iinclude/2.0L"

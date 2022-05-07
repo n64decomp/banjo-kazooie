@@ -3,7 +3,7 @@ options:
   find_file_boundaries: yes
   compiler: "IDO"
   platform: n64
-  asm_endlabels: yes
+  asm_endlabels: no
   cpp_args:
     - "-Iinclude"
     - "-Iinclude/2.0L"
@@ -22,7 +22,7 @@ options:
   asset_path: bin
   build_path: build/us.v10
 segments:
-  - name: code
+  - name: BGS-code
     dir: BGS
     type: code
     start: 0x00000000
@@ -44,7 +44,7 @@ segments:
       - [0x9750, c, code_9750] #DONE
       - [0x98C0, c, done/ch/bigalligator]
       - [0x9920, c, ch/leafboat] #DONE
-  - name: data
+  - name: BGS-data
     dir: BGS
     type: code
     start: 0x0000A2A0

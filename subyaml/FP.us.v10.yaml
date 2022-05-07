@@ -3,7 +3,7 @@ options:
   find_file_boundaries: yes
   compiler: "IDO"
   platform: n64
-  asm_endlabels: yes
+  asm_endlabels: no
   cpp_args:
     - "-Iinclude"
     - "-Iinclude/2.0L"
@@ -22,7 +22,7 @@ options:
   asset_path: bin
   build_path: build/us.v10
 segments:
-  - name: code
+  - name: FP-code
     dir: FP
     type: code
     start: 0x00000000
@@ -55,7 +55,7 @@ segments:
       - [0xA880, c, code_A880] #DONE
       - [0xABD0, c, code_ABD0] #DONE
       - [0xB4D0, c, code_B4D0] #DONE
-  - name: data
+  - name: FP-data
     dir: FP
     type: code
     start: 0x0000B600

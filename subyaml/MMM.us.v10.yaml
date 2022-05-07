@@ -3,7 +3,7 @@ options:
   find_file_boundaries: yes
   compiler: "IDO"
   platform: n64
-  asm_endlabels: yes
+  asm_endlabels: no
   cpp_args:
     - "-Iinclude"
     - "-Iinclude/2.0L"
@@ -22,7 +22,7 @@ options:
   asset_path: bin
   build_path: build/us.v10
 segments:
-  - name: code
+  - name: MMM-code
     dir: MMM
     type: code
     start: 0x00000000
@@ -39,7 +39,7 @@ segments:
       - [0x3420, c, code_3420] #DONE
       - [0x3D50, c, code_3D50]
       - [0x47D0, c, code_47D0]
-  - name: data
+  - name: MMM-data
     dir: MMM
     type: code
     start: 0x000055F0

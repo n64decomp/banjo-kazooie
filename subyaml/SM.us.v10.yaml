@@ -3,7 +3,7 @@ options:
   find_file_boundaries: yes
   compiler: "IDO"
   platform: n64
-  asm_endlabels: yes
+  asm_endlabels: no
   cpp_args:
     - "-Iinclude"
     - "-Iinclude/2.0L"
@@ -22,7 +22,7 @@ options:
   asset_path: bin
   build_path: build/us.v10
 segments:
-  - name: code
+  - name: SM-code
     dir: SM
     type: code
     start: 0x00000000
@@ -40,7 +40,7 @@ segments:
       - [0x4070, c, code_4070]
       - [0x44D0, c, code_44D0]
       - [0x46C0, c, code_46C0]
-  - name: data
+  - name: SM-data
     dir: SM
     type: code
     start: 0x000046D0

@@ -3,7 +3,7 @@ options:
   find_file_boundaries: yes
   compiler: "IDO"
   platform: n64
-  asm_endlabels: yes
+  asm_endlabels: no
   cpp_args:
     - "-Iinclude"
     - "-Iinclude/2.0L"
@@ -22,7 +22,7 @@ options:
   asset_path: bin
   build_path: build/us.v10
 segments:
-- name: code
+- name: core1-code
   dir: core1
   type: code
   start: 0x00000000
@@ -231,14 +231,14 @@ segments:
   - [0x34A80, c, done/io/epirawread]
   - [0x34AD0, c, done/os/setglobalintmask]
   - [0x34B20, c, done/os/yieldthread]
-- name: mips3
+- name: core1-mips3
   dir: core1
   type: code
   start: 0x34B70
   vram:  0x80272590
   subsegments:
   - [0x34B70, bin, data_34B70]
-- name: data
+- name: core1-data
   dir: core1
   type: code
   start: 0x000037BF0

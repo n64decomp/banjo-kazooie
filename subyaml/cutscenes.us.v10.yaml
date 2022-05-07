@@ -3,7 +3,7 @@ options:
   find_file_boundaries: yes
   compiler: "IDO"
   platform: n64
-  asm_endlabels: yes
+  asm_endlabels: no
   cpp_args:
     - "-Iinclude"
     - "-Iinclude/2.0L"
@@ -22,7 +22,7 @@ options:
   asset_path: bin
   build_path: build/us.v10
 segments:
-  - name: code
+  - name: cutscenes-code
     dir: cutscenes
     type: code
     start: 0x00000000
@@ -33,7 +33,7 @@ segments:
       - [0x6730, c, code_6730] #DONE
       - [0x69F0, c, code_69F0] #DONE
       - [0x6C90, c, code_6C90] #DONE
-  - name: data
+  - name: cutscenes-data
     dir: cutscenes
     type: code
     start: 0x00006F60

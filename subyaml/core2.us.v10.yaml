@@ -3,7 +3,7 @@ options:
   find_file_boundaries: yes
   compiler: "IDO"
   platform: n64
-  asm_endlabels: yes
+  asm_endlabels: no
   cpp_args:
     - "-Iinclude"
     - "-Iinclude/2.0L"
@@ -22,7 +22,7 @@ options:
   asset_path: bin
   build_path: build/us.v10
 segments:
-- name: code
+- name: core2-code
   dir: core2
   type: code
   start: 0x00000
@@ -390,7 +390,7 @@ segments:
   - [0xDB010, c, code_DB010] #DONE
   - [0xDC4B0, c, code_DC4B0] #DONE
 - type: code
-  name: data
+  name: core2-data
   dir: core2
   start: 0xDC600
   vram:  0x80363590

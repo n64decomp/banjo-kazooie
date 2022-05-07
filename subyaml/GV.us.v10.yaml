@@ -3,7 +3,7 @@ options:
   find_file_boundaries: yes
   compiler: "IDO"
   platform: n64
-  asm_endlabels: yes
+  asm_endlabels: no
   cpp_args:
     - "-Iinclude"
     - "-Iinclude/2.0L"
@@ -22,7 +22,7 @@ options:
   asset_path: bin
   build_path: build/us.v10
 segments:
-  - name: code
+  - name: GV-code
     dir: GV
     type: code
     start: 0x00000000
@@ -61,7 +61,7 @@ segments:
       - [0x9C10, c, code_9C10] #DONE
       - [0x9DB0, c, code_9DB0] #DONE
       - [0xA490, c, code_A490] #DONE
-  - name: data
+  - name: GV-data
     dir: GV
     type: code
     start: 0x0000A7E0

@@ -3,7 +3,7 @@ options:
   find_file_boundaries: yes
   compiler: "IDO"
   platform: n64
-  asm_endlabels: yes
+  asm_endlabels: no
   cpp_args:
     - "-Iinclude"
     - "-Iinclude/2.0L"
@@ -16,14 +16,14 @@ options:
   undefined_syms_path: undefined_syms.pal.txt
   symbol_addrs_path:   symbol_addrs.pal.txt
 segments:
-  - name: code
+  - name: FP-code
     dir: FP
     type: code
     start: 0x00000000
     vram: 0x80386DD0
     subsegments:
       - [0x00000000, asm]
-  - name: data
+  - name: FP-data
     dir: FP
     type: code
     start: 0x0000B600

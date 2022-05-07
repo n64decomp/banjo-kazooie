@@ -3,7 +3,7 @@ options:
   find_file_boundaries: yes
   compiler: "IDO"
   platform: n64
-  asm_endlabels: yes
+  asm_endlabels: no
   cpp_args:
     - "-Iinclude"
     - "-Iinclude/2.0L"
@@ -22,7 +22,7 @@ options:
   asset_path: bin
   build_path: build/us.v10
 segments:
-  - name: code
+  - name: TTC-code
     dir: TTC
     type: code
     start: 0x00000000
@@ -38,7 +38,7 @@ segments:
       - [0x35D0, c, code_35D0]
       - [0x3E30, c, code_3E30]
       - [0x5BD0, c, ch/treasure]
-  - name: data
+  - name: TTC-data
     dir: TTC
     type: code
     start: 0x00005FC0

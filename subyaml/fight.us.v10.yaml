@@ -3,7 +3,7 @@ options:
   find_file_boundaries: yes
   compiler: "IDO"
   platform: n64
-  asm_endlabels: yes
+  asm_endlabels: no
   cpp_args:
     - "-Iinclude"
     - "-Iinclude/2.0L"
@@ -22,7 +22,7 @@ options:
   asset_path: bin
   build_path: build/us.v10
 segments:
-  - name: code
+  - name: fight-code
     dir: fight
     type: code
     start: 0x00000000
@@ -39,7 +39,7 @@ segments:
       - [0x9850, c, code_9850] #DONE
       - [0x9D40, c, code_9D40]
       - [0xAED0, c, code_AED0] #DONE
-  - name: data
+  - name: fight-data
     dir: fight
     type: code
     start: 0x0000AF90

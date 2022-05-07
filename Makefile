@@ -110,6 +110,8 @@ C_OBJS            := $(addprefix $(BUILD_DIR)/,$(ALL_C_SRCS:.c=.c.o))
 GLOBAL_ASM_C_OBJS := $(addprefix $(BUILD_DIR)/,$(GLOBAL_ASM_C_SRCS:.c=.c.o))
 CORE2_CODE_CRC_C_OBJS := $(addprefix $(BUILD_DIR)/,$(CORE2_CODE_CRC_C_SRCS:.c=.c.o))
 CORE2_DATA_CRC_C_OBJS := $(addprefix $(BUILD_DIR)/,$(CORE2_DATA_CRC_C_SRCS:.c=.c.o))
+# TODO remove this when all files in GLOBAL_ASM_C_OBJS are matched
+GLOBAL_ASM_C_OBJS := $(filter-out $(CORE2_DATA_CRC_C_OBJS),$(GLOBAL_ASM_C_OBJS))
 C_DEPS            := $(C_OBJS:.o=.d)
 ASM_OBJS          := $(addprefix $(BUILD_DIR)/,$(ALL_ASM_SRCS:.s=.s.o) $(NEW_ASM_SRCS:.s=.s.o))
 BIN_OBJS          := $(addprefix $(BUILD_DIR)/,$(ALL_BINS:.bin=.bin.o) $(NEW_BINS:.bin=.bin.o))
@@ -250,7 +252,7 @@ $(OVERLAY_PROG_SVGS) : progress/progress_%.svg: progress/progress.%.csv
 
 $(OVERLAY_PROG_CSVS) : progress/progress.%.csv: $(BUILD_DIR)/%.elf
 	$(call print1,Calculating progress for:,$*)
-	@$(PROGRESS) . $(BUILD_DIR)/$*.elf .code --version $(VERSION) --subcode $* > $@
+	@$(PROGRESS) . $(BUILD_DIR)/$*.elf .$*_code --version $(VERSION) --subcode $* > $@
 
 $(MAIN_PROG_SVG): $(MAIN_PROG_CSV)
 	$(call print1,Creating progress svg for:,boot)
@@ -274,8 +276,8 @@ verify-each: $(addprefix verify-,$(OVERLAYS))
 # per-overlay rules
 define overlay_rules
   # .o -> .elf (overlay)
-  $(BUILD_DIR)/$(1).temp.elf : $$($(1)_ALL_OBJS) $(1).ld
-	$(call print1,Linking temp elf:,$$@)
+  $(BUILD_DIR)/$(1).elf : $$($(1)_ALL_OBJS) $(1).ld
+	$(call print1,Linking elf:,$$@)
 	@$(LD) -T $(1).ld -Map $(BUILD_DIR)/$(1).map $$(LDFLAGS_COMMON) -T undefined_syms_auto.$(1).us.v10.txt -T undefined_funcs_auto.$(1).us.v10.txt -o $$@
   # split overlay
   $(BUILD_DIR)/$(1)_SPLAT_TIMESTAMP : $(SUBYAML)/$(1).$(VERSION).yaml $(BUILD_DIR)/$(1).$(VERSION).bin $(SYMBOL_ADDRS)
@@ -332,7 +334,7 @@ $(CRC_OBJS) : $(BUILD_DIR)/crc.bin
 # .c -> .o
 $(BUILD_DIR)/%.c.o : %.c | $(C_BUILD_DIRS)
 	$(call print2,Compiling:,$<,$@)
-	$(CC) $(CFLAGS) $(CPPFLAGS) $(INCLUDE_CFLAGS) $(OPT_FLAGS) $(MIPSBIT) -o $@ $<
+	@$(CC) $(CFLAGS) $(CPPFLAGS) $(INCLUDE_CFLAGS) $(OPT_FLAGS) $(MIPSBIT) -o $@ $<
 
 # .c -> .o (mips3)
 $(MIPS3_OBJS) : $(BUILD_DIR)/%.c.o : %.c | $(C_BUILD_DIRS)
@@ -368,49 +370,66 @@ $(OVERLAY_BINS) : $(BUILD_DIR)/%.$(VERSION).bin : $(BIN_ROOT)/%.$(VERSION).rzip.
 	$(call print1,Decompressing rzip:,$<)
 	@$(BK_INFLATE) $< $@
 
-# .temp.elf -> .elf
-$(BUILD_DIR)/%.elf : $(BUILD_DIR)/%.temp.elf 
-	$(call print12,Copying .elf:,$@,$<)
-	$(CP) $< $@
-
-# .temp.elf -> .elf
+# Special rules to handle core2 code checksumming
 ifneq ($(CORE2_CODE_CRC_C_OBJS),)
-$(BUILD_DIR)/core2.elf : $(BUILD_DIR)/core2.code.crc $(core2_ALL_OBJS) core2.ld
-	$(call print1,Rebuilding CRC dependent objects:,$(CORE2_CODE_CRC_C_OBJS))
-	rm -f $(CORE2_CODE_CRC_C_OBJS)
-	$(eval NEW_FLAGS:=$(shell cat $<))
-	$(foreach obj, $(CORE2_CODE_CRC_C_OBJS), @$(MAKE) $(obj) IN_CFLAGS="$(NEW_FLAGS)")
+  CORE2_TEMP_LD := core2.temp.ld
+  CORE2_CODE_CRC_C_TEMP_OBJS := $(CORE2_CODE_CRC_C_OBJS:.c.o=.c.o_)
+  core2_NON_CRC_OBJS := $(filter-out $(CORE2_CODE_CRC_C_OBJS),$(core2_ALL_OBJS))
+  
+  # core2.ld -> core2.temp.ld
+ $(CORE2_TEMP_LD) : core2.ld
+	$(call print0,Creating linker script for initial core2 linking step)
+	@$(CP) $< $@
+	$(foreach obj, $(CORE2_CODE_CRC_C_OBJS), sed -i 's:$(obj):$(obj)_:g' $@)
+  
+  # core2 .c -> .o with zero for core2 code CRC
+  $(CORE2_CODE_CRC_C_TEMP_OBJS) : $(BUILD_DIR)/%.c.o_ : %.c | $(C_BUILD_DIRS)
+	$(call print2,Compiling temp file:,$<,$@)
+	@$(CC) $(CFLAGS) $(CPPFLAGS) $(INCLUDE_CFLAGS) $(OPT_FLAGS) $(MIPSBIT) -o $@ $<
+  
+  # core2 objects with zero for code CRC -> core2.temp.elf
+  $(BUILD_DIR)/core2.temp.elf : $(core2_NON_CRC_OBJS) $(CORE2_TEMP_LD) $(CORE2_CODE_CRC_C_TEMP_OBJS)
 	$(call print1,Linking elf:,$@)
-	@$(LD) -T core2.ld -Map $(BUILD_DIR)/core2.map $(LDFLAGS_COMMON) -T undefined_syms_auto.core2.us.v10.txt -T undefined_funcs_auto.core2.us.v10.txt -o $@
+	@$(LD) -T $(CORE2_TEMP_LD) -Map $(BUILD_DIR)/core2.map $(LDFLAGS_COMMON) -T undefined_syms_auto.core2.us.v10.txt -T undefined_funcs_auto.core2.us.v10.txt -o $@
+  
+  # core2.temp.elf -> core2.temp.code
+  $(BUILD_DIR)/core2.temp.code : $(BUILD_DIR)/core2.temp.elf
+	$(call print2,Converting initial core2 code:,$<,$@)
+	@$(OBJCOPY) -O binary --only-section .core2_code $< $@
+  
+  # core2 code -> core2 code crc
+  $(BUILD_DIR)/core2.code.crc : $(BUILD_DIR)/core2.temp.code $(BK_CRC)
+	$(call print0,Calculating core2 code CRC)
+	@$(BK_CRC) -D CORE2_CODE $< > $@
+  
+  # core2 .c -> .o with correct core2 code CRC
+  $(CORE2_CODE_CRC_C_OBJS) : $(BUILD_DIR)/%.c.o : %.c $(BUILD_DIR)/core2.code.crc | $(C_BUILD_DIRS)
+	$(call print2,Compiling:,$<,$@)
+	@$(CC) $(CFLAGS) $(CPPFLAGS) $(INCLUDE_CFLAGS) $(OPT_FLAGS) $(MIPSBIT) $(shell cat $(BUILD_DIR)/core2.code.crc) -o $@ $<
 endif
 
-ifneq ($(CORE2_DATA_CRC_C_OBJS),)
-$(BUILD_DIR)/core1.elf : $(BUILD_DIR)/core2.data.crc $(core1_ALL_OBJS) core1.ld
-	$(call print1,Rebuilding CRC dependent objects:,$(CORE2_DATA_CRC_C_OBJS))
-	rm -f $(CORE2_DATA_CRC_C_OBJS)
-	$(eval NEW_FLAGS:=$(shell cat $<))
-	$(foreach obj, $(CORE2_DATA_CRC_C_OBJS), @$(MAKE) $(obj) IN_CFLAGS="$(NEW_FLAGS)")
-	$(call print1,Linking elf:,$@)
-	@$(LD) -T core1.ld -Map $(BUILD_DIR)/core1.map $(LDFLAGS_COMMON) -T undefined_syms_auto.core1.us.v10.txt -T undefined_funcs_auto.core1.us.v10.txt -o $@
-endif
+# core2 data -> core2 data CRC
+$(BUILD_DIR)/core2.data.crc : $(BUILD_DIR)/core2.data $(BK_CRC)
+	$(call print0,Calculating core2 data CRC)
+	@$(BK_CRC) -D CORE2_DATA $< > $@
 
+# core1 .c -> .o with correct core2 data CRC
+$(CORE2_DATA_CRC_C_OBJS) : $(BUILD_DIR)/%.o : % $(BUILD_DIR)/core2.data.crc | $(C_BUILD_DIRS)
+	$(call print2,Compiling file with core2 data CRC (with ASM Processor):,$<,$@)
+	@$(ASM_PROCESSOR) $(OPT_FLAGS) $< > $(BUILD_DIR)/$<
+	@$(CC) -32 $(CFLAGS) $(CPPFLAGS) $(INCLUDE_CFLAGS) $(OPT_FLAGS) $(MIPSBIT) $(shell cat $(BUILD_DIR)/core2.data.crc) -o $@ $(BUILD_DIR)/$<
+	@$(ASM_PROCESSOR) $(OPT_FLAGS) $< --post-process $@ \
+		--assembler "$(AS) $(ASFLAGS)" --asm-prelude $(ASM_PROCESSOR_DIR)/prelude.s
 
 # .elf -> .code
-$(OVERLAY_CODE_BINS) : $(BUILD_DIR)/%.code : $(BUILD_DIR)/%.temp.elf
+$(OVERLAY_CODE_BINS) : $(BUILD_DIR)/%.code : $(BUILD_DIR)/%.elf
 	$(call print2,Converting overlay code:,$<,$@)
-	@$(OBJCOPY) -O binary --only-section .code --only-section .mips3 $< $@
+	@$(OBJCOPY) -O binary --only-section .$*_code --only-section .$*_mips3 $< $@
 
 # .elf -> .data
 $(OVERLAY_DATA_BINS) : $(BUILD_DIR)/%.data : $(BUILD_DIR)/%.elf
 	$(call print2,Converting overlay data:,$<,$@)
-	@$(OBJCOPY) -O binary --only-section .data --only-section .*_data_* $< $@
-
-# .code to
-$(BUILD_DIR)/core2.code.crc : $(BUILD_DIR)/core2.code $(BK_CRC)
-	$(BK_CRC) -D CORE2_CODE $< > $@
-
-$(BUILD_DIR)/core2.data.crc : $(BUILD_DIR)/core2.data $(BK_CRC)
-	$(BK_CRC) -D CORE2_DATA $< > $@
+	@$(OBJCOPY) -O binary --only-section .$*_data --only-section .*_data_* $< $@
 
 # .elf -> .full
 $(BUILD_DIR)/%.full : $(BUILD_DIR)/%.elf
@@ -556,6 +575,9 @@ build/us.v10/src/done/epirawdma.c.o: OPT_FLAGS := -O1
 
 # Disable implicit rules
 MAKEFLAGS += -r
+
+# Disable built-in rules
+.SUFFIXES:
 
 # Phony targets
 .PHONY: all clean verify $(OVERLAYS) progress $(addprefix progress-,$(OVERLAYS))

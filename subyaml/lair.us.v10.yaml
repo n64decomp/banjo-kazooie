@@ -3,7 +3,7 @@ options:
   find_file_boundaries: yes
   compiler: "IDO"
   platform: n64
-  asm_endlabels: yes
+  asm_endlabels: no
   cpp_args:
     - "-Iinclude"
     - "-Iinclude/2.0L"
@@ -22,7 +22,7 @@ options:
   asset_path: bin
   build_path: build/us.v10
 segments:
-  - name: code
+  - name: lair-code
     dir: lair
     type: code
     start: 0x00000000
@@ -42,7 +42,7 @@ segments:
       - [0xBBD0, c, code_BBD0]
       - [0xC1C0, c, code_C1C0]
       - [0xC6C0, c, code_C6C0]
-  - name: data
+  - name: lair-data
     dir: lair
     type: code
     start: 0x0000C8C0

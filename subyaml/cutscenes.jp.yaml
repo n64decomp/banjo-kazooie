@@ -3,7 +3,7 @@ options:
   find_file_boundaries: yes
   compiler: "IDO"
   platform: n64
-  asm_endlabels: yes
+  asm_endlabels: no
   cpp_args:
     - "-Iinclude"
     - "-Iinclude/2.0L"
@@ -16,14 +16,14 @@ options:
   undefined_syms_path: undefined_syms.jp.txt
   symbol_addrs_path:   symbol_addrs.jp.txt
 segments:
-  - name: code
+  - name: cutscenes-code
     dir: cutscenes
     type: code
     start: 0x00000000
     vram: 0x80386F40
     subsegments:
       - [0x00000000, asm]
-  - name: data
+  - name: cutscenes-data
     type: code
     start: 0x00006F60
     vram: 0x8038DEA0
