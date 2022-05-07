@@ -58,7 +58,6 @@ void func_802CB078(Actor *this) {
     }
 }
 
-
 void func_802CB140(Actor *this) {
     func_80328A84(this, 2U);
     func_802CB040(this);
