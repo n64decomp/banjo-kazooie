@@ -77,7 +77,6 @@ void func_802CB1A4(ActorMarker *marker, ActorMarker *other){
     }
 }
 
-
 void func_802CB22C(ActorMarker *marker, ActorMarker *other) {
     Actor *this;
 
