@@ -157,7 +157,7 @@ segments:
   - [0x38460, c, code_38460] #DONE
   - [0x38630, c, code_38630] #DONE
   - [0x388E0, c, code_388E0] #DONE
-  - [0x388E0, c, code_38AD0] #DONE
+  - [0x38AD0, c, code_38AD0] #DONE
   - [0x38F40, c, code_38F40] #DONE
   - [0x39190, c, code_39190] #DONE
   - [0x396B0, c, code_396B0] #DONE
@@ -185,7 +185,7 @@ segments:
   - [0x43800, c, code_43800]    #DONE
   - [0x43A40, c, code_43A40]    #DONE
   - [0x43CD0, c, mapspecificflags] #DONE
-  - [0x440B0, c, code_440B0]
+  - [0x440B0, c, code_440B0]    #DONE
   - [0x45310, c, code_45310]
   - [0x468E0, c, ch/code_468E0] #DONE
   - [0x46BC0, c, ch/jinjo]
@@ -202,6 +202,7 @@ segments:
   - [0x4FF10, c, ch/badShad] #DONE
   - [0x50490, c, code_50490] #DONE
   - [0x50750, c, ch/climbBase]
+  - [0x509D0, c, code_509D0]
   - [0x517A0, c, code_517A0] #DONE
   - [0x51950, c, code_51950] #DONE
   - [0x51C90, c, code_51C90] #DONE
@@ -441,6 +442,8 @@ segments:
   - [0xDFD40, bin, data_DFD40]
   - [0xDFF90, .data, code_43A40]
   - [0xE0070, bin, data_E0070]
+  - [0xE0080, .data, code_440B0]
+  - [0xE01A0, bin, data_E01A0]
   - [0xE01D0, .data, ch/code_468E0]
   - [0xE0220, bin, data_E0220]
   - [0xE0330, .data, ch/beehive]
@@ -627,6 +630,8 @@ segments:
   - [0xEF4C0, .rodata, ch/musicnote]
   - [0xEF4D0, .rodata, code_42CB0]
   - [0xEF4E0, bin, data_EF4E0]
+  - [0xEF500, .rodata, code_440B0]
+  - [0xEF550, bin, data_EF550]
   - [0xEF5D0, .rodata, ch/jinjo]
   - [0xEF5F0, bin, data_EF5F0] #part of ch/jinjo .rodata
   - [0xEF640, .rodata, ch/beehive]
@@ -638,7 +643,7 @@ segments:
   - [0xEFDB0, .rodata, ch/badShad]
   - [0xEFDC0, .rodata, code_50490]
   - [0xEFDD0, bin, data_EFDD0]
-  - [0xEFDF0, .rodata, ch/climbBase]
+  - [0xEFDF0, .rodata, code_509D0]
   - [0xEFE10, .rodata, code_517A0]
   - [0xEFE20, .rodata, code_51950]
   - [0xEFE30, .rodata, ch/mole]
