@@ -721,4 +721,5 @@ segments:
   - [0xF2AF0, .rodata, code_DA3A0]
   - [0xF2B00, .rodata, code_DA760]
   - [0xF2B20, .rodata, code_DB010]
+  # - [0xF2B20, .bss, ch/gameSelect]
 - [0xf2c00] # core2 end
