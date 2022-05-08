@@ -59,6 +59,12 @@ segments:
       - [0x00006A30, .rodata, code_35D0] #- [0x6A30, bin, ttc_data_6A30] #
       - [0x00006A60, bin, data_6A60]
       - [0x000072B0, .rodata, ch/treasure]
+  - name: TTC-bss
+    dir: TTC
+    type: code
+    start: 0x00007300
+    vram: 0x8038D6F0
+    subsegments:
       - [0x7300, .bss, code_3040]
       - [0x7300, .bss, code_35D0]
   - [0x00007300]
