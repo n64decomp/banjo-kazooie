@@ -12,7 +12,6 @@ extern bool func_80320DB0(f32[3], f32, f32[3], u32);
 
 typedef struct {
     u8 unk0;
-    // u8 pad1[0x3];
     f32 unk4;
     f32 unk8[3];
     f32 unk14;
@@ -506,7 +505,7 @@ void func_802CCC5C(Actor *this) {
                         this->position[1] = func_80309724(this->position);
                         func_80335924(this->unk148, 0x111, 0.1f, 1.0f);
                         func_80335A8C(this->unk148, 2);
-                        func_8030E624(0x997F701FU);
+                        func_8030E624(0x997F701F);
                         timed_playSfx(0.1f, SFX_66_BIRD_AUUGHH, 1.6f, 32000);
                     }
                 } else if (func_80335794(this->unk148) > 0) {
