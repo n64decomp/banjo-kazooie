@@ -186,7 +186,7 @@ segments:
   - [0x43A40, c, code_43A40]    #DONE
   - [0x43CD0, c, mapspecificflags] #DONE
   - [0x440B0, c, code_440B0]    #DONE
-  - [0x45310, c, code_45310]
+  - [0x45310, c, code_45310]    #DONE
   - [0x468E0, c, ch/code_468E0] #DONE
   - [0x46BC0, c, ch/jinjo]
   - [0x47850, c, ch/beehive] #DONE
@@ -631,7 +631,7 @@ segments:
   - [0xEF4D0, .rodata, code_42CB0]
   - [0xEF4E0, bin, data_EF4E0]
   - [0xEF500, .rodata, code_440B0]
-  - [0xEF550, bin, data_EF550]
+  - [0xEF550, .rodata, code_45310]
   - [0xEF5D0, .rodata, ch/jinjo]
   - [0xEF5F0, bin, data_EF5F0] #part of ch/jinjo .rodata
   - [0xEF640, .rodata, ch/beehive]
