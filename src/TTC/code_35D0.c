@@ -12,6 +12,11 @@ typedef struct {
 void func_80389E90(Actor *this);
 Actor *func_8038A0D0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 
+extern f32 D_8038C820[][3];
+extern f32 D_8038C868[];
+extern s32 D_8038C87C[];
+extern s32 D_8038C894[]; //enum actor_e
+
 extern u32 D_8037DCB4;
 
 /* .data */
@@ -51,36 +56,86 @@ struct42s D_8038C950 = {
     {{-60.0f, 0.0f, -60.0f}, {60.0f, 30.0f, 60.0f}},
 };
 
-#pragma GLOBAL_ASM("asm/nonmatchings/TTC/code_35D0/func_803899C0.s")
+/* .code */
+bool func_803899C0(void) {
+    enum comusic_e phi_a0;
+    s32 phi_a1;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/TTC/code_35D0/func_80389A1C.s")
+    if (player_getActiveHitbox(0) == HITBOX_1_BEAK_BUSTER) {
+        phi_a0 = COMUSIC_2B_DING_B;
+        phi_a1 = 28000;
+        if (D_8037DCB4 == 5) {
+            phi_a0 = COMUSIC_2D_PUZZLE_SOLVED_FANFARE;
+            phi_a1 = 0x7FFF;
+        }
+        func_8025A6EC(phi_a0, phi_a1);
+        return TRUE;
+    }
+    return FALSE;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/TTC/code_35D0/func_80389A9C.s")
+void func_80389A1C(void) {
+    Actor *actor;
+    ActorLocal_TreasureHunt *local;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/TTC/code_35D0/func_80389B38.s")
+    actor = func_8032813C(0x55, D_8038C820[D_8037DCB4], 0);
+    local = (ActorLocal_TreasureHunt *)&actor->local;
+    actor->yaw = D_8038C868[D_8037DCB4];
+    local->unk0 = D_8037DCB4;
+    actor->unk60 = 0.0f;
+    actor->state = 0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/TTC/code_35D0/func_80389BFC.s")
+void func_80389A9C(void) {
+    s32 temp_v0;
+    s8 temp_t5;
+    Actor *actor;
+    ActorLocal_TreasureHunt *local;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/TTC/code_35D0/func_80389C24.s")
+    temp_v0 = D_8037DCB4;
+    actor = func_8032813C(D_8038C894[D_8037DCB4], D_8038C820[D_8037DCB4 - 1], 0);
+    local = (ActorLocal_TreasureHunt *)&actor->local;
+    actor->yaw = D_8038C87C[D_8037DCB4];
+    local->unk0 = D_8037DCB4;
+    actor->unk60 = 0.0f;
+    actor->state = 0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/TTC/code_35D0/func_80389C4C.s")
+void func_80389B38(s32 arg0){
+    if(D_8037DCB4 == arg0 && func_803899C0()){
+        if(arg0 == 0 && !jiggyscore_isCollected(JIGGY_11_TTC_RED_X)){
+            func_80311480(0xA18, 4, NULL, NULL, NULL, NULL);
+        }
+        else if(arg0 == 4){
+            func_80311480(0xA19, 4, NULL, NULL, NULL, NULL);
+        }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/TTC/code_35D0/func_80389C74.s")
+        D_8037DCB4++;
+        func_802C3BF8(func_80389A9C);
+        func_802C3BF8(func_80389A1C);
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/TTC/code_35D0/func_80389C9C.s")
-// void func_80389C9C(ActorMarker *this, ActorMarker *arg1){
-//     func_80389B38(4);
-// }
+void func_80389BFC(ActorMarker *this, ActorMarker *arg1){\
+    func_80389B38(0);
+}
 
-#ifdef NONMATCHING //matches but requires BOTH .rodata and .bss defined
-#pragma GLOBAL_ASM("asm/nonmatchings/TTC/code_35D0/func_80389CC4.s")
+void func_80389C24(ActorMarker *this, ActorMarker *arg1){\
+    func_80389B38(1);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/TTC/code_35D0/func_80389E84.s")
+void func_80389C4C(ActorMarker *this, ActorMarker *arg1){\
+    func_80389B38(2);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/TTC/code_35D0/func_80389E90.s")
+void func_80389C74(ActorMarker *this, ActorMarker *arg1){\
+    func_80389B38(3);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/TTC/code_35D0/func_8038A0D0.s")
-#else
+void func_80389C9C(ActorMarker *this, ActorMarker *arg1){\
+    func_80389B38(4);
+}
+
 void func_80389CC4(s16 arg0[3], s32 arg1){
     static ParticleEmitter *D_8038D700;
     static f32 D_8038D708[3];
@@ -176,4 +231,3 @@ Actor *func_8038A0D0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     func_803391A4(gfx, mtx, sp40, sp4C, sp3C, NULL, func_80330B1C(marker));
     return actor;
 }
-#endif

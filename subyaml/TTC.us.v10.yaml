@@ -35,9 +35,9 @@ segments:
       - [0x2B80, c, code_2B80] #DONE
       - [0x3040, c, code_3040] #DONE
       - [0x30D0, c, ch/lockup] #DONE
-      - [0x35D0, c, code_35D0]
+      - [0x35D0, c, code_35D0] #DONE
       - [0x3E30, c, code_3E30]
-      - [0x5BD0, c, ch/treasure]
+      - [0x5BD0, c, ch/treasure] #DONE
   - name: TTC-data
     dir: TTC
     type: code
