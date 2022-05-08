@@ -149,7 +149,7 @@ void func_803117E8(void){
 }
 
 //gc_zoombox_init
-#if NONMATCHING
+#ifdef NONMATCHING
 //MATCHING, but needs .rodata
 void func_80311854(void){
     s32 i;
@@ -164,7 +164,7 @@ void func_80311854(void){
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/pauseMenu/func_80311854.s")
 #endif
 
-#if NONMATCHING
+#ifdef NONMATCHING
 //MATCHING, but needs .rodata
 void func_80311954(void){
     s32 i;
@@ -304,7 +304,7 @@ void func_80311F20(s32 *dst){
     *dst = honeycombscore_get_total(); //honeycomb_total
 }
 
-#if NONMATCHING
+#ifdef NONMATCHING
 //MATCHING NEEDS .data defined
 void func_80311F48(void){
     s32 val;
@@ -336,7 +336,7 @@ void func_80311F48(void){
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/pauseMenu/func_80311F48.s")
 #endif
 
-#if NONMATCHING
+#ifdef NONMATCHING
 //MATCHING but need .rodata
 s32 func_80312034(s32 arg0){
     switch (arg0)
@@ -378,7 +378,7 @@ void func_8031209C(struct1As *arg0, s32 arg1){
     }
 }
 
-#if NONMATCHING
+#ifdef NONMATCHING
 void func_803120FC(s32 arg0){
     s32 i;
     int _t;
@@ -618,7 +618,7 @@ func_80312F88(s32 arg0){
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/pauseMenu/func_80313134.s")
 
 
-#if NONMATCHING
+#ifdef NONMATCHING
 s32 func_80313380(void){
     s32 temp;
     s32 sp6C[6];

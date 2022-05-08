@@ -127,7 +127,7 @@ void func_8030F410(Gfx **arg0, Mtx **arg1, s32 arg2){
     }
 }
 
-#if NONMATCHING
+#ifdef NONMATCHING
 void func_8030F488(s32 arg0){
     s32 i;
     s32 j;
@@ -216,7 +216,7 @@ void func_8030F754(s32, s32);
 
 //parses text asset into seperate strings
 void func_80310574(s32 text_id);
-#if NONMATCHING
+#ifdef NONMATCHING
 void func_80310574(s32 text_id){
     s32 i;
     s32 j;
@@ -563,7 +563,7 @@ int func_803114C4(void){
     return D_80382E20.unk130;
 }
 
-#if NONMATCHING
+#ifdef NONMATCHING
 void func_803114D0(void){
     s32 i;
 

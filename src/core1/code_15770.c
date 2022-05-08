@@ -42,7 +42,7 @@ int func_8025340C(void){
 
 void func_80253420(void){}
 
-#if NONMATCHING
+#ifdef NONMATCHING
 void func_80253428(int arg0){
     s32 i;
 
