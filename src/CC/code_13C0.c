@@ -1,6 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "CC.h"
 
 typedef struct{
     void (*unk0)(s32 arg0);

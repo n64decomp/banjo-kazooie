@@ -1,6 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "CC.h"
 
 extern void func_8034E78C(void *, s32, f32);
 
