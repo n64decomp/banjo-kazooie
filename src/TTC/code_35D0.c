@@ -12,15 +12,29 @@ typedef struct {
 void func_80389E90(Actor *this);
 Actor *func_8038A0D0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 
-extern f32 D_8038C820[][3];
-extern f32 D_8038C868[];
-extern s32 D_8038C87C[];
-extern s32 D_8038C894[]; //enum actor_e
-
 extern u32 D_8037DCB4;
 
 /* .data */
-//64C0
+f32 D_8038C820[6][3] = {
+    {2904.0f, 2458.0f, -7351.0f},
+    {-7007.0f, 2013.0f, 401.0f},
+    {-3388.0f, 1519.0f, 5939.0f},
+    {1399.0f, 1519.0f, 6126.0f},
+    {5953.0f, 1819.0f, 56.0f}, 
+    {7667.0f, 717.0f, 1676.0f}
+};
+
+f32 D_8038C868[6] = { 300.0f, 180.0f, 220.0f, 270.0f, 330.0f, 255.0f};
+s32 D_8038C880[6] = {0x6E, 0xD2, 0x10E, 0x145, 0x14A, 0};
+s32 D_8038C898[6] = {
+    ACTOR_53_RED_ARROW,
+    ACTOR_53_RED_ARROW,
+    ACTOR_53_RED_ARROW,
+    ACTOR_53_RED_ARROW,
+    ACTOR_54_RED_QUESTION_MARK,
+    0x46
+}; //enum actor_e
+
 ActorInfo D_8038C8B0 = {
     MARKER_62_RED_ARROW, ACTOR_53_RED_ARROW, ASSET_3E9_MODEL_RED_ARROW, 
     0, NULL, 
@@ -87,15 +101,13 @@ void func_80389A1C(void) {
 }
 
 void func_80389A9C(void) {
-    s32 temp_v0;
-    s8 temp_t5;
     Actor *actor;
     ActorLocal_TreasureHunt *local;
+    s32 actor_id;
 
-    temp_v0 = D_8037DCB4;
-    actor = func_8032813C(D_8038C894[D_8037DCB4], D_8038C820[D_8037DCB4 - 1], 0);
+    actor = func_8032813C((D_8038C898 - 1)[D_8037DCB4], D_8038C820[D_8037DCB4 - 1], 0);
     local = (ActorLocal_TreasureHunt *)&actor->local;
-    actor->yaw = D_8038C87C[D_8037DCB4];
+    actor->yaw = D_8038C880[D_8037DCB4 - 1];
     local->unk0 = D_8037DCB4;
     actor->unk60 = 0.0f;
     actor->state = 0;

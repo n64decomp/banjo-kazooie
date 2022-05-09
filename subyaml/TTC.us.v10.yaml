@@ -46,8 +46,7 @@ segments:
     subsegments:
       - [0x00005FC0, bin, ttc_data_5FC0]
       - [0x00006370, .data, ch/lockup]
-      - [0x00006430, bin, ttc_data_6430]
-      - [0x000064C0, .data, code_35D0]
+      - [0x00006430, .data, code_35D0]
       - [0x00006590, bin, ttc_data_6590]
       - [0x000068A0, .data, ch/treasure]
       - [0x000068F0, .rodata, code_0]
