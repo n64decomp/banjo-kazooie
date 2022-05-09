@@ -560,4 +560,7 @@ extern void func_802F3BF4(s16[3]);
 extern void actor_collisionOn(Actor *);
 extern void func_80328AC8(Actor *, s32);
 
+void func_80351A04(Struct_core2_C9F00_0 *arg0, s32 arg1);
+void func_80351A14(Struct_core2_C9F00_0 *arg0, s32 arg1);
+
 #endif

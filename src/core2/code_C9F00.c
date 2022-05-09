@@ -2,13 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-typedef struct {
-    u8 pad8[0x8];
-    s32 unk8;
-    u8 pad24[0x24];
-    u8 unk30;
-} Struct_core2_C9F00_0;
-
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C9F00/func_80350E90.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C9F00/func_80350F7C.s")
@@ -35,15 +28,25 @@ typedef struct {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C9F00/func_80351794.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C9F00/func_8035179C.s")
+void func_8035179C(Struct_core2_C9F00_0* arg0, f32 arg1[3]) {
+    arg1[0] = arg0->unk14;
+    arg1[1] = arg0->unk18;
+    arg1[2] = arg0->unk1C;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C9F00/func_803517B8.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C9F00/func_803517E8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C9F00/func_80351814.s")
+void func_80351814(Struct_core2_C9F00_0 *arg0, f32 arg1[3]) {
+    arg1[0] = arg0->unk20;
+    arg1[1] = arg0->unk24;
+    arg1[2] = arg0->unk28;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C9F00/func_80351830.s")
+f32 func_80351830(Struct_core2_C9F00_0 *arg0) {
+    return arg0->unk2C;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C9F00/func_80351838.s")
 
@@ -57,12 +60,10 @@ typedef struct {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C9F00/func_80351998.s")
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C9F00/func_80351A04.s")
 void func_80351A04(Struct_core2_C9F00_0 *arg0, s32 arg1) {
     arg0->unk30 = (u8)(arg0->unk30 | arg1);
 }
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C9F00/func_80351A14.s")
 void func_80351A14(Struct_core2_C9F00_0 *arg0, s32 arg1) {
     arg0->unk8 = arg1;
 }

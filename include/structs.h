@@ -722,4 +722,18 @@ typedef struct struct_66_s{
     s32 unk8;
 }Struct66s;
 
+typedef struct {
+    u8 pad8[0x8];
+    s32 unk8;
+    u8 pad8_2[0x8];
+	f32 unk14;
+	f32 unk18;
+	f32 unk1C;
+	f32 unk20;
+	f32 unk24;
+	f32 unk28;
+	f32 unk2C;
+    u8 unk30;
+} Struct_core2_C9F00_0;
+
 #endif
