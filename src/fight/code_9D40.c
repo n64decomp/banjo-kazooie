@@ -48,6 +48,8 @@ extern ActorInfo D_80392018 = {
     {0, 0}, 0, 1.0f, {0,0,0,0}
 };
 
+extern s32 D_8039203C;
+extern s32 D_80392060;
 /*                                              00 00 00 DC
 0000 BC50: 00 00 00 96 00 00 00 82  00 00 00 B4 00 00 00 D2
 0000 BC60: 00 00 00 AA 00 00 00 C8  00 00 00 96 00 00 00 B4 */
@@ -83,6 +85,8 @@ extern f32 D_803926F8;
 extern f64 D_80392700;
 extern f64 D_80392708;
 extern f32 D_80392710;
+
+extern f32 D_80392718;
     /* 
 0000 C2B0: 3D CC CC CD 3E CC CC CD  4C BE BC 20 00 00 00 00
 0000 C2C0: 3F D9 99 99 99 99 99 9A  44 7F C0 00 00 00 00 00
@@ -97,7 +101,8 @@ extern f32 D_80392710;
 
 /* .bss */
 extern f32 D_80392720;
-extern s32 D_80392920;
+extern f32 D_80392724;
+extern vec3f D_80392920;
 
 /* .code */
 void func_80390130(f32 position[3], int count, enum asset_e sprite_id){
@@ -408,7 +413,45 @@ void func_8039049C(Actor *this){
 }
 #endif
 
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/fight/code_9D40/func_80391070.s")
+#else
+void func_80391070(ActorMarker *marker, s32 arg1, s32 arg2) {
+    ActorLocal_fight_9850 *local;
+    s32 sp28;
+    Actor *temp_s0;
+    Actor *temp_v0;
+    f32 *temp_v0_2;
+
+    temp_s0 = temp_v0 = marker_getActor(marker);
+    local = (ActorLocal_fight_9850 *)&temp_v0 + 0x7C;
+    temp_v0_2 = sp28 + &D_8039203C;
+    sp28 = arg1 * 4;
+
+    //func_8025A6EC(JINGLE_MENACING_GRUNTILDA_A, 20000);
+    func_8025A6EC((sp28 + 0x8039205C), 20000);
+
+    func_80390318(temp_s0, arg1);
+    func_8030E8B4(0x7FFF401B, temp_s0->position, 0x196403E8);
+    temp_s0->velocity[2] = 0.0f;
+    temp_s0->velocity[1] = 0.0f;
+    temp_s0->velocity[0] = 0.0f;
+    
+    temp_s0->yaw = *temp_v0_2 - 4;
+    if (arg2 != 0) {
+        temp_s0->yaw = (f32) (temp_s0->yaw + 180.0f);
+    }
+    local->unk24 = arg1;
+    animctrl_setSmoothTransition(temp_s0->animctrl, 1);
+    actor_playAnimationOnce(temp_s0);
+    if ((u32) temp_v0_2 >= (u32) &D_80392060) {
+        func_80328B8C(temp_s0, 9, 0.001f, 1);
+        return;
+    }
+    func_80328B8C(temp_s0, 8, 0.001f, 1);
+    animctrl_setDuration(temp_s0->animctrl, (f32) (1.75 - D_80392718 * local->unk24));
+}
+#endif
 
 void func_803911F8(ActorMarker *marker){
     Actor *actor = marker_getActor(marker);
@@ -420,11 +463,24 @@ f32 func_80391234(void){
     return D_80392720;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/fight/code_9D40/func_80391240.s")
+f32 func_80391240(void){
+    return 2.0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/fight/code_9D40/func_80391250.s")
+f32 func_80391250(void){
+    return D_80392724;
+}
 
+s32 func_8039125C(ActorMarker *marker){
+    u32 state = (u32) (marker_getActor(marker))->state;
+    if (state == 0x7 || state == 0xC) {
+        return 1;
+    }
+    return 0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/fight/code_9D40/func_8039125C.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/fight/code_9D40/func_8039129C.s")
+void func_8039129C(vec3f *arg0) {
+    arg0->x = (f32) D_80392920.x;
+    arg0->y = (f32) D_80392920.y;
+    arg0->z = (f32) D_80392920.z;
+}
