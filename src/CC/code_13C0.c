@@ -1,6 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "CC.h"
 
 typedef struct{
     void (*unk0)(s32 arg0);
@@ -12,9 +13,9 @@ typedef struct{
 }Struct_CC_13C0_0;
 
 typedef struct{
-    u8 pad0[0x4];
+    s32 unk0;
     s32 unk4;
-    u8 pad8[0x4];
+    s32 unk8;
     f32 unkC;
 }Struct_CC_13C0_1;
 
@@ -42,25 +43,54 @@ void func_803877B0(Struct_CC_13C0_1* arg0, void* arg1, f32 arg2[3], f32 arg3[3],
     func_803391A4(gfx, mtx, arg2, arg3, arg4, NULL, arg5);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/CC/code_13C0/func_803878AC.s")
+void func_803878AC(Struct_CC_13C0_1 *arg0, Struct_core2_C9F00_0 *arg1, s32 arg2) {
+    arg0->unk4 = arg2;
+    arg0->unkC = 0.0f;
+    if ((arg2 == 2) || (arg2 == 3)) {
+        func_80351A04(arg1, 1);
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/CC/code_13C0/func_803878F0.s")
+void func_803878F0(Struct_CC_13C0_1 *arg0, Struct_core2_C9F00_0 *arg1, s32 arg2) {
+    arg0->unk0 = arg2;
+    arg0->unk4 = 0;
+    arg0->unk8 = 0;
+    arg0 = arg0;
+    func_80351A14(arg1, (s32) func_803877B0);
+    func_803878AC(arg0, arg1, 0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/CC/code_13C0/func_80387940.s")
+void func_80387940(Struct_CC_13C0_1 *arg0, Struct_core2_C9F00_0 *arg1) {
+    func_803878F0(arg0, arg1, 1);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/CC/code_13C0/func_80387960.s")
+void func_80387960(Struct_CC_13C0_1 *arg0, Struct_core2_C9F00_0 *arg1) {
+    func_803878F0(arg0, arg1, 2);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/CC/code_13C0/func_80387980.s")
+void func_80387980(Struct_CC_13C0_1 *arg0, Struct_core2_C9F00_0 *arg1) {
+    func_803878F0(arg0, arg1, 3);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/CC/code_13C0/func_803879A0.s")
+void func_803879A0(Struct_CC_13C0_1 *arg0, Struct_core2_C9F00_0 *arg1) {
+    func_803878F0(arg0, arg1, 4);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/CC/code_13C0/func_803879C0.s")
+void func_803879C0(Struct_CC_13C0_1 *arg0, Struct_core2_C9F00_0 *arg1) {
+    func_803878F0(arg0, arg1, 5);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/CC/code_13C0/func_803879E0.s")
+void func_803879E0(Struct_CC_13C0_1 *arg0, Struct_core2_C9F00_0 *arg1) {
+    func_803878F0(arg0, arg1, 6);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/CC/code_13C0/func_80387A00.s")
+void func_80387A00(Struct_CC_13C0_1 *arg0, Struct_core2_C9F00_0 *arg1) {
+    func_803878F0(arg0, arg1, 7);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/CC/code_13C0/func_80387A20.s")
+void func_80387A20(Struct_CC_13C0_1 *arg0, Struct_core2_C9F00_0 *arg1) {
+    func_803878F0(arg0, arg1, 8);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/CC/code_13C0/func_80387A40.s")
 
