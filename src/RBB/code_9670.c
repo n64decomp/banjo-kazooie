@@ -14,7 +14,7 @@ ActorInfo D_80390E00 = {
 };
 
 /* .bss */
-extern u8 D_803912B0;
+u8 D_803912B0;
 
 /* .code */
 void func_8038FA60(ActorMarker *marker){

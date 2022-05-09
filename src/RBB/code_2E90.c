@@ -119,15 +119,12 @@ void func_803892D8(Actor *this, s32 arg1){
     }
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/RBB/code_2E90/func_8038944C.s")
-#else
 void func_8038944C(Actor *this){
     ActorLocal_RBB_2E90 *local = (ActorLocal_RBB_2E90 *)&this->local;
     f32 tick;
+    int i;
     f32 sp50[3];
     f32 sp44[3];
-    int i;
 
     tick = time_getDelta();
 
@@ -137,13 +134,13 @@ void func_8038944C(Actor *this){
         local->unkC = func_80389280(this);
         if(this->state == 0){
             ml_vec3f_copy(&this->position, &local->unkC->unk4);
-        }
-        local->unk0[0]  = local->unk0[1]  = local->unk0[2]  = 0.0f;
-        local->unk10[0] = local->unk10[1] = local->unk10[2] = 0.0f;
-        local->unk1C[0] = local->unk1C[1] = local->unk1C[2] = 0.0f;
+            local->unk0[0]  = local->unk0[1]  = local->unk0[2]  = 0.0f;
+            local->unk10[0] = local->unk10[1] = local->unk10[2] = 0.0f;
+            local->unk1C[0] = local->unk1C[1] = local->unk1C[2] = 0.0f;
 
-        local->unk28 = 0.0f;
-        func_803892D8(this, 1);
+            local->unk28 = 0.0f;
+            func_803892D8(this, 1);
+        }
     }//L80389508
 
     if(func_8025773C(&local->unk28, tick)){
@@ -199,5 +196,5 @@ void func_8038944C(Actor *this){
     if(this->state == 1 && mapSpecificFlags_get(0)){
         func_803892D8(this, 2);
     }
+    if(tick);
 }
-#endif

@@ -107,4 +107,15 @@ segments:
       - [0x0000ADB0, .rodata, code_7FD0]
       - [0x0000AE00, .rodata, code_8520]
       - [0x0000AE70, .rodata, code_9670]
+  - name: RBB-bss
+    dir: RBB
+    type: code
+    start: 0x0000AE80
+    vram: 0x80391270
+    subsegments:
+      - [0xAE80, .bss, code_5F80]
+      - [0xAE80, .bss, code_8520]
+      - [0xAE80, .bss, code_8520]
+      - [0xAE80, .bss, code_9670]
+      - [0xAE80, .bss, code_99F0]
   - [0x0000AE80]

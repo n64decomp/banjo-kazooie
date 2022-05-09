@@ -88,8 +88,10 @@ struct43s D_80390CA8 = {
 };
 
 /* .bss */
-extern u8 D_80391280;
-extern f32 D_80391288[3];
+s32 pad_80391270[4];
+u8 D_80391280;
+s32 pad_80391284;
+f32 D_80391288[3];
 
 /* .code */
 void func_8038C370(ActorMarker *marker, s32 arg1){

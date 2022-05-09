@@ -3,17 +3,15 @@
 #include "variables.h"
 
 
+s32 pad_803912C0[2];
 u8 D_803912C8;
-/* static */f32 D_803912CC;
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/RBB/code_99F0/func_8038FDE0.s")
-#else
-/*NEEDS static D_803912CC needs .bss defined*/
-void func_8038FDE0(s32 arg0){
+void func_8038FDE0(s32 arg0){  
+    static f32 D_803912CC;  
+
     D_803912CC = 0.0f;
-    
-    if(arg0 == 1)  D_803912CC = 6.5f;
+    if(arg0 == 1)
+        D_803912CC = 6.5f;
 
     if(arg0 == 2){
         item_set(ITEM_3_PROPELLOR_TIMER, 0xf3b);
@@ -34,7 +32,6 @@ void func_8038FDE0(s32 arg0){
     }//L8038FED4
     D_803912C8 = arg0;
 }
-#endif
 
 void func_8038FEE8(void){
     if(D_803912C8 == 2)
@@ -52,6 +49,8 @@ void func_8038FF40(void){
 }
 
 void func_8038FF70(void){
+    extern static f32 D_803912CC;  
+
     if( D_803912C8 == 0)
         if(levelSpecificFlags_get(0x27) && levelSpecificFlags_get(0x28))
             func_8038FDE0(1);

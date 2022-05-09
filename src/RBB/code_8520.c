@@ -49,7 +49,7 @@ s32 D_80390DEC[4] = {0,0,0,0};
 
 
 /* .bss */
-extern f32 D_803912A0[3];
+f32 D_803912A0[3];
 
 /* .code */
 void func_8038E910(Actor *this){
