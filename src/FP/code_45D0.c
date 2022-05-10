@@ -2,14 +2,16 @@
 #include "functions.h"
 #include "variables.h"
 
-struct {
+typedef struct {
     u8  unk0;
     // u8 pad1[3];
     s32 unk4;
     s32 unk8;
     f32 spawn_pos[3];
     u8  unk18;
-}D_80392F50;
+} Struct_FP_45D0_0;
+
+extern Struct_FP_45D0_0 D_80392F50;
 
 /* .code */
 void func_8038A9C0(void){
@@ -34,7 +36,7 @@ void func_8038AA58(void){}
 #ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/FP/code_45D0/func_8038AA60.s")
 #else
-s32 func_8038AA60(void){
+void func_8038AA60(void){
     switch(D_80392F50.unk0){
         case 0:
             break;
