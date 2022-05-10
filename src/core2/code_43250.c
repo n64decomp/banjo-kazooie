@@ -145,13 +145,13 @@ extern Struct_Core2_43250_0 D_80366E64[] = {
     {&D_80366DD0, 0x25, {00, 00}},
 };
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_43250/func_802CA1E0.s")
-#else
+/* .code */
 void func_802CA1E0(Actor *this){
     s32 tmp_v1;
     Struct_Core2_43250_1 *tmp_v0;
-    f32 tmp_f0;
+    s32 phi_a0;
+    f32 tmp_f4;
+    s32 phi_a2;
 
     if(!this->unk16C_4){
         this->unk16C_4 = TRUE;
@@ -162,10 +162,12 @@ void func_802CA1E0(Actor *this){
     }
     if(func_8025AEEC() && this->unk154){
         tmp_v0 = (Struct_Core2_43250_1 *)this->unk154 + reinterpret_cast(s32, this->unkBC[0]);
-        func_8030E6A4(tmp_v0->unk0, tmp_v0->unk2*0.0078125, tmp_v0->unk3*128.0);
+        phi_a0 = tmp_v0->unk0;
+        tmp_f4 = tmp_v0->unk2*0.0078125;
+        phi_a2 = tmp_v0->unk3*128.0;
+        func_8030E6A4(phi_a0, tmp_f4, phi_a2);
         reinterpret_cast(s32, this->unkBC[0])++;
         if(reinterpret_cast(s32, this->unkBC[0]) == reinterpret_cast(s32, this->unkBC[4]))
             this->unk154 = 0;
     }
 }
-#endif

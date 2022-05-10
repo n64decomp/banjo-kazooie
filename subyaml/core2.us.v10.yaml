@@ -180,7 +180,7 @@ segments:
   - [0x41FB0, c, code_41FB0]
   - [0x42CA0, c, ch/musicnote]  #DONE
   - [0x42CB0, c, code_42CB0]    #DONE
-  - [0x43250, c, code_43250]
+  - [0x43250, c, code_43250]    #DONE
   - [0x43390, c, ch/trainers]   #DONE
   - [0x43800, c, code_43800]    #DONE
   - [0x43A40, c, code_43A40]    #DONE
