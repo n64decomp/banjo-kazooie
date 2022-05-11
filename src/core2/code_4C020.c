@@ -5,7 +5,12 @@
 extern f32 func_80258640(f32 [3], f32[3]);
 extern void func_8025A788(enum comusic_e, f32, f32);
 extern void func_8031CC40(enum map_e, s32);
+extern void func_802F363C(f32);
 extern void func_802F9D38(s32);
+extern void func_8034DEB4(void *, f32);
+extern void func_802EE6CC(f32[3], f32[3], s32[4], s32, f32, f32, s32, s32, s32);
+extern void ml_vec3f_assign(f32[3], f32, f32, f32);
+
 
 void func_802D3D54(Actor *this);
 void func_802D3DA4(Actor *this);
@@ -25,7 +30,13 @@ void func_802D4C5C(Actor *this);
 void func_802D4C84(Actor *this);
 void func_802D4CAC(Actor *this);
 void func_802D4CD4(Actor *this);
+void func_802D68F0(s32 seconds);
 
+typedef struct {
+    u8 pad0[4];
+    s16 unk4;
+    s16 unk6;
+}Struct_core2_4C020_0;
 
 /* .data */
 extern ActorAnimationInfo D_803676B0[];
@@ -58,7 +69,8 @@ extern s32 D_8036769C; //enum bkprog_e
 extern s32 D_803676A0; //enum actor_e
 extern s32 D_803676A8;
 extern u8  D_803676AC;
-
+extern Struct_core2_4C020_0 D_803679C8[];
+extern s16 D_803679E0[];
 extern s32 D_803679E8;
 extern s32 D_803679EC;
 extern f32 D_803679F0;
@@ -67,7 +79,8 @@ extern f32 D_803679F0;
 /* .rodata */
 extern f64 D_80376998;
 extern f64 D_803769A0;
-
+extern f32 D_803769A8;
+extern f32 D_803769AC;
 
 extern f32 D_803769B0;
 extern f64 D_803769B8; //3FA999999999999A
@@ -161,7 +174,13 @@ void func_802D4388(Actor *this){
     mapSpecificFlags_set(0x1F, FALSE);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_4C020/func_802D4588.s")
+Actor *func_802D4588(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
+    s32 phi_a1;
+
+    phi_a1 = (marker_getActor(marker)->unk38_0) ? ((func_8023DB5C() & 4) != 0) ? 1 : 2 : 2;
+    func_8033A45C(1, phi_a1);
+    return func_80325888(marker, gfx, mtx, vtx);
+}
 
 bool func_802D4608(void){
     return D_803676AC;
@@ -203,22 +222,22 @@ void func_802D4680(Actor *this){
     }
 }
 
-void func_802D4794(Actor *arg0, enum sfx_e sfx_id, f32 arg2, s32 arg3, s32 arg4){
-    if(arg0->unk44_31 != 0)
+void func_802D4794(Actor *this, enum sfx_e sfx_id, f32 arg2, s32 arg3, s32 arg4){
+    if(this->unk44_31 != 0)
         return;
 
-    arg0->unk44_31 = func_802F9AA8(sfx_id);
-    func_802FA060(arg0->unk44_31, arg3, arg3, 0.0f);
-    func_802F9DB8(arg0->unk44_31, arg2, arg2, 0.0f);
-    func_802F9F80(arg0->unk44_31, (f32)arg4, 1e+09f, 0.0f);
+    this->unk44_31 = func_802F9AA8(sfx_id);
+    func_802FA060(this->unk44_31, arg3, arg3, 0.0f);
+    func_802F9DB8(this->unk44_31, arg2, arg2, 0.0f);
+    func_802F9F80(this->unk44_31, (f32)arg4, 1e+09f, 0.0f);
 }
 
-void func_802D4830(Actor *arg0, enum sfx_e arg1, f32 arg2){
-    func_802D4794(arg0, arg1, arg2, 32000, 0);
+void func_802D4830(Actor *this, enum sfx_e arg1, f32 arg2){
+    func_802D4794(this, arg1, arg2, 32000, 0);
 }
 
-void func_802D485C(Actor *arg0, enum sfx_e arg1, f32 arg2, s32 arg3){
-    func_802D4794(arg0, arg1, arg2, arg3, 0);
+void func_802D485C(Actor *this, enum sfx_e arg1, f32 arg2, s32 arg3){
+    func_802D4794(this, arg1, arg2, arg3, 0);
 }
 
 void func_802D4884(Actor *this, enum sfx_e sfx_id, f32 arg2, s32 arg3, f32 arg4){
@@ -239,13 +258,58 @@ void func_802D48F0(void){
     }
 }
 
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_4C020/func_802D4928.s")
+#else
+void func_802D4928(Actor *this, s32 arg1, s32 arg2, s32 arg3) {
+    s32 sp1C;
+
+    this->marker->propPtr->unk8_3 = TRUE;
+    sp1C = arg1 & 0xC00000;
+    if( ( ((sp1C == 0) && mapSpecificFlags_get(arg1 - 0)) 
+          || ((sp1C == 0x800000) && func_8031FF1C(arg1 - 0x800000)) 
+          || ((sp1C == 0x400000) && func_803203FC(arg1 - 0x400000))
+        ) 
+        && (arg2 != this->state)
+    ) {
+        func_80328B8C(this, arg2, 0.0f, 1);
+        actor_playAnimationOnce(this);
+    }
+    sp1C = arg1 & 0xC00000;
+    if( ( ((sp1C == 0) && !mapSpecificFlags_get(arg1 - 0)) 
+          || ((sp1C == 0x800000) && !func_8031FF1C(arg1 - 0x800000)) 
+          || ((sp1C == 0x400000) && !func_803203FC(arg1 - 0x400000))
+        ) 
+        && (arg2 == this->state)
+    ) {
+        func_80328B8C(this, arg3, 0.0f, 1);
+        actor_playAnimationOnce(this);
+    }
+    if(sp1C);
+}
+#endif
 
 void func_802D4A9C(Actor *this, s32 arg1){
     func_802D4928(this, arg1, 2, 3);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_4C020/func_802D4AC0.s")
+void func_802D4AC0(Actor *this, s32 arg1, s32 arg2) {
+    if (func_8031FF1C(arg2)) {
+        if (arg1 & 0x800000) {
+            func_80320004(arg1 + 0xFF800000, 1);
+        }
+        if (arg1 & 0x400000) {
+            func_803204E4(arg1 + 0xFFC00000, 1);
+        }
+    }
+    if( (((arg1 & 0x800000) && (func_8031FF1C(arg1 + 0xFF800000))) || ((arg1 & 0x400000) && (func_803203FC(arg1 + 0xFFC00000)))) 
+        && (func_8031FF1C(arg2)) && (this->animctrl == NULL)
+    ) {
+        func_80328B8C(this, 8, 0.0f, 1);
+    }
+    func_802D4A9C(this, arg1);
+}
+
 
 void func_802D4B94(Actor *this){
     func_802D4AC0(this, 0x4000b6, BKPROG_18_MM_WITCH_SWITCH_JIGGY_SPAWNED);
@@ -290,17 +354,81 @@ void func_802D4CD4(Actor *this){
     func_802D4AC0(this, 0x4000bb, 0x47);
 }
 
-void func_802D4D3C(s32 arg0, s32 arg1);
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_4C020/func_802D4D3C.s")
+void func_802D4D3C(s32 arg0, s32 arg1) {
+    s32 sp5C[3];
+    s32 sp4C[4];
+    f32 sp40[3];
 
-void func_802D5000(void){
-    if(map_getLevel() != level_get())
+    if (func_80304E24(arg1, &sp5C)) {
+        func_803331D8(arg0, &sp5C);
+        func_8025A6EC(COMUSIC_3D_JIGGY_SPAWN, 0x7FFF);
+        if (arg0 == 0x36) {
+            
+            sp4C[3] = 200;
+            sp4C[0] = sp4C[1] = sp4C[2] = 180;\
+            ml_vec3f_assign(&sp40, 0.0f, 0.0f, 0.0f);
+            func_802EE6CC(&sp5C, &sp40, &sp4C, 0, 6.0f, 200.0f, 200, 100, 0);
+
+            sp4C[3] = 230;
+            sp4C[0] = sp4C[1] = sp4C[2] = 150;
+            ml_vec3f_assign(&sp40, 0.0f, 2.0f, 0.0f);
+            func_802EE6CC(&sp5C, &sp40, &sp4C, 0, 2.0f, 90.0f, 50, 33, 0);
+          
+            sp4C[3] = 150;
+            sp4C[0] = sp4C[1] = sp4C[2] = 230;
+            ml_vec3f_assign(&sp40, -3.0f, 1.0f, 1.0f);
+            func_802EE6CC(&sp5C, &sp40, &sp4C, 0, 3.5f, 130.0f, 100, 80, 0);
+
+            sp4C[3] = 200;
+            sp4C[0] = sp4C[1] = sp4C[2] = 250;
+            ml_vec3f_assign(&sp40, -1.0f, 3.0f, -3.0f);
+            func_802EE6CC(&sp5C, &sp40, &sp4C, 0, D_803769A8, 40.0f, 10, 120, 0);
+            
+            sp4C[3] = 130;
+            sp4C[0] = sp4C[1] = sp4C[2] = 130;
+            ml_vec3f_assign(&sp40, 2.0f, -2.0f, 2.0f);
+            func_802EE6CC(&sp5C, &sp40, &sp4C, 0, D_803769AC, 180.0f, 20, 160, 0);
+            func_8030E6D4(SFX_1B_EXPLOSION_1);
+        }
+        else{
+            func_802C3F04(func_802C4140, 0x4C, 
+                reinterpret_cast(s32, sp5C[0]),
+                reinterpret_cast(s32, sp5C[1]),
+                reinterpret_cast(s32, sp5C[2])
+            );
+        }
+    }
+}
+
+void func_802D5000(enum map_e map_id){
+    if(map_getLevel(map_id) != level_get())
         func_802E4A70();
     func_803228D8();
     func_802E4078(D_80367684, 0x65, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_4C020/func_802D5058.s")
+void func_802D5058(enum map_e map_id, s32 arg1, bool arg2) {
+    func_803204E4(1, 1);
+    D_80367684 = map_id;
+    D_80367688 = arg1;
+    if (arg2) {
+        D_8036768C = 0x2D;
+    } else {
+        D_8036768C = 0x15;
+    }
+    D_80367690 = 0;
+    D_80367694 = map_get();
+    D_80367698 = 1;
+    D_8036769C = 0;
+    D_803676A0 = 0;
+    if (map_id != D_80367694) {
+        timedFunc_set_1(0.25f, func_802D5000, map_id);
+    } else {
+        timedFunc_set_0(0.25f, func_802D63D4);
+    }
+    func_80314AC8(0);
+}
+
 
 void func_802D5140(ActorMarker *caller, enum asset_e text_id, s32 arg2){
     notescore_getLevelScore(func_80320424(0x19, 4));
@@ -322,7 +450,99 @@ void func_802D520C(Gfx **gfx, Mtx **mtx, Vtx **vtx){
     }
 }
 
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_4C020/func_802D5260.s")
+#else
+extern f32 D_803676A4;
+extern f32 D_803769B4;
+void func_802D5260(void) {
+    s32 sp3C;
+    s32 sp38;
+    f32 sp34;
+    f32 sp28[3];
+    s32 phi_v0_2;
+    s32 phi_v1_2;
+
+    sp3C = (map_get() == MAP_76_GL_640_NOTE_DOOR) ? 0
+         : (map_get() == MAP_77_GL_RBB_LOBBY) ? 1
+         : (map_get() == MAP_78_GL_RBB_AND_MMM_PUZZLE) ? 2
+         : -1;
+
+    if (sp3C == -1) {
+        levelSpecificFlags_set(0x3C, FALSE);
+        func_80320004(BKPROG_26_WATER_SWITCH_3_PRESSED, FALSE);
+        func_80320004(BKPROG_27_LAIR_WATER_LEVEL_3,     FALSE);
+        levelSpecificFlags_set(0x3D, FALSE);
+        return;
+    }
+    sp38 = func_8034C528(sp3C + 0x190);
+    if( func_8031FF1C(BKPROG_27_LAIR_WATER_LEVEL_3)
+        && !levelSpecificFlags_get(0x3D)
+        && !levelSpecificFlags_get(0x3C)
+    ) {
+        func_802D68F0(30);
+        item_set(ITEM_6_HOURGLASS, TRUE);
+        levelSpecificFlags_set(0x3D, TRUE);
+    }
+    if( levelSpecificFlags_get(0x3D)
+        && !levelSpecificFlags_get(0x3C) 
+        && item_getCount(ITEM_6_HOURGLASS) == FALSE
+    ) {
+        levelSpecificFlags_set(0x3C, TRUE);
+        levelSpecificFlags_set(0x3D, FALSE);
+        D_803676A4 = 0.0f;
+    }
+    if (levelSpecificFlags_get(0x3C)) {
+        D_803676A4 -= 5.0;
+        if (D_803676A8 == 0) {
+            D_803676A8 = func_802F9AA8(SFX_3EC_CCW_DOOR_OPENING);
+            func_802FA060(D_803676A8, 20000, 20000, 0.0f);
+            func_802F9F80(D_803676A8, 0.0f, 1.0e8f, 0.0f);
+        }
+        if (D_803679C8[sp3C].unk6 + D_803676A4 <= D_803679C8[sp3C].unk4) {
+            levelSpecificFlags_set(0x3C, FALSE);
+            func_80320004(BKPROG_26_WATER_SWITCH_3_PRESSED, FALSE);
+            func_80320004(BKPROG_27_LAIR_WATER_LEVEL_3,     FALSE);
+            func_802F9D38(D_803676A8);
+            D_803676A8 = 0;
+        }
+    }
+    if (sp38 != 0) {
+        if (levelSpecificFlags_get(0x3C) != 0) {
+            sp34 = D_803679C8[sp3C].unk6 + D_803676A4;
+        } else {
+            if (func_8031FF1C(BKPROG_27_LAIR_WATER_LEVEL_3)) {
+                phi_v0_2 = 3;
+            } else {
+                if (func_8031FF1C(BKPROG_25_LAIR_WATER_LEVEL_2)) {
+                    phi_v1_2 = 2;
+                } else {
+                    if (func_8031FF1C(BKPROG_23_LAIR_WATER_LEVEL_1)) {
+                        phi_v0_2 = 1;
+                    } else {
+                        phi_v0_2 = 0;
+                    }
+                    phi_v1_2 = phi_v0_2;
+                }
+                phi_v0_2 = phi_v1_2;
+            }
+            sp34 = ((s16 *)&D_803679C8[sp3C])[phi_v0_2];
+        }
+        func_8034DEB4(sp38, sp34);
+        player_getPosition(sp28);
+        
+        if (sp3C != -1) {
+            phi_v1_2 = (sp3C == 2) ? (D_803769B4 < sp28[0]) ? -200 : 0 : 0;
+            phi_v0_2 = D_803679E0[sp3C] + phi_v1_2;
+        }
+        else{
+            phi_v0_2 = 0;
+        }
+        func_802F363C((f32) phi_v0_2 + sp34);
+    }
+}
+#endif
+
 
 #ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_4C020/func_802D5628.s")
@@ -552,16 +772,12 @@ int func_802D60C4(void){
         || func_8031FF1C(BKPROG_27_LAIR_WATER_LEVEL_3);
 }
 
-#ifndef NONMATCHING
-void func_802D6114(void);
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_4C020/func_802D6114.s")
-#else
 void func_802D6114(void){
     s32 sp24; 
     s32 sp20;
 
+    sp24 =  D_80367694;\
     sp20 =  D_80367698;
-    sp24 =  D_80367694;
     if(D_8036769C)
         func_80320004(D_8036769C, TRUE);
     func_802D6344();
@@ -580,7 +796,6 @@ void func_802D6114(void){
         func_80314AC8(1);
     }
 }
-#endif
 
 void func_802D61FC(enum map_e arg0){
     if( map_getLevel(arg0) != map_getLevel(map_get()))
