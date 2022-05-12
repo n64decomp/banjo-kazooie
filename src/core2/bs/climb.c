@@ -145,17 +145,17 @@ void bsclimb_move_update(void){
         || map == MAP_1B_MMM_MAD_MONSTER_MANSION
         || map == MAP_31_RBB_RUSTY_BUCKET_BAY
     ){
-        if(func_80289FE8(0.25f))
+        if(baanim_isAt(0.25f))
             func_80299D2C(SFX_D2_QUIET_METALLIC, 1.1f, 32000);
         
-        if(func_80289FE8(0.75f))
+        if(baanim_isAt(0.75f))
             func_80299D2C(SFX_D2_QUIET_METALLIC, 1.2f, 32000);
     }
     else{//L802ABB34
-        if(func_80289FE8(0.25f))
+        if(baanim_isAt(0.25f))
             func_80299D2C(SFX_D3_JINXIE_SNIFFLING_1, 0.77f, 22000);
 
-        if(func_80289FE8(0.75f))
+        if(baanim_isAt(0.75f))
             func_80299D2C(SFX_D3_JINXIE_SNIFFLING_1, 0.87f, 22000);
     }//L802ABB84
 

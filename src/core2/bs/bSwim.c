@@ -330,7 +330,7 @@ void func_802A7CA8(void) {
     p_ctrl = func_8029B950(plyr_pos, 25.0f);
     particleEmitter_setParticleVelocityRange(p_ctrl, -60.0f, -50.0f, -60.0f, 60.0f, 100.0f, 60.0f);
     particleEmitter_emitN(p_ctrl, 1);
-    if (func_80289FE8(0.3f)) {
+    if (baanim_isAt(0.3f)) {
         func_80292EA4();
     }
     if (animctrl_isStopped(_player_getAnimCtrlPtr())) {

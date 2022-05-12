@@ -6,9 +6,13 @@
 
 AnimationFile *func_80288590(s32 assest_id);
 
-extern AnimationCache D_8037A8C0[0x2CA];
-extern s16 D_803635C0[];
+/* .data */
+s16 D_803635C0[] = {0x1, 0x3, 0x5, 0xC, 0xE, 0x17, 0x18, 0x19, 0x1A, 0x1C, 0x1D, 0};
 
+/* .bss */
+AnimationCache D_8037A8C0[0x2CA];
+
+/* .code */
 void func_802884E0(void){
     s16 *phi_v0;
 

@@ -44,7 +44,7 @@ void bsow_update(void) {
             break;
     }
 
-    if (func_80289FE8(0.3f) != 0) {
+    if (baanim_isAt(0.3f) != 0) {
         func_80292EA4();
     }
     if (func_8028B424() != 0) {

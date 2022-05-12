@@ -406,7 +406,7 @@ static void __bswalrus_recoil_init(s32 damage){
 
 static void __bswalrus_recoil_update(void){
     enum bs_e next_state = 0;
-    if(func_80289FE8(0.5f))
+    if(baanim_isAt(0.5f))
         func_80292EA4();
     
     if(func_8028B2E8())

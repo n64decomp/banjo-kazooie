@@ -730,13 +730,13 @@ void bsbtrot_ow_update(void){
     if(func_802987B4() == 2)
         func_802B6FA8();
 
-    if(func_80289FE8(0.3f))
+    if(baanim_isAt(0.3f))
         func_80292EA4();
 
     if(func_8028B424())
         sp1C = BS_3D_FALL_TUMBLING;
 
-    if(func_8028B2E8() && func_80289FC4())
+    if(func_8028B2E8() && baanim_isStopped())
         sp1C = BS_15_BTROT_IDLE;
 
     if(animctrl_isStopped(_player_getAnimCtrlPtr()) && player_inWater())

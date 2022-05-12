@@ -34,7 +34,7 @@ segments:
   - [0x1550, c, code_1550]
   - [0x1930, c, code_1930]
   - [0x2240, c, code_2240] #DONE
-  - [0x2890, c, code_2890] #DONE
+  - [0x2890, c, code_2890]
   - [0x3480, c, code_3480] #DONE
   - [0x39D0, c, code_39D0] #DONE
   - [0x47C0, c, code_47C0] #DONE
@@ -397,6 +397,9 @@ segments:
   vram:  0x80363590
   subsegments:
   - [0xDC600, bin, data_DC600]
+  - [0xDC630, .data, code_1550]
+  - [0xDC650, .data, code_2890]
+  - [0xDC680, bin, data_DC680]
   - [0xDC6A0, .data, code_47C0]
   - [0xDC700, bin, data_DC700]
   - [0xDC810, .data, code_BB50]
@@ -528,7 +531,8 @@ segments:
   - [0xECE60, ".rodata", animctrl]
   - [0xECE90, .rodata, code_AD0]
   - [0xECEA0, .rodata, code_1930]
-  - [0xECEC0, bin, data_ECEC0]
+  - [0xECF20, .rodata, code_2890]
+  - [0xECF30, bin, data_ECF30]
   - [0xECF40, .rodata, code_39D0]
   - [0xECFE0, .rodata, code_47C0]
   - [0xED410, .rodata, code_6B30]
@@ -726,5 +730,16 @@ segments:
   - [0xF2AF0, .rodata, code_DA3A0]
   - [0xF2B00, .rodata, code_DA760]
   - [0xF2B20, .rodata, code_DB010]
+- type: code
+  name: core2-bbs
+  dir: core2
+  start: 0xf2c00
+  vram:  0x80379B90
+  subsegments:
+  - [0xf2c00, .bss, code_AD0]
+  - [0xf2c00, .bss, code_10E0]
+  - [0xf2c00, .bss, code_1550]
+  - [0xf2c00, .bss, code_1930]
+  - [0xf2c00, .bss, code_2890]
   # - [0xF2B20, .bss, ch/gameSelect]
 - [0xf2c00] # core2 end

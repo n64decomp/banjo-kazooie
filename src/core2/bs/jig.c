@@ -184,10 +184,10 @@ void bsjig_notedoor_init(void){
 void bsjig_notedoor_update(void){
     enum bs_e sp1C = 0;
 
-    if(func_80289FE8(0.59f) || func_80289FE8(0.84f))
+    if(baanim_isAt(0.59f) || baanim_isAt(0.84f))
         func_80299CF4(SFX_3EA_UNKNOWN, 1.0f, 30000);
 
-    if(func_80289FC4())
+    if(baanim_isStopped())
         sp1C = BS_1_IDLE;
 
     bs_setState(sp1C);

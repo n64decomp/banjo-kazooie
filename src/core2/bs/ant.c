@@ -312,7 +312,7 @@ static void __bsant_recoil_init(int take_damage){
 static void __bsant_recoil_update(void){
     enum bs_e sp1C = 0;
     
-    if(func_80289FE8(0.5f))
+    if(baanim_isAt(0.5f))
         func_80292EA4();
 
     switch(D_8037D294){

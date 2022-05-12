@@ -5,15 +5,7 @@
 #include "core2/animctrl.h"
 #include "animation.h"
 
-extern f64 D_80373DF0;
-extern f64 D_80373DF8;
-
-//3F EF FF FD E7 21 0B E9
-
 extern u32 D_A0000238;
-
-
-f32 min_f(f32 arg0, f32 arg1);
 
 /* .code */
 void func_80286F90(AnimCtrl *this){

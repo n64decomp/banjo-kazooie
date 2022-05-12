@@ -77,8 +77,8 @@ float gu_sqrtf(float val);
 
 BKSpriteFrame *spriteGetFramePtr(BKSprite *, u32); 
 
-s32  func_80289FE8(f32);
-void func_8028A180(s32 animation, f32 duration);
+bool  baanim_isAt(f32);
+void func_8028A180(enum asset_e anim_id, f32 duration);
 void func_8028A37C(f32);
 
 int player_inWater(void);
@@ -283,7 +283,7 @@ void func_80289EA8(f32, f32);
 
 void func_8028A010(enum asset_e anim_id, f32 duration);
 void func_8028A100(enum asset_e anim_id, f32, f32);
-void func_8028A1F4(s32, f32, f32);
+void func_8028A1F4(enum asset_e anim_id, f32 duration, f32 arg2);
 void func_8028A274(enum asset_e, f32);
 void func_8028A3B8(f32, f32);
 int  func_8028AED4(f32*, f32);

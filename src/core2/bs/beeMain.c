@@ -338,7 +338,7 @@ void func_802A1A50(void){
     s32 sp1C;
 
     sp1C= 0;
-    if(func_80289FE8(0.5f)){
+    if(baanim_isAt(0.5f)){
         func_80292EA4();
     }
     switch(D_8037D2D4){
