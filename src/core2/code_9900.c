@@ -2,6 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
+/* .bss */
 u8  D_8037C040;
 struct {
     f32 unk0;
@@ -13,6 +14,7 @@ struct{
 } D_8037C050;
 f32 D_8037C058;
 
+/* .code */
 f32 func_80290890(f32 arg0){
     f64 temp_f2;
     temp_f2 = func_80257A44(arg0, 0.7f);

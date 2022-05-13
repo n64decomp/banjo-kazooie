@@ -7,13 +7,13 @@
 
 void func_80294924(f32 arg0, f32 arg1);
 
-extern struct {
+/* .bss */
+struct {
     f32 unk0;
     f32 unk4;
 } D_8037C290;
-extern float D_8037C294;
-extern ActorMarker* D_8037C298;
-extern u8 D_8037C29C;
+ActorMarker* D_8037C298;
+u8 D_8037C29C;
 
 /* .code */
 void func_80294790(void){

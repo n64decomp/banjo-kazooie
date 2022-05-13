@@ -9,31 +9,12 @@ extern f32  func_8029B2D0(void);
 extern bool func_8029E284(s32, f32);
 extern bool func_8029E314(s32, f32);
 
-/* .rodata */
-// extern u8 D_80375630[];
-// extern u8 D_8037563C[];
-// extern u8 D_80375648[];
-// extern f32 4.3f;//4.3f
-// extern f32 3.1f;//3.1f
-// extern f32 3.8f;//3.8f
-// extern f32 0.9f;//0.9f
-// extern f32 0.9f;//0.9f
-// extern f32 -399.99f;//-399.99f
-// extern f32 0.4f;//0.4f
-// extern f64 0.4625;//0.4625
-// extern f64 0.1;//0.1
-// extern f32 0.3f;//0.3f
-// extern f32 0.275f;//275.0f
-// extern f64 1.8;//1.8
-// extern f32 0.4f;//0.4f
-// extern f64 0.1;//0.1
-
 /* .bss */
-extern f32 D_8037D390;
-extern u8  D_8037D394;
-extern u8  D_8037D395;
-extern u8  D_8037D396;
-extern f32 D_8037D398;
+f32 D_8037D390;
+u8  D_8037D394;
+u8  D_8037D395;
+u8  D_8037D396;
+f32 D_8037D398;
 
 void func_802A7140() {
     func_8029C7F4(1, 3, 3, 9);

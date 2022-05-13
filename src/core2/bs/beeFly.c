@@ -20,11 +20,12 @@ void func_8028FDC8(f32);
 void func_80290B40(f32);
 void func_80290A6C(void);
 
+/* .data */
+f32 D_803649B0[5] = {0.38f, 0.3f, 0.24f, 0.18f, 0.14};
+f32 D_803649C4[5] = {0.0f, 0.2f, 0.3f, 0.4f, 0.5f};
 
-extern f32 D_803649B0[];
-extern f32 D_803649C4[];
-
-extern  u8 D_8037D2C0;
+/* .bss */
+u8 D_8037D2C0;
 
 int bsBeeFly_inSet(s32);
 

@@ -2,15 +2,16 @@
 #include "functions.h"
 #include "variables.h"
 
-extern f32 D_80374A30;//timeBeforePoleRegrab 
+/* .bss */
+f32 climbPoleBottom[3];
+f32 climbPoleTop[3];
+f32 climbRadius;//climbRadius
+f32 D_8037C580[3];
+f32 D_8037C58C;
+u8  D_8037C590; //bool climbing
+u8  D_8037C591;
 
-
-extern f32 climbRadius;//climbRadius
-extern f32 D_8037C580[3];
-extern f32 D_8037C58C;
-extern u8 D_8037C590; //bool climbing
-extern u8 D_8037C591;
-
+/* .code */
 void climbClear(void){ //climbClear
     ml_vec3f_clear(&climbPoleBottom);
     ml_vec3f_clear(&climbPoleTop);
@@ -62,5 +63,5 @@ void func_80298344(void){ //climbUpdateRegrab
 void climbRelease(void){ //climbRelease
     D_8037C590 = 0;
     ml_vec3f_copy(&D_8037C580, &climbPoleBottom);
-    D_8037C58C = D_80374A30;
+    D_8037C58C = 0.6f;
 }

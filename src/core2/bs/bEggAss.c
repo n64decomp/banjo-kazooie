@@ -2,10 +2,11 @@
 #include "functions.h"
 #include "variables.h"
 
-extern u8 D_8037D2E0;
-extern u8 D_8037D2E1;
+/* .bss */
+u8 D_8037D2E0;
+u8 D_8037D2E1;
 
-
+/* .code */
 void bseggass_init(void){
     func_8028A274(0x2B, 1.0f);
     func_8029C7F4(1,3,1,3);

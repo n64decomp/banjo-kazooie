@@ -3,9 +3,9 @@
 #include "variables.h"
 
 /* .bss */
-extern u8  D_8037D3D0;
-extern f32 D_8037D3D4;
-extern u8  D_8037D3D8;
+u8  D_8037D3D0;
+f32 D_8037D3D4;
+u8  D_8037D3D8;
 
 /* .code */
 void func_802AB5C0(void){

@@ -14,6 +14,7 @@ void func_80294378(s32 arg0);
 void func_80294384(s32 arg0);
 void func_80294390(void);
 
+/* .bss */
 extern f32 D_8037C1F0[2];
 extern f32 D_8037C1F8[2];
 extern struct0 * D_8037C200;
@@ -37,7 +38,7 @@ extern u8 D_8037C27F;
 extern u8 D_8037C280;
 extern s32 D_8037C284;
 
-
+/* .code */
 void func_80293440(void){
      f32 sp34[3];
      f32 bottomY = climbGetBottomY();

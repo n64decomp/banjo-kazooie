@@ -5,25 +5,18 @@
 void func_80292048(s32, f32, f32, f32);
 void func_802875AC(AnimCtrl *, char *, s32);
 
+/* .data */
+f32 D_80364A60 = -1400.0f;
+f32 D_80364A64 = 120.0f;
 
-extern f32 D_80364A60;
-extern f32 D_80364A64;
+/* .bss */
+f32 D_8037D370;
+u8 D_8037D374;
+u8 D_8037D375;
+u8 D_8037D376;
+u8 D_8037D377;
 
-extern char D_803755E0[];
-extern char D_803755EC[];
-extern f32 D_803755F8;
-extern f32 D_803755FC;
-extern f32 D_80375600;
-extern f64 D_80375608;
-
-extern f32 D_8037D370;
-extern u8 D_8037D374;
-extern u8 D_8037D375;
-extern u8 D_8037D376;
-extern u8 D_8037D377;
-
-
-
+/* .code */
 s32 func_802A6510(void){
     return D_8037D376;
 }
@@ -61,13 +54,13 @@ void func_802A664C(void){
     f32 sp1C = 1.0f;
     switch(D_8037D375){
         case 0:
-            sp1C = D_803755F8;
+            sp1C = 1.13f;
             break;
         case 1:
-            sp1C = D_803755FC;
+            sp1C = 1.1f;
             break;
         case 2:
-            sp1C = D_80375600;
+            sp1C = 1.32f;
             break;
     }
     func_802933E8(5);
@@ -82,7 +75,7 @@ void bsbpeck_update(void){
 
     func_802B6FA8();
     if(D_8037D377){
-        func_80297970(func_80297A64() * D_80375608);
+        func_80297970(func_80297A64() * 0.1);
     }
 
     switch(D_8037D374){
@@ -92,7 +85,7 @@ void bsbpeck_update(void){
                 func_8028774C(aCtrl, 0.0f);
                 animctrl_setDuration(aCtrl, 0.35f);
                 animctrl_setPlaybackType(aCtrl,  ANIMCTRL_LOOP);
-                func_802875AC(aCtrl, D_803755E0, 0xbd);
+                func_802875AC(aCtrl, "bsbpeck.c", 0xbd);
                 D_8037D370 = 0.5f;
                 D_8037D374 = 1;
             }
@@ -112,7 +105,7 @@ void bsbpeck_update(void){
                 animctrl_setDirection(aCtrl, 0);
                 animctrl_setDuration(aCtrl, 0.2f);
                 animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
-                func_802875AC(aCtrl, D_803755EC, 0xd4);
+                func_802875AC(aCtrl, "bsbpeck.c", 0xd4);
                 D_8037D374 = 2;
             }
             break;

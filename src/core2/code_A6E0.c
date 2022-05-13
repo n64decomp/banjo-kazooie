@@ -7,8 +7,10 @@ typedef struct{
     f32 unk4;
 }Struct_Core2_A600_0;
 
-extern Struct_Core2_A600_0 D_8037C0A0[];
+/* .bss */
+Struct_Core2_A600_0 D_8037C0A0[8];
 
+/* .code */
 f32 func_80291670(s32 arg0){
     return D_8037C0A0[arg0].unk0;
 }
@@ -31,9 +33,6 @@ int func_80291700(s32 arg0, f32 arg1){
 
 void func_8029175C(void){}
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A6E0/func_80291764.s")
-#else
 void func_80291764(void){
     int i;
     for(i = 0; i < 7; i++){
@@ -41,7 +40,6 @@ void func_80291764(void){
         D_8037C0A0[i].unk4 = 0.0f;
     }
 }
-#endif
 
 void func_802917C4(s32 arg0){
     func_802917E4(arg0, 0.0f);
@@ -52,9 +50,6 @@ void func_802917E4(s32 arg0, f32 arg1){
     D_8037C0A0[arg0].unk4 = arg1;
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A6E0/func_80291804.s")
-#else
 void func_80291804(void){
     int i;
     f32 delta = time_getDelta();
@@ -68,4 +63,3 @@ void func_80291804(void){
         }
     }
 }
-#endif

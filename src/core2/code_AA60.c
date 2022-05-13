@@ -18,23 +18,25 @@ void func_802921C8(s32 arg0);
 
 extern s32 D_80000310;
 
-extern struct5Bs *D_80363780;
+/* .data */
+struct5Bs *D_80363780 = NULL;
 
-extern void *D_8037C0E0; //playerModelPtr
-extern s16 D_8037C0E4; //playerModel asset_id
-extern u8 D_8037C0E6;
-extern u8 D_8037C0E7;
-extern u8 D_8037C0E8;
-extern f32 D_8037C0EC;
-extern f32 D_8037C0F0;
-extern f32 D_8037C0F4;
-extern f32 D_8037C0F8;
-extern f32 D_8037C100[3];
-extern f32 D_8037C110[3];
-extern f32 D_8037C120[3];
-extern void (*D_8037C12C)(Gfx **gfx, Mtx **mtx, Vtx **vtx);
-extern f32 D_8037C130[0][4];
-extern struct {
+/* .bss */
+void *D_8037C0E0; //playerModelPtr
+s16 D_8037C0E4; //playerModel asset_id
+u8  D_8037C0E6;
+u8  D_8037C0E7;
+u8  D_8037C0E8;
+f32 D_8037C0EC;
+f32 D_8037C0F0;
+f32 D_8037C0F4;
+f32 D_8037C0F8;
+f32 D_8037C100[3];
+f32 D_8037C110[3];
+f32 D_8037C120[3];
+void (*D_8037C12C)(Gfx **gfx, Mtx **mtx, Vtx **vtx);
+f32 D_8037C130[2][4];
+struct {
     u8 unk0;
     f32 unk4[3]; 
 } D_8037C150;

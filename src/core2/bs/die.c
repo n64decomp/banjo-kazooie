@@ -2,9 +2,11 @@
 #include "functions.h"
 #include "variables.h"
 
-extern f32 D_8037D410;
-extern s32 D_8037D414;
+/* .bss */
+f32 D_8037D410;
+s32 D_8037D414;
 
+/* .code */
 int _bsdie_802ADE00(void){
     return func_8028B2E8();
 }

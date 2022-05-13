@@ -2,10 +2,12 @@
 #include "functions.h"
 #include "variables.h"
 
-extern f32 player_position[3];
-extern f32 D_8037C5B0[3];
-extern f32 D_8037C5C0[3];
+/* .bss */
+f32 player_position[3];
+f32 D_8037C5B0[3];
+f32 D_8037C5C0[3];
 
+/* .code */
 void func_802983F0(void){
     ml_vec3f_clear(&D_8037C5C0);
     ml_vec3f_clear(&player_position);

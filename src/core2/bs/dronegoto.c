@@ -4,8 +4,9 @@
 
 void func_80297BB8(f32);
 
-extern u8 D_8037D440;
-extern u8 D_8037D441;
+/* .bss */
+u8 D_8037D440;
+u8 D_8037D441;
 
 void func_802AEC08(void);
 void func_802AEC70(void);

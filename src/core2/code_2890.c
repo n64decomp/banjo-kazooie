@@ -31,9 +31,6 @@ void func_80289820(s32 arg0){
     D_8037BF24 = arg0;
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_2890/func_8028982C.s")
-#else
 void func_8028982C(void) {
     f32 sp2C[3];
     f32 temp_f12;
@@ -41,12 +38,10 @@ void func_8028982C(void) {
     
     sp24 = (D_8037BF30.unk14 != 0) ? D_8037BF30.unk10 : 1.0f;
     _get_velocity(sp2C);
-    temp_f12 = gu_sqrtf(sp2C[0]*sp2C[0] + sp2C[2] * sp2C[2]);
-    temp_f12 = func_80257BFC(temp_f12, D_8037BF30.unk0, D_8037BF30.unk4, D_8037BF30.unk8 * sp24, D_8037BF30.unkC * sp24);
+    temp_f12 = func_80257BFC(gu_sqrtf(sp2C[0]*sp2C[0] + sp2C[2] * sp2C[2]), D_8037BF30.unk0, D_8037BF30.unk4, D_8037BF30.unk8 * sp24, D_8037BF30.unkC * sp24);
     animctrl_setDuration(D_8037BF20, mlClamp_f(temp_f12, D_8037BF28, D_8037BF2C));
     animctrl_update(D_8037BF20);
 }
-#endif
 
 void func_802898F8(void) {
     animctrl_setDuration(D_8037BF20, mlClamp_f(func_80257BFC(mlAbsF(func_80297AAC()), D_8037BF30.unk0, D_8037BF30.unk4, D_8037BF30.unk8, D_8037BF30.unkC), D_8037BF28, D_8037BF2C));

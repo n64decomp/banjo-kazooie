@@ -6,9 +6,9 @@ void func_802915B8(void);
 void func_802915E4(void);
 
 /* .bss */
-extern f32 D_8037C090;
-extern f32 D_8037C094;
-extern s32 D_8037C098;
+f32 D_8037C090;
+f32 D_8037C094;
+s32 D_8037C098;
 
 /* .code */
 void func_80291590(void){

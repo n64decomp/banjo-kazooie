@@ -25,23 +25,23 @@ void func_8028F918(s32 arg0);
 
 
 /* .data */
-extern u8  D_80363690;
-extern u8  D_80363694;
-extern f32 D_80363698[3];
-extern f32 D_803636A4[3];
-extern u8  D_803636B0;
-extern f32 D_803636B4[3];
-extern f32 D_803636C0[3];
+u8  D_80363690 = 0;
+u8  D_80363694 = 0;
+f32 D_80363698[3] = {0.0f, 0.0f, 0.0f};
+f32 D_803636A4[3] = {0.0f, 0.0f, 0.0f};
+u8  D_803636B0 = 0;
+f32 D_803636B4[3] = {0.0f, 0.0f, 0.0f};
+f32 D_803636C0[3] = {-16000.0f, -16000.0f, -16000.0f};
 
 /* .bss */
-extern f32 D_8037BFB0[2];
-extern u8  D_8037BFB8;
-extern u8  D_8037BFB9; //player_locked
-extern u8  D_8037BFBA; //player_present
-extern s32 D_8037BFBC;
-extern f32 D_8037BFC0[3];
-extern f32 D_8037BFCC;
-extern f32 D_8037BFD0;
+f32 D_8037BFB0[2];
+u8  D_8037BFB8;
+u8  D_8037BFB9; //player_locked
+u8  D_8037BFBA; //player_present
+s32 D_8037BFBC;
+f32 D_8037BFC0[3];
+f32 D_8037BFCC;
+f32 D_8037BFD0;
 
 /* .code */
 bool func_8028DFF0(s32 arg0, s32 arg1[3]) {

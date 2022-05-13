@@ -18,32 +18,23 @@ void func_80297B94(void);
 
 
 /* .data */
-extern f32 D_80364440; //defaultGravity
-extern f32 D_80364444;
+f32 D_80364440 = -2700.0f; //defaultGravity
+f32 D_80364444 = -4000.0f;
 
-
-/* .rodata */
-    extern f64 D_80374980;
-    extern f64 D_80374988;
-    extern f64 D_80374990;
-    extern f64 D_80374998;
-// 3FC999999999999A 3FA1110FF2BC4A9F
-// 3F1A36E2EB1C432D 3F1A36E2EB1C432D
 /* .bss */
-extern s32 D_8037C4A0;
-extern f32 D_8037C4A8[3];
-extern f32 D_8037C4B8[3]; //velocity?
-
-extern f32 D_8037C4C8[3];
-extern f32 D_8037C4D8[3];
-extern f32 D_8037C4E4;
-extern f32 D_8037C4E8; //gravity
-extern f32 D_8037C4EC;
-extern f32 D_8037C4F0;
-extern f32 D_8037C4F4; //angle
-extern f32 D_8037C4F8;
-extern f32 D_8037C4FC;
-extern f32 D_8037C500;
+s32 D_8037C4A0;
+f32 D_8037C4A8[3];
+f32 D_8037C4B8[3]; //velocity?
+f32 D_8037C4C8[3];
+f32 D_8037C4D8[3];
+f32 D_8037C4E4;
+f32 D_8037C4E8; //gravity
+f32 D_8037C4EC;
+f32 D_8037C4F0;
+f32 D_8037C4F4; //angle
+f32 D_8037C4F8;
+f32 D_8037C4FC;
+f32 D_8037C500;
 
 struct {
     u8 unk0;

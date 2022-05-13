@@ -2,12 +2,13 @@
 #include "functions.h"
 #include "variables.h"
 
-
-extern struct {
+/* .bss */
+struct {
     f32 unk0[0x8];
     f32 unk20[0x8];
 } D_8037D250;
 
+/* .code*/
 void func_8029E180(s32 arg0, f32 arg1){
     D_8037D250.unk20[arg0] = D_8037D250.unk0[arg0];
     D_8037D250.unk0[arg0] += arg1;

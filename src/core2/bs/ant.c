@@ -19,9 +19,9 @@ s16 D_8036497C[3] = {
 };
 
 /* .bss */
-extern f32 D_8037D290;
-extern u8 D_8037D294;
-extern s32 D_8037D298;
+f32 D_8037D290;
+u8 D_8037D294;
+s32 D_8037D298;
 
 /* .code */
 void func_8029E3E0(void){

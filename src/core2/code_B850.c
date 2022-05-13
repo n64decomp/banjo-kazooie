@@ -4,8 +4,8 @@
 
 extern void ml_vec3f_assign(f32[3], f32, f32, f32);
 
-/* .bss */
-s32 D_80363790;
+/* .data */
+s32 D_80363790 = 0;
 
 /* .code */
 void func_802927E0(f32 arg0, f32 arg1){

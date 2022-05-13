@@ -2,17 +2,11 @@
 #include "functions.h"
 #include "variables.h"
 
-extern char D_80375810[];
-extern f32 D_8037581C;
-extern f32 D_80375820;
-extern f32 D_80375824;
-extern f32 D_80375828;
-extern f32 D_8037582C;
+/* .bss */
+f32 D_8037D400;
+u8 D_8037D404;
 
-extern f32 D_8037D400;
-extern u8 D_8037D404;
-
-
+/* .code */
 enum bs_e func_802ADCD4(enum bs_e arg0);
 
 void func_802AD6D0(void){

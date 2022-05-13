@@ -2,10 +2,10 @@
 #include "functions.h"
 #include "variables.h"
 
-extern f32 D_8037C680; //roll
-extern f32 D_8037C684; //roll_ideal
-extern f32 D_8037C688; //roll_angular_velocity_limit
-extern f32 D_8037C68C; //roll_ideal
+f32 D_8037C680; //roll
+f32 D_8037C684; //roll_ideal
+f32 D_8037C688; //roll_angular_velocity_limit
+f32 D_8037C68C; //roll_ideal
 
 static void __roll_update(f32 limit, f32 step_percent){
         f32 diff;

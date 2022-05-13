@@ -7,14 +7,25 @@ extern void func_80295328(s32, f32);
 bool func_802B5724(enum bs_e state_id);
 
 /* .data */
-extern f32 D_80364D40;
-extern f32 D_80364D44;
-extern f32 D_80364D48;
-extern f32 D_80364D4C;
-extern s16 D_80364D50[];
+f32 D_80364D40 = 30.0f;
+f32 D_80364D44 = 300.0f;
+f32 D_80364D48 = 1.2f;
+f32 D_80364D4C = 0.7f;
+s16 D_80364D50[10] = {
+    0x57,
+    0x57,
+    0x57,
+    0x58,
+    0x57,
+    0x58,
+    0x57,
+    0x57,
+    0x58,
+    0x58
+};
 
 /* .bss */
-extern u32 D_8037D550;
+u32 D_8037D550;
 
 /* .code */
 void func_802B5480(void) {

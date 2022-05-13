@@ -2,9 +2,11 @@
 #include "functions.h"
 #include "variables.h"
 
-extern f32 D_8037D590;
-extern s32 D_8037D594;
+/* .data */
+f32 D_8037D590;
+s32 D_8037D594;
 
+/* .code */
 void bsturn_init(void){
     AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     f32 sp28[3];

@@ -2,11 +2,13 @@
 #include "functions.h"
 #include "variables.h"
 
-extern f32 D_8037C540; //pitch degrees
-extern f32 D_8037C544; //idealPitch degrees
-extern f32 D_8037C548; //pitchAngularVelocityLimit
-extern f32 D_8037C54C; //PitchAngularVelocity
+/* .bss */
+f32 D_8037C540; //pitch degrees
+f32 D_8037C544; //idealPitch degrees
+f32 D_8037C548; //pitchAngularVelocityLimit
+f32 D_8037C54C; //PitchAngularVelocity
 
+/* .code */
 static void __pitch_update(f32 limit, f32 angVel){
     f32 diff;
     f32 val;

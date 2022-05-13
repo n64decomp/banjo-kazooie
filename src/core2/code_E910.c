@@ -164,8 +164,10 @@ bsMap D_80363824[] ={
     {0}
 };
 
-extern void (*D_8037C3B0)();
+/* .bss */
+void (*D_8037C3B0)();
 
+/* .code */
 void func_802958A0(void){
     s32 i;
     bsMap *iPtr;

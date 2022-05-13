@@ -37,7 +37,7 @@ extern f32 D_80364DB0; //mud
 extern f32 D_80364DB4;
 
 // .bss (?)
-extern f32 D_8037D5B0;
+f32 D_8037D5B0;
 
 /*.code*/
 void func_802B6D00(void){

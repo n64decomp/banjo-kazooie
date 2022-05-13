@@ -2,10 +2,12 @@
 #include "functions.h"
 #include "variables.h"
 
-extern f32 D_8037D5A0;
-extern u8 D_8037D5A4;
-extern u8 _bstwirlHitboxActive;
+/* .bss */
+f32 D_8037D5A0;
+u8 D_8037D5A4;
+u8 _bstwirlHitboxActive;
 
+/* .code */
 int bstwirl_hitboxActive(void){
     return _bstwirlHitboxActive;
 }

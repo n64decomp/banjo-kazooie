@@ -4,6 +4,7 @@
 
 void func_802B37DC(void);
 
+/* .bss */
 u8  D_8037D4D0;
 
 void func_802B1FD0(s32 arg0){}

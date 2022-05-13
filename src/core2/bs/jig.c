@@ -3,11 +3,12 @@
 #include "variables.h"
 
 /* .bss */
-extern u8 D_8037D4B0;
-extern u8 D_8037D4B1;
-extern u8 D_8037D4B2;
-extern ActorMarker *D_8037D4B4;
+u8 D_8037D4B0;
+u8 D_8037D4B1;
+u8 D_8037D4B2;
+ActorMarker *D_8037D4B4;
 
+/* .code */
 int bsjig_inJiggyJig(enum bs_e state){
     return state == BS_44_JIG_JIGGY;
 }

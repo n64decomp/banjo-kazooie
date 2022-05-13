@@ -4,8 +4,6 @@
 
 extern f32 func_8029B2D0(void);
 
-extern f32 D_80375870;
-
 /* .code */
 void func_802AEED0(f32 arg0[3]) {
     func_8028E9C4(5, arg0);

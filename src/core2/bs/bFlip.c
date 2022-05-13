@@ -10,7 +10,7 @@ const f32 D_80364A2C = 80.0f;
 const f32 D_80364A30 = 200.0f;
 
 /* .bss */
-extern u8 D_8037D310;
+u8 D_8037D310;
 
 
 /* .code */

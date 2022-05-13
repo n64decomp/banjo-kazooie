@@ -6,8 +6,9 @@
 
 
 //TODO replace with bsList Count
-extern bsState D_8037C700[165];
+bsState D_8037C700[166];
 
+/* .code */
 void bsList_clearAll(void){
     s32 i = 0;
     do{

@@ -2,8 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
-extern u32 D_8037C300;
-extern f32 D_8037C304;
+u32 D_8037C300;
+f32 D_8037C304;
 
 int should_beak_barge(void){
     return button_pressed(BUTTON_B) && can_beak_barge();

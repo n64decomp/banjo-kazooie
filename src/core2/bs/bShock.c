@@ -2,13 +2,16 @@
 #include "functions.h"
 #include "variables.h"s
 
+/* .data */
 const f32 D_80364A70 = 1250.0f;
 const f32 D_80364A74 = -1200.f;
 
-extern u8 D_8037D380;
-extern u8 D_8037D381;
-extern u8 D_8037D382;
+/* .bss */
+u8 D_8037D380;
+u8 D_8037D381;
+u8 D_8037D382;
 
+/* .code */
 void bsbshock_charge_init(void){
     AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     animctrl_reset(aCtrl);

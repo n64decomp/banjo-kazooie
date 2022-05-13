@@ -4,17 +4,12 @@
 
 extern int func_80258424(f32 vec[3], f32 minX, f32 minY, f32 minZ, f32 maxX, f32 maxY, f32 maxZ);
 
-
-/* .rodata */
-extern f32 D_80374DA0;
-extern f32 D_80374DA4;
-
 /* .bss */
-extern u8 D_8037D210;
-extern u8 D_8037D211;
-extern u8 D_8037D212;
-extern f32 D_8037D218[3];
-extern f32 D_8037D224;
+u8 D_8037D210;
+u8 D_8037D211;
+u8 D_8037D212;
+f32 D_8037D218[3];
+f32 D_8037D224;
 
 /*.code */
 bool func_8029CFA0(void){

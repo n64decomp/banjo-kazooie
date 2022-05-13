@@ -13,13 +13,13 @@ void func_802979AC(f32, f32);
 void func_8029E3C0(s32, f32);
 
 
+/* .bss */
+f32 D_8037D2A0;
+u8  D_8037D2A4;
+u8  D_8037D2A5;
+u8  D_8037D2A6;
 
-extern f32 D_8037D2A0;
-extern u8 D_8037D2A4;
-extern u8 D_8037D2A5;
-extern u8 D_8037D2A6;
-
-
+/* .code */
 s32 func_8029F4E0(Actor * arg0){
     return arg0->unk138_31 == 0;
 }

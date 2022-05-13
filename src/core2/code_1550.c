@@ -48,9 +48,6 @@ void func_802885E8(void){ //animationCache_free
     }
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_1550/func_8028863C.s")
-#else
 void func_8028863C(void){
     s32 i = 0;
     for(i = 0; i < 0x2CA; i++){
@@ -61,7 +58,6 @@ void func_8028863C(void){
     func_802884E0();
     func_80288530();
 }
-#endif
 
 void func_8028873C(s32 arg0){
     s32 i;

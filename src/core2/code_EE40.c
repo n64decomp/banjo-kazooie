@@ -2,6 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
+/* .bss */
 struct{
     f32 unk0[3];
     f32 unkC[3];
@@ -9,6 +10,7 @@ struct{
     u8  pad19[3];
 } D_8037C3C0;
 
+/* .code */
 void func_80295DD0(void){
     s32 sp24[3];
     s32 sp18[3];

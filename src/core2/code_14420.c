@@ -20,16 +20,16 @@ typedef struct {
 } Struct_core2_13FC0;
 
 /* .data */ 
-extern s32 D_80364620;
-extern s16 D_80364624[];
-extern u8 D_80364640[];
-extern Struct_core2_13FC0 D_80364650[];
-extern Struct_core2_13FC0 D_803646C0[];
-extern Struct_core2_13FC0 D_80364730[];
-extern Struct_core2_13FC0 D_803647A0[];
-extern Struct_core2_13FC0 D_80364810[];
-extern Struct_core2_13FC0 D_80364880[];
-extern Struct_core2_13FC0 D_803648F0[];
+s32 D_80364620;
+s16 D_80364624[14];
+u8 D_80364640[16];
+Struct_core2_13FC0 D_80364650[14];
+Struct_core2_13FC0 D_803646C0[14];
+Struct_core2_13FC0 D_80364730[14];
+Struct_core2_13FC0 D_803647A0[14];
+Struct_core2_13FC0 D_80364810[14];
+Struct_core2_13FC0 D_80364880[14];
+Struct_core2_13FC0 D_803648F0[14];
 
 /* .bss */
 // extern struct {

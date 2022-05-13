@@ -5,12 +5,12 @@
 void func_80299248(f32);
 void func_802991A8(s32);
 
-extern f32 D_8037C690; //yaw
-extern f32 D_8037C694; //yaw_ideal
-extern s32 D_8037C698; //yaw_update_type
-extern f32 D_8037C69C; //yaw_update2_angular_velocity
-extern f32 D_8037C6A0; //yaw_update3_angular_velocity_limit
-extern f32 D_8037C6A4; //yaw_update3_angular_velocity_percentage
+f32 D_8037C690; //yaw
+f32 D_8037C694; //yaw_ideal
+s32 D_8037C698; //yaw_update_type
+f32 D_8037C69C; //yaw_update2_angular_velocity
+f32 D_8037C6A0; //yaw_update3_angular_velocity_limit
+f32 D_8037C6A4; //yaw_update3_angular_velocity_percentage
 
 void func_80298D70(f32 arg0) {
     f32 sp24;
