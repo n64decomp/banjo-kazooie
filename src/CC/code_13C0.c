@@ -92,7 +92,52 @@ void func_80387A20(Struct_CC_13C0_1 *arg0, Struct_core2_C9F00_0 *arg1) {
     func_803878F0(arg0, arg1, 8);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/CC/code_13C0/func_80387A40.s")
+void func_80387A40(Struct_CC_13C0_1* arg0, Struct_core2_C9F00_0* arg1, f32 arg2) {
+    s32 temp_v0;
+    f32 sp50[3];
+    f32 sp44[3];
+    f32 sp38[3];
+    f32 sp2C[3];
+    s32 sp28;
+
+    arg0->unkC += arg2;
+    temp_v0 = func_80388010();
+    if (temp_v0 == 0) {
+        func_803878AC(arg0, arg1, 3);
+    } else {
+        if (temp_v0 < arg0->unk0) {
+            func_803878AC(arg0, arg1, 0);
+        } else if (temp_v0 == arg0->unk0) {
+            func_803878AC(arg0, arg1, 1);
+        } else if ((arg0->unk0 < temp_v0) && ((arg0->unk4 != 2)) && (arg0->unk4 != 3)) {
+            func_803878AC(arg0, arg1, 2);
+        } else if ((arg0->unk4 == 2) && (arg0->unkC >= 1.0f)) {
+            func_803878AC(arg0, arg1, 3);
+        }
+    }
+    if ((arg0->unk4 == 0) || (arg0->unk4 == 1)) {
+        func_8035179C(arg1, sp38);
+        func_80351814(arg1, sp2C);
+        sp44[0] = 0.0f;
+        sp44[1] = 0.0f;
+        sp44[2] = 1.0f;
+        mlMtxIdent();
+        func_80252C08(NULL, sp2C, 1.0f, NULL);
+        func_8025235C(sp44, sp44);
+        player_getPosition(sp50);
+        sp50[1] += 50.0f;
+        sp50[0] -= sp38[0];
+        sp50[1] -= sp38[1];
+        sp50[2] -= sp38[2];
+        sp28 = ((sp50[0]*sp44[0] + sp50[1]*sp44[1] + sp50[2]*sp44[2]) >= 0.0f) ? 1 : -1;
+        if (sp28 == -arg0->unk8) {
+            if (gu_sqrtf(sp50[0]*sp50[0] + sp50[1]*sp50[1] + sp50[2] * sp50[2]) < (func_80351830(arg1) * 250.0f)) {
+                func_8038803C(arg0->unk0);
+            }
+        }
+        arg0->unk8 = sp28;
+    }
+}
 
 void func_80387CC0(void){
     f32 sp1C[3];
