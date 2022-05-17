@@ -167,7 +167,7 @@ segments:
   - [0x3AE10, c, code_3AE10] #DONE
   - [0x3B2C0, c, done/code_3B2C0] #DONE
   - [0x3B5C0, c, code_3B5C0] #DONE
-  - [0x3BB80, c, code_3BB80]
+  - [0x3BB80, c, code_3BB80] #DONE
   - [0x3D3D0, c, ch/gameSelect]
   - [0x3EAD0, c, code_3EAD0] #DONE
   - [0x3EC30, c, code_3EC30] #DONE
