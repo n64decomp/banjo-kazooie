@@ -2,11 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
-/* .rodata */
-extern f32 D_80375EE0;
-
 /* .bss */
-extern f32 D_8037DAA0;
+f32 D_8037DAA0;
 
 /* .code */
 void func_802BF0E0(f32 arg0[3]){
@@ -32,7 +29,7 @@ void func_802BF12C(void){
 
 void func_802BF174(void){
     func_802BE244(4.0f, 16.0f);
-    func_802BE230(D_80375EE0, 14.0f);
+    func_802BE230(1.1f, 14.0f);
     func_802C0150(3);
     func_802BF12C();
 }

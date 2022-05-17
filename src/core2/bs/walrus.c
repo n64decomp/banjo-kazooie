@@ -8,37 +8,25 @@ extern f32  ml_vec3f_dot_product(f32[3], f32[3]);
 int func_802B81F0(enum bs_e state);
 
 /* .data */
-extern f32 D_80364DC0;
-extern f32 D_80364DC4;
-extern f32 D_80364DC8;
-extern f32 D_80364DCC;
-extern f32 D_80364DD0;
-extern f32 D_80364DD4;
-extern f32 D_80364DD8;
-extern f32 D_80364DDC;
-extern f32 D_80364DE0;
-extern f32 D_80364DE4;
-extern u8 D_80364DF0;
-extern s16 D_80364DF4[]; //sfx_e
-
-/* .rodata */
-extern char D_80375C00[];
-extern char D_80375C0C[];
-extern char D_80375C18[];
-extern char D_80375C24[];
-extern char D_80375C30[];
-extern f64 D_80375C40;
-extern f64 D_80375C48;
-extern f64 D_80375C50;
-extern f32 D_8037D5C0;
-extern f32 D_80375C58;
-extern f32 D_80375C5C;
-
+f32 D_80364DC0 = 30.0f;
+f32 D_80364DC4 = 400.0f;
+f32 D_80364DC8 = 0.6f;
+f32 D_80364DCC = 0.4f;
+f32 D_80364DD0 = 693.5f;
+f32 D_80364DD4 = -1200.0f;
+f32 D_80364DD8 = 30.0f;
+f32 D_80364DDC = 700.0f;
+f32 D_80364DE0 = 0.6f;
+f32 D_80364DE4 = 0.44f;
+f32 D_80364DE8 = 700.0f;
+f32 D_80364DEC = -1200.0f;
+u8 D_80364DF0 = 0;
+s16 D_80364DF4[] = {SFX_54_BANJO_HOO_1, SFX_55_BANJO_HOO_2, SFX_56_BANJO_HUI}; //sfx_e
 
 /* .bss */
-extern f32  D_8037D5C0;
-extern f32  D_8037D5C4;
-extern u8   D_8037D5C8;
+f32  D_8037D5C0;
+f32  D_8037D5C4;
+u8   D_8037D5C8;
 
 /* .code */
 void func_802B7E00(void) {
@@ -84,11 +72,11 @@ void func_802B7F28(void) {
     func_802B7ECC();
     _get_velocity(sp20);
     sp20[1] = 0.0f;
-    if (D_80375C40 < sp20[0] * sp20[0] + sp20[1] * sp20[1] + sp20[2] * sp20[2]) {
+    if (900.0 < sp20[0] * sp20[0] + sp20[1] * sp20[1] + sp20[2] * sp20[2]) {
         ml_vec3f_normalize(sp20);
         func_80294480(sp2C);
-        if ( ml_vec3f_dot_product(sp20, sp2C) < D_80375C48) {
-            sp3C += D_8037D5C0 * D_80375C50;
+        if ( ml_vec3f_dot_product(sp20, sp2C) < -0.2) {
+            sp3C += D_8037D5C0 * 350.0;
         }
     }
     if (func_8029B300() == 0) {
@@ -202,7 +190,7 @@ void bswalrus_walk_update(void){
 
     func_80299628(0);
     func_802B7E6C();
-    func_8029AD68(D_80375C58, 4);
+    func_8029AD68(0.3f, 4);
 
     if(func_8029B300() == 0 && func_80297C04(1.0f))
         next_state = BS_67_WALRUS_IDLE;
@@ -231,7 +219,7 @@ void bswalrus_jump_init(void){
     animctrl_setDuration(aCtrl, 1.0f);
     func_8028774C(aCtrl, 0.1);
     animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
-    func_802875AC(aCtrl, D_80375C00, 0x1f8);
+    func_802875AC(aCtrl, "bswalrus.c", 0x1f8);
     func_8029C7F4(1,1,3,6);
     if(func_8029B2E8() != 0.0f)
         yaw_setIdeal(func_8029B33C());
@@ -320,7 +308,7 @@ void bswalrus_fall_init(void){
     func_8028774C(aCtrl, 0.662f);
     animctrl_setDuration(aCtrl, 0.7f);
     animctrl_setPlaybackType(aCtrl, ANIMCTRL_STOPPED);
-    func_802875AC(aCtrl, D_80375C0C, 0x284);
+    func_802875AC(aCtrl, "bswalrus.c", 0x284);
     func_8029C7F4(1,1,3,6);
     func_802B8110();
     D_8037D5C8 = 0;
@@ -459,7 +447,7 @@ void bswalrus_die_init(void){
     animctrl_setSubRange(aCtrl, 0.0f, 0.4454f);
     animctrl_setDuration(aCtrl, 2.2f);
     animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
-    func_802875AC(aCtrl, D_80375C18, 0x366);
+    func_802875AC(aCtrl, "bswalrus.c", 0x366);
     func_8030E58C(SFX_36_BANJO_DOH, 1.8f);
     _player_getPosition(&sp2C);
     func_80294980(&sp20);
@@ -612,7 +600,7 @@ void bswalrus_sled_jump_init(void){
     animctrl_setDuration(aCtrl, 1.0f);
     func_8028774C(aCtrl, 0.14f);
     animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
-    func_802875AC(aCtrl, D_80375C24, 0x477);
+    func_802875AC(aCtrl, "bswalrus.c", 0x477);
     func_8029C7F4(1,1,3,6);
     if(func_8029B2E8() != 0.0f)
         yaw_setIdeal(func_8029B33C());
@@ -641,7 +629,7 @@ void bswalrus_sled_jump_update(void){
     {
     case 0:
         if(animctrl_isStopped(aCtrl)){
-            func_8028A3B8(D_80375C5C, 7.0f);
+            func_8028A3B8(0.5058f, 7.0f);
             D_8037D5C8 = 1;
         }
         break;
@@ -680,7 +668,7 @@ void func_802B95A0(void){
     animctrl_setSubRange(aCtrl, 0.0f, 0.5058f);
     animctrl_setDuration(aCtrl, 1.0f);
     animctrl_setPlaybackType(aCtrl, ANIMCTRL_STOPPED);
-    func_802875AC(aCtrl, D_80375C30, 0x4e2);
+    func_802875AC(aCtrl, "bswalrus.c", 0x4e2);
     func_8029C7F4(1,1,3,6);
     func_802B813C();
     D_8037D5C8 = 0;

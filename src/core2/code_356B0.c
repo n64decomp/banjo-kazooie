@@ -33,53 +33,37 @@ extern Struct_core2_356B0_0 D_80365D48;
 extern Struct_core2_356B0_0 D_80365D50;
 extern Struct_core2_356B0_0 D_80365D58;
 
-/* .rodata */
-extern f64 D_80375D88;
-
-extern f32 D_80375D90;
-extern f32 D_80375D94;
-//D_80375D98; //func_802BCEC4
-
-//D_80375DE4; //func_802BD0D8
-//D_80375E30; //func_802BD0D8
-extern f64 D_80375E80;
-extern f64 D_80375E88;
-extern f64 D_80375E90;
-extern f64 D_80375E98;
-
-extern f64 D_80375EA8;
-extern f64 D_80375EB0;
 
 /* .bss */
-extern s32 D_8037D940;
-extern f32 D_8037D948[3];
-extern f32 D_8037D958[3];
-extern f32 D_8037D968[3];
-extern f32 D_8037D96C;
-extern f32 D_8037D974;
-extern f32 D_8037D978;
-extern f32 D_8037D97C;
-extern f32 D_8037D980;
-extern f32 D_8037D984;
-extern f32 D_8037D988;
-extern f32 D_8037D98C;
-extern f32 D_8037D990;
-extern f32 D_8037D994;
-extern f32 D_8037D998;
-extern f32 D_8037D99C;
-extern f32 D_8037D9A0;
-extern f32 D_8037D9A8[3];
-extern f32 D_8037D9B8[3];
-extern f32 D_8037D9C8[3];
-extern f32 D_8037D9D4;
-extern f32 D_8037D9D8;
-extern f32 D_8037D9E0[3];
-extern f32 D_8037D9EC;
-extern f32 D_8037D9F0;
-extern u8 D_8037D9F4;
-extern u8 D_8037D9F5;
-extern u8 D_8037D9F6;
-extern u8 D_8037D9F7;
+s32 D_8037D940;
+f32 D_8037D948[3];
+f32 D_8037D958[3];
+f32 D_8037D968[3];
+f32 D_8037D96C;
+f32 D_8037D974;
+f32 D_8037D978;
+f32 D_8037D97C;
+f32 D_8037D980;
+f32 D_8037D984;
+f32 D_8037D988;
+f32 D_8037D98C;
+f32 D_8037D990;
+f32 D_8037D994;
+f32 D_8037D998;
+f32 D_8037D99C;
+f32 D_8037D9A0;
+f32 D_8037D9A8[3];
+f32 D_8037D9B8[3];
+f32 D_8037D9C8[3];
+f32 D_8037D9D4;
+f32 D_8037D9D8;
+f32 D_8037D9E0[3];
+f32 D_8037D9EC;
+f32 D_8037D9F0;
+u8 D_8037D9F4;
+u8 D_8037D9F5;
+u8 D_8037D9F6;
+u8 D_8037D9F7;
 
 /* .code */
 bool func_802BC640(f32 arg0[3], f32 arg1[3], f32 arg2, s32 arg3) {

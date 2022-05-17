@@ -6,7 +6,7 @@ extern void func_802BEA4C(f32[3], f32[3], f32, f32[3]);
 extern ActorProp *func_80320EB0(ActorMarker *, f32, s32);
 
 /* .bss */
-extern ActorMarker *D_8037D810;
+ActorMarker *D_8037D810;
 
 /* .code */
 Actor *func_802BABC0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){

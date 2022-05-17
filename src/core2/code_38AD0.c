@@ -10,10 +10,6 @@ extern void func_802BD870(f32, f32, f32, f32);
 void func_802BFE50(f32 arg0, f32 arg1, f32 arg2);
 void func_802BFE74(bool);
 
-/* .rodata */
-extern f64 D_80375F10;
-extern f64 D_80375F18;
-
 /* .bss */
 f32 D_8037DB10;
 f32 D_8037DB14;
@@ -65,12 +61,12 @@ void func_802BFAF0(void) {
     sp44 += func_80259198(temp_f10 * D_8037DB10, sp38 * D_8037DB14);
     func_8025727C(sp84[0], sp84[1], sp84[2], sp6C[0], sp6C[1], sp6C[2], &sp54[0], &sp54[1]);
     if ((sp34 > 180.0f) && (sp34 < 360.0f)) {
-        sp34 = min_f(100.0f, (f32) ((f64) (360.0f - sp34) * D_80375F10));
+        sp34 = min_f(100.0f, (f32) ((f64) (360.0f - sp34) * 1.4));
     }
     sp48[0] = mlDiffDegF(mlNormalizeAngle(sp34), sp54[0]);
     sp48[1] = mlDiffDegF(mlNormalizeAngle(func_8028EBA4() + 180.0f), sp54[1]);
     sp48[2] = 0.0f;
-    sp48[0] = (f32) ((f64) sp48[0] * ((f64) sp38 * D_80375F18));
+    sp48[0] = (f32) ((f64) sp48[0] * ((f64) sp38 * 0.8));
     sp48[1] = sp48[1] * (sp38 * D_8037DB1C);
     sp48[0] = func_80259198(sp48[0], sp38 * 40.0f);
     sp48[1] = func_80259198(sp48[1], sp38 * D_8037DB20);

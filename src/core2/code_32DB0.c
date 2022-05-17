@@ -13,7 +13,7 @@ s32 func_802B9EA8(s32 arg0);
 void func_802B9EBC(s32 arg0, s32 arg1);
 
 /* .bss */
-Struct_Core2_32DB0_0s D_8037D5E0[];
+Struct_Core2_32DB0_0s D_8037D5E0[0x46];
 
 /* .code */
 void func_802B9D40(void){

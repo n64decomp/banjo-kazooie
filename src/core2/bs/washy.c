@@ -2,8 +2,10 @@
 #include "functions.h"
 #include "variables.h"
 
-extern u8 D_8037D5D0;
+/* .bss */
+u8 D_8037D5D0;
 
+/* .code */
 void func_802B9980(s32 arg0){
     AnimCtrl *plyr_anim = _player_getAnimCtrlPtr();
 

@@ -5,13 +5,10 @@
 /* .data */
 extern f32 D_80365D90;
 
-/* .rodata */
-extern f32 D_80375EF0;
-
 /* .code */
 void func_802BF270(void){
     func_802BE244(4.0f, 16.0f);
-    func_802BE230(D_80375EF0, 14.0f);
+    func_802BE230(1.4f, 14.0f);
 }
 
 void func_802BF2B8(void){}

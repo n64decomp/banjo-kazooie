@@ -2,10 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
-extern f32 D_80375F20;
-
 /*.bss */
-extern struct {
+struct {
     f32 unk0;
     f32 unk4;
     f32 unk8;
@@ -26,7 +24,7 @@ void func_802BFED0(void){
 
 void func_802BFF1C(void) {
     func_802BE244(4.0f, 16.0f);
-    func_802BE230(D_80375F20, 14.0f);
+    func_802BE230(1.8f, 14.0f);
     D_8037DB30.unk0 = 290.0f;
     func_802BFED0();
 }

@@ -6,17 +6,15 @@
 f32 mlDiffDegF(f32, f32);
 
 
+/* .bss */
+f32 D_8037DC20[3];
+f32 D_8037DC30[3];
+f32 D_8037DC3C;
+f32 D_8037DC40;
+u8  D_8037DC44;
+f32 D_8037DC50[3];
 
-extern f32 D_8037DC20[3];
-extern f32 D_8037DC30[3];
-extern f32 D_8037DC3C;
-extern f32 D_8037DC40;
-extern u8  D_8037DC44;
-extern f32 D_8037DC50[3];
-
-
-
-
+/* .code */
 void func_802C2250(void){}
 
 void func_802C2258(void){

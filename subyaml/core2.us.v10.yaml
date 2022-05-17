@@ -146,7 +146,8 @@ segments:
   - [0x33C30, c, code_33C30] #DONE
   - [0x33D40, c, code_33D40] #DONE
   - [0x33F90, c, code_33F90] #DONE
-  - [0x34790, c, code_34790]
+  - [0x34310, c, code_34310] #DONE
+  - [0x34790, c, code_34790] #DONE
   - [0x35520, c, code_35520] #DONE
   - [0x356B0, c, code_356B0] #DONE
   - [0x379B0, c, code_379B0]
@@ -163,7 +164,7 @@ segments:
   - [0x396B0, c, code_396B0] #DONE
   - [0x39A10, c, code_39A10] #DONE
   - [0x39EF0, c, code_39EF0]
-  - [0x3AE10, c, code_3AE10]
+  - [0x3AE10, c, code_3AE10] #DONE
   - [0x3B2C0, c, done/code_3B2C0] #DONE
   - [0x3B5C0, c, code_3B5C0]
   - [0x3BB80, c, code_3BB80]
@@ -432,7 +433,9 @@ segments:
   - [0xDDD60, .data, bs/pumpkin]
   - [0xDDD90, .data, bs/stand]
   - [0xDDDB0, .data, bs/swim]
-  - [0xDDDE0, bin, data_DDDE0]
+  - [0xDDDE0, .data, bs/walk]
+  - [0xDDE30, .data, bs/walrus]
+  - [0xDDE70, bin, data_DDE70]
   - [0xDE8A0, .data, code_35520]
   - [0xDED40, bin, data_DED40]
   - [0xDEDD0, .data, code_37E50]
@@ -616,17 +619,25 @@ segments:
   - [0xEEBA0, .rodata, bs/turn]
   - [0xEEBC0, .rodata, bs/twirl]
   - [0xEEBE0, .rodata, bs/walk]
-  - [0xEEC70, bin, data_EEC70]
+  - [0xEEC70, .rodata, bs/walrus]
   - [0xEECD0, .rodata, bs/washy]
   - [0xEED30, .rodata, code_32DB0]
-  - [0xEED80, bin, data_EED80]
+  - [0xEED80, .rodata, code_33F90]
+  - [0xEEDA0, .rodata, code_34310]
+  - [0xEEDB0, .rodata, code_34790]
   - [0xEEDE0, .rodata, code_356B0]
   - [0xEEF30, .rodata, code_37E50]
-  - [0xEEF50, bin, data_EEF50]
+  - [0xEEF50, .rodata, code_38150]
+  - [0xEEF60, .rodata, code_382E0]
+  - [0xEEF70, .rodata, code_38460]
+  - [0xEEF80, .rodata, code_38AD0]
+  - [0xEEF90, .rodata, code_38F40]
   - [0xEEFA0, .rodata, code_39190]
   - [0xEEFC0, .rodata, code_396B0]
   - [0xEEFD0, .rodata, code_39A10]
-  - [0xEEFF0, bin, data_EEFF0]
+  - [0xEEFF0, .rodata, code_39EF0]
+  - [0xEF020, bin, data_EF020] #.rodata, code_39EF0]
+  - [0xEF030, .rodata, code_3AE10]
   - [0xEF040, ".rodata", code_3BB80]
   - [0xEF090, bin, data_EF090]
   - [0xEF190, .rodata, ch/gameSelect]
@@ -839,5 +850,28 @@ segments:
   - [0xf2c00, .bss, bs/turn]
   - [0xf2c00, .bss, bs/twirl]
   - [0xf2c00, .bss, bs/walk]
+  - [0xf2c00, .bss, bs/walrus]
+  - [0xf2c00, .bss, bs/washy]
+  - [0xf2c00, .bss, code_32DB0]
+  - [0xf2c00, .bss, code_33C30]
+  - [0xf2c00, .bss, code_33D40]
+  - [0xf2c00, .bss, code_34310]
+  - [0xf2c00, .bss, code_34790]
+  - [0xf2c00, .bss, code_35520]
+  - [0xf2c00, .bss, code_356B0]
+  - [0xf2c00, .bss, code_379B0]
+  - [0xf2c00, .bss, code_37CD0]
+  - [0xf2c00, .bss, code_37E50]
+  - [0xf2c00, .bss, code_38150]
+  - [0xf2c00, .bss, code_38460]
+  - [0xf2c00, .bss, code_38630]
+  - [0xf2c00, .bss, code_388E0]
+  - [0xf2c00, .bss, code_38AD0]
+  - [0xf2c00, .bss, code_38F40]
+  - [0xf2c00, .bss, code_39190]
+  - [0xf2c00, .bss, code_396B0]
+  - [0xf2c00, .bss, code_39A10]
+  - [0xf2c00, .bss, code_39EF0]
+  - [0xf2c00, .bss, done/code_3B2C0]
   # - [0xF2B20, .bss, ch/gameSelect]
 - [0xf2c00] # core2 end
