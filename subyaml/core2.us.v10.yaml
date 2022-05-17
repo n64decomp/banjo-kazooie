@@ -166,7 +166,7 @@ segments:
   - [0x39EF0, c, code_39EF0]
   - [0x3AE10, c, code_3AE10] #DONE
   - [0x3B2C0, c, done/code_3B2C0] #DONE
-  - [0x3B5C0, c, code_3B5C0]
+  - [0x3B5C0, c, code_3B5C0] #DONE
   - [0x3BB80, c, code_3BB80]
   - [0x3D3D0, c, ch/gameSelect]
   - [0x3EAD0, c, code_3EAD0] #DONE
@@ -873,5 +873,6 @@ segments:
   - [0xf2c00, .bss, code_39A10]
   - [0xf2c00, .bss, code_39EF0]
   - [0xf2c00, .bss, done/code_3B2C0]
+  - [0xf2c00, .bss, code_3B5C0]
   # - [0xF2B20, .bss, ch/gameSelect]
 - [0xf2c00] # core2 end
