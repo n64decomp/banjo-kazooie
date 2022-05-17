@@ -4,22 +4,6 @@
 
 #include "prop.h"
 
-typedef struct function_queue_s{
-    union { 
-        void (* func0)(void);
-        void (* func1)(s32);
-        void (* func2)(s32, s32);
-        void (* func3)(s32, s32, s32);
-        void (* func4)(s32, s32, s32, s32);
-        void (* func5)(s32, s32, s32, s32, s32);
-    };
-    s32  arg[5];
-    s32  arg_cnt;
-}FunctionQueue;
-
-extern u8 D_80365DC0;
-extern u8 D_80365DC4;
-extern FunctionQueue *D_80365DC8;
 
 void func_802E1790(void);
 
@@ -175,6 +159,25 @@ extern ActorInfo D_803732E0;
 extern ActorInfo D_80373DC0;
 
 
+typedef struct function_queue_s{
+    union { 
+        void (* func0)(void);
+        void (* func1)(s32);
+        void (* func2)(s32, s32);
+        void (* func3)(s32, s32, s32);
+        void (* func4)(s32, s32, s32, s32);
+        void (* func5)(s32, s32, s32, s32, s32);
+    };
+    s32  arg[5];
+    s32  arg_cnt;
+}FunctionQueue;
+
+/* .data */
+extern u8 D_80365DC0;
+extern u8 D_80365DC4;
+extern FunctionQueue *D_80365DC8;
+
+/* .code */
 void func_802C2B10(void){
     u32 tmp = (map_get() == MAP_90_GL_BATTLEMENTS)? 0x32: 0xF;
     D_80365DC8 = (FunctionQueue *) malloc(tmp * sizeof(FunctionQueue));
@@ -532,19 +535,64 @@ void func_802C4014(void (* arg0)(void), s32 arg1, s32 arg2, s32 arg3, s32 arg4, 
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_3BB80/func_802C4140.s")
+Actor *func_802C4140(enum actor_e actor_id, s32 x, s32 y, s32 z){
+    f32 position[3];
+    position[0] = reinterpret_cast(f32, x);
+    position[1] = reinterpret_cast(f32, y);
+    position[2] = reinterpret_cast(f32, z);
+    return func_8032813C(reinterpret_cast(enum actor_e, actor_id), position, 0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_3BB80/func_802C418C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_3BB80/func_802C41D8.s")
+Actor *func_802C418C(enum actor_e actor_id, s32 x, s32 y, s32 z){
+    s16 position[3];
+    position[0] = reinterpret_cast(s16, x);
+    position[1] = reinterpret_cast(s16, y);
+    position[2] = reinterpret_cast(s16, z);
+    return func_803282AC(reinterpret_cast(enum actor_e, actor_id), position, 0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_3BB80/func_802C4218.s")
+Actor *func_802C41D8(enum actor_e actor_id, s32 x, s32 y, s32 z){
+    s32 position[3];
+    position[0] = reinterpret_cast(s32, x);
+    position[1] = reinterpret_cast(s32, y);
+    position[2] = reinterpret_cast(s32, z);
+    return func_8032811C(reinterpret_cast(enum actor_e, actor_id), position, 0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_3BB80/func_802C4260.s")
+Actor *func_802C4218(enum actor_e actor_id, s32 x, s32 y, s32 z){
+    f32 position[3];
+    position[0] = reinterpret_cast(f32, x);
+    position[1] = reinterpret_cast(f32, y);
+    position[2] = reinterpret_cast(f32, z);
+    return func_802C937C(reinterpret_cast(enum actor_e, actor_id), position);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_3BB80/func_802C42B4.s")
+Actor *func_802C4260(enum actor_e actor_id, s32 x, s32 y, s32 z, s32 yaw){
+    f32 position[3];
+    position[0] = reinterpret_cast(f32, x);
+    position[1] = reinterpret_cast(f32, y);
+    position[2] = reinterpret_cast(f32, z);
+    func_802C8F70(reinterpret_cast(f32, yaw));
+    return func_802C937C(reinterpret_cast(enum actor_e, actor_id), position);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_3BB80/func_802C42F0.s")
+}
+
+s32 func_802C42B4(s32 arg0, s32 arg1, s32 arg2, s32 arg3){
+    s32 sp1C[3];
+    sp1C[0] = reinterpret_cast(s32, arg1);
+    sp1C[1] = reinterpret_cast(s32, arg2);
+    sp1C[2] = reinterpret_cast(s32, arg3);
+    return func_802C8F88(reinterpret_cast(s32, arg0), sp1C);
+}
+
+s32 func_802C42F0(s32 arg0, s32 arg1, s32 arg2, s32 arg3){
+    s32 sp1C[3];
+    sp1C[0] = arg1;
+    sp1C[1] = arg2;
+    sp1C[2] = arg3;
+    return func_802C8F88(arg0, sp1C);
+}
 
 void func_802C4320(FunctionQueue *arg0){
     if((arg0 = D_80365DC8) != NULL)
