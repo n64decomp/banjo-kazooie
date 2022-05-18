@@ -25,13 +25,16 @@ typedef struct sprite_prop_s{
 } SpriteProp;
 
 typedef struct prop_prop_s{
-    u32 unk0_31:12;
-    u32 pad0_19:4;
-    u32 unk0_15:8;
-    u32 unk0_7:8;
+    u16 unk0_31:12;
+    u16 pad0_19:4;
+    u8 unk0_15;
+    u8 unk0_7;
     s16 unk4[3];
     u8 unkA;
-    u8 padB[1];
+    u8 padB_7 :2;
+    u8 unkB_5 :1;
+    u8 unkB_4 :1;
+    u8 padB_3 :4;
 } PropProp;
 
 typedef struct actor_prop_s{

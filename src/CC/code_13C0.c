@@ -23,7 +23,9 @@ extern Struct_CC_13C0_0 D_8036E834[];
 
 extern s32 D_80383568;
 
-void func_803877B0(Struct_CC_13C0_1* arg0, void* arg1, f32 arg2[3], f32 arg3[3], f32 arg4, BKModelBin* arg5, Gfx** gfx, Mtx** mtx) {
+// Struct5Fs *, struct struct_68_s *, f32[3], f32[3], f32, BKModelBin*, Gfx**, Mtx**, Vtx**);
+
+void func_803877B0(Struct_CC_13C0_1* arg0, void* arg1, f32 position[3], f32 rotation[3], f32 arg4, BKModelBin* modeL_ptr, Gfx** gfx, Mtx** mtx, Vtx **vtx) {
     s32 temp_v0 = arg0->unk4;
 
     if (temp_v0 == 3)
@@ -35,15 +37,15 @@ void func_803877B0(Struct_CC_13C0_1* arg0, void* arg1, f32 arg2[3], f32 arg3[3],
         func_8033A45C(1, 2);
     } else if (temp_v0 == 2) {
         func_8033A45C(1, 2);
-        arg3[2] += (arg0->unkC * 20.0f);
+        rotation[2] += (arg0->unkC * 20.0f);
         arg4 = arg4*(1.0f - arg0->unkC);
     }
     func_8033A45C(2, 0);
     set_model_render_mode(1);
-    func_803391A4(gfx, mtx, arg2, arg3, arg4, NULL, arg5);
+    func_803391A4(gfx, mtx, position, rotation, arg4, NULL, modeL_ptr);
 }
 
-void func_803878AC(Struct_CC_13C0_1 *arg0, Struct_core2_C9F00_0 *arg1, s32 arg2) {
+void func_803878AC(Struct_CC_13C0_1 *arg0, Struct68s *arg1, s32 arg2) {
     arg0->unk4 = arg2;
     arg0->unkC = 0.0f;
     if ((arg2 == 2) || (arg2 == 3)) {
@@ -51,7 +53,7 @@ void func_803878AC(Struct_CC_13C0_1 *arg0, Struct_core2_C9F00_0 *arg1, s32 arg2)
     }
 }
 
-void func_803878F0(Struct_CC_13C0_1 *arg0, Struct_core2_C9F00_0 *arg1, s32 arg2) {
+void func_803878F0(Struct_CC_13C0_1 *arg0, Struct68s *arg1, s32 arg2) {
     arg0->unk0 = arg2;
     arg0->unk4 = 0;
     arg0->unk8 = 0;
@@ -60,39 +62,39 @@ void func_803878F0(Struct_CC_13C0_1 *arg0, Struct_core2_C9F00_0 *arg1, s32 arg2)
     func_803878AC(arg0, arg1, 0);
 }
 
-void func_80387940(Struct_CC_13C0_1 *arg0, Struct_core2_C9F00_0 *arg1) {
+void func_80387940(Struct_CC_13C0_1 *arg0, Struct68s *arg1) {
     func_803878F0(arg0, arg1, 1);
 }
 
-void func_80387960(Struct_CC_13C0_1 *arg0, Struct_core2_C9F00_0 *arg1) {
+void func_80387960(Struct_CC_13C0_1 *arg0, Struct68s *arg1) {
     func_803878F0(arg0, arg1, 2);
 }
 
-void func_80387980(Struct_CC_13C0_1 *arg0, Struct_core2_C9F00_0 *arg1) {
+void func_80387980(Struct_CC_13C0_1 *arg0, Struct68s *arg1) {
     func_803878F0(arg0, arg1, 3);
 }
 
-void func_803879A0(Struct_CC_13C0_1 *arg0, Struct_core2_C9F00_0 *arg1) {
+void func_803879A0(Struct_CC_13C0_1 *arg0, Struct68s *arg1) {
     func_803878F0(arg0, arg1, 4);
 }
 
-void func_803879C0(Struct_CC_13C0_1 *arg0, Struct_core2_C9F00_0 *arg1) {
+void func_803879C0(Struct_CC_13C0_1 *arg0, Struct68s *arg1) {
     func_803878F0(arg0, arg1, 5);
 }
 
-void func_803879E0(Struct_CC_13C0_1 *arg0, Struct_core2_C9F00_0 *arg1) {
+void func_803879E0(Struct_CC_13C0_1 *arg0, Struct68s *arg1) {
     func_803878F0(arg0, arg1, 6);
 }
 
-void func_80387A00(Struct_CC_13C0_1 *arg0, Struct_core2_C9F00_0 *arg1) {
+void func_80387A00(Struct_CC_13C0_1 *arg0, Struct68s *arg1) {
     func_803878F0(arg0, arg1, 7);
 }
 
-void func_80387A20(Struct_CC_13C0_1 *arg0, Struct_core2_C9F00_0 *arg1) {
+void func_80387A20(Struct_CC_13C0_1 *arg0, Struct68s *arg1) {
     func_803878F0(arg0, arg1, 8);
 }
 
-void func_80387A40(Struct_CC_13C0_1* arg0, Struct_core2_C9F00_0* arg1, f32 arg2) {
+void func_80387A40(Struct_CC_13C0_1* arg0, Struct68s* arg1, f32 arg2) {
     s32 temp_v0;
     f32 sp50[3];
     f32 sp44[3];
