@@ -440,6 +440,7 @@ segments:
   - [0xDED40, bin, data_DED40]
   - [0xDEDD0, .data, code_37E50]
   - [0xDEE00, bin, data_DEE00]
+  - [0xDEE40, .data, ch/gameSelect]
   - [0xDEFA0, .data, code_3EAD0]
   - [0xDF020, .data, code_3EC30]
   - [0xDF050, .data, code_3ECE0]
@@ -639,8 +640,7 @@ segments:
   - [0xEF020, bin, data_EF020] #.rodata, code_39EF0]
   - [0xEF030, .rodata, code_3AE10]
   - [0xEF040, ".rodata", code_3BB80]
-  - [0xEF090, bin, data_EF090]
-  - [0xEF190, .rodata, ch/gameSelect]
+  - [0xEF090,  .rodata, ch/gameSelect]
   - [0xEF210, .rodata, code_3ECE0]
   - [0xEF220, .rodata, ch/bigbutt]
   - [0xEF300, .rodata, code_400F0]
@@ -861,6 +861,7 @@ segments:
   - [0xf2c00, .bss, code_356B0]
   - [0xf2c00, .bss, code_379B0]
   - [0xf2c00, .bss, code_37CD0]
+  - [0xf2c00, .bss, ch/gameSelect] #this is bizarre... should be where marked below...
   - [0xf2c00, .bss, code_37E50]
   - [0xf2c00, .bss, code_38150]
   - [0xf2c00, .bss, code_38460]
@@ -874,5 +875,5 @@ segments:
   - [0xf2c00, .bss, code_39EF0]
   - [0xf2c00, .bss, done/code_3B2C0]
   - [0xf2c00, .bss, code_3B5C0]
-  # - [0xF2B20, .bss, ch/gameSelect]
+  # - [0xf2c00, .bss, ch/gameSelect]
 - [0xf2c00] # core2 end

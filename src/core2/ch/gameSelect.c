@@ -26,65 +26,70 @@ extern void func_8024E71C(s32, f32*);
 
 
 /* .data */
-extern f32 D_80365DD0[3][3];
-extern u8 *D_80365DF4;
-extern u8 *D_80365DF8;
-extern u8 *D_80365DFC;
-extern s32 D_80365E00;
-extern f32 D_80365E04[][3];
-extern ActorAnimationInfo D_80365E28[];
-extern ActorInfo D_80365E58 = { 0xE4, 0x195, 0x532, 0x1, D_80365E28, func_802C5740, func_80326224, func_802C4464, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
-extern ActorAnimationInfo D_80365E7C[];
-extern ActorInfo D_80365EAC = { 0xE5, 0x196, 0x532, 0x1, D_80365E7C, func_802C4C14, func_80326224, func_802C4360, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
-extern ActorAnimationInfo D_80365ED0[];
-extern ActorInfo D_80365F00 = { 0xE6, 0x197, 0x532, 0x1, D_80365ED0, func_802C4C14, func_80326224, func_802C4360, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+f32 D_80365DD0[3][3] = {
+    {-320.0f, 340.0f, 350.0f},
+    {110.0f, 340.0f, 110.0f},
+    {-413.333313f, 353.333313f, -234.305511f}
+};
+u8 *D_80365DF4 = "USE THE CONTROL STICK TO SELECT A GAME.";   
+u8 *D_80365DF8 = "PRESS A TO PLAY THE GAME OR Z TO ERASE IT!";
+u8 *D_80365DFC = "ARE YOU SURE? PRESS A TO CONFIRM, OR B TO CANCEL";
+s32 D_80365E00 = -1;
+f32 D_80365E04[3][3] = {
+    {-435.0f,      278.0f,  -159.0f},
+    { 444.635437f, 216.0f,  -356.591675f},
+    {  55.0f,      191.822906f, -905.96875f}
+};
 
-/* .rodata */
-extern u8 D_803760A8[];
-extern u8 D_803760AC[];
-extern u8 D_803760B4[];
-extern u8 D_803760BC[];
-extern u8 D_803760C0[];
-extern u8 D_803760C4[];
-extern u8 D_803760C8[];
-extern u8 D_803760D0[];
-extern u8 D_803760D4[];
-extern u8 D_803760D8[];
-extern u8 D_803760E0[];
-extern u8 D_803760E4[];
-extern u8 D_803760E8[];
-extern u8 D_803760EC[];
-extern u8 D_803760F0[];
-extern u8 D_803760F8[];
-extern u8 D_80376100[];
-extern f64 D_80376108;
-extern f64 D_80376110;
-extern f64 D_80376118;
-extern f32 D_80376120;
-extern f64 D_80376128;
+ActorAnimationInfo D_80365E28[] = {
+    {0x000, 0.0f},
+    {0x24D, 9e+09f},
+    {0x24D, 2.0f},  
+    {0x24E, 1.0f},
+    {0x24F, 0.6f},  
+    {0x24D, 2.0f}
+};
+ActorInfo D_80365E58 = { 0xE4, 0x195, 0x532, 0x1, D_80365E28, func_802C5740, func_80326224, func_802C4464, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+
+ActorAnimationInfo D_80365E7C[] = {
+    {0x000, 0.0f}, 
+    {0x250, 9e+09f},
+    {0x250, 4.5f}, 
+    {0x251, 1.0f},
+    {0x252, 0.67f}, 
+    {0x250, 4.5f},
+};
+ActorInfo D_80365EAC = { 0xE5, 0x196, 0x532, 0x1, D_80365E7C, func_802C4C14, func_80326224, func_802C4360, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+
+ActorAnimationInfo D_80365ED0[] = {
+    {0x000, 0.0f},
+    {0x24A, 9e+09f},  
+    {0x24A, 1.0f},
+    {0x24B, 1.0f},  
+    {0x24C, 1.0f},
+    {0x24A, 1.0f}
+};
+ActorInfo D_80365F00 = { 0xE6, 0x197, 0x532, 0x1, D_80365ED0, func_802C4C14, func_80326224, func_802C4360, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
 
 
 /* .bss */
-extern u8 D_8037DCCE[];
-extern struct {
+extern u8 D_8037DCCE[0x12];
+struct {
     u8 *unk0;
     u8 *unk4;
 } D_8037DCE0;
-extern s32 D_8037DCE8;
-extern s32 D_8037DCEC;
-extern gczoombox_t *D_8037DCF0;
-extern gczoombox_t *D_8037DCF4;
-extern f32 D_8037DCF8[2][3];
-extern f32 D_8037DD10[2][3];
-extern void *D_8037DD28;
-extern s32 D_8037DD2C;
-extern f32 D_8037DD30;
-extern f32 D_8037DD34;
-extern s32 D_8037DD38;
-extern f32 D_8037DD3C;
-extern f32 D_8037DD40;
-extern u8 D_8037DD48[];
-extern u8 D_8037DD68[];
+s32 D_8037DCE8;
+s32 D_8037DCEC;
+gczoombox_t *D_8037DCF0;
+gczoombox_t *D_8037DCF4;
+f32 D_8037DCF8[2][3];
+f32 D_8037DD10[2][3];
+void *D_8037DD28;
+s32 D_8037DD2C;
+f32 D_8037DD30;
+f32 D_8037DD34;
+
+
 
 /* .code */
 Actor *func_802C4360(ActorMarker *marker, Gfx **arg1, Mtx **arg2, Vtx **arg3){
@@ -123,10 +128,6 @@ void func_802C44D0(s32 arg0, s32 arg1){
         D_8037DD2C = 0;
 }
 
-#ifndef NONMATCHING //matches but requires .bss defined
-s32 func_802C44EC(f32[3], f32[3], f32);
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/ch/gameSelect/func_802C44EC.s")
-#else
 void *func_802C44EC(f32 arg0[3], f32 arg1[3], f32 arg2) {
     f32 phi_f12;
     f32 sp40[3];
@@ -145,19 +146,20 @@ void *func_802C44EC(f32 arg0[3], f32 arg1[3], f32 arg2) {
         phi_f12 = 500.0f;
     }
     D_8037DD3C = 1.0 + (9.0f / gu_sqrtf(phi_f12));
-    D_8037DD40 = sinf(D_8037DD3C*1.5078);
+    D_8037DD40 = sinf(D_8037DD3C*1.5707963267948966);
     for(i = 0; i < 3; i++){
-        D_8037DD10[D_8037DD38][i] = arg0[i] + ((arg1[i] - arg0[i])*sinf((((arg2 / 0.75) * 3.14159) / 2) * D_8037DD3C)) / D_8037DD40;
+        D_8037DD10[D_8037DD38][i] = arg0[i] + ((arg1[i] - arg0[i])*sinf((((arg2 / 0.75) * 3.1415926535897931) / 2) * D_8037DD3C)) / D_8037DD40;
         D_8037DCF8[D_8037DD38][i] += (D_8037DD10[D_8037DD38][i] - D_8037DCF8[D_8037DD38][i]) / 5.0;
 
     }
     return &D_8037DCF8[D_8037DD38];
 }
-#endif
-
 
 void func_802C4768(s32 gamenum){
     u8 * sp20[2];
+    static u8 D_8037DD48[0x20];
+    static u8 D_8037DD68[0x20];
+
     func_8031FBF8();
     D_80365E00 = gamenum;
     func_8031FBA0();
@@ -165,8 +167,8 @@ void func_802C4768(s32 gamenum){
         func_8033D13C(gamenum);
         D_8037DCCE[gamenum] = (func_8034717C(6)) ? 1 : 0;
     
-        strcpy(D_8037DD48, D_803760A8);
-        strcat(D_8037DD48, D_803760AC);
+        strcpy(D_8037DD48, "");
+        strcat(D_8037DD48, "GAME ");
         switch(gamenum){
             case 0: //L802C4820
                 strIToA(D_8037DD48, 1);
@@ -178,30 +180,30 @@ void func_802C4768(s32 gamenum){
                 strIToA(D_8037DD48, 2);
                 break;
         }//L802C4858
-        strcat(D_8037DD48, D_803760B4);
+        strcat(D_8037DD48, ": TIME ");
         strcat(D_8037DD48, func_80311C64(func_803470A0()));
-        strcat(D_8037DD48, D_803760BC);
-        strcat(D_8037DD48, D_803760C0);
+        strcat(D_8037DD48, ",");
+        strcat(D_8037DD48, "");
 
-        strcpy(D_8037DD68, D_803760C4);
+        strcpy(D_8037DD68, "");
         strIToA(D_8037DD68, jiggyscore_total());
-        strcat(D_8037DD68, D_803760C8);
+        strcat(D_8037DD68, " JIGSAW");
         if(jiggyscore_total() != 1){
-            strcat(D_8037DD68, D_803760D0);
+            strcat(D_8037DD68, "S");
         }
-        strcat(D_8037DD68, D_803760D4);
+        strcat(D_8037DD68, ", ");
         strIToA(D_8037DD68, notescore_getTotal());
-        strcat(D_8037DD68, D_803760D8);
+        strcat(D_8037DD68, " NOTE");
         if(notescore_getTotal() != 1){
-            strcat(D_8037DD68, D_803760E0);
+            strcat(D_8037DD68, "S");
         }
-        strcat(D_8037DD68, D_803760E4);
-        strcat(D_8037DD68, D_803760E8);
+        strcat(D_8037DD68, ".");
+        strcat(D_8037DD68, "");
     }//L802C49AC
     else{
         D_8037DCCE[gamenum] = 0;
-        strcpy(D_8037DD48, D_803760EC);
-        strcat(D_8037DD48, D_803760F0);
+        strcpy(D_8037DD48, "");
+        strcat(D_8037DD48, "GAME ");
         switch (gamenum){
             case 0:
                 strIToA(D_8037DD48, 1);
@@ -213,8 +215,8 @@ void func_802C4768(s32 gamenum){
                 strIToA(D_8037DD48, 2);
                 break;
         }//L802C4A40
-        strcat(D_8037DD48, D_803760F8);
-        strcpy(D_8037DD68, D_80376100);
+        strcat(D_8037DD48, ": EMPTY");
+        strcpy(D_8037DD68, "");
     }//L802C4A68
     sp20[0] = D_8037DD48;\
     sp20[1] = D_8037DD68;
@@ -324,8 +326,8 @@ void func_802C4C14(Actor *this){
                         func_8030E510(SFX_5E_BANJO_PHEWWW, 8000);
                     break;
                 case 1://L802C4DD0
-                    // if(randf() < 0.1){
-                    if(randf() < D_80376118){
+                    if(randf() < 0.1){
+                    // if(randf() < D_80376118){
                         func_8030E6A4(MIN(2.0f, randf() *3.0f) + 311.0f, 1.0f, 12000);
                     }
                     break;
