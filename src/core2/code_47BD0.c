@@ -11,14 +11,14 @@ typedef struct{
 
 typedef struct{
     s32 unk0;
-    u8 pad4[0x1];
+    u8 unk4;
     u8 unk5;
     u8 unk6;
-    u8 pad7[0x1];
+    u8 unk7;
     Struct_core2_47BD0_0 *unk8;
     f32 unkC[3];
     f32 unk18;
-    u8 pad1C[0x4];
+    f32 unk1C;
     BKModelBin *unk20;
     s32 unk24;
 }ActorLocal_core2_47BD0;
@@ -303,12 +303,230 @@ void func_802CF7CC(Actor *this) {
     }
 }
 
-
+#ifndef NONMATCHING
 void func_802CF83C(Actor *this);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_47BD0/func_802CF83C.s")
+#else
+extern f64 D_803765E8;
+extern f64 D_80376620;
+extern f64 D_80376628;
+extern f64 D_80376630;
+extern s32 D_8037DCBC;
 
+void func_802CF83C(Actor *this) {
+    f32 spB4[3];
+    f32 spB0;
+    f32 spAC;
+    f32 spA0[3];
+    f32 sp94[3];
+    f32 sp88[3];
+    f32 sp7C[3];
+    s32 sp78;
+    f32 *sp64;
+    f32 *sp44;
+    f32 *sp40;
+    Actor *beehive;
+    ActorMarker *temp_v0_3;
+    f32 *temp_a0;
+    f32 temp_f0;
+    f32 temp_f14;
+    f32 temp_f14_2;
+    f32 temp_f16;
+    f32 temp_f16_2;
+    f32 temp_f18;
+    f32 temp_f18_2;
+    f32 temp_f8;
+    f64 temp_f2;
+    s16 temp_t7;
+    u32 temp_t0;
+    u32 temp_t1;
+    u32 temp_t2;
+    u32 temp_t3;
+    u8 temp_a0_2;
+    ActorLocal_core2_47BD0 *local;
+    u32 phi_a1;
+    f64 phi_f2;
+    f64 phi_f0;
 
+    local = (ActorLocal_core2_47BD0 *)&this->local;
+    spAC = time_getDelta();
+    sp78 = 0;
+    if (!this->initialized) {
+        this->initialized = TRUE;
+        beehive = func_80326D68(this->position, ACTOR_12_BEEHIVE, -1, &spB0);
+        if (beehive != NULL) {
+            this->unk100 = beehive->marker;
+        } else {
+            this->unk100 = NULL;
+        }
+        if (spB0 > 500.0f) {
+            this->unk100 = NULL;
+        }
+        sp78 = 1;
+        local->unk18 = this->position[1];
+        local->unkC[0] = ((this->unk100) ? beehive->position : this->position)[0];\
+        local->unkC[1] = ((this->unk100) ? beehive->position : this->position)[1];\
+        local->unkC[2] = ((this->unk100) ? beehive->position : this->position)[2];
 
+        local->unkC[1] += 250.0f;
+        local->unk0 = this->unkF4_8;
+        this->position[0] = local->unkC[0];
+        this->position[1] = local->unkC[1];
+        this->position[2] = local->unkC[2];
+        sp94[0] = this->position[0]; sp94[1] = this->position[1]; sp94[2] = this->position[2];
+        sp94[1] += 50.0f;
+        sp88[0] = this->position[0]; sp88[1] = this->position[1]; sp88[2] = this->position[2];
+        sp88[1] -= 500.0f;
+        if (func_80309B48(sp94, sp88, sp7C, 0x5E0000)) {
+            local->unk18 = sp88[1];
+        }
+    }
 
+    if (!this->unk16C_4) {
+        this->unk16C_4 = TRUE;
+        func_803300D8(this->marker, func_802CEBA8);
+        actor_collisionOff(this);
+        local->unk20 = assetcache_get(0x3BF);
+        if (sp78 == 0) {
+            beehive = func_80326D68(this->position, ACTOR_12_BEEHIVE, -1, &spB0);
+            if (beehive != NULL) {
+                this->unk100 = beehive->marker;
+            } else {
+                this->unk100 = NULL;
+            }
+            if (spB0 > 500.0f) {
+                this->unk100 = NULL;
+            }
+        }
+        temp_v0_3 = this->unk100;
+        if (temp_v0_3 != NULL) {
+            local->unk24 = temp_v0_3->unk5C;
+        } else {
+            local->unk24 = NULL;
+        }
+        local->unk5 = 1;
+        if (this->unk100 != NULL) {
+            func_80320004(BKPROG_D_BEEHIVE_TEXT, TRUE);
+        }
+        phi_a1 = 2U;
+        if (this->unk100 != NULL) {
+            phi_a1 = 1U;
+        }
+        func_80328A84(this, phi_a1);
+        this->unk60 = 0.0f;
+        func_802CF040(this);
+        this->unk38_0 = func_803203FC(1) | func_803203FC(0x1F);
+    }
 
-//3FECCCCD  4042C000 00 00 00 00
+    if (actor_playerIsWithinDist(this, 0xFA0)) {
+        if (!actor_playerIsWithinDist(this, 0x5DC) == 0) {
+            if (this->unk44_31 != 0) {
+                func_8030DA44(this->unk44_31);
+                this->unk44_31 = 0;
+                D_8037DCBC = 0;
+            }
+        }
+        if (map_get() == MAP_27_FP_FREEZEEZY_PEAK) {
+            if (func_8038BFA0()) {
+                this->unk58_0 = FALSE;
+                return;
+            }
+            this->unk58_0 = TRUE;
+        }
+block_40:
+        sp94[0] = this->position[0];
+        sp94[1] = this->position[1];
+        sp94[2] = this->position[2];
+        sp88[0] = (this->velocity[0] * spAC) + this->position[0];
+        sp88[1] = (this->velocity[1] * spAC) + this->position[1];
+        sp88[2] = (this->velocity[2] * spAC) + this->position[2];
+        if (this->state != 7) {
+            if (func_80309DBC(sp94, sp88, 75.0f, sp7C, 3, 0)) {
+                ml_vec3f_normalize(&sp7C);
+                temp_f0 = (this->velocity[0]*sp7C[0] + this->velocity[1]*sp7C[1] + this->velocity[2]*sp7C[2]) * -1.5;
+                this->velocity[0] += (sp7C[0] * temp_f0);
+                this->velocity[1] += (sp7C[1] * temp_f0);
+                this->velocity[2] += (sp7C[2] * temp_f0);
+                this->unk1C[0] = sp7C[0] * D_803765E8 + this->position[0];
+                this->unk1C[1] = sp7C[1] * D_803765E8 + this->position[1];
+                this->unk1C[2] = sp7C[2] * D_803765E8 + this->position[2];
+                if (this->state != 6) {
+                    local->unk6 = this->state;
+                    func_80328A84(this, 6);
+                }
+            }
+            func_802CF1C8(this->unk1C, this->position, this->velocity, this->unk28, 100.0f, 0, &spA0);
+        }
+        if (map_get() == MAP_78_GL_RBB_AND_MMM_PUZZLE) {
+            if (this->unk38_31++ == 0x1E) {
+                this->unk38_31 = 0;
+                sp88[0] = this->position[0];
+                sp88[1] = this->position[1];
+                sp88[2] = this->position[2];
+                sp94[1] += 1000.0f;
+                sp88[1] -= 1000.0f;
+                if (func_80309B48(sp94, sp88, sp7C, 0xF800FF0F)) {
+                    local->unk1C = sp88[1];
+                } else {
+                    local->unk1C = -16000.0f;
+                }
+                if ((this->position[1] - 100.0f) < local->unk1C) {
+                    if (this->state != 7) {
+                        local->unk7 = this->state;
+                        local->unk4 = local->unk0;
+                        func_80328A84(this, 7);
+                    }
+                }
+            }
+        }
+        func_8028E9C4(5, &spB4);
+        switch(this->state){
+            case 1:
+                if( !func_8031FF1C(0x8F) 
+                    && func_803296B8(this, 0xFA, 0x12C) 
+                    && ((func_8028ECAC() == 0) || (func_8028ECAC() == 8)) 
+                    && (player_getTransformation() == TRANSFORM_1_BANJO) 
+                    && func_80311480(0xDA6, 0, NULL, NULL, NULL, NULL) 
+                ) {
+                    func_80320004(0x8F, TRUE);
+                }
+                if (func_802CF5E4(this)) {
+                    func_80328A84(this, 2);
+                }
+                if (func_80256064(this->position, this->unk1C) < 50.0f) {
+                    func_802CEF54(this, local->unkC, 100.0f);
+                }
+                break;
+        }
+        if (local->unk5) {
+            func_802CF434(this);
+        }
+        local->unk5 = FALSE;
+
+        if( (local->unk0 > 0) 
+            && func_80329530(this, 0x5DC)  && !this->unk38_0
+        ) {
+            if (!this->unk44_31) {
+                func_802CF7CC(this);
+            }
+            if (this->unk44_31) {
+                if ((this->state == 3) || (this->state == 4)) {
+                    phi_f2 = 0.0;
+                } else {
+                    phi_f2 = D_80376620;
+                }
+                if ((this->state == 3) || (this->state == 4)) {
+                    phi_f0 = D_80376628;
+                } else {
+                    phi_f0 = D_80376630;
+                }
+                func_8030DBFC(this->unk44_31, phi_f2, phi_f0, 0.05f);
+                func_8030DEB4(this->unk44_31, 500.0f, 1500.0f);
+                func_8030DF68(this->unk44_31, this->position);
+                func_8030E2C4(this->unk44_31);
+                func_8030DABC(this->unk44_31, ((gu_sqrtf(this->velocity[0]*this->velocity[0] + this->velocity[1]*this->velocity[1] + this->velocity[2]*this->velocity[2])/ this->unk28) * 8000.0f) + 2000.0f);
+            }
+        }
+    }
+}
+#endif

@@ -218,7 +218,7 @@ void particleEmitter_setPosition(ParticleEmitter *, f32[3]);
 ParticleEmitter *partEmitList_pushNew(u32);
 void func_802BB3DC(s32, f32, f32);
 void func_802C3F04(void (* arg0)(void), s32, s32, s32, s32);
-void func_802C4140();
+Actor *func_802C4140(enum actor_e actor_id, s32 x, s32 y, s32 z);
 void func_8030DA44(u8);
 
 

@@ -2,7 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-void func_802C4140(s32, s32, s32, s32);
 void timedFunc_set_0(f32, void (*)(void));
 
 

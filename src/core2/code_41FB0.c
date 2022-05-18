@@ -2,7 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-
 typedef struct {
     s16 unk0;
     u8 pad2[0x2];
@@ -34,11 +33,14 @@ typedef struct {
     u8 unk2F;
 } struct41FB0s_1;
 
+/* .data */
 extern struct41FB0s D_80366460[];
 extern f32 D_80366C4C;
 
+/* .rodata */
 extern f64 D_80376410;
 
+/* .bss */
 extern f32 D_8037DDB4;
 extern f32 D_8037DDB8;
 
