@@ -232,11 +232,11 @@ segments:
   - [0x5BD90, c, code_5BD90] #DONE
   - [0x5BEB0, c, code_5BEB0]
   - [0x5DBC0, c, code_5DBC0] #DONE
-  - [0x5FD80, c, code_5FD80]
+  - [0x5FD80, c, code_5FD80] #DONE
   - [0x5FD90, c, code_5FD90]
   - [0x62FD0, c, code_62FD0] #DONE
   - [0x630D0, c, code_630D0] #DONE
-  - [0x63410, c, code_63410]
+  - [0x63410, c, code_63410] #DONE
   - [0x63690, c, code_63690]
   - [0x637D0, c, code_637D0]
   - [0x654C0, c, code_654C0]
