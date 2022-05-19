@@ -35,7 +35,26 @@ typedef struct {
 } BKVertexList;
 
 typedef struct {
-    u8 pad0[0];
+    s16 unk0; //start_tri
+    s16 unk2; //tri_cnt
+} BKCollisionGeo; //BKCollisionGeometry
+
+typedef struct {
+    s16 unk0[3]; //vtx_indx
+    s32 unk8; //flags
+} BKCollisionTri; //BKCollisionTri
+
+typedef struct {
+    s16 unk0[3]; //min
+    s16 unk6[3]; //max
+    s16 unkC; //y_stride
+    s16 unkE; //z_stride
+    s16 unk10; //geo_cnt
+    s16 unk12; //scale
+    s16 unk14; //tri_cnt
+    u8 pad16[0x2];
+    //BKCollisionGeo[]
+    //BKCollisionTri[]
 }BKCollisionList;
 
 typedef struct {

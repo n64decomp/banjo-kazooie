@@ -688,6 +688,7 @@ segments:
   - [0xF0170, bin, data_F0170]
   #- [0xF0180, .rodata, code_5BEB0]
   - [0xF0180, bin, data_F0180]
+  - [0xF01F0, bin, data_F01F0] #.rodata, code_5FD90]
   - [0xF0200, .rodata, code_66FB0]
   - [0xF0210, bin, data_F0210]
   - [0xF0220, .rodata, code_67650]

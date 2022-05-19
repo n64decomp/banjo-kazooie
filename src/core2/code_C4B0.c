@@ -346,7 +346,7 @@ int func_802946FC(s32 arg0, s32 arg1){
           return 0;
      }
      else{
-          func_802E73C8(arg0, arg1);
+          func_802E73C8(arg0);
           return 1;
      }
 }
