@@ -15,31 +15,28 @@ void func_80294384(s32 arg0);
 void func_80294390(void);
 
 /* .bss */
-extern f32 D_8037C1F0[2];
-extern f32 D_8037C1F8[2];
-extern struct0 * D_8037C200;
-extern Struct60s * D_8037C204;
-extern s32 D_8037C208;
-extern f32 D_8037C218[3];
-extern f32 D_8037C228[3];
-extern f32 D_8037C238[3];
-extern f32 D_8037C248[3];
-extern f32 D_8037C258[3];
-extern f32 D_8037C268[3];
-extern s32 D_8037C274;
-extern u8 D_8037C278;
-extern u8 D_8037C279;
-extern u8 D_8037C27A;
-extern u8 D_8037C27B;
-extern u8 D_8037C27C;
-extern u8 D_8037C27D;
-extern u8 D_8037C27E;
-extern u8 D_8037C27F;
-extern u8 D_8037C280;
-extern s32 D_8037C284;
-
-// Remove this when bss is migrated from this file
-u8 code_C4B0_bss[0x8037C290 - 0x8037C1F0];
+f32 D_8037C1F0[2];
+f32 D_8037C1F8[2];
+struct0 * D_8037C200;
+Struct60s * D_8037C204;
+Struct60s D_8037C208;
+f32 D_8037C218[3];
+f32 D_8037C228[3];
+f32 D_8037C238[3];
+f32 D_8037C248[3];
+f32 D_8037C258[3];
+f32 D_8037C268[3];
+s32 D_8037C274;
+u8 D_8037C278;
+u8 D_8037C279;
+u8 D_8037C27A;
+u8 D_8037C27B;
+u8 D_8037C27C;
+u8 D_8037C27D;
+u8 D_8037C27E;
+u8 D_8037C27F;
+u8 D_8037C280;
+s32 D_8037C284;
 
 /* .code */
 void func_80293440(void){
