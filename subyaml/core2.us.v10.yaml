@@ -298,7 +298,7 @@ segments:
   - [0x9A740, c, code_9A740]
   - [0x9A9D0, c, code_9A9D0] #DONE
   - [0x9AD00, c, levelspecificflags]
-  - [0x9B180, c, code_9B180]
+  - [0x9B180, c, code_9B180] #DONE
   - [0x9B650, c, code_9B650]
   - [0x9B990, c, code_9B990] #DONE
   - [0x9C170, c, code_9C170]
@@ -700,6 +700,7 @@ segments:
   - [0xF0330, .rodata, code_70F20]
   - [0xF0390, .rodata, code_71820]
   - [0xF03B0, bin, data_F03B0]
+  # - [0xF03C0, .rodata, code_72060]
   - [0xF03D0, .rodata, code_73640]
   - [0xF0400, .rodata, code_74420]
   - [0xF0410, bin, data_F0410]
@@ -717,7 +718,8 @@ segments:
   - [0xF19C0, .rodata, code_91E10]
   - [0xF1A00, bin, data_F1A00]
   - [0xF1DC0, .rodata, code_9A9D0]
-  - [0xF1DF0, bin, data_F1DF0]
+  - [0xF1DF0, .rodata, code_9B180]
+  - [0xF1E00, bin, data_F1E00]
   - [0xF2000, .rodata, code_B6CE0]
   - [0xF2030, bin, data_F2030]
   - [0xF2170, .rodata, code_BEF20]

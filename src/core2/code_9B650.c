@@ -40,11 +40,17 @@ extern int D_80383348;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_803225E0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_803226BC.s")
+s32 func_803226BC(enum map_e map_id){
+    return D_8036DE80[func_803225E0(map_id)].unk6;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_803226E8.s")
+s32 func_803226E8(enum map_e map_id){
+    return D_8036DE80[func_803225E0(map_id)].unk2;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322714.s")
+s32 func_80322714(enum map_e map_id){
+    return D_8036DE80[func_803225E0(map_id)].unk4;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322740.s")
 
@@ -60,6 +66,40 @@ void func_80322764(void){
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_8032278C.s")
+// extern s32 D_8036E2B4;
+
+// void func_8032278C(s32 arg0, s32 arg1) {
+//     s32 temp_v0;
+
+//     D_80383340.unk4 = func_803226BC(map_get());
+//     D_80383340.unk0 = func_803226E8(map_get());
+//     D_80383340.unk2 = func_80322714(map_get());
+//     if (arg1 == 3) {
+//         D_8036E2B4 = 1;
+//         return;
+//     }
+//     temp_v0 = func_80322740();
+//     if ((arg1 == 2) && ((D_8036E2B4 != 0) || (arg0 != 1))) {
+//         D_8036E2B4 = 0;
+//         if (D_80383348 == 0) {
+//             if ((temp_v0 & 1) != 0) {
+//                 func_8024ADF0(0);
+//             } else {
+//                 func_8024ADF0(1);
+//             }
+//         } else {
+//             D_80383348 = 0;
+//             func_8024BD08(1);
+//         }
+//     }
+//     if ((arg0 == 1) && (arg1 == 2)) {
+//         func_8025A430(-1, 0xFA0, 8);
+//     }
+//     if ((arg1 == 1) && (arg0 == 2)) {
+//         func_8025A430(0, 0xFA0, 8);
+//     }
+// }
+
 
 void func_803228D8(void){
     if(!D_80383348){
