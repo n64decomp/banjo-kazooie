@@ -27,7 +27,9 @@ s32 texture_getPixelBitSize(BKTextureHeader *this){
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_63690/func_802EA684.s")
+s32 func_802EA684(BKTextureHeader *this){
+    return this->type_4;
+}
 
 s32 texture_getPaletteSize(BKTextureHeader *this){
     if(this->type_4 & 1){
@@ -48,8 +50,12 @@ s32 texture_getPaletteSize(BKTextureHeader *this){
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_63690/func_802EA6DC.s")
+// texture_getOffset
+s32 func_802EA6DC(BKTextureHeader *this){
+    return this->offset_0;
+}
 
+//texture_getSize
 s32 func_802EA6E4(BKTextureHeader *this){
     s32 palette_size = texture_getPaletteSize(this);
     s32 pixel_size = texture_getPixelBitSize(this);
@@ -57,4 +63,7 @@ s32 func_802EA6E4(BKTextureHeader *this){
     return (s32)pixel_size*this->width_8*this->height_9/8  + palette_size;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_63690/func_802EA748.s")
+//textureList_getTexture
+BKTextureHeader *func_802EA748(BKTextureList *arg0, s32 indx){
+    return (BKTextureHeader *)(arg0 +1) + indx;
+}
