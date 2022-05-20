@@ -9,10 +9,11 @@ const f32 D_80364ADC = 0.4f;
 const f32 D_80364AE0 = 693.5f;
 const f32 D_80364AE4 = -1200.0f;
 
+/* .bss */
+float D_8037D3B0;
+u8 D_8037D3B4;
 
-extern float D_8037D3B0;
-extern u8 D_8037D3B4;
-
+/* .code */
 void func_802AA400(void){
     f32 sp1C = func_8029B30C();
     if(!func_8029B300()){

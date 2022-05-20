@@ -5,7 +5,7 @@
 extern void func_8030DABC(u8, s16);
 extern s32 D_A00001D0;
 
-void func_8038B6FC(Struct5Fs *arg0, s32 arg1);
+void func_8038B6FC(Struct5Fs *arg0, Struct68s *arg1);
 
 extern UNK_TYPE(s32) D_8038B3F0;
 
@@ -46,7 +46,7 @@ void func_8038AF0C(s32 arg0, s32 arg1, s32 arg2) {
 void func_8038B3F0(s32, s32, s32, s32);
 #pragma GLOBAL_ASM("asm/nonmatchings/MMM/code_47D0/func_8038B3F0.s")
 
-void func_8038B590(Struct5Fs *arg0, s32 arg1){
+void func_8038B590(Struct5Fs *arg0, Struct68s *arg1){
     f32 sp1C[3];
     
     arg0->unkA = 1;
@@ -68,7 +68,7 @@ void func_8038B5D8(Struct5Fs *arg0, s32 arg1, s32 arg2, s32 arg3){
     func_80351A14(arg1, func_8038B3F0);
 }
 
-void func_8038B630(Struct5Fs *arg0, s32 arg1){
+void func_8038B630(Struct5Fs *arg0, Struct68s *arg1){
     u8 phi_s0;
     u32 pad;
     u32 pad1;
@@ -87,22 +87,22 @@ void func_8038B630(Struct5Fs *arg0, s32 arg1){
 
 }
 
-void func_8038B6D4(Struct5Fs * arg0, s32 arg1) {
+void func_8038B6D4(Struct5Fs * arg0, Struct68s *arg1) {
     arg0->unk0 = 1.0f;
     func_8038B6FC(arg0, arg1);
 }
 
-void func_8038B6FC(Struct5Fs *arg0, s32 arg1){
+void func_8038B6FC(Struct5Fs *arg0, Struct68s *arg1){
     func_8038B590(arg0, arg1);
     func_8038B630(arg0, arg1);
 }
 
-void func_8038B72C(Struct5Fs *arg0, s32 arg1) {
+void func_8038B72C(Struct5Fs *arg0, Struct68s * arg1) {
     arg0->unk4 = 1.0f;
     func_8038B6FC(arg0, arg1);
 }
 
-void func_8038B754(Struct5Fs *arg0, s32 arg1){
+void func_8038B754(Struct5Fs *arg0, Struct68s * arg1){
     func_8038B590(arg0, arg1);
     arg0->unkC = 1.0f;
     func_8025A6EC(COMUSIC_2C_BUZZER, 28000);

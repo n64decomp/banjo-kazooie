@@ -10,8 +10,9 @@ extern f32  func_80294500(void);
 void func_8029AE74(s32 arg0);
 void func_8029AEE4(s32 arg0);
 
-extern void *D_8037D190;
-extern u8 D_8037D194;
+/* .bss */
+Struct5Ds *D_8037D190;
+u8 D_8037D194;
 
 /* .code */
 void func_8029A990(void){

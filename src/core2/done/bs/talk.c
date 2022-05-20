@@ -2,9 +2,10 @@
 #include "functions.h"
 #include "variables.h"
 
-extern s32 D_8037D570;
-extern char D_80375B00[0x10];
+/* .bss */
+s32  D_8037D570;
 
+/* .code */
 void func_802B6130(void){
     AnimCtrl *plyr_mvmt;
     f32 yaw;
@@ -15,7 +16,7 @@ void func_802B6130(void){
     animctrl_reset(plyr_mvmt);
     func_8029C848(plyr_mvmt);
     animctrl_setPlaybackType(plyr_mvmt,  ANIMCTRL_LOOP);
-    func_802875AC(plyr_mvmt, D_80375B00, 0x38);
+    func_802875AC(plyr_mvmt, "bstalk.c", 0x38);
     _player_getPosition(&plyr_pos);
     func_802949F8(target_pos);
     func_80257F18(plyr_pos, target_pos, &yaw);

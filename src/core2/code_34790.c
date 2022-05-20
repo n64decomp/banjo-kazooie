@@ -13,28 +13,21 @@ f32 func_802BBEA4(f32 arg0[3], f32 arg1[3], f32 arg2, s32 arg3, s32 arg4);
 /* .data */
 extern s16 D_803657E0[];
 
-/* .rodata */
-extern f64 D_80375D40;
-extern f64 D_80375D48;
-extern f64 D_80375D50;
-extern f32 D_80375D60;
-extern f64 D_80375D58;
-
 /* .bss */
-extern s32 D_8037D8C0;
-extern u8 D_8037D8C4;
-extern u8 D_8037D8C5;
-extern u8 D_8037D8C6;
-extern f32 D_8037D8C8;
-extern f32 D_8037D8CC;
-extern struct {
+s32 D_8037D8C0;
+u8 D_8037D8C4;
+u8 D_8037D8C5;
+u8 D_8037D8C6;
+f32 D_8037D8C8;
+f32 D_8037D8CC;
+struct {
     s32 unk0[6];
     f32 unk18[6];
     u8 unk30;
     u8 unk31;
 }D_8037D8D0;
-extern f32 D_8037D908[3];
-extern f32 D_8037D918[3];
+f32 D_8037D908[3];
+f32 D_8037D918[3];
 
 /* .code */
 bool func_802BB720(s32 arg0, f32 arg1[3], f32 arg2[3], s32 *arg3) {
@@ -93,19 +86,19 @@ f32 func_802BB938(f32 arg0[3], f32 arg1[3]) {
 
     phi_f14 = func_802BBEA4(arg0, arg1, 350.0f, 1, 0x800000);
     phi_f12 = (D_8037D8D0.unk31) ? 25.0f : 10.0f;
-    phi_f20 = max_f(phi_f12, phi_f14* D_80375D40 - 15.0);
+    phi_f20 = max_f(phi_f12, phi_f14* 0.8 - 15.0);
     func_802BAC58();
 
     if (func_802BB884(arg0, &sp3C)) {
         phi_f20 = min_f(phi_f20, ml_map_f(sp3C, 90.0f, 450.0f, 20.0f, 240.0f));
     }
 
-    if (D_80375D48 < phi_f20 && func_802BAC1C()) {
+    if (65.0 < phi_f20 && func_802BAC1C()) {
         phi_f20 = 65.0f;
     }
 
     if (gctransition_8030BDAC()) {
-        phi_f20 = min_f(phi_f20, gctransition_8030BD88() * D_80375D50);
+        phi_f20 = min_f(phi_f20, gctransition_8030BD88() * 0.8);
     }
     return phi_f20;
 }
@@ -126,8 +119,8 @@ void func_802BBA84(void) {
     if (D_8037D8CC < 1000.0f) {
         D_8037D8CC = 1000.0f;
     }
-    if (D_80375D58 < D_8037D8CC) {
-        D_8037D8CC = D_80375D60;
+    if (20000.0 < D_8037D8CC) {
+        D_8037D8CC = 20000.0f;
     }
     if (level_get() == LEVEL_D_CUTSCENE) {
         D_8037D8C8 = D_8037D8CC * 0.0078125;
@@ -357,7 +350,7 @@ void func_802BC2CC(s32 arg0) {
     func_8024CD88(D_8037D908);
     func_8024CE18(D_8037D918);
     func_8024CFD4();
-    func_802C3D3C(func_802BC2A0, sp24, sp20);
+    func_802C3D3C(func_802BC2A0, D_8037D908, D_8037D918);
     if (D_8037D8C0 == 2) {
         func_802BE720();
         if (sp1C != 0x63) {

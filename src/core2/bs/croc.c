@@ -22,13 +22,13 @@ s16 D_80364B24[] = {
 };
 
 /* .bss */
-extern f32 D_8037D3E0;
-extern u8 _bscrocHitboxActive; //8037D3e4
-extern void *D_8037D3E8;
-extern u8 D_8037D3EC;
-extern f32 D_8037D3F0;
-extern u8 D_8037D3F4;
-extern u8 D_8037D3F5;
+f32 D_8037D3E0;
+u8 _bscrocHitboxActive; //8037D3e4
+void *D_8037D3E8;
+u8 D_8037D3EC;
+f32 D_8037D3F0;
+u8 D_8037D3F4;
+u8 D_8037D3F5;
 
 /* .code */
 f32 func_802ABDC0(void){
@@ -361,7 +361,7 @@ static void __bscroc_recoil_init(s32 damage){
 static void __bscroc_recoil_update(void){
     enum bs_e next_state = 0;
     func_802ABE70();
-    if(func_80289FE8(0.5f))
+    if(baanim_isAt(0.5f))
         func_80292EA4();
     
     switch(D_8037D3EC){

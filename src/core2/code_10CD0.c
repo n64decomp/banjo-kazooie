@@ -2,8 +2,10 @@
 #include "functions.h"
 #include "variables.h"
 
-extern u8 D_8037C530;
+/* .bss */
+u8 D_8037C530;
 
+/* .code */
 void func_80297C60(s32 arg0){
     D_8037C530 = arg0;
 }

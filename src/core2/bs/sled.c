@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-extern ActorMarker *D_8037D510;
+ActorMarker *D_8037D510;
 
 /* .code */
 void func_802B3F20(void){

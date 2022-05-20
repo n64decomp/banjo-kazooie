@@ -3,25 +3,24 @@
 #include "variables.h"
 
 
+/* .data */
+f32 D_80364A90 = 30.0f;;
+f32 D_80364A94 = 700.0f;;
+f32 D_80364A98 = 80.0f;;
+f32 D_80364A9C = 1000.0f;;
+f32 D_80364AA0 = 300.0f;;
+f32 D_80364AA4 = 0.56f;;
+f32 D_80364AA8 = 0.34f;;
+f32 D_80364AAC = 0.51f;;
+f32 D_80364AB0 = 0.29f;;
+f32 D_80364AB4 = 0.8f;;
+f32 D_80364AB8 = 0.7f;;
+f32 D_80364ABC = 693.5f;;
+f32 D_80364AC0 = -1200.0f;;
 
-extern f32 D_80364A90;
-extern f32 D_80364A94;
-extern f32 D_80364A98;
-extern f32 D_80364A9C;
-extern f32 D_80364AA0;
-extern f32 D_80364AA4;
-extern f32 D_80364AA8;
-
-extern f32 D_80364AAC;
-extern f32 D_80364AB0;
-
-extern f32 D_80364AB4;
-extern f32 D_80364AB8;
-extern f32 D_80364ABC;
-extern f32 D_80364AC0;
-
-extern f32 D_8037D3A0;
-extern u8 D_8037D3A4;
+/* .bss */
+f32 D_8037D3A0;
+u8  D_8037D3A4;
 
 void func_802A87C0(void){
     if(func_80291698(3))
@@ -730,13 +729,13 @@ void bsbtrot_ow_update(void){
     if(func_802987B4() == 2)
         func_802B6FA8();
 
-    if(func_80289FE8(0.3f))
+    if(baanim_isAt(0.3f))
         func_80292EA4();
 
     if(func_8028B424())
         sp1C = BS_3D_FALL_TUMBLING;
 
-    if(func_8028B2E8() && func_80289FC4())
+    if(func_8028B2E8() && baanim_isStopped())
         sp1C = BS_15_BTROT_IDLE;
 
     if(animctrl_isStopped(_player_getAnimCtrlPtr()) && player_inWater())

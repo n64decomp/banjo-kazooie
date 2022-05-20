@@ -2,9 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
-extern f32 D_803746F0;
-
-extern struct {
+/* .bss */
+struct {
     u8 unk0;
     u8 pad1[3];
     f32 unk4;
@@ -71,6 +70,6 @@ void func_80292768(void){
 void func_8029279C(void){
     D_8037C160.unk0 = 0;
     D_8037C160.unk14 = 0;
-    D_8037C160.unk4 = D_803746F0;
+    D_8037C160.unk4 = 0.1f;
     ml_vec3f_clear(D_8037C160.unk8);
 }

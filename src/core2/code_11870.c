@@ -2,11 +2,12 @@
 #include "functions.h"
 #include "variables.h"
 
-extern  struct50s D_8037C5F0[];
-extern u8 D_8037C670;
-extern u8 D_8037C671;
+/* .bss */
+struct50s D_8037C5F0[8];
+u8 D_8037C670;
+u8 D_8037C671;
 
-
+/* .code */
 int func_80298800(f32 arg0[3]){
     if(!D_8037C5F0[D_8037C670 - 1].unk1)
         return 0;

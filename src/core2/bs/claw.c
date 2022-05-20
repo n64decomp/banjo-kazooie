@@ -7,8 +7,10 @@
 void func_802915CC(f32);
 void func_8029AD28(f32, s32);
 
-extern u8 _bsclawHitboxActive;
+/* .bss */
+u8 _bsclawHitboxActive;
 
+/* .code */
 int bsclaw_hitboxActive(void){
     return _bsclawHitboxActive;
 }

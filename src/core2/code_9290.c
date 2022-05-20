@@ -2,13 +2,15 @@
 #include "functions.h"
 #include "variables.h"
 
+/* .bss */
+s32 D_8037C010;
+s32 D_8037C014;
+s32 D_8037C018;
+s32 D_8037C01C;
+f32 D_8037C020[3];
+u8  D_8037C02C;
 
-extern s32 D_8037C010;
-extern s32 D_8037C014;
-extern s32 D_8037C018;
-extern f32 D_8037C020[3];
-extern u8  D_8037C02C;
-
+/* .code */
 void func_80290220(void){
     D_8037C010 = D_8037C014 = -1;
     D_8037C02C = 0;

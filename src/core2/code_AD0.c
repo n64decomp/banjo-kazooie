@@ -4,8 +4,10 @@
 
 
 /* .bss */
+u8 D_80379B90[0x10];
 struct54s D_80379BA0[40];
 
+/* .code */
 void func_80287A60(struct54s *arg0){
     arg0->unk4 += arg0->unk0[arg0->unkC_24].unk1*0.03333333333333333*arg0->unk8;
 }

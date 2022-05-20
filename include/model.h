@@ -35,7 +35,26 @@ typedef struct {
 } BKVertexList;
 
 typedef struct {
-    u8 pad0[0];
+    s16 unk0; //start_tri
+    s16 unk2; //tri_cnt
+} BKCollisionGeo; //BKCollisionGeometry
+
+typedef struct {
+    s16 unk0[3]; //vtx_indx
+    s32 unk8; //flags
+} BKCollisionTri; //BKCollisionTri
+
+typedef struct {
+    s16 unk0[3]; //min
+    s16 unk6[3]; //max
+    s16 unkC; //y_stride
+    s16 unkE; //z_stride
+    s16 unk10; //geo_cnt
+    s16 unk12; //scale
+    s16 unk14; //tri_cnt
+    u8 pad16[0x2];
+    //BKCollisionGeo[]
+    //BKCollisionTri[]
 }BKCollisionList;
 
 typedef struct {
@@ -78,7 +97,8 @@ typedef struct {
     s16 unk0[3];
     s16 unk6[3];
     s16 unkC[3];
-    u8 unk12[3];
+    u8 unk12[2];
+    u8 unk14[1];
     u8 unk15;
     u8 pad16[2];
 }BKModelUnk14_0;
@@ -102,9 +122,25 @@ typedef struct {
 typedef struct {
     s16 cnt0; //number of BKModelUnk14_0 structs
     s16 cnt2; //number of BKModelUnk14_1 structs
-    u8 pad4[2];
+    s16 unk4;
     s16 unk6;
+    //BKModelUnk14_0[]
+    //BKModelUnk14_1[]
+    //BKModelUnk14_2[]
 }BKModelUnk14List;
+
+typedef struct{
+    s16 unk0[3];
+    s16 unk6[3];
+    u8 unkC;
+    u8 padD[0x1];
+}BKModelUnk20_0;
+
+typedef struct{
+    u8 unk0;
+    u8 pad1[1];
+    //BKModelUnk20_0[]
+}BKModelUnk20List;
 
 typedef struct {
     BKMeshList *meshList_0;

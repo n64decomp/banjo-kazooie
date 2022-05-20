@@ -4,6 +4,7 @@
 
 void func_802B37DC(void);
 
+/* .bss */
 u8  D_8037D4D0;
 
 void func_802B1FD0(s32 arg0){}
@@ -44,7 +45,7 @@ void bsow_update(void) {
             break;
     }
 
-    if (func_80289FE8(0.3f) != 0) {
+    if (baanim_isAt(0.3f) != 0) {
         func_80292EA4();
     }
     if (func_8028B424() != 0) {

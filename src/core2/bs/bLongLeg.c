@@ -11,12 +11,12 @@ const f32 D_80364A50 = 400.0f;
 const f32 D_80364A54 = -800.0f;
 
 /* .bss */
-extern f32 D_8037D350;
-extern f32 D_8037D354;
-extern f32 D_8037D358;
-extern f32 D_8037D35C;
-extern u8 D_8037D360;
-extern u8 D_8037D361;
+f32 D_8037D350;
+f32 D_8037D354;
+f32 D_8037D358;
+f32 D_8037D35C;
+u8 D_8037D360;
+u8 D_8037D361;
 
 /* .code */
 int func_802A51D0(void){

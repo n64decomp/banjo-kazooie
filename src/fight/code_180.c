@@ -4,8 +4,9 @@
 
 extern void func_8028F4B8(s32, f32, f32);
 
-void func_8038BCF0(Actor *this);
 void func_80386570(ActorMarker *arg0, Gfx **arg1, Mtx **arg2, s32 arg3);
+void func_8038856C(Actor *actor, f32 *arg1);
+void func_8038BCF0(Actor *this);
 
 
 /* .data */
@@ -236,11 +237,97 @@ void func_80386934(f32 position[3], enum asset_e sprite_id) {
     func_802EFC28(temp_s0, &D_80391648);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/fight/code_180/func_803869BC.s")
+extern TUPLE(s32, unk) D_803916C0;
+extern TUPLE(s32, unk) D_803916CC;
+extern TUPLE(s32, unk) D_803916D8;
+extern s32 D_803916E4;
+extern f64 D_803920C0;
 
+void func_803869BC(Actor *this) {
+    s32 sp3C;
+    TUPLE(s32, unk) sp30;
+    s32 sp2C;
+    vec3f sp20;
+    u32 temp_t3;
+
+    if (this->marker->unk14_21) {
+        sp3C = func_8023DB5C();
+        temp_t3 = (u32) this->state;
+        if ((temp_t3 == 6) || (temp_t3 == 7)) {
+            sp30.unk_x = D_803916CC.unk_x;
+            sp30.unk_y = D_803916CC.unk_y;
+            sp30.unk_z = D_803916CC.unk_z;
+            sp2C = 0x715;
+        } else if ((temp_t3 == 8) || (temp_t3 == 9)) {
+            sp30.unk_x = D_803916D8.unk_x;
+            sp30.unk_y = D_803916D8.unk_y;
+            sp30.unk_z = D_803916D8.unk_z;
+            sp2C = 0x000;
+        } else {
+            sp30.unk_x = D_803916C0.unk_x;
+            sp30.unk_y = D_803916C0.unk_y;
+            sp30.unk_z = D_803916C0.unk_z;
+            sp2C = 0x713;
+        }
+        func_8034A174(this->marker->unk44, 7, &sp20);
+        if (((sp2C == 0x715) && ((sp3C & 1) != 0)) || ((sp2C == 0x713) && ((sp3C & 3) == 0))) {
+            func_803868A0(&sp20, &sp30);
+        }
+        if (sp2C == 0) {
+            func_8038856C(this, &D_803916E4);
+        }
+        if ((sp2C != 0) && ((sp2C == 0x715) || (sp2C = sp2C, ((f64) randf() < D_803920C0)))) {
+            func_80386934(&sp20, sp2C);
+        }
+    }
+}
+
+#ifndef NONMATHCING
 #pragma GLOBAL_ASM("asm/nonmatchings/fight/code_180/func_80386B54.s")
+#else
+void func_80386B54(f32 *arg0, f32 arg1) {
+    f32 sp34;
+    f32 sp2C;
+    f32 sp28;
+    f32 *temp_v0;
+    f32 temp_f0;
+    f32 *phi_v0;
+    f32 *phi_v1;
+    s32 phi_a0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/fight/code_180/func_80386BEC.s")
+    sp34 = time_getDelta();
+    player_getPosition(&sp28);
+    phi_v0 = &sp28;
+    phi_v1 = arg0;
+    phi_a0 = 0;
+    do {
+        if (phi_v0 == &sp2C) {
+            *phi_v1 = *phi_v0;
+        } else {
+            temp_f0 = *phi_v0;
+            *phi_v1 = (((temp_f0 - *(D_80392788 + phi_a0)) * arg1) / sp34) + temp_f0;
+        }
+        temp_v0 = phi_v0 + 4;
+        phi_v0 = temp_v0;
+        phi_v1 += 4;
+        phi_a0 += 4;
+    } while (temp_v0 != &sp34);
+}
+#endif
+
+s32 func_80386BEC(Actor *this, f32 arg1) {
+    f32 temp_f0;
+    f32 temp_f2;
+
+    this->yaw_moving = (f32) func_80329784(this);
+    func_80328FB0(this, arg1);
+    temp_f0 = this->yaw_moving;
+    temp_f2 = this->yaw;
+    if ((temp_f0 < (temp_f2 + arg1)) && ((temp_f2 - arg1) < temp_f0)) {
+        return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/fight/code_180/func_80386C68.s")
 

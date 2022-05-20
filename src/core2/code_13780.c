@@ -4,11 +4,11 @@
 
 #include "bsint.h"
 
-extern s32 D_8037D160; //prev_state
-extern s32 D_8037D164; //state
-extern s32 D_8037D168; //next_state
-extern s32 D_8037D16C; 
-extern s32 D_8037D170;
+s32 D_8037D160; //prev_state
+s32 D_8037D164; //state
+s32 D_8037D168; //next_state
+s32 D_8037D16C; 
+s32 D_8037D170;
 
 void bs_clearState(void){
     D_8037D160 = 0;

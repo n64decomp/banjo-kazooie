@@ -4,13 +4,15 @@
 
 
 
-extern s32 D_8037BF10;
 
 extern void func_80250E6C(f32, f32);
 extern void func_802BB360(s32, f32);
 extern void func_802BB378(s32, f32, f32);
 extern void func_802BB3AC(s32, f32);
 extern void func_8031B908(u8, u8, u8, f32);
+
+/* .bss */
+s32 D_8037BF10;
 
 /* .code */
 #ifndef NONMATCHING

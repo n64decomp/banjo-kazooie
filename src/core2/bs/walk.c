@@ -17,27 +17,27 @@ f32 func_80297A64(void);
 void func_80299594(s32, f32);
 
 // .data
-extern f32 D_80364D70;//creep_min
-extern f32 D_80364D74;//creep_max/slow_walk_min
-extern f32 D_80364D78;//slow_walk_max/walk_min
-extern f32 D_80364D7C;//walk_max/walk_fast_min
-extern f32 D_80364D80;//walk_fast_max
-extern f32 D_80364D84; //mud_min
-extern f32 D_80364D88; //mud_max
-extern f32 D_80364D8C; 
-extern f32 D_80364D90; //walk_slow
-extern f32 D_80364D94;
-extern f32 D_80364D98; //creep
-extern f32 D_80364D9C;
-extern f32 D_80364DA0; //walk
-extern f32 D_80364DA4;
-extern f32 D_80364DA8; //walk_fast
-extern f32 D_80364DAC;
-extern f32 D_80364DB0; //mud
-extern f32 D_80364DB4;
+f32 D_80364D70 = 30.0f;//creep_min
+f32 D_80364D74 = 80.0f;//creep_max/slow_walk_min
+f32 D_80364D78 = 150.0f;//slow_walk_max/walk_min
+f32 D_80364D7C = 225.0f;//walk_max/walk_fast_min
+f32 D_80364D80 = 500.0f;//walk_fast_max
+f32 D_80364D84 = 30.0f; //mud_min
+f32 D_80364D88 = 150.0f; //mud_max
+f32 D_80364D8C = 125.0f; 
+f32 D_80364D90 = 1.3f; //walk_slow
+f32 D_80364D94 = 0.6f;
+f32 D_80364D98 = 1.8f; //creep
+f32 D_80364D9C = 1.2f;
+f32 D_80364DA0 = 0.92f; //walk
+f32 D_80364DA4 = 0.58f;
+f32 D_80364DA8 = 0.54f; //walk_fast
+f32 D_80364DAC = 0.44f;
+f32 D_80364DB0 = 1.2f; //mud
+f32 D_80364DB4 = 0.9f;
 
 // .bss (?)
-extern f32 D_8037D5B0;
+f32 D_8037D5B0;
 
 /*.code*/
 void func_802B6D00(void){

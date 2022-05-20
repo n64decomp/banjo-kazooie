@@ -77,8 +77,8 @@ float gu_sqrtf(float val);
 
 BKSpriteFrame *spriteGetFramePtr(BKSprite *, u32); 
 
-s32  func_80289FE8(f32);
-void func_8028A180(s32 animation, f32 duration);
+bool  baanim_isAt(f32);
+void func_8028A180(enum asset_e anim_id, f32 duration);
 void func_8028A37C(f32);
 
 int player_inWater(void);
@@ -218,7 +218,7 @@ void particleEmitter_setPosition(ParticleEmitter *, f32[3]);
 ParticleEmitter *partEmitList_pushNew(u32);
 void func_802BB3DC(s32, f32, f32);
 void func_802C3F04(void (* arg0)(void), s32, s32, s32, s32);
-void func_802C4140();
+Actor *func_802C4140(enum actor_e actor_id, s32 x, s32 y, s32 z);
 void func_8030DA44(u8);
 
 
@@ -283,7 +283,7 @@ void func_80289EA8(f32, f32);
 
 void func_8028A010(enum asset_e anim_id, f32 duration);
 void func_8028A100(enum asset_e anim_id, f32, f32);
-void func_8028A1F4(s32, f32, f32);
+void func_8028A1F4(enum asset_e anim_id, f32 duration, f32 arg2);
 void func_8028A274(enum asset_e, f32);
 void func_8028A3B8(f32, f32);
 int  func_8028AED4(f32*, f32);
@@ -559,8 +559,5 @@ extern void func_802EE278(Actor *, s32, s32, s32, f32, f32);
 extern void func_802F3BF4(s16[3]);
 extern void actor_collisionOn(Actor *);
 extern void func_80328AC8(Actor *, s32);
-
-void func_80351A04(Struct_core2_C9F00_0 *arg0, s32 arg1);
-void func_80351A14(Struct_core2_C9F00_0 *arg0, s32 arg1);
 
 #endif

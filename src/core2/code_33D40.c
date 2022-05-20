@@ -4,8 +4,9 @@
 
 extern void func_8025727C(f32, f32, f32, f32, f32, f32, f32*, f32*);
 
-extern f32 D_8037D820[4];
-extern f32 D_8037D830[4];
+/* .bss */
+f32 D_8037D820[4];
+f32 D_8037D830[4];
 
 /* .code */
 void func_802BACD0(void){

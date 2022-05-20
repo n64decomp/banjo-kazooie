@@ -5,21 +5,18 @@
 s32 func_80259254(f32 *, f32, f32, f32);
 void func_802C2ADC(f32 *);
 
-
-extern s32 D_80363610;
-extern f32 D_8036361C[3];
-
-extern s32 D_8037BF50;
 extern u8  D_8037DCCA;
 extern u8  D_8037DCCB;
 extern u8  D_8037DCCC;
 
+/* .data */
+f32 D_80363610[3] = {350.0f, 200.0f, -100.0f};
+f32 D_8036361C[2] = {29.25f, 269.5f};
 
+/* .bss */
+s32 D_8037BF50;
 
-extern f32 D_80373EC0;
-extern f32 D_80373EC4;
-extern f32 D_80373EC8;
-
+/* .code */
 //snacker_clearState
 void func_8028A410(void){
     D_8037BF50 = 0;
@@ -41,8 +38,8 @@ s32 func_8028A45C(void){
     _player_getPosition(&plyrPos);
     if(func_8028B470() || func_803203FC(0xC1)){ //(swimming || ???)
         if(plyrPos[1] < 600.0f
-            && !func_8028A41C(D_80373EC0, D_80373EC4, 1750.0f) //within 1750 of sandcastle center
-            && !func_8028A41C(-400.0, D_80373EC8, 2000.0f)  //within 2000 of blubber's ship center
+            && !func_8028A41C(2478.0f, 4586.0f, 1750.0f) //within 1750 of sandcastle center
+            && !func_8028A41C(-400.0, 2315.0f, 2000.0f)  //within 2000 of blubber's ship center
         ){
             nextState = 2;
         }

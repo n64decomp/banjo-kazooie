@@ -62,6 +62,9 @@ void func_802FB61C(s32 arg0, struct8s *arg1){
 
 /* ???BREAK??? */
 
+extern s32 D_80369884;
+extern s32 *D_8038155C[];
+
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_74420/func_802FB8A0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_74420/func_802FB8F8.s")
@@ -106,6 +109,15 @@ void func_802FBDFC(void){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_74420/func_802FC0D8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_74420/func_802FC390.s")
+bool func_802FC390(void){
+    s32 *phi_v1 = D_8038155C[1];
+    if (D_80369884 == 0)
+        return 0; 
+    return *phi_v1 == 2;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_74420/func_802FC3C4.s")
+bool func_802FC3C4(void){
+    if (D_80369884 == 0)
+        return 0; 
+    return (func_802FDD0C(D_8038155C[D_80369884]) == 0xE);
+}

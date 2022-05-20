@@ -11,10 +11,12 @@ typedef struct {
     f32 unk8;
 } Struct_core2_7060_0;
 
+/* .data */
 extern Struct_core2_7060_0 D_803636D0;
 extern Struct_core2_7060_0 D_80363754;
 
-extern struct{
+/* .bss */
+struct{
     Struct_core2_7060_0 *unk0;
     f32 unk4;
     u8 unk8;

@@ -2,8 +2,10 @@
 #include "functions.h"
 #include "variables.h"
 
+/* .bss */
 void *D_8037C5D0;
 
+/* .code */
 s32 func_802985F0(void){
     switch(_player_getTransformation())
     {

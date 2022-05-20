@@ -5,7 +5,7 @@
 void func_802933FC(s32 arg0);
 
 /*.bss */
-extern u8 D_8037C1D0[0x1C];
+u8 D_8037C1D0[0x1C];
 
 /* code */
 void func_80293380(void){

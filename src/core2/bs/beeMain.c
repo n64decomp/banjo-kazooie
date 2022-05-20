@@ -18,19 +18,21 @@ f32 func_8029B33C(void);
 f32 func_80257C48(f32, f32, f32);
 f32 func_8029B30C();
 
-extern f32 D_803649E0;
-extern f32 D_803649E4;
-extern f32 D_803649E8;
-extern f32 D_803649EC;
-extern f32 D_803649F0;
-extern f32 D_803649F4;
-extern u8  D_803649F8;
-extern s16 D_803649FC[2] = {SFX_54_BANJO_HOO_1, SFX_55_BANJO_HOO_2};
+/* .data */
+f32 D_803649E0 = 30.0f;
+f32 D_803649E4 = 375.0f;
+f32 D_803649E8 = 0.6f;
+f32 D_803649EC = 0.4f;
+f32 D_803649F0 = 693.5f;
+f32 D_803649F4 = -1200.0f;
+u8  D_803649F8 = 0;
+s16 D_803649FC[3] = {SFX_54_BANJO_HOO_1, SFX_55_BANJO_HOO_2, SFX_56_BANJO_HUI};
 
+/* .bss */
+f32 D_8037D2D0;
+u8 D_8037D2D4;
 
-extern f32 D_8037D2D0;
-extern u8 D_8037D2D4;
-
+/* .code */
 void func_802A0F90(void){
     FUNC_8030E624(SFX_2F_ORANGE_SPLAT, 0xFA, 0x598);
 
@@ -338,7 +340,7 @@ void func_802A1A50(void){
     s32 sp1C;
 
     sp1C= 0;
-    if(func_80289FE8(0.5f)){
+    if(baanim_isAt(0.5f)){
         func_80292EA4();
     }
     switch(D_8037D2D4){

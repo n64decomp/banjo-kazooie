@@ -2,45 +2,109 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "SnS.h"
+
 typedef struct {
     u8 *unk0;
-    u8 unk4[2];
+    u8 unk4;
+    u8 unk5;
     s16 unk6;
-} struct_ttc_3e30_s;
+} struct_ttc_3E30_s;
+
+typedef struct {
+    s16 unk0;
+    u8 unk2;
+    u8 unk3;
+    f32 unk4;
+}Struct_TTC_3E30_1;
+
+typedef struct {
+    s16 unk0;
+    s16 unk2;
+}Struct_TTC_3E30_2;
+
+s32 func_8038B778(void);
 
 extern s32 D_8038C980;
-
-extern struct_ttc_3e30_s D_8038CA6C[];
-
+extern Struct_TTC_3E30_1 D_8038C984[];
+extern struct_ttc_3E30_s D_8038CA6C[];
+extern u8 D_8038CC78;
+extern Struct_TTC_3E30_2 D_8038CC7C[];
+extern s32 D_8038CAD4;
+extern struct_ttc_3E30_s D_8038CAD8[];
 extern u8 D_8038CF0C[] = "j4663n86pink";
 extern u8 D_8038CF1C[] = "knip68n3664j";
 
 
 extern struct{
-    s32 unk0;
-    s32 unk4;
+    BKModel *unk0;
+    BKModel *unk4;
     u8  unk8;
     u8  unk9;
     u8  unkA;
     u8  padB[1];
     f32 unkC;
-    s8  unk10;
+    u8  unk10;
 } D_8038D720;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/TTC/code_3E30/func_8038A220.s")
 
-void func_8038A23C();
-#pragma GLOBAL_ASM("asm/nonmatchings/TTC/code_3E30/func_8038A23C.s")
+/* .code */
+void func_8038A220( s32 arg0, BKVtxRef *vtx_ref, Vtx *vtx, s32 arg2){
+    vtx->v.ob[1] += 2;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/TTC/code_3E30/func_8038A258.s")
+void func_8038A23C( s32 arg0, BKVtxRef *vtx_ref, Vtx *vtx, s32 arg2){
+    vtx->v.ob[1] += 0xf0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/TTC/code_3E30/func_8038A2DC.s")
+void func_8038A258(s32 arg0) {
+    if (arg0 == 1) {
+        if (func_803203FC(2)) {
+            item_set(ITEM_0_HOURGLASS_TIMER, 3000 - 1);
+        } else {
+            item_set(ITEM_0_HOURGLASS_TIMER, 6000 - 1);
+        }
+        item_set(ITEM_6_HOURGLASS, TRUE);
+    }
+    if (D_8038D720.unk10 == 1) {
+        item_set(ITEM_6_HOURGLASS, FALSE);
+    }
+    D_8038D720.unk10 = arg0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/TTC/code_3E30/func_8038A328.s")
+Struct_TTC_3E30_1 *func_8038A2DC(s32 mesh_id) {
+    Struct_TTC_3E30_1 *i_ptr;
+
+    for(i_ptr = D_8038C984; i_ptr->unk0 != 0; i_ptr++){
+        if(i_ptr->unk0 == mesh_id){
+            return i_ptr;
+        }
+    }
+    return NULL;
+}
+
+void func_8038A328(void) {
+    Struct_TTC_3E30_1 *i_ptr;
+
+    for(i_ptr = D_8038C984; i_ptr->unk0 != 0; i_ptr++){
+        i_ptr->unk3 = 2;
+        i_ptr->unk4 = 0.0f;
+    }
+    mapSpecificFlags_set(1, FALSE);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/TTC/code_3E30/func_8038A37C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/TTC/code_3E30/func_8038A5D8.s")
+void func_8038A5D8(Struct_TTC_3E30_1 *arg0, s32 arg1) {
+    s32 temp_v0;
+
+    temp_v0 = arg0->unk3;
+    arg0->unk3 = arg1;
+    arg0->unk4 = 0.0f;
+    if ((arg1 == 1) && (temp_v0 != arg1)) {
+        func_8025A6EC(COMUSIC_2C_BUZZER, 32000);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/TTC/code_3E30/func_8038A618.s")
 
@@ -77,10 +141,148 @@ void func_8038ABA0(u32 arg0){
     }
 }
 
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/TTC/code_3E30/func_8038AC48.s")
+#else
+void func_8038AC48(Struct_TTC_3E30_1 *arg0) {
+    s32 sp3C;
+    s16 temp_a0;
+    s16 temp_v0;
+    s32 temp_s0;
+    s32 temp_s0_2;
+    s32 temp_s1;
+    s32 temp_s5;
+    s32 temp_t9;
+    s32 temp_v1;
+    s32 phi_s0;
+    u8 *phi_v0;
+    s32 phi_s0_2;
+    struct_ttc_3E30_s *phi_s2;
+    s32 phi_s1;
+    s32 phi_s7;
+    s32 phi_s1_2;
+    s32 phi_s1_3;
+    s32 phi_s7_2;
+    s32 phi_s1_4;
+    s32 phi_s1_5;
+
+    temp_s5 = func_803203FC(2);
+    sp3C = func_8038BD10(arg0);
+    phi_s7 = 0;
+    for(phi_s2 = &D_8038CA6C; phi_s2->unk0 != 0; phi_s2++){
+        phi_s0 = 1;
+        phi_s1_2 = 0;
+        if (D_8038D720.unk8 == 0) {
+            phi_s1_2 = 1;
+        }
+        phi_s1 = phi_s1_2;
+        phi_s1_5 = phi_s1_2;
+        if (temp_s5 == 0) {
+            do {
+                temp_s0 = phi_s0 + 1;
+                temp_s1 = phi_s1_5 | func_8038AB68(phi_s0);
+                phi_s0 = temp_s0;
+                phi_s1_4 = temp_s1;
+                phi_s1_5 = temp_s1;
+            } while (temp_s0 < 4);
+            phi_v0 = &D_8037DCC0;
+            phi_s0_2 = 0;
+            do {
+                phi_s1_3 = phi_s1_4;
+                if (*phi_v0 != 0) {
+                    phi_s1_3 = phi_s1_4 | (0x10 << phi_s0_2);
+                }
+                temp_s0_2 = phi_s0_2 + 1;
+                phi_v0 += 1;
+                phi_s0_2 = temp_s0_2;
+                phi_s1 = phi_s1_3;
+                phi_s1_4 = phi_s1_3;
+            } while (temp_s0_2 != 7);
+            if (func_803203FC(0x78)) {
+                phi_s1 = phi_s1_3 | 0x800;
+            }
+        }
+        if ((phi_s2->unk4 & phi_s1) != 0) {
+            if ((func_8038BF68() != 0) && (temp_s5 == 0)) {
+                phi_s2->unk6 = 0;
+                func_8038A258(2);
+            }
+            temp_v0 = phi_s2->unk6;
+            if (arg0->unk2 == *(phi_s2->unk0 + temp_v0)) {
+                phi_s2->unk6 = (s16) (temp_v0 + 1);
+                if (func_8038BF68() != 0) {
+                    phi_s2->unk6 = 0;
+                    phi_s7_2 = 1;
+                } else {
+                    if ((phi_s2->unk4 & 0xFFE) != 0) {
+                        func_8038A258(2);
+                        func_8038A5D8(arg0, 5);
+                    } else {
+                        func_8038A5D8(arg0, 3);
+                    }
+                    if (*(phi_s2->unk0 + phi_s2->unk6) == 0) {
+                        func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 32000);
+                        if (temp_s5 != 0) {
+                            item_set(ITEM_6_HOURGLASS, FALSE);
+                            func_803204E4(3, 0);
+                            func_803204E4(5, 1);
+                            func_8038A258(2);
+                            phi_s7_2 = 1;
+                        } else {
+                            temp_a0 = phi_s2->unk4;
+                            if ((temp_a0 & 1) != 0) {
+                                D_8038D720.unk8 = 2U;
+                                D_8038D720.unkC = 0.0f;
+                                mapSpecificFlags_set(1, TRUE);
+                                func_80320004(0xFA, TRUE);
+                                func_8030E2C4(D_8038D720.unk9);
+                                func_8038A258(2);
+                            } else if ((temp_a0 & 0xE) != 0) {
+                                temp_t9 = (s32) (phi_s2 - &D_8038CA6C) >> 3;
+                                func_8035644C(temp_t9 + 0xBD, 1);
+                                temp_v1 = temp_t9 - 1;
+                                switch (temp_v1) { /* irregular */
+                                default:
+                                    break;
+                                case 0:
+                                    func_80346448(0xD);
+                                    func_802FAFAC(0xD, 0xC);
+                                    break;
+                                case 1:
+                                    func_80346448(0xF);
+                                    func_802FAFAC(0xF, 0xB);
+                                    break;
+                                case 2:
+                                    func_80346448(0x10);
+                                    func_802FAFAC(0x10, 0x14);
+                                    break;
+                                }
+                            } else {
+                                if ((temp_a0 & 0xFF0) != 0) {
+                                    func_8038ABA0(temp_a0, 1);
+                                }
+                            }
+                            phi_s7_2 = 1;
+                        }
+                    } else {
+                        func_8025A6EC(COMUSIC_2B_DING_B, 0x6D60);
+                        phi_s7_2 = 1;
+                    }
+                }
+            } else if (sp3C != 0) {
+                phi_s7_2 = 1;
+            }
+        }
+    if ((func_8038BF68() == 0) && (phi_s7 == 0) && (D_8038D720.unk8 == 0)) {
+        func_8038A5D8(arg0, 1);
+    }
+}
+#endif
+
+
 
 void func_8038AFC8(void){
-    struct_ttc_3e30_s *iPtr;
+    struct_ttc_3E30_s *iPtr;
 
     for(iPtr = D_8038CA6C; iPtr->unk0 != NULL; iPtr++){
         iPtr->unk6 = 0;
@@ -167,9 +369,63 @@ void func_8038B094(void){
     }//L8038B2E0
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/TTC/code_3E30/func_8038B2F0.s")
+void func_8038B2F0(void) {
+    f32 sp2C[3];
+    s32 mesh_id;
+    f32 sp24;
+    u8 temp_v0;
+    Struct_TTC_3E30_1 *temp_v0_3;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/TTC/code_3E30/func_8038B550.s")
+    sp24 = time_getDelta();
+    if (func_8038B778() == 3) {
+        func_802C5A3C(-1);
+    }
+    if (D_8038D720.unk0 != 0) {
+        func_8038AA2C();
+        player_getPosition(sp2C);
+        if ((D_8038D720.unk10 == 0) && func_803203FC(2) && func_803203FC(3)) {
+            func_8038A258(1);
+        }
+        if ((D_8038D720.unk10 == 1) && item_empty(ITEM_0_HOURGLASS_TIMER)) {
+            func_8038A258(2);
+            if (func_803203FC(2)) {
+                func_803204E4(3, FALSE);
+                func_803204E4(5, FALSE);
+            } else {
+                func_8028F66C(0xF);
+            }
+        }
+        if ((D_8038D720.unk8 == 0) || (D_8038D720.unk8 == 3)) {
+            if( (levelSpecificFlags_get(2) || func_803203FC(3)) 
+                && (player_getActiveHitbox(0) == HITBOX_1_BEAK_BUSTER) 
+                && func_8028F20C()
+            ) {
+                mesh_id = func_8033F3C0(D_8038D720.unk0, sp2C);
+                if (mesh_id != 0) {
+                    temp_v0_3 = func_8038A2DC(mesh_id);
+                    if ((temp_v0_3 != NULL) && ((temp_v0_3->unk3 == 2) || (D_8038D720.unk8 == 3))) {
+                        func_8038AC48(temp_v0_3);
+                        if ((D_8038D720.unk8 == 0) && (D_8038D720.unk10 == 0) && (func_803203FC(2) == 0)) {
+                            func_8038A258(1);
+                        }
+                    }
+                }
+            }
+        } else if (D_8038D720.unk8 == 2) {
+            D_8038D720.unkC = (f32) (D_8038D720.unkC + sp24);
+            func_8033F120(D_8038D720.unk4, 0x3C, func_8038A220, 0);
+            if (D_8038D720.unkC > 4.0f) {
+                D_8038D720.unk8 = 3;
+                func_8030E2C4(D_8038D720.unkA);
+                func_8030E394(D_8038D720.unk9);
+            }
+        }
+    }
+}
+
+bool func_8038B550(void){
+    return NOT(D_8038D720.unk8 < 2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/TTC/code_3E30/func_8038B564.s")
 
@@ -178,22 +434,119 @@ void func_8038B094(void){
 #pragma GLOBAL_ASM("asm/nonmatchings/TTC/code_3E30/func_8038B600.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/TTC/code_3E30/func_8038B6D4.s")
+// 
+void func_8038B750(s32 arg0){
+    func_80320044(0xfd, arg0, 2);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/TTC/code_3E30/func_8038B750.s")
+s32 func_8038B778(void){
+    return func_8031FF44(0xFD, 2);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/TTC/code_3E30/func_8038B778.s")
+void func_8038B79C(s32 arg0, s32 arg1, s32 arg2, enum item_e item_id, s32 item_diff, s32 item_val) {
+    if (((arg2 + 0x14) == D_8038CAD8[arg1].unk5) || (arg0 == 1)) {
+        if (item_diff != 0) {
+            func_803463D4(item_id, item_diff);
+            return;
+        }
+        item_set(item_id, item_val);
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/TTC/code_3E30/func_8038B79C.s")
+void func_8038B800(s32 arg0) {
+    struct_ttc_3E30_s *sp30;
+    s32 sp38;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/TTC/code_3E30/func_8038B800.s")
+    sp30 = &D_8038CAD8[arg0];
+    sp38 = sp30->unk5 - 0x14;
+    sns_set_item_and_update_payload(sp30->unk5, 1, 1);
+    func_8038B564(arg0, 1, 0x61, 0x83, 0x1B);
+    func_8038B564(arg0, 2, 0x3F, 0x84, 0x1C);
+    func_8038B564(arg0, 3, 0x2C, 0x85, 0x1D);
+    func_8038B564(arg0, 4, 0x12, 0x86, 0x1E);
+    func_8038B564(arg0, 5, 7, 0x87, 0x1F);
+    func_8038B564(arg0, 6, 0x1D, 0x88, 0x20);
+    func_8038B564(arg0, 7, 0x7F, 0x89, 0x21);
+    if (sp30->unk5 >= 0x14) {
+        func_8030E58C(SFX_2B_BULL_MOO_1, 1.5f);
+        func_803204E4(0x65, 1);
+        func_803204E4(sp38, 1);
+    }
+    func_8038B6D4(0, arg0, 0x6C, 0x60, 5, 3, 0x33);
+    func_8038B6D4(0, arg0, 0x6D, 0x63, 7, 3, 0x34);
+    func_8038B6D4(0, arg0, 0x6E, 0x66, 8, 4, 0x35);
+    func_8038B6D4(0, arg0, 0x6F, 0x6A, 9, 4, 0x36);
+    func_8038B6D4(0, arg0, 0x70, 0x6E, 0xA, 4, 0x37);
+    func_8038B6D4(0, arg0, 0x71, 0x72, 0xC, 4, 0x38);
+    func_8038B6D4(0, arg0, 0x72, 0x76, 0xF, 4, 0x39);
+    func_8038B79C(0, arg0, 0x94, ITEM_15_HEALTH_TOTAL, 0, 8);
+    func_8038B79C(0, arg0, 0x77, ITEM_14_HEALTH, 0, item_getCount(ITEM_15_HEALTH_TOTAL));
+    func_8038B79C(0, arg0, 0x95, ITEM_1C_MUMBO_TOKEN, 0, 99);
+    if (sp38 == 0x81) {
+        func_80320004(0x53, 1);
+        func_80320004(0x54, 1);
+    }
+    func_8038B5B4();
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/TTC/code_3E30/func_8038BB10.s")
+void func_8038BB10(ActorMarker *caller, enum asset_e text_id, s32 arg2) {
+    if (arg2 == 1) {
+        func_8038B750(3);
+        func_8038B800(D_8038CAD4);
+        func_80311480(0xFBF, 0xC, NULL, NULL, NULL, NULL);
+        func_8033D0FC(func_802C5A30());
+        func_8033CFD4(func_802C5A30());
+        func_802C5A3C(-1);
+        return;
+    }
+    func_8038B5B4();
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/TTC/code_3E30/func_8038BBA0.s")
+void func_8038BBA0(s32 arg0) {
+    s32 i;
 
+    if ((s32) D_8038CAD8[arg0].unk5 >= 0x14) {
+        if (func_803203FC(D_8038CAD8[arg0].unk5 - 0x14)) {
+            func_8038B5B4();
+            return;
+        }
+        for( i = 0; D_8038CC7C[i].unk0 != 0; i++){
+            if ((D_8038CAD8[arg0].unk5 >= D_8038CC7C[i].unk0) && (D_8038CC7C[i].unk2 >= D_8038CAD8[arg0].unk5)) {
+                switch (func_8038B778()) {
+                    case 0:
+                        func_8038B750(1);
+                        func_8038B800(arg0);
+                        func_8038B5B4();
+                        return;
+                    case 1:
+                        func_8038B750(2);
+                        func_8038B800(arg0);
+                        func_8038B5B4();
+                        func_80311480(0xFBE, 0xC, NULL, NULL, NULL, NULL);
+                        return;
+                    case 2:
+                        D_8038CAD4 = arg0;
+                        func_80311480(0xE38, 0xC, NULL, NULL, func_8038BB10, NULL);
+                        return;
+                }
+                return;
+            }
+        }
+    }
+    func_8038B800(arg0);
+    func_8038B5B4();
+}
+
+extern f32 D_8038D68C;
+extern f32 D_8038D690;
+
+bool func_8038BD10(Struct_TTC_3E30_1 *arg0);
 #pragma GLOBAL_ASM("asm/nonmatchings/TTC/code_3E30/func_8038BD10.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/TTC/code_3E30/func_8038BF68.s")
+bool func_8038BF68(void){
+    return *(u8*)(D_8038CAD8[0].unk4 + (s32)D_8038CAD8[0].unk0) == 0;
+}
+
 
 int ttc_func_8038BF8C(void){
     return func_8038B600() == D_8038C980;

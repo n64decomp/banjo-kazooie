@@ -8,9 +8,10 @@ extern f32 func_8024DDD8(f32[3], f32);
 extern int func_80259254(f32 vec[3], f32 x, f32 z, f32 val);
 extern f32 func_8028EBA4(void);
 
-extern u8 D_8037BF60;
-extern u8 D_8037BF61;
-extern u8 D_8037BF62;
+/* .bss */
+u8 D_8037BF60;
+u8 D_8037BF61;
+u8 D_8037BF62;
 
 /* .code */
 s32 can_beak_barge(void){

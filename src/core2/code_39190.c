@@ -8,14 +8,14 @@ extern f32 func_802BD51C(void);
 void func_802C0150(s32 arg0);
 
 /* .bss */
-extern u8  D_8037DB40;
-extern f32 D_8037DB48[3];
-extern f32 D_8037DB58[3];
-extern f32 D_8037DB70;
-extern f32 D_8037DB78[3];
-extern f32 D_8037DB84[3];
-extern f32 D_8037DB90[3];
-extern f32 D_8037DB9C;
+u8  D_8037DB40;
+f32 D_8037DB48[3];
+f32 D_8037DB58[3];
+f32 D_8037DB70;
+f32 D_8037DB78[3];
+f32 D_8037DB84[3];
+f32 D_8037DB90[3];
+f32 D_8037DB9C;
 
 /* .code */
 void func_802C0120(void){

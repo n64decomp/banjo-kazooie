@@ -174,12 +174,8 @@ typedef struct struct_2_s{
 
 typedef struct struct_3_s{
     u32 unk0;
-    f32 unk4;
-    f32 unk8;
-    f32 unkC;
-    f32 unk10;
-    f32 unk14;
-    f32 unk18;
+    f32 unk4[3];
+    f32 unk10[3];
     u8 unk1C;
     u8 pad1D[0x3];
     vector(struct struct_4_s) *unk20;
@@ -188,16 +184,15 @@ typedef struct struct_3_s{
     void *unk2C;
     f32 unk30;
     u8 unk34;
-    u8 pad35[0x1B];
+    u8 pad35[0x3];
+    f32 unk38;
+    f32 unk3C;
+    f32 unk40[0x4];
 } struct3s;
 
 typedef struct struct_4_s{
-    f32 unk0;
-    f32 unk4;
-    f32 unk8;
-    f32 unkC;
-    f32 unk10;
-    f32 unk14;
+    f32 unk0[3];
+    f32 unkC[3];
     u8 unk18;
     u8 pad19[3];
 } struct4s;
@@ -722,18 +717,32 @@ typedef struct struct_66_s{
     s32 unk8;
 }Struct66s;
 
-typedef struct {
-    u8 pad8[0x8];
-    s32 unk8;
-    u8 pad8_2[0x8];
-	f32 unk14;
-	f32 unk18;
-	f32 unk1C;
-	f32 unk20;
-	f32 unk24;
-	f32 unk28;
-	f32 unk2C;
+typedef void  (*Stuct68DrawMethod)(void *, struct struct_68_s *, f32[3], f32[3], f32, BKModelBin*, Gfx**, Mtx**, Vtx**);
+
+typedef struct struct_68_s{
+    u8 unk0;
+    // u8 pad1[0x3];
+    struct actor_marker_s *unk4;
+    Stuct68DrawMethod unk8;
+    BKModelBin *unkC;
+    u8 pad10[0x4];
+    f32 unk14[3]; //position
+    f32 unk20[3]; //rotation
+    f32 unk2C;    //scale
     u8 unk30;
-} Struct_core2_C9F00_0;
+    u8 unk31;
+    u8 pad32[2];
+    u8 local[0x80];
+} Struct68s;
+
+typedef struct {
+    f32 unk0;
+    f32 unk4[3];
+    f32 unk10[3];
+    f32 unk1C[3];
+    f32 unk28[3];
+    f32 unk34;
+} Struct6Bs;
+
 
 #endif

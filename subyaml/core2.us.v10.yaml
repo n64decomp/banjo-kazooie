@@ -31,7 +31,7 @@ segments:
   - [0x0, c, animctrl] #DONE
   - [0x0AD0, c, code_AD0] #DONE
   - [0x10E0, c, code_10E0] #DONE
-  - [0x1550, c, code_1550]
+  - [0x1550, c, code_1550] #DONE
   - [0x1930, c, code_1930]
   - [0x2240, c, code_2240] #DONE
   - [0x2890, c, code_2890] #DONE
@@ -47,7 +47,7 @@ segments:
   - [0x9900, c, code_9900] #DONE
   - [0x9BD0, c, code_9BD0] #DONE
   - [0xA600, c, code_A600] #DONE
-  - [0xA6E0, c, code_A6E0]
+  - [0xA6E0, c, code_A6E0] #DONE
   - [0xA960, c, code_A960] #DONE
   - [0xAA60, c, code_AA60] #DONE
   - [0xB650, c, code_B650] #DONE
@@ -60,7 +60,7 @@ segments:
   - [0xD800, c, code_D800] #DONE
   - [0xD9B0, c, code_D9B0] #DONE
   - [0xDF70, c, code_DF70] #DONE
-  - [0xE410, c, code_E410]
+  - [0xE410, c, code_E410] #DONE
   - [0xE680, c, code_E680] #DONE
   - [0xE910, c, code_E910] #DONE
   - [0xEE40, c, code_EE40] #DONE
@@ -146,7 +146,8 @@ segments:
   - [0x33C30, c, code_33C30] #DONE
   - [0x33D40, c, code_33D40] #DONE
   - [0x33F90, c, code_33F90] #DONE
-  - [0x34790, c, code_34790]
+  - [0x34310, c, code_34310] #DONE
+  - [0x34790, c, code_34790] #DONE
   - [0x35520, c, code_35520] #DONE
   - [0x356B0, c, code_356B0] #DONE
   - [0x379B0, c, code_379B0]
@@ -163,11 +164,11 @@ segments:
   - [0x396B0, c, code_396B0] #DONE
   - [0x39A10, c, code_39A10] #DONE
   - [0x39EF0, c, code_39EF0]
-  - [0x3AE10, c, code_3AE10]
+  - [0x3AE10, c, code_3AE10] #DONE
   - [0x3B2C0, c, done/code_3B2C0] #DONE
-  - [0x3B5C0, c, code_3B5C0]
-  - [0x3BB80, c, code_3BB80]
-  - [0x3D3D0, c, ch/gameSelect]
+  - [0x3B5C0, c, code_3B5C0] #DONE
+  - [0x3BB80, c, code_3BB80] #DONE
+  - [0x3D3D0, c, ch/gameSelect] #DONE
   - [0x3EAD0, c, code_3EAD0] #DONE
   - [0x3EC30, c, code_3EC30] #DONE
   - [0x3ECE0, c, code_3ECE0] #DONE
@@ -180,7 +181,7 @@ segments:
   - [0x41FB0, c, code_41FB0]
   - [0x42CA0, c, ch/musicnote]  #DONE
   - [0x42CB0, c, code_42CB0]    #DONE
-  - [0x43250, c, code_43250]
+  - [0x43250, c, code_43250]    #DONE
   - [0x43390, c, ch/trainers]   #DONE
   - [0x43800, c, code_43800]    #DONE
   - [0x43A40, c, code_43A40]    #DONE
@@ -197,7 +198,7 @@ segments:
   - [0x4A6F0, c, code_4A6F0] #DONE
   - [0x4BD70, c, code_4BD70] #DONE
   - [0x4BE10, c, code_4BE10] #DONE
-  - [0x4C020, c, code_4C020]
+  - [0x4C020, c, code_4C020] 
   - [0x4FB80, c, ch/wadingboots] #DONE
   - [0x4FF10, c, ch/badShad] #DONE
   - [0x50490, c, code_50490] #DONE
@@ -231,32 +232,32 @@ segments:
   - [0x5BD90, c, code_5BD90] #DONE
   - [0x5BEB0, c, code_5BEB0]
   - [0x5DBC0, c, code_5DBC0] #DONE
-  - [0x5FD80, c, code_5FD80]
+  - [0x5FD80, c, code_5FD80] #DONE
   - [0x5FD90, c, code_5FD90]
   - [0x62FD0, c, code_62FD0] #DONE
   - [0x630D0, c, code_630D0] #DONE
-  - [0x63410, c, code_63410]
-  - [0x63690, c, code_63690]
+  - [0x63410, c, code_63410] #DONE
+  - [0x63690, c, code_63690] #DONE
   - [0x637D0, c, code_637D0]
-  - [0x654C0, c, code_654C0]
-  - [0x66490, c, code_66490]
+  - [0x654C0, c, code_654C0] #DONE
+  - [0x66490, c, code_66490] #DONE
   - [0x66690, c, vla]        #DONE
   - [0x66AB0, c, sla]
   - [0x66D90, c, code_66D90] #DONE
   - [0x66FB0, c, code_66FB0] #DONE
   - [0x67490, c, gc/bound]   #DONE
-  - [0x67650, c, code_67650]
+  - [0x67650, c, code_67650] 
   - [0x69F60, c, code_69F60] #DONE
   - [0x6A4B0, c, code_6A4B0] #DONE
   - [0x6AEF0, c, code_6AEF0] #DONE
   - [0x6CD20, c, code_6CD20] #DONE
   - [0x6CEC0, c, code_6CEC0] #DONE
   - [0x6D030, c, code_6D030] #DONE
-  - [0x6D270, c, code_6D270]
+  - [0x6D270, c, code_6D270] #DONE
   - [0x6D490, c, code_6D490] #DONE
   - [0x6DA30, c, code_6DA30]
   - [0x70C30, c, code_70C30] #DONE
-  - [0x70F20, c, code_70F20]
+  - [0x70F20, c, code_70F20] #DONE
   - [0x71820, c, code_71820] #DONE
   - [0x72060, c, code_72060]
   - [0x72B10, c, code_72B10]
@@ -297,7 +298,7 @@ segments:
   - [0x9A740, c, code_9A740]
   - [0x9A9D0, c, code_9A9D0] #DONE
   - [0x9AD00, c, levelspecificflags]
-  - [0x9B180, c, code_9B180]
+  - [0x9B180, c, code_9B180] #DONE
   - [0x9B650, c, code_9B650]
   - [0x9B990, c, code_9B990] #DONE
   - [0x9C170, c, code_9C170]
@@ -397,36 +398,49 @@ segments:
   vram:  0x80363590
   subsegments:
   - [0xDC600, bin, data_DC600]
+  - [0xDC630, .data, code_1550]
+  - [0xDC650, .data, code_2890]
+  - [0xDC680, .data, code_3480]
   - [0xDC6A0, .data, code_47C0]
-  - [0xDC700, bin, data_DC700]
+  - [0xDC700, .data, code_7060]
+  - [0xDC740, bin, data_DC740] #.data, code_90E0
+  - [0xDC7F0, .data, code_AA60]
+  - [0xDC7F0, .data, code_B850]
   - [0xDC810, .data, code_BB50]
   - [0xDC860, .data, code_C0E0]
   - [0xDC890, .data, code_E910]
-  - [0xDD4B0, bin, data_DD4B0]
+  - [0xDD4B0, .data, code_FD60]
   - [0xDD4C0, .data, code_117D0]
   - [0xDD5D0, .data, code_126C0]
   - [0xDD5F0, bin, data_DD5F0]
   - [0xDD9D0, .data, bs/ant]
   - [0xDDA00, .data, bs/bbuster]
-  - [0xDDA20, bin, data_DDA20]
+  - [0xDDA20, .data, bs/beeFly]
+  - [0xDDA50, .data, bs/beeMain]
   - [0xDDA80, .data, bs/bFlap]
   - [0xDDA90, .data, bs/bFlip]
   - [0xDDAB0, .data, bs/bLongLeg]
-  - [0xDDAD0, bin, data_DDAD0]
+  - [0xDDAD0, .data, bs/bPeck]
   - [0xDDAE0, .data, bs/bShock]
   - [0xDDAF0, bin, data_DDAF0]
+  - [0xDDB00, .data, bs/bTrot]
   - [0xDDB40, .data, bs/bWhirl]
   - [0xDDB60, .data, bs/carry]
   - [0xDDB70, .data, bs/croc]
   - [0xDDBA0, .data, bs/drone]
-  - [0xDDC20, bin, data_DDC20]
+  - [0xDDC20, bin, data_DDC20] #.data, bs/dronexform]
   - [0xDDD40, .data, bs/jump]
   - [0xDDD60, .data, bs/pumpkin]
-  - [0xDDD90, bin, data_DDD90]
+  - [0xDDD90, .data, bs/stand]
+  - [0xDDDB0, .data, bs/swim]
+  - [0xDDDE0, .data, bs/walk]
+  - [0xDDE30, .data, bs/walrus]
+  - [0xDDE70, bin, data_DDE70]
   - [0xDE8A0, .data, code_35520]
   - [0xDED40, bin, data_DED40]
   - [0xDEDD0, .data, code_37E50]
   - [0xDEE00, bin, data_DEE00]
+  - [0xDEE40, .data, ch/gameSelect]
   - [0xDEFA0, .data, code_3EAD0]
   - [0xDF020, .data, code_3EC30]
   - [0xDF050, .data, code_3ECE0]
@@ -434,7 +448,7 @@ segments:
   - [0xDF160, .data, code_400F0]
   - [0xDF300, .data, ch/jiggy]
   - [0xDF340, .data, ch/jigsawdance]
-  - [0xDF3A0, bin, data_DF3A0]
+  - [0xDF3A0, .data, code_41460]
   - [0xDF4A0, .data, code_41F30]
   - [0xDF4D0, bin, data_DF4D0]
   - [0xDFCC0, .data, ch/musicnote]
@@ -528,7 +542,8 @@ segments:
   - [0xECE60, ".rodata", animctrl]
   - [0xECE90, .rodata, code_AD0]
   - [0xECEA0, .rodata, code_1930]
-  - [0xECEC0, bin, data_ECEC0]
+  - [0xECF20, .rodata, code_2890]
+  - [0xECF30, .rodata, code_3480]
   - [0xECF40, .rodata, code_39D0]
   - [0xECFE0, .rodata, code_47C0]
   - [0xED410, .rodata, code_6B30]
@@ -537,7 +552,7 @@ segments:
   - [0xED660, .rodata, code_9900]
   - [0xED670, .rodata, code_9BD0]
   - [0xED6B0, .rodata, code_AA60]
-  - [0xED760, bin, data_ED760]
+  - [0xED760, .rodata, code_B650]
   - [0xED770, .rodata, code_B850]
   - [0xED790, .rodata, code_BD20]
   - [0xED7B0, .rodata, code_C0E0]
@@ -550,14 +565,14 @@ segments:
   - [0xEDA50, .rodata, code_10CD0]
   - [0xEDA60, .rodata, pitch]
   - [0xEDA90, .rodata, code_11040]
-  - [0xEDAA0, bin, data_EDAA0]
+  - [0xEDAA0, .rodata, done/climb]
   - [0xEDAB0, .rodata, code_11660]
   - [0xEDC70, .rodata, code_11870]
   - [0xEDC80, .rodata, roll]
   - [0xEDCA0, .rodata, yaw]
   - [0xEDD00, .rodata, code_12360]
   - [0xEDD30, .rodata, code_126C0]
-  - [0xEDD60, bin, data_EDD60]
+  - [0xEDD60, bin, data_EDD60] # .rodata, code_12F30
   - [0xEDD80, .rodata, code_13FC0]
   - [0xEDD90, .rodata, code_14420]
   - [0xEDE10, .rodata, code_16010]
@@ -573,7 +588,7 @@ segments:
   - [0xEE510, .rodata, bs/bFlip]
   - [0xEE560, .rodata, bs/bFly]
   - [0xEE5C0, .rodata, bs/bLongLeg]
-  - [0xEE650, bin, data_EE650] ##.rodata bs/bPeck
+  - [0xEE650, .rodata, bs/bPeck]
   - [0xEE680, .rodata, bs/bShock]
   - [0xEE6A0, .rodata, bs/bSwim]
   - [0xEE710, .rodata, bs/bTrot]
@@ -599,26 +614,33 @@ segments:
   - [0xEEAE0, .rodata, bs/stand]
   - [0xEEB10, .rodata, bs/swim]
   - [0xEEB60, .rodata, bs/surf]
-  - [0xEEB70, bin, data_EEB70]
+  - [0xEEB70, .rodata, done/bs/talk]
   - [0xEEB80, .rodata, bs/timeout]
   - [0xEEB90, .rodata, bs/throw]
   - [0xEEBA0, .rodata, bs/turn]
   - [0xEEBC0, .rodata, bs/twirl]
   - [0xEEBE0, .rodata, bs/walk]
-  - [0xEEC70, bin, data_EEC70]
+  - [0xEEC70, .rodata, bs/walrus]
   - [0xEECD0, .rodata, bs/washy]
   - [0xEED30, .rodata, code_32DB0]
-  - [0xEED80, bin, data_EED80]
+  - [0xEED80, .rodata, code_33F90]
+  - [0xEEDA0, .rodata, code_34310]
+  - [0xEEDB0, .rodata, code_34790]
   - [0xEEDE0, .rodata, code_356B0]
   - [0xEEF30, .rodata, code_37E50]
-  - [0xEEF50, bin, data_EEF50]
+  - [0xEEF50, .rodata, code_38150]
+  - [0xEEF60, .rodata, code_382E0]
+  - [0xEEF70, .rodata, code_38460]
+  - [0xEEF80, .rodata, code_38AD0]
+  - [0xEEF90, .rodata, code_38F40]
   - [0xEEFA0, .rodata, code_39190]
   - [0xEEFC0, .rodata, code_396B0]
   - [0xEEFD0, .rodata, code_39A10]
-  - [0xEEFF0, bin, data_EEFF0]
-  - [0xEF040, ".rodata", code_3BB80]
-  - [0xEF090, bin, data_EF090]
-  - [0xEF190, .rodata, ch/gameSelect]
+  - [0xEEFF0, .rodata, code_39EF0]
+  - [0xEF020, bin, data_EF020] #.rodata, code_39EF0]
+  - [0xEF030, .rodata, code_3AE10]
+  - [0xEF040, .rodata, code_3BB80]
+  - [0xEF090, .rodata, ch/gameSelect]
   - [0xEF210, .rodata, code_3ECE0]
   - [0xEF220, .rodata, ch/bigbutt]
   - [0xEF300, .rodata, code_400F0]
@@ -666,16 +688,19 @@ segments:
   - [0xF0170, bin, data_F0170]
   #- [0xF0180, .rodata, code_5BEB0]
   - [0xF0180, bin, data_F0180]
+  - [0xF01F0, bin, data_F01F0] #.rodata, code_5FD90]
   - [0xF0200, .rodata, code_66FB0]
   - [0xF0210, bin, data_F0210]
   - [0xF0220, .rodata, code_67650]
   - [0xF0240, bin, data_F0240]
   - [0xF0280, .rodata, code_6CEC0]
   - [0xF0290, .rodata, code_6D030]
-  - [0xF02A0, bin, data_F02A0]
+  - [0xF02A0, .rodata, code_6D270]
   - [0xF02B0, bin, data_F02B0] #.rodata, code_6DA30]
+  - [0xF0330, .rodata, code_70F20]
   - [0xF0390, .rodata, code_71820]
   - [0xF03B0, bin, data_F03B0]
+  # - [0xF03C0, .rodata, code_72060]
   - [0xF03D0, .rodata, code_73640]
   - [0xF0400, .rodata, code_74420]
   - [0xF0410, bin, data_F0410]
@@ -693,7 +718,8 @@ segments:
   - [0xF19C0, .rodata, code_91E10]
   - [0xF1A00, bin, data_F1A00]
   - [0xF1DC0, .rodata, code_9A9D0]
-  - [0xF1DF0, bin, data_F1DF0]
+  - [0xF1DF0, .rodata, code_9B180]
+  - [0xF1E00, bin, data_F1E00]
   - [0xF2000, .rodata, code_B6CE0]
   - [0xF2030, bin, data_F2030]
   - [0xF2170, .rodata, code_BEF20]
@@ -726,5 +752,133 @@ segments:
   - [0xF2AF0, .rodata, code_DA3A0]
   - [0xF2B00, .rodata, code_DA760]
   - [0xF2B20, .rodata, code_DB010]
-  # - [0xF2B20, .bss, ch/gameSelect]
+- type: code
+  name: core2-bbs
+  dir: core2
+  start: 0xf2c00
+  vram:  0x80379B90
+  subsegments:
+  - [0xf2c00, .bss, code_AD0]
+  - [0xf2c00, .bss, code_10E0]
+  - [0xf2c00, .bss, code_1550]
+  - [0xf2c00, .bss, code_1930]
+  - [0xf2c00, .bss, code_2890]
+  - [0xf2c00, .bss, code_3480]
+  - [0xf2c00, .bss, code_39D0]
+  - [0xf2c00, .bss, code_47C0]
+  - [0xf2c00, .bss, code_6B30]
+  - [0xf2c00, .bss, code_7060]
+  - [0xf2c00, .bss, code_8DA0]
+  - [0xf2c00, .bss, code_90E0]
+  - [0xf2c00, .bss, code_9290]
+  - [0xf2c00, .bss, code_9450]
+  - [0xf2c00, .bss, code_9900]
+  - [0xf2c00, .bss, code_9BD0]
+  - [0xf2c00, .bss, code_A600]
+  - [0xf2c00, .bss, code_A6E0]
+  - [0xf2c00, .bss, code_AA60]
+  - [0xf2c00, .bss, code_B650]
+  - [0xf2c00, .bss, code_BB50]
+  - [0xf2c00, .bss, code_BD20]
+  - [0xf2c00, .bss, code_C0E0]
+  - [0xf2c00, .bss, code_C3F0]
+  - [0xf2c00, .bss, code_C4B0]
+  - [0xf2c00, .bss, code_D800]
+  - [0xf2c00, .bss, code_D9B0]
+  - [0xf2c00, .bss, code_DF70]
+  - [0xf2c00, .bss, code_E410]
+  - [0xf2c00, .bss, code_E680]
+  - [0xf2c00, .bss, code_E910]
+  - [0xf2c00, .bss, code_EE40]
+  - [0xf2c00, .bss, code_EF50]
+  - [0xf2c00, .bss, code_FD60]
+  - [0xf2c00, .bss, code_10CD0]
+  - [0xf2c00, .bss, pitch]
+  - [0xf2c00, .bss, code_11040]
+  - [0xf2c00, .bss, done/climb]
+  - [0xf2c00, .bss, code_11460]
+  - [0xf2c00, .bss, code_11660]
+  - [0xf2c00, .bss, code_117D0]
+  - [0xf2c00, .bss, code_11870]
+  - [0xf2c00, .bss, roll]
+  - [0xf2c00, .bss, yaw]
+  - [0xf2c00, .bss, code_12360]
+  - [0xf2c00, .bss, bsList]
+  - [0xf2c00, .bss, code_13780]
+  - [0xf2c00, .bss, code_13900]
+  - [0xf2c00, .bss, code_13A00]
+  - [0xf2c00, .bss, code_13FC0]
+  - [0xf2c00, .bss, code_14420]
+  - [0xf2c00, .bss, code_15F20]
+  - [0xf2c00, .bss, code_16010]
+  - [0xf2c00, .bss, code_16C60]
+  - [0xf2c00, .bss, code_171F0]
+  - [0xf2c00, .bss, bs/ant]
+  - [0xf2c00, .bss, bs/bBarge]
+  - [0xf2c00, .bss, bs/bbuster]
+  - [0xf2c00, .bss, bs/beeFly]
+  - [0xf2c00, .bss, bs/beeMain]
+  - [0xf2c00, .bss, bs/bEggAss]
+  - [0xf2c00, .bss, bs/bEggHead]
+  - [0xf2c00, .bss, bs/bFlap]
+  - [0xf2c00, .bss, bs/bFlip]
+  - [0xf2c00, .bss, bs/bFly]
+  - [0xf2c00, .bss, bs/bLongLeg]
+  - [0xf2c00, .bss, bs/bPeck]
+  - [0xf2c00, .bss, bs/bShock]
+  - [0xf2c00, .bss, bs/bSwim]
+  - [0xf2c00, .bss, bs/bTrot]
+  - [0xf2c00, .bss, bs/bWhirl]
+  - [0xf2c00, .bss, bs/claw]
+  - [0xf2c00, .bss, bs/climb]
+  - [0xf2c00, .bss, bs/croc]
+  - [0xf2c00, .bss, bs/crouch]
+  - [0xf2c00, .bss, bs/die]
+  - [0xf2c00, .bss, code_27550]
+  - [0xf2c00, .bss, bs/dronegoto]
+  - [0xf2c00, .bss, code_28220]
+  - [0xf2c00, .bss, bs/dronexform]
+  - [0xf2c00, .bss, bs/jig]
+  - [0xf2c00, .bss, bs/jump]
+  - [0xf2c00, .bss, bs/ow]
+  - [0xf2c00, .bss, bs/pumpkin]
+  - [0xf2c00, .bss, bs/rebound]
+  - [0xf2c00, .bss, bs/sled]
+  - [0xf2c00, .bss, bs/slide]
+  - [0xf2c00, .bss, bs/splat]
+  - [0xf2c00, .bss, bs/stand]
+  - [0xf2c00, .bss, bs/swim]
+  - [0xf2c00, .bss, bs/surf]
+  - [0xf2c00, .bss, done/bs/talk]
+  - [0xf2c00, .bss, bs/throw]
+  - [0xf2c00, .bss, bs/turn]
+  - [0xf2c00, .bss, bs/twirl]
+  - [0xf2c00, .bss, bs/walk]
+  - [0xf2c00, .bss, bs/walrus]
+  - [0xf2c00, .bss, bs/washy]
+  - [0xf2c00, .bss, code_32DB0]
+  - [0xf2c00, .bss, code_33C30]
+  - [0xf2c00, .bss, code_33D40]
+  - [0xf2c00, .bss, code_34310]
+  - [0xf2c00, .bss, code_34790]
+  - [0xf2c00, .bss, code_35520]
+  - [0xf2c00, .bss, code_356B0]
+  - [0xf2c00, .bss, code_379B0]
+  - [0xf2c00, .bss, code_37CD0]
+  - [0xf2c00, .bss, ch/gameSelect] #this is bizarre... should be where marked below...
+  - [0xf2c00, .bss, code_37E50]
+  - [0xf2c00, .bss, code_38150]
+  - [0xf2c00, .bss, code_38460]
+  - [0xf2c00, .bss, code_38630]
+  - [0xf2c00, .bss, code_388E0]
+  - [0xf2c00, .bss, code_38AD0]
+  - [0xf2c00, .bss, code_38F40]
+  - [0xf2c00, .bss, code_39190]
+  - [0xf2c00, .bss, code_396B0]
+  - [0xf2c00, .bss, code_39A10]
+  - [0xf2c00, .bss, code_39EF0]
+  - [0xf2c00, .bss, done/code_3B2C0]
+  - [0xf2c00, .bss, code_3B5C0]
+  # - [0xf2c00, .bss, ch/gameSelect]
+  - [0xf2c00, .bss, code_41460]
 - [0xf2c00] # core2 end

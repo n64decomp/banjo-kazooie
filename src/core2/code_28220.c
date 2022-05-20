@@ -10,7 +10,7 @@ struct {
     f32 unkC;
     f32 unk10;
 }D_8037D450;
-extern u8 D_8037D468;
+u8 D_8037D468;
 
 /* .code */
 void func_802AF1B0(s32 arg0) {

@@ -3,7 +3,7 @@
 #include "variables.h"
 
 /* .bss */
-extern s32 D_8037D560;
+s32 D_8037D560;
 
 /* .code */
 void func_802B5FD0(void) {

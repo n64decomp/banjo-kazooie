@@ -57,14 +57,14 @@ u8 D_8036366C[] = {
 s32 D_80363680[4] = {0xff, 0xff, 0xff, 0xc8};
 
 /* .bss */
-extern s32 carriedObject_actorID;
-extern ActorMarker *playerMarker;
-extern s32 D_8037BF74;
-extern s32 D_8037BF7C;
-extern s32 D_8037BF80[2];
-extern s32 D_8037BF88;
-extern ActorMarker *D_8037BF8C;
-extern u8 D_8037BF90;
+ActorMarker *playerMarker;
+s32 D_8037BF74;
+s32 carriedObject_actorID;
+s32 D_8037BF7C;
+s32 D_8037BF80[2];
+s32 D_8037BF88;
+ActorMarker *D_8037BF8C;
+u8 D_8037BF90;
 
 /* .code */
 s32 *func_8028B750(void){

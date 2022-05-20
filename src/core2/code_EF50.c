@@ -22,6 +22,7 @@ void func_80296CA8(ActorMarker *arg0);
 void func_80296CB4(s32 arg0);
 void func_80296CC0(f32 arg0[3]);
 
+/* .bss */
 struct_EE40 D_8037C3E0;
 struct_EE40 D_8037C400[5];
 

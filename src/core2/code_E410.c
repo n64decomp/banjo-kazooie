@@ -2,8 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
-
-extern struct {
+/* .bss */
+struct {
     u32 unk0[0xE];
     u32 unk38[0xE];
     u8 unk70[0xE];
@@ -11,9 +11,7 @@ extern struct {
 } D_8037C310;
 
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_E410/func_802953A0.s")
-#else
+/* .code */
 void func_802953A0(void){
     s32 i;
 
@@ -22,7 +20,6 @@ void func_802953A0(void){
         D_8037C310.unk70[i] = D_8037C310.unk7E[i] = 0;
     }
 }
-#endif
 
 void func_80295448(void){
     s32 i;

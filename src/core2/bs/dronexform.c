@@ -19,7 +19,8 @@ extern struct41s D_80364C40;
 extern struct41s D_80364C70;
 extern struct41s D_80364CA0;
 
-extern struct {
+/* .bss */
+struct {
     ParticleEmitter *unk0;
     ParticleEmitter *unk4;
     f32 unk8;
@@ -38,8 +39,7 @@ extern struct {
     u8 unk32;
 } D_8037D470;
 
-
-
+/* .code */
 void func_802AF7A0(ParticleEmitter *arg0, enum asset_e arg1){
     func_802F0D54(arg0);
     particleEmitter_setSprite(arg0, arg1);

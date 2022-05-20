@@ -25,7 +25,7 @@ struct50s D_80364450[] =
 };
 
 /*.bss*/
-extern struct{
+struct{
     struct50s *unk0;
     f32 unk4[3];
 }D_8037C5E0;

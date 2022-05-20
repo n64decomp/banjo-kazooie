@@ -370,7 +370,7 @@ void func_802B2EE8(void) {
     s32 next_state;
 
     next_state = 0;
-    if (func_80289FE8(0.61f)) {
+    if (baanim_isAt(0.61f)) {
         func_80292EA4();
     }
     switch (D_8037D4E0) {
@@ -382,7 +382,7 @@ void func_802B2EE8(void) {
         }
         break;
     case 1:
-        if (func_80289FC4()) {
+        if (baanim_isStopped()) {
             next_state = BS_48_PUMPKIN_IDLE;
         }
         break;
@@ -482,7 +482,7 @@ void func_802B3240(void){
         break;
 
     case 2://L802B3300
-        if(func_80289FC4()) {
+        if(baanim_isStopped()) {
             player_setYVelocity(400.0f);
             func_8028A37C(0.355f);
             D_8037D4E0 = 3;

@@ -5,8 +5,26 @@
 extern void func_80252C08(f32[3], f32[3], f32, f32[3]);
 extern void func_80252CC4(f32[3], f32[3], f32, s32);
 
+bool func_802EA760(BKModelUnk14List *arg0, s32 arg1, f32 arg2[3], f32 arg3[3], f32 arg4, f32 arg5[3], f32 arg6[3], f32 *arg7) {
+    s32 start;
+    BKModelUnk14_2 *temp_v0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_637D0/func_802EA760.s")
+    if (arg1 >= arg0->unk4) {
+        return FALSE;
+    }
+    start = sizeof(BKModelUnk14List) + arg0->cnt0*sizeof(BKModelUnk14_0) + (s32)arg0;
+    temp_v0 = arg0->cnt2*sizeof(BKModelUnk14_1) + start + arg1 *sizeof(BKModelUnk14_2);
+
+    arg6[0] = (f32) temp_v0->unk2[0];
+    arg6[1] = (f32) temp_v0->unk2[1];
+    arg6[2] = (f32) temp_v0->unk2[2];
+    *arg7 = (f32) temp_v0->unk0;
+    mlMtxIdent();
+    func_80252C08(arg2, arg3, arg4, arg5);
+    func_8025235C(arg6, arg6);
+    *arg7 /= arg4;
+    return TRUE;
+}
 
 s32 func_802EA864(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 scale, f32 arg4[3], f32 arg5[3], f32 arg6) {
     BKModelUnk14_0 *start_ptr;

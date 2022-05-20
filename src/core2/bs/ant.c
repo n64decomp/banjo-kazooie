@@ -19,9 +19,9 @@ s16 D_8036497C[3] = {
 };
 
 /* .bss */
-extern f32 D_8037D290;
-extern u8 D_8037D294;
-extern s32 D_8037D298;
+f32 D_8037D290;
+u8 D_8037D294;
+s32 D_8037D298;
 
 /* .code */
 void func_8029E3E0(void){
@@ -312,7 +312,7 @@ static void __bsant_recoil_init(int take_damage){
 static void __bsant_recoil_update(void){
     enum bs_e sp1C = 0;
     
-    if(func_80289FE8(0.5f))
+    if(baanim_isAt(0.5f))
         func_80292EA4();
 
     switch(D_8037D294){

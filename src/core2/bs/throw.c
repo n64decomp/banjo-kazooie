@@ -3,7 +3,7 @@
 #include "variables.h"
 
 /* .bss */
-extern u8 D_8037D580;
+u8 D_8037D580;
 
 /* .code */
 void bsthrow_init(void){

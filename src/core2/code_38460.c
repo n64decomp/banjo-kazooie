@@ -2,12 +2,9 @@
 #include "functions.h"
 #include "variables.h"
 
-/* .rodata */
-extern f32 D_80375F00;
-
 /* .bss */
-extern f32 D_8037DAB0[3];
-extern f32 D_8037DABC;
+f32 D_8037DAB0[3];
+f32 D_8037DABC;
 
 /* .code */
 void func_802BF3F0(void) {
@@ -33,7 +30,7 @@ void func_802BF454(void) {
     player_getPosition(sp74);
     sp74[1] += 60.0f;
     ml_vec3f_diff_copy(sp5C, sp44, sp74);
-    sp30 = ml_map_f(D_8037DABC, D_80375F00, 0.5f, gu_sqrtf(sp5C[0] * sp5C[0] + sp5C[1] * sp5C[1] + sp5C[2] * sp5C[2]), 300.0f);
+    sp30 = ml_map_f(D_8037DABC, 0.2f, 0.5f, gu_sqrtf(sp5C[0] * sp5C[0] + sp5C[1] * sp5C[1] + sp5C[2] * sp5C[2]), 300.0f);
     D_8037DABC += time_getDelta();
     ml_vec3f_scale_copy(sp50, D_8037DAB0, sp30);
     ml_vec3f_diff_copy(sp68, sp74, sp50);

@@ -190,17 +190,17 @@ void func_802EEE3C(ParticleEmitter *this, Gfx **gfx, Mtx **mtx, Vtx **vtx, s32 a
     if(arg4 != (this->unk18 & 0x4))
         return;
 
-    if(this->model_20){
+    if(this->model_20 != NULL){
         for(iPtr = this->pList_start_124; iPtr < this->pList_end_128; iPtr++){
-            sp8C[0] = iPtr->unk18[0] + this->unk4[0];
-            sp8C[1] = iPtr->unk18[1] + this->unk4[1];
-            sp8C[2] = iPtr->unk18[2] + this->unk4[2];
+            sp8C[0] = iPtr->position_18[0] + this->unk4[0];
+            sp8C[1] = iPtr->position_18[1] + this->unk4[1];
+            sp8C[2] = iPtr->position_18[2] + this->unk4[2];
             if( 0.0f != this->unk10 || 1.0 != this->unk14 || this->unk49 != 0xff ){
                 func_8033A410((s32) (iPtr->unkC*this->unk49));
             }//L802EEF5C
             tmp_a3 = (this->unk18 & 0x10)?0:1;
             set_model_render_mode(tmp_a3);
-            func_803391A4(gfx, mtx, sp8C, iPtr->unk24, iPtr->unk30, NULL, this->model_20);
+            func_803391A4(gfx, mtx, sp8C, iPtr->unk24, iPtr->size_30, NULL, this->model_20);
         }
     }
     else {
@@ -232,22 +232,22 @@ void func_802EEE3C(ParticleEmitter *this, Gfx **gfx, Mtx **mtx, Vtx **vtx, s32 a
             sp80[2] = 0.0f;
             for(iPtr = this->pList_start_124; iPtr < this->pList_end_128; iPtr++){
                 gDPSetPrimColor((*gfx)++, 0, 0, this->unk3C[0], this->unk3C[1], this->unk3C[2], iPtr->unkC*this->unk49);
-                sp8C[0] = iPtr->unk18[0] + this->unk4[0];
-                sp8C[1] = iPtr->unk18[1] + this->unk4[1];
-                sp8C[2] = iPtr->unk18[2] + this->unk4[2];
+                sp8C[0] = iPtr->position_18[0] + this->unk4[0];
+                sp8C[1] = iPtr->position_18[1] + this->unk4[1];
+                sp8C[2] = iPtr->position_18[2] + this->unk4[2];
 
-                sp74[0] = iPtr->unk30;
-                sp74[1] = iPtr->unk30;
-                sp74[2] = iPtr->unk30;
+                sp74[0] = iPtr->size_30;
+                sp74[1] = iPtr->size_30;
+                sp74[2] = iPtr->size_30;
                 if(0.0f != this->unk108){
-                    func_802EED1C(this, iPtr->unk48, sp74);
+                    func_802EED1C(this, iPtr->age_48, sp74);
                 }
                 func_80344C2C(this->unk0_16);
                 if(this->unk18 & 1){
-                    func_80344720(this->unk34, (s32)iPtr->unk10, 0, sp8C, sp80, sp74, gfx, mtx);
+                    func_80344720(this->unk34, (s32)iPtr->frame_10, 0, sp8C, sp80, sp74, gfx, mtx);
                 }//L802EF2F8
                 else{
-                    func_80344424(this->unk34, (s32)iPtr->unk10, 0, sp8C, sp74, iPtr->unk24[2], gfx, mtx);
+                    func_80344424(this->unk34, (s32)iPtr->frame_10, 0, sp8C, sp74, iPtr->unk24[2], gfx, mtx);
                 }//L802EF324
             }//L802EF338
             if( this->unk3C[0] != 0xff 
@@ -279,8 +279,31 @@ void func_802EF3F4(ParticleEmitter *this, f32 position_min[3], f32 position_max[
     }
 }
 
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_67650/func_802EF4AC.s")
+#else
+void func_802EF4AC(ParticleEmitter *this, f32 arg1[3], f32 arg2[3], s32 arg3) {
+    f32 sp3C[3];
+    f32 temp_f0;
+    s32 temp_s4;
+    s32 i;
 
+    // temp_s4 = arg3 - 1;
+    sp3C[0] = arg2[0] - arg1[0];
+    sp3C[1] = arg2[1] - arg1[1];
+    sp3C[2] = arg2[2] - arg1[2];
+    for(i = 0; i < arg3 - 1; i++){
+        if (this->pList_end_128 < this->pList_capacity_12C) {
+            __particleEmitter_initParticle(this, this->pList_end_128);
+            temp_f0 = (f32)i / arg3;
+            this->pList_end_128->position_18[0] = arg1[0] + sp3C[0]*temp_f0;
+            this->pList_end_128->position_18[1] = arg1[1] + sp3C[1]*temp_f0;
+            this->pList_end_128->position_18[2] = arg1[2] + sp3C[2]*temp_f0;
+            this->pList_end_128++;
+        }
+    }
+}
+#endif
 
 //particleEmitter_emitN
 void particleEmitter_emitN(ParticleEmitter *this, int n){
@@ -291,18 +314,18 @@ void particleEmitter_emitN(ParticleEmitter *this, int n){
     }
 }
 
-//particleCtl_particleListLength
+//particleEmitter_particleListLength
 int func_802EF628(ParticleEmitter *this){
     return (u32)(this->pList_end_128 - this->pList_start_124);
 }
 
-//particleCtl_isDone
+//particleEmitter_isDone
 int func_802EF648(ParticleEmitter *this){
     return (u32)(this->pList_end_128 - this->pList_start_124) < 1 
            && this->doneSpawning_0_23 == 1;
 }
 
-//particleCtl_free
+//particleEmitter_free
 void func_802EF684(ParticleEmitter *this){
     func_802EE930(this);
     free(this);

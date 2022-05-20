@@ -4,16 +4,12 @@
 
 extern f32 func_80259198(f32, f32);
 extern void func_802BD870(f32, f32, f32, f32);
-/* .rodata */
-extern f64 D_80375F60;
-extern f32 D_80375F68;
-extern f64 D_80375F70;
 
 /* .bss */
-extern f32 D_8037DBB0[3];
-extern f32 D_8037DBBC;
-extern f32 D_8037DBC0;
-extern f32 D_8037DBC8[3];
+f32 D_8037DBB0[3];
+f32 D_8037DBBC;
+f32 D_8037DBC0;
+f32 D_8037DBC8[3];
 
 /* .code */
 void func_802C09A0(void) {

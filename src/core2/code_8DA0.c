@@ -3,9 +3,9 @@
 #include "variables.h"
 
 /* .bss */
-extern u8 D_8037BFE0;
-extern f32 D_8037BFE4;
-extern f32 D_8037BFE8[5];
+u8 D_8037BFE0;
+f32 D_8037BFE4;
+f32 D_8037BFE8[5];
 
 /* .code */
 s32 func_8028FD30(void) {

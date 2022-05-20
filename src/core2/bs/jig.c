@@ -3,11 +3,12 @@
 #include "variables.h"
 
 /* .bss */
-extern u8 D_8037D4B0;
-extern u8 D_8037D4B1;
-extern u8 D_8037D4B2;
-extern ActorMarker *D_8037D4B4;
+u8 D_8037D4B0;
+u8 D_8037D4B1;
+u8 D_8037D4B2;
+ActorMarker *D_8037D4B4;
 
+/* .code */
 int bsjig_inJiggyJig(enum bs_e state){
     return state == BS_44_JIG_JIGGY;
 }
@@ -184,10 +185,10 @@ void bsjig_notedoor_init(void){
 void bsjig_notedoor_update(void){
     enum bs_e sp1C = 0;
 
-    if(func_80289FE8(0.59f) || func_80289FE8(0.84f))
+    if(baanim_isAt(0.59f) || baanim_isAt(0.84f))
         func_80299CF4(SFX_3EA_UNKNOWN, 1.0f, 30000);
 
-    if(func_80289FC4())
+    if(baanim_isStopped())
         sp1C = BS_1_IDLE;
 
     bs_setState(sp1C);

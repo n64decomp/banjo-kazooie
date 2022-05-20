@@ -3,9 +3,9 @@
 #include "variables.h"
 
 /* .bss */
-extern f32 D_8037C550;
-extern f32 D_8037C554;
-extern u8 D_8037C558;
+f32 D_8037C550;
+f32 D_8037C554;
+u8 D_8037C558;
 
 /* .code */
 void func_80297FD0(s32 arg0){

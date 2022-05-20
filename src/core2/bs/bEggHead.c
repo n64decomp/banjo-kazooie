@@ -5,11 +5,11 @@
 void func_80299234(f32, f32);
 void func_802875AC(AnimCtrl *, char*, s32);
 
+/* .bss */
+u8 D_8037D2F0;
+u8 D_8037D2F1;
 
-extern u8 D_8037D2F0;
-extern u8 D_8037D2F1;
-
-
+/* .code */
 void bsegghead_init(void){
     func_8028A274(0x2A, 1.0f);
     func_8029C7F4(1,3,1,3);

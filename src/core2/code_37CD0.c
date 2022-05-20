@@ -3,7 +3,7 @@
 #include "variables.h"
 
 /* .bss */
-extern struct {
+struct {
     f32 unk0[3];
     f32 unkC[3];
     f32 unk18[3];

@@ -13,14 +13,14 @@ extern void func_80354030(f32[3], f32);
 
 
 /* .bss */
-extern f32 D_8037D320;
-extern f32 D_8037D324;
-extern f32 D_8037D328[3];
-extern f32 D_8037D338[3];
-extern u8 D_8037D344;
-extern u8 D_8037D345;
-extern u8 D_8037D346;
-extern u8 D_8037D347;
+f32 D_8037D320;
+f32 D_8037D324;
+f32 D_8037D328[3];
+f32 D_8037D338[3];
+u8 D_8037D344;
+u8 D_8037D345;
+u8 D_8037D346;
+u8 D_8037D347;
 
 /* .code */
 int func_802A3350(void){

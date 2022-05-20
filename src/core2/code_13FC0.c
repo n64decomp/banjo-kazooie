@@ -14,7 +14,7 @@ extern void func_80356074(f32[3], f32[3], f32, f32);
 extern void func_80292864(f32, f32);
 
 /* .bss */
-extern struct {
+struct {
     f32 unk0;
     s32 unk4;
     f32 unk8[5];

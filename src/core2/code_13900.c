@@ -7,7 +7,6 @@ struct {
     f32 unk4;
     u8  xform_8;
 } D_8037D180;
-
 u8 D_8037D18C;
 
 /* .code */

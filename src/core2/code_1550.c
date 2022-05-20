@@ -6,9 +6,13 @@
 
 AnimationFile *func_80288590(s32 assest_id);
 
-extern AnimationCache D_8037A8C0[0x2CA];
-extern s16 D_803635C0[];
+/* .data */
+s16 D_803635C0[] = {0x1, 0x3, 0x5, 0xC, 0xE, 0x17, 0x18, 0x19, 0x1A, 0x1C, 0x1D, 0};
 
+/* .bss */
+AnimationCache D_8037A8C0[0x2CA];
+
+/* .code */
 void func_802884E0(void){
     s16 *phi_v0;
 
@@ -44,9 +48,6 @@ void func_802885E8(void){ //animationCache_free
     }
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_1550/func_8028863C.s")
-#else
 void func_8028863C(void){
     s32 i = 0;
     for(i = 0; i < 0x2CA; i++){
@@ -57,7 +58,6 @@ void func_8028863C(void){
     func_802884E0();
     func_80288530();
 }
-#endif
 
 void func_8028873C(s32 arg0){
     s32 i;

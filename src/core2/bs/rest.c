@@ -55,7 +55,7 @@ bool func_802B3BB0(void) {
     sp20 = FALSE;
     switch(animctrl_getIndex(anim_ctrl)){
         case 0x167:
-            if (func_80289FC4() != 0) {
+            if (baanim_isStopped() != 0) {
                 if (animctrl_isPlayedForwards(anim_ctrl) != 0) {
                     func_8028A010(0x14A, 11.4f);
                 } else if (func_80298850() == 0) {

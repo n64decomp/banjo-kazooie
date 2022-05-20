@@ -4,8 +4,10 @@
 
 extern Actor *func_8032813C(enum actor_e, f32[3], s32);
 
-extern u8 D_8037BFA0;
+/* .bss */
+u8 D_8037BFA0;
 
+/* code */
 static s32 __maybe(int arg0, s32 arg1){
     if(arg0)
         return arg1;

@@ -2,12 +2,14 @@
 #include "functions.h"
 #include "variables.h"
 
-extern f32 D_8037DA00[3];
-extern f32 D_8037DA10[3];
-extern f32 D_8037DA20[3];
-extern f32 D_8037DA30[3];
-extern f32 D_8037DA40[3];
+/*.bss */
+f32 D_8037DA00[3];
+f32 D_8037DA10[3];
+f32 D_8037DA20[3];
+f32 D_8037DA30[3];
+f32 D_8037DA40[3];
 
+/* .code */
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_379B0/func_802BE940.s")
 
 void func_802BEA4C(f32 arg0[3], f32 arg1[3], f32 arg2, f32 arg3[3]) {

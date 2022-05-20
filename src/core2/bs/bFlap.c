@@ -11,11 +11,11 @@ const f32 D_80364A14 = -1100.0f;
 const f32 D_80364A18 = -399.9f;
 
 /*.bss*/
-extern u8 D_8037D300;
-extern u8 D_8037D301;
-extern f32 D_8037D304;
-extern f32 D_8037D308;
-extern u8 D_8037D30C;
+u8 D_8037D300;
+u8 D_8037D301;
+f32 D_8037D304;
+f32 D_8037D308;
+u8 D_8037D30C;
 
 void bsbflap_init(void) {
     func_8028A274(0x18, 0.3f);
