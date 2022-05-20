@@ -67,8 +67,6 @@ void func_8029D194(void) {
     D_8037D224 = 0.0f;
 }
 
-
-// #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_16010/func_8029D230.s")
 void func_8029D230(void) {
     switch (map_get()) {
         case MAP_12_GV_GOBIS_VALLEY: //L8029D2C0

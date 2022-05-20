@@ -73,8 +73,6 @@ void func_8039144C(f32 pos[3], u32 count)
     particleEmitter_emitN(p, count);
 }
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/lair/code_AD70/func_803915A4.s")
-
 void func_803915A4(f32 pos[3], s32 count, f32 scale)
 {
     extern f64 D_803952D8; // 4.0
