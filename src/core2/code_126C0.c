@@ -23,14 +23,14 @@ s16 D_80364574[3] = {
 
 
 /* .bss */
-extern u8 D_8037C6C0;
-extern u8 D_8037C6C1;
-extern u8 D_8037C6C2;
-extern u8 D_8037C6C3;
-extern u8 D_8037C6C4;
-extern u32 D_8037C6C8;
-extern f32 D_8037C6CC;
-extern struct{
+u8 D_8037C6C0;
+u8 D_8037C6C1;
+u8 D_8037C6C2;
+u8 D_8037C6C3;
+u8 D_8037C6C4;
+u32 D_8037C6C8;
+f32 D_8037C6CC;
+struct{
     u8 unk0;
     f32 unk4;
     f32 unk8;

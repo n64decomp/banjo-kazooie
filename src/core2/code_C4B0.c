@@ -38,6 +38,9 @@ extern u8 D_8037C27F;
 extern u8 D_8037C280;
 extern s32 D_8037C284;
 
+// Remove this when bss is migrated from this file
+u8 code_C4B0_bss[0x8037C290 - 0x8037C1F0];
+
 /* .code */
 void func_80293440(void){
      f32 sp34[3];
