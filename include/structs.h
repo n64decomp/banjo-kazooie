@@ -174,12 +174,8 @@ typedef struct struct_2_s{
 
 typedef struct struct_3_s{
     u32 unk0;
-    f32 unk4;
-    f32 unk8;
-    f32 unkC;
-    f32 unk10;
-    f32 unk14;
-    f32 unk18;
+    f32 unk4[3];
+    f32 unk10[3];
     u8 unk1C;
     u8 pad1D[0x3];
     vector(struct struct_4_s) *unk20;
@@ -188,16 +184,15 @@ typedef struct struct_3_s{
     void *unk2C;
     f32 unk30;
     u8 unk34;
-    u8 pad35[0x1B];
+    u8 pad35[0x3];
+    f32 unk38;
+    f32 unk3C;
+    f32 unk40[0x4];
 } struct3s;
 
 typedef struct struct_4_s{
-    f32 unk0;
-    f32 unk4;
-    f32 unk8;
-    f32 unkC;
-    f32 unk10;
-    f32 unk14;
+    f32 unk0[3];
+    f32 unkC[3];
     u8 unk18;
     u8 pad19[3];
 } struct4s;

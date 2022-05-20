@@ -2,13 +2,9 @@
 #include "functions.h"
 #include "variables.h"
 
-s32 func_8024DD34(f32,f32, f32);
+extern s32 func_8024DD34(f32,f32, f32);
 
-extern f32 D_803772C0;
-extern f64 D_803772C8;
-extern f32 D_803772D0;
-extern f32 D_803772D4;
-
+/* .code */
 void func_802F7EB0(struct3s *this){
     f32 plyrPos[3]; //sp74
     f32 camNorm[3]; //sp68
@@ -26,12 +22,12 @@ void func_802F7EB0(struct3s *this){
     func_8024C5A8(camNorm);
     func_8024C764(camRot);
     sp50 = vector_pushBackNew(&this->unk20);
-    tmpf = randf2(50.0f, D_803772C0);
+    tmpf = randf2(50.0f, 1100.0f);
     sp4C[0] = 0.0f;
     sp4C[1] = randf2(200.0f, 300.0f);
     sp4C[2] = -tmpf;
 
-    if(gu_sqrtf(this->unk18*this->unk18 + (this->unk10*this->unk10 + this->unk14*this->unk14)) < 5.0f){
+    if(gu_sqrtf(this->unk10[0]*this->unk10[0] + this->unk10[1]*this->unk10[1] + this->unk10[2]*this->unk10[2]) < 5.0f){
         ml_vec3f_yaw_rotate_copy(&sp4C, &sp4C, randf2(0.0f, 360.0f));
     }
     else{
@@ -40,17 +36,17 @@ void func_802F7EB0(struct3s *this){
     sp4C[0] = plyrPos[0] + sp4C[0];
     sp4C[1] = plyrPos[1] + sp4C[1];
     sp4C[2] = plyrPos[2] + sp4C[2];
-    if(tmpf < D_803772C8)
+    if(tmpf < 550.0)
         for(i = 0; (i < 0xa) && func_8024DD34(sp4C[0],sp4C[1]- 10.0f, sp4C[2]); i++){
             sp4C[1] += 100.0f;
         }
 
-    sp50->unk0 = sp4C[0];
-    sp50->unk4 = sp4C[1];
-    sp50->unk8 = sp4C[2];
-    sp50->unkC = 0.0f;
-    sp50->unk10 = randf2(-1600.0f, D_803772D0);
-    sp50->unk14 = 0.0f;
+    sp50->unk0[0] = sp4C[0];
+    sp50->unk0[1] = sp4C[1];
+    sp50->unk0[2] = sp4C[2];
+    sp50->unkC[0] = 0.0f;
+    sp50->unkC[1] = randf2(-1600.0f, -1500.0f);
+    sp50->unkC[2] = 0.0f;
 }
 
 void func_802F80E8(struct3s *this, u32 arg1){
@@ -76,10 +72,9 @@ void func_802F8110(struct3s *this, Gfx **gdl, Mtx **mptr, u32 arg3){
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_70F20/func_802F81D8.s")
-// s32 func_802F81D8(struct3s *this){
-//     return (this->unk28 ^ 1) && !vector_size(this->unk20);
-// }
+bool func_802F81D8(struct3s *this){
+    return (this->unk28 != 1) && (vector_size(this->unk20) == 0);
+}
 
 void func_802F8214(struct3s * this){
     if(this->unk0)
@@ -95,21 +90,25 @@ struct3s *func_802F8264(s32 arg0){
     ptr->unk0 = 0;
     ptr->unk1C = 0;
     ptr->unk34 = 0;
-    ptr->unkC = 0.0f;
-    ptr->unk8 = 0.0f;
-    ptr->unk4 = 0.0f;
-    ptr->unk18 = 0.0f;
-    ptr->unk14 = 0.0f;
-    ptr->unk10 = 0.0f;
+    ptr->unk4[0] = ptr->unk4[1] = ptr->unk4[2] =0.0f;
+    ptr->unk10[0] = ptr->unk10[1] = ptr->unk10[2] =0.0f;
     ptr->unk20 = vector_new(sizeof(struct4s), arg0);
     ptr->unk24 = arg0;
     ptr->unk28 = 0;
     ptr->unk2C = assetcache_get(0x898); //rain
-    ptr->unk30 = D_803772D4;
+    ptr->unk30 = 0.1f;
     return ptr;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_70F20/func_802F82F4.s")
+void func_802F82F4(struct3s *this, f32 arg1, f32 arg2, f32 arg3, f32 arg4){
+    this->unk34 = 1;
+    this->unk38 = 0.0f;
+    this->unk3C = 0.1f;
+    this->unk40[0] = arg1;
+    this->unk40[1] = arg2;
+    this->unk40[2] = arg3;
+    this->unk40[3] = arg4;
+}
 
 void func_802F8338(struct3s *this){
     func_802F80E8(this, 1);
@@ -124,4 +123,83 @@ void func_802F8358(struct3s *this){
     this->unk0 = NULL;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_70F20/func_802F83AC.s")
+void func_802F83AC(struct3s *arg0) {
+    f32 sp3C[3];
+    f32 temp_f20;
+    struct4s *temp_v0;
+    s32 phi_s0;
+
+    temp_f20 = time_getDelta();
+    player_getPosition(sp3C);
+    arg0->unk10[0] = sp3C[0] - arg0->unk4[0];
+    arg0->unk10[1] = sp3C[1] - arg0->unk4[1];
+    arg0->unk10[2] = sp3C[2] - arg0->unk4[2];
+    arg0->unk4[0] = sp3C[0];
+    arg0->unk4[1] = sp3C[1];
+    arg0->unk4[2] = sp3C[2];
+    if (func_802BEF64()) {
+        vector_clear(arg0->unk20);
+    }
+    if (vector_size(arg0->unk20) > 0) {
+        if (arg0->unk0 == 0) {
+            arg0->unk0 = func_802F9AA8(SFX_BE_WATERFALL);
+            func_802F9DB8(arg0->unk0, 0.95f, 1.05f, 0.01f);
+            func_802F9F80(arg0->unk0, 3.0f, 1.296e7f, 0.0f);
+            func_802FA0B0(arg0->unk0, 2);
+            func_802FA060(arg0->unk0, 5000, 6000, 5.0f);
+        }
+    } else {
+        if (arg0->unk0 != 0) {
+            func_802F9D38(arg0->unk0);
+            arg0->unk0 = 0;
+        }
+    }
+    for(phi_s0 = 0; phi_s0 < vector_size(arg0->unk20); phi_s0++){
+        temp_v0 = (struct4s *)vector_at(arg0->unk20, phi_s0);
+        temp_v0->unk0[0] += temp_v0->unkC[0] * temp_f20;
+        temp_v0->unk0[1] += temp_v0->unkC[1] * temp_f20;
+        temp_v0->unk0[2] += temp_v0->unkC[2] * temp_f20;
+        if ((temp_v0->unk0[1] < (sp3C[1] - 500.0f)) && (temp_v0->unk18 == 0)) {
+            vector_remove(arg0->unk20, phi_s0);
+            phi_s0--;
+        }
+    }
+    arg0->unk1C++;
+    if (arg0->unk1C < vector_size(arg0->unk20)) {
+        temp_v0 = (struct4s *)vector_at(arg0->unk20, arg0->unk1C);
+        if (1210.0 < func_80256064(temp_v0, sp3C)) {
+            vector_remove(arg0->unk20, arg0->unk1C);
+        }
+    } else {
+        arg0->unk1C = 0;
+    }
+
+    if (arg0->unk34 != 0) {
+        arg0->unk38 += temp_f20;
+        if (arg0->unk40[arg0->unk34 - 1] <= arg0->unk38) {
+            arg0->unk34++;
+            arg0->unk38 = 0.0f;
+            if (arg0->unk34 > 4) {
+                arg0->unk34 = 1;
+            }
+        }
+        if (arg0->unk34 == 1) {
+            arg0->unk3C = (1.0f - arg0->unk38/arg0->unk40[0]) * 0.1;
+        } else if (arg0->unk34 == 2) {
+            arg0->unk3C = 0.01f;
+        } else if (arg0->unk34 == 3) {
+            arg0->unk3C = (arg0->unk38 / arg0->unk40[2]) * 0.1;
+        } else {
+            arg0->unk3C = 0.01f;
+        }
+        if (arg0->unk3C <= 0.01) {
+            arg0->unk3C = 0.01f;
+        }
+    }
+    if (func_8025773C(&arg0->unk30, temp_f20)) {
+        if ((arg0->unk28 == 1) && !func_802BEF64() && (arg0->unk34 != 4)) {
+            func_802F7EB0(arg0);
+        }
+        arg0->unk30 = (arg0->unk34 != 0) ? arg0->unk3C : 0.01;
+    }
+}
