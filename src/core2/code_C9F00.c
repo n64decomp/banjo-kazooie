@@ -53,10 +53,7 @@ extern f64 D_80379378;
 /* .bss */
 extern struct {
     Struct68s *unk0;
-    void (* unk4)(void);
-    void (* unk8)(void);
-    void (* unkC)(void);
-    s32 unk10;
+    Struct6Cs unk4;
     f32 unk14[3];
     s32 unk20[3];
     Struct68s *unk2C;
@@ -345,10 +342,10 @@ void func_80351998(void) {
     D_803861B0.unkC = D_803861B0.unk4 + 2;
 
     D_80386180.unk0 = NULL;
-    D_80386180.unk4 = func_80350F7C;
-    D_80386180.unk8 = func_803510B4;
-    D_80386180.unkC = func_80351198;
-    D_80386180.unk10 = 0;
+    D_80386180.unk4.unk0 = func_80350F7C;
+    D_80386180.unk4.unk4 = func_803510B4;
+    D_80386180.unk4.unk8 = func_80351198;
+    D_80386180.unk4.unkC = NULL;
     D_80386180.unk2C = NULL;
 }
 

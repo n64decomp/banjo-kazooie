@@ -67,7 +67,7 @@ typedef struct actorMarker_s{
     u32         unk14_21:1;
     u32         unk14_20:10; //contains jingo_id for chjinjo
     u32         unk14_10:11; //used in ch/jiggy
-    u32         unk18;
+    Struct6Cs   *unk18;
     MarkerCollisionFunc unk1C; //die_func
     s32         unk20;
     ActorUpdateFunc     unk24;

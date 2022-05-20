@@ -744,5 +744,11 @@ typedef struct {
     f32 unk34;
 } Struct6Bs;
 
+typedef struct{
+    s32 (* unk0)(struct actor_marker_s *, f32[3], f32, f32[3], s32);
+    s32 (* unk4)(struct actor_marker_s *, f32[3], f32, f32[3], s32);
+    s32 (* unk8)(struct actor_marker_s *, f32[3], f32, f32[3], s32);
+    s32 (* unkC)(struct actor_marker_s *, f32[3], f32, f32[3], s32);
+} Struct6Cs;
 
 #endif

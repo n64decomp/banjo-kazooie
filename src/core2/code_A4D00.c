@@ -30,9 +30,11 @@ s32 func_80320DB0(f32[3], f32, f32[3], u32);
 extern void func_80320EB0(ActorMarker *, f32, s32);
 extern void func_80320ED8(ActorMarker *, f32, s32);
 f32 func_8033229C(ActorMarker *marker);
+s32 func_803327A8(s32 arg0);
 void func_8032CD60(Prop *);
 void func_8033A244(f32);
 void func_8032F64C(f32 *pos, ActorMarker * marker);
+
 /* .data */
 extern s32 D_8036E7B0;
 
@@ -1288,7 +1290,7 @@ f32 func_80331F54(ActorMarker *marker) {
     return sp34 * 2;
 }
 
-
+f32 func_80332050(Prop *, ActorMarker *, s32);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_80332050.s")
 
 f32 func_803320BC(ActorProp *prop, f32 (*arg1)(ActorMarker *)) {
@@ -1306,7 +1308,7 @@ f32 func_803320BC(ActorProp *prop, f32 (*arg1)(ActorMarker *)) {
     return sp18;
 }
 
-
+f32 func_80332220(Prop *, f32 (*)(u32));
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_80332220.s")
 
 f32 func_8033229C(ActorMarker *marker) {
@@ -1330,7 +1332,86 @@ extern s16 D_8036E7FC[];
 
 extern u8 D_80383428[0x1C];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_803322F0.s")
+Prop *func_803322F0(Cube *cube, ActorMarker *marker, f32 arg2, s32 arg3, s32 *arg4) {
+    Prop *phi_s1;
+    f32 phi_f24;
+    f32 phi_f20;
+    f32 phi_f22;
+    f32 phi_f2;
+    s32 phi_s3;
+    f32 sp74[3];
+    f32 sp68[3];
+
+    phi_s3 = cube->prop2Cnt - *arg4;
+    if (marker->collidable) {
+        phi_s1 = &cube->prop2Ptr[(*arg4)++];
+        for(phi_s3 = phi_s3; phi_s3 != 0; phi_s3--){
+            if (phi_s1->unk8_4) {
+                if( phi_s1->markerFlag &&  (!phi_s1->actorProp.marker->unk3E_0 || !marker_getActor(phi_s1->actorProp.marker)->despawn_flag)){
+                    if (phi_s1->actorProp.marker->collidable && (marker != phi_s1->actorProp.marker)) {
+                        if( (phi_s1->actorProp.marker->modelId) 
+                            && (func_803327A8(phi_s1->actorProp.marker->modelId) & arg3)
+                        ) {
+                            if( phi_s1->actorProp.unk8_1
+                                && (phi_s1->actorProp.marker->unk18 != NULL) 
+                                && (phi_s1->actorProp.marker->unk18->unkC != NULL)
+                            ) {
+                                func_803320BC(phi_s1, &func_80331F54);
+                                sp68[0] = (f32) (marker->unk38 + marker->propPtr->x);
+                                sp68[1] = (f32) (marker->unk3A + marker->propPtr->y);
+                                sp68[2] = (f32) (marker->unk3C + marker->propPtr->z);
+                                if ((phi_s1->actorProp.marker->unk40_31 = phi_s1->actorProp.marker->unk18->unkC(phi_s1->actorProp.marker, sp68, arg2, sp74, 0)) != 0) {
+                                    return phi_s1;
+                                }
+                            } else{
+                                phi_f24 = func_80332050(phi_s1, marker, 0);
+                                phi_f22 = func_80332050(phi_s1, marker, 2);
+                                if (phi_s1->actorProp.unk8_1) {
+                                    phi_f20 = func_80332050(phi_s1, marker, 1);
+                                    phi_f2 = func_803320BC(phi_s1, func_80331F54);
+                                } else {
+                                    phi_f20 = func_80332050(phi_s1, marker, 1);
+                                    phi_f2 = func_803320BC(phi_s1, &func_80331E64);
+                                }
+                                phi_f2 = phi_f2 + arg2;
+                                if ((phi_f24*phi_f24 + phi_f20*phi_f20 +  phi_f22*phi_f22) < phi_f2*phi_f2) {
+                                    return phi_s1;
+                                }
+                            }
+                        }
+                    }
+                }
+                else if (phi_s1->unk8_1) {//PropProp
+                    if (func_803327A8(phi_s1->propProp.unk0_31 + 0x2D1) & arg3) {
+                        phi_f24 = func_80332050(phi_s1, marker, 0);
+                        phi_f20 = func_80332050(phi_s1, marker, 1) + func_80332220(phi_s1, &func_80331F1C);
+                        phi_f22 = func_80332050(phi_s1, marker, 2);
+                        phi_f2 = func_80332220(phi_s1, &func_80331F1C) + arg2;
+                        if (( (phi_f24 * phi_f24) + (phi_f20 * phi_f20) + (phi_f22 * phi_f22)) < (phi_f2 * phi_f2)) {
+                            return phi_s1;
+                        }
+                    }
+                }
+                else{
+                    if (func_803327A8(phi_s1->spriteProp.unk0_31 + 0x572) & arg3) {
+                        phi_f24 = func_80332050(phi_s1, marker, 0);\
+                        phi_f20 = func_80332050(phi_s1, marker, 1) + func_80332220(phi_s1, &func_80331E34);\
+                        phi_f22 = func_80332050(phi_s1, marker, 2);
+                        phi_f2 = func_80332220(phi_s1, &func_80331E34) + arg2;
+                        if (((phi_f24 * phi_f24) + (phi_f20 * phi_f20) + (phi_f22 * phi_f22)) < (phi_f2 * phi_f2)) {
+                            return phi_s1;
+                        }
+                    }
+                }
+            }
+            phi_s1++;
+            (*arg4)++;
+        }
+    }
+    *arg4 = -1;
+    return NULL;
+}
+
 
 void func_80332764(s32 arg0, s32 arg1) {
     u8 *actor;
