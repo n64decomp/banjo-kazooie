@@ -803,6 +803,8 @@ segments:
   - [0xf2c00, .bss, roll]
   - [0xf2c00, .bss, yaw]
   - [0xf2c00, .bss, code_12360]
+  - [0xf2c00, .bss, code_126C0]
+  - [0xf2c00, .bss, code_12F30]
   - [0xf2c00, .bss, bsList]
   - [0xf2c00, .bss, code_13780]
   - [0xf2c00, .bss, code_13900]
@@ -865,7 +867,6 @@ segments:
   - [0xf2c00, .bss, code_356B0]
   - [0xf2c00, .bss, code_379B0]
   - [0xf2c00, .bss, code_37CD0]
-  - [0xf2c00, .bss, ch/gameSelect] #this is bizarre... should be where marked below...
   - [0xf2c00, .bss, code_37E50]
   - [0xf2c00, .bss, code_38150]
   - [0xf2c00, .bss, code_38460]
@@ -879,6 +880,6 @@ segments:
   - [0xf2c00, .bss, code_39EF0]
   - [0xf2c00, .bss, done/code_3B2C0]
   - [0xf2c00, .bss, code_3B5C0]
-  # - [0xf2c00, .bss, ch/gameSelect]
+  - [0xf2c00, .bss, ch/gameSelect]
   - [0xf2c00, .bss, code_41460]
 - [0xf2c00] # core2 end
