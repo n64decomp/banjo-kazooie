@@ -3,6 +3,9 @@
 #include "variables.h"
 #include "structs.h"
 
+extern f32 func_8030A590(void);
+extern void func_8030A5EC(Prop *, f32);
+
 Prop *func_80303F7C(s32, f32, s32, s32);
 s32 func_8032D9C0(Cube*, Prop*);
 void func_80332B2C(ActorMarker * arg0);
@@ -395,7 +398,7 @@ s32 func_8032D9C0(Cube *cube, Prop* prop){
     if(cube->prop2Cnt != 0){
         sp24 = prop->unk8_1; 
         if(func_80305D14()){
-            func_80305CD8(func_803058C0(prop->unk6), -1);
+            func_80305CD8(func_803058C0(prop->unk4[1]), -1);
         }
         if((prop - cube->prop2Ptr) < (cube->prop2Cnt - 1)){
             memcpy(prop, prop + 1, (s32)(&cube->prop2Ptr[cube->prop2Cnt-1]) - (s32)(prop));
@@ -874,9 +877,9 @@ ActorMarker * func_8032F9DC(s32 *pos, MarkerDrawFunc arg1, int arg2, int arg3, i
     marker->unk30 = NULL;
     marker->unk28 = 0;
     marker->unk34 = 0;
-    marker->unk38 = 0;
-    marker->unk3A = 0;
-    marker->unk3C = 0;
+    marker->unk38[0] = 0;
+    marker->unk38[1] = 0;
+    marker->unk38[2] = 0;
     marker->unk44 = 0;
     marker->unk20 = 0;
     marker->unk50 = 0;
@@ -1246,8 +1249,8 @@ f32 func_80331D20(BKSprite *sprite) {
 }
 
 
-f32 func_80331E34(u32 *arg0){
-    return func_80331D20(func_8030A55C(arg0[0] >> 0x14));
+f32 func_80331E34(Prop *arg0){
+    return func_80331D20(func_8030A55C(arg0->spriteProp.unk0_31));
 }
 
 f32 func_80331E64(ActorMarker *marker) {
@@ -1257,16 +1260,16 @@ f32 func_80331E64(ActorMarker *marker) {
         return 0.0f;
     }
     sp24 = func_80331D20(func_80330F50(marker));
-    marker->unk3A = (s16) (sp24 / 2);
+    marker->unk38[1] = (s16) (sp24 / 2);
     if (marker->unk3E_0) {
-        marker->unk3A *= marker_getActor(marker)->scale;
+        marker->unk38[1] *= marker_getActor(marker)->scale;
     }
     return sp24;
 }
 
 
-f32 func_80331F1C(u32 *arg0){
-    return func_802EC920(func_8033A148(func_8030A428(arg0[0] >> 0x14)));
+f32 func_80331F1C(Prop *arg0){
+    return func_802EC920(func_8033A148(func_8030A428(arg0->propProp.unk0_31)));
 }
 
 f32 func_80331F54(ActorMarker *marker) {
@@ -1284,14 +1287,24 @@ f32 func_80331F54(ActorMarker *marker) {
         sp28[1] = sp28[1] * marker_getActor(marker)->scale;\
         sp28[2] = sp28[2] * marker_getActor(marker)->scale;
     }
-    marker->unk38 = (s16) sp28[0];\
-    marker->unk3A = (s16) sp28[1];\
-    marker->unk3C = (s16) sp28[2];
+    marker->unk38[0] = (s16) sp28[0];\
+    marker->unk38[1] = (s16) sp28[1];\
+    marker->unk38[2] = (s16) sp28[2];
     return sp34 * 2;
 }
 
-f32 func_80332050(Prop *, ActorMarker *, s32);
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_80332050.s")
+f32 func_80332050(Prop *prop, ActorMarker *marker, s32 arg2) {
+    ActorMarker * phi_v0;
+    f32 phi_f2;
+
+    phi_v0 =(prop->markerFlag) ? prop->actorProp.marker : NULL;
+    phi_f2 = prop->unk4[arg2] - (&marker->propPtr->x)[arg2] - marker->unk38[arg2];
+    if (phi_v0 != NULL) {
+        phi_f2 += phi_v0->unk38[arg2];
+    }
+    return phi_f2;
+}
+
 
 f32 func_803320BC(ActorProp *prop, f32 (*arg1)(ActorMarker *)) {
     ActorMarker *marker;
@@ -1308,8 +1321,16 @@ f32 func_803320BC(ActorProp *prop, f32 (*arg1)(ActorMarker *)) {
     return sp18;
 }
 
-f32 func_80332220(Prop *, f32 (*)(u32));
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_80332220.s")
+f32 func_80332220(Prop * prop, f32 (*arg1)(Prop *)) {
+    f32 phi_f12;
+
+    phi_f12 = func_8030A590();
+    if (phi_f12 == 0.0f) {
+        func_8030A5EC(prop, phi_f12 = arg1(prop) * 0.5);
+    }
+    return phi_f12;
+}
+
 
 f32 func_8033229C(ActorMarker *marker) {
     ActorProp *prop;
@@ -1357,9 +1378,9 @@ Prop *func_803322F0(Cube *cube, ActorMarker *marker, f32 arg2, s32 arg3, s32 *ar
                                 && (phi_s1->actorProp.marker->unk18->unkC != NULL)
                             ) {
                                 func_803320BC(phi_s1, &func_80331F54);
-                                sp68[0] = (f32) (marker->unk38 + marker->propPtr->x);
-                                sp68[1] = (f32) (marker->unk3A + marker->propPtr->y);
-                                sp68[2] = (f32) (marker->unk3C + marker->propPtr->z);
+                                sp68[0] = (f32) (marker->unk38[0] + marker->propPtr->x);
+                                sp68[1] = (f32) (marker->unk38[1] + marker->propPtr->y);
+                                sp68[2] = (f32) (marker->unk38[2] + marker->propPtr->z);
                                 if ((phi_s1->actorProp.marker->unk40_31 = phi_s1->actorProp.marker->unk18->unkC(phi_s1->actorProp.marker, sp68, arg2, sp74, 0)) != 0) {
                                     return phi_s1;
                                 }

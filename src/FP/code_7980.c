@@ -71,9 +71,9 @@ Actor *func_8038DF34(Actor *this){
     f32 sp18[3];
 
     func_8034A174(this->marker->unk44, 5, sp18);
-    this->marker->unk38 = sp18[0] - this->position[0];
-    this->marker->unk3A = sp18[1] - this->position[1];
-    this->marker->unk3C = sp18[2] - this->position[2];
+    this->marker->unk38[0] = sp18[0] - this->position[0];
+    this->marker->unk38[1] = sp18[1] - this->position[1];
+    this->marker->unk38[2] = sp18[2] - this->position[2];
     prop = func_80320EB0(this->marker, 75.0f, 1);
 
     if(prop && prop->unk8_0){

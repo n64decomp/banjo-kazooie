@@ -80,9 +80,7 @@ typedef struct actorMarker_s{
     u32         collidable:1;
     void        (*unk30)(struct actor_s *); //actor free method
     s32         unk34;
-    s16         unk38;
-    s16         unk3A;
-    s16         unk3C;
+    s16         unk38[3];
     u16         pad3E_15:1;
     u16         modelId:13;
     u16         unk3E_1:1;
@@ -395,14 +393,15 @@ typedef union prop_s
     SpriteProp  spriteProp;
     PropProp    propProp;
     struct{
-        u8 pad0[6];
-        s16 unk6;
-        s32 pad8_31: 27;
-        u32 unk8_4: 1;
-        s32 pad8_3: 1;
-        u32 unk8_2: 1;
-        u32 unk8_1: 1;
-        u32 markerFlag: 1;
+        u8 pad0[4];
+        s16 unk4[3];
+        // s16 unk6;
+        s16 pad8_15: 11;
+        u16 unk8_4: 1;
+        s16 pad8_3: 1;
+        u16 unk8_2: 1;
+        u16 unk8_1: 1;
+        u16 markerFlag: 1;
     };
 } Prop;
 

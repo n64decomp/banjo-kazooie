@@ -908,9 +908,9 @@ void func_8028D2E4(void){
         for(D_8037BF8C = NULL, i = 0, temp_s2 = 0; i < 2;i++){//L8028D3DC
             D_8037BF90 = i;
             func_80292284(sp174, i); //get top of player?
-            playerMarker->unk38 = sp174[0] - sp168[0];
-            playerMarker->unk3A = sp174[1] - sp168[1];
-            playerMarker->unk3C = sp174[2] - sp168[2];
+            playerMarker->unk38[0] = sp174[0] - sp168[0];
+            playerMarker->unk38[1] = sp174[1] - sp168[1];
+            playerMarker->unk38[2] = sp174[2] - sp168[2];
             func_80320ED8(playerMarker, temp_s0_2[i], 1);
             while(temp_s1 = func_8032F528()){//L8028D480
                 if(!temp_s1->unk8_2){

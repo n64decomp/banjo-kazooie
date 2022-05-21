@@ -1577,7 +1577,7 @@ BKSprite *func_8030A55C(s32 arg0){
 f32 func_8030A590(Prop *arg0){
     if(arg0->unk8_1){
         PropProp* propProp = &arg0->propProp;
-        return D_80382390[propProp->unk0_31].unk8;
+        return D_80382390[arg0->spriteProp.unk0_31].unk8;
     }
     else{//L8030A65C
         SpriteProp *spriteProp = &arg0->spriteProp;
@@ -1588,7 +1588,7 @@ f32 func_8030A590(Prop *arg0){
 void func_8030A5EC(Prop *arg0, f32 arg1){
     if(arg0->unk8_1){
         PropProp* propProp = &arg0->propProp;
-        D_80382390[propProp->unk0_31].unk8 = (f32)propProp->unkA*arg1/100.0f;
+        D_80382390[arg0->spriteProp.unk0_31].unk8 = (f32)propProp->unkA*arg1/100.0f;
     }
     else{//L8030A65C
         SpriteProp *spriteProp = &arg0->spriteProp;
