@@ -33,7 +33,7 @@ segments:
       - [0x5640, c, code_5640]
       - [0x5ED0, c, code_5ED0]
       - [0x86F0, c, code_86F0]
-      - [0x9C40, c, code_9C40]
+      - [0x9C40, c, code_9C40] #DONE
       - [0xA170, c, code_A170] #DONE
       - [0xA430, c, code_A430] #DONE
       - [0xA4A0, c, code_A4A0] #DONE
@@ -49,6 +49,7 @@ segments:
     vram: 0x80392CB0
     subsegments:
       - [0x0000C8C0, bin, data_C8C0]
+      - [0x0000E470, .data, code_9C40]
       - [0x0000E4F0, .data, code_A170]
       - [0x0000E590, .data, code_A430]
       - [0x0000E5C0, .data, code_A4A0]
@@ -58,6 +59,7 @@ segments:
       - [0x0000E8D0, .data, code_C1C0]
       - [0x0000E930, .data, code_C6C0]
       - [0x0000E960, bin, data_E960]
+      - [0x0000EE50, .rodata, code_9C40]
       - [0x0000EE80, .rodata, code_A4A0]
       - [0x0000EEC0, .rodata, code_A810]
       - [0x0000EEE0, .rodata, code_AD70]
