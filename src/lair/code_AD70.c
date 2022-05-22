@@ -2,17 +2,20 @@
 #include "functions.h"
 #include "variables.h"
 
-extern u8 D_80394B78;
+void func_80391B04(Actor *this);
 
+/* .data */
+extern ActorInfo D_80394AB0 = { 0x1EF, 0x3BB, 0x54B, 0x1, NULL, func_80391B04, func_80326224, func_80325340, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
 extern s32 D_80394AD4[3];
 extern struct31s D_80394AE0;
-
-extern u32 D_80394B30[]; // unk type
 extern struct31s D_80394B08;
+extern u32 D_80394B30[]; // unk type
+extern u8 D_80394B78;
 
+/* .rodata */
 extern f32 D_803952D0; // .rodata : 0.2f
 
-
+/* .code */
 void func_80391160(f32 pos[3], u32 count)
 {
     ParticleEmitter *p = partEmitList_pushNew(count);

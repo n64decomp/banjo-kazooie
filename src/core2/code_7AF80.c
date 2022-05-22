@@ -62,6 +62,7 @@ extern Struct_core2_7AF80_1 *D_8036A9D8;
 
 extern UNK_TYPE(s32)    D_8036A9DC;
 extern UNK_TYPE(void *) D_8036A9E0;
+extern u8 D_8036A9E4[];
 extern s16 D_8036ABD4;
 
 
@@ -1636,6 +1637,49 @@ void func_8030A78C(void){//init
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_8030A850.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_8030AA6C.s")
+void func_8030AA6C(void) {
+    BKModelBin *temp_a0;
+    s32 phi_s2;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_8030ABA4.s")
+    D_80382394 = defrag(D_80382394);
+    D_80382390 = defrag(D_80382390);
+    if (!func_802559A0() && !func_80255AE4() && D_80382390 != NULL) {
+        for(phi_s2 = 0x14; (phi_s2 != 0) && !func_80255AE4(); phi_s2--){
+            D_8036B800++;
+            if (D_8036B800 >= 0x2A2) {
+                D_8036B800 = 0;
+            }
+            temp_a0 = D_80382390[D_8036B800].unk0;
+            if (temp_a0 != NULL && (func_802546E4(temp_a0) < 0x2AF8)) {
+                D_80382390[D_8036B800].unk0 = func_80255888(D_80382390[D_8036B800].unk0);
+            }
+        }
+    }
+}
+
+
+void func_8030ABA4(void) {
+    s32 temp_lo;
+    s32 temp_t7;
+    struct_7AF80_1 *phi_s0;
+    s32 phi_s2;
+    struct_7AF80_0 *phi_s0_2;
+
+    for(phi_s0 = D_80382394; phi_s0 < D_80382394 + 360; phi_s0++){
+        if (phi_s0->unk0 != NULL) {
+            temp_t7 = phi_s0 - D_80382394;
+            func_8033B338(&phi_s0->unk0, &phi_s0->unk4);
+            phi_s2 = temp_t7 *sizeof(struct_7AF80_1);
+            *(BKSprite **)((s32)D_80382394 + phi_s2) = func_8033B6C4(temp_t7 + 0x572,  (BKSpriteDisplayData **)((s32)D_80382394 + phi_s2 + 4));
+        }
+    }
+    
+    for(phi_s0_2 = D_80382390; phi_s0_2 < D_80382390 + 674; phi_s0_2++){
+        if(phi_s0_2->unk0 != NULL){
+            temp_lo = phi_s0_2 - D_80382390;
+            assetcache_release(phi_s0_2->unk0);
+            D_80382390[temp_lo].unk0 = (BKModelBin *) assetcache_get(temp_lo + 0x2D1);
+
+        }
+    }
+}

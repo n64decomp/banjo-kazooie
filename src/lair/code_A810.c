@@ -2,11 +2,17 @@
 #include "functions.h"
 #include "variables.h"
 
+void func_80390E28(Actor *this);
 
+/* .data */
+extern ActorInfo D_80394A80 = { 0x1EC, 0x377, 0x0, 0x0, NULL, func_80390E28, func_80326224, func_80325340, { 0xB, 0xB8}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+
+/* .rodata */
 extern f32 D_803952B0; //! 0.2f
 extern f32 D_803952B4; //! 0.6f
 extern f32 D_803952B8;
 
+/* .code */
 void func_80391EA8(ActorMarker *, ActorMarker *, f32 [3], f32, f32, s32);
 
 

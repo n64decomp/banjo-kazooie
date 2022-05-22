@@ -2,7 +2,13 @@
 #include "functions.h"
 #include "variables.h"
 
+void func_8038F924(Actor *this);
 
+/* .data */
+extern ActorInfo D_803947B0 = { 0x1EB, 0x3B7, 0x48B, 0x1, NULL, func_8038F924, func_80326224, func_80325888, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_803947D4 = { 0x1EB, 0x3BC, 0x538, 0x1, NULL, func_8038F924, func_80326224, func_80325888, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+
+/* .code */
 #pragma GLOBAL_ASM("asm/nonmatchings/lair/code_86F0/func_8038EAE0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/lair/code_86F0/func_8038EB24.s")
