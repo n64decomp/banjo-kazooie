@@ -5,7 +5,7 @@
 extern func_80391EA8(ActorMarker *, ActorMarker *, f32 [3], f32, f32, s32);
 
 typedef struct {
-    f32 unk0[2][3];
+    f32 unk0[4][3];
 }ActorLocal_lair_A810;
 
 
