@@ -25,9 +25,12 @@ extern f64 D_802782E8;
 
 extern u16 *D_80276CB8; //! ml_acosPrecValTblPtr
 
+// extern
+f32 func_8024C788(void);
 void func_80257918(f32 arg0[3], f32 arg1[3], f32 arg2[3], f32 arg3[3]);
+
+// .h
 void ml_vec3f_roll_rotate_copy(f32 arg0[3], f32 arg1[3], f32);
-f32  func_8024C788(void);
 
 #define _SQ2(x, y)     ((x) * (x)  +  (y) * (y))
 #define _SQ3(x, y, z)  (((x) * (x)) + ((y) * (y)) + ((z) * (z)))
@@ -1403,12 +1406,53 @@ void func_80259430(f32 *val)
     return;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_18350/func_8025947C.s")
+void func_8025947C(f32 a0[3], f32 a1[3], f32 a2[3], f32 a3[3])
+{
+    f32 f0;
+    f32 f12;
+    f32 f16;
+    f32 f8;
+    f32 f18;
+    f32 f4;
+
+    a0[1] = a1[1];
+
+    f0 = a2[0] - a1[0];
+
+    if (f0 == 0)
+    {
+        a0[0] = a1[0];
+        a0[2] = a3[2];
+
+        return;
+    }
+
+    f12 = a2[2] - a1[2];
+
+    if (f12 == 0)
+    {
+        a0[0] = a3[0];
+        a0[2] = a1[2];
+
+        return;
+    }
+
+    f16 = f12 / f0;
+    f18 = a1[2] - (a1[0] * f16);
+
+    f8 = -1.0 / f16;
+
+    f4 = a3[2] - (a3[0] * f8);
+
+    f8 = (f4 - f18) / (f16 - f8);
+
+    a0[0] = f8;
+    a0[2] = f8 * f16 + f18;
+}
+
 
 f32 func_80259554(f32 dst[3], f32 vec1[3], f32 vec2[3], f32 vec3[3])
 {
-    f32 func_80256B54(f32 [3], f32 [3]);
-
     f32 tmp1[3];
     f32 tmp2[3];
     f32 tmp3;

@@ -4,75 +4,71 @@
 
 #include "prop.h"
 
-void   func_80328B8C(Actor *, s32, f32, s32);
-void   func_802D4830(Actor *, s32, f32);
-Actor *func_8032813C(s32, void *, s32);
-void   func_802D3CE8(Actor *);
-int    func_8032886C(Actor *, f32);
-void   func_802D3D54(Actor *);
-void   func_8033A45C(s32, s32);
-void   func_8034E0FC(void *, s32);
-void  *func_8034C2C4(ActorMarker *, s32);
+extern void   func_802D3CE8(Actor *);
+extern void   func_802D3D54(Actor *);
+extern void   func_802D4830(Actor *, s32, f32);
+extern void   func_802EE6CC(f32[3], f32[3], s32[4], s32, f32, f32, s32, s32, s32);
+extern Actor *func_8032813C(s32, void *, s32);
+extern int    func_8032886C(Actor *, f32);
+extern void   func_80328B8C(Actor *, s32, f32, s32);
+extern void   func_8033A45C(s32, s32);
+extern void   func_8034E0FC(void *, s32);
+extern void  *func_8034C2C4(ActorMarker *, s32);
 
-/* .data */
-extern ActorInfo D_80392F40;
-extern ActorInfo D_80392F64;
-extern ActorInfo D_803932E8;
-extern ActorInfo D_80393408;
-extern ActorInfo D_80392F88;
-extern ActorInfo D_80392FAC;
-extern ActorInfo D_80392FD0;
-extern ActorInfo D_80393018;
-extern ActorInfo D_8039303C;
-extern ActorInfo D_80393060;
-extern ActorInfo D_803931EC;
-extern ActorInfo D_80393210;
-extern ActorInfo D_80392EF8;
-extern ActorInfo D_8039339C;
-extern ActorInfo D_803933C0;
-extern ActorInfo D_80392DB4;
-extern ActorInfo D_80392DD8;
-extern ActorInfo D_80392DFC;
-extern ActorInfo D_80392E20;
-extern ActorInfo D_80392E44;
-extern ActorInfo D_80392E68;
-extern ActorInfo D_80392E8C;
-extern ActorInfo D_803930F0;
-extern ActorInfo D_80393234;
-extern ActorInfo D_80393258;
-extern ActorInfo D_80392FF4;
-extern ActorInfo D_8039327C;
-extern ActorInfo D_803932A0;
-extern ActorInfo D_803932C4;
-extern ActorInfo D_8039315C;
-extern ActorInfo D_80393180;
-extern ActorInfo D_803931A4;
-extern ActorInfo D_8039330C;
-extern ActorInfo D_80393330;
-extern ActorInfo D_80393114;
-extern ActorInfo D_80393138;
-extern ActorInfo D_803930CC;
-extern ActorInfo D_803931C8;
+
+void   func_803863F0(Actor *this);
+void   func_803864B0(Actor *this);
+void   func_80386550(Actor *this);
+Actor *func_8038664C(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
+void   func_80386D78(Actor *this);
+void   func_80386780(Actor *this);
+void   func_803867A8(Actor *this);
+void   func_80386D20(Actor *this);
+void   func_803870DC(Actor *this);
+Actor *func_80387560(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
+void   func_80387730(Actor *this);
+void   func_803880BC(Actor *this);
+void   func_8038824C(Actor *this);
+void   func_803882B0(Actor *this);
+void   func_80388524(Actor *this);
+void   func_80388FC8(Actor *this);
+void   func_80389204(Actor *this);
+void   func_803893B8(Actor *this);
+void   func_803894B0(Actor *this);
+void   func_8038982C(Actor *this);
+void   func_80389898(Actor *this);
+void   func_80389D08(Actor *this);
+void   func_803875F0(Actor *this);
+Actor *func_80387DA8(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
+void   func_803896D4(Actor *this);
+void   func_803896F4(Actor *this);
+void   func_80389714(Actor *this);
+void   func_80389734(Actor *this);
+void   func_8038975C(Actor *this);
+void   func_80389784(Actor *this);
+void   func_803897AC(Actor *this);
+void   func_80389934(Actor *this);
+Actor *func_80389E10(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
+void   func_80389FF4(Actor *this);
+void   func_8038A014(Actor *this);
+void   func_8038A034(Actor *this);
+void   func_8038A064(Actor *this);
+void   func_8038A084(Actor *this);
+void   func_8038A0A4(Actor *this);
+
 extern ActorInfo D_80393560;
 extern ActorInfo D_80393584;
-extern ActorInfo D_803933E4;
-extern ActorInfo D_80393378;
 extern ActorInfo D_803947B0;
 extern ActorInfo D_803947D4;
 extern ActorInfo D_80393730;
 extern ActorInfo D_80394A80;
 extern ActorInfo D_80394AB0;
-extern ActorInfo D_80392EB0;
-extern ActorInfo D_80393084;
-extern ActorInfo D_80392ED4;
-extern ActorInfo D_803930A8;
 extern ActorInfo D_80394870;
 extern ActorInfo D_80394894;
 extern ActorInfo D_803948B8;
 extern ActorInfo D_80394910;
 extern ActorInfo D_80394934;
 extern ActorInfo D_80394958;
-extern ActorInfo D_80392F1C;
 extern ActorInfo D_80394A08;
 extern ActorInfo D_80394A2C;
 extern ActorInfo D_80394A50;
@@ -83,8 +79,65 @@ extern ActorInfo D_80394C70;
 extern ActorInfo D_80394D20;
 extern ActorInfo D_80394CF0;
 extern ActorInfo D_80394C94;
-extern ActorInfo D_80393354;
-extern ActorInfo D_80392D90;
+
+/* .data */
+extern ActorAnimationInfo D_80392CB0[];
+extern ActorInfo D_80392D90 = { 0x270, 0x2D8, 0x3B2, 0x1, NULL, func_802D3D54, func_80326224, func_80325E78, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_80392DB4 = { 0x110, 0x214, 0x4AB, 0x1, D_80392CB0, func_803896D4, func_80326224, func_80325888, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_80392DD8 = { 0x113, 0x217, 0x4A9, 0x1, D_80392CB0, func_803896F4, func_80326224, func_80325888, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_80392DFC = { 0x115, 0x219, 0x4AA, 0x1, D_80392CB0, func_80389714, func_80326224, func_80325888, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_80392E20 = { 0x11B, 0x221, 0x4B5, 0x1, D_80392CB0, func_80389734, func_80326224, func_80325888, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_80392E44 = { 0x11C, 0x222, 0x4B2, 0x1, D_80392CB0, func_8038975C, func_80326224, func_80325888, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_80392E68 = { 0x11D, 0x223, 0x4B0, 0x1, D_80392CB0, func_80389784, func_80326224, func_80325888, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_80392E8C = { 0x232, 0x23C, 0x4B8, 0x1, D_80392CB0, func_803897AC, func_80326224, func_80325888, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_80392EB0 = { 0x23F, 0x246, 0x534, 0x1, D_80392CB0, func_80386D20, func_80326224, func_80325888, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_80392ED4 = { 0x241, 0x248, 0x540, 0x1, D_80392CB0, func_80386780, func_80326224, func_80325888, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_80392EF8 = { 0x109, 0x20D, 0x4A1, 0x1, D_80392CB0, func_80386550, func_80326224, func_80325888, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x85, 0x0, 0x0}};
+extern ActorInfo D_80392F1C = { 0x264, 0x2E5, 0x550, 0x19, D_80392CB0, func_80388524, func_80326224, func_80325888, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_80392F40 = { 0x224, 0x230, 0x4BF, 0xB, D_80392CB0, func_803863F0, func_80326224, func_80325888, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x88, 0x0, 0x0}};
+extern ActorInfo D_80392F64 = { 0x225, 0x231, 0x4D5, 0xE, D_80392CB0, func_803864B0, func_80326224, func_80325888, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x88, 0x0, 0x0}};
+extern ActorInfo D_80392F88 = { 0x111, 0x215, 0x4A4, 0x1, NULL, func_80388FC8, func_80326224, func_80325E78, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_80392FAC = { 0x112, 0x216, 0x4A5, 0x1, NULL, func_80388FC8, func_80326224, func_80325E78, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_80392FD0 = { 0x114, 0x218, 0x4A6, 0x1, NULL, func_80389204, func_80326224, func_80325E78, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_80392FF4 = { 0x10D, 0x211, 0x4A3, 0x1, NULL, func_80388524, func_80326224, func_80325E78, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_80393018 = { 0x22C, 0x23A, 0x4D9, 0x1, NULL, func_803882B0, func_80326224, func_80325E78, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_8039303C = { 0x164, 0x259, 0x507, 0x1, NULL, func_803880BC, func_80326224, func_80325E78, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_80393060 = { 0x165, 0x25A, 0x508, 0x1, NULL, func_8038824C, func_80326224, func_80325E78, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_80393084 = { 0x240, 0x247, 0x48A, 0x1, NULL, func_80386D78, func_80326224, func_80325E78, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_803930A8 = { 0x242, 0x249, 0x2DD, 0x1, NULL, func_803867A8, func_80326224, func_80325E78, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_803930CC = { 0x11F, 0x225, 0x4B3, 0x1, NULL, func_8038A064, func_80326224, func_80325E78, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_803930F0 = { 0x10A, 0x20E, 0x4A2, 0x1, NULL, func_80388524, func_80326224, func_80325E78, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_80393114 = { 0x11A, 0x220, 0x4B7, 0x1, NULL, func_80389FF4, func_80326224, func_80325E78, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x91, 0x0, 0x0}};
+extern ActorInfo D_80393138 = { 0x11E, 0x224, 0x4AF, 0x1, NULL, func_8038A014, func_80326224, func_80325E78, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x83, 0x0, 0x0}};
+extern ActorInfo D_8039315C = { 0x227, 0x234, 0x4D6, 0x1, NULL, func_80388524, func_80326224, func_80325E78, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x93, 0x0, 0x0}};
+extern ActorInfo D_80393180 = { 0x228, 0x235, 0x4D7, 0x1, NULL, func_80388524, func_80326224, func_80325E78, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x8B, 0x0, 0x0}};
+extern ActorInfo D_803931A4 = { 0x229, 0x236, 0x4D8, 0x1, NULL, func_80388524, func_80326224, func_80325E78, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x8B, 0x0, 0x0}};
+extern ActorInfo D_803931C8 = { 0x121, 0x227, 0x4BD, 0x1, NULL, func_8038A034, func_80326224, func_80325888, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x89, 0x0, 0x0}};
+extern ActorInfo D_803931EC = { 0x116, 0x21A, 0x4AC, 0x1, NULL, func_803893B8, func_80326224, func_80325E78, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x82, 0x0, 0x0}};
+extern ActorInfo D_80393210 = { 0x117, 0x21B, 0x4AD, 0x1, NULL, func_803894B0, func_80326224, func_80325E78, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x82, 0x0, 0x0}};
+extern ActorInfo D_80393234 = { 0x10B, 0x20F, 0x4B4, 0x1, NULL, func_80388524, func_80326224, func_80325E78, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x90, 0x0, 0x0}};
+extern ActorInfo D_80393258 = { 0x10C, 0x210, 0x4AE, 0x1, NULL, func_80388524, func_80326224, func_80325E78, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x84, 0x0, 0x0}};
+extern ActorInfo D_8039327C = { 0x10E, 0x212, 0x4A7, 0x1, NULL, func_80388524, func_80326224, func_80325E78, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x7F, 0x0, 0x0}};
+extern ActorInfo D_803932A0 = { 0x120, 0x226, 0x4BC, 0x1, NULL, func_80388524, func_80326224, func_80325E78, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x87, 0x0, 0x0}};
+extern ActorInfo D_803932C4 = { 0x122, 0x228, 0x4BE, 0x1, NULL, func_80388524, func_80326224, func_80325E78, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x8C, 0x0, 0x0}};
+extern ActorInfo D_803932E8 = { 0x10F, 0x213, 0x4A8, 0x1, NULL, func_803875F0, func_80326224, func_80325E78, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x80, 0x0, 0x0}};
+extern ActorInfo D_8039330C = { 0x118, 0x21E, 0x4B1, 0x1, NULL, func_8038A084, func_80326224, func_80325E78, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x8F, 0x0, 0x0}};
+extern ActorInfo D_80393330 = { 0x119, 0x21F, 0x4B6, 0x1, NULL, func_8038A0A4, func_80326224, func_80325E78, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x92, 0x0, 0x0}};
+extern ActorInfo D_80393354 = { 0x266, 0x2E3, 0x563, 0x1, NULL, func_803870DC, func_80326224, func_80387560, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_80393378 = { 0x17D, 0x1E1, 0x517, 0x1, NULL, func_80389D08, func_80326224, func_80389E10, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x8D, 0x0, 0x0}};
+extern ActorInfo D_8039339C = { 0x234, 0x23E, 0x4E1, 0x12, D_80392CB0, func_8038982C, func_80326224, func_80325E78, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_803933C0 = { 0x163, 0x258, 0x511, 0x12, D_80392CB0, func_80389898, func_80326224, func_8038664C, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x8E, 0x0, 0x0}};
+extern ActorInfo D_803933E4 = { 0x160, 0x255, 0x509, 0x15, D_80392CB0, func_80389934, func_80326224, func_80325888, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_80393408 = { 0x102, 0x203, 0x491, 0x1, D_80392CB0, func_80387730, func_80326224, func_80387DA8, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern s32       D_80393504[4];
+
+/* .rodata */
+extern f32 D_80394FE4, D_80394FE8, D_80394FEC;
+extern f32 D_80394FF0;
+
+/* .bss */
+u8 D_80395350[0x10]; //padding
+
 
 //chcobweb
 void func_803863F0(Actor *this)
@@ -169,7 +222,7 @@ void func_80386550(Actor *this)
     }
 }
 
-Actor *func_8038664C(ActorMarker *marker, Gfx **dl, Mtx **m, u32 a3)
+Actor *func_8038664C(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx)
 {
     u32    val;
     Actor *actor;
@@ -180,7 +233,7 @@ Actor *func_8038664C(ActorMarker *marker, Gfx **dl, Mtx **m, u32 a3)
     func_8033A45C(3, val == 1 ? 1 : 0);
     func_8033A45C(4, val == 0 ? 1 : 0);
 
-    return func_80325888(marker, dl, m, a3);
+    return func_80325888(marker, gfx, mtx, vtx);
 }
 
 void *func_803866D8(s32 a0)
@@ -229,7 +282,7 @@ void func_80386D40(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/lair/code_0/func_803870DC.s")
 
-void func_80387560(ActorMarker *marker, Gfx **dl, Mtx **m, u32 a3)
+Actor *func_80387560(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx)
 {
     Actor *actor = marker_getActor(marker);
     u32 i;
@@ -237,7 +290,7 @@ void func_80387560(ActorMarker *marker, Gfx **dl, Mtx **m, u32 a3)
     for (i = 0; i != 10; i++)
         func_8033A45C(i + 1, actor->unkF4_8 + 1 == i + 2);
 
-    func_80325E78(marker, dl, m, a3);
+    return func_80325E78(marker, gfx, mtx, vtx);
 }
 
 //circular grate
@@ -289,7 +342,7 @@ void func_803875F0(Actor * this)
 #pragma GLOBAL_ASM("asm/nonmatchings/lair/code_0/func_80387730.s")
 
 //chnotedoor_draw
-void func_80387DA8(ActorMarker *marker, Gfx **dl, Mtx **m, u32 vptr)
+Actor *func_80387DA8(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx)
 {
     // TODO: Think of a better way of doing this, similar to the SM64 one
     #define NUM_NOTE_DOORS (12)
@@ -327,7 +380,7 @@ void func_80387DA8(ActorMarker *marker, Gfx **dl, Mtx **m, u32 vptr)
     /**
      * Draw the note door
      */
-    func_80325E78(marker, dl, m, vptr);
+    return func_80325E78(marker, gfx, mtx, vtx);
 }
 
 #ifndef NON_MATCHING
@@ -802,26 +855,21 @@ void func_803897AC(Actor *this)
     func_802D4AC0(this, 0x800053, 0x54);
 }
 
-#ifndef NON_MATCHING
-void func_803897D4(ActorMarker *marker);
-#pragma GLOBAL_ASM("asm/nonmatchings/lair/code_0/func_803897D4.s")
-#else
-// very close
-void func_803897D4(ActorMarker *marker)
+void func_803897D4(s32 arg0)
 {
     ActorMarker *marker1, *marker2;
     Actor *actor1, *actor2;
 
-    actor1 = marker_getActor(reinterpret_cast(ActorMarker *, marker));
+    marker1 = reinterpret_cast(ActorMarker *, arg0);
+    actor1 = marker_getActor(marker1);
 
     actor1 = func_8032813C(0x258, &actor1->position, actor1->yaw);
 
     // Grab the same pointer again for good measure
-    actor2 = marker_getActor(reinterpret_cast(ActorMarker *, marker));
+    actor2 = marker_getActor(marker1);
 
     actor1->scale = actor2->scale;
 }
-#endif
 
 void func_8038982C(Actor *this)
 {
@@ -921,20 +969,11 @@ void func_80389934(Actor *this)
     }
 }
 
-#ifndef NON_MATCHING
-f32 func_80389AAC(Actor *, f32);
-#pragma GLOBAL_ASM("asm/nonmatchings/lair/code_0/func_80389AAC.s")
-#else
-// VERY close, just reduce stack from x68 to x60 - w
 f32 func_80389AAC(Actor *this, f32 a1)
 {
     // defs
     f32   func_8034A754(f32, f32);
     void *func_80309B48(f32 *, f32 *, f32 *, u32);
-    extern f32 D_80394FE4, D_80394FE8, D_80394FEC; //!
-
-    f32 tmp;
-    f32 pad;
 
     f32 vec3[3]; // $sp + 54
     f32 vec2[3]; // $sp + 48
@@ -948,16 +987,9 @@ f32 func_80389AAC(Actor *this, f32 a1)
 
     this->position_x -= 26;
 
-    tmp = this->position_x;
-    vec3[0] = tmp;
-    vec1[0] = tmp;
-
+    vec1[0] = vec3[0] = this->position_x;
     vec3[1] = this->position_y;
-
-    tmp = this->position_z;
-    if (1);if (1);if (1); //! fakematch, swaps $f0/$f2
-    vec3[2] = tmp;
-    vec1[2] = tmp;
+    vec1[2] = vec3[2] = this->position_z;
 
     this->position_y += this->unk1C[1];
 
@@ -995,7 +1027,7 @@ f32 func_80389AAC(Actor *this, f32 a1)
                 break;
         }
 
-        func_8030E878(0x82, func_8034A754(D_80394FE4, D_80394FE8), 32760, &this->position, 100, D_80394FEC);
+        func_8030E878(SFX_82_METAL_BREAK, func_8034A754(D_80394FE4, D_80394FE8), 32760, &this->position, 100, D_80394FEC);
 
         this->unk60 = 1;
     }
@@ -1007,7 +1039,6 @@ f32 func_80389AAC(Actor *this, f32 a1)
 
     return a1 <= 230 ? 230 : a1;
 }
-#endif
 
 void func_80389D08(Actor *this)
 {
@@ -1057,7 +1088,39 @@ void func_80389D08(Actor *this)
     }
 }
 
+#ifndef NONMATCHING //requires .bss defined
 #pragma GLOBAL_ASM("asm/nonmatchings/lair/code_0/func_80389E10.s")
+#else
+Actor *func_80389E10(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
+    Actor *this;
+    f32 sp90[3];
+    f32 sp84[3];
+    f32 sp78[3];
+    f32 sp6C[3];
+    static s32 D_80395360;
+
+
+    this = func_80325E78(marker, gfx, mtx, vtx);
+    if (marker->unk14_21 && (this->unk60 != 0.0f)) {
+        func_8034A174((struct5Bs *) marker->unk44, 5, sp84);
+        func_8034A174((struct5Bs *) marker->unk44, 6, sp78);
+        
+        for(D_80395360 = 0; D_80395360 < 8; D_80395360++){
+            sp6C[0] =sp6C[2] = 0.0f;
+            sp6C[1] = randf2(5.0f, 20.0f);
+
+            sp90[0] = sp84[0] + ((sp78[0] - sp84[0]) * randf());
+            sp90[1] = sp84[1];
+            sp90[2] = sp84[2] + ((sp78[2] - sp84[2]) * randf());
+            
+
+            func_802EE6CC(&sp90, &sp6C, &D_80393504, 1, 0.3f, 50.0f, 180, randi2(130, 200), 0);
+        };
+    }
+    return this;
+}
+#endif
+
 
 void func_80389FA8(Actor *this, enum bkprog_e flag)
 {

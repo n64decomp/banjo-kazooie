@@ -199,12 +199,12 @@ void func_8033B2A4(s32 arg0) {
 #ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B3A80/func_8033B338.s")
 #else
-bool func_8033B338(void **arg0, void **arg1) {
-    if (*arg0 == NULL) {
+bool func_8033B338(BKSprite **sprite_ptr, BKSpriteDisplayData **arg1) {
+    if (*sprite_ptr == NULL) {
         return FALSE;
     }
-    assetcache_release(*arg0);
-    *arg0 = NULL;
+    assetcache_release(*sprite_ptr);
+    *sprite_ptr = NULL;
     *arg1 = NULL;
     return TRUE;
 }

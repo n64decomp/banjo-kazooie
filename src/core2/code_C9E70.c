@@ -2,14 +2,9 @@
 #include "functions.h"
 #include "variables.h"
 
-typedef struct{
-    u8 pad0[0x20];
-    gczoombox_t *unk20;
-    u8 pad24[0x24];
-    void *unk48;
-}Struct_core2_C9E70_0;
+#include "core2/code_C9E70.h"
 
-Struct_core2_C9E70_0 *D_8037DCB8;
+struct FF_StorageStruct *D_8037DCB8;
 
 void func_80350E00(void){
     func_803208F0();

@@ -2,17 +2,62 @@
 #include "functions.h"
 #include "variables.h"
 
-extern u8 D_80394B78;
+extern void func_8038EA68(s32, s32[3]);
+extern void func_8038EA10(s32, f32[3]);
+extern void func_8038E9A4(s32, f32[3]);
 
-extern s32 D_80394AD4[3];
-extern struct31s D_80394AE0;
+typedef struct {
+    f32 unk0;
+    f32 unk4;
+    f32 unk8;
+    s32 unkC;
+    s32 unk10;
+} ActorLocal_lair_AD70;
 
-extern u32 D_80394B30[]; // unk type
-extern struct31s D_80394B08;
+void func_80391B04(Actor *this);
 
+/* .data */
+ActorInfo D_80394AB0 = { 0x1EF, 0x3BB, 0x54B, 0x1, NULL, func_80391B04, func_80326224, func_80325340, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+s32 D_80394AD4[3] = {0xBA, 0xBA, 0xBA};
+struct31s D_80394AE0 = {
+    {0.1f, 0.2f},
+    {3.6f, 4.6f},
+    {1.0f, 1.0f},
+    {3.0f, 3.0f},
+    0.05f, 0.1f
+};
+
+struct31s D_80394B08 = {
+    {0.3f, 0.5f},
+    {0.0f, 0.0f},
+    {0.0f, 0.1f},
+    {3.0f, 3.5f},
+    0.4f, 0.6f,
+};
+
+struct43s D_80394B30 = {
+    {{-400.0f, 400.0f}, {-400.0f, 400.0f}, {800.0f, 400.0f}},
+    {{0.0f, -1000.0f, 0.0f}, {0.0f, -1000.0f, 0.0f}},
+    {{-20.0f, -20.0f, -20.0f}, {20.0f, 20.0f, 20.0f}}
+};
+
+struct43s D_80394B78 = {
+    {{-50.0f, 200.0f}, {-50.0f, 50.0f}, {400.0f, 50.0f}}, 
+    {{0.0f, -500.0f, 0.0f}, {0.0f, -500.0f, 0.0f}}, 
+    {{-40.0f, -40.0f, -40.0f}, {40.0f, 40.0f, 40.0f}}
+};
+f32 D_80394BC0[2] = {1000.0f, 2000.0f};
+s32 D_80394BC8[3] = {0xC0, 0xC0, 0xC0};
+s32 D_80394BD4[3] = {0xff, 0x80, 0x80};
+
+/* .rodata */
 extern f32 D_803952D0; // .rodata : 0.2f
+extern f64 D_803952D8; // 4.0
+extern f64 D_803952E0;
+extern f64 D_803952E8;
 
 
+/* .code */
 void func_80391160(f32 pos[3], u32 count)
 {
     ParticleEmitter *p = partEmitList_pushNew(count);
@@ -51,7 +96,7 @@ void func_8039137C(f32 pos[3], u32 count, enum asset_e sprite)
     func_802EF9F8(p, 0.3f);
     func_802EFA18(p, 3);
     func_802EFE24(p, 0, 0, 600, 0, 0, 900);
-    particleEmitter_setPositionVelocityAndAccelerationRanges(p, D_80394B30);
+    particleEmitter_setPositionVelocityAndAccelerationRanges(p, &D_80394B30);
     func_802EFB98(p, &D_80394B08);
     func_802EFA70(p, 2);
     particleEmitter_emitN(p, count);
@@ -68,15 +113,13 @@ void func_8039144C(f32 pos[3], u32 count)
     func_802EFA5C(p, 0.1f, 0.2f);
     func_802EFEC0(p, 0.75f, 0.75f);
     func_802EFB70(p, 0.5f, 0.5f);
-    func_802EFB84(p, D_803952D0, D_803952D0);
+    func_802EFB84(p, 0.2f, 0.2f);
     particleEmitter_setParticleAccelerationRange(p, 0, -50, 0, 0, -100, 0);
     particleEmitter_emitN(p, count);
 }
 
 void func_803915A4(f32 pos[3], s32 count, f32 scale)
 {
-    extern f64 D_803952D8; // 4.0
-
     ParticleEmitter *p = partEmitList_pushNew(count);
     particleEmitter_setSprite(p, 0x4A0);
     func_802EFA5C(p, 0.1f, 0.2f);
@@ -85,7 +128,7 @@ void func_803915A4(f32 pos[3], s32 count, f32 scale)
     particleEmitter_setParticleFramerateRange(p, 8, 8);
     particleEmitter_setPosition(p, pos);
     func_802EFB70(p, scale * 2.0, scale * 2.0);
-    func_802EFB84(p, scale * D_803952D8, scale * D_803952D8);
+    func_802EFB84(p, scale * 0.4, scale * 0.4);
     func_802EFEC0(p, 0.5f, 0.5f);
     particleEmitter_emitN(p, count);
 }
@@ -119,14 +162,136 @@ void func_803917DC(void)
     mapSpecificFlags_setN(0, flags - 1, 2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/lair/code_AD70/func_80391810.s")
+void func_80391810(Actor *this, s32 next_state) {
+    ActorLocal_lair_AD70 *local;
+    f32 sp38[3];
+    f32 sp34;
+
+    local = (ActorLocal_lair_AD70 *)&this->local;
+    switch (next_state) {
+    case 1:
+        sp34 = (this->position[1] + this->unk28) - this->unk1C[1];
+        this->velocity[1] = gu_sqrtf(this->unk28 * 2000.0);
+        local->unk0 = -this->velocity[1] / -1000.0f;
+        local->unk0 += gu_sqrtf((sp34 * -2.0) / -1000.0);
+        this->velocity[0] = this->unk1C[0] - this->position[0];
+        this->velocity[2] = this->unk1C[2] - this->position[2];
+        this->velocity[0] /= local->unk0;
+        this->velocity[2] /= local->unk0;
+        local->unk4 *= local->unk0;
+        this->unk60 = 0.0f;
+        local->unk8 = this->position[1] * 0.5;
+        sp38[0] = this->position[0];
+        sp38[1] = this->position[1];
+        sp38[2] = this->position[2];
+        sp38[1] += 100.0f;
+        func_803916BC(sp38, 3);
+        break;
+    case 2:
+        func_8030E8B4(0x7FF38948, this->position, 0x0BB805DC);
+        func_80391254(this->position, 2, 0x4A0);
+        func_80391254(this->position, 2, 0x6C1);
+        func_80391160(this->position, 4);
+        func_8039137C(this->position, 4, 0x711);
+        func_8039137C(this->position, 4, 0x712);
+        func_803917B0(this);
+        timedFunc_set_0(4.0f, func_803917DC);
+        this->unk60 = 4.0f;
+        break;
+    case 3:
+        func_8030E8B4(0x66586896, this->position, 0x0BB805DC);
+        sp38[0] = this->position[0];
+        sp38[1] = this->position[1];
+        sp38[2] = this->position[2];
+        sp38[1] += 100.0f;
+        func_803916BC(sp38, 3);
+        func_80391160(sp38, 4);
+        func_8039137C(sp38, 4, 0x714);
+        func_8039137C(sp38, 4, 0x715);
+        func_803917B0(this);
+        func_803917DC();
+        break;
+    case 4:
+        func_803917B0(this);
+        func_803917DC();
+        break;
+    }
+    func_80328A84(this, next_state);
+}
+
 
 void func_80391AE4(Actor *actor)
 {
     func_8038E968(*(s32 *)&actor->unk7C[0x10]);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/lair/code_AD70/func_80391B04.s")
+void func_80391B04(Actor *this) {
+    f32 sp44;
+    ActorLocal_lair_AD70 *local;
+    f32 sp34[3];
+    f32 temp_f0_2;
+
+    local = (ActorLocal_lair_AD70 *)&this->local;
+    sp44 = time_getDelta();
+    if (!this->unk16C_4) {
+        local->unk10 = func_8038E800();
+        func_8038EA68(local->unk10, D_80394BC8);
+        func_8038EA10(local->unk10, D_80394BC0);
+        this->unk58_2 = FALSE;
+        func_80391810(this, 1);
+        func_803300D8(this->marker, func_80391AE4);
+        this->unk16C_4 = TRUE;
+    }
+
+    func_8038E9A4(local->unk10, this->position);
+    switch (this->state) {                              /* irregular */
+    case 1:
+        if (func_8031A3BC() || mapSpecificFlags_get(0xA)) {
+            func_80391810(this, 4);
+            break;
+        }
+        this->position[0] += this->velocity[0] * sp44;
+        this->position[1] += this->velocity[1] * sp44;
+        this->position[2] += this->velocity[2] * sp44;
+        this->velocity[1] += -1000.0f * sp44;
+        this->yaw += this->yaw_moving * sp44;
+        this->pitch += this->unk6C * sp44;
+        if ((this->velocity[1] < 0.0) && (this->position[1] < this->unk1C[1])) {
+            func_80391810(this, 3);
+        }
+        func_803915A4(this->position, 1, (f32)local->unkC);
+        if (func_80329904(this->marker, 5, sp34)) {
+            func_8039144C(sp34, 1);
+        }
+        if (local->unk4 > 0.0) {
+            this->unk60 += sp44;
+            if (local->unk4 < this->unk60) {
+                func_80391810(this, 2);
+            }
+        }
+        if ((local->unk8 < this->position[1]) && !this->unk138_24) {
+            func_8030E8B4(0x7FF3894E, this->position, 0x0BB805DC);
+            this->unk138_24 = TRUE;
+        }
+        break;
+    case 3:
+    case 4:
+        marker_despawn(this->marker);
+        break;
+    case 2:
+        this->unk60 -= sp44;
+        if (this->unk60 > 0.0f) {
+            temp_f0_2 = (f32) ((f64) this->unk60 * 0.25);
+            D_80394BD4[0] = (s32) ((f32) D_80394BD4[0] * temp_f0_2);
+            D_80394BD4[1] = (s32) ((f32) D_80394BD4[1] * temp_f0_2);
+            D_80394BD4[2] = (s32) ((f32) D_80394BD4[2] * temp_f0_2);
+            func_8038EA68(local->unk10, D_80394BD4);
+            break;
+        }
+        marker_despawn(this->marker);
+        break;
+    }
+}
 
 void func_80391EA8(ActorMarker *marker, ActorMarker *a1, f32 a2[3], f32 f1, f32 scale, s32 f2)
 {

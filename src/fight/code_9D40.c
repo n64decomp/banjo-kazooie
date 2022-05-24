@@ -316,7 +316,7 @@ void func_8039049C(Actor *this){
                     func_8030DA44(this->unk44_31);
                     this->unk44_31 = 0;
                 }
-                func_80324D2C(0.0f, SFX_JINJONATOR_POWERUP);
+                func_80324D2C(0.0f, COMUSIC_8C_JINJONATOR_POWERUP);
                 func_8034A174(this->marker->unk44, 0x1f, &this->position);
                 sp2C[0] = (this->position_x - this->unk1C[0]) / sp58;
                 sp2C[1] = (this->position_y - this->unk1C[1]) / sp58;

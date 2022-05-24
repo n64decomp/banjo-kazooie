@@ -73,6 +73,9 @@ ActorInfo D_80365F00 = { 0xE6, 0x197, 0x532, 0x1, D_80365ED0, func_802C4C14, fun
 
 
 /* .bss */
+// Remove this when this memory region is properly symbolized
+u8 unk_8037DCB0[0x8037DCE0 - 0x8037DCB0];
+
 extern u8 D_8037DCCE[0x12];
 
 struct {

@@ -6,12 +6,6 @@ extern void item_set(enum item_e, s32);
 extern void func_8025A55C(s32, s32, s32);
 extern void func_803184C8(gczoombox_t *, f32, s32, s32, f32, bool, bool);
 
-enum question_type_e{
-    Q_TYPE_0_TEXT,
-    Q_TYPE_1_PICTURE,
-    Q_TYPE_2_SOUND,
-    Q_TYPE_3_GRUNTY,
-};
 
 typedef struct {
     u8 cmd;
@@ -93,33 +87,33 @@ void func_80318E90(void) {
 }
 
 //__gcquiz_get_type_start_id
-enum asset_e func_80318ED8(enum question_type_e question_type){
+enum asset_e func_80318ED8(enum ff_question_type_e question_type){
     switch(question_type){
-        case Q_TYPE_1_PICTURE: return 0x12DB;
-        case Q_TYPE_2_SOUND:   return 0x13A3;
-        case Q_TYPE_3_GRUNTY:  return 0x1407;
+        case FFQT_1_PICTURE: return 0x12DB;
+        case FFQT_2_SOUND:   return 0x13A3;
+        case FFQT_3_GRUNTY:  return 0x1407;
     }
     return 0x1213;
 }
 
 //__gcquiz_get_type_end_id
-enum asset_e func_80318F1C(enum question_type_e question_type){
+enum asset_e func_80318F1C(enum ff_question_type_e question_type){
     switch(question_type){
-        case Q_TYPE_1_PICTURE: return 0x12EE;
-        case Q_TYPE_2_SOUND:   return 0x13D6;
-        case Q_TYPE_3_GRUNTY:  return 0x1425;
+        case FFQT_1_PICTURE: return 0x12EE;
+        case FFQT_2_SOUND:   return 0x13D6;
+        case FFQT_3_GRUNTY:  return 0x1425;
     }
     return 0x1277;
 }
 
-s32 func_80318F60(enum question_type_e question_type, s32 q_indx, s32 arg2) {
+s32 func_80318F60(enum ff_question_type_e question_type, s32 q_indx, s32 arg2) {
     s32 phi_v1;
     s32 phi_a0;
 
     if (arg2 >= 0) {
         phi_v1 = arg2;
     } else {
-        if (question_type == Q_TYPE_3_GRUNTY) {
+        if (question_type == FFQT_3_GRUNTY) {
             phi_a0 = func_80320424((q_indx * 2) + 0x26, 2);
         } else {
             phi_a0 = 0;
@@ -129,8 +123,8 @@ s32 func_80318F60(enum question_type_e question_type, s32 q_indx, s32 arg2) {
     return phi_v1;
 }
 
-bool func_80318FB4(enum question_type_e question_type){
-    return question_type == Q_TYPE_2_SOUND;
+bool func_80318FB4(enum ff_question_type_e question_type){
+    return question_type == FFQT_2_SOUND;
 }
 
 s32 func_80318FC0(s32 arg0){
@@ -204,7 +198,7 @@ void func_80319214(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
 #ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_91E10/func_803192A4.s")
 #else
-bool func_803192A4(enum question_type_e q_type, s32 q_indx, s32 arg2) {
+bool func_803192A4(enum ff_question_type_e q_type, s32 q_indx, s32 arg2) {
     s32 sp60;
     s32 sp54;
     s32 sp50;
@@ -535,7 +529,7 @@ void func_80319EA4(void) {
     }
 }
 
-bool func_8031A154(enum question_type_e q_type, s32 q_indx, s32 arg2, s32 arg3, s32 arg4, void (*arg5)(s32, s32)) {
+bool func_8031A154(enum ff_question_type_e q_type, s32 q_indx, s32 arg2, s32 arg3, s32 arg4, void (*arg5)(s32, s32)) {
     if (func_803192A4(q_type, q_indx, arg2) != 0) {
         D_803830E0->unk0 = q_type;
         D_803830E0->unk1 = q_indx;
@@ -618,7 +612,7 @@ s32 func_8031A454(void){
 }
 
 //__gcquiz_get_type_count
-s32 func_8031A45C(enum question_type_e question_type){
+s32 func_8031A45C(enum ff_question_type_e question_type){
     return func_80318F1C(question_type) - func_80318ED8(question_type);
 }
 
