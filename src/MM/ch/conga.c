@@ -25,6 +25,15 @@ void func_80387F44(void);
 
 void func_803876D0(Actor *);
 
+typedef struct chconga_s{
+    TUPLE(s32, orangeSpawnPosition);
+    s32     unkC;
+    s32     unk10;
+    u8      pad14[0x4];
+    s32     unk18;
+    s32     unk1C;
+}ActorLocal_Conga;
+
 
 /* .data */
 ActorAnimationInfo chCongaAnimations[9] = {
@@ -109,9 +118,9 @@ void func_80387168(ActorMarker *this, s32 arg1){
     Actor *actorPtr;
 
     actorPtr = marker_getActor(this);
-    if(actorPtr->conga.unkC == 1){
+    if(((ActorLocal_Conga *)&actorPtr->local)->unkC == 1){
         if(actorPtr->unk10_12 == 0){
-            actorPtr->conga.unkC = 0;
+            ((ActorLocal_Conga *)&actorPtr->local)->unkC = 0;
             if(mapSpecificFlags_get(0xA))
                 actorPtr->unk38_31++;
 
@@ -204,14 +213,14 @@ void func_803876D0(Actor *this){
 
     this->marker->propPtr->unk8_3 = (func_803250DC(this))?1:0;
     if(!this->initialized){
-        this->conga.unkC = 1;
+        ((ActorLocal_Conga *)&this->local)->unkC = 1;
         this->unk16C_0 = 1;
         this->initialized = 1;
         this->velocity_x = 0.0f;
         this->unk28 = 0.0f;
         sp40 = func_80304C38(0x150, this);
-        this->conga.unk1C = func_80304D3C(sp40);
-        func_80304D4C(sp40, &this->conga.unk10);
+        ((ActorLocal_Conga *)&this->local)->unk1C = func_80304D3C(sp40);
+        func_80304D4C(sp40, &((ActorLocal_Conga *)&this->local)->unk10);
     }
     if(0.0f == this->unk28){
         this->unk28 = (func_80326CCC(0x36))? 2.0f: 1.0f;
@@ -235,7 +244,7 @@ void func_803876D0(Actor *this){
     }
 
     sp3C = func_80329530(this, 1000);
-    if( func_8032A9E4(this->conga.unk10, this->conga.unk18, this->conga.unk1C) 
+    if( func_8032A9E4(((ActorLocal_Conga *)&this->local)->unk10, ((ActorLocal_Conga *)&this->local)->unk18, ((ActorLocal_Conga *)&this->local)->unk1C) 
         && !this->unk138_23
         && func_80311480(ASSET_B37_TEXT_CONGA_SAFE_UP_HERE, 0, 0, 0, 0, 0)
     ){
@@ -266,7 +275,7 @@ void func_803876D0(Actor *this){
                 && func_8028ECAC() != 1
                 && !func_80386ED0(this)
                 && func_803250DC()
-                && !func_8032A9E4(this->conga.unk10, this->conga.unk18, this->conga.unk1C)
+                && !func_8032A9E4(((ActorLocal_Conga *)&this->local)->unk10, ((ActorLocal_Conga *)&this->local)->unk18, ((ActorLocal_Conga *)&this->local)->unk1C)
                 && !func_803872EC()
             ){
                 func_80328B8C(this, 4, 0.0f, 1);
@@ -281,7 +290,7 @@ void func_803876D0(Actor *this){
             break;
 
         case 6: //L80387B24
-            this->conga.unkC = 1;
+            ((ActorLocal_Conga *)&this->local)->unkC = 1;
             actor_playAnimationOnce(this);
             func_80386FE8();
             if( animctrl_isPlayedForwards(this->animctrl) == TRUE
@@ -297,7 +306,7 @@ void func_803876D0(Actor *this){
             break;
 
         case 5: //L80387BC0
-            this->conga.unkC = 1;
+            ((ActorLocal_Conga *)&this->local)->unkC = 1;
             actor_loopAnimation(this);
             func_80386FE8();
             if( actor_animationIsAt(this, 0.99f)){
@@ -350,7 +359,7 @@ void func_803876D0(Actor *this){
         case 7: //L80387DF0
             if(this->unk10_12 == 0){
                 if(actor_animationIsAt(this, 0.97f)){
-                    this->conga.unkC = 1;
+                    ((ActorLocal_Conga *)&this->local)->unkC = 1;
                     func_80328B8C(this, 6, 0.0f, 1);
                 }
             }
