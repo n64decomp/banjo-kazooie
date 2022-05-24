@@ -20,7 +20,7 @@
 extern f32 fabsf(f32);
 #pragma intrinsic (fabsf)
 
-#define NOT(boolean) boolean ^ 1
+#define NOT(boolean) ((boolean) ^ 1)
 
 #define TUPLE_ASSIGN(out, a, b, c) {\
     out[0] = a;\
