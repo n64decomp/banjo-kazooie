@@ -28,7 +28,7 @@ segments:
     start: 0x00000000
     vram: 0x803863F0
     subsegments:
-      - [0x0, c, code_0]
+      - [0x0, c, code_0] #DONE
       - [0x42A0, c, code_42A0] #DONE
       - [0x5640, c, code_5640] #DONE
       - [0x5ED0, c, code_5ED0] #DONE
