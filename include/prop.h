@@ -180,14 +180,6 @@ typedef struct juju_hitbox_s{
     f32     unk18;
 }ActorLocal_JujuHitbox;
 
-typedef struct juju_s{
-    s32     unk0;
-    s32     unk4;
-    TUPLE(f32, unk8);
-    f32     unk14;
-    s32     unk18;
-}ActorLocal_Juju;
-
 typedef struct ch_fight_180_s{
     u8 unk0;
     u8 unk1;
@@ -275,7 +267,6 @@ typedef struct actor_s{
         ActorLocal_Conga conga;
         ActorLocal_Jinjo jinjo;
         ActorLocal_JujuHitbox juju_ctl;
-        ActorLocal_Juju juju;
         ActorLocal_fight_180 fight_180;
         ActorLocal_SM_4070 sm_4070;
         u8  local[1];

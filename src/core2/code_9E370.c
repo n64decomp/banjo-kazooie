@@ -293,8 +293,8 @@ Actor *actor_new(s32 (* position)[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
     D_80383390->unk10_0 = 0;
     D_80383390->unk104 = NULL;
     D_80383390->unk100 = NULL;
-    D_80383390->unk158 = NULL;
-    D_80383390->unk15C = NULL;
+    D_80383390->unk158[0] = NULL;
+    D_80383390->unk158[1] = NULL;
     D_80383390->unk78_13 = 0;
     D_80383390->unk124_31 = 0;
     D_80383390->unkF4_20 = 0;
@@ -970,8 +970,8 @@ void *actors_appendToSavestate(void * begin, u32 end){
                 s0->unk44_31 = 0;
                 s0->unk104 = NULL;
                 s0->unk100 = NULL;
-                s0->unk158 = NULL;
-                s0->unk15C = NULL;
+                s0->unk158[0] = NULL;
+                s0->unk158[1] = NULL;
                 s0->unk138_19 = s1->marker->unk14_20;
                 s0->unk108 = s1->marker->unkC;
                 s0->unk10C = s1->marker->unk10;
