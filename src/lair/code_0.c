@@ -7,12 +7,14 @@
 extern void   func_802D3CE8(Actor *);
 extern void   func_802D3D54(Actor *);
 extern void   func_802D4830(Actor *, s32, f32);
+extern void   func_802EE6CC(f32[3], f32[3], s32[4], s32, f32, f32, s32, s32, s32);
 extern Actor *func_8032813C(s32, void *, s32);
 extern int    func_8032886C(Actor *, f32);
 extern void   func_80328B8C(Actor *, s32, f32, s32);
 extern void   func_8033A45C(s32, s32);
 extern void   func_8034E0FC(void *, s32);
 extern void  *func_8034C2C4(ActorMarker *, s32);
+
 
 void   func_803863F0(Actor *this);
 void   func_803864B0(Actor *this);
@@ -127,6 +129,16 @@ extern ActorInfo D_8039339C = { 0x234, 0x23E, 0x4E1, 0x12, D_80392CB0, func_8038
 extern ActorInfo D_803933C0 = { 0x163, 0x258, 0x511, 0x12, D_80392CB0, func_80389898, func_80326224, func_8038664C, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x8E, 0x0, 0x0}};
 extern ActorInfo D_803933E4 = { 0x160, 0x255, 0x509, 0x15, D_80392CB0, func_80389934, func_80326224, func_80325888, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
 extern ActorInfo D_80393408 = { 0x102, 0x203, 0x491, 0x1, D_80392CB0, func_80387730, func_80326224, func_80387DA8, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern s32       D_80393504[4];
+
+/* .rodata */
+extern f32 D_80394FE4, D_80394FE8, D_80394FEC;
+extern f32 D_80394FF0;
+
+/* .bss */
+u8 D_80395350[0x10]; //padding
+
+
 //chcobweb
 void func_803863F0(Actor *this)
 {
@@ -843,26 +855,21 @@ void func_803897AC(Actor *this)
     func_802D4AC0(this, 0x800053, 0x54);
 }
 
-#ifndef NON_MATCHING
-void func_803897D4(ActorMarker *marker);
-#pragma GLOBAL_ASM("asm/nonmatchings/lair/code_0/func_803897D4.s")
-#else
-// very close
-void func_803897D4(ActorMarker *marker)
+void func_803897D4(s32 arg0)
 {
     ActorMarker *marker1, *marker2;
     Actor *actor1, *actor2;
 
-    actor1 = marker_getActor(reinterpret_cast(ActorMarker *, marker));
+    marker1 = reinterpret_cast(ActorMarker *, arg0);
+    actor1 = marker_getActor(marker1);
 
     actor1 = func_8032813C(0x258, &actor1->position, actor1->yaw);
 
     // Grab the same pointer again for good measure
-    actor2 = marker_getActor(reinterpret_cast(ActorMarker *, marker));
+    actor2 = marker_getActor(marker1);
 
     actor1->scale = actor2->scale;
 }
-#endif
 
 void func_8038982C(Actor *this)
 {
@@ -962,20 +969,11 @@ void func_80389934(Actor *this)
     }
 }
 
-#ifndef NON_MATCHING
-f32 func_80389AAC(Actor *, f32);
-#pragma GLOBAL_ASM("asm/nonmatchings/lair/code_0/func_80389AAC.s")
-#else
-// VERY close, just reduce stack from x68 to x60 - w
 f32 func_80389AAC(Actor *this, f32 a1)
 {
     // defs
     f32   func_8034A754(f32, f32);
     void *func_80309B48(f32 *, f32 *, f32 *, u32);
-    extern f32 D_80394FE4, D_80394FE8, D_80394FEC; //!
-
-    f32 tmp;
-    f32 pad;
 
     f32 vec3[3]; // $sp + 54
     f32 vec2[3]; // $sp + 48
@@ -989,16 +987,9 @@ f32 func_80389AAC(Actor *this, f32 a1)
 
     this->position_x -= 26;
 
-    tmp = this->position_x;
-    vec3[0] = tmp;
-    vec1[0] = tmp;
-
+    vec1[0] = vec3[0] = this->position_x;
     vec3[1] = this->position_y;
-
-    tmp = this->position_z;
-    if (1);if (1);if (1); //! fakematch, swaps $f0/$f2
-    vec3[2] = tmp;
-    vec1[2] = tmp;
+    vec1[2] = vec3[2] = this->position_z;
 
     this->position_y += this->unk1C[1];
 
@@ -1036,7 +1027,7 @@ f32 func_80389AAC(Actor *this, f32 a1)
                 break;
         }
 
-        func_8030E878(0x82, func_8034A754(D_80394FE4, D_80394FE8), 32760, &this->position, 100, D_80394FEC);
+        func_8030E878(SFX_82_METAL_BREAK, func_8034A754(D_80394FE4, D_80394FE8), 32760, &this->position, 100, D_80394FEC);
 
         this->unk60 = 1;
     }
@@ -1048,7 +1039,6 @@ f32 func_80389AAC(Actor *this, f32 a1)
 
     return a1 <= 230 ? 230 : a1;
 }
-#endif
 
 void func_80389D08(Actor *this)
 {
@@ -1098,7 +1088,39 @@ void func_80389D08(Actor *this)
     }
 }
 
+#ifndef NONMATCHING //requires .bss defined
 #pragma GLOBAL_ASM("asm/nonmatchings/lair/code_0/func_80389E10.s")
+#else
+Actor *func_80389E10(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
+    Actor *this;
+    f32 sp90[3];
+    f32 sp84[3];
+    f32 sp78[3];
+    f32 sp6C[3];
+    static s32 D_80395360;
+
+
+    this = func_80325E78(marker, gfx, mtx, vtx);
+    if (marker->unk14_21 && (this->unk60 != 0.0f)) {
+        func_8034A174((struct5Bs *) marker->unk44, 5, sp84);
+        func_8034A174((struct5Bs *) marker->unk44, 6, sp78);
+        
+        for(D_80395360 = 0; D_80395360 < 8; D_80395360++){
+            sp6C[0] =sp6C[2] = 0.0f;
+            sp6C[1] = randf2(5.0f, 20.0f);
+
+            sp90[0] = sp84[0] + ((sp78[0] - sp84[0]) * randf());
+            sp90[1] = sp84[1];
+            sp90[2] = sp84[2] + ((sp78[2] - sp84[2]) * randf());
+            
+
+            func_802EE6CC(&sp90, &sp6C, &D_80393504, 1, 0.3f, 50.0f, 180, randi2(130, 200), 0);
+        };
+    }
+    return this;
+}
+#endif
+
 
 void func_80389FA8(Actor *this, enum bkprog_e flag)
 {
