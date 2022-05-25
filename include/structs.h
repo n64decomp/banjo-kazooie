@@ -744,12 +744,14 @@ typedef struct{
 typedef struct struct_6D_s{
         u8 unk0;
     // u8 pad1[3];
-    u8 pad4[0x8];
+    f32 unk4;
+    f32 unk8;
     void (*unkC)(struct struct_6D_s *);
-    s32 unk10;
+    void (*unk10)(struct struct_6D_s *);
     s16 unk14[3];//min_vtx
     s16 unk1A[3];//max_vtx
-    u8 pad20[0x8];
+    f32 unk20;
+    f32 unk24;
     u8 unk28;
     u8 unk29;
     u8 pad2A[2];
@@ -759,10 +761,14 @@ typedef struct struct_6D_s{
     f32 unk48;
     s16 unk4C;
     s16 unk4E;
-    u8 pad50[0x20];
+    f32 unk50[4];
+    f32 unk60[4];
     f32 unk70;
     f32 unk74;
-    u8 pad78[0x20];
+    f32 unk78[3];
+    f32 unk84;
+    f32 unk88[3];
+    f32 unk94;
     f32 unk98;
     f32 unk9C;
 }Struct6Ds;
