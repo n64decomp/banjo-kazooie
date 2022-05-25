@@ -11,7 +11,7 @@ extern f32 D_80378440;
 struct 
 {
     struct48s *unk0;
-    s32 unk4[3];
+    BKModel *unk4[3];
     void *unk10[3];
     f32 unk1C;
 }D_80382410;

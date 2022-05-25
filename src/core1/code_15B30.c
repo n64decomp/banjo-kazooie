@@ -5,9 +5,10 @@
 typedef struct {
     s32 unk0;
     s32 unk4;
-    Gfx **unk8;
-    Gfx **unkC;
-    u8 unk10[0x8];
+    s32 unk8;
+    s32 unkC;
+    s32 unk10;
+    s32 unk14;
 }Struct_Core1_15B30;
 
 extern Gfx *D_80276580[2];
@@ -39,7 +40,21 @@ void func_8025357C(void){
     osSendMesg(&D_802831F0, NULL, OS_MESG_BLOCK);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_15B30/func_802535A8.s")
+void func_802535A8(UNK_TYPE(s32) arg0, UNK_TYPE(s32)arg1, UNK_TYPE(s32) arg2, UNK_TYPE(s32) arg3) {
+    Struct_Core1_15B30 *sp1C;
+
+    func_80253550();
+    sp1C = &D_80283008[D_802831E8];
+    D_802831E8 = (s32) (D_802831E8 + 1) % 20;
+    func_8025357C();
+    sp1C->unk0 = 0;
+    sp1C->unk8 = arg0;
+    sp1C->unkC = arg1;
+    sp1C->unk10 = arg2;
+    sp1C->unk14 = arg3;
+    func_80246670(sp1C);
+}
+
 
 void func_80253640(Gfx ** gdl, void *arg1){
     D_80283214 = *gdl;
@@ -123,17 +138,35 @@ void func_80253E14(Gfx **arg0, Gfx **arg1, s32 arg2){
     func_80246670((OSMesg) sp1C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_15B30/func_80253EA4.s")
+void func_80253EA4(Gfx **arg0, Gfx **arg1){
+    func_80253E14(arg0, arg1, 0);
+}
 
 void func_80253EC4(Gfx **arg0, Gfx **arg1){
     func_80253E14(arg0, arg1, 0x40000000);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_15B30/func_80253EE4.s")
+void func_80253EE4(Gfx **arg0, Gfx **arg1, s32 arg2) {
+    Struct_Core1_15B30 *sp1C;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_15B30/func_80253F74.s")
+    func_80253550();
+    sp1C = &D_80283008[D_802831E8];
+    D_802831E8 = (s32) (D_802831E8 + 1) % 20;
+    func_8025357C();
+    sp1C->unk0 = 2;
+    sp1C->unk4 = arg2;
+    sp1C->unk8 = arg0;
+    sp1C->unkC = arg1;
+    func_80246670(sp1C);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_15B30/func_80253F94.s")
+void func_80253F74(Gfx **arg0, Gfx **arg1){
+    func_80253EE4(arg0, arg1, 0);
+}
+
+void func_80253F94(Gfx **arg0, Gfx **arg1){
+    func_80253EE4(arg0, arg1, 0x40000000);
+}
 
 void func_80253FB4(u32 *arg0, u32 *arg1, u32 *arg2, u32 *arg3){
    *arg0 = D_8028320C;
@@ -193,13 +226,32 @@ void func_8025425C(void){
     D_80283004 = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_15B30/func_802542F4.s")
+void func_802542F4(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    D_8028320C = arg0;
+    D_80283210 = arg1;
+    D_8028320E = arg2;
+    D_80283212 = arg3;
+    D_80276588 = arg1 - arg0;
+    D_8027658C = arg3 - arg2;
+    func_8024CC5C();
+}
+
 
 void func_80254348(void){
     func_802542F4(0, 0x124, 0, 0xd8);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_15B30/func_80254374.s")
+void func_80254374(s32 arg0) {
+    Struct_Core1_15B30 *sp1C;
+
+    func_80253550();
+    func_8024C2A0(arg0);
+    sp1C = &D_80283008[D_802831E8];
+    D_802831E8 = (s32) (D_802831E8 + 1) % 20;
+    func_8025357C();
+    sp1C->unk0 = 7;
+    func_80246670(sp1C);
+}
 
 void func_802543EC(void){
     u32 ret_val = D_80283004;

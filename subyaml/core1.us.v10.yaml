@@ -30,82 +30,82 @@ segments:
   subalign: 4
   subsegments:
   - [0x00000000, c, code_0]
-  - [0x0660, c, code_660]
-  - [0x07C0, c, inflate]
+  - [0x0660, c, code_660]  #DONE
+  - [0x07C0, c, inflate]   #DONE
   - [0x1D00, c, code_1D00]
   - [0x2BD0, c, code_2BD0]
-  - [0x2DA0, c, code_2DA0]
-  - [0x2FA0, c, code_2FA0]
+  - [0x2DA0, c, code_2DA0] #DONE
+  - [0x2FA0, c, code_2FA0] #DONE
   - [0x31C0, c, code_31C0]
   - [0x3A70, c, code_3A70]
-  - [0x7090, c, code_7090]
+  - [0x7090, c, code_7090] #DONE
   - [0x72B0, c, code_72B0]
   - [0x7F60, c, code_7F60]
   - [0x8C50, c, code_8C50]
   - [0x9D30, c, code_9D30]
-  - [0xCE60, c, done/code_CE60]
+  - [0xCE60, c, done/code_CE60] #DONE
   - [0xE360, c, code_E360]
   - [0xEAF0, c, code_EAF0]
   - [0x11AC0, c, code_11AC0]
-  - [0x13640, c, code_13640]
+  - [0x13640, c, code_13640] #DONE
   - [0x13680, c, code_13680]
   - [0x136D0, c, code_136D0]
   - [0x13990, c, code_13990]
   - [0x15770, c, code_15770]
-  - [0x15B30, c, code_15B30]
+  - [0x15B30, c, code_15B30] #DONE
   - [0x16A50, c, memory]
-  - [0x18110, c, code_18110]
-  - [0x18210, c, code_18210]
-  - [0x18310, c, code_18310]
+  - [0x18110, c, code_18110] #DONE
+  - [0x18210, c, code_18210] #DONE
+  - [0x18310, c, code_18310] #DONE
   - [0x18350, c, code_18350]
   - [0x1BE90, c, code_1BE90]
-  - [0x1D590, c, done/code_1D590]
+  - [0x1D590, c, done/code_1D590] #DONE
   - [0x1D5C0, c, code_1D5C0]
-  - [0x1D5D0, c, code_1D5D0]
-  - [0x1E360, c, done/code_1E360]
-  - [0x1E6E0, c, code_1E6E0]
+  - [0x1D5D0, c, code_1D5D0] #DONE
+  - [0x1E360, c, done/code_1E360] #DONE
+  - [0x1E6E0, c, code_1E6E0] #DONE
   - [0x1E820, c, code_1E820]
-  - [0x1E8C0, c, done/code_1E8C0]
+  - [0x1E8C0, c, done/code_1E8C0] #DONE
   - [0x1E950, c, audio/n_synthesizer]
-  - [0x1F330, c, done/audio/event]
-  - [0x1F610, c, done/audio/n_synaddplayer]
-  - [0x1F7E0, c, done/audio/n_synallocvoice]
-  - [0x1F9E0, c, done/audio/n_synsetvol]
-  - [0x1FA80, c, done/audio/n_synstartvoice]
-  - [0x1FB00, c, done/audio/n_synsetpan]
-  - [0x1FB80, c, done/audio/n_synsetpitch]
-  - [0x1FC00, c, done/audio/n_synsetfxmix]
-  - [0x1FC90, c, done/audio/n_synstopvoice]
-  - [0x1FD00, c, done/audio/n_synfreevoice]
-  - [0x1FDA0, c, audio/n_csplayer] #core1/done/audio/n_csplayer]
-  - [0x21210, c, done/audio/cspsetbank]
-  - [0x21250, c, done/audio/cspstop]
-  - [0x21280, c, done/audio/n_csq]
-  - [0x21920, c, done/audio/cspsetseq]
-  - [0x21960, c, done/audio/cspplay]
-  - [0x21990, c, done/audio/cspsetvol]
-  - [0x219D0, c, done/audio/code_219D0]
-  - [0x21A10, c, done/audio/cspsettempo]
-  - [0x21A80, c, done/audio/code_21A80]
-  - [0x21AB0, c, done/audio/cspgettempo]
-  - [0x21AF0, c, done/audio/code_21AF0]
+  - [0x1F330, c, done/audio/event] #DONE
+  - [0x1F610, c, done/audio/n_synaddplayer] #DONE
+  - [0x1F7E0, c, done/audio/n_synallocvoice] #DONE
+  - [0x1F9E0, c, done/audio/n_synsetvol] #DONE
+  - [0x1FA80, c, done/audio/n_synstartvoice] #DONE
+  - [0x1FB00, c, done/audio/n_synsetpan] #DONE
+  - [0x1FB80, c, done/audio/n_synsetpitch] #DONE
+  - [0x1FC00, c, done/audio/n_synsetfxmix] #DONE
+  - [0x1FC90, c, done/audio/n_synstopvoice] #DONE
+  - [0x1FD00, c, done/audio/n_synfreevoice] #DONE
+  - [0x1FDA0, c, audio/n_csplayer]
+  - [0x21210, c, done/audio/cspsetbank] #DONE
+  - [0x21250, c, done/audio/cspstop] #DONE
+  - [0x21280, c, done/audio/n_csq] #DONE
+  - [0x21920, c, done/audio/cspsetseq] #DONE
+  - [0x21960, c, done/audio/cspplay] #DONE
+  - [0x21990, c, done/audio/cspsetvol] #DONE
+  - [0x219D0, c, done/audio/code_219D0] #DONE
+  - [0x21A10, c, done/audio/cspsettempo] #DONE
+  - [0x21A80, c, done/audio/code_21A80] #DONE
+  - [0x21AB0, c, done/audio/cspgettempo] #DONE
+  - [0x21AF0, c, done/audio/code_21AF0] #DONE
   - [0x21B50, c, code_21B50]
-  - [0x21C50, c, done/audio/n_synallocfx]
+  - [0x21C50, c, done/audio/n_synallocfx] #DONE
   - [0x21CB0, c, n_reverb]
-  - [0x22740, c, done/audio/n_auxbus]
-  - [0x227F0, c, done/audio/n_drvrNew]
-  - [0x22D50, c, done/audio/n_save]
-  - [0x22DA0, c, done/audio/n_envresample]
+  - [0x22740, c, done/audio/n_auxbus] #DONE
+  - [0x227F0, c, done/audio/n_drvrNew] #DONE
+  - [0x22D50, c, done/audio/n_save] #DONE
+  - [0x22DA0, c, done/audio/n_envresample] #DONE
   - [0x22E40, c, code_22E40]
-  - [0x25360, c, done/audio/n_synstartvoiceparam]
-  - [0x25440, c, done/audio/n_mainbus]
-  - [0x254C0, c, done/audio/n_load]
+  - [0x25360, c, done/audio/n_synstartvoiceparam] #DONE
+  - [0x25440, c, done/audio/n_mainbus] #DONE
+  - [0x254C0, c, done/audio/n_load] #DONE
   - [0x25680, c, audio/n_adpcm]
-  - [0x25C40, c, done/audio/n_resample]
+  - [0x25C40, c, done/audio/n_resample] #DONE
   - [0x25E20, c, code_25E20]
-  - [0x26110, c, code_26110]
-  - [0x26120, asm, os/invaldcache]
-  - [0x261C0, asm, os/writebackdcacheall]
+  - [0x26110, c, code_26110] #DONE
+  - [0x26120, asm, os/invaldcache] #DONE
+  - [0x261C0, asm, os/writebackdcacheall] #DONE
   - [0x261F0, c, os/initialize]
   - [0x26480, c, os/createthread]
   - [0x265D0, c, done/gu/sinf]
@@ -245,6 +245,8 @@ segments:
   vram:  0x80275610
   subsegments:
   - [0x37BF0, bin, data_37BF0] #data Section
+  - [0x37E50, .data, code_31C0]
+  - [0x37E60, bin, data_37E60]
   - [0x381F0, bin, data_381F0] # .data, done/code_CE60]
   - [0x38260, bin, data_38260]
   - [0x38BA0, .data, code_18310]

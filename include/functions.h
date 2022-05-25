@@ -475,7 +475,7 @@ void func_8033A280(f32);
 void func_80346C10(enum bs_e *retVal, enum bs_e fail_state, enum bs_e success_state, enum item_e item_id, int use_item);
 void func_80347A14(s32);
 void func_8034A174(struct5Bs *this, s32 indx,f32 dst[3]);
-void func_8034DC08(void *, f32 (*)[3], f32(*)[3], f32, s32);
+void func_8034DC08(Struct6Ds *, f32[3], f32[3], f32, s32);
 void func_8034DDF0(void *, f32 (*)[3], f32 (*)[3], f32, s32);
 void func_8034DE60(s32, f32, f32, f32, s32);
 void func_8034DFB0(s32, s32(*)[4], s32(*)[4], f32);

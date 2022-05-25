@@ -4,7 +4,7 @@
 
 typedef struct {
     Vtx v;
-    s16 unk10;
+    s16 unk10; //vtx_indx
     u8 pad12[2];
     u8 pad14[4];
 } BKVtxRef;

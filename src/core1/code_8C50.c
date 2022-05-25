@@ -2,6 +2,9 @@
 #include "functions.h"
 #include "variables.h"
 
+
+extern s32 D_80000300;
+
 typedef struct {
     u8 pad0[4];
     s32 unk4;
@@ -17,7 +20,9 @@ extern OSTask D_80275910;
 extern OSTask D_80275950;
 extern s32 D_80275994;
 extern s32 D_80275998;
+extern OSViMode D_802759F8;
 extern s32 D_802759A0;
+extern OSViMode D_802759A8;
 extern u64 D_80278E80[]; //ucode_data
 extern u64 D_80279130[];
 extern u64 D_80279930[];
@@ -38,7 +43,9 @@ extern s32 D_80280630[0x14];
 extern s32 D_80280680;
 extern s32 D_80280684;
 extern s32 D_80280688;
+extern s32 D_802806D0;
 
+extern s32 D_802806D4;
 
 void func_80246670(OSMesg arg0){
     osSendMesg(&D_8027FB60, arg0, 1);
@@ -188,7 +195,9 @@ void func_80246C2C(void){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_8C50/func_80247560.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_8C50/func_802476DC.s")
+void func_802476DC(void){
+    D_802806D0 = 1;
+}
 
 void func_802476EC(Gfx **gfx){
     gDPPipeSync((*gfx)++);

@@ -94,7 +94,7 @@ typedef struct actorMarker_s{
     u32         unk40_19:1;
     u32         pad40_18:19;
     u32         unk44;
-    s32         unk48;
+    BKModel *   unk48;
     s32         unk4C;
     s32         unk50;
     void        (*unk54)(struct actorMarker_s *);
