@@ -53,7 +53,7 @@ define get_overlay_sources
   OVERLAY_ASM_SRCS += $$($(1)_ASM_SRCS)
   OVERLAY_BINS     += $$($(1)_BINS)
   # Overlay inputs
-  $(1)_NEW_FILES := $$(filter $(BIN_ROOT)/$(1)/%, $(NEW_BINS)) $$(filter $(SRC_ROOT)/$(1)/%, $(NEW_C_SRCS)) $$(filter $(ASM_ROOT)/$(1)/%, $(NEW_ASM_SRCS))
+  $(1)_NEW_FILES := $$(filter $(BIN_ROOT)/$(1)/%, $(NEW_BINS)) $$(filter $(SRC_ROOT)/$(1)/%, $(NEW_C_SRCS)) $$(filter $(ASM_ROOT)/$(1)/%, $(NEW_ASM_SRCS)) $$(filter $(ASM_ROOT)/data/$(1)/%, $(NEW_ASM_SRCS))
   OVERLAY_NEW_FILES += $$($(1)_NEW_FILES)
 endef
 

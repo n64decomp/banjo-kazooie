@@ -11,7 +11,7 @@ void func_80386570(ActorMarker *arg0, Gfx **arg1, Mtx **arg2, s32 arg3);
 /* .data */
 extern f32 D_80391380[4];
 extern f32 D_80391390[4];
-extern ActorAnimationInfo D_803913A0[] =
+extern ActorAnimationInfo D_803913A0[]; /* =
 {
     { 0, 0.0f},
     { 0x1C5, 0.6f},
@@ -57,14 +57,14 @@ extern ActorAnimationInfo D_803913A0[] =
     { 0x283, 0.25f},
     { 0x27A, 1.0f},
     { 0x266, 4.0f}
-};
+};*/
 
-extern ActorInfo D_80391500 = {
+extern ActorInfo D_80391500; /* = {
     0x25E, 0x38B, 0x53D, 
     1,  D_803913A0,
     func_8038BCF0, func_80326224, func_80386570,
     { 0, 0}, 0, 0.0f, {0, 0, 0, 0}
-};
+}; */
 //             00 00 00 00  C1 00 00 00 43 C8 00 00
 // 00 00 00 00 C1 00 00 00  00 00 00 00 3F 80 00 00
 // 3F 80 00 00 3F 80 00 00  3F 80 00 00 00 00 00 00
