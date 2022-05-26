@@ -1,3 +1,4 @@
+sha1: 1fe1632098865f639e22c11b9a81ee8f29c75d7a
 options:
   basename: banjo
   find_file_boundaries: True
