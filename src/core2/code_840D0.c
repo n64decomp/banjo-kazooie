@@ -61,7 +61,7 @@ void func_8030B284(void){
 
     for(i = 0; i < 3; i++){
         if(D_80382410.unk4[i]){
-            func_8033F5D8(D_80382410.unk4[i]);
+            model_free(D_80382410.unk4[i]);
         }
 
         if(D_80382410.unk10[i]){

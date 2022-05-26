@@ -164,7 +164,7 @@ s32 func_8033F3E8(BKModel *arg0, f32 arg1[3], s32 min_id, s32 max_id) {
 
 #endif
 
-void func_8033F5D8(void *arg0){
+void model_free(void *arg0){
     free(arg0);
 }
 
@@ -215,7 +215,7 @@ void func_8033F738(ActorMarker *arg0) {
 
 
 void func_8033F784(ActorMarker *arg0){
-    func_8033F5D8(arg0->unk48);
+    model_free(arg0->unk48);
 }
 
 void func_8033F7A4(ActorMarker *arg0, BKVertexList *arg1) {

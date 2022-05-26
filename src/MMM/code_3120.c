@@ -70,7 +70,7 @@ void func_8038966C(void){
     f32 sp48[3];
     f32 sp3C[3];
     f32 sp30[3];
-    Struct5Es *tmp_v0;
+    BKCollisionTri *tmp_v0;
 
     if(D_8038C4E0.unk1 == 0) return;
 
