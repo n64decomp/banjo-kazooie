@@ -149,6 +149,11 @@ typedef struct{
     //BKModelUnk20_0[]
 }BKModelUnk20List;
 
+typedef struct{
+    u8 pad0[1];
+    //BKModelUnk20_0[]
+}BKModelUnk2C;
+
 typedef struct {
     BKMeshList *meshList_0;
     BKVertexList *vtxList_4;

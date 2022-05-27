@@ -231,9 +231,46 @@ s32 func_802EBD3C(BKModelUnk14List *arg0, f32 arg1[3], f32 arg2[3], f32 arg3, s3
 }
 #endif
 
-
+#ifndef NONMATCHING
 s32 func_802EC000(BKModelUnk14List *arg0, s32 arg1, s32 arg2, f32 arg3, s32 arg4, s32 arg5, s32 arg6);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_637D0/func_802EC000.s")
+#else
+s32 func_802EC000(BKModelUnk14List *arg0, f32 arg1[3], f32 arg2[3], f32 arg3, s32 arg4, f32 arg5[3], s32 arg6){
+    BKModelUnk14_1 *temp_s2;
+    f32 sp90[3];
+    f32 sp84[3];
+    BKModelUnk14_1 *phi_s0;
+    f32 temp_f20;
+    f32 temp_f22;
+    f32 temp_f0;
+    f32 sp68[3];
+
+    phi_s0 = (BKModelUnk14_1 *)(sizeof(BKModelUnk14List) + arg0->cnt0*sizeof(BKModelUnk14_0) + (s32)arg0);
+    temp_s2 = phi_s0 + arg0->cnt2;
+    for( ; phi_s0 < temp_s2; phi_s0++){
+        if ((phi_s0->unkD != 0) && ((arg6 == 0) || (arg6 == phi_s0->unkD))) {
+            sp90[0] = (f32) phi_s0->unk4[0];
+            sp90[1] = (f32) phi_s0->unk4[1];
+            sp90[2] = (f32) phi_s0->unk4[2];
+            sp84[0] = (f32) (phi_s0->unkA[0] * 2);
+            sp84[1] = (f32) (phi_s0->unkA[1] * 2);
+            sp84[2] = (f32) (phi_s0->unkA[2] * 2);
+            temp_f20 = (f32) phi_s0->unk0;
+            temp_f22 = (f32) phi_s0->unk2;
+            mlMtxIdent();
+            func_80252DDC(&sp90, &sp84);
+            func_80252CC4(arg1, arg2, arg3, arg4);
+            func_8025235C(&sp68, arg5);
+            temp_f0 = (f32) (temp_f22 * 0.5);
+            if (!(temp_f0 <= sp68[2]) && !(sp68[2] <= -temp_f0) && !((temp_f20 * temp_f20) <= (sp68[0] * sp68[0] + sp68[1]*sp68[1]))) {
+                return phi_s0->unkD;
+            }
+        }
+    }
+    return 0;
+}
+#endif
+
 
 s32 func_802EC238(BKModelUnk14List *arg0, s32 arg1, s32 arg2, f32 arg3, s32 arg4, s32 arg5, s32 arg6);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_637D0/func_802EC238.s")

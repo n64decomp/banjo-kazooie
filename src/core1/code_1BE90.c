@@ -18,7 +18,7 @@ void func_80259B14(void);
 void func_8025A55C(s32, s32, s32);
 void func_8025A7DC(enum comusic_e);
 void func_8025ABB8(enum comusic_e, s32, s32, s32);
-void *func_802EDAA4(SLA *, s32*);
+void *func_802EDAA4(SLA **, s32*);
 
 
 CoMusic *func_802598B0(enum comusic_e track_id) {
