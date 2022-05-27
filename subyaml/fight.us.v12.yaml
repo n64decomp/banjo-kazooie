@@ -4,6 +4,7 @@ options:
   compiler: "IDO"
   platform: n64
   asm_endlabels: "endlabel"
+  asm_data_macro: "dlabel"
   cpp_args:
     - "-Iinclude"
     - "-Iinclude/2.0L"
@@ -22,13 +23,14 @@ options:
   asset_path: bin
   build_path: build/us.v10
 segments:
-  - name: fight-code
+  - name: fight
     dir: fight
     type: code
     start: 0x00000000
     vram: 0x803863F0
     subsegments:
-      - [0x00000000, c, code_0] #DONE
+      - [0x0, linker, code] # Code section
+      - [0x0, c, code_0] #DONE
       - [0x180, c, code_180]
       - [0x5ED0, c, code_5ED0]
       - [0x6E90, c, code_6E90]
@@ -39,34 +41,32 @@ segments:
       - [0x9850, c, code_9850] #DONE
       - [0x9D40, c, code_9D40]
       - [0xAED0, c, code_AED0] #DONE
-  - name: fight-data
-    dir: fight
-    type: code
-    start: 0x0000AF90
-    vram: 0x80391380
-    subsegments:
-      - [0x0000AF90, bin, fight_data_AF90]
+
+      - [0xAF90, linker, data] # Data section
+      - [0xAF90, data, fight_data_AF90]
       - [0xB420, .data, code_5ED0]
       - [0xB5A0, .data, code_6E90]
-      - [0xB600, bin, fight_data_B620]
+      - [0xB600, data, fight_data_B620]
       - [0xB650, .data, code_7BE0]
       - [0xB6E0, .data, code_8390]
       - [0xB710, .data, code_87A0]
       - [0xB9D0, .data, code_9850]
-      - [0xBBC0, bin, fight_data_BBC0]
+      - [0xBBC0, data, fight_data_BBC0]
       - [0xBCA0, .data, code_AED0]
-      - [0xBCD0, bin, fight_data_BCD0]
-      - [0xBD10, .rodata, code_180]
-      - [0xBD30, bin, code_180]
+      - [0xBCD0, rodata, fight_data_BCD0]
+      
+      - [0xBD10, data, code_180]
+      #- [0xBD30, .rodata, code_180]
+
       - [0xC140, .rodata, code_6E90]
-      - [0xC150, bin, fight_data_C150]
+      - [0xC150, rodata, fight_data_C150]
       - [0xC190, .rodata, code_7BE0]
       - [0xC1C0, .rodata, code_8390]
-      - [0xC1D0, bin, fight_data_C1D0] #- [0xC1D0, .rodata, code_87A0]
+      - [0xC1D0, rodata, fight_data_C1D0] #- [0xC1D0, .rodata, code_87A0]
       - [0xC220, .rodata, code_9850]
       - [0xC230, .rodata, code_9D40]
       #- [0x0000C260, .rodata, code_9850]
       #- [0x0000C270, .rodata, code_9850]
-      - [0x0000C260, bin, fight_data_C2B0]
+      - [0x0000C260, rodata, fight_data_C2B0]
       - [0x0000C340, .rodata, code_AED0]
   - [0x0000C350]

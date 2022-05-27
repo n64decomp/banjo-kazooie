@@ -2,6 +2,12 @@
 
 .section .data
 
+dlabel D_80392100
+.double -500.0
+
+dlabel jtbl_80392108
+.word L80387794_13A4, L803877F8_1408, L803878FC_150C, L803879A0_15B0, L80387A20_1630, L80387A98_16A8
+
 dlabel D_80392120
 .float 0.95
 
