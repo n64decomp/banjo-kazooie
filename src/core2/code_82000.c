@@ -406,7 +406,7 @@ UNK_TYPE(s32) func_80309D58(UNK_TYPE(s32) arg0, UNK_TYPE(s32) arg1) {
     return 0;
 }
 
-s32 func_80309DBC(f32 arg0[3], f32 arg1[3], f32 arg2, f32 arg3[3], s32 arg4, s32 arg5) {
+UNK_TYPE(s32) func_80309DBC(f32 arg0[3], f32 arg1[3], f32 arg2, f32 arg3[3], s32 arg4, s32 arg5) {
     s32 sp34;
     s32 temp_v0_2;
 

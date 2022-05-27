@@ -105,8 +105,7 @@ typedef struct {
     s16 unk0[3];
     s16 unk6[3];
     s16 unkC[3];
-    u8 unk12[2];
-    u8 unk14[1];
+    u8 unk12[3];
     u8 unk15;
     u8 pad16[2];
 }BKModelUnk14_0;
