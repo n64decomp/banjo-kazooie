@@ -33,7 +33,12 @@ extern DemoFileHeader * D_803860D4; //demo_file_ptr
 extern s32 D_803860D8;//current_input
 extern s32 D_803860DC;//total_inputs
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C2F30/func_80349EC0.s")
+/* .code */
+s32 func_80349EC0(s32 arg0){
+    s32 sp1C[3];
+
+    return func_80304DD0(arg0 + 0x1CC, &sp1C);
+}
 
 int demo_readInput(OSContPad* arg0, s32* arg1){
     DemoInput *input_ptr = &D_803860D0[D_803860D8++];
@@ -60,11 +65,12 @@ int demo_writeInput(OSContPad* arg0, s32* arg1){
     return D_803860D8 < D_803860DC;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C2F30/func_80349FB0.s")
-/*void func_80349FB0(DemoInput *input_ptr, u32 size, int arg2){
+void func_80349FB0(DemoInput *input_ptr, u32 size, int arg2){
     D_803860D0 = input_ptr;
     D_803860DC = size/sizeof(DemoInput);
     D_803860D8 = 0;
+    if(input_ptr);
+
     func_8030AFD8(0);
     func_80321854();
     func_8031FBF8();

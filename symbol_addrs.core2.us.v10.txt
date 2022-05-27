@@ -190,8 +190,12 @@ vtxList_tint = 0x802ECA7C;
 vtxList_recolor = 0x802ED074;
 
 array_clear = 0x802EDA40;
+array_at = 0x802EDA7C;
+array_size = 0x802EDA94;
+array_begin = 0x802EDA9C;
 array_free = 0x802EDC64;
 array_new = 0x802EDC84;
+array_defrag = 0x802EDD00;
 
 __particleEmitter_initParticle                      = 0x802EEA9C;
 particleEmitter_emitN                               = 0x802EF5C8;
@@ -381,6 +385,7 @@ D_803688E0 = 0x803688E0;
 D_803688E8 = 0x803688E8;
 sSpawnableActorSize = 0x8036A9B0;
 sSpawnableActorList = 0x8036A9B4;
+D_8036B810 = 0x8036B810;
 D_8036D940 = 0x8036D940;
 modelCache = 0x8036E7C0;
 D_80370990 = 0x80370990;

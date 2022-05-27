@@ -15,18 +15,15 @@ void array_clear(SLA *this){
     *(s16 *)ptr = 0;
 }
 
-//array_at
-void *func_802EDA7C(SLA *this, s32 indx){
+void *array_at(SLA *this, s32 indx){
     return (void *)((s32)(this + 1) + indx*this->elem_size);
 }
 
-//array_size
-s32 func_802EDA94(SLA *this){
+s32 array_size(SLA *this){
     return this->elem_cnt;
 }
 
-//array_begin
-void *func_802EDA9C(SLA *this){
+void *array_begin(SLA *this){
     return (void*)(this + 1);
 }
 
@@ -39,9 +36,10 @@ int func_802EDC18(SLA *this, s32 arg1){
     s32 tmp_v0 = this->unk4;
     s16 *v1;
     s32 offset;
-    for(v1 = (s16*)tmp_v0; *v1; v1 = (s16*)(tmp_v0 + ((s32)*v1*this->elem_size))){
+    for(v1 = (s16*)tmp_v0; *v1; ){
         if(*v1 == arg1)
             return 0;
+        v1 = (s16*)(tmp_v0 + ((s32)*v1*this->elem_size));
     }
     return 1;
 }
@@ -67,6 +65,6 @@ void func_802EDCDC(SLA *this, s32 indx){
     *(s16 *)(this +1) = indx;
 }
 
-SLA *func_802EDD00(SLA *this){
+SLA *array_defrag(SLA *this){
     return defrag(this);
 }

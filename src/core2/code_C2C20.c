@@ -20,7 +20,7 @@ array(Struct_core2_C2C20_0) *D_803860C0;
 bool func_80349BB0(s32 arg0, s32 arg1, s32 *arg2) {
     Struct_core2_C2C20_0 * temp_v0;
 
-    temp_v0 = (Struct_core2_C2C20_0 *)func_802EDA7C(D_803860C0, arg0);
+    temp_v0 = (Struct_core2_C2C20_0 *)array_at(D_803860C0, arg0);
     if (temp_v0->unk0[arg1].unk0 != 0) {
         *arg2 = (s32)temp_v0->unk20[arg1] * temp_v0->unk0[arg1].unk0;
         return TRUE;
@@ -58,7 +58,7 @@ void func_80349D00(s32 arg0, BKModelUnk2C *arg1){
     s32 i;
 
 
-    sp1C = (Struct_core2_C2C20_0 *) func_802EDA7C(D_803860C0, arg0);
+    sp1C = (Struct_core2_C2C20_0 *) array_at(D_803860C0, arg0);
     memcpy(sp1C, arg1, 0x20);
     for(i = 0; i < 4; i++){
         sp1C->unk20[i] = 0.0f;
@@ -72,9 +72,9 @@ void func_80349D60(void) {
     s32 i;
 
     temp_f20 = time_getDelta();
-    for(phi_s1 = 1; phi_s1 <func_802EDA94(D_803860C0); phi_s1++){
+    for(phi_s1 = 1; phi_s1 <array_size(D_803860C0); phi_s1++){
         if (func_802EDC18(D_803860C0, phi_s1)) {
-            phi_a0 = (Struct_core2_C2C20_0 *)func_802EDA7C(D_803860C0, phi_s1);
+            phi_a0 = (Struct_core2_C2C20_0 *)array_at(D_803860C0, phi_s1);
             for(i = 0; i < 4; i++){
                 if (phi_a0->unk0[i].unk0 != 0) {
                     phi_a0->unk20[i] += (phi_a0->unk0[i].unk4 * temp_f20);
