@@ -1152,7 +1152,7 @@ enum sfx_e
     // FileSelect, when Banjo's Bed ejects him
     SFX_151_CAT_MEOW,
     // Grunty's Broom; 01-16 getting shorter, more delay
-    SFX_MOTOR_BREAKDOWN_01,
+    SFX_152_MOTOR_BREAKDOWN_01,
     // Grunty's Broom; 01-16 getting shorter, more delay
     SFX_MOTOR_BREAKDOWN_02,
     // Grunty's Broom; 01-16 getting shorter, more delay

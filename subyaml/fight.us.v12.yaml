@@ -54,8 +54,10 @@ segments:
       - [0xBBC0, data, fight_data_BBC0]
       - [0xBCA0, .data, code_AED0]
       - [0xBCD0, rodata, fight_data_BCD0]
-      - [0xBD10, .rodata, code_180]
-      - [0xBD30, bin, code_180]
+      
+      - [0xBD10, data, code_180]
+      #- [0xBD30, .rodata, code_180]
+
       - [0xC140, .rodata, code_6E90]
       - [0xC150, rodata, fight_data_C150]
       - [0xC190, .rodata, code_7BE0]
