@@ -343,7 +343,7 @@ segments:
   - [0xC3A40, c, code_C3A40] #DONE
   - [0xC3B20, c, code_C3B20]
   - [0xC4320, c, code_C4320] #DONE
-  - [0xC4F40, c, code_C4F40]
+  - [0xC4F40, c, code_C4F40] #DONE
   - [0xC5440, c, code_C5440]
   - [0xC5AF0, c, code_C5AF0]
   - [0xC5CC0, c, code_C5CC0]
@@ -522,7 +522,8 @@ segments:
   - [0xEAED0, .data, code_B7F40]
   - [0xEAEE0, bin, data_EAEE0]
   - [0xEAF70, .data, code_C4320]
-  - [0xEB030, bin, data_EB030]
+  - [0xEB030, .data, code_C4F40]
+  - [0xEB0A0, bin, data_EB0A0]
   - [0xEB860, .data, code_CF3E0]
   - [0xEB880, .data, ch/clankerwhipcrack]
   - [0xEB8B0, .data, ch/code_CFA60]

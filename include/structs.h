@@ -773,4 +773,13 @@ typedef struct struct_6D_s{
     f32 unk9C;
 }Struct6Ds;
 
+typedef struct {
+    u8 unk0;
+    // u8 pad1[0x3];
+    BKModel *unk4;
+    s16 unk8;
+    u8 padA[2];
+    Struct6Ds unkC;
+}Struct6Es;
+
 #endif
