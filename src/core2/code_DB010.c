@@ -341,7 +341,7 @@ void func_80361FA0(f32 arg0[3]) {
     func_802EF9EC(pCtrl, 0x2F, 0x3E80);
     particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_80373334);
     func_802EFC28(pCtrl, &D_80373304);
-    func_8030E624(0x4CBC507CU);
+    FUNC_8030E624(SFX_7C_CHEBOOF, 0x38A, 0x265);
 }
 
 void func_80362084(f32 position[3]) {
