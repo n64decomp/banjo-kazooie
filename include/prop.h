@@ -205,6 +205,9 @@ typedef struct ch_fight_180_s{
     u8 unkD;
     u8 unkE;
     u8 unkF;
+    s32 unk10;
+    f32 unk14;
+    f32 unk18[3];
 }ActorLocal_fight_180;
 
 typedef struct ch_sm_4070{

@@ -7,6 +7,7 @@ extern void func_8028F4B8(s32, f32, f32);
 void func_80386570(ActorMarker *arg0, Gfx **arg1, Mtx **arg2, s32 arg3);
 void func_8038856C(Actor *actor, f32 *arg1);
 void func_8038BCF0(Actor *this);
+void func_80387110(ActorMarker *, f32[3], f32, s32);
 void func_8025727C(f32, f32, f32, f32, f32, f32, f32*, f32*);
 void func_802C8F70(f32);
 s32 func_803297C8(Actor*, s32*);
@@ -114,7 +115,13 @@ extern f32 D_803920EC;
 extern f32 D_803920F0;
 extern f32 D_803920F4;
 extern f64 D_803920F8;
-extern f64 D_80392100;
+//extern f64 D_80392100; // = -500.0;
+extern s32 D_80392108[6];
+// s32 D_80392108[] = {
+//     0x80387794, 0x803877F8,
+//     0x803878FC, 0x803879A0,
+//     0x80387A20, 0x80387A98
+// };
 
 /* .bss */
 extern f64 D_80392470;
@@ -291,6 +298,7 @@ void func_803869BC(Actor *this) {
 
 #ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/fight/code_180/func_80386B54.s")
+void func_80386B54(f32 *arg0, f32 arg1);
 #else
 void func_80386B54(f32 *arg0, f32 arg1) {
     f32 sp34;
@@ -443,9 +451,6 @@ void func_80387074(s32 arg0) {
     func_8038FB84(marker, D_80392758, D_80392768, D_80392778);
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/fight/code_180/func_80387110.s")
-#else
 void func_80387110(ActorMarker *this, f32 arg1[3], f32 arg2, s32 arg3) {
     Actor *temp_v0;
     ActorLocal_fight_180 *local;
@@ -472,7 +477,7 @@ void func_80387110(ActorMarker *this, f32 arg1[3], f32 arg2, s32 arg3) {
     }
     
     D_80392778[0] = 0.0f;
-    D_80392778[1] = (arg3 == 0) ? D_803920F8 : D_80392100;
+    D_80392778[1] = (arg3 == 0) ? D_803920F8 : -500.0;
     D_80392778[2] = 0.0f;
         
     for(i = 0; i < 3; i++){
@@ -485,18 +490,30 @@ void func_80387110(ActorMarker *this, f32 arg1[3], f32 arg2, s32 arg3) {
         func_802C3C88(func_80387074, this);
     }
 }
-#endif
 
-void func_80387110(ActorMarker *, f32*, f32, s32);
-
-void func_803872F8(Actor *arg0) {
+void func_803872F8(Actor *arg0) { 
     f32 vec[3];
 
     func_8034A174(arg0->marker->unk44, 0xA, vec);
     func_80387110(arg0->marker, vec, 3.0f, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/fight/code_180/func_80387340.s")
+s32 func_80387340(Actor *this, f32 arg1) {
+    f32 sp24[3];
+
+    if (actor_animationIsAt(this, 0.50f) != 0) {
+        if (this->marker->unk14_21) {
+            func_8034A174(this->marker->unk44, 5, &sp24);
+        } else {
+            sp24[0] = this->position_x;
+            sp24[1] = this->position_y;
+            sp24[2] = this->position_z;
+        }
+        func_80387110(this->marker, sp24, arg1, 0);
+        return 1;
+    }
+    return 0;
+}
 
 void func_803873DC(Actor *actor, s32 arg1, s32 arg2) {
     f32 vec[3];
@@ -515,7 +532,57 @@ void func_803873DC(Actor *actor, s32 arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/fight/code_180/func_80387470.s")
+s32 func_80387470(Actor *this, f32 arg1[3], f32 v_max, f32 arg3, f32 arg4, f32 arg5, f32 arg6) {
+    f32 dt;
+    TUPLE(f32, vec) diff;
+    TUPLE(f32, pos) temp;
+    TUPLE(f32, pos) next;
+    dt = time_getDelta();
+    
+    diff.vec_x = arg1[0] - this->position_x;
+    diff.vec_y = arg1[1] - this->position_y;
+    diff.vec_z = arg1[2] - this->position_z;
+
+    if (arg5 != 0.00f) {
+        if (func_80256064(this->position, arg1) < arg5) {
+            ml_vec3f_set_length(diff.vec, arg3 * 4.00f);
+        } else {
+            ml_vec3f_set_length(diff.vec, arg3 * 1.00f);
+        }
+    } else {
+        ml_vec3f_set_length(diff.vec, arg3);
+    }
+
+    this->position_x += (this->velocity_x * dt) + (diff.vec_x * dt * dt);
+    this->position_y += (this->velocity_y * dt) + (diff.vec_y * dt * dt);
+    this->position_z += (this->velocity_z * dt) + (diff.vec_z * dt * dt);
+
+    this->velocity_x += (diff.vec_x * dt);
+    this->velocity_y += (diff.vec_y * dt);
+    this->velocity_z += (diff.vec_z * dt);
+
+    // has to be z^2 + (x^2 + y^2) for whacky compiler reasons ? Is there a Macro for this ?
+    if (v_max < gu_sqrtf(
+         (this->velocity_z * this->velocity_z) +
+        ((this->velocity_x * this->velocity_x) +
+         (this->velocity_y * this->velocity_y)) )) {
+        
+        ml_vec3f_set_length(this->velocity, v_max);
+    }  
+
+    next.pos_x = this->velocity_x + this->position_x;
+    next.pos_y = this->velocity_y + this->position_y;
+    next.pos_z = this->velocity_z + this->position_z;
+
+    func_80258A4C(this->position, this->yaw - 90.0f, &next.pos_x, &temp.pos_z, &temp.pos_y, &temp.pos_x);
+
+    this->yaw += (arg4 * temp.pos_x * dt);
+
+    if (func_80256064(this->position, arg1) < arg6) {
+        return 1;
+    }
+    return 0;
+}
 
 void func_8038770C(Actor *actor) {
     actor->fight_180.unk1 = 0;
@@ -526,16 +593,169 @@ void func_8038770C(Actor *actor) {
     actor->fight_180.padA = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/fight/code_180/func_80387728.s")
+extern Actor* func_80329958(ActorMarker *this, s32 arg1);
+extern void func_803298D8();
+void func_80324E88(f32);
+extern void func_80324E60(Actor*, s32, f32);
+extern f32 D_80392120;
+extern f32 D_80392124;
+extern f32 D_80392128;
+extern f32 D_8039212C;
+
+extern f32 D_803927D0[3][3];
+void func_8038B780();
+
+void func_80387728(ActorMarker *this, u32 arg1)
+{   
+    Actor *actor = marker_getActor(this);
+    ActorLocal_fight_180 *local = (ActorLocal_fight_180 *) &actor->fight_180;
+    
+    local->unk0 = arg1;
+    func_8038770C(actor);
+    func_80386600(actor->marker, 0);
+    func_80386628(actor->marker, 1);
+
+    switch(arg1)
+    {
+        case 0:
+            func_80328B8C(actor, 1, 0.0001f, 1);
+            timed_setCameraToNode(0.0f, 0);
+            func_80324E88(2.0f);
+            timed_setCameraToNode(2.0f, 1);
+            timedFunc_set_1(2.0f, func_8038B780, actor->marker);
+            return;
+
+        case 1:
+            func_80328B8C(actor, 2, 0.0001f, 1);
+            func_8030E878(SFX_EA_GRUNTY_LAUGH_1, randf2(D_80392120, D_80392124), 0x7D00, actor->position, D_80392128, D_8039212C);
+            local->pad5 = 0x0;
+            actor->unk1C_x = D_803927D0[(local->pad5)][0];
+            actor->unk1C_y = D_803927D0[(local->pad5)][1];
+            actor->unk1C_z = D_803927D0[(local->pad5)][2];
+            local->unk10 = 0;
+            if (actor->unk44_31 == 0)
+            {
+                actor->unk44_31 = (u8)func_8030D90C();
+                func_8030DA80(actor->unk44_31, SFX_152_MOTOR_BREAKDOWN_01);
+                func_8030DD14(actor->unk44_31, 3);
+                func_8030DBB4(actor->unk44_31, 1.0f);
+                func_8030DABC(actor->unk44_31, 0x7D00);
+            }
+            return;
+
+        case 2:
+            func_80328B8C(actor, 0xE, 0.0001f, 1);
+            local->pad5 = 0x8;
+            actor->unk1C_x = D_803927D0[(local->pad5)][0];
+            actor->unk1C_y = D_803927D0[(local->pad5)][1];
+            actor->unk1C_z = D_803927D0[(local->pad5)][2];
+            func_80311480(randi2(0, 5) + 0x1106, 4, NULL, NULL, NULL, NULL);
+            return;
+
+            
+        case 3:
+            func_80328B8C(actor, 0x15, 0.0001f, 1);
+            local->pad5 = 0xC;
+            actor->unk1C_x = D_803927D0[(local->pad5)][0];
+            actor->unk1C_y = D_803927D0[(local->pad5)][1];
+            actor->unk1C_z = D_803927D0[(local->pad5)][2];
+            actor->unk60 = 15.0f;
+            return;
+
+        case 4:
+            func_80328B8C(actor, 0x1C, 0.0001f, 1);
+            local->pad5 = 0x10;
+            actor->unk1C_x = D_803927D0[(local->pad5)][0];
+            actor->unk1C_y = D_803927D0[(local->pad5)][1];
+            actor->unk1C_z = D_803927D0[(local->pad5)][2];
+            return;
+
+        case 5:
+            func_80386628(actor->marker, 0);
+            func_8038AC88(actor, 0x24);
+            actor_loopAnimation(actor);
+    }
+}
 
 void func_80387ACC(Actor *arg0, s32 arg1) {
     func_80328CA8(arg0, 0);
     func_80328FF0(arg0, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/fight/code_180/func_80387B00.s")
+extern f32 func_8025715C(f32, f32);
+
+void func_80387B00(Actor *this) {
+    ActorLocal_fight_180 *local;
+    f32 sp28[3];
+    
+    local = (ActorLocal_fight_180 *) this->local;
+
+    func_80386B54(&sp28, 0.80f);
+    this->unk1C_x = sp28[0];
+    this->unk1C_y = sp28[1];
+    this->unk1C_z = sp28[2];
+    this->unk1C_y = 0;
+    
+    this->velocity_x = this->position_x - sp28[0];
+    this->velocity_y = this->position_y - sp28[1];
+    this->velocity_z = this->position_z - sp28[2];
+    this->velocity_y = 0;
+    
+    local->unk14 = gu_sqrtf(
+        (this->velocity_z * this->velocity_z) +
+        ((this->velocity_x * this->velocity_x) +
+        (this->velocity_y * (this->velocity_y)))
+    );
+
+    ml_vec3f_normalize(this->velocity);
+    this->yaw_moving = func_8025715C(this->velocity_x, this->velocity_z) + 180.0f;
+    
+    local->unk18[0] = this->position_y;
+    local->unk18[1] = (f64) sp28[1];
+    local->unk18[2] = local->unk14;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/fight/code_180/func_80387BFC.s")
+// void func_80387BFC(Actor *this, s32 arg1) {
+//     f32 sp58;
+//     f32 sp54;
+//     f32 sp50;
+//     f32 sp4C;
+//     f32 sp48;
+//     f32 sp44;
+//     f64 sp38;
+//     f32 temp_f14;
+//     f32 temp_f16;
+//     f32 temp_f2;
+//     f32 temp_f2_2;
+//     f64 temp_f18;
+//     void *temp_v0;
+
+//     temp_f16 = (&this->fight_180)->unk14; //unk90;
+//     temp_f2 = (&this->fight_180)->unk18[2]; //this->unk9C;
+//     temp_f14 = temp_f16 * temp_f16;
+//     sp54 = temp_f2 * temp_f2;
+//     sp58 = temp_f14;
+//     sp50 = (&this->fight_180)->unk18[1] - (&this->fight_180)->unk18[0];//this->unk94 - this->unk98;
+//     temp_f18 = (f64) sp50;
+//     sp38 = temp_f18;
+//     func_80328CA8(this, (s32) func_8025715C((f32) (2.0 * (f64) temp_f2 * temp_f18), temp_f14));
+//     /*
+//     func_80328FF0(this, arg1);
+//     temp_v0 = this + 0x7C;
+//     temp_f2_2 = this->unk2C;
+//     this->unk4 = (f32) ((temp_f2_2 * temp_v0->unk20) + this->unk1C);
+//     this->unk8 = (f32) ((this->unk30 * temp_v0->unk20) + this->unk20);
+//     this->unkC = (f32) ((this->unk34 * temp_v0->unk20) + this->unk24);
+//     this->unk8 = (f32) (temp_v0->unk1C + ((sp50 * sp54) / temp_f14));
+//     sp44 = temp_f2_2 * temp_f14;
+//     sp48 = (f32) (2.0 * (f64) temp_v0->unk20 * temp_f18);
+//     sp4C = this->unk34 * temp_f14;
+//     ml_vec3f_normalize(&sp44);
+//     sp44 *= this->unk28;
+//     sp48 *= this->unk28;
+//     */
+// }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/fight/code_180/func_80387D4C.s")
 
@@ -714,7 +934,6 @@ void func_8038AFB0(void) {
 void func_8038AFD8(ActorMarker *marker);
 #pragma GLOBAL_ASM("asm/nonmatchings/fight/code_180/func_8038AFD8.s")
 
-void func_80324E88(f32);
 
 void func_8038B730(ActorMarker *arg0, s32 arg1, s32 arg2) {
     Actor *sp1C;
