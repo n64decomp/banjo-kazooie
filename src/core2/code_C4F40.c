@@ -2,36 +2,36 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void func_8034CB64(Struct6Ds *, s32, BKModel *, s32);
-extern void func_8034CD30(Struct6Ds *, s32, BKModel *, s32);
-extern void func_8034CF74(Struct6Ds *, s32, BKModel *, s32);
-extern void func_8034D170(Struct6Ds *, s32, BKModel *, s32);
-extern void func_8034DD74(Struct6Ds *, s32, BKModel *, s32);
-extern void func_8034E6A8(Struct6Ds *, s32, BKModel *, s32);
-extern void func_8034EE2C(Struct6Ds *, s32, BKModel *, s32);
-extern void func_8034F570(Struct6Ds *, s32, BKModel *, s32);
-extern void func_8034CB9C(Struct6Ds *, BKModel *, s32);
-extern void func_8034CF90(Struct6Ds *, BKModel *, s32);
-extern void func_8034CD8C(Struct6Ds *, BKModel *, s32);
-extern void func_8034D048(Struct6Ds *, BKModel *, s32);
-extern void func_8034D194(Struct6Ds *, BKModel *, s32);
-extern void func_8034E26C(Struct6Ds *, BKModel *, s32);
-extern void func_8034E8E4(Struct6Ds *, BKModel *, s32);
-extern void func_8034EF60(Struct6Ds *, BKModel *, s32);
-extern void func_8034F5B0(Struct6Ds *, BKModel *, s32);
-extern void func_8034CB5C(Struct6Ds *);
-extern void func_8034CD28(Struct6Ds *);
-extern void func_8034CF6C(Struct6Ds *);
-extern void func_8034D168(Struct6Ds *);
-extern void func_8034DD48(Struct6Ds *);
-extern void func_8034E6A0(Struct6Ds *);
-extern void func_8034EE24(Struct6Ds *);
-extern void func_8034F568(Struct6Ds *);
+extern void func_8034CB64(Struct70s *, s32, BKModel *, s32);
+extern void func_8034CD30(Struct70s *, s32, BKModel *, s32);
+extern void func_8034CF74(Struct70s *, s32, BKModel *, s32);
+extern void func_8034D170(Struct70s *, s32, BKModel *, s32);
+extern void func_8034DD74(Struct70s *, s32, BKModel *, s32);
+extern void func_8034E6A8(Struct70s *, s32, BKModel *, s32);
+extern void func_8034EE2C(Struct70s *, s32, BKModel *, s32);
+extern void func_8034F570(Struct70s *, s32, BKModel *, s32);
+extern void func_8034CB9C(Struct70s *, BKModel *, s32);
+extern void func_8034CF90(Struct70s *, BKModel *, s32);
+extern void func_8034CD8C(Struct70s *, BKModel *, s32);
+extern void func_8034D048(Struct70s *, BKModel *, s32);
+extern void func_8034D194(Struct70s *, BKModel *, s32);
+extern void func_8034E26C(Struct70s *, BKModel *, s32);
+extern void func_8034E8E4(Struct70s *, BKModel *, s32);
+extern void func_8034EF60(Struct70s *, BKModel *, s32);
+extern void func_8034F5B0(Struct70s *, BKModel *, s32);
+extern void func_8034CB5C(Struct70s *);
+extern void func_8034CD28(Struct70s *);
+extern void func_8034CF6C(Struct70s *);
+extern void func_8034D168(Struct70s *);
+extern void func_8034DD48(Struct70s *);
+extern void func_8034E6A0(Struct70s *);
+extern void func_8034EE24(Struct70s *);
+extern void func_8034F568(Struct70s *);
 
 typedef struct{
-    void (*unk0)(Struct6Ds *, s32, BKModel *, s32);
-    void (*unk4)(Struct6Ds *, BKModel *, s32);
-    void (*unk8)(Struct6Ds *); //free function
+    void (*unk0)(Struct70s *, s32, BKModel *, s32);
+    void (*unk4)(Struct70s *, BKModel *, s32);
+    void (*unk8)(Struct70s *); //free function
 }Struct_core2_C4F40_1;
 
 /* .data */
@@ -127,7 +127,7 @@ void func_8034C21C(ActorMarker *marker) {
     }
 }
 
-Struct6Ds *func_8034C2C4(ActorMarker *marker, s32 arg1) {
+Struct70s *func_8034C2C4(ActorMarker *marker, s32 arg1) {
     Struct6Es *i_ptr;
     Struct6Es *end_ptr;
     Struct6Es *begin_ptr;
@@ -142,7 +142,7 @@ Struct6Ds *func_8034C2C4(ActorMarker *marker, s32 arg1) {
     return NULL;
 }
 
-Struct6Ds *func_8034C344(s32 arg0) {
+Struct70s *func_8034C344(s32 arg0) {
     Struct6Es *i_ptr;
     Struct6Es *end_ptr;
     Struct6Es *begin_ptr;

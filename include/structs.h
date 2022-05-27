@@ -742,7 +742,7 @@ typedef struct{
 } Struct6Cs;
 
 typedef struct struct_6D_s{
-        u8 unk0;
+    u8 unk0;
     // u8 pad1[3];
     f32 unk4;
     f32 unk8;
@@ -774,12 +774,30 @@ typedef struct struct_6D_s{
 }Struct6Ds;
 
 typedef struct {
+    f32 unk0;
+    f32 unk4;
+}Struct6Fs;
+
+typedef struct {
+    s32 unk0;
+    f32 unk4;
+    f32 unk8;
+    f32 unkC;
+}Struct71s;
+
+typedef union {
+    Struct6Ds type_6D;
+    Struct6Fs type_6F;
+    Struct71s type_71;
+}Struct70s;
+
+typedef struct {
     u8 unk0;
     // u8 pad1[0x3];
     BKModel *unk4;
     s16 unk8;
     u8 padA[2];
-    Struct6Ds unkC;
+    Struct70s unkC;
 }Struct6Es;
 
 #endif
