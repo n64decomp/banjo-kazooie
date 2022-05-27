@@ -130,12 +130,11 @@ void func_8034AE08(Struct61s *arg0, void *arg1, s32 arg2) {
         arg0->unkC = (void *) ((u32)arg0->unkC + arg2);
     }
     else if (arg0->unk14 == 4) { // write bin???
-        end_ptr = (u32)arg0->unkC + arg2;
-        if ((u32)arg0->unk10 < end_ptr) {
+        if ((u32)arg0->unk10 < (u32)arg0->unkC + arg2) {
             curr_offset = (u32)arg0->unkC - (u32)arg0->unk8;
             capacity = ((u32)arg0->unk10 - (u32)arg0->unk8);
             capacity *= 2;
-            while (((u32)arg0->unk8 + capacity) < end_ptr) {
+            while (((u32)arg0->unk8 + capacity) < (u32)arg0->unkC + arg2) {
                 capacity *= 2;
             }
             arg0->unk8 = realloc(arg0->unk8, capacity);

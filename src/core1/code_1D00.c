@@ -6,7 +6,6 @@
 
 extern void func_8025C320(s32, ALSynConfig *);
 
-
 typedef struct AudioInfo_s {
 	short         *data;          /* Output data pointer */
 	short         frameSamples;   /* # of samples synthesized in this frame */
@@ -15,12 +14,6 @@ typedef struct AudioInfo_s {
 	u8            padA[2];
     struct AudioInfo_s    *unkC;
 } AudioInfo;
-
-typedef struct {
-    ALLink unk0;
-    u8 pad8[8];
-    void * unk10;
-} Struct_1D00_0;
 
 typedef struct Struct_1D00_1_s{
     void *unk0;
@@ -37,13 +30,20 @@ typedef struct {
 
 typedef struct Struct_1D00_3_s{
     ALLink  unk0;
-    struct Struct_1D00_3_s *unk8;
+    u32 unk8;
     u32 unkC;
+    u32 unk10;
 } Struct_1D00_3;
+
+typedef struct{
+    u8 pad0[0x18];
+}Struct_core1_1D00_4;
 
 void func_8023FBB8(void);
 void func_8023FE80(void *);
-void func_802403B8(void);
+// void func_802403B8(void);
+void func_802401C4(AudioInfo *info);
+void *func_802403B8(void *state);
 void func_802403F0(void);
 void func_80240570(void);
 
@@ -74,8 +74,14 @@ extern u8 * D_8027D000;
 extern OSMesgQueue D_8027D008;
 extern OSMesg D_8027D020;
 extern OSIoMesg D_8027D0E8;
-extern Struct_1D00_3 D_8027D5B0;
-extern Struct_1D00_0 D_8027D5C0[];
+extern Struct_core1_1D00_4 D_8027D100[];
+extern struct {
+    u8 unk0;
+    Struct_1D00_3 *unk4;
+    Struct_1D00_3 *unk8;
+    u8 padC[0x4];
+}  D_8027D5B0;
+extern Struct_1D00_3 D_8027D5C0[];
 extern s32 D_8027DCC8;
 extern s32 D_8027DCCC;
 extern s32 D_8027DCD0;
@@ -96,7 +102,9 @@ extern s32 D_8027DD80;
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1D00/func_8023FA4C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1D00/func_8023FA64.s")
+// void func_8023FA64(ALSeqpConfig *arg0){
 
+// }
 
 void func_8023FB1C(void){
     D_8027D000 = (u8 *) malloc(0x21000);
@@ -131,7 +139,7 @@ void func_8023FBB8(void) {
     D_8027DD50.fxType = 6;
     D_8027DD50.params = (void*) &D_8027577C;
     D_8027DD50.heap = &D_8027CFF0;
-    D_8027DD50.outputRate = osAiSetFrequency(0x55F0);
+    D_8027DD50.outputRate = osAiSetFrequency(22000);
     func_8025C320(&D_8027DCD8, &D_8027DD50);
     D_8027D5C0[0].unk0.prev = NULL;
     D_8027D5C0[0].unk0.next = NULL;
@@ -236,23 +244,132 @@ int func_8023FFE4(AudioInfo *arg0, AudioInfo *arg1){
 }
 
 
-#ifndef NONMATCHING 
+#ifndef NONMATCHING //requires .data defined
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1D00/func_802401C4.s")
 #else
 //void amgrHandleDoneMsg(AudioInfo *info) from PD repo
-void func_802401C4(s32 info)
-{
+void func_802401C4(AudioInfo *info)
+{   
+    static int D_8027584C = 0;
 	if (osAiGetLength() >> 2 == 0 && D_8027584C == FALSE) {
 		D_8027584C = FALSE;
 	}
 }
 #endif
 
+#ifndef NONMATCHING
+s32 func_80240204(s32 addr, s32 len, void *state);
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1D00/func_80240204.s")
+#else
+s32 func_80240204(s32 addr, s32 len, void *state){
+    void *sp44;
+    s32 sp40;
+    Struct_1D00_3 *sp30;
+    Struct_1D00_3 *temp_s0;
+    ALLink *temp_s0_2;
+    Struct_1D00_3 *temp_s0_3;
+    Struct_1D00_3 *temp_v0_2;
+    s32 temp_t4;
+    s32 temp_v0_3;
+    s32 temp_v1;
+    u32 temp_a3;
+    u32 temp_v0;
+    void *temp_t0;
+    Struct_1D00_3 *phi_s0;
+    Struct_1D00_3 *phi_a2;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1D00/func_802403B8.s")
+    phi_s0 = D_8027D5B0.unk4;
+    sp30 = NULL;
+    while (temp_s0 != NULL) {
+        temp_v0 = phi_s0->unk8;
+        if (addr >= temp_v0) {
+            sp30 = phi_s0;
+            if ((temp_v0 + 0x200) >= (addr + len)) {
+                phi_s0->unkC = (s32) D_8027DCC8;
+                return osVirtualToPhysical((phi_s0->unk10 + addr) - temp_v0);
+            }
+            phi_s0 = phi_s0->unk0.next;
+        }
+    }
+    temp_s0_3 = D_8027D5B0.unk8;
+    if (temp_s0_3 == NULL) {
+        func_80247F24(2, 0x7D1, sp30, addr);
+        func_802483D8();
+        return osVirtualToPhysical(D_8027D5B0.unk4);
+    }
+    D_8027D5B0.unk8 = temp_s0_3->unk0.next;
+    alUnlink(temp_s0_3);
+    if (sp30 != NULL) {
+        alLink(temp_s0_3, sp30);
+    } else {
+        temp_v0_2 = D_8027D5B0.unk4;
+        if (temp_v0_2 != NULL) {
+            D_8027D5B0.unk4 = temp_s0_3;
+            temp_s0_3->unk0.next = (ALLink *)temp_v0_2;
+            temp_s0_3->unk0.prev = NULL;
+            temp_v0_2->unk0.prev = (ALLink *)temp_s0_3;
+        } else {
+            D_8027D5B0.unk4 = temp_s0_3;
+            temp_s0_3->unk0.next = NULL;
+            temp_s0_3->unk0.prev = NULL;
+        }
+    }
+    sp40 = addr & 1;
+    sp44 = temp_s0_3->unk10;
+    sp40 = temp_v0_3;
+    temp_s0_3->unk8 = addr - sp40;
+    temp_s0_3->unkC = (s32) D_8027DCC8;
+    osPiStartDma(&D_8027D100[D_8027DCCC++], 1, 0, temp_a3, sp44, 0x200U, &D_8027D008);
+    return osVirtualToPhysical(sp44) + sp40;
+}
+#endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1D00/func_802403F0.s")
+void *func_802403B8(void *state) {
+    if (D_8027D5B0.unk0 == 0) {
+        D_8027D5B0.unk4 = NULL;
+        D_8027D5B0.unk8 = &D_8027D5C0;
+        D_8027D5B0.unk0 = 1;
+    }
+    *(void **)state = &D_8027D5B0;
+    return &func_80240204;
+}
+
+void func_802403F0(void) {
+    u32 phi_s0;
+    OSMesg sp40;
+    Struct_1D00_3 *phi_s1;
+    Struct_1D00_3 *phi_s0_2;
+
+    sp40 = NULL;
+    for(phi_s0 = 0; phi_s0 < D_8027DCCC; phi_s0++){
+        if (osRecvMesg(&D_8027D008, &sp40, 0) == -1) {
+            func_80247F24(2, 0x7D5);
+            func_80247F9C(D_8027DCCC);
+            func_80247F9C(phi_s0);
+            func_802483D8();
+        }
+    }
+    phi_s0_2 = D_8027D5B0.unk4;
+    while(phi_s0_2 != NULL){
+        phi_s1 = (Struct_1D00_3 *)phi_s0_2->unk0.next;
+        if (phi_s0_2->unkC + 1 < D_8027DCC8) {
+            if (phi_s0_2 == D_8027D5B0.unk4) {
+                D_8027D5B0.unk4 = phi_s0_2->unk0.next;
+            }
+            alUnlink(phi_s0_2);
+            if (D_8027D5B0.unk8 != NULL) {
+                alLink(&phi_s0_2->unk0, &D_8027D5B0.unk8->unk0);
+            } else {
+                D_8027D5B0.unk8 = phi_s0_2;
+                phi_s0_2->unk0.next = NULL;
+                phi_s0_2->unk0.prev = NULL;
+            }
+        }
+        phi_s0_2 = phi_s1;
+    }
+    D_8027DCCC = 0;
+    D_8027DCC8 += 1;
+}
 
 // amgrStopThread
 void func_80240538(void){

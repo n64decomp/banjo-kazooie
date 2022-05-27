@@ -276,6 +276,8 @@ segments:
   - [0x78E50, c, code_78E50]
   - [0x79830, c, code_79830]
   - [0x7AF80, c, code_7AF80]
+  - [0x82000, c, code_82000]
+  - [0x83340, c, code_83340]
   - [0x83D70, c, code_83D70]
   - [0x840D0, c, code_840D0]
   - [0x84470, c, gc/transition] #DONE
@@ -325,7 +327,7 @@ segments:
   - [0xB7B20, c, code_B7B20]
   - [0xB7F40, c, code_B7F40] #DONE
   - [0xB8020, c, code_B8020]
-  - [0xB8070, c, code_B8070]
+  - [0xB8070, c, code_B8070] #DONE
   - [0xB8080, c, code_B8080]
   - [0xB8860, c, code_B8860] #DONE
   - [0xB9090, c, code_B9090]
@@ -334,19 +336,19 @@ segments:
   - [0xBE2C0, c, code_BE2C0]
   - [0xBEF20, c, code_BEF20]
   - [0xC0CF0, c, code_C0CF0]
-  - [0xC2C20, c, code_C2C20]
-  - [0xC2F30, c, code_C2F30]
+  - [0xC2C20, c, code_C2C20] #DONE
+  - [0xC2F30, c, code_C2F30] #DONE
   - [0xC31A0, c, code_C31A0] #DONE
   - [0xC3400, c, rand]       #DONE
   - [0xC3A40, c, code_C3A40] #DONE
   - [0xC3B20, c, code_C3B20]
   - [0xC4320, c, code_C4320] #DONE
-  - [0xC4F40, c, code_C4F40]
+  - [0xC4F40, c, code_C4F40] #DONE
   - [0xC5440, c, code_C5440]
-  - [0xC5AF0, c, code_C5AF0]
-  - [0xC5CC0, c, code_C5CC0]
-  - [0xC5F00, c, code_C5F00]
-  - [0xC61C0, c, code_C61C0]
+  - [0xC5AF0, c, code_C5AF0] #DONE
+  - [0xC5CC0, c, code_C5CC0] #DONE
+  - [0xC5F00, c, code_C5F00] #DONE
+  - [0xC61C0, c, code_C61C0] #DONE
   - [0xC62B0, c, code_C62B0]
   - [0xC76D0, c, code_C76D0]
   - [0xC7CC0, c, code_C7CC0]
@@ -509,6 +511,8 @@ segments:
   - [0xE2790, .data, code_74090]
   - [0xE2840, .data, code_74290]
   - [0xE2870, bin, data_E2870]
+  - [0xE3C50, .data, code_82000]
+  - [0xE4870, bin, data_E4870]
   - [0xE7330, .data, code_9B990]
   - [0xE7490, bin, data_E7490]
   - [0xE7870, .data, code_A4D00]
@@ -518,7 +522,8 @@ segments:
   - [0xEAED0, .data, code_B7F40]
   - [0xEAEE0, bin, data_EAEE0]
   - [0xEAF70, .data, code_C4320]
-  - [0xEB030, bin, data_EB030]
+  - [0xEB030, .data, code_C4F40]
+  - [0xEB0A0, bin, data_EB0A0]
   - [0xEB860, .data, code_CF3E0]
   - [0xEB880, .data, ch/clankerwhipcrack]
   - [0xEB8B0, .data, ch/code_CFA60]
@@ -727,7 +732,10 @@ segments:
   - [0xF21C0, .rodata, rand]
   - [0xF21E0, bin, data_F21E0]
   - [0xF21F0, .rodata, code_C4320]
-  - [0xF2210, bin, data_F2210]
+  - [0xF2210, .rodata, code_C5AF0]
+  - [0xF2230, .rodata, code_C5CC0]
+  - [0xF2240, .rodata, code_C5F00]
+  - [0xF2270, bin, data_F2230]
   - [0xF2490, .rodata, code_CBD10]
   - [0xF24A0, bin, data_F24A0]
   - [0xF2530, .rodata, code_CECD0]

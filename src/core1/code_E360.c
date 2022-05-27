@@ -23,6 +23,8 @@ extern OSThread D_802808E0;
 extern s32 D_80280E90;
 extern u8 D_803A5D00[2][0x1ECC0]; //framebuffer
 
+void func_8024C428(void);
+
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_E360/func_8024BD80.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_E360/func_8024BD94.s")
@@ -118,13 +120,23 @@ void func_8024C1DC(void){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_E360/func_8024C1FC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_E360/func_8024C2A0.s")
+void func_8024C2A0(s32 arg0) {
+    D_80280720 = arg0;
+    osViSwapBuffer(D_803A5D00[D_80280720]);
+}
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_E360/func_8024C2F8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_E360/func_8024C408.s")
+void func_8024C408(s32 arg0){
+    osViBlack(arg0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_E360/func_8024C428.s")
+void func_8024C428(void) {
+    //zeros all both framebuffers
+    func_80253034(&D_803A5D00, 0, (s32) ((f32)D_80276588*2*D_8027658C*2));
+    osWritebackDCache(&D_803A5D00, (s32) ((f32)D_80276588*2* D_8027658C*2));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_E360/func_8024C4E8.s")
 

@@ -180,9 +180,6 @@ bool func_8038ADF0(s32 arg0, s32 arg1) {
     return phi_v1 < 70;
 }
 
-#ifdef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/lair/code_42A0/func_8038AE2C.s")
-#else
 void func_8038AE2C(Actor *this) {
     f32 sp54[3];
     s32 sp50;
@@ -402,7 +399,6 @@ void func_8038AE2C(Actor *this) {
     
     this->unk1C[1] = (f32)this->marker->unk14_21;
 }
-#endif
 
 Actor *func_8038B898(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     Actor *this;

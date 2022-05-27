@@ -26,7 +26,7 @@ void func_8039049C(Actor *this);
 /* .data */
 
 //BBC0
-extern ActorAnimationInfo D_80391FB0[] = {
+extern ActorAnimationInfo D_80391FB0[]; /* = {
    {0x000, 00000000},
    {0x275, 1000000.0f},
    {0x275, 3.3f},
@@ -40,13 +40,13 @@ extern ActorAnimationInfo D_80391FB0[] = {
    {0x27C, 0.33f},
    {0x27D, 0.8f},
    {0x280, 0.4f}  
-};
+};*/
 
-extern ActorInfo D_80392018 = {
+extern ActorInfo D_80392018; /*= {
     0x285, 0x3AC, 0x551, 0x1, D_80391FB0,
     func_8039049C, func_80326224, func_80325888,
     {0, 0}, 0, 1.0f, {0,0,0,0}
-};
+};*/
 
 extern s32 D_8039203C;
 extern s32 D_80392060;

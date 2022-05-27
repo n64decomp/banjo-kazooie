@@ -189,7 +189,7 @@ void func_802DD3CC(Actor *this) {
     D_8037DEA0 = 0;
     if (D_8037DEAC != 0) {
         func_8034CF6C(&local->unk0);
-        func_8033F5D8(D_8037DEAC);
+        model_free(D_8037DEAC);
         D_8037DEAC = 0;
     }
 

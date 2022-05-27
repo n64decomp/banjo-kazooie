@@ -298,7 +298,7 @@ s32  func_8028780C(AnimCtrl *this, s32 arg1){
 s32 func_8028781C(AnimCtrl *this, f32 *arg1, s32 arg2){
     s32 map;
     map = map_get();
-    if( map != MAP_CS_START_NINTENDO 
+    if( map != MAP_1E_CS_START_NINTENDO 
         && map != MAP_1F_CS_START_RAREWARE
         && map != MAP_20_CS_END_NOT_100 
         && this->unk23 !=0 

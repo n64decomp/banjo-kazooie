@@ -4,11 +4,16 @@
 
 typedef struct {
     Vtx v;
-    s16 unk10;
+    s16 unk10; //vtx_indx
     u8 pad12[2];
     u8 pad14[4];
 } BKVtxRef;
 
+/* BKMesh
+ * This struct is a set of Vtx that will be modified at runtime.
+ * This struct is followed by an array of s16 containing the
+ * Vtx index inside the model's BKVertexList.
+*/
 typedef struct {
     s16 uid_0;
     s16 vtxCount_2;
@@ -19,9 +24,12 @@ typedef struct {
     s32 size_4;
 }BKGeoList;
 
+/* BKMeshList 
+ * This struct is followed by an array of BKMesh which contain
+ * lists of Vtx that are modified at runtime.
+ */
 typedef struct {
     s16 meshCount_0;
-    //BKMesh mesh_2[];
 } BKMeshList;
 
 typedef struct {
@@ -59,7 +67,7 @@ typedef struct {
 
 typedef struct {
     u8 pad0[0];
-}BKEffectsList;
+}BKEffectsList; //see BKMeshList
 
 typedef struct {
     f32 unk0[3];
@@ -97,8 +105,7 @@ typedef struct {
     s16 unk0[3];
     s16 unk6[3];
     s16 unkC[3];
-    u8 unk12[2];
-    u8 unk14[1];
+    u8 unk12[3];
     u8 unk15;
     u8 pad16[2];
 }BKModelUnk14_0;
@@ -141,6 +148,11 @@ typedef struct{
     u8 pad1[1];
     //BKModelUnk20_0[]
 }BKModelUnk20List;
+
+typedef struct{
+    u8 pad0[1];
+    //BKModelUnk20_0[]
+}BKModelUnk2C;
 
 typedef struct {
     BKMeshList *meshList_0;

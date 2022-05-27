@@ -296,7 +296,6 @@ void func_80252FC8(f32 arg0[3]){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_80253034.s")
 
-
 typedef struct{
     u32 unk0;
     u32 unk4;

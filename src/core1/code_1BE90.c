@@ -18,7 +18,7 @@ void func_80259B14(void);
 void func_8025A55C(s32, s32, s32);
 void func_8025A7DC(enum comusic_e);
 void func_8025ABB8(enum comusic_e, s32, s32, s32);
-void *func_802EDAA4(SLA *, s32*);
+void *func_802EDAA4(SLA **, s32*);
 
 
 CoMusic *func_802598B0(enum comusic_e track_id) {
@@ -117,14 +117,14 @@ s32 func_80259B8C(void){
 
 void func_80259EA8(CoMusic *this, s32 *arg1, s32 *arg2){
     int i;
-    int cnt = func_802EDA94(this->unk18);
+    int cnt = array_size(this->unk18);
     s32 tmp_s1 = 0x7FFF;
     s32 tmp_s2 = 0x40000000;
     struct12s *tmp_ptr;
 
     for(i = 1; i < cnt; i++){
         if(func_802EDC18(this->unk18, i)){
-            tmp_ptr = (struct12s*)func_802EDA7C(this->unk18, i);
+            tmp_ptr = (struct12s*)array_at(this->unk18, i);
             if(tmp_ptr->unk0 < tmp_s1 || (tmp_s1 == tmp_ptr->unk0 && tmp_ptr->unk1 < tmp_s2)){
                 tmp_s1 = tmp_ptr->unk0;
                 tmp_s2 = tmp_ptr->unk1;
@@ -515,7 +515,7 @@ void func_8025AF38(void){
     if(!D_80276E30) return;
 
     for(iPtr = &D_80276E30[0]; iPtr < &D_80276E30[6]; iPtr++){
-        iPtr->unk18 = func_802EDD00(iPtr->unk18);
+        iPtr->unk18 = array_defrag(iPtr->unk18);
     }
     D_80276E30 = defrag(D_80276E30);
 }

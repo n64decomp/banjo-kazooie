@@ -6,5 +6,10 @@
     \label:
 .endm
 
+.macro dlabel label
+    .global \label
+    \label:
+.endm
+
 .macro endlabel label
 .endm

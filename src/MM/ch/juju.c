@@ -7,9 +7,19 @@ int func_80353064(f32*, f32);
 void  func_802BB3DC(s32, f32, f32);
 Actor *func_8032813C(s32, f32*, s32);
 
+typedef struct{
+    s32     unk0;
+    s32     unk4;
+    TUPLE(f32, unk8);
+    f32     unk14;
+    s32     unk18;
+}ActorLocal_Juju_2;
+
 /* public functions */
 void    func_80389598(Actor *this);
 Actor*  func_80389014(ActorMarker *, Gfx **, Mtx**, u32);
+
+extern s32 D_80389C90;
 
 /* .data */
 ActorInfo chjujuInfo = { MARKER_67_JUJU, ACTOR_59_JUJU, ASSET_2E6_MODEL_JUJU, 
@@ -18,28 +28,29 @@ ActorInfo chjujuInfo = { MARKER_67_JUJU, ACTOR_59_JUJU, ASSET_2E6_MODEL_JUJU,
     {0,0}, 0, 0.0f, {0,0,0,0}
 };
 
-extern s32 D_80389C90;
-
 void func_80388FD0(Actor *this, f32 *arg1, f32 *arg2, s32 arg3){
-    this->juju.unk0 = arg3;
-    this->juju.unk14 = 1.0f;
+    ActorLocal_Juju_2 *local;
+
+    local = (ActorLocal_Juju_2 *)&this->local;
+    local->unk0 = arg3;
+    local->unk14 = 1.0f;
 
     this->position_x = arg1[0];
     this->position_y = arg1[1];
     this->position_z = arg1[2];
     
-    this->juju.unk8_x = arg2[0];
-    this->juju.unk8_y = arg2[1];
-    this->juju.unk8_z = arg2[2];
+    local->unk8_x = arg2[0];
+    local->unk8_y = arg2[1];
+    local->unk8_z = arg2[2];
 }
 
 Actor*  func_80389014(ActorMarker *this, Gfx **dl, Mtx **mPtr, u32 arg2){
     f32 sp34[3];
     Actor * actorPtr;
-    ActorLocal_Juju *jujuPtr;
+    ActorLocal_Juju_2 *jujuPtr;
 
     actorPtr = func_80325300(this, sp34);
-    jujuPtr = &actorPtr->juju;
+    jujuPtr = (ActorLocal_Juju_2 *)&actorPtr->local;
     if(jujuPtr->unk0 != 2){
         set_model_render_mode(1);
         func_803391A4(dl, mPtr, actorPtr->position, sp34, jujuPtr->unk14, NULL, func_80330B1C(this));
@@ -53,7 +64,6 @@ void func_803890A0(ActorMarker *arg0, s32 arg1){
     f32 sp5C[3];
     s32 i;
     Actor* jujuPtr;
-    
 
     sp5C[0] = actorPtr->position_x;
     sp5C[1] = actorPtr->position_y;
@@ -63,13 +73,13 @@ void func_803890A0(ActorMarker *arg0, s32 arg1){
         jujuPtr->marker->collidable = 0;
         actorPtr = marker_getActor(arg0);
         func_80388DE8(actorPtr, i, jujuPtr);
-        s1 = (i >= arg1); //THIS LINE NEEDS xori NOT sltiu
+        s1 = (i >= arg1);
         func_80388FD0(jujuPtr, sp5C, actorPtr->position, (s1)? 1 : 2);
         if(s1){
             sp5C[1] += 250.0f;
         }
         if(i == arg1){
-            jujuPtr->juju.unk18 = 1;
+            ((ActorLocal_Juju_2 *)&jujuPtr->local)->unk18 = 1;
         }
     }
 }
@@ -94,11 +104,11 @@ void func_803892A8(ActorMarker **ptr){
     s32 s2;
     s32 s6;
     Actor *actorPtr;
-    ActorLocal_Juju *jujuPtr;
+    ActorLocal_Juju_2 *jujuPtr;
 
     for(i = 0; i < 4; i++){
         actorPtr = marker_getActor(ptr[i]);
-        jujuPtr = &actorPtr->juju;
+        jujuPtr = (ActorLocal_Juju_2 *)&actorPtr->local;
         if(jujuPtr->unk0 != 2){
             jujuPtr->unk0 = 5;
             jujuPtr->unk4 = 0xC;
@@ -113,7 +123,7 @@ void func_803892A8(ActorMarker **ptr){
             }
             for(s2 = 3, j = i + 1; j < 4; s2+=5, j++){
                 actorPtr = marker_getActor(ptr[j]);
-                jujuPtr = &actorPtr->juju;
+                jujuPtr = (ActorLocal_Juju_2 *)&actorPtr->local;
                 if(j == i+1){
                     jujuPtr->unk18 = 1;
                 }
@@ -128,10 +138,10 @@ void func_803892A8(ActorMarker **ptr){
 
 int func_8038941C(ActorMarker **ptr){
     s32 i;
-    ActorLocal_Juju *jujuPtr;
+    ActorLocal_Juju_2 *jujuPtr;
 
     for(i = 0; i < 4; i++){
-        jujuPtr = &marker_getActor(ptr[i])->juju;
+        jujuPtr = (ActorLocal_Juju_2 *)&marker_getActor(ptr[i])->local;
         if(jujuPtr->unk0 != 2)
             return 0;
     }
@@ -140,10 +150,10 @@ int func_8038941C(ActorMarker **ptr){
 
 int func_8038948C(ActorMarker **ptr){
     s32 i;
-    ActorLocal_Juju *jujuPtr;
+    ActorLocal_Juju_2 *jujuPtr;
 
     for(i = 0; i < 4; i++){
-        jujuPtr = &marker_getActor(ptr[i])->juju;
+        jujuPtr = (ActorLocal_Juju_2 *)&marker_getActor(ptr[i])->local;
         if(jujuPtr->unk0 != 1 && jujuPtr->unk0 != 2)
             return 0;
     }
@@ -154,15 +164,14 @@ void func_80389514(ActorMarker **ptr){
     s32 i;
     D_80389C90 = 0;
     for(i = 0; i < 4; i++){
-        if(marker_getActor(ptr[i])->juju.unk0 != 2){
+        if(((ActorLocal_Juju_2 *)&marker_getActor(ptr[i])->local)->unk0 != 2){
             D_80389C90++;
         };
     }
 }
 
-
 void    func_80389598(Actor *this){
-    ActorLocal_Juju *jujuPtr = &this->juju;
+    ActorLocal_Juju_2 *jujuPtr = (ActorLocal_Juju_2 *)&this->local;
     s32 sp38 = 0;
     f32 sp34;
     f32 sp28[3];

@@ -60,7 +60,7 @@ Struct_MMM_3D50_1 D_8038C2F0[] = {
 
 /* .bss */
 extern struct {
-    s32 unk0;
+    BKModel *unk0;
     Struct_MMM_3D50_0 *unk4;
     u8 unk8;
     BKModel *unkC;

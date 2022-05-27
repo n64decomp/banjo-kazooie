@@ -8,6 +8,11 @@ extern void func_80252C08(f32[3],f32[3], f32, f32[3]);
 extern void func_80252CC4(f32[3],s32, f32, s32);
 extern f32  func_802560D0(f32[3], f32[3], f32[3]);
 
+typedef struct {
+    u8 pad0[0x24];
+    BKCollisionTri *unk24;
+}Struct_core2_5FD90_0;
+
 /* .rodata */
 extern f32 D_80377180;
 extern f32 D_80377184;
@@ -455,17 +460,114 @@ int func_802E805C(BKCollisionList *collision_list, BKVertexList *vtxList, f32 ar
     return sp34;
 }
 
-
+s32 func_802E81CC(BKCollisionList *collision_list, BKVertexList *vtx_list, f32 arg2[3], f32 arg3[3], f32[3], f32, s32, s32 *, s32 *);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5FD90/func_802E81CC.s")
 
+Struct_core2_5FD90_0 *func_802E879C(s32, f32[3], f32[3], f32, f32[3]);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5FD90/func_802E879C.s")
 
+#ifndef NONMATCHING
+BKCollisionTri *func_802E8E88(BKCollisionList *collision_list, BKVertexList *vtx_list, f32 arg2[3], f32 arg3[3], f32 arg4, f32 arg5[3], s32 arg6, s32 arg7);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5FD90/func_802E8E88.s")
+#else
+BKCollisionTri *func_802E8E88(BKCollisionList *collision_list, BKVertexList *vtx_list, f32 arg2[3], f32 arg3[3], f32 arg4, f32 arg5[3], s32 arg6, s32 arg7){
+    s32 spC4;
+    s32 spC0;
+    f32 spB4[3];
+    f32 sp98[3];
+    f32 sp8C[3];
+    f32 sp78[3];
+    f32 temp_f20;
+    s32 temp_s0;
+    void *temp_s5;
+    void *temp_s5_2;
+    void *temp_v0;
+    void *temp_v0_2;
+    f32 phi_f22;
+    f32 phi_f24;
+    s32 phi_s0;
+    Struct_core2_5FD90_0 *phi_s5;
+    void *phi_s5_2;
 
-void func_802E9118(BKCollisionList *, BKVertexList *, f32[3], s32, f32, s32, s32, f32, s32, s32, s32);
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5FD90/func_802E9118.s")
+    sp78[0] = arg3[0] - arg2[0];
+    sp78[1] = arg3[1] - arg2[1];
+    sp78[2] = arg3[2] - arg2[2];
+    if (!func_802E81CC(collision_list, vtx_list, arg2, arg3, sp78, (f32) ((f64) arg4 + 0.5), arg7, &spC4, &spC0)) {
+        return NULL;
+    }
+    phi_s5 = func_802E879C(spC4, spC0, arg3, arg4, sp8C);
+    if (phi_s5 == NULL) {
+        return NULL;
+    }
+    arg5[0] = sp8C[0];
+    arg5[1] = sp8C[1];
+    arg5[2] = sp8C[2];
+    spB4[0] = arg3[0] - arg2[0];
+    spB4[1] = arg3[1] - arg2[1];
+    spB4[2] = arg3[2] - arg2[2];
+    arg3[0] = arg2[0];
+    arg3[1] = arg2[1];
+    arg3[2] = arg2[2];
+    phi_f22 = 0.0f;
+    phi_f24 = 1.0f;
+    for(phi_s0 = 0; phi_s0 < arg6; phi_s0++){
+        temp_f20 = (f64) (phi_f22 + phi_f24) / 2.0;
+        sp98[0] = (spB4[0] * temp_f20) + arg2[0];
+        sp98[1] = (spB4[1] * temp_f20) + arg2[1];
+        sp98[2] = (spB4[2] * temp_f20) + arg2[2];
+        phi_s5 = func_802E879C(spC4, spC0, &sp98, arg4, &sp8C);
+        if (phi_s5 != NULL) {
+            arg5[0] = sp8C[0];
+            arg5[1] = sp8C[1];
+            arg5[2] = sp8C[2];
+            phi_f24 = temp_f20;
+        } else {
+            arg3[0] = sp98[0];
+            arg3[1] = sp98[1];
+            arg3[2] = sp98[2];
+            phi_f22 = temp_f20;
+        }
+        phi_s5 = phi_s5_2;
+    }
+    if (phi_s5 == NULL) {
+        return NULL;
+    }
+    ml_vec3f_normalize(arg5);
+    func_802E6D20(phi_s5->unk24, vtx_list);
+    return phi_s5->unk24;
+}
+#endif
 
+s32 func_802E9118(BKCollisionList * collision_list, BKVertexList *vtx_list, f32 arg2[3], s32 arg3, f32 arg4, f32 arg5[3], f32 arg6[3], f32 arg7, f32 arg8[3], s32 arg9, s32 argA) {
+    f32 sp4C[3];
+    f32 sp40[3];
+    s32 sp3C;
+    s32 i;
 
+    if (((f32)vtx_list->unk16 * arg4) <= (func_80256064(arg6, arg2) - arg7)) {
+        return 0;
+    }
+    mlMtxIdent();
+    func_80252CC4(arg2, arg3, arg4, 0);
+    func_8025235C(&sp4C, arg5);
+    func_8025235C(&sp40, arg6);
+    sp3C = func_802E8E88(collision_list, vtx_list, &sp4C, &sp40, arg7 / arg4, arg8, arg9, argA);
+    if (sp3C == 0) {
+        return 0;
+    }
+    mlMtxIdent();
+    func_80252C08(arg2, arg3, arg4, 0);
+    func_8025235C(arg6, &sp40);
+    mlMtxIdent();
+    func_80252C08(NULL, arg3, 1.0f, 0);
+    func_8025235C(arg8, arg8);
+    mlMtxIdent();
+    func_80252C08(arg2, arg3, arg4, 0);
+    for(i = 0; i < 3; i++){
+        func_8025235C(D_8037EAA8[i], D_8037EAA8[i]);
+    }
+    return sp3C;
+}
 
 s32 func_802E92AC(BKCollisionList *, BKVertexList *, f32[3], f32, f32 [3], s32);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5FD90/func_802E92AC.s")

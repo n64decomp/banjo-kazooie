@@ -76,9 +76,9 @@ void func_802C9D80(void){
     ActorMarker *s5;
     s5 = NULL;
     s2 = 0xFFFFFFFF;
-    for(i = 1; i < func_802EDA94(D_8037DDC4); i++){
+    for(i = 1; i < array_size(D_8037DDC4); i++){
         if(D_8037DDCC & (1 << i)){
-            i_marker_ptr = (ActorMarker **)func_802EDA7C(D_8037DDC4, i);
+            i_marker_ptr = (ActorMarker **)array_at(D_8037DDC4, i);
             i_marker = *i_marker_ptr;
             i_actor = marker_getActor(i_marker);
             i_local = (ActorLocal_EmptyHoneycomb *)&i_actor->local;

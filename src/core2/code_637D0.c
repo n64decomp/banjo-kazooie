@@ -178,10 +178,114 @@ extern Mtx D_80380880;
 //     return phi_v0;
 // }
 
+#ifndef NONMATCHING
+s32 func_802EBD3C(BKModelUnk14List *arg0, f32 arg1[3], f32 arg2[3], f32 arg3, s32 arg4, f32 arg5[3], s32 arg6);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_637D0/func_802EBD3C.s")
+#else
+s32 func_802EBD3C(BKModelUnk14List *arg0, f32 arg1[3], f32 arg2[3], f32 arg3, s32 arg4, s32 arg5, s32 arg6) {
+    s32 i;
+    f32 spA0[3];
+    f32 sp94[3];
+    f32 sp88[3];
+    f32 sp7C[3];
+    BKModelUnk14_0 *phi_s0;
+    BKModelUnk14_0 *temp_s4;
+    f32 sp68[3];
+    BKModelUnk14_0 *temp_s0;
 
+    temp_s0 = (BKModelUnk14_0 *)(arg0 + 1);
+    temp_s4 = temp_s0 + (arg0->cnt0);
+    for(phi_s0 = temp_s0; phi_s0 < temp_s4; phi_s0++){
+        if ((phi_s0->unk15 != 0) && ((arg6 == 0) || (arg6 == phi_s0->unk15))) {
+            spA0[0] = (f32) phi_s0->unkC[0];
+            spA0[1] = (f32) phi_s0->unkC[1];
+            spA0[2] = (f32) phi_s0->unkC[2];
+            sp94[0] = (f32) phi_s0->unk0[0];
+            sp94[1] = (f32) phi_s0->unk0[1];
+            sp94[2] = (f32) phi_s0->unk0[2];
+            sp88[0] = (f32) phi_s0->unk6[0];
+            sp88[1] = (f32) phi_s0->unk6[1];
+            sp88[2] = (f32) phi_s0->unk6[2];
+            sp7C[0] = (f32)phi_s0->unk12[0];
+            sp7C[1] = (f32)phi_s0->unk12[1];
+            sp7C[2] = (f32)phi_s0->unk12[2];
+
+            sp7C[0] *= 2;
+            sp7C[1] *= 2;
+            sp7C[2] *= 2;
+            mlMtxIdent();
+            func_80252EC8(spA0, sp7C);
+            func_80252CC4(arg1, arg2, arg3, arg4);
+            func_8025235C(sp68, arg5);
+            for(i = 0; i < 3; i++){
+                if((sp68[i] <= sp94[i]) || (sp88[i] <= sp68[i])){
+                    break;
+                }
+            }
+            if(i == 3){
+                return phi_s0->unk15;
+            }
+        }
+    }
+    return 0;
+}
+#endif
+
+#ifndef NONMATCHING
+s32 func_802EC000(BKModelUnk14List *arg0, s32 arg1, s32 arg2, f32 arg3, s32 arg4, s32 arg5, s32 arg6);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_637D0/func_802EC000.s")
+#else
+s32 func_802EC000(BKModelUnk14List *arg0, f32 arg1[3], f32 arg2[3], f32 arg3, s32 arg4, f32 arg5[3], s32 arg6){
+    BKModelUnk14_1 *temp_s2;
+    f32 sp90[3];
+    f32 sp84[3];
+    BKModelUnk14_1 *phi_s0;
+    f32 temp_f20;
+    f32 temp_f22;
+    f32 temp_f0;
+    f32 sp68[3];
 
+    phi_s0 = (BKModelUnk14_1 *)(sizeof(BKModelUnk14List) + arg0->cnt0*sizeof(BKModelUnk14_0) + (s32)arg0);
+    temp_s2 = phi_s0 + arg0->cnt2;
+    for( ; phi_s0 < temp_s2; phi_s0++){
+        if ((phi_s0->unkD != 0) && ((arg6 == 0) || (arg6 == phi_s0->unkD))) {
+            sp90[0] = (f32) phi_s0->unk4[0];
+            sp90[1] = (f32) phi_s0->unk4[1];
+            sp90[2] = (f32) phi_s0->unk4[2];
+            sp84[0] = (f32) (phi_s0->unkA[0] * 2);
+            sp84[1] = (f32) (phi_s0->unkA[1] * 2);
+            sp84[2] = (f32) (phi_s0->unkA[2] * 2);
+            temp_f20 = (f32) phi_s0->unk0;
+            temp_f22 = (f32) phi_s0->unk2;
+            mlMtxIdent();
+            func_80252DDC(&sp90, &sp84);
+            func_80252CC4(arg1, arg2, arg3, arg4);
+            func_8025235C(&sp68, arg5);
+            temp_f0 = (f32) (temp_f22 * 0.5);
+            if (!(temp_f0 <= sp68[2]) && !(sp68[2] <= -temp_f0) && !((temp_f20 * temp_f20) <= (sp68[0] * sp68[0] + sp68[1]*sp68[1]))) {
+                return phi_s0->unkD;
+            }
+        }
+    }
+    return 0;
+}
+#endif
+
+
+s32 func_802EC238(BKModelUnk14List *arg0, s32 arg1, s32 arg2, f32 arg3, s32 arg4, s32 arg5, s32 arg6);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_637D0/func_802EC238.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_637D0/func_802EC394.s")
+s32 func_802EC394(BKModelUnk14List *arg0, s32 arg1, s32 arg2, f32 arg3, s32 arg4, s32 arg5, s32 arg6) {
+    s32 phi_v0;
+
+    phi_v0 = func_802EBD3C(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
+    if (phi_v0 != NULL) {
+        return phi_v0;
+    }
+
+    phi_v0 = func_802EC000(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
+    if (phi_v0 != NULL) {
+        return phi_v0;
+    }
+    return func_802EC238(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
+}

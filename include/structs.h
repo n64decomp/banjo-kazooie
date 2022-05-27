@@ -68,6 +68,7 @@ typedef struct{
     Gfx *gfx; //gfx_offset
     Vtx *vtx; //vtx_offset
 }BKSpriteFrameDisplayData;
+
 typedef struct{
     BKSprite *sprite;
     BKSpriteFrameDisplayData frame[];
@@ -366,17 +367,6 @@ typedef struct struct_1E_s{
     void (* unk4)(void * arg0, s32 arg1, s32 arg2);
     void (* unk8)(void * arg0);
 }struct1Es;
-
-typedef struct struct_20_s{
-    s16 uid;
-    s16 count;
-    s16 data[];
-}struct20s;
-
-typedef struct struct_1F_s{
-    s16 count;
-    struct20s unk2[];
-}struct1Fs;
 
 typedef struct struct_21_s{
     s32 unk0;
@@ -750,5 +740,69 @@ typedef struct{
     s32 (* unk8)(struct actor_marker_s *, f32[3], f32, f32[3], s32);
     s32 (* unkC)(struct actor_marker_s *, f32[3], f32, f32[3], s32);
 } Struct6Cs;
+
+typedef struct struct_6D_s{
+    u8 unk0;
+    // u8 pad1[3];
+    f32 unk4;
+    f32 unk8;
+    void (*unkC)(struct struct_6D_s *);
+    void (*unk10)(struct struct_6D_s *);
+    s16 unk14[3];//min_vtx
+    s16 unk1A[3];//max_vtx
+    f32 unk20;
+    f32 unk24;
+    u8 unk28;
+    u8 unk29;
+    u8 pad2A[2];
+    f32 unk2C[3];
+    f32 unk38[3];
+    f32 unk44;
+    f32 unk48;
+    s16 unk4C;
+    s16 unk4E;
+    f32 unk50[4];
+    f32 unk60[4];
+    f32 unk70;
+    f32 unk74;
+    f32 unk78[3];
+    f32 unk84;
+    f32 unk88[3];
+    f32 unk94;
+    f32 unk98;
+    f32 unk9C;
+}Struct6Ds;
+
+typedef struct {
+    f32 unk0;
+    f32 unk4;
+}Struct6Fs;
+
+typedef struct {
+    s32 unk0;
+    f32 unk4;
+    f32 unk8;
+    f32 unkC;
+}Struct71s;
+
+typedef struct {
+    f32 unk0;
+}Struct72s;
+
+typedef union {
+    Struct6Ds type_6D;
+    Struct6Fs type_6F;
+    Struct71s type_71;
+    Struct72s type_72;
+}Struct70s;
+
+typedef struct {
+    u8 unk0;
+    // u8 pad1[0x3];
+    BKModel *unk4;
+    s16 unk8;
+    u8 padA[2];
+    Struct70s unkC;
+}Struct6Es;
 
 #endif

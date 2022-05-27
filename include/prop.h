@@ -94,8 +94,8 @@ typedef struct actorMarker_s{
     u32         unk40_19:1;
     u32         pad40_18:19;
     u32         unk44;
-    s32         unk48;
-    s32         unk4C;
+    BKModel *   unk48;
+    vector(Struct70s) * unk4C;
     s32         unk50;
     void        (*unk54)(struct actorMarker_s *);
     s32         (*unk58)(struct actorMarker_s *, struct actorMarker_s *);
@@ -157,15 +157,6 @@ typedef struct actor_anim_info_s{
     f32     duration;
 } ActorAnimationInfo;
 
-typedef struct chconga_s{
-    TUPLE(s32, orangeSpawnPosition);
-    s32     unkC;
-    s32     unk10;
-    u8      pad14[0x4];
-    s32     unk18;
-    s32     unk1C;
-}ActorLocal_Conga;
-
 typedef struct jinjo_s{
     s32     unk0;
     s32     unk4;
@@ -173,20 +164,7 @@ typedef struct jinjo_s{
     s32     unkC;
 }ActorLocal_Jinjo;
 
-typedef struct juju_hitbox_s{
-    u8      pad0[0x4];
-    s32     unk4;
-    ActorMarker *unk8[4];
-    f32     unk18;
-}ActorLocal_JujuHitbox;
 
-typedef struct juju_s{
-    s32     unk0;
-    s32     unk4;
-    TUPLE(f32, unk8);
-    f32     unk14;
-    s32     unk18;
-}ActorLocal_Juju;
 
 typedef struct ch_fight_180_s{
     u8 unk0;
@@ -275,10 +253,7 @@ typedef struct actor_s{
         ActorLocal_BGS_2270 bgs_2270;
         ActorLocal_BGS_6730 bgs_6730;
         ActorLocal_TanktupBody tanktup;
-        ActorLocal_Conga conga;
         ActorLocal_Jinjo jinjo;
-        ActorLocal_JujuHitbox juju_ctl;
-        ActorLocal_Juju juju;
         ActorLocal_fight_180 fight_180;
         ActorLocal_SM_4070 sm_4070;
         u8  local[1];
@@ -349,8 +324,7 @@ typedef struct actor_s{
     void *unk14C[2];
     // void *unk150;
     u32 unk154;
-    void *unk158;
-    void *unk15C;
+    ParticleEmitter *unk158[2];
     s32 unk160; //saved marker->unk54
     u8  unk164[0x2];
     u8  unk166;
