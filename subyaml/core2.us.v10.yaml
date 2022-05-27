@@ -365,7 +365,7 @@ segments:
   - [0xCBBF0, c, code_CBBF0]
   - [0xCBD10, c, code_CBD10]
   - [0xCC1E0, c, code_CC1E0]
-  - [0xCD0A0, c, code_CD0A0]
+  - [0xCD0A0, c, code_CD0A0] #DONE
   - [0xCD3F0, c, code_CD3F0]
   - [0xCECD0, c, code_CECD0] #DONE
   - [0xCF090, c, code_CF090] #DONE
@@ -738,6 +738,8 @@ segments:
   - [0xF2270, bin, data_F2230]
   - [0xF2490, .rodata, code_CBD10]
   - [0xF24A0, bin, data_F24A0]
+  - [0xF24C0, .rodata, code_CD0A0]
+  - [0xF24E0, bin, data_F24E0]
   - [0xF2530, .rodata, code_CECD0]
   - [0xF2550, .rodata, code_CF090]
   - [0xF2560, .rodata, ch/clankerwhipcrack]
