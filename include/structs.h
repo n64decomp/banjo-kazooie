@@ -785,10 +785,15 @@ typedef struct {
     f32 unkC;
 }Struct71s;
 
+typedef struct {
+    f32 unk0;
+}Struct72s;
+
 typedef union {
     Struct6Ds type_6D;
     Struct6Fs type_6F;
     Struct71s type_71;
+    Struct72s type_72;
 }Struct70s;
 
 typedef struct {
