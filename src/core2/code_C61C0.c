@@ -16,7 +16,11 @@ void func_8034D150(s32 mesh_id, BKVtxRef *src, Vtx *dst, Struct_core2_C61C0_0 *a
 
 void func_8034D168(Struct_core2_C61C0_0 * arg0){}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C61C0/func_8034D170.s")
+void func_8034D170(Struct_core2_C61C0_0 *arg0, s32 arg1, BKModel *model, s32 arg3){
+    arg0->unk0 = 0.0f;
+    arg0->unk8 = (f32)arg1;
+    arg0->unkC = 0.0f;
+}
 
 void func_8034D194(Struct_core2_C61C0_0 *arg0, BKModel *model, s32 mesh_id) {
     arg0->unk0 += arg0->unk8 * 64.0f * time_getDelta();
