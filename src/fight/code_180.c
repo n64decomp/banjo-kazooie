@@ -96,7 +96,7 @@ extern struct42s D_80391618;
 extern struct40s D_80391648;
 extern struct43s D_80391678;
 extern s32 D_803916F4;
-extern s32 D_80391700;
+extern f32 D_80391700[3];
 extern s32 D_8039170C;
 extern f32 D_80391710[3];
 extern f32 D_8039171C[3];
@@ -424,16 +424,15 @@ void func_80386EC0(s32 arg0) {
     func_803900DC(marker, &D_80392758, D_80392768[1], D_80392768[2]);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/fight/code_180/func_80386F5C.s")
-// void func_80386F5C(s32 arg0, f32 *arg1, f32 arg2, f32 arg3) {
-//     arg1[1] = (f32) (arg1[1] + 100.0f);
-//     D_80392758[0] = (f32) arg1[0];
-//     D_80392758[1] = (f32) arg1[1];
-//     D_80392758[2] = (f32) arg1[2];
-//     D_80392768[1] = arg2;
-//     D_80392768[2] = arg3;
-//     func_802C3C88(func_80386EC0, arg0);
-// }
+void func_80386F5C(ActorMarker * arg0, f32 arg1[3], f32 arg2, f32 arg3) {
+    arg1[1] += 100.0f;
+    D_80392758[0] = (f32) arg1[0];
+    D_80392758[1] = (f32) arg1[1];
+    D_80392758[2] = (f32) arg1[2];
+    D_80392768[1] = arg2;
+    D_80392768[2] = arg3;
+    func_802C3C88(func_80386EC0, reinterpret_cast(s32, arg0));
+}
 
 void func_80386FD8(s32 arg0) {
     ActorMarker *marker;
@@ -515,7 +514,7 @@ s32 func_80387340(Actor *this, f32 arg1) {
     return 0;
 }
 
-void func_803873DC(Actor *actor, s32 arg1, s32 arg2) {
+void func_803873DC(Actor *actor, f32 arg1, f32 arg2) {
     f32 vec[3];
     ActorMarker *marker;
 

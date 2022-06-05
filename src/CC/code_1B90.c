@@ -3,8 +3,6 @@
 #include "variables.h"
 #include "CC.h"
 
-extern void func_8034E78C(void *, s32, f32);
-
 /* .data */
 f32 D_80389BF0[3] = {0.0f, 1300.0f, -2800.0f}; 
 

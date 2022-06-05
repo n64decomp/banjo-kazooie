@@ -33,7 +33,7 @@ segments:
       - [0x0, c, code_0] #DONE
       - [0x180, c, code_180]
       - [0x5ED0, c, code_5ED0]
-      - [0x6E90, c, code_6E90]
+      - [0x6E90, c, code_6E90] #DONE
       - [0x7580, c, code_7580]
       - [0x7BE0, c, code_7BE0]
       - [0x8390, c, code_8390]
@@ -63,8 +63,6 @@ segments:
       - [0xC1D0, rodata, fight_data_C1D0] #- [0xC1D0, .rodata, code_87A0]
       - [0xC220, .rodata, code_9850]
       - [0xC230, .rodata, code_9D40]
-      #- [0x0000C260, .rodata, code_9850]
-      #- [0x0000C270, .rodata, code_9850]
-      - [0x0000C260, rodata, fight_data_C2B0]
+      - [0x0000C260,  rodata, fight_data_C260]
       - [0x0000C340, .rodata, code_AED0]
   - [0x0000C350]

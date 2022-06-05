@@ -200,9 +200,9 @@ s32 func_802E7468(BKCollisionList *arg0){
     return arg0->unk14;
 }
 
-void func_802E7470(BKCollisionList *collision_list, BKCollisionTri **arg1, BKCollisionTri **arg2){
-    *arg1 = (collision_list->unk10 * 4) + (s32)collision_list + sizeof(BKCollisionList);
-    *arg2 = (collision_list->unk14 * 0xC) + (s32)*arg1;
+void func_802E7470(BKCollisionList *collision_list, BKCollisionTri **begin_ptr, BKCollisionTri **end_ptr){
+    *begin_ptr = (collision_list->unk10 * 4) + (s32)collision_list + sizeof(BKCollisionList);
+    *end_ptr = (collision_list->unk14 * 0xC) + (s32)*begin_ptr;
 }
 
 

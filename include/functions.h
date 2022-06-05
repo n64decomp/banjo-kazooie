@@ -480,8 +480,9 @@ void func_8034DDF0(Struct6Ds *arg0, f32 arg1[3], f32 arg2[3], f32 arg3, s32 arg4
 void func_8034DE60(Struct6Ds *, f32, f32, f32, s32);
 void func_8034DFB0(Struct6Ds *arg0, s32 arg1[4], s32 arg2[4], f32 arg3);
 void func_8034E1A4(Struct6Ds *arg0, enum sfx_e, f32, f32);
-void func_8034E71C(void *, s32, f32);
-void func_8034E7B8(void *, s32, f32, s32, f32);
+void func_8034E71C(Struct73s *arg0, s32 arg1, f32 arg2);
+void func_8034E78C(Struct73s *arg0, s32 arg1, f32 arg2);
+void func_8034E7B8(Struct73s *, s32, f32, s32, f32);
 
 void func_80352CF4(f32 *, f32 *, f32, f32);
 

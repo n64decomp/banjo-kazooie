@@ -49,6 +49,7 @@ typedef struct {
 
 typedef struct {
     s16 unk0[3]; //vtx_indx
+    //u8 pad6[2];
     s32 unk8; //flags
 } BKCollisionTri; //BKCollisionTri
 
