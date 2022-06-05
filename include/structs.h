@@ -804,12 +804,30 @@ typedef struct {
     f32 unk1C;
 }Struct73s;
 
+typedef struct {
+    u8 pad0[0x4];
+    f32 unk4;
+    f32 unk8;
+    f32 unkC;
+    f32 unk10;
+    f32 unk14;
+    u8 unk18[0x8];
+    f32 unk20;
+    f32 unk24;
+    f32 unk28[2];
+}Struct74s;
+
+typedef struct {
+    f32 unk0;
+}Struct75s;
+
 typedef union {
     Struct6Ds type_6D;
     Struct6Fs type_6F;
     Struct71s type_71;
     Struct72s type_72;
     Struct73s type_73;
+    Struct74s type_74;
 }Struct70s;
 
 typedef struct {
