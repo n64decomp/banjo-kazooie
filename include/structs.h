@@ -355,11 +355,11 @@ typedef struct struct_1C_s{
 }struct1Cs;
 
 typedef struct struct_1D_s{
-    struct struct_1F_s **unk0;
+    BKModel *unk0;
     s16 unk4;
     u8 unk6;
     u8 pad7[1];
-    u8 pad8[0xA0];
+    u8 pad8[0xA0];//union of subtypes
 }struct1Ds;
 
 typedef struct struct_1E_s{

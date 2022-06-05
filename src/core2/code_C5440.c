@@ -2,8 +2,47 @@
 #include "functions.h"
 #include "variables.h"
 
+extern void func_8034CF74(void *arg0, s32 arg1, s32 arg2, s32 arg3);
+extern void func_8034D170(void *arg0, s32 arg1, s32 arg2, s32 arg3);
+extern void func_8034DD74(void *arg0, s32 arg1, s32 arg2, s32 arg3);
+extern void func_8034E6A8(void *arg0, s32 arg1, s32 arg2, s32 arg3);
+extern void func_8034CB64(void *arg0, s32 arg1, s32 arg2, s32 arg3);
+extern void func_8034EE2C(void *arg0, s32 arg1, s32 arg2, s32 arg3);
+extern void func_8034CD30(void *arg0, s32 arg1, s32 arg2, s32 arg3);
+extern void func_8034F250(void *arg0, s32 arg1, s32 arg2, s32 arg3);
+extern void func_8034F570(void *arg0, s32 arg1, s32 arg2, s32 arg3);
 
-extern struct1Es D_80372030[];
+extern void func_8034CF90(void *arg0, s32 arg1, s32 arg2);
+extern void func_8034D194(void *arg0, s32 arg1, s32 arg2);
+extern void func_8034E26C(void *arg0, s32 arg1, s32 arg2);
+extern void func_8034E8E4(void *arg0, s32 arg1, s32 arg2);
+extern void func_8034CB9C(void *arg0, s32 arg1, s32 arg2);
+extern void func_8034EF60(void *arg0, s32 arg1, s32 arg2);
+extern void func_8034CD8C(void *arg0, s32 arg1, s32 arg2);
+extern void func_8034F268(void *arg0, s32 arg1, s32 arg2);
+extern void func_8034F5B0(void *arg0, s32 arg1, s32 arg2);
+
+extern void func_8034CF6C(void *arg0);
+extern void func_8034D168(void *arg0);
+extern void func_8034DD48(void *arg0);
+extern void func_8034E6A0(void *arg0);
+extern void func_8034CB5C(void *arg0);
+extern void func_8034EE24(void *arg0);
+extern void func_8034CD28(void *arg0);
+extern void func_8034F248(void *arg0);
+extern void func_8034F568(void *arg0);
+
+struct1Es D_80372030[] = {
+    {func_8034CF74, func_8034CF90, func_8034CF6C},
+    {func_8034D170, func_8034D194, func_8034D168},
+    {func_8034DD74, func_8034E26C, func_8034DD48},
+    {func_8034E6A8, func_8034E8E4, func_8034E6A0}, //water?
+    {func_8034CB64, func_8034CB9C, func_8034CB5C},
+    {func_8034EE2C, func_8034EF60, func_8034EE24},
+    {func_8034CD30, func_8034CD8C, func_8034CD28},
+    {func_8034F250, func_8034F268, func_8034F248},
+    {func_8034F570, func_8034F5B0, func_8034F568},
+};
 
 extern struct {
     u8 unk0;
@@ -13,9 +52,9 @@ extern struct {
 void func_8034C9B0(int arg0);
 
 //.code
-func_8034C3D0(BKModel *arg0, s32 arg1, s32 arg2, s32 arg3){
+func_8034C3D0(BKModel *arg0, s32 arg1, s32 vtx_xform_id, s32 arg3){
     struct1Ds * v0 = vector_pushBackNew(&D_80386140.unk4);
-    v0->unk6 = arg2;
+    v0->unk6 = vtx_xform_id;
     v0->unk0 = arg0;
     v0->unk4 = arg1;
     D_80372030[v0->unk6].unk0(&v0->pad8[0], arg3, v0->unk0, v0->unk4);
