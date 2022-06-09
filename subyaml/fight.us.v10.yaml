@@ -31,7 +31,7 @@ segments:
     subsegments:
       - [0x0, linker, code] # Code section
       - [0x0, c, code_0] #DONE
-      - [0x180, c, code_180]
+      - [0x180, c, code_180] 
       - [0x5ED0, c, code_5ED0]
       - [0x6E90, c, code_6E90] #DONE
       - [0x7580, c, code_7580]
@@ -55,7 +55,7 @@ segments:
       - [0xBCA0, .data, code_AED0]
       - [0xBCD0, rodata, fight_data_BCD0]
       - [0xBD10, .rodata, code_180]
-      - [0xBD30, bin, code_180]
+      - [0xBE20, bin, fight_data_BE20]
       - [0xC140, .rodata, code_6E90]
       - [0xC150, rodata, fight_data_C150]
       - [0xC190, .rodata, code_7BE0]

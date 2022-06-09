@@ -4,14 +4,14 @@
 
 /* .code */
 void func_8034F420(s32 arg0, BKVtxRef *ref, Vtx *dst, Struct76s *arg3){
-    dst->v.cn[3] = arg3->unk0;
+    dst->v.cn[3] = arg3->alpha;
 }
 
 void func_8034F434(Struct76s *arg0, s32 arg1) {
     f32 var_f0;
 
     if (arg1 == 1) {
-        arg0->unk0 = 0;
+        arg0->alpha = 0;
         arg0->unk2 = randi2(200, 255);
         arg0->unk4 = (s32) (arg0->unk4 + 1);
          arg0->unk14 = arg0->unk10 = randf2(0.08f, 0.12f);
@@ -20,7 +20,7 @@ void func_8034F434(Struct76s *arg0, s32 arg1) {
         }
     }
     if (arg1 == 0) {
-        arg0->unk0 = 0;
+        arg0->alpha = 0;
         if ((arg0->unk4 > 0) && (arg0->unk4 < arg0->unk8)) {
             arg0->unk10 = randf2(0.1f, 0.2f);
         } else {
@@ -33,13 +33,13 @@ void func_8034F434(Struct76s *arg0, s32 arg1) {
 }
 
 s32 func_8034F560(Struct76s *arg0){
-    return arg0->unk0;
+    return arg0->alpha;
 }
 
 void func_8034F568(Struct76s *arg0){}
 
 void func_8034F570(Struct76s *arg0, s32 arg1, s32 arg2, s32 arg3){
-    arg0->unk0 = 0;
+    arg0->alpha = 0;
     arg0->unk4 = 0;
     arg0->unk8 = 2;
     arg0->unkC = 0;
@@ -55,12 +55,12 @@ void func_8034F5B0(Struct76s *arg0, BKModel *arg1, s32 arg2){
     }
     if (arg0->unkC == 1) {
         if (arg0->unk10 <= 0.04) {
-            arg0->unk0 = (arg0->unk10 / 0.04) * arg0->unk2;
+            arg0->alpha = (arg0->unk10 / 0.04) * arg0->unk2;
         } else {
             if (arg0->unk10 < (arg0->unk14 - 0.04)) {
-                arg0->unk0 = arg0->unk2;
+                arg0->alpha = arg0->unk2;
             } else {
-                arg0->unk0 = ((arg0->unk14 - arg0->unk10) / 0.04) * arg0->unk2;
+                arg0->alpha = ((arg0->unk14 - arg0->unk10) / 0.04) * arg0->unk2;
             }
         }
         if (func_8025773C(&arg0->unk10, sp24)) {

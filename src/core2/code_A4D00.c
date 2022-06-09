@@ -35,7 +35,7 @@ extern void func_80320ED8(ActorMarker *, f32, s32);
 f32 func_8033229C(ActorMarker *marker);
 s32 func_803327A8(s32 arg0);
 void func_8032CD60(Prop *);
-void func_8033A244(f32);
+f32 func_8033A244(f32);
 void func_8032F64C(f32 *pos, ActorMarker * marker);
 
 /* .data */

@@ -19,20 +19,23 @@ extern void mlMtxScale(f32);
 extern void mlMtxApply(Mtx* mtx);
 
 typedef struct{
-    s32 env_r;
-    s32 env_g;
-    s32 env_b;
-    s32 unkC;
-    s32 pri_r;
-    s32 pri_g;
-    s32 pri_b;
-    s32 unk1C;
+    s32 env[4];
+    s32 prim[4];
 } Struct_Core2_B1400_0;
 
 typedef struct{
     void (* unk0)(Actor *);
     Actor *unk4;
 } Struct_Core2_B1400_1;
+
+
+typedef struct{
+    f32 unk0[3];
+    f32 unkC[3];
+    s32 unk18;
+    f32 unk1C[3];
+    f32 unk28[3];
+} Struct_Core2_B1400_2;
 
 typedef void (*GeoListFunc)(Gfx **, Mtx **, void *);
 
@@ -152,18 +155,17 @@ void func_80338498(Gfx **, Mtx **, void *);
 void func_80338970(Gfx **, Mtx **, void *);
 void func_80338AC4(Gfx **, Mtx **, void *);
 void func_80338AE8(Gfx **, Mtx **, GeoCmd7 *cmd);
+void func_80338498(Gfx **, Mtx **, void *);
+void func_8033878C(Gfx **, Mtx **, void *);
 void func_80338B50(Gfx **, Mtx **, void *);
-void func_80338498(Gfx **, Mtx **, void *);
 void func_80338BFC(Gfx **, Mtx **, void *);
-void func_80338498(Gfx **, Mtx **, void *);
 void func_80338CD0(Gfx **, Mtx **, void *);
 void func_80338DCC(Gfx **, Mtx **, void *);
 void func_80338EB8(Gfx **, Mtx **, void *);
 void func_8033909C(Gfx **, Mtx **, void *);
-void func_8033878C(Gfx **, Mtx **, void *);
-
 void func_80339124(Gfx **, Mtx **, BKGeoList *);
-
+void func_8033A410(s32 a);
+void func_8033A45C(s32 arg0, s32 arg1);
 
 
 extern Gfx D_80370340[] = 
@@ -377,9 +379,9 @@ extern f32 D_80378F4C;
 
 /* .bss */
 extern s32 D_80383650;
-extern s32 D_80383658[];
+extern s32 D_80383658[0x2A];
 extern s32 D_80383700;
-extern s32 D_80383704;
+extern bool D_80383704;
 extern f32 D_80383708;
 extern f32 D_8038370C;
 extern s32 D_80383710;
@@ -394,13 +396,7 @@ extern struct58s *D_80383730;
 extern f32 D_80383734;
 extern Struct_Core2_B1400_0 D_80383738;
 extern s32 D_80383754;
-extern struct{
-    f32 unk0[3];
-    f32 unkC[3];
-    s32 unk18;
-    f32 unk1C[3];
-    f32 unk28[3];
-}D_80383758;
+extern Struct_Core2_B1400_2 D_80383758;
 extern s32 D_80383770;
 extern f32 D_80383774[3];
 extern f32 D_80383780[3];
@@ -416,18 +412,17 @@ extern struct {
     f32 unk4[3];
 }D_803837B0;
 extern u8 D_803837C0;
-extern s32 D_803837C8; //model_asset_index
-extern f32 D_803837CC;
-extern f32 D_803837D0;
+extern struct {
+    s32 unk0; //model_asset_index
+    f32 unk4;
+    f32 unk8;
+} D_803837C8; 
 extern s32 D_803837D8;
 extern struct {
-    LookAt unk0;
-    u8 pad20[0x3E0];
+    LookAt unk0[32];
     LookAt *unk400;
-    s32 unk404;
-    f32 unk408;
-    f32 unk40C;
-    f32 unk410;
+    LookAt *unk404;
+    f32 unk408[3];
 } D_803837E0;
 extern Mtx D_80383BF8;
 extern f32 D_80383C38[3];
@@ -443,9 +438,9 @@ extern f32 D_80383C98[3];
 void func_80338390(void){
     D_80383700 = 0;
     D_80383708 = D_80378F40;
-    D_80383704 = 1;
+    D_80383704 = TRUE;
     D_8038370C = 1.0f;
-    D_80383710 = 0;
+    D_80383710 = FALSE;
     D_80383714 = 2;
     D_80383650 = 0;
     D_80383718 = NULL;
@@ -457,7 +452,7 @@ void func_80338390(void){
     D_80383790.unk0 = NULL;
     D_80383790.unk8 = NULL;
     D_803837B0.unk0 = 0;
-    D_803837C8 = 0;
+    D_803837C8.unk0 = 0;
     D_803837D8 = 0;
     func_8033A45C(1,1);
     func_8033A45C(2,0);
@@ -663,18 +658,19 @@ void func_80338CD0(Gfx **gfx, Mtx **mtx, void *arg2){
     GeoCmdC *cmd = (GeoCmdC *)arg2;
     s32 tmp_v0;
     s32 indx;
+    s32 indx2;
     s32 s2;
     s32 s1;
     s32* s0;
     
     tmp_v0 = cmd->unkA;
-    indx = D_80383658[tmp_v0];
-    if(tmp_v0){
+    indx = D_80383658[cmd->unkA];
+    if(cmd->unkA){
         if(indx == 0){
             
         }else if(indx > 0){
             if(cmd->unk8 >= indx){
-                func_80339124(gfx, mtx, (s32)cmd + cmd->unkC[--indx]);
+                func_80339124(gfx, mtx, (s32)cmd + cmd->unkC[indx-1]);
             }
             
         }else{//L80338D5C
@@ -778,7 +774,7 @@ void func_80339124(Gfx ** gfx, Mtx ** mtx, BKGeoList *geo_list){
 #ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_803391A4.s")
 #else
-int func_803391A4(Gfx **gfx, Mtx **mtx, f32 arg2[3], f32 arg3[3], f32 arg4, f32*arg5, BKModelBin* model_bin){
+int func_803391A4(Gfx **gfx, Mtx **mtx, f32 position[3], f32 arg3[3], f32 scale, f32*arg5, BKModelBin* model_bin){
     f32 spF4[3];
     f32 spF0;
     f32 padEC;
@@ -789,14 +785,13 @@ int func_803391A4(Gfx **gfx, Mtx **mtx, f32 arg2[3], f32 arg3[3], f32 arg4, f32*
     f32 spD0;
     BKVertexList *tmp_v1;
     f32 tmp_f0;
-    s32 tmp_v1_1;
     s32 alpha; 
     f32 padB8;
     int i; //spB4
     s32 spB0;
     
-    if( (!model_bin && !D_803837C8)
-        || (model_bin && D_803837C8)
+    if( (!model_bin && !D_803837C8.unk0)
+        || (model_bin && D_803837C8.unk0)
     ){
         func_80338390();
         return 0;
@@ -815,10 +810,10 @@ int func_803391A4(Gfx **gfx, Mtx **mtx, f32 arg2[3], f32 arg3[3], f32 arg4, f32*
         D_80383758.unk28[2] = D_80383C48[2];
     }//L80339274
 
-    if(arg2){
-        spE0[0] = arg2[0];
-        spE0[1] = arg2[1];
-        spE0[2] = arg2[2];
+    if(position){
+        spE0[0] = position[0];
+        spE0[1] = position[1];
+        spE0[2] = position[2];
     }
     else{//L803392A8
         spE0[0] = spE0[1] = spE0[2] = 0.0f;
@@ -858,12 +853,12 @@ int func_803391A4(Gfx **gfx, Mtx **mtx, f32 arg2[3], f32 arg3[3], f32 arg4, f32*
         spD4 = tmp_v1->unk12;
     }
     else{//L80339434
-        spD0 = D_803837D0;
-        spD4 = D_803837CC;
+        spD0 = D_803837C8.unk8;
+        spD4 = D_803837C8.unk4;
     }//L80339440
     spF0 = gu_sqrtf(spF4[0]*spF4[0] + spF4[1]*spF4[1] + spF4[2]*spF4[2]);
-    if( 4000.0f <= spF0 && spD4*arg4*D_8038370C*50.0f < D_80383708){
-        D_80383708 = spD4*arg4*D_8038370C*50.0f;
+    if( 4000.0f <= spF0 && spD4*scale*D_8038370C*50.0f < D_80383708){
+        D_80383708 = spD4*scale*D_8038370C*50.0f;
     }//L803394C8
 
     if(D_80383708 <= spF0){
@@ -871,7 +866,7 @@ int func_803391A4(Gfx **gfx, Mtx **mtx, f32 arg2[3], f32 arg3[3], f32 arg4, f32*
         return 0;
     }
 
-    D_80370990 = (D_80383704) ? func_8024DB50(spE0, spD0*arg4) : 1;
+    D_80370990 = (D_80383704) ? func_8024DB50(spE0, spD0*scale) : 1;
     if(D_80370990 == 0){
         func_80338390();
         return 0;
@@ -882,28 +877,34 @@ int func_803391A4(Gfx **gfx, Mtx **mtx, f32 arg2[3], f32 arg3[3], f32 arg4, f32*
     }
     func_80349AD0();
     if(model_bin == NULL){
-        model_bin = assetcache_get(D_803837C8);
+        model_bin = assetcache_get(D_803837C8.unk0);
     }
     D_80383C54 = model_bin;
     D_80383718 = D_80383718 ? D_80383718 : (BKGfxList *)((s32)D_80383C54 + D_80383C54->gfx_list_offset_C);
     D_80383720 = D_80383720 ? D_80383720 : (BKTextureList *)((s32)D_80383C54 + D_80383C54->texture_list_offset_8);
     D_80383728 = D_80383728 ? D_80383728 : (BKVertexList *)((s32)D_80383C54 + D_80383C54->vtx_list_offset_10);
-    D_8038372C = !D_80383C54->unk20 ? NULL : (s32)model_bin + model_bin->unk20;
+    if(D_80383C54->unk20 == NULL){
+        D_8038372C = NULL;
+    }
+    else{
+        D_8038372C = (s32)model_bin + model_bin->unk20;
+    }
+
     if(D_80383710){
         tmp_f0 = D_80383708 - 500.0f;
         if(tmp_f0 < spF0){
-            tmp_v1_1 = (s32)((1.0f - (spF0 - tmp_f0)/500.0f)*255.0f);
+            alpha = (s32)((1.0f - (spF0 - tmp_f0)/500.0f)*255.0f);
             if(D_80383714 == 0){
-                D_80383738.unk1C = (D_80383738.unk1C * tmp_v1_1) / 0xff;
+                D_80383738.prim[3] = (D_80383738.prim[3] * alpha) / 0xff;
             }
             else if(D_80383714 == 1){//L803396DC
-                D_803837A0.unkC = (D_803837A0.unkC * tmp_v1_1)/0xff;
+                D_803837A0.env[3] = (D_803837A0.env[3] * alpha)/0xff;
             }
             else if(D_80383714 == 2){//L80339710
-                func_8033A410(tmp_v1_1);
+                func_8033A410(alpha);
             }
             else if(D_80383714 == 3){
-                D_803837C0 = (D_803837C0 *tmp_v1_1)/0xff;
+                D_803837C0 = (D_803837C0 *alpha)/0xff;
             }
         }////L80339764
     }//L80339764
@@ -941,10 +942,10 @@ int func_803391A4(Gfx **gfx, Mtx **mtx, f32 arg2[3], f32 arg3[3], f32 arg4, f32*
 
     if(D_80383714 == 0){
         
+         alpha = ((0xFF - D_80383738.prim[3])*D_80383738.env[3])/0xff + D_80383738.prim[3];
         gSPDisplayList((*gfx)++, D_80370340);
-         alpha = ((0xFF - D_80383738.unk1C)*D_80383738.unkC)/0xff + D_80383738.unk1C;
-        gDPSetEnvColor((*gfx)++, D_80383738.env_r, D_80383738.env_g, D_80383738.env_b, alpha);
-        gDPSetPrimColor((*gfx)++, 0, 0, D_80383738.pri_r, D_80383738.pri_g, D_80383738.pri_b, 0);
+        gDPSetEnvColor((*gfx)++, D_80383738.env[0], D_80383738.env[1], D_80383738.env[2], alpha);
+        gDPSetPrimColor((*gfx)++, 0, 0, D_80383738.prim[0], D_80383738.prim[1], D_80383738.prim[2], 0);
         if(alpha == 0xFF){
             gSPSegment((*gfx)++, 0x03, osVirtualToPhysical(spDC));
         }
@@ -955,8 +956,8 @@ int func_803391A4(Gfx **gfx, Mtx **mtx, f32 arg2[3], f32 arg3[3], f32 arg4, f32*
     }
     else if(D_80383714 == 1){//L80339AC0
         gSPDisplayList((*gfx)++, D_80370368);
-        gDPSetEnvColor((*gfx)++, D_803837A0.env_r, D_803837A0.env_g, D_803837A0.env_b, D_803837A0.unkC);
-        if(D_803837A0.unkC == 0xFF){
+        gDPSetEnvColor((*gfx)++, D_803837A0.env[0], D_803837A0.env[1], D_803837A0.env[2], D_803837A0.env[3]);
+        if(D_803837A0.env[3] == 0xFF){
             gSPSegment((*gfx)++, 0x03, osVirtualToPhysical(spDC));
         }
         else{
@@ -981,11 +982,11 @@ int func_803391A4(Gfx **gfx, Mtx **mtx, f32 arg2[3], f32 arg3[3], f32 arg4, f32*
         if(0.0f == spF4[2]){
             spF4[2] = D_80378F4C;
         }
-        func_8024128C(*mtx, D_803837E0.unk400, D_803837E0.unk408, D_803837E0.unk40C, D_803837E0.unk410, spF4[0], spF4[1], spF4[2], 0.0f, 1.0f, 0.0f);
+        func_8024128C(*mtx, D_803837E0.unk400, D_803837E0.unk408[0], D_803837E0.unk408[1], D_803837E0.unk408[2], spF4[0], spF4[1], spF4[2], 0.0f, 1.0f, 0.0f);
         gSPLookAt((*gfx)++, D_803837E0.unk400);
         osWritebackDCache(D_803837E0.unk400, sizeof(LookAt));
         D_803837E0.unk400++;
-        if((s32)D_803837E0.unk400 == D_803837E0.unk404)
+        if(D_803837E0.unk400 == D_803837E0.unk404)
             D_803837E0.unk400 = &D_803837E0.unk0;
     }//L80339DBC
 
@@ -1003,7 +1004,7 @@ int func_803391A4(Gfx **gfx, Mtx **mtx, f32 arg2[3], f32 arg3[3], f32 arg4, f32*
     }//L80339E58
 
     if(D_8038372C){
-        func_802ED52C(D_8038372C, D_80383C38, arg4);
+        func_802ED52C(D_8038372C, D_80383C38, scale);
     }//L80339E74
 
     if(model_bin->unk28 && D_8038371C){
@@ -1012,10 +1013,10 @@ int func_803391A4(Gfx **gfx, Mtx **mtx, f32 arg2[3], f32 arg3[3], f32 arg4, f32*
 
     mlMtxIdent();
     if(D_80383770){
-        func_80252AF0(&D_80383774, spE0, arg3, arg4, arg5);
+        func_80252AF0(&D_80383774, spE0, arg3, scale, arg5);
     }
     else{
-        func_80252AF0(D_80383C38, spE0, arg3, arg4, arg5);
+        func_80252AF0(D_80383C38, spE0, arg3, scale, arg5);
     }//L80339F08
 
     if(D_803837B0.unk0){
@@ -1025,7 +1026,7 @@ int func_803391A4(Gfx **gfx, Mtx **mtx, f32 arg2[3], f32 arg3[3], f32 arg4, f32*
     func_802513B0(&D_80383BF8);
     mlMtxApply(*mtx);
     gSPMatrix((*gfx)++, (*mtx)++, G_MTX_PUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
-    D_80383734 = arg4;
+    D_80383734 = scale;
     
     if(arg3){
         D_80383C58[0] = arg3[0];
@@ -1043,7 +1044,7 @@ int func_803391A4(Gfx **gfx, Mtx **mtx, f32 arg2[3], f32 arg3[3], f32 arg4, f32*
         D_80383790.unk8(D_80383790.unkC);
     }
 
-    if(D_803837C8){
+    if(D_803837C8.unk0){
         func_8033BD4C(model_bin);
     }
 
@@ -1124,24 +1125,58 @@ s32 func_8033A170(void){
 
 void func_8033A17C(void){
     func_802EA134(D_80383730);
-    D_80383730 = 0;
+    D_80383730 = NULL;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A1A4.s")
+void func_8033A1A4(void){
+    func_80338390();
+    D_80383770 = 0;
+    D_803837E0.unk400 = &D_803837E0.unk0[0];
+    D_803837E0.unk404 = D_803837E0.unk400 + 32;
+    D_803837E0.unk408[0] = D_803837E0.unk408[1] = D_803837E0.unk408[2] = 0.0f;
+    D_80383730 = func_802EA154();
+}
 
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A1FC.s")
+#else
+void func_8033A1FC(void){
+    s32 i;
+    for(i = 0; i < 0x2A; i++){
+        D_80383658[i] = 0;
+    }
+}
+#endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A238.s")
+void func_8033A238(s32 arg0){
+    D_80383700 = arg0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A244.s")
+f32 func_8033A244(f32 arg0){
+    f32 out = D_80383708;
+    D_80383708 = arg0;
+    return out;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A25C.s")
+void func_8033A25C(bool arg0){
+    D_80383704 = arg0 ? TRUE : FALSE;
+}  
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A280.s")
+void func_8033A280(f32 arg0){
+    D_8038370C = arg0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A28C.s")
+void func_8033A28C(bool arg0){
+    D_80383710 = arg0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A298.s")
+void func_8033A298(bool arg0){
+    D_80383758.unk18 = arg0;
+    if(arg0){
+        func_8024C5CC(D_80383758.unk0);
+        func_8024C764(D_80383758.unkC);
+    }
+}
 
 void func_8033A2D4(void(*func)(Actor *), Actor* actor){
     D_80383790.unk0 = func;
@@ -1164,25 +1199,68 @@ void func_8033A308(f32 arg0[3]){
     D_803837B0.unk4[2] = arg0[2];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A334.s")
+void func_8033A334(s32 env[4], s32 prim[4]){
+    D_80383714 = 0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A388.s")
+    D_80383738.env[0] = env[0];
+    D_80383738.env[1] = env[1];
+    D_80383738.env[2] = env[2];
+    D_80383738.env[3] = env[3];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A410.s")
+    D_80383738.prim[0] = prim[0];
+    D_80383738.prim[1] = prim[1];
+    D_80383738.prim[2] = prim[2];
+    D_80383738.prim[3] = prim[3];
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A444.s")
+void func_8033A388(s32 r, s32 g, s32 b, s32 a){
+    D_80383714 = 1;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A450.s")
+    D_803837A0.env[0] = MIN(0xFF, r);
+    D_803837A0.env[1] = MIN(0xFF, g);
+    D_803837A0.env[2] = MIN(0xFF, b);
+    D_803837A0.env[3] = MIN(0xFF, a);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A45C.s")
+void func_8033A410(s32 a){
+    if(a == 0xff){
+        D_80383714 = 2;
+    }
+    else{
+        D_80383714 = 3;
+        D_803837C0 = a;
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A470.s")
+void func_8033A444(struct58s *arg0){
+    D_8038371C = arg0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A488.s")
+void func_8033A450(s32 arg0){
+    D_80383650 = arg0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A494.s")
+void func_8033A45C(s32 arg0, s32 arg1){
+    D_80383658[arg0] = arg1;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A4A0.s")
+void func_8033A470(s32 arg0, s32 arg1){
+    D_80383658[arg0] = -arg1;
+}
+
+void func_8033A488(BKTextureList *arg0){
+    D_80383720 = arg0;
+}
+
+void func_8033A494(s32 arg0){
+    D_80383724 = arg0;
+}
+
+void func_8033A4A0(enum asset_e model_id, f32 arg1, f32 arg2){
+    D_803837C8.unk0 = model_id;
+    D_803837C8.unk4 = arg1;
+    D_803837C8.unk8 = arg2;
+}
 
 void func_8033A4C0(BKVertexList *vertex_list){
     D_80383728 = vertex_list;
@@ -1192,7 +1270,13 @@ void set_model_render_mode(s32 renderMode){
     D_803837D8 = renderMode;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A4D8.s")
+void func_8033A4D8(void){
+    if(D_80383730 != NULL){
+        D_80383730 = func_802EA374(D_80383730);
+    }
+}
+
+///BREAk???
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A510.s")
 

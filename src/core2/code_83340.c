@@ -3,7 +3,7 @@
 #include "variables.h"
 
 
-extern void func_8033A244(f32);
+extern f32 func_8033A244(f32);
 
 typedef struct{
     BKModelBin *unk0;

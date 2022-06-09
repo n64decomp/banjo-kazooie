@@ -822,7 +822,7 @@ typedef struct {
 }Struct75s;
 
 typedef struct {
-    s16 unk0;
+    s16 alpha;
     s16 unk2;
     s32 unk4;
     s32 unk8;

@@ -41,7 +41,7 @@ struct1Es D_80372030[] = {
     {func_8034EE2C, func_8034EF60, func_8034EE24},
     {func_8034CD30, func_8034CD8C, func_8034CD28},
     {func_8034F250, func_8034F268, func_8034F248},
-    {func_8034F570, func_8034F5B0, func_8034F568},
+    {func_8034F570, func_8034F5B0, func_8034F568}, //lightning?
 };
 
 extern struct {

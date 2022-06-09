@@ -3,7 +3,7 @@
 #include "variables.h"
 
 extern void func_802BE720(void);
-extern void func_8033A244(f32);
+extern f32 func_8033A244(f32);
 extern void func_8033A280(f32);
 
 extern u8 D_80329904[];

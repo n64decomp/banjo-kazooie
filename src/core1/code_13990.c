@@ -11,16 +11,19 @@ f32 func_80263FF0(f32);
 f32 cosf(f32);
 extern f64 D_80278220;
 
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_802513B0.s")
-/*void func_802513B0(Mtx *arg0){
+#else
+void func_802513B0(f32 arg0[4][4]){
     s32 i;
+    s32 j;
     for(i = 0; i < 4; i++){
-       arg0->m[i][0] = D_80282FD0->m[i][0];
-       arg0->m[i][1] = D_80282FD0->m[i][1];
-       arg0->m[i][2] = D_80282FD0->m[i][2];
-       arg0->m[i][3] = D_80282FD0->m[i][3];
+        for(j = 0; j < 4; j++){
+            reinterpret_cast(f32, arg0[i][j]) = reinterpret_cast(f32, D_80282FD0->m[i][j]);
+        }
     }
-}//*/
+}
+#endif
 
 Mtx *func_80251488(void){
     return D_80282FD0;
@@ -202,9 +205,40 @@ void mlMtxTranslate(f32 x, f32 y, f32 z) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_80252A38.s")
+void func_80252A38(f32 x, f32 y, f32 z) {
+    s32 var_v1;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_80252AF0.s")
+    for(var_v1 = 0; var_v1 != 3; var_v1++){
+        reinterpret_cast(f32, D_80282FD0->m[3][var_v1]) += reinterpret_cast(f32, D_80282FD0->m[0][var_v1])*x + reinterpret_cast(f32, D_80282FD0->m[1][var_v1])*y + reinterpret_cast(f32, D_80282FD0->m[2][var_v1])*z;
+    }
+}
+
+void func_80252AF0(f32 arg0[3], f32 arg1[3], f32 rotation[3], f32 scale, f32 arg4[3]) {
+    f32 sp1C[3];
+    
+    if (arg1 != NULL) {
+        sp1C[0] = arg1[0] - arg0[0];
+        sp1C[1] = arg1[1] - arg0[1];
+        sp1C[2] = arg1[2] - arg0[2];
+    } else {
+        sp1C[0] = arg0[0] * -1.0f;
+        sp1C[1] = arg0[1] * -1.0f;
+        sp1C[2] = arg0[2] * -1.0f;
+    }
+    mlMtxTranslate(sp1C[0], sp1C[1], sp1C[2]);
+    if (rotation != NULL) {
+        mlMtxRotYaw(rotation[1]);
+        mlMtxRotPitch(rotation[0]);
+        mlMtxRotRoll(rotation[2]);
+    }
+    if (scale != 1.0f) {
+        mlMtxScale_xyz(scale, scale, scale);
+    }
+    if (arg4 != NULL) {
+        mlMtxTranslate(-arg4[0], -arg4[1], -arg4[2]);
+    }
+}
+
 
 void func_80252C08(f32 arg0[3], f32 arg1[3], f32 scale, f32 arg3[3]){
     if(arg0 != NULL)

@@ -164,30 +164,6 @@ typedef struct jinjo_s{
     s32     unkC;
 }ActorLocal_Jinjo;
 
-
-
-typedef struct ch_fight_180_s{
-    u8 unk0;
-    u8 unk1;
-    u8 pad2;
-    u8 pad3;
-    u8 pad4;
-    u8 pad5;
-    u8 pad6;
-    u8 pad7;
-    u8 unk8;
-    u8 unk9;
-    u8 padA;
-    u8 unkB;
-    u8 unkC;
-    u8 unkD;
-    u8 unkE;
-    u8 unkF;
-    s32 unk10;
-    f32 unk14;
-    f32 unk18[3];
-}ActorLocal_fight_180;
-
 typedef struct ch_sm_4070{
     s32 unk0;
 }ActorLocal_SM_4070;
@@ -254,7 +230,6 @@ typedef struct actor_s{
         ActorLocal_BGS_6730 bgs_6730;
         ActorLocal_TanktupBody tanktup;
         ActorLocal_Jinjo jinjo;
-        ActorLocal_fight_180 fight_180;
         ActorLocal_SM_4070 sm_4070;
         u8  local[1];
         struct{ 
