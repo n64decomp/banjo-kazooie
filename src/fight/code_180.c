@@ -2,13 +2,15 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void func_8028F4B8(s32, f32, f32);
+extern f32  func_8025715C(f32, f32);
+extern void func_8025727C(f32, f32, f32, f32, f32, f32, f32*, f32*);
+extern void func_8028F4B8(f32[3], f32, f32);
+extern void func_80320ED8(ActorMarker *, f32, s32);
 
 void func_80386570(ActorMarker *arg0, Gfx **arg1, Mtx **arg2, s32 arg3);
+void func_80387110(ActorMarker *, f32[3], f32, s32);
 void func_8038856C(Actor *actor, f32 *arg1);
 void func_8038BCF0(Actor *this);
-void func_80387110(ActorMarker *, f32[3], f32, s32);
-void func_8025727C(f32, f32, f32, f32, f32, f32, f32*, f32*);
 void func_802C8F70(f32);
 s32 func_803297C8(Actor*, s32*);
 Actor *func_8032813C();
@@ -17,9 +19,22 @@ extern Actor* func_80329958(ActorMarker *this, s32 arg1);
 extern void func_803298D8();
 void func_80324E88(f32);
 extern void func_80324E60(Actor*, s32, f32);
+extern void func_80324CFC(f32, enum comusic_e, s32);
+extern void func_8030DABC(u8, s32);
+extern void func_80328FF0(Actor *arg0, f32 arg1);
+extern f32 func_80257204(f32, f32, f32, f32);
+extern void func_8028F85C(f32[3]);
+extern void func_8028FAEC(f32[3]);
+extern f32 func_8033229C(ActorMarker *);
+
 
 void func_80388184(Actor *arg0, s32 arg1);
+ActorMarker *func_8038A4E8(Actor *, f32);
+void func_8038AC88(Actor *, s32);
 void func_8038B780();
+void func_8038C5F0(Actor *, s32, s32, f32);
+void func_80391070(ActorMarker *, s32 arg1, s32 arg2);
+void func_803911F8(ActorMarker *);
 
 typedef struct ch_fight_180_s{
     u8 unk0;
@@ -49,10 +64,9 @@ typedef struct ch_fight_180_s{
 }ActorLocal_fight_180;
 
 /* .data */
-extern f32 D_80391380[4];
-extern f32 D_80391390[4];
-extern ActorAnimationInfo D_803913A0[]; /* =
-{
+f32 D_80391380[4] = {1.0f, 1.0f, 1.0f, 1.0f};
+f32 D_80391390[4] = {0.33f, 0.33f, 0.33f, 1.0f};
+ActorAnimationInfo D_803913A0[] = {
     { 0, 0.0f},
     { 0x1C5, 0.6f},
     { 0x1C5, 0.6f},
@@ -97,73 +111,96 @@ extern ActorAnimationInfo D_803913A0[]; /* =
     { 0x283, 0.25f},
     { 0x27A, 1.0f},
     { 0x266, 4.0f}
-};*/
+};
 
-extern ActorInfo D_80391500;/* = {
+ActorInfo D_80391500 = {
     0x25E, 0x38B, 0x53D, 
     1,  D_803913A0,
     func_8038BCF0, func_80326224, func_80386570,
     { 0, 0}, 0, 0.0f, {0, 0, 0, 0}
-};*/
-extern f32 D_80391524[3]; //= {0.0f, -8.0f, 400.0f};
-extern f32 D_80391530[3]; //= {0.0f, -8.0f, 0.0f};
+};
+f32 D_80391524[3] = {0.0f, -8.0f, 400.0f};
 
-//                                      3F 80 00 00
-// 3F 80 00 00 3F 80 00 00  3F 80 00 00 00 00 00 00
-// 3C 23 D7 0A 40 33 33 33  40 4C CC CD 3F 00 00 00
-// 3F 33 33 33 C3 96 00 00  C3 96 00 00 C3 96 00 00
-// 43 96 00 00 43 FA 00 00  43 96 00 00 00 00 00 00
-// C4 96 00 00 00 00 00 00  00 00 00 00 C4 96 00 00
-// 00 00 00 00 C2 C8 00 00  C1 A0 00 00 C2 C8 00 00
-// 42 C8 00 00 42 C8 00 00  42 C8 00 00 00 00 00 24
-// 00 00 00 24 00 00 00 24  C2 8C 00 00 C2 48 00 00
-// C2 8C 00 00 42 8C 00 00  42 48 00 00 42 8C 00 00
-// C2 C8 00 00 C1 A0 00 00  C2 C8 00 00 42 C8 00 00
-// 42 C8 00 00 42 C8 00 00  3F E6 66 66 40 06 66 66
-// 3F A6 66 66 3F B3 33 33  00 00 00 00 3C 23 D7 0A
-// 3F 8C CC CD 3F A6 66 66  3E 19 99 9A 3E 99 99 9A
-extern struct31s D_8039153C;
-extern struct43s D_80391564;
-extern s32 D_803915AC[3];
-extern struct42s D_803915B8;
-extern struct40s D_803915E8;
-extern struct42s D_80391618;
-extern struct40s D_80391648;
-extern struct43s D_80391678;
-extern s32 D_803916F4;
-extern f32 D_80391700[3];
-extern s32 D_8039170C;
-extern f32 D_80391710[3];
-extern f32 D_8039171C[3];
-extern f32 D_80391728;
-extern s32 D_80391738[];
-extern s32 D_80391804;
-extern f32 D_803920C8;
-extern f32 D_803920CC;
-extern f32 D_803920D0;
-extern f32 D_803920D4;
-extern f32 D_803920D8;
-extern f32 D_803920DC;
-extern f32 D_803920E0;
-extern f32 D_803920E4;
-extern f32 D_803920E8;
-extern f32 D_803920EC;
-extern f32 D_803920F0;
-extern f32 D_803920F4;
-extern f64 D_803920F8;
-//extern f64 D_80392100; // = -500.0;
-extern s32 D_80392108[6];
-// s32 D_80392108[] = {
-//     0x80387794, 0x803877F8,
-//     0x803878FC, 0x803879A0,
-//     0x80387A20, 0x80387A98
-// };
+f32 D_80391530[3] = {0.0f, -8.0f, 0.0f};
+
+struct31s D_8039153C ={
+        {1.0f, 1.0f},
+        {1.0f, 1.0f},
+        {0.0f, 0.01f},
+        {2.8f, 3.2f},
+        0.5f, 0.7f
+};
+
+struct43s D_80391564 ={
+    {{-300.0f, -300.0f}, {-300.0f, 300.0f}, {500.0f, 300.0f}},
+    {{0.0f, -1200.0f, 0.0f}, {0.0f, -1200.0f, 0.0f}},
+    {{-100.0f, -20.0f, -100.0f},{100.0f, 100.0f, 100.0f}}
+};
+
+s32 D_803915AC[3] = {0x24, 0x24, 0x24};
+
+struct42s D_803915B8 = {
+    {{-70.0f, -50.0f},{-70.0f, 70.0f},{50.0f, 70.0f}},
+    {{-100.0f, -20.0f, -100.0f},{100.0f, 100.0f, 100.0f}}
+};
+
+struct40s D_803915E8 ={
+    {
+        {1.8f, 2.1f},
+        {1.3f, 1.4f},
+        {0.0f, 0.01f},
+        {1.1f, 1.3f},
+        0.15f, 0.3f
+    },
+    4.0f, 1.0f
+};
+
+struct42s D_80391618 = {
+    {{-10.0f, -10.0f}, {-10.0f, 10.0f}, {10.0f, 10.0f,}},
+    {{0.0f, 30.0f, 0.0f}, {0.0f, 30.0f, 0.0f}}
+};
+
+struct40s D_80391648 = {
+    {{0.2f, 0.3f}, {0.5f, 0.6f}, {0.0f, 0.01f}, {1.1f, 1.3f}, 0.01, 0.7}, 4.0f, 1.0f
+};
+
+struct43s D_80391678 = {
+    {{-50, -50}, {-50, 50}, {50, 50}},
+    {{0, -50, 0}, {0, -50, 0}},
+    {{-60, 60, -60}, {60, 60, 60}}
+};
+
+s32 D_803916C0[3] = {0xff, 0xff, 0xff};
+s32 D_803916CC[3] = {0xff, 0, 0};
+s32 D_803916D8[3] = {0x4B, 0x4B, 0x4B};
+
+f32 D_803916E4[4] = {0.1f, 0.2f, 1.9f, 3.9f};
+
+f32 D_803916F4[3] = {0.0f, 0.0f, 0.0f};
+f32 D_80391700[3] = {0.0f, 0.0f, 0.0f};
+s32 D_8039170C = 0;
+f32 D_80391710[3] = {0.0f, 0.0f, 600.0f};
+f32 D_8039171C[3] = {0.0f, 0.0f, -600.0f};
+f32 D_80391728[4] = {0.1f, 0.2f, 3.9f, 4.9f};
+s32 D_80391738[4] = {0xCE4, 0x10C2, 0x14A0, 0x187E};
+f32 D_80391748[4] = {1.4f, 1.1f, 0.8f, 0.5f};
+f32 D_80391758[4] = {1000.0f, 1100.0f, 1200.0f, 1300.0f};
+f32 D_80391768[3] = {-1290.0f, 0.0f, 1290.0f};
+f32 D_80391774[3] = {-1290.0f, 0.0f, -1290.0f};
+f32 D_80391780[3] = {1290.0f, 0.0f, -1290.0f};
+f32 D_8039178C[3] = {1290.0f, 0.0f, 1290.0f};
+f32 D_80391798[3] = {0.0f, 0.0f, 0.0f};
+f32 D_803917A4[4] = {500.0f, 650.0f, 800.0f, 950.0f};
+f32 D_803917B4[4] = {3.75f, 3.0f, 2.25f, 1.5f}; 
+s32 D_803917C4[3] = {230, 230, 230};
+f32 D_803917D0[4] = {2.4f, 2.1f, 1.8f, 1.5f};
+f32 D_803917E0[3] = {0.0f, 186.0f, 0.0f};
+f32 D_803917EC[3] = {-827.0f, 793.0f, 1700.0f};
+f32 D_803917F8[3] = {827.0f, 793.0f, -1700.0f};
+f32 D_80391804[3] = {0.0f, 0.0f, 1350.0f};
+
 
 /* .rodata */
-extern f64 D_80392210;
-// jtbl_80392218
-// jtbl_80392234
-// jtbl_8039224C
 // jtbl_80392280
 // jtbl_80392310
 // jtbl_80392388
@@ -175,6 +212,7 @@ extern f32 D_80392440;
 extern f32 D_80392444;
 extern f32 D_80392448;
 extern f32 D_8039244C;
+extern f32 D_80392450;
 // jtbl_80392454
 
 extern f64 D_80392470;
@@ -183,17 +221,16 @@ extern f32 D_80392478;
 
 
 /* .bss */
+// u8 pad_80392740[0x10];
+// f32 D_80392750;
 extern f32 D_80392758[3];
 extern f32 D_80392768[3];
 extern f32 D_80392778[3];
 extern f32 D_80392788[3];
-extern f32 D_80392798[];
+extern f32 D_80392798[3];
 extern ActorMarker *D_803927A4;
 extern ActorMarker *D_803927A8;
-extern s32 D_803927B0;
-extern s32 D_803927B4;
-extern s32 D_803927B8;
-extern s32 D_803927BC;
+extern ActorMarker *D_803927B0[4];
 extern u8 D_803927C4;
 extern u8 D_803927C5;
 extern u8 D_803927C6;
@@ -201,6 +238,11 @@ extern u8 D_803927C7;
 extern u8 D_803927C8;
 extern u8 D_803927C9;
 extern f32 D_803927D0[3][3];
+extern f32 D_803928B8[3];
+extern f32 D_803927C0;
+extern s32 D_803928C4;
+extern f32 D_803928C8[3];
+
 
 /* .code */
 void func_80386570(ActorMarker *arg0, Gfx **arg1, Mtx **arg2, s32 arg3) {
@@ -316,11 +358,7 @@ void func_80386934(f32 position[3], enum asset_e sprite_id) {
     func_802EFC28(temp_s0, &D_80391648);
 }
 
-extern TUPLE(s32, unk) D_803916C0;
-extern TUPLE(s32, unk) D_803916CC;
-extern TUPLE(s32, unk) D_803916D8;
-extern s32 D_803916E4;
-extern f64 D_803920C0;
+
 void func_803869BC(Actor *this) {
     s32 sp3C;
     TUPLE(s32, unk) sp30;
@@ -332,19 +370,19 @@ void func_803869BC(Actor *this) {
         sp3C = func_8023DB5C();
         temp_t3 = (u32) this->state;
         if ((temp_t3 == 6) || (temp_t3 == 7)) {
-            sp30.unk_x = D_803916CC.unk_x;
-            sp30.unk_y = D_803916CC.unk_y;
-            sp30.unk_z = D_803916CC.unk_z;
+            sp30.unk_x = D_803916CC[0];
+            sp30.unk_y = D_803916CC[1];
+            sp30.unk_z = D_803916CC[2];
             sp2C = 0x715;
         } else if ((temp_t3 == 8) || (temp_t3 == 9)) {
-            sp30.unk_x = D_803916D8.unk_x;
-            sp30.unk_y = D_803916D8.unk_y;
-            sp30.unk_z = D_803916D8.unk_z;
+            sp30.unk_x = D_803916D8[0];
+            sp30.unk_y = D_803916D8[1];
+            sp30.unk_z = D_803916D8[2];
             sp2C = 0x000;
         } else {
-            sp30.unk_x = D_803916C0.unk_x;
-            sp30.unk_y = D_803916C0.unk_y;
-            sp30.unk_z = D_803916C0.unk_z;
+            sp30.unk_x = D_803916C0[0];
+            sp30.unk_y = D_803916C0[1];
+            sp30.unk_z = D_803916C0[2];
             sp2C = 0x713;
         }
         func_8034A174(this->marker->unk44, 7, &sp20);
@@ -354,7 +392,7 @@ void func_803869BC(Actor *this) {
         if (sp2C == 0) {
             func_8038856C(this, &D_803916E4);
         }
-        if ((sp2C != 0) && ((sp2C == 0x715) || (sp2C = sp2C, ((f64) randf() < D_803920C0)))) {
+        if ((sp2C != 0) && ((sp2C == 0x715) || (sp2C = sp2C, (randf() < 0.62)))) {
             func_80386934(&sp20, sp2C);
         }
     }
@@ -444,7 +482,7 @@ void func_80386EC0(s32 arg0) {
     ActorMarker *marker;
 
     marker = func_8032813C(0x38A, &D_80392758, 0)->marker;
-    func_8030E878(SFX_147_GRUNTY_SPELL_ATTACK_2, randf2(D_803920C8, D_803920CC), 0x7D00, &D_80392758, D_803920D0, D_803920D4);
+    func_8030E878(SFX_147_GRUNTY_SPELL_ATTACK_2, randf2(0.95f, 1.05f), 32000, &D_80392758, 5000.0f, 12000.0f);
     func_803900DC(marker, &D_80392758, D_80392768[1], D_80392768[2]);
 }
 
@@ -462,7 +500,7 @@ void func_80386FD8(s32 arg0) {
     ActorMarker *marker;
 
     marker = func_8032813C(0x389, D_80392758, 0)->marker;
-    func_8030E878(SFX_146_GRUNTY_SPELL_ATTACK_1, randf2(D_803920D8, D_803920DC), 0x7D00, D_80392758, D_803920E0, D_803920E4);
+    func_8030E878(SFX_146_GRUNTY_SPELL_ATTACK_1, randf2(0.95f, 1.05f), 0x7D00, D_80392758, 5000.0f, 12000.0f);
     func_8038FB84(marker, D_80392758, D_80392768, D_80392778);
 }
 
@@ -470,7 +508,7 @@ void func_80387074(s32 arg0) {
     ActorMarker *marker;
 
     marker = func_8032813C(0x3AA, D_80392758, 0)->marker;
-    func_8030E878(SFX_146_GRUNTY_SPELL_ATTACK_1, randf2(D_803920E8, D_803920EC), 0x7D00, D_80392758, D_803920F0, D_803920F4);
+    func_8030E878(SFX_146_GRUNTY_SPELL_ATTACK_1, randf2(0.95f, 1.05f), 32000, D_80392758, 5000.0f, 12000.0f);
     func_8038FB84(marker, D_80392758, D_80392768, D_80392778);
 }
 
@@ -500,7 +538,7 @@ void func_80387110(ActorMarker *this, f32 arg1[3], f32 arg2, s32 arg3) {
     }
     
     D_80392778[0] = 0.0f;
-    D_80392778[1] = (arg3 == 0) ? D_803920F8 : -500.0;
+    D_80392778[1] = (arg3 == 0) ? -1000.0 : -500.0;
     D_80392778[2] = 0.0f;
         
     for(i = 0; i < 3; i++){
@@ -691,13 +729,10 @@ void func_80387728(ActorMarker *this, u32 arg1)
     }
 }
 
-extern void func_80328FF0(Actor *arg0, f32 arg1);
 void func_80387ACC(Actor *arg0, f32 arg1) {
     func_80328CA8(arg0, 0);
     func_80328FF0(arg0, arg1);
 }
-
-extern f32 func_8025715C(f32, f32);
 
 void func_80387B00(Actor *this) {
     ActorLocal_fight_180 *local;
@@ -730,11 +765,51 @@ void func_80387B00(Actor *this) {
     local->unk20 = local->unk14;
 }
 
-void func_80387BFC(Actor *this, f32 arg1);
-#pragma GLOBAL_ASM("asm/nonmatchings/fight/code_180/func_80387BFC.s")
+void func_80387BFC(Actor *this, f32 arg1) {
+    ActorLocal_fight_180 *local;
+    f32 sp58;
+    f32 sp54;
+    f32 sp50;
+    f32 sp44[3];
 
-void func_80387D4C(Actor *);
-#pragma GLOBAL_ASM("asm/nonmatchings/fight/code_180/func_80387D4C.s")
+    local = (ActorLocal_fight_180 *) this->local;
+    sp58 = local->unk14 * local->unk14;
+    sp54 = local->unk20 * local->unk20;
+    sp50 = local->unk18 - local->unk1C;
+    func_80328CA8(this, (s32)func_8025715C((2.0 * local->unk20 * sp50), sp58));
+    func_80328FF0(this, arg1);
+    this->position[0] = this->unk1C[0] + this->velocity[0] * local->unk20;
+    this->position[1] = this->unk1C[1] + this->velocity[1] * local->unk20;
+    this->position[2] = this->unk1C[2] + this->velocity[2] * local->unk20;
+    this->position[1] = local->unk1C + ((sp50 * sp54) / sp58);
+    sp44[0] = this->velocity[0] * sp58;
+    sp44[1] = 2.0 * local->unk20 * sp50;
+    sp44[2] = this->velocity[2] * sp58;
+    ml_vec3f_normalize(sp44);
+    sp44[0] *= this->unk28;
+    sp44[1] *= this->unk28;
+    sp44[2] *= this->unk28;
+}
+
+void func_80387D4C(Actor *actor) {
+    ActorLocal_fight_180 *local;
+    f32 sp20[3];
+
+    local = (ActorLocal_fight_180 *) actor->local;
+
+    actor->position[0] = actor->unk1C[0] + actor->velocity[0] * local->unk20;
+    actor->position[2] = actor->unk1C[2] + actor->velocity[2] * local->unk20;
+    actor->position[1] = local->unk1C - local->unk2C * local->unk20;
+
+    sp20[0] = actor->velocity[0] * local->unk14;
+    sp20[1] = -2.0 * (100.0f - local->unk1C);
+    sp20[2] = actor->velocity[2] * local->unk14;
+
+    ml_vec3f_normalize(sp20, actor);
+    sp20[0] = sp20[0] * actor->unk28;
+    sp20[1] = sp20[1] * actor->unk28;
+    sp20[2] = sp20[2] * actor->unk28;
+}
 
 void func_80387E1C(Actor *this, f32 arg1[3]) {
     ActorLocal_fight_180 *local;
@@ -986,7 +1061,7 @@ void func_80388758(ActorMarker *marker) {
         local->unk20 -= this->unk28 * sp54;
         func_80387BFC(this, 180.0f * sp54);
         func_80328FB0(this, 30.0f * sp54);
-        if ((local->unkA == 0) && (local->unk20 < (local->unk14 * /*0.65*/D_80392210))) {
+        if ((local->unkA == 0) && (local->unk20 < (local->unk14 * 0.65))) {
             local->unkA = 1U;
             func_8030E8B4(0x4CBB58C4, this->position, 0x271007D0);
         }
@@ -1095,19 +1170,163 @@ void func_80388758(ActorMarker *marker) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/fight/code_180/func_803891E4.s")
+void func_803891E4(Actor *this, s32 arg1){
+    ActorLocal_fight_180 *local;
+    s32 sp28;
+
+    local = (ActorLocal_fight_180 *)&this->local;
+    sp28 = func_8023DB5C();
+    local->unk0 = 2;
+    func_80328B8C(this, arg1, 0.0001f, 1);
+    actor_loopAnimation(this);
+    switch (arg1) {
+    case 14:
+        local->unk5 = local->unk1 + 8;
+        this->unk1C[0] = D_803927D0[local->unk5][0];
+        this->unk1C[1] = D_803927D0[local->unk5][1];
+        this->unk1C[2] = D_803927D0[local->unk5][2];
+        break;
+    case 19:
+        if (sp28 & 1) {
+            func_8030E8B4(0x7FFF4132, this->position, 0x2EE01B58);
+        }
+        else{
+            func_8030E8B4(0x7FFF4133, this->position, 0x2EE01B58);
+        }
+        break;
+    case 20:
+        func_8030E8B4(0x7FFF4131, this->position, 0x2EE01388);
+        local->unkA = 0;
+        break;
+    case 17:
+        func_8025A6EC(SFX_GRUNTY_SPELL_POWERUP, 0x7530);
+        break;
+    }
+}
 
 void func_80389358(s32 arg0, s32 arg1, s32 arg2) {
     s32 *arg0ptr = &arg0; // Does not match without the pointer
     func_802C3C88(&func_80386E5C, *arg0ptr);
 }
 
-void func_8038938C(ActorMarker *marker);
-#pragma GLOBAL_ASM("asm/nonmatchings/fight/code_180/func_8038938C.s")
+void func_8038938C(ActorMarker *marker) {
+    Actor *this;
+    ActorLocal_fight_180 *local;
+    f32 sp4C;
+    s32 sp48;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/fight/code_180/func_80389720.s")
+    this = marker_getActor(marker);
+    local = (ActorLocal_fight_180 *)&this->local;
+    sp4C = time_getDelta();
+    sp48 = local->unk1;
+    switch (this->state) {
+        case 14:
+            func_803869BC(this);
+            func_80387ACC(this, 30.0f * sp4C);
+            if (func_80387470(this, this->unk1C, ml_map_f(func_80256064(this->position, this->unk1C), 70.0f, 1000.0f, 100.0f, D_80391758[sp48]), D_80391758[sp48] * 2, 160.0f, 500.0f, 70.0f)) {
+                local->unkA = 1;
+                func_803891E4(this, 0xF);
+            }
+            break;
 
-void func_80389720();
+        case 15:
+            if (func_80386BEC(this, 9.0f)) {
+                func_803891E4(this, 0x10);
+            }
+            break;
+        case 16:
+            func_80386BEC(this, 3.0f);
+            func_80387340(this, 1.3f);
+            if (actor_animationIsAt(this, 0.9999f)) {
+                func_803891E4(this, 0x12);
+                local->unk3++;
+                if (local->unk3 >= 4) {
+                    local->unk3 = 0U;
+                    this->unk60 = D_80391748[sp48] * 3.0f;
+                }
+                else{
+                    this->unk60 = D_80391748[sp48];
+                }
+            }
+            break;
+        case 17:
+            func_80386BEC(this, 3.0f);
+            func_803873DC(this, 1200.0f, 2400.0f);
+            if (actor_animationIsAt(this, 0.9999f)) {
+                func_80387728(this->marker, 3);
+            }
+            break;
+        case 18:
+            func_80386BEC(this, 3.0f);
+            if (this->unk60 > 0.0) {
+                this->unk60 = this->unk60 - sp4C;
+                break;
+            }
+            if (func_80386BEC(this, 3.0f)) {
+                func_803891E4(this, 0x10);
+            }
+            break;
+        case 19:
+            if (actor_animationIsAt(this, 0.9999f)) {
+                func_803891E4(this, 0xE);
+            }
+            break;
+        case 20:
+            if (actor_animationIsAt(this, 0.9999f)) {
+                if (local->unk1 >= 4) {
+                    func_80311480(randi2(0, 5) + 0x1115, 0x20, NULL, NULL, NULL, NULL);
+                    func_80311480(randi2(0, 3) + 0x111A, 4, NULL, this->marker, NULL, func_80389358);
+                    func_803891E4(this, 0x11);
+                }
+                else{
+                    func_803891E4(this, 0xE);
+                    func_803880A0(this, 2000.0f);
+                }
+            }
+            break;
+    }
+}
+
+void func_80389720(s32 arg0) {
+    static u8 pad[0x10];
+    static f32 D_80392750;
+    s32 pad24;
+    s32 pad20;
+    Actor *sp1C;
+    ActorLocal_fight_180 *local;
+    // f32 tmp_a2;
+
+    // sp1C = ;
+    local = (ActorLocal_fight_180 *)&func_80326EEC(0x38B)->local;
+
+    switch (arg0) {
+    case 1:
+        sp1C = func_8032813C(0x3A2, D_80391768, 0x87);
+        D_803927B0[0] = sp1C->marker;
+        break;
+    case 2:
+        sp1C = func_8032813C(0x3A2, D_80391774, 0x2D);
+        D_803927B0[1] = sp1C->marker;
+        break;
+    case 3:
+        sp1C = func_8032813C(0x3A2, D_80391780, 0x13B);
+        D_803927B0[2] = sp1C->marker;
+        break;
+    case 4:
+        sp1C = func_8032813C(0x3A2, D_8039178C, 0xE1);
+        D_803927B0[3] = sp1C->marker;
+        break;
+    case 5:
+        //closest non-static match
+        // D_80392750 = tmp_a2 = ((local->unk7) ? 0.0f : 180.0f);
+        // sp1C = func_8032813C(0x3A9, D_80391798, (s32)tmp_a2);
+        D_80392750 = ((local->unk7) ? 0.0f : 180.0f);
+        sp1C = func_8032813C(0x3A9, D_80391798, (s32)D_80392750);
+        break;
+    }
+    sp1C->unk60 = (arg0 == 5) ? 5.25f : 1.54f;
+    sp1C->unkF4_8 = arg0;
+}
 
 void func_803898A4(s32 arg0) {
     s32 *arg0ptr = &arg0; // Does not match without the pointer
@@ -1137,27 +1356,420 @@ void func_80389944(ActorMarker *marker, s32 arg1, s32 arg2) {
     func_80387728(actor->marker, 4);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/fight/code_180/func_8038998C.s")
+void func_8038998C(Actor *this, s32 arg1) {
+    ActorLocal_fight_180 *local;
+    s32 i;
+
+    local = (ActorLocal_fight_180 *)&this->local;
+    local->unk0 = 3;
+    func_80328B8C(this, arg1, 0.0001f, 1);
+    switch (arg1) {
+    case 21:
+        if((local->unk5 + 1) < 0x10) {
+            local->unk5++;
+        } else{
+            local->unk5 =  0xC;
+        }
+        this->unk1C[0] = D_803927D0[local->unk5][0];
+        this->unk1C[1] = D_803927D0[local->unk5][1];
+        this->unk1C[2] = D_803927D0[local->unk5][2];
+        for(i = 0; i < 3; i++){
+            this->unk1C[i] += randf2(-120.0f, 120.0f);
+        };
+        break;
+    case 24:
+        local->unk3 = 0;
+        break;
+    case 25:
+        func_8030E8B4(0x7FFF4131, this->position, 0x2EE01388);
+        break;
+    case 26:
+        func_80386CF8(this);
+        func_80324E38(0.0f, 1);
+        func_80311480(randi2(0, 5) + 0x112C, 0xA8, NULL, this->marker, func_80389944, NULL);
+        break;
+    }
+}
 
 void func_80389B44(s32 arg0) {
     s32 *arg0ptr = &arg0; // Does not match without the pointer
     func_802C3C88(&func_80386DE4, *arg0ptr);
 }
 
-void func_80389B70(ActorMarker *marker);
-#pragma GLOBAL_ASM("asm/nonmatchings/fight/code_180/func_80389B70.s")
+void func_80389B70(ActorMarker *marker) {
+    Actor *this;
+    ActorLocal_fight_180 *local;
+    f32 sp3C;
+    s32 sp38;
+    f32 sp34;
+    Actor *temp_v0;
+    f32 temp_f0;
+    f64 temp_f0_2;
+    u32 temp_t0;
+    u8 temp_v0_2;
+
+    this = marker_getActor(marker);
+    local = (ActorLocal_fight_180 *)&this->local;
+    sp3C = time_getDelta();
+    sp38 = local->unk1;
+    sp34 = func_802877D8(this->animctrl);
+    switch (this->state) {
+    case 21:
+        func_803869BC(this);
+        this->unk60 -= sp3C;
+        if (this->unk60 < 0.0) {
+            if (local->unkA) {
+                func_8038998C(this, 0x17);
+            } else {
+                func_8038998C(this, 0x16);
+                this->unk60 = D_803917B4[local->unk1];
+            }
+            local->unkA = NOT(local->unkA);
+            break;
+        }
+        if (func_80387470(this, this->unk1C, D_803917A4[sp38], D_803917A4[sp38], 120.0f, 520.0f, 350.0f)) {
+            func_8038998C(this, 0x15);
+            if (local->unkB == 0) {
+                local->unkB = 1;
+                timedFunc_set_1(1.2f, func_80389B44, (s32) this->marker);
+            }
+        }
+        break;
+    case 22:
+        this->unk60 -= sp3C;
+        if (this->unk60 < 0.0) {
+            func_8038998C(this, 0x15);
+            this->unk60 = 5.0f;
+        }
+        break;
+    case 23:
+        if (func_80386BEC(this, 9.0f) && (func_80297C6C() != 3)) {
+            func_8038998C(this, 0x18);
+        }
+        break;
+    case 24:
+        func_80386BEC(this, 3.0f);
+        if (func_80387340(this, 1.3f)) {
+            local->unk3++;
+        }
+        if (actor_animationIsAt(this, 0.9999f)) {
+            if (local->unk3 >= local->unk1) {
+                if (local->unk1 >= 4) {
+                    func_8038998C(this, 0x1A);
+                }
+                else{
+                    this->unk60 = 5.0f;
+                    func_8038998C(this, 0x15);
+                }
+            }
+        }
+        break;
+    case 25:
+        if (actor_animationIsAt(this, 0.9999f)) {
+            func_8038998C(this, 0x17);
+        }
+        break;
+    case 26:
+        if (actor_animationIsAt(this, 0.1f) != 0) {
+            func_80324CFC(0.0f, COMUSIC_43_ENTER_LEVEL_GLITTER, 0x7FFF);
+        }
+        if ((0.1 < sp34) && (sp34 < 0.8)) {
+            func_8034A174(this->marker->unk44, 8, D_803928B8);
+            func_80386934(D_803928B8, 0x716);
+            func_8034A174(this->marker->unk44, 9, &D_803928B8);
+            func_80386934(D_803928B8, 0x716);
+        }
+        if (actor_animationIsAt(this, 0.38f) ) {
+            func_80389918(this->marker);
+        }
+        if (actor_animationIsAt(this, 0.9999f)) {
+            func_80324D2C(0.0f, COMUSIC_43_ENTER_LEVEL_GLITTER);
+            func_80386E34();
+            func_8038998C(this, 0x1B);
+        }
+        break;
+    case 27:
+        break;
+    }
+}
+
 
 void func_80389F54(void) {
     func_80320004(0xD2, 1);
     D_803927C4 = (u8)0;
 }
 
+#ifndef NONMATCHING //matches if .bss defined
 #pragma GLOBAL_ASM("asm/nonmatchings/fight/code_180/func_80389F7C.s")
+#else
 
-#pragma GLOBAL_ASM("asm/nonmatchings/fight/code_180/func_8038A4E8.s")
+void func_80389F7C(Actor *this, s32 arg1) {
+    ActorLocal_fight_180 *local;
+    f32 sp48;
+    f32 sp3C[3];
+    s32 i;
+    static s32 D_803928C4;
+    // static u8 pad[0x180];
 
+    local = (ActorLocal_fight_180 *)&this->local;
+    sp48 = func_802877D8(this->animctrl);
+    local->unk0 = 4;
+    func_80328B8C(this, arg1, 0.0001f, 1);
+    switch (arg1) {
+    case 28:
+        func_8028764C(this->animctrl, sp48);
+        this->unk1C[0] = D_803927D0[0x10][0];
+        this->unk1C[1] = D_803927D0[0x10][1];
+        this->unk1C[2] = D_803927D0[0x10][2];
+        break;
+
+    case 30:
+        if ((local->unk3 == 2) && (local->unkA == 0)) {
+            D_803927C8 = 1;
+            func_80311480(randi2(0, 5) + 0x1136, 4, NULL, NULL, NULL, NULL);
+            if (func_8031FF1C(0xD2) == 0) {
+                local->unkA = 1U;
+                D_803927C4 = 1;
+                func_80324E38(0.0f, 1);
+                timedFunc_set_1(0.0f, func_803898A4, 1);
+                timed_setCameraToNode(0.0f, 4);
+                func_80324E88(2.2f);
+                timedFunc_set_1(2.2f, func_803898A4, 2);
+                timed_setCameraToNode(2.2f, 5);
+                func_80324E88(4.4f);
+                timedFunc_set_1(4.4f, func_803898A4, 3);
+                timed_setCameraToNode(4.4f, 6);
+                func_80324E88(6.6f);
+                timedFunc_set_1(6.6f, func_803898A4, 4);
+                timed_setCameraToNode(6.6f, 7);
+                func_80324E88(8.8f);
+                timedFunc_set_0(8.8f, func_80389F54);
+                func_80324E38(8.8f, 0);
+                break;
+            }
+            for(D_803928C4 = 1; D_803928C4 < 5; D_803928C4++){
+                func_803898A4(D_803928C4);
+            }
+        }
+        break;
+
+    case 32:
+        func_8030E878(SFX_131_GRUNTY_WEEEGH, randf2(0.95f, 1.05f), 32000, this->position, 5000.0f, 12000.0f);
+        func_802C9334(0x24, this);
+        return;
+    case 33:
+        func_8030E624(0x7FFF4131U);
+        timed_playSfx(0.6f, SFX_61_CARTOONY_FALL, 1.0f, 32000);
+        func_802C3C88(func_80386DE4, this->marker);
+        func_8030E624(0x7FFF40D9U);
+        func_80386628(this->marker, 0);
+        func_803866E4(this->position, 0x552, 1);
+        func_803866E4(this->position, 0x553, 0xC);
+        func_803866E4(this->position, 0x554, 0x14);
+        func_803866E4(this->position, 0x555, 2);
+        sp3C[0] = D_803927D0[local->unk7 + 0x11][0] - this->position[0];
+        sp3C[1] = D_803927D0[local->unk7 + 0x11][1] - this->position[1];
+        sp3C[2] = D_803927D0[local->unk7 + 0x11][2] - this->position[2];
+        this->velocity[0] = sp3C[0] / 1.7;
+        this->velocity[1] = sp3C[1] / 1.7 - -1190.0;
+        this->velocity[2] = sp3C[2] / 1.7;
+        func_8028F94C(2, this->position, local);
+        if (local->unk7 == 0) {
+            timed_setCameraToNode(0.0f, 0xA);
+            func_80324E88(1.7f);
+            timed_setCameraToNode(1.7f, 0xB);
+        }
+        else{
+            timed_setCameraToNode(0.0f, 0xC);
+            func_80324E88(1.7f);
+            timed_setCameraToNode(1.7f, 0xD);
+        }
+        break;
+    case 34:
+        actor_playAnimationOnce(this);
+        func_80311480(randi2(0, 5) + 0x1145, 0x20, NULL, NULL, NULL, NULL);
+        func_8030E6A4(SFX_1F_HITTING_AN_ENEMY_3, randf2(0.95f, 1.05f), 32000);
+        func_8030E6A4(SFX_133_GRUNTY_OHW, randf2(0.95f, 1.05f), 32000);
+        this->unk44_31 = func_8030D90C();
+        D_803927C0 = 1.0f;
+        func_8030DA80(this->unk44_31, SFX_2C_PULLING_NOISE);
+        func_8030DD14(this->unk44_31, 2);
+        func_8030DBB4(this->unk44_31, D_803927C0);
+        func_8030DABC(this->unk44_31, 26000);
+        for(i = 0; i < 4; i++){
+            if(D_803927B0[i] != NULL){
+                marker_despawn(D_803927B0[i]);
+                D_803927B0[i] = NULL;
+            }
+        }
+        break;
+    }
+}
+#endif
+
+ActorMarker *func_8038A4E8(Actor *this, f32 arg1) {
+    Actor *actor;
+    Prop *prop;
+    u32 temp_t0;
+
+    func_80320ED8(this->marker, arg1, 1);
+    prop = func_8032F528();
+    while(prop !=NULL){
+        if (prop->markerFlag){
+            actor = marker_getActor(prop->actorProp.marker);
+            temp_t0 = actor->marker->unk14_20;
+            if((temp_t0 == 0x27B) || (temp_t0 == 0x27C) || (temp_t0 == 0x27D) || (temp_t0 == 0x27E) || (temp_t0 == 0x285)) {
+                while (func_8032F528() != NULL) {}
+                return actor->marker;
+            }
+        }
+        prop = func_8032F528();
+    }
+    return NULL;
+}
+
+#ifndef NONMATCHING //matches if .rodata defined
 void func_8038A5F4(ActorMarker *marker);
 #pragma GLOBAL_ASM("asm/nonmatchings/fight/code_180/func_8038A5F4.s")
+#else
+void func_8038A5F4(ActorMarker *marker) {
+    Actor *this;
+    ActorLocal_fight_180 *local;
+    f32 sp74;
+    s32 sp70;
+    ActorMarker *sp6C;
+    f32 temp_f2;
+    f32 sp5C[3];
+    f32 sp58;
+    u32 temp_t6;
+    u8 var_a0;
+    u8 var_v1;
+
+    this = marker_getActor(marker);
+    local = (ActorLocal_fight_180 *) &this->local;
+    sp74 = time_getDelta();
+    sp70 = local->unk1;
+    sp6C = func_8038A4E8(this, func_8033229C(this->marker));
+    if (sp6C != NULL) {
+        func_8038D214(sp6C);
+        if (!func_8031FF1C(0xD1)) {
+            func_80320004(0xD1, 1);
+            D_803927C4 = 0;
+            func_80324E88(1.0f);
+            func_80324E38(1.0f, 0);
+        }
+        if (local->unk1 == 0) {
+            func_80311480(randi2(0, 5) + 0x1140, 0x20, NULL, NULL, NULL, NULL);
+        }
+        if ((local->unk1 + 1) < 4) {
+            local->unk1++;
+            func_80389F7C(this, 0x20);
+            return;
+        }
+        temp_t6 = marker_getActor(sp6C)->marker->unk14_20;
+        if ((temp_t6 == 0x27B) || (temp_t6 == 0x27E)) {
+            local->unk7 = FALSE;
+        } else {
+            local->unk7 = TRUE;
+        }
+        func_80389F7C(this, 0x21);
+        return;
+    }
+    switch (this->state) {
+        case 28:
+            func_803869BC(this);
+            if (func_80387470(this, this->unk1C, 500.0f, 1000.0f, 140.0f, 500.0f, 120.0f)) {
+                func_80389F7C(this, 0x1D);
+            }
+            break;
+
+        case 29:
+            if ((func_80386BEC(this, 9.0f)) && (func_80297C6C() != 3) && (D_803927C4 == 0)) {
+                func_80389F7C(this, 0x1E);
+            }
+            break;
+
+        case 30:
+            func_80386BEC(this, 3.0f);
+            if (D_803927C4 == 0) {
+                func_80387340(this, 1.0f);
+                if (actor_animationIsAt(this, 0.9999f)) {
+                    local->unk3++;
+                    func_80389F7C(this, 0x1F);
+                    this->unk60 = D_803917D0[sp70];
+                }
+            } else {
+                func_80389F7C(this, 0x1D);
+            }
+            break;
+
+        case 31:
+            func_80386BEC(this, 3.0f);
+            if (this->unk60 > 0.0) {
+                this->unk60 -= sp74;
+            }
+            if (func_80386BEC(this, 3.0f)) {
+                func_80389F7C(this, 0x1E);
+            }
+            break;
+
+        case 32:
+            if (actor_animationIsAt(this, 0.9999f)) {
+                func_80389F7C(this, 0x1C);
+            }
+            break;
+
+        case 33:
+            func_80386BEC(this, 3.0f);
+            sp5C[0] = this->position[0] + (this->velocity[0] * sp74);
+            sp5C[1] = this->position[1] + (this->velocity[1] * sp74);
+            sp5C[2] = this->position[2] + (this->velocity[2] * sp74);
+            temp_f2 = func_80309724(&sp5C);
+            if (sp5C[1] < temp_f2) {
+                this->position[0] = sp5C[0];
+                this->position[1] = sp5C[1];
+                this->position[2] = sp5C[2];
+                this->position[1] = temp_f2;
+                func_80389F7C(this, 0x22);
+                func_8030E6A4(SFX_1F_HITTING_AN_ENEMY_3, randf2(0.95f, 1.05f), 0x7D00);
+                func_8030E6A4(SFX_132_GRUNTY_YOW, randf2(0.95f, 1.05f), 0x7D00);
+            }
+            else{
+                this->position[0] = sp5C[0];
+                this->position[1] = sp5C[1];
+                this->position[2] = sp5C[2];
+                this->velocity[1] += -1400.0f * sp74;
+            }
+            break;
+
+        case 34:
+            sp58 = func_802877D8(this->animctrl);
+            if (actor_animationIsAt(this, 0.17f) != 0) {
+                func_8030E6A4(SFX_1F_HITTING_AN_ENEMY_3, randf2(0.95f, 1.05f), 0x7D00);
+                func_8030E6A4(SFX_133_GRUNTY_OHW, randf2(0.95f, 1.05f), 0x7D00);
+            }
+            if (actor_animationIsAt(this, 0.1f) != 0) {
+                func_8030E6A4(SFX_1F_HITTING_AN_ENEMY_3, randf2(0.95f, 1.05f), 0x7D00);
+                func_8030E6A4(SFX_12A_GRUNTY_AH, randf2(0.95f, 1.05f), 0x7D00);
+            }
+            if ((sp58 >= 0.4) && (sp58 <= 0.65)) {
+                func_8030DBB4(this->unk44_31, ((D_803927C0 += 0.005) > 1.99) ? 1.99 : (D_803927C0 += 0.005));
+                func_8030E2C4(this->unk44_31);
+            }
+            if (actor_animationIsAt(this, 0.56f)) {
+                func_8030E6A4(SFX_C5_TWINKLY_POP, randf2(0.95f, 1.05f), 0x7D00);
+            }
+            else if (actor_animationIsAt(this, 0.9999f)) {
+                func_80324E88(0.0f);
+                func_80324E38(0.0f, 0);
+                func_80387728(this->marker, 5);
+                func_8030DA44(this->unk44_31);
+                this->unk44_31 = 0U;
+            }
+            break;
+    }
+}
+#endif;
 
 void func_80328B8C(Actor *, s32, f32, s32);
 
@@ -1165,7 +1777,86 @@ void func_8038AC50(ActorMarker *arg0) {
     func_80328B8C(marker_getActor(arg0), 0x24, 0.0001f, 1);
 }
 
+#ifndef NONMATCHING //matches but requires .rodata
+void func_8038AC88(Actor *this, s32 arg1);
 #pragma GLOBAL_ASM("asm/nonmatchings/fight/code_180/func_8038AC88.s")
+#else
+void func_8038AC88(Actor *this, s32 arg1) {
+    ActorLocal_fight_180 *local;
+    s32 sp28;
+    u8 temp_v0;
+    u8 temp_v0_2;
+
+
+    local = (ActorLocal_fight_180 *)&this->local;
+    sp28 = 0x12;
+    local->unk0 = 5;
+    func_80328B8C(this, arg1, 0.0001f, 1);
+    switch (arg1) {
+        case 35:
+            func_80311480(randi2(0, 5) + 0x114F, 4, NULL, NULL, NULL, NULL);
+            if (local->unk7) {
+                sp28 = 0x13;
+            }
+            func_8028F94C(2, this->position);
+            timedFunc_set_1(0.0f, func_803898A4, 5);
+            timed_setCameraToNode(0.0f, sp28);
+            func_80324E88(7.5f);
+            timedFunc_set_1(7.5f, func_8038AC50, (s32) this->marker);
+            func_80324E38(7.5f, 0);
+            break;
+
+        case 36:
+            func_8038AC50((s32) this->marker);
+            break;
+
+        case 37:
+            local->unk3 = 0;
+            break;
+
+        case 40:
+            func_802BB41C(0);
+            if (this->unk44_31 == 0) {
+                this->unk44_31 = func_8030D90C();
+                func_8030DA80(this->unk44_31, SFX_134_FREEZING_SHIVER);
+                func_8030DD14(this->unk44_31, 2);
+                func_8030DBB4(this->unk44_31, 1.0f);
+                func_8030DABC(this->unk44_31, 0x4268);
+            }
+            break;
+
+        case 41:
+            this->unk7C[2] = 0;
+            if (this->unk44_31 == 0) {
+                this->unk44_31 = func_8030D90C();
+                func_8030DA80(this->unk44_31, SFX_134_FREEZING_SHIVER);
+                func_8030DD14(this->unk44_31, 3);
+                func_8030DBB4(this->unk44_31, 1.0f);
+                func_8030DABC(this->unk44_31, 0x4268);
+                func_8030E2C4(this->unk44_31);
+            }
+            break;
+
+        case 42:
+            if (randf() < 0.5) {
+                func_8030E878(SFX_131_GRUNTY_WEEEGH, randf2(0.95f, 1.05f), 32000, this->position, 5000.0f, 12000.0f);
+            }
+            else{
+                func_8030E878(SFX_179_GRUNTY_DAMAGE, randf2(0.95f, 1.05f), 32000, this->position, 5000.0f, 12000.0f);
+            }
+            break;
+
+        case 38:
+            func_8025A6EC(SFX_GRUNTY_SPELL_POWERUP, 30000);
+            break;
+
+        case 43:
+            func_8030E878(SFX_131_GRUNTY_WEEEGH, randf2(0.95f, 1.05f), 32000, this->position, 5000.0f, 12000.0f);
+            actor_playAnimationOnce(this);
+            break;
+    }
+}
+#endif
 
 void func_8038AF84(ActorMarker *arg0) {
     func_8038AC88(marker_getActor(arg0), 0x29);
@@ -1175,24 +1866,210 @@ void func_8038AFB0(void) {
     func_802E4078(MAP_87_CS_SPIRAL_MOUNTAIN_5, 0, 1);
 }
 
+#ifndef NONMATCHING //matches but requires .rodata
 void func_8038AFD8(ActorMarker *marker);
 #pragma GLOBAL_ASM("asm/nonmatchings/fight/code_180/func_8038AFD8.s")
+#else
+void func_8038AFD8(ActorMarker *marker) {
+    Actor *this;
+    ActorLocal_fight_180 *local;
+    f32 sp3C;
+    s32 sp38;
+    f32 sp34;
+    ActorMarker *other_marker;
+    s32 sp2C;
+    s32 tmp_v0;
 
+    this = marker_getActor(marker);
+    local = (ActorLocal_fight_180 *)&this->local;
+    sp3C = time_getDelta();
+    sp38 = 0x14;
+    sp34 = func_802877D8(this->animctrl);
+    other_marker = func_8038A4E8(this, func_8033229C(this->marker) / 3.0f);
+    if ((other_marker != NULL) && (other_marker->unk14_20 == 0x285)) {
+        if (func_8039125C(other_marker)) {
+            D_803927C6++;
+            if (local->unk7) {
+                sp38 = 0x23;
+            }
+            if (0xA > D_803927C6) {
+                func_802BB3DC(0, 18.0f, 0.9f);
+                func_80324E88(0.6f);
+                timed_setCameraToNode(0.6f, sp38 + 3 + D_803927C6);
+                func_80391070(other_marker, D_803927C6, local->unk7);
+                func_8038AC88(this, 0x2A);
+                if (D_803927C6 == 9) {
+                    sp2C = 0x16;
+                    if(local->unk7) sp2C = 0x25;
+                    timedFunc_set_1(2.4f, func_8038AF84, (s32) this->marker);
+                    timed_setCameraToNode(2.4f, sp2C);
+                    func_80324E88(4.4f);
+                    timed_setCameraToNode(4.4f, sp38 + 3 + D_803927C6);
+                }
+            } else {
+                func_802BB3DC(0, 63.0f, 0.9f);
+                func_803911F8(other_marker);
+                func_8030E6D4(SFX_HEAVY_THUNDERSTORM_01);
+                func_8025A6EC(SFX_JINJONATOR_HITS_GRUNTY_J, 0x4E20);
+                func_8038AC88(this, 0x2B);
+                func_80324E88(0.0f);
+                timed_setCameraToNode(0.0f, sp38 + 0xD);
+                func_8028F85C(D_803917E0);
+                D_803928C8[0] = 0.0f;
+                D_803928C8[1] = func_80257204(D_803917E0[0], D_803917E0[2], this->position[0], this->position[2]);
+                D_803928C8[2] = 0.0f;
+                func_8028FAEC(&D_803928C8);
+            }
+            if (D_803927C6 == 3) {
+                func_80311480(randi2(0, 5) + 0x1159, 0x20, NULL, NULL, NULL, NULL);
+            }
+        }
+    }
+    switch (this->state) {
+        case 35:
+            func_80386BEC(this, 3.0f);
+            break;
 
-void func_8038B730(ActorMarker *arg0, s32 arg1, s32 arg2) {
+        case 36:
+            if (func_80386BEC(this, 9.0f) && (func_80297C6C() != 3)) {
+                func_8038AC88(this, 0x25);
+            }
+            break;
+
+        case 37:
+            func_80386BEC(this, 3.0f);
+            if (func_80297C6C() == 3) {
+                func_8038AC88(this, 0x24);
+                break;
+            }
+            if (func_80387340(this, 1.0f)) {
+                local->unk3++;
+            }
+            if ((actor_animationIsAt(this, 0.9999f)) && (local->unk3 >= 5)) {
+                func_8038AC88(this, 0x26);
+            }
+            break;
+
+        case 38:
+            func_80386BEC(this, 3.0f);
+            func_803873DC(this, 700.0f, 2400.0f);
+            if (actor_animationIsAt(this, 0.9999f)) {
+                func_8038AC88(this, 0x27);
+                this->unk60 = 4.0f;
+            }
+            break;
+
+        case 39:
+            if (local->unk8) {
+                func_80386C68(this, 4.5f);
+            } else {
+                func_80386BEC(this, 3.0f);
+            }
+            if (this->unk60 > 0.0) {
+                this->unk60 -= sp3C;
+                break;
+            }
+            if (local->unk8 == 0) {
+                if (!D_803927C9) {
+                    D_803927C9 = TRUE;
+                    func_8038AC88(this, 0x23);
+                }
+                else{
+                    func_8038AC88(this, 0x25);
+                }
+            }
+            break;
+
+        case 40:
+            if (actor_animationIsAt(this, 0.21f)) {
+                func_8030E8B4(0x7FFF4163, this->position, 0x2EE01388);
+            }
+            if ((0.56 < sp34) && (sp34 < 0.99)) {
+                func_8030E2C4(this->unk44_31);
+            }
+            if (actor_animationIsAt(this, 0.9999f)) {
+                func_8038AC88(this, 0x27);
+                func_8030DA44(this->unk44_31);
+                this->unk44_31 = 0;
+            }
+            break;
+
+        case 41:
+            if (actor_animationIsAt(this, 0.9999f)) {
+                local->unk2++;
+                if (local->unk2 == 8) {
+                    u8 v0;
+                    func_802BB3DC(0, 12.0f, 1.0f);
+                    v0 = this->unk44_31;
+                    if (v0 != 0) {
+                        func_8030E394(v0);
+                        func_8030DA44(this->unk44_31);
+                        this->unk44_31 = 0;
+                    }
+                }
+            }
+            break;
+
+        case 42:
+            if (actor_animationIsAt(this, 0.9999f)) {
+                func_8038AC88(this, 0x27);
+            }
+            break;
+
+        case 43:
+            if ((actor_animationIsAt(this, 0.1f)) || (actor_animationIsAt(this, 0.24f))) {
+                func_8038C5F0(this, 0x718, 0x6C2, 2.0f);
+            }
+            if (actor_animationIsAt(this, 0.3f)) {
+                func_8030E624(0x7FF86964U);
+            }
+            if (actor_animationIsAt(this, 0.4f)) {
+                func_8030E624(0x89786964U);
+            }
+            if (actor_animationIsAt(this, 0.6f)) {
+                func_8030E624(0x8CB86964U);
+            }
+            if (actor_animationIsAt(this, 0.7f)) {
+                func_8030E624(0x93186964U);
+            }
+            if (actor_animationIsAt(this, 0.81f)) {
+                func_8030E624(0x7FFF4130U);
+            }
+            if (actor_animationIsAt(this, 0.85f)) {
+                func_803872F8(this);
+            }
+            if (actor_animationIsAt(this, 0.9f)) {
+                func_802BAE4C();
+                if (local->unk7 == 0) {
+                    func_802BAEB4(&D_803917EC, this->position);
+                } else {
+                    func_802BAEB4(&D_803917F8, this->position);
+                }
+                func_8038FC2C(1);
+                timedFunc_set_0(4.8, func_8038AFB0);
+            }
+            if (actor_animationIsAt(this, 0.9999f)) {
+                marker_despawn(this->marker);
+            }
+            break;
+    }
+}
+#endif
+
+void func_8038B730(ActorMarker *marker, s32 arg1, s32 arg2) {
     Actor *sp1C;
 
-    sp1C = marker_getActor(arg0);
+    sp1C = marker_getActor(marker);
     func_802BE720();
     func_80324E88(0);
     func_8028F784(0);
     func_80387728(sp1C->marker, 1);
 }
 
-void func_8038B780(ActorMarker *arg0) {
+void func_8038B780(ActorMarker *marker) {
     Actor *sp24;
 
-    sp24 = marker_getActor(arg0);
+    sp24 = marker_getActor(marker);
     if (!func_8031FF1C(0xCF)) {
         sp24 = sp24;
         func_80320004(0xCF, 1);
@@ -1203,11 +2080,49 @@ void func_8038B780(ActorMarker *arg0) {
     func_80311480(randi2(0, 5) + 0x10E8, 0x2B, &sp24->position_x, sp24->marker, &func_8038B730, 0);
 }
 
-void func_8038B82C(ActorMarker *arg0) { return; }
+void func_8038B82C(ActorMarker *marker) { return; }
 
+#ifndef NONMATCHING //matches but requires .rodata
 void func_8038B834(ActorMarker *, ActorMarker *);
 #pragma GLOBAL_ASM("asm/nonmatchings/fight/code_180/func_8038B834.s")
+#else
+bool func_8038B834(ActorMarker *marker, ActorMarker * arg1) {
+    Actor *this;
+    ActorLocal_fight_180 *local;
 
+    this = marker_getActor(marker);
+    local = (ActorLocal_fight_180 *)&this->local;
+    switch (local->unk0) {
+    case 1:
+        if ((this->state == 6) || (this->state == 7)) {
+            marker->unk14_20 = 0x260;
+        } else {
+            marker->unk14_20 = 0x25E;
+        }
+        break;
+    case 2:
+        if (local->unkA == 0) {
+            marker->unk14_20 = 0x260;
+        } else {
+            marker->unk14_20 = 0x281;
+        }
+        break;
+    case 3:
+        marker->unk14_20 = 0x282;
+        break;
+    case 4:
+        marker->unk14_20 = 0x283;
+        break;
+    case 5:
+        marker->unk14_20 = 0x283;
+        break;
+    default:
+        marker->unk14_20 = 0x25E;
+        break;
+    }
+    return TRUE;
+}
+#endif
 
 void func_8038B9AC(ActorMarker *marker, ActorMarker *other_marker) {
     Actor *this;
@@ -1283,20 +2198,18 @@ void func_8038BB8C(ActorMarker *marker, ActorMarker *other_marker) {
     }
 }
 
-void func_8038BCB8(ActorMarker *arg0) {
+void func_8038BCB8(ActorMarker *marker) {
     Actor *sp1C;
 
-    sp1C = marker_getActor(arg0);
+    sp1C = marker_getActor(marker);
     D_803927A4 = spawn_child_actor(0x3AF, &sp1C)->marker;
 }
-
-extern f32 D_80392450;
 
 #ifndef NONMATHCING
 #pragma GLOBAL_ASM("asm/nonmatchings/fight/code_180/func_8038BCF0.s")
 #else
 void func_8038BCF0(Actor *this){
-    ActorLocal_fight_180 *local = (ActorLocal_fight_180 *) &this->local;
+    ActorLocal_fight_180 *local;
     s32 i;
     s32 tmp_s0;
     Actor *other;
@@ -1304,6 +2217,7 @@ void func_8038BCF0(Actor *this){
     f32 sp40[3];
     f32 sp34[3];
 
+    local = (ActorLocal_fight_180 *) &this->local;
     if(!this->unk16C_4){
         this->unk16C_4 = TRUE;
         func_803300C0(this->marker, func_8038B834);
@@ -1313,8 +2227,8 @@ void func_8038BCF0(Actor *this){
         for(i = 0x38C; i < 0x39F; i++){
             func_80304E24(i, D_803927D0[i - 0x38C]);
         }
-        D_803927A8 = 0;
-        D_803927A4 = 0;
+        D_803927A8 = NULL;
+        D_803927A4 = NULL;
         D_803927C4 = 0;
         D_803927C5 = 0;
         D_803927C6 = 0;
@@ -1326,10 +2240,12 @@ void func_8038BCF0(Actor *this){
         local->unk9 = 0;
         local->unkB = 0;
 
-        D_803927B4 = 0;
-        D_803927B0 = 0;
-        D_803927B8 = 0;
-        D_803927BC = 0;
+        for(i = 0; i < 4; i++){ D_803927B0[i] = NULL;}
+        // D_803927B0[1] = NULL;
+        // D_803927B0[0] = NULL;
+        // D_803927B0[2] = NULL;
+        // D_803927B0[3] = NULL;
+
         func_802C3C88(func_8038BCB8, this->marker);
         func_80387728(this->marker, 0);
         local->unk1 = 0;
@@ -1391,9 +2307,9 @@ void func_8038BCF0(Actor *this){
         sp34[1] = -50.0f;
         if(func_80309B48(sp4C, sp34, sp40, 0)){
             sp34[1] += 6.0f;
-            other->position_x = sp34[0];\
-            other->position_y = sp34[1];\
-            other->position_z = sp34[2];
+            other->position[0] = sp34[0];\
+            other->position[1] = sp34[1];\
+            other->position[2] = sp34[2];
             other->unk1C[0] = this->position_y - sp34[1];
             other->scale = this->scale;
             other->unk58_0 = 1;
@@ -1490,3 +2406,4 @@ s32 func_8038C2A4() {
 s32 func_8038C2B0() {
     return D_803927C9;
 }
+

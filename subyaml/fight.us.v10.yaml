@@ -43,7 +43,7 @@ segments:
       - [0xAED0, c, code_AED0] #DONE
 
       - [0xAF90, linker, data] # Data section
-      - [0xAF90, data, fight_data_AF90]
+      - [0xAF90, .data, code_180]
       - [0xB420, .data, code_5ED0]
       - [0xB5A0, .data, code_6E90]
       - [0xB600, data, fight_data_B620]
@@ -53,9 +53,9 @@ segments:
       - [0xB9D0, .data, code_9850]
       - [0xBBC0, data, fight_data_BBC0]
       - [0xBCA0, .data, code_AED0]
-      - [0xBCD0, rodata, fight_data_BCD0]
-      - [0xBD10, .rodata, code_180]
-      - [0xBE20, bin, fight_data_BE20]
+      - [0xBCD0, .rodata, code_180]
+      - [0xBE90, bin, fight_data_BE90]
+      - [0xBF20, bin, fight_data_BF20]
       - [0xC140, .rodata, code_6E90]
       - [0xC150, rodata, fight_data_C150]
       - [0xC190, .rodata, code_7BE0]
@@ -65,4 +65,11 @@ segments:
       - [0xC230, .rodata, code_9D40]
       - [0x0000C260,  rodata, fight_data_C260]
       - [0x0000C340, .rodata, code_AED0]
+  - type: code
+    name: fight-bbs
+    dir: fight
+    start: 0xC350
+    vram:  0x80392740
+    subsegments:
+      - [0x0000C350, .bss, code_180]
   - [0x0000C350]
