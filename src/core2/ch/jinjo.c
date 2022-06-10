@@ -93,15 +93,16 @@ void func_802CDD78(Actor * this){
     f32 sp6C;
     f32 sp68; //unused??
     s16 sp66;
+    s16 sp64;
     s32 sp60;
-    f32 sp5C;
+    // f32 sp5C;
+    ActorLocal_Jinjo *local; //= &this->jinjo; //sp34
     f32 sp58 = time_getDelta();
     int sp50;
     //f32 sp4C; //unused
     f32 sp40[3];
     //s32 sp3C;
     //s32 sp38;
-    ActorLocal_Jinjo *local; //= &this->jinjo; //sp34
     f32 *sp30;
     f32 tmp_f0;
     s32 i;
@@ -121,10 +122,11 @@ void func_802CDD78(Actor * this){
     sp30 = this->position;
     func_8028E964(sp7C);
     func_80257F18(sp30, sp7C, &sp6C);
-    sp66 = (s32)(this->yaw * 182.04444) - (s32)(sp6C*182.04444);
+    sp64 = (this->yaw * 182.04444);
+    sp66 = sp64 - (s32)(sp6C*182.04444);
     sp60 = func_8028AED4(sp30, 55.0f);
 
-    switch(this->unk10_31){
+    switch(this->state){
         case 1:
             if(randf() < 0.015){
                 if(sp60){
@@ -186,7 +188,7 @@ void func_802CDD78(Actor * this){
 
         case 7:
         case 8:
-            sp50 = this->unk10_31 == 7;
+            sp50 = this->state == 7;
             if(!sp50 || 0.8 < func_802877D8(this->animctrl)){//L802CE158
                 player_getVelocity(sp70);
                 sp70[0] *= sp58*6.0f;
@@ -276,12 +278,12 @@ void func_802CDD78(Actor * this){
             }
             break;
     }//L802CE5F0
-    if(this->unk10_31 < 4 &&  !(((sp66 >= 0)? sp66: -sp66) <= 0x100)){
+    if(this->state < 4 &&  !(((sp66 >= 0)? sp66: -sp66) <= 0x100)){
         func_80328B8C(this, 4, 0.0f, -1);
         actor_playAnimationOnce(this);
     }//L802CE630
     if(!func_803114B0()){
-        switch(D_803671B0[this->unk10_31].index){
+        switch(D_803671B0[this->state].index){
             case 0x31: 
                 if(actor_animationIsAt(this, 0.6f)){
                     if(local->unk8){

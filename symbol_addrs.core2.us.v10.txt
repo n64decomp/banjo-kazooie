@@ -245,6 +245,7 @@ print_dialog            = 0x802F78FC;
 print_dialog_w_bg       = 0x802F7938;
 print_dialog_gradient   = 0x802F7974;
 itemPrint_getValue      = 0x802FAE1C;
+func_802FDCB8 = 0x802FDCB8;
 spawnableActorList_add = 0x803053E8;
 map_getLevel = 0x8030AD48;
 gctransition_8030B740 = 0x8030B740;
