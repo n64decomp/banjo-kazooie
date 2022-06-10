@@ -19,7 +19,7 @@ void func_80389420(ActorMarker *marker) {
     Actor *this;
 
     this = marker_getActor(marker);
-    func_8030E878(SFX_C5_TWINKLY_POP, randf2(1.0f, D_80390FE0), 25000, this->position, 500.0f, D_80390FE4);
+    func_8030E878(SFX_C5_TWINKLY_POP, randf2(1.0f, 1.2f), 25000, this->position, 500.0f, 3000.0f);
 }
 
 void func_80389488(Actor *this, s32 next_state) {
@@ -32,7 +32,7 @@ void func_80389488(Actor *this, s32 next_state) {
     }
     if (next_state == 2) {
         func_80335924(this->unk148, 0x12E, 0.1f, 1.6666666f);
-        timed_playSfx(D_80390FE8, SFX_86_TIPTUP_CHORUS_AH, local->unk8, 0x7FFF);
+        timed_playSfx(0.8333333, SFX_86_TIPTUP_CHORUS_AH, local->unk8, 0x7FFF);
     }
     if (next_state == 3) {
         func_8030E6A4(SFX_86_TIPTUP_CHORUS_AH, local->unk8, 0x7FFF);

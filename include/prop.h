@@ -102,23 +102,6 @@ typedef struct actorMarker_s{
     s32         unk5C;
 } ActorMarker;
 
-
-typedef struct chmrvile_s{
-    u8  pad0[0x4];
-    u32 unk4;
-    void *unk8;
-    u8  unkC;
-    u8  padD[0x7];
-    f32 unk14;
-    f32 unk18;
-    f32 unk1C;
-    f32 unk20;
-    f32 unk24;
-    f32 unk28;
-    f32 unk2C;
-    f32 unk30;
-} ActorLocal_MrVile;
-
 typedef struct chyumblie_s{
     f32 unk0;
     u8  unk4;
@@ -224,7 +207,6 @@ typedef struct actor_s{
     u32 stored_animctrl_smoothTransistion:1; //animCtrlSmoothTransition
     union
     { //DON'T DO THIS JUST DEFINE STATICLY IN ch/ FILE AND CAST FROM &Actor->local
-        ActorLocal_MrVile   mrVile; 
         ActorLocal_Yumblie  yumblie; 
         ActorLocal_BGS_2270 bgs_2270;
         ActorLocal_BGS_6730 bgs_6730;
