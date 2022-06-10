@@ -1296,7 +1296,6 @@ void func_80389720(s32 arg0) {
     ActorLocal_fight_180 *local;
     // f32 tmp_a2;
 
-    // sp1C = ;
     local = (ActorLocal_fight_180 *)&func_80326EEC(0x38B)->local;
 
     switch (arg0) {
@@ -1769,7 +1768,7 @@ void func_8038A5F4(ActorMarker *marker) {
             break;
     }
 }
-#endif;
+#endif
 
 void func_80328B8C(Actor *, s32, f32, s32);
 

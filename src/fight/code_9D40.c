@@ -28,7 +28,7 @@ void func_8039049C(Actor *this);
 /* .data */
 
 //BBC0
-extern ActorAnimationInfo D_80391FB0[]; /* = {
+ActorAnimationInfo D_80391FB0[] = {
    {0x000, 00000000},
    {0x275, 1000000.0f},
    {0x275, 3.3f},
@@ -42,24 +42,17 @@ extern ActorAnimationInfo D_80391FB0[]; /* = {
    {0x27C, 0.33f},
    {0x27D, 0.8f},
    {0x280, 0.4f}  
-};*/
+};
 
-extern ActorInfo D_80392018; /*= {
+ActorInfo D_80392018 = {
     0x285, 0x3AC, 0x551, 0x1, D_80391FB0,
     func_8039049C, func_80326224, func_80325888,
     {0, 0}, 0, 1.0f, {0,0,0,0}
-};*/
+};
 
-extern s32 D_8039203C[];
-extern s32 D_80392060[];
-/*                                              00 00 00 DC
-0000 BC50: 00 00 00 96 00 00 00 82  00 00 00 B4 00 00 00 D2
-0000 BC60: 00 00 00 AA 00 00 00 C8  00 00 00 96 00 00 00 B4 */
+s32 D_8039203C[] = {0xDC, 0x96, 0x82, 0xB4, 0xD2, 0xAA, 0xC8, 0x96, 0xB4};
+s32 D_80392060[] = {0x9A, 0x9B, 0x9C, 0x9D, 0x9E, 0x9F, 0xA0, 0xA1, 0xA2};
 
-/* 0000 BC70: 00 00 00 9A 00 00 00 9B  00 00 00 9C 00 00 00 9D
-0000 BC80: 00 00 00 9E 00 00 00 9F  00 00 00 A0 00 00 00 A1
-0000 BC90: 00 00 00 A2 00 00 00 00  00 00 00 00 00 00 00 00
-*/
 
 /* .rodata */
 extern f64 D_80392650;
@@ -175,10 +168,6 @@ void func_803903C4(Actor *this){
     actor_loopAnimation(this);
 }
 
-// matches when .rodata defined
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/fight/code_9D40/func_8039040C.s")
-#else
 void func_8039040C(Actor *this){
     ActorLocal_fight_9850 *local = (ActorLocal_fight_9850 *)&this->local;
     f32 tick = time_getDelta();
@@ -188,13 +177,7 @@ void func_8039040C(Actor *this){
     if(func_8030E3FC(this->unk44_31) == 0)
         func_8030E2C4(this->unk44_31);
 }
-#endif
 
-
-
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/fight/code_9D40/func_8039049C.s")
-#else
 void func_8039049C(Actor *this){
     ActorLocal_fight_9850 *local = (ActorLocal_fight_9850 *)&this->local;
     f32 sp58;
@@ -203,12 +186,13 @@ void func_8039049C(Actor *this){
     s32 sp4C;
     f32 sp48;
 
+
     sp58 = time_getDelta();
     sp54 = animctrl_getDuration(this->animctrl);
     
     if(!this->unk16C_4){
         this->unk16C_4 = 1;
-        local->unk18 = 0.4 / (this->unk60 +  3.3);
+        local->unk18 = 0.40000000000000013 / (this->unk60 +  3.3);
         local->unk14 = 0.7f;
         func_8025A6EC(JINGLE_MENACING_GRUNTILDA_B, 20000);
         func_8025A58C(0, 0x7fff);
@@ -220,7 +204,7 @@ void func_8039049C(Actor *this){
     }//L80390574
     
     if(0.0 < local->unk4){
-        local->unk4 =  local->unk4 - sp58;
+        local->unk4 -= sp58;
         return;
     }
 
@@ -296,7 +280,7 @@ void func_8039049C(Actor *this){
 
         case 6: //803908BC
             this->position[1] = MIN(1e+8f, this->position[1] + 80.0f*sp58);
-            animctrl_setDuration(this->animctrl, MAX(0.4f, sp54 - (0.5*sp58)));
+            animctrl_setDuration(this->animctrl, MAX(0.4, sp54 - (0.5*sp58)));
             func_80390278(this);
             if(actor_animationIsAt(this, 0.25f) || actor_animationIsAt(this, 0.75f)){
                 func_8030E624(_SHIFTL(local->unk1C * 1023.0f,21, 11) + 0x196002);
@@ -378,10 +362,12 @@ void func_8039049C(Actor *this){
             }//L80390E90
 
             if(local->unk20 <= 0){
+                s32 text_id;
                 func_80328B8C(this, 0xB, 0.001f, 1);
                 actor_playAnimationOnce(this);
                 func_802BB41C(0);
-                func_80311480(0x115e + randi2(0,5), 0x20, 0, 0, 0, 0);
+                text_id = 0x115e + randi2(0,5);
+                func_80311480(text_id, 0x20, 0, 0, 0, 0);
             }
             break;
         case 11: //80390EF8
@@ -408,11 +394,7 @@ void func_8039049C(Actor *this){
     }//L80391044
     func_8034A174(this->marker->unk44, 0x1f, &D_80392920);
 }
-#endif
 
-#ifndef NONMATCHING //matches requires .rodata
-#pragma GLOBAL_ASM("asm/nonmatchings/fight/code_9D40/func_80391070.s")
-#else
 void func_80391070(ActorMarker *marker, s32 arg1, s32 arg2) {
     Actor *temp_s0;
     ActorLocal_fight_9850 *local;
@@ -443,7 +425,6 @@ void func_80391070(ActorMarker *marker, s32 arg1, s32 arg2) {
     func_80328B8C(temp_s0, 8, 0.001f, 1);
     animctrl_setDuration(temp_s0->animctrl, (f32) (1.75 - 0.11 * local->unk24));
 }
-#endif
 
 void func_803911F8(ActorMarker *marker){
     Actor *actor = marker_getActor(marker);
@@ -452,7 +433,7 @@ void func_803911F8(ActorMarker *marker){
 }
 
 f32 func_80391234(void){
-    return /*3.3f*/ D_80392720;
+    return 3.3f;
 }
 
 f32 func_80391240(void){
@@ -460,7 +441,7 @@ f32 func_80391240(void){
 }
 
 f32 func_80391250(void){
-    return /*4.62f*/D_80392724;
+    return 4.62f;
 }
 
 s32 func_8039125C(ActorMarker *marker){

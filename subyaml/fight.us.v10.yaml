@@ -34,37 +34,36 @@ segments:
       - [0x180, c, code_180] 
       - [0x5ED0, c, code_5ED0]
       - [0x6E90, c, code_6E90] #DONE
-      - [0x7580, c, code_7580]
+      - [0x7580, c, code_7580] #DONE
       - [0x7BE0, c, code_7BE0]
       - [0x8390, c, code_8390]
       - [0x87A0, c, code_87A0]
       - [0x9850, c, code_9850] #DONE
-      - [0x9D40, c, code_9D40]
+      - [0x9D40, c, code_9D40] #DONE
       - [0xAED0, c, code_AED0] #DONE
 
       - [0xAF90, linker, data] # Data section
       - [0xAF90, .data, code_180]
       - [0xB420, .data, code_5ED0]
       - [0xB5A0, .data, code_6E90]
-      - [0xB600, data, fight_data_B620]
+      - [0xB600, .data, code_7580]
       - [0xB650, .data, code_7BE0]
       - [0xB6E0, .data, code_8390]
       - [0xB710, .data, code_87A0]
       - [0xB9D0, .data, code_9850]
-      - [0xBBC0, data, fight_data_BBC0]
+      - [0xBBC0, .data, code_9D40]
       - [0xBCA0, .data, code_AED0]
       - [0xBCD0, .rodata, code_180]
       - [0xBE90, bin, fight_data_BE90]
       - [0xBF20, bin, fight_data_BF20]
       - [0xC140, .rodata, code_6E90]
-      - [0xC150, rodata, fight_data_C150]
+      - [0xC150, .rodata, code_7580]
       - [0xC190, .rodata, code_7BE0]
       - [0xC1C0, .rodata, code_8390]
       - [0xC1D0, rodata, fight_data_C1D0] #- [0xC1D0, .rodata, code_87A0]
       - [0xC220, .rodata, code_9850]
       - [0xC230, .rodata, code_9D40]
-      - [0x0000C260,  rodata, fight_data_C260]
-      - [0x0000C340, .rodata, code_AED0]
+      - [0xC340, .rodata, code_AED0]
   - type: code
     name: fight-bbs
     dir: fight
