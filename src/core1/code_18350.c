@@ -635,7 +635,8 @@ void func_802576F8(void)
         D_80276CB8 = defrag(D_80276CB8);
 }
 
-//ml_f_clamp_zero_to_one
+//ml_timer_tick
+//decrement a counter and retrun True if timer is up
 int func_8025773C(f32 *arg0, f32 arg1)
 {
     if (*arg0 > 0)

@@ -146,7 +146,12 @@ Actor *mrVileDraw(ActorMarker *this, Gfx **gdl, Mtx** mp, u32 arg3){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/BGS/ch/mrvile/func_8038C3DC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/BGS/ch/mrvile/func_8038C408.s")
+void func_8038C408(ActorMarker *marker){
+    Actor *this;
+
+    this = marker_getActor(marker);
+    func_8038C0C8(this, 5);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/BGS/ch/mrvile/func_8038C434.s")
 

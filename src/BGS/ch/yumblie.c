@@ -71,13 +71,13 @@ void func_8038B220(Actor* this, u32 state){
     }
     
     if(state == 4){
-        func_8038ACFC(s0->unkC, this->marker);
+        chvilegame_remove_piece(s0->unkC, this->marker);
         func_80335924(this->unk148, (s0->unk4)? ASSET_129_ANIM_GRUMBLIE_HIDE : ASSET_126_ANIM_YUMBLIE_HIDE, 0.1f, 0.5f);
         func_80335A8C(this->unk148, 2);
     }
     if(state == 5){
         s0->unk8 = randf2(10.0f, 20.0f);
-        func_8038ACFC(s0->unkC, this->marker);
+        chvilegame_remove_piece(s0->unkC, this->marker);
         func_8030E878((s0->unk4)? SFX_C4_TWINKLY_MUNCHER_GRR: SFX_C3_HEGH, 1.4f, 0x7D00, this->position, 500.0f, D_80391024);
     }
     this->state = state;
