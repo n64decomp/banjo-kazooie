@@ -53,51 +53,10 @@ ActorInfo D_80392018 = {
 s32 D_8039203C[] = {0xDC, 0x96, 0x82, 0xB4, 0xD2, 0xAA, 0xC8, 0x96, 0xB4};
 s32 D_80392060[] = {0x9A, 0x9B, 0x9C, 0x9D, 0x9E, 0x9F, 0xA0, 0xA1, 0xA2};
 
-
-/* .rodata */
-extern f64 D_80392650;
-extern f64 D_80392658;
-extern f64 D_80392660;
-extern f32 D_80392668;
-
-
-extern f32 D_803926A0;
-extern f32 D_803926A4;
-extern f32 D_803926A8;
-extern f64 D_803926B0;
-extern f64 D_803926B8;
-extern f64 D_803926C0;
-extern f32 D_803926C8;
-extern f32 D_803926CC;
-extern f32 D_803926D0;
-extern f64 D_803926D8;
-extern f64 D_803926E0;
-extern f32 D_803926E8;
-extern f32 D_803926EC;
-extern f32 D_803926F0;
-extern f32 D_803926F4;
-extern f32 D_803926F8;
-extern f64 D_80392700;
-extern f64 D_80392708;
-extern f32 D_80392710;
-
-extern f64 D_80392718;
-    /* 
-0000 C2B0: 3D CC CC CD 3E CC CC CD  4C BE BC 20 00 00 00 00
-0000 C2C0: 3F D9 99 99 99 99 99 9A  44 7F C0 00 00 00 00 00
-0000 C2D0: 3F A4 7A E1 47 AE 14 7B  3D CC CC CD 45 9C 40 00
-0000 C2E0: 46 3B 80 00 00 00 00 00  3F BC 28 F5 C2 8F 5C 29
-0000 C2F0: 40 10 CC CC CC CC CC CD  45 1C 40 00 3D CC CC CD
-0000 C300: 45 9C 40 00 46 3B 80 00  3F 28 F5 C3 00 00 00 00
-0000 C310: 3F BC 28 F5 C2 8F 5C 29  40 10 CC CC CC CC CC CD
-0000 C320: 45 1C 40 00 00 00 00 00  3F BC 28 F5 C2 8F 5C 29
-0000 C330: 40 53 33 33 40 93 D7 0A  00 00 00 00 00 00 00 00
-*/
-
 /* .bss */
-extern f32 D_80392720;
-extern f32 D_80392724;
-extern vec3f D_80392920;
+f32 D_80392720;
+f32 D_80392724;
+f32 D_80392920[3];
 
 /* .code */
 void func_80390130(f32 position[3], int count, enum asset_e sprite_id){
@@ -392,7 +351,7 @@ void func_8039049C(Actor *this){
             func_80387470(this, &local->unk8, sp48*2400.0f, sp48*2400.0f*4.2, 170.0f, sp48*2500.0f, 0.0f);
             break;
     }//L80391044
-    func_8034A174(this->marker->unk44, 0x1f, &D_80392920);
+    func_8034A174(this->marker->unk44, 0x1f, D_80392920);
 }
 
 void func_80391070(ActorMarker *marker, s32 arg1, s32 arg2) {
@@ -452,8 +411,8 @@ s32 func_8039125C(ActorMarker *marker){
     return 0;
 }
 
-void func_8039129C(vec3f *arg0) {
-    arg0->x = (f32) D_80392920.x;
-    arg0->y = (f32) D_80392920.y;
-    arg0->z = (f32) D_80392920.z;
+void func_8039129C(f32 arg0[3]) {
+    arg0[0] = D_80392920[0];
+    arg0[1] = D_80392920[1];
+    arg0[2] = D_80392920[2];
 }

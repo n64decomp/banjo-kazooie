@@ -80,26 +80,17 @@ f32 D_80391D94[4] = {0.15f, 0.3f, 0.0f, 0.0f};
 f32 D_80391DA4[4] = {0.0f, 0.01f, 0.7f, 0.8f}; 
 f32 D_80391DB4[2] = {0.0f, 0.65f}; 
 
-/* .rodata */
-extern f32 D_803925C0;
-extern f64 D_803925C8;
-extern f32 D_803925D0;
-extern f32 D_803925E8;
-extern f32 D_803925EC;
-//3F28F5C3
-
-// 3DCCCCCD 3E851EB8
-
 /* .bss */
-extern u8 D_803928E0;
-extern u8 D_803928E1;
-extern u8 D_803928E2;
-extern u8 D_803928E3;
-extern u8 D_803928E4;
-extern u8 D_803928E5;
-extern f32 D_803928E8[3];
-extern f32 D_803928F8[3];
-extern f32 D_80392908[3];
+u8 pad[0x180]; //TODO!!!! define other file .bss sections
+u8 D_803928E0;
+u8 D_803928E1;
+u8 D_803928E2;
+u8 D_803928E3;
+u8 D_803928E4;
+u8 D_803928E5;
+f32 D_803928E8[3];
+f32 D_803928F8[3];
+f32 D_80392908[3];
 extern f32 D_80392914;
 
 /* .code */
@@ -181,9 +172,6 @@ void func_8038F050(void) {
     func_80386654(1.0f, &D_80391B84, &D_80391B94);
 }
 
-#ifndef NONMATCHING //matches but requires .rodata
-#pragma GLOBAL_ASM("asm/nonmatchings/fight/code_87A0/func_8038F084.s")
-#else
 void func_8038F084(ActorMarker *marker){
     Actor *actor = marker_getActor(marker);
     ActorLocal_fight_87A0 *local = (ActorLocal_fight_87A0 *)&actor->local;
@@ -234,11 +222,7 @@ void func_8038F084(ActorMarker *marker){
         func_80328A84(actor, 2);
     }//L8038F39C
 }
-#endif
 
-#ifndef NONMATCHING //matches but requires .rodata
-#pragma GLOBAL_ASM("asm/nonmatchings/fight/code_87A0/func_8038F3B4.s")
-#else
 void func_8038F3B4(ActorMarker *marker, ActorMarker *other){
     if( other->unk14_20 == 0x276
         || other->unk14_20 == 0x27A
@@ -276,7 +260,6 @@ void func_8038F3B4(ActorMarker *marker, ActorMarker *other){
     }//L8038F5B0
 
 }
-#endif
 
 s32 func_8038F5BC(f32 *arg0, f32 arg1) {
     if (((arg0[0] * arg0[0]) + (arg0[2] * arg0[2])) < arg1) {
@@ -289,13 +272,10 @@ void func_8038F5F8(s32 arg0) {
     func_80324D2C(0.0f, COMUSIC_43_ENTER_LEVEL_GLITTER);
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/fight/code_87A0/func_8038F620.s")
-#else
 void func_8038F620(Actor *this){
     ActorLocal_fight_87A0 * local = (ActorLocal_fight_87A0 *)&this->local;
     f32 sp40 = time_getDelta();
-    //static f32 D_80392914;
+    static f32 D_80392914;
 
     if(!this->unk16C_4){
         this->unk16C_4 = 1;
@@ -331,11 +311,11 @@ void func_8038F620(Actor *this){
     switch(this->state){
         case 1://L8038F7F8
             { // TODO: get rid of f0, maybe D_80392914 is static?
-                f32 temp_f0;
+                // f32 temp_f0;
                 
-                temp_f0 = this->scale + (f32)(sp40*1.4);
                 D_80392914 = sp40*1.4;
-                this->scale = (temp_f0 < 1.0) ? temp_f0 : 1.0f;
+                // temp_f0 = this->scale + D_80392914;
+                this->scale = (this->scale + D_80392914 < 1.0) ? this->scale + D_80392914 : 1.0f;
             }
 
             switch(this->marker->unk14_20){
@@ -353,34 +333,34 @@ void func_8038F620(Actor *this){
                     func_8023DB5C();
                     break;
             }//L8038F918
-            D_803928F8[0] = this->position_x;
-            D_803928F8[1] = this->position_y;
-            D_803928F8[2] = this->position_z;
+            D_803928F8[0] = this->position[0];
+            D_803928F8[1] = this->position[1];
+            D_803928F8[2] = this->position[2];
 
-            this->position_x +=  this->velocity_x*sp40;
-            this->position_y +=  this->velocity_y*sp40;
-            this->position_z +=  this->velocity_z*sp40;
+            this->position[0] +=  this->velocity_x*sp40;
+            this->position[1] +=  this->velocity_y*sp40;
+            this->position[2] +=  this->velocity_z*sp40;
 
-            this->velocity_x += this->unk1C[0]*sp40;
-            this->velocity_y += this->unk1C[1]*sp40;
-            this->velocity_z += this->unk1C[2]*sp40;
+            this->velocity[0] += this->unk1C[0]*sp40;
+            this->velocity[1] += this->unk1C[1]*sp40;
+            this->velocity[2] += this->unk1C[2]*sp40;
 
             this->pitch +=  200.0f*sp40;
             this->yaw += 200.0f*sp40;
 
             if( this->position_y < -2500.0f 
                 || 5000.0f < this->position_y
-                || !func_8038F5BC(&this->position, 10.0f)
+                || !func_8038F5BC(&this->position, 100000000.0f)
             ){
                 marker_despawn(this->marker);
             }
             else{
                 if(this->position_y < 300.0f
-                    && func_8038F5BC(&this->position, 16000000.0f)
+                    && func_8038F5BC(this->position, 16000000.0f)
                 ){
-                    if(func_80320C94(&D_803928F8, &this->position, func_8033229C(this->marker), &D_80392908, 8, 2.0f)){
+                    if(func_80320C94(D_803928F8, this->position, func_8033229C(this->marker), &D_80392908, 8, 0x40000000)){
                         func_8038F084(this->marker);
-                        break;
+                        return;
                     }
                 }
             }
@@ -407,7 +387,6 @@ void func_8038F620(Actor *this){
             break;
     }//L8038FB74
 }
-#endif
 
 void func_8038FB84(ActorMarker *arg0, f32 *arg1, f32 *arg2, f32 *arg3) {
     Actor *temp_v0 = marker_getActor(arg0);
