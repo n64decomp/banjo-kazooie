@@ -39,12 +39,12 @@ segments:
       - [0x5600, c, ch/mrvile] #DONE
       - [0x6730, c, done/ch/code_6730] #DONE
       - [0x6DF0, c, ch/yellowflibbit] #DONE
-      - [0x8640, c, done/ch/mudhut]
-      - [0x8A60, c, done/ch/code_8A60]
-      - [0x8DF0, c, done/code_8DF0]
+      - [0x8640, c, done/ch/mudhut] #DONE
+      - [0x8A60, c, done/ch/code_8A60] #DONE
+      - [0x8DF0, c, done/code_8DF0] #DONE
       - [0x9080, c, ch/tanktup]
       - [0x9750, c, code_9750] #DONE
-      - [0x98C0, c, done/ch/bigalligator]
+      - [0x98C0, c, done/ch/bigalligator] #DONE
       - [0x9920, c, ch/leafboat] #DONE
   - name: BGS-data
     dir: BGS
@@ -65,7 +65,7 @@ segments:
       - [0x0000A6F0, .data, ch/yellowflibbit]
       - [0x0000A730, bin, data_A730]
       - [0x0000A740, .data, done/ch/mudhut]
-      - [0x0000A7A0, bin, data_A7A0]
+      - [0x0000A7A0, .data, done/ch/code_8A60]
       - [0x0000A830, .data, ch/tanktup]
       - [0x0000A860, .data, code_9750]
       - [0x0000A980, .data, done/ch/bigalligator]
@@ -78,9 +78,7 @@ segments:
       - [0x0000AC20, .rodata, ch/yumblie]
       - [0x0000AC50, .rodata, ch/mrvile]
       - [0x0000ACA0, .rodata, done/ch/code_6730]
-      # - [0x0000ACB0, bin, data_ACB0]
       - [0x0000ACB0, .rodata, ch/yellowflibbit]
-      # - [0x0000AD20, .rodata, ch/yellowflibbit]
       - [0x0000ADA0, .rodata, done/ch/mudhut]
       - [0x0000ADB0, .rodata, done/ch/code_8A60]
       - [0x0000ADC0, bin, data_ADC0]

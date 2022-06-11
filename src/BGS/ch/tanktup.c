@@ -94,8 +94,7 @@ void func_8038F6A4(Actor *this) {
     f32 sp48[3];
     s32 sp44;
     f32 sp34[3];
-    s16 *temp_v0;
-    s32 tmp_a2;
+    Prop *temp_v0;
 
     if(!this->initialized){
         temp_v0 = func_80304C38(0x32B, this);
@@ -115,14 +114,11 @@ void func_8038F6A4(Actor *this) {
         this->marker->propPtr->unk8_3 = TRUE;
         actor_collisionOff(this);
         this->scale = 1.0f;
-        sp44 = 0;
-        while(sp44 < 4){
+        for(sp44 = 0; sp44 < 4; sp44++){
             if (local->unk0[sp44] == 0) {
                 func_802C3E10(&func_8038F470, this->marker, local->unk0[sp44], sp44);
             }
-            sp44++;
         }
-    
     }
     switch(this->state){
         case 1:
@@ -188,9 +184,10 @@ void func_8038F6A4(Actor *this) {
                 func_8028F918(0);
                 if (jiggyscore_isCollected(JIGGY_26_BGS_TANKTUP) == 0) {
                     func_80311480(0xC7F, 0xF, this->position, this->marker, func_8038F5E4, NULL);
-                    return;
                 }
-                func_8038F5E4(this->marker, 0xC7F, -1);
+                else{
+                    func_8038F5E4(this->marker, 0xC7F, -1);
+                }
             }
             break;
     }
