@@ -110,16 +110,6 @@ typedef struct chyumblie_s{
     u32 unkC;
 } ActorLocal_Yumblie;
 
-typedef struct ch_bgs_2270_s{
-    u32 unk0;
-    vector(struct7s) *unk4;
-    u8  unk8;
-    u8  unk9;
-    u8  unkA;
-    u8  unkB;
-    f32  unkC;
-} ActorLocal_BGS_2270;
-
 typedef struct ch_bgs_6730_s{
     u32  unk0;
     u32  unk4;
@@ -208,7 +198,6 @@ typedef struct actor_s{
     union
     { //DON'T DO THIS JUST DEFINE STATICLY IN ch/ FILE AND CAST FROM &Actor->local
         ActorLocal_Yumblie  yumblie; 
-        ActorLocal_BGS_2270 bgs_2270;
         ActorLocal_BGS_6730 bgs_6730;
         ActorLocal_TanktupBody tanktup;
         ActorLocal_Jinjo jinjo;

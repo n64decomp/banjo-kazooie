@@ -19,14 +19,14 @@ typedef struct{
 extern f32 func_80309724(f32 *);
 extern void func_80256E24(f32 [3], f32, f32, f32, f32, f32);
 
-void func_803870B4(Actor *this);
-Actor *func_80386EF0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
+void chflibbit_update(Actor *this);
+Actor *chflibbit_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 
 /* .data */
 ActorInfo D_80390690 = {
     0xC1, 0x133, 0x375,
     0, NULL, 
-    func_803870B4, NULL, func_80386EF0,
+    chflibbit_update, NULL, chflibbit_draw,
     {0, 0}, 0, 1.0f, 0
 };
 
@@ -263,7 +263,7 @@ void func_80386EB0(ActorMarker *this, ActorMarker *other){
     }
 }
 
-Actor *func_80386EF0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
+Actor *chflibbit_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     Actor *this;
     ActorLocal_Flibbit *local;
     s32 temp_a0;
@@ -300,10 +300,10 @@ Actor *func_80386EF0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     return this;
 }
 
-void func_803870B4(Actor *this){
-    f32 spBC[3];
+void chflibbit_update(Actor *this){
+    f32 player_position[3];
     f32 spB0[3];
-    f32 spAC;
+    f32 player_distance;
     ActorLocal_Flibbit *local = (ActorLocal_Flibbit *)&this->local;
     f32 spA4 = time_getDelta();
     f32 spA0;
@@ -336,12 +336,12 @@ void func_803870B4(Actor *this){
         local->unkE[1] = func_80309724(this->position);
         func_80386AEC(this, 1);
     }
-    player_getPosition(spBC);
+    player_getPosition(player_position);
 
-    spB0[0] = spBC[0] - this->position[0];
-    spB0[1] = spBC[1] - this->position[1];
-    spB0[2] = spBC[2] - this->position[2];
-    spAC = gu_sqrtf(spB0[0]*spB0[0] + spB0[1]*spB0[1] + spB0[2]*spB0[2]);
+    spB0[0] = player_position[0] - this->position[0];
+    spB0[1] = player_position[1] - this->position[1];
+    spB0[2] = player_position[2] - this->position[2];
+    player_distance = gu_sqrtf(spB0[0]*spB0[0] + spB0[1]*spB0[1] + spB0[2]*spB0[2]);
 
     if(func_8025773C(&local->unk24, spA4)){
         func_8030E878(0x3f0, randf2(0.9f, 1.1f), randi2(12000, 19000), this->position, 500.0f, 2500.0f);
@@ -355,13 +355,13 @@ void func_803870B4(Actor *this){
     local->unk1C[1] = (0.2 < local->unk1C[1]) ? randf2(-3.0f, -1.0f) : local->unk1C[1];
 
     if(this->state == 1){
-        if(func_80329210(this, spBC)){
+        if(func_80329210(this, player_position)){
             func_80386AEC(this, 2);
             return;
         }
 
-        if(spAC < 2000.0f){
-            func_80258A4C(this->position, this->yaw - 90.0f, spBC, &spA0, &sp9C, &sp98);
+        if(player_distance < 2000.0f){
+            func_80258A4C(this->position, this->yaw - 90.0f, player_position, &spA0, &sp9C, &sp98);
             this->yaw += (sp98*90.0f) *spA4; 
         }
     }//L803873D0
@@ -409,7 +409,7 @@ void func_803870B4(Actor *this){
     }//L80387734
 
     if (this->state == 3) {
-        func_80258A4C(this->position, this->yaw - 90.0f, &spBC, &sp60, &sp5C, &sp58);
+        func_80258A4C(this->position, this->yaw - 90.0f, player_position, &sp60, &sp5C, &sp58);
         this->yaw += sp58 * 90.0f * spA4;
         if ((-0.4 <= sp58) && (sp58 <= 0.4) && ((f64) randf() > 0.5)) {
             func_80386AEC(this, 2);
@@ -427,9 +427,9 @@ void func_803870B4(Actor *this){
     }
 
     if(this->state == 6){
-        sp4C[0] = this->position[0] - spBC[0];
-        sp4C[1] = this->position[1] - spBC[1];
-        sp4C[2] = this->position[2] - spBC[2];
+        sp4C[0] = this->position[0] - player_position[0];
+        sp4C[1] = this->position[1] - player_position[1];
+        sp4C[2] = this->position[2] - player_position[2];
         sp4C[1] = 0.0f;
         ml_vec3f_set_length(sp4C, 400.0f * spA4);
 

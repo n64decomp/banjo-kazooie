@@ -8,15 +8,32 @@ extern void func_80324CFC(f32, enum comusic_e, s32);
 extern void func_803289EC(Actor *, f32, s32);
 extern void func_80326310(Actor *);
 extern void actor_setOpacity(Actor *, s32);
+extern void func_802C3D3C(void (*)(s32, s32), s32, s32);
+extern void func_802BAFE4(s32 arg0);
+
 
 
 void func_80387D18(ActorMarker *, u32);
 Actor *func_8038860C(ActorMarker *, Gfx**, Mtx **, Vtx**);
+void func_80387FD4(Actor *this);
 
 /* .data */
-
-extern s16 D_803907AE[5];
-extern ActorMarker *bgs_D_803907B8[5];
+s16 D_803907B0[4] = {0x15, 0x16, 0x17, 0x18};
+ActorMarker *bgs_D_803907B8[5] = {NULL};
+ActorAnimationInfo D_803907CC[] = {
+    {0x000, 0.0f},
+    {0x14B, 3.3e+7f},
+    {0x14B, 1.4f},
+    {0x14B, 3.3e+7f},
+    {0x14B, 1.4f},
+    {0x14B, 2.0f},
+    {0x14B, 2.0f}
+};
+ActorInfo D_80390804 ={0xFC, 0x1FA, 0x425,
+    1, D_803907CC,
+    func_80387FD4, func_80326224, func_8038860C,
+    {0, 0}, 0, 0.0f, {0,0,0,0}
+};
 
 /* .code */
 void func_80387C90(Actor *arg0){
@@ -52,18 +69,13 @@ void *func_80387D90(ActorMarker * arg0){
     func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 0x7FFF);
 }
 
-#ifndef NONMATCING
-void func_80387E00(s32 arg0);
-#pragma GLOBAL_ASM("asm/nonmatchings/BGS/ch/croctus/func_80387E00.s")
-#else
 void func_80387E00(s32 arg0){
     ActorMarker *marker = reinterpret_cast(ActorMarker *, arg0);
-    Actor * thisActor = marker_getActor(marker);
+    Actor * this = marker_getActor(marker);
 
     func_803262E4(this);
-    func_802C3D3C(func_80387D18, marker, 0x1E);
+    func_802C3D3C(func_80387D18, reinterpret_cast(s32, marker), 0x1E);
 }
-#endif
 
 void func_80387E40(ActorMarker * arg0){
     Actor *thisActor = marker_getActor(arg0);
@@ -71,14 +83,6 @@ void func_80387E40(ActorMarker * arg0){
     if(arg0);
 }
 
-
-
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/BGS/ch/croctus/func_80387E68.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/BGS/ch/croctus/func_80387FD4.s")
-
-#else
 void func_80387E68(ActorMarker *caller, enum asset_e text_id, s32 arg2){
     Actor *this;
 
@@ -120,8 +124,8 @@ void func_80387FD4(Actor *this){
                 }
             }//L803880C8
             
-            for( j = this->unkF4_8 - 2; j >= 0 && bgs_D_803907B8[j] == NULL; j--)
-            {}
+            for( j = this->unkF4_8 - 2; j >= 0 && bgs_D_803907B8[j] == NULL; j--);
+
             
             if(j >= 0){
                 this->marker->propPtr->unk8_4 = FALSE;
@@ -136,7 +140,7 @@ void func_80387FD4(Actor *this){
 
     if(this->unk38_31){
         if ((this->state != 5) && (this->state != 6)) {
-            func_8025A6EC(COMUSIC_2B_DING_B, 28000);
+            func_8025A6EC(COMUSIC_2B_DING_B, 28000); //TODO ISSUE HERE
             if (this->unkF4_8 == 1) {
                 func_8028F94C(2, this->position);
                 func_80311480(0xC86, 0xE, this->position, this->marker, func_80387E68, NULL);
@@ -155,7 +159,7 @@ void func_80387FD4(Actor *this){
                 if (this->unkF4_8 < 5) {
                     bgs_D_803907B8[this->unkF4_8]->propPtr->unk8_4 = TRUE;
                     timedFunc_set_1(1.1f, (TFQM1)func_80387E00, bgs_D_803907B8[this->unkF4_8]);
-                    func_802BAFE4(D_803907AE[this->unkF4_8]);
+                    func_802BAFE4(D_803907B0[this->unkF4_8-1]);
                 } else {
                     timedFunc_set_1(0.8f, (TFQM1)func_80387D90, (s32) this->marker);
                 }
@@ -213,7 +217,6 @@ void func_80387FD4(Actor *this){
         break;
     }
 }
-#endif
 
 void bgs_func_803885DC(void){
     s32 i;

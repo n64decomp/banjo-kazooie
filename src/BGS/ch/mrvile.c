@@ -109,13 +109,13 @@ void func_8038BBA0(Actor *this, s32 arg1){
     if(arg1 == 0x67){
         func_80335A24(this->unk148, 0x124, 0.1f, 0.5f); //0x124 = croc_munch
         if(this->state == 4){
-            timed_playSfx(0.31f, 0x4C, 0.90f, 0x61A8);
+            timed_playSfx(0.31f, SFX_4C_LIP_SMACK, 0.90f, 0x61A8);
             timedFunc_set_1(0.31f, func_8038BB40, this->marker);
         }
         else{
-            timed_playSfx(0.31f, 0x4C, 0.90f, 0x61A8);
-            timed_playSfx(0.81f, 0x4C, 0.93f, 0x61A8);
-            timed_playSfx(1.31f, 0x4C, 0.91f, 0x61A8);
+            timed_playSfx(0.31f, SFX_4C_LIP_SMACK, 0.90f, 0x61A8);
+            timed_playSfx(0.81f, SFX_4C_LIP_SMACK, 0.93f, 0x61A8);
+            timed_playSfx(1.31f, SFX_4C_LIP_SMACK, 0.91f, 0x61A8);
         }
     }
     if(arg1 == 0x68){
