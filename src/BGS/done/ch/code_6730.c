@@ -15,7 +15,8 @@ ActorInfo D_80390AB0 = {0xC4, ACTOR_136_YELLOW_FLIBBIT_CONTROLLER, 0x00, 0x00, N
 };
 
 f32 D_80390AD4[3] = {1985.0f, 200.0f, -1386.0f};
-extern f32 D_80391090;
+
+/* .bss */
 extern u8 D_80391240[4];
 
 void func_8038CB20(void){
@@ -95,7 +96,7 @@ void func_8038CC08(Actor * arg0, u32 arg1){
     if(arg1 == 5){
         func_80324E38(0.0f, 3);
         timed_setCameraToNode(0.0f, 0x27);
-        timedFunc_set_0(D_80391090, func_8038CB20);
+        timedFunc_set_0(0.2f, func_8038CB20);
         func_80324E88(3.0f);
         func_80324E38(3.0f, 0);
         arg1 = 6;

@@ -355,14 +355,13 @@ void func_8038A068(Actor *this, s32 next_state) {
 }
 #endif
 
-void func_8038A6AC(Actor *this) {
+void chvilegame_player_consume_piece(Actor *this) {
     ActorLocal_BGS_3420 *local;
-    s32 sp50;
+    bool is_correct_type;
     f32 sp44[3];
     struct vilegame_piece *begin;
     struct vilegame_piece *end;
     struct vilegame_piece *i_ptr;
-
 
     local = (ActorLocal_BGS_3420 *)&this->local;
 
@@ -371,9 +370,9 @@ void func_8038A6AC(Actor *this) {
     if ((end != begin) && func_80389810(sp44)){
         sp44[1] = 0.0f;
         for(i_ptr = begin; i_ptr < end; i_ptr++){
-            if ((func_80256064(i_ptr->position, sp44) < 65.25) && (func_8038B4E4(i_ptr->marker) != 0)) {
-                sp50 = ((local->current_type != YUMBLIE) && (i_ptr->type != YUMBLIE)) || (((local->current_type == YUMBLIE) && i_ptr->type == YUMBLIE));
-                if (sp50 != 0) {
+            if ((func_80256064(i_ptr->position, sp44) < 65.25) && chyumblie_is_edible(i_ptr->marker)) {
+                is_correct_type = ((local->current_type != YUMBLIE) && (i_ptr->type != YUMBLIE)) || (((local->current_type == YUMBLIE) && i_ptr->type == YUMBLIE));
+                if (is_correct_type) {
                     local->player_score++;
                     if (local->player_score == 35) {
                         item_inc(ITEM_16_LIFE);
@@ -384,7 +383,7 @@ void func_8038A6AC(Actor *this) {
                     timedFunc_set_1(1.0f, func_802FDCB8, 0x1A);
                 }
                 func_8028F6B8(0x17, (i_ptr->type != YUMBLIE) ? 0x3F7 : 0x3F6);
-                if (sp50 == 0) {
+                if (!is_correct_type) {
                     func_8028F66C(0x18);
                 }
                 func_8038B684(i_ptr->marker);
@@ -394,7 +393,7 @@ void func_8038A6AC(Actor *this) {
     }
 }
 
-bool func_8038A86C(ActorMarker *marker, f32 position[3]) {
+bool chvilegame_cpu_consume_piece(ActorMarker *marker, f32 position[3]) {
     Actor *this;
     ActorLocal_BGS_3420 *local;
     struct vilegame_piece *begin;
@@ -420,8 +419,7 @@ bool func_8038A86C(ActorMarker *marker, f32 position[3]) {
     return FALSE;
 }
 
-//chvilegame_get_grumblie_model
-BKModelBin *func_8038A994(ActorMarker *marker){
+BKModelBin *chvilegame_get_grumblie_model(ActorMarker *marker){
     Actor *this;
     ActorLocal_BGS_3420 *local;
 
@@ -431,8 +429,7 @@ BKModelBin *func_8038A994(ActorMarker *marker){
     return local->grumblie_model_bin;
 }
 
-//chvilegame_get_piece_count
-s32 func_8038A9B8(ActorMarker *marker){
+s32 chvilegame_get_piece_count(ActorMarker *marker){
     Actor *this;
     ActorLocal_BGS_3420 *local;
 
@@ -452,8 +449,7 @@ s32 func_8038A9E0(ActorMarker *marker){
     return local->unkC;
 }
 
-//chvilegame_get_score_difference
-s32 func_8038AA04(ActorMarker *marker){
+s32 chvilegame_get_score_difference(ActorMarker *marker){
     Actor *this;
     ActorLocal_BGS_3420 *local;
 
@@ -463,8 +459,7 @@ s32 func_8038AA04(ActorMarker *marker){
     return local->vile_score - local->player_score;
 }
 
-//chvilegame_find_closest_piece
-bool func_8038AA2C(ActorMarker *marker, f32 position[0], f32 yaw, f32 dst[3]) {
+bool chvilegame_find_closest_piece(ActorMarker *marker, f32 position[0], f32 yaw, f32 dst[3]) {
     f32 piece_direction[3];
     f32 target_direction[3];
     Actor *this;
@@ -608,7 +603,7 @@ void chvilegame_update(Actor *this) {
                 func_8038A068(this, 0xA);
             }
         } else {
-            func_8038A6AC(this);
+            chvilegame_player_consume_piece(this);
             if ((local->unkC == 3) || (local->unkC == 6)) {
                 if (func_8025773C(&local->type_change_timer, sp50)) {
                     local->current_type = !local->current_type;

@@ -8,14 +8,29 @@ extern void func_803253A0(Actor *);
 extern void func_80325794(ActorMarker *);
 extern f32 randf (void);
 
+enum chyumblie_state_e{
+    YUMBLIE_STATE_1_UNDER_GROUND = 1,
+    YUMBLIE_STATE_2_APPEAR,
+    YUMBLIE_STATE_3_ABOVE_GROUND,
+    YUMBLIE_STATE_4_DISAPPEAR,
+    YUMBLIE_STATE_5_BEING_EATEN,
+};
 
-void func_8038B220(Actor*, s32);
-void func_8038B6D0(Actor *);
-Actor *func_8038B528(ActorMarker *this, Gfx **gfx, Mtx** mtx, Vtx **vtx);
+typedef struct chyumblie_s{
+    f32 unk0;
+    u8  unk4;
+    u8  pad7[3];
+    f32 unk8; //wait_timer
+    ActorMarker *game_marker;
+} ActorLocal_Yumblie;
+
+void chyumblie_set_state(Actor*, enum chyumblie_state_e);
+void chyumblie_update(Actor *);
+Actor *chyumblie_draw(ActorMarker *this, Gfx **gfx, Mtx** mtx, Vtx **vtx);
 
 /* .data */
 ActorInfo D_80390A40 = {0xC7, actor_yumblie, 0x3F6, 0x00, NULL,
-    func_8038B6D0, NULL, func_8038B528,
+    chyumblie_update, NULL, chyumblie_draw,
     {0,0}, 0, 0.0f, {0,0,0,0}
 };
 
@@ -35,7 +50,7 @@ bool func_8038B160(Actor *this){
     return (randf () >= 0.5)? TRUE : FALSE;
 }
 
-void func_8038B220(Actor* this, s32 next_state){
+void chyumblie_set_state(Actor* this, enum chyumblie_state_e next_state){
 
     ActorLocal_Yumblie *s0;
     s0 = (ActorLocal_Yumblie *)&this->local;
@@ -75,14 +90,14 @@ void func_8038B220(Actor* this, s32 next_state){
     this->state = next_state;
 }
 
-int func_8038B4E4(ActorMarker * arg0){
+bool chyumblie_is_edible(ActorMarker * arg0){
     volatile Actor* actPtr;
 
     actPtr = marker_getActor(arg0);
     return (actPtr->state >= 2) && (actPtr->state < 5);
 }
 
-Actor *func_8038B528(ActorMarker *this, Gfx **gfx, Mtx** mtx, Vtx **vtx){
+Actor *chyumblie_draw(ActorMarker *this, Gfx **gfx, Mtx** mtx, Vtx **vtx){
     Actor *thisActor;
     ActorLocal_Yumblie *sp40;
     f32 sp44[3];
@@ -104,7 +119,7 @@ Actor *func_8038B528(ActorMarker *this, Gfx **gfx, Mtx** mtx, Vtx **vtx){
     sp38[1] = thisActor->yaw;
     sp38[2] = thisActor->roll;
     if(sp40->unk4 && sp40->game_marker){
-        func_803391A4(gfx, mtx, sp44, sp38, 1.0f, NULL, func_8038A994(sp40->game_marker));
+        func_803391A4(gfx, mtx, sp44, sp38, 1.0f, NULL, chvilegame_get_grumblie_model(sp40->game_marker));
     }
     else{
         func_803391A4(gfx, mtx, sp44, sp38, 1.0f, NULL, func_80330B1C(this));
@@ -116,14 +131,14 @@ bool func_8038B684(ActorMarker * arg0){
     Actor* actPtr = marker_getActor(arg0);
 
     if( actPtr->state < 5){
-        func_8038B220(actPtr, 5);
+        chyumblie_set_state(actPtr, YUMBLIE_STATE_5_BEING_EATEN);
         return TRUE;
     }
 
     return FALSE;
 }
 
-void func_8038B6D0(Actor *this){
+void chyumblie_update(Actor *this){
     ActorLocal_Yumblie *s0;
     f32 sp50;
     f32 sp4C;
@@ -138,7 +153,7 @@ void func_8038B6D0(Actor *this){
         s0->unk0 = 0.0f;
         s0->unk4 = 0;
         s0->game_marker = NULL;
-        func_8038B220(this, 1);
+        chyumblie_set_state(this, YUMBLIE_STATE_1_UNDER_GROUND);
         return;
     }
 
@@ -146,17 +161,17 @@ void func_8038B6D0(Actor *this){
         s0->game_marker = func_80326D68(this->position, 0x138, -1, &sp48)->marker;
     }
     sp50 = func_80335684(this->unk148);
-    if(this->state == 1){
+    if(this->state == YUMBLIE_STATE_1_UNDER_GROUND){
         if(func_8025773C(&s0->unk8, sp4C)){
-            if(mapSpecificFlags_get(6) && (0xc > func_8038A9B8(s0->game_marker))){
-                func_8038B220(this,2);
+            if(mapSpecificFlags_get(6) && (12 > chvilegame_get_piece_count(s0->game_marker))){
+                chyumblie_set_state(this, YUMBLIE_STATE_2_APPEAR);
             }
             else{
-                func_8038B220(this,1);
+                chyumblie_set_state(this, YUMBLIE_STATE_1_UNDER_GROUND);
             }
         }
     }
-    if(this->state == 2){
+    if(this->state == YUMBLIE_STATE_2_APPEAR){
         tmp = s0->unk0;
         if(s0->unk4){
             if(sp50 <= 0.3){
@@ -174,29 +189,29 @@ void func_8038B6D0(Actor *this){
 
         if( 0 < func_80335794(this->unk148)){
             s0->unk0 = 1.0f;
-            func_8038B220(this,3);
+            chyumblie_set_state(this,YUMBLIE_STATE_3_ABOVE_GROUND);
         }
 
     }
-    if(this->state == 3){
+    if(this->state == YUMBLIE_STATE_3_ABOVE_GROUND){
         if( func_8025773C(&s0->unk8,sp4C) || !mapSpecificFlags_get(6) ){
-            func_8038B220(this,4);
+            chyumblie_set_state(this,YUMBLIE_STATE_4_DISAPPEAR);
         }
     }
 
-    if(this->state == 4){
+    if(this->state == YUMBLIE_STATE_4_DISAPPEAR){
         if(sp50 >= 0.25 )
             s0->unk0 -= 2.0f*(f64)sp4C;
         
         if(0.0f >= s0->unk0){
             s0->unk0 = 0.0f;
-            func_8038B220(this,1);
+            chyumblie_set_state(this,YUMBLIE_STATE_1_UNDER_GROUND);
         }   
     }
 
-    if(this->state == 5){
+    if(this->state == YUMBLIE_STATE_5_BEING_EATEN){
         if( func_8025773C(&s0->unk8,sp4C)){
-            func_8038B220(this,1);
+            chyumblie_set_state(this,YUMBLIE_STATE_1_UNDER_GROUND);
         }
     }
 }

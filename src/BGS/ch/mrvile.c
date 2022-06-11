@@ -12,19 +12,18 @@ void func_8038BB40(ActorMarker *);
 extern void func_80335A80(void *, f32);
 extern bool func_80320C94(f32[3], f32[3], f32, f32[3], s32, u32);
 
-extern bool func_8038AA2C(ActorMarker *, f32[3], f32, f32[3]);
-
+extern bool chvilegame_find_closest_piece(ActorMarker *, f32[3], f32, f32[3]);
 
 typedef struct chmrvile_s{
     u8 unk0;
     // u8  pad1[0x3];
     BKModelBin *unk4; //yumblie_model
-    ActorMarker *unk8; //game_marker
+    ActorMarker *game_marker; //game_marker
     u8  unkC;
-    u8  padD[0x3];
+    // u8  padD[0x3];
     f32 unk10; //movement_speed
     f32 unk14; //yumblie_eating_timer
-    f32 unk18[3]; //target_position
+    f32 target_position[3]; //target_position
     f32 unk24;
     f32 unk28[3]; //target_rotation?
 } ActorLocal_MrVile;
@@ -80,7 +79,7 @@ void func_8038BB40(ActorMarker * arg0){
 
     this = marker_getActor(arg0);
     local = (ActorLocal_MrVile *)&this->local;
-    if(func_8038A9E0(local->unk8) >= 3){
+    if(func_8038A9E0(local->game_marker) >= 3){
         item_set(ITEM_14_HEALTH, 0);
         func_8028F66C(0xF);
     }
@@ -95,18 +94,18 @@ void func_8038BBA0(Actor *this, s32 arg1){
     
     local = (ActorLocal_MrVile *)&this->local;
     local->unk14 = 0.0f;
-    if(arg1 == 0x65){
+    if(arg1 == 101){
         local->unk24 = 0.0f;
         local->unk28[0] = local->unk28[1] = local->unk28[2] = 0.0f;
         func_80335924(this->unk148, 0xe1, 0.10000000149f, 1.0f); //0xe1 = croc_idle
     }
-    if(arg1 == 0x66){
+    if(arg1 == 102){
         if(local->unk24 < 100.0f){
             local->unk24 = 100.0f;
         };
         func_80335A24(this->unk148, 0xe0, 0.1f, 0.5f); //0xe1 = croc_walk
     }
-    if(arg1 == 0x67){
+    if(arg1 == 103){
         func_80335A24(this->unk148, 0x124, 0.1f, 0.5f); //0x124 = croc_munch
         if(this->state == 4){
             timed_playSfx(0.31f, SFX_4C_LIP_SMACK, 0.90f, 0x61A8);
@@ -118,7 +117,7 @@ void func_8038BBA0(Actor *this, s32 arg1){
             timed_playSfx(1.31f, SFX_4C_LIP_SMACK, 0.91f, 0x61A8);
         }
     }
-    if(arg1 == 0x68){
+    if(arg1 == 104){
         local->unk14 = 1.0f;
         timed_playSfx(randf2(1.2f, 1.3f), SFX_97_BLUBBER_BURPS, randf2(0.8f, 1.1f), randi2(25000, 32000));
     }
@@ -129,17 +128,17 @@ void func_8038BD84(Actor *this){
     ActorLocal_MrVile *local;
 
     local = (ActorLocal_MrVile *)&this->local;
-    local->unkC = 0x64;
+    local->unkC = 100;
     local->unk10 = 0.0f;
     local->unk14 = 0.0f;
     local->unk24 = 0.0f;
-    local->unk18[0] = 0.0f;
-    local->unk18[1] = 0.0f;
-    local->unk18[2] = 0.0f;
+    local->target_position[0] = 0.0f;
+    local->target_position[1] = 0.0f;
+    local->target_position[2] = 0.0f;
     local->unk28[0] = 0.0f;
     local->unk28[1] = 0.0f; 
     local->unk28[2] = 0.0f;
-    func_8038BBA0(this, 0x65);
+    func_8038BBA0(this, 101);
 }
 
 void func_8038BDD4(Actor *this) {
@@ -158,7 +157,7 @@ void func_8038BDD4(Actor *this) {
     sp60[1] = this->position[1];
     sp60[2] = this->position[2];
     func_8025773C(&local->unk14, sp5C);
-    if ((local->unkC == 0x66) || (local->unkC == 0x67) || (local->unkC == 0x68)) {
+    if ((local->unkC == 102) || (local->unkC == 103) || (local->unkC == 104)) {
         sp44[0] = 0.0f;
         sp44[1] = 0.0f;
         sp44[2] = local->unk24 * sp5C;
@@ -169,7 +168,7 @@ void func_8038BDD4(Actor *this) {
         this->pitch += local->unk28[0] * sp5C;
         this->yaw   += local->unk28[1] * sp5C;
         this->roll  += local->unk28[2] * sp5C;
-        func_80258A4C(this->position, this->yaw - 90.0f, local->unk18, &sp58, &sp54, &sp50);
+        func_80258A4C(this->position, this->yaw - 90.0f, local->target_position, &sp58, &sp54, &sp50);
         if ((sp54 > 0.0f) && (sp58 > 200.0f)) {
             local->unk24 += 100.0f * sp5C;
         }
@@ -196,34 +195,34 @@ void func_8038BDD4(Actor *this) {
     }
 }
 
-void func_8038C0C8(Actor * this, u32 arg1){
+void func_8038C0C8(Actor * this, s32 next_state){
     ActorLocal_MrVile *local;
 
     local = (ActorLocal_MrVile *)&this->local;
-    if(arg1 == 1)
-        func_8038BBA0(this, 0x65);
+    if(next_state == 1)
+        func_8038BBA0(this, 101);
 
-    if(arg1 == 2)
-        func_8038BBA0(this, 0x65);
+    if(next_state == 2)
+        func_8038BBA0(this, 101);
 
-    if(arg1 == 3)
-        func_8038BBA0(this, 0x66);
+    if(next_state == 3)
+        func_8038BBA0(this, 102);
 
-    if(arg1 == 4)
-        func_8038BBA0(this, 0x66);
+    if(next_state == 4)
+        func_8038BBA0(this, 102);
 
-    if(arg1 == 5){
-        local->unk18[0] = local->unk18[1] = local->unk18[2] = 0.0f;
-        func_8038BBA0(this, 0x66);
+    if(next_state == 5){
+        local->target_position[0] = local->target_position[1] = local->target_position[2] = 0.0f;
+        func_8038BBA0(this, 102);
     }
 
-    if(arg1 == 6){
-        local->unk18[0] = local->unk18[1] = local->unk18[2] = 0.0f;
+    if(next_state == 6){
+        local->target_position[0] = local->target_position[1] = local->target_position[2] = 0.0f;
         local->unk24 = 300.0f;
-        func_8038BBA0(this, 0x66);
+        func_8038BBA0(this, 102);
     }
 
-    this->state = arg1; 
+    this->state = next_state; 
 }
 
 Actor *chvile_draw(ActorMarker *marker, Gfx **gfx, Mtx** mtx, Vtx **vtx){
@@ -235,7 +234,7 @@ Actor *chvile_draw(ActorMarker *marker, Gfx **gfx, Mtx** mtx, Vtx **vtx){
     this = func_80325888(marker, gfx, mtx, vtx);
     local = (ActorLocal_MrVile *)&this->local;
     if (
-        (local->unkC == 0x68) &&
+        (local->unkC == 104) &&
         (local->unk14 > 0.0f) 
         && (this->marker->unk14_21)
     ) {
@@ -348,13 +347,13 @@ void chvile_update(Actor *this) {
         this->marker->unk30 = chvile_free;
         local->unk0 = 0;
         local->unk4 = assetcache_get(0x3F6);
-        local->unk8 = NULL;
+        local->game_marker = NULL;
         func_8038BD84(this);
         func_8038C0C8(this, 1);
         return;
     }
-    if (local->unk8 == 0) {
-        local->unk8 = func_80326D68(this->position, 0x138, -1, &sp90)->marker;
+    if (local->game_marker == NULL) {
+        local->game_marker = func_80326D68(this->position, 0x138, -1, &sp90)->marker;
     }
     player_getPosition(&sp94);
     sp90 = func_80256064(this->position, &sp94);
@@ -372,14 +371,14 @@ void chvile_update(Actor *this) {
         }
     }
     if (this->state == 3) {
-        var_v1 = func_8038AA2C(local->unk8, this->position, this->yaw, local->unk18) && mapSpecificFlags_get(6);
+        var_v1 = chvilegame_find_closest_piece(local->game_marker, this->position, this->yaw, local->target_position) && mapSpecificFlags_get(6);
         if (!var_v1) {
-            local->unk18[0] = 0.0f;
-            local->unk18[1] = 0.0f;
-            local->unk18[2] = 0.0f;
+            local->target_position[0] = 0.0f;
+            local->target_position[1] = 0.0f;
+            local->target_position[2] = 0.0f;
         }
-        if (local->unk8 != NULL) {
-            temp_v0 = func_8038AA04(local->unk8);
+        if (local->game_marker != NULL) {
+            temp_v0 = chvilegame_get_score_difference(local->game_marker);
             if (temp_v0 >= 2) {
                 local->unk10 = 200.0f;
             } else if (temp_v0 >= 0) {
@@ -389,60 +388,60 @@ void chvile_update(Actor *this) {
             } else {
                 local->unk10 = 450.0f;
             }
-            local->unk10 *= D_80390A94[func_8038A9E0(local->unk8)];
+            local->unk10 *= D_80390A94[func_8038A9E0(local->game_marker)];
         }
-        if (func_8038A9E0(local->unk8) < 7) {
-            func_80258A4C(this->position, this->yaw - 90.0f, local->unk18, &sp70, &sp6C, &sp68);
-            if (local->unkC == 0x66) {
+        if (func_8038A9E0(local->game_marker) < 7) {
+            func_80258A4C(this->position, this->yaw - 90.0f, local->target_position, &sp70, &sp6C, &sp68);
+            if (local->unkC == 102) {
                 if ((-0.8 < sp68) && (sp68 < 0.8) && (sp70 <= 150.0f) && var_v1) {
-                    func_8038BBA0(this, 0x67);
+                    func_8038BBA0(this, 103);
                 }
             }
-            if (local->unkC == 0x67) {
+            if (local->unkC == 103) {
                 if (sp70 <= 50.0f) {
-                    if (func_8038A86C(local->unk8)) {
-                        func_8038BBA0(this, 0x68);
+                    if (chvilegame_cpu_consume_piece(local->game_marker, local->target_position)) {
+                        func_8038BBA0(this, 104);
                     } else {
-                        func_8038BBA0(this, 0x66);
+                        func_8038BBA0(this, 102);
                     }
-                } else if (func_80335794(this->unk148, local->unk18) >= 3) {
-                    func_8038BBA0(this, 0x66);
+                } else if (func_80335794(this->unk148) >= 3) {
+                    func_8038BBA0(this, 102);
                 }
             }
-            if ((local->unkC == 0x68) && (func_80335794(this->unk148) >= 3)) {
-                func_8038BBA0(this, 0x66);
+            if ((local->unkC == 104) && (func_80335794(this->unk148) >= 3)) {
+                func_8038BBA0(this, 102);
             }
         }
     }
     if (this->state == 4) {
-        player_getPosition(local->unk18);
+        player_getPosition(local->target_position);
         local->unk10 = 500.0f;
-        if ((local->unkC == 0x66) && (func_80256064(this->position, local->unk18) < 200.0f)) {
-            func_8038BBA0(this, 0x67);
+        if ((local->unkC == 102) && (func_80256064(this->position, local->target_position) < 200.0f)) {
+            func_8038BBA0(this, 103);
         }
-        if ((local->unkC == 0x67) && (func_80335794(this->unk148) >= 2)) {
+        if ((local->unkC == 103) && (func_80335794(this->unk148) >= 2)) {
             func_8038C0C8(this, 1);
         }
     }
     if (this->state == 5) {
         local->unk10 = 200.0f;
-        if (func_80256064(this->position, local->unk18) < 100.0f) {
-            local->unk18[0] = randf2(-500.0f, 500.0f);
-            local->unk18[1] = 0.0f;
-            local->unk18[2] = randf2(-500.0f, 500.0f);
+        if (func_80256064(this->position, local->target_position) < 100.0f) {
+            local->target_position[0] = randf2(-500.0f, 500.0f);
+            local->target_position[1] = 0.0f;
+            local->target_position[2] = randf2(-500.0f, 500.0f);
         }
     }
     if ((this->state == 6)){
         local->unk10 = 400.0f;
-        if((func_80256064(this->position, local->unk18) < 100.0f) || (func_80256064(&sp94, local->unk18) < 300.0f)) {
+        if((func_80256064(this->position, local->target_position) < 100.0f) || (func_80256064(&sp94, local->target_position) < 300.0f)) {
             for(i = 0; i < 10; i++){
                 sp58[0] = randf2(-500.0f, 500.0f);
                 sp58[1] = 0.0f;
                 sp58[2] = randf2(-500.0f, 500.0f);
-                if ((i == 0) || (func_80256064(&sp94, &sp58) > func_80256064(&sp94, local->unk18))) {
-                    local->unk18[0] = sp58[0];
-                    local->unk18[1] = sp58[1];
-                    local->unk18[2] = sp58[2];
+                if ((i == 0) || (func_80256064(&sp94, &sp58) > func_80256064(&sp94, local->target_position))) {
+                    local->target_position[0] = sp58[0];
+                    local->target_position[1] = sp58[1];
+                    local->target_position[2] = sp58[2];
                 }
             };
         }
