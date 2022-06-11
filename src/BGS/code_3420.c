@@ -34,6 +34,7 @@ typedef struct {
 
 void func_8038A068(Actor *this, s32 next_state);
 void chvilegame_update(Actor *this);
+
 /* .data */
 ActorInfo D_80390960 = {0xC6, 0x138, 0, 0, NULL, chvilegame_update, NULL, func_80325340, {0, 0}, 0, 0.0f, {0,0,0,0}};
 enum asset_e D_80390984[] = {    0, 0xC66, 0xC68, 0xC6A, 0xC92, 0xC93, 0xC94,    0};

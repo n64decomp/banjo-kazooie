@@ -107,7 +107,7 @@ typedef struct chyumblie_s{
     u8  unk4;
     u8  pad7[3];
     f32 unk8;
-    u32 unkC;
+    ActorMarker *game_marker;
 } ActorLocal_Yumblie;
 
 typedef struct ch_bgs_6730_s{

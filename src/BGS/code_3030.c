@@ -9,10 +9,16 @@ typedef struct{
     s32 unkC;
 }ActorLocal_BGS_3030;
 
-/* .rodata */
-extern f32 D_80390FE0;
-extern f32 D_80390FE4;
-extern f32 D_80390FE8;
+void func_80389668(Actor *this);
+Actor *func_80389610(ActorMarker *marker, Gfx **, Mtx **, Vtx**);
+
+/* .data */
+ActorInfo D_80390880 = { 0x019B, 0x27B, 0x3F9, 0, NULL, func_80389668, NULL, func_80389610, {0, 0}, 0, 1.5f, {0, 0, 0, 0}};
+ActorInfo D_803908A4 = { 0x019C, 0x27C, 0x3F9, 0, NULL, func_80389668, NULL, func_80389610, {0, 0}, 0, 1.5f, {0, 0, 0, 0}};
+ActorInfo D_803908C8 = { 0x019D, 0x27D, 0x3F9, 0, NULL, func_80389668, NULL, func_80389610, {0, 0}, 0, 1.5f, {0, 0, 0, 0}};
+ActorInfo D_803908EC = { 0x019E, 0x27E, 0x3F9, 0, NULL, func_80389668, NULL, func_80389610, {0, 0}, 0, 1.5f, {0, 0, 0, 0}};
+ActorInfo D_80390910 = { 0x019F, 0x27F, 0x3F9, 0, NULL, func_80389668, NULL, func_80389610, {0, 0}, 0, 1.5f, {0, 0, 0, 0}};
+ActorInfo D_80390934 = { 0x01A0, 0x280, 0x3F9, 0, NULL, func_80389668, NULL, func_80389610, {0, 0}, 0, 1.5f, {0, 0, 0, 0}};
 
 /* .code */
 void func_80389420(ActorMarker *marker) {
@@ -54,9 +60,9 @@ void func_803895D0(ActorMarker *marker, ActorMarker *other_marker){
     }
 }
 
-void func_80389610(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
+Actor *func_80389610(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     func_8033A45C(4, marker->unk14_20 - 0x19A);
-    func_80325888(marker, gfx, mtx, vtx);
+    return func_80325888(marker, gfx, mtx, vtx);
 }
 
 void func_80389668(Actor *this) {

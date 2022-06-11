@@ -35,7 +35,7 @@ segments:
       - [0x2270, c, done/ch/code_2270] #DONE
       - [0x3030, c, code_3030] #DONE
       - [0x3420, c, code_3420]
-      - [0x4D70, c, ch/yumblie]
+      - [0x4D70, c, ch/yumblie] #DONE
       - [0x5600, c, ch/mrvile] #DONE
       - [0x6730, c, done/ch/code_6730]
       - [0x6DF0, c, ch/yellowflibbit]
@@ -57,7 +57,7 @@ segments:
       - [0x0000A2D0, .data, done/ch/pinkegg]
       - [0x0000A3C0, .data, ch/croctus]
       - [0x0000A440, .data, done/ch/code_2270]
-      - [0x0000A490, bin, data_A490]
+      - [0x0000A490, .data, code_3030]
       - [0x0000A570, .data, code_3420]
       - [0x0000A650, .data, ch/yumblie]
       - [0x0000A680, .data, ch/mrvile]
@@ -72,11 +72,10 @@ segments:
       - [0x0000A9B0, .data, ch/leafboat]
       - [0x0000A9E0, .rodata, ch/flibbit]
       - [0x0000AAF0, .rodata, ch/croctus]
-      # - [0x0000AB00, bin, data_AB00] #.rodata, ch/croctus]
       - [0x0000AB80, .rodata, done/ch/code_2270]
       - [0x0000ABF0, .rodata, code_3030]
       - [0x0000AC00, .rodata, code_3420]
-      - [0x0000AC20, bin, data_AC20]
+      - [0x0000AC20, .rodata, ch/yumblie]
       - [0x0000AC50, .rodata, ch/mrvile]
       - [0x0000ACA0, bin, data_ACA0]
       - [0x0000AD20, .rodata, ch/yellowflibbit]
