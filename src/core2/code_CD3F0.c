@@ -54,7 +54,7 @@ void func_80355004(void){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_CD3F0/func_80355134.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_CD3F0/func_80355294.s")
+void func_80355294(void){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_CD3F0/func_8035529C.s")
 
