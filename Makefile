@@ -190,7 +190,7 @@ endef
 ### Flags ###
 
 # Build tool flags
-CFLAGS         := -c -Wab,-r4300_mul -non_shared -G 0 -Xfullwarn -Xcpluscomm  -signed $(OPT_FLAGS) $(MIPSBIT) -D_FINALROM -DF3DEX_GBI
+CFLAGS         := -c -Wab,-r4300_mul -non_shared -G 0 -Xfullwarn -Xcpluscomm $(OPT_FLAGS) $(MIPSBIT) -D_FINALROM -DF3DEX_GBI
 CFLAGS         += -woff 649,654,838,807
 CFLAGS         += $(IN_CFLAGS)
 CPPFLAGS       := -D_FINALROM -DN_MICRO

@@ -726,6 +726,8 @@ segments:
   - [0xF1DC0, .rodata, code_9A9D0]
   - [0xF1DF0, .rodata, code_9B180]
   - [0xF1E00, bin, data_F1E00]
+  - [0xF1FD0, .rodata, string]
+  - [0xF1FF0, bin, code_B6C60]
   - [0xF2000, .rodata, code_B6CE0]
   - [0xF2030, bin, data_F2030]
   - [0xF2170, .rodata, code_BEF20]
