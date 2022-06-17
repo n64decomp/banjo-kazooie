@@ -42,7 +42,7 @@ void func_80354990(void){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_CD3F0/func_80354C18.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_CD3F0/func_80354DC8.s")
+void func_80354DC8(void){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_CD3F0/func_80354DD0.s")
 
