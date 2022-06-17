@@ -4,6 +4,8 @@
 
 #include "code_B6EA0.h"
 
+extern u8 D_803726D4[];
+
 void func_80354380(s32 arg0, f32 arg1) {
     u8 sp1F;
     u8 sp1E;
@@ -25,7 +27,10 @@ void func_803543F4(void){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_CD3F0/func_8035451C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_CD3F0/func_80354670.s")
+void func_80354670(u8 arg0, s32 arg1) {
+    func_8033FFE4(arg0, D_803726D4[arg1], D_803726D4[arg1]);
+    func_8033FC34(arg0, ml_map_f(arg1, 0.0f, 8.0f, 40.0f, 255.0f));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_CD3F0/func_803546E8.s")
 
