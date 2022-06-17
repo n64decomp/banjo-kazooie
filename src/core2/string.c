@@ -4,7 +4,7 @@
 
 #include "string.h"
 
-void strcat(u8 * dst, u8 *src){
+void strcat(char *dst, char *src){
     while(*(dst) != '\0'){
         dst++;
     }
@@ -14,7 +14,7 @@ void strcat(u8 * dst, u8 *src){
     *(dst) = 0;
 }
 
-void strcatc(u8 * dst, u8 src){
+void strcatc(char *dst, char src){
     while(*(dst) != '\0'){
         dst++;
     }
@@ -22,32 +22,89 @@ void strcatc(u8 * dst, u8 src){
     *(dst) = 0;
 }
 
-void strFToA(u8* dst, f32 val){
+void strFToA(char *dst, f32 val){
     s32 decimal;
     if (val < (f32) 0.0){
-        strcat(dst, &D_80378F60);
+        strcat(dst, "-");
         val = -val;
     }
     strIToA(dst, (s32)val);
-    strcat(dst, &D_80378F64);
+    strcat(dst, ".");
     decimal = (s32)((val - (f32)((s32)val))*(f32)100.0);
     if(decimal < 10){
-        strcat(dst, &D_80378F68);
+        strcat(dst, "0");
     }
     strIToA(dst, decimal);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/string/_strFToA.s")
+void _strFToA(char *dst, f32 val, s32 decPlaces){
+    u32 i;
+    if (val < 0.0f){
+        strcat(dst, "-");
+        val = -val;
+    }
+    strIToA(dst, val);
+    if (decPlaces != 0){
+        strcat(dst, ".");
+        for(i = decPlaces--; i > 0; i = decPlaces--) {
+            val -= (s32)val;
+            val *= 10;
+            strIToA(dst, val);
+        }
+    }
+}
 
-void strIToA(u8 *str, s32 num){
+void strIToA(char *str, s32 num){
     _strIToA(str, num, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/string/_strIToA.s")
+void _strIToA(char *str, s32 num, char base){
+    s32 i;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/string/strcmp.s")
+    while(*str != '\0'){
+        str++;
+    }
 
- void strcpy(u8 *dst, u8 *src){
+    // Check for a negative number, and if is prepend the '-' and make it positive
+    if (num < 0) {
+        *str = '-';
+        str++;
+        num = -num;
+    } else if (base != 0){
+        *str = base;
+        str++;
+    }
+    for (i = 1000000000; num < i; i/=10) {}
+    if (i == 0){
+        *str = '0';
+        str++;
+    } else{
+        while (i > 0){
+            *str = '0' + (num / i);
+            num %= i;
+            str++;
+            i /= 10;
+        }
+    }
+    //Terminate the string with NULL
+    *str = '\0';
+}
+
+s32 strcmp(const char *str1, const char *str2){
+    while (*str1 && *str2 && *str1 == *str2) {
+        str1++;
+        str2++;
+    }
+
+    if (*str1 == *str2)
+        return 0;
+    else if (*str1 == '\0' || *str1 < *str2)
+        return -1;
+    else
+        return 1;
+}
+
+void strcpy(char *dst, char *src){
      while(*(src) != '\0'){
         *(dst++) = *(src++);
     }
@@ -55,8 +112,8 @@ void strIToA(u8 *str, s32 num){
 }
 
 
-s32 strlen(u8 * str){
-    u8 v0;
+s32 strlen(char *str){
+    char v0;
     s32 len;
 
     len = 0;
@@ -68,10 +125,43 @@ s32 strlen(u8 * str){
     return len;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/string/strcmpToTok.s")
+s32 strcmpToTok(char *str1, char* str2, char* str3){
+    while (*str2 == *str3) {
+        str2++;
+        str3++;
+        if ((*str2 == '\0' || *str2 == *str1) && (*str3 == '\0' || *str3 == *str1)){
+            return 1;
+        }
+    }
+    return 0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/string/strtok.s")
+char *strtok(char *str, const char *delim){
+    while (*delim != '\0' && *delim != *str){
+        delim++;
+    }
+    if (*delim == *str){
+        delim++;
+    }
+    return delim;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/string/strcpyToTok.s")
+void strcpyToTok(char *arg0, char *arg1, char *arg2){
+    while ((*arg2 != '\0') && (*arg2 != *arg0)){
+        *arg1 = *arg2;
+        arg2++;
+        arg1++;
+    }
+    *arg1 = '\0';
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/string/strToUpper.s")
+void strToUpper(char *str){
+    char *ret = str;
+    while (*ret != '\0'){
+        if ((*ret >= 0x61) && (*ret < 0x7B)){
+            *ret -= 0x20;
+        }
+        ret++;
+    }
+    str = ret;
+}
