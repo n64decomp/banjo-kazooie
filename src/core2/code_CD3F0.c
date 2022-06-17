@@ -19,7 +19,7 @@ void func_80354380(s32 arg0, f32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_CD3F0/func_803543F4.s")
+void func_803543F4(void){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_CD3F0/func_803543FC.s")
 
