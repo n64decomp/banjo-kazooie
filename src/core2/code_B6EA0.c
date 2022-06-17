@@ -299,11 +299,11 @@ struct54s * func_8033E8F4(void){
     return D_80384490[D_80384FD0].unk34;
 }
 
-s32 func_8033E918(void){
+u8 func_8033E918(void){
     return D_80384490[D_80384FD0].unk46;
 }
 
-s32 func_8033E93C(void){
+u8 func_8033E93C(void){
     return D_80384490[D_80384FD0].unk47;
 }
 
