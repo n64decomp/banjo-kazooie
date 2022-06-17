@@ -4,7 +4,20 @@
 
 #include "code_B6EA0.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_CD3F0/func_80354380.s")
+void func_80354380(s32 arg0, f32 arg1) {
+    u8 sp1F;
+    u8 sp1E;
+    ParticleStruct0s* sp18;
+
+    if (func_8033E3F0(0xE, 1) >= 0) {
+        sp1E = func_8033E8D0();
+        sp1F = func_8033E93C();
+        sp18 = func_8033E960();
+        func_8033FEC8(sp1E, arg0);
+        func_80344D94(sp1F, arg0);
+        sp18->unk4 = arg1;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_CD3F0/func_803543F4.s")
 
