@@ -281,7 +281,7 @@ void func_8038A068(Actor *this, s32 next_state) {
     }
     if (next_state == 4) {
         if (local->unkC == local->unkD) {
-            func_80311480(D_803909F8[local->unkC], ((D_803909F8[local->unkC] == 0xC8E) ? 1 : 0) | 0xE, func_8038C284(local->vile_marker), this->marker, func_80389BC8, NULL);
+            func_80311480(D_803909F8[local->unkC], 0xE | ((D_803909F8[local->unkC] == 0xC8E) ? 1 : 0), func_8038C284(local->vile_marker), this->marker, func_80389BC8, NULL);
         } else {
             func_80311480(D_80390A18[local->unkC], 0xF , func_8038C284(local->vile_marker), this->marker, func_80389BC8, NULL);
         }

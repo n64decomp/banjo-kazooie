@@ -43,14 +43,14 @@ typedef struct {
 } BKVertexList;
 
 typedef struct {
-    s16 unk0; //start_tri
-    s16 unk2; //tri_cnt
+    s16 start_tri_index; //start_tri
+    s16 tri_count; //tri_cnt
 } BKCollisionGeo; //BKCollisionGeometry
 
 typedef struct {
     s16 unk0[3]; //vtx_indx
     //u8 pad6[2];
-    s32 unk8; //flags
+    s32 flags; //flags
 } BKCollisionTri; //BKCollisionTri
 
 typedef struct {

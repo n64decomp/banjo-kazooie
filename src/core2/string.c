@@ -58,9 +58,10 @@ void strIToA(char *str, s32 num){
     _strIToA(str, num, 0);
 }
 
-void _strIToA(char *str, s32 num, char base){
+void _strIToA(char *str, s32 num, char prefix){
     s32 i;
 
+    //Find end of string to concatinate onto
     while(*str != '\0'){
         str++;
     }
@@ -70,8 +71,8 @@ void _strIToA(char *str, s32 num, char base){
         *str = '-';
         str++;
         num = -num;
-    } else if (base != 0){
-        *str = base;
+    } else if (prefix != 0){
+        *str = prefix;
         str++;
     }
     for (i = 1000000000; num < i; i/=10) {}

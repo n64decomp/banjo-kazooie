@@ -58,9 +58,6 @@ ActorInfo D_80390D48 = {0x6D, 0xEC, 0x3F2, 0x01, D_80390C30,
     {0,0}, 0x166, 0.0f, {0,0,0,0}
 };
 
-/* .rodata */
-extern f32 D_803911C0;
-
 /* .code */
 void func_8038FB40(ActorMarker *this, s32 arg1){
     Actor * thisActor;
@@ -76,7 +73,7 @@ void func_8038FB84(ActorMarker *this, s32 arg1){
 
     thisActor = marker_getActor(this);
     FUNC_8030E8B4( SFX_87_TANKTUP_OOOHW, 0x7FF, 0x3FF, thisActor->position, 1000, 3000);
-    timedFunc_set_2(D_803911C0, func_8038FB40, this, arg1);
+    timedFunc_set_2(0.65f, func_8038FB40, this, arg1);
     func_8038F51C(thisActor);
     this->collidable = 0;
 }

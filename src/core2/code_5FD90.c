@@ -13,6 +13,18 @@ typedef struct {
     BKCollisionTri *unk24;
 }Struct_core2_5FD90_0;
 
+typedef struct {
+    f32 unk0[3];
+    f32 unkC[3];
+    f32 unk18[3];
+    struct {
+        BKCollisionTri * unk0;
+        f32 unk4[3][3];
+    }
+    unk24;
+}Struct_core2_5FD90_1;
+
+
 /* .rodata */
 extern f32 D_80377180;
 extern f32 D_80377184;
@@ -22,8 +34,8 @@ extern struct {
     BKCollisionGeo *unk0[100];
     BKCollisionGeo **unk190;
 }D_8037E910;
-
 extern f32 D_8037EAA8[3][3];
+extern Struct_core2_5FD90_1 D_8037EAD0[];
 
 /* .code */
 void func_802E6D20(BKCollisionTri *arg0, BKVertexList *vtx_list) {
@@ -189,7 +201,7 @@ s32 func_802E7408(BKCollisionList *arg0) {
     temp_a2 = (arg0->unk10 * 4) + (s32)arg0 + sizeof(BKCollisionList);
     temp_a1 = (arg0->unk14 * 0xC) + (s32)temp_a2;
     for(phi_a2 = temp_a2; phi_a2 < temp_a1; phi_a2++){
-        if(phi_a2->unk8 & 0x1E0000){
+        if(phi_a2->flags & 0x1E0000){
             phi_v1++;
         }
     }
@@ -462,6 +474,152 @@ int func_802E805C(BKCollisionList *collision_list, BKVertexList *vtxList, f32 ar
 
 s32 func_802E81CC(BKCollisionList *collision_list, BKVertexList *vtx_list, f32 arg2[3], f32 arg3[3], f32[3], f32, s32, s32 *, s32 *);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5FD90/func_802E81CC.s")
+// s32 func_802E81CC(BKCollisionList *collision_list, BKVertexList *vtx_list, f32 arg2[3], f32 arg3[3], f32 arg4[3], f32 arg5, s32 flags, s32 *arg7, s32 *arg8) {
+//     BKCollisionGeo **spD4;
+//     BKCollisionGeo **spD0;
+//     BKCollisionGeo **spCC;
+//     f32 spC0[3];
+//     f32 spAC[3];
+//     f32 spA0[3];
+//     //pad8C;
+//     f32 sp80[3];
+//     f32 sp74[3];
+//     Struct_core2_5FD90_1 *var_s2;
+//     ? *var_t0;
+//     ? *var_v0;
+//     f32 *temp_v0;
+//     f32 *var_a0;
+//     f32 *var_a1;
+//     f32 *var_v1_3;
+//     f32 temp_f0;
+//     f32 temp_f0_2;
+//     f32 temp_f0_3;
+//     f32 temp_f0_4;
+//     f32 temp_f0_5;
+//     f32 temp_f12;
+//     f32 temp_f12_2;
+//     f32 temp_f14;
+//     f32 temp_f16;
+//     f32 temp_f18;
+//     f32 temp_f20;
+//     f32 temp_f2;
+//     f32 temp_f2_2;
+//     f32 temp_f2_3;
+//     BKCollisionTri *temp_v0_2;
+//     s16 *var_a3;
+//     BKCollisionTri *i_tri;
+//     s16 *var_v1_2;
+//     s16 var_t8;
+//     Vtx *vertices;
+//     s32 var_a0_2;
+//     s32 var_a2;
+//     s32 var_t1;
+//     s32 var_v1;
+//     u32 temp_t9;
+//     BKCollisionTri *temp_s7;
+//     BKCollisionGeo *temp_v1;
+//     void *var_t0_2;
+//     void *var_v0_2;
+//     s32 i;
+
+//     func_8033D5D0(arg2, arg3, arg5, &spAC, &spA0);
+//     temp_f0 = func_802EC920(vtx_list);
+//     for(var_v1 = 0; var_v1 < 3; var_v1++){
+//         if ((spA0[var_v1] <= -temp_f0) || (temp_f0 <= spAC[var_v1])) {
+//             return 0;
+//         }
+//     }
+//     func_802E6DEC(collision_list, spAC, spA0, &spD4, &spCC);
+//     vertices = vtxList_getVertices(vtx_list);
+//     var_s2 = &D_8037EAD0;
+//     spD0 = spD4;
+//     if (spD4 < spCC) {
+//         do{
+//             temp_v1 = *spD0;
+//             temp_v0_2 = (temp_v1->start_tri_index * sizeof(BKCollisionTri)) + (s32)collision_list + (collision_list->unk10 * 4) + sizeof(BKCollisionList);
+//             temp_s7 = temp_v0_2 + temp_v1->tri_count;
+//             for(i_tri = temp_v0_2; i_tri < temp_s7; i_tri++){
+//                 if ((i_tri->flags & flags) == 0) {
+//                     for(var_a2 = 0; var_a2 < 3; var_a2++){
+//                         for(var_a0_2 = 0; var_a0_2 < 3; var_a0_2++)
+//                                 var_s2->unk24.unk4[var_a2][var_a0_2] = (f32) vertices[i_tri->unk0[var_a2]].v.ob[var_a0_2];
+//                         }
+//                     }
+//                     var_t1 = 1;
+//                     var_t0_2 = var_s2 + 0xC;
+//                     sp80[0] = var_s2->unk24.unk4[0][0];
+//                     sp80[1] = var_s2->unk24.unk4[0][1];
+//                     sp80[2] = var_s2->unk24.unk4[0][2];
+//                     sp74[0] = var_s2->unk24.unk4[0][0];
+//                     sp74[1] = var_s2->unk24.unk4[0][1];
+//                     sp74[2] = var_s2->unk24.unk4[0][2];
+//                     for(var_t1 = 0; var_t1 < 3; var_t1++){
+//                         var_a1 = &sp80;
+//                         var_v1_3 = &sp74;
+//                         for(i = 0; i < 3; i++){
+//                             if ( var_s2->unk24.unk4[i][0] < sp80[i]) {
+//                                 sp80[i] =  var_s2->unk24.unk4[i][0];
+//                             }
+
+//                             if (sp74[i] < var_s2->unk24.unk4[i][1]) {
+//                                 sp80[i] = var_s2->unk24.unk4[i][1];
+//                             }
+//                         }
+//                     }
+
+//                     if ( !((spA0[0] < sp80[0]) || (sp74[0] < spAC[0]))
+//                          && !((spA0[1] < sp80[1]) || (sp74[1] < spAC[1]))
+//                          && !((spA0[2] < sp80[2]) || (sp74[2] < spAC[2]))
+//                     ) {
+//                         var_s2->unk0[0] = var_s2->unk24.unk4[1][0] - var_s2->unk24.unk4[0][0];
+//                         var_s2->unk0[1] = var_s2->unk24.unk4[1][1] - var_s2->unk24.unk4[0][1];
+//                         var_s2->unk0[2] = var_s2->unk24.unk4[1][2] - var_s2->unk24.unk4[0][2];
+//                         var_s2->unkC[0] = var_s2->unk24.unk4[2][0] - var_s2->unk24.unk4[0][0];
+//                         var_s2->unkC[1] = var_s2->unk24.unk4[2][1] - var_s2->unk24.unk4[0][1];
+//                         var_s2->unkC[2] = var_s2->unk24.unk4[2][2] - var_s2->unk24.unk4[0][2];
+//                         var_s2->unk18[0] = (var_s2->unk0[1] * var_s2->unkC[2]) - (var_s2->unkC[1] *var_s2->unk0[2]);
+//                         var_s2->unk18[1] = (var_s2->unk0[2] * var_s2->unkC[0]) - (var_s2->unkC[2] * var_s2->unk0[0]);
+//                         var_s2->unk18[2] = (var_s2->unk0[0] * var_s2->unkC[1]) - (var_s2->unkC[0] * var_s2->unk0[1]);
+//                         ml_vec3f_normalize( var_s2->unk18);
+//                         if (i_tri->flags & 0x10000) {
+//                             spC0[0] = arg2[0] - var_s2->unk24.unk4[0];
+//                             spC0[1] = arg2[1] - var_s2->unk24.unk4[1];
+//                             spC0[2] = arg2[2] - var_s2->unk24.unk4[2];
+//                             if (((spC0[0]*var_s2->unk18[0]) + (spC0[0]*var_s2->unk18[0]) + (spC0[0]*var_s2->unk18[0])) < 0.0f) {
+//                                 var_s2->unk18[0] = -var_s2->unk18[0];
+//                                 var_s2->unk18[1] = -var_s2->unk18[1];
+//                                 var_s2->unk18[2] = -var_s2->unk18[2];
+//                             }
+//                             goto block_31;
+//                         }
+//                         if (!(((var_s2->unk18[0]*arg4[0]) + (var_s2->unk18[1]*arg4[1]) + (var_s2->unk18[2]*arg4[2])) > 0.0f)) {
+//                         block_31:
+//                         var_s2++;
+//                             var_s2->unk24.unk0 = i_tri;
+//                             if ((var_s2 - D_8037EAD0) < 0x65) {
+//                                 goto block_32;
+//                             }
+//                         } else {
+//                             goto block_32;
+//                         }
+//                     } else {
+//                         goto block_32;
+//                     }
+//                 } else {
+//                     block_32:
+//                     i_tri++;
+//                     if ((u32) i_tri < (u32) temp_s7) {
+//                         goto loop_8;
+//                     }
+//                 }
+//             }
+//         }while(((var_s2 - D_8037EAD0) < 0x65) && (spD0 += 4 < spCC));
+//     }
+//     *arg7 = (s32) D_8037EAD0;
+//     *arg8 = (s32) var_s2;
+//     return var_s2 - D_8037EAD0 > 0;
+// }
+
 
 Struct_core2_5FD90_0 *func_802E879C(s32, f32[3], f32[3], f32, f32[3]);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5FD90/func_802E879C.s")
