@@ -5,6 +5,9 @@
 #include "code_B6EA0.h"
 
 extern u8 D_803726D4[];
+extern f32 D_803726EC;
+extern f64 D_80379480;
+extern f32 func_8028EBA4(void); //player_getYaw
 
 void func_80354380(f32 *arg0, f32 arg1) {
     u8 sp1F;
@@ -59,7 +62,42 @@ void func_80354670(u8 arg0, s32 arg1) {
     func_8033FC34(arg0, ml_map_f(arg1, 0.0f, 8.0f, 40.0f, 255.0f));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_CD3F0/func_803546E8.s")
+void func_803546E8(void) {
+    u8 sp4F;
+    struct54s* sp48;
+    u8 sp47;
+    ParticleStruct0s* temp_s0;
+    f32 sp34[3];
+    f32 sp28[3];
+
+    sp4F = func_8033E8D0();
+    sp48 = func_8033E8F4();
+    sp47 = func_8033E93C();
+    temp_s0 = func_8033E960();
+    player_getPosition(sp34);
+    temp_s0->unk0 = randf2(-10.0f, 10.0f);
+    temp_s0->unk4 = (randf() * 35.0f) + 50.0f;
+    temp_s0->unk8 = randf2(-10.0f, 10.0f);
+    func_802589E4(sp28, func_8028EBA4(), 48.0f);
+    sp28[1] = 0.0f;
+    temp_s0->unk0 += sp28[0];
+    temp_s0->unk4 += sp28[1];
+    temp_s0->unk8 += sp28[2];
+    func_8033FBC8(sp4F, ASSET_713_SPRITE_SPARKLE_YELLOW);
+    func_8033FEC8(sp4F, sp34);
+    func_8033FCD8(sp4F, 0xC);
+    func_80287E9C(sp48);
+    func_80287F7C(sp48, 3);
+    func_80344E18(sp47, 5);
+    func_80344EE4(sp47, -700.0f, -22000.0f);
+    func_802589E4(sp28, D_803726EC, 250.0f);
+    sp28[1] = 250.0f;
+    D_803726EC = mlNormalizeAngle((f32) ((f64) D_803726EC + D_80379480));
+    func_80344E3C(sp47, sp28);
+    func_80344D94(sp47, sp34);
+    temp_s0->unk20 = 0x14;
+    func_80354670(sp4F, 0x14);
+}
 
 void func_8035489C(void) {
     ParticleStruct0s* temp_s0;
