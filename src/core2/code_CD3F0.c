@@ -287,7 +287,37 @@ void func_80354EEC(void) {
 
 void func_80355004(void){}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_CD3F0/func_8035500C.s")
+void func_8035500C(void) {
+    u8 sp47;
+    struct54s* sp40;
+    u8 sp3F;
+    ParticleStruct0s* temp_s0;
+    f32 sp2C[3];
+    f32 sp20[3];
+
+    sp47 = func_8033E8D0();
+    sp40 = func_8033E8F4();
+    sp3F = func_8033E93C();
+    temp_s0 = func_8033E960();
+    ml_vec3f_clear(sp2C);
+    temp_s0->unk0 = randf2(-40.0f, 40.0f);
+    temp_s0->unk4 = randf2(-40.0f, 40.0f);
+    temp_s0->unk8 = randf2(-40.0f, 40.0f);
+    func_8033FBC8(sp47, 0x70F);
+    func_8033FC60(sp47, 0xFF, 0xE6, 0xF5);
+    func_8033FEC8(sp47, sp2C);
+    func_80287E9C(sp40);
+    func_80287F7C(sp40, 3);
+    func_80287FB4(sp40, 0);
+    func_80344E18(sp3F, 3);
+    sp20[0] = 0.0f;
+    sp20[1] = 0.0f;
+    sp20[2] = 0.0f;
+    func_80344E3C(sp3F, sp20);
+    func_80344D94(sp3F, sp2C);
+    temp_s0->unk20 = 0x14;
+    func_80354670(sp47, 0x14);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_CD3F0/func_80355134.s")
 
