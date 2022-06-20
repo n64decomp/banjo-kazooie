@@ -6,8 +6,11 @@
 
 extern u8 D_803726D4[];
 extern f32 D_803726EC;
+extern f64 D_80379470;
+extern f32 D_80379478;
 extern f64 D_80379480;
 extern f32 func_8028EBA4(void); //player_getYaw
+extern void func_8033E984();
 
 void func_80354380(f32 *arg0, f32 arg1) {
     u8 sp1F;
@@ -54,8 +57,39 @@ void func_803543FC(void) {
     func_80344E3C(sp33, sp24);
 }
 
+//File split here to match
+#ifdef NON_MATCHING
+void func_8035451C(void) {
+    ParticleStruct0s* temp_s0;
+    u8 temp_v0;
+    f32 sp3c;
+    f32 sp38;
+    f32 temp_f20;
+    f32 sp30;
+    s32 temp_f16;
 
+    temp_s0 = func_8033E960();
+    temp_v0 = func_8033E8D0();
+    sp38 = temp_s0->unk4;
+    temp_f20 = temp_s0->unk0;
+    sp30 = temp_s0->unk20;
+    func_8033FE2C(temp_v0, 9.0f);
+    temp_f16 = ml_map_f(temp_f20, 0.0f, sp38, sp30, 20.0f);
+    func_8033FFE4(temp_v0, temp_f16, temp_f16);
+    if (temp_f20 < D_80379470) {
+        func_8033FC34(temp_v0, ml_map_f(temp_f20, 0.0f, 0.1f, 20.0f, 210.0f));
+    } else {
+        func_8033FC34(temp_v0, ml_map_f(temp_f20, D_80379478, sp38, 210.0f, 20.0f));
+    }
+    temp_f20 += time_getDelta();
+    temp_s0->unk0 = temp_f20;
+    if (sp38 < temp_f20) {
+        func_8033E984();
+    }
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_CD3F0/func_8035451C.s")
+#endif
 
 void func_80354670(u8 arg0, s32 arg1) {
     func_8033FFE4(arg0, D_803726D4[arg1], D_803726D4[arg1]);
