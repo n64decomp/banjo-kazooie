@@ -319,7 +319,42 @@ void func_8035500C(void) {
     func_80354670(sp47, 0x14);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_CD3F0/func_80355134.s")
+void func_80355134(void) {
+    ParticleStruct0s* temp_s0;
+    u8 temp_s1;
+    s32 sp3C;
+    s32 sp38;
+    s32 sp34;
+    f32 sp28[3];
+
+    temp_s0 = func_8033E960();
+    temp_s1 = func_8033E8D0();
+    sp3C = func_8033E864();
+    sp38 = func_8033E888();
+    sp34 = func_8033E8AC();
+    if ((func_8023DB5C() & 1) == 0) {
+        temp_s0->unk20--;
+    }
+    if (temp_s0->unk20 < 0) {
+        func_8033E984();
+    } else {
+        func_80354670(temp_s1, temp_s0->unk20);
+        if (temp_s0->unk20 >= 0x13) {
+            ((s32 (*)(s32, s32, f32*)) sp38)(sp3C, sp34, sp28);
+            temp_s0->unk4 -= time_getDelta() * 200.0f;
+            sp28[0] += temp_s0->unk0;
+            sp28[1] += temp_s0->unk4;
+            sp28[2] += temp_s0->unk8;
+            func_8033FEC8(temp_s1, sp28);
+        } else {
+            func_8033FF10(temp_s1, sp28);
+            sp28[1] -= time_getDelta() * 200.0f;
+            func_8033FEC8(temp_s1, sp28);
+        }
+    }
+    func_8033FC34(temp_s1, 0xFF);
+    func_8033FCD8(temp_s1, 0xC);
+}
 
 void func_80355294(void){}
 
