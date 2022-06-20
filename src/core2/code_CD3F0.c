@@ -250,7 +250,40 @@ void func_80354DD0(void) {
     func_80354670(temp_s1, 0x14);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_CD3F0/func_80354EEC.s")
+void func_80354EEC(void) {
+    ParticleStruct0s* temp_s0;
+    s32 pad;
+    s32 sp3C;
+    s32 sp38;
+    s32 sp34;
+    f32 sp28[3];
+    u8 temp_s1;
+
+    temp_s0 = func_8033E960();
+    temp_s1 = func_8033E8D0();
+    sp3C = func_8033E864();
+    sp38 = func_8033E888();
+    sp34 = func_8033E8AC();
+    temp_s0->unk20--;
+    if (temp_s0->unk20 < 0) {
+        func_8033E984();
+    } else {
+        func_80354670(temp_s1, temp_s0->unk20);
+        if (temp_s0->unk20 >= 0x10) {
+            if (((s32 (*)(s32, s32, f32*)) sp38)(sp3C, sp34, sp28) != 0) {
+                func_8033FC98(temp_s1, 0);
+            } else {
+                func_8033FC98(temp_s1, 1);
+            }
+            sp28[0] += temp_s0->unk0;
+            sp28[1] += temp_s0->unk4;
+            sp28[2] += temp_s0->unk8;
+            func_8033FEC8(temp_s1, sp28);
+        }
+    }
+    func_8033FC34(temp_s1, 0xBE);
+    func_8033FCD8(temp_s1, 0xC);
+}
 
 void func_80355004(void){}
 
