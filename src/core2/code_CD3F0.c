@@ -222,23 +222,22 @@ void func_80354DD0(void) {
     ParticleStruct0s* temp_s0;
     struct54s* sp40;
     u8 sp3F;
-    s32 pad;
-    s32 pad2;
+    u8 pad3C[3];
     u8 temp_s1;
-    f32 sp2C;
+    f32 sp2C[3];
     f32 sp20[3];
 
     temp_s1 = func_8033E8D0();
     sp40 = func_8033E8F4();
     sp3F = func_8033E93C();
     temp_s0 = func_8033E960();
-    ml_vec3f_clear(&sp2C);
+    ml_vec3f_clear(sp2C);
     temp_s0->unk0 = randf2(-50.0f, 50.0f);
     temp_s0->unk4 = randf2(-65.0f, -65.0f);
     temp_s0->unk8 = randf2(-50.0f, 50.0f);
     func_8033FBC8(temp_s1, ASSET_710_SPRITE_SPARKLE_PURPLE);
     func_8033FC60(temp_s1, 0xE1, 0xFF, 0);
-    func_8033FEC8(temp_s1, &sp2C);
+    func_8033FEC8(temp_s1, sp2C);
     func_80287E9C(sp40);
     func_80287F7C(sp40, 3);
     func_80344E18(sp3F, 3);
@@ -246,7 +245,7 @@ void func_80354DD0(void) {
     sp20[1] = 0.0f;
     sp20[2] = 0.0f;
     func_80344E3C(sp3F, sp20);
-    func_80344D94(sp3F, &sp2C);
+    func_80344D94(sp3F, sp2C);
     temp_s0->unk20 = 0x14;
     func_80354670(temp_s1, 0x14);
 }
