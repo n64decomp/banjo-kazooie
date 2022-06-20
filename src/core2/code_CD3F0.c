@@ -429,7 +429,52 @@ void func_803553E8(void) {
 
 void func_80355548(void){}
 
+//Static var not defined properly
+#ifdef NON_MATCHING
+void func_80355550(void) {
+    static s32 D_803863E0;
+    u8 sp3F;
+    struct54s* sp38;
+    u8 sp37;
+    ParticleStruct0s* sp30;
+    f32 sp24[3];
+    f32 sp18[3];
+
+    sp3F = func_8033E8D0();
+    sp38 = func_8033E8F4();
+    sp37 = func_8033E93C();
+    sp30 = func_8033E960();
+    ml_vec3f_clear(sp24);
+    sp30->unk0 = randf2(-30.0f, 30.0f);
+    sp30->unk4 = randf2(-30.0f, 30.0f);
+    sp30->unk8 = randf2(-30.0f, 30.0f);
+    if ((f64) randf() < 0.25) {
+        func_8033FBC8(sp3F, ASSET_711_SPRITE_SPARKLE_DARK_BLUE);
+    } else if ((f64) randf() < 0.5) {
+        func_8033FBC8(sp3F, ASSET_716_SPRITE_SPARKLE_WHITE);
+    } else {
+        func_8033FBC8(sp3F, ASSET_710_SPRITE_SPARKLE_PURPLE);
+    }
+    func_8033FC60(sp3F, 0xFF, 0xFF, 0xFF);
+    func_8033FEC8(sp3F, sp24);
+    func_80287E9C(sp38);
+    func_80287F7C(sp38, 3);
+    func_80287FB4(sp38, 0);
+    if (D_803863E0 >= 4) {
+        D_803863E0 = 0;
+    }
+    func_80344E18(sp37, 3);
+    sp18[0] = 0.0f;
+    sp18[1] = 0.0f;
+    sp18[2] = 0.0f;
+    func_80344E3C(sp37, sp18);
+    func_80344D94(sp37, sp24);
+    sp30->unk20 = 0x14;
+    func_80354670(sp3F, 0x14);
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_CD3F0/func_80355550.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_CD3F0/func_8035570C.s")
 
