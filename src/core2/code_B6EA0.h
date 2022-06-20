@@ -10,7 +10,9 @@ typedef struct particle_struct_0_s{
     f32 unk4;
     f32 unk8;
     f32 unkC;
-    u8 pad10[0x10];
+    f32 unk10;
+    f32 unk14;
+    u8 pad18[8];
     s32 unk20;
     s32 unk24;
     s32 unk28;

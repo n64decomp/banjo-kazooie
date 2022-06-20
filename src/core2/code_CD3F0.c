@@ -165,7 +165,56 @@ void func_80354990(void){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_CD3F0/func_80354998.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_CD3F0/func_80354C18.s")
+void func_8033FF10(u8 arg0, f32 arg1[3]);
+void func_8033FC98(u8 arg0, s32 arg1);
+void func_80354C18(void) {
+    ParticleStruct0s* temp_s0;
+    s32 pad;
+    s32 sp4C;
+    u8 sp4B;
+    s32 sp44;
+    s32 sp40;
+    f32 sp34[3];
+    f32 sp28[3];
+    u8 temp_s1;
+
+    temp_s0 = func_8033E960();
+    temp_s1 = func_8033E8D0();
+    sp4C = func_8033E864();
+    sp4B = func_8033E93C();
+    sp44 = func_8033E888();
+    sp40 = func_8033E8AC();
+    func_8033FE2C(temp_s1, 7.0f);
+    temp_s0->unk20--;
+    if (temp_s0->unk20 < 0) {
+        func_8033E984();
+    } else {
+        func_80354670(temp_s1, temp_s0->unk20);
+        if (temp_s0->unk20 >= 0x10) {
+            if (((s32 (*)(s32, s32, f32*)) sp44)(sp4C, sp40, sp34) != 0) {
+                func_8033FC98(temp_s1, 0);
+            } else {
+                func_8033FC98(temp_s1, 1);
+            }
+        } else {
+            func_8033FF10(temp_s1, sp34);
+        }
+        func_80344E7C(sp4B, sp28);
+        sp28[0] += temp_s0->unkC;
+        sp28[1] += temp_s0->unk10;
+        sp28[2] += temp_s0->unk14;
+        func_80344E3C(sp4B, sp28);
+        temp_s0->unk0 += sp28[0];
+        temp_s0->unk4 += sp28[1];
+        temp_s0->unk8 += sp28[2];
+        sp34[0] += temp_s0->unk0;
+        sp34[1] += temp_s0->unk4;
+        sp34[2] += temp_s0->unk8;
+        func_8033FEC8(temp_s1, sp34);
+    }
+    func_8033FC34(temp_s1, 0xB4);
+    func_8033FCD8(temp_s1, 0xC);
+}
 
 void func_80354DC8(void){}
 
