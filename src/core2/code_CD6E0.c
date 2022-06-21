@@ -4,15 +4,13 @@
 
 #include "code_B6EA0.h"
 
-extern u8 D_803726D4[];
-extern f32 D_803726EC;
-extern f64 D_80379470;
-extern f32 D_80379478;
-extern f64 D_80379480;
 extern f32 func_8028EBA4(void);
-extern void func_8033E984();
 extern void func_8033FF10(u8 arg0, f32 arg1[3]);
 extern void func_8033FC98(u8 arg0, s32 arg1);
+
+extern u8 D_803726D4[];
+extern f32 D_803726EC;
+extern f64 D_80379480;
 
 void func_80354670(u8 arg0, s32 arg1) {
     func_8033FFE4(arg0, D_803726D4[arg1], D_803726D4[arg1]);
@@ -355,9 +353,9 @@ void func_80355548(void){}
 void func_80355550(void) {
     static s32 D_803863E0;
     u8 sp3F;
-    struct54s* sp38;
+    struct54s *sp38;
     u8 sp37;
-    ParticleStruct0s* sp30;
+    ParticleStruct0s *sp30;
     f32 sp24[3];
     f32 sp18[3];
 

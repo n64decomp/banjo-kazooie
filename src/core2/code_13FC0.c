@@ -9,7 +9,6 @@ extern f32 func_8028EBA4(void);
 extern void particleEmitter_setSphericalParticleVelocityRange(ParticleEmitter *this, f32 pitch_min, f32 yaw_min, f32 radial_min, f32 pitch_max, f32 yaw_max, f32 radial_max);
 ParticleEmitter * func_802EDD8C(f32[3], f32, f32);
 extern void func_80354030(f32[3], f32);
-extern void func_80354380(f32[3], f32);
 extern void func_80356074(f32[3], f32[3], f32, f32);
 extern void func_80292864(f32, f32);
 

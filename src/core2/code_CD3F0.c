@@ -6,9 +6,8 @@
 
 extern f64 D_80379470;
 extern f32 D_80379478;
-extern void func_8033E984();
 
-void func_80354380(f32 *arg0, f32 arg1) {
+void func_80354380(f32 arg0[3], f32 arg1) {
     u8 sp1F;
     u8 sp1E;
     ParticleStruct0s* sp18;

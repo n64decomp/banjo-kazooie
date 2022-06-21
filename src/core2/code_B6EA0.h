@@ -30,6 +30,7 @@ typedef struct particle_struct_0_s{
 
 u8   func_8033E8D0(void);
 ParticleStruct0s *func_8033E960(void);
+void func_8033E984(void);
 void func_8033FBC8(u8, enum asset_e);
 void func_8033FC34(u8, s32);
 void func_8033FC60(u8, s32, s32, s32);
