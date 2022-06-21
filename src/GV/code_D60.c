@@ -213,7 +213,7 @@ void func_80387408(Actor *this){
     }
 
     if(this->state == 5){
-        if(func_803250DC()){
+        if(timedFuncQueue_is_empty()){
             func_8028F918(0);
             marker_despawn(this->marker);
         }

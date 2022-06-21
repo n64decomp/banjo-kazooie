@@ -37,7 +37,7 @@ void func_802BAF20(void){
 }
 
 void func_802BAF40(void){
-    if(D_80364E00 && func_803250DC()){
+    if(D_80364E00 && timedFuncQueue_is_empty()){
         func_802BB200();
     }
 }
@@ -117,7 +117,7 @@ void func_802BB200(void){
 
 void func_802BB22C(void){
     if(D_80364E00){
-        func_80325104();
+        timedFuncQueue_flush();
         D_80364E00 = FALSE;
         D_80364E04 = -1;
     }

@@ -6,28 +6,41 @@
 
 extern void func_802EE6CC(f32[3], s32[4], s32[4], s32, f32, f32, s32, s32, s32);
 extern Actor *func_803056FC(s32, s32 (*)[3], s32);
+extern void func_8032B5C0(void);
+extern void func_8033A244(f32);
 extern void func_8033A410(s32);
 
-extern void func_8032B5C0(void);
 
 void func_80328B8C(Actor * this, s32 arg1, f32 arg2, s32 arg3);
+void func_8032BB88(Actor *this, s32 arg1, s32 arg2);
 int  actor_playerIsWithinDist(Actor *this, s32 dist);
+extern void func_8033A4A0(enum asset_e mode_id, f32, f32);
 
+extern void func_80338338(s32, s32, s32);
+extern void func_803382FC(s32);
+extern void func_803382E4(s32);
+extern void func_8033687C(Gfx **);
+extern void func_80335D30(Gfx **);
+extern void func_80344138(s32, s32, s32, f32[3], f32[3], Gfx **, Mtx **);
+
+/* .data */
 extern s32 D_803255FC;
-
-ActorArray *D_8036E560; //actorArrayPtr
+extern ActorArray *D_8036E560; //actorArrayPtr
+extern s32 D_8036E564;
 extern s32 D_8036E568;
-u8 D_8036E574;
-u8 D_8036E578;
+extern s32 D_8036E56C;
+extern void *D_8036E570;
+extern  u8 D_8036E574;
+extern  u8 D_8036E578;
+extern  u8 D_8036E57C;
+extern f32 D_8036E580;
+extern f32 D_8036E58C[3];
 
-extern char D_80378DF0[];
-extern char D_80378DFC[];
-extern char D_80378E08[]; // "subaddie.c"
-extern char D_80378E14[];
-extern char D_80378E20[];
+
+/* .rodata */
 extern f64 D_80378E58;
 
-
+/* .bss */
 Actor *D_80383390;
 
 //marker_getActorAndRotation
@@ -115,37 +128,292 @@ void func_803253A0(Actor *this){
     func_8033A494(func_80330C48(this));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_803255FC.s")
+void func_803255FC(Actor *this) {
+    switch (this->unk124_5) {
+    default:
+        break;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80325760.s")
+    case 0:
+        if (randf() < 0.03) {
+            this->unk124_5 = 1;
+        }
+        break;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80325794.s")
+    case 1:
+        if (this->unk124_3 == 3) {
+            this->unk124_5 = 2;
+        } else {
+            this->unk124_3++;
+        }
+        break;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_803257A4.s")
+    case 2:
+        this->unk124_3--;
+        if (this->unk124_3 == 0) {
+            this->unk124_5 = 0;
+        }
+        break;
+    }
+    func_8033A45C(1, this->unk124_3 + 1);
+    func_8033A45C(2, this->unk124_3 + 1);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_803257B4.s")
+void func_80325760(Actor *this) {
+    func_8033A45C(1, 4);
+    func_8033A45C(2, 4);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80325888.s")
+void func_80325794(ActorMarker *marker){
+    marker->unk14_21 = TRUE;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80325934.s")
+void func_803257A4(ActorMarker *marker){
+    marker->unk14_21 = TRUE;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80325AE0.s")
+bool func_803257B4(ActorMarker *marker) {
+    Actor *actor;
+    BKModelBin *model_bin;
+    BKVertexList *vtx_list;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80325CAC.s")
+    actor = marker_getActor(marker);
+    if ((actor->unk174 == 0.0f) || (actor->unk178 == 0.0f)) {
+        model_bin = (BKModelBin *) assetcache_get(marker->modelId);
+        vtx_list = (s32)model_bin + model_bin->vtx_list_offset_10;
+        actor->unk174 = (f32) vtx_list->unk12 * actor->scale;
+        actor->unk178 = (f32) vtx_list->unk16 * actor->scale;
+        assetcache_release(model_bin);
+    }
+    func_8033A4A0(marker->modelId, actor->unk174, actor->unk178);
+    return FALSE;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80325E78.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80325F2C.s")
+Actor *func_80325888(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
+    f32 sp3C[3];
+    Actor *this;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80325F84.s")
+    this = func_80325300(marker, &sp3C);
+    func_8033A2D4(func_803253A0, this);
+    func_8033A2E8(func_80325794, marker);
+    func_803391A4(gfx, mtx, this->position, &sp3C, this->scale, (this->unk104 != NULL) ? &D_8036E580 : NULL, func_803257B4(marker));
+    return this;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80325F8C.s")
+Actor *func_80325934(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
+    Actor *this;
+    f32 scale[3];
+    s32 sp3C;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80325FE8.s")
+    this = marker_getActor(marker);
+    sp3C = func_80330F30(marker);
+    scale[0] = scale[1] = scale[2] = this->scale;
+    if (this->unk104 != NULL) {
+        this->position[0] -= D_8036E58C[0];
+        this->position[1] -= D_8036E58C[1];
+        this->position[2] -= D_8036E58C[2];
+    }
+    func_80338338(0xFF, 0xFF, 0xFF);
+    if (this->unk124_11 != 0) {
+        func_803382FC(this->alpha_124_19);
+        func_803382E4(0xC);
+    } else if (func_80344C20(sp3C) & 0xB00) {
+        func_803382E4(0xB);
+    } else {
+        func_803382E4(0xE);
+    }
+    func_80344C38(&func_803257A4, marker);
+    func_80335D30(gfx);
+    func_80344138(sp3C, marker->propPtr->unk8_15, marker->propPtr->unk8_5, this->position, &scale, gfx, mtx);
+    func_8033687C(gfx);
+    if (this->unk104 != NULL) {
+        this->position[0] = this->position[0] + D_8036E58C[0];
+        this->position[1] = this->position[1] + D_8036E58C[1];
+        this->position[2] = this->position[2] + D_8036E58C[2];
+    }
+    return this;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80326124.s")
+Actor *func_80325AE0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
+    f32 scale[3];
+    f32 rotation[3];
+    Actor *this;
+    s32 sp40;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80326218.s")
+    this = marker_getActor(marker);
+    sp40 = func_80330F30(marker);
+    scale[0] = scale[1] = scale[2] = this->scale;
+    rotation[0] = this->pitch;
+    rotation[1] = this->yaw;
+    rotation[2] = this->roll;
+    if (this->unk104 != NULL) {
+        this->position[0] -= D_8036E58C[0];
+        this->position[1] -= D_8036E58C[1];
+        this->position[2] -= D_8036E58C[2];
+    }
+    func_80338338(0xFF, 0xFF, 0xFF);
+    if (this->unk124_11 != 0) {
+        func_803382FC(this->alpha_124_19);
+        func_803382E4(0xC);
+    } else if (func_80344C20(sp40) & 0xB00) {
+        func_803382E4(0xB);
+    } else {
+        func_803382E4(0xE);
+    }
+    func_80344C38(&func_803257A4, marker);
+    func_80335D30(gfx);
+    func_80344720(sp40, marker->propPtr->unk8_15, marker->propPtr->unk8_5, this->position, rotation, &scale, gfx, mtx);
+    func_8033687C(gfx);
+    if (this->unk104 != NULL) {
+        this->position[0] = this->position[0] + D_8036E58C[0];
+        this->position[1] = this->position[1] + D_8036E58C[1];
+        this->position[2] = this->position[2] + D_8036E58C[2];
+    }
+    return this;
+}
+
+Actor *func_80325CAC(ActorMarker *marker, Gfx **gfx, Gfx **mtx, Vtx **vtx) {
+    f32 scale[3];
+    f32 rotation[3];
+    Actor *this;
+    s32 sp40;
+
+    this = marker_getActor(marker);
+    sp40 = func_80330F30(marker);
+    scale[0] = scale[1] = scale[2] = this->scale;
+    if (this->unk104 != NULL) {
+        this->position[0] -= D_8036E58C[0];
+        this->position[1] -= D_8036E58C[1];
+        this->position[2] -= D_8036E58C[2];
+    }
+    func_8024C764(rotation);
+    rotation[2] += this->roll;
+    func_80338338(0xFF, 0xFF, 0xFF);
+    if (this->unk124_11 != 0) {
+        func_803382FC(this->alpha_124_19);
+        func_803382E4(0xC);
+    } else if ((func_80344C20(sp40) & 0xB00) != 0) {
+        func_803382E4(0xB);
+    } else {
+        func_803382E4(0xE);
+    }
+    func_80344C38(&func_803257A4, marker);
+    func_80335D30(gfx);
+    func_80344720(sp40, marker->propPtr->unk8_15, marker->propPtr->unk8_5, this->position, rotation, scale, gfx, mtx);
+    
+    func_8033687C(gfx);
+    if (this->unk104 != NULL) {
+        this->position[0] = this->position[0] + D_8036E58C[0];
+        this->position[1] = this->position[1] + D_8036E58C[1];
+        this->position[2] = this->position[2] + D_8036E58C[2];
+    }
+    return this;
+}
+
+Actor *func_80325E78(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
+    f32 rotation[3];
+    Actor *this;
+
+    this = func_80325300(marker, rotation);
+    set_model_render_mode(1);
+    func_8033A2D4(func_803253A0, this);
+    func_8033A2E8(func_80325794, marker);
+    func_803391A4(gfx, mtx, this->position, rotation, this->scale, (this->unk104 != NULL) ?  &D_8036E580 : NULL, func_803257B4(marker));
+    return this;
+}
+
+Actor *func_80325F2C(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
+    func_8033A244(30000.0f);
+    func_8033A280(2.0f);
+    return func_80325E78(marker, gfx, mtx, vtx);
+}
+
+void func_80325F84(Actor *this){}
+
+void func_80325F8C(void) {
+    D_8036E560 = NULL;
+    D_8036E568 = func_8034A2C8();
+    D_8036E56C = func_802EE5E0(0x10);
+    D_8036E570 = func_802F2AEC();
+    D_8036E574 = 0;
+    D_8036E578 = 0;
+    D_8036E57C = 0;
+}
+
+void func_80325FE8(Actor *this) {
+    ActorMarker *marker;
+    u8 temp_v0;
+
+    marker = this->marker;
+    marker->unk14_20 = 0;
+    if (this->animctrl != NULL) {
+        animctrl_free(this->animctrl);
+    }
+    temp_v0 = this->unk44_31;
+    if (temp_v0 != 0) {
+        func_8030DA44(temp_v0);
+    }
+    this->animctrl = NULL;
+    this->unk44_31 = 0;
+
+    if (this->unk138_7 != 0) {
+        func_8032BB88(this, -1, 8000);
+        this->unk138_7 = 0;
+    }
+    if (marker->unk30 != NULL) {
+       marker->unk30(this);
+       marker->unk30 = NULL;
+    }
+    if ((s32)marker->unk44 < 0) {
+        func_8033E7CC(marker);
+        func_8034A2A8(marker->unk44);
+       marker->unk44 = 0;
+    }
+    if (marker->unk4C != 0) {
+        func_8034BF54(this->marker);
+        marker->unk4C = 0;
+    }
+    if (marker->unk48 != 0) {
+        func_8033F784(marker);
+        marker->unk48 = 0;
+    }
+    if (this->unk148 != NULL) {
+        func_80335874(this->unk148);
+        this->unk148 = NULL;
+    }
+    if (marker->unk50 != 0) {
+        func_80340690(marker->unk50);
+        marker->unk50 = 0;
+    }
+    func_8032ACA8(this);
+}
+
+//actorArray_free()
+void func_80326124(void) {
+    Actor *var_s0;
+
+    if (D_8036E560 != NULL) {
+        for(var_s0 = D_8036E560->data; var_s0 < &D_8036E560->data[D_8036E560->cnt]; var_s0++){
+            func_80325FE8(var_s0);
+            if (var_s0->marker != NULL) {
+                marker_free(var_s0->marker);
+            }
+            var_s0->marker = NULL;
+        }
+        free(D_8036E560);
+        D_8036E560 = NULL;
+    }
+    func_8034A2A8(D_8036E568);
+    D_8036E568 = NULL;
+    func_802EE5E8(D_8036E56C);
+    D_8036E56C = NULL;
+    func_802F2C78(D_8036E570);
+    D_8036E570 = NULL;
+}
+
+s32 func_80326218(void){
+    return D_8036E564;
+}
 
 void func_80326224(Actor *this){
     func_80343DEC(this);
@@ -180,7 +448,45 @@ void func_80326310(Actor *this){
     this->unk124_11 = 2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80326324.s")
+void func_80326324(Actor *this) {
+    if (this->marker->unk2C_2) {
+        this->unk1C[1] += time_getDelta();
+        if (this->unk1C[0] < this->unk1C[1]) {
+            this->unk1C[1] = this->unk1C[0];
+        }
+        switch (this->unk124_11) {                  /* switch 1; irregular */
+            case 1:                                 /* switch 1 */
+                this->alpha_124_19 = (this->unk1C[0] != 0.0f) ? (s32)(255.0f *(this->unk1C[1] / this->unk1C[0])) : 0xFF;
+                if (255.0 == this->alpha_124_19) {
+                    this->unk124_11 = 0;
+                }
+                break;
+
+            case 2:                                 /* switch 1 */
+                this->alpha_124_19 = (this->unk1C[0] != 0.0f) ? (0xFF - (s32) ((this->unk1C[1] / this->unk1C[0]) * 255.0f)) : 0;
+                if (this->alpha_124_19 == 0) {
+                    this->unk124_11 = 0;
+                }
+                break;
+        }
+    } else {
+        switch (this->unk124_11) {                        /* irregular */
+            case 1:
+                this->alpha_124_19 = MIN(255.0,this->alpha_124_19 + 7.0);
+                if (255.0 == this->alpha_124_19) {
+                    this->unk124_11 = 0;
+                }
+                break;
+
+            case 2:
+                this->alpha_124_19 = MAX(0.0, this->alpha_124_19 - 7.0);
+                if (this->alpha_124_19 == 0) {
+                    marker_despawn(this->marker);
+                }
+                break;
+            }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80326894.s")
 
@@ -350,7 +656,7 @@ Actor *actor_new(s32 (* position)[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
             animctrl_reset(D_80383390->animctrl);
             animctrl_setIndex(D_80383390->animctrl, sp54->index);
             animctrl_setDuration(D_80383390->animctrl, sp54->duration);
-            func_802875AC(D_80383390->animctrl, D_80378DF0, 0x4A5);
+            func_802875AC(D_80383390->animctrl, "subaddie.c", 0x4A5);
         }
     }//L80327BA8
     D_80383390->unk124_11 = 0;
@@ -686,7 +992,7 @@ int actor_animationIsAt(Actor *this, f32 arg1){
 
 void func_803289EC(Actor *this , f32 arg1, int direction){
     func_803285E8(this, arg1, direction);
-    func_802875AC(this->animctrl, D_80378DFC, 0x6b1);
+    func_802875AC(this->animctrl, "subaddie.c", 0x6b1);
 }
 
 int func_80328A2C(Actor *this, f32 arg1, s32 direction, f32 probability){
@@ -701,7 +1007,7 @@ int func_80328A2C(Actor *this, f32 arg1, s32 direction, f32 probability){
 
 void func_80328A84(Actor * arg0, u32 arg1){
     if(func_80328508(arg0, arg1) && arg0->animctrl){
-        func_802875AC(arg0->animctrl, D_80378E08, 0X6CA);
+        func_802875AC(arg0->animctrl, "subaddie.c", 0X6CA);
     }
 }
 
@@ -734,7 +1040,7 @@ int func_80328BD4(Actor * this, s32 myAnimId, f32 arg2, s32 arg3, f32 arg4){
     if(randf() < arg4){
         if(func_80328508(this, myAnimId) && this->animctrl){
             func_803285E8(this, arg2, arg3);
-            func_802875AC(this->animctrl, D_80378E14, 0x705);
+            func_802875AC(this->animctrl, "subaddie.c", 0x705);
         }
         return 1;
     }
@@ -916,7 +1222,7 @@ void func_80329B68(Actor *this){
     animctrl_setDuration(this->animctrl, this->stored_animctrl_duration);
     func_8028774C(this->animctrl, this->unkEC);
     animctrl_setSubRange(this->animctrl, this->stored_animctrl_subrangeMin, this->stored_animctrl_subrangeMax);
-    func_802875AC(this->animctrl, D_80378E20, 0x8fd);
+    func_802875AC(this->animctrl, "subaddie.c", 0x8fd);
     func_80287800(this->animctrl, this->sound_timer);
 }
 

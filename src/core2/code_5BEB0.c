@@ -492,7 +492,7 @@ void func_802E4214(s32 arg0){
     func_8030D86C();
     func_80259A24();
     func_80322764();
-    func_803251A0();
+    timedFuncQueue_init();
     func_802F9CD8();
     func_8031B62C();
     if(!func_802E4A08())

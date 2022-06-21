@@ -99,7 +99,7 @@ void func_80390A94(void){
             func_8030E760(SFX_7F_HEAVYDOOR_SLAM, 1.0f, 0x7fc6);
             func_8034E264(tmp_v0, 2);
         }
-        if(func_803250DC())
+        if(timedFuncQueue_is_empty())
             func_803908C4(3);
     }
 }

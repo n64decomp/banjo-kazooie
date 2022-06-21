@@ -211,7 +211,7 @@ void func_803876D0(Actor *this){
     s32 sp40;
     s32 sp3C;
 
-    this->marker->propPtr->unk8_3 = (func_803250DC(this))?1:0;
+    this->marker->propPtr->unk8_3 = (timedFuncQueue_is_empty(this))?1:0;
     if(!this->initialized){
         ((ActorLocal_Conga *)&this->local)->unkC = 1;
         this->unk16C_0 = 1;
@@ -274,7 +274,7 @@ void func_803876D0(Actor *this){
             if( sp3C
                 && func_8028ECAC() != 1
                 && !func_80386ED0(this)
-                && func_803250DC()
+                && timedFuncQueue_is_empty()
                 && !func_8032A9E4(((ActorLocal_Conga *)&this->local)->unk10, ((ActorLocal_Conga *)&this->local)->unk18, ((ActorLocal_Conga *)&this->local)->unk1C)
                 && !func_803872EC()
             ){
@@ -327,7 +327,7 @@ void func_803876D0(Actor *this){
             if( !sp3C
                 || player_is_in_jiggy_jig()
                 || func_80386ED0(this)
-                || !func_803250DC()
+                || !timedFuncQueue_is_empty()
                 || func_803872EC()
             ){
                 func_80328B8C(this, 1, 0.0f, 1);

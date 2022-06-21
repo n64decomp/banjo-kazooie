@@ -144,7 +144,7 @@ void chgobi3_update(Actor *this){
 
     if(this->state == 4){
         func_80326224(this);
-        if(func_803250DC())
+        if(timedFuncQueue_is_empty())
             chgobi3_setState(this, 6);
     }
 

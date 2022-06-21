@@ -263,13 +263,15 @@ void timedJiggySpawn(f32 time, s32 jiggyId, f32 *position){
     timedFunc_set_6(time, (TFQM6) __spawnjiggy, (void*) &jiggyInfo);
 }
 
-//timerFuncQueue_Empty
-u32 func_803250DC(void){
+bool timedFuncQueue_is_empty(void){
     return !vector_size(D_80383380.ptr);
 }
 
-//timedFuncQueue_Flush
-void func_80325104(void){
+/* 
+ * Executes all the functions in the timed
+ * function queue and clears the queue
+ */
+void timedFuncQueue_flush(void){
     TimedFunction *iPtr;
     TimedFunction iFunc;
 
@@ -285,14 +287,16 @@ void timedFuncQueue_free(void){
     vector_free(D_80383380.ptr);
 }
 
-//timedFuncQueue_Init
-void func_803251A0(void){
+void timedFuncQueue_init(void){
     D_80383380.ptr = vector_new(0x70, 0x10);
     D_80383380.time = 0.0f;
 }
 
-//timedFuncQueue_update
-void func_803251D4(void){
+/* 
+ * Executed any methods in timed function queue
+ * ready to be executed.
+ */
+void timedFuncQueue_update(void){
     TimedFunction *iPtr;
     TimedFunction iFunc;
 

@@ -47,7 +47,7 @@ void func_80390100(void){
 
 void func_80390138(void){
     if(D_80391AD0 && func_80334904() == 2){
-        if(D_80391AD0 == 1 && func_803250DC()){
+        if(D_80391AD0 == 1 && timedFuncQueue_is_empty()){
             func_80390000(2);
         }
     }

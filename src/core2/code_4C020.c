@@ -1077,7 +1077,7 @@ void func_802D63D4(void){
             break;
         default: //L802D6460
             func_802BAFE4(D_80367688);
-            func_803251D4();
+            timedFuncQueue_update();
             func_803204E4(0xbf, 0);
             func_802D6750();
             break;
