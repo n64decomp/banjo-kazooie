@@ -2,6 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "code_B6EA0.h"
+
 extern s32 func_8033FA84(void);
 extern s32 func_8035287C(void);
 extern s32 func_80344CDC(void);
@@ -9,12 +11,13 @@ extern void func_8032FFEC(s32, s32);
 extern void func_80352A38(s32, u32);
 extern void func_8033FFB8(s32 , s32);
 extern void func_8033FF10(s32 , f32[3]);
-extern void func_8032F64C(f32[3] , s32);
+extern void func_8032F64C(f32[3] , ActorMarker *);
 extern void func_8033FB64(s32);
 extern void func_80287D60(s32);
 extern void func_803529DC(s32);
 extern void func_80344D70(s32);
 extern void func_80352B20(s32);
+extern ActorMarker * func_8032FBE4(f32 *pos, MarkerDrawFunc arg1, int arg2, enum asset_e model_id);
 
 extern void (*func_80352614)(void);
 extern void (*func_8035261C)(void);
@@ -61,19 +64,6 @@ extern void (*func_803543F4)(void);
 extern void (*func_80355864)(void);
 extern void (*func_80355B00)(void);
 extern void (*func_80355C4C)(void);
-
-typedef struct particle_struct_0_s{
-    u8 pad0[0x30];
-    ActorMarker *marker_30;
-    struct54s *unk34;
-    s32 unk38;
-    s32 unk3C;
-    s32 unk40;
-    u8 unk44;
-    u8 unk45;
-    u8 unk46;
-    u8 unk47;
-} ParticleStruct0s;
 
 typedef struct {
     u8 unk0;
@@ -252,7 +242,7 @@ void func_8033E6D4(s32 arg0){
     D_80384490[arg0].unk44 = 0;
 }
 
-void func_8033E73C(s32 arg0, s32 arg1, s32 arg2){
+void func_8033E73C(s32 arg0, s32 arg1, FuncUnk40 arg2){
     s32 tmp_v0 = func_8033E368();
     D_80384490[tmp_v0].unk44--;
     D_80384490[tmp_v0].unk38 = arg0;
@@ -260,7 +250,7 @@ void func_8033E73C(s32 arg0, s32 arg1, s32 arg2){
     D_80384490[tmp_v0].unk40 = arg2;
 }
 
-void func_8033E79C(s32 arg0, s32 arg1, s32 arg2){
+void func_8033E79C(s32 arg0, s32 arg1, FuncUnk40 arg2){
     D_80384490[D_80384FD0].unk38 = arg0;
     D_80384490[D_80384FD0].unk3C = arg1;
     D_80384490[D_80384FD0].unk40 = arg2;
@@ -269,7 +259,7 @@ void func_8033E79C(s32 arg0, s32 arg1, s32 arg2){
 void func_8033E7CC(s32 arg0){
     int i;
     for(i = 0; i < 40; i++){
-        if(D_80384490[i].unk44 && arg0 == D_80384490[i].unk38){
+        if(D_80384490[i].unk44 && arg0 == (s32)D_80384490[i].unk38){
             func_8033E6D4(i);
         }
     }
@@ -279,11 +269,11 @@ ActorMarker *func_8033E840(void){
     return D_80384490[D_80384FD0].marker_30;
 }
 
-s32 func_8033E864(void){
+ActorMarker *func_8033E864(void){
     return D_80384490[D_80384FD0].unk38;
 }
 
-s32 func_8033E888(void){
+FuncUnk40 func_8033E888(void){
     return D_80384490[D_80384FD0].unk40;
 }
 

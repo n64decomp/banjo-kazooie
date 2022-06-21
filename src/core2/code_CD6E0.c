@@ -89,9 +89,9 @@ void func_80354990(void){}
 void func_80354C18(void) {
     ParticleStruct0s* temp_s0;
     s32 pad;
-    s32 sp4C;
+    ActorMarker *sp4C;
     u8 sp4B;
-    s32 sp44;
+    FuncUnk40 sp44;
     s32 sp40;
     f32 sp34[3];
     f32 sp28[3];
@@ -110,7 +110,7 @@ void func_80354C18(void) {
     } else {
         func_80354670(temp_s1, temp_s0->unk20);
         if (temp_s0->unk20 >= 0x10) {
-            if (((s32 (*)(s32, s32, f32*)) sp44)(sp4C, sp40, sp34) != 0) {
+            if (sp44(sp4C, sp40, sp34) != 0) {
                 func_8033FC98(temp_s1, 0);
             } else {
                 func_8033FC98(temp_s1, 1);
@@ -172,8 +172,8 @@ void func_80354DD0(void) {
 void func_80354EEC(void) {
     ParticleStruct0s* temp_s0;
     s32 pad;
-    s32 sp3C;
-    s32 sp38;
+    ActorMarker *sp3C;
+    FuncUnk40 sp38;
     s32 sp34;
     f32 sp28[3];
     u8 temp_s1;
@@ -189,7 +189,7 @@ void func_80354EEC(void) {
     } else {
         func_80354670(temp_s1, temp_s0->unk20);
         if (temp_s0->unk20 >= 0x10) {
-            if (((s32 (*)(s32, s32, f32*)) sp38)(sp3C, sp34, sp28) != 0) {
+            if (sp38(sp3C, sp34, sp28) != 0) {
                 func_8033FC98(temp_s1, 0);
             } else {
                 func_8033FC98(temp_s1, 1);
@@ -241,8 +241,8 @@ void func_8035500C(void) {
 void func_80355134(void) {
     ParticleStruct0s* temp_s0;
     u8 temp_s1;
-    s32 sp3C;
-    s32 sp38;
+    ActorMarker *sp3C;
+    FuncUnk40 sp38;
     s32 sp34;
     f32 sp28[3];
 
@@ -259,7 +259,7 @@ void func_80355134(void) {
     } else {
         func_80354670(temp_s1, temp_s0->unk20);
         if (temp_s0->unk20 >= 0x13) {
-            ((s32 (*)(s32, s32, f32*)) sp38)(sp3C, sp34, sp28);
+            sp38(sp3C, sp34, sp28);
             temp_s0->unk4 -= time_getDelta() * 200.0f;
             sp28[0] += temp_s0->unk0;
             sp28[1] += temp_s0->unk4;
@@ -312,8 +312,8 @@ void func_8035529C(void) {
 void func_803553E8(void) {
     ParticleStruct0s* temp_s0;
     u8 temp_s1;
-    s32 sp3C;
-    s32 sp38;
+    ActorMarker *sp3C;
+    FuncUnk40 sp38;
     s32 sp34;
     f32 sp28[3];
 
@@ -330,7 +330,7 @@ void func_803553E8(void) {
     } else {
         func_80354670(temp_s1, temp_s0->unk20);
         if (temp_s0->unk20 >= 0xD) {
-            ((s32 (*)(s32, s32, f32*)) sp38)(sp3C, sp34, sp28);
+            sp38(sp3C, sp34, sp28);
             temp_s0->unk4 -= time_getDelta() * 40.0f;
             sp28[0] += temp_s0->unk0;
             sp28[1] += temp_s0->unk4;
@@ -398,8 +398,8 @@ void func_80355550(void) {
 void func_8035570C(void) {
     ParticleStruct0s* temp_s0;
     u8 temp_s1;
-    s32 sp3C;
-    s32 sp38;
+    ActorMarker *sp3C;
+    FuncUnk40 sp38;
     s32 sp34;
     f32 sp28[3];
 
@@ -414,7 +414,7 @@ void func_8035570C(void) {
     } else {
         func_80354670(temp_s1, temp_s0->unk20);
         if (temp_s0->unk20 >= 0x13) {
-            ((s32 (*)(s32, s32, f32*)) sp38)(sp3C, sp34, sp28);
+            sp38(sp3C, sp34, sp28);
             temp_s0->unk4 -= time_getDelta() * 80.0f;
             sp28[0] += temp_s0->unk0;
             sp28[1] += temp_s0->unk4;
