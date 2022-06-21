@@ -944,9 +944,9 @@ void func_8032FFF4(ActorMarker *this, ActorMarker *other, s32 type){
     }
 }
 
-void func_80330078(ActorMarker *marker){
+void func_80330078(ActorMarker *marker, ActorMarker *other_marker, s16 *arg2){
     if(marker != NULL && marker->unk54 != NULL){
-        marker->unk54(marker);
+        marker->unk54(marker, other_marker, arg2);
     }
 }
 

@@ -31,7 +31,17 @@ void func_8035D2C0(ActorMarker *marker, s32 arg1){
 
 
 /* BREAK??? */
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D6180/func_8035D490.s")
+void func_8035D490(ActorMarker *marker){
+    Actor *sp1C;
+
+    if (map_get() == MAP_13_GV_MEMORY_GAME) {
+        sp1C = marker_getActor(marker);
+        if (func_80329530(sp1C, 250) != 0) {
+            func_802C9334(0x1C, sp1C);
+            func_8035D2C0(marker, 0);
+        }
+    }
+}
 
 void func_8035D4F0(ActorMarker *marker, s32 arg1){
     s32 pad;

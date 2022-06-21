@@ -5,7 +5,8 @@
 #define SPRITE_TYPE_CI8 (1 << 2)
 #define SPRITE_TYPE_I4 (1 << 5)
 #define SPRITE_TYPE_I8 (1 << 6)
-
+#define SPRITE_TYPE_IA4 (1 << 7)
+#define SPRITE_TYPE_IA8 (1 << 8)
 #define SPRITE_TYPE_RGBA16 (1 << 10)
 #define SPRITE_TYPE_RGBA32 (1 << 11)
 

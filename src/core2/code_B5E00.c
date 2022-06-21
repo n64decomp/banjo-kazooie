@@ -30,7 +30,40 @@ void func_8033CE14(s32 gamenum){
     func_8033CD90(D_80383F00[gamenum]);
 }
 
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B5E00/func_8033CE40.s")
+#else
+void func_8033CE40(void) {
+    s32 sp48[4];
+    s32 var_s0;
+    s32 var_s0_2;
+    s32 i;
+
+    sp48[3] = 0;
+    D_80383F04 = -1;
+    for(i = 0; i < 3; i++){
+        D_80383F00[i] = -1;
+        sp48[i] = 0;
+    }
+    for(var_s0 = 0; var_s0 < 4; var_s0++){
+        if( (func_8033CD90(var_s0) == 0) 
+            && (D_80383F00[D_80383D20[var_s0].unk1 - 1] == -1)) {
+            D_80383F00[D_80383D20[var_s0].unk1 - 1] = var_s0;
+            sp48[var_s0] = 1;
+        } else {
+            D_80383F04 = var_s0;
+        }
+    }
+    for(i = 0; i < 3; i++){
+        for(var_s0_2 = 0; (var_s0_2 < 4) && (D_80383F00[i] == -1);  var_s0_2++){
+            if (sp48[var_s0_2] == 0) {
+                sp48[var_s0_2] = 1;
+                D_80383F00[i] = var_s0_2;
+            }
+        }
+    }
+}
+#endif
 
 #ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B5E00/func_8033CFD4.s")

@@ -97,7 +97,7 @@ typedef struct actorMarker_s{
     BKModel *   unk48;
     vector(Struct70s) * unk4C;
     s32         unk50;
-    void        (*unk54)(struct actorMarker_s *);
+    void        (*unk54)(struct actorMarker_s *, struct actorMarker_s *, s16*);
     s32         (*unk58)(struct actorMarker_s *, struct actorMarker_s *);
     s32         unk5C;
 } ActorMarker;

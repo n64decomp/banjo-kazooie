@@ -184,7 +184,7 @@ void func_802FF358(s32, struct8s *);
 
 struct8s *func_802FFE4C(s32);
 void func_803005BC(s32, struct8s *);
-void func_802FFF34(s32, struct8s *, Gfx**, Mtx**, s32);
+void func_802FFF34(enum item_e, struct8s *, Gfx**, Mtx**, Vtx **);
 void func_802FFED4(s32, struct8s *);
 
 struct8s *func_803007C0(s32);
