@@ -191,7 +191,7 @@ void func_802E3854(void){
         func_80350E00();
         func_802FA4E0();
         func_8033B5FC();
-        func_80325288();
+        timedFuncQueue_defrag();
         func_8025AF38();
     }
 }
@@ -459,7 +459,7 @@ void func_802E4170(void){
     func_802E5F68();
     if(!func_802E4A08())
         func_802F4F64();
-    func_8032517C();
+    timedFuncQueue_free();
     func_802F9C48();
     func_8033A17C();
     func_80253420();

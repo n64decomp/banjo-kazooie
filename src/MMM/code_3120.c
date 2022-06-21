@@ -101,7 +101,7 @@ void func_8038966C(void){
     tmp_v0 = func_80309B48(sp48, sp3C, sp30, 0);
 
     if(tmp_v0 != NULL){
-        if((s32)(tmp_v0->unk8 << 4) < 0){
+        if((s32)(tmp_v0->flags << 4) < 0){
             FUNC_8030E624(SFX_6B_LOCKUP_OPENING, 0x3FF, 0x598);
             D_8038C4E0.unk1 = 2;
             if(!levelSpecificFlags_get(0x1b)){

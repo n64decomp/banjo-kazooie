@@ -14,6 +14,12 @@ void func_80294378(s32 arg0);
 void func_80294384(s32 arg0);
 void func_80294390(void);
 
+typedef struct {
+    f32 unk0[3];
+    f32 unkC[3];
+    u8 pad18[0x78];
+}Struct_core2_C4B0_0;
+
 /* .rodata */
 extern f64 D_80374760;
 extern f64 D_80374768;
@@ -98,6 +104,7 @@ void func_8029350C(f32 *arg0) {
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C4B0/func_80293668.s")
+
 
 void func_80293D2C(f32 *arg0, f32 * arg1){
      *arg0 = D_8037C1F8[0];

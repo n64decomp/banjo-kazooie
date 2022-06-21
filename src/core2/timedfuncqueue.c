@@ -43,15 +43,25 @@ typedef struct delayed_jiggy_s{
     f32 pos[3];
 } DelayedJiggyInfo;
 
+typedef struct {
+    enum asset_e text_id;
+    s32 unk4;
+    f32 position[3];
+    ActorMarker *caller;
+    void (*callback_method_1)(ActorMarker *, enum asset_e, s32);
+    void (*callback_method_2)(ActorMarker *, enum asset_e, s32);
+}DelayedTextCallback;
+
 //void __spawnjiggy(DelayedJiggyInfo *);
 TimedFunction* __timedFuncQueue_insert(f32, s32, void *funcPtr, s32, s32, s32, s32, s32);
 void func_80324BA0(s32);
 
 void func_802BE720(void);
 
+/* .bss */
 extern TimedFunctionArray D_80383380;
 
-
+/* .code */
 TimedFunction* __timedFuncQueue_insert(f32 time, s32 cnt, void *funcPtr, s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4){
     TimedFunction * startPtr;
     TimedFunction *retVal;
@@ -115,7 +125,14 @@ void func_80324AA4(timefuncqueue_Struct2 *arg0){
     func_8030E9C4(arg0->unk0, arg0->unk4, arg0->unk8, (f32 (*)[3])&arg0->unkC, arg0->unk18, arg0->unk1C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/timedfuncqueue/func_80324AEC.s")
+void func_80324AEC(DelayedTextCallback *arg0) {
+    if ((arg0->position[0] == 0.0f) && (arg0->position[1] == 0.0f) && (arg0->position[2] == 0.0f)) {
+        func_80311480(arg0->text_id, arg0->unk4, NULL, arg0->caller, arg0->callback_method_1, arg0->callback_method_2);
+    }
+    else{
+        func_80311480(arg0->text_id, arg0->unk4, arg0->position, arg0->caller, arg0->callback_method_1, arg0->callback_method_2);
+    }
+}
 
 void func_80324BA0(s32 arg0){
     if(arg0 == 1)
@@ -160,22 +177,39 @@ void func_80324D2C(f32 time, enum comusic_e arg0){
     timedFunc_set_1(time, (TFQM1) func_80324A48, arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/timedfuncqueue/func_80324D54.s")
-// void func_80324D54(f32 time, enum sfx_e arg1, f32 arg2, s32 arg3, f32 * arg4, f32 arg5, f32 arg6){
-//     timefuncqueue_Struct2 argStruct;
-//     argStruct.unk0 = arg1;
-//     //argStruct.unk4 = arg2;
-//     argStruct.unk8 = arg3;
-//     argStruct.unk18 = arg5;
-//     argStruct.unk1C = arg6;
-//     argStruct.unkC[0] = arg4[0];
-//     argStruct.unkC[1] = arg4[1];
-//     argStruct.unkC[2] = arg4[2];
+void func_80324D54(f32 time, enum sfx_e sfx_id, f32 arg2, s32 arg3, f32 position[3], f32 arg5, f32 arg6){
+    timefuncqueue_Struct2 argStruct;
+    argStruct.unk0 = sfx_id;
+    argStruct.unk4 = arg2;
+    argStruct.unk8 = arg3;
+    argStruct.unk18 = arg5;
+    argStruct.unk1C = arg6;
+    argStruct.unkC[0] = position[0];
+    argStruct.unkC[1] = position[1];
+    argStruct.unkC[2] = position[2];
     
-//     timedFunc_set_6(time, func_80324AA4, (s32) &argStruct);
-// }
+    timedFunc_set_6(time, (TFQM6) func_80324AA4, (void *) &argStruct);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/timedfuncqueue/func_80324DBC.s")
+void func_80324DBC(f32 time, enum asset_e text_id, s32 arg2, f32 position[3], ActorMarker *caller, void (*callback_method_1)(ActorMarker *, enum asset_e, s32), void (*callback_method_2)(ActorMarker *, enum asset_e, s32)) {
+    DelayedTextCallback sp20;
+    s32 pad;
+
+    sp20.text_id = text_id;
+    sp20.unk4 = arg2;
+    sp20.caller = caller;
+    sp20.callback_method_1 = callback_method_1;
+    sp20.callback_method_2 = callback_method_2;
+    if (position != NULL) {
+        sp20.position[0] = position[0];
+        sp20.position[1] = position[1];
+        sp20.position[2] = position[2];
+    } else {
+        sp20.position[0] = sp20.position[1] = sp20.position[2] = 0.0f;
+    }
+    timedFunc_set_6(time, (TFQM6) func_80324AEC, (void *) &sp20);
+}
+
 
 void func_80324E38(f32 time, s32 arg0){
     timedFunc_set_1(time, (TFQM1) func_80324BA0, arg0);
@@ -247,8 +281,7 @@ void func_80325104(void){
     }
 }
 
-//timedFuncQueue_Free
-void func_8032517C(void){
+void timedFuncQueue_free(void){
     vector_free(D_80383380.ptr);
 }
 
@@ -278,7 +311,7 @@ void func_803251D4(void){
     }
 }
 
-void func_80325288(void){
+void timedFuncQueue_defrag(void){
     D_80383380.ptr = vector_defrag(D_80383380.ptr);
 }
 

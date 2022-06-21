@@ -305,7 +305,7 @@ segments:
   - [0x9B990, c, code_9B990] #DONE
   - [0x9C170, c, code_9C170]
   - [0x9D760, c, code_9D760]
-  - [0x9D860, c, timedfuncqueue]
+  - [0x9D860, c, timedfuncqueue] #DONE
   - [0x9E370, c, code_9E370]
   - [0xA4D00, c, code_A4D00]
   - [0xABC00, c, code_ABC00]

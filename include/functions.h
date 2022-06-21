@@ -212,7 +212,7 @@ Actor * spawn_child_actor(enum actor_e id, Actor ** parent);
 
 
 void func_80324D2C(f32, enum comusic_e);
-void func_80324DBC(f32 time, enum asset_e, s32, f32 position[3], ActorMarker *caller, void (*)(ActorMarker *, s32, s32), void(*)(ActorMarker *));
+void func_80324DBC(f32 time, enum asset_e text_id, s32 arg2, f32 position[3], ActorMarker *caller, void (*callback_method_1)(ActorMarker *, enum asset_e, s32), void (*callback_method_2)(ActorMarker *, enum asset_e, s32));
 void particleEmitter_setSprite(ParticleEmitter *, enum asset_e);
 void particleEmitter_setPosition(ParticleEmitter *, f32[3]);
 ParticleEmitter *partEmitList_pushNew(u32);
