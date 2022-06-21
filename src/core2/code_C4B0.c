@@ -4,15 +4,19 @@
 
 extern int func_80258424(f32 vec[3], f32 minX, f32 minY, f32 minZ, f32 maxX, f32 maxY, f32 maxZ);
 extern f32 func_8031C5D4(struct0*);
+extern void func_8031C5AC(struct0 *, f32 *);
 extern f32 func_8031C5E4(struct0*);
 extern void func_8031C5FC(struct0 *, f32);
 extern f32 func_80255D70(f32 arg0);
 extern s32 func_8029463C(void);
 
-
 void func_80294378(s32 arg0);
 void func_80294384(s32 arg0);
 void func_80294390(void);
+
+/* .rodata */
+extern f64 D_80374760;
+extern f64 D_80374768;
 
 /* .bss */
 f32 D_8037C1F0[2];
@@ -62,8 +66,36 @@ void func_80293440(void){
      }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C4B0/func_8029350C.s")
+void func_8029350C(f32 *arg0) {
+    f32 sp3C[3];
+    f32 sp38;
+    u8 temp_v0;
 
+    func_8031C618(D_8037C200, arg0);
+    func_8031C638(D_8037C200, func_8028D694());
+    func_8031C44C(D_8037C200);
+    sp38 = func_8031C5D4(D_8037C200);
+    func_8031C5AC(D_8037C200, sp3C);
+    temp_v0 = D_8037C279;
+    D_8037C279 = FALSE;
+    if (!(sp3C[1] < D_80374760)) {
+        if (arg0[1] <= sp38) {
+            arg0[1] = sp38;
+            D_8037C279 = TRUE;
+        }
+        else if ((temp_v0 != 0) && (D_8037C238[1] < 0.0f)) {
+            if (sp3C[1] < D_80374768) {
+                if (arg0[1] < (sp38 + 30.0f)) {
+                    arg0[1] = sp38;
+                    D_8037C279 = TRUE;
+                }
+            } else if (arg0[1] < (sp38 + 5.0f)) {
+                arg0[1] = sp38;
+                D_8037C279 = TRUE;
+            }
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C4B0/func_80293668.s")
 

@@ -22,10 +22,10 @@ void func_802888C0(s32 arg0, s32 arg1);
 void func_802888C0(s32 arg0, s32 arg1){
     u8 sp1C[3];
     f32 f0;
-    f0 = reinterpret_cast(f32, arg1);
-    sp1C[0] = (u8)(arg0 >> 16);
-    sp1C[1] = (u8)(arg0 >> 8);
-    sp1C[2] = (u8)(arg0 >> 0);
+    sp1C[0] = arg0 >> 16;\
+    sp1C[1] = arg0 >> 8;\
+    sp1C[2] = arg0 >> 0;\
+    f0 = reinterpret_cast(f32, arg1);\
     func_8031B908(sp1C[0], sp1C[1], sp1C[2], f0);
 }
 #endif
