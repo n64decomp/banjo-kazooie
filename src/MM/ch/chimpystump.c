@@ -17,7 +17,7 @@ void chchimpystump_update(Actor *this);
 ActorInfo chchimpystump = { MARKER_95_CHIMPY_STUMP, ACTOR_C5_CHIMPY_STUMP, ASSET_3C8_MODEL_CHIMPY_STUMP,
     1, NULL,
     chchimpystump_update, func_80326224, func_80325E78,
-    {0,0}, 0, 0.0f, {0,0,0,0}
+    0, 0, 0.0f, 0
 };
 
 void _chchimpystump_80386CA0(Actor *this){

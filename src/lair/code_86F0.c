@@ -25,8 +25,8 @@ void func_8038F350(Actor *this, s32 next_state);
 void func_8038F924(Actor *this);
 
 /* .data */
-ActorInfo D_803947B0 = { 0x1EB, 0x3B7, 0x48B, 0x1, NULL, func_8038F924, func_80326224, func_80325888, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
-ActorInfo D_803947D4 = { 0x1EB, 0x3BC, 0x538, 0x1, NULL, func_8038F924, func_80326224, func_80325888, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+ActorInfo D_803947B0 = { 0x1EB, 0x3B7, 0x48B, 0x1, NULL, func_8038F924, func_80326224, func_80325888, 0, 0, 0.0f, 0};
+ActorInfo D_803947D4 = { 0x1EB, 0x3BC, 0x538, 0x1, NULL, func_8038F924, func_80326224, func_80325888, 0, 0, 0.0f, 0};
 Struct_lair_86F0_0 D_803947F8[0xb] ={
     {0x01, 0x1, 0x5D},
     {0x02, 0x2, 0x5E},

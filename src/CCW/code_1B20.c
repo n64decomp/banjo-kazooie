@@ -22,7 +22,7 @@ void func_80388478(Actor *this);
 
 /* .data */
 extern Struct_CCW_1B20_0 D_8038EC40[4];
-extern ActorInfo D_8038EC70 = { 0x1B0, 0x29D, 0x447, 0x0, NULL, func_80388478, NULL, func_803882F4, { 0x0, 0x0}, 0, 1.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_8038EC70 = { 0x1B0, 0x29D, 0x447, 0x0, NULL, func_80388478, NULL, func_803882F4, 0, 0, 1.0f, 0};
 extern f32 D_8038EC94[3];
 
 /* .code */

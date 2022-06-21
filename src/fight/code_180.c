@@ -7,7 +7,7 @@ extern void func_8025727C(f32, f32, f32, f32, f32, f32, f32*, f32*);
 extern void func_8028F4B8(f32[3], f32, f32);
 extern void func_80320ED8(ActorMarker *, f32, s32);
 
-void func_80386570(ActorMarker *arg0, Gfx **arg1, Mtx **arg2, s32 arg3);
+void func_80386570(ActorMarker *arg0, Gfx **arg1, Mtx **arg2, Vtx **arg3);
 void func_80387110(ActorMarker *, f32[3], f32, s32);
 void func_8038856C(Actor *actor, f32 *arg1);
 void func_8038BCF0(Actor *this);
@@ -117,7 +117,7 @@ ActorInfo D_80391500 = {
     0x25E, 0x38B, 0x53D, 
     1,  D_803913A0,
     func_8038BCF0, func_80326224, func_80386570,
-    { 0, 0}, 0, 0.0f, {0, 0, 0, 0}
+    0, 0, 0.0f, 0
 };
 f32 D_80391524[3] = {0.0f, -8.0f, 400.0f};
 
@@ -245,7 +245,7 @@ extern f32 D_803928C8[3];
 
 
 /* .code */
-void func_80386570(ActorMarker *arg0, Gfx **arg1, Mtx **arg2, s32 arg3) {
+void func_80386570(ActorMarker *arg0, Gfx **arg1, Mtx **arg2, Vtx **arg3) {
     Actor *temp_v0;
     ActorLocal_fight_180 *localActor;
 

@@ -27,15 +27,15 @@ ActorAnimationInfo D_80366010[] ={
 
 
 ActorInfo D_80366090 = {0x3, ACTOR_4_BIGBUTT, ASSET_353_MODEL_BIGBUTT, 
-    1, &D_80366010, 
+    1, D_80366010, 
     func_802C6240, func_80326224, func_802C6E84,
-    {0xC,0x80}, 0, 0.0f, {0,0,0,0}
+    3200, 0, 0.0f, 0
 }; 
 
 ActorInfo D_803660B4 = {0x9, ACTOR_E_BULL_INTRO, ASSET_354_MODEL_BULL_INTRO, 
-    1, &D_80366010, 
+    1, D_80366010, 
     func_802C6240, func_80326224, func_802C6E84,
-    {0xC,0x80}, 0, 0.0f, {0,0,0,0}
+    3200, 0, 0.0f, 0
 }; 
 
 /* .code */
@@ -80,7 +80,7 @@ void func_802C5FF8(Actor *this){
     }
 }
 
-void func_802C60AC(ActorMarker *marker, s32 arg1){
+void func_802C60AC(ActorMarker *marker, ActorMarker *other_marker){
     Actor *actor = marker_getActor(marker);
     if( actor->state == 4 
         && 5.0 <= actor->unk28 
@@ -92,13 +92,13 @@ void func_802C60AC(ActorMarker *marker, s32 arg1){
     }
 }
 
-void func_802C6150(ActorMarker *marker, s32 arg1){
+void func_802C6150(ActorMarker *marker, ActorMarker *other_marker){
     Actor *actor = marker_getActor(marker);
     func_80328AC8(actor, 0xC);
     func_8030E878(SFX_2B_BULL_MOO_1, randf2(1.28f, 1.37f), 32000, actor->position, 0.0f, 2000.0f);
 }
 
-void func_802C61C0(ActorMarker *marker, s32 arg1){
+void func_802C61C0(ActorMarker *marker, ActorMarker *other_marker){
     Actor *actor = marker_getActor(marker);
     if( actor->state != 0xd
         && actor->state != 0xe

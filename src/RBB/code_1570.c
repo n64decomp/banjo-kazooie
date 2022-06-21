@@ -13,7 +13,7 @@ void func_803882F4(Actor *this);
 ActorInfo D_80390270 = {
     0x184, 0x174, 0x402, 0x0, NULL,
     func_803882F4, NULL, func_80325340,
-    {0, 0}, 0, 0.0f, {0,0,0,0}
+    0, 0, 0.0f, 0
 };
 
 s32 D_80390294[4] = { 0xff, 0, 0, 0xff};

@@ -4,8 +4,8 @@
 
 void func_803864B8(Actor *this);
 
-extern ActorInfo D_8038EB50 = { 0x1AC, 0x298, 0x444, 0x0, NULL, func_803864B8, NULL, func_80325888, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
-extern ActorInfo D_8038EB74 = { 0x1AC, 0x29A, 0x445, 0x0, NULL, func_803864B8, NULL, func_80325888, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_8038EB50 = { 0x1AC, 0x298, 0x444, 0x0, NULL, func_803864B8, NULL, func_80325888, 0, 0, 0.0f, 0};
+extern ActorInfo D_8038EB74 = { 0x1AC, 0x29A, 0x445, 0x0, NULL, func_803864B8, NULL, func_80325888, 0, 0, 0.0f, 0};
 
 /* .code */
 void func_803863F0(Actor *this, s32 next_state){

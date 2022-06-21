@@ -11,35 +11,35 @@ extern ActorInfo D_80367B80 = {
     0x36, 0x29, 0x2D2,
     0x5, NULL,
     func_802D8528, func_80326224, func_80325888,
-    { 0x0, 0x0}, 0, 0.6f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 0.6f,0
 };
 
 extern ActorInfo D_80367BA4 = {
     0x37, 0x2A, 0x3C7,
     0x5, NULL,
     func_802D8528, func_80326224, func_80325888,
-    { 0x0, 0x0}, 0, 0.6f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 0.6f, 0
 };
 
 extern ActorInfo D_80367BC8 = {
     0x1FD, 0x1ED, 0x47F,
     0x5, D_80367B50,
     func_802D8528, func_80326224, func_80325888,
-    { 0x0, 0x0}, 0, 1.8f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 1.8f, 0
 };
 
 extern ActorInfo D_80367BEC = {
     0x1FE, 0x1EF, 0x480,
     0x5, D_80367B50,
     func_802D8528, func_80326224, func_80325888,
-    { 0x0, 0x0}, 0, 1.4f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 1.4f, 0
 };
 
 extern ActorInfo D_80367C10 = {
     0x1FF, 0x1F1, 0x481,
     0x5, D_80367B50,
     func_802D8528, func_80326224, func_80325888,
-    { 0x0, 0x0}, 0, 1.4f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 1.4f, 0
 };
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_509D0/func_802D7960.s")

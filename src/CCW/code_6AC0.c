@@ -16,7 +16,7 @@ extern ActorInfo D_8038F4D0 = {
     0x1BE, 0x2AB, 0x48F,
     0x0, NULL,
     func_8038CFB4, func_8038CFB4, func_80325888,
-    { 0x0, 0x0}, 0, 2.2f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 2.2f, 0
 };
 
 extern Struct_CCW_6AC0_0 D_8038F4F4[];

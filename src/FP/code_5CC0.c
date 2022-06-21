@@ -13,25 +13,25 @@ extern ActorAnimationInfo D_80391F50[];
 extern ActorInfo D_80391F88 = { MARKER_200_TWINKLY_BLUE, ACTOR_332_TWINKLY_BLUE, ASSET_448_MODEL_TWINKLY_BLUE,
     0x1, D_80391F50,
     func_8038C9A0, func_80326224, func_8038C1F8,
-    { 0x0, 0x0}, 0, 1.0f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 1.0f, 0
 };
 
 extern ActorInfo D_80391FAC = { MARKER_201_TWINKLY_GREEN, ACTOR_333_TWINKLY_GREEN, ASSET_449_MODEL_TWINKLY_GREEN,
     0x1, D_80391F50,
     func_8038C9A0, func_80326224, func_8038C1F8,
-    { 0x0, 0x0}, 0, 1.0f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 1.0f, 0
 };
 
 extern ActorInfo D_80391FD0 = { MARKER_202_TWINKLY_ORANGE, ACTOR_334_TWINKLY_ORANGE, ASSET_44A_MODEL_TWINKLY_ORANGE,
     0x1, D_80391F50,
     func_8038C9A0, func_80326224, func_8038C1F8,
-    { 0x0, 0x0}, 0, 1.0f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 1.0f, 0
 };
 
 extern ActorInfo D_80391FF4 = { MARKER_203_TWINKLY_RED, ACTOR_335_TWINKLY_RED, ASSET_44B_MODEL_TWINKLY_RED,
     0x1, D_80391F50,
     func_8038C9A0, func_80326224, func_8038C1F8,
-    { 0x0, 0x0}, 0, 1.0f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 1.0f, 0
 };
 
 extern s32 D_80392018[4];

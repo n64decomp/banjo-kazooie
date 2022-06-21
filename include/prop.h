@@ -289,10 +289,11 @@ typedef struct actor_info_s{
     void    (* update_func)(Actor *);
     void    (* unk10)(Actor *);
     Actor*  (* draw_func)(ActorMarker *, Gfx **, Mtx **, Vtx **);
-    u8      pad18[2];
+    u16     unk18;
     u16     draw_distance;
     f32     shadow_scale;
-    u8      pad20[4];
+    u16     unk20;
+    //u8     pad22[2];
 } ActorInfo;
 
 typedef struct actor_spawn_s{

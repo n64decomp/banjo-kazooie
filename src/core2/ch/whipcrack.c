@@ -9,7 +9,7 @@ ActorInfo D_80373100 = {
     0x1c5, ACTOR_30F_WHIPCRACK, ASSET_4FD_MODEL_WHIPCRACK, 
     0, NULL, 
     chwhipcrack_update, NULL, func_80325888, 
-    { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 0.0f, 0
 };
 
 s32 D_80373124[3] = {0xA0, 0x6B, 0x23};

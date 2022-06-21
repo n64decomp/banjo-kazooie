@@ -11,7 +11,7 @@ extern ActorInfo D_80366EF0 = {
     MARKER_32_PLAYER_SHADOW, ACTOR_17_PLAYER_SHADOW, ASSET_3BF_MODEL_PLAYER_SHADOW, 
     0x1, 0x0, 
     func_802CA92C, func_80326224, func_802CA7BC, 
-    { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 0.0f, 0
 };
 
 /* .rodata */

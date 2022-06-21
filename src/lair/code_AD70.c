@@ -17,7 +17,7 @@ typedef struct {
 void func_80391B04(Actor *this);
 
 /* .data */
-ActorInfo D_80394AB0 = { 0x1EF, 0x3BB, 0x54B, 0x1, NULL, func_80391B04, func_80326224, func_80325340, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+ActorInfo D_80394AB0 = { 0x1EF, 0x3BB, 0x54B, 0x1, NULL, func_80391B04, func_80326224, func_80325340, 0, 0, 0.0f, 0};
 s32 D_80394AD4[3] = {0xBA, 0xBA, 0xBA};
 struct31s D_80394AE0 = {
     {0.1f, 0.2f},

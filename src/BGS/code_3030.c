@@ -13,12 +13,12 @@ void func_80389668(Actor *this);
 Actor *func_80389610(ActorMarker *marker, Gfx **, Mtx **, Vtx**);
 
 /* .data */
-ActorInfo D_80390880 = { 0x019B, 0x27B, 0x3F9, 0, NULL, func_80389668, NULL, func_80389610, {0, 0}, 0, 1.5f, {0, 0, 0, 0}};
-ActorInfo D_803908A4 = { 0x019C, 0x27C, 0x3F9, 0, NULL, func_80389668, NULL, func_80389610, {0, 0}, 0, 1.5f, {0, 0, 0, 0}};
-ActorInfo D_803908C8 = { 0x019D, 0x27D, 0x3F9, 0, NULL, func_80389668, NULL, func_80389610, {0, 0}, 0, 1.5f, {0, 0, 0, 0}};
-ActorInfo D_803908EC = { 0x019E, 0x27E, 0x3F9, 0, NULL, func_80389668, NULL, func_80389610, {0, 0}, 0, 1.5f, {0, 0, 0, 0}};
-ActorInfo D_80390910 = { 0x019F, 0x27F, 0x3F9, 0, NULL, func_80389668, NULL, func_80389610, {0, 0}, 0, 1.5f, {0, 0, 0, 0}};
-ActorInfo D_80390934 = { 0x01A0, 0x280, 0x3F9, 0, NULL, func_80389668, NULL, func_80389610, {0, 0}, 0, 1.5f, {0, 0, 0, 0}};
+ActorInfo D_80390880 = { 0x019B, 0x27B, 0x3F9, 0, NULL, func_80389668, NULL, func_80389610, 0, 0, 1.5f, 0};
+ActorInfo D_803908A4 = { 0x019C, 0x27C, 0x3F9, 0, NULL, func_80389668, NULL, func_80389610, 0, 0, 1.5f, 0};
+ActorInfo D_803908C8 = { 0x019D, 0x27D, 0x3F9, 0, NULL, func_80389668, NULL, func_80389610, 0, 0, 1.5f, 0};
+ActorInfo D_803908EC = { 0x019E, 0x27E, 0x3F9, 0, NULL, func_80389668, NULL, func_80389610, 0, 0, 1.5f, 0};
+ActorInfo D_80390910 = { 0x019F, 0x27F, 0x3F9, 0, NULL, func_80389668, NULL, func_80389610, 0, 0, 1.5f, 0};
+ActorInfo D_80390934 = { 0x01A0, 0x280, 0x3F9, 0, NULL, func_80389668, NULL, func_80389610, 0, 0, 1.5f, 0};
 
 /* .code */
 void func_80389420(ActorMarker *marker) {

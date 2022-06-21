@@ -12,7 +12,7 @@ void func_8038D568(Actor *this);
 ActorInfo D_80391990 = {
     0x27A, 0x3A2, 0x543, 0x1, NULL,
     func_8038D568, func_80326224, func_80325888,
-    {0, 0}, 0x800, 0.0f, {0,0,0,0}
+    0, 0x800, 0.0f, 0
 };
 
 s32 D_803919B4[3] = {0xC8, 0xC8, 0xA0};
@@ -56,7 +56,7 @@ void func_8038D3DC(Actor* this, s32 arg1, f32 arg2, f32 arg3, f32 arg4){
     }
 }
 
-void func_8038D428(ActorMarker *arg0, s32 arg1) {
+void func_8038D428(ActorMarker *arg0, ActorMarker *arg1) {
     Actor *temp_v0;
     Actor *s0;
 

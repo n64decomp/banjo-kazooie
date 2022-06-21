@@ -20,7 +20,7 @@ extern ActorInfo D_8038E718 = {
     0x1F8, 0x1E8, 0x439,
     1, D_8038E700,
     func_8038CCA8, func_80326224, func_8038CBCC,
-    {0, 0}, 0, 0.0f, {0, 0, 0, 0}
+    0, 0, 0.0f, 0
 };
 
 extern s32 D_8038E73C[3] = {0xff, 0xff, 0xff};

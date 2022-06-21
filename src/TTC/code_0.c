@@ -15,7 +15,7 @@ extern ActorInfo D_8038C3D0 = {
     MARKER_15_CLAM, ACTOR_69_CLAM, ASSET_351_MODEL_CLAM,
     0x1, D_8038C3B0,
     func_80386FDC, func_80326224, func_80325888, 
-    { 0x11, 0x94}, 0x366, 1.6f, { 0x0, 0x0, 0x0, 0x0}
+    4500, 0x366, 1.6f, 0
 };
 extern struct41s *D_8038C3F4;
 extern struct41s *D_8038C424;

@@ -9,7 +9,7 @@ extern ActorInfo D_8038ECA0 = {
     0x1C2, 0x30B, 0x4E3,
     0x0, NULL,
     func_803885F8, NULL, func_80325888,
-    { 0x0, 0x0}, 0, 1.0f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 1.0f, 0
 };
 
 /* .code */

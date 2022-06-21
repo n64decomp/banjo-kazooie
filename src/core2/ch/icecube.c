@@ -23,14 +23,14 @@ ActorInfo D_80372B80 = {
     0x250, 0x37D, ASSET_504_MODEL_ICECUBE, 
     1, D_80372B50, 
     chicecube_update, func_80326224, chicecube_draw,
-    {0,0}, 0, 0.0f, {0,0,0,0}
+    0, 0, 0.0f, 0
 }; 
 
 ActorInfo D_80372BA4 = {
     0x25F, 0x3A0, ASSET_504_MODEL_ICECUBE, 
     1, D_80372B50, 
     chicecube_update, func_80326224, chicecube_draw,
-    {0,0}, 0, 0.0f, {0,0,0,0}
+    0, 0, 0.0f, 0
 }; 
 
 s32 D_80372BC8[3] = {220, 220, 230};
@@ -209,7 +209,7 @@ void __chicecube_spawnHalfCubes(ActorMarker *marker){
 }
 
 //__chicecube_ow
-void __chicecube_ow(ActorMarker *marker, s32 arg1){
+void __chicecube_ow(ActorMarker *marker, ActorMarker *other_marker){
     Actor *actor = marker_getActor(marker);
     FUNC_8030E8B4(SFX_1D_HITTING_AN_ENEMY_1, 0x2AF, 0x398, actor->position, 1500, 3000);
     actor->velocity[1] = 0.8f;
@@ -217,7 +217,7 @@ void __chicecube_ow(ActorMarker *marker, s32 arg1){
 }
 
 //__chicecube_die
-void __chicecube_die(ActorMarker *marker, s32 arg1){
+void __chicecube_die(ActorMarker *marker, ActorMarker *other_marker){
     Actor *actor = marker_getActor(marker);
     FUNC_8030E8B4(SFX_B6_GLASS_BREAKING_1, 1000, 0x3ff, actor->position, 1500, 4500);
     actor->velocity[1] = 0.0f;

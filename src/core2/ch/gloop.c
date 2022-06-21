@@ -2,8 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void func_8032813C(enum actor_e actor_id, f32 position[3], s32 yaw);
-
 Actor *chgloop_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void chgloop_update(Actor *this);
 
@@ -22,7 +20,7 @@ ActorInfo chGloop = {
     MARKER_6A_GLOOP, ACTOR_E6_GLOOP, ASSET_372_MODEL_GLOOP, 
     0x2, chgloop_animations,
     chgloop_update, chgloop_update, chgloop_draw, 
-    { 0x7, 0x6C}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+    1900, 0, 0.0f, 0
 };
 
 /* .code */

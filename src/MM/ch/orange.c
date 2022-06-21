@@ -18,13 +18,13 @@ Actor*  func_80388188(ActorMarker *, Gfx **, Mtx**, Vtx**);
 ActorInfo chorangeInfo = { MARKER_C_ORANGE_PROJECTILE, ACTOR_14_ORANGE_PROJECTILE, ASSET_2D2_MODEL_ORANGE, 
     1, NULL,
     func_80387FF4, func_80326224, func_80388188,
-    {0,0}, 0, 0.6f, {0,0,0,0}
+    0, 0, 0.6f, 0
 };
 
 f32 D_803899F4[3] = {0.0f,-8.0f, 0.0f};
 f32 D_80389A00[3] = {0.0f, 0.0f, 0.0f};
 
-void func_80387F90(ActorMarker *arg0, s32 arg1){
+void func_80387F90(ActorMarker *arg0, ActorMarker *other_marker){
     if( !func_8028F22C(arg0) 
         && !mapSpecificFlags_get(mapflag_mm_main_hit_with_orange)
         && func_80311480(ASSET_B3A_TEXT_CONGA_HITS_PLAYER, 0, 0, 0, NULL, NULL)

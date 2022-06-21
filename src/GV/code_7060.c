@@ -17,7 +17,7 @@ ActorAnimationInfo D_80391290[] = {
 ActorInfo D_803912B8 = { MARKER_F9_JINXY, ACTOR_1F7_JINXY, ASSET_422_MODEL_JINXY, 
     0x1, D_80391290, 
     func_8038D47C, func_80326224, func_80325888, 
-    { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 0.0f, 0
 };
 
 /* .code */

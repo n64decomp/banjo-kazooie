@@ -45,7 +45,7 @@ extern ActorInfo D_8038F988 = {
     0x1E2, 0x375, 0x52C,
     0x1, D_8038F930,
     func_8038E964, func_80326224, func_8038E56C,
-    { 0x9, 0xC4}, 0, 1.0f, { 0x0, 0x0, 0x0, 0x0}
+    2500, 0, 1.0f, 0
 };
 extern struct43s D_8038F9AC;
 

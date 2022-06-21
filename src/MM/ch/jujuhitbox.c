@@ -24,7 +24,7 @@ void    func_80388DE8(Actor* this, s32 slave_id, Actor *slavePtr);
 ActorInfo chjujuhitboxInfo = { MARKER_67_JUJU, ACTOR_11_JUJU_CTRL, 0, 
     3, NULL,
     func_80388E20, func_80326224, func_80388DC0,
-    {0,0}, 0, 0.0f, {0,0,0,0}
+    0, 0, 0.0f, 0
 };
 
 int func_80388B30(Actor *this, float arg1){
@@ -59,7 +59,7 @@ void func_80388BEC(s16 *arg0, void *arg1){
     sp20[0] = (f32)arg0[0];
     sp20[1] = (f32)arg0[1];
     sp20[2] = (f32)arg0[2];
-    sp30 = func_80326D68(&sp20, 0x11, -1, &sp34);
+    sp30 = func_80326D68(sp20, 0x11, -1, &sp34);
     if( sp30 != NULL
         && !( sp34 > 500.0f )
         && (sp30->state ==3)

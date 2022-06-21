@@ -23,7 +23,7 @@ ActorAnimationInfo D_80391040[] ={
 ActorInfo D_80391098 = { MARKER_AD_SLAPPA, ACTOR_120_SLAPPA, ASSET_376_MODEL_SLAPPA, 
     0x1, D_80391040, 
     func_8038B124, func_80326224, func_80325888, 
-    { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 0.0f, 0
 };
 s32 D_803910BC[3] = {175, 100, 0};
 s32 D_803910C8[3] = {175, 140, 0};

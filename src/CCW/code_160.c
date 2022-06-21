@@ -13,7 +13,7 @@ void func_803865F4(Actor *this, s32 next_state);
 void func_8038687C(Actor *this);
 
 /* .data */
-extern ActorInfo D_8038EBA0 = { 0x1AD, 0x299, 0x443, 0x0, NULL, func_8038687C, NULL, func_80325888, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_8038EBA0 = { 0x1AD, 0x299, 0x443, 0x0, NULL, func_8038687C, NULL, func_80325888, 0, 0, 0.0f, 0};
 
 /* .code */
 void func_80386550(ActorMarker *marker){

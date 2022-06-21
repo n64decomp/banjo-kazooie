@@ -4,7 +4,7 @@
 
 extern f32 func_8028EBA4();
 
-Actor *func_802C80C0(ActorMarker *this, Gfx **gdl, Mtx **mptr, u32 arg3);
+Actor *func_802C80C0(ActorMarker *this, Gfx **gdl, Mtx **mptr, Vtx **arg3);
 void func_802C811C(Actor * this);
 
 /* .data */
@@ -20,12 +20,12 @@ ActorAnimationInfo D_803662D0[] = {
 ActorInfo D_80366300 = {0x68, 0x5A, 0x35E, 
     1, D_803662D0, 
     func_802C811C, func_80326224, func_802C80C0,
-    {0,0}, 0, 0.0f, {0,0,0,0}
+    0, 0, 0.0f, 0
 }; 
 
 
 /* .code */
-Actor *func_802C80C0(ActorMarker *this, Gfx **gdl, Mtx **mptr, u32 arg3){
+Actor *func_802C80C0(ActorMarker *this, Gfx **gdl, Mtx **mptr, Vtx **arg3){
     Actor *thisActor = marker_getActor(this);
 
     if(!thisActor->initialized){

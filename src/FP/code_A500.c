@@ -9,7 +9,7 @@ void func_80390BDC(Actor *this);
 extern ActorInfo D_80392730 = { 0x210, 0x340, 0x4D2,
     0x0, NULL,
     func_80390BDC, func_80326224, func_803908F0,
-    { 0x0, 0x0}, 0, 1.0f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 1.0f, 0
 };
 
 extern struct31s D_80392754;

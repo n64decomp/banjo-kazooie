@@ -25,7 +25,7 @@ ActorInfo D_8036833C = {
     0x294, 0x19B, 0x56D, 
     0x1, D_80368300, 
     func_802DEE1C, func_80326224, func_802DEC00, 
-    { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 0.0f, 0
 };
 
 ActorMarker *D_8037DFE0;

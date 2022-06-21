@@ -15,7 +15,7 @@ ActorAnimationInfo D_80394CC0[] = {
     {0x2AD, 14.0f},
     {0x28D, 0.5f},
 };
-ActorInfo D_80394CF0 = { 0x29B, 0x3C5, 0x53D, 0x1, D_80394CC0, func_80392700, func_80392918, func_803925B0, { 0x0, 0x0}, 0, 3.0f, { 0x0, 0x0, 0x0, 0x0}};
+ActorInfo D_80394CF0 = { 0x29B, 0x3C5, 0x53D, 0x1, D_80394CC0, func_80392700, func_80392918, func_803925B0, 0, 0, 3.0f, 0};
 
 /* .code */
 Actor *func_803925B0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){

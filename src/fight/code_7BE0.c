@@ -12,7 +12,7 @@ void func_8038E2FC(Actor *);
 ActorInfo D_80391A40 = {
     0x27F, 0x3A9, 0x544, 0x1, NULL,
     func_8038E2FC, func_80326224, func_80325888,
-    {0, 0}, 0x800, 0.0f, {0,0,0,0}
+    0, 0x800, 0.0f, 0
 };
 
 s32 D_80391A64[3] = {0xC8, 0xC8, 0xA0};

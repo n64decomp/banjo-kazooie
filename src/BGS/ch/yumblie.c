@@ -31,7 +31,7 @@ Actor *chyumblie_draw(ActorMarker *this, Gfx **gfx, Mtx** mtx, Vtx **vtx);
 /* .data */
 ActorInfo D_80390A40 = {0xC7, actor_yumblie, 0x3F6, 0x00, NULL,
     chyumblie_update, NULL, chyumblie_draw,
-    {0,0}, 0, 0.0f, {0,0,0,0}
+    0, 0, 0.0f, 0
 };
 
 /* .code */

@@ -83,67 +83,67 @@ ActorAnimationInfo D_803913E0[] = {
 ActorInfo D_80391428 = { MARKER_EC_GV_SUN_SWITCH, ACTOR_13F_GV_SUN_SWITCH, ASSET_400_MODEL_SUN_SWITCH, 
     0x1, D_803913E0, 
     chSunSwitch_update, func_80326224, func_80325888,
-    { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 0.0f, 0
 };
 
 ActorInfo D_8039144C = { MARKER_F1_GV_STAR_SWITCH, ACTOR_144_GV_STAR_SWITCH, ASSET_3D7_MODEL_STAR_SWITCH, 
     0x1, D_803913E0, 
     chStarSwitch_update, func_80326224, func_80325888,
-    { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 0.0f, 0
 };
 
 ActorInfo D_80391470 = { MARKER_F2_HONEYCOMB_SWITCH, ACTOR_145_HONEYCOMB_SWITCH, ASSET_438_MODEL_HONEYCOMB_SWITCH, 
     0x1, D_803913E0, 
     chHoneycombSwitch_update, func_80326224, func_80325888,
-    { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 0.0f, 0
 };
 
 ActorInfo D_80391494 = { MARKER_23C_GV_SNS_SWITCH, ACTOR_245_GV_SNS_SWITCH, ASSET_515_MODEL_GV_SNS_SWITCH, 
     0x1, D_803913E0, 
     func_8038EF14, func_80326224, func_80325888,
-    { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 0.0f, 0
 };
 
 ActorInfo D_803914B8 = { MARKER_EB_GV_BANJO_DOOR, ACTOR_6D_GV_BANJO_DOOR, ASSET_3D8_MODEL_GV_BANJO_DOOR, 
     0x1, 0x0, 
     func_802D3D54, func_8038E460, func_80325F2C,
-    { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 0.0f, 0
 };
 
 ActorInfo D_803914DC = { MARKER_ED_GV_SUN_DOOR, ACTOR_140_GV_SUN_DOOR, ASSET_3FF_MODEL_GV_SUN_DOOR, 
     0x1, 0x0, 
     func_802D3D54, func_8038E4DC, func_80325F2C,
-    { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 0.0f, 0
 };
 
 ActorInfo D_80391500 = { MARKER_F0_GV_KAZOOIE_DOOR, ACTOR_143_GV_KAZOOIE_DOOR, ASSET_3D9_MODEL_GV_KAZOOIE_DOOR, 
     0x1, 0x0, 
     chKazooieDoor_update, func_80326224, func_80325F2C,
-    { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 0.0f, 0
 };
 
 ActorInfo D_80391524 = { MARKER_EF_GV_STAR_HATCH, ACTOR_142_GV_STAR_HATCH, ASSET_3DB_MODEL_GV_STAR_HATCH, 
     0x1, 0x0, 
     func_8038E648, func_80326224, func_80325F2C,
-    { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 0.0f, 0
 };
 
 ActorInfo D_80391548 = { MARKER_F3_GV_KAZOOIE_TARGET, ACTOR_146_GV_KAZOOIE_TARGET, ASSET_3E2_MODEL_GV_KAZOOIE_TARGET, 
     0x1, 0x0, 
     chKazooieTarget_update, func_80326224, func_80325E78,
-    { 0x0, 0x0}, 0x400, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0x400, 0.0f, 0
 };
 
 ActorInfo D_8039156C = { MARKER_F8_GV_KAZOOIE_DOOR, ACTOR_1F5_GV_KAZOOIE_DOOR, ASSET_3D9_MODEL_GV_KAZOOIE_DOOR, 
     0x1, 0x0, 
     func_8038E97C, func_80326224, func_80325F2C,
-    { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 0.0f, 0
 };
 
 ActorInfo D_80391590 = { MARKER_23A_GV_SNS_CHAMBER_DOOR, ACTOR_243_GV_SNS_CHAMBER_DOOR, ASSET_514_MODEL_GV_SNS_CHAMBER_DOOR, 
     0x1, 0x0, 
     func_8038E914, func_80326224, func_80325F2C, 
-    { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 0.0f, 0
 };
 
 /* .bss */

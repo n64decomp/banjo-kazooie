@@ -16,7 +16,7 @@ typedef struct{
 void func_8038719C(Actor *this);
 
 /* .data */
-extern ActorInfo D_8038EBD0 = { 0x1AE, 0x29B, 0x446, 0x0, NULL, func_8038719C, NULL, func_80325888, { 0x0, 0x0}, 0, 1.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_8038EBD0 = { 0x1AE, 0x29B, 0x446, 0x0, NULL, func_8038719C, NULL, func_80325888, 0, 0, 1.0f, 0};
 
 /* .code */
 void func_80386D40(Actor *this, s32 next_state) {

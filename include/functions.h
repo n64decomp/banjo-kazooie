@@ -223,6 +223,7 @@ void func_8030DA44(u8);
 
 
 void func_802EF3F4(ParticleEmitter *, f32[3], f32[3], s32);
+ParticleEmitter *particleEmitter_new(u32 capacity);
 void particleEmitter_setParticleAccelerationRange(ParticleEmitter *, f32, f32, f32, f32, f32, f32);
 void func_802EF9F8(ParticleEmitter *, f32);
 void func_802EFA18(ParticleEmitter *, s32);
@@ -402,7 +403,9 @@ extern s32 func_802F9AA8(enum sfx_e);
 
 
 Actor * func_803055E0(enum actor_e id, s32 pos[3], s32 arg2, s32 arg3, s32 arg4);
+Actor * func_803056FC(enum actor_e id, s32 pos[3], s32 yaw);
 f32  func_80309724(f32[3]);
+BKModelBin *func_8030A428(s32);
 u8   func_8030D90C(void);
 void func_8030DA80(u8 indx, enum sfx_e uid);
 void func_8030DBB4(u8, f32);
@@ -428,8 +431,8 @@ void func_8030E704(enum sfx_e uid);
 void func_8030E760(enum sfx_e uid, f32 arg1, s32 arg2);
 void func_8030E878(enum sfx_e uid, f32 arg1, u32 arg2, f32 arg3[3], f32 arg4, f32 arg5);
 void func_8030E8B4(u32,f32 [3], u32);
-void func_8030E988(enum sfx_e uid, f32 arg1, u32 arg2, f32 (*arg3)[3], f32 arg4, f32 arg5);
-void func_8030E9C4(enum sfx_e uid, f32 arg1, u32 arg2, f32 (*arg3)[3], f32 arg4, f32 arg5);
+void func_8030E988(enum sfx_e uid, f32 arg1, u32 arg2, f32 arg3[3], f32 arg4, f32 arg5);
+void func_8030E9C4(enum sfx_e uid, f32 arg1, u32 arg2, f32 arg3[3], f32 arg4, f32 arg5);
 void func_8030EAAC(enum sfx_e uid, f32 arg1, s32 arg2, s32 arg3);
 void func_8030EB00(enum sfx_e uid, f32, f32);
 void func_8030EB88(enum sfx_e uid, f32 arg1, f32 arg2);
@@ -437,6 +440,7 @@ void func_8030EBC8(enum sfx_e uid, f32 arg1, f32 arg2, s32 arg3, s32 arg4);
 void func_8030EC20(enum sfx_e uid, f32 arg1, f32 arg2, u32 arg3, u32 arg4);
 u8 func_8030ED2C(enum sfx_e uid, s32 arg1);
 
+void func_80320044(s32, s32, s32);
 Actor *func_80325300(ActorMarker *marker, f32 rotation[3]);
 Actor *func_80325934(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 Actor *func_80325E78(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
@@ -445,6 +449,7 @@ void func_80326244(Actor *);
 
 void func_8032728C(f32[3], f32, s32, int(*)(Actor *));
 
+Actor *func_8032813C(enum actor_e actor_id, f32 position[3], s32 yaw);
 int  func_8032863C(AnimCtrl *, f32, f32);
 int  func_80328A2C(Actor *, f32, s32, f32);
 void func_80328A84(Actor *, u32);
@@ -458,11 +463,13 @@ int  func_80329078(Actor *, s32, s32);
 int  func_80329480(Actor *);
 s32  func_80329784(Actor *);
 void func_80329878(Actor *, f32);
+struct5Bs *func_80329934(void);
 
-void func_80320044(s32, s32, s32);
 void func_803300D8(ActorMarker *, void (*)(Actor *));
 void marker_setCollisionScripts(ActorMarker *this, MarkerCollisionFunc ow_func, MarkerCollisionFunc arg2, MarkerCollisionFunc die_func);
-BKModelBin *func_80330B1C(ActorMarker *marker);
+BKModelBin *  func_80330B1C(ActorMarker *marker);
+BKVertexList *func_80330C74(Actor *actor);
+BKModelBin *  func_80330DE4(ActorMarker *marker);
 f32  func_80335684(void *);
 void func_8033568C(void *, f32 *, f32*);
 void func_80335800(void *, f32, void (*)(ActorMarker *), ActorMarker *);
@@ -521,7 +528,7 @@ Actor *func_80326EEC(s32);
 f32 func_8038A6B8(ActorMarker *);
 void func_80255FE4(f32 [3], f32 [3], f32 [3], f32);
 void func_8030DEB4(u8, f32, f32);
-void func_8030DB04(u8, s32, f32(*)[3], f32, f32);
+void func_8030DB04(u8, s32, f32 position[3], f32, f32);
 void func_80258A4C(f32 [3], f32, f32 [3], f32 *, f32 *, f32 *);
 
 

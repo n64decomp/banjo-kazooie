@@ -8,7 +8,7 @@ void func_803899C0(Actor *this);
 ActorInfo D_803906B0 = {
     0x194, 0x1BE, 0x412, 0x0, NULL,
     func_803899C0, NULL, func_80325888,
-    {0, 0}, 0, 0.0f, {0,0,0,0}
+    0, 0, 0.0f, 0
 };
 
 /* .code */

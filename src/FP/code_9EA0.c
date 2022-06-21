@@ -11,7 +11,7 @@ extern ActorAnimationInfo D_80392680[];
 extern ActorInfo D_80392690 = { 0x20D, 0x33D, 0x38A,
     0x1, D_80392680,
     func_80390388, func_80326224, func_80390290,
-    { 0x9, 0xC4}, 0, 1.0f, { 0x0, 0x0, 0x0, 0x0}
+    2500, 0, 1.0f, 0
 };
 
 /* .code */

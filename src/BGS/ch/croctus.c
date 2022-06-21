@@ -32,7 +32,7 @@ ActorAnimationInfo D_803907CC[] = {
 ActorInfo D_80390804 ={0xFC, 0x1FA, 0x425,
     1, D_803907CC,
     func_80387FD4, func_80326224, func_8038860C,
-    {0, 0}, 0, 0.0f, {0,0,0,0}
+    0, 0, 0.0f, 0
 };
 
 /* .code */

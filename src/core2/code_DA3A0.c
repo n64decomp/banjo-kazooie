@@ -16,14 +16,14 @@ ActorInfo D_80373134 = {
     0x1a6, 0x289, 0x431, 
     0x0, NULL, 
     func_8036158C, NULL, func_80325888, 
-    { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 0.0f, 0
 };
 
 ActorInfo D_80373158 = { 
     0x1a6, 0x28f, 0x431, 
     0x0, NULL, 
     func_8036158C, NULL, func_80325888, 
-    { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 0.0f, 0
 };
 
 struct31s D_8037317C = {

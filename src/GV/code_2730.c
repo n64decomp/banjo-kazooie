@@ -18,7 +18,7 @@ Actor *func_80388C64(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 ActorInfo D_80390D60 = { 0xBE, 0x130, 0x3E4, 
     0, NULL, 
     func_80388DC8, func_80326224, func_80388C64, 
-    { 0x0, 0x0}, 0x533, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0x533, 0.0f, 0
 };
 
 f32 D_80390D84[3] = {5644.0f, 2930.0f, -3258.0f};

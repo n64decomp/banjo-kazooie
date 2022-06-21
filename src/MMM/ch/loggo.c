@@ -17,7 +17,7 @@ ActorInfo chLoggo = {
     MARKER_252_LOGGO, ACTOR_37F_LOGGO, ASSET_519_MODEL_LOGGO, 
     0x1, chLoggoAnimations, 
     chLoggo_update, func_80326224, func_80325888, 
-    { 0x3, 0xE8}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+    1000, 0, 0.0f, 0
 };
 
 /* .code */

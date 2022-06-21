@@ -26,7 +26,7 @@ extern ActorInfo D_8038C510 = {
     MARKER_A3_BLUBBER, ACTOR_115_BLUBBER, ASSET_370_MODEL_BLUBBER,
     0x1, D_8038C4E0, 
     func_803878CC, func_80387CF4, func_80387D6C, 
-    { 0x0, 0x0}, 0x399, 1.8f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0x399, 1.8f, 0
 };
 
 /* .code */

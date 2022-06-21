@@ -10,7 +10,7 @@ ActorInfo D_80391B50 = {
     MARKER_BA_XMAS_TREE, ACTOR_15F_XMAS_TREE, ASSET_488_MODEL_XMAS_TREE, 
     0x1, NULL, 
     chXmasTree_update, func_80326224, func_80386E30,
-    { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 0.0f, 0
 };
 
 s32 chXmasTree_switch_spawn_position[3] = {-0x1220, 0x6A, 0x1945};

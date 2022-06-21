@@ -32,13 +32,13 @@ f32 D_80390D80[2] = {1.8f, 1.0f};
 ActorInfo D_80390D88 = {
     0x1B7, 0x2A4, 0x48C, 0x0, NULL,
     func_8038F618, NULL, func_8038F4B0,
-    {0, 0}, 0, 0.0f, {0,0,0,0}
+    0, 0, 0.0f, 0
 };
 
 ActorInfo D_80390DAC = {
     0x1B7, 0x30D, 0x48C, 0x0, NULL,
     func_8038F618, NULL, func_8038F4B0,
-    {0, 0}, 0, 0.0f, {0,0,0,0}
+    0, 0, 0.0f, 0
 };
 
 s32 D_80390DD0[3] = {0xDE, 0xA7, 0x71};

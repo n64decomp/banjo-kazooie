@@ -20,7 +20,7 @@ void func_8038CC4C(Actor *this);
 
 /* .data */
 extern Struct_CCW_6620_0 D_8038F490[];
-extern ActorInfo D_8038F4A8 = { 0x1BD, 0x2AA, 0x48F, 0x0, NULL, func_8038CC4C, NULL, func_8038CBF0, { 0x0, 0x0}, 0, 2.2f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_8038F4A8 = { 0x1BD, 0x2AA, 0x48F, 0x0, NULL, func_8038CC4C, NULL, func_8038CBF0, 0, 0, 2.2f, 0};
 
 /* .code */
 void func_8038CA10(ActorMarker *marker) {

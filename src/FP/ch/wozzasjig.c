@@ -11,7 +11,7 @@ extern ActorAnimationInfo D_803925C0[];
 extern ActorInfo D_80392628 = { MARKER_20C_WOZZAS_JIGGY, ACTOR_1F4_WOZZAS_JIGGY, ASSET_495_MODEL_WOZZAS_JIGGY,
     0x1, D_803925C0,
     func_8038FF54, func_80326224, func_8038FF00,
-    { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 0.0f, 0
 };
 
 extern struct31s D_8039264C;

@@ -18,7 +18,7 @@ ActorInfo chNapper = {
     MARKER_48_NAPPER, ACTOR_39_NAPPER, ASSET_55E_MODEL_NAPPER, 
     0x0, NULL,
     chnapper_update, chnapper_update, chnapper_draw, 
-    { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 0.0f, 0
 };
 
 /* .code */

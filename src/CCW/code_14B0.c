@@ -25,7 +25,7 @@ void func_80387A40(Actor *this);
 
 /* .data */
 extern Struct_CCW_14B0_0 D_8038EC00[];
-extern ActorInfo D_8038EC14 = { 0x1AF, 0x29C, 0x446, 0x0, NULL, func_80387A40, NULL, func_80325888, { 0x0, 0x0}, 0, 1.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_8038EC14 = { 0x1AF, 0x29C, 0x446, 0x0, NULL, func_80387A40, NULL, func_80325888, 0, 0, 1.0f, 0};
 
 /* .code */
 void func_803878A0(Actor *this, s32 next_state) {
@@ -97,7 +97,7 @@ void func_80387A40(Actor *this) {
         local->unk18[1] += sp5C[1] * sp68;
         local->unk18[2] += sp5C[2] * sp68;
         if (local->unk8 < gu_sqrtf(local->unk18[0]*local->unk18[0] + local->unk18[1]*local->unk18[1] + local->unk18[2]*local->unk18[2])) {
-            ml_vec3f_set_length(&local->unk18, local->unk8);
+            ml_vec3f_set_length(local->unk18, local->unk8);
         }
         func_80258A4C(this->position, this->yaw - 90.0f, local->unkC, &sp58, &sp54, &sp50);
         this->yaw += 140.0f * sp50 * sp68;

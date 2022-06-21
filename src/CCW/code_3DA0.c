@@ -20,7 +20,7 @@ ActorInfo chCaterpillar = {
     MARKER_1B5_CATERPILLAR, ACTOR_2A2_CATERPILLAR, ASSET_485_MODEL_CATERPILLAR, 
     0x0, NULL, 
     chcaterpillar_update, NULL, chcaterpillar_draw, 
-    { 0x0, 0x0}, 0, 1.0f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 1.0f, 0
 };
 
 /* .code */

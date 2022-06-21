@@ -21,7 +21,7 @@ ActorAnimationInfo D_80390FA0[] = {
 ActorInfo D_80390FD0 = { MARKER_B0_MAGIC_CARPET_2, ACTOR_123_MAGIC_CARPET_2, ASSET_3DC_MODEL_MAGIC_CARPET, 
     0x1, D_80390FA0, 
     func_8038A314, func_8038A31C, func_8038A180, 
-    { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 0.0f, 0
 };
 u8 D_80390FF4[6] = {0,0,0,1,1,1};
 

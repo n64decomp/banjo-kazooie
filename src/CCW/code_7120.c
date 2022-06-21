@@ -13,7 +13,7 @@ extern ActorInfo D_8038F640 = {
     0x1BF, 0x2AC, 0x490,
     0x0, NULL,
     func_8038D85C, NULL, func_80325888,
-    { 0x0, 0x0}, 0, 2.2f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 2.2f, 0
 };
 extern s32 D_8038F664[3];
 extern struct42s D_8038F670;
@@ -30,7 +30,7 @@ void func_8038D510(Actor *this) {
     func_802EFB70(pCtrl, 1.0f, 2.0f);
     func_802EFB84(pCtrl, 3.0f, 4.0f);
     particleEmitter_setPositionAndVelocityRanges(pCtrl, &D_8038F670);
-    func_802EFFA8(pCtrl, &D_8038F664);
+    func_802EFFA8(pCtrl, D_8038F664);
     func_802EFEC0(pCtrl, 3.0f, 4.0f);
     particleEmitter_emitN(pCtrl, 6);
 }

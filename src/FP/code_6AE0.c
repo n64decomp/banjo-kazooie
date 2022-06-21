@@ -20,7 +20,7 @@ ActorAnimationInfo D_803920C0[] ={
 ActorInfo D_803920E8 = { 0x204, 0x336, 0x442,
     0x1, D_803920C0,
     func_8038D6C8, func_80326224, func_8038CED0,
-    { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 0.0f, 0
 };
 
 struct31s D_8039210C = {

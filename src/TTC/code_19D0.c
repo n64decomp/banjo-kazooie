@@ -13,7 +13,7 @@ extern ActorInfo D_8038C580 = {
     MARKER_A5_NIPPER, ACTOR_117_NIPPER, ASSET_3D5_MODEL_NIPPER,
     0x1, D_8038C540,
     func_80388434, func_80326224, func_80387EB0,
-    { 0x0, 0x0}, 0x299, 10.0f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0x299, 10.0f, 0
 };
 
 extern s32 D_8038C5A4[3];

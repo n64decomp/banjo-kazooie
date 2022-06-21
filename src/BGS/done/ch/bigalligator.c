@@ -11,7 +11,7 @@ void func_8038FCB0(Actor *);
 /* .data */
 ActorInfo D_80390D70 = {0xDC, actor_bigalligator, 0x397, 0x01, NULL,
     func_8038FCB0, func_80326224, func_80325888,
-    {0,0}, 0, 0.0f, {0,0,0,0}
+    0, 0, 0.0f, 0
 };
 
 /* .code */

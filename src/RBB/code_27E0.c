@@ -13,19 +13,19 @@ void func_80388C20(Actor *this);
 ActorInfo D_803903B0 = {
     0x18B, 0x17B, 0x409, 0x0, NULL,
     func_80388C20, NULL, func_80325888,
-    {0, 0}, 0, 0.0f, {0,0,0,0}
+    0, 0, 0.0f, 0
 };
 
 ActorInfo D_803903D4 = {
     0x18C, 0x17C, 0x40A, 0x0, NULL,
     func_80388C20, NULL, func_80325888,
-    {0, 0}, 0, 0.0f, {0,0,0,0}
+    0, 0, 0.0f, 0
 };
 
 ActorInfo D_803903F8 = {
     0x18D, 0x17D, 0x40B, 0x0, NULL,
     func_80388C20, NULL, func_80325888,
-    {0, 0}, 0, 0.0f, {0,0,0,0}
+    0, 0, 0.0f, 0
 };
 
 f32 D_8039041C[3] = {40.0f, -30.0f, 20.0f}; //rotation rates (deg/sec);

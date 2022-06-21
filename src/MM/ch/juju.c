@@ -17,7 +17,7 @@ typedef struct{
 
 /* public functions */
 void    func_80389598(Actor *this);
-Actor*  func_80389014(ActorMarker *, Gfx **, Mtx**, u32);
+Actor*  func_80389014(ActorMarker *, Gfx **, Mtx**, Vtx** );
 
 extern s32 D_80389C90;
 
@@ -25,7 +25,7 @@ extern s32 D_80389C90;
 ActorInfo chjujuInfo = { MARKER_67_JUJU, ACTOR_59_JUJU, ASSET_2E6_MODEL_JUJU, 
     0, NULL,
     func_80389598, func_80326224, func_80389014,
-    {0,0}, 0, 0.0f, {0,0,0,0}
+    0, 0, 0.0f, 0
 };
 
 void func_80388FD0(Actor *this, f32 *arg1, f32 *arg2, s32 arg3){
@@ -44,7 +44,7 @@ void func_80388FD0(Actor *this, f32 *arg1, f32 *arg2, s32 arg3){
     local->unk8_z = arg2[2];
 }
 
-Actor*  func_80389014(ActorMarker *this, Gfx **dl, Mtx **mPtr, u32 arg2){
+Actor*  func_80389014(ActorMarker *this, Gfx **dl, Mtx **mPtr, Vtx **arg2){
     f32 sp34[3];
     Actor * actorPtr;
     ActorLocal_Juju_2 *jujuPtr;
@@ -204,7 +204,7 @@ void    func_80389598(Actor *this){
             {sp28[0] = 100.0f;
             sp28[1] = 0.0f;
             sp28[2] = 0.0f;}
-            ml_vec3f_yaw_rotate_copy(&sp28, &sp28, this->yaw + 90.0);
+            ml_vec3f_yaw_rotate_copy(sp28, sp28, this->yaw + 90.0);
             this->position_x += sp28[0];
             this->position_y += sp28[1];
             this->position_z += sp28[2];

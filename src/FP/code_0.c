@@ -16,7 +16,7 @@ ActorInfo D_80391A10 = {
     MARKER_3B_SCARF_SLED, ACTOR_181_SCARF_SLED, ASSET_352_MODEL_SLED,
     0, D_803919F0,
     NULL,  func_803867BC, func_80325888,
-    {0x03, 0xE8}, 0,  0.0f, {0,0,0,0}
+    1000, 0,  0.0f, 0
 };
 
 /* .code */

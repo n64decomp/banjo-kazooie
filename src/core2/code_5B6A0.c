@@ -19,8 +19,9 @@ extern ActorInfo D_80368710 = {
     0xB2, 0x125, 0x378, 
     0x1, NULL, 
     func_802E28D0, func_80326224, func_802E2630, 
-    { 0x0, 0x0}, 0x800, 0.8f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0x800, 0.8f, 0
 };
+
 extern f32 D_803687A4[4];
 extern struct31s D_80368734;
 extern struct43s D_8036875C;

@@ -10,7 +10,7 @@ void func_80390EB0(Actor *this);
 extern ActorInfo D_80392840 = { 0x245, 0x353, 0x402,
     0x0, NULL,
     func_80390EB0, func_80326224, func_80325340,
-    { 0x7, 0xD0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+    2000, 0, 0.0f, 0
 };
 struct40s D_80392864;
 s32 D_80392894[3];

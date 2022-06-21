@@ -16,7 +16,7 @@ extern ActorInfo D_8038BAD0 = {
     MARKER_254_PORTRAIT_CHOMPA, ACTOR_381_PORTRAIT_CHOMPA, ASSET_521_MODEL_PORTRAIT_CHOMPA, 
     0x0, NULL,
     func_80388028, NULL, func_80387AA0,
-    { 0x0, 0x0}, 0x0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 0.0f, 0
 };
 
 extern s32 D_8038BAF4[3];

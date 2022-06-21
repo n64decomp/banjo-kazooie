@@ -26,7 +26,7 @@ ActorAnimationInfo chlmonkeyAnimations[5] = {
 ActorInfo chlmonkeyInfo = { MARKER_A_CHIMPY, ACTOR_F_CHIMPY, ASSET_35D_MODEL_CHIMPY, 
     1, chlmonkeyAnimations,
     NULL, func_803885D0, func_80325888,
-    {0x09,0xC4}, 0, 0.8f, {0,0,0,0}
+    2500, 0, 0.8f, 0
 };
 
 /* .code */
@@ -67,7 +67,7 @@ void func_803884C0(s32 x, s32 y, s32 z){
     jiggySpawn(JIGGY_9_MM_CHIMPY, sp1C);
 }
 
-void func_80388514(ActorMarker *marker, s32 arg1, s32 arg2){
+void func_80388514(ActorMarker *marker, enum asset_e arg1, s32 arg2){
     Actor * actor = marker_getActor(marker);
     mapSpecificFlags_set(4,1);
     func_80328A84(actor, 3);

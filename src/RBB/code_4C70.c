@@ -31,19 +31,19 @@ Struct_RBB_4C70 D_80390950[] = {
 ActorInfo D_803909B0 = {
     0x2A, 0x1C2, 0x416, 0x0, NULL,
     func_8038B340, NULL, func_8038B230,
-    {0, 0}, 0, 0.0f, {0,0,0,0}
+    0, 0, 0.0f, 0
 };
 
 ActorInfo D_803909D4 = {
     0x2B, 0x1C3, 0x416, 0x0, NULL,
     func_8038B340, NULL, func_8038B230,
-    {0, 0}, 0, 0.0f, {0,0,0,0}
+    0, 0, 0.0f, 0
 };
 
 ActorInfo D_803909F8 = {
     0x2C, 0x1C4, 0x416, 0x0, NULL,
     func_8038B340, NULL, func_8038B230,
-    {0, 0}, 0, 0.0f, {0,0,0,0}
+    0, 0, 0.0f, 0
 };
 
 struct31s D_80390A1C = {

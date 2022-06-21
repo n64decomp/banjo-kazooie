@@ -15,14 +15,14 @@ extern ActorInfo D_80389B00 = {
     0x4C, ACTOR_44_CLANKER_TOKEN_TOOTH_EXTERIOR, ASSET_309_MODEL_CLANKER_TOKEN_TOOTH_EXTERIOR, 
     0, NULL,
     func_803870F8, func_80326224, func_80325888,
-    {0,0}, 0, 0.0f, {0,0,0,0}
+    0, 0, 0.0f, 0
 };
 
 extern ActorInfo D_80389B24 = {
     0x4D, ACTOR_45_CLANKER_JIGGY_TOOTH_EXTERIOR, ASSET_30A_MODEL_CLANKER_JIGGY_TOOTH_EXTERIOR, 
     0, NULL,
     func_803870F8, func_80326224, func_80325888,
-    {0,0}, 0, 0.0f, {0,0,0,0}
+    0, 0, 0.0f, 0
 };
 
 /* .bss */

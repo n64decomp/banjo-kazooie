@@ -26,7 +26,7 @@ ActorInfo D_80390830 = {
     0x19A, 0x27A, 0x3F8,
     0, NULL,
     func_80389080, NULL, func_80325888,
-    {0,0}, 0, 2.5f, {0,0,0,0}
+    0, 0, 2.5f, 0
 };
 s16 D_80390854[] = {0, 0xC78, 0xC7A, 0xC7C}; //see again texts
 s16 D_8039085C[] = {0, 0xC77, 0xC79, 0xC7B}; //success texts

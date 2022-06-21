@@ -11,7 +11,7 @@ void func_80324E88(f32);
 
 ActorInfo D_80390AB0 = {0xC4, ACTOR_136_YELLOW_FLIBBIT_CONTROLLER, 0x00, 0x00, NULL,
     func_8038CEE8, NULL, func_80325340,
-    {0,0}, 0, 0.0f, {0,0,0,0}
+    0, 0, 0.0f, 0
 };
 
 f32 D_80390AD4[3] = {1985.0f, 200.0f, -1386.0f};

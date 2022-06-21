@@ -15,7 +15,7 @@ ActorAnimationInfo D_803919F0[] ={
     {0x265, 1e+8f},
     {0x265, 1e+8f},
 };
-ActorInfo D_80391A10 = { 0x276, 0x3A1, 0x545, 0x1, D_803919F0, func_8038DA04, func_80326224, func_80325888, { 0x0, 0x0}, 0x800, 1.0f, { 0x0, 0x0, 0x0, 0x0}};
+ActorInfo D_80391A10 = { 0x276, 0x3A1, 0x545, 0x1, D_803919F0, func_8038DA04, func_80326224, func_80325888, 0, 0x800, 1.0f, 0};
 
 
 /* .code */

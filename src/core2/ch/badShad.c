@@ -13,7 +13,7 @@ ActorInfo D_80367A50 = {
     0x9B, 0x108, 0x3BF,
     0x1, NULL, 
     func_802D6EA0, func_80326224, func_802D6F48,
-    { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 0.0f, 0
 };
 
 /* .bss */
@@ -111,7 +111,7 @@ void func_802D71A0(s32 this, s32 arg1){
         sp2C[0] = (s32) D_8037DE10[0];
         sp2C[1] = (s32) D_8037DE10[1];
         sp2C[2] = (s32) D_8037DE10[2];
-        sp3C = func_803056FC(0x108, &sp2C, (s32)sp38->yaw);
+        sp3C = func_803056FC(0x108, sp2C, (s32)sp38->yaw);
         if(sp3C){
             marker_getActor(marker)->unk104 = sp3C->marker;
             sp3C->unk104 = marker;

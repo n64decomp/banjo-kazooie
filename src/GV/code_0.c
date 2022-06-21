@@ -15,7 +15,7 @@ ActorAnimationInfo D_80390BD0[] = {
 ActorInfo D_80390BF0 = { MARKER_1F4_TOOTS, ACTOR_1E4_TOOTS, ASSET_434_MODEL_TOOTS, 
     0x1, D_80390BD0, 
     chtoots_update, func_80326224, func_80325888, 
-    { 0x7, 0xD0}, 0, 0.5f, { 0x0, 0x0, 0x0, 0x0}
+    2000, 0, 0.5f, 0
 };
 
 /*.bss */

@@ -524,12 +524,12 @@ void func_8030DABC(u8 indx, s32 arg1){
     }
 }
 
-void func_8030DB04(u8 indx, s32 arg1, f32(*arg2)[3], f32 arg3, f32 arg4){
+void func_8030DB04(u8 indx, s32 arg1, f32 arg2[3], f32 arg3, f32 arg4){
     f32 sp24[3];
     f32 dist;
     f32 temp_f2;
-    func_8030C790(&sp24);
-    dist = func_80256064(arg2, &sp24);
+    func_8030C790(sp24);
+    dist = func_80256064(arg2, sp24);
     if(arg4 <= dist)
         temp_f2 = 0.0f;
     else{
@@ -897,12 +897,12 @@ void func_8030E760(enum sfx_e uid, f32 arg1, s32 arg2){
     func_8030D6C4(uid, arg1, arg2, 0, 0);
 }
 
-void func_8030E78C(enum sfx_e uid, f32 arg1, u32 arg2, f32(*arg3)[3], f32 arg4, f32 arg5, s32 arg6){
+void func_8030E78C(enum sfx_e uid, f32 arg1, u32 arg2, f32 arg3[3], f32 arg4, f32 arg5, s32 arg6){
     u8 s0;
     f32 sp20[3];
     
     func_8030C790(&sp20);
-    if( !(arg5 <= func_80256064(&sp20, arg3))
+    if( !(arg5 <= func_80256064(sp20, arg3))
         && levelSpecificFlags_validateCRC2()
         && func_80320240()
     ){
@@ -932,11 +932,11 @@ void func_8030E8B4(u32 arg0, f32 arg1[3], u32 arg2){
     );
 }
 
-void func_8030E988(enum sfx_e uid, f32 arg1, u32 arg2, f32 (*arg3)[3], f32 arg4, f32 arg5){
+void func_8030E988(enum sfx_e uid, f32 arg1, u32 arg2, f32 arg3[3], f32 arg4, f32 arg5){
     func_8030E78C(uid, arg1, arg2, arg3, arg4, arg5, 1);
 }
 
-void func_8030E9C4(enum sfx_e uid, f32 arg1, u32 arg2, f32 (*arg3)[3], f32 arg4, f32 arg5){
+void func_8030E9C4(enum sfx_e uid, f32 arg1, u32 arg2, f32 arg3[3], f32 arg4, f32 arg5){
     func_8030E78C(uid, arg1, arg2, arg3, arg4, arg5, 0);
 }
 

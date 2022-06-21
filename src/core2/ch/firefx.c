@@ -11,7 +11,7 @@ ActorInfo gChFireFxInfo = {
     0x256, ACTOR_383_FIRE_FX, ASSET_526_SPRITE_FIRE, 
     0, NULL, 
     chfirefx_update, func_80326224, func_80325888,
-    {0,0}, 0, 0.0f, {0,0,0,0}
+    0, 0, 0.0f, 0
 }; 
 
 /* code */
@@ -53,7 +53,7 @@ void __chfirefx_spawnSpark(f32 position[3], f32 scale){
     particleEmitter_emitN(pCtrl, 1);
 }
 
-void __chfirefx_hiss(ActorMarker *marker, s32 arg1){
+void __chfirefx_hiss(ActorMarker *marker,ActorMarker *other_marker){
     Actor *actor = marker_getActor(marker);
     FUNC_8030E8B4(SFX_96_HOTSAND_EEL_HISS, 1000, 0x3ff, actor->position, 1000, 2000);
 }

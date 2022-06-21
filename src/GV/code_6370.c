@@ -25,19 +25,19 @@ u8 D_803911F0[3] =  {0, 1, 2};
 ActorInfo D_803911F4 = { 0xBB, 0x285, 0x3E6, 
     0, NULL,
     func_8038CC98, func_80326224, func_8038CC40,
-    { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 0.0f, 0
 };
 
 ActorInfo D_80391218 = { 0xBB, 0x286, 0x3E6, 
     0, NULL,
     func_8038CC98, func_80326224, func_8038CC40,
-    { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 0.0f, 0
 };
 
 ActorInfo D_8039123C = { 0xBB, 0x287, 0x3E6, 
     0, NULL,
     func_8038CC98, func_80326224, func_8038CC40,
-    { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 0.0f, 0
 };
 
 /* .code */
@@ -55,7 +55,7 @@ void func_8038C760(Actor *this, s32 arg1){
         func_80324E38(6.5f, 0);
     }
     else{
-        timedFunc_set_2(3.5f, func_8025A6EC, COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 0x7fff);
+        timedFunc_set_2(3.5f, (TFQM2)func_8025A6EC, COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 0x7fff);
         timedFunc_set_3(3.5f, (TFQM3)func_80320044, BKPROG_F8_KING_SANDYBUTT_PYRAMID_STATE, arg1, 2);
         func_80324E88(6.0f);
         func_80324E38(6.0f, 0);

@@ -17,7 +17,7 @@ ActorInfo D_80372840 = {
     0x29, ACTOR_1CC_GRILL_CHOMPA, ASSET_430_MODEL_GRILL_CHOMPA, 
     0, NULL,
     func_80356CCC, NULL, func_80356C50,
-    {0,0}, 0, 0.0f, {0,0,0,0}
+    0, 0, 0.0f, 0
 };
 
 /* .code */
@@ -60,11 +60,11 @@ void func_803569F0(Actor *this, s32 next_state){
 }
 
 
-void func_80356BF4(ActorMarker *marker, s32 arg1){
+void func_80356BF4(ActorMarker *marker, ActorMarker *other_marker){
     func_8030E760(SFX_1E_HITTING_AN_ENEMY_2, 1.0f, 32000);
 }
 
-void func_80356C24(ActorMarker *marker, s32 arg1){
+void func_80356C24(ActorMarker *marker, ActorMarker *other_marker){
    func_803569F0(marker_getActor(marker), 5);
 }
 

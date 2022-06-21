@@ -48,7 +48,7 @@ ActorAnimationInfo D_80391C80[] = {
 ActorInfo D_80391CE8 = { 0x97, ACTOR_C8_BOGGY_2, ASSET_38A_MODEL_BOGGY_1, 
     0x1, D_80391C80, 
     func_80388F4C, func_803896FC, func_80388740, 
-    { 0x0, 0x0}, 0, 1.4f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 1.4f, 0
 };
 f32 D_80391D0C[3] = {1842.0f, 658.0f, 5758.0f};
 f32 D_80391D18[3] = {1463.0f, 635.0f, 5193.0f};

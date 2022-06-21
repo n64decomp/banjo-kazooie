@@ -22,7 +22,7 @@ ActorInfo D_80391BB0 = {
     MARKER_124_BOGGY_1, ACTOR_160_BOGGY_1, ASSET_38A_MODEL_BOGGY_1, 
     0x1, D_80391B80, 
     func_8038774C, func_8038794C, func_803875E0, 
-    { 0x9, 0xc4}, 0, 1.4f, { 0x0, 0x0, 0x0, 0x0}
+    2500, 0, 1.4f, 0
 };
 
 f32 D_80391BD4[3] = {1592.0f, 673.0f, 5895.0f};
@@ -150,7 +150,7 @@ void func_8038794C(Actor *this){
                 if(!func_8028ECAC() || func_8028ECAC() == 8){
                     if(func_80311480(0xbff, 0x2a, this->position, NULL, NULL, NULL)){
                         for(i = 0; i <5; i++ ){
-                            timedFunc_set_1(D_80391BEC[i], func_8038787C, (s32)this->marker);
+                            timedFunc_set_1(D_80391BEC[i], (TFQM1)func_8038787C, (s32)this->marker);
                         }
                         this->unk138_24 = TRUE;
                     }

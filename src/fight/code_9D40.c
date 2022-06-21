@@ -6,7 +6,7 @@ extern f32 func_8038C288(void);
 extern void func_80328B8C(Actor *, s32, f32, s32);
 extern void func_80324CFC(f32, s32, s32);
 extern void func_802F9E44(s32, f32, f32, f32, f32);
-extern void func_80387470(Actor *, f32 (*)[3], f32, f32, f32, f32, f32);
+extern void func_80387470(Actor *, f32 [3], f32, f32, f32, f32, f32);
 extern void func_8038C0DC(f32[3]);
 
 extern void func_8038C5F0(Actor *, enum asset_e, enum asset_e, f32);
@@ -47,7 +47,7 @@ ActorAnimationInfo D_80391FB0[] = {
 ActorInfo D_80392018 = {
     0x285, 0x3AC, 0x551, 0x1, D_80391FB0,
     func_8039049C, func_80326224, func_80325888,
-    {0, 0}, 0, 1.0f, {0,0,0,0}
+    0, 0, 1.0f, 0
 };
 
 s32 D_8039203C[] = {0xDC, 0x96, 0x82, 0xB4, 0xD2, 0xAA, 0xC8, 0x96, 0xB4};

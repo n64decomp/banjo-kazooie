@@ -13,7 +13,7 @@ void func_802C8F70(f32);
 void func_802C4218(s32, s32, s32, s32);
 
 /* public function declarations */
-Actor *chhut_draw(ActorMarker *, Gfx **, Mtx**, u32);
+Actor *chhut_draw(ActorMarker *, Gfx **, Mtx**, Vtx **);
 void  chhut_update(Actor *);
 
 /* .bss */
@@ -32,12 +32,12 @@ s32 D_803898D8[6] = { 0, 1, 2, 3, 6, 4};
 ActorInfo chhutInfo = { MARKER_51_MM_HUT, ACTOR_9_MM_HUT, ASSET_7D7_MODEL_MM_HUT, 
     0, chhutAnimations,
     chhut_update, func_80326224, chhut_draw,
-    {0,0}, 0x100, 0.0f, {0,0,0,0}
+    0, 0x100, 0.0f, 0
 };
 
 
 /* .code */
-Actor *chhut_draw(ActorMarker *this, Gfx **arg1, Mtx **arg2, u32 arg3){
+Actor *chhut_draw(ActorMarker *this, Gfx **arg1, Mtx **arg2, Vtx **arg3){
     Actor *actorPtr;
     s32 temp_a1;
     s32 temp_a2;
@@ -76,7 +76,7 @@ void    chhut_update(Actor *this){
     }
     switch(this->state){
         case 0: //L80386AA4
-            player_getPosition(&sp30);
+            player_getPosition(sp30);
             sp3C[0] = sp30[0] - this->position_x;
             sp3C[1] = sp30[1] - this->position_y;
             sp3C[2] = sp30[2] - this->position_z;

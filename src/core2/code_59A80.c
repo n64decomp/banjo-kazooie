@@ -16,7 +16,7 @@ s32 func_802E0CB0(Actor *this);
     0x39, 0x2D, 0x41A,
     0, NULL, 
     func_802E0B10, func_80326224, func_80325934,
-    { 0x7, 0xD0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+    2000, 0, 0.0f, 0
 };
 
 /* .bss */

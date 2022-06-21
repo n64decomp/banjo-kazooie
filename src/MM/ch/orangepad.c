@@ -17,7 +17,7 @@ void func_80386768(Actor *);
 ActorInfo chorangepadInfo = { MARKER_66_ORANGE_PAD, ACTOR_57_ORANGE_PAD, ASSET_2EB_MODEL_ORANGE_PAD, 
     0, NULL,
     func_80386768, func_80326224, func_80325888,
-    {0,0}, 0, 0.0f, {0,0,0,0}
+    0, 0, 0.0f, 0
 };
 
 extern f32 D_80389B40;
@@ -29,7 +29,7 @@ void func_803863F0(s32 x, s32 y, s32 z){
 
     TUPLE_ASSIGN(pos, x, y, z);
     
-    jiggySpawn(JIGGY_8_MM_ORANGE_PADS, &pos);
+    jiggySpawn(JIGGY_8_MM_ORANGE_PADS, pos);
 }
 
 void func_80386444(ActorMarker *arg0){
@@ -42,7 +42,7 @@ void func_80386444(ActorMarker *arg0){
     sp44[0] = arg0->propPtr->x;
     sp44[1] = arg0->propPtr->y;
     sp44[2] = arg0->propPtr->z;
-    actor = func_80326D68(&sp44, 0x57, 1, &sp54);
+    actor = func_80326D68(sp44, 0x57, 1, &sp54);
     
 
     if(actor && !(500.0f < sp54)){
@@ -62,7 +62,7 @@ void func_80386444(ActorMarker *arg0){
         }// L803865D8
 
         s0 = partEmitList_pushNew(0x1e);
-        particleEmitter_setPosition(s0, &actor->position);
+        particleEmitter_setPosition(s0, actor->position);
         particleEmitter_setModel(s0, 0x89f);
         func_802EFB70(s0, 0.09f, 0.19f);
         func_802EFB84(s0, 0.0f, 0.0f);
@@ -107,7 +107,7 @@ void func_80386768(Actor * this){
     }//L803867B0
 
     if(!this->unk16C_4){
-        this->unk100 = func_80326D68(&this->position, 8,-1, &sp34)->marker;
+        this->unk100 = func_80326D68(this->position, 8,-1, &sp34)->marker;
         this->unk16C_4 = 1;
     }//L803867E0
 

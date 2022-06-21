@@ -19,7 +19,7 @@ extern ActorAnimationInfo D_80392520[];
 extern ActorInfo D_80392588 = { MARKER_20B_WOZZA, ACTOR_1F3_WOZZA, ASSET_494_MODEL_WOZZA, 
     0x1, D_80392520,
     func_8038F7AC, func_80326224, func_8038F210,
-    { 0x0, 0x0}, 0, 1.6f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 1.6f, 0
 };
 
 extern f32 D_803925AC[3];
@@ -93,7 +93,7 @@ void func_8038F454(Actor *this){
         actor_loopAnimation(this);
         timed_setCameraToNode(0.0f, 0x2e);
         func_80324DBC(0.0f, 0xc1b, 0x2a, this->position, this->marker, func_8038F330, NULL);
-        timedFunc_set_1(2.5f, (TFQM1)func_8038F3F4, this->marker);
+        timedFunc_set_1(2.5f, (TFQM1)func_8038F3F4, (s32)this->marker);
     }
     else{
         func_8038F2B8(this);

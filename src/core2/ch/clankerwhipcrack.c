@@ -9,7 +9,7 @@ ActorInfo D_80372810 = {
     0x1A7, ACTOR_28A_CLANKER_WHIPCRACK, ASSET_432_MODEL_CLANKER_WHIPCRACK, 
     0, NULL, 
     func_803567EC, NULL, func_80325888, 
-    { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 0.0f, 0
 };
 
 /* .code */
@@ -46,10 +46,10 @@ void func_803567EC(Actor *this){
     if(this->state == 2){
         func_8033568C(this->unk148, &sp44, &sp40);
         if(sp44 < 0.13 && 0.13 <= sp40)
-            func_8030E9C4(SFX_6A_FLAGPOLE_WOBBLE, randf2(0.9f, 1.0f), 0x36b0, this->position, 500.0f, 1000.0f);
+            func_8030E9C4(SFX_6A_FLAGPOLE_WOBBLE, randf2(0.9f, 1.0f), 14000, this->position, 500.0f, 1000.0f);
         
         if(sp44 < 0.8 && 0.8 <= sp40)
-            func_8030E9C4(SFX_2_CLAW_SWIPE, randf2(0.9f, 1.1f), randi2(0x2710, 0x36b0), this->position, 500.0f, 1000.0f);
+            func_8030E9C4(SFX_2_CLAW_SWIPE, randf2(0.9f, 1.1f), randi2(10000, 14000), this->position, 500.0f, 1000.0f);
 
         if(800.0f < plyr_dist)
             func_80356770(this, 1);

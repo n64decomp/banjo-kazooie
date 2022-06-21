@@ -17,7 +17,7 @@ extern ActorInfo D_803674E0 = {
     0x6, 0x7, 0x3C6, 
     0x1, D_80367490, 
     func_802D1CF0, func_80326224, func_802D2964, 
-    { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 0.0f, 0
 };
 extern s32 D_80367504[3];
 extern f32 D_80367510[3];

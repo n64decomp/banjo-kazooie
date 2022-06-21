@@ -11,12 +11,12 @@ void func_802CDB18(Actor *);
 /* .data */
 ActorInfo D_80367160 = {0x12, 0x66, 0, 0, NULL, 
     func_802CD898, func_802CD8C0, func_80325340,
-    {0,0}, 0, 0.0f, {0,0,0,0}
+    0, 0, 0.0f, 0
 }; 
 
 ActorInfo D_80367184 = {0x12, 0x6C, 0, 0, NULL, 
     func_802CD898, func_802CDB18, func_80325340,
-    {0,0}, 0, 0.0f, {0,0,0,0}
+    0, 0, 0.0f, 0
 }; 
 
 /* .code */

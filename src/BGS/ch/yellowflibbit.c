@@ -25,7 +25,7 @@ ActorInfo D_80390AE0 = {
     0xC5, 0x137, 0x385,
     0, NULL, 
     func_8038E034, NULL, func_8038DE5C,
-    {0, 0}, 0, 1.0f, 0
+    0, 0, 1.0f, 0
 };
 s32 D_80390B04[3] = {0xFF, 0xB3, 0};
 f32 D_80390B10[3] = {0.0f, 0.0f, 0.0f};
@@ -75,14 +75,14 @@ bool func_8038D468(Actor *this) {
     f32 sp3C[3];
     f32 sp30[3];
 
-    player_getPosition(&player_position);
-    func_80258A4C(this->position, this->yaw - 90.0f, &player_position, &sp50, &sp4C, &sp48);
+    player_getPosition(player_position);
+    func_80258A4C(this->position, this->yaw - 90.0f, player_position, &sp50, &sp4C, &sp48);
     if (func_80329210(this, &player_position)) {
         if ((-0.7 <= sp48) && (sp48 <= 0.7)) {
             sp3C[0] = player_position[0] - this->position[0];
             sp3C[1] = player_position[1] - this->position[1];
             sp3C[2] = player_position[2] - this->position[2];
-            ml_vec3f_set_length(&sp3C, 210.0f);
+            ml_vec3f_set_length(sp3C, 210.0f);
             sp30[0] = this->position[0] + sp3C[0];
             sp30[1] = this->position[1] + sp3C[1];
             sp30[2] = this->position[2] + sp3C[2];
@@ -113,7 +113,7 @@ bool func_8038D5A8(Actor *this) {
             sp4C[0] = sp64[0] - this->position[0];
             sp4C[1] = sp64[1] - this->position[1];
             sp4C[2] = sp64[2] - this->position[2];
-            ml_vec3f_set_length(&sp4C, 210.0f);
+            ml_vec3f_set_length(sp4C, 210.0f);
             sp3C[0] = this->position[0] + sp4C[0];
             sp3C[1] = this->position[1] + sp4C[1];
             sp3C[2] = this->position[2] + sp4C[2];
@@ -122,8 +122,8 @@ bool func_8038D5A8(Actor *this) {
             sp3C[1] = (f32) local->unk10[1];
             sp3C[2] = (f32) local->unk10[2];
         }
-        if (func_80329210(this, &sp3C) != 0) {
-            return func_8038D2F4(this, &sp3C, 0);
+        if (func_80329210(this, sp3C) != 0) {
+            return func_8038D2F4(this, sp3C, 0);
         }
     }
     return FALSE;
@@ -139,7 +139,7 @@ s32 func_8038D768(Actor *this) {
     f32 var_f2;
 
     player_getPosition(player_position);
-    func_80258A4C(this->position, this->yaw - 90.0f, &player_position, &sp80, &sp7C, &sp78);
+    func_80258A4C(this->position, this->yaw - 90.0f, player_position, &sp80, &sp7C, &sp78);
     for(var_s1 = 0; var_s1 != 10; var_s1++){
         if (var_s1 < 5) {
             if (sp78 > 0.0f) {
@@ -367,7 +367,7 @@ void func_8038E034(Actor *this) {
         local->unk2 = TRUE;
         func_8038CED0();
     }
-    player_getPosition(&spB4);
+    player_getPosition(spB4);
     spA8[0] = spB4[0] - this->position[0];
     spA8[1] = spB4[1] - this->position[1];
     spA8[2] = spB4[2] - this->position[2];
@@ -494,4 +494,3 @@ void func_8038E034(Actor *this) {
         }
     }
 }
- 

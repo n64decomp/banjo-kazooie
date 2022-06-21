@@ -6,7 +6,7 @@ extern void func_8024C5CC(f32 (*)[3]);
 extern void func_80328B8C(Actor *, s32, f32, s32);
 extern void func_80386654(f32 arg0, f32 (*arg1)[4], f32 (*arg2)[4]);
 extern void func_80324CFC(f32, enum comusic_e, s32);
-extern void func_80387470(Actor *, f32 (*)[3], f32, f32, f32, f32, f32);
+extern void func_80387470(Actor *, f32 [3], f32, f32, f32, f32, f32);
 extern void func_80329904(ActorMarker*, s32, f32*);
 
 
@@ -26,25 +26,25 @@ ActorAnimationInfo D_80391810[] = {
 ActorInfo D_80391840 = {
     0x27B, 0x3A5, 0x3BC, 0x1, D_80391810,
     func_8038C840, func_8038D014, func_80325888,
-    {0, 0}, 0, 1.0f, {0,0,0,0}
+    0, 0, 1.0f, 0
 };
 
 ActorInfo D_80391864 = {
     0x27C, 0x3A6, 0x3C2, 0x1, D_80391810,
     func_8038C840, func_8038D014, func_80325888,
-    {0, 0}, 0, 1.0f, {0,0,0,0}
+    0, 0, 1.0f, 0
 };
 
 ActorInfo D_80391888 = {
     0x27D, 0x3A7, 0x3C1, 0x1, D_80391810,
     func_8038C840, func_8038D014, func_80325888,
-    {0, 0}, 0, 1.0f, {0,0,0,0}
+    0, 0, 1.0f, 0
 };
 
 ActorInfo D_803918AC = {
     0x27E, 0x3A8, 0x3BB, 0x1, D_80391810,
     func_8038C840, func_8038D014, func_80325888,
-    {0, 0}, 0, 1.0f, {0,0,0,0}
+    0, 0, 1.0f, 0
 };
 
 struct43s D_803918D0 = {

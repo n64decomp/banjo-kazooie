@@ -4,8 +4,6 @@
 
 #include "prop.h"
 
-Actor* func_8032813C(s32, f32*, s32);
-
 void func_80324E88(f32);
 
 void timedFunc_set_2(f32, void(*)(s32, s32), s32, s32);
@@ -25,7 +23,7 @@ ActorAnimationInfo D_80390C20[] = {
 
 ActorInfo D_80390C40 = {0x6C, 0xE8, 0x3EE, 0x01, D_80390C20,
     func_8038F6A4, func_80326224, func_80325888,
-    {0,0}, 0x80, 0.0f, {0,0,0,0}
+    0, 0x80, 0.0f, 0
 };
 
 /* .code */

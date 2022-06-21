@@ -49,7 +49,7 @@ ActorAnimationInfo D_80365E28[] = {
     {0x24F, 0.6f},  
     {0x24D, 2.0f}
 };
-ActorInfo D_80365E58 = { 0xE4, 0x195, 0x532, 0x1, D_80365E28, func_802C5740, func_80326224, func_802C4464, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+ActorInfo D_80365E58 = { 0xE4, 0x195, 0x532, 0x1, D_80365E28, func_802C5740, func_80326224, func_802C4464, 0, 0, 0.0f, 0};
 
 ActorAnimationInfo D_80365E7C[] = {
     {0x000, 0.0f}, 
@@ -59,7 +59,7 @@ ActorAnimationInfo D_80365E7C[] = {
     {0x252, 0.67f}, 
     {0x250, 4.5f},
 };
-ActorInfo D_80365EAC = { 0xE5, 0x196, 0x532, 0x1, D_80365E7C, func_802C4C14, func_80326224, func_802C4360, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+ActorInfo D_80365EAC = { 0xE5, 0x196, 0x532, 0x1, D_80365E7C, func_802C4C14, func_80326224, func_802C4360, 0, 0, 0.0f, 0};
 
 ActorAnimationInfo D_80365ED0[] = {
     {0x000, 0.0f},
@@ -69,7 +69,7 @@ ActorAnimationInfo D_80365ED0[] = {
     {0x24C, 1.0f},
     {0x24A, 1.0f}
 };
-ActorInfo D_80365F00 = { 0xE6, 0x197, 0x532, 0x1, D_80365ED0, func_802C4C14, func_80326224, func_802C4360, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+ActorInfo D_80365F00 = { 0xE6, 0x197, 0x532, 0x1, D_80365ED0, func_802C4C14, func_80326224, func_802C4360, 0, 0, 0.0f, 0};
 
 
 /* .bss */

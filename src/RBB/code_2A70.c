@@ -33,19 +33,19 @@ ActorLocal_RBB_2A70_0 D_80390430[] = {
 ActorInfo D_803904C0 = {
     0x188, 0x178, 0x40C, 0x0, NULL,
     func_803890BC, NULL, func_80325888,
-    {0, 0}, 0, 0.0f, {0,0,0,0}
+    0, 0, 0.0f, 0
 };
 
 ActorInfo D_803904E4 = {
     0x189, 0x179, 0x40D, 0x0, NULL,
     func_803890BC, NULL, func_80325888,
-    {0, 0}, 0, 0.0f, {0,0,0,0}
+    0, 0, 0.0f, 0
 };
 
 ActorInfo D_80390508 = {
     0x18A, 0x17A, 0x40E, 0x0, NULL,
     func_803890BC, NULL, func_80325888,
-    {0, 0}, 0, 0.0f, {0,0,0,0}
+    0, 0, 0.0f, 0
 };
 
 /* .code */

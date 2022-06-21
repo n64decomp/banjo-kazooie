@@ -3,17 +3,17 @@
 #include "variables.h"
 
 extern void func_80386654(f32 arg0, f32 (*arg1)[4], f32 (*arg2)[4]);
-extern void func_80387470(Actor *, f32 (*)[3], f32, f32, f32, f32, f32);
-extern Actor *func_80325CAC(ActorMarker *, Gfx **, Mtx **, s32);
+extern void func_80387470(Actor *, f32 [3], f32, f32, f32, f32, f32);
+extern Actor *func_80325CAC(ActorMarker *, Gfx **, Mtx **, Vtx**);
 
 void func_8038FE94(Actor *this);
-Actor *func_8038FC40(ActorMarker *marker, Gfx **gdl, Mtx **mptr, s32 arg3);
+Actor *func_8038FC40(ActorMarker *marker, Gfx **gdl, Mtx **mptr, Vtx **arg3);
 
 /* .data */
 ActorInfo D_80391DC0 = {
     0x25D, 0x38A, 0x6C7, 0x1, NULL,
     func_8038FE94, func_80326224, func_8038FC40,
-    {0, 0}, 0, 1.0f, {0,0,0,0}
+    0, 0, 1.0f, 0
 };
 
 f32 D_80391DE4[4] = {0.6f, 1.0f, 1.0f, 1.0f};
@@ -47,7 +47,7 @@ f32 D_80391F94[4] = {0.0f, 0.01f, 0.7f, 0.8f};
 f32 D_80391FA4[2] = {0.0f, 0.65f};
 
 /* .code */
-Actor *func_8038FC40(ActorMarker *marker, Gfx **gdl, Mtx **mptr, s32 arg3){
+Actor *func_8038FC40(ActorMarker *marker, Gfx **gdl, Mtx **mptr, Vtx **arg3){
     Actor *actor = marker_getActor(marker);
     func_80344C2C(1);
     return func_80325CAC(marker, gdl, mptr, arg3);
@@ -61,25 +61,25 @@ void func_8038FCBC(void){
     func_80386654(1.0f, &D_80391DE4, &D_80391DF4);
 }
 
-void func_8038FCF0(ActorMarker *marker, s32 arg1){
+void func_8038FCF0(ActorMarker *marker, ActorMarker *other_marker){
     Actor *actor = marker_getActor(marker);
     f32 sp38[3];
     sp38[0] = actor->position_x;
     sp38[1] = actor->position_y;
     sp38[2] = actor->position_z;
     sp38[1] += 160.0f;
-    func_8030E8B4(0x7fff401b, &actor->position, 0x0dac03e8);
+    func_8030E8B4(0x7fff401b, actor->position, 0x0dac03e8);
     timedFunc_set_0(0.0f, func_8038FC88);
     timedFunc_set_0(0.3f, func_8038FCBC);
-    func_8038EBE0(&actor->position, 4, ASSET_710_SPRITE_SPARKLE_PURPLE,
+    func_8038EBE0(actor->position, 4, ASSET_710_SPRITE_SPARKLE_PURPLE,
         &D_80391E5C, &D_80391E74, &D_80391E8C,
         &D_80391EA4, &D_80391EB4, &D_80391EC4
     );
-    func_8038EBE0(&actor->position, 4, ASSET_711_SPRITE_SPARKLE_DARK_BLUE,
+    func_8038EBE0(actor->position, 4, ASSET_711_SPRITE_SPARKLE_DARK_BLUE,
         &D_80391E5C, &D_80391E74, &D_80391E8C,
         &D_80391EA4, &D_80391EB4, &D_80391EC4
     );
-    func_8038EEFC(&actor->position, 3, &D_80391E4C);
+    func_8038EEFC(actor->position, 3, &D_80391E4C);
     func_8038ED9C(&sp38, 0x6C8, 3, 
         &D_80391E04, &D_80391E34, 
         &D_80391E0C, &D_80391E1C, &D_80391E2C
@@ -102,21 +102,21 @@ void func_8038FE94(Actor *this){
     this->roll += 20.0f; 
     if(func_8023DB5C()%4 == 1){
         if(randf() < 0.5){
-            func_8038EBE0(&this->position, 4, ASSET_718_SPRITE_SPARKLE_WHITE_2, 
+            func_8038EBE0(this->position, 4, ASSET_718_SPRITE_SPARKLE_WHITE_2, 
                 &D_80391F3C, &D_80391F54, &D_80391F6C, 
                 &D_80391F84, &D_80391F94, &D_80391FA4
             );
         }
         else{//L8038FFE0
-            func_8038EBE0(&this->position, 4, ASSET_719_SPRITE_SPARKLE_GREEN_2, 
+            func_8038EBE0(this->position, 4, ASSET_719_SPRITE_SPARKLE_GREEN_2, 
                 &D_80391F3C, &D_80391F54, &D_80391F6C, 
                 &D_80391F84, &D_80391F94, &D_80391FA4
             );
         }
     }//L80390020
-    player_getPosition(&sp48);
+    player_getPosition(sp48);
     sp48[1] += 50.0f;
-    func_80387470(this, &sp48, this->unk1C[0], this->unk1C[1], 0.0f, 1400.0f, 70.0f);
+    func_80387470(this, sp48, this->unk1C[0], this->unk1C[1], 0.0f, 1400.0f, 70.0f);
 
     if(func_8028F25C()){
         func_8038FCF0(this->marker, 0);

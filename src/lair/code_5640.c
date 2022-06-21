@@ -17,7 +17,7 @@ ActorAnimationInfo D_80393710[] ={
     {0x26C, 4.0f},
     {0x26B, 4.0f},
 };
-ActorInfo D_80393730 = { 0x1E0, 0x348, 0x539, 0x1, D_80393710, func_8038BCF0, func_80326224, func_80325888, { 0x7, 0xD0}, 0, 2.0f, { 0x0, 0x0, 0x0, 0x0}};
+ActorInfo D_80393730 = { 0x1E0, 0x348, 0x539, 0x1, D_80393710, func_8038BCF0, func_80326224, func_80325888, 2000, 0, 2.0f, 0};
 
 /* .code */
 void func_8038BA30(ActorMarker *marker, enum asset_e text_id, s32 arg2){
@@ -118,7 +118,7 @@ void func_8038BCF0(Actor *this) {
     this->yaw_moving = (f32) func_80329784(this);
     func_80328FB0(this, 3.0f);
     func_8024E55C(0, sp78);
-    player_getPosition(&sp64);
+    player_getPosition(sp64);
     temp_f0 = sp64[1] - this->position[1];
     if ((temp_f0 > -100.0f) && (temp_f0 < 350.0f)) {
         phi_f2 = func_80258640(sp64, this->position);

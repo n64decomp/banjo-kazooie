@@ -33,7 +33,7 @@ ActorInfo D_80368670 = {
     0xB1, ACTOR_124_SIR_SLUSH, ASSET_377_MODEL_SIR_SLUSH,
     1, D_80368650,
     func_802E20E8, func_80326224, func_802E1AC0,
-    {0,0}, 0x199, 0.0f, {0,0,0,0}
+    0, 0x199, 0.0f, 0
 };
 
 struct31s D_80368694 = {

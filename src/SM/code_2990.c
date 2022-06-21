@@ -34,7 +34,7 @@ ActorAnimationInfo D_8038AF60[6] = {
 
 ActorInfo D_8038AF90 = { 0xB7, 0x12B, 0x387, 1, D_8038AF60, //bottles
     func_803899B0, func_80326224, func_802D94B4,
-    {0,0}, 0, 0.0f, {0,0,0,0}
+    0, 0, 0.0f, 0
 
 
 };

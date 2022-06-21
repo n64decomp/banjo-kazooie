@@ -15,7 +15,7 @@ ActorAnimationInfo D_803672C0[] ={
 ActorInfo D_803672E0 = {0x50, ACTOR_12_BEEHIVE, ASSET_364_MODEL_BEEHIVE, 
     1, &D_803672C0, 
     func_802CE8D4, func_80326224, func_80325888,
-    {0,0}, 0x333, 0.0f, {0,0,0,0}
+    0, 0x333, 0.0f, 0
 }; 
 
 /* .code */

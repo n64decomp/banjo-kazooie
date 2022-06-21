@@ -4,8 +4,8 @@
 
 #include "prop.h"
 
+extern void func_802D7124(Actor *, f32);
 extern void func_802EE6CC(f32[3], s32[4], s32[4], s32, f32, f32, s32, s32, s32);
-extern Actor *func_803056FC(s32, s32 (*)[3], s32);
 extern void func_8032B5C0(void);
 extern void func_8033A244(f32);
 extern void func_8033A410(s32);
@@ -179,7 +179,7 @@ bool func_803257B4(ActorMarker *marker) {
     actor = marker_getActor(marker);
     if ((actor->unk174 == 0.0f) || (actor->unk178 == 0.0f)) {
         model_bin = (BKModelBin *) assetcache_get(marker->modelId);
-        vtx_list = (s32)model_bin + model_bin->vtx_list_offset_10;
+        vtx_list = (BKVertexList *)((s32)model_bin + model_bin->vtx_list_offset_10);
         actor->unk174 = (f32) vtx_list->unk12 * actor->scale;
         actor->unk178 = (f32) vtx_list->unk16 * actor->scale;
         assetcache_release(model_bin);
@@ -193,10 +193,10 @@ Actor *func_80325888(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     f32 sp3C[3];
     Actor *this;
 
-    this = func_80325300(marker, &sp3C);
+    this = func_80325300(marker, sp3C);
     func_8033A2D4(func_803253A0, this);
     func_8033A2E8(func_80325794, marker);
-    func_803391A4(gfx, mtx, this->position, &sp3C, this->scale, (this->unk104 != NULL) ? &D_8036E580 : NULL, func_803257B4(marker));
+    func_803391A4(gfx, mtx, this->position, sp3C, this->scale, (this->unk104 != NULL) ? &D_8036E580 : NULL, func_803257B4(marker));
     return this;
 }
 
@@ -224,7 +224,7 @@ Actor *func_80325934(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     }
     func_80344C38(&func_803257A4, marker);
     func_80335D30(gfx);
-    func_80344138(sp3C, marker->propPtr->unk8_15, marker->propPtr->unk8_5, this->position, &scale, gfx, mtx);
+    func_80344138(sp3C, marker->propPtr->unk8_15, marker->propPtr->unk8_5, this->position, scale, gfx, mtx);
     func_8033687C(gfx);
     if (this->unk104 != NULL) {
         this->position[0] = this->position[0] + D_8036E58C[0];
@@ -488,9 +488,98 @@ void func_80326324(Actor *this) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80326894.s")
+void func_80326894(Actor *this){
+    func_80326324(this);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_803268B4.s")
+void func_803268B4(void) {
+    s32 temp_v1;
+    Actor *actor;
+    ActorMarker *marker;
+    AnimCtrl *anim_ctrl;
+    ActorInfo *actor_info;
+    s32 position[3];
+    s32 rotation[3];
+    BKVertexList *temp_v0_3;
+    bool sp54;
+    s32 temp_s1;
+    
+
+    if (D_8036E560 != NULL) {
+        sp54 = func_803203FC(101);
+        for(temp_v1 = D_8036E560->cnt - 1; temp_v1 >= 0; temp_v1--){
+            actor = &D_8036E560->data[temp_v1];
+            actor_info = actor->actor_info;
+            marker = actor->marker;
+            anim_ctrl = actor->animctrl;
+            temp_s1 = actor->actor_info->unk18;
+            if (marker->propPtr->unk8_4) {
+                if(sp54){
+                    if (  actor->actor_info->unk20 && func_803203FC( actor->actor_info->unk20)) {
+                        marker_despawn(marker);
+                    }
+                }
+                if (!actor->despawn_flag) {
+                    if (marker->unk2C_2) {
+                        ((void (*)(Actor *)) marker->unk34)(actor);
+                        if (anim_ctrl != NULL) {
+                                actor->sound_timer = func_802877D8(anim_ctrl);
+                        }
+                    } else if (!temp_s1 || (temp_s1 && func_803296D8(actor, temp_s1))) {
+                        if ( marker->unk24 != NULL) {
+                             marker->unk24(actor);
+                            if (anim_ctrl != NULL) {
+                                    actor->sound_timer = func_802877D8(anim_ctrl);
+                            }
+                        }
+                    }
+                    actor->unk124_7 = TRUE;
+                    actor->unk138_28 = FALSE;
+                    if (anim_ctrl != NULL) {
+                        animctrl_update(anim_ctrl);
+                    }
+                    if (marker->unk4C) {
+                        temp_v0_3 = func_80330C74(actor);
+                        if (temp_v0_3) {
+                            func_8033F7A4(marker, temp_v0_3);
+                            func_8034C21C(marker);
+                        }
+                    }
+                    position[0] = (s32) actor->position[0];
+                    position[1] = (s32) actor->position[1];
+                    position[2] = (s32) actor->position[2];
+                    rotation[0] = (s32) actor->pitch;
+                    rotation[1] = (s32) actor->yaw;
+                    rotation[2] = (s32) actor->roll;
+                    func_8032F6A4(position, marker, rotation);
+                    if (actor->unk124_11) {
+                        func_80326324(actor);
+                    }
+                    if (actor->unk148) {
+                        if (!actor->despawn_flag) {
+                            func_80335A94(actor->unk148, time_getDelta(), marker->unk14_21);
+                        } else {
+                            func_80335924(actor->unk148, 0, 0.0f, 0.0f);
+                        }
+                    }
+                    if ((actor_info->shadow_scale != 0.0f) && actor->unk124_6 && marker->unk14_21) {
+                        func_802D7124(actor, actor_info->shadow_scale);
+                    }
+                    if (actor->unk10_0) {
+                        actor = &D_8036E560->data[temp_v1];
+                        func_802C96E4(actor);
+                    }
+                }
+            }
+        }
+    }
+    if (D_8036E56C != 0) {
+        func_802EE5F0(D_8036E56C);
+    }
+    if (D_8036E570 != 0) {
+        func_802F2D8C(D_8036E570);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80326C18.s")
 
@@ -609,9 +698,9 @@ Actor *actor_new(s32 (* position)[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
     marker_setModelId(D_80383390->marker, actorInfo->modelId);
     func_803300C8(D_80383390->marker, actorInfo->update_func);
     func_803300D0(D_80383390->marker, actorInfo->unk10);
-    ml_vec3f_clear(&D_80383390->unk1C);
-    ml_vec3f_clear(&D_80383390->velocity);
-    ml_vec3f_clear(&D_80383390->spawn_position);
+    ml_vec3f_clear(D_80383390->unk1C);
+    ml_vec3f_clear(D_80383390->velocity);
+    ml_vec3f_clear(D_80383390->spawn_position);
     D_80383390->stored_animctrl_index = 0;
     D_80383390->unk58_2 = 1;
     D_80383390->stored_animctrl_playbackType_ = 0;
@@ -818,11 +907,11 @@ Actor *func_8032811C(enum actor_e id, s32 (* pos)[3], s32 rot){
     return func_803056FC(id, pos, rot);
 }
 
-Actor *func_8032813C(enum actor_e id, f32 (* pos)[3], s32 rot){
+Actor *func_8032813C(enum actor_e id, f32 pos[3], s32 rot){
     s32 sp24[3];
     int i;
     for(i = 0; i< 3; i++){
-        sp24[i] = (*pos)[i];
+        sp24[i] = pos[i];
     }
     func_803056FC(id, &sp24, rot);
 }

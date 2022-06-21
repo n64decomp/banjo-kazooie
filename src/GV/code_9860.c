@@ -14,7 +14,7 @@ Actor *func_8038FCF4(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 ActorInfo D_80391620 = { MARKER_1D4_SANDYBUTT_PYRAMID, ACTOR_31D_SANDYBUTT_PYRAMID, ASSET_56B_MODEL_SANDYBUTT_PYRAMID, 
     0, NULL,
     func_8038FD8C, NULL, func_8038FCF4, 
-    { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 0.0f, 0
 };
 
 /* .code */

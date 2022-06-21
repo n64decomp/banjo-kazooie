@@ -11,7 +11,7 @@ ActorInfo D_8036807C = {
     0x17C, 0x19C, 0x56C,
     0x1, NULL, 
     func_802DC67C, func_80326224, func_802DC320, 
-    { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 0.0f, 0
 };
 
 /* .bss */

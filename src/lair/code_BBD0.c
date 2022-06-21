@@ -19,10 +19,10 @@ ActorAnimationInfo D_80394BE0[] = {
     {0x28E, 2.0f},
     {0x1D0, 3.0f},
 };
-ActorInfo D_80394C28 = { 0x29A, 0x3C4, 0x55F, 0x1, D_80394BE0, func_8039217C, func_80326224, func_80325888, { 0x0, 0x0}, 0, 3.0f, { 0x0, 0x0, 0x0, 0x0}};
-ActorInfo D_80394C4C = { 0x29A, 0x3C7, 0x560, 0x3, D_80394BE0, func_8039217C, func_80326224, func_80325888, { 0x0, 0x0}, 0, 1.0f, { 0x0, 0x0, 0x0, 0x0}};
-ActorInfo D_80394C70 = { 0x29A, 0x3C6, 0x34C, 0x0, D_80394BE0, func_8039217C, func_80326224, func_80325888, { 0x0, 0x0}, 0, 3.0f, { 0x0, 0x0, 0x0, 0x0}};
-ActorInfo D_80394C94 = { 0x29A, 0x3C8, 0x35B, 0x5, D_80394BE0, func_8039217C, func_80326224, func_80391FC0, { 0x0, 0x0}, 0, 1.0f, { 0x0, 0x0, 0x0, 0x0}};
+ActorInfo D_80394C28 = { 0x29A, 0x3C4, 0x55F, 0x1, D_80394BE0, func_8039217C, func_80326224, func_80325888, 0, 0, 3.0f, 0};
+ActorInfo D_80394C4C = { 0x29A, 0x3C7, 0x560, 0x3, D_80394BE0, func_8039217C, func_80326224, func_80325888, 0, 0, 1.0f, 0};
+ActorInfo D_80394C70 = { 0x29A, 0x3C6, 0x34C, 0x0, D_80394BE0, func_8039217C, func_80326224, func_80325888, 0, 0, 3.0f, 0};
+ActorInfo D_80394C94 = { 0x29A, 0x3C8, 0x35B, 0x5, D_80394BE0, func_8039217C, func_80326224, func_80391FC0, 0, 0, 1.0f, 0};
 
 /* .code */
 Actor *func_80391FC0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){

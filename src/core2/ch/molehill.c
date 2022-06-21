@@ -25,7 +25,7 @@ ActorInfo D_80367E20= {
     0xB8, ACTOR_12C_MOLEHILL, ASSET_388_MODEL_MOLEHILL, 
     0, D_80367E00, 
     func_802DA740, func_80326224, func_802DA560,
-    {0,0}, 0, 0.0f, {0,0,0,0}
+    0, 0, 0.0f, 0
 }; 
 
 struct31s D_80367E44 = {

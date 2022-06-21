@@ -15,21 +15,21 @@ extern ActorInfo D_80367D00 = {
     0x60, 0x52, 0x36D,
     0, NULL, 
     func_802D9018, func_80326224, func_802D8F50, 
-    { 0x0, 0x0}, 0, 0.7f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 0.7f, 0
 };
 
 extern ActorInfo D_80367D24 = {
     0xB5, 0x129, 0x580,
     0, NULL, 
     func_802D9018, func_80326224, func_802D8F50, 
-    { 0x0, 0x0}, 0, 0.5f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 0.5f, 0
 };
 
 extern ActorInfo D_80367D48 = {
     0x1E5, 0x370, 0x6D1,
     0, NULL, 
     func_802D9018, func_80326224, func_802D8F50, 
-    { 0x0, 0x0}, 0, 0.5f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 0.5f, 0
 };
 
 /* .code */
@@ -79,7 +79,7 @@ void func_802D8C98(Actor *this, s32 arg1) {
 //collectItem
 bool func_802D8D48(Actor* actor, u32 arg1, enum asset_e dialogId, enum comusic_e sfxId, enum item_e itemId, f32 arg5){
     func_8025A6EC(sfxId,32000);
-    timedFunc_set_1(0.75f, func_8035644C, arg1);
+    timedFunc_set_1(0.75f, (TFQM1)func_8035644C, arg1);
     if(!func_802FADD4(0x1b)){
         item_inc(itemId);
     } else {

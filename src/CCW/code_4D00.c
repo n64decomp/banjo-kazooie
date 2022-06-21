@@ -18,7 +18,7 @@ typedef struct {
 void func_8038B19C(Actor *this);
 
 /* .data */
-extern ActorInfo D_8038F270 = { 0x1B9, 0x2A6, 0x502, 0x0, NULL, func_8038B19C, NULL, func_80325888, { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_8038F270 = { 0x1B9, 0x2A6, 0x502, 0x0, NULL, func_8038B19C, NULL, func_80325888, 0, 0, 0.0f, 0};
 extern Struct_CCW_4D00_0 D_8038F294[];
 
 /* .code */

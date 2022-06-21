@@ -13,7 +13,7 @@ extern void func_802F32C4(s32, f32[3], f32, ActorMarker *, void(*)(f32[3], f32, 
 ActorInfo D_80365FE0 = { 
     0x6B, 0xE7, 0x704, 
     0, NULL, func_802C5DDC, func_80326224, func_80325340, 
-    { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 0.0f, 0
 };
 
 /* .code */

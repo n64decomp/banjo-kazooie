@@ -18,7 +18,7 @@ ActorInfo chMotzhand = {
     MARKER_49_MOTZHAND, ACTOR_3A_MOTZHAND, ASSET_88C_MODEL_MOTZHAND,
     0x0, NULL,
     chmotzhand_update, func_80326224, chMotzhand_draw,
-    { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 0.0f, 0
 };
 
 u8 sMotzhandPattern1[] = {7, 14, 13, 9, 17, 0xFF};

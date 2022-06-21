@@ -22,7 +22,7 @@ extern ActorInfo D_8038F614 = {
     0x1CE, 0x31A, 0x48F,
     0x0, NULL,
     func_8038D368, NULL, func_8038D30C,
-    { 0x0, 0x0}, 0, 2.2f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 2.2f, 0
 };
 
 /* .code */
@@ -63,8 +63,8 @@ void func_8038D368(Actor *this) {
     } 
     
     if(!this->unk138_24){
-        player_getPosition(&plyr_pos);
-        if (func_80256064(this->position, &plyr_pos) < 600.0f) {
+        player_getPosition(plyr_pos);
+        if (func_80256064(this->position, plyr_pos) < 600.0f) {
             if (!jiggyscore_isCollected(JIGGY_4B_CCW_GNAWTY)) {
                 func_80311480(local->unk0->unk2, 4, NULL, NULL, NULL, NULL);
             } else {

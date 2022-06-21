@@ -27,7 +27,7 @@ ActorInfo D_80390690 = {
     0xC1, 0x133, 0x375,
     0, NULL, 
     chflibbit_update, NULL, chflibbit_draw,
-    {0, 0}, 0, 1.0f, 0
+    0, 0, 1.0f, 0
 };
 
 f32 D_803906B4[3] = {0.0f, 0.0f, 0.0f};
@@ -61,7 +61,7 @@ bool func_80386564(Actor *this){
     f32 sp3C[3]; //sp3C
     f32 sp30[3]; //sp30
 
-    player_getPosition(&plyrPos);
+    player_getPosition(plyrPos);
     func_80258A4C(this->position, this->yaw - 90.0f, plyrPos, &sp48, &sp44, &sp40);
     if(func_80329210(this, plyrPos)){
         if((-0.7 <= sp40) && (sp40 <= 0.7)){
@@ -108,8 +108,8 @@ s32 func_803866A4(Actor *this) {
             sp3C[1] = (f32) local->unkE[1];
             sp3C[2] = (f32) local->unkE[2];
         }
-        if (func_80329210(this, &sp3C) != 0) {
-            return func_803863F0(this, &sp3C, 0);
+        if (func_80329210(this, sp3C) != 0) {
+            return func_803863F0(this, sp3C, 0);
         }
     }
     return 0;
@@ -126,8 +126,8 @@ bool func_8038686C(Actor *this) {
     f32 phi_f2;
     int i;
 
-    player_getPosition(&sp84);
-    func_80258A4C(this->position, this->yaw - 90.0f, &sp84, &sp80, &sp7C, &sp78);
+    player_getPosition(sp84);
+    func_80258A4C(this->position, this->yaw - 90.0f, sp84, &sp80, &sp7C, &sp78);
     for(i = 0; i < 0xA; i++){
         if (i < 5) {
             if (sp78 > 0.0f) {
@@ -157,7 +157,7 @@ bool func_80386A34(Actor * this){
     if(func_803203FC(0xC1))
         return 0;
     
-    player_getPosition(&plyrPos);
+    player_getPosition(plyrPos);
     if(func_80329210(this, plyrPos)){
         if(!(out = func_80386564(this)) && (0.5 < randf ())){
             return 0;

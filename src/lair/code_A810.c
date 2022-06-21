@@ -12,7 +12,7 @@ typedef struct {
 void func_80390E28(Actor *this);
 
 /* .data */
-ActorInfo D_80394A80 = { 0x1EC, 0x377, 0x0, 0x0, NULL, func_80390E28, func_80326224, func_80325340, { 0xB, 0xB8}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}};
+ActorInfo D_80394A80 = { 0x1EC, 0x377, 0x0, 0x0, NULL, func_80390E28, func_80326224, func_80325340, 3000, 0, 0.0f, 0};
 
 /* .bss */
 extern f32 D_80395370[14][3];

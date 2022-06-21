@@ -21,7 +21,7 @@ void func_80388AA0(Actor *this);
 
 /* .data */
 extern Struct_CCW_2270_0 D_8038ECD0[];
-extern ActorInfo D_8038ECE8 = { 0x1B1, 0x29E, 0x3E0, 0x0, NULL, func_80388AA0, func_80388AA0, func_803889AC, { 0x0, 0x0}, 0, 1.0f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_8038ECE8 = { 0x1B1, 0x29E, 0x3E0, 0x0, NULL, func_80388AA0, func_80388AA0, func_803889AC, 0, 0, 1.0f, 0};
 
 /* .code */
 void func_80388660(ActorMarker* marker, s32 arg1) {

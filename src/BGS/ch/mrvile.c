@@ -31,7 +31,7 @@ typedef struct chmrvile_s{
 /* .data */
 ActorInfo D_80390A70 = {0xC8, 0x13A, 0x373, 0x00, NULL,
     chvile_update, NULL, chvile_draw,
-    {0,0}, 0, 0.0f, {0,0,0,0}
+    0, 0, 0.0f, 0
 };
 
 f32 D_80390A94[7] = {0.0f, 0.8f, 0.9f, 1.0f, 0.9f, 0.95f, 1.0f};

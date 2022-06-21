@@ -18,8 +18,8 @@ ActorAnimationInfo D_80390B90[] = {
     {0xD5, 0.5f},
     {0xD5, 1e+8f}
 };
-ActorInfo D_80390BD8 = {0xF5, 0x14E, 0x3F5, 1, D_80390B90, func_8038EEA4, func_80326224, func_80325888, {0, 0}, 0, 0.0f, {0,0,0,0}}; 
-ActorInfo D_80390BFC = {0xFD, 0x1FB, 0x3F5, 1, D_80390B90, func_8038F06C, func_80326224, func_80325888, {0, 0}, 0, 0.0f, {0,0,0,0}};
+ActorInfo D_80390BD8 = {0xF5, 0x14E, 0x3F5, 1, D_80390B90, func_8038EEA4, func_80326224, func_80325888, 0, 0, 0.0f, 0}; 
+ActorInfo D_80390BFC = {0xFD, 0x1FB, 0x3F5, 1, D_80390B90, func_8038F06C, func_80326224, func_80325888, 0, 0, 0.0f, 0};
 
 void func_8038EE50(void){
     f32 sp24[3];

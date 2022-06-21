@@ -15,7 +15,7 @@ extern ActorInfo D_8038C718 = {
     MARKER_33_LEAKY,  ACTOR_1E_LEAKY, ASSET_51A_MODEL_LEAKY,
     0x1, D_8038C700,
     func_80388FBC, func_80326224, func_80325888,
-    { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 0.0f, 0
 };
 
 extern f32 D_8038C73C[3];

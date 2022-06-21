@@ -3,7 +3,6 @@
 #include "variables.h"
 
 /* TODO move declarations to respective headers*/
-Actor *func_8032813C(u32, f32 *, f32*);
 void func_8028F710(s32, f32);
 
 void func_802C4218(u32,f32,f32,f32);
@@ -26,7 +25,7 @@ u32 D_80390B50[6] = {0xA, 0xA, 0xB, 0xA, 0xA, 0xC};
 
 ActorInfo D_80390B68 = {0xD5, ACTOR_C_MUD_HUT, ASSET_7D8_MODEL_MM_HUT_TOP, 0x01, D_80390B30,
     func_8038EB8C, func_80326224, func_8038EAD0,
-    {0,0}, 0, 0.0f, {0,0,0,0}
+    0, 0, 0.0f, 0
 };
 
 /* .code section */

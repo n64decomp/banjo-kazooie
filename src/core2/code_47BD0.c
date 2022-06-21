@@ -34,7 +34,7 @@ extern s32 D_8037DCBC;
 extern ActorInfo D_80367310 = {0x217, ACTOR_34D_BEE_SWARM, 0x49E, 
     1, NULL, 
     func_802CF83C, NULL, func_802CEBFC,
-    {0,0}, 0, 1.0f, {0,0,0,0}
+    0, 0, 1.0f, 0
 }; 
 
 /* .rodata */
@@ -50,7 +50,7 @@ void func_802CEB60(Actor *this){
     local = (ActorLocal_core2_47BD0 *)&this->local;
     if(this->unk16C_4){
         if(local->unk8 != NULL){
-            local->unk8 = defrag(local->unk8);
+            local->unk8 = (Struct_core2_47BD0_0 *)defrag(local->unk8);
         }
     }
 }

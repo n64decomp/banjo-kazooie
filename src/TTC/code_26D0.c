@@ -35,56 +35,56 @@ extern ActorInfo D_8038C5E0 = {
      0xA1, 0x10E, 0x3D2,
      0x1, NULL, 
      func_802D3D54, func_80326224, func_80325E78,
-     { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+     0, 0, 0.0f, 0
 };
 
 extern ActorInfo D_8038C604 = {
      MARKER_EA_LIGHTHOUSE_DOOR, ACTOR_13E_LIGHTHOUSE_DOOR, ASSET_3D6_MODEL_LIGHTHOUSE_DOOR,
      0x1, NULL, 
      func_802D3D54, func_80326224, func_80325E78,
-     { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+     0, 0, 0.0f, 0
 };
 
 extern ActorInfo D_8038C628 = {
     MARKER_167_SHARKFOOD_ISLAND, ACTOR_25C_SHARKFOOD_ISLAND, ASSET_50A_MODEL_SHARKFOOD_ISLAND,
     0x1, NULL, 
     func_80388D8C, func_80326224, func_80325E78,
-    { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 0.0f, 0
 };
 
 extern ActorInfo D_8038C64C = {
     0x267, 0x2E2, 0x3BD,
     0x1, NULL, 
     func_80388D34, func_80326224, func_80325E78,
-    { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 0.0f, 0
 };
 
 extern ActorInfo D_8038C670 = {
     0x26A, 0x2DF, 0x3BE,
     0x1, NULL, 
     func_80388C78, func_80326224, func_80325E78,
-    { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 0.0f, 0
 };
 
 extern ActorInfo D_8038C694 = {
     0x268, 0x2E0, 0x3B6,
     0x1, NULL, 
     func_80388C78, func_80326224, func_80325E78,
-    { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 0.0f, 0
 };
 
 extern ActorInfo D_8038C6B8 = {
     0x269, 0x2E1, 0x3B7,
     0x1, NULL, 
     func_80388C78, func_80326224, func_80325E78,
-    { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 0.0f, 0
 };
 
 extern ActorInfo D_8038C6DC = {
     MARKER_1D5_PALM_TREE, ACTOR_31E_PALM_TREE, ASSET_3A9_MODEL_PALM_TREE,
     0x1, NULL, 
     func_80388CB8, func_80326224, func_80325E78,
-    { 0x0, 0x0}, 0, 0.0f, { 0x0, 0x0, 0x0, 0x0}
+    0, 0, 0.0f, 0
 };
 
 /* .code */

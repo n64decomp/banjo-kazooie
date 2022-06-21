@@ -12,7 +12,7 @@ void func_8038BC74(Actor *this);
 
 /* .data */
 extern f32 D_8038F350[3];
-extern ActorInfo D_8038F35C = { 0x1BB, 0x2A8, 0x502, 0x0, NULL, func_8038BC74, func_8038BC74, func_8038BB1C, { 0x0, 0x0}, 0, 1.2f, { 0x0, 0x0, 0x0, 0x0}};
+extern ActorInfo D_8038F35C = { 0x1BB, 0x2A8, 0x502, 0x0, NULL, func_8038BC74, func_8038BC74, func_8038BB1C, 0, 0, 1.2f, 0};
 
 /* .code */
 void func_8038B930(ActorMarker* marker, s32 next_state) {

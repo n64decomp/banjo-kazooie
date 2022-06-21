@@ -12,14 +12,14 @@ extern ActorInfo D_80372FC0 = {
     0x96, 0xC7, 0x3C9, 
     0x1, D_80372F80, 
     func_8035F138, func_80326224, func_8035ECA0, 
-    { 0xD, 0xAC}, 0, 1.2f, { 0x0, 0x0, 0x0, 0x0}
+    3500, 0, 1.2f, 0
 };
 
 extern ActorInfo D_80372FE4 = { 
     0x297, 0x3C2, 0x3C9, 
     0x1, D_80372F80, 
     func_8035F138, func_80326224, func_8035ECA0, 
-    { 0x36, 0xB0}, 0, 3.2f, { 0x0, 0x0, 0x0, 0x0}
+    14000, 0, 3.2f, 0
 };
 
 /* .code */
