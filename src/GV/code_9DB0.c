@@ -7,7 +7,7 @@ extern void func_8034E120(void *, f32, f32, f32, s32);
 typedef struct {
     s16 unk0;
     s16 unk2;
-    s32 unk4;
+    Struct6Ds *unk4;
 }Struct_GV_9DB0_1;
 
 /* .data */
@@ -143,7 +143,7 @@ void func_803904A8(void){
     f32 sp5C;
     f32 sp50[3];
     s32 sp4C;
-    s32 sp48;
+    Struct6Ds *sp48;
     Struct_GV_9DB0_1 * sp44;
     f32 sp38[3];
     f32 pad34;
@@ -184,6 +184,7 @@ void func_803904A8(void){
     }//L80390608
 
     if(D_80391AE0.tile1_0 && D_80391AE0.tile2_4){
+        s32 sp48;
         if( func_8034DC78(D_80391AE0.tile1_0->unk4) == 1 && func_8034DC78(D_80391AE0.tile2_4->unk4) == 1){
             if(0.0f < D_80391AE0.unkC){
                 if(0.6 < D_80391AE0.unkC && D_80391AE0.unkC - sp5C <= 0.6){

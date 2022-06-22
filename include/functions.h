@@ -459,6 +459,7 @@ Actor *func_8032813C(enum actor_e actor_id, f32 position[3], s32 yaw);
 int  func_8032863C(AnimCtrl *, f32, f32);
 int  func_80328A2C(Actor *, f32, s32, f32);
 void func_80328A84(Actor *, u32);
+ActorMarker *func_8032B16C(enum jiggy_e jiggy_id);
 int  func_80328B38(Actor *, s32, f32);
 void func_80328B8C(Actor * this, s32 myAnimId, f32 arg2, s32 direction);
 int  func_80328BD4(Actor *, s32, f32, s32, f32 );
@@ -470,8 +471,8 @@ int  func_80329480(Actor *);
 s32  func_80329784(Actor *);
 void func_80329878(Actor *, f32);
 struct5Bs *func_80329934(void);
-
-ActorMarker * func_8032FBE4(f32 *pos, MarkerDrawFunc arg1, int arg2, enum asset_e model_id);
+Actor *func_8032A7AC(Actor *);
+ActorMarker *func_8032FBE4(f32 *pos, MarkerDrawFunc arg1, int arg2, enum asset_e model_id);
 
 void func_803300D8(ActorMarker *, void (*)(Actor *));
 void marker_setCollisionScripts(ActorMarker *this, MarkerCollisionFunc ow_func, MarkerCollisionFunc arg2, MarkerCollisionFunc die_func);
@@ -481,6 +482,7 @@ BKModelBin *  func_80330DE4(ActorMarker *marker);
 f32  func_80335684(Struct80s *);
 void func_8033568C(Struct80s *, f32 *, f32*);
 void func_80335800(Struct80s *, f32, void (*)(ActorMarker *), ActorMarker *);
+Struct80s *func_803358B4(void);
 void func_80335924(Struct80s *, enum asset_e anim_id, f32, f32);
 void func_80335A74(Struct80s *self, f32 arg1);
 void func_80335A94(Struct80s *, f32, s32);
@@ -492,6 +494,7 @@ void func_80347A14(s32);
 void func_8034A174(struct5Bs *this, s32 indx,f32 dst[3]);
 Struct61s *func_8034AB6C(enum map_e map_id);
 Struct6Ds *func_8034C528(s32);
+Struct73s *func_8034C5AC(s32);
 void func_8034DC08(Struct6Ds *, f32[3], f32[3], f32, s32);
 void func_8034DDF0(Struct6Ds *arg0, f32 arg1[3], f32 arg2[3], f32 arg3, s32 arg4);
 void func_8034DE60(Struct6Ds *, f32, f32, f32, s32);
@@ -511,6 +514,7 @@ void _get_velocity(f32 (*dst)[3]);
 void player_setYPosition(f32);
 
 NodeProp *func_80304C38(s32 arg0, Actor *arg1);
+NodeProp *func_80304CAC(s32 arg0, f32 position[3]);
 Actor *func_80326D68(f32 position[3], enum actor_e actor_id, s32 arg2, f32 *min_distance_ptr);
 Actor *func_80329980(Actor *);
  
@@ -571,7 +575,7 @@ void func_802596AC(f32 a0[3], f32 a1[3], f32 a2[3], f32 a3[3]);
 void func_8024E55C(s32, void *);
 void func_802C3C88(GenMethod_1, s32);
 void func_802FAD64(enum item_e);
-void func_80304D68(s16 *, f32[3]);
+void func_80304D68(NodeProp *, f32[3]);
 bool func_80311480(s32 text_id, s32 arg1, f32 *pos, ActorMarker *marker, void(*callback)(ActorMarker *, enum asset_e, s32), void(*arg5)(ActorMarker *, enum asset_e, s32));
 void ability_unlock(enum ability_e);
 

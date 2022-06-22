@@ -90,7 +90,7 @@ Struct6Ds * func_8034C528(s32 arg0){
     return NULL;
 }
 
-void * func_8034C5AC(s32 arg0){
+Struct73s *func_8034C5AC(s32 arg0){
     struct1Ds *iPtr;
     struct1Ds *endPtr = vector_getEnd(D_80386140.unk4);
 

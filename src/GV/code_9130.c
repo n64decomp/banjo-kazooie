@@ -27,15 +27,15 @@ f32 D_80391608[3] = {460.0f, 1400.0f, 0.0f};
 
 /* .code */
 void func_8038F520(f32 arg0){
-    s32 tmp_v0 = func_8034C528(0x19A);
-    if(tmp_v0){
+    Struct6Ds *tmp_v0 = func_8034C528(0x19A);
+    if(tmp_v0 != NULL){
         func_8034DDF0(tmp_v0, D_803915E4, D_803915F0, arg0, 1);
     }
 }
 
 void func_8038F56C(f32 arg0){
-    s32 tmp_v0 = func_8034C528(0x19A);
-    if(tmp_v0){
+    Struct6Ds *tmp_v0 = func_8034C528(0x19A);
+    if(tmp_v0 != NULL){
         func_8034DDF0(tmp_v0, D_803915FC, D_80391608, arg0, 1);
     }
 }
@@ -54,7 +54,7 @@ void __chmazectrl_8038F5E4(Actor *this){
 
 void __chmazectrl_setState(Actor *this, s32 next_state){
     f32 plyr_pos[3];
-    s32 tmp_v0;
+    Struct6Ds *tmp_v0;
     ActorLocal_GVMazeCtrl *local;
     f32 sp28[3];
 
@@ -142,9 +142,9 @@ void __chmazectrl_setState(Actor *this, s32 next_state){
 
 void chmazectrl_update(Actor *this){
     f32 sp3C[3];
-    s32 sp38;
+    Struct6Ds *sp38;
     f32 sp34;
-    s32 sp30;
+    Struct6Ds *sp30;
     ActorLocal_GVMazeCtrl *local  = (ActorLocal_GVMazeCtrl *)&this->local;
 
     sp34 = time_getDelta();
@@ -169,7 +169,7 @@ void chmazectrl_update(Actor *this){
     player_getPosition(sp3C);
     if(this->state == 1){
         sp38 = func_8034C528(0x191);
-        if(sp38 && func_8034DC80(sp38, sp3C)){
+        if(sp38 != NULL && func_8034DC80(sp38, sp3C)){
             __chmazectrl_setState(this, 2);
         }
         if( !levelSpecificFlags_get(0x15) 
@@ -199,7 +199,7 @@ void chmazectrl_update(Actor *this){
 
     if(this->state == 4){
         sp30 = func_8034C528(0x190);
-        if(sp30 && func_8034DC78(sp30)){
+        if(sp30 != NULL && func_8034DC78(sp30)){
             __chmazectrl_setState(this, 0);
         }
     }

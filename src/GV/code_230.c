@@ -36,7 +36,7 @@ ActorInfo D_80390C5C = { MARKER_F4_ANCIENT_ONE, ACTOR_147_ANCIENT_ONE, ASSET_3E8
 void func_80386620(Actor *this){
     int i;
     s32 *temp_v0;
-    s32 temp_a0;
+    ActorMarker *temp_a0;
     s32 temp_a1;
     Actor *temp_v0_3;
     s32 phi_s2;
@@ -89,7 +89,7 @@ void func_803867F4(void){
     func_802BAFE4(4);
     if(func_80304E24(0x148, sp24)){
         jiggySpawn(JIGGY_46_GV_ANCIENT_ONES, sp24);
-        func_802C3F04(func_802C4140, 0x4C, reinterpret_cast(s32, sp24[0]), reinterpret_cast(s32, sp24[1]), reinterpret_cast(s32, sp24[2]));
+        func_802C3F04((GenMethod_4)func_802C4140, 0x4C, reinterpret_cast(s32, sp24[0]), reinterpret_cast(s32, sp24[1]), reinterpret_cast(s32, sp24[2]));
     }
 }
 
@@ -183,10 +183,10 @@ void chancientone_update(Actor *this){
                     this->position_z += (sp38 & 2) ? 0xC : -0xC;
                     if(this->unkF4_8 != 1){
                         if(sp38 == 6){
-                            func_802C3F04(func_802C4140, 0x4C, reinterpret_cast(s32, this->position_x), reinterpret_cast(s32, sp34), reinterpret_cast(s32, this->position_z));
+                            func_802C3F04((GenMethod_4)func_802C4140, 0x4C, reinterpret_cast(s32, this->position_x), reinterpret_cast(s32, sp34), reinterpret_cast(s32, this->position_z));
                         }
                         if(sp38 == 4 && this->position_y < LOCAL_GV_230(this)->unk1C - 600.0f){
-                            func_802C3F04(func_802C4140, 0x11f, reinterpret_cast(s32, this->position_x), reinterpret_cast(s32, sp34), reinterpret_cast(s32, this->position_z));
+                            func_802C3F04((GenMethod_4)func_802C4140, 0x11f, reinterpret_cast(s32, this->position_x), reinterpret_cast(s32, sp34), reinterpret_cast(s32, this->position_z));
                         }//L80386D80
                     }
                     if(LOCAL_GV_230(this)->unk1C <= this->position_y){

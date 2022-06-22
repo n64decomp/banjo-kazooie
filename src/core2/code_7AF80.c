@@ -632,14 +632,14 @@ void func_80304D4C(s16 *arg0, s32 *arg1) {
     arg1[2] = arg0[2];
 }
 
-void func_80304D68(s16 *arg0, f32 arg1[3]) {
-    arg1[0] = arg0[0];
-    arg1[1] = arg0[1];
-    arg1[2] = arg0[2];
+void func_80304D68(NodeProp *arg0, f32 arg1[3]) {
+    arg1[0] = arg0->x;
+    arg1[1] = arg0->y;
+    arg1[2] = arg0->z;
 }
 
-u32 func_80304DA8(u32 *arg0) {
-    return arg0[3] >> 0x17;
+u32 func_80304DA8(NodeProp *arg0) {
+    return arg0->unkC_31;
 }
 
 s32 func_80304DB8(u32 *arg0) {

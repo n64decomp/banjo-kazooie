@@ -198,7 +198,7 @@ void func_8038BEA0(Actor *this){
                     this->unk38_31 = 0;
                     D_80391A80 = this->state;
                     func_802BB3DC(0, 14.0f, 0.92f);
-                    func_802C3F04(func_802C4140, 0x11f, 
+                    func_802C3F04((GenMethod_4)func_802C4140, 0x11f, 
                         reinterpret_cast(s32, this->position_x), reinterpret_cast(s32, this->position_y), reinterpret_cast(s32, this->position_z)
                     );
                 }

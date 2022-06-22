@@ -28,7 +28,7 @@ void func_8038D450(ActorMarker *this_marker){
 
 void func_8038D47C(Actor *this){
     f32 sp3C[3];
-    s32 tmp_v0;
+    NodeProp *tmp_v0;
     this->marker->propPtr->unk8_3 = TRUE;
     actor_collisionOff(this);
     func_80287784(this->animctrl, 0);
@@ -65,7 +65,7 @@ void func_8038D47C(Actor *this){
         mapSpecificFlags_set(0x10, 0);
         this->unk16C_4 = TRUE;
         if(func_803203FC(0xC1) && func_8031B4F4() == -3){
-            timedFunc_set_1(1.5f, func_8038D450, reinterpret_cast(s32, this->marker));
+            timedFunc_set_1(1.5f, (TFQM1)func_8038D450, reinterpret_cast(s32, this->marker));
         }
     }//L8038D5EC
 

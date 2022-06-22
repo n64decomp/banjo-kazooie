@@ -4,7 +4,7 @@
 
 typedef struct {
     u8 pad0[4];
-    void *unk4;
+    Struct80s  *unk4;
     BKModelBin *unk8;
 }ActorLocal_Gobi2;
 
