@@ -47,11 +47,11 @@ s32 func_803871FC(Actor *this, s32 arg1){
     
 }
 
-void func_80387258(ActorMarker *marker, s32 text_id, s32 arg2){
+void func_80387258(ActorMarker *marker, enum asset_e text_id, s32 arg2){
     chAttackTutorial_setState(marker_getActor(marker), 2);
 }
 
-void func_80387288(ActorMarker *marker, s32 text_id, s32 arg2){
+void func_80387288(ActorMarker *marker, enum asset_e text_id, s32 arg2){
     Actor *actor = marker_getActor(marker);
     func_8028F918(0);
     switch(text_id){
@@ -73,10 +73,10 @@ void chAttackTutorial_setState(Actor * this, s32 arg1){
     case 5:
         if(this->unk10_12 == 0){
             ability_unlock(ABILITY_4_BEAR_PUNCH);
-            func_80311480(0xDFF, 0xE, &this->unk1C_x, this->marker, func_80387288, func_80387258);
+            func_80311480(0xDFF, 0xE, this->unk1C, this->marker, func_80387288, func_80387258);
         }
         else{
-            func_80311480((this->unk10_12 == 1) ? 0xe15 : 0xe17, 0xE, &this->unk1C_x, this->marker, func_80387288, NULL);
+            func_80311480((this->unk10_12 == 1) ? 0xe15 : 0xe17, 0xE, this->unk1C, this->marker, func_80387288, NULL);
         }
         break;
     case 2://L803873E0
@@ -146,7 +146,7 @@ void chAttackTutorial_update(Actor *this){
     }////L80387680      
 }
 
-void func_80387690(ActorMarker *marker, s32 text_id, s32 arg2){
+void func_80387690(ActorMarker *marker, enum asset_e text_id, s32 arg2){
     Actor *actor = marker_getActor(marker);
     switch(text_id){
         case 0xDFF:
@@ -203,7 +203,7 @@ void func_80387764(ActorMarker * marker){
         break;
     }//L8038782C
     if(sp34 == 0xe19){ 
-        func_8028F94C(2, &actor->unk1C_x);
+        func_8028F94C(2, actor->unk1C);
     }
     //L80387848
     if(!mapSpecificFlags_get(3) && func_802DA498() && temp_a2){
@@ -214,6 +214,6 @@ void func_80387764(ActorMarker * marker){
         timed_setCameraToNode(0.0f, 6);
     }//L803878B0
 
-    func_80311480(sp34, sp2C, &actor->unk1C_x, actor->marker, func_80387690, NULL);
+    func_80311480(sp34, sp2C, actor->unk1C, actor->marker, func_80387690, NULL);
     actor->unk38_31++;
 }

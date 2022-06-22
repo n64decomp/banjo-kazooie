@@ -167,7 +167,7 @@ void func_80388FA0(Actor *this, s32 arg1){
     func_80328B8C(this, arg1, 0.0001f, 1);
 }
 
-void func_80389214(ActorMarker *marker, s32 text_id, s32 arg2){
+void func_80389214(ActorMarker *marker, enum asset_e text_id, s32 arg2){
     Actor *actor = marker_getActor(marker);
     switch(arg2){
         case 3:
@@ -188,7 +188,7 @@ void func_80389214(ActorMarker *marker, s32 text_id, s32 arg2){
     }
 }
 
-void func_803892C8(ActorMarker *marker, s32 text_id, s32 arg2){
+void func_803892C8(ActorMarker *marker, enum asset_e text_id, s32 arg2){
     Actor *actor;
 
     actor = marker_getActor(marker);
@@ -387,7 +387,7 @@ void func_803899B0(Actor * this){
                 this->unk1C_z = this->position_z;
                 this->unk28 = 300.0f;
             } else{ //L80389A68
-                func_80304D68(sp40, &this->unk1C_x);
+                func_80304D68(sp40, this->unk1C);
                 this->unk28 = func_80304D3C(sp40);
             }//L80389A8C
             if(this->unkF4_8 == 1){
@@ -409,7 +409,7 @@ void func_803899B0(Actor * this){
     }//L80389B20
 
     if(!this->unk16C_4){
-        func_802C3C88(func_80389948, this->marker);
+        func_802C3C88((GenMethod_1)func_80389948, reinterpret_cast(s32, this->marker));
         this->unk16C_4 = 1;
     }//L80389B4C
 
@@ -418,7 +418,7 @@ void func_803899B0(Actor * this){
     }//L80389B64
 
     func_8024E55C(0,sp50); //get face buttons press counters
-    player_getPosition(&sp44);
+    player_getPosition(sp44);
     switch (this->state)
     {
     case 1://L80389BAC
@@ -429,7 +429,7 @@ void func_803899B0(Actor * this){
             || (this->unkF4_8 == 8 && mapSpecificFlags_get(3) && !mapSpecificFlags_get(0xF))
         ){//L80389C50
             
-            if( ((func_80256064(&sp44, &this->unk1C) < this->unk28) && func_8028F20C())
+            if( ((func_80256064(sp44, this->unk1C) < this->unk28) && func_8028F20C())
                 || mapSpecificFlags_get(0x10)
             ){//L80389C8C
                 if(func_80329530(this, 0x96))
@@ -488,7 +488,7 @@ void func_803899B0(Actor * this){
         else if(actor_animationIsAt(this, 0.4f)){ //L80389F14
             func_8030E8B4(0x9977702c, this->position, 0x9C404e2);
         }else if(actor_animationIsAt(this, 0.75f)){//L80389F48
-            FUNC_8030E8B4(SFX_C5_TWINKLY_POP, 1000, 0x3ff, &this->position, 1250, 2500);
+            FUNC_8030E8B4(SFX_C5_TWINKLY_POP, 1000, 0x3ff, this->position, 1250, 2500);
 
         }else if(actor_animationIsAt(this, 0.35f)){//L80389F78
             if(mapSpecificFlags_get(1)){
@@ -511,7 +511,7 @@ void func_803899B0(Actor * this){
             || actor_animationIsAt(this, 0.28f)
             || actor_animationIsAt(this, 0.31f)
         ){
-            func_8030E878(SFX_6F_BANJO_HEADSCRATCH, randf2(1.4f, 1.55f), 0x3e80, &this->position, 1250.0f, 2500.0f);
+            func_8030E878(SFX_6F_BANJO_HEADSCRATCH, randf2(1.4f, 1.55f), 16000, this->position, 1250.0f, 2500.0f);
         } //L8038A0D8
         else if( actor_animationIsAt(this, 0.45f)
             || actor_animationIsAt(this, 0.48f)
@@ -520,7 +520,7 @@ void func_803899B0(Actor * this){
             || actor_animationIsAt(this, 0.73f)
             || actor_animationIsAt(this, 0.76f)
         ){
-            func_8030E878(SFX_6F_BANJO_HEADSCRATCH, randf2(1.35f, 1.5f), 0x1770, &this->position, 1250.0f, 2500.0f);
+            func_8030E878(SFX_6F_BANJO_HEADSCRATCH, randf2(1.35f, 1.5f), 6000, this->position, 1250.0f, 2500.0f);
         }//L8038A194
 
         if(mapSpecificFlags_get(5)){

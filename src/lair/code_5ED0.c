@@ -56,8 +56,6 @@ extern void func_8028FA14(enum map_e, s32);
 extern void func_803208C0(u32, int); // ff_isAsked_flag_set
 extern int func_803207F0(u32); // ff_isAsked_flag_get
 
-extern void func_8034DEB4(void *, f32);
-
 extern void func_8033F220(s32 a0, s32 a1, void *); //! $a2 type unk
 
 extern s32  func_803203FC(s32);  // get volatile flag

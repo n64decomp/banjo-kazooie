@@ -2,8 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-void func_8034DEB4(void *, f32);
-
 /* .code */
 void func_80388CF0(void){
     if(getGameMode() != GAME_MODE_7_ATTRACT_DEMO){

@@ -93,7 +93,7 @@ typedef struct actorMarker_s{
     u32         unk40_20:1;
     u32         unk40_19:1;
     u32         pad40_18:19;
-    u32         unk44;
+    struct5Bs * unk44;
     BKModel *   unk48;
     vector(Struct70s) * unk4C;
     s32         unk50;

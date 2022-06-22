@@ -25,7 +25,7 @@ void func_8038A8C0(ActorMarker *arg0){
 
 void func_8038A8F8(Actor *this){
     f32 sp2C;
-    Actor *other;
+    NodeProp *other;
     
     if(!this->unk16C_4){
         other = func_80304C38(0x3be, this);
@@ -34,13 +34,13 @@ void func_8038A8F8(Actor *this){
             this->unk1C_y = this->position_y;
             this->unk1C_z = this->position_z;
         }else{
-            func_80304D68(other, &this->unk1C_x);
+            func_80304D68(&other->x, this->unk1C);
         }
         actor_collisionOff(this);
         this->unk16C_4 = 1;
     }//L8038A968
-    player_getPosition(&this->velocity);
-    sp2C = func_80256064(&this->velocity, &this->position);
+    player_getPosition(this->velocity);
+    sp2C = func_80256064(this->velocity, this->position);
     if(sp2C < (f32) this->unkF4_8)
         func_80388D48();
 
@@ -48,8 +48,8 @@ void func_8038A8F8(Actor *this){
         if( !mapSpecificFlags_get(2) 
             || (mapSpecificFlags_get(3) && !mapSpecificFlags_get(0xf))
         ){ //L8038AA54
-            this->yaw_moving = func_80256064(&this->velocity, &this->unk1C) / 150.0;
-            func_8028F3D8(&this->unk1C_x, this->yaw_moving, func_8038A8C0, this->marker);
+            this->yaw_moving = func_80256064(this->velocity, this->unk1C) / 150.0;
+            func_8028F3D8(this->unk1C, this->yaw_moving, func_8038A8C0, this->marker);
             mapSpecificFlags_set(0x10, 1);
         }
     }

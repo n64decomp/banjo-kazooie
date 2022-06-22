@@ -79,7 +79,7 @@ int func_8034C4CC(void){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C5440/func_8034C50C.s")
 
-void * func_8034C528(s32 arg0){
+Struct6Ds * func_8034C528(s32 arg0){
     struct1Ds *iPtr;
     struct1Ds *endPtr = vector_getEnd(D_80386140.unk4);
 

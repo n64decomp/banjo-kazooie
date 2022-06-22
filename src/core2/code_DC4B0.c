@@ -2,9 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-
-extern void func_8034DEB4(void *, f32);
-
 void func_80363500(Actor *this);
 
 /* .data */

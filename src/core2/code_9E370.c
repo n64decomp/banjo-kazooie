@@ -96,7 +96,7 @@ void func_803253A0(Actor *this){
 
     set_model_render_mode(this->unk124_9);
     if(this->marker->unk44 != 0){
-        if(this->marker->unk44 == 1){
+        if((s32)this->marker->unk44 == 1){
             func_8033A450(D_8036E568);
         }
         else{

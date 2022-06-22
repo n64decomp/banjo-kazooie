@@ -20,7 +20,7 @@ typedef struct ch_vegatable{
 } ChVeg;
 
 //public
-Actor *func_80387DF4(ActorMarker *, Gfx**, Mtx**, s32);
+Actor *func_80387DF4(ActorMarker *, Gfx**, Mtx**, Vtx **);
 void func_80388080(Actor *);
 
 /* .data */
@@ -77,23 +77,23 @@ ActorInfo D_8038AD7C = { 0x1E8, ACTOR_COLLYWOBBLE_B, MODEL_COLLYWOBBLE, 1, chCau
     func_80388080, func_80326224, func_80387DF4,
     0, 0, 2.0f, 0
 };
-extern f32 D_8038ADA0[3];
+extern s32 D_8038ADA0[3];
 
-extern s32 D_8038ADAC;
+extern struct31s D_8038ADAC;
 extern struct42s D_8038ADD4;
 
-extern s32 D_8038AE04;
+extern struct31s D_8038AE04;
 extern struct43s D_8038AE2C;
 
-extern s32 D_8038AE74;
+extern struct31s D_8038AE74;
 extern struct43s D_8038AE9C;
 
-extern s32 D_8038AEE4;
+extern struct31s D_8038AEE4;
 extern struct43s D_8038AF0C;
 
 /* .code */
 void func_80387910(ParticleEmitter *arg0, f32 *arg1, s32 arg2){
-    f32 sp24[3] = D_8038ADA0;
+    s32 sp24[3] = D_8038ADA0;
     func_802EFFA8(arg0, sp24);
     particleEmitter_setSprite(arg0, ASSET_700_SPRITE_DUST);
     particleEmitter_setStartingFrameRange(arg0, 0, 7);
@@ -141,7 +141,7 @@ void func_80387B48(ParticleEmitter *arg0, f32 arg1[3], s32 arg2, enum asset_e mo
 }
 
 void func_80387C28(Actor * this){
-    ChVeg * local = &this->local;
+    ChVeg * local = (ChVeg *)&this->local;
     f32 sp30[3];
 
     FUNC_8030E8B4(SFX_111_WHIPCRACK_DEATH, 1000, 0x3ff, this->position, 1000, 2000);
@@ -159,7 +159,7 @@ void func_80387C28(Actor * this){
     if(this->unk38_31){
         this->position_y += 100.0f;
         func_802CA1CC(HONEYCOMB_17_SM_COLIWOBBLE);
-        func_802C3F04(func_802C4218, 0x1f, *(s32 *)&this->position_x, *(s32 *)&this->position_y, *(s32 *)(&this->position_z));
+        func_802C3F04((GenMethod_4)func_802C4218, 0x1f, reinterpret_cast(s32, this->position_x), reinterpret_cast(s32, this->position_y), reinterpret_cast(s32, this->position_z));
     }//L80387D64
     func_803252D0(1.5f, 7);
     actor_collisionOff(this);
@@ -172,11 +172,11 @@ void func_80387C28(Actor * this){
     }
 }
 
-void func_80387DCC(ActorMarker *marker, s32 arg1){
+void func_80387DCC(ActorMarker *marker, ActorMarker *other_marker){
     func_80387C28(marker_getActor(marker));
 }
 
-Actor *func_80387DF4(ActorMarker *marker, Gfx **gdl, Mtx **mptr, s32 arg3){
+Actor *func_80387DF4(ActorMarker *marker, Gfx **gdl, Mtx **mptr, Vtx **arg3){
     Actor *actor = marker_getActor(marker);
 
     if(actor->unk138_24)
@@ -184,7 +184,7 @@ Actor *func_80387DF4(ActorMarker *marker, Gfx **gdl, Mtx **mptr, s32 arg3){
     else
         func_8033A45C(3, 0);
 
-    func_80325888(marker, gdl, mptr, arg3);
+    return func_80325888(marker, gdl, mptr, arg3);
 }
 
 void func_80387E64(Actor *this){
@@ -219,7 +219,7 @@ int func_80387FA8(Actor *this, ChVeg *local, s32 yaw, s32 arg3){
     sp18[0] = arg3;
     sp18[1] = 0.0f;
     sp18[2] = 0.0f;
-    ml_vec3f_yaw_rotate_copy(&sp18, &sp18, yaw - 90.0);
+    ml_vec3f_yaw_rotate_copy(sp18, sp18, yaw - 90.0);
     sp24[0] = sp18[0] + local->unk0_x;
     sp24[1] = sp18[1] + local->unk0_y;
     sp24[2] = sp18[2] + local->unk0_z;
@@ -365,10 +365,10 @@ void func_80388080(Actor *this){
                 sp6C[1] = this->unk1C_y - this->position_y;
                 sp6C[2] = this->unk1C_z - this->position_z;
                 if( gu_sqrtf(sp6C[0]*sp6C[0] + sp6C[1]*sp6C[1] + sp6C[2]*sp6C[2] ) < 40.0f){
-                    ml_vec3f_set_length(&sp6C, 400.0f);
+                    ml_vec3f_set_length(sp6C, 400.0f);
                 }
                 else{
-                    ml_vec3f_set_length(&sp6C, 100.0f);
+                    ml_vec3f_set_length(sp6C, 100.0f);
                 }
                 this->position_x += this->velocity_x*sp78 + sp6C[0]*sp78*sp78;
                 this->position_y += this->velocity_y*sp78 + sp6C[1]*sp78*sp78;
@@ -377,9 +377,9 @@ void func_80388080(Actor *this){
                 this->velocity_y += sp6C[1]*sp78;
                 this->velocity_z += sp6C[2]*sp78;
                 if(gu_sqrtf(this->velocity_z*this->velocity_z + (this->velocity_x*this->velocity_x + this->velocity_y*this->velocity_y)) > 50.0f){
-                    ml_vec3f_set_length(&this->velocity, 50.0f);
+                    ml_vec3f_set_length(this->velocity, 50.0f);
                 }
-                if(func_80256064(&this->position, &this->unk1C) < 20.0f){
+                if(func_80256064(this->position, this->unk1C) < 20.0f){
                     func_80387E64(this);
                 }
                 this->unk28 = 5.0f;
@@ -398,7 +398,7 @@ void func_80388080(Actor *this){
                         this->unk1C_y -= local->unk0_y;
                         this->unk1C_z -= local->unk0_z;
                         TUPLE_ASSIGN(sp60, this->unk28, 0.0f, 0.0f);
-                        ml_vec3f_yaw_rotate_copy(&sp60, &sp60, this->yaw - 90.0);
+                        ml_vec3f_yaw_rotate_copy(sp60, sp60, this->yaw - 90.0);
                         local->unk0_x = sp60[0] + local->unk0_x;
                         local->unk0_y = sp60[1] + local->unk0_y;
                         local->unk0_z = sp60[2] + local->unk0_z;
@@ -426,10 +426,10 @@ void func_80388080(Actor *this){
         func_80328FB0(this, 2.0f);
         
         if(local->unkC != 3 && actor_animationIsAt(this, 0.3f))
-            FUNC_8030E8B4(0x3f2, 0x2af, 0x3ff, &this->position, 1000, 2000);
+            FUNC_8030E8B4(0x3f2, 0x2af, 0x3ff, this->position, 1000, 2000);
         
         if(local->unkC == 3 && actor_animationIsAt(this, 0.4f)){
-            FUNC_8030E8B4(SFX_2_CLAW_SWIPE, 250, 0x398, &this->position, 1000, 2000);
+            FUNC_8030E8B4(SFX_2_CLAW_SWIPE, 250, 0x398, this->position, 1000, 2000);
         }
         break;
     case 3: //L80388BFC

@@ -5,7 +5,6 @@
 /* extern functions */
 int func_80353064(f32*, f32);
 void  func_802BB3DC(s32, f32, f32);
-Actor *func_8032813C(s32, f32*, s32);
 
 typedef struct{
     s32     unk0;

@@ -4,7 +4,6 @@
 
 #include "prop.h"
 
-void particleEmitter_emitN(Actor*, s32);
 void func_803869A0(Actor*, f32, f32);
 void func_802C4218(s32, f32, f32, f32);
 
@@ -40,34 +39,34 @@ void func_80386A00(Actor *this) {
     func_803869A0(this, 0.95f, 0.95f);
 }
 
-void func_80386B04(Actor *this, f32 *arg1, s32 arg2, f32 arg3) {
-    func_802EF9F8(this, 0.6f);
-    func_802EFA18(this, 4);
-    func_802EFA5C(this, 0.00f, 0.75f);
-    particleEmitter_setModel(this, 0x42E);
-    particleEmitter_setPosition(this, arg1);
-    func_802EFA70(this, 2);
-    func_802EFB70(this, arg3, arg3);
-    func_802EFB84(this, arg3, arg3);
-    func_802EFE24(this, -100.0f, -100.0f, -100.0f, 100.0f, 100.0f, 100.0f);
-    particleEmitter_setSpawnIntervalRange(this, 0.00f, 0.01f);
-    func_802EFEC0(this, 2.0f, 2.0f);
-    particleEmitter_setPositionVelocityAndAccelerationRanges(this, &D_8038AB48);
-    particleEmitter_emitN(this, arg2);
+void func_80386B04(ParticleEmitter *p_ctrl, f32 *arg1, s32 arg2, f32 arg3) {
+    func_802EF9F8(p_ctrl, 0.6f);
+    func_802EFA18(p_ctrl, 4);
+    func_802EFA5C(p_ctrl, 0.00f, 0.75f);
+    particleEmitter_setModel(p_ctrl, 0x42E);
+    particleEmitter_setPosition(p_ctrl, arg1);
+    func_802EFA70(p_ctrl, 2);
+    func_802EFB70(p_ctrl, arg3, arg3);
+    func_802EFB84(p_ctrl, arg3, arg3);
+    func_802EFE24(p_ctrl, -100.0f, -100.0f, -100.0f, 100.0f, 100.0f, 100.0f);
+    particleEmitter_setSpawnIntervalRange(p_ctrl, 0.00f, 0.01f);
+    func_802EFEC0(p_ctrl, 2.0f, 2.0f);
+    particleEmitter_setPositionVelocityAndAccelerationRanges(p_ctrl, &D_8038AB48);
+    particleEmitter_emitN(p_ctrl, arg2);
 }
 
-void func_80386C2C(Actor *this, f32 *arg1, s32 arg2, f32 arg3) {
-    func_802EFFA8(this, &D_8038AB90);
-    particleEmitter_setSprite(this, ASSET_700_SPRITE_DUST);
-    func_802EFA5C(this, 0.00f, 0.01f);
-    particleEmitter_setStartingFrameRange(this, 0, 7);
-    particleEmitter_setPosition(this, arg1);
-    func_802EFB70(this, (arg3 * 0.1), (arg3 * 0.5));
-    func_802EFB84(this, (arg3 * 1.5), (arg3 * 3.0));
-    particleEmitter_setSpawnIntervalRange(this, 0.0f, 0.01f);
-    func_802EFEC0(this, 1.5f, 2.0f);
-    particleEmitter_setPositionVelocityAndAccelerationRanges(this, &D_8038AB9C);
-    particleEmitter_emitN(this, arg2);
+void func_80386C2C(ParticleEmitter *p_ctrl, f32 *arg1, s32 arg2, f32 arg3) {
+    func_802EFFA8(p_ctrl, &D_8038AB90);
+    particleEmitter_setSprite(p_ctrl, ASSET_700_SPRITE_DUST);
+    func_802EFA5C(p_ctrl, 0.00f, 0.01f);
+    particleEmitter_setStartingFrameRange(p_ctrl, 0, 7);
+    particleEmitter_setPosition(p_ctrl, arg1);
+    func_802EFB70(p_ctrl, (arg3 * 0.1), (arg3 * 0.5));
+    func_802EFB84(p_ctrl, (arg3 * 1.5), (arg3 * 3.0));
+    particleEmitter_setSpawnIntervalRange(p_ctrl, 0.0f, 0.01f);
+    func_802EFEC0(p_ctrl, 1.5f, 2.0f);
+    particleEmitter_setPositionVelocityAndAccelerationRanges(p_ctrl, &D_8038AB9C);
+    particleEmitter_emitN(p_ctrl, arg2);
 }
 
 void func_80386D68(Actor *this){
@@ -83,25 +82,25 @@ void func_80386D68(Actor *this){
 
     if(this->unk100 && func_803870E8(this->unk100)){
         func_802CA1CC(HONEYCOMB_18_SM_QUARRIES);
-        func_802C3F04(func_802C4218, 0x1F, *(s32 *)(this->position), *(s32 *)(&this->position_y), *(s32 *)(&this->position_z));
+        func_802C3F04((GenMethod_4)func_802C4218, 0x1F, reinterpret_cast(s32, this->position[0]), reinterpret_cast(s32, this->position[1]), reinterpret_cast(s32, this->position[2]));
     }
     marker_despawn(this->marker);
 }
 
-void func_80386EB4(ActorMarker *this, s32 arg1) {
-    Actor *temp_v0;
-    temp_v0 = marker_getActor(this);
-    if ((temp_v0->state ) == 2) {
-        func_80386D68(temp_v0);
+void func_80386EB4(ActorMarker *marker, ActorMarker *other_marker) {
+    Actor *this;
+    this = marker_getActor(marker);
+    if ((this->state ) == 2) {
+        func_80386D68(this);
     }
 }
 
 void func_80386EF4(Actor *this) {
     u32 temp_t3;
-    u32 *temp_v0_2;
+    Actor *other;
     if ((this->unk16C_4) <= 0) {
         this->marker->propPtr->unk8_3 = 1;
-        marker_setCollisionScripts(this->marker, 0, 0, &func_80386EB4);
+        marker_setCollisionScripts(this->marker, 0, 0, func_80386EB4);
         this->unk38_31 = 0;
         this->unk138_31 = 1;
         this->unk16C_4 = 1;
@@ -109,9 +108,9 @@ void func_80386EF4(Actor *this) {
     if ((this->state) == 1) {
         temp_t3 = this->unk38_31++ ^ 2;
         if ((temp_t3) == 0) {
-            temp_v0_2 = (u32 *)func_80326EEC(0x16E);
-            if (0 != temp_v0_2) {
-                this->unk100 = *temp_v0_2;
+            other = func_80326EEC(0x16E);
+            if (other != NULL) {
+                this->unk100 = other->marker;
             } else {
                 this->unk100 = NULL;
             }

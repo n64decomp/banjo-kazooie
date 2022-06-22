@@ -20,6 +20,9 @@
 extern f32 fabsf(f32);
 #pragma intrinsic (fabsf)
 
+
+typedef void (* GenMethod_1)(s32);
+typedef void (* GenMethod_4)(s32, s32, s32, s32);
 #define NOT(boolean) ((boolean) ^ 1)
 
 #define TUPLE_ASSIGN(out, a, b, c) {\
@@ -217,7 +220,7 @@ void particleEmitter_setSprite(ParticleEmitter *, enum asset_e);
 void particleEmitter_setPosition(ParticleEmitter *, f32[3]);
 ParticleEmitter *partEmitList_pushNew(u32);
 void func_802BB3DC(s32, f32, f32);
-void func_802C3F04(void (* arg0)(void), s32, s32, s32, s32);
+void func_802C3F04(GenMethod_4, s32, s32, s32, s32);
 Actor *func_802C4140(enum actor_e actor_id, s32 x, s32 y, s32 z);
 void func_8030DA44(u8);
 
@@ -392,8 +395,8 @@ void func_802D6264(f32, enum map_e, s32, s32, s32, enum bkprog_e);
 
 Actor *func_802DC7E0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 
+void particleEmitter_emitN(ParticleEmitter *, int);
 void func_802EFA20(ParticleEmitter *, f32, f32);
-
 
 ParticleEmitter *func_802F0D74(ParticleEmitter *);
 ParticleEmitter *func_802F4094(f32[3], f32);
@@ -482,9 +485,11 @@ void func_8033A280(f32);
 void func_80346C10(enum bs_e *retVal, enum bs_e fail_state, enum bs_e success_state, enum item_e item_id, int use_item);
 void func_80347A14(s32);
 void func_8034A174(struct5Bs *this, s32 indx,f32 dst[3]);
+Struct6Ds *func_8034C528(s32);
 void func_8034DC08(Struct6Ds *, f32[3], f32[3], f32, s32);
 void func_8034DDF0(Struct6Ds *arg0, f32 arg1[3], f32 arg2[3], f32 arg3, s32 arg4);
 void func_8034DE60(Struct6Ds *, f32, f32, f32, s32);
+void func_8034DEB4(Struct6Ds *, f32);
 void func_8034DFB0(Struct6Ds *arg0, s32 arg1[4], s32 arg2[4], f32 arg3);
 void func_8034E1A4(Struct6Ds *arg0, enum sfx_e, f32, f32);
 void func_8034E71C(Struct73s *arg0, s32 arg1, f32 arg2);
@@ -557,7 +562,7 @@ f32 climbGetTopY(void);
 void func_802596AC(f32 a0[3], f32 a1[3], f32 a2[3], f32 a3[3]);
 
 void func_8024E55C(s32, void *);
-void func_802C3C88(void (*)(s32), s32);
+void func_802C3C88(GenMethod_1, s32);
 void func_802FAD64(enum item_e);
 void func_80304D68(s16 *, f32[3]);
 bool func_80311480(s32 text_id, s32 arg1, f32 *pos, ActorMarker *marker, void(*callback)(ActorMarker *, enum asset_e, s32), void(*arg5)(ActorMarker *, enum asset_e, s32));

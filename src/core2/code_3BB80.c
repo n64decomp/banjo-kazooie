@@ -475,10 +475,10 @@ void func_802C3BF8(void (* arg0)(void)){
     }
 }
 
-void func_802C3C88(void (* arg0)(s32), s32 arg1){
+void func_802C3C88(GenMethod_1 arg0, s32 arg1){
     u32 tmp = (map_get() == MAP_90_GL_BATTLEMENTS)? 0x32: 0xF;
     if(tmp != D_80365DC4){
-        D_80365DC8[D_80365DC4].func0 = arg0;
+        D_80365DC8[D_80365DC4].func0 = (void (*)(void))arg0;
         D_80365DC8[D_80365DC4].arg[0] = arg1;
         D_80365DC8[D_80365DC4].arg_cnt = 1;
         D_80365DC4++;
@@ -508,10 +508,10 @@ void func_802C3E10(void (* arg0)(void), s32 arg1, s32 arg2, s32 arg3){
     }
 }
 
-void func_802C3F04(void (* arg0)(void), s32 arg1, s32 arg2, s32 arg3, s32 arg4){
+void func_802C3F04(GenMethod_4 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4){
     u32 tmp = (map_get() == MAP_90_GL_BATTLEMENTS)? 0x32: 0xF;
     if(tmp != D_80365DC4){
-        D_80365DC8[D_80365DC4].func0 = arg0;
+        D_80365DC8[D_80365DC4].func0 = (void (*)(void))arg0;
         D_80365DC8[D_80365DC4].arg[0] = arg1;
         D_80365DC8[D_80365DC4].arg[1] = arg2;
         D_80365DC8[D_80365DC4].arg[2] = arg3;
