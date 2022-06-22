@@ -66,7 +66,7 @@ int func_80386ED0(Actor * this){
     if(!this->unk10_12)
         return 0;
 
-    player_getPosition(&plyrPos);
+    player_getPosition(plyrPos);
     if(plyrPos[1] < 300.0f || 600.0f < plyrPos[1])
         return 0;
 
@@ -114,10 +114,10 @@ void func_80387100(ActorMarker *this){
 
 }
 
-void func_80387168(ActorMarker *this, s32 arg1){
+void func_80387168(ActorMarker *marker, ActorMarker *other_marker){
     Actor *actorPtr;
 
-    actorPtr = marker_getActor(this);
+    actorPtr = marker_getActor(marker);
     if(((ActorLocal_Conga *)&actorPtr->local)->unkC == 1){
         if(actorPtr->unk10_12 == 0){
             ((ActorLocal_Conga *)&actorPtr->local)->unkC = 0;
@@ -158,7 +158,7 @@ int func_803872EC(void){
         || text_id == ASSET_B51_TEXT_BOTTLES_HOW_TO_EXIT_LEVEL;
 }
 
-void func_80387370(ActorMarker *this, s32 arg1, s32 arg2){
+void func_80387370(ActorMarker *this, enum asset_e text_id, s32 arg2){
     marker_getActor(this)->velocity_x = 9.0f;
     timed_setCameraToNode(0.0f, 0x11);
     func_80324E88(3.2f);
@@ -185,7 +185,7 @@ void func_803873C8(ActorMarker *congaMarker){
     orangePtr = func_8032811C(ACTOR_14_ORANGE_PROJECTILE, conga_localPtr->orangeSpawnPosition, congaPtr->yaw);
 
     if(orangePtr != NULL){
-        player_getPosition(&plyr.pos);
+        player_getPosition(plyr.pos);
         orangePtr->velocity_x = plyr.pos_x - orangePtr->position_x;
         orangePtr->velocity_y = (60.0)*((conga_state == 7) ? 0.5: 1.0);
         orangePtr->velocity_z = plyr.pos_z - orangePtr->position_z;
@@ -208,7 +208,7 @@ void func_803873C8(ActorMarker *congaMarker){
 
 void func_803876D0(Actor *this){
     f32 tmp_f4;
-    s32 sp40;
+    NodeProp *sp40;
     s32 sp3C;
 
     this->marker->propPtr->unk8_3 = (timedFuncQueue_is_empty(this))?1:0;
@@ -228,10 +228,10 @@ void func_803876D0(Actor *this){
     if(0.0f != this->velocity_x){
         this->velocity_x -= 1.0f; 
         if(0.0f == this->velocity_x){
-            func_802C3C88(func_80387100, this->marker);
+            func_802C3C88((GenMethod_1)func_80387100, (s32)this->marker);
         }
     }
-    marker_setCollisionScripts(this->marker, 0, 0, func_80387168);
+    marker_setCollisionScripts(this->marker, NULL, NULL, func_80387168);
     if( !func_80329530(this, 2100)
         && this->state != 2
         && this->state != 8
@@ -369,6 +369,6 @@ void func_803876D0(Actor *this){
         || (this->state == 7 && actor_animationIsAt(this, 0.468f))
     ){
         func_8034A1B4(this->marker->unk44, 5, &this->local);
-        func_802C3C88(func_803873C8, this->marker); //spawn orange
+        func_802C3C88((GenMethod_1)func_803873C8, (s32)this->marker); //spawn orange
     }
 }

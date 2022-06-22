@@ -47,7 +47,7 @@ void func_80386444(ActorMarker *arg0){
 
     if(actor && !(500.0f < sp54)){
         actor->state = 1;
-        if(func_80326D68(&sp44, 0x57, 1, &sp54)){
+        if(func_80326D68(sp44, 0x57, 1, &sp54)){
             func_8025A6EC(COMUSIC_2B_DING_B, 22000);
         }else{
             temp_a0 = (actor->unk78_13 == 0x106) ? 0x10 : (actor->unk78_13 == 0x76) ? 0xf : 0xe;

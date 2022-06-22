@@ -17,7 +17,7 @@ typedef struct juju_hitbox_s{
 
 /* public functions */
 void    func_80388E20(Actor *this);
-Actor*  func_80388DC0(ActorMarker *, Gfx **, Mtx**, u32);
+Actor*  func_80388DC0(ActorMarker *, Gfx **, Mtx**, Vtx **);
 void    func_80388DE8(Actor* this, s32 slave_id, Actor *slavePtr);
 
 /* .data */
@@ -71,7 +71,7 @@ void func_80388BEC(s16 *arg0, void *arg1){
                 ((ActorLocal_JujuHitbox *)&sp30->local)->unk4++;
                 func_803892A8(((ActorLocal_JujuHitbox *)&sp30->local)->unk8);
                 func_80353580(arg1);
-                func_802C3F04(func_802C4140, 0x58, *(s32 *)&sp20[0], *(s32 *)&sp20[1], *(s32 *)&sp20[2]);
+                func_802C3F04((GenMethod_4)func_802C4140, 0x58, *(s32 *)&sp20[0], *(s32 *)&sp20[1], *(s32 *)&sp20[2]);
             }
         }
     }
@@ -94,7 +94,7 @@ void func_80388D60(Actor *this){
     this->state = 3;
 }
 
-Actor*  func_80388DC0(ActorMarker *this, Gfx **dl, Mtx**mPtr, u32 arg3){
+Actor*  func_80388DC0(ActorMarker *this, Gfx **dl, Mtx**mPtr, Vtx **arg3){
     return marker_getActor(this);
 }
 

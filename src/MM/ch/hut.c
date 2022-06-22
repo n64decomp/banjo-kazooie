@@ -49,7 +49,7 @@ Actor *chhut_draw(ActorMarker *this, Gfx **arg1, Mtx **arg2, Vtx **arg3){
     this->propPtr->unk8_3 = temp_a2;
     func_8033A45C(1, temp_a1, temp_a2);
 
-    func_80325888(this, arg1, arg2, arg3);
+    return func_80325888(this, arg1, arg2, arg3);
 }
 
 void func_803869EC(ActorMarker *this){
@@ -92,7 +92,7 @@ void    chhut_update(Actor *this){
                 func_8030E484(SFX_5B_HEAVY_STUFF_FALLING);
                 func_80328A84(this, 1);
                 actor_playAnimationOnce(this);
-                func_802C3C88(func_803869EC, this->marker);
+                func_802C3C88((GenMethod_1)func_803869EC, (s32)this->marker);
                 func_802C8F70(this->yaw);
                 if(D_8037DCB0 < 5){
                     func_802C3F04(func_802C4218, D_803898D8[D_8037DCB0], *(s32*)(&sp3C[0]),*(s32*)(&sp3C[1]),*(s32*)(&sp3C[2]));
