@@ -81,8 +81,8 @@ void func_80390278(Actor *this){
     int i;
     for(i = 0; i < 4; i++){
         if(randf() < 0.3){
-            func_8034A174(this->marker->unk44, i + 5, &sp34);
-            func_80390130(&sp34, 1, ASSET_718_SPRITE_SPARKLE_WHITE_2);
+            func_8034A174(this->marker->unk44, i + 5, sp34);
+            func_80390130(sp34, 1, ASSET_718_SPRITE_SPARKLE_WHITE_2);
         }
     }
 }
@@ -249,15 +249,15 @@ void func_8039049C(Actor *this){
             if(actor_animationIsAt(this, 0.5f)){
                 if(--local->unk28 <= 0){
                 func_803903C4(this);
-                func_8030E8B4(0x7fff4135, &this->position, 0x3e802710);
-                func_80324D54(0.1f, SFX_C1_BUZZBOMB_ATTACK, 0.85f, 32000, &this->position, 5000.0f, 12000.0f);
+                func_8030E8B4(0x7fff4135, this->position, 0x3e802710);
+                func_80324D54(0.1f, SFX_C1_BUZZBOMB_ATTACK, 0.85f, 32000, this->position, 5000.0f, 12000.0f);
                 if((u8)this->unk44_31){
                     func_8030E394(this->unk44_31);
                     func_8030DA44(this->unk44_31);
                     this->unk44_31 = 0;
                 }
                 func_80324D2C(0.0f, COMUSIC_8C_JINJONATOR_POWERUP);
-                func_8034A174(this->marker->unk44, 0x1f, &this->position);
+                func_8034A174(this->marker->unk44, 0x1f, this->position);
                 this->velocity[0] = (this->position[0] - this->unk1C[0]) / sp58;
                 this->velocity[1] = (this->position[1] - this->unk1C[1]) / sp58;
                 this->velocity[2] = (this->position[2] - this->unk1C[2]) / sp58;
@@ -265,25 +265,25 @@ void func_8039049C(Actor *this){
                 
             }//L80390B60
             else{
-                func_8034A174(this->marker->unk44, 0x1f, &this->unk1C);
+                func_8034A174(this->marker->unk44, 0x1f, this->unk1C);
             }
             break;
         case 7: //80390B78
             sp50 = local->unk24*0.11 + 1.0;
             func_80390278(this);
-            func_8038C0DC(&local->unk8);
+            func_8038C0DC(local->unk8);
             local->unk8[1] += 100.0f;
-            func_80387470(this, &local->unk8, sp50*2400.0f, sp50*2400.0f*4.2, 170.0f, sp50*2500.0f, 0.0f);
+            func_80387470(this, local->unk8, sp50*2400.0f, sp50*2400.0f*4.2, 170.0f, sp50*2500.0f, 0.0f);
             break;
         case 8: //80390C48
             if(actor_animationIsAt(this, 0.16f) || actor_animationIsAt(this, 0.47f))
                 func_8030E624(0x7ffb5802);
             
             if(actor_animationIsAt(this, 0.999f)){
-                func_8034A174(this->marker->unk44, 0x1f, &this->position);
+                func_8034A174(this->marker->unk44, 0x1f, this->position);
                 func_803903C4(this);
-                func_8030E8B4(0x7fff4135, &this->position, 0x3E802710);
-                func_80324D54(0.1f, SFX_C1_BUZZBOMB_ATTACK, 0.85f, 32000, &this->position, 5000.0f, 12000.0f);
+                func_8030E8B4(0x7fff4135, this->position, 0x3E802710);
+                func_80324D54(0.1f, SFX_C1_BUZZBOMB_ATTACK, 0.85f, 32000, this->position, 5000.0f, 12000.0f);
                 this->velocity[2] = 0.0f;
                 this->velocity[1] = 0.0f;
                 this->velocity[0] = 0.0f;
@@ -331,7 +331,7 @@ void func_8039049C(Actor *this){
             break;
         case 11: //80390EF8
             if(actor_animationIsAt(this, 0.999f)){
-                func_8034A174(this->marker->unk44, 0x1f, &this->position);
+                func_8034A174(this->marker->unk44, 0x1f, this->position);
                 func_8030E624(0x7fff417b);
                 func_8030E624(0x7fff4147);
                 animctrl_setSmoothTransition(this->animctrl, 0);
@@ -346,9 +346,9 @@ void func_8039049C(Actor *this){
         case 12: //80390F7C
             sp48 = local->unk24*0.11 + 1.0;
             func_80390278(this);
-            func_8038C0DC(&local->unk8);
+            func_8038C0DC(local->unk8);
             local->unk8[1] += 100.0f; 
-            func_80387470(this, &local->unk8, sp48*2400.0f, sp48*2400.0f*4.2, 170.0f, sp48*2500.0f, 0.0f);
+            func_80387470(this, local->unk8, sp48*2400.0f, sp48*2400.0f*4.2, 170.0f, sp48*2500.0f, 0.0f);
             break;
     }//L80391044
     func_8034A174(this->marker->unk44, 0x1f, D_80392920);

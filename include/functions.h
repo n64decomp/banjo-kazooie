@@ -472,6 +472,7 @@ s32  func_80329784(Actor *);
 void func_80329878(Actor *, f32);
 struct5Bs *func_80329934(void);
 Actor *func_8032A7AC(Actor *);
+Prop *func_8032F528(void);
 ActorMarker *func_8032FBE4(f32 *pos, MarkerDrawFunc arg1, int arg2, enum asset_e model_id);
 
 void func_803300D8(ActorMarker *, void (*)(Actor *));

@@ -7,12 +7,12 @@ extern void func_8025727C(f32, f32, f32, f32, f32, f32, f32*, f32*);
 extern void func_8028F4B8(f32[3], f32, f32);
 extern void func_80320ED8(ActorMarker *, f32, s32);
 
-void func_80386570(ActorMarker *arg0, Gfx **arg1, Mtx **arg2, Vtx **arg3);
+Actor *func_80386570(ActorMarker *arg0, Gfx **arg1, Mtx **arg2, Vtx **arg3);
 void func_80387110(ActorMarker *, f32[3], f32, s32);
 void func_8038856C(Actor *actor, f32 *arg1);
 void func_8038BCF0(Actor *this);
 void func_802C8F70(f32);
-s32 func_803297C8(Actor*, s32*);
+s32 func_803297C8(Actor*, f32*);
 Actor *func_8032813C();
 void func_803900DC(ActorMarker *, f32 *, f32, f32);
 extern Actor* func_80329958(ActorMarker *this, s32 arg1);
@@ -245,7 +245,7 @@ extern f32 D_803928C8[3];
 
 
 /* .code */
-void func_80386570(ActorMarker *arg0, Gfx **arg1, Mtx **arg2, Vtx **arg3) {
+Actor *func_80386570(ActorMarker *arg0, Gfx **arg1, Mtx **arg2, Vtx **arg3) {
     Actor *temp_v0;
     ActorLocal_fight_180 *localActor;
 
@@ -257,7 +257,7 @@ void func_80386570(ActorMarker *arg0, Gfx **arg1, Mtx **arg2, Vtx **arg3) {
     if (localActor->unk0 == 1) {
         func_8033A25C(0);
     }
-    func_80325888(arg0, arg1, arg2, arg3);
+    return func_80325888(arg0, arg1, arg2, arg3);
 }
 
 void func_80386600(ActorMarker *arg0, s32 arg1) {
@@ -282,7 +282,7 @@ void func_80386628(ActorMarker *arg0, s32 arg1) {
 
 void func_8034DF30(s32, s32, s32, f32);
 
-void func_80386654(f32 arg0, f32 (*arg1)[4], f32 (*arg2)[4]) {
+void func_80386654(f32 arg0, f32 arg1[4], f32 arg2[4]) {
     s32 temp_v0;
 
     temp_v0 = func_8034C528(0x190);
@@ -296,7 +296,7 @@ void func_80386698(f32 arg0) {
 
     temp_v0 = func_8034C528(0x19A);
     if (temp_v0 != 0) {
-        func_8034DDF0(temp_v0, &D_80391524, &D_80391530, arg0, 1);
+        func_8034DDF0(temp_v0, D_80391524, D_80391530, arg0, 1);
     }
 }
 
@@ -313,19 +313,19 @@ void func_803866E4(f32 position[3], enum asset_e model_id, s32 n) {
     particleEmitter_emitN(temp_s0, n);
 }
 
-void func_8038679C(f32 (*arg0)[3], s32 arg1, f32 (*arg2)[4]) {
+void func_8038679C(f32 arg0[3], s32 arg1, f32 arg2[4]) {
     ParticleEmitter *temp_s0;
     ParticleEmitter *temp_v0;
 
     temp_v0 = partEmitList_pushNew(arg1);
     temp_s0 = temp_v0;
     particleEmitter_setSprite(temp_v0, ASSET_70E_SPRITE_SMOKE_2);
-    func_802EFFA8(temp_s0, &D_803915AC);
+    func_802EFFA8(temp_s0, D_803915AC);
     particleEmitter_setStartingFrameRange(temp_s0, 0, 7);
     particleEmitter_setPosition(temp_s0, arg0);
     particleEmitter_setPositionAndVelocityRanges(temp_s0, &D_803915B8);
-    func_802EFB70(temp_s0, (*arg2)[0], (*arg2)[1]);
-    func_802EFB84(temp_s0, (*arg2)[2], (*arg2)[3]);
+    func_802EFB70(temp_s0, arg2[0], arg2[1]);
+    func_802EFB84(temp_s0, arg2[2], arg2[3]);
     particleEmitter_setSpawnIntervalRange(temp_s0, 0.0f, 0.01f);
     func_802EFEC0(temp_s0, 2.8f, 3.2f);
     func_802EFA5C(temp_s0, 0.3f, 0.4f);
@@ -333,7 +333,7 @@ void func_8038679C(f32 (*arg0)[3], s32 arg1, f32 (*arg2)[4]) {
     particleEmitter_emitN(temp_s0, arg1);
 }
 
-void func_803868A0(f32 (*arg0)[3], s32 (*arg1)[3]) {
+void func_803868A0(f32 arg0[3], s32 arg1[3]) {
     ParticleEmitter * temp_s0;
 
     temp_s0 = partEmitList_pushNew(1);
@@ -361,39 +361,39 @@ void func_80386934(f32 position[3], enum asset_e sprite_id) {
 
 void func_803869BC(Actor *this) {
     s32 sp3C;
-    TUPLE(s32, unk) sp30;
+    s32 sp30[3];
     s32 sp2C;
-    vec3f sp20;
+    f32 sp20[3];
     u32 temp_t3;
 
     if (this->marker->unk14_21) {
         sp3C = func_8023DB5C();
         temp_t3 = (u32) this->state;
         if ((temp_t3 == 6) || (temp_t3 == 7)) {
-            sp30.unk_x = D_803916CC[0];
-            sp30.unk_y = D_803916CC[1];
-            sp30.unk_z = D_803916CC[2];
+            sp30[0] = D_803916CC[0];
+            sp30[1] = D_803916CC[1];
+            sp30[2] = D_803916CC[2];
             sp2C = 0x715;
         } else if ((temp_t3 == 8) || (temp_t3 == 9)) {
-            sp30.unk_x = D_803916D8[0];
-            sp30.unk_y = D_803916D8[1];
-            sp30.unk_z = D_803916D8[2];
+            sp30[0] = D_803916D8[0];
+            sp30[1] = D_803916D8[1];
+            sp30[2] = D_803916D8[2];
             sp2C = 0x000;
         } else {
-            sp30.unk_x = D_803916C0[0];
-            sp30.unk_y = D_803916C0[1];
-            sp30.unk_z = D_803916C0[2];
+            sp30[0] = D_803916C0[0];
+            sp30[1] = D_803916C0[1];
+            sp30[2] = D_803916C0[2];
             sp2C = 0x713;
         }
-        func_8034A174(this->marker->unk44, 7, &sp20);
+        func_8034A174(this->marker->unk44, 7, sp20);
         if (((sp2C == 0x715) && ((sp3C & 1) != 0)) || ((sp2C == 0x713) && ((sp3C & 3) == 0))) {
-            func_803868A0(&sp20, &sp30);
+            func_803868A0(sp20, sp30);
         }
         if (sp2C == 0) {
-            func_8038856C(this, &D_803916E4);
+            func_8038856C(this, D_803916E4);
         }
         if ((sp2C != 0) && ((sp2C == 0x715) || (sp2C = sp2C, (randf() < 0.62)))) {
-            func_80386934(&sp20, sp2C);
+            func_80386934(sp20, sp2C);
         }
     }
 }
@@ -423,7 +423,7 @@ bool func_80386C68(Actor *this, f32 arg1) {
     f32 sp2C[3];
 
     func_8039129C(&sp2C);
-    this->yaw_moving = (f32) func_803297C8(this, &sp2C);
+    this->yaw_moving = (f32) func_803297C8(this, sp2C);
     func_80328FB0(this, arg1);
 
     if ((this->yaw_moving < ( this->yaw + arg1)) && (( this->yaw - arg1) < this->yaw_moving)) {
@@ -445,7 +445,7 @@ void func_80386CF8(Actor *actor) {
     sp34[1] = 0.0f;
     sp34[0] = 0.0f;
     sp34[2] = 1000.0f;
-    ml_vec3f_yaw_rotate_copy(&sp34, &sp34, actor->yaw);
+    ml_vec3f_yaw_rotate_copy(sp34, sp34, actor->yaw);
     sp4C[0] = sp28[0] + sp34[0];
     sp4C[1] = sp28[1] + sp34[1];
     sp4C[2] = sp28[2] + sp34[2];
@@ -459,8 +459,8 @@ void func_80386DE4(ActorMarker *arg0) {
     Actor *actor;
 
     actor = marker_getActor(arg0);
-    func_802C8F70(func_803297C8(actor, &D_803916F4));
-    func_802C937C(0x14, &actor->position_x);
+    func_802C8F70(func_803297C8(actor, D_803916F4));
+    func_802C937C(0x14, actor->position);
 }
 
 void func_80386E34(void) {
@@ -472,7 +472,7 @@ void func_80386E5C(s32 arg0) {
     s16 *temp_v1;
     Actor *temp_v0;
 
-    temp_v0 = func_8032813C(0x39F, &D_80391700, D_8039170C);
+    temp_v0 = func_8032813C(0x39F, D_80391700, D_8039170C);
     temp_v0->alpha_124_19 = 0;
     temp_v0->unk38_31 = 6;
     D_803927A8 = temp_v0->marker;
@@ -481,9 +481,9 @@ void func_80386E5C(s32 arg0) {
 void func_80386EC0(s32 arg0) {
     ActorMarker *marker;
 
-    marker = func_8032813C(0x38A, &D_80392758, 0)->marker;
-    func_8030E878(SFX_147_GRUNTY_SPELL_ATTACK_2, randf2(0.95f, 1.05f), 32000, &D_80392758, 5000.0f, 12000.0f);
-    func_803900DC(marker, &D_80392758, D_80392768[1], D_80392768[2]);
+    marker = func_8032813C(0x38A, D_80392758, 0)->marker;
+    func_8030E878(SFX_147_GRUNTY_SPELL_ATTACK_2, randf2(0.95f, 1.05f), 32000, D_80392758, 5000.0f, 12000.0f);
+    func_803900DC(marker, D_80392758, D_80392768[1], D_80392768[2]);
 }
 
 void func_80386F5C(ActorMarker * arg0, f32 arg1[3], f32 arg2, f32 arg3) {
@@ -512,13 +512,13 @@ void func_80387074(s32 arg0) {
     func_8038FB84(marker, D_80392758, D_80392768, D_80392778);
 }
 
-void func_80387110(ActorMarker *this, f32 arg1[3], f32 arg2, s32 arg3) {
+void func_80387110(ActorMarker *marker, f32 arg1[3], f32 arg2, s32 arg3) {
     Actor *temp_v0;
     ActorLocal_fight_180 *local;
     f32 sp2C[3];
     s32 i;
     
-    temp_v0 = (Actor*) marker_getActor(this);
+    temp_v0 = (Actor*) marker_getActor(marker);
     local = (ActorLocal_fight_180 *)&temp_v0->local;
     D_80392758[0] = arg1[0];
     D_80392758[1] = arg1[1];
@@ -545,10 +545,10 @@ void func_80387110(ActorMarker *this, f32 arg1[3], f32 arg2, s32 arg3) {
         D_80392768[i] = (sp2C[i] - arg1[i]) / arg2 - (D_80392778[i] * arg2 / 2);
     }
     if (arg3 == 0) {
-        func_802C3C88(&func_80386FD8, this);
+        func_802C3C88((GenMethod_1)func_80386FD8, reinterpret_cast(s32, marker));
     }
     else{
-        func_802C3C88(func_80387074, this);
+        func_802C3C88((GenMethod_1)func_80387074, reinterpret_cast(s32, marker));
     }
 }
 
@@ -564,7 +564,7 @@ s32 func_80387340(Actor *this, f32 arg1) {
 
     if (actor_animationIsAt(this, 0.50f) != 0) {
         if (this->marker->unk14_21) {
-            func_8034A174(this->marker->unk44, 5, &sp24);
+            func_8034A174(this->marker->unk44, 5, sp24);
         } else {
             sp24[0] = this->position_x;
             sp24[1] = this->position_y;
@@ -674,7 +674,7 @@ void func_80387728(ActorMarker *this, u32 arg1)
             timed_setCameraToNode(0.0f, 0);
             func_80324E88(2.0f);
             timed_setCameraToNode(2.0f, 1);
-            timedFunc_set_1(2.0f, func_8038B780, actor->marker);
+            timedFunc_set_1(2.0f, (TFQM1)func_8038B780, reinterpret_cast(s32, actor->marker));
             return;
 
         case 1:
@@ -740,7 +740,7 @@ void func_80387B00(Actor *this) {
     
     local = (ActorLocal_fight_180 *) this->local;
 
-    func_80386B54(&sp28, 0.80f);
+    func_80386B54(sp28, 0.80f);
     this->unk1C_x = sp28[0];
     this->unk1C_y = sp28[1];
     this->unk1C_z = sp28[2];
@@ -838,11 +838,12 @@ void func_80387E1C(Actor *this, f32 arg1[3]) {
 
 
 void func_80387F70(Actor *actor, f32 *arg1, f32 arg2) {
-    ActorLocal_fight_180 *temp_v0 = &actor->local;
+    ActorLocal_fight_180 *temp_v0;
     f32 vec[3];
     f32 playerPos[3];
 
-    player_getPosition(&playerPos);
+    temp_v0 = (ActorLocal_fight_180 *) &actor->local;
+    player_getPosition(playerPos);
     vec[0] = D_803927D0[temp_v0->unk5][0] - playerPos[0];
     vec[1] = D_803927D0[temp_v0->unk5][1] - playerPos[1];
     vec[2] = D_803927D0[temp_v0->unk5][2] - playerPos[2];
@@ -856,21 +857,21 @@ void func_803880A0(Actor *actor, f32 arg1) {
     actor->velocity[2] = arg1;
     actor->velocity[1] = 0.0f;
     actor->velocity[0] = 0.0f;
-    ml_vec3f_yaw_rotate_copy(&actor->velocity, &actor->velocity, actor->yaw);
+    ml_vec3f_yaw_rotate_copy(actor->velocity, actor->velocity, actor->yaw);
 }
 
-void func_803880E0(ActorMarker *arg0, s32 arg1, s32 arg2) {
-    func_80388184(marker_getActor(arg0), 0xC);
+void func_803880E0(ActorMarker *marker, enum asset_e text_id, s32 arg2) {
+    func_80388184(marker_getActor(marker), 0xC);
 }
 
-void func_80388110(ActorMarker *arg0, s32 arg1, s32 arg2) {
+void func_80388110(ActorMarker *marker, enum asset_e text_id, s32 arg2) {
     Actor *actor;
     ActorLocal_fight_180 *actorLocal;
 
-    actor = marker_getActor(arg0);
-    actorLocal = &actor->local;
+    actor = marker_getActor(marker);
+    actorLocal = (ActorLocal_fight_180 *)&actor->local;
     func_802BAE4C();
-    func_80311480(randi2(0, 5) + 0x1101, 4, 0, actor->marker, func_803880E0, 0);
+    func_80311480(randi2(0, 5) + 0x1101, 4, NULL, actor->marker, func_803880E0, NULL);
     actorLocal->unk9 = (u8)1;
 }
 
@@ -940,7 +941,7 @@ void func_80388184(Actor *this, s32 next_state) {
     case 13:
         func_8030E878(SFX_131_GRUNTY_WEEEGH, randf2(0.95f, 1.05f), 32000, this->position, 5000.0f, 12000.0f);
         if ((s32) local->unk1 >= 4) {
-            func_802C3C88(func_80386DE4, this->marker);
+            func_802C3C88((GenMethod_1)func_80386DE4, reinterpret_cast(s32, this->marker));
             func_80388110(this->marker, 0, 0);
         }
         break;
@@ -970,7 +971,7 @@ void func_803885DC(Actor *this) {
         func_8030E2C4(this->unk44_31);
     }
     if (((sp24 & 7) == 0) && (randf() < 0.5)) {
-        func_8038856C(this, &D_80391728);
+        func_8038856C(this, D_80391728);
     }
     if ((actor_animationIsAt(this, 0.30f) != 0) || (actor_animationIsAt(this, 0.78f) != 0)) {
         func_8030E8B4(0x7FF8681E, this->position, 0x271007D0);
@@ -1033,7 +1034,7 @@ void func_80388758(ActorMarker *marker) {
         func_80387ACC(this, 60.0f * sp54);
         if (func_80386BEC(this, 240.0f * sp54)) {
             func_80388184(this, 5);
-            func_80386654(1.0f, &D_80391380, &D_80391390);
+            func_80386654(1.0f, D_80391380, D_80391390);
         }
         break;
     case 5:
@@ -1204,9 +1205,8 @@ void func_803891E4(Actor *this, s32 arg1){
     }
 }
 
-void func_80389358(s32 arg0, s32 arg1, s32 arg2) {
-    s32 *arg0ptr = &arg0; // Does not match without the pointer
-    func_802C3C88(&func_80386E5C, *arg0ptr);
+void func_80389358(ActorMarker *marker, enum asset_e text_id, s32 arg2) {
+    func_802C3C88((GenMethod_1)func_80386E5C, reinterpret_cast(s32, marker));
 }
 
 void func_8038938C(ActorMarker *marker) {
@@ -1340,13 +1340,11 @@ void func_803898D0(ActorMarker *marker) {
     D_803927C5 = (u8)1;
 }
 
-void func_80389918(s32 arg0) {
-    s32 *arg0ptr = &arg0; // Does not match without the pointer
-    func_802C3C88(&func_803898D0, *arg0ptr);
+void func_80389918(ActorMarker *arg0) {
+    func_802C3C88((GenMethod_1)func_803898D0, reinterpret_cast(s32, arg0));
 }
 
-
-void func_80389944(ActorMarker *marker, s32 arg1, s32 arg2) {
+void func_80389944(ActorMarker *marker, enum asset_e text_id, s32 arg2) {
     Actor *actor;
 
     actor = marker_getActor(marker);
@@ -1390,9 +1388,8 @@ void func_8038998C(Actor *this, s32 arg1) {
     }
 }
 
-void func_80389B44(s32 arg0) {
-    s32 *arg0ptr = &arg0; // Does not match without the pointer
-    func_802C3C88(&func_80386DE4, *arg0ptr);
+void func_80389B44(ActorMarker *marker) {
+    func_802C3C88((GenMethod_1)func_80386DE4, reinterpret_cast(s32, marker));
 }
 
 void func_80389B70(ActorMarker *marker) {
@@ -1430,7 +1427,7 @@ void func_80389B70(ActorMarker *marker) {
             func_8038998C(this, 0x15);
             if (local->unkB == 0) {
                 local->unkB = 1;
-                timedFunc_set_1(1.2f, func_80389B44, (s32) this->marker);
+                timedFunc_set_1(1.2f, (TFQM1)func_80389B44, (s32) this->marker);
             }
         }
         break;
@@ -1475,7 +1472,7 @@ void func_80389B70(ActorMarker *marker) {
         if ((0.1 < sp34) && (sp34 < 0.8)) {
             func_8034A174(this->marker->unk44, 8, D_803928B8);
             func_80386934(D_803928B8, 0x716);
-            func_8034A174(this->marker->unk44, 9, &D_803928B8);
+            func_8034A174(this->marker->unk44, 9, D_803928B8);
             func_80386934(D_803928B8, 0x716);
         }
         if (actor_animationIsAt(this, 0.38f) ) {
@@ -2055,7 +2052,7 @@ void func_8038AFD8(ActorMarker *marker) {
 }
 #endif
 
-void func_8038B730(ActorMarker *marker, s32 arg1, s32 arg2) {
+void func_8038B730(ActorMarker *marker, enum asset_e text_id, s32 arg2) {
     Actor *sp1C;
 
     sp1C = marker_getActor(marker);
@@ -2072,11 +2069,11 @@ void func_8038B780(ActorMarker *marker) {
     if (!func_8031FF1C(0xCF)) {
         sp24 = sp24;
         func_80320004(0xCF, 1);
-        func_80311480(0x10E7, 0x2A, &sp24->position_x, sp24->marker, &func_8038B730, 0);
+        func_80311480(0x10E7, 0x2A, sp24->position, sp24->marker, func_8038B730, NULL);
         return;
     }
     sp24 = sp24;
-    func_80311480(randi2(0, 5) + 0x10E8, 0x2B, &sp24->position_x, sp24->marker, &func_8038B730, 0);
+    func_80311480(randi2(0, 5) + 0x10E8, 0x2B, sp24->position, sp24->marker, func_8038B730, NULL);
 }
 
 void func_8038B82C(ActorMarker *marker) { return; }
@@ -2166,7 +2163,7 @@ void func_8038B9AC(ActorMarker *marker, ActorMarker *other_marker) {
             local->unk1++;
             func_8038998C(this, 0x19);
             if (local->unk1 == 4) {
-                func_802C3C88(func_80386DE4, this->marker);
+                func_802C3C88((GenMethod_1)func_80386DE4, reinterpret_cast(s32, this->marker));
             }
         }
         break;

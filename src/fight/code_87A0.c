@@ -3,12 +3,12 @@
 #include "variables.h"
 
 extern void func_80324CFC(f32, s32, s32);
-extern void func_80386654(f32 arg0, f32 (*arg1)[4], f32 (*arg2)[4]);
+extern void func_80386654(f32 arg0, f32 arg1[4], f32 arg2[4]);
 extern void func_8038E03C(f32*, u32);
-extern Actor *func_80325CAC(ActorMarker*, Gfx**, Mtx**, s32);
-int func_80320C94(f32 (*)[3], f32(*)[3], f32, s32, s32, u32);
+extern Actor *func_80325CAC(ActorMarker*, Gfx**, Mtx**, Vtx **);
+bool func_80320C94(f32 [3], f32[3], f32, f32[3], s32, u32);
 f32 func_8033229C(ActorMarker *);
-void func_8038CED8(f32 (*)[3], s32, f32, f32);
+void func_8038CED8(f32 [3], s32, f32, f32);
 void func_8038C5F0(Actor *, s32, s32, f32);
 
 typedef struct {
@@ -104,52 +104,52 @@ void func_8038EB90(ActorMarker *arg0, f32 *arg1) {
     temp_v0->position_y = temp_v0->position_y + 210.0f;
 }
 
-void func_8038EBE0(f32 (*arg0)[3], u32 arg1, enum asset_e arg2, f32 (*arg3)[6], f32 (*arg4)[6], f32 (*arg5)[6], f32 (*arg6)[4], f32 (*arg7)[4], f32 (*arg8)[2]) {
+void func_8038EBE0(f32 arg0[3], u32 arg1, enum asset_e arg2, f32 arg3[6], f32 arg4[6], f32 arg5[6], f32 arg6[4], f32 arg7[4], f32 arg8[2]) {
     ParticleEmitter *temp_v0 = partEmitList_pushNew(arg1);
 
     particleEmitter_setSprite(temp_v0, arg2);
     particleEmitter_setStartingFrameRange(temp_v0, 1, 6);
     particleEmitter_setPosition(temp_v0, arg0);
-    particleEmitter_setParticleSpawnPositionRange(temp_v0, (*arg3)[0], (*arg3)[1], (*arg3)[2], (*arg3)[3], (*arg3)[4], (*arg3)[5]);
-    particleEmitter_setParticleAccelerationRange(temp_v0, (*arg4)[0], (*arg4)[1], (*arg4)[2], (*arg4)[3], (*arg4)[4], (*arg4)[5]);
-    particleEmitter_setParticleVelocityRange(temp_v0, (*arg5)[0], (*arg5)[1], (*arg5)[2], (*arg5)[3], (*arg5)[4], (*arg5)[5]);
+    particleEmitter_setParticleSpawnPositionRange(temp_v0, arg3[0], arg3[1], arg3[2], arg3[3], arg3[4], arg3[5]);
+    particleEmitter_setParticleAccelerationRange(temp_v0, arg4[0], arg4[1], arg4[2], arg4[3], arg4[4], arg4[5]);
+    particleEmitter_setParticleVelocityRange(temp_v0, arg5[0], arg5[1], arg5[2], arg5[3], arg5[4], arg5[5]);
     func_802EFE24(temp_v0, -300.0f, -300.0f, -300.0f, 300.0f, 300.0f, 300.0f);
-    func_802EFB70(temp_v0, (*arg6)[0], (*arg6)[1]);
-    func_802EFB84(temp_v0, (*arg6)[2], (*arg6)[3]);
+    func_802EFB70(temp_v0, arg6[0], arg6[1]);
+    func_802EFB84(temp_v0, arg6[2], arg6[3]);
     func_802EF9F8(temp_v0, 0.5f);
     func_802EFA18(temp_v0, 3);
-    particleEmitter_setSpawnIntervalRange(temp_v0, (*arg7)[0], (*arg7)[1]);
-    func_802EFEC0(temp_v0, (*arg7)[2], (*arg7)[3]);
-    func_802EFA5C(temp_v0, (*arg8)[0], (*arg8)[1]);
+    particleEmitter_setSpawnIntervalRange(temp_v0, arg7[0], arg7[1]);
+    func_802EFEC0(temp_v0, arg7[2], arg7[3]);
+    func_802EFA5C(temp_v0, arg8[0], arg8[1]);
     func_802EFA78(temp_v0, 1);
     func_802EFA70(temp_v0, 4);
     particleEmitter_emitN(temp_v0, arg1);
 }
 
-void func_8038ED9C(f32 (*arg0)[3], u32 arg1, s32 arg2, s32 (*arg3)[2], f32 (*arg4)[6], f32 (*arg5)[4], f32 (*arg6)[4], f32 (*arg7)[2]) {
+void func_8038ED9C(f32 arg0[3], u32 arg1, s32 arg2, s32 arg3[2], f32 arg4[6], f32 arg5[4], f32 arg6[4], f32 arg7[2]) {
     ParticleEmitter *temp_v0 = partEmitList_pushNew(arg2);
 
     particleEmitter_setSprite(temp_v0, arg1);
-    particleEmitter_setStartingFrameRange(temp_v0, (*arg3)[0], (*arg3)[1]);
+    particleEmitter_setStartingFrameRange(temp_v0, arg3[0], arg3[1]);
     particleEmitter_setParticleFramerateRange(temp_v0, 8.0f, 8.0f);
     particleEmitter_setPosition(temp_v0, arg0);
-    particleEmitter_setParticleSpawnPositionRange(temp_v0, (*arg4)[0], (*arg4)[1], (*arg4)[2], (*arg4)[3], (*arg4)[4], (*arg4)[5]);
+    particleEmitter_setParticleSpawnPositionRange(temp_v0, arg4[0], arg4[1], arg4[2], arg4[3], arg4[4], arg4[5]);
     particleEmitter_setParticleVelocityRange(temp_v0, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
-    func_802EFB70(temp_v0, (*arg5)[0], (*arg5)[1]);
-    func_802EFB84(temp_v0, (*arg5)[2], (*arg5)[3]);
-    particleEmitter_setSpawnIntervalRange(temp_v0, (*arg6)[0], (*arg6)[1]);
-    func_802EFEC0(temp_v0, (*arg6)[2], (*arg6)[3]);
-    func_802EFA5C(temp_v0, (*arg7)[0], (*arg7)[1]);
+    func_802EFB70(temp_v0, arg5[0], arg5[1]);
+    func_802EFB84(temp_v0, arg5[2], arg5[3]);
+    particleEmitter_setSpawnIntervalRange(temp_v0, arg6[0], arg6[1]);
+    func_802EFEC0(temp_v0, arg6[2], arg6[3]);
+    func_802EFA5C(temp_v0, arg7[0], arg7[1]);
     func_802EFA70(temp_v0, 0x10);
     func_802EFA78(temp_v0, 1);
     particleEmitter_emitN(temp_v0, arg2);
 }
 
-void func_8038EEFC(f32 (*arg0)[3], u32 arg1, f32 *arg2) {
+void func_8038EEFC(f32 arg0[3], u32 arg1, f32 *arg2) {
     ParticleEmitter *temp_v0 = partEmitList_pushNew(arg1);
 
     particleEmitter_setSprite(temp_v0, ASSET_70E_SPRITE_SMOKE_2);
-    func_802EFFA8(temp_v0, &D_80391B48);
+    func_802EFFA8(temp_v0, D_80391B48);
     func_802EF9E4(temp_v0, 0xEB);
     particleEmitter_setStartingFrameRange(temp_v0, 0, 7);
     particleEmitter_setPosition(temp_v0, arg0);
@@ -165,11 +165,11 @@ void func_8038EEFC(f32 (*arg0)[3], u32 arg1, f32 *arg2) {
 }
 
 void func_8038F01C(void) {
-    func_80386654(1.0f, &D_80391B94, &D_80391B84);
+    func_80386654(1.0f, D_80391B94, D_80391B84);
 }
 
 void func_8038F050(void) {
-    func_80386654(1.0f, &D_80391B84, &D_80391B94);
+    func_80386654(1.0f, D_80391B84, D_80391B94);
 }
 
 void func_8038F084(ActorMarker *marker){
@@ -183,38 +183,38 @@ void func_8038F084(ActorMarker *marker){
     D_803928E8[1] += 120.0f;
 
     if(actor->state != 2){//L8038F39C
-        func_8030E8B4(0x7fff4148, &actor->position, 0x0dac03e8);
+        func_8030E8B4(0x7fff4148, actor->position, 0x0dac03e8);
         timedFunc_set_0(0.0f, func_8038F01C);
         timedFunc_set_0(0.3f, func_8038F050);
         actor->unk58_0 = 0;
         actor->scale *=  1.6;
         if(actor->marker->unk14_20 != 0x280){
-            func_8038EBE0(&actor->position, 4, ASSET_713_SPRITE_SPARKLE_YELLOW, 
-                &D_80391C0C, &D_80391C24, &D_80391C3C,
-                &D_80391C54, &D_80391C64, &D_80391C74
+            func_8038EBE0(actor->position, 4, ASSET_713_SPRITE_SPARKLE_YELLOW, 
+                D_80391C0C, D_80391C24, D_80391C3C,
+                D_80391C54, D_80391C64, D_80391C74
             );
-            func_8038EBE0(&actor->position, 4, ASSET_715_SPRITE_SPARKLE_RED, 
-                &D_80391C0C, &D_80391C24, &D_80391C3C,
-                &D_80391C54, &D_80391C64, &D_80391C74
+            func_8038EBE0(actor->position, 4, ASSET_715_SPRITE_SPARKLE_RED, 
+                D_80391C0C, D_80391C24, D_80391C3C,
+                D_80391C54, D_80391C64, D_80391C74
             );
-            func_8038EEFC(&actor->position, 3, &D_80391BFC);
-            func_8038ED9C(&D_803928E8, ASSET_4A0_SPRITE_EXPLOSION, 1, &D_80391BA4, &D_80391BE4, 
-                &D_80391BAC,  &D_80391BBC, &D_80391BDC
+            func_8038EEFC(actor->position, 3, D_80391BFC);
+            func_8038ED9C(D_803928E8, ASSET_4A0_SPRITE_EXPLOSION, 1, D_80391BA4, D_80391BE4, 
+                D_80391BAC,  D_80391BBC, D_80391BDC
             
             );
             D_803928E8[1] -= 50.0f;
-            func_8038ED9C(&D_803928E8, ASSET_6C1_SPRITE_SMOKE, 2, &D_80391BA4, &D_80391BE4, 
-                &D_80391BAC,  &D_80391BBC, &D_80391BDC
+            func_8038ED9C(D_803928E8, ASSET_6C1_SPRITE_SMOKE, 2, D_80391BA4, D_80391BE4, 
+                D_80391BAC,  D_80391BBC, D_80391BDC
             
             );
         }
         else{//L8038F304
-            func_8038EBE0(&actor->position, 4, ASSET_713_SPRITE_SPARKLE_YELLOW, 
-                &D_80391C0C, &D_80391C24, &D_80391C3C,
-                &D_80391C54, &D_80391BCC, &D_80391C74
+            func_8038EBE0(actor->position, 4, ASSET_713_SPRITE_SPARKLE_YELLOW, 
+                D_80391C0C, D_80391C24, D_80391C3C,
+                D_80391C54, D_80391BCC, D_80391C74
             );
-            func_8038EEFC(&actor->position, 3, &D_80391BFC);
-            func_8038CED8(&actor->position, 0x558, 0.15f, 0.5f);
+            func_8038EEFC(actor->position, 3, D_80391BFC);
+            func_8038CED8(actor->position, 0x558, 0.15f, 0.5f);
             actor->position_y += 260.0f;
             func_8038C5F0(actor, 0x712, ASSET_6C3_SPRITE_SMOKE_GREEN, 1.6f);
         }
@@ -268,7 +268,7 @@ s32 func_8038F5BC(f32 *arg0, f32 arg1) {
     return 0;
 }
 
-void func_8038F5F8(s32 arg0) {
+void func_8038F5F8(Actor *arg0) {
     func_80324D2C(0.0f, COMUSIC_43_ENTER_LEVEL_GLITTER);
 }
 
@@ -287,7 +287,7 @@ void func_8038F620(Actor *this){
         if( this->marker->unk14_20 == 0x280){
             actor_collisionOff(this);
             func_803300D8(this->marker, func_8038F5F8);
-            func_80324CFC(0.0f, 0x43, 32000);
+            func_80324CFC(0.0f, COMUSIC_43_ENTER_LEVEL_GLITTER, 32000);
             timed_playSfx(0.0f, SFX_113_PAD_APPEARS, 1.0f, 32000);
             timed_playSfx(0.75f, 0x415, 1.0f, 32000);
             timed_playSfx(2.0f, 0x415, 1.0f, 32000);
@@ -296,16 +296,16 @@ void func_8038F620(Actor *this){
         }
         else{//L8038F738
             func_80324D54(0.26f, SFX_14F_FIREWORK_WHISTLING, 1.0f, 0x61A8,
-                &this->position, 1000.0f, 7500.0f
+                this->position, 1000.0f, 7500.0f
             );
 
             func_80324D54(0.4f, SFX_14E_SOFT_EXPLOSION, 1.0f, 0x61A8,
-                &this->position, 500.0f, 4500.0f
+                this->position, 500.0f, 4500.0f
             );
         }
     }//L8038F79C
     if(D_803928E5 && this->marker->unk14_20 == 0x280){
-        func_802BAD08(&this->position);
+        func_802BAD08(this->position);
     }//L8038F7D4
 
     switch(this->state){
@@ -320,15 +320,15 @@ void func_8038F620(Actor *this){
 
             switch(this->marker->unk14_20){
                 case 0x25C://L8038F8AC
-                    func_8038ED9C(&this->position, ASSET_4A0_SPRITE_EXPLOSION, 1, 
-                        &D_80391CEC, &D_80391D34, 
-                        &D_80391CF4, &D_80391D04, &D_80391D14
+                    func_8038ED9C(this->position, ASSET_4A0_SPRITE_EXPLOSION, 1, 
+                        D_80391CEC, D_80391D34, 
+                        D_80391CF4, D_80391D04, D_80391D14
                     );
                     break;
                 case 0x280://L8038F8C8
-                    func_8038ED9C(&this->position, ASSET_6C9_SPRITE_SMOKE_GREEN_BIG, 1, 
-                        &D_80391CEC, &D_80391D34, 
-                        &D_80391CF4, &D_80391D1C, &D_80391D2C
+                    func_8038ED9C(this->position, ASSET_6C9_SPRITE_SMOKE_GREEN_BIG, 1, 
+                        D_80391CEC, D_80391D34, 
+                        D_80391CF4, D_80391D1C, D_80391D2C
                     );
                     func_8023DB5C();
                     break;
@@ -350,7 +350,7 @@ void func_8038F620(Actor *this){
 
             if( this->position_y < -2500.0f 
                 || 5000.0f < this->position_y
-                || !func_8038F5BC(&this->position, 100000000.0f)
+                || !func_8038F5BC(this->position, 100000000.0f)
             ){
                 marker_despawn(this->marker);
             }
@@ -358,7 +358,7 @@ void func_8038F620(Actor *this){
                 if(this->position_y < 300.0f
                     && func_8038F5BC(this->position, 16000000.0f)
                 ){
-                    if(func_80320C94(D_803928F8, this->position, func_8033229C(this->marker), &D_80392908, 8, 0x40000000)){
+                    if(func_80320C94(D_803928F8, this->position, func_8033229C(this->marker), D_80392908, 8, 0x40000000)){
                         func_8038F084(this->marker);
                         return;
                     }

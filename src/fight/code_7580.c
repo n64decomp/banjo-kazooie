@@ -114,7 +114,7 @@ void func_8038DE98(ActorMarker *marker){
         func_80328B8C(actor, 2, 0.0f, 1);
         actor_playAnimationOnce(actor);
         animctrl_setDuration(actor->animctrl, actor->unk1C[0]);
-        func_802C3C88(func_8038D970, actor->marker);
+        func_802C3C88((GenMethod_1)func_8038D970, reinterpret_cast(s32, actor->marker));
         if(!func_8031FF1C(0xD1) && actor->unkF4_8 != 5){
             sp38 = 0x30 + actor->unkF4_8*2;
             sp34 = func_8038D268();

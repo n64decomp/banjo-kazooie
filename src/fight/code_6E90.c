@@ -35,11 +35,11 @@ void func_8038D280(ActorMarker *arg0) {
     sp1C->unk100 = temp_v0->marker;
 }
 
-void func_8038D2EC(f32 (*arg0)[3], s32 arg1) {
+void func_8038D2EC(f32 arg0[3], s32 arg1) {
     ParticleEmitter *temp_v0 = partEmitList_pushNew(arg1);
     
     particleEmitter_setSprite(temp_v0, ASSET_70E_SPRITE_SMOKE_2);
-    func_802EFFA8(temp_v0, &D_803919B4);
+    func_802EFFA8(temp_v0, D_803919B4);
     particleEmitter_setStartingFrameRange(temp_v0, 0, 7);
     particleEmitter_setPosition(temp_v0, arg0);
     particleEmitter_setParticleSpawnPositionRange(temp_v0, -90.0f, 0.0f, -80.0f, 80.0f, 60.0f, 80.0f);
@@ -68,7 +68,7 @@ void func_8038D428(ActorMarker *arg0, ActorMarker *arg1) {
             func_80328A84(temp_v0, 3);
             func_8038DE98(temp_v0->unk100);
             func_8038D3DC(temp_v0, 0x19A, -100.0f, 0.0f, 1.2f);
-            func_80324D54(1.2f, SFX_90_SWITCH_PRESS, 1.0f, 0x7D00, &temp_v0->position, 1000.0f, 2000.0f);
+            func_80324D54(1.2f, SFX_90_SWITCH_PRESS, 1.0f, 32000, temp_v0->position, 1000.0f, 2000.0f);
         }
     }
 }
@@ -126,9 +126,9 @@ void func_8038D568(Actor *this){
             this->velocity_y = 100.0f;
         
         func_802BB3DC(0, 8.0f, 0.92f);
-        func_802C3F04(func_802C4140, 0x3ad, *(s32*)&this->unk1C[0], *(s32*)&this->unk1C[1], *(s32*)&this->unk1C[2]);
-        func_8038D2EC(&this->unk1C, 0x10);
-        func_802C3C88(func_8038D280, this->marker);
+        func_802C3F04((GenMethod_4)func_802C4140, 0x3ad, *(s32*)&this->unk1C[0], *(s32*)&this->unk1C[1], *(s32*)&this->unk1C[2]);
+        func_8038D2EC(this->unk1C, 0x10);
+        func_802C3C88((GenMethod_1)func_8038D280, reinterpret_cast(s32, this->marker));
     }
     else{//L8038D774
         if(this->state == 1){
