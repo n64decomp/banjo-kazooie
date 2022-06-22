@@ -527,8 +527,8 @@ void func_803870DC(Actor *this) {
             temp_s7 = (s32)((f32)this->alpha_124_19 / 5.0) - 0xC;
             if (this->marker->unk14_21 && (temp_s7 > 0)) {
                 temp_s5 = partEmitList_pushNew(temp_s7);
-                func_8034A174(func_80329934(), 5, &sp90);
-                func_8034A174(func_80329934(), 6, &sp84);
+                func_8034A174(func_80329934(), 5, sp90);
+                func_8034A174(func_80329934(), 6, sp84);
                 particleEmitter_setSprite(temp_s5, ASSET_710_SPRITE_SPARKLE_PURPLE);
                 func_802EFB70(temp_s5, 0.13f, 0.18f);
                 func_802EFB84(temp_s5, 0.08f, 0.13f);
@@ -702,12 +702,12 @@ void func_80387730(Actor *this) {
                         particleEmitter_setPosition(temp_s5, sp60);
                         sp6C[0] = (s32) ((randf() * 60.0f) + 195.0f);
                         sp6C[1] = (s32) ((randf() * 130.0f) + 125.0f);
-                        func_802EFFA8(temp_s5, &sp6C);
+                        func_802EFFA8(temp_s5, sp6C);
                         particleEmitter_emitN(temp_s5, 1);
                     }
                 }
             }
-        } else if ((this->unkF4_8 >= 2) && (func_80256064(&spAC, this->position) < 290.0f)) {
+        } else if ((this->unkF4_8 >= 2) && (func_80256064(spAC, this->position) < 290.0f)) {
             func_80356520(0xB0);
         }
     }
@@ -766,7 +766,7 @@ void func_80387E94(s32 arg0)
 
     marker = reinterpret_cast(ActorMarker *, arg0);
     actor1   = marker_getActor(marker);
-    actorNew = func_8032813C(0x25A, &actor1->position, actor1->yaw);
+    actorNew = func_8032813C(0x25A, actor1->position, actor1->yaw);
 
     // Grab the same pointer again for good measure :^)
     actor2 = marker_getActor(marker);
@@ -788,7 +788,7 @@ void func_80387F1C(void)
     {
         jiggySpawn(JIGGY_35_LAIR_CC_WITCH_SWITCH, tmp);
         // FIXME: macro?
-        func_802C3F04(func_802C4140, ACTOR_4C_STEAM, *(s32 *)&tmp[0], *(s32 *)&tmp[1], *(s32 *)&tmp[2]);
+        func_802C3F04((GenMethod_4)func_802C4140, ACTOR_4C_STEAM, *(s32 *)&tmp[0], *(s32 *)&tmp[1], *(s32 *)&tmp[2]);
     }
 }
 
@@ -837,7 +837,7 @@ void func_803880BC(Actor *this)
         this->position_y -= 51.f;
         this->unk1C[0] = 0;
 
-        func_802C3C88(func_80387E94, this->marker);
+        func_802C3C88((GenMethod_1)func_80387E94, reinterpret_cast(s32, this->marker));
 
         if (func_803203FC(0xBC) && !func_8031FF1C(0x9A))
             FUNC_8030E624(SFX_3F6_UNKNOWN, 0x3A9, 0x2FF);
@@ -1153,7 +1153,7 @@ void func_80388524(Actor *this) {
                             sp2C = partEmitList_pushNew(3U);
                             particleEmitter_setSprite(sp2C, ASSET_70D_SPRITE_SMOKE_1);
                             particleEmitter_setStartingFrameRange(sp2C, 1, 6);
-                            func_802EFFA8(sp2C, &D_803934A0);
+                            func_802EFFA8(sp2C, D_803934A0);
                             func_802EF9E4(sp2C, 0x3C);
                             particleEmitter_setPosition(sp2C, this->position);
                             particleEmitter_setPositionAndVelocityRanges(sp2C, &D_803934D4);
@@ -1511,7 +1511,7 @@ void func_803897D4(s32 arg0)
     marker1 = reinterpret_cast(ActorMarker *, arg0);
     actor1 = marker_getActor(marker1);
 
-    actor1 = func_8032813C(0x258, &actor1->position, actor1->yaw);
+    actor1 = func_8032813C(0x258, actor1->position, actor1->yaw);
 
     // Grab the same pointer again for good measure
     actor2 = marker_getActor(marker1);
@@ -1529,7 +1529,7 @@ void func_8038982C(Actor *this)
         this->initialized = TRUE;
 
         if (!func_8031FF1C(BKPROG_9E_CRYPT_COFFIN_LID_OPEN))
-            func_802C3C88(func_803897D4, this->marker);
+            func_802C3C88((GenMethod_1)func_803897D4, reinterpret_cast(s32, this->marker));
     }
 }
 
@@ -1675,7 +1675,7 @@ f32 func_80389AAC(Actor *this, f32 a1)
                 break;
         }
 
-        func_8030E878(SFX_82_METAL_BREAK, func_8034A754(0.93f, 1.07f), 32760, &this->position, 100, 1350.0f);
+        func_8030E878(SFX_82_METAL_BREAK, func_8034A754(0.93f, 1.07f), 32760, this->position, 100, 1350.0f);
 
         this->unk60 = 1;
     }
@@ -1760,7 +1760,7 @@ Actor *func_80389E10(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
             sp90[2] = sp84[2] + ((sp78[2] - sp84[2]) * randf());
             
 
-            func_802EE6CC(&sp90, &sp6C, &D_80393504, 1, 0.3f, 50.0f, 180, randi2(130, 200), 0);
+            func_802EE6CC(sp90, sp6C, D_80393504, 1, 0.3f, 50.0f, 180, randi2(130, 200), 0);
         };
     }
     return this;

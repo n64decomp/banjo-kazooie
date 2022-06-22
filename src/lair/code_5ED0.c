@@ -56,7 +56,7 @@ extern void func_8028FA14(enum map_e, s32);
 extern void func_803208C0(u32, int); // ff_isAsked_flag_set
 extern int func_803207F0(u32); // ff_isAsked_flag_get
 
-extern void func_8033F220(s32 a0, s32 a1, void *); //! $a2 type unk
+extern void func_8033F220(BKModel *model, s32 mesh_id, s16 [3]); //! $a2 type unk
 
 extern s32  func_803203FC(s32);  // get volatile flag
 extern void func_80295864(s32);  // set unlocked moves bitfield
@@ -499,7 +499,7 @@ void func_8038D1E4(void)
         case 3:
         {
             timedFunc_set_2(
-                0.5f, func_8038D16C,
+                0.5f, (TFQM2)func_8038D16C,
                 D_80394354[D_8037DCB8->unkC].unk2,
                 D_80394354[D_8037DCB8->unkC].unk4
             );
@@ -511,7 +511,7 @@ void func_8038D1E4(void)
     }
 
     if (cleanupDelay > 0.0) // f64
-        timedFunc_set_1(cleanupDelay, func_8038D670, FFA_4_UNK);
+        timedFunc_set_1(cleanupDelay, (TFQM1)func_8038D670, FFA_4_UNK);
 }
 
 void func_8038D394(void)
@@ -564,7 +564,7 @@ void func_8038D4BC(void)
 
     // trigger warp after a delay
     timedFunc_set_3(0.25f,
-        func_802E4078,
+        (TFQM3)func_802E4078,
         D_803945B8[D_8037DCB8->unkC].unk0,
         D_803945B8[D_8037DCB8->unkC].UNK_01,
         1
