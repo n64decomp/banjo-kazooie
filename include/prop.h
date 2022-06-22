@@ -257,7 +257,7 @@ typedef struct actor_s{
     void (*unk13C)(struct actorMarker_s *);//saved marker->unk30
     f32 unk140;
     f32 unk144;
-    void *unk148;
+    Struct80s *unk148;
     void *unk14C[2];
     // void *unk150;
     u32 unk154;

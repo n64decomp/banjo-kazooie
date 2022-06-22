@@ -3,7 +3,6 @@
 #include "variables.h"
 
 #include "prop.h"
-extern f32 func_80335684(void *);
 extern void func_803253A0(Actor *);
 extern void func_80325794(ActorMarker *);
 extern f32 randf (void);

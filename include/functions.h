@@ -473,12 +473,12 @@ void marker_setCollisionScripts(ActorMarker *this, MarkerCollisionFunc ow_func, 
 BKModelBin *  func_80330B1C(ActorMarker *marker);
 BKVertexList *func_80330C74(Actor *actor);
 BKModelBin *  func_80330DE4(ActorMarker *marker);
-f32  func_80335684(void *);
-void func_8033568C(void *, f32 *, f32*);
-void func_80335800(void *, f32, void (*)(ActorMarker *), ActorMarker *);
-void func_80335924(void *, enum asset_e anim_id, f32, f32);
-void func_80335A74(void *, f32);
-extern void func_80335A94(void *, f32, s32);
+f32  func_80335684(Struct80s *);
+void func_8033568C(Struct80s *, f32 *, f32*);
+void func_80335800(Struct80s *, f32, void (*)(ActorMarker *), ActorMarker *);
+void func_80335924(Struct80s *, enum asset_e anim_id, f32, f32);
+void func_80335A74(Struct80s *self, f32 arg1);
+void func_80335A94(Struct80s *, f32, s32);
 int  func_803391A4(Gfx**, Mtx**, f32 [3], f32[3], f32, f32*, BKModelBin*);
 void func_8033A280(f32);
 

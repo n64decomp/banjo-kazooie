@@ -3,7 +3,6 @@
 #include "variables.h"
 
 extern void func_80335A24(void *, s32, f32, f32);
-extern f32 func_80335684(void *);
 extern s32 func_802EDD8C(f32 (*)[3], f32, f32);
 
 void func_8038B900(Actor *this);

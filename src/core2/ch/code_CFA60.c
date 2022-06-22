@@ -2,8 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-void func_80335A74(void *, f32);
-
 /* public */
 Actor *func_80356C50(ActorMarker *, Gfx **, Mtx **, Vtx **);
 void func_80356CCC(Actor *);

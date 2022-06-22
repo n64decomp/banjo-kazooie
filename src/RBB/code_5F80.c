@@ -2,7 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-extern f32 func_80335684(void *);
 extern void func_803253A0(Actor *);
 extern void func_80325794(ActorMarker *);
 extern void func_8030E394(u8);

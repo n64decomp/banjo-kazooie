@@ -376,7 +376,6 @@ s32 func_803200E4(u8 *array, s32 offset, s32 numBits);
 void func_8032015C(u8 *array, s32 index, s32 set);
 void func_803201C8(u8 *array, s32 startIndex, s32 set, s32 length);
 void func_8032048C(void);
-Actor *func_80326EEC(s32);
 void func_803204E4(s32 arg0, s32 arg1);
 s32 func_8031FF44(s32 offset, s32 numBits);
 void func_8031CE70(f32 *arg0, s32 arg1, s32 arg2);

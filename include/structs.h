@@ -845,4 +845,31 @@ typedef struct {
     Struct70s unkC;
 }Struct6Es;
 
+typedef struct {
+    f32 unk0;
+    u8 unk4;
+    u8 pad5[0x3];
+    void (* unk8)(struct actor_marker_s *);
+    s32 unkC;
+}Struct7Fs;
+
+typedef struct {
+    s32 unk0;
+    struct animation_file_s *unk4;
+    f32 unk8;
+    f32 unkC;
+    vector(Struct7Fs) *unk10;
+    u8 unk14;
+    u8 unk15;
+    s16 unk16;
+    s32 unk18;
+    f32 unk1C;
+    f32 unk20;
+    s32 unk24;
+    s32 unk28;
+    f32 unk2C;
+    u8 unk30;
+    // u8 pad31[3];
+}Struct80s;
+
 #endif

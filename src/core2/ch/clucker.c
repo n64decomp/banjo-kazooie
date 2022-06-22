@@ -3,7 +3,6 @@
 #include "variables.h"
 
 extern void func_8033A45C(s32, s32);
-extern void func_80335A74(void *, f32);
 
 typedef struct{
     u8 unk0;

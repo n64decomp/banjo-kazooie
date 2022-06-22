@@ -2338,7 +2338,6 @@ void func_8038C138() {
     D_803927C7 = 1;
 }
 
-Actor *func_80326EEC(s32);
 f32 func_80391234();
 f32 func_8038DFA0();
 void func_80324E88(f32);
