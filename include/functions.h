@@ -505,7 +505,7 @@ void _get_velocity(f32 (*dst)[3]);
 void player_setYPosition(f32);
 
 NodeProp *func_80304C38(s32 arg0, Actor *arg1);
-Actor *func_80326D68(f32[3], s32, s32, f32 *);
+Actor *func_80326D68(f32 position[3], enum actor_e actor_id, s32 arg2, f32 *min_distance_ptr);
 Actor *func_80329980(Actor *);
  
  /* used in RBB */
@@ -529,7 +529,7 @@ void func_802C8F70(f32);
 void func_802F9DB8(s32, f32, f32, f32);
 void func_802F9F80(s32, f32, f32, f32);
 void func_802FA060(s32, s32, s32, f32);
-Actor *func_80326EEC(s32);
+Actor *func_80326EEC(enum actor_e);
 f32 func_8038A6B8(ActorMarker *);
 void func_80255FE4(f32 [3], f32 [3], f32 [3], f32);
 void func_8030DEB4(u8, f32, f32);

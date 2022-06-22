@@ -4,6 +4,7 @@
 
 #include "prop.h"
 
+extern f32 func_80258708(f32[3], f32[3]);
 extern void func_802D7124(Actor *, f32);
 extern void func_802EE6CC(f32[3], s32[4], s32[4], s32, f32, f32, s32, s32, s32);
 extern void func_8032B5C0(void);
@@ -38,10 +39,14 @@ extern f32 D_8036E58C[3];
 
 
 /* .rodata */
+extern f32 D_80378E50;
 extern f64 D_80378E58;
 
 /* .bss */
-Actor *D_80383390;
+extern Actor *D_80383390;
+extern s32 D_80383394;
+extern Actor *D_80383398[]; //array of jiggy actor ptrs
+
 
 //marker_getActorAndRotation
 Actor * func_80325300(ActorMarker *marker,f32 rotation[3])
@@ -581,21 +586,127 @@ void func_803268B4(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80326C18.s")
+s32 func_80326C18(void){
+    return D_80383394;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80326C24.s")
+void func_80326C24(s32 arg0){
+    D_80383394 = arg0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80326C30.s")
+Actor *func_80326C30(enum asset_e model_id) {
+    Actor *actor_begin;
+    Actor *i_actor;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80326CCC.s")
+    actor_begin = D_8036E560->data;
+    for(i_actor = actor_begin; (i_actor - actor_begin) < D_8036E560->cnt; i_actor++){
+        if ((model_id == i_actor->marker->modelId) && !i_actor->despawn_flag) {
+            return i_actor;
+        }
+    }
+    return NULL;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80326D68.s")
+Actor *func_80326CCC(s32 arg0) {
+    Actor *actor_begin;
+    Actor *i_actor;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80326EEC.s")
+    actor_begin = D_8036E560->data;
+    for(i_actor = actor_begin; i_actor - actor_begin < D_8036E560->cnt; i_actor++) {
+        if ((arg0 == i_actor->marker->unk14_20) && !i_actor->despawn_flag) {
+            return i_actor;
+        }
+    }
+    return NULL;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80326F58.s")
+/* 
+ * find the closest actor to position with actor_id and not in state
+ * returns Actor* and distance (last arg)
+ */
+Actor *func_80326D68(f32 position[3], enum actor_e actor_id, s32 arg2, f32 *min_distance_ptr) {
+    Actor *begin;
+    Actor *i_actor;
+    f32 i_dist;
+    f32 min_dist;
+    s32 *closest_actor;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80326FC0.s")
+    if (D_8036E560 != NULL) {
+        begin = D_8036E560->data;
+        closest_actor = NULL;
+        min_dist = D_80378E50;
+        for(i_actor = begin; (i_actor - begin) < D_8036E560->cnt; i_actor++){
+            if ( ((actor_id == i_actor->modelCacheIndex) || (actor_id < 0)) 
+                 && (arg2 != i_actor->state) 
+                 && (i_actor->modelCacheIndex != ACTOR_17_PLAYER_SHADOW) 
+                 && (i_actor->modelCacheIndex != 0x108) 
+                 && !i_actor->despawn_flag
+            ) {
+                i_dist = func_80258708(position, i_actor->position);
+                if (i_dist < min_dist) {
+                    min_dist = i_dist;
+                    closest_actor = i_actor;
+                }
+            }
+        }
+        if (min_distance_ptr != NULL) {
+            *min_distance_ptr = min_dist;
+        }
+        return closest_actor;
+    }
+    return NULL;
+}
+
+Actor *func_80326EEC(enum actor_e actor_id) {
+    Actor *begin;
+    Actor *end;
+    Actor *i_actor;
+
+    begin = D_8036E560->data;
+    end = begin + D_8036E560->cnt;
+    for(i_actor = begin; i_actor < end; i_actor++){
+        if ((actor_id == i_actor->modelCacheIndex) && !i_actor->despawn_flag) {
+            return i_actor;
+        }
+    }
+    return NULL;
+}
+
+s32 func_80326F58(enum actor_e actor_id) {
+    Actor *begin;
+    Actor *end;
+    Actor *i_actor;
+    s32 var_v1;
+
+    var_v1 = 0;
+    begin = D_8036E560->data;
+    end = begin + D_8036E560->cnt;
+    for(i_actor = begin; i_actor < end; i_actor++){
+        if ((actor_id == i_actor->modelCacheIndex) && !i_actor->despawn_flag) {
+            var_v1 += 1;
+        }
+    }
+    return var_v1;
+}
+
+Actor **func_80326FC0(void) {
+    Actor *begin;
+    Actor *i_actor;
+
+    s32 var_a1;
+
+    begin = D_8036E560->data;
+    for(i_actor = begin, var_a1 = 0; (D_8036E560 != NULL) && ((i_actor - begin) < D_8036E560->cnt); i_actor++){
+        if ((i_actor->modelCacheIndex == ACTOR_46_JIGGY) && !i_actor->despawn_flag) {
+            D_80383398[var_a1] = i_actor;
+            var_a1 += 1;
+        }
+    }
+    D_80383398[var_a1] = NULL;
+    return D_80383398;
+}
+
+
 
 void func_803270B8(f32 arg0[3], f32 arg1, s32 arg2, int (*arg3)(Actor *), ActorMarker *);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_803270B8.s")
@@ -1503,4 +1614,6 @@ void func_8032BC3C(Actor *this, f32 arg1){
     func_80344040(this);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032BC60.s")
+void func_8032BC60(Actor *this, s32 arg1, f32 arg2[3]){
+    func_8034A174(this->marker->unk44, arg1, arg2);
+}

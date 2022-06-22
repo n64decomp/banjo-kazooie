@@ -223,7 +223,7 @@ void func_803876D0(Actor *this){
         func_80304D4C(sp40, &((ActorLocal_Conga *)&this->local)->unk10);
     }
     if(0.0f == this->unk28){
-        this->unk28 = (func_80326CCC(0x36))? 2.0f: 1.0f;
+        this->unk28 = (func_80326CCC(0x36) != NULL)? 2.0f: 1.0f;
     }
     if(0.0f != this->velocity_x){
         this->velocity_x -= 1.0f; 
