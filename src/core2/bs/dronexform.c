@@ -3,7 +3,6 @@
 #include "variables.h"
 
 extern void player_setYPosition(f32);
-extern void func_8024E3A8(f32 (*)[3], f32);
 extern void yaw_applyIdeal(void);
 extern void func_802978DC(int);
 extern f32 func_80257A44(f32, f32);

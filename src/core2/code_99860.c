@@ -31,5 +31,5 @@ void func_803208C0(s32 index, bool value){
 
 void func_803208F0(void){
     if(D_80383220 != NULL)
-        D_80383220 = defrag(D_80383220);
+        D_80383220 = (u8*)defrag(D_80383220);
 }

@@ -145,7 +145,7 @@ void animctrl_update(AnimCtrl *this){//update
 
 AnimCtrl *animctrl_defrag(AnimCtrl *this){ //realloc
     ActorAnimCtrl *full_struct;
-    full_struct = defrag(this);
+    full_struct = (ActorAnimCtrl *)defrag(this);
     full_struct->animctrl.animation = &full_struct->animation;
     return &full_struct->animctrl;
 }

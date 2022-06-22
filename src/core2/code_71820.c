@@ -19,7 +19,7 @@ void func_802F87B0(struct6s *this){
     if(vector_size(this->unk1C) >= this->unk20)
         return;
     
-    player_getPosition(&plyrPos);
+    player_getPosition(plyrPos);
     func_8024C5A8(camNorm);
     func_8024C764(camRot);
     ptr = vector_pushBackNew(&this->unk1C);

@@ -113,7 +113,7 @@ void func_80288B98(vector(struct2s) **arg0, struct2s *arg1){
             ((void (*)(s32, s32, s32)) arg1->unk14)(arg1->unk8, arg1->unkC, arg1->unk10);
             break;
         case 4:// 80288C5C
-            ((void (*)(u8*)) arg1->unk14)(&arg1->unk8);
+            ((void (*)(u8*)) arg1->unk14)((u8*)&arg1->unk8);
             break;
      }
 }

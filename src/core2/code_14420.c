@@ -455,8 +455,8 @@ void func_8029C0D0(void) {
     if (func_80294574()) {
         _player_getPosition(sp3C);
         sp3C[1] = sp34 = func_80294500();
-        p_ctrl = func_802F4094(&sp3C, 35.0f);
-        func_802F3554(3, &sp3C);
+        p_ctrl = func_802F4094(sp3C, 35.0f);
+        func_802F3554(3, sp3C);
         particleEmitter_setParticleVelocityRange(p_ctrl, -350.0f, 300.0f, -350.0f, 350.0f, 500.0f, 350.0f);
         particleEmitter_emitN(p_ctrl, 0xA);
         particleEmitter_setParticleVelocityRange(p_ctrl, -150.0f, 500.0f, -150.0f, 150.0f, 800.0f, 150.0f);
@@ -498,7 +498,7 @@ void func_8029C304(s32 arg0) {
 void func_8029C348(void) {
     f32 sp1C[3];
 
-    _player_getPosition(&sp1C);
+    _player_getPosition(sp1C);
     sp1C[0] += randf2(-30.0f, 30.0f);
     sp1C[1] += randf2(60.0f, 70.0f);
     sp1C[2] += randf2(-30.0f, 30.0f);
@@ -516,7 +516,7 @@ void func_8029C3E8(f32 arg0, f32 arg1) {
     _player_getPosition(sp30);
     sp28 = ml_map_f(func_80297AB8(), 0.0f, 1000.0f, arg0, arg1);
     sp2C = func_8028EBA4();
-    func_802589E4(&sp3C, sp2C, sp28);
+    func_802589E4(sp3C, sp2C, sp28);
     sp3C[1] = 0.0f;
     sp30[0] += sp3C[0];\
     sp30[1] += sp3C[1];\
@@ -747,7 +747,7 @@ void func_8029CBC4(void){
 void func_8029CBF4(void){
     if(item_getCount(ITEM_E_JIGGY) == 10){
         if( jiggyscore_total() == 100 && func_8031FF1C(BKPROG_FC_DEFEAT_GRUNTY)){
-            timedFunc_set_3(4.1f, func_802E4078, MAP_95_CS_END_ALL_100, 0, 1);
+            timedFunc_set_3(4.1f, (TFQM3)func_802E4078, MAP_95_CS_END_ALL_100, 0, 1);
         }//L8029CC58
 
         timedFunc_set_0(4.0f, func_8029CBC4);
@@ -796,5 +796,5 @@ void func_8029CDC0(void) {
     sp2C[0]  = (randf() * 20.0f) - 10.0f;
     sp2C[1]  = (randf() * 50.0f) + 120.0f;
     sp2C[2]  = (randf() * 20.0f) - 10.0f;
-    func_80356074(&sp20, &sp2C, 80.0f, 220.0f);
+    func_80356074(sp20, sp2C, 80.0f, 220.0f);
 }

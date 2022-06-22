@@ -81,5 +81,4 @@ struct FF_StorageStruct {
 
     /* 48 */ struct FF_StorageStruct_48 *unk48;
 }; // 0x4C
-
 #endif

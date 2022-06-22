@@ -63,8 +63,8 @@ void func_802C7AB0(ActorMarker * arg0, u32 arg1){
 }
 
 void func_802C7AF8(u32 x, u32 y, u32 z, u32 arg3){
-    func_802C3F04(func_802C41D8, ACTOR_4C_STEAM, x, y, z);
-    func_802C3F04(func_802C41D8, ACTOR_14F_DESTROYED_JIGGY, x, y, z);
+    func_802C3F04((GenMethod_4)func_802C41D8, ACTOR_4C_STEAM, x, y, z);
+    func_802C3F04((GenMethod_4)func_802C41D8, ACTOR_14F_DESTROYED_JIGGY, x, y, z);
     mapSpecificFlags_set(arg3, 1);
 }
 

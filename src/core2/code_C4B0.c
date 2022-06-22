@@ -62,8 +62,8 @@ void func_80293440(void){
      if(D_8037C218[1] < bottomY)
           D_8037C218[1] = bottomY;
 
-     climbGetBottom(&sp34);
-     func_80257F18(&D_8037C218, &sp34, &sp28);
+     climbGetBottom(sp34);
+     func_80257F18(D_8037C218, sp34, &sp28);
      diff = mlDiffDegF(sp28, yaw_get());
      diff = mlAbsF(diff);
      if(1.0f < diff){
@@ -396,6 +396,6 @@ void func_8029472C(void){
 
 void func_80294750(void){
      if(D_8037C200){
-          D_8037C200 = defrag(D_8037C200);
+          D_8037C200 = (struct0 *)defrag(D_8037C200);
      }
 }

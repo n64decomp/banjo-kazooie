@@ -18,7 +18,7 @@ void func_802F7EB0(struct3s *this){
     if(vector_size(this->unk20) >= this->unk24)
         return;
 
-    player_getPosition(&plyrPos);
+    player_getPosition(plyrPos);
     func_8024C5A8(camNorm);
     func_8024C764(camRot);
     sp50 = vector_pushBackNew(&this->unk20);
@@ -28,10 +28,10 @@ void func_802F7EB0(struct3s *this){
     sp4C[2] = -tmpf;
 
     if(gu_sqrtf(this->unk10[0]*this->unk10[0] + this->unk10[1]*this->unk10[1] + this->unk10[2]*this->unk10[2]) < 5.0f){
-        ml_vec3f_yaw_rotate_copy(&sp4C, &sp4C, randf2(0.0f, 360.0f));
+        ml_vec3f_yaw_rotate_copy(sp4C, sp4C, randf2(0.0f, 360.0f));
     }
     else{
-        ml_vec3f_yaw_rotate_copy(&sp4C, &sp4C, camRot[1]+ randf2(-70.0f, 70.0f));
+        ml_vec3f_yaw_rotate_copy(sp4C, sp4C, camRot[1]+ randf2(-70.0f, 70.0f));
     }
     sp4C[0] = plyrPos[0] + sp4C[0];
     sp4C[1] = plyrPos[1] + sp4C[1];

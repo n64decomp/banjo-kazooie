@@ -47,7 +47,7 @@ void func_8030B0AC(Gfx **arg0, Mtx **arg1, s32 arg2){
                 sp64[0] = 0.0f;
                 sp64[1] = D_80382410.unk0->unk4[i].unk8 * D_80382410.unk1C;
                 sp64[2] = 0.0f;
-                func_803391A4(arg0, arg1, &sp70, &sp64, D_80382410.unk0->unk4[i].unk4, NULL, iAsset);
+                func_803391A4(arg0, arg1, sp70, sp64, D_80382410.unk0->unk4[i].unk4, NULL, iAsset);
             }
         }
     }

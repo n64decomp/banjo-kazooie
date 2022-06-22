@@ -107,9 +107,7 @@ bool func_802DAFBC(Actor *this) {
     ActorLocal_core2_53C10 *local;
     s32 temp_v0;
     f32 sp44;
-    s32 pad40;
-    s32 pad3C;
-    s32 sp38;
+    f32 sp38[3];
     f32 sp34;
 
     local = (ActorLocal_core2_53C10 *)&this->local;
@@ -127,8 +125,8 @@ bool func_802DAFBC(Actor *this) {
         return FALSE;
     }
     if (temp_v0 & 4) {
-        func_8032C9E0(&sp38);
-        sp34 = func_80257248(&sp38, this->position);
+        func_8032C9E0(sp38);
+        sp34 = func_80257248(sp38, this->position);
         if (((func_8023DB5C() - local->unk38) == 0x1E) && ((sp34 - this->yaw_moving < 15.0f) && (sp34 - this->yaw_moving > -15.0f))) {
             func_802DAF2C(this->position, this->yaw, this->unk28);
         } else {

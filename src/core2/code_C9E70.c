@@ -14,8 +14,8 @@ void func_80350E00(void){
     
     if(D_8037DCB8->unk20){
         func_80318C0C(D_8037DCB8->unk20);
-        D_8037DCB8->unk20 = defrag(D_8037DCB8->unk20);
+        D_8037DCB8->unk20 = (gczoombox_t *)defrag(D_8037DCB8->unk20);
     }
-    D_8037DCB8->unk48 = defrag(D_8037DCB8->unk48);
-    D_8037DCB8 = defrag(D_8037DCB8);
+    D_8037DCB8->unk48 = (struct FF_StorageStruct_48 *)defrag(D_8037DCB8->unk48);
+    D_8037DCB8 = (struct FF_StorageStruct *) defrag(D_8037DCB8);
 }

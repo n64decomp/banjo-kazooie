@@ -90,7 +90,7 @@ ActorMarker *_player_getMarker(void);
 
 u32 player_getTransformation(void);
 
-void func_8028E7EC(f32 (* arg0)[3]);
+void func_8028E7EC(f32 arg0[3]);
 
 void _player_getPosition(f32 dst[3]);
 void player_getPosition(f32 dst[3]);
@@ -109,7 +109,7 @@ void func_80297970(f32);
 
 f32  func_80297AAC(void);
 
-void climbGetBottom(f32 (* dst)[3]);
+void climbGetBottom(f32 dst[3]);
 
 void yaw_setIdeal(f32);
 
@@ -165,6 +165,8 @@ Actor *marker_getActor(ActorMarker *);
 f32 time_getDelta(void);
 void jiggySpawn(u32 indx, f32 pos[3]);
 
+struct3s *func_802F8264(s32 arg0);
+struct6s *func_802F8BE0(s32 arg0);
 struct8s *func_802FD320(s32);
 void func_802FD330(s32, struct8s *);
 void func_802FD33C(enum item_e arg0, struct8s *arg1, Gfx **arg2, Mtx **arg3, Vtx **arg4);
@@ -249,7 +251,7 @@ void func_802EFFA8(ParticleEmitter *this, s32 arg1[3]);
 void particleEmitter_setSpawnInterval(ParticleEmitter *, f32);
 
 int  func_8024DC04(f32, f32, f32);
-void func_8024E3A8(f32 (*)[3], f32);
+void func_8024E3A8(f32 [3], f32);
 OSMesgQueue *func_8024F344(void);
 
 void ml_vec3f_clear(f32 dst[3]);
@@ -318,7 +320,8 @@ void func_80293350(void);
 void func_80293D48(f32, f32);
 f32  func_80294438(void);
 f32  func_80294500(void);
-void func_80294980(f32 (* arg0)[3]);
+Struct60s *func_802946F0(void);
+void func_80294980(f32 arg0[3]);
 f32  get_slope_timer(void);
 f32  func_80294A40(void);
 void func_80295C08(void (* arg0)(void));
@@ -468,6 +471,8 @@ s32  func_80329784(Actor *);
 void func_80329878(Actor *, f32);
 struct5Bs *func_80329934(void);
 
+ActorMarker * func_8032FBE4(f32 *pos, MarkerDrawFunc arg1, int arg2, enum asset_e model_id);
+
 void func_803300D8(ActorMarker *, void (*)(Actor *));
 void marker_setCollisionScripts(ActorMarker *this, MarkerCollisionFunc ow_func, MarkerCollisionFunc arg2, MarkerCollisionFunc die_func);
 BKModelBin *  func_80330B1C(ActorMarker *marker);
@@ -485,6 +490,7 @@ void func_8033A280(f32);
 void func_80346C10(enum bs_e *retVal, enum bs_e fail_state, enum bs_e success_state, enum item_e item_id, int use_item);
 void func_80347A14(s32);
 void func_8034A174(struct5Bs *this, s32 indx,f32 dst[3]);
+Struct61s *func_8034AB6C(enum map_e map_id);
 Struct6Ds *func_8034C528(s32);
 void func_8034DC08(Struct6Ds *, f32[3], f32[3], f32, s32);
 void func_8034DDF0(Struct6Ds *arg0, f32 arg1[3], f32 arg2[3], f32 arg3, s32 arg4);
@@ -531,6 +537,7 @@ void func_802F9F80(s32, f32, f32, f32);
 void func_802FA060(s32, s32, s32, f32);
 Actor *func_80326EEC(enum actor_e);
 f32 func_8038A6B8(ActorMarker *);
+void *defrag_asset(void *);
 void func_80255FE4(f32 [3], f32 [3], f32 [3], f32);
 void func_8030DEB4(u8, f32, f32);
 void func_8030DB04(u8, s32, f32 position[3], f32, f32);

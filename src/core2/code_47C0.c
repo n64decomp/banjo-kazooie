@@ -18,8 +18,8 @@ extern int func_80259254(f32 vec[3], f32 x, f32 z, f32 val);
 extern void func_802EE354(Actor *, s32, s32, s32, f32, f32, f32, f32 arg8[3], s32, f32 arg10[2]);
 extern void func_8035644C(s32);
 extern void func_8035646C(s32 arg0);
-extern void func_80291634(ActorMarker *, s32);
-extern void func_80291610(ActorMarker *, s32);
+extern void func_80291634(ActorMarker *, ActorMarker *);
+extern void func_80291610(ActorMarker *, ActorMarker *);
 extern void func_80291AAC(void);
 extern void func_8028D7B8(s32 arg0, ActorMarker *arg1, s32 arg2);
 extern void func_802EE6CC(f32[3], s32, s32[4], s32, f32, f32, s32,s32,s32);
@@ -74,28 +74,28 @@ s32 *func_8028B750(void){
     else{
         switch(player_getTransformation()){
             case TRANSFORM_2_TERMITE: //8028B7A0
-                return &D_80363638; 
+                return D_80363638; 
                 break;
 
             case TRANSFORM_3_PUMPKIN: //8028B7AC
-                return &D_80363640;
+                return D_80363640;
                 break;
 
             case TRANSFORM_4_WALRUS: //8028B7B8
-                return &D_80363650;
+                return D_80363650;
                 break;
 
             case TRANSFORM_5_CROC: //8028B7C4
-                return &D_80363648;
+                return D_80363648;
                 break;
 
             case TRANSFORM_6_BEE: //8028B7D0:
-                return &D_80363658;
+                return D_80363658;
                 break;
 
             case TRANSFORM_1_BANJO: //8028B7DC
             default:
-                return &D_80363630;
+                return D_80363630;
                 break;
         }
     }

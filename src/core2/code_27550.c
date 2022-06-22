@@ -36,7 +36,7 @@ void func_802AE4E0(s32 arg0) {
 void func_802AE598(void) {
     f32 plyr_pos[3];
 
-    player_getPosition(&plyr_pos);
+    player_getPosition(plyr_pos);
     particleEmitter_setParticleAccelerationRange(D_8037D420.unk4, 0.0f, 700.0f, 0.0f, 0.0f, 1200.0f, 0.0f);
     particleEmitter_setParticleSpawnPositionRange(D_8037D420.unk4, -45.0f, -5.0f, -45.0f, 45.0f, 10.0f, 45.0f);
     particleEmitter_setPosition(D_8037D420.unk4, plyr_pos);

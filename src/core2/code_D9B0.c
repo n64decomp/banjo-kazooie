@@ -35,12 +35,12 @@ enum asset_e func_80294974(void){
     return D_8037C2E8;
 }
 
-void func_80294980(f32 (* dst)[3]){
-    ml_vec3f_copy(dst, &D_8037C2A0);
+void func_80294980(f32 dst[3]){
+    ml_vec3f_copy(dst, D_8037C2A0);
 }
 
-void func_802949A4(f32 (* dst)[3]){
-    ml_vec3f_copy(dst, &D_8037C2D8);
+void func_802949A4(f32 dst[3]){
+    ml_vec3f_copy(dst, D_8037C2D8);
 }
 
 int func_802949C8(void){
@@ -51,12 +51,12 @@ f32 get_slope_timer(void){
     return D_8037C2E4 * (f64)1;
 }
 
-void func_802949F8(f32 (* dst)[3]){
-    ml_vec3f_copy(dst, &D_8037C2B0);
+void func_802949F8(f32 dst[3]){
+    ml_vec3f_copy(dst, D_8037C2B0);
 }
 
-void func_80294A1C(f32 (* dst)[3]){
-    ml_vec3f_copy(dst, &D_8037C2C0);
+void func_80294A1C(f32 dst[3]){
+    ml_vec3f_copy(dst, D_8037C2C0);
 }
 
 f32 func_80294A40(void){
@@ -71,20 +71,20 @@ void func_80294A58(enum asset_e asset_id){
     D_8037C2E8 = asset_id;
 }
 
-void func_80294A64(f32 (* src)[3])
-{ ml_vec3f_copy(&D_8037C2A0, src);
+void func_80294A64(f32 src[3])
+{ ml_vec3f_copy(D_8037C2A0, src);
 }
 
 void func_80294A8C(int arg0){
     D_8037C2EC = arg0;
 }
 
-void func_80294A98(f32 (* src)[3])
-{ ml_vec3f_copy(&D_8037C2B0, src);
+void func_80294A98(f32 src[3])
+{ ml_vec3f_copy(D_8037C2B0, src);
 }
 
-void func_80294AC0(f32 (* src)[3])
-{ ml_vec3f_copy(&D_8037C2C0, src);
+void func_80294AC0(f32 src[3])
+{ ml_vec3f_copy(D_8037C2C0, src);
 }
 
 void func_80294AE8(f32 arg0){
@@ -164,9 +164,9 @@ void func_80294BDC(void) {
 }
 
 void func_80294DD8(void){
-    ml_vec3f_clear(&D_8037C2A0);
-    ml_vec3f_clear(&D_8037C2B0);
-    _player_getPosition(&D_8037C2D8);
+    ml_vec3f_clear(D_8037C2A0);
+    ml_vec3f_clear(D_8037C2B0);
+    _player_getPosition(D_8037C2D8);
     D_8037C2ED = 0;
     D_8037C2E4 = 0.0f;
     D_8037C2EC = 1;

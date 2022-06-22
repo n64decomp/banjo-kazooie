@@ -38,7 +38,7 @@ void func_80323240(struct56s *arg0, f32 arg1, f32 arg2[3]){
     else if(1.0f < arg1)
         arg1 = 1.0f;
 
-    func_80341180(arg1, arg0->unk0, 3, &arg0->unk8, arg2);
+    func_80341180(arg1, arg0->unk0, 3, arg0->unk8, arg2);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9C170/func_803232AC.s")

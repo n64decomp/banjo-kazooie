@@ -37,7 +37,7 @@ void func_802BAC58(void) {
     func_8024C764(sp28);
     func_802BEA4C(sp28, sp34, 150.0f, sp1C);
     if (D_8037D810 == NULL) {
-        D_8037D810 = func_8032FBE4(&sp1C, &func_802BABC0, 1, 0x15D);
+        D_8037D810 = func_8032FBE4(sp1C, func_802BABC0, 1, 0x15D);
     }
     else{
         func_8032F64C(sp1C, D_8037D810);

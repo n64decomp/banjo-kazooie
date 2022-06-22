@@ -91,8 +91,8 @@ struct0 *func_8031B9D8(void){
     struct0 *this;
 
     this = (struct0 *)malloc(0x60);
-    ml_vec3f_clear(&(this->unk1C));
-    ml_vec3f_clear(&(this->unk28));
+    ml_vec3f_clear(this->unk1C);
+    ml_vec3f_clear(this->unk28);
     this->normX = 0.0f;
     this->normZ = 0.0f;
     this->normY = 1.0f;
@@ -291,7 +291,7 @@ void func_8031C608(struct0 *this){
 }
 
 void func_8031C618(struct0 *this, f32 *arg1){
-    ml_vec3f_copy(&this->unk1C, arg1);
+    ml_vec3f_copy(this->unk1C, arg1);
 }
 
 void func_8031C638(struct0 *this, s32 arg1){
@@ -462,7 +462,7 @@ void func_8031CD44(s32 arg0, s32 arg1, f32 arg2, f32 arg3, s32 arg4) {
 void func_8031CE28(s32 arg0, s32 arg1, f32 arg2) {
     f32 vec[3];
 
-    player_getPosition(&vec);
+    player_getPosition(vec);
     func_8031CD44(arg0, arg1, vec[1], arg2, 0x25);
 }
 
@@ -478,7 +478,7 @@ void func_8031CE70(f32 *arg0, s32 arg1, s32 arg2) {
         } else {
             phi_s0 = NULL;
         }
-        player_getPosition(&playerPos);
+        player_getPosition(playerPos);
         if (phi_s0 != NULL) {
             func_80304D68(&phi_s0->unk0, sp38);
             phi_f2 = 500.0f;

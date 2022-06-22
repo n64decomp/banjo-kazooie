@@ -148,7 +148,7 @@ void __particleEmitter_initParticle(ParticleEmitter *this, Particle *particle){
         particle->velocity_50[2] = randf2(this->particleVelocityRange_E4.cartisian_min_z, this->particleVelocityRange_E4.cartisian_max_z);
     }
     else{
-        func_80256E24(&particle->velocity_50, 
+        func_80256E24(particle->velocity_50, 
             mlNormalizeAngle(randf2(this->particleVelocityRange_E4.spherical.pitch_min, this->particleVelocityRange_E4.spherical.pitch_max)),
             mlNormalizeAngle(randf2(this->particleVelocityRange_E4.spherical.yaw_min, this->particleVelocityRange_E4.spherical.yaw_max)),
             0.0f,
@@ -753,7 +753,7 @@ void particleEmitter_update(ParticleEmitter *this){
 
 void func_802F053C(ParticleEmitter *this, f32 arg1[3]){
     particleEmitter_setSprite(this, ASSET_70E_SPRITE_SMOKE_2);
-    func_802EFFA8(this, &D_803689B8);
+    func_802EFFA8(this, D_803689B8);
     func_802EFA5C(this, 0.0f, 0.1f);
     particleEmitter_setStartingFrameRange(this, 0, 7);
     particleEmitter_setParticleSpawnPositionRange(this, -80.0f, 0.0f, -80.0f, 80.0f, 60.0f, 80.0f);

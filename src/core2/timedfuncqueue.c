@@ -122,7 +122,7 @@ void func_80324A68(enum sfx_e arg0, s32 arg1, s32 arg2){
 }
 
 void func_80324AA4(timefuncqueue_Struct2 *arg0){
-    func_8030E9C4(arg0->unk0, arg0->unk4, arg0->unk8, (f32 (*)[3])&arg0->unkC, arg0->unk18, arg0->unk1C);
+    func_8030E9C4(arg0->unk0, arg0->unk4, arg0->unk8, arg0->unkC, arg0->unk18, arg0->unk1C);
 }
 
 void func_80324AEC(DelayedTextCallback *arg0) {
@@ -150,7 +150,7 @@ void func_80324BA0(s32 arg0){
 }
 
 void __spawnjiggy(DelayedJiggyInfo *jigInfo){
-    jiggySpawn(jigInfo->id, &jigInfo->pos);
+    jiggySpawn(jigInfo->id, jigInfo->pos);
 }
 
 void func_80324C58(void){
@@ -162,7 +162,7 @@ f32 func_80324C7C(void){
 }
 
 void timed_playSfx(f32 time, enum sfx_e arg0, f32 arg1, s32 arg2){
-    timedFunc_set_3(time, func_80324A68, arg0, (s32)(arg1*1000.0f), arg2);
+    timedFunc_set_3(time, (TFQM3)func_80324A68, arg0, (s32)(arg1*1000.0f), arg2);
 }
 
 void func_80324CD8(f32 time){
@@ -170,7 +170,7 @@ void func_80324CD8(f32 time){
 }
 
 void func_80324CFC(f32 time, s32 id, s32 volume){
-    timedFunc_set_2(time, func_80324A28, id, volume);
+    timedFunc_set_2(time, (TFQM2)func_80324A28, id, volume);
 }
 
 void func_80324D2C(f32 time, enum comusic_e arg0){

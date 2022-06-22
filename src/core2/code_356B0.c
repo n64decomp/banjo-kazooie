@@ -102,8 +102,8 @@ bool func_802BC640(f32 arg0[3], f32 arg1[3], f32 arg2, s32 arg3) {
         func_8024575C(arg0, sp78, 40.0f, sp88, 4, 0x9E0000);
         if (phi_f26 < func_80258708(arg0, sp78)) {
             func_802BD334(sp78);
-            ml_vec3f_clear(&D_8037D9C8);
-            ml_vec3f_clear(&D_8037D9E0);
+            ml_vec3f_clear(D_8037D9C8);
+            ml_vec3f_clear(D_8037D9E0);
             return TRUE;
         }
     }

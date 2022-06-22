@@ -475,7 +475,7 @@ int func_803110F8(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4){
     return 1;
 }
 
-int func_80311174(s32 text_id, s32 arg1, f32 *pos, ActorMarker *marker, void(*callback)(ActorMarker *, s32, s32), void(*arg5)(ActorMarker *, s32, s32), s32 arg6){
+int func_80311174(s32 text_id, s32 arg1, f32 *pos, ActorMarker *marker, void(*callback)(ActorMarker *, enum asset_e, s32), void(*arg5)(ActorMarker *, enum asset_e, s32), s32 arg6){
     f32 pad;
     s32 temp_v1;
 
@@ -622,10 +622,10 @@ void func_8031169C(void){
     for(i = 0; i< 2; i++){
         func_80318C0C(D_80382E20.zoombox[i]);
         if(D_80382E20.unk104[i]){
-            D_80382E20.unk104[i] = defrag(D_80382E20.unk104[i]);
+            D_80382E20.unk104[i] = (struct13s *)defrag(D_80382E20.unk104[i]);
         }
         if(D_80382E20.zoombox[i] != NULL){
-            D_80382E20.zoombox[i] = defrag(D_80382E20.zoombox[i]);
+            D_80382E20.zoombox[i] = (gczoombox_t *)defrag(D_80382E20.zoombox[i]);
         }
     }
 }

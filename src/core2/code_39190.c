@@ -138,7 +138,7 @@ void func_802C04B0(void) {
 
     func_802BD384(sp34);
     func_802C0490(sp1C);
-    ml_vec3f_diff_copy(sp28,sp34, &sp1C);
+    ml_vec3f_diff_copy(sp28,sp34, sp1C);
     func_8025801C(sp28, &D_8037DB70);
 }
 

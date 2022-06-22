@@ -46,7 +46,7 @@ void func_802D8730(Actor *this) {
         pCtrl = func_802F4094(this->position, 40.0f);
         func_802EFB70(pCtrl, 0.05f, 0.06f);
         particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -3400.0f, 0.0f, 0.0f, -3400.0f, 0.0f);
-        func_802EFFA8(pCtrl, &D_80367C84);
+        func_802EFFA8(pCtrl, D_80367C84);
         particleEmitter_setParticleVelocityRange(pCtrl, -180.0f, 200.0f, -180.0f, 180.0f, 400.0f, 180.0f);
         particleEmitter_emitN(pCtrl, 9);
     }
