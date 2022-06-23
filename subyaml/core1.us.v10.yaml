@@ -58,7 +58,7 @@ segments:
   - [0x18110, c, code_18110] #DONE
   - [0x18210, c, code_18210] #DONE
   - [0x18310, c, code_18310] #DONE
-  - [0x18350, c, code_18350]
+  - [0x18350, c, code_18350] #DONE
   - [0x1BE90, c, code_1BE90]
   - [0x1D590, c, done/code_1D590] #DONE
   - [0x1D5C0, c, code_1D5C0]
@@ -280,7 +280,7 @@ segments:
   - [0x39FE0, bin, data_39FD0] # .rodata, code_EAF0] #continued
   - [0x3A760, bin, data_3A760] # .rodata, code_11AC0]
   - [0x3A800, bin, data_3A800] # .rodata, code_13990]
-  - [0x3A820, bin, data_3A820] # .rodata, code_18350]
+  - [0x3A820, .rodata, code_18350]
   - [0x3A920, .rodata, code_1BE90]
   - [0x3A950, .rodata, code_1D5D0]
   - [0x3A9B0, bin, data_3A9B0] # .rodata, n_synthesizer]

@@ -2,34 +2,18 @@
 #include "functions.h"
 #include "variables.h"
 
-extern f64 D_80278250;
-extern f64 D_80278258;
-extern f64 D_80278260;
-extern f64 D_802782F0;
-extern f64 D_802782F8;
-extern f64 D_80278310;
-extern f64 D_80278318;
-extern f64 D_80278320;
-extern f64 D_80278328;
-extern f64 D_80278300;
-extern f64 D_80278330;
-extern f64 D_80278240;
-extern f64 D_80278248;
-extern f64 D_80278268;
-extern f64 D_80278270;
-extern f64 D_802782C8;
-extern f64 D_802782D0;
-extern f64 D_802782D8;
-extern f64 D_802782E0;
-extern f64 D_802782E8;
+#define RARE_DTOR (RARE_PI/180.0)
 
+/* .data*/
 extern u16 *D_80276CB8; //! ml_acosPrecValTblPtr
+//! Might not be 90, but 91 or 92? Initial lowerIdx is OOB if 90
+extern f32 ml_acosValTbl[90]; //D_80276CBC
 
 // extern
 f32 func_8024C788(void);
-void func_80257918(f32 arg0[3], f32 arg1[3], f32 arg2[3], f32 arg3[3]);
 
 // .h
+void func_80257918(f32 arg0[3], f32 arg1[3], f32 arg2[3], f32 arg3[3]);
 void ml_vec3f_roll_rotate_copy(f32 arg0[3], f32 arg1[3], f32);
 
 #define _SQ2(x, y)     ((x) * (x)  +  (y) * (y))
@@ -37,12 +21,8 @@ void ml_vec3f_roll_rotate_copy(f32 arg0[3], f32 arg1[3], f32);
 #define _SQ3v1(v)      (v[0] * v[0] + v[1] * v[1] + v[2] * v[2])
 #define _SQ3v2(v1, v2) (v1[0] * v2[0] + v1[1] * v2[1] + v1[2] * v2[2])
 
-
 f32 func_80255D70(f32 x)
 {
-    //! Might not be 90, but 91 or 92? Initial lowerIdx is OOB if 90
-    extern f32 ml_acosValTbl[90];
-
     s32 sign;
     s32 upperIdx;
     s32 lowerIdx;
@@ -151,7 +131,40 @@ f32 func_80256064(f32 vec1[3], f32 vec2[3])
     return gu_sqrtf(_SQ3(diff[0], diff[1], diff[2]));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_18350/func_802560D0.s")
+f32 func_802560D0(f32 arg0[3], f32 arg1[3], f32 arg2[3]) {
+    f32 sp4C[3];
+    f32 pad48;
+    f32 sp3C[3];
+    f32 sp38;
+    f32 sp34;
+    f32 sp30;
+    f32 sp24[3];
+    f32 sp20;
+    f32 pad58;
+
+    sp24[0] = arg1[0] - arg0[0];
+    sp24[1] = arg1[1] - arg0[1];
+    sp24[2] = arg1[2] - arg0[2];
+    sp20 = gu_sqrtf(sp24[0]*sp24[0] + sp24[1]*sp24[1] + sp24[2]*sp24[2]);
+    if (sp20 < 0.01) {
+        return func_80256064(arg0, arg2);
+    }
+
+    sp3C[0] = arg2[0] - arg0[0];
+    sp3C[1] = arg2[1] - arg0[1];
+    sp3C[2] = arg2[2] - arg0[2];
+    sp38 = gu_sqrtf(sp3C[0]*sp3C[0] + sp3C[1]*sp3C[1] + sp3C[2]*sp3C[2]);
+    if (sp38 < 0.01) {
+        return sp38;
+    }
+
+    sp34 = ((sp24[0]*sp3C[0] + sp24[1]*sp3C[1] + sp24[2]*sp3C[2]) / (sp20 * sp38));
+    sp30 = (sp34 *sp38) / sp20;
+    sp4C[0] = arg0[0] + (sp24[0] * sp30);
+    sp4C[1] = arg0[1] + (sp24[1] * sp30);
+    sp4C[2] = arg0[2] + (sp24[2] * sp30);
+    return func_80256064(sp4C, arg2);
+}
 
 //ml_vec3f_distance_squared
 f32 func_80256280(f32 vec1[3], f32 vec2[3])
@@ -289,7 +302,7 @@ void ml_vec3f_pitch_rotate_copy(f32 dst[3], f32 src[3], f32 pitch)
     f32 cos, sin;
     f32 val;
 
-    pitch *= D_80278250; // M_DTOR
+    pitch *= RARE_DTOR; // M_DTOR
 
     cos = cosf(pitch);
     sin = sinf(pitch);
@@ -306,7 +319,7 @@ void ml_vec3f_yaw_rotate_copy(f32 dst[3], f32 src[3], f32 yaw)
     f32 cos, sin;
     f32 val;
 
-    yaw *= D_80278258; // M_DTOR
+    yaw *= RARE_DTOR; // M_DTOR
 
     cos = cosf(yaw);
     sin = sinf(yaw);
@@ -323,7 +336,7 @@ void ml_vec3f_roll_rotate_copy(f32 dst[3], f32 src[3], f32 roll)
     f32 cos, sin;
     f32 val;
 
-    roll *= D_80278260; // M_DTOR
+    roll *= RARE_DTOR; // M_DTOR
 
     cos = cosf(roll);
     sin = sinf(roll);
@@ -391,8 +404,8 @@ void func_80256D0C(f32 val1, f32 val2, f32 x, f32 y, f32 z, f32 *dstX, f32 *dstY
 {
     f32 tmp;
 
-    val1 *= D_80278268; // M_DTOR
-    val2 *= D_80278268;
+    val1 *= RARE_DTOR; // M_DTOR
+    val2 *= RARE_DTOR;
 
     tmp   = y   * sinf(val1) + cosf(val1) * z;
 
@@ -405,8 +418,8 @@ void func_80256E24(f32 dst[3], f32 val1, f32 val2, f32 x, f32 y, f32 z)
 {
     f32 tmp;
 
-    val1 *= D_80278270; // M_DTOR
-    val2 *= D_80278270;
+    val1 *= RARE_DTOR; // M_DTOR
+    val2 *= RARE_DTOR;
 
     tmp     = y  * sinf(val1) + cosf(val1) * z;
 
@@ -429,42 +442,27 @@ void func_80256F44(f32 vec1[3], f32 vec2[3], f32 vec3[3], f32 dst[3])
     dst[2] = vec1[2] + tmp1[2];
 }
 
-// ml_asinf?
-#ifndef NONMATCHING
-f32 ml_acosf(f32);
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_18350/ml_acosf.s")
-#else
-// very close, types/regalloc
 f32 ml_acosf(f32 x)
 {
-    extern f64 D_80278278; //! 65535.0
-    extern f64 D_80278280; //! 90.0
-    extern f64 D_80278288; //! 10000.0
-
     u16 lowerIdx = 0;
     u16 upperIdx = 10000;
     u16 idx      = 10000;
 
-    f32 x_abs = x >= 0 ? x : -x;
+    f32 x_abs = ((x >= 0) ? x : -x);
 
-    u16 target = x_abs * D_80278278;
+    u16 target = x_abs * 65535.0;
 
-    while (target != D_80276CB8[idx])
-    {
+    while ((upperIdx - lowerIdx >= 2) && (target != D_80276CB8[idx])){
         idx = (upperIdx + lowerIdx) / 2;
 
-        if (target < D_80276CB8[idx])
+        if (target < D_80276CB8[idx]) 
             upperIdx = idx;
         else
             lowerIdx = idx;
+    };
 
-        if (upperIdx - lowerIdx < 2)
-            break;
-    }
-
-    return idx * D_80278280 / D_80278288;
+    return idx * 90.0 / 10000.0;
 }
-#endif
 
 f32 func_8025715C(f32 val1, f32 val2)
 {
@@ -498,30 +496,28 @@ f32 func_80257248(f32 vec1[3], f32 vec2[3])
 
 void func_8025727C(f32 x1, f32 y1, f32 z1, f32 x2, f32 y2, f32 z2, f32 *o1, f32 *o2)
 {
-    extern f64 D_80278290; //! 0.01
-    extern f64 D_80278298; //! 0.01
-
-    f32 ft1;
+    f32 dz;
+    f32 dy; // unused
+    f32 dx; //these 3 are probably a f32[3]^
     f32 ft2;
-    f32 ft3;
-    f32 pad1; // unused
-    f32 ft4;
-    f32 pad2; // unused
+    f32 horz_dist;
+    f32 dist; // unused
 
-    ft3 = x2 - x1;
-    ft1 = z2 - z1;
-    ft2 = (ft3 * ft3) + (ft1 * ft1);
+    dx = x2 - x1;
+    dy = y2 - y1;
+    dz = z2 - z1;
+    ft2 = (dx * dx) + (dz * dz);
 
-    ft4 = gu_sqrtf(ft2);
+    horz_dist = gu_sqrtf(ft2);
 
-    if (ft4 > D_80278290)
+    if (horz_dist > 0.01)
     {
-        *o2 = ml_acosf(ft3 / ft4);
+        *o2 = ml_acosf(dx / horz_dist);
 
-        if (ft1 < 0)
+        if (dz < 0)
             *o2 = 180 - *o2;
 
-        if (ft3 < 0)
+        if (dx < 0)
             *o2 = 360 - *o2;
     }
     else
@@ -529,18 +525,17 @@ void func_8025727C(f32 x1, f32 y1, f32 z1, f32 x2, f32 y2, f32 z2, f32 *o1, f32 
         *o2 = 0;
     }
 
-    ft3 = y2 - y1;
 
-    ft1 = gu_sqrtf((ft3 * ft3) + ft2);
+    dist = gu_sqrtf((dy * dy) + ft2);
 
-    if (ft1 > D_80278298)
+    if (dist > 0.01)
     {
-        *o1 = ml_acosf(ft3 / ft1);
+        *o1 = ml_acosf(dy / dist);
 
-        if (ft4 < 0)
+        if (horz_dist < 0)
             *o1 = 180 - *o1;
 
-        if (ft3 < 0)
+        if (dy < 0)
             *o1 = 360 - *o1;
     }
     else
@@ -549,44 +544,20 @@ void func_8025727C(f32 x1, f32 y1, f32 z1, f32 x2, f32 y2, f32 z2, f32 *o1, f32 
     }
 }
 
-#ifndef NON_MATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_18350/func_80257424.s")
-#else
-/**
- * Pre-generates the ushort table used for asin
- */
-// probably needs .rodata to match, swapped cop1 double regs
 void func_80257424(void)
 {
-    extern f32 D_802782A0; //! 65535.f
-    extern f64 D_802782A8; //! 180.0
-    extern f64 D_802782B0; //! pi
-    extern f64 D_802782B8; //! 10000.0
-    extern f64 D_802782C0; //! 90.0
-
     u16 i;
 
     // Allocate table
     D_80276CB8 = (u16 *)malloc(10001 * sizeof(u16));
 
+    // Generate all entries in the table
+    for (i = 0; i < 10001; i++)
     {
-        f32 c1 = D_802782A0;
-        f64 c2 = D_802782A8;
-        f64 c3 = D_802782B0;
-        f64 c4 = D_802782B8;
-        f64 c5 = D_802782C0;
-
-        // Generate all entries in the table
-        for (i = 0; i < 10001; i++)
-        {
-            f64 angle = i * c5 / c4 * c3 / c2;
-
-            // Save value
-            D_80276CB8[i] = sinf(angle) * c1;
-        }
+        // Save value
+        D_80276CB8[i] = sinf(i * 90.0 / 10000 * M_PI / 180) * 65535.f;
     }
 }
-#endif
 
 /**
  * Deallocates the ushort table used for asin
@@ -599,12 +570,12 @@ void func_80257594(void)
 
 f32 func_802575BC(f32 val)
 {
-    return (sinf(val * D_802782C8 + D_802782D0) + 1) / 2.0;
+    return (sinf(val * RARE_PI + -RARE_PI/2) + 1) / 2.0;
 }
 
 f32 func_80257618(f32 val)
 {
-    return sinf(val * D_802782D8 / 2);
+    return sinf(val * RARE_PI / 2);
 }
 
 f32 func_80257658(f32 val)
@@ -727,12 +698,12 @@ f32 func_80257A6C(f32 val1, f32 val2)
 {
     f32 tmp = func_802588B0(val1, val2) / val2;
 
-    return (sinf(tmp * D_802782E0) + 1.0) / 2.0;
+    return (sinf(tmp * (2*RARE_PI)) + 1.0) / 2.0;
 }
 
 f32 func_80257AD4(f32 val1, f32 val2)
 {
-    return sinf((func_802588B0(val1, val2) / val2) * D_802782E8);
+    return sinf((func_802588B0(val1, val2) / val2) * (2*RARE_PI));
 }
 
 f32 ml_f_map(f32 a, f32 b, f32 c, f32 d, f32 e)
@@ -867,7 +838,7 @@ int func_80257F18(f32 src[3], f32 target[3], f32 *yaw)
 
     h = gu_sqrtf(_SQ2(diff[2], diff[0]));
 
-    if (h < D_802782F0) // (f64) 0.01
+    if (h < 0.01) // (f64) 0.01
         return 0;
 
     *yaw = ml_acosf(diff[0] / h);
@@ -895,7 +866,7 @@ int func_8025801C(f32 target[3], f32 *yaw)
 
     h = gu_sqrtf(_SQ2(diff[2], diff[0]));
 
-    if (h < D_802782F8) // (f64) 0.01
+    if (h < 0.01) // (f64) 0.01
         return 0;
 
     *yaw = ml_acosf(diff[0] / h);
@@ -918,7 +889,7 @@ int func_80258108(f32 vec[3], f32 *arg1, f32 *arg2)
 
     horz_len = gu_sqrtf(_SQ2(vec[2], vec[0]));
 
-    if (horz_len < D_80278300) // (f64) 0.01
+    if (horz_len < 0.01)
         return 0;
 
     *arg1 = ml_acosf(vec[0] / horz_len);
@@ -936,15 +907,13 @@ int func_80258108(f32 vec[3], f32 *arg1, f32 *arg2)
 
 int func_80258210(f32 x, f32 y, f32 *dst)
 {
-    extern f64 D_80278308; //! .rodata : 0.01
-
     f32 tmp;
 
     *dst = 0;
 
     tmp = gu_sqrtf(_SQ2(y, x));
 
-    if (tmp < D_80278308)
+    if (tmp < 0.01)
         return FALSE;
 
     *dst = ml_acosf(x / tmp);
@@ -1049,30 +1018,25 @@ f32 func_80258780(f32 vec1[3], f32 vec2[3])
 
 f32 ml_sin_deg(f32 angle_deg)
 {
-    return sinf(angle_deg * D_80278310);
+    return sinf(angle_deg * RARE_DTOR);
 }
 
 f32 ml_cos_deg(f32 angle_deg)
 {
-    return cosf(angle_deg * D_80278318);
+    return cosf(angle_deg * RARE_DTOR);
 }
 
 f32 mlNormalizeAngle(f32 angle)
 {
-    f64 tmp;
-
     if (angle < 0.0) // f64
     {
         // recursive call
         angle = mlNormalizeAngle(-angle);
-        tmp = D_80278320;
-        angle = tmp - angle;
+        angle = 360.0 - angle;
     }
 
-    tmp = D_80278328;
-
-    if (angle >= tmp)
-        angle -= tmp * (s32)(angle / tmp);
+    if (angle >= 360.0)
+        angle -= 360.0 * (s32)(angle / 360.0);
 
     return angle;
 }
@@ -1123,7 +1087,7 @@ int ml_abs_w(int arg0)
 
 void func_802589E4(f32 dst[3], f32 yaw, f32 length)
 {
-    yaw *= D_80278330;
+    yaw *= RARE_DTOR;
 
     dst[0] = sinf(yaw) * length;
     dst[2] = cosf(yaw) * length;
