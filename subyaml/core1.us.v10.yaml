@@ -90,7 +90,7 @@ segments:
   - [0x21A80, c, done/audio/code_21A80] #DONE
   - [0x21AB0, c, done/audio/cspgettempo] #DONE
   - [0x21AF0, c, done/audio/code_21AF0] #DONE
-  - [0x21B50, c, code_21B50]
+  - [0x21B50, c, done/audio/code_21B50] #DONE
   - [0x21C50, c, done/audio/n_synallocfx] #DONE
   - [0x21CB0, c, n_reverb]
   - [0x22740, c, done/audio/n_auxbus] #DONE
