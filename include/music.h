@@ -5,14 +5,14 @@
 
 typedef struct struct_B_s{
     s32 unk0;
-    s32 unk4;
+    s32 chan;
     f32 unk8;
     f32 unkC;
     f32 unk10;
 } structBs;
 
 typedef struct music_track_s{
-    s16  unk0;
+    s16 unk0;
     u8  unk2;
     u8  unk3;
     ALCSeq cseq;

@@ -2,10 +2,9 @@
 #include "functions.h"
 #include "variables.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/io/cartrominit/osCartRomInit.s")
-/*
 extern OSPiHandle *__osPiTable;
-extern OSPiHandle CartRomHandle;
+
+OSPiHandle CartRomHandle;
 OSPiHandle *osCartRomInit(void)
 {
 	u32 domain;

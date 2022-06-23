@@ -4,6 +4,9 @@
 
 #include "music.h"
 
+extern void func_8025F570(ALCSPlayer *, u8);
+extern void func_8025F510(ALCSPlayer *, u8, u8);
+extern void func_8025F5C0(ALCSPlayer *, u8);
 
 extern ALBankFile D_EA3EB0;
 extern ALWaveTable D_EADE60;
@@ -21,16 +24,16 @@ void func_8024FB8C(void);
 
 /* .data */
 extern MusicTrackMeta D_80275D40[];
-extern s32 D_802762C0;
-extern s32 D_802762C4;
-extern f32 D_80278180;
-extern f32 D_80278184;
-extern MusicTrack D_80281720[];
+extern s32          D_802762C0;
+extern s32          D_802762C4;
+extern f32          D_80278180;
+extern f32          D_80278184;
+extern MusicTrack   D_80281720[];
 extern MusicTrack **D_802820E0;
 extern ALSeqpConfig D_802820E8;
-extern u16 D_80282104; //called as u16 someplaces and s16 others
-extern ALBank *D_80282108;
-extern structBs D_80282110[0x20];
+extern u16          D_80282104; //called as u16 someplaces and s16 others
+extern ALBank *     D_80282108;
+extern structBs     D_80282110[0x20];
 
 
 
@@ -45,7 +48,7 @@ void func_8024F4E0(void){
     s32 i;
     f32 tmpf1;
     
-    size = (u32)&D_EADE60 - (u32)&D_EA3EB0;
+    size = (u8*)&D_EADE60 - (u8*)&D_EA3EB0;
     bnk_f = malloc(size);
     osWriteBackDCacheAll();
     osPiStartDma(func_802405D0(), 0, 0, &D_EA3EB0, bnk_f, size, func_802405C4());
@@ -66,18 +69,20 @@ void func_8024F4E0(void){
     for(i = 0; i < 6; i++){
         n_alCSPNew(&D_80281720[i].cseqp, &D_802820E8); //alCSPNew
     }
+
     alBnkfNew(bnk_f, &D_EADE60);
     D_80282108 = bnk_f->bankArray[0];
     for(i = 0; i < 6; i++){
         alCSPSetBank(&D_80281720[i].cseqp, D_80282108);
     }
+
     //something wrong with this last loop.
     for(i = 0; i < 6; i++){
-       D_80281720[i].unk2 = 0;
-       D_80281720[i].unk3 = 0;
-       D_80281720[i].index_cpy = 0;
-       D_80281720[i].unk17C = 0.0f;
-       D_80281720[i].unk180 = 1.0f;
+        D_80281720[i].unk2 = 0;
+        D_80281720[i].unk3 = 0;
+        D_80281720[i].index_cpy = 0;
+        D_80281720[i].unk17C = 0.0f;
+        D_80281720[i].unk180 = 1.0f;
     }
     func_8024FB8C();
 }
@@ -326,27 +331,27 @@ void func_802500F4(s32 arg0){}
 
 void func_802500FC(s32 arg0){}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_80250104.s")
-// void func_80250104(MusicTrack *arg0, s32 arg1, s32 arg2){
-//     u8 i;
-//     for(i = 0; i < 6; i++){
-//         if(arg0 == D_80281720 + i){
-//             D_80281720[i].cseqp.curTime = 1;
-//             D_80281720[i].cseqp.state = arg2;
-//             return;
-//         }
-//     }
-// }
+void func_80250104(ALCSeq *arg0, s32 arg1, s32 arg2){
+    u8 i;
+    for(i = 0; i < 6; i++){
+        if(arg0 == &D_80281720[i].cseq){
+            D_80281720[i].unk184[arg1 - 0x6A] = 1;
+            D_80281720[i].unk192[arg1 - 0x6A] = arg2;
+            return;
+        }
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_80250170.s")
-// MATCHES BUT STRUCT IS WRONG for ALCSPlayer
-// void func_80250170(u8 arg0, s32 arg1, s32 arg2){
-//     ((u8 *)(&D_80281720[arg0].cseqp.curTime))[2 + arg1] = arg2;
-// }
+void func_80250170(u8 arg0, s32 arg1, s32 arg2){
+    D_80281720[arg0].unk184[arg1 - 0x6A] = arg2;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_802501A0.s")
-
-
+s32 func_802501A0(u8 arg0, s32 arg1, s32 *arg2){
+    if(arg2 != 0){
+        *arg2 =  D_80281720[arg0].unk192[arg1 - 0x6A];
+    }
+    return D_80281720[arg0].unk184[arg1 - 0x6A];
+}
 
 void func_80250200(s32 arg0, s16 chan, s16 arg2, f32 arg3){
     s32 i;
@@ -364,10 +369,10 @@ void func_80250200(s32 arg0, s16 chan, s16 arg2, f32 arg3){
 
     for(i = 0; i< 0x20; i++){
         if( (D_80282110[i].unk8 == D_80282110[i].unk10) 
-            || (D_80282110[i].unk0 == arg0 && chan == D_80282110[i].unk4)
+            || (D_80282110[i].unk0 == arg0 && chan ==D_80282110[i].chan)
         ){
             D_80282110[i].unk0 = arg0;
-            D_80282110[i].unk4 = chan;
+           D_80282110[i].chan = chan;
             D_80282110[i].unk8 = tmpf;
             D_80282110[i].unkC = (arg2 - tmpf)/((arg3 * 60.0f)/2);
             D_80282110[i].unk10 = arg2;
@@ -392,10 +397,10 @@ void func_80250360(s32 arg0, s32 arg1, f32 arg2){
     }
     for(i = 0; i < 0x20; i++){
         if(D_80282110[i].unk8 == D_80282110[i].unk10 
-            || (D_80282110[i].unk0 == arg0 && -1 == D_80282110[i].unk4)
+            || (D_80282110[i].unk0 == arg0 && -1 ==D_80282110[i].chan)
         ){
             D_80282110[i].unk0 = arg0;
-            D_80282110[i].unk4 = -1;
+           D_80282110[i].chan = -1;
             D_80282110[i].unk8 = tempo;
             D_80282110[i].unkC = (arg1 - tempo)/((arg2 * 60.0f)/2);
             D_80282110[i].unk10 = arg1;
@@ -430,138 +435,70 @@ u16 func_80250474(s32 arg0){
 
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_80250530.s")
+void func_80250530(s32 arg0, u16 chan_mask, f32 arg2){
+    s32 chan;
+    if(D_802762C0 != chan_mask){
+        if(D_802762C0 == -1){
+            arg2 = 0.0f;
+        }
+        D_802762C0 = chan_mask;
+        for(chan = 0; chan < 16; chan++){
+            if(chan_mask & (1 << chan)){
+                func_80250200(arg0, chan, 0x7F, arg2);
+            }
+            else{
+                func_80250200(arg0, chan, 0, arg2);
+            }
+        }
+    }//L802505E4
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_80250604.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_80250650.s")
-
-/* ??? BREAK ??? */
-extern f64 D_80278190;
-
-extern OSMesgQueue D_80282390;
-extern OSMesg D_802823A8;
-extern s32 D_802823AC;
-extern s32 D_802823B0;
-extern OSMesgQueue *D_802823B4;
-extern OSPfs D_802823B8;
-extern f32 D_80282420;
-extern f32 D_80282424;
-extern f32 D_80282428;
-extern f32 D_8028242C;
-extern OSThread D_80282430;
-extern u8 D_802827E0;
-
-void func_80250D94(f32, f32, f32);
-
-void func_80250890(void){
-    u32 motor_status;
-
-    if(D_802823B0){
-        func_8024F35C(4);
-        motor_status = osMotorStart(&D_802823B8);
-        D_802823B0 = motor_status < 1;
-        func_8024F35C(0);
+void func_80250604(s32 arg0, s32 arg1, f32 arg2){
+    if(arg1 != D_802762C4){
+        if(D_802762C4 == -1){
+            arg2 = 0.0f;
+        }
+        D_802762C4 = arg1;
+        func_80250360(arg0, arg1, arg2);
     }
 }
-
-void func_802508E0(void){
-    u32 motor_status;
-
-    if(D_802823B0){
-        func_8024F35C(4);
-        motor_status = osMotorStop(&D_802823B8);
-        D_802823B0 = motor_status < 1;
-        func_8024F35C(0);
-    }
-}
-
-void func_80250930(void){
-    u32 motor_status;
-
-    if(!D_802823B0){
-        func_8024F35C(4);
-        motor_status = osMotorInit(D_802823B4, &D_802823B8, 0);
-        D_802823B0 = motor_status < 1;
-        func_8024F35C(0);
-    }
-}
-
-void func_8025098C(void);
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_8025098C.s")
-
-
-void func_80250BA4(s32 arg0, s32 arg1, s32 arg2){
-    f64 f0 = 524288.0;
-    func_80250D94(arg0/f0, arg1/f0, arg2/f0);
-}
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_80250C08.s")
 
 #ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_80250C84.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_80250650.s")
 #else
-void func_80250C84(void){
-    u32 pfs_status;
-    
-    func_8024F35C(4);
-    D_802823B4 = func_8024F344();
-    pfs_status = osPfsInit(D_802823B4, &D_802823B8, 0);
-    if(pfs_status == 10 || pfs_status == 11){
-        pfs_status = osMotorInit(D_802823B4, &D_802823B8, 0);
-    }
-    func_8024F35C(0);
-    D_802823B0 = D_802823AC = pfs_status < 1;
-    if(D_802823AC){
-        osCreateMesgQueue(&D_80282390, &D_802823A8, 1);
-        osCreateThread(&D_80282430, 8, func_8025098C, NULL, &D_802827E0, 0x19);
-        osStartThread(&D_80282430);
-        func_8024BDAC(&D_80282390, 0);
-    }
-}
-#endif
+void func_80250650(void) {
+    ALCSPlayer *temp_s2;
+    f32 temp_f12;
+    f32 temp_f2;
+    f32 temp_f2_2;
+    s32 temp_s1;
+    s32 temp_s1_2;
+    structBs *var_s0;
+    s32 i;
 
-void func_80250D8C(void){}
-
-void func_80250D94(f32 arg0, f32 arg1, f32 arg2){
-    f32 f4;
-    if(arg2 != 0.0f && D_802823AC){
-        if(func_802E4A08() == 0){
-            if(!(D_80278190 < D_80282420 - D_80282424) || !(arg0 + arg1 < D_80282428 + D_8028242C)){
-                D_80282420 = arg2;
-                D_80282424 = 0.0f;
-                D_80282428 = arg0;
-                D_8028242C = arg1;
+    for(i = 0; i < 0x20; i++){
+        temp_s2 = func_802500CC(D_80282110[i].unk0);
+        if ((D_80282110[i].unk8 != D_80282110[i].unk10) && (func_80250074((u8)D_80282110[i].unk0) == 0)) {
+            if (D_80282110[i].unkC >= 0.0f) {
+                D_80282110[i].unk8 = MIN(D_80282110[i].unk8 + D_80282110[i].unkC, D_80282110[i].unk10);
+            } else {
+                D_80282110[i].unk8 = MAX(D_80282110[i].unk8 + D_80282110[i].unkC, D_80282110[i].unk10);
+            }
+            if (D_80282110[i].chan == -1) {
+                alCSPSetTempo(temp_s2, (s32) D_80282110[i].unk8);
+            } else {
+                func_8025F510(temp_s2,D_80282110[i].chan, D_80282110[i].unk8);
+                if (((1 <<D_80282110[i].chan) & (s32)temp_s2->chanMask)) {
+                    if (D_80282110[i].unk8 == 0.0) {
+                        func_8025F5C0(temp_s2, D_80282110[i].chan);
+                    }
+                } else {
+                    if (D_80282110[i].unk8 != 0.0f) {
+                        func_8025F570(temp_s2, D_80282110[i].chan);
+                    }
+                }
             }
         }
     }
 }
-
-void func_80250E6C(f32 arg0, f32 arg1){
-    func_80250D94(arg0, arg0, arg1);
-}
-
-void func_80250E94(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5){
-
-    if(D_802823AC){
-    timedFunc_set_3(0.0f, (TFQM3) func_80250BA4, 0, (s32) (arg0 * 524288.0f), (s32) (arg2*524288.0f));
-    timedFunc_set_3(arg2, (TFQM3) func_80250BA4, (s32) (arg0 * 524288.0f), (s32) (arg1 * 524288.0f), (s32) (arg3*524288.0f));
-    timedFunc_set_3(arg2 + arg3, (TFQM3) func_80250BA4, (s32) (arg1 * 524288.0f), (s32) (arg1 * 524288.0f), (s32) (arg4*524288.0f));
-    timedFunc_set_3(arg2 + arg3 + arg4, (TFQM3) func_80250BA4, (s32) (arg1 * 524288.0f), 0, (s32) (arg5*524288.0f));
-    }
-}
-
-void func_80250FC0(void){
-    int i;
-    u32 motor_status;
-    if(D_802823B0){
-        func_8024F35C(4);
-        motor_status = osMotorInit(D_802823B4, &D_802823B8, 0);
-        D_802823B0 = motor_status < 1;
-        for(i=0; i < 3 && D_802823B0; i++){
-            motor_status = osMotorStop(&D_802823B8);
-            D_802823B0 = motor_status < 1;
-        }
-        func_8024F35C(0);
-    }
-}
+#endif

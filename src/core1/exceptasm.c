@@ -19,4 +19,6 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/exceptasm/__osDispatchThread.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/exceptasm/func_8026ABF0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core1/exceptasm/__osCleanupThread.s")
+
+#pragma GLOBAL_ASM("asm/nonmatchings/core1/exceptasm/osMapTLBRdb.s")

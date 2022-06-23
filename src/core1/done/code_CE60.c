@@ -12,7 +12,7 @@ typedef struct {
     s16 z_max;
 } Struct_Core1_CE60_0s;
 
-void func_80250530(s32, s32, f32);
+void func_80250530(s32, u16 chan_mask, f32);
 
 /* .data */
 extern s32 D_80275C10;
@@ -29,12 +29,12 @@ extern s32 D_80280708[4];
 
 
 /* .code */
-void func_8024A880(s32 arg0){
-    func_80250530(0, arg0 & 0xffff, 3.0f);
+void func_8024A880(s32 chan_mask){
+    func_80250530(0, chan_mask, 3.0f);
 }
 
-void func_8024A8AC(s32 arg0, f32 arg1){
-    func_80250530(0, arg0 & 0xffff, arg1);
+void func_8024A8AC(s32 chan_mask, f32 arg1){
+    func_80250530(0, chan_mask, arg1);
 }
 
 int func_8024A8DC(s32 arg0, s32 arg1, s32 arg2){

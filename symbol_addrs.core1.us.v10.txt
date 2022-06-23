@@ -234,6 +234,8 @@ __osEnqueueAndYield = 0x8026A90C;
 __osEnqueueThread = 0x8026AA0C;
 __osPopThread = 0x8026AA54;
 __osDispatchThread = 0x8026AA64;
+__osCleanupThread = 0x8026ABE0;
+osMapTLBRdb = 0x8026ABF0;
 osPiRawReadIo = 0x8026AC50;
 __osDisableInt = 0x8026ACB0;
 __osRestoreInt = 0x8026ACD0;
@@ -470,12 +472,13 @@ snsPayloadOutCurrPos              = 0x80276E60;
 D_80283008                        = 0x80283008;
 heap_requested_size                        = 0x80283230;
 snsParsedKeys                     = 0x80283390;
+gSaveData                         = 0x80283400;
 snsMinKeyToParse                  = 0x80283420;
 snsMaxKeyToParse                  = 0x80283424;
 snsParsedCurrPos                  = 0x80283428;
 snsBackedUpItems                  = 0x8028342C;
-gSaveData                         = 0x80283400;
 snsPayloadInCurrPos               = 0x80283430;
+__osFinalrom                      = 0x80283440;
 
 glcrc_calc_checksum = 0x8025C100;
 

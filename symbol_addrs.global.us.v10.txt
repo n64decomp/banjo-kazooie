@@ -33,6 +33,7 @@ __osEnqueueAndYield = 0x8026A90C;
 __osEnqueueThread = 0x8026AA0C;
 __osPopThread = 0x8026AA54;
 __osDispatchThread = 0x8026AA64;
+__osCleanupThread = 0x8026ABE0;
 __osDisableInt = 0x8026ACB0;
 __osRestoreInt = 0x8026ACD0;
 D_A0000238 = 0xA0000238;
