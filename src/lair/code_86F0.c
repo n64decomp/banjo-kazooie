@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-extern f32  func_80256280(f32[3], f32[3]);
+extern f32  ml_vec3f_distance_squared(f32[3], f32[3]);
 extern void func_8028F3D8(f32[3], f32, void(*)(ActorMarker *), ActorMarker *);
 extern void func_80324CFC(f32, enum comusic_e, s32);
 extern void func_8034A8BC(s32);
@@ -203,7 +203,7 @@ void func_8038EFD8(Actor *this) {
     sp24[1] = this->position[1];
     sp24[2] = this->position[2];
     sp24[1] += 50.0f;
-    func_8028F3D8(sp24, func_80256064(sp30, sp24) / 150.0, func_8038EF58, this->marker);
+    func_8028F3D8(sp24, ml_vec3f_distance(sp30, sp24) / 150.0, func_8038EF58, this->marker);
 }
 
 void func_8038F078(ActorMarker *marker, enum asset_e text_id, s32 arg2){
@@ -535,7 +535,7 @@ void func_8038F924(Actor *this) {
         s32 pad2;
         this->marker->unk3E_1 = FALSE;
         player_getPosition(sp44);
-        if (func_80256280(sp44, this->position) < 250000.0f) {
+        if (ml_vec3f_distance_squared(sp44, this->position) < 250000.0f) {
             if (!this->unk38_0) {
                 func_802FA5D0();
                 this->unk38_0 = TRUE;

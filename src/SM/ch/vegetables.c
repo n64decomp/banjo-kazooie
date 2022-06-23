@@ -379,7 +379,7 @@ void func_80388080(Actor *this){
                 if(gu_sqrtf(this->velocity_z*this->velocity_z + (this->velocity_x*this->velocity_x + this->velocity_y*this->velocity_y)) > 50.0f){
                     ml_vec3f_set_length(this->velocity, 50.0f);
                 }
-                if(func_80256064(this->position, this->unk1C) < 20.0f){
+                if(ml_vec3f_distance(this->position, this->unk1C) < 20.0f){
                     func_80387E64(this);
                 }
                 this->unk28 = 5.0f;

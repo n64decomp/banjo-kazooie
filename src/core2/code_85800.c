@@ -529,7 +529,7 @@ void func_8030DB04(u8 indx, s32 arg1, f32 arg2[3], f32 arg3, f32 arg4){
     f32 dist;
     f32 temp_f2;
     func_8030C790(sp24);
-    dist = func_80256064(arg2, sp24);
+    dist = ml_vec3f_distance(arg2, sp24);
     if(arg4 <= dist)
         temp_f2 = 0.0f;
     else{
@@ -902,7 +902,7 @@ void func_8030E78C(enum sfx_e uid, f32 arg1, u32 arg2, f32 arg3[3], f32 arg4, f3
     f32 sp20[3];
     
     func_8030C790(&sp20);
-    if( !(arg5 <= func_80256064(sp20, arg3))
+    if( !(arg5 <= ml_vec3f_distance(sp20, arg3))
         && levelSpecificFlags_validateCRC2()
         && func_80320240()
     ){

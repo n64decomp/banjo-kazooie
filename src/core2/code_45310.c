@@ -351,7 +351,7 @@ void func_802CCC5C(Actor *this) {
                     spB0 = (spB0 < spAC) ? spAC : MIN(spA8 , spB0);
                 }
                 func_8030DBB4(local->unk0, spB0);
-                phi_f12 = 1.0f - func_80256064(spC4, this->position) / 2000.0f;
+                phi_f12 = 1.0f - ml_vec3f_distance(spC4, this->position) / 2000.0f;
                 if(0.0f > phi_f12){
                     phi_f12 = 0.0f;
                 }
@@ -455,7 +455,7 @@ void func_802CCC5C(Actor *this) {
                     sp68[1] = this->position[1];
                     sp68[2] = this->position[2];
                     sp68[0] = 0.0f;
-                    if (func_80256064(sp8C, sp68) < 800.0f) {
+                    if (ml_vec3f_distance(sp8C, sp68) < 800.0f) {
                         spBC = 3;
                     }
                 }

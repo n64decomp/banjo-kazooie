@@ -120,7 +120,7 @@ void func_802CEDE4(f32 arg0[3], f32 p_ctrl[3], f32 arg2, f32 *arg3, f32 arg4, f3
         p_ctrl[1] = randf2(-arg2, arg2);
         p_ctrl[2] = randf2(-arg2, arg2);
         phi_s1++;
-    }while(phi_s1 < 10 &&  func_80256064(arg0, p_ctrl) < arg2);
+    }while(phi_s1 < 10 &&  ml_vec3f_distance(arg0, p_ctrl) < arg2);
     *arg3 =  randf2(arg4, arg5);
 }
 
@@ -235,7 +235,7 @@ void func_802CF434(Actor *this) {
     local = (ActorLocal_core2_47BD0 *) &this->local;
     for(phi_s2 = 0, phi_s0 = local->unk8; phi_s2 < local->unk0; phi_s2++){
         func_802CF1C8(phi_s0->unk18, phi_s0->unk0, phi_s0->unkC, phi_s0->unk24[2], 150.0f, phi_s0->unk24, &sp58);
-        if (func_80256064(phi_s0->unk0, phi_s0->unk18) < 50.0f) {
+        if (ml_vec3f_distance(phi_s0->unk0, phi_s0->unk18) < 50.0f) {
             func_802CEEA4(this, phi_s0);
         }
         phi_s0++;
@@ -493,7 +493,7 @@ block_40:
                 if (func_802CF5E4(this)) {
                     func_80328A84(this, 2);
                 }
-                if (func_80256064(this->position, this->unk1C) < 50.0f) {
+                if (ml_vec3f_distance(this->position, this->unk1C) < 50.0f) {
                     func_802CEF54(this, local->unkC, 100.0f);
                 }
                 break;

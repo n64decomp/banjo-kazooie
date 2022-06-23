@@ -548,7 +548,7 @@ void func_8038D8BC(Actor *this){
             }
         }
         else{//L8038DAA8
-            if(func_80256064(&this->position, &sp64) < 1200.0f){
+            if(ml_vec3f_distance(&this->position, &sp64) < 1200.0f){
                 func_8038CC9C(this, 2);
             }
         }

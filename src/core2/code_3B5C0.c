@@ -21,7 +21,7 @@ struct{
 
 /* .code */
 bool func_802C2550(void) {
-    return (func_80256064(D_8037DC60.unk0, &D_8037DC60.unk18) < 40.0f);
+    return (ml_vec3f_distance(D_8037DC60.unk0, &D_8037DC60.unk18) < 40.0f);
 }
 
 void func_802C2598(f32 arg0[3], f32 arg1[3]) {

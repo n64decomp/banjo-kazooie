@@ -277,7 +277,7 @@ void func_8038F430(ActorMarker *marker, s32 arg1){
 
     if(actor->state < 3){
         player_getPosition(&sp18);
-        if(func_80256064(&actor->position, &sp18) < 300.0f)
+        if(ml_vec3f_distance(&actor->position, &sp18) < 300.0f)
             func_8028F55C(5, actor->marker);
         func_8038F190(actor, 3);
     }//L8038F4A4
@@ -354,7 +354,7 @@ void func_8038F618(Actor *this){
     }
     func_8038E92C(this);
     if(this->state == 1){
-        if(sp78 && func_80256064(&this->position, &sp7C) < 500.0f){
+        if(sp78 && ml_vec3f_distance(&this->position, &sp7C) < 500.0f){
             func_8038F190(this, 2);
         }
     }//L8038F7A0
@@ -388,7 +388,7 @@ void func_8038F618(Actor *this){
         
         this->yaw += (sp44*400.0f)*sp70;
         if(func_80335794(this->unk148) > 0){
-            if(func_80256064(&this->position, &local->unk8) < 10.0f){
+            if(ml_vec3f_distance(&this->position, &local->unk8) < 10.0f){
                 func_8038F190(this, 1);
             }else{
                 func_8038F190(this, 2);

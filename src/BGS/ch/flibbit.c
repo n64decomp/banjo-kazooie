@@ -375,7 +375,7 @@ void chflibbit_update(Actor *this){
             sp84[0]  = (f32)local->unkE[0];
             sp84[1]  = (f32)local->unkE[1];
             sp84[2]  = (f32)local->unkE[2];
-            if(func_80256064(this->position, sp84) < 30.0f){
+            if(ml_vec3f_distance(this->position, sp84) < 30.0f){
                 func_80386AEC(this, 1);
             }
             else{

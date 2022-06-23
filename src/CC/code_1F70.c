@@ -337,7 +337,7 @@ void func_80388F4C(void){
     func_80387D4C();
     if(D_80389FA0.unk21 != 0 && func_80334904() == 2){
         player_getPosition(sp6C);
-        D_80389FA0.unk20 = (func_80256064(sp6C, D_80389FA0.unkC) < 200.0f);
+        D_80389FA0.unk20 = (ml_vec3f_distance(sp6C, D_80389FA0.unkC) < 200.0f);
 
         D_80389FA0.unk38 += sp68;
         sp64 = func_80335684(D_80389FA0.unk0);
@@ -387,7 +387,7 @@ void func_80388F4C(void){
 
         if(D_80389FA0.unk21 == 3){
             func_8034A174(D_80389FA0.unk34, 6, sp48);
-            if(func_80256064(sp48, sp6C) <= 130.0f && sp6C[1] - sp48[1] < 50.0f){
+            if(ml_vec3f_distance(sp48, sp6C) <= 130.0f && sp6C[1] - sp48[1] < 50.0f){
                 func_8031D04C(0x21, 1);
             }
         }//L80389260

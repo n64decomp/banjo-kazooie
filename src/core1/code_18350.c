@@ -21,6 +21,7 @@ void ml_vec3f_roll_rotate_copy(f32 arg0[3], f32 arg1[3], f32);
 #define _SQ3v1(v)      (v[0] * v[0] + v[1] * v[1] + v[2] * v[2])
 #define _SQ3v2(v1, v2) (v1[0] * v2[0] + v1[1] * v2[1] + v1[2] * v2[2])
 
+/* .code */
 f32 func_80255D70(f32 x)
 {
     s32 sign;
@@ -119,8 +120,7 @@ f32 ml_vec3f_dot_product(f32 vec1[3], f32 vec2[3])
          + vec1[2] * vec2[2];
 }
 
-//ml_vec3f_distance
-f32 func_80256064(f32 vec1[3], f32 vec2[3])
+f32 ml_vec3f_distance(f32 vec1[3], f32 vec2[3])
 {
     f32 diff[3];
 
@@ -147,7 +147,7 @@ f32 func_802560D0(f32 arg0[3], f32 arg1[3], f32 arg2[3]) {
     sp24[2] = arg1[2] - arg0[2];
     sp20 = gu_sqrtf(sp24[0]*sp24[0] + sp24[1]*sp24[1] + sp24[2]*sp24[2]);
     if (sp20 < 0.01) {
-        return func_80256064(arg0, arg2);
+        return ml_vec3f_distance(arg0, arg2);
     }
 
     sp3C[0] = arg2[0] - arg0[0];
@@ -163,11 +163,10 @@ f32 func_802560D0(f32 arg0[3], f32 arg1[3], f32 arg2[3]) {
     sp4C[0] = arg0[0] + (sp24[0] * sp30);
     sp4C[1] = arg0[1] + (sp24[1] * sp30);
     sp4C[2] = arg0[2] + (sp24[2] * sp30);
-    return func_80256064(sp4C, arg2);
+    return ml_vec3f_distance(sp4C, arg2);
 }
 
-//ml_vec3f_distance_squared
-f32 func_80256280(f32 vec1[3], f32 vec2[3])
+f32 ml_vec3f_distance_squared(f32 vec1[3], f32 vec2[3])
 {
     f32 diff[3];
 
@@ -261,7 +260,7 @@ void ml_vec3f_set_length_copy(f32 dst[3], f32 src[3], f32 len)
         ml_vec3f_copy(dst, src);
 }
 
-void func_80256664(f32 *ptr)
+void func_80256664(f32 ptr[3])
 {
     u32 i;
 
@@ -544,6 +543,7 @@ void func_8025727C(f32 x1, f32 y1, f32 z1, f32 x2, f32 y2, f32 z2, f32 *o1, f32 
     }
 }
 
+//ml_init
 void func_80257424(void)
 {
     u16 i;
@@ -562,6 +562,7 @@ void func_80257424(void)
 /**
  * Deallocates the ushort table used for asin
  */
+//ml_free
 void func_80257594(void)
 {
     free(D_80276CB8);
@@ -606,23 +607,23 @@ void func_802576F8(void)
         D_80276CB8 = defrag(D_80276CB8);
 }
 
-//ml_timer_tick
-//decrement a counter and retrun True if timer is up
-int func_8025773C(f32 *arg0, f32 arg1)
+//ml_timer_update
+//decrement a counter and returns True if timer reaches 0
+bool func_8025773C(f32 *timer, f32 delta)
 {
-    if (*arg0 > 0)
+    if (*timer > 0)
     {
-        *arg0 -= arg1;
+        *timer -= delta;
 
-        if (*arg0 <= 0)
+        if (*timer <= 0)
         {
-            *arg0 = 0;
+            *timer = 0;
 
-            return 1;
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
 void func_8025778C(f32 dst[3], f32 arg1[3], f32 arg2[9]){
@@ -637,9 +638,9 @@ void func_8025778C(f32 dst[3], f32 arg1[3], f32 arg2[9]){
     func_802596AC(sp34, &arg2[3], &arg2[6], arg1);
     func_802596AC(sp28, &arg2[6], arg2, arg1);
 
-    sp54 = func_80256280(sp40, arg1);
-    sp50 = func_80256280(sp34, arg1);
-    sp4C = func_80256280(sp28, arg1);
+    sp54 = ml_vec3f_distance_squared(sp40, arg1);
+    sp50 = ml_vec3f_distance_squared(sp34, arg1);
+    sp4C = ml_vec3f_distance_squared(sp28, arg1);
 
     if(sp54 < sp50){
         if(sp4C < sp54){
@@ -1058,14 +1059,12 @@ f32 min_f(f32 arg0, f32 arg1)
     return arg0 < arg1 ? arg0 : arg1;
 }
 
-//ml_max_w
-int func_8025892C(int arg0, int arg1)
+int ml_max_w(int arg0, int arg1)
 {
     return arg0 > arg1 ? arg0 : arg1;
 }
 
-//ml_min_w
-int func_80258948(int arg0, int arg1)
+int ml_min_w(int arg0, int arg1)
 {
     return arg1 > arg0 ? arg0 : arg1;
 }
@@ -1452,9 +1451,9 @@ void func_802596AC(f32 a0[3], f32 a1[3], f32 a2[3], f32 a3[3])
 
     func_80259554(a0, a1, a2, a3);
 
-    a = func_80256280(a1, a2);
-    b = func_80256280(a1, a0);
-    c = func_80256280(a2, a0);
+    a = ml_vec3f_distance_squared(a1, a2);
+    b = ml_vec3f_distance_squared(a1, a0);
+    c = ml_vec3f_distance_squared(a2, a0);
 
     if (a < b || a < c)
     {

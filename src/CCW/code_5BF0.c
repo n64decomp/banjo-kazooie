@@ -114,7 +114,7 @@ void func_8038C41C(Actor *this) {
 
     if ((this->marker->unk14_20 == 0x1CB) && (this->state == 2)) {
         player_getPosition(sp2C);
-        if (!this->unk138_24 && (func_80256064(this->position, sp2C) < 400.0f)) {
+        if (!this->unk138_24 && (ml_vec3f_distance(this->position, sp2C) < 400.0f)) {
             this->unk138_24 = TRUE;
             func_80311480(0xCCD, 0, NULL, NULL, NULL, NULL);
         }

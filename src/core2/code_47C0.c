@@ -7,7 +7,7 @@
 
 extern void func_803012F8(void);
 extern f32 func_8024DDD8(f32[3], f32);
-extern f32 func_80256280(f32 arg0[3], f32 arg1[3]);
+extern f32 ml_vec3f_distance_squared(f32 arg0[3], f32 arg1[3]);
 extern void func_8028BA00(s32);
 extern void func_802C418C(void);
 extern void func_802A6388(f32);
@@ -529,7 +529,7 @@ void func_8028BCA0(Prop *prop){
                     player_getPosition(spA0);
                     sp9C = func_802C8088(actor);
                     if( sp9C != JIGGY_2F_FP_XMAS_TREE
-                        || (func_8028B2E8() && !(3600.0f < func_80256280(actor->position, spA0)))
+                        || (func_8028B2E8() && !(3600.0f < ml_vec3f_distance_squared(actor->position, spA0)))
                     ){
                         jiggyscore_setCollected(sp9C, 1);
                         func_803463F4(ITEM_26_JIGGY_TOTAL, 1);

@@ -4,7 +4,7 @@
 
 #include "prop.h"
 
-extern f32 func_80256280(f32[3], f32[3]);
+extern f32 ml_vec3f_distance_squared(f32[3], f32[3]);
 extern f32 func_802586B0(f32[3], f32[3]);
 
 extern f32 func_803243D0(struct56s *arg0, f32 arg1[3]);
@@ -718,7 +718,7 @@ bool func_8030515C(f32 arg0[3], s32 arg1, s32 arg2, f32 (*arg3)(f32[3], f32[3]))
 }
 
 bool func_80305248(f32 arg0[3], s32 arg1, s32 arg2){
-    return func_8030515C(arg0, arg1, arg2, func_80256280);
+    return func_8030515C(arg0, arg1, arg2, ml_vec3f_distance_squared);
 }
 
 bool func_8030526C(f32 arg0[3], s32 arg1, s32 arg2){

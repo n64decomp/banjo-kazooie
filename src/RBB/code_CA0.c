@@ -101,7 +101,7 @@ void func_80387488(ActorMarker *marker){
     player_getPosition(&sp1C);
     if(-50.0f < sp1C[1] && sp1C[1] < 600.0f){
         sp1C[1] = 0;
-        if(func_80256064(&sp1C, &D_80390264) < 500.0f){
+        if(ml_vec3f_distance(&sp1C, &D_80390264) < 500.0f){
             timedFunc_set_1(1.0f, (TFQM1) func_80387488, (s32)actor->marker);
             return;
         }

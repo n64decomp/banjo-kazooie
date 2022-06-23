@@ -485,7 +485,7 @@ void func_8031CE70(f32 *arg0, s32 arg1, s32 arg2) {
             if (phi_s0->unk8 == 0x186) {
                 phi_f2 = 1000.0f;
             }
-            if (func_80256064(arg0, sp38) < phi_f2) {
+            if (ml_vec3f_distance(arg0, sp38) < phi_f2) {
                 if (phi_s0->unk8 == 0x184) {
                     func_802BD328(0);
                     func_8031CB50(arg1, arg2, 1);

@@ -75,7 +75,7 @@ void func_8024C510(f32 arg0){
 }
 
 void func_8024C584(f32 arg0[3]){
-    func_80256064(arg0, D_80280EB0);
+    ml_vec3f_distance(arg0, D_80280EB0);
 }
 
 void func_8024C5A8(f32 arg0[3]){

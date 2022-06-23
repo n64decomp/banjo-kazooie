@@ -263,7 +263,7 @@ bool func_8038C2A8(ActorMarker *marker) {
     local = (ActorLocal_MrVile *)&this->local;
     player_getPosition(&sp24);
     if (this->state == 6) {
-        return func_80256064(this->position, &sp24) < 150.0f;
+        return ml_vec3f_distance(this->position, &sp24) < 150.0f;
     }
     return local->unk0 == 1;
 }
@@ -356,7 +356,7 @@ void chvile_update(Actor *this) {
         local->game_marker = func_80326D68(this->position, 0x138, -1, &sp90)->marker;
     }
     player_getPosition(&sp94);
-    sp90 = func_80256064(this->position, &sp94);
+    sp90 = ml_vec3f_distance(this->position, &sp94);
     if (sp90 <= 300.0f) {
         local->unk0 =  (local->unk0 == 0) ? 1 : 2;
     } else if (sp90 > 300.0f) {
@@ -416,7 +416,7 @@ void chvile_update(Actor *this) {
     if (this->state == 4) {
         player_getPosition(local->target_position);
         local->unk10 = 500.0f;
-        if ((local->unkC == 102) && (func_80256064(this->position, local->target_position) < 200.0f)) {
+        if ((local->unkC == 102) && (ml_vec3f_distance(this->position, local->target_position) < 200.0f)) {
             func_8038BBA0(this, 103);
         }
         if ((local->unkC == 103) && (func_80335794(this->unk148) >= 2)) {
@@ -425,7 +425,7 @@ void chvile_update(Actor *this) {
     }
     if (this->state == 5) {
         local->unk10 = 200.0f;
-        if (func_80256064(this->position, local->target_position) < 100.0f) {
+        if (ml_vec3f_distance(this->position, local->target_position) < 100.0f) {
             local->target_position[0] = randf2(-500.0f, 500.0f);
             local->target_position[1] = 0.0f;
             local->target_position[2] = randf2(-500.0f, 500.0f);
@@ -433,12 +433,12 @@ void chvile_update(Actor *this) {
     }
     if ((this->state == 6)){
         local->unk10 = 400.0f;
-        if((func_80256064(this->position, local->target_position) < 100.0f) || (func_80256064(&sp94, local->target_position) < 300.0f)) {
+        if((ml_vec3f_distance(this->position, local->target_position) < 100.0f) || (ml_vec3f_distance(&sp94, local->target_position) < 300.0f)) {
             for(i = 0; i < 10; i++){
                 sp58[0] = randf2(-500.0f, 500.0f);
                 sp58[1] = 0.0f;
                 sp58[2] = randf2(-500.0f, 500.0f);
-                if ((i == 0) || (func_80256064(&sp94, &sp58) > func_80256064(&sp94, local->target_position))) {
+                if ((i == 0) || (ml_vec3f_distance(&sp94, &sp58) > ml_vec3f_distance(&sp94, local->target_position))) {
                     local->target_position[0] = sp58[0];
                     local->target_position[1] = sp58[1];
                     local->target_position[2] = sp58[2];

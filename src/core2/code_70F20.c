@@ -167,7 +167,7 @@ void func_802F83AC(struct3s *arg0) {
     arg0->unk1C++;
     if (arg0->unk1C < vector_size(arg0->unk20)) {
         temp_v0 = (struct4s *)vector_at(arg0->unk20, arg0->unk1C);
-        if (1210.0 < func_80256064(temp_v0->unk0, sp3C)) {
+        if (1210.0 < ml_vec3f_distance(temp_v0->unk0, sp3C)) {
             vector_remove(arg0->unk20, arg0->unk1C);
         }
     } else {

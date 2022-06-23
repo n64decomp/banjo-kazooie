@@ -104,7 +104,7 @@ void func_8038CC4C(Actor *this) {
     }
     if (!this->unk138_24) {
         player_getPosition(sp38);
-        if (func_80256064(this->position, sp38) < 900.0f) {
+        if (ml_vec3f_distance(this->position, sp38) < 900.0f) {
             if (local->unk0->map_id != MAP_46_CCW_WINTER || func_8028F2FC()) {
                 func_80311480(local->unk0->unk4, 4, NULL, NULL, NULL, NULL);
                 this->unk138_24 = TRUE;

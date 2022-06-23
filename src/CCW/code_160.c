@@ -180,10 +180,10 @@ void func_8038687C(Actor *this) {
                 sp4C[1] = -100.0f;
                 sp4C[2] = randf2(-500.0f, 900.0f);
 
-                if(func_80256064(this->position, sp4C) < 400.0f)
+                if(ml_vec3f_distance(this->position, sp4C) < 400.0f)
                     continue;
                 
-                tmp = func_80256064(sp5C, sp4C);
+                tmp = ml_vec3f_distance(sp5C, sp4C);
                 phi_v0 = (phi_s0 < 0xA) ?  500 : 200;
                 if(tmp < (f32) phi_v0)
                     continue;
@@ -204,7 +204,7 @@ void func_8038687C(Actor *this) {
             func_803865F4(this, 3);
         } else if ((local->unk0 != NULL) && (map_get() == MAP_5A_CCW_SUMMER_ZUBBA_HIVE)) {
             player_getPosition(sp40);
-            if ((func_80256064(this->position, sp40) < 300.0f) && (player_getTransformation() == TRANSFORM_1_BANJO)) {
+            if ((ml_vec3f_distance(this->position, sp40) < 300.0f) && (player_getTransformation() == TRANSFORM_1_BANJO)) {
                 func_803865F4(this, 2);
             }
         }

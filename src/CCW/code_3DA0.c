@@ -111,13 +111,13 @@ void chcaterpillar_update(Actor *this){
     if(this->state == 1){
         func_8033568C(this->unk148, &sp64, &sp60);
         player_getPosition(sp74);
-        if(func_80256064(this->position, local->unk0) < 10.0f){
+        if(ml_vec3f_distance(this->position, local->unk0) < 10.0f){
             for(i = 0; i < 10; i++){
                 
                 local->unk0[0] = randf2(-300.0f, 300.0f) + this->position_x;
                 local->unk0[1] = this->position_y;
                 local->unk0[2] = randf2(-300.0f, 300.0f) + this->position_z;
-                if( !(func_80256064(local->unk0, this->position) < 50.0f) && func_80329210(this, local->unk0))
+                if( !(ml_vec3f_distance(local->unk0, this->position) < 50.0f) && func_80329210(this, local->unk0))
                     break;
             }//L8038A544
             if(i == 10){
@@ -150,7 +150,7 @@ void chcaterpillar_update(Actor *this){
             }
         }//L8038A714
 
-        if(func_80256064(this->position, sp74) < 50.0f){
+        if(ml_vec3f_distance(this->position, sp74) < 50.0f){
             func_8028F030(ACTOR_2A2_CATERPILLAR);
             if(!func_803203FC(0xb2)){
                 func_80311480(0xcc7, 4, NULL, NULL, NULL, NULL);

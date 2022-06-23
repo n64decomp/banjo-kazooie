@@ -650,7 +650,7 @@ void func_80387730(Actor *this) {
     }
     if (!func_8031FF1C(this->unkF4_8 + 0x39) && ability_isUnlocked(ABILITY_13_1ST_NOTEDOOR)) {
         player_getPosition(spAC);
-        if ((func_80256064(spAC, this->position) < 500.0f) && (func_803114C4() != 0xF64)) {
+        if ((ml_vec3f_distance(spAC, this->position) < 500.0f) && (func_803114C4() != 0xF64)) {
             func_802FACA4(0xC);
         }
         if (notescore_getTotal() >= D_8039347A[this->unkF4_8]) {
@@ -666,7 +666,7 @@ void func_80387730(Actor *this) {
                 phi_f20 = 290.0f;
             }
             sp9C[1] = this->position[1];
-            if ((func_80256064(spAC, sp9C) < phi_f20) || (this->alpha_124_19 != 0xFF)) {
+            if ((ml_vec3f_distance(spAC, sp9C) < phi_f20) || (this->alpha_124_19 != 0xFF)) {
                 if (this->alpha_124_19 == 0xFF) {
                     func_80324CFC(0.0f, COMUSIC_43_ENTER_LEVEL_GLITTER, 32700);
                     func_80324D2C(2.4f, COMUSIC_43_ENTER_LEVEL_GLITTER);
@@ -707,7 +707,7 @@ void func_80387730(Actor *this) {
                     }
                 }
             }
-        } else if ((this->unkF4_8 >= 2) && (func_80256064(spAC, this->position) < 290.0f)) {
+        } else if ((this->unkF4_8 >= 2) && (ml_vec3f_distance(spAC, this->position) < 290.0f)) {
             func_80356520(0xB0);
         }
     }

@@ -119,7 +119,7 @@ void func_8038BC74(Actor *this) {
 
     if (this->state == 1) {
         player_getPosition(sp30);
-        if (!this->unk138_24 && (func_80256064(this->position, sp30) < 400.0f)) {
+        if (!this->unk138_24 && (ml_vec3f_distance(this->position, sp30) < 400.0f)) {
             this->unk138_24 = TRUE;
             func_80311480(0xCCA, 0xE, this->position, NULL, NULL, NULL);
         }
@@ -129,7 +129,7 @@ void func_8038BC74(Actor *this) {
         }
         if (this->unk138_24 && !func_803114B0()) {
             func_8028F364(this->position, 500.0f, 200.0f, 0x2A9, &this);
-            if ((func_8028E8C0() == 0x2A9) && (func_80256064(this->position, sp30) < 300.0f) && func_8028FC34()) {
+            if ((func_8028E8C0() == 0x2A9) && (ml_vec3f_distance(this->position, sp30) < 300.0f) && func_8028FC34()) {
                 func_8028FA54(D_8038F350);
                 local->unk0++;
                 if (local->unk0 == 6) {

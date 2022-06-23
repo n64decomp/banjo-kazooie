@@ -123,8 +123,8 @@ void func_8038F6A4(Actor *this) {
             func_8038F610(this);
             player_getPosition(&sp48);
             if (!this->unk138_24) {
-                if( func_80256064(local->unk18, &sp48) < 250.0f
-                    && func_80256064(local->unk18, &sp48) > 80.0f
+                if( ml_vec3f_distance(local->unk18, &sp48) < 250.0f
+                    && ml_vec3f_distance(local->unk18, &sp48) > 80.0f
                     && !func_8028ECAC()
                     && player_getTransformation() == TRANSFORM_1_BANJO
                 ) {

@@ -59,7 +59,7 @@ segments:
   - [0x18210, c, code_18210] #DONE
   - [0x18310, c, code_18310] #DONE
   - [0x18350, c, code_18350] #DONE
-  - [0x1BE90, c, code_1BE90]
+  - [0x1BE90, c, code_1BE90] #DONE
   - [0x1D590, c, done/code_1D590] #DONE
   - [0x1D5C0, c, code_1D5C0]
   - [0x1D5D0, c, code_1D5D0] #DONE

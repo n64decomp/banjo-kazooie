@@ -153,7 +153,7 @@ void func_80388AA0(Actor *this) {
     if(this->state == 1){
         if (!this->unk138_24) {
             player_getPosition(sp48);
-            if (func_80256064(this->position, sp48) < 600.0f) {
+            if (ml_vec3f_distance(this->position, sp48) < 600.0f) {
                 if (local->unk0->unk2 != 0) {
                     func_80311480((s32) local->unk0->unk2, 4, NULL, NULL, NULL, NULL);
                 }

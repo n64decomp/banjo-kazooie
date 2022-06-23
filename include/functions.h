@@ -528,7 +528,7 @@ Actor *func_80325340(ActorMarker *, Gfx **, Mtx **, Vtx **);
 void func_8032AA58(Actor *, f32);
 void func_80324E38(f32, s32);
 void timed_playSfx(f32, enum sfx_e, f32, s32);
-f32 func_80256064(f32 [3], f32 [3]);
+f32 ml_vec3f_distance(f32 [3], f32 [3]);
 void timed_setCameraToNode(f32, s32);
 void func_80324E88(f32);
 int actor_animationIsAt(Actor*, f32);

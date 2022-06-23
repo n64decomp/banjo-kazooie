@@ -605,7 +605,7 @@ s32 func_80387470(Actor *this, f32 arg1[3], f32 v_max, f32 arg3, f32 arg4, f32 a
     diff.vec_z = arg1[2] - this->position_z;
 
     if (arg5 != 0.00f) {
-        if (func_80256064(this->position, arg1) < arg5) {
+        if (ml_vec3f_distance(this->position, arg1) < arg5) {
             ml_vec3f_set_length(diff.vec, arg3 * 4.00f);
         } else {
             ml_vec3f_set_length(diff.vec, arg3 * 1.00f);
@@ -639,7 +639,7 @@ s32 func_80387470(Actor *this, f32 arg1[3], f32 v_max, f32 arg3, f32 arg4, f32 a
 
     this->yaw += (arg4 * temp.pos_x * dt);
 
-    if (func_80256064(this->position, arg1) < arg6) {
+    if (ml_vec3f_distance(this->position, arg1) < arg6) {
         return 1;
     }
     return 0;
@@ -1022,7 +1022,7 @@ void func_80388758(ActorMarker *marker) {
     case 3:
         func_80386600(this->marker, 0);
         func_803869BC(this);
-        sp50 = ml_map_f(func_80256064(this->position, this->unk1C), 300.0f, 1000.0f, 100.0f, 1000.0f);
+        sp50 = ml_map_f(ml_vec3f_distance(this->position, this->unk1C), 300.0f, 1000.0f, 100.0f, 1000.0f);
         func_80387ACC(this, 60.0f * sp54);
         if (func_80387470(this, this->unk1C, sp50, 1800.0f, 200.0f, 500.0f, 300.0f)) {
             func_80388184(this, 4);
@@ -1223,7 +1223,7 @@ void func_8038938C(ActorMarker *marker) {
         case 14:
             func_803869BC(this);
             func_80387ACC(this, 30.0f * sp4C);
-            if (func_80387470(this, this->unk1C, ml_map_f(func_80256064(this->position, this->unk1C), 70.0f, 1000.0f, 100.0f, D_80391758[sp48]), D_80391758[sp48] * 2, 160.0f, 500.0f, 70.0f)) {
+            if (func_80387470(this, this->unk1C, ml_map_f(ml_vec3f_distance(this->position, this->unk1C), 70.0f, 1000.0f, 100.0f, D_80391758[sp48]), D_80391758[sp48] * 2, 160.0f, 500.0f, 70.0f)) {
                 local->unkA = 1;
                 func_803891E4(this, 0xF);
             }

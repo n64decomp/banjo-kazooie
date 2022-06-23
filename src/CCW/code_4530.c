@@ -89,7 +89,7 @@ void func_8038AA8C(Actor *this) {
         }
 
         player_getPosition(sp54);
-        if (func_80256064(this->position, sp54) < 850.0f) {
+        if (ml_vec3f_distance(this->position, sp54) < 850.0f) {
             func_8038A950(this, 2);
         }
     }

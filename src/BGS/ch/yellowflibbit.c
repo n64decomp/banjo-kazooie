@@ -423,7 +423,7 @@ void func_8038E034(Actor *this) {
             sp7C[0] = (f32) local->unk10[0];
             sp7C[1] = (f32) local->unk10[1];
             sp7C[2] = (f32) local->unk10[2];
-            if (func_80256064(this->position, sp7C) < 30.0f) {
+            if (ml_vec3f_distance(this->position, sp7C) < 30.0f) {
                 func_8038D9D0(this, 1);
             } else {
                 func_8038D9D0(this, 5);

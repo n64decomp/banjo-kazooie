@@ -366,7 +366,7 @@ void func_80389FC0(void){
         if(func_8038769C(D_8038C4F0.unk4)){
             player_getPosition(plyr_pos);
             motzhand_2 = marker_getActor(D_8038C4F0.unk4);
-            if( func_80256064(motzhand_2->position, plyr_pos) < 400.0f
+            if( ml_vec3f_distance(motzhand_2->position, plyr_pos) < 400.0f
                 && motzhand_2->position_y - 50.0f <= plyr_pos[1]
             ){
                 func_80389A0C(2);

@@ -353,7 +353,7 @@ void func_802D9D60(Actor *this){
                     && (!func_8028ECAC() || func_8028ECAC() == 8)
                 ){
                     player_getPosition(sp34);
-                    if(func_80256064(sp34, this->velocity) < this->unk28){
+                    if(ml_vec3f_distance(sp34, this->velocity) < this->unk28){
                         func_802D9CBC(this);
                     }
                 }

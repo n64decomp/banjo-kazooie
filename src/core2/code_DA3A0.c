@@ -96,7 +96,7 @@ void func_8036158C(Actor *this){
     if(this->state == 1){
         player_getPosition(sp24);
         actor_collisionOff(this);
-        if( func_80256064(this->position, sp24) < 1000.0f 
+        if( ml_vec3f_distance(this->position, sp24) < 1000.0f 
             && func_8024DC04(this->position_x, this->position_y, this->position_z)
             && func_8025773C(&local->unk4, sp30)
         ){

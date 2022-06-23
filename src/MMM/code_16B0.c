@@ -182,7 +182,7 @@ void func_80388028(Actor *this){
     }//L803880B4
 
     player_getPosition(plyr_position);
-    plyr_dist = func_80256064(this->position, plyr_position);
+    plyr_dist = ml_vec3f_distance(this->position, plyr_position);
 
     if(this->state == 4)
         actor_collisionOn(this);

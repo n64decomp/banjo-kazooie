@@ -2,14 +2,13 @@
 #include "functions.h"
 #include "variables.h"
 
-extern CoMusic *D_80276E30; //active track ptr
-extern int D_80276E34;
+
 
 extern func_8024FDDC(u8, s32);
 
 void func_8025AE50(s32, f32);
 
-
+bool func_80250074(u8);
 void func_8024FD28(u8, s32);
 void func_8024FC1C(u8, s32);
 void func_8025AC20(enum comusic_e, s32, s32, f32, char*, s32);
@@ -20,7 +19,11 @@ void func_8025A7DC(enum comusic_e);
 void func_8025ABB8(enum comusic_e, s32, s32, s32);
 void *func_802EDAA4(SLA **, s32*);
 
+/* .bss */
+extern CoMusic *D_80276E30; //active track ptr
+extern int D_80276E34;
 
+/* .code */
 CoMusic *func_802598B0(enum comusic_e track_id) {
     CoMusic *iMusPtr;
     CoMusic *freeSlotPtr;
@@ -113,7 +116,67 @@ s32 func_80259B8C(void){
     return cnt;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_80259BD0.s")
+void func_80259BD0(void) {
+    s32 temp_lo;
+    CoMusic *var_s0;
+    f32 sp3C;
+    
+
+    sp3C = time_getDelta();
+    for(var_s0 = D_80276E30; var_s0 < &D_80276E30[6]; var_s0++){
+        if (var_s0->unk10 >= 0) {
+            temp_lo = var_s0 - D_80276E30; 
+            var_s0->unk4 = min_f(var_s0->unk4 + sp3C, 600.0f);
+            if ((var_s0->unk4 > 1.0f) && func_80250074(temp_lo)) {
+                func_8025A7DC(var_s0->unk10);
+            }
+        }
+    }
+    func_8024FF34();
+    if (!D_80276E34)
+        return;
+
+    D_80276E34 = FALSE;
+    for(var_s0 = D_80276E30; var_s0 < &D_80276E30[6]; var_s0++){
+        if (var_s0->unk10 >= 0) {
+            if (var_s0->unk12 != 0) {
+                temp_lo = var_s0 - D_80276E30;
+                if (var_s0->unk0 > 0.0f) {
+                    var_s0->unk0 -= time_getDelta();
+                    D_80276E34 = TRUE;
+                } else if (var_s0->unk12 < 0) {
+                    var_s0->unk8 += var_s0->unk12;
+                    if (var_s0->unk15 && (var_s0->unkC == 0) && (var_s0->unk8 <= 0)) {
+                        func_802599B4(var_s0);
+                        continue;
+                    } else {
+                        if (var_s0->unkC >= var_s0->unk8) {
+                            var_s0->unk8 = var_s0->unkC;
+                            var_s0->unk12 = 0;
+                        } else {
+                            D_80276E34 = TRUE;
+                        }
+                        func_8024FD28(temp_lo, (s16)var_s0->unk8);
+                    }
+                } else if (var_s0->unk8 < var_s0->unkC) {
+                    if (var_s0->unk8 == 0) {
+                        var_s0->unk4 = 0.0f;
+                    }
+                    var_s0->unk8 += var_s0->unk12;
+                    if (var_s0->unk8 >= var_s0->unkC) {
+                        var_s0->unk8 = var_s0->unkC;
+                        var_s0->unk12 = 0;
+                    } else {
+                        D_80276E34 = TRUE;
+                    }
+                    func_8024FD28(temp_lo, (s16)var_s0->unk8);
+                } else {
+                    var_s0->unk12 = 0;
+                }
+            }
+        }
+    }
+}
 
 void func_80259EA8(CoMusic *this, s32 *arg1, s32 *arg2){
     int i;
@@ -135,7 +198,51 @@ void func_80259EA8(CoMusic *this, s32 *arg1, s32 *arg2){
     *arg2 = tmp_s2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1BE90/func_80259F7C.s")
+void func_80259F7C(CoMusic *self, s32 *arg1, s32 *arg2, s32 *arg3) {
+    struct12s *temp_v0;
+    f32 pad;
+    s32 sp34;
+    s32 var_s2;
+
+    var_s2 = *arg1;
+    sp34 = *arg2;
+    if ((*arg3 != 0) && !func_802EDC18(self->unk18, *arg3)) {
+        *arg3 = 0;
+    }
+
+    if (var_s2 < 0) {
+        temp_v0 = (struct12s *)array_at(self->unk18, 1);
+        if (temp_v0->unk0 < func_80250034(self->unk10)) {
+            var_s2 = func_80250034(self->unk10);
+        }
+        else{
+            var_s2 = temp_v0->unk0;
+        }
+        if (*arg3 != 0) {
+            temp_v0 = (struct12s *)array_at(self->unk18, *arg3);
+            *arg2 = temp_v0->unk1;
+            func_802EDCDC(self->unk18, *arg3);
+            *arg3 = 0;
+            func_80259EA8(self, arg1, &sp34);
+            return;
+        }
+    }
+
+    if (*arg3 == 0) {
+        temp_v0 = (struct12s *)array_at(self->unk18, 1);
+        if ((temp_v0->unk0 < var_s2) || ((var_s2 == temp_v0->unk0) && (sp34 >= temp_v0->unk1))) {
+            func_80259914(self, var_s2, sp34);
+        } else {
+            func_802EDAA4(&self->unk18, arg3);
+        }
+    }
+    if (*arg3 != 0) {
+        temp_v0 = (struct12s *)array_at(self->unk18, *arg3);
+        temp_v0->unk0 = var_s2;
+        temp_v0->unk1 = sp34;
+    }
+    func_80259EA8(self, arg1, arg2);
+}
 
 void func_8025A104(enum comusic_e arg0, s32 arg1){
     if (arg0 != D_80276E30[0].unk10){
