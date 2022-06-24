@@ -4,6 +4,13 @@
 
 #include "SnS.h"
 
+/* extern */
+extern void func_802D6310(f32, enum map_e, s32, s32, enum bkprog_e);
+
+/* .h */
+void func_8038B5B4(void);
+
+
 typedef struct {
     u8 *unk0;
     u8 unk4;
@@ -46,6 +53,7 @@ extern struct{
     f32 unkC;
     u8  unk10;
 } D_8038D720;
+
 
 
 /* .code */
@@ -245,15 +253,15 @@ void func_8038AC48(Struct_TTC_3E30_1 *arg0) {
                                 default:
                                     break;
                                 case 0:
-                                    func_80346448(0xD);
+                                    func_80346448(ITEM_D_EGGS);
                                     func_802FAFAC(0xD, 0xC);
                                     break;
                                 case 1:
-                                    func_80346448(0xF);
+                                    func_80346448(ITEM_F_RED_FEATHER);
                                     func_802FAFAC(0xF, 0xB);
                                     break;
                                 case 2:
-                                    func_80346448(0x10);
+                                    func_80346448(ITEM_10_GOLD_FEATHER);
                                     func_802FAFAC(0x10, 0x14);
                                     break;
                                 }
@@ -427,14 +435,40 @@ bool func_8038B550(void){
     return NOT(D_8038D720.unk8 < 2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/TTC/code_3E30/func_8038B564.s")
+void func_8038B564(s32 arg0, s32 arg1, enum map_e map_id, s32 arg3, s32 arg4){
+    if(arg1 == D_8038CAD8[arg0].unk5){
+        func_802D6310(1.0f, map_id, arg3, arg4, 0);
+    }
+}
 
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/TTC/code_3E30/func_8038B5B4.s")
+#else
+void func_8038B5B4(void) {
+    s32 i;
+
+    for(i = 0; D_8038CAD8[i].unk0 != NULL; i++){
+        D_8038CAD8[i].unk4 = 0;
+    }
+    D_8038CC78 = 0;
+    func_8038AB44();
+}
+#endif
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/TTC/code_3E30/func_8038B600.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/TTC/code_3E30/func_8038B6D4.s")
-// 
+void func_8038B6D4(s32 arg0, s32 arg1, s32 arg2, enum bkprog_e prog_id, s32 prog_val, s32 prog_bit_size, enum bkprog_e arg6){
+    if( ((arg2 + 20 == D_8038CAD8[arg1].unk5) && func_803203FC(arg2))
+        || arg0 == 3
+    ){
+        func_80320044(prog_id, prog_val, prog_bit_size);
+        if(arg6){
+            func_80320004(arg6, TRUE);
+        }
+    }
+}
+
 void func_8038B750(s32 arg0){
     func_80320044(0xfd, arg0, 2);
 }
@@ -460,13 +494,13 @@ void func_8038B800(s32 arg0) {
     sp30 = &D_8038CAD8[arg0];
     sp38 = sp30->unk5 - 0x14;
     sns_set_item_and_update_payload(sp30->unk5, 1, 1);
-    func_8038B564(arg0, 1, 0x61, 0x83, 0x1B);
-    func_8038B564(arg0, 2, 0x3F, 0x84, 0x1C);
-    func_8038B564(arg0, 3, 0x2C, 0x85, 0x1D);
-    func_8038B564(arg0, 4, 0x12, 0x86, 0x1E);
-    func_8038B564(arg0, 5, 7, 0x87, 0x1F);
-    func_8038B564(arg0, 6, 0x1D, 0x88, 0x20);
-    func_8038B564(arg0, 7, 0x7F, 0x89, 0x21);
+    func_8038B564(arg0, 1, MAP_61_CCW_WINTER_NABNUTS_HOUSE, 0x83, 0x1B);
+    func_8038B564(arg0, 2, MAP_3F_RBB_CAPTAINS_CABIN, 0x84, 0x1C);
+    func_8038B564(arg0, 3, MAP_2C_MMM_BATHROOM, 0x85, 0x1D);
+    func_8038B564(arg0, 4, MAP_12_GV_GOBIS_VALLEY, 0x86, 0x1E);
+    func_8038B564(arg0, 5, MAP_7_TTC_TREASURE_TROVE_COVE, 0x87, 0x1F);
+    func_8038B564(arg0, 6, MAP_1D_MMM_CELLAR, 0x88, 0x20);
+    func_8038B564(arg0, 7, MAP_7F_FP_WOZZAS_CAVE, 0x89, 0x21);
     if (sp30->unk5 >= 0x14) {
         func_8030E58C(SFX_2B_BULL_MOO_1, 1.5f);
         func_803204E4(0x65, 1);

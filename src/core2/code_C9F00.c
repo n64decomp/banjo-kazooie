@@ -354,7 +354,7 @@ void func_80351A04(Struct68s *arg0, s32 arg1) {
     arg0->unk30 = (u8)(arg0->unk30 | arg1);
 }
 
-void func_80351A14(Struct68s *arg0, Stuct68DrawMethod arg1) {
+void func_80351A14(Struct68s *arg0, Struct68DrawMethod arg1) {
     arg0->unk8 = arg1;
 }
 

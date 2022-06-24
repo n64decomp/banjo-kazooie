@@ -397,7 +397,7 @@ void func_802DE250(u8 *arg0, enum asset_e text_id) {
     func_802E06CC();
     func_8025A6CC(COMUSIC_3C_MINIGAME_LOSS, 28000);
     actor->state = 5;
-    item_set(6, 0);
+    item_set(ITEM_6_HOURGLASS, FALSE);
     func_802FAD64(0);
     if (*arg0 == 0) {
         *arg0 = 1;

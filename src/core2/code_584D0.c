@@ -130,7 +130,7 @@ bool func_802DF5D0(void) {
     }
 
     if (D_8037E5C0.unk24) {
-        item_set(6, 0);
+        item_set(ITEM_6_HOURGLASS, FALSE);
         timedFunc_set_3(0.25f, comusic_8025AB44, COMUSIC_94_BBONUS, 0, 0x7D0);
         timedFunc_set_2(0.3f, func_8025A6EC, COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 0x55F0);
         timedFunc_set_0(1.5f, func_802DF99C);

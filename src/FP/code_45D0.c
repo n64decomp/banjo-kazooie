@@ -38,8 +38,8 @@ void func_8038AA58(void){}
 #else
 void func_8038AA60(void){
     switch(D_80392F50.unk0){
-        case 0:
-            break;
+        // case 0:
+        //     break;
 
         case 1:
             if(D_80392F50.unk4 <= 0){
@@ -67,7 +67,7 @@ void func_8038AA60(void){
                 D_80392F50.unk8++;
             }
             break;
-
+        
         case 3://L8038A96C
             break;
     }

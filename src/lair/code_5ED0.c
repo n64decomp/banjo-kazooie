@@ -331,7 +331,7 @@ void func_8038CE28(void)
         D_8037DCB8->unk3C[i] = 0;
 
     // set joker card count to 0
-    func_803463F4(0x27, func_80345FA0(0x27) * -1);
+    func_803463F4(ITEM_27_JOKER_CARD, func_80345FA0(0x27) * -1);
 
     D_8037DCB8->unk8     = 0;
     D_8037DCB8->unk4     = NULL;
@@ -365,7 +365,7 @@ void func_8038CF18(void)
             D_8037DCB8->unk3C[i] = 0;
 
         // set joker card count to 0
-        func_803463F4(0x27, func_80345FA0(0x27) * -1);
+        func_803463F4(ITEM_27_JOKER_CARD, func_80345FA0(ITEM_27_JOKER_CARD) * -1);
     }
 
     func_8038C6BC();

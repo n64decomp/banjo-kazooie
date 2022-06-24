@@ -703,13 +703,13 @@ typedef struct struct_66_s{
     s32 unk8;
 }Struct66s;
 
-typedef void  (*Stuct68DrawMethod)(void *, struct struct_68_s *, f32[3], f32[3], f32, BKModelBin*, Gfx**, Mtx**, Vtx**);
+typedef void  (*Struct68DrawMethod)(void *, struct struct_68_s *, f32[3], f32[3], f32, BKModelBin*, Gfx**, Mtx**, Vtx**);
 
 typedef struct struct_68_s{
     u8 unk0;
     // u8 pad1[0x3];
     struct actor_marker_s *unk4;
-    Stuct68DrawMethod unk8;
+    Struct68DrawMethod unk8;
     BKModelBin *unkC;
     u8 pad10[0x4];
     f32 unk14[3]; //position

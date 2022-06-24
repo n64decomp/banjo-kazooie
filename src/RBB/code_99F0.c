@@ -60,7 +60,7 @@ void func_8038FF70(void){
             func_8038FDE0(2);
 
     if(D_803912C8 == 2)
-        if(item_getCount(3) == 0)
+        if(item_getCount(ITEM_3_PROPELLOR_TIMER) == 0)
             func_8038FDE0(3);
 
     if(D_803912C8 == 3)

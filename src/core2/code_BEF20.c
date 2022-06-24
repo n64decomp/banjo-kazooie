@@ -5,7 +5,7 @@
 f32 time_getDelta(void);
 void func_80346DB4(s32);
 
-s32 func_803463D4(s32 item, s32 diff);
+s32 func_803463D4(enum item_e item, s32 diff);
 s32 notescore_getLevelScore(enum level_e lvl_id);
 void func_80347060(void);
 
@@ -17,7 +17,7 @@ extern f32 D_80385FEC;
 extern u8 D_80385FF0[];
 extern f32 D_80386000[];
 
-void func_80345EB0(s32 item){
+void func_80345EB0(enum item_e item){
     if(func_802FAFE8(item)){
         func_803463D4(item, (s32)(-time_getDelta()*60.0f * 1.1));
     }else{
@@ -25,20 +25,20 @@ void func_80345EB0(s32 item){
     }
 }
 
-void item_inc(s32 item){
+void item_inc(enum item_e item){
     func_803463D4(item, 1);
 }
 
-void item_dec(s32 item){
+void item_dec(enum item_e item){
     if(!func_802E4A08())
         func_803463D4(item, -1);
 }
 
-s32 item_empty(s32 item){
+s32 item_empty(enum item_e item){
     return (D_80385F30[item] != 0)? 0 : 1;
 }
 
-s32 item_getCount(s32 item){
+s32 item_getCount(enum item_e item){
     return D_80385F30[item];
 }
 
@@ -48,7 +48,7 @@ s32 item_getCount(s32 item){
 cannot access sp1C with newVal at sp18.
 may be -O3 issue given func_803465DC() is null
 */ 
-s32 func_80345FB4(s32 item, s32 diff, s32 arg2){
+s32 func_80345FB4(enum item_e item, s32 diff, s32 arg2){
     s32 oldVal;
     s32 sp40;
     s32 sp3C;
@@ -152,11 +152,11 @@ s32 func_80345FB4(s32 item, s32 diff, s32 arg2){
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_80345FB4.s")
 #endif
 
-s32 func_803463D4(s32 item, s32 diff){
+s32 func_803463D4(enum item_e item, s32 diff){
     func_80345FB4(item, diff, 0);
 }
 
-void func_803463F4(s32 item, s32 diff){
+void func_803463F4(enum item_e item, s32 diff){
     func_80345FB4(item, diff, 1);
 }
 

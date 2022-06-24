@@ -38,7 +38,8 @@ segments:
       - [0x3120, c, code_3120] #DONE
       - [0x3420, c, code_3420] #DONE
       - [0x3D50, c, code_3D50]
-      - [0x47D0, c, code_47D0]
+      - [0x47D0, c, code_47D0] #DONE
+      - [0x5000, c, code_5000] #DONE
   - name: MMM-data
     dir: MMM
     type: code
@@ -55,6 +56,7 @@ segments:
       - [0x00005B30, .data, code_3420]
       - [0x00005E00, .data, code_3D50]
       - [0x00005F10, bin, data_5F10]
+      - [0x00005F20, .data, code_5000]
       - [0x00005F50, .rodata, ch/loggo]
       - [0x00005F80, .rodata, ch/napper]
       - [0x00005FA0, .rodata, ch/motzhand]
@@ -63,5 +65,6 @@ segments:
       - [0x00006050, .rodata, code_3120]
       - [0x00006060, .rodata, code_3420]
       - [0x00006070, .rodata, code_3D50]
-      - [0x00006090, bin, data_6090]
+      - [0x00006090, .rodata, code_47D0]
+      - [0x000060C0, .rodata, code_5000]
   - [0x000060D0]

@@ -537,7 +537,7 @@ bool func_8031A154(enum ff_question_type_e q_type, s32 q_indx, s32 arg2, s32 arg
         D_803830E0->unk3 = arg3;
         D_803830E0->unk4 = arg4;
         D_803830E0->unk8 = arg5;
-        item_set(ITEM_6_HOURGLASS, 0);
+        item_set(ITEM_6_HOURGLASS, FALSE);
         func_80318DA0(D_803830E0->unk1C, 1, 3, 1, 3);
         func_8025A55C(6000, 500, 10);
         func_803197AC(1);
