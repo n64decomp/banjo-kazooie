@@ -167,7 +167,7 @@ segments:
   - [0x2AC50, c, done/io/conteeplongread] #DONE
   - [0x2ACE0, c, done/io/piread]          #DONE
   - [0x2AD20, c, done/audio/copy]         #DONE
-  - [0x2ADA0, c, audio/drvrNew]
+  - [0x2ADA0, c, done/audio/drvrNew]      #DONE
   - [0x2B540, c, audio/reverb]
   - [0x2C190, c, done/syncprintf]         #DONE
   - [0x2C1D0, c, done/audio/seq]          #DONE
@@ -258,7 +258,7 @@ segments:
   - [0x39740, .data, done/io/pimgr]
   - [0x39770, .data, done/io/vimgr]
   - [0x39790, .data, done/io/controller]
-  - [0x397A0, bin, data_397A0] # .data, done/audio/drvrNew]
+  - [0x397A0, .data, done/audio/drvrNew]
   - [0x39930, bin, data_39930] # .data, ultra/exceptasm]
   - [0x39950, .data, done/os/thread]
   - [0x39970, .data, done/io/piacs]
@@ -294,7 +294,7 @@ segments:
   - [0x3B1F0, bin, data_3B1F0] # .rodata, ultra/setintmask] # splat bug preventing this from linking correctly
   - [0x3B2C0, bin, data_3B2C0] # .rodata, gu/rotate] # need to resolve .data section first
   - [0x3B2D0, .rodata, done/audio/cseq]
-  - [0x3B2E0, bin, data_3B2E0] # .rodata, done/audio/drvrNew]
+  - [0x3B2E0, .rodata, done/audio/drvrNew]
   - [0x3B300, bin, data_3B300] # .rodata, done/audio/reverb]
   - [0x3B330, .rodata, done/audio/seq]
   - [0x3B340, bin, data_3B340] # .rodata, ultra/exceptasm]
