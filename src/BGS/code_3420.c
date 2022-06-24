@@ -251,9 +251,6 @@ void func_8038A044(void){
     func_8025A58C(-1, 400);
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/BGS/code_3420/func_8038A068.s")
-#else
 void func_8038A068(Actor *this, s32 next_state) {
     ActorLocal_BGS_3420 *local;
 
@@ -281,7 +278,7 @@ void func_8038A068(Actor *this, s32 next_state) {
     }
     if (next_state == 4) {
         if (local->unkC == local->unkD) {
-            func_80311480(D_803909F8[local->unkC], 0xE | ((D_803909F8[local->unkC] == 0xC8E) ? 1 : 0), func_8038C284(local->vile_marker), this->marker, func_80389BC8, NULL);
+            func_80311480(D_803909F8[local->unkC], 0xE | ((D_803909F8[local->unkC] == 0xC8E) ? 1 : 0) | 0xE, func_8038C284(local->vile_marker), this->marker, func_80389BC8, NULL);
         } else {
             func_80311480(D_80390A18[local->unkC], 0xF , func_8038C284(local->vile_marker), this->marker, func_80389BC8, NULL);
         }
@@ -353,7 +350,6 @@ void func_8038A068(Actor *this, s32 next_state) {
     }
     this->state = next_state;
 }
-#endif
 
 void chvilegame_player_consume_piece(Actor *this) {
     ActorLocal_BGS_3420 *local;
