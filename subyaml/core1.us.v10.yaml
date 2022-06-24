@@ -168,7 +168,7 @@ segments:
   - [0x2ACE0, c, done/io/piread]          #DONE
   - [0x2AD20, c, done/audio/copy]         #DONE
   - [0x2ADA0, c, done/audio/drvrNew]      #DONE
-  - [0x2B540, c, audio/reverb]
+  - [0x2B540, c, done/audio/reverb]       #DONE
   - [0x2C190, c, done/syncprintf]         #DONE
   - [0x2C1D0, c, done/audio/seq]          #DONE
   - [0x2C7F0, hasm, setsr]                #DONE
@@ -295,7 +295,7 @@ segments:
   - [0x3B2C0, bin, data_3B2C0] # .rodata, gu/rotate] # need to resolve .data section first
   - [0x3B2D0, .rodata, done/audio/cseq]
   - [0x3B2E0, .rodata, done/audio/drvrNew]
-  - [0x3B300, bin, data_3B300] # .rodata, done/audio/reverb]
+  - [0x3B300, .rodata, done/audio/reverb]
   - [0x3B330, .rodata, done/audio/seq]
   - [0x3B340, bin, data_3B340] # .rodata, ultra/exceptasm]
   - [0x3B390, hasm, ultra/libm_vals] # Nothing in this file, just here so splat sees it's ASM
