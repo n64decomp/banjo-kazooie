@@ -170,7 +170,7 @@ segments:
   - [0x2ADA0, c, audio/drvrNew]
   - [0x2B540, c, audio/reverb]
   - [0x2C190, c, done/syncprintf]         #DONE
-  - [0x2C1D0, c, audio/seq]
+  - [0x2C1D0, c, done/audio/seq]          #DONE
   - [0x2C7F0, hasm, setsr]                #DONE
   - [0x2C800, hasm, getsr]                #DONE
   - [0x2C810, hasm, setfpccsr]            #DONE
@@ -296,7 +296,7 @@ segments:
   - [0x3B2D0, .rodata, done/audio/cseq]
   - [0x3B2E0, bin, data_3B2E0] # .rodata, done/audio/drvrNew]
   - [0x3B300, bin, data_3B300] # .rodata, done/audio/reverb]
-  - [0x3B330, bin, data_3B330] # .rodata, done/audio/seq]
+  - [0x3B330, .rodata, done/audio/seq]
   - [0x3B340, bin, data_3B340] # .rodata, ultra/exceptasm]
   - [0x3B390, hasm, ultra/libm_vals] # Nothing in this file, just here so splat sees it's ASM
   - [0x3B390, .rodata, ultra/libm_vals]
