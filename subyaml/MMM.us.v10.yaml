@@ -37,7 +37,7 @@ segments:
       - [0x2F60, c, code_2F60] #DONE
       - [0x3120, c, code_3120] #DONE
       - [0x3420, c, code_3420] #DONE
-      - [0x3D50, c, code_3D50]
+      - [0x3D50, c, code_3D50] #DONE
       - [0x47D0, c, code_47D0] #DONE
       - [0x5000, c, code_5000] #DONE
   - name: MMM-data

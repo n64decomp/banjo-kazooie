@@ -59,7 +59,7 @@ Struct_MMM_3D50_1 D_8038C2F0[] = {
 };
 
 /* .bss */
-extern struct {
+struct {
     BKModel *unk0;
     Struct_MMM_3D50_0 *unk4;
     u8 unk8;
@@ -214,9 +214,6 @@ void func_8038A994() {
     func_8038A140(0);
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/MMM/code_3D50/func_8038A9B4.s")
-#else
 void func_8038A9B4(void){
     
     D_8038C510.unk8 = 0;
@@ -236,7 +233,6 @@ void func_8038A9B4(void){
         }
     }
 }
-#endif
 
 void func_8038AA30(BKModel *arg0, s32 arg1){
     D_8038C510.unkC = arg0;
