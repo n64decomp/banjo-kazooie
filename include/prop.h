@@ -262,7 +262,7 @@ typedef struct actor_s{
     // void *unk150;
     u32 unk154;
     ParticleEmitter *unk158[2];
-    s32 unk160; //saved marker->unk54
+    void *unk160; //saved marker->unk54
     u8  unk164[0x2];
     u8  unk166;
     s8  pad167[0x1];

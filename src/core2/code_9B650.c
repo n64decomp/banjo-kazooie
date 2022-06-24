@@ -38,7 +38,27 @@ extern struct {
 } D_80383340;
 extern int D_80383348;
 
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_803225E0.s")
+#else
+s32 func_803225E0(enum map_e map_id){
+    s32 i;
+    s16 *ptr = D_8036E2A0;
+
+    for(i = 0; D_8036E2A0[i].map_id != 0 && D_8036E2A0[i].map_id != map_id; i++){}
+
+    if( D_8036E2A0[i].map_id != 0 && sns_get_item_state(D_8036E2A0[i].sns_id, 1)){
+        map_id = D_8036E2A0[i].unk2;
+    }
+
+    for(i = 0; D_8036DE80[i].unk0 != 0; i++){
+        if( D_8036DE80[i].unk0 == map_id)
+            return i;
+    }
+
+    return 0;
+}
+#endif
 
 s32 func_803226BC(enum map_e map_id){
     return D_8036DE80[func_803225E0(map_id)].unk6;
@@ -52,17 +72,21 @@ s32 func_80322714(enum map_e map_id){
     return D_8036DE80[func_803225E0(map_id)].unk4;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322740.s")
+s32 func_80322740(void){
+    return D_80383340.unk4;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_8032274C.s")
+s32 func_8032274C(void){
+    return D_80383340.unk0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_80322758.s")
+s32 func_80322758(void){
+    return D_80383340.unk2;
+}
 
 void func_80322764(void){
     D_80383348 = FALSE;
-    D_80383340.unk4 = 0;
-    D_80383340.unk2 = D_80383340.unk4;
-    D_80383340.unk0 = D_80383340.unk2;
+     D_80383340.unk0 = D_80383340.unk2 = D_80383340.unk4 = 0;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_8032278C.s")

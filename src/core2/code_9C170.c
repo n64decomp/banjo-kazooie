@@ -2,12 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
-extern f32 D_80378DD8;
-extern f32 D_80378DDC;
-extern f32 D_80378DE0;
+extern u8 D_80383370;
 
-extern f32 ml_vec3f_distance_squared(f32 [3], f32 [3]);
-extern void func_80341180(f32, s32, s32, f32 *, f32 [3]);
 
 /* .code */
 void func_80323100(void){
@@ -18,19 +14,36 @@ void func_80323120(void){
     func_8024AE74();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9C170/func_80323140.s")
+void func_80323140(s32 arg0, s32 arg1){
+    func_8024BD40(arg0, arg1);
+    func_8032278C(arg0, arg1);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9C170/func_80323170.s")
+void func_80323170(void){
+    func_8024AF48();
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9C170/func_80323190.s")
+void func_80323190(void){
+    D_80383370 = func_8030D90C();
+    func_8030DD14(D_80383370, 3);
+    func_8030DA80(D_80383370, SFX_21_EGG_BOUNCE_1);
+    func_8030DABC(D_80383370, 12000);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9C170/func_803231E8.s")
+void func_803231E8(void){
+    func_8030DA44(D_80383370);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9C170/func_8032320C.s")
+void func_8032320C(void){
+    func_8030E2C4(D_80383370);
+}
 
 void func_80323230(void){}
 
 void func_80323238(void){}
+
+
+extern void func_80341180(f32, s32, s32, f32 *, f32 [3]);
 
 void func_80323240(struct56s *arg0, f32 arg1, f32 arg2[3]){
     if(arg1 < 0.0f)
@@ -61,6 +74,12 @@ f32 func_8032358C(struct56s *arg0, f32[3]);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9C170/func_80323FDC.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9C170/func_80324078.s")
+
+extern f32 D_80378DD8;
+extern f32 D_80378DDC;
+extern f32 D_80378DE0;
+extern f32 ml_vec3f_distance_squared(f32 [3], f32 [3]);
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9C170/func_803240E0.s")
 
@@ -130,9 +149,3 @@ f32 func_803243D0(struct56s *arg0, f32 arg1[3]){
     }
 }
 #endif
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9C170/func_803245D0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9C170/func_80324624.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9C170/func_803246B4.s")
