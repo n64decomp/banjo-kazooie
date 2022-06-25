@@ -67,7 +67,7 @@ segments:
   - [0x1E6E0, c, code_1E6E0]                #DONE
   - [0x1E820, c, code_1E820]
   - [0x1E8C0, c, done/code_1E8C0]           #DONE
-  - [0x1E950, c, done/audio/n_synthesizer] # audio/n_synthesizer]
+  - [0x1E950, c, done/audio/n_synthesizer]  #DONE
   - [0x1F330, c, done/audio/event]          #DONE
   - [0x1F610, c, done/audio/n_synaddplayer] #DONE
   - [0x1F7E0, c, done/audio/n_synallocvoice] #DONE

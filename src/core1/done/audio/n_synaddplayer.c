@@ -2,16 +2,15 @@
 #include "synthInternals.h"
 #include "n_synth.h"
 
-extern AL0s *n_syn;
 
 void n_alSynAddPlayer( ALPlayer *client)
 {
     OSIntMask mask = osSetIntMask(OS_IM_NONE);
 
-    client->samplesLeft = n_syn->synth.curSamples;
+    client->samplesLeft = n_syn->curSamples;
 
-    client->next = n_syn->synth.head;
-    n_syn->synth.head   = client;
+    client->next = n_syn->head;
+    n_syn->head   = client;
 
     osSetIntMask(mask);
 }
@@ -20,15 +19,15 @@ void n_alSynAddSndPlayer( ALPlayer *client)
 {
     OSIntMask mask = osSetIntMask(OS_IM_NONE);
 
-    client->samplesLeft = n_syn->synth.curSamples;
+    client->samplesLeft = n_syn->curSamples;
 
 #if 1
-    client->next = n_syn->synth.head;
-    n_syn->synth.head   = client;
+    client->next = n_syn->head;
+    n_syn->head   = client;
 #endif
 
-    if( !(n_syn->synth.n_sndp) )
-      n_syn->synth.n_sndp = client;
+    if( !(n_syn->n_sndp) )
+      n_syn->n_sndp = client;
 
     osSetIntMask(mask);
 }
@@ -37,14 +36,14 @@ void n_alSynAddSeqPlayer(ALPlayer *client)
 {
     OSIntMask mask = osSetIntMask(OS_IM_NONE);
 
-    client->samplesLeft = n_syn->synth.curSamples;
-    client->next = n_syn->synth.head;
-    n_syn->synth.head = client;
-    if(n_syn->synth.n_seqp1 == 0){
-        n_syn->synth.n_seqp1 = client;
+    client->samplesLeft = n_syn->curSamples;
+    client->next = n_syn->head;
+    n_syn->head = client;
+    if(n_syn->n_seqp1 == 0){
+        n_syn->n_seqp1 = client;
     }
-    else if(n_syn->synth.n_seqp2 == 0){
-        n_syn->synth.n_seqp2 = client;
+    else if(n_syn->n_seqp2 == 0){
+        n_syn->n_seqp2 = client;
     }
     else if(n_syn->unk5C == 0){
         n_syn->unk5C = client;

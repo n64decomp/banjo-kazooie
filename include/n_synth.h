@@ -110,16 +110,6 @@ typedef struct N_PVoice_s {
     s32                 offset;
 } N_PVoice;
 
-typedef struct audio_0_struct{
-    N_ALSynth synth;
-    ALPlayer *unk5C;
-    ALPlayer *unk60;
-    ALPlayer *unk64;
-    ALPlayer *unk68;
-    ALPlayer *unk6C;
-    ALPlayer *unk70;
-} AL0s; //modified ALSynth?
-
 #define N_AL_MAX_RSP_SAMPLES      184
 
 
@@ -148,7 +138,7 @@ typedef struct N_ALAuxBus_s {
     ALFx		*fx_array[AL_MAX_AUX_BUS_SOURCES];
 } N_ALAuxBus;
 
-extern AL0s *n_syn;
+extern N_ALSynth *n_syn;
 
 /*
  * prototypes for private driver functions
