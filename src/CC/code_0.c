@@ -63,8 +63,8 @@ void func_803863F0(Actor *this, s32 next_state){
 #pragma GLOBAL_ASM("asm/nonmatchings/CC/code_0/func_803864D4.s")
 #else
 void func_803864D4(Actor *this){
+    ActorMarker *marker = this->marker;//sp5C;
     ActorLocal_CC_0 * local = (ActorLocal_CC_0 *)this->local;
-    ActorMarker *marker = this->marker;//sp58;
     f32 sp4C[3];
     f32 sp40[3];
     f32 sp3C = time_getDelta();

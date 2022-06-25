@@ -273,24 +273,6 @@ s32 _n_timeToSamples(s32 micros)
     return _n_timeToSamplesNoRound(micros) & ~0xf;
 }
 
-// static s32 __nextSampleTime(ALSynth *drvr, ALPlayer **client) 
-// {
-//     ALMicroTime delta = 0x7fffffff;     /* max delta for s32 */
-//     ALPlayer *cl;
-
-//     assert(drvr->head);
-//     *client = 0;
-    
-//     for (cl = drvr->head; cl != 0; cl = cl->next) {
-//         if ((cl->samplesLeft - drvr->curSamples) < delta) {
-//             *client = cl;
-//             delta = cl->samplesLeft - drvr->curSamples;
-//         }
-//     }
-
-//     return (*client)->samplesLeft;
-// }
-
 static s32 func_8025C370(ALPlayer **client) 
 {
     ALMicroTime idelta;
