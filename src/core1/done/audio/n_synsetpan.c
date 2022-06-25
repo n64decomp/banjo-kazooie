@@ -17,7 +17,7 @@ void    n_alSynSetPan(N_ALVoice *v, u8 pan)
         /*
          * set offset and pan data
          */
-        update->delta  = n_syn->synth.paramSamples + v->pvoice->offset;
+        update->delta  = n_syn->paramSamples + v->pvoice->offset;
         update->type   = AL_FILTER_SET_PAN;
         update->data.i = pan;
         update->next   = 0;

@@ -66,6 +66,12 @@ typedef struct {
     s32                 maxOutSamples;
     s32	       		sv_dramout;
     s32                 sv_first;
+    ALPlayer *unk5C;
+    ALPlayer *unk60;
+    ALPlayer *unk64;
+    ALPlayer *unk68;
+    ALPlayer *unk6C;
+    ALPlayer *unk70;
 } N_ALSynth;
 
 

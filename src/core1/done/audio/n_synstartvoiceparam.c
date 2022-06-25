@@ -3,8 +3,6 @@
 #include "n_synth.h"
 
 
-extern AL0s *n_syn;
-
 void n_alSynStartVoiceParams(N_ALVoice *v, ALWaveTable *w,
                            f32 pitch, s16 vol, ALPan pan, u8 fxmix,
                            ALMicroTime t)
@@ -26,7 +24,7 @@ void n_alSynStartVoiceParams(N_ALVoice *v, ALWaveTable *w,
         /*
          * set offset and fxmix data
          */
-        update->delta  = n_syn->synth.paramSamples + v->pvoice->offset;
+        update->delta  = n_syn->paramSamples + v->pvoice->offset;
         update->next   = 0;
         update->type   = AL_FILTER_START_VOICE_ALT;
 

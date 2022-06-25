@@ -16,7 +16,7 @@ void    n_alSynSetFXMix(N_ALVoice *v, u8 fxmix)
         /*
          * set offset and fxmix data
          */
-        update->delta  = n_syn->synth.paramSamples + v->pvoice->offset;
+        update->delta  = n_syn->paramSamples + v->pvoice->offset;
         update->type   = AL_FILTER_SET_FXAMT;
 	if (fxmix < 0)
 	    update->data.i = -fxmix;
