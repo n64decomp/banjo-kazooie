@@ -6,7 +6,7 @@
 Acmd *n_alAuxBusPull(s32 sampleOffset, Acmd *p) 
 {
   Acmd        *ptr = p;
-  N_ALAuxBus   *m = (N_ALAuxBus *)n_syn->synth.auxBus;
+  N_ALAuxBus   *m = (N_ALAuxBus *)n_syn->auxBus;
   N_PVoice    **sources = m->sources;
   s32         i;
 

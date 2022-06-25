@@ -12,7 +12,7 @@ Acmd *n_alMainBusPull( s32 sampleOffset, Acmd *p)
   aClearBuffer(ptr++, N_AL_MAIN_L_OUT, N_AL_DIVIDED<<1);
 #endif
 
-  ptr = (n_syn->synth.mainBus->filter.handler)(sampleOffset,ptr);
+  ptr = (n_syn->mainBus->filter.handler)(sampleOffset,ptr);
 
 #ifndef N_MICRO
   aSetBuffer(ptr++, 0, 0, 0, FIXED_SAMPLE<<1);

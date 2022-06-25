@@ -15,7 +15,7 @@ void n_alSynFreeVoice(N_ALVoice *voice)
             /*
              * set voice data
              */
-            update->delta  = n_syn->synth.paramSamples + voice->pvoice->offset;
+            update->delta  = n_syn->paramSamples + voice->pvoice->offset;
             update->type   = AL_FILTER_FREE_VOICE;
             update->pvoice = voice->pvoice;
 

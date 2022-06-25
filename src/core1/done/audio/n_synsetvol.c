@@ -17,7 +17,7 @@ void n_alSynSetVol( N_ALVoice *v, s16 volume, ALMicroTime t)
         /*
          * set offset and volume data
          */
-        update->delta           = n_syn->synth.paramSamples + v->pvoice->offset;
+        update->delta           = n_syn->paramSamples + v->pvoice->offset;
         update->type            = AL_FILTER_SET_VOLUME;
         update->data.i          = volume;
         update->moredata.i      = _n_timeToSamples( t);

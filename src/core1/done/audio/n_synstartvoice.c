@@ -35,7 +35,7 @@ void n_alSynStartVoice( N_ALVoice *v, ALWaveTable *table)
 #ifdef SAMPLE_ROUND
 	update->delta  = SAMPLE184( n_syn->paramSamples + v->pvoice->offset);
 #else
-        update->delta  = n_syn->synth.paramSamples + v->pvoice->offset;
+        update->delta  = n_syn->paramSamples + v->pvoice->offset;
 #endif
 
         update->type   = AL_FILTER_START_VOICE;
