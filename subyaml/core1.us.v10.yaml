@@ -67,7 +67,7 @@ segments:
   - [0x1E6E0, c, code_1E6E0]                #DONE
   - [0x1E820, c, code_1E820]
   - [0x1E8C0, c, done/code_1E8C0]           #DONE
-  - [0x1E950, c, audio/n_synthesizer]
+  - [0x1E950, c, done/audio/n_synthesizer] # audio/n_synthesizer]
   - [0x1F330, c, done/audio/event]          #DONE
   - [0x1F610, c, done/audio/n_synaddplayer] #DONE
   - [0x1F7E0, c, done/audio/n_synallocvoice] #DONE
@@ -283,7 +283,7 @@ segments:
   - [0x3A820, .rodata, code_18350]
   - [0x3A920, .rodata, code_1BE90]
   - [0x3A950, .rodata, code_1D5D0]
-  - [0x3A9B0, bin, data_3A9B0] # .rodata, n_synthesizer]
+  - [0x3A9B0, .rodata, done/audio/n_synthesizer]
   - [0x3A9C0, bin, data_3A9C0] # .rodata, done/audio/n_csplayer]
   - [0x3AD30, bin, data_3AD30]
   - [0x3AD60, .rodata, done/audio/n_drvrNew]

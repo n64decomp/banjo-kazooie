@@ -120,6 +120,8 @@ typedef struct audio_0_struct{
     ALPlayer *unk70;
 } AL0s; //modified ALSynth?
 
+#define N_AL_MAX_RSP_SAMPLES      184
+
 
 typedef Acmd *(*N_ALCmdHandler)(s32, Acmd *);
 

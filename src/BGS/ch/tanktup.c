@@ -84,15 +84,19 @@ void func_8038F610(Actor *this) {
 extern f32 D_803911B0;
 extern f32 D_803911B4;
 
+void func_8028F94C(s32, f32[3]);
+void func_8028F918(s32);
+
 #ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/BGS/ch/tanktup/func_8038F6A4.s")
 #else
 void func_8038F6A4(Actor *this) {
-    ActorLocal_TanktupBody * local = (ActorLocal_TanktupBody *)&this->local;
     f32 sp48[3];
     s32 sp44;
     f32 sp34[3];
     Prop *temp_v0;
+    ActorLocal_TanktupBody * local = (ActorLocal_TanktupBody *)&this->local;
+
 
     if(!this->initialized){
         temp_v0 = func_80304C38(0x32B, this);
