@@ -81,6 +81,7 @@ ml_vec3f_to_vec3h = 0x80258E24;
 mlDiffDegF = 0x802591D8;
 comusic_8025AB44 = 0x8025AB44;
 comusic_8025AB78 = 0x8025AB78;
+___osGetSR          = 0x8025AFE0;
 _n_timeToSamples    = 0x8025C378;
 _n_freePVoice       = 0x8025C3D8;
 _n_collectPVoices   = 0x8025C40C;
@@ -327,6 +328,7 @@ __osViCurr = 0x80277400;
 __osSiAccessQueueEnabled = 0x80277420;
 D_8027D020 = 0x8027D020;
 D_8027D100 = 0x8027D100;
+D_80280690 = 0x80280690;
 piThread        = 0x80283450;
 piThreadStack   = 0x80283600;
 piEventQueue    = 0x80284600;
@@ -471,8 +473,15 @@ snsBasePayloadPtr2                = 0x80276E48;
 snsBasePayloadPtr3                = 0x80276E4C;
 snsBasePayloadPtr4                = 0x80276E50;
 snsPayloadOutCurrPos              = 0x80276E60;
+
+g_AudioManager = 0x8027BF40;
+
+freeOscStateList = 0x8027DD84;
+oscStates = 0x8027DD88;
+
+
 D_80283008                        = 0x80283008;
-heap_requested_size                        = 0x80283230;
+heap_requested_size               = 0x80283230;
 snsParsedKeys                     = 0x80283390;
 gSaveData                         = 0x80283400;
 snsMinKeyToParse                  = 0x80283420;

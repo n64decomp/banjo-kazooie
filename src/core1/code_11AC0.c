@@ -23,25 +23,28 @@ void func_8024AF48(void);
 void func_8024FB8C(void);
 
 /* .data */
-extern MusicTrackMeta D_80275D40[];
+extern MusicTrackMeta D_80275D40[0xB0];
 extern s32          D_802762C0;
 extern s32          D_802762C4;
+
+/* .rodata */
 extern f32          D_80278180;
 extern f32          D_80278184;
-extern MusicTrack   D_80281720[];
-extern MusicTrack **D_802820E0;
-extern ALSeqpConfig D_802820E8;
-extern u16          D_80282104; //called as u16 someplaces and s16 others
-extern ALBank *     D_80282108;
-extern structBs     D_80282110[0x20];
+
+
+/* .data */
+MusicTrack   D_80281720[6];
+MusicTrack **D_802820E0;
+ALSeqpConfig D_802820E8;
+u16          D_80282104; //called as u16 someplaces and s16 others
+ALBank *     D_80282108;
+structBs     D_80282110[0x20];
 
 
 
 /* .rodata */
 
 /* .code */
-
-#ifdef NONMATCHING
 void func_8024F4E0(void){
     s32 size;
     ALBankFile * bnk_f; //sp38
@@ -70,13 +73,12 @@ void func_8024F4E0(void){
         n_alCSPNew(&D_80281720[i].cseqp, &D_802820E8); //alCSPNew
     }
 
-    alBnkfNew(bnk_f, &D_EADE60);
+    alBnkfNew(bnk_f, (u8 *)&D_EADE60);
     D_80282108 = bnk_f->bankArray[0];
     for(i = 0; i < 6; i++){
         alCSPSetBank(&D_80281720[i].cseqp, D_80282108);
     }
 
-    //something wrong with this last loop.
     for(i = 0; i < 6; i++){
         D_80281720[i].unk2 = 0;
         D_80281720[i].unk3 = 0;
@@ -86,9 +88,6 @@ void func_8024F4E0(void){
     }
     func_8024FB8C();
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_8024F4E0.s")
-#endif
 
 ALBank *func_8024F758(void){
     return D_80282108;
@@ -467,17 +466,12 @@ void func_80250604(s32 arg0, s32 arg1, f32 arg2){
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_80250650.s")
 #else
 void func_80250650(void) {
-    ALCSPlayer *temp_s2;
-    f32 temp_f12;
-    f32 temp_f2;
-    f32 temp_f2_2;
-    s32 temp_s1;
-    s32 temp_s1_2;
-    structBs *var_s0;
+    ALCSPlayer *csplayer;
     s32 i;
+    s32 mask;
 
     for(i = 0; i < 0x20; i++){
-        temp_s2 = func_802500CC(D_80282110[i].unk0);
+        csplayer = func_802500CC(D_80282110[i].unk0);
         if ((D_80282110[i].unk8 != D_80282110[i].unk10) && (func_80250074((u8)D_80282110[i].unk0) == 0)) {
             if (D_80282110[i].unkC >= 0.0f) {
                 D_80282110[i].unk8 = MIN(D_80282110[i].unk8 + D_80282110[i].unkC, D_80282110[i].unk10);
@@ -485,16 +479,16 @@ void func_80250650(void) {
                 D_80282110[i].unk8 = MAX(D_80282110[i].unk8 + D_80282110[i].unkC, D_80282110[i].unk10);
             }
             if (D_80282110[i].chan == -1) {
-                alCSPSetTempo(temp_s2, (s32) D_80282110[i].unk8);
+                alCSPSetTempo(csplayer, (s32) D_80282110[i].unk8);
             } else {
-                func_8025F510(temp_s2,D_80282110[i].chan, D_80282110[i].unk8);
-                if (((1 <<D_80282110[i].chan) & (s32)temp_s2->chanMask)) {
+                func_8025F510(csplayer,D_80282110[i].chan, D_80282110[i].unk8);
+                if ((csplayer->chanMask) & (1U << D_80282110[i].chan)) {
                     if (D_80282110[i].unk8 == 0.0) {
-                        func_8025F5C0(temp_s2, D_80282110[i].chan);
+                        func_8025F5C0(csplayer, D_80282110[i].chan);
                     }
                 } else {
                     if (D_80282110[i].unk8 != 0.0f) {
-                        func_8025F570(temp_s2, D_80282110[i].chan);
+                        func_8025F570(csplayer, D_80282110[i].chan);
                     }
                 }
             }

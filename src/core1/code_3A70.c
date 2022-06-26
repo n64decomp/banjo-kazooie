@@ -33,7 +33,8 @@ extern struct{
 extern ALSndPlayer *D_802758CC;
 extern s32 D_802758D0;
 
-extern u16 *D_8027EF14;
+u8 pad_8027EEC0[0x54];
+u16 *D_8027EF14;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_3A70/func_80241490.s")
 

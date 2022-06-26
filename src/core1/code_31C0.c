@@ -5,8 +5,8 @@
 
 extern f64 D_80277640;
 
-extern OSThread D_8027ED10;
-extern u8 D_8027EB10[0x200]; // Size based on the previous symbol's address
+u8 D_8027EB10[0x200]; // Size based on the previous symbol's address
+OSThread D_8027ED10;
 
 
 void func_80240C30(void*);

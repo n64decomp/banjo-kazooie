@@ -2,11 +2,11 @@
 #include "functions.h"
 #include "variables.h"
 
-extern OSIoMesg D_8027E090;
-extern OSMesg D_8027E0A8;
-extern OSMesgQueue D_8027E0AC;
-extern OSMesg D_8027E0C8[16];
-extern OSMesgQueue D_8027E108;
+OSIoMesg D_8027E090;
+OSMesg D_8027E0A8;
+OSMesgQueue D_8027E0AC;
+OSMesg D_8027E0C8[16]; //g_PimgrMesgBuffer
+OSMesgQueue D_8027E108; //g_PimgrMesgQueue
 
 
 #ifndef NONMATCHING

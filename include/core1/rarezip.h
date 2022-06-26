@@ -12,7 +12,7 @@ extern u16 D_80275684[];
 //         35, 43, 51, 59, 67, 83, 99, 115, 131, 163, 195, 227, 258, 0, 0};
 //         /* note: see note #13 above about the 258 in this list. */
 
-extern u16 D_802756C4[];
+extern u8 D_802756C4[];
 // static ush cplext[] = {         /* Extra bits for literal codes 257..285 */
 //         0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2,
 //         3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 0, 99, 99}; /* 99==invalid */
@@ -23,7 +23,7 @@ extern u16 D_802756E4[];
 //         257, 385, 513, 769, 1025, 1537, 2049, 3073, 4097, 6145,
 //         8193, 12289, 16385, 24577};
 
-extern u16 D_80275720[];
+extern u8 D_80275720[];
 // static ush cpdext[] = {         /* Extra bits for distance codes */
 //         0, 0, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6,
 //         7, 7, 8, 8, 9, 9, 10, 10, 11, 11,
@@ -40,7 +40,6 @@ extern s32 D_80275764; //lbits
 extern s32 D_80275768; //dbits
 
 extern struct huft *D_8027BF00;
-
 extern u8 *D_8027BF10; //inbuf
 extern u8 *D_8027BF14; //slide
 extern u32 D_8027BF18; //inptr

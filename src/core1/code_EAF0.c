@@ -13,7 +13,7 @@ extern f32 D_80275D2C; //far
 
 extern s32 D_80275D38;
 
-
+/* .rodata */
 extern f64 D_802779F0;
 extern f32 D_80277A08;
 extern f64 D_80277A30;
@@ -26,32 +26,35 @@ extern f32 D_80277A18;
 extern f32 D_80277A1C;
 extern f32 D_80277A20;
 
-
-
-extern f32 D_80280EA0[3];
-extern f32 D_80280EB0[3];
-extern f32 D_80280EC0[3];
-extern f32 D_80280ECC;
-extern f32 D_80280ED0[4][4];
-extern Vp D_80280F10[];
-extern int D_80280F90;
-extern Mtx D_80280F98;
-extern Mtx D_80280FD8;
-extern s32 D_80281018; //viewport indx
-extern OSMesg D_802812B0;
-extern OSMesg D_802812B4;
-extern OSContPad D_802812B8[4];
-extern OSContPad D_802812D0;
-extern OSMesgQueue D_802812D8;
-extern OSMesgQueue D_802812F0;
-extern u8 D_80281130;
-extern OSContStatus D_80281318;
-extern u8 D_8028131B;
-extern s32 D_80281328;
-extern OSThread D_80281330;
-extern f32 D_802816E0;
-extern OSMesgQueue D_802816E8;
-extern OSMesg D_80281700;
+/* .data */
+f32 D_80280EA0[3];
+f32 D_80280EB0[3];
+f32 D_80280EC0[3];
+f32 D_80280ECC;
+f32 D_80280ED0[4][4];
+Vp D_80280F10[8];
+int D_80280F90;
+Mtx D_80280F98;
+Mtx D_80280FD8;
+s32 D_80281018; //viewport indx
+u8 pad_D_8028101C[0x104];
+u8 D_80281130[0x188];
+OSMesg D_802812B0;
+OSMesg D_802812B4;
+OSContPad D_802812B8[4];
+OSContPad D_802812D0;
+OSMesgQueue D_802812D8;
+OSMesgQueue D_802812F0;
+u8 pad_D_80281308[0x10];
+OSContStatus D_80281318;
+u8 pad_D_80281320[0x8];
+s32 D_80281328;
+OSThread D_80281330;
+u8 pad_D_802814E0[0x200];
+f32 D_802816E0;
+OSMesgQueue D_802816E8;
+OSMesg D_80281700[4];
+u8 pad_D_80281710[1];
 
 void func_8024F450(void);
 void func_8024F4AC(void);
@@ -117,7 +120,9 @@ void func_8024C794(f32 *arg0, f32 *arg1, f32 *arg2){
 #else
 void func_8024C7B8(Gfx **gfx, Mtx **mtx){
     f32 tmp_f0;
+    f32 tmp_f16;
     f32 tmp_f2;
+    f32 tmp_f18;
     gSPViewport((*gfx)++, &D_80280F10[D_80281018]);
 
     tmp_f0 = 2*(f32)D_80276588;
@@ -451,7 +456,7 @@ void func_8024E7C8(void){
 
 void func_8024EF74(void){
     func_8024F35C(0);
-    if(!D_8028131B)
+    if(!D_80281318.errno)
         osContGetReadData(D_802812B8);
 }
 
@@ -485,7 +490,7 @@ void func_8024F05C(void){
 }
 
 int func_8024F12C(void){
-    return D_8028131B ? 1 : 0;
+    return D_80281318.errno ? 1 : 0;
 }
 
 void func_8024F150(void){

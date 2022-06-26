@@ -22,10 +22,10 @@ extern u8  D_80275C1C;
 extern Struct_Core1_CE60_0s D_80275C20[];
 
 /* .bss */
-extern s32 D_802806F0;
-extern int D_802806F4;
-extern s32 D_802806F8[4];
-extern s32 D_80280708[4];
+s32 D_802806F0;
+int D_802806F4;
+s32 D_802806F8[4];
+s32 D_80280708[4];
 
 
 /* .code */

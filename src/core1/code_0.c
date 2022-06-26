@@ -11,16 +11,22 @@ void func_8023DFF0(s32);
 
 extern s32 D_80275610;
 extern u32 D_80275618;
-extern u32 D_8027A130;
-extern OSThread D_8027BD38;
-extern s32 D_8027BEE8;
-extern s32 D_8027BEEC;
-u64 D_8027BEF0;
+
+/* .bss */
+u32 D_8027A130;
+u8  pad_8027A138[0x400];
 u64 D_8027A538;
+u8  pad_8027A540[0x17F8];
+OSThread D_8027BD38;
+s32      D_8027BEE8;
+s32      D_8027BEEC;
+u64      D_8027BEF0;
+
 extern u8 D_80286F90;
 
+extern u8 D_803A5D00[2][0x1ECC0];
 
-void func_8023DA20(s32 arg0){
+void func_8023DA20(s32 arg0){ 
     bzero(&D_8027A130, &D_80286F90 - (u8*)&D_8027A130);
     osWriteBackDCacheAll();
     sns_find_and_parse_payload();
@@ -114,7 +120,7 @@ void func_8023DCF4(void){
     D_80275618--;
 }
 
-extern u8 D_803A5D00[2][0x1ECC0];
+
 
 #ifndef NOMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_0/func_8023DD0C.s")

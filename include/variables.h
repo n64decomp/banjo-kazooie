@@ -3,6 +3,9 @@
 
 #define RARE_PI 3.141592654
 
+#define M_TAU (2*M_PI)
+
+
 struct Overlay {
     void *start;
     void *end;

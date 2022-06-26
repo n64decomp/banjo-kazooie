@@ -12,7 +12,8 @@ extern Struct66s *func_80320B98(f32[3], f32[3], f32[3], u32);
 extern f64 D_802776C8;
 
 /* .bss */
-extern f32 D_8027EF30;
+u8 pad_D_8027EF20[0x10];
+f32 D_8027EF30;
 
 /* .code */
 void func_80244CD0(f32 arg0[3], u32 arg1) {

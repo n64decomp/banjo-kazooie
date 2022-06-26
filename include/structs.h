@@ -151,17 +151,6 @@ typedef struct struct_0_s{ //floor
     u8      unk5F;
 } struct0; //geo(used for floor)
 
-typedef struct struct_1_s{
-    u32 unk0;
-    u8 pad4[4];
-    u32 unk8;
-    u8 padC[4];
-    u32 unk10;
-    u8 pad14[4];
-    u32 unk18;
-    u8 pad1C[4];
-} struct1;
-
 typedef struct struct_2_s{
     f32 unk0;
     u8 unk4; //argument_count

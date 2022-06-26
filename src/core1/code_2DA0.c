@@ -4,12 +4,12 @@
 
 void func_80240924(s32 arg0);
 
-extern OSMesgQueue D_8027E120;
-extern OSMesg D_8027E138;
-extern OSMesgQueue D_8027E140;
-extern OSMesg D_8027E158;
-extern OSThread D_8027E160;
-
+OSMesgQueue D_8027E120;
+OSMesg D_8027E138;
+OSMesgQueue D_8027E140;
+OSMesg D_8027E158;
+OSThread D_8027E160;
+u8 pad_8027E310[0x800];
 extern u8 D_8027EB10;
 
 /* .code */
