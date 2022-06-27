@@ -17,6 +17,8 @@ extern void func_80344E18(u8, s32);
 extern void func_80344E3C(u8, f32[3]);
 extern void func_80344EE4(u8, f32, f32);
 extern void func_80354030(f32[3], f32);
+extern bool func_80344EC0(u8);
+extern ActorMarker *func_8033E840(void);
 
 void func_80353FBC(s32 arg0, ActorMarker *arg1, s32 arg2);
 
@@ -25,6 +27,9 @@ extern struct53s D_803726A0;
 
 /* .rodata */
 extern f32 D_80379434;
+extern f32 D_80379438;
+extern f64 D_80379440;
+extern f64 D_80379448;
 
 /* .code */
 void func_80353170(u8 arg0){
@@ -148,11 +153,120 @@ void func_803537B8(void){
 
 void func_80353A90(void){}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_CC1E0/func_80353A98.s")
+void func_80353A98(void) {
+    u8 sp5F;
+    struct54s *sp58;
+    u8 sp57;
+    f32 sp48[3];
+    f32 sp3C[3];
+    f32 sp30[3];
+    f32 temp_f2;
+    f32 temp_f18;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_CC1E0/func_80353CC8.s")
+    sp5F = func_8033E8D0();
+    sp58 = func_8033E8F4();
+    sp57 = func_8033E93C();
+    func_8033E840()->unk2C_1 = TRUE;
+    func_8033E840()->collidable = TRUE;
+    func_803300B8(func_8033E840(), &func_80353FBC);
+    func_8033EA40(1, 0);
+    func_8033EA40(0, 20.0f);
+    func_8033EA40(2, 0);
+    _player_getPosition(sp3C);
+    player_getRotation(sp30);
+    sp30[1] = mlNormalizeAngle(sp30[1] + 180.0f);
+    func_80256E24(sp48, 0.0f, sp30[1], 0.0f, 0.0f, -18.0f);
+    sp3C[0] += sp48[0];
+    sp3C[1] += sp48[1];
+    sp3C[2] += sp48[2];
+    sp3C[1] += 60.0f;
+    func_8033FBC8(sp5F, ASSET_708_SPRITE_EGG_PROJECTILE);
+    temp_f18 = 20.0f;
+    func_8033FFE4(sp5F, (s32)temp_f18, (s32)temp_f18);
+    func_8033FEC8(sp5F, sp3C);
+    func_8033FCD8(sp5F, 0xE);
+    func_80287E9C(sp58);
+    func_80287F50(sp58, &D_803726A0, 0x14);
+    func_80287F10(sp58);
+    func_80344E18(sp57, 4);
+    func_80344EE4(sp57, -2200.0f, -22000.0f);
+    func_80344D94(sp57, sp3C);
+    temp_f2 = ((randf() * 6.0f) - 3.0f);
+    sp30[1] = sp30[1] + temp_f2;
+    func_80256E24(sp48, 0.0f, sp30[1], 0, 0, 200.0f);
+    sp48[1] = (randf() * 20.0f) + 700.0f;
+    func_80344E3C(sp57, sp48);
+}
+
+void func_80353CC8(void) {
+    u8 sp8F;
+    u8 sp8E;
+    f32 sp80[3];
+    f32 sp74[3];
+    f32 sp68[3];
+    f32 sp64;
+    f32 temp_f20;
+    f32 temp_f2;
+    f32 sp58;
+    f32 var_f22;
+
+    sp8F = func_8033E8D0();
+    sp8E = func_8033E93C();
+    sp64 = func_8033EA14(1);
+    var_f22 = func_8033EA14(2);
+    var_f22 -= time_getDelta();
+    sp58 = ml_map_f(sp64, 0.0f, 3.0f, 0.0333f, D_80379438);
+    while (var_f22 <= 0.0f) {
+        var_f22 += sp58;
+        func_8033FF10(sp8F, sp68);
+        func_8033E9D4();
+        sp68[0] += randf2(-8.0f, 8.0f);
+        sp68[1] += randf2(-8.0f, 8.0f);
+        sp68[2] += randf2(-8.0f, 8.0f);
+        if (randf() < 0.5) {
+            func_803541C0(1);
+        } else {
+            func_803541C0(6);
+        }
+        func_803541CC(0x32);
+        func_80354030(sp68, 0.15);
+        func_8033E9F4();
+    }
+    func_8033EA40(2, var_f22);
+    if (func_80344EC0(sp8E)) {
+        func_8032320C();
+    }
+    func_803531C8(sp8F, 1);
+    func_80344E7C(sp8E, sp74);
+    if (D_80379440 < func_8033EA14(1)) {
+        func_8033FF10(sp8F, sp80);
+        if (func_803534C8(sp80)) {
+            func_802D8DF0(0);
+            func_8033E984();
+        }
+    }
+    func_80344E3C(sp8E, sp74);
+    temp_f20 = func_8033EA14(0);
+    func_8033FFE4(sp8F, (s32)temp_f20, (s32)temp_f20);
+    func_8033EA40(0, min_f(temp_f20 + 8.0f, 50.0f));
+    sp64 += time_getDelta();
+    func_8033EA40(1, sp64);
+    if ((D_80379448 < sp64) && (func_80344EC0(sp8E) || (sp64 > 3.5))) {
+        func_8033E984();
+        func_80353170(sp8F);
+    }
+}
 
 void func_80353FB4(void){}
 
-void func_80353FBC(s32 arg0, ActorMarker *arg1, s32 arg2);
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_CC1E0/func_80353FBC.s")
+void func_80353FBC(s32 arg0, ActorMarker *marker, s32 arg2) {
+    Actor *actor;
+
+    actor = marker_getActor(marker);
+    if (func_8033D5A4(arg2) != 0) {
+        func_8033E984();
+        if (actor->modelCacheIndex != 0x29D) {
+            func_80353170(func_8033E8D0());
+        }
+    }
+}
