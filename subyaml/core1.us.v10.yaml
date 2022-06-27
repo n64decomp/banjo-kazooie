@@ -330,4 +330,6 @@ segments:
   - [0x3c710, .bss, code_EAF0]
   - [0x3c710, .bss, code_11AC0]
   - [0x3c710, .bss, code_12F10]
+  - [0x3c710, .bss, code_13640]
+  - [0x3c710, .bss, code_136D0]
 - [0x3c710] # core1 end

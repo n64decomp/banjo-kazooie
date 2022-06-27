@@ -2,9 +2,11 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "n_libaudio.h"
 
-extern ALSynth *D_80276E80;
-extern ALSynth *D_80276E84;
+
+extern N_ALSynth *D_80276E80;
+extern N_ALSynth *D_80276E84;
 
 void func_8025C2E0(s32 a0)
 {
@@ -17,7 +19,7 @@ void func_8025C2E0(s32 a0)
     }
 }
 
-void func_8025C320(ALSynth *synth, ALSynConfig *config)
+void func_8025C320(N_ALSynth *synth, ALSynConfig *config)
 {
     if (D_80276E80 != NULL)
         return;

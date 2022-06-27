@@ -8,7 +8,74 @@ void func_80336924(Gfx*, Vtx*, BKSprite *, s32, s32);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BD100/func_80344124.s")
 
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BD100/func_80344138.s")
+#else
+extern f32 D_80379080;
+extern f32 D_80379084;
+extern struct {
+    void (*unk0)(void *);
+    void *unk4;
+}D_80371EC0;
+extern f32 D_80371ECC;
+extern u8 D_803858B0;
+
+extern void func_80252330(f32, f32, f32);
+
+void func_80344138(BKSpriteDisplayData *self, s32 frame, s32 arg2, f32 position[3], f32 arg4[3], Gfx **gfx, Mtx **mtx) {
+    f32 sp6C[3];
+    f32 sp60[3];
+    f32 temp_f14;
+    f32 sp50[3];
+    BKSprite *temp_v0;
+    f32 var_f2_2;
+    BKSpriteFrameDisplayData *temp_a3;
+    f32 sp30[3];
+
+    func_8024C5CC(&sp6C);
+    func_8024C5A8(&sp60);
+    sp50[0] = position[0] - sp6C[0];
+    sp50[1] = position[1] - sp6C[1];
+    sp50[2] = position[2] - sp6C[2];
+    temp_f14 = sp60[0]*sp50[0] + sp60[1]*sp50[1] + sp60[2]*sp50[2];
+    if ((temp_f14 < 0.0f) || (D_80379080 < temp_f14)) {
+        func_80344124();
+        return;
+    }
+    if (arg4 != NULL) {
+        sp30[0] = arg4[0];
+        sp30[1] = arg4[1];
+        sp30[2] = arg4[2];
+    } else {
+        sp30[0] = sp30[1] = sp30[2] = 1.0f;
+    }
+
+
+    var_f2_2 = (self->sprite->unkA * sp30[2] <= self->sprite->unk8 * sp30[0]) ? self->sprite->unk8 * sp30[0] : self->sprite->unkA * sp30[2];
+    if ((D_80379084 < temp_f14) && ((var_f2_2 / temp_f14) < D_80371ECC) && (D_803858B0 == 0)) {
+        func_80344124();
+        return;
+    }
+    if (D_80371EC0.unk0 != NULL) {
+        D_80371EC0.unk0(D_80371EC0.unk4);
+    }
+    func_80251BCC(func_8024DD90());
+    func_80252330(sp50[0], sp50[1], sp50[2]);
+    if ((arg4 != NULL) || (arg2 != 0)) {
+        mlMtxScale_xyz((arg2 != 0) ? -arg4[0] : arg4[0], sp30[2], sp30[1]);
+    }
+    mlMtxApply(*mtx);
+    gSPMatrix((*gfx)++, (*mtx)++, G_MTX_PUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
+    temp_a3 = &self->frame[frame];
+    gSPSegment((*gfx)++, 1, osVirtualToPhysical(temp_a3->vtx));
+    gSPDisplayList((*gfx)++, temp_a3->gfx);
+    if(temp_a3);
+    gSPPopMatrix((*gfx)++, G_MTX_MODELVIEW);
+    func_80349AD0();
+    func_80344124();
+}
+#endif
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BD100/func_80344424.s")
 
@@ -74,39 +141,3 @@ BKSpriteDisplayData * func_80344A1C(BKSprite *arg0){
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BD100/func_80344C2C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BD100/func_80344C38.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BD100/func_80344C50.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BD100/func_80344C80.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BD100/func_80344CDC.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BD100/func_80344D70.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BD100/func_80344D94.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BD100/func_80344DD4.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BD100/func_80344E18.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BD100/func_80344E3C.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BD100/func_80344E7C.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BD100/func_80344EC0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BD100/func_80344EE4.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BD100/func_80344F18.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BD100/func_80344F48.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BD100/func_80344FF0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BD100/func_80345000.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BD100/func_803450B0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BD100/func_80345138.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BD100/func_803451B0.s")

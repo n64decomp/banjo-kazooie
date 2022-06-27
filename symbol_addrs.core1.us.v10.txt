@@ -479,7 +479,6 @@ g_AudioManager = 0x8027BF40;
 freeOscStateList = 0x8027DD84;
 oscStates = 0x8027DD88;
 
-
 D_80283008                        = 0x80283008;
 heap_requested_size               = 0x80283230;
 snsParsedKeys                     = 0x80283390;

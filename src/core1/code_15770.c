@@ -44,8 +44,6 @@ void func_80253420(void){}
 
 #ifdef NONMATCHING
 s32 func_80253428(int arg0){
-    s32 i;
-
     if(arg0){
         D_80282FE0.unk0 = &D_8000E800;
         while((s32)D_80282FE0.unk0 % 0x40){

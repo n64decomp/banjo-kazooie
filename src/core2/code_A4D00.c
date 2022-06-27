@@ -999,6 +999,8 @@ void func_803305AC(void){
     D_80383444 = 0;
 }
 
+
+extern s32 D_8036E7CC;
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_803306C8.s")
 
 extern void *func_802EBAE0(UNK_TYPE(s32), f32 position[3], f32 rotation[3], f32 scale, UNK_TYPE(s32), UNK_TYPE(s32), UNK_TYPE(s32), f32, UNK_TYPE(s32));
@@ -1007,9 +1009,12 @@ BKModelBin *func_80330DE4(ActorMarker *this);
 #ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_803308A0.s")
 #else
+void assetcache_release(BKModelBin *);
+void func_8033B388(BKSprite **, BKSpriteDisplayData**);
+void func_80349CD8(void *);
 void func_803308A0(void){
-    s32 i = 0;
-    do{
+    s32 i;
+    for(i = 0; i < AssetCacheSize; i++){
         if(modelCache[i].modelPtr){
             assetcache_release(modelCache[i].modelPtr);
             modelCache[i].modelPtr = NULL;
@@ -1021,8 +1026,7 @@ void func_803308A0(void){
             func_80349CD8(modelCache[i].unkC);
             modelCache[i].unkC = NULL;
         }
-        i++;
-    }while(i < AssetCacheSize);
+    }
     free(modelCache);
     modelCache = NULL;
 }
@@ -1152,8 +1156,9 @@ BKSpriteDisplayData *func_80330E54(ActorMarker *marker, BKSprite **sprite_ptr) {
     return model_cache_ptr->unk8;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_80330F30.s")
-
+BKSpriteDisplayData *func_80330F30(ActorMarker *marker){
+    return func_80330E54(marker, NULL);
+}
 
 BKSprite *func_80330F50(ActorMarker * marker){
     BKSprite *sp1C;

@@ -14,6 +14,14 @@ typedef struct {
 
 void func_80247224(void);
 
+#define CORE1_8C50_EVENT_DP 4
+#define CORE1_8C50_EVENT_SP 6
+#define CORE1_8C50_EVENT_AUDIO_TIMER 8
+#define CORE1_8C50_EVENT_FAULT 10
+#define CORE1_8C50_EVENT_PRENMI 11
+#define CORE1_8C50_EVENT_CONT_TIMER 13
+
+/* .data */
 extern u64 D_80272590[]; // ucode
 extern u64 D_802731F0[];
 extern u64 D_80274620[];
@@ -23,10 +31,10 @@ extern s32 D_80275990;
 extern s32 D_80275994;
 extern s32 D_80275998;
 extern s32 D_8027599C;
-extern OSViMode D_802759F8;
 extern s32 D_802759A0;
 // static s32 D_802759A4;
 extern OSViMode D_802759A8;
+extern OSViMode D_802759F8;
 extern u64 D_80278E80[]; //ucode_data
 extern u64 D_80279130[];
 extern u64 D_80279930[];
@@ -56,13 +64,11 @@ Struct_Core1_8C50_s * D_80280630[20];
 volatile s32 D_80280680;
 volatile s32 D_80280684;
 s32 D_80280688;
-OSTimer D_80280690;
-OSTimer D_802806B0;
+OSTimer D_80280690; //audio_timer
+OSTimer D_802806B0; //controller_timer
 s32 D_802806D0;
-// extern s32 D_802806D4;
 
-
-
+/* .code */
 void func_80246670(OSMesg arg0){
     sizeof(OSThread);
     osSendMesg(&D_8027FB60, arg0, 1);
@@ -255,12 +261,12 @@ void func_80246D78(void){
     D_802759A4++;
     if(!(D_802759A4 & 1)){
         osStopTimer(&D_80280690);
-        osSetTimer(&D_80280690, 280000, 0, &D_8027FB60, 8);
+        osSetTimer(&D_80280690, 280000, 0, &D_8027FB60, CORE1_8C50_EVENT_AUDIO_TIMER);
     }
 
     if(D_802806D0){
         osStopTimer(&D_802806B0);
-        osSetTimer(&D_802806B0, ((osClockRate / 60)* 2) / 3, 0, &D_8027FB60, 13);
+        osSetTimer(&D_802806B0, ((osClockRate / 60)* 2) / 3, 0, &D_8027FB60, CORE1_8C50_EVENT_CONT_TIMER);
     }
 }
 #endif
@@ -315,13 +321,6 @@ void func_80247380(void){
     }
 }
 
-#define CORE1_8C50_EVENT_DP 4
-#define CORE1_8C50_EVENT_SP 6
-#define CORE1_8C50_EVENT_TIMER_D_80280690 8
-#define CORE1_8C50_EVENT_FAULT 10
-#define CORE1_8C50_EVENT_PRENMI 11
-#define CORE1_8C50_EVENT_TIMER_D_802806B0 13
-
 void func_802473B4(void *arg0){
     OSMesg msg = NULL;
     do{
@@ -329,13 +328,13 @@ void func_802473B4(void *arg0){
         func_80247380();
         if((s32)msg == 3){ func_80246B94(); }
         else if((u32)msg == 5)  { func_80246D78(); }
-        else if((u32)msg == CORE1_8C50_EVENT_DP)                { func_80246C2C(); }
-        else if((u32)msg == CORE1_8C50_EVENT_SP)                { func_80247000(); }
-        else if((u32)msg == CORE1_8C50_EVENT_TIMER_D_80280690)  { func_802471EC(); }
-        else if((u32)msg == CORE1_8C50_EVENT_FAULT)             { do{}while(1); }
-        else if((u32)msg == CORE1_8C50_EVENT_PRENMI)            { func_8024730C(); }
+        else if((u32)msg == CORE1_8C50_EVENT_DP)          { func_80246C2C(); }
+        else if((u32)msg == CORE1_8C50_EVENT_SP)          { func_80247000(); }
+        else if((u32)msg == CORE1_8C50_EVENT_AUDIO_TIMER) { func_802471EC(); }
+        else if((u32)msg == CORE1_8C50_EVENT_FAULT)       { do{}while(1); }
+        else if((u32)msg == CORE1_8C50_EVENT_PRENMI)      { func_8024730C(); }
         else if((u32)msg == 12) {  }
-        else if((u32)msg == CORE1_8C50_EVENT_TIMER_D_802806B0)  { func_8024F1B0(); }
+        else if((u32)msg == CORE1_8C50_EVENT_CONT_TIMER)  { func_8024F1B0(); }
         else if((u32)msg >= 100) {
             if(*(u32*)msg == 0){ func_80246A64(msg); }
             else if(*(u32*)msg == 1){ func_80246A84(msg); }

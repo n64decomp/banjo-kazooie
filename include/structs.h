@@ -62,6 +62,7 @@ typedef struct bk_sprite_s{
     s16 unk8;
     s16 unkA;
     u8 unkC[4];
+    s32 offsets[];
 } BKSprite;
 
 typedef struct{

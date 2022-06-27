@@ -42,6 +42,7 @@ typedef struct empty_heap_block{
 } EmptyHeapBlock;
 
 extern EmptyHeapBlock D_8002D500[LAST_HEAP_BLOCK + 1];
+extern EmptyHeapBlock D_8023DA00;
 extern struct{
     bool unk0;
 }D_802765B0;
@@ -65,6 +66,8 @@ extern struct {
     void *unk0[0x10];
     void **unk40;
 }D_80283238;
+
+
 
 EmptyHeapBlock *func_802549BC(s32 size);
 void _heap_sortEmptyBlock(EmptyHeapBlock * arg0);
@@ -294,7 +297,21 @@ int func_80254BC4(int arg0){
     return FALSE;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/memory/func_80254BD0.s")
+//returns n'th free block and size
+void *func_80254BD0(s32 *size, u32 arg1) {
+    EmptyHeapBlock *var_v1;
+
+    var_v1 = &D_8023DA00;
+    while(arg1 != 0){
+        var_v1 = var_v1->prev_free;
+        if (var_v1 == &D_8002D500[0]) {
+            return NULL;
+        }
+        arg1--;
+    }
+    *size = ((s32)(var_v1->hdr.next) - (s32)var_v1) - sizeof(HeapHeader);
+    return (s32)var_v1 + 0x10;
+}
 
 void func_80254C98(void){
     D_802765B0.unk0 = TRUE;
@@ -726,7 +743,16 @@ void *func_802558D8(void *arg0, void *arg1){
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/memory/func_80255920.s")
+bool func_80255920(void *arg0) {
+    HeapHeader *block;
+
+    if ((arg0 == NULL) || (arg0 == D_8027659C) || (D_802765A0 != NULL)) {
+        return FALSE;
+    }
+
+    block = &((HeapHeader*)arg0)[-1];
+    return (block->prev->unkC_7 != HEAP_BLOCK_EMPTY ) ? FALSE : TRUE;
+}
 
 HeapHeader * func_80255978(void *ptr){
     return ((HeapHeader* )((s32)ptr - sizeof(HeapHeader)))->prev;
@@ -737,8 +763,25 @@ void func_80255980(void *arg0, int arg1){
     D_802765A4 = D_802765AC;
 }
 
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/memory/func_802559A0.s")
+#else
+bool func_802559A0(){
+    s32 var_v0;
+    s32 var_v1;
 
+    var_v0 = FALSE;
+    if (D_80276598 == FALSE) {
+        var_v0 = NOT(D_80283220 < 0xF4240);
+        if (!var_v0) {
+            var_v1 =  (D_80276594 == TRUE) ? FALSE : TRUE;
+            var_v0 = var_v1 != 0;
+        }
+        return var_v0;
+    }
+    return var_v0;
+}
+#endif
 
 void func_80255A04(void){
     D_80276594 = 1;

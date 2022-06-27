@@ -43,7 +43,8 @@ extern struct2As D_802762D0[] = {
     {"battle",      0x803863F0, 0x80392930, 0x010A6FD0, 0x010B3320, 0x803863F0, 0x80391380, 0x80391380, 0x80392740, 0x80392740, 0x80392930},
 };
 extern s32 D_80276564 = 15;
-extern enum overlay_e D_80282800;
+
+enum overlay_e D_80282800;
 
 void func_802513A4(void);
 
@@ -117,11 +118,8 @@ bool load_overlay(enum overlay_e overlay_id){
     if(overlay_id == 0)
         return FALSE;
 
-    if(D_80282800); //value stored to non-temp reg, OR temp_reg off by 1
-
     if(overlay_id == D_80282800)
         return FALSE;
-
 
     D_80282800 = overlay_id;
     rom_info = &D_802762D0[D_80282800];

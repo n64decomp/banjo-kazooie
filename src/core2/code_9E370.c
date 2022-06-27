@@ -208,7 +208,7 @@ Actor *func_80325888(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
 Actor *func_80325934(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     Actor *this;
     f32 scale[3];
-    s32 sp3C;
+    BKSpriteDisplayData *sp3C;
 
     this = marker_getActor(marker);
     sp3C = func_80330F30(marker);
