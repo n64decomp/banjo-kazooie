@@ -227,7 +227,7 @@ void func_8035500C(void) {
     func_8033FEC8(sp47, sp2C);
     func_80287E9C(sp40);
     func_80287F7C(sp40, 3);
-    func_80287FB4(sp40, 0);
+    func_80287FB4(sp40, 0); //set frame
     func_80344E18(sp3F, 3);
     sp20[0] = 0.0f;
     sp20[1] = 0.0f;

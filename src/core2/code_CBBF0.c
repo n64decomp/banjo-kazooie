@@ -2,55 +2,54 @@
 #include "functions.h"
 #include "variables.h"
 
-typedef void (*funcPtr)(void);
 
 typedef struct{
-    void (*unk0)(void);
-    s32 unk4;
-    funcPtr unk8;
+    GenMethod_0 init_method;
+    GenMethod_0 update_method;
+    GenMethod_0 free_method;
     s32 unkC;
     s32 unk10;
-}Struct_Core2_CBBF0_0;
+}CommonParticleType;
 
-void func_80352BD4(s32 arg0, funcPtr arg1, s32 arg2, funcPtr arg3, s32 arg4, s32 arg5);
+void commonParticleType_set(enum common_particle_e arg0, GenMethod_0 init_method, s32 update_method, GenMethod_0 free_method, s32 arg4, s32 arg5);
 
 /* .bss */
-extern Struct_Core2_CBBF0_0 D_80386260[];
+extern CommonParticleType D_80386260[];
 
 
 /* .code */
-void func_80352B80(void){
+void commonParticleType_init(void){
     int i;
     for(i = 1; i < 0x12; i++){
-        func_80352BD4(i, 0, 0, 0, 0, 0);
+        commonParticleType_set(i, NULL, NULL, NULL, 0, 0);
     }
 }
 
-void func_80352BD4(s32 arg0, funcPtr arg1, s32 arg2, funcPtr arg3, s32 arg4, s32 arg5){
-    D_80386260[arg0].unk0 = arg1;
-    D_80386260[arg0].unk4 = arg2;
-    D_80386260[arg0].unk8 = arg3;
-    D_80386260[arg0].unkC = arg4;
-    D_80386260[arg0].unk10 = arg5;
+void commonParticleType_set(enum common_particle_e id, GenMethod_0 init_method, s32 update_method, GenMethod_0 free_method, s32 arg4, s32 arg5){
+    D_80386260[id].init_method = init_method;
+    D_80386260[id].update_method = update_method;
+    D_80386260[id].free_method = free_method;
+    D_80386260[id].unkC = arg4;
+    D_80386260[id].unk10 = arg5;
 }
 
-funcPtr func_80352C0C(s32 arg0)
+GenMethod_0 commonParticleType_getInitMethod(enum common_particle_e id)
 {
-    return D_80386260[arg0].unk0;
+    return D_80386260[id].init_method;
 }
 
-s32 func_80352C28(s32 arg0){
-    return D_80386260[arg0].unk4;
+GenMethod_0 commonParticleType_getUpdateMethod(enum common_particle_e id){
+    return D_80386260[id].update_method;
 }
 
-funcPtr func_80352C44(s32 arg0){
-    return D_80386260[arg0].unk8;
+GenMethod_0 commonParticleType_getFreeMethod(enum common_particle_e id){
+    return D_80386260[id].free_method;
 }
 
-s32 func_80352C60(s32 arg0){
-    return D_80386260[arg0].unkC;
+s32 commonParticleType_80352C60(enum common_particle_e id){
+    return D_80386260[id].unkC;
 }
 
-s32 func_80352C7C(s32 arg0){
-    return D_80386260[arg0].unk10;
+s32 commonParticleType_80352C7C(enum common_particle_e id){
+    return D_80386260[id].unk10;
 }

@@ -12,7 +12,7 @@ typedef struct {
     f32 unk10[3];
     f32 unk1C;
     s16 unk20[2];
-    u8 unk24[3];
+    u8 color[3];
     u8  unk27;
     u32 frame_28_31:8;
     u32 unk28_23:2;
@@ -53,7 +53,7 @@ void func_8033F7F0(u8 arg0, Gfx **gfx, Mtx **mtx, Vtx **vtx){
         mlMtxApply(*mtx);
         gSPMatrix((*gfx)++, OS_PHYSICAL_TO_K0((*mtx)++), G_MTX_PUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
         func_803382E4(sp54->unk28_21);
-        func_80338338(sp54->unk24[0], sp54->unk24[1],sp54->unk24[2]);
+        func_80338338(sp54->color[0], sp54->color[1],sp54->color[2]);
         func_803382FC(sp54->unk27);
         func_80338308(sp54->unk20[0], sp54->unk20[1]);
         func_8033837C(1);
@@ -93,9 +93,9 @@ u8 func_8033FA84(void){
             D_80385000[i].unk28_12 = TRUE;
             D_80385000[i].unk20[0] = 100;
             D_80385000[i].unk20[1] = 100;
-            D_80385000[i].unk24[0] = 0xff;
-            D_80385000[i].unk24[1] = 0xff;
-            D_80385000[i].unk24[2] = 0xff;
+            D_80385000[i].color[0] = 0xff;
+            D_80385000[i].color[1] = 0xff;
+            D_80385000[i].color[2] = 0xff;
             D_80385000[i].unk27 = 0xff;
             D_80385000[i].unk1C = 0.0f;
             return i;
@@ -123,10 +123,10 @@ void func_8033FC34(u8 arg0, s32 arg1){
     D_80385000[arg0].unk27 = arg1;
 }
 
-void func_8033FC60(u8 arg0, s32 arg1, s32 arg2, s32 arg3){
-    D_80385000[arg0].unk24[0] = arg1;
-    D_80385000[arg0].unk24[1] = arg2;
-    D_80385000[arg0].unk24[2] = arg3;
+void func_8033FC60(u8 arg0, s32 r, s32 g, s32 b){
+    D_80385000[arg0].color[0] = r;
+    D_80385000[arg0].color[1] = g;
+    D_80385000[arg0].color[2] = b;
 }
 
 void func_8033FC98(u8 arg0, s32 arg1){
@@ -185,8 +185,8 @@ f32 func_8033FF8C(u8 arg0){
     return D_80385000[arg0].unk1C;
 }
 
-void func_8033FFB8(u8 arg0, s32 arg1){
-    D_80385000[arg0].frame_28_31 = arg1;
+void func_8033FFB8(u8 arg0, s32 frame){
+    D_80385000[arg0].frame_28_31 = frame;
 }
 
 void func_8033FFE4(u8 arg0, s32 arg1, s32 arg2){

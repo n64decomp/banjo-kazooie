@@ -114,21 +114,21 @@ void func_8033DEA0(void){
         D_80384490[i].unk44 = 0;
     }
     D_80384FD8.unk0 =  D_80384FD8.unk4 = 0;
-    func_80352BD4(0x1,  &func_803535A0, &func_803537B8, &func_80353A90, 0, 1); //bsbEggAss
-    func_80352BD4(0x2,  &func_803546E8, &func_8035489C, &func_80354990, 0, 8); //bsbWhirl //aka wonderwing
-    func_80352BD4(0x4,  &func_80353A98, &func_80353CC8, &func_80353FB4, 0, 1);
-    func_80352BD4(0x6,  &func_8035611C, &func_803562E8, &func_80356364, 0, 8);
-    func_80352BD4(0x7,  &func_80352DE4, &func_80352F58, &func_80352FF4, 0, 8);
-    func_80352BD4(0x8,  &func_80354998, &func_80354C18, &func_80354DC8, 0, 8);
-    func_80352BD4(0x9,  &func_80354DD0, &func_80354EEC, &func_80355004, 0, 8); //orange_pad?
-    func_80352BD4(0xa,  &func_8035500C, &func_80355134, &func_80355294, 0, 8);
-    func_80352BD4(0xb,  &func_803540B4, &func_803541D8, &func_803540AC, 0, 8);
-    func_80352BD4(0xc,  &func_8035529C, &func_803553E8, &func_80355548, 0, 8);
-    func_80352BD4(0xd,  &func_80355550, &func_8035570C, &func_8035585C, 0, 8);
-    func_80352BD4(0xe,  &func_803543FC, &func_8035451C, &func_803543F4, 0, 8);
-    func_80352BD4(0xf,  &func_80355864, &func_80355B00, &func_80355C4C, 0, 8);
-    func_80352BD4(0x10, &func_80355D58, &func_80355E80, &func_80355D50, 0, 8);
-    func_80352BD4(0x11, &func_8035261C, &func_803526DC, &func_80352614, 0, 8); //mumbotoken sparkle
+    commonParticleType_set(COMMON_PARTICLE_1_EGG_HEAD,  &func_803535A0, &func_803537B8, &func_80353A90, 0, 1); //bsbEggAss
+    commonParticleType_set(0x2,  &func_803546E8, &func_8035489C, &func_80354990, 0, 8); //bsbWhirl //aka wonderwing
+    commonParticleType_set(COMMON_PARTICLE_4_EGG_ASS,  &func_80353A98, &func_80353CC8, &func_80353FB4, 0, 1);
+    commonParticleType_set(0x6,  &func_8035611C, &func_803562E8, &func_80356364, 0, 8);
+    commonParticleType_set(0x7,  &func_80352DE4, &func_80352F58, &func_80352FF4, 0, 8);
+    commonParticleType_set(0x8,  &func_80354998, &func_80354C18, &func_80354DC8, 0, 8);
+    commonParticleType_set(0x9,  &func_80354DD0, &func_80354EEC, &func_80355004, 0, 8); //orange_pad?
+    commonParticleType_set(0xa,  &func_8035500C, &func_80355134, &func_80355294, 0, 8);
+    commonParticleType_set(0xb,  &func_803540B4, &func_803541D8, &func_803540AC, 0, 8);
+    commonParticleType_set(0xc,  &func_8035529C, &func_803553E8, &func_80355548, 0, 8);
+    commonParticleType_set(0xd,  &func_80355550, &func_8035570C, &func_8035585C, 0, 8);
+    commonParticleType_set(0xe,  &func_803543FC, &func_8035451C, &func_803543F4, 0, 8);
+    commonParticleType_set(0xf,  &func_80355864, &func_80355B00, &func_80355C4C, 0, 8);
+    commonParticleType_set(0x10, &func_80355D58, &func_80355E80, &func_80355D50, 0, 8);
+    commonParticleType_set(0x11, &func_8035261C, &func_803526DC, &func_80352614, 0, 8); //mumbotoken sparkle
 }
 
 void func_8033E184(void){
@@ -140,6 +140,7 @@ void func_8033E184(void){
     }
 }
 
+//commonParticle_update
 void func_8033E1E0(void){
     f32 sp4C[3];
     int i;
@@ -164,6 +165,7 @@ void func_8033E1E0(void){
     }
 }
 
+//commonParticle_findFree
 s32 func_8033E368(void){
     int i;
     for(i = 0; i < 40; i++){
@@ -175,11 +177,12 @@ s32 func_8033E368(void){
     return -1;
 }
 
-int func_8033E3F0(s32 particle_id, int arg1){
+//commonParticle_new
+int func_8033E3F0(enum common_particle_e particle_id, int arg1){
     f32 sp34[3];
     s32 a0;
 
-    if(!arg1)
+    if(arg1 == 0)
         return -1;
     
     ml_vec3f_clear(sp34);
@@ -219,10 +222,10 @@ int func_8033E3F0(s32 particle_id, int arg1){
     }
     
     //L8033E5B4
-    D_80384490[D_80384FD0].marker_30 = func_8032FBE4(sp34, func_8033DE60, 1, func_80352C7C(particle_id));
+    D_80384490[D_80384FD0].marker_30 = func_8032FBE4(sp34, func_8033DE60, 1, commonParticleType_80352C7C(particle_id));
     D_80384490[D_80384FD0].marker_30->unk40_22 = 1;
     func_8032FFEC(D_80384490[D_80384FD0].marker_30, (u32)D_80384FD0);
-    D_80384490[D_80384FD0].marker_30->collidable = 0;
+    D_80384490[D_80384FD0].marker_30->collidable = FALSE;
     func_80352A38(D_80384490[D_80384FD0].unk46, particle_id);
     func_8033FFB8(D_80384490[D_80384FD0].unk45, func_80287FFC(D_80384490[D_80384FD0].unk34));
     func_8033FF10(D_80384490[D_80384FD0].unk45, sp34);

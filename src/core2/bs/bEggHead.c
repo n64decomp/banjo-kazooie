@@ -45,7 +45,7 @@ void bsegghead_update(void) {
             func_8030E760(SFX_57_KAZOOIE_HEGH, 1.0f, 0x7fff);
 
         if (animctrl_isAt(aCtrl, 0.4704f)){
-            func_8033E3F0(1, 1);
+            func_8033E3F0(COMMON_PARTICLE_1_EGG_HEAD, 1);
             item_dec(ITEM_D_EGGS);
             ability_use(7);
         }

@@ -2737,5 +2737,10 @@ enum ff_question_type_e{
     FFQT_4_MINIGAME
 };
 
+enum common_particle_e{
+    COMMON_PARTICLE_1_EGG_HEAD = 1,
+    COMMON_PARTICLE_4_EGG_ASS = 4
+};
+
 
 #endif

@@ -293,7 +293,7 @@ segments:
   - [0x93C10, c, code_93C10]
   - [0x94620, c, code_94620]
   - [0x99860, c, code_99860] #DONE
-  - [0x999A0, c, code_999A0]
+  - [0x999A0, c, code_999A0] #DONE
   - [0x99F80, c, jiggyscore] #DONE
   - [0x9A320, c, code_9A320] #DONE
   - [0x9A580, c, code_9A580] #DONE
@@ -365,6 +365,7 @@ segments:
   - [0xC9F00, c, code_C9F00]
   - [0xCB050, c, code_CB050]
   - [0xCB610, c, code_CB610]
+  - [0xCB8A0, c, code_CB8A0] #DONE
   - [0xCBBF0, c, code_CBBF0]
   - [0xCBD10, c, code_CBD10]
   - [0xCC1E0, c, code_CC1E0]

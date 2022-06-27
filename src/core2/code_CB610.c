@@ -2,55 +2,29 @@
 #include "functions.h"
 #include "variables.h"
 
-typedef struct {
-    u8 unk0;
-    u8 unk1;
-    u8 unk2;
-    u8 pad3[1];
-}Struct_Core2_CB610_0;
 
-extern Struct_Core2_CB610_0 D_803861C0[];
+extern u8 func_8033E8D0(void);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_CB610/func_803525A0.s")
+extern f32 D_803793F0;
+
+/* .code */
+void func_803525A0(f32 arg0[3]){
+    u8 sp1F;
+    u8 sp1E;
+    f32 *sp18;
+    if(func_8033E3F0(0x11, 1) >= 0){
+        sp1E = func_8033E8D0();
+        sp1F = func_8033E93C();
+        sp18 = func_8033E960();
+        func_8033FEC8(sp1E, arg0);
+        func_80344D94(sp1F, arg0);
+        sp18[1] = D_803793F0;
+    }
+
+}
 
 void func_80352614(void){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_CB610/func_8035261C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_CB610/func_803526DC.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_CB610/func_80352830.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_CB610/func_80352874.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_CB610/func_8035287C.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_CB610/func_803529DC.s")
-
-void func_80352A38(u8 arg0, s32 arg1){
-    void (*funcPtr)(void);
-    if(arg1){
-        D_803861C0[arg0].unk2 = arg1;
-        if(func_80352C44(D_803861C0[arg0].unk1)){
-            funcPtr = func_80352C44(D_803861C0[arg0].unk1);
-            funcPtr();
-        }
-
-        D_803861C0[arg0].unk0 = D_803861C0[arg0].unk1;
-        D_803861C0[arg0].unk1 = D_803861C0[arg0].unk2;
-        D_803861C0[arg0].unk2 = 0;
-        if(func_80352C0C(D_803861C0[arg0].unk1)){
-            funcPtr = func_80352C0C(D_803861C0[arg0].unk1);
-            funcPtr();
-        }
-
-    }
-}
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_CB610/func_80352ACC.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_CB610/func_80352AE8.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_CB610/func_80352B04.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_CB610/func_80352B20.s")

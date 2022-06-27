@@ -20,7 +20,7 @@
 extern f32 fabsf(f32);
 #pragma intrinsic (fabsf)
 
-
+typedef void (* GenMethod_0)(void);
 typedef void (* GenMethod_1)(s32);
 typedef void (* GenMethod_4)(s32, s32, s32, s32);
 #define NOT(boolean) ((boolean) ^ 1)

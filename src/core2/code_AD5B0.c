@@ -213,7 +213,7 @@ void func_80334B20(enum map_e arg0, s32 arg1, s32 arg2) {
     func_803305AC();
     func_8031F9E8();
     func_80323230();
-    func_80352B80();
+    commonParticleType_init();
     func_8028863C();
     func_80287C58();
     func_80344C50();
