@@ -20,7 +20,7 @@ void func_80354030(f32 arg0[3], f32 arg1){
     sp1E = func_8033E8D0();
     sp1F = func_8033E93C();
     sp18 = func_8033E960();
-    func_8033FEC8(sp1E, arg0);
+    projectile_setPosition(sp1E, arg0);
     func_80344D94(sp1F, arg0);
     sp18->unk4 = arg1;
     sp18->unk0 = 0.0f;
@@ -40,7 +40,7 @@ void func_803540B4(void){
     sp2C = func_8033E8F4();
     sp2B = func_8033E93C();
     sp34->unk20 = D_803863D0.unk4;
-    func_8033FBC8(sp33, D_803863D0.unk0 + 0x710);
+    projectile_setSprite(sp33, D_803863D0.unk0 + 0x710);
     func_8033FFE4(sp33, D_803863D0.unk4, D_803863D0.unk4);
     func_8033FCD8(sp33, 0xC);
     func_80287E9C(sp2C);

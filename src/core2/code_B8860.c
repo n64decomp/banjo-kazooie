@@ -112,7 +112,7 @@ void func_8033FB64(u8 arg0){
     D_80385000[arg0].unk28_13 = 0;
 }
 
-void func_8033FBC8(u8 arg0, enum asset_e arg1){
+void projectile_setSprite(u8 arg0, enum asset_e arg1){
     if(D_80385000[arg0].sprite_0){
         func_8033BD4C(D_80385000[arg0].sprite_0);
     }
@@ -169,11 +169,11 @@ f32 func_8033FE9C(u8 arg0){
     return D_80385000[arg0].unk10[2];
 }
 
-void func_8033FEC8(u8 arg0, f32 arg1[3]){
+void projectile_setPosition(u8 arg0, f32 arg1[3]){
     ml_vec3f_copy(D_80385000[arg0].unk4, arg1);
 }
 
-void func_8033FF10(u8 arg0, f32 arg1[3]){
+void projectile_getPosition(u8 arg0, f32 arg1[3]){
     ml_vec3f_copy(arg1, D_80385000[arg0].unk4);
 }
 

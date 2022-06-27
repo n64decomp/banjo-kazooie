@@ -413,18 +413,18 @@ void func_80256D0C(f32 val1, f32 val2, f32 x, f32 y, f32 z, f32 *dstX, f32 *dstY
     *dstZ = tmp * cosf(val2) - sinf(val2) * x;
 }
 
-void func_80256E24(f32 dst[3], f32 val1, f32 val2, f32 x, f32 y, f32 z)
+void func_80256E24(f32 dst[3], f32 theta, f32 phi, f32 x, f32 y, f32 z)
 {
     f32 tmp;
 
-    val1 *= RARE_DTOR; // M_DTOR
-    val2 *= RARE_DTOR;
+    theta *= RARE_DTOR; // M_DTOR
+    phi *= RARE_DTOR;
 
-    tmp     = y  * sinf(val1) + cosf(val1) * z;
+    tmp     = y  * sinf(theta) + cosf(theta) * z;
 
-    dst[0] = tmp * sinf(val2) + cosf(val2) * x;
-    dst[1] = y   * cosf(val1) - sinf(val1) * z;
-    dst[2] = tmp * cosf(val2) - sinf(val2) * x;
+    dst[0] = tmp * sinf(phi) + cosf(phi) * x;
+    dst[1] = y   * cosf(theta) - sinf(theta) * z;
+    dst[2] = tmp * cosf(phi) - sinf(phi) * x;
 }
 
 void func_80256F44(f32 vec1[3], f32 vec2[3], f32 vec3[3], f32 dst[3])

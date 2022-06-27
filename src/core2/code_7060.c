@@ -232,7 +232,7 @@ void func_8028E668(f32 arg0[3], f32 arg1, f32 arg2, f32 arg3) {
 
 void func_8028E6A4(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     if (D_8037BFB8) {
-        func_80292AE0(gfx, mtx, vtx);
+        eggShatter_draw(gfx, mtx, vtx);
         func_80291AF0(gfx, mtx, vtx);
     }
 }

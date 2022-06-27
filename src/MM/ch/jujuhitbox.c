@@ -6,7 +6,7 @@
 /* extern functions */
 void func_80388DFC(ActorMarker *, s32);
 s32  func_80329784(Actor *);
-void func_80353580(void *);
+void func_80353580(ActorMarker *);
 
 typedef struct juju_hitbox_s{
     u8      pad0[0x4];
@@ -49,7 +49,7 @@ int func_80388B30(Actor *this, float arg1){
     return 0;
 }
 
-void func_80388BEC(s16 *arg0, void *arg1){
+void func_80388BEC(s16 *arg0, ActorMarker *arg1){
     f32 sp34;
     Actor *sp30;
     Actor *temp_v0;

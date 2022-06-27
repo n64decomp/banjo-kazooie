@@ -368,7 +368,7 @@ segments:
   - [0xCB8A0, c, code_CB8A0] #DONE
   - [0xCBBF0, c, code_CBBF0]
   - [0xCBD10, c, code_CBD10] #DONE
-  - [0xCC1E0, c, code_CC1E0]
+  - [0xCC1E0, c, code_CC1E0] #DONE
   - [0xCD0A0, c, code_CD0A0] #DONE
   - [0xCD3F0, c, code_CD3F0] #DONE
   - [0xCD6E0, c, code_CD6E0]

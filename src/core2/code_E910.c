@@ -214,7 +214,7 @@ void func_80295914(void){
     func_80290070();
     func_80290664();
     func_80291764();
-    func_80292B3C();
+    eggShatter_init();
     func_80294790();
     func_80293DA4();
     func_80289D1C();
@@ -258,7 +258,7 @@ void func_80295B04(void){
     playerMarker_free();
     func_8029065C();
     func_8029175C();
-    func_80292B18();
+    eggShatter_free();
     func_80291E88();
     func_80289DDC();
     func_80293E88();
@@ -297,7 +297,7 @@ void func_80295C14(void){
     func_8029A554();
     func_80298344(); //climb_cooldown_update
     func_80290108();
-    func_80292C1C();
+    eggShatter_update();
     func_80292EDC();
     func_80291ECC();
     func_8029842C();
@@ -322,7 +322,7 @@ void func_80295D74(void){
     if(D_80363820){
         func_80289E74();
         func_8029259C();
-        func_80292C78();
+        eggShatter_defrag();
         func_80294750();
         func_8029AF1C();
     }

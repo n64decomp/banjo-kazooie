@@ -10,7 +10,7 @@ extern s32 func_80344CDC(void);
 extern void func_8032FFEC(s32, s32);
 extern void func_80352A38(s32, u32);
 extern void func_8033FFB8(s32 , s32);
-extern void func_8033FF10(s32 , f32[3]);
+extern void projectile_getPosition(s32 , f32[3]);
 extern void func_8032F64C(f32[3] , ActorMarker *);
 extern void func_8033FB64(s32);
 extern void func_80287D60(s32);
@@ -25,15 +25,15 @@ extern void (*func_803526DC)(void);
 extern void (*func_80355D58)(void);
 extern void (*func_80355E80)(void);
 extern void (*func_80355D50)(void);
-extern void (*func_803535A0)(void);
-extern void (*func_803537B8)(void);
-extern void (*func_80353A90)(void);
+extern void (*fxegg_head_spawn)(void);
+extern void (*fxegg_head_update)(void);
+extern void (*fxegg_head_destroy)(void);
 extern void (*func_803546E8)(void);
 extern void (*func_8035489C)(void);
 extern void (*func_80354990)(void);
-extern void (*func_80353A98)(void);
-extern void (*func_80353CC8)(void);
-extern void (*func_80353FB4)(void);
+extern void (*fxegg_ass_spawn)(void);
+extern void (*fxegg_ass_update)(void);
+extern void (*fxegg_ass_destroy)(void);
 extern void (*func_8035611C)(void);
 extern void (*func_803562E8)(void);
 extern void (*func_80356364)(void);
@@ -114,9 +114,9 @@ void func_8033DEA0(void){
         D_80384490[i].unk44 = 0;
     }
     D_80384FD8.unk0 =  D_80384FD8.unk4 = 0;
-    commonParticleType_set(COMMON_PARTICLE_1_EGG_HEAD,  &func_803535A0, &func_803537B8, &func_80353A90, 0, 1); //bsbEggAss
+    commonParticleType_set(COMMON_PARTICLE_1_EGG_HEAD,  &fxegg_head_spawn, &fxegg_head_update, &fxegg_head_destroy, 0, 1); //bsbEggAss
     commonParticleType_set(0x2,  &func_803546E8, &func_8035489C, &func_80354990, 0, 8); //bsbWhirl //aka wonderwing
-    commonParticleType_set(COMMON_PARTICLE_4_EGG_ASS,  &func_80353A98, &func_80353CC8, &func_80353FB4, 0, 1);
+    commonParticleType_set(COMMON_PARTICLE_4_EGG_ASS,  &fxegg_ass_spawn, &fxegg_ass_update, &fxegg_ass_destroy, 0, 1);
     commonParticleType_set(0x6,  &func_8035611C, &func_803562E8, &func_80356364, 0, 8);
     commonParticleType_set(0x7,  &func_80352DE4, &func_80352F58, &func_80352FF4, 0, 8);
     commonParticleType_set(0x8,  &func_80354998, &func_80354C18, &func_80354DC8, 0, 8);
@@ -150,9 +150,9 @@ void func_8033E1E0(void){
                 D_80384FD0 = i;
                 func_80352B20(D_80384490[D_80384FD0].unk46);
                 if(D_80384490[D_80384FD0].unk44){
-                    func_8033FF10(D_80384490[D_80384FD0].unk45, sp4C);
+                    projectile_getPosition(D_80384490[D_80384FD0].unk45, sp4C);
                     func_803451B0(D_80384490[D_80384FD0].unk47, sp4C);
-                    func_8033FEC8(D_80384490[D_80384FD0].unk45, sp4C);
+                    projectile_setPosition(D_80384490[D_80384FD0].unk45, sp4C);
                     func_80287DC8(D_80384490[D_80384FD0].unk34);
                     func_8033FFB8(D_80384490[D_80384FD0].unk45, func_80287FFC(D_80384490[D_80384FD0].unk34));
                     func_8032F64C(sp4C, D_80384490[D_80384FD0].marker_30);
@@ -228,7 +228,7 @@ int func_8033E3F0(enum common_particle_e particle_id, int arg1){
     D_80384490[D_80384FD0].marker_30->collidable = FALSE;
     func_80352A38(D_80384490[D_80384FD0].unk46, particle_id);
     func_8033FFB8(D_80384490[D_80384FD0].unk45, func_80287FFC(D_80384490[D_80384FD0].unk34));
-    func_8033FF10(D_80384490[D_80384FD0].unk45, sp34);
+    projectile_getPosition(D_80384490[D_80384FD0].unk45, sp34);
     func_8032F64C(sp34, D_80384490[D_80384FD0].marker_30);
     return D_80384FD0;
     

@@ -29,7 +29,7 @@ void func_80355C60(f32 arg0[3], f32 arg1){
     sp1C[0] = arg0[0] + randf2(-30.0f, 30.0f);
     sp1C[1] = arg0[1] + randf2(0.0f, 30.0f) + 25.0f;
     sp1C[2] = arg0[2] + randf2(-30.0f, 30.0f);
-    func_8033FEC8(sp2E, sp1C);
+    projectile_setPosition(sp2E, sp1C);
     func_80344D94(sp2F, sp1C);
     sp28->unk4 = arg1;
     sp28->unk0 = 0.0f;
@@ -49,7 +49,7 @@ void func_80355D58(void){
     sp34 = func_8033E8F4();
     temp_s0 = func_8033E93C();
     sp3C->unk20 = D_803726F0.unk4;
-    func_8033FBC8(sp3B, D_803726F0.unk0 + ASSET_710_SPRITE_SPARKLE_PURPLE);
+    projectile_setSprite(sp3B, D_803726F0.unk0 + ASSET_710_SPRITE_SPARKLE_PURPLE);
     func_8033FFE4(sp3B, D_803726F0.unk4, D_803726F0.unk4);
     func_8033FCD8(sp3B, 0xC);
     func_80287E9C(sp34);

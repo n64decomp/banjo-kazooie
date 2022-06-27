@@ -5,7 +5,7 @@
 #include "code_B6EA0.h"
 
 extern f32 func_8028EBA4(void);
-extern void func_8033FF10(u8 arg0, f32 arg1[3]);
+extern void projectile_getPosition(u8 arg0, f32 arg1[3]);
 extern void func_8033FC98(u8 arg0, s32 arg1);
 
 extern u8 D_803726D4[];
@@ -38,8 +38,8 @@ void func_803546E8(void) {
     temp_s0->unk0 += sp28[0];
     temp_s0->unk4 += sp28[1];
     temp_s0->unk8 += sp28[2];
-    func_8033FBC8(sp4F, ASSET_713_SPRITE_SPARKLE_YELLOW);
-    func_8033FEC8(sp4F, sp34);
+    projectile_setSprite(sp4F, ASSET_713_SPRITE_SPARKLE_YELLOW);
+    projectile_setPosition(sp4F, sp34);
     func_8033FCD8(sp4F, 0xC);
     func_80287E9C(sp48);
     func_80287F7C(sp48, 3);
@@ -78,7 +78,7 @@ void func_8035489C(void) {
         playerPosition[0] += temp_s0->unk0;
         playerPosition[1] += temp_s0->unk4;
         playerPosition[2] += temp_s0->unk8;
-        func_8033FEC8(temp_v0, playerPosition);
+        projectile_setPosition(temp_v0, playerPosition);
     }
 }
 
@@ -116,7 +116,7 @@ void func_80354C18(void) {
                 func_8033FC98(temp_s1, 1);
             }
         } else {
-            func_8033FF10(temp_s1, sp34);
+            projectile_getPosition(temp_s1, sp34);
         }
         func_80344E7C(sp4B, sp28);
         sp28[0] += temp_s0->unkC;
@@ -129,7 +129,7 @@ void func_80354C18(void) {
         sp34[0] += temp_s0->unk0;
         sp34[1] += temp_s0->unk4;
         sp34[2] += temp_s0->unk8;
-        func_8033FEC8(temp_s1, sp34);
+        projectile_setPosition(temp_s1, sp34);
     }
     func_8033FC34(temp_s1, 0xB4);
     func_8033FCD8(temp_s1, 0xC);
@@ -154,9 +154,9 @@ void func_80354DD0(void) {
     temp_s0->unk0 = randf2(-50.0f, 50.0f);
     temp_s0->unk4 = randf2(-65.0f, -65.0f);
     temp_s0->unk8 = randf2(-50.0f, 50.0f);
-    func_8033FBC8(temp_s1, ASSET_710_SPRITE_SPARKLE_PURPLE);
+    projectile_setSprite(temp_s1, ASSET_710_SPRITE_SPARKLE_PURPLE);
     func_8033FC60(temp_s1, 0xE1, 0xFF, 0);
-    func_8033FEC8(temp_s1, sp2C);
+    projectile_setPosition(temp_s1, sp2C);
     func_80287E9C(sp40);
     func_80287F7C(sp40, 3);
     func_80344E18(sp3F, 3);
@@ -197,7 +197,7 @@ void func_80354EEC(void) {
             sp28[0] += temp_s0->unk0;
             sp28[1] += temp_s0->unk4;
             sp28[2] += temp_s0->unk8;
-            func_8033FEC8(temp_s1, sp28);
+            projectile_setPosition(temp_s1, sp28);
         }
     }
     func_8033FC34(temp_s1, 0xBE);
@@ -222,9 +222,9 @@ void func_8035500C(void) {
     temp_s0->unk0 = randf2(-40.0f, 40.0f);
     temp_s0->unk4 = randf2(-40.0f, 40.0f);
     temp_s0->unk8 = randf2(-40.0f, 40.0f);
-    func_8033FBC8(sp47, 0x70F);
+    projectile_setSprite(sp47, 0x70F);
     func_8033FC60(sp47, 0xFF, 0xE6, 0xF5);
-    func_8033FEC8(sp47, sp2C);
+    projectile_setPosition(sp47, sp2C);
     func_80287E9C(sp40);
     func_80287F7C(sp40, 3);
     func_80287FB4(sp40, 0); //set frame
@@ -264,11 +264,11 @@ void func_80355134(void) {
             sp28[0] += temp_s0->unk0;
             sp28[1] += temp_s0->unk4;
             sp28[2] += temp_s0->unk8;
-            func_8033FEC8(temp_s1, sp28);
+            projectile_setPosition(temp_s1, sp28);
         } else {
-            func_8033FF10(temp_s1, sp28);
+            projectile_getPosition(temp_s1, sp28);
             sp28[1] -= time_getDelta() * 200.0f;
-            func_8033FEC8(temp_s1, sp28);
+            projectile_setPosition(temp_s1, sp28);
         }
     }
     func_8033FC34(temp_s1, 0xFF);
@@ -293,9 +293,9 @@ void func_8035529C(void) {
     sp40->unk0 = randf2(-40.0f, 40.0f);
     sp40->unk4 = 0.0f;
     sp40->unk8 = randf2(-40.0f, 40.0f);
-    func_8033FBC8(sp4F, 0x70F);
+    projectile_setSprite(sp4F, 0x70F);
     func_8033FC60(sp4F, randi2(0xD2, 0xFF), randi2(0xBE, 0xFF), randi2(0xC8, 0xFF));
-    func_8033FEC8(sp4F, sp34);
+    projectile_setPosition(sp4F, sp34);
     func_80287E9C(sp48);
     func_80287F7C(sp48, 3);
     func_80287FB4(sp48, 0);
@@ -335,11 +335,11 @@ void func_803553E8(void) {
             sp28[0] += temp_s0->unk0;
             sp28[1] += temp_s0->unk4;
             sp28[2] += temp_s0->unk8;
-            func_8033FEC8(temp_s1, sp28);
+            projectile_setPosition(temp_s1, sp28);
         } else {
-            func_8033FF10(temp_s1, sp28);
+            projectile_getPosition(temp_s1, sp28);
             sp28[1] -= time_getDelta() * 40.0f;
-            func_8033FEC8(temp_s1, sp28);
+            projectile_setPosition(temp_s1, sp28);
         }
     }
     func_8033FC34(temp_s1, 0xFF);
@@ -368,14 +368,14 @@ void func_80355550(void) {
     sp30->unk4 = randf2(-30.0f, 30.0f);
     sp30->unk8 = randf2(-30.0f, 30.0f);
     if ((f64) randf() < 0.25) {
-        func_8033FBC8(sp3F, ASSET_711_SPRITE_SPARKLE_DARK_BLUE);
+        projectile_setSprite(sp3F, ASSET_711_SPRITE_SPARKLE_DARK_BLUE);
     } else if ((f64) randf() < 0.5) {
-        func_8033FBC8(sp3F, ASSET_716_SPRITE_SPARKLE_WHITE);
+        projectile_setSprite(sp3F, ASSET_716_SPRITE_SPARKLE_WHITE);
     } else {
-        func_8033FBC8(sp3F, ASSET_710_SPRITE_SPARKLE_PURPLE);
+        projectile_setSprite(sp3F, ASSET_710_SPRITE_SPARKLE_PURPLE);
     }
     func_8033FC60(sp3F, 0xFF, 0xFF, 0xFF);
-    func_8033FEC8(sp3F, sp24);
+    projectile_setPosition(sp3F, sp24);
     func_80287E9C(sp38);
     func_80287F7C(sp38, 3);
     func_80287FB4(sp38, 0);
@@ -419,11 +419,11 @@ void func_8035570C(void) {
             sp28[0] += temp_s0->unk0;
             sp28[1] += temp_s0->unk4;
             sp28[2] += temp_s0->unk8;
-            func_8033FEC8(temp_s1, sp28);
+            projectile_setPosition(temp_s1, sp28);
         } else {
-            func_8033FF10(temp_s1, sp28);
+            projectile_getPosition(temp_s1, sp28);
             sp28[1] -= time_getDelta() * 200.0f;
-            func_8033FEC8(temp_s1, sp28);
+            projectile_setPosition(temp_s1, sp28);
         }
     }
     func_8033FC34(temp_s1, 0xFF);
@@ -470,7 +470,7 @@ void func_80355B00(void) {
         sp28[0] += sp44->unk0;
         sp28[1] += sp44->unk4;
         sp28[2] += sp44->unk8;
-        func_8033FEC8(sp43, sp28);
+        projectile_setPosition(sp43, sp28);
     }
 }
 

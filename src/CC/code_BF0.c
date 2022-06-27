@@ -12,14 +12,14 @@ void func_803870F8(Actor *this);
 
 /* .data */
 extern ActorInfo D_80389B00 = {
-    0x4C, ACTOR_44_CLANKER_TOKEN_TOOTH_EXTERIOR, ASSET_309_MODEL_CLANKER_TOKEN_TOOTH_EXTERIOR, 
+    MARKER_4C_CLANKER_TOKEN_TOOTH_EXT, ACTOR_44_CLANKER_TOKEN_TOOTH_EXTERIOR, ASSET_309_MODEL_CLANKER_TOKEN_TOOTH_EXTERIOR, 
     0, NULL,
     func_803870F8, func_80326224, func_80325888,
     0, 0, 0.0f, 0
 };
 
 extern ActorInfo D_80389B24 = {
-    0x4D, ACTOR_45_CLANKER_JIGGY_TOOTH_EXTERIOR, ASSET_30A_MODEL_CLANKER_JIGGY_TOOTH_EXTERIOR, 
+    MARKER_4D_CLANKER_JIGGY_TOOTH_EXT, ACTOR_45_CLANKER_JIGGY_TOOTH_EXTERIOR, ASSET_30A_MODEL_CLANKER_JIGGY_TOOTH_EXTERIOR, 
     0, NULL,
     func_803870F8, func_80326224, func_80325888,
     0, 0, 0.0f, 0
@@ -39,7 +39,7 @@ void func_80386FE0(Actor *this, s32 next_state){
     }
     else if(this->state == 3){
         if(prev_state == 2){
-            levelSpecificFlags_set((local->unk0 == 1) ? 0 : 1, 1);
+            levelSpecificFlags_set((local->unk0 == 1) ? 0 : 1, TRUE);
         }
         if(local->unk0 == 1){
             this->yaw = -30.0f;

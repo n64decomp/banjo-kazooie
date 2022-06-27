@@ -680,7 +680,7 @@ void func_8028BCA0(Prop *prop){
             case 0x60: //L8028CCF0
                 if(func_8028BC20(marker))
                     return;
-                if(func_802D8DF0(prop)){
+                if(collect_egg(prop)){
                     marker_despawn(marker);
                 }
                 break;
@@ -835,7 +835,7 @@ void func_8028BCA0(Prop *prop){
         case 0x6D7: //L8028D16C
             if(!func_8028BC60()){
                 prop->spriteProp.unk8_4 = 0;
-                func_802D8DF0(prop);
+                collect_egg(prop);
             }
             break;
         case 0x580: //L8028D194

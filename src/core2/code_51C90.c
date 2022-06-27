@@ -95,7 +95,7 @@ bool func_802D8D48(Actor* actor, u32 arg1, enum asset_e dialogId, enum comusic_e
 }
 
 //egg_collision
-s32 func_802D8DF0(ActorProp *arg0){
+s32 collect_egg(ActorProp *arg0){
     Actor *actPtr = NULL;
     if(arg0 != NULL){
         func_802F3808(&arg0->x);

@@ -30,7 +30,8 @@ void func_803868F0(Actor* this);
 
 /* .data */
 ActorInfo D_80390050 = {
-    0x182, 0x172, 0x402, 0x0, NULL,
+    MARKER_182_RBB_EGG_TOLL, ACTOR_172_RBB_EGG_TOLL, ASSET_402_MODEL_RBB_EGG_TOLL,
+    0x0, NULL,
     func_803868F0, NULL, func_80325340,
     0, 0, 0.0f, 0
 };
