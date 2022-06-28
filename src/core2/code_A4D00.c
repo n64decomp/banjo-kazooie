@@ -114,7 +114,7 @@ extern void func_80340200(s32, f32[3], f32[3], f32, s32, s32, BKVertexList *, s3
 extern f64 D_80378EB0;
 
 
-extern s32 D_80383410;
+extern f32 D_80383410[3];
 extern ActorMarker *D_8038341C;
 extern s32 D_80383420;
 
@@ -748,7 +748,7 @@ void func_8032F21C(Cube *cube, s32 position[3], ActorMarker *marker, bool arg3) 
 #endif
 
 void func_8032F3D4(s32 arg0[3], ActorMarker *marker, s32 arg2){
-    func_8032F21C((marker->unk40_23)? func_8030364C() : func_80303470(arg0), arg0, marker, arg2);
+    func_8032F21C((marker->unk40_23)? func_8030364C() : cube_atPosition_s32(arg0), arg0, marker, arg2);
 }
 
 void marker_free(ActorMarker *this){
@@ -761,7 +761,7 @@ void marker_free(ActorMarker *this){
 void func_8032F470(s32 *pos, ActorMarker *arg1){
     Cube *cubePtr;
 
-    cubePtr = (arg1->unk40_23)? func_8030364C(): func_80303470(pos);
+    cubePtr = (arg1->unk40_23)? func_8030364C(): cube_atPosition_s32(pos);
 
     if(cubePtr == arg1->cubePtr){
         arg1->propPtr->x = pos[0];
@@ -1198,7 +1198,7 @@ void func_80330FF4(void){
         scale[0] = phi_s0->pitch;
         scale[1] = phi_s0->yaw;
         scale[2] = phi_s0->roll;
-        func_80340200(D_8038341C->unk50, phi_s0->position, scale, 1.0f, NULL, D_80383420, func_80330DA4(phi_s0), &D_80383410);
+        func_80340200(D_8038341C->unk50, phi_s0->position, scale, 1.0f, NULL, D_80383420, func_80330DA4(phi_s0), D_80383410);
     }//L8033108C
 
     func_802C39D4();
@@ -1230,8 +1230,118 @@ bool func_80331158(ActorMarker *arg0, s32 arg1, s32 arg2) {
     return FALSE;
 }
 
-
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_803311D4.s")
+#else
+extern int func_802E805C(BKCollisionList *, BKVertexList *, f32[3], f32[3], f32, f32[3], f32[3], f32[3], u32);
+s32 func_803311D4(Cube *arg0, f32 *arg1, f32 *arg2, f32 *arg3, u32 arg4) {
+    f32 spAC[3];
+    f32 spA0[3];
+    f32 sp88[3];
+    f32 sp7C[3];
+    Actor *temp_s2_2;
+    Actor *temp_v0_6;
+    ActorMarker *temp_a0;
+    ActorMarker *temp_a0_2;
+    BKModelBin *temp_v0_2;
+    BKModelBin *temp_v0_3;
+    BKModelBin *var_a0;
+    BKModelBin *var_s0;
+    BKModelBin *var_v0_2;
+    BKVertexList *temp_a1;
+    Prop *var_s1;
+    Struct6Cs *temp_v0_8;
+    f32 var_f10;
+    f32 var_f4;
+    f32 var_f6;
+    s32 (*temp_v1_2)(struct actor_marker_s *, f32 [3], f32, f32 [3], s32);
+    s32 temp_s0;
+    s32 temp_s0_2;
+    BKCollisionList *temp_s2;
+    s32 temp_v0;
+    s32 temp_v0_4;
+    s32 temp_v0_5;
+    s32 temp_v0_7;
+    s32 temp_v1;
+    s32 var_s6;
+    s32 var_v0;
+    u32 temp_t3;
+    u32 temp_t6;
+    u32 temp_t9;
+    u32 var_s5;
+
+    var_s5 = arg0->prop2Cnt;
+    var_s6 = 0;
+    var_s1 = arg0->prop2Ptr;
+    for(var_s5 = arg0->prop2Cnt; var_s5 > 0; var_s5--) {
+        if (!var_s1->markerFlag && var_s1->unk8_1 && var_s1->unk8_4) { //propProp
+            var_s0 = func_8030A4B4(var_s1->propProp.unk0_31);
+            if ((var_s0 != NULL) || (func_8028F280() && ((var_s0 = func_8030A428(var_s1->propProp.unk0_31)) != NULL))) {
+                temp_s2 = func_8033A084(var_s0);
+                if (temp_s2 != 0) {
+                    spAC[0] = (f32) var_s1->propProp.unk4[0];
+                    spAC[1] = (f32) var_s1->propProp.unk4[1];
+                    spAC[2] = (f32) var_s1->propProp.unk4[2];
+                    spA0[0] = 0.0f;
+                    spA0[1] = (f32) (var_s1->propProp.unk0_15 * 2);
+                    spA0[2] = (f32) (var_s1->propProp.unk0_7 * 2);
+                    var_v0 = func_802E805C(temp_s2, func_8033A148(var_s0), spAC, spA0, var_s1->propProp.unkA / 100.0, arg1, arg2, arg3, arg4);
+                    if (var_v0 != 0) {
+                        var_s6 = var_v0;
+                    }
+                }
+            }
+        } else if (var_s1->markerFlag && var_s1->unk8_3 && var_s1->unk8_4 && !func_80331158(var_s1->actorProp.marker, arg1, arg2)) {
+            temp_a0 = var_s1->actorProp.marker;
+            if (temp_a0->collidable && (marker_getActor(temp_a0)->unk3C & 0x000010000)) {
+                var_a0 = func_80330B1C(var_s1->actorProp.marker);
+            } else {
+                var_a0 = func_80330DE4(var_s1->actorProp.marker);
+            }
+            if (var_a0 == NULL && func_8028F280(var_a0)) {
+                    var_a0 = func_80330B1C(var_s1->actorProp.marker);
+            }
+            temp_s0 = func_8033A084(var_a0);
+            if (temp_s0 != 0) {
+                temp_s2_2 = marker_getActor(var_s1->actorProp.marker);
+                temp_a1 = func_80330C74(temp_s2_2);
+                sp88[0] = (f32) var_s1->actorProp.x;
+                sp88[1] = (f32) var_s1->actorProp.y;
+                sp88[2] = (f32) var_s1->actorProp.z;
+                sp7C[0] = (f32) var_s1->actorProp.marker->pitch;
+                sp7C[1] = (f32) var_s1->actorProp.marker->yaw;
+                sp7C[2] = (f32) var_s1->actorProp.marker->roll;
+                temp_s0_2 = func_802E805C(temp_s0, temp_a1, &sp88, &sp7C, temp_s2_2->scale, arg1, arg2, arg3, arg4);
+                if ((temp_s0_2 != 0) && (func_8029453C() != 0)) {
+                    func_80330B1C(var_s1->actorProp.marker);
+                    if (var_s1->actorProp.marker->unk50 != 0) {
+                        D_80383410[0] = (f32) arg2[0];
+                        D_80383410[1] = (f32) arg2[1];
+                        D_80383410[2] = (f32) arg2[2];
+                        D_8038341C = var_s1->actorProp.marker;
+                        D_80383420 = temp_s0_2;
+                    }
+                }
+                if (temp_s0_2 != 0) {
+                    var_s6 = temp_s0_2;
+                }
+            }
+        } else if (var_s1->markerFlag) {
+            temp_a0_2 = var_s1->actorProp.marker;
+            if (temp_a0_2->unk18 != NULL) {
+                if (temp_a0_2->unk18->unk0 != NULL) {
+                    var_v0 = temp_a0_2->unk18->unk0(temp_a0_2, arg1, arg2, arg3, arg4);
+                    if (var_v0 != 0) {
+                        var_s6 = var_v0;
+                    }
+                }
+            }
+        }
+        var_s1++;
+    }
+    return var_s6;
+}
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_80331638.s")
 

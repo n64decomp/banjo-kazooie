@@ -147,7 +147,7 @@ void func_80334910(void) {
     func_802F7CE0();
     func_8031F9E0();
     func_80323100();
-    func_80304010();
+    cubeList_free();
     func_8031B710();
     func_80309FF0();
     func_8030A6B0();
@@ -228,7 +228,7 @@ void func_80334B20(enum map_e arg0, s32 arg1, s32 arg2) {
     func_8033393C();
     func_8030B2EC();
     func_803343D0();
-    func_803040EC();
+    cubeList_init();
     func_802FA69C();
     func_8033DEA0();
     if (arg2 == 0) {
@@ -383,7 +383,7 @@ void func_80335140(enum map_e map_id) {
         if (func_8034AF98(fp, 2)) {
             
         } else if (func_8034AF98(fp, 1)) {
-            func_803046A0(fp);
+            cubeList_fromFile(fp);
         } else if (func_8034AF98(fp, 3)) {
             func_802BA0AC(fp);
         } else if (func_8034AF98(fp, 4)) {

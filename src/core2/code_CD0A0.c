@@ -9,7 +9,7 @@ extern struct{
     s32 unk4;
 } D_803863D0;
 
-void func_80354030(f32 arg0[3], f32 arg1){
+void func_80354030(f32 position[3], f32 arg1){
     u8 sp1F;
     u8 sp1E;
     ParticleStruct0s *sp18;
@@ -20,8 +20,8 @@ void func_80354030(f32 arg0[3], f32 arg1){
     sp1E = func_8033E8D0();
     sp1F = func_8033E93C();
     sp18 = func_8033E960();
-    projectile_setPosition(sp1E, arg0);
-    func_80344D94(sp1F, arg0);
+    projectile_setPosition(sp1E, position);
+    func_80344D94(sp1F, position);
     sp18->unk4 = arg1;
     sp18->unk0 = 0.0f;
 }

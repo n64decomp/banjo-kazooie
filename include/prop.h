@@ -313,7 +313,7 @@ typedef union prop_s
         // s16 unk6;
         s16 pad8_15: 11;
         u16 unk8_4: 1;
-        s16 pad8_3: 1;
+        u16 unk8_3: 1;
         u16 unk8_2: 1;
         u16 unk8_1: 1;
         u16 markerFlag: 1;

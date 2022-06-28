@@ -261,7 +261,7 @@ void func_802E75D0(f32 arg0[3], f32 arg1[3], s32 arg2[3], s32 arg3[3], f32 arg4[
 #ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5FD90/func_802E76B0.s")
 #else
-BKCollisionTri * *func_802E76B0(BKCollisionList *arg0, BKVertexList *arg1, f32 arg2[3], f32 arg3[3], f32 arg4[3], s32 arg5) {
+BKCollisionTri * *func_802E76B0(BKCollisionList *arg0, BKVertexList *arg1, f32 arg2[3], f32 arg3[3], f32 arg4[3], u32 arg5) {
     BKCollisionGeo **sp18C;
     BKCollisionGeo **sp188;
     BKCollisionGeo **sp184;
@@ -321,10 +321,10 @@ BKCollisionTri * *func_802E76B0(BKCollisionList *arg0, BKVertexList *arg1, f32 a
     for(sp188 = sp18C; sp188 < sp184; sp188++){
         temp_v1 = *sp188;
         // sp180 = (temp_v1->unk0 * 0xC) + (s32)arg0 + (arg0->unk10 * 4) + sizeof(BKCollisionList);
-        sp180 = (BKCollisionTri *)((BKCollisionGeo *)(arg0 + 1) + arg0->unk10) + temp_v1->unk0;
-        sp178 = sp180 + temp_v1->unk2;
+        sp180 = (BKCollisionTri *)((BKCollisionGeo *)(arg0 + 1) + arg0->unk10) + temp_v1->start_tri_index;
+        sp178 = sp180 + temp_v1->tri_count;
         for(phi_s1 = sp180; phi_s1 < sp178; phi_s1++){
-            if(!(phi_s1->unk8 & arg5)){
+            if(!(phi_s1->flags & arg5)){
                 vtx_pool = (s32)arg1 + sizeof(BKVertexList);
                 sp164[0] = &vtx_pool[phi_s1->unk0[0]]; 
                 sp164[1] = &vtx_pool[phi_s1->unk0[1]]; 
@@ -370,7 +370,7 @@ BKCollisionTri * *func_802E76B0(BKCollisionList *arg0, BKVertexList *arg1, f32 a
                     temp_f12_2 = sp118[0]*spBC[0] + sp118[1]*spBC[1] + sp118[2]*spBC[2];
                     temp_f2_2 = sp10C[0]*spBC[0] + sp10C[1]*spBC[1] + sp10C[2]*spBC[2];
                     if ((!(temp_f12_2 >= 0.0f) || !(temp_f2_2 >= 0.0f)) && (!(temp_f12_2 <= 0.0f) || !(temp_f2_2 <= 0.0f))) {
-                        if ((phi_s1->unk8 & 0x10000) && (temp_f12_2 < 0.0f)) {
+                        if ((phi_s1->flags & 0x10000) && (temp_f12_2 < 0.0f)) {
                             spBC[0] = -spBC[0];
                             spBC[1] = -spBC[1];
                             spBC[2] = -spBC[2];
