@@ -390,7 +390,7 @@ segments:
   - [0xD6180, c, code_D6180]
   - [0xD6600, c, code_D6600] #DONE
   - [0xD7040, c, code_D7040] #DONE
-  - [0xD7D10, c, code_D7D10]
+  - [0xD7D10, c, code_D7D10] #DONE
   - [0xD89E0, c, code_D89E0]
   - [0xD9DA0, c, ch/whipcrack] #DONE
   - [0xDA3A0, c, code_DA3A0] #DONE
@@ -779,7 +779,8 @@ segments:
   - [0xF28D0, bin, data_F28D0]
   - [0xF28E0, .rodata, code_D6600]
   - [0xF2920, .rodata, code_D7040]
-  - [0xF2990, bin, data_F2990]
+  - [0xF2990, .rodata, code_D7D10]
+  - [0xF2A30, bin, data_F2A30]
   - [0xF2A60, .rodata, code_D89E0]
   - [0xF2AD0, .rodata, ch/whipcrack]
   - [0xF2AF0, .rodata, code_DA3A0]
