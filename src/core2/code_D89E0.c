@@ -26,6 +26,10 @@ extern ActorInfo D_803730D8 = {
 /* .rodata */
 extern f64 D_803799C0;
 extern f64 D_803799C8;
+extern f64 D_803799D0;
+extern f64 D_803799D8;
+extern f64 D_803799E0;
+extern f64 D_803799E8;
 
 /* .code */
 void func_8035F970(Actor *this){
@@ -83,7 +87,14 @@ int func_8035FB48(Actor * this, s32 dist){
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D89E0/func_8035FBA8.s")
+bool func_8035FBA8(Actor *arg0, s32 arg1) {
+    if( (arg0->position[1] < ( arg0->unk1C[1] + 0.5)) 
+        && (( arg0->unk1C[1] - 0.5) < arg0->position[1])
+    ) {
+        return  func_80329480(arg0) != 0;
+    }
+    return FALSE;
+}
 
 void func_8035FC20(Actor *this, f32 arg1, f32 arg2){
     if(this->position[1] < arg1){
@@ -132,7 +143,34 @@ bool func_8035FD28(Actor *this){
     return TRUE;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D89E0/func_8035FDA4.s")
+bool func_8035FDA4(Actor *this) {
+    f32 sp24[3];
+
+    player_getPosition(sp24);
+    sp24[1] += 50.0f;
+    if (this->unk38_0){
+        if(!func_80329260(this, sp24)){
+            return FALSE;
+        }
+    } else{
+        if(!func_80329210(this, sp24)){
+            return FALSE;
+        }
+    }
+
+    if (this->unk38_31 != 0) {
+        if (func_80329530(this, 0) && (sp24[1] <= (this->unk1C[1] - 40.0f))) {
+            return TRUE;
+        }
+        this->unk38_31--;
+        return FALSE;
+    }
+    if (func_80329530(this, 800) && (sp24[1] <= (this->unk1C[1] - 40.0f))) {
+        return TRUE;
+    }
+
+    return FALSE;
+}
 
 bool func_8035FEDC(Actor *this){
     if(func_8032CA80(this, this->unk38_0?0x13:4)){
@@ -165,7 +203,24 @@ void func_8035FFAC(Actor *this, f32 arg1){
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D89E0/func_80360044.s")
+void func_80360044(Actor *this) {
+    f32 var_f0;
+
+    var_f0 = this->yaw_moving - this->yaw;
+    if (var_f0 >= 180.0f) {
+        var_f0 -= 360.0f;
+    }
+    if (var_f0 < -180.0f) {
+        var_f0 += 360.0f;
+    }
+    this->velocity[2] = -var_f0;
+    if (( this->roll <  this->velocity[2]) && ( this->roll < 55.0f)) {
+        this->roll += 2.0f;
+    }
+    if ((this->velocity[2] < this->roll) && (this->roll > -55.0f)) {
+        this->roll -= 2.0f;
+    }
+}
 
 void func_80360130(Actor *this){
     if(0.0f < this->roll){
@@ -176,7 +231,46 @@ void func_80360130(Actor *this){
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D89E0/func_80360198.s")
+bool func_80360198(Actor *this) {
+    f32 var_f16;
+    f64 temp_f0;
+    f64 var_f0;
+    f64 var_f0_2;
+
+    func_80328FB0(this, 5.0f);
+    func_80360044(this);
+    this->unk28 += (this->velocity[1] * D_803799D0) - (D_803799D8 * this->unk28);
+    if (this->unk28 > 13.0) {
+        this->unk28 = 13.0f;
+    }
+    if (this->unk28 < -13.0) {
+        this->unk28 = -13.0f;
+    }
+
+    this->velocity[0] += ((this->velocity[1] * D_803799E0) - D_803799E8);
+    if (this->velocity[0] > 6.0) {
+        this->velocity[0] = 6.0f;
+    }
+    if (this->velocity[0] < -6.0) {
+        this->velocity[0] = -6.0f;
+    }
+
+    if (func_8035FC98(this, 2 * this->velocity[0]) == 0) {
+        this->position[1] += this->velocity[0];
+    } else {
+        this->velocity[0] *= -3.0f;
+        this->position[1] += this->velocity[0];
+    }
+
+    if (this->state == 4) {
+        if (func_8035FF5C(this) == 0) {
+            return FALSE;
+        }
+    } else if (func_8035FEDC(this) == 0) {
+        return FALSE;
+    }
+    return TRUE;
+}
 
 #ifndef NONMATCHING
 f32 func_803603AC(Actor *this, s32 arg1, u8 arg2);
@@ -184,9 +278,6 @@ f32 func_803603AC(Actor *this, s32 arg1, u8 arg2);
 #else
 f32 func_803603AC(Actor *this, s32 arg1, u8 arg2){
     f32 sp20[3];
-    f32 dx;
-    f32 dy;
-    f32 dz;
     f32 num;
     f32 den;
     f32 phi_f2;
@@ -203,21 +294,14 @@ f32 func_803603AC(Actor *this, s32 arg1, u8 arg2){
         break;
     }
     
-    dy =  (this->position[1] - sp20[1]);
-    num = dy - (f32)arg1;
-    dx =  (this->position[0] - sp20[0]);
-    dz =  (this->position[2] - sp20[2]);
-    den = dx*dx + dz*dz;
+    den = (this->position[0] - sp20[0])*(this->position[0] - sp20[0]) + (this->position[2] - sp20[2])*(this->position[2] - sp20[2]);
+    num = (this->position[1] - sp20[1]) - (f32)arg1;
     if(num == 0.0 || den == 0.0)
         return 0.0f;
     phi_f2 = -num/den;
-
-    if (phi_f2 >= 4.0f) {
-        phi_f2 = 4.0f;
-    } else if (phi_f2 <= -4.0f) {
-        phi_f2 = -4.0f;
-    }
-    return phi_f2;
+    return (phi_f2 >= 4.0f) ? 4.0f
+           : (phi_f2 <= -4.0f) ? -4.0f 
+           : phi_f2;
 }
 #endif
 
