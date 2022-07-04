@@ -81,58 +81,58 @@ void mapSavestate_defrag_all(void){
     }
 }
 
-//mapSavestate_save
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5BEB0/func_802E2F2C.s")
-// void func_802E2F2C(s32 map){
-//     u32 **tmp;
-//     u32 wSize;
-//     volatile u32 * sp38;
-//     s32 iBit;
-//     s32 bit_max;
-//     s32 reg_s4;
-//     u32* reg_v1;
-//     u32* valPtr;
+#ifndef NONMATCHING
+#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5BEB0/mapSavestate_save.s")
+#else
+void mapSavestate_save(enum map_e map){
+    u32 wSize;
+    volatile u32 * sp38;
+    s32 iBit;
+    s32 bit_max;
+    s32 reg_s4;
+    u32* reg_v1;
+    u32* valPtr;
 
       
-//     wSize = 4;
-//     tmp = &D_8037E650[map];
-//     if(*tmp)
-//         free(*tmp);
+    wSize = 4;
+    if(D_8037E650[map])
+        free(D_8037E650[map]);
       
-//     *tmp = (MapSavestate *) malloc(4*sizeof(u32));
-//     sp38 =  *tmp;
+    D_8037E650[map] = (MapSavestate *) malloc(4*sizeof(u32));
+    sp38 =   D_8037E650[map];
 
-//     *sp38 = mapSpecificFlags_getAll();
+    *sp38 = mapSpecificFlags_getAll();
     
-//     iBit = 0x20;
-//     func_80308230(1, sp38);
-//     func_803083B0(-1);
+    iBit = 0x20;
+    func_80308230(1, D_8037E650[map]);
+    func_803083B0(-1);
     
-//     for(reg_s4 = func_803083B0(-2);reg_s4 != -1; reg_s4 = func_803083B0(-2, valPtr)){
-//         if( !(iBit < wSize*sizeof(u32)*8)){
-//             wSize += 4;
-//             *tmp = (MapSavestate *)realloc(*tmp, wSize*sizeof(u32));
-//             reg_v1 = ((s32)D_8037E650[map] + wSize*sizeof(u32));
-//             reg_v1[-1] = 0;
-//             reg_v1[-2] = 0;
-//             reg_v1[-3] = 0;
-//             reg_v1[-4] = 0;
-//         }
-//         valPtr = *tmp;
-//         valPtr[(iBit >> 5)] = (reg_s4)
-//             ? valPtr[(iBit >> 5)] | (1 << (iBit & 0x1f))
-//             : valPtr[(iBit >> 5)] & ~(1 << (iBit & 0x1f));
+    for(reg_s4 = func_803083B0(-2); reg_s4 != -1; reg_s4 = func_803083B0(-2, valPtr)){
+        if( !(iBit < wSize*sizeof(u32)*8)){
+            wSize += 4;
+             D_8037E650[map] = (MapSavestate *)realloc( D_8037E650[map], wSize*sizeof(u32));
+            reg_v1 = ((s32)D_8037E650[map] + wSize*sizeof(u32));
+            reg_v1[-1] = 0;
+            reg_v1[-2] = 0;
+            reg_v1[-3] = 0;
+            reg_v1[-4] = 0;
+        }
+        valPtr =  D_8037E650[map];
+        valPtr[(iBit >> 5)] = (reg_s4)
+            ? valPtr[(iBit >> 5)] | (1 << (iBit & 0x1f))
+            : valPtr[(iBit >> 5)] & ~(1 << (iBit & 0x1f));
         
-//         iBit++;
+        iBit++;
         
-//     }
-//     //if(sp38);
-//     *tmp = actors_appendToSavestate(*tmp, *tmp + 4*((iBit + 0x7F) >> 7));   
-// }  
+    }
+    //if(sp38);
+     D_8037E650[map] = actors_appendToSavestate( D_8037E650[map],  (s32)D_8037E650[map] + 16*((iBit + 0x7F) >> 7));   
+}  
+#endif
 
 //mapSavestate_apply
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5BEB0/func_802E30AC.s")
-// void func_802E30AC(enum map_e map){
+#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5BEB0/mapSavestate_apply.s")
+// void mapSavestate_apply(enum map_e map){
 //     u32 **mssp = D_8037E650 + map;
 //     int s0;
 //     int val;
@@ -354,24 +354,24 @@ void func_802E3BF8(enum game_mode_e next_mode, s32 arg1){
 void func_802E3E7C(enum game_mode_e mode){
     s32 sp34;
     s32 sp30;
-    s32 sp2C;
+    s32 map;
     s32 sp28;
     s32 prev_mode;
 
     func_80254008();
     sp34 = D_8037E8E0.unk18;
     sp30 = D_8037E8E0.unk17;
-    sp2C = D_8037E8E0.unk15;
+    map = D_8037E8E0.unk15;
     sp28 = D_8037E8E0.unk16;
     prev_mode = D_8037E8E0.unk0;
     func_802E3BF8(2, 0);
     if(!func_80320454(0x21, 0) || map_getLevel(map_get()) == map_getLevel(D_8037E8E0.unk15)){
         if(!func_803203FC(0x1F))
-            func_802E2F2C(map_get()); //mapSavestate_save;
+            mapSavestate_save(map_get());
     }
     func_802E398C(1);
-    func_802E38E8(sp2C, sp28, sp34);
-    func_802E30AC(sp2C);
+    func_802E38E8(map, sp28, sp34);
+    mapSavestate_apply(map);
     D_8037E8E0.unk0 = prev_mode;
     func_802E3BF8(mode, sp30);
     func_80332CCC();

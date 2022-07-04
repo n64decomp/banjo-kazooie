@@ -85,19 +85,76 @@ int func_8035FB48(Actor * this, s32 dist){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D89E0/func_8035FBA8.s")
 
-void func_8035FC20(Actor *this, f32 , f32);
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D89E0/func_8035FC20.s")
+void func_8035FC20(Actor *this, f32 arg1, f32 arg2){
+    if(this->position[1] < arg1){
+        this->position[1] += arg2;
+        if(arg1 < this->position[1]){
+            this->position[1] = arg1;
+        }
+    }
+    else if(arg1 < this->position[1]){
+        this->position[1] -= arg2;
+        if(this->position[1] < arg1){
+            this->position[1] = arg1;
+        }
+    }
+}
 
-int func_8035FC98(Actor *this, f32 );
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D89E0/func_8035FC98.s")
+bool func_8035FC98(Actor *this, f32 arg1){
+    f32 sp34[3];
+    f32 sp28[3];
+    f32 sp1C[3];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D89E0/func_8035FD28.s")
+    if(this->unk38_0)
+        return FALSE;
+
+    sp28[0] = this->position[0];
+    sp28[1] = this->position[1];
+    sp28[2] = this->position[2];
+
+    sp1C[0] = sp28[0];
+    sp1C[1] = sp28[1];
+    sp1C[2] = sp28[2];
+    sp1C[1] += arg1;
+
+    if (func_80309B48(sp28, sp1C, sp34, 0x5E0000) != NULL)
+        return TRUE;
+    return FALSE;
+
+}
+
+bool func_8035FD28(Actor *this){
+    this->velocity[0] -= 2.5;
+    if(func_8035FC98(this, this->velocity[0]*2)){
+        return FALSE;
+    }
+    this->position[1] += this->velocity[0];
+    return TRUE;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D89E0/func_8035FDA4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D89E0/func_8035FEDC.s")
+bool func_8035FEDC(Actor *this){
+    if(func_8032CA80(this, this->unk38_0?0x13:4)){
+        if(this->unk38_0){
+            return FALSE;
+        }
+        
+        if(func_80329480(this)){
+            this->unk28 = 0.0f;
+            return FALSE;
+        }
+    }
+    return TRUE;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D89E0/func_8035FF5C.s")
+bool func_8035FF5C(Actor *this){
+    if(func_8032CA80(this, 5) && func_80329480(this)){
+        this->unk28 = 0.0f;
+        return FALSE;
+    }
+    return TRUE;
+}
 
 void func_8035FFAC(Actor *this, f32 arg1){
     if(arg1 < 0.0f && randf() < D_803799C0){

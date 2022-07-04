@@ -331,8 +331,7 @@ typedef struct {
     u8 unkA;
     u8 padB[1];
     u32 unkC_31:9;
-    u32 padC_22:22;
-    u32 unkC_0: 1;
+    u32 unkC_22:23;
     u32 unk10_31 : 12;
     u32 pad10_19 : 12;
     u32 unk10_7 : 1;
