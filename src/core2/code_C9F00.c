@@ -242,6 +242,7 @@ bool func_80351700(Struct_Core2_C9F00_2 * arg0);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C9F00/func_80351700.s")
 #else
 bool func_80351700(Struct_Core2_C9F00_2 * arg0){
+    // if ((arg0->unkA << 0x1E) < 0) {
     if (arg0->unkA_1) {
         return 1;
     }
@@ -253,8 +254,9 @@ bool func_80351700(Struct_Core2_C9F00_2 * arg0){
 bool func_80351724(Struct_Core2_C9F00_2 * arg0);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C9F00/func_80351724.s")
 #else
-bool func_80351724(Struct_Core2_C9F00_2 * arg0){    
-    if (arg0->unkA_1 && arg0->unkA_5) {
+bool func_80351724(Struct_Core2_C9F00_2 * arg0){
+    // if (arg0->unkA_1 && arg0->unkA_5) {
+    if (((arg0->unkA << 0x1E) < 0) && ((arg0->unkA << 0x1A) < 0)) {
         arg0->unkA_5 = FALSE;
         arg0->unkA_4 = TRUE;
     }
