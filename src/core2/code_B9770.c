@@ -3,10 +3,13 @@
 #include "variables.h"
 
 
-
+extern bool func_80323240(struct56s *, f32, f32[3]);
 extern struct56s **D_80371E70;
+extern void **D_80371E74;
 extern s32 D_80371E78;
 extern s32 D_80371E7C;
+
+extern void *D_803858A0;
 
 
 f32 func_80340700(f32, f32, f32);
@@ -156,8 +159,35 @@ void func_80343DEC(Actor *this){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B9770/func_80343E20.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B9770/func_80343F00.s")
+struct56s *func_80343F00(s32 indx, f32 arg1[3]){
+    struct56s *out;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B9770/func_80343F3C.s")
+    out = func_80342038(indx);
+    out->unk8[0][0] = arg1[0];
+    out->unk8[0][1] = arg1[1];
+    out->unk8[0][2] = arg1[2];
+    return out;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B9770/func_80344040.s")
+void func_80343F3C(void) {
+    s32 i;
+
+    if (D_80371E70 != 0) {
+        D_80371E70 = (struct56s *)defrag(D_80371E70);
+    }
+    if (D_80371E74 != 0) {
+        D_80371E74 = defrag(D_80371E74);
+    }
+    if (D_803858A0 != 0) {
+        D_803858A0 = defrag(D_803858A0);
+    }
+
+    for(i = 0; i < D_80371E78; i++){
+        D_80371E74[i] = defrag(D_80371E74[i]);
+        D_80371E70[i] = defrag(D_80371E70[i]);
+    }
+}
+
+bool func_80344040(Actor *this){
+    return func_80323240(D_80371E70[this->unk44_14], this->unk48, this->position);
+}

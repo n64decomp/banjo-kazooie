@@ -40,7 +40,6 @@ extern struct{
     Struct_core2_C97F0_0 *unk4;
     void *unk8;
 } D_80386170;
-extern Struct_core2_C97F0_0 * D_80386174;
 extern struct {
     u8 unk0;
     u8 unk1;
@@ -77,17 +76,18 @@ void func_80350818(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     f32 spD0[3];
     f32 spC4[3];
     f32 spB8[3];
+    Struct_core2_C97F0_0 *temp_s1;
+    Struct_core2_C97F0_1 *temp_s2;
+    f32 var_f22;
+    s32 i;
     f32 sp9C[3];
     f32 sp90[3];
     s32 sp80[4];
-    f32 var_f22;
-    Struct_core2_C97F0_0 *temp_s1;
-    Struct_core2_C97F0_1 *temp_s2;
-    s32 i;
 
+    if(D_80386170.unk8);
     temp_s1 = D_80386170.unk4;
     temp_s2 = D_80386170.unk0;
-    if ((temp_s1 != NULL) && D_8038617C.unk0) {
+    if (( temp_s1 != NULL) && D_8038617C.unk0) {
         func_8024C5CC(spDC);
         func_8024C764(spD0);
         sp9C[0] = temp_s1->unk4[0];
@@ -95,36 +95,34 @@ void func_80350818(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
         sp9C[2] = temp_s1->unk4[2];
         ml_vec3f_yaw_rotate_copy(sp9C, sp9C, -spD0[1]);
         ml_vec3f_pitch_rotate_copy(sp9C, sp9C, -spD0[0]);
-        if (!(((D_80379340 * (f32)D_80276588) / 2) < sp9C[0])) {
-            if (!(sp9C[0] < ((D_80379348 * (f32)D_80276588) / 2))) {
-                if (!(((D_80379340 * (f32)D_8027658C) / 2) < sp9C[1]) && !(sp9C[1] < ((D_80379348 * (f32)D_8027658C) / 2))) {
-                    sp90[0] = -sp9C[0];
-                    sp90[1] = -sp9C[1];
-                    sp90[2] =  sp9C[2];
-                    ml_vec3f_pitch_rotate_copy(&sp90, &sp90, spD0[0]);
-                    ml_vec3f_yaw_rotate_copy(&sp90, &sp90, spD0[1]);
-                    var_f22 = 1.0f - (((sp9C[0] * sp9C[0]) + (sp9C[1] * sp9C[1])) / ((f32)D_8027658C * (f32)D_8027658C));
-                    if (var_f22 < 0.0f) {
-                        var_f22 = 0.0f;
-                    }
-                    if (var_f22 > 1.0f) {
-                        var_f22 = 1.0f;
-                    }
-                    spC4[0] = sp90[0] - temp_s1->unk4[0];
-                    spC4[1] = sp90[1] - temp_s1->unk4[1];
-                    spC4[2] = sp90[2] - temp_s1->unk4[2];
-                    for(i = 0; temp_s2->unk4[i].unk0 != 0.0f; i++){
-                        spB8[0] = (spDC[0] + temp_s1->unk4[0]) + (temp_s2->unk4[i].unk0 * spC4[0]);
-                        spB8[1] = (spDC[1] + temp_s1->unk4[1]) + (temp_s2->unk4[i].unk0 * spC4[1]);
-                        spB8[2] = (spDC[2] + temp_s1->unk4[2]) + (temp_s2->unk4[i].unk0 * spC4[2]);
-                        sp80[0] = temp_s2->unk4[i].unk4[0];
-                        sp80[1] = temp_s2->unk4[i].unk4[1];
-                        sp80[2] = temp_s2->unk4[i].unk4[2];
-                        sp80[3] = temp_s2->unk4[i].unk4[3];
-                        sp80[3] *= var_f22;
-                        func_8033A334(sp80, D_803725A8);
-                        func_803391A4(gfx, mtx, spB8, spD0, 0.25 * temp_s2->unk4[i].unk14, NULL, D_80386170.unk8);
-                    }
+        if (!(((1.2 * (f32)D_80276588) / 2) < sp9C[0]) && !(sp9C[0] < ((-1.2 * (f32)D_80276588) / 2))) {
+            if (!(((1.2 * (f32)D_8027658C) / 2) < sp9C[1]) && !(sp9C[1] < ((-1.2 * (f32)D_8027658C) / 2))) {
+                sp90[0] = -sp9C[0];
+                sp90[1] = -sp9C[1];
+                sp90[2] =  sp9C[2];
+                ml_vec3f_pitch_rotate_copy(sp90, sp90, spD0[0]);
+                ml_vec3f_yaw_rotate_copy(sp90, sp90, spD0[1]);
+                var_f22 = 1.0f - (((sp9C[0] * sp9C[0]) + (sp9C[1] * sp9C[1])) / ((f32)D_8027658C * (f32)D_8027658C));
+                if (var_f22 < 0.0f) {
+                    var_f22 = 0.0f;
+                }
+                if (var_f22 > 1.0f) {
+                    var_f22 = 1.0f;
+                }
+                spC4[0] = sp90[0] - temp_s1->unk4[0];
+                spC4[1] = sp90[1] - temp_s1->unk4[1];
+                spC4[2] = sp90[2] - temp_s1->unk4[2];
+                for(i = 0; temp_s2->unk4[i].unk0 != 0.0f; i++){
+                    spB8[0] = (spDC[0] + temp_s1->unk4[0]) + (temp_s2->unk4[i].unk0 * spC4[0]);
+                    spB8[1] = (spDC[1] + temp_s1->unk4[1]) + (temp_s2->unk4[i].unk0 * spC4[1]);
+                    spB8[2] = (spDC[2] + temp_s1->unk4[2]) + (temp_s2->unk4[i].unk0 * spC4[2]);
+                    sp80[0] = temp_s2->unk4[i].unk4[0];
+                    sp80[1] = temp_s2->unk4[i].unk4[1];
+                    sp80[2] = temp_s2->unk4[i].unk4[2];
+                    sp80[3] = temp_s2->unk4[i].unk4[3];
+                    sp80[3] *= var_f22;
+                    func_8033A334(sp80, D_803725A8);
+                    func_803391A4(gfx, mtx, spB8, spD0, temp_s2->unk4[i].unk14*0.25, NULL, D_80386170.unk8);
                 }
             }
         }
@@ -162,7 +160,7 @@ void func_80350CA4(void) {
     f32 sp24[3];
     s32 var_v0;
 
-    if (D_80386174 != NULL) {
+    if (D_80386170.unk4 != NULL) {
         func_8024C5CC(sp54);
         sp48[0] = D_80386170.unk4->unk4[0];
         sp48[1] = D_80386170.unk4->unk4[1];
