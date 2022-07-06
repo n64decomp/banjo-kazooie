@@ -43,7 +43,7 @@ void func_8038FF54(Actor *this){
             }
             else{
                 animctrl_setIndex(this->animctrl, animctrl_getIndex(other->animctrl));
-                func_8028774C(this->animctrl, func_802877D8(other->animctrl));
+                func_8028774C(this->animctrl, animctrl_getAnimTimer(other->animctrl));
                 animctrl_setDuration(this->animctrl, animctrl_getDuration(other->animctrl));
                 animctrl_setSmoothTransition(this->animctrl, FALSE);
                 func_802875AC(this->animctrl, "chwozzasjig.c", 0x87);
@@ -56,7 +56,7 @@ void func_8038FF54(Actor *this){
     }//L8039008C
 
     if(this->state == 9){
-       if(0.99999 <= func_802877D8(this->animctrl)){
+       if(0.99999 <= animctrl_getAnimTimer(this->animctrl)){
             func_8034A174(this->marker->unk44, 5, sp40);
             sp40[0] = (f32)(s32)sp40[0];
             sp40[1] = (f32)(s32)sp40[1];

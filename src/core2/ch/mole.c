@@ -372,8 +372,8 @@ void func_802D9D60(Actor *this){
             this->marker->propPtr->unk8_3 = TRUE;
             this->yaw_moving = func_80329784(this);
             func_80328FB0(this, 4.0f);
-            if( 0.0 < func_802877D8(this->animctrl)
-                && func_802877D8(this->animctrl) < 0.16
+            if( 0.0 < animctrl_getAnimTimer(this->animctrl)
+                && animctrl_getAnimTimer(this->animctrl) < 0.16
             ){
                 func_8030E2C4(this->unk44_31);
             }//L802DA128
@@ -425,8 +425,8 @@ void func_802D9D60(Actor *this){
             }
             break;
         case 4://L802DA400
-            if( 0.35 < func_802877D8(this->animctrl) 
-                &&  func_802877D8(this->animctrl) < 0.9
+            if( 0.35 < animctrl_getAnimTimer(this->animctrl) 
+                &&  animctrl_getAnimTimer(this->animctrl) < 0.9
             ){
                 func_8030E2C4(this->unk44_31);
             }

@@ -67,7 +67,7 @@ void bstwirl_update(void){
     if(button_pressed(BUTTON_A))
         sp1C = func_8029C780();
 
-    if(0.6 < func_802877D8(aCtrl) && !func_8028B2E8())
+    if(0.6 < animctrl_getAnimTimer(aCtrl) && !func_8028B2E8())
         sp1C = BS_2F_FALL;
 
     if(player_inWater())

@@ -250,7 +250,7 @@ void bsstand_update(void) {
             func_802900FC();
         } else if (sp18 & 8) {
             if (animctrl_getIndex(anim_ctrl) == 0x6F) {
-                sp1C = func_802877D8(anim_ctrl);
+                sp1C = animctrl_getAnimTimer(anim_ctrl);
             } else {
                 sp1C = 0.0f;
                 func_802900B4();

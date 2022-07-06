@@ -356,15 +356,15 @@ void bsblongleg_jump_update(void){
             }
             break;
         case 1://L802A5FA8
-            if((0.4 < func_802877D8(aCtrl)) && sp30  < 70.0f){
-                D_8037D350 = func_802877D8(aCtrl);
+            if((0.4 < animctrl_getAnimTimer(aCtrl)) && sp30  < 70.0f){
+                D_8037D350 = animctrl_getAnimTimer(aCtrl);
                 D_8037D354 = sp30;
                 animctrl_setPlaybackType(aCtrl,  ANIMCTRL_STOPPED);
                 D_8037D360 = 2;
             }
             break;
         case 2://L802A6020
-            func_8028764C(aCtrl, ml_map_f(sp30, D_8037D354, 1.0f, D_8037D350, 0.6703f));
+            animctrl_setAnimTimer(aCtrl, ml_map_f(sp30, D_8037D354, 1.0f, D_8037D350, 0.6703f));
             func_80299594(1, 0.5f);
             if(func_8028B2E8()){
                 func_8029C5E8();

@@ -247,7 +247,9 @@ segments:
   subsegments:
   - [0x37BF0, bin, data_37BF0] #data Section
   - [0x37C50, .data, code_660]
-  - [0x37D50, bin, data_37D50] #data Section
+  - [0x37D50, .data, code_1D00]
+  - [0x37E30, bin, data_37E30] #data Section
+  - [0x37E40, .data, code_2FA0]
   - [0x37E50, .data, code_31C0]
   - [0x37E60, bin, data_37E60]
   - [0x381F0, bin, data_381F0] # .data, done/code_CE60]

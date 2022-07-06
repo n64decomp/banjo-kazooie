@@ -188,12 +188,12 @@ void func_802FD360(struct8s *arg0, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     func_8024C904(gfx, mtx);
 }
 
-struct8s *func_802FD7B0(s32 arg0) {
+struct8s *func_802FD7B0(enum item_e item_id) {
     s32 i;
     struct8s *v1;
 
     for(v1 =  D_80369960; v1->unk20 != -1; v1++){
-        if(arg0 == v1->unk20){
+        if(item_id == v1->unk20){
              v1->unk14 =  v1->unk4C;
              return v1;
         } 

@@ -199,7 +199,7 @@ void func_8038C428(Actor *this, f32 arg1[3], f32 arg2) {
         sp74 = (f32) ((f64) (((arg1[1] + 40.0f) - this->position[1]) / 28.0f) - (-3.2 * (f64) 28.0f * 0.5));
         sp78 = 0x1C;
     }
-    func_8028764C(this->animctrl, 0.0f);
+    animctrl_setAnimTimer(this->animctrl, 0.0f);
     this->unk1C[0] = D_80392D90 / sp78;
     this->velocity[1] = sp74;
     this->velocity[0] = phi_f22 / sp78;
@@ -219,8 +219,8 @@ bool func_8038C718(Actor *this, f32 arg1){
     this->position[0] += this->velocity[0];
     this->position_y += (this->velocity_y += D_80392DB8);
     this->position_z += this->velocity_z;
-    tmp = D_80392DC0 < func_802877D8(this->animctrl) + this->unk1C[0] ? D_80392DC8 : func_802877D8(this->animctrl) + this->unk1C[0];
-    func_8028764C(this->animctrl, tmp);
+    tmp = D_80392DC0 < animctrl_getAnimTimer(this->animctrl) + this->unk1C[0] ? D_80392DC8 : animctrl_getAnimTimer(this->animctrl) + this->unk1C[0];
+    animctrl_setAnimTimer(this->animctrl, tmp);
 
     if(arg1 == 0.0f)
         arg1 = func_80309724(this->position);
@@ -291,7 +291,7 @@ void func_8038C9A0(Actor *this){
             this->velocity_y = 0.0f;
             this->velocity_z = 0.0f;
             this->unk1C[0] = 0.0f;
-            func_8028764C(this->animctrl, 0.0f);
+            animctrl_setAnimTimer(this->animctrl, 0.0f);
             func_8038C428(this, &D_8039207C, 0);
             return;
         }
@@ -324,7 +324,7 @@ void func_8038C9A0(Actor *this){
                 func_8034DFB0(sp30, D_803920B0, D_803920A0, 0.14f);
             }
 
-            if(0.8 < func_802877D8(this->animctrl) || func_802877D8(this->animctrl) < 0.2){
+            if(0.8 < animctrl_getAnimTimer(this->animctrl) || animctrl_getAnimTimer(this->animctrl) < 0.2){
                 this->unk38_31 = TRUE;
             }
             else{

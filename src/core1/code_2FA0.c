@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-extern s32 D_80275860;
+s32 D_80275860 = 0;
 
 void func_802409C0(f32 arg0[3], f32 arg1){
     f32 sp3C[3];

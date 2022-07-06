@@ -104,7 +104,7 @@ bool func_80386760(Actor *this, s32 arg1) {
     animctrl_setDuration(this->animctrl, 1.0f);
     sp2C = (s32) ((f64) (60.0f / (f32) func_8033DD90()) * 0.5);
     if ((this->unk1C[0] != 0.0f) || !func_803864B0(this, sp2C)) {
-        if (((f64) func_802877D8(this->animctrl) < 0.1) && ((f64) randf() < 0.5)) {
+        if (((f64) animctrl_getAnimTimer(this->animctrl) < 0.1) && ((f64) randf() < 0.5)) {
             if (this->unk1C[0] != 0.0f) {
                 arg1 *= 2;
                 this->unk28 = (f32) randi2(0, 0.5*(func_803203FC(0xC1) ? 0 : 0x11));
@@ -291,7 +291,7 @@ void func_80386FDC(Actor *this){
 
             if(this->position_y <= sp48){
                 this->position_y = sp48;
-                if(actor_animationIsAt(this, 0.99f) || 0.98 < func_802877D8(this->animctrl)){
+                if(actor_animationIsAt(this, 0.99f) || 0.98 < animctrl_getAnimTimer(this->animctrl)){
                     func_80386454(this);
                 }
             }

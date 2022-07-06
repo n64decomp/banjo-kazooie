@@ -251,13 +251,13 @@ void func_802C6240(Actor *this){
             break;
 
         case 0x4: //L802C6A14
-            if(func_802877D8(this->animctrl) < 0.99){
+            if(animctrl_getAnimTimer(this->animctrl) < 0.99){
                 this->yaw_moving = (f32)func_80329784(this);
                 func_80328FB0(this, 1.0f);
             }
             func_80329030(this, 0);
             func_8030E2C4(this->unk44_31);
-            if(0.99 <= func_802877D8(this->animctrl)){
+            if(0.99 <= animctrl_getAnimTimer(this->animctrl)){
                 func_80329878(this, func_80329530(this, 250)? 0.8: 1.2);
                 if(0.0f == this->unk28){
                     animctrl_setPlaybackType(this->animctrl, ANIMCTRL_LOOP);
@@ -271,7 +271,7 @@ void func_802C6240(Actor *this){
 
         case 0x5: //L802C6B28
             actor_playAnimationOnce(this);
-            tmp_f0 = func_802877D8(this->animctrl);
+            tmp_f0 = animctrl_getAnimTimer(this->animctrl);
             animctrl_setDuration(this->animctrl, D_80366010[5].duration + ((0.65 < tmp_f0)? (tmp_f0 - 0.65)*16.0 : 0.0));
             if(actor_animationIsAt(this, 0.95f)){
                 actor_loopAnimation(this);

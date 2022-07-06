@@ -290,7 +290,7 @@ void func_8038AE2C(Actor *this) {
             break;
 
         case 2: //L8038B324
-            temp_f0 = func_802877D8(this->animctrl);
+            temp_f0 = animctrl_getAnimTimer(this->animctrl);
             for(sp3C = 0; D_803936E4[sp3C] < temp_f0; sp3C++)
                 ;
             

@@ -883,7 +883,7 @@ void func_80388184(Actor *this, s32 next_state) {
 
     local = (ActorLocal_fight_180 *)&this->local;
     sp40 = func_8023DB5C();
-    sp3C = func_802877D8(this->animctrl);
+    sp3C = animctrl_getAnimTimer(this->animctrl);
     local->unk0 = 1;
     func_80328B8C(this, next_state, 0.0001f, 1);
     actor_loopAnimation(this);
@@ -921,7 +921,7 @@ void func_80388184(Actor *this, s32 next_state) {
         local->unk18 = 400.0f;
         local->unk28 = (-this->unk28 * this->unk28) / (2.0 * local->unk14);
         func_80386600(this->marker, 1);
-        func_8028764C(this->animctrl, sp3C);
+        animctrl_setAnimTimer(this->animctrl, sp3C);
         break;
     case 8:
         temp_f12 = 1150.0f;
@@ -930,7 +930,7 @@ void func_80388184(Actor *this, s32 next_state) {
         break;
     case 9:
         actor_playAnimationOnce(this);
-        func_8028764C(this->animctrl, sp3C);
+        animctrl_setAnimTimer(this->animctrl, sp3C);
         break;
     case 10:
         func_8030E878(SFX_EA_GRUNTY_LAUGH_1, randf2(0.95f, 1.05f), 32000, this->position, 5000.0f, 12000.0f);
@@ -1408,7 +1408,7 @@ void func_80389B70(ActorMarker *marker) {
     local = (ActorLocal_fight_180 *)&this->local;
     sp3C = time_getDelta();
     sp38 = local->unk1;
-    sp34 = func_802877D8(this->animctrl);
+    sp34 = animctrl_getAnimTimer(this->animctrl);
     switch (this->state) {
     case 21:
         func_803869BC(this);
@@ -1508,12 +1508,12 @@ void func_80389F7C(Actor *this, s32 arg1) {
     // static u8 pad[0x180];
 
     local = (ActorLocal_fight_180 *)&this->local;
-    sp48 = func_802877D8(this->animctrl);
+    sp48 = animctrl_getAnimTimer(this->animctrl);
     local->unk0 = 4;
     func_80328B8C(this, arg1, 0.0001f, 1);
     switch (arg1) {
     case 28:
-        func_8028764C(this->animctrl, sp48);
+        animctrl_setAnimTimer(this->animctrl, sp48);
         this->unk1C[0] = D_803927D0[0x10][0];
         this->unk1C[1] = D_803927D0[0x10][1];
         this->unk1C[2] = D_803927D0[0x10][2];
@@ -1739,7 +1739,7 @@ void func_8038A5F4(ActorMarker *marker) {
             break;
 
         case 34:
-            sp58 = func_802877D8(this->animctrl);
+            sp58 = animctrl_getAnimTimer(this->animctrl);
             if (actor_animationIsAt(this, 0.17f) != 0) {
                 func_8030E6A4(SFX_1F_HITTING_AN_ENEMY_3, randf2(0.95f, 1.05f), 0x7D00);
                 func_8030E6A4(SFX_133_GRUNTY_OHW, randf2(0.95f, 1.05f), 0x7D00);
@@ -1880,7 +1880,7 @@ void func_8038AFD8(ActorMarker *marker) {
     local = (ActorLocal_fight_180 *)&this->local;
     sp3C = time_getDelta();
     sp38 = 0x14;
-    sp34 = func_802877D8(this->animctrl);
+    sp34 = animctrl_getAnimTimer(this->animctrl);
     other_marker = func_8038A4E8(this, func_8033229C(this->marker) / 3.0f);
     if ((other_marker != NULL) && (other_marker->unk14_20 == 0x285)) {
         if (func_8039125C(other_marker)) {

@@ -67,7 +67,7 @@ void func_802EA1A8(struct58s **arg0, BKAnimationList *anim_list, s32 arg2){
     f32 sp5C[3];
     s32 sp50[3];
 
-    //resive animation matrices
+    //resize animation matrices
     this = *arg0;
     if(this->capacity_44 < anim_list->cnt_4){
         this = (struct58s *)realloc(this, anim_list->cnt_4 * sizeof(Mtx) + sizeof(struct58s));

@@ -202,7 +202,7 @@ void func_802A7838(void) {
     }
     if (!button_held(BUTTON_B)) {
         if (button_held(BUTTON_A)) {
-            temp_f2 = (f64) func_802877D8(anim_ctrl);
+            temp_f2 = (f64) animctrl_getAnimTimer(anim_ctrl);
             if (temp_f2 <= 0.4625 && 0.1 < temp_f2) {
                 next_state = BS_39_DIVE_A;
             }

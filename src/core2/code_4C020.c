@@ -357,7 +357,7 @@ void func_802D4388(Actor *this){
             break;
 
         case 0x13: //L802D44B0
-            if(D_80376998 <= func_802877D8(this->animctrl)){
+            if(D_80376998 <= animctrl_getAnimTimer(this->animctrl)){
                 func_80328B8C(this, 0x14, 0.66f, 0);
             }
             break;
@@ -370,7 +370,7 @@ void func_802D4388(Actor *this){
             break;
 
         case 0x15: //L802D4534
-             if(func_802877D8(this->animctrl) < D_803769A0){
+             if(animctrl_getAnimTimer(this->animctrl) < D_803769A0){
                 func_80328B8C(this, 0x12, 0.0f, 1);
             }
             break;

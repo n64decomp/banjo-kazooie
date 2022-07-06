@@ -71,7 +71,7 @@ void func_803893A4(Actor *this){
 
     switch(this->state){
         case 1:
-            func_8028764C(this->animctrl, 0.0f);
+            animctrl_setAnimTimer(this->animctrl, 0.0f);
             break;
         case 2:
             if(actor_animationIsAt(this, 0.999f)){

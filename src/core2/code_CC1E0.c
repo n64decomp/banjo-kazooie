@@ -2,6 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "code_B6EA0.h"
+
 extern void func_80244D94(f32[3], f32[3], f32[3], u32, f32);
 
 extern void func_80256E24(f32[3], f32, f32, f32, f32, f32);
@@ -67,7 +69,7 @@ s32 func_803531C8(u8 projectile_indx, s32 arg1){
                 case MARKER_FC_CROCTUS: //L803532C4
                     other_actor = marker_getActor(other_marker);
                     if(other_actor->unk38_31 == 0){
-                        temp_f2 = func_802877D8(other_actor->animctrl);
+                        temp_f2 = animctrl_getAnimTimer(other_actor->animctrl);
                         if(0.25 <= temp_f2 && temp_f2 <= 0.75){
                             other_actor->unk38_31 = 1;
                         }

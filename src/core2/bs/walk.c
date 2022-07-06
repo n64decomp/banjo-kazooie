@@ -121,7 +121,7 @@ void bswalk_creep_init(void){
     f32 sp20;
 
     if(bs_getPrevState() == BS_2_WALK_SLOW){
-        sp20 = func_80289690(animctrl_getAnimPtr(s0));
+        sp20 = anim_getTimer(animctrl_getAnimPtr(s0));
     }else{
         sp20 = 0.0f;
     }
@@ -194,7 +194,7 @@ void bswalk_slow_init(void){
     f32 sp20;
 
     if(bs_getPrevState() == 3){
-        sp20 = func_80289690(animctrl_getAnimPtr(s0));
+        sp20 = anim_getTimer(animctrl_getAnimPtr(s0));
     }else{
         sp20 = 0.0f;
     }
@@ -272,7 +272,7 @@ void bswalk_init(void){
             break;
         case 2:
         case 4:
-            sp20 = func_80289690(animctrl_getAnimPtr(s0));
+            sp20 = anim_getTimer(animctrl_getAnimPtr(s0));
             break;
     }
     animctrl_reset(s0);
@@ -354,7 +354,7 @@ void bswalk_fast_init(void){
             sp24 = 0;
             break;
         case 3:
-            sp28 = func_80289690(animctrl_getAnimPtr(s0));
+            sp28 = anim_getTimer(animctrl_getAnimPtr(s0));
 
             break;
     }

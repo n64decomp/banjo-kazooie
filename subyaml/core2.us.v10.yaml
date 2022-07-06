@@ -274,7 +274,8 @@ segments:
   - [0x77E50, c, code_77E50] #DONE
   - [0x78100, c, code_78100]
   - [0x78E50, c, code_78E50]
-  - [0x79830, c, code_79830]
+  - [0x79830, c, fxcommon3score] #DONE
+  - [0x79C80, c, code_79C80]
   - [0x7AF80, c, code_7AF80]
   - [0x82000, c, code_82000]
   - [0x83340, c, code_83340]
@@ -516,6 +517,8 @@ segments:
   - [0xE2790, .data, code_74090]
   - [0xE2840, .data, code_74290]
   - [0xE2870, bin, data_E2870]
+  - [0xE3320,.data, fxcommon3score]
+  - [0xE3980, bin, data_E3980]
   - [0xE3C50, .data, code_82000]
   - [0xE4870, bin, data_E4870]
   - [0xE7330, .data, code_9B990]
@@ -719,6 +722,8 @@ segments:
   - [0xF0420, bin, data_F0420] #this is first part of [.rodata, code_76D90], COMBINE WITH FOLLOWING SECTION ONCE CODE DONE
   - [0xF0440, .rodata, code_76D90]
   - [0xF0470, bin, data_F0470]
+  - [0xF04D0, .rodata, fxcommon3score]
+  - [0xF04F0, bin, data_F04F0]
   - [0xF0520, .rodata, code_7AF80]
   - [0xF0540, bin, data_F0540]
   - [0xF14C0, .rodata, gc/transition]

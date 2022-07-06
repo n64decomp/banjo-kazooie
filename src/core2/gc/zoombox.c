@@ -842,7 +842,7 @@ void func_80316EF4(gczoombox_t *this){
                if(this->unk1A4_16){
                     animctrl_update(this->unkF4);
                     if(this->unk1A4_14){
-                         this->unk17C = 1.0 - func_802877D8(this->unkF4)/this->unk194;
+                         this->unk17C = 1.0 - animctrl_getAnimTimer(this->unkF4)/this->unk194;
                     }
                }//L8031782C
                if(this->unk1A4_11 && animctrl_isAt(this->unkF4, 0.1f)){
@@ -850,7 +850,7 @@ void func_80316EF4(gczoombox_t *this){
                }//L80317864
                if(this->unk1A4_16 && animctrl_isAt(this->unkF4, this->unk194)){
                     animctrl_setPlaybackType(this->unkF4, ANIMCTRL_STOPPED);
-                    func_8028764C(this->unkF4, this->unk194);
+                    animctrl_setAnimTimer(this->unkF4, this->unk194);
                     animctrl_update(this->unkF4);
                     if(this->unk1A4_14)
                          func_803152C4(this);
@@ -871,7 +871,7 @@ void func_80316EF4(gczoombox_t *this){
                if(this->unk1A4_16){
                     animctrl_update(this->unkF4);
                     if(this->unk1A4_14){
-                         this->unk17C = func_802877D8(this->unkF4)/this->unk194;
+                         this->unk17C = animctrl_getAnimTimer(this->unkF4)/this->unk194;
                     }
                }
                if(this->unk1A4_11 && animctrl_isAt(this->unkF4, 0.9f)){

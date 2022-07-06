@@ -73,7 +73,7 @@ void chtreasure_update(Actor *this){
 
     switch(this->state){
         case 1://L8038C29C
-            this->unk5C = func_802877D8(this->animctrl) *300.0; //radius of 300.0f
+            this->unk5C = animctrl_getAnimTimer(this->animctrl) *300.0; //radius of 300.0f
             if(animctrl_isStopped(this->animctrl)){
                 actor_loopAnimation(this);
                 func_80328AC8(this, 2);

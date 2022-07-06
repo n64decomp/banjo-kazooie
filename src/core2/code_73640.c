@@ -41,49 +41,49 @@ s16 D_803692EC[6] = {
 
 ItemPrint D_803692F8[0x2C] = {
     { func_802FD7B0, func_802FD80C, func_802FDAF4, func_802FDC80, 5, NULL }, //ITEM_0_HOURGLASS_TIMER
-    { func_802FD7B0, func_802FD80C, func_802FDAF4, func_802FDC80, 0, NULL }, //1
+    { func_802FD7B0, func_802FD80C, func_802FDAF4, func_802FDC80, 0, NULL }, // ITEM_1_SKULL_HOURGLASS_TIMER
     { func_802FD320, func_802FD330, func_802FD33C, func_802FD350, 0, NULL }, //2
-    { func_802FD7B0, func_802FD80C, func_802FDAF4, func_802FDC80, 5, NULL }, //3
-    { func_802FD320, func_802FD330, func_802FD33C, func_802FD350, 0, NULL }, //4
-    { func_802FD7B0, func_802FD80C, func_802FDAF4, func_802FDC80, 0, NULL }, //5
+    { func_802FD7B0, func_802FD80C, func_802FDAF4, func_802FDC80, 5, NULL }, //ITEM_3_PROPELLOR_TIMER
+    { func_802FD320, func_802FD330, func_802FD33C, func_802FD350, 0, NULL }, //
+    { func_802FD7B0, func_802FD80C, func_802FDAF4, func_802FDC80, 0, NULL }, //ITEM_5_XMAS_TREE_TIMER
     { func_802FD320, func_802FD330, func_802FD33C, func_802FD350, 0, NULL }, //ITEM_6_HOURGLASS
-    { func_802FD320, func_802FD330, func_802FD33C, func_802FD350, 0, NULL }, //7
+    { func_802FD320, func_802FD330, func_802FD33C, func_802FD350, 0, NULL }, //ITEM_7_SKULL_HOURGLASS
     { func_802FD320, func_802FD330, func_802FD33C, func_802FD350, 0, NULL }, //8
-    { func_802FD320, func_802FD330, func_802FD33C, func_802FD350, 0, NULL }, //9
+    { func_802FD320, func_802FD330, func_802FD33C, func_802FD350, 0, NULL }, //ITEM_9_PROPELLOR
     { func_802FD320, func_802FD330, func_802FD33C, func_802FD350, 0, NULL }, //10
-    { func_802FD320, func_802FD330, func_802FD33C, func_802FD350, 0, NULL }, //11
+    { func_802FD320, func_802FD330, func_802FD33C, func_802FD350, 0, NULL }, //ITEM_B_XMAS_TREE
     { func_802FD7B0, func_802FD80C, func_802FDAF4, func_802FDC80, 1, NULL }, //ITEM_C_NOTE
     { func_802FD7B0, func_802FD80C, func_802FDAF4, func_802FDC80, 1, NULL }, //ITEM_D_EGGS
-    { func_803007C0, func_8030081C, func_80300974, func_80300BB4, 3, NULL }, //ITEM_14_HEALTH
+    { fxcommon3score_new, fxcommon3score_update, fxcommon3score_draw, fxcommon3score_free, 3, NULL }, //ITEM_14_HEALTH
     { func_802FD7B0, func_802FD80C, func_802FDAF4, func_802FDC80, 1, NULL }, //ITEM_F_RED_FEATHER
     { func_802FD7B0, func_802FD80C, func_802FDAF4, func_802FDC80, 1, NULL }, //ITEM_10_GOLD_FEATHER
     { func_802FD320, func_802FD330, func_802FD33C, func_802FD350, 0, NULL }, //17
-    { func_802FF090, func_802FFA50, func_802FF3B8, func_802FF358, 3, NULL }, //18
-    { func_802FDE2C, func_802FE844, func_802FDEE0, func_802FDDC4, 0, NULL }, //19
+    { func_802FF090, func_802FFA50, func_802FF3B8, func_802FF358, 3, NULL }, //ITEM_12_JINJOS
+    { func_802FDE2C, func_802FE844, func_802FDEE0, func_802FDDC4, 0, NULL }, //ITEM_13_EMPTY_HONEYCOMB
     { func_80300CD8, func_80301348, func_80300D0C, func_80300C70, 0, NULL }, //ITEM_14_HEALTH
     { func_802FD320, func_802FD330, func_802FD33C, func_802FD350, 0, NULL }, //ITEM_15_HEALTH_TOTAL
     { func_802FFE4C, func_803005BC, func_802FFF34, func_802FFED4, 6, NULL }, //ITEM_16_LIFE
     { func_8030179C, func_80301DE4, func_803017D0, func_80301754, 0, NULL }, //ITEM_17_AIR
-    { func_803007C0, func_8030081C, func_80300974, func_80300BB4, 2, NULL }, //ITEM_18_GOLD_BULLIONS
-    { func_803007C0, func_8030081C, func_80300974, func_80300BB4, 2, NULL }, //ITEM_19_ORANGE
+    { fxcommon3score_new, fxcommon3score_update, fxcommon3score_draw, fxcommon3score_free, 2, NULL }, //ITEM_18_GOLD_BULLIONS
+    { fxcommon3score_new, fxcommon3score_update, fxcommon3score_draw, fxcommon3score_free, 2, NULL }, //ITEM_19_ORANGE
     { func_802FD7B0, func_802FD80C, func_802FDAF4, func_802FDC80, 6, NULL }, //ITEM_1A_PLAYER_VILE_SCORE
     { func_802FD7B0, func_802FD80C, func_802FDAF4, func_802FDC80, 0, NULL }, //ITEM_1B_VILE_VILE_SCORE
     { func_802FD7B0, func_802FD80C, func_802FDAF4, func_802FDC80, 2, NULL }, //ITEM_1C_MUMBO_TOKEN
-    { func_803007C0, func_8030081C, func_80300974, func_80300BB4, 0, NULL }, //29
-    { func_803007C0, func_8030081C, func_80300974, func_80300BB4, 0, NULL }, //30
-    { func_803007C0, func_8030081C, func_80300974, func_80300BB4, 2, NULL }, //31
-    { func_803007C0, func_8030081C, func_80300974, func_80300BB4, 2, NULL }, //32
-    { func_803007C0, func_8030081C, func_80300974, func_80300BB4, 2, NULL }, //33
-    { func_803007C0, func_8030081C, func_80300974, func_80300BB4, 2, NULL }, //34
-    { func_803007C0, func_8030081C, func_80300974, func_80300BB4, 2, NULL }, //35
-    { func_803007C0, func_8030081C, func_80300974, func_80300BB4, 0, NULL }, //36
+    { fxcommon3score_new, fxcommon3score_update, fxcommon3score_draw, fxcommon3score_free, 0, NULL }, //ITEM_1D_GRUMBLIE
+    { fxcommon3score_new, fxcommon3score_update, fxcommon3score_draw, fxcommon3score_free, 0, NULL }, //ITEM_1E_YUMBLIE
+    { fxcommon3score_new, fxcommon3score_update, fxcommon3score_draw, fxcommon3score_free, 2, NULL }, //ITEM_1F_GREEN_PRESENT
+    { fxcommon3score_new, fxcommon3score_update, fxcommon3score_draw, fxcommon3score_free, 2, NULL }, //ITEM_20_BLUE_PRESENT
+    { fxcommon3score_new, fxcommon3score_update, fxcommon3score_draw, fxcommon3score_free, 2, NULL }, //ITEM_21_RED_PRESENT
+    { fxcommon3score_new, fxcommon3score_update, fxcommon3score_draw, fxcommon3score_free, 2, NULL }, //ITEM_22_CATERPILLAR
+    { fxcommon3score_new, fxcommon3score_update, fxcommon3score_draw, fxcommon3score_free, 2, NULL }, //ITEM_23_ACORNS
+    { fxcommon3score_new, fxcommon3score_update, fxcommon3score_draw, fxcommon3score_free, 0, NULL }, //ITEM_24_TWINKLY_SCORE
     { func_802FD7B0, func_802FD80C, func_802FDAF4, func_802FDC80, 4, NULL }, //ITEM_25_MUMBO_TOKEN_TOTAL
-    { func_803007C0, func_8030081C, func_80300974, func_80300BB4, 4, NULL }, //ITEM_26_JIGGY_TOTAL
+    { fxcommon3score_new, fxcommon3score_update, fxcommon3score_draw, fxcommon3score_free, 4, NULL }, //ITEM_26_JIGGY_TOTAL
     { func_802FD7B0, func_802FD80C, func_802FDAF4, func_802FDC80, 2, NULL }, //ITEM_27_JOKER_CARD
     { func_802FD7B0, func_802FD80C, func_802FD33C, func_802FDC80, 5, NULL }, //40
     { func_802FD7B0, func_802FD80C, func_802FD33C, func_802FDC80, 3, NULL }, //41
     { func_802FD7B0, func_802FD80C, func_802FD33C, func_802FDC80, 2, NULL }, //42
-    { func_803007C0, func_8030081C, func_80300974, func_80300BB4, 2, NULL }
+    { fxcommon3score_new, fxcommon3score_update, fxcommon3score_draw, fxcommon3score_free, 2, NULL }  //43
 };
 
 /* .bss */
@@ -163,7 +163,7 @@ void func_802FA724(void) {
                 
                 if (item_getCount(i) == (s32) (D_803810B8[i] + 0.01)) {
                     do{
-                        if (D_803812C8[i]) { 
+                        if (D_803812C8[i] != 0) { 
                             func_8025A6EC(D_803812C8[i], 0x7D00);
                         }
                         

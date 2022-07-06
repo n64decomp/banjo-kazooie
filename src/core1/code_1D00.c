@@ -54,7 +54,7 @@ typedef struct struct_core1_1D00_5_s{
 void func_8023FBB8(void);
 void func_8023FE80(void *);
 // void func_802403B8(void);
-void func_802401C4(AudioInfo *info);
+void amgrHandleDoneMsg(AudioInfo *info);
 void *func_802403B8(void *state);
 void func_802403F0(void);
 void amgrStartThread(void);
@@ -63,14 +63,71 @@ void amgrStartThread(void);
 
 extern s32 D_80000300;
 
-extern s32 D_80275770 = 0;
-extern s32 D_80275774 = 0;
-extern u8  D_80275778 = 0;
-extern s32 D_8027577C = 6;
+s32 D_80275770 = 0;
+s32 D_80275774 = 0;
+u8  D_80275778 = 0;
+s32 D_8027577C[] = {
+    6,      /* number of sections in this effect */
+    0x1900, /* total allocated memory */
+    /* SECTION 1 */
+    0,      /* input */
+    0xA0,   /* output */
+    900,    /* fbcoef */
+    -900,   /* ffcoef */
+    500,    /* out gain */
+    0x0,    /* no chorus rate */
+    0x0,    /* no chorus delay */
+    0x0,    /* no low-pass filter */
+    /* SECTION 2 */
+    0xA0,   /* input */
+    0x140,  /* output */
+    900,    /* fbcoef */
+    -900,   /* ffcoef */
+    500,    /* out gain */
+    0x0,    /* no chorus rate */
+    0x0,    /* no chorus delay */
+    0x2500, /* low-pass filter */
+    /* SECTION 3 */
+    0x320,   /* input */
+    0xA00,   /* output */
+    13000,   /* fbcoef */
+    -13000,  /* ffcoef */
+    0xE03,   /* out gain */
+    0x0,     /* no chorus rate */
+    0x0,     /* no chorus delay */
+    0x3000,  /* low-pass filter */
+    /* SECTION 4 */
+    0xC80,   /* input */
+    0x15E0,  /* output */
+    13000,   /* fbcoef */
+    -13000,  /* ffcoef */
+    0xE03,   /* out gain */
+    0x0,     /* no chorus rate */
+    0x0,     /* no chorus delay */
+    0x3500,  /* low-pass filter */
+    /* SECTION 5 */
+    0xD20,   /* input */
+    0x12C0,  /* output */
+    0x2000,  /* fbcoef */
+    -0x2000, /* ffcoef */
+    0x0,     /* no out gain */
+    0x0,     /* no chorus rate */
+    0x0,     /* no chorus delay */
+    0x4000,  /* low-pass filter */
+    /* SECTION 6 */
+    0x0,     /* input */
+    0x1720,  /* output */
+    11000,  /* fbcoef */
+    -11000, /* ffcoef */
+    0x0,     /* no out gain */
+    0x17C,   /* chorus rate */
+    0xA,     /* chorus delay */
+    0x4500   /* low-pass filter */
+};
 
-extern Struct_1D00_2 *D_80275844;
-extern AudioInfo *D_80275848;
-extern int D_8027584C;//static int D_8027584C = 0;
+Struct_1D00_2 *D_80275844 = NULL;
+AudioInfo *D_80275848 = NULL;
+// extern int D_8027584C;//static int D_8027584C = 0;
 
 extern s32 osViClock; //0x80277128
 
@@ -288,11 +345,11 @@ void func_8023FE80(void *arg0) {
 
     phi_s1 = 1;
     while(1){
-        osRecvMesg(&g_AudioManager.audioFrameMsgQ, NULL, OS_MESG_BLOCK); //g_AudioManager.audioFrameMsgQ
-        if (func_8023FFE4(g_AudioManager.audioInfo[D_8027DCC8 % 3], D_80275848)){
+        osRecvMesg(&g_AudioManager.audioFrameMsgQ, NULL, OS_MESG_BLOCK);
+        if (amgr_handleFrameMsg(g_AudioManager.audioInfo[D_8027DCC8 % 3], D_80275848)){
             if(phi_s1 == 0){
                 osRecvMesg(&g_AudioManager.audioReplyMsgQ, &D_80275844, OS_MESG_BLOCK);
-                func_802401C4(D_80275844->unk4);
+                amgrHandleDoneMsg(D_80275844->unk4);
                 D_80275848 = D_80275844->unk4;
             }else{
                 phi_s1 += -1;
@@ -309,8 +366,7 @@ void func_8023FFD4(s32 arg0, s32 arg1, s32 arg2){
     return;
 }
 
-//amgrHandleFrameMsg
-int func_8023FFE4(AudioInfo *info, AudioInfo *prev_info){
+bool amgr_handleFrameMsg(AudioInfo *info, AudioInfo *prev_info){
     s16 *outbuffer;
     Acmd *sp38;
     s32 sp34;
@@ -364,19 +420,13 @@ int func_8023FFE4(AudioInfo *info, AudioInfo *prev_info){
     }
 }
 
-
-#ifndef NONMATCHING //requires .data defined
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1D00/func_802401C4.s")
-#else
-//void amgrHandleDoneMsg(AudioInfo *info) from PD repo
-void func_802401C4(AudioInfo *info)
+void amgrHandleDoneMsg(AudioInfo *info)
 {   
-    static int D_8027584C = 0;
+    static int D_8027584C = TRUE;
 	if (osAiGetLength() >> 2 == 0 && D_8027584C == FALSE) {
 		D_8027584C = FALSE;
 	}
 }
-#endif
 
 #ifndef NONMATCHING
 s32 func_80240204(s32 addr, s32 len, void *state);
@@ -522,6 +572,6 @@ OSIoMesg * func_802405D0(void){
     return &D_8027D0E8;
 }
 
-OSMesgQueue * amgrGetFrameMesgQueue(void){
+OSMesgQueue * amgr_getFrameMesgQueue(void){
     return &g_AudioManager.audioFrameMsgQ;
 }

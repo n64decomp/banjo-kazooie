@@ -554,7 +554,7 @@ void func_802A47E0(void) {
     if (animctrl_isAt(sp1C, 0.92f)) {
         func_80297970(0.0f);
     }
-    if (func_802877D8(sp1C) < 0.8) {
+    if (animctrl_getAnimTimer(sp1C) < 0.8) {
         func_802929F8();
     }
 }

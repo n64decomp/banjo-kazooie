@@ -1149,7 +1149,7 @@ void func_80388524(Actor *this) {
                             func_80320004(0xE2, 1);
                             func_8030E6D4(SFX_6C_LOCKUP_CLOSING);
                         }
-                        if (func_802877D8(this->animctrl) < 0.68) {
+                        if (animctrl_getAnimTimer(this->animctrl) < 0.68) {
                             sp2C = partEmitList_pushNew(3U);
                             particleEmitter_setSprite(sp2C, ASSET_70D_SPRITE_SMOKE_1);
                             particleEmitter_setStartingFrameRange(sp2C, 1, 6);

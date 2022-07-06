@@ -112,7 +112,7 @@ bool func_802DAFBC(Actor *this) {
 
     local = (ActorLocal_core2_53C10 *)&this->local;
 
-    sp44 = func_802877D8(this->animctrl) + 0.0333;
+    sp44 = animctrl_getAnimTimer(this->animctrl) + 0.0333;
     if (sp44 >= 1.0) {
         sp44 -= 1.0;
     }
@@ -266,7 +266,7 @@ void func_802DB5A0(Actor *this) {
         case 8://L802DB704
             func_80328FB0(this, 6.0f);
             if (func_80329480(this) != 0) {
-                phi_f14 = func_802877D8(this->animctrl) + 0.0333;
+                phi_f14 = animctrl_getAnimTimer(this->animctrl) + 0.0333;
                 if (phi_f14 >= 1.0) {
                     phi_f14 -= 1.0;
                 }
@@ -363,7 +363,7 @@ void func_802DB5A0(Actor *this) {
             break;
             
         case 9://L802DBBFC
-            if (func_802877D8(this->animctrl) != 0.0f) {
+            if (animctrl_getAnimTimer(this->animctrl) != 0.0f) {
                 func_802DB2F8(this);
             }
             if (this->unk60 > 0.0f) {
@@ -375,7 +375,7 @@ void func_802DB5A0(Actor *this) {
             break;
             
         case 10://L802DBC74
-            if (func_802877D8(this->animctrl) != 0.0f) {
+            if (animctrl_getAnimTimer(this->animctrl) != 0.0f) {
                 func_802DB354(this);
             }
             if (animctrl_isStopped(this->animctrl)) {

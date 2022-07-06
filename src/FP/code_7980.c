@@ -106,7 +106,7 @@ void func_8038E094(Actor *this){
         this->unk16C_4 = TRUE;
         marker_setCollisionScripts(this->marker, NULL, func_8038DEB8, NULL);
         this->marker->propPtr->unk8_3 = TRUE;
-        func_8028764C(this->animctrl, 0.99999f);
+        animctrl_setAnimTimer(this->animctrl, 0.99999f);
         this->unk60 = 0.0f;
         if(this->unkF4_8 == 1){
             func_8038DDC8(this);
@@ -147,7 +147,7 @@ void func_8038E094(Actor *this){
     switch(this->state){
         case 1: //L8038E2DC
             this->marker->propPtr->unk8_3 = FALSE;
-            func_8028764C(this->animctrl, 0.99f);
+            animctrl_setAnimTimer(this->animctrl, 0.99f);
             if(this->unk60 < 5.0){
                 this->unk60 += sp34;
             }

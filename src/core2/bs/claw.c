@@ -29,7 +29,7 @@ void bsclaw_update(void){
     AnimCtrl * aCtrl = _player_getAnimCtrlPtr();
     f32 sp24;
     
-    sp24 = func_802877D8(aCtrl);
+    sp24 = animctrl_getAnimTimer(aCtrl);
     _bsclawHitboxActive = animctrl_isAt(aCtrl, 0.1488f)
               || (0.04879999999999998 < sp24 && sp24 < 0.2488)
               || animctrl_isAt(aCtrl, 0.3288f)

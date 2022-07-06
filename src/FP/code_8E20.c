@@ -118,7 +118,7 @@ void func_8038F598(Actor *this, f32 arg1){
 bool func_8038F5D4(Actor *this, f32 arg1[3], f32 arg2, f32 arg3, s32 arg4){
     f32 sp24;
 
-    sp24 = func_802877D8(this->animctrl);
+    sp24 = animctrl_getAnimTimer(this->animctrl);
     this->yaw_moving = (f32) func_803297C8(this, arg1);
     func_80328FB0(this, arg3);
     if(actor_animationIsAt(this, 0.9f)){
@@ -245,7 +245,7 @@ void func_8038F7AC(Actor *this){
 
         case 5: //L8038FB50
             func_8038F6C4(this, local->unk18, 1.0f);
-            if(0.97 < func_802877D8(this->animctrl)){
+            if(0.97 < animctrl_getAnimTimer(this->animctrl)){
                 func_80328B8C(this, 6, 0.02f, 1);
                 actor_loopAnimation(this);
             }
@@ -316,7 +316,7 @@ void func_8038F7AC(Actor *this){
 
         case 9: //L8038FE14
             func_8038F6C4(this, D_803925AC, 9.0f);
-            if(0.97 < func_802877D8(this->animctrl)){
+            if(0.97 < animctrl_getAnimTimer(this->animctrl)){
                 func_80328B8C(this, 10, 0.02f, 1);
                 actor_loopAnimation(this);
             }

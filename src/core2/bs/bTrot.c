@@ -159,7 +159,7 @@ int func_802A8C60(void){
 void _bsbtrot_802A8C98(AnimCtrl *aCtrl, enum asset_e arg1){
     if(animctrl_getIndex(aCtrl) != arg1){
         animctrl_setIndex(aCtrl, arg1);
-        func_8028774C(aCtrl, func_802877D8(aCtrl));
+        func_8028774C(aCtrl, animctrl_getAnimTimer(aCtrl));
         func_802875AC(aCtrl, "bsbtrot.c", 0x12e);
 
     }
@@ -225,7 +225,7 @@ void bsbtrot_enter_update(void){
     if(animctrl_isStopped(aCtrl))
         next_state = BS_15_BTROT_IDLE;
 
-    if(0.5 <  func_802877D8(aCtrl))
+    if(0.5 <  animctrl_getAnimTimer(aCtrl))
         next_state = func_802A8D84(next_state);
 
     bs_setState(next_state);

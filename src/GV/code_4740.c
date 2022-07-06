@@ -202,14 +202,14 @@ void func_8038B124(Actor *this){
                 func_80328FB0(this, 18.0f);
                 this->unk28 = 18.0f;
                 func_80329030(this, 0);
-                func_8028764C(this->animctrl, 0.0f);
+                animctrl_setAnimTimer(this->animctrl, 0.0f);
 
             }
             break;
 
         case 2: //L8038B430
             func_8030E2C4(this->unk44_31);
-            if(0.98 < func_802877D8(this->animctrl)){
+            if(0.98 < animctrl_getAnimTimer(this->animctrl)){
                 func_8038AF10(this);
             }
             else{
@@ -268,7 +268,7 @@ void func_8038B124(Actor *this){
                 func_802BB3DC(0, 18.0f, 0.92f);
                 func_8030E878(SFX_3_DULL_CANNON_SHOT, 1.0f, 32000, this->position, 2250.0f, 4500.0f);
             }//L8038B734
-            if(0.98 < func_802877D8(this->animctrl)){
+            if(0.98 < animctrl_getAnimTimer(this->animctrl)){
                 func_80328B8C(this, 6, 0.99f, 0);
                 actor_playAnimationOnce(this);
                 this->unk60 = 0.0f;
@@ -288,13 +288,13 @@ void func_8038B124(Actor *this){
             break;
 
         case 7: //L8038B7EC
-            if(0.98 < func_802877D8(this->animctrl)){
+            if(0.98 < animctrl_getAnimTimer(this->animctrl)){
                 func_8038AF10(this);
             }
             break;
 
         case 8: //L8038B820
-            if(0.98 < func_802877D8(this->animctrl)){
+            if(0.98 < animctrl_getAnimTimer(this->animctrl)){
                 func_80328B8C(this, 1, 0.00001f, 1);
                 this->unk1C[0] = 0.0f;
                 this->unk1C[1] = 2.0f;

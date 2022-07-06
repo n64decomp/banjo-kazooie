@@ -138,7 +138,7 @@ void func_80334910(void) {
     func_8033FA24();
     func_80344C80();
     func_80287D70();
-    func_802885E8();
+    animcache_free();
     func_802BC10C();
     func_802B9D80();
     func_802F1388();
@@ -214,7 +214,7 @@ void func_80334B20(enum map_e arg0, s32 arg1, s32 arg2) {
     func_8031F9E8();
     func_80323230();
     commonParticleType_init();
-    func_8028863C();
+    animcache_init();
     func_80287C58();
     func_80344C50();
     func_8033F9C0();

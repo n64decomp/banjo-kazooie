@@ -8,15 +8,15 @@
 extern u32 D_A0000238;
 
 /* .code */
-void func_80286F90(AnimCtrl *this){
+void animctrl_80286F90(AnimCtrl *this){
     Animation *anim;
     f32 duration;
 
     if(this->smooth_transition){
         anim = animctrl_getAnimPtr(this);
-        duration = func_80289698(anim);
+        duration = anim_getDuration(anim);
         if( duration < 1.0f ){
-            func_802897C8(anim, min_f(1.0f, time_getDelta()/animctrl_getTransistionDuration(this) + duration));
+            anim_setDuration(anim, min_f(1.0f, time_getDelta()/animctrl_getTransistionDuration(this) + duration));
         }
     }
 }
@@ -27,8 +27,8 @@ static void __animctrl_update_looped(AnimCtrl *this){
     f32 tmp;
 
      anim = animctrl_getAnimPtr(this);
-     func_80286F90(this);
-     this->timer = func_80289690(anim);
+     animctrl_80286F90(this);
+     this->timer = anim_getTimer(anim);
      delta = time_getDelta() / animctrl_getDuration(this);
      if(this->playback_direction == 0){
          delta = -delta;
@@ -49,8 +49,8 @@ void func_802870E0(AnimCtrl *this){
     f32 f_percent;
 
      anim = animctrl_getAnimPtr(this);
-     func_80286F90(this);
-     this->timer = func_80289690(anim);;
+     animctrl_80286F90(this);
+     this->timer = anim_getTimer(anim);;
      delta =  time_getDelta() / animctrl_getDuration(this);
      if(this->playback_direction == 0){
          delta = -delta;
@@ -71,8 +71,8 @@ void func_802871A4(AnimCtrl *this){
 
 
     anim = animctrl_getAnimPtr(this);
-    func_80286F90(this);
-    this->timer = func_80289690(anim);
+    animctrl_80286F90(this);
+    this->timer = anim_getTimer(anim);
     phi_f2 = time_getDelta() / animctrl_getDuration(this);
     if (this->playback_direction == 0) {
         phi_f2 = -phi_f2;
@@ -138,7 +138,7 @@ void animctrl_update(AnimCtrl *this){//update
         func_802870E0(this);
         break;
     case ANIMCTRL_STOPPED: //stopped
-        func_80286F90(this);
+        animctrl_80286F90(this);
         break;
     }
 }
@@ -159,11 +159,11 @@ Animation *animctrl_getAnimPtr(AnimCtrl *this){
 }
 
 void func_8028746C(AnimCtrl *this,  void (* arg1)(s32,s32)){
-    func_80289790(this->animation, arg1);
+    anim_80289790(this->animation, arg1);
 }
 
 void func_8028748C(AnimCtrl *this, s32 arg1){
-    func_80289798(this->animation, arg1);
+    anim_80289798(this->animation, arg1);
 }
 
 void animctrl_reset(AnimCtrl *this){
@@ -187,24 +187,24 @@ void func_8028752C(AnimCtrl *this){
     }
     else
         anim_setTimer(this->animation, this->unk18);
-    this->timer = func_80289690(this->animation);
+    this->timer = anim_getTimer(this->animation);
 }
 
 void _func_802875AC(AnimCtrl * this, char *file, s32 line){
-    if(this->smooth_transition && anim_getIndex(this->animation)){
+    if(this->smooth_transition && anim_getIndex(this->animation) != 0){
         func_80289674(this->animation);
         anim_setIndex(this->animation, this->index);
         func_8028752C(this);
-        func_802897C8(this->animation, 0.0f);
+        anim_setDuration(this->animation, 0.0f);
     } else{
-        func_8028980C(this->animation);
+        anim_8028980C(this->animation);
         anim_setIndex(this->animation, this->index);
         func_8028752C(this);
-        func_802897C8(this->animation, 1.0f);
+        anim_setDuration(this->animation, 1.0f);
     }
 }
 
-void func_8028764C(AnimCtrl *this, f32 timer){
+void animctrl_setAnimTimer(AnimCtrl *this, f32 timer){
     anim_setTimer(this->animation, timer);
 }
 
@@ -279,19 +279,19 @@ f32 animctrl_getTransistionDuration(AnimCtrl *this){
     return this->transition_duration;
 }
 
-f32 func_802877D8(AnimCtrl *this){
-    return func_80289690(this->animation);
+f32 animctrl_getAnimTimer(AnimCtrl *this){
+    return anim_getTimer(this->animation);
 }
 
-f32 func_802877F8(AnimCtrl *this){
+f32 animctrl_getTimer(AnimCtrl *this){
     return this->timer;
 }
 
-void  func_80287800(AnimCtrl *this, f32 arg1){
+void  animctrl_setTimer(AnimCtrl *this, f32 arg1){
     this->timer = arg1;
 }
 
-s32  func_8028780C(AnimCtrl *this, s32 arg1){
+s32  animctrl_8028780C(AnimCtrl *this, s32 arg1){
     return 0;
 }
 
@@ -306,10 +306,10 @@ s32 func_8028781C(AnimCtrl *this, f32 *arg1, s32 arg2){
     ){
         this->unk24 = this->unk24 -1;
         if(this->unk24 == 0xFF){
-            this->unk24 = func_8028780C(arg1, arg2);
+            this->unk24 = animctrl_8028780C(arg1, arg2);
         }
         else{
-            func_802897A0(this->animation);
+            anim_802897A0(this->animation);
             return;
         }
     }
@@ -322,7 +322,7 @@ s32 animctrl_isStopped(AnimCtrl *this){
 
 int animctrl_isAt(AnimCtrl *this, f32 arg1){
     int retval;
-    f32 f0 = func_80289690(this->animation); 
+    f32 f0 = anim_getTimer(this->animation); 
 
     if(f0 == this->timer){
         return 0;

@@ -419,7 +419,7 @@ void func_8038D6C8(Actor *this){
         }
 
 
-        if(0.96 < func_802877D8(this->animctrl)){
+        if(0.96 < animctrl_getAnimTimer(this->animctrl)){
             if(this->unk60 <= 0.0){
                 func_802C3C88(func_8038D474, this->marker);
                 this->unk60 = 2.9f;

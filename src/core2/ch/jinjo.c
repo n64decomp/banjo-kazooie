@@ -189,7 +189,7 @@ void func_802CDD78(Actor * this){
         case 7:
         case 8:
             sp50 = this->state == 7;
-            if(!sp50 || 0.8 < func_802877D8(this->animctrl)){//L802CE158
+            if(!sp50 || 0.8 < animctrl_getAnimTimer(this->animctrl)){//L802CE158
                 player_getVelocity(sp70);
                 sp70[0] *= sp58*6.0f;
                 sp70[1] *= sp58*6.0f;
@@ -206,7 +206,7 @@ void func_802CDD78(Actor * this){
                 this->position_x += sp70[0];
                 this->position_y += sp70[1];
                 this->position_z += sp70[2];
-                if(sp50 || func_802877D8(this->animctrl) < 0.3){
+                if(sp50 || animctrl_getAnimTimer(this->animctrl) < 0.3){
                     for(i = 0; i < 4; i++){
                         if(randf() < 0.2){
                             func_8033E73C(this->marker, i + 5, func_80329904);
@@ -217,7 +217,7 @@ void func_802CDD78(Actor * this){
             }
 
             if(sp50){ 
-                if(func_802877D8(this->animctrl) < 0.9)
+                if(animctrl_getAnimTimer(this->animctrl) < 0.9)
                     func_802CDC9C(this, sp66);
 
                 if(actor_animationIsAt(this, 0.1f)){

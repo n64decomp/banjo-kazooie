@@ -130,7 +130,7 @@ void bscrouch_update(void){
             if(temp_f2 != 0.0f)
                 break;
 
-            if((f64)func_802877D8(aCtrl) <= 0.5){
+            if((f64)animctrl_getAnimTimer(aCtrl) <= 0.5){
                 animctrl_setSubRange(aCtrl, 0.0f, 0.5f);
             }else{
                 animctrl_setSubRange(aCtrl, 0.0f, 1.0f);

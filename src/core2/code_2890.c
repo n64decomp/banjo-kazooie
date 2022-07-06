@@ -201,7 +201,7 @@ AnimCtrl *_player_getAnimCtrlPtr(void){
 }
 
 f32 func_80289F70(void){
-    return func_802877D8(D_8037BF20);
+    return animctrl_getAnimTimer(D_8037BF20);
 }
 
 bool func_80289F94(enum asset_e anim_id){

@@ -49,7 +49,7 @@ void bseggass_update(void) {
     }
     if (animctrl_isStopped(plyr_mvmt)) {
         next_state = (button_held(BUTTON_Z))? BS_CROUCH : BS_1_IDLE;
-    } else if (0.6 < (f64) func_802877D8(plyr_mvmt)) {
+    } else if (0.6 < (f64) animctrl_getAnimTimer(plyr_mvmt)) {
         next_state = func_802ADCD4(0);
     }
     if (func_8028B094())

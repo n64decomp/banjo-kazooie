@@ -171,7 +171,7 @@ void func_8039049C(Actor *this){
     switch(this->state){
         case 1: //803905D4
             func_8039040C(this);
-            func_8028764C(this->animctrl, 0.0f);
+            animctrl_setAnimTimer(this->animctrl, 0.0f);
             this->unk60 -= sp58;
             if(this->unk60 < 0.0){
                 func_80328B8C(this, 2, 0.001f, 1);

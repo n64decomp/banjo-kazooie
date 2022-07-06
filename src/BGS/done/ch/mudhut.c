@@ -110,7 +110,7 @@ void func_8038EB8C(Actor *this){
                 break;
             case 2:
                 this->marker->propPtr->unk8_3 = 0;
-                if(0.99 < func_802877D8(this->animctrl)){
+                if(0.99 < animctrl_getAnimTimer(this->animctrl)){
                     this->state = 3;
                 }
                 break;

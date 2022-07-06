@@ -218,7 +218,7 @@ void func_802E20E8(Actor *this){
         local->unkB = 0;
         local->unk4 = 0.0f;
         animctrl_setTransitionDuration(this->animctrl, 0.8f);
-        func_8028764C(this->animctrl, randf());
+        animctrl_setAnimTimer(this->animctrl, randf());
         func_8032BC18(this);
         if(map_get() == MAP_27_FP_FREEZEEZY_PEAK){
             local->unk0 = func_80326EEC(0x336)->marker;
@@ -280,7 +280,7 @@ void func_802E20E8(Actor *this){
                 func_802E1DE8(this);
             }//L802E240C
             else if( 
-                0.98 < func_802877D8(this->animctrl)
+                0.98 < animctrl_getAnimTimer(this->animctrl)
                 || !func_802E1EB4(this, 0x1f4, 0xabe)
                 || func_8028EE84() == 2
                 || func_802E208C()
@@ -288,7 +288,7 @@ void func_802E20E8(Actor *this){
                 func_802E1DA0(this);
             }
             else{
-                if(func_802877D8(this->animctrl) < 0.45){
+                if(animctrl_getAnimTimer(this->animctrl) < 0.45){
                     func_802E1E20(this, 6.0f);
                 }
                 if( actor_animationIsAt(this, 0.19f)

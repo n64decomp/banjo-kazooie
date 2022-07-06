@@ -49,7 +49,7 @@ void func_802B5538(AnimCtrl *arg0) {
 
     sp24 = D_80364D50[D_8037D550];
     if (animctrl_getIndex(arg0) != sp24) {
-        func_8028774C(arg0, func_802877D8(arg0));
+        func_8028774C(arg0, animctrl_getAnimTimer(arg0));
         animctrl_setIndex(arg0, sp24);
         _func_802875AC(arg0, "bsswim.c", 0x79);
     }

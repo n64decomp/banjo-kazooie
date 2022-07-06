@@ -200,7 +200,7 @@ void func_8038C840(Actor *this){
     sp42 = sp40 - (s16)(sp4C*182.04444);
     switch(this->state){
         case 1: //8038C92C
-            func_8028764C(this->animctrl, 0.0f);
+            animctrl_setAnimTimer(this->animctrl, 0.0f);
             if(this->unk60 < 0.0)
                 func_80328B8C(this, 2, 0.001f, 1);
             else//L8038C974
@@ -220,7 +220,7 @@ void func_8038C840(Actor *this){
         case 3: // 8038CA48
         case 4: // 8038CA48
             sp48 = (this->state == 3);
-            if(!sp48 || 0.1 < func_802877D8(this->animctrl)){//L8038CA7C
+            if(!sp48 || 0.1 < animctrl_getAnimTimer(this->animctrl)){//L8038CA7C
                 player_getVelocity(&sp5C);
                 sp5C[0] *=  sp74 * 6.0f;
                 sp5C[1] *=  sp74 * 6.0f;
@@ -241,11 +241,11 @@ void func_8038C840(Actor *this){
                 this->position_x = sp5C[0] + this->position_x;
                 this->position_y = sp5C[1] + this->position_y;
                 this->position_z = sp5C[2] + this->position_z;
-                if(sp48 ||  func_802877D8(this->animctrl) < 0.8)
+                if(sp48 ||  animctrl_getAnimTimer(this->animctrl) < 0.8)
                     func_8038C79C(this);
             }//L8038CB9C
             if(sp48){
-                if(func_802877D8(this->animctrl) < 0.2){
+                if(animctrl_getAnimTimer(this->animctrl) < 0.2){
                     func_8038C6FC(this, sp42);
                 }
                 

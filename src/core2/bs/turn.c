@@ -30,7 +30,7 @@ void bsturn_init(void){
 void bsturn_update(void){
     enum bs_e sp2C = 0;
 
-    func_80297970(ml_map_f(func_802877D8(_player_getAnimCtrlPtr()), 0.18f, 1.0f, D_8037D590, 0.0f));
+    func_80297970(ml_map_f(animctrl_getAnimTimer(_player_getAnimCtrlPtr()), 0.18f, 1.0f, D_8037D590, 0.0f));
 
     D_8037D594++;
     if(!(D_8037D594 < 6))

@@ -4,7 +4,7 @@
 
 #include "gc/gctransition.h"
 
-void func_8028764C(AnimCtrl*, f32);
+void animctrl_setAnimTimer(AnimCtrl*, f32);
 void func_8025AC20(s32, s32, s32, f32, char*, s32);
 f32 func_80257618(void);
 void func_8024CE60(f32, f32);
@@ -79,7 +79,7 @@ void _gctranstion_changeState(s32 state, struct9s *arg1){
         }
         else{
             osViBlack(1);
-            func_8028764C(D_80382430.animctrl, 0.25f); //set animation timer
+            animctrl_setAnimTimer(D_80382430.animctrl, 0.25f); //set animation timer
         }
         func_802875AC(D_80382430.animctrl, "gctransition.c", 0x125); 
     }

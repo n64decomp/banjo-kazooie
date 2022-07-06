@@ -86,7 +86,7 @@ void func_803253A0(Actor *this){
             sp44 = TRUE;
         }//L8032542C
         else if(this->animctrl != NULL && func_8033A0D4(sp48)){
-            func_802897D4(&this->marker->unk20, func_8033A0D4(sp48), animctrl_getAnimPtr(this->animctrl));
+            anim_802897D4(&this->marker->unk20, func_8033A0D4(sp48), animctrl_getAnimPtr(this->animctrl));
             sp44 = TRUE;
         }//L80325474
 
@@ -528,13 +528,13 @@ void func_803268B4(void) {
                     if (marker->unk2C_2) {
                         ((void (*)(Actor *)) marker->unk34)(actor);
                         if (anim_ctrl != NULL) {
-                                actor->sound_timer = func_802877D8(anim_ctrl);
+                                actor->sound_timer = animctrl_getAnimTimer(anim_ctrl);
                         }
                     } else if (!temp_s1 || (temp_s1 && func_803296D8(actor, temp_s1))) {
                         if ( marker->unk24 != NULL) {
                              marker->unk24(actor);
                             if (anim_ctrl != NULL) {
-                                    actor->sound_timer = func_802877D8(anim_ctrl);
+                                    actor->sound_timer = animctrl_getAnimTimer(anim_ctrl);
                             }
                         }
                     }
@@ -1166,7 +1166,7 @@ int func_8032881C(Actor *this){
 }
 
 int actor_animationIsAt(Actor *this, f32 arg1){
-    f32 f2 = func_802877D8(this->animctrl);
+    f32 f2 = animctrl_getAnimTimer(this->animctrl);
     if(f2 == this->sound_timer){
         return 0;
     }
@@ -1423,7 +1423,7 @@ void func_80329B68(Actor *this){
     func_8028774C(this->animctrl, this->unkEC);
     animctrl_setSubRange(this->animctrl, this->stored_animctrl_subrangeMin, this->stored_animctrl_subrangeMax);
     func_802875AC(this->animctrl, "subaddie.c", 0x8fd);
-    func_80287800(this->animctrl, this->sound_timer);
+    animctrl_setTimer(this->animctrl, this->sound_timer);
 }
 
 void actor_copy(Actor *dst, Actor *src){
@@ -1497,7 +1497,7 @@ void *actors_appendToSavestate(void * begin, u32 end){
                     s0->stored_animctrl_forwards = animctrl_isPlayedForwards(s0->animctrl);
                     s0->stored_animctrl_smoothTransistion = animctrl_isSmoothTransistion(s0->animctrl);
                     s0->stored_animctrl_duration = animctrl_getDuration(s0->animctrl);
-                    s0->unkEC = func_802877D8(s0->animctrl);
+                    s0->unkEC = animctrl_getAnimTimer(s0->animctrl);
                     animctrl_getSubRange(s0->animctrl, &s0->stored_animctrl_subrangeMin, &s0->stored_animctrl_subrangeMax);
                 }
                 s0->animctrl = NULL;

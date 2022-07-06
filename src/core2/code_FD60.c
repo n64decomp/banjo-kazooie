@@ -361,8 +361,8 @@ f32 func_80297A7C(void){
     return D_8037C4F4;
 }
 
-void _get_velocity(f32 (*dst)[3]){
-    ml_vec3f_copy(dst, &D_8037C4B8);
+void _get_velocity(f32 dst[3]){
+    ml_vec3f_copy(dst, D_8037C4B8);
 }
 
 f32 func_80297AAC(void){

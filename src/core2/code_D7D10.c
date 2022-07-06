@@ -161,7 +161,7 @@ void func_8035F138(Actor *this) {
 
     local = (ActorLocal_core2_D7D10 *)&this->local;
     sp2C = time_getDelta();
-    if ((this->state == 1) && (func_802877D8(this->animctrl) < 0.04)) {
+    if ((this->state == 1) && (animctrl_getAnimTimer(this->animctrl) < 0.04)) {
         this->velocity[1] = 2.0f;
     } else {
         this->velocity[1] = 1.0f;
@@ -185,7 +185,7 @@ void func_8035F138(Actor *this) {
                 this->unk1C[2] = this->position[2];
                 this->velocity[0] = this->yaw;
             }
-            func_8028764C(this->animctrl, 0.0f);
+            animctrl_setAnimTimer(this->animctrl, 0.0f);
             if (func_80329530(this, (s32) (this->scale * 650.0f)) && func_803292E0(this)) {
                 func_80328A84(this, 2U);
                 actor_playAnimationOnce(this);
@@ -203,7 +203,7 @@ void func_8035F138(Actor *this) {
             if (actor_animationIsAt(this, 0.66f)) {
                 func_8030E8B4(0x665F40F9U, this->position, 0x0DAC06D6U);
             }
-            if (0.99 <= func_802877D8(this->animctrl)) {
+            if (0.99 <= animctrl_getAnimTimer(this->animctrl)) {
                 func_8035EE80(this);
                 break;
             }
@@ -261,7 +261,7 @@ void func_8035F138(Actor *this) {
                 }
                 func_8030DBB4(this->unk44_31, this->unk1C[1]);
             }
-            if (func_802877D8(this->animctrl) <= 0.02) {
+            if (animctrl_getAnimTimer(this->animctrl) <= 0.02) {
                 func_80328B8C(this, 1, 0.02f, 1);
                 actor_playAnimationOnce(this);
                 this->unk28 = 0.0f;
@@ -277,7 +277,7 @@ void func_8035F138(Actor *this) {
             if (actor_animationIsAt(this, 0.64f)) {
                 local->unk0 = 1;
             }
-            if (0.99 <= func_802877D8(this->animctrl)) {
+            if (0.99 <= animctrl_getAnimTimer(this->animctrl)) {
                 func_8035EEC0(this);
             }
             break;

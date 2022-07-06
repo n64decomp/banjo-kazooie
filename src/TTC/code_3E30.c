@@ -254,15 +254,15 @@ void func_8038AC48(Struct_TTC_3E30_1 *arg0) {
                                     break;
                                 case 0:
                                     func_80346448(ITEM_D_EGGS);
-                                    func_802FAFAC(0xD, 0xC);
+                                    func_802FAFAC(ITEM_D_EGGS, COMUSIC_C_EGG_COLLECTED);
                                     break;
                                 case 1:
                                     func_80346448(ITEM_F_RED_FEATHER);
-                                    func_802FAFAC(0xF, 0xB);
+                                    func_802FAFAC(ITEM_F_RED_FEATHER, COMUSIC_B_RED_FEATHER_COLLECTED);
                                     break;
                                 case 2:
                                     func_80346448(ITEM_10_GOLD_FEATHER);
-                                    func_802FAFAC(0x10, 0x14);
+                                    func_802FAFAC(ITEM_10_GOLD_FEATHER, COMUSIC_14_GOLD_FEATHER_COLLECTED);
                                     break;
                                 }
                             } else {

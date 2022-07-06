@@ -50,7 +50,7 @@ void func_8038F144(Actor *this){
             this->unk38_31 = FALSE;
             this->marker->collidable = FALSE;
             this->marker->propPtr->unk8_3 = TRUE;
-            func_8028764C(this->animctrl, randf());
+            animctrl_setAnimTimer(this->animctrl, randf());
         }
     }
     if (this) if (this);

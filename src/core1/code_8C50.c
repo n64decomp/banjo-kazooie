@@ -278,7 +278,7 @@ void func_802471D8(OSMesg arg0){
 }
 
 void func_802471EC(void){
-    osSendMesg(amgrGetFrameMesgQueue(), NULL, OS_MESG_NOBLOCK);
+    osSendMesg(amgr_getFrameMesgQueue(), NULL, OS_MESG_NOBLOCK);
     func_80247224();
 }
 

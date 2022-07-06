@@ -167,12 +167,12 @@ void jiggySpawn(u32 indx, f32 pos[3]);
 
 struct3s *func_802F8264(s32 arg0);
 struct6s *func_802F8BE0(s32 arg0);
-struct8s *func_802FD320(s32);
-void func_802FD330(s32, struct8s *);
+struct8s *func_802FD320(enum asset_e item_id);
+void func_802FD330(enum item_e, struct8s *);
 void func_802FD33C(enum item_e arg0, struct8s *arg1, Gfx **arg2, Mtx **arg3, Vtx **arg4);
-void func_802FD350(s32, struct8s *);
+void func_802FD350(enum item_e item_id, struct8s *);
 
-struct8s *func_802FD7B0(s32);
+struct8s *func_802FD7B0(enum item_e);
 void func_802FD80C(s32, struct8s *);
 void func_802FDAF4(enum item_e, struct8s *, Gfx**, Mtx**, Vtx **);
 void func_802FDC80(enum item_e, struct8s *);
@@ -192,10 +192,10 @@ void func_803005BC(s32, struct8s *);
 void func_802FFF34(enum item_e, struct8s *, Gfx**, Mtx**, Vtx **);
 void func_802FFED4(s32, struct8s *);
 
-struct8s *func_803007C0(s32);
-void func_8030081C(s32, struct8s *);
-void func_80300974(s32, struct8s *, Gfx**, Mtx**, s32);
-void func_80300BB4(s32, struct8s *);
+void *fxcommon3score_new(enum item_e);
+void fxcommon3score_update(enum item_e, void *);
+void fxcommon3score_draw(enum item_e, void *, Gfx**, Mtx**, Vtx **);
+void fxcommon3score_free(enum item_e item_id, void *);
 
 struct8s *func_80300CD8(s32);
 void func_80301348(s32, struct8s *);
@@ -511,7 +511,7 @@ void func_80352CF4(f32 *, f32 *, f32, f32);
 
 
 AnimCtrl *_player_getAnimCtrlPtr(void);
-void _get_velocity(f32 (*dst)[3]);
+void _get_velocity(f32 dst[3]);
 void player_setYPosition(f32);
 
 NodeProp *func_80304C38(s32 arg0, Actor *arg1);

@@ -121,7 +121,7 @@ void func_80389600(Actor *this){
             if(actor_animationIsAt(this, 0.5f)){
                 func_80328B8C(this, 3, 0.5f, 1);
             }
-            if(0.15 < func_802877D8(this->animctrl)){
+            if(0.15 < animctrl_getAnimTimer(this->animctrl)){
                 this->marker->collidable = TRUE;
             }
             break;
