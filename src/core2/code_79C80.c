@@ -9,17 +9,23 @@ extern BKSprite * D_8036A910;
 extern BKSprite * D_8036A914;
 extern Gfx D_8036A918[];
 
+extern f32 D_80377480;
+
 extern f32 D_80381EFC;
 extern s32 D_80381F00;
 extern f32 D_80381F04;
 extern f32 D_80381F08[];
-
+extern struct8s D_80381F30;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_79C80/func_80300C10.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_79C80/func_80300C70.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_79C80/func_80300CD8.s")
+struct8s *func_80300CD8(s32 item_id){
+    func_80300C10();
+    D_80381EFC = D_80377480;
+    return &D_80381F30;
+}
 
 #ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_79C80/func_80300D0C.s")
@@ -104,6 +110,8 @@ void func_80300D0C(enum item_e item_id, struct8s *arg1, Gfx **gfx, Mtx **mtx, Vt
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_79C80/func_803012F8.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_79C80/func_80301348.s")
+
+//BREAK???
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_79C80/func_803016F0.s")
 

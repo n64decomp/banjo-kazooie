@@ -38,7 +38,6 @@ s32 __osIdCheckSum(u16 *ptr, u16 *csum, u16 *icsum)
     return 0;
 }
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/core1/done/io/contpfs/__osRepairPackId.s")
 s32 __osRepairPackId(OSPfs *pfs, __OSPackId *badid, __OSPackId *newid)
 {
 

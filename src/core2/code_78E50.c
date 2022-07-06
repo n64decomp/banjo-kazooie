@@ -10,20 +10,46 @@ extern Gfx D_8036A278[];
 
 /* .bss */
 extern void *D_80381EB0[2];
-extern s32 D_80381EB8;
+extern f32 D_80381EB8;
 extern f32 D_80381EBC;
 extern s32 D_80381EC0;
 extern s32 D_80381EC4;
 extern u8 D_80381EC8[];
+extern struct8s D_80381ED0;
 
 /* .code */
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_78E50/func_802FFDE0.s")
+s32 func_802FFDE0(s32 arg0){
+    return D_8036A260[arg0/4];
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_78E50/func_802FFE04.s")
+s32 func_802FFE04(void){
+    s32 v1;
+    v1 = (5 < itemPrint_getValue(ITEM_14_HEALTH)) ? 5 : itemPrint_getValue(ITEM_14_HEALTH);
+    return (5 - v1)*4;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_78E50/func_802FFE4C.s")
+struct8s *func_802FFE4C(s32 item_id){
+    s32 i;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_78E50/func_802FFED4.s")
+    D_80381EB8 = 1.0f;
+    D_80381EBC = (f32)func_802FFE04();
+    D_80381EC0 = func_802FFDE0((s32)D_80381EBC);
+    D_80381EC4 = 0;
+    for(i = 0; i < 2; i++){
+        D_80381EB0[i] = NULL;
+    }
+    return &D_80381ED0;
+}
+
+void func_802FFED4(s32 item_id, struct8s *arg1){
+    s32 i;
+    for(i = 0; i < 2; i++){
+        if(D_80381EB0[i] != NULL){
+           func_8033BD4C(D_80381EB0[i]);
+           D_80381EB0[i] = NULL;
+        }
+    };
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_78E50/func_802FFF34.s")
 // void func_802FFF34(enum item_e item_id, struct8s *arg1, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
