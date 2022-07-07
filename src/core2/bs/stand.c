@@ -99,7 +99,7 @@ void bsstand_init(void){
 
 void func_802B4A10(AnimCtrl *arg0){
     if(animctrl_isAt(arg0, 0.2057f)){ //(30/145)
-        FUNC_8030E624(SFX_21_EGG_BOUNCE_1, 500, 0x731);
+        FUNC_8030E624(SFX_21_EGG_BOUNCE_1, 1.8f, 16000);
         func_80250D94(0.5f, 0.25f, 0.4f);
     }//L802B4A54
 
@@ -108,17 +108,17 @@ void func_802B4A10(AnimCtrl *arg0){
     //L802B4A78
 
     if(animctrl_isAt(arg0, 0.2555f)){ //(37/145)
-        FUNC_8030E624(SFX_21_EGG_BOUNCE_1, 500, 0x731);
+        FUNC_8030E624(SFX_21_EGG_BOUNCE_1, 1.8f, 16000);
         func_80250D94(0.5f, 0.25f, 0.4f);
     }//L802B4AB0
 
     if(animctrl_isAt(arg0, 0.2896f)){ //(42/145)
-        FUNC_8030E624(SFX_21_EGG_BOUNCE_1, 500, 0x731);
+        FUNC_8030E624(SFX_21_EGG_BOUNCE_1, 1.8f, 16000);
         func_80250D94(0.5f, 0.25f, 0.4f);
     }//L802B4AEC
 
     if(animctrl_isAt(arg0, 0.3f)){ //(43.5/145)?
-        FUNC_8030E624(SFX_62_BANJO_ERGHH, 875, 0x3FF);
+        FUNC_8030E624(SFX_62_BANJO_ERGHH, 1.0f, 28000);
     }//L802B4B0C
 
     if(animctrl_isAt(arg0, 0.3607f)){
@@ -142,7 +142,7 @@ void func_802B4A10(AnimCtrl *arg0){
     }//L802B4BBC
 
     if(animctrl_isAt(arg0, 0.6619f)){
-        FUNC_8030E624(SFX_21_EGG_BOUNCE_1, 500, 0x731);
+        FUNC_8030E624(SFX_21_EGG_BOUNCE_1, 1.8f, 16000);
         func_80250D94(0.5f, 0.25f, 0.4f);
     }//L802B4BF4
 
@@ -151,7 +151,7 @@ void func_802B4A10(AnimCtrl *arg0){
     //L802B4C18
 
     if(animctrl_isAt(arg0, 0.6964f)){
-        FUNC_8030E624(SFX_21_EGG_BOUNCE_1, 500, 0x731);
+        FUNC_8030E624(SFX_21_EGG_BOUNCE_1, 1.8f, 16000);
         func_80250D94(0.5f, 0.25f, 0.4f);
     }//L802B4C50
 
@@ -160,19 +160,19 @@ void func_802B4A10(AnimCtrl *arg0){
     //L802B4C74
 
     if(animctrl_isAt(arg0, 0.7822f)){
-        FUNC_8030E624(SFX_6F_BANJO_HEADSCRATCH, 0x1b5, 0x3ff);
+        FUNC_8030E624(SFX_6F_BANJO_HEADSCRATCH, 1.0f, 14000);
     }//L802B4C90
 
     if(animctrl_isAt(arg0, 0.8322f)){
-        FUNC_8030E624(SFX_6F_BANJO_HEADSCRATCH, 0x1b5, 0x3ff);
+        FUNC_8030E624(SFX_6F_BANJO_HEADSCRATCH, 1.0f, 14000);
     }//L802B4CB0
 
     if(animctrl_isAt(arg0, 0.8669f)){
-        FUNC_8030E624(SFX_6F_BANJO_HEADSCRATCH, 0x1b5, 0x3ff);
+        FUNC_8030E624(SFX_6F_BANJO_HEADSCRATCH, 1.0f, 14000);
     }//L802B4CD0
 
     if(animctrl_isAt(arg0, 0.9048f)){
-        FUNC_8030E624(SFX_6F_BANJO_HEADSCRATCH, 0x1b5, 0x3ff);
+        FUNC_8030E624(SFX_6F_BANJO_HEADSCRATCH, 1.0f, 14000);
     }//L802B4CF0
 
     if(animctrl_isAt(arg0, 0.9649f)){

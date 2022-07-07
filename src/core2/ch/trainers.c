@@ -38,9 +38,9 @@ void _chtrainers_802CA378(Actor *this, bool arg1){
         || actor_animationIsAt(this, 0.88f)
     ){
         if(arg1)
-            FUNC_8030E624(SFX_8_BANJO_LANDING_04, 0xDA, 0x664);
+            FUNC_8030E624(SFX_8_BANJO_LANDING_04, 1.6f, 7000);
         else
-            FUNC_8030E8B4(SFX_8_BANJO_LANDING_04, 0xDA, 0x664, this->position, 600, 1500);
+            FUNC_8030E8B4(SFX_8_BANJO_LANDING_04, 1.6f, 7000, this->position, 600, 1500);
     }
 
     func_802589E4(sp24, this->velocity[1], 40.0f);

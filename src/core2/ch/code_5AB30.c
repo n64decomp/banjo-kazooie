@@ -179,9 +179,9 @@ int func_802E1F70(ActorMarker *marker, s32 arg1){
 
 void func_802E1FD0(ActorMarker *marker, s32 arg1){
     Actor *actor = marker_getActor(marker);
-    FUNC_8030E8B4(SFX_15_METALLIC_HIT_2, 0x3A9, 0x3ff, actor->position, 1500, 4500);
-    FUNC_8030E8B4(0x3EA, 0x3A9, 0x3ff, actor->position, 1500, 4500);
-    FUNC_8030E8B4(SFX_2F_ORANGE_SPLAT, 0x3A9, 0x3ff, actor->position, 1500, 4500);
+    FUNC_8030E8B4(SFX_15_METALLIC_HIT_2, 1.0f, 30000, actor->position, 1500, 4500);
+    FUNC_8030E8B4(SFX_3EA_UNKNOWN, 1.0f, 30000, actor->position, 1500, 4500);
+    FUNC_8030E8B4(SFX_2F_ORANGE_SPLAT, 1.0f, 30000, actor->position, 1500, 4500);
 
     func_802C3C88(func_802E1BD0, actor->marker);
     if(map_get() == MAP_27_FP_FREEZEEZY_PEAK)
@@ -295,10 +295,10 @@ void func_802E20E8(Actor *this){
                     || actor_animationIsAt(this, 0.28f)
                     || actor_animationIsAt(this, 0.37f)
                 ){
-                    func_8030E8B4(0xA63190A7, this->position, 0x0BEA0320);
+                    FUNC_8030E8B4(SFX_A7_WOODEN_SWOSH, 1.3f, 18000, this->position, 800, 3050);
                 }//L802E24FC
                 if(actor_animationIsAt(this, 0.15f)){
-                    func_8030E878(0x3f5, randf2(1.35f, 1.5f),32000, this->position, 800.0f, 3050.0f);
+                    func_8030E878(SFX_3F5_UNKNOWN, randf2(1.35f, 1.5f),32000, this->position, 800.0f, 3050.0f);
                 }//L802E2558
 
                 if(actor_animationIsAt(this, 0.45f)){

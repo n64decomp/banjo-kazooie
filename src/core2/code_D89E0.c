@@ -42,7 +42,7 @@ void func_8035F99C(Actor *this){
         func_80328B8C(this, 2, 0.01f, 1);
         actor_playAnimationOnce(this);
         this->unk28 = 5.0f;
-        FUNC_8030E8B4(0x419, 0x36B, 0x3ff, this->position, 0x4e2, 0x9c4);
+        FUNC_8030E8B4(SFX_419_UNKNOWN, 1.0f, 28000, this->position, 0x4e2, 0x9c4);
     }
 }
 
@@ -371,7 +371,7 @@ void func_80360790(ActorMarker *this_marker, ActorMarker *other_marker){
     func_8035FAE0(this);
     local->unk0 = 0.0f;
     this->marker->collidable = FALSE;
-    FUNC_8030E8B4(SFX_115_BUZZBOMB_DEATH, 0x32C, 0x531, this->position, 1250, 2500);
+    FUNC_8030E8B4(SFX_115_BUZZBOMB_DEATH, 1.3f, 26000, this->position, 1250, 2500);
 }
 
 void func_803607FC(ActorMarker *this_marker, ActorMarker *other_marker){
@@ -428,7 +428,7 @@ void func_80360828(Actor *this){
             else{
                 if(!(func_8023DB5C() & 0xf)){
                     if(randf() < 0.35){
-                        FUNC_8030E8B4(0x419, 0x36B, 0x3ff, this->position, 1250, 2500);
+                        FUNC_8030E8B4(SFX_419_UNKNOWN, 1.0f, 28000, this->position, 1250, 2500);
                     }
                 }
             }//L80360A40

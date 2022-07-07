@@ -239,7 +239,7 @@ void bswalrus_jump_update(void){
     f32 sp1C[3];
 
     func_802B7E6C();
-    _get_velocity(&sp1C);
+    _get_velocity(sp1C);
     if(button_released(BUTTON_A) && 0.0f < sp1C[1])
         gravity_reset();
 
@@ -321,7 +321,7 @@ void bswalrus_fall_update(void){
 
     func_80299628(0);
     func_802B7E6C();
-    _get_velocity(&sp1C);
+    _get_velocity(sp1C);
 
     switch (D_8037D5C8)
     {
@@ -376,9 +376,9 @@ static void __bswalrus_recoil_init(s32 damage){
     else
         func_8030E58C(SFX_56_BANJO_HUI, 1.8f);
     
-    _player_getPosition(&sp30);
-    func_80294980(&sp24);
-    func_80257F18(&sp24, &sp30, &sp3C);
+    _player_getPosition(sp30);
+    func_80294980(sp24);
+    func_80257F18(sp24, sp30, &sp3C);
     yaw_setIdeal(mlNormalizeAngle(sp3C + 180.0f));
     yaw_applyIdeal();
     func_80297970(func_802987D4());
@@ -449,9 +449,9 @@ void bswalrus_die_init(void){
     animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
     func_802875AC(aCtrl, "bswalrus.c", 0x366);
     func_8030E58C(SFX_36_BANJO_DOH, 1.8f);
-    _player_getPosition(&sp2C);
-    func_80294980(&sp20);
-    func_80257F18(&sp20, &sp2C, &sp38);
+    _player_getPosition(sp2C);
+    func_80294980(sp20);
+    func_80257F18(sp20, sp2C, &sp38);
     D_8037D5C4 = 250.0f;
     yaw_setIdeal(mlNormalizeAngle(sp38 + 180.0f));
     yaw_applyIdeal();
@@ -483,8 +483,8 @@ void bswalrus_die_update(void){
         case 0://L802B8F54
             if(func_8028B2E8()){
                 func_8028A37C(1.0f);
-                FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 0x232, 0x332);
-                FUNC_8030E624(SFX_39_BANJO_AYE_2, 0x232, 0x731);
+                FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 0.8f, 18000);
+                FUNC_8030E624(SFX_39_BANJO_AYE_2, 1.8f, 18000);
                 player_setYVelocity(400.0f);
                 D_8037D5C8 = 2;
             }
@@ -571,7 +571,7 @@ void bswalrus_sled_update(void){
         }else{
             func_80292578(&sp20);
         }
-        particleEmitter_emitN(func_802F1EC8(&sp20), 1);
+        particleEmitter_emitN(func_802F1EC8(sp20), 1);
     }//L802B927C
 
     func_80299628(0);
@@ -620,7 +620,7 @@ void bswalrus_sled_jump_update(void){
     f32 sp1C[3];
 
     func_802B7F28();
-    _get_velocity(&sp1C);
+    _get_velocity(sp1C);
 
     if(button_released(BUTTON_A) && 0.0f < sp1C[1])
         gravity_reset();
@@ -662,7 +662,7 @@ void bswalrus_sled_jump_end(void){
 }
 
 void func_802B95A0(void){
-    enum bs_e aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     animctrl_reset(aCtrl);
     animctrl_setIndex(aCtrl, 0x19f);
     animctrl_setSubRange(aCtrl, 0.0f, 0.5058f);
@@ -681,7 +681,7 @@ void func_802B963C(void){
 
     func_80299628(0);
     func_802B7E6C();
-    _get_velocity(&sp1C);
+    _get_velocity(sp1C);
     switch (D_8037D5C8)
     {
         case 0://L802B9694

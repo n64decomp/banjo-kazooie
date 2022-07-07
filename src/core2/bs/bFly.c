@@ -332,7 +332,7 @@ void func_802A3F9C(void){
     func_802914CC(4);
     func_802BFE74(1);
     func_802A3430();
-    FUNC_8030E624(SFX_52_BANJO_YAH_OH, 0x36B, 0x3ff);
+    FUNC_8030E624(SFX_52_BANJO_YAH_OH, 1.0f, 28000);
     D_8037D345 = 0;
     _player_getPosition(D_8037D328);
     D_8037D344 = 0;
@@ -530,7 +530,7 @@ void func_802A4748(void) {
     func_8028A180(0x3E, 1.4f);
     func_8029C7F4(1, 1, 3, 3);
     func_8029E070(1);
-    FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 0x3ff, 0x332);
+    FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 0.8f, 32750);
     func_80299CF4(SFX_36_BANJO_DOH, 1.0f, 28000);
     func_80250D94(1.0f, 0.5f, 0.5f);
     item_dec(ITEM_14_HEALTH);
@@ -544,11 +544,11 @@ void func_802A47E0(void) {
 
     sp1C = _player_getAnimCtrlPtr();
     if (animctrl_isAt(sp1C, 0.3659f)) {
-        FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 0x1b5, 0x3ff);
+        FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 1.0f, 14000);
         func_80299CF4(SFX_8B_KAZOOIE_RAWW, 1.0f, 28000);
     }
     if (animctrl_isAt(sp1C, 0.6862f)) {
-        FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 0x232, 0x332);
+        FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 0.8f, 18000);
         func_80299CF4(SFX_38_BANJO_AYE_1, 1.0f, 22000);
     }
     if (animctrl_isAt(sp1C, 0.92f)) {

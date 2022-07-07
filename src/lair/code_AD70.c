@@ -188,7 +188,7 @@ void func_80391810(Actor *this, s32 next_state) {
         func_803916BC(sp38, 3);
         break;
     case 2:
-        func_8030E8B4(0x7FF38948, this->position, 0x0BB805DC);
+        FUNC_8030E8B4(SFX_148_GRUNTY_SPELL_LANDING, 1.0f, 20000, this->position, 1500, 3000);
         func_80391254(this->position, 2, 0x4A0);
         func_80391254(this->position, 2, 0x6C1);
         func_80391160(this->position, 4);
@@ -199,7 +199,7 @@ void func_80391810(Actor *this, s32 next_state) {
         this->unk60 = 4.0f;
         break;
     case 3:
-        func_8030E8B4(0x66586896, this->position, 0x0BB805DC);
+        FUNC_8030E8B4(SFX_96_HOTSAND_EEL_HISS, 0.8f, 25000, this->position, 1500, 3000);
         sp38[0] = this->position[0];
         sp38[1] = this->position[1];
         sp38[2] = this->position[2];
@@ -270,7 +270,7 @@ void func_80391B04(Actor *this) {
             }
         }
         if ((local->unk8 < this->position[1]) && !this->unk138_24) {
-            func_8030E8B4(0x7FF3894E, this->position, 0x0BB805DC);
+            FUNC_8030E8B4(SFX_14E_SOFT_EXPLOSION, 1.0f, 20000, this->position, 1500, 3000);
             this->unk138_24 = TRUE;
         }
         break;

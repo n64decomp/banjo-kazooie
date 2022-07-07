@@ -239,7 +239,7 @@ static void __bsdronexform_setState(int arg0){
             func_802B01B0(0.05f);
             func_802978DC(7);
             func_8029E3C0(0, 2.8f);
-            FUNC_8030E624(SFX_17E_MUMBO_TRANSFORMATION_01, 0x1D4, 0x3FF);
+            FUNC_8030E624(SFX_17E_MUMBO_TRANSFORMATION_01, 1.0f, 15000);
             break; 
         
         case 2:// 802B02A8

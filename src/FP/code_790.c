@@ -53,7 +53,7 @@ void func_80386BEC(Actor *this){
     func_80328B8C(this, 2, 0.01f, 1);
     actor_collisionOff(this);
     func_8025A6EC(COMUSIC_2B_DING_B, 28000);
-    FUNC_8030E624(SFX_90_SWITCH_PRESS, 1000, 0x3ff);
+    FUNC_8030E624(SFX_90_SWITCH_PRESS, 1.0f, 32000);
     func_8038AB40();
     func_802EFFA8(pCtrl, D_80391B44);
     particleEmitter_setSprite(pCtrl, ASSET_700_SPRITE_DUST);

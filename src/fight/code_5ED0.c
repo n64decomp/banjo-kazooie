@@ -253,24 +253,24 @@ void func_8038C840(Actor *this){
                     this->unk44_31 = func_8030ED2C(0x18, 3);
                     func_8030E2C4(this->unk44_31);
                     func_8025A6EC(COMUSIC_43_ENTER_LEVEL_GLITTER, 0x7fff);
-                    func_8030E8B4(0x665ff8c7, this->position, 0x07d0012C);
+                    FUNC_8030E8B4(SFX_C7_SHWOOP, 0.8f, 32750, this->position, 300, 2000);
                 }//L8038CC2C
 
                 if(actor_animationIsAt(this, 0.434f)){
-                    func_8030E8B4(0x731ff8c7, this->position, 0x7d0012c);
+                    FUNC_8030E8B4(SFX_C7_SHWOOP, 0.9f, 32750, this->position, 300, 2000);
                 }//L8038CC58
 
                 if(actor_animationIsAt(this, 0.811f)){
-                    func_8030E8B4(0x7ffff8c7, this->position, 0x7d0012c);
+                    FUNC_8030E8B4(SFX_C7_SHWOOP, 1.0f, 32750, this->position, 300, 2000);
                 }
             }
             else{//L8038CC8C
                 if(actor_animationIsAt(this, 0.214f)){
-                    func_8030E8B4(0x8cbff8c7, this->position, 0x7d0012c);
+                    FUNC_8030E8B4(SFX_C7_SHWOOP, 1.1f, 32750, this->position, 300, 2000);
                 }//L8038CCB0
 
                 if(actor_animationIsAt(this, 0.55f)){
-                    func_8030E8B4(0xbfdff853, this->position, 0x7d0012c);
+                    FUNC_8030E8B4(SFX_53_BANJO_HUIII, 1.5f, 32750, this->position, 300, 2000);
                 }//L8038CCDC
                 
                 if(actor_animationIsAt(this, 0.85f)){
@@ -291,7 +291,7 @@ void func_8038C840(Actor *this){
                 if(actor_animationIsAt(this, 0.9f)){
                     animctrl_setSmoothTransition(this->animctrl, FALSE);
                     func_80328B8C(this, 5, 0.001f, 1);
-                    func_8030E8B4(0x7fff4135, this->position, 0x3e802710);
+                    FUNC_8030E8B4(SFX_135_CARTOONY_SPRING, 1.0f, 32000, this->position, 10000, 16000);
                     func_80324D54(0.1f, SFX_C1_BUZZBOMB_ATTACK, 0.85f, 32000, this->position, 5000.0f, 12000.0f);
                     func_8034A174(this->marker->unk44, 0x1f, this->position);
                     this->velocity_x = (this->position_x - this->unk1C[0])/ sp74;
@@ -396,7 +396,7 @@ void func_8038D014(Actor *this){
 void func_8038D214(ActorMarker *marker){
     Actor *actor = marker_getActor(marker);
     func_8038C674(actor);
-    func_8030E8B4(0x7fff401b, actor->position, 0x196403e8);
+    FUNC_8030E8B4(SFX_1B_EXPLOSION_1, 1.0f, 32000, actor->position, 1000, 6500);
     marker_despawn(actor->marker);
 }
 

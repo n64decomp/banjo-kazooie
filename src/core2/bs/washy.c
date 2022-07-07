@@ -24,7 +24,7 @@ void func_802B9980(s32 arg0){
             func_8029E3C0(0, 0.01f);
             break;
         case 4: //L802B9A38
-            FUNC_8030E624(0x3EB, 0x30D, 0x2CC);
+            FUNC_8030E624(SFX_3EB_UNKNOWN, 0.7f, 25000);
             func_8029E3C0(0, 0.25f);
             break;
         case 5: //L802B9A58

@@ -177,10 +177,10 @@ void func_80357F0C(Actor *this, s32 next_state) {
     }
     if (this->state == 5) {
         func_8028F55C(1, this->marker);
-        func_8030E624(0x997F701FU);
+        FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 1.2f, 32200);
         func_80335924(this->unk148, 0x23A, 0.4f, 1.0f);
         func_80335A8C(this->unk148, 1);
-        timed_playSfx(D_80379610, 0x3FC, randf2(D_80379608, D_8037960C), 0x7D00);
+        timed_playSfx(D_80379610, 0x3FC, randf2(D_80379608, D_8037960C), 32000);
         local->unk39 = 0;
         local->unk28 = 2.0f;
     }
@@ -191,7 +191,7 @@ void func_80357F0C(Actor *this, s32 next_state) {
         this->unk138_27 = 1;
         this->marker->collidable = FALSE;
         this->unk10_1 = FALSE;
-        func_8030E624(0x997F701F);
+        FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 1.2f, 32200);
         func_80335924(this->unk148, 0x23D, 0.3f, 0.45f);
         func_80335A8C(this->unk148, 1);
         local->unk36 = 0x3E8;
@@ -520,7 +520,7 @@ void func_80358684(Actor *this) {
                 if (this->position[1] < func_80309724(this->position)) {
                     this->position[1] = func_80309724(this->position);
                     next_state = 7;
-                    func_8030E624(0x997F701FU);
+                    FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 1.2f, 32200);
                     timed_playSfx(D_80379674, SFX_66_BIRD_AUUGHH, 1.6f, 32000);
                 }
             } else if (func_80335794(this->unk148) > 0) {

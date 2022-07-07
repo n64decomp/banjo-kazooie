@@ -103,7 +103,7 @@ void func_802E28D0(Actor *this) {
     s32 i;
 
     if(this->unk38_31 == 0 && func_80329530(500)){
-        FUNC_8030E8B4(SFX_C_TAKING_FLIGHT_LIFTOFF, 1000, 0x365, this->position, 1250, 2500);
+        FUNC_8030E8B4(SFX_C_TAKING_FLIGHT_LIFTOFF, 0.85f, 32000, this->position, 1250, 2500);
         this->unk38_31 = 1;
     }
 

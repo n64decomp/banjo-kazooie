@@ -34,7 +34,7 @@ u8 D_8037D2D4;
 
 /* .code */
 void func_802A0F90(void){
-    FUNC_8030E624(SFX_2F_ORANGE_SPLAT, 0xFA, 0x598);
+    FUNC_8030E624(SFX_2F_ORANGE_SPLAT, 1.4f, 8000);
 
 }
 
@@ -164,7 +164,7 @@ void func_802A1438(void){
     sp2c = 0;
     sp28 = _player_getAnimCtrlPtr();
     func_802A1020();
-    _get_velocity(&sp1c);
+    _get_velocity(sp1c);
     if(button_released(BUTTON_A) && (0.0f < sp1c[1])){
         gravity_reset();
     }
@@ -250,7 +250,7 @@ void func_802A170C(void){
     sp28 = _player_getAnimCtrlPtr();
     func_80299628(0);
     func_802A1020();
-    _get_velocity(&sp1c);
+    _get_velocity(sp1c);
     switch(D_8037D2D4){
         case 0:
             if(func_8028B254(0x82)){
@@ -320,7 +320,7 @@ void func_802A18E8(s32 arg0){
     }else{
         func_8030E58C(SFX_56_BANJO_HUI, 1.8f);
     }
-    _player_getPosition(&sp2C);
+    _player_getPosition(sp2C);
     func_80294980(sp20);
     func_80257F18(sp20, sp2C, &sp38);
     yaw_setIdeal(mlNormalizeAngle(sp38 + 180.0f));
@@ -410,7 +410,7 @@ void bsbeemain_die_init(void){
     animctrl_setPlaybackType(sp3C,  ANIMCTRL_ONCE);
     func_802875AC(sp3C, "bsbeemain.c", 0x2ef);
     func_8029C7F4(1,1,2,3);
-    _player_getPosition(&sp2C);
+    _player_getPosition(sp2C);
     func_80294980(sp20);
     func_80257F18(sp20, sp2C, &sp38);
     yaw_setIdeal(mlNormalizeAngle(sp38 + 180.0f));
@@ -440,8 +440,8 @@ void func_802A1DD8(void){
             if(!func_8028B2E8())
                 break;
             func_8028A37C(0.7453f);
-            FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 0x232, 0x332);
-            FUNC_8030E624(SFX_39_BANJO_AYE_2, 0x232, 0x731);
+            FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 0.8f, 18000);
+            FUNC_8030E624(SFX_39_BANJO_AYE_2, 1.8f, 18000);
             player_setYVelocity(400.0f);
             D_8037D2D4 = 1;
             break;
@@ -449,8 +449,8 @@ void func_802A1DD8(void){
             if(!func_8028B2E8())
                 break;
             func_8028A37C(1.0f);
-            FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 0x232, 0x332);
-            FUNC_8030E624(SFX_39_BANJO_AYE_2, 0x232, 0x731);
+            FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 0.8f, 18000);
+            FUNC_8030E624(SFX_39_BANJO_AYE_2, 1.8f, 18000);
             D_8037D2D4 = 2;
             break;
         case 2:

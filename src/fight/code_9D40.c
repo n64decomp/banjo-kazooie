@@ -182,10 +182,10 @@ void func_8039049C(Actor *this){
         case 2: //80390648
             func_8039040C(this);
             if(actor_animationIsAt(this, 0.27f))
-                func_8030E624(0x599C50D0);
+                FUNC_8030E624(SFX_D0_GRIMLET_SQUEAK, 0.7f, 29000);
 
             if(actor_animationIsAt(this, 0.44f)){
-                func_8030E624(0x7FF86976);
+                FUNC_8030E624(SFX_176_JINJONATOR_JINJOOO_1, 1.0f, 25000);
                 timed_playSfx(0.66f, SFX_176_JINJONATOR_JINJOOO_1, 0.9f, 25000);
             }
 
@@ -242,14 +242,14 @@ void func_8039049C(Actor *this){
             animctrl_setDuration(this->animctrl, MAX(0.4, sp54 - (0.5*sp58)));
             func_80390278(this);
             if(actor_animationIsAt(this, 0.25f) || actor_animationIsAt(this, 0.75f)){
-                func_8030E624(_SHIFTL(local->unk1C * 1023.0f,21, 11) + 0x196002);
+                FUNC_8030E624(SFX_2_CLAW_SWIPE, local->unk1C, 26000);
                 local->unk1C += 0.04;
             }//L80390A4C
             func_8039040C(this);
             if(actor_animationIsAt(this, 0.5f)){
                 if(--local->unk28 <= 0){
                 func_803903C4(this);
-                func_8030E8B4(0x7fff4135, this->position, 0x3e802710);
+                FUNC_8030E8B4(SFX_135_CARTOONY_SPRING, 1.0f, 32000, this->position, 10000, 16000);
                 func_80324D54(0.1f, SFX_C1_BUZZBOMB_ATTACK, 0.85f, 32000, this->position, 5000.0f, 12000.0f);
                 if((u8)this->unk44_31){
                     func_8030E394(this->unk44_31);
@@ -277,12 +277,12 @@ void func_8039049C(Actor *this){
             break;
         case 8: //80390C48
             if(actor_animationIsAt(this, 0.16f) || actor_animationIsAt(this, 0.47f))
-                func_8030E624(0x7ffb5802);
+                FUNC_8030E624(SFX_2_CLAW_SWIPE, 1.0f, 28000);
             
             if(actor_animationIsAt(this, 0.999f)){
                 func_8034A174(this->marker->unk44, 0x1f, this->position);
                 func_803903C4(this);
-                func_8030E8B4(0x7fff4135, this->position, 0x3E802710);
+                FUNC_8030E8B4(SFX_135_CARTOONY_SPRING, 1.0f, 32000, this->position, 10000, 16000);
                 func_80324D54(0.1f, SFX_C1_BUZZBOMB_ATTACK, 0.85f, 32000, this->position, 5000.0f, 12000.0f);
                 this->velocity[2] = 0.0f;
                 this->velocity[1] = 0.0f;
@@ -294,7 +294,8 @@ void func_8039049C(Actor *this){
         
         case 9: //80390D20
             if(actor_animationIsAt(this, 0.16f) || actor_animationIsAt(this, 0.47f))
-                func_8030E624(0x7ffb5802);
+                FUNC_8030E624(SFX_2_CLAW_SWIPE, 1.0f, 28000);
+
             
             if(actor_animationIsAt(this, 0.8f)){
                 sp4C = func_802F9AA8(SFX_141_MECHANICAL_WINCH);
@@ -316,7 +317,7 @@ void func_8039049C(Actor *this){
             }
 
             if(local->unk20 == 2 && actor_animationIsAt(this, 0.1f)){
-                func_8030E624(0x7fff4176);
+                FUNC_8030E624(SFX_176_JINJONATOR_JINJOOO_1, 1.0f, 32000);
                 timed_playSfx(0.66f, SFX_176_JINJONATOR_JINJOOO_1, 0.9f, 32000);
             }//L80390E90
 
@@ -332,8 +333,8 @@ void func_8039049C(Actor *this){
         case 11: //80390EF8
             if(actor_animationIsAt(this, 0.999f)){
                 func_8034A174(this->marker->unk44, 0x1f, this->position);
-                func_8030E624(0x7fff417b);
-                func_8030E624(0x7fff4147);
+                FUNC_8030E624(SFX_17B_AIRPLANE_FALLING, 1.0f, 32000);
+                FUNC_8030E624(SFX_147_GRUNTY_SPELL_ATTACK_2, 1.0f, 32000);
                 animctrl_setSmoothTransition(this->animctrl, 0);
                 func_80328B8C(this, 0xC, 0.001f, 1);
                 actor_playAnimationOnce(this);
@@ -365,7 +366,8 @@ void func_80391070(ActorMarker *marker, s32 arg1, s32 arg2) {
     func_8025A6EC(D_80392060[arg1-1], 20000);
 
     func_80390318(temp_s0, arg1);
-    func_8030E8B4(0x7FFF401B, temp_s0->position, 0x196403E8);
+    FUNC_8030E8B4(SFX_1B_EXPLOSION_1, 1.0f, 32000, temp_s0->position, 1000, 6500);
+
     temp_s0->velocity[2] = 0.0f;
     temp_s0->velocity[1] = 0.0f;
     temp_s0->velocity[0] = 0.0f;

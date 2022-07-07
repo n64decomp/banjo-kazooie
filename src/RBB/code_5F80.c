@@ -476,7 +476,7 @@ void func_8038D7E8(ActorMarker *marker, s32 arg1){
     Actor *actor = marker_getActor(marker);
     ActorLocal_RBB_5F80 *local = (ActorLocal_RBB_5F80 *) &actor->local;
 
-    func_8030E8B4(0x7ff3881e, &actor->position, 0x07d003e8);
+    FUNC_8030E8B4(SFX_1E_HITTING_AN_ENEMY_2, 1.0f, 20000, actor->position, 1000, 2000);
     func_8030E6A4(SFX_D7_GRABBA_DEATH, local->unk0->unk10, 0x7530);
     local->unk4 += (arg1) ? 1 : 5;
     if(local->unk4 >= local->unk0->unkC)

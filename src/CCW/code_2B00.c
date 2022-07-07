@@ -120,7 +120,7 @@ void func_8038921C(void* marker) {
     func_8030E394(actor->unk44_31);
     func_8030DA44(actor->unk44_31);
     actor->unk44_31 = 0U;
-    FUNC_8030E624(SFX_6C_LOCKUP_CLOSING, 0x30D, 0x3FF);
+    FUNC_8030E624(SFX_6C_LOCKUP_CLOSING, 1.0f, 25000);
 }
 
 void func_80389268(Actor *this) {

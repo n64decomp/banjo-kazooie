@@ -180,13 +180,13 @@ void func_8035765C(Actor *this){
                 this->marker->unk14_20 = 0x1d0;
             }
             if(sp4C < 0.05 && 0.05 <= sp48){
-                FUNC_8030E624(SFX_2_CLAW_SWIPE, 1000, 920);
+                FUNC_8030E624(SFX_2_CLAW_SWIPE, 0.9f, 32000);
             }
             if( (sp4C < 0.11 && 0.11 <= sp48)
                 || (sp4C < 0.32 && 0.32 <= sp48)
                 || (sp4C < 0.53 && 0.53 <= sp48)
             ){
-                func_8030E6A4(SFX_80_YUMYUM_CLACK, randf2(0.75f, 0.95f), 0x7fbc);
+                func_8030E6A4(SFX_80_YUMYUM_CLACK, randf2(0.75f, 0.95f), 32700);
             }
             if(sp4C < 0.9 && 0.9 <= sp48){
                 func_8030E6D4(SFX_2_CLAW_SWIPE);
@@ -197,10 +197,10 @@ void func_8035765C(Actor *this){
                 this->marker->unk14_20 = 0x1d0;
             }
             if(sp4C < 0.1 && 0.1 <= sp48){
-                FUNC_8030E624(SFX_2_CLAW_SWIPE, 1000, 920);
+                FUNC_8030E624(SFX_2_CLAW_SWIPE, 0.9f, 32000);
             }
             if(sp4C < 0.5 && 0.5 <= sp48){
-                func_8030E6A4(SFX_80_YUMYUM_CLACK, randf2(0.75f, 0.95f), 0x7fbc);
+                func_8030E6A4(SFX_80_YUMYUM_CLACK, randf2(0.75f, 0.95f), 32700);
             }
             if(sp4C < 0.9 && 0.9 <= sp48){
                 func_8030E6D4(SFX_2_CLAW_SWIPE);

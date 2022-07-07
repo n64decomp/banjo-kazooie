@@ -92,10 +92,10 @@ void func_80390AE8(Actor *this) {
     func_802DB5A0(this);
     if (this->state == 5) {
         if (actor_animationIsAt(this, 0.18f)) {
-            func_8030E8B4(0x7FFB5802, this->position, 0x09C404E2);
+            FUNC_8030E8B4(SFX_2_CLAW_SWIPE, 1.0f, 28000, this->position, 1250, 2500);
         }
         if (actor_animationIsAt(this, 0.7f)) {
-            func_8030E8B4(0x7FFB581F, this->position, 0x09C404E2);
+            FUNC_8030E8B4(SFX_1F_HITTING_AN_ENEMY_3, 1.0f, 28000, this->position, 1250, 2500);
         }
     }
 }

@@ -68,13 +68,13 @@ void func_8038E0C8(Actor *this) {
         actor_collisionOff(this);
     } else {
         actor_collisionOn(this);
-        player_getPosition(&sp44);
-        func_80258A4C(this->position, this->yaw - 90.0f, &sp44, &sp40, &sp3C, &sp38);
+        player_getPosition(sp44);
+        func_80258A4C(this->position, this->yaw - 90.0f, sp44, &sp40, &sp3C, &sp38);
         if( (sp40 < 1050.0f) 
             && (sp38 > -1.0f)
             && (sp38 < 1.0f)
         ) {
-            func_80258A4C(this->position, this->unk1C[0] + (this->yaw - 90.0f), &sp44, &sp40, &sp3C, &sp38);
+            func_80258A4C(this->position, this->unk1C[0] + (this->yaw - 90.0f), sp44, &sp40, &sp3C, &sp38);
             this->unk1C[0] += sp38 * 160.0f * sp34;
         } else {
             if (this->unk1C[0] > 0.0f) {
@@ -110,7 +110,7 @@ void func_8038E0C8(Actor *this) {
             || actor_animationIsAt(this, 0.47f)
             || actor_animationIsAt(this, 0.78f)
         ) {
-            FUNC_8030E8B4(SFX_80_YUMYUM_CLACK, 1000, 0x3ff, this->position, 0x5DC, 0xBB8);
+            FUNC_8030E8B4(SFX_80_YUMYUM_CLACK, 1.0f, 32000, this->position, 1500, 3000);
         }
         break;
     }

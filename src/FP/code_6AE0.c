@@ -200,7 +200,7 @@ void func_8038D294(ActorMarker *marker){
     func_8038CF54(this->position, 12, ASSET_4D4_MODEL_TWINKLY_BOX_PAPER_SHARD);
     func_8038D01C(this->position, 12, ASSET_700_SPRITE_DUST);
     this->velocity[1] = 0.0f;
-    FUNC_8030E8B4(SFX_30_MAGIC_POOF, 1000, 0x3FF, this->position, 1000, 3500);
+    FUNC_8030E8B4(SFX_30_MAGIC_POOF, 1.0f, 32000, this->position, 1000, 3500);
     func_80311480(0xc13, 0, NULL, NULL, NULL, NULL);
 }
 
@@ -212,10 +212,10 @@ void func_8038D324(Actor *this){
         func_8038D170(this->position, 1, ASSET_710_SPRITE_SPARKLE_PURPLE + randi2(0, 10));
     }
     func_8038D208(this->position, 8, ASSET_700_SPRITE_DUST);
-    FUNC_8030E624(SFX_30_MAGIC_POOF, 1000, 0x3ff);
+    FUNC_8030E624(SFX_30_MAGIC_POOF, 1.0f, 32000);
 }
 
-void func_8038D3B0(UNK_TYPE(s32) arg0){
+void func_8038D3B0(Actor *arg0){
     item_set(ITEM_6_HOURGLASS, FALSE);
 }
 
@@ -251,12 +251,12 @@ void func_8038D474(ActorMarker *marker){
     child->unk100 = actor->marker;
 }
 
-void func_8038D51C(Actor *marker){
+void func_8038D51C(ActorMarker *marker){
     Actor *this = marker_getActor(marker);
     
     item_set(ITEM_6_HOURGLASS, FALSE);
     func_80320004(BKPROG_13, TRUE);
-    FUNC_8030E624(SFX_416, 1000, 0x332);
+    FUNC_8030E624(SFX_416, 0.8f, 32000);
     func_8028F8F8(7, 0);
     this->unk1C[1] = 1.0f;
     func_80324E88(1.7f);
@@ -359,7 +359,7 @@ void func_8038D6C8(Actor *this){
             || actor_animationIsAt(this, 0.63f)
             || actor_animationIsAt(this, 0.81f)
         ){
-            FUNC_8030E8B4(SFX_98_DEAF_THUD, 1000, 0x3ff, this->position, 400, 2000);
+            FUNC_8030E8B4(SFX_98_DEAF_THUD, 1.0f, 32000, this->position, 400, 2000);
         }
         break;
 
@@ -368,7 +368,7 @@ void func_8038D6C8(Actor *this){
             func_8038D324(this);
         
         if(actor_animationIsAt(this, 0.999f))
-            func_802C3C88(func_8038D474, this->marker);
+            func_802C3C88((GenMethod_1)func_8038D474, (s32)this->marker);
         
         if(this->velocity[0] != 0.0f)
             break;
@@ -381,7 +381,7 @@ void func_8038D6C8(Actor *this){
         item_set(ITEM_6_HOURGLASS, TRUE);
         this->unk38_31 = 0xA;
         item_set(ITEM_24_TWINKLY_SCORE, this->unk38_31);
-        func_802C3C88(func_8038D41C, this->marker);
+        func_802C3C88((GenMethod_1)func_8038D41C, (s32)this->marker);
         this->unk60 = 0.0f;
         func_80347A14(0);
         func_802FAD64(ITEM_14_HEALTH);
@@ -398,7 +398,7 @@ void func_8038D6C8(Actor *this){
             func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);
             func_8038D3D8();
             func_80324E38(0.0f, 3);
-            timedFunc_set_1(1.3f, (TFQM1)func_8038D51C, this->marker);
+            timedFunc_set_1(1.3f, (TFQM1)func_8038D51C, (s32)this->marker);
             timed_setCameraToNode(0.9f, 0xC);
             item_set(ITEM_24_TWINKLY_SCORE, this->unk38_31);
             func_80347A14(1);
@@ -421,7 +421,7 @@ void func_8038D6C8(Actor *this){
 
         if(0.96 < animctrl_getAnimTimer(this->animctrl)){
             if(this->unk60 <= 0.0){
-                func_802C3C88(func_8038D474, this->marker);
+                func_802C3C88((GenMethod_1)func_8038D474, (s32)this->marker);
                 this->unk60 = 2.9f;
             }
             else{

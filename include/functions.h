@@ -49,15 +49,17 @@ typedef void (* GenMethod_4)(s32, s32, s32, s32);
     out##_z = a##_z op b##_z;\
 }
 
-#define FUNC_8030E624(sfx_e, b, c) func_8030E624(\
-    _SHIFTL(c, 21, 11) | _SHIFTL(b, 11, 10) | _SHIFTL(sfx_e, 0, 11)\
+//known it uses "+" instead of "|" for fight/code_9D40.c, func_8039049C, case 6
+#define FUNC_8030E624(sfx_e, vol, sample_rate) func_8030E624(\
+    _SHIFTL((vol*1023), 21, 11) + _SHIFTL(sample_rate >> 5, 11, 10) + _SHIFTL(sfx_e, 0, 11)\
 )
 
-#define FUNC_8030E8B4(sfx_e, b, c, d, e, f) func_8030E8B4(\
-    _SHIFTL(c, 21, 11) | _SHIFTL(b, 11, 10) | _SHIFTL(sfx_e, 0, 11), \
-    d, \
-    _SHIFTL(f, 16, 16) | _SHIFTL(e, 0, 16) \
+#define FUNC_8030E8B4(sfx_e, vol, sample_rate, position, e, f) func_8030E8B4(\
+    _SHIFTL((vol*1023), 21, 11) + _SHIFTL(sample_rate >> 5, 11, 10) + _SHIFTL(sfx_e, 0, 11), \
+    position, \
+    _SHIFTL(f, 16, 16) + _SHIFTL(e, 0, 16) \
 )
+
 void func_80241304(Mtx *m, float x, float y, float z);
 
 void _guMtxIdentF_80245D44(float mf[4][4]); //static should NOT be here

@@ -146,7 +146,7 @@ void func_8038E2FC(Actor *this){
         this->unk1C[1] = this->position_y;
         this->unk1C[2] = this->position_z;
         this->position_y = -600.0f;
-        func_8030E624(0x4CB86BF6);
+        FUNC_8030E624(SFX_3F6_UNKNOWN, 0.6f, 25000);
         if(0.0f != this->unk60){
             this->velocity_y = 600.0f/this->unk60;
         }else{
@@ -187,7 +187,7 @@ void func_8038E2FC(Actor *this){
             }
             else{//L8038E6FC
                 func_80328A84(this, 2);
-                func_8030E624(0x665F407F);
+                FUNC_8030E624(SFX_7F_HEAVYDOOR_SLAM, 0.8f, 32000);
                 func_8030E394(this->unk44_31);
                 func_8030DA44(this->unk44_31);
                 this->unk44_31 = 0;

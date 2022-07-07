@@ -83,7 +83,7 @@ void func_80389B1C(Actor *this){
                 || actor_animationIsAt(this, 0.51f)
                 || actor_animationIsAt(this, 0.57f)
             ){
-                FUNC_8030E8B4(SFX_8_BANJO_LANDING_04, 250, 0xF31, this->position, 1500, 4500);
+                FUNC_8030E8B4(SFX_8_BANJO_LANDING_04, 3.802f, 8000, this->position, 1500, 4500);
             }
 
             if( actor_animationIsAt(this, 0.4f)){

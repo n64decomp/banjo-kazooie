@@ -102,7 +102,7 @@ void func_8038966C(void){
 
     if(tmp_v0 != NULL){
         if((s32)(tmp_v0->flags << 4) < 0){
-            FUNC_8030E624(SFX_6B_LOCKUP_OPENING, 0x3FF, 0x598);
+            FUNC_8030E624(SFX_6B_LOCKUP_OPENING, 1.4f, 32750);
             D_8038C4E0.unk1 = 2;
             if(!levelSpecificFlags_get(0x1b)){
                 func_80324E38(0.0f, 3);

@@ -383,13 +383,13 @@ void func_802D9D60(Actor *this){
                 this->unk44_31 = 0;
             }
             else if(actor_animationIsAt(this, 0.14f)){//L802DA154
-                FUNC_8030E8B4(SFX_C6_SHAKING_MOUTH, 750, 0x4CB, this->position, 1250, 2500);
+                FUNC_8030E8B4(SFX_C6_SHAKING_MOUTH, 1.2f, 24000, this->position, 1250, 2500);
             }
             else if(actor_animationIsAt(this, 0.4f)){//L802DA188
-                FUNC_8030E8B4(SFX_2C_PULLING_NOISE, 750, 0x4CB, this->position, 1250, 2500);
+                FUNC_8030E8B4(SFX_2C_PULLING_NOISE, 1.2f, 24000, this->position, 1250, 2500);
             }
             else if(actor_animationIsAt(this, 0.75f)){//L802DA1BC
-                FUNC_8030E8B4(SFX_C5_TWINKLY_POP, 1000, 0x3FF, this->position, 1250, 2500);
+                FUNC_8030E8B4(SFX_C5_TWINKLY_POP, 1.0f, 32000, this->position, 1250, 2500);
             }
             else if(actor_animationIsAt(this, 0.35f)){//L802DA1EC
                 func_802D997C(this);

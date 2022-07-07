@@ -48,7 +48,7 @@ void func_8038B988(ActorMarker *caller, enum asset_e text_id, s32 arg2){
     func_80328B8C(this, 5, 0.01f, 1);
     actor_loopAnimation(this);
     func_802BAFE4(0x13);
-    FUNC_8030E624(SFX_8D_BOGGY_OHWW, 1000, 0x398);
+    FUNC_8030E624(SFX_8D_BOGGY_OHWW, 0.9f, 32000);
     timedFunc_set_0(2.5f, func_8038B960);
     D_80391A80 = this->state;
 }

@@ -122,7 +122,7 @@ void func_802E0F60(ActorMarker *marker, ActorMarker *other){
 
     this = marker_getActor(marker);
     actor_collisionOff(this);
-    FUNC_8030E8B4(SFX_179_GRUNTY_DAMAGE, 0x3FF, 0x265, this->position, 300, 3000);
+    FUNC_8030E8B4(SFX_179_GRUNTY_DAMAGE, 0.6f, 32750, this->position, 300, 3000);
     func_80328B8C(this, 9, 0.0f, 1);
     actor_playAnimationOnce(this);
 }
@@ -248,7 +248,7 @@ void func_802E1168(Actor *this) {
 
         case 5: //802E14F8
             if (actor_animationIsAt(this, 0.25f)) {
-                FUNC_8030E8B4(SFX_6D_CROC_BITE, 0x36B, 0x3ff, this->position, 300, 3000);
+                FUNC_8030E8B4(SFX_6D_CROC_BITE, 1.0f, 28000, this->position, 300, 3000);
             }
             if (actor_animationIsAt(this, 0.99f)) {
                 func_802E0CD0(this);

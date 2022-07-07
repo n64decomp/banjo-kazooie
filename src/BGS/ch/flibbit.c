@@ -181,7 +181,7 @@ void func_80386AEC(Actor *this, s32 next_state) {
     local->unk24 = 0.0f;
 
     if (next_state == 1) {
-        func_80335924(this->unk148, 0xFA, 0.2f, randf2(1.0f, 2.0f));
+        func_80335924(this->unk148, ASSET_FA_ANIM_FLIBBIT_IDLE, 0.2f, randf2(1.0f, 2.0f));
         func_80335A74(this->unk148, randf2(0.0f, 0.9f));
         func_80335A8C(this->unk148, 1);
         this->position[0] = (f32) local->unkE[0];
@@ -201,14 +201,14 @@ void func_80386AEC(Actor *this, s32 next_state) {
     } 
 
     if (next_state == 3) {
-        func_80335924(this->unk148, 0xFB, 0.2f, 1.0f);
+        func_80335924(this->unk148, ASSET_FB_ANIM_FLIBBIT_TURN, 0.2f, 1.0f);
         func_80335A74(this->unk148, randf2(0.0f, 1.0f));
         func_80335A8C(this->unk148, 1);
         local->unk24 = randf2(1.0f, 3.0f);
     }
 
     if (next_state == 4) {
-        func_80335924(this->unk148, 0xFA, 0.2f, randf2(1.0f, 2.0f));
+        func_80335924(this->unk148, ASSET_FA_ANIM_FLIBBIT_IDLE, 0.2f, randf2(1.0f, 2.0f));
         func_80335A74(this->unk148, randf2(0.0f, 0.9f));
         func_80335A8C(this->unk148, 1);
         this->position[1] = func_80309724(this->position);
@@ -216,24 +216,24 @@ void func_80386AEC(Actor *this, s32 next_state) {
     }
 
     if (next_state == 5) {
-        func_8030E8B4(0xBFDF708E, this->position, 0x09C401F4);
-        func_80335924(this->unk148, 0x288, 0.1f, 0.65f);
+        FUNC_8030E8B4(SFX_8E_GRUNTLING_DAMAGE, 1.5f, 32200, this->position, 500, 2500);
+        func_80335924(this->unk148, ASSET_288_ANIM_FLIBBIT_OW, 0.1f, 0.65f);
         func_80335A8C(this->unk148, 2);
         this->position[1] = func_80309724(this->position);
         local->unk18 = 1.0f;
     }
 
     if (next_state == 6) {
-        func_80335924(this->unk148, 0x112, 0.2f, 0.4f);
-        func_8030E8B4(0x7FFF7115, this->position, 0x09C401F4);
+        func_80335924(this->unk148, ASSET_112_ANIM_FLIBBIT_DIE, 0.2f, 0.4f);
+        FUNC_8030E8B4(SFX_115_BUZZBOMB_DEATH, 1.0f, 32200, this->position, 500, 2500);
         this->marker->collidable = FALSE;
         this->unk10_1 = FALSE;
         local->unk14 = 1000.0f;
     }
     if (next_state == 7) {
-        func_80335924(this->unk148, 0x113, 0.2f, 1.0f);
+        func_80335924(this->unk148, ASSET_113_ANIM_FLIBBIT_DEAD, 0.2f, 1.0f);
         func_80335A8C(this->unk148, 2);
-        func_8030E8B4(0x665F702F, this->position, 0x09C401F4);
+        FUNC_8030E8B4(SFX_2F_ORANGE_SPLAT, 0.8f, 32200, this->position, 500, 2500);
     }
     if (next_state == 8) {
         func_80326310(this);

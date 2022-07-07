@@ -673,6 +673,7 @@ segments:
   - [0xEF5F0, bin, data_EF5F0] #part of ch/jinjo .rodata
   - [0xEF640, .rodata, ch/beehive]
   - [0xEF650, bin, data_EF650]
+  - [0xEF6B0, bin, EF6B0] # .rodata, code_49A70]
   - [0xEF6D0, .rodata, ch/gloop]
   - [0xEF6E0, .rodata, code_4A6F0]
   - [0xEF790, bin, data_EF790]

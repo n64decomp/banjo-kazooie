@@ -79,7 +79,7 @@ void func_8035D88C(ActorMarker *marker, ActorMarker *other_marker){
     this = marker_getActor(marker);
     func_80328B8C(this, 7, 0.0f, -1);
     actor_playAnimationOnce(this);
-    FUNC_8030E8B4(SFX_115_BUZZBOMB_DEATH, 0x3A9, 0x332, this->position, 1500, 3000);
+    FUNC_8030E8B4(SFX_115_BUZZBOMB_DEATH, 0.8f, 30000, this->position, 1500, 3000);
     actor_collisionOff(this);
 }
 

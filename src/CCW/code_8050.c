@@ -66,10 +66,10 @@ void func_8038E4C0(ActorMarker* marker, s32 arg1) {
 
     func_80328B8C(actor, 5, 0.0f, 1);
     actor_playAnimationOnce(actor);
-    FUNC_8030E8B4(SFX_C2_GRUBLIN_EGH, 1000, 0x3ff, actor->position, 1250, 2500);
+    FUNC_8030E8B4(SFX_C2_GRUBLIN_EGH, 1.0f, 32000, actor->position, 1250, 2500);
     pCtrl = partEmitList_pushNew(1);
-    func_8038E440(pCtrl, actor, 0x52D);
-    func_802C3F04(func_802C4140, 0x4C, reinterpret_cast(s32,actor->position_x), reinterpret_cast(s32,actor->position_y), reinterpret_cast(s32,actor->position_z));
+    func_8038E440(pCtrl, actor, ASSET_52D_MODEL_GRUBLIN_HOOD_HAT);
+    func_802C3F04((GenMethod_4)func_802C4140, ACTOR_4C_STEAM, reinterpret_cast(s32,actor->position_x), reinterpret_cast(s32,actor->position_y), reinterpret_cast(s32,actor->position_z));
     actor_collisionOff(actor);
     actor->unk138_24 = 1;
 }
@@ -168,11 +168,10 @@ void func_8038E964(Actor *this) {
         func_802DB5A0(this);
         if (this->state == 5) {
             if (actor_animationIsAt(this, 0.18f)) {
-                FUNC_8030E8B4(SFX_2_CLAW_SWIPE, 875, 0x3FF, this->position, 1250, 2500);
+                FUNC_8030E8B4(SFX_2_CLAW_SWIPE, 1.0f, 28000, this->position, 1250, 2500);
             }
             if (actor_animationIsAt(this, 0.7f)) {
-                FUNC_8030E8B4(SFX_1F_HITTING_AN_ENEMY_3, 875, 0x3FF, this->position, 1250, 2500);
-
+                FUNC_8030E8B4(SFX_1F_HITTING_AN_ENEMY_3, 1.0f, 28000, this->position, 1250, 2500);
             }
         }
     }

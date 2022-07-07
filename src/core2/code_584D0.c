@@ -388,7 +388,7 @@ void func_802DFA34(Actor *this) {
 
             case 6://L802E04CC
                 if (actor_animationIsAt(this, 0.5f) != 0) {
-                    FUNC_8030E624(SFX_6C_LOCKUP_CLOSING, 0x2ee, 0x3ff);
+                    FUNC_8030E624(SFX_6C_LOCKUP_CLOSING, 1.0f, 24000);
                 }
                 if (animctrl_isStopped(this->animctrl) != 0) {
                     func_80328B8C(this, 1, 0.0f, 1);

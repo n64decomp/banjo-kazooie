@@ -166,10 +166,10 @@ void chnapper_update(Actor *this){
 
     if(this->state == 1){
         if(sp74 < sp70)
-            FUNC_8030E624(SFX_5E_BANJO_PHEWWW, 0x157, 0x332);
+            FUNC_8030E624(SFX_5E_BANJO_PHEWWW,  0.8f, 11000);
         
         if(sp70 < 0.5 && 0.5 <= sp74)
-            FUNC_8030E624(SFX_5D_BANJO_RAAOWW, 0x157, 0x332);
+            FUNC_8030E624(SFX_5D_BANJO_RAAOWW, 0.8f, 11000);
         
         if(!func_80389510()){
             __chnapper_setState(this, 2);

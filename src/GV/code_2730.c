@@ -38,10 +38,10 @@ void func_80388B20(Actor *this, s32 next_state){
         local->unk14 = 2.6f;
         D_80391A60 = TRUE;
         func_8028F428(2, this->marker);
-        FUNC_8030E624(SFX_9B_BOULDER_BREAKING_1, 0x119, 0x132);
-        FUNC_8030E624(SFX_9B_BOULDER_BREAKING_1, 0x119, 0x1ff);
-        FUNC_8030E624(SFX_9B_BOULDER_BREAKING_1, 0x119, 0x2CC);
-        FUNC_8030E624(SFX_9B_BOULDER_BREAKING_1, 0x119, 0x398);
+        FUNC_8030E624(SFX_9B_BOULDER_BREAKING_1, 0.3f, 9000);
+        FUNC_8030E624(SFX_9B_BOULDER_BREAKING_1, 0.5f, 9000);
+        FUNC_8030E624(SFX_9B_BOULDER_BREAKING_1, 0.7f, 9000);
+        FUNC_8030E624(SFX_9B_BOULDER_BREAKING_1, 0.9f, 9000);
         func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);
         func_802F066C(local->unkC, local->unk0);
         particleEmitter_emitN(local->unkC, 10);

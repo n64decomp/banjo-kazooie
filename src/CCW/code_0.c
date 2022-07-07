@@ -10,7 +10,7 @@ extern ActorInfo D_8038EB74 = { 0x1AC, 0x29A, 0x445, 0x0, NULL, func_803864B8, N
 /* .code */
 void func_803863F0(Actor *this, s32 next_state){
     if(next_state == 2){
-        FUNC_8030E8B4(SFX_2F_ORANGE_SPLAT, 1000, 0x3FF, this->position, 500, 3000);
+        FUNC_8030E8B4(SFX_2F_ORANGE_SPLAT, 1.0f, 32000, this->position, 500, 3000);
         levelSpecificFlags_set(0x10, TRUE);
         marker_despawn(this->marker);
     }

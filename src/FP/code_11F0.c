@@ -48,7 +48,7 @@ Actor *func_803875E0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 void func_803876A4(Actor *this){
     func_80328B8C(this, 2, 0.0001f, 1);
     actor_playAnimationOnce(this);
-    FUNC_8030E8B4(SFX_8E_GRUNTLING_DAMAGE, 1000, 0x3ff, this->position, 1250, 2500);
+    FUNC_8030E8B4(SFX_8E_GRUNTLING_DAMAGE, 1.0f, 32000, this->position, 1250, 2500);
 }
 
 void func_803876F8(Actor *this){
@@ -161,19 +161,19 @@ void func_8038794C(Actor *this){
         case 2://L80387BEC
             func_8028FC8C(this->position);
             if(actor_animationIsAt(this, 0.1f)){
-                FUNC_8030E8B4(SFX_F6_BLUBBER_TALKING_2, 1000, 0x3ff, this->position, 1250, 2500);
+                FUNC_8030E8B4(SFX_F6_BLUBBER_TALKING_2, 1.0f, 32000, this->position, 1250, 2500);
             }
             else if(actor_animationIsAt(this, 0.24f)){//L80387C2C
-                FUNC_8030E8B4(SFX_A0_COUGHING, 1000, 0x2CC, this->position, 1250, 2500);
+                FUNC_8030E8B4(SFX_A0_COUGHING, 0.7f, 32000, this->position, 1250, 2500);
             }
             else if(actor_animationIsAt(this, 0.52f)){//L80387C60
-                FUNC_8030E8B4(SFX_A0_COUGHING, 1000, 0x2AD, this->position, 1250, 2500);
+                FUNC_8030E8B4(SFX_A0_COUGHING, 0.67f, 32000, this->position, 1250, 2500);
             }
             else if(actor_animationIsAt(this, 0.61f)){//L80387C94
-                FUNC_8030E8B4(SFX_A0_COUGHING, 1000, 0x28E, this->position, 1250, 2500);
+                FUNC_8030E8B4(SFX_A0_COUGHING, 0.64f, 32000, this->position, 1250, 2500);
             }
             else if(actor_animationIsAt(this, 0.69f)){//L80387CC8
-                FUNC_8030E8B4(SFX_A0_COUGHING, 1000, 0x270, this->position, 1250, 2500);
+                FUNC_8030E8B4(SFX_A0_COUGHING, 0.61f, 32000, this->position, 1250, 2500);
             }//L80387CF4
 
             if(actor_animationIsAt(this, 0.9999f)){

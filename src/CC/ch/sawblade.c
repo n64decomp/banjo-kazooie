@@ -116,7 +116,7 @@ ActorInfo D_80389E1C = {
 
 /* .code */
 void func_80389520(ActorMarker *marker, ActorMarker *otherMarker){
-    FUNC_8030E624(SFX_65_METALLIC_SCRATCH, 0x3A9, 0x3FF);
+    FUNC_8030E624(SFX_65_METALLIC_SCRATCH, 1.0f, 30000);
 }
 
 void func_8038954C(ActorMarker *marker, ActorMarker *otherMarker){
@@ -124,7 +124,7 @@ void func_8038954C(ActorMarker *marker, ActorMarker *otherMarker){
     ActorLocal_CC_3130 *local = (ActorLocal_CC_3130 *) &actor->local;
 
     if(local->unk4 == 0){
-        FUNC_8030E624(SFX_20_METAL_CLANK_1, 0x3A9, 0x3ff);
+        FUNC_8030E624(SFX_20_METAL_CLANK_1, 1.0f, 30000);
     }
     local->unk4 = 2;
 }

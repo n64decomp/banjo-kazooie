@@ -131,8 +131,8 @@ void func_80387168(ActorMarker *marker, ActorMarker *other_marker){
                 func_80328B8C(actorPtr, 8, 0 ,1);
                 timed_setCameraToNode(0.0f, 0x10);
                 func_80324E38(0.0f, 3);
-                func_8030E624(0x665ff884);
-                func_8030E624(0x665ff884);
+                FUNC_8030E624(SFX_84_GOBI_CRYING, 0.8f, 32750);
+                FUNC_8030E624(SFX_84_GOBI_CRYING, 0.8f, 32750);
             }
             else if( actorPtr->state != 3
                 && actorPtr->state != 8

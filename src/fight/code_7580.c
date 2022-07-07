@@ -56,8 +56,8 @@ void func_8038DA04(Actor *this) {
     case 2:
         if (this->unkF4_8 != 5) {
             if (actor_animationIsAt(this, 0.001f)) {
-                func_8030E8B4(0x9978680D, this->position, 0x138803E8);
-                func_8030E878(SFX_80_YUMYUM_CLACK, randf2(0.6f, 0.8f), 0x4E20U, this->position, 1000.0f, 5000.0f);
+                FUNC_8030E8B4(SFX_D_EGGSHELL_BREAKING, 1.2f, 25000, this->position, 1000, 5000);
+                func_8030E878(SFX_80_YUMYUM_CLACK, randf2(0.6f, 0.8f), 20000, this->position, 1000.0f, 5000.0f);
             }
             if( actor_animationIsAt(this, 0.26f)
                 || actor_animationIsAt(this, 0.43f)
@@ -65,12 +65,12 @@ void func_8038DA04(Actor *this) {
                 || actor_animationIsAt(this, 0.62f)
                 || actor_animationIsAt(this, 0.77f)
             ) {
-                func_8030E878(SFX_80_YUMYUM_CLACK, randf2(0.6f, 0.8f), 0x4E20U, this->position, 1000.0f, 5000.0f);
+                func_8030E878(SFX_80_YUMYUM_CLACK, randf2(0.6f, 0.8f), 20000, this->position, 1000.0f, 5000.0f);
             }
         } else {
             if (actor_animationIsAt(this, 0.001f)) {
-                func_8030E8B4(0x9978680D, this->position, 0x138803E8);
-                func_8030E878(SFX_80_YUMYUM_CLACK, randf2(0.4f, 0.6f), 0x4E20U, this->position, 1000.0f, 5000.0f);
+                FUNC_8030E8B4(SFX_D_EGGSHELL_BREAKING, 1.2f, 25000, this->position, 1000, 5000);
+                func_8030E878(SFX_80_YUMYUM_CLACK, randf2(0.4f, 0.6f), 20000, this->position, 1000.0f, 5000.0f);
             }
             if( actor_animationIsAt(this, 0.26f) 
                 || actor_animationIsAt(this, 0.43f)
@@ -78,7 +78,7 @@ void func_8038DA04(Actor *this) {
                 || actor_animationIsAt(this, 0.62f)
                 || actor_animationIsAt(this, 0.77f)
             ) {
-                func_8030E878(SFX_80_YUMYUM_CLACK, randf2(0.4f, 0.6f), 0x4E20U, this->position, 1000.0f, 5000.0f);
+                func_8030E878(SFX_80_YUMYUM_CLACK, randf2(0.4f, 0.6f), 20000, this->position, 1000.0f, 5000.0f);
             }
             if( actor_animationIsAt(this, 0.1f)
                 || actor_animationIsAt(this, 0.23f)

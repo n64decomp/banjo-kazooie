@@ -21,8 +21,8 @@ ActorInfo D_803672E0 = {0x50, ACTOR_12_BEEHIVE, ASSET_364_MODEL_BEEHIVE,
 /* .code */
 void func_802CE7E0(ActorMarker *marker, s32 arg1){
     Actor *actor = marker_getActor(marker);
-    FUNC_8030E8B4(SFX_11_WOOD_BREAKING_1, 875, 0x3ff, actor->position, 300, 3000);
-    FUNC_8030E8B4(SFX_D_EGGSHELL_BREAKING, 875, 0x3ff, actor->position, 300, 3000);
+    FUNC_8030E8B4(SFX_11_WOOD_BREAKING_1, 1.0f, 28000, actor->position, 300, 3000);
+    FUNC_8030E8B4(SFX_D_EGGSHELL_BREAKING, 1.0f, 28000, actor->position, 300, 3000);
     func_80328A84(actor, 2);
     actor_playAnimationOnce(actor);
     marker->collidable = FALSE;

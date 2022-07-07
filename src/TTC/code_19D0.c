@@ -81,7 +81,7 @@ void func_80387FF4(Actor *this) {
     func_80328B8C(this, 4, 0.01f, 1);
     actor_playAnimationOnce(this);
     for(i = 0; i < 3; i ++){
-        FUNC_8030E8B4(SFX_79_TICKER_DEATH, 0x213, 0x1FF, this->position, 1500, 3000);
+        FUNC_8030E8B4(SFX_79_TICKER_DEATH, 0.5f, 17000, this->position, 1500, 3000);
     };
 }
 
@@ -114,7 +114,7 @@ void func_80388178(ActorMarker *this_marker, ActorMarker *other_marker) {
         func_80328B8C(this, 6, 0.01f, 1);
         actor_playAnimationOnce(this);
         for(i = 0; i < 3; i++){
-            FUNC_8030E8B4(SFX_78_EAGLECRY, 0x271, 0x2CC, this->position, 1500, 3000);
+            FUNC_8030E8B4(SFX_78_EAGLECRY, 0.7f, 20000, this->position, 1500, 3000);
         };
         comusic_8025AB44(COMUSIC_12_TTC_NIPPER, 0, 300);
         func_8025AABC(0x12);
@@ -236,7 +236,7 @@ void func_80388434(Actor *this){
                 || actor_animationIsAt(this, 0.6f)
                 || actor_animationIsAt(this, 0.7f)
             ){
-                FUNC_8030E8B4(SFX_3D_TICKER_WALKING, 0x177, 0x2FF, this->position, 0x5dc, 0xbb8);
+                FUNC_8030E8B4(SFX_3D_TICKER_WALKING, 0.75f, 12000, this->position, 0x5dc, 0xbb8);
             }
             break;
 
@@ -277,7 +277,7 @@ void func_80388434(Actor *this){
                 || actor_animationIsAt(this, 0.95f) 
             ){
                 for(sp48 = 0; sp48 < 3; sp48++){
-                    FUNC_8030E8B4(SFX_3D_TICKER_WALKING, 0x177, 0x2FF, this->position, 1500, 3000);
+                    FUNC_8030E8B4(SFX_3D_TICKER_WALKING, 0.75f, 12000, this->position, 1500, 3000);
                 }
             }
             break;
@@ -294,14 +294,14 @@ void func_80388434(Actor *this){
                 || actor_animationIsAt(this, 0.6f)
                 || actor_animationIsAt(this, 0.7f)
             ){
-                FUNC_8030E8B4(SFX_3D_TICKER_WALKING, 0x177, 0x2FF, this->position, 0x5dc, 0xbb8);
+                FUNC_8030E8B4(SFX_3D_TICKER_WALKING, 0.75f, 12000, this->position, 0x5dc, 0xbb8);
             }
             break;
 
         case 6:// L803889A8
             this->marker->collidable = FALSE;
             if(actor_animationIsAt(this, 0.6f)){
-                FUNC_8030E8B4(SFX_7C_CHEBOOF, 0x271, 0x398, this->position, 1500, 3000);
+                FUNC_8030E8B4(SFX_7C_CHEBOOF, 0.9f, 20000, this->position, 1500, 3000);
                 break;
             }
 

@@ -38,16 +38,16 @@ void func_8038E1A8(Actor *this){
             }
             else{
                 if(actor_animationIsAt(this, 0.2f))
-                    FUNC_8030E8B4(SFX_4C_LIP_SMACK, 1000, 0x3ff, this->position, 1250, 2500);
+                    FUNC_8030E8B4(SFX_4C_LIP_SMACK, 1.0f, 32000, this->position, 1250, 2500);
                 
                 if(actor_animationIsAt(this, 0.4f))
-                    FUNC_8030E8B4(SFX_4C_LIP_SMACK, 812, 0x3ff, this->position, 1250, 2500);
+                    FUNC_8030E8B4(SFX_4C_LIP_SMACK, 1.0f, 26000, this->position, 1250, 2500);
                 
                 if(actor_animationIsAt(this, 0.6f))
-                    FUNC_8030E8B4(SFX_4C_LIP_SMACK, 625, 0x3ff, this->position, 1250, 2500);
+                    FUNC_8030E8B4(SFX_4C_LIP_SMACK, 1.0f, 20000, this->position, 1250, 2500);
 
                 if(actor_animationIsAt(this, 0.8f))
-                    FUNC_8030E8B4(SFX_97_BLUBBER_BURPS, 1000, 0x3ff, this->position, 1250, 2500);
+                    FUNC_8030E8B4(SFX_97_BLUBBER_BURPS, 1.0f, 32000, this->position, 1250, 2500);
             }
             break;
     }//L8038E2E8

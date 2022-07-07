@@ -211,7 +211,7 @@ void __chicecube_spawnHalfCubes(ActorMarker *marker){
 //__chicecube_ow
 void __chicecube_ow(ActorMarker *marker, ActorMarker *other_marker){
     Actor *actor = marker_getActor(marker);
-    FUNC_8030E8B4(SFX_1D_HITTING_AN_ENEMY_1, 0x2AF, 0x398, actor->position, 1500, 3000);
+    FUNC_8030E8B4(SFX_1D_HITTING_AN_ENEMY_1, 0.9f, 22000, actor->position, 1500, 3000);
     actor->velocity[1] = 0.8f;
     actor->unk28 = 0.0f;
 }
@@ -219,7 +219,7 @@ void __chicecube_ow(ActorMarker *marker, ActorMarker *other_marker){
 //__chicecube_die
 void __chicecube_die(ActorMarker *marker, ActorMarker *other_marker){
     Actor *actor = marker_getActor(marker);
-    FUNC_8030E8B4(SFX_B6_GLASS_BREAKING_1, 1000, 0x3ff, actor->position, 1500, 4500);
+    FUNC_8030E8B4(SFX_B6_GLASS_BREAKING_1, 1.0f, 32000, actor->position, 1500, 4500);
     actor->velocity[1] = 0.0f;
     func_8035A04C(actor->position, 12, ASSET_505_MODEL_ICECUBE_CHUNK, actor->scale);
     func_8035A228(actor->position, 6, ASSET_700_SPRITE_DUST, actor->scale);
@@ -310,7 +310,7 @@ void chicecube_update(Actor *this){
             break; 
         case 2: // L8035AD10
             if(actor_animationIsAt(this, 0.1f)){
-                FUNC_8030E8B4(SFX_112_TINKER_ATTENTION, 0x2CE, 0x531, this->position, 1500, 4500);
+                FUNC_8030E8B4(SFX_112_TINKER_ATTENTION, 1.3f, 23000, this->position, 1500, 4500);
             }
             if( func_80359E38(this, 0xff, 0xa)
                 && 0.98 < animctrl_getAnimTimer(this->animctrl)
@@ -362,7 +362,7 @@ void chicecube_update(Actor *this){
             break;
         case 5: // L8035AF58
             if(actor_animationIsAt(this, 0.25f)){
-                FUNC_8030E8B4(SFX_112_TINKER_ATTENTION, 0x2CE, 0x531, this->position, 1500, 4500);
+                FUNC_8030E8B4(SFX_112_TINKER_ATTENTION, 1.3f, 23000, this->position, 1500, 4500);
             }
             if( animctrl_getAnimTimer(this->animctrl) < 0.1 
                 && func_80359EBC(this, 0x50, 0xA)

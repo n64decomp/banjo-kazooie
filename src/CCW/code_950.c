@@ -13,13 +13,13 @@ typedef struct{
     f32 unk18;
 }ActorLocal_CCW_950;
 
-void func_8038719C(Actor *this);
+void chwasp_update(Actor *this);
 
 /* .data */
-extern ActorInfo D_8038EBD0 = { 0x1AE, 0x29B, 0x446, 0x0, NULL, func_8038719C, NULL, func_80325888, 0, 0, 1.0f, 0};
+extern ActorInfo D_8038EBD0 = { MARKER_1AE_ZUBBA, ACTOR_29B_ZUBBA, ASSET_446_MODEL_ZUBBA, 0x0, NULL, chwasp_update, NULL, func_80325888, 0, 0, 1.0f, 0};
 
 /* .code */
-void func_80386D40(Actor *this, s32 next_state) {
+void chwasp_setState(Actor *this, s32 next_state) {
     ActorLocal_CCW_950 *local;
     f32 sp50[3];
     f32 sp44[3];
@@ -28,10 +28,10 @@ void func_80386D40(Actor *this, s32 next_state) {
     local->unk18 = 0.0f;
     if (next_state == 1) {
         local->unk18 = 800.0f;
-        func_80335924(this->unk148, 0x16F, 0.0f, 0.65f);
+        func_80335924(this->unk148, ASSET_16F_ANIM_ZUBBA_FLY_MOVE, 0.0f, 0.65f);
     }
     if (next_state == 2) {
-        func_80335924(this->unk148, 0x170, 0.1f, 0.65f);
+        func_80335924(this->unk148, ASSET_170_ANIM_ZUBBA_FLY_IDLE, 0.1f, 0.65f);
         player_getPosition(sp50);
         sp50[1] += 50.0f;
         local->unk8[0] = sp50[0] - this->position[0];
@@ -43,13 +43,13 @@ void func_80386D40(Actor *this, s32 next_state) {
         }
     }
     if (next_state == 3) {
-        func_8030E8B4(0x997F701F, this->position, 0x0BB801F4);
+        FUNC_8030E8B4(SFX_1F_HITTING_AN_ENEMY_3, 1.2f, 32200, this->position, 500, 3000);
         func_80324D54(randf2(0.1f, 0.4f), 0x3FC, randf2(0.95f, 1.1f), 32000, this->position, 500.0f, 3000.0f);
         actor_collisionOff(this);
     }
     if (next_state == 4) {
-        func_80335924(this->unk148, 0x171, 0.1f, 0.2f);
-        func_8030E8B4(0x997F701F, this->position, 0x0BB801F4);
+        func_80335924(this->unk148, ASSET_171_ANIM_ZUBBA_DIE, 0.1f, 0.2f);
+        FUNC_8030E8B4(SFX_1F_HITTING_AN_ENEMY_3, 1.2f, 32200, this->position, 500, 3000);
         func_80324D54(0.1f, 0x66, randf2(1.6f, 1.7f), 32000, this->position, 500.0f, 3000.0f);
         func_803867C8(local->unk4);
         actor_collisionOff(this);
@@ -64,8 +64,8 @@ void func_80386D40(Actor *this, s32 next_state) {
         }
     }
     if (next_state == 5) {
-        func_8030E878(0xA, randf2(0.85f, 0.95f), 18000, this->position, 500.0f, 3000.0f);
-        func_80335924(this->unk148, 0x172, 0.0f, 1.0f);
+        func_8030E878(SFX_A_BANJO_LANDING_05, randf2(0.85f, 0.95f), 18000, this->position, 500.0f, 3000.0f);
+        func_80335924(this->unk148, ASSET_172_ANIM_ZUBBA_LAND, 0.0f, 1.0f);
         func_80335A8C(this->unk148, 2);
     }
     if (next_state == 6) {
@@ -79,12 +79,12 @@ void func_80386D40(Actor *this, s32 next_state) {
 }
 
 
-void func_80387124(ActorMarker* marker, s32 arg1) {
-    func_80386D40(marker_getActor(marker), 3);
+void func_80387124(ActorMarker* marker, ActorMarker *other_marker) {
+    chwasp_setState(marker_getActor(marker), 3);
 }
 
-void func_80387150(ActorMarker* marker, s32 arg1) {
-    func_80386D40(marker_getActor(marker), 4);
+void func_80387150(ActorMarker* marker, ActorMarker *other_marker) {
+    chwasp_setState(marker_getActor(marker), 4);
 }
 
 void func_8038717C(Actor *this){
@@ -94,7 +94,7 @@ void func_8038717C(Actor *this){
     func_8030DA44(local->unk0);
 }
 
-void func_8038719C(Actor *this) {
+void chwasp_update(Actor *this) {
     ActorLocal_CCW_950 *local;
     f32 sp68;
     Actor *other;
@@ -121,7 +121,7 @@ void func_8038719C(Actor *this) {
         func_8030DBB4(local->unk0, 0.9f);
         func_8030DABC(local->unk0, 0);
         marker_setCollisionScripts(this->marker, func_80387124, NULL, func_80387150);
-        func_80386D40(this, 1);
+        chwasp_setState(this, 1);
         return;
     }
     if(local->unk4 == NULL) {
@@ -148,7 +148,7 @@ void func_8038719C(Actor *this) {
         if (this->position[1] > 150.0f) {
             local->unk18 -= 2000.0f * sp68;
             if (local->unk18 < 0.0f) {
-                func_80386D40(this, 2);
+                chwasp_setState(this, 2);
             }
         }
     }
@@ -164,7 +164,7 @@ void func_8038719C(Actor *this) {
             || (this->position[1] < -100.0f)  || (1300.0f < this->position[1])
             || (this->position[2] < -1200.0f) || (this->position[2] > 2000.0f)
         ){
-            func_80386D40(this, 7);
+            chwasp_setState(this, 7);
         }
     }
 
@@ -178,7 +178,7 @@ void func_8038719C(Actor *this) {
             || (this->position[1] < -100.0f) || (1300.0f < this->position[1]) 
             || (this->position[2] < -1200.0f) || (this->position[2] > 2000.0f)
         ) {
-            func_80386D40(this, 7);
+            chwasp_setState(this, 7);
         }
     }
 
@@ -191,14 +191,14 @@ void func_8038719C(Actor *this) {
         }
         if (this->position[1] <= 0.0f) {
             this->position[1] = 0.0f;
-            func_80386D40(this, 5);
+            chwasp_setState(this, 5);
         }
     }
 
     if (this->state == 5) {
         this->position[1] -= 300.0f * sp68;
         if (this->position[1] < -200.0f) {
-            func_80386D40(this, 6);
+            chwasp_setState(this, 6);
         }
     }
 

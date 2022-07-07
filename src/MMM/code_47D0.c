@@ -185,6 +185,7 @@ void func_8038AF90(Struct_MMM_47D0_0 *arg0, Struct68s *arg1, f32 arg2) {
         arg0->unk4 = 2U;
         arg0->unk8 = 0.0f;
         mapSpecificFlags_set(1, 0);
-        func_8030E8B4(0x7FFD491B, &sp54, 0x09C401F4);
+        FUNC_8030E8B4(SFX_11B_TUMBLAR_DISAPPEARING_1, 1.0f, 30000, sp54, 500, 2500);
+
     }
 }

@@ -12,7 +12,7 @@ void func_80390820(Actor *this)
 {
     if (!this->unk38_0 && func_80329530(this, 200))
     {
-        func_8030E624(0x665F4061);
+        FUNC_8030E624(SFX_61_CARTOONY_FALL, 0.8f, 32000);
         timed_playSfx(0.5f, SFX_31_BANJO_OHHWAAOOO, 1, 32000);
         this->unk38_0 = TRUE;
     }

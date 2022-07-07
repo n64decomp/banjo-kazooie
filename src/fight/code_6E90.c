@@ -116,7 +116,7 @@ void func_8038D568(Actor *this){
         func_8030DD14(local->unk0, 2);
         func_8030DBB4(local->unk0, 0.7f);
         func_8030DABC(local->unk0, 12000);
-        func_8030E624(0x4cb38bf6);
+        FUNC_8030E624(SFX_3F6_UNKNOWN, 0.6f, 20000);
         func_8038D3DC(this, 0x19a, 0.0f, -200.0f, 0.0f);
         TUPLE_COPY(this->unk1C, this->position);
         this->position_y = -400.0f;

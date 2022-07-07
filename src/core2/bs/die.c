@@ -34,7 +34,7 @@ void bsdie_init(void){
     func_802875AC(aCtrl, "bsdie.c", 0x7e);
     func_8029B930();
     func_8030E58C(SFX_36_BANJO_DOH, 1.0f);
-    _player_getPosition(&sp2C);
+    _player_getPosition(sp2C);
     func_80294980(sp20);
     func_80257F18(sp20, sp2C, &sp38);
     D_8037D410 = 250.0f;
@@ -72,7 +72,7 @@ void bsdie_update(void){
                 animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
                 player_setYVelocity(400.0f);
                 func_80299DB8();
-                FUNC_8030E624(SFX_39_BANJO_AYE_2, 0x232, 0x3FF);
+                FUNC_8030E624(SFX_39_BANJO_AYE_2, 1.0f, 18000);
                 func_80250D94(1.0f, 1.0f, 0.4f);
                 _bsdie_802ADE20();
                 D_8037D414 = 1;
@@ -81,7 +81,7 @@ void bsdie_update(void){
         case 1://L802AE134
             if(_bsdie_802ADE00()){
                 func_80299E00();
-                FUNC_8030E624(SFX_38_BANJO_AYE_1, 0x232, 0x3FF);
+                FUNC_8030E624(SFX_38_BANJO_AYE_1, 1.0f, 18000);
                 func_80250D94(1.0f, 0.5f, 0.4f);
                 D_8037D414 = 2;
             }

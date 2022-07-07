@@ -309,10 +309,10 @@ void func_80388ED4(s32 arg0){
     f32 sp1C[3];
     func_8034A174(D_80389FA0.unk34, 5, sp1C);
     if(arg0 != 0){
-        FUNC_8030E8B4(SFX_91_METALLIC_SOUND, 0x3FD, 0x2CC, sp1C, 100, 6000);
+        FUNC_8030E8B4(SFX_91_METALLIC_SOUND, 0.7f, 32675, sp1C, 100, 6000);
     }
     else{
-        FUNC_8030E8B4(SFX_82_METAL_BREAK, 0x2EE, 0x398, sp1C, 100, 6000);
+        FUNC_8030E8B4(SFX_82_METAL_BREAK, 0.9f, 24000, sp1C, 100, 6000);
     }
     D_80389FA0.unk8 = 1.0f;
 }
@@ -339,11 +339,11 @@ void func_80388F4C(void){
         if(D_80389FA0.unk21 == 3){
             func_8034A174(D_80389FA0.unk34, 5, sp54);
             if(sp60 < sp64){
-                FUNC_8030E8B4(SFX_7E_CREAKY_DOOR_OPENING, 0x3f1, 0x265, sp54, 1000, 5000);
+                FUNC_8030E8B4(SFX_7E_CREAKY_DOOR_OPENING, 0.6f, 32300, sp54, 1000, 5000);
             }//L80389058
 
             if(sp64 < 0.3 && 0.3 <= sp60){
-                FUNC_8030E8B4(SFX_7E_CREAKY_DOOR_OPENING, 0x3f1, 0x1ff, sp54, 1000, 5000);
+                FUNC_8030E8B4(SFX_7E_CREAKY_DOOR_OPENING, 0.5f, 32300, sp54, 1000, 5000);
             }
         }//L8038909C
 

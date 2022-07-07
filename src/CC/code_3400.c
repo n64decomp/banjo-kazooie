@@ -39,11 +39,11 @@ void func_803897F0(Actor *this, s32 next_state){
     ActorLocal_CC_3400 *local = (ActorLocal_CC_3400 *) &this->local;
 
     if(next_state == 3)
-        FUNC_8030E624(SFX_1E_HITTING_AN_ENEMY_2, 0x30D, 0x3ff);
+        FUNC_8030E624(SFX_1E_HITTING_AN_ENEMY_2, 1.0f, 25000);
 
     if(next_state == 2){
         func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, -1);
-        FUNC_8030E624(SFX_3F6_UNKNOWN, 0x38A, 0x398);
+        FUNC_8030E624(SFX_3F6_UNKNOWN, 0.9f, 29000);
         local->unk4 = 0.0f;
     }
 

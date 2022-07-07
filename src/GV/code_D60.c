@@ -62,7 +62,7 @@ void func_80387150(Actor *this, s32 next_state){
     }
 
     if(this->state == 6){
-        FUNC_8030E8B4(SFX_84_GOBI_CRYING, 0x271, 0x398, this->position, 0x5dc, 0x9c4);
+        FUNC_8030E8B4(SFX_84_GOBI_CRYING, 0.9f, 20000, this->position, 1500, 2500);
         func_80335924(this->unk148, 0x241, 0.2f, 0.5f);
     }
 }
@@ -139,7 +139,7 @@ void func_80387408(Actor *this){
         sp6C = 5;
 
     if(func_8025773C(&local->unkC, tick))
-        FUNC_8030E8B4(SFX_84_GOBI_CRYING, 1000, 0x398, this->position, 1500, 2500);
+        FUNC_8030E8B4(SFX_84_GOBI_CRYING, 0.9f, 32000, this->position, 1500, 2500);
 
     if(func_8025773C(&local->unk10, tick)){
         for(i = 0; i < 2; i++){

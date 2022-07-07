@@ -90,5 +90,5 @@ void func_80389484(ActorMarker * marker, f32 anim_duration){
     actor_playAnimationOnce(this);
     animctrl_setDuration(this->animctrl, anim_duration);
     this->unk38_31 = 1;
-    FUNC_8030E8B4(SFX_129_SWOOSH, 1000, 0x3ff, this->position, 1000, 2000);
+    FUNC_8030E8B4(SFX_129_SWOOSH, 1.0f, 32000, this->position, 1000, 2000);
 }

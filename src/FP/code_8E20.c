@@ -122,7 +122,7 @@ bool func_8038F5D4(Actor *this, f32 arg1[3], f32 arg2, f32 arg3, s32 arg4){
     this->yaw_moving = (f32) func_803297C8(this, arg1);
     func_80328FB0(this, arg3);
     if(actor_animationIsAt(this, 0.9f)){
-        FUNC_8030E8B4(SFX_3F2_UNKNOWN, 750, 0x332, this->position, 500, 2000);
+        FUNC_8030E8B4(SFX_3F2_UNKNOWN, 0.8f, 24000, this->position, 500, 2000);
     }
     this->unk28 = (1.0f- sp24)*arg2;
     func_80329054(this, 2);
@@ -309,7 +309,7 @@ void func_8038F7AC(Actor *this){
                     || actor_animationIsAt(this, 0.28f)
                     || actor_animationIsAt(this, 0.42f)
                 ){
-                    FUNC_8030E8B4(SFX_88_WOZZA_NOISE, 1000, 0x3ff, this->position, 500, 2000);
+                    FUNC_8030E8B4(SFX_88_WOZZA_NOISE, 1.0f, 32000, this->position, 500, 2000);
                 }
             }
             break;

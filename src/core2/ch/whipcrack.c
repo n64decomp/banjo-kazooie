@@ -79,7 +79,7 @@ void __chwhipcrack_setState(Actor *this, s32 next_state){
         __chwhipcrack_spawnPieces(this, ASSET_4FF_MODEL_WHIPCRACK_PART_2, 4);
         __chwhipcrack_spawnPieces(this, ASSET_500_MODEL_WHIPCRACK_PART_3, 4);
         __chwhipcrack_spawnSmoke(this, 6);
-        FUNC_8030E8B4(SFX_2F_ORANGE_SPLAT, 0x3EE, 0x332, this->position, 500, 2500);
+        FUNC_8030E8B4(SFX_2F_ORANGE_SPLAT, 0.8f, 32200, this->position, 500, 2500);
         marker_despawn(this->marker);
     }
 

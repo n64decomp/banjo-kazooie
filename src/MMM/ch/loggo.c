@@ -106,7 +106,7 @@ void chLoggo_update(Actor *this){
         case 2:
             if(actor_animationIsAt(this, 0.46f)){
                 this->marker->propPtr->unk8_3 = FALSE;
-                FUNC_8030E8B4(SFX_92_TOILET_FLUSH, 1000, 0x3ff, this->position, 600, 1500);
+                FUNC_8030E8B4(SFX_92_TOILET_FLUSH, 1.0f, 32000, this->position, 600, 1500);
                 levelSpecificFlags_set(0x33, TRUE);
                 ml_vec3f_assign(sp38, this->position_x - 50.0f, this->position_y + 50.0f, this->position_z);
                 func_8028F6E4(0x2F, sp38);

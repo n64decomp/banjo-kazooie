@@ -98,7 +98,7 @@ void func_8038D47C(Actor *this){
                 || actor_animationIsAt(this, 0.45f)
                 || actor_animationIsAt(this, 0.8f)
             ){
-                FUNC_8030E624(SFX_D4_JINXIE_SNIFFLING_2, 0x3e8, 0x332);
+                FUNC_8030E624(SFX_D4_JINXIE_SNIFFLING_2, 0.8f, 32000);
             }
             if( actor_animationIsAt(this, 0.99f) ){
                 if(--this->unk38_31 == 0){
@@ -112,13 +112,13 @@ void func_8038D47C(Actor *this){
             if( actor_animationIsAt(this, 0.135f)
                 || actor_animationIsAt(this, 0.3f)
             ){
-                FUNC_8030E624(SFX_D4_JINXIE_SNIFFLING_2, 0x3e8, 0x332);
+                FUNC_8030E624(SFX_D4_JINXIE_SNIFFLING_2, 0.8f, 32000);
             }
             if(actor_animationIsAt(this, 0.63f)){
-                FUNC_8030E624(SFX_D5_JINXIE_SNEEZING, 0x3ff, 0x332);
+                FUNC_8030E624(SFX_D5_JINXIE_SNEEZING, 0.8f, 32750);
             }
             if(actor_animationIsAt(this, 0.83f)){
-                FUNC_8030E624(SFX_D6_UGH, 0x3ff, 0x332);
+                FUNC_8030E624(SFX_D6_UGH, 0.8f, 32750);
             }
             if(actor_animationIsAt(this, 0.94f)){
                 if(!func_803203FC(0xC1)){

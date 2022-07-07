@@ -28,7 +28,7 @@ void func_802DA9A0(ActorMarker *caller, enum asset_e text_id, s32 arg2){
         flag = tmp;
     }
     func_80320004(flag, 1);
-    FUNC_8030E624(SFX_EA_GRUNTY_LAUGH_1, 0x3A9, 0x3ff);
+    FUNC_8030E624(SFX_EA_GRUNTY_LAUGH_1, 1.0f, 30000);
 }
 
 void func_802DAA14(Actor *this){

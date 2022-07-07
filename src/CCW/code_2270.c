@@ -21,7 +21,7 @@ void func_80388AA0(Actor *this);
 
 /* .data */
 extern Struct_CCW_2270_0 D_8038ECD0[];
-extern ActorInfo D_8038ECE8 = { 0x1B1, 0x29E, 0x3E0, 0x0, NULL, func_80388AA0, func_80388AA0, func_803889AC, 0, 0, 1.0f, 0};
+extern ActorInfo D_8038ECE8 = { 0x1B1, 0x29E, ASSET_3E0_MODEL_GOBI, 0x0, NULL, func_80388AA0, func_80388AA0, func_803889AC, 0, 0, 1.0f, 0};
 
 /* .code */
 void func_80388660(ActorMarker* marker, s32 arg1) {
@@ -34,15 +34,15 @@ void func_8038868C(Actor *this, s32 next_state) {
     local = (ActorLocal_CCW_2270*)&this->local;
 
     if (next_state == 1) {
-        func_80335924(this->unk148, 0xF4, 0.5f, 12.0f);
+        func_80335924(this->unk148, ASSET_F4_ANIM_GOBI_IDLE, 0.5f, 12.0f);
     }
     if (next_state == 2) {
         if (local->unk0->unk4 != 0) {
             func_80311480(local->unk0->unk4, 4, NULL, NULL, NULL, NULL);
         }
-        func_80335924(this->unk148, 0xFC, 0.2f, 3.0f);
+        func_80335924(this->unk148, ASSET_FC_ANIM_GOBI_SPITTING, 0.2f, 3.0f);
         func_80335A8C(this->unk148, 2);
-        func_80335924(local->unk4, 0x100, 0.0f, 3.0f);
+        func_80335924(local->unk4, ASSET_100_ANIM_GOBI_SPIT, 0.0f, 3.0f);
         func_80335A8C(local->unk4, 2);
         func_80324E38(0.0f, 3);
         timed_setCameraToNode(0.0f, (map_get() == MAP_44_CCW_SUMMER) ? 1 : 2);
@@ -56,7 +56,7 @@ void func_8038868C(Actor *this, s32 next_state) {
         func_803883F4();
     }
     if (next_state == 4) {
-        func_80335924(this->unk148, 0x176, 0.5f, 4.0f);
+        func_80335924(this->unk148, ASSET_176_ANIM_GOBI_YAWN, 0.5f, 4.0f);
         func_80335A8C(this->unk148, 2);
         func_80324E88(0.0f);
         func_80324E38(0.0f, 0);
@@ -65,11 +65,11 @@ void func_8038868C(Actor *this, s32 next_state) {
         if (local->unk0->unk6 != 0) {
             func_80311480((s32) local->unk0->unk6, 4, NULL, NULL, NULL, NULL);
         }
-        func_80335924(this->unk148, 0xFD, 0.23f, 0.5f);
+        func_80335924(this->unk148, ASSET_FD_ANIM_GOBI2_GETTING_UP, 0.23f, 0.5f);
         timed_setCameraToNode(0.0f, 3);
     }
     if (next_state == 6) {
-        func_80335924(this->unk148, 0xF8, 0.1f, 0.71f);
+        func_80335924(this->unk148, ASSET_F8_ANIM_GOBI_RUNNING, 0.1f, 0.71f);
         func_80335A8C(this->unk148, 1);
     }
     if (next_state == 7) {
@@ -81,12 +81,11 @@ void func_8038868C(Actor *this, s32 next_state) {
     this->state = next_state;
 }
 
-
 void func_8038894C(ActorMarker* marker, ActorMarker *other_marker) {
     Actor* actor = marker_getActor(marker);
     if (actor->state == 1) {
         actor_collisionOff(actor);
-        timedFunc_set_2(0.5f, func_80388660, actor->marker, 2);
+        timedFunc_set_2(0.5f, (TFQM2)func_80388660, (s32)actor->marker, 2);
     }
 }
 
@@ -109,7 +108,6 @@ Actor *func_803889AC(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     }
     return func_80325888(marker, gfx, mtx, vtx);
 }
-
 
 void func_80388A70(Actor *this){
     ActorLocal_CCW_2270 *local = (ActorLocal_CCW_2270*)&this->local;
@@ -168,7 +166,7 @@ void func_80388AA0(Actor *this) {
 
     if(this->state == 3){
         if (!func_80388438()) {
-            if (map_get() == 0x44) {
+            if (map_get() == MAP_44_CCW_SUMMER) {
                 func_8038868C(this, 4);
             } else {
                 func_8038868C(this, 5);
@@ -177,17 +175,18 @@ void func_80388AA0(Actor *this) {
     }
 
     if (this->state == 4) {
-        if ((func_8033567C(this->unk148) == 0x176) && (func_80335794(this->unk148) > 0)) {
-            func_80335924(this->unk148, 0x177, 0.1f, 4.0f);
+        if ((func_8033567C(this->unk148) == ASSET_176_ANIM_GOBI_YAWN) && (func_80335794(this->unk148) > 0)) {
+            func_80335924(this->unk148, ASSET_177_ANIM_GOBI_SLEEP, 0.1f, 4.0f);
             func_80335A8C(this->unk148, 1);
         }
-        if (func_8033567C(this->unk148) == 0x177) {
+        if (func_8033567C(this->unk148) == ASSET_177_ANIM_GOBI_SLEEP) {
             func_8033568C(this->unk148, &sp44, &sp40);
             if ((sp44 < 0.1) && (0.1 <= (f64) sp40)) {
-                func_8030E8B4(0x664EA05E, this->position, 0x05DC01F4); //todo: use FUNC macro
+                FUNC_8030E8B4(SFX_5E_BANJO_PHEWWW, 0.8f, 15000, this->position, 500, 1500);
             }
             if ((sp44 < 0.8) && (0.8 <= (f64) sp40)) {
-                func_8030E8B4(0x664EA05D, this->position, 0x05DC01F4); //todo: use FUNC macro
+                FUNC_8030E8B4(SFX_5D_BANJO_RAAOWW, 0.8f, 15000, this->position, 500, 1500);
+
             }
         }
     }

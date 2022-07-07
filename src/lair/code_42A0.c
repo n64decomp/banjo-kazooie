@@ -81,10 +81,11 @@ void func_8038A864(Actor *this) {
         break;
     case 5:
         if (actor_animationIsAt(this, 0.5f)) {
-            func_8030E624(0x665F40C5);
+            FUNC_8030E624(SFX_C5_TWINKLY_POP, 0.8f, 32000);
+
         }
         if (actor_animationIsAt(this, 0.596f)) {
-            func_8030E624(0x6CBF402D);
+            FUNC_8030E624(SFX_2D_KABOING, 0.85f, 32000);
         }
         break;
     case 4:

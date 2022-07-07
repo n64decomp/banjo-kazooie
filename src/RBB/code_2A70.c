@@ -63,8 +63,8 @@ void func_80388EB8(Actor *this, s32 arg1){
     s32 sp30;
 
     if(this->state == 2)
-        func_8030E8B4(0x665f407f, &this->position, 0x08fc03e8);
-    
+        FUNC_8030E8B4(SFX_7F_HEAVYDOOR_SLAM, 0.8f, 32000, this->position, 1000, 2300);
+
     this->state = arg1;
     local->unk24 = 0.0f;
 
@@ -90,7 +90,7 @@ void func_80388EB8(Actor *this, s32 arg1){
         local->unk10[2] = this->roll + 360.0f;
 
         local->unk1C = 0.0f;
-        func_8030E8B4(0x665f407f, &this->position, 0x07080384);
+        FUNC_8030E8B4(SFX_7F_HEAVYDOOR_SLAM, 0.8f, 32000, this->position, 900, 1800);
     }//L803890A8
 }
 
@@ -119,7 +119,7 @@ void func_803890BC(Actor *this){
         local->unk1C += 0.25 * sp38;
         if(1.0f < local->unk1C)
             local->unk1C = 1.0f;
-        func_80255FE4(&sp2C, &local->unk4, &local->unk10, local->unk1C);
+        func_80255FE4(sp2C, local->unk4, local->unk10, local->unk1C);
         this->pitch = sp2C[0];
         this->yaw = sp2C[1];
         this->roll = sp2C[2];

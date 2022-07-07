@@ -94,7 +94,7 @@ void func_802CAB70(Actor *this){
     if(!this->unk16C_4){
         this->unk16C_4 = TRUE;
         func_802CAAF0(this->position);
-        FUNC_8030E8B4(SFX_113_PAD_APPEARS, 1000, 0x3ff, this->position, 5000, 12000);
+        FUNC_8030E8B4(SFX_113_PAD_APPEARS, 1.0f, 32000, this->position, 5000, 12000);
     }
     this->marker->propPtr->unk8_3 = TRUE;
     this->alpha_124_19 = MIN(this->alpha_124_19 + this->unk38_31, 0xFF);

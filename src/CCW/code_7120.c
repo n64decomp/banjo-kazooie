@@ -63,10 +63,10 @@ void func_8038D6D8(Actor *this, s32 next_state) {
         func_802BB3DC(0, 60.0f, 0.7f);
         func_8038D510(this);
         func_8038D5DC(this);
-        FUNC_8030E624(SFX_9B_BOULDER_BREAKING_1, 0x1D4, 0x132);
-        FUNC_8030E624(SFX_9B_BOULDER_BREAKING_1, 0x1D4, 0x1FF);
-        FUNC_8030E624(SFX_9B_BOULDER_BREAKING_1, 0x1D4, 0x2CC);
-        FUNC_8030E624(SFX_9B_BOULDER_BREAKING_1, 0x1D4, 0x398);
+        FUNC_8030E624(SFX_9B_BOULDER_BREAKING_1, 0.3f, 15000);
+        FUNC_8030E624(SFX_9B_BOULDER_BREAKING_1, 0.5f, 15000);
+        FUNC_8030E624(SFX_9B_BOULDER_BREAKING_1, 0.7f, 15000);
+        FUNC_8030E624(SFX_9B_BOULDER_BREAKING_1, 0.9f, 15000);
         func_80324E38(0.0f, 3);
         timed_setCameraToNode(0.5f, 3);
         timedFunc_set_2(0.5f, levelSpecificFlags_set, 0x25, TRUE);

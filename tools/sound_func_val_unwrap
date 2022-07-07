@@ -1,0 +1,6 @@
+#!/bin/bash
+
+SFX_ID=$(( $1 & 0x7ff))
+VOLUME=$(echo "$((($1 >> 21) & 0x7ff)).0 / 1023.0" | bc -l)
+SAMPLE_RATE=$(((($1 >> 11) & 0x3ff)<<5))
+printf "SFX_%X, %f, %d\n" $SFX_ID $VOLUME $SAMPLE_RATE

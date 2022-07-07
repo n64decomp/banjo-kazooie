@@ -107,7 +107,7 @@ void chgobi2_setState(Actor *this, s32 next_state){
     }
 
     if(next_state == 8){
-        FUNC_8030E8B4(SFX_84_GOBI_CRYING, 0x271, 0x398, this->position, 1500, 2500);
+        FUNC_8030E8B4(SFX_84_GOBI_CRYING, 0.9f, 20000, this->position, 1500, 2500);
         func_80335924(this->unk148, ASSET_242_ANIM_GOBI_RELAXING, 0.2f, 0.5f);
     }
 

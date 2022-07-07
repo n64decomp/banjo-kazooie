@@ -75,7 +75,7 @@ void func_8038C7A8(Actor *this) {
         player_getPosition(sp38);
         if (ml_vec3f_distance(this->position, sp38) < 50.0f) {
             func_8028F030(0x2A9);
-            FUNC_8030E8B4(SFX_C5_TWINKLY_POP, 0x30D, 0x3FF, this->position, 500, 2500);
+            FUNC_8030E8B4(SFX_C5_TWINKLY_POP, 1.0f, 25000, this->position, 500, 2500);
             func_8038C6A0(this, 5);
         }
     }

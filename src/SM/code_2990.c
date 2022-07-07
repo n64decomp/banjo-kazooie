@@ -483,12 +483,11 @@ void func_803899B0(Actor * this){
             func_80388FA0(this, 3);
         }//L80389EE0
         else if(actor_animationIsAt(this, 0.14f)){
-            func_8030E8B4(0x997770c6, this->position, 0x9C404e2);
-        }
-        else if(actor_animationIsAt(this, 0.4f)){ //L80389F14
-            func_8030E8B4(0x9977702c, this->position, 0x9C404e2);
+            FUNC_8030E8B4(SFX_C6_SHAKING_MOUTH, 1.2f, 24000, this->position, 1250, 2500);
+        }else if(actor_animationIsAt(this, 0.4f)){ //L80389F14
+            FUNC_8030E8B4(SFX_2C_PULLING_NOISE, 1.2f, 24000, this->position, 1250, 2500);
         }else if(actor_animationIsAt(this, 0.75f)){//L80389F48
-            FUNC_8030E8B4(SFX_C5_TWINKLY_POP, 1000, 0x3ff, this->position, 1250, 2500);
+            FUNC_8030E8B4(SFX_C5_TWINKLY_POP, 1.0f, 32000, this->position, 1250, 2500);
 
         }else if(actor_animationIsAt(this, 0.35f)){//L80389F78
             if(mapSpecificFlags_get(1)){

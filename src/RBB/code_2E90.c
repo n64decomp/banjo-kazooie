@@ -173,7 +173,7 @@ void func_8038944C(Actor *this){
                 || (sp50[i] < 180.0f && 180.0f <= sp44[i])
                 || (sp50[i] < 360.0f && 360.0f <= sp44[i])
             ){
-                func_8030E8B4(0x33367002, &this->position, 0x03e80032);
+                FUNC_8030E8B4(SFX_2_CLAW_SWIPE, 0.4f, 23000, this->position, 50, 1000);
             }
         }
         this->pitch += (360.0f <= this->pitch)? -360 : 0;

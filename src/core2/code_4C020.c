@@ -1091,11 +1091,11 @@ void func_802D6494(void){
             case ACTOR_2E5_WOODEN_DOOR:
                 break;
             case ACTOR_20E_MM_ENTRANCE_DOOR:// L802D6510
-                FUNC_8030E624(SFX_6B_LOCKUP_OPENING, 1000, 0x265);
+                FUNC_8030E624(SFX_6B_LOCKUP_OPENING, 0.6f, 32000);
                 func_8025A6CC(COMUSIC_64_WORLD_OPENING_A, 32000);
                 break;
             case ACTOR_211_CHEST_LID:// L802D6530
-                FUNC_8030E624(SFX_6B_LOCKUP_OPENING, 1000, 0x265);
+                FUNC_8030E624(SFX_6B_LOCKUP_OPENING, 0.6f, 32000);
                 func_8025A6CC(COMUSIC_64_WORLD_OPENING_A, 32000);
                 break;
             case ACTOR_212_IRON_BARS:// L802D6550
@@ -1112,7 +1112,7 @@ void func_802D6494(void){
                 break;
             case ACTOR_210_BGS_ENTRANCE_DOOR:// L802D65F8
                 if(!func_803203FC(0x84)){
-                    FUNC_8030E624(SFX_6B_LOCKUP_OPENING, 1000, 0x265);
+                FUNC_8030E624(SFX_6B_LOCKUP_OPENING, 0.6f, 32000);
                     func_8025A6CC(COMUSIC_64_WORLD_OPENING_A, 32000);
                 }
                 break;
@@ -1130,7 +1130,7 @@ void func_802D6494(void){
                 break;
             case ACTOR_228_INVISIBLE_WALL:// L802D66CC
                 if(!func_803203FC(UNKFLAGS1_8C_SANDCASTLE_OPEN_MMM)){
-                    FUNC_8030E624(SFX_6B_LOCKUP_OPENING, 1000, 0x265);
+                FUNC_8030E624(SFX_6B_LOCKUP_OPENING, 0.6f, 32000);
                     func_8025A6CC(COMUSIC_64_WORLD_OPENING_A, 32000);
                 }
                 break;

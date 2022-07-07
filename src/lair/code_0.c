@@ -358,7 +358,8 @@ void func_803867A8(Actor *this) {
             this->velocity[0] += 1.0f;
             if ((this->velocity[0] < 0.0f) || (this->velocity[0] > 19.0f)) {
                 this->velocity[0] = 0.0f;
-                func_8030E8B4(0x3FF773F6, this->position, 0x08FC0064);
+                FUNC_8030E8B4(SFX_3F6_UNKNOWN, 0.5f, 24000, this->position, 100, 2300);
+
             }
         }
         this->unk60 += 2.5;
@@ -409,7 +410,7 @@ void func_80386D20(Actor *this)
     func_802D4A9C(this, 0);
 }
 
-void func_80386D40(void)
+void chwasp_setState(void)
 {
     func_802D68F0(0xC);
     item_set(ITEM_6_HOURGLASS, TRUE);
@@ -443,7 +444,7 @@ void func_80386D78(Actor *this) {
             if (this->unk60 != 0.0f) {
                 this->unk60 -= 1.0f;
                 if (this->unk60 == 0.0f) {
-                    func_8030E624(0x665F4025U);
+                    FUNC_8030E624(SFX_25_METAL_SLIDING_OVER_SMTH, 0.8f, 32000);
                 }
             } else {
                 this->scale = (this->scale < 1.0) ? this->scale + 0.04 : 1.0;
@@ -463,7 +464,7 @@ void func_80386D78(Actor *this) {
                 func_802EE278(this, 9, 0x28, 0x64, 0.24f, 0.8f);
                 func_802EE278(this, 0xA, 0x28, 0x28, 0.24f, 1.5f);
                 func_802D2FB0(this, 0xA, -0x1E, 0xB4, 2.0f, 0x96, 0x28, 0x64);
-                func_8030E624(0x66586811U);
+                FUNC_8030E624(SFX_11_WOOD_BREAKING_1, 0.8f, 25000);
                 func_8030E6D4(SFX_B6_GLASS_BREAKING_1);
                 this->position[1] = this->unk1C[1] - 300.0f;
                 mapSpecificFlags_set(1, FALSE);
@@ -475,7 +476,7 @@ void func_80386D78(Actor *this) {
         this->unk60 = 26.0f;
         this->position[1] = this->unk1C[1];
         func_802BAFE4(0x80);
-        timedFunc_set_0(3.0f, func_80386D40);
+        timedFunc_set_0(3.0f, chwasp_setState);
     }
 }
 
@@ -603,7 +604,7 @@ void func_803875F0(Actor * this)
         if (this->position_y > this->unk1C_y + 380.0f)
         {
             func_802D48B8(this);
-            FUNC_8030E624(SFX_7F_HEAVYDOOR_SLAM, 0x213, 0x3FF);
+            FUNC_8030E624(SFX_7F_HEAVYDOOR_SLAM, 1.0f, 17000);
             marker_despawn(this->marker);
         }
     }
@@ -840,7 +841,7 @@ void func_803880BC(Actor *this)
         func_802C3C88((GenMethod_1)func_80387E94, reinterpret_cast(s32, this->marker));
 
         if (func_803203FC(0xBC) && !func_8031FF1C(0x9A))
-            FUNC_8030E624(SFX_3F6_UNKNOWN, 0x3A9, 0x2FF);
+            FUNC_8030E624(SFX_3F6_UNKNOWN, 0.75f, 30000);
     }
 
     if (func_8031FF1C(0x9B))
@@ -1139,7 +1140,7 @@ void func_80388524(Actor *this) {
 
                     case 26: //L80388B54
                         if (actor_animationIsAt(this, 0.4f)) {
-                            func_8030E624(0x4CBFE86BU);
+                            FUNC_8030E624(SFX_6B_LOCKUP_OPENING, 0.6f, 32675);
                         }
                         if (actor_animationIsAt(this, 0.42f)) {
                             func_8030E6D4(SFX_1B_EXPLOSION_1);
@@ -1310,7 +1311,7 @@ void func_80388FC8(Actor *this)
 
             if (this->modelCacheIndex == 0x215)
             {
-                FUNC_8030E624(SFX_25_METAL_SLIDING_OVER_SMTH, 875, 0x265);
+                FUNC_8030E624(SFX_25_METAL_SLIDING_OVER_SMTH, 0.6f, 28000);
                 func_802D4830(this, 0x3EC, 0.1f);
             }
         }
@@ -1379,7 +1380,7 @@ void func_80389204(Actor *this)
 
             if (this->unk38_31)
                 return;
-            FUNC_8030E624(SFX_25_METAL_SLIDING_OVER_SMTH, 875, 0x2CC);
+            FUNC_8030E624(SFX_25_METAL_SLIDING_OVER_SMTH, 0.7f, 28000);
             func_802D4830(this, 0x3EC, 0.2f);
         }
 
@@ -1426,7 +1427,7 @@ void func_803893B8(Actor *this)
         if (this->position_y > this->unk1C[1] + 200.f)
         {
             func_802D48B8(this);
-            FUNC_8030E624(SFX_7F_HEAVYDOOR_SLAM, 0x38A, 0x3FF);
+            FUNC_8030E624(SFX_7F_HEAVYDOOR_SLAM, 1.0f, 29000);
             marker_despawn(this->marker);
         }
     }
@@ -1458,7 +1459,7 @@ void func_803894B0(Actor *this)
     {
         func_80320004(0xA1, TRUE);
         timed_playSfx(0.5f, SFX_3F9_UNKNOWN, 1.f, 32000);
-        FUNC_8030E624(SFX_114_BRICKWALL_BREAKING, 1000, 0x332);
+        FUNC_8030E624(SFX_114_BRICKWALL_BREAKING, 0.8f, 32000);
         func_802EE2E8(this, 0xB, 0x19, 0x000, 0.6f, 1.8f, 3.f);
         func_802EE2E8(this, 0xB, 0x17, 0x0B4, 0.5f, 1.55f, 3.f);
         func_802EE2E8(this, 0xB, 0x15, 0x168, 0.4f, 1.3f, 3.f);
@@ -1595,7 +1596,7 @@ void func_80389934(Actor *this)
             {
                 func_80328AC8(this, 0x17);
                 func_803298AC(this);
-                FUNC_8030E624(SFX_3F6_UNKNOWN, 1000, 0x265);
+                FUNC_8030E624(SFX_3F6_UNKNOWN, 0.6f, 32000);
                 func_8025A6EC(COMUSIC_3D_JIGGY_SPAWN, 0x7FFF);
             }
 
@@ -1606,7 +1607,7 @@ void func_80389934(Actor *this)
             if (func_8032886C(this, 0.95f))
             {
                 func_80328B8C(this, 0x18, 0.999f, 1);
-                FUNC_8030E624(SFX_7F_HEAVYDOOR_SLAM, 0x32C, 0x3FF);
+                FUNC_8030E624(SFX_7F_HEAVYDOOR_SLAM, 1.0f, 26000,);
             }
 
             break;

@@ -891,7 +891,8 @@ void func_80388184(Actor *this, s32 next_state) {
     if (next_state != 9) {
         if (func_8030E3FC(this->unk44_31)) {
             func_8030E394(this->unk44_31);
-            func_8030E624(0x7FFF4162U);
+            FUNC_8030E624(SFX_162_MOTOR_RUCKUS, 1.0f, 32000);
+
         }
     }
     switch (next_state) {
@@ -974,12 +975,13 @@ void func_803885DC(Actor *this) {
         func_8038856C(this, D_80391728);
     }
     if ((actor_animationIsAt(this, 0.30f) != 0) || (actor_animationIsAt(this, 0.78f) != 0)) {
-        func_8030E8B4(0x7FF8681E, this->position, 0x271007D0);
-        func_8030E8B4(0x7FF8688E, this->position, 0x271007D0);
+        FUNC_8030E8B4(SFX_1E_HITTING_AN_ENEMY_2, 1.0f, 25000, this->position, 2000, 10000);
+        FUNC_8030E8B4(SFX_8E_GRUNTLING_DAMAGE, 1.0f, 25000, this->position, 2000, 10000);
     }
     if ((actor_animationIsAt(this, 0.40f) != 0) || (actor_animationIsAt(this, 0.88f) != 0)) {
-        func_8030E8B4(0x7FF8681E, this->position, 0x271007D0);
-        func_8030E8B4(0x7318688E, this->position, 0x271007D0);
+        FUNC_8030E8B4(SFX_1E_HITTING_AN_ENEMY_2, 1.0f, 25000, this->position, 2000, 10000);
+        FUNC_8030E8B4(SFX_8E_GRUNTLING_DAMAGE, 0.9f, 25000, this->position, 2000, 10000);
+
     }
 }
 
@@ -1064,7 +1066,7 @@ void func_80388758(ActorMarker *marker) {
         func_80328FB0(this, 30.0f * sp54);
         if ((local->unkA == 0) && (local->unk20 < (local->unk14 * 0.65))) {
             local->unkA = 1U;
-            func_8030E8B4(0x4CBB58C4, this->position, 0x271007D0);
+            FUNC_8030E8B4(SFX_C4_TWINKLY_MUNCHER_GRR, 0.6f, 28000, this->position, 2000, 10000);
         }
         if ((local->unk14 * 0.75) < local->unk20) {
             func_80386B54(sp40, 0);
@@ -1189,18 +1191,19 @@ void func_803891E4(Actor *this, s32 arg1){
         break;
     case 19:
         if (sp28 & 1) {
-            func_8030E8B4(0x7FFF4132, this->position, 0x2EE01B58);
+            FUNC_8030E8B4(SFX_132_GRUNTY_YOW, 1.0f, 32000, this->position, 7000, 12000);
         }
         else{
-            func_8030E8B4(0x7FFF4133, this->position, 0x2EE01B58);
+            FUNC_8030E8B4(SFX_133_GRUNTY_OHW, 1.0f, 32000, this->position, 7000, 12000);
         }
         break;
     case 20:
-        func_8030E8B4(0x7FFF4131, this->position, 0x2EE01388);
+        FUNC_8030E8B4(SFX_131_GRUNTY_WEEEGH, 1.0f, 32000, this->position, 5000, 12000);
+
         local->unkA = 0;
         break;
     case 17:
-        func_8025A6EC(SFX_GRUNTY_SPELL_POWERUP, 0x7530);
+        func_8025A6EC(SFX_GRUNTY_SPELL_POWERUP, 30000);
         break;
     }
 }
@@ -1378,7 +1381,7 @@ void func_8038998C(Actor *this, s32 arg1) {
         local->unk3 = 0;
         break;
     case 25:
-        func_8030E8B4(0x7FFF4131, this->position, 0x2EE01388);
+        FUNC_8030E8B4(SFX_131_GRUNTY_WEEEGH, 1.0f, 32000, this->position, 5000, 12000);
         break;
     case 26:
         func_80386CF8(this);
@@ -1554,10 +1557,10 @@ void func_80389F7C(Actor *this, s32 arg1) {
         func_802C9334(0x24, this);
         return;
     case 33:
-        func_8030E624(0x7FFF4131U);
+        FUNC_8030E624(SFX_131_GRUNTY_WEEEGH, 1.0f, 32000);
         timed_playSfx(0.6f, SFX_61_CARTOONY_FALL, 1.0f, 32000);
         func_802C3C88(func_80386DE4, this->marker);
-        func_8030E624(0x7FFF40D9U);
+        FUNC_8030E624(SFX_D9_WOODEN_CRATE_BREAKING_1, 1.0f, 32000);
         func_80386628(this->marker, 0);
         func_803866E4(this->position, 0x552, 1);
         func_803866E4(this->position, 0x553, 0xC);
@@ -1978,7 +1981,7 @@ void func_8038AFD8(ActorMarker *marker) {
 
         case 40:
             if (actor_animationIsAt(this, 0.21f)) {
-                func_8030E8B4(0x7FFF4163, this->position, 0x2EE01388);
+                FUNC_8030E8B4(SFX_163_GRUNTY_WILD_SCREAM, 1.0f, 32000, this->position, 5000, 12000);
             }
             if ((0.56 < sp34) && (sp34 < 0.99)) {
                 func_8030E2C4(this->unk44_31);
@@ -2017,19 +2020,21 @@ void func_8038AFD8(ActorMarker *marker) {
                 func_8038C5F0(this, 0x718, 0x6C2, 2.0f);
             }
             if (actor_animationIsAt(this, 0.3f)) {
-                func_8030E624(0x7FF86964U);
+                FUNC_8030E624(SFX_164_EH, 1.0f, 25000);
             }
             if (actor_animationIsAt(this, 0.4f)) {
-                func_8030E624(0x89786964U);
+                // func_8030E624(0x89786964U);
+                FUNC_8030E624(SFX_164_EH, 1.075f, 25000);
             }
             if (actor_animationIsAt(this, 0.6f)) {
-                func_8030E624(0x8CB86964U);
+                FUNC_8030E624(SFX_164_EH, 1.1f, 25000);
             }
             if (actor_animationIsAt(this, 0.7f)) {
-                func_8030E624(0x93186964U);
+                // func_8030E624(0x93186964U);
+                FUNC_8030E624(SFX_164_EH, 1.5f, 25000);
             }
             if (actor_animationIsAt(this, 0.81f)) {
-                func_8030E624(0x7FFF4130U);
+                FUNC_8030E624(SFX_130_GRUNTY_ECHOING_CRY, 1.0f, 32000);
             }
             if (actor_animationIsAt(this, 0.85f)) {
                 func_803872F8(this);

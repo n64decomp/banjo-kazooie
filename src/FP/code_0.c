@@ -109,9 +109,9 @@ void func_80386630(Actor *this){
 
     if(1.0 == this->unk48){
         mapSpecificFlags_set(1, TRUE);
-        FUNC_8030E624(SFX_103_FLOTSAM_DEATH, 0x3A9, 0x3ff);
-        FUNC_8030E624(SFX_11_WOOD_BREAKING_1, 0x30D, 0x332);
-        FUNC_8030E624(SFX_D_EGGSHELL_BREAKING, 0x30D, 0x3ff);
+        FUNC_8030E624(SFX_103_FLOTSAM_DEATH, 1.0f, 30000);
+        FUNC_8030E624(SFX_11_WOOD_BREAKING_1, 0.8f, 25000);
+        FUNC_8030E624(SFX_D_EGGSHELL_BREAKING, 1.0f, 25000);
 
         sp7C[0] = -1000.0f;
         sp7C[1] = 1727.0f;

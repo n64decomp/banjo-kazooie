@@ -39,8 +39,8 @@ void func_80322130(Struct_core2_9B180_0 *arg0) {
     if (sp1C[1] < D_80383334) {
         if (func_8028F66C(0x2C) == 2) {
             arg0->unk4 = 0;
-            FUNC_8030E624(SFX_96_HOTSAND_EEL_HISS, 0x3e8, 0x3ff);
-            FUNC_8030E624(SFX_A_BANJO_LANDING_05, 0x3e8, 0x3ff);
+            FUNC_8030E624(SFX_96_HOTSAND_EEL_HISS, 1.0f, 32000);
+            FUNC_8030E624(SFX_A_BANJO_LANDING_05, 1.0f, 32000);
             return;
         }
         sp1C[1] = D_80383334;

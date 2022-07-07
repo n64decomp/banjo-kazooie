@@ -52,7 +52,7 @@ void func_80387B14(Actor *this, s32 next_state){
     }//L80387BD0
 
     if(this->state == 1 && next_state == 2){
-        FUNC_8030E624(SFX_3EF, 0x3FD, 0x398);
+        FUNC_8030E624(SFX_3EF, 0.9f, 32675);
     }
 
     if(next_state == 3){
@@ -66,8 +66,8 @@ void func_80387B14(Actor *this, s32 next_state){
         if(this->unk100){
             func_80389484(this->unk100, tmp + 0.55);
         }
-        FUNC_8030E624(SFX_3EF, 0x30D, 0x465);
-        FUNC_8030E624(SFX_3EF, 0x30D, 0x465);
+        FUNC_8030E624(SFX_3EF, 1.1f, 25000);
+        FUNC_8030E624(SFX_3EF, 1.1f, 25000);
     }//L80387CAC
 
     if(next_state == 5){
@@ -219,7 +219,7 @@ void func_80388028(Actor *this){
         }
 
         if(sp44 < 0.5 && 0.5 <= sp40){
-            FUNC_8030E624(SFX_2_CLAW_SWIPE, 0x3E8, 0x398);
+            FUNC_8030E624(SFX_2_CLAW_SWIPE, 0.9f, 32000);
         }
 
         if( (sp44 < 0.11 && 0.11 <= sp40)

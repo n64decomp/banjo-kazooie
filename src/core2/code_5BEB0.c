@@ -343,7 +343,7 @@ void func_802E3BF8(enum game_mode_e next_mode, s32 arg1){
     }
     else if(next_mode == GAME_MODE_4_PAUSED){//L802E3E24
         func_80335110(0);
-        FUNC_8030E624(SFX_C9_PAUSEMENU_ENTER, 0x3FF, 0x465);
+        FUNC_8030E624(SFX_C9_PAUSEMENU_ENTER, 1.1f, 32750);
         func_8024E7C8();
         func_8025A430(0, 2000, 3);
         func_8025A23C(COMUSIC_6F_PAUSE_SCREEN);

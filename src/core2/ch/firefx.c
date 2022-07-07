@@ -55,7 +55,7 @@ void __chfirefx_spawnSpark(f32 position[3], f32 scale){
 
 void __chfirefx_hiss(ActorMarker *marker,ActorMarker *other_marker){
     Actor *actor = marker_getActor(marker);
-    FUNC_8030E8B4(SFX_96_HOTSAND_EEL_HISS, 1000, 0x3ff, actor->position, 1000, 2000);
+    FUNC_8030E8B4(SFX_96_HOTSAND_EEL_HISS, 1.0f, 32000, actor->position, 1000, 2000);
 }
 
 void chfirefx_update(Actor *this){

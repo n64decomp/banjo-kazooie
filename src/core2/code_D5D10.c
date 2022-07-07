@@ -59,7 +59,7 @@ void func_8035CD80(ActorMarker *marker, s32 arg1) {
     func_802DAD08(partEmitList_pushNew(1), this, 0x4CF);
     func_802DAD8C(partEmitList_pushNew(2), this, 0x4CD);
     func_8035CCA0(partEmitList_pushNew(4), this, 0x4D0);
-    FUNC_8030E8B4(SFX_119_FISH_DEATH, 1000, 0x3FF, this->position, 1250, 2500);
+    FUNC_8030E8B4(SFX_119_FISH_DEATH, 1.0f, 32000, this->position, 1250, 2500);
     func_802C3F04(func_802C4140, ACTOR_4C_STEAM, reinterpret_cast(s32, this->position[0]), reinterpret_cast(s32, this->position[1]), reinterpret_cast(s32, this->position[2]));
     marker_despawn(marker);
 }

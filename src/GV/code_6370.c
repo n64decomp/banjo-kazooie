@@ -44,9 +44,9 @@ ActorInfo D_8039123C = { 0xBB, 0x287, 0x3E6,
 void func_8038C760(Actor *this, s32 arg1){
     ActorLocal_GV_6370 *local = (ActorLocal_GV_6370 *)&this->local;
     func_8038FD50(local->unk14, arg1);
-    FUNC_8030E624(SFX_3F6_UNKNOWN, 0x36B, 0x2cc);
-    FUNC_8030E624(SFX_3F6_UNKNOWN, 0x38A, 0x398);
-    FUNC_8030E624(SFX_3F6_UNKNOWN, 0x3A9, 0x3FF);
+    FUNC_8030E624(SFX_3F6_UNKNOWN, 0.7f, 28000);
+    FUNC_8030E624(SFX_3F6_UNKNOWN, 0.9f, 29000);
+    FUNC_8030E624(SFX_3F6_UNKNOWN, 1.0f, 30000);
     timed_setCameraToNode(0.0f, 8);
     if(arg1 < 3){
         timed_setCameraToNode(3.5f, arg1 + 0x15);
@@ -111,7 +111,7 @@ void func_8038C8A0(Actor *this, s32 next_state){
         func_80335A74(this->unk148, 0.99f);
         func_80335A8C(this->unk148, 2);
         if(next_state == 4 || next_state == 5)
-            FUNC_8030E8B4(SFX_DE_WOOD_SQUEAK, 0x3FD, 0x3FF, this->position, 500, 1500);
+            FUNC_8030E8B4(SFX_DE_WOOD_SQUEAK, 1.0f, 32675, this->position, 500, 1500);
     }//L8038CB20
 
     if(next_state == 6){
@@ -126,7 +126,7 @@ void func_8038C8A0(Actor *this, s32 next_state){
         local->unk18[1] = this->position_y;
         local->unk18[2] = this->position_z;
         func_80250D94(0.7f, 0.5f, 1.3f);
-        FUNC_8030E624(SFX_3F6_UNKNOWN, 0x3A9, 0x332);
+        FUNC_8030E624(SFX_3F6_UNKNOWN, 0.8f, 30000);
     }
 
     if(next_state == 8){
@@ -252,16 +252,16 @@ void func_8038CC98(Actor *this){
     if(this->state == 6){
         func_8033568C(this->unk148, &sp58, &sp54);
         if(sp58 < 0.28 && 0.28 <= sp54){
-            FUNC_8030E624(SFX_4C_LIP_SMACK, 0x36B, 0x3ff);
+            FUNC_8030E624(SFX_4C_LIP_SMACK, 1.0f, 28000);
         }
         if(sp58 < 0.52 && 0.52 <= sp54){
-            FUNC_8030E624(SFX_4C_LIP_SMACK, 0x36B, 0x398);
+            FUNC_8030E624(SFX_4C_LIP_SMACK, 0.9f, 28000);
         }
         if(sp58 < 0.7 && 0.7 <= sp54){
-            FUNC_8030E624(SFX_4C_LIP_SMACK, 0x36B, 0x3ff);
+            FUNC_8030E624(SFX_4C_LIP_SMACK, 1.0f, 28000);
         }
         if(0.81 <= sp54){
-            FUNC_8030E624(SFX_97_BLUBBER_BURPS, 0x36B, 0x3ff);
+            FUNC_8030E624(SFX_97_BLUBBER_BURPS, 1.0f, 28000);
             func_8038C8A0(this, 7);
         }
     }//L8038D228

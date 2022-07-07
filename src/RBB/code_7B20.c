@@ -74,7 +74,7 @@ void func_8038DF6C(Actor* this){
     }
     if(func_8025773C(&local->unk24[1], sp68)){
         local->unk24[1] = randf2(1.5f, 2.5f);
-        func_8030E8B4(0xBFD38C0E, this->position, 0x05DC01F4);
+        FUNC_8030E8B4(SFX_40E_UNKNOWN, 1.5f, 20000, this->position, 500, 1500);
     }//L8038E118
 
     if(func_8025773C(&local->unk24[2], sp68)){
@@ -111,8 +111,8 @@ void func_8038DF6C(Actor* this){
             other->pitch = sp5C[0];
             other->roll = sp5C[2];
             TUPLE_ASSIGN(sp5C, 0.0f, 48.0f, 0.0f);
-            ml_vec3f_pitch_rotate_copy(&sp5C, &sp5C, this->pitch);
-            ml_vec3f_yaw_rotate_copy(&sp5C, &sp5C, this->yaw);
+            ml_vec3f_pitch_rotate_copy(sp5C, sp5C, this->pitch);
+            ml_vec3f_yaw_rotate_copy(sp5C, sp5C, this->yaw);
         
             other->position_x = sp5C[0] + this->position_x;
             other->position_y = sp5C[1] + this->position_y;

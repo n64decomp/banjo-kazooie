@@ -289,7 +289,7 @@ void func_802CDD78(Actor * this){
                     if(local->unk8){
                         func_8030E988(SFX_8_BANJO_LANDING_04, 1.8f, 18000, sp30, 120.0f, 1200.0f);
                     }else{
-                        func_8030E8B4(0xE6319008, sp30, 0x4B00078);
+                        FUNC_8030E8B4(SFX_8_BANJO_LANDING_04, 1.8f, 18000, sp30, 120, 1200);
                     }
                 }
                 break;
@@ -298,7 +298,7 @@ void func_802CDD78(Actor * this){
                     if(local->unk8){
                         func_8030E988(SFX_17_JINJO_WHISTLE, 1.0f, 22000, sp30, 120.0f, 1200.0f);
                     }else{
-                        func_8030E8B4(0x7FF57827, sp30, 0x4B00078);
+                        FUNC_8030E8B4(SFX_27_JINJO_HI, 1.0f, 22000, sp30, 120, 1200);
                     }
                 }
                 break;
@@ -307,7 +307,7 @@ void func_802CDD78(Actor * this){
                     if(local->unk8){
                         func_8030E988(SFX_27_JINJO_HI, 1.0f, 22000, sp30, 120.0f, 1200.0f);
                     }else{
-                        func_8030E8B4(0x7FF57817, sp30, 0x4B00078);
+                        FUNC_8030E8B4(SFX_17_JINJO_WHISTLE, 1.0f, 22000, sp30, 120, 1200);
                     }
                 }
                 break;

@@ -60,7 +60,7 @@ void func_80387280(Actor *this){
 
         case 2:
             if(actor_animationIsAt(this, 0.2f)){
-                FUNC_8030E8B4(SFX_12F_FUUUCK_YOUUU, 0x3A9, 0x3ff, this->position, 300, 2000);
+                FUNC_8030E8B4(SFX_12F_FUUUCK_YOUUU, 1.0f, 30000, this->position, 300, 2000);
             }
             break;
     }

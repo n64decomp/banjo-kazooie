@@ -96,7 +96,7 @@ void func_8038E940(Actor *this){
 
             func_80328B8C(this, 3, 0.05f, 1);
             actor_playAnimationOnce(this);
-            FUNC_8030E624(SFX_416, 1000, 0x332);
+            FUNC_8030E624(SFX_416, 0.8f, 32000);
             this->marker->collidable = FALSE;
             this->unk60 = 0.0f;
             break;

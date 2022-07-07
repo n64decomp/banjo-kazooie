@@ -72,8 +72,8 @@ void func_80389634(Actor *this){
             }
             if(func_80329530(this, 500) && func_8038957C(this)){
                 func_80328B8C(this, 2, 0.01f, 1);
-                FUNC_8030E8B4(SFX_6B_LOCKUP_OPENING, 1000, 0x3ff, this->position, 1250, 2500);
-                FUNC_8030E8B4(SFX_3F6_UNKNOWN, 1000, 0x3ff, this->position, 1250, 2500);
+                FUNC_8030E8B4(SFX_6B_LOCKUP_OPENING, 1.0f, 32000, this->position, 1250, 2500);
+                FUNC_8030E8B4(SFX_3F6_UNKNOWN, 1.0f, 32000, this->position, 1250, 2500);
 
             }
             break;
@@ -94,8 +94,8 @@ void func_80389634(Actor *this){
         case 3: //L80389788
             if(!func_80329530(this, 0x2bc)){
                 func_80328B8C(this, 4, 0.5f, 1);
-                FUNC_8030E8B4(SFX_6B_LOCKUP_OPENING, 1000, 0x3ff, this->position, 1250, 2500);
-                FUNC_8030E8B4(SFX_3F6_UNKNOWN, 1000, 0x3ff, this->position, 1250, 2500);
+                FUNC_8030E8B4(SFX_6B_LOCKUP_OPENING, 1.0f, 32000, this->position, 1250, 2500);
+                FUNC_8030E8B4(SFX_3F6_UNKNOWN, 1.0f, 32000, this->position, 1250, 2500);
             }
             break;
         case 4: //L803897E4
@@ -112,7 +112,7 @@ void func_80389634(Actor *this){
                 func_80328B8C(this, 1, 0.01f, 1);
             }
             else if(actor_animationIsAt(this, 0.9f)){
-                FUNC_8030E8B4(SFX_7F_HEAVYDOOR_SLAM, 1000, 0x3FF, this->position, 1250, 2500);
+                FUNC_8030E8B4(SFX_7F_HEAVYDOOR_SLAM, 1.0f, 32000, this->position, 1250, 2500);
             }
             break;
     }//L803898A8
@@ -132,8 +132,8 @@ void func_803898B8(Actor *this){
                 this->unk1C[0] -= 1.0f;
                 if(this->unk1C[0] == 0.0f){
                     func_80328B8C(this, 5, 0.01f, 1);
-                    FUNC_8030E8B4(SFX_6B_LOCKUP_OPENING, 1000, 0x1ff, this->position, 1250, 2500);
-                    FUNC_8030E8B4(SFX_3F6_UNKNOWN, 1000, 0x1ff, this->position, 1250, 2500);
+                    FUNC_8030E8B4(SFX_6B_LOCKUP_OPENING, 0.5f, 32000, this->position, 1250, 2500);
+                    FUNC_8030E8B4(SFX_3F6_UNKNOWN, 0.5f, 32000, this->position, 1250, 2500);
                 }
             }
             else{//L803899C0
@@ -145,7 +145,7 @@ void func_803898B8(Actor *this){
         case 5://L803899DC
             if(actor_animationIsAt(this, 0.5f)){
                 func_80328B8C(this, 3, 0.5f, 1);
-                FUNC_8030E624(SFX_7F_HEAVYDOOR_SLAM, 0x30D, 0x3ff);
+                FUNC_8030E624(SFX_7F_HEAVYDOOR_SLAM, 1.0f, 25000);
             }
             break;
     }//L80389A0C

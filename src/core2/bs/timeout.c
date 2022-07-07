@@ -27,7 +27,7 @@ void func_802B6314(void){
         func_80292E48();
 
     if(animctrl_isAt(aCtrl, 0.18f))
-        FUNC_8030E624(SFX_3EB_UNKNOWN, 0x232, 0x3ff);
+        FUNC_8030E624(SFX_3EB_UNKNOWN, 1.0f, 18000);
 
     if(animctrl_isAt(aCtrl, 0.8421f)){
         func_80292E80(0, 0.3f);

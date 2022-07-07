@@ -70,9 +70,9 @@ void func_802CB1A4(ActorMarker *marker, ActorMarker *other){
 
     this = marker_getActor(marker);
     if ((this->state == 4) && func_803294F0(this, 80, func_80329784(this))) {
-        func_8030E8B4(0x7FFB581E, this->position, 0x076C03B6);
+        FUNC_8030E8B4(SFX_1E_HITTING_AN_ENEMY_2, 1.0f, 28000, this->position, 950, 1900);
         func_802CB140(this);
-        func_80328A84(this, 1U);
+        func_80328A84(this, 1);
     }
 }
 
@@ -84,11 +84,11 @@ void func_802CB22C(ActorMarker *marker, ActorMarker *other) {
     func_80328A84(this, 6);
     actor_playAnimationOnce(this);
     if (marker->unk14_20 == 0x13) {
-        func_8030E8B4(0xFFD9606E, this->position, 0x076C03B6);
+        FUNC_8030E8B4(SFX_6E_VILE_EGH, 2.0f, 26000, this->position, 950, 1900);
         marker->unk14_20 = 0x16B;
     }
     if (marker->unk14_20 == 0xDD) {
-        func_8030E8B4(0xFFD9606E, this->position, 0x076C03B6);
+        FUNC_8030E8B4(SFX_6E_VILE_EGH, 2.0f, 26000, this->position, 950, 1900);
         marker->unk14_20 = 0xDE;
     }
 }
@@ -179,8 +179,8 @@ void func_802CB7C0(ActorMarker *marker, ActorMarker *other){
     this = marker_getActor(marker);
     sp40 = this->modelCacheIndex == 0xF5;
     sp3C = this->modelCacheIndex == 0xF2;
-    func_8030E8B4(0x7FFFF879, this->position, 0x076C03B6);
-    func_8030E8B4(0x7FFB5879, this->position, 0x076C03B6);
+    FUNC_8030E8B4(SFX_79_TICKER_DEATH, 1.0f, 32750, this->position, 950, 1900);
+    FUNC_8030E8B4(SFX_79_TICKER_DEATH, 1.0f, 28000, this->position, 950, 1900);
     func_802C3F04(func_802C4140, ACTOR_4C_STEAM, reinterpret_cast(s32, this->position[0]), reinterpret_cast(s32, this->position[1]), reinterpret_cast(s32, this->position[2]));
     this->unk60 = 5.0f;
     marker->collidable = FALSE;
@@ -214,10 +214,10 @@ void func_802CB7C0(ActorMarker *marker, ActorMarker *other){
 
 void func_802CBA34(Actor *this) {
     if (actor_animationIsAt(this, 0.4f)) {
-        func_8030E8B4(0x6CAEA03D, this->position, 0x076C03B6);
+        FUNC_8030E8B4(SFX_3D_TICKER_WALKING, 0.85f, 15000, this->position, 950, 1900);
     }
     if (actor_animationIsAt(this, 0.9f)) {
-        func_8030E8B4(0x930EA03D, this->position, 0x076C03B6);
+        FUNC_8030E8B4(SFX_3D_TICKER_WALKING, 1.15f, 15000, this->position, 950, 1900);
     }
 }
 

@@ -135,7 +135,7 @@ void func_8035E750(ActorMarker *marker, ActorMarker *other_marker){
     func_8035E634(partEmitList_pushNew(2), this->position);
     marker->collidable = FALSE;
     this->unk138_27 = 1;
-    FUNC_8030E624(SFX_D1_SNORKEL_WAH, 0x3FF, 0x598);
+    FUNC_8030E624(SFX_D1_SNORKEL_WAH, 1.4f, 32750);
     marker_despawn(marker);
 }
 void func_8035E810(ActorMarker *caller, enum asset_e text_id, s32 arg2){

@@ -474,8 +474,8 @@ void func_802B3240(void){
     case 1://L802B32AC
         if(func_8028B2E8()) {
             func_8029AE48();
-            func_8030E624(0x6651901F);
-            func_8030E624(0xE6319039);
+            FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 0.8f, 18000);
+            FUNC_8030E624(SFX_39_BANJO_AYE_2, 1.8f, 18000);
             func_8028A3B8(0.2f, 2.9f);
             D_8037D4E0 = 2;
         }
@@ -501,8 +501,8 @@ void func_802B3240(void){
         D_8037D4F4 = max_f(0.0f, D_8037D4F4 - 10.0f);
         if (func_8028B2E8()) {
             func_8029AE48();
-            func_8030E624(0x6651901FU);
-            func_8030E624(0xE6319039U);
+            FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 0.8f, 18000);
+            FUNC_8030E624(SFX_39_BANJO_AYE_2, 1.8f, 18000);
             func_8028A37C(1.0f);
             D_8037D4E0 = 5;
         }

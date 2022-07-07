@@ -101,9 +101,9 @@ void func_8029AC34(s32 arg0, s32 arg1){
         case TRANSFORM_4_WALRUS:
         case TRANSFORM_5_CROC:
             if(sp1C)
-                FUNC_8030E624(SFX_10_BANJO_LANDING_07, 0x196, 0x398);
+                FUNC_8030E624(SFX_10_BANJO_LANDING_07, 0.9f, 13000);
             else
-                FUNC_8030E624(SFX_2F_ORANGE_SPLAT, 0xFA, 0x598);
+                FUNC_8030E624(SFX_2F_ORANGE_SPLAT, 1.4f, 8000);
             break;
         default:
             break;

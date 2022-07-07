@@ -178,7 +178,7 @@ void bsant_jump_update(void){
     f32 sp1C[3];
 
     func_8029E48C();
-    _get_velocity(&sp1C);
+    _get_velocity(sp1C);
 
     if(button_released(BUTTON_A) && 0.0f < sp1C[1])
         gravity_reset();
@@ -250,7 +250,7 @@ void bsant_fall_update(void){
     if(D_8037D298)
         func_8029E48C();
 
-    _get_velocity(&sp1C);
+    _get_velocity(sp1C);
     switch(D_8037D294){
         case 0:
             if(func_8028B254(0x5A)){
@@ -293,7 +293,7 @@ static void __bsant_recoil_init(int take_damage){
     else
         func_8030E58C(SFX_56_BANJO_HUI, 1.8f);
     
-    _player_getPosition(&sp2C);
+    _player_getPosition(sp2C);
     func_80294980(sp20);
     func_80257F18(sp20, sp2C, &sp38);
     yaw_setIdeal(mlNormalizeAngle(sp38 + 180.0f));
@@ -379,7 +379,7 @@ void bsant_die_init(void){
     animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
     func_802875AC(aCtrl, "bsant.c", 0x2f6);
     func_8030E58C(SFX_36_BANJO_DOH, 1.8f);
-    _player_getPosition(&sp2C);
+    _player_getPosition(sp2C);
     func_80294980(sp20);
     func_80257F18(sp20, sp2C, &sp38);
     D_8037D290 = 250.0f;
@@ -410,8 +410,8 @@ void bsant_die_update(void){
         case 0://L8029F270
             if(func_8028B2E8()){
                 func_8028A37C(1.0f);
-                FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 0x232, 0x332);
-                FUNC_8030E624(SFX_39_BANJO_AYE_2, 0x232, 0x731);
+                FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 0.8f, 18000);
+                FUNC_8030E624(SFX_39_BANJO_AYE_2, 1.8f, 18000);
                 D_8037D290 = 0.0f;
                 D_8037D294 = 1;
             }
@@ -424,8 +424,8 @@ void bsant_die_update(void){
             break;
         case 2://L8029F2F0
             if(animctrl_isAt(aCtrl, 0.77f)){
-                FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 0x232, 0x332);
-                FUNC_8030E624(SFX_38_BANJO_AYE_1, 0x232, 0x731);
+                FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 0.8f, 18000);
+                FUNC_8030E624(SFX_38_BANJO_AYE_1, 1.8f, 18000);
             }
             break;
     }

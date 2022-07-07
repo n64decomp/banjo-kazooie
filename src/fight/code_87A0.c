@@ -183,7 +183,7 @@ void func_8038F084(ActorMarker *marker){
     D_803928E8[1] += 120.0f;
 
     if(actor->state != 2){//L8038F39C
-        func_8030E8B4(0x7fff4148, actor->position, 0x0dac03e8);
+        FUNC_8030E8B4(SFX_148_GRUNTY_SPELL_LANDING, 1.0f, 32000, actor->position, 1000, 3500);
         timedFunc_set_0(0.0f, func_8038F01C);
         timedFunc_set_0(0.3f, func_8038F050);
         actor->unk58_0 = 0;

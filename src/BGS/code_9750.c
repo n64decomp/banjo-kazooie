@@ -64,14 +64,14 @@ void func_8038FB40(ActorMarker *this, s32 arg1){
     thisActor = marker_getActor(this);
     func_80328A84(thisActor, 2);
     actor_playAnimationOnce(thisActor);
-    FUNC_8030E624(SFX_A_BANJO_LANDING_05, 0x3FF, 0x332);
+    FUNC_8030E624(SFX_A_BANJO_LANDING_05, 0.8f, 32750);
 }
 
 void func_8038FB84(ActorMarker *this, ActorMarker *other_marker){
     Actor *thisActor;
 
     thisActor = marker_getActor(this);
-    FUNC_8030E8B4( SFX_87_TANKTUP_OOOHW, 0x7FF, 0x3FF, thisActor->position, 1000, 3000);
+    FUNC_8030E8B4( SFX_87_TANKTUP_OOOHW, 1.0f, 32750, thisActor->position, 1000, 3000);
     timedFunc_set_2(0.65f, (TFQM2) func_8038FB40, (s32) this, (s32) other_marker);
     func_8038F51C(thisActor);
     this->collidable = 0;

@@ -83,7 +83,7 @@ void func_8038E844(Actor *this){
         local->unk10 = func_8030ED2C(0x415, 3);
         func_8030DB04(local->unk10, 32000, this->position, 4000.0f, 12000.0f);
         func_8030DBB4(local->unk10, 1.0f);
-        func_8030E8B4(0x665f4416, this->position, 0x61a82710);
+        FUNC_8030E8B4(SFX_416, 0.8f, 32000, this->position, 10000, 25000);
     }//L8038E97C
     temp_v0 = func_8038A4E8(this, 600.0f);
     if(temp_v0){

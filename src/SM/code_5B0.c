@@ -70,7 +70,8 @@ void func_80386C2C(ParticleEmitter *p_ctrl, f32 *arg1, s32 arg2, f32 arg3) {
 }
 
 void func_80386D68(Actor *this){
-    func_8030E8B4(0x7FFF409B, this->position, 0x07D003E8);
+    FUNC_8030E8B4(SFX_9B_BOULDER_BREAKING_1, 1.0f, 32000, this->position, 1000, 2000);
+
     this->unk44_31 = func_8030D90C();
     func_8030DA80(this->unk44_31, 0x3F9);
     func_8030DD14(this->unk44_31, 3);

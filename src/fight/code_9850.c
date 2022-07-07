@@ -68,7 +68,7 @@ void func_8038FCF0(ActorMarker *marker, ActorMarker *other_marker){
     sp38[1] = actor->position_y;
     sp38[2] = actor->position_z;
     sp38[1] += 160.0f;
-    func_8030E8B4(0x7fff401b, actor->position, 0x0dac03e8);
+    FUNC_8030E8B4(SFX_1B_EXPLOSION_1, 1.0f, 32000, actor->position, 1000, 3500);
     timedFunc_set_0(0.0f, func_8038FC88);
     timedFunc_set_0(0.3f, func_8038FCBC);
     func_8038EBE0(actor->position, 4, ASSET_710_SPRITE_SPARKLE_PURPLE,

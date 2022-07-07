@@ -254,10 +254,10 @@ void func_802D1CF0(Actor *this) {
             this->unk130 = func_80325760;
             func_802D186C(this);
             if (actor_animationIsAt(this, 0.1f) != 0) {
-                FUNC_8030E624(SFX_5D_BANJO_RAAOWW, 0xBB, 0x3FF);
+                FUNC_8030E624(SFX_5D_BANJO_RAAOWW, 1.0f, 6000);
             }
             if (actor_animationIsAt(this, 0.4f) != 0) {
-                FUNC_8030E624(SFX_5E_BANJO_PHEWWW, 0xBB, 0x3FF);
+                FUNC_8030E624(SFX_5E_BANJO_PHEWWW, 1.0f, 6000);
             }
             func_802D1970(this);
             break;

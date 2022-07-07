@@ -59,7 +59,7 @@ void func_80389530(Actor *this){
     func_80328B8C(this, 1, 0.2f, 1);
     this->marker->collidable = FALSE;
     this->unk38_31 = 0;
-    FUNC_8030E8B4(SFX_6C_LOCKUP_CLOSING, 1000, 0x3ff, this->position, 1250, 2500);
+    FUNC_8030E8B4(SFX_6C_LOCKUP_CLOSING, 1.0f, 32000, this->position, 1250, 2500);
 
 }
 
@@ -67,7 +67,7 @@ void func_8038959C(Actor *this){
     func_80389468();
     func_80328B8C(this, 2, 0.2f, 1);
     this->unk38_31 = 1;
-    FUNC_8030E8B4(SFX_6B_LOCKUP_OPENING, 1000, 0x3ff, this->position, 1250, 2500);
+    FUNC_8030E8B4(SFX_6B_LOCKUP_OPENING, 1.0f, 32000, this->position, 1250, 2500);
 }
 
 void func_80389600(Actor *this){

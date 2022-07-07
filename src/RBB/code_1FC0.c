@@ -13,7 +13,7 @@ typedef struct {
     f32 unk14;
 }ActorLocal_RBB_1FC0;
 
-Actor *func_8038846C(ActorMarker * marker, Gfx **gdl, Mtx **mptr, s32 arg3);
+Actor *func_8038846C(ActorMarker * marker, Gfx **gdl, Mtx **mptr, Vtx **arg3);
 void func_80388620(Actor *this);
 
 /* .data */ 
@@ -29,21 +29,21 @@ void func_803883B0(Actor *this, s32 arg1){
     
     local->unk5 = 0;
     if(arg1 == 2){
-        func_8030E624(0x4cbfe866);
+        FUNC_8030E624(SFX_66_BIRD_AUUGHH, 0.6f, 32675);
         func_80335924(this->unk148, 0x137, 0.0f, 0.8f);
         func_80335A8C(this->unk148, 2);
     }
     this->state = arg1;
 }
 
-void func_80388430(ActorMarker * marker, s32 arg1){
+void func_80388430(ActorMarker * marker, ActorMarker *other_marker){
     Actor * actor = marker_getActor(marker);
     ActorLocal_RBB_1FC0 *local = (ActorLocal_RBB_1FC0 *) &actor->local;
     func_8030E6D4(SFX_111_WHIPCRACK_DEATH);
     local->unk5 = 1;
 }
 
-Actor *func_8038846C(ActorMarker * marker, Gfx **gdl, Mtx **mptr, s32 arg3){
+Actor *func_8038846C(ActorMarker * marker, Gfx **gdl, Mtx **mptr, Vtx **vtx){
     Actor *actor = marker_getActor(marker);
     ActorLocal_RBB_1FC0 *local = (ActorLocal_RBB_1FC0 *) &actor->local;
     s32 sp5C;
@@ -67,24 +67,24 @@ Actor *func_8038846C(ActorMarker * marker, Gfx **gdl, Mtx **mptr, s32 arg3){
         sp34[0] = 0.0f;
         sp34[1] = 0.0f;
         sp34[2] = (local->unkC*0.5)/200.0;
-        ml_vec3f_yaw_rotate_copy(&sp34, &sp34, local->unk0);
-        func_8033A968(sp5C, 1, &sp34);
+        ml_vec3f_yaw_rotate_copy(sp34, sp34, local->unk0);
+        func_8033A968(sp5C, 1, sp34);
 
         sp34[0] = 0.0f;
         sp34[1] = 0.0f;
         sp34[2] = local->unkC/200.0f;
-        func_8033A968(sp5C, 0x12, &sp34);
+        func_8033A968(sp5C, 0x12, sp34);
         func_80335918(actor->unk148);
     }
     func_8033A45C(3, (0.0f < local->unk8)? 1 : 0);
     func_8033A45C(4, (0.0f < local->unk8)? 1 : 0);
-    func_80325888(marker, gdl, mptr, arg3);
+    func_80325888(marker, gdl, mptr, vtx);
     local->unk4 = actor->marker->unk14_21;
     return actor;
 }
 
 void func_80388620(Actor *this){
-    f32 sp64[3];
+    f32 plyr_pos[3];
     f32 sp60;
     f32 sp5C;
     f32 sp58;
@@ -106,8 +106,8 @@ void func_80388620(Actor *this){
         local->unk14 = 0.0f;
         func_803883B0(this, 1);
     }
-    player_getPosition(&sp64);
-    func_80258A4C(&this->position, this->yaw + -90.0f, &sp64, &sp60, &sp5C, &sp58);
+    player_getPosition(plyr_pos);
+    func_80258A4C(this->position, this->yaw + -90.0f, plyr_pos, &sp60, &sp5C, &sp58);
     if(sp60 < 600.0f)
         local->unk8 = 1.0f;
     else{
@@ -119,7 +119,7 @@ void func_80388620(Actor *this){
         && sp60 < 500.0f
         && (sp58 < -0.2 || 0.2 < sp58)
     ){
-        func_8030E624(0x665fe8c4);
+        FUNC_8030E624(SFX_C4_TWINKLY_MUNCHER_GRR, 0.8f, 32675);
     }
 
     local->unk10 = sp60;
@@ -128,9 +128,9 @@ void func_80388620(Actor *this){
     if( sp60 < 600.0f 
         && -1.0f < sp58
         && sp58 < 1.0f
-        && sp64[1] < this->position_y + this->scale*200.0f
+        && plyr_pos[1] < this->position_y + this->scale*200.0f
     ){
-        func_80258A4C(&this->position, (this->yaw + -90.0f) + local->unk0, &sp64, &sp60, &sp5C, &sp58);
+        func_80258A4C(this->position, (this->yaw + -90.0f) + local->unk0, plyr_pos, &sp60, &sp5C, &sp58);
         local->unk0 += (sp58*200.0f)*sp50;
         if(1.0f < local->unk14 && (sp58 < -0.1 || 0.1 < sp58)){
                 func_8030E6A4(SFX_D0_GRIMLET_SQUEAK, mlAbsF(sp58) * 0.1 + 0.9, 0x4e20);
@@ -154,8 +154,8 @@ void func_80388620(Actor *this){
         if( sp60 < 400.0f
             && -0.8 <= sp58
             && sp58  <= 0.8
-            && (sp64[1] - this->position_y) < 100.0f
-            && -100.0f < (sp64[1] - this->position_y)
+            && (plyr_pos[1] - this->position_y) < 100.0f
+            && -100.0f < (plyr_pos[1] - this->position_y)
         ){
             func_803883B0(this, 2);
         }
@@ -174,7 +174,7 @@ void func_80388620(Actor *this){
             && 0.55 <= sp48
             && !local->unk5
         ){
-            func_8030E8B4(0x7fff4020, &this->position, 0x09c401f4);
+            FUNC_8030E8B4(SFX_20_METAL_CLANK_1, 1.0f, 32000, this->position, 500, 2500);
         }
 
         if(func_80335794(this->unk148) > 0)

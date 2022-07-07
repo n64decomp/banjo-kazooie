@@ -11,7 +11,7 @@ typedef struct {
     s16 unkE;
     f32 unk10[3];
     s32 unk1C;
-    u16* unk20;
+    NodeProp* unk20;
     s32 unk24;
 }ActorLocal_Blubber;
 
@@ -31,7 +31,7 @@ extern ActorInfo D_8038C510 = {
 
 /* .code */
 void func_80387490(Actor *this){
-    ActorLocal_Blubber *local = &this->local;
+    ActorLocal_Blubber *local = (ActorLocal_Blubber *)&this->local;
 
     animctrl_setTransitionDuration(this->animctrl, 0.2f);
     this->initialized = TRUE;
@@ -62,7 +62,7 @@ void func_80387574(ActorMarker *caller, enum asset_e text_id, s32 arg1){
 
     if(func_80304E24(0x14b, sp24)){
         jiggySpawn(JIGGY_14_TTC_BLUBBER, sp24);
-        func_802C3F04(func_802C4140, 0x4C, reinterpret_cast(s32, sp24[0]), reinterpret_cast(s32, sp24[1]), reinterpret_cast(s32, sp24[2]));
+        func_802C3F04((GenMethod_4)func_802C4140, ACTOR_4C_STEAM, reinterpret_cast(s32, sp24[0]), reinterpret_cast(s32, sp24[1]), reinterpret_cast(s32, sp24[2]));
     }
 }
 
@@ -89,7 +89,7 @@ void func_80387678(Actor *this){
     mapSpecificFlags_set(3, TRUE);
     func_8028F918(2);
     timed_setCameraToNode(0.0f, 4);
-    timedFunc_set_1(1.0f, (TFQM1)func_803875D4, this->marker);
+    timedFunc_set_1(1.0f, (TFQM1)func_803875D4, (s32)this->marker);
     func_80328B8C(this, 1, 0.0f, 1);
 }
 
@@ -102,7 +102,7 @@ void func_8038771C(Actor *this){
 }
 
 void func_80387774(Actor **this_ptr){
-    ActorLocal_Blubber *local = &(*this_ptr)->local;
+    ActorLocal_Blubber *local = (ActorLocal_Blubber *)&(*this_ptr)->local;
 
     func_8028F364(local->unk10, local->unk1C, 100.0f, 0x2a, this_ptr);
     if( func_80329530(*this_ptr, 200)
@@ -185,15 +185,15 @@ void func_803878CC(Actor * this){
             }
 
             if(actor_animationIsAt(this, 0.3f)){
-                FUNC_8030E8B4(SFX_83_BLUBBER_CRYING, 0x213, 0x3CB, this->position, 1250, 2500);
+                FUNC_8030E8B4(SFX_83_BLUBBER_CRYING, 0.95f, 17000, this->position, 1250, 2500);
             }
 
             if(actor_animationIsAt(this, 0.53f)){
-                FUNC_8030E8B4(SFX_83_BLUBBER_CRYING, 0x213, 0x3B7, this->position, 1250, 2500);
+                FUNC_8030E8B4(SFX_83_BLUBBER_CRYING, 0.93f, 17000, this->position, 1250, 2500);
             }
 
             if(actor_animationIsAt(this, 0.72f)){
-                FUNC_8030E8B4(SFX_83_BLUBBER_CRYING, 0x213, 0x3A2, this->position, 1250, 2500);
+                FUNC_8030E8B4(SFX_83_BLUBBER_CRYING, 0.91f, 17000, this->position, 1250, 2500);
             }
 
             func_80387678(this);
@@ -213,13 +213,13 @@ void func_803878CC(Actor * this){
             }
             
             if(actor_animationIsAt(this, 0.3f) && !func_803114B0()){
-                FUNC_8030E624(SFX_8C_BOGGY_WAHEY, 0x34B, 0x3ff);
+                FUNC_8030E624(SFX_8C_BOGGY_WAHEY, 1.0f, 27000);
             }
 
             if(actor_animationIsAt(this, 0.28f) || 
                 (actor_animationIsAt(this, 0.78f) && !func_803114B0())
             ){
-                FUNC_8030E624(SFX_80_YUMYUM_CLACK, 0x196, 0x398);
+                FUNC_8030E624(SFX_80_YUMYUM_CLACK, 0.9f, 13000);
             }
             break;
 

@@ -53,7 +53,7 @@ void func_80390630(Actor *this){
             if( actor_animationIsAt(this, 0.09f)
                 || actor_animationIsAt(this, 0.19f)
             ){
-                FUNC_8030E8B4(SFX_88_WOZZA_NOISE, 0x2AF, 0x3ff, this->position, 500, 2000);
+                FUNC_8030E8B4(SFX_88_WOZZA_NOISE, 1.0f, 22000, this->position, 500, 2000);
             }
 
             if( actor_animationIsAt(this, 0.68f)
@@ -62,7 +62,7 @@ void func_80390630(Actor *this){
                 || actor_animationIsAt(this, 0.92f)
                 
             ){
-                FUNC_8030E8B4(SFX_3F2_UNKNOWN, 0x2EE, 0x332, this->position, 500, 2000);
+                FUNC_8030E8B4(SFX_3F2_UNKNOWN, 0.8f, 24000, this->position, 500, 2000);
             }
         }
 
