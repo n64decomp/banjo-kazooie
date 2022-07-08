@@ -81,7 +81,7 @@ void func_802A744C(void) {
 }
 
 
-bool func_802A7508(enum bs_e move_id){
+bool bsbswim_inSet(enum bs_e move_id){
     return move_id == BS_2B_DIVE_IDLE
         || move_id == BS_2C_DIVE_B
         || move_id == BS_39_DIVE_A
@@ -94,11 +94,11 @@ bool func_802A7508(enum bs_e move_id){
 }
 
 bool func_802A7588(void){
-    return func_802A7508(bs_getState());
+    return bsbswim_inSet(bs_getState());
 }
 
 void func_802A75B0(void) {
-    if (!func_802A7508(bs_getNextState())) {
+    if (!bsbswim_inSet(bs_getNextState())) {
         pitch_setIdeal(0.0f);
         roll_setIdeal(0.0f);
         func_80297B94();

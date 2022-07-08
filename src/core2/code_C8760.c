@@ -52,7 +52,7 @@ void func_8034F774(void){
         sp44[0] = (sp38[0] + sp2C[0])/2;
         sp44[1] = (sp38[1] + sp2C[1])/2;
         sp44[2] = (sp38[2] + sp2C[2])/2;
-        func_8030DA80(D_803720A0.unk5, 0x3EC);
+        sfxsource_setSfxId(D_803720A0.unk5, 0x3EC);
         func_8030DD14(D_803720A0.unk5, 3);
         func_8030DFF0(D_803720A0.unk5, 1);
         func_8030DF68(D_803720A0.unk5, &sp44);

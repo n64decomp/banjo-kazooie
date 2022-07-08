@@ -143,9 +143,9 @@ void func_80387408(Actor *this){
 
     if(func_8025773C(&local->unk10, tick)){
         for(i = 0; i < 2; i++){
-            func_8030DA80(local->unk0[i], SFX_3F9_UNKNOWN);
+            sfxsource_setSfxId(local->unk0[i], SFX_3F9_UNKNOWN);
             func_8030DD14(local->unk0[i], 3);
-            func_8030DABC(local->unk0[i], 32000);
+            sfxsource_setSampleRate(local->unk0[i], 32000);
             func_8030E2C4(local->unk0[i]);
         }
     }

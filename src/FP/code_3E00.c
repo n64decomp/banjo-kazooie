@@ -127,7 +127,7 @@ void func_8038A384(Actor *this){
     switch(this->state){
         case 1://L8038A5B0
             if(!levelSpecificFlags_get(0x19) && func_80329530(this, 0xfa)){
-                if(func_8028ECAC() == 0 || func_8028ECAC() == 8){
+                if(func_8028ECAC() == 0 || func_8028ECAC() == BSGROUP_8_TROT){
                     if(sp34 == 0
                         && !jiggyscore_isCollected(JIGGY_2C_FP_BOGGY_3)
                         && !jiggyscore_isSpawned(JIGGY_2C_FP_BOGGY_3)

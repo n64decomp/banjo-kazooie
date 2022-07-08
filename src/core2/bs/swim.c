@@ -4,7 +4,7 @@
 
 extern void func_80295328(s32, f32);
 
-bool func_802B5724(enum bs_e state_id);
+bool bsswim_inset(enum bs_e state_id);
 
 /* .data */
 f32 D_80364D40 = 30.0f;
@@ -85,7 +85,7 @@ void func_802B563C(void) {
 
 
 void func_802B56D4(void) {
-    if (!func_802B5724(bs_getNextState())) {
+    if (!bsswim_inset(bs_getNextState())) {
         func_80297B94();
         gravity_reset();
         func_8029B0C0();
@@ -93,7 +93,7 @@ void func_802B56D4(void) {
     }
 }
 
-bool func_802B5724(enum bs_e state_id){
+bool bsswim_inset(enum bs_e state_id){
     return state_id == BS_2D_SWIM_IDLE
         || state_id == BS_2E_SWIM
         || state_id == BS_4C_LANDING_IN_WATER
@@ -114,7 +114,7 @@ void func_802B5774(void) {
     } else {
         transition_duration = 0.5f;
     }
-    if (func_802A7508(prev_state) != 0) {
+    if (bsbswim_inSet(prev_state) != 0) {
         if (prev_state == BS_54_SWIM_DIE) {
             func_80299CF4(SFX_AF_BANJO_CATCHING_BREATH, 1.0f, 30000);
         } else {
@@ -156,7 +156,7 @@ void func_802B5950(void) {
         func_802B5480();
     }
     if (animctrl_isAt(anim_ctrl, 0.01f) != 0) {
-        func_8030EC20(SFX_DC_IDLE_PADDLING, 0.85f, 1.15f, 0x3E80U, 0x3E80U);
+        func_8030EC20(SFX_DC_IDLE_PADDLING, 0.85f, 1.15f, 16000, 16000);
     }
     if (animctrl_isAt(anim_ctrl, 0.4348f) != 0) {
         func_802B5538(anim_ctrl);
@@ -176,7 +176,7 @@ void func_802B5950(void) {
     if (func_80294524() && button_pressed(BUTTON_A)) {
         next_state = BS_5_JUMP;
     }
-    if (func_802933C0(6) || func_802933C0(0x14)) {
+    if (miscflag_isTrue(6) || miscflag_isTrue(0x14)) {
         next_state = BS_D_TIMEOUT;
     }
     bs_setState(next_state);
@@ -253,7 +253,7 @@ void func_802B5C40(void) {
     if (func_80294524() && button_pressed(BUTTON_A)) {
         next_state = BS_5_JUMP;
     }
-    if (func_802933C0(6) || func_802933C0(0x14)) {
+    if (miscflag_isTrue(6) || miscflag_isTrue(0x14)) {
         next_state = BS_D_TIMEOUT;
     }
     bs_setState(next_state);

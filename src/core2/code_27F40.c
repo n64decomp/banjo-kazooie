@@ -29,7 +29,7 @@ void func_802AEEF4(void) {
     sp1C[1] += 180.0f;
     sp1C[2] = 0.0f;
     func_802C2A8C(sp1C);
-    func_802933E8(0x17);
+    miscflag_set(0x17);
 }
 
 void func_802AEFB0(void) {
@@ -54,7 +54,7 @@ void func_802AEFB0(void) {
             sp1C = 1;
         }
         if (player_inWater()) {
-            if (player_getTransformation() == TRANSFORM_1_BANJO && func_8028EE84() == 0) {
+            if (player_getTransformation() == TRANSFORM_1_BANJO && func_8028EE84() == BSWATERGROUP_0_NONE) {
                 sp1C += 1;
             }
         } else if (func_8028B254(25) == 0) {
@@ -74,5 +74,5 @@ void func_802AF164(void) {
         func_80299D2C(SFX_12E_CAMERA_ZOOM_MEDIUM, 1.2f, 12000);
     }
     func_802BE91C();
-    func_802933FC(0x17);
+    miscflag_clear(0x17);
 }

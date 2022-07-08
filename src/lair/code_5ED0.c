@@ -255,7 +255,7 @@ void func_8038CC10(void)
 
     D_8037DCB8->UNK_18 = func_8030ED2C(0x1C, 3);
     func_8030DD90(D_8037DCB8->UNK_18, 0);
-    func_8030DABC(D_8037DCB8->UNK_18, 32760);
+    sfxsource_setSampleRate(D_8037DCB8->UNK_18, 32760);
     func_8030DBB4(D_8037DCB8->UNK_18, 0.7f);
     func_8030E2C4(D_8037DCB8->UNK_18);
 }

@@ -104,8 +104,8 @@ void func_80294B0C(void){
     int sp18 = func_8028ECAC();
     if( func_8028B2E8() 
         || player_inWater() 
-        || (sp18 == 0xa && player_getActiveHitbox(0) != HITBOX_3_BEAK_BOMB) 
-        || sp18 == 0x5
+        || (sp18 == BSGROUP_A_FLYING && player_getActiveHitbox(0) != HITBOX_3_BEAK_BOMB) 
+        || sp18 == BSGROUP_5_CLIMB
     ){////L80294B74
         func_80294B00(1);
     }
@@ -184,13 +184,13 @@ void func_80294E60(void){
     }
 
     if(func_8028B2E8() || bsclimb_inSet(bs_getState())){
-        func_802933FC(5);
-        func_802933FC(0x12);
+        miscflag_clear(5);
+        miscflag_clear(0x12);
     }
 
     if(player_inWater()){
-        func_802933FC(5);
-        func_802933FC(0x12);
+        miscflag_clear(5);
+        miscflag_clear(0x12);
     }
 
     func_80294BDC();

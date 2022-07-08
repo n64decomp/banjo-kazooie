@@ -7,12 +7,32 @@ int ability_hasLearned(s32);
 
 extern s32 D_80275650;
 
-extern s32 D_8038AAE0;
-extern s32 D_8038AAE4;
-extern union {
+
+extern ActorInfo D_8038AB00;
+extern ActorInfo D_8038ABF0;
+extern ActorInfo D_8038AC20; //chAttackTutorial
+extern ActorInfo D_8038AC78; //chCarrot Slave?
+extern ActorInfo D_8038ACE8; //ch onion A
+extern ActorInfo D_8038AD58; //ch cauliflower A
+extern ActorInfo D_8038AC9C; //chCarrot FreeRange?
+extern ActorInfo D_8038AD0C; //ch onion B
+extern ActorInfo D_8038AD7C; //ch cauliflower B
+extern ActorInfo D_8038AF90; //D_8038AF90 bottles
+extern ActorInfo D_8038B0B0; //chJumpTutorial code_4070
+extern ActorInfo D_8038B0E0;
+extern ActorInfo D_8038B008; //chBanjosBed
+extern ActorInfo D_8038B044; //chBanjosChair
+extern ActorInfo D_8038B080; //chBanjosStove
+extern ActorInfo D_8038AB24;
+
+/* .data */
+s32 D_8038AAE0 = 0x000FE2C1; //SM_code_crc_1
+s32 D_8038AAE4 = 0x8C0992D1; //SM_code_crc_2
+union {
     u8 byte[4];
     s32 word;
-} D_8038AAE8;
+} D_8038AAE8 = {0x00, 0x01, 0xEB, 0x56}; //SM_data_crc_1
+s32 D_8038AAEC = 0;
 
 extern struct 
 {
@@ -116,24 +136,6 @@ int func_80386780(void){
     }
     return 0;
 }
-
-
-extern ActorInfo D_8038AB00;
-extern ActorInfo D_8038ABF0;
-extern ActorInfo D_8038AC20; //chAttackTutorial
-extern ActorInfo D_8038AC78; //chCarrot Slave?
-extern ActorInfo D_8038ACE8; //ch onion A
-extern ActorInfo D_8038AD58; //ch cauliflower A
-extern ActorInfo D_8038AC9C; //chCarrot FreeRange?
-extern ActorInfo D_8038AD0C; //ch onion B
-extern ActorInfo D_8038AD7C; //ch cauliflower B
-extern ActorInfo D_8038AF90; //D_8038AF90 bottles
-extern ActorInfo D_8038B0B0; //chJumpTutorial code_4070
-extern ActorInfo D_8038B0E0;
-extern ActorInfo D_8038B008; //chBanjosBed
-extern ActorInfo D_8038B044; //chBanjosChair
-extern ActorInfo D_8038B080; //chBanjosStove
-extern ActorInfo D_8038AB24;
 
 void func_80386810(void)
 {

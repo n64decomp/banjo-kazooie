@@ -486,7 +486,7 @@ void func_8038F924(Actor *this) {
                     func_8035644C(0xA7);
                 }
             }
-            if (func_8038ECA8(this->marker) && this->unk138_24 && !func_8038EB58(this) && (func_8028ECAC() == 0 || func_8028ECAC() == 8)) {
+            if (func_8038ECA8(this->marker) && this->unk138_24 && !func_8038EB58(this) && (func_8028ECAC() == 0 || func_8028ECAC() == BSGROUP_8_TROT)) {
                 func_8038F350(this, 2);
             }
             break;

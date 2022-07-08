@@ -37,8 +37,8 @@ struct {
 f32 D_8037DC10;
 
 /* .code */
-bool func_802C0E80(void){
-    return (map_get() == MAP_27_FP_FREEZEEZY_PEAK) && (func_8028ECAC() == 10);
+bool __is_flying_in_FP(void){
+    return (map_get() == MAP_27_FP_FREEZEEZY_PEAK) && (func_8028ECAC() == BSGROUP_A_FLYING);
 }
 
 struct56s *func_802C0EC0(void){
@@ -131,7 +131,7 @@ s32 func_802C11C8(f32 arg0[3]) {
 
     sp2C = func_802C0EC0();
     func_802C0FF4(sp4C);
-    if (func_8028EE84() == 2) {
+    if (func_8028EE84() == BSWATERGROUP_2_UNDERWATER) {
         func_802BD82C(20.0f, 200.0f);
     } else {
         func_802BD82C(80.0f, 200.0f);
@@ -188,7 +188,7 @@ void func_802C14E0(void) {
             D_8037DBE0.unk2C = 2;
         }
         func_802BD384(sp40);
-        if ((D_8037DBE0.unk28 == -1) || (func_802C11C8(sp40) == 0) || func_802C0E80()) {
+        if ((D_8037DBE0.unk28 == -1) || (func_802C11C8(sp40) == 0) || __is_flying_in_FP()) {
             D_8037DBE0.unk28 = 0;
             return;
         }
@@ -227,7 +227,7 @@ void func_802C16CC(s32 arg0) {
     s32 sp34;
     s16 *sp30;
 
-    if ((func_8028ECAC() != 4) && !func_802C0E80()){
+    if ((func_8028ECAC() != 4) && !__is_flying_in_FP()){
         sp38 = func_80334524(arg0);
         if(sp38 != D_8037DBE0.unk28 && D_8037DBE0.unk28 != -1){
             player_getPosition(sp54); 

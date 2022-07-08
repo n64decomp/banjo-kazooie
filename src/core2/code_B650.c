@@ -56,7 +56,7 @@ enum bs_e func_80292710(void){
 }
 
 enum bs_e func_80292738(void){
-    func_802933FC(0x19);
+    miscflag_clear(0x19);
     func_802925E0(0x4);
     return func_8029BD90();
 }

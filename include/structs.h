@@ -451,9 +451,8 @@ typedef struct struct_31_s{
 } struct31s;
 
 typedef struct struct_32_s{
-    f32 unk0[2];
-    f32 unk8[2];
-    f32 unk10[2];
+    f32 unk0[3];
+    f32 unkC[3];
 } struct32s;
 
 typedef struct struct_33_s{

@@ -311,7 +311,7 @@ void bsdronexform_init(void){
     func_802B016C();
     D_8037D470.unk31 = _player_getTransformation();
     D_8037D470.unk30 = func_80294A4C();
-    func_802933E8(0x1b);
+    miscflag_set(MISC_FLAG_1B_TRANSFORMING);
     D_8037D470.unk32 = 0;
     __bsdronexform_setState(1);
 }
@@ -407,7 +407,7 @@ void bsdronexform_update(void){
             sp24 = func_8029E1A8(0);
             player_setYPosition(func_802B051C(0, 0.7f, 90.0f, 0.0f) + D_8037D470.unk2C);
             if(sp24)
-                bs_setState(func_8029BF78());
+                bs_setState(bs_getIdleState());
             break;
         // 802B08AC 8
         // 802B09A4 9
@@ -420,7 +420,7 @@ void bsdronexform_end(void){
     func_802AFADC();
     func_802B014C();
     func_80298A64();
-    func_802933FC(0x1b);
+    miscflag_clear(MISC_FLAG_1B_TRANSFORMING);
 }
 
 void bsdronexform_interrupt(void){};

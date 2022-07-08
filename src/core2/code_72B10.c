@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-f32 func_8034A788(f32, f32);
+f32 sfx_randf2(f32, f32);
 
 extern vector(struct4Es) *D_803810A0;
 
@@ -30,9 +30,9 @@ s32 func_802F9AA8(enum sfx_e arg0){
         iPtr = vector_pushBackNew(&D_803810A0);
 
     iPtr->unk0 = func_8030D90C();
-    func_8030DA80(iPtr->unk0, arg0);
+    sfxsource_setSfxId(iPtr->unk0, arg0);
     func_8030DD14(iPtr->unk0, 3);
-    func_8030DABC(iPtr->unk0, 0x64);
+    sfxsource_setSampleRate(iPtr->unk0, 0x64);
     func_8030E2C4(iPtr->unk0);
     startPtr = vector_getBegin(D_803810A0);
     indx = iPtr - startPtr;
@@ -199,7 +199,7 @@ void func_802FA0F8(void){
             else{
                 if(iPtr->unk3E == 1){
                     f20 = func_8030E200(iPtr->unk0);
-                    f20 += func_8034A788(-1.0f, 1.0f)*iPtr->unk18;
+                    f20 += sfx_randf2(-1.0f, 1.0f)*iPtr->unk18;
                     f20 = MIN(iPtr->unk1C, f20);
                     f20 = MAX(iPtr->unk20, f20);
                 }
@@ -229,7 +229,7 @@ void func_802FA0F8(void){
                         ){
                             iPtr->unk8 = (iPtr->unk3A + iPtr->unk38)/2;
                         }
-                        iPtr->unk8 += func_8034A788(-1.0f, 1.0f) * iPtr->unk34;
+                        iPtr->unk8 += sfx_randf2(-1.0f, 1.0f) * iPtr->unk34;
 
                         iPtr->unk8 = MIN(iPtr->unk38, iPtr->unk8);
                         iPtr->unk8 = MAX(iPtr->unk3A, iPtr->unk8);
@@ -240,7 +240,7 @@ void func_802FA0F8(void){
                 if(iPtr->unk3F && !func_8030E3FC(iPtr->unk0)){
                     func_8030E2C4(iPtr->unk0);
                 }
-                func_8030DABC(iPtr->unk0, (s32)iPtr->unk8);
+                sfxsource_setSampleRate(iPtr->unk0, (s32)iPtr->unk8);
             }
         }//L802FA4A0
     }//L802FA4B4

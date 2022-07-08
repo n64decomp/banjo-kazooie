@@ -530,7 +530,7 @@ void func_802BD3CC(f32 arg0[3]) {
 
     player_getPosition(arg0);
     sp2C = func_8028E82C();
-    if ((func_8028F2FC() != 0) && (func_8028EE84() != 2) && (player_getTransformation() == TRANSFORM_1_BANJO)) {
+    if ((func_8028F2FC() != 0) && (func_8028EE84() != BSWATERGROUP_2_UNDERWATER) && (player_getTransformation() == TRANSFORM_1_BANJO)) {
         temp_f0 = func_8028EF88();
         temp_f2 = temp_f0 - 500.0f;
         sp2C = ml_map_f(arg0[1], temp_f0 - 80.0f, temp_f2, temp_f0, temp_f2);

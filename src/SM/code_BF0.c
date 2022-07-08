@@ -2,7 +2,17 @@
 #include "functions.h"
 #include "variables.h"
 
+void func_80386FE0(Actor *this);
 
+/* .data */
+ActorInfo D_8038ABF0 = {
+    0x134, 0x16E, 0,
+    1, NULL,
+    func_80386FE0, func_80326224, func_80325340,
+    2000, 0, 0.0f, 0
+};
+
+/* .code */
 void func_80386FE0(Actor *this){
     if(!this->unk16C_4){
         this->unk10_12 = 0;

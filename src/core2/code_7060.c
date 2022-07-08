@@ -9,7 +9,7 @@
 extern bool func_8028B0E0(f32[3], f32);
 extern bool func_8028B16C(f32[3], f32);
 extern enum bs_e func_80292658(f32 arg0[3], f32 arg1, void(*arg2)(ActorMarker *), ActorMarker *arg3);
-extern void func_802933FC(s32);
+extern void miscflag_clear(s32);
 extern void func_80294924(f32, f32);
 extern void func_80295A8C(void);
 extern void climbSet(f32[3], f32[3], f32, u32);
@@ -67,10 +67,10 @@ bool func_8028E060(s32 arg0, s32 *arg1){
 }
 
 void func_8028E0B0(ActorMarker *arg0){
-    bs_setState(func_8029BF78());
+    bs_setState(bs_getIdleState());
     func_8029A980(0);
-    func_802933FC(0x16);
-    func_802933FC(0x18);
+    miscflag_clear(0x16);
+    miscflag_clear(0x18);
 }
 
 void func_8028E0F0(s32 arg0, s32 arg1[3]) {
@@ -116,17 +116,17 @@ void func_8028E0F0(s32 arg0, s32 arg1[3]) {
     switch (map_get()) {
         case MAP_27_FP_FREEZEEZY_PEAK:
             if (arg0 == 0xD) {
-                func_802933E8(0x16);
+                miscflag_set(0x16);
             }
             break;
         case MAP_77_GL_RBB_LOBBY:
             if ((arg0 == 2) && func_802D6088()) {
-                func_802933E8(0x18);
+                miscflag_set(0x18);
             }
             break;
         case MAP_76_GL_640_NOTE_DOOR:
             if ((arg0 == 1) && func_802D60C4()) {
-                func_802933E8(0x18);
+                miscflag_set(0x18);
             }
             break;
     }
@@ -152,8 +152,8 @@ void func_8028E0F0(s32 arg0, s32 arg1[3]) {
     func_8028F85C(&sp7C);
     func_80295A8C();
     func_8029A980(0);
-    func_802933FC(0x16);
-    func_802933FC(0x18);
+    miscflag_clear(0x16);
+    miscflag_clear(0x18);
     func_8028E060(arg0, &sp6C);
     yaw_setIdeal((f32) sp6C);
     yaw_applyIdeal();
@@ -196,7 +196,7 @@ void func_8028E4B0(void) {
         D_8037BFB8 = 1;
         func_80295A8C();
         func_8029A980(0);
-        func_802933FC(0x16);
+        miscflag_clear(0x16);
         yaw_setIdeal(D_8037BFCC);
         yaw_applyIdeal();
     } else if (func_8028DFF0(sp20, sp24)) {
@@ -239,7 +239,7 @@ void func_8028E6A4(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
 
 
 void func_8028E6EC(s32 arg0){
-    bs_setState(func_8029BF78());
+    bs_setState(bs_getIdleState());
     func_8028F918(arg0);
 }
 
@@ -434,30 +434,30 @@ f32 func_8028EC64(f32 arg0[3]){
     return sp1C;
 }
 
-s32 func_8028ECAC(void) {
+enum bsgroup_e func_8028ECAC(void) {
     enum bs_e state_id;
     s32 temp_a1;
 
     state_id = bs_getState();
-    if (func_802933C0(0x1B)) {
-        return 0xD;
+    if (miscflag_isTrue(MISC_FLAG_1B_TRANSFORMING)) {
+        return BSGROUP_D_TRANSFORMING;
     }
-    if (func_802933C0(0x17)) {
+    if (miscflag_isTrue(0x17)) {
         return 4;
     }
     if (bsbfly_inSet(state_id)) {
-        return 0xA;
+        return BSGROUP_A_FLYING;
     }
     if (bslongleg_inSet(state_id)) {
-        return 9;
+        return BSGROUP_9_LONG_LEG;
     }
-    if (bsclimb_inSet(state_id) != 0) {
-        return 5;
+    if (bsclimb_inSet(state_id)) {
+        return BSGROUP_5_CLIMB;
     }
-    if (func_802B8190(state_id) != 0) {
-        return 0xC;
+    if (func_802B8190(state_id)) {
+        return BSGROUP_C_WALRUS_SLED;
     }
-    if (func_802933C0(9) != 0) {
+    if (miscflag_isTrue(9) != 0) {
         return 1;
     }
     switch(state_id){
@@ -476,7 +476,7 @@ s32 func_8028ECAC(void) {
         case BS_1E_WONDERWING_EXIT: //L8028EE08
         case BS_A4_WONDERWING_DRONE://L8028EE08
         case BS_A5_WONDERWING_UNKA5://L8028EE08
-            return 3;
+            return BSGROUP_3_WONDERWING;
 
         case BS_8_BTROT_JUMP: //L8028EE10
         case BS_15_BTROT_IDLE: //L8028EE10
@@ -484,9 +484,9 @@ s32 func_8028ECAC(void) {
         case BS_17_BTROT_EXIT: //L8028EE10
         case BS_45_BTROT_SLIDE: //L8028EE10
             if(func_80291698(3)){
-                return 6;
+                return BSGROUP_6_TURBO_TALON_TRAINERS;
             }
-            return 8;
+            return BSGROUP_8_TROT;
 
         case BS_B_UNKOWN: //L8028EE30
             return 2;
@@ -495,34 +495,34 @@ s32 func_8028ECAC(void) {
         case BS_70_CROC_EAT_GOOD://L8028EE38
             if(func_802AD3A0())
                 return 0;
-            return 7;
+            return BSGROUP_7_CROC_ATTACK;
 
         default: //L8028EE58
             if (player_getActiveHitbox(NULL) != 0) {
-                return 0xB;
+                return BSGROUP_B_ATTACKING;
             }
             return 0;
     }
 }
    
 
-s32 func_8028EE84(void) {
-    s32 state_id;
+enum bswatergroup_e func_8028EE84(void) {
+    enum bswatergroup_e state_id;
 
     state_id = bs_getState();
-    if (func_802B5724(state_id)) {
-        return 1;
+    if (bsswim_inset(state_id)) {
+        return BSWATERGROUP_1_SURFACE;
     }
     if (state_id == BS_5_JUMP) {
-        if (func_802B1DC4()) {
-            return 1;
+        if (bsjump_jumpingFromWater()) {
+            return BSWATERGROUP_1_SURFACE;
         }
-        return 0;
+        return BSWATERGROUP_0_NONE;
     }
-    if (func_802A7508(state_id)) {
-        return 2;
+    if (bsbswim_inSet(state_id)) {
+        return BSWATERGROUP_2_UNDERWATER;
     }
-    return 0;
+    return BSWATERGROUP_0_NONE;
 }
 
 
@@ -607,7 +607,7 @@ bool func_8028F150(void){
 }
 
 bool func_8028F170(void){
-    return func_802933C0(0x17);
+    return miscflag_isTrue(0x17);
 }
 
 int ability_isUnlocked(enum ability_e uid){

@@ -31,7 +31,7 @@ void func_8029E3E0(void){
 }
 
 void func_8029E448(int arg0){
-    func_8030EAAC(SFX_3D_TICKER_WALKING, arg0 ? 0.96f : 1.04f, 0x36b0, 8);
+    func_8030EAAC(SFX_3D_TICKER_WALKING, arg0 ? 0.96f : 1.04f, 14000, 8);
     
 }
 
@@ -51,8 +51,8 @@ void func_8029E4EC(void){
         func_8029B0C0();
         func_8029E070(0);
         func_8029E064(0);
-        func_802933FC(3);
-        func_802933FC(4);
+        miscflag_clear(3);
+        miscflag_clear(4);
         func_80293D74();
     }
     func_80289F10(1);
@@ -81,8 +81,8 @@ void bsant_idle_init(void){
     func_80297970(0.0f);
     pitch_setAngVel(1000.0f, 12.0f);
     roll_setAngularVelocity(1000.0f, 12.0f);
-    func_802933E8(3);
-    func_802933E8(4);
+    miscflag_set(3);
+    miscflag_set(4);
     func_802900B4();
 }
 
@@ -263,7 +263,7 @@ void bsant_fall_update(void){
             break;
     }
     if(func_8028B2E8()){
-        if(func_802933C0(0x19))
+        if(miscflag_isTrue(0x19))
             sp2C = func_80292738();
         else
             sp2C = BS_35_ANT_IDLE;

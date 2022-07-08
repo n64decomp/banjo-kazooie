@@ -33,7 +33,7 @@ void bsbshock_charge_init(void){
     func_8029E070(1);
     func_80299BD4();
     D_8037D382 = func_8030D90C();
-    func_8030DA80(D_8037D382, SFX_2C_PULLING_NOISE);
+    sfxsource_setSfxId(D_8037D382, SFX_2C_PULLING_NOISE);
     func_8030E04C(D_8037D382, 1.4f, 0.4f, -1.2f);
     func_80292158(-50.0f);
     func_80298528(-50.0f);

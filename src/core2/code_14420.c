@@ -19,6 +19,23 @@ typedef struct {
     f32 anim_duration;
 } Struct_core2_13FC0;
 
+enum bs_14420_e{
+    BS14420_0_TERMITE,
+    BS14420_1_PUMPKIN,
+    BS14420_2_CROC,
+    BS14420_3_WALRUS,
+    BS14420_4_WATER_SURFACE,
+    BS14420_5_UNDERWATER,
+
+    BS14420_7_FLY = 0x7,
+    BS14420_8_TROT,
+
+    BS14420_A_WALRUS_SLED = 0xA,
+    BS14420_B_BEE,
+    BS14420_C_CLIMB,
+    BS14420_D_WONDERWING,
+};
+
 /* .data */ 
 s32 D_80364620 = 0;
 s16 D_80364624[14] = {0};
@@ -93,10 +110,10 @@ enum bs_e func_8029B458(void){
 enum bs_e func_8029B504(void){
     enum bs_e sp1C;
 
-    if(func_802933C0(0xF))
+    if(miscflag_isTrue(0xF))
         return 0;
 
-    func_802933E8(0xF);
+    miscflag_set(0xF);
     sp1C = func_8029B458();
     if(bs_getState() != sp1C)
         return sp1C;
@@ -265,55 +282,55 @@ enum bs_e func_8029BA80(void){
     }
 }
 
-s32 func_8029BAF0(void){
+enum bs_14420_e func_8029BAF0(void){
     enum bs_e state_id = bs_getState();
     switch (_player_getTransformation())
     {
     case TRANSFORM_3_PUMPKIN://L8029BB2C
-        return 1;
+        return BS14420_1_PUMPKIN;
 
     case TRANSFORM_2_TERMITE://L8029BB34
-        return 0;
+        return BS14420_0_TERMITE;
 
     case TRANSFORM_5_CROC://L8029BB3C
-        return 2;
+        return BS14420_2_CROC;
 
     case TRANSFORM_4_WALRUS://L8029BB44
         if (func_802B8190(state_id)) {
-            return 0xA;
+            return BS14420_A_WALRUS_SLED;
         }
-        return 3;
+        return BS14420_3_WALRUS;
 
     case TRANSFORM_6_BEE://L8029BB64
-        return 0xB;
+        return BS14420_B_BEE;
 
     case TRANSFORM_1_BANJO://L8029BB6C
     default:
         if (bsclimb_inSet(state_id)) {
-            return 0xC;
+            return BS14420_C_CLIMB;
         }
         if (bsbfly_inSet(state_id)) {
-            return 7;
+            return BS14420_7_FLY;
         }
         if (bsbtrot_inSet(state_id)) {
-            return 8;
+            return BS14420_8_TROT;
         }
         if (func_80291670(2) != 0.0f) {
             return 9;
         }
-        if (func_802933C0(0x18)) {
-            return 5;
+        if (miscflag_isTrue(0x18)) {
+            return BS14420_5_UNDERWATER;
         }
-        if (func_8028ECAC() == 3) {
-            return 0xD;
+        if (func_8028ECAC() == BSGROUP_3_WONDERWING) {
+            return BS14420_D_WONDERWING;
         }
         if (player_inWater()) {
             switch(func_8028EE84()){
-                case 2:
-                    return 5;
-                case 1: 
+                case BSWATERGROUP_2_UNDERWATER:
+                    return BS14420_5_UNDERWATER;
+                case BSWATERGROUP_1_SURFACE: 
                 default:
-                    return 4;
+                    return BS14420_4_WATER_SURFACE;
 
             }
         }
@@ -402,7 +419,7 @@ enum bs_e func_8029BF4C(void) {
     return D_803648F0[func_8029BAF0()].state_id;
 }
 
-enum bs_e func_8029BF78(void){
+enum bs_e bs_getIdleState(void){
     switch (_player_getTransformation()) {
         case TRANSFORM_3_PUMPKIN:
             return BS_48_PUMPKIN_IDLE;
@@ -421,10 +438,10 @@ enum bs_e func_8029BF78(void){
 
         case TRANSFORM_1_BANJO:
         default:
-            if (func_802933C0(0x16)) {
+            if (miscflag_isTrue(0x16)) {
                 return BS_24_FLY;
             }
-            if (func_802933C0(0x18)) {
+            if (miscflag_isTrue(0x18)) {
                 return BS_2B_DIVE_IDLE;
             }
             if (func_80291670(3) != 0.0f) {
@@ -579,7 +596,7 @@ void func_8029C674(void) {
     D_8037D1E8 = FALSE;
     if (func_80298850() == 4) {
         D_8037D1E8 = TRUE;
-        func_802933E8(0x17);
+        miscflag_set(0x17);
         func_802BE8D8();
         func_8028E9C4(5, sp1C);
         func_802C2A64(sp1C);
@@ -604,7 +621,7 @@ void func_8029C6D0(void) {
 
 void func_8029C748(void) {
     if (D_8037D1E8) {
-        func_802933FC(0x17);
+        miscflag_clear(0x17);
         func_802BE91C();
     }
 }
@@ -613,10 +630,10 @@ enum bs_e func_8029C780(void){
     if(button_held(BUTTON_Z) && can_flip())
         return BS_12_BFLIP;
 
-    if(func_802933C0(2))
+    if(miscflag_isTrue(MISC_FLAG_2_ON_SPRING_PAD))
         return BS_5_JUMP;
 
-    if(func_802933C0(1))
+    if(miscflag_isTrue(MISC_FLAG_1_ON_FLIGHT_PAD))
         return BS_23_FLY_ENTER;
 
     return BS_5_JUMP;
@@ -683,7 +700,7 @@ void func_8029C984(void){
 }
 
 s32 func_8029C9C0(s32 arg0){
-    if(func_802933C0(0xF))
+    if(miscflag_isTrue(0xF))
         return arg0;
     
     if(button_pressed(BUTTON_A))
@@ -705,28 +722,28 @@ s32 func_8029C9C0(s32 arg0){
 }
 
 s32 func_8029CA94(s32 arg0){
-    if(func_802933C0(0x19))
+    if(miscflag_isTrue(0x19))
         arg0 = func_80292738();
     
-    if(func_802933C0(0x1A))
+    if(miscflag_isTrue(0x1A))
         arg0 = (player_getTransformation() == TRANSFORM_6_BEE) ? 0x46 : BS_34_JIG_NOTEDOOR;
 
-    if(func_802933C0(0xE))
+    if(miscflag_isTrue(MISC_FLAG_E_TOUCHING_WADING_BOOTS))
         arg0 = BS_25_LONGLEG_ENTER;
 
-    if(func_802933C0(0x10))
+    if(miscflag_isTrue(MISC_FLAG_10_TOUCHING_TURBO_TRAINERS))
         arg0 = BS_14_BTROT_ENTER;
 
-    if(func_802933C0(0x6))
-        arg0 = 0x53;
+    if(miscflag_isTrue(0x6))
+        arg0 = BS_53_TIMEOUT;
 
-    if(func_802933C0(0x7))
+    if(miscflag_isTrue(0x7))
         arg0 = BS_44_JIG_JIGGY;
 
-    if(func_802933C0(0x14))
+    if(miscflag_isTrue(0x14))
         arg0 = (player_getTransformation() == TRANSFORM_4_WALRUS) ? 0x80 : 0x53;
     
-    func_802933FC(0xF);
+    miscflag_clear(0xF);
 
     return arg0;
 }
@@ -763,14 +780,14 @@ void func_8029CBF4(void){
 }
 
 void func_8029CCC4(void){
-    if(func_802933D0(7)) return;
-    if( func_802933C0(0xF)
-        && func_802933D0(6)
-        && func_802933D0(20)
+    if(miscflag_isFalse(7)) return;
+    if( miscflag_isTrue(0xF)
+        && miscflag_isFalse(6)
+        && miscflag_isFalse(20)
     ){
-        func_802933FC(0xF);
+        miscflag_clear(0xF);
     }
-    func_802933FC(7);
+    miscflag_clear(7);
     func_802B0CD8();
     item_inc(ITEM_E_JIGGY);
     if(jiggyscore_total() == 100 && func_8031FF1C(BKPROG_FC_DEFEAT_GRUNTY)){

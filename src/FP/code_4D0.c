@@ -85,7 +85,7 @@ void func_80386AA4(Actor *this){
         }
         break;
     case 3://L80386B50
-        if(func_8028ECAC() != 0xC){
+        if(func_8028ECAC() != BSGROUP_C_WALRUS_SLED){
             func_80386920(this, 2);
         }
         break;

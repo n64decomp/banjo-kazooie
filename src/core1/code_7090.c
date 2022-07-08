@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void func_8030DABC(u8, s32);
+extern void sfxsource_setSampleRate(u8, s32);
 extern void func_8030E2C4(u8);
 
 
@@ -49,9 +49,9 @@ void func_80244BB0(s32 arg0, s32 arg1, s32 arg2, f32 arg3){
         i = func_8030D90C();
         indx = i;
         if(i){
-            func_8030DA80(indx, func_80255D44(arg1));
+            sfxsource_setSfxId(indx, func_80255D44(arg1));
             func_8030DBB4(indx, arg3);
-            func_8030DABC(indx, arg2);
+            sfxsource_setSampleRate(indx, arg2);
             func_8030E2C4(indx);
             func_80244C78(arg0);
             D_802758E0[arg0] = indx;

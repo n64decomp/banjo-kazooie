@@ -55,7 +55,7 @@ void func_802CE8D4(Actor *this){
         if( !func_8031FF1C(BKPROG_D_BEEHIVE_TEXT)
             && func_803296B8(this, 250, 300)
         ){
-            if(func_8028ECAC() == 0 || func_8028ECAC() == 8){
+            if(func_8028ECAC() == 0 || func_8028ECAC() == BSGROUP_8_TROT){
                 if( player_getTransformation() == TRANSFORM_1_BANJO
                     && func_80311480(ASSET_D96_TEXT_BEEHIVE, 0, NULL, NULL, NULL, 0)
                 ){
@@ -69,8 +69,8 @@ void func_802CE8D4(Actor *this){
         ){
             if(!this->unk38_0){
                 func_8030E394(this->unk44_31);
-                func_8030DA80(this->unk44_31, SFX_67_BEEHIVE_CLONK);
-                func_8030DABC(this->unk44_31, 12000);
+                sfxsource_setSfxId(this->unk44_31, SFX_67_BEEHIVE_CLONK);
+                sfxsource_setSampleRate(this->unk44_31, 12000);
                 func_8030DBB4(this->unk44_31, (animctrl_getAnimTimer(this->animctrl) + 0.9) - 0.4);
                 func_8030DF68(this->unk44_31, this->position);
                 func_8030DEB4(this->unk44_31, 300.0f, 1500.0f);

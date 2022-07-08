@@ -26,10 +26,7 @@ struct31s D_80391A70 = {
 };
 
 struct42s D_80391A98 = {
-    { {-170.0f, 0.0f},
-      {-170.0f, 170.0f},
-      {100.0f, 170.0f}
-    },
+    { {-170.0f, 0.0f, -170.0f}, {170.0f, 100.0f, 170.0f}},
     { {-90.0f, 0.0f, -80.0f},
       {80.0f, 60.0f, 80.0f}
     }
@@ -129,10 +126,10 @@ void func_8038E2FC(Actor *this){
             func_8038E0D4(this, 0x19a + i, 0.0f, -300.0f, 0.0f);
         }
         this->unk44_31 = func_8030D90C();
-        func_8030DA80(this->unk44_31, 0x3f9);
+        sfxsource_setSfxId(this->unk44_31, 0x3f9);
         func_8030DD14(this->unk44_31, 3);
         func_8030DBB4(this->unk44_31, 1.0f);
-        func_8030DABC(this->unk44_31, 26000);
+        sfxsource_setSampleRate(this->unk44_31, 26000);
         func_8030E2C4(this->unk44_31);
         temp_s0 = func_802F9AA8(0x3EC);
         func_802F9DB8(temp_s0, 0.5f, 0.5f, 0.0f);

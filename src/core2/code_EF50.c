@@ -38,7 +38,7 @@ enum bs_e func_80295EE0(enum bs_e arg0){
     sp2C = 0;
     sp28 = 0;
     sp34 = bs_getState();
-    if(player_getTransformation() != TRANSFORM_1_BANJO || func_8028EE84()){
+    if(player_getTransformation() != TRANSFORM_1_BANJO || func_8028EE84() != BSWATERGROUP_0_NONE){
         sp2C = 1;
     }
     if(bsjig_inJiggyJig(sp34)){
@@ -59,7 +59,7 @@ enum bs_e func_80295EE0(enum bs_e arg0){
         func_8029CDA0();
     }
     else{ 
-        func_802933E8(7);
+        miscflag_set(7);
         if(sp2C){
             func_8029CCC4();
         }
@@ -89,7 +89,7 @@ enum bs_e func_80296038(void){
             return BS_BEE_BOUNCE;
         case TRANSFORM_1_BANJO:// L80296094
         default:
-            if(func_8028ECAC() == 0xA)
+            if(func_8028ECAC() == BSGROUP_A_FLYING)
                 return BS_18_FLY_KNOCKBACK;
             return BS_56_RECOIL;
     }
@@ -189,10 +189,10 @@ enum bs_e func_802962BC(u32 arg0){
                 if(bsbtrot_inSet(bs_getState()))
                     return BS_BTROT_OW;
 
-                if(func_8028EE84() == 2)
+                if(func_8028EE84() == BSWATERGROUP_2_UNDERWATER)
                     return BS_7F_DIVE_OW;
                 
-                if(func_8028ECAC() == 0xA)
+                if(func_8028ECAC() == BSGROUP_A_FLYING)
                     return BS_FLY_OW;
                 return BS_E_OW;
             }
@@ -302,7 +302,7 @@ void func_80296608(void){
                 sp24 = func_80292738();
             }
             else{
-                func_802933E8(0x19);
+                miscflag_set(0x19);
                 sp24 = func_8029B504();
             }
             break;
@@ -422,7 +422,7 @@ void func_80296608(void){
             sp2C = 2;
             break;
         case 0x35: //L80296984
-            func_802933E8(0x1a);
+            miscflag_set(0x1a);
             sp24 = func_8029B504();
             sp2C = 2;
             break;
@@ -440,7 +440,7 @@ void func_80296608(void){
             if( 
                 !func_80298850() 
                 && !sp1C 
-                && !func_802933C0(0xf)
+                && !miscflag_isTrue(0xf)
                 && !func_8028B2E8()
             ){
                 sp24 = BS_4F_CLIMB_IDLE;
@@ -473,15 +473,15 @@ void func_80296608(void){
             }
             else{
                 switch(func_8028EE84()){
-                    case 1:
+                    case BSWATERGROUP_1_SURFACE:
                         sp24 = BS_2D_SWIM_IDLE;
                         break;
-                    case 2:
+                    case BSWATERGROUP_2_UNDERWATER:
                         sp24 = BS_2B_DIVE_IDLE;
                         break;
-                    case 0://L80296B0C
+                    case BSWATERGROUP_0_NONE://L80296B0C
                         if(func_8028B2E8())
-                            sp24 = func_8029BF78();
+                            sp24 = bs_getIdleState();
                         else
                             sp24 = func_8029BA80();
                         break;
@@ -496,13 +496,13 @@ void func_80296608(void){
             sp24 = func_8029BED4();
             break;
         case 0xf:  //L80296B68
-            func_802933E8(6);
+            miscflag_set(6);
             sp24 = func_8029B504();
             sp2C = 2;
             break;
         case 0x30: //L80296B88
             item_set(ITEM_14_HEALTH, 0);
-            func_802933E8(6);
+            miscflag_set(6);
             sp24 = func_8029B504();
             sp2C = 2;
             break;
@@ -513,7 +513,7 @@ void func_80296608(void){
         case 0x2a: //L80296BCC
             sp2C = 2;
             sp24 = func_8029B504();
-            func_802933E8(0x14);
+            miscflag_set(0x14);
             break;
         case 0x29: //L80296BEC
             if(player_getTransformation() == TRANSFORM_4_WALRUS){

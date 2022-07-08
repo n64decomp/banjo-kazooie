@@ -3,7 +3,7 @@
 #include "variables.h"
 
 
-extern void func_8030DABC(u8, s32);
+extern void sfxsource_setSampleRate(u8, s32);
 extern bool func_80323240(struct56s *, f32, f32[3]);
 extern f32  func_803237E8(struct56s *);
 extern f32  func_80323FDC(struct56s *, f32, f32, s32 *);
@@ -243,9 +243,9 @@ void func_80343E20(s32 arg0, s32 arg1, f32 arg2, s32 arg3) {
     if (func_8030ED70(func_80255D44()) != 0) {
         temp_v0 = func_8030D90C();
         if (temp_v0 != 0) {
-            func_8030DA80(temp_v0, func_80255D44(arg0));
+            sfxsource_setSfxId(temp_v0, func_80255D44(arg0));
             func_8030DBB4(temp_v0, arg2);
-            func_8030DABC(temp_v0, arg1);
+            sfxsource_setSampleRate(temp_v0, arg1);
             func_8030E2C4(temp_v0);
             if (D_803858A0[arg3] != 0) {
                 func_8030DA44(D_803858A0[arg3]);

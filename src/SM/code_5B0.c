@@ -6,17 +6,47 @@
 
 void func_803869A0(Actor*, f32, f32);
 void func_802C4218(s32, f32, f32, f32);
+void func_80386EF4(Actor *this);
+void func_80386A00(Actor *this);
 
+/*.data */
+ActorAnimationInfo D_8038AAF0[] = {
+    {0, 0.f},
+    {0x2B9, 5.0f}
+};
 
-extern struct43s D_8038AB48;
+ActorInfo D_8038AB00 = {
+    0x135, 0x16F, 0x42D, 
+    1,  NULL,
+    func_80386EF4, func_80326224, func_80325E78,
+    2000, 0, 5.0f, 0
+};
 
-extern s32 D_8038AB90;
+ActorInfo D_8038AB24 = {
+    0x29D, 0x3CA, 0x47B,
+    1, D_8038AAF0,
+    func_80386A00, func_80326224, func_80325E78, 
+    0, 0, 0.0f, 0
+};
 
-extern struct43s D_8038AB9C;
+struct43s D_8038AB48 = {
+    {{-200.0f, 600.0f, -200.0f}, {200.0f, 800.0f, 200.0f}}, 
+    {{0.0f, -1800.0f, 0.0f}, {0.0f, -1800.0f, 0.0f}},
+    {{-100.0f, -100.0f, -100.0f}, {100.0f, 100.0f, 100.0f}}
+}; 
 
+s32 D_8038AB90[3] = {0xFF, 0xFF, 0xFF};
+
+struct43s D_8038AB9C = {
+    {{-100.0f, -100.0f, -100.0f}, {100.0f, 100.0f, 100.0f}},
+    {{0.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.0f}},
+    {{-100.0f, -100.0f, -100.0f}, {100.0f, 100.0f, 100.0f}}
+}; 
+
+/* .code */
 void func_803869A0(Actor *this, f32 arg1, f32 arg2) {
     if (actor_animationIsAt(this, arg1)) {
-        func_8030E878(SFX_98_DEAF_THUD, arg2, 0x7D00, this->position, 2000.0f, 4000.0f);
+        func_8030E878(SFX_98_DEAF_THUD, arg2, 32000, this->position, 2000.0f, 4000.0f);
     }
 }
 
@@ -56,7 +86,7 @@ void func_80386B04(ParticleEmitter *p_ctrl, f32 *arg1, s32 arg2, f32 arg3) {
 }
 
 void func_80386C2C(ParticleEmitter *p_ctrl, f32 *arg1, s32 arg2, f32 arg3) {
-    func_802EFFA8(p_ctrl, &D_8038AB90);
+    func_802EFFA8(p_ctrl, D_8038AB90);
     particleEmitter_setSprite(p_ctrl, ASSET_700_SPRITE_DUST);
     func_802EFA5C(p_ctrl, 0.00f, 0.01f);
     particleEmitter_setStartingFrameRange(p_ctrl, 0, 7);
@@ -73,9 +103,9 @@ void func_80386D68(Actor *this){
     FUNC_8030E8B4(SFX_9B_BOULDER_BREAKING_1, 1.0f, 32000, this->position, 1000, 2000);
 
     this->unk44_31 = func_8030D90C();
-    func_8030DA80(this->unk44_31, 0x3F9);
+    sfxsource_setSfxId(this->unk44_31, 0x3F9);
     func_8030DD14(this->unk44_31, 3);
-    func_8030DABC(this->unk44_31, 0x7D00);
+    sfxsource_setSampleRate(this->unk44_31, 32000);
     func_8030DBB4(this->unk44_31, (0.01 < (2.0 - this->scale))? (2.0 - this->scale): 0.01);
     func_8030E2C4(this->unk44_31);
     func_80386B04(partEmitList_pushNew(0xA), this->position, 0xA, this->scale);

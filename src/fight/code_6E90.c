@@ -106,16 +106,16 @@ void func_8038D568(Actor *this){
         actor_collisionOn(this);
         this->unk38_31 = 0;
         this->unk44_31 = func_8030D90C();
-        func_8030DA80(this->unk44_31, 0x3f9);
+        sfxsource_setSfxId(this->unk44_31, 0x3f9);
         func_8030DD14(this->unk44_31, 2);
         func_8030DBB4(this->unk44_31, 1.4f);
-        func_8030DABC(this->unk44_31, 32000);
+        sfxsource_setSampleRate(this->unk44_31, 32000);
         
         local->unk0 = func_8030D90C();
-        func_8030DA80(local->unk0, 0x405);
+        sfxsource_setSfxId(local->unk0, 0x405);
         func_8030DD14(local->unk0, 2);
         func_8030DBB4(local->unk0, 0.7f);
-        func_8030DABC(local->unk0, 12000);
+        sfxsource_setSampleRate(local->unk0, 12000);
         FUNC_8030E624(SFX_3F6_UNKNOWN, 0.6f, 20000);
         func_8038D3DC(this, 0x19a, 0.0f, -200.0f, 0.0f);
         TUPLE_COPY(this->unk1C, this->position);

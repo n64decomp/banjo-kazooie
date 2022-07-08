@@ -87,7 +87,7 @@ void func_8038F41C(Actor *this){
 }
 
 void func_8038F454(Actor *this){
-    if(!mapSpecificFlags_get(7) && func_8028ECAC() != 0xA && func_80329530(this, 1000) ){
+    if(!mapSpecificFlags_get(7) && func_8028ECAC() != BSGROUP_A_FLYING && func_80329530(this, 1000) ){
         mapSpecificFlags_set(7, TRUE);
         func_80328A84(this, 2);
         actor_loopAnimation(this);
@@ -203,7 +203,7 @@ void func_8038F7AC(Actor *this){
     actor_collisionOn(this);
     switch(this->state){
         case 1: //L8038F984
-            if(func_8028ECAC() == 0xa){
+            if(func_8028ECAC() == BSGROUP_A_FLYING){
                 func_8038F454(this);
                 break;
             }
@@ -232,7 +232,7 @@ void func_8038F7AC(Actor *this){
             break;
 
         case 4: //L8038FAD0
-            if(!func_80329530(this, 2000) && func_8028ECAC() != 0xA){
+            if(!func_80329530(this, 2000) && func_8028ECAC() != BSGROUP_A_FLYING){
                 func_8038F560(this);
                 break;
             }
@@ -254,7 +254,7 @@ void func_8038F7AC(Actor *this){
         case 6: //L8038FBA8
             func_8038F6C4(this, local->unk18, 1.0f);
             if( func_80329530(this, 1700) ) break;
-            if( func_8028ECAC() == 0xA )    break;
+            if( func_8028ECAC() == BSGROUP_A_FLYING )    break;
             
             func_8038F560(this);
 
@@ -269,7 +269,7 @@ void func_8038F7AC(Actor *this){
             if(!func_8038F6C4(this, local->unkC, 4.5f)) 
                 break;
 
-            if(func_80329530(this, 1000) || func_8028ECAC() == 0xA){
+            if(func_80329530(this, 1000) || func_8028ECAC() == BSGROUP_A_FLYING){
                 func_8038F528(this);
                 break;
             }

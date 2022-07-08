@@ -94,9 +94,9 @@ void func_80388518(s32 arg0){
     if(D_80389FA0.unk21 == 2){
         func_8030DD90(D_80389FA0.unk4, 0);
         func_8030DBB4(D_80389FA0.unk4, 1.0f);
-        func_8030DA80(D_80389FA0.unk4, SFX_7D_ANCHOR_LIFTING);
+        sfxsource_setSfxId(D_80389FA0.unk4, SFX_7D_ANCHOR_LIFTING);
         func_8030DD14(D_80389FA0.unk4, 3);
-        func_8030DABC(D_80389FA0.unk4, 27000);
+        sfxsource_setSampleRate(D_80389FA0.unk4, 27000);
         func_8030E2C4(D_80389FA0.unk4);
     }
 

@@ -46,7 +46,7 @@ enum asset_e D_80390A18[] = {0xC6D, 0xC70, 0xC71, 0xC8E,     0,     0,     0,   
 
 /* .code */
 bool func_80389810(f32 arg0[3]) {
-    if (func_8028ECAC() != 7) {
+    if (func_8028ECAC() != BSGROUP_7_CROC_ATTACK) {
         return FALSE;
     }
     func_8028E9C4(2, arg0);

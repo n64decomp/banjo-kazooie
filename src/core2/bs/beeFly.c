@@ -154,7 +154,7 @@ void bsbeefly_enter(void){
     mvmnt = bs_getPrevState();
     func_8028A010(ASSET_1DC_ANIM_BEE_FLY, 0.38);
     func_8029C7F4(1, 1, 3, 3);
-    if(func_802933C0(9))
+    if(miscflag_isTrue(9))
         func_80297970(0.0f);
     else
         func_80297970(600.0f);
@@ -237,7 +237,7 @@ void bsbeefly_update(void){
             }
             break;
     }//L802A0DF0
-    if(func_802933C0(9)){
+    if(miscflag_isTrue(9)){
         func_80297BF8(0.0f);
         func_80297A0C(0);
         sp38 = 0.0f;

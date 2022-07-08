@@ -46,14 +46,16 @@ segments:
     start: 0x000046D0
     vram: 0x8038AAC0
     subsegments:
-      - [0x000046D0, bin]
+      - [0x000046D0, .data, code_0]
+      - [0x000046F0, .data, code_F0]
+      - [0x00004700, .data, code_5B0]
+      - [0x00004800, .data, code_BF0]
       - [0x00004830, .data, ch/attacktutorial]
       - [0x00004860, .data, ch/vegetables]
-      - [0x000049B0, bin, data_49B0] #still part of ch/vegetables
-      - [0x00004B70, bin, data_4B70] #.data, SM/code_2990]
-      - [0x00004C00, bin, data_4C00] #.data, SM/code_3FC0]
-      - [0x00004CC0, bin, data_4CC0] #.data, SM/code_4070]
-      - [0x00004CF0, bin, data_4CF0] #.data, SM/code_44D0]
+      - [0x00004B70, .data, code_2990]
+      - [0x00004C00, .data, code_3FC0]
+      - [0x00004CC0, .data, code_4070]
+      - [0x00004CF0, .data, code_44D0]
       - [0x00004D20, .rodata, code_5B0]
       - [0x00004D40, .rodata, ch/attacktutorial]
       - [0x00004DE0, .rodata, ch/vegetables]

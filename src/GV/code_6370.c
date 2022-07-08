@@ -78,10 +78,10 @@ void func_8038C8A0(Actor *this, s32 next_state){
     
     if(next_state == 4 || next_state == 5){
         local->unk4 = func_8030D90C();
-        func_8030DA80(local->unk4, SFX_3EC_CCW_DOOR_OPENING);
+        sfxsource_setSfxId(local->unk4, SFX_3EC_CCW_DOOR_OPENING);
         func_8030DD14(local->unk4, 3);
         func_8030DBB4(local->unk4, 0.8f);
-        func_8030DABC(local->unk4, 0);
+        sfxsource_setSampleRate(local->unk4, 0);
         func_8030E2C4(local->unk4);
     }//L8038C9B8
 

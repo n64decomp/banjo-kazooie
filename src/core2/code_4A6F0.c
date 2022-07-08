@@ -101,7 +101,7 @@ bool func_802D181C(s32 arg0) {
 void func_802D186C(Actor *this) {
     if (this->unk44_31 == 0) {
         this->unk44_31 = func_8030ED2C(SFX_5F_MUMBO_BUGABUGOW_MUFFLED, 3);
-        func_8030DABC(this->unk44_31, 0x7FFF);
+        sfxsource_setSampleRate(this->unk44_31, 0x7FFF);
     }
 }
 

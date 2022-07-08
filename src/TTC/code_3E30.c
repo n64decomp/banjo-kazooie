@@ -355,14 +355,14 @@ void func_8038B094(void){
 
         D_8038D720.unk9 = func_8030D90C();
         func_8030DBB4(D_8038D720.unk9, 0.1f);
-        func_8030DA80(D_8038D720.unk9, SFX_3EC_CCW_DOOR_OPENING);
+        sfxsource_setSfxId(D_8038D720.unk9, SFX_3EC_CCW_DOOR_OPENING);
         func_8030DD14(D_8038D720.unk9, 3);
-        func_8030DABC(D_8038D720.unk9, 28000);
+        sfxsource_setSampleRate(D_8038D720.unk9, 28000);
 
         D_8038D720.unkA = func_8030D90C();
-        func_8030DA80(D_8038D720.unkA, SFX_3_DULL_CANNON_SHOT);
+        sfxsource_setSfxId(D_8038D720.unkA, SFX_3_DULL_CANNON_SHOT);
         func_8030DD14(D_8038D720.unkA, 3);
-        func_8030DABC(D_8038D720.unkA, 0x7fff);
+        sfxsource_setSampleRate(D_8038D720.unkA, 0x7fff);
         func_8038A328();
         func_8038AFC8();
 

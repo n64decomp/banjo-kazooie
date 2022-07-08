@@ -21,7 +21,7 @@ void func_8029CFF8(void){
 }
 
 void func_8029D01C(void){
-    func_802933FC(0x13);
+    miscflag_clear(0x13);
     D_8037D210 = func_8030D90C();
     D_8037D212 = 0;
 }
@@ -29,8 +29,8 @@ void func_8029D01C(void){
 void func_8029D050(void){
     func_80299E48();
     func_8030E394(D_8037D210);
-    func_8030DA80(D_8037D210, SFX_14D_BANJO_FREEZING);
-    func_8030DABC(D_8037D210, 30000);
+    sfxsource_setSfxId(D_8037D210, SFX_14D_BANJO_FREEZING);
+    sfxsource_setSampleRate(D_8037D210, 30000);
     func_8030DBB4(D_8037D210, 1.2f);
     func_8030DD14(D_8037D210, 3);
     func_8030E2C4(D_8037D210);
@@ -41,8 +41,8 @@ void func_8029D050(void){
 
 void func_8029D0D8(void) {
     func_8030E394(D_8037D210);
-    func_8030DA80(D_8037D210, SFX_B0_SIZZLING_NOISE);
-    func_8030DABC(D_8037D210, 32000);
+    sfxsource_setSfxId(D_8037D210, SFX_B0_SIZZLING_NOISE);
+    sfxsource_setSampleRate(D_8037D210, 32000);
     func_8030DBB4(D_8037D210, randf2(0.7f, 0.8f));
     func_8030DD14(D_8037D210, 3);
     func_8030E2C4(D_8037D210);
@@ -58,8 +58,8 @@ void func_8029D194(void) {
     func_802C3BF8(&func_8029D154);
     FUNC_8030E624(SFX_A_BANJO_LANDING_05, 1.0f, 28000);
     func_8030E394(D_8037D210);
-    func_8030DA80(D_8037D210, SFX_6D_CROC_BITE);
-    func_8030DABC(D_8037D210, 22000);
+    sfxsource_setSfxId(D_8037D210, SFX_6D_CROC_BITE);
+    sfxsource_setSampleRate(D_8037D210, 22000);
     func_8030DD14(D_8037D210, 3);
     player_getPosition(D_8037D218);
     D_8037D218[1] = func_80294500();
@@ -106,8 +106,8 @@ void func_8029D2F8(void) {
             }
             else if (D_8037D211 == 2) {
                 func_8030E394(D_8037D210);
-                func_8030DA80(D_8037D210, SFX_134_FREEZING_SHIVER);
-                func_8030DABC(D_8037D210, 20000);
+                sfxsource_setSfxId(D_8037D210, SFX_134_FREEZING_SHIVER);
+                sfxsource_setSampleRate(D_8037D210, 20000);
                 func_8030DBB4(D_8037D210, 1.2f);
                 func_8030DD14(D_8037D210, 3);
                 func_8030E2C4(D_8037D210);
@@ -130,7 +130,7 @@ void func_8029D448(void) {
             func_8030E394(D_8037D210);
             return;
         }
-        func_8030DABC(D_8037D210, temp_a1);
+        sfxsource_setSampleRate(D_8037D210, temp_a1);
     }
 }
 
@@ -197,6 +197,7 @@ bool func_8029D66C(void){
     return FALSE;
 }
 
+//can_take_ground_damage
 bool func_8029D7B4(void){
     enum bs_e sp1C;
 
@@ -220,11 +221,11 @@ bool func_8029D7B4(void){
             return func_8029D66C() 
                 && _player_getTransformation() == TRANSFORM_1_BANJO
                 && func_802916CC(2)
-                && func_8028ECAC() != 3
-                && func_8028ECAC() != 9
-                && func_802933D0(0xE)
+                && func_8028ECAC() != BSGROUP_3_WONDERWING
+                && func_8028ECAC() != BSGROUP_9_LONG_LEG
+                && miscflag_isFalse(MISC_FLAG_E_TOUCHING_WADING_BOOTS)
                 && sp1C != BS_25_LONGLEG_ENTER
-                && func_8028EE84() != 2
+                && func_8028EE84() != BSWATERGROUP_2_UNDERWATER
                 && func_8028EC04() < 1U
                 && func_80297C6C() != 3
                 && bs_getState() != BS_3D_FALL_TUMBLING
@@ -313,9 +314,9 @@ void func_8029D968(void){
                     break;
             }
         }
-        func_802933E8(0x13);
+        miscflag_set(0x13);
     }
     else{
-        func_802933FC(0x13);
+        miscflag_clear(0x13);
     }
 }

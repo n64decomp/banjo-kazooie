@@ -80,9 +80,9 @@ void bsbarge_init(void){
     func_8029E070(1);
     D_8037D2A6 = 0;
     D_8037D2A5 = 0;
-    func_802933FC(0xA);
-    func_802933FC(0xB);
-    func_802933FC(0xC);
+    miscflag_clear(0xA);
+    miscflag_clear(0xB);
+    miscflag_clear(0xC);
     func_8029E3C0(2, 0.01f);
 
 }
@@ -94,7 +94,7 @@ void bsbarge_update(void){
     sp24 = 0;
     plyrMvmnt = _player_getAnimCtrlPtr();
     if(button_released(BUTTON_B))
-        func_802933E8(0xA);
+        miscflag_set(0xA);
     switch(D_8037D2A5){
         case 0:
             if(animctrl_isAt(plyrMvmnt, 0.1392f))
@@ -103,8 +103,8 @@ void bsbarge_update(void){
             if(!animctrl_isStopped(plyrMvmnt))
                 break;
 
-            if(func_802933D0(0xA)){
-                func_802933E8(0xC);
+            if(miscflag_isFalse(0xA)){
+                miscflag_set(0xC);
                 D_8037D2A0 = 850.0f;
             }else{
                 D_8037D2A0 = 500.0f;
@@ -114,13 +114,13 @@ void bsbarge_update(void){
             break;
         case 1:
             func_8029E1A8(1);
-            if(func_802933D0(0xB) && func_8029E2E0(1, 0.1f)){
-                if(func_802933C0(0xC)){
-                    func_8030E560(SFX_4_KAZOOIE_RUUUUUH, 0x7530);
+            if(miscflag_isFalse(0xB) && func_8029E2E0(1, 0.1f)){
+                if(miscflag_isTrue(0xC)){
+                    func_8030E560(SFX_4_KAZOOIE_RUUUUUH, 30000);
                 }else{
-                    func_8030E560(SFX_43_KAZOOIE_RUH, 0x7530);
+                    func_8030E560(SFX_43_KAZOOIE_RUH, 30000);
                 }
-                func_802933E8(0xB);
+                miscflag_set(0xB);
             }
             if(!func_8029E384(1))
                 break;
@@ -146,7 +146,7 @@ void bsbarge_update(void){
             break;
         case 3:
             func_8029E1A8(0);
-            if(func_802933D0(0xC) || func_8029E384(0)){
+            if(miscflag_isFalse(0xC) || func_8029E384(0)){
                 D_8037D2A0 -= 80.0f;
             }
             func_80297970(D_8037D2A0);

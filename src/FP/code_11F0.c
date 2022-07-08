@@ -147,7 +147,7 @@ void func_8038794C(Actor *this){
             }//L80387B38
 
             if(!this->unk138_24 && func_80329530(this, 0x1f4)){
-                if(!func_8028ECAC() || func_8028ECAC() == 8){
+                if(!func_8028ECAC() || func_8028ECAC() == BSGROUP_8_TROT){
                     if(func_80311480(0xbff, 0x2a, this->position, NULL, NULL, NULL)){
                         for(i = 0; i <5; i++ ){
                             timedFunc_set_1(D_80391BEC[i], (TFQM1)func_8038787C, (s32)this->marker);

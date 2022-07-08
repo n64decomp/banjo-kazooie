@@ -20,7 +20,7 @@ extern void func_803298D8();
 void func_80324E88(f32);
 extern void func_80324E60(Actor*, s32, f32);
 extern void func_80324CFC(f32, enum comusic_e, s32);
-extern void func_8030DABC(u8, s32);
+extern void sfxsource_setSampleRate(u8, s32);
 extern void func_80328FF0(Actor *arg0, f32 arg1);
 extern f32 func_80257204(f32, f32, f32, f32);
 extern void func_8028F85C(f32[3]);
@@ -132,7 +132,7 @@ struct31s D_8039153C ={
 };
 
 struct43s D_80391564 ={
-    {{-300.0f, -300.0f}, {-300.0f, 300.0f}, {500.0f, 300.0f}},
+    {{-300.0f, -300.0f, -300.0f}, {300.0f, 500.0f, 300.0f}},
     {{0.0f, -1200.0f, 0.0f}, {0.0f, -1200.0f, 0.0f}},
     {{-100.0f, -20.0f, -100.0f},{100.0f, 100.0f, 100.0f}}
 };
@@ -140,7 +140,7 @@ struct43s D_80391564 ={
 s32 D_803915AC[3] = {0x24, 0x24, 0x24};
 
 struct42s D_803915B8 = {
-    {{-70.0f, -50.0f},{-70.0f, 70.0f},{50.0f, 70.0f}},
+    {{-70.0f, -50.0f, -70.0f}, {70.0f, 50.0f, 70.0f}},
     {{-100.0f, -20.0f, -100.0f},{100.0f, 100.0f, 100.0f}}
 };
 
@@ -156,7 +156,7 @@ struct40s D_803915E8 ={
 };
 
 struct42s D_80391618 = {
-    {{-10.0f, -10.0f}, {-10.0f, 10.0f}, {10.0f, 10.0f,}},
+    {{-10.0f, -10.0f, -10.0f}, {10.0f, 10.0f, 10.0f,}},
     {{0.0f, 30.0f, 0.0f}, {0.0f, 30.0f, 0.0f}}
 };
 
@@ -165,7 +165,7 @@ struct40s D_80391648 = {
 };
 
 struct43s D_80391678 = {
-    {{-50, -50}, {-50, 50}, {50, 50}},
+    {{-50, -50, -50}, {50, 50, 50}},
     {{0, -50, 0}, {0, -50, 0}},
     {{-60, 60, -60}, {60, 60, 60}}
 };
@@ -280,22 +280,22 @@ void func_80386628(ActorMarker *arg0, s32 arg1) {
     local->unkE = arg1;
 }
 
-void func_8034DF30(s32, s32, s32, f32);
+void func_8034DF30(Struct6Ds *, f32[3], f32[3], f32);
 
 void func_80386654(f32 arg0, f32 arg1[4], f32 arg2[4]) {
-    s32 temp_v0;
+    Struct6Ds *temp_v0;
 
     temp_v0 = func_8034C528(0x190);
-    if (temp_v0 != 0) {
+    if (temp_v0 != NULL) {
         func_8034DF30(temp_v0, arg1, arg2, arg0);
     }
 }
 
 void func_80386698(f32 arg0) {
-    s32 temp_v0;
+    Struct6Ds * temp_v0;
 
     temp_v0 = func_8034C528(0x19A);
-    if (temp_v0 != 0) {
+    if (temp_v0 != NULL) {
         func_8034DDF0(temp_v0, D_80391524, D_80391530, arg0, 1);
     }
 }
@@ -688,10 +688,10 @@ void func_80387728(ActorMarker *this, u32 arg1)
             if (actor->unk44_31 == 0)
             {
                 actor->unk44_31 = (u8)func_8030D90C();
-                func_8030DA80(actor->unk44_31, SFX_152_MOTOR_BREAKDOWN_01);
+                sfxsource_setSfxId(actor->unk44_31, SFX_152_MOTOR_BREAKDOWN_01);
                 func_8030DD14(actor->unk44_31, 3);
                 func_8030DBB4(actor->unk44_31, 1.0f);
-                func_8030DABC(actor->unk44_31, 0x7D00);
+                sfxsource_setSampleRate(actor->unk44_31, 0x7D00);
             }
             return;
 
@@ -1591,10 +1591,10 @@ void func_80389F7C(Actor *this, s32 arg1) {
         func_8030E6A4(SFX_133_GRUNTY_OHW, randf2(0.95f, 1.05f), 32000);
         this->unk44_31 = func_8030D90C();
         D_803927C0 = 1.0f;
-        func_8030DA80(this->unk44_31, SFX_2C_PULLING_NOISE);
+        sfxsource_setSfxId(this->unk44_31, SFX_2C_PULLING_NOISE);
         func_8030DD14(this->unk44_31, 2);
         func_8030DBB4(this->unk44_31, D_803927C0);
-        func_8030DABC(this->unk44_31, 26000);
+        sfxsource_setSampleRate(this->unk44_31, 26000);
         for(i = 0; i < 4; i++){
             if(D_803927B0[i] != NULL){
                 marker_despawn(D_803927B0[i]);
@@ -1817,10 +1817,10 @@ void func_8038AC88(Actor *this, s32 arg1) {
             func_802BB41C(0);
             if (this->unk44_31 == 0) {
                 this->unk44_31 = func_8030D90C();
-                func_8030DA80(this->unk44_31, SFX_134_FREEZING_SHIVER);
+                sfxsource_setSfxId(this->unk44_31, SFX_134_FREEZING_SHIVER);
                 func_8030DD14(this->unk44_31, 2);
                 func_8030DBB4(this->unk44_31, 1.0f);
-                func_8030DABC(this->unk44_31, 0x4268);
+                sfxsource_setSampleRate(this->unk44_31, 0x4268);
             }
             break;
 
@@ -1828,10 +1828,10 @@ void func_8038AC88(Actor *this, s32 arg1) {
             this->unk7C[2] = 0;
             if (this->unk44_31 == 0) {
                 this->unk44_31 = func_8030D90C();
-                func_8030DA80(this->unk44_31, SFX_134_FREEZING_SHIVER);
+                sfxsource_setSfxId(this->unk44_31, SFX_134_FREEZING_SHIVER);
                 func_8030DD14(this->unk44_31, 3);
                 func_8030DBB4(this->unk44_31, 1.0f);
-                func_8030DABC(this->unk44_31, 0x4268);
+                sfxsource_setSampleRate(this->unk44_31, 0x4268);
                 func_8030E2C4(this->unk44_31);
             }
             break;

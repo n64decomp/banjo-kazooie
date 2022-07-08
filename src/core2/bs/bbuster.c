@@ -122,7 +122,7 @@ void bsbbuster_update(void){
                 func_80250D94(1.0f, 0.3f, 0.4f);
                 D_8037D2B6++;
             }
-            D_8037D2B9 = func_802933C0(8);
+            D_8037D2B9 = miscflag_isTrue(8);
             func_8029445C(sp30);
             //L8029FF78
             if(((0.0f <= sp30[1])? sp30[1] : -sp30[1]) < 1.0){

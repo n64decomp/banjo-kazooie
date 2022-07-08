@@ -415,7 +415,7 @@ Actor * func_803056FC(enum actor_e id, s32 pos[3], s32 yaw);
 f32  func_80309724(f32[3]);
 BKModelBin *func_8030A428(s32);
 u8   func_8030D90C(void);
-void func_8030DA80(u8 indx, enum sfx_e uid);
+void sfxsource_setSfxId(u8 indx, enum sfx_e uid);
 void func_8030DBB4(u8, f32);
 void func_8030DD14(u8, int);
 void func_8030DF68(u8, f32[3]);

@@ -20,7 +20,7 @@ void bsList_clearAll(void){
     }while(i != 0xa6);
 }
 
-void bsList_setInitMethod(s32 i, bsStateMethod func){
+void bsList_setInitMethod(enum bs_e i, bsStateMethod func){
     D_8037C700[i].init_func = func;
 }
 

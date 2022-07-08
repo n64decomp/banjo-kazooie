@@ -40,7 +40,7 @@ f32 randf(void){
 }
 
 //only used in some sfx instances;
-f32 func_8034A4FC(void){
+f32 sfx_rand(void){
     f32 out;
     if(D_803860F0 & 3){
         D_803860F0 = ((D_803860F4++) + (D_803860F0 >> 2)) + (D_803860EC >> 6);
@@ -86,16 +86,16 @@ f32 randf2(f32 min, f32 max){
     return min + randf()*(max - min);
 }
 
-f32 func_8034A788(f32 min, f32 max){
-    return min + func_8034A4FC()*(max - min);
+f32 sfx_randf2(f32 min, f32 max){
+    return min + sfx_rand()*(max - min);
 }
 
 s32 randi2(s32 min, s32 max){
     return min + randf()*(max - min);
 }
 
-s32 func_8034A80C(s32 min, s32 max){
-    return min + func_8034A4FC()*(max - min);
+s32 sfx_randi2(s32 min, s32 max){
+    return min + sfx_rand()*(max - min);
 }
 
 void func_8034A85C(void){

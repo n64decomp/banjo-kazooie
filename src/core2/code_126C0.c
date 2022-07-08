@@ -50,8 +50,8 @@ void func_80299650(f32 arg1, f32 arg2){
     } 
     else if(arg2 < 1.0) {
         if(1.0 <= arg1){
-            func_8030DA80(D_8037C6C4, SFX_1C_ALARMCLOCK);
-            func_8030DABC(D_8037C6C4, 0x7fff);
+            sfxsource_setSfxId(D_8037C6C4, SFX_1C_ALARMCLOCK);
+            sfxsource_setSampleRate(D_8037C6C4, 0x7fff);
             func_8030E2C4(D_8037C6C4);
         }
     }
@@ -60,8 +60,8 @@ void func_80299650(f32 arg1, f32 arg2){
         f20 = 5.0f;
         while(f20 > 0.0f){
             if(f20 <= arg1 && arg2 < f20){
-                func_8030DA80(D_8037C6C4, (unks0) ? SFX_2A_CLOCK_TIC_1 : SFX_51_CLOCK_TIC_2);
-                func_8030DABC(D_8037C6C4, 0x7fff);
+                sfxsource_setSfxId(D_8037C6C4, (unks0) ? SFX_2A_CLOCK_TIC_1 : SFX_51_CLOCK_TIC_2);
+                sfxsource_setSampleRate(D_8037C6C4, 0x7fff);
                 func_8030E2C4(D_8037C6C4);
                 return;
             }
@@ -108,9 +108,9 @@ void func_80299900(void){
     D_8037C6CC = 1.0f;
     
     D_8037C6C1 = func_8030D90C();
-    func_8030DA80(D_8037C6C1, SFX_18_BIGBUTT_SLIDE);
+    sfxsource_setSfxId(D_8037C6C1, SFX_18_BIGBUTT_SLIDE);
     func_8030DD54(D_8037C6C1, func_802998D0);
-    func_8030DABC(D_8037C6C1, 28000);
+    sfxsource_setSampleRate(D_8037C6C1, 28000);
     func_8030DD14(D_8037C6C1, 2);
     func_8030DD90(D_8037C6C1, 0);
 
@@ -161,7 +161,7 @@ void func_80299BD4(void){
 }
 
 void func_80299BFC(f32 arg0){
-    func_8030DA80(D_8037C6C0, D_80364564[D_8037C6C8]);
+    sfxsource_setSfxId(D_8037C6C0, D_80364564[D_8037C6C8]);
     func_8030DBB4(D_8037C6C0, arg0);
     func_8030E2C4(D_8037C6C0);
     ++D_8037C6C8;
@@ -170,9 +170,9 @@ void func_80299BFC(f32 arg0){
 }
 
 void func_80299C78(u8 indx, enum sfx_e sfx_id, f32 arg2, s32 arg3){
-    func_8030DA80(indx, sfx_id);
+    sfxsource_setSfxId(indx, sfx_id);
     func_8030DBB4(indx, arg2);
-    func_8030DABC(indx, arg3);
+    sfxsource_setSampleRate(indx, arg3);
     func_8030E2C4(indx);
 }
 

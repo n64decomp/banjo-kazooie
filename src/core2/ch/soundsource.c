@@ -36,9 +36,9 @@ void func_802D0500(Actor *this){
     ActorLocal_Core2_49570 *local = (ActorLocal_Core2_49570 *)this->local;
     if(D_80367340[(s32)this->yaw].unk8 != -1){
         if(this->unk1C[0] == this->unk1C[1])
-            func_8030DABC(local->unk0, D_80367340[(s32)this->yaw].unk8);
+            sfxsource_setSampleRate(local->unk0, D_80367340[(s32)this->yaw].unk8);
         else{
-            func_8030DABC(local->unk0, (s32)((D_80367340[(s32)this->yaw].unk8/this->unk1C[1])*this->unk1C[0]));
+            sfxsource_setSampleRate(local->unk0, (s32)((D_80367340[(s32)this->yaw].unk8/this->unk1C[1])*this->unk1C[0]));
 
         }
     }
@@ -57,7 +57,7 @@ void func_802D05A0(Actor *this, s32 next_state){
             this->unk1C[1] = D_80367340[(s32)this->yaw].unk10;
         }
         local->unk0 = func_8030D90C();
-        func_8030DA80(local->unk0, D_80367340[(s32)this->yaw].unk0);
+        sfxsource_setSfxId(local->unk0, D_80367340[(s32)this->yaw].unk0);
         func_8030DD14(local->unk0, 3);
         func_8030DFF0(local->unk0, 1);
         func_8030DF68(local->unk0, this->position);

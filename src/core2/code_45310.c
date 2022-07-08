@@ -272,9 +272,9 @@ void func_802CCBF4(Actor *this) {
     local = (ActorLocal_Core2_45310 * )&this->local;
     local->unk0 = func_8030D90C();
     func_8030DBB4(local->unk0, 0.9f);
-    func_8030DA80(local->unk0, 0x3FA);
+    sfxsource_setSfxId(local->unk0, 0x3FA);
     func_8030DD14(local->unk0, 2);
-    func_8030DABC(local->unk0, 0);
+    sfxsource_setSampleRate(local->unk0, 0);
 }
 
 void func_802CCC5C(Actor *this) {
@@ -356,7 +356,7 @@ void func_802CCC5C(Actor *this) {
                     phi_f12 = 0.0f;
                 }
                 if (phi_f12 > 0.0f) {
-                    func_8030DABC(local->unk0, (s32) (phi_f12 * 10000.0f));
+                    sfxsource_setSampleRate(local->unk0, (s32) (phi_f12 * 10000.0f));
                     func_8030E2C4(local->unk0);
                 }
             }
@@ -447,7 +447,7 @@ void func_802CCC5C(Actor *this) {
                     && !func_8028F25C()
                     && (sp58 > 800.0f) 
                     && (this->marker->unk14_21) 
-                    && (func_8028EE84() != 2) 
+                    && (func_8028EE84() != BSWATERGROUP_2_UNDERWATER) 
                     && func_802CC57C(this, sp8C)
                 ) {
                     sp8C[0] = 0.0f;
@@ -464,7 +464,7 @@ void func_802CCC5C(Actor *this) {
                 spBC = 1;
             }
             if (this->state == 3) {
-                if (func_8028F25C() || (func_8028EE84() == 2)) {
+                if (func_8028F25C() || (func_8028EE84() == BSWATERGROUP_2_UNDERWATER)) {
                     func_802CC640(this, 4);
                 } else {
                     if (local->unk3A == 0) {

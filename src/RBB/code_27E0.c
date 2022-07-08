@@ -55,9 +55,9 @@ void func_80388C20(Actor *this){
             func_8030DEB4(local->unk0, 1000.0f, 2000.0f);
             func_8030DF68(local->unk0, &this->position);
             func_8030DBB4(local->unk0, 0.5f);
-            func_8030DA80(local->unk0, SFX_9F_GENERATOR_RUNNING);
+            sfxsource_setSfxId(local->unk0, SFX_9F_GENERATOR_RUNNING);
             func_8030DD14(local->unk0, 3);
-            func_8030DABC(local->unk0, 0);
+            sfxsource_setSampleRate(local->unk0, 0);
             func_8030E2C4(local->unk0);
         }//L80388CFC
         if(this->state == 0){

@@ -20,7 +20,7 @@ typedef struct bs_map_s{
 } bsMap;
 
 void bsList_clearAll(void);
-void bsList_setInitMethod(s32 i, bsStateMethod func);
+void bsList_setInitMethod(enum bs_e i, bsStateMethod func);
 void bsList_setUpdateMethod(s32 i, bsStateMethod func);
 void bsList_setEndMethod(s32 i, bsStateMethod func);
 void bsList_setInterruptMethod(s32 i, bsStateMethod func);

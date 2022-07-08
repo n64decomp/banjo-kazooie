@@ -86,15 +86,15 @@ void func_802906A4(s32 arg0){
 
 void func_802906D8(void){
     f32 sp1C;
-    int tmp_a0;
+    int underwater_or_walrus_in_water;
 
     func_80290444();
-    tmp_a0 = (func_8028EE84() == 2);
-    if(!tmp_a0){
-        tmp_a0 = (player_getTransformation() == TRANSFORM_4_WALRUS && player_inWater());
+    underwater_or_walrus_in_water = (func_8028EE84() == BSWATERGROUP_2_UNDERWATER);
+    if(!underwater_or_walrus_in_water){
+        underwater_or_walrus_in_water = (player_getTransformation() == TRANSFORM_4_WALRUS && player_inWater());
     }
 
-    if(tmp_a0 && D_8037C03E != 4){
+    if(underwater_or_walrus_in_water && D_8037C03E != 4){
         sp1C = time_getDelta();
         if(D_8037C03C){
             D_8037C038 -= sp1C;

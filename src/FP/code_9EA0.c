@@ -70,7 +70,7 @@ void func_80390388(Actor *this){
     }
 
     if( func_80329530(this, 0xFA) 
-        && (func_8028ECAC() == 0 || func_8028ECAC() == 8)
+        && (func_8028ECAC() == 0 || func_8028ECAC() == BSGROUP_8_TROT)
     ){
         if(0.0f == this->unk1C[0] && func_80390334()){
             if(func_80311480(0xc1f, 0xb, this->position, NULL, NULL, NULL)){

@@ -62,7 +62,7 @@ struct31s D_80391D30 = {
 };
 
 struct42s D_80391D58 = {
-    {{-10.0f, 10.0f}, {-10.0f, 10.0f}, {240.0f, 10.0f}},
+    {{-10.0f, 10.0f, -10.0f}, {10.0f, 240.0f, 10.0f}},
     {{0.0f, 0.0f, 0.0f}, {0.0f, 20.0f, 0.0f}}
 };
 
@@ -204,7 +204,7 @@ bool func_80388CA0(Actor *this){
     ActorLocal_FP_2350 *local = (ActorLocal_FP_2350 *)&this->local;
     u32 sp20;
 
-    if(func_8028ECAC() != 0 && func_8028ECAC() != 8)
+    if(func_8028ECAC() != 0 && func_8028ECAC() != BSGROUP_8_TROT)
         return FALSE;
 
     if( !func_80329530(this, 1100) ){
@@ -466,11 +466,11 @@ void func_803896FC(Actor *this){
             if(func_80388CA0(this)){
                 func_80388B18(this, local->unk19);
             }//L803899DC
-            else if(!jiggyscore_isCollected(JIGGY_30_FP_BOGGY_2) && func_8028ECAC() == 12){
+            else if(!jiggyscore_isCollected(JIGGY_30_FP_BOGGY_2) && func_8028ECAC() == BSGROUP_C_WALRUS_SLED){
                 func_803888E4(this);
             }
             else if( func_80329530(this, 0x1C2)
-                && !func_8028ECAC()
+                && func_8028ECAC() == 0
                 && func_8028F20C()
                 && func_8028EFC8()
                 && sp3C[1] == 1

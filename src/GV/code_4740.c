@@ -28,7 +28,7 @@ ActorInfo D_80391098 = { MARKER_AD_SLAPPA, ACTOR_120_SLAPPA, ASSET_376_MODEL_SLA
 s32 D_803910BC[3] = {175, 100, 0};
 s32 D_803910C8[3] = {175, 140, 0};
 struct43s D_803910D4 = {
-    {{-120.0f, 550.0f}, {-120.0f, 120.0f}, {950.0f, 120.0f}},
+    {{-120.0f, 550.0f, -120.0f}, {120.0f, 950.0f, 120.0f}},
     {{0.0f, -1400.0f, 0.0f}, {0.0f, -1400.0f, 0.0f}},
     {{-100.0f, 0.0f, -100.0f}, {100.0f, 30.0f, 100.0f}}
 };
@@ -167,10 +167,10 @@ void func_8038B124(Actor *this){
         this->unk1C[1] = 0.0f;
         if(this->unk44_31 == 0){
             this->unk44_31 = func_8030D90C();
-            func_8030DA80(this->unk44_31, SFX_3EC_CCW_DOOR_OPENING);
+            sfxsource_setSfxId(this->unk44_31, SFX_3EC_CCW_DOOR_OPENING);
             func_8030DD14(this->unk44_31, 2);
             func_8030DBB4(this->unk44_31, 0.1f);
-            func_8030DABC(this->unk44_31, 32000);
+            sfxsource_setSampleRate(this->unk44_31, 32000);
         }
     }//L8038B25C
 

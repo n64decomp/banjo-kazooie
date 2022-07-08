@@ -189,7 +189,7 @@ void func_80295914(void){
     func_80291910();
     func_8029279C();
     func_802932AC();
-    func_80293380();
+    miscflag_clearAll();
     func_8028B6FC();
     func_80291590();
     func_802953A0();
@@ -234,7 +234,7 @@ void func_80295A8C(void){
     if(func_8028ADB4())
         bs_setState(func_80292630());
     else
-        bs_setState(func_8029BF78());
+        bs_setState(bs_getIdleState());
 
 }
 

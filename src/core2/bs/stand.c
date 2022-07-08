@@ -321,7 +321,7 @@ void func_802B5350(void){
     }
     else if(sp1C == 0x12){//L802B53D0
         func_8029A86C(1);
-        if( _player_getTransformation() == TRANSFORM_1_BANJO && !func_802933C0(0xF) && func_802916CC(0)){
+        if( _player_getTransformation() == TRANSFORM_1_BANJO && !miscflag_isTrue(0xF) && func_802916CC(0)){
             func_8028DE6C(carriedObject_getActorID());
             func_8029A86C(2);
         }

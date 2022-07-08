@@ -122,7 +122,7 @@ void func_802AF668(void) {
         break;
     case 3:
         if (func_8029E1A8(0)) {
-            next_state = func_8029BF78();
+            next_state = bs_getIdleState();
         }
         break;
     }

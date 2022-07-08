@@ -116,10 +116,10 @@ void chwasp_update(Actor *this) {
         local->unk0 = func_8030D90C();
         local->unk4 = 0;
         local->unk14 = 1000.0f;
-        func_8030DA80(local->unk0, 0x3FA);
+        sfxsource_setSfxId(local->unk0, 0x3FA);
         func_8030DD14(local->unk0, 2);
         func_8030DBB4(local->unk0, 0.9f);
-        func_8030DABC(local->unk0, 0);
+        sfxsource_setSampleRate(local->unk0, 0);
         marker_setCollisionScripts(this->marker, func_80387124, NULL, func_80387150);
         chwasp_setState(this, 1);
         return;
@@ -211,5 +211,5 @@ void chwasp_update(Actor *this) {
     func_8030DEB4(local->unk0, 500.0f, 1500.0f);
     func_8030DF68(local->unk0, this->position);
     func_8030E2C4(local->unk0);
-    func_8030DABC(local->unk0, (s32) ((local->unk18 / local->unk14) * 10000.0f));
+    sfxsource_setSampleRate(local->unk0, (s32) ((local->unk18 / local->unk14) * 10000.0f));
 }

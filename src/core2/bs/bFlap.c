@@ -29,7 +29,7 @@ void bsbflap_init(void) {
     player_setYVelocity(0.0f);
     gravity_set(D_80364A14);
     func_8029E070(1);
-    func_802933E8(0x12);
+    miscflag_set(0x12);
     func_8029E3C0(0, 2.5f);
     D_8037D30C = func_8030D90C();
     func_80299BD4();
@@ -40,9 +40,9 @@ void bsbflap_init(void) {
 
 void func_802A2790(s32 arg0, f32 arg1, s32 arg2) {
     func_8030E394(D_8037D30C);
-    func_8030DA80(D_8037D30C, arg0);
+    sfxsource_setSfxId(D_8037D30C, arg0);
     func_8030DBB4(D_8037D30C, arg1);
-    func_8030DABC(D_8037D30C, arg2);
+    sfxsource_setSampleRate(D_8037D30C, arg2);
     func_8030DD90(D_8037D30C, 0);
     func_8030DD14(D_8037D30C, 3);
     func_8030E2C4(D_8037D30C);

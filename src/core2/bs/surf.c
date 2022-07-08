@@ -31,7 +31,7 @@ void func_802B6064(void) {
         next_state = BS_1_IDLE;
     }
     D_8037D560 = 0;
-    if (func_802933C0(6)) {
+    if (miscflag_isTrue(6)) {
         next_state = BS_53_TIMEOUT;
     }
     bs_setState(next_state);

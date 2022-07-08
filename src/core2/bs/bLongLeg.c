@@ -65,7 +65,7 @@ void func_802A5374(void){
     func_8029E0F4(1);
     pitch_setAngVel(1000.0f, 12.0f);
     roll_setAngularVelocity(1000.0f, 12.0f);
-    func_802933E8(3);
+    miscflag_set(3);
 }
 
 void func_802A5404(void){
@@ -82,7 +82,7 @@ void func_802A5404(void){
     roll_setIdeal(0.0f);
     func_802917C4(2);
     func_803219F4(1);
-    func_802933FC(3);
+    miscflag_clear(3);
     func_8029E180(4, 0.5f);
     func_802A531C();
 }
@@ -114,9 +114,9 @@ void func_802A5548(void){
 
 void bsblongleg_enter_init(void){
     D_8037D361 = func_8030D90C();
-    func_8030DA80(D_8037D361, SFX_2C_PULLING_NOISE);
+    sfxsource_setSfxId(D_8037D361, SFX_2C_PULLING_NOISE);
     func_8030E04C(D_8037D361, 0.8f, 1.9f, 1.2f);
-    func_802933FC(0xe);
+    miscflag_clear(MISC_FLAG_E_TOUCHING_WADING_BOOTS);
     if(bsbtrot_inSet(bs_getPrevState()))
         func_802A54A8();
     else
@@ -271,7 +271,7 @@ void bsblongleg_exit_init(void){
     func_8029957C(2);
     func_80297970(0.0f);
     D_8037D361 = func_8030D90C();
-    func_8030DA80(D_8037D361, SFX_2C_PULLING_NOISE);
+    sfxsource_setSfxId(D_8037D361, SFX_2C_PULLING_NOISE);
     func_8030E04C(D_8037D361, 1.4f, 0.4f, -1.2f);
 }
 

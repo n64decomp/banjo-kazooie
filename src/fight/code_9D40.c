@@ -156,7 +156,7 @@ void func_8039049C(Actor *this){
         func_8025A6EC(JINGLE_MENACING_GRUNTILDA_B, 20000);
         func_8025A58C(0, 0x7fff);
         this->unk44_31 = func_8030ED2C(SFX_17A_SHIPHORN, 3);
-        func_8030DABC(this->unk44_31, 25000);
+        sfxsource_setSampleRate(this->unk44_31, 25000);
         func_8030DBB4(this->unk44_31, local->unk14);
         func_8030E2C4(this->unk44_31);
         local->unk28 = 0xC;
@@ -229,7 +229,7 @@ void func_8039049C(Actor *this){
                     local->unk18 = 0.1f;
                     local->unk14 = 0.4f;
                     this->unk44_31 = func_8030ED2C(0x416, 3);
-                    func_8030DABC(this->unk44_31, 26000);
+                    sfxsource_setSampleRate(this->unk44_31, 26000);
                     func_8030DBB4(this->unk44_31, local->unk14);
                     func_8030E2C4(this->unk44_31);
                 }//L803908AC

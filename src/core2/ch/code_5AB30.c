@@ -45,7 +45,7 @@ struct31s D_80368694 = {
 };
 
 struct43s D_803686BC = {
-    {{-250.0f, 600.0f}, {-250.0f, 350.0f}, {960.0f, 350.0f}},
+    {{-250.0f, 600.0f, -250.0f}, {350.0f, 960.0f, 350.0f}},
     {{0.0f, -1200.0f, 0.0f}, {0.0f, -1200.0f, 0.0f}},
     {{-80.0f, 0.0f, -80.0f}, {80.0f, 200.0f, 80.0f}}
 };
@@ -58,7 +58,7 @@ Actor *func_802E1AC0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     ActorLocal_chSirSlush *local;
 
     actor = marker_getActor(marker);
-    local = &actor->local;
+    local = (ActorLocal_chSirSlush *)&actor->local;
     func_8033A45C(1, local->unk9);
     func_8033A45C(2, local->unkA);
     func_80325888(marker, gfx, mtx, vtx);
@@ -177,13 +177,13 @@ int func_802E1F70(ActorMarker *marker, s32 arg1){
     return 1;
 }
 
-void func_802E1FD0(ActorMarker *marker, s32 arg1){
+void func_802E1FD0(ActorMarker *marker, ActorMarker *other_marker){
     Actor *actor = marker_getActor(marker);
     FUNC_8030E8B4(SFX_15_METALLIC_HIT_2, 1.0f, 30000, actor->position, 1500, 4500);
     FUNC_8030E8B4(SFX_3EA_UNKNOWN, 1.0f, 30000, actor->position, 1500, 4500);
     FUNC_8030E8B4(SFX_2F_ORANGE_SPLAT, 1.0f, 30000, actor->position, 1500, 4500);
 
-    func_802C3C88(func_802E1BD0, actor->marker);
+    func_802C3C88((GenMethod_1)func_802E1BD0, (s32)actor->marker);
     if(map_get() == MAP_27_FP_FREEZEEZY_PEAK)
         func_8038A978();
     func_802E1CB8(actor->position, 0xC);
@@ -258,7 +258,7 @@ void func_802E20E8(Actor *this){
             ){//L802E2318
                 if(0.0 < local->unk4){
                     if( (func_8023DB5C() & 1)
-                        || func_8028ECAC() == 0xA
+                        || func_8028ECAC() == BSGROUP_A_FLYING
                     ){//L802E236C
                         local->unk4 -= sp38;
                     }
@@ -266,7 +266,7 @@ void func_802E20E8(Actor *this){
                 else{//L802E2380
                     if( func_802E1EB4(this, 0x1f4, 0xabe)
                         && func_802E1E5C(this, 3)
-                        && func_8028EE84() != 2
+                        && func_8028EE84() != BSWATERGROUP_2_UNDERWATER
                         && !func_802E208C()
                     ){
                         func_80328B8C(this, 2, 0.01f, 1);
@@ -282,7 +282,7 @@ void func_802E20E8(Actor *this){
             else if( 
                 0.98 < animctrl_getAnimTimer(this->animctrl)
                 || !func_802E1EB4(this, 0x1f4, 0xabe)
-                || func_8028EE84() == 2
+                || func_8028EE84() == BSWATERGROUP_2_UNDERWATER
                 || func_802E208C()
             ){
                 func_802E1DA0(this);
@@ -309,7 +309,7 @@ void func_802E20E8(Actor *this){
                     && local->unkB
                 ){
                     func_8030E878(SFX_8F_SNOWBALL_FLYING, randf2(0.95f, 1.05f), 30000, this->position, 800.0f, 3050.0f);
-                    func_802C3C88(func_802E1B24, this->marker);
+                    func_802C3C88((GenMethod_1)func_802E1B24, (s32)this->marker);
                     local->unk9 = FALSE;
                 }
                 

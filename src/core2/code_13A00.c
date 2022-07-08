@@ -158,7 +158,7 @@ void func_8029AE74(s32 arg0){
     func_8029ACD4();
     D_8037D194 = arg0;
     tmp_v0 = func_8028ECAC();
-    if(tmp_v0 == 6 || tmp_v0 == 8 || tmp_v0 == 9){
+    if(tmp_v0 == BSGROUP_6_TURBO_TALON_TRAINERS || tmp_v0 == BSGROUP_8_TROT || tmp_v0 == BSGROUP_9_LONG_LEG){
         func_802F494C(D_8037D190, 0.2f);
     }
     else{

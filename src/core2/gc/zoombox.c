@@ -373,7 +373,7 @@ void func_80315C90(gczoombox_t *this, s32 arg1) {
 
             phi_a0 = (this->unk124[phi_s4] - phi_s1_3 < 0)? 0 : this->unk124[phi_s4] - phi_s1_3;
             phi_a1 = (this->unk124[phi_s4] - phi_s2 < 0)  ? 0 : this->unk124[phi_s4] - phi_s2;
-            func_8030DABC(this->unk108[phi_s4], randi2(phi_a0, phi_a1));
+            sfxsource_setSampleRate(this->unk108[phi_s4], randi2(phi_a0, phi_a1));
             func_8030E2C4(this->unk108[phi_s4]);
         }
     }

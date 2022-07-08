@@ -256,9 +256,9 @@ void func_803584BC(Actor *this) {
     local = (ActorLocal_core2_D0CA0 *)&this->local;
     local->unk0 = func_8030D90C();
     func_8030DBB4(local->unk0, 0.9f);
-    func_8030DA80(local->unk0, 0x3FA);
+    sfxsource_setSfxId(local->unk0, 0x3FA);
     func_8030DD14(local->unk0, 2);
-    func_8030DABC(local->unk0, 0);
+    sfxsource_setSampleRate(local->unk0, 0);
 }
 
 
@@ -392,7 +392,7 @@ void func_80358684(Actor *this) {
             var_f12 = 0.0f;
         }
         if (var_f12 > 0.0f) {
-            func_8030DABC(var_f12, local->unk0, (s32) (var_f12 * D_80379638));
+            sfxsource_setSampleRate(var_f12, local->unk0, (s32) (var_f12 * D_80379638));
             func_8030E2C4(local->unk0);
         }
     }

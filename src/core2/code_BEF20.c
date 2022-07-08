@@ -223,9 +223,9 @@ void func_803465E4(void){
     s32 sp50 = 0;
     s32 sp4C = level_get();
     s32 i;
-    int sp44;
-    int sp40;
-    int sp38;
+    int is_underwater;
+    int is_on_water_surface;
+    int is_in_polluted_or_winter_water;
 
     if(func_80334904() != 2) return;
     if(D_80385FE8){
@@ -269,23 +269,23 @@ void func_803465E4(void){
 
     if(!func_8028EC04() && func_8028F070()){
         if(level_get() != LEVEL_2_TREASURE_TROVE_COVE || !levelSpecificFlags_get(5)){
-            sp44 = (func_8028EE84() == 2);
-            sp40 = (func_8028EE84() == 1);
-            sp38 = ((level_get() == LEVEL_9_RUSTY_BUCKET_BAY) || (map_get() == MAP_46_CCW_WINTER));
-            if( sp38 && (sp44 || sp40)){ //L803467EC
+            is_underwater = (func_8028EE84() == BSWATERGROUP_2_UNDERWATER);
+            is_on_water_surface = (func_8028EE84() == BSWATERGROUP_1_SURFACE);
+            is_in_polluted_or_winter_water = ((level_get() == LEVEL_9_RUSTY_BUCKET_BAY) || (map_get() == MAP_46_CCW_WINTER));
+            if( is_in_polluted_or_winter_water && (is_underwater || is_on_water_surface)){ //L803467EC
                 D_80385FEC = 2.0f;
             }
             else{//L80346804
                 D_80385FEC = MAX(0.0, D_80385FEC - time_getDelta());
             }//L80346870
-            if( (!sp38 && sp44) || (sp38 && sp40) ){//L80346894
+            if( (!is_in_polluted_or_winter_water && is_underwater) || (is_in_polluted_or_winter_water && is_on_water_surface) ){//L80346894
                 func_803463D4(ITEM_17_AIR, (s32)((f64)((-time_getDelta())*60.0f)*1.1));
             }
             else{ 
-                if(sp38 && sp44){//L803468D8
+                if(is_in_polluted_or_winter_water && is_underwater){//L803468D8
                     func_803463D4(ITEM_17_AIR, (s32)(f64)((-time_getDelta()*60.0f)*2.1));
                 }//L80346930
-                if(!sp38 || D_80385FEC == 0.0f){
+                if(!is_in_polluted_or_winter_water || D_80385FEC == 0.0f){
                     if(!D_80385FE4 && D_80385F30[ITEM_17_AIR] < 3600){
                         func_803463D4(ITEM_17_AIR, (s32)(((time_getDelta()*60.0f)*100.0)*1.1));
                         D_80385F30[ITEM_17_AIR] = MIN(D_80385F30[ITEM_17_AIR], 3600);

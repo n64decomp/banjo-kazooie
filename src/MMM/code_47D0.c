@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void func_8030DABC(u8, s32);
+extern void sfxsource_setSampleRate(u8, s32);
 extern f32 func_80258640(f32[3], f32[3]);
 
 typedef struct {
@@ -75,10 +75,10 @@ void func_8038ADF0(Struct_MMM_47D0_0 *arg0, Struct68s *arg1) {
     func_8038AA30(arg0, arg1);
     func_80351A14(arg1, (Struct68DrawMethod)func_8038AC40);
     sp3F = func_80351758(arg1);
-    func_8030DA80(sp3F, SFX_3EC_CCW_DOOR_OPENING);
+    sfxsource_setSfxId(sp3F, SFX_3EC_CCW_DOOR_OPENING);
     func_8030DD14(sp3F, 3);
     func_8030DBB4(sp3F, 0.6f);
-    func_8030DABC(sp3F, 0);
+    sfxsource_setSampleRate(sp3F, 0);
     func_8030E2C4(sp3F);
     func_8035179C(arg1, sp28);
     sp38 = 500.0f;
@@ -169,10 +169,10 @@ void func_8038AF90(Struct_MMM_47D0_0 *arg0, Struct68s *arg1, f32 arg2) {
     }
     if (arg0->unk4 == 1) {
         sp38 = func_80351758(arg1);
-        func_8030DABC(sp38, 0);
+        sfxsource_setSampleRate(sp38, 0);
     } else {
         sp38 = func_80351758(arg1);
-        func_8030DABC(sp38, (s32) ((gu_sqrtf(arg0->unkC[0]*arg0->unkC[0] + arg0->unkC[1]*arg0->unkC[1] + arg0->unkC[2]*arg0->unkC[2]) / 400.0) * 15000.0));
+        sfxsource_setSampleRate(sp38, (s32) ((gu_sqrtf(arg0->unkC[0]*arg0->unkC[0] + arg0->unkC[1]*arg0->unkC[1] + arg0->unkC[2]*arg0->unkC[2]) / 400.0) * 15000.0));
     }
     player_getPosition(sp48);
     func_8035179C(arg1, sp54);

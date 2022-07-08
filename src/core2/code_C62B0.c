@@ -265,10 +265,10 @@ void func_8034E1A4(Struct6Ds *arg0, enum sfx_e sfx_id, f32 arg2, f32 arg3){
     }
     arg0->unk20 = arg2;
     arg0->unk24 = arg3;
-    func_8030DA80(arg0->unk0, sfx_id);
+    sfxsource_setSfxId(arg0->unk0, sfx_id);
     func_8030DD14(arg0->unk0, 3);
     func_8030DBB4(arg0->unk0, (arg2 +arg3)/2);
-    func_8030DABC(arg0->unk0, 32000);
+    sfxsource_setSampleRate(arg0->unk0, 32000);
     func_8030E2C4(arg0->unk0);
 }
 
@@ -354,7 +354,7 @@ void func_8034E26C(Struct6Ds *arg0, BKModel *model, s32 mesh_id) {
                 sp20 = (1.0 - ((sp28 - D_80379220) / D_80379228)) * sp20;
             }
         func_8030DBB4(arg0->unk0, sp24);
-        func_8030DABC(arg0->unk0, sp20);
+        sfxsource_setSampleRate(arg0->unk0, sp20);
     }
     switch (arg0->unk29) {
         case 1:

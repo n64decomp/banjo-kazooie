@@ -525,9 +525,8 @@ void func_802EFC28(ParticleEmitter *this, struct40s *arg1){
 
 void particleEmitter_setVelocityAndAccelerationRanges(ParticleEmitter *this, struct41s *arg1){
     particleEmitter_setParticleVelocityRange(this, 
-        arg1->unk0.unk0[0], arg1->unk0.unk0[1], 
-        arg1->unk0.unk8[0], arg1->unk0.unk8[1], 
-        arg1->unk0.unk10[0], arg1->unk0.unk10[1]
+        arg1->unk0.unk0[0], arg1->unk0.unk0[1], arg1->unk0.unk0[2],
+        arg1->unk0.unkC[0], arg1->unk0.unkC[1], arg1->unk0.unkC[2]
     );
     particleEmitter_setParticleAccelerationRange(this, 
         arg1->unk18.unk0[0], arg1->unk18.unk0[1], arg1->unk18.unk0[2], 
@@ -537,9 +536,8 @@ void particleEmitter_setVelocityAndAccelerationRanges(ParticleEmitter *this, str
 
 void particleEmitter_setPositionAndVelocityRanges(ParticleEmitter *this, struct42s *arg1){
     particleEmitter_setParticleVelocityRange(this, 
-        arg1->unk0.unk0[0], arg1->unk0.unk0[1], 
-        arg1->unk0.unk8[0], arg1->unk0.unk8[1], 
-        arg1->unk0.unk10[0], arg1->unk0.unk10[1]
+        arg1->unk0.unk0[0], arg1->unk0.unk0[1], arg1->unk0.unk0[2],
+        arg1->unk0.unkC[0], arg1->unk0.unkC[1], arg1->unk0.unkC[2]
     );
 
     particleEmitter_setParticleSpawnPositionRange( this, 
@@ -550,9 +548,8 @@ void particleEmitter_setPositionAndVelocityRanges(ParticleEmitter *this, struct4
 
 void particleEmitter_setPositionVelocityAndAccelerationRanges(ParticleEmitter *this, struct43s* arg1){
     particleEmitter_setParticleVelocityRange(this, 
-        arg1->unk0.unk0[0], arg1->unk0.unk0[1], 
-        arg1->unk0.unk8[0], arg1->unk0.unk8[1], 
-        arg1->unk0.unk10[0], arg1->unk0.unk10[1]
+        arg1->unk0.unk0[0], arg1->unk0.unk0[1], arg1->unk0.unk0[2],
+        arg1->unk0.unkC[0], arg1->unk0.unkC[1], arg1->unk0.unkC[2]
     );
     particleEmitter_setParticleAccelerationRange(this, 
         arg1->unk18.unk0[0], arg1->unk18.unk0[1], arg1->unk18.unk0[2], 

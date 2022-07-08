@@ -84,7 +84,7 @@ s32 func_8028A5C0(void){
     if(!func_8028F25C() && func_80321960() == 3)
         func_803219F4(1);
 
-    if(func_802933C0(0x17) && !func_8028F25C()){
+    if(miscflag_isTrue(0x17) && !func_8028F25C()){
         if(func_8028A41C(183.0f, -100.0f, 75.0f)){
             if(func_802DE41C() == 6){
                 if(!D_8037DCCC){

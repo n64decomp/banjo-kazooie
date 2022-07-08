@@ -58,7 +58,7 @@ void func_8038BA08(Actor *this){
     actor_loopAnimation(this);
     this->unk100 = NULL;
     D_80391A80 = 3;
-    if(func_8028ECAC() == 6)
+    if(func_8028ECAC() == BSGROUP_6_TURBO_TALON_TRAINERS)
         func_8028F710(3, 0.0f);
 
     func_80311480(ASSET_A79_TEXT_GRABBA_DEFEAT, 0xf, this->position, this->marker, func_8038B988, NULL);
@@ -171,10 +171,10 @@ void func_8038BEA0(Actor *this){
         this->unk16C_4 = TRUE;
         if(this->unk44_31 == 0){
             this->unk44_31 = func_8030D90C();
-            func_8030DA80(this->unk44_31, SFX_3EC_CCW_DOOR_OPENING);
+            sfxsource_setSfxId(this->unk44_31, SFX_3EC_CCW_DOOR_OPENING);
             func_8030DD14(this->unk44_31, 2);
             func_8030DBB4(this->unk44_31, 0.1f);
-            func_8030DABC(this->unk44_31, 32000);
+            sfxsource_setSampleRate(this->unk44_31, 32000);
         }
         if(this->unk100 == NULL){
             this->unk100 = func_8032B16C(JIGGY_3E_GV_GRABBA);
@@ -234,7 +234,7 @@ void func_8038BEA0(Actor *this){
                     func_802BB3DC(0, 12.0f, 0.92f);
                 }
                 else if(func_80329530(this, 600)){
-                    if(func_8028ECAC() == 6){
+                    if(func_8028ECAC() == BSGROUP_6_TURBO_TALON_TRAINERS){
                         this->unk38_31++;
                     }
                     else{

@@ -259,7 +259,7 @@ void func_8038B2C8(ActorMarker *caller, enum asset_e text_id, s32 arg2){
 }
 
 void func_8038B39C(void){
-    if(jiggyscore_isCollected(JIGGY_30_FP_BOGGY_2) && func_8028ECAC() == 6){
+    if(jiggyscore_isCollected(JIGGY_30_FP_BOGGY_2) && func_8028ECAC() == BSGROUP_6_TURBO_TALON_TRAINERS){
         func_8028F710(3, 2.0f);
     }
     func_8028F918(1);
@@ -317,7 +317,7 @@ void func_8038B544(void){
             break;
 
         case 2: //L8038B61C
-            if(jiggyscore_isCollected(JIGGY_30_FP_BOGGY_2) && func_8028ECAC() == 6){
+            if(jiggyscore_isCollected(JIGGY_30_FP_BOGGY_2) && func_8028ECAC() == BSGROUP_6_TURBO_TALON_TRAINERS){
                 func_8028F710(3, 20.0f);
             }
 

@@ -77,19 +77,63 @@ ActorInfo D_8038AD7C = { 0x1E8, ACTOR_COLLYWOBBLE_B, MODEL_COLLYWOBBLE, 1, chCau
     func_80388080, func_80326224, func_80387DF4,
     0, 0, 2.0f, 0
 };
-extern s32 D_8038ADA0[3];
 
-extern struct31s D_8038ADAC;
-extern struct42s D_8038ADD4;
+s32 D_8038ADA0[3] = {0xFF, 0xFF, 0xFF}; 
 
-extern struct31s D_8038AE04;
-extern struct43s D_8038AE2C;
+struct31s D_8038ADAC = {
+    {0.1f, 0.5f}, 
+    {1.5f, 3.0f}, 
+    {0.0f, 0.01f}, 
+    {1.0f, 1.5f}, 
+    0.0f, 0.01f,
+};
 
-extern struct31s D_8038AE74;
-extern struct43s D_8038AE9C;
+struct42s D_8038ADD4 = {
+    {{-100.0f, -100.0f, -100.0f}, {100.0f, 100.0f, 100.0f}},
+    {{-40.0f, -40.0f, -40.0f}, {40.0f, 40.0f, 40.0f}}
+};
 
-extern struct31s D_8038AEE4;
-extern struct43s D_8038AF0C;
+struct31s D_8038AE04 = {
+    {0.5f, 0.75f},
+    {0.4f, 0.6f}, 
+    {0.0f, 0.01f},
+    {4.0f, 4.0f}, 
+    0.0f, 0.2f
+};
+
+struct43s D_8038AE2C = {
+    {{-100.0f, 200.0f, -100.0f}, {100.0f, 400.0f, 100.0f}}, 
+    {{0.0f, -600.0f, 0.0f}, {0.0f, -600.0f, 0.0f}}, 
+    {{-80.0f, -80.0f, -80.0f}, {80.0f, 80.0f, 80.0f}}
+};
+
+struct31s D_8038AE74 = {
+    {1.0f, 1.0f}, 
+    {1.0f, 1.0f}, 
+    {0.0f, 0.01f}, 
+    {2.0f, 2.0f}, 
+    0.0f, 0.5f
+};
+
+struct43s D_8038AE9C = {
+    {{-100.0f, 400.0f, -100.0f}, {100.0f, 600.0f, 100.0f}}, 
+    {{0.0f, -600.0f, 0.0f}, {0.0f, -600.0f, 0.0f}}, 
+    {{-20.0f, -20.0f, -20.0f}, {20.0f, 20.0f, 20.0f}}
+};
+
+struct31s D_8038AEE4 = {
+    {0.6f, 0.8f}, 
+    {0.5f, 0.7f}, 
+    {0.0f, 0.01f}, 
+    {4.0f, 4.0f}, 
+    0.0f, 0.5f
+};
+
+struct43s D_8038AF0C ={
+    {{-200.0f, 200.0f, -200.0f}, {200.0f, 600.0f, 200.0f}}, 
+    {{0.0f, -900.0f, 0.0f}, {0.0f, -900.0f, 0.0f}}, 
+    {{-100.0f, -100.0f, -100.0f}, {100.0f, 100.0f, 100.0f}}, 
+};
 
 /* .code */
 void func_80387910(ParticleEmitter *arg0, f32 *arg1, s32 arg2){

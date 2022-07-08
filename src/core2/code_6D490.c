@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void func_8030DABC(u8, s32);
+extern void sfxsource_setSampleRate(u8, s32);
 
 typedef struct {
     s16 unk0;
@@ -83,10 +83,10 @@ void func_802F44AC(Struct5Ds *this, enum sfx_e sfx_id, f32 arg2, f32 arg3, s32 a
 
     s0 = (this->unk1E) ? this->unk1C : this->unk1D;
 
-    func_8030DA80(s0, sfx_id);
+    sfxsource_setSfxId(s0, sfx_id);
     f0 = arg3*0.5;
     func_8030DBB4(s0, randf2(arg2 - f0, arg2 + f0));
-    func_8030DABC(s0, arg4);
+    sfxsource_setSampleRate(s0, arg4);
     func_8030E2C4(s0);
     this->unk1E ^= 1;
 }
@@ -105,10 +105,10 @@ void func_802F4554(Struct5Ds *this, enum sfx_e sfx_id, f32 arg2, f32 arg3, f32 a
         sp24 = arg3;
     }
 
-    func_8030DA80(sp20, sfx_id);
+    sfxsource_setSfxId(sp20, sfx_id);
     range = arg4*0.5;
     func_8030DBB4(sp20, randf2(sp24 - range, sp24 + range));
-    func_8030DABC(sp20, arg5);
+    sfxsource_setSampleRate(sp20, arg5);
     func_8030E2C4(sp20);
     this->unk1E ^= 1;
 

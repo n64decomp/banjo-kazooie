@@ -103,7 +103,7 @@ int func_80290D48(void){
 }
 
 int func_80290E8C(void){
-    if(func_8028EE84() != 2)
+    if(func_8028EE84() != BSWATERGROUP_2_UNDERWATER)
         return FALSE;
 
     func_802BD0D8(3);

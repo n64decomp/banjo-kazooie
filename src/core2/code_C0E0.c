@@ -127,7 +127,7 @@ void func_802932AC(void){
 void func_802932EC(void){
     s32 sp1C;
     sp1C = func_8028ECAC();
-    if(func_8028B2E8() || func_8028EE84() || sp1C == 0xA){
+    if(func_8028B2E8() || (func_8028EE84() != BSWATERGROUP_0_NONE) || sp1C == BSGROUP_A_FLYING){
         func_80293350();
         func_80293240(1);
     }

@@ -141,7 +141,7 @@ void func_8028B904(s32 arg0, s32 arg1, s32 arg2, s32 arg3){
 
     func_80296CC0(&sp1C);
     func_80296CB4(arg3);
-    if(func_802933C0(7)){
+    if(miscflag_isTrue(7)){
         func_8029CDA0();
     }
     else{
@@ -686,7 +686,7 @@ void func_8028BCA0(Prop *prop){
                 break;
 
             case 0x6B: //L8028CD20
-                if(func_8028EE84() == 2){
+                if(func_8028EE84() == BSWATERGROUP_2_UNDERWATER){
                     func_803463D4(ITEM_17_AIR, func_80301DBC(2));
                 }
                 break;
@@ -713,7 +713,7 @@ void func_8028BCA0(Prop *prop){
             case 0xD4: //L8028CDEC
             case 0x242: //L8028CDEC
                 if(ability_isUnlocked(ABILITY_D_SHOCK_JUMP)){
-                    func_802933E8(2);
+                    miscflag_set(MISC_FLAG_2_ON_SPRING_PAD);
                 }else{
                     if(!func_80320454(0xC, 1)){
                         func_80311480(0xA24, 4, 0, 0, 0, 0);
@@ -725,7 +725,7 @@ void func_8028BCA0(Prop *prop){
             case 0x240: //L8028CE3C
             case 0x261: //L8028CE3C
                 if(ability_isUnlocked(ABILITY_9_FLY)){
-                    func_802933E8(1);
+                    miscflag_set(MISC_FLAG_1_ON_FLIGHT_PAD);
                 }
                 else if(! func_80320454(0xD, 1)){
                     func_80311480(0xA25, 4, 0, 0, 0, 0);
@@ -744,7 +744,7 @@ void func_8028BCA0(Prop *prop){
                 if(chwadingboots_802D6E0C(actor) == 0)
                     return;
                 
-                func_802933E8(0xe);
+                miscflag_set(MISC_FLAG_E_TOUCHING_WADING_BOOTS);
                 func_802A6388(chwadingboots_802D6E4C(actor));
                 bs_checkInterrupt(0x1B);
                 func_802C3F04(func_802C418C, 0x4E, reinterpret_cast(u32, prop->actorProp.x), reinterpret_cast(u32, prop->actorProp.y), reinterpret_cast(u32, prop->actorProp.z));
@@ -768,7 +768,7 @@ void func_8028BCA0(Prop *prop){
                 if(chtrainers_802CA708(actor) == 0)
                     return;
 
-                func_802933E8(0x10);
+                miscflag_set(MISC_FLAG_10_TOUCHING_TURBO_TRAINERS);
                 func_80294AE8(chtrainers_802CA748(actor));
                 bs_checkInterrupt(0x1A);
                 func_802C3F04(func_802C418C, 0x4E, reinterpret_cast(u32, prop->actorProp.x), reinterpret_cast(u32, prop->actorProp.y), reinterpret_cast(u32, prop->actorProp.z));
@@ -798,7 +798,7 @@ void func_8028BCA0(Prop *prop){
             plyr_collision_type = 0;
         }
         if(obj_collision_type){
-            func_802933E8(8);
+            miscflag_set(8);
         }
         func_8032FFF4(playerMarker, marker, plyr_collision_type);
         func_8032FFF4(marker, playerMarker, obj_collision_type);
@@ -812,10 +812,10 @@ void func_8028BCA0(Prop *prop){
         switch (tmp2)
         {
         case 0x2E8:
-            func_802933E8(1); //on flight pad
+            miscflag_set(MISC_FLAG_1_ON_FLIGHT_PAD); //on flight pad
             break;
         case 0x2DD: //on shock spring pad
-            func_802933E8(2);
+            miscflag_set(MISC_FLAG_2_ON_SPRING_PAD);
             break;
         default:
             func_80332790(tmp2);
@@ -865,9 +865,9 @@ void playerMarker_init(void){
     playerMarker->unk2C_1 = 1;
     marker_setCollisionScripts(playerMarker, NULL, func_80291634, func_80291610);
     func_803300B8(playerMarker, func_8028D7B8);
-    func_802933FC(1);
-    func_802933FC(2);
-    func_802933FC(8);
+    miscflag_clear(MISC_FLAG_1_ON_FLIGHT_PAD);
+    miscflag_clear(MISC_FLAG_2_ON_SPRING_PAD);
+    miscflag_clear(8);
     func_8028D638(0,0);
     func_8033D2F4();
     D_8037BF8C = 0;
@@ -898,11 +898,11 @@ void func_8028D2E4(void){
             D_8037BF88 = 0;
         }
     }//L8028D364
-    func_802933FC(8);
+    miscflag_clear(8);
     if(playerMarker->collidable){
         temp_s0_2 = func_8028B750();
-        func_802933FC(1);
-        func_802933FC(2);
+        miscflag_clear(MISC_FLAG_1_ON_FLIGHT_PAD);
+        miscflag_clear(MISC_FLAG_2_ON_SPRING_PAD);
         _player_getPosition(sp168);
         func_8032F64C(sp168, playerMarker);
         for(D_8037BF8C = NULL, i = 0, temp_s2 = 0; i < 2;i++){//L8028D3DC
@@ -1016,7 +1016,7 @@ void func_8028D7B8(s32 arg0, ActorMarker *arg1, s32 arg2){
     s32 tmp_v0;
 
     if(func_8033D5A4(arg2))
-        func_802933E8(8);
+        miscflag_set(8);
 
     if((func_80297C6C() != 3 && func_8028F1E0()) || !sp20){
         if(!func_8028F25C()){

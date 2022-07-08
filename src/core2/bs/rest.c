@@ -103,7 +103,7 @@ void func_802B3D1C(void) {
         next_state = BS_77;
     }
     if (func_802B3BB0() != 0) {
-        next_state = func_8029BF78();
+        next_state = bs_getIdleState();
     }
     bs_setState(next_state);
 }
@@ -129,7 +129,7 @@ void func_802B3DBC(void) {
         next_state = BS_77;
     }
     if (func_802B3BB0() != 0) {
-        next_state = func_8029BF78();
+        next_state = bs_getIdleState();
     }
     bs_setState(next_state);
 }
@@ -157,9 +157,9 @@ void func_802B3E64(void) {
         next_state = BS_77;
     }
     if (func_802B3BB0()) {
-        next_state = func_8029BF78();
+        next_state = bs_getIdleState();
     }
-    if (map_get() == MAP_27_FP_FREEZEEZY_PEAK && func_802933C0(0x14)) {
+    if (map_get() == MAP_27_FP_FREEZEEZY_PEAK && miscflag_isTrue(0x14)) {
         next_state = func_8029CA94(next_state);
     }
     bs_setState(next_state);

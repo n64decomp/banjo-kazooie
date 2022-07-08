@@ -310,7 +310,7 @@ extern struct40s D_80373CD0;
 // 3DCCCCCD 3F4CCCCD 40800000 3F800000
 
 extern struct43s D_80373D00 = {
-    {{-60.0f, -60.0f}, {-60.0f, 60.0f}, {60.0f, 60.0f}},
+    {{-60.0f, -60.0f, -60.0f}, {60.0f, 60.0f, 60.0f}},
     {{0.0f, -0.0f, -0.0f}, {-0.0f, -0.0f, -0.0f}},
     {{-50.0f, -50.0f, -50.0f}, {50.0f, 50.0f, 50.0f}}
 };
@@ -322,7 +322,7 @@ extern struct40s D_80373D48 = {
 };
 
 extern struct43s D_80373D78 = {
-    {{-450.0f, 700.0f}, {-450.0f, 450.0f}, {1100.0f, 450.0f}},
+    {{-450.0f, 700.0f, -450.0f}, {450.0f, 1100.0f, 450.0f}},
     {{   0.0f, -900.0f,    0.0f}, {  0.0f, -900.0f,   0.0f}},
     {{-150.0f, -100.0f, -150.0f}, {150.0f,    5.0f, 150.0f}}
 };
@@ -350,7 +350,7 @@ void func_80362084(f32 position[3]) {
     pCtrl = partEmitList_pushNew(1U);
     particleEmitter_setSprite(pCtrl, 0x702);
     particleEmitter_setStartingFrameRange(pCtrl, 3, 5);
-    func_802EFFA8(pCtrl, &D_8037337C);
+    func_802EFFA8(pCtrl, D_8037337C);
     func_802EF9E4(pCtrl, 0xA0);
     particleEmitter_setPosition(pCtrl, position);
     func_802EFF5C(pCtrl, 0.1f, 0.2f, 0.0f);
@@ -365,7 +365,7 @@ void func_8036215C(f32 arg0[3]) {
     ParticleEmitter *pCtrl = partEmitList_pushNew(0xFU);
     particleEmitter_setSprite(pCtrl, 0x700);
     particleEmitter_setStartingFrameRange(pCtrl, 3, 4);
-    func_802EFFA8(pCtrl, &D_803733E8);
+    func_802EFFA8(pCtrl, D_803733E8);
     func_802EF9E4(pCtrl, 0x28);
     particleEmitter_setPosition(pCtrl, arg0);
     particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_80373424);
@@ -441,7 +441,7 @@ void func_80362510(Actor *actor) {
     sp30[1] = 100.0f;
     sp30[2] = 0.0f;
     ml_vec3f_roll_rotate_copy(sp30, sp30, actor->roll);
-    ml_vec3f_yaw_rotate_copy(&sp30, &sp30, actor->yaw);
+    ml_vec3f_yaw_rotate_copy(sp30, sp30, actor->yaw);
     particleEmitter_setParticleVelocityRange(pCtrl, 
         sp30[0] * 0.01, sp30[1] * 0.01, sp30[2] * 0.01, 
         sp30[0] * 0.4, sp30[1] * 0.4, sp30[2] * 0.4

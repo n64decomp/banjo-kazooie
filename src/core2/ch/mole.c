@@ -122,10 +122,10 @@ void func_802D9530(Actor *this){
     func_80328B8C(this, 4, 0.0001f, 1);
     actor_playAnimationOnce(this);
     this->unk44_31 = func_8030D90C();
-    func_8030DA80(this->unk44_31, SFX_3F9_UNKNOWN);
+    sfxsource_setSfxId(this->unk44_31, SFX_3F9_UNKNOWN);
     func_8030DD14(this->unk44_31, 2);
     func_8030DBB4(this->unk44_31, 1.4f);
-    func_8030DABC(this->unk44_31, 26000);
+    sfxsource_setSampleRate(this->unk44_31, 26000);
     func_8028F918(0);
 }
 
@@ -239,10 +239,10 @@ void func_802D9ADC(Actor *this){
     func_80328B8C(this, 2, 0.0001f, 1);
     actor_playAnimationOnce(this);
     this->unk44_31 = func_8030D90C();
-    func_8030DA80(this->unk44_31, SFX_3F9_UNKNOWN);
+    sfxsource_setSfxId(this->unk44_31, SFX_3F9_UNKNOWN);
     func_8030DD14(this->unk44_31, 2);
     func_8030DBB4(this->unk44_31, 1.4f);
-    func_8030DABC(this->unk44_31, 26000);
+    sfxsource_setSampleRate(this->unk44_31, 26000);
     func_802D9658(this);
     func_8028F94C(2, this->position);
 }
@@ -350,7 +350,7 @@ void func_802D9D60(Actor *this){
             if(func_8028F20C() && func_8028F0D4() && !func_8028EC04()){
                 if( this->unkF4_8 == 0x12 
                     && !ability_isUnlocked(D_80367DC4[this->unkF4_8-9].unk5)
-                    && (!func_8028ECAC() || func_8028ECAC() == 8)
+                    && (func_8028ECAC() == 0 || func_8028ECAC() == BSGROUP_8_TROT)
                 ){
                     player_getPosition(sp34);
                     if(ml_vec3f_distance(sp34, this->velocity) < this->unk28){

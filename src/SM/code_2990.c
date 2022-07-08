@@ -45,7 +45,7 @@ SM2900Struct D_8038AFB4[8] = {
     {0xdfb, 0xdfe, 5, ABILITY_F_DIVE},
     {   -1, 0xe00, 6, ABILITY_B_RATATAT_RAP},
     {0xe04, 0xe06, 8, ABILITY_0_BARGE},
-    {   -1, 0xdf8, 4, ABILITY_8_FLIP},
+    {   -1, 0xdfa, 4, ABILITY_8_FLIP},
     {0xe01, 0xe03, 7, ABILITY_5_CLIMB},
     {0xe10, 0xe11, 0x11, -1},
 };
@@ -131,10 +131,10 @@ void func_80388FA0(Actor *this, s32 arg1){
                 func_80328B8C(other, 3, 0.0001f, 1);
             actor_playAnimationOnce(this);
             this->unk44_31 = func_8030D90C();
-            func_8030DA80(this->unk44_31, 0x3f9);
+            sfxsource_setSfxId(this->unk44_31, 0x3f9);
             func_8030DD14(this->unk44_31, 2);
             func_8030DBB4(this->unk44_31, 1.4f);
-            func_8030DABC(this->unk44_31, 0x6590);
+            sfxsource_setSampleRate(this->unk44_31, 0x6590);
             func_8028F918(0);
             break;
         case 1:
@@ -156,10 +156,10 @@ void func_80388FA0(Actor *this, s32 arg1){
             animctrl_setSmoothTransition(this->animctrl, 1);
             actor_playAnimationOnce(this);
             this->unk44_31 = func_8030D90C();
-            func_8030DA80(this->unk44_31, 0x3f9);
+            sfxsource_setSfxId(this->unk44_31, 0x3f9);
             func_8030DD14(this->unk44_31, 2);
             func_8030DBB4(this->unk44_31, 1.4f);
-            func_8030DABC(this->unk44_31, 0x6590);
+            sfxsource_setSampleRate(this->unk44_31, 0x6590);
             func_80388F24(this);
             func_8028F94C(2, this->position);
             break;

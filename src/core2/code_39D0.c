@@ -49,8 +49,8 @@ s32 can_egg(void){
 }
 
 int can_flap(void){
-    return func_802933D0(0x12) 
-        && func_802933D0(0x5) 
+    return miscflag_isFalse(0x12) 
+        && miscflag_isFalse(0x5) 
         && ability_hasLearned(ABILITY_7_FLAP);
 }
 
@@ -67,13 +67,13 @@ s32 func_8028AB48(void){
 }
 
 int can_peck(void){
-    return func_802933D0(0x5)
-        && func_802933D0(0x12)
+    return miscflag_isFalse(0x5)
+        && miscflag_isFalse(0x12)
         && ability_hasLearned(ABILITY_B_RATATAT_RAP);
 }
 
 int func_8028ABB8(void){
-        if(func_802933C0(0x14) || func_802933C0(0x19))
+        if(miscflag_isTrue(0x14) || miscflag_isTrue(0x19))
             return 0;
         if(bs_getState() == BS_56_RECOIL)
             return 0;
@@ -182,7 +182,7 @@ int func_8028B0E0(f32 arg0[3], f32 arg1){
 s32 func_8028B120(void){return 0;}
 
 int func_8028B128(void){
-    return func_802933C0(0x13);
+    return miscflag_isTrue(0x13);
 }
 
 int func_8028B148(void){
@@ -222,8 +222,8 @@ bool func_8028B3B4(void) {
     bool sp1C;
     bool sp18;
 
-    sp1C = func_80294610(0x10) && func_802933D0(3);
-    sp18 = func_80294610(0x40) && func_802933D0(4);
+    sp1C = func_80294610(0x10) && miscflag_isFalse(3);
+    sp18 = func_80294610(0x40) && miscflag_isFalse(4);
     if(sp1C || sp18)
         return TRUE;
     return FALSE;
@@ -277,7 +277,7 @@ void func_8028B534(void){
         D_8037BF62 = 1;
     }
     else{
-        if(func_8028B2E8() || sp1C == 0xA || sp1C == 5){
+        if(func_8028B2E8() || sp1C == BSGROUP_A_FLYING || sp1C == BSGROUP_5_CLIMB){
             D_8037BF62 = 0;
         }
     }

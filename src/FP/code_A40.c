@@ -94,9 +94,9 @@ void chXmasTree_update(Actor *this){
         func_803300D8(this->marker, func_80386EAC);
         if(this->unk44_31 == 0){
             this->unk44_31 = func_8030D90C();
-            func_8030DA80(this->unk44_31, SFX_415_UNKNOWN);
+            sfxsource_setSfxId(this->unk44_31, SFX_415_UNKNOWN);
             func_8030DD14(this->unk44_31, 3);
-            func_8030DABC(this->unk44_31, 28000);
+            sfxsource_setSampleRate(this->unk44_31, 28000);
         }
         func_802C3BF8(func_80386FB4);
         func_802C3C88(func_80386FE0, this->marker);

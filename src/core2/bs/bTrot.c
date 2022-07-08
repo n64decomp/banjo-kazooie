@@ -102,15 +102,15 @@ void func_802A8A40(void){
     func_8029E064(1);
     pitch_setAngVel(1000.0f, 12.0f);
     roll_setAngularVelocity(1000.0f, 12.0f);
-    func_802933E8(3);
+    miscflag_set(3);
     func_8029CF48(4,1,0.24f);
     func_80292090(2);
 }
 
 void func_802A8AD8(void){
     func_80299650(func_80291684(3), func_80291670(3));
-    if(func_802933C0(0x10) &&(bs_getState() != BS_17_BTROT_EXIT)){
-        func_802933FC(0x10);
+    if(miscflag_isTrue(MISC_FLAG_10_TOUCHING_TURBO_TRAINERS) &&(bs_getState() != BS_17_BTROT_EXIT)){
+        miscflag_clear(MISC_FLAG_10_TOUCHING_TURBO_TRAINERS);
         func_802917E4(3, func_80294A40());
         func_803219F4(4);
     }
@@ -118,7 +118,7 @@ void func_802A8AD8(void){
     if(func_802916CC(3)){
         if(func_8029DFE0()){
             func_8029E0DC(0);
-            if(func_802933D0(0x14))
+            if(miscflag_isFalse(0x14))
                 func_8030E484(0x3eb);
             func_803219F4(1);
         }
@@ -139,7 +139,7 @@ void func_802A8BB0(void){
     func_8029E064(0);
     pitch_setIdeal(0.0f);
     roll_setIdeal(0.0f);
-    func_802933FC(3);
+    miscflag_clear(3);
     if(next_state != BS_5A_LOADZONE)
         func_802917E4(3, 0.0f);
     func_802A8AD8();
@@ -173,10 +173,10 @@ enum asset_e func_802A8D00(enum asset_e arg0, enum asset_e arg1){
 }
 
 enum bs_e func_802A8D34(enum bs_e arg0){
-    if(func_802933C0(0xf))
+    if(miscflag_isTrue(0xf))
         return arg0;
     
-    if(func_802933C0(1)) 
+    if(miscflag_isTrue(MISC_FLAG_1_ON_FLIGHT_PAD)) 
         return BS_23_FLY_ENTER;
 
     return BS_8_BTROT_JUMP; 
@@ -373,7 +373,7 @@ void bsbtrot_jump_update(void){
     if(func_80291698(3))
         func_802A87C0();
 
-    if(func_802933C0(0xF))
+    if(miscflag_isTrue(0xF))
         func_802978A4();
     else
         func_802A89D4();
@@ -584,7 +584,7 @@ void bsbtrot_fall_update(void){
     if(func_80291698(3))
         func_802A87C0();
 
-    if(func_802933C0(0xf))
+    if(miscflag_isTrue(0xf))
         func_802978A4();
     else
         func_802A89D4();

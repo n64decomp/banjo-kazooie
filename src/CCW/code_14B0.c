@@ -3,7 +3,7 @@
 #include "variables.h"
 
 extern void func_8030DBFC(u8, f32, f32, f32);
-extern void func_8030DABC(u8, s32);
+extern void sfxsource_setSampleRate(u8, s32);
 
 typedef struct{
     s16 unk0;
@@ -73,10 +73,10 @@ void func_80387A40(Actor *this) {
         }
         local->unk0 = func_8030D90C();
         local->unk18[0] = local->unk18[1] = local->unk18[2] = 0.0f;
-        func_8030DA80(local->unk0, 0x3FA);
+        sfxsource_setSfxId(local->unk0, 0x3FA);
         func_8030DD14(local->unk0, 2);
         func_8030DBB4(local->unk0, 0.9f);
-        func_8030DABC(local->unk0, 0);
+        sfxsource_setSampleRate(local->unk0, 0);
         func_803878A0(this, 1);
         return;
     }
@@ -112,7 +112,7 @@ void func_80387A40(Actor *this) {
     func_8030DEB4(local->unk0, 500.0f, 1500.0f);
     func_8030DF68(local->unk0, this->position);
     func_8030E2C4(local->unk0);
-    func_8030DABC(local->unk0, 2000.0f + 8000.0f*(gu_sqrtf(local->unk18[0]*local->unk18[0] + local->unk18[1]*local->unk18[1] + local->unk18[2]*local->unk18[2])/ local->unk8));
+    sfxsource_setSampleRate(local->unk0, 2000.0f + 8000.0f*(gu_sqrtf(local->unk18[0]*local->unk18[0] + local->unk18[1]*local->unk18[1] + local->unk18[2]*local->unk18[2])/ local->unk8));
     if (!mapSpecificFlags_get(local->unk4->unk2)) {
         player_getPosition(sp44);
         if (sp44[2] > -600.0f) {

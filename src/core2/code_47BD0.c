@@ -245,7 +245,7 @@ void func_802CF434(Actor *this) {
 void func_802CF518(Actor *this) {
     if( func_803292E0(this) 
         && func_80329530(this, 900) 
-        && !func_8028EE84() 
+        && func_8028EE84() == BSWATERGROUP_0_NONE 
         && player_getTransformation() != TRANSFORM_6_BEE
     ) {
         func_80328A84(this, 3);
@@ -256,7 +256,7 @@ void func_802CF57C(Actor *this) {
     ActorLocal_core2_47BD0 *local;
 
     local = (ActorLocal_core2_47BD0 *) &this->local;
-    if (!func_803292E0(this) || !func_80329530(this, 900) || func_8028EE84()) {
+    if (!func_803292E0(this) || !func_80329530(this, 900) || func_8028EE84() != BSWATERGROUP_0_NONE) {
         func_80328A84(this, 5);
         func_802CEF54(this, local->unkC, 100.0f);
     }
@@ -296,7 +296,7 @@ void func_802CF610(Actor *this, ParticleEmitter *p_ctrl, f32 position[3]) {
 void func_802CF7CC(Actor *this) {
     if (D_8037DCBC == 0) {
         this->unk44_31 = func_8030D90C();
-        func_8030DA80(this->unk44_31, 0x3FA);
+        sfxsource_setSfxId(this->unk44_31, 0x3FA);
         func_8030DD14(this->unk44_31, 2);
         func_8030DD90(this->unk44_31, 2);
         D_8037DCBC = 1;
@@ -484,7 +484,7 @@ block_40:
             case 1:
                 if( !func_8031FF1C(0x8F) 
                     && func_803296B8(this, 0xFA, 0x12C) 
-                    && ((func_8028ECAC() == 0) || (func_8028ECAC() == 8)) 
+                    && ((func_8028ECAC() == 0) || (func_8028ECAC() == BSGROUP_8_TROT)) 
                     && (player_getTransformation() == TRANSFORM_1_BANJO) 
                     && func_80311480(0xDA6, 0, NULL, NULL, NULL, NULL) 
                 ) {
@@ -524,7 +524,7 @@ block_40:
                 func_8030DEB4(this->unk44_31, 500.0f, 1500.0f);
                 func_8030DF68(this->unk44_31, this->position);
                 func_8030E2C4(this->unk44_31);
-                func_8030DABC(this->unk44_31, ((gu_sqrtf(this->velocity[0]*this->velocity[0] + this->velocity[1]*this->velocity[1] + this->velocity[2]*this->velocity[2])/ this->unk28) * 8000.0f) + 2000.0f);
+                sfxsource_setSampleRate(this->unk44_31, ((gu_sqrtf(this->velocity[0]*this->velocity[0] + this->velocity[1]*this->velocity[1] + this->velocity[2]*this->velocity[2])/ this->unk28) * 8000.0f) + 2000.0f);
             }
         }
     }

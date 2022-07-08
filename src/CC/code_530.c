@@ -43,9 +43,9 @@ void func_80386920(Actor *this, s32 next_state){
     if(next_state == 2 || next_state == 3 || next_state == 4){
         func_8030DD90(local->unk0, 1);
         func_8030DBB4(local->unk0, 0.3f);
-        func_8030DA80(local->unk0, 0x3ec);
+        sfxsource_setSfxId(local->unk0, 0x3ec);
         func_8030DD14(local->unk0, 3);
-        func_8030DABC(local->unk0, 28000);
+        sfxsource_setSampleRate(local->unk0, 28000);
         func_8030E2C4(local->unk0);
     }
     

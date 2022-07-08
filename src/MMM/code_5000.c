@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void func_8030DABC(u8, s32);
+extern void sfxsource_setSampleRate(u8, s32);
 
 void func_8038B6FC(Struct5Fs *arg0, Struct68s *arg1);
 
@@ -77,9 +77,9 @@ void func_8038B630(Struct5Fs *arg0, Struct68s *arg1){
     phi_s0 = func_80351758(arg1);
     func_8030E394(phi_s0);
     func_8030DBB4(phi_s0, sp20);
-    func_8030DA80(phi_s0, 0x3f3);
+    sfxsource_setSfxId(phi_s0, 0x3f3);
     func_8030DD14(phi_s0, 3);
-    func_8030DABC(phi_s0, 0x7fff);
+    sfxsource_setSampleRate(phi_s0, 0x7fff);
     func_8030E2C4(phi_s0);
     arg0->unk14 = 1.5f;
     if(pad);
@@ -118,7 +118,7 @@ void func_8038B790(Struct5Fs *arg0, Struct68s *arg1, f32 arg2) {
         if (arg0->unk14 <= 0.0f) {
             func_80351954(arg1);
         } else if (arg0->unk14 <= 1.0f) {
-            func_8030DABC(func_80351758(arg1), (s32)(arg0->unk14 * 32767.0f));
+            sfxsource_setSampleRate(func_80351758(arg1), (s32)(arg0->unk14 * 32767.0f));
         }
     }
 
