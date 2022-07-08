@@ -957,7 +957,7 @@ void func_80388450(Actor *actor1, Actor *actor2)
     vec1[2] = 0;
 
     ml_vec3f_yaw_rotate_copy(vec2, vec1, actor1->yaw);
-    func_80304D68(actor3, vec1);
+    nodeprop_getPosition(actor3, vec1);
 
     actor1->position_x = vec1[0] - vec2[0];
     actor1->position_z = vec1[2] - vec2[2];

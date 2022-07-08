@@ -6,8 +6,8 @@
 #include "enums.h"
 
 
-extern bool func_8028B0E0(f32[3], f32);
-extern bool func_8028B16C(f32[3], f32);
+extern bool player_isInHorizontalRadius(f32[3], f32);
+extern bool player_isInVerticalRange(f32[3], f32);
 extern enum bs_e func_80292658(f32 arg0[3], f32 arg1, void(*arg2)(ActorMarker *), ActorMarker *arg3);
 extern void miscflag_clear(s32);
 extern void func_80294924(f32, f32);
@@ -96,8 +96,8 @@ void func_8028E0F0(s32 arg0, s32 arg1[3]) {
         case 1:
             sp68 = 1;
             ml_vec3f_copy(sp40, sp7C);
-            func_80304D68(func_80304CAC(0x156, sp40), sp58);
-            func_80304D68(func_80304CAC(0x157, sp40), sp4C);
+            nodeprop_getPosition(func_80304CAC(0x156, sp40), sp58);
+            nodeprop_getPosition(func_80304CAC(0x157, sp40), sp4C);
             sp40[0] = ((sp4C[0] - sp58[0]) * D_8037BFB0[0]) + sp58[0];
             sp40[2] = ((sp4C[2] - sp58[2]) * D_8037BFB0[1]) + sp58[2];
             ml_vec3f_copy(sp7C, sp40);
@@ -105,8 +105,8 @@ void func_8028E0F0(s32 arg0, s32 arg1[3]) {
         case 2:
             sp64 = 1;
             ml_vec3f_copy(sp1C, sp7C);
-            func_80304D68(func_80304CAC(0x154, sp1C), sp34);
-            func_80304D68(func_80304CAC(0x155, sp1C), sp28);
+            nodeprop_getPosition(func_80304CAC(0x154, sp1C), sp34);
+            nodeprop_getPosition(func_80304CAC(0x155, sp1C), sp28);
             sp1C[1] = ((sp28[1] - sp34[1]) * D_8037BFB0[0]) + sp34[1];
             ml_vec3f_copy(sp7C, sp1C);
             break;
@@ -658,16 +658,18 @@ bool func_8028F2FC(void){
     return func_8028B528();
 }
 
-bool func_8028F31C(f32 arg0[3], f32 arg1, enum actor_e actor_id, Actor **arg3){
-    if(func_8028B0E0(arg0, arg1)){
+//sets carry actor if player is within a horizantal radius around a point
+bool func_8028F31C(f32 position[3], f32 radius, enum actor_e actor_id, Actor **arg3){
+    if(player_isInHorizontalRadius(position, radius)){
         return func_8028DD60(actor_id, arg3);
     }
     return FALSE;
 }
 
-bool func_8028F364(f32 arg0[3], f32 arg1, f32 arg2, enum actor_e actor_id, Actor **arg4) {
-    if (func_8028B16C(arg0, arg2)) {
-        return func_8028F31C(arg0, arg1, actor_id, arg4);
+//sets carry actor if player is within a cylinder around a point
+bool func_8028F364(f32 position[3], f32 radius, f32 vert_range, enum actor_e actor_id, Actor **arg4) {
+    if (player_isInVerticalRange(position, vert_range)) {
+        return func_8028F31C(position, radius, actor_id, arg4);
     }
     return FALSE;
 }

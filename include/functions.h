@@ -516,7 +516,7 @@ AnimCtrl *_player_getAnimCtrlPtr(void);
 void _get_velocity(f32 dst[3]);
 void player_setYPosition(f32);
 
-NodeProp *func_80304C38(s32 arg0, Actor *arg1);
+NodeProp *func_80304C38(enum actor_e arg0, Actor *arg1);
 NodeProp *func_80304CAC(s32 arg0, f32 position[3]);
 Actor *func_80326D68(f32 position[3], enum actor_e actor_id, s32 arg2, f32 *min_distance_ptr);
 Actor *func_80329980(Actor *);
@@ -578,7 +578,7 @@ void func_802596AC(f32 a0[3], f32 a1[3], f32 a2[3], f32 a3[3]);
 void func_8024E55C(s32, void *);
 void func_802C3C88(GenMethod_1, s32);
 void func_802FAD64(enum item_e);
-void func_80304D68(NodeProp *, f32[3]);
+void nodeprop_getPosition(NodeProp *, f32[3]);
 bool func_80311480(s32 text_id, s32 arg1, f32 *pos, ActorMarker *marker, void(*callback)(ActorMarker *, enum asset_e, s32), void(*arg5)(ActorMarker *, enum asset_e, s32));
 void ability_unlock(enum ability_e);
 

@@ -41,7 +41,7 @@ void func_80392B6C(Actor *this) {
             this->unk1C[1] = 250.0f;
             this->unk1C[2] = -3422.0f;
         } else {
-            func_80304D68(phi_a0, this->unk1C);
+            nodeprop_getPosition(phi_a0, this->unk1C);
         }
     }
     if (mapSpecificFlags_get(7) != 0) {

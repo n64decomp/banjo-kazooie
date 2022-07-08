@@ -34,7 +34,7 @@ void func_8038A8F8(Actor *this){
             this->unk1C_y = this->position_y;
             this->unk1C_z = this->position_z;
         }else{
-            func_80304D68(&other->x, this->unk1C);
+            nodeprop_getPosition(other, this->unk1C);
         }
         actor_collisionOff(this);
         this->unk16C_4 = 1;

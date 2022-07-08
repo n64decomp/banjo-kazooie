@@ -219,7 +219,7 @@ void func_803876D0(Actor *this){
         this->velocity_x = 0.0f;
         this->unk28 = 0.0f;
         sp40 = func_80304C38(0x150, this);
-        ((ActorLocal_Conga *)&this->local)->unk1C = func_80304D3C(sp40);
+        ((ActorLocal_Conga *)&this->local)->unk1C = nodeprop_getRadius(sp40);
         func_80304D4C(sp40, &((ActorLocal_Conga *)&this->local)->unk10);
     }
     if(0.0f == this->unk28){

@@ -388,7 +388,7 @@ void func_803895E0(void){
             ? func_803049CC(D_80391DB8[i].unk0, D_80391DA0) 
             : func_803049CC(D_80391DB8[i].unk0, D_80391DAC);
 
-        func_80304D68(s0, sp64);
+        nodeprop_getPosition(s0, sp64);
         f20 = (f32)func_80304DA8(s0);
         f8 = (f32)func_80304DB8(s0);
         f22 = f8*0.01;

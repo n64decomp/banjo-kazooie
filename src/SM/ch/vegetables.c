@@ -68,7 +68,7 @@ ActorAnimationInfo chCauliflowerAnimations[5] = {
     {0x225, 1.0f}
 };
 
-ActorInfo D_8038AD58 = { 0x128, ACTOR_COLLYWOBBLE_A, MODEL_COLLYWOBBLE, 1, chCauliflowerAnimations,
+ActorInfo D_8038AD58 = { 0x128, ACTOR_164_COLLYWOBBLE_A, MODEL_COLLYWOBBLE, 1, chCauliflowerAnimations,
     func_80388080, func_80326224, func_80387DF4,
     0, 0, 2.0f, 0
 };

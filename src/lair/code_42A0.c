@@ -329,7 +329,7 @@ void func_8038AE2C(Actor *this) {
                 func_803204E4(0x1E, 0);
                 func_802D677C(0);
                 func_8028FCAC();
-                func_80304D68(func_80304C38(D_80393620[this->unkF4_8 - 1].unk6, this), sp54);
+                nodeprop_getPosition(func_80304C38(D_80393620[this->unkF4_8 - 1].unk6, this), sp54);
                 if (this->unkF4_8 == 7) {
                     func_8028F66C(0x36);
                     func_802BAFE4(0x82);

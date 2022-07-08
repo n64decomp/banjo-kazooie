@@ -216,7 +216,7 @@ void func_80391744(Actor *this, Actor* other){
       other->yaw = tmp_f0;
       this->yaw = tmp_f0;
       ml_vec3f_yaw_rotate_copy(sp28, sp34, tmp_f0);
-      func_80304D68(sp24, sp34);
+      nodeprop_getPosition(sp24, sp34);
       this->position_x = sp34[0] - sp28[0];
       this->position_z = sp34[2] - sp28[2];
 

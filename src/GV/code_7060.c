@@ -45,7 +45,7 @@ void func_8038D47C(Actor *this){
             this->unk1C_z = 6277.0f;
         }
         else{
-            func_80304D68(tmp_v0, this->unk1C);
+            nodeprop_getPosition(tmp_v0, this->unk1C);
         }
         
         tmp_v0 = func_80304CAC(0x330, this->spawn_position);
@@ -55,7 +55,7 @@ void func_8038D47C(Actor *this){
             this->velocity_z = 5463.0f;
         }
         else{
-            func_80304D68(tmp_v0, this->velocity);
+            nodeprop_getPosition(tmp_v0, this->velocity);
         }
 
         this->initialized = TRUE;

@@ -322,7 +322,7 @@ void func_802D9D60(Actor *this){
         }
         else{
             this->unk38_0 = TRUE;
-            func_80304D68(other, this->unk1C);
+            nodeprop_getPosition(other, this->unk1C);
         }
         func_802C3C88(func_802D9C54, this->marker);
         this->marker->propPtr->unk8_3 = FALSE;
@@ -337,8 +337,8 @@ void func_802D9D60(Actor *this){
                 this->unk28 = 500.0f;
             }
             else{ //L802D9F08
-                func_80304D68(other, this->velocity);
-                this->unk28 = 2*func_80304D3C(other);
+                nodeprop_getPosition(other, this->velocity);
+                this->unk28 = 2*nodeprop_getRadius(other);
             }
         }
     }//L802D9F34

@@ -100,6 +100,7 @@ bool func_8028DD60(enum actor_e actor_id, Actor **arg1){
 
     if(m2 && actor->modelCacheIndex != actor_id)
         return 0;
+
     carriedObject_setActorID(actor_id);
     if(!item_empty(func_80346CF4(actor_id))){
         func_8028F66C(0x12);
@@ -139,7 +140,7 @@ void func_8028DE6C(enum actor_e actor_id){
 void func_8028DEEC(enum actor_e actor_id, Actor *actor){
     f32 sp1C[3];
 
-    func_80304D68(func_80304C38(actor_id, actor), sp1C);
+    nodeprop_getPosition(func_80304C38(actor_id, actor), sp1C);
     func_80294AC0(sp1C);
 }
 

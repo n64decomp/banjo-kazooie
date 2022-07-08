@@ -894,7 +894,7 @@ s32 func_80304984(s32 arg0, u32 *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_803049CC.s")
 
-NodeProp *func_80304C38(s32 arg0, Actor *arg1){
+NodeProp *func_80304C38(enum actor_e actor_id, Actor *arg1){
     s32 vec[3];
     s32 *phi_a1;
 
@@ -908,7 +908,7 @@ NodeProp *func_80304C38(s32 arg0, Actor *arg1){
     } else {
         phi_a1 = vec;
     }
-    return func_803049CC(arg0, phi_a1);
+    return func_803049CC(actor_id, phi_a1);
 }
 
 NodeProp *func_80304CAC(s32 arg0, f32 *arg1) {
@@ -929,17 +929,17 @@ NodeProp *func_80304D04(s32 arg0, s16 *arg1) {
     return func_803049CC(arg0, arr);
 }
 
-u32 func_80304D3C(u16 *arg0) {
-    return (u32)arg0[3] >> 7;
+s32 nodeprop_getRadius(NodeProp *arg0) {
+    return arg0->unk6_15;
 }
 
-void func_80304D4C(s16 *arg0, s32 *arg1) {
-    arg1[0] = arg0[0];
-    arg1[1] = arg0[1];
-    arg1[2] = arg0[2];
+void func_80304D4C(NodeProp *arg0, s32 dst[3]) {
+    dst[0] = arg0->x;
+    dst[1] = arg0->y;
+    dst[2] = arg0->z;
 }
 
-void func_80304D68(NodeProp *arg0, f32 arg1[3]) {
+void nodeprop_getPosition(NodeProp *arg0, f32 arg1[3]) {
     arg1[0] = arg0->x;
     arg1[1] = arg0->y;
     arg1[2] = arg0->z;

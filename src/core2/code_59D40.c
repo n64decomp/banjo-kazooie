@@ -330,7 +330,7 @@ void func_802E17E8(void) {
 
     _player_getPosition(sp50);
     if (func_803203FC(0xC1) != 0) {
-        func_80304D68(func_80304CAC(0x3CB, sp50), sp50);
+        nodeprop_getPosition(func_80304CAC(0x3CB, sp50), sp50);
     }
     else{
         sp4C = randf2(0.0f, D_80377088);

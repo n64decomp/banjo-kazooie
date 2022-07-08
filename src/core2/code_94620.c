@@ -480,7 +480,7 @@ void func_8031CE70(f32 *arg0, s32 arg1, s32 arg2) {
         }
         player_getPosition(playerPos);
         if (phi_s0 != NULL) {
-            func_80304D68(&phi_s0->unk0, sp38);
+            nodeprop_getPosition(&phi_s0->unk0, sp38);
             phi_f2 = 500.0f;
             if (phi_s0->unk8 == 0x186) {
                 phi_f2 = 1000.0f;

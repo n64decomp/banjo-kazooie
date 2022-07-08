@@ -9,8 +9,8 @@ extern  s32 func_802E0970(s32, f32, f32, f32, s32, s32, f32[3]);
 typedef struct {
     u8 unk0[0xE];
     s16 unkE;
-    f32 unk10[3];
-    s32 unk1C;
+    f32 throw_target_position[3];
+    s32 throw_target_radius;
     NodeProp* unk20;
     s32 unk24;
 }ActorLocal_Blubber;
@@ -35,11 +35,11 @@ void func_80387490(Actor *this){
 
     animctrl_setTransitionDuration(this->animctrl, 0.2f);
     this->initialized = TRUE;
-    local->unk20 = func_80304C38(0x2b, this);
+    local->unk20 = func_80304C38(ACTOR_2B_GOLD_BULLION_THROW_TARGET, this);
     if(local->unk20){
         
-        func_80304D68(local->unk20, local->unk10);
-        local->unk1C = func_80304D3C(local->unk20);
+        nodeprop_getPosition(local->unk20, local->throw_target_position);
+        local->throw_target_radius = nodeprop_getRadius(local->unk20);
     }
     local->unk24 = 4;
     func_8032A82C(this, 0x14C);
@@ -104,7 +104,7 @@ void func_8038771C(Actor *this){
 void func_80387774(Actor **this_ptr){
     ActorLocal_Blubber *local = (ActorLocal_Blubber *)&(*this_ptr)->local;
 
-    func_8028F364(local->unk10, local->unk1C, 100.0f, 0x2a, this_ptr);
+    func_8028F364(local->throw_target_position, local->throw_target_radius, 100.0f, ACTOR_2A_GOLD_BULLION, this_ptr);
     if( func_80329530(*this_ptr, 200)
         && func_8028E88C() == 0x37
         && func_8028FC34()

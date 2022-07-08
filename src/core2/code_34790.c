@@ -51,7 +51,7 @@ bool func_802BB720(s32 arg0, f32 arg1[3], f32 arg2[3], s32 *arg3) {
     }
     temp_v0 = func_803049CC(D_803657E0[arg0], 0);
     if (temp_v0 != NULL) {
-        func_80304D68(temp_v0, arg1);
+        nodeprop_getPosition(temp_v0, arg1);
         *arg3 = func_80304DB8(temp_v0);
         temp_f6 = (f32) func_80304DA8(temp_v0) - 180.0f;
         arg2[0] = 0.0f;\

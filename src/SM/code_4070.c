@@ -64,7 +64,7 @@ void func_8038A5D8(Actor *this){
     s32 temp_a0;
 
     if(!this->initialized){
-        temp_v0 = func_80326D68(this->position, 0x12b, -1, &sp40);
+        temp_v0 = func_80326D68(this->position, ACTOR_12B_TUTORIAL_BOTTLES, -1, &sp40);
         if(temp_v0){
             this->unk1C_x = temp_v0->position_x;
             this->unk1C_y = temp_v0->position_y;

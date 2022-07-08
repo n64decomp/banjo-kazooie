@@ -42,7 +42,7 @@ s32 func_803871FC(Actor *this, s32 arg1){
     volatile s32 sp1C;
     s32 tmp_v0;
     
-    sp1C = (arg1 == 1)? ACTOR_TOPPER_A : (tmp_v0 = (arg1 == 2)? ACTOR_BAWL_A : ACTOR_COLLYWOBBLE_A);
+    sp1C = (arg1 == 1)? ACTOR_TOPPER_A : (tmp_v0 = (arg1 == 2)? ACTOR_BAWL_A : ACTOR_164_COLLYWOBBLE_A);
     func_802C3D3C(__chAttackTutorial_spawnEnemy, this->marker, sp1C);
     
 }
@@ -109,15 +109,15 @@ int func_803874C4(void){
 
 void chAttackTutorial_update(Actor *this){
     f32 sp2C;
-    Actor *colliPtr;
-    
+    Actor *bottles;
     
     if(!this->initialized){ 
-        colliPtr = func_80326D68(this->position, 0x12b, -1, &sp2C);
-        if(colliPtr){
-            this->unk1C_x = colliPtr->position_x;
-            this->unk1C_y = colliPtr->position_y;
-            this->unk1C_z = colliPtr->position_z;
+        //find closest tutorial bottles
+        bottles = func_80326D68(this->position, ACTOR_12B_TUTORIAL_BOTTLES, -1, &sp2C);
+        if(bottles != NULL){
+            this->unk1C_x = bottles->position_x;
+            this->unk1C_y = bottles->position_y;
+            this->unk1C_z = bottles->position_z;
         }else{
             {this->unk1C_x = this->position_x;
             this->unk1C_y = this->position_y;

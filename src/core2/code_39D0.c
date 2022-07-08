@@ -173,7 +173,7 @@ int func_8028B094(void){
     return (60.0f < player_getYPosition() - func_80294438());
 }
 
-int func_8028B0E0(f32 arg0[3], f32 arg1){
+int player_isInHorizontalRadius(f32 arg0[3], f32 arg1){
     f32 sp1C[3];
     _player_getPosition(sp1C);
     return func_80259254(sp1C, arg0[0], arg0[2], arg1);
@@ -189,11 +189,11 @@ int func_8028B148(void){
     return level_get() == LEVEL_9_RUSTY_BUCKET_BAY;
 }
 
-bool func_8028B16C(f32 arg0[3], f32 arg1) {
-    f32 sp1C[3];
+bool player_isInVerticalRange(f32 position[3], f32 range) {
+    f32 plyr_pos[3];
 
-    _player_getPosition(sp1C);
-    return (((arg0[1] - arg1) <= sp1C[1]) && (sp1C[1] <= (arg0[1] + arg1)));
+    _player_getPosition(plyr_pos);
+    return (((position[1] - range) <= plyr_pos[1]) && (plyr_pos[1] <= (position[1] + range)));
 }
 
 int player_shouldSlideTrot(void){

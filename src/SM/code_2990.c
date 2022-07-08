@@ -25,18 +25,16 @@ void func_80389610(Actor * this);
 /* .data */
 ActorAnimationInfo D_8038AF60[6] = {
     {0, 0.0f},
-    {0x13A, 2000000000.0f},
-    {0x13A, 4.5f},
-    {0x13B, 7.0f},
-    {0x139, 1.7f},
-    {0x13A, 2000000000.0f}
+    {ASSET_13A_ANIM_BOTTLES_ENTER, 2000000000.0f},
+    {ASSET_13A_ANIM_BOTTLES_ENTER, 4.5f},
+    {ASSET_13B_ANIM_BOTTLES_IDLE,  7.0f},
+    {ASSET_139_ANIM_BOTTLES_EXIT,  1.7f},
+    {ASSET_13A_ANIM_BOTTLES_ENTER, 2000000000.0f}
 };
 
-ActorInfo D_8038AF90 = { 0xB7, 0x12B, 0x387, 1, D_8038AF60, //bottles
+ActorInfo D_8038AF90 = { MARKER_B7_TUTORIAL_BOTTLES, ACTOR_12B_TUTORIAL_BOTTLES, ASSET_387_MODEL_BOTTLES, 1, D_8038AF60, //bottles
     func_803899B0, func_80326224, func_802D94B4,
     0, 0, 0.0f, 0
-
-
 };
 
 SM2900Struct D_8038AFB4[8] = {
@@ -387,8 +385,8 @@ void func_803899B0(Actor * this){
                 this->unk1C_z = this->position_z;
                 this->unk28 = 300.0f;
             } else{ //L80389A68
-                func_80304D68(sp40, this->unk1C);
-                this->unk28 = func_80304D3C(sp40);
+                nodeprop_getPosition(sp40, this->unk1C);
+                this->unk28 = nodeprop_getRadius(sp40);
             }//L80389A8C
             if(this->unkF4_8 == 1){
                 if(func_803203FC(1) || func_803203FC(0x1F)){

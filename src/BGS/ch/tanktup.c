@@ -105,7 +105,7 @@ void func_8038F6A4(Actor *this) {
             local->unk18[1] = 100.0f;
             local->unk18[2] = D_803911B4;
         } else {
-            func_80304D68(temp_v0, local->unk18);
+            nodeprop_getPosition(temp_v0, local->unk18);
         }
         this->unk138_24 = FALSE;
         this->initialized = TRUE;
