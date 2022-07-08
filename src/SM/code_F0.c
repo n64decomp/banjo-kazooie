@@ -26,20 +26,21 @@ extern ActorInfo D_8038B080; //chBanjosStove
 extern ActorInfo D_8038AB24;
 
 /* .data */
-s32 D_8038AAE0 = 0x000FE2C1; //SM_code_crc_1
-s32 D_8038AAE4 = 0x8C0992D1; //SM_code_crc_2
+s32 D_8038AAE0 = 0x000FE2C1; //compiled SM_code_crc_1
+s32 D_8038AAE4 = 0x8C0992D1; //compiled SM_code_crc_2
 union {
     u8 byte[4];
     s32 word;
-} D_8038AAE8 = {0x00, 0x01, 0xEB, 0x56}; //SM_data_crc_1
+} D_8038AAE8 = {0x00, 0x01, 0xEB, 0x56}; //compiled SM_data_crc_1 (with this zeroed out)
 s32 D_8038AAEC = 0;
 
+/* .bss */
 extern struct 
 {
-    s32 unk0;
-    s32 unk4;
-    s32 unk8;
-    s32 unkC;
+    s32 unk0; //calculated SM_code_crc1
+    s32 unk4; //calculated SM_code_crc2
+    s32 unk8; //calculated SM_data_crc1
+    s32 unkC; //calculated SM_data_crc2
 } D_8038B320;
 
 extern u32 D_803FFE00;
