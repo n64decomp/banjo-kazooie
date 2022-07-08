@@ -61,4 +61,11 @@ segments:
       - [0x00004DE0, .rodata, ch/vegetables]
       - [0x00004E10, .rodata, code_2990]
       - [0x00004F20, .rodata, code_44D0]
+  - name: SM-bss
+    dir: SM
+    type: code
+    start: 0x00004F30
+    vram: 0x8038B320
+    subsegments:
+      - [0x00004F30, .bss, code_F0]
   - [0x00004F30]

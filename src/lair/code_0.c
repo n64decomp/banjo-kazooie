@@ -25,7 +25,7 @@ void   func_803864B0(Actor *this);
 void   func_80386550(Actor *this);
 Actor *func_8038664C(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void   func_80386D78(Actor *this);
-void   func_80386780(Actor *this);
+void   SM_CRCs_are_valid(Actor *this);
 void   func_803867A8(Actor *this);
 void   func_80386D20(Actor *this);
 void   func_803870DC(Actor *this);
@@ -95,7 +95,7 @@ extern ActorInfo D_80392E44 = { 0x11C, 0x222, 0x4B2, 0x1, D_80392CB0, func_80389
 extern ActorInfo D_80392E68 = { 0x11D, 0x223, 0x4B0, 0x1, D_80392CB0, func_80389784, func_80326224, func_80325888, 0, 0, 0.0f, 0};
 extern ActorInfo D_80392E8C = { 0x232, 0x23C, 0x4B8, 0x1, D_80392CB0, func_803897AC, func_80326224, func_80325888, 0, 0, 0.0f, 0};
 extern ActorInfo D_80392EB0 = { 0x23F, 0x246, 0x534, 0x1, D_80392CB0, func_80386D20, func_80326224, func_80325888, 0, 0, 0.0f, 0};
-extern ActorInfo D_80392ED4 = { 0x241, 0x248, 0x540, 0x1, D_80392CB0, func_80386780, func_80326224, func_80325888, 0, 0, 0.0f, 0};
+extern ActorInfo D_80392ED4 = { 0x241, 0x248, 0x540, 0x1, D_80392CB0, SM_CRCs_are_valid, func_80326224, func_80325888, 0, 0, 0.0f, 0};
 extern ActorInfo D_80392EF8 = { 0x109, 0x20D, 0x4A1, 0x1, D_80392CB0, func_80386550, func_80326224, func_80325888, 0, 0, 0.0f, 0x85};
 extern ActorInfo D_80392F1C = { 0x264, 0x2E5, 0x550, 0x19, D_80392CB0, func_80388524, func_80326224, func_80325888, 0, 0, 0.0f, 0};
 extern ActorInfo D_80392F40 = { 0x224, 0x230, 0x4BF, 0xB, D_80392CB0, func_803863F0, func_80326224, func_80325888, 0, 0, 0.0f, 0x88};
@@ -299,7 +299,7 @@ ParticleEmitter *func_803866D8(s32 a0)
     return ptr;
 }
 
-void func_80386780(Actor *this)
+void SM_CRCs_are_valid(Actor *this)
 {
     func_802D4AC0(this, 0x8000C6, 0xC7);
 }

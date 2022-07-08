@@ -25,6 +25,11 @@ extern ActorInfo D_8038B044; //chBanjosChair
 extern ActorInfo D_8038B080; //chBanjosStove
 extern ActorInfo D_8038AB24;
 
+extern u32 D_803FFE00;
+extern u32 D_803FFE04;
+extern u32 D_803FFE08;
+extern u32 D_803FFE0C;
+
 /* .data */
 s32 D_8038AAE0 = 0x000FE2C1; //compiled SM_code_crc_1
 s32 D_8038AAE4 = 0x8C0992D1; //compiled SM_code_crc_2
@@ -35,26 +40,23 @@ union {
 s32 D_8038AAEC = 0;
 
 /* .bss */
-extern struct 
-{
+struct {
     s32 unk0; //calculated SM_code_crc1
     s32 unk4; //calculated SM_code_crc2
     s32 unk8; //calculated SM_data_crc1
     s32 unkC; //calculated SM_data_crc2
 } D_8038B320;
 
-extern u32 D_803FFE00;
-extern u32 D_803FFE04;
-extern u32 D_803FFE08;
-extern u32 D_803FFE0C;
 
+/* .code */
+//dynamically gets learned ability bitfield address
 u32 *func_803864E0(void){
     s16 *addr;
     addr = (s16*)ability_hasLearned;
     return (u32 *)((addr[1] << 0x10) + addr[3]);
 }
 
-void func_803864FC(s32 arg0){
+void func_803864FC(enum ability_e arg0){
     u32 *addr;
     if(getGameMode() != GAME_MODE_7_ATTRACT_DEMO){
         addr = func_803864E0();
@@ -81,14 +83,14 @@ void func_80386540(void){
     *sp2C = sp28;
     osPiReadIo(0x574, &sp20);
     if((sp20 = (sp20 & 0xffff)) !=  0x6c07)
-        func_803864FC(0xa);
+        func_803864FC(ABILITY_A_HOLD_A_JUMP_HIGHER);
 
-    if(!func_80386780())
-        func_803864FC(0x10);
+    if(!SM_CRCs_are_valid())
+        func_803864FC(ABILITY_10_TALON_TROT);
     
 
     if(!func_803866CC())
-        func_803864FC(0xC);
+        func_803864FC(ABILITY_C_ROLL);
 }
 
 void func_80386614(u8 *arg0, u8 *arg1, s32 *arg2, s32 *arg3){
@@ -127,15 +129,15 @@ int func_803866CC(void){
     return 0;
 }
 
-int func_80386780(void){
+bool SM_CRCs_are_valid(void){
     if( D_8038B320.unk0 == D_8038AAE0
         && D_8038B320.unk4 == D_8038AAE4 
         && D_8038B320.unkC == D_80275650 
         && D_8038B320.unk8 == D_8038AAE8.word + D_8038AAE8.byte[0] + D_8038AAE8.byte[1] + D_8038AAE8.byte[2] + D_8038AAE8.byte[3]
     ){
-        return 1;
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }
 
 void func_80386810(void)
