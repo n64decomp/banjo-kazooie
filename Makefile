@@ -2,22 +2,6 @@
 BASENAME := banjo
 VERSION  ?= us.v10
 
-ifeq ($(VERSION),us.v10)
-	C_VERSION=0
-endif
-
-ifeq ($(VERSION),pal)
-	C_VERSION=1
-endif
-
-ifeq ($(VERSION),us.v11)
-	C_VERSION=2
-endif
-
-ifeq ($(VERSION),jp)
-	C_VERSION=3
-endif
-
 IN_CFLAGS ?= -DCODE2_CODE_CRC2=0 -DCODE2_DATA_CRC2=0
 ### Tools ###
 
@@ -206,7 +190,7 @@ endef
 ### Flags ###
 
 # Build tool flags
-CFLAGS         := -c -Wab,-r4300_mul -non_shared -G 0 -Xfullwarn -Xcpluscomm $(OPT_FLAGS) $(MIPSBIT) -D_FINALROM -DF3DEX_GBI -DVERSION='$(C_VERSION)'
+CFLAGS         := -c -Wab,-r4300_mul -non_shared -G 0 -Xfullwarn -Xcpluscomm $(OPT_FLAGS) $(MIPSBIT) -D_FINALROM -DF3DEX_GBI
 CFLAGS         += -woff 649,654,838,807
 CFLAGS         += $(IN_CFLAGS)
 CPPFLAGS       := -D_FINALROM -DN_MICRO
@@ -293,7 +277,7 @@ verify-each: $(addprefix verify-,$(OVERLAYS))
 define overlay_rules
   # .o -> .elf (overlay)
   $(BUILD_DIR)/$(1).elf : $$($(1)_ALL_OBJS) $(1).ld
-	$(LD) -T $(1).ld -R core2.elf --allow-multiple-definition -Map $(BUILD_DIR)/$(1).map $$(LDFLAGS_COMMON) -T undefined_syms_auto.$(1).$(VERSION).txt -T undefined_funcs_auto.$(1).$(VERSION).txt -o $$@
+	$(LD) -T $(1).ld -R core2.elf --allow-multiple-definition -Map $(BUILD_DIR)/$(1).map $$(LDFLAGS_COMMON) -T undefined_syms_auto.$(1).us.v10.txt -T undefined_funcs_auto.$(1).us.v10.txt -o $$@
   # split overlay
   $(BUILD_DIR)/$(1)_SPLAT_TIMESTAMP : $(SUBYAML)/$(1).$(VERSION).yaml $(BUILD_DIR)/$(1).$(VERSION).bin $(SYMBOL_ADDRS)
 	$(call print1,Splitting bin:,$$<)
@@ -310,8 +294,8 @@ endef
 $(foreach overlay,$(OVERLAYS),$(eval $(call overlay_rules,$(overlay))))
 
 # Additional symbols for core2
-$(BUILD_DIR)/core2.elf: LDFLAGS_COMMON = -T symbol_addrs.core1.$(VERSION).txt -T symbol_addrs.core2.$(VERSION).txt -T symbol_addrs.global.$(VERSION).txt -T undefined_syms.$(VERSION).txt -T undefined_syms.libultra.txt --no-check-sections --accept-unknown-input-arch -T level_symbols.$(VERSION).txt
-$(BUILD_DIR)/core2.temp.elf: LDFLAGS_COMMON = -T symbol_addrs.core1.$(VERSION).txt -T symbol_addrs.core2.$(VERSION).txt -T symbol_addrs.global.$(VERSION).txt -T undefined_syms.$(VERSION).txt -T undefined_syms.libultra.txt --no-check-sections --accept-unknown-input-arch -T level_symbols.$(VERSION).txt
+$(BUILD_DIR)/core2.elf: LDFLAGS_COMMON = -T symbol_addrs.core1.$(VERSION).txt -T symbol_addrs.core2.$(VERSION).txt -T symbol_addrs.global.$(VERSION).txt -T undefined_syms.$(VERSION).txt -T undefined_syms.libultra.txt --no-check-sections --accept-unknown-input-arch -T level_symbols.us.v10.txt
+$(BUILD_DIR)/core2.temp.elf: LDFLAGS_COMMON = -T symbol_addrs.core1.$(VERSION).txt -T symbol_addrs.core2.$(VERSION).txt -T symbol_addrs.global.$(VERSION).txt -T undefined_syms.$(VERSION).txt -T undefined_syms.libultra.txt --no-check-sections --accept-unknown-input-arch -T level_symbols.us.v10.txt
 
 # mkdir
 $(ALL_DIRS) :
@@ -405,7 +389,7 @@ ifneq ($(CORE2_CODE_CRC_C_OBJS),)
   # core2 objects with zero for code CRC -> core2.temp.elf
   $(BUILD_DIR)/core2.temp.elf : $(core2_NON_CRC_OBJS) $(CORE2_TEMP_LD) $(CORE2_CODE_CRC_C_TEMP_OBJS)
 	$(call print1,Linking elf:,$@)
-	@$(LD) -T $(CORE2_TEMP_LD) -Map $(BUILD_DIR)/core2.map $(LDFLAGS_COMMON) -T undefined_syms_auto.core2.$(VERSION).txt -T undefined_funcs_auto.core2.$(VERSION).txt -o $@
+	@$(LD) -T $(CORE2_TEMP_LD) -Map $(BUILD_DIR)/core2.map $(LDFLAGS_COMMON) -T undefined_syms_auto.core2.us.v10.txt -T undefined_funcs_auto.core2.us.v10.txt -o $@
   
   # core2.temp.elf -> core2.temp.code
   $(BUILD_DIR)/core2.temp.code : $(BUILD_DIR)/core2.temp.elf
@@ -479,7 +463,7 @@ $(ASSET_OBJS): $(ASSET_BIN)
 # .o -> .elf (game)
 $(ELF): $(MAIN_ALL_OBJS) $(LD_SCRIPT) $(OVERLAY_RZIP_OBJS) $(addprefix $(BUILD_DIR)/, $(addsuffix .full, $(OVERLAYS))) $(ASSET_OBJS)
 	$(call print1,Linking elf:,$@)
-	@$(LD) $(LDFLAGS) -T undefined_syms_auto.$(VERSION).txt -o $@
+	@$(LD) $(LDFLAGS) -T undefined_syms_auto.us.v10.txt -o $@
 
 $(BK_BOOT_LD_SCRIPT): $(LD_SCRIPT)
 	sed '\|$(CRC_OBJS)|d'  $< > $@
@@ -487,7 +471,7 @@ $(BK_BOOT_LD_SCRIPT): $(LD_SCRIPT)
 # .o -> .elf (game)
 $(BUILD_DIR)/bk_boot.elf: $(filter-out $(CRC_OBJS),$(MAIN_ALL_OBJS)) $(BK_BOOT_LD_SCRIPT) $(OVERLAY_RZIP_OBJS) $(addprefix $(BUILD_DIR)/, $(addsuffix .full, $(OVERLAYS)))
 	$(call print1,Linking elf:,$@)
-	@$(LD) -T $(BK_BOOT_LD_SCRIPT) -Map $(ELF:.elf=.map) --no-check-sections --accept-unknown-input-arch -T undefined_syms.libultra.txt -T undefined_syms_auto.$(VERSION).txt -o $@
+	@$(LD) -T $(BK_BOOT_LD_SCRIPT) -Map $(ELF:.elf=.map) --no-check-sections --accept-unknown-input-arch -T undefined_syms.libultra.txt -T undefined_syms_auto.us.v10.txt -o $@
 
 # .elf -> .z64
 $(Z64) : $(ELF) $(OVERLAY_PROG_SVGS) $(MAIN_PROG_SVG) $(TOTAL_PROG_SVG)
@@ -534,59 +518,59 @@ clean:
 	@$(RM) -f $(SYMBOL_ADDRS)
 
 # Per-file flag definitions
-build/$(VERSION)/src/core1/io/%.c.o: OPT_FLAGS = -O1
-build/$(VERSION)/src/core1/io/pimgr.c.o: OPT_FLAGS = -O1
-build/$(VERSION)/src/core1/done/io/%.c.o: OPT_FLAGS = -O1
-build/$(VERSION)/src/core1/os/%.c.o: OPT_FLAGS = -O1
-build/$(VERSION)/src/core1/code_2D2D0.c.o: OPT_FLAGS = -O1
-build/$(VERSION)/src/core1/done/os/%.c.o: OPT_FLAGS = -O1
-build/$(VERSION)/src/core1/code_21A10.c.o: INCLUDE_CFLAGS = -I . -I include -I include/2.0L -I include/2.0L/PR
-build/$(VERSION)/src/core1/code_21A10.c.o: OPT_FLAGS = -O3
-build/$(VERSION)/src/core1/done/gu/%.c.o: OPT_FLAGS = -O3
-build/$(VERSION)/src/core1/done/gu/%.c.o: INCLUDE_CFLAGS = -I . -I include -I include/2.0L -I include/2.0L/PR
-build/$(VERSION)/src/core1/gu/mtxutil.c.o: OPT_FLAGS = -O2
-build/$(VERSION)/src/core1/gu/rotate.c.o: OPT_FLAGS = -O2
-build/$(VERSION)/src/core1/done/audio/%.c.o: INCLUDE_CFLAGS = -I . -I include -I include/2.0L -I include/2.0L/PR
-build/$(VERSION)/src/core1/done/audio/%.c.o: OPT_FLAGS = -O3
-# build/$(VERSION)/src/core1/code_21CB0.c.o: INCLUDE_CFLAGS = -I . -I include -I include/2.0L -I include/2.0L/PR
-# build/$(VERSION)/src/core1/code_21CB0.c.o: OPT_FLAGS = -O3
-build/$(VERSION)/src/core1/done/io/sptask.c.o: OPT_FLAGS = -O1
-build/$(VERSION)/src/core1/done/ll.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/core1/done/ll.c.o: MIPSBIT := -mips3 -o32
+build/us.v10/src/core1/io/%.c.o: OPT_FLAGS = -O1
+build/us.v10/src/core1/io/pimgr.c.o: OPT_FLAGS = -O1
+build/us.v10/src/core1/done/io/%.c.o: OPT_FLAGS = -O1
+build/us.v10/src/core1/os/%.c.o: OPT_FLAGS = -O1
+build/us.v10/src/core1/code_2D2D0.c.o: OPT_FLAGS = -O1
+build/us.v10/src/core1/done/os/%.c.o: OPT_FLAGS = -O1
+build/us.v10/src/core1/code_21A10.c.o: INCLUDE_CFLAGS = -I . -I include -I include/2.0L -I include/2.0L/PR
+build/us.v10/src/core1/code_21A10.c.o: OPT_FLAGS = -O3
+build/us.v10/src/core1/done/gu/%.c.o: OPT_FLAGS = -O3
+build/us.v10/src/core1/done/gu/%.c.o: INCLUDE_CFLAGS = -I . -I include -I include/2.0L -I include/2.0L/PR
+build/us.v10/src/core1/gu/mtxutil.c.o: OPT_FLAGS = -O2
+build/us.v10/src/core1/gu/rotate.c.o: OPT_FLAGS = -O2
+build/us.v10/src/core1/done/audio/%.c.o: INCLUDE_CFLAGS = -I . -I include -I include/2.0L -I include/2.0L/PR
+build/us.v10/src/core1/done/audio/%.c.o: OPT_FLAGS = -O3
+# build/us.v10/src/core1/code_21CB0.c.o: INCLUDE_CFLAGS = -I . -I include -I include/2.0L -I include/2.0L/PR
+# build/us.v10/src/core1/code_21CB0.c.o: OPT_FLAGS = -O3
+build/us.v10/src/core1/done/io/sptask.c.o: OPT_FLAGS = -O1
+build/us.v10/src/core1/done/ll.c.o: OPT_FLAGS := -O1
+build/us.v10/src/core1/done/ll.c.o: MIPSBIT := -mips3 -o32
 
-build/$(VERSION)/src/bk_boot_27F0.c.o: OPT_FLAGS = -O2
-build/$(VERSION)/src/done/destroythread.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/pirawdma.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/thread.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/pimgr.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/getthreadid.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/setthreadpri.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/createthread.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/yieldthread.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/setglobalintmask.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/recvmesg.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/startthread.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/devmgr.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/sendmesg.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/pigetstat.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/si.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/resetglobalintmask.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/epirawwrite.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/epirawread.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/createmesgqueue.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/leodiskinit.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/virtualtophysical.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/ll.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/ll.c.o: MIPSBIT := -mips3 -o32
-build/$(VERSION)/src/done/sirawwrite.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/sirawread.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/initialize.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/pirawread.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/seteventmesg.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/siacs.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/cartrominit.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/leointerrupt.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/epirawdma.c.o: OPT_FLAGS := -O1
+build/us.v10/src/bk_boot_27F0.c.o: OPT_FLAGS = -O2
+build/us.v10/src/done/destroythread.c.o: OPT_FLAGS := -O1
+build/us.v10/src/done/pirawdma.c.o: OPT_FLAGS := -O1
+build/us.v10/src/done/thread.c.o: OPT_FLAGS := -O1
+build/us.v10/src/done/pimgr.c.o: OPT_FLAGS := -O1
+build/us.v10/src/getthreadid.c.o: OPT_FLAGS := -O1
+build/us.v10/src/done/setthreadpri.c.o: OPT_FLAGS := -O1
+build/us.v10/src/done/createthread.c.o: OPT_FLAGS := -O1
+build/us.v10/src/done/yieldthread.c.o: OPT_FLAGS := -O1
+build/us.v10/src/done/setglobalintmask.c.o: OPT_FLAGS := -O1
+build/us.v10/src/done/recvmesg.c.o: OPT_FLAGS := -O1
+build/us.v10/src/done/startthread.c.o: OPT_FLAGS := -O1
+build/us.v10/src/done/devmgr.c.o: OPT_FLAGS := -O1
+build/us.v10/src/done/sendmesg.c.o: OPT_FLAGS := -O1
+build/us.v10/src/done/pigetstat.c.o: OPT_FLAGS := -O1
+build/us.v10/src/done/si.c.o: OPT_FLAGS := -O1
+build/us.v10/src/done/resetglobalintmask.c.o: OPT_FLAGS := -O1
+build/us.v10/src/done/epirawwrite.c.o: OPT_FLAGS := -O1
+build/us.v10/src/done/epirawread.c.o: OPT_FLAGS := -O1
+build/us.v10/src/done/createmesgqueue.c.o: OPT_FLAGS := -O1
+build/us.v10/src/done/leodiskinit.c.o: OPT_FLAGS := -O1
+build/us.v10/src/done/virtualtophysical.c.o: OPT_FLAGS := -O1
+build/us.v10/src/done/ll.c.o: OPT_FLAGS := -O1
+build/us.v10/src/done/ll.c.o: MIPSBIT := -mips3 -o32
+build/us.v10/src/done/sirawwrite.c.o: OPT_FLAGS := -O1
+build/us.v10/src/done/sirawread.c.o: OPT_FLAGS := -O1
+build/us.v10/src/done/initialize.c.o: OPT_FLAGS := -O1
+build/us.v10/src/done/pirawread.c.o: OPT_FLAGS := -O1
+build/us.v10/src/done/seteventmesg.c.o: OPT_FLAGS := -O1
+build/us.v10/src/done/siacs.c.o: OPT_FLAGS := -O1
+build/us.v10/src/done/cartrominit.c.o: OPT_FLAGS := -O1
+build/us.v10/src/done/leointerrupt.c.o: OPT_FLAGS := -O1
+build/us.v10/src/done/epirawdma.c.o: OPT_FLAGS := -O1
 
 # Disable implicit rules
 MAKEFLAGS += -r
