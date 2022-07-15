@@ -1,0 +1,94 @@
+options:
+  basename: BGS
+  find_file_boundaries: yes
+  compiler: "IDO"
+  platform: n64
+  asm_endlabels: "endlabel"
+  cpp_args:
+    - "-Iinclude"
+    - "-Iinclude/2.0L"
+    - "-D_LANGUAGE_C"
+  generated_c_preamble: |
+    #include <ultra64.h>
+    #include "functions.h"
+    #include "variables.h"
+  create_detected_syms: yes
+  undefined_syms_path: undefined_syms.us.v10.txt
+  symbol_addrs_path:   symbol_addrs.us.v10.txt
+  undefined_funcs_auto_path: undefined_funcs_auto.BGS.us.v10.txt
+  undefined_syms_auto_path: undefined_syms_auto.BGS.us.v10.txt
+  base_path: .
+  target_path: build/us.v10/BGS.us.v10.bin
+  asset_path: bin
+  build_path: build/us.v10
+segments:
+  - name: BGS-code
+    dir: BGS
+    type: code
+    start: 0x00000000
+    vram: 0x803863F0
+    # after: core2-data
+    subsegments:
+      - [0x0, c, ch/flibbit] #DONE
+      - [0x15F0, c, done/ch/pinkegg] #DONE
+      - [0x18A0, c, ch/croctus] #DONE
+      - [0x2270, c, done/ch/code_2270] #DONE
+      - [0x3030, c, code_3030] #DONE
+      - [0x3420, c, code_3420]
+      - [0x4D70, c, ch/yumblie] #DONE
+      - [0x5600, c, ch/mrvile] #DONE
+      - [0x6730, c, done/ch/code_6730] #DONE
+      - [0x6DF0, c, ch/yellowflibbit] #DONE
+      - [0x8640, c, done/ch/mudhut] #DONE
+      - [0x8A60, c, done/ch/code_8A60] #DONE
+      - [0x8DF0, c, done/code_8DF0] #DONE
+      - [0x9080, c, ch/tanktup]
+      - [0x9750, c, code_9750] #DONE
+      - [0x98C0, c, done/ch/bigalligator] #DONE
+      - [0x9920, c, ch/leafboat] #DONE
+  - name: BGS-data
+    dir: BGS
+    type: code
+    start: 0x0000A2A0
+    vram: 0x80390690
+    subsegments:
+    #80390a40 #80390a70
+      - [0x0000A2A0, .data, ch/flibbit]
+      - [0x0000A2D0, .data, done/ch/pinkegg]
+      - [0x0000A3C0, .data, ch/croctus]
+      - [0x0000A440, .data, done/ch/code_2270]
+      - [0x0000A490, .data, code_3030]
+      - [0x0000A570, .data, code_3420]
+      - [0x0000A650, .data, ch/yumblie]
+      - [0x0000A680, .data, ch/mrvile]
+      - [0x0000A6C0, .data, done/ch/code_6730]
+      - [0x0000A6F0, .data, ch/yellowflibbit]
+      - [0x0000A730, bin, data_A730]
+      - [0x0000A740, .data, done/ch/mudhut]
+      - [0x0000A7A0, .data, done/ch/code_8A60]
+      - [0x0000A830, .data, ch/tanktup]
+      - [0x0000A860, .data, code_9750]
+      - [0x0000A980, .data, done/ch/bigalligator]
+      - [0x0000A9B0, .data, ch/leafboat]
+      - [0x0000A9E0, .rodata, ch/flibbit]
+      - [0x0000AAF0, .rodata, ch/croctus]
+      - [0x0000AB80, .rodata, done/ch/code_2270]
+      - [0x0000ABF0, .rodata, code_3030]
+      - [0x0000AC00, .rodata, code_3420]
+      - [0x0000AC20, .rodata, ch/yumblie]
+      - [0x0000AC50, .rodata, ch/mrvile]
+      - [0x0000ACA0, .rodata, done/ch/code_6730]
+      - [0x0000ACB0, .rodata, ch/yellowflibbit]
+      - [0x0000ADA0, .rodata, done/ch/mudhut]
+      - [0x0000ADB0, .rodata, done/ch/code_8A60]
+      - [0x0000ADC0, bin, data_ADC0] # .rodata, ch/tanktup]
+      - [0x0000ADD0, .rodata, code_9750]
+      - [0x0000ADE0, .rodata, ch/leafboat]
+  - name: BGS-bss
+    dir: BGS
+    type: code
+    start: 0x0000AE40
+    vram: 0x80391230
+    subsegments:
+       - [0x0000AE40, .bss, done/ch/code_6730]
+  - [0x0000AE40]

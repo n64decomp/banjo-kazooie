@@ -1,0 +1,31 @@
+options:
+  basename: core2
+  find_file_boundaries: yes
+  compiler: "IDO"
+  platform: n64
+  asm_endlabels: "endlabel"
+  cpp_args:
+    - "-Iinclude"
+    - "-Iinclude/2.0L"
+    - "-D_LANGUAGE_C"
+  generated_c_preamble: |
+    #include <ultra64.h>
+    #include "functions.h"
+    #include "variables.h"
+  create_detected_syms: yes
+  undefined_syms_path: undefined_syms.pal.txt
+  symbol_addrs_path:   symbol_addrs.pal.txt
+segments:
+  - name: core2-code
+    type: code
+    start: 0x00000000
+    vram: 0x80286DB0
+    subsegments:
+      - [0x00000000, asm]
+  - name: core2-data
+    type: code
+    start: 0x000DCC50
+    vram: 0x80363A00
+    subsegments:
+      - [0x000DCC50, bin, data_DCC50]
+  - [0x000F37B0]

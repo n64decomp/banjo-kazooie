@@ -1,0 +1,100 @@
+options:
+  basename: FP
+  find_file_boundaries: yes
+  compiler: "IDO"
+  platform: n64
+  asm_endlabels: "endlabel"
+  cpp_args:
+    - "-Iinclude"
+    - "-Iinclude/2.0L"
+    - "-D_LANGUAGE_C"
+  generated_c_preamble: |
+    #include <ultra64.h>
+    #include "functions.h"
+    #include "variables.h"
+  create_detected_syms: yes
+  undefined_syms_path: undefined_syms.us.v10.txt
+  symbol_addrs_path:   symbol_addrs.us.v10.txt
+  undefined_funcs_auto_path: undefined_funcs_auto.FP.us.v10.txt
+  undefined_syms_auto_path: undefined_syms_auto.FP.us.v10.txt
+  base_path: .
+  target_path: build/us.v10/FP.us.v10.bin
+  asset_path: bin
+  build_path: build/us.v10
+segments:
+  - name: FP-code
+    dir: FP
+    type: code
+    start: 0x00000000
+    vram: 0x803863F0
+    subsegments:
+      - [0x0, c, code_0]       #DONE
+      - [0x4D0, c, code_4D0]   #DONE
+      - [0x790, c, code_790]   #DONE
+      - [0xA40, c, code_A40]   #DONE
+      - [0x11F0, c, code_11F0] #DONE
+      - [0x19E0, c, code_19E0]
+      - [0x1FF0, c, code_1FF0] #DONE
+      - [0x2350, c, code_2350] #DONE
+      - [0x3E00, c, code_3E00] #DONE
+      - [0x4400, c, code_4400] #DONE
+      - [0x45D0, c, code_45D0]
+      - [0x4770, c, code_4770] #DONE
+      - [0x5CC0, c, code_5CC0]
+      - [0x6AE0, c, code_6AE0] #DONE
+      - [0x7980, c, code_7980] #DONE
+      - [0x8330, c, code_8330] #DONE
+      - [0x87E0, c, code_87E0] #DONE
+      - [0x8D00, c, code_8D00] #DONE
+      - [0x8E20, c, code_8E20] #DONE
+      - [0x9B10, c, ch/wozzasjig] #DONE
+      - [0x9EA0, c, code_9EA0] #DONE
+      - [0xA1C0, c, code_A1C0] #DONE
+      - [0xA240, c, code_A240] #DONE
+      - [0xA500, c, code_A500] #DONE
+      - [0xA880, c, code_A880] #DONE
+      - [0xABD0, c, code_ABD0] #DONE
+      - [0xB4D0, c, code_B4D0] #DONE
+  - name: FP-data
+    dir: FP
+    type: code
+    start: 0x0000B600
+    vram: 0x803919F0
+    subsegments:
+      - [0x0000B600, .data, code_0]
+      - [0x0000B650, .data, code_4D0]
+      - [0x0000B6A0, .data, code_790]
+      - [0x0000B760, .data, code_A40]
+      - [0x0000B790, .data, code_11F0]
+      - [0x0000B810, .data, code_19E0]
+      - [0x0000B850, .data, code_1FF0]
+      - [0x0000B890, .data, code_2350]
+      - [0x0000BA00, .data, code_3E00]
+      - [0x0000BAC0, bin, data_BAC0]
+      - [0x0000BCD0, .data, code_6AE0]
+      - [0x0000BFA0, .data, code_7980]
+      - [0x0000C010, bin, data_C010]
+      - [0x0000C080, .data, code_87E0]
+      - [0x0000C0B0, .data, code_8D00]
+      - [0x0000C130, bin, data_C130]
+      - [0x0000C2D0, .data, code_A1C0]
+      - [0x0000C300, .data, code_A240]
+      - [0x0000C340, bin, data_C340]
+      - [0x0000C4F0, .data, code_ABD0]
+      - [0x0000C790, .rodata, code_0]
+      - [0x0000C7A0, .rodata, code_A40]
+      - [0x0000C800, .rodata, code_11F0]
+      - [0x0000C820, .rodata, code_19E0]
+      - [0x0000C830, .rodata, code_1FF0]
+      - [0x0000C840, .rodata, code_2350]
+      - [0x0000C920, .rodata, code_3E00]
+      - [0x0000C940, .rodata, code_4770]
+      - [0x0000C990, bin, data_C990]
+      - [0x0000CA10, .rodata, code_6AE0]
+      - [0x0000CA50, .rodata, code_7980]
+      - [0x0000CA80, .rodata, code_87E0]
+      - [0x0000CA90, .rodata, code_8E20]
+      - [0x0000CAE0, .rodata, ch/wozzasjig]
+      - [0x0000CB00, .rodata, code_A500]
+      - [0x0000CB10, .rodata, code_A880]
+  - [0x0000CB20]

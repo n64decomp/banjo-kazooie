@@ -1,0 +1,33 @@
+options:
+  basename: FP
+  find_file_boundaries: yes
+  compiler: "IDO"
+  platform: n64
+  asm_endlabels: "endlabel"
+  cpp_args:
+    - "-Iinclude"
+    - "-Iinclude/2.0L"
+    - "-D_LANGUAGE_C"
+  generated_c_preamble: |
+    #include <ultra64.h>
+    #include "functions.h"
+    #include "variables.h"
+  create_detected_syms: yes
+  undefined_syms_path: undefined_syms.us.v11.txt
+  symbol_addrs_path:   symbol_addrs.us.v11.txt
+segments:
+  - name: FP-code
+    dir: FP
+    type: code
+    start: 0x00000000
+    vram: 0x80385610
+    subsegments:
+      - [0x00000000, asm]
+  - name: FP-data
+    dir: FP
+    type: code
+    start: 0x0000B600
+    vram: 0x80390C10
+    subsegments:
+      - [0x0000B600, bin, data_B600]
+  - [0x0000CB20]

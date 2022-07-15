@@ -1,0 +1,77 @@
+options:
+  basename: MMM
+  find_file_boundaries: yes
+  compiler: "IDO"
+  platform: n64
+  asm_endlabels: "endlabel"
+  cpp_args:
+    - "-Iinclude"
+    - "-Iinclude/2.0L"
+    - "-D_LANGUAGE_C"
+  generated_c_preamble: |
+    #include <ultra64.h>
+    #include "functions.h"
+    #include "variables.h"
+  create_detected_syms: yes
+  undefined_syms_path: undefined_syms.us.v10.txt
+  symbol_addrs_path:   symbol_addrs.us.v10.txt
+  undefined_funcs_auto_path: undefined_funcs_auto.MMM.us.v10.txt
+  undefined_syms_auto_path: undefined_syms_auto.MMM.us.v10.txt
+  base_path: .
+  target_path: build/us.v10/MMM.us.v10.bin
+  asset_path: bin
+  build_path: build/us.v10
+segments:
+  - name: MMM-code
+    dir: MMM
+    type: code
+    start: 0x00000000
+    vram: 0x803863F0
+    subsegments:
+      - [0x0000, c, ch/loggo]  #DONE
+      - [0x0570, c, ch/napper] #DONE
+      - [0x0DC0, c, code_DC0]  #DONE
+      - [0x1020, c, ch/motzhand] #DONE
+      - [0x16B0, c, code_16B0]  #DONE
+      - [0x2040, c, code_2040] #DONE
+      - [0x2F60, c, code_2F60] #DONE
+      - [0x3120, c, code_3120] #DONE
+      - [0x3420, c, code_3420] #DONE
+      - [0x3D50, c, code_3D50] #DONE
+      - [0x47D0, c, code_47D0] #DONE
+      - [0x5000, c, code_5000] #DONE
+  - name: MMM-data
+    dir: MMM
+    type: code
+    start: 0x000055F0
+    vram: 0x8038B9E0
+    subsegments:
+      - [0x000055F0, .data, ch/loggo]
+      - [0x00005630, .data, ch/napper]
+      - [0x00005660, .data, code_DC0]
+      - [0x000056A0, .data, ch/motzhand]
+      - [0x000056E0, bin, data_56E0] #.data, code_16B0]
+      - [0x000057F0, .data, code_2040]
+      - [0x00005A40, .data, code_2F60]
+      - [0x00005B30, .data, code_3420]
+      - [0x00005E00, .data, code_3D50]
+      - [0x00005F10, bin, data_5F10]
+      - [0x00005F20, .data, code_5000]
+      - [0x00005F50, .rodata, ch/loggo]
+      - [0x00005F80, .rodata, ch/napper]
+      - [0x00005FA0, .rodata, ch/motzhand]
+      - [0x00005FC0, .rodata, code_16B0]
+      - [0x00006010, .rodata, code_2040]
+      - [0x00006050, .rodata, code_3120]
+      - [0x00006060, .rodata, code_3420]
+      - [0x00006070, .rodata, code_3D50]
+      - [0x00006090, .rodata, code_47D0]
+      - [0x000060C0, .rodata, code_5000]
+  - name: MMM-bss
+    dir: MMM
+    type: code
+    start: 0x000060D0
+    vram: 0x8038C4C0
+    subsegments:
+      - [0x60D0, .bss, code_2040]
+  - [0x000060D0]

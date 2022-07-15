@@ -1,0 +1,33 @@
+options:
+  basename: SM
+  find_file_boundaries: yes
+  compiler: "IDO"
+  platform: n64
+  asm_endlabels: "endlabel"
+  cpp_args:
+    - "-Iinclude"
+    - "-Iinclude/2.0L"
+    - "-D_LANGUAGE_C"
+  generated_c_preamble: |
+    #include <ultra64.h>
+    #include "functions.h"
+    #include "variables.h"
+  create_detected_syms: yes
+  undefined_syms_path: undefined_syms.us.v11.txt
+  symbol_addrs_path:   symbol_addrs.us.v11.txt
+segments:
+  - name: SM-code
+    dir: SM
+    type: code
+    start: 0x00000000
+    vram: 0x80385610
+    subsegments:
+      - [0x00000000, asm]
+  - name: SM-data
+    dir: SM
+    type: code
+    start: 0x000046D0
+    vram: 0x80389CE0
+    subsegments:
+      - [0x000046D0, bin, data_46D0]
+  - [0x00004F30]

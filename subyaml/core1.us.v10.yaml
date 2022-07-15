@@ -1,0 +1,337 @@
+options:
+  basename: core1
+  find_file_boundaries: yes
+  compiler: "IDO"
+  platform: n64
+  asm_endlabels: "endlabel"
+  cpp_args:
+    - "-Iinclude"
+    - "-Iinclude/2.0L"
+    - "-D_LANGUAGE_C"
+  generated_c_preamble: |
+    #include <ultra64.h>
+    #include "functions.h"
+    #include "variables.h"
+  create_detected_syms: yes
+  undefined_syms_path: undefined_syms.us.v10.txt
+  symbol_addrs_path:   symbol_addrs.us.v10.txt
+  undefined_funcs_auto_path: undefined_funcs_auto.core1.us.v10.txt
+  undefined_syms_auto_path: undefined_syms_auto.core1.us.v10.txt
+  base_path: .
+  target_path: build/us.v10/core1.us.v10.bin
+  asset_path: bin
+  build_path: build/us.v10
+segments:
+- name: core1-code
+  dir: core1
+  type: code
+  start: 0x00000000
+  vram:  0x8023DA20 # via https://hack64.net/wiki/doku.php?id=player_kazooie:ram_map
+  subalign: 4
+  subsegments:
+  - [0x00000000, c, code_0]
+  - [0x0660, c, code_660]  #DONE
+  - [0x07C0, c, inflate]   #DONE
+  - [0x1D00, c, code_1D00]
+  - [0x2BD0, c, code_2BD0]
+  - [0x2DA0, c, code_2DA0] #DONE
+  - [0x2FA0, c, code_2FA0] #DONE
+  - [0x31C0, c, code_31C0]
+  - [0x3A70, c, code_3A70]
+  - [0x7090, c, code_7090] #DONE
+  - [0x72B0, c, code_72B0]
+  - [0x7F60, c, code_7F60]
+  - [0x8C50, c, code_8C50]
+  - [0x9D30, c, code_9D30]
+  - [0xCE60, c, done/code_CE60] #DONE
+  - [0xE360, c, code_E360]
+  - [0xEAF0, c, code_EAF0]
+  - [0x11AC0, c, code_11AC0]
+  - [0x12F10, c, code_12F10] #DONE
+  - [0x13640, c, code_13640] #DONE
+  - [0x13680, c, code_13680]
+  - [0x136D0, c, code_136D0]
+  - [0x13990, c, code_13990]
+  - [0x15770, c, code_15770]
+  - [0x15B30, c, code_15B30] #DONE
+  - [0x16A50, c, memory]
+  - [0x18110, c, code_18110] #DONE
+  - [0x18210, c, code_18210] #DONE
+  - [0x18310, c, code_18310] #DONE
+  - [0x18350, c, code_18350] #DONE
+  - [0x1BE90, c, code_1BE90] #DONE
+  - [0x1D590, c, done/code_1D590]           #DONE
+  - [0x1D5C0, hasm, code_1D5C0]             #DONE
+  - [0x1D5D0, c, code_1D5D0]                #DONE
+  - [0x1E360, c, done/code_1E360]           #DONE
+  - [0x1E6E0, c, code_1E6E0]                #DONE
+  - [0x1E820, c, code_1E820]
+  - [0x1E8C0, c, done/code_1E8C0]           #DONE
+  - [0x1E950, c, done/audio/n_synthesizer]  #DONE
+  - [0x1F330, c, done/audio/event]          #DONE
+  - [0x1F610, c, done/audio/n_synaddplayer] #DONE
+  - [0x1F7E0, c, done/audio/n_synallocvoice] #DONE
+  - [0x1F9E0, c, done/audio/n_synsetvol]    #DONE
+  - [0x1FA80, c, done/audio/n_synstartvoice] #DONE
+  - [0x1FB00, c, done/audio/n_synsetpan]    #DONE
+  - [0x1FB80, c, done/audio/n_synsetpitch]  #DONE
+  - [0x1FC00, c, done/audio/n_synsetfxmix]  #DONE
+  - [0x1FC90, c, done/audio/n_synstopvoice] #DONE
+  - [0x1FD00, c, done/audio/n_synfreevoice] #DONE
+  - [0x1FDA0, c, audio/n_csplayer]
+  - [0x21210, c, done/audio/cspsetbank]     #DONE
+  - [0x21250, c, done/audio/cspstop]        #DONE
+  - [0x21280, c, done/audio/n_csq]          #DONE
+  - [0x21920, c, done/audio/cspsetseq]      #DONE
+  - [0x21960, c, done/audio/cspplay]        #DONE
+  - [0x21990, c, done/audio/cspsetvol]      #DONE
+  - [0x219D0, c, done/audio/code_219D0]     #DONE
+  - [0x21A10, c, done/audio/cspsettempo]    #DONE
+  - [0x21A80, c, done/audio/code_21A80]     #DONE
+  - [0x21AB0, c, done/audio/cspgettempo]    #DONE
+  - [0x21AF0, c, done/audio/code_21AF0]     #DONE
+  - [0x21B50, c, done/audio/code_21B50]     #DONE
+  - [0x21C50, c, done/audio/n_synallocfx]   #DONE
+  - [0x21CB0, c, n_reverb]
+  - [0x22740, c, done/audio/n_auxbus]       #DONE
+  - [0x227F0, c, done/audio/n_drvrNew]      #DONE
+  - [0x22D50, c, done/audio/n_save]         #DONE
+  - [0x22DA0, c, done/audio/n_envresample]  #DONE
+  - [0x22E40, c, code_22E40]
+  - [0x25360, c, done/audio/n_synstartvoiceparam] #DONE
+  - [0x25440, c, done/audio/n_mainbus]    #DONE
+  - [0x254C0, c, done/audio/n_load]       #DONE
+  - [0x25680, c, audio/n_adpcm]
+  - [0x25C40, c, done/audio/n_resample]   #DONE
+  - [0x25E20, c, code_25E20]
+  - [0x26110, c, code_26110]              #DONE
+  - [0x26120, asm, os/invaldcache]        #DONE
+  - [0x261C0, asm, os/writebackdcacheall] #DONE
+  - [0x261F0, c, os/initialize]           #DONE
+  - [0x26480, c, done/os/createthread]    #DONE
+  - [0x265D0, c, done/gu/sinf]            #DONE
+  - [0x26790, c, done/audio/cents2ratio]  #DONE
+  - [0x267E0, c, done/audio/heapinit]     #DONE
+  - [0x26820, bin, padding] # 0x60 bytes of zeroes?
+  - [0x26880, c, done/os/createmesgqueue] #DONE
+  - [0x268B0, c, done/io/aisetfreq]       #DONE
+  - [0x26A10, c, done/audio/sl]           #DONE
+  - [0x26AD0, c, done/audio/heapalloc]    #DONE
+  - [0x26B30, c, done/os/recvmesg]        #DONE
+  - [0x26C70, c, done/io/aigetlen]        #DONE
+  - [0x26C80, c, done/os/virtualtophysical] #DONE
+  - [0x26D00, c, done/io/aisetnextbuf]    #DONE
+  - [0x26DB0, c, done/os/pidma]           #DONE
+  - [0x26EC0, c, done/os/stopthread]      #DONE
+  - [0x26F80, c, done/os/startthread]     #DONE
+  - [0x270D0, c, os/writebackdcache]
+  - [0x27150, hasm, invaldcache]          #DONE
+  - [0x27200, c, done/io/pimgr]           #DONE
+  - [0x27390, c, done/os/destroythread]   #DONE
+  - [0x27490, c, done/os/sendmesg]        #DONE
+  - [0x275E0, c, done/os/settreadpri]     #DONE
+  - [0x276C0, c, gu/mtxutil]
+  - [0x27930, c, done/gu/sqrtf]           #DONE
+  - [0x27940, c, gu/cosf]
+  - [0x27AB0, hasm, ultra/setintmask]     #DONE
+  - [0x27B50, c, done/io/dpsetstat]       #DONE
+  - [0x27B60, c, done/io/sptask]          #DONE
+  - [0x27E50, c, done/io/dpgetstat]       #DONE
+  - [0x27E50, c, done/io/vigetcurrframebuf] #DONE
+  - [0x27EA0, c, done/os/stoptimer]       #DONE
+  - [0x27F90, c, done/os/settimer]        #DONE
+  - [0x28070, c, done/ll]                 #DONE
+  - [0x28330, c, done/io/sptaskyielded]   #DONE
+  - [0x283B0, c, done/io/sptaskyield]     #DONE
+  - [0x283D0, c, done/io/visetmode]       #DONE
+  - [0x28440, c, done/os/seteventmesg]    #DONE
+  - [0x284B0, c, done/io/vimgr]           #DONE
+  - [0x28810, c, done/io/visetspecial]    #DONE
+  - [0x289D0, c, done/io/viswapbuf]       #DONE
+  - [0x28A20, c, done/io/visetevent]      #DONE
+  - [0x28A90, c, done/io/vigetnextframebuf] #DONE
+  - [0x28AD0, c, done/io/viblack]         #DONE
+  - [0x28B40, c, done/gu/ortho]           #DONE
+  - [0x28D00, c, done/gu/translate]       #DONE
+  - [0x28DA0, c, gu/rotate]
+  - [0x28F90, c, done/io/contreaddata]    #DONE
+  - [0x291F0, c, done/io/controller]      #DONE
+  - [0x295B0, c, done/io/contsetch]       #DONE
+  - [0x29620, c, done/audio/bnkf]         #DONE
+  - [0x29870, c, done/os/gettime]         #DONE
+  - [0x29900, c, done/audio/cseq]         #DONE
+  - [0x2A3C0, c, done/io/motor]           #DONE
+  - [0x2A9E0, c, done/io/pfsinit]         #DONE
+  - [0x2AAA0, hasm, invalicache]          #DONE
+  - [0x2AB20, c, done/io/conteeplongwrite] #DONE
+  - [0x2AC50, c, done/io/conteeplongread] #DONE
+  - [0x2ACE0, c, done/io/piread]          #DONE
+  - [0x2AD20, c, done/audio/copy]         #DONE
+  - [0x2ADA0, c, done/audio/drvrNew]      #DONE
+  - [0x2B540, c, done/audio/reverb]       #DONE
+  - [0x2C190, c, done/syncprintf]         #DONE
+  - [0x2C1D0, c, done/audio/seq]          #DONE
+  - [0x2C7F0, hasm, setsr]                #DONE
+  - [0x2C800, hasm, getsr]                #DONE
+  - [0x2C810, hasm, setfpccsr]            #DONE
+  - [0x2C820, c, done/io/sirawread]       #DONE
+  - [0x2C870, c, done/io/sirawwrite]      #DONE
+  - [0x2C8C0, c, exceptasm]
+  - [0x2D230, c, done/io/pirawread]       #DONE
+  - [0x2D290, hasm, interrupt]
+  - [0x2D2D0, c, done/os/thread]          #DONE
+  - [0x2D310, c, done/audio/synthesizer]  #DONE
+  - [0x2D9F0, c, done/audio/syndelete]    #DONE
+  - [0x2DA00, hasm, probetlb]
+  - [0x2DAC0, c, done/io/ai]              #DONE
+  - [0x2DAF0, c, done/os/jammesg]         #DONE
+  - [0x2DC40, c, done/io/pigetcmdq]       #DONE
+  - [0x2DC70, c, done/io/cartrominit]     #DONE
+  - [0x2DD70, c, done/io/leodiskinit]     #DONE
+  - [0x2DE70, c, done/io/piacs]         #DONE
+  - [0x2DF30, c, done/os/getthreadpri]  #DONE
+  - [0x2DF50, c, done/io/pirawdma]      #DONE
+  - [0x2E030, c, done/io/epirawdma]     #DONE
+  - [0x2E260, c, done/io/devmgr]        #DONE
+  - [0x2E6F0, hasm, bcopy]              #DONE
+  - [0x2EA00, c, done/io/spsetstat]     #DONE
+  - [0x2EA10, c, done/io/spsetpc]       #DONE
+  - [0x2EA50, c, done/io/sprawdma]      #DONE
+  - [0x2EAE0, c, done/io/sp]            #DONE
+  - [0x2EB10, c, done/io/vi]            #DONE
+  - [0x2EC50, c, done/os/timerintr]     #DONE
+  - [0x2F050, hasm, setcompare]         #DONE
+  - [0x2F060, c, done/io/spgetstat]     #DONE
+  - [0x2F070, c, done/io/vigetcurrcontext] #DONE
+  - [0x2F080, c, done/io/viswapcontext] #DONE
+  - [0x2F3E0, hasm, getcount]           #DONE
+  - [0x2F3F0, c, done/gu/normalize]     #DONE
+  - [0x2F480, c, done/io/siacs]         #DONE
+  - [0x2F540, c, done/io/sirawdma]      #DONE
+  - [0x2F5F0, c, done/io/pfsisplug]     #DONE
+  - [0x2F960, c, done/io/crc]           #DONE
+  - [0x2FAE0, c, done/io/contramwrite]  #DONE
+  - [0x2FE60, c, done/io/contramread]   #DONE
+  - [0x301F0, c, done/io/pfsgetstatus]  #DONE
+  - [0x30300, c, done/io/contpfs]       #DONE
+  - [0x31060, c, done/io/pfschecker]    #DONE
+  - [0x31AC0, c, done/io/conteepwrite]  #DONE
+  - [0x32010, c, done/io/conteepread]   #DONE
+  - [0x32370, c, done/audio/filter]     #DONE
+  - [0x32390, c, done/audio/env]        #DONE
+  - [0x32F10, c, done/audio/load]       #DONE
+  - [0x33A60, c, done/audio/resample]   #DONE
+  - [0x33D60, c, done/audio/auxbus]     #DONE
+  - [0x33E70, c, done/audio/mainbus]    #DONE
+  - [0x33FC0, c, done/audio/save]       #DONE
+  - [0x34080, c, done/io/si]            #DONE
+  - [0x340B0, c, done/io/leointerrupt]  #DONE
+  - [0x34930, c, done/audio/synallocfx] #DONE
+  - [0x349D0, c, done/os/resetglobalintmask] #DONE
+  - [0x34A30, c, done/io/epirawwrite]   #DONE
+  - [0x34A80, c, done/io/epirawread]    #DONE
+  - [0x34AD0, c, done/os/setglobalintmask] #DONE
+  - [0x34B20, c, done/os/yieldthread]   #DONE
+- name: core1-mips3
+  dir: core1
+  type: code
+  start: 0x34B70
+  vram:  0x80272590
+  subsegments:
+  - [0x34B70, bin, data_34B70]
+- name: core1-data
+  dir: core1
+  type: code
+  start: 0x000037BF0
+  vram:  0x80275610
+  subsegments:
+  - [0x37BF0, bin, data_37BF0] #data Section
+  - [0x37C50, .data, code_660]
+  - [0x37D50, .data, code_1D00]
+  - [0x37E30, bin, data_37E30] #data Section
+  - [0x37E40, .data, code_2FA0]
+  - [0x37E50, .data, code_31C0]
+  - [0x37E60, bin, data_37E60]
+  - [0x381F0, bin, data_381F0] # .data, done/code_CE60]
+  - [0x38260, bin, data_38260]
+  - [0x38BA0, .data, code_18310]
+  - [0x39290, bin, data_39290]
+  - [0x39470, .data, done/audio/n_drvrNew]
+  - [0x39600, bin, data_39600]
+  - [0x39730, .data, done/io/aisetnextbuf]
+  - [0x39740, .data, done/io/pimgr]
+  - [0x39770, .data, done/io/vimgr]
+  - [0x39790, .data, done/io/controller]
+  - [0x397A0, .data, done/audio/drvrNew]
+  - [0x39930, bin, data_39930] # .data, ultra/exceptasm]
+  - [0x39950, .data, done/os/thread]
+  - [0x39970, .data, done/io/piacs]
+  - [0x39980, .data, done/io/vi]
+  - [0x399F0, .data, done/os/timerintr]
+  - [0x39A00, .data, done/io/siacs]
+  - [0x39A10, .data, done/audio/env]
+  - [0x39B10, .data, done/io/vimodepallan1]
+  - [0x39B60, .data, done/io/vimodempallan1]
+  - [0x39B60, .data, done/io/vimodentsclan1]
+  - [0x39C00, bin, data_39C00] # .rodata, code_1D00]
+  - [0x39C20, bin, data_39C20] # .rodata, code_31C0]
+  - [0x39C30, bin, data_39C30] # .rodata, code_3A70]
+  - [0x39CA0, bin, data_39CA0] # .rodata, code_72B0]
+  - [0x39CD0, bin, data_39CD0] # .rodata, code_7F60]
+  - [0x39CE0, bin, data_39CE0] # .rodata, code_9D30]
+  - [0x39D00, .rodata, done/code_CE60]
+  - [0x39FD0, .rodata, code_EAF0]
+  - [0x39FE0, bin, data_39FD0] # .rodata, code_EAF0] #continued
+  - [0x3A760, bin, data_3A760] # .rodata, code_11AC0]
+  - [0x3A800, bin, data_3A800] # .rodata, code_13990]
+  - [0x3A820, .rodata, code_18350]
+  - [0x3A920, .rodata, code_1BE90]
+  - [0x3A950, .rodata, code_1D5D0]
+  - [0x3A9B0, .rodata, done/audio/n_synthesizer]
+  - [0x3A9C0, bin, data_3A9C0] # .rodata, done/audio/n_csplayer]
+  - [0x3AD30, bin, data_3AD30]
+  - [0x3AD60, .rodata, done/audio/n_drvrNew]
+  - [0x3AD80, bin, data_3AD80]
+  - [0x3B180, .rodata, done/audio/n_resample]
+  - [0x3B190, .rodata, done/gu/sinf]
+  - [0x3B1E0, .rodata, done/audio/cents2ratio]
+  - [0x3B1F0, bin, data_3B1F0] # .rodata, ultra/setintmask] # splat bug preventing this from linking correctly
+  - [0x3B2C0, bin, data_3B2C0] # .rodata, gu/rotate] # need to resolve .data section first
+  - [0x3B2D0, .rodata, done/audio/cseq]
+  - [0x3B2E0, .rodata, done/audio/drvrNew]
+  - [0x3B300, .rodata, done/audio/reverb]
+  - [0x3B330, .rodata, done/audio/seq]
+  - [0x3B340, bin, data_3B340] # .rodata, ultra/exceptasm]
+  - [0x3B390, hasm, ultra/libm_vals] # Nothing in this file, just here so splat sees it's ASM
+  - [0x3B390, .rodata, ultra/libm_vals]
+  - [0x3B3A0, .rodata, done/audio/synthesizer]
+  - [0x3B3B0, .rodata, done/io/devmgr]
+  - [0x3B3D0, .rodata, done/audio/env]
+  - [0x3B420, .rodata, done/audio/resample]
+  - [0x3B460, bin, data_3B460]
+- type: code
+  name: core1-bbs
+  dir: core1
+  start: 0x00003C710
+  vram:  0x8027A130
+  subsegments:
+  - [0x3c710, .bss, code_0]
+  - [0x3c710, .bss, code_660]
+  - [0x3c710, .bss, inflate]
+  - [0x3c710, .bss, code_1D00]
+  - [0x3c710, .bss, code_2BD0]
+  - [0x3c710, .bss, code_2DA0]
+  - [0x3c710, .bss, code_31C0]
+  - [0x3c710, .bss, code_3A70]
+  - [0x3c710, .bss, code_7090]
+  - [0x3c710, .bss, code_72B0]
+  - [0x3c710, .bss, code_8C50]
+  - [0x3c710, .bss, code_9D30]
+  - [0x3c710, .bss, done/code_CE60]
+  - [0x3c710, .bss, code_E360]
+  - [0x3c710, .bss, code_EAF0]
+  - [0x3c710, .bss, code_11AC0]
+  - [0x3c710, .bss, code_12F10]
+  - [0x3c710, .bss, code_13640]
+  - [0x3c710, .bss, code_136D0]
+- [0x3c710] # core1 end
