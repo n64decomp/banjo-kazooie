@@ -523,6 +523,8 @@ segments:
   - [0xE3980, bin, data_E3980]
   - [0xE3C50, .data, code_82000]
   - [0xE4870, bin, data_E4870]
+  - [0xE5730, .data, gc/zoombox]
+  - [0xE69B0, bin, data_E69B0]
   - [0xE7330, .data, code_9B990]
   - [0xE7490, .data, code_9D640]
   - [0xE75D0, bin, data_E75D0]

@@ -307,19 +307,6 @@ typedef struct struct_16_s{
     s32 unkC;
 }struct16s;
 
-typedef struct struct_18_s{
-    s16 uid; /* enum sfx_e */
-    s16 unk2;
-    f32 unk4;
-}struct18s;
-
-typedef struct struct_17_s{
-    s16 uid;
-    s8 unk2;
-    s8 unk3;
-    struct18s soundInfo[5];
-}struct17s;
-
 typedef struct struct_1A_s{
     u8  pad0[0x8];
     u8  *str;

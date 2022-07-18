@@ -49,7 +49,7 @@ void func_802DBCE0(ParticleEmitter *pCtrl, f32 arg1[3]){
         func_802EFEC0(other, 1.0f, 1.4f);
         func_802EFA5C(other, 0.0f, 0.5f);
         particleEmitter_emitN(other, 1);
-        func_8030E878(SFX_413_UNKNOWN, randf2(1.0f, 1.4f), 0x4e20, arg1, 0.0f, 3500.0f);
+        func_8030E878(SFX_413_WATER_RIPPLE, randf2(1.0f, 1.4f), 0x4e20, arg1, 0.0f, 3500.0f);
     }
     else{//L802DBDF4
         particleEmitter_setSprite(other, ASSET_700_SPRITE_DUST);

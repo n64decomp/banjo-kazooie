@@ -52,7 +52,7 @@ void __chdrips_particleCallback(struct31s *pCtrl, f32 position[3]){
     if(func_8024549C(position, 4.0f)){
         position[1] += 2.0f;
         func_80359A40(position, &D_80372AF0, 1);
-        func_8030E878(SFX_413_UNKNOWN, randf2(1.0f, 1.4f), 20000, position, 0.0f, 3500.0f);
+        func_8030E878(SFX_413_WATER_RIPPLE, randf2(1.0f, 1.4f), 20000, position, 0.0f, 3500.0f);
     }
 }
 

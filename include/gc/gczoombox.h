@@ -14,7 +14,7 @@ typedef struct {
     u8 unk90[0x20];
     u8 unkB0[0x40];
     BKModelBin *unkF0;
-    AnimCtrl *unkF4;
+    AnimCtrl *anim_ctrl;
     BKSprite *unkF8;
     BKSpriteDisplayData *unkFC;
     BKSprite *unk100;
@@ -32,8 +32,8 @@ typedef struct {
     u8  unk138; //current_string
     u8  unk139;
     u8  unk13A;
-    u8  unk13B;     //sfx_count
-    u8 *unk13C[8]; //string_ptrs
+    u8  sfx_count;
+    char *raw_str[8]; //string_ptrs
     u8 unk15C;
     u8 unk15D;
     u8 unk15E;
@@ -62,10 +62,10 @@ typedef struct {
     u8 unk185;
     s8 unk186;
     u8 unk187;
-    u8 unk188; //sprite frame count
+    u8 frame_count; //sprite frame count
     u8 unk189;
     u8 unk18A;
-    u8 unk18B;      //next_sfx
+    u8 prev_sfx;      //next_sfx
     f32 unk18C;
     f32 unk190;
     f32 unk194;

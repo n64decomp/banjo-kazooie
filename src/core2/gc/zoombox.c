@@ -10,31 +10,425 @@ extern void func_8024E60C(s32, void *);
 extern void func_8024E640(s32, void *);
 extern void func_8024E5A8(s32, void *);
 
-extern struct17s D_8036C6C0[];
-extern s32 D_8036D924[];
+typedef struct struct_18_s{
+    s16 sfx_id; /* enum sfx_e */
+    s16 unk2;
+    f32 pitch;
+}gczoomboxSfx;
+
+typedef struct struct_17_s{
+    s16 spite_id;
+    s8 unk2;
+    s8 unk3;
+    gczoomboxSfx soundInfo[5];
+}gczoomboxPortraitInfo;
 
 
-extern char D_80378880[];
-extern f64 D_80378890;
-extern f64 D_80378898;
-extern f64 D_803788A0;
-extern f32 D_803788A8;
-extern f32 D_803788AC;
-extern f32 D_803788B0;
-extern f64 D_803788B8;
-extern f64 D_803788C0;
-extern f64 D_803788E0;
-extern f64 D_803788F0;
-extern f32 D_80378938;
-extern f32 D_8037893C;
-extern f32 D_80378940;
+gczoomboxPortraitInfo D_8036C6C0[] = {
+     {ASSET_816_SPRITE_GRUNTILDA, 0xDA, 0xE5, {
+          {SFX_EC_GRUNTY_TALKING_1, 20000, 1.1f},
+          {SFX_ED_GRUNTY_TALKING_2, 20000, 1.1f}, 
+          {SFX_EE_GRUNTY_TALKING_3, 20000, 1.1f}
+     }},
+     {ASSET_7E6_SPRITE_VILE, 0xF2, 0x0A, {
+          {SFX_6E_VILE_EGH, 20000, 1.0f}
+     }},
+     {ASSET_7E6_SPRITE_VILE, 0xF2, 0x0A, {
+          {SFX_6E_VILE_EGH, 20000, 1.0f}
+     }},
+     {ASSET_7E6_SPRITE_VILE, 0xF2, 0x0A, {
+          {SFX_6E_VILE_EGH, 20000, 1.0f}
+     }},
+     {ASSET_7EF_SPRITE_BANJO, 0xF4, 0x06, {
+          {SFX_95_BANJO_TALKING, 20000, 1.2f}
+     }},
+     {ASSET_816_SPRITE_GRUNTILDA, 0xDA, 0xE5, {
+          {SFX_EC_GRUNTY_TALKING_1, 20000, 1.1f}, 
+          {SFX_ED_GRUNTY_TALKING_2, 20000, 1.1f}, 
+          {SFX_EE_GRUNTY_TALKING_3, 20000, 1.1f}
+     }},
+     {ASSET_80D_SPRITE_LIVE_JIGGY, 0xEE, 0x05, {
+          {SFX_E6_MEEP_1, 20000, 1.8f},
+          {SFX_E7_MEEP_2, 20000, 1.8f}
+     }},
+     {ASSET_815_SPRITE_TOOTY, 0xE8, 0x05, {
+          {SFX_E8_TOOTY_TALKING_1,  20000, 1.1f},
+          {SFX_E9_TOOTY_TALKING_2,  20000, 1.1f},
+          {SFX_122_TOOTY_TALKING_3, 22000, 1.0f}
+     }},
+     {ASSET_81B_SPRITE_LIVE_MUSIC_NOTE, 0xF2, 0x06, {
+          {SFX_40C_MUSIC_NOTE_TALKING, 15000, 1.1f}
+     }},
+     {ASSET_80D_SPRITE_LIVE_JIGGY, 0xEE, 0x05, {
+          {SFX_E6_MEEP_1, 20000, 1.8f},
+          {SFX_E7_MEEP_2, 20000, 1.8f}
+     }},
+     {ASSET_81D_SPRITE_LIVE_EXTRA_HEALTH_MAX, 0xED, 0x06, {
+          {SFX_102_ZUBBA_TALKING, 20000, 1.4f}
+     }},
+     {ASSET_827_SPRITE_LIVE_CLOCK, 0xEE, 0x08, {
+          {SFX_6E_VILE_EGH,       20000, 1.0f}
+     }},
+     {ASSET_7EF_SPRITE_BANJO, 0xF4, 0x06, {
+          {SFX_95_BANJO_TALKING,  20000, 1.2f}
+     }},
+     {ASSET_7F4_SPRITE_KAZOOIE, 0xF1, 0x07, {
+          {SFX_DF_KAZOOIE_TALKING_1, 32000, 1.3f},
+          {SFX_E0_KAZOOIE_TALKING_2, 32000, 1.3f},
+          {SFX_E1_KAZOOIE_TALKING_3, 32000, 1.3f},
+          {SFX_E2_KAZOOIE_TALKING_4, 32000, 1.3f}
+     }},
+     {ASSET_7F4_SPRITE_KAZOOIE, 0xF1, 0x07, {
+          {SFX_DF_KAZOOIE_TALKING_1, 32000, 2.0f},
+          {SFX_E0_KAZOOIE_TALKING_2, 32000, 2.0f},
+          {SFX_E1_KAZOOIE_TALKING_3, 32000, 2.0f},
+          {SFX_E2_KAZOOIE_TALKING_4, 32000, 2.0f}
+     }},
+     {ASSET_7F0_SPRITE_BOTTLES, 0xF3, 0x06, {
+          {SFX_B4_BOTTLES_TALKING_1, 20000, 1.1f},
+          {SFX_BC_BOTTLES_TALKING_2, 20000, 1.1f}, 
+          {SFX_BD_BOTTLES_TALKING_3, 20000, 1.1f}
+     }},
+     {ASSET_7FC_SPRITE_MUMBO, 0xE2, 0xF1, {
+          {SFX_407_MUMBO_TALKING_1, 28000, 1.1f},
+          {SFX_408_MUMBO_TALKING_2, 28000, 1.1f},
+          {SFX_409_MUMBO_TALKING_3, 28000, 1.1f},
+          {SFX_40A_MUMBO_TALKING_4, 28000, 1.1f},
+          {SFX_40B_MUMBO_TALKING_5, 28000, 1.1f}
+     }},
+     {ASSET_7F5_SPRITE_CHIMPY, 0xED, 0x07, {
+          {SFX_58_CHIMPY_NOISE_1, 20000, 1.3f},
+          {SFX_59_CHIMPY_NOISE_2, 20000, 1.3f},
+          {SFX_5A_CHIMPY_NOISE_3, 20000, 1.3f}
+     }},
+     {ASSET_7F2_SPRITE_CONGA, 0xEE, 0x09, {
+          {SFX_E3_KONGA_TALKING_1, 28000, 1.1f},
+          {SFX_E4_KONGA_TALKING_2, 28000, 1.1f},
+          {SFX_E5_KONGA_TALKING_3, 28000, 1.1f}
+     }},
+     {ASSET_7F1_SPRITE_BLUBBER, 0xEF, 0x08, {
+          {SFX_F5_BLUBBER_TALKING_1, 28000, 1.1f},
+          {SFX_F6_BLUBBER_TALKING_2, 28000, 1.1f},
+          {SFX_F7_BLUBBER_TALKING_3, 28000, 1.1f},
+          {SFX_F8_BLUBBER_TALKING_4, 28000, 1.1f}
+     }},
+     {ASSET_7FD_SPRITE_NIPPER, 0xE2, 0xFA, {
+          {SFX_F9_GRUNTLING_NOISE_1, 30000, 0.7f},
+          {SFX_3D_TICKER_WALKING,    32000, 1.1f},
+          {SFX_FA_GRUNTLING_NOISE_2, 30000, 0.7f},
+          {SFX_FB_GRUNTLING_NOISE_3, 30000, 0.7f}
+     }},
+     {ASSET_7FE_SPRITE_CLANKER, 0xE2, 0xFB, {
+          {SFX_31_BANJO_OHHWAAOOO, 32000, 0.3f},
+          {SFX_35_BANJO_WOAH,      32000, 0.3f},
+          {SFX_36_BANJO_DOH,       32000, 0.3f},
+          {SFX_37_BANJO_OHWW,      32000, 0.3f},
+          {SFX_38_BANJO_AYE_1,     32000, 0.3f}
+     }},
+     {ASSET_800_SPRITE_SNIPPET, 0xF1, 0x04, {
+          {SFX_3F8_UNKNOWN,       32000, 1.1f},
+          {SFX_3D_TICKER_WALKING, 32000, 1.1f}
+     }},
+     {ASSET_7E6_SPRITE_VILE, 0xF0, 0x0A, {
+          {SFX_6E_VILE_EGH, 20000, 1.0f}
+     }},
+     {ASSET_7F9_SPRITE_TIPTUP, 0xF0, 0x06, {
+          {SFX_EF_TIPTUP_TALKING, 20000, 1.1f}
+     }},
+     {ASSET_7F8_SPRITE_TANKTUP, 0xF0, 0x06, {
+          {SFX_FE_TANKTUP_TALKING_1, 26000, 1.1f},
+          {SFX_FF_TANKTUP_TALKING_2, 26000, 1.1f},
+          {SFX_100_TANKTUP_TALKING_3, 26000, 1.1f}
+     }},
+     {ASSET_7F6_SPRITE_FLIBBIT, 0xEE, 0x07, {
+          {SFX_3F0_FLIBBIT_TALKING, 20000, 1.1f}
+     }},
+     {ASSET_801_SPRITE_TRUNKER, 0xED, 0x06, {
+          {SFX_F3_TRUNKER_TALKING, 20000, 0.9f}, 
+          {SFX_F3_TRUNKER_TALKING, 20000, 0.9f}
+     }},
+     {ASSET_7FB_SPRITE_RUBEE, 0xDE, 0xF8, {
+          {SFX_FC_RUBEE_TALKING_1, 20000, 1.1f}, 
+          {SFX_FD_RUBEE_TALKING_2, 20000, 1.1f}
+     }},
+     {ASSET_7F7_SPRITE_GOBI, 0xEE, 0x06, {
+          {SFX_84_GOBI_CRYING, 20000, 1.0f}
+     }},
+     {ASSET_7FF_SPRITE_GRABBA, 0xE2, 0xF6, {
+          {SFX_D7_GRABBA_DEATH, 30000, 0.7f}
+     }},
+     {ASSET_7F3_SPRITE_TEEHEE, 0xEF, 0x06, {
+          {SFX_10C_MUMMY_TALKING, 32000, 0.8f}
+     }},
+     {ASSET_802_SPRITE_JINJO_YELLOW, 0xF2, 0x06, {
+          {SFX_DD_JINJO_TALKING, 20000, 1.2f}
+     }},
+     {ASSET_803_SPRITE_JINJO_GREEN,  0xF2, 0x06, {
+          {SFX_DD_JINJO_TALKING, 20000, 1.2f}
+     }},
+     {ASSET_804_SPRITE_JINJO_BLUE,   0xF2, 0x06, {
+          {SFX_DD_JINJO_TALKING, 20000, 1.2f}
+     }},
+     {ASSET_805_SPRITE_JINJO_PINK,   0xF2, 0x06, {
+          {SFX_DD_JINJO_TALKING, 20000, 1.2f}
+     }},
+     {ASSET_806_SPRITE_JINJO_ORANGE, 0xF2, 0x06, {
+          {SFX_DD_JINJO_TALKING, 20000, 1.2f}
+     }},
+     {ASSET_81B_SPRITE_LIVE_MUSIC_NOTE, 0xF2, 0x06, {
+          {SFX_40C_MUSIC_NOTE_TALKING, 15000, -2.0f}
+     }},
+     {ASSET_808_SPRITE_LIVE_MUMBO_TOKEN, 0xEC, 0x08, {
+          {SFX_407_MUMBO_TALKING_1, 28000, 1.4f},
+          {SFX_408_MUMBO_TALKING_2, 28000, 1.4f},
+          {SFX_409_MUMBO_TALKING_3, 28000, 1.4f},
+          {SFX_40A_MUMBO_TALKING_4, 28000, 1.4f},
+          {SFX_40B_MUMBO_TALKING_5, 28000, 1.4f}
+     }},
+     {ASSET_81E_SPRITE_LIVE_BLUE_EGG, 0xF2, 0x06, {
+          {SFX_3F2_UNKNOWN, 32000, 1.1f}
+     }},
+     {ASSET_820_SPRITE_LIVE_RED_FEATHER, 0xEE, 0x06, {
+          {SFX_AC_GOLDFEATHER_TALKING, 15000, -2.0f}
+     }},
+     {ASSET_81F_SPRITE_LIVE_GOLD_FEATHER, 0xEE, 0x06, {
+          {SFX_AC_GOLDFEATHER_TALKING, 15000, -7.0f}
+     }},
+     {ASSET_825_SPRITE_LIVE_ORANGE, 0xF0, 0x06, {
+          {SFX_B3_ORANGE_TALKING, 20000, 1.0f}
+     }},
+     {ASSET_80F_SPRITE_LIVE_GOLD_BULLION, 0xEE, 0x03, {
+          {SFX_406_GOLD_BULLION_TALKING, 20000, 1.2f}
+     }},
+     {ASSET_810_SPRITE_LIVE_HONEYCOMB, 0xED, 0x04, {
+          {SFX_AE_YUMYUM_TALKING, 20000, 1.2f}
+     }},
+     {ASSET_81D_SPRITE_LIVE_EXTRA_HEALTH_MAX, 0xED, 0x06, {
+          {SFX_102_ZUBBA_TALKING, 20000, 1.4f}
+     }},
+     {ASSET_80E_SPRITE_LIVE_EXTRA_LIFE, 0xF0, 0x04, {
+          {SFX_E6_MEEP_1, 20000, 0.8f},
+          {SFX_E7_MEEP_2, 20000, 0.8f}
+     }},
+     {ASSET_80D_SPRITE_LIVE_JIGGY, 0xEE, 0x05, {
+          {SFX_E6_MEEP_1, 20000, 1.8f},
+          {SFX_E7_MEEP_2, 20000, 1.8f}
+     }},
+     {ASSET_812_SPRITE_LIVE_EMPTY_HONEYCOMB, 0xEF, 0x04, {
+          {SFX_3FA_HONEYCOMB_TALKING, 15000, 1.0f}
+     }},
+     {ASSET_809_SPRITE_CATERPILLAR, 0xF0, 0x05, {
+          {SFX_AD_CATERPILLAR_SQUEAK, 28000, 0.7f}
+     }},
+     {ASSET_80C_SPRITE_LIVE_WADING_BOOTS, 0xEB, 0x02, {
+          {SFX_101_LOGGO_TALKING, 20000, 1.2f}
+     }},
+     {ASSET_813_SPRITE_PIRANHA, 0xEE, 0x07, {
+          {SFX_6D_CROC_BITE, 20000, 1.2f}
+     }},
+     {ASSET_834_SPRITE_TERMITE, 0xF0, 0x08, {
+          {SFX_40F_TICKER_TALKING, 20000, 1.2f}
+     }},
+     {ASSET_828_SPRITE_JUJU, 0xEE, 0x08, {
+          {SFX_407_MUMBO_TALKING_1, 28000, 0.7f},
+          {SFX_408_MUMBO_TALKING_2, 28000, 0.7f},
+          {SFX_409_MUMBO_TALKING_3, 28000, 0.7f},
+          {SFX_40A_MUMBO_TALKING_4, 28000, 0.7f},
+          {SFX_40B_MUMBO_TALKING_5, 28000, 0.7f}
+     }},
+     {ASSET_839_SPRITE_YUMYUM, 0xED, 0x05, {
+          {SFX_4C_LIP_SMACK, 32000, 1.1f}
+     }},
+     {ASSET_832_SPRITE_LITTLE_LOCKUP, 0xEF, 0x03, {
+          {SFX_F9_GRUNTLING_NOISE_1, 20000, 1.3f},
+          {SFX_FA_GRUNTLING_NOISE_2, 20000, 1.3f}, 
+          {SFX_FB_GRUNTLING_NOISE_3, 20000, 1.3f}
+     }},
+     {ASSET_82A_SPRITE_LEAKY, 0xF1, 0x07, {
+          {SFX_109_LOGGO_LID_CLAP, 32000, 1.1f}
+     }},
+     {ASSET_836_SPRITE_GLOOP, 0xED, 0x07, {
+          {SFX_C6_SHAKING_MOUTH, 20000, 0.7f}
+     }},
+     {ASSET_82F_SPRITE_TIPTUP_CHOIR_MEMBER, 0xEF, 0x07, {
+          {SFX_86_TIPTUP_CHORUS_AH, 20000, 1.2f}
+     }},
+     {ASSET_814_SPRITE_SNACKER, 0xEE, 0x07, {
+          {SFX_6D_CROC_BITE, 20000, 0.9f}
+     }},
+     {ASSET_817_SPRITE_ANCIENT_ONE, 0xF1, 0x06, {
+          {SFX_10D_ANCIENT_ONE_TALKING, 28000, 1.0f}
+     }},
+     {ASSET_846_SPRITE_SAND_EEL, 0xEF, 0x05, {
+          {SFX_96_HOTSAND_EEL_HISS, 20000, 1.0f}
+     }},
+     {ASSET_838_SPRITE_SNORKEL, 0xF1, 0x0A, {
+          {SFX_D1_SNORKEL_WAH, 20000, 1.2f}
+     }},
+     {ASSET_830_SPRITE_JINXY, 0xF0, 0x05, {
+          {SFX_10D_ANCIENT_ONE_TALKING, 20000, 1.3f}
+     }},
+     {ASSET_83A_SPRITE_CROCTUS, 0xF1, 0x05, {
+          {SFX_10B_GNAWTY_TALKING, 20000, 0.6f}
+     }},
+     {ASSET_816_SPRITE_GRUNTILDA, 0xDA, 0xE5, {
+          {SFX_EC_GRUNTY_TALKING_1, 20000, 1.1f},
+          {SFX_ED_GRUNTY_TALKING_2, 20000, 1.1f},
+          {SFX_EE_GRUNTY_TALKING_3, 20000, 1.1f}
+     }},
+     {ASSET_815_SPRITE_TOOTY, 0xE8, 0x05, {
+          {SFX_E8_TOOTY_TALKING_1, 20000, 1.1f},
+          {SFX_E9_TOOTY_TALKING_2, 20000, 1.1f},
+          {SFX_122_TOOTY_TALKING_3, 22000, 1.0f}
+     }},
+     {ASSET_83C_SPRITE_BOGGY, 0xF2, 0x06, {
+          {SFX_10F_BOGGY_TALKING, 20000, 1.2f}
+     }},
+     {ASSET_835_SPRITE_WOZZA, 0xEE, 0x08, {
+          {SFX_88_WOZZA_NOISE, 20000, 1.0f}
+     }},
+     {ASSET_83B_SPRITE_MOTZHAND, 0xEF, 0x07, {
+          {SFX_10C_MUMMY_TALKING, 20000, 1.01f}
+     }},
+     {ASSET_826_SPRITE_TUMBLAR, 0xED, 0x07, {
+          {SFX_10A_TUMBLAR_TALKING, 20000, -2.0f}
+     }},
+     {ASSET_82C_SPRITE_MUMMUM, 0xEC, 0x06, {
+          {SFX_149_CHEATO_TALKING_1, 30000, 0.7f}, 
+          {SFX_14A_CHEATO_TALKING_2, 30000, 0.7f}
+     }},
+     {ASSET_822_SPRITE_XMAS_GIFT_BLUE, 0xEC, 0x06, {
+          {SFX_414_XMAS_GIFT_TALKING, 20000, -2.0f}
+     }},
+     {ASSET_840_SPRITE_WORM, 0xEE, 0x05, {
+          {SFX_40F_TICKER_TALKING, 20000, 1.4f}
+     }},
+     {ASSET_848_SPRITE_FREEZING_WATER, 0xEE, 0x06, {
+          {SFX_412_FREEZING_WATER_TALKING, 20000, 1.3f},
+          {SFX_413_WATER_RIPPLE, 20000, 1.3f}
+     }},
+     {ASSET_821_SPRITE_TWINKLY, 0xED, 0x07, {
+          {SFX_10E_TWINKLY_TALKING, 28000, 1.0f}
+     }},
+     {ASSET_818_SPRITE_TWINKLY_CHOMPER, 0xEF, 0x08, {
+          {SFX_C3_HEGH, 20000, 1.5f}
+     }},
+     {ASSET_837_SPRITE_GNAWTY, 0xEF, 0x08, {
+          {SFX_10B_GNAWTY_TALKING, 20000, 1.0f}
+     }},
+     {ASSET_847_SPRITE_BOSS_BOOM_BOX, 0xEE, 0x07, {
+          {SFX_149_CHEATO_TALKING_1, 30000, 0.6f},
+          {SFX_14A_CHEATO_TALKING_2, 30000, 0.6f}
+     }},
+     {ASSET_82D_SPRITE_ZUBBA, 0xEF, 0x05, {
+          {SFX_102_ZUBBA_TALKING, 20000, 1.0f}
+     }},
+     {ASSET_831_SPRITE_NABNUT, 0xF0, 0x05, {
+          {SFX_C3_HEGH, 20000, 1.7f}
+     }},
+     {ASSET_843_SPRITE_POLAR_BEAR_CUBS, 0xF1, 0x06, {
+          {SFX_BF_EYRIE_SLEEPING_1, 20000, 1.6f},
+          {SFX_C0_EYRIE_SLEEPING_2, 20000, 1.6f}
+     }},
+     {ASSET_83F_SPRITE_EEYRIE_YOUNG, 0xF0, 0x08, {
+          {SFX_4A_CLUCKER_AHH, 20000, 1.5f}
+     }},
+     {ASSET_83F_SPRITE_EEYRIE_YOUNG, 0xF0, 0x08, {
+          {SFX_4A_CLUCKER_AHH, 20000, 1.2f}
+     }},
+     {ASSET_83F_SPRITE_EEYRIE_YOUNG, 0xF0, 0x08, {
+          {SFX_4A_CLUCKER_AHH, 20000, 1.0f}
+     }},
+     {ASSET_83E_SPRITE_EEYRIE_ADULT, 0xEE, 0x07, {
+          {SFX_A5_EYRIE_CRY, 20000, 1.0f}
+     }},
+     {ASSET_7FA_SPRITE_WARP_CAULDRON, 0xED, 0x07, {
+          {SFX_3ED, 20000, 0.8f}
+     }},
+     {ASSET_82E_SPRITE_BRENTILDA, 0xED, 0x05, {
+          {SFX_14C_BRENTILDA_TALKING, 16000, 1.2f}
+     }},
+     {ASSET_815_SPRITE_TOOTY, 0xE8, 0x05, {
+          {SFX_E8_TOOTY_TALKING_1, 20000, 1.3f},
+          {SFX_E9_TOOTY_TALKING_2, 20000, 1.3f},
+          {SFX_122_TOOTY_TALKING_3, 22000, 1.2f}
+     }},
+     {ASSET_845_SPRITE_BLACK_SNIPPET, 0xEE, 0x07, {
+          {SFX_3D_TICKER_WALKING, 32000, 1.1f}
+     }},
+     {ASSET_83D_SPRITE_LOGGO, 0xF0, 0x07, {
+          {SFX_101_LOGGO_TALKING, 20000, 0.9f},
+          {SFX_3E_POOP_NOISE, 20000, 0.9f},
+          {SFX_F8_BLUBBER_TALKING_4, 28000, 0.9f},
+          {SFX_F5_BLUBBER_TALKING_1, 28000, 0.9f},
+          {SFX_F6_BLUBBER_TALKING_2, 28000, 0.9f}
+     }},
+     {ASSET_842_SPRITE_CHEATO, 0xF0, 0x05, {
+          {SFX_149_CHEATO_TALKING_1, 20000, 1.0f},
+          {SFX_14A_CHEATO_TALKING_2, 20000, 1.0f}
+     }},
+     {ASSET_823_SPRITE_XMAS_GIFT_GREEN, 0xED, 0x07, {
+          {SFX_414_XMAS_GIFT_TALKING, 20000, -2.0f}
+     }},
+     {ASSET_824_SPRITE_XMAS_GIFT_RED, 0xED, 0x07, {
+          {SFX_414_XMAS_GIFT_TALKING, 20000, -2.0f}
+     }},
+     {ASSET_82B_SPRITE_KLUNGO, 0xF0, 0x05, {
+          {SFX_F9_GRUNTLING_NOISE_1, 30000, 0.7f},
+          {SFX_FA_GRUNTLING_NOISE_2, 30000, 0.7f},
+          {SFX_FB_GRUNTLING_NOISE_3, 30000, 0.7f}
+     }},
+     {ASSET_841_SPRITE_SEXY_GRUNTY, 0xEC, 0x08, {
+          {SFX_18D_SEXY_GRUNTY_TALKING_1, 25000, 1.2f},
+          {SFX_18E_SEXY_GRUNTY_TALKING_2, 25000, 1.2f}
+     }},
+     {ASSET_844_SPRITE_UGLY_TOOTY, 0xE8, 0x05, {
+          {SFX_F9_GRUNTLING_NOISE_1, 18000, 1.5f},
+          {SFX_FA_GRUNTLING_NOISE_2, 18000, 1.5f},
+          {SFX_FB_GRUNTLING_NOISE_3, 18000, 1.5f}
+     }},
+     {ASSET_7EF_SPRITE_BANJO, 0xF4, 0x06, {
+          {SFX_95_BANJO_TALKING, 20000, 1.2f}
+     }},
+     {ASSET_7F4_SPRITE_KAZOOIE, 0xF1, 0x07, {
+          {SFX_DF_KAZOOIE_TALKING_1, 32000, 1.3f},
+          {SFX_E0_KAZOOIE_TALKING_2, 32000, 1.3f},
+          {SFX_E1_KAZOOIE_TALKING_3, 32000, 1.3f},
+          {SFX_E2_KAZOOIE_TALKING_4, 32000, 1.3f}
+     }},
+     {ASSET_815_SPRITE_TOOTY, 0xE8, 0x05, {
+          {SFX_E8_TOOTY_TALKING_1, 20000, 1.1f},
+          {SFX_E9_TOOTY_TALKING_2, 20000, 1.1f},
+          {SFX_122_TOOTY_TALKING_3, 22000, 1.0f}}},
+     {ASSET_833_SPRITE_DINGPOT, 0xEF, 0x06, {
+          {SFX_3ED, 20000, 0.8f}
+     }},
+     {ASSET_7E7_SPRITE_CROC_BANJO, 0xF0, 0x0A, {
+          {SFX_95_BANJO_TALKING, 20000, 1.2f}
+     }},
+     {ASSET_816_SPRITE_GRUNTILDA, 0xDA, 0xE5, {
+          {SFX_EC_GRUNTY_TALKING_1, 20000, 1.1f},
+          {SFX_ED_GRUNTY_TALKING_2, 20000, 1.1f},
+          {SFX_EE_GRUNTY_TALKING_3, 20000, 1.1f}
+     }},
+     {ASSET_849_SPRITE_LOCKUP, 0xEE, 0x05, {
+          {SFX_F9_GRUNTLING_NOISE_1, 20000, 1.3f},
+          {SFX_FA_GRUNTLING_NOISE_2, 20000, 1.3f},
+          {SFX_FB_GRUNTLING_NOISE_3, 20000, 1.3f}
+     }},
+     {0x084A, 0xF2, 0x0A, {{SFX_6E_VILE_EGH, 20000, 1.0f}}},
+     {0x084B, 0xF2, 0x0A, {{SFX_6E_VILE_EGH, 20000, 1.0f}}},
+     {0x084C, 0xF2, 0x0A, {{SFX_6E_VILE_EGH, 20000, 1.0f}}},
+};
+
+s32 D_8036D924[] = { 70, 35, 18, 9, 4, 2, 1};
+
+/* .bss */
 extern u8  D_803830B0[];
 
 void func_8030DA44(u8);
 void func_80338338(s32, s32, s32);
 void func_803382FC(u8);
-
-
 
 s32 func_80316ED4(u8*);
 void func_8031843C(gczoombox_t *this);
@@ -57,7 +451,7 @@ void func_80315200(gczoombox_t *this){
           for(s1 =0; s1 < 5; s1++){
                if(this->unk108[s1]){
                     func_8030DA44(this->unk108[s1]);
-                    this->unk13B--;
+                    this->sfx_count--;
                }
           }
      }
@@ -78,9 +472,9 @@ void func_80315300(gczoombox_t *this){
           func_8033BD20(&this->unkF0);
           this->unkF0 = NULL;
      }
-     if(this->unkF4 != NULL){
-          animctrl_free(this->unkF4);
-          this->unkF4 = NULL;
+     if(this->anim_ctrl != NULL){
+          animctrl_free(this->anim_ctrl);
+          this->anim_ctrl = NULL;
      }
      if(this->unkF8 != NULL){
           func_8033BD20(&this->unkF8);
@@ -136,8 +530,8 @@ void func_80315524(gczoombox_t *this){
 
 void func_8031556C(gczoombox_t *this){
     this->unk135 = 5;
-    animctrl_setPlaybackType(this->unkF4, ANIMCTRL_ONCE);
-    animctrl_setDirection(this->unkF4, 1);
+    animctrl_setPlaybackType(this->anim_ctrl, ANIMCTRL_ONCE);
+    animctrl_setDirection(this->anim_ctrl, 1);
     this->unk134 = 0;
     this->unk1A4_16 = 1;
     func_80318498(this);
@@ -147,8 +541,8 @@ void func_803155C8(gczoombox_t *this){
     int i;
 
     this->unk135 = 6;
-    animctrl_setPlaybackType(this->unkF4, ANIMCTRL_ONCE);
-    animctrl_setDirection(this->unkF4, 0);
+    animctrl_setPlaybackType(this->anim_ctrl, ANIMCTRL_ONCE);
+    animctrl_setDirection(this->anim_ctrl, 0);
     this->unk1A4_16 = 1;
     this->unk1A4_23 = 0;
     _gczoombox_memClear(this->unk0, 0x30);
@@ -163,7 +557,7 @@ void func_803155C8(gczoombox_t *this){
             func_8025A7DC(this->unk108[0]);
         }
     }else{
-        if(this->unk13B){
+        if(this->sfx_count){
             for(i = 0; i < 5; i++){
                 if(func_8030E3FC(this->unk108[i])){
                     func_8030E394(this->unk108[i]);
@@ -184,27 +578,27 @@ int func_803156F0(u8 arg0, u8 arg1){
     }
 }
 
-int func_80315794(u8 *arg0, s32 len){
+
+static int __get_str_print_len(u8 *arg0, s32 len){
      int i;
      s32 phi_v1 = 0;
-     s32 phi_v0 = 0;
+     bool skip_next = FALSE;
      for(i = 0; i < len; i++){
-          if(arg0[i] == 0xFD){
-               phi_v0 = 1;
-          }else if(phi_v0 == 0){
+          if(arg0[i] == 0xFD){ //escape character 
+               skip_next = TRUE;
+          }else if(!skip_next){
                phi_v1++;
           }
           else{ 
-               phi_v0 = 0;
+               skip_next = FALSE;
           }
      }
      return phi_v1;
 }
 
-//_gczoombox_findLineBreak
-s32 func_803158AC(u8 *arg0, s32 arg1){
+static s32 _gczoombox_findLineBreak(char *string, s32 line_length){
      s32 i;
-     for(i = func_80316ED4(arg0); (arg1 < (func_80315794(arg0, i)) || (' ' != arg0[i] )); i--);
+     for(i = func_80316ED4(string); (line_length < (__get_str_print_len(string, i)) || (' ' != string[i] )); i--);
      return i;
 }
 
@@ -261,12 +655,12 @@ void func_8031594C(gczoombox_t * this, u8 *str, s32 arg2, s32 arg3){
                               this->unkB0[s1] = 2;
                          }
                          else{//L80315B1C
-                              this->unkB0[s1] = (this->unk188 - 4)/2;
+                              this->unkB0[s1] = (this->frame_count - 4)/2;
                          }
                     }
                }
                else{//L80315B3C
-                    this->unkB0[s1] = this->unk188 - 6;
+                    this->unkB0[s1] = this->frame_count - 6;
                }
                s1++;
           }
@@ -280,8 +674,8 @@ void func_8031594C(gczoombox_t * this, u8 *str, s32 arg2, s32 arg3){
      }
 }
 
-u8 func_80315BC0(gczoombox_t *this, enum sfx_e uid, s32 arg2){
-     u8 sp1F = func_8030ED2C(uid, arg2) & 0xff;
+u8 func_80315BC0(gczoombox_t *this, enum sfx_e sfx_id, s32 arg2){
+     u8 sp1F = func_8030ED2C(sfx_id, arg2) & 0xff;
      func_8030DD90(sp1F, 0);
      if(this->portrait_id == 0x66){
           func_8030DCCC(sp1F, 0x40);
@@ -294,7 +688,7 @@ void func_80315C1C(gczoombox_t *this){
      func_80315200(this);
      func_80315300(this);
      for(i = 0 ; i < 8; i++){
-          this->unk13C[i] = NULL;
+          this->raw_str[i] = NULL;
      }
      this->unk135 = 0;
      this->unk137 = this->unk1A4_20 = 0;
@@ -302,7 +696,7 @@ void func_80315C1C(gczoombox_t *this){
 
 void func_80315C90(gczoombox_t *this, s32 arg1) {
     s32 phi_s1;
-    s32 phi_s4;
+    s32 current_sfx;
     f32 phi_f12;
     f32 phi_f2;
     f32 phi_f18;
@@ -312,8 +706,8 @@ void func_80315C90(gczoombox_t *this, s32 arg1) {
     s32 phi_a0;
     s32 phi_a1;
 
-    phi_s4 = 0U;
-    if (this != NULL && this->unk13B != 0 && this->unk1A4_11) {
+    current_sfx = 0U;
+    if (this != NULL && this->sfx_count != 0 && this->unk1A4_11) {
         if (this->portrait_id == 0x15) {
             for(phi_s1 = 0; phi_s1 < 5; phi_s1++){
                 if(func_8030E3FC(this->unk108[phi_s1]))
@@ -332,12 +726,12 @@ void func_80315C90(gczoombox_t *this, s32 arg1) {
                     func_8030E394(this->unk108[phi_s1]);
                 }
             }
-            if (this->unk13B != 1) {
+            if (this->sfx_count != 1) {
                 do {
-                    phi_s4 = randi2(0, this->unk13B);
-                } while (phi_s4 == this->unk18B || this->unk124[phi_s4] == 0);
+                    current_sfx = randi2(0, this->sfx_count);
+                } while (current_sfx == this->prev_sfx || this->unk124[current_sfx] == 0);
             }
-            this->unk18B = phi_s4;
+            this->prev_sfx = current_sfx;
 
             if (arg1 != 0) {
                 phi_s1_3 = 15000;
@@ -350,17 +744,17 @@ void func_80315C90(gczoombox_t *this, s32 arg1) {
                 phi_f2 = 0.2f;
                 phi_f18 = 0.0f;
             }
-            phi_f14 = this->unk110[phi_s4];
+            phi_f14 = this->unk110[current_sfx];
             if (phi_f14 < -1.0f) {
                 do {
                     phi_f12 = (f32) randi2(-12, 0);
                 } while (phi_f12 == -11.0 || phi_f12 == -9.0 || phi_f12 == -7.0 || phi_f12 == -6.0 || phi_f12 == -4.0 || phi_f12 == -2.0 || phi_f12 == -1.0);
 
-                phi_f14 = this->unk110[phi_s4];
+                phi_f14 = this->unk110[current_sfx];
                 if ( -2.0f > phi_f14) {
                     phi_f12 -= (phi_f14 - -2.0f);
                 }
-                func_8030DBB4(this->unk108[phi_s4], alCents2Ratio(phi_f12 *100.0f));
+                func_8030DBB4(this->unk108[current_sfx], alCents2Ratio(phi_f12 *100.0f));
             } else {
                 phi_f12 = (phi_f14 - phi_f2 < 0.1) ? 0.1 : phi_f14 - phi_f2;
                 phi_f12 = (phi_f12 >= 2.0)?  1.99 : phi_f12;
@@ -368,13 +762,13 @@ void func_80315C90(gczoombox_t *this, s32 arg1) {
                 phi_f14 = (phi_f14 - phi_f18 < 2.0) ? phi_f14 - phi_f18 : 2.0;
                 phi_f14 = (0.1 < phi_f14) ? phi_f14 : 0.1;
 
-                func_8030DBB4(this->unk108[phi_s4], randf2(phi_f12, phi_f14));
+                func_8030DBB4(this->unk108[current_sfx], randf2(phi_f12, phi_f14));
             }
 
-            phi_a0 = (this->unk124[phi_s4] - phi_s1_3 < 0)? 0 : this->unk124[phi_s4] - phi_s1_3;
-            phi_a1 = (this->unk124[phi_s4] - phi_s2 < 0)  ? 0 : this->unk124[phi_s4] - phi_s2;
-            sfxsource_setSampleRate(this->unk108[phi_s4], randi2(phi_a0, phi_a1));
-            func_8030E2C4(this->unk108[phi_s4]);
+            phi_a0 = (this->unk124[current_sfx] - phi_s1_3 < 0)? 0 : this->unk124[current_sfx] - phi_s1_3;
+            phi_a1 = (this->unk124[current_sfx] - phi_s2 < 0)  ? 0 : this->unk124[current_sfx] - phi_s2;
+            sfxsource_setSampleRate(this->unk108[current_sfx], randi2(phi_a0, phi_a1));
+            func_8030E2C4(this->unk108[current_sfx]);
         }
     }
 }
@@ -393,20 +787,20 @@ void func_803160A8(gczoombox_t *this) {
     phi_a0 = 0;
     phi_a1 = 0;
     tmp_f16 = 0;
-    if (D_8036C6C0[this->portrait_id].soundInfo[0].unk4 != -1.0f) {
+    if (D_8036C6C0[this->portrait_id].soundInfo[0].pitch != -1.0f) {
         do {
             sound_index = randi2(0, 5);
             sp50 = D_8036C6C0[this->portrait_id].soundInfo[sound_index].unk2;
         } while ( sp50 == 0);
-        temp_f14 = D_8036C6C0[this->portrait_id].soundInfo[sound_index].unk4;
+        temp_f14 = D_8036C6C0[this->portrait_id].soundInfo[sound_index].pitch;
         sp40 = (temp_f14 - 0.2f < 0.1) ? 0.1 : temp_f14 - 0.2f;
         sp40 = (sp40 >= 2.0) ? 1.99 : sp40;
 
         sp3C = temp_f14 - tmp_f16;
         sp3C = (sp3C < 2.0) ? sp3C : 2.0;
         sp3C = (0.1 < sp3C) ? sp3C : 0.1;
-        if (func_8030ED70(D_8036C6C0[this->portrait_id].soundInfo[sound_index].uid) == 0) {
-            func_8030E760(D_8036C6C0[this->portrait_id].soundInfo[sound_index].uid, randf2(sp40, sp3C), randi2((sp50 - 6000 < 0) ? 0 : sp50 - 6000, (sp50 - phi_a1 < 0) ? 0: sp50 - phi_a1));
+        if (func_8030ED70(D_8036C6C0[this->portrait_id].soundInfo[sound_index].sfx_id) == 0) {
+            func_8030E760(D_8036C6C0[this->portrait_id].soundInfo[sound_index].sfx_id, randf2(sp40, sp3C), randi2((sp50 - 6000 < 0) ? 0 : sp50 - 6000, (sp50 - phi_a1 < 0) ? 0: sp50 - phi_a1));
         }
     }
 }
@@ -449,8 +843,8 @@ void func_803163A8(gczoombox_t *this, Gfx **gfx, Mtx **mtx) {
     sp44[0] = 0.0f; sp44[1] = 0.0f; sp44[2] = 0.0f;
     func_8033A308(sp44);
     set_model_render_mode(0);
-    if (this->unkF4 != NULL) {
-        func_8028781C(this->unkF4, sp50, 1);
+    if (this->anim_ctrl != NULL) {
+        func_8028781C(this->anim_ctrl, sp50, 1);
     }
     func_803391A4(gfx, mtx, sp50, sp5C, this->unk198 * sp34, &sp38, this->unkF0);
 }
@@ -510,7 +904,7 @@ void func_80316764(gczoombox_t *this, s32 arg1) {
         this->unk19C += phi_f0;
         while (this->unk1A0 < this->unk19C) {
             this->unk186 += 1;
-            if (this->unk186 >= (s32) this->unk188) {
+            if (this->unk186 >= (s32) this->frame_count) {
                 this->unk186 = 0;
             }
             this->unk19C -= this->unk1A0;
@@ -518,7 +912,7 @@ void func_80316764(gczoombox_t *this, s32 arg1) {
         return;
     }
 
-    if (arg1 && this->unk1A4_12 && sp38[BUTTON_START]) {
+    if (arg1 && this->unk1A4_12 && sp38[0]) {
         if (this->unk110[0] == -1.0f) {
             func_80315C90(this, 1);
         } else {
@@ -532,14 +926,14 @@ void func_80316764(gczoombox_t *this, s32 arg1) {
     else if (this->unk1A4_22 != 0) {
         if (this->unk1A4_21) {
             this->unk186--;
-            if ((this->unk188 - 4) >= this->unk186) {
+            if ((this->frame_count - 4) >= this->unk186) {
                 this->unk1A4_21 = FALSE;
                 this->unk1A4_22 = FALSE;
                 this->unk186 = 0;
             }
         } else {
             this->unk186++;
-            if (this->unk186 >= this->unk188) {
+            if (this->unk186 >= this->frame_count) {
                 this->unk1A4_21 = TRUE;
                 this->unk186--;
             }
@@ -550,7 +944,7 @@ void func_80316764(gczoombox_t *this, s32 arg1) {
             if (this->unk110[0] == -1.0f) {
                 func_80315C90(this, 1);
             }
-            else if (this->unk13B != 0) {
+            else if (this->sfx_count != 0) {
                 if ((this->unk186 == 0) && (this->unk186 < this->unkB0[this->unk187])) {
                     func_80315C90(this, 0);
                 }
@@ -564,7 +958,7 @@ void func_80316764(gczoombox_t *this, s32 arg1) {
                     this->unk1A4_23 = FALSE;
                     if (randf() < 0.4) {
                         this->unk1A4_22 = TRUE;
-                        this->unk186 = this->unk188 - 4;
+                        this->unk186 = this->frame_count - 4;
                     }
                 }
             } else if (this->unk186 < this->unkB0[this->unk187]) {
@@ -580,15 +974,15 @@ void func_80316764(gczoombox_t *this, s32 arg1) {
         } else {
             if (randf() < 0.01) {
                 this->unk1A4_22 = TRUE;
-                this->unk186 = this->unk188 - 4;
+                this->unk186 = this->frame_count - 4;
             }
         }
     }
     if (this->unk186 < 0) {
         this->unk186 = 0;
     }
-    if (this->unk186 >= this->unk188) {
-        this->unk186 = this->unk188 - 1;
+    if (this->unk186 >= this->frame_count) {
+        this->unk186 = this->frame_count - 1;
     }
 }
 
@@ -665,6 +1059,7 @@ void func_80316E84(gczoombox_t *this, s32 arg1){
     }
 }
 
+//gczoombox_strLen
 s32 func_80316ED4(u8 *arg0){
     return strlen(arg0);
 }
@@ -696,13 +1091,13 @@ void func_80316EF4(gczoombox_t *this){
                     this->unk160 += this->unk15C + 1;
                }
                else{
-                    this->unk160 = this->unk13C[this->unk138];
+                    this->unk160 = this->raw_str[this->unk138];
                     this->unk1A4_19 = func_8031B604(this->unk160);
                     this->unk166 = ((this->unk1A4_19) ? 0x11 : 0x14) * this->unk198 + this->unk164;
                }
                this->unk15C = func_80316ED4(this->unk160);
-               if(this->unk15C >= 0x18){
-                    this->unk15C = func_803158AC(this->unk160, 0x18);
+               if(this->unk15C >= 24){
+                    this->unk15C = _gczoombox_findLineBreak(this->unk160, 24);
                     this->unk15D = 1;
                }
                else{
@@ -748,7 +1143,7 @@ void func_80316EF4(gczoombox_t *this){
                     if(this->unk1A4_19){
                          sp44 *= 1.5;
                     }
-                    if(sp58[BUTTON_START] && this->unk1A4_12){
+                    if(sp58[0] && this->unk1A4_12){
                          sp44 *= 0.5;
                     }
                     else if(sp4C[0] && this->unk1A4_12){
@@ -758,7 +1153,7 @@ void func_80316EF4(gczoombox_t *this){
                     while(sp44 < this->unk18C && this->unk15C >= this->unk15E){
                          this->unk15E++;
                          if(func_803156F0(this->unk60[this->unk15E], this->unk1A4_19)){
-                              this->unk18C -= (sp58[BUTTON_START] && this->unk1A4_12) ? 0.05 : 0.1;
+                              this->unk18C -= (sp58[0] && this->unk1A4_12) ? 0.05 : 0.1;
                          }//L803172B4
                          this->unk18C -= sp44;
                     }//L803172EC
@@ -777,7 +1172,7 @@ void func_80316EF4(gczoombox_t *this){
                }
                break;
           case 0x3: //L80317360
-               if((sp58[BUTTON_START] && this->unk1A4_12) || this->unk181 < 0){
+               if((sp58[0] && this->unk1A4_12) || this->unk181 < 0){
                     this->unk135 = 4;
                     this->unk183 = 0.5*sp48*this->unk184;
 
@@ -786,7 +1181,7 @@ void func_80316EF4(gczoombox_t *this){
                }
                break;
           case 0x4: //L80317470
-               if(sp58[BUTTON_START] && this->unk1A4_12){
+               if(sp58[0] && this->unk1A4_12){
                     this->unk183 = 0.5*sp48*(this->unk184 + 2);
                     this->unk1A4_23 = 0;
                }
@@ -836,18 +1231,18 @@ void func_80316EF4(gczoombox_t *this){
                break;
           case 0x5: //L803177D4
                if(this->unk1A4_16){
-                    animctrl_update(this->unkF4);
+                    animctrl_update(this->anim_ctrl);
                     if(this->unk1A4_14){
-                         this->unk17C = 1.0 - animctrl_getAnimTimer(this->unkF4)/this->unk194;
+                         this->unk17C = 1.0 - animctrl_getAnimTimer(this->anim_ctrl)/this->unk194;
                     }
                }//L8031782C
-               if(this->unk1A4_11 && animctrl_isAt(this->unkF4, 0.1f)){
+               if(this->unk1A4_11 && animctrl_isAt(this->anim_ctrl, 0.1f)){
                     func_8030E760(SFX_CC_PAUSEMENU_ENTER_SUBMENU, 1.1f, this->unk12E);
                }//L80317864
-               if(this->unk1A4_16 && animctrl_isAt(this->unkF4, this->unk194)){
-                    animctrl_setPlaybackType(this->unkF4, ANIMCTRL_STOPPED);
-                    animctrl_setAnimTimer(this->unkF4, this->unk194);
-                    animctrl_update(this->unkF4);
+               if(this->unk1A4_16 && animctrl_isAt(this->anim_ctrl, this->unk194)){
+                    animctrl_setPlaybackType(this->anim_ctrl, ANIMCTRL_STOPPED);
+                    animctrl_setAnimTimer(this->anim_ctrl, this->unk194);
+                    animctrl_update(this->anim_ctrl);
                     if(this->unk1A4_14)
                          func_803152C4(this);
                     this->unk1A4_14 = this->unk1A4_13 = 0;
@@ -865,15 +1260,15 @@ void func_80316EF4(gczoombox_t *this){
                break;
           case 0x6: //L80317940
                if(this->unk1A4_16){
-                    animctrl_update(this->unkF4);
+                    animctrl_update(this->anim_ctrl);
                     if(this->unk1A4_14){
-                         this->unk17C = animctrl_getAnimTimer(this->unkF4)/this->unk194;
+                         this->unk17C = animctrl_getAnimTimer(this->anim_ctrl)/this->unk194;
                     }
                }
-               if(this->unk1A4_11 && animctrl_isAt(this->unkF4, 0.9f)){
+               if(this->unk1A4_11 && animctrl_isAt(this->anim_ctrl, 0.9f)){
                     func_8030E6A4(SFX_CD_PAUSEMENU_LEAVE_SUBMENU, 1.1f, this->unk12E);
                }
-               if(this->unk1A4_16 && animctrl_isStopped(this->unkF4)){
+               if(this->unk1A4_16 && animctrl_isStopped(this->anim_ctrl)){
                     if(this->unk1A4_14){
                          func_803152C4(this);
                     }
@@ -955,8 +1350,8 @@ void func_80316EF4(gczoombox_t *this){
 
 //_gczoombox_loadSprite
 void func_80317C90(gczoombox_t *this, s32 portrait_id){
-     this->unkF8 = func_8033B6C4(D_8036C6C0[portrait_id].uid, &this->unkFC);
-     this->unk188 = this->unkF8->frameCnt;
+     this->unkF8 = func_8033B6C4(D_8036C6C0[portrait_id].spite_id, &this->unkFC);
+     this->frame_count = this->unkF8->frameCnt;
      func_803382E4(-1);
      
      func_80338308(func_802510A0(this->unkF8), func_802510A8(this->unkF8));
@@ -966,29 +1361,29 @@ void func_80317C90(gczoombox_t *this, s32 portrait_id){
 void func_80317D10(gczoombox_t *this, s32 portrait_id){
      s32 i;
 
-     this->unk13B = 0;
+     this->sfx_count = 0;
      for(i = 0; i < 5; i++){
           this->unk108[i] = 0;
           this->unk124[i] = 0;
           this->unk110[i] = 0.0f;
      }
      if(this->unk139 != 2 && this->unk139 != 1){
-          if(D_8036C6C0[portrait_id].soundInfo[0].unk4 == -1.0f){
-               this->unk108[0] = D_8036C6C0[portrait_id].soundInfo[0].uid;
+          if(D_8036C6C0[portrait_id].soundInfo[0].pitch == -1.0f){
+               this->unk108[0] = D_8036C6C0[portrait_id].soundInfo[0].sfx_id;
                this->unk110[0] = -1.0f;
                
           }
           else{
                for(i = 0; i < 5; i++){//L80317DFC
                     if(D_8036C6C0[portrait_id].soundInfo[i].unk2){
-                         this->unk108[i] = func_80315BC0(this, D_8036C6C0[portrait_id].soundInfo[i].uid, 3);
+                         this->unk108[i] = func_80315BC0(this, D_8036C6C0[portrait_id].soundInfo[i].sfx_id, 3);
                          this->unk124[i] = D_8036C6C0[portrait_id].soundInfo[i].unk2;
-                         this->unk110[i] = D_8036C6C0[portrait_id].soundInfo[i].unk4;
-                         this->unk13B++;
+                         this->unk110[i] = D_8036C6C0[portrait_id].soundInfo[i].pitch;
+                         this->sfx_count++;
                     }
                     //L80317E48
                }
-               this->unk18B = randi2(0,this->unk13B);
+               this->prev_sfx = randi2(0,this->sfx_count);
           }
      }
 }
@@ -1006,7 +1401,7 @@ gczoombox_t *gczoombox_new(s32 arg0, s32 portrait_id, s32 arg2, s32 arg3, void (
     this->unk139 = arg2;
     this->unk13A = 0x20;
     for(i = 0; i < 8; i++){
-        this->unk13C[i] = NULL;
+        this->raw_str[i] = NULL;
     }
     this->unk15E = 0;
     this->unk15D = 0;
@@ -1018,11 +1413,11 @@ gczoombox_t *gczoombox_new(s32 arg0, s32 portrait_id, s32 arg2, s32 arg3, void (
     this->unk168 = 0xFF;
     this->unk1A4_24 = arg3;
     if(this->unk1A4_24){
-        this->unk16A = 0x2D;
+        this->unk16A = 45;
         this->unk174 = D_80276588 - 0x25;
         this->unk170 = D_80276588 + 0x66;
     }else{
-        this->unk16A = 0x47;
+        this->unk16A = 71;
         this->unk174 = 0x25;
         this->unk170 = -0x66;
     }
@@ -1061,10 +1456,10 @@ gczoombox_t *gczoombox_new(s32 arg0, s32 portrait_id, s32 arg2, s32 arg3, void (
 
     this->unkF0 = assetcache_get(0x89d);
     func_80317C90(this, portrait_id);
-    this->unkF4 = animctrl_new(0);
-    animctrl_reset(this->unkF4);
-    animctrl_setIndex(this->unkF4, ASSET_138_ANIM_ZOOMBOX);
-    func_802875AC(this->unkF4, "gczoombox.c", 0x6fd);
+    this->anim_ctrl = animctrl_new(0);
+    animctrl_reset(this->anim_ctrl);
+    animctrl_setIndex(this->anim_ctrl, ASSET_138_ANIM_ZOOMBOX);
+    func_802875AC(this->anim_ctrl, "gczoombox.c", 0x6fd);
 
     func_803184C8(this, 15.0f, 5, 2, 0.4f, 0, 0); //func_803184C8(this, 15.0f, 5, 2, D_80378940, 0, 0);
     this->unk176 = D_8036C6C0[portrait_id].unk2;
@@ -1084,28 +1479,28 @@ gczoombox_t *gczoombox_new(s32 arg0, s32 portrait_id, s32 arg2, s32 arg3, void (
     return this;
 }
 
-bool func_80318284(gczoombox_t *this, s32 arg1, u8 **arg2) {
+bool func_80318284(gczoombox_t *this, s32 str_cnt, char **str_ptrs) {
     s32 phi_v0;
 
-    if ((this->unk13A & 4) || (arg2 == NULL) || (arg1 == 0)) {
+    if ((this->unk13A & 4) || (str_ptrs == NULL) || (str_cnt == 0)) {
         return FALSE;
     }
     this->unk138 = 0;
-    this->unk137 = arg1;
-    for(phi_v0 = 0; phi_v0 < arg1; phi_v0++){
-        this->unk13C[phi_v0] = arg2[phi_v0];
+    this->unk137 = str_cnt;
+    for(phi_v0 = 0; phi_v0 < str_cnt; phi_v0++){
+        this->raw_str[phi_v0] = str_ptrs[phi_v0];
     }
 
-    for(phi_v0 = arg1; phi_v0 < 8; phi_v0++){
-        this->unk13C[phi_v0] = NULL;
+    for(phi_v0 = str_cnt; phi_v0 < 8; phi_v0++){
+        this->raw_str[phi_v0] = NULL;
     }
 
     this->unk13A |= 4;
     return 1;
 }
 
-bool func_803183A4(gczoombox_t *this, u8 *arg1) {
-    u8 *sp1C;
+bool func_803183A4(gczoombox_t *this, char *arg1) {
+    char *sp1C;
 
     if ((this->unk13A & 4) || (arg1 == NULL)) {
         return FALSE;
@@ -1141,30 +1536,30 @@ void func_8031843C(gczoombox_t *this){
     s32 phi_v0;
 
     for(phi_v0 = 0; phi_v0 < 8; phi_v0++){
-        this->unk13C[phi_v0] = NULL;
+        this->raw_str[phi_v0] = NULL;
     };
     this->unk137 = 0;
-    this->unk13A &= 0xfb;
+    this->unk13A &= (u8)~(0x4);
 }
 
 void func_80318478(gczoombox_t *this){
-    this->unk13A &= 0xfe;
+    this->unk13A &= (u8)~(0x1);
 }
 
 void func_80318488(gczoombox_t *this){
-    this->unk13A &= 0xef;
+    this->unk13A &= (u8)~(0x10);
 }
 
 void func_80318498(gczoombox_t *this){
-    this->unk13A &= 0xfd;
+    this->unk13A &= (u8)~(0x2);
 }
 
 void gczoombox_resolve_minimize(gczoombox_t *this){
-    this->unk13A &= 0xf7;
+    this->unk13A &= (u8)~(0x8);
 }
 
 void func_803184B8(gczoombox_t *this){
-    this->unk13A &= 0xdf;
+    this->unk13A &= (u8)~(0x20);
 }
 
 void func_803184C8(gczoombox_t *this, f32 arg1, s32 arg2, s32 arg3, f32 arg4, bool arg5, bool arg6) {
@@ -1173,8 +1568,8 @@ void func_803184C8(gczoombox_t *this, f32 arg1, s32 arg2, s32 arg3, f32 arg4, bo
         this->unk182 = arg2;
         this->unk184 = arg3;
         this->unk190 = 1.0 / arg1;
-        if (this->unkF4 != NULL) {
-            animctrl_setDuration(this->unkF4, arg4);
+        if (this->anim_ctrl != NULL) {
+            animctrl_setDuration(this->anim_ctrl, arg4);
         }
         this->unk1A4_12 = arg5 ? TRUE : FALSE;
         this->unk1A4_10 = arg6 ? TRUE : FALSE;
@@ -1369,8 +1764,8 @@ void func_80318C0C(gczoombox_t *this) {
     AnimCtrl *temp_a0;
 
     if (this != NULL) {
-        if (this->unkF4 != NULL) {
-            this->unkF4 = animctrl_defrag(this->unkF4);
+        if (this->anim_ctrl != NULL) {
+            this->anim_ctrl = animctrl_defrag(this->anim_ctrl);
         }
     }
 }
