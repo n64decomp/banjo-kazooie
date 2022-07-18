@@ -46,7 +46,7 @@ typedef struct map_savestate_s{
 
 extern MapSavestate *D_8037E650[];
 
-void func_802E3BD0(s32 arg0);
+void func_802E3BD0(s32 frame_buffer_indx);
 int func_802E49F0(void);
 
 /* .code */
@@ -268,8 +268,8 @@ void func_802E39D0(Gfx **gdl, Mtx **mptr, Vtx **vptr, s32 arg3, s32 arg4){
     osWritebackDCache(v_start, sizeof(Vtx)*( *vptr - v_start));
 }
 
-void func_802E3BD0(s32 arg0){
-    func_8024A85C(arg0);
+void func_802E3BD0(s32 frame_buffer_indx){
+    func_8024A85C(frame_buffer_indx);
 }
 
 void func_802E3BF0(void){

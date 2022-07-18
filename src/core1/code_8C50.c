@@ -217,8 +217,8 @@ void func_80246C2C(void){
 #ifndef NONMATCHING //MATCHES but requires .data defined for local static variable
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_8C50/func_80246D78.s")
 #else
-static s32 D_802759A4;
 void func_80246D78(void){
+    static s32 D_802759A4;
     s32 sp2C = (D_8027FC0C != 0) && (D_8028062C == D_80280628) && (D_8027FC18 == 2) && (D_8027FC1C == 0x10);
     volatile s32 sp30;
 

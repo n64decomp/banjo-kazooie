@@ -578,8 +578,7 @@ void func_80316764(gczoombox_t *this, s32 arg1) {
         if (this->unk186 > 0) {
             this->unk186--;
         } else {
-            // if (randf() < 0.01) { /* USE ONCE .RODATA DEFINED */
-            if (randf() < D_803788F0) {
+            if (randf() < 0.01) {
                 this->unk1A4_22 = TRUE;
                 this->unk186 = this->unk188 - 4;
             }
@@ -670,9 +669,6 @@ s32 func_80316ED4(u8 *arg0){
     return strlen(arg0);
 }
 
-#ifndef NONMATCHING //matches requires .rodata which requires gczoombox_new() matching
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/zoombox/func_80316EF4.s")
-#else
 void func_80316EF4(gczoombox_t *this){
      s32 sp58[6];
      s32 sp4C[3];
@@ -956,7 +952,6 @@ void func_80316EF4(gczoombox_t *this){
                break;
      }
 }
-#endif
 
 //_gczoombox_loadSprite
 void func_80317C90(gczoombox_t *this, s32 portrait_id){
@@ -998,11 +993,10 @@ void func_80317D10(gczoombox_t *this, s32 portrait_id){
      }
 }
 
-#ifdef NONMATCHING
 gczoombox_t *gczoombox_new(s32 arg0, s32 portrait_id, s32 arg2, s32 arg3, void (*arg4)(s32, s32)){
     gczoombox_t *this;
     s32 i;
-    s32 temp_v1_2;
+    s32 temp_v1;
 
     this = (gczoombox_t *)malloc(sizeof(gczoombox_t));
     this->unk130 = arg4;
@@ -1032,67 +1026,38 @@ gczoombox_t *gczoombox_new(s32 arg0, s32 portrait_id, s32 arg2, s32 arg3, void (
         this->unk174 = 0x25;
         this->unk170 = -0x66;
     }
-    this->unk18A = 0;
-    this->unk189 = 0;
-    this->unk187 = 0;
-    this->unk186 = 0;
-    this->unk185 = 0;
-    this->unk181 = 0;
-    this->unk180 = 0;
     this->unk172 = this->unk164;
+    this->unk181 =\
+    this->unk185 =\
+    this->unk186 =\
+    this->unk187 =\
+    this->unk189 =\
+    this->unk18A = 0;
+    this->unk180 = 0;
     this->unk18C = 0.0f;
     this->unk194 = 0.999f;
-    //  this->unk194 = D_80378938;
     this->unk198 = 1.0f;
     this->unk19C = 0.0f;
-    this->unk1A0 = 0.0333333f;
-    //  this->unk1A0 = D_8037893C;
-
-    // this->unk1A4_31 = \
-    // this->unk1A4_30 = \ 
-    // this->unk1A4_29 = \
-    // this->unk1A4_28 = \
-    // this->unk1A4_27 = \
-    // this->unk1A4_26 = \
-    // this->unk1A4_25 = \
-    // this->unk1A4_23 = \
-    // this->unk1A4_22 = \
-    // this->unk1A4_21 = \
-    // this->unk1A4_20 = \
-    // this->unk1A4_17 = \
-    // this->unk1A4_16 = \
-    // this->unk1A4_15 = \
-    // this->unk1A4_14 = \
-    // this->unk1A4_13 = \
-    // 0;
-
-    // this->unk1A4_11 = this->unk1A4_18 = 1;
-
-     
-    this->unk1A4_25 = \
-    this->unk1A4_23 = \
-    this->unk1A4_22 = \
-    this->unk1A4_21 = \
-    this->unk1A4_20 = \
-    this->unk1A4_17 = \
-    this->unk1A4_16 = \
-    this->unk1A4_15 = \
-    this->unk1A4_14 = \
-    this->unk1A4_13 = FALSE;
-
-    temp_v1_2 = this->unk1A4_13;
-
-
-
-    this->unk1A4_31 = \
-    this->unk1A4_30 = \
-    this->unk1A4_29 = \
-    this->unk1A4_28 = \
-    this->unk1A4_27 = \
-    this->unk1A4_26 = temp_v1_2;
-
-    this->unk1A4_18 = TRUE;
-    this->unk1A4_11 = this->unk1A4_18;
+    this->unk1A0 = 0.0333333351f;
+        
+    this->unk1A4_31 =\
+    this->unk1A4_30 =\
+    this->unk1A4_29 =\
+    this->unk1A4_28 =\
+    this->unk1A4_27 =\
+    this->unk1A4_26 =\
+    this->unk1A4_25 =\
+    this->unk1A4_23 =\
+    this->unk1A4_22 =\
+    this->unk1A4_21 =\
+    this->unk1A4_20 =\
+    this->unk1A4_17 =\
+    this->unk1A4_16 =\
+    this->unk1A4_15 =\
+    this->unk1A4_14 =\
+    this->unk1A4_13 = 0;
+    
+    this->unk1A4_11 = this->unk1A4_18 = 1;
 
     this->unkF0 = assetcache_get(0x89d);
     func_80317C90(this, portrait_id);
@@ -1116,11 +1081,8 @@ gczoombox_t *gczoombox_new(s32 arg0, s32 portrait_id, s32 arg2, s32 arg3, void (
     _gczoombox_memClear( &this->unk60, 0x30);
     _gczoombox_memClear( &this->unk90, 0x20);
     _gczoombox_memClear( &this->unkB0, 0x40);
-    return this; 
+    return this;
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/zoombox/gczoombox_new.s")
-#endif
 
 bool func_80318284(gczoombox_t *this, s32 arg1, u8 **arg2) {
     s32 phi_v0;

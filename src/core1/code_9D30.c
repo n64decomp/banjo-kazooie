@@ -2,8 +2,13 @@
 #include "functions.h"
 #include "variables.h"
 
-void func_8024A840(s32 arg0, s32 arg1, s32 arg2);
-void func_8024A85C(s32 arg0);
+void func_8024A3C8(s32 x, s32 y);
+void func_8024A840(s32 r, s32 g, s32 b);
+void func_8024A85C(s32 buffer_indx);
+
+
+extern s32 D_80276588; //framebuffer width
+extern s16 D_803A5D00[2][0xF660]; //framebuffer
 
 extern s16 D_80275BBC;
 
@@ -143,29 +148,114 @@ s32 func_802485BC(void){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_9D30/func_80249F34.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_9D30/func_8024A284.s")
+//fill framebuffer with vert and horz lines
+void func_8024A284(s32 x, s32 y, s32 arg2, s32 arg3, s32 horz_spacing, s32 vert_spacing) {
+    s32 var_s2;
+    s32 var_s3;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_9D30/func_8024A3C8.s")
+    for(var_s2 = 0; var_s2 < D_80276588; var_s2 += horz_spacing){
+        for(var_s3 = 0; var_s3 < D_8027658C; var_s3++){
+            func_8024A3C8(x + var_s2, y + var_s3);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_9D30/func_8024A490.s")
+        }
+    }
+    for(var_s3 = 0; var_s3 < D_8027658C; var_s3 += vert_spacing) {
+        for(var_s2 = 0; var_s2 < D_80276588; var_s2++){
+            func_8024A3C8(x + var_s2, y + var_s3);
+        }
+    }
+}
 
+//fills in pixel in frame buffer with D_802806E0 color
+void func_8024A3C8(s32 x, s32 y) {
+    s32 temp_v0;
+
+    if (x >= 0) {
+        if ((x < D_80276588) && (y >= 0) && (y < D_8027658C)) {
+            D_803A5D00[D_802806EC][x + y * D_80276588] = _SHIFTL(D_802806E0 >> 3, 11, 5) | _SHIFTL(D_802806E4 >> 3, 6, 5) | _SHIFTL(D_802806E8 >> 3, 1, 5) | _SHIFTL(1, 0, 1);
+        }
+    }
+}
+
+//draw rectangular outline
+void func_8024A490(s32 x, s32 y, s32 w, s32 h) {
+    s32 var_s1;
+
+    for(var_s1 = 0; var_s1 < w; var_s1++){
+        func_8024A3C8(x + var_s1, y);
+        func_8024A3C8(x + var_s1, y + h - 1);
+    }
+    for(var_s1 = 1; var_s1 < h - 1; var_s1++){
+        func_8024A3C8(x, y + var_s1);
+        func_8024A3C8(x + w - 1, y + var_s1);
+    }
+}
+
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_9D30/func_8024A564.s")
+#else
+void func_8024A564(s32 x, s32 y, u16 *arg2, s32 arg3, s32 arg4, f32 arg5, f32 arg6) {
+    s32 temp_a2;
+    s32 temp_a2_2;
+    s32 temp_a2_3;
+    s32 temp_f6;
+    s32 temp_f6_2;
+    s32 temp_lo;
+    s32 temp_t5;
+    s32 var_a0;
+    s32 var_a2;
+    s32 var_t1;
+    s32 var_t3;
+    s32 var_v0;
+    s32 var_v1;
+    u16 temp_t8;
+    s16 *var_t0;
+    s16 *var_t2;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_9D30/func_8024A770.s")
+    var_v0 = 0;
+    var_v1 = D_80276588;
+    var_t0 = &D_803A5D00[D_802806EC][x + y * D_80276588];
+    for( var_t1 = (arg4 * arg6) + 0.5; var_t1 != 0; var_t1--){
+        var_a2 = ((var_v0 >> 8) * arg3) << 8;
+        var_t2 = var_t0;
+        var_v0 += (s32) ((f64) (256.0f / arg6) + 0.5);
+        for(var_t3 = (arg3 * arg5) + 0.5; var_t3 != 0; var_t3--){
+            *var_t2 = arg2[var_a2 >> 8];
+            var_a2 += (s32) ((f64) (256.0f / arg5) + 0.5);
+            var_t2++;
+        }
+        var_t0 += D_80276588;
+    }
+}
+#endif
+
+//fills in rectangle in frame buffer with D_802806E0 color
+void func_8024A770(s32 x, s32 y, s32 w, s32 h) {
+    s32 var_s0;
+    s32 var_s1;
+    s32 var_s4;
+
+    var_s4 = 0;
+    for(var_s4 = 0; var_s4 < w; var_s4++) {
+        for(var_s0 = 0; var_s0 < h; var_s0++){
+                func_8024A3C8(x + var_s4, y + var_s0);
+            }
+    }
+}
 
 void func_8024A810(void){
     func_8024A840(0, 0x80, 0);
     func_8024A85C(0);
 }
 
-void func_8024A840(s32 arg0, s32 arg1, s32 arg2){
-    D_802806E0 = arg0;
-    D_802806E4 = arg1;
-    D_802806E8 = arg2;
+void func_8024A840(s32 r, s32 g, s32 b){
+    D_802806E0 = r;
+    D_802806E4 = g;
+    D_802806E8 = b;
 }
 
-void func_8024A85C(s32 arg0){
-    D_802806EC = arg0;
+void func_8024A85C(s32 buffer_indx){
+    D_802806EC = buffer_indx;
 }
 
 s32 func_8024A868(void){
