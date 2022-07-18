@@ -573,9 +573,9 @@ void func_802C5740(Actor * this){
     }//L802C5940
     if(!func_8038AAB0()){
         if(D_8037DCF4)
-            func_80316EF4(D_8037DCF4);
+            gczoombox_update(D_8037DCF4);
         if(D_8037DCF0)
-            func_80316EF4(D_8037DCF0);
+            gczoombox_update(D_8037DCF0);
     }
     func_802C4C14(this);
 }

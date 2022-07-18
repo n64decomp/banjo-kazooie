@@ -518,18 +518,18 @@ void func_80315484(gczoombox_t *this){
 
 void func_80315524(gczoombox_t *this){
     if(this->unk1A4_26 || this->unk1A4_31){
-        this->unk135 = 3;
+        this->state = 3;
         this->unk181 = this->unk182;
     }
     else{
-        this->unk135 = 4;
+        this->state = 4;
     }
     this->unk15E = this->unk15C;
     this->unk1A4_23 = 0;
 }
 
 void func_8031556C(gczoombox_t *this){
-    this->unk135 = 5;
+    this->state = 5;
     animctrl_setPlaybackType(this->anim_ctrl, ANIMCTRL_ONCE);
     animctrl_setDirection(this->anim_ctrl, 1);
     this->unk134 = 0;
@@ -540,7 +540,7 @@ void func_8031556C(gczoombox_t *this){
 void func_803155C8(gczoombox_t *this){
     int i;
 
-    this->unk135 = 6;
+    this->state = 6;
     animctrl_setPlaybackType(this->anim_ctrl, ANIMCTRL_ONCE);
     animctrl_setDirection(this->anim_ctrl, 0);
     this->unk1A4_16 = 1;
@@ -690,7 +690,7 @@ void func_80315C1C(gczoombox_t *this){
      for(i = 0 ; i < 8; i++){
           this->raw_str[i] = NULL;
      }
-     this->unk135 = 0;
+     this->state = 0;
      this->unk137 = this->unk1A4_20 = 0;
 }
 
@@ -994,7 +994,7 @@ void gczoombox_draw(gczoombox_t *this, Gfx **gdl, Mtx ** mptr, void *vptr){
      if(getGameMode() == GAME_MODE_9_BANJO_AND_KAZOOIE)
           func_8034A900();
      //L80316BCC
-     if(this->unk1A4_28 && this->unk135 && this->unkF0){
+     if(this->unk1A4_28 && this->state && this->unkF0){
           func_803162B4(this);
           func_803163A8(this, gdl, mptr);
           if( this->unk139 == 2
@@ -1035,7 +1035,7 @@ void gczoombox_draw(gczoombox_t *this, Gfx **gdl, Mtx ** mptr, void *vptr){
 }
 
 void func_80316E08(gczoombox_t *this) {
-    this->unk135 = 8;
+    this->state = 8;
     func_80318478(this);
     if (this->unk1A4_24) {
         this->unk170 = this->unk174 + 0x8B;
@@ -1046,7 +1046,7 @@ void func_80316E08(gczoombox_t *this) {
 }
 
 void func_80316E60(gczoombox_t *this){
-    this->unk135 = 9;
+    this->state = 9;
     func_80318488(this);
 }
 
@@ -1064,7 +1064,7 @@ s32 func_80316ED4(u8 *arg0){
     return strlen(arg0);
 }
 
-void func_80316EF4(gczoombox_t *this){
+void gczoombox_update(gczoombox_t *this){
      s32 sp58[6];
      s32 sp4C[3];
      s32 sp48;
@@ -1085,7 +1085,7 @@ void func_80316EF4(gczoombox_t *this){
           tmp_f0 = func_8033DDB8();
      }
 
-     switch(this->unk135){
+     switch(this->state){
           case 0x1: //L80316F90
                if(this->unk15D){
                     this->unk160 += this->unk15C + 1;
@@ -1128,7 +1128,7 @@ void func_80316EF4(gczoombox_t *this){
                }
 
                func_8031594C(this, this->unk60, 0, this->unk15C);
-               this->unk135 = 2;
+               this->state = 2;
                this->unk180 = this->unk15E =  0; //wrong reg
                this->unk18C = 0.0f;
                if(this->unk1A4_19){
@@ -1173,7 +1173,7 @@ void func_80316EF4(gczoombox_t *this){
                break;
           case 0x3: //L80317360
                if((sp58[0] && this->unk1A4_12) || this->unk181 < 0){
-                    this->unk135 = 4;
+                    this->state = 4;
                     this->unk183 = 0.5*sp48*this->unk184;
 
                }else{//L80317468
@@ -1192,7 +1192,7 @@ void func_80316EF4(gczoombox_t *this){
                if(this->unk1A4_26 || this->unk1A4_31){//L80317650
                     if(this->unk1A4_25){
                          func_8031843C(this);
-                         this->unk135 = 0xA;
+                         this->state = 0xA;
                     }
                     if(!this->unk1A4_23 && !this->unk1A4_25){
                          this->unk1A4_17 = 1;
@@ -1208,13 +1208,13 @@ void func_80316EF4(gczoombox_t *this){
                               this->unk16E = ((this->unk1A4_19) ? 0xf : 0xc) + this->unk16C;
                               this->unk1A4_30 = 1;
                               this->unk1A4_29 = 0;
-                              this->unk135 = 1;
+                              this->state = 1;
                          }
                     }
                }
                else{//L80317764
                     if(!this->unk1A4_23)
-                         this->unk135 = 1;
+                         this->state = 1;
                }
                break;
           case 0xa: //L8031777C
@@ -1226,7 +1226,7 @@ void func_80316EF4(gczoombox_t *this){
                else if(this->unk13A & 4){//L803177B4
                     this->unk1A4_25 = 0;
                     this->unk134 = 0;
-                    this->unk135 = 4;
+                    this->state = 4;
                }
                break;
           case 0x5: //L803177D4
@@ -1251,7 +1251,7 @@ void func_80316EF4(gczoombox_t *this){
                if(!this->unk1A4_16){
                     func_80316E84(this, 2);
                     if(this->unk13A & 4){
-                         this->unk135 = 1;
+                         this->state = 1;
                     }
                     else if(this->unk13A & 8){
                          func_803155C8(this);
@@ -1330,7 +1330,7 @@ void func_80316EF4(gczoombox_t *this){
                     this->unk1A4_28 = 0;
                     func_80316E84(this, 5);
                     if(this->unk13A & 0x20){
-                         this->unk135 = 7;
+                         this->state = 7;
                     }
                     else if(this->unk13A & 0x1) {
                          func_80316E08(this);
@@ -1395,7 +1395,7 @@ gczoombox_t *gczoombox_new(s32 arg0, s32 portrait_id, s32 arg2, s32 arg3, void (
 
     this = (gczoombox_t *)malloc(sizeof(gczoombox_t));
     this->unk130 = arg4;
-    this->unk135 = 0xB;
+    this->state = 0xB;
     this->portrait_id = portrait_id;
     this->unk134  = this->unk137 = this->unk138 = 0;
     this->unk139 = arg2;
@@ -1643,7 +1643,7 @@ void func_80318774(gczoombox_t *this){
 
 bool func_8031877C(gczoombox_t *this){
     if( this == NULL 
-        || this->unk135 == 0 || this->unk135 == 0xb || this->unk135 == 0x9 || this->unk135 == 0x6 || this->unk135 == 0x7
+        || this->state == 0 || this->state == 0xb || this->state == 0x9 || this->state == 0x6 || this->state == 0x7
     ){
         return FALSE;
     }
@@ -1656,8 +1656,8 @@ bool func_8031877C(gczoombox_t *this){
     this->unk1A4_23 =\
     this->unk15D = 0;
 
-    if( this->unk135 == 10 || this->unk135 == 0x1 || this->unk135 == 0x2 || this->unk135 == 0x3 || this->unk135 == 0x4 ){
-        this->unk135 = 10;
+    if( this->state == 10 || this->state == 0x1 || this->state == 0x2 || this->state == 0x3 || this->state == 0x4 ){
+        this->state = 10;
         this->unk134 = 3;
     }
     func_8031843C(this);
@@ -1666,16 +1666,16 @@ bool func_8031877C(gczoombox_t *this){
 
 bool func_803188B4(gczoombox_t *this) {
 
-    if ((this == NULL) || (this->unk135 == 0) || (this->unk135 == 7) || (this->unk135 == 9)) {
+    if ((this == NULL) || (this->state == 0) || (this->state == 7) || (this->state == 9)) {
         return FALSE;
     }
-    if ((this->unk135 == 6) && (this->unk134 == 4)) {
+    if ((this->state == 6) && (this->unk134 == 4)) {
         return FALSE;
     }
-    if (this->unk135 == 8) {
+    if (this->state == 8) {
         this->unk1A4_16 = FALSE;
-        this->unk135 = 6;
-    } else if (this->unk135 != 6) {
+        this->state = 6;
+    } else if (this->state != 6) {
         func_803155C8(this);
     }
     func_8031843C(this);
@@ -1685,7 +1685,7 @@ bool func_803188B4(gczoombox_t *this) {
 
 
 bool func_80318964(gczoombox_t *this) {
-    if (this == NULL || this->unk135 == 0 || this->unk135 == 7 || this->unk135 == 9) {
+    if (this == NULL || this->state == 0 || this->state == 7 || this->state == 9) {
         return FALSE;
     }
     gczoombox_close(this);
@@ -1697,15 +1697,15 @@ bool func_80318964(gczoombox_t *this) {
 bool func_803189C4(gczoombox_t *this, s32 arg1){
      if( this == NULL
          || arg1 == this->portrait_id
-         || ( this->unk135 != 6
-              && this->unk135 != 0xa
-              && this->unk135 != 0xb
-              && this->unk135 != 0x9
+         || ( this->state != 6
+              && this->state != 0xa
+              && this->state != 0xb
+              && this->state != 0x9
      )){
           return FALSE;
      }
      
-     if(this->unk135 == 0xb || this->unk135 == 0x9){
+     if(this->state == 0xb || this->state == 0x9){
           if(this->unkF8){
                assetcache_release(this->unkF8);
                this->unkF8 = NULL;
@@ -1757,7 +1757,7 @@ void func_80318B7C(gczoombox_t *this, s32 arg1) {
 }
 
 bool func_80318BEC(gczoombox_t *this){
-     return this != NULL && !this->unk135;
+     return this != NULL && !this->state;
 }
 
 void func_80318C0C(gczoombox_t *this) {

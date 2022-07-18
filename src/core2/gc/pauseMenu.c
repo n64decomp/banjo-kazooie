@@ -16,7 +16,7 @@ void mlMtxApply(Mtx*);
 void func_80310D2C(void);
 
 s32 level_get(void);
-void func_80316EF4(gczoombox_t *);
+void gczoombox_update(gczoombox_t *);
 void func_8024E6E0(s32, void *);
 void func_8024E60C(s32, void *);
 void func_8024E71C(s32, void *);
@@ -638,7 +638,7 @@ s32 func_80313380(void){
     func_8024E6E0(0, sp50);
     func_80310D2C();
     for(i = 0; i < 4; i++){
-        func_80316EF4(D_80383010.zoombox[i]);//gczoombox_update;
+        gczoombox_update(D_80383010.zoombox[i]);//gczoombox_update;
     }
 
     

@@ -26,7 +26,7 @@ typedef struct {
     s16 unk12E;
     void (*unk130)(s32, s32);
     u8  unk134;
-    u8  unk135;
+    u8  state;
     u8  portrait_id; //0x136
     u8  unk137; //string_cnt
     u8  unk138; //current_string

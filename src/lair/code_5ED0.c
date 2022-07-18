@@ -1004,7 +1004,7 @@ void func_8038E0B0(void) {
 
             case 3://L8038E5C8
                 if ((D_8037DCB8->ffQuestionType == 2) && D_80394354[D_8037DCB8->unkC].unk0 == 2){
-                    func_80316EF4(D_8037DCB8->unk20);
+                    gczoombox_update(D_8037DCB8->unk20);
                 }
                 if ((D_8037DCB8->unk12 == 0) && func_8028EFC8() && (sp48[BUTTON_Z] == 1)) {
                     func_80324C58();

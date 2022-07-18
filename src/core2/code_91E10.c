@@ -476,7 +476,7 @@ void func_80319EA4(void) {
     func_8024E55C(0, sp58);
     func_8024E71C(0, sp4C);
     for(phi_s0 = 0; phi_s0 < 4; phi_s0++){
-        func_80316EF4(D_803830E0->unk24[phi_s0]);
+        gczoombox_update(D_803830E0->unk24[phi_s0]);
     }
 
     switch (D_803830E0->unk10) {
