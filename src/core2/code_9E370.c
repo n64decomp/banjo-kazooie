@@ -7,11 +7,24 @@
 extern f32 func_80258708(f32[3], f32[3]);
 extern void func_802D7124(Actor *, f32);
 extern void func_802EE6CC(f32[3], s32[4], s32[4], s32, f32, f32, s32, s32, s32);
-extern void func_8032B5C0(void);
+
+
 extern void func_8033A244(f32);
 extern void func_8033A410(s32);
 
+f32 func_80257204(f32, f32, f32, f32);
+extern Actor *func_802C4260(enum actor_id, s32 x, s32 y, s32 z, s32 yaw);
+f32 func_8033229C(ActorMarker *);
+f32 func_8028EBA4(void);
+extern void func_8032FFF4(ActorMarker *, ActorMarker *, s32);
+extern void func_802C9334(s32, Actor *);
+extern void func_8032B3A0(Actor *, ActorMarker *);
+extern void func_8032EE0C(GenMethod_1, s32);
+extern void func_8032EE20(void);
+extern void func_802C4014(GenMethod_5, s32, s32, s32, s32, s32);
 
+
+void func_8032B5C0(ActorMarker *arg0, ActorMarker *arg1, struct5Cs *arg2);
 void func_80328B8C(Actor * this, s32 arg1, f32 arg2, s32 arg3);
 void func_8032BB88(Actor *this, s32 arg1, s32 arg2);
 int  actor_playerIsWithinDist(Actor *this, s32 dist);
@@ -23,6 +36,8 @@ extern void func_803382E4(s32);
 extern void func_8033687C(Gfx **);
 extern void func_80335D30(Gfx **);
 extern void func_80344138(s32, s32, s32, f32[3], f32[3], Gfx **, Mtx **);
+
+
 
 /* .data */
 extern s32 D_803255FC;
@@ -36,6 +51,8 @@ extern  u8 D_8036E578;
 extern  u8 D_8036E57C;
 extern f32 D_8036E580;
 extern f32 D_8036E58C[3];
+extern s32 D_8036E5B0[4];
+extern s32 D_8036E5C0[4];
 
 
 /* .rodata */
@@ -1577,17 +1594,171 @@ void func_8032AABC(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032AF94.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032B16C.s")
+ActorMarker *func_8032B16C(enum jiggy_e jiggy_id) {
+    Actor *temp_s3;
+    Actor *var_s0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032B258.s")
+    if (D_8036E560 != NULL) {
+        temp_s3 = &D_8036E560->data[0];
+        var_s0 = temp_s3;
+        for(var_s0 = temp_s3; (var_s0 - temp_s3) < D_8036E560->cnt; var_s0++){
+            if ((var_s0->marker->unk14_20 == MARKER_52_JIGGY) && (func_802C8088(&(var_s0->marker)) == jiggy_id)) {
+                return var_s0->marker;
+            }
+        }
+    }
+    return NULL;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032B38C.s")
+void func_8032B258(Actor *this, enum collision_e arg1) {
+    f32 sp44;
+    f32 sp38[3];
+    f32 sp34;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032B3A0.s")
+    if ((arg1 == COLLISION_2_DIE) && this->unk138_27 != 0) {
+        sp44 = func_8028EBA4();
+        if ((s32)this->marker->unk44 < 0) {
+            func_8034A174( this->marker->unk44, 0x20, sp38);
+        }
+        if (((s32)this->marker->unk44 < 0) && ((sp38[0] != 0.0f) || (sp38[1] != 0.0f) || (sp38[2] != 0.0f))) {
+            func_802C4014((GenMethod_5)func_802C4260, this->unk138_27 + 0x15, reinterpret_cast(s32,sp38[0]), reinterpret_cast(s32,sp38[1]), reinterpret_cast(s32,sp38[2]), reinterpret_cast(s32,sp44));
+            return;
+        }
+        else{
+            sp34 = this->position[1] + 50.0f;
+            func_802C4014((GenMethod_5)func_802C4260, this->unk138_27 + 0x15, reinterpret_cast(s32,this->position[0]), reinterpret_cast(s32,sp34), reinterpret_cast(s32,this->position[2]), reinterpret_cast(s32,sp44));
+        }
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032B4DC.s")
+bool func_8032B38C(NodeProp *node, s32 arg1){
+    return node->unk8 == 0xF7;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032B5C0.s")
+void func_8032B3A0(Actor *this, ActorMarker *arg1) {
+    f32 sp54[3];
+
+    if (arg1 != NULL) {
+        sp54[0] = this->position[0];
+        sp54[1] = this->position[1] + func_8033229C(this->marker)*((this->unk16C_0) ? 0.5 : 1.0);
+        sp54[2] = this->position[2];
+        func_802EE6CC(sp54, 0, D_8036E5B0, !this->unk16C_0, 0.75f, 0.0f, 125, 250, 0);
+        func_802F3CF8(sp54, !this->unk16C_0, 
+            (arg1->unk14_20 == 1) ? 1 
+            : (player_getTransformation() == TRANSFORM_5_CROC) ? 2
+            : 0
+        );
+    }
+}
+
+
+void func_8032B4DC(Actor *this, ActorMarker *arg1, s32 arg2) {
+    f32 sp3C[3];
+
+    if (arg1 != NULL) {
+        func_8034A174(this->marker->unk44, arg2, &sp3C);
+        func_802EE6CC(sp3C, NULL, D_8036E5C0, !this->unk16C_0, 0.75f, 0.0f, 125, 250, 0);
+        func_802F3CF8(sp3C, !this->unk16C_0, 
+            (arg1->unk14_20 == 1) ? 1 
+            : (player_getTransformation() == TRANSFORM_5_CROC) ? 2
+            : 0
+        );
+    }
+}
+
+void func_8032B5C0(ActorMarker *arg0, ActorMarker *arg1, struct5Cs *arg2) {
+    Actor *this;
+    s32 sp70;
+    s32 sp6C;
+    s32 sp68;
+    s32 sp64;
+    s32 var_v0;
+    f32 sp5C;
+    f32 sp50[3];
+    s32 sp4C;
+    NodeProp *sp48;
+    s32 sp3C[3];
+    f32 sp38;
+    s32 pad;
+
+    this = marker_getActor(arg0);
+    sp70 = func_8033D5B4(arg2);
+    sp6C = func_8033D584(arg2);
+    sp68 = func_8033D5A4(arg2);
+    sp64 = func_8033D574(arg2);
+    if (((func_80297C6C() != 3) && func_8028F1E0()) || (func_8033D594(arg2) == 0)) {
+        if (sp64 == 0) {
+            if ((sp68 != 0) || (arg1->unk14_20 == 0)) {
+                if (sp68 <= 0) {
+                    sp68 = 1;
+                }
+            } else{
+                return;
+            }
+        }
+
+        if (sp68 != 0) {
+            var_v0 = MAX(0 , (this->unk164[sp64] - (100 / sp68)));
+            if ((this->unk164[sp64] = var_v0) && (sp68 >= 2)) {
+                sp6C /= 2;
+            }
+        }
+        if (sp6C != 0) {
+            func_802C8F70(func_80257204(arg0->propPtr->x, arg0->propPtr->z, arg1->propPtr->x, arg1->propPtr->z) + 90.0f);
+            D_8036E564 = sp6C;
+            if (this->unk138_25) {
+                func_802C9334(sp6C + 0x21, this);
+            } else {
+                if ((this->marker->unk14_20 < 0x1A1) || (this->marker->unk14_20 >= 0x1A5)) {
+                    func_802C9334(sp6C + 0x18, this);
+                }
+            }
+        }
+        if (sp68 != 0) {
+            if ((sp64 == 2) && this->unk16C_1) {
+                func_8032B3A0(this, arg1);
+            }
+            if ((sp64 == 1) && this->unk16C_2) {
+                func_8032B3A0(this, arg1);
+            }
+
+            if ((this->unk164[sp64] == 0) || ((sp64 != 0) && this->unk138_9)) {
+                if (this->unk164[sp64] != 0) {
+                    sp64 -= 1;
+                }
+                if (sp64 != 2) {
+                    this->unk164[sp64] = 0x63;
+                }
+                if ((sp64 == 2) && (sp70 != 0)) {
+                    sp5C = func_8028EBA4();
+                    sp3C[0] = (s32) this->position[0];
+                    sp3C[1] = (s32) this->position[1];
+                    sp3C[2] = (s32) this->position[2];
+                    if ((s32)arg0->unk44 < 0) {
+                        func_8034A174(arg0->unk44, 0x20, sp50);
+                    }
+                    func_8032EE0C(func_8032B38C, this);
+                    if (((s32)arg0->unk44 < 0) && ((sp50[0] != 0.0f) || (sp50[1] != 0.0f) || (sp50[2] != 0.0f))) {
+                        func_802C4014(func_802C4260, sp70 + 0x15, reinterpret_cast(s32, sp50[0]), reinterpret_cast(s32, sp50[1]), reinterpret_cast(s32, sp50[2]), reinterpret_cast(s32, sp5C));
+                    } else if (this->unk16C_3 && func_803048E0(sp3C, &sp4C, &sp48, 3, (s32) (func_8033229C(arg0) * 4.0f))) {
+                        sp50[0] = (f32) sp48->x;
+                        sp50[1] = (f32) sp48->y;
+                        sp50[2] = (f32) sp48->z;
+                        func_802C4014(func_802C4260, sp70 + 0x15, reinterpret_cast(s32, sp50[0]), reinterpret_cast(s32, sp50[1]), reinterpret_cast(s32, sp50[2]), reinterpret_cast(s32, sp5C));
+                    } else {
+                        sp38 = this->position[1] + func_8033229C(arg0);
+                        func_802C4014(func_802C4260, sp70 + 0x15, reinterpret_cast(s32, this->position[0]), reinterpret_cast(s32, sp38), reinterpret_cast(s32, this->position[2]), reinterpret_cast(s32, sp5C));
+                    }
+                    func_8032EE20();
+                }
+                func_8032FFF4(arg0, arg1, sp64);
+            }
+            if ((sp64 != 0) && (sp6C != 0)) {
+                FUNC_8030E8B4(SFX_1D_HITTING_AN_ENEMY_1, 1.0f, 25984, this->position, (s32)((500.0f + func_8033229C(arg0)) * 0.5), (s32)((500.0f + func_8033229C(arg0)) * 5));
+            }
+        }
+    }
+}
 
 void func_8032BB88(Actor *this, s32 arg1, s32 arg2){
     s32 sp1C;

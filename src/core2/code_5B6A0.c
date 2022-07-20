@@ -4,7 +4,7 @@
 
 extern void func_80329904(ActorMarker *, s32, f32 *);
 extern int func_80320C94(f32 (*)[3], f32(*)[3], f32, s32, s32, u32);
-extern f32 func_8033229C(f32, f32, ActorMarker *, void*);
+extern f32 func_8033229C(ActorMarker *);
 
 typedef struct{
     s32 unk0;
@@ -151,7 +151,7 @@ void func_802E28D0(Actor *this) {
             this->yaw -= 360.0f;
         }
         if (local->unk4 >= 6) {
-            temp_v0_3 = func_80320C94(sp64, this->position, func_8033229C(360.0f, 10.0f, this->marker, phi_a1) * 1.2, &sp70, 5, 0);
+            temp_v0_3 = func_80320C94(sp64, this->position, func_8033229C(this->marker) * 1.2, &sp70, 5, 0);
             if (temp_v0_3 != 0) {
                 func_802E2748(this, *((u32*)temp_v0_3 + 2) & 0x20000);
                 return;

@@ -23,6 +23,7 @@ extern f32 fabsf(f32);
 typedef void (* GenMethod_0)(void);
 typedef void (* GenMethod_1)(s32);
 typedef void (* GenMethod_4)(s32, s32, s32, s32);
+typedef void (* GenMethod_5)(s32, s32, s32, s32, s32);
 #define NOT(boolean) ((boolean) ^ 1)
 
 #define TUPLE_ASSIGN(out, a, b, c) {\
@@ -57,7 +58,7 @@ typedef void (* GenMethod_4)(s32, s32, s32, s32);
 #define FUNC_8030E8B4(sfx_e, vol, sample_rate, position, e, f) func_8030E8B4(\
     _SHIFTL((vol*1023), 21, 11) + _SHIFTL(sample_rate >> 5, 11, 10) + _SHIFTL(sfx_e, 0, 11), \
     position, \
-    _SHIFTL(f, 16, 16) + _SHIFTL(e, 0, 16) \
+    _SHIFTL(e, 0, 16) + _SHIFTL(f, 16, 16)\
 )
 
 void func_80241304(Mtx *m, float x, float y, float z);

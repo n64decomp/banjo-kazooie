@@ -871,14 +871,14 @@ void cubeList_fromFile(Struct61s *file_ptr) {
     func_80308984();
 }
 
-void func_803048E0(s32 arg0[3], s32 arg1[3], s32 arg2, s32 arg3, s32 arg4) {
+s32 func_803048E0(s32 arg0[3], s32 arg1[3], s32 arg2, s32 arg3, s32 arg4) {
     Cube * var_s0;
 
     func_8032EE2C(arg0, arg3, arg4);
     for(var_s0 = D_80381FA0.cube_list; var_s0 < D_80381FA0.cube_list + D_80381FA0.cubeCnt; var_s0++) {
         func_8032EE80(var_s0);
     }
-    func_8032F170(arg1, arg2);
+    return func_8032F170(arg1, arg2);
 }
 
 s32 func_80304984(s32 arg0, u32 *arg1) {
