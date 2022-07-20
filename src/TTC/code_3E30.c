@@ -101,7 +101,23 @@ void func_8038A328(void) {
     mapSpecificFlags_set(1, FALSE);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/TTC/code_3E30/func_8038A37C.s")
+void func_8038A37C(s32 arg0, BKVtxRef *ref, Vtx *dst, s32 arg3) {
+    Struct_TTC_3E30_1 *ptr = (Struct_TTC_3E30_1 *) arg3;
+    f32 temp_f2;
+
+    if (ptr->unk4 < 0.5) {
+        temp_f2 = (ptr->unk4 / 0.5);
+        dst->v.cn[0] = (ref->v.v.cn[0] - 0xFF) * temp_f2 + 255.0f;
+        dst->v.cn[1] = ref->v.v.cn[1] * temp_f2;
+        dst->v.cn[2] = ref->v.v.cn[2] * temp_f2;
+    }
+    else{
+        dst->v.cn[0] = ref->v.v.cn[0];
+        dst->v.cn[1] = ref->v.v.cn[1];
+        dst->v.cn[2] = ref->v.v.cn[2];
+        ptr->unk3 = 2;
+    }
+}
 
 void func_8038A5D8(Struct_TTC_3E30_1 *arg0, s32 arg1) {
     s32 temp_v0;
@@ -114,11 +130,56 @@ void func_8038A5D8(Struct_TTC_3E30_1 *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/TTC/code_3E30/func_8038A618.s")
+void func_8038A618(s32 arg0, BKVtxRef *ref, Vtx *dst, s32 arg3) {
+    Struct_TTC_3E30_1 *ptr = (Struct_TTC_3E30_1 *) arg3;
+    f32 temp_f12;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/TTC/code_3E30/func_8038A7DC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/TTC/code_3E30/func_8038AA2C.s")
+    if (ptr->unk4 <= 0.5) {
+        temp_f12 = (ptr->unk4 / 0.5);
+        dst->v.cn[0] = ref->v.v.cn[0] * (1.0f - temp_f12);
+        dst->v.cn[1] = 0xFF;
+        dst->v.cn[2] = ref->v.v.cn[2] * (1.0f - temp_f12);
+    }
+    if (ptr->unk4 >= 0.5) {
+        ptr->unk3 = 4;
+    }
+}
+
+void func_8038A7DC(s32 arg0, BKVtxRef *ref, Vtx *dst, s32 arg3){
+    Struct_TTC_3E30_1 *ptr = (Struct_TTC_3E30_1 *) arg3;
+    f32 temp_f2;
+
+    if (ptr->unk4 < 0.5) {
+        temp_f2 = (ptr->unk4 / 0.5);
+        dst->v.cn[0] = (ref->v.v.cn[0] - 0xFF) * temp_f2 + 255.0f;
+        dst->v.cn[1] = (ref->v.v.cn[1] - 0xFF) * temp_f2 + 255.0f;
+        dst->v.cn[2] = ref->v.v.cn[2] * temp_f2;
+    }
+    else{
+        dst->v.cn[0] = ref->v.v.cn[0];
+        dst->v.cn[1] = ref->v.v.cn[1];
+        dst->v.cn[2] = ref->v.v.cn[2];
+        ptr->unk3 = 2;
+    }
+}
+
+void func_8038AA2C(void) {
+    f32 temp_f20;
+    Struct_TTC_3E30_1 *var_s0;
+
+    temp_f20 = time_getDelta();
+    for(var_s0 = D_8038C984; var_s0->unk0 != 0; var_s0++){
+        var_s0->unk4 += temp_f20;
+        if (var_s0->unk3 == 1) {
+            func_8033F120(D_8038D720.unk0, var_s0->unk0, func_8038A37C, (s32)var_s0);
+        } else if (var_s0->unk3 == 3) {
+            func_8033F120(D_8038D720.unk0, var_s0->unk0, func_8038A618, (s32)var_s0);
+        } else if (var_s0->unk3 == 5) {
+            func_8033F120(D_8038D720.unk0, var_s0->unk0, func_8038A7DC, (s32)var_s0);
+        }
+    }
+}
 
 void func_8038AB44(void){
     D_8038C980 = func_8038B600();

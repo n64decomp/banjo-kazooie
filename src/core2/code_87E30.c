@@ -6,30 +6,35 @@
 extern void func_803114D0(void );
 extern void func_803184C8(gczoombox_t *, f32, s32, s32, f32, s32, s32);
 extern int func_803114B0(void);
+extern void gczoombox_open(gczoombox_t *);
+extern void gczoombox_minimize(gczoombox_t *);
+extern void gczoombox_close(gczoombox_t *);
+extern bool func_803188B4(gczoombox_t *);
 
 extern s8 D_8036C4D0[];
 extern f32 D_80378534;
 
-extern struct {
-    u8 pad0[0x100];
+struct {
+    char unk0[0x100];
     u8 *unk100;
     struct13s *unk104[2]; //string ptr
-    s32 unk10C[2];
+    char *unk10C[2]; //current_string
     u8 dialogStringCount[2];   //zoombox string_count
-    s8 unk116[2];
-    u8 unk118[2];
+    s8 unk116[2]; //current_cmd
+    u8 unk118[2]; //current_string_index
     struct15s unk11A[2];
     gczoombox_t *zoombox[2];
     s16 unk124[2];
     u32 unk128_31:8;
     u32 unk128_23:8;
     u32 unk128_15:8;
-    u32 unk128_7:1;
+    u32 unk128_7:1; //active_zoombox_index
     u32 unk128_6:1;
     u32 unk128_5:1;
     u32 unk128_4:1;
     u32 unk128_3:1;
-    u32 pad128_2:3;
+    u32 pad128_2:2;
+    u32 unk128_0:1;
     u32 unk12C_31:2;
     u32 unk12C_29:2;
     u32 unk12C_27:2;
@@ -45,15 +50,69 @@ extern struct {
     s32  unk138;
     void (* unk13C)(ActorMarker *, s32, s32);
     void (* unk140)(ActorMarker *, s32, s32);
-    s32 unk144;
+    s32  (* unk144)(ActorMarker *, s32, s32);
     struct14s unk148[4];
 } D_80382E20;
+extern char D_80382FF8[];
 
+/* .code */
 int func_8030EDC0(ActorMarker *caller, s32 arg1){
     return (arg1 == -1)? 0: caller->unk5C == arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_87E30/func_8030EDE8.s")
+void gcdialog_init(void) {
+
+    s8 temp_t9;
+    u32 temp_t2;
+    u8 temp_a1;
+    u8 temp_t0;
+    u8 temp_t3;
+    u8 temp_t5;
+    u8 temp_t6;
+    u8 temp_t7;
+    u8 temp_t8;
+    s32 i;
+    struct14s *i_ptr;
+
+    D_80382E20.unk100 = 0;
+    
+    for( i = 0; i < 2; i++){
+        D_80382E20.unk104[i] = NULL;
+        D_80382E20.dialogStringCount[i] = 0;
+        D_80382E20.zoombox[i] = NULL;
+        D_80382E20.unk118[i] = NULL;
+        D_80382E20.unk116[i] = -1;
+        D_80382E20.unk10C[i] = 0;
+        D_80382E20.unk11A[i].unk0_7 = 0;
+        D_80382E20.unk11A[i].unk0_5 = 0;
+    }
+
+    for(i = 0; i < 4; i++){
+        D_80382E20.unk148[i].unk0 =  -1;
+        D_80382E20.unk148[i].unk2 = 0;
+        D_80382E20.unk148[i].unk10 = NULL;
+        D_80382E20.unk148[i].unk14 = 0;
+        D_80382E20.unk148[i].unk18 = NULL;
+        D_80382E20.unk148[i].unk1C = NULL;
+        D_80382E20.unk148[i].unk20 = 0;
+        D_80382E20.unk148[i].unk4[0] = D_80382E20.unk148[i].unk4[1] = D_80382E20.unk148[i].unk4[2] = 0;
+    }
+
+    D_80382E20.unk128_23 = 0;
+    D_80382E20.unk128_31 =  D_80382E20.unk128_5 = FALSE;
+    D_80382E20.unk12C_31 = D_80382E20.unk12C_29 = D_80382E20.unk12C_27 = D_80382E20.unk12C_25 = 0;
+    D_80382E20.unk128_15 = D_80382E20.unk128_7 = FALSE;
+    D_80382E20.unk128_6 = TRUE; 
+    D_80382E20.unk12C_23 = -1;
+    D_80382E20.unk12C_15 = D_80382E20.unk12C_11 = 0;
+    D_80382E20.unk130 = (s16) -1;
+    D_80382E20.caller = NULL;
+    D_80382E20.unk13C = NULL;
+    D_80382E20.unk140 = NULL;
+    D_80382E20.unk144 = 0;
+    D_80382E20.unk132 = 0xC;
+    D_80382E20.unk128_3 = TRUE;
+}
 
 static void _gcdialog_freeZoomboxes(void){
     s32 i;
@@ -97,9 +156,45 @@ void func_8030F130(void){
    D_80382E20.unk144 = NULL;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_87E30/func_8030F1D0.s")
+void func_8030F1D0(void){
+    if(func_803114B0()){
+        func_8025A55C(-1, 300, 2);
+    }
+    func_803114D0();
+    func_8030F130();
+    D_80382E20.unk128_23 = 0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_87E30/func_8030F218.s")
+void func_8030F218(char *next_state, char *arg1, char *arg2, bool arg3, bool arg4) {
+    s32 var_v0;
+    s32 i;
+    s32 j;
+
+    var_v0 = 0;\
+    for(i = 0; arg1[i] != '\0'; i++){
+        if (arg1[i] == ((arg3) ? 0xE : '~')) {
+            if (arg4) {
+                next_state[var_v0++] = 0xFD;
+                next_state[var_v0++] = 0x68;
+            }
+
+            for(j = 0 ; arg2[j] != '\0'; j++){
+                next_state[var_v0++] = arg2[j];
+                if (arg4 && !arg3 && arg2[j] == ' ') {
+                    next_state[var_v0++] = 0xFD;
+                    next_state[var_v0++] = 0x68;
+                }
+            }
+            if (arg4) {
+                next_state[var_v0++] = 0xFD;
+                next_state[var_v0++] = 0x6C;
+            }
+        } else {
+            next_state[var_v0++] = arg1[i];
+        }
+    }
+    next_state[var_v0] = '\0';
+}
 
 void func_8030F338(void){
     if(D_80382E20.unk13C != NULL){
@@ -120,21 +215,23 @@ void func_8030F338(void){
     func_8030F130();
 }
 
-void func_8030F410(Gfx **arg0, Mtx **arg1, s32 arg2){
+void func_8030F410(Gfx **next_state, Mtx **arg1, s32 arg2){
     s32 i;
     for(i = 0; i<2; i++){
-        gczoombox_draw(D_80382E20.zoombox[i], arg0, arg1, arg2);
+        gczoombox_draw(D_80382E20.zoombox[i], next_state, arg1, arg2);
     }
 }
 
-#ifdef NONMATCHING
-void func_8030F488(s32 arg0){
+
+
+void gcdialog_setState(s32 next_state){
     s32 i;
     s32 j;
-    s32 cmd;
+    s32 v0 = 6;
 
-    if(6 != D_80382E20.unk128_23  || arg0 != D_80382E20.unk128_23){
-        switch(arg0){
+    if(v0);
+    if(D_80382E20.unk128_23 != v0 ||  next_state != v0){
+        switch(next_state){
             case 1:
                 for(i = 0; i < 2; i++){
                     if(D_80382E20.zoombox[i] != NULL && D_80382E20.unk11A[i].unk0_7 == 0)
@@ -169,15 +266,14 @@ void func_8030F488(s32 arg0){
                 for(i=0; i< 2; i++){
                     D_80382E20.unk11A[i].unk0_7 = 0;
                     if(D_80382E20.zoombox[i] != NULL){
-                        D_80382E20.unk12C_25 += func_803188B4(D_80382E20.zoombox[i]);
-                        
+                        D_80382E20.unk12C_25 += (u8)func_803188B4(D_80382E20.zoombox[i]);
                     }
                 }
                 break;
 
             case 7:
                 func_8030F338();
-                arg0 = 0;
+                next_state = 0;
                 break;
             case 8:
                 func_8030F338();
@@ -191,38 +287,298 @@ void func_8030F488(s32 arg0){
             default:
                 break;
         }
-        D_80382E20.unk128_23 = arg0;
+        D_80382E20.unk128_23 = next_state;
+    }
+    
+}
+
+void func_8030F754(enum talk_pic_e portrait_id, s32 arg1){
+    s32 temp_a0;
+    s32 temp_v0;
+
+    switch(arg1){
+        case 1: //L8030F790
+            D_80382E20.unk12C_31++;
+            break;
+        
+        case 3: //L8030F7BC
+            gcdialog_setState(2);
+            break;
+
+        case 4: //L8030F7CC
+            if(D_80382E20.unk128_23 == 6){
+                D_80382E20.unk12C_25--;
+                if(D_80382E20.unk12C_25 == 0){
+                    temp_a0 = ((D_80382E20.unk11A[0].unk0_7) ? 1 : 0);
+                    temp_v0 = ((D_80382E20.unk11A[1].unk0_7) ? 1 : 0);
+                    gcdialog_setState((temp_v0 + temp_a0) ? 8 : 5);
+                }//L8030F980
+                break;
+            }
+
+            temp_v0 = ((D_80382E20.unk11A[0].unk0_7) ? 1 : 0) + ((D_80382E20.unk11A[1].unk0_7) ? 1 : 0);
+            if(temp_v0 > (s32)D_80382E20.unk12C_29){
+                D_80382E20.unk12C_29++;
+                if(D_80382E20.unk128_15 == D_80382E20.unk12C_29 + D_80382E20.unk12C_27){
+                    gcdialog_setState(8);
+                }
+            }
+            break;
+
+        case 6: //L8030F8FC
+            D_80382E20.unk12C_27++;
+            if(D_80382E20.unk12C_27 == D_80382E20.unk128_15){
+                gcdialog_setState(7);
+            }//L8030F964
+
+            if(D_80382E20.unk128_15 == D_80382E20.unk12C_29 + D_80382E20.unk12C_27){
+                gcdialog_setState(8);
+            }
+            break;
+    }//L8030F984
+}
+
+#ifndef NONMATCHING
+#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_87E30/gcdialog_update.s")
+#else
+void gcdialog_update(void) {
+    s32 spA8;
+    s32 i;
+    s32 sp90[6];
+    bool temp_v1_2;
+    s32 sp84[2];
+    s32 sp80;
+    s32 sp7C;
+    char *sp4C[8];
+    s32 var_v0_6;
+    s32 var_a3;
+    s32 var_v0_2;
+
+    sp80 = -1;
+    if (D_80382E20.unk128_31 & 0x80) {
+        func_8024E5A8(0, sp90);
+        func_8024E640(0, sp84);
+    } else {
+        func_8024E55C(0, sp90);
+        func_8024E60C(0, sp84);
+    }
+    switch (D_80382E20.unk128_23) {                          /* switch 1 */
+        case 1:                                     /* switch 1 */
+            var_a3 = 0;\
+            for(i = 0; i < 2; i++){
+                if(D_80382E20.zoombox[i] == NULL){
+                    var_a3++;
+                }
+            };
+            if (var_a3 == 2) {
+                gcdialog_setState(7);
+            } else if (D_80382E20.unk128_15 == D_80382E20.unk12C_31) {
+                D_80382E20.unk12C_31 = 0;
+                gcdialog_setState(2);
+            }
+            break;
+
+        case 2:                                     /* switch 1 */
+            if ((D_80382E20.zoombox[D_80382E20.unk128_7] == NULL) || func_80318BEC(D_80382E20.zoombox[D_80382E20.unk128_7]) || (D_80382E20.unk11A[D_80382E20.unk128_7].unk0_5 != 0)) {
+                D_80382E20.unk128_7 ^= 1;
+            } else {
+                D_80382E20.unk116[D_80382E20.unk128_7] = D_80382E20.unk104[D_80382E20.unk128_7][D_80382E20.unk118[D_80382E20.unk128_7]].cmd;
+                D_80382E20.unk10C[D_80382E20.unk128_7] = D_80382E20.unk104[D_80382E20.unk128_7][D_80382E20.unk118[D_80382E20.unk128_7]].str;
+                switch (D_80382E20.unk116[D_80382E20.unk128_7]) {            /* switch 2 */
+                    case -2:                                /* switch 2 */
+                        if (D_80382E20.unk118[D_80382E20.unk128_7] == 0) {
+                            D_80382E20.unk12C_29++;
+                        }
+                        gczoombox_minimize(D_80382E20.zoombox[D_80382E20.unk128_7]);
+                        D_80382E20.unk11A[D_80382E20.unk128_7].unk0_7 = 1;
+                        D_80382E20.unk11A[D_80382E20.unk128_7].unk0_5 = 1;
+                        D_80382E20.unk128_7 ^= 1;
+                        D_80382E20.unk128_6 = TRUE;
+                        break;
+
+                    case -1:                                /* switch 2 */
+                        D_80382E20.unk11A[D_80382E20.unk128_7].unk0_7 = 2;
+                        gcdialog_setState(4);
+                        break;
+
+                    case -4:                        /* switch 2 */
+                        gczoombox_minimize(D_80382E20.zoombox[D_80382E20.unk128_7]);
+                        gczoombox_close(D_80382E20.zoombox[D_80382E20.unk128_7]);
+                        D_80382E20.unk11A[D_80382E20.unk128_7].unk0_7 = 0;
+                        D_80382E20.unk11A[D_80382E20.unk128_7].unk0_5 = 1;
+                        D_80382E20.unk128_7 ^= 1;
+                        D_80382E20.unk128_6 = TRUE;
+                        break;
+
+                        case -7:                        /* switch 2 */
+                        if (D_80382E20.unk140 != NULL) {
+                            if (D_80382E20.caller == NULL) {
+                                D_80382E20.unk140(D_80382E20.caller, D_80382E20.unk130, *D_80382E20.unk10C[D_80382E20.unk128_7]);
+                            } else if (func_8030EDC0(D_80382E20.caller, D_80382E20.unk138)) {
+                                D_80382E20.unk140(D_80382E20.caller, D_80382E20.unk130, *D_80382E20.unk10C[D_80382E20.unk128_7]);
+                            }
+                        }
+                        D_80382E20.unk118[D_80382E20.unk128_7]++;
+                        break;
+
+                    case -9:                        /* switch 2 */
+                    case -8:                        /* switch 2 */
+                        do {
+                            D_80382E20.unk118[D_80382E20.unk128_7]++;
+                            D_80382E20.unk116[D_80382E20.unk128_7] = D_80382E20.unk104[D_80382E20.unk128_7][D_80382E20.unk118[D_80382E20.unk128_7]].cmd;
+                        } while (D_80382E20.unk116[D_80382E20.unk128_7] == -8 || D_80382E20.unk116[D_80382E20.unk128_7] == -9);
+                        break;
+
+                    case -6:                        /* switch 2 */
+                        for(var_v0_2 = D_80382E20.unk118[D_80382E20.unk128_7]; 
+                            D_80382E20.unk104[D_80382E20.unk128_7][var_v0_2].cmd < -4;
+                            var_v0_2++){
+                        }
+                        
+                        if (D_80382E20.unk104[D_80382E20.unk128_7][var_v0_2].cmd >= 0) {
+                            func_803189C4(D_80382E20.zoombox[D_80382E20.unk128_7], D_80382E20.unk104[D_80382E20.unk128_7][var_v0_2].cmd + 0xC);
+                        }
+                        if (D_80382E20.unk118[D_80382E20.unk128_7]) {
+                            gczoombox_minimize(D_80382E20.zoombox[D_80382E20.unk128_7]);
+                        }
+                        if ((D_80382E20.unk118[D_80382E20.unk128_7] == 0) && (D_80382E20.unk11A[D_80382E20.unk128_7].unk0_7 == 2)) {
+                            gczoombox_minimize(D_80382E20.zoombox[D_80382E20.unk128_7]);
+                        }
+                        D_80382E20.unk11A[D_80382E20.unk128_7].unk0_7 = 0;
+                        D_80382E20.unk118[D_80382E20.unk128_7]++;
+                        D_80382E20.unk128_7 ^= 1;
+                        D_80382E20.unk128_6 = TRUE;
+                        break;
+                        
+                    case -5:                        /* switch 2 */
+                        gczoombox_minimize(D_80382E20.zoombox[D_80382E20.unk128_7]);
+                        D_80382E20.unk11A[D_80382E20.unk128_7].unk0_7 = 0;
+                        D_80382E20.unk118[D_80382E20.unk128_7]++;
+                        D_80382E20.unk128_7 ^= 1;
+                        D_80382E20.unk128_6 = TRUE;
+                        break;
+
+                    case -3:                        /* switch 2 */
+                        D_80382E20.unk11A[D_80382E20.unk128_7].unk0_7 = 0;
+                        gcdialog_setState(4);
+                        break;
+
+                    default:                                /* switch 2 */
+                        if (!func_80316ED4(D_80382E20.unk104[D_80382E20.unk128_7][D_80382E20.unk118[D_80382E20.unk128_7]].str)) {
+                            D_80382E20.unk118[D_80382E20.unk128_7]++;
+                        } else {
+                            if(D_80382E20.unk104[D_80382E20.unk128_7][D_80382E20.unk118[D_80382E20.unk128_7] + 1].cmd == -8){
+                                if (D_80382E20.unk144 != NULL) {
+                                    sp7C = 1;
+                                    
+                                    if (D_80382E20.caller == NULL) {
+                                        sp80 = D_80382E20.unk144(D_80382E20.caller, D_80382E20.unk130, D_80382E20.unk118[D_80382E20.unk128_7]);
+                                    }
+                                    else if (func_8030EDC0(D_80382E20.caller, D_80382E20.unk138)) {
+                                        sp80 = D_80382E20.unk144(D_80382E20.caller, D_80382E20.unk130, D_80382E20.unk118[D_80382E20.unk128_7]);
+                                    }
+
+                                    if (sp80 < 0) {
+                                        sp80 = -1 - sp80;
+                                        sp7C = 0;
+                                    }
+                                    if((sp80 >= 0) && ((D_80382E20.unk104[D_80382E20.unk128_7][D_80382E20.unk118[D_80382E20.unk128_7] + sp80 + 1].cmd == -8))) {
+                                            strlen(D_80382E20.unk104[D_80382E20.unk128_7][D_80382E20.unk118[D_80382E20.unk128_7] + sp80 + 1].str);
+                                            strlen(D_80382E20.unk104[D_80382E20.unk128_7][D_80382E20.unk118[D_80382E20.unk128_7]].str);
+                                            func_8030F218(D_80382E20.unk0, D_80382E20.unk104[D_80382E20.unk128_7][D_80382E20.unk118[D_80382E20.unk128_7]].str, D_80382E20.unk104[D_80382E20.unk128_7][D_80382E20.unk118[D_80382E20.unk128_7] + sp80 + 1].str, func_8031B604(D_80382E20.unk104[D_80382E20.unk128_7][D_80382E20.unk118[D_80382E20.unk128_7]].str), sp7C);
+                                    }
+                                    else{
+                                        sp80 = -1;
+                                    }
+                                }
+                            } else if(D_80382E20.unk104[D_80382E20.unk128_7][D_80382E20.unk118[D_80382E20.unk128_7] + 1].cmd == -9){
+                                    if (D_80382E20.unk144 != NULL) {
+                                        D_80382FF8[0] = '\0';
+                                        if (D_80382E20.caller == 0) {
+                                            sp80 = D_80382E20.unk144(D_80382E20.caller, D_80382E20.unk130, D_80382E20.unk118[D_80382E20.unk128_7]);
+                                        }
+                                        else if (func_8030EDC0(D_80382E20.caller, D_80382E20.unk138)) {
+                                            sp80 = D_80382E20.unk144(D_80382E20.caller, D_80382E20.unk130, D_80382E20.unk118[D_80382E20.unk128_7]);
+                                        }
+                                        strIToA(D_80382FF8, sp80);
+                                        strlen(D_80382FF8);
+                                        strlen(D_80382E20.unk104[D_80382E20.unk128_7][D_80382E20.unk118[D_80382E20.unk128_7]].str);
+                                        func_8030F218(D_80382E20.unk0, D_80382E20.unk104[D_80382E20.unk128_7][D_80382E20.unk118[D_80382E20.unk128_7]].str, &D_80382FF8, func_8031B604(D_80382E20.unk104[D_80382E20.unk128_7][D_80382E20.unk118[D_80382E20.unk128_7]].str), 0);
+                                    }
+                            }
+                            if (func_803189C4(D_80382E20.zoombox[D_80382E20.unk128_7], D_80382E20.unk116[D_80382E20.unk128_7] + 0xC)) {
+                                gczoombox_minimize(D_80382E20.zoombox[D_80382E20.unk128_7]);
+                                D_80382E20.unk128_6 = TRUE;
+                            }
+                            if (D_80382E20.unk128_6) {
+                                gczoombox_maximize(D_80382E20.zoombox[D_80382E20.unk128_7]);
+                                D_80382E20.unk128_6 = FALSE;
+                            }
+                            if (sp80 == -1) {
+                                for(spA8 = D_80382E20.unk118[D_80382E20.unk128_7]; 
+                                    ((D_80382E20.unk104[D_80382E20.unk128_7][spA8].cmd == D_80382E20.unk116[D_80382E20.unk128_7]) && ((spA8 * 0) < 8));
+                                    spA8++
+                                ){
+                                    sp4C[spA8 - D_80382E20.unk118[D_80382E20.unk128_7]] = D_80382E20.unk104[D_80382E20.unk128_7][spA8].str;
+                                }
+                                func_80318284(D_80382E20.zoombox[D_80382E20.unk128_7], spA8 - D_80382E20.unk118[D_80382E20.unk128_7], sp4C);
+                                D_80382E20.unk118[D_80382E20.unk128_7] = spA8;
+                            } else {
+                                func_803183A4(D_80382E20.zoombox[D_80382E20.unk128_7], D_80382E20.unk0);
+                                D_80382E20.unk118[D_80382E20.unk128_7]++;
+                            }
+                            gcdialog_setState(3);
+                        }
+                        break;
+                }
+            }
+            break;
+        case 3:                                         /* switch 1 */
+            temp_v1_2 = D_80382E20.unk128_31 & 0x80;
+            if (D_80382E20.unk128_0 && (sp90[1] == 1)) {
+                gcdialog_setState(6);
+            }
+            else{
+                if (!temp_v1_2) {
+                    var_v0_6 = (temp_v1_2) ? func_8024E5E8(0, 4) : func_8024E5E8(0, 3);
+                    if ((var_v0_6 ^ 1) == 0) {
+                        gcdialog_setState(6);
+                    }
+                }
+            }
+            break;
+
+        case 4:                                         /* switch 1 */
+            if (sp90[0] == 1) {
+                D_80382E20.unk12C_23 = 1;
+            } else if (sp90[1] == (s32) 1) {
+                D_80382E20.unk12C_23 = 0;
+            }
+            if (D_80382E20.unk12C_23 != -1) {
+            //     var_a0 = 5;
+                gcdialog_setState((D_80382E20.unk11A[D_80382E20.unk128_7].unk0_7) ? 8 : 5);
+            }
+            break;
+
+        case 7:                                         /* switch 1 */
+        case 8:                                         /* switch 1 */
+            gcdialog_setState(0);
+            break;
+    }
+
+    for(i = 0; i < 2; i++){
+        gczoombox_update(D_80382E20.zoombox[i]);
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_87E30/func_8030F488.s")
 #endif
 
-void func_8030F754(s32, s32);
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_87E30/func_8030F754.s")
-// void func_8030F754(s32 arg0, s32 arg1){
-//     f32 sp90[3];
-//     f32 sp84[3];
-//     if(D_80382E20.unk128_31){
-//         func_8024E5A8(0, &sp90);
-//         func_8024E640(0, &sp84);
-//     }else{
-//         func_8024E55C(0, &sp90);
-//         func_8024E60C(0, &sp84);
-//     }//L8030F9F4
-// }
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_87E30/func_8030F990.s")
-
 //parses text asset into seperate strings
-void func_80310574(s32 text_id);
-#ifdef NONMATCHING
 void func_80310574(s32 text_id){
     s32 i;
     s32 j;
     u8 *txt;
     s32 _v0;
-    s32 ch;
+    char ch;
     s32 len;
 
     txt = D_80382E20.unk100 = func_8031B66C(text_id);
@@ -231,7 +587,7 @@ void func_80310574(s32 text_id){
         D_80382E20.dialogStringCount[i] = *(txt++);
         D_80382E20.unk104[i] = (struct13s *) malloc(D_80382E20.dialogStringCount[i]*sizeof(struct13s));
         for(j = 0; j < D_80382E20.dialogStringCount[i]; j++){//L803105F0
-            ch = _v0 = *(txt++);
+            ch = *(txt++);
             if(ch > 0 && ch < 0x20){
                 _v0 = -ch;
             }
@@ -240,7 +596,8 @@ void func_80310574(s32 text_id){
             }
             
             D_80382E20.unk104[i][j].cmd = _v0;
-            len = *(txt++);
+            len = *(txt);
+            txt++;
             D_80382E20.unk104[i][j].str = txt;
             txt += len;
             
@@ -248,16 +605,13 @@ void func_80310574(s32 text_id){
         //L80310664
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_87E30/func_80310574.s")
-#endif
 
-s32 func_8031068C(s32 arg0){
-    return (arg0) ? 0 : 0xA0;
+s32 func_8031068C(s32 next_state){
+    return (next_state) ? 0 : 0xA0;
 }
 
-int func_803106A4(s32 arg0){
-    return (arg0) ? 1 : 0;
+int func_803106A4(s32 next_state){
+    return (next_state) ? 1 : 0;
 }
 
 void func_803106BC(s32 text_id, s32 arg1, ActorMarker *marker, void(*callback)(ActorMarker *, s32, s32), void(*arg4)(ActorMarker *, s32, s32), s32 arg5){
@@ -324,16 +678,16 @@ void func_803106BC(s32 text_id, s32 arg1, ActorMarker *marker, void(*callback)(A
     D_80382E20.unk140 = arg4;
     D_80382E20.unk144 = arg5;
     D_80382E20.unk138 = (marker != NULL )? ((marker->unk5C)? marker->unk5C : -1) : 0;
-    func_8030F488(((func_802E4A08() || func_803203FC(0x1F)) && D_80382E20.unk128_3) ? 6 : 1);
+    gcdialog_setState(((func_802E4A08() || func_803203FC(0x1F)) && D_80382E20.unk128_3) ? 6 : 1);
     //L803109EC
 }
 
-void func_80310A5C(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4){
+void func_80310A5C(s32 next_state, s32 arg1, s32 arg2, s32 arg3, s32 arg4){
     s32 i;
     f32 tmpf;
     for(i = 0, tmpf = D_80378534; i< 2; i++){
         if(D_80382E20.zoombox[i]){
-            func_803184C8(D_80382E20.zoombox[i], arg2, arg0, arg1, tmpf, arg3, arg4);
+            func_803184C8(D_80382E20.zoombox[i], arg2, next_state, arg1, tmpf, arg3, arg4);
         }
     }
 }
@@ -348,8 +702,8 @@ void func_80310B1C(s32 text_id, s32 arg1, ActorMarker *marker, void(*callback)(A
     }
 }
 
-void func_80310BB4(s32 arg0, s32 arg1, s32 arg2){
-    func_80310A5C(arg1, arg2, arg0, D_80382E20.unk128_31 & 2, D_80382E20.unk128_31 & 0x80);
+void func_80310BB4(s32 next_state, s32 arg1, s32 arg2){
+    func_80310A5C(arg1, arg2, next_state, D_80382E20.unk128_31 & 2, D_80382E20.unk128_31 & 0x80);
 }
 
 void func_80310BFC(void){
@@ -423,7 +777,7 @@ void func_80310D2C(void){
             D_80382E20.unk12C_15--;
             
         }else{//L80310F88
-            func_8030F990();
+            gcdialog_update();
         }//L80310F98
         if( ( D_80382E20.unk128_23 != 0 && D_80382E20.unk128_23 != 5 && D_80382E20.unk128_23 != 7)
             || ((!D_80382E20.unk128_23 && (D_80382E20.unk11A[0].unk0_7  || D_80382E20.unk11A[1].unk0_7)))
@@ -468,9 +822,9 @@ void func_80310D2C(void){
     }
 }
 
-int func_803110F8(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4){
+int func_803110F8(s32 next_state, s32 arg1, s32 arg2, s32 arg3, s32 arg4){
     func_8025A55C(15000, 300, 2);
-    func_80311174(arg0 + 0xe57, 0x84, NULL, NULL, NULL, NULL, arg4);
+    func_80311174(next_state + 0xe57, 0x84, NULL, NULL, NULL, NULL, arg4);
     func_80310A5C(arg2, arg3, arg1, 0, 0);
     return 1;
 }
@@ -550,7 +904,6 @@ int func_80311174(s32 text_id, s32 arg1, f32 *pos, ActorMarker *marker, void(*ca
     return 0;
 }
 
-
 bool func_80311480(s32 text_id, s32 arg1, f32 *pos, ActorMarker *marker, void(*callback)(ActorMarker *, enum asset_e, s32), void(*arg5)(ActorMarker *, enum asset_e, s32)){
     return func_80311174(text_id, arg1, pos, marker, callback, arg5, 0);
 }
@@ -563,19 +916,18 @@ int func_803114C4(void){
     return D_80382E20.unk130;
 }
 
-#ifdef NONMATCHING
 void func_803114D0(void){
     s32 i;
 
     if(func_803114B0()){
-        func_8030F488(6);
+        gcdialog_setState(6);
     }else{
         if(D_80382E20.unk128_23 != 6){
             D_80382E20.unk12C_25 = 0;
             for(i = 0; i< 2; i++){
                 D_80382E20.unk11A[i].unk0_7 = 0;
                 if(D_80382E20.zoombox[i]){
-                    D_80382E20.unk12C_25 = D_80382E20.unk12C_25 + func_803188B4(D_80382E20.zoombox[i]);
+                    D_80382E20.unk12C_25 += (u8)func_803188B4(D_80382E20.zoombox[i]);
                 }
             }
             if(D_80382E20.unk12C_25 != 0){
@@ -587,15 +939,12 @@ void func_803114D0(void){
     D_80382E20.unk12C_11 = 0;
 
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_87E30/func_803114D0.s")
-#endif
 
-int func_803115C4(s32 arg0){
-    if(func_803114C4() != arg0){
+int func_803115C4(s32 next_state){
+    if(func_803114C4() != next_state){
         return 0;
     }else{
-        func_8030F488(6);
+        gcdialog_setState(6);
         return 1;
     }
 }
@@ -630,6 +979,6 @@ void func_8031169C(void){
     }
 }
 
-void func_80311714(int arg0){
-    D_80382E20.unk128_3 = arg0;
+void func_80311714(int next_state){
+    D_80382E20.unk128_3 = next_state;
 }

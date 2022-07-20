@@ -236,7 +236,7 @@ void func_80334B20(enum map_e arg0, s32 arg1, s32 arg2) {
     }
     func_80305990(0);
     func_8030C740();
-    func_8030EDE8();
+    gcdialog_init();
     mapSpecificFlags_clearAll();
     func_803411B0();
     func_802C2B5C();

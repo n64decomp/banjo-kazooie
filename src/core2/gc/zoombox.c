@@ -23,7 +23,6 @@ typedef struct struct_17_s{
     gczoomboxSfx soundInfo[5];
 }gczoomboxPortraitInfo;
 
-
 gczoomboxPortraitInfo D_8036C6C0[] = {
      {ASSET_816_SPRITE_GRUNTILDA, 0xDA, 0xE5, {
           {SFX_EC_GRUNTY_TALKING_1, 20000, 1.1f},
@@ -614,7 +613,7 @@ void func_8031594C(gczoombox_t * this, u8 *str, s32 arg2, s32 arg3){
      s0 = arg2;
      s4 = this;
      s1 = 0;
-     f22 = (this->portrait_id == 0x5F) ? 0.4 : 0.8;
+     f22 = (this->portrait_id == TALK_PIC_5F_TOOTY_4) ? 0.4 : 0.8;
 
      if(getGameMode() == GAME_MODE_9_BANJO_AND_KAZOOIE){
           func_8034A900();
@@ -677,7 +676,7 @@ void func_8031594C(gczoombox_t * this, u8 *str, s32 arg2, s32 arg3){
 u8 func_80315BC0(gczoombox_t *this, enum sfx_e sfx_id, s32 arg2){
      u8 sp1F = func_8030ED2C(sfx_id, arg2) & 0xff;
      func_8030DD90(sp1F, 0);
-     if(this->portrait_id == 0x66){
+     if(this->portrait_id == TALK_PIC_66_LOCKUP){
           func_8030DCCC(sp1F, 0x40);
      }
      return sp1F;
@@ -708,7 +707,7 @@ void func_80315C90(gczoombox_t *this, s32 arg1) {
 
     current_sfx = 0U;
     if (this != NULL && this->sfx_count != 0 && this->unk1A4_11) {
-        if (this->portrait_id == 0x15) {
+        if (this->portrait_id == TALK_PIC_15_CLANKER) {
             for(phi_s1 = 0; phi_s1 < 5; phi_s1++){
                 if(func_8030E3FC(this->unk108[phi_s1]))
                     return;
@@ -853,7 +852,7 @@ void func_803164B0(gczoombox_t *this, Gfx **gfx, Mtx **mtx, s32 arg3, s32 arg4, 
     f32 sp2C[3];
     f32 temp_f12;
 
-    if (this->portrait_id == 0x46) {
+    if (this->portrait_id == TALK_PIC_46_TUMBLAR) {
         arg6 = 0.75f;
     }
     func_80338338(0xFF, 0xFF, 0xFF);
@@ -1358,7 +1357,7 @@ void func_80317C90(gczoombox_t *this, s32 portrait_id){
 }
 
 //_gczoombox_loadsfx
-void func_80317D10(gczoombox_t *this, s32 portrait_id){
+void func_80317D10(gczoombox_t *this, enum talk_pic_e portrait_id){
      s32 i;
 
      this->sfx_count = 0;
@@ -1388,7 +1387,7 @@ void func_80317D10(gczoombox_t *this, s32 portrait_id){
      }
 }
 
-gczoombox_t *gczoombox_new(s32 arg0, s32 portrait_id, s32 arg2, s32 arg3, void (*arg4)(s32, s32)){
+gczoombox_t *gczoombox_new(s32 arg0, enum talk_pic_e portrait_id, s32 arg2, s32 arg3, void (*arg4)(s32, s32)){
     gczoombox_t *this;
     s32 i;
     s32 temp_v1;
@@ -1694,7 +1693,7 @@ bool func_80318964(gczoombox_t *this) {
     return TRUE;
 }
 
-bool func_803189C4(gczoombox_t *this, s32 arg1){
+bool func_803189C4(gczoombox_t *this, enum talk_pic_e arg1){
      if( this == NULL
          || arg1 == this->portrait_id
          || ( this->state != 6

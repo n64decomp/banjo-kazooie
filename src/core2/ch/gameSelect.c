@@ -541,13 +541,13 @@ void func_802C5740(Actor * this){
     if(!this->initialized){
         func_8033CE40();
          if(D_8037DCF4 == NULL){
-            D_8037DCF4 = gczoombox_new(0xA0, 0xc, 2, 0, NULL);
+            D_8037DCF4 = gczoombox_new(0xA0, TALK_PIC_C_BANJO_2, 2, 0, NULL);
             gczoombox_open(D_8037DCF4);
             func_803184C8(D_8037DCF4, 30.0f, 5, 2, 0.4f, 0, 0);
         }//L802C57FC
 
         if(D_8037DCF0 == NULL){
-            D_8037DCF0 = gczoombox_new(0xA, 0xd, 2, 1, func_802C44D0);
+            D_8037DCF0 = gczoombox_new(0xA, TALK_PIC_D_KAZOOIE_1, 2, 1, func_802C44D0);
             func_80318284(D_8037DCF0, 2, &D_8037DCE0);
             gczoombox_open(D_8037DCF0);
             gczoombox_maximize(D_8037DCF0);

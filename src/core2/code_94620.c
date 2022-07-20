@@ -20,11 +20,9 @@ void func_8031B5C4(s32 arg0) {
 }
 
 // regalloc
-// s32 func_8031B604(u8 *arg0) {
-//     s32 ret = (arg0[0] == 0xFD) && (arg0[1] == 0x6A);
-//     return ret;
-// }
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031B604.s")
+bool func_8031B604(char *arg0) {
+    return (arg0[0] == 0xFD) && (arg0[1] == 0x6A);
+}
 
 void func_8031B62C(void) {
     D_80383158 = (u8)0;
@@ -33,10 +31,6 @@ void func_8031B62C(void) {
 s32 func_8031B638(void) {
     return D_80383150;
 }
-
-// void func_8031B644(void) {
-//     (s32*)(&D_80383158) = 
-// }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94620/func_8031B644.s")
 
