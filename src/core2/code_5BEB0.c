@@ -561,7 +561,7 @@ s32 func_802E48D8(void){
     func_802C4320();
     func_802F3300();
     func_802F542C();
-    func_8031169C();
+    gcdialog_defrag();
     if(D_8037E8E0.game_mode == 4)
         func_80311740();
     switch(get_loaded_overlay_id()){
