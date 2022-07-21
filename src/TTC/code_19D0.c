@@ -140,7 +140,7 @@ bool func_803882E4(ActorMarker * this_marker, ActorMarker * other_marker){
         this_marker->unk14_20 = 0x16C;
     }
     else{
-        this_marker->unk14_20 = 0xA5;
+        this_marker->unk14_20 = MARKER_A5_NIPPER;
     }
     return TRUE;
 }

@@ -60,7 +60,7 @@ void func_80387B14(Actor *this, s32 next_state){
     }
 
     if(next_state == 4){
-        this->marker->unk14_20 = 0x254;
+        this->marker->unk14_20 = MARKER_254_PORTRAIT_CHOMPA;
         func_80335924(this->unk148, 0x23e, 0.0f, 2.5f);
         func_80335A8C(this->unk148, 2);
         if(this->unk100){

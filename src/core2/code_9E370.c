@@ -24,12 +24,13 @@ extern void func_8032EE20(void);
 extern void func_802C4014(GenMethod_5, s32, s32, s32, s32, s32);
 
 
+void func_8032A6A8(Actor *arg0);
+void func_8032ACA8(Actor *arg0);
 void func_8032B5C0(ActorMarker *arg0, ActorMarker *arg1, struct5Cs *arg2);
 void func_80328B8C(Actor * this, s32 arg1, f32 arg2, s32 arg3);
 void func_8032BB88(Actor *this, s32 arg1, s32 arg2);
 int  actor_playerIsWithinDist(Actor *this, s32 dist);
 extern void func_8033A4A0(enum asset_e mode_id, f32, f32);
-
 extern void func_80338338(s32, s32, s32);
 extern void func_803382FC(s32);
 extern void func_803382E4(s32);
@@ -37,7 +38,11 @@ extern void func_8033687C(Gfx **);
 extern void func_80335D30(Gfx **);
 extern void func_80344138(s32, s32, s32, f32[3], f32[3], Gfx **, Mtx **);
 
-
+typedef struct {
+    f32 unk0[3];
+    s16 unkC;
+    s16 unkE;
+}Actorlocal_Core2_9E370;
 
 /* .data */
 extern s32 D_803255FC;
@@ -1386,13 +1391,35 @@ bool actor_playerIsWithinDist(Actor *this, s32 dist){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032970C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80329784.s")
+s32 func_80329784(Actor *arg0){
+    f32 sp1C[3];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_803297C8.s")
+    func_8028E964(sp1C);
+    return (s32)func_80257204(arg0->position[0], arg0->position[2], sp1C[0], sp1C[2]);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_803297FC.s")
+s32 func_803297C8(Actor *arg0, f32 arg1[3]){
+    return (s32)func_80257204(arg0->position[0], arg0->position[2], arg1[0], arg1[2]);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80329878.s")
+void func_803297FC(Actor *arg0, f32 *o1, f32 *o2){
+    f32 sp2C[3];
+
+    _player_getPosition(sp2C);
+    func_8025727C(
+        arg0->position[0], arg0->position[1], arg0->position[2],
+        sp2C[0], sp2C[1], sp2C[2],
+        o1, o2
+    );
+    *o1 = 360.0f - *o1;
+}
+
+void func_80329878(Actor *arg0, f32 arg1){
+    arg0->unk28 -= arg1;
+    if(arg0->unk28 < 0.0f){
+        arg0->unk28 = 0.0f;
+    }
+}
 
 void actor_playAnimationOnce(Actor *this){
     if(this->animctrl)
@@ -1404,13 +1431,22 @@ void actor_loopAnimation(Actor *this){
         animctrl_setPlaybackType(this->animctrl,  ANIMCTRL_LOOP);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80329904.s")
+s32 func_80329904(ActorMarker *arg0, s32 arg1, f32 *arg2){
+    func_8034A174(arg0->unk44, arg1, arg2);
+    return arg0->unk14_21;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80329934.s")
+struct5Bs *func_80329934(void){
+    return D_8036E568;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80329940.s")
+s32 func_80329940(void){
+    return D_8036E56C;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032994C.s")
+Struct64s* func_8032994C(void){
+    return D_8036E570;
+}
 
 //marker_getActorPtr
 Actor *marker_getActor(ActorMarker *this){
@@ -1424,7 +1460,32 @@ Actor *func_80329980(Actor *this){
     return marker_getActor(this->unk100);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_803299B4.s")
+void func_803299B4(Actor *arg0) {
+    s32 position[3];
+    s32 rotation[3];
+
+    arg0->marker->unkC = arg0->unk108;
+    arg0->marker->unk10 = arg0->unk10C;
+    arg0->marker->unk1C = arg0->unk134;
+    arg0->marker->unk54 = arg0->unk160;
+    arg0->marker->unk58 = arg0->unk168;
+    arg0->marker->unk30 = arg0->unk13C;
+    arg0->marker->unk5C = arg0->unk16C_31;
+    arg0->marker->propPtr->unk8_3 = arg0->unkF4_28;
+    arg0->marker->propPtr->unk8_2 = arg0->unkF4_27;
+    arg0->marker->unk2C_1 = arg0->unkF4_26;
+    arg0->marker->collidable = arg0->stored_marker_collidable;
+
+    arg0->unk124_7  = FALSE;
+    arg0->unk138_7 = 0;
+    position[0] = (s32) arg0->position[0];
+    position[1] = (s32) arg0->position[1];
+    position[2] = (s32) arg0->position[2];
+    rotation[0] = (s32) arg0->pitch;
+    rotation[1] = (s32) arg0->yaw;
+    rotation[2] = (s32) arg0->roll;
+    func_8032F6A4(position, arg0->marker, rotation);
+}
 
 void func_80329B68(Actor *this){
     if(this->animctrl == NULL)
@@ -1526,21 +1587,192 @@ void *actors_appendToSavestate(void * begin, u32 end){
     return sp3C;
 }
 
+typedef struct {
+    u32 cnt;
+    Actor *actor_save_state[];
+}ActorListSaveState;
+
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032A09C.s")
+#else
+void func_8032A09C(s32 arg0, s32 arg1) {
+    ActorListSaveState *var_s1 = (s32)arg1;
+    Actor *var_s0;
+    u32 var_s2;
+    u32 var_s3;
+    s32 temp_a0;
+    Actor **sp60;
+    Actor **sp5C;
+    s32 sp50[3];
+    Actor *temp_v0_6;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032A5F8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032A6A8.s")
+    func_802C3BE8();
+    if (D_8036E560 != NULL) {
+        func_803283BC();
+        var_s3 = 0;
+        var_s0 = var_s1->actor_save_state;
+        for(var_s2 = var_s1->cnt; var_s2 != 0; var_s2--) {
+            if ((var_s0->unk78_13 != 0) && (var_s3 < var_s0->unk78_13)) {
+                var_s3 = var_s0->unk78_13;
+            }
+            var_s0++;
+        }
+        for(var_s0 = &D_8036E560->data[0]; var_s0 < &D_8036E560->data[D_8036E560->cnt]; var_s0++){
+            if ((var_s0->unk78_13 != 0) && (var_s3 < var_s0->unk78_13)) {
+                var_s3 = var_s0->unk78_13;
+            }
+        }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032A7AC.s")
+        var_s3++;
+        sp60 = malloc(var_s3*sizeof(Actor *));
+        sp5C = malloc(var_s3*sizeof(Actor *));
+        for (var_s2 = 0; var_s2 < var_s3; var_s2++) {
+                    sp60[var_s2] = 0;
+                    sp5C[var_s2] = 0;
+        }
+        var_s0 = var_s1->actor_save_state;
+        for(var_s2 = var_s1->cnt; var_s2 != 0; var_s2--) {
+            if (var_s0->unk78_13 != 0) {
+                sp5C[var_s0->unk78_13] = var_s0;
+            }
+            var_s0++;
+        }
+        for(var_s0 = &D_8036E560->data[0]; var_s0 < &D_8036E560->data[D_8036E560->cnt]; var_s0++){
+            if ((var_s0->unk78_13 != 0)) {
+                sp60[var_s0->unk78_13] = var_s0;
+            }
+            var_s0++;
+        }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032A82C.s")
+        for(var_s2 = 1; var_s2 < var_s3; var_s2++){
+            if ((sp60[var_s2] != NULL) && (sp5C[var_s2] != NULL) && !sp5C[var_s2]->unkF4_22) {
+                actor_copy(sp5C[var_s2], sp60[var_s2]);
+                func_80329B68(sp60[var_s2]);
+                func_803299B4(sp60[var_s2]);
+            }
+        }
+        for(var_s2 = 1; var_s2 < var_s3; var_s2++){
+            if ((sp60[var_s2] != NULL) && !sp60[var_s2]->unk58_1 && (sp5C[var_s2] == NULL)) {
+                marker_despawn(sp60[var_s2]->marker);
+                sp60[var_s2] = NULL;
+            }
+        }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032A88C.s")
+        var_s0 = var_s1->actor_save_state;
+        for(var_s2 = var_s1->cnt; var_s2 != 0; var_s2--){
+            if (var_s0->unk78_13 == 0) {
+                sp50[0] = (s32) var_s0->position[0];
+                sp50[1] = (s32) var_s0->position[1];
+                sp50[2] = (s32) var_s0->position[2];
+                temp_v0_6 = func_8032811C(var_s0->modelCacheIndex, sp50, (s32) var_s0->yaw);
+                actor_copy(var_s0, temp_v0_6);
+                func_80329B68(temp_v0_6);
+                func_803299B4(temp_v0_6);
+                if(temp_v0_6);
+            }
+            var_s0++;
+        }
+        func_803283D4();
+        free(sp60);
+        free(sp5C);
+    }
+    func_802C3BDC();
+}
+#endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032A95C.s")
+void func_8032A5F8(void) {
+    Actor *var_s0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032A9E4.s")
+    if (D_8036E560 != NULL) {
+        for(var_s0 = &D_8036E560->data[0]; var_s0 < &D_8036E560->data[D_8036E560->cnt]; var_s0++){
+            if (var_s0->unk124_31 == 0xfff) {
+                var_s0->unk124_31 = 0;
+                func_8032A6A8(var_s0);
+            }
+        }
+    }
+}
+
+void func_8032A6A8(Actor *arg0) {
+    f32 var_f0;
+    f32 var_f2;
+    Actor *var_v0;
+
+
+    if (arg0->unk44_14 != -1) {
+        var_f0 = 1.0f;
+        for(var_v0 = &D_8036E560->data[0]; var_v0 < &D_8036E560->data[D_8036E560->cnt]; var_v0++){
+            if ((arg0->unk44_14 == var_v0->unk44_14) && (arg0 != var_v0)) {
+                var_f2 = var_v0->unk48;
+                if ((var_f2 <= var_f0) && (arg0->unk48 <= var_f2)) {
+                    if (var_v0->unk78_13 != 0) {
+                        arg0->unk124_31 = var_v0->unk78_13;
+                        var_f0 = var_f2;
+                    }
+                }
+            }
+        }
+    }
+}
+
+Actor *func_8032A7AC(Actor *arg0) {
+    Actor *var_a0;
+
+    if (arg0->unk124_31 != 0) {
+        if (D_8036E560 != NULL) {
+            for(var_a0 = &D_8036E560->data[0]; var_a0 < &D_8036E560->data[D_8036E560->cnt]; var_a0++){
+                if (arg0->unk124_31 == var_a0->unk78_13) {
+                    return var_a0;
+                }
+            }
+        }
+    }
+    return NULL;
+}
+
+void func_8032A82C(Actor *arg0, s32 arg1) {
+    NodeProp *sp24;
+    Actorlocal_Core2_9E370 *sp1C;
+
+    sp1C = &arg0->local;
+    sp24 = func_80304C38(arg1, arg0);
+    if (sp24 != NULL) {
+        sp1C->unkC = func_80304DA8(sp24);
+        nodeprop_getPosition(sp24, sp1C->unk0);
+        sp1C->unkE = func_80341EC4(sp1C);
+    }
+}
+
+void func_8032A88C(Actor *arg0) {
+    Actorlocal_Core2_9E370 *sp20;
+
+    sp20 = &arg0->local;
+    arg0->yaw_moving = (f32) func_803297C8(arg0, sp20->unk0);
+    func_80328FB0(arg0, 6.0f);
+    func_80329030(arg0, 0);
+    if ((((arg0->position[0] - sp20->unk0[0]) * (arg0->position[0] - sp20->unk0[0])) + ((arg0->position[2] - sp20->unk0[2]) * (arg0->position[2] - sp20->unk0[2]))) <= 144.0f) {
+        arg0->unk44_14 = sp20->unkE;
+        arg0->unk48 = 0.0f;
+        arg0->marker->unk2C_2 = TRUE;
+    }
+}
+
+void func_8032A95C(Actor *arg0, s32 arg1, s32 arg2) {
+    func_80343F00(arg1, arg0->position);
+    arg0->unk44_14 = arg1;
+    arg0->unk48 = 0.0f;
+    arg0->marker->unk2C_2 = TRUE;
+    arg0->unk44_1 = TRUE;
+    arg0->unk10_3 = 0;
+}
+
+bool func_8032A9E4(s32 arg0, s32 arg1, s32 arg2) {
+    s32 sp1C[3];
+
+    func_8028EB3C(sp1C);
+    return ((arg0 - sp1C[0])*(arg0 - sp1C[0]) + (arg1 - sp1C[2])*(arg1 - sp1C[2])) < (arg2 * arg2);
+}
 
 //actor_setScale
 void func_8032AA58(Actor *this, f32 arg1){
@@ -1563,36 +1795,181 @@ void func_8032AA9C(void){
 #ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032AABC.s")
 #else
-void func_8032AABC(void)
-{
-    int i;
-    Actor * sp18 = (s32)D_8036E560 + sizeof(ActorArray);
-    s32 a2;
+void func_8032AABC(void){
+    u32 i;
+    u32 cnt;
     
     func_802C3BE8();
 
     
-    if(D_8036E560 == NULL)
-        return;
-    a2 = D_8036E560->cnt;
-    
-    for(i = 0; i != a2; i++){
-        sp18->marker->unk14_21 = 0;
-        sp18++;
+    if(D_8036E560 != NULL){    
+        cnt =  D_8036E560->cnt;
+        for(i = 0; i < cnt; i++){
+            D_8036E560->data[i].marker->unk14_21 = 0;
+        }
     }
     
 }
 #endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032AB84.s")
+void func_8032AB84(Actor *arg0) {
+    s32 var_s0;
+    ActorMarker *marker;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032ACA8.s")
+    marker = arg0->marker;
+    if(arg0->unkF4_30){
+        for(var_s0 = 0; var_s0 < 2; var_s0++){
+            if (arg0->unk14C[var_s0] == NULL) {
+                switch (var_s0) {                       /* irregular */
+                    case 0:
+                        arg0->unk14C[0] = vtxList_clone(func_8033A148(func_80330DE4(marker)));
+                        break;
+                    case 1:
+                        arg0->unk14C[1] = (arg0->unk17C_31) ? func_8033A148(func_80330DE4(marker))
+                                        : vtxList_clone(func_8033A148(func_80330DE4(marker)));
+                        break;
+                }
+            }
+        }
+    }
 
+    if (marker->unk20 == NULL && arg0->unk3C & 0x20) {
+        marker->unk20 = func_802EA154();
+    }
+}
+
+void func_8032ACA8(Actor *arg0) {
+    s32 var_s0;
+    ActorMarker *sp30;
+
+    sp30 = arg0->marker;
+    for(var_s0 = 0; var_s0 < 2; var_s0++){
+        if (arg0->unk14C[var_s0] != NULL) {
+            switch (var_s0) {                       /* irregular */
+                case 0:
+                    vtxList_free(arg0->unk14C[0]);
+                    break;
+                case 1:
+                    if (!arg0->unk17C_31) {
+                        vtxList_free(arg0->unk14C[1]);
+                    }
+                    break;
+            }
+            arg0->unk14C[var_s0] = NULL;
+        }
+    }
+
+    if (sp30->unk20 != NULL) {
+        func_802EA134(sp30->unk20);
+        sp30->unk20 = 0;
+    }
+}
+
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032AD7C.s")
+#else
+extern s32 D_8036E5A8;
+void func_8032AD7C(s32 arg0) {
+    s32 var_s0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032AEB4.s")
+    if (D_8036E560 != NULL) {
+        if (D_8036E5A8 >= D_8036E560->cnt) {
+            D_8036E5A8 = 0;
+        }
+        for(var_s0 = 0; var_s0 < (arg0 == 1) ? 0xF : D_8036E560->cnt; var_s0++){
+            if (func_80330E28(&D_8036E560->data[D_8036E5A8]) == NULL) {
+                func_8032ACA8(&D_8036E560->data[D_8036E5A8]);
+            }
+            D_8036E5A8++;
+            D_8036E5A8 %= D_8036E560->cnt;
+        }
+    }
+}
+#endif
 
+void func_8032AEB4(void) {
+    Actor *temp_s2;
+    Actor *var_s0;
+
+    temp_s2 = &D_8036E560->data[0];
+    for(var_s0 = temp_s2; (D_8036E560 != NULL) && ((var_s0 - temp_s2) != D_8036E560->cnt); var_s0++){
+        func_8032ACA8(var_s0);
+    }
+}
+
+
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032AF94.s")
+#else
+extern s32 D_8036E5AC;
+void func_8032AF94(void) {
+    AnimCtrl *temp_a0_4;
+    ParticleEmitter *temp_a0_2;
+    ParticleEmitter *temp_a0_3;
+    s32 *temp_a0_6;
+    s32 *temp_a1;
+    s32 temp_a0;
+    s32 temp_a0_5;
+    s32 temp_a0_7;
+    s32 temp_a0_8;
+    s32 temp_a0_9;
+    s32 temp_t7;
+    s32 var_s1;
+    Actor *temp_s0;
+    void *temp_s0_2;
+
+    if (D_8036E560 != NULL) {
+        for(var_s1 = 0; var_s1 < 8; var_s1++){
+            D_8036E5AC++;
+            if (D_8036E5AC >= D_8036E560->cnt) {
+                D_8036E5AC = 0;
+            }
+            temp_s0 = &D_8036E560->data[D_8036E5AC];
+
+            if ((s32)temp_s0->marker->unk44 < 0) {
+                temp_s0->marker->unk44 = func_8034A348(temp_s0->marker->unk44);
+            }
+
+            if (temp_s0->unk158[0] != NULL) {
+                temp_s0->unk158[0] = func_802F0D74(temp_s0->unk158[0]);
+            }
+
+            if (temp_s0->unk158[1] != NULL) {
+                temp_s0->unk158[1] = func_802F0D74(temp_s0->unk158[1]);
+            }
+
+            if (temp_s0->animctrl != NULL) {
+                temp_s0->animctrl = animctrl_defrag(temp_s0->animctrl);
+            }
+
+            if (temp_s0->marker->unk20 != NULL) {
+                temp_s0->marker->unk20 = func_802EA374(temp_s0->marker->unk20);
+            }
+
+            if (temp_s0->unk148 != NULL) {
+                temp_s0->unk148 = (Struct80s*)defrag(temp_s0->unk148);
+            }
+
+            if (temp_s0->marker->unk50 != NULL) {
+                temp_s0->marker->unk50 = func_803406D4(temp_s0->marker->unk50);
+            }
+
+            if (temp_s0->marker->unk14_20 == 0x217) {
+                func_802CEB60(temp_s0);
+            }
+        }
+        D_8036E560 = (ActorArray *) defrag(D_8036E560);
+    }
+
+    if (D_8036E568 != 0) {
+        D_8036E568 = func_8034A348(D_8036E568);
+    }
+
+    if (D_8036E570 != 0) {
+        D_8036E570 = func_802F3364(D_8036E570);
+    }
+}
+#endif
 
 ActorMarker *func_8032B16C(enum jiggy_e jiggy_id) {
     Actor *temp_s3;
@@ -1600,7 +1977,6 @@ ActorMarker *func_8032B16C(enum jiggy_e jiggy_id) {
 
     if (D_8036E560 != NULL) {
         temp_s3 = &D_8036E560->data[0];
-        var_s0 = temp_s3;
         for(var_s0 = temp_s3; (var_s0 - temp_s3) < D_8036E560->cnt; var_s0++){
             if ((var_s0->marker->unk14_20 == MARKER_52_JIGGY) && (func_802C8088(&(var_s0->marker)) == jiggy_id)) {
                 return var_s0->marker;
