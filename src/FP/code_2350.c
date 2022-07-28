@@ -577,7 +577,7 @@ void func_803896FC(Actor *this){
         case 11:// L80389F20
             func_803890DC(this, local->unk19);
             
-            if(!actor_playerIsWithinDist(this, 2000)
+            if(!subaddie_playerIsWithinSphere(this, 2000)
                 && !this->marker->unk14_21
             ){
                 switch(local->unk19){

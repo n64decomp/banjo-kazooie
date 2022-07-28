@@ -75,7 +75,7 @@ void func_8038A31C(Actor *this){
     }
 
     if(this->unk100)
-        sp24 = func_80329980(this);
+        sp24 = subaddie_getLinkedActor(this);
 
     this->unk1C[1] = this->unk48;
     ;

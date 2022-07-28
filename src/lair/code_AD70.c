@@ -151,7 +151,7 @@ void func_803916BC(f32 position[3], s32 cnt){
 
 void func_803917B0(Actor *actor)
 {
-    Actor *unk = func_80329980(actor);
+    Actor *unk = subaddie_getLinkedActor(actor);
 
     unk->unk38_0 = TRUE;
 }

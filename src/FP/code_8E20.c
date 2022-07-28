@@ -195,7 +195,7 @@ void func_8038F7AC(Actor *this){
         }
     }//L8038F910
 
-    if(func_8038BFA0() || this->unk38_31 || !actor_playerIsWithinDist(this, 3000)){
+    if(func_8038BFA0() || this->unk38_31 || !subaddie_playerIsWithinSphere(this, 3000)){
         actor_collisionOff(this);
         return;
     }

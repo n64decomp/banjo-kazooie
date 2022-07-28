@@ -123,7 +123,7 @@ void func_80388FA0(Actor *this, s32 arg1){
 
     switch(arg1){
         case 4:
-            other = func_80329980(this);
+            other = subaddie_getLinkedActor(this);
             myOther = this->unk100;
             if(myOther && other && myOther->unk14_20 == 0xB8)
                 func_80328B8C(other, 3, 0.0001f, 1);
@@ -147,7 +147,7 @@ void func_80388FA0(Actor *this, s32 arg1){
             actor_loopAnimation(this);
             break;
         case 2:
-             other = func_80329980(this);
+             other = subaddie_getLinkedActor(this);
              myOther = this->unk100;
             if(myOther && other && myOther->unk14_20 == 0xB8)
                  func_80328B8C(other, 2, 0.0001f, 1);

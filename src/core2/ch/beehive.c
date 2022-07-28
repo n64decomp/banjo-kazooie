@@ -53,7 +53,7 @@ void func_802CE8D4(Actor *this){
     {
     case 1://L802CE9C4
         if( !func_8031FF1C(BKPROG_D_BEEHIVE_TEXT)
-            && func_803296B8(this, 250, 300)
+            && subaddie_playerIsWithinCylinder(this, 250, 300)
         ){
             if(func_8028ECAC() == 0 || func_8028ECAC() == BSGROUP_8_TROT){
                 if( player_getTransformation() == TRANSFORM_1_BANJO

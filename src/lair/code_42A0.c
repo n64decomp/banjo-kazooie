@@ -36,10 +36,10 @@ extern f32 D_803936E4[];
 /* .code */
 bool func_8038A690(Actor *this) {
     if (this->unkF4_8 != 3) {
-        return func_803296B8(this, 0x190, 0x5A);
+        return subaddie_playerIsWithinCylinder(this, 400, 90);
     }
     else{
-        return func_80329628(this, 0x1F4, 0x104, 0x5A);
+        return subaddie_playerIsWithinAsymmetricCylinder(this, 500, 260, 90);
     }
 }
 

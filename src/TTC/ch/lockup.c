@@ -114,7 +114,7 @@ void func_80389600(Actor *this){
             break;
 
         case 2: //L803897DC
-            if(actor_playerIsWithinDist(this, 400) && func_8028FB48(0x8000000)){
+            if(subaddie_playerIsWithinSphere(this, 400) && func_8028FB48(0x8000000)){
                 func_8028F428(0xA, this->marker);
             }
 

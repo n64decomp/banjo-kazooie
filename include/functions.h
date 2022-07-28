@@ -520,7 +520,7 @@ void player_setYPosition(f32);
 NodeProp *func_80304C38(enum actor_e arg0, Actor *arg1);
 NodeProp *func_80304CAC(s32 arg0, f32 position[3]);
 Actor *func_80326D68(f32 position[3], enum actor_e actor_id, s32 arg2, f32 *min_distance_ptr);
-Actor *func_80329980(Actor *);
+Actor *subaddie_getLinkedActor(Actor *);
  
  /* used in RBB */
 void ml_vec3f_pitch_rotate_copy(f32 dst[3], f32 src[3], f32 pitch);

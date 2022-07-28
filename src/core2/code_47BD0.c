@@ -418,8 +418,8 @@ void func_802CF83C(Actor *this) {
         this->unk38_0 = func_803203FC(1) | func_803203FC(0x1F);
     }
 
-    if (actor_playerIsWithinDist(this, 0xFA0)) {
-        if (!actor_playerIsWithinDist(this, 0x5DC) == 0) {
+    if (subaddie_playerIsWithinSphere(this, 0xFA0)) {
+        if (!subaddie_playerIsWithinSphere(this, 0x5DC) == 0) {
             if (this->unk44_31 != 0) {
                 func_8030DA44(this->unk44_31);
                 this->unk44_31 = 0;
@@ -483,7 +483,7 @@ block_40:
         switch(this->state){
             case 1:
                 if( !func_8031FF1C(0x8F) 
-                    && func_803296B8(this, 0xFA, 0x12C) 
+                    && subaddie_playerIsWithinCylinder(this, 0xFA, 0x12C) 
                     && ((func_8028ECAC() == 0) || (func_8028ECAC() == BSGROUP_8_TROT)) 
                     && (player_getTransformation() == TRANSFORM_1_BANJO) 
                     && func_80311480(0xDA6, 0, NULL, NULL, NULL, NULL) 

@@ -85,14 +85,14 @@ void func_8038A9C0(Actor *this){
         this->marker->propPtr->unk8_3 = TRUE;
         actor_collisionOff(this);
         func_802C3C88((GenMethod_1)func_8038A8CC, (s32)this->marker);
-        sp24 = func_80329980(this);
+        sp24 = subaddie_getLinkedActor(this);
         this->unk1C[1] = this->unk48;
         this->pitch = 0.0f;
         this->yaw = 90.0f;
     }
 
     if(this->unk100)
-        sp24 = func_80329980(this);
+        sp24 = subaddie_getLinkedActor(this);
 
     if(this->velocity_y != 0.0f){
         func_80343DEC(this);

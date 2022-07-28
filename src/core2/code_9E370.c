@@ -29,7 +29,7 @@ void func_8032ACA8(Actor *arg0);
 void func_8032B5C0(ActorMarker *arg0, ActorMarker *arg1, struct5Cs *arg2);
 void func_80328B8C(Actor * this, s32 arg1, f32 arg2, s32 arg3);
 void func_8032BB88(Actor *this, s32 arg1, s32 arg2);
-int  actor_playerIsWithinDist(Actor *this, s32 dist);
+int  subaddie_playerIsWithinSphere(Actor *this, s32 dist);
 extern void func_8033A4A0(enum asset_e mode_id, f32, f32);
 extern void func_80338338(s32, s32, s32);
 extern void func_803382FC(s32);
@@ -1325,15 +1325,43 @@ int func_80329210(Actor * arg0, f32 (* arg1)[3]){
         || func_80307258(arg1, arg0->unk10_25 - 1, arg0->unk10_18-1) != -1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80329260.s")
+bool func_80329260(Actor *this, f32 p1[3]){
+    s32 var_v0;
+    var_v0 = func_80309D58(p1, this->unk10_18);
+    if(this->unk10_18 == 0){
+        this->unk10_18 = var_v0;
+    }
+    if(var_v0 == 0 && this->unk10_18 != 0){
+        return FALSE;
+    }
+    return TRUE;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_803292E0.s")
+bool func_803292E0(Actor *this){
+    f32 player_position[3];
+    if(this->unk10_25 == 0){
+        return 1;
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80329354.s")
+    _player_getPosition(player_position);
+    return func_80307258(player_position, this->unk10_25 - 1, this->unk10_18 - 1) != -1;
+}
+
+bool func_80329354(Actor *this){
+    f32 sp1C[3];
+
+    _player_getPosition(sp1C);
+    return func_80329260(this, sp1C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80329384.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032944C.s")
+bool func_8032944C(Actor *this){
+    s32 v1;
+    
+    v1 = this->pitch - this->unk6C;
+    return ((-3 <= v1) && (v1 <= 3));
+}
 
 bool func_80329480(Actor *this){
     s32 v1;
@@ -1359,14 +1387,14 @@ bool func_803294F0(Actor *this, s32 arg1, s32 arg2){
 bool func_80329530(Actor *this, s32 dist){
     if( func_8028F098() 
         && !func_803203FC(0xBF) 
-        && actor_playerIsWithinDist(this, dist)
+        && subaddie_playerIsWithinSphere(this, dist)
     ){
         return TRUE;
     }
     return FALSE;
 }
 
-bool actor_playerIsWithinDist(Actor *this, s32 dist){
+bool subaddie_playerIsWithinSphere(Actor *this, s32 dist){
     f32 sp24[3];
     f32 sp18[3];
 
@@ -1383,11 +1411,30 @@ bool actor_playerIsWithinDist(Actor *this, s32 dist){
     return FALSE;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80329628.s")
+bool subaddie_playerIsWithinAsymmetricCylinder(Actor *this, s32 radius, s32 d_upper, s32 d_lower){
+    f32 sp1C[3];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_803296B8.s")
+    player_getPosition(sp1C);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_803296D8.s")
+    if(((this->position[1] + d_upper) < sp1C[1]) || (sp1C[1] < (this->position[1] - d_lower))){
+        return FALSE;
+    }
+    return subaddie_playerIsWithinSphere(this, radius);
+
+}
+
+bool subaddie_playerIsWithinCylinder(Actor *this, s32 radius, s32 d_y){
+    return subaddie_playerIsWithinAsymmetricCylinder(this, radius, d_y, d_y);
+}
+
+bool func_803296D8(Actor *this, s32 dist){
+    if(!this->unk124_7){
+        return TRUE;
+    }
+    else{
+        return func_80329530(this, dist);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032970C.s")
 
@@ -1453,8 +1500,7 @@ Actor *marker_getActor(ActorMarker *this){
     return &(D_8036E560->data[this->actrArrayIdx]);
 }
 
-//actor_getChild
-Actor *func_80329980(Actor *this){
+Actor *subaddie_getLinkedActor(Actor *this){
     if(this->unk100 == NULL)
         return NULL;
     return marker_getActor(this->unk100);

@@ -237,7 +237,7 @@ void func_802E20E8(Actor *this){
 
         }
     }//L802E223C
-    if(!actor_playerIsWithinDist(this, 4000))
+    if(!subaddie_playerIsWithinSphere(this, 4000))
         return;
 
     if(!local->unkB && this->marker->unk14_21){

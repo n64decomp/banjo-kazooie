@@ -344,7 +344,7 @@ void func_80358684(Actor *this) {
         func_80357F0C(this, 1);
     }
 
-    if (!actor_playerIsWithinDist(this, 4000)) {
+    if (!subaddie_playerIsWithinSphere(this, 4000)) {
         if (local->unk0 != 0) {
             func_8030DA44(local->unk0);
             local->unk0 = 0U;

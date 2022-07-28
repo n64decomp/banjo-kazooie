@@ -174,7 +174,7 @@ void func_8038B124(Actor *this){
         }
     }//L8038B25C
 
-    if(!actor_playerIsWithinDist(this, 4500)) return;
+    if(!subaddie_playerIsWithinSphere(this, 4500)) return;
 
     this->unk58_0 = TRUE;
     switch(this->state){

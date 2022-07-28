@@ -114,7 +114,7 @@ Actor *func_802D94B4(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 }
 
 void func_802D9530(Actor *this){
-    Actor *other = func_80329980(this);
+    Actor *other = subaddie_getLinkedActor(this);
     if(this->unk100 && other){
         if(this->unk100->unk14_20 == 0xB8)
             func_80328B8C(other, 3, 0.0001f, 1);
@@ -230,7 +230,7 @@ int func_802D997C(Actor *this){
 }
 
 void func_802D9ADC(Actor *this){
-    Actor *other = func_80329980(this);
+    Actor *other = subaddie_getLinkedActor(this);
     if(this->unk100 && other && this->unk100->unk14_20 == 0xB8){
         func_80328B8C(other, 2, 0.0001f, 1);
     }
@@ -307,7 +307,7 @@ void func_802D9D60(Actor *this){
             other = func_80326D68(this->position, ACTOR_12C_MOLEHILL, -1, &sp4C);
             this->unk100 = (other) ? other->marker : NULL;
             if(this->unk100){
-                other = func_80329980(this);
+                other = subaddie_getLinkedActor(this);
                 if(other && this->unk100->unk14_20 == 0xB8){
                     func_80328A84(other, 1);
                 }

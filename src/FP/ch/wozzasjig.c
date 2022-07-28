@@ -30,7 +30,7 @@ void func_8038FF54(Actor *this){
     ParticleEmitter *sp3C;
 
     if( func_8038BFA0() )               return;
-    if( !actor_playerIsWithinDist(this, 4500) )    return;
+    if( !subaddie_playerIsWithinSphere(this, 4500) )    return;
 
     this->marker->propPtr->unk8_3 = FALSE;
     actor_collisionOff(this);

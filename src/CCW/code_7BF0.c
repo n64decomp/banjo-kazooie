@@ -53,7 +53,7 @@ void func_8038E0C8(Actor *this) {
 
     sp34 = time_getDelta();
 
-    if(!actor_playerIsWithinDist(this, 3000)) return;
+    if(!subaddie_playerIsWithinSphere(this, 3000)) return;
 
     if (!this->unk16C_4) {
         this->unk16C_4 = TRUE;

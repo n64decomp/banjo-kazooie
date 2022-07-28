@@ -185,7 +185,7 @@ void func_8038BEA0(Actor *this){
         this->marker->propPtr->unk8_3 = FALSE;
     }//L8038BFF4
 
-    if(actor_playerIsWithinDist(this, 4000) || this->state == 5){
+    if(subaddie_playerIsWithinSphere(this, 4000) || this->state == 5){
         this->unk58_0 = TRUE;
         this->marker->propPtr->unk8_3 = TRUE;
         switch(this->state){
@@ -304,7 +304,7 @@ void func_8038BEA0(Actor *this){
         }//L8038C528
         if(this->unk100 && this->unk100->unk5C == local->unk0){
             Actor *tmp_v0;
-            tmp_v0 = func_80329980(this);
+            tmp_v0 = subaddie_getLinkedActor(this);
             if(this->marker->unk14_21){
                 func_8034A174(this->marker->unk44, 5, tmp_v0->position);
             }
