@@ -2236,85 +2236,271 @@ enum asset_e
     ASSET_288_ANIM_FLIBBIT_OW = 0x288,
 
     ASSET_2AB_ANIM_TEEHEE_DIE = 0x2AB,
-
+    // 2d1 Grey House Brick (Upon Smashing MM Huts)
     ASSET_2D2_MODEL_ORANGE            = 0x2d2, //projectile
-
+    // 2d3 MM Conga Tree
+    // 2d4 (Shadow?)
+    // 2d5 FP Blue Present
+    // 2d6 FP Tartan Present
+    // 2d7 FP Green/White Present
+    // Unused
+    // Unused
+    // 2da TTC Palm Tree
+    // 2db RBB Grey Toxic Barrel
+    // 2dc RBB Yellow Toxic Barrel
+    // 2dd Shock Jump Pad
+    // Unused
+    // 2df TTC Light Crate
+    // 2e0 TTC Dark Crate
+    // 2e1 TTC Light & Dark Crate
+    // Unused
+    // 2e3 RBB Light Pipe Opening
+    // 2e4 RBB Dark Pipe Opening
+    // 2e5 (Grey Pipe?)
     ASSET_2E6_MODEL_JUJU              = 0x2e6,
-
+    // 2e7 (Grey Plank?)
+    // 2e8 Flight Pad
+    // 2e9 MM Orange Splat
+    // Unused
     ASSET_2EB_MODEL_ORANGE_PAD        = 0x2eb,
-
+    // Unused
+    // 2ed Banjo's House Dustbin
+    // Unused
+    // Unused
+    // 2f1 MMM Tumblar
+    // Unused
+    // Unused
+    // 2f4 CCW Autumn Leaf
+    // 2f5 Green BK Flag Pole (Beta?)
+    // 2f6 Blue BK Flag Pole (Beta?)
+    // 2f7 CCW Spring Leaf
+    // 2f8 RIP Tombstone
+    // 2f9 Red BK Flag Pole (Beta?)
+    // Unused
+    // 2fb CCW Summer Leaf
+    // 2fc MMM Grave Plot
+    // Unused
+    // Unused
+    // 2ff MM Tree
+    // 300 Jinxy Head
     ASSET_301_MODEL_5_MUMBO_TOKEN_SIGN = 0x301,
     ASSET_302_MODEL_10_MUMBO_TOKEN_SIGN,
     ASSET_303_MODEL_15_MUMBO_TOKEN_SIGN,
     ASSET_304_MODEL_20_MUMBO_TOKEN_SIGN,
     ASSET_305_MODEL_25_MUMBO_TOKEN_SIGN,
-
+    // 306 (Grey Platform Red Top?)
+    // Unused
+    // 308 Clanker's Blue Ring
     ASSET_309_MODEL_CLANKER_TOKEN_TOOTH_EXTERIOR = 0x309,
     ASSET_30A_MODEL_CLANKER_JIGGY_TOOTH_EXTERIOR,
-
-
+    // Unused
+    // Unused
+    // 30d BGS Leaf Pad
+    // 30e (Wood Pipe?)
+    // Unused
+    // Unused
+    // 311 Corn On The Cob
+    // 312 Hamper
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // 318 Melon
+    // 319 FP Present Stand Large
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // 323 FP Present Stand Small
+    // 324 FP Present Ramp
+    // 325 FP Icicle Large
+    // 326 FP Icicle Small
+    // Unused
+    // Unused
+    // 329 FP Stack Of Presents 1
+    // Unused
+    // Unused
+    // Unused
+    // 32d (Shadow)
+    // 32e (Banjo's Pillow?)
+    // 32f Corner Cobweb
+    // 330 Banjo's Arm Chair
+    // 331 Banjo's Towel Holder
+    // 332 BGS Floating Log
+    // 333 Banjo's Flower Pot
+    // 334 Palm Tree
+    // 335 BGS Cattail
+    // 336 Banjo's Drawers
+    // 337 Banjo's Kitchen
+    // 338 Table And Radio
+    // 339 Winter Tree
+    // 33a Wall Torch
+    // 33b Parasol
+    // 33c GV Maze Pot
+    // 33d GV Sarcophagus
+    // 33e GV Rock 1 (Behind Entrance?)
+    // 33f GV Rock 2 (Behind Entrance?)
+    // 340 GL Beauty Stealing Machine
+    // 341 GL Beauty Stealing Machine Console
+    // 342 GV Short Platform
+    // 343 Tooty Picture Frame
+    // 344 (Wooden Block?)
+    // 345 (Golden Block?)
+    // 346 (Transparent Ice Floor?)
+    // 347 GL Machine Room Door
+    // 348 (Leaf Floor?)
+    // 349 (Unknown?)
+    // 34a Floor Cobweb
+    // 34b Banjo's Bed
+    // 34c Furnace Fun Booth
+    // 34d Banjo Kazooie Low Poly Model
+    // 34e Banjo Kazooie High Poly Model
     ASSET_34F_MODEL_BANJO_TERMITE = 0x34F,
     ASSET_350_MODEL_TERMITE,
     ASSET_351_MODEL_CLAM,
     ASSET_352_MODEL_SLED,
     ASSET_353_MODEL_BIGBUTT,
     ASSET_354_MODEL_BULL_INTRO,
-
+    // 355 Concert Banjo Kazooie
     ASSET_356_MODEL_BANJO_WISHYWASHY = 0x356,
-
+    // Unused
+    // 358 TTC Snippet
     ASSET_359_MODEL_BANJO_WALRUS = 0x359,
-
+    // 35a Concert Tooty
+    // 35b Credits Tooty
     ASSET_35C_MODEL_CONGA   = 0x35c,
     ASSET_35D_MODEL_CHIMPY            = 0x35d,
-
+    // 35e (Jiggy Podium?)
     ASSET_35F_MODEL_JIGGY = 0x35F,
-
+    // 360 Blue Egg Fragment
     ASSET_361_MODEL_EMPTY_HONEYCOMB = 0x361,
     ASSET_362_MODEL_BANJO_BEE,
     ASSET_363_MODEL_HONEYCOMB,
     ASSET_364_MODEL_BEEHIVE,
-
+    // Unused
     ASSET_366_MODEL_WADING_BOOTS = 0x366,
     ASSET_367_MODEL_TURBO_TALON_TRAINERS,
-
+    // Unused
+    // 369 Concert Frog
+    // Unused
+    // 36b Chump
+    // 36c Unused
     ASSET_36D_SPRITE_BLUE_EGG = 0x36D,
     ASSET_36E_MODEL_EXTRA_LIFE,
     ASSET_36F_MODEL_BANJO_PUMPKIN,
     ASSET_370_MODEL_BLUBBER,
     ASSET_371_MODEL_GRABBA,
     ASSET_372_MODEL_GLOOP,
-
+    // 373 Mr Vile
     ASSET_374_MODEL_BANJO_CROC = 0x374,
-
+    // 375 Red Flibbit
     ASSET_376_MODEL_SLAPPA = 0x376,
     ASSET_377_MODEL_SIR_SLUSH,
     ASSET_378_MODEL_SNOWBALL,
-
+    // 379 Sir Slush Hat
+    // 37a (Sir Slush Snowball?)
+    // 37b Snowball Fragment
+    // 37c Yum-Yum Large Shell Fragment
+    // 37d Yum-Yum Eye
+    // 37e Yum-Yum Small Shell Fragment
+    // 37f (White Dot?)
+    // 380 BGS/CCW Largest Pink Egg
+    // 381 BGS Large Pink Egg
+    // 382 BGS Medium Orange Egg
+    // 383 BGS Small Orange Egg
+    // 384 BGS Smallest Orange Egg
+    // 385 Yellow Flibbit
+    // Unused
     ASSET_387_MODEL_BOTTLES = 0x387,
     ASSET_388_MODEL_MOLEHILL,
-
+    // Unused
     ASSET_38A_MODEL_BOGGY_1 = 0x38A,
-
+    // 38b Boggy Race Red Flag
+    // 38c Snippet Claw
+    // 38d Snippet Leg
+    // 38e Snippet Head
+    // 38f Mutie Snippet With Glow
+    // 390 Mutie Snippet Head
+    // 391 Mutie Snippet Leg
+    // 392 Mutie Snippet Claw
+    // 393 Ticker Leg
+    // 394 Ticker Head No Eyes
+    // 395 Ticker Body
+    // 396 Ticker Eye
+    // 397 BGS Large Alligator Head
+    // 398 Concert Ant
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // 3a6 Nintendo Cube
+    // 3a7 Rareware Logo
+    // 3a8 (Brown Triangle?)
     ASSET_3A9_MODEL_PALM_TREE = 0x3A9,
-
+    // Unused
+    // Unused
+    // Unused
+    // 3ad Fire Sparkle
     ASSET_3AE_MODEL_GRAVE_FLOWER_POT = 0x3AE,
-
+    // 3af (Green Plank?)
+    // 3b0 Snacker
+    // 3b1 Concert Mumbo
+    // 3b2 (Two Poles?)
+    // 3b3 Mumbo's Hut
+    // Unused
+    // Unused
+    // 3b6 TTC Stairs 1
+    // 3b7 TTC Stairs 2
+    // Unused
+    // Unused
+    // Unused
+    // 3bb Yellow Jinjo
+    // 3bc Orange Jinjo
+    // 3bd TTC Lighthouse A
+    // 3be TTC Lighthouse B
     ASSET_3BF_MODEL_PLAYER_SHADOW = 0x3BF,
-
+    // 3c0 Blue Jinjo
+    // 3c1 Pink Jinjo
+    // 3c2 Green Jinjo
+    // Unused
+    // Unused
     ASSET_3C5_MODEL_GRUBLIN           = 0x3c5,
-
+    // 3c6 Mumbo
     ASSET_3C7_MODEL_GOLD_BULLION      = 0x3c7,
     ASSET_3C8_MODEL_CHIMPY_STUMP,
-
+    // 3c9 MMM Ripper
+    // 3ca MMM Nibbly
     ASSET_3CB_MODEL_TEEHEE            = 0x3cb,
-    
+    // 3cc MMM Barrel Lid
+    // 3cd MMM Tumblar Door
+    // 3ce MMM Mansion Door
+    // 3cf MMM Cellar Hatch
+    // 3d0 MMM Locked Gate (Lock On Left)
+    // 3d1 MMM Locked Gate (Lock On Right) 1
+    // 3d2 TTC Blubber's Ship Top Hatch
+    // 3d3 MMM Church Door
+    // 3d4 Lockup
     ASSET_3D5_MODEL_NIPPER = 0x3d5,
-    ASSET_3D6_MODEL_LIGHTHOUSE_DOOR = 0x3d5,
-
+    ASSET_3D6_MODEL_LIGHTHOUSE_DOOR = 0x3d6,
     ASSET_3D7_MODEL_STAR_SWITCH       = 0x3d7,
     ASSET_3D8_MODEL_GV_BANJO_DOOR,
     ASSET_3D9_MODEL_GV_KAZOOIE_DOOR,
-
+    // 3da GV Sun Door
     ASSET_3DB_MODEL_GV_STAR_HATCH = 0x3db,
     ASSET_3DC_MODEL_MAGIC_CARPET,
     ASSET_3DD_MODEL_RUBEE,
@@ -2324,44 +2510,106 @@ enum asset_e
     ASSET_3E1_MODEL_RUBEES_EGG_POT = 0x3E1,
     ASSET_3E2_MODEL_GV_KAZOOIE_TARGET = 0x3E2,
     ASSET_3E3_MODEL_GOBI_ROPE,
-
+    // 3e4 GV Gobi's Rock
+    // 3e5 GV Hand Shadow
+    // 3e6 GV Jinxy Head 2
     ASSET_3E7_MODEL_MAGIC_CARPET_SHADOW = 0x3e7,
     ASSET_3E8_MODEL_ANCIENT_ONE,
     ASSET_3E9_MODEL_RED_ARROW,
     ASSET_3EA_MODEL_RED_X,
     ASSET_3EB_MODEL_RED_QUESTION_MARK,
-
+    // 3ec Shrapnel
+    // 3ed Buzzbomb
+    // 3ee BGS Tanktup Head & Shell
+    // 3ef BGS Tanktup Leg 1
+    // 3f0 BGS Tanktup Leg 2
+    // 3f1 BGS Tanktup Leg 3
+    // 3f2 BGS Tanktup Leg 4
     ASSET_3F3_MODEL_GOBI_SPIT = 0x3F3,
-
+    // Unused
+    // 3f5 BGS Green Jiggy Switch
     ASSET_3F6_MODEL_YUMBLIE = 0x3F6,
     ASSET_3F7_MODEL_GRUMBLIE,
-
+    // 3f8 BGS Tip-tup
+    // 3f9 BGS Choir Turtle
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
     ASSET_3FF_MODEL_GV_SUN_DOOR = 0x3FF,
     ASSET_400_MODEL_SUN_SWITCH,
-
+    // 401 RBB Flotsam
     ASSET_402_MODEL_RBB_EGG_TOLL = 0x402,
-
+    // 403 RBB Rear Ship Propeller
+    // 404 RBB Green Propeller Switch (Stop Propellers)
+    // 405 RBB Grey Propeller Switch (Stop Propellers)
+    // 406 RBB Thin Shaft
+    // 407 RBB Double Shaft 1
+    // 408 RBB Double Shaft 2
+    // 409 RBB Small Cog
+    // 40a RBB Medium Cog
+    // 40b RBB Large Cog
+    // 40c RBB Spinning Platform 1
+    // 40d RBB Spinning Platform 2
+    // 40e RBB Spinning Platform 3
+    // 40f RBB Engine Room Propeller 1
+    // 410 RBB Engine Room Propeller 2
+    // 411 RBB Engine Room Propeller 3
+    // 412 RBB Grey Propeller Switch (Slow Fans)
+    // 413 RBB 1 Switch
+    // 414 RBB 2 Switch
+    // 415 RBB 3 Switch
+    // 416 RBB Whistle 1 (Yellow)
+    // 417 RBB Whistle 2 (Gold)
+    // 418 RBB Whistle 3 (Blue)
+    // 419 Grimlet
     ASSET_41A_SPRITE_MUMBO_TOKEN = 0x41A,
-
+    // 41b RBB Anchor Button
+    // 41c Snorkel
+    // 41d RBB Anchor & Chain
+    // 41e RBB Rareware Flag
+    // 41f (Gruntilda's Final Battle Forcefield?)
+    // 420 (Explosion 2D?)
     ASSET_421_MODEL_FP_SNOWMAN_BUTTON = 0x421,
     ASSET_422_MODEL_JINXY,
-
+    // Unused
+    // 424 GV Cactus
     ASSET_425_MODEL_CROCTUS = 0x425,
-
+    // 426 FP Christmas Tree Star
+    // 427 (Wooden Plank)
+    // 428 Boss Kaboom Box
+    // 429 CC Key
+    // 42a (Smoke 2D?)
+    // 42b (Orange Triangle?)
     ASSET_42C_MODEL_BURIED_TREASURE = 0x42C,
-
+    // 42d SM Quarrie
+    // 42e SM Quarrie Fragment
+    // 42f RBB Empty Honeycomb Button
     ASSET_430_MODEL_GRILL_CHOMPA = 0x430,
-
+    // 431 Beta Vent
     ASSET_432_MODEL_CLANKER_WHIPCRACK = 0x432,
-
+    // Unused
     ASSET_434_MODEL_TOOTS = 0x434,
-
+    // 435 CC Green Grate
+    // 436 CC Teal Grate
+    // 437 (Unknown?)
     ASSET_438_MODEL_HONEYCOMB_SWITCH = 0x438,
-
+    // 439 (Unknown?)
     ASSET_43A_MODEL_CLANKER_SAWBLADE_PROPELLOR = 0x43A,
-
+    // 43b RBB Bell Buoy
+    // 43c RBB Row Boat
+    // 43d MMM Church Clock Switch
+    // 43e MMM Locked Gate (Lock On Right) 2
+    // 43f (White Star?)
+    // 440 CCW Snarebear
+    // 441 (Sir Slush Snowball?)
+    // 442 FP Twinklies Box
+    // 443 CCW Zubba Honey Lump
+    // 444 (CCW Zubba Entrance Lid?)
+    // 445 (CCW Zubba Entrance Lid?)
     ASSET_446_MODEL_ZUBBA = 0x446,
-
+    // 447 CCW Plant
     ASSET_448_MODEL_TWINKLY_BLUE = 0x448,
     ASSET_449_MODEL_TWINKLY_GREEN,
     ASSET_44A_MODEL_TWINKLY_ORANGE,
@@ -2369,15 +2617,54 @@ enum asset_e
     ASSET_44C_MODEL_POLAR_BEAR_CUB_BLUE,
     ASSET_44D_MODEL_POLAR_BEAR_CUB_GREEN,
     ASSET_44E_MODEL_POLAR_BEAR_CUB_RED,
-
+    // 44f (Green Mist?)
+    // 450 Dingpot
+    // 451 Gruntilda
+    // 452 Gruntilda's Arms
+    // 453 Dingpot Top
+    // 454 Tooty Image In Dingpot
+    // 455 MMM Limbo
+    // 456 Gruntilda's Broomstick
+    // 457 Gruntilda Riding Broomstick
+    // 458 Banjo Top Half
+    // 459 Banjo's Bed
     ASSET_45A_SPRITE_GREEN_GLOW     = 0x45A,
-
+    // 45b Kazooie In Backpack Stand
+    // 45c Banjo's House Curtains
+    // 45d (Unknown)
+    // 45e Banjo's House Door
+    // 45f (Firey Rock?)
+    // 460 (Kazooie Wing?)
+    // 461 (Green Smog Ceiling?)
+    // 462 Nabnut's Girlfriend
+    // 463 Nabnut's Bed Sheet
+    // 464 Nabnut's Bed
+    // 465 Dead Snarebear
+    // 466 (Sparkle 2D?)
+    // 467 (Blank Picture Frame?)
+    // 468 Sexy Grunty
+    // 469 Ugly Tooty
+    // 46a Klungo
+    // 46b Beauty Machine Room Force Field
+    // 46c Jiggy Picture
+    // 46d Lightning
+    // 46e Roysten In Bowl
+    // 46f Coocoo Clock
+    // 470 Banjo's Bookshelves
+    // 471 Empty Blow Picture Frame
+    // 472 Blank Picture
+    // 473 Mumbo The BBQ King! He Bares Coconuts!
+    // 474 Roysten The Grill Master!
+    // 475 (Heart 2D?)
     ASSET_476_SPRITE_BLUE_GLOW     = 0x476,
     ASSET_477_SPRITE_YELLOW_GLOW,
-
-
+    // 478 (Yellow Glow?)
+    // 479 Bikini Girl
+    // 47a (Brown Ball?)
     ASSET_47B_MODEL_ROCK    = 0x47b,
-
+    // 47c (Snoring Z 2D?)
+    // Unused
+    // Unused
     ASSET_47F_MODEL_XMAS_GIFT_BLUE = 0x47F,
     ASSET_480_MODEL_XMAS_GIFT_GREEN,
     ASSET_481_MODEL_XMAS_GIFT_RED,
@@ -2391,9 +2678,14 @@ enum asset_e
     ASSET_489_MODEL_SHOCKSPRING_PAD,
     ASSET_48A_MODEL_FLIGHT_PAD,
     ASSET_48B_MODEL_JIGGY_PODIUM,
-
+    // 48c Boom Box
+    // 48d Nabnut Eating Acorns
     ASSET_48E_MODEL_ACORN = 0x48E,
-
+    // 48f Gnawty
+    // 490 Gnawty's Boulder
+    // 491 Note Door
+    // 492 (Wooden Door?)
+    // 493 RBB Engine Room Door
     ASSET_494_MODEL_WOZZA = 0x494,
     ASSET_495_MODEL_WOZZAS_JIGGY,
     ASSET_496_MODEL_TWINKLY_MUNCHER,
@@ -2402,11 +2694,64 @@ enum asset_e
     ASSET_499_MODEL_TWINKLY_SHARD_GREEN = 0x499,
     ASSET_49A_MODLE_TWINKLY_SHARD_ORANGE,
     ASSET_49B_MODLE_TWINKLY_SHARD_RED,
-
+    // 49c (Green & Red Area?)
+    // 49d Seaman Grublin
+    // 49e 2D Bee (Used In Swarms)
+    // 49f 2D Glowing Bee (Beta)
     ASSET_4A0_SPRITE_EXPLOSION = 0x4A0,
-
+    // 4a1 Brick Wall Near GV Entrance
+    // 4a2 Mumbo's Mountain Door Entrance
+    // 4a3 TTC Entrance Chest Lid
+    // 4a4 Clanker's Entrance Long Pipe (Green)
+    // 4a5 Clanker's Entrance Long Pipe (Blue)
+    // 4a6 Clanker's Entrance Short Pipe
+    // 4a7 Clanker's Entrance Iron Bars
+    // 4a8 Bubblegloop Swamp Puzzle Grate
+    // 4a9 Raise Pipe Switch (Path To CC)
+    // 4aa Raise Pipe Switch (Path To Brentilda)
+    // 4ab Raise Grate To BGS Puzzle
+    // 4ac Iron Bars Under Gruntilda Statue
+    // 4ad Gruntilda Statue Hat Top
+    // 4ae Bubblegloop Swamp Entrance Door
+    // 4af (Ice Ball?)
+    // 4b0 Level 3 Water Switch
+    // 4b1 Grate To Level 3 Water Switch
+    // 4b2 Level 2 Water Switch
+    // 4b3 Rareware Box (To Hide Water Switch?)
+    // 4b4 Rusty Bucket Bay Entrance Door
+    // 4b5 Level 1 Water Switch
+    // 4b6 Grate Between MMM and RBB Puzzles
+    // 4b7 Grate To RBB Puzzle
+    // 4b8 CCW Puzzle Switch
+    // 4b9 (Jiggy Switch Beta?)
+    // 4ba RBB Window 1
+    // 4bb RBB Window 2
+    // 4bc GV Entrance Door
+    // 4bd Gruntilda Head Eyeball
+    // 4be MMM Entrance Door
+    // 4bf GL Yellow Floor Cobweb
+    // 4c0 MMM Window
+    // 4c1 MMM Short Window
+    // 4c2 MMM Tall Window
+    // 4c3 FP House
+    // 4c4 FP Frozen Mumbo Hut
+    // 4c5 FP Stack Of Presents 2
+    // 4c6 FP Snowy Bridge
+    // 4c7 Mum-Mum
+    // 4c8 Mum-Mum Arm
+    // 4c9 Mum-Mum Leg
+    // 4ca Mum-Mum Head
+    // 4cb Mum-Mum Body
+    // 4cc Limbo
+    // 4cd Limbo Arm
+    // 4ce Limbo Leg
+    // 4cf Limbo Head
+    // 4d0 Limbo Body?
+    // Unused
+    // 4d2 FP Christmas Tree Glass Container
+    // 4d3 FP Christmas Tree Glass Container Fragment
     ASSET_4D4_MODEL_TWINKLY_BOX_PAPER_SHARD = 0x4D4,
-
+    // 4d5 GL Yellow Wall Cobweb
     ASSET_4DC_MODEL_WITCH_SWITCH = 0x4DC,
 
     MODEL_TOPPER            = 0x4ed,
