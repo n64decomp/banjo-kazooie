@@ -4,7 +4,10 @@
 
 #include "prop.h"
 
-extern f32 func_80258708(f32[3], f32[3]);
+#define DIST_SQ_VEC3F(v1, v2) ((v1[0] - v2[0])*(v1[0] - v2[0]) + (v1[1] - v2[1])*(v1[1] - v2[1]) + (v1[2] - v2[2])*(v1[2] - v2[2]))
+
+extern f32  func_80258708(f32[3], f32[3]);
+extern bool func_80259384(f32[3], f32[3], f32);
 extern void func_802D7124(Actor *, f32);
 extern void func_802EE6CC(f32[3], s32[4], s32[4], s32, f32, f32, s32, s32, s32);
 
@@ -56,6 +59,7 @@ extern  u8 D_8036E578;
 extern  u8 D_8036E57C;
 extern f32 D_8036E580;
 extern f32 D_8036E58C[3];
+extern f32 D_8036E598[6];
 extern s32 D_8036E5B0[4];
 extern s32 D_8036E5C0[4];
 
@@ -63,6 +67,8 @@ extern s32 D_8036E5C0[4];
 /* .rodata */
 extern f32 D_80378E50;
 extern f64 D_80378E58;
+extern f64 D_80378E60;
+extern f64 D_80378E68;
 
 /* .bss */
 extern Actor *D_80383390;
@@ -728,10 +734,31 @@ Actor **func_80326FC0(void) {
     return D_80383398;
 }
 
+bool func_803270B8(f32 arg0[3], f32 arg1, s32 arg2, int (*arg3)(Actor *), ActorMarker * arg4){
+    bool var_s4;
+    Actor * start;
+    Actor * i_ptr;
 
+    var_s4 = FALSE;
+    start = &D_8036E560->data[0];
+    for(i_ptr = start; (D_8036E560 != NULL) && (i_ptr - start < D_8036E560->cnt); i_ptr++){
+        if( !i_ptr->despawn_flag 
+            && i_ptr->marker->collidable 
+            && ((arg3 == NULL) || arg3(i_ptr)) 
+            && func_80259384(i_ptr->position, arg0, arg1)
+        ) {
+            if (i_ptr->marker->unk58 == NULL || i_ptr->marker->unk58(i_ptr->marker, arg4)
+            ) {
+                var_s4 = TRUE;
+                if (!func_8033D410(arg4, i_ptr->marker)) {
+                    func_8032FFF4(i_ptr->marker, arg4, arg2);
+                }
+            }
+        }
+    }
+    return var_s4;
+}
 
-void func_803270B8(f32 arg0[3], f32 arg1, s32 arg2, int (*arg3)(Actor *), ActorMarker *);
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_803270B8.s")
 
 void func_8032728C(f32 arg0[3], f32 arg1, s32 arg2, int (*arg3)(Actor *)){
     func_803270B8(arg0, arg1, arg2, arg3, _player_getMarker());
@@ -1174,9 +1201,50 @@ void func_803285E8(Actor *this, f32 arg1, int direction){
     this->sound_timer = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032863C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80328748.s")
+
+int func_8032863C(AnimCtrl *anim_ctrl, f32 min, f32 max) {
+    f32 timer;
+    s32 sp18;
+
+    timer = animctrl_getAnimTimer(anim_ctrl);
+    if ((timer < min) || (max <= timer)) {
+        return -1;
+    }
+    sp18 = animctrl_isPlayedForwards(anim_ctrl);
+    if( ((sp18 == 0) && (min <= timer) && (timer < (min + D_80378E60))) 
+        || ((sp18 == 1) && (timer < max) && ((max - D_80378E68) <= timer))
+    ) {
+        sp18 = (sp18) ? 0 : 1;
+        animctrl_setDirection(anim_ctrl, sp18);
+        return sp18 + 2;
+    }
+    return sp18;
+}
+
+
+s32 func_80328748(AnimCtrl *anim_ctrl, f32 min, f32 max) {
+    s32 sp24;
+    f32 sp20;
+
+    sp24 = func_8032863C(anim_ctrl, min, max);
+    if (sp24 != -1) {
+        return sp24;
+    }
+    sp20 = animctrl_getAnimTimer(anim_ctrl);
+    if (animctrl_isPlayedForwards(anim_ctrl) == TRUE) {
+        if (max <= sp20) {
+            animctrl_setAnimTimer(anim_ctrl, max);
+            animctrl_setDirection(anim_ctrl, 0);
+            sp24 = 2;
+        }
+    } else if (sp20 < min) {
+        animctrl_setAnimTimer(anim_ctrl, min);
+        animctrl_setDirection(anim_ctrl, 1);
+        sp24 = 3;
+    }
+    return sp24;
+}
 
 int func_8032881C(Actor *this){
     if(this->animctrl){
@@ -1295,10 +1363,42 @@ void func_80328CEC(Actor * this, s32 arg1, s32 min, s32 max){
     func_80328C64(this, abs + (arg1 + f12));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80328DAC.s")
+f32 func_80328DAC(Actor *this){
+    return D_8036E598[this->unk10_3];
+}
 
-f32 func_80328DCC(Actor *, f32, f32, s32);
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80328DCC.s")
+f32 func_80328DCC(Actor *this, f32 angle, f32 angle_ideal, s32 arg3) {
+    f32 var_f2;
+    s32 var_t16;
+
+    if (angle_ideal == angle) {
+        return angle;
+    }
+
+    var_f2 = angle_ideal - angle;
+    if (var_f2 >= 180.0f) {
+        var_f2 -= 360.0f;
+    }
+    if (var_f2 < -180.0f) {
+        var_f2 += 360.0f;
+    }
+
+    if ((this->marker->unk14_20 != 0x12) && (this->marker->unk2C_2 == 1) && ((var_f2 >= 50.0f) || (var_f2 < -50.0f))) {
+        return angle_ideal;
+    }
+    var_f2 = var_f2 / func_80328DAC(this);
+    var_t16 = arg3;
+    var_f2 = (0.0f < var_f2) ? MIN(var_f2, var_t16) : MAX(var_f2, -arg3) ;
+
+    var_f2 += angle;
+    while (var_f2 < 0.0f) {
+        var_f2 += 360.0f;
+    }
+    while (var_f2 >= 360.0f) {
+            var_f2 -= 360.0f;
+    }
+    return var_f2;
+}
 
 void func_80328FB0(Actor *this, f32 arg1){
     this->yaw = func_80328DCC(this, this->yaw, this->yaw_moving, (s32)arg1);
@@ -1316,9 +1416,40 @@ s32 func_80329054(s32 arg0, s32 arg1) {
     return !func_8032CA80(arg0, arg1 + 4);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80329078.s")
+bool func_80329078(Actor *this, s32 arg1, s32 arg2){
+    f32 sp1C[3];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80329140.s")
+    if(this->unk10_25 == 0)
+        return TRUE;
+
+    sp1C[0] = this->position[0];
+    sp1C[1] = this->position[1];
+    sp1C[2] = this->position[2];
+    func_80328478(sp1C, arg1, arg2);
+    if(func_80307258(sp1C, this->unk10_25 - 1, this->unk10_18 - 1) == -1){
+        return FALSE;
+    }
+    return TRUE;
+}
+
+bool func_80329140(Actor *this, s32 arg1, s32 arg2){
+    s32 var_v0;
+    f32 sp20[3];
+
+    sp20[0] = this->position[0];
+    sp20[1] = this->position[1];
+    sp20[2] = this->position[2];
+    func_80328478(sp20, arg1, arg2);
+    var_v0 = func_80309D58(sp20, this->unk10_18);
+    if(this->unk10_18 == 0){
+        this->unk10_18 = var_v0;
+    }
+    if(var_v0 == 0){
+        if (this->unk10_18 != 0) 
+            return FALSE;
+    }
+    return TRUE;
+}
 
 int func_80329210(Actor * arg0, f32 (* arg1)[3]){
     return arg0->unk10_25 < 1 
@@ -1354,7 +1485,18 @@ bool func_80329354(Actor *this){
     return func_80329260(this, sp1C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80329384.s")
+bool func_80329384(Actor *this, f32 arg1){
+    f32 sp1C[3];
+
+    if(this->unk10_25 == 0)
+        return TRUE;
+
+    _player_getPosition(sp1C);
+
+    return func_80307258(sp1C, this->unk10_25 - 1, this->unk10_18 - 1) != -1
+        && (sp1C[1] < (this->position[1] + arg1))
+        && ((this->position[1] - arg1) < sp1C[1]);
+}
 
 bool func_8032944C(Actor *this){
     s32 v1;
@@ -1436,7 +1578,15 @@ bool func_803296D8(Actor *this, s32 dist){
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032970C.s")
+s32 func_8032970C(Actor *this){
+    f32 sp24[3];
+    f32 sp18[3];
+
+    func_8028E964(sp24);
+    _player_getPosition(sp18);
+    sp24[1] = sp18[1];
+    return (s32) DIST_SQ_VEC3F(this->position, sp24);
+}
 
 s32 func_80329784(Actor *arg0){
     f32 sp1C[3];
@@ -1838,25 +1988,22 @@ void func_8032AA9C(void){
     func_802C3BDC();
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032AABC.s")
-#else
 void func_8032AABC(void){
+    Actor *i_ptr;
+    Actor *start = &D_8036E560->data[0];
     u32 i;
     u32 cnt;
     
     func_802C3BE8();
 
-    
+
     if(D_8036E560 != NULL){    
         cnt =  D_8036E560->cnt;
-        for(i = 0; i < cnt; i++){
-            D_8036E560->data[i].marker->unk14_21 = 0;
+        for(i_ptr = start, i = 0; i < cnt; i++, i_ptr++){
+            i_ptr->marker->unk14_21 = 0;
         }
     }
-    
 }
-#endif
 
 void func_8032AB84(Actor *arg0) {
     s32 var_s0;
