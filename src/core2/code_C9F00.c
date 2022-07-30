@@ -20,12 +20,17 @@ typedef struct {
     u32 unk6_6:6;
     u32 pad6_4:1;
     u16 unk8;
-    u16 padA_15:10;
-    u16 unkA_5:1;
-    u16 unkA_4:1;
-    u16 padA_3:2;
-    u16 unkA_1:1;
-    u16 padA_0:1;
+    union{
+        struct{
+            u16 padA_15:10;
+            u16 unkA_5:1;
+            u16 unkA_4:1;
+            u16 padA_3:2;
+            u16 unkA_1:1;
+            u16 padA_0:1;
+        };
+        u16 unkA;
+    };
 }Struct_Core2_C9F00_2;
 
 typedef struct {
@@ -237,32 +242,20 @@ bool func_803515EC(Struct_Core2_C9F00_2 *arg0) {
     return TRUE;
 }
 
-#ifndef NONMATCHING
-bool func_80351700(Struct_Core2_C9F00_2 * arg0);
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C9F00/func_80351700.s")
-#else
 bool func_80351700(Struct_Core2_C9F00_2 * arg0){
-    // if ((arg0->unkA << 0x1E) < 0) {
-    if (arg0->unkA_1) {
-        return 1;
+    if (((arg0->unkA << 0x1E) >> 0x1F)) {
+        return TRUE;
     }
-    return 1;
+    return TRUE;
 }
-#endif
 
-#ifndef NONMATCHING
-bool func_80351724(Struct_Core2_C9F00_2 * arg0);
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C9F00/func_80351724.s")
-#else
 bool func_80351724(Struct_Core2_C9F00_2 * arg0){
-    // if (arg0->unkA_1 && arg0->unkA_5) {
-    if (((arg0->unkA << 0x1E) < 0) && ((arg0->unkA << 0x1A) < 0)) {
+    if (((arg0->unkA << 0x1E) >> 0x1F) && ((arg0->unkA << 0x1A) >> 0x1F)) {
         arg0->unkA_5 = FALSE;
         arg0->unkA_4 = TRUE;
     }
-    return 1;
+    return TRUE;
 }
-#endif
 
 s32 func_80351758(Struct68s *arg0){
     if(arg0->unk0 == 0){
