@@ -14,8 +14,10 @@ extern s32 D_80385FE0;
 extern s32 D_80385FE4;
 extern s32 D_80385FE8;
 extern f32 D_80385FEC;
-extern u8 D_80385FF0[];
+extern u8  D_80385FF0[];
 extern f32 D_80386000[];
+extern s32 D_80386038;
+extern s32 D_80386068;
 
 void func_80345EB0(enum item_e item){
     if(func_802FAFE8(item)){
@@ -386,7 +388,6 @@ s32 notescore_getLevelScore(enum level_e lvl_id){
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_8034722C.s")
 
 extern u8 D_80386060[]; //saved item array
-extern s32 D_80385F68;
 
 //itemscore_getSavedItemArray
 void func_80347630(s32 *size, u8 **buffer){
@@ -405,56 +406,57 @@ void func_80347630(s32 *size, u8 **buffer){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_8034789C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_80347958.s")
+void func_80347958(void){
+    func_8034789C();
+    D_80385F30[ITEM_14_HEALTH] = D_80385F30[ITEM_15_HEALTH_TOTAL];
+}
 
 void func_80347984(void){}
 
 void func_8034798C(void){
-    D_80385F68 = jiggyscore_leveltotal(level_get());
+    D_80385F30[ITEM_E_JIGGY] = jiggyscore_leveltotal(level_get());
     func_802FA5D0();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_803479C0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_80347A14.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_80347A4C.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_80347A70.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_80347A7C.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_80347AA8.s")
-
-/// =============== BREAK?????
-extern void func_80329904(ActorMarker *, s32, f32 *);
-
-void func_80347B10(Struct81s *arg0){
-    Actor *actor;
-    actor = func_802C937C(0x10, arg0->position);
-    actor->unk54 = 3.0f;
-    func_803333DC(arg0, actor);
+//restore item counts from savestate
+void func_803479C0(u8 *arg0){
+    D_80385F30[ITEM_1C_MUMBO_TOKEN] = D_80385F30[ITEM_25_MUMBO_TOKEN_TOTAL] = arg0[0];
+    D_80385F30[ITEM_D_EGGS] = arg0[1];
+    D_80385F30[ITEM_F_RED_FEATHER] = arg0[2];
+    D_80385F30[ITEM_10_GOLD_FEATHER] = arg0[3];
+    D_80385F30[ITEM_26_JIGGY_TOTAL] = D_80385F30[ITEM_2B_UNKNOWN] = arg0[4];
+    func_802FA5D0();
 }
 
-void func_80347B54(Struct81s *arg0){
-    func_802C3C88((GenMethod_1)func_80347B10, reinterpret_cast(s32, arg0)); 
-}
 
-void func_80347B80(Struct81s *arg0) {
-    Actor *sp1C;
-    Actor *temp_v0;
-
-    sp1C = marker_getActor(arg0->marker);
-    if (sp1C->unk54 > 0.0) {
-        if (randf() < ((sp1C->unk54 / 3.0) * 2)) {
-            func_8033E73C(arg0->marker, 5, func_80329904);
-            func_8033E3F0(0xF, ((ActorMarker *)arg0->marker)->unk14_21);
-            // func_8033E3F0(0xF, arg0->marker->unk14_21);
-        }
-        sp1C->unk54 -= time_getDelta();
+void func_80347A14(s32 arg0){
+    if(arg0){
+        D_80386038--;
+    }
+    else{
+        D_80386038++;
     }
 }
 
-void func_80347C5C(Struct81s *arg0, Gfx **arg1, Mtx **arg2, Vtx **arg3){}
+bool func_80347A4C(void){
+    return (D_80386038 != 0) ? FALSE : TRUE;
+}
 
-void func_80347C70(Struct81s *arg0){}
+void func_80347A70(void){
+    D_80386038 = 0;
+}
+
+void func_80347A7C(void){
+    func_80320748();
+    D_80386068 = item_getCount(ITEM_16_LIFE);
+}
+
+void func_80347AA8(void) {
+    func_80320798();
+    func_803204E4(0x1F, FALSE);
+    func_803204E4(0x20, FALSE);
+    func_803204E4(0xC1, FALSE);
+    func_803204E4(0xC0, FALSE);
+    item_set(ITEM_16_LIFE, D_80386068);
+    func_802FA5D0();
+}

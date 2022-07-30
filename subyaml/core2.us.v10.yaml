@@ -341,6 +341,7 @@ segments:
   - [0xBDCC0, c, code_BDCC0] #DONE
   - [0xBE2C0, c, code_BE2C0]
   - [0xBEF20, c, code_BEF20]
+  - [0xC0B80, c, code_C0B80] #DONE
   - [0xC0CF0, c, code_C0CF0] #DONE
   - [0xC0E60, c, code_C0E60]
   - [0xC2C20, c, code_C2C20] #DONE
@@ -367,7 +368,7 @@ segments:
   - [0xC97F0, c, code_C97F0]
   - [0xC9E70, c, code_C9E70] #DONE
   - [0xC9F00, c, code_C9F00]
-  - [0xCB050, c, code_CB050]
+  - [0xCB050, c, code_CB050] #DONE
   - [0xCB610, c, code_CB610] #DONE
   - [0xCB8A0, c, code_CB8A0] #DONE
   - [0xCBBF0, c, code_CBBF0] #DONE
@@ -774,6 +775,8 @@ segments:
   - [0xF2390, bin, data_F2390] # .rodata, code_C89C0]
   - [0xF23B0, bin, data_C97F0] # .rodata, code_C97F0]
   - [0xF23C0, bin, data_F23C0]
+  - [0xF23F0, .rodata, code_CB050]
+  - [0xF2460, bin, data_F2460]
   - [0xF2480, .rodata, code_CBD10]
   - [0xF24A0, bin, data_F24A0]
   - [0xF24C0, .rodata, code_CD0A0]
