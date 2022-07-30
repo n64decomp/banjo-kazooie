@@ -306,7 +306,7 @@ segments:
   - [0x9B180, c, code_9B180] #DONE
   - [0x9B650, c, code_9B650]
   - [0x9B990, c, code_9B990] #DONE
-  - [0x9C170, c, code_9C170]
+  - [0x9C170, c, code_9C170] #DONE
   - [0x9D640, c, code_9D640] #DONE
   - [0x9D760, c, code_9D760] #DONE
   - [0x9D860, c, timedfuncqueue] #DONE
@@ -743,7 +743,7 @@ segments:
   - [0xF1A00, bin, data_F1A00]
   - [0xF1DC0, .rodata, code_9A9D0]
   - [0xF1DF0, .rodata, code_9B180]
-  - [0xF1E00, bin, data_F1E00]
+  - [0xF1E10, .rodata, code_9C170]
   - [0xF1E60, .rodata, code_9E370] 
   - [0xF1EC0, bin, data_F1EC0]
   - [0xF1F30, .rodata, code_AD110]
