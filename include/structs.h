@@ -857,4 +857,13 @@ typedef struct {
     // u8 pad31[3];
 }Struct80s;
 
+
+typedef struct {
+    u8 pad0[4];
+    struct actor_marker_s *marker;
+    f32 position[3];
+    void (*unk14)(struct actor_s *, struct actor_marker_s *);
+    struct actor_marker_s *unk18;
+}Struct81s;
+
 #endif

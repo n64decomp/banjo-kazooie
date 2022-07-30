@@ -164,9 +164,8 @@ enum bkprog_e{
 	// {index=0x99, type="Prog", level=6, name="1st Time Past 50 ND Text"},
 
 	// {index=0x9B, type="Prog", level=6, name="CC WS Eyes Active"},
-	// {index=0x9C, type="Prog", level=6, name="CC WS Left Eye Pressed"},
-	// {index=0x9D, type="Prog", level=6, name="CC WS Right Eye Pressed"},
-	// {index=0x9E, type="Prog", level=6, name="Crypt Coffin Lid Open"},
+	BKPROG_9C_LAIR_CC_WITCH_SWITCH_LEFT_EYE_PRESSED = 0x9C,
+	BKPROG_9D_LAIR_CC_WITCH_SWITCH_RIGHT_EYE_PRESSED = 0x9D,
     BKPROG_9E_CRYPT_COFFIN_LID_OPEN = 0x9E,
 
     BKPROG_A1_STATUE_HAT_OPEN = 0xA1,

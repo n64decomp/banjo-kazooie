@@ -42,7 +42,7 @@ void func_80323230(void){}
 void func_80323238(void){}
 
 
-// BREAK ???
+// =============================================BREAK ???
 
 extern f32 func_80258708(f32 [3], f32[3]);
 extern f32 ml_vec3f_distance_squared(f32 [3], f32 [3]);
@@ -79,7 +79,6 @@ f32 func_803232AC(f32 *arg0, f32 arg1, f32 arg2, s32 arg3, f32 arg4) {
     func_80341180(arg2, arg3, 3, arg0, sp60);
     var_f22 += func_80258708(sp6C, sp60);
     return var_f22;
-
 }
 
 f32 func_803233F8(struct56s *arg0) {
