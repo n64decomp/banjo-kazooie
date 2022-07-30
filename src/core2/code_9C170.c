@@ -48,28 +48,6 @@ extern f32 func_80258708(f32 [3], f32[3]);
 extern f32 ml_vec3f_distance_squared(f32 [3], f32 [3]);
 extern void func_80341180(f32, s32, s32, f32 *, f32 [3]);
 
-/* .rodata */
-extern f64 D_80378D90;
-extern f32 D_80378D98;
-extern f64 D_80378DA0;
-extern f32 D_80378DA8;
-extern f64 D_80378DB0;
-extern f64 D_80378DB8;
-extern f64 D_80378DC0;
-extern f64 D_80378DC8;
-extern f64 D_80378DD0;
-extern f32 D_80378DD8;
-extern f32 D_80378DDC;
-extern f32 D_80378DE0;
-// [f64] 1e-06
-// [f32] 0.005f 
-// [f64] 2e-05 
-// [f32] 0.0001 
-
-// [f64] 0.01 0.1 
-// 1e-07 0.0333333 
-// 0.0001 [f32] 1e+08 0.01 
-// 0.01
 /* .code */
 void func_80323240(struct56s *arg0, f32 arg1, f32 arg2[3]){
     if(arg1 < 0.0f)
