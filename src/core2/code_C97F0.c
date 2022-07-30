@@ -30,10 +30,6 @@ extern Struct_core2_C97F0_1 D_803720B0[];
 extern Struct_core2_C97F0_0 D_803724F4[];
 extern s32 D_803725A8[4];
 
-/* .rodata */
-extern f64 D_80379340;
-extern f64 D_80379348;
-
 /* .bss */
 extern struct{
     Struct_core2_C97F0_1 *unk0;
@@ -68,9 +64,6 @@ Struct_core2_C97F0_0 *func_803507CC(enum map_e map_id) {
     return NULL;
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C97F0/func_80350818.s")
-#else
 void func_80350818(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     f32 spDC[3];
     f32 spD0[3];
@@ -84,9 +77,12 @@ void func_80350818(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     f32 sp90[3];
     s32 sp80[4];
 
-    if(D_80386170.unk8);
-    temp_s1 = D_80386170.unk4;
     temp_s2 = D_80386170.unk0;
+    if(temp_s2 != NULL){
+
+    }
+
+    temp_s1 = D_80386170.unk4;
     if (( temp_s1 != NULL) && D_8038617C.unk0) {
         func_8024C5CC(spDC);
         func_8024C764(spD0);
@@ -128,7 +124,6 @@ void func_80350818(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
         }
     }
 }
-#endif
 
 void func_80350BC8(void){
     if(D_80386170.unk4 != NULL){
@@ -136,21 +131,16 @@ void func_80350BC8(void){
     }
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C97F0/func_80350BFC.s")
-#else
 void func_80350BFC(void) {
     D_80386170.unk4 = func_803507CC(map_get());
     if (D_80386170.unk4 != NULL) {
         D_80386170.unk0 = func_80350780(D_80386170.unk4->unk10);
         D_80386170.unk8 = assetcache_get(0x882);
-        ml_vec3f_set_length(D_80386170.unk4->unk4, (2.0f*D_80276588) / 2.0f);
+        ml_vec3f_set_length(D_80386170.unk4->unk4, (2*(f32)D_80276588) / 2);
         D_8038617C.unk0 = 1;
         D_8038617C.unk1 = 0;
     }
 }
-#endif
-
 
 void func_80350CA4(void) {
     f32 sp54[3];
