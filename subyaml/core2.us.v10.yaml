@@ -341,7 +341,8 @@ segments:
   - [0xBDCC0, c, code_BDCC0] #DONE
   - [0xBE2C0, c, code_BE2C0]
   - [0xBEF20, c, code_BEF20]
-  - [0xC0CF0, c, code_C0CF0]
+  - [0xC0CF0, c, code_C0CF0] #DONE
+  - [0xC0E60, c, code_C0E60]
   - [0xC2C20, c, code_C2C20] #DONE
   - [0xC2F30, c, code_C2F30] #DONE
   - [0xC31A0, c, code_C31A0] #DONE
