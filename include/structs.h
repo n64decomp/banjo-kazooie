@@ -859,7 +859,7 @@ typedef struct {
 
 
 typedef struct {
-    u8 pad0[4];
+    enum actor_e actor_id;
     struct actor_marker_s *marker;
     f32 position[3];
     void (*unk14)(struct actor_s *, struct actor_marker_s *);

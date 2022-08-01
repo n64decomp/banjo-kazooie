@@ -2,6 +2,9 @@
 #include "functions.h"
 #include "variables.h"
 
+extern void func_80355C60(f32[3], f32);
+
+void func_80348044(Gfx **gfx, BKSprite* sprite, s32 frame, s32 tmem, s32 rtile, s32 arg5, s32 arg6, s32 cms, s32 cmt, s32 *width, s32 *height, s32 *argB, s32 *argC, s32 *argD, s32 *argE, s32 *argF);
 
 #define	rare_gDPLoadMultiBlock(pkt, timg, tmem, rtile, fmt, siz, width, height, \
     uls, ult, \
@@ -47,6 +50,10 @@
 		((height)-1) << G_TEXTURE_IMAGE_FRAC)			\
 }
 
+/* .rodata */
+extern f64 D_80379140;
+
+/* .bss */
 extern s32 D_80386070;
 extern s32 D_80386074;
 extern s32 D_80386078;
@@ -67,17 +74,57 @@ extern s32 D_803860B0;
 extern s32 D_803860B4;
 
 /* .code */
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C0E60/func_80347DF0.s")
+void func_80347DF0(Struct81s *arg0){
+    Actor *actor;
+    actor = func_802C937C(arg0->actor_id, arg0->position);
+    actor->unk54 = 3.0f;
+    func_803333DC(arg0, actor);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C0E60/func_80347E34.s")
+void func_80347E34(Struct81s *arg0){
+    func_802C3C88((GenMethod_1) func_80347DF0, reinterpret_cast(s32, arg0));
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C0E60/func_80347E60.s")
+void func_80347E60(Struct81s *arg0) {
+    Actor *actor;
+    f32 temp_f0;
+    f32 temp_f26;
+    f32 var_f12;
+    s32 var_s0;
+
+    actor = marker_getActor(arg0->marker);
+    if (actor->unk54 > 0.0) {
+        temp_f0 = sinf((actor->unk54 * D_80379140) / 3.0);
+        if (temp_f0 < 0.0f) {
+            var_f12 = 0.0f;
+        } else {
+            var_f12 = temp_f0;
+        }
+        temp_f26 = gu_sqrtf(var_f12);
+        for(var_s0 = 0; var_s0 != 2; var_s0++){
+            if (((randf() * 3.0f) / 2) < temp_f26) {
+                func_80355C60(actor->position, 1.0f);
+            }
+        }
+        actor->unk54 -= time_getDelta();
+    }
+}
 
 void func_80347FA4(s32 arg0, s32 arg1, s32 arg2, s32 tmem){}
 
 void func_80347FB8(s32 arg0){}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C0E60/func_80347FC0.s")
+void func_80347FC0(Gfx **gfx, BKSprite *sprite, s32 frame, s32 tmem, s32 rtile, s32 arg5, s32 arg6, s32 cms, s32 cmt, s32 *width, s32 *height){
+    s32 sp5C;
+    s32 sp58;
+    s32 sp54;
+    s32 sp50;
+    s32 sp4C = -1;
+
+    func_80348044(gfx, sprite, frame, tmem, rtile, arg5, arg6, cms, cmt, width, height,
+        &sp5C, &sp58, &sp54, &sp50, &sp4C
+    );
+}
 
 #ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C0E60/func_80348044.s")
@@ -242,7 +289,12 @@ void func_80348044(Gfx **gfx, BKSprite* sprite, s32 frame, s32 tmem, s32 rtile, 
 }
 #endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C0E60/func_80349AD0.s")
+void func_80349AD0(void){
+    D_80386074 = D_80386070 = 0;
+    D_80386098 = D_8038607C = 0;
+    D_80386094 = D_80386078 = -1;
+    D_803860B0 = 0;
+}
 
 void func_80349B1C(Gfx **gfx) {
     void *temp_v1;
