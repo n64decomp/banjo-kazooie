@@ -126,17 +126,14 @@ Actor* func_8034FCDC(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     return NULL;
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C89C0/func_8034FDA0.s")
-#else
 void func_8034FDA0(s32 arg0) {
     s32 sp34;
     s32 sp24;
 
     if (D_80386150.unkC == D_80386150.unk10) {
-        sp34 = D_80386150.unkC - D_80386150.unk8;
+        sp34 = ((s32)D_80386150.unkC - (s32)D_80386150.unk8)/0x30;
         sp24 = sp34 * 2;
-        D_80386150.unk8 = (Struct_core2_C89C0_1*) realloc(D_80386150.unk8, sp24 * sizeof(Struct_core2_C89C0_1));
+        D_80386150.unk8 = (Struct_core2_C89C0_1*) realloc(D_80386150.unk8, sp24 * sizeof(Struct_core2_C89C0_0)); //this size is wrong type(?)
         D_80386150.unkC = D_80386150.unk8 + sp34;
         D_80386150.unk10 = D_80386150.unk8 + sp24;
     }
@@ -152,7 +149,6 @@ void func_8034FDA0(s32 arg0) {
     func_80323240(func_80342038(D_80386150.unkC->unk1C), D_80386150.unkC->unk2C, D_80386150.unkC->unkC);
     D_80386150.unkC++;
 }
-#endif
 
 void func_8034FEE0(Struct_core2_C89C0_1 *arg0) {
     s32 sp2C;
@@ -199,22 +195,12 @@ void func_803500E8(void) {
     }
 }
 
-
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C89C0/func_80350174.s")
-#else
 void func_80350174(void) {
-    s32 temp_t6;
-    s32 temp_t7;
     s32 temp_v0_3;
-    s32 var_s0;
-    s32 var_s0_2;
-    void *temp_v0;
-    void *temp_v0_2;
     s32 i;
 
     
-    for(i = 0x31; i != 0x36; i++){
+    for(i = 0x31; i < 0x36; i++){
         if (func_80341F64(i))
              break;
     }
@@ -237,7 +223,6 @@ void func_80350174(void) {
              func_8034FDA0(temp_v0_3);
     }
 }
-#endif
 
 #ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C89C0/func_80350250.s")
@@ -250,7 +235,7 @@ void func_80350250(void) {
     Struct_core2_C89C0_0 *var_s0_2;
 
     temp_f22 = time_getDelta();
-    if ((D_80386150.unk0 != 0) && (func_80334904() == 2)) {
+    if ((D_80386150.unk0 != NULL) && (func_80334904() == 2)) {
         player_getPosition(sp7C);
         for(var_s0 = D_80386150.unk8; var_s0 < D_80386150.unkC; var_s0++) {
             var_s0->unk4 = (ml_vec3f_distance(var_s0->unkC, sp7C) < 2000.0f);
@@ -300,14 +285,15 @@ void func_80350250(void) {
                         var_s0_2->unk1C = 0.0f;
                     }
                 }
-                var_s0_2->unk20 = var_s0_2->unk20 - var_s0_2->unk20 * temp_f22;
+                var_s0_2->unk20 -= var_s0_2->unk20 * temp_f22;
                 sp70[0] = -var_s0_2->unk1C * temp_f22;
-                sp70[1] = sp70[2] = 0.0f;
+                sp70[1] = 0.0f;
+                sp70[2] = 0.0f;
                 ml_vec3f_yaw_rotate_copy(&sp70, &sp70, var_s0_2->unk14);
                 var_s0_2->unk8[0] = var_s0_2->unk8[0] + sp70[0];
                 var_s0_2->unk8[1] = var_s0_2->unk8[1] + sp70[1];
                 var_s0_2->unk8[2] = var_s0_2->unk8[2] + sp70[2];
-                var_s0_2->unk8[1] = var_s0_2->unk20 * temp_f22;
+                var_s0_2->unk8[1] = var_s0_2->unk8[1] + var_s0_2->unk20 * temp_f22;
                 func_8032F64C(var_s0_2->unk8, var_s0_2->unk0);
             }
         }
