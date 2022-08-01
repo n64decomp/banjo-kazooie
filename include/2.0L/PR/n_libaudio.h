@@ -191,7 +191,7 @@ typedef struct struct_81_s{
     f32 unk44; //volume
     ALMicroTime unk48; //time_remaining?
     s32 unk4C;
-} Struct81s;
+} N_AL_Struct81s;
 
 typedef struct N_ALVoiceState_s {
     struct N_ALVoiceState_s *next;/* MUST be first                */
