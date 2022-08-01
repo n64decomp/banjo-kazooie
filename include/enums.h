@@ -2264,6 +2264,7 @@ enum asset_e
     ASSET_2EB_MODEL_ORANGE_PAD        = 0x2eb,
     // Unused
     // 2ed Banjo's House Dustbin
+    // 2ee Mumbo's On Vacation Sign
     // Unused
     // Unused
     // 2f1 MMM Tumblar
@@ -2306,7 +2307,6 @@ enum asset_e
     // Unused
     // Unused
     // 318 Melon
-    // 319 FP Present Stand Large
     // Unused
     // Unused
     // Unused
@@ -2316,6 +2316,7 @@ enum asset_e
     // Unused
     // Unused
     // Unused
+    // 322 FP Present Stand Large
     // 323 FP Present Stand Small
     // 324 FP Present Ramp
     // 325 FP Icicle Large
@@ -2608,7 +2609,7 @@ enum asset_e
     // 444 (CCW Zubba Entrance Lid?)
     // 445 (CCW Zubba Entrance Lid?)
     ASSET_446_MODEL_ZUBBA = 0x446,
-    // 447 CCW Plant
+    // 447 CCW Beanstalk
     ASSET_448_MODEL_TWINKLY_BLUE = 0x448,
     ASSET_449_MODEL_TWINKLY_GREEN,
     ASSET_44A_MODEL_TWINKLY_ORANGE,
@@ -2751,35 +2752,75 @@ enum asset_e
     // 4d3 FP Christmas Tree Glass Container Fragment
     ASSET_4D4_MODEL_TWINKLY_BOX_PAPER_SHARD = 0x4D4,
     // 4d5 GL Yellow Wall Cobweb
+    // 4d6 Click Clock Wood Entrance Door
+    // 4d7 Freezeezy Peak Entrance Left Door
+    // 4d8 Freezeezy Peak Entrance Right Door
+    // 4d9 Freezeezy Peak Entrance Hatch Door
+    // 4da (Wooden Door?)
+    // 4db RBB Saftey Boat 1
     ASSET_4DC_MODEL_WITCH_SWITCH = 0x4DC,
-
+    // 4dd Mumbo Skull Switch
+    // 4de RBB Safety Boat 2
+    // 4df Cauldron (Grey)
+    // 4e0 CCW Season Door
+    // 4e1 GL Wooden Coffin
+    // 4e2 RBB Skylights (Shattered Window)
+    // 4e3 CCW Dead Beanstalk
+    // 4e4 Snore 'Z'
+    // 4e5 FP Three Purple Ice Crystals
+    // 4e6 FP Three Blue Ice Crystals
+    // 4e7 FP Three Green Ice Crystals
+    // 4e8 FP One Blue Ice Crystals (Large)
+    // 4e9 FP One Blue Ice Crystals (Small)
+    // 4ea FP Finish Banner
+    // 4eb FP Start Banner
+    // 4ec FP Race Rostrum
     MODEL_TOPPER            = 0x4ed,
     MODEL_COLLYWOBBLE       = 0x4ee,
     MODEL_BAWL              = 0x4ef,
-
+    // 4f0 Colliwobble Large Stem (Upon Death)
+    // 4f1 Colliwobble Small Stem (Upon Death)
+    // 4f2 Colliwobble Large Leaf (Upon Death)
+    // 4f3 Colliwobble Small Leaf (Upon Death)
+    // 4f4 Colliwobble Stem (Upon Death)
+    // 4f5 CCW Spring Switch
+    // 4f6 CCW Summer Switch
+    // 4f7 CCW Autumn Switch
+    // 4f8 CCW Winter Switch
+    // 4f9 CCW Nabnut's Window (Season?)
+    // 4fa CCW Nabnut's Window (Season?)
+    // 4fb CCW Nabnut's Window (Winter)
+    // 4fc CCW Nabnut's Window (Season?)
     ASSET_4FD_MODEL_WHIPCRACK = 0x4fd,
     ASSET_4FE_MODEL_WHIPCRACK_PART_1,
     ASSET_4FF_MODEL_WHIPCRACK_PART_2,
     ASSET_500_MODEL_WHIPCRACK_PART_3,
-
+    // 501 CCW Mound Of Acorns
     ASSET_502_MODEL_NABNUT = 0x502,
-
+    // 503 Nabnut (Belly Full)
     ASSET_504_MODEL_ICECUBE       = 0x504,
     ASSET_505_MODEL_ICECUBE_CHUNK,
-
+    // 506 CCW Dead Snarebear (Venus Flytrap)
+    // 507 GL Grunty Floor Picture Eye 1
+    // 508 GL Grunty Floor Picture Eye 2
+    // 509 GL Jinxy Sarcophagus
     ASSET_50A_MODEL_SHARKFOOD_ISLAND = 0x50A,
-
+    // 50B MMM Secret X-Barrel Lid
     ASSET_50C_MODEL_ICE_KEY = 0x50C,
     ASSET_50D_MODEL_SNS_EGG,
-
+    // 511 GL Wooden Coffin Lid
+    // 512 (Piece Of Glass Panel Blocking Ice Key 1?)
+    // 513 (Piece Of Glass Panel Blocking Ice Key 2?)
     ASSET_514_MODEL_GV_SNS_CHAMBER_DOOR = 0x514,
     ASSET_515_MODEL_GV_SNS_SWITCH,
-
+    // 516 (Wooden Plank?)
+    // 517 Iron Gate (No Lock)
+    // 518 CCW Wooden Door (To Whipcrack Room)
     ASSET_519_MODEL_LOGGO = 0x519,
     ASSET_51A_MODEL_LEAKY,
     ASSET_51B_MODEL_SCARAB_BEETLE,
     ASSET_51C_MODEL_SCARAB_BEETLE_PART_1,
-
+    // 51d SCARAB BEETLE PART (Wing)
     ASSET_51E_MODEL_SCARAB_BEETLE_PART_2 = 0x51e,
     ASSET_51F_MODEL_SCARAB_BEETLE_PART_3,
     ASSET_520_MODEL_SCARAB_BEETLE_PART_4,
@@ -2794,17 +2835,411 @@ enum asset_e
     ASSET_529_MODEL_PORTRAIT_OF_TREE_AND_MOON,
     ASSET_52A_MODEL_PORTRAIT_OF_TEEHEE,
     ASSET_52B_MODEL_PORTRAIT_OF_MINION,
-
+    // 52c Grublin Hood
     ASSET_52D_MODEL_GRUBLIN_HOOD_HAT = 0x52D,
-
+    // 52e (CCW Season Door?)
+    // 52f Banjo's Chair (Secret Spring)
+    // 530 Banjo's Bed (Secret Spring?)
+    // 531 Gnawty's Den
+    // 532 Banjo & Kazooie (Gameboy/Beer/Sunglasses/Chair)
+    // 533 CCW Nabnut's Door
+    // 534 GL Flight Pad Switch
+    // 535 Flight Pad Blue Fragment
+    // 536 Flight Pad Red Fragment
+    // 537 Flight Pad Yellow Fragment
+    // 538 Jiggy Podium (Beta?)
+    // 539 Brentilda
+    // 53a Shrapnel Eye (Upon Death)
+    // 53b Shrapnel Spike (Upon Death)
+    // 53c Shrapnel Metal Plate (Upon Death)
+    // 53d Gruntilda On Broomstick
+    // 53e Gnawty's Bed
+    // 53f Gnawty's Shelves
+    // 540 GL Shock Jump Pad Switch
+    // 541 (Fireball?)
+    // 542 (Shadow?)
+    // 543 Final Battle Jinjo Stand
+    // 544 Final Battle Jinjonator Stand
+    // 545 Final Battle Stone Jinjo
+    // 546 Grunty's Barrier Spell
+    // 547 GL Blue Egg Refill Pillow
+    // 548 GL Red Feather Refill Pillow
+    // 549 GL Gold Feather Refill Pillow
+    // 54a Gruntling (Red Cloak)
+    // 54b (Big Fireball?)
+    // 54c Game Over Sign
+    // 54d Banjo-Kazooie Sign
+    // 54e Copyright Info (Title Screen)
+    // 54f Cheato
+    // 550 Large Door To Final Battle
+    // 551 Jinjonator
+    // 552 Broomstick Head (Upon Breaking)
+    // 553 Broomstick Shaft Short (Upon Breaking)
+    // 554 Broomstick Shaft Long (Upon Breaking)
+    // 555 Broomstick Eye (Upon Breaking)
+    // 556 Blast When Yellow Jinjo Hits Gruntilda
+    // 557 Blast When Orange Jinjo Hits Gruntilda
+    // 558 Blast When Green Jinjo Hits Gruntilda
+    // 559 Blast When Pink Jinjo Hits Gruntilda
+    // 55a BK World Entry/Exit Pad
+    // 55b FP Boggy's Igloo
+    // 55c Press Start Sign
+    // 55d No Controller Sign
     ASSET_55E_MODEL_NAPPER = 0x55E,
-
+    // 55f Furnace Fun Washing Machine Cauldron Prize
+    // 560 Furnace Fun Grunty Doll Prize
+    // 561 Gruntling (Blue Cloak)
+    // 562 Gruntling (Black Cloak)
+    // 563 Level Entry Signs
     ASSET_564_MODEL_PURPLE_TEEHEE = 0x564,
-
-    ASSET_580_SPRITE_RED_FEATHER = 0x580,
-
+    // 565 Bottles Game Banjo's Hand
+    // 566 Black Snippet
+    // 567 Black Snippet Body (Upon Death)
+    // 568 Black Snippet Leg (Upon Death)
+    // 569 Black Snippet Pincer (Upon Death)
+    // 56a FP Chimney
     ASSET_56B_MODEL_SANDYBUTT_PYRAMID = 0x56B,
-
+    // 56c The End Sign
+    // 56d (Human Hand?)
+    // 56e Hammerhead Beach Scenery
+    // Unused
+    // Unused
+    // Unused
+    // 572 Palm Tree (2D)
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    ASSET_580_SPRITE_RED_FEATHER = 0x580,
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // 5a9 Flower
+    // Unused
+    // Unused
+    // 5ac Red Mushroom
+    // 5ad Green Mushroom
+    // 5ae Blue Mushroom
+    // Unused
+    // Unused
+    // 5b1 Pink Mushroom
+    // 5b2 Purple Mushroom
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // 5b8 Flower
+    // 5b9 Flower
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // 5c2 Flower
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // 5cf Weed
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // 5d5 Tree (Intro)
+    // 5d6 Tree (Intro)
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // 5df Tree
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // 606 Red Mushroom
+    // 607 Green Mushroom
+    // 608 White Circle
+    // 609 Mushroom (2D)
+    // Unused
+    // Unused
+    // 60c Cattail (2D)
+    // 60d Cattail (2D)
+    // 60e Cattail (2D)
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // 648 Orange (2D)
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // 68c Grass (2D)
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // 693 Seashell (2D)
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // 6b1 Weed (2D)
+    // 6b2 Purple Weed (2D)
+    // 6b3 White Weed (2D)
+    // Unused
+    // Unused
+    // Unused
+    // 6b7 Fire (2D)
+    // 6b8 Green Glow (2D)
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
+    // Unused
     ASSET_6C1_SPRITE_SMOKE = 0x6C1,
     ASSET_6C2_SPRITE_SMOKE_WHITE,
     ASSET_6C3_SPRITE_SMOKE_GREEN,
