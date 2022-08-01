@@ -75,9 +75,22 @@ int func_8034C4CC(void){
     return D_80386140.unk0 ? 1 : 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C5440/func_8034C4F0.s")
+s32 func_8034C4F0(s32 arg0) {
+    u8 sp8[0xA8];
+    u8 *temp_v1;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C5440/func_8034C50C.s")
+    temp_v1 = (s32)&sp8;
+    return *(s32*)(arg0 - (s32)(&temp_v1[8] - &temp_v1[0]));
+}
+
+s16 func_8034C50C(s32 arg0) {
+    u8 sp8[0xA8];
+    u8 *temp_v1;
+
+    temp_v1 = (s32)&sp8;
+    return *(s16*)(arg0 - (s32)(&temp_v1[4] - &temp_v1[0]));
+}
+
 
 Struct6Ds * func_8034C528(s32 arg0){
     struct1Ds *iPtr;

@@ -352,7 +352,7 @@ segments:
   - [0xC3B20, c, code_C3B20]
   - [0xC4320, c, code_C4320] #DONE
   - [0xC4F40, c, code_C4F40] #DONE
-  - [0xC5440, c, code_C5440]
+  - [0xC5440, c, code_C5440] #DONE
   - [0xC5AF0, c, code_C5AF0] #DONE
   - [0xC5CC0, c, code_C5CC0] #DONE
   - [0xC5F00, c, code_C5F00] #DONE
