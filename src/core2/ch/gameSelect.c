@@ -169,7 +169,7 @@ void func_802C4768(s32 gamenum){
     func_8031FBA0();
     if(func_8033D1BC(gamenum)){
         func_8033D13C(gamenum);
-        D_8037DCCE[gamenum] = (func_8034717C(6)) ? 1 : 0;
+        D_8037DCCE[gamenum] = (itemscore_timeScores_get(LEVEL_6_LAIR)) ? 1 : 0;
     
         strcpy(D_8037DD48, "");
         strcat(D_8037DD48, "GAME ");
@@ -185,7 +185,7 @@ void func_802C4768(s32 gamenum){
                 break;
         }//L802C4858
         strcat(D_8037DD48, ": TIME ");
-        strcat(D_8037DD48, func_80311C64(func_803470A0()));
+        strcat(D_8037DD48, func_80311C64(itemscore_timeScores_getTotal()));
         strcat(D_8037DD48, ",");
         strcat(D_8037DD48, "");
 
@@ -196,9 +196,9 @@ void func_802C4768(s32 gamenum){
             strcat(D_8037DD68, "S");
         }
         strcat(D_8037DD68, ", ");
-        strIToA(D_8037DD68, notescore_getTotal());
+        strIToA(D_8037DD68, itemscore_noteScores_getTotal());
         strcat(D_8037DD68, " NOTE");
-        if(notescore_getTotal() != 1){
+        if(itemscore_noteScores_getTotal() != 1){
             strcat(D_8037DD68, "S");
         }
         strcat(D_8037DD68, ".");

@@ -654,7 +654,7 @@ void func_80387730(Actor *this) {
         if ((ml_vec3f_distance(spAC, this->position) < 500.0f) && (func_803114C4() != 0xF64)) {
             func_802FACA4(0xC);
         }
-        if (notescore_getTotal() >= D_8039347A[this->unkF4_8]) {
+        if (itemscore_noteScores_getTotal() >= D_8039347A[this->unkF4_8]) {
             if (this->marker->unk14_21) {
                 func_8032BC60(this, 5, sp90);
                 func_8032BC60(this, 6, sp84);

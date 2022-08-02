@@ -635,7 +635,7 @@ void func_802D5058(enum map_e map_id, s32 arg1, bool arg2) {
 
 
 void func_802D5140(ActorMarker *caller, enum asset_e text_id, s32 arg2){
-    notescore_getLevelScore(func_80320424(0x19, 4));
+    itemscore_noteScores_get(func_80320424(0x19, 4));
 }
 
 void func_802D5178(s32 arg0, enum bkprog_e arg1, s32 arg2, enum map_e arg3, s32 arg4, s32 arg5, enum actor_e arg6, s32 arg7){

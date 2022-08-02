@@ -102,14 +102,11 @@ void func_803591E8(Actor *this, s32 next_state){
     this->state = next_state;
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D2180/func_8035933C.s")
-#else
 void func_8035933C(Actor *this){
     ActorLocal_core2_D2180 * local = (ActorLocal_core2_D2180 *) &this->local;
     if(!this->unk16C_4){
         this->unk16C_4 = TRUE;
-        local->unk0 = &D_80372940[(this->modelCacheIndex - 0x2AE)];
+        local->unk0 = D_80372940 + (this->modelCacheIndex - 0x2AE);
         func_803591E8(this, 1);
     }
     if(this->state == 1){
@@ -123,7 +120,6 @@ void func_8035933C(Actor *this){
         }
     }
 }
-#endif
 
 void func_80359424(Actor *this){
     if(func_803292E0(this))

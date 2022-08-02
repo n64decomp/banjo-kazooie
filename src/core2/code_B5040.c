@@ -72,7 +72,7 @@ void func_8033C070(void){ //savedata_init
     mumboscore_get_size_and_ptr(&sp4C, &sp2C);
     func_8032008C(&sp40, &sp28);
     func_80346F44(&sp48, &sp24);
-    func_8034722C(&sp44, &sp20);
+    itemscore_timeScores_getSizeAndPtr(&sp44, &sp20);
     func_80347630(&sp3C, &sp1C);
     func_8029587C(&sp38, &sp18);
     D_80383CF0 = 0;
@@ -123,7 +123,7 @@ void __savedata_load_mumboScore(u8 *savedata){
     func_80347984();
 }
 
-void func_8033C348(u8 *savedata){
+void __savedata_load_highNoteScores(u8 *savedata){
     s32 sp2C;
     u8 *sp28;
     int i;
@@ -132,19 +132,19 @@ void func_8033C348(u8 *savedata){
     for(i = D_80383D00; i < D_80383D00 + sp2C; i++){
         sp28[i - D_80383D00] = savedata[i];
     }
-    func_803476B0(sp28);
+    itemscore_highNoteScores_fromSaveData(sp28);
 }
 
-void func_8033C3D4(u8 *savedata){
+void __savedata_load_timeScores(u8 *savedata){
     s32 sp2C;
     u8 *sp28;
     int i;
     
-    func_8034722C(&sp2C, &sp28);
+    itemscore_timeScores_getSizeAndPtr(&sp2C, &sp28);
     for(i = D_80383D04; i < D_80383D04 + sp2C; i++){
         sp28[i - D_80383D04] = savedata[i];
     }
-    func_8034774C(sp28);
+    itemscore_timeScores_fromSaveData(sp28);
 }
 
 void func_8033C460(u8 *savedata){ //global_progress
@@ -218,7 +218,7 @@ void __savedata_save_mumboScore(u8 *savedata){
     }
 }
 
-void func_8033C798(u8 *savedata){
+void __savedata_save_highNoteScores(u8 *savedata){
     s32 sp2C;
     u8 *sp28;
     int i;
@@ -229,12 +229,12 @@ void func_8033C798(u8 *savedata){
     }
 }
 
-void func_8033C81C(u8 *savedata){
+void __savedata_save_timeScores(u8 *savedata){
     s32 sp2C;
     u8 *sp28;
     int i;
     
-    func_8034722C(&sp2C, &sp28);
+    itemscore_timeScores_getSizeAndPtr(&sp2C, &sp28);
     for(i = D_80383D04; i < D_80383D04 + sp2C; i++){
         savedata[i] = sp28[i - D_80383D04];
     }
@@ -313,8 +313,8 @@ void saveData_load(SaveData *savedata){
     __savedata_load_jiggyScore(savedata);
     __savedata_load_honeycombScore(savedata);
     __savedata_load_mumboScore(savedata);
-    func_8033C348(savedata);
-    func_8033C3D4(savedata);
+    __savedata_load_highNoteScores(savedata);
+    __savedata_load_timeScores(savedata);
     func_8033C4E4(savedata);
     func_8033C570(savedata);
     for(i = 0; D_80370A20[i].unk0 != -1; i++){
@@ -332,8 +332,8 @@ void saveData_create(SaveData *savedata){
     __savedata_save_jiggyScore(savedata);
     __savedata_save_honeycombScore(savedata);
     __savedata_save_mumboScore(savedata);
-    func_8033C798(savedata);
-    func_8033C81C(savedata);
+    __savedata_save_highNoteScores(savedata);
+    __savedata_save_timeScores(savedata);
     func_8033C8A0(savedata);
     func_8033C924(savedata);
     func_8033C9A8(savedata);

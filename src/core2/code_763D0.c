@@ -278,7 +278,7 @@ void func_802FDAF4(enum item_e item_id, struct8s *arg1, Gfx **gfx, Mtx **mtx, Vt
     sp34 = 0.0f;
     if(item_id == ITEM_C_NOTE){
         if(level_get() == LEVEL_6_LAIR || level_get() == LEVEL_C_BOSS){
-            sp38 = notescore_getTotal();
+            sp38 = itemscore_noteScores_getTotal();
         }
     }
     if(item_id < 6){

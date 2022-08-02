@@ -185,13 +185,13 @@ void func_802FE844(s32, struct8s *);
 void func_802FDEE0(s32, struct8s *, Gfx**, Mtx**, s32*);
 void func_802FDDC4(s32, struct8s *);
 
-struct8s *func_802FF090(s32);
-void func_802FFA50(s32, struct8s *);
-void func_802FF3B8(s32, struct8s *, Gfx**, Mtx**, s32);
-void func_802FF358(s32, struct8s *);
+struct8s *func_802FF090(enum item_e);
+void func_802FFA50(enum item_e, struct8s *);
+void func_802FF3B8(s32, struct8s *, Gfx**, Mtx**, Vtx **);
+void func_802FF358(enum item_e, struct8s *);
 
 struct8s *func_802FFE4C(s32);
-void func_803005BC(s32, struct8s *);
+void func_803005BC(enum item_e, struct8s *);
 void func_802FFF34(enum item_e, struct8s *, Gfx**, Mtx**, Vtx **);
 void func_802FFED4(s32, struct8s *);
 

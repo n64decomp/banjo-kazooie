@@ -216,7 +216,7 @@ void func_80311B44(void){
 }
 
 void func_80311B9C(s32 level, s32 *valPtr, s32 *maxPtr){
-    *valPtr = notescore_getLevelScore(level); //get note highscore
+    *valPtr = itemscore_noteScores_get(level); //get note highscore
     *maxPtr = 100;
 }
 
@@ -286,14 +286,14 @@ void func_80311D74(s32 level){
 
     //gametime_2_sting
     strcpy(D_8036C520[3].str, empty);
-    strcat(D_8036C520[3].str, func_80311C64(func_8034717C(level)));
+    strcat(D_8036C520[3].str, func_80311C64(itemscore_timeScores_get(level)));
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/pauseMenu/func_80311D74.s")
 #endif
 
 void func_80311ED0(s32 *dst){
-    *dst = notescore_getTotal(); //note_total
+    *dst = itemscore_noteScores_getTotal(); //note_total
 }
 
 void func_80311EF8(s32 *dst){
@@ -330,7 +330,7 @@ void func_80311F48(void){
 
     //gametime_2_sting
     strcpy(D_8036C520[3].str, empty);
-    strcat(D_8036C520[3].str, func_80311C64(func_803470A0()));
+    strcat(D_8036C520[3].str, func_80311C64(itemscore_timeScores_getTotal()));
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/pauseMenu/func_80311F48.s")

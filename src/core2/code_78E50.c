@@ -134,9 +134,9 @@ void func_802FFED4(s32 item_id, struct8s *arg1){
 //                 }
 //                 //var_a1_2 = n
 //                 // temp_a0->words.w0 = ((((var_a1_2 * 0x10) - 1) | (var_v0 << 0xA)) & 0xFFFF) | 0x04000000;
-//                 var_fp = 4;
 //                 // temp_a0->words.w1 = *vtx;
 //                 gSPVertex((*gfx)++, *vtx, var_a1_2, var_v0);
+//                 var_fp = 4;
 //             } else {
 //                 var_s4 = temp_v0_5 * 2;
 //                 var_s6 = var_s4 + 2;
@@ -167,12 +167,7 @@ void func_802FFED4(s32 item_id, struct8s *arg1){
 //                 (*vtx)->v.tc[1] = (s16) (((spEC - 1) * var_v1) << 6);
 //                 (*vtx)++;
 //             }
-//             temp_v0_6 = *gfx;
-//             temp_t6 = (var_s4 & 0xFF) << 0x10;
-//             temp_a1 = var_s7 & 0xFF;
-//             *gfx = temp_v0_6 + 8;
-//             temp_v0_6->words.w1 = temp_t6 | (temp_a1 << 8) | (var_fp & 0xFF);
-//             temp_v0_6->words.w0 = temp_t6 | ((var_s6 & 0xFF) << 8) | temp_a1 | 0xB1000000;
+            //    gSP2Triangles((*gfx)++, var_s4/2, var_fp/2, var_s7/2, 0, var_s4/2, var_s7/2, var_fp/2, 0);
 //         } while (sp10C != 0);
 //         gDPPipeSync((*gfx)++);
 //         gDPSetTextureLUT((*gfx)++, G_TT_NONE);
@@ -181,7 +176,7 @@ void func_802FFED4(s32 item_id, struct8s *arg1){
 //     }
 // }
 
-void func_803005BC(s32 item_id, struct8s *arg1) {
+void func_803005BC(enum item_e item_id, struct8s *arg1) {
     s32 var_v0;
     s32 sp20;
     s32 sp1C;

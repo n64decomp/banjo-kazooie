@@ -2,21 +2,26 @@
 #include "functions.h"
 #include "variables.h"
 
+
 f32 time_getDelta(void);
 void func_80346DB4(s32);
 
-s32 func_803463D4(enum item_e item, s32 diff);
-s32 notescore_getLevelScore(enum level_e lvl_id);
-void func_80347060(void);
+s32  func_803463D4(enum item_e item, s32 diff);
+void itemscore_noteScores_clear(void);
+s32 itemscore_noteScores_get(enum level_e lvl_id);
+void itemscore_timeScores_clear(void);
 
-extern s32 D_80385F30[];
+s32 D_80385F30[0x2C];
 extern s32 D_80385FE0;
 extern s32 D_80385FE4;
 extern s32 D_80385FE8;
 extern f32 D_80385FEC;
-extern u8  D_80385FF0[];
-extern f32 D_80386000[];
+u8  D_80385FF0[0xB];
+f32 D_80386000[0xE]; //timescores
 extern s32 D_80386038;
+extern u64 D_80386040;
+extern u16 D_80386048[]; //timescores_truncated
+extern u8 D_80386060[]; //saved item array
 extern s32 D_80386068;
 
 void func_80345EB0(enum item_e item){
@@ -46,11 +51,7 @@ s32 item_getCount(enum item_e item){
 
 
 #ifdef NONMATCHING
-/* &D_80385F30[item] saving to sp18 but should be sp1C, 
-cannot access sp1C with newVal at sp18.
-may be -O3 issue given func_803465DC() is null
-*/ 
-s32 func_80345FB4(enum item_e item, s32 diff, s32 arg2){
+s32 func_80345FB4(enum item_e item, s32 diff, s32 arg2){\
     s32 oldVal;
     s32 sp40;
     s32 sp3C;
@@ -72,8 +73,10 @@ s32 func_80345FB4(enum item_e item, s32 diff, s32 arg2){
             || (item == ITEM_16_LIFE && func_803203FC(UNKFLAGS1_73_SANDCASTLE_INFINITE_LIVES))
             || (item == ITEM_F_RED_FEATHER && func_803203FC(UNKFLAGS1_75_SANDCASTLE_INFINITE_RED_FEATHERS))
             || (item == ITEM_10_GOLD_FEATHER && func_803203FC(UNKFLAGS1_76_SANDCASTLE_INFINITE_GOLD_FEATHERS))
-            || (item == ITEM_17_AIR && func_803203FC(UNKFLAGS1_96_SANDCASTLE_INFINITE_AIR))) 
+            || (item == ITEM_17_AIR && func_803203FC(UNKFLAGS1_96_SANDCASTLE_INFINITE_AIR))
+        ){
             diff = 0;
+        }
     }
     newVal = MAX(0, D_80385F30[item] + diff);
     D_80385F30[item] = newVal;
@@ -137,7 +140,7 @@ s32 func_80345FB4(enum item_e item, s32 diff, s32 arg2){
             }
             break;
         case ITEM_C_NOTE:
-            sp28 = notescore_getLevelScore(level_get());
+            sp28 = itemscore_noteScores_get(level_get());
             func_80346DB4(D_80385F30[item]);
             if(D_80385F30[item] == 100 && sp28 != 100){
                 func_8025A6EC(COMUSIC_36_100TH_NOTE_COLLECTED, 20000);
@@ -145,7 +148,7 @@ s32 func_80345FB4(enum item_e item, s32 diff, s32 arg2){
             }
             break;
         case ITEM_26_JIGGY_TOTAL:
-            D_80385F30[0x2b] += diff;
+            D_80385F30[ITEM_2B_UNKNOWN] += diff;
             break;
     }
     return D_80385F30[item];
@@ -184,8 +187,8 @@ void func_8034646C(void){
     D_80385F30[ITEM_1C_MUMBO_TOKEN] = 0;
     D_80385F30[0x2B] = 0;
     D_80385F30[ITEM_26_JIGGY_TOTAL] = 0;
-    func_80346D78();
-    func_80347060();
+    itemscore_noteScores_clear();
+    itemscore_timeScores_clear();
     D_80385FE4 = FALSE;
 }
 
@@ -341,9 +344,18 @@ void func_80346C10(enum bs_e *retVal, enum bs_e fail_state, enum bs_e success_st
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_80346CA8.s")
+void func_80346CA8(void) {
+    D_80385FE0 = 0;
+    if (D_80385FE4) {
+        D_80385FE0 = TRUE;
+        D_80385F30[ITEM_14_HEALTH] = D_80385F30[ITEM_15_HEALTH_TOTAL];
+        D_80385F30[ITEM_17_AIR] = 60*60;
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_80346CE8.s")
+void func_80346CE8(void){
+    D_80385FE4 = FALSE;
+}
 
 enum item_e func_80346CF4(enum actor_e actor_id){
     switch(actor_id){
@@ -358,11 +370,43 @@ enum item_e func_80346CF4(enum actor_e actor_id){
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_80346D78.s")
+void itemscore_noteScores_clear(void) {
+    s32 i;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_80346DB4.s")
+    for(i = 0; i < 0xe; i++){
+        D_80385FF0[i] = 0;
+    }
+}
 
-s32 notescore_getTotal(void){
+//itemscore_noteScores_update
+void func_80346DB4(s32 note_count) {
+    s32 level_id;
+
+    level_id = level_get();
+    if (!func_802E4A08() && (level_id > 0) && (level_id < 0xE)) {
+        if (D_80385FF0[level_id] < note_count) {
+            D_80385FF0[level_id] = note_count;
+            if ((level_get() == LEVEL_1_MUMBOS_MOUNTAIN) && (note_count == 50)) {
+                func_80311480(0xF74, 4, NULL, NULL, NULL, NULL);
+            }
+            if (note_count == 100) {
+                func_80311480(0xF78, 4, NULL, NULL, NULL, NULL);
+            }
+            if (note_count == 1) {
+                levelSpecificFlags_set(0x34, TRUE);
+            }
+            if (!levelSpecificFlags_get(0x34) && (func_80311480(0xF76, 0, NULL, NULL, NULL, NULL))) {
+                levelSpecificFlags_set(0x34, TRUE);
+            }
+            if (func_803203FC(0x17) == 0) {
+                func_803204E4(0x17, 1);
+                func_80320524(0x19, level_id, 4);
+            }
+        }
+    }
+}
+
+s32 itemscore_noteScores_getTotal(void){
     int i = 1;
     s32 total = 0;
     do{
@@ -371,23 +415,68 @@ s32 notescore_getTotal(void){
     return total;
 }
 
-s32 notescore_getLevelScore(enum level_e lvl_id){
+s32 itemscore_noteScores_get(enum level_e lvl_id){
     return D_80385FF0[lvl_id];
 }
 
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_80346F44.s")
+#else
+void func_80346F44(s32 *size, void **ptr) {
+    s32 var_s0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_80347018.s")
+    *size = sizeof(u64);
+    *ptr = (void *)&D_80386040;
+    D_80386040 = 0;
+    for(var_s0 = 1; var_s0 < 0xB; var_s0++){
+        if(var_s0 != 6){
+            D_80386040 <<= 7;
+            D_80386040 |= D_80385FF0[var_s0];
+        }
+    }
+}
+#endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_80347060.s")
+void itemscore_noteScoress_maxAll(void) {
+    s32 i;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_803470A0.s")
+    for(i = 1; i < 11; i++){
+        D_80385FF0[i] = 100;
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_8034717C.s")
+void itemscore_timeScores_clear(void) {
+    s32 i;
+    for(i = 0; i < 0xE; i++){
+        D_80386000[i] = 0.0f;
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_8034722C.s")
+s32 itemscore_timeScores_getTotal(void) {
+    s32 total;
+    s32 i;
 
-extern u8 D_80386060[]; //saved item array
+    total = 0;
+    for(i = 0; i < 0xE; i++){
+        total += D_80386000[i];
+    }
+    return total;
+}
+
+u16 itemscore_timeScores_get(enum level_e level_id) {
+    return  (u16) D_80386000[level_id];
+}
+
+void itemscore_timeScores_getSizeAndPtr(s32 *size, void **ptr) {
+    s32 i;
+
+    *size = 0xB*sizeof(s16);
+    for(i = 0; i < 0xB; i++){
+        D_80386048[i] = (u16) D_80386000[i + 1];
+
+    }
+    *ptr = (void *)&D_80386048;
+}
 
 //itemscore_getSavedItemArray
 void func_80347630(s32 *size, u8 **buffer){
@@ -400,11 +489,56 @@ void func_80347630(s32 *size, u8 **buffer){
     *buffer = D_80386060;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_803476B0.s")
+void itemscore_highNoteScores_fromSaveData(u8 *savedata) {
+    u64 sp28;
+    s32 temp_ret;
+    s32 i;
+    enum level_e level_id;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_8034774C.s")
+    sp28 = *(u64*)savedata;
+    level_id = 10;
+    for( i = 0; i != 9; i++){
+        D_80385FF0[level_id] = sp28 & 0x7F;
+        level_id--;
+        sp28 >>= 7;
+        
+        if (level_id == LEVEL_6_LAIR) {
+            level_id--;
+        }
+        
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_8034789C.s")
+void itemscore_timeScores_fromSaveData(u16 *savedata) {
+    s32 i;
+
+    itemscore_timeScores_clear();
+    for(i = 0; i < 0xB; i++){
+        D_80386000[i + 1] = savedata[i];
+    }
+}
+
+void func_8034789C(void) {
+    s32 sp1C;
+    s32 temp_v0;
+
+    sp1C = honeycombscore_get_total();
+    D_80385F30[ITEM_13_EMPTY_HONEYCOMB] = sp1C % 6;
+    if (func_8031FF1C(BKPROG_B9_DOUBLE_HEALTH)) {
+        D_80385F30[ITEM_15_HEALTH_TOTAL] = 16;
+    } else {
+        D_80385F30[ITEM_15_HEALTH_TOTAL] =  5 + MIN(3, (sp1C / 6));
+    }
+    if (func_803203FC(0x94)) {
+        temp_v0 = D_80385F30[ITEM_15_HEALTH_TOTAL];
+        if (temp_v0 >= 9) {
+            D_80385F30[ITEM_15_HEALTH_TOTAL] = temp_v0;
+        }
+        else{
+            D_80385F30[ITEM_15_HEALTH_TOTAL] = 8;
+        }
+    }
+}
 
 void func_80347958(void){
     func_8034789C();

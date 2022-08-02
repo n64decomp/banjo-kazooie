@@ -384,7 +384,7 @@ segments:
   - [0xCFA60, c, ch/code_CFA60] #DONE
   - [0xD01C0, c, ch/clucker] #DONE
   - [0xD0CA0, c, code_D0CA0]
-  - [0xD2180, c, code_D2180]
+  - [0xD2180, c, code_D2180] #DONE
   - [0xD2500, c, ch/firefx]  #DONE
   - [0xD2AB0, c, ch/drips]   #DONE
   - [0xD2E10, c, ch/icecube] #DONE
@@ -729,7 +729,8 @@ segments:
   - [0xF0410, bin, data_F0410]
   - [0xF0420, bin, data_F0420] #this is first part of [.rodata, code_76D90], COMBINE WITH FOLLOWING SECTION ONCE CODE DONE
   - [0xF0440, .rodata, code_76D90]
-  - [0xF0470, bin, data_F0470]
+  - [0xF0470, bin, data_F0470] #.rodata, code_78100]
+  - [0xF04A0, .rodata, code_78100]
   - [0xF04D0, .rodata, fxcommon3score]
   - [0xF04F0, bin, data_F04F0]
   - [0xF0520, .rodata, code_7AF80]
