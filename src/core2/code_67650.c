@@ -41,4 +41,46 @@ void func_802EE684(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_67650/func_802EE6CC.s")
+void func_802EE6CC(f32 position[3], f32 velocity[3], s32 color[4], s32 arg3, f32 arg4, f32 arg5, s32 arg6, s32 arg7, s32 arg8) {
+    s32 pad54;
+    s32 pad50;
+    s32 pad4C;
+    f32 sp40[3];
+    s32 sp3C;
+    ParticleEmitter *p_ctrl;
+
+    sp3C = 0x28;
+    p_ctrl = func_802F0EF0(D_80380910[arg8]);
+    particleEmitter_setSprite(p_ctrl, D_80368930[arg8]);
+    func_802EFA5C(p_ctrl, 0.075f, 0.4f);
+    particleEmitter_setPosition(p_ctrl, position);
+    particleEmitter_setSpawnIntervalRange(p_ctrl, 0.0f, 0.0f);
+    func_802EFA78(p_ctrl, 1);
+    if (velocity != NULL) {
+        ml_vec3f_scale_copy(sp40, velocity, 30.0f);
+    } else {
+        sp40[0] = sp40[1] = sp40[2] = 0.0f;
+    }
+
+    if (arg5 != 0.0) {
+        sp40[1] += arg5 / arg4;
+    }
+    particleEmitter_setParticleVelocityRange(p_ctrl, sp40[0], sp40[1], sp40[2], sp40[0], sp40[1], sp40[2]);
+    if (color != NULL) {
+        func_802EFFA8(p_ctrl, color);
+        func_802EF9E4(p_ctrl, color[3]);
+    }
+    if (arg3 == 0) {
+        sp3C = 0x38;
+    }
+    func_802EFA70(p_ctrl, sp3C);
+    func_802EFEC0(p_ctrl, arg4, arg4);
+    func_802EFB70(p_ctrl, arg6 / 175.0, arg6 / 175.0);
+    func_802EFB84(p_ctrl, (arg6 + arg7) / 175.0, (arg6 + arg7) / 175.0);
+    if (arg8 == 0) {
+        particleEmitter_setParticleFramerateRange(p_ctrl, (15.0 / arg4), (15.0 / arg4));
+    } else {
+        particleEmitter_setStartingFrameRange(p_ctrl, 0, 0xC);
+    }
+    particleEmitter_emitN(p_ctrl, 1);
+}

@@ -719,7 +719,7 @@ segments:
   - [0xF0180, .rodata, code_5C870]
   - [0xF01F0, bin, data_F01F0] #.rodata, code_5FD90]
   - [0xF0200, .rodata, code_66FB0]
-  - [0xF0210, bin, data_F0210]
+  - [0xF0210, .rodata, code_67650]
   - [0xF0220, .rodata, code_679A0]
   - [0xF0240, bin, data_F0240]
   - [0xF0280, .rodata, code_6CEC0]

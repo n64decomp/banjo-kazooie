@@ -88,8 +88,22 @@ void func_802E4C78(void){
     D_8037E900 = NULL;
 }
 
-extern s32 func_802E4CF8(u8);
+#ifndef NONMATCHING
+s32 func_802E4CF8(u8);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5DBC0/func_802E4CF8.s")
+#else
+s32 func_802E4CF8(u8 arg0) {
+    s32 var_v1;
+
+    for(var_v1 = D_8037E900->unk10 - 1; var_v1 >= 0; var_v1--){
+        if (arg0 == D_8037E900->unk4[var_v1].unk4) {
+            return var_v1;
+        }
+    }
+    return -1;
+}
+#endif
+
 
 BKSpriteTextureBlock *func_802E4D5C(s32 arg0, char arg1){
     return D_8037E900->unk4[arg0].unk8[arg1 - 0x21];
