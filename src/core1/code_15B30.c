@@ -5,8 +5,8 @@
 typedef struct {
     s32 unk0;
     s32 unk4;
-    s32 unk8;
-    s32 unkC;
+    Gfx *unk8;
+    Gfx *unkC;
     s32 unk10;
     s32 unk14;
 }Struct_Core1_15B30;
@@ -40,7 +40,7 @@ void func_8025357C(void){
     osSendMesg(&D_802831F0, NULL, OS_MESG_BLOCK);
 }
 
-void func_802535A8(UNK_TYPE(s32) arg0, UNK_TYPE(s32)arg1, UNK_TYPE(s32) arg2, UNK_TYPE(s32) arg3) {
+void func_802535A8(Gfx **arg0, Gfx **arg1, UNK_TYPE(s32) arg2, UNK_TYPE(s32) arg3) {
     Struct_Core1_15B30 *sp1C;
 
     func_80253550();
@@ -125,7 +125,7 @@ void func_80253DE0(Gfx **gdl) {
     gSPEndDisplayList((*gdl)++);
 }
 
-void func_80253E14(Gfx **arg0, Gfx **arg1, s32 arg2){
+void func_80253E14(Gfx *arg0, Gfx *arg1, s32 arg2){
     Struct_Core1_15B30 *sp1C;
     func_80253550();
     sp1C = D_80283008 + D_802831E8;
@@ -138,11 +138,11 @@ void func_80253E14(Gfx **arg0, Gfx **arg1, s32 arg2){
     func_80246670((OSMesg) sp1C);
 }
 
-void func_80253EA4(Gfx **arg0, Gfx **arg1){
+void func_80253EA4(Gfx *arg0, Gfx *arg1){
     func_80253E14(arg0, arg1, 0);
 }
 
-void func_80253EC4(Gfx **arg0, Gfx **arg1){
+void func_80253EC4(Gfx *arg0, Gfx *arg1){
     func_80253E14(arg0, arg1, 0x40000000);
 }
 

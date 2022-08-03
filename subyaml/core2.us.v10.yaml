@@ -231,8 +231,8 @@ segments:
   - [0x5B6A0, c, code_5B6A0]
   - [0x5BD90, c, code_5BD90] #DONE
   - [0x5BEB0, c, code_5BEB0]
-  - [0x5C240, c, code_5C240]
-  - [0x5C870, c, code_5C870]
+  - [0x5C240, c, code_5C240] #DONE
+  - [0x5C870, c, code_5C870] #DONE
   - [0x5DBC0, c, code_5DBC0]
   - [0x5FD80, c, code_5FD80] #DONE
   - [0x5FD90, c, code_5FD90]
@@ -517,7 +517,8 @@ segments:
   - [0xE1860, bin, data_E1860]
   - [0xE18D0, .data, code_66FB0]
   - [0xE1950, .data, gc/bound]
-  - [0xE19A0, bin, data_E19A0]
+  - [0xE19A0, .data, code_67650]
+  - [0xE19B0, bin, data_E19B0]
   - [0xE1DF0, .data, code_6CD20]
   - [0xE1E40, .data, code_6D030]
   - [0xE1E50, bin, data_E1E50]
@@ -714,8 +715,8 @@ segments:
   - [0xF0110, .rodata, ch/code_5AB30]
   - [0xF0140, .rodata, code_5B6A0]
   - [0xF0160, bin, data_F0160] #.rodata, code_5B6A0]
-  - [0xF0170, bin, data_F0170]
-  - [0xF0180, bin, data_F0180]
+  - [0xF0170, .rodata, code_5C240]
+  - [0xF0180, .rodata, code_5C870]
   - [0xF01F0, bin, data_F01F0] #.rodata, code_5FD90]
   - [0xF0200, .rodata, code_66FB0]
   - [0xF0210, bin, data_F0210]

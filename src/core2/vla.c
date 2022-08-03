@@ -57,7 +57,7 @@ void *vector_insertNew(VLA **thisPtr, s32 indx){
     this = *thisPtr;
     i = ((s32)this->end - (s32)this->begin)/this->elem_size;
     while(indx < --i){
-        memcpy((s32)this->begin + (i)*this->elem_size, (s32)this->begin + (i -1)*this->elem_size, this->elem_size);
+        memcpy((void *)((s32)this->begin + (i)*this->elem_size), (void *)((s32)this->begin + (i -1)*this->elem_size), this->elem_size);
     }
     return (void *)((s32)this->begin +  indx*this->elem_size);
 }
@@ -80,8 +80,8 @@ void vector_remove(VLA *this, u32 indx){
     u32 nextOffset = (u32)this->begin + (indx + 1) * this->elem_size;\
     u32 size = (u32)this->end - (u32)this->begin;
     
-    memcpy( elemOffset, nextOffset, size - (indx + 1) * this->elem_size);
-    this->end = (u32)this->end - this->elem_size;
+    memcpy((void *)elemOffset, (void *)nextOffset, size - (indx + 1) * this->elem_size);
+    this->end = (void *)((u32)this->end - this->elem_size);
 }
 
 
@@ -90,7 +90,7 @@ void vector_popBack_n(VLA *this, u32 n){
 }
 
 void vector_assign(VLA *this, s32 indx, void* value){
-    memcpy((s32)this->begin + indx * this->elem_size, value, this->elem_size);
+    memcpy((void*)((s32)this->begin + indx * this->elem_size), value, this->elem_size);
 }
 
 VLA * vector_defrag(VLA *this){

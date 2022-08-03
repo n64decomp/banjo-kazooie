@@ -22,7 +22,6 @@ void func_802EFF9C(ParticleEmitter *, f32);
 void func_802F0C78(ParticleEmitter *this);
 
 
-extern s16 D_80368930[] = {0x700, 0x702, 0x70D};
 extern Gfx D_80368940[] = {
     gsSPClearGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BOTH | G_FOG | G_LIGHTING | G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR | G_LOD | G_SHADING_SMOOTH),
     gsSPSetGeometryMode(G_ZBUFFER | G_SHADE | G_TEXTURE_GEN_LINEAR | G_SHADING_SMOOTH),
