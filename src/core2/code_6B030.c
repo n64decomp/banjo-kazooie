@@ -14,8 +14,8 @@ typedef struct {
 }Struct_core2_6B030_1;
 
 typedef struct {
-    void *unk0;
-    void *unk4;
+    BKSprite *unk0;
+    BKSprite *unk4;
 }Struct_core2_6B030_0;
 
 /* .data */
@@ -36,22 +36,19 @@ Mtx D_80380A18;
 s32 D_80380A58;
 
 /* .code */
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6B030/func_802F1FC0.s")
-#else
 void func_802F1FC0(Struct65s *self, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     f32 temp_f2;
     s16 *temp_addr;
     f32 spDC[3];
     f32 spD0[3];
-    s32 temp_t1_2;
+    s32 temp_t9;
     s32 temp_s3;
     s32 spC4;
     s32 spC0;
     s32 spBC;
     s32 temp_s5;
-    s32 spB4;
-    s32 spB0;
+    s32 width;
+    s32 height;
 
     func_8024C5CC(spDC);
     spD0[0] = self->unk0[0] - spDC[0];
@@ -83,7 +80,7 @@ void func_802F1FC0(Struct65s *self, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     }
     
     gSPDisplayList((*gfx)++, D_80368AC0);
-    func_80347FC0(gfx, D_80368AB0[1].unk0, 0, 0, 0, 0, 0, NULL, NULL, &spB4, &spB0);
+    func_80347FC0(gfx, D_80368AB0[1].unk0, 0, 0, 0, 0, 0, NULL, NULL, &width, &height);
     temp_addr = &D_803A5D00[func_8024BD80()][spC0*D_80276588 + (spC4 & 0xFFFC)];
     gDPSetTextureImage((*gfx)++, G_IM_FMT_RGBA, G_IM_SIZ_16b, D_80276588, temp_addr);
     gDPSetTile((*gfx)++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 9, 0x0080, G_TX_LOADTILE, 0, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOLOD);
@@ -95,48 +92,45 @@ void func_802F1FC0(Struct65s *self, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     gSPVertex((*gfx)++, *vtx, 8, 0);
     gSP1Quadrangle((*gfx)++, 0, 1, 3, 2, 0);
     func_80349AD0();
-    func_80347FC0(gfx, D_80368AB0[self->unk22].unk0, NULL, 0, 0, 0, 0, 2, 2, &spB4, &spB0);
-    if (D_80368AB0[self->unk22].unk4 != NULL) {
-        func_80347FC0(gfx, D_80368AB0[self->unk22].unk4, NULL, 0x100, 1, 0, 0, 2, 2, &spB4, &spB0);
+    func_80347FC0(gfx, (D_80368AB0 + self->unk22)->unk0, 0, 0, 0, 0, 0, 2, 2, &width, &height);
+    if ((D_80368AB0 + self->unk22)->unk4 != NULL) {
+        func_80347FC0(gfx, (D_80368AB0 + self->unk22)->unk4, 0, 0x100, 1, 0, 0, 2, 2, &width, &height);
     }
     gSPDisplayList((*gfx)++, D_80368B08);
     gSP2Triangles((*gfx)++, 7, 4, 5, 0, 6, 4, 7, 0);
     func_80349B1C(gfx);
     gDPSetTextureLOD((*gfx)++, G_TL_LOD);
-    temp_t1_2 = -(spBC >> 1);
-    temp_s3 = temp_s5 >> 1;
     gSPPopMatrix((*gfx)++, G_MTX_MODELVIEW);
     for(spC0 = 0; spC0 < 2; spC0++){
         for( spC4 = 0; spC4 < 2; spC4++){
-            (*vtx)->v.ob[0] = temp_t1_2 + spC4*spBC;
-            (*vtx)->v.ob[1] = temp_s3 - spC0*temp_s5;
-            (*vtx)->v.ob[2] = 0;
-            (*vtx)->v.tc[0] = (spC4*0x1F) << 6;
-            (*vtx)->v.tc[1] = (spC0*0x1F) << 6;
+            (*vtx)->n.ob[0] = -(spBC >> 1) + spC4*spBC;
+            (*vtx)->n.ob[1] = (temp_s5 >> 1) - spC0*temp_s5;
+            (*vtx)->n.ob[2] = 0;
+            (*vtx)->n.tc[0] = (spC4*0x1F) << 6;
+            (*vtx)->n.tc[1] = (spC0*0x1F) << 6;
             (*vtx)->n.n[0] = 0xB4;
             (*vtx)->n.n[1] = 0xF0;
             (*vtx)->n.n[2] = 0xFF;
-            (*vtx)->v.cn[3] = 0xA0;
+            (*vtx)->n.a = 0xA0;
             (*vtx)++;
         }
     }
 
     for(spC0 = 0; spC0 < 2; spC0++){
         for(spC4 = 0; spC4 < 2; spC4++){
-            (*vtx)->v.ob[0] = temp_t1_2 + spC4*spBC;
-            (*vtx)->v.ob[1] = temp_s3 - spC0*temp_s5;
-            (*vtx)->v.ob[2] = 0;
-            (*vtx)->v.tc[0] = ((spC4 ^ 1)*(spB4 - 1)) << 6;
-            (*vtx)->v.tc[1] = (spC0*(spB0 - 1)) << 6;
+            (*vtx)->n.ob[0] = -(spBC >> 1) + spC4*spBC;
+            (*vtx)->n.ob[1] = (temp_s5 >> 1) - spC0*temp_s5;
+            (*vtx)->n.ob[2] = 0;
+            (*vtx)->n.tc[0] = ((spC4 ^ 1)*(width - 1)) << 6;
+            (*vtx)->n.tc[1] = (spC0*(height - 1)) << 6;
             (*vtx)->n.n[0] = 0xFF;
             (*vtx)->n.n[1] = 0xFF;
             (*vtx)->n.n[2] = 0xFF;
-            (*vtx)->v.cn[3] = 0xFF;
+            (*vtx)->n.a = 0xFF;
             (*vtx)++;
         }
     }
 }
-#endif
 
 void func_802F2740(Struct64s *arg0) {
     s32 i;

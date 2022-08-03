@@ -270,17 +270,16 @@ void func_802EF4AC(ParticleEmitter *this, f32 arg1[3], f32 arg2[3], s32 arg3) {
     s32 temp_s4;
     s32 i;
 
-    // temp_s4 = arg3 - 1;
+    temp_s4 = arg3 - 1;
     sp3C[0] = arg2[0] - arg1[0];
     sp3C[1] = arg2[1] - arg1[1];
     sp3C[2] = arg2[2] - arg1[2];
-    for(i = 0; i < arg3 - 1; i++){
+    for(i = 0; i < (arg3 - 1); i++){
         if (this->pList_end_128 < this->pList_capacity_12C) {
             __particleEmitter_initParticle(this, this->pList_end_128);
-            temp_f0 = (f32)i / arg3;
-            this->pList_end_128->position_18[0] = arg1[0] + sp3C[0]*temp_f0;
-            this->pList_end_128->position_18[1] = arg1[1] + sp3C[1]*temp_f0;
-            this->pList_end_128->position_18[2] = arg1[2] + sp3C[2]*temp_f0;
+            this->pList_end_128->position_18[0] = arg1[0] + sp3C[0]*((f32)i / arg3);
+            this->pList_end_128->position_18[1] = arg1[1] + sp3C[1]*((f32)i / arg3);
+            this->pList_end_128->position_18[2] = arg1[2] + sp3C[2]*((f32)i / arg3);
             this->pList_end_128++;
         }
     }

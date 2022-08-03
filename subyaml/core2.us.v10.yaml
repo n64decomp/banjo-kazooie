@@ -248,12 +248,12 @@ segments:
   - [0x66D90, c, code_66D90] #DONE
   - [0x66FB0, c, code_66FB0] #DONE
   - [0x67490, c, gc/bound]   #DONE
-  - [0x67650, c, code_67650] 
+  - [0x67650, c, code_67650] #DONE
   - [0x679A0, c, code_679A0] 
   - [0x69F60, c, code_69F60] #DONE
   - [0x6A4B0, c, code_6A4B0] #DONE
   - [0x6AEF0, c, code_6AEF0] #DONE
-  - [0x6B030, c, code_6B030]
+  - [0x6B030, c, code_6B030] #DONE
   - [0x6C3E0, c, code_6C3E0] #DONE
   - [0x6CD20, c, code_6CD20] #DONE
   - [0x6CEC0, c, code_6CEC0] #DONE
