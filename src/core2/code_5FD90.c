@@ -30,12 +30,12 @@ extern f32 D_80377180;
 extern f32 D_80377184;
 
 /* .bss */
-extern struct { 
+struct { 
     BKCollisionGeo *unk0[100];
     BKCollisionGeo **unk190;
 }D_8037E910;
-extern f32 D_8037EAA8[3][3];
-extern Struct_core2_5FD90_1 D_8037EAD0[];
+f32 D_8037EAA8[3][3];
+Struct_core2_5FD90_1 D_8037EAD0[100];
 
 /* .code */
 void func_802E6D20(BKCollisionTri *arg0, BKVertexList *vtx_list) {

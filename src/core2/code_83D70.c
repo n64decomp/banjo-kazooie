@@ -24,7 +24,7 @@ extern u8 D_80378430[];
 extern u8 D_80378434[];
 
 /* .bss */
-extern u8 D_803823A0[];
+char D_803823A0[0x70];
 
 /* .data */
 #ifndef NONMATCHING

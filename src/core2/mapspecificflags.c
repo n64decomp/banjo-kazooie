@@ -8,9 +8,9 @@ void mapSpecificFlags_set(s32 i, s32 val);
 extern u32 D_80367000;
 
 /* .bss */
-extern u32 D_8037DDE0;
-extern u32 D_8037DDE4;
-extern u32 D_8037DDE8;
+u32 D_8037DDE0;
+u32 D_8037DDE4;
+u32 D_8037DDE8;
 
 /* .code */
 u32 _mapSpecificFlags_calcCRC1(void){

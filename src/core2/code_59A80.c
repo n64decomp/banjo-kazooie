@@ -13,7 +13,7 @@ s32 func_802E0CB0(Actor *this);
 
 /* .data */
  ActorInfo D_803685A0 = { 
-    0x39, 0x2D, 0x41A,
+    MARKER_39_MUMBO_TOKEN, ACTOR_2D_MUMBO_TOKEN, ASSET_41A_SPRITE_MUMBO_TOKEN,
     0, NULL, 
     func_802E0B10, func_80326224, func_80325934,
     2000, 0, 0.0f, 0

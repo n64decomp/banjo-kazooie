@@ -11,7 +11,7 @@ extern void func_802EFF9C(ParticleEmitter *, f32);
 extern s32 D_80368850[3];
 
 /* .bss */
-extern u8 D_803808F0;
+u8 D_803808F0;
 
 /* .code */
 void func_802EDD20(void){

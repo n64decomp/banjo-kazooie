@@ -20,8 +20,9 @@ extern ActorInfo D_80367B20 = {
     0, 0, 0.0f, 0
 };
 
-extern f32 D_8037DE30[3];
-extern u8 D_8037DE3C;
+/* .bss */
+f32 D_8037DE30[3];
+u8 D_8037DE3C;
 
 /* .code */
 s32 func_802D76E0(Actor *this, f32 *arg1) {

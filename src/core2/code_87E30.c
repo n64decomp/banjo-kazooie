@@ -14,6 +14,7 @@ extern bool func_803188B4(gczoombox_t *);
 extern s8 D_8036C4D0[];
 extern f32 D_80378534;
 
+/* .bss */
 struct {
     char output[0x100];
     u8 *unk100;
@@ -53,7 +54,7 @@ struct {
     s32  (* unk144)(ActorMarker *, s32, s32);
     struct14s unk148[4];
 } D_80382E20;
-extern char D_80382FF8[];
+char D_80382FF8[0x18];
 
 /* .code */
 int func_8030EDC0(ActorMarker *caller, s32 arg1){

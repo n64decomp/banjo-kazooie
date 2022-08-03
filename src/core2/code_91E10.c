@@ -57,8 +57,10 @@ void func_8031A3E4(void);
 
 extern u8 D_8036D940[];
 
-extern Struct_Core2_91E10 *D_803830E0;
+/* .bss */
+Struct_Core2_91E10 *D_803830E0;
 
+/* .code */
 void func_80318DA0(s8 *ptr, u8 min_indx, u8 max_indx, s32 min_value, s32 max_value){
     s32 i;
     s32 j;

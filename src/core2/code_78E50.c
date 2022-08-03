@@ -9,13 +9,13 @@ extern s32 D_8036A260[];
 extern Gfx D_8036A278[];
 
 /* .bss */
-extern void *D_80381EB0[2];
-extern f32 D_80381EB8;
-extern f32 D_80381EBC;
-extern s32 D_80381EC0;
-extern s32 D_80381EC4;
-extern u8 D_80381EC8[];
-extern struct8s D_80381ED0;
+void *D_80381EB0[2];
+f32 D_80381EB8;
+f32 D_80381EBC;
+s32 D_80381EC0;
+s32 D_80381EC4;
+u8 D_80381EC8[8];
+struct7s D_80381ED0;
 
 /* .code */
 s32 func_802FFDE0(s32 arg0){
@@ -28,7 +28,7 @@ s32 func_802FFE04(void){
     return (5 - v1)*4;
 }
 
-struct8s *func_802FFE4C(s32 item_id){
+struct7s *func_802FFE4C(s32 item_id){
     s32 i;
 
     D_80381EB8 = 1.0f;

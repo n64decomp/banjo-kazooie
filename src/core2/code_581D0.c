@@ -18,8 +18,8 @@ ActorInfo D_8036838C = {
 };
 
 /* .bss */
-extern ActorMarker *D_8037E000;
-extern s32 D_8037E008[20];
+ActorMarker *D_8037E000;
+s32 D_8037E008[20];
 
 /* .code */
 Actor *func_802DF160(Gfx **gfx, Mtx **mtx, Vtx **vtx) {

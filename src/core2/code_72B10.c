@@ -4,8 +4,10 @@
 
 f32 sfx_randf2(f32, f32);
 
-extern vector(struct4Es) *D_803810A0;
+/* .bss */
+vector(struct4Es) *D_803810A0;
 
+/* public */
 void func_802F9D38(s32 arg0);
 void func_802FA028(s32 arg0, s32 arg1);
 void func_802FA0B0(s32 arg0, s32 arg1);

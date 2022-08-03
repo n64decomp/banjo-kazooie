@@ -2,9 +2,11 @@
 #include "functions.h"
 #include "variables.h"
 
-extern struct6s *D_80381030;
-extern struct3s *D_80381034;
+/* .bss */
+struct6s *D_80381030;
+struct3s *D_80381034;
 
+/* .code */
 void func_802F7BC0(Gfx **gdl, Mtx **mptr, Vtx **vptr){
     if(D_80381030){
         func_802F8A90(D_80381030, gdl, mptr, vptr);

@@ -21,15 +21,18 @@ extern Gfx D_80369290[];
 extern f32 D_80377350;
 extern f32 D_80377354;
 
-extern f32 D_80381050[3];
-extern f32 D_80381060;
-extern f32 D_80381064;
-extern f32 D_80381070[3];
-extern f32 D_80381080[3];
-extern s32 D_8038108C;
-extern Gfx *D_80381090;
-extern Struct_core2_72060_0 *D_80381094;
+/* .bss */
+f32 D_80381040[3];
+f32 D_8038104C;
+f32 D_80381050[3];
+f32 D_80381060[3];
+f32 D_80381070[3];
+f32 D_80381080[3];
+s32 D_8038108C;
+Gfx *D_80381090;
+Struct_core2_72060_0 *D_80381094;
 
+/* .code */
 void func_802F8FF0(void){
     D_80369284 = 0;
 }
@@ -139,8 +142,8 @@ bool func_802F989C(Gfx **gfx, Mtx **mtx, f32 arg2[3]) {
         mlMtxApply(*mtx);
         func_80252434(&D_80381080, D_80381094->unkC);
         func_80251B5C(D_80381080[0], D_80381080[1], D_80381080[2]);
-        func_8025208C(D_80381064);
-        func_80251F8C(D_80381060);
+        func_8025208C(D_80381060[1]);
+        func_80251F8C(D_80381060[0]);
         func_80252A38(-(D_80381094->unkC[0]), -(D_80381094->unkC[1]), -(D_80381094->unkC[2]));
         mlMtxApply(*mtx);
         gSPMatrix((*gfx)++, (*mtx)++, G_MTX_PUSH | G_MTX_LOAD | G_MTX_MODELVIEW);

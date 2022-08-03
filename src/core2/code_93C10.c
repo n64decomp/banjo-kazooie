@@ -2,7 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
-extern struct{
+/* .bss */
+struct{
     u8 pad0[3];
     s8 unk3;
     u8 pad4[3];
@@ -10,7 +11,9 @@ extern struct{
     u8 pad8[4];
     struct1Cs *unkC;
 }D_803830F0;
+s32 D_80383100[20];
 
+/* .code */
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_93C10/func_8031ABA0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_93C10/func_8031ABF8.s")

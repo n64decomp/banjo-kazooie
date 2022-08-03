@@ -16,7 +16,7 @@ struct43s  D_80368D88 = {
 };
 
 /* .bss */
-extern u8 D_80380A70;
+u8 D_80380A70;
 
 /* .code */
 void func_802F3CB0(void){

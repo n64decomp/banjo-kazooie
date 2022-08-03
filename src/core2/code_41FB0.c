@@ -41,8 +41,10 @@ extern f32 D_80366C4C;
 extern f64 D_80376410;
 
 /* .bss */
-extern f32 D_8037DDB4;
-extern f32 D_8037DDB8;
+UNK_TYPE(s32) D_8037DDB0;
+f32 D_8037DDB4;
+f32 D_8037DDB8;
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_41FB0/func_802C8F40.s")
 

@@ -29,6 +29,16 @@ typedef struct map_font_texture_map{
     s16 assetId;
 } MapFontTextureMap;
 
+typedef struct{
+    u8 unk0;
+    u8 unk1;
+    u8 pad2[1];
+    s8 unk3;
+}Struct_6DA30_0_s;
+
+/* .data */
+extern Struct_6DA30_0_s  D_80369000[];
+
 extern struct {
     u8 unk0;
     u8 unk1;
@@ -53,6 +63,7 @@ extern Gfx D_80369238[];/* = {
     gsSPEndDisplayList(),
 };*/
 
+
 extern u8 D_80377240[4];
 extern u8 D_80377244[4];
 extern u8 D_80377248[4];
@@ -60,33 +71,31 @@ extern u8 D_8037724C[4];
 extern u8 D_80377250[4];
 extern u8 D_80377254[4];
 
-extern s8 D_80380AB0;
-extern BKSprite *D_80380AB8[0x5];
+s8 D_80380AB0;
+BKSprite *D_80380AB8[0x5];
 
-extern FontLetter  *print_sFonts[4];
-extern PrintBuffer *print_sPrintBuffer;
-extern PrintBuffer *print_sCurrentPtr;
-extern struct {
-    s32 unk0;   
-}D_80380AE8;
+FontLetter  *print_sFonts[4];
+PrintBuffer *print_sPrintBuffer;
+PrintBuffer *print_sCurrentPtr;
+s32 D_80380AE8;
+s32 D_80380AEC;
+s32 D_80380AF0;
+s32 D_80380AF4;
+s32 D_80380AF8;
+s32 D_80380AFC;
+s32 D_80380B00;
+s32 D_80380B04;
+bool print_sInFontFormatMode;
+s32 D_80380B0C;
+s32 D_80380B10;
+s32 D_80380B14;
+s32 D_80380B18;
+s32 D_80380B1C;
+s8 D_80380B20[0x400];
+s8 D_80380F20[0x80];
+f32 D_80380FA0;
+f32 D_80380FA8[0x20];
 
-extern s32 D_80380AEC;
-extern s32 D_80380AF0;
-extern s32 D_80380AF4;
-extern s32 D_80380AF8;
-extern s32 D_80380AFC;
-extern s32 D_80380B00;
-extern s32 D_80380B04;
-extern bool print_sInFontFormatMode;
-extern s32 D_80380B0C;
-extern s32 D_80380B10;
-extern s32 D_80380B14;
-
-extern s32 D_80380B18;
-extern s32 D_80380B1C;
-extern s8 D_80380B20[0x400];
-extern s8 D_80380F20[0x80];
-extern f32 D_80380FA8[];
 
 //returns map texture assetID for current map;
 enum asset_e func_802F49C0(void){
@@ -297,7 +306,7 @@ void func_802F5188(void){
     D_80380B0C = 0;
     D_80380B10 = 0;
     D_80380B14 = 0;
-    D_80380AE8.unk0 = 0;
+    D_80380AE8 = 0;
     D_80380AB0 = 0;
     func_802F7A2C(3);
     D_80380AB8[0] = assetcache_get(SPRITE_DIALOG_FONT_ALPHAMASK);
@@ -357,9 +366,9 @@ void func_802F542C(void){
 
 //returns the pixel data and type for a given letter
 void *func_802F5494(s32 letterId, s32 *fontType){
-    if(D_80380AE8.unk0 != 1 || (D_80380AE8.unk0 == 1 && letterId < 0xA)){
-        *fontType = D_80380AB8[D_80380AE8.unk0]->type;
-        return print_sFonts[D_80380AE8.unk0][letterId].unk0;
+    if(D_80380AE8 != 1 || (D_80380AE8 == 1 && letterId < 0xA)){
+        *fontType = D_80380AB8[D_80380AE8]->type;
+        return print_sFonts[D_80380AE8][letterId].unk0;
     }
     else{//L802F5510
         if(!D_80380AB8[3]){
@@ -377,18 +386,8 @@ void *func_802F5494(s32 letterId, s32 *fontType){
 
 //returns the letter's palette
 void *func_802F55A8(u8 arg0){
-    return  print_sFonts[D_80380AE8.unk0][arg0].unk4;
+    return  print_sFonts[D_80380AE8][arg0].unk4;
 }
-
-typedef struct{
-    u8 unk0;
-    u8 unk1;
-    u8 pad2[1];
-    s8 unk3;
-}Struct_6DA30_0_s;
-
-extern f32 D_80380FA0;
-extern Struct_6DA30_0_s  D_80369000[];
 
 #ifndef NONMATCHING
 void _printbuffer_draw_letter(s32 letter, f32* xPtr, f32* yPtr, f32 arg3, Gfx **gtx, Mtx **mtx, Vtx **vtx);
@@ -418,7 +417,7 @@ void _printbuffer_draw_letter(s32 letter, f32* xPtr, f32* yPtr, f32 arg3, Gfx **
         D_80380FA0 = 0.0f;
     }//L802F563C
 
-    switch(D_80380AE8.unk0){
+    switch(D_80380AE8){
         case 0: //L802F5678
             if(letter >= '\x21' && letter < '\x5f'){
                 sp20C = letter - '\x21';
@@ -456,7 +455,7 @@ void _printbuffer_draw_letter(s32 letter, f32* xPtr, f32* yPtr, f32 arg3, Gfx **
         print_sInFontFormatMode = FALSE;
         switch(letter){
             case ' '://802F5818
-                *xPtr += arg3*((D_80380AF0) ? D_80369068[D_80380AE8.unk0]: D_80369068[D_80380AE8.unk0]*0.8);
+                *xPtr += arg3*((D_80380AF0) ? D_80369068[D_80380AE8]: D_80369068[D_80380AE8]*0.8);
                 break;
 
             case 'b': //L802F5890
@@ -465,7 +464,7 @@ void _printbuffer_draw_letter(s32 letter, f32* xPtr, f32* yPtr, f32 arg3, Gfx **
                 break;
 
             case 'f': //L802F58A8
-                D_80380AEC = D_80380AE8.unk0 = D_80380AE8.unk0 ^ 1;
+                D_80380AEC = D_80380AE8 = D_80380AE8 ^ 1;
                 break;
 
             case 'l': //L802F58BC
@@ -479,8 +478,8 @@ void _printbuffer_draw_letter(s32 letter, f32* xPtr, f32* yPtr, f32 arg3, Gfx **
             case 'j': //L802F58D4
                 if(D_80380AFC == 0){
                     D_80380AFC = 1;
-                    D_80380AEC = D_80380AE8.unk0;
-                    D_80380AE8.unk0 = 2;
+                    D_80380AEC = D_80380AE8;
+                    D_80380AE8 = 2;
                     // D_80380AE8 = 2;
                 }
                 break;
@@ -488,7 +487,7 @@ void _printbuffer_draw_letter(s32 letter, f32* xPtr, f32* yPtr, f32 arg3, Gfx **
             case 'e': //L802F58FC
                 if(D_80380AFC){
                     D_80380AFC = 0;
-                    D_80380AE8.unk0 = D_80380AEC;
+                    D_80380AE8 = D_80380AEC;
                 }
                 break;
 
@@ -565,7 +564,7 @@ void _printbuffer_draw_letter(s32 letter, f32* xPtr, f32* yPtr, f32 arg3, Gfx **
                f28 += randf2(-2.0f, 2.0f);
         }
         if (D_80380AF0 != 0) {
-            sp1F8 = (f32)D_80369068[D_80380AE8.unk0];
+            sp1F8 = (f32)D_80369068[D_80380AE8];
         } else {
             sp1F8 = (f32)sp214->x;
         }
@@ -662,16 +661,16 @@ void printbuffer_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
                 _printbuffer_draw_letter(print_sCurrentPtr->fmtString[j], &_x, &_y, 1.0f, gfx, mtx, vtx);
             }
             if (D_80380B00 != 0) {
-                width = (strlen(print_sCurrentPtr->string) -1)*D_80369068[D_80380AE8.unk0];
+                width = (strlen(print_sCurrentPtr->string) -1)*D_80369068[D_80380AE8];
                 gDPPipeSync((*gfx)++);
                 gDPSetPrimColor((*gfx)++, 0, 0, 0x00, 0x00, 0x00, 0x64);
                 gDPSetCombineMode((*gfx)++, G_CC_PRIMITIVE, G_CC_PRIMITIVE);
-                gDPScisFillRectangle((*gfx)++, _x - D_80369068[D_80380AE8.unk0]/2 - 1.0f, _y - D_80369068[D_80380AE8.unk0]/2 - 1.0f, _x + width + D_80369068[D_80380AE8.unk0]/2, _y + D_80369068[D_80380AE8.unk0]/2 + 1.0f);
+                gDPScisFillRectangle((*gfx)++, _x - D_80369068[D_80380AE8]/2 - 1.0f, _y - D_80369068[D_80380AE8]/2 - 1.0f, _x + width + D_80369068[D_80380AE8]/2, _y + D_80369068[D_80380AE8]/2 + 1.0f);
                 gDPPipeSync((*gfx)++);
 
             }//L802F73E8
             if ((D_80380AF8 == 0) && (D_80380AF4 == 0)) {
-                if (D_80380AE8.unk0 != 0) {
+                if (D_80380AE8 != 0) {
                     gDPSetCombineMode((*gfx)++, G_CC_DECALRGBA, G_CC_DECALRGBA);
                     gDPSetPrimColor((*gfx)++, 0, 0, 0xFF, 0xFF, 0xFF, 0xFF);
                 } else {
@@ -679,7 +678,7 @@ void printbuffer_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
                     gDPSetPrimColor((*gfx)++, 0, 0, print_sCurrentPtr->rgba[0], print_sCurrentPtr->rgba[1], print_sCurrentPtr->rgba[2], print_sCurrentPtr->rgba[3]);
                 }
             }
-            if ((D_80380AE8.unk0 == 1) && ((f64) print_sCurrentPtr->unk10 < 0.0)) {
+            if ((D_80380AE8 == 1) && ((f64) print_sCurrentPtr->unk10 < 0.0)) {
                 for(j = 0; print_sCurrentPtr->string[j]; j++){
                     D_80380FA8[j] = func_802F6C90(print_sCurrentPtr->string[j], &_x, &_y, -print_sCurrentPtr->unk10);
                 }

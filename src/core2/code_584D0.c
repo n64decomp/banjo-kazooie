@@ -63,6 +63,7 @@ ActorInfo D_80368418 = {
 ActorMarker *D_8037E060;
 f32 D_8037E068[20][2];
 Struct_core2_584D0_0 D_8037E248[20];
+u8 pad_8037E478[0x140];
 s32 D_8037E5B8;
 struct {
     s32 unk0;

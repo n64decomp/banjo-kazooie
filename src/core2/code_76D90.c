@@ -22,20 +22,20 @@ extern f32 D_8036A018[];
 extern Gfx D_8036A030[];
 
 
-extern s32 D_803815C0;
-extern s32 D_803815C4;
-extern f32 D_803815C8;
-extern f32 D_803815CC;
-extern f32 D_803815D0;
-extern f32 D_803815D4;
-extern f32 D_803815D8;
-extern f32 D_803815DC;
-extern f32 D_803815E0;
-extern s32 D_803815E4;
-extern s32 D_803815E8;
-extern s32 D_803815EC;
-extern struct8s D_803815F0;
-extern s32 D_80381610;
+s32 D_803815C0;
+s32 D_803815C4;
+f32 D_803815C8;
+f32 D_803815CC;
+f32 D_803815D0;
+f32 D_803815D4;
+f32 D_803815D8;
+f32 D_803815DC;
+f32 D_803815E0;
+s32 D_803815E4;
+s32 D_803815E8;
+s32 D_803815EC;
+struct7s D_803815F0;
+s32 D_80381610;
 
 
 /* rodata 
@@ -71,7 +71,7 @@ void func_802FDDC4(s32 arg0, struct8s *arg1){
     D_803815E8 = 0x50;
 }
 
-struct8s *func_802FDE2C(s32 arg0){
+struct7s *func_802FDE2C(s32 arg0){
     func_802FDD20();
     D_803815D0 = 1.0f;
     return &D_803815F0;

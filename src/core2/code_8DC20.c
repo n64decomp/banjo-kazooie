@@ -3,12 +3,14 @@
 #include "variables.h"
 
 
+extern s16 D_803A5D00[2][0xF660];
+
 extern Gfx D_8036C630[];
 extern Gfx D_8036C690[];
 
-extern s32 D_803830A0;
+/* .bss */
+s32 D_803830A0;
 
-extern s16 D_803A5D00[2][0xF660];
 
 /* .code */
 #ifndef NONMATCHING

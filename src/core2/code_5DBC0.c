@@ -43,8 +43,10 @@ typedef struct {
 
 extern u8 D_80368830[3] = {0,0,0};
 
-extern struct5DBC0s * D_8037E900;
+/* .bss */
+struct5DBC0s * D_8037E900;
 
+/* .code */
 struct5DBC0s *func_802E4B50(void){
     u8 sp24[3] = D_80368830;
     D_8037E900 = (struct5DBC0s *)malloc(sizeof(struct5DBC0s));

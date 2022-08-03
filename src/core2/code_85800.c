@@ -55,7 +55,7 @@ int func_8030ED70(enum sfx_e uid);
 void func_8030EDAC(f32, f32);
 
 /* .bss */
-struct46s D_80382470[16];
+struct46s D_80382470[10];
 struct45s D_803824C0[35];
 f32 D_80382E0C;
 f32 D_80382E10;

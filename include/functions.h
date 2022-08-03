@@ -170,7 +170,7 @@ void jiggySpawn(enum jiggy_e jiggy_id, f32 pos[3]);
 
 struct3s *func_802F8264(s32 arg0);
 struct6s *func_802F8BE0(s32 arg0);
-struct8s *func_802FD320(enum asset_e item_id);
+struct7s *func_802FD320(enum asset_e item_id);
 void func_802FD330(enum item_e, struct8s *);
 void func_802FD33C(enum item_e arg0, struct8s *arg1, Gfx **arg2, Mtx **arg3, Vtx **arg4);
 void func_802FD350(enum item_e item_id, struct8s *);
@@ -180,17 +180,17 @@ void func_802FD80C(s32, struct8s *);
 void func_802FDAF4(enum item_e, struct8s *, Gfx**, Mtx**, Vtx **);
 void func_802FDC80(enum item_e, struct8s *);
 
-struct8s *func_802FDE2C(s32);
+struct7s *func_802FDE2C(s32);
 void func_802FE844(s32, struct8s *);
 void func_802FDEE0(s32, struct8s *, Gfx**, Mtx**, s32*);
 void func_802FDDC4(s32, struct8s *);
 
-struct8s *func_802FF090(enum item_e);
+struct7s *func_802FF090(enum item_e);
 void func_802FFA50(enum item_e, struct8s *);
 void func_802FF3B8(s32, struct8s *, Gfx**, Mtx**, Vtx **);
 void func_802FF358(enum item_e, struct8s *);
 
-struct8s *func_802FFE4C(s32);
+struct7s *func_802FFE4C(s32);
 void func_803005BC(enum item_e, struct8s *);
 void func_802FFF34(enum item_e, struct8s *, Gfx**, Mtx**, Vtx **);
 void func_802FFED4(s32, struct8s *);
@@ -200,14 +200,14 @@ void fxcommon3score_update(enum item_e, void *);
 void fxcommon3score_draw(enum item_e, void *, Gfx**, Mtx**, Vtx **);
 void fxcommon3score_free(enum item_e item_id, void *);
 
-struct8s *func_80300CD8(s32);
-void func_80301348(s32, struct8s *);
+struct7s *func_80300CD8(enum item_e);
+void func_80301348(enum item_e, struct8s *);
 void func_80300D0C(enum item_e item_id, struct8s *arg1, Gfx **gfx, Mtx **mtx, Vtx **vtx);
-void func_80300C70(s32, struct8s *);
+void func_80300C70(enum item_e, struct8s *);
 
 
-struct8s *func_8030179C(s32);
-void func_80301DE4(s32, struct8s *);
+struct7s *func_8030179C(s32);
+void func_80301DE4(enum item_e, struct7s *);
 void func_803017D0(s32, struct8s *, Gfx**, Mtx**, s32);
 void func_80301754(s32, struct8s *);
 

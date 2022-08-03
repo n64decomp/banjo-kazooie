@@ -28,6 +28,7 @@ ActorInfo D_8036833C = {
     0, 0, 0.0f, 0
 };
 
+/* .bss */
 ActorMarker *D_8037DFE0;
 enum level_e D_8037DFE4;
 BKModelBin *D_8037DFE8;

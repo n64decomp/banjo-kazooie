@@ -11,17 +11,34 @@ extern Gfx D_8036A918[];
 
 extern f32 D_80377480;
 
-extern f32 D_80381EFC;
-extern s32 D_80381F00;
-extern f32 D_80381F04;
-extern f32 D_80381F08[];
-extern struct8s D_80381F30;
+/* .bss */
+s32 D_80381EF0;
+f32 D_80381EF4;
+f32 D_80381EF8;
+f32 D_80381EFC;
+s32 D_80381F00;
+f32 D_80381F04;
+f32 D_80381F08[8];
+f32 D_80381F28;
+f32 D_80381F2C;
+struct7s D_80381F30;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_79C80/func_80300C10.s")
+/* .code */
+void func_80300C10(void) {
+    s32 i;
+
+    D_80381EF8 = -272.0f;
+    D_80381EF4 = 1.0f;
+    D_80381EF0 = 0;
+    for(i = 0; i < 8; i++){
+        D_80381F08[i] = -64.0f;
+    }
+}
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_79C80/func_80300C70.s")
 
-struct8s *func_80300CD8(s32 item_id){
+struct7s *func_80300CD8(enum item_e item_id){
     func_80300C10();
     D_80381EFC = D_80377480;
     return &D_80381F30;
@@ -110,21 +127,3 @@ void func_80300D0C(enum item_e item_id, struct8s *arg1, Gfx **gfx, Mtx **mtx, Vt
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_79C80/func_803012F8.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_79C80/func_80301348.s")
-
-//BREAK???
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_79C80/func_803016F0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_79C80/func_80301754.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_79C80/func_8030179C.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_79C80/func_803017D0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_79C80/func_80301CE0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_79C80/func_80301D24.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_79C80/func_80301DBC.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_79C80/func_80301DE4.s")

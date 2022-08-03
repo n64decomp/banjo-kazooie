@@ -31,9 +31,9 @@ extern f32 D_803771E0;
 extern f32 D_803771E4;
 
 /* .bss */
-extern f32 *D_80380A10;
-extern Mtx D_80380A18;
-extern s32 D_80380A58;
+f32 *D_80380A10;
+Mtx D_80380A18;
+s32 D_80380A58;
 
 /* .code */
 #ifndef NONMATCHING

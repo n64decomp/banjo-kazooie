@@ -14,7 +14,7 @@ ActorInfo D_803680DC = {
 };
 
 /* .bss */
-s32 D_8037DE70;
+ActorMarker *D_8037DE70;
 
 /* .code */
 void func_802DCA20(Actor *this){

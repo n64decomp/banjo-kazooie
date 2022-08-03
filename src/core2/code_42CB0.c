@@ -25,11 +25,11 @@ ActorInfo D_80366CA4 = { MARKER_55_HONEYCOMB, ACTOR_50_HONEYCOMB, ASSET_363_MODE
 };
 
 /* .bss */
-extern enum honeycomb_e D_8037DDC0;
-extern array(s32) *     D_8037DDC4;
-extern s32              D_8037DDC8;
-extern u32 D_8037DDCC;
-extern s32 D_8037DDD0;
+enum honeycomb_e D_8037DDC0;
+array(s32) *     D_8037DDC4;
+s32              D_8037DDC8;
+u32 D_8037DDCC;
+s32 D_8037DDD0;
 
 /* .code */
 enum honeycomb_e func_802C9C40(Actor *this){

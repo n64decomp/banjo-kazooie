@@ -3,7 +3,7 @@
 #include "variables.h"
 
 /* .bss */
-extern s32 D_80382460;
+s32 D_80382460;
 
 /* .code */
 void func_8030C740(void){

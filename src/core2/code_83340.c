@@ -20,11 +20,16 @@ typedef struct{
 
 BKModelBin *func_8030A428(s32 arg0);
 
+/* .data */
 s32 D_8036B800;
+
+/* .rodata */
+extern f32 D_80377730;
+
+/* .bss */
 struct_7AF80_0 *D_80382390; //prop models ???
 struct_7AF80_1 *D_80382394; //prop_sprites ???
 
-extern f32 D_80377730;
 
 void func_8030A2D0(Gfx **gfx, Mtx **mtx, Vtx **vtx, f32 arg3[3], f32 arg4[3], f32 arg5, s32 arg6, Cube* arg7){
     BKModelBin * sp2C;

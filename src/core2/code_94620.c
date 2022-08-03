@@ -3,18 +3,24 @@
 #include "variables.h"
 #include "structs.h"
 
-extern s32 D_80383150;
-extern u8 D_80383158;
+s32 D_80383150;
+s32 pad_80383154;
+struct {
+    u8 unk0;
+    void *unk4;
+    s32 unk8;
+}
+D_80383158;
 
 s32 func_8031B5B0(void) {
-    return D_80383158;
+    return D_80383158.unk0;
 }
 
 s32 func_8031B5BC(void){ return 1; }
 
 void func_8031B5C4(s32 arg0) {
     if ((arg0 >= 0) && (arg0 < func_8031B5BC())) {
-        D_80383158 = (s8) arg0;
+        D_80383158.unk0 = (s8) arg0;
     }
     D_80383150 = 1;
 }
@@ -25,7 +31,7 @@ bool func_8031B604(char *arg0) {
 }
 
 void func_8031B62C(void) {
-    D_80383158 = (u8)0;
+    D_80383158.unk0 = (u8)0;
 }
 
 s32 func_8031B638(void) {

@@ -7,7 +7,7 @@ extern s32 D_80368AA0[3];
 
 
 /* .bss */
-extern u8 D_80380A00;
+u8 D_80380A00;
 
 
 /* .code */

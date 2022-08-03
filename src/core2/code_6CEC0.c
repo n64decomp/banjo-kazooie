@@ -3,7 +3,7 @@
 #include "variables.h"
 
 /* .bss */
-extern u8 D_80380A80;
+u8 D_80380A80;
 
 /* .code */
 void func_802F3E50(void){

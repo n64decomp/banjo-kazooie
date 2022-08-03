@@ -37,7 +37,7 @@ extern f32 D_80377200;
 extern f32 D_80377204;
 
 /* .bss */
-extern u8 D_80380A60;
+u8 D_80380A60;
 
 /* .code */
 bool func_802F3370(f32 arg0[3], s32 *arg1, bool arg2){

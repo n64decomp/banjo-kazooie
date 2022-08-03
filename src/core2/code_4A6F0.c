@@ -25,10 +25,10 @@ extern s32 D_8036751C[4];
 
 
 /* .bss */
-extern u8 D_8037DDF0;
-extern u8 D_8037DDF1;
-extern u8 D_8037DDF2;
-extern u8 D_8037DDF3;
+u8 D_8037DDF0;
+u8 D_8037DDF1;
+u8 D_8037DDF2;
+u8 D_8037DDF3;
 
 
 /* .code */

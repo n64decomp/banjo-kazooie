@@ -6,14 +6,13 @@ extern void func_80252CC4(f32[3], f32 [3], f32, f32[3]);
 extern f32 func_8034A9D0(f32[4], f32);
 
 /*.bss */
-extern struct {
+struct {
     s32 unk0;
     f32 unk4[3];
     f32 unk10[3];
     f32 unk1C;
     f32 unk20[3];
 }D_803808C0;
-extern f32 D_803808E0;
 
 /* .code */
 Vtx *vtxList_getVertices(BKVertexList *vtxList){

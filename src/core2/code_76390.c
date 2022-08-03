@@ -2,9 +2,11 @@
 #include "functions.h"
 #include "variables.h"
 
-extern struct8s D_803815A0;
+/* .bss */
+struct7s D_803815A0;
 
-struct8s *func_802FD320(enum asset_e item_id){
+/* .code */
+struct7s *func_802FD320(enum asset_e item_id){
     return &D_803815A0;
 }
 

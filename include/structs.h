@@ -216,7 +216,7 @@ typedef struct struct_6_s{
     f32 unk38;
 }struct6s;
 
-typedef struct struct_8_s{
+typedef struct struct_7_s{
     s32 unk0;
     s32 unk4;
     f32 unk8;
@@ -225,6 +225,17 @@ typedef struct struct_8_s{
     s32 unk14;
     s32 unk18;
     f32 unk1C;
+}struct7s;
+
+typedef struct struct_8_s{
+    s32 unk0;
+    s32 unk4;
+    f32 unk8;
+    f32 unkC;
+    f32 unk10;
+    s32 unk14;
+    s32 unk18;
+    f32 unk1C; //first 0x20 should be struct7s
     u32 unk20; //item_id
     s32 unk24; //asset_id
     u32 unk28;

@@ -9,6 +9,16 @@ void func_8025AC20(s32, s32, s32, f32, char*, s32);
 f32 func_80257618(void);
 void func_8024CE60(f32, f32);
 
+
+/* .data */
+extern struct9s D_8036C150[0x16];
+extern struct9s D_8036C308[0xC];
+extern struct10s D_8036C3F8[0x18];
+extern f32 D_8036C440;
+extern f32 D_8036C444;
+
+
+/* .bss */
 struct{
     s32 unk0; //times drawn?
     struct9s *unk4;
@@ -21,12 +31,7 @@ struct{
     s32 unk1C; //times update called?
 } D_80382430;
 
-extern struct9s D_8036C150[0x16];
-extern struct9s D_8036C308[0xC];
-extern struct10s D_8036C3F8[0x18];
-extern f32 D_8036C440;
-extern f32 D_8036C444;
-
+/* .code */
 struct9s *_gctranstion_8030B400(s32 arg0){
     struct9s * i;
     for(i = D_8036C150; i->uid != 0; i++){

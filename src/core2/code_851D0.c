@@ -2,13 +2,16 @@
 #include "functions.h"
 #include "variables.h"
 
-extern s16 *D_80382450;
-extern void *D_80382454;
+extern u8 D_803A5D00[2][0x1ecc0];
 
+/* .data */
 extern Gfx D_8036C450[];
 extern Gfx D_8036C4A8[];
 
-extern u8 D_803A5D00[2][0x1ecc0];
+/* .bss */
+s16 *D_80382450;
+void *D_80382454;
+
 
 /* .code */
 void func_8030C160(void){

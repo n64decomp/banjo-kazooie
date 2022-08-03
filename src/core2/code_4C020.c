@@ -104,9 +104,9 @@ extern f64 D_80376A98;
 // 4072C00000000000  4072C00000000000
 
 /* .bss */
-extern int D_8037DE00;
-extern f32 D_8037DE04;
-extern f32 D_8037DE08;
+int D_8037DE00;
+f32 D_8037DE04;
+f32 D_8037DE08;
 
 void func_802D6114(void);
 void func_802D6264(f32 arg0, enum map_e arg1, s32 arg2, s32 arg3, s32 arg4, enum bkprog_e arg5);

@@ -37,8 +37,8 @@ extern const char D_8036C618[] = "";
 extern int D_8036C620;
 
 
-
-extern struct{
+/* .bss */
+struct{
     u32         unk0_31:8; //menu state
     u32         unk0_23:8;
     u32         unk0_15:8; //menu page
@@ -83,9 +83,9 @@ extern struct{
     u32         unk70_29:1;
     u32 pad70_28:29;
 }D_80383010;
+char D_80383088[0x18];
 
-extern char D_80383088[];
-
+/* public */
 void func_803129DC(s32,s32);
 void func_803184C8(gczoombox_t *, f32, s32, s32, f32, s32, s32);
 void func_80318640(gczoombox_t *, s32, f32, f32, s32);

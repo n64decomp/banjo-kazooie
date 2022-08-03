@@ -5,6 +5,10 @@
 extern void func_80252C08(f32[3], f32[3], f32, f32[3]);
 extern void func_80252CC4(f32[3], f32[3], f32, s32);
 
+/* .bss */
+Mtx D_80380880;
+
+/* .code */
 bool func_802EA760(BKModelUnk14List *arg0, s32 arg1, f32 arg2[3], f32 arg3[3], f32 arg4, f32 arg5[3], f32 arg6[3], f32 *arg7) {
     s32 start;
     BKModelUnk14_2 *temp_v0;
@@ -133,7 +137,6 @@ s32 func_802EB8A0(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_637D0/func_802EBA98.s")
 
-extern Mtx D_80380880;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_637D0/func_802EBAE0.s")
 // s32 func_802EBAE0(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 scale, s32 arg4, s32 arg5, f32 arg6[3], f32 arg7, f32 arg8[3]) {

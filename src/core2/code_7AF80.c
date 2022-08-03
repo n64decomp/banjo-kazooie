@@ -74,7 +74,7 @@ extern s16 D_8036ABC0[];
 /* .rodata */
 
 /* .bss */
-extern struct {
+struct {
     Cube *cube_list;
     f32 unk4;
     s32 min[3];
@@ -90,12 +90,16 @@ extern struct {
     s32 unk44;
 } D_80381FA0;
 
-extern u8 D_80381FE8[];
-extern s32 D_803820B8[]; //ActorProp *, (maybe Prop *)
-extern s32 D_8038213C;
-extern s32 D_80382148;
-extern s16 D_80382150[];
-extern u32 D_803821E0[0x5B];
+u8 D_80381FE8[0x50];
+s32 D_80382038[0x20];
+s32 D_803820B8[0x20]; //ActorProp *, (maybe Prop *)
+s32 pad_80382138;
+s32 D_8038213C;
+s32 D_80382140;
+s32 D_80382144;
+s32 D_80382148;
+s16 D_80382150[0x48];
+u32 D_803821E0[0x5B];
 
 
 /* .code */
@@ -1710,16 +1714,12 @@ void func_80308D2C(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     func_8032F464(0);
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80308EC8.s")
-#else
 void func_80308EC8(void){
     s32 i;
     for(i = 0; i < 0x5B; i++){
         D_803821E0[i] = 0;
     }
 }
-#endif
 
 void func_80308F0C(Cube *cube) {
     s32 *temp_v1;

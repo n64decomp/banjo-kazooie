@@ -423,7 +423,7 @@ gczoomboxPortraitInfo D_8036C6C0[] = {
 s32 D_8036D924[] = { 70, 35, 18, 9, 4, 2, 1};
 
 /* .bss */
-extern u8  D_803830B0[];
+char D_803830B0[0x30];
 
 void func_8030DA44(u8);
 void func_80338338(s32, s32, s32);

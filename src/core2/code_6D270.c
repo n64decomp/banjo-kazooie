@@ -10,7 +10,7 @@ ParticleEmitter *func_802F4274(f32 arg0[3]);
 extern s32 D_80368DE0[3];
 
 /* .bss */
-extern u8 D_80380AA0;
+u8 D_80380AA0;
 
 /* .code */
 void func_802F4200(f32 arg0[3]){

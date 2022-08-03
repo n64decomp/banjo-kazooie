@@ -8,9 +8,18 @@ extern f32 func_8028EBA4(void);
 extern void projectile_getPosition(u8 arg0, f32 arg1[3]);
 extern void func_8033FC98(u8 arg0, s32 arg1);
 
+/* .data */
 extern u8 D_803726D4[];
 extern f32 D_803726EC;
+
+/* .rodata */
 extern f64 D_80379480;
+
+extern f64 D_803794B0;
+
+
+/* .bss */
+// extern s32 D_803863E4;
 
 void func_80354670(u8 arg0, s32 arg1) {
     func_8033FFE4(arg0, D_803726D4[arg1], D_803726D4[arg1]);
@@ -47,7 +56,7 @@ void func_803546E8(void) {
     func_80344EE4(sp47, -700.0f, -22000.0f);
     func_802589E4(sp28, D_803726EC, 250.0f);
     sp28[1] = 250.0f;
-    D_803726EC = mlNormalizeAngle((f32) ((f64) D_803726EC + D_80379480));
+    D_803726EC = mlNormalizeAngle(D_803726EC + D_80379480);
     func_80344E3C(sp47, sp28);
     func_80344D94(sp47, sp34);
     temp_s0->unk20 = 0x14;
@@ -348,7 +357,7 @@ void func_803553E8(void) {
 
 void func_80355548(void){}
 
-//Static var not defined properly
+//matching but require .bss defined
 #ifdef NON_MATCHING
 void func_80355550(void) {
     static s32 D_803863E0;
@@ -432,7 +441,57 @@ void func_8035570C(void) {
 
 void func_8035585C(void){}
 
+#ifndef NONMATCHING //matching but require .bss defined
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_CD6E0/func_80355864.s")
+#else
+void func_80355864(void) {
+    u8 sp5F;
+    struct54s *sp58;
+    u8 sp57;
+    static s32 D_803863E4;
+    f32 var_f2;
+    Actor *sp4C;
+    ParticleStruct0s *sp48;
+    s32 sp44;
+    f32 sp38[3];
+    f32 sp2C[3];
+    f32 sp28;
+
+    sp5F = func_8033E8D0();
+    sp58 = func_8033E8F4();
+    sp57 = func_8033E93C();
+    sp4C = marker_getActor(func_8033E864());
+    sp48 = func_8033E960();
+    D_803863E4 = (D_803863E4 + 1) % 10;
+    sp44 = (D_803863E4 == 0);
+    sp38[0] = sp4C->position[0];
+    sp38[1] = sp4C->position[1];
+    sp38[2] = sp4C->position[2];
+    sp48->unk0 = randf2(-10.0f, 10.0f);
+    sp48->unk4 = (f32) ((randf() * 45.0f) + 10.0f);
+    sp48->unk8 = randf2(-10.0f, 10.0f);
+    projectile_setSprite(sp5F, 0x713);
+    projectile_setPosition(sp5F, &sp38);
+    func_8033FCD8(sp5F, 0xC);
+    func_80287E9C(sp58);
+    func_80287F7C(sp58, 3);
+    func_80287FD0(sp58, (sp44)? 16.0 : 3.0);
+    func_80344E18(sp57, 5);
+    func_80344EE4(sp57, -700.0f, -22000.0f);
+    sp28 = (sp44) ? randf2(-75.0f, 75.0f) + 400.0f
+         : randf2(-50.0f, 50.0f) + 250.0f;
+
+    func_802589E4(sp2C, D_803726EC, sp28);
+    sp2C[1] = sp28 * ((sp44 * 0.5) + 1.0);
+    D_803726EC = mlNormalizeAngle(D_803726EC + D_803794B0);
+    func_80344E3C(sp57, sp2C);
+    func_80344D94(sp57, sp38);
+    sp48->unk20 = 0x14;
+    sp48->unk24 = sp44;
+    sp48->unk28 = 1;
+    func_80354670(sp5F, 0x14);
+}
+#endif;
 
 void func_80355B00(void) {
     ParticleStruct0s *sp44;

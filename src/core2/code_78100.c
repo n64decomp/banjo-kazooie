@@ -10,20 +10,20 @@ extern enum asset_e D_8036A210[5];
 extern Gfx D_8036A228[];
 
 /* .bss */
-extern u16 D_80381620[0xD][5][0x10];
-extern BKSprite *D_80381E40[5];
-extern f32   D_80381E54;
-extern u8    D_80381E58[5];
-extern f32   D_80381E60[5];
-extern f32   D_80381E78[5];
-extern struct8s D_80381E90;
+u16 D_80381620[0xD][5][0x10];
+BKSprite *D_80381E40[5];
+f32   D_80381E54;
+u8    D_80381E58[5];
+f32   D_80381E60[5];
+f32   D_80381E78[5];
+struct7s D_80381E90;
 
 
 /* .code */
 #ifndef nonmatching
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_78100/func_802FF090.s")
 #else
-struct8s *func_802FF090(s32 arg0) {
+struct7s *func_802FF090(s32 arg0) {
     f32 *var_s6;
     f64 temp_f20;
     f64 temp_f22;

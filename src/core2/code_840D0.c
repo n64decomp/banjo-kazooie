@@ -6,8 +6,10 @@ extern void func_8024CE60(f32, f32);
 
 extern struct48s D_8036BD40[];
 
+/* .rodata */
 extern f32 D_80378440;
 
+/* .bss */
 struct 
 {
     struct48s *unk0;
@@ -16,6 +18,7 @@ struct
     f32 unk1C;
 }D_80382410;
 
+/* .code */
 struct48s * func_8030B060(enum map_e map_id){
     struct48s * v1 = D_8036BD40;
     while(v1->map){

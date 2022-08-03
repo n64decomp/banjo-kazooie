@@ -13,8 +13,8 @@ typedef struct {
 void func_802F1190(u8 arg0);
 
 /* .bss*/
-extern u8 D_80380930;
-extern Struct_Core2_69F60_0 D_80380938[];
+u8 D_80380930;
+Struct_Core2_69F60_0 D_80380938[16];
 
 /* .code */
 ParticleEmitter *func_802F0EF0(u8 arg0){

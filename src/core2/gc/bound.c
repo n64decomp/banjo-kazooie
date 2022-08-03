@@ -18,9 +18,9 @@ extern Gfx D_803688E8[] = {
 }; //_gcBoundDisplayList
 
 /* .bss */
-extern u8 _gcbound_red; //D_80380900
-extern u8 _gcbound_green; //D_80380901
-extern u8 _gcbound_blue; //D_80380902
+u8 _gcbound_red; //D_80380900
+u8 _gcbound_green; //D_80380901
+u8 _gcbound_blue; //D_80380902
 
 /* .code */
 void  _gcbound_draw(Gfx** dl, s32 a, s32 r, s32 g, s32 b){
