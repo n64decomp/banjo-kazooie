@@ -4,13 +4,6 @@
 
 void func_80336924(Gfx*, Vtx*, BKSprite *, s32, s32);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BD100/func_80344090.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BD100/func_80344124.s")
-
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BD100/func_80344138.s")
-#else
 extern f32 D_80379080;
 extern f32 D_80379084;
 extern struct {
@@ -18,7 +11,18 @@ extern struct {
     void *unk4;
 }D_80371EC0;
 extern f32 D_80371ECC;
-extern u8 D_803858B0;
+
+/* .bss */
+u8 D_803858B0;
+
+#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BD100/func_80344090.s")
+
+#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BD100/func_80344124.s")
+
+#ifndef NONMATCHING
+#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BD100/func_80344138.s")
+#else
+
 
 extern void func_80252330(f32, f32, f32);
 

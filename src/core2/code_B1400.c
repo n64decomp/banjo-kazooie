@@ -378,63 +378,61 @@ extern f32 D_80378F48;
 extern f32 D_80378F4C;
 
 /* .bss */
-extern s32 D_80383650;
-extern s32 D_80383658[0x2A];
-extern s32 D_80383700;
-extern bool D_80383704;
-extern f32 D_80383708;
-extern f32 D_8038370C;
-extern s32 D_80383710;
-extern s32 D_80383714;
-extern BKGfxList *D_80383718;
-extern struct58s *D_8038371C;
-extern BKTextureList *D_80383720;
-extern s32 D_80383724;
-extern BKVertexList *D_80383728;
-extern s32 D_8038372C;
-extern struct58s *D_80383730;
-extern f32 D_80383734;
-extern Struct_Core2_B1400_0 D_80383738;
-extern s32 D_80383754;
-extern Struct_Core2_B1400_2 D_80383758;
-extern s32 D_80383770;
-extern f32 D_80383774[3];
-extern f32 D_80383780[3];
-extern struct{
+s32 D_80383650;
+s32 D_80383658[0x2A];
+s32 D_80383700;
+bool D_80383704;
+f32 D_80383708;
+f32 D_8038370C;
+s32 D_80383710;
+s32 D_80383714;
+BKGfxList *D_80383718;
+struct58s *D_8038371C;
+BKTextureList *D_80383720;
+s32 D_80383724;
+BKVertexList *D_80383728;
+s32 D_8038372C;
+struct58s *D_80383730;
+f32 D_80383734;
+Struct_Core2_B1400_0 D_80383738;
+Struct_Core2_B1400_2 D_80383758;
+struct{
     void (* unk0)(Actor *);
     Actor *unk4;
     void (* unk8)(ActorMarker *);
     ActorMarker *unkC;
 } D_80383790;
-extern Struct_Core2_B1400_0 D_803837A0;
-extern struct {
+s32 D_803837A0[4];
+struct {
     s32 unk0;
     f32 unk4[3];
 }D_803837B0;
-extern u8 D_803837C0;
-extern struct {
+u8 D_803837C0;
+struct {
     s32 unk0; //model_asset_index
     f32 unk4;
     f32 unk8;
+    u8 padC[0x4]
 } D_803837C8; 
-extern s32 D_803837D8;
-extern struct {
+s32 D_803837D8;
+struct {
     LookAt unk0[32];
     LookAt *unk400;
     LookAt *unk404;
     f32 unk408[3];
 } D_803837E0;
-extern Mtx D_80383BF8;
-extern f32 D_80383C38[3];
-extern f32 D_80383C48[3];
-extern BKModelBin *D_80383C54;
-extern f32 D_80383C58[3];
-extern f32 D_80383C64;
-extern f32 D_80383C68[3];
-extern f32 D_80383C78[3];
-extern f32 D_80383C88[3];
-extern f32 D_80383C98[3];
+Mtx D_80383BF8;
+f32 D_80383C38[3];
+f32 D_80383C48[3];
+BKModelBin *D_80383C54;
+f32 D_80383C58[3];
+f32 D_80383C64;
+f32 D_80383C68[3];
+f32 D_80383C78[3];
+f32 D_80383C88[3];
+f32 D_80383C98[3];
 
+/* .code */
 void func_80338390(void){
     D_80383700 = 0;
     D_80383708 = D_80378F40;
@@ -456,9 +454,9 @@ void func_80338390(void){
     D_803837D8 = 0;
     func_8033A45C(1,1);
     func_8033A45C(2,0);
-    if(D_80383770){
-        func_8024CD88(D_80383774);
-        func_8024CE18(D_80383780);
+    if(D_80383758.unk18){
+        func_8024CD88(D_80383758.unk1C);
+        func_8024CE18(D_80383758.unk28);
         func_8024CFD4();
     }
 }
@@ -898,7 +896,7 @@ int func_803391A4(Gfx **gfx, Mtx **mtx, f32 position[3], f32 arg3[3], f32 scale,
                 D_80383738.prim[3] = (D_80383738.prim[3] * alpha) / 0xff;
             }
             else if(D_80383714 == 1){//L803396DC
-                D_803837A0.env[3] = (D_803837A0.env[3] * alpha)/0xff;
+                D_803837A0[3] = (D_803837A0[3] * alpha)/0xff;
             }
             else if(D_80383714 == 2){//L80339710
                 func_8033A410(alpha);
@@ -956,8 +954,8 @@ int func_803391A4(Gfx **gfx, Mtx **mtx, f32 position[3], f32 arg3[3], f32 scale,
     }
     else if(D_80383714 == 1){//L80339AC0
         gSPDisplayList((*gfx)++, D_80370368);
-        gDPSetEnvColor((*gfx)++, D_803837A0.env[0], D_803837A0.env[1], D_803837A0.env[2], D_803837A0.env[3]);
-        if(D_803837A0.env[3] == 0xFF){
+        gDPSetEnvColor((*gfx)++, D_803837A0[0], D_803837A0[1], D_803837A0[2], D_803837A0[3]);
+        if(D_803837A0[3] == 0xFF){
             gSPSegment((*gfx)++, 0x03, osVirtualToPhysical(spDC));
         }
         else{
@@ -1012,8 +1010,8 @@ int func_803391A4(Gfx **gfx, Mtx **mtx, f32 position[3], f32 arg3[3], f32 scale,
     }//L80339EAC
 
     mlMtxIdent();
-    if(D_80383770){
-        func_80252AF0(&D_80383774, spE0, arg3, scale, arg5);
+    if(D_80383758.unk18){
+        func_80252AF0(D_80383758.unk1C, spE0, arg3, scale, arg5);
     }
     else{
         func_80252AF0(D_80383C38, spE0, arg3, scale, arg5);
@@ -1130,7 +1128,7 @@ void func_8033A17C(void){
 
 void func_8033A1A4(void){
     func_80338390();
-    D_80383770 = 0;
+    D_80383758.unk18 = 0;
     D_803837E0.unk400 = &D_803837E0.unk0[0];
     D_803837E0.unk404 = D_803837E0.unk400 + 32;
     D_803837E0.unk408[0] = D_803837E0.unk408[1] = D_803837E0.unk408[2] = 0.0f;
@@ -1216,10 +1214,10 @@ void func_8033A334(s32 env[4], s32 prim[4]){
 void func_8033A388(s32 r, s32 g, s32 b, s32 a){
     D_80383714 = 1;
 
-    D_803837A0.env[0] = MIN(0xFF, r);
-    D_803837A0.env[1] = MIN(0xFF, g);
-    D_803837A0.env[2] = MIN(0xFF, b);
-    D_803837A0.env[3] = MIN(0xFF, a);
+    D_803837A0[0] = MIN(0xFF, r);
+    D_803837A0[1] = MIN(0xFF, g);
+    D_803837A0[2] = MIN(0xFF, b);
+    D_803837A0[3] = MIN(0xFF, a);
 }
 
 void func_8033A410(s32 a){

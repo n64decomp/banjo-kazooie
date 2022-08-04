@@ -12,19 +12,21 @@ typedef struct {
 void savedata_clear(u8 *savedata);
 s32 savedata_verify(s32 arg0, SaveData *savedata);
 
+/* .data */
 extern Struct_B5040 D_80370A20[];
-extern s32 D_80383CF0;
-extern s32 D_80383CF4; //jiggy_offset
-extern s32 D_80383CF8; //honeycomb_offset
-extern s32 D_80383CFC; //mumbotoken_offset
-extern s32 D_80383D00; //notescores_offset
-extern s32 D_80383D04; //timescores_offset
-extern s32 D_80383D08; //savedata_jiggy_offset
-extern s32 D_80383D0C; //saved_item_offset
-extern s32 D_80383D10; //abilities_offset
-extern s32 D_80383D14; //end_offset
 
-extern u8 D_80383D18;
+/* .bss */
+s32 D_80383CF0;
+s32 D_80383CF4; //jiggy_offset
+s32 D_80383CF8; //honeycomb_offset
+s32 D_80383CFC; //mumbotoken_offset
+s32 D_80383D00; //notescores_offset
+s32 D_80383D04; //timescores_offset
+s32 D_80383D08; //savedata_jiggy_offset
+s32 D_80383D0C; //saved_item_offset
+s32 D_80383D10; //abilities_offset
+s32 D_80383D14; //end_offset
+u8 D_80383D18;
 
 /* .code */
 void savedata_update_crc(s32 buffer, s32 size){

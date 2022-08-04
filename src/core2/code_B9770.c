@@ -14,7 +14,8 @@ extern void **D_80371E74;
 extern s32 D_80371E78;
 extern s32 D_80371E7C;
 
-extern s16 *D_803858A0;
+/* .bss */
+s16 *D_803858A0;
 
 
 f32 func_80340700(f32, f32, f32);

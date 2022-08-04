@@ -56,7 +56,7 @@ extern f64 D_80379370;
 extern f64 D_80379378;
 
 /* .bss */
-extern struct {
+struct {
     Struct68s *unk0;
     Struct6Cs unk4;
     f32 unk14[3];
@@ -64,7 +64,7 @@ extern struct {
     Struct68s *unk2C;
 }D_80386180;
 
-extern struct {
+struct {
     s32 unk0;
     Struct68s *unk4; //start
     Struct68s *unk8; //end

@@ -27,7 +27,7 @@ f32 func_8033FE9C(u8 arg0);
 void func_8033FB64(u8 arg0);
 
 /* .bss */
-extern Struct_B8860_0s D_80385000[];
+Struct_B8860_0s D_80385000[0x32];
 
 /* .code */
 void func_8033F7F0(u8 arg0, Gfx **gfx, Mtx **mtx, Vtx **vtx){

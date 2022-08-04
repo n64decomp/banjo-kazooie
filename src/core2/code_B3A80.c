@@ -15,17 +15,20 @@ extern s32 D_80370A10;
 
 extern f32 D_80378F50;
 
-extern s32 D_80383CB0;
-extern AssetROMHead *D_80383CC0;
-extern AssetFileMeta *D_80383CC4;
-extern u32 D_80383CC8;
-extern s32 D_80383CCC; //asset_data_rom_offset
-extern void** D_80383CD0; //assetCache_ptrs;
-extern BKSpriteDisplayData **D_80383CD4;
-extern u8* assetCache_depCount; //assetCache_dependencies;
-extern s16 *D_80383CDC; //assetCache_indexs
+/* .bss */
+s32 D_80383CB0;
+u8 pad_80383CB8[0x8];
+AssetROMHead *D_80383CC0;
+AssetFileMeta *D_80383CC4;
+u32 D_80383CC8;
+s32 D_80383CCC; //asset_data_rom_offset
+void** D_80383CD0; //assetCache_ptrs;
+BKSpriteDisplayData **D_80383CD4;
+u8* assetCache_depCount; //assetCache_dependencies;
+s16 *D_80383CDC; //assetCache_indexs
+vector(struct21s) *D_80383CE0[2];
 
-extern vector(struct21s) *D_80383CE0[2];
+/* .public */
 s32 assetcache_release(void * arg0);
 
 f32  func_8033ABA0(AnimationFile *anim_file, f32 arg1);

@@ -4,11 +4,13 @@
 
 extern u8 D_80370338[];
 
-extern u32 D_80383634;
-extern u32 D_80383638;
-extern s32 D_8038363C;
-extern s32 D_80383640;
-extern s32 D_80383644;
+/* .bss */
+u8 pad_80383610[0x24];
+u32 D_80383634;
+u32 D_80383638;
+s32 D_8038363C;
+s32 D_80383640;
+s32 D_80383644;
 
 /* .code */
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AEDA0/func_80335D30.s")

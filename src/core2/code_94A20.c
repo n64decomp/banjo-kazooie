@@ -7,17 +7,52 @@
 
 void *func_80309B48(f32 *, f32 *, f32 *, u32);
 void *func_80309B98(f32 *, f32 *, f32 *, u32);
-
+s32 func_8031FF1C(s32);
+void func_8031FFAC(void);
+void func_80320004(s32 index, s32 set);
+s32 func_803200A4(u8 *array, s32 index);
+s32 func_803200E4(u8 *array, s32 offset, s32 numBits);
+void func_8032015C(u8 *array, s32 index, s32 set);
+void func_803201C8(u8 *array, s32 startIndex, s32 set, s32 length);
+void func_8032048C(void);
+void func_803204E4(s32 arg0, s32 arg1);
+s32 func_8031FF44(s32 offset, s32 numBits);
+void func_8031CE70(f32 *arg0, s32 arg1, s32 arg2);
+void ml_vec3h_to_vec3f(f32 *, s32);
+void func_8028F3D8(f32 *, f32,  void(*)(ActorMarker *), ActorMarker *);
+struct unkfunc_80304ED0 *func_80304ED0(void*, f32 *);
+void func_8031CD44(s32, s32, f32, f32, s32);
+void func_80256E24(f32 *, f32, f32, f32, f32, f32);
 
 void func_8031C608(struct0 *this);
 void *func_8031BABC(f32 *, f32, f32, u32, void*);
 void func_8031BD98(struct0 *, f32, s32, s32, f32 *, void *, s32);
 
 void func_8031BE98(struct0*, f32, s32);
-extern f32 D_8036DDC0[];
+
+
+// Struct pointer returned by func_80304ED0
+struct unkfunc_80304ED0 {
+    s16 unk0[3];
+    u16 unk6;
+    u16 unk8;
+    u16 unkA;
+    u32 unkC;
+};
+
+/* .data */
+extern u8 D_8036DDC0[0x14];
+extern u32 D_8036DDD4;
+
+/* .rodata */
 extern f32 D_80378D30;
 extern f32 D_80378D34;
 
+extern f32 D_80378D40;
+extern f32 D_80378D44;
+
+/* .bss */
+u8 D_80383190;
 
 void func_8031B9B0(struct0 *this, s32 arg1){
     if(arg1 == 1)
@@ -160,7 +195,7 @@ void func_8031BD98(struct0 *this, f32 arg1, s32 arg2, s32 arg3, f32 *normPtr, vo
 
 
 void func_8031BE58(struct0 *this){
-    func_8031BD98(this, -9000.0f, 0, 0, D_8036DDC0, 0, 0);
+    func_8031BD98(this, -9000.0f, 0, 0, &D_8036DDC0, 0, 0);
 }
 
 void func_8031BE98(struct0 *this, f32 arg1, s32 arg2){
@@ -299,57 +334,22 @@ s32 func_8031C880(void){
     return 0;
 }
 
-// Struct pointer returned by func_80304ED0
-struct unkfunc_80304ED0 {
-    s16 unk0[3];
-    u16 unk6;
-    u16 unk8;
-    u16 unkA;
-    u32 unkC;
-};
-
-s32 func_8031FF1C(s32);
-void func_8031FFAC(void);
-void func_80320004(s32 index, s32 set);
-s32 func_803200A4(u8 *array, s32 index);
-s32 func_803200E4(u8 *array, s32 offset, s32 numBits);
-void func_8032015C(u8 *array, s32 index, s32 set);
-void func_803201C8(u8 *array, s32 startIndex, s32 set, s32 length);
-void func_8032048C(void);
-void func_803204E4(s32 arg0, s32 arg1);
-s32 func_8031FF44(s32 offset, s32 numBits);
-void func_8031CE70(f32 *arg0, s32 arg1, s32 arg2);
-void ml_vec3h_to_vec3f(f32 *, s32);
-void func_8028F3D8(f32 *, f32,  void(*)(ActorMarker *), ActorMarker *);
-struct unkfunc_80304ED0 *func_80304ED0(void*, f32 *);
-void func_8031CD44(s32, s32, f32, f32, s32);
-void func_80256E24(f32 *, f32, f32, f32, f32, f32);
-
-extern u32 D_8036DDD4;
-
-// probably rodata
-extern f32 D_80378D40;
-extern f32 D_80378D44;
-
-/* .bss */
-extern u8 D_80383190;
-
-void func_8031CB50(enum map_e map_id, s32 arg1, s32 arg2) {
+void func_8031CB50(enum map_e map_id, s32 exit_id, s32 arg2) {
     s32 sp1C;
 
-    if ((D_80383190 == 0) && (getGameMode() != 8) && (getGameMode() != 7)) {
+    if ((D_80383190 == 0) && (getGameMode() != GAME_MODE_8_BOTTLES_BONUS) && (getGameMode() != GAME_MODE_7_ATTRACT_DEMO)) {
         sp1C = func_803226E8(map_get());
         if ((func_803226E8(map_id) != sp1C) && (func_80322914() == 0)) {
             func_8025A388(0, 0x4E2);
             func_8025AB00();
             func_8024BD08(0);
         }
-        if (func_802E4A08() != 0) {
-            func_802E40D0(map_id, arg1);
+        if (func_802E4A08()) {
+            func_802E40D0(map_id, exit_id);
             func_802E40E8(1);
             func_802E40C4(0xB);
         } else {
-            func_802E4078(map_id, arg1, 1);
+            func_802E4078(map_id, exit_id, 1);
         }
         func_80335110(arg2);
     }
@@ -1661,264 +1661,3 @@ void func_8031FBF8(void) {
     func_8029A890();
     func_802C5A48();
 }
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94A20/func_8031FC40.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94A20/func_8031FE40.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94A20/func_8031FEC0.s")
-
-struct {
-    s32 unk0;
-    s32 unk4;
-    u8 unk8[37];
-} D_803831A0;
-
-s32 func_8031FF1C(s32 index) {
-    return func_803200A4(D_803831A0.unk8, index);
-}
-
-s32 func_8031FF44(s32 offset, s32 numBits) {
-    return func_803200E4(D_803831A0.unk8, offset, numBits);
-}
-
-s32 func_8031FF74(s32 index, s32 set) {
-    s32 ret;
-
-    ret = func_8031FF1C(index);
-    func_80320004(index, set);
-    return ret;
-}
-
-void func_8031FFAC(void) {
-    s32 i;
-
-    for (i = 0; i < 37; i++) {
-        D_803831A0.unk8[i] = 0;
-    }
-    func_8031FC40();
-    func_8031FEC0();
-}
-
-void func_80320004(s32 index, s32 set) {
-    func_8032015C(D_803831A0.unk8, index, set);
-    func_8031FC40();
-    func_8031FEC0();
-}
-
-void func_80320044(s32 startIndex, s32 set, s32 length) {
-    func_803201C8(D_803831A0.unk8, startIndex, set, length);
-    func_8031FC40();
-    func_8031FEC0();
-}
-
-void func_8032008C(s32 *arg0, u8 **arg1) {
-    *arg0 = 0x25;
-    *arg1 = D_803831A0.unk8;
-}
-
-// Returns a single bit from a byte array
-s32 func_803200A4(u8 *array, s32 index) {
-    s32 ret;
-    if (array[index / 8] & (1 << (index & 7))) {
-        ret = 1;
-    } else {
-        ret = 0;
-    }
-    return ret;
-}
-
-// Extracts an integer of the given number of bits from a byte array at the starting bit offset
-s32 func_803200E4(u8 *array, s32 offset, s32 numBits) {
-    s32 ret = 0;
-    s32 i;
-
-    for (i = 0; i < numBits; i++) {
-        ret |= (func_803200A4(array, offset + i) << i);
-    }
-    return ret;
-}
-
-// Sets or clears a single bit in a byte array
-void func_8032015C(u8 *array, s32 index, s32 set) {
-    if (set) {
-        array[index / 8] |=  (1 << (index & 7));
-    } else {
-        array[index / 8] &= ~(1 << (index & 7));
-    }
-}
-
-// Sets or clears a range of bits in a byte array
-void func_803201C8(u8 *array, s32 startIndex, s32 set, s32 length) {
-    s32 i;
-
-    for (i = 0; i < length; i++) {
-        func_8032015C(array, startIndex + i, (1 << i) & set);
-    }
-}
-
-s32 func_80320240(void){return 1;}
-
-s32 func_80320248(void){return 1;}
-
-struct {
-    s32 unk0;
-    s32 unk4;
-    u8 unk8[25];
-} D_803831D0;
-
-// regalloc
-// s32 func_80320250(void) {
-//     s32 addr = (s32) &D_803831D0.unk8[0];
-//     u32 checksum = 0x6CE9E91F;
-//     s32 len = 25;
-//     s32 scrambled;
-//     u32 i;
-
-//     // Scrambles the input address
-//     scrambled  = (addr ^ 0x746DF219) & 0xFF;  // scrambled = (low byte of addr) ^ 0x19
-//     scrambled += (addr >> 0x18) << 0x18;      // scrambled = (high byte of addr | low byte of addr) ^ 0x19
-//     scrambled += ((addr >> 8) & 0xFFFF) << 8; // scrambled = addr ^ 0x19
-//     // Unscrambles the input address
-
-//     for (i = 0; i < len; i++) {
-//         s32 val = ((u8*)(scrambled ^ 0x19))[i];
-//         checksum = val ^ (((checksum + val & 0xF) << 0x18) ^ (checksum >> 3));
-//     }
-
-//     return checksum;
-// }
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94A20/func_80320250.s")
-
-extern s32 D_8036DDF0;
-
-void func_803202D0(void) {
-    s32 addr = (s32) &D_803831D0.unk0;
-    addr ^= 0x7EDDF5F4;
-    addr ^= 0x7BEF9D80;
-    addr ^= 0x5326874;
-    *(s32*)(addr) = func_80320250();
-}
-
-s32 func_80320320(void) {
-    s32 addr = (s32) &D_803831D0.unk8[0];
-    s32 checksum = 0x281E421C;
-    s32 len = 25;
-    s32 scrambled;
-    u32 i;
-
-    // Scrambles the address of D_803831D8
-    scrambled = (addr >> 8) & 0xFF0000;
-    scrambled += (addr & 0xFF) << 8;
-    scrambled = addr ^ scrambled;
-    // Unscrambles the address of D_803831D8
-    addr  = (scrambled & 0xFF000000) >> 8;
-    addr += (scrambled << 8) & 0xFF00;
-    addr ^= scrambled;
-
-    for (i = 0; i < len; i++) {
-        checksum += (1 + i) * ((u8*)addr)[i];
-    }
-
-    return checksum;
-}
-
-// regalloc
-// void func_803203A0(void) {
-//     s32 addr = (s32) &D_803831D0.unk4;
-//     s32 scrambled;
-//     scrambled  = (addr ^ 0x746DF219) & 0xFF;  // scrambled = (low byte of addr) ^ 0x19
-//     scrambled += (addr >> 0x18) << 0x18;      // scrambled = (high byte of addr | low byte of addr) ^ 0x19
-//     scrambled += ((addr >> 8) & 0xFFFF) << 8; // scrambled = addr ^ 0x19
-//     *(s32*)(scrambled ^ 0x19) = func_80320320();
-// }
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94A20/func_803203A0.s")
-
-s32 func_803203FC(s32 index) {
-    return func_803200A4(D_803831D0.unk8, index);
-}
-
-void func_80320424(s32 index, s32 numBits) {
-    func_803200E4(D_803831D0.unk8, index, numBits);
-}
-
-s32 func_80320454(s32 index, s32 arg1) {
-    s32 temp_v0;
-
-    temp_v0 = func_803203FC(index);
-    func_803204E4(index, arg1);
-    return temp_v0;
-}
-
-void func_8032048C(void) {
-    s32 i;
-    for (i = 0; i < 25; i++) {
-        D_803831D0.unk8[i] = 0;
-    }
-    func_803202D0();
-    func_803203A0();
-}
-
-void func_803204E4(s32 index, s32 set) {
-    func_8032015C(D_803831D0.unk8, index, set);
-    func_803202D0();
-    func_803203A0();
-}
-
-void func_80320524(s32 startIndex, s32 set, s32 length) {
-    func_803201C8(D_803831D0.unk8, startIndex, set, length);
-    func_803202D0();
-    func_803203A0();
-}
-
-s32 func_8032056C(void) {
-    s32 temp_a0;
-    s32 temp_a1;
-    s32 temp_a1_2;
-    s32 phi_t9;
-    s32 addr = (s32)&D_803831D0;
-    s32 temp_v1;
-
-    temp_v1 = ((addr & 0xE0000000) >> 15) +
-              ((addr & 0x1FC00000) >> 22) +
-              ((addr & 0x00300000) << 10) +
-              ((addr & 0x000F0000) <<  7) +
-              ((addr & 0x0000E000) << 14) +
-              ((addr & 0x00001800) >>  4) +
-              ((addr & 0x00000780) << 10) +
-              ((addr & 0x00000060) <<  4) +
-              ((addr & 0x00000018) << 18) +
-              ((addr & 0x00000007) << 11);
-    phi_t9 = (temp_v1 & 0x38000000) / (1 << 24);
-    temp_a0 = ((temp_v1 & 0x1E0600) << 0xB) | ((s32) (temp_v1 & 0x603800) / 8);
-    temp_a1 = (((temp_v1 & 0x1C07F) << 15) + ((temp_v1 & 0xC7800000) >> 17)) | 
-               (phi_t9 + ((s32) (temp_v1 & 0x180) >> 6));
-    temp_a1 = ((temp_a1 & 0x3FE000) << 7) |
-              (((temp_a0 >> 8) & 7) + ((temp_a1 << 0xA) & 0xFF800)) |
-              ((((u32) (temp_a0 & 0xF0000000) >> 0x15) + (temp_a1 & 0xE0000000)) ^ ((s32) ((temp_a0 / 0x40) & 0xF000) >> 9));
-    return func_80320250() == *(s32*)temp_a1;
-}
-
-s32 func_80320708(void) {
-    u16 temp_t6;
-    s32 addr;
-
-    temp_t6 = ((s32) &D_803831D0.unk4 >> 0x10);
-    addr = (s32) &D_803831D0.unk4 ^ temp_t6;
-    return func_80320320() == *(s32*)(addr ^ temp_t6);
-}
-
-extern u8 D_803831F8[];
-
-// regalloc
-// void func_80320748(void) {
-//     s32 *addr = &D_8036DDF0;
-//     s32 phi_v0;
-
-//     for (phi_v0 = 0; phi_v0 < *addr; phi_v0++) {
-//         *(D_803831F8 + phi_v0) = *((u8*)&D_803831D0 + phi_v0);
-//     }
-// }
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94A20/func_80320748.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94A20/func_80320798.s")

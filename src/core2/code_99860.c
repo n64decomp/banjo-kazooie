@@ -5,7 +5,7 @@
 #define CORE2_99860_ARRAY_SIZE 0x33
 
 /* .bss */
-extern u8* D_80383220;
+u8* D_80383220;
 
 /* .code */
 bool func_803207F0(s32 index){

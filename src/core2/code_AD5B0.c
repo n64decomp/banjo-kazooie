@@ -2,21 +2,26 @@
 #include "functions.h"
 #include "variables.h"
 
+/* .data */
 extern u8 D_80370250;
-extern struct {
+
+/* .bss */
+struct {
     s32 unk0;
     s32 map_4;
     s32 unk8;
 }D_803835D0;
-extern s32 D_803835DC;
-extern u32 D_803835E0;
+s32 D_803835DC;
+u32 D_803835E0;
 
+/* public */
 void func_80335110(s32);
 void func_80335128(s32);
 void func_8024CE60(f32, f32);
 void func_80335140(enum map_e);
 void func_8033520C(s32);
 
+/* .code */
 void func_80334540(Gfx** gdl, Mtx **mptr, Vtx **vptr) {
     f32 sp44;
     f32 sp40;

@@ -121,7 +121,7 @@ level_overlay_update_struct D_8036E2F8[] = {
 };
 
 /* .bss */
-extern struct {
+struct {
     u8 unk0;
     u8 unk1;
     u8 pad2[2];

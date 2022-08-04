@@ -3,19 +3,18 @@
 #include "variables.h"
 
 /* .bss */
-extern s32 D_803860E0;
-extern s32 D_803860E4;
-extern s32 D_803860E8;
-extern s32 D_803860EC;
-extern s32 D_803860F0;
-extern s32 D_803860F4;
-
-extern s32 D_803860F8;
-extern s32 D_803860FC;
-extern s32 D_80386100;
-extern s32 D_80386104;
-extern s32 D_80386108;
-extern s32 D_8038610C;
+s32 D_803860E0;
+s32 D_803860E4;
+s32 D_803860E8;
+s32 D_803860EC;
+s32 D_803860F0;
+s32 D_803860F4;
+s32 D_803860F8;
+s32 D_803860FC;
+s32 D_80386100;
+s32 D_80386104;
+s32 D_80386108;
+s32 D_8038610C;
 
 /* .code */
 f32 randf(void){

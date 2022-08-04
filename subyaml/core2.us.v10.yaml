@@ -303,6 +303,7 @@ segments:
   - [0x94620, c, code_94620] #DONE
   - [0x94780, c, code_94780] #DONE
   - [0x94A20, c, code_94A20]
+  - [0x98CB0, c, code_98CB0]
   - [0x99860, c, code_99860] #DONE
   - [0x999A0, c, code_999A0] #DONE
   - [0x99F80, c, jiggyscore] #DONE
@@ -320,6 +321,7 @@ segments:
   - [0x9D860, c, timedfuncqueue] #DONE
   - [0x9E370, c, code_9E370]
   - [0xA4D00, c, code_A4D00]
+  - [0xA5BC0, c, code_A5BC0]
   - [0xABC00, c, code_ABC00]
   - [0xAC520, c, code_AC520]
   - [0xAD110, c, code_AD110] #DONE
@@ -384,7 +386,7 @@ segments:
   - [0xCC1E0, c, code_CC1E0] #DONE
   - [0xCD0A0, c, code_CD0A0] #DONE
   - [0xCD3F0, c, code_CD3F0] #DONE
-  - [0xCD6E0, c, code_CD6E0]
+  - [0xCD6E0, c, code_CD6E0] #DONE
   - [0xCECD0, c, code_CECD0] #DONE
   - [0xCF090, c, code_CF090] #DONE
   - [0xCF3E0, c, code_CF3E0] #DONE
@@ -539,7 +541,7 @@ segments:
   - [0xE7330, .data, code_9B990]
   - [0xE7490, .data, code_9D640]
   - [0xE75D0, bin, data_E75D0]
-  - [0xE7870, .data, code_A4D00]
+  - [0xE7870, .data, code_A5BC0]
   - [0xE78A0, bin, data_E78A0]
   - [0xE89F0, bin, data_E89F0] # .data, code_AD110]
   - [0xE92C0, bin, data_E92C0]
@@ -1017,5 +1019,56 @@ segments:
   - [0xf2c00, .bss, code_93C10]
   - [0xf2c00, .bss, code_94620]
   - [0xf2c00, .bss, code_94780]
-  # - [0xf2c00, .bss, code_CD6E0] # D_803863E0
+  - [0xf2c00, .bss, code_94A20]
+  - [0xf2c00, .bss, code_98CB0]
+  - [0xf2c00, .bss, code_99860]
+  - [0xf2c00, .bss, code_999A0]
+  - [0xf2c00, .bss, jiggyscore]
+  - [0xf2c00, .bss, code_9A320]
+  - [0xf2c00, .bss, code_9A580]
+  - [0xf2c00, .bss, code_9A740]
+  - [0xf2c00, .bss, code_9A9D0]
+  - [0xf2c00, .bss, levelspecificflags]
+  - [0xf2c00, .bss, code_9B180]
+  - [0xf2c00, .bss, code_9B650]
+  - [0xf2c00, .bss, code_9B990]
+  - [0xf2c00, .bss, code_9C170]
+  - [0xf2c00, .bss, timedfuncqueue]
+  - [0xf2c00, .bss, code_9E370]
+  - [0xf2c00, .bss, code_A4D00]
+  - [0xf2c00, .bss, code_A5BC0]
+  - [0xf2c00, .bss, code_ABC00]
+  - [0xf2c00, .bss, code_AC520]
+  - [0xf2c00, .bss, code_AD110]
+  - [0xf2c00, .bss, code_AD5B0]
+  - [0xf2c00, .bss, code_AE290]
+  - [0xf2c00, .bss, code_AEDA0]
+  - [0xf2c00, .bss, code_B1400]
+  - [0xf2c00, .bss, code_B3A80]
+  - [0xf2c00, .bss, code_B5040]
+  - [0xf2c00, .bss, code_B5E00]
+  - [0xf2c00, .bss, code_B62B0]
+  - [0xf2c00, .bss, code_B6C60]
+  - [0xf2c00, .bss, code_B6CE0]
+  - [0xf2c00, .bss, code_B6EA0]
+  - [0xf2c00, .bss, code_B8020]
+  - [0xf2c00, .bss, code_B8860]
+  - [0xf2c00, .bss, code_B9770]
+  - [0xf2c00, .bss, code_BD100]
+  - [0xf2c00, .bss, code_BDCC0]
+  - [0xf2c00, .bss, code_BEF20]
+  - [0xf2c00, .bss, code_C0E60]
+  - [0xf2c00, .bss, code_C2C20]
+  - [0xf2c00, .bss, code_C2F30]
+  - [0xf2c00, .bss, rand]
+  - [0xf2c00, .bss, code_C4320]
+  - [0xf2c00, .bss, code_C4F40]
+  - [0xf2c00, .bss, code_C5440]
+  - [0xf2c00, .bss, code_C89C0]
+  - [0xf2c00, .bss, code_C97F0]
+  - [0xf2c00, .bss, code_C9F00]
+  - [0xf2c00, .bss, code_CB8A0]
+  - [0xf2c00, .bss, code_CBBF0]
+  - [0xf2c00, .bss, code_CD0A0]
+  - [0xf2c00, .bss, code_CD6E0]
 - [0xf2c00] # core2 end

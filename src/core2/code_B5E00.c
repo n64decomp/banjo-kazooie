@@ -4,9 +4,10 @@
 
 #include "save.h"
 
-extern SaveData D_80383D20[4]; //save_data
-extern s8 D_80383F00[4]; //gamenum to filenum
-extern s32 D_80383F04;
+/* .bss */
+SaveData D_80383D20[4]; //save_data
+s8 D_80383F00[4]; //gamenum to filenum
+s32 D_80383F04;
 
 /* .code */
 int func_8033CD90(s32 filenum){

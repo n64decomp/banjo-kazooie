@@ -71,9 +71,9 @@ extern f64 D_80378E60;
 extern f64 D_80378E68;
 
 /* .bss */
-extern Actor *D_80383390;
-extern s32 D_80383394;
-extern Actor *D_80383398[]; //array of jiggy actor ptrs
+Actor *D_80383390;
+s32 D_80383394;
+Actor *D_80383398[14]; //array of jiggy actor ptrs
 
 
 //marker_getActorAndRotation

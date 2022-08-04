@@ -8,7 +8,7 @@
 void mumboscore_debug(void);
 void mumboscore_clear(void);
 
-extern u8 sMumboTokenScore[MUMBOSCORE_SIZE];
+u8 sMumboTokenScore[MUMBOSCORE_SIZE];
 
 void func_80321510(void){
     mumboscore_debug();

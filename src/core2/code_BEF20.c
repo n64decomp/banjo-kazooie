@@ -11,18 +11,19 @@ void itemscore_noteScores_clear(void);
 s32 itemscore_noteScores_get(enum level_e lvl_id);
 void itemscore_timeScores_clear(void);
 
+/* .bss */
 s32 D_80385F30[0x2C];
-extern s32 D_80385FE0;
-extern s32 D_80385FE4;
-extern s32 D_80385FE8;
-extern f32 D_80385FEC;
+s32 D_80385FE0;
+s32 D_80385FE4;
+s32 D_80385FE8;
+f32 D_80385FEC;
 u8  D_80385FF0[0xB];
 f32 D_80386000[0xE]; //timescores
-extern s32 D_80386038;
-extern u64 D_80386040;
-extern u16 D_80386048[]; //timescores_truncated
-extern u8 D_80386060[]; //saved item array
-extern s32 D_80386068;
+s32 D_80386038;
+u64 D_80386040;
+u16 D_80386048[0xB]; //timescores_truncated
+u8 D_80386060[5]; //saved item array
+s32 D_80386068;
 
 void func_80345EB0(enum item_e item){
     if(func_802FAFE8(item)){

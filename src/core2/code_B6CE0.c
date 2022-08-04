@@ -6,8 +6,8 @@
 f32 D_80371E20 = 1.0f;
 
 /* .bss */
-extern f32 D_80384480;
-extern s32 D_80384484;
+f32 D_80384480;
+s32 D_80384484;
 
 /* .code */
 void func_8033DC70(void){

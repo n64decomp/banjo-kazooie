@@ -29,10 +29,10 @@ extern u8 D_8036E830;
 extern Struct_core2_ABC00_0 D_8036E834[];
 
 /* .bss */
-extern s32 D_80383560;
-extern s32 D_80383564;
-extern s32 D_80383568;
-extern s32 D_8038356C;
+s32 D_80383560;
+s32 D_80383564;
+s32 D_80383568;
+s32 D_8038356C;
 
 /* .code */
 void func_80332B90(void){

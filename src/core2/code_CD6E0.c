@@ -357,8 +357,6 @@ void func_803553E8(void) {
 
 void func_80355548(void){}
 
-//matching but require .bss defined
-#ifdef NON_MATCHING
 void func_80355550(void) {
     static s32 D_803863E0;
     u8 sp3F;
@@ -400,9 +398,6 @@ void func_80355550(void) {
     sp30->unk20 = 0x14;
     func_80354670(sp3F, 0x14);
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_CD6E0/func_80355550.s")
-#endif
 
 void func_8035570C(void) {
     ParticleStruct0s* temp_s0;
@@ -441,9 +436,6 @@ void func_8035570C(void) {
 
 void func_8035585C(void){}
 
-#ifndef NONMATCHING //matching but require .bss defined
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_CD6E0/func_80355864.s")
-#else
 void func_80355864(void) {
     u8 sp5F;
     struct54s *sp58;
@@ -491,7 +483,6 @@ void func_80355864(void) {
     sp48->unk28 = 1;
     func_80354670(sp5F, 0x14);
 }
-#endif;
 
 void func_80355B00(void) {
     ParticleStruct0s *sp44;

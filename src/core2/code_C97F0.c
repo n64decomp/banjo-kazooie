@@ -31,12 +31,12 @@ extern Struct_core2_C97F0_0 D_803724F4[];
 extern s32 D_803725A8[4];
 
 /* .bss */
-extern struct{
+struct{
     Struct_core2_C97F0_1 *unk0;
     Struct_core2_C97F0_0 *unk4;
     void *unk8;
 } D_80386170;
-extern struct {
+struct {
     u8 unk0;
     u8 unk1;
 }D_8038617C;

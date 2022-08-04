@@ -59,7 +59,7 @@ void func_80324BA0(s32);
 void func_802BE720(void);
 
 /* .bss */
-extern TimedFunctionArray D_80383380;
+TimedFunctionArray D_80383380;
 
 /* .code */
 TimedFunction* __timedFuncQueue_insert(f32 time, s32 cnt, void *funcPtr, s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4){

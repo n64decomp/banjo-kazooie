@@ -6,7 +6,7 @@
 extern f64 D_80378F80;
 
 /* .bss */
-extern s32 D_80384470;
+s32 D_80384470;
 
 /* .code */
 f32 func_8033DBF0(void){

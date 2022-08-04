@@ -84,13 +84,13 @@ Struct_Core2_B6CE0_1 D_80371E30[] ={
 };
 
 /* .bss */
-extern ParticleStruct0s D_80384490[];
-extern s32 D_80384FD0;
-extern struct {
+ParticleStruct0s D_80384490[40];
+s32 D_80384FD0;
+struct {
     s32 unk0;
     s32 unk4;
 } D_80384FD8;
-extern u8 D_80384FE0;
+u8 D_80384FE0;
 
 /* .code */
 f32 func_8033DE30(s32 arg0){

@@ -18,8 +18,7 @@ typedef struct struct_2a_s{
 
 extern u8 D_80363590;
 extern u8 D_80379B90;
-extern u8 D_80286F90;
-extern u8 D_803863F0;
+
 extern u8 D_803A5D00;
 extern u8 D_F55960;
 extern u8 D_1048560;
@@ -42,9 +41,12 @@ extern struct2As D_802762D0[] = {
     {"witch",       0x803863F0, 0x80395470, 0x01098070, 0x010A6FD0, 0x803863F0, 0x80392CB0, 0x80392CB0, 0x80395350, 0x80395350, 0x80395470},
     {"battle",      0x803863F0, 0x80392930, 0x010A6FD0, 0x010B3320, 0x803863F0, 0x80391380, 0x80391380, 0x80392740, 0x80392740, 0x80392930},
 };
+extern u8 D_80286F90;
 extern s32 D_80276564 = 15;
 
 enum overlay_e D_80282800;
+
+extern u8 D_803863F0;
 
 void func_802513A4(void);
 

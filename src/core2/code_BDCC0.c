@@ -20,7 +20,7 @@ typedef struct struct_core2_bd100_0_s{
 void func_80344D70(u8 index);
 
 /* .bss */
-Struct_Core2_BD100_0 D_803858C0[42];
+Struct_Core2_BD100_0 D_803858C0[41];
 
 /* .code */
 void func_80344C50(void){

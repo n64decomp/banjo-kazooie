@@ -31,12 +31,13 @@ extern Struct_Core2_9B650_1s D_8036DE80[] = {
     {0}
 };
 
-extern struct {
+/* .bss */
+struct {
     s16 unk0;
     s16 unk2;
     s16 unk4;
 } D_80383340;
-extern int D_80383348;
+int D_80383348;
 
 #ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9B650/func_803225E0.s")

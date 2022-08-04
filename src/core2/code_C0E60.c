@@ -54,24 +54,24 @@ void func_80348044(Gfx **gfx, BKSprite* sprite, s32 frame, s32 tmem, s32 rtile, 
 extern f64 D_80379140;
 
 /* .bss */
-extern s32 D_80386070;
-extern s32 D_80386074;
-extern s32 D_80386078;
-extern s32 D_8038607C;
-extern s32 D_80386080;
-extern s32 D_80386084;
-extern s32 D_80386088;
-extern s32 D_8038608C;
-extern s32 D_80386090;
-extern s32 D_80386094;
-extern s32 D_80386098;
-extern s32 D_8038609C;
-extern s32 D_803860A0;
-extern s32 D_803860A4;
-extern s32 D_803860A8;
-extern s32 D_803860AC;
-extern s32 D_803860B0;
-extern s32 D_803860B4;
+s32 D_80386070;
+s32 D_80386074;
+s32 D_80386078;
+s32 D_8038607C;
+s32 D_80386080;
+s32 D_80386084;
+s32 D_80386088;
+s32 D_8038608C;
+s32 D_80386090;
+s32 D_80386094;
+s32 D_80386098;
+s32 D_8038609C;
+s32 D_803860A0;
+s32 D_803860A4;
+s32 D_803860A8;
+s32 D_803860AC;
+s32 D_803860B0;
+s32 D_803860B4;
 
 /* .code */
 void func_80347DF0(Struct81s *arg0){

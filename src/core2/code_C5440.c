@@ -44,11 +44,13 @@ struct1Es D_80372030[] = {
     {func_8034F570, func_8034F5B0, func_8034F568}, //lightning?
 };
 
-extern struct {
+/* .bss */
+struct {
     u8 unk0;
     vector(struct1Ds) *unk4;
 } D_80386140;
 
+/* .public */
 void func_8034C9B0(int arg0);
 
 //.code

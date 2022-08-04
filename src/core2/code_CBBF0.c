@@ -14,7 +14,7 @@ typedef struct{
 void commonParticleType_set(enum common_particle_e arg0, GenMethod_0 init_method, s32 update_method, GenMethod_0 free_method, s32 arg4, s32 arg5);
 
 /* .bss */
-extern CommonParticleType D_80386260[];
+CommonParticleType D_80386260[0x12];
 
 
 /* .code */

@@ -5,16 +5,17 @@
 
 extern ALBank *func_8024F758(void);
 
-extern struct {
+extern u8 D_D846C0;
+extern u8 D_D954B0;
+
+struct {
     s32 unk0; //sound state cnt
     s32 unk4;
     s32 unk8; //maxSounds
     ALHeap *unkC; //heap
     s16 unk10;
 } D_803835F0;
-extern ALBank * D_80383604;
-extern u8 D_D846C0;
-extern u8 D_D954B0;
+ALBank * D_80383604;
 
 /* .code */
 void func_80335220(void){

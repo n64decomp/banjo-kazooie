@@ -13,12 +13,14 @@ typedef struct{
     s32 unk4;
 } Struct_core2_B62B0_1;
 
+/* .data */
 extern Struct_core2_B62B0_0 D_80370AC0[];
 extern Struct_core2_B62B0_1 D_80371DC0[];
 
-extern s16 D_80383F10[];
+/* .bss */
+s16 D_80383F10[0x2A9];
 
-
+/* .code */
 s32 func_8033D240(ActorMarker *arg0, ActorMarker *arg1){
     if(arg0){
         if(!arg0->unk14_20 && player_getActiveHitbox(arg1) == HITBOX_6_WONDERWING)

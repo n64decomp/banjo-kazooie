@@ -9,7 +9,7 @@ void honeycombscore_debug(void);
 void honeycombscore_clear(void);
 
 /* .bss */
-extern u8 sHoneycombScore[3];
+u8 sHoneycombScore[3];
 
 /* .code */
 void func_803212B0(void){

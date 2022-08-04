@@ -46,7 +46,7 @@ extern f32 D_8037932C;
 extern f32 D_80379330;
 
 /* .bss */
-extern struct {
+struct {
     void *unk0; //2D_fish_bin
     void *unk4; //green_ball_bin
     Struct_core2_C89C0_1 *unk8;

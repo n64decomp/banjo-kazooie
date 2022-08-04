@@ -58,13 +58,13 @@ extern u16 D_80371FA0[] = { 3, 4, 5, 6, 7, 8, 9, 0xA, 0xB, 0xC };
 //EB030:
 
 /* .bss */
-extern s32 D_80386110;                   //current attract demo index
-extern Struct_core2_C4320_0 *D_80386114; //current attract demo ptr
-extern s32 D_80386118;
-extern s32 D_8038611C;
-extern bool D_80386120;
-extern s32 D_80386124;
-extern f32 D_80386128;
+s32 D_80386110;                   //current attract demo index
+Struct_core2_C4320_0 *D_80386114; //current attract demo ptr
+s32 D_80386118;
+s32 D_8038611C;
+bool D_80386120;
+s32 D_80386124;
+f32 D_80386128;
 
 /* .code */
 void func_8034B2B0(s32 arg0) {

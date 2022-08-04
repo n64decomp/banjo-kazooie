@@ -27,11 +27,11 @@ void demo_free(void);
 
 extern DemoInput D_80371EF0;
 
-extern DemoInput *D_803860D0; //demo_input_ptr
-extern DemoFileHeader * D_803860D4; //demo_file_ptr
-
-extern s32 D_803860D8;//current_input
-extern s32 D_803860DC;//total_inputs
+/* .bss */
+DemoInput *D_803860D0; //demo_input_ptr
+DemoFileHeader * D_803860D4; //demo_file_ptr
+s32 D_803860D8;//current_input
+s32 D_803860DC;//total_inputs
 
 /* .code */
 s32 func_80349EC0(s32 arg0){

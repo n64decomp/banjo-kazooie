@@ -4,7 +4,7 @@
 
 #include "code_B6EA0.h"
 
-extern struct{
+struct{
     s32 unk0;
     s32 unk4;
 } D_803863D0;

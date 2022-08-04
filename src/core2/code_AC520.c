@@ -20,9 +20,11 @@ typedef struct struct_22_s{
     u8 pad35[0x3];
 } Struct_core2_AC520_0;//size 0x38
 
+/* .data */
 extern s32 D_8036F970[3];
 
-extern struct {
+/* .bss */
+struct {
     vector(Struct_core2_AC520_0) *unk0;
     Struct_core2_AC520_0 *unk4[0x10];
     Struct_core2_AC520_0 **unk44;

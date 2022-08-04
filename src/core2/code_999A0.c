@@ -17,12 +17,14 @@ typedef struct {
     Method_Core2_999A0_3 unkC;
 } Struct_core2_999A0_0;
 
+/* .bss */
 struct {
     Struct_core2_999A0_0 unk0[0x8];
     Struct_core2_999A0_0 *unk80;
     void *unk84;
 }D_80383230;
 
+/* .public */
 Struct66s *func_80320B98(f32 arg0[3], f32 arg1[3], f32 arg2[3], u32 arg3);
 void func_80320B44(Method_Core2_999A0_0 arg0, Method_Core2_999A0_1 arg1, Method_Core2_999A0_2 arg2, Method_Core2_999A0_3 arg3);
 

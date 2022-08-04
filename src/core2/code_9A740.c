@@ -9,11 +9,13 @@ typedef struct {
     u8 unk1;
 } struct_9A740;
 
-extern struct {
+/* .bss */
+struct {
     u8 unk0;
     u8 unk1;
 }D_80383300;
 
+/* .code */
 void func_803216D0(enum map_e map){
     s32 prev_lvl = D_80383300.unk1;
     D_80383300.unk1 = map_getLevel(map);

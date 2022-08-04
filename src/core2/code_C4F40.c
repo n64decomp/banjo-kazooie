@@ -48,7 +48,7 @@ Struct_core2_C4F40_1 D_80371FC0[] = {
 };
 
 /* .bss */
-extern vector(Struct6Es) *D_80386130;
+vector(Struct6Es) *D_80386130;
 
 /* .code */
 Struct6Es *func_8034BED0(ActorMarker *marker, s32 arg1, s32 arg2, s32 arg3) {

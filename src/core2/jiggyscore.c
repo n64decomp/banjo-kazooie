@@ -7,11 +7,13 @@ void jiggyscore_debug(void);
 void jiggyscore_clearAll(void);
 void jiggyscore_setSpawned(s32, s32);
 
-extern struct {
+/* .bss */
+struct {
     u8 D_803832C0[0xD];
     u8 D_803832CD[0xD];
 }jiggyscore;
 
+/* .code */
 void jiggyscore_clearAll_debug(void){ //jiggyscore_clearAll
     jiggyscore_debug();
     jiggyscore_clearAll();

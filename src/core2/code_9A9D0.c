@@ -5,8 +5,8 @@
 void func_803219F4(s32 arg0);
 
 /* .bss */
-extern u8  D_80383310;
-extern s32 D_80383314;
+u8  D_80383310;
+s32 D_80383314;
 
 /* .code */
 s32 func_80321960(void){

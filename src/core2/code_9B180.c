@@ -24,8 +24,8 @@ extern Struct_core2_9B180_0 D_8036DE00[6];
 extern u8 D_8036DE78;
 
 /* .bss */
-extern u8 D_80383330;
-extern f32 D_80383334;
+u8 D_80383330;
+f32 D_80383334;
 
 /* .code */
 void func_80322110(Struct_core2_9B180_0 *arg0) {

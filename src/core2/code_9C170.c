@@ -2,7 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
-extern u8 D_80383370;
+/* .bss */
+u8 D_80383370;
 
 /* .code */
 void func_80323100(void){
