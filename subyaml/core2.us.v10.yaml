@@ -288,7 +288,7 @@ segments:
   - [0x82000, c, code_82000]
   - [0x83340, c, code_83340]
   - [0x83D70, c, code_83D70]
-  - [0x840D0, c, code_840D0]
+  - [0x840D0, c, code_840D0] #DONE
   - [0x84470, c, gc/transition] #DONE
   - [0x851D0, c, code_851D0]
   - [0x857B0, c, code_857B0] #DONE
@@ -300,7 +300,9 @@ segments:
   - [0x91E10, c, code_91E10]
   - [0x935F0, c, code_935F0]
   - [0x93C10, c, code_93C10]
-  - [0x94620, c, code_94620]
+  - [0x94620, c, code_94620] #DONE
+  - [0x94780, c, code_94780] #DONE
+  - [0x94A20, c, code_94A20]
   - [0x99860, c, code_99860] #DONE
   - [0x999A0, c, code_999A0] #DONE
   - [0x99F80, c, jiggyscore] #DONE
@@ -1014,5 +1016,6 @@ segments:
   - [0xf2c00, .bss, code_91E10]
   - [0xf2c00, .bss, code_93C10]
   - [0xf2c00, .bss, code_94620]
+  - [0xf2c00, .bss, code_94780]
   # - [0xf2c00, .bss, code_CD6E0] # D_803863E0
 - [0xf2c00] # core2 end

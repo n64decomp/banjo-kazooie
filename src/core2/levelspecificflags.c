@@ -6,9 +6,9 @@ void levelSpecificFlags_set(arg0, arg1);
 
 
 //levelSpecificFlags
-extern u8  D_80383328[];
 extern u32 D_80383320;
 extern u32 D_80383324;
+extern u8  D_80383328[];
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/levelspecificflags/_levelSpecificFlags_calcCRC1.s")
 
