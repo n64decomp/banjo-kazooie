@@ -20,10 +20,6 @@ f32 D_80385FEC;
 u8  D_80385FF0[0xB];
 f32 D_80386000[0xE]; //timescores
 s32 D_80386038;
-u64 D_80386040;
-u16 D_80386048[0xB]; //timescores_truncated
-u8 D_80386060[5]; //saved item array
-s32 D_80386068;
 
 void func_80345EB0(enum item_e item){
     if(func_802FAFE8(item)){
@@ -61,7 +57,7 @@ s32 func_80345FB4(enum item_e item, s32 diff, s32 arg2){\
     s32 sp30;
     s32 sp2C;
     s32 sp28;
-    s32 sp24;
+    s32 sp24; //without this var newVal is too high, but sp1C is correct
     s32 newVal;
 
     oldVal = D_80385F30[item];
@@ -82,7 +78,7 @@ s32 func_80345FB4(enum item_e item, s32 diff, s32 arg2){\
     newVal = MAX(0, D_80385F30[item] + diff);
     D_80385F30[item] = newVal;
 
-    sp34 = (func_8031FF1C(BKPROG_B9_DOUBLE_HEALTH))? 2 : 1 ;
+    sp34 = ((func_8031FF1C(BKPROG_B9_DOUBLE_HEALTH))? 2 : 1);
     D_80385F30[ITEM_15_HEALTH_TOTAL] = MIN(sp34*8, D_80385F30[ITEM_15_HEALTH_TOTAL]);
     D_80385F30[ITEM_14_HEALTH]= MIN(D_80385F30[ITEM_15_HEALTH_TOTAL], D_80385F30[ITEM_14_HEALTH]);
     D_80385F30[ITEM_17_AIR] = MIN(3600, D_80385F30[ITEM_17_AIR]);
@@ -106,7 +102,7 @@ s32 func_80345FB4(enum item_e item, s32 diff, s32 arg2){\
             sp38 = 0;
             break;
     }
-    if(sp38){
+    if(sp38 != 0){
         D_80385F30[item] = MIN(sp38, D_80385F30[item]);
     }
     if(!arg2){
@@ -116,8 +112,8 @@ s32 func_80345FB4(enum item_e item, s32 diff, s32 arg2){\
     }
 
     sp3C = item_empty(item);
-    if(item < 6 && sp3C)
-        D_80385F30[item + ITEM_6_HOURGLASS] = 0;
+    if(item < ITEM_6_HOURGLASS && sp3C)
+        D_80385F30[item + ITEM_6_HOURGLASS] = FALSE;
 
     switch(item){
         case ITEM_14_HEALTH:
@@ -136,7 +132,7 @@ s32 func_80345FB4(enum item_e item, s32 diff, s32 arg2){\
                     func_8025A6EC(SFX_AIR_METER_DROPPING, 28000);
                 }
                 else{
-                    func_8030E760(0x3e9, 1.2f, 28000);
+                    func_8030E760(SFX_3E9_UNKNOWN, 1.2f, 28000);
                 }
             }
             break;
@@ -420,10 +416,8 @@ s32 itemscore_noteScores_get(enum level_e lvl_id){
     return D_80385FF0[lvl_id];
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_80346F44.s")
-#else
 void func_80346F44(s32 *size, void **ptr) {
+    static u64 D_80386040;
     s32 var_s0;
 
     *size = sizeof(u64);
@@ -436,7 +430,6 @@ void func_80346F44(s32 *size, void **ptr) {
         }
     }
 }
-#endif
 
 void itemscore_noteScoress_maxAll(void) {
     s32 i;
@@ -469,6 +462,7 @@ u16 itemscore_timeScores_get(enum level_e level_id) {
 }
 
 void itemscore_timeScores_getSizeAndPtr(s32 *size, void **ptr) {
+    static u16 D_80386048[0xB]; //timescores_truncated
     s32 i;
 
     *size = 0xB*sizeof(s16);
@@ -481,6 +475,8 @@ void itemscore_timeScores_getSizeAndPtr(s32 *size, void **ptr) {
 
 //itemscore_getSavedItemArray
 void func_80347630(s32 *size, u8 **buffer){
+    static u8 D_80386060[5]; //saved item array
+
     D_80386060[0] = item_getCount(ITEM_1C_MUMBO_TOKEN);
     D_80386060[1] = item_getCount(ITEM_D_EGGS);
     D_80386060[2] = item_getCount(ITEM_F_RED_FEATHER);
@@ -580,6 +576,8 @@ bool func_80347A4C(void){
 void func_80347A70(void){
     D_80386038 = 0;
 }
+
+s32 D_80386068;
 
 void func_80347A7C(void){
     func_80320748();
