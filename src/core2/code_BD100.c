@@ -2,61 +2,79 @@
 #include "functions.h"
 #include "variables.h"
 
-void func_80336924(Gfx*, Vtx*, BKSprite *, s32, s32);
+extern void func_80336924(Gfx**, Vtx**, BKSprite *, s32, s32);
+extern void func_80252330(f32, f32, f32);
+extern void mlMtxRotate(f32, f32, f32);
+extern void mlMtxApply(Mtx *);
+extern void func_80349AD0(void);
+extern void func_8024C5A8(f32[3]);
 
-extern f32 D_80379080;
-extern f32 D_80379084;
-extern struct {
-    void (*unk0)(void *);
+
+
+/* .data */
+struct {
+    void (*unk0)(ActorMarker *);
     void *unk4;
-}D_80371EC0;
-extern f32 D_80371ECC;
+    s32 unk8;
+}D_80371EC0 = {0};
+f32 D_80371ECC = 0.1f;
 
 /* .bss */
 u8 D_803858B0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BD100/func_80344090.s")
+/* .code */
+void func_80344090(BKSpriteDisplayData *self, s32 frame, Gfx **gfx) {
+    BKSpriteFrameDisplayData *temp_a1;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BD100/func_80344124.s")
+    func_80349AD0();
+    temp_a1 = (BKSpriteFrameDisplayData *)((s32)self + sizeof(BKSpriteDisplayData) + frame*sizeof(BKSpriteFrameDisplayData));
+    gSPSegment((*gfx)++, 1, osVirtualToPhysical(temp_a1->vtx));
+    gSPDisplayList((*gfx)++, temp_a1->gfx);
+}
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BD100/func_80344138.s")
-#else
 
+void func_80344124(void){
+    D_80371EC0.unk0 = NULL;
+    D_803858B0 = FALSE;
+}
 
-extern void func_80252330(f32, f32, f32);
-
-void func_80344138(BKSpriteDisplayData *self, s32 frame, s32 arg2, f32 position[3], f32 arg4[3], Gfx **gfx, Mtx **mtx) {
+void func_80344138(BKSpriteDisplayData *self, s32 frame, s32 mirrored, f32 position[3], f32 scale[3], Gfx **gfx, Mtx **mtx) {
     f32 sp6C[3];
     f32 sp60[3];
     f32 temp_f14;
     f32 sp50[3];
-    BKSprite *temp_v0;
+    f32 temp_f0;
+    f32 temp_f12;
     f32 var_f2_2;
     BKSpriteFrameDisplayData *temp_a3;
-    f32 sp30[3];
+    f32 sp3C;
+    f32 sp38;
+    f32 sp34;
 
-    func_8024C5CC(&sp6C);
-    func_8024C5A8(&sp60);
+    func_8024C5CC(sp6C);
+    func_8024C5A8(sp60);
     sp50[0] = position[0] - sp6C[0];
     sp50[1] = position[1] - sp6C[1];
     sp50[2] = position[2] - sp6C[2];
     temp_f14 = sp60[0]*sp50[0] + sp60[1]*sp50[1] + sp60[2]*sp50[2];
-    if ((temp_f14 < 0.0f) || (D_80379080 < temp_f14)) {
+    if ((temp_f14 < 0.0f) || (20000.0f < temp_f14)) {
         func_80344124();
         return;
     }
-    if (arg4 != NULL) {
-        sp30[0] = arg4[0];
-        sp30[1] = arg4[1];
-        sp30[2] = arg4[2];
+    if (scale != NULL) {
+        sp3C = scale[0];
+        sp38 = scale[1];
+        sp34 = scale[2];
     } else {
-        sp30[0] = sp30[1] = sp30[2] = 1.0f;
+        sp3C = 1.0f;
+        sp34 = 1.0f;
+        sp38 = 1.0f;
     }
 
-
-    var_f2_2 = (self->sprite->unkA * sp30[2] <= self->sprite->unk8 * sp30[0]) ? self->sprite->unk8 * sp30[0] : self->sprite->unkA * sp30[2];
-    if ((D_80379084 < temp_f14) && ((var_f2_2 / temp_f14) < D_80371ECC) && (D_803858B0 == 0)) {
+    temp_f0 = sp3C * self->sprite->unk8;
+    temp_f12 = sp38 * self->sprite->unkA;
+    var_f2_2 = (temp_f12 <= temp_f0) ? temp_f0 : temp_f12;
+    if ((3000.0f < temp_f14) && ((var_f2_2 / temp_f14) < D_80371ECC) && !D_803858B0) {
         func_80344124();
         return;
     }
@@ -65,35 +83,135 @@ void func_80344138(BKSpriteDisplayData *self, s32 frame, s32 arg2, f32 position[
     }
     func_80251BCC(func_8024DD90());
     func_80252330(sp50[0], sp50[1], sp50[2]);
-    if ((arg4 != NULL) || (arg2 != 0)) {
-        mlMtxScale_xyz((arg2 != 0) ? -arg4[0] : arg4[0], sp30[2], sp30[1]);
+    if ((scale != NULL) || mirrored) {
+        mlMtxScale_xyz((mirrored) ? -scale[0] : scale[0], sp38, sp34);
     }
     mlMtxApply(*mtx);
     gSPMatrix((*gfx)++, (*mtx)++, G_MTX_PUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
-    temp_a3 = &self->frame[frame];
+    temp_a3 = (BKSpriteFrameDisplayData *)((s32)self + sizeof(BKSpriteDisplayData) + frame*sizeof(BKSpriteFrameDisplayData));
     gSPSegment((*gfx)++, 1, osVirtualToPhysical(temp_a3->vtx));
     gSPDisplayList((*gfx)++, temp_a3->gfx);
-    if(temp_a3);
     gSPPopMatrix((*gfx)++, G_MTX_MODELVIEW);
     func_80349AD0();
     func_80344124();
 }
-#endif
+
+void func_80344424(BKSpriteDisplayData *arg0, s32 frame, bool mirrored, f32 arg3[3], f32 scale[3], f32 rotation, Gfx **gfx, Mtx **mtx) {
+    f32 sp6C[3];
+    f32 sp60[3];
+    f32 sp5C;
+    f32 sp50[3];
+    f32 temp_f0;
+    f32 temp_f12;
+    f32 var_f2_2;
+    BKSpriteFrameDisplayData *temp_a3;
+    f32 sp3C;
+    f32 sp38;
+    f32 sp34;
+
+    func_8024C5CC(sp6C);
+    func_8024C5A8(sp60);
+    sp50[0] = arg3[0] - sp6C[0];
+    sp50[1] = arg3[1] - sp6C[1];
+    sp50[2] = arg3[2] - sp6C[2];
+    sp5C = sp60[0]*sp50[0] + sp60[1]*sp50[1] + sp60[2]*sp50[2];
+    if ((sp5C < 0.0f) || (20000.0f < sp5C)) {
+        func_80344124();
+        return;
+    }
+    if (scale != NULL) {
+        sp3C = scale[0];
+        sp38 = scale[1];
+        sp34 = scale[2];
+    } else {
+        sp3C = 1.0f;
+        sp34 = 1.0f;
+        sp38 = 1.0f;
+    }
+
+    temp_f0 = sp3C * arg0->sprite->unk8;
+    temp_f12 = sp38 * arg0->sprite->unkA;
+    var_f2_2 = (temp_f12 <= temp_f0) ? temp_f0 : temp_f12;
+    if ((3000.0f < sp5C) && ((var_f2_2 / sp5C) < D_80371ECC) && !D_803858B0) {
+        func_80344124();
+        return;
+    }
+
+    if (D_80371EC0.unk0 != NULL) {
+        D_80371EC0.unk0(D_80371EC0.unk4);
+    }
+    func_80251BCC(func_8024DD90());
+    mlMtxRotate(0.0f, 0.0f, rotation);
+    func_80252330(sp50[0], sp50[1], sp50[2]);
+    if ((scale != NULL) || mirrored) {
+        mlMtxScale_xyz((mirrored) ? -scale[0] : scale[0], sp38, sp34);
+    }
+    mlMtxApply(*mtx);
+    gSPMatrix((*gfx)++, (*mtx)++, G_MTX_PUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
+    temp_a3 = (BKSpriteFrameDisplayData *)((s32)arg0 + sizeof(BKSpriteDisplayData) + frame*sizeof(BKSpriteFrameDisplayData));
+    gSPSegment((*gfx)++, 0x01, osVirtualToPhysical(temp_a3->vtx));
+    gSPDisplayList((*gfx)++, temp_a3->gfx);
+    gSPPopMatrix((*gfx)++, G_MTX_MODELVIEW);
+    func_80349AD0();
+    func_80344124();
+}
 
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BD100/func_80344424.s")
+void func_80344720(BKSpriteDisplayData *arg0, s32 frame, bool mirrored, f32 arg3[3], f32 rotation[3], f32 scale[3], Gfx **gfx, Mtx **mtx) {
+    f32 sp5C[3];
+    f32 sp50[3];
+    f32 sp4C;
+    f32 sp40[3];
+    f32 temp_f0;
+    f32 temp_f12;
+    f32 var_f14;
+    BKSpriteFrameDisplayData *temp_a3;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BD100/func_80344720.s")
+    func_8024C5CC(sp5C);
+    func_8024C5A8(sp50);
+    sp40[0] = arg3[0] - sp5C[0];
+    sp40[1] = arg3[1] - sp5C[1];
+    sp40[2] = arg3[2] - sp5C[2];
+    sp4C = sp50[0]*sp40[0] + sp50[1]*sp40[1] + sp50[2]*sp40[2];
+    if ((sp4C < 0.0f) || (20000.0f < sp4C)) {
+        func_80344124();
+        return;
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BD100/func_803449DC.s")
+    temp_f0 = scale[0] * arg0->sprite->unk8;
+    temp_f12 = scale[1] * arg0->sprite->unkA;
+    var_f14 = (temp_f12 <= temp_f0) ? temp_f0 : temp_f12;
+    if ((3000.0f < sp4C) && ((var_f14 / sp4C) < D_80371ECC) && !D_803858B0) {
+        func_80344124();
+        return;
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BD100/func_803449FC.s")
+    if (D_80371EC0.unk0 != NULL) {
+        D_80371EC0.unk0(D_80371EC0.unk4);
+    }
+    mlMtxIdent();
+    func_80252330(sp40[0], sp40[1], sp40[2]);
+    mlMtxRotate(rotation[0], rotation[1], rotation[2]);
+    mlMtxScale_xyz((mirrored) ? -scale[0] : scale[0], scale[1], scale[2]);
+    mlMtxApply(*mtx);
+    gSPMatrix((*gfx)++, (*mtx)++, G_MTX_PUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
+    temp_a3 = (BKSpriteFrameDisplayData *)((s32)arg0 + sizeof(BKSpriteDisplayData) + frame*sizeof(BKSpriteFrameDisplayData));
+    gSPSegment((*gfx)++, 0x01, osVirtualToPhysical(temp_a3->vtx));
+    gSPDisplayList((*gfx)++, temp_a3->gfx);
+    gSPPopMatrix((*gfx)++, G_MTX_MODELVIEW);
+    func_80349AD0();
+    func_80344124();
+}
 
 
+void func_803449DC(BKSpriteDisplayData *arg0){
+    free(arg0);
+}
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BD100/func_80344A1C.s")
-#else
+void func_803449FC(BKSpriteDisplayData *arg0){
+    func_80255170(&arg0->sprite);
+}
+
 BKSpriteDisplayData * func_80344A1C(BKSprite *arg0){
     s32 header_size; //s7
     BKSpriteDisplayData *s6;
@@ -110,12 +228,12 @@ BKSpriteDisplayData * func_80344A1C(BKSprite *arg0){
     header_size = ALIGN(sizeof(BKSpriteDisplayData)+ sizeof(BKSpriteFrameDisplayData)*arg0->frameCnt, 0x10);
     s1 = 0;
     s6 = (BKSpriteDisplayData *) malloc(header_size);
-    s6->unk0 = arg0;
+    s6->sprite = arg0;
     for(i = 0; i < arg0->frameCnt; i++){//L80344A88
         s1 = ALIGN(s1, 0x10);
-        s6 = realloc(s6, header_size + s1 + 0x12C0);
-        vtx_start = (s32)s6 + header_size + s1;
-        gfx_start = vtx_start + 200;
+        s6 = (BKSpriteDisplayData *)realloc(s6, header_size + s1 + 0x12C0);
+        vtx_start = (Vtx *)((s32)s6 + header_size + s1);
+        gfx_start = (Gfx *)(vtx_start + 200);
         vtx_end = vtx_start;
         gfx_end = gfx_start;
         func_80336924(&gfx_end, &vtx_end, arg0, i, 1);
@@ -123,25 +241,33 @@ BKSpriteDisplayData * func_80344A1C(BKSprite *arg0){
         frame_vtx_size[i] = ALIGN(sizeof(Vtx)*(vtx_end - vtx_start), 0x10);
         frame_gfx_size[i] = sizeof(Gfx)*(gfx_end - gfx_start);
         s1 += frame_vtx_size[i] + frame_gfx_size[i];
-        memcpy((s32)vtx_start + frame_vtx_size[i], gfx_start, frame_gfx_size[i]);
+        memcpy((void *)((s32)vtx_start + frame_vtx_size[i]), gfx_start, frame_gfx_size[i]);
         s6 = realloc(s6, header_size + s1);
     }//L80344B6C
     osWritebackDCache(s6, header_size + s1);
-    s1 = 0;
-    v1 = s6->frame
-    for(i = 0; i < arg0->frameCnt; i++){//L80344B94
-        v1[i].unk4 = ((s32)s6 + header_size) + s1;
-        v1[i].unk0 = (s32)v1[i].unk4 + frame_vtx_size[i];
+    v1 = &s6->frame[0];
+    s1 = 0;\
+    for(i = 0; i < arg0->frameCnt; i++, v1++){//L80344B94
+        v1->vtx = (Vtx *)(s1 + ((s32)s6 + header_size));
+        v1->gfx = (Gfx *)((s32)v1->vtx + frame_vtx_size[i]);
         s1 += ALIGN(frame_vtx_size[i] + frame_gfx_size[i], 0x10);
     }//L80344BE0
     return s6;
 }
-#endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BD100/func_80344C14.s")
+s32 func_80344C14(UNK_TYPE(s32) arg0){
+    return 0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BD100/func_80344C20.s")
+s32 func_80344C20(BKSpriteDisplayData *self){
+    return self->sprite->type;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BD100/func_80344C2C.s")
+void func_80344C2C(bool arg0){
+    D_803858B0 = arg0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BD100/func_80344C38.s")
+void func_80344C38(void (*method)(ActorMarker *), ActorMarker *marker){
+    D_80371EC0.unk0 = method;
+    D_80371EC0.unk4 = marker;
+}

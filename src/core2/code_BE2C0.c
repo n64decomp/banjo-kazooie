@@ -7,7 +7,7 @@ extern f32 func_80255D70(f32);
 #define LENGTH_SQ_VEC4F(v) (v[0]*v[0] + v[1]*v[1] + v[2]*v[2] + v[3]*v[3])
 
 /* .data */
-extern s32 D_80371ED0[3];
+s32 D_80371ED0[3] = {1, 2, 0};
 
 /* .code */
 //vec4f_copy
