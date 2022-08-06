@@ -50,6 +50,8 @@ typedef void (* GenMethod_5)(s32, s32, s32, s32, s32);
     out##_z = a##_z op b##_z;\
 }
 
+#define LENGTH_SQ_VEC3F(v) (v[0]*v[0] + v[1]*v[1] + v[2]*v[2])
+
 //known it uses "+" instead of "|" for fight/code_9D40.c, func_8039049C, case 6
 #define FUNC_8030E624(sfx_e, vol, sample_rate) func_8030E624(\
     _SHIFTL((vol*1023), 21, 11) + _SHIFTL(sample_rate >> 5, 11, 10) + _SHIFTL(sfx_e, 0, 11)\

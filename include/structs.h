@@ -877,4 +877,21 @@ typedef struct {
     struct actor_marker_s *unk18;
 }Struct81s;
 
+typedef struct {
+    enum actor_e actor_id;
+    struct actor_marker_s *marker;
+    f32 position[3];
+    void (*unk14)(struct actor_s *, struct actor_marker_s *);
+    struct actor_marker_s *unk18;
+}Struct82s;
+
+typedef struct {
+    f32 unk0;
+    f32 unk4;
+    f32 unk8[3];
+    s16 unk14[3];
+    u8 unk1A;
+    u8 pad1B[1];
+}Struct83s;
+
 #endif

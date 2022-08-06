@@ -17,9 +17,12 @@ extern s32 D_80371E7C;
 /* .bss */
 s16 *D_803858A0;
 
-
-f32 func_80340700(f32, f32, f32);
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B9770/func_80340700.s")
+/* .code */
+f32 func_80340700(f32 value, f32 min, f32 max) {
+    return (value < min) ? min
+         : (max < value) ? max
+         : value;
+}
 
 bool func_80340748(s32 arg0, s32 arg1, s32 arg2, s32 arg3){
     return FALSE;
