@@ -212,7 +212,7 @@ void func_802DD484(f32 dst[3], f32 arg1, f32 avg, f32 range) {
     s32 i;
 
     for(i = 0; i < 3; i++){
-        dst[i] = avg + range * (0.5 + 0.5 * sinf( (2.0*RARE_PI) * func_80257A44((arg1 + 2.0 * ((f32)i / 3.0)), 2.0f)));
+        dst[i] = avg + range * (0.5 + 0.5 * sinf( (2.0*BAD_PI) * func_80257A44((arg1 + 2.0 * ((f32)i / 3.0)), 2.0f)));
     }
 }
 

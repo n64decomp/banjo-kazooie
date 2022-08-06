@@ -186,9 +186,9 @@ void func_8038FD9C(Actor *this){
     }
     this->marker->unk3E_1 = 0;
 
-    local->unk18[1] = 10 * sinf((((this->unk60 * local->unk6C) / 180.0) * RARE_PI));
-    this->unk1C[0] =   4.5  * cosf((((this->unk60 * local->unk6C) / 180.0) * RARE_PI));
-    this->unk1C[1] =   2*sinf((((this->unk60 * local->unk6C) / 180.0) * RARE_PI));
+    local->unk18[1] = 10 * sinf((((this->unk60 * local->unk6C) / 180.0) * BAD_PI));
+    this->unk1C[0] =   4.5  * cosf((((this->unk60 * local->unk6C) / 180.0) * BAD_PI));
+    this->unk1C[1] =   2*sinf((((this->unk60 * local->unk6C) / 180.0) * BAD_PI));
     sp64[0] = local->unk3C[0] + local->unk24[0];
     sp64[1] = local->unk3C[1] + local->unk24[1];
     sp64[2] = local->unk3C[2] + local->unk24[2];

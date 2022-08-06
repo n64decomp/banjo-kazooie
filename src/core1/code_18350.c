@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-#define RARE_DTOR (RARE_PI/180.0)
+#define BAD_DTOR (BAD_PI/180.0)
 
 /* .data*/
 extern u16 *D_80276CB8; //! ml_acosPrecValTblPtr
@@ -301,7 +301,7 @@ void ml_vec3f_pitch_rotate_copy(f32 dst[3], f32 src[3], f32 pitch)
     f32 cos, sin;
     f32 val;
 
-    pitch *= RARE_DTOR; // M_DTOR
+    pitch *= BAD_DTOR; // M_DTOR
 
     cos = cosf(pitch);
     sin = sinf(pitch);
@@ -318,7 +318,7 @@ void ml_vec3f_yaw_rotate_copy(f32 dst[3], f32 src[3], f32 yaw)
     f32 cos, sin;
     f32 val;
 
-    yaw *= RARE_DTOR; // M_DTOR
+    yaw *= BAD_DTOR; // M_DTOR
 
     cos = cosf(yaw);
     sin = sinf(yaw);
@@ -335,7 +335,7 @@ void ml_vec3f_roll_rotate_copy(f32 dst[3], f32 src[3], f32 roll)
     f32 cos, sin;
     f32 val;
 
-    roll *= RARE_DTOR; // M_DTOR
+    roll *= BAD_DTOR; // M_DTOR
 
     cos = cosf(roll);
     sin = sinf(roll);
@@ -403,8 +403,8 @@ void func_80256D0C(f32 val1, f32 val2, f32 x, f32 y, f32 z, f32 *dstX, f32 *dstY
 {
     f32 tmp;
 
-    val1 *= RARE_DTOR; // M_DTOR
-    val2 *= RARE_DTOR;
+    val1 *= BAD_DTOR; // M_DTOR
+    val2 *= BAD_DTOR;
 
     tmp   = y   * sinf(val1) + cosf(val1) * z;
 
@@ -417,8 +417,8 @@ void func_80256E24(f32 dst[3], f32 theta, f32 phi, f32 x, f32 y, f32 z)
 {
     f32 tmp;
 
-    theta *= RARE_DTOR; // M_DTOR
-    phi *= RARE_DTOR;
+    theta *= BAD_DTOR; // M_DTOR
+    phi *= BAD_DTOR;
 
     tmp     = y  * sinf(theta) + cosf(theta) * z;
 
@@ -571,12 +571,12 @@ void func_80257594(void)
 
 f32 func_802575BC(f32 val)
 {
-    return (sinf(val * RARE_PI + -RARE_PI/2) + 1) / 2.0;
+    return (sinf(val * BAD_PI + -BAD_PI/2) + 1) / 2.0;
 }
 
 f32 func_80257618(f32 val)
 {
-    return sinf(val * RARE_PI / 2);
+    return sinf(val * BAD_PI / 2);
 }
 
 f32 func_80257658(f32 val)
@@ -699,12 +699,12 @@ f32 func_80257A6C(f32 val1, f32 val2)
 {
     f32 tmp = func_802588B0(val1, val2) / val2;
 
-    return (sinf(tmp * (2*RARE_PI)) + 1.0) / 2.0;
+    return (sinf(tmp * (2*BAD_PI)) + 1.0) / 2.0;
 }
 
 f32 func_80257AD4(f32 val1, f32 val2)
 {
-    return sinf((func_802588B0(val1, val2) / val2) * (2*RARE_PI));
+    return sinf((func_802588B0(val1, val2) / val2) * (2*BAD_PI));
 }
 
 f32 ml_f_map(f32 a, f32 b, f32 c, f32 d, f32 e)
@@ -1019,12 +1019,12 @@ f32 func_80258780(f32 vec1[3], f32 vec2[3])
 
 f32 ml_sin_deg(f32 angle_deg)
 {
-    return sinf(angle_deg * RARE_DTOR);
+    return sinf(angle_deg * BAD_DTOR);
 }
 
 f32 ml_cos_deg(f32 angle_deg)
 {
-    return cosf(angle_deg * RARE_DTOR);
+    return cosf(angle_deg * BAD_DTOR);
 }
 
 f32 mlNormalizeAngle(f32 angle)
@@ -1086,7 +1086,7 @@ int ml_abs_w(int arg0)
 
 void func_802589E4(f32 dst[3], f32 yaw, f32 length)
 {
-    yaw *= RARE_DTOR;
+    yaw *= BAD_DTOR;
 
     dst[0] = sinf(yaw) * length;
     dst[2] = cosf(yaw) * length;

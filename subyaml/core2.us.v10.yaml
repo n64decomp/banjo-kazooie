@@ -349,7 +349,7 @@ segments:
   - [0xB9770, c, code_B9770]
   - [0xBD100, c, code_BD100]
   - [0xBDCC0, c, code_BDCC0] #DONE
-  - [0xBE2C0, c, code_BE2C0]
+  - [0xBE2C0, c, code_BE2C0] #DONE
   - [0xBEF20, c, code_BEF20]
   - [0xC0B80, c, code_C0B80] #DONE
   - [0xC0CF0, c, code_C0CF0] #DONE
@@ -767,7 +767,7 @@ segments:
   - [0xF2000, .rodata, code_B6CE0]
   - [0xF2030, bin, data_F2030]
   - [0xF2110, .rodata, code_BDCC0]
-  - [0xF2130, bin, data_F2130]
+  - [0xF2130, .rodata, code_BE2C0]
   - [0xF2170, .rodata, code_BEF20]
   - [0xF21B0, bin, data_F21B0]
   - [0xF21C0, .rodata, rand]

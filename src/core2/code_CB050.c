@@ -95,9 +95,9 @@ void func_80352114(Struct_core2_CB050_0 *arg0, s32 arg1, f32 arg2) {
         }
         arg0->unk6C = FALSE;
     }
-    arg0->unk28[1] = sinf(((arg0->unk64 * arg0->unk0) / 180.0) * RARE_PI) * 10.0f;
-    arg0->unk4[0] = cosf(((arg0->unk64 * arg0->unk0) / 180.0) * RARE_PI) * 4.5;
-    arg0->unk4[1] = sinf(((arg0->unk64 * arg0->unk0) / 180.0) * RARE_PI) * 2;
+    arg0->unk28[1] = sinf(((arg0->unk64 * arg0->unk0) / 180.0) * BAD_PI) * 10.0f;
+    arg0->unk4[0] = cosf(((arg0->unk64 * arg0->unk0) / 180.0) * BAD_PI) * 4.5;
+    arg0->unk4[1] = sinf(((arg0->unk64 * arg0->unk0) / 180.0) * BAD_PI) * 2;
     if (map_get() == MAP_22_CC_INSIDE_CLANKER) {
         sp40[0] = arg0->unk4C[0];
         sp40[1] = arg0->unk4C[1] + 1000.0f;

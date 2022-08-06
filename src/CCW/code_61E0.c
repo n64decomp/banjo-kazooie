@@ -92,7 +92,7 @@ void func_8038C7A8(Actor *this) {
         local->unk18 += 3.3333333333333333 * sp44;
         local->unk18 = (local->unk18 > 1.0) ? 1.0 : local->unk18;
         func_80255FE4(this->position, local->unk0, local->unkC, local->unk18);
-        this->position[1] += 50.0f * sinf(local->unk18 * RARE_PI);
+        this->position[1] += 50.0f * sinf(local->unk18 * BAD_PI);
         if (local->unk18 == 1.0) {
             func_8038C6A0(this, 4);
         }

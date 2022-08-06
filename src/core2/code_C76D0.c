@@ -92,20 +92,20 @@ void func_8034E8E4(Struct73s *arg0, BKModel *arg1, s32 arg2) {
 
     sp38 = time_getDelta();
     arg0->unk4 += sp38;
-    cos = cosf(arg0->unk4 * 0.2 * RARE_PI);
-    sin = sinf(arg0->unk4 * 0.08 * RARE_PI);
+    cos = cosf(arg0->unk4 * 0.2 * BAD_PI);
+    sin = sinf(arg0->unk4 * 0.08 * BAD_PI);
     sp30[0] = (sin*100.0f + 150.0f*cos)*0.8;
 
     
-    sin = sinf(arg0->unk4 * 0.5 * RARE_PI);
-    cos = cosf(arg0->unk4 * 0.22 * RARE_PI);
+    sin = sinf(arg0->unk4 * 0.5 * BAD_PI);
+    cos = cosf(arg0->unk4 * 0.22 * BAD_PI);
     sp30[1] = (cos* 100.0f + 50.0f*sin)*0.8;
 
     arg0->d_tc[0] = (sp30[0] >= 0.0) ? sp30[0] + 0.5 : sp30[0] - 0.5;
     arg0->d_tc[1] = (sp30[1] >= 0.0) ? sp30[1] + 0.5 : sp30[1] - 0.5;
 
-    cos = cosf(arg0->unk4 * 0.5 * RARE_PI);
-    sin = sinf(arg0->unk4 * 0.11 * RARE_PI);
+    cos = cosf(arg0->unk4 * 0.5 * BAD_PI);
+    sin = sinf(arg0->unk4 * 0.11 * BAD_PI);
     sp28 = sin*(arg0->unk8 * 0.25) + (arg0->unk8* 0.75)*cos;
     
     if (arg0->unk14 < arg0->unk1C) {
