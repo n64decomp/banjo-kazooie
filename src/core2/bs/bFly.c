@@ -123,9 +123,9 @@ int bsbfly_inSet(enum bs_e arg0){
         || arg0 == BS_18_FLY_KNOCKBACK
         || arg0 == BS_59_BFLY_UNK59
         || arg0 == BS_FLY_OW
-        || arg0 == BS_BFLY_UNK76
+        || arg0 == BS_76_BFLY_LOCKED
         || arg0 == BS_24_FLY
-        || arg0 == BS_BFLY_UNK99;
+        || arg0 == BS_99_BFLY_DRONE;
 }
 
 int func_802A37F8(void){
@@ -177,7 +177,7 @@ void bsbfly_enter_end(void){
 }
 
 void bsbfly_init(void){
-    func_8028A010(ANIM_BANJO_FLY, 0.62f);
+    func_8028A010(ASSET_38_BANJO_FLY, 0.62f);
     func_8029C7F4(1,1,3,3);
     if(miscflag_isTrue(9)){
         func_80297970(0.0f);
@@ -754,7 +754,7 @@ void func_802A4F44(void){
 }
 
 void func_802A4F74(void) {
-    func_8028A010(ANIM_BANJO_FLY, 0.62f);
+    func_8028A010(ASSET_38_BANJO_FLY, 0.62f);
     func_8029C7F4(1, 1, 3, 7);
     func_8029E070(1);
     func_802914CC(4);

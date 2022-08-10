@@ -199,7 +199,7 @@ void bswalk_slow_init(void){
         sp20 = 0.0f;
     }
     animctrl_reset(s0);
-    animctrl_setIndex(s0, ANIM_BANJO_WALK);
+    animctrl_setIndex(s0, ASSET_3_ANIM_BANJO_WALK);
     animctrl_setDuration(s0, 0.43f);
     func_8028774C(s0, sp20);
     animctrl_setPlaybackType(s0,  ANIMCTRL_LOOP);

@@ -97,7 +97,7 @@ bool bsswim_inset(enum bs_e state_id){
     return state_id == BS_2D_SWIM_IDLE
         || state_id == BS_2E_SWIM
         || state_id == BS_4C_LANDING_IN_WATER
-        || state_id == BS_77
+        || state_id == BS_77_SWIM_LOCKED
         || state_id == BS_96_SWIM_LOCKED
         ;
 }

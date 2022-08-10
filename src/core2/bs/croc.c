@@ -96,8 +96,8 @@ int bscroc_inSet(enum bs_e state){
         || state == BS_6E_CROC_BITE
         || state == BS_CROC_EAT_BAD
         || state == BS_70_CROC_EAT_GOOD
-        || state == BS_CROC_LOCKED
-        || state == BS_CROC_DRONE;
+        || state == BS_8D_CROC_LOCKED
+        || state == BS_94_CROC_DRONE;
 }
 
 void bscroc_idle_init(void){

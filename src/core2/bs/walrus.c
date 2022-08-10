@@ -125,7 +125,7 @@ int func_802B8190(enum bs_e state){
         || state == BS_7E_WALRUS_SLED
         || state == 0x82
         || state == 0x80
-        || state == BS_7D_WALRUS_SLED_DRONE;
+        || state == BS_9C_WALRUS_SLED_DRONE;
 }
 
 int func_802B81F0(enum bs_e state){
@@ -135,7 +135,7 @@ int func_802B81F0(enum bs_e state){
         || state == BS_6A_WALRUS_FALL
         || state == BS_WALRUS_OW
         || state == BS_WALRUS_DIE
-        || state == BS_WALRUS_DRONE
+        || state == BS_95_WALRUS_DRONE
         || func_802B8190(state);
 }
 

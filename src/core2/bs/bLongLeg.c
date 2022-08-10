@@ -46,8 +46,8 @@ int bslongleg_inSet(s32 move_indx){
     || (move_indx == BS_LONGLEG_JUMP)
     || (move_indx == BS_LONGLEG_EXIT)
     || (move_indx == BS_LONGLEG_SLIDE)
-    || (move_indx == BS_LONGLEG_DRONE)
-    || (move_indx == BS_LONGLEG_UNK62);
+    || (move_indx == BS_9B_LONGLEG_DRONE)
+    || (move_indx == BS_62_LONGLEG_LOCKED);
 }
 
 void func_802A531C(void){
@@ -151,7 +151,7 @@ void bsblongleg_enter_end(void){
 }
 
 void bsblongleg_stand_enter(void){
-    func_8028A010(ANIM_BANJO_LONGLEG_IDLE, 1.0f);
+    func_8028A010(ASSET_41_ANIM_BSLONGLEG_IDLE, 1.0f);
     func_8029C7F4(1,1,1,2);
     func_80297970(0.0f);
     func_80292090(2);
@@ -195,7 +195,7 @@ void bsblongleg_walk_init(void){
     AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
 
     animctrl_reset(aCtrl);
-    animctrl_setIndex(aCtrl, ANIM_BANJO_LONGLEG_WALK);
+    animctrl_setIndex(aCtrl, ASSET_42_ANIM_BSLONGLEG_WALK);
     animctrl_setPlaybackType(aCtrl,  ANIMCTRL_LOOP);
     func_802875AC(aCtrl, "bsblongleg.c", 0x1a1);
     func_8029C7F4(2,1,1,2);
@@ -458,7 +458,7 @@ void func_802A6388(f32 arg0){
 }
 
 void func_802A6394(void){
-    func_8028A010(ANIM_BANJO_LONGLEG_IDLE, 1.0f);
+    func_8028A010(ASSET_41_ANIM_BSLONGLEG_IDLE, 1.0f);
     func_8029C7F4(1,1,3,2);
     func_80297970(0.0f);
     func_802A5374();

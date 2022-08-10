@@ -77,7 +77,7 @@ void bsclimb_idle_init(void){
         yaw_applyIdeal();
     }
     ability_use(4);
-    func_8028A010(ASSET_B2_ANIM_BANJO_CLIMB_IDLE_2, 2.64f);
+    func_8028A010(ASSET_B2_ANIM_BSCLIMB_IDLE_2, 2.64f);
     func_80289F10(1);
     func_802AB654();
     
@@ -94,13 +94,13 @@ void bsclimb_idle_update(void){
         case 0:
             D_8037D3D4 -= time_getDelta();
             if(D_8037D3D4 <= 0.0f){
-                func_8028A180(ASSET_B1_ANIM_BANJO_CLIMB_IDLE_1, 2.96f);
+                func_8028A180(ASSET_B1_ANIM_BSCLIMB_IDLE_1, 2.96f);
                 D_8037D3D0 = 1;
             }
             break;
         case 1:
             if(animctrl_isStopped(anim_ctrl)){
-                func_8028A010(ASSET_B2_ANIM_BANJO_CLIMB_IDLE_2, 2.64f);
+                func_8028A010(ASSET_B2_ANIM_BSCLIMB_IDLE_2, 2.64f);
                 func_802AB750(3.0f, 4.0f);
                 D_8037D3D0 = 0;
             }
@@ -190,7 +190,7 @@ void bsclimb_move_end(void){
 
 //bsclimb_unknown_9E_init
 void func_802ABCCC(void){
-    func_8028A010(ASSET_B2_ANIM_BANJO_CLIMB_IDLE_2, 2.64f);
+    func_8028A010(ASSET_B2_ANIM_BSCLIMB_IDLE_2, 2.64f);
     func_80289F10(1);
     func_802AB654();
     func_802978DC(7);

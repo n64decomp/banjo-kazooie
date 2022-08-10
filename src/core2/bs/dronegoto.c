@@ -70,7 +70,7 @@ void func_802AECE4(void){
     }
 
     if( 250.0f <= gu_sqrtf(sp20[0]*sp20[0] + sp20[2]*sp20[2])
-        && animctrl_getIndex(aCtrl) == ANIM_BANJO_WALK
+        && animctrl_getIndex(aCtrl) == ASSET_3_ANIM_BANJO_WALK
     ){
         animctrl_reset(aCtrl);
         animctrl_setIndex(aCtrl, ANIM_BANJO_RUN);

@@ -86,7 +86,7 @@ bool bsbswim_inSet(enum bs_e move_id){
         || move_id == BS_2C_DIVE_B
         || move_id == BS_39_DIVE_A
         || move_id == BS_30_DIVE_ENTER
-        || move_id == BS_78
+        || move_id == BS_78_DIVE_LOCKED
         || move_id == BS_7F_DIVE_OW
         || move_id == BS_54_SWIM_DIE
         || move_id == BS_97_DIVE_LOCKED

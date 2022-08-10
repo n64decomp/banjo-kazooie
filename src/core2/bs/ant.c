@@ -71,12 +71,12 @@ int bsant_inSet(s32 move_indx){
     || (move_indx == BS_3E_ANT_OW)
     || (move_indx == BS_43_ANT_DIE)
     || (move_indx == 0x8e)
-    || (move_indx == BS_ANT_DRONE);
+    || (move_indx == BS_92_ANT_DRONE);
 }
 
 void bsant_idle_init(void){
     func_8029E554();
-    func_8028A010(ANIM_TERMITE_IDLE, 1.2f);
+    func_8028A010(ASSET_5E_ANIM_BSANT_IDLE, 1.2f);
     func_8029C7F4(1,1,1,2);
     func_80297970(0.0f);
     pitch_setAngVel(1000.0f, 12.0f);
@@ -112,7 +112,7 @@ void bsant_idle_end(void){
 
 void bsant_walk_init(void){
     func_8029E554();
-    func_8028A010(ANIM_TERMITE_WALK, 0.8f);
+    func_8028A010(ASSET_5F_ANIM_BSANT_WALK, 0.8f);
     func_8029C7F4(2,1,1,2);
     func_80289EC8(D_80364960, D_80364964, D_80364968, D_8036496C);
     func_802900B4();
@@ -447,7 +447,7 @@ void bsant_die_end(void){
 
 void func_8029F398(void){
     func_8029E554();
-    func_8028A010(ANIM_TERMITE_IDLE, 2.0f);
+    func_8028A010(ASSET_5E_ANIM_BSANT_IDLE, 2.0f);
     func_8029C7F4(1,1,3,2);
     func_80297970(0.0f);
     func_8029C674();
