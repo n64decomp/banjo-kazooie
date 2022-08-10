@@ -894,4 +894,9 @@ typedef struct {
     u8 pad1B[1];
 }Struct83s;
 
+typedef struct{
+    s16 texture_type;
+    s16 count;
+    s32 offset[];
+}Struct84s;
 #endif

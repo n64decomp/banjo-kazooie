@@ -267,7 +267,92 @@ void func_80336904(Gfx **gfx, Vtx **vtx, BKSprite *sp, u32 frame){
     if(chkDataSize_1C0);
 }//*/
 
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AEDA0/func_80337B68.s")
+#else
+void func_80337B68(Gfx **gfx, Vtx **vtx, Struct84s *texture_list, s32 texture_index) {
+    s16 temp_a1;
+    s32 temp_at;
+    s32 temp_lo;
+    s32 temp_lo_2;
+    s32 temp_t9;
+    s32 temp_v1;
+    s32 var_a0;
+    s32 var_a0_2;
+    s32 var_a1;
+    s32 v2;
+    s32 var_ra;
+    s32 var_s1;
+    s32 var_s1_2;
+    s32 var_t0;
+    s32 var_t0_2;
+    s32 v0;
+    s32 var_t2;
+    s32 v1;
+    s32 var_t3;
+    s32 v3;
+    s32 var_t4;
+    s32 var_v1;
+    s32 var_v1_2;
+    s32 var_v1_3;
+    s32 var_v1_4;
+    s32 var_v1_5;
+    s32 var_v1_6;
+    s32 var_v1_7;
+    void *temp_a0;
+    void *temp_a0_2;
+    void *temp_a0_3;
+    void *temp_a0_4;
+    void *temp_a0_5;
+    void *temp_a0_6;
+    void *temp_a2;
+    void *temp_a2_2;
+    void *temp_s0;
+    Vtx *temp_s3;
+    BKSpriteTextureBlock *txtr_ptr;
+    u16 *var_t5;
+
+    func_80335D30();
+    txtr_ptr = func_8033EFB0(texture_list, texture_index);
+    temp_v1 = D_80383644;
+    temp_lo = temp_v1 / 3;
+    temp_s3 = *vtx;
+    var_s1 = 0;
+    var_t4 = (s32) (((f32) txtr_ptr->y / (f32) txtr_ptr->h) * (f32) temp_v1);
+    for(var_s1 = 0; var_s1 < 3; var_s1++){
+        var_a0 = var_t4;
+        for(var_t2 = 0; var_t2 < 2; var_t2++){
+            for(var_v1 = 0; var_v1 < 2; var_v1++){
+                (*vtx)->v.ob[0] = (s16) ((var_v1 * D_80383640) + (s32) (-((f32) txtr_ptr->x / (f32) txtr_ptr->w) * (f32) D_80383640));
+                (*vtx)->v.ob[1] = (s16) (-(var_t2 * (D_80383644/3) - (var_s1*(D_80383644/3))) + (s32) (((f32) txtr_ptr->x / (f32) txtr_ptr->w) * (f32) D_80383644));
+                (*vtx)->v.ob[2] = 0;
+                (*vtx)->v.tc[0] = ((txtr_ptr->w - 1) * var_v1) << 6;
+                (*vtx)->n.tc[1] = (0x1A * var_v1) << 6;
+                *(u32*)((*vtx)->v.cn) = 0x00007F80;
+                (*vtx)++;
+            }
+            var_a0 += -temp_lo;
+        }
+        var_t4 -= temp_lo;
+    }
+    var_t5 = (u16*)(txtr_ptr + 1);
+    v0 = 0;
+    v1 = 1;
+    v3 = 3;
+    v2 = 2;
+    gSPVertex((*gfx)++, temp_s3, 12, 0);
+    for(var_s1 = 0; var_s1 < 3; var_s1++){
+        gDPLoadTextureBlock((*gfx)++, var_t5, G_IM_FMT_RGBA, G_IM_SIZ_16b, txtr_ptr->w, ((var_s1 < 2) ? 1 : 0) + 0x1A, NULL, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
+        gSP2Triangles((gfx++), v0, v1, v3, var_s1,  v2, v0, v3,var_s1);
+        var_t5 += txtr_ptr->w * 0x1A;
+        v0 += 4;
+        v1 += 4;
+        v3 += 4;
+        v2 += 4;
+    }
+    func_8033687C(gfx);
+}
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AEDA0/func_80338048.s")
 

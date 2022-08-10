@@ -2,8 +2,19 @@
 #include "functions.h"
 #include "variables.h"
 
+
+
 /* .bss */
-UNK_TYPE(void *)D_80384FF0;
+BKSpriteTextureBlock *D_80384FF0;
 
 /* .code */
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B8020/func_8033EFB0.s")
+BKSpriteTextureBlock *func_8033EFB0(Struct84s *arg0, s32 arg1){
+    s32 *offset_ptr = &arg0->offset[arg1];
+    s32 mem_ptr;
+    if(arg0->offset[arg1] == -1){
+        return D_80384FF0;
+    }
+    
+    mem_ptr = *offset_ptr + (s32) &arg0[0].offset[arg0->count];
+    return (BKSpriteTextureBlock *)(mem_ptr);
+}

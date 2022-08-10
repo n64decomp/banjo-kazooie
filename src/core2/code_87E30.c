@@ -823,7 +823,7 @@ void func_80310D2C(void){
     }
 }
 
-int func_803110F8(s32 next_state, s32 arg1, s32 arg2, s32 arg3, s32 arg4){
+int func_803110F8(s32 next_state, s32 arg1, s32 arg2, s32 arg3, void (*arg4)(ActorMarker *, enum asset_e, s32)){
     func_8025A55C(15000, 300, 2);
     func_80311174(next_state + 0xe57, 0x84, NULL, NULL, NULL, NULL, arg4);
     func_80310A5C(arg2, arg3, arg1, 0, 0);
