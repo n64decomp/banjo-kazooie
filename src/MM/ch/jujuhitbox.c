@@ -49,16 +49,16 @@ int func_80388B30(Actor *this, float arg1){
     return 0;
 }
 
-void func_80388BEC(s16 *arg0, ActorMarker *arg1){
+void func_80388BEC(NodeProp *arg0, ActorMarker *arg1){
     f32 sp34;
     Actor *sp30;
     Actor *temp_v0;
     f32 sp20[3];
     
 
-    sp20[0] = (f32)arg0[0];
-    sp20[1] = (f32)arg0[1];
-    sp20[2] = (f32)arg0[2];
+    sp20[0] = (f32)arg0->x;
+    sp20[1] = (f32)arg0->y;
+    sp20[2] = (f32)arg0->z;
     sp30 = func_80326D68(sp20, 0x11, -1, &sp34);
     if( sp30 != NULL
         && !( sp34 > 500.0f )

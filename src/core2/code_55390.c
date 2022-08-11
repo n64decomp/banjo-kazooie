@@ -11,7 +11,7 @@ void func_802DC45C(Actor *this);
 /* .data */
 f32 D_80368040[3] = {0.0f, 0.0f, 0.0f};
 ActorInfo D_8036804C = {
-    0x174, 0x1DB, 0x54C, 
+    MARKER_174_GAME_OVER, ACTOR_1DB_GAME_OVER, ASSET_54C_MODEL_GAME_OVER, 
     0x1, NULL, 
     func_802DC45C, func_80326224, func_802DC320,
     0, 0, 0.0f, 0
@@ -74,7 +74,7 @@ void func_802DC45C(Actor *this){
 void func_802DC4C4(void) {
     Actor *actor;
     if (D_8037DE40 == 0) {
-        actor = func_8032813C(0x1DB, D_80368040, 0);
+        actor = func_8032813C(ACTOR_1DB_GAME_OVER, D_80368040, 0);
         D_8037DE40 = actor->marker;
         func_8025A58C(0, 5000);
         func_8025AB00();
@@ -82,7 +82,7 @@ void func_802DC4C4(void) {
     }
 }
 
-void func_802DC528(s32 arg0, s32 arg1){
+void func_802DC528(NodeProp *arg0, ActorMarker *arg1){
     if(D_8037DE40 == NULL){
         func_802C3BF8(func_802DC4C4);
     }
@@ -91,7 +91,7 @@ void func_802DC528(s32 arg0, s32 arg1){
 void func_802DC560(s32 arg0, s32 arg1){
     if(D_8037DE40 != NULL){
         comusic_8025AB44(COMUSIC_31_GAME_OVER, 0, 200);
-        func_8025AABC(0x31);
+        func_8025AABC(COMUSIC_31_GAME_OVER);
         func_80326310(marker_getActor(D_8037DE40));
     }
 }

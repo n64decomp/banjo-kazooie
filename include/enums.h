@@ -1614,6 +1614,8 @@ enum actor_e
 
     ACTOR_1CC_GRILL_CHOMPA  = 0x1CC,
 
+    ACTOR_1DB_GAME_OVER = 0x1DB,
+
     ACTOR_1E4_TOOTS = 0x1E4,
 
     ACTOR_1EA_POLAR_BEAR_CUB_BLUE = 0x1EA,
@@ -2896,7 +2898,7 @@ enum asset_e
     // 549 GL Gold Feather Refill Pillow
     // 54a Gruntling (Red Cloak)
     // 54b (Big Fireball?)
-    // 54c Game Over Sign
+    ASSET_54C_MODEL_GAME_OVER = 0x54C,
     // 54d Banjo-Kazooie Sign
     // 54e Copyright Info (Title Screen)
     // 54f Cheato
@@ -3632,6 +3634,8 @@ enum marker_e{
     MARKER_167_SHARKFOOD_ISLAND,
     MARKER_168_ICE_KEY,
     MARKER_169_SNS_EGG,
+
+    MARKER_174_GAME_OVER = 0x174,
 
     MARKER_182_RBB_EGG_TOLL = 0x182,
 

@@ -210,7 +210,7 @@ void func_80300C70(enum item_e, struct8s *);
 
 struct7s *func_8030179C(s32);
 void func_80301DE4(enum item_e, struct7s *);
-void func_803017D0(s32, struct8s *, Gfx**, Mtx**, s32);
+void func_803017D0(enum item_e, struct8s *, Gfx**, Mtx**, Vtx **);
 void func_80301754(s32, struct8s *);
 
 

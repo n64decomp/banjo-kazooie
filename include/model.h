@@ -108,7 +108,8 @@ typedef struct {
     s16 unkC[3];
     u8 unk12[3];
     u8 unk15;
-    u8 pad16[2];
+    s8 unk16;
+    u8 pad17[1];
 }BKModelUnk14_0;
 
 typedef struct {
@@ -117,7 +118,8 @@ typedef struct {
     s16 unk4[3];
     u8 unkA[3];
     u8 unkD;
-    u8 padE[2];
+    s8 unkE;
+    u8 padF[1];
 }BKModelUnk14_1;
 
 typedef struct {
@@ -130,7 +132,7 @@ typedef struct {
 typedef struct {
     s16 cnt0; //number of BKModelUnk14_0 structs
     s16 cnt2; //number of BKModelUnk14_1 structs
-    s16 unk4;
+    s16 unk4; //number of BKModelUnk14_2 structs
     s16 unk6;
     //BKModelUnk14_0[]
     //BKModelUnk14_1[]

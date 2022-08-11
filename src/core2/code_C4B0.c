@@ -2,13 +2,17 @@
 #include "functions.h"
 #include "variables.h"
 
-extern int func_80258424(f32 vec[3], f32 minX, f32 minY, f32 minZ, f32 maxX, f32 maxY, f32 maxZ);
-extern f32 func_8031C5D4(struct0*);
-extern void func_8031C5AC(struct0 *, f32 *);
-extern f32 func_8031C5E4(struct0*);
-extern void func_8031C5FC(struct0 *, f32);
-extern f32 func_80255D70(f32 arg0);
-extern s32 func_8029463C(void);
+extern int        func_80258424(f32 vec[3], f32 minX, f32 minY, f32 minZ, f32 maxX, f32 maxY, f32 maxZ);
+extern f32        func_8031C5D4(struct0*);
+extern void       func_8031C5AC(struct0 *, f32 *);
+extern f32        func_8031C5E4(struct0*);
+extern void       func_8031C5FC(struct0 *, f32);
+extern void       func_80244FC0(f32 arg0[3], f32 arg1[3], f32 arg2, f32 arg3, s32 arg4, u32 arg5);
+extern s32        func_80244E54(f32[3], f32[3], f32 [3], u32, f32, f32);
+extern Struct66s *func_802457C4(f32[3], f32[3], f32, f32, f32[3], s32, u32);
+extern f32        func_80255D70(f32 arg0);
+extern s32        func_8029463C(void);
+extern Struct66s *func_80320C94(f32[3], f32[3], f32, f32[3], s32, u32);
 
 void func_80294378(s32 arg0);
 void func_80294384(s32 arg0);
@@ -17,12 +21,24 @@ void func_80294390(void);
 typedef struct {
     f32 unk0[3];
     f32 unkC[3];
-    u8 pad18[0x78];
+    Struct66s *unk18;
+    f32 unk1C[3];
+    f32 unk28[3];
+    f32 unk34[3];
+    s32 unk40;
+    f32 unk44[3];
+    u8 pad50[0x18];
+    f32 unk68[3];
+    u8 pad74[0x18];
+    s32 unk8C;
 }Struct_core2_C4B0_0;
 
 /* .rodata */
 extern f64 D_80374760;
 extern f64 D_80374768;
+extern f64 D_80374770;
+extern f64 D_80374778;
+extern f64 D_80374780;
 
 /* .bss */
 f32 D_8037C1F0[2];
@@ -84,13 +100,13 @@ void func_8029350C(f32 *arg0) {
     func_8031C5AC(D_8037C200, sp3C);
     temp_v0 = D_8037C279;
     D_8037C279 = FALSE;
-    if (!(sp3C[1] < D_80374760)) {
+    if (!(sp3C[1] < 0.432)) {
         if (arg0[1] <= sp38) {
             arg0[1] = sp38;
             D_8037C279 = TRUE;
         }
         else if ((temp_v0 != 0) && (D_8037C238[1] < 0.0f)) {
-            if (sp3C[1] < D_80374768) {
+            if (sp3C[1] < 0.9) {
                 if (arg0[1] < (sp38 + 30.0f)) {
                     arg0[1] = sp38;
                     D_8037C279 = TRUE;
@@ -103,8 +119,142 @@ void func_8029350C(f32 *arg0) {
     }
 }
 
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C4B0/func_80293668.s")
+#else
+void func_80293668(void) {
+    f32 sp3AC[3];
+    f32 sp3A0[3];
+    f32 temp_f0;
+    f32 sp390[3];
+    f32 sp38C;
+    f32 sp380[3];
+    f32 sp374[3];
+    s32 i;
+    f32 sp364[3];
+    Struct_core2_C4B0_0 *var_s1;
+    Struct_core2_C4B0_0 sp90[5];
+    u32 temp_s7;
+    s32 temp_v0;
 
+    temp_v0 = func_8028D694();
+    func_80244FC0(D_8037C228, sp390, D_8037C1F8[1], D_8037C1F8[0], 1, temp_v0 | 0x1E0000);
+    temp_s7 = temp_v0 | 0x1E0000;
+    for(i = 0; i < 5; i++){
+        var_s1 = (i != 0) ? &sp90[i - 1] : NULL;
+
+        if (i != 0) {
+            ml_vec3f_copy(sp90[i].unk0, var_s1->unk0);
+            ml_vec3f_copy(sp90[i].unkC, var_s1->unkC);
+        } else {
+            ml_vec3f_copy(sp90[i].unk0, D_8037C218);
+            ml_vec3f_copy(sp90[i].unkC, D_8037C228);
+        }
+        ml_vec3f_copy(sp364, sp90[i].unk0);
+        ml_vec3f_diff_copy(sp380, sp90[i].unk0, sp90[i].unkC);
+        temp_f0 = ((D_8037C1F8[1] * 2) - 4.0f);
+        if ((sp380[0]*sp380[0] + sp380[1]*sp380[1] + sp380[2]*sp380[2]) > (temp_f0 * temp_f0)) {
+            sp38C = sp90[i].unk0[1];
+            sp90[i].unk40 = func_80244E54(sp90[i].unkC, sp90[i].unk0, sp90[i].unk44, temp_s7, D_8037C1F8[1] - 1.0f, D_8037C1F8[0]);
+            if (sp90[i].unk40 != 0) {
+                ml_vec3f_normalize(sp380);
+                if ((sp380[0]*sp90[i].unk44[0] + sp380[1]*sp90[i].unk44[1] +  sp380[2]*sp90[i].unk44[2]) > 0.0f) {
+                    sp90[i].unk40 = 0;
+                    ml_vec3f_copy(sp90[i].unk0, sp364);
+                }
+            }
+            if (sp90[i].unk40 != 0) {
+                if ((sp90[i].unk44[1] >= 0.0) && (sp90[i].unk44[1] < D_80374770)) {
+                    sp90[i].unk0[1] = sp38C;
+                }
+            }
+        } else {
+            sp90[i].unk40 = 0;
+        }
+        func_8029350C(sp90[i].unk0);
+        sp90[i].unk8C = D_8037C279;
+        sp90[i].unk34[0] = sp90[i].unkC[0];
+        sp90[i].unk34[1] = sp90[i].unkC[1];
+        sp90[i].unk34[2] = sp90[i].unkC[2];
+        sp90[i].unk34[1] +=D_8037C1F8[0];
+
+        sp90[i].unk28[0] = sp90[i].unk0[0];
+        sp90[i].unk28[1] = sp90[i].unk0[1];
+        sp90[i].unk28[2] = sp90[i].unk0[2];
+        sp90[i].unk28[1] +=D_8037C1F8[0];
+
+        sp90[i].unk18 = func_80320C94(sp90[i].unk34, sp90[i].unk28, D_8037C1F8[1], sp90[i].unk1C, 3, temp_s7);
+        if (sp90[i].unk18 != NULL) {
+            D_8037C27D++;
+            D_8037C204 = sp90[i].unk18;
+            ml_vec3f_copy(D_8037C258, sp90[i].unk1C);
+            if (i == 2) {
+                if ((sp90[i].unk18 == sp90[0].unk18) && (var_s1->unk18 != sp90[0].unk18)) {
+                    ml_vec3f_add(sp380, sp90[i].unk1C, var_s1->unk1C);
+                    ml_vec3f_normalize(sp380);
+                    ml_vec3f_copy(sp90[i].unk1C, sp380);
+                }
+            }
+            if (i == 2) {
+                if (sp90[i].unk18 == sp90[0].unk18) {
+                    if ((var_s1->unk18 == sp90[i].unk18) && func_802946FC(sp90[i].unk68, sp90[i].unk18)) {
+                        func_802578A4(sp380, sp90[i].unk0, sp90[i].unk68);
+                        ml_vec3f_diff_copy(sp3A0, sp90[i].unk0, sp380);
+                        ml_vec3f_set_length_copy(sp3A0, sp3A0, D_8037C1F8[1] + 1.0f);
+                        sp380[0] += sp3A0[0];
+                        sp380[1] += sp3A0[1];
+                        sp380[2] += sp3A0[2];
+                        if (!(sp90[i].unk18->unk8 & 0x00010000)) {
+                            sp90[i].unk18 = func_802457C4(sp380, sp90[i].unk0, D_8037C1F8[0], D_8037C1F8[1], sp90[i].unk1C, 3, temp_s7);
+                        } else {
+                            ml_vec3f_copy(sp90[i].unk0, sp380);
+                        }
+                    }
+                }
+            }
+            if ((sp90[i].unk8C == 0) && (sp90[i].unk18 != NULL) && (D_8037C238[1] < 0.0f)) {
+                if( (mlAbsF(sp90[i].unk1C[1]) < D_80374778) && func_802946FC(sp90[i].unk68, sp90[i].unk18)) {
+                    func_802578A4(sp380, sp90[i].unk0, sp90[i].unk68);
+                    ml_vec3f_scale_copy(sp3A0, sp90[i].unk1C, D_8037C1F8[1] + 1.0f);
+                    ml_vec3f_add(sp374, sp380, sp3A0);
+                    sp90[i].unk18 = func_802457C4(sp374, sp380, D_8037C1F8[0], D_8037C1F8[1], sp90[i].unk1C, 3, temp_s7);
+                    sp90[i].unk0[0] = sp380[0];
+                    sp90[i].unk0[2] = sp380[2];
+                }
+            }
+            if ((D_80374780 < sp90[i].unk1C[1]) && func_802946FC(sp90[i].unk68, sp90[i].unk18)) {
+                func_8025778C(sp3AC, sp90[i].unk0, sp90[i].unk68);
+                sp380[0] = sp90[i].unk0[0] - sp3AC[0];
+                sp380[1] = 0.0f;
+                sp380[2] = sp90[i].unk0[2] - sp3AC[2];
+                ml_vec3f_set_length_copy(sp380, sp380, D_8037C1F8[1] + 1.0f);
+                sp380[0] = sp380[0] + sp3AC[0];
+                sp380[1] = sp380[1] + sp3AC[1];
+                sp380[2] = sp380[2] + sp3AC[2];
+                sp90[i].unk0[0] = sp380[0];
+                sp90[i].unk0[2] = sp380[2];
+            } else if (func_80258368(sp90[i].unk1C)) {
+                func_802450DC(sp90[i].unkC, sp90[i].unk0, sp90[i].unk34, sp90[i].unk28, sp90[i].unk1C);
+            }
+
+        }
+        else{
+            break;
+        }
+    }
+
+    if ((i == 5) && (D_8037C279 == 0) && (D_8037C204 != 0) && (D_8037C218[1] < D_8037C228[1])) {
+        D_8037C27C = 1;
+    }
+    
+    if (i == 5) {
+        ml_vec3f_copy(D_8037C218, sp390);
+    }
+    else{
+        ml_vec3f_copy(D_8037C218, sp90[i].unk0);
+    }
+}
+#endif
 
 void func_80293D2C(f32 *arg0, f32 * arg1){
      *arg0 = D_8037C1F8[0];
@@ -120,21 +270,13 @@ void func_80293D48(f32 arg0, f32 arg1){
 
 void func_80293D74(void){ func_80293D48(80.0f, 35.0f);}
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C4B0/func_80293DA4.s")
-#else
 void func_80293DA4(void){
-     D_8037C278 = 0;
-     D_8037C279 = 0;
-     D_8037C27B = 0;
-     D_8037C27C = 0;
-     D_8037C27E = 0;
-     D_8037C280 = 0;
+     D_8037C278 = D_8037C279 = D_8037C27B = D_8037C27E = D_8037C27C = D_8037C280 = 0;
      D_8037C200 = func_8031B9D8();
-     ml_vec3f_clear(&D_8037C268);
-     ml_vec3f_clear(&D_8037C218);
-     ml_vec3f_clear(&D_8037C228);
-     ml_vec3f_clear(&D_8037C258);
+     ml_vec3f_clear(D_8037C268);
+     ml_vec3f_clear(D_8037C218);
+     ml_vec3f_clear(D_8037C228);
+     ml_vec3f_clear(D_8037C258);
      D_8037C204 = 0;
      D_8037C27F = 0;
      func_80293D74();
@@ -145,7 +287,6 @@ void func_80293DA4(void){
      D_8037C274 = 0;
      func_80294378(1);
 }
-#endif
 
 void func_80293E88(void){
      func_8031BA9C(D_8037C200);
@@ -198,7 +339,7 @@ void func_80293F0C(void){
                 player_setYVelocity(1.0f);
             }
             func_80293668();
-            player_setPosition(&D_8037C218);
+            player_setPosition(D_8037C218);
             break;
 
         case 5:

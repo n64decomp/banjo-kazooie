@@ -283,7 +283,7 @@ segments:
   - [0x78E50, c, code_78E50]
   - [0x79830, c, fxcommon3score] #DONE
   - [0x79C80, c, code_79C80]
-  - [0x7A760, c, code_7A760]
+  - [0x7A760, c, code_7A760] #DONE
   - [0x7AF80, c, code_7AF80]
   - [0x82000, c, code_82000]
   - [0x83340, c, code_83340]
@@ -596,7 +596,8 @@ segments:
   - [0xED770, .rodata, code_B850]
   - [0xED790, .rodata, code_BD20]
   - [0xED7B0, .rodata, code_C0E0]
-  - [0xED7D0, bin, data_ED7D0]
+  - [0xED7D0, .rodata, code_C4B0]
+  - [0xED7E0, bin, data_ED7E0] #.rodata, code_C4B0]
   - [0xED7F0, bin, data_ED7F0] #.rodata, code_C4B0]
   - [0xED810, .rodata, code_D9B0]
   - [0xED820, .rodata, code_E680]
@@ -749,7 +750,7 @@ segments:
   - [0xF04A0, .rodata, code_78100]
   - [0xF04D0, .rodata, fxcommon3score]
   - [0xF04F0, .rodata, code_79C80]
-  - [0xF0500, bin, data_F0500]
+  - [0xF0500, .rodata, code_7A760]
   - [0xF0520, .rodata, code_7AF80]
   - [0xF0540, bin, data_F0540]
   - [0xF14C0, .rodata, gc/transition]

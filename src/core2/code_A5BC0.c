@@ -458,9 +458,19 @@ ActorMarker *func_8032DCAC(void){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_8032DFF4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_8032E010.s")
+void func_8032E010(ActorProp *prop, s32 dst[3]){
+    dst[0] = prop->x;
+    dst[1] = prop->y;
+    dst[2] = prop->z;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_8032E02C.s")
+NodeProp *func_8032E02C(Cube *cube, s32 prop_index) {
+    if ((prop_index < 0) || (prop_index >= cube->prop1Cnt)) {
+        return NULL;
+    }
+    return &cube->prop1Ptr[prop_index];
+}
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_8032E070.s")
 
@@ -1137,13 +1147,24 @@ BKSprite *func_80330F50(ActorMarker * marker){
     return sp1C;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_80330F74.s")
+s32 func_80330F74(NodeProp *arg0){
+    return arg0->unkA; //marker_id
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_80330F7C.s")
+s32 func_80330F7C(NodeProp *arg0){
+    return arg0->unk6_6;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_80330F8C.s")
+s32 func_80330F8C(NodeProp *arg0){
+    return arg0->unk8;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_80330F94.s")
+s32 func_80330F94(NodeProp *arg0, s32 arg1[3]){
+    arg1[0] = arg0->x;
+    arg1[1] = arg0->y;
+    arg1[2] = arg0->z;
+    return arg0->unk6_15;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_80330FBC.s")
 

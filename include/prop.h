@@ -324,11 +324,11 @@ typedef struct {
     s16 x;
     s16 y;
     s16 z;
-    u16 unk6_15: 9; //selector_value
+    u16 unk6_15: 9; //selector_value //volume??? diameter
     u16 unk6_6:  6; //category
     u16 unk6_0:  1;
     u16 unk8;
-    u8 unkA;
+    u8 unkA;        //marker_id
     u8 padB[1];
     u32 unkC_31:9;
     u32 unkC_22:23;
@@ -347,7 +347,7 @@ typedef struct cude_s{
     s32 z:5;
     u32 prop1Cnt:6;
     u32 prop2Cnt:6;
-    u32 unk0_4:5;
+    u32 unk0_4:5; //node_prop_count
     NodeProp *prop1Ptr;
     Prop *prop2Ptr;
 }Cube;

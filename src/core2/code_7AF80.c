@@ -91,7 +91,7 @@ struct {
 } D_80381FA0;
 
 u8 D_80381FE8[0x50];
-s32 D_80382038[0x20];
+Cube *D_80382038[0x20];
 s32 D_803820B8[0x20]; //ActorProp *, (maybe Prop *)
 s32 pad_80382138;
 s32 D_8038213C;
@@ -1493,9 +1493,44 @@ bool func_80307390(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_803077FC.s")
 
+Cube *func_80307948(s32 arg0[3]);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80307948.s")
 
+
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80307CA0.s")
+// void func_80307CA0(ActorMarker *marker) {
+//     s32 sp58[3];
+//     s32 sp40[3];
+//     Cube **var_s2;
+//     Cube *var_a0;
+//     NodeProp *temp_v0_2;
+//     s32 temp_v0_3;
+//     u32 var_s0;
+//     u8 temp_s4;
+//     s32 i;
+
+//     temp_s4 = D_8036A9E4[marker->unk14_20];
+//     if ((temp_s4 != 0xFF) && (func_802CAF70(D_8036A9E0, temp_s4) == 1)) {
+//         func_8032E010(marker->propPtr, sp58);
+//         var_s2 = func_80307948(sp58);
+//         var_a0 = *var_s2;
+//         for(i = 0; var_s2[i] != NULL; i++) {
+//             for(var_s0 = 0; var_s0 < var_s2[i]->unk0_4; var_s0++){
+//                 temp_v0_2 = func_8032E02C(var_a0, var_s0);
+//                 if (func_80330F74(temp_v0_2) == temp_s4) {
+//                     temp_v0_3 = func_80330F94(temp_v0_2, sp40);
+//                     if( ((sp40[0] - temp_v0_3) < sp58[0]) && (sp58[0] < (sp40[0] + temp_v0_3)) 
+//                         && ((sp40[1] - temp_v0_3) < sp58[1]) && (sp58[1] < (sp40[1] + temp_v0_3)) 
+//                         && ((sp40[2] - temp_v0_3) < sp58[2]) && (sp58[2] < (sp40[2] + temp_v0_3))
+//                     ) {
+//                         func_80334448(temp_v0_2, marker);
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
+
 
 u32 func_80307E1C(void) {
     Cube *phi_v0;
@@ -1539,6 +1574,7 @@ void func_80308230(s32 arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_803082D8.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_803083B0.s")
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_803084F0.s")
 

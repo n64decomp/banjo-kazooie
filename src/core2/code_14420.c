@@ -180,7 +180,7 @@ Struct_core2_13FC0 D_803648F0[14] = {
 //     s32 exit_id;
 // }D_8037D1E0;
 s32 D_8037D1E0[2];
-extern u8  D_8037D1E8;
+u8  D_8037D1E8;
 
 /* .code */
 f32 func_8029B3B0(f32 arg0) {
@@ -695,9 +695,6 @@ void func_8029C5E8(void){
     func_8029AE1C();
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_14420/func_8029C608.s")
-#else
 void func_8029C608(void) {
     enum level_e level_id;
     enum map_e sp18;
@@ -714,7 +711,6 @@ void func_8029C608(void) {
     D_8037D1E0[1] = phi_v0;
     D_8037D1E0[0] = sp18;
 }
-#endif
 
 void func_8029C674(void) {
     f32 sp1C[3];
