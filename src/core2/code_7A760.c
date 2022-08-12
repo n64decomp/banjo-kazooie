@@ -59,7 +59,6 @@ void func_803017D0(enum item_e item_id, struct8s *arg1, Gfx **gfx, Mtx **mtx, Vt
     s32 spD0;
     s32 var_s4;
     s32 var_s6;
-    s32 var_s7;
     s32 var_v0;
     s32 var_v1;
 
@@ -68,9 +67,8 @@ void func_803017D0(enum item_e item_id, struct8s *arg1, Gfx **gfx, Mtx **mtx, Vt
         func_80347FC0(gfx, D_8036A960, 0, 0, 0, 0, 0, 2, 2, &spD4, &spD0);
         func_8024C7B8(gfx, mtx);
         for(var_s4 = 0; var_s4 < 6; var_s4++){
-            var_s7 = var_s4 & 1;
             if ((var_s4 != 0) && (var_s4 != 5)) {
-                var_s6 = (var_s7) ? var_s4 + 1 : var_s4 - 1;
+                var_s6 = (var_s4 & 1) ? var_s4 + 1 : var_s4 - 1;
             } else {
                 var_s6 = var_s4;
             }
@@ -84,7 +82,7 @@ void func_803017D0(enum item_e item_id, struct8s *arg1, Gfx **gfx, Mtx **mtx, Vt
             temp_f16 = (-40.0f + temp_f16);
             var_f14 = (temp_f16 + D_80381F68[var_s6]) - ((f32) D_80276588 / 2);
             temp_f16 = (((var_s4 * 15.5) + 78.0) - ((f32) D_8027658C / 2));
-            var_f14 = (var_s7) ? var_f14 + 5.0f : var_f14 - 5.0f;
+            var_f14 = (var_s4 & 1) ? var_f14 + 5.0f : var_f14 - 5.0f;
             gSPVertex((*gfx)++, *vtx, 4, 0);
             for(var_v1 = 0; var_v1 < 2; var_v1++){
                 for(var_v0 = 0; var_v0 < 2; var_v0++){
