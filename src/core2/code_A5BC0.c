@@ -2,12 +2,15 @@
 #include "functions.h"
 #include "variables.h"
 
+#define AssetCacheSize 0x3D5
 
 extern int func_802E74A0(f32[3], f32, s32, s32);
+extern s32 func_802E9118(BKCollisionList * collision_list, BKVertexList *vtx_list, f32 arg2[3], s32 arg3, f32 arg4, f32 arg5[3], f32 arg6[3], f32 arg7, f32 arg8[3], s32 arg9, s32 argA);
 extern f32 func_802EC920(BKVertexList *);
 extern void func_802C39D4(void);
 extern bool func_80340020(s32, f32[3], f32[3], f32, s32, BKVertexList *, f32[3], f32[3]);
 extern void func_80340200(s32, f32[3], f32[3], f32, s32, s32, BKVertexList *, s32);
+
 
 extern f32 func_8030A590(void);
 extern void func_8030A5EC(Prop *, f32);
@@ -57,7 +60,7 @@ extern s16 D_8036E7FC[];
 /* .rodata */
 extern f32 D_80378EA0;
 extern f32 D_80378EA4;
-
+extern f64 D_80378EA8;
 extern f64 D_80378EB0;
 
 /* .bss */
@@ -71,7 +74,7 @@ f32 D_80383410[3];
 ActorMarker *D_8038341C;
 s32 D_80383420;
 u8 D_80383428[0x1C];
-u32 D_80383444;
+s32 D_80383444;
 int D_80383448;
 s32 D_80383450[0x40];
 vector(ActorMarker *) *D_80383550;
@@ -179,7 +182,7 @@ UNK_TYPE(s32) D_8038355C;
 //         tmp_v0 = func_80330F50(prop->actorProp.marker);
 //     }
 //     else{
-//         tmp_v0 = func_8030A55C(prop->propProp.unk0_31);
+//         tmp_v0 = func_8030A55C(prop->modelProp.unk0_31);
 //     }
 
 //     if(tmp_v0 == 0) return;
@@ -208,7 +211,7 @@ void __marker_draw(ActorMarker *this, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     actor =  marker_getActor(this);
     func_8033A28C(actor->unk58_2);
     if( actor->unk58_2 && !this->unk40_23 && !this->unk40_21 && !D_8036E7B0){
-        func_8033A244(D_80378EA0);
+        func_8033A244(3700.0f);
     }
     
     if(actor->unk124_7 && !actor->despawn_flag && actor->unk58_0){
@@ -225,7 +228,7 @@ void __marker_draw(ActorMarker *this, Gfx **gfx, Mtx **mtx, Vtx **vtx){
         func_8033A280(percentage);
         this->unk8(this, gfx, mtx, vtx);
     }//L8032D300
-    func_8033A244(D_80378EA4);
+    func_8033A244(30000.0f);
     func_8033A280(1.0f);
 }
 
@@ -298,16 +301,16 @@ void func_8032D510(Cube *cube, Gfx **gfx, Mtx **mtx, Vtx **vtx){
                 }//L8032D62C
             }
             else{//L8032D640
-                sp94[0] = (f32)iProp->propProp.unk4[0];
-                sp94[1] = (f32)iProp->propProp.unk4[1];
-                sp94[2] = (f32)iProp->propProp.unk4[2];
+                sp94[0] = (f32)iProp->modelProp.unk4[0];
+                sp94[1] = (f32)iProp->modelProp.unk4[1];
+                sp94[2] = (f32)iProp->modelProp.unk4[2];
                 if(iProp->unk8_1){
                     sp88[0] = 0.0f;
-                    sp88[1] = (f32)((s32)iProp->propProp.unk0_15*2);
-                    sp88[2] = (f32)((s32)iProp->propProp.unk0_7*2);
+                    sp88[1] = (f32)((s32)iProp->modelProp.unk0_15*2);
+                    sp88[2] = (f32)((s32)iProp->modelProp.unk0_7*2);
                     func_8030A2D0(gfx, mtx, vtx, 
-                        sp94, sp88, (f32)iProp->propProp.unkA/100.0,
-                        iProp->propProp.unk0_31, cube
+                        sp94, sp88, (f32)iProp->modelProp.unkA/100.0,
+                        iProp->modelProp.unk0_31, cube
                     );
                 }
                 else{//L8032D72C
@@ -323,8 +326,8 @@ void func_8032D510(Cube *cube, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     }//L8032D7D4
 }
 
-ActorProp *func_8032D80C(Cube *cube) {
-    ActorProp *sp1C;
+Prop *func_8032D80C(Cube *cube) {
+    Prop *sp1C;
 
     if (cube->prop2Ptr != NULL) {
         cube->prop2Cnt++;
@@ -334,7 +337,7 @@ ActorProp *func_8032D80C(Cube *cube) {
         cube->prop2Ptr = malloc(sizeof(Prop));
     }
     sp1C = &cube->prop2Ptr[cube->prop2Cnt-1];
-    sp1C->unk8_0 = FALSE;
+    sp1C->markerFlag = FALSE;
     func_80330104(cube);
     return sp1C;
 }
@@ -416,47 +419,121 @@ ActorMarker *func_8032DCAC(void){
     return D_8038341C;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_8032DCB8.s")
+SpriteProp *func_8032DCB8(Cube *cube) {
+    SpriteProp *sp1C;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_8032DDD8.s")
+    sp1C = func_8032D80C(cube);
+    sp1C->unk8_0 = FALSE;
+    sp1C->unk8_1 = FALSE;
+    sp1C->unk8_15 = 0;
+    sp1C->unk0_1 = 0;
+    sp1C->unk8_10 = randf() * 32.0f;
+    sp1C->unk8_3 = FALSE;
+    sp1C->unk8_2 = FALSE;
+    sp1C->unk8_4 = TRUE;
+    return sp1C;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_8032DE2C.s")
+void func_8032DDD8(Cube *cube) {
+    Prop *temp_v0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_8032DE48.s")
+    temp_v0 = func_8032D80C(cube);
+    temp_v0->markerFlag = FALSE;
+    temp_v0->unk8_1 = TRUE;
+    temp_v0->unk8_5 = FALSE;
+    temp_v0->unk8_3 = FALSE;
+    temp_v0->unk8_2 = FALSE;
+    temp_v0->unk8_4 = TRUE;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_8032DE5C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_8032DE78.s")
+void func_8032DE2C(ModelProp *model_prop, enum asset_e sprite_id){
+    model_prop->unk0_31 = sprite_id - 0x2d1;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_8032DE8C.s")
+void func_8032DE48(ModelProp *model_prop, enum asset_e *model_id_ptr){\
+    *model_id_ptr = ((*(u32*)model_prop) >> 0x14) + 0x2d1;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_8032DEA0.s")
+void func_8032DE5C(SpriteProp *sprite_prop, enum asset_e sprite_id){
+    sprite_prop->unk0_31 = sprite_id - 0x572;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_8032DECC.s")
+void func_8032DE78(SpriteProp *sprite_prop, enum asset_e *sprite_id_ptr){
+    *sprite_id_ptr = sprite_prop->unk0_31 + 0x572;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_8032DEE0.s")
+void func_8032DE8C(SpriteProp *sprite_prop, s32 *arg1){
+    *arg1 = sprite_prop->unk0_9;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_8032DEFC.s")
+void func_8032DEA0(SpriteProp *sprite_prop, s32 *arg1, s32 *arg2, s32 *arg3){
+    *arg1 = sprite_prop->unk0_18;
+    *arg2 = sprite_prop->unk0_15;
+    *arg3 = sprite_prop->unk0_12;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_8032DF04.s")
+void func_8032DECC(SpriteProp *sprite_prop, s32 *arg1){
+    *arg1 = ((*(u32*)sprite_prop) << 0x1e) >> 0x1f;//sprite_prop->unk0_0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_8032DF10.s")
+void func_8032DEE0(SpriteProp *sprite_prop, s32 arg1){
+    sprite_prop->unk0_9 = arg1;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_8032DF24.s")
+void func_8032DEFC(ModelProp *prop_prop, s32 arg1){
+    prop_prop->unkA = arg1;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_8032DF40.s")
+void func_8032DF04(ModelProp *prop_prop, s32 *arg1){
+    *arg1 = prop_prop->unkA;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_8032DF4C.s")
+void func_8032DF10(SpriteProp *sprite_prop, bool *arg1){
+    *arg1 = sprite_prop->unk0_19;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_8032DF60.s")
+void func_8032DF24(SpriteProp *sprite_prop, bool arg1){
+    sprite_prop->unk0_1 = arg1;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_8032DFA0.s")
+void func_8032DF40(ModelProp *prop_prop, s32 arg1, s32 arg2){
+    prop_prop->unk0_15 = arg1;
+    prop_prop->unk0_7 = arg2;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_8032DFBC.s")
+void func_8032DF4C(ModelProp *prop_prop, s32 *arg1, s32 *arg2){
+    *arg1 = prop_prop->unk0_15;
+    *arg2 = prop_prop->unk0_7;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_8032DFD8.s")
+void func_8032DF60(SpriteProp *sprite_prop, s32 arg1, s32 arg2, s32 arg3){
+    sprite_prop->unk0_18 = arg1;
+    sprite_prop->unk0_15 = arg2;
+    sprite_prop->unk0_12 = arg3;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_8032DFF4.s")
+void func_8032DFA0(SpriteProp *sprite_prop, bool arg1){
+    sprite_prop->unk0_19 = arg1;
+}
+
+void func_8032DFBC(NodeProp *node, s32 src[3]){
+    node->x = src[0];
+    node->y = src[1];
+    node->z = src[2];
+}
+
+void func_8032DFD8(NodeProp *node, s32 dst[3]){
+    dst[0] = node->x;
+    dst[1] = node->y;
+    dst[2] = node->z;
+}
+
+void func_8032DFF4(Prop *prop, s32 src[3]){
+    prop->unk4[0] = src[0];
+    prop->unk4[1] = src[1];
+    prop->unk4[2] = src[2];
+}
 
 void func_8032E010(ActorProp *prop, s32 dst[3]){
     dst[0] = prop->x;
@@ -471,8 +548,9 @@ NodeProp *func_8032E02C(Cube *cube, s32 prop_index) {
     return &cube->prop1Ptr[prop_index];
 }
 
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_8032E070.s")
+void func_8032E070(void){
+    D_8038341C = NULL;
+}
 
 void cube_free(Cube *cube){
     Prop *iProp;
@@ -495,13 +573,101 @@ void cube_free(Cube *cube){
     cube->unk0_4 = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_8032E178.s")
+bool func_8032E178(Cube *arg0, s32 *arg1, s32 arg2) {
+    NodeProp * temp_a2;
+    NodeProp *var_v1;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_8032E230.s")
+    if ((arg0 != NULL) && (arg0->prop1Cnt != 0)) {
+        var_v1 = arg0->prop1Ptr;
+        temp_a2 = arg0->prop1Ptr + arg0->prop1Cnt;
+        while (var_v1 < temp_a2) {
+            if( ((var_v1->unk6.bit0 == 1)
+                    || ((var_v1->unk6.bit0 == 0) && (var_v1->unk10_6 == 1))
+                ) 
+                && (var_v1->unk6.bit6 == 6) 
+                && (arg2 == var_v1->unk8)
+            ) {
+                *arg1 = var_v1->unk6.bit15;
+                return TRUE;
+            }
+            var_v1++;
+        }
+    }
+    return FALSE;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_8032E2D4.s")
+NodeProp *func_8032E230(Cube *cube, s32 arg1) {
+    NodeProp *i_ptr;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_8032E398.s")
+    if (cube != NULL && cube->prop1Cnt != 0){
+        for(i_ptr = cube->prop1Ptr; i_ptr < cube->prop1Ptr + cube->prop1Cnt; i_ptr++){
+            if( ( (i_ptr->unk6.bit0 == 1) 
+                  || ( (i_ptr->unk6.bit0 == 0) && (i_ptr->unk10_6 == 1))
+                )
+                && (i_ptr->unk6.bit6 == 6) 
+                && (arg1 == i_ptr->unk8)
+            ) {
+                return i_ptr;
+            }
+        }
+    }
+    return NULL;
+}
+
+bool func_8032E2D4(Cube *arg0, s32 arg1[3], s32 arg2) {
+    NodeProp * temp_a2;
+    NodeProp *var_v1;
+
+    if ((arg0 != NULL) && (arg0->prop1Cnt != 0)) {
+        var_v1 = arg0->prop1Ptr;
+        temp_a2 = arg0->prop1Ptr + arg0->prop1Cnt;
+        while (var_v1 < temp_a2) {
+            if( ((var_v1->unk6.bit0 == 1)
+                    || ((var_v1->unk6.bit0 == 0) && (var_v1->unk10_6 == 1))
+                ) 
+                && (var_v1->unk6.bit6 == 6) 
+                && (arg2 == var_v1->unk8)
+            ) {
+                arg1[0] = var_v1->x;
+                arg1[1] = var_v1->y;
+                arg1[2] = var_v1->z;
+                return TRUE;
+            }
+            var_v1++;
+        }
+    }
+    return FALSE;
+}
+
+bool func_8032E398(Cube *cube, bool (*arg1)(NodeProp *), bool (*arg2)(Prop *)) {
+    NodeProp *var_s0;
+    Prop *var_s0_2;
+    NodeProp *var_s1;
+    Prop *var_s1_2;
+
+    if ((cube->prop1Cnt != 0) && (arg1 != NULL)) {
+        var_s0 = cube->prop1Ptr;
+        var_s1 = cube->prop1Ptr + cube->prop1Cnt;
+        while (var_s0 < var_s1) {
+            if (!arg1(var_s0)) {
+                return FALSE;
+            }
+            var_s0++;
+        }
+    }
+    if ((cube->prop2Cnt != 0) && (arg2 != NULL)) {
+        var_s0_2 = cube->prop2Ptr;
+        var_s1_2 = cube->prop2Ptr + cube->prop2Cnt;
+        while(var_s0_2 < var_s1_2) {
+            if (!arg2(var_s0_2)) {
+                return FALSE;
+            }
+            var_s0_2++;
+        }
+    }
+    return TRUE;
+}
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_8032E49C.s")
 
@@ -737,7 +903,9 @@ void marker_free(ActorMarker *this){
     func_80332B2C(this);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_8032F464.s")
+void func_8032F464(bool arg0){
+    D_8036E7B0 = arg0;
+}
 
 void func_8032F470(s32 *pos, ActorMarker *arg1){
     Cube *cubePtr;
@@ -938,33 +1106,131 @@ void marker_setCollisionScripts(ActorMarker *this, MarkerCollisionFunc ow_func, 
     this->unk1C = die_func;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_803300B8.s")
+void func_803300B8(ActorMarker *marker, MarkerCollisionFunc method){
+    marker->unk54 = method;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_803300C0.s")
+void func_803300C0(ActorMarker *marker, bool (*method)(ActorMarker *, ActorMarker *)){
+    marker->unk58 = method;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_803300C8.s")
+void func_803300C8(ActorMarker *marker, ActorUpdateFunc method){
+    marker->unk24 = method;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_803300D0.s")
+void func_803300D0(ActorMarker *marker, s32 arg1){
+    marker->unk34 = arg1;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_803300D8.s")
+void func_803300D8(ActorMarker *marker, ActorFreeFunc method){
+    marker->unk30 = method;
+}
 
-#define AssetCacheSize 0x3D5
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_803300E0.s")
+void func_803300E0(ActorMarker *marker, Struct6Cs *arg1){
+    marker->unk18 = arg1;
+}
 
 void marker_setModelId(ActorMarker *this, enum asset_e modelIndex){
     this->modelId = modelIndex;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_80330104.s")
+void func_80330104(Cube *cube) {
+    s32 temp_a2;
+    u32 temp_t7;
+    u32 var_a1;
+    void **temp_v1_3;
+    void *temp_v1;
+    void *temp_v1_2;
+    ActorProp *var_v1;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_80330208.s")
+    if (cube->prop2Cnt != 0) {
+        var_v1 = (ActorProp *)cube->prop2Ptr;
+        var_a1 = cube->prop2Cnt;
+        while(var_a1 != 0){
+            if(var_v1->unk8_0 == TRUE){
+                var_v1->marker->propPtr = var_v1;
+                var_v1->marker->cubePtr = cube;
+            }
+            var_a1--;
+            var_v1++;
+        }
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_803303B8.s")
+void func_80330208(Cube *cube) {
+    s32 position[3];
+    Actor *actor;
+    NodeProp *end_prop;
+    NodeProp *i_prop;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_80330534.s")
+    if ((cube != NULL) && (cube->prop1Cnt != 0)) {
+        i_prop = cube->prop1Ptr;
+        end_prop = cube->prop1Ptr + cube->prop1Cnt;
+        func_80326C24(1);
+        while(i_prop < end_prop){
+            if (i_prop->unk6.bit6 == 6) {
+                position[0] = (s32) i_prop->x;
+                position[1] = (s32) i_prop->y;
+                position[2] = (s32) i_prop->z;
+                actor = func_803055E0(i_prop->unk8, position, i_prop->unkC_31, i_prop->unk10_31, i_prop->unk10_19);
+                if (actor != NULL) {
+                    actor->unk78_13 = i_prop->unk10_31;
+                    actor->unkF4_8 = i_prop->unk6.bit15;
+                    func_8032AA58(actor, (i_prop->unkC_22 != 0) ? ((f32)i_prop->unkC_22 * 0.01) : 1.0);
+                }
+            }
+            i_prop++;
+        }
+        func_80326C24(0);
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_8033056C.s")
+void func_803303B8(Cube *cube) {
+    s32 sp4C[3];
+    NodeProp *temp_s2;
+    NodeProp *var_s0;
+
+    if ((cube != NULL) && (cube->prop1Cnt != 0)){
+        var_s0 = cube->prop1Ptr;
+        temp_s2 = cube->prop1Ptr + cube->prop1Cnt;
+        while (var_s0 < temp_s2) {
+            if (var_s0->unk6.bit6 == 7) {
+                sp4C[0] = (s32) var_s0->x;
+                sp4C[1] = (s32) var_s0->y;
+                sp4C[2] = (s32) var_s0->z;
+                func_803065E4(var_s0->unk8, sp4C, var_s0->unk6.bit15, var_s0->unk10_31, var_s0->unk10_7);
+            } else if (var_s0->unk6.bit6 == 9) {
+                sp4C[0] = (s32) var_s0->x;
+                sp4C[1] = (s32) var_s0->y;
+                sp4C[2] = (s32) var_s0->z;
+                func_8030688C(var_s0->unk8, sp4C, var_s0->unk6.bit15, var_s0->unk10_0);
+            } else if (var_s0->unk6.bit6 == 0xA) {
+                sp4C[0] = (s32) var_s0->x;
+                sp4C[1] = (s32) var_s0->y;
+                sp4C[2] = (s32) var_s0->z;
+                func_80306AA8(var_s0->unk8, sp4C, var_s0->unk6.bit15);
+            }
+            var_s0++;
+        }
+    }
+}
+
+bool func_80330534(Actor *actor){
+    if(D_80383444 != 0){
+        return FALSE;
+    }
+    
+    D_80383444 = actor->modelCacheIndex;
+    return TRUE;
+}
+
+bool func_8033056C(Actor *actor){
+    if((D_80383444 == 0) || (D_80383444 != actor->modelCacheIndex)){
+        return FALSE;
+    }
+    D_80383444 = 0;
+    return TRUE;
+}
 
 //modelCache_Init
 void func_803305AC(void){
@@ -979,7 +1245,6 @@ void func_803305AC(void){
     }
     D_80383444 = 0;
 }
-
 
 extern s32 D_8036E7CC;
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_803306C8.s")
@@ -1152,7 +1417,7 @@ s32 func_80330F74(NodeProp *arg0){
 }
 
 s32 func_80330F7C(NodeProp *arg0){
-    return arg0->unk6_6;
+    return arg0->unk6.bit6;
 }
 
 s32 func_80330F8C(NodeProp *arg0){
@@ -1163,7 +1428,7 @@ s32 func_80330F94(NodeProp *arg0, s32 arg1[3]){
     arg1[0] = arg0->x;
     arg1[1] = arg0->y;
     arg1[2] = arg0->z;
-    return arg0->unk6_15;
+    return arg0->unk6.bit15;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_80330FBC.s")
@@ -1217,7 +1482,7 @@ bool func_80331158(ActorMarker *arg0, s32 arg1, s32 arg2) {
 
     actor = marker_getActor(arg0);
     if ((actor->unk3C & 0x400) && ((s32)actor->unk3C << 4) >= 0){
-        return func_802E74A0(actor->position, actor->unk178 * D_80378EB0, arg1, arg2) == 0;
+        return func_802E74A0(actor->position, actor->unk178 * 1.1, arg1, arg2) == 0;
     }
     return FALSE;
 }
@@ -1266,18 +1531,18 @@ s32 func_803311D4(Cube *arg0, f32 *arg1, f32 *arg2, f32 *arg3, u32 arg4) {
     var_s6 = 0;
     var_s1 = arg0->prop2Ptr;
     for(var_s5 = arg0->prop2Cnt; var_s5 > 0; var_s5--) {
-        if (!var_s1->markerFlag && var_s1->unk8_1 && var_s1->unk8_4) { //propProp
-            var_s0 = func_8030A4B4(var_s1->propProp.unk0_31);
-            if ((var_s0 != NULL) || (func_8028F280() && ((var_s0 = func_8030A428(var_s1->propProp.unk0_31)) != NULL))) {
+        if (!var_s1->markerFlag && var_s1->unk8_1 && var_s1->unk8_4) { //ModelProp
+            var_s0 = func_8030A4B4(var_s1->modelProp.unk0_31);
+            if ((var_s0 != NULL) || (func_8028F280() && ((var_s0 = func_8030A428(var_s1->modelProp.unk0_31)) != NULL))) {
                 temp_s2 = func_8033A084(var_s0);
                 if (temp_s2 != 0) {
-                    spAC[0] = (f32) var_s1->propProp.unk4[0];
-                    spAC[1] = (f32) var_s1->propProp.unk4[1];
-                    spAC[2] = (f32) var_s1->propProp.unk4[2];
+                    spAC[0] = (f32) var_s1->modelProp.unk4[0];
+                    spAC[1] = (f32) var_s1->modelProp.unk4[1];
+                    spAC[2] = (f32) var_s1->modelProp.unk4[2];
                     spA0[0] = 0.0f;
-                    spA0[1] = (f32) (var_s1->propProp.unk0_15 * 2);
-                    spA0[2] = (f32) (var_s1->propProp.unk0_7 * 2);
-                    var_v0 = func_802E805C(temp_s2, func_8033A148(var_s0), spAC, spA0, var_s1->propProp.unkA / 100.0, arg1, arg2, arg3, arg4);
+                    spA0[1] = (f32) (var_s1->modelProp.unk0_15 * 2);
+                    spA0[2] = (f32) (var_s1->modelProp.unk0_7 * 2);
+                    var_v0 = func_802E805C(temp_s2, func_8033A148(var_s0), spAC, spA0, var_s1->modelProp.unkA / 100.0, arg1, arg2, arg3, arg4);
                     if (var_v0 != 0) {
                         var_s6 = var_v0;
                     }
@@ -1335,7 +1600,83 @@ s32 func_803311D4(Cube *arg0, f32 *arg1, f32 *arg2, f32 *arg3, u32 arg4) {
 }
 #endif
 
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_80331638.s")
+#else
+s32 func_80331638(Cube *cube, f32 arg1[3], f32 arg2[3], f32 arg3, f32 arg4[3], s32 arg5, u32 flags) {
+    s32 spD8;
+    Actor *temp_v0_6;
+    BKModelBin *temp_v0_2;
+    BKVertexList *temp_a1;
+    BKCollisionList *temp_v0_3;
+    u32 var_s3;
+    f32 spBC[3];
+    f32 spB0[3];
+    f32 sp98[3];
+    f32 sp8C[3];
+    s32 var_v0;
+    ActorMarker *temp_a0;
+    Struct6Cs *temp_v0_7;
+    Prop *var_s0;
+
+    spD8 = 0;
+    var_s3 = cube->prop2Cnt;
+    var_s0 = cube->prop2Ptr;
+    while(var_s3 != 0) {
+            if (!var_s0->markerFlag && var_s0->unk8_1 && var_s0->unk8_4) {
+                temp_v0_2 = func_8030A4B4((u32)(*(u16 *)(&var_s0->modelProp)) >> 4);
+                if (temp_v0_2 != NULL) {
+                    temp_v0_3 = func_8033A084(temp_v0_2);
+                    if (temp_v0_3 != NULL) {
+                        spBC[0] = (f32) var_s0->modelProp.unk4[0];
+                        spBC[1] = (f32) var_s0->modelProp.unk4[1];
+                        spBC[2] = (f32) var_s0->modelProp.unk4[2];
+                        spB0[0] = 0.0f;
+                        spB0[1] = (f32) (var_s0->modelProp.unk0_15 * 2);
+                        spB0[2] = (f32) (var_s0->modelProp.unk0_7 * 2);
+                        var_v0 = func_802E9118(temp_v0_3, func_8033A148(temp_v0_2), spBC, spB0, (f32) ((f32) var_s0->modelProp.unkA / 100.0), arg1, arg2, arg3, arg4, arg5, flags);
+                        if (var_v0 != 0) {
+                            spD8 = var_v0;
+                        }
+                    }
+                }
+            } else if (var_s0->markerFlag && var_s0->unk8_3 && var_s0->unk8_4) {
+                temp_v0_2 = func_80330DE4(var_s0->actorProp.marker);
+                if (temp_v0_2 != NULL) {
+                    temp_v0_3 = func_8033A084(temp_v0_2);
+                    if (temp_v0_3 != NULL) {
+                        temp_v0_6 = marker_getActor(var_s0->actorProp.marker);
+                        temp_a1 = func_80330C74(temp_v0_6);
+                        sp98[0] = (f32) var_s0->actorProp.x;
+                        sp98[1] = (f32) var_s0->actorProp.y;
+                        sp98[2] = (f32) var_s0->actorProp.z;
+                        sp8C[0] = (f32)var_s0->actorProp.marker->pitch;
+                        sp8C[1] = (f32)var_s0->actorProp.marker->yaw;
+                        sp8C[2] = (f32)var_s0->actorProp.marker->roll;
+                        var_v0 = func_802E9118(temp_v0_3, temp_a1, sp98, sp8C, temp_v0_6->scale, arg1, arg2, arg3, arg4, arg5, flags);
+                        if (var_v0 != 0) {
+                            spD8 = var_v0;
+                        }
+                    }
+                }
+            } else if (var_s0->markerFlag) {
+                temp_a0 = var_s0->actorProp.marker;
+                temp_v0_7 = temp_a0->unk18;
+                if (temp_v0_7 != NULL) {
+                    if (temp_v0_7->unk4 != NULL) {
+                        var_v0 = temp_v0_7->unk4(temp_a0, arg1, arg2, arg3, arg4, arg5, flags);
+                        if (var_v0 != 0) {
+                            spD8 = var_v0;
+                        }
+                    }
+                }
+            }
+            var_s0++;
+            var_s3--;
+    }
+    return spD8;
+}
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_803319C0.s")
 
@@ -1376,7 +1717,7 @@ f32 func_80331E64(ActorMarker *marker) {
 
 
 f32 func_80331F1C(Prop *arg0){
-    return func_802EC920(func_8033A148(func_8030A428(arg0->propProp.unk0_31)));
+    return func_802EC920(func_8033A148(func_8030A428(arg0->modelProp.unk0_31)));
 }
 
 f32 func_80331F54(ActorMarker *marker) {
@@ -1502,8 +1843,8 @@ Prop *func_803322F0(Cube *cube, ActorMarker *marker, f32 arg2, s32 arg3, s32 *ar
                         }
                     }
                 }
-                else if (phi_s1->unk8_1) {//PropProp
-                    if (func_803327A8(phi_s1->propProp.unk0_31 + 0x2D1) & arg3) {
+                else if (phi_s1->unk8_1) {//ModelProp
+                    if (func_803327A8(phi_s1->modelProp.unk0_31 + 0x2D1) & arg3) {
                         phi_f24 = func_80332050(phi_s1, marker, 0);
                         phi_f20 = func_80332050(phi_s1, marker, 1) + func_80332220(phi_s1, &func_80331F1C);
                         phi_f22 = func_80332050(phi_s1, marker, 2);

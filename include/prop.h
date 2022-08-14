@@ -8,34 +8,36 @@
 
 typedef struct sprite_prop_s{
     u32 unk0_31:0xC;
-    u32 pad0_19:0x1;
+    u32 unk0_19:0x1;
     u32 unk0_18:0x3;
     u32 unk0_15:0x3;
     u32 unk0_12:0x3;
     u32 unk0_9:0x8;
     u32 unk0_1:0x1;
-    u32 pad0_0:0x1;
+    u32 unk0_0:0x1;
     s16 unk4[3];
     u16 unk8_15: 5;
-    u16 pad8_10: 6;
+    u16 unk8_10: 5;
+    u16 pad8_5: 1;
     u16 unk8_4: 1;
-    u16 pad8_3: 2;
+    u16 unk8_3: 1;
+    u16 unk8_2: 1;
     u16 unk8_1:1;
     u16 unk8_0:1;
 } SpriteProp;
 
-typedef struct prop_prop_s{
+typedef struct model_prop_s{
     u16 unk0_31:12;
     u16 pad0_19:4;
     u8 unk0_15;
-    u8 unk0_7;
+    u8 unk0_7; 
     s16 unk4[3];
-    u8 unkA;
+    u8 unkA; //scale * 100.0
     u8 padB_7 :2;
     u8 unkB_5 :1;
     u8 unkB_4 :1;
     u8 padB_3 :4;
-} PropProp;
+} ModelProp;
 
 typedef struct actor_prop_s{
     struct actorMarker_s* marker;
@@ -55,6 +57,7 @@ typedef struct actor_prop_s{
 typedef void(*MarkerCollisionFunc)(struct actorMarker_s *this, struct actorMarker_s *other);
 typedef struct actor_s *(*MarkerDrawFunc)(struct actorMarker_s *, Gfx **, Mtx **, Vtx **);
 typedef void (*ActorUpdateFunc)(struct actor_s *);
+typedef void (*ActorFreeFunc)(struct actor_s *);
 
 typedef struct actorMarker_s{
     ActorProp*  propPtr;
@@ -78,7 +81,7 @@ typedef struct actorMarker_s{
     u32         unk2C_2:1;
     u32         unk2C_1:1;
     u32         collidable:1;
-    void        (*unk30)(struct actor_s *); //actor free method
+    ActorFreeFunc unk30; //actor free method
     s32         unk34;
     s16         unk38[3];
     u16         pad3E_15:1;
@@ -97,7 +100,7 @@ typedef struct actorMarker_s{
     BKModel *   unk48;
     vector(Struct70s) * unk4C;
     s32         unk50;
-    void        (*unk54)(struct actorMarker_s *, struct actorMarker_s *, s16*);
+    void        (*unk54)(struct actorMarker_s *, struct actorMarker_s *, u16*);
     s32         (*unk58)(struct actorMarker_s *, struct actorMarker_s *);
     s32         unk5C;
 } ActorMarker;
@@ -184,7 +187,7 @@ typedef struct actor_s{
     f32 unk74;
     u32 unk78_31:9;
     u32 unk78_22:9;
-    u32 unk78_13:12;
+    u32 unk78_13:12; //default_spawn_yaw?
     u32 stored_animctrl_forwards:1; //animCtrlDirection
     u32 stored_animctrl_smoothTransistion:1; //animCtrlSmoothTransition
     union
@@ -306,12 +309,13 @@ typedef union prop_s
 {
     ActorProp   actorProp;
     SpriteProp  spriteProp;
-    PropProp    propProp;
+    ModelProp    modelProp;
     struct{
         u8 pad0[4];
         s16 unk4[3];
         // s16 unk6;
-        s16 pad8_15: 11;
+        s16 pad8_15: 10;
+        u16 unk8_5: 1;
         u16 unk8_4: 1;
         u16 unk8_3: 1;
         u16 unk8_2: 1;
@@ -324,21 +328,29 @@ typedef struct {
     s16 x;
     s16 y;
     s16 z;
-    u16 unk6_15: 9; //selector_value //volume??? diameter
-    u16 unk6_6:  6; //category
-    u16 unk6_0:  1;
-    u16 unk8;
+    struct {
+        u16 bit15: 9; //selector_value //volume??? diameter
+        u16 bit6:  6; //category
+        u16 bit0:  1;
+    }unk6;
+    u16 unk8;       //actor_id?
     u8 unkA;        //marker_id
-    u8 padB[1];
-    u32 unkC_31:9;
+    struct {
+        u8 pad_bit7: 2;
+        u8 bit5: 1;
+        u8 bit4: 1;
+        u8 pad_bit3: 3;
+        u8 bit0: 1;
+    }unkB;
+    // u8 padB[1];
+    u32 unkC_31:9; //yaw???
     u32 unkC_22:23;
     u32 unk10_31 : 12;
-    u32 pad10_19 : 12;
+    u32 unk10_19 : 12;
     u32 unk10_7 : 1;
     u32 unk10_6 : 1;
-    u32 pad10_5 : 1;
-    u32 unk10_4 : 4;
-    u32 pad10_0 : 1;
+    u32 pad10_5 : 4;
+    u32 unk10_0 : 2;
 } NodeProp;
 
 typedef struct cude_s{

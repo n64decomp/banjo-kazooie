@@ -38,9 +38,6 @@ void func_8038AA58(void){}
 #else
 void func_8038AA60(void){
     switch(D_80392F50.unk0){
-        // case 0:
-        //     break;
-
         case 1:
             if(D_80392F50.unk4 <= 0){
                 func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);
@@ -68,9 +65,13 @@ void func_8038AA60(void){
             }
             break;
         
+        default:
+        case 0:
         case 3://L8038A96C
+            
             break;
     }
+    
 }
 #endif
 

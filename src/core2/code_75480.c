@@ -39,12 +39,26 @@ void func_802FC580(s32 arg0, struct8s * arg1){
     func_802FC4AC(arg1);
 } 
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_75480/func_802FC5A4.s")
+void func_802FC5A4(s32 arg0, struct8s *arg1){
+    func_802FC468();
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_75480/func_802FC5C8.s")
+void func_802FC5C8(s32 arg0, struct8s *arg1){
+    arg1->unk18 = 0;
+    arg1->unk1C = 0.0f;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_75480/func_802FC5DC.s")
+void func_802FC5DC(s32 arg0, struct8s *arg1){
+    s32 sp1C;
+    struct8s *var_v0 = D_80381570[0];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_75480/func_802FC630.s")
+    if(D_803698B4 != 0){
+        arg1->unkC = func_802FC410(arg1) + var_v0->unk1C;
+    }
+}
+
+void func_802FC630(s32 ag0, struct8s* arg1){
+    D_803698B4 = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_75480/func_802FC644.s")

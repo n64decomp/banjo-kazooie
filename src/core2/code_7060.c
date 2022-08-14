@@ -62,7 +62,7 @@ bool func_8028E060(s32 arg0, s32 *arg1){
         return TRUE;
     }
     else{
-        return func_80305344(func_803084F0(), arg1);
+        return func_80305344(func_803084F0(arg0), arg1);
     }
 }
 

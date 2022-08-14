@@ -14,27 +14,6 @@ void func_80351AD0(Struct68s *arg0, enum asset_e model_id);
 
 typedef struct {
     s16 unk0;
-    s16 unk2;
-    s16 unk4;
-    u32 pad6_15:9;
-    u32 unk6_6:6;
-    u32 pad6_4:1;
-    u16 unk8;
-    union{
-        struct{
-            u16 padA_15:10;
-            u16 unkA_5:1;
-            u16 unkA_4:1;
-            u16 padA_3:2;
-            u16 unkA_1:1;
-            u16 padA_0:1;
-        };
-        u16 unkA;
-    };
-}Struct_Core2_C9F00_2;
-
-typedef struct {
-    s16 unk0;
     u8 unk2;
     u8 unk3;
 }Struct_Core2_C9F00_1;
@@ -178,7 +157,7 @@ Struct68s * func_8035126C(f32 arg0[3], f32 arg1[3], f32 arg2, s32 arg3, enum ass
 
 }
 
-void func_803513EC(PropProp *arg0, s32 arg1) {
+void func_803513EC(ModelProp *arg0, s32 arg1) {
     f32 sp3C[3];
     s32 pad30;
     f32 sp2C[3];
@@ -213,25 +192,25 @@ void func_80351538(Struct68s *arg0){
     }
 }
 
-bool func_803515EC(Struct_Core2_C9F00_2 *arg0) {
+bool func_803515EC(NodeProp *arg0) {
     Struct_Core2_C9F00_1 *phi_s0;
     s32 sp48[3];
     s32 sp44;
-    PropProp *sp40;
+    ModelProp *sp40;
     s16 temp_v0;
     s16 phi_v0;
 
 
-    if (arg0->unk6_6 != 6) {
+    if (arg0->unk6.bit6 != 6) {
         return 1;
     } else {
         for(phi_s0 = D_803725C0; phi_s0->unk0 != 0; phi_s0++){
             if( (arg0->unk8 == phi_s0->unk0) 
                 && ((phi_s0->unk3 == 0) || (map_get() == phi_s0->unk3))
             ){
-                sp48[0] = (s32) arg0->unk0;
-                sp48[1] = (s32) arg0->unk2;
-                sp48[2] = (s32) arg0->unk4;
+                sp48[0] = (s32) arg0->x;
+                sp48[1] = (s32) arg0->y;
+                sp48[2] = (s32) arg0->z;
                 if(func_803048E0(&sp48, &sp44, &sp40, 2, 0x1F4)){
                     func_803513EC(sp40, phi_s0->unk2);
                     break;
@@ -242,17 +221,19 @@ bool func_803515EC(Struct_Core2_C9F00_2 *arg0) {
     return TRUE;
 }
 
-bool func_80351700(Struct_Core2_C9F00_2 * arg0){
-    if (((arg0->unkA << 0x1E) >> 0x1F)) {
+bool func_80351700(void * arg0){
+    if (((*(u16*)((s32)arg0 + 0xA) << 0x1E) >> 0x1F)) {
         return TRUE;
     }
     return TRUE;
 }
 
-bool func_80351724(Struct_Core2_C9F00_2 * arg0){
-    if (((arg0->unkA << 0x1E) >> 0x1F) && ((arg0->unkA << 0x1A) >> 0x1F)) {
-        arg0->unkA_5 = FALSE;
-        arg0->unkA_4 = TRUE;
+bool func_80351724(void * arg0){
+    ActorProp *a_prop;
+    if (((*(u16*)((s32)arg0 + 0xA) << 0x1E) >> 0x1F) && ((*(u16*)((s32)arg0 + 0xA) << 0x1A) >> 0x1F)) {
+        a_prop = (ActorProp *)arg0;
+        a_prop->unk8_5 = FALSE;
+        a_prop->unk8_4 = TRUE;
     }
     return TRUE;
 }

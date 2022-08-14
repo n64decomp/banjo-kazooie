@@ -806,9 +806,9 @@ void func_8028BCA0(Prop *prop){
             func_8032B258(actor, obj_collision_type);
         }
     }
-    else if(prop->unk8_1)//L8028D0B0 //PropProp
+    else if(prop->unk8_1)//L8028D0B0 //ModelProp
     {
-        tmp2 = prop->propProp.unk0_31 + 0x2D1;
+        tmp2 = prop->modelProp.unk0_31 + 0x2D1;
         switch (tmp2)
         {
         case 0x2E8:

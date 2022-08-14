@@ -864,7 +864,7 @@ void cubeList_fromFile(Struct61s *file_ptr) {
                 cube = cube_atIndices(sp5C);
                 if (cube->unk0_4) {
                     for(iPtr = cube->prop1Ptr; iPtr < &cube->prop1Ptr[cube->unk0_4] ;iPtr++){
-                        if (!iPtr->unk6_0) {
+                        if (!iPtr->unk6.bit0) {
                             func_802CAF14(D_8036A9E0, iPtr->unkA, 1);
                         }
                     }
@@ -890,7 +890,7 @@ s32 func_80304984(s32 arg0, u32 *arg1) {
 
     temp_v0 = func_803049CC(arg0, 0);
     if (temp_v0 != 0) {
-        *arg1 = temp_v0->unk6_15;
+        *arg1 = temp_v0->unk6.bit15;
         return 1;
     }
     return 0;
@@ -934,7 +934,7 @@ NodeProp *func_80304D04(s32 arg0, s16 *arg1) {
 }
 
 s32 nodeprop_getRadius(NodeProp *arg0) {
-    return arg0->unk6_15;
+    return arg0->unk6.bit15;
 }
 
 void func_80304D4C(NodeProp *arg0, s32 dst[3]) {
@@ -1036,17 +1036,17 @@ bool func_8030526C(f32 arg0[3], s32 arg1, s32 arg2){
     return func_8030515C(arg0, arg1, arg2, func_802586B0);
 }
 
-bool func_80305290(UNK_TYPE(s32) arg0, UNK_TYPE(s32) arg1){
+bool func_80305290(bool (* arg0)(NodeProp *), bool (* arg1)(Prop *)){
     Cube *phi_s0;
 
     phi_s0 = D_80381FA0.cube_list;
     while (phi_s0 < &D_80381FA0.cube_list[D_80381FA0.cubeCnt]) {
-        if (func_8032E398(phi_s0, arg0, arg1) == 0) {
-            return 0;
+        if (!func_8032E398(phi_s0, arg0, arg1)) {
+            return FALSE;
         }
         phi_s0++;
     }
-    return 1;
+    return TRUE;
 }
 
 bool func_80305344(s32 arg0, u32 *arg1) {
@@ -1575,8 +1575,48 @@ void func_80308230(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_803083B0.s")
 
+s32 func_803084F0(s32 arg0){
+    s32 var_v1;
+    switch (arg0) {
+        case 1: var_v1 = 1; break;
+        case 0x2: var_v1 = 2; break;
+        case 0x3: var_v1 = 0x15; break;
+        case 0x4: var_v1 = 0x76; break;
+        case 0x5: var_v1 = 0x77; break;
+        case 0x6: var_v1 = 0x78; break;
+        case 0x7: var_v1 = 0x79; break;
+        case 0x8: var_v1 = 0x7A; break;
+        case 0x9: var_v1 = 0x7B; break;
+        case 0xA: var_v1 = 0x7C; break;
+        case 0xB: var_v1 = 0x7D; break;
+        case 0xC: var_v1 = 0x7E; break;
+        case 0xD: var_v1 = 0x7F; break;
+        case 0xE: var_v1 = 0x75; break;
+        case 0xF: var_v1 = 0x74; break;
+        case 0x10: var_v1 = 0x73; break;
+        case 0x11: var_v1 = 0x72; break;
+        case 0x12: var_v1 = 0x103; break;
+        case 0x13: var_v1 = 0x104; break;
+        case 0x14: var_v1 = 0x105; break;
+        case 0x15: var_v1 = 0x106; break; 
+        case 0x16: var_v1 = 0x107; break;
+        case 0x17: var_v1 = 0x158; break;
+        case 0x18: var_v1 = 0x15A; break;
+        case 0x19: var_v1 = 0x15C; break; 
+        case 0x5B: var_v1 = 0x1CD; break;
+        case 0x5C: var_v1 = 0x1CE; break;
+        case 0x5D: var_v1 = 0x1CF; break;
+        case 0x5E: var_v1 = 0x1D0; break;
+        case 0x5F: var_v1 = 0x1D1; break;
+        case 0x60: var_v1 = 0x1D2; break;
+        case 0x61: var_v1 = 0x1D3; break;
+        case 0x62: var_v1 = 0x1D4; break;
+        case 0x65: var_v1 = 0x379; break;
+        default: case 0: var_v1 = 0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_803084F0.s")
+    }
+    return var_v1;
+}
 
 void func_80308658(Struct_core2_7AF80_1 *arg0, s32 arg1) {
     Struct_core2_7AF80_1 * i;
@@ -1693,7 +1733,7 @@ void func_80308984(void) {
     }
     for(iCube = D_80381FA0.cube_list; iCube < D_80381FA0.cube_list + D_80381FA0.cubeCnt; iCube++){
         for(iNode = iCube->prop1Ptr; iNode < iCube->prop1Ptr + iCube->prop1Cnt; iNode++){
-            if (iNode->unk6_6 == 6 && !iNode->unk6_0){
+            if (iNode->unk6.bit6 == 6 && !iNode->unk6.bit0){
                 if((iNode->unk8 >= (u32)sp54) && ((u32)sp50 >= iNode->unk8)) {
                     for(i = 0; iNode->unk8 != (u32)D_8036ABAC[i] && -1 != (u32)D_8036ABAC[i]; i++){
                     }
@@ -1704,8 +1744,8 @@ void func_80308984(void) {
                         for(jCube = iCube; jCube < D_80381FA0.cube_list + D_80381FA0.cubeCnt; jCube++){
                             for(jNode = jCube->prop1Ptr; jNode < jCube->prop1Ptr + jCube->prop1Cnt; jNode++){
                                 if(
-                                    jNode->unk6_6 == 6 
-                                    && !jNode->unk6_0
+                                    jNode->unk6.bit6 == 6 
+                                    && !jNode->unk6.bit0
                                     && jNode->unk8 == D_8036ABC0[i]
                                 ) {
                                     func_8030895C(jCube - D_80381FA0.cube_list);
