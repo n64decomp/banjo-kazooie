@@ -143,7 +143,7 @@ void chnabnut_update(Actor *this) {
         }
         if (this->unk138_24 && !func_803114B0()) {
             func_8028F364(this->position, 500.0f, 200.0f, ACTOR_2A9_ACORN, &this);
-            if ((func_8028E8C0() == ACTOR_2A9_ACORN) && (ml_vec3f_distance(this->position, sp30) < 300.0f) && func_8028FC34()) {
+            if ((carriedObj_getActorId() == ACTOR_2A9_ACORN) && (ml_vec3f_distance(this->position, sp30) < 300.0f) && func_8028FC34()) {
                 func_8028FA54(D_8038F350);
                 local->returned_acorn_count++;
                 if (local->returned_acorn_count == 6) {

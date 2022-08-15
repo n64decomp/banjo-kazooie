@@ -183,9 +183,9 @@ void func_802958A0(void){
 void func_80295914(void){
     D_80363820 = 1;
     D_8037C3B0 = NULL;
-    func_8029C608();
+    update_void_return_Location();
     func_802983F0();
-    func_8028A410();
+    snacker_reset();
     func_80291910();
     func_8029279C();
     func_802932AC();

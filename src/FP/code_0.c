@@ -46,7 +46,7 @@ void func_803864F4(ActorMarker *this_marker, ActorMarker *other_marker){
     if(this->state != 1)  return;
     if(player_getTransformation() != TRANSFORM_1_BANJO) return;
 
-    if(func_8028F68C(0x27, this->marker))
+    if(func_8028F68C(BS_INTR_27_BANJO_SLED, this->marker))
         func_803863F0(this, 2);
 }
 

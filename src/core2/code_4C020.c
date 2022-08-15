@@ -227,7 +227,7 @@ void func_802D3DA4(Actor *this) {
         this->unk38_31 = 1;
     }
     if ((this->unk38_31 == 1) && (phi_v0 == 1) 
-        && func_8028F20C() && (func_8028F66C(0x37) == 2)) {
+        && func_8028F20C() && (func_8028F66C(BS_INTR_37) == 2)) {
         this->unk38_31 = 2;
     }
 }

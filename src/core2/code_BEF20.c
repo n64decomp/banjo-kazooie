@@ -124,7 +124,7 @@ s32 func_80345FB4(enum item_e item, s32 diff, s32 arg2){\
             sp30 = func_80301D24(oldVal);
             sp2C = func_80301D24(newVal);
             if(sp3C){
-                bs_checkInterrupt(0x11);
+                bs_checkInterrupt(BS_INTR_11_DROWN);
                 D_80385FE4 = 1;
             }
             if(sp2C && sp30 != sp2C ){
@@ -354,7 +354,7 @@ void func_80346CE8(void){
     D_80385FE4 = FALSE;
 }
 
-enum item_e func_80346CF4(enum actor_e actor_id){
+enum item_e carriedobj_actorId2ItemId(enum actor_e actor_id){
     switch(actor_id){
         case ACTOR_29_ORANGE_COLLECTABLE:           return ITEM_19_ORANGE;
         case ACTOR_2A9_ACORN:                       return ITEM_23_ACORNS;

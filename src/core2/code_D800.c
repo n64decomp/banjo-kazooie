@@ -63,7 +63,7 @@ void func_802948E0(void){
     D_8037C298 = NULL;
 }
 
-ActorMarker *func_802948EC(void){
+ActorMarker *carriedobj_getMarker(void){
    return D_8037C298; 
 }
 

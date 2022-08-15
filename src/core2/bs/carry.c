@@ -1,6 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "bsint.h"
 
 /* .data */
 const f32  D_80364AF0 = 30.0f;
@@ -43,7 +44,7 @@ void bscarry_idle_update(void){
     if(func_8029B300() > 0)
         sp1C = BS_CARRY_WALK;
 
-    if(func_802948EC() == 0)
+    if(carriedobj_getMarker() == NULL)
         sp1C = BS_1_IDLE;
 
     bs_setState(sp1C);
@@ -72,7 +73,7 @@ void bscarry_walk_update(void){
     if(func_8029B300() == 0 && func_80297C04(1.0f))
         sp1C = BS_3A_CARRY_IDLE;
 
-    if(!func_802948EC())
+    if(carriedobj_getMarker() == NULL)
         sp1C = BS_1_IDLE;
 
     bs_setState(sp1C);
@@ -94,12 +95,12 @@ void bscarry_interrupt(void){
             break;
         case 8:
             func_8029A86C(2);
-            bs_setState(0x3C);
+            bs_setState(BS_3C);
             break;
         case 0x12:
             func_8028DE6C(carriedObject_getActorID());
             break;
-        case 0x16:
+        case BS_INTR_16_THROW_CARRIED_OBJ:
             if(func_802916CC(1)){
                 bs_setState(BS_CARRY_THROW);
                 func_8029A86C(2);

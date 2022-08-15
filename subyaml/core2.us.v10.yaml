@@ -287,7 +287,7 @@ segments:
   - [0x7AF80, c, code_7AF80]
   - [0x82000, c, code_82000]
   - [0x83340, c, code_83340]
-  - [0x83D70, c, code_83D70]
+  - [0x83D70, c, code_83D70] #DONE
   - [0x840D0, c, code_840D0] #DONE
   - [0x84470, c, gc/transition] #DONE
   - [0x851D0, c, code_851D0]
@@ -539,6 +539,8 @@ segments:
   - [0xE3A20, bin, data_E3A20]
   - [0xE3C50, .data, code_82000]
   - [0xE4870, bin, data_E4870]
+  - [0xE4880, .data, code_83D70]
+  - [0xE4DB0, bin, data_E4DB0]
   - [0xE5730, .data, gc/zoombox]
   - [0xE69B0, bin, data_E69B0]
   - [0xE7330, .data, code_9B990]
@@ -755,6 +757,8 @@ segments:
   - [0xF0520, .rodata, code_7AF80]
   # - [0xF0540, bin, data_F0540]
   - [0xF05E0, bin, data_F05E0]
+  - [0xF07B0, .rodata, code_83D70]
+  - [0xF14B0, bin, data_F14B0]
   - [0xF14C0, .rodata, gc/transition]
   - [0xF1520, .rodata, code_85800]
   - [0xF1540, .rodata, code_87E30]

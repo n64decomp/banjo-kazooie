@@ -81,7 +81,7 @@ void func_8038BB40(ActorMarker * arg0){
     local = (ActorLocal_MrVile *)&this->local;
     if(func_8038A9E0(local->game_marker) >= 3){
         item_set(ITEM_14_HEALTH, 0);
-        func_8028F66C(0xF);
+        func_8028F66C(BS_INTR_F);
     }
     else{
         item_dec(ITEM_14_HEALTH);

@@ -17,6 +17,8 @@
 #include "ml/mtx.h"
 #include "bs_funcs.h"
 
+#include "bsint.h"
+
 extern f32 fabsf(f32);
 #pragma intrinsic (fabsf)
 
@@ -132,9 +134,9 @@ s32 bs_getPrevState(void);
 s32 bs_getState(void);
 s32 bs_getNextState(void);
 void bs_updateState(void);
-s32 bs_checkInterrupt(s32 arg0);
+s32 bs_checkInterrupt(enum bs_interrupt_e arg0);
 void func_8029A86C(s32 arg0);
-s32 bs_getInterruptType(void);
+enum bs_interrupt_e bs_getInterruptType(void);
 
 /* vla - variable length array*/
 void    vector_clear(VLA *this);

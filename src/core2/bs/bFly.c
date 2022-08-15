@@ -779,7 +779,7 @@ void func_802A503C(void){
 }
 
 void func_802A505C(void){
-    if(bs_getInterruptType() == 9){
+    if(bs_getInterruptType() == BS_INTR_9){
         func_8029A86C(2);
         miscflag_set(7);
         func_8029CCC4();

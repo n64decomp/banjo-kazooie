@@ -117,7 +117,7 @@ void __chmazectrl_setState(Actor *this, s32 next_state){
         FUNC_8030E624(SFX_7F_HEAVYDOOR_SLAM, 0.6f, 32750);
         FUNC_8030E624(SFX_7F_HEAVYDOOR_SLAM, 0.8f, 32725);
         func_8030E6D4(SFX_7F_HEAVYDOOR_SLAM);
-        func_8028F66C(0x26);
+        func_8028F66C(BS_INTR_26);
     }
 
     if(next_state == 6){

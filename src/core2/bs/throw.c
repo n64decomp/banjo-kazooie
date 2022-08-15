@@ -30,7 +30,7 @@ void bsthrow_update(void){
     f32 sp34[3];
     f32 sp28[3];
     f32 sp24;
-    ActorMarker *sp20 = func_802948EC();
+    ActorMarker *sp20 = carriedobj_getMarker();
 
     if(D_8037D580 == 0 && sp20 != NULL)
         func_802948F8(sp20);
@@ -60,7 +60,7 @@ void bsthrow_end(void){
 }
 
 void bsthrow_interrupt(void){
-    if(bs_getInterruptType() == 0x12){
+    if(bs_getInterruptType() == BS_INTR_12){
         if(D_8037D580 == 0){
             func_8028DE6C(carriedObject_getActorID());
         }

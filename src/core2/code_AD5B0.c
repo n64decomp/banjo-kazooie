@@ -106,7 +106,7 @@ enum map_e map_get(void){
     return D_803835D0.map_4;
 }
 
-s32 func_803348CC(){
+s32 exit_get(){
     return D_803835D0.unk8;
 }
 

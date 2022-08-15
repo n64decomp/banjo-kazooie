@@ -41,17 +41,17 @@ ActorInfo D_80391E50 = { MARKER_1FC_POLAR_BEAR_CUB_RED, ACTOR_1EC_POLAR_BEAR_CUB
 
 f32 D_80391E74[3] = {-5.0f, 180.0f, 1.0f};
 Struct_FP_3E00 D_80391E80[] ={
-    {0x11, 0x1FD, 0x1ED, 0x1EE},
-    {0x12, 0x1FE, 0x1EF, 0x1F0},
-    {0x13, 0x1FF, 0x1F1, 0x1F2}
+    {0x11, MARKER_1FD_BLUE_PRESENT_COLLECTABLE,  ACTOR_1ED_BLUE_PRESENT_COLLECTABLE,  0x1EE},
+    {0x12, MARKER_1FE_GREEN_PRESENT_COLLECTABLE, ACTOR_1EF_GREEN_PRESENT_COLLECTABLE, 0x1F0},
+    {0x13, MARKER_1FF_RED_PRESENT_COLLECTABLE,   ACTOR_1F1_RED_PRESENT_COLLECTABLE,   0x1F2}
 };
 
 /* .code */
-void func_8038A1F0(Actor **this_ptr, s32 arg1, enum actor_e actor_id, s32 arg3){
+void func_8038A1F0(Actor **this_ptr, enum marker_e carried_obj_marker_id, enum actor_e actor_id, enum actor_e arg3){
     func_8028F31C((*this_ptr)->position, 600.0f, actor_id, this_ptr);
 
     if(!func_80329530(*this_ptr, 400)) return;
-    if(func_8028E88C() != arg1)        return;
+    if(carriedObj_getMarkerId() != carried_obj_marker_id)        return;
     if(!func_8028FC34())               return;
 
     func_8028FA34(arg3, *this_ptr);

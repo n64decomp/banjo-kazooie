@@ -28,7 +28,7 @@ struct_EE40 D_8037C400[5];
 
 /* .code */
 enum bs_e func_80295EE0(enum bs_e arg0){
-    int sp34;
+    int current_state;
     f32 pad30;
     s32 sp2C;
     s32 sp28;
@@ -37,11 +37,11 @@ enum bs_e func_80295EE0(enum bs_e arg0){
 
     sp2C = 0;
     sp28 = 0;
-    sp34 = bs_getState();
+    current_state = bs_getState();
     if(player_getTransformation() != TRANSFORM_1_BANJO || func_8028EE84() != BSWATERGROUP_0_NONE){
         sp2C = 1;
     }
-    if(bsjig_inJiggyJig(sp34)){
+    if(bsjig_inJiggyJig(current_state)){
         sp28 = 1;
     }
 
@@ -284,157 +284,157 @@ void func_80296590(void){
 
 void func_80296608(void){
     s32 sp2C;
-    s32 sp28;
-    s32 sp24;
+    enum bs_e current_state;
+    enum bs_e next_state;
     s32 sp1C;
 
     sp2C = 1;
-    sp24 = 0;
-    sp28 = bs_getState();
+    next_state = 0;
+    current_state = bs_getState();
     switch(bs_getInterruptType()){
-        case 0x18: //L80296654
+        case BS_INTR_18_CROC_ATE_WRONG: //L80296654
             func_802AD318();
             sp2C = 2;
             break;
-        case 0xa:  //L8029666C
+        case BS_INTR_A:  //L8029666C
             sp2C = 2;
             if(func_8028B2E8()){
-                sp24 = func_80292738();
+                next_state = func_80292738();
             }
             else{
                 miscflag_set(0x19);
-                sp24 = func_8029B504();
+                next_state = func_8029B504();
             }
             break;
-        case 0x36: //L802966A8  
-            sp24 = BS_42_DINGPOT;
+        case BS_INTR_36_DINGPOT: //L802966A8  
+            next_state = BS_42_DINGPOT;
             sp2C = 2;
             break;
-        case 0x24: //L802966B8
+        case BS_INTR_24: //L802966B8
             func_802960C4(0);
-            sp24 = func_80296038();
+            next_state = func_80296038();
             sp2C = 2;
             break;
-        case 0x23: //L802966D8
+        case BS_INTR_23: //L802966D8
             func_802960C4(1);
-            sp24 = func_80296038();
+            next_state = func_80296038();
             sp2C = 2;
             break;
-        case 0x2d: //L802966F8
+        case BS_INTR_2D: //L802966F8
             func_802960C4(3);
-            sp24 = func_80296038();
+            next_state = func_80296038();
             sp2C = 2;
             break;
-        case 0x5:  //L80296718
+        case BS_INTR_5:  //L80296718
             func_802961B4(0);
-            sp24 = func_80296038();
+            next_state = func_80296038();
             sp2C = 2;
             break;
-        case 0x2c: //L80296738
+        case BS_INTR_2C: //L80296738
             item_set(ITEM_14_HEALTH, 0);
             func_80291930(1);
             sp2C = 2;
             break;
-        case 0x13: //L80296760
+        case BS_INTR_13: //L80296760
             item_set(ITEM_14_HEALTH, 0);
             /* missing break ? */
-        case 0xb:  //L8029676C
+        case BS_INTR_B:  //L8029676C
             func_8029622C();
-            sp24 = func_802962BC(0);
+            next_state = func_802962BC(0);
             sp2C = 2;
             break;
-        case 0x26: //L8029678C  
+        case BS_INTR_26: //L8029678C  
             item_set(ITEM_14_HEALTH, 0);
             func_8029B930();
             func_8029B890();
             sp2C = 2;
             break;
-        case 0x19: //L802967BC
-            sp24 = func_8029B504();
+        case BS_INTR_19: //L802967BC
+            next_state = func_8029B504();
             sp2C = 2;
             break;
-        case 0x11: //L802967D4
-            sp24 = BS_54_SWIM_DIE;
+        case BS_INTR_11_DROWN: //L802967D4
+            next_state = BS_54_SWIM_DIE;
             sp2C = 2;
             break;
-        case 0x17: //L802967E4
+        case BS_INTR_17: //L802967E4
             func_80294A58(D_8037C3E0.unk18);
-            sp24 = BS_70_CROC_EAT_GOOD;
+            next_state = BS_70_CROC_EAT_GOOD;
             sp2C = 2;
             break;
-        case 0x2f: //L80296800
-            sp24 = 0x40;
+        case BS_INTR_2F_LOGGO: //L80296800
+            next_state = BS_40_PUMPKIN_FLUSH;
             sp2C = 2;
             break;
-        case 0x9:  //L80296810
+        case BS_INTR_9:  //L80296810
             sp2C = 2;
-            sp24 = func_80295EE0(0);
+            next_state = func_80295EE0(0);
             break;
-        case 0x1a: //L80296828 
-            if(!bsbtrot_inSet(sp28)){
-                sp24 = func_8029B504();
+        case BS_INTR_1A: //L80296828 
+            if(!bsbtrot_inSet(current_state)){
+                next_state = func_8029B504();
             } 
             sp2C = 2;
             break;
-        case 0x1b: //L80296850
-            sp24 = func_8029B504();
+        case BS_INTR_1B: //L80296850
+            next_state = func_8029B504();
             sp2C = 2;
             break;
-        case 0x1f: //L80296868
+        case BS_INTR_1F: //L80296868
             if(func_80297C6C() != 3 && func_8028D60C()){
-        case 0x31: //L8029688C
+        case BS_INTR_31: //L8029688C
                 func_802960C4(2);
                 item_dec(ITEM_14_HEALTH);
-                sp24 = func_802962BC(0);
+                next_state = func_802962BC(0);
                 sp2C = 2;   
             }
             break;
-        case 0x21: //L802968B4
+        case BS_INTR_21: //L802968B4
             if(func_80297C6C() != 3){
-        case 0x33: //L802968C8
+        case BS_INTR_33: //L802968C8
                 func_802960C4(0);
                 item_dec(ITEM_14_HEALTH);
-                sp24 = func_802962BC(0);
+                next_state = func_802962BC(0);
                 sp2C = 2;   
             }
             break;
-        case 0x20: //L802968F0
+        case BS_INTR_20: //L802968F0
             if(func_80297C6C() != 3){
                 func_802960C4(1);
                 item_dec(ITEM_14_HEALTH);
-                sp24 = func_802962BC(0);
+                next_state = func_802962BC(0);
                 sp2C = 2;   
             }
             break;
-        case 0x2e: //L8029692C  
+        case BS_INTR_2E: //L8029692C  
             func_802960C4(3);
             item_dec(ITEM_14_HEALTH);
-            sp24 = func_802962BC(0);
+            next_state = func_802962BC(0);
             sp2C = 2;
             break;
-        case 0x4:  //L80296954
+        case BS_INTR_4:  //L80296954
             func_802961B4(1);
-            sp24 = func_802962BC(0);
+            next_state = func_802962BC(0);
             sp2C = 2;
             break;
-        case 0x14: //L80296974
-            sp24 = BS_5_JUMP;
+        case BS_INTR_14: //L80296974
+            next_state = BS_5_JUMP;
             sp2C = 2;
             break;
-        case 0x35: //L80296984
+        case BS_INTR_35: //L80296984
             miscflag_set(0x1a);
-            sp24 = func_8029B504();
+            next_state = func_8029B504();
             sp2C = 2;
             break;
-        case 0x34: //L802969A4
-            sp24 = func_802926E8();
+        case BS_INTR_34: //L802969A4
+            next_state = func_802926E8();
             sp2C = 2;
             break;
-        case 0x27: //L802969BC 
-            sp24 = 0x7C;
+        case BS_INTR_27_BANJO_SLED: //L802969BC 
+            next_state = BS_7C_SLED;
             sp2C = 2;
             break;
-        case 0xc:  //L802969CC
+        case BS_INTR_C_CLIMB:  //L802969CC
             sp1C = player_getTransformation();
             sp1C = !((sp1C == TRANSFORM_1_BANJO) || (sp1C == TRANSFORM_7_WISHWASHY));
             if( 
@@ -443,47 +443,47 @@ void func_80296608(void){
                 && !miscflag_isTrue(0xf)
                 && !func_8028B2E8()
             ){
-                sp24 = BS_4F_CLIMB_IDLE;
+                next_state = BS_4F_CLIMB_IDLE;
                 sp2C = 2;
                 
             }
             break;
-        case 0x1e: //L80296A44  
+        case BS_INTR_1E: //L80296A44  
             if(func_8028ABB8()){
                 sp2C = 2;
-                sp24 = func_8029BE5C();
+                next_state = func_8029BE5C();
             }
             break;
-        case 0x1d: //L80296A68
+        case BS_INTR_1D: //L80296A68
             if(func_8028ABB8()){
                 sp2C = 2;
-                sp24 = func_8029BF4C();
+                next_state = func_8029BF4C();
             }
             break;
-        case 0x1c: //L80296A8C
+        case BS_INTR_1C: //L80296A8C
             if(func_8028ABB8()){
                 sp2C = 2;
-                sp24 = func_8029BED4();
+                next_state = func_8029BED4();
             }
             break;
-        case 0x15: //L80296AB0
+        case BS_INTR_15: //L80296AB0
             sp2C = 2;
-            if(bsbfly_inSet(sp28)){
-                sp24 = BS_24_FLY;
+            if(bsbfly_inSet(current_state)){
+                next_state = BS_24_FLY;
             }
             else{
                 switch(func_8028EE84()){
                     case BSWATERGROUP_1_SURFACE:
-                        sp24 = BS_2D_SWIM_IDLE;
+                        next_state = BS_2D_SWIM_IDLE;
                         break;
                     case BSWATERGROUP_2_UNDERWATER:
-                        sp24 = BS_2B_DIVE_IDLE;
+                        next_state = BS_2B_DIVE_IDLE;
                         break;
                     case BSWATERGROUP_0_NONE://L80296B0C
                         if(func_8028B2E8())
-                            sp24 = bs_getIdleState();
+                            next_state = bs_getIdleState();
                         else
-                            sp24 = func_8029BA80();
+                            next_state = func_8029BA80();
                         break;
 
                 }
@@ -491,39 +491,39 @@ void func_80296608(void){
             func_80297970(0.0f);
             func_80297A0C(0);
             break;
-        case 0x25: //L80296B54
+        case BS_INTR_25: //L80296B54
             sp2C = 2;
-            sp24 = func_8029BED4();
+            next_state = func_8029BED4();
             break;
-        case 0xf:  //L80296B68
+        case BS_INTR_F:  //L80296B68
             miscflag_set(6);
-            sp24 = func_8029B504();
+            next_state = func_8029B504();
             sp2C = 2;
             break;
-        case 0x30: //L80296B88
+        case BS_INTR_30: //L80296B88
             item_set(ITEM_14_HEALTH, 0);
             miscflag_set(6);
-            sp24 = func_8029B504();
+            next_state = func_8029B504();
             sp2C = 2;
             break;
-        case 0x37: //L80296BB4
-            sp24 = func_80292710();
+        case BS_INTR_37: //L80296BB4
+            next_state = func_80292710();
             sp2C = 2;
             break;
-        case 0x2a: //L80296BCC
+        case BS_INTR_2A: //L80296BCC
             sp2C = 2;
-            sp24 = func_8029B504();
-            miscflag_set(0x14);
+            next_state = func_8029B504();
+            miscflag_set(MISC_FLAG_14_LOSE_BOGGY_RACE);
             break;
-        case 0x29: //L80296BEC
+        case BS_INTR_27_WALRUS_SLED: //L80296BEC
             if(player_getTransformation() == TRANSFORM_4_WALRUS){
-                sp24 = BS_7D_WALRUS_SLED;
+                next_state = BS_7D_WALRUS_SLED;
                 sp2C = 2;
             }
             break;
     }//L80296C0C
     func_8029A86C(sp2C);
-    bs_setState(sp24);
+    bs_setState(next_state);
 }
 
 void func_80296C30(void){

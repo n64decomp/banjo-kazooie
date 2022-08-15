@@ -125,7 +125,7 @@ void func_8038AF90(Struct_MMM_47D0_0 *arg0, Struct68s *arg1, f32 arg2) {
         func_8024E71C(0, sp40);
         sp3C = func_8038AD4C(arg0, arg1);
         if (sp3C) {
-            func_8028F66C(0xD);
+            func_8028F66C(BS_INTR_D_SURF);
         }
         if (sp3C && ((sp40[0] != 0.0f) || (sp40[1] != 0.0f))) {
             func_8024C764(sp70);

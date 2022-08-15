@@ -178,8 +178,8 @@ Struct_core2_13FC0 D_803648F0[14] = {
 // extern struct {
 //     s32 map_id;
 //     s32 exit_id;
-// }D_8037D1E0;
-s32 D_8037D1E0[2];
+// }gVoidOutReturnLocation;
+s32 gVoidOutReturnLocation[2];
 u8  D_8037D1E8;
 
 /* .code */
@@ -219,7 +219,7 @@ enum bs_e func_8029B458(void){
             return BS_61_CROC_FALL;
 
         case TRANSFORM_4_WALRUS:
-            if(func_802B8190(sp1C))
+            if(bswalrus_inSledSet(sp1C))
                 return BS_82_WALRUS_SLED_LOSE_IN_AIR;
             return BS_6A_WALRUS_FALL;
 
@@ -287,7 +287,7 @@ void func_8029B62C(void){
         }
     }
     else{
-        func_802E4048(D_8037D1E0[0], D_8037D1E0[1], 1);
+        func_802E4048(gVoidOutReturnLocation[0], gVoidOutReturnLocation[1], 1);
     }
 }
 
@@ -296,7 +296,7 @@ void func_8029B6F0(void){
         func_8029B62C();
     }
     else{
-        func_802E4078(D_8037D1E0[0], D_8037D1E0[1], 1);
+        func_802E4078(gVoidOutReturnLocation[0], gVoidOutReturnLocation[1], 1);
     }
 }
 
@@ -422,7 +422,7 @@ enum bs_14420_e func_8029BAF0(void){
         return BS14420_2_CROC;
 
     case TRANSFORM_4_WALRUS://L8029BB44
-        if (func_802B8190(state_id)) {
+        if (bswalrus_inSledSet(state_id)) {
             return BS14420_A_WALRUS_SLED;
         }
         return BS14420_3_WALRUS;
@@ -695,21 +695,21 @@ void func_8029C5E8(void){
     func_8029AE1C();
 }
 
-void func_8029C608(void) {
+void update_void_return_Location(void) {
     enum level_e level_id;
-    enum map_e sp18;
-    s32 phi_v0;
+    enum map_e map_id;
+    s32 exit_id;
 
     level_id = level_get();
     if ((level_id == 0) || (level_id == LEVEL_6_LAIR)) {
-        sp18 = map_get();
-        phi_v0 = func_803348CC();
+        map_id = map_get();
+        exit_id = exit_get();
     } else {
-        sp18 = func_8030ADD8(level_id);
-        phi_v0 = func_8030AE24(level_id);
+        map_id = level_get_main_map(level_id);
+        exit_id = level_get_main_exit(level_id);
     }
-    D_8037D1E0[1] = phi_v0;
-    D_8037D1E0[0] = sp18;
+    gVoidOutReturnLocation[1] = exit_id;
+    gVoidOutReturnLocation[0] = map_id;
 }
 
 void func_8029C674(void) {
@@ -769,8 +769,8 @@ void func_8029C7F4(s32 arg0, s32 arg1, s32 arg2, s32 arg3){
 }
 
 void func_8029C834(enum map_e map_id, s32 exit_id){
-    D_8037D1E0[0] = map_id;
-    D_8037D1E0[1] = exit_id;
+    gVoidOutReturnLocation[0] = map_id;
+    gVoidOutReturnLocation[1] = exit_id;
 }
 
 void func_8029C848(AnimCtrl *arg0) {
@@ -862,8 +862,8 @@ s32 func_8029CA94(s32 arg0){
     if(miscflag_isTrue(0x7))
         arg0 = BS_44_JIG_JIGGY;
 
-    if(miscflag_isTrue(0x14))
-        arg0 = (player_getTransformation() == TRANSFORM_4_WALRUS) ? 0x80 : 0x53;
+    if(miscflag_isTrue(MISC_FLAG_14_LOSE_BOGGY_RACE))
+        arg0 = (player_getTransformation() == TRANSFORM_4_WALRUS) ? BS_80_WALRUS_SLED_LOSE : BS_53_TIMEOUT;
     
     miscflag_clear(0xF);
 
@@ -905,7 +905,7 @@ void func_8029CCC4(void){
     if(miscflag_isFalse(7)) return;
     if( miscflag_isTrue(0xF)
         && miscflag_isFalse(6)
-        && miscflag_isFalse(20)
+        && miscflag_isFalse(MISC_FLAG_14_LOSE_BOGGY_RACE)
     ){
         miscflag_clear(0xF);
     }

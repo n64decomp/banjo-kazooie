@@ -41,7 +41,7 @@ void func_802B61E0(void){
 void func_802B6218(void){}
 
 void func_802B6220(void){
-    if(bs_getInterruptType() == 8){
+    if(bs_getInterruptType() == BS_INTR_8){
         D_8037D570 = 1;
         func_8029A86C(2);
     }

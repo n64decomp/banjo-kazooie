@@ -95,7 +95,7 @@ void bsjump_update(void){
     }
 
     _get_velocity(&velocity);
-    if((button_released(BUTTON_A) && 0.0f < velocity[1] && !D_8037D4C2) || !func_8028AB48()){
+    if((button_released(BUTTON_A) && 0.0f < velocity[1] && !D_8037D4C2) || !can_control_jump_height()){
         gravity_reset();
     }
 
@@ -216,7 +216,7 @@ void bsjump_fall_update(void){
         if(func_8028B424())
             sp2C = BS_3D_FALL_TUMBLING;
 
-        if(should_flap() && miscflag_isFalse(5))
+        if(should_flap() && miscflag_isFalse(MISC_FLAG_5_HAS_PECKED))
             sp2C = BS_BFLAP;
 
         if(should_peck())
@@ -230,7 +230,7 @@ void bsjump_fall_update(void){
     }
     else if(player_inWater()){
         func_8029CCC4();
-        if(miscflag_isTrue(6) || miscflag_isTrue(0x14)){
+        if(miscflag_isTrue(6) || miscflag_isTrue(MISC_FLAG_14_LOSE_BOGGY_RACE)){
             sp2C = BS_D_TIMEOUT;
         }
 

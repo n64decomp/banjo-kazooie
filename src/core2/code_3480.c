@@ -18,7 +18,7 @@ s32 D_8037BF50;
 
 /* .code */
 //snacker_clearState
-void func_8028A410(void){
+void snacker_reset(void){
     D_8037BF50 = 0;
 }
 

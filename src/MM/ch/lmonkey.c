@@ -33,7 +33,7 @@ ActorInfo chlmonkeyInfo = { MARKER_A_CHIMPY, ACTOR_F_CHIMPY, ASSET_35D_MODEL_CHI
 void func_80388300(Actor **arg0){
     func_8028F31C((*arg0)->position, 800.0f, ACTOR_29_ORANGE_COLLECTABLE, arg0);
     if( func_80329530(*arg0, 0x159) 
-        && func_8028E88C() == 0x36
+        && carriedObj_getMarkerId() == MARKER_36_ORANGE_COLLECTABLE
         && func_8028FC34()
     ){
         func_8028FA34(0xc6, *arg0);

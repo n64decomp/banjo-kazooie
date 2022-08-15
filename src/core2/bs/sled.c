@@ -2,23 +2,23 @@
 #include "functions.h"
 #include "variables.h"
 
-ActorMarker *D_8037D510;
+ActorMarker *bssled_gSledMarker;
 
 /* .code */
 void func_802B3F20(void){
-    Actor *actor;
+    Actor *sled;
 
-    D_8037D510 = func_80296554();
-    actor = marker_getActor(D_8037D510);
-    actor->unk138_20 = TRUE;
+    bssled_gSledMarker = func_80296554();
+    sled = marker_getActor(bssled_gSledMarker);
+    sled->unk138_20 = TRUE;
 }
 
 void func_802B3F60(void){
-    Actor *actor;
-    if(D_8037D510 != NULL){
-        actor = marker_getActor(D_8037D510);
-        actor->unk138_20 = FALSE;
-        D_8037D510 = NULL;
+    Actor *sled;
+    if(bssled_gSledMarker != NULL){
+        sled = marker_getActor(bssled_gSledMarker);
+        sled->unk138_20 = FALSE;
+        bssled_gSledMarker = NULL;
     }
 }
 
@@ -33,7 +33,7 @@ void bssled_init(void){
 
 void bssled_update(void){
     s32 state = 0;
-    if(D_8037D510 == NULL)
+    if(bssled_gSledMarker == NULL)
         state = BS_2F_FALL;
     bs_setState(state);
 }
@@ -47,7 +47,7 @@ void bssled_end(void){
 }
 
 void bssled_interrupt(void){
-    if(bs_getInterruptType() == 0x28){
+    if(bs_getInterruptType() == BS_INTR_28){
         func_802B3F60();
         func_8029A86C(2);
     }

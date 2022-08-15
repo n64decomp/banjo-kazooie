@@ -709,7 +709,7 @@ void func_8038D670(enum FF_Action next_state) {
                         func_8028F5F8(sp30);
                     } else {
                         func_8038D548(0);
-                        func_8028F66C(0x13);
+                        func_8028F66C(BS_INTR_13);
                     }
                     func_8030E6D4(SFX_125_AUDIENCE_CHEERING_2);
                 } else {

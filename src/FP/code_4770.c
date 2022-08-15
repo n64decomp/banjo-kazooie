@@ -198,7 +198,7 @@ void func_8038B130(enum jiggy_e jiggy_id){
 }
 
 void func_8038B190(void){
-    func_8028F66C(0x2B);
+    func_8028F66C(BS_INTR_2B);
     mapSpecificFlags_set(4, FALSE);
     func_8028F918(0);
 }
@@ -223,7 +223,7 @@ void func_8038B268(void){
     timedFunc_set_0(0.0f, func_8038AEA0);
     timedFunc_set_0(0.0f, func_8038B0B8);
     func_8028FA14(map_get(), 0x11);
-    func_8028F66C(0x2A);
+    func_8028F66C(BS_INTR_2A);
 }
 
 void func_8038B2C8(ActorMarker *caller, enum asset_e text_id, s32 arg2){
@@ -252,7 +252,7 @@ void func_8038B2C8(ActorMarker *caller, enum asset_e text_id, s32 arg2){
         case 0xc10: //8038B358
             func_8038ABDC();
             func_8028FA14(map_get(), 0x11);
-            func_8028F66C(0x2A);
+            func_8028F66C(BS_INTR_2A);
             timedFunc_set_0(0.0f, func_8038B1C4);
             break;
     }//L8038B38C

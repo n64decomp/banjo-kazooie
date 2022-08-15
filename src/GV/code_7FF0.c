@@ -191,7 +191,7 @@ void func_8038E4DC(Actor *this){
     }
     if(!this->unk16C_4){
         this->unk16C_4 = TRUE;
-        if(func_803348CC() == 3){
+        if(exit_get() == 3){
             if(0.65 < this->unk48 && this->unk48 < 0.95){
                 func_80343E20(0x6a, 0x7ff8, 0.32842f, 0x34);
             }
@@ -291,7 +291,7 @@ void func_8038E97C(Actor *this){
 
     if(!this->unk16C_4){
         this->unk16C_4 = TRUE;
-        if(func_803348CC() == 7){
+        if(exit_get() == 7){
             this->position_z += 117.0;
             this->position_y += 130.0;
             this->unk38_31 = 30;

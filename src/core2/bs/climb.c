@@ -213,7 +213,7 @@ void func_802ABD40(void){
 //bsclimb_interrupt
 void func_802ABD60(void){
     s32 next_state = 0;
-    if(bs_getInterruptType() == 0xC){
+    if(bs_getInterruptType() == BS_INTR_C_CLIMB){
         D_8037D3D8 = TRUE;
     }
     else{

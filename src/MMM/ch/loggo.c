@@ -109,7 +109,7 @@ void chLoggo_update(Actor *this){
                 FUNC_8030E8B4(SFX_92_TOILET_FLUSH, 1.0f, 32000, this->position, 600, 1500);
                 levelSpecificFlags_set(0x33, TRUE);
                 ml_vec3f_assign(sp38, this->position_x - 50.0f, this->position_y + 50.0f, this->position_z);
-                func_8028F6E4(0x2F, sp38);
+                func_8028F6E4(BS_INTR_2F_LOGGO, sp38);
             }
 
             if(0.0 < this->unk60){

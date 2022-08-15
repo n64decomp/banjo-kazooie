@@ -4,8 +4,8 @@
 
 /* .bss */
 f32 player_position[3];
-f32 D_8037C5B0[3];
-f32 D_8037C5C0[3];
+f32 D_8037C5B0[3]; //player_ideal position?
+f32 D_8037C5C0[3]; //player_position_offset
 
 /* .code */
 void func_802983F0(void){

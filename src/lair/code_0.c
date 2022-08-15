@@ -682,7 +682,7 @@ void func_80387730(Actor *this) {
                     func_80320004(this->unkF4_8 + 0x39, TRUE);
                     marker_despawn(this->marker);
                     func_8028F918(0);
-                    func_8028F66C(0x35);
+                    func_8028F66C(BS_INTR_35);
                     return;
                 }
                 if (this->marker->unk14_21) {

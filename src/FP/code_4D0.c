@@ -58,7 +58,7 @@ void func_803869FC(ActorMarker *this_marker, ActorMarker *other_marker){
         if( this->position_y + 20.0f < plyr_pos[1] 
             && func_8028F20C()
             && player_getTransformation() == TRANSFORM_4_WALRUS
-            && func_8028F68C(0x29, this->marker)
+            && func_8028F68C(BS_INTR_27_WALRUS_SLED, this->marker)
         ){
             func_80386920(this, 3); //start_race
         }

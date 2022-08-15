@@ -26,7 +26,7 @@ s32 can_beak_bust(void){
     return ability_hasLearned(ABILITY_2_BEAK_BUSTER);
 }
 
-s32 func_8028A9C0(void){ 
+s32 can_control_camera(void){ 
     return ability_hasLearned(ABILITY_3_CAMERA_CONTROL);
 }
 
@@ -34,7 +34,7 @@ s32 can_claw(void){
     return ability_hasLearned(ABILITY_4_BEAR_PUNCH);
 }
 
-s32 func_8028AA00(void){ 
+s32 can_climb(void){ 
     return ability_hasLearned(ABILITY_5_CLIMB);
 }
 
@@ -49,8 +49,8 @@ s32 can_egg(void){
 }
 
 int can_flap(void){
-    return miscflag_isFalse(0x12) 
-        && miscflag_isFalse(0x5) 
+    return miscflag_isFalse(MISC_FLAG_12_HAS_FLAPPED) 
+        && miscflag_isFalse(MISC_FLAG_5_HAS_PECKED) 
         && ability_hasLearned(ABILITY_7_FLAP);
 }
 
@@ -58,22 +58,22 @@ s32 can_flip(void){
     return ability_hasLearned(ABILITY_8_FLIP);
 }
 
-s32 func_8028AB28(void){
+s32 can_fly(void){
     return ability_hasLearned(ABILITY_9_FLY);
 }
 
-s32 func_8028AB48(void){
+s32 can_control_jump_height(void){
     return ability_hasLearned(ABILITY_A_HOLD_A_JUMP_HIGHER);
 }
 
 int can_peck(void){
-    return miscflag_isFalse(0x5)
-        && miscflag_isFalse(0x12)
+    return miscflag_isFalse(MISC_FLAG_5_HAS_PECKED)
+        && miscflag_isFalse(MISC_FLAG_12_HAS_FLAPPED)
         && ability_hasLearned(ABILITY_B_RATATAT_RAP);
 }
 
 int func_8028ABB8(void){
-        if(miscflag_isTrue(0x14) || miscflag_isTrue(0x19))
+        if(miscflag_isTrue(MISC_FLAG_14_LOSE_BOGGY_RACE) || miscflag_isTrue(0x19))
             return 0;
         if(bs_getState() == BS_56_RECOIL)
             return 0;
@@ -84,11 +84,11 @@ s32 can_roll(void){
     return ability_hasLearned(ABILITY_C_ROLL);
 }
 
-s32 func_8028AC38(void){
+s32 can_shock_jump(void){
     return ability_hasLearned(ABILITY_D_SHOCK_JUMP);
 }
 
-s32 func_8028AC58(void){
+s32 can_use_wading_boots(void){
     return ability_hasLearned(ABILITY_E_WADING_BOOTS);
 }
 
@@ -185,7 +185,7 @@ int func_8028B128(void){
     return miscflag_isTrue(0x13);
 }
 
-int func_8028B148(void){
+bool player_isInRBB(void){
     return level_get() == LEVEL_9_RUSTY_BUCKET_BAY;
 }
 

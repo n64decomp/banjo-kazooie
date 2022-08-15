@@ -15,11 +15,11 @@ void miscflag_clearAll(void){
     }
 }
 
-int miscflag_isTrue(s32 arg0){
+bool miscflag_isTrue(enum misc_flag_e arg0){
     return D_8037C1D0[arg0];
 }
 
-int miscflag_isFalse(s32 arg0){
+bool miscflag_isFalse(enum misc_flag_e arg0){
     return !D_8037C1D0[arg0];
 }
 

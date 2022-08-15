@@ -37,7 +37,7 @@ void func_80322130(Struct_core2_9B180_0 *arg0) {
 
     player_getPosition(sp1C);
     if (sp1C[1] < D_80383334) {
-        if (func_8028F66C(0x2C) == 2) {
+        if (func_8028F66C(BS_INTR_2C) == 2) {
             arg0->unk4 = 0;
             FUNC_8030E624(SFX_96_HOTSAND_EEL_HISS, 1.0f, 32000);
             FUNC_8030E624(SFX_A_BANJO_LANDING_05, 1.0f, 32000);

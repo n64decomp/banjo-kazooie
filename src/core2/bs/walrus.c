@@ -5,7 +5,7 @@
 extern void func_8029AD68(f32, s32);
 extern f32  ml_vec3f_dot_product(f32[3], f32[3]);
 
-int func_802B81F0(enum bs_e state);
+int bswalrus_inSet(enum bs_e state);
 
 /* .data */
 f32 D_80364DC0 = 30.0f;
@@ -87,7 +87,7 @@ void func_802B7F28(void) {
 }
 
 void func_802B8048(void){
-    if(!func_802B81F0(bs_getNextState())){
+    if(!bswalrus_inSet(bs_getNextState())){
         pitch_setIdeal(0.0f);
         roll_setIdeal(0.0f);
         func_8029B0C0();
@@ -101,7 +101,7 @@ void func_802B8048(void){
 }
 
 void func_802B80D0(void) {
-    if (func_802B8190(bs_getNextState()) == 0) {
+    if (bswalrus_inSledSet(bs_getNextState()) == 0) {
         func_802B8048();
         func_8029E0E8(0);
     }
@@ -112,14 +112,14 @@ void func_802B8110(void){
 }
 
 void func_802B813C(void) {
-    if (func_802B8190(bs_getPrevState()) == 0) {
+    if (!bswalrus_inSledSet(bs_getPrevState())) {
         D_8037D5C0 = 0.0f;
         func_8029E0E8(1);
         func_8029CF48(4, 1, 0.15f);
     }
 }
 
-int func_802B8190(enum bs_e state){
+int bswalrus_inSledSet(enum bs_e state){
     return state == 0x81
         || state == BS_7D_WALRUS_SLED
         || state == BS_7E_WALRUS_SLED
@@ -128,7 +128,7 @@ int func_802B8190(enum bs_e state){
         || state == BS_9C_WALRUS_SLED_DRONE;
 }
 
-int func_802B81F0(enum bs_e state){
+int bswalrus_inSet(enum bs_e state){
     return state == BS_67_WALRUS_IDLE
         || state == BS_WALRUS_WALK
         || state == BS_WALRUS_JUMP
@@ -136,7 +136,7 @@ int func_802B81F0(enum bs_e state){
         || state == BS_WALRUS_OW
         || state == BS_WALRUS_DIE
         || state == BS_95_WALRUS_DRONE
-        || func_802B8190(state);
+        || bswalrus_inSledSet(state);
 }
 
 void bswalrus_idle_init(void){
@@ -754,7 +754,7 @@ void func_802B9880(void) {
 }
 
 void func_802B98C0(void) {
-    if (bs_getInterruptType() == 0x2B) {
+    if (bs_getInterruptType() == BS_INTR_2B) {
         func_8029A86C(2);
         bs_setState(BS_67_WALRUS_IDLE);
         return;

@@ -1865,11 +1865,11 @@ enum bs_e
     BS_3A_CARRY_IDLE,
     BS_CARRY_WALK = 0x3B,
     BS_3C,
-    BS_3D_FALL_TUMBLING = 0x3D,
-    BS_3E_ANT_OW = 0x3E,
+    BS_3D_FALL_TUMBLING,
+    BS_3E_ANT_OW,
     BS_3F,
-    //BS_PUMPKIN_unk40,
-    BS_41_DIE = 0x41,
+    BS_40_PUMPKIN_FLUSH,
+    BS_41_DIE,
     BS_42_DINGPOT,
     BS_43_ANT_DIE,
     BS_44_JIG_JIGGY,
@@ -1935,7 +1935,7 @@ enum bs_e
     BS_7D_WALRUS_SLED,
     BS_7E_WALRUS_SLED,
     BS_7F_DIVE_OW = 0x7F,
-    //BS_7D_WALRUS_SLED_LOSE = 0x80,
+    BS_80_WALRUS_SLED_LOSE,
     BS_81_WALRUS_SLED_LOCKED = 0x81,
     BS_82_WALRUS_SLED_LOSE_IN_AIR,
 
@@ -3898,9 +3898,17 @@ enum misc_flag_e{
     MISC_FLAG_1_ON_FLIGHT_PAD = 0x1,
     MISC_FLAG_2_ON_SPRING_PAD,
 
+    MISC_FLAG_5_HAS_PECKED = 0x5,
+
     MISC_FLAG_E_TOUCHING_WADING_BOOTS = 0xE,
 
     MISC_FLAG_10_TOUCHING_TURBO_TRAINERS = 0x10,
+
+    //0x12 has used flap
+    MISC_FLAG_12_HAS_FLAPPED = 0x12,
+    //0x13 in difficult terrain (mud)
+    MISC_FLAG_14_LOSE_BOGGY_RACE = 0x14,
+    //0x15 touching loadzone?
 
     MISC_FLAG_1B_TRANSFORMING = 0x1B
 };

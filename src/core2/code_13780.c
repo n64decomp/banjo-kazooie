@@ -51,7 +51,7 @@ void bs_updateState(void){
         bsList_getUpdateMethod(D_8037D164)();
 }
 
-s32 bs_checkInterrupt(s32 arg0){
+s32 bs_checkInterrupt(enum bs_interrupt_e arg0){
     D_8037D16C = arg0;
     D_8037D170 = 0;
     if(bsList_getInterruptMethod(D_8037D164) != NULL)
@@ -63,6 +63,6 @@ void func_8029A86C(s32 arg0){
     D_8037D170 = arg0;
 }
 
-s32 bs_getInterruptType(void){
+enum bs_interrupt_e bs_getInterruptType(void){
     return D_8037D16C;
 }

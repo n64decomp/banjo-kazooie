@@ -378,9 +378,9 @@ void chvilegame_player_consume_piece(Actor *this) {
                     timedFunc_set_1(0.5f, func_802FDCB8, 0x1A);
                     timedFunc_set_1(1.0f, func_802FDCB8, 0x1A);
                 }
-                func_8028F6B8(0x17, (i_ptr->type != YUMBLIE) ? 0x3F7 : 0x3F6);
+                func_8028F6B8(BS_INTR_17, (i_ptr->type != YUMBLIE) ? ASSET_3F7_MODEL_GRUMBLIE : ASSET_3F6_MODEL_YUMBLIE);
                 if (!is_correct_type) {
-                    func_8028F66C(0x18);
+                    func_8028F66C(BS_INTR_18_CROC_ATE_WRONG);
                 }
                 func_8038B684(i_ptr->marker);
                 return;

@@ -183,7 +183,7 @@ void func_8028E4B0(void) {
     D_8037BFBA = TRUE;
     D_8037BFB9 = FALSE;
     func_80295914();
-    sp20 = func_803348CC();
+    sp20 = exit_get();
     D_8037BFB8 = 0;
     player_setPosition(D_803636C0);
     if (func_803203FC(0xE) || func_802D686C() || (sp20 == 0x65)){
@@ -283,26 +283,26 @@ void func_8028E84C(f32 arg0[3]){
 }
 
 ActorMarker *func_8028E86C(void){
-    return func_802948EC();
+    return carriedobj_getMarker();
 }
 
-s32 func_8028E88C(void){
+enum marker_e carriedObj_getMarkerId(void){
     ActorMarker *marker;
 
-    marker = func_802948EC();
+    marker = carriedobj_getMarker();
     if(marker){
         return marker->unk14_20;
     }
     return 0;
 }
 
-enum actor_e func_8028E8C0(void){
+enum actor_e carriedObj_getActorId(void){
     ActorMarker *marker;
     Actor *actor;
 
-    marker = func_802948EC();
+    marker = carriedobj_getMarker();
     
-    if(marker){
+    if(marker != NULL){
         actor = marker_getActor(marker);
         return actor->modelCacheIndex;
     }
@@ -454,7 +454,7 @@ enum bsgroup_e func_8028ECAC(void) {
     if (bsclimb_inSet(state_id)) {
         return BSGROUP_5_CLIMB;
     }
-    if (func_802B8190(state_id)) {
+    if (bswalrus_inSledSet(state_id)) {
         return BSGROUP_C_WALRUS_SLED;
     }
     if (miscflag_isTrue(9) != 0) {
@@ -689,13 +689,13 @@ void func_8028F408(f32 arg0[3]){
 bool func_8028F428(s32 arg0, ActorMarker *marker) {
     func_80296CB4(arg0);
     func_80296CA8(marker);
-    return bs_checkInterrupt(0x24) == 2;
+    return bs_checkInterrupt(BS_INTR_24) == 2;
 }
 
 bool func_8028F45C(s32 arg0, f32 arg1[3]) {
     func_80296CB4(arg0);
     func_80296CC0(arg1);
-    return bs_checkInterrupt(0x23) == 2;
+    return bs_checkInterrupt(BS_INTR_23) == 2;
 }
 
 bool func_8028F490(f32 arg0[3]){
@@ -707,35 +707,35 @@ bool func_8028F4B8(f32 arg0[3], f32 arg1, f32 arg2) {
     func_80296C9C(arg2);
     func_80296CB4(0xE);
     func_80296CC0(arg0);
-    return bs_checkInterrupt(0x2D) == 2;
+    return bs_checkInterrupt(BS_INTR_2D) == 2;
 }
 
 bool func_8028F504(s32 arg0) {
     func_80296CB4(arg0);
-    return bs_checkInterrupt(0x1f) == 2;
+    return bs_checkInterrupt(BS_INTR_1F) == 2;
 }
 
 bool func_8028F530(s32 arg0) {
     func_80296CB4(arg0);
-    return bs_checkInterrupt(0x31) == 2;
+    return bs_checkInterrupt(BS_INTR_31) == 2;
 }
 
 bool func_8028F55C(s32 arg0, ActorMarker *marker) {
     func_80296CB4(arg0);
     func_80296CA8(marker);
-    return bs_checkInterrupt(0x21) == 2;
+    return bs_checkInterrupt(BS_INTR_21) == 2;
 }
 
 bool func_8028F590(s32 arg0, ActorMarker *marker) {
     func_80296CB4(arg0);
     func_80296CA8(marker);
-    return bs_checkInterrupt(0x33) == 2;
+    return bs_checkInterrupt(BS_INTR_33) == 2;
 }
 
 bool func_8028F5C4(s32 arg0, f32 arg1[3]) {
     func_80296CB4(arg0);
     func_80296CC0(arg1);
-    return bs_checkInterrupt(0x20) == 2;
+    return bs_checkInterrupt(BS_INTR_20) == 2;
 }
 
 bool func_8028F5F8(f32 arg0[3]){
@@ -747,24 +747,24 @@ bool func_8028F620(f32 arg0[3], f32 arg1, f32 arg2) {
     func_80296C9C(arg2);
     func_80296CB4(0x10);
     func_80296CC0(arg0);
-    return bs_checkInterrupt(0x2E) == 2;
+    return bs_checkInterrupt(BS_INTR_2E) == 2;
 }
 
-s32 func_8028F66C(s32 arg0){
+s32 func_8028F66C(enum bs_interrupt_e arg0){
     return bs_checkInterrupt(arg0);
 }
 
-s32 func_8028F68C(s32 arg0, ActorMarker *marker){
+s32 func_8028F68C(enum bs_interrupt_e arg0, ActorMarker *marker){
     func_80296CA8(marker);
     return bs_checkInterrupt(arg0);
 }
 
-s32 func_8028F6B8(s32 arg0, s32 arg1){
-    func_80296CB4(arg1);
+s32 func_8028F6B8(enum bs_interrupt_e arg0, enum asset_e model_id){
+    func_80296CB4(model_id);
     return bs_checkInterrupt(arg0);
 }
 
-s32 func_8028F6E4(s32 arg0, f32 arg1[3]){
+s32 func_8028F6E4(enum bs_interrupt_e arg0, f32 arg1[3]){
     func_80296CC0(arg1);
     return bs_checkInterrupt(arg0);
 }
@@ -870,7 +870,7 @@ void func_8028FA14(enum map_e map_id, s32 exit_id){
     func_8029C834(map_id, exit_id);
 }
 
-void func_8028FA34(s32 arg0, Actor *arg1){
+void func_8028FA34(enum actor_e arg0, Actor *arg1){
     func_8028DEEC(arg0, arg1);
 }
 
@@ -919,7 +919,7 @@ bool func_8028FB88(enum transformation_e xform_id) {
         xform_id = TRANSFORM_7_WISHWASHY;
     }
     func_80294AF4(xform_id);
-    return bs_checkInterrupt(0xA) == 2;
+    return bs_checkInterrupt(BS_INTR_A) == 2;
 }
 
 bool func_8028FBD4(f32 arg0[3]) {
@@ -929,12 +929,12 @@ bool func_8028FBD4(f32 arg0[3]) {
     if (arg0 != NULL) {
         func_80294A98(arg0);
     }
-    return bs_checkInterrupt(8) == 2;
+    return bs_checkInterrupt(BS_INTR_8) == 2;
 }
 
 bool func_8028FC34(void){
     if (func_8028E86C() && bscarry_inSet(bs_getState()))
-        return bs_checkInterrupt(0x16) == 2;
+        return bs_checkInterrupt(BS_INTR_16_THROW_CARRIED_OBJ) == 2;
     return FALSE;
 }
 

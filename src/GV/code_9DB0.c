@@ -85,7 +85,7 @@ void func_80390270(s32 next_state){
             func_803204E4(5, 0);
         }
         else{
-            func_8028F66C(0xf);
+            func_8028F66C(BS_INTR_F);
         }
     }
     
@@ -199,7 +199,7 @@ void func_803904A8(void){
                     player_getPosition(sp38);
                     sp48  = func_8033F3E8(func_80309744(0), sp38, 0x190, 0x1a0);
                     if(sp48 == D_80391AE0.tile1_0->unk0 || sp48 == D_80391AE0.tile2_4->unk0){
-                        func_8028F66C(0x14);
+                        func_8028F66C(BS_INTR_14);
                     }
                     D_80391AE0.tile1_0 = D_80391AE0.tile2_4 = NULL;
                 }

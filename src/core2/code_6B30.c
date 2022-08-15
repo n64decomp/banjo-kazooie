@@ -93,7 +93,7 @@ bool func_8028DD60(enum actor_e actor_id, Actor **arg1){
     Actor *actor;
     
     m1 = (*arg1)->marker;
-    m2 = func_802948EC();
+    m2 = carriedobj_getMarker();
     if(m2){
         actor = marker_getActor(m2);
     }
@@ -102,8 +102,8 @@ bool func_8028DD60(enum actor_e actor_id, Actor **arg1){
         return 0;
 
     carriedObject_setActorID(actor_id);
-    if(!item_empty(func_80346CF4(actor_id))){
-        func_8028F66C(0x12);
+    if(!item_empty(carriedobj_actorId2ItemId(actor_id))){
+        func_8028F66C(BS_INTR_12);
     }
     *arg1 = marker_getActor(m1);
     return 1;
@@ -124,7 +124,7 @@ void func_8028DE6C(enum actor_e actor_id){
     ActorMarker *marker;
     Actor *actor;
     
-    marker = func_802948EC();
+    marker = carriedobj_getMarker();
     if(marker){
         actor = marker_getActor(marker);
     }
@@ -145,23 +145,23 @@ void func_8028DEEC(enum actor_e actor_id, Actor *actor){
 }
 
 void func_8028DF20(enum actor_e actor_id){
-    item_inc(func_80346CF4(actor_id));
+    item_inc(carriedobj_actorId2ItemId(actor_id));
 }
 
 void func_8028DF48(enum actor_e actor_id){
     ActorMarker *marker;
     Actor* actor;
 
-    marker = func_802948EC();
+    marker = carriedobj_getMarker();
     if(marker)
         actor = marker_getActor(marker);
 
     if(marker && actor->modelCacheIndex == actor_id){
         func_802948E0();
     }
-    item_dec(func_80346CF4(actor_id));
+    item_dec(carriedobj_actorId2ItemId(actor_id));
 }
 
 void func_8028DFB8(enum actor_e actor_id){
-    func_803463D4(func_80346CF4(actor_id), 0);
+    func_803463D4(carriedobj_actorId2ItemId(actor_id), 0);
 }

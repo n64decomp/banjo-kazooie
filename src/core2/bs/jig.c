@@ -6,7 +6,7 @@
 u8 D_8037D4B0;
 u8 D_8037D4B1;
 u8 D_8037D4B2;
-ActorMarker *D_8037D4B4;
+ActorMarker *bsjig_gJiggyMarker;
 
 /* .code */
 int bsjig_inJiggyJig(enum bs_e state){
@@ -14,7 +14,7 @@ int bsjig_inJiggyJig(enum bs_e state){
 }
 
 void bsjig_setJiggyMarkerPtr(ActorMarker * jiggyMarkerPtr){
-    D_8037D4B4 = jiggyMarkerPtr;
+    bsjig_gJiggyMarker = jiggyMarkerPtr;
 }
 
 void bsjig_jiggy_init(void){
@@ -43,13 +43,13 @@ void bsjig_jiggy_init(void){
     miscflag_clear(7);
     miscflag_clear(0xf);
     func_8028D5DC();
-    func_802C82C0(marker_getActor(D_8037D4B4), 1);
+    func_802C82C0(marker_getActor(bsjig_gJiggyMarker), 1);
     D_8037D4B0 = 0;
 }
 
 void func_802B0BA8(void){
-    if(D_8037D4B4){
-        func_802C82C0(marker_getActor(D_8037D4B4), 4);
+    if(bsjig_gJiggyMarker){
+        func_802C82C0(marker_getActor(bsjig_gJiggyMarker), 4);
     }
 }
 
@@ -83,9 +83,9 @@ void bsjig_jiggy_update(void){
 }
 
 void func_802B0CD8(void){
-    if(D_8037D4B4){
-        func_802C82C0(marker_getActor(D_8037D4B4), 5);
-        D_8037D4B4 = NULL;
+    if(bsjig_gJiggyMarker){
+        func_802C82C0(marker_getActor(bsjig_gJiggyMarker), 5);
+        bsjig_gJiggyMarker = NULL;
     }
 }
 
@@ -94,7 +94,7 @@ void bsjig_jiggy_end(void){
     s32 sp28 = 4;
     int sp24;
     sp2C = 0;
-    sp24  = marker_getActor(D_8037D4B4)->unk38_31;
+    sp24  = marker_getActor(bsjig_gJiggyMarker)->unk38_31;
     if(D_8037D4B0 == 0)
         item_inc(ITEM_E_JIGGY);
 
@@ -139,7 +139,7 @@ void bsjig_jiggy_end(void){
 }
 
 void bsjig_jiggy_interrupt(void){
-    if(bs_getInterruptType() == 0x26)
+    if(bs_getInterruptType() == BS_INTR_26)
         func_80296608();
 }
 

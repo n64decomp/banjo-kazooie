@@ -89,7 +89,7 @@ void func_8038A140(UNK_TYPE(s32) arg0) {
         mapSpecificFlags_set(4, 1);
     }
     if (arg0 == 4) {
-        func_8028F66C(0xF);
+        func_8028F66C(BS_INTR_F);
     }
     D_8038C510.unk8 = arg0;
 }

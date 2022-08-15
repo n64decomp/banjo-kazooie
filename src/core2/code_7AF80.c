@@ -902,12 +902,12 @@ NodeProp *func_80304C38(enum actor_e actor_id, Actor *arg1){
     s32 vec[3];
     s32 *phi_a1;
 
-    if (arg1 != 0) {
+    if (arg1 != NULL) {
         vec[0] = arg1->position_x;
         vec[1] = arg1->position_y;
         vec[2] = arg1->position_z;
     }
-    if (arg1 == 0) {
+    if (arg1 == NULL) {
         phi_a1 = NULL;
     } else {
         phi_a1 = vec;

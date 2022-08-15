@@ -24,30 +24,30 @@ void bsList_setInitMethod(enum bs_e i, bsStateMethod func){
     D_8037C700[i].init_func = func;
 }
 
-void bsList_setUpdateMethod(s32 i, bsStateMethod func){
+void bsList_setUpdateMethod(enum bs_e i, bsStateMethod func){
     D_8037C700[i].update_func = func;
 }
 
-void bsList_setEndMethod(s32 i, bsStateMethod func){
+void bsList_setEndMethod(enum bs_e i, bsStateMethod func){
     D_8037C700[i].end_func = func;
 }
 
-void bsList_setInterruptMethod(s32 i, bsStateMethod func){
+void bsList_setInterruptMethod(enum bs_e i, bsStateMethod func){
     D_8037C700[i].interrupt_func = func;
 }
 
-bsStateMethod bsList_getInitMethod(s32 i){
+bsStateMethod bsList_getInitMethod(enum bs_e i){
     return D_8037C700[i].init_func;
 }
 
-bsStateMethod bsList_getUpdateMethod(s32 i){
+bsStateMethod bsList_getUpdateMethod(enum bs_e i){
     return D_8037C700[i].update_func;
 }
 
-bsStateMethod bsList_getEndMethod(s32 i){
+bsStateMethod bsList_getEndMethod(enum bs_e i){
     return D_8037C700[i].end_func;
 }
 
-bsStateMethod bsList_getInterruptMethod(s32 i){
+bsStateMethod bsList_getInterruptMethod(enum bs_e i){
     return D_8037C700[i].interrupt_func;
 }

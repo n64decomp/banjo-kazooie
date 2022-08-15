@@ -308,7 +308,7 @@ void bsstand_landing_update(void){
 ///BREAK???
 void func_802B5350(void){
     s32 sp1C = bs_getInterruptType();
-    if(sp1C == 0xd){
+    if(sp1C == BS_INTR_D_SURF){
         bs_setState(0x52);
     }
     if(sp1C == 0x7){
@@ -328,7 +328,7 @@ void func_802B5350(void){
     }
     else if(sp1C == 0x8){//L802B5438
         func_8029A86C(2);
-        bs_setState(0x3C);
+        bs_setState(BS_3C);
     }else{
         func_802948E0();
         func_80296608();

@@ -67,6 +67,7 @@ void func_8029D194(void) {
     D_8037D224 = 0.0f;
 }
 
+/* plays ground damage sound effect */
 void func_8029D230(void) {
     switch (map_get()) {
         case MAP_12_GV_GOBIS_VALLEY: //L8029D2C0
@@ -263,7 +264,7 @@ void func_8029D968(void){
     func_8029E1A8(4);
     if(sp24){
         if(map_get() == MAP_8E_GL_FURNACE_FUN){
-            if(bs_checkInterrupt(0x13)){
+            if(bs_checkInterrupt(BS_INTR_13)){
                 func_8029D230();
             }
         }
@@ -276,7 +277,7 @@ void func_8029D968(void){
                     func_80250D94(1.0f, 0.5f, 0.4f);
                 }
                 if(item_empty(ITEM_14_HEALTH)){
-                    bs_checkInterrupt(0x13);
+                    bs_checkInterrupt(BS_INTR_13);
                 }
             }//L8029DAD0
 

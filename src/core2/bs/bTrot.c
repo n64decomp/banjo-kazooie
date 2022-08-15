@@ -118,7 +118,7 @@ void func_802A8AD8(void){
     if(func_802916CC(3)){
         if(func_8029DFE0()){
             func_8029E0DC(0);
-            if(miscflag_isFalse(0x14))
+            if(miscflag_isFalse(MISC_FLAG_14_LOSE_BOGGY_RACE))
                 func_8030E484(0x3eb);
             func_803219F4(1);
         }

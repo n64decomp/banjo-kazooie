@@ -29,7 +29,7 @@ void bsbflap_init(void) {
     player_setYVelocity(0.0f);
     gravity_set(D_80364A14);
     func_8029E070(1);
-    miscflag_set(0x12);
+    miscflag_set(MISC_FLAG_12_HAS_FLAPPED);
     func_8029E3C0(0, 2.5f);
     D_8037D30C = func_8030D90C();
     func_80299BD4();

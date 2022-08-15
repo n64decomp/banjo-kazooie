@@ -21,7 +21,7 @@ extern void func_8035646C(s32 arg0);
 extern void func_80291634(ActorMarker *, ActorMarker *);
 extern void func_80291610(ActorMarker *, ActorMarker *);
 extern void func_80291AAC(void);
-extern void func_8028D7B8(s32 arg0, ActorMarker *arg1, s32 arg2);
+extern void func_8028D7B8(s32 arg0, ActorMarker *arg1, struct5Cs *collision_flags);
 extern void func_802EE6CC(f32[3], s32, s32[4], s32, f32, f32, s32,s32,s32);
 extern void func_80320ED8(ActorMarker *, f32, s32);
 
@@ -145,7 +145,7 @@ void func_8028B904(s32 arg0, s32 arg1, s32 arg2, s32 arg3){
         func_8029CDA0();
     }
     else{
-        if(bs_checkInterrupt(9) == 1){
+        if(bs_checkInterrupt(BS_INTR_9) == 1){
             func_8029CDA0();
         }
 
@@ -746,7 +746,7 @@ void func_8028BCA0(Prop *prop){
                 
                 miscflag_set(MISC_FLAG_E_TOUCHING_WADING_BOOTS);
                 func_802A6388(chwadingboots_802D6E4C(actor));
-                bs_checkInterrupt(0x1B);
+                bs_checkInterrupt(BS_INTR_1B);
                 func_802C3F04(func_802C418C, 0x4E, reinterpret_cast(u32, prop->actorProp.x), reinterpret_cast(u32, prop->actorProp.y), reinterpret_cast(u32, prop->actorProp.z));
                 chwadingboots_802D6E54(actor);
                 break;
@@ -770,7 +770,7 @@ void func_8028BCA0(Prop *prop){
 
                 miscflag_set(MISC_FLAG_10_TOUCHING_TURBO_TRAINERS);
                 func_80294AE8(chtrainers_802CA748(actor));
-                bs_checkInterrupt(0x1A);
+                bs_checkInterrupt(BS_INTR_1A);
                 func_802C3F04(func_802C418C, 0x4E, reinterpret_cast(u32, prop->actorProp.x), reinterpret_cast(u32, prop->actorProp.y), reinterpret_cast(u32, prop->actorProp.z));
                 chtrainers_802CA750(actor);
                 break;
@@ -1008,32 +1008,32 @@ void func_8028D71C(void){
 
 }
 
-void func_8028D7B8(s32 arg0, ActorMarker *arg1, s32 arg2){
+void func_8028D7B8(s32 arg0, ActorMarker *arg1, struct5Cs *collision_flags){
     s32 sp24;
-    s32 sp20 = func_8033D594(arg2);
+    s32 sp20 = func_8033D594(collision_flags);
     s32 sp1C = 0;
-    Actor *ideal_yaw = marker_getActor(arg1);
+    Actor *actor = marker_getActor(arg1);
     s32 tmp_v0;
 
-    if(func_8033D5A4(arg2))
+    if(func_8033D5A4(collision_flags))
         miscflag_set(8);
 
     if((func_80297C6C() != 3 && func_8028F1E0()) || !sp20){
         if(!func_8028F25C()){
-            sp24 = func_8033D564(arg2);
+            sp24 = func_8033D564(collision_flags);
             if(0 < sp24 && sp24 < 6){
                 sp1C = 2;
                 sp20 = MAX(0, sp20 - 1);
             }//L8028D884
 
             if(6 < sp24 && sp24 < 0xC){
-                if(!(1 < func_8033D5A4(arg2)) || (func_8033D574(arg2) != -1 && ideal_yaw->unk164[func_8033D574(arg2)])){
+                if(!(1 < func_8033D5A4(collision_flags)) || (func_8033D574(collision_flags) != -1 && actor->unk164[func_8033D574(collision_flags)])){
                     sp1C = 1;
                 }//L8028D8E8
             }//L8028D8E8
 
             if(sp20){
-                if(func_8033D594(arg2) == 3){
+                if(func_8033D594(collision_flags) == 3){
                     func_803463D4(ITEM_14_HEALTH, -item_getCount(ITEM_14_HEALTH));
                 }
                 else{//L8028D92C
@@ -1047,17 +1047,17 @@ void func_8028D7B8(s32 arg0, ActorMarker *arg1, s32 arg2){
 
             switch(sp1C){
                 case 1://L8028D98C
-                    sp24 = (7 < ((sp24 < 0xb) ? sp24 : 0xb)) ? ((sp24 < 0xb) ? sp24 : 0xb): 0x7;
+                    sp24 = MAX(MIN(sp24, 0xb), 7);
                     sp24 -= 7;
                     func_8028F428(sp24 +8, arg1);
                     func_80250D94(0.8f, sp24 + 0.2, 0.3f);
                     break;
                 case 2://L8028DA10
-                    sp24 = (1 < ((sp24 < 5) ? sp24 : 5)) ? ((sp24 < 5) ? sp24 : 5): 1;
+                    sp24 = MAX(MIN(sp24, 5), 1);
                     sp24--;
                     func_8028F55C(sp24 + 3, arg1);
                     func_80250D94(1.0f, sp24 + 0.3, 0.5f);
-                    if(ideal_yaw->unk16C_2 || ideal_yaw->unk16C_1){
+                    if(actor->unk16C_2 || actor->unk16C_1){
                         func_8028D71C();
                     }
                     break;

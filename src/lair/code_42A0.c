@@ -220,7 +220,7 @@ void func_8038AE2C(Actor *this) {
                   && (func_802D67AC(-1) == MAP_16_GV_RUBEES_CHAMBER) 
                   && (func_802D680C(-1) == this->unkF4_8)
                 ) 
-                || (func_803348CC() == D_80393620[this->unkF4_8 - 1].unk2)
+                || (exit_get() == D_80393620[this->unkF4_8 - 1].unk2)
             ) {
                 func_8028F85C(this->position);
                 this->unk10_12 = 1;
@@ -331,7 +331,7 @@ void func_8038AE2C(Actor *this) {
                 func_8028FCAC();
                 nodeprop_getPosition(func_80304C38(D_80393620[this->unkF4_8 - 1].unk6, this), sp54);
                 if (this->unkF4_8 == 7) {
-                    func_8028F66C(0x36);
+                    func_8028F66C(BS_INTR_36_DINGPOT);
                     func_802BAFE4(0x82);
                 } else {
                     func_8028F4B8(sp54, 1620.0f, -4100.0f);

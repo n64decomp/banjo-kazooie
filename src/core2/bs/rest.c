@@ -159,7 +159,7 @@ void func_802B3E64(void) {
     if (func_802B3BB0()) {
         next_state = bs_getIdleState();
     }
-    if (map_get() == MAP_27_FP_FREEZEEZY_PEAK && miscflag_isTrue(0x14)) {
+    if (map_get() == MAP_27_FP_FREEZEEZY_PEAK && miscflag_isTrue(MISC_FLAG_14_LOSE_BOGGY_RACE)) {
         next_state = func_8029CA94(next_state);
     }
     bs_setState(next_state);

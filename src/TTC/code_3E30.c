@@ -461,7 +461,7 @@ void func_8038B2F0(void) {
                 func_803204E4(3, FALSE);
                 func_803204E4(5, FALSE);
             } else {
-                func_8028F66C(0xF);
+                func_8028F66C(BS_INTR_F);
             }
         }
         if ((D_8038D720.unk8 == 0) || (D_8038D720.unk8 == 3)) {

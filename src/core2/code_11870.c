@@ -54,19 +54,19 @@ void func_80298970(s32 arg0){
     int val = 0;
     switch(arg0){
         case 1:
-            if(bs_checkInterrupt(0x1E) == 2)
+            if(bs_checkInterrupt(BS_INTR_1E) == 2)
                 val = 1;
             break;
         case 2:
-            if(bs_checkInterrupt(0x1C) == 2)
+            if(bs_checkInterrupt(BS_INTR_1C) == 2)
                 val = 1;
             break;
         case 3:
-            if(bs_checkInterrupt(0x1D) == 2)
+            if(bs_checkInterrupt(BS_INTR_1D) == 2)
                 val = 1;
             break;
         case 4:
-            if(bs_checkInterrupt(0x25) == 2)
+            if(bs_checkInterrupt(BS_INTR_25) == 2)
                 val = 1;
             break;
         default:
