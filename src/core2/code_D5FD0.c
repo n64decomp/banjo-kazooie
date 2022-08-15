@@ -36,7 +36,7 @@ void func_8035D058(Actor *this);
 /* .data */
 extern ActorAnimationInfo D_80372DA0[];
 extern ActorInfo D_80372DF8 = {
-    0x21A, 0x350, 0x49D,
+    MARKER_21A_SEAMAN_GRUBLIN, ACTOR_350_SEAMAN_GRUBLIN, ASSET_49D_MODEL_SEAMAN_GRUBLIN,
     0x1, D_80372DA0, 
     func_8035D058, func_80326224, func_80325888, 
     2500, 0, 1.0f, 0

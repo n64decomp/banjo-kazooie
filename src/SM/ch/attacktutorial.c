@@ -15,7 +15,7 @@ void chAttackTutorial_update(Actor *);
 
 
 /* .data */
-ActorInfo D_8038AC20 = { MARKER_12B_ATTACK_TUTORIAL, ACTOR_ATTACK_TUTORIAL, 0,
+ActorInfo D_8038AC20 = { MARKER_12B_ATTACK_TUTORIAL, ACTOR_167_ATTACK_TUTORIAL, 0,
     1, NULL,
     chAttackTutorial_update, func_80326224, func_80325340,
     0, 0, 0.0f, 0
@@ -42,7 +42,7 @@ s32 func_803871FC(Actor *this, s32 arg1){
     volatile s32 sp1C;
     s32 tmp_v0;
     
-    sp1C = (arg1 == 1)? ACTOR_TOPPER_A : (tmp_v0 = (arg1 == 2)? ACTOR_BAWL_A : ACTOR_164_COLLYWOBBLE_A);
+    sp1C = (arg1 == 1)? ACTOR_166_TOPPER_A : (tmp_v0 = (arg1 == 2)? ACTOR_165_BAWL_A : ACTOR_164_COLLYWOBBLE_A);
     func_802C3D3C(__chAttackTutorial_spawnEnemy, this->marker, sp1C);
     
 }

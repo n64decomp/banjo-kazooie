@@ -32,12 +32,12 @@ ActorAnimationInfo chCarrotAnimations[5] = {
     {0x223, 1.0f}
 };
 
-ActorInfo D_8038AC78 = { 0x12A, ACTOR_TOPPER_A, MODEL_TOPPER, 1, chCarrotAnimations,
+ActorInfo D_8038AC78 = { MARKER_12A_TOPPER_A, ACTOR_166_TOPPER_A, MODEL_TOPPER, 1, chCarrotAnimations,
     func_80388080, func_80326224, func_80387DF4,
     2000, 0, 1.0f, 0
 };
 
-ActorInfo D_8038AC9C = { 0x1E6, ACTOR_TOPPER_B, MODEL_TOPPER, 1, chCarrotAnimations,
+ActorInfo D_8038AC9C = { MARKER_1E6_TOPPER_B, ACTOR_TOPPER_B, MODEL_TOPPER, 1, chCarrotAnimations,
     func_80388080, func_80326224, func_80387DF4,
     2000, 0, 1.0f, 0
 };
@@ -50,12 +50,12 @@ ActorAnimationInfo chOnionAnimations[5] = {
     {0x226, 1.0f}
 };
 
-ActorInfo D_8038ACE8 = { 0x129, ACTOR_BAWL_A, MODEL_BAWL, 1, chOnionAnimations,
+ActorInfo D_8038ACE8 = { MARKER_129_BAWL_A, ACTOR_165_BAWL_A, MODEL_BAWL, 1, chOnionAnimations,
     func_80388080, func_80326224, func_80387DF4,
     0, 0, 1.0f, 0
 };
 
-ActorInfo D_8038AD0C = { 0x1E7, ACTOR_BAWL_B, MODEL_BAWL, 1, chOnionAnimations,
+ActorInfo D_8038AD0C = { MARKER_1E7_BAWL_B, ACTOR_BAWL_B, MODEL_BAWL, 1, chOnionAnimations,
     func_80388080, func_80326224, func_80387DF4,
     0, 0, 1.0f, 0
 };
@@ -68,12 +68,12 @@ ActorAnimationInfo chCauliflowerAnimations[5] = {
     {0x225, 1.0f}
 };
 
-ActorInfo D_8038AD58 = { 0x128, ACTOR_164_COLLYWOBBLE_A, MODEL_COLLYWOBBLE, 1, chCauliflowerAnimations,
+ActorInfo D_8038AD58 = { MARKER_128_COLLYWOBBLE_A, ACTOR_164_COLLYWOBBLE_A, MODEL_COLLYWOBBLE, 1, chCauliflowerAnimations,
     func_80388080, func_80326224, func_80387DF4,
     0, 0, 2.0f, 0
 };
 
-ActorInfo D_8038AD7C = { 0x1E8, ACTOR_COLLYWOBBLE_B, MODEL_COLLYWOBBLE, 1, chCauliflowerAnimations,
+ActorInfo D_8038AD7C = { MARKER_1E8_COLLYWOBBLE_B, ACTOR_COLLYWOBBLE_B, MODEL_COLLYWOBBLE, 1, chCauliflowerAnimations,
     func_80388080, func_80326224, func_80387DF4,
     0, 0, 2.0f, 0
 };

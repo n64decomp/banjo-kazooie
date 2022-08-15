@@ -16,7 +16,7 @@ void func_80360828(Actor *this);
 /* .data */
 extern ActorAnimationInfo D_80373090[];
 extern ActorInfo D_803730D8 = { 
-    0x127, 0x163, 0x3CA, 
+    MARKER_127_BAT, ACTOR_163_BAT, ASSET_3CA_MODEL_BAT, 
     0x1, D_80373090, 
     func_80360828, func_80326224, func_80325888, 
     2500, 0, 0.9f, 0

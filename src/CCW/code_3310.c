@@ -46,7 +46,7 @@ void func_80389BFC(Actor *this);
 /* .data */
 extern Struct_CCW_3310_1 D_8038F060[];
 extern Struct_CCW_3310_0 D_8038F080[];
-extern ActorInfo D_8038F130 = { 0x1B4, 0x2A1, 0x484, 0x0, NULL, func_80389BFC, NULL, func_80389B24, 0, 0, 0.0f, 0};
+extern ActorInfo D_8038F130 = { MARKER_1B4_EEYRIE_BABY, ACTOR_2A1_EEYRIE_BABY, ASSET_484_MODEL_EAGLE_BABY, 0x0, NULL, func_80389BFC, NULL, func_80389B24, 0, 0, 0.0f, 0};
 
 /* .bss */
 extern f32 D_8038FDE0[3];

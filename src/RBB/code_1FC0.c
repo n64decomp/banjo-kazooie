@@ -18,7 +18,7 @@ void func_80388620(Actor *this);
 
 /* .data */ 
 ActorInfo D_80390380 = {
-    0x2E, 0x1C6, 0x419, 0x0, NULL,
+    MARKER_2E_GRIMLET, ACTOR_1C6_GRIMLET, ASSET_419_MODEL_GRIMLET, 0x0, NULL,
     func_80388620, NULL, func_8038846C,
     0, 0, 0.0f, 0
 };

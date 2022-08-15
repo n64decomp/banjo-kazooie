@@ -140,7 +140,7 @@ void func_8038C398(f32 position[3], enum marker_e marker_id){
             break;
 
         case MARKER_203_TWINKLY_RED:
-            sp1C = ASSET_49B_MODLE_TWINKLY_SHARD_RED;
+            sp1C = ASSET_49B_MODEL_TWINKLY_SHARD_RED;
             break;
     }
     func_8038C260(position, 12, sp1C);

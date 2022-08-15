@@ -35,7 +35,7 @@ void chskeleton_update(Actor *this);
 /* .data */
 extern ActorAnimationInfo D_80372D20[];
 extern ActorInfo D_80372D78 = { 
-    0x218, 0x34E, 0x4CC, 
+    MARKER_218_LIMBO, ACTOR_34E_LIMBO, ASSET_4CC_MODEL_LIMBO, 
     0x1, D_80372D20, 
     chskeleton_update, func_80326224, func_80325888, 
     2500, 0, 1.0f, 0
@@ -55,10 +55,10 @@ void func_8035CD80(ActorMarker *marker, s32 arg1) {
     Actor *this;
 
     this = marker_getActor(marker);
-    func_802DAC84(partEmitList_pushNew(2), this, 0x4CE);
-    func_802DAD08(partEmitList_pushNew(1), this, 0x4CF);
-    func_802DAD8C(partEmitList_pushNew(2), this, 0x4CD);
-    func_8035CCA0(partEmitList_pushNew(4), this, 0x4D0);
+    func_802DAC84(partEmitList_pushNew(2), this, ASSET_4CE_MODEL_LIMBO_LEG);
+    func_802DAD08(partEmitList_pushNew(1), this, ASSET_4CF_MODEL_LIMBO_HEAD);
+    func_802DAD8C(partEmitList_pushNew(2), this, ASSET_4CD_MODEL_LIMBO_ARM);
+    func_8035CCA0(partEmitList_pushNew(4), this, ASSET_4D0_MODEL_LIMBO_BONE);
     FUNC_8030E8B4(SFX_119_FISH_DEATH, 1.0f, 32000, this->position, 1250, 2500);
     func_802C3F04(func_802C4140, ACTOR_4C_STEAM, reinterpret_cast(s32, this->position[0]), reinterpret_cast(s32, this->position[1]), reinterpret_cast(s32, this->position[2]));
     marker_despawn(marker);

@@ -18,7 +18,7 @@ void func_8035DA1C(Actor *this);
 /* .data */
 extern ActorAnimationInfo D_80372EA0[];
 extern ActorInfo D_80372EE0 = { 
-    0x69, 0xA, 0x36B, 
+    MARKER_69_CHUMP_FISH, ACTOR_A_CHUMP_FISH, ASSET_36B_CHUMP_FISH, 
     0x2, D_80372EA0, 
     func_8035DA1C, func_80326224, func_80325888, 
     3000, 0, 0.0f, 0
@@ -128,7 +128,7 @@ void func_8035DA1C(Actor *this) {
         marker_setCollisionScripts(this->marker, func_8035D8F0, NULL, func_8035D88C);
     }
 
-    this->marker->unk14_20 = 0x69; //nice
+    this->marker->unk14_20 = MARKER_69_CHUMP_FISH;
     if (randf() < 0.01) {
         LOCAL_D6600(this)->unk0 = 5;
     }
@@ -197,7 +197,7 @@ void func_8035DA1C(Actor *this) {
                 func_8030E6A4(SFX_6D_CROC_BITE, 1.1f, 10000);
             }
         case 5://L8035DE84
-            this->marker->unk14_20 = 0x173;
+            this->marker->unk14_20 = MARKER_173_CHUMP_FISH_2;
             func_803297FC(this, &sp40, &sp44);
             func_80328C64(this, (s32) sp44);
             func_80328CA8(this, (s32) func_8035D590(sp40));

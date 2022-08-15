@@ -23,7 +23,7 @@ Actor*  func_8035C71C(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 
 /* .data */
 ActorInfo D_80372C80 = { 
-    0xC9, 0x13B, 0x401, 
+    MARKER_C9_FLOTSAM, ACTOR_13B_FLOTSAM, ASSET_401_MODEL_FLOTSAM, 
     0, NULL, 
     func_8035C8F4, NULL, func_8035C71C, 
     0, 0, 1.0f, 0

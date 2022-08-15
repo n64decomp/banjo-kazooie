@@ -8,7 +8,7 @@ void chfirefx_update(Actor *this);
 
 /* .data */
 ActorInfo gChFireFxInfo = {
-    0x256, ACTOR_383_FIRE_FX, ASSET_526_SPRITE_FIRE, 
+    MARKER_256_FIRE_FX, ACTOR_383_FIRE_FX, ASSET_526_SPRITE_FIRE, 
     0, NULL, 
     chfirefx_update, func_80326224, func_80325888,
     0, 0, 0.0f, 0

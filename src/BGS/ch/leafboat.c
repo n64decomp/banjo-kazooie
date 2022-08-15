@@ -22,7 +22,7 @@ Actor *func_8038FD10(ActorMarker *this, Gfx** gdl, Mtx** mtx, u32 arg3);
 /* .data section */
 u8 D_80390DA0[6] = {0, 0, 0, 1, 1, 1};
 
-ActorInfo D_80390DA8 = {0xDA, actor_leafboat, 0x30D, 
+ActorInfo D_80390DA8 = {0xDA, ACTOR_F1_LEAFBOAT, 0x30D, 
     0x01, NULL,
     func_8038FD9C, func_8038FD9C, func_8038FD10,
     0, 0, 0.0f, 0

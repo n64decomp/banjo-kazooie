@@ -7,7 +7,7 @@ extern s32 func_8024DB50(f32[3], f32);
 void func_80390EB0(Actor *this);
 
 /* .data */
-extern ActorInfo D_80392840 = { 0x245, 0x353, 0x402,
+extern ActorInfo D_80392840 = { MARKER_245_XMAS_TREE_EGG_TOLL, ACTOR_353_XMAS_TREE_EGG_TOLL, ASSET_402_MODEL_EGG_TOLL,
     0x0, NULL,
     func_80390EB0, func_80326224, func_80325340,
     2000, 0, 0.0f, 0

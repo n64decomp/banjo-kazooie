@@ -9,7 +9,7 @@ void func_8038E0C8(Actor *this);
 extern ActorAnimationInfo D_8038F8F0[];
 
 extern ActorInfo D_8038F908 = { 
-    0x1F9, 0x1E9, 0x440,
+    MARKER_1F9_SNARE_BEAR, ACTOR_1E9_SNARE_BEAR, ASSET_440_MODEL_SNAREBEAR,
     0x1, D_8038F8F0,
     func_8038E0C8, func_80326224, func_80325888,
     0, 0, 0.0f, 0

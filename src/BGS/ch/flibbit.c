@@ -24,7 +24,7 @@ Actor *chflibbit_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 
 /* .data */
 ActorInfo D_80390690 = {
-    0xC1, 0x133, 0x375,
+    MARKER_C1_FLIBBIT_RED, ACTOR_133_FLIBBIT_RED, ASSET_375_MODEL_FLIBBIT_RED,
     0, NULL, 
     chflibbit_update, NULL, chflibbit_draw,
     0, 0, 1.0f, 0

@@ -23,21 +23,21 @@ ActorAnimationInfo D_8038C760[] ={
 };
 
 ActorInfo D_8038C790 = {
-    0xA4, 0x151, 0x3D4, 
+    MARKER_A4_LOCKUP_SLOW, ACTOR_151_LOCKUP_SLOW, ASSET_3D4_MODEL_LOCKUP, 
     1, D_8038C760, 
     func_80389600, func_80326224, func_803894C0,
     2500, 0x366, 0.0f, 0
 }; 
 
 ActorInfo D_8038C7B4 = {
-    0xF6, 0x152, 0x3D4, 
+    MARKER_F6_LOCKUP_MEDIUM, ACTOR_152_LOCKUP_MEDIUM, ASSET_3D4_MODEL_LOCKUP, 
     1, D_8038C760, 
     func_80389600, func_80326224, func_803894C0,
     2500, 0x366, 0.0f, 0
 }; 
 
 ActorInfo D_8038C7D8 = {
-    0xF7, 0x153, 0x3D4, 
+    MARKER_F7_LOCKUP_FAST, ACTOR_153_LOCKUP_FAST, ASSET_3D4_MODEL_LOCKUP, 
     1, D_8038C760, 
     func_80389600, func_80326224, func_803894C0,
     2500, 0x366, 0.0f, 0
@@ -101,9 +101,9 @@ void func_80389600(Actor *this){
             }//L80389758
             local->unk0++;
 
-            tmp_v1 = (this->modelCacheIndex == 0x151) ? 0x1E :
-                     (this->modelCacheIndex == 0x152) ? 0x14 :
-                     (this->modelCacheIndex == 0x153) ? 0xA :
+            tmp_v1 = (this->modelCacheIndex == ACTOR_151_LOCKUP_SLOW) ? 0x1E :
+                     (this->modelCacheIndex == ACTOR_152_LOCKUP_MEDIUM) ? 0x14 :
+                     (this->modelCacheIndex == ACTOR_153_LOCKUP_FAST) ? 0xA :
                      10000;
             
 
@@ -128,9 +128,9 @@ void func_80389600(Actor *this){
 
         case 3: //L80389864
             local->unk4++;
-            tmp_v1 = (this->modelCacheIndex == 0x151) ? 0x1E :
-                     (this->modelCacheIndex == 0x152) ? 0x14 :
-                     (this->modelCacheIndex == 0x153) ? 0xA :
+            tmp_v1 = (this->modelCacheIndex == ACTOR_151_LOCKUP_SLOW) ? 0x1E :
+                     (this->modelCacheIndex == ACTOR_152_LOCKUP_MEDIUM) ? 0x14 :
+                     (this->modelCacheIndex == ACTOR_153_LOCKUP_FAST) ? 0xA :
                      10000;
             
             if(!(local->unk4 < tmp_v1)){

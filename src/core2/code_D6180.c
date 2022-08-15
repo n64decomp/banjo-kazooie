@@ -33,7 +33,7 @@ typedef struct {
 /* .data */ 
 extern ActorAnimationInfo D_80372E20[];
 extern ActorInfo D_80372E78 = { 
-    0x219, 0x34F, 0x4C7, 
+    MARKER_219_MUMMUM, ACTOR_34F_MUMMUM, ASSET_4C7_MODEL_MUMMUM, 
     0x1, D_80372E20, 
     func_8035D3D8, func_80326224, func_80325888, 
     2500, 0, 1.0f, 0
@@ -58,10 +58,10 @@ void func_8035D1F0(ActorMarker *arg0, s32 arg1) {
     Actor *this;
 
     this = marker_getActor(arg0);
-    func_802DAC84(partEmitList_pushNew(2), this, 0x4C9);
-    func_802DAD08(partEmitList_pushNew(1), this, 0x4CA);
-    func_802DAD8C(partEmitList_pushNew(2), this, 0x4C8);
-    func_8035D110(partEmitList_pushNew(1), this, 0x4CB);
+    func_802DAC84(partEmitList_pushNew(2), this, ASSET_4C9_MODEL_MUMMUM_LEG);
+    func_802DAD08(partEmitList_pushNew(1), this, ASSET_4CA_MODEL_MUMMUM_HEAD);
+    func_802DAD8C(partEmitList_pushNew(2), this, ASSET_4C8_MODEL_MUMMUM_ARM);
+    func_8035D110(partEmitList_pushNew(1), this, ASSET_4CB_MODEL_MUMMUM_BODY);
     FUNC_8030E8B4(SFX_119_FISH_DEATH, 0.8f, 32000, this->position, 1250, 2500);
     func_802C3F04((GenMethod_4) func_802C4140, ACTOR_4C_STEAM, reinterpret_cast(s32, this->position[0]), reinterpret_cast(s32, this->position[1]), reinterpret_cast(s32, this->position[2]));
     marker_despawn(arg0);
@@ -108,12 +108,12 @@ void func_8035D3D8(Actor *this) {
     }
     func_802DB5A0(this);
     if (this->state == 9) {
-        if (this->marker->unk14_20 != 0x298) {
-            this->marker->unk14_20 = 0x298;
+        if (this->marker->unk14_20 != MARKER_298_MUMMUM_BALL) {
+            this->marker->unk14_20 = MARKER_298_MUMMUM_BALL;
         }
     } else {
-        if (this->marker->unk14_20 != 0x219) {
-            this->marker->unk14_20 = 0x219;
+        if (this->marker->unk14_20 != MARKER_219_MUMMUM) {
+            this->marker->unk14_20 = MARKER_219_MUMMUM;
         }
     }
 }

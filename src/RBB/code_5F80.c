@@ -41,32 +41,32 @@ void func_8038D8BC(Actor *this);
 
 /* .data */
 Struct_RBB_5F80 D_80390B70[4] = {
-    {0x281, 1.1f,  1.0f, 0x14, 0x01, 0x5, 0.9f, 0.8f},
-    {0x282, 0.75f, 1.0f,  0xF, 0x02, 0x4, 1.1f, 0.9f},
-    {0x283, 0.5f,  2.0f,  0xA, 0x02, 0x3, 1.3f, 1.0f},
-    {0x284, 0.25f, 2.0f,  0x5, 0x02, 0x2, 1.5f, 1.1f},
+    {ACTOR_281_BOSS_BOOM_BOX_LARGEST, 1.1f,  1.0f, 0x14, 0x01, 0x5, 0.9f, 0.8f},
+    {ACTOR_282_BOSS_BOOM_BOX_LARGE,  0.75f,  1.0f,  0xF, 0x02, 0x4, 1.1f, 0.9f},
+    {ACTOR_283_BOSS_BOOM_BOX_MEDIUM,  0.5f,  2.0f,  0xA, 0x02, 0x3, 1.3f, 1.0f},
+    {ACTOR_284_BOSS_BOOM_BOX_SMALL,  0.25f,  2.0f,  0x5, 0x02, 0x2, 1.5f, 1.1f},
 };
 
 ActorInfo D_80390BD0 = {
-    0x1A1, 0x281, 0x428, 0x0, NULL,
+    MARKER_1A1_BOSS_BOOM_BOX_LARGEST, ACTOR_281_BOSS_BOOM_BOX_LARGEST, ASSET_428_MODEL_BOSS_BOOM_BOX, 0x0, NULL,
     func_8038D8BC, NULL, func_8038D638,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_80390BF4 = {
-    0x1A2, 0x282, 0x428, 0x0, NULL,
+    MARKER_1A2_BOSS_BOOM_BOX_LARGE, ACTOR_282_BOSS_BOOM_BOX_LARGE, ASSET_428_MODEL_BOSS_BOOM_BOX, 0x0, NULL,
     func_8038D8BC, NULL, func_8038D638,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_80390C18 = {
-    0x1A3, 0x283, 0x428, 0x0, NULL,
+    MARKER_1A3_BOSS_BOOM_BOX_MEDIUM, ACTOR_283_BOSS_BOOM_BOX_MEDIUM, ASSET_428_MODEL_BOSS_BOOM_BOX, 0x0, NULL,
     func_8038D8BC, NULL, func_8038D638,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_80390C3C = {
-    0x1A4, 0x284, 0x428, 0x0, NULL,
+    MARKER_1A4_BOSS_BOOM_BOX_SMALL, ACTOR_284_BOSS_BOOM_BOX_SMALL, ASSET_428_MODEL_BOSS_BOOM_BOX, 0x0, NULL,
     func_8038D8BC, NULL, func_8038D638,
     0, 0, 0.0f, 0
 };
@@ -357,7 +357,7 @@ void func_8038CC9C(Actor *this, s32 new_state){
 
     if(this->state == 6){
         func_80326310(this);
-        if(local->unk0->unk0 == 0x284){
+        if(local->unk0->unk0 == ACTOR_284_BOSS_BOOM_BOX_SMALL){
             if(++D_80391280 == 8){
                 func_8025A58C(-1, 0x190);
                 comusic_8025AB44(COMUSIC_62_RBB_BOOMBOX, 0, 0x190);
@@ -517,7 +517,7 @@ void func_8038D8BC(Actor *this){
         }
         marker_setCollisionScripts(this->marker, func_8038D590, func_8038D5BC, func_8038D608);
         func_803300D8(this->marker, func_8038D8B4);
-        if(local->unk0->unk0 == 0x281){
+        if(local->unk0->unk0 == ACTOR_281_BOSS_BOOM_BOX_LARGEST){
             func_8038CC9C(this, 1);
             D_80391280 = 0;
         }

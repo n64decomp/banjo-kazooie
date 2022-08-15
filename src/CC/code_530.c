@@ -22,7 +22,7 @@ void func_80386B28(Actor* this);
 
 /* .data */
 ActorInfo D_80389AD0 = {
-    0x4A, 0x3C, 0x429, 0, NULL,
+    MARKER_4A_CC_KEY, ACTOR_3C_CC_KEY, ASSET_429_MODEL_CC_KEY, 0, NULL,
     func_80386B28, func_80326224, func_80325888,
     0, 0, 0.0f, 0
 };

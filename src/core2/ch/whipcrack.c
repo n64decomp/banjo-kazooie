@@ -6,7 +6,7 @@ void chwhipcrack_update(Actor *this);
 
 /* .data */
 ActorInfo D_80373100 = { 
-    0x1c5, ACTOR_30F_WHIPCRACK, ASSET_4FD_MODEL_WHIPCRACK, 
+    MARKER_1C5_WHIPCRACK, ACTOR_30F_WHIPCRACK, ASSET_4FD_MODEL_WHIPCRACK, 
     0, NULL, 
     chwhipcrack_update, NULL, func_80325888, 
     0, 0, 0.0f, 0

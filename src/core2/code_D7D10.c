@@ -15,14 +15,14 @@ typedef struct {
 extern ActorAnimationInfo D_80372F80[];
 
 extern ActorInfo D_80372FC0 = { 
-    0x96, 0xC7, 0x3C9, 
+    MARKER_96_RIPPER, ACTOR_C7_RIPPER, ASSET_3C9_MODEL_RIPPER, 
     0x1, D_80372F80, 
     func_8035F138, func_80326224, func_8035ECA0, 
     3500, 0, 1.2f, 0
 };
 
 extern ActorInfo D_80372FE4 = { 
-    0x297, 0x3C2, 0x3C9, 
+    MARKER_297_GIANT_RIPPER, ACTOR_3C2_GIANT_RIPPER, ASSET_3C9_MODEL_RIPPER, 
     0x1, D_80372F80, 
     func_8035F138, func_80326224, func_8035ECA0, 
     14000, 0, 3.2f, 0
