@@ -57,7 +57,7 @@ climbSet(f32 bottom[3], f32 top[3], f32 radius, u32 arg3){
 void func_80298344(void){ //climbUpdateRegrab
     D_8037C58C = max_f(D_8037C58C - time_getDelta(), 0.0f);
     if(D_8037C590 &&  ability_hasLearned(ABILITY_5_CLIMB)){
-        bs_checkInterrupt(BS_INTR_C);
+        bs_checkInterrupt(BS_INTR_C_CLIMB);
     }
     D_8037C590 = 0;
 }

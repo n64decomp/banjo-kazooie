@@ -9,7 +9,13 @@
 #ifndef MAX
 #define MAX(s,t) (((s) > t)?(s):(t))
 #endif
-
+extern void func_803160A8(gczoombox_t *);
+extern void func_80312E80(struct1As *, s32);
+extern void gczoombox_close(gczoombox_t *);
+extern void gczoombox_minimize(gczoombox_t *);
+extern void gczoombox_maximize(gczoombox_t *);
+extern void func_802C5994(void);
+extern void func_802E412C(s32, s32);
 void func_803204E4(s32, s32);
 f32 func_8024DE1C(f32, f32, f32 *, f32 *);
 void mlMtxApply(Mtx*);
@@ -25,31 +31,131 @@ s32 getGameMode(void);
 void func_803120FC(s32);
 
 void gczoombox_highlight(gczoombox_t *, int);
+void func_80312F88(s32 arg0);
+void func_80312FD0(s32 arg0);
+void func_80313134(void);
+void func_802DC5B8(void);
+void func_802DC560(s32, s32);
+void func_8031307C(s32);
+s32 func_8024E67C(enum button_e);
+s32 func_80313070(void);
+bool func_803188B4(gczoombox_t*);
+bool func_803183A4(gczoombox_t*, char *);
+bool func_8031FF1C(enum bkprog_e);
+s32 func_80312034(enum level_e);
+enum map_e map_get(void);
+bool func_802FD2D4(void);
+bool func_802FC3C4(void);
+s32 func_80312D78(struct1As *, s32);
+void func_80311954(void);
+extern void func_802FACA4(enum item_e);
+extern void func_80318964(gczoombox_t *);
+extern void func_802F5060(enum asset_e);
+extern void func_802F5188(void);
+extern void func_80311854(void);
+extern void func_8033BD20(void *);
+extern void func_8025A430(s32, s32, s32);
+extern void func_8025A2B0(void);
+extern void func_802DC528(s32,s32);
+extern char D_80378540[];
+extern char D_80378550[];
+extern char D_80378568[];
+extern char D_80378574[];
+extern char D_80378584[];
+extern char D_80378594[];
+extern char D_803785A4[];
+extern char D_803785B4[];
+extern char D_803785C4[];
+extern char D_803785D0[];
+extern char D_803785E0[];
+extern char D_803785F4[];
+extern char D_80378608[];
+extern char D_8037861C[];
+extern char D_80378630[];
+extern char D_80378644[];
+extern char D_80378654[];
+extern char D_80378664[];
+extern char D_80378678[];
+extern char D_8037868C[];
+extern char D_803786A0[];
 
-extern s32 D_80383084;
+/* .data */
+struct1As D_8036C4E0[4] = {
+    {0.0f, 0.0f,  "RETURN TO GAME",         55, 04, 0},
+    {0.3f, 0.0f,  "EXIT TO WITCH'S LAIR", -100, 04, 0},
+    {0.1f, 0.0f,  "VIEW TOTALS",            90, 06, 0},
+    {0.2f, 0.0f,  "SAVE AND QUIT",         125, 07, 0},
+};
 
-extern struct1As D_8036C4E0[4];
-extern struct1As D_8036C520[4];
-extern struct1Bs D_8036C560[0xD];
-extern struct1Cs D_8036C58C[0xC];
-extern u8 D_8036C604[7];
-extern const char D_8036C618[] = "";
-extern int D_8036C620;
+struct1As D_8036C520[4] = {
+    {0.0f, 0.0f,  "cc999 / 999cc", 0x1E, 8, 0},
+    {0.1f, 0.0f,  "cc999 / 999cc", 0x42, 9, 0},
+    {0.2f, 0.0f,  "cc999 / 999cc", 0x66, 10, 0},
+    {0.3f, 0.0f,  "cc999 : 999cc", 0x8A, 11, 0},
+};
 
+struct1Bs D_8036C560[] = {
+    {MAP_69_GL_MM_LOBBY,  0x2},
+    {MAP_6D_GL_TTC_LOBBY, 0x4},
+    {MAP_70_GL_CC_LOBBY,  0x2},
+    {MAP_72_GL_BGS_LOBBY, 0x2},
+    {MAP_6F_GL_FP_LOBBY,  0x6},
+    {-1, -1},
+    {MAP_6E_GL_GV_LOBBY,  0x3}, 
+    {MAP_79_GL_CCW_LOBBY, 0x6},
+    {MAP_77_GL_RBB_LOBBY, 0x2},
+    {MAP_75_GL_MMM_LOBBY, 0x2},
+    {MAP_69_GL_MM_LOBBY, 0x12}
+};
+
+struct1Cs_1 D_8036C58C[0xD] = {
+    {0, 0x50, "GAME TOTAL"}, 
+    {LEVEL_B_SPIRAL_MOUNTAIN,       0x40, "SPIRAL MOUNTAIN"},
+    {LEVEL_6_LAIR,                  0x3C, "GRUNTILDA'S LAIR"},
+    {LEVEL_1_MUMBOS_MOUNTAIN,       0x25, "MUMBO'S MOUNTAIN"},
+    {LEVEL_2_TREASURE_TROVE_COVE,   0x1B, "TREASURE TROVE COVE"},
+    {LEVEL_3_CLANKERS_CAVERN,       0x34, "CLANKER'S CAVERN"},
+    {LEVEL_4_BUBBLEGLOOP_SWAMP,     0x23, "BUBBLEGLOOP SWAMP"},
+    {LEVEL_5_FREEZEEZY_PEAK,        0x48, "FREEZEEZY PEAK"},
+    {LEVEL_7_GOBIS_VALLEY,          0x4E, "GOBI'S VALLEY"}, 
+    {LEVEL_A_MAD_MONSTER_MANSION,   0x12, "MAD MONSTER MANSION"},
+    {LEVEL_9_RUSTY_BUCKET_BAY,      0x32, "RUSTY BUCKET BAY"},
+    {LEVEL_8_CLICK_CLOCK_WOOD,      0x30, "CLICK CLOCK WOOD"},
+    {0,                             0x48, "STOP 'N' SWOP"}
+};
+
+u8 D_8036C5F4[0x10] = {1, 1, 1, 1, 0xb, 0x8, 0x6, 0x4, 0x3, 0x2, 0xff, 0xff, 0};
+u8 D_8036C604[0x7] = {0x14, 0x26, 0x25, 0x10, 0xf, 0xd, 0xc};
+u8 D_8036C60C[0xC] = {
+    0x28, 
+    0x29,
+    0x00,
+    ITEM_3_PROPELLOR_TIMER,
+    ITEM_17_AIR,
+    ITEM_13_EMPTY_HONEYCOMB,
+    ITEM_1B_VILE_VILE_SCORE,
+    ITEM_24_TWINKLY_SCORE,
+    ITEM_1D_GRUMBLIE,
+    ITEM_1E_YUMBLIE,
+    ITEM_E_JIGGY,
+    ITEM_1A_PLAYER_VILE_SCORE
+};
+// const char D_8036C618[] = {0};
+// extern u8 D_8036C61C[] =  {0};
 
 /* .bss */
 struct{
-    u32         unk0_31:8; //menu state
-    u32         unk0_23:8;
-    u32         unk0_15:8; //menu page
-    u32         unk0_7:1;
-    u32         unk0_6:1;
-    u32         unk0_5:1;
-    u32 pad0_4:1;
-    u32         unk0_3:1;
-    u32         unk0_2:1;
-    u32         unk0_1:1;
-    u32 pad0_0:1;
+    u8         unk0; //menu state
+    u8         unk1;
+    u8         unk2; //menu page
+    u8         unk0_7:1;
+    u8         unk0_6:1;
+    u8         unk0_5:1;
+    u8         unk0_4:1;
+    u8         unk0_3:1;
+    u8         unk0_2:1;
+    u8         unk0_1:1;
+    u8         unk0_0:1;
     s8          unk4;
     s8          unk5;
     u8          unk6;
@@ -69,7 +175,8 @@ struct{
     s16         unk32;      //B-button alpha
     s16         unk34;      //left joystick alpha
     s16         unk36;      //right joystick alpha
-    u8          pad38[0x2];
+    u8          unk38;
+    u8          unk39;
     u8          unk3A;
     u8  pad3B[1];
     s16         unk3C[7];
@@ -83,6 +190,7 @@ struct{
     u32         unk70_29:1;
     u32 pad70_28:29;
 }D_80383010;
+s32 D_80383084;
 char D_80383088[0x18];
 
 /* public */
@@ -92,6 +200,8 @@ void func_80318640(gczoombox_t *, s32, f32, f32, s32);
 void func_80318734(gczoombox_t *, f32);
 
 /* .rodata */
+
+
 extern char D_803786B0[]; // ""
 extern char D_803786B4[]; // ":"
 extern char D_803786B8[]; // "0"
@@ -149,8 +259,6 @@ void func_803117E8(void){
 }
 
 //gc_zoombox_init
-#ifdef NONMATCHING
-//MATCHING, but needs .rodata
 void func_80311854(void){
     s32 i;
     for(i = 0; i<4; i++){
@@ -160,12 +268,7 @@ void func_80311854(void){
         func_80318760(D_80383010.zoombox[i], 8000);
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/pauseMenu/func_80311854.s")
-#endif
 
-#ifdef NONMATCHING
-//MATCHING, but needs .rodata
 void func_80311954(void){
     s32 i;
 
@@ -177,9 +280,6 @@ void func_80311954(void){
     }
     func_80318734(D_80383010.zoombox[3], 24.0f);
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/pauseMenu/func_80311954.s")
-#endif
 
 void func_80311A84(void){
     s32 i;
@@ -235,36 +335,34 @@ u8 *func_80311C64(int time){
     s32 minutes;
     s32 seconds;
     
-    strcpy(D_80383088, D_803786B0); //strcpy(D_80383088, "");
+    strcpy(D_80383088, "");
     strIToA(D_80383088, time/3600);
-    strcat(D_80383088, D_803786B4); //strcat(D_80383088, ":");
+    strcat(D_80383088, ":");
     minutes = (time/60)%60;
     if(minutes < 10){
-        strcat(D_80383088, D_803786B8); //strcat(D_80383088, "0");
+        strcat(D_80383088, "0");
     }
     strIToA(D_80383088, minutes);
-    strcat(D_80383088, D_803786BC); //strcat(D_80383088, ":");
+    strcat(D_80383088, ":");
     seconds = time % 60;
     if(seconds < 10){
-        strcat(D_80383088, D_803786C0); //strcat(D_80383088, "0");
+        strcat(D_80383088, "0");
     }
-    strIToA(D_80383088, seconds); //strcat(D_80383088, ":");
-    strcat(D_80383088, D_803786C4); //strcpy(D_80383088, "");
+    strIToA(D_80383088, seconds); 
+    strcat(D_80383088, "");
     return D_80383088;
 }
 
-#if NONMATCING
-//MATCHING NEEDS .data defined
 void func_80311D74(s32 level){
     s32 val;
     s32 max;
-    const char empty[] = ""; //D_8036C618
+    const char empty[1] = 0; //empty
 
     //note ratio 2 string
     func_80311B9C(level, &val, &max);
     strcpy(D_8036C520[0].str, empty);
     strIToA(D_8036C520[0].str, val);
-    strcat(D_8036C520[0].str, D_803786C8);
+    strcat(D_8036C520[0].str, "/");
     strIToA(D_8036C520[0].str, max);
     strcat(D_8036C520[0].str, empty);
 
@@ -272,7 +370,7 @@ void func_80311D74(s32 level){
     func_80311BD4(level, &val, &max);
     strcpy(D_8036C520[1].str, empty);
     strIToA(D_8036C520[1].str, val);
-    strcat(D_8036C520[1].str, D_803786CC);
+    strcat(D_8036C520[1].str, "/");
     strIToA(D_8036C520[1].str, max);
     strcat(D_8036C520[1].str, empty);
 
@@ -280,7 +378,7 @@ void func_80311D74(s32 level){
     func_80311C0C(level, &val, &max);
     strcpy(D_8036C520[2].str, empty);
     strIToA(D_8036C520[2].str, val);
-    strcat(D_8036C520[2].str, D_803786D0);
+    strcat(D_8036C520[2].str, "/");
     strIToA(D_8036C520[2].str, max);
     strcat(D_8036C520[2].str, empty);
 
@@ -288,9 +386,6 @@ void func_80311D74(s32 level){
     strcpy(D_8036C520[3].str, empty);
     strcat(D_8036C520[3].str, func_80311C64(itemscore_timeScores_get(level)));
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/pauseMenu/func_80311D74.s")
-#endif
 
 void func_80311ED0(s32 *dst){
     *dst = itemscore_noteScores_getTotal(); //note_total
@@ -304,41 +399,34 @@ void func_80311F20(s32 *dst){
     *dst = honeycombscore_get_total(); //honeycomb_total
 }
 
-#ifdef NONMATCHING
-//MATCHING NEEDS .data defined
 void func_80311F48(void){
     s32 val;
-    const char empty[] = ""; //D_8036C618
+    const char D_8036C61C[] = 0;
 
     //note ratio 2 string
     func_80311ED0(&val);
-    strcpy(D_8036C520[0].str, empty);
+    strcpy(D_8036C520[0].str, D_8036C61C);
     strIToA(D_8036C520[0].str, val);
-    strcat(D_8036C520[0].str, empty);
+    strcat(D_8036C520[0].str, D_8036C61C);
 
     //jiggy_ratio_2_string
     func_80311EF8(&val);
-    strcpy(D_8036C520[1].str, empty);
+    strcpy(D_8036C520[1].str, D_8036C61C);
     strIToA(D_8036C520[1].str, val);
-    strcat(D_8036C520[1].str, empty);
+    strcat(D_8036C520[1].str, D_8036C61C);
 
     //honeycomb_ratio_2_string
     func_80311F20(&val);
-    strcpy(D_8036C520[2].str, empty);
+    strcpy(D_8036C520[2].str, D_8036C61C);
     strIToA(D_8036C520[2].str, val);
-    strcat(D_8036C520[2].str, empty);
+    strcat(D_8036C520[2].str, D_8036C61C);
 
     //gametime_2_sting
-    strcpy(D_8036C520[3].str, empty);
+    strcpy(D_8036C520[3].str, D_8036C61C);
     strcat(D_8036C520[3].str, func_80311C64(itemscore_timeScores_getTotal()));
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/pauseMenu/func_80311F48.s")
-#endif
 
-#ifdef NONMATCHING
-//MATCHING but need .rodata
-s32 func_80312034(s32 arg0){
+s32 func_80312034(enum level_e arg0){
     switch (arg0)
     {
     case 1:
@@ -365,9 +453,6 @@ s32 func_80312034(s32 arg0){
         return 0;
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/pauseMenu/func_80312034.s")
-#endif
 
 void func_8031209C(struct1As *arg0, s32 arg1){
     s32 i;
@@ -378,17 +463,13 @@ void func_8031209C(struct1As *arg0, s32 arg1){
     }
 }
 
-#ifdef NONMATCHING
 void func_803120FC(s32 arg0){
     s32 i;
-    int _t;
     switch(arg0){
         case 0:
             func_80311A84();
-            D_80383010.unk0_23 = 0;
-            D_80383010.unk0_2 = D_80383010.unk0_7 = D_80383010.unk4 = 0;
-            D_80383010.unk0_15 = D_80383010.unk4;
-            D_80383010.unk0_3 = D_80383010.unk0_2;
+            D_80383010.unk1 = 0;
+            D_80383010.unk0_3 = D_80383010.unk0_2 = D_80383010.unk0_7 = D_80383010.unk2 = D_80383010.unk4 = 0;
             break;
 
         case 1:
@@ -415,7 +496,7 @@ void func_803120FC(s32 arg0){
             break;
 
         case 5:/* 8B334 803122C4 3C128038 */
-            D_80383010.unkC = 3.0f;
+            D_80383010.unkC = 3;
             D_80383010.unk5 = D_80383010.unk0_6 = 0;
             func_8031209C(D_8036C4E0, 4);
             for(i = 0; i < 4; i++){
@@ -425,38 +506,35 @@ void func_803120FC(s32 arg0){
 
         case 6:/* 8B3A8 80312338 0C0C46D1 */
             func_80311B44();
-            D_80383010.unk0_15 = 0;
-            D_80383010.unk4 = 0;
             D_80383010.unkC = 0.0f;
+            D_80383010.unk4 = D_80383010.unk2 = 0;
+             // 0;
             for(i = 0; i < 4; i++){
                 func_80318964(D_80383010.zoombox[i]);
             }
             break;
 
         case 7:/* 8B3F4 80312384 44803000 */
-            D_80383010.unk20 = D_80383010.unk28 = 0.0f;
-            D_80383010.unk0_23 = 1;
+            D_80383010.unk1 = 1;
             D_80383010.unk0_1 = 1;
+            D_80383010.unk20 = D_80383010.unk28 = 0.0f;
             func_803117A0();
             func_80311954();
-            if(D_80383010.unk0_15 ==  func_80312034(level_get())){
+            if(D_80383010.unk2 == func_80312034(level_get())){
                 func_802F5060(0x6e7);
             }
-            if(D_80383010.unk0_15 != 0){
-                func_80311D74(D_8036C58C[D_80383010.unk0_15].unk0);
+            if(D_80383010.unk2){
+                func_80311D74(D_8036C58C[D_80383010.unk2].level_id);
             }else{
                 func_80311F48();
             }
 
             for(i = 0; i<4; i++){//L80312420
-
-                if(D_8036C58C[D_80383010.unk0_15].unk0 == 6){
-                    _t = (!(i == 0) && !(i == 2));
-                    gczoombox_highlight(D_80383010.zoombox[i], _t);
+                if(D_8036C58C[D_80383010.unk2].level_id == 6){
+                    gczoombox_highlight(D_80383010.zoombox[i], (!(i == 0) && !(i == 2)));
                 }
-                else if(D_8036C58C[D_80383010.unk0_15].unk0 == 0xB){
-                    _t = (!(i == 0) && !(i == 1));
-                    gczoombox_highlight(D_80383010.zoombox[i], _t);
+                else if(D_8036C58C[D_80383010.unk2].level_id == 0xB){
+                    gczoombox_highlight(D_80383010.zoombox[i], (!(i == 0) && !(i == 1)));
                 }
                 else{
                     gczoombox_highlight(D_80383010.zoombox[i], 1);
@@ -475,16 +553,16 @@ void func_803120FC(s32 arg0){
 
         case 0xA:
             D_80383010.unk0_5 = 1;
-            D_80383010.unk5 = 4;
             D_80383010.unkC = 0.0f;
+            D_80383010.unk5 = 4;
             if(D_80383010.unk9 != 0xC){
-                D_80383010.unk0_2 = 0;
+                D_80383010.unk0_1 = 0;
             }
             func_8031209C(D_8036C520, 4);
             break;
 
         case 0xB:
-            if(D_80383010.unk0_15 != 0 && D_80383010.unk0_15 == func_80312034(level_get())){
+            if(D_80383010.unk2 && D_80383010.unk2 == func_80312034(level_get())){
                 func_802F5188();
             }
             func_803117A0();
@@ -492,7 +570,7 @@ void func_803120FC(s32 arg0){
             break;
 
         case 0xC:
-            D_80383010.unk0_23 = 2;
+            D_80383010.unk1 = 2;
             D_80383010.unk6++;
             D_80383010.unk0_5 = 1;
             D_80383010.unk5 = 0;
@@ -504,27 +582,25 @@ void func_803120FC(s32 arg0){
         case 0xD:/* 8B694 80312624 3C128038 */
             D_80383010.unk6 = 0xFF;
             D_80383010.unk0_5 = 1;
-            if(D_80383010.unk0_15 != 0 && D_80383010.unk0_15 == func_80312034(level_get())){
+            if(D_80383010.unk2 && D_80383010.unk2 == func_80312034(level_get())){
                 func_802F5188();
             }
-            D_80383010.unk0_15 = D_80383010.unk9;
-            if(D_80383010.unk0_15 != 0 && D_80383010.unk0_15 == func_80312034(level_get())){
+            D_80383010.unk2 = D_80383010.unk9;
+            if(D_80383010.unk2 && D_80383010.unk2 == func_80312034(level_get())){
                 func_802F5060(0x6e7);
             }
-            if(D_80383010.unk0_15 != 0)
-                func_80311D74(D_8036C58C[D_80383010.unk0_15].unk0);
+            if(D_80383010.unk2)
+                func_80311D74(D_8036C58C[D_80383010.unk2].level_id);
             else{
                 func_80311F48();
             }
             for(i = 0; i < 4; i++){//L803126D8
                 //L80312764
-                if(D_8036C58C[D_80383010.unk0_15].unk0 == 6){
-                    _t = (!(i == 0) || !(i == 2));
-                    gczoombox_highlight(D_80383010.zoombox[i], _t);
+                if(D_8036C58C[D_80383010.unk2].level_id == 6){
+                    gczoombox_highlight(D_80383010.zoombox[i], !((i == 0) ||  (i == 2)));
                 }
-                else if(D_8036C58C[D_80383010.unk0_15].unk0 == 0xB){//L80312728
-                    _t = (!(i == 0) && !(i == 1));
-                    gczoombox_highlight(D_80383010.zoombox[i], _t);
+                else if(D_8036C58C[D_80383010.unk2].level_id == 0xB){//L80312728
+                    gczoombox_highlight(D_80383010.zoombox[i], (!(i == 0) && !(i == 1)));
                 }
                 else{
                     gczoombox_highlight(D_80383010.zoombox[i], 1);
@@ -538,14 +614,14 @@ void func_803120FC(s32 arg0){
             break;
         
         case 0xE:/* 8B824 803127B4 3C128038 */
-            D_80383010.unk0_23 = 4;
-            D_80383010.unk0_15 = D_80383010.unk9;
+            D_80383010.unk1 = 4;
+            D_80383010.unk2 = D_80383010.unk9;
             D_80383010.unk9 = -1;
             D_80383010.unk5C = assetcache_get(0x50D);
             D_80383010.unk60 = assetcache_get(0x50C);
             for(i = 0; i < 7; i++){
                 D_80383010.unk3C[i+1] = randf2(0.0f, 360.0f);
-                D_80383010.unk4A[i] =  ((i & 1)? -1.0: 1.0)*randf2( 60.0f, 180.0f);
+                D_80383010.unk4A[i+1] =  ((i & 1)? -1.0: 1.0)*randf2( 60.0f, 180.0f);
             }
             break;
 
@@ -566,9 +642,9 @@ void func_803120FC(s32 arg0){
             break;
 
         case 0x12: /* 8B978 80312908 3C128038 */
-            D_80383010.unk0_15 = D_80383010.unk9;
-            func_8033BD20(D_80383010.unk5C);
-            func_8033BD20(D_80383010.unk60);
+            D_80383010.unk2 = D_80383010.unk9;
+            func_8033BD20(&D_80383010.unk5C);
+            func_8033BD20(&D_80383010.unk60);
             break;
 
         case 0x13: /* 8B9A8 80312938 3C128038 */
@@ -576,9 +652,8 @@ void func_803120FC(s32 arg0){
             break;
 
         case 0x14: /* 8B9C0 80312950 3C128038 */
-            D_80383010.unk0_6 = 0;
-            D_80383010.unk0_7 = D_80383010.unk0_6;
-            D_80383010.unkC = 0.0;
+            D_80383010.unk0_7 = D_80383010.unk0_6 = 0;
+            D_80383010.unkC = 0.0f;
             func_8025A430(-1, 0x7D0, 3);
             func_8025A2B0();
             func_802DC528(0,0);
@@ -586,25 +661,136 @@ void func_803120FC(s32 arg0){
         default:
             break;
     }
-    D_80383010.unk0_31 = arg0;
+    D_80383010.unk0 = arg0;
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/pauseMenu/func_803120FC.s")
-#endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/pauseMenu/func_803129DC.s")
+void func_803129DC(s32 arg0, s32 arg1) {
+    s8 var_t9;
+    u8 temp_t6;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/pauseMenu/func_80312B04.s")
+    switch (D_80383010.unk0) {
+    case 3:
+    case 10:
+        if (arg1 == 6) {
+            D_80383010.unk4++;
+        } else if (arg1 == 4) {
+            D_80383010.unk5 = (s8) (D_80383010.unk5 - 1);
+        }
+        break;
+    case 5:
+        if (arg1 == 4) {
+            D_80383010.unk5 = (s8) (D_80383010.unk5 - 1);
+        }
+        break;
+    case 1:
+    case 8:
+        if (arg1 == 1) {
+            D_80383010.unk4 = (s8) (D_80383010.unk4 + 1);
+        }
+        break;
+    case 12:
+        if (arg1 == 4) {
+            D_80383010.unk5 = (s8) (D_80383010.unk5 - 1);
+        }
+        break;
+    case 6:
+        if (arg1 == 6) {
+            D_80383010.unk4++;
+        }
+        break;
+    }
+    if( (arg1 == 2) 
+        && (D_80383010.unk1 == 0) 
+        && (arg0 - 4 != D_80383010.unk2)
+    ) {
+        gczoombox_highlight(D_80383010.zoombox[arg0 - 4], 0);
+    }
+}
+
+s32 func_80312B04(void) {
+    s16 *var_s1;
+    s32 var_s0;
+    s32 var_s3;
+
+    var_s3 = 0;
+    if (D_80383010.unk39 != 0) {
+        return 0xC;
+    }
+    for(var_s0 = 1; var_s0 < 0xC; var_s0++){
+        if(func_8034717C(D_8036C58C[var_s0].level_id)){
+            var_s3 = var_s0;
+        }
+    }
+    return var_s3;
+}
 
 s32 func_80312B84(void){ return 1; }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/pauseMenu/func_80312B8C.s")
+void func_80312B8C(void) {
+    s32 i;
+    s32 sp38;
+    s32 sp34;
+    s32 sp30;
+    s32 sp2C;
+    s32 sp28;
+    s32 sp24;
+    s32 temp_v1;
+
+    for(i = 0; i < 0xC; i++){
+        func_802FAD64(D_8036C60C[i]);
+    }
+    func_802FBB18();
+    sp24 = sns_get_item_state(6, 0);
+    sp28 = sns_get_item_state(5, 0);
+    sp2C = sns_get_item_state(4, 0);
+    sp30 = sns_get_item_state(3, 0);
+    sp34 = sns_get_item_state(2, 0);
+    sp38 = sns_get_item_state(1, 0);
+    D_80383010.unk39 = sp38
+        + sp34
+        + sp30
+        + sp2C
+        + sp28
+        + sp24
+        + sns_get_item_state(7, 0);
+    D_80383010.unk70_29 = func_80312B84();
+    func_80311604();
+    func_80311854();
+    D_80383010.unk24 = assetcache_get(0x7EB);
+    D_80383010.unkB = spriteGetFrameCount(D_80383010.unk24);
+     D_80383010.unk34 = temp_v1 = D_80383010.unk36 =  0;
+    D_80383010.unkA = D_80383010.unk0_4 = temp_v1;
+
+    D_80383010.unk2C = assetcache_get(0x7ED);
+    D_80383010.unk31 = spriteGetFrameCount(D_80383010.unk2C);
+    D_80383010.unk30 = D_80383010.unk0_0 = D_80383010.unk32 = 0;
+    D_80383010.unk38 = func_80312B04();
+    D_80383010.unk3C[0] = D_80383010.unk3A = D_80383010.unk70_31 = D_80383010.unk70_30 = 0;
+    func_80250FC0();
+    func_803120FC(0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/pauseMenu/func_80312D78.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/pauseMenu/func_80312E80.s")
+void func_80312E80(struct1As *arg0, s32 arg1) {
+    f32 var_f0;
+    s32 var_s1;
 
-func_80312F88(s32 arg0){
+    for(var_s1 = 0; var_s1 < arg1; var_s1++){
+        var_f0 = ((var_s1 == D_80383010.unk2) && (D_80383010.unk1 == 0)) ? 0.2 :  arg0[var_s1].unk4;
+            if (var_f0 <= D_80383010.unkC) {
+                if (arg0[var_s1].unkF == 0) {
+                    func_80318498(D_80383010.zoombox[var_s1]);
+                    if (func_803188B4(D_80383010.zoombox[var_s1]) == 0) {
+                        D_80383010.unk5--;
+                    }
+                    arg0[var_s1].unkF = 1U;
+                }
+            }
+    }
+}
+
+void func_80312F88(s32 arg0){
     struct1Cs *v0 = D_8036C58C + arg0;
     print_bold_overlapping(v0->x, D_80383010.unk8, -1.05f, v0->string);
 }
@@ -615,18 +801,68 @@ func_80312F88(s32 arg0){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/pauseMenu/func_8031307C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/pauseMenu/func_80313134.s")
+void func_80313134(void) {
+    f32 temp_f12;
+    f32 var_f0;
+    f32 var_f0_2;
+    f32 var_f12;
+    s8 temp_a0;
+    u8 temp_a0_2;
+    u8 temp_t0;
+    u8 temp_v0;
+    u8 temp_v0_2;
 
+    D_80383010.unk20 += time_getDelta();
+    var_f0 = (D_80383010.unk0_4) ? 0.05 :  0.066666666666666666;
+    while (var_f0 < D_80383010.unk20) {
+        if (D_80383010.unk0_4) {
+            if (D_80383010.unkA-- == 0) {
+                D_80383010.unkA = 0;
+                D_80383010.unk0_4 = FALSE;
+                var_f0 = 0.066666666666666666;
+            }
+        } else {
+            D_80383010.unkA++;
+            if (D_80383010.unkA >= D_80383010.unkB) {
+                D_80383010.unk0_4 = TRUE;
+                D_80383010.unkA = D_80383010.unkB - 1;
+                var_f0 = 0.05f;
+            }
+        }
+        D_80383010.unk20 -= var_f0;
+    }
+    D_80383010.unk0_3 = (D_80383010.unk2 != 0) ? TRUE : FALSE;
+    D_80383010.unk0_2 = (func_80313070() == D_80383010.unk2) ? FALSE : TRUE;
+    D_80383010.unk28 += time_getDelta();
 
-#ifdef NONMATCHING
+    var_f12 = (D_80383010.unk0_0) ? 0.04 : 0.04;
+    while (D_80383010.unk28 > var_f12) {
+            if (D_80383010.unk0_0) {
+                if (D_80383010.unk30-- <= 0) {
+                    D_80383010.unk30 = 0;
+                    D_80383010.unk0_0 = FALSE;
+                    var_f12 = 0.04;
+                }
+            } else {
+                D_80383010.unk30++;
+                if (D_80383010.unk30 >= D_80383010.unk31) {
+                    D_80383010.unk0_0 = TRUE;
+                    D_80383010.unk30 = D_80383010.unk31 - 1;
+                    var_f12 = 0.04;
+                }
+            }
+            D_80383010.unk28 -= var_f12;
+            if(var_f12);
+    }
+}
+
 s32 func_80313380(void){
-    s32 temp;
+    s32 i;
     s32 sp6C[6];
     s32 sp60[3];
     s32 sp50[4];
     f32 sp48[2];
     s32 level = level_get(); //sp44
-    s32 i;
     
     
     if(getGameMode() != GAME_MODE_4_PAUSED)
@@ -643,7 +879,7 @@ s32 func_80313380(void){
 
     
     D_80383010.unkC += time_getDelta();
-    switch(D_80383010.unk0_31){
+    switch(D_80383010.unk0){
         case 0: //closed
             func_803120FC(1); 
             break;
@@ -670,7 +906,7 @@ s32 func_80313380(void){
             if(func_8024E67C(BUTTON_START) == 1){
                 func_803120FC(6);
             }else if(sp6C[0] == 1){
-                switch(D_80383010.unk0_15){
+                switch(D_80383010.unk2){
                     case 1://L80313594
                         if(level > 0 && level < 0xC)
                             if(D_8036C560[level-1].map != -1)
@@ -685,46 +921,45 @@ s32 func_80313380(void){
                 }
             }
             else if(sp6C[1] == 1){//L803135F8
-                gczoombox_highlight(D_80383010.zoombox[D_80383010.unk0_15], 0);
-                D_80383010.unk0_15 = 0;
-                gczoombox_highlight(D_80383010.zoombox[D_80383010.unk0_15], 1);
+                gczoombox_highlight(D_80383010.zoombox[D_80383010.unk2], 0);
+                D_80383010.unk2 = 0;
+                gczoombox_highlight(D_80383010.zoombox[D_80383010.unk2], 1);
                 func_803120FC(3);
             }
             else if(D_80383010.unk7 > 0) {//L8031364C
                 D_80383010.unk7--;
             }//L80313664
             else {
-                if( D_80383010.unk0_15 == 2 && !D_80383010.unk0_6){
-                    func_803160A8(D_80383010.zoombox[D_80383010.unk0_15]);
+                if( D_80383010.unk2 == 2 && !D_80383010.unk0_6){
+                    func_803160A8(D_80383010.zoombox[D_80383010.unk2]);
                     D_80383010.unk0_6 = 1;
                 }
                 if(0.75 < sp48[1]){
-                    if((s32)D_80383010.unk0_15 > 0){
-                        gczoombox_highlight(D_80383010.zoombox[D_80383010.unk0_15], 0);
-                        D_80383010.unk0_15--;
-                        if(D_80383010.unk70_29 && D_80383010.unk0_15 == 1)
-                            D_80383010.unk0_15 --;
-                        gczoombox_highlight(D_80383010.zoombox[D_80383010.unk0_15], 1);
-                        func_803160A8(D_80383010.zoombox[D_80383010.unk0_15]);
+                    if((s32)D_80383010.unk2 > 0){
+                        gczoombox_highlight(D_80383010.zoombox[D_80383010.unk2], 0);
+                        D_80383010.unk2--;
+                        if(D_80383010.unk70_29 && D_80383010.unk2 == 1)
+                            D_80383010.unk2 --;
+                        gczoombox_highlight(D_80383010.zoombox[D_80383010.unk2], 1);
+                        func_803160A8(D_80383010.zoombox[D_80383010.unk2]);
                         D_80383010.unk0_6 = 0;
                         D_80383010.unk7 = 6;
                     }
                 }else if(sp48[1] < -0.75){
-                    if((s32)D_80383010.unk0_15 < 3){
-                        gczoombox_highlight(D_80383010.zoombox[D_80383010.unk0_15], 0);
-                        D_80383010.unk0_15++;
-                        if(D_80383010.unk70_29 && D_80383010.unk0_15 == 1)
-                            D_80383010.unk0_15++;
-                        gczoombox_highlight(D_80383010.zoombox[D_80383010.unk0_15], 1);
-                        func_803160A8(D_80383010.zoombox[D_80383010.unk0_15]);
+                    if((s32)D_80383010.unk2 < 3){
+                        gczoombox_highlight(D_80383010.zoombox[D_80383010.unk2], 0);
+                        D_80383010.unk2++;
+                        if(D_80383010.unk70_29 && D_80383010.unk2 == 1)
+                            D_80383010.unk2++;
+                        gczoombox_highlight(D_80383010.zoombox[D_80383010.unk2], 1);
+                        func_803160A8(D_80383010.zoombox[D_80383010.unk2]);
                         D_80383010.unk0_6 = 0;
                         D_80383010.unk7 = 6;
                     }
                 }
             }
-            temp = D_80383010.unk0_15;
-            if(temp == 2 && !D_80383010.unk0_6 && D_80383010.unk7 == 3){
-                func_803160A8(D_80383010.zoombox[D_80383010.unk0_15]);
+            if(D_80383010.unk2 == 2 && !D_80383010.unk0_6 && D_80383010.unk7 == 3){
+                func_803160A8(D_80383010.zoombox[D_80383010.unk2]);
                 D_80383010.unk0_6 = 1;
             }
             break;
@@ -743,22 +978,22 @@ s32 func_80313380(void){
             }
             break;
         case 4:
-            switch(D_80383010.unk0_15){
+            switch(D_80383010.unk2){
                 case 0://L803138FC
                     D_80383010.unk0_7 = 1;
                     break;
                 case 1://L80313908 //return to lair
                     func_803204E4(0x16, 1);
-                    if(map_get() == MAP_LAIR_FURNACE_FUN){
+                    if(map_get() == MAP_8E_GL_FURNACE_FUN){
                         func_803204E4(0,0);
-                        func_802E4078(MAP_LAIR_FF_ENTRANCE, 2, 1);
+                        func_802E4078(MAP_80_GL_FF_ENTRANCE, 2, 1);
                     }else{
                         func_802E4078(D_8036C560[level-1].map, D_8036C560[level-1].exit, 1);
                     }
                     func_803120FC(0x13);
                     break;
                 case 2://L80313978
-                    D_80383010.unk0_15 = func_80312034(level_get());
+                    D_80383010.unk2 = func_80312034(level_get());
                     func_803120FC(7);
                     break;
                 case 3://L8031399C
@@ -768,7 +1003,7 @@ s32 func_80313380(void){
                         func_803120FC(0x14);
                     }else{
                         func_802E412C(1,0);
-                        func_802E4078(MAP_CUTSCENE_GAMEOVER, 0, 1);
+                        func_802E4078(MAP_83_CS_GAME_OVER_MACHINE_ROOM, 0, 1);
                         func_803120FC(0x13);
                     }
                     break;
@@ -776,19 +1011,19 @@ s32 func_80313380(void){
             break;
             case 5:
                 if(3.0 < D_80383010.unkC){
-                    if( D_8036C4E0[D_80383010.unk0_15].unkF){
-                        gczoombox_minimize(D_80383010.zoombox[D_80383010.unk0_15]);
+                    if( D_8036C4E0[D_80383010.unk2].unkF){
+                        gczoombox_minimize(D_80383010.zoombox[D_80383010.unk2]);
                     }
                     D_80383010.unk0_6 ^= 1;
-                    gczoombox_maximize(D_80383010.zoombox[D_80383010.unk0_15]);
-                    if(D_8036C4E0[D_80383010.unk0_15].unkF = func_803183A4(D_80383010.zoombox[D_80383010.unk0_15], (D_80383010.unk0_6)? "ARE YOU SURE?" : "A - YES, B - NO"))
+                    gczoombox_maximize(D_80383010.zoombox[D_80383010.unk2]);
+                    if(D_8036C4E0[D_80383010.unk2].unkF = func_803183A4(D_80383010.zoombox[D_80383010.unk2], (D_80383010.unk0_6)? "ARE YOU SURE?" : "A - YES, B - NO"))
                         D_80383010.unkC = 0.0;
                 }//L80313AF4
                 if(func_8024E67C(BUTTON_START) == 1){
                     func_803120FC(6);
                 }else if(sp6C[1] == 1){
                     D_80383010.unk4 = (D_80383010.unk70_29)? 3 : 4;
-                    func_803188B4(D_80383010.zoombox[D_80383010.unk0_15]);
+                    func_803188B4(D_80383010.zoombox[D_80383010.unk2]);
                     func_803120FC(1);
                 }else if(sp6C[0] == 1){//L80313B68
                     func_803120FC(3);
@@ -808,7 +1043,7 @@ s32 func_80313380(void){
                 func_803120FC(8);
                 break;
             case 8:
-                func_80312F88(D_80383010.unk0_15);
+                func_80312F88(D_80383010.unk2);
                 func_80312FD0(1);
                 func_80312D78(D_8036C520,4);
                 func_80313134();
@@ -818,26 +1053,26 @@ s32 func_80313380(void){
                 }
                 break;
             case 9:
-                func_80312F88(D_80383010.unk0_15);
+                func_80312F88(D_80383010.unk2);
                 func_80312FD0(1);
                 func_80313134();
                 if(func_8024E67C(BUTTON_START) == 1){
-                    D_80383010.unk0_23 = 3;
+                    D_80383010.unk1 = 3;
                     func_803120FC(0xA);
                 }else if(sp6C[1] == 1){
                     func_803120FC(0xA);
                 }else if(0.75 < sp48[0]){
-                    if((s32)D_80383010.unk0_15 < func_80313070())
+                    if((s32)D_80383010.unk2 < func_80313070())
                         func_8031307C(1);
                 }else if(sp48[0] < -0.75){//L80313CCC
-                    if((s32)D_80383010.unk0_15 > 0){
+                    if((s32)D_80383010.unk2 > 0){
                         func_8031307C(-1);
                     }
                 }
                 break;
             
             case 0xA://80313D00
-                func_80312F88(D_80383010.unk0_15);
+                func_80312F88(D_80383010.unk2);
                 func_80312FD0(-1);
                 func_80312E80(D_8036C520, 4);
                 func_80313134();
@@ -858,7 +1093,7 @@ s32 func_80313380(void){
                 break;
             
             case 0xB:
-                if(D_80383010.unk0_23 == 3){
+                if(D_80383010.unk1 == 3){
                     D_80383010.unk0_7 = 1;
                 }
                 else{
@@ -867,7 +1102,7 @@ s32 func_80313380(void){
                 break;
 
             case 0xC:
-                func_80312F88(D_80383010.unk0_15);
+                func_80312F88(D_80383010.unk2);
                 func_80312FD0(-1);
                 func_80313134();
                 if(D_80383010.unk5 == 0 && !D_80383010.unk0_5){
@@ -876,7 +1111,7 @@ s32 func_80313380(void){
                 break;
             
             case 0xD:
-                func_80312F88(D_80383010.unk0_15);
+                func_80312F88(D_80383010.unk2);
                 func_80312FD0(1);
                 func_80313134();
                 if(D_80383010.unk7 > 0)
@@ -890,7 +1125,7 @@ s32 func_80313380(void){
                 break;
 
             case 0xF:
-                func_80312F88(D_80383010.unk0_15);
+                func_80312F88(D_80383010.unk2);
                 func_80312FD0(1);
                 func_80313134();
                 if(!D_80383010.unk0_5){
@@ -899,10 +1134,10 @@ s32 func_80313380(void){
                 break;
             
             case 0x10:
-                func_80312F88(D_80383010.unk0_15);
+                func_80312F88(D_80383010.unk2);
                 func_80313134();
                 if(func_8024E67C(BUTTON_START) == 1){
-                    D_80383010.unk0_23 = 3;
+                    D_80383010.unk1 = 3;
                     func_803120FC(0x11);
                 }//L80313EFC
                 else if(sp6C[1] == 1){
@@ -915,7 +1150,7 @@ s32 func_80313380(void){
                 break;
 
             case 0x11:
-                func_80312F88(D_80383010.unk0_15);
+                func_80312F88(D_80383010.unk2);
                 func_80312FD0(-1);
                 func_80313134();
                 if(D_80383010.unk9 == -1){
@@ -928,7 +1163,7 @@ s32 func_80313380(void){
                 break;
 
             case 0x12:
-                if(D_80383010.unk0_23 == 3){
+                if(D_80383010.unk1 == 3){
                     D_80383010.unk0_7 = 1;
                 }else{
                     func_803120FC((D_80383010.unk9 != -1)?7:0);
@@ -950,9 +1185,6 @@ s32 func_80313380(void){
     }
     return D_80383010.unk0_7;
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/pauseMenu/func_80313380.s")
-#endif
 
 void __pause_drawSprite(Gfx** gdl, Mtx** mptr, void* vptr, BKSprite* sprite, s32 frame, f32 x, f32 y, f32 w, f32 h, u8 a){
     f32 sp5C[3];
@@ -1001,7 +1233,9 @@ void func_80314234(Gfx** gdl, Mtx** mptr, s32 vptr, BKSprite *sprite, s32 frame,
     __pause_drawSprite(gdl, mptr, vptr, sprite, frame, (x - w * 0.5), (y - h * 0.5), w, h, a);
 }
 
+// extern int D_8036C620 = 0;
 #ifdef NONMATCHING
+
 void func_80314320(Gfx **gdl, Mtx **mptr, s32 arg2){
     f32 sp98[3];
     f32 sp8C[3];
@@ -1143,7 +1377,7 @@ void func_80314320(Gfx **gdl, Mtx **mptr, s32 arg2){
         if(!D_80383010.unk3A && D_80383010.unk3C[0] > 0){
             D_80383010.unk3C[0] = MAX(D_80383010.unk3C[0] - 0xC, 0);
         }
-        if(D_80383010.unk0_31 == 0x14){
+        if(D_80383010.unk0 == 0x14){
             func_802DC604(gdl, mptr, arg2);
         }
         

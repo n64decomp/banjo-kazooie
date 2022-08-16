@@ -5,8 +5,26 @@
 extern u8 D_803A5D00[2][0x1ecc0];
 
 /* .data */
-extern Gfx D_8036C450[];
-extern Gfx D_8036C4A8[];
+Gfx D_8036C450[] = {
+    gsDPPipeSync(),
+    gsSPClearGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BOTH | G_FOG | G_LIGHTING | G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR | G_LOD | G_SHADING_SMOOTH),
+    gsSPSetGeometryMode(G_SHADE | G_TEXTURE_GEN_LINEAR | G_SHADING_SMOOTH),
+    gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
+    gsDPSetRenderMode(G_RM_OPA_SURF, G_RM_OPA_SURF2),
+    gsDPSetCycleType(G_CYC_1CYCLE),
+    gsDPSetCombineLERP(TEXEL0, 0, PRIMITIVE_ALPHA, 0, 0, 0, 0, TEXEL0, TEXEL0, 0, PRIMITIVE_ALPHA, 0, 0, 0, 0, TEXEL0),
+    gsDPSetTextureFilter(G_TF_POINT),
+    gsDPSetTexturePersp(G_TP_NONE),
+    gsDPSetPrimColor(0, 0, 0x00, 0x00, 0x00, 0x78),
+    gsSPEndDisplayList()
+};
+
+Gfx D_8036C4A8[] = {
+    gsDPPipeSync(),
+    gsDPSetTextureFilter(G_TF_BILERP),
+    gsDPSetTexturePersp(G_TP_PERSP),
+    gsSPEndDisplayList()
+};
 
 /* .bss */
 s16 *D_80382450;

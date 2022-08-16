@@ -37,7 +37,7 @@ void func_80334540(Gfx** gdl, Mtx **mptr, Vtx **vptr) {
         write_file_blocks(0, 0, 0x80BC7230, EEPROM_MAXBLOCKS);
     }
     func_802C3BDC();
-    func_8030B0AC(gdl, mptr, vptr);
+    sky_draw(gdl, mptr, vptr);
     func_802BBD2C(&sp44, &sp40);
     func_8024CE60(sp44, sp40);
     func_8024C904(gdl, mptr);
@@ -157,7 +157,7 @@ void func_80334910(void) {
     func_80309FF0();
     func_8030A6B0();
     func_80333918();
-    func_8030B284();
+    sky_free();
     func_8034C8D8();
     func_80323238();
     func_803343AC();
@@ -231,7 +231,7 @@ void func_80334B20(enum map_e arg0, s32 arg1, s32 arg2) {
     func_802F7D30();
     func_8030A78C();
     func_8033393C();
-    func_8030B2EC();
+    sky_reset();
     func_803343D0();
     cubeList_init();
     func_802FA69C();
@@ -334,7 +334,7 @@ s32 func_80334ECC(void) {
         func_8031B790();
         func_8034C9D4();
         func_8030A850(1);
-        func_8030B3C8();
+        sky_update();
         func_802F08A0();
         func_8034F918();
         func_80350250();

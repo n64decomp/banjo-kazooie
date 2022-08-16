@@ -11,11 +11,74 @@ void func_8024CE60(f32, f32);
 
 
 /* .data */
-extern struct9s D_8036C150[0x16];
-extern struct9s D_8036C308[0xC];
-extern struct10s D_8036C3F8[0x18];
-extern f32 D_8036C440;
-extern f32 D_8036C444;
+struct9s D_8036C150[0x16]= {
+    {0x1,  2, 0, 0.1f, 0, 0, 0.0f},
+    {0x2,  3, 1, 0.1f, 0, 0, 0.0f},
+    {0x3,  4, 0, 0.5f, ASSET_7CF_MODEL_TRANSITION_UNKNOWN, 0, 25.0f},
+    {0x4,  5, 1, 0.5f, ASSET_7CF_MODEL_TRANSITION_UNKNOWN, 0, 25.0f},
+    {0x5,  4, 0, 2.5f, ASSET_7D0_MODEL_TRANSITION_JIGGY, 0,   3.5f},
+    {0x6,  5, 1, 0.9f, ASSET_7D0_MODEL_TRANSITION_JIGGY, 0, 3.5f},
+    {0x7,  0, 0, 0.0f, 0, 0, 0.0f},
+    {0x8,  7, 0, 1.1f, 0, 0, 0.0f},
+    {0x9,  8, 6, 0.7f, 0, 0, 0.0f},
+    {0xA,  5, 1, 3.5f, ASSET_7D4_MODEL_TRANSITION_WITCH, 0, 3.7f},
+    {0xB,  4, 0, 0.3f, ASSET_7CF_MODEL_TRANSITION_UNKNOWN, 0, 25.0f},
+    {0xC,  5, 1, 0.3f, ASSET_7CF_MODEL_TRANSITION_UNKNOWN, 0, 25.0f},
+    {0xD,  2, 0, 0.6f, 0, 0, 0.0f},
+    {0xE,  4, 0, 1.0f, ASSET_7CF_MODEL_TRANSITION_UNKNOWN, 0, 25.0f},
+    {0xF,  5, 1, 1.0f, ASSET_7CF_MODEL_TRANSITION_UNKNOWN, 0, 25.0f},
+    {0x10, 4, 0, 2.5f, ASSET_467_MODEL_TRANSITION_FALLING_JIGGIES, ASSET_1F5_ANIM_TRANSITION_FALLING_JIGGIES, 0.269645989f},
+    {0x11, 5, 1, 2.0f, ASSET_467_MODEL_TRANSITION_FALLING_JIGGIES, ASSET_1F5_ANIM_TRANSITION_FALLING_JIGGIES, 0.269645989f},
+    {0x12, 4, 0, 1.2f, ASSET_7CF_MODEL_TRANSITION_UNKNOWN, 0, 25.0f},
+    {0x13, 5, 1, 1.2f, ASSET_7CF_MODEL_TRANSITION_UNKNOWN, 0, 25.0f},
+    {0x14, 5, 1, 2.2f, ASSET_7CF_MODEL_TRANSITION_UNKNOWN, 0, 25.0f},
+    {0x15, 4, 0, 2.2f, ASSET_7CF_MODEL_TRANSITION_UNKNOWN, 0, 25.0f},
+    0
+};
+
+struct9s D_8036C308[0xC] = {
+    {0xA,  5, 1, 3.5f, ASSET_7D4_MODEL_TRANSITION_WITCH, 0, 3.7f},
+    {0x10, 4, 0, 2.5f, ASSET_467_MODEL_TRANSITION_FALLING_JIGGIES, ASSET_1F5_ANIM_TRANSITION_FALLING_JIGGIES, 0.269645989f},
+    {0x11, 5, 1, 2.0f, ASSET_467_MODEL_TRANSITION_FALLING_JIGGIES, ASSET_1F5_ANIM_TRANSITION_FALLING_JIGGIES, 0.269645989f},
+    {0x6,  5, 1, 0.9f, ASSET_7D0_MODEL_TRANSITION_JIGGY, 0, 3.5f},
+    {0x5,  4, 0, 2.5f, ASSET_7D0_MODEL_TRANSITION_JIGGY, 0, 3.5f},
+    {0x9,  8, 6, 0.7f, 0, 0, 0.0f},
+    {0x8,  7, 0, 0.7f, 0, 0, 0.0f},
+    {0xE,  4, 0, 1.0f, ASSET_7CF_MODEL_TRANSITION_UNKNOWN, 0, 25.0f},
+    {0xF,  5, 1, 1.0f, ASSET_7CF_MODEL_TRANSITION_UNKNOWN, 0, 25.0f},
+    {0x7,  0, 0, 0.0f, 0, 0, 0.0f},
+    {0x8,  7, 0, 1.1f, 0, 0, 0.0f},
+    {0x9,  8, 6, 1.5f, 0, 0, 0.0f}
+};
+
+struct10s D_8036C3F8[0x18] = {
+    {MAP_20_CS_END_NOT_100,                 0x12, 0x13},
+    {MAP_1F_CS_START_RAREWARE,              0x15, 0x09},
+    {MAP_1E_CS_START_NINTENDO,              0x08, 0x13},
+    {MAP_7D_CS_SPIRAL_MOUNTAIN_1,           0x0B, 0x0C},
+    {MAP_7E_CS_SPIRAL_MOUNTAIN_2,           0x0B, 0x0C},
+    {MAP_85_CS_SPIRAL_MOUNTAIN_3,           0x12, 0x0C},
+    {MAP_86_CS_SPIRAL_MOUNTAIN_4,           0x0B, 0x0C},
+    {MAP_87_CS_SPIRAL_MOUNTAIN_5,           0x12, 0x13},
+    {MAP_88_CS_SPIRAL_MOUNTAIN_6,           0x12, 0x13},
+    {MAP_94_CS_INTRO_SPIRAL_7,              0x12, 0x13},
+    {MAP_95_CS_END_ALL_100,                 0x12, 0x13},
+    {MAP_98_CS_END_SPIRAL_MOUNTAIN_1,       0x12, 0x0A},
+    {MAP_99_CS_END_SPIRAL_MOUNTAIN_2,       0x12, 0x0A},
+    {MAP_7B_CS_INTRO_GL_DINGPOT_1,          0x0B, 0x0C},
+    {MAP_81_CS_INTRO_GL_DINGPOT_2,          0x0B, 0x0C},
+    {MAP_82_CS_ENTERING_GL_MACHINE_ROOM,    0x12, 0x0A},
+    {MAP_83_CS_GAME_OVER_MACHINE_ROOM,      0x12, 0x13},
+    {MAP_84_CS_UNUSED_MACHINE_ROOM,         0x12, 0x0C},
+    {MAP_7C_CS_INTRO_BANJOS_HOUSE_1,        0x0B, 0x0C},
+    {MAP_89_CS_INTRO_BANJOS_HOUSE_2,        0x0B, 0x0A},
+    {MAP_8A_CS_INTRO_BANJOS_HOUSE_3,        0x01, 0x02},
+    {MAP_96_CS_END_BEACH_1,                 0x12, 0x13},
+    {MAP_97_CS_END_BEACH_2,                 0x08, 0x14},
+    {0,                                     0x05, 0x06}
+};
+f32 D_8036C440 = 63.6026115f;
+f32 D_8036C444 = 500.0f;
 
 
 /* .bss */

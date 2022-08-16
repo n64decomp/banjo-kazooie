@@ -257,7 +257,7 @@ typedef struct struct_9_s{
     u8 uid;
     u8 unk1;
     u8 unk2;
-    u8 pad3[1];
+    // u8 pad3[1];
     f32 unk4; //duration
     s32 unk8; //asset_indx
     s32 unkC; //animation_indx
@@ -319,7 +319,8 @@ typedef struct struct_16_s{
 }struct16s;
 
 typedef struct struct_1A_s{
-    u8  pad0[0x8];
+    f32 unk0;
+    f32 unk4;
     u8  *str;
     s16 unkC;
     u8  unkE;
@@ -330,6 +331,12 @@ typedef struct struct_1B_s{
     s16 map;
     s16 exit;
 }struct1Bs;
+
+typedef struct struct_1C_1_s{
+    s16 level_id;
+    s16 x;   //0x2
+    u8 *string; //0x4
+}struct1Cs_1;
 
 typedef struct struct_1C_s{
     s8 unk0;
@@ -495,21 +502,6 @@ typedef struct {
     struct struct_81_s *unk0;
     s32 unk4;
 }struct46s;
-
-
-typedef struct {
-    s16 unk0;
-    u8 pad2[0x2];
-    f32 unk4;
-    f32 unk8;
-}struct47s;
-
-typedef struct {
-    s16 map;
-    u8 pad2[2];
-    struct47s unk4[3];
-}struct48s;
-
 
 
 typedef struct{

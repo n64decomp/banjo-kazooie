@@ -774,7 +774,7 @@ void func_8031DC10(s32 arg0, s32 arg1) {
 
     if (player_getTransformation() == TRANSFORM_3_PUMPKIN) {
         ml_vec3h_to_vec3f(vec, arg0);
-        func_8028F6E4(0x2F, vec);
+        func_8028F6E4(BS_INTR_2F_LOGGO, vec);
         timedFunc_set_0(D_80378D44, &func_8031DBE8);
     }
 }
