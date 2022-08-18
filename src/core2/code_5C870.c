@@ -140,7 +140,7 @@ void func_802E39D0(Gfx **gdl, Mtx **mptr, Vtx **vptr, s32 arg3, s32 arg4){
         func_8032D474(gdl, mptr, vptr);
     }
 
-    func_80314320(gdl, mptr, vptr);
+    gcpausemenu_draw(gdl, mptr, vptr);
     if(!func_802E49F0()){
         func_8025AFC0(gdl, mptr, vptr);
     }
@@ -186,7 +186,7 @@ void func_802E3BF8(enum game_mode_e next_mode, s32 arg1){
     }
 
     if(D_8037E8E0.game_mode == GAME_MODE_4_PAUSED && next_mode != GAME_MODE_4_PAUSED ){
-        func_803117E8();
+        gcpausemenu_free();
     }
 
     //L802E3C84
@@ -242,7 +242,7 @@ void func_802E3BF8(enum game_mode_e next_mode, s32 arg1){
         func_8024E7C8();
         func_8025A430(0, 2000, 3);
         func_8025A23C(COMUSIC_6F_PAUSE_SCREEN);
-        func_80312B8C();
+        gcpausemenu_init();
     }//L802E3E6C
 }
 
@@ -534,7 +534,7 @@ bool func_802E4424(void) {
                 && gctransition_8030BD98()
                 && (level_get() != 0)
                 && (0.6 < D_8037E8E0.unk10)
-                && func_80314B00()
+                && gcpausemenu_80314B00()
                 && !func_8028F22C()
                 && func_8032056C()
                 && levelSpecificFlags_validateCRC1()
@@ -549,7 +549,7 @@ bool func_802E4424(void) {
             break;
 
         case GAME_MODE_4_PAUSED:                                     /* switch 2 */
-            if (func_80313380() || func_8031C880()) {
+            if (gcPauseMenu_update() || func_8031C880()) {
                 FUNC_8030E624(SFX_C9_PAUSEMENU_ENTER, 0.899316, 32736);
                 func_80335110(1);
                 func_8025A430(-1, 2000, 3);
@@ -593,8 +593,8 @@ s32 func_802E48D8(void){
     func_802F3300();
     func_802F542C();
     gcdialog_defrag();
-    if(D_8037E8E0.game_mode == 4)
-        func_80311740();
+    if(D_8037E8E0.game_mode == GAME_MODE_4_PAUSED)
+        gcpausemenu_defrag();
     switch(get_loaded_overlay_id()){
         case OVERLAY_2_WHALE:
             func_803894A0();

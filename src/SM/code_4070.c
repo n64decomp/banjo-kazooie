@@ -130,7 +130,7 @@ void func_8038A5D8(Actor *this){
         sp5C[2] = this->velocity_z;
         func_8028FAB0(sp5C);
         if( func_8028EFC8() 
-            && sp44[1] == 1 
+            && sp44[FACE_BUTTON(BUTTON_B)] == 1 
             && func_8028F20C()
         ){
             if(this->sm_4070.unk0)

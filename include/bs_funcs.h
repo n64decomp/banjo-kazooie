@@ -710,6 +710,6 @@ void func_802AE9C8(void);
 void func_802AEA2C(void);
 void func_802AEB24(void);
 void func_802AF604(void);
-void func_802AF668(void);
+void bsdronevanish_update(void);
 void func_802AF768(void);
 #endif

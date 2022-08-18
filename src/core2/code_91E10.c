@@ -483,7 +483,7 @@ void func_80319EA4(void) {
 
     switch (D_803830E0->unk10) {
     case 1:
-        if (func_8028EFC8() && (sp58[BUTTON_Z] == 1)) {
+        if (func_8028EFC8() && (sp58[FACE_BUTTON(BUTTON_B)] == 1)) {
             sp44 = func_80319040(0);
             func_803184C8(D_803830E0->unk24[0], 100.0f, 2, 4, sp44, func_80319028(0), 0);
             return;
@@ -511,7 +511,7 @@ void func_80319EA4(void) {
                 }
             }
         }
-        if ((sp58[BUTTON_START] == 1) || (item_empty(ITEM_0_HOURGLASS_TIMER))) {
+        if ((sp58[FACE_BUTTON(BUTTON_A)] == 1) || (item_empty(ITEM_0_HOURGLASS_TIMER))) {
             D_803830E0->unk12 = (u8) D_803830E0->unk13;
         }
         if ((s8) D_803830E0->unk12 != -1) {

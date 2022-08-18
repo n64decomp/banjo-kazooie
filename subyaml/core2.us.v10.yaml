@@ -287,8 +287,8 @@ segments:
   - [0x7AF80, c, code_7AF80]
   - [0x82000, c, code_82000]
   - [0x83340, c, code_83340]
-  - [0x83D70, c, code_83D70] #DONE
-  - [0x840D0, c, code_840D0] #DONE
+  - [0x83D70, c, gc/section] #DONE
+  - [0x840D0, c, gc/sky] #DONE
   - [0x84470, c, gc/transition] #DONE
   - [0x851D0, c, code_851D0]
   - [0x857B0, c, code_857B0] #DONE
@@ -298,7 +298,7 @@ segments:
   - [0x8DC20, c, code_8DC20]
   - [0x8E270, c, gc/zoombox] #DONE
   - [0x91E10, c, code_91E10]
-  - [0x935F0, c, code_935F0]
+  - [0x935F0, c, code_935F0] #DONE #chminigmae
   - [0x93C10, c, code_93C10]
   - [0x94620, c, code_94620] #DONE
   - [0x94780, c, code_94780] #DONE
@@ -539,8 +539,8 @@ segments:
   - [0xE3A20, bin, data_E3A20]
   - [0xE3C50, .data, code_82000]
   - [0xE4870, bin, data_E4870]
-  - [0xE4880, .data, code_83D70]
-  - [0xE4DB0, .data, code_840D0]
+  - [0xE4880, .data, gc/section]
+  - [0xE4DB0, .data, gc/sky]
   - [0xE51C0, .data, gc/transition]
   - [0xE54C0, .data, code_851D0]
   - [0xE5540, bin, data_E5540]
@@ -762,8 +762,8 @@ segments:
   - [0xF0520, .rodata, code_7AF80]
   # - [0xF0540, bin, data_F0540]
   - [0xF05E0, bin, data_F05E0]
-  - [0xF07B0, .rodata, code_83D70]
-  - [0xF14B0, .rodata, code_840D0]
+  - [0xF07B0, .rodata, gc/section]
+  - [0xF14B0, .rodata, gc/sky]
   - [0xF14C0, .rodata, gc/transition]
   - [0xF1520, .rodata, code_85800]
   - [0xF1540, .rodata, code_87E30]
@@ -772,7 +772,8 @@ segments:
   - [0xF18F0, .rodata, gc/zoombox] 
   # - [0xF1960, bin, data_F1960]
   - [0xF19C0, .rodata, code_91E10]
-  - [0xF1A00, bin, data_F1A00]
+  - [0xF1A00, .rodata, code_935F0]
+  - [0xF1A20, bin, data_F1A20]
   - [0xF1DC0, .rodata, code_9A9D0]
   - [0xF1DF0, .rodata, code_9B180]
   - [0xF1E10, .rodata, code_9C170]
@@ -1029,8 +1030,8 @@ segments:
   - [0xf2c00, .bss, code_7AF80]
   - [0xf2c00, .bss, code_82000]
   - [0xf2c00, .bss, code_83340]
-  - [0xf2c00, .bss, code_83D70]
-  - [0xf2c00, .bss, code_840D0]
+  - [0xf2c00, .bss, gc/section]
+  - [0xf2c00, .bss, gc/sky]
   - [0xf2c00, .bss, gc/transition]
   - [0xf2c00, .bss, code_851D0]
   - [0xf2c00, .bss, code_857B0]

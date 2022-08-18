@@ -351,6 +351,13 @@ enum button_e{
     BUTTON_C_RIGHT = 0xD
 };
 
+#define FACE_BUTTON(button) (button - BUTTON_A)
+
+enum joystick_e{
+    JOYSTICK_X = 0x0,
+    JOYSTICK_Y = 0x1
+};
+
 enum map_e
 {
     MAP_1_SM_SPIRAL_MOUNTAIN = 0x01,

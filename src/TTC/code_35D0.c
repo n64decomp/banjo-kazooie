@@ -167,9 +167,9 @@ void func_80389CC4(s16 arg0[3], s32 arg1){
         func_802EFB98(D_8038D700, &D_8038C928);
         particleEmitter_emitN(D_8038D700, 5);
         D_8038D708[2] += 300.0f;
-        func_80314AC8(0);
+        gcpausemenu_80314AC8(0);
         timedFunc_set_2(0.1f, (TFQM2) func_8028F45C, 9, (s32)&D_8038D708);
-        timedFunc_set_1(0.1f, (TFQM1) func_80314AC8, 1);
+        timedFunc_set_1(0.1f, (TFQM1) gcpausemenu_80314AC8, 1);
         func_80311480(ASSET_A17_TEXT_BURIED_TREASURE_SPAWNED, 4, NULL, NULL, NULL, NULL);
         D_8037DCB4++;
     }//L80389E70

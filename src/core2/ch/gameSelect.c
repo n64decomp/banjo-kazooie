@@ -373,9 +373,9 @@ void func_802C4C14(Actor *this){
                     break;
                 case 5://L802C5040
                     if(D_8037DD2C == 0 && 
-                        (sp5C[0] == 1 || sp5C[1] == 1)
+                        (sp5C[FACE_BUTTON(BUTTON_A)] == 1 || sp5C[FACE_BUTTON(BUTTON_B)] == 1)
                     ){
-                        if(sp5C[0] == 1){
+                        if(sp5C[FACE_BUTTON(BUTTON_A)] == 1){
                             func_802C4AC8(sp84);
                             func_8025A6EC(COMUSIC_2B_DING_B, 22000);
                         }
@@ -419,7 +419,7 @@ void func_802C4C14(Actor *this){
                             func_8025A6EC(COMUSIC_2C_BUZZER, 22000);
                         }
                     }
-                    else if(sp5C[0] == 1){//L802C5250
+                    else if(sp5C[FACE_BUTTON(BUTTON_A)] == 1){//L802C5250
                         if(func_8033D1BC(sp84)){
                             if(randf() < 0.1){
                                 switch(sp84){

@@ -473,7 +473,7 @@ void func_803896FC(Actor *this){
                 && func_8028ECAC() == 0
                 && func_8028F20C()
                 && func_8028EFC8()
-                && sp3C[1] == 1
+                && sp3C[FACE_BUTTON(BUTTON_B)] == 1
                 && !func_803114B0()
             ){
                 if( local->unk19 == 1 

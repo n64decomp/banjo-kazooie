@@ -630,7 +630,7 @@ void func_802D5058(enum map_e map_id, s32 arg1, bool arg2) {
     } else {
         timedFunc_set_0(0.25f, func_802D63D4);
     }
-    func_80314AC8(0);
+    gcpausemenu_80314AC8(0);
 }
 
 
@@ -877,7 +877,7 @@ void func_802D5628(void){
                     }
                     else{//L802D5B24
                         func_8024E55C(0, sp50); //get button inputs
-                        if(sp50[4] == 1){
+                        if(sp50[FACE_BUTTON(BUTTON_C_UP)] == 1){
                             func_80324C58();
                             func_802D6114();
                         }
@@ -1000,7 +1000,7 @@ void func_802D6114(void){
     }
     else{//L802D61DC
         func_80347A14(1);
-        func_80314AC8(1);
+        gcpausemenu_80314AC8(1);
     }
 }
 
@@ -1029,7 +1029,7 @@ void func_802D6264(f32 arg0, enum map_e arg1, s32 arg2, s32 arg3, s32 arg4, enum
     else{
         timedFunc_set_0(arg0, func_802D63D4);
     }
-    func_80314AC8(0);
+    gcpausemenu_80314AC8(0);
 }
 
 void func_802D6310(f32 arg0, enum map_e arg1, s32 arg2, s32 arg3, enum bkprog_e arg4){

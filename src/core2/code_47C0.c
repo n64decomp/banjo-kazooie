@@ -563,7 +563,7 @@ void func_8028BCA0(Prop *prop){
                         timedFunc_set_1(2.0f, func_8035644C, 0xB);
                         item_inc(ITEM_13_EMPTY_HONEYCOMB);
                         if(!(item_getCount(ITEM_13_EMPTY_HONEYCOMB) < 6)){
-                            func_80314AC8(0);
+                            gcpausemenu_80314AC8(0);
                         }
                         func_802F36DC(&prop->actorProp.x);
                         marker_despawn(marker);

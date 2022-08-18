@@ -318,15 +318,6 @@ typedef struct struct_16_s{
     s32 unkC;
 }struct16s;
 
-typedef struct struct_1A_s{
-    f32 unk0;
-    f32 unk4;
-    u8  *str;
-    s16 unkC;
-    u8  unkE;
-    u8  unkF;
-}struct1As;
-
 typedef struct struct_1B_s{
     s16 map;
     s16 exit;
@@ -337,13 +328,6 @@ typedef struct struct_1C_1_s{
     s16 x;   //0x2
     u8 *string; //0x4
 }struct1Cs_1;
-
-typedef struct struct_1C_s{
-    s8 unk0;
-    s8 unk1;
-    s16 x;   //0x2
-    u8 *string; //0x4
-}struct1Cs;
 
 typedef struct struct_1D_s{
     BKModel *unk0;
@@ -891,4 +875,8 @@ typedef struct{
     s16 count;
     s32 offset[];
 }Struct84s;
+
+typedef struct{
+    u8 pad0[1];
+}struct85s;
 #endif

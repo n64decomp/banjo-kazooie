@@ -94,7 +94,7 @@ void func_803891E8(s32 x, s32 y, s32 z, s32 yaw){
 void func_80389244(s32 x, s32 y, s32 z, s32 yaw){
     func_802C3F04(func_803891E8, x, y, z, yaw);
     func_802BB3DC(0, 10.0f, 0.8f);
-    func_80314AC8(1);
+    gcpausemenu_80314AC8(1);
 }
 
 void func_803892A8(ActorMarker **ptr){
@@ -113,7 +113,7 @@ void func_803892A8(ActorMarker **ptr){
             jujuPtr->unk4 = 0xC;
             func_8030E484(0x3f6);
             if(i == 3){
-                func_80314AC8(0);
+                gcpausemenu_80314AC8(0);
                 timedFunc_set_4(1.25f, func_80389244, jujuPtr->unk8_x, jujuPtr->unk8_y, jujuPtr->unk8_z, actorPtr->yaw);
                 func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 0x6d60);
             }

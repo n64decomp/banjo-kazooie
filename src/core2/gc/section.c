@@ -278,6 +278,6 @@ void func_8030AFD8(s32 arg0){
     }
     func_8034789C();
     func_80250FC0(); //stop controller motor
-    func_80314B24();
+    gcpausemenu_80314B24();
     func_80347A70();
 }

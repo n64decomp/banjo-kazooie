@@ -911,7 +911,7 @@ void func_80316764(gczoombox_t *this, s32 arg1) {
         return;
     }
 
-    if (arg1 && this->unk1A4_12 && sp38[0]) {
+    if (arg1 && this->unk1A4_12 && sp38[FACE_BUTTON(BUTTON_A)]) {
         if (this->unk110[0] == -1.0f) {
             func_80315C90(this, 1);
         } else {
@@ -1142,7 +1142,7 @@ void gczoombox_update(gczoombox_t *this){
                     if(this->unk1A4_19){
                          sp44 *= 1.5;
                     }
-                    if(sp58[0] && this->unk1A4_12){
+                    if(sp58[FACE_BUTTON(BUTTON_A)] && this->unk1A4_12){
                          sp44 *= 0.5;
                     }
                     else if(sp4C[0] && this->unk1A4_12){
@@ -1152,7 +1152,7 @@ void gczoombox_update(gczoombox_t *this){
                     while(sp44 < this->unk18C && this->unk15C >= this->unk15E){
                          this->unk15E++;
                          if(func_803156F0(this->unk60[this->unk15E], this->unk1A4_19)){
-                              this->unk18C -= (sp58[0] && this->unk1A4_12) ? 0.05 : 0.1;
+                              this->unk18C -= (sp58[FACE_BUTTON(BUTTON_A)] && this->unk1A4_12) ? 0.05 : 0.1;
                          }//L803172B4
                          this->unk18C -= sp44;
                     }//L803172EC
@@ -1171,7 +1171,7 @@ void gczoombox_update(gczoombox_t *this){
                }
                break;
           case 0x3: //L80317360
-               if((sp58[0] && this->unk1A4_12) || this->unk181 < 0){
+               if((sp58[FACE_BUTTON(BUTTON_A)] && this->unk1A4_12) || this->unk181 < 0){
                     this->state = 4;
                     this->unk183 = 0.5*sp48*this->unk184;
 
@@ -1180,7 +1180,7 @@ void gczoombox_update(gczoombox_t *this){
                }
                break;
           case 0x4: //L80317470
-               if(sp58[0] && this->unk1A4_12){
+               if(sp58[FACE_BUTTON(BUTTON_A)] && this->unk1A4_12){
                     this->unk183 = 0.5*sp48*(this->unk184 + 2);
                     this->unk1A4_23 = 0;
                }

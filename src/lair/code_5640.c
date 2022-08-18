@@ -184,7 +184,7 @@ void func_8038BCF0(Actor *this) {
                 func_80328A84(this, 2);
                 return;
             }
-            if (func_8028EFC8() && (sp78[BUTTON_Z] == 1)) {
+            if (func_8028EFC8() && (sp78[FACE_BUTTON(BUTTON_B)] == 1)) {
                 this->unk10_12++;
                 this->unk10_12 %= 3;
                 func_80311174(local->unk0 + this->unk10_12, 0xB, this->position, this->marker, func_8038BADC, NULL, func_8038BA30);

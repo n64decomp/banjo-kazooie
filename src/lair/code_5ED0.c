@@ -703,7 +703,7 @@ void func_8038D670(enum FF_Action next_state) {
                 }
             } else {
                 if (D_8037DCB8->unk4->unk8 == FFTT_6_SKULL) {
-                    func_80314AC8(0);
+                    gcpausemenu_80314AC8(0);
                     if (func_80305248(sp30, 0x377, D_8037DCB8->playerPosition)) {
                         func_8038D548(1);
                         func_8028F5F8(sp30);
@@ -973,7 +973,7 @@ void func_8038E0B0(void) {
                         func_80356540(0xAA);
                     }
                     if ((D_8037DCB8->unk4->unk9 == 2) && (func_8028ECAC() == 0)) {
-                        if (func_8028EFEC() && (sp48[BUTTON_START] == 1)) {
+                        if (func_8028EFEC() && (sp48[FACE_BUTTON(BUTTON_A)] == 1)) {
                             func_803114D0();
                             player_getRotation(D_8037DCB8->playerRotation);
                             D_8037DCB8->ffQuestionType = func_8038DCD4(sp38);
@@ -981,7 +981,7 @@ void func_8038E0B0(void) {
                             func_8038D670(3);
                             return;
                         }
-                        if (func_8028EFC8() && (sp48[BUTTON_Z] == 1)) {
+                        if (func_8028EFC8() && (sp48[FACE_BUTTON(BUTTON_B)] == 1)) {
                             if ((item_getCount(ITEM_27_JOKER_CARD) > 0) && (sp28 < 0x5B)) {
                                 func_8038C640(D_8037DCB8->unk8, D_8037DCB8->unk4);
                                 item_dec(ITEM_27_JOKER_CARD);
@@ -1006,7 +1006,7 @@ void func_8038E0B0(void) {
                 if ((D_8037DCB8->ffQuestionType == 2) && D_80394354[D_8037DCB8->unkC].unk0 == 2){
                     gczoombox_update(D_8037DCB8->unk20);
                 }
-                if ((D_8037DCB8->unk12 == 0) && func_8028EFC8() && (sp48[BUTTON_Z] == 1)) {
+                if ((D_8037DCB8->unk12 == 0) && func_8028EFC8() && (sp48[FACE_BUTTON(BUTTON_B)] == 1)) {
                     func_80324C58();
                     func_8038D670(4);
                 }

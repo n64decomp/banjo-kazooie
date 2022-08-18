@@ -13,8 +13,8 @@ struct {
 u8 D_8037D468;
 
 /* .code */
-void func_802AF1B0(s32 arg0) {
-    switch (arg0) {
+void bsdronevanish_setState(s32 next_state) {
+    switch (next_state) {
     case 1:
         func_8029E3C0(0, 0.3f);
         break;
@@ -24,13 +24,13 @@ void func_802AF1B0(s32 arg0) {
         func_8029E3C0(0, 0.4f);
         break;
     case 3:
-        func_80314B30();
+        gcpausemenu_returnToLair();
         func_802921C8(0);
         comusic_8025AB44(COMUSIC_43_ENTER_LEVEL_GLITTER, 0, 2000);
         func_8029E3C0(0, 2.0f);
         break;
     }
-    D_8037D468 = arg0;
+    D_8037D468 = next_state;
 }
 
 void func_802AF268(void) {
@@ -97,10 +97,10 @@ void func_802AF604(void){
     func_80294378(6);
     func_802AF4E0();
     D_8037D468 = 0;
-    func_802AF1B0(1);
+    bsdronevanish_setState(1);
 }
 
-void func_802AF668(void) {
+void bsdronevanish_update(void) {
     s32 next_state;
     bool sp20;
 
@@ -109,7 +109,7 @@ void func_802AF668(void) {
     case 1:
         func_802AF550();
         if (func_8029E1A8(0)) {
-            func_802AF1B0(2);
+            bsdronevanish_setState(2);
         }
         break;
     case 2:
@@ -117,7 +117,7 @@ void func_802AF668(void) {
         sp20 = func_8029E1A8(0);
         func_80291FB8((s32) ml_map_f(func_8029E270(0), 0.0f, 0.4f, 0.0f, 255.0f));
         if (sp20) {
-            func_802AF1B0(3);
+            bsdronevanish_setState(3);
         }
         break;
     case 3:

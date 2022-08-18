@@ -450,7 +450,7 @@ void func_803899B0(Actor * this){
             ){
                 if(this->unkF4_8 != 8 || !func_8031FF1C(0xFC)){
                     if( func_8028EFC8()
-                        && sp50[1] == 1
+                        && sp50[FACE_BUTTON(BUTTON_B)] == 1
                     ){
                         if(sp34 || this->unkF4_8 == 1 || this->unkF4_8 == 8){
                             func_80388FA0(this, 5);
@@ -528,9 +528,9 @@ void func_803899B0(Actor * this){
         if(this->unk38_0){
             this->unk60 += time_getDelta();
             if(func_803114C4() != 0xe1d){
-                if(sp50[0] == 1) 
+                if(sp50[FACE_BUTTON(BUTTON_A)] == 1) 
                     sp38 = 1; //A button pressed
-                else if(sp50[1] == 1)
+                else if(sp50[FACE_BUTTON(BUTTON_B)] == 1)
                     sp38 = 0; //B button pressed
             }//L8038A218
 

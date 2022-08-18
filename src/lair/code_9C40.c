@@ -108,7 +108,7 @@ void func_803902B8(Actor *this) {
     sp58 = func_80259384(this->position, sp5C, 400.0f);
     if (func_8031FF1C(sp54 + 0xAD)) {
         func_8024E55C(0, sp3C);
-        sp58 &= (sp3C[BUTTON_Z] == TRUE) || func_8028EC04();
+        sp58 &= (sp3C[FACE_BUTTON(BUTTON_B)] == 1) || func_8028EC04();
     }
     if (sp58 && !*(s32 *)&this->local) {
         func_80390174(this->marker, 0);

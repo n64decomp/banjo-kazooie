@@ -98,6 +98,6 @@ void func_802B9B14(void){
 }
 
 void func_802B9D00(void){
-    if(bs_getInterruptType() == 0xA)
+    if(bs_getInterruptType() == BS_INTR_A)
         func_80296608();
 }

@@ -536,7 +536,7 @@ void gcdialog_update(void) {
             break;
         case 3:                                         /* switch 1 */
             temp_v1_2 = D_80382E20.unk128_31 & 0x80;
-            if (D_80382E20.unk128_0 && (sp90[1] == 1)) {
+            if (D_80382E20.unk128_0 && (sp90[FACE_BUTTON(BUTTON_B)] == 1)) {
                 gcdialog_setState(6);
             }
             else{
@@ -550,9 +550,9 @@ void gcdialog_update(void) {
             break;
 
         case 4:                                         /* switch 1 */
-            if (sp90[0] == 1) {
+            if (sp90[FACE_BUTTON(BUTTON_A)] == 1) {
                 D_80382E20.unk12C_23 = 1;
-            } else if (sp90[1] == (s32) 1) {
+            } else if (sp90[FACE_BUTTON(BUTTON_B)] == 1) {
                 D_80382E20.unk12C_23 = 0;
             }
             if (D_80382E20.unk12C_23 != -1) {

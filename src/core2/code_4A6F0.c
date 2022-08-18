@@ -141,7 +141,7 @@ void func_802D1998(ActorMarker *caller, enum asset_e text_id, s32 arg2){
         case 0xd90: //L802D1A40
             func_80320004(BKPROG_12_HAS_TRANSFORMED_BEFORE, TRUE);
             func_80311480(0xD8F + D_8037DDF0, 4, NULL, NULL, NULL, NULL);
-            func_80314AC8(1);
+            gcpausemenu_80314AC8(1);
             break;
             
         case 0xdaa: //L802D1A7C /* fall-through */
@@ -175,7 +175,7 @@ void func_802D1998(ActorMarker *caller, enum asset_e text_id, s32 arg2){
             return;
 
         default: //L802D1B64
-            func_80314AC8(1);
+            gcpausemenu_80314AC8(1);
             break;
     }
     func_80328A84(this, 4);
@@ -196,7 +196,7 @@ void func_802D1B8C(Actor *this, enum transformation_e transform_id) {
             func_80320004(BKPROG_F7_HAS_TRANSFORMED_IN_CRYPT, TRUE);
             return;
         }
-        func_80314AC8(1);
+        gcpausemenu_80314AC8(1);
         func_80328A84(this, 4U);
         return;
     }
@@ -306,7 +306,7 @@ void func_802D1CF0(Actor *this) {
                 && func_8028EFC8()
             ){
                 func_8024E55C(0, &sp58);
-                if(sp58[BUTTON_Z] == 1){
+                if(sp58[FACE_BUTTON(BUTTON_B)] == 1){
                     if (D_8037DDF0 == TRANSFORM_7_WISHWASHY) {
                         this->unk38_31 = 0;
                     } else if (player_getTransformation() == TRANSFORM_1_BANJO && !func_8031FF1C(func_802D17A0(D_8037DDF0)) && map_get() != MAP_7A_GL_CRYPT){
@@ -346,7 +346,7 @@ void func_802D1CF0(Actor *this) {
                             }
                             func_80328A84(this, 5);
                         }
-                        func_80314AC8(0);
+                        gcpausemenu_80314AC8(0);
 
                         break;
                     }
@@ -412,7 +412,7 @@ void func_802D1CF0(Actor *this) {
                     func_80311480(0xDAF, 6, NULL, this->marker, func_802D1998, NULL);
                     break;
                 }
-                func_80314AC8(1);
+                gcpausemenu_80314AC8(1);
                 func_80328A84(this, 4);
             }
             break;

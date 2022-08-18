@@ -75,7 +75,7 @@ void func_8038EB94(void){
     func_80320004(BKPROG_B9_DOUBLE_HEALTH, TRUE);
     func_80347958();
     func_803463D4(ITEM_14_HEALTH, 0);
-    func_80314AC8(1);
+    gcpausemenu_80314AC8(1);
 }
 
 void func_8038EBEC(ActorMarker *marker) {
@@ -95,7 +95,7 @@ void func_8038EBEC(ActorMarker *marker) {
     }
     if (this->unkF4_8 == 0xB) {
         timedFunc_set_0(1.5f, func_8038EB94);
-        func_80314AC8(0);
+        gcpausemenu_80314AC8(0);
     }
 }
 
@@ -493,13 +493,13 @@ void func_8038F924(Actor *this) {
 
         case 4: //L8038FE28
             if ((func_803114C4() != 0xF7C) && (func_803114C4() != 0xF7D)) {
-                if (sp7C[BUTTON_START] == 1) {
+                if (sp7C[FACE_BUTTON(BUTTON_A)] == 1) {
                     func_8038F894(this, 5);
-                } else if (sp7C[BUTTON_Z] == 1) {
+                } else if (sp7C[FACE_BUTTON(BUTTON_B)] == 1) {
                     func_8038F350(this, 1);
                 } else if ((sp6C[0] == 1) && func_8031FF1C(0xE0)) {
                     func_8038F894(this, 6);
-                } else if (sp7C[BUTTON_R] == 1) {
+                } else if (sp7C[FACE_BUTTON(BUTTON_C_DOWN)] == 1) {
                     if (local->unk4) {
                         func_8038F350(this, 8);
                     } else {

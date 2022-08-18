@@ -361,7 +361,7 @@ void func_802D9D60(Actor *this){
                     if( !func_8028ECAC() 
                         && func_80329530(this, 0xFA)
                         && func_8028EFC8()
-                        && sp50[BUTTON_Z] == 1
+                        && sp50[FACE_BUTTON(BUTTON_B)] == 1
                     ){
                         func_802D9CBC(this);
                     }

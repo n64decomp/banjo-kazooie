@@ -10,7 +10,7 @@ f32 func_802FDE60(f32);
 void timedFunc_set_1(f32, void (*)(s32), s32);
 void timedFunc_set_2(f32, void (*)(s32,s32), s32, s32);
 void item_inc(s32);
-void func_80314AC8(s32);
+void gcpausemenu_80314AC8(s32);
 void item_set(s32, s32);
 
 
@@ -246,7 +246,7 @@ void func_802FE844(s32 arg0, struct8s *arg1){
                         timedFunc_set_1(1.25f, (TFQM1)item_inc, ITEM_15_HEALTH_TOTAL);
                         timedFunc_set_1(1.25f, (TFQM1)func_8030E484, SFX_3EA_UNKNOWN);
                         timedFunc_set_2(1.25f, (TFQM2)item_set, ITEM_14_HEALTH, item_getCount(ITEM_15_HEALTH_TOTAL)+1);
-                        timedFunc_set_1(1.5f, (TFQM1)func_80314AC8, 1);
+                        timedFunc_set_1(1.5f, (TFQM1)gcpausemenu_80314AC8, 1);
                     }
                     break;
                 case 2://L802FECD4

@@ -13,7 +13,7 @@ struct_drone D_80364B30[] = {
     {02, {func_802AEEF4, func_802AEFB0, func_802AF164, func_80296608}},
     {04, {bsdronexform_init, bsdronexform_update, bsdronexform_end, bsdronexform_interrupt}},
     {05, {func_802AE9C8, func_802AEA2C, func_802AEB24, NULL}},
-    {06, {func_802AF604, func_802AF668, func_802AF768, NULL}},
+    {06, {func_802AF604, bsdronevanish_update, func_802AF768, NULL}},
     {0}
 };
 
