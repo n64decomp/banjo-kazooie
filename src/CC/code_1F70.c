@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-extern Struct60s *func_8028EF48(void);
+extern BKCollisionTri *func_8028EF48(void);
 extern void func_8030E9FC(enum sfx_e uid, f32 arg1, f32 arg2, u32 arg3, f32 arg4[3], f32 arg5, f32 arg6);
 extern void func_8030EA54(enum sfx_e uid, f32 arg1, f32 arg2, u32 arg3, f32 arg4[3], f32 arg5, f32 arg6);
 extern void func_8031CE28(s32, s32, f32);
@@ -324,7 +324,7 @@ void func_80388F4C(void){
     f32 sp60;
     f32 sp54[3];
     f32 sp48[3];
-    Struct60s *tmp_v0;
+    BKCollisionTri *tmp_v0;
     f32 pad[3];
 
     func_80387D4C();
@@ -389,11 +389,11 @@ void func_80388F4C(void){
             tmp_v0 = func_8028EF48();
             if( tmp_v0 && !D_80389FA0.unk49
             ){
-                if(tmp_v0->unk8 & 2){
+                if(tmp_v0->flags & 2){
                     func_8031CE28(0x22, 5, 180.0f);
                     D_80389FA0.unk49++;
                 }
-                else if(tmp_v0->unk8 & 4){
+                else if(tmp_v0->flags & 4){
                     func_8031CE28(0x22, 4, 0.0f);
                     D_80389FA0.unk49++;
                 }

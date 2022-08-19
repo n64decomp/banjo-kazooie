@@ -115,16 +115,10 @@ typedef struct portrait_info_s{
     PortraitVoice voiceInfo[5];
 } PortraitInfo;
 
-typedef struct struct_60_s{
-    s16 unk0[3];
-    s16 unk6;
-    s32 unk8;
-}Struct60s;
-
 typedef struct struct_0_s{ //floor
     void *  model;
-    Struct60s unk4;
-    Struct60s unk10;
+    BKCollisionTri unk4;
+    BKCollisionTri unk10;
     f32     unk1C[3];
     f32     unk28[3];
     f32     normX;
@@ -879,4 +873,13 @@ typedef struct{
 typedef struct{
     u8 pad0[1];
 }struct85s;
+
+typedef struct{
+    f32 unk0[3];
+    f32 unkC;
+    u32 flags;
+    s16 unk14;
+    // u8 pad16[2];
+    void *unk18;
+}struct86s;
 #endif

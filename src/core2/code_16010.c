@@ -238,7 +238,7 @@ bool func_8029D7B4(void){
 
 void func_8029D968(void){
     s32 sp24;
-    Struct60s *temp_v0;
+    BKCollisionTri *temp_v0;
     s32 sp1C;
     s32 sp18;
     
@@ -248,11 +248,11 @@ void func_8029D968(void){
         sp1C = 0;
         temp_v0 = func_802946F0();
         if(temp_v0 != NULL){
-            sp1C = temp_v0->unk8 & 0x4000;
+            sp1C = temp_v0->flags & 0x4000;
         }
         temp_v0 = func_8029463C();
         if(temp_v0 != NULL){
-            sp18 = (temp_v0->unk8 & 0x4000)  && func_8028B2E8();
+            sp18 = (temp_v0->flags & 0x4000)  && func_8028B2E8();
         }
         if (sp1C || sp18) {
             func_80250D94(1.0f, 0.5f, 0.4f);

@@ -120,7 +120,7 @@ void func_80294B0C(void){
 }
 
 void func_80294BDC(void) {
-    Struct60s *temp_v0;
+    BKCollisionTri *temp_v0;
     f32 sp30;
     f32 sp2C;
     f32 sp28;
@@ -139,8 +139,8 @@ void func_80294BDC(void) {
         if (!func_80294548() && !(sp24 & 0x50)) {
             temp_v0 = func_802946F0();
             if (temp_v0) {
-                if (temp_v0->unk8 & 0x50) {
-                    sp24 = temp_v0->unk8;
+                if (temp_v0->flags & 0x50) {
+                    sp24 = temp_v0->flags;
                 }
             }
         }

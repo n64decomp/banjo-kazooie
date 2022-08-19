@@ -44,8 +44,8 @@ extern f64 D_80374780;
 f32 D_8037C1F0[2];
 f32 D_8037C1F8[2];
 struct0 * D_8037C200;
-Struct60s * D_8037C204;
-Struct60s D_8037C208;
+BKCollisionTri * D_8037C204;
+BKCollisionTri D_8037C208;
 f32 D_8037C218[3];
 f32 D_8037C228[3];
 f32 D_8037C238[3];
@@ -517,7 +517,7 @@ void func_802946CC(void){
      func_8031C5EC(D_8037C200);
 }
 
-Struct60s *func_802946F0(void){
+BKCollisionTri *func_802946F0(void){
      return D_8037C204;
 }
 

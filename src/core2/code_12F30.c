@@ -114,7 +114,7 @@ void func_80299EC0(f32 arg0[3]) {
     s32 sp78;
     s32 i;
     f32 sp70;
-    Struct60s *sp6C; //floor_vtx_list
+    BKCollisionTri *sp6C; //floor_vtx_list
     f32 sp48[3][3]; //tri_vtx_coord
     f32 temp_f0_2;
     f32 temp_f2_2;

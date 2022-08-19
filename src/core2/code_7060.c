@@ -534,7 +534,7 @@ void func_8028EF28(f32 arg0[3]){
     func_80294A1C(arg0);
 }
 
-Struct60s *func_8028EF48(void){
+BKCollisionTri *func_8028EF48(void){
     return func_802946F0();
 }
 

@@ -6,7 +6,7 @@
 //f32 mlAbsF(f32, f32);
 extern void func_8028F760(s32, f32, f32);
 
-void *func_80309B48(f32 *, f32 *, f32 *, u32);
+BKCollisionTri *func_80309B48(f32 *, f32 *, f32 *, u32);
 void *func_80309B98(f32 *, f32 *, f32 *, u32);
 s32 func_8031FF1C(s32);
 void func_8031FFAC(void);
@@ -26,7 +26,6 @@ void func_8031CD44(s32, s32, f32, f32, s32);
 void func_80256E24(f32 *, f32, f32, f32, f32, f32);
 
 void func_8031C608(struct0 *this);
-void *func_8031BABC(f32 *, f32, f32, u32, void*);
 void func_8031BD98(struct0 *, f32, s32, s32, f32 *, void *, s32);
 
 void func_8031BE98(struct0*, f32, s32);
@@ -49,7 +48,8 @@ extern u32 D_8036DDD4;
 /* .rodata */
 extern f32 D_80378D30;
 extern f32 D_80378D34;
-
+extern f32 D_80378D38;
+extern f32 D_80378D3C;
 extern f32 D_80378D40;
 extern f32 D_80378D44;
 
@@ -97,41 +97,34 @@ void func_8031BA9C(struct0 *this){
     free(this);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94A20/func_8031BABC.s")
-// void *func_8031BABC(f32 *arg0, f32 arg1, f32 arg2, u32 arg3, void *arg4) {
-//     //f32 sp38;
-//     f32 sp34[3];
-//     //f32 sp2C;
-//     f32 sp28[3];
-//     void *sp24;
-//     void *temp_v1;
-//     void *phi_v0;
+BKCollisionTri *func_8031BABC(f32 *arg0, f32 arg1, f32 arg2, u32 arg3, struct86s *arg4) {
+    f32 sp34[3];
+    f32 sp28[3];
+    BKCollisionTri *sp24;
 
-//     ml_vec3f_copy(&sp34, arg0);
-//     sp34[1] = sp34[1] + arg1;
-//     ml_vec3f_copy(&sp28, arg0);
-//     sp28[1] = sp28[1] + arg2;
-//     if (arg3 == 0xF800FF0F) {
-//         phi_v0 = func_80309B48(&sp34, &sp28, arg4, arg3);
-//     } else {
-//         phi_v0 = func_80320B98(&sp34, &sp28, arg4, arg3);
-//     }
-//     temp_v1 = phi_v0;
-//     if (phi_v0 != 0) {
-//         arg4->unk10 = (s32) phi_v0->unk8;
-//         arg4->unk14 = (s16) phi_v0->unk6;
-//     } else {
-//         arg4->unk10 = 0;
-//         arg4->unk14 = (u16)0;
-//     }
-//     arg4->unkC = sp28[1];
-//     sp24 = temp_v1;
-//     arg4->unk18 = func_803209EC();
-//     return temp_v1;
-// }
+    ml_vec3f_copy(sp34, arg0);
+    sp34[1] = sp34[1] + arg1;
+    ml_vec3f_copy(sp28, arg0);
+    sp28[1] = sp28[1] + arg2;
+    if (arg3 == 0xF800FF0F) {
+        sp24 = func_80309B48(&sp34, &sp28, arg4->unk0, arg3);
+    } else {
+        sp24 = func_80320B98(&sp34, &sp28, arg4->unk0, arg3);
+    }
+    if (sp24 != 0) {
+        arg4->flags = (s32) sp24->flags;
+        arg4->unk14 = (s16) sp24->unk6;
+    } else {
+        arg4->flags = 0;
+        arg4->unk14 = (u16)0;
+    }
+    arg4->unkC = sp28[1];
+    arg4->unk18 = func_803209EC();
+    return sp24;
+}
 
-s32 *func_8031BBA0(f32 *this, f32 arg1, f32 arg2, u32 arg3, void *arg4) {
-    s32* phi_v1;
+BKCollisionTri *func_8031BBA0(f32 *this, f32 arg1, f32 arg2, u32 arg3, struct86s *arg4) {
+    BKCollisionTri* phi_v1;
 
     if (mlAbsF(arg2 - arg1) > 500.0f) {
         if (arg1 < arg2) {
@@ -187,14 +180,9 @@ void func_8031BD98(struct0 *this, f32 arg1, s32 arg2, s32 arg3, f32 *normPtr, vo
     ml_vec3f_copy(&this->normX, normPtr);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94A20/func_8031BE0C.s")
-// void func_8031BE0C(struct0 *this, s32 *arg1, s32 arg2) {
-//     s32 a = arg1[4];
-//     s32 b = arg1[5];
-//     func_8031BD98(this, *(f32*)&arg1[3], a, b, &this->model, arg1[6], arg2);
-//     // func_8031BD98(this, *(f32*)&arg1[3], arg1[4], arg1[5], this, *(s32*)&this->unk10[4], arg2);
-// }
-
+void func_8031BE0C(struct0 *this, struct86s *arg1, BKCollisionTri *arg2) {
+    func_8031BD98(this, arg1->unkC, arg1->flags, arg1->unk14, arg1->unk0, arg1->unk18, arg2);
+}
 
 void func_8031BE58(struct0 *this){
     func_8031BD98(this, -9000.0f, 0, 0, &D_8036DDC0, 0, 0);
@@ -211,15 +199,180 @@ void func_8031BEE0(struct0 *this){
     func_8031BE98(this, -10000.0, 0);
 }
 
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94A20/func_8031BF08.s")
+#else
+void func_8031BF08(struct0 *arg0) {
+    f32 sp64;
+    struct86s sp48;
+    BKCollisionTri *temp_v0;
+    f32 sp38[3];
+    f32 temp_f0;
+    bool sp30;
+    u32 tmp = 0x1E0000;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94A20/func_8031C1A4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94A20/func_8031C29C.s")
+    sp30 = 0;
+    ml_vec3f_copy(&sp38, arg0->unk1C);
+    sp64 = arg0->posZ;
+    temp_v0 = func_8031BBA0(sp38, max_f(arg0->unk28[1] - arg0->unk1C[1], 150.0f) + 10.0f, -5.0f, 0xF800FF0F, &sp48);
+    if (temp_v0 != NULL) {
+        func_8031BE98(arg0, sp48.unkC, temp_v0);
+        sp30 = 1;
+    }
+    temp_v0 = func_8031BBA0(&sp38, sp64, -1300.0f, arg0->unk54, &sp48);
+    if (temp_v0 == NULL) {
+        func_8031BE58(arg0);
+        if (!sp30) {
+            func_8031BEE0(arg0);
+        }
+        else if (arg0->unk1C[1] < arg0->posY) {
+            func_8031B9B0(arg0, 3);
+        }
+    } else {
+        if (temp_v0->flags & tmp) {
+            func_8031BE98(arg0, sp48.unkC, temp_v0);
+            if ((arg0->posX < arg0->posY) && (arg0->unk1C[1] < arg0->posY)) {
+                func_8031B9B0(arg0, 3);
+            }
+            temp_v0 = func_8031BBA0(sp38, sp64, -450.0f, tmp | arg0->unk54, &sp48);
+            if (temp_v0 == NULL) {
+                func_8031BE58(arg0);
+            }else if (sp48.unk0[1] >= 0.0f) {
+                func_8031BE0C(arg0, &sp48, temp_v0);
+            }
+        } else {
+            if ((sp48.unk0[1] < 0.0f) && !(temp_v0->flags & 0x10000)) {
+                temp_f0 = sp48.unkC - sp38[1];
+                temp_v0 = func_8031BBA0(sp38, temp_f0 - 1.0f, temp_f0 - D_80378D38, arg0->unk54 | 0x1E0000, &sp48);
+                if (temp_v0 != NULL) {
+                    func_8031BE0C(arg0, &sp48, temp_v0);
+                }
+                else{
+                    func_8031BE58(arg0);
+                }
+            }
+            else{
+                func_8031BE0C(arg0, &sp48, temp_v0);
+                if (sp30) {
+                    func_8031B9B0(arg0, 3);
+                }
+                else{
+                    func_8031BEE0(arg0);
+                }
+            }
+        }
+    }
+}
+#endif
+
+void func_8031C1A4(struct0 *arg0) {
+    struct86s sp44;
+    BKCollisionTri *temp_v0;
+    s32 temp_v0_3;
+    f32 sp30[3];
+    f32 temp_f0;
+
+    ml_vec3f_copy(sp30, arg0->unk1C);
+    temp_v0 = func_8031BBA0(&sp30, 100.0f, -1300.0f, arg0->unk54 | 0x1E0000, &sp44);
+    if ((temp_v0 != 0) && (sp44.unk0[1] >= 0.0f)) {
+        func_8031BE0C(arg0, &sp44, temp_v0);
+    }
+    temp_f0 = arg0->posY - sp30[1];
+    temp_v0 = func_8031BBA0(&sp30, temp_f0 + 50.0f, temp_f0 - 50.0f, 0xF800FF0F, &sp44);
+    if (temp_v0 != 0) {
+        func_8031BE98(arg0, sp44.unkC, temp_v0);
+    }
+    temp_v0_3 = func_8031BCF4(arg0);
+    if (temp_v0_3 != 3) {
+        func_8031B9B0(arg0, temp_v0_3);
+    }
+}
+
+void func_8031C29C(struct0 *arg0) {
+    struct86s sp4C;
+    s32 sp48;
+    BKCollisionTri *temp_v0;
+    s32 sp40;
+    s32 temp_v0_4;
+    f32 sp30[3];
+    f32 temp_f0;
+
+
+    ml_vec3f_copy(sp30, arg0->unk1C);
+    sp48 = ((arg0->unk1C[1] - arg0->posX) > 120.0) ? 1 : 0;
+    sp40 = func_8023DB4C(1);
+    if ((sp48 == 0) || (sp40 != 0)) {
+        arg0->unk59 = arg0->unk5B;
+        temp_v0 = func_8031BBA0(&sp30, 60.0f, -390.0f, arg0->unk54 | 0x1E0000, &sp4C);
+        if (temp_v0 != NULL) {
+            if (sp4C.unk0[1] >= 0.0f) {
+                func_8031BE0C(arg0, &sp4C, temp_v0);
+            }
+        } else {
+            func_8031BE58(arg0);
+        }
+    }
+    if ((sp48 == 0) || (sp40 == 0)) {
+        arg0->unk58 = arg0->unk5A;
+        temp_f0 = arg0->posY - sp30[1];
+        temp_v0 = func_8031BBA0(sp30, temp_f0 + 70.0f, temp_f0 - 70.0f, 0xF800FF0F, &sp4C);
+        if (temp_v0 != 0) {
+            func_8031BE98(arg0, sp4C.unkC, temp_v0);
+            arg0->unk5C = 1U;
+        } else if (arg0->unk5C != 0) {
+            arg0->unk5C = 0U;
+            arg0->unk59 = 1U;
+        }
+    }
+    temp_v0_4 = func_8031BCF4(arg0);
+    if (temp_v0_4 != 4) {
+        func_8031B9B0(arg0, temp_v0_4);
+    }
+}
 
 void func_8031C444(struct0 * this){}
 
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94A20/func_8031C44C.s")
+#else
+void func_8031C44C(struct0 *arg0) {
+    struct86s sp3C;
+    BKCollisionTri *sp38;
+
+    arg0->unk5A = arg0->unk58;
+    arg0->unk5B = arg0->unk59;
+    arg0->unk59 = 0U;
+    arg0->unk58 = 0U;
+    if ((arg0->unk5E == 1) || (arg0->unk5D != 0)) {
+        arg0->unk5D--;
+        sp38 = func_8031BABC(arg0->unk1C, -100.0f, 7000.0f, 0xF800FF0F, &sp3C);
+        if (sp38 != NULL) {
+            func_8031BE98(arg0, sp3C.unkC, sp38);
+        }
+        if (sp38 != NULL) {
+            func_8031B9B0(arg0, 3);
+        } else {
+            func_8031B9B0(arg0, 2);
+        }
+    }
+    switch (arg0->unk5E) {                               /* irregular */
+    case 2:
+        func_8031BF08(arg0);
+        break;
+    case 3:
+        func_8031C1A4(arg0);
+        break;
+    case 4:
+        func_8031C29C(arg0);
+        break;
+    case 5:
+        func_8031C444(arg0);
+        break;
+    }
+    ml_vec3f_copy(arg0->unk28, arg0->unk1C);
+}
+#endif
 
 u8 func_8031C58C(struct0 *this){
     return this->unk58;
@@ -253,9 +406,11 @@ f32 func_8031C5E4(struct0 *this){
     return this->posY;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94A20/func_8031C5EC.s")
+BKCollisionTri *func_8031C5EC(struct0* this){
+    return &this->unk10;
+}
 
-Struct60s *func_8031C5F4(struct0* this){
+BKCollisionTri *func_8031C5F4(struct0* this){
     return &this->unk4;
 }
 

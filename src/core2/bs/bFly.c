@@ -362,7 +362,7 @@ s32 func_802A40E0(void){
 void func_802A411C(void) {
     s32 next_state;
     AnimCtrl *sp58;
-    Struct60s *phi_v0;
+    BKCollisionTri *phi_v0;
     f32 sp48[3];
     s32 sp44;
     s32 sp40;
@@ -401,7 +401,7 @@ void func_802A411C(void) {
                 phi_v0 = func_802946F0();
             }
             if (phi_v0 != NULL) {
-                sp44 = phi_v0->unk8;
+                sp44 = phi_v0->flags;
             } else {
                 sp44 = 0;
             }

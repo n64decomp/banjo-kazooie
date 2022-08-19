@@ -327,7 +327,7 @@ void func_80293350(void);
 void func_80293D48(f32, f32);
 f32  func_80294438(void);
 f32  func_80294500(void);
-Struct60s *func_802946F0(void);
+BKCollisionTri *func_802946F0(void);
 void func_80294980(f32 arg0[3]);
 f32  get_slope_timer(void);
 f32  func_80294A40(void);
