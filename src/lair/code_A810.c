@@ -131,7 +131,7 @@ void func_80390E28(Actor *this) {
 
     switch (this->state) {
         case 0:
-            if( !func_8031A3BC() && (sp38 < 2) && (randf() < 0.1) && !mapSpecificFlags_get(0xA) && !func_803203FC(0x1F)) {
+            if( !func_8031A3BC() && (sp38 < 2) && (randf() < 0.1) && !mapSpecificFlags_get(0xA) && !func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)) {
                 sp38++;
                 mapSpecificFlags_setN(0, sp38, 2);
                 func_80390D3C(this, (randf() < 0.5) ? 2 :1);

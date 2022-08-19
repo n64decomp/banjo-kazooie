@@ -208,7 +208,7 @@ void func_8030F338(void){
         }
     }
     if(D_80382E20.unk128_31 & 0x8){
-            if((!func_802E4A08() && !func_803203FC(0x1F)) || !D_80382E20.unk128_3){
+            if((!func_802E4A08() && !func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)) || !D_80382E20.unk128_3){
                 func_8028F918(0);
             }
     }//L8030F3E8
@@ -216,14 +216,12 @@ void func_8030F338(void){
     func_8030F130();
 }
 
-void func_8030F410(Gfx **next_state, Mtx **arg1, s32 arg2){
+void gcdialog_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx){
     s32 i;
     for(i = 0; i<2; i++){
-        gczoombox_draw(D_80382E20.zoombox[i], next_state, arg1, arg2);
+        gczoombox_draw(D_80382E20.zoombox[i], gfx, mtx, vtx);
     }
 }
-
-
 
 void gcdialog_setState(s32 next_state){
     s32 i;
@@ -673,13 +671,13 @@ void func_803106BC(s32 text_id, s32 arg1, ActorMarker *marker, void(*callback)(A
         D_80382E20.active_zoombox = 1;
     }//L8031095C
     D_80382E20.unk128_6 = 1;
-    D_80382E20.unk12C_23 = ((func_802E4A08() || func_803203FC(0x1F)) && D_80382E20.unk128_3) ? 1 : -1;
+    D_80382E20.unk12C_23 = ((func_802E4A08() || func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)) && D_80382E20.unk128_3) ? 1 : -1;
     D_80382E20.caller = marker;
     D_80382E20.unk13C = callback;
     D_80382E20.unk140 = arg4;
     D_80382E20.unk144 = arg5;
     D_80382E20.unk138 = (marker != NULL )? ((marker->unk5C)? marker->unk5C : -1) : 0;
-    gcdialog_setState(((func_802E4A08() || func_803203FC(0x1F)) && D_80382E20.unk128_3) ? 6 : 1);
+    gcdialog_setState(((func_802E4A08() || func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)) && D_80382E20.unk128_3) ? 6 : 1);
     //L803109EC
 }
 
@@ -758,7 +756,7 @@ void func_80310D2C(void){
             
             D_80382E20.unk138 = sp24->unk14;
             func_8025A55C(8000, 300, 2);
-            if((sp24->unk2 & 0x8) && !((func_802E4A08() || func_803203FC(0x1F)) && D_80382E20.unk128_3)){//L80310E6C
+            if((sp24->unk2 & 0x8) && !((func_802E4A08() || func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)) && D_80382E20.unk128_3)){//L80310E6C
                     func_8028F918(0);
                     if( 0.0f == sp24->unk4_x
                         && 0.0f == sp24->unk4_y
@@ -840,7 +838,7 @@ int func_80311174(s32 text_id, s32 arg1, f32 *pos, ActorMarker *marker, void(*ca
     if(!func_803114B0()){
         func_80310B1C(text_id, arg1, marker, callback, arg5, arg6);
         if(arg1 & 8){
-            if(!(func_802E4A08() || func_803203FC(0x1f)) || !D_80382E20.unk128_3){//L80311214
+            if(!(func_802E4A08() || func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)) || !D_80382E20.unk128_3){//L80311214
                 if(pos != NULL){
                     func_8028F94C(((D_80382E20.string_cmd[1] < 0)? 1 : 3), pos);
                 }else{//L8031126C

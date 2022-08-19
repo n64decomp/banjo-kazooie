@@ -112,7 +112,7 @@ void func_8038E094(Actor *this){
             func_8038DDC8(this);
         }
         if(this->unkF4_8 == 2){
-            if(func_803203FC(UNKFLAGS1_C1) && func_8031B4F4() == -2){
+            if(func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE) && gcparade_8031B4F4() == -2){
                 func_8038DDC8(this);
             }
             else{

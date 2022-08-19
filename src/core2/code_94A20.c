@@ -4,6 +4,7 @@
 
 
 //f32 mlAbsF(f32, f32);
+extern void func_8028F760(s32, f32, f32);
 
 void *func_80309B48(f32 *, f32 *, f32 *, u32);
 void *func_80309B98(f32 *, f32 *, f32 *, u32);
@@ -30,6 +31,7 @@ void func_8031BD98(struct0 *, f32, s32, s32, f32 *, void *, s32);
 
 void func_8031BE98(struct0*, f32, s32);
 
+extern u8 D_8037DCCE[];
 
 // Struct pointer returned by func_80304ED0
 struct unkfunc_80304ED0 {
@@ -277,21 +279,59 @@ void func_8031C638(struct0 *this, s32 arg1){
 
 void mapSpecificFlags_set(s32, s32);
 
-u32 func_8031C688(void);
-u32 func_8031C6E4(void);
-u32 func_8031C640(void);
-u32 func_8031C7C8(void);
+bool func_8031C688(void);
+bool func_8031C6E4(void);
+bool func_8031C640(void);
+bool func_8031C7C8(void);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94A20/func_8031C640.s")
+extern void func_802DC560(s32, s32);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94A20/func_8031C688.s")
+bool func_8031C640(void) {
+    if ((func_8024E698(0) == 1) && (func_8033D1EC() != 0)) {
+        return TRUE;
+    }
+    return FALSE;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94A20/func_8031C6E4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94A20/func_8031C7C8.s")
+bool func_8031C688(void) {
+    if ((func_8024E698(0) == 1) 
+        && ((D_8037DCCE[0] != 0) 
+            || (D_8037DCCE[1] != 0) 
+            || (D_8037DCCE[2] != 0))) {
+        return TRUE;
+    }
+    return FALSE;
+}
+
+
+bool func_8031C6E4(void) {
+    s32 sp24;
+
+    sp24 = func_8024E698(0);
+    if (mapSpecificFlags_get(0) != 0) {
+        func_80320004(0xE1, 1);
+    }
+    if ((sp24 == 1) && func_8031FF1C(0xE1) && !gctransition_8030BDC0()) {
+        if (!mapSpecificFlags_get(0xC)) {
+            mapSpecificFlags_set(0xC, TRUE);
+            func_802DC528(0, 0);
+            timedFunc_set_2(11.0f, (TFQM2)func_802DC560, 0, 0);
+            timedFunc_set_3(12.0f, (TFQM3)func_802E4078, MAP_1F_CS_START_RAREWARE, 0, 1);
+        } else {
+            timedFuncQueue_flush();
+        }
+    }
+    return FALSE;
+}
+
+bool func_8031C7C8(void){
+    func_803219F4(1);
+    return FALSE;
+}
 
 //checks is a cutscene can be inturrupted and performs take me there
-void func_8031C7EC(s32 cs_map, s32 arg1, s32 return_map, s32 return_exit, u32 (* condFunc)(void)){
+void func_8031C7EC(s32 cs_map, s32 arg1, s32 return_map, s32 return_exit, bool (* condFunc)(void)){
     if(map_get() != cs_map)
         return;
 
@@ -935,13 +975,34 @@ void func_8031E1B0(s32 arg0, s32 arg1) {
     func_8031CC8C(arg0, 0x310C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94A20/func_8031E1D4.s")
+void func_8031E1D4(s32 arg0, s32 arg1) {
+    func_8031CB50(MAP_3A_RBB_BOSS_BOOM_BOX, 1, 0);
+}
 
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94A20/func_8031E204.s")
+#else
+void func_8031E204(NodeProp *node, s32 arg1, s32 arg2){
+    f32 sp34[3];
+    f32 sp28[3];
+    f32 sp1C[3];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94A20/func_8031E2B8.s")
+    nodeprop_getPosition(func_80304D04(0x154, &node->x), sp34);
+    nodeprop_getPosition(func_80304D04(0x155, &node->x), sp28);
+    player_getPosition(sp1C);
+    sp1C[1] = (sp28[1] < sp1C[1]) ? sp28[1] : sp1C[1];
+    func_8028F760(2, (sp1C[1] - sp34[1])/(sp28[1] - sp34[1]), 0.0f);
+    func_8031CC8C(node, (arg1 <<8) + arg2);
+}
+#endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_94A20/func_8031E2E0.s")
+void func_8031E2B8(NodeProp *node, ActorMarker *marker){
+    func_8031E204(node, 0x35, 0x1);
+}
+
+void func_8031E2E0(NodeProp *node, ActorMarker *marker){
+    func_8031E204(node, 0x31, 0xd);
+}
 
 void func_8031E308(s32 arg0, s32 arg1) {
     func_8031CC8C(arg0, 0x3206);

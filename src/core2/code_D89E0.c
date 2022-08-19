@@ -38,7 +38,7 @@ void func_8035F970(Actor *this){
 }
 
 void func_8035F99C(Actor *this){
-    if(!func_803203FC(0xC1)){
+    if(!func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE)){
         func_80328B8C(this, 2, 0.01f, 1);
         actor_playAnimationOnce(this);
         this->unk28 = 5.0f;

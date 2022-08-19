@@ -127,7 +127,7 @@ void func_80334910(void) {
     func_803500E8();
     func_80350BC8();
     func_8030F1D0();
-    func_8031B2F0();//null
+    gcparade_free();//null
     func_80322F7C();
     func_803518E8();
     func_802D48F0();

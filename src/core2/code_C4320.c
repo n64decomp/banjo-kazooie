@@ -338,7 +338,7 @@ void func_8034BB90(void) {
 s32 func_8034BDA4(enum map_e map_id, s32 exit_id) {
     s32 phi_v0;
 
-    if (func_803203FC(0x1F)) {
+    if (func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)) {
         return D_80371F70.unk3;
     }
 

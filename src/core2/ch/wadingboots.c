@@ -32,7 +32,7 @@ void chwadingboots_update(Actor *this){
     if(!this->initialized){
         this->initialized = TRUE;
         this->velocity[0] = this->yaw;
-        this->unk10_12 = !func_803203FC(0x1f) && !func_803203FC(0x1);
+        this->unk10_12 = !func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE) && !func_803203FC(0x1);
         func_80328A84(this, 0);
     }
 

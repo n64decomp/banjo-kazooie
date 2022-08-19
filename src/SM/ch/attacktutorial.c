@@ -132,7 +132,7 @@ void chAttackTutorial_update(Actor *this){
             if(mapSpecificFlags_get(4))
                 chAttackTutorial_setState(this, 5);
             
-            if(func_803874C4() || func_803203FC(0xc1))
+            if(func_803874C4() || func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE))
                 chAttackTutorial_setState(this, 4);
             break;
         case 2://L80387658

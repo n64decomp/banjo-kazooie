@@ -145,7 +145,7 @@ void func_802E39D0(Gfx **gdl, Mtx **mptr, Vtx **vptr, s32 arg3, s32 arg4){
         func_8025AFC0(gdl, mptr, vptr);
     }
 
-    func_8030F410(gdl, mptr, vptr);
+    gcdialog_draw(gdl, mptr, vptr);
     if(!func_802E49F0()){
         func_802FAB54(gdl, mptr, vptr);
     }
@@ -209,7 +209,7 @@ void func_802E3BF8(enum game_mode_e next_mode, s32 arg1){
         if(arg1){
             sp20 = FALSE;
             if(next_mode == GAME_MODE_3_NORMAL){
-                if(func_803203FC(0x1F)){
+                if(func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)){
                     sp20 = TRUE;
                     sp1C = 7;
                 }
@@ -261,7 +261,7 @@ void func_802E3E7C(enum game_mode_e mode){
     prev_mode = D_8037E8E0.unk0;
     func_802E3BF8(2, 0);
     if(!func_80320454(0x21, 0) || map_getLevel(map_get()) == map_getLevel(D_8037E8E0.map)){
-        if(!func_803203FC(0x1F))
+        if(!func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE))
             mapSavestate_save(map_get());
     }
     func_802E398C(1);
@@ -443,7 +443,7 @@ bool func_802E4424(void) {
                 ) {
                     func_8034B940();
                 }
-                func_8031ABF8();
+                gcparade_8031ABF8();
                 func_802E3E7C(GAME_MODE_3_NORMAL);
                 return FALSE;
 
@@ -455,7 +455,7 @@ bool func_802E4424(void) {
                 ) {
                     func_8034B940();
                 }
-                func_8031ABA0();
+                gcparade_8031ABA0();
                 func_802E3E7C(GAME_MODE_3_NORMAL);
                 return FALSE;
 

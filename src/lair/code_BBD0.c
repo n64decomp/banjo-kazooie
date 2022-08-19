@@ -19,10 +19,26 @@ ActorAnimationInfo D_80394BE0[] = {
     {0x28E, 2.0f},
     {0x1D0, 3.0f},
 };
-ActorInfo D_80394C28 = { 0x29A, 0x3C4, 0x55F, 0x1, D_80394BE0, func_8039217C, func_80326224, func_80325888, 0, 0, 3.0f, 0};
-ActorInfo D_80394C4C = { 0x29A, 0x3C7, 0x560, 0x3, D_80394BE0, func_8039217C, func_80326224, func_80325888, 0, 0, 1.0f, 0};
-ActorInfo D_80394C70 = { 0x29A, 0x3C6, 0x34C, 0x0, D_80394BE0, func_8039217C, func_80326224, func_80325888, 0, 0, 3.0f, 0};
-ActorInfo D_80394C94 = { 0x29A, 0x3C8, 0x35B, 0x5, D_80394BE0, func_8039217C, func_80326224, func_80391FC0, 0, 0, 1.0f, 0};
+ActorInfo D_80394C28 = { MARKER_29A_FF_PRIZE, ACTOR_3C4_FF_PRIZE_WASHING_CAULDRON, ASSET_55F_MODEL_FF_PRIZE_WASHING_CAULDRON,   
+    0x1, D_80394BE0, 
+    func_8039217C, func_80326224, func_80325888,
+    0, 0, 3.0f, 0
+};
+ActorInfo D_80394C4C = { MARKER_29A_FF_PRIZE, ACTOR_3C7_FF_PRIZE_GRUNTY_DOLL, ASSET_560_MODEL_FF_PRIZE_GRUNTY_DOLL,
+    0x3, D_80394BE0,
+    func_8039217C, func_80326224, func_80325888,
+    0, 0, 1.0f, 0
+};
+ActorInfo D_80394C70 = { MARKER_29A_FF_PRIZE, 0x3C6, 0x34C,
+    0x0, D_80394BE0,
+    func_8039217C, func_80326224, func_80325888,
+    0, 0, 3.0f, 0
+};
+ActorInfo D_80394C94 = { MARKER_29A_FF_PRIZE, ACTOR_3C8_FF_PRIZE_TOOTY, ASSET_35B_FF_PRIZE_TOOTY,
+    0x5, D_80394BE0,
+    func_8039217C, func_80326224, func_80391FC0,
+    0, 0, 1.0f, 0
+};
 
 /* .code */
 Actor *func_80391FC0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
@@ -32,7 +48,7 @@ Actor *func_80391FC0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 }
 
 void func_80392014(Actor *this, enum sfx_e sfx_id, f32 arg2, f32 arg3, s32 arg4) {
-    if (mapSpecificFlags_get(0xA) || func_803203FC(0x1F)) {
+    if (mapSpecificFlags_get(0xA) || func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)) {
         arg4 = arg4 * 0.5;
     }
     if (mapSpecificFlags_get(5)) {
@@ -103,7 +119,7 @@ void func_8039217C(Actor *this) {
             break;
 
         case 5: //L803923C0
-            if (func_803203FC(0x1F)) {
+            if (func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)) {
                 func_80328A84(this, 8U);
                 break;
             }

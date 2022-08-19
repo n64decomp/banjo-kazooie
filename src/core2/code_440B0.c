@@ -249,7 +249,7 @@ void func_802CBAAC(Actor *this) {
         }
     }
 
-    if (func_803203FC(0xC1) != 0) {
+    if (func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE) != 0) {
         if (this->unkF4_8 != 1) {
             marker_despawn(this->marker);
             return;

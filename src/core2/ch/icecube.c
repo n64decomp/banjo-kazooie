@@ -301,7 +301,7 @@ void chicecube_update(Actor *this){
         case 1: // L8035AC9C
             animctrl_setAnimTimer(this->animctrl, 0.0f);
             if( func_80359DF4(this, 900)
-                || (this->unkF4_8 == 2 && func_803203FC(0xC1))
+                || (this->unkF4_8 == 2 && func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE))
             ){
                 func_80328B8C(this, 2, 0.0001f, 1);
                 actor_playAnimationOnce(this);

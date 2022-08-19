@@ -175,7 +175,7 @@ void chnapper_update(Actor *this){
             __chnapper_setState(this, 2);
         }
 
-        if(func_80389530() || func_803203FC(0x1f)){
+        if(func_80389530() || func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)){
             __chnapper_setState(this, 3);
         }
     }//L80386F74

@@ -109,7 +109,7 @@ void func_8038A384(Actor *this){
         }//L8038A4A0
 
         if( jiggyscore_isCollected(JIGGY_2E_FP_PRESENTS)
-            || func_803203FC(0xC1)
+            || func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE)
         ){
             func_80328B8C(this, 2, randf2(0.0f, 0.9f), 1);
         }

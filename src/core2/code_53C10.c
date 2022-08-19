@@ -243,7 +243,7 @@ void func_802DB5A0(Actor *this) {
         this->unk124_0 = this->unk138_31 = FALSE;
         local->unk38 = 0;
         this->unk16C_4 = TRUE;
-        if (func_803203FC(0x1F)) {
+        if (func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)) {
             func_80328A84(this, 2U);
             return;
         }

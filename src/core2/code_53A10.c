@@ -36,7 +36,7 @@ void func_802DAA14(Actor *this){
     s32 tmp;
     s32 text_id;
 
-    if(func_803203FC(1) || func_803203FC(0x1F)){
+    if(func_803203FC(1) || func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)){
         marker_despawn(this->marker);
         return;
     }

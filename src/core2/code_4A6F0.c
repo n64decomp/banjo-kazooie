@@ -113,7 +113,7 @@ void func_802D18B4(Actor *this) {
     } else {
         phi_v0 = func_802D17A8(0, -107, 188);
     }
-    if(phi_v0 || func_803203FC(1) || func_803203FC(0x1F)){
+    if(phi_v0 || func_803203FC(1) || func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)){
         func_80328AC8(this, 2);
         if( !func_8031FF1C(BKPROG_11_HAS_MET_MUMBO)
             || (!func_8031FF1C(BKPROG_DC_HAS_HAD_ENOUGH_TOKENS_BEFORE) && this->unk38_0)
@@ -213,7 +213,7 @@ void func_802D1CF0(Actor *this) {
 
     this->unk130 = func_803255FC;
     if( !func_803203FC(1)
-        && !func_803203FC(0x1F)
+        && !func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)
         && map_get() != MAP_7A_GL_CRYPT) {
         func_803463D4(ITEM_1C_MUMBO_TOKEN, 0);
     }
@@ -270,7 +270,7 @@ void func_802D1CF0(Actor *this) {
             if (actor_animationIsAt(this, 0.999f)) {
                 if( !func_8031FF1C(BKPROG_11_HAS_MET_MUMBO) 
                     && !func_803203FC(1) 
-                    && !func_803203FC(0x1F)
+                    && !func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)
                 ) {
                     func_80328A84(this, 3);
                     func_80311480(0xD8F, 0xE, this->position, this->marker, func_802D1998, NULL);
@@ -280,7 +280,7 @@ void func_802D1CF0(Actor *this) {
 
                 if( !func_8031FF1C(BKPROG_DC_HAS_HAD_ENOUGH_TOKENS_BEFORE) 
                     && !func_803203FC(1)
-                    && !func_803203FC(0x1F)
+                    && !func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)
                     && this->unk38_0
                 ){
                     func_80328A84(this, 3);

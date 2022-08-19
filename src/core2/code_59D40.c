@@ -329,7 +329,7 @@ void func_802E17E8(void) {
 
 
     _player_getPosition(sp50);
-    if (func_803203FC(0xC1) != 0) {
+    if (func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE) != 0) {
         nodeprop_getPosition(func_80304CAC(0x3CB, sp50), sp50);
     }
     else{
@@ -370,7 +370,7 @@ void func_802E17E8(void) {
         marker_despawn(D_8037E620);
         return;
     }
-    if (func_803203FC(0xC1) == 0) {
+    if (func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE) == 0) {
         func_8032BB88(snacker, 0x1388, 0x2EE);
         func_8024BD08(0);
         func_8025A6EC(0x34, 0);

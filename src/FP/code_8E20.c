@@ -214,7 +214,7 @@ void func_8038F7AC(Actor *this){
                 break;
             }
 
-            if(func_80329530(this, 1000) && !func_803203FC(0x1f)){
+            if(func_80329530(this, 1000) && !func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)){
                 func_8038F454(this);
                 break;
             }

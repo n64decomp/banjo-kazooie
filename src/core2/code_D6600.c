@@ -120,7 +120,7 @@ void func_8035DA1C(Actor *this) {
         this->unk138_25 = TRUE;
         this->unk28 = 4.0f;
         LOCAL_D6600(this)->unk4 =(map_get() == MAP_71_GL_STATUE_ROOM) ? 8 : 0xf;
-        if (func_803203FC(0xC1)) {
+        if (func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE)) {
             this->unk28 = 0.0f;
             func_80328B8C(this, 1, 0.0f, 1);
         }
@@ -141,7 +141,7 @@ void func_8035DA1C(Actor *this) {
             func_80328FB0(this, 0.5f);
             func_80328FF0(this, 0.5f);
             func_8032CA80(this, LOCAL_D6600(this)->unk4);
-            if (func_80328B38(this, 2, 0.05f) && !func_803203FC(0xC1)) {
+            if (func_80328B38(this, 2, 0.05f) && !func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE)) {
                 this->unk28 = 4.0f;
             }
             func_8035D65C(this);

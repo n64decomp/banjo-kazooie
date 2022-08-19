@@ -64,7 +64,7 @@ void func_8038D47C(Actor *this){
     if(!this->unk16C_4){
         mapSpecificFlags_set(0x10, 0);
         this->unk16C_4 = TRUE;
-        if(func_803203FC(0xC1) && func_8031B4F4() == -3){
+        if(func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE) && gcparade_8031B4F4() == -3){
             timedFunc_set_1(1.5f, (TFQM1)func_8038D450, reinterpret_cast(s32, this->marker));
         }
     }//L8038D5EC
@@ -121,7 +121,7 @@ void func_8038D47C(Actor *this){
                 FUNC_8030E624(SFX_D6_UGH, 0.8f, 32750);
             }
             if(actor_animationIsAt(this, 0.94f)){
-                if(!func_803203FC(0xC1)){
+                if(!func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE)){
                     mapSpecificFlags_set(0x10, 1);
                 }
             }

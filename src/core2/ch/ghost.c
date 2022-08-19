@@ -174,7 +174,7 @@ void func_8035B6CC(Actor *this){
 void func_8035B75C(Actor *this){
     func_80328B8C(this, 3, 0.01f, 1);
     actor_loopAnimation(this);
-    this->unk28 = func_803203FC(0xC1) ? 0.0 : 12.0;
+    this->unk28 = func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE) ? 0.0 : 12.0;
     func_8030E878(0x3F4, randf2(1.0f, 1.2f), 32000, this->position, this->scale*400.0f, this->scale*1800.0f);
 }
 

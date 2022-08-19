@@ -780,9 +780,9 @@ void func_8032EA24(Struct61s *file_ptr, Cube *cube) {
     if (func_8034B040(file_ptr, 8, &sp47)) {
         temp_s0_3 = func_803203FC(2);
         sp2C = func_803203FC(1);
-        sp34 = func_803203FC(0x1F) + sp2C + temp_s0_3;
+        sp34 = func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE) + sp2C + temp_s0_3;
         if (sp34 != 0) {
-            if (func_8031B4CC() != 0) {
+            if (gcparade_8031B4CC() != 0) {
                 sp34 = 0;
             }
         }

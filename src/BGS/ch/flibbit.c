@@ -154,7 +154,7 @@ bool func_80386A34(Actor * this){
     f32 plyrPos[3];
     bool out;
 
-    if(func_803203FC(0xC1))
+    if(func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE))
         return 0;
     
     player_getPosition(plyrPos);

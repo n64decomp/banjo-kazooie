@@ -36,7 +36,7 @@ void func_802CD8C0(Actor *this){
         this->marker->unk2C_1 = 1;
         this->marker->collidable = 0;
         *(s32*)this->unkBC = 0; //TODO Make struct
-        if(func_803203FC(1) || func_803203FC(0x1F)){
+        if(func_803203FC(1) || func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)){
             marker_despawn(this->marker);
             return;
         }

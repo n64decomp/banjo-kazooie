@@ -36,7 +36,7 @@ s32 func_8028A45C(void){
     f32 plyrPos[3];
 
     _player_getPosition(&plyrPos);
-    if(func_8028B470() || func_803203FC(0xC1)){ //(swimming || ???)
+    if(func_8028B470() || func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE)){ //(swimming || ???)
         if(plyrPos[1] < 600.0f
             && !func_8028A41C(2478.0f, 4586.0f, 1750.0f) //within 1750 of sandcastle center
             && !func_8028A41C(-400.0, 2315.0f, 2000.0f)  //within 2000 of blubber's ship center

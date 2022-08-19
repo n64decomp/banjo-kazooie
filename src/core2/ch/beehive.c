@@ -40,7 +40,7 @@ void func_802CE8D4(Actor *this){
         this->marker->propPtr->unk8_3 = 1;
         this->unk44_31 = func_8030D90C();
         this->unk16C_4 = 1;
-        this->unk38_0 = func_803203FC(1)| func_803203FC(0x1F);
+        this->unk38_0 = func_803203FC(1)| func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE);
     }//L802CE960
     if(map_get() == MAP_27_FP_FREEZEEZY_PEAK){
         if(func_8038BFA0()){

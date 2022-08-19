@@ -161,7 +161,7 @@ void func_8038BCF0(Actor *this) {
             }
         }
         actor_setOpacity(this, sp74);
-        if (!func_803203FC(0x1F)) {
+        if (!func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)) {
             if ((phi_f2 < 600.0) && !this->unk38_0) {
                 comusic_8025AB44(COMUSIC_7A_BRENTILDA, -1, 0x1F4);
                 func_8032BB88(this, 0, 0x1F4);

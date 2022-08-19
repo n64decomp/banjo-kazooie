@@ -259,7 +259,7 @@ void func_8038C8F0(ActorMarker *marker){
 
 void func_8038C94C(ActorMarker *caller, enum asset_e text_id, s32 arg2){
     Actor *this = marker_getActor(caller);
-    if(!func_803203FC(0xC1)){
+    if(!func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE)){
         func_80328A84(this, 6);
         func_802C3C88(func_8038C8F0, this->marker);
     }

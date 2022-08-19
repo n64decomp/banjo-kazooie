@@ -415,7 +415,7 @@ void func_802CF83C(Actor *this) {
         func_80328A84(this, phi_a1);
         this->unk60 = 0.0f;
         func_802CF040(this);
-        this->unk38_0 = func_803203FC(1) | func_803203FC(0x1F);
+        this->unk38_0 = func_803203FC(1) | func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE);
     }
 
     if (subaddie_playerIsWithinSphere(this, 0xFA0)) {

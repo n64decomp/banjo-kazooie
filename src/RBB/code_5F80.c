@@ -531,7 +531,7 @@ void func_8038D8BC(Actor *this){
         if(func_803203FC(2))
             func_8038CBC0();
 
-        if(func_803203FC(0x1F)){
+        if(func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)){
             func_8038CBC0();
             func_80335924(this->unk148, ASSET_146_ANIM_BOSS_BOOMBOX_APPEAR, 0.0f, 2.4f);
             func_80335A8C(this->unk148, 2);

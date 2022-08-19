@@ -13,7 +13,7 @@ ActorInfo D_80394D20 = { 0x29C, 0x3C9, 0x0, 0x0, NULL, func_80392B6C, func_80326
 void func_80392AB0(ActorMarker *marker, enum asset_e text_id, s32 arg2){
     comusic_8025AB44(COMUSIC_A9_TOOTY, 0, 2000);
     func_8025AABC(0xA9);
-    func_8031B51C();
+    gcparade_beginFFParade();
 }
 
 void func_80392AF4(ActorMarker *marker, enum asset_e text_id, s32 arg2){

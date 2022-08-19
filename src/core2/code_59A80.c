@@ -71,7 +71,7 @@ void func_802E0B10(Actor *this){
         if( mumboscore_get(local->unk0)
             || func_803203FC(1)
             || func_803203FC(2)
-            || func_803203FC(0x1F)
+            || func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)
         ){
             marker_despawn(this->marker);
             return;

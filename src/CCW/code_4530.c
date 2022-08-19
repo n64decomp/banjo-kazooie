@@ -68,7 +68,7 @@ void func_8038AA8C(Actor *this) {
         this->unk16C_4 = TRUE;
         mapSpecificFlags_set(5, FALSE);
         if( (!func_8031FF1C(0xE8) || jiggyscore_isSpawned(JIGGY_49_CCW_EYRIE))
-            && !func_803203FC(0x1F)
+            && !func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)
         ) {
             marker_despawn(this->marker);
         }

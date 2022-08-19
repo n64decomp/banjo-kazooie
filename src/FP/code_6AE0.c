@@ -315,14 +315,14 @@ void func_8038D6C8(Actor *this){
         this->velocity[1] = 0.0f;
         this->unk1C[0] = -1.0f;
         func_8028F8F8(7, FALSE);
-        if(func_803203FC(0xC1) && func_8031B4F4() == -1){
+        if(func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE) && gcparade_8031B4F4() == -1){
             func_80328B8C(this, 3, 0.001f, 1);
             actor_playAnimationOnce(this);
             this->velocity[0] = 1.0f;
         }
     }//L8038D844
 
-    if(func_803203FC(0xc1)){
+    if(func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE)){
         this->velocity[0] = 1.0f;
     }
 
