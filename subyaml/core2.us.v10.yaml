@@ -299,7 +299,7 @@ segments:
   - [0x8E270, c, gc/zoombox] #DONE
   - [0x91E10, c, code_91E10]
   - [0x935F0, c, code_935F0] #DONE #chminigmae
-  - [0x93C10, c, code_93C10]
+  - [0x93C10, c, gc/parade] #DONE
   - [0x94620, c, code_94620] #DONE
   - [0x94780, c, code_94780] #DONE
   - [0x94A20, c, code_94A20]
@@ -548,6 +548,8 @@ segments:
   - [0xE56A0, bin, data_E56A0]
   - [0xE5730, .data, gc/zoombox]
   - [0xE69B0, bin, data_E69B0]
+  - [0xE6A10, .data, gc/parade]
+  - [0xE6E30, bin, data_E6E30]
   - [0xE7330, .data, code_9B990]
   - [0xE7490, .data, code_9D640]
   - [0xE75D0, bin, data_E75D0]
@@ -773,7 +775,8 @@ segments:
   # - [0xF1960, bin, data_F1960]
   - [0xF19C0, .rodata, code_91E10]
   - [0xF1A00, .rodata, code_935F0]
-  - [0xF1A20, bin, data_F1A20]
+  - [0xF1A20, .rodata, gc/parade]
+  - [0xF1DA0, bin, data_F1DA0]
   - [0xF1DC0, .rodata, code_9A9D0]
   - [0xF1DF0, .rodata, code_9B180]
   - [0xF1E10, .rodata, code_9C170]
@@ -1041,7 +1044,7 @@ segments:
   - [0xf2c00, .bss, code_8DC20]
   - [0xf2c00, .bss, gc/zoombox]
   - [0xf2c00, .bss, code_91E10]
-  - [0xf2c00, .bss, code_93C10]
+  - [0xf2c00, .bss, gc/parade]
   - [0xf2c00, .bss, code_94620]
   - [0xf2c00, .bss, code_94780]
   - [0xf2c00, .bss, code_94A20]

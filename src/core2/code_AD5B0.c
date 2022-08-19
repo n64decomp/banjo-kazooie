@@ -253,7 +253,7 @@ void func_80334B20(enum map_e arg0, s32 arg1, s32 arg2) {
     func_802C8F40();
     func_8034F774();
     func_80350174();
-    func_8031B354();
+    gcparade_init();
     func_80351998();
     func_802BC2CC(D_803835D0.unk8);
     func_802D63D4();
@@ -345,7 +345,7 @@ s32 func_80334ECC(void) {
         func_80350CA4();
         func_8031B65C();
         func_80310D2C();
-        func_8031B0B0();
+        gcparade_update();
         overlay_update();
         func_80321924();
         func_80334428();
