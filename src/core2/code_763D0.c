@@ -121,7 +121,7 @@ extern struct8s D_80369960[] = {
         0.0f, 0.0f, 0.0f, 0.0f, 
         NULL, {0}, 0.0f
     },
-    };
+};
 
 extern s32 D_80276588;
 extern s32 D_8027658C;
@@ -312,6 +312,19 @@ void func_802FDC80(enum item_e item_id, struct8s *arg1){
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_763D0/func_802FDCB8.s")
+void func_802FDCB8(enum item_e item_id) {
+    s32 i;
+    struct8s *var_v0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_763D0/func_802FDD0C.s")
+    for(var_v0 = &D_80369960[0]; var_v0->unk20 != -1; var_v0++){
+        if(item_id == var_v0->unk20){
+            var_v0->unk28 &= ~4;
+            return;
+        }
+    }
+}
+
+
+enum item_e func_802FDD0C(struct8s *arg0){
+    return arg0->unk20;
+}

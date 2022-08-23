@@ -105,7 +105,7 @@ void mapSavestate_save(enum map_e map){
 //         for(s0 = 0x20; func_803083B0((((*mssp)[s0 >> 5]) & (1 << (s0 & 0x1f)))? 1 : 0) != -1; s0++);
 //         func_80308230(0);
 //         tmp = *mssp;
-//         func_8032A09C(tmp, (tmp + 16*((s0 + 0x7f) >> 7)));
+//         func_8032A09C(tmp, (tmp + 0x10*((s0 + 0x7f) >> 7)));
 //         free(*mssp);
 //         *mssp = NULL;
 //     }

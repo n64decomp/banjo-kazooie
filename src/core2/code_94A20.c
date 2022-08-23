@@ -21,7 +21,7 @@ s32 func_8031FF44(s32 offset, s32 numBits);
 void func_8031CE70(f32 *arg0, s32 arg1, s32 arg2);
 void ml_vec3h_to_vec3f(f32 *, s32);
 void func_8028F3D8(f32 *, f32,  void(*)(ActorMarker *), ActorMarker *);
-struct unkfunc_80304ED0 *func_80304ED0(void*, f32 *);
+NodeProp *func_80304ED0(void*, f32 *);
 void func_8031CD44(s32, s32, f32, f32, s32);
 void func_80256E24(f32 *, f32, f32, f32, f32, f32);
 
@@ -32,18 +32,9 @@ void func_8031BE98(struct0*, f32, s32);
 
 extern u8 D_8037DCCE[];
 
-// Struct pointer returned by func_80304ED0
-struct unkfunc_80304ED0 {
-    s16 unk0[3];
-    u16 unk6;
-    u16 unk8;
-    u16 unkA;
-    u32 unkC;
-};
-
 /* .data */
 extern u8 D_8036DDC0[0x14];
-extern u32 D_8036DDD4;
+extern enum actor_e D_8036DDD4[] = {0x184, 0x185, 0x186, -1};
 
 /* .rodata */
 extern f32 D_80378D30;
@@ -606,7 +597,7 @@ void func_8031CE28(s32 arg0, s32 arg1, f32 arg2) {
 void func_8031CE70(f32 *arg0, s32 arg1, s32 arg2) {
     f32 playerPos[3];
     f32 sp38[3];
-    struct unkfunc_80304ED0 *phi_s0;
+    NodeProp *phi_s0;
     f32 phi_f2;
 
     if ((D_80383190 == 0) && (getGameMode() != 8) && (getGameMode() != 7)) {
@@ -617,7 +608,7 @@ void func_8031CE70(f32 *arg0, s32 arg1, s32 arg2) {
         }
         player_getPosition(playerPos);
         if (phi_s0 != NULL) {
-            nodeprop_getPosition(&phi_s0->unk0, sp38);
+            nodeprop_getPosition(phi_s0, sp38);
             phi_f2 = 500.0f;
             if (phi_s0->unk8 == 0x186) {
                 phi_f2 = 1000.0f;
@@ -628,9 +619,9 @@ void func_8031CE70(f32 *arg0, s32 arg1, s32 arg2) {
                     func_8031CB50(arg1, arg2, 1);
                     func_8028F3D8(sp38, 1.0f, NULL, NULL);
                 } else if (phi_s0->unk8 == 0x185) {
-                    func_8031CD44(arg1, arg2, sp38[1], (f32) (phi_s0->unkC >> 0x17), phi_s0->unkC & 0x7FFFFF);
+                    func_8031CD44(arg1, arg2, sp38[1], (f32) phi_s0->unkC_31, phi_s0->unkC_22);
                 } else {
-                    func_8031CD44(arg1, arg2, playerPos[1], (f32) (phi_s0->unkC >> 0x17), phi_s0->unkC & 0x7FFFFF);
+                    func_8031CD44(arg1, arg2, playerPos[1], (f32) phi_s0->unkC_31, phi_s0->unkC_22);
                 }
                 return;
             }

@@ -3,7 +3,7 @@
 #include "variables.h"
 
 typedef struct {
-    u8 pad0[1];
+    u8 unk0;
     u8 unk1;
 } ActorLocal_FP_19E0;
 

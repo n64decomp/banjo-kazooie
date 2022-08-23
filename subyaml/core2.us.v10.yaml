@@ -251,7 +251,7 @@ segments:
   - [0x67650, c, code_67650] #DONE
   - [0x679A0, c, code_679A0] 
   - [0x69F60, c, code_69F60] #DONE
-  - [0x6A4B0, c, code_6A4B0] #DONE
+  - [0x6A4B0, c, code_6A4B0]
   - [0x6AEF0, c, code_6AEF0] #DONE
   - [0x6B030, c, code_6B030] #DONE
   - [0x6C3E0, c, code_6C3E0] #DONE
@@ -276,7 +276,7 @@ segments:
   - [0x75930, c, code_75930]
   - [0x75E90, c, code_75E90]
   - [0x76390, c, code_76390] #DONE
-  - [0x763D0, c, code_763D0]
+  - [0x763D0, c, code_763D0] #DONE
   - [0x76D90, c, code_76D90]
   - [0x77E50, c, code_77E50] #DONE
   - [0x78100, c, code_78100]

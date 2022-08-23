@@ -668,8 +668,37 @@ bool func_8032E398(Cube *cube, bool (*arg1)(NodeProp *), bool (*arg2)(Prop *)) {
     return TRUE;
 }
 
+/* places up to `node_list_capacity` NodeProp pointers in `node_list`
+ * from `cube` for any actors with id's in `actor_id_list`. Return number
+ * nodeprops found.
+ */
+s32 func_8032E49C(Cube *cube, enum actor_e *actor_id_list, NodeProp **node_list, s32 node_list_capacity) {
+    enum actor_e *i_actor;
+    s32 found_cnt;
+    NodeProp * end_node;
+    NodeProp *i_node;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_8032E49C.s")
+    found_cnt = 0;
+    if (cube != NULL) {
+        if (cube->prop1Cnt != 0) {
+            i_node = cube->prop1Ptr;
+            end_node = cube->prop1Ptr + cube->prop1Cnt;
+            while((i_node < end_node) && (found_cnt < node_list_capacity)) {
+                if (((i_node->unk6.bit0 == 1) || ((i_node->unk6.bit0 == 0) && (i_node->unk10_6 == 1))) && (i_node->unk6.bit6 == 6)) {
+                    i_actor = actor_id_list;
+                    for(i_actor = actor_id_list; *i_actor != -1; i_actor++){
+                        if (i_node->unk8 == *i_actor) {
+                            node_list[found_cnt++] = i_node;
+                            break;
+                        }
+                    }
+                }
+                i_node++;
+            }
+        }
+    }
+    return found_cnt;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_8032E5A8.s")
 
