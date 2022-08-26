@@ -19,9 +19,11 @@ struct unkfunc_80304ED0 *func_80304ED0(void*, f32 *);
 void func_8031CD44(s32, s32, f32, f32, s32);
 void func_80256E24(f32 *, f32, f32, f32, f32, f32);
 
+#define OBSCURE(ptr) (((((s32)(ptr) ^ 0x746DF219) & 0xFF) + ((((s32)(ptr) >> 0x18) & 0xFF) << 0x18) + ((((s32)(ptr) >> 8) & 0xFFFF) << 8)) ^ 0x19)
+
+
 /* .data */
 extern s32 D_8036DDF0;
-
 
 /* .bss */
 struct {
@@ -38,12 +40,30 @@ struct {
 
 u8 D_803831F8[0x21]; //copy of D_803831D0
 
+
 /* .code */
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_98CB0/func_8031FC40.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_98CB0/func_8031FE40.s")
+u32 func_8031FE40(void) {
+    u8 *obscured_addr;
+    u32 var_v1;
+    u32 var_a2;
+    u32 var_v0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_98CB0/func_8031FEC0.s")
+    var_v1 = 0xDE1C05;
+    var_v0 = 0x25;
+    obscured_addr = (u8*)OBSCURE(&D_803831A0.unk8[0]);
+    for(var_a2 = 0; var_a2 < var_v0; var_a2++){
+        var_v1 += ((var_v1 % 4) + var_a2) * obscured_addr[var_a2];
+    }
+    return var_v1;
+}
+
+void func_8031FEC0(void) {
+    u32 *obscured_addr;
+    obscured_addr = (u32*)OBSCURE(&D_803831A0.unk4);
+    *obscured_addr = func_8031FE40();
+}
 
 s32 func_8031FF1C(s32 index) {
     return func_803200A4(D_803831A0.unk8, index);
@@ -132,29 +152,19 @@ s32 func_80320240(void){return 1;}
 
 s32 func_80320248(void){return 1;}
 
-// regalloc
-// s32 func_80320250(void) {
-//     s32 addr = (s32) &D_803831D0.unk8[0];
-//     u32 checksum = 0x6CE9E91F;
-//     s32 len = 25;
-//     s32 scrambled;
-//     u32 i;
+u32 func_80320250(void) {
+    u32 checksum = 0x6CE9E91F;
+    u8 *obscured_addr = (u8*)OBSCURE(&D_803831D0.unk8[0]);
+    s32 len = 25;
+    u32 i;
 
-//     // Scrambles the input address
-//     scrambled  = (addr ^ 0x746DF219) & 0xFF;  // scrambled = (low byte of addr) ^ 0x19
-//     scrambled += (addr >> 0x18) << 0x18;      // scrambled = (high byte of addr | low byte of addr) ^ 0x19
-//     scrambled += ((addr >> 8) & 0xFFFF) << 8; // scrambled = addr ^ 0x19
-//     // Unscrambles the input address
+    for (i = 0; i < len; i++) {
+        s32 val = obscured_addr[i];
+        checksum = val ^ (((checksum + val & 0xF) << 0x18) ^ (checksum >> 3));
+    }
 
-//     for (i = 0; i < len; i++) {
-//         s32 val = ((u8*)(scrambled ^ 0x19))[i];
-//         checksum = val ^ (((checksum + val & 0xF) << 0x18) ^ (checksum >> 3));
-//     }
-
-//     return checksum;
-// }
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_98CB0/func_80320250.s")
-
+    return checksum;
+}
 
 void func_803202D0(void) {
     s32 addr = (s32) &D_803831D0.unk0;
@@ -187,16 +197,11 @@ s32 func_80320320(void) {
     return checksum;
 }
 
-// regalloc
-// void func_803203A0(void) {
-//     s32 addr = (s32) &D_803831D0.unk4;
-//     s32 scrambled;
-//     scrambled  = (addr ^ 0x746DF219) & 0xFF;  // scrambled = (low byte of addr) ^ 0x19
-//     scrambled += (addr >> 0x18) << 0x18;      // scrambled = (high byte of addr | low byte of addr) ^ 0x19
-//     scrambled += ((addr >> 8) & 0xFFFF) << 8; // scrambled = addr ^ 0x19
-//     *(s32*)(scrambled ^ 0x19) = func_80320320();
-// }
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_98CB0/func_803203A0.s")
+void func_803203A0(void) {
+    u32 *obscured_addr = (u32*)OBSCURE(&D_803831D0.unk4);
+
+    *obscured_addr = func_80320320();
+}
 
 s32 func_803203FC(s32 index) {
     return func_803200A4(D_803831D0.unk8, index);
