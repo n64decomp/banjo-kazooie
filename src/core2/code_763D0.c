@@ -6,6 +6,10 @@ f32 time_getDelta(void);
 f32 func_802FB0DC(struct8s *);
 f32 func_802FB0E4(struct8s *);
 
+extern s32 D_80276588; //framebuffer_w
+extern s32 D_8027658C; //framebuffer_h
+
+
 extern Gfx D_80369920[] = {
     gsDPPipeSync(),
     gsSPClearGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BOTH | G_FOG | G_LIGHTING | G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR | G_LOD | G_SHADING_SMOOTH),
@@ -123,12 +127,11 @@ extern struct8s D_80369960[] = {
     },
 };
 
-extern s32 D_80276588;
-extern s32 D_8027658C;
-
+/* .rodata */
 extern f32 D_803773A0;
 extern f32 D_803773A4;
 
+/* .code */
 void func_802FD360(struct8s *arg0, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     s32 tmp_s2 = 0;
     s32 tmp_s4;
