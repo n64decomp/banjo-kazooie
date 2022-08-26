@@ -314,7 +314,7 @@ segments:
   - [0x9A9D0, c, code_9A9D0] #DONE
   - [0x9AD00, c, levelspecificflags]
   - [0x9B180, c, code_9B180] #DONE
-  - [0x9B650, c, code_9B650]
+  - [0x9B650, c, code_9B650] #DONE
   - [0x9B990, c, code_9B990] #DONE
   - [0x9C170, c, code_9C170] #DONE
   - [0x9D640, c, code_9D640] #DONE
@@ -553,6 +553,7 @@ segments:
   - [0xE6E30, .data, code_94A20]
   - [0xE6E40, .data, code_956B0]
   - [0xE6E60, bin, data_E6E60]
+  - [0xE6EF0, .data, code_9B650]
   - [0xE7330, .data, code_9B990]
   - [0xE7490, .data, code_9D640]
   - [0xE75D0, bin, data_E75D0]
