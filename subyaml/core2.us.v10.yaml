@@ -312,7 +312,7 @@ segments:
   - [0x9A580, c, code_9A580] #DONE
   - [0x9A740, c, code_9A740] #DONE
   - [0x9A9D0, c, code_9A9D0] #DONE
-  - [0x9AD00, c, levelspecificflags]
+  - [0x9AD00, c, levelspecificflags] #DONE
   - [0x9B180, c, code_9B180] #DONE
   - [0x9B650, c, code_9B650] #DONE
   - [0x9B990, c, code_9B990] #DONE
