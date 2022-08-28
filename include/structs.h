@@ -793,6 +793,20 @@ typedef struct {
     f32 unk14;
 }Struct76s;
 
+typedef struct {
+    f32 unk0;
+    f32 unk4;
+    f32 unk8;
+    f32 unkC;
+    f32 unk10;
+    f32 unk14;
+    u8 unk18[0x8];
+    f32 unk20;
+    f32 unk24;
+    s16 unk28[2];
+    f32 unk2C;
+}Struct77s;
+
 typedef union {
     Struct6Ds type_6D;
     Struct6Fs type_6F;
@@ -800,6 +814,7 @@ typedef union {
     Struct72s type_72;
     Struct73s type_73;
     Struct74s type_74;
+    Struct77s type_77;
 }Struct70s;
 
 typedef struct {
