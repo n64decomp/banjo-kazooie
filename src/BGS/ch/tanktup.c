@@ -91,19 +91,19 @@ void func_8028F918(s32);
 #pragma GLOBAL_ASM("asm/nonmatchings/BGS/ch/tanktup/func_8038F6A4.s")
 #else
 void func_8038F6A4(Actor *this) {
-    f32 sp48[3];
-    s32 sp44;
-    f32 sp34[3];
-    Prop *temp_v0;
     ActorLocal_TanktupBody * local = (ActorLocal_TanktupBody *)&this->local;
+    f32 sp48[3];
+    Prop *temp_v0;
+    volatile s32 sp44;
+    f32 sp34[3];
 
 
     if(!this->initialized){
         temp_v0 = func_80304C38(0x32B, this);
         if (temp_v0 == NULL) {
-            local->unk18[0] = D_803911B0;
+            local->unk18[0] = 3672.0f;
             local->unk18[1] = 100.0f;
-            local->unk18[2] = D_803911B4;
+            local->unk18[2] = 987.0f;
         } else {
             nodeprop_getPosition(temp_v0, local->unk18);
         }
@@ -118,7 +118,7 @@ void func_8038F6A4(Actor *this) {
         this->scale = 1.0f;
         for(sp44 = 0; sp44 < 4; sp44++){
             if (local->unk0[sp44] == 0) {
-                func_802C3E10(&func_8038F470, this->marker, local->unk0[sp44], sp44);
+                func_802C3E10(func_8038F470, this->marker, local->unk0[sp44], sp44);
             }
         }
     }
@@ -139,7 +139,7 @@ void func_8038F6A4(Actor *this) {
             if (local->unk10) {
                 func_80328B8C(this, 2, 0.0f, -1);
                 local->unk10 = 0;
-                local->unk14 = TRUE;
+                local->unk14 = TRUE;\
                 for(sp44 = 0; sp44 < 4; sp44++){
                     if(local->unk0[sp44] == 0){
                         local->unk14 = FALSE;
@@ -170,6 +170,7 @@ void func_8038F6A4(Actor *this) {
             break;
 
         case 3:
+            (local);
             if (actor_animationIsAt(this, 0.1f) != 0) {
                 timed_setCameraToNode(0.0f, 0xD);
             }
