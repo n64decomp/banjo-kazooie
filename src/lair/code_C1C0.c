@@ -64,7 +64,7 @@ void func_80392700(Actor *this) {
         mapSpecificFlags_set(4, 0);
     }
     if (mapSpecificFlags_get(6)) {
-        func_8025A70C(MUSIC_KLUNGO_BY_FALLEN_GRUNTY);
+        func_8025A70C(COMUSIC_A8_KLUNGO_BY_FALLEN_GRUNTY);
         func_802BC280();
         set_camera_to_node(9);
         mapSpecificFlags_set(9, 1);
@@ -108,7 +108,7 @@ void func_80392918(Actor *this) {
         set_camera_to_node(0x1E);
     }
     if ((0.999 < this->unk48) && !this->unk38_0) {
-        comusic_8025AB44(MUSIC_KLUNGO_BY_FALLEN_GRUNTY, 0, 2000);
+        comusic_8025AB44(COMUSIC_A8_KLUNGO_BY_FALLEN_GRUNTY, 0, 2000);
         func_8025AABC(0xA8);
         this->unk38_0 = TRUE;
         mapSpecificFlags_set(7, TRUE);

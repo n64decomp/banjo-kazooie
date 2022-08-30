@@ -11,7 +11,10 @@ extern void func_802F363C(f32);
 extern void func_802F9D38(s32);
 extern void func_802EE6CC(f32[3], f32[3], s32[4], s32, f32, f32, s32, s32, s32);
 extern void ml_vec3f_assign(f32[3], f32, f32, f32);
-
+extern void func_802EE2E8(Actor *arg0, s32 arg1, s32 cnt, s32 arg3, f32 arg4, f32 arg5, f32 arg6);
+extern void func_80319EA4(void);
+extern void func_80320004(s32, bool);
+extern void func_803204E4(s32, bool);
 
 void func_802D3D54(Actor *this);
 void func_802D3DA4(Actor *this);
@@ -34,80 +37,83 @@ void func_802D4CD4(Actor *this);
 void func_802D68F0(s32 seconds);
 
 typedef struct {
-    u8 pad0[4];
+    s16 unk0;
+    s16 unk2;
     s16 unk4;
     s16 unk6;
 }Struct_core2_4C020_0;
 
 /* .data */
-extern ActorAnimationInfo D_803676B0[];
-extern ActorInfo D_80367760 = { 0x26E, 0x2D9, 0x3B4,  0x1, NULL,       func_802D3D54, func_80326224, func_80325E78, 0, 0, 0.0f, 0};
-extern ActorInfo D_80367784 = { 0x26F, 0x2DA, 0x3B5,  0x1, NULL,       func_802D3D54, func_80326224, func_80325E78, 0, 0, 0.0f, 0};
-extern ActorInfo D_803677A8 = { MARKER_168_ICE_KEY, ACTOR_25D_ICE_KEY, ASSET_50C_MODEL_ICE_KEY,  0x1, NULL,       func_802D4250, func_80326224, func_80325E78, 0, 0, 0.0f, 0};
-extern ActorInfo D_803677CC = { 0x233, 0x23D, 0x4DD, 0x12, D_803676B0, func_802D4388, func_80326224, func_802D4588, 0, 0, 0.0f, 0};
-extern ActorInfo D_803677F0 = { 0x16A, 0x242,   0x0,  0x0, NULL,       func_802D4680,          NULL, func_80325340, 0, 0, 0.0f, 0};
-extern ActorInfo D_80367814 = { MARKER_169_SNS_EGG, ACTOR_25E_SNS_EGG, ASSET_50D_MODEL_SNS_EGG,  0x1, NULL,       func_802D3FD4,          NULL, func_802D41C4, 0, 0, 0.0f, 0};
-extern ActorInfo D_80367838 = { 0x265, 0x2E4, 0x55A,  0x1, NULL,       func_802D3DA4,          NULL, func_802D3F48, 0, 0, 0.0f, 0};
-extern ActorInfo D_8036785C = { MARKER_103_MM_WITCH_SWITCH, ACTOR_204_MM_WITCH_SWITCH, ASSET_4DC_MODEL_WITCH_SWITCH,  0x1, D_803676B0, func_802D4B94, func_80326224, func_80325888, 0, 0, 0.0f, 0};
-extern ActorInfo D_80367880 = { MARKER_104_MMM_WITCH_SWITCH, ACTOR_206_MMM_WITCH_SWITCH, ASSET_4DC_MODEL_WITCH_SWITCH,  0x1, D_803676B0, func_802D4C34, func_80326224, func_80325888, 0, 0, 0.0f, 0};
-extern ActorInfo D_803678A4 = { MARKER_105_TTC_WITCH_SWITCH, ACTOR_208_TTC_WITCH_SWITCH, ASSET_4DC_MODEL_WITCH_SWITCH,  0x1, D_803676B0, func_802D4C5C, func_80326224, func_80325888, 0, 0, 0.0f, 0};
-extern ActorInfo D_803678C8 = { MARKER_106_RBB_WITCH_SWITCH, ACTOR_20B_RBB_WITCH_SWITCH, ASSET_4DC_MODEL_WITCH_SWITCH,  0x1, D_803676B0, func_802D4C84, func_80326224, func_80325888, 0, 0, 0.0f, 0};
-extern ActorInfo D_803678EC = { MARKER_22A_CCW_WITCH_SWITCH, ACTOR_237_CCW_WITCH_SWITCH, ASSET_4DC_MODEL_WITCH_SWITCH,  0x1, D_803676B0, func_802D4CAC, func_80326224, func_80325888, 0, 0, 0.0f, 0};
-extern ActorInfo D_80367910 = { MARKER_22B_FP_WITCH_SWITCH, ACTOR_239_FP_WITCH_SWITCH, ASSET_4DC_MODEL_WITCH_SWITCH,  0x1, D_803676B0, func_802D4CD4, func_80326224, func_80325888, 0, 0, 0.0f, 0};
-extern ActorInfo D_80367934 = { MARKER_166_CC_WITCH_SWITCH, ACTOR_25B_CC_WITCH_SWITCH, ASSET_4DC_MODEL_WITCH_SWITCH,  0x1, D_803676B0, func_802D4BBC, func_80326224, func_80325888, 0, 0, 0.0f, 0};
-extern ActorInfo D_80367958 = { MARKER_162_BGS_WITCH_SWITCH, ACTOR_257_BGS_WITCH_SWITCH, ASSET_4DC_MODEL_WITCH_SWITCH,  0x1, D_803676B0, func_802D4BE4, func_80326224, func_80325888, 0, 0, 0.0f, 0};
-extern ActorInfo D_8036797C = { MARKER_161_GV_WITCH_SWITCH, ACTOR_256_GV_WITCH_SWITCH, ASSET_4DC_MODEL_WITCH_SWITCH,  0x1, D_803676B0, func_802D4C0C, func_80326224, func_80325888, 0, 0, 0.0f, 0};
+f32 D_80367680 = 130.0f;
+s32 D_80367684 = 0; //enum map_e
+s32 D_80367688 = 0;
+s32 D_8036768C = 0;
+s32 D_80367690 = 0;
+s32 D_80367694 = 0; //enum map_e
+s32 D_80367698 = 0;
+s32 D_8036769C = 0; //enum bkprog_e
+s32 D_803676A0 = 0; //enum actor_e
+f32 D_803676A4 = 0.0f;
+s32 D_803676A8 = 0;
+u8  D_803676AC = 0;
 
-extern f32 D_80367680;
-extern s32 D_80367684; //enum map_e
-extern s32 D_80367688;
-extern s32 D_8036768C;
-extern s32 D_80367690;
-extern s32 D_80367694; //enum map_e
-extern s32 D_80367698;
-extern s32 D_8036769C; //enum bkprog_e
-extern s32 D_803676A0; //enum actor_e
-extern s32 D_803676A8;
-extern u8  D_803676AC;
-extern s32 D_803679A0[4];
-extern s16 D_803679B0[];
-extern Struct_core2_4C020_0 D_803679C8[];
-extern s16 D_803679E0[];
-extern s32 D_803679E8;
-extern s32 D_803679EC;
-extern f32 D_803679F0;
+ActorAnimationInfo D_803676B0[] = {
+    {0x000, 0.0f},
+    {0x000, 0.0f},
+    {0x0D4, 0.15f},
+    {0x0D5, 0.5f},
+    {0x000, 0.0f},
+    {0x000, 0.0f},
+    {0x0D4, 0.15f},
+    {0x0D5, 0.5f},
+    {0x0D5, 1e+8f},
+    {0x1E3, 0.73f},
+    {0x1E3, 1e+8f},
+    {0x1F0, 1.0f},
+    {0x1F1, 0.7f},
+    {0x1F1, 1e+8f},
+    {0x1F2, 1.0f},
+    {0x1F3, 0.4f},
+    {0x1F3, 1e+8f},
+    {0x000, 0.0f},
+    {0x217, 1e+8f},
+    {0x217, 0.3f},
+    {0x217, 1e+8f},
+    {0x217, 0.3f}
+};
 
+ActorInfo D_80367760 = { 0x26E, 0x2D9, 0x3B4,  0x1, NULL,       func_802D3D54, func_80326224, func_80325E78, 0, 0, 0.0f, 0};
+ActorInfo D_80367784 = { 0x26F, 0x2DA, 0x3B5,  0x1, NULL,       func_802D3D54, func_80326224, func_80325E78, 0, 0, 0.0f, 0};
+ActorInfo D_803677A8 = { MARKER_168_ICE_KEY, ACTOR_25D_ICE_KEY, ASSET_50C_MODEL_ICE_KEY,  0x1, NULL,       func_802D4250, func_80326224, func_80325E78, 0, 0, 0.0f, 0};
+ActorInfo D_803677CC = { 0x233, 0x23D, 0x4DD, 0x12, D_803676B0, func_802D4388, func_80326224, func_802D4588, 0, 0, 0.0f, 0};
+ActorInfo D_803677F0 = { 0x16A, 0x242,   0x0,  0x0, NULL,       func_802D4680,          NULL, func_80325340, 0, 0, 0.0f, 0};
+ActorInfo D_80367814 = { MARKER_169_SNS_EGG, ACTOR_25E_SNS_EGG, ASSET_50D_MODEL_SNS_EGG,  0x1, NULL,       func_802D3FD4,          NULL, func_802D41C4, 0, 0, 0.0f, 0};
+ActorInfo D_80367838 = { 0x265, 0x2E4, 0x55A,  0x1, NULL,       func_802D3DA4,          NULL, func_802D3F48, 0, 0, 0.0f, 0};
+ActorInfo D_8036785C = { MARKER_103_MM_WITCH_SWITCH, ACTOR_204_MM_WITCH_SWITCH, ASSET_4DC_MODEL_WITCH_SWITCH,  0x1, D_803676B0, func_802D4B94, func_80326224, func_80325888, 0, 0, 0.0f, 0};
+ActorInfo D_80367880 = { MARKER_104_MMM_WITCH_SWITCH, ACTOR_206_MMM_WITCH_SWITCH, ASSET_4DC_MODEL_WITCH_SWITCH,  0x1, D_803676B0, func_802D4C34, func_80326224, func_80325888, 0, 0, 0.0f, 0};
+ActorInfo D_803678A4 = { MARKER_105_TTC_WITCH_SWITCH, ACTOR_208_TTC_WITCH_SWITCH, ASSET_4DC_MODEL_WITCH_SWITCH,  0x1, D_803676B0, func_802D4C5C, func_80326224, func_80325888, 0, 0, 0.0f, 0};
+ActorInfo D_803678C8 = { MARKER_106_RBB_WITCH_SWITCH, ACTOR_20B_RBB_WITCH_SWITCH, ASSET_4DC_MODEL_WITCH_SWITCH,  0x1, D_803676B0, func_802D4C84, func_80326224, func_80325888, 0, 0, 0.0f, 0};
+ActorInfo D_803678EC = { MARKER_22A_CCW_WITCH_SWITCH, ACTOR_237_CCW_WITCH_SWITCH, ASSET_4DC_MODEL_WITCH_SWITCH,  0x1, D_803676B0, func_802D4CAC, func_80326224, func_80325888, 0, 0, 0.0f, 0};
+ActorInfo D_80367910 = { MARKER_22B_FP_WITCH_SWITCH, ACTOR_239_FP_WITCH_SWITCH, ASSET_4DC_MODEL_WITCH_SWITCH,  0x1, D_803676B0, func_802D4CD4, func_80326224, func_80325888, 0, 0, 0.0f, 0};
+ActorInfo D_80367934 = { MARKER_166_CC_WITCH_SWITCH, ACTOR_25B_CC_WITCH_SWITCH, ASSET_4DC_MODEL_WITCH_SWITCH,  0x1, D_803676B0, func_802D4BBC, func_80326224, func_80325888, 0, 0, 0.0f, 0};
+ActorInfo D_80367958 = { MARKER_162_BGS_WITCH_SWITCH, ACTOR_257_BGS_WITCH_SWITCH, ASSET_4DC_MODEL_WITCH_SWITCH,  0x1, D_803676B0, func_802D4BE4, func_80326224, func_80325888, 0, 0, 0.0f, 0};
+ActorInfo D_8036797C = { MARKER_161_GV_WITCH_SWITCH, ACTOR_256_GV_WITCH_SWITCH, ASSET_4DC_MODEL_WITCH_SWITCH,  0x1, D_803676B0, func_802D4C0C, func_80326224, func_80325888, 0, 0, 0.0f, 0};
 
-/* .rodata */
-extern f32 D_80376984;
-extern f64 D_80376988;
-extern f64 D_80376990;
-extern f64 D_80376998;
-extern f64 D_803769A0;
-extern f32 D_803769A8;
-extern f32 D_803769AC;
-
-extern f32 D_803769B0;
-extern f64 D_803769B8; //3FA999999999999A
-extern f32 D_803769C0; //3F666666
-
-extern f32 D_80376A78;
-extern f32 D_80376A7C;
-extern f32 D_80376A80;
-extern f32 D_80376A84;
-extern f32 D_80376A88;
-extern f64 D_80376A90;
-extern f64 D_80376A98;
-
-// 3ECCCCCD 3ECCCCCD
-// 3ECCCCCD 3ECCCCCD  3ECCCCCD
-// 4072C00000000000  4072C00000000000
+s32 D_803679A0[4] = {0x87, 0x87, 0x87, 0xA0};
+s16 D_803679B0[] = {0x5, 0x90, 0xA, 0x93, 0xF,0x92, 0x14, 0x91, 0x19, 0x94, -1};
+Struct_core2_4C020_0 D_803679C8[] = {
+    {0, 600, 1200, 1900}, 
+    {-580, 0, 1550, 2200}, 
+    {150, 460, 1625, 2100},
+};
+s16 D_803679E0[] = {-50, -100, 200};
 
 /* .bss */
 int D_8037DE00;
 f32 D_8037DE04;
 f32 D_8037DE08;
 
+/* .public */
 void func_802D6114(void);
 void func_802D6264(f32 arg0, enum map_e arg1, s32 arg2, s32 arg3, s32 arg4, enum bkprog_e arg5);
 void func_802D6344(void);
@@ -142,47 +148,199 @@ void func_802D317C(ActorMarker *marker, enum bkprog_e prog_flag_id){
     marker_despawn(marker);
 }
 
-#ifndef NONMATCHING
-void func_802D31AC(ActorMarker *marker, ActorMarker *other_marker);
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_4C020/func_802D31AC.s")
-#else
-void func_802D31AC(ActorMarker *marker, ActorMarker *other_marker){
+void func_802D31AC(ActorMarker *arg0, ActorMarker * arg1) {
     Actor *sp2C;
 
-    sp2C = marker_getActor(marker);
-    swtich(marker->unk14_20){
-    //L802D3218 x < 0x23a //jmptbl D_80376720
-    //L802D3292 x < 0x124 //jmptbl D_80376778
-    //L802D32CC x < 0xa2  //jmptbl D_8037686C
+    sp2C = marker_getActor(arg0);
+    arg0->collidable = FALSE;
+    switch (arg0->unk14_20) {
+        case 0x9F:
+        case 0xA0:
+        case 0xFF:
+            func_8030E540(SFX_82_METAL_BREAK);
+            func_80328A84(sp2C, 4);
+            break;
 
-    case 0x17d://L802D3308
-        func_8030E624(0x599ff882);
-        func_8030E624(0x4cbff882);
-        func_802D2FB0(sp2C, 0x14, -0x1e, 0x190, 3.0f, 0x15e, 0x50, 0x96);
-        sp2C->unk60 = 1.0f;
-        func_80320004(0xA5, TRUE);
-        break;
+        case 0x17D:
+            FUNC_8030E624(SFX_82_METAL_BREAK, 0.7f, 32736);
+            FUNC_8030E624(SFX_82_METAL_BREAK, 0.6f, 32736);
+            func_802D2FB0(sp2C, 0x14, -0x1E, 0x190, 3.0f, 0x15E, 0x50, 0x96);
+            sp2C->unk60 = 1.0f;
+            func_80320004(0xA5, 1);
+            break;
 
-    case 0x163://L802D3558
-        break;
+        case 0x109:
+            func_8030E6D4(SFX_114_BRICKWALL_BREAKING);
+            func_8030E510(SFX_11_WOOD_BREAKING_1, 28000);
+            func_80328AEC(sp2C, 9);
+            func_80320004((sp2C->unkF4_8 == 1) ? 0xC8 : 0xC9, 1);
+            break;
 
-    case 0x263://L802D35A8
-        break;
+        case 0x107:
+            func_8030E540(SFX_82_METAL_BREAK);
+            func_802EE278(sp2C, 0xE, 0xF, 0x46, 0.8f, 0.7f);
+            marker_despawn(arg0);
+            break;
 
-    case 0x1f2://L802D3A8C
-    case 0x1f3://L802D3A8C
-        break;
+        case 0x224:
+            func_8025A70C(COMUSIC_2B_DING_B);
+            func_8030E6A4(SFX_129_SWOOSH, (sp2C->scale < 0.45) ? 1.0 : 0.8, 0x7FF8);
+            func_80328AEC(sp2C, 0xC);
+            func_802D2FB0(sp2C, 8, -0x3C, 0xC8, 2.0f, 0xFA, 0x3C, 0x64);
+            func_80320004((sp2C->unkF4_8== 1) ? 0xCB : 0xCC, 1);
+            break;
 
-    case 0x164://L802D3C68
-    case 0x165://L802D3C68
-        break;
+        case 0x225:
+            func_8025A70C(COMUSIC_2B_DING_B);
+            func_8030E540(SFX_129_SWOOSH);
+            func_80328AEC(sp2C, 0xF);
+            func_802D2FB0(sp2C, 0xE, -0x3C, 0xC8, 2.0f, 0xFA, 0x3C, 0x64);
+            func_80320004(0xCA, 1);
+            break;
 
-    
-    //L802D3CA0 else
+        case 0x163:
+            if (sp2C->unk10_12 == 0) {
+                sp2C->unk10_12 = TRUE;
+                timed_playSfx(0.5f, SFX_3F9_UNKNOWN, 1.0f, 32000);
+                FUNC_8030E624(SFX_114_BRICKWALL_BREAKING, 0.8f, 32000);
+            }
+            break;
 
+        case 0x9A: 
+        case 0x9C: 
+        case 0x9D: 
+        case 0x9E: 
+        case 0xA1: 
+        case 0xE7: 
+        case 0xEA: 
+        case 0x108:
+        case 0x263:
+            if ((arg0->unk14_20 == 0x9D) || (arg0->unk14_20 == 0xE7)) {
+                levelSpecificFlags_set(0x2E, 1);
+            }
+            if (arg0->unk14_20 == 0x263) {
+                levelSpecificFlags_set(0x38, 1);
+            }
+            func_802D2FB0(sp2C, 5, -0x28, 0xC8, 0.85f, 0xDC, 0x3C, 0x64);
+            func_8030E540(SFX_D_EGGSHELL_BREAKING);
+            func_8030E540(SFX_11_WOOD_BREAKING_1);
+            switch (arg0->unk14_20) {
+                case 0x9E:
+                    func_802EE278(sp2C, 0xD, 9, 0x82, 0.34f, 1.0f);
+                    break;
+
+                case 0x9D:
+                case 0xE7:
+                case 0x108:
+                    func_802EE278(sp2C, 7, 6, 0x32, 0.4f, 1.1f);
+                    func_802EE278(sp2C, 7, 6, 0xB4, 0.4f, 1.1f);
+                    break;
+
+                case 0x9A:
+                case 0x9C:
+                case 0x263:
+                    func_802EE278(sp2C, 7, 0xA, 0x82, 0.3f, 0.8f);
+                    break;
+
+                case 0xA1:
+                    func_802EE278(sp2C, 7, 9, 0x82, 0.3f, 0.6f);
+                    break;
+
+                case 0xEA:
+                    func_802EE278(sp2C, 3, 9, 0x82, 0.21f, 0.8f);
+                    break;
+
+                default:
+                    func_802EE278(sp2C, 7, 0x19, 0x82, 0.17f, 0.8f);
+                    break;
+            }
+            marker_despawn(arg0);
+            break;
+
+        case 0x11F:
+            func_8030E540(SFX_D9_WOODEN_CRATE_BREAKING_1);
+            func_802EE2E8(sp2C, 7, 9, 0x78, 0.43f, 1.3f, 3.0f);
+            func_802EE2E8(sp2C, 3, 6, 0x78, 0.43f, 1.3f, 3.0f);
+            func_802D317C(arg0, 0xC5);
+            break;
+
+        case 0x11A:
+            func_8030E540(SFX_82_METAL_BREAK);
+            func_802EE278(sp2C, 0xE, 0xD, 0x32, 0.8f, 0.9f);
+            func_802EE278(sp2C, 0xE, 0xD, 0xAA, 0.8f, 0.9f);
+            func_802D317C(arg0, 0xC2);
+            break;
+
+        case 0x118:
+            func_8030E540(SFX_82_METAL_BREAK);
+            func_802EE278(sp2C, 0xE, 0xD, 0x50, 1.2f, 0.9f);
+            func_802EE278(sp2C, 0xE, 0xD, 0xB4, 1.2f, 0.9f);
+            func_802D317C(arg0, 0xCD);
+            break;
+
+        case 0x119:
+            func_8030E540(SFX_82_METAL_BREAK);
+            func_802EE278(sp2C, 0xE, 9, 0x50,  1.2f, 0.9f);
+            func_802EE278(sp2C, 0xE, 9, 0xAA,  1.2f, 0.9f);
+            func_802EE278(sp2C, 0xE, 9, 0x104, 1.2f, 0.9f);
+            func_802D317C(arg0, 0xCE);
+            break;
+
+        case 0x22D:
+        case 0x22E:
+            func_8030E540(SFX_82_METAL_BREAK);
+            func_8030E540(SFX_B6_GLASS_BREAKING_1);
+            func_802EE278(sp2C, 4, 0x23, 0x1E, 0.7f, 0.6f);
+            marker_despawn(arg0);
+            break;
+
+        case 0x123:
+        case 0x1F2:
+        case 0x1F3:
+        case 0x235:
+        case 0x236:
+        case 0x237:
+        case 0x238:
+        case 0x239:
+            func_8030E540(SFX_13A_GLASS_BREAKING_7);
+            func_802EE278(sp2C, 4, 0x2D, 0x82, 1.0f, 1.0f);
+            if (arg0->unk14_20 == 0x1F3) {
+                func_802EE278(sp2C, 4, 0x2D, 0x104, 1.0f, 1.0f);
+            }
+            marker_despawn(arg0);
+            break;
+
+        case 0x11E:
+            func_8030E540(SFX_B6_GLASS_BREAKING_1);
+            func_802EE278(sp2C, 4, 0x32, 0x50, 1.0f, 1.4f);
+            func_802EE278(sp2C, 4, 0x32, 0xA0, 1.0f, 1.4f);
+            func_802EE278(sp2C, 4, 0x1E, 0xF0, 0.8f, 1.1f);
+            func_802D317C(arg0, 0xC3);
+            break;
+
+        case MARKER_121_GLASS_EYE:
+            func_8030E540(SFX_B6_GLASS_BREAKING_1);
+            func_802EE2E8(sp2C, 1, 0x32, 0x14, 1.2f, 1.4f, 2.2f);
+            func_802EE2E8(sp2C, 1, 0x3C, 0x64, 1.6f, 1.8f, 2.2f);
+            func_802EE2E8(sp2C, 1, 0x32, 0xB4, 1.2f, 1.4f, 2.2f);
+            func_802D317C(arg0, BKPROG_C4_STATUE_EYE_BROKEN);
+            break;
+
+        case 0x164:
+        case 0x165:
+            if (sp2C->unk1C[1] == sp2C->position[1]) {
+                func_8030E510(SFX_9B_BOULDER_BREAKING_1, 25000);
+                sp2C->unk1C[0] = 1.0f;
+            }
+            break;
+
+        default:   
+            func_8030E540(SFX_D_EGGSHELL_BREAKING);
+            func_8030E540(SFX_11_WOOD_BREAKING_1);
+            marker_despawn(arg0);
+            break;
     }
 }
-#endif
 
 void func_802D3CC8(ActorMarker *marker){
     func_802D31AC(marker, NULL);
@@ -221,7 +379,7 @@ void func_802D3DA4(Actor *this) {
     }
     player_getPosition(sp24);
     phi_v0 = ((this->position[1] - 5.0f) <= sp24[1]) && (sp24[1] <= (this->position[1] + 30.0f))
-        && (((sp24[0] - this->position[0])*(sp24[0] - this->position[0]) + (sp24[2] - this->position[2])*(sp24[2] - this->position[2])) < D_80376984);
+        && (((sp24[0] - this->position[0])*(sp24[0] - this->position[0]) + (sp24[2] - this->position[2])*(sp24[2] - this->position[2])) < 3025.0f);
 
     if ((this->unk38_31 == 0) && (phi_v0 == 0)) {
         this->unk38_31 = 1;
@@ -288,7 +446,7 @@ void func_802D3FD4(Actor *this){
         return;
     }//L802D4134
 
-    this->yaw += (this->unkF4_8 & 1) ? D_80376988 : D_80376990;
+    this->yaw += (this->unkF4_8 & 1) ? -1.4 : 1.4;
     if(this->yaw < 0.0f){
         this->yaw += 360.0f;
     }
@@ -357,7 +515,7 @@ void func_802D4388(Actor *this){
             break;
 
         case 0x13: //L802D44B0
-            if(D_80376998 <= animctrl_getAnimTimer(this->animctrl)){
+            if(0.66 <= animctrl_getAnimTimer(this->animctrl)){
                 func_80328B8C(this, 0x14, 0.66f, 0);
             }
             break;
@@ -370,7 +528,7 @@ void func_802D4388(Actor *this){
             break;
 
         case 0x15: //L802D4534
-             if(animctrl_getAnimTimer(this->animctrl) < D_803769A0){
+             if(animctrl_getAnimTimer(this->animctrl) < 0.03){
                 func_80328B8C(this, 0x12, 0.0f, 1);
             }
             break;
@@ -462,36 +620,27 @@ void func_802D48F0(void){
     }
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_4C020/func_802D4928.s")
-#else
 void func_802D4928(Actor *this, s32 arg1, s32 arg2, s32 arg3) {
-    s32 sp1C;
-
     this->marker->propPtr->unk8_3 = TRUE;
-    sp1C = arg1 & 0xC00000;
-    if( ( ((sp1C == 0) && mapSpecificFlags_get(arg1 - 0)) 
-          || ((sp1C == 0x800000) && func_8031FF1C(arg1 - 0x800000)) 
-          || ((sp1C == 0x400000) && func_803203FC(arg1 - 0x400000))
+    if( ( (((arg1 & 0xC00000) == 0) && mapSpecificFlags_get(arg1 - 0)) 
+          || (((arg1 & 0xC00000) == 0x800000) && func_8031FF1C(arg1 - 0x800000)) 
+          || (((arg1 & 0xC00000) == 0x400000) && func_803203FC(arg1 - 0x400000))
         ) 
         && (arg2 != this->state)
     ) {
         func_80328B8C(this, arg2, 0.0f, 1);
         actor_playAnimationOnce(this);
     }
-    sp1C = arg1 & 0xC00000;
-    if( ( ((sp1C == 0) && !mapSpecificFlags_get(arg1 - 0)) 
-          || ((sp1C == 0x800000) && !func_8031FF1C(arg1 - 0x800000)) 
-          || ((sp1C == 0x400000) && !func_803203FC(arg1 - 0x400000))
+    if( ( (((arg1 & 0xC00000) == 0) && !mapSpecificFlags_get(arg1 - 0)) 
+          || (((arg1 & 0xC00000) == 0x800000) && !func_8031FF1C(arg1 - 0x800000)) 
+          || (((arg1 & 0xC00000) == 0x400000) && !func_803203FC(arg1 - 0x400000))
         ) 
         && (arg2 == this->state)
     ) {
         func_80328B8C(this, arg3, 0.0f, 1);
         actor_playAnimationOnce(this);
     }
-    if(sp1C);
 }
-#endif
 
 void func_802D4A9C(Actor *this, s32 arg1){
     func_802D4928(this, arg1, 2, 3);
@@ -586,12 +735,12 @@ void func_802D4D3C(s32 arg0, s32 arg1) {
             sp4C[3] = 200;
             sp4C[0] = sp4C[1] = sp4C[2] = 250;
             ml_vec3f_assign(&sp40, -1.0f, 3.0f, -3.0f);
-            func_802EE6CC(&sp5C, &sp40, &sp4C, 0, D_803769A8, 40.0f, 10, 120, 0);
+            func_802EE6CC(&sp5C, &sp40, &sp4C, 0, 2.4f, 40.0f, 10, 120, 0);
             
             sp4C[3] = 130;
             sp4C[0] = sp4C[1] = sp4C[2] = 130;
             ml_vec3f_assign(&sp40, 2.0f, -2.0f, 2.0f);
-            func_802EE6CC(&sp5C, &sp40, &sp4C, 0, D_803769AC, 180.0f, 20, 160, 0);
+            func_802EE6CC(&sp5C, &sp40, &sp4C, 0, 4.7f, 180.0f, 20, 160, 0);
             func_8030E6D4(SFX_1B_EXPLOSION_1);
         }
         else{
@@ -642,7 +791,7 @@ void func_802D5178(s32 arg0, enum bkprog_e arg1, s32 arg2, enum map_e arg3, s32 
     if(levelSpecificFlags_get(arg0) && !func_8031FF1C(arg1)){
         levelSpecificFlags_set(arg0, FALSE);
         func_80320004(arg1, TRUE);
-        func_802D6264(D_803769B0, arg3, arg2, arg4, arg5, 0);
+        func_802D6264(0.95f, arg3, arg2, arg4, arg5, 0);
         D_803676A0 = arg6;
         D_80367690 = arg7;
     }
@@ -654,18 +803,11 @@ void func_802D520C(Gfx **gfx, Mtx **mtx, Vtx **vtx){
     }
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_4C020/func_802D5260.s")
-#else
-extern f32 D_803676A4;
-extern f32 D_803769B4;
 void func_802D5260(void) {
     s32 sp3C;
     s32 sp38;
     f32 sp34;
     f32 sp28[3];
-    s32 phi_v0_2;
-    s32 phi_v1_2;
 
     sp3C = (map_get() == MAP_76_GL_640_NOTE_DOOR) ? 0
          : (map_get() == MAP_77_GL_RBB_LOBBY) ? 1
@@ -715,42 +857,18 @@ void func_802D5260(void) {
         if (levelSpecificFlags_get(0x3C) != 0) {
             sp34 = D_803679C8[sp3C].unk6 + D_803676A4;
         } else {
-            if (func_8031FF1C(BKPROG_27_LAIR_WATER_LEVEL_3)) {
-                phi_v0_2 = 3;
-            } else {
-                if (func_8031FF1C(BKPROG_25_LAIR_WATER_LEVEL_2)) {
-                    phi_v1_2 = 2;
-                } else {
-                    if (func_8031FF1C(BKPROG_23_LAIR_WATER_LEVEL_1)) {
-                        phi_v0_2 = 1;
-                    } else {
-                        phi_v0_2 = 0;
-                    }
-                    phi_v1_2 = phi_v0_2;
-                }
-                phi_v0_2 = phi_v1_2;
-            }
-            sp34 = ((s16 *)&D_803679C8[sp3C])[phi_v0_2];
+            sp34 = ((s16 *)&D_803679C8[sp3C])[(func_8031FF1C(BKPROG_27_LAIR_WATER_LEVEL_3)) ? 3 
+                     : (func_8031FF1C(BKPROG_25_LAIR_WATER_LEVEL_2)) ? 2
+                     : (func_8031FF1C(BKPROG_23_LAIR_WATER_LEVEL_1)) ? 1
+                     : 0];
         }
         func_8034DEB4(sp38, sp34);
         player_getPosition(sp28);
         
-        if (sp3C != -1) {
-            phi_v1_2 = (sp3C == 2) ? (D_803769B4 < sp28[0]) ? -200 : 0 : 0;
-            phi_v0_2 = D_803679E0[sp3C] + phi_v1_2;
-        }
-        else{
-            phi_v0_2 = 0;
-        }
-        func_802F363C((f32) phi_v0_2 + sp34);
+        func_802F363C(sp34 + ((sp3C != -1) ? (D_803679E0[sp3C] + ((sp3C == 2) ? (6600.0f < sp28[0]) ? -200 : 0 : 0)) : 0));
     }
 }
-#endif
 
-
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_4C020/func_802D5628.s")
-#else
 void func_802D5628(void){
     s32 sp7C;
     s32 sp78;
@@ -760,9 +878,9 @@ void func_802D5628(void){
     s32 sp68;
     s32 sp50[6];
     s32 sp4C;
-    // static s32 D_803679E8 = 0;
-    // static s32 D_803679EC = 0;
-    // static f32 D_803679F0 = 0.0f;
+    static s32 D_803679E8 = 0;
+    static s32 D_803679EC = 0;
+    static f32 D_803679F0 = 0.0f;
 
     if( map_get() != MAP_8E_GL_FURNACE_FUN
         && map_get() != MAP_80_GL_FF_ENTRANCE
@@ -782,7 +900,7 @@ void func_802D5628(void){
                     D_803679EC = 2;
                 }
                 func_8030E6A4(SFX_2_CLAW_SWIPE, MIN(2.0,D_803679F0), 20000);
-                D_803679F0 += D_803769B8;
+                D_803679F0 += 0.05;
             }
         }
         else{//L802D5750
@@ -877,7 +995,7 @@ void func_802D5628(void){
                     }
                     else{//L802D5B24
                         func_8024E55C(0, sp50); //get button inputs
-                        if(sp50[FACE_BUTTON(BUTTON_C_UP)] == 1){
+                        if(sp50[FACE_BUTTON(BUTTON_B)] == 1){
                             func_80324C58();
                             func_802D6114();
                         }
@@ -964,7 +1082,6 @@ void func_802D5628(void){
         }//L802D607C
     }//L802D607C
 }
-#endif
 
 //water_level_atleast_2;
 int func_802D6088(void){

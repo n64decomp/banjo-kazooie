@@ -7,15 +7,13 @@ extern f32 func_8028E82C(void);
 Actor *func_802CA7BC(ActorMarker *, Gfx **, Mtx **, Vtx **);
 void func_802CA92C(Actor *this);
 
-extern ActorInfo D_80366EF0 = { 
+/* .data */
+ActorInfo D_80366EF0 = { 
     MARKER_32_PLAYER_SHADOW, ACTOR_17_PLAYER_SHADOW, ASSET_3BF_MODEL_PLAYER_SHADOW, 
     0x1, 0x0, 
     func_802CA92C, func_80326224, func_802CA7BC, 
     0, 0, 0.0f, 0
 };
-
-/* .rodata */
-extern f32 D_80376480;
 
 /* .code */
 void func_802CA790(Actor *this){
@@ -53,7 +51,7 @@ Actor *func_802CA7BC(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     sp48[0] = this->pitch;
     sp48[1] = this->yaw;
     sp48[2] = this->roll;
-    sp44 = ml_map_f(sp54[1] - sp40, 0.0f, 300.0f, 0.43f, D_80376480);
+    sp44 = ml_map_f(sp54[1] - sp40, 0.0f, 300.0f, 0.43f, 0.28f);
     func_8033A2D4(func_802CA790, this);
     func_803391A4(gfx, mtx, this->position, sp48, sp44, NULL, func_80330B1C(marker));
     return this;

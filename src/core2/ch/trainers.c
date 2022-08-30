@@ -6,17 +6,19 @@ Actor *chtrainers_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void chtrainers_update(Actor *this);
 
 /* .data */
-extern ActorAnimationInfo D_80366EA0[];
-extern ActorInfo D_80366EC0 = { 
+ActorAnimationInfo D_80366EA0[] = {
+    {ASSET_D6_ANIM_TURBO_TALON_TRAINERS, 1.5f},
+    {ASSET_D6_ANIM_TURBO_TALON_TRAINERS, 1.5f},
+    {ASSET_D6_ANIM_TURBO_TALON_TRAINERS, 1.5f},
+    {ASSET_D6_ANIM_TURBO_TALON_TRAINERS, 1.5f}
+};
+
+ActorInfo D_80366EC0 = { 
     MARKER_38_TURBO_TALON_TRAINERS, ACTOR_2C_TURBO_TALON_TRAINERS, ASSET_367_MODEL_TURBO_TALON_TRAINERS,
     0x0, D_80366EA0,
     chtrainers_update, func_80326224, chtrainers_draw,
     0, 0, 0.0f, 0
 };
-
-/* .rodata */
-extern f64 D_80376470;
-extern f64 D_80376478;
 
 /* .code */
 Actor *chtrainers_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
@@ -46,8 +48,8 @@ void _chtrainers_802CA378(Actor *this, bool arg1){
     func_802589E4(sp24, this->velocity[1], 40.0f);
     sp24[1] = 0.0f;
     ml_vec3f_add(this->position, this->unk1C, sp24);
-    this->velocity[1] += D_80376470;
-    this->yaw = mlNormalizeAngle(this->velocity[1] + D_80376478);
+    this->velocity[1] += 2.3;
+    this->yaw = mlNormalizeAngle(this->velocity[1] + 90.0);
 }
 
 void chtrainers_update(Actor *this){

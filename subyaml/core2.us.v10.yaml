@@ -198,7 +198,7 @@ segments:
   - [0x4A6F0, c, code_4A6F0] #DONE
   - [0x4BD70, c, code_4BD70] #DONE
   - [0x4BE10, c, code_4BE10] #DONE
-  - [0x4C020, c, code_4C020] 
+  - [0x4C020, c, code_4C020] #DONE
   - [0x4FB80, c, ch/wadingboots] #DONE
   - [0x4FF10, c, ch/badShad] #DONE
   - [0x50490, c, code_50490] #DONE
@@ -478,6 +478,8 @@ segments:
   - [0xDFCC0, .data, ch/musicnote]
   - [0xDFCF0, .data, code_42CB0]
   - [0xDFD40, bin, data_DFD40]
+  - [0xDFF10, .data, ch/trainers]
+  - [0xDFF60, .data, code_43800]
   - [0xDFF90, .data, code_43A40]
   - [0xE0070, bin, data_E0070]
   - [0xE0080, .data, code_440B0]
@@ -492,6 +494,8 @@ segments:
   - [0xE0500, bin, data_E0500]
   - [0xE05A0, .data, code_4BD70]
   - [0xE0660, bin, data_E0660]
+  - [0xE06F0, .data, code_4C020]
+  - [0xE0A70, bin, data_E0A70]
   - [0xE0AC0, .data, ch/badShad]
   - [0xE0AF0, .data, code_50490]
   - [0xE0B90, bin, data_E0B90]
@@ -702,22 +706,22 @@ segments:
   - [0xEF360, .rodata, ch/jiggy]
   - [0xEF3E0, .rodata, ch/jigsawdance]
   - [0xEF450, .rodata, code_41460]
-  #- [0xEF480, .rodata, code_41FB0] #temp
-  - [0xEF480, bin, data_EF480]
+  - [0xEF480, bin, data_EF480] #.rodata, code_41FB0]
+  - [0xEF490, .rodata, code_41FB0]
   - [0xEF4C0, .rodata, ch/musicnote]
-  - [0xEF4D0, .rodata, code_42CB0] #DONE
-  - [0xEF4E0, bin, data_EF4E0]
+  - [0xEF4D0, .rodata, code_42CB0]
+  - [0xEF4E0, .rodata, ch/trainers]
+  - [0xEF4F0, .rodata, code_43800]
   - [0xEF500, .rodata, code_440B0]
   - [0xEF550, .rodata, code_45310]
   - [0xEF5D0, .rodata, ch/jinjo]
   - [0xEF5F0, bin, data_EF5F0] #part of ch/jinjo .rodata
   - [0xEF640, .rodata, ch/beehive]
-  - [0xEF650, bin, data_EF650]
+  - [0xEF650, bin, data_EF650] #.rodata, code_47BD0]
   - [0xEF6B0, bin, EF6B0] # .rodata, code_49A70]
   - [0xEF6D0, .rodata, ch/gloop]
   - [0xEF6E0, .rodata, code_4A6F0]
-  - [0xEF790, bin, data_EF790]
-  - [0xEFB10, .rodata, code_4C020]
+  - [0xEF790, .rodata, code_4C020]
   - [0xEFDB0, .rodata, ch/badShad]
   - [0xEFDC0, .rodata, code_50490]
   - [0xEFDD0, .rodata, code_509D0]
