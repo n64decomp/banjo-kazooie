@@ -178,7 +178,7 @@ segments:
   - [0x41130, c, ch/jigsawdance] #DONE
   - [0x41460, c, code_41460]    #DONE
   - [0x41F30, c, code_41F30]    #DONE
-  - [0x41FB0, c, code_41FB0]
+  - [0x41FB0, c, code_41FB0]    #DONE
   - [0x42CA0, c, ch/musicnote]  #DONE
   - [0x42CB0, c, code_42CB0]    #DONE
   - [0x43250, c, code_43250]    #DONE
@@ -474,7 +474,7 @@ segments:
   - [0xDF340, .data, ch/jigsawdance]
   - [0xDF3A0, .data, code_41460]
   - [0xDF4A0, .data, code_41F30]
-  - [0xDF4D0, bin, data_DF4D0]
+  - [0xDF4D0, .data, code_41FB0]
   - [0xDFCC0, .data, ch/musicnote]
   - [0xDFCF0, .data, code_42CB0]
   - [0xDFD40, bin, data_DFD40]
@@ -706,8 +706,7 @@ segments:
   - [0xEF360, .rodata, ch/jiggy]
   - [0xEF3E0, .rodata, ch/jigsawdance]
   - [0xEF450, .rodata, code_41460]
-  - [0xEF480, bin, data_EF480] #.rodata, code_41FB0]
-  - [0xEF490, .rodata, code_41FB0]
+  - [0xEF480, .rodata, code_41FB0]
   - [0xEF4C0, .rodata, ch/musicnote]
   - [0xEF4D0, .rodata, code_42CB0]
   - [0xEF4E0, .rodata, ch/trainers]
