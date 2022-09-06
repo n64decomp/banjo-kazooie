@@ -2065,6 +2065,7 @@ void func_8032ACA8(Actor *arg0) {
 extern s32 D_8036E5A8;
 void func_8032AD7C(s32 arg0) {
     s32 var_s0;
+    
 
     if (D_8036E560 != NULL) {
         if (D_8036E5A8 >= D_8036E560->cnt) {

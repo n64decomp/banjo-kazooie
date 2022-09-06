@@ -43,6 +43,7 @@ Actor *func_80387DD0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/FP/code_19E0/func_80388000.s")
 
+
 void func_8038811C(ActorMarker *this_marker, ActorMarker *other_marker){
     Actor *this = marker_getActor(this_marker);
     if(this->state == 2)

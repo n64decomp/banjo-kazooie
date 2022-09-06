@@ -57,9 +57,6 @@ void func_802E6D20(BKCollisionTri *arg0, BKVertexList *vtx_list) {
     
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5FD90/func_802E6DEC.s")
-#else
 void func_802E6DEC(BKCollisionList *collision_list, f32 arg1[3], f32 arg2[3], BKCollisionGeo ***arg3, BKCollisionGeo ***arg4) {
     s32 sp3C[3];
     s32 sp30[3];
@@ -109,7 +106,7 @@ void func_802E6DEC(BKCollisionList *collision_list, f32 arg1[3], f32 arg2[3], BK
         for(z = sp3C[2]; z <= sp30[2]; z++){
             for(y = sp3C[1]; y <= sp30[1]; y++){
                 for(x = sp3C[0]; x <= sp30[0]; x++){
-                    *(D_8037E910.unk190++) = (BKCollisionGeo *)((s32)collision_list + sizeof(BKCollisionList)) + (collision_list->unkE * z)  + (y * collision_list->unkC) + (x);
+                    *(D_8037E910.unk190++) = ((collision_list->unkE * z) + (BKCollisionGeo *)(collision_list + 1))  + x + (y * collision_list->unkC);
                 }
             }
         }
@@ -117,11 +114,7 @@ void func_802E6DEC(BKCollisionList *collision_list, f32 arg1[3], f32 arg2[3], BK
         *arg4 = D_8037E910.unk190;
     }
 }
-#endif
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5FD90/func_802E70FC.s")
-#else
 void func_802E70FC(BKCollisionList *collision_list, s32 arg1[3], s32 arg2[3], BKCollisionGeo ***arg3, BKCollisionGeo ***arg4) {
     s32 sp3C[3];
     s32 sp30[3];
@@ -168,10 +161,11 @@ void func_802E70FC(BKCollisionList *collision_list, s32 arg1[3], s32 arg2[3], BK
         }
 
         D_8037E910.unk190 = &D_8037E910.unk0[0];
+        
         for(z = sp3C[2]; z <= sp30[2]; z++){
             for(y = sp3C[1]; y <= sp30[1]; y++){
                 for(x = sp3C[0]; x <= sp30[0]; x++){
-                    *(D_8037E910.unk190++) = (BKCollisionGeo *)((s32)collision_list + sizeof(BKCollisionList)) + (collision_list->unkE * z)  + x + (y * collision_list->unkC);
+                    *(D_8037E910.unk190++) = ((collision_list->unkE * z) + (BKCollisionGeo *)(collision_list + 1))  + x + (y * collision_list->unkC);
                 }
             }
         }
@@ -179,7 +173,6 @@ void func_802E70FC(BKCollisionList *collision_list, s32 arg1[3], s32 arg2[3], BK
         *arg4 = D_8037E910.unk190;
     }
 }
-#endif
 
 void func_802E73C8(f32 (*arg0)[3]) {
     s32 i;

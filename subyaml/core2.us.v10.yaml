@@ -234,6 +234,7 @@ segments:
   - [0x5C240, c, code_5C240] #DONE
   - [0x5C870, c, code_5C870] #DONE
   - [0x5DBC0, c, code_5DBC0]
+  - [0x5FB00, c, code_5FB00] #DONE
   - [0x5FD80, c, code_5FD80] #DONE
   - [0x5FD90, c, code_5FD90]
   - [0x62FD0, c, code_62FD0] #DONE
