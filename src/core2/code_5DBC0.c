@@ -14,8 +14,8 @@ typedef struct {
     u8 font_id;
     // u8 pad5[0x3];
     BKSpriteTextureBlock **letter_texture;
-    u8 unkC; // x_margin
-    u8 unkD; // y_margin
+    u8 half_width;
+    u8 height;
     u8 padE[0x2];
 }struct5DBC0_2s;
 
@@ -74,16 +74,20 @@ struct5DBC0s *func_802E4B50(void){
     return D_8037E900;
 }
 
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5DBC0/func_802E4C0C.s")
-// s32 func_802E4C0C(struct5DBC0_2s * arg0, u32 arg1){
-//     u32 i, v0;
-//     for(i = arg1; i > 0; i--){
-//         v0 = i - 1;
-//         assetcache_release(arg0[v0].unk0);
-//         free(arg0[v0].unk8);
-//     }
-//     free(arg0);
-// }
+#else
+void func_802E4C0C(struct5DBC0_2s * arg0, u32 arg1){
+    // u32 i, v0;
+    u32 v0;
+    while(--arg1 != 0){
+        // arg1--;
+        assetcache_release(arg0[arg1].font_bin);
+        free(arg0[arg1].letter_texture);
+    }
+    free(arg0);
+}
+#endif
 
 void func_802E4C78(void){
     if(D_8037E900->unk0 != NULL){
@@ -104,11 +108,11 @@ s32 func_802E4CF8(u8);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5DBC0/func_802E4CF8.s")
 #else
 s32 func_802E4CF8(u8 arg0) {
-    s32 var_v1;
+    u32 var_v1;
 
-    for(var_v1 = D_8037E900->unk10 - 1; var_v1 >= 0; var_v1--){
-        if (arg0 == D_8037E900->unk4[var_v1].unk4) {
-            return var_v1;
+    for(var_v1 = D_8037E900->unk10; var_v1 > 0; var_v1--){
+        if (arg0 == D_8037E900->unk4[var_v1 - 1].font_id) {
+            return var_v1 - 1;
         }
     }
     return -1;
@@ -155,8 +159,8 @@ s32 func_802E4E54(u8 font_id) {
         D_8037E900->unk4[sp24].font_id = font_id;
         D_8037E900->unk4[sp24].font_bin = (BKSprite *)assetcache_get(font_id + 0x6E9);
         D_8037E900->unk4[sp24].letter_texture = func_802E4D8C(D_8037E900->unk4[sp24].font_bin);
-        D_8037E900->unk4[sp24].unkC = D_8037E900->unk4[sp24].letter_texture['W' - 0x21]->x/2;
-        D_8037E900->unk4[sp24].unkD = D_8037E900->unk4[sp24].letter_texture['W' - 0x21]->y;
+        D_8037E900->unk4[sp24].half_width = D_8037E900->unk4[sp24].letter_texture['W' - 0x21]->x/2;
+        D_8037E900->unk4[sp24].height = D_8037E900->unk4[sp24].letter_texture['W' - 0x21]->y;
     }
     func_802E6820(5);
     return sp24;
@@ -199,9 +203,6 @@ void func_802E5188(void){
     D_8037E900->string_len = 0;
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5DBC0/func_802E51A4.s")
-#else
 s32 func_802E51A4(char *str, s32 arg1, s32 start, u32 flags) {
     s32 tab_width;
     s32 position;
@@ -209,16 +210,16 @@ s32 func_802E51A4(char *str, s32 arg1, s32 start, u32 flags) {
     s32 i;
 
     if (flags & 2) {
-        return  2 * D_8037E900->unk4[arg1].unkC *strlen(str);
+        return  2 * D_8037E900->unk4[arg1].half_width *strlen(str);
     }
 
     position = start;
-    for(var_s1 = str; *var_s1 != '\0'; var_s1++){
+    for(var_s1 = str; *var_s1; var_s1++){
         if (*var_s1 == ' ') {
-            position += D_8037E900->unk4[arg1].unkC;
+            position += D_8037E900->unk4[arg1].half_width;
         } else if (*var_s1 == '\t') {
             position++;
-            tab_width = 4*D_8037E900->unk4[arg1].unkC;
+            tab_width = 4*D_8037E900->unk4[arg1].half_width;
             while (position % tab_width) { position++; };
         } else {
             position += func_802E4D5C(arg1, *var_s1)->x;
@@ -226,17 +227,16 @@ s32 func_802E51A4(char *str, s32 arg1, s32 start, u32 flags) {
     }
     return position - start;
 }
-#endif
 
 void func_802E533C(struct5DBC0_1s *arg0, char arg1, s32 *arg2, s32 *arg3, Gfx **gfx) {
     s32 timg;
     BKSpriteTextureBlock *chunk;
 
     if (arg1 == ' ') {
-        *arg2 += D_8037E900->unk4[arg0->unkE].unkC;
+        *arg2 += D_8037E900->unk4[arg0->unkE].half_width;
     } else if (arg1 == '\t') { 
         (*arg2)++;
-        while ((*arg2 % (s32) (D_8037E900->unk4[arg0->unkE].unkC * 4)) != 0) {
+        while ((*arg2 % (s32) (D_8037E900->unk4[arg0->unkE].half_width * 4)) != 0) {
             (*arg2)++;
         }
     } else{
@@ -255,7 +255,7 @@ void func_802E533C(struct5DBC0_1s *arg0, char arg1, s32 *arg2, s32 *arg3, Gfx **
         gDPSetTileSize((*gfx)++, G_TX_RENDERTILE, 0, 0, chunk->w << 2, chunk->h << 2);
         gSPScisTextureRectangle((*gfx)++, (*arg2 << 2), (*arg3 << 2), ((*arg2 + chunk->w) << 2), ((*arg3 + chunk->h) << 2), G_TX_RENDERTILE, 0, 0, 0x0400, 0x0400);
         if (arg0->unk8 & 2) {
-            *arg2 += D_8037E900->unk4[arg0->unkE].unkC * 2;
+            *arg2 += D_8037E900->unk4[arg0->unkE].half_width * 2;
         }
         else{
             *arg2 += chunk->x;
@@ -269,10 +269,11 @@ void func_802E57E0(struct5DBC0_1s *arg0, Gfx **gfx) {
     s32 spA4;
     s32 var_s3;
     char var_s2;
+    u32 var_a3;
 
-
-    if (!(arg0->unk8 & 4)) { //draw transparent grey background
-        temp_v0 = func_802E51A4(&D_8037E900->string[arg0->unkC], arg0->unkE, arg0->unk0, arg0->unk8);
+    var_a3 = arg0->unk8;
+    if (!(var_a3 & 4)) { //draw transparent grey background
+        temp_v0 = func_802E51A4(&D_8037E900->string[arg0->unkC], arg0->unkE, arg0->unk0, var_a3);
         gDPPipeSync((*gfx)++);
         gDPSetPrimColor((*gfx)++, 0, 0, 0x28, 0x28, 0x28, 0x96);
         gDPSetCombineMode((*gfx)++, G_CC_PRIMITIVE, G_CC_PRIMITIVE);
@@ -280,7 +281,7 @@ void func_802E57E0(struct5DBC0_1s *arg0, Gfx **gfx) {
             (arg0->unk0 - 2),
             arg0->unk4,
             (arg0->unk0 + temp_v0 + 2),
-            (D_8037E900->unk4[arg0->unkE].unkD + arg0->unk4)
+            (D_8037E900->unk4[arg0->unkE].height + arg0->unk4)
         );
         gDPPipeSync((*gfx)++);
     }
@@ -302,7 +303,6 @@ void func_802E57E0(struct5DBC0_1s *arg0, Gfx **gfx) {
                 gDPSetPrimColor((*gfx)++, 0, 0, arg0->unk12[0], arg0->unk12[1], arg0->unk12[2], 0x00);
                 gDPSetEnvColor((*gfx)++, arg0->unk12[0], arg0->unk12[1], arg0->unk12[2], 0);
                 if (var_s2 == ' ') {
-                    s32 sp70;
                     s32 sp6C, sp68;
                     s32 sp64, sp60;
                     sp64 = spA4 - 5;\
@@ -364,7 +364,7 @@ void func_802E5F88(s32 arg0, s32 arg1, char *arg2) {
     u8 sp20[3] = D_80368834;
     
     sp24 =  func_802E4E54(0);
-    func_802E502C(arg0, arg1, sp24, arg2, &sp20);
+    func_802E502C(arg0, arg1, sp24, arg2, sp20);
 }
 
 void func_802E5FE4(s32 arg0, s32 arg1, char *arg2) {
@@ -372,7 +372,7 @@ void func_802E5FE4(s32 arg0, s32 arg1, char *arg2) {
     u8 sp20[3] = D_80368838;
     
     sp24 =  func_802E4E54(0);
-    func_802E502C(arg0, arg1, sp24, arg2, &sp20);
+    func_802E502C(arg0, arg1, sp24, arg2, sp20);
 }
 
 void func_802E6040(s32 arg0, s32 arg1, char *arg2) {
@@ -380,12 +380,12 @@ void func_802E6040(s32 arg0, s32 arg1, char *arg2) {
     u8 sp28[3] = D_8036883C;
 
     sp2C = func_802E4E54(0);
-    arg0 *= D_8037E900->unk4[sp2C].unkC;
-    arg1 *= D_8037E900->unk4[sp2C].unkD;
-    func_802E502C(arg0, arg1, sp2C, arg2, &sp28);
+    arg0 *= D_8037E900->unk4[sp2C].half_width;
+    arg1 *= D_8037E900->unk4[sp2C].height;
+    func_802E502C(arg0, arg1, sp2C, arg2, sp28);
 }
 
-void func_802E60D4(s32 arg0, s32 arg1, s32 arg2, s32 arg3, u8 arg4[3], u8 arg5[3], s32 arg6) {
+void func_802E60D4(s32 arg0, s32 arg1, s32 arg2, char *arg3, u8 arg4[3], u8 arg5[3], s32 arg6) {
     s32 sp24;
 
     sp24 = D_8037E900->unkC++;
@@ -409,15 +409,15 @@ void func_802E60D4(s32 arg0, s32 arg1, s32 arg2, s32 arg3, u8 arg4[3], u8 arg5[3
     D_8037E900->unk0[sp24].unk18 = arg6;
 }
 
-void func_802E6270(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+void func_802E6270(s32 arg0, s32 arg1, char *arg2, s32 arg3) {
     s32 temp_v0;
     u8 sp30[3] = D_80368840;
     u8 sp2C[3] = D_80368844;
 
     temp_v0 = func_802E4E54(0);
-    arg0 *= D_8037E900->unk4[temp_v0].unkC;
-    arg1 *= D_8037E900->unk4[temp_v0].unkD;
-    func_802E60D4(arg0, arg1, temp_v0, arg2, &sp30, &sp2C, arg3);
+    arg0 *= D_8037E900->unk4[temp_v0].half_width;
+    arg1 *= D_8037E900->unk4[temp_v0].height;
+    func_802E60D4(arg0, arg1, temp_v0, arg2, sp30, sp2C, arg3);
 }
 
 void func_802E632C(u8 arg0, u8 arg1, u8 arg2){
@@ -426,15 +426,11 @@ void func_802E632C(u8 arg0, u8 arg1, u8 arg2){
     D_8037E900->unk1C[2] = arg2;
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5DBC0/func_802E635C.s")
-#else
 void func_802E635C(u16 arg0){
-    D_8037E900->unk1C[0] = (arg0 >> 0xb) << 3;
-    D_8037E900->unk1C[1] = (arg0 >> 0x1) << 3;
-    D_8037E900->unk1C[2] = (arg0 >> 0x6) << 3;
+    D_8037E900->unk1C[0] = (u8)(arg0 >> 0xb) << 3;
+    D_8037E900->unk1C[1] = (u8)(arg0 >> 0x1) << 3;
+    D_8037E900->unk1C[2] = (u8)(arg0 >> 0x6) << 3;
 }
-#endif
 
 u8 func_802E639C(u8 arg0, f32 arg1){
     s32 var_v1;
@@ -460,8 +456,8 @@ void func_802E6488(s32 arg0, s32 arg1, char *arg2) {
     s32 temp_v0;
 
     temp_v0 = func_802E4E54(0);
-    arg0 *= D_8037E900->unk4[temp_v0].unkC;
-    arg1 *= D_8037E900->unk4[temp_v0].unkD;
+    arg0 *= D_8037E900->unk4[temp_v0].half_width;
+    arg1 *= D_8037E900->unk4[temp_v0].height;
     func_802E502C(arg0, arg1, temp_v0, arg2, D_8037E900->unk1C);
 }
 
@@ -471,7 +467,7 @@ void func_802E6508(s32 arg0, s32 arg1, char *arg2) {
 }
 
 
-void func_802E6558(s32 arg0, s32 arg1, s32 arg2) {
+void func_802E6558(s32 arg0, s32 arg1, char *arg2) {
     u8 sp1C[3];
     void *temp_v0;
 
@@ -496,17 +492,17 @@ void func_802E6628(s32 arg0, char *arg1) {
     u8 sp28[3] = D_80368848;
 
     sp2C = func_802E4E54(0);
-    arg0 *= D_8037E900->unk4[sp2C].unkD;
-    func_802E502C((s32) (((f32) D_80276588 - (f32) func_802E51A4(arg1, sp2C, 0, D_8037E900->flags)) / 2), arg0, sp2C, arg1, &sp28);
+    arg0 *= D_8037E900->unk4[sp2C].height;
+    func_802E502C((s32) (((f32) D_80276588 - (f32) func_802E51A4(arg1, sp2C, 0, D_8037E900->flags)) / 2), arg0, sp2C, arg1, sp28);
 }
 
-void func_802E66F0(s32 arg0, s32 arg1) {
+void func_802E66F0(s32 arg0, char *arg1) {
     s32 sp24;
     s32 temp_v0;
     void *temp_v1;
 
     sp24 = func_802E4E54(0);
-    arg0 *= D_8037E900->unk4[sp24].unkD;
+    arg0 *= D_8037E900->unk4[sp24].height;
     func_802E502C((s32) (((f32) D_80276588 - (f32) func_802E51A4(arg1, sp24, 0, D_8037E900->flags)) / 2), arg0, sp24, arg1, D_8037E900->unk1C);
 }
 
@@ -561,7 +557,29 @@ void func_802E6820(s32 arg0) {
 }
 #endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5DBC0/func_802E6A90.s")
+/* BREAK??? */
+void func_802E6A90(BKModelUnk28List *arg0, BKVertexList *arg1, s32 arg2, f32 arg3[3]) {
+    Vtx *i_vtx;
+    Vtx *vtx_list;
+    s32 i;
+    s32 var_a2;
+    BKModelUnk28 *var_v1;
+
+    vtx_list = vtxList_getVertices(arg1);
+
+    var_v1 = (BKModelUnk28 *)(arg0 + 1);
+    for(arg2 = arg2; arg2 != 0; arg2--){
+        var_v1 = (BKModelUnk28 *)((s16*)(var_v1 + 1) + (var_v1->vtx_count - 1));
+    }
+
+    for(i = 0; i < var_v1->vtx_count; i++){
+            i_vtx = &vtx_list[var_v1->vtx_list[i]];
+            i_vtx->v.ob[0] = (s16) (s32) arg3[0];
+            i_vtx->v.ob[1] = (s16) (s32) arg3[1];
+            i_vtx->v.ob[2] = (s16) (s32) arg3[2];
+
+    }
+}
 
 void func_802E6BD0(BKModelUnk28List *arg0, BKVertexList *arg1, struct58s *arg2) {
     Vtx *vtx_list;
@@ -588,7 +606,7 @@ void func_802E6BD0(BKModelUnk28List *arg0, BKVertexList *arg1, struct58s *arg2) 
             i_vtx->v.ob[1] = sp50[1];
             i_vtx->v.ob[2] = sp50[2];
         }
-        var_s1 = (s16*)(var_s1 + 1) + (var_s1->vtx_count - 1);
+        var_s1 = (BKModelUnk28 *)((s16*)(var_s1 + 1) + (var_s1->vtx_count - 1));
     }
     osWritebackDCache(vtx_list, vtxList_getVtxCount(arg1) * sizeof(Vtx));
 }
