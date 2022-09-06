@@ -10,12 +10,12 @@ typedef struct {
 }struct5DBC0_3s;
 
 typedef struct {
-    BKSprite *unk0;
-    u8 unk4;
+    BKSprite *font_bin;
+    u8 font_id;
     // u8 pad5[0x3];
-    BKSpriteTextureBlock **unk8;
-    u8 unkC;
-    u8 unkD;
+    BKSpriteTextureBlock **letter_texture;
+    u8 unkC; // x_margin
+    u8 unkD; // y_margin
     u8 padE[0x2];
 }struct5DBC0_2s;
 
@@ -117,9 +117,10 @@ s32 func_802E4CF8(u8 arg0) {
 
 
 BKSpriteTextureBlock *func_802E4D5C(s32 arg0, char arg1){
-    return D_8037E900->unk4[arg0].unk8[arg1 - 0x21];
+    return D_8037E900->unk4[arg0].letter_texture[arg1 - 0x21];
 }
 
+/* font_bin to char texture blocks */
 BKSpriteTextureBlock **func_802E4D8C(BKSprite *sprite) {
     BKSpriteFrame *frame;
     BKSpriteTextureBlock **chunkPtrArray;
@@ -141,20 +142,21 @@ BKSpriteTextureBlock **func_802E4D8C(BKSprite *sprite) {
     return chunkPtrArray;
 }
 
-s32 func_802E4E54(u8 arg0) {
+/* get index  from font_id */
+s32 func_802E4E54(u8 font_id) {
     s32 sp24;
 
-    sp24 = func_802E4CF8(arg0);
-    if (sp24 == -1) {
+    sp24 = func_802E4CF8(font_id);
+    if (sp24 == -1) { //font not loaded
         sp24 = D_8037E900->unk10++;
         if (D_8037E900->unk10 > 1) {
             D_8037E900->unk4 = (struct5DBC0_2s *)realloc(D_8037E900->unk4, (D_8037E900->unk10 + 1)*sizeof(struct5DBC0_2s));
         }
-        D_8037E900->unk4[sp24].unk4 = arg0;
-        D_8037E900->unk4[sp24].unk0 = (BKSprite *)assetcache_get(arg0 + 0x6E9);
-        D_8037E900->unk4[sp24].unk8 = func_802E4D8C(D_8037E900->unk4[sp24].unk0);
-        D_8037E900->unk4[sp24].unkC = D_8037E900->unk4[sp24].unk8[0x36]->x/2;
-        D_8037E900->unk4[sp24].unkD = D_8037E900->unk4[sp24].unk8[0x36]->y;
+        D_8037E900->unk4[sp24].font_id = font_id;
+        D_8037E900->unk4[sp24].font_bin = (BKSprite *)assetcache_get(font_id + 0x6E9);
+        D_8037E900->unk4[sp24].letter_texture = func_802E4D8C(D_8037E900->unk4[sp24].font_bin);
+        D_8037E900->unk4[sp24].unkC = D_8037E900->unk4[sp24].letter_texture['W' - 0x21]->x/2;
+        D_8037E900->unk4[sp24].unkD = D_8037E900->unk4[sp24].letter_texture['W' - 0x21]->y;
     }
     func_802E6820(5);
     return sp24;
@@ -174,7 +176,7 @@ s32 func_802E4F98(char *arg0) {
     return sp1C;
 }
 
-void func_802E502C(s32 arg0, s32 arg1, s32 arg2, char *arg3, u8 arg4[3]) {
+void func_802E502C(s32 arg0, s32 arg1, s32 arg2, char *arg3, u8 rgb[3]) {
     s32 sp24;
 
     sp24 = D_8037E900->unkC++;
@@ -186,9 +188,9 @@ void func_802E502C(s32 arg0, s32 arg1, s32 arg2, char *arg3, u8 arg4[3]) {
     D_8037E900->unk0[sp24].unkE = arg2;
     D_8037E900->unk0[sp24].unkC = func_802E4F98(arg3);
     D_8037E900->unk0[sp24].unk8 = D_8037E900->flags;
-    D_8037E900->unk0[sp24].unkF[0] = arg4[0];
-    D_8037E900->unk0[sp24].unkF[1] = arg4[1];
-    D_8037E900->unk0[sp24].unkF[2] = arg4[2];
+    D_8037E900->unk0[sp24].unkF[0] = rgb[0];
+    D_8037E900->unk0[sp24].unkF[1] = rgb[1];
+    D_8037E900->unk0[sp24].unkF[2] = rgb[2];
     D_8037E900->unk0[sp24].unk18 = -1;
 }
 
@@ -561,4 +563,32 @@ void func_802E6820(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5DBC0/func_802E6A90.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5DBC0/func_802E6BD0.s")
+void func_802E6BD0(BKModelUnk28List *arg0, BKVertexList *arg1, struct58s *arg2) {
+    Vtx *vtx_list;
+    Vtx *i_vtx;
+    s32 i;
+    BKModelUnk28 *var_s1;
+    s16 sp50[3];
+    s32 temp_v0;
+    s32 var_s3;
+    s32 var_s4;
+
+    vtx_list = vtxList_getVertices(arg1);
+    var_s1 = (BKModelUnk28 *)(arg0 + 1);
+    var_s3 = -2;
+    for(var_s4 = 0; var_s4 < arg0->count; var_s4++){ 
+        if (var_s3 != var_s1->unk6) {
+            var_s3 = var_s1->unk6;
+            func_80251BCC(func_802EA110(arg2, var_s3));
+        }
+        mlMtx_apply_vec3s(sp50, var_s1->unk0);
+        for(i = 0; i < var_s1->vtx_count; i++){
+            i_vtx = &vtx_list[var_s1->vtx_list[i]];
+            i_vtx->v.ob[0] = sp50[0];
+            i_vtx->v.ob[1] = sp50[1];
+            i_vtx->v.ob[2] = sp50[2];
+        }
+        var_s1 = (s16*)(var_s1 + 1) + (var_s1->vtx_count - 1);
+    }
+    osWritebackDCache(vtx_list, vtxList_getVtxCount(arg1) * sizeof(Vtx));
+}

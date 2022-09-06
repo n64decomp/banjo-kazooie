@@ -138,7 +138,7 @@ void func_802EC8FC(BKVertexList *this, Vtx **vtx, Vtx **vtx_end){
 }
 
 //vtxList_getVtxCount
-s32 func_802EC918(BKVertexList *this){
+s32 vtxList_getVtxCount(BKVertexList *this){
     return this->cnt_14;
 }
 

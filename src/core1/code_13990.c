@@ -182,9 +182,30 @@ void func_80252330(f32 x, f32 y, f32 z){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_80252434.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_802524F0.s")
+void func_802524F0(f32 dst[3], f32 x, f32 y, f32 z) {
+    dst[0] = x*((f32 (*)[4])D_80282FD0)[0][0] + y*((f32 (*)[4])D_80282FD0)[1][0] + z*((f32 (*)[4])D_80282FD0)[2][0] + ((f32 (*)[4])D_80282FD0)[3][0];
+    dst[1] = x*((f32 (*)[4])D_80282FD0)[0][1] + y*((f32 (*)[4])D_80282FD0)[1][1] + z*((f32 (*)[4])D_80282FD0)[2][1] + ((f32 (*)[4])D_80282FD0)[3][1];
+    dst[2] = x*((f32 (*)[4])D_80282FD0)[0][2] + y*((f32 (*)[4])D_80282FD0)[1][2] + z*((f32 (*)[4])D_80282FD0)[2][2] + ((f32 (*)[4])D_80282FD0)[3][2];
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_802525A4.s")
+void mlMtx_apply_vec3s(s16 dst[3], s16 src[3]) {
+    f32 spC[3];
+    f32 sp0[3];
+    f32 (*temp_v0)[4];
+
+    temp_v0 = D_80282FD0;
+    sp0[0] = (f32) src[0];
+    sp0[1] = (f32) src[1];
+    sp0[2] = (f32) src[2];
+
+    spC[0] = sp0[0]*temp_v0[0][0] + sp0[1]*temp_v0[1][0] + sp0[2]*temp_v0[2][0] + temp_v0[3][0];
+    spC[1] = sp0[0]*temp_v0[0][1] + sp0[1]*temp_v0[1][1] + sp0[2]*temp_v0[2][1] + temp_v0[3][1];
+    spC[2] = sp0[0]*temp_v0[0][2] + sp0[1]*temp_v0[1][2] + sp0[2]*temp_v0[2][2] + temp_v0[3][2];
+
+    dst[0] = (spC[0] >= 0.0) ? spC[0] + 0.5 : spC[0] - 0.5;
+    dst[1] = (spC[1] >= 0.0) ? spC[1] + 0.5 : spC[1] - 0.5;
+    dst[2] = (spC[2] >= 0.0) ? spC[2] + 0.5 : spC[2] - 0.5;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_8025276C.s")
 

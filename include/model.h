@@ -153,6 +153,19 @@ typedef struct{
 }BKModelUnk20List;
 
 typedef struct{
+    s16 unk0[3];
+    s8 unk6;
+    u8 vtx_count;
+    s16 vtx_list[1];
+}BKModelUnk28;
+
+typedef struct{
+    s16 count;
+    u8 pad2[2];
+    //BKModelUnk28_0[]
+}BKModelUnk28List;
+
+typedef struct{
     u8 pad0[1];
     //BKModelUnk20_0[]
 }BKModelUnk2C;
