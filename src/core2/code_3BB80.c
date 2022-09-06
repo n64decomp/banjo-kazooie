@@ -578,7 +578,7 @@ Actor *func_802C4260(enum actor_e actor_id, s32 x, s32 y, s32 z, s32 yaw){
 
 }
 
-s32 func_802C42B4(s32 arg0, s32 arg1, s32 arg2, s32 arg3){
+Actor *func_802C42B4(s32 arg0, s32 arg1, s32 arg2, s32 arg3){
     s32 sp1C[3];
     sp1C[0] = reinterpret_cast(s32, arg1);
     sp1C[1] = reinterpret_cast(s32, arg2);
@@ -586,7 +586,7 @@ s32 func_802C42B4(s32 arg0, s32 arg1, s32 arg2, s32 arg3){
     return func_802C8F88(reinterpret_cast(s32, arg0), sp1C);
 }
 
-s32 func_802C42F0(s32 arg0, s32 arg1, s32 arg2, s32 arg3){
+Actor * func_802C42F0(s32 arg0, s32 arg1, s32 arg2, s32 arg3){
     s32 sp1C[3];
     sp1C[0] = arg1;
     sp1C[1] = arg2;

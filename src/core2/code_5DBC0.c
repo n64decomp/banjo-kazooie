@@ -25,8 +25,10 @@ typedef struct {
     s32 unk8;
     u16 unkC;
     u8  unkE;
-    u8  padF[1];
-    u8 unk10[0xC];
+    u8  unkF[3];
+    u8  unk12[3];
+    u8  pad15[0x3];
+    s32 unk18;
 }struct5DBC0_1s;
 
 typedef struct {
@@ -42,9 +44,18 @@ typedef struct {
 }struct5DBC0s;
 
 extern u8 D_80368830[3] = {0,0,0};
+extern u8 D_80368834[3];
+extern u8 D_80368838[3];
+extern u8 D_8036883C[3];
+extern u8 D_80368840[3];
+extern u8 D_80368844[3];
+extern u8 D_80368848[3];
 
 /* .bss */
 struct5DBC0s * D_8037E900;
+
+/* public */
+void func_802E6820(s32 arg0);
 
 /* .code */
 struct5DBC0s *func_802E4B50(void){
@@ -64,7 +75,7 @@ struct5DBC0s *func_802E4B50(void){
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5DBC0/func_802E4C0C.s")
-// s32 func_802E4C0C(struct5DBC0_3s * arg0, u32 arg1){
+// s32 func_802E4C0C(struct5DBC0_2s * arg0, u32 arg1){
 //     u32 i, v0;
 //     for(i = arg1; i > 0; i--){
 //         v0 = i - 1;
@@ -163,7 +174,23 @@ s32 func_802E4F98(char *arg0) {
     return sp1C;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5DBC0/func_802E502C.s")
+void func_802E502C(s32 arg0, s32 arg1, s32 arg2, char *arg3, u8 arg4[3]) {
+    s32 sp24;
+
+    sp24 = D_8037E900->unkC++;
+    if (D_8037E900->unkC >= 2) {
+        D_8037E900->unk0 = realloc(D_8037E900->unk0, (D_8037E900->unkC * 0x1C) + 0x1C);
+    }
+    D_8037E900->unk0[sp24].unk0 = arg0;
+    D_8037E900->unk0[sp24].unk4 = arg1;
+    D_8037E900->unk0[sp24].unkE = arg2;
+    D_8037E900->unk0[sp24].unkC = func_802E4F98(arg3);
+    D_8037E900->unk0[sp24].unk8 = D_8037E900->flags;
+    D_8037E900->unk0[sp24].unkF[0] = arg4[0];
+    D_8037E900->unk0[sp24].unkF[1] = arg4[1];
+    D_8037E900->unk0[sp24].unkF[2] = arg4[2];
+    D_8037E900->unk0[sp24].unk18 = -1;
+}
 
 void func_802E5188(void){
     D_8037E900->unkC = 0;
@@ -199,9 +226,97 @@ s32 func_802E51A4(char *str, s32 arg1, s32 start, u32 flags) {
 }
 #endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5DBC0/func_802E533C.s")
+void func_802E533C(struct5DBC0_1s *arg0, char arg1, s32 *arg2, s32 *arg3, Gfx **gfx) {
+    s32 timg;
+    BKSpriteTextureBlock *chunk;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5DBC0/func_802E57E0.s")
+    if (arg1 == ' ') {
+        *arg2 += D_8037E900->unk4[arg0->unkE].unkC;
+    } else if (arg1 == '\t') { 
+        (*arg2)++;
+        while ((*arg2 % (s32) (D_8037E900->unk4[arg0->unkE].unkC * 4)) != 0) {
+            (*arg2)++;
+        }
+    } else{
+        chunk = func_802E4D5C(arg0->unkE, arg1);
+        timg = (s32)(chunk + 1);
+        while ((timg % 8)) {
+            timg++;
+        }
+
+        gDPSetTextureImage((*gfx)++, G_IM_FMT_I, G_IM_SIZ_8b, chunk->w, timg);
+        gDPSetTile((*gfx)++, G_IM_FMT_I, G_IM_SIZ_8b, (((((chunk->w - 0) + 1)*1) + 7) >> 3), 0x0000, G_TX_LOADTILE, 0, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOLOD);
+        gDPLoadSync((*gfx)++);
+        gDPLoadTile((*gfx)++, G_TX_LOADTILE, 0, 0, (chunk->w << 2), (chunk->h << 2));
+        gDPPipeSync((*gfx)++);
+        gDPSetTile((*gfx)++, G_IM_FMT_I, G_IM_SIZ_8b, (((((chunk->w - 0) + 1)*1) + 7) >> 3), 0x0000, G_TX_RENDERTILE, 0, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOLOD);
+        gDPSetTileSize((*gfx)++, G_TX_RENDERTILE, 0, 0, chunk->w << 2, chunk->h << 2);
+        gSPScisTextureRectangle((*gfx)++, (*arg2 << 2), (*arg3 << 2), ((*arg2 + chunk->w) << 2), ((*arg3 + chunk->h) << 2), G_TX_RENDERTILE, 0, 0, 0x0400, 0x0400);
+        if (arg0->unk8 & 2) {
+            *arg2 += D_8037E900->unk4[arg0->unkE].unkC * 2;
+        }
+        else{
+            *arg2 += chunk->x;
+        }
+    }
+}
+
+void func_802E57E0(struct5DBC0_1s *arg0, Gfx **gfx) {
+    s32 temp_v0;
+    s32 spA8;
+    s32 spA4;
+    s32 var_s3;
+    char var_s2;
+
+
+    if (!(arg0->unk8 & 4)) { //draw transparent grey background
+        temp_v0 = func_802E51A4(&D_8037E900->string[arg0->unkC], arg0->unkE, arg0->unk0, arg0->unk8);
+        gDPPipeSync((*gfx)++);
+        gDPSetPrimColor((*gfx)++, 0, 0, 0x28, 0x28, 0x28, 0x96);
+        gDPSetCombineMode((*gfx)++, G_CC_PRIMITIVE, G_CC_PRIMITIVE);
+        gDPScisFillRectangle((*gfx)++, 
+            (arg0->unk0 - 2),
+            arg0->unk4,
+            (arg0->unk0 + temp_v0 + 2),
+            (D_8037E900->unk4[arg0->unkE].unkD + arg0->unk4)
+        );
+        gDPPipeSync((*gfx)++);
+    }
+    gDPSetCombineLERP((*gfx)++, PRIMITIVE, ENVIRONMENT, TEXEL0_ALPHA, ENVIRONMENT, 0, 0, 0, TEXEL0, PRIMITIVE, ENVIRONMENT, TEXEL0_ALPHA, ENVIRONMENT, 0, 0, 0, TEXEL0);
+
+    if (arg0->unk18 == -1) {
+        gDPSetPrimColor((*gfx)++, 0, 0, arg0->unkF[0], arg0->unkF[1], arg0->unkF[2], 0);
+        gDPSetEnvColor((*gfx)++, arg0->unkF[0], arg0->unkF[1], arg0->unkF[2], 0);
+        spA8 = arg0->unk0;
+        spA4 = arg0->unk4;
+        for(var_s3 = 0; (var_s2 = D_8037E900->string[var_s3 + arg0->unkC]) != 0; var_s3++) {
+            func_802E533C(arg0, var_s2, &spA8, &spA4, gfx);
+        }
+    } else {
+        spA8 = arg0->unk0;
+        spA4 = arg0->unk4;
+        for(var_s3 = 0; (var_s2 = D_8037E900->string[var_s3 + arg0->unkC]); var_s3++) {
+            if (var_s3 == arg0->unk18) {
+                gDPSetPrimColor((*gfx)++, 0, 0, arg0->unk12[0], arg0->unk12[1], arg0->unk12[2], 0x00);
+                gDPSetEnvColor((*gfx)++, arg0->unk12[0], arg0->unk12[1], arg0->unk12[2], 0);
+                if (var_s2 == ' ') {
+                    s32 sp70;
+                    s32 sp6C, sp68;
+                    s32 sp64, sp60;
+                    sp64 = spA4 - 5;\
+                    sp60 = spA4 + 5;
+                    sp68 = sp6C = spA8;
+                    func_802E533C(arg0, '-', &sp6C, &sp64, gfx);
+                    func_802E533C(arg0, '-', &sp68, &sp60, gfx);
+                }
+            } else {
+                gDPSetPrimColor((*gfx)++, 0, 0, arg0->unkF[0], arg0->unkF[1], arg0->unkF[2], 0);
+                gDPSetEnvColor((*gfx)++, arg0->unkF[0], arg0->unkF[1], arg0->unkF[2], 0);
+            }
+            func_802E533C(arg0, var_s2, &spA8, &spA4, gfx);
+        }
+    }
+}
 
 void func_802E5C98(Gfx **gdl){
     int i;
@@ -242,15 +357,66 @@ void func_802E5F68(void){
     func_802E4C78();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5DBC0/func_802E5F88.s")
+void func_802E5F88(s32 arg0, s32 arg1, char *arg2) {
+    s32 sp24;
+    u8 sp20[3] = D_80368834;
+    
+    sp24 =  func_802E4E54(0);
+    func_802E502C(arg0, arg1, sp24, arg2, &sp20);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5DBC0/func_802E5FE4.s")
+void func_802E5FE4(s32 arg0, s32 arg1, char *arg2) {
+    s32 sp24;
+    u8 sp20[3] = D_80368838;
+    
+    sp24 =  func_802E4E54(0);
+    func_802E502C(arg0, arg1, sp24, arg2, &sp20);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5DBC0/func_802E6040.s")
+void func_802E6040(s32 arg0, s32 arg1, char *arg2) {
+    s32 sp2C;
+    u8 sp28[3] = D_8036883C;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5DBC0/func_802E60D4.s")
+    sp2C = func_802E4E54(0);
+    arg0 *= D_8037E900->unk4[sp2C].unkC;
+    arg1 *= D_8037E900->unk4[sp2C].unkD;
+    func_802E502C(arg0, arg1, sp2C, arg2, &sp28);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5DBC0/func_802E6270.s")
+void func_802E60D4(s32 arg0, s32 arg1, s32 arg2, s32 arg3, u8 arg4[3], u8 arg5[3], s32 arg6) {
+    s32 sp24;
+
+    sp24 = D_8037E900->unkC++;
+    if (D_8037E900->unkC >= 2) {
+        D_8037E900->unk0 = (struct5DBC0_1s *)realloc(D_8037E900->unk0, (D_8037E900->unkC + 1)* sizeof(struct5DBC0_1s));
+    }
+    D_8037E900->unk0[sp24].unk0 = arg0;
+    D_8037E900->unk0[sp24].unk4 = arg1;
+    D_8037E900->unk0[sp24].unkE = arg2;
+    D_8037E900->unk0[sp24].unkC = func_802E4F98(arg3);
+    D_8037E900->unk0[sp24].unk8 = D_8037E900->flags;
+    \
+    D_8037E900->unk0[sp24].unkF[0] = arg4[0];
+    D_8037E900->unk0[sp24].unkF[1] = arg4[1];
+    D_8037E900->unk0[sp24].unkF[2] = arg4[2];
+
+    D_8037E900->unk0[sp24].unk12[0] = arg5[0];
+    D_8037E900->unk0[sp24].unk12[1] = arg5[1];
+    D_8037E900->unk0[sp24].unk12[2] = arg5[2];
+
+    D_8037E900->unk0[sp24].unk18 = arg6;
+}
+
+void func_802E6270(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    s32 temp_v0;
+    u8 sp30[3] = D_80368840;
+    u8 sp2C[3] = D_80368844;
+
+    temp_v0 = func_802E4E54(0);
+    arg0 *= D_8037E900->unk4[temp_v0].unkC;
+    arg1 *= D_8037E900->unk4[temp_v0].unkD;
+    func_802E60D4(arg0, arg1, temp_v0, arg2, &sp30, &sp2C, arg3);
+}
 
 void func_802E632C(u8 arg0, u8 arg1, u8 arg2){
     D_8037E900->unk1C[0] = arg0;
@@ -281,21 +447,66 @@ void func_802E63D8(u8 arg0, u8 arg1, u8 arg2, f32 arg3){
 
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5DBC0/func_802E6440.s")
+u16 func_802E6440(void) {
+    return (((((s32) D_8037E900->unk1C[0] >> 3) & 0x1F) << 11)
+        | ((((s32) D_8037E900->unk1C[1] >> 3) & 0x1F) << 6)
+        | ((((s32) D_8037E900->unk1C[2] >> 3) & 0x1F) << 1)
+        | 1);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5DBC0/func_802E6488.s")
+void func_802E6488(s32 arg0, s32 arg1, char *arg2) {
+    s32 temp_v0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5DBC0/func_802E6508.s")
+    temp_v0 = func_802E4E54(0);
+    arg0 *= D_8037E900->unk4[temp_v0].unkC;
+    arg1 *= D_8037E900->unk4[temp_v0].unkD;
+    func_802E502C(arg0, arg1, temp_v0, arg2, D_8037E900->unk1C);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5DBC0/func_802E6558.s")
+
+void func_802E6508(s32 arg0, s32 arg1, char *arg2) {
+    func_802E502C(arg0, arg1, func_802E4E54(0), arg2, D_8037E900->unk1C);
+}
+
+
+void func_802E6558(s32 arg0, s32 arg1, s32 arg2) {
+    u8 sp1C[3];
+    void *temp_v0;
+
+    temp_v0 = D_8037E900;
+    sp1C[0] = D_8037E900->unk1C[0];
+    sp1C[1] = D_8037E900->unk1C[1];
+    sp1C[2] = D_8037E900->unk1C[2];
+    func_802E632C(0xC8, 0xEB, 0xD2);
+    func_802E6488(arg0, arg1, arg2);
+    D_8037E900->unk1C[0] = sp1C[0];
+    D_8037E900->unk1C[1] = sp1C[1];
+    D_8037E900->unk1C[2] = sp1C[2];
+}
+
 
 void func_802E65E8(char *str){
     func_802E51A4(str, func_802E4E54(0), 0, D_8037E900->flags);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5DBC0/func_802E6628.s")
+void func_802E6628(s32 arg0, char *arg1) {
+    s32 sp2C;
+    u8 sp28[3] = D_80368848;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5DBC0/func_802E66F0.s")
+    sp2C = func_802E4E54(0);
+    arg0 *= D_8037E900->unk4[sp2C].unkD;
+    func_802E502C((s32) (((f32) D_80276588 - (f32) func_802E51A4(arg1, sp2C, 0, D_8037E900->flags)) / 2), arg0, sp2C, arg1, &sp28);
+}
+
+void func_802E66F0(s32 arg0, s32 arg1) {
+    s32 sp24;
+    s32 temp_v0;
+    void *temp_v1;
+
+    sp24 = func_802E4E54(0);
+    arg0 *= D_8037E900->unk4[sp24].unkD;
+    func_802E502C((s32) (((f32) D_80276588 - (f32) func_802E51A4(arg1, sp24, 0, D_8037E900->flags)) / 2), arg0, sp24, arg1, D_8037E900->unk1C);
+}
 
 void func_802E67AC(void){
     D_8037E900->flags |= 1;
@@ -313,7 +524,40 @@ void func_802E6800(s32 arg0){
     D_8037E900->flags &= ~arg0 | 0x1;
 }
 
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5DBC0/func_802E6820.s")
+#else
+void func_802E6820(s32 arg0) {
+    BKSprite *prev_sprite_ptr;
+    s32 chunk_count;
+    s32 i_chunk;
+    s32 var_s5;
+    s32 var_s6;
+
+    if (D_8037E900 != NULL) {
+        for(var_s6 = 0; var_s6 < arg0; var_s6++){
+            D_8037E900 = (struct5DBC0s *) defrag(D_8037E900);
+            D_8037E900->unk0 = (struct5DBC0_1s *)defrag(D_8037E900->unk0);
+            D_8037E900->unk4 = (struct5DBC0_2s *)defrag(D_8037E900->unk4);
+            D_8037E900->string = (char *)defrag(D_8037E900->string);
+            for(var_s5 = 0; var_s5 < D_8037E900->unk10; var_s5++) {
+                if (D_8037E900->unk4[var_s5].unk8 != NULL) {
+                    D_8037E900->unk4[var_s5].unk8 = (BKSpriteTextureBlock **)defrag(D_8037E900->unk4[var_s5].unk8);
+                }
+                
+                prev_sprite_ptr = D_8037E900->unk4[var_s5].unk0;
+                if (D_8037E900->unk4[var_s5].unk0 != NULL) {
+                    chunk_count = spriteGetFramePtr(prev_sprite_ptr, 0U)->chunkCnt;
+                    D_8037E900->unk4[var_s5].unk0 = (BKSprite *)defrag_asset(D_8037E900->unk4[var_s5].unk0);
+                    for(i_chunk = 0; i_chunk < chunk_count; i_chunk++){
+                        D_8037E900->unk4[var_s5].unk8[i_chunk] = (BKSpriteTextureBlock *)((s32)D_8037E900->unk4[var_s5].unk0 + ((s32)D_8037E900->unk4[var_s5].unk8[i_chunk] - (s32)prev_sprite_ptr));
+                    }
+                }
+            }
+        }
+    }
+}
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5DBC0/func_802E6A90.s")
 
