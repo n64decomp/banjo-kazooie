@@ -341,7 +341,7 @@ segments:
   - [0xB6C60, c, code_B6C60] #DONE
   - [0xB6CE0, c, code_B6CE0] #DONE
   - [0xB6EA0, c, code_B6EA0] #DONE
-  - [0xB7B20, c, code_B7B20]
+  - [0xB7B20, c, code_B7B20] #DONE
   - [0xB7F40, c, code_B7F40] #DONE
   - [0xB8020, c, code_B8020] #DONE
   - [0xB8070, c, code_B8070] #DONE
@@ -361,7 +361,7 @@ segments:
   - [0xC31A0, c, code_C31A0] #DONE
   - [0xC3400, c, rand]       #DONE
   - [0xC3A40, c, code_C3A40] #DONE
-  - [0xC3B20, c, code_C3B20]
+  - [0xC3B20, c, code_C3B20] #DONE
   - [0xC4320, c, code_C4320] #DONE
   - [0xC4F40, c, code_C4F40] #DONE
   - [0xC5440, c, code_C5440] #DONE

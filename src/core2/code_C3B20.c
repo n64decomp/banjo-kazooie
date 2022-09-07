@@ -113,13 +113,11 @@ void func_8034ADB4(Struct61s *arg0, s32 *arg1, s32 cnt){
     }
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C3B20/func_8034AE08.s")
-#else
 void func_8034AE08(Struct61s *arg0, void *arg1, s32 arg2) {
-    u32 capacity;
     u32 curr_offset;
+    u32 capacity;
     u32 end_ptr;
+    u32 var_v0;
 
     if (arg0->unk14 == 2) { //read asset
         memcpy(arg1, arg0->unk4, arg2);
@@ -130,22 +128,21 @@ void func_8034AE08(Struct61s *arg0, void *arg1, s32 arg2) {
         arg0->unkC = (void *) ((u32)arg0->unkC + arg2);
     }
     else if (arg0->unk14 == 4) { // write bin???
-        if ((u32)arg0->unk10 < (u32)arg0->unkC + arg2) {
-            curr_offset = (u32)arg0->unkC - (u32)arg0->unk8;
-            capacity = ((u32)arg0->unk10 - (u32)arg0->unk8);
-            capacity *= 2;
-            while (((u32)arg0->unk8 + capacity) < (u32)arg0->unkC + arg2) {
+        if ((u8*)arg0->unk10 < (u8*)arg0->unkC + arg2) {
+            curr_offset = (u8*)arg0->unkC - (u8*)arg0->unk8;
+            capacity = ((u8*)arg0->unk10 - (u8*)arg0->unk8)*2;
+            while (((u8*)arg0->unk8 + capacity) < (u8*)arg0->unkC + arg2) {
                 capacity *= 2;
             }
-            arg0->unk8 = realloc(arg0->unk8, capacity);
-            arg0->unkC = (u32)arg0->unk8 + curr_offset;
-            arg0->unk10 = (u32)arg0->unk8 + capacity;
+            var_v0 = realloc(arg0->unk8, capacity);
+            arg0->unk8 = var_v0;
+            arg0->unkC = var_v0 + curr_offset;
+            arg0->unk10 = var_v0 + capacity;
         }
         memcpy(arg0->unkC, arg1, arg2);
         arg0->unkC = (u32)arg0->unkC + arg2;
     }
 }
-#endif
 
 void func_8034AF24(Struct61s *arg0, s16 *arg1){
     func_8034AE08(arg0, arg1, sizeof(s16));

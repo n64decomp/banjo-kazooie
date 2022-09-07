@@ -186,8 +186,8 @@ BKModel *func_8033F5F8(BKMeshList *arg0, BKVertexList *arg1) {
     sp40 = (BKModel *)malloc((func_802E9F60() * sizeof(BKVtxRef)) + (arg0->meshCount_0 * sizeof(BKMesh)) + sizeof(BKModel));
     sp40->meshList_0 = arg0;
     sp40->vtxList_4 = arg1;
-    phi_s3 = arg0 + 1;
-    phi_s5 = (sp40 + 1);
+    phi_s3 = (BKMesh *)(arg0 + 1);
+    phi_s5 = (BKMesh *)(sp40 + 1);
     for(phi_s6 = 0; phi_s6 < arg0->meshCount_0; phi_s6++){
             phi_s5->uid_0 = (s16) phi_s3->uid_0;
             phi_s5->vtxCount_2 = (s16) phi_s3->vtxCount_2;
@@ -195,10 +195,10 @@ BKModel *func_8033F5F8(BKMeshList *arg0, BKVertexList *arg1) {
             phi_s0 = (BKVtxRef *)(phi_s5 + 1);
             for(phi_s1 = 0; phi_s1 < phi_s3->vtxCount_2; phi_s1++){
                 phi_s0[phi_s1].unk10 = phi_s2[phi_s1];
-                memcpy(&phi_s0->v, arg1 + (phi_s0->unk10 * sizeof(Vtx)) + sizeof(BKVertexList), sizeof(Vtx));
+                memcpy(&phi_s0->v, (Vtx *)(arg1 + 1) + phi_s0->unk10, sizeof(Vtx));
             }
-            phi_s3 = (s32)phi_s3 + (phi_s3->vtxCount_2 * sizeof(Vtx)) + sizeof(BKMesh);
-            phi_s5 = (s32)phi_s5 + (phi_s5->vtxCount_2 * sizeof(BKVtxRef)) + sizeof(BKMesh);
+            phi_s3 = (BKMesh *)((Vtx *)(phi_s3 + 1) + phi_s3->vtxCount_2);
+            phi_s3 = (BKMesh *)((BKVtxRef *)(phi_s5 + 1) + phi_s5->vtxCount_2);
     }
     return sp40;
 }
