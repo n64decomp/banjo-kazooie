@@ -7,13 +7,13 @@ extern f32 func_8025715C(f32, f32);
 extern f32 func_802575BC(f32);
 extern void func_80255FE4(f32[3], f32[3], f32[3], f32);
 extern bool func_80320DB0(f32[3], f32, f32[3], u32);
+
 /* .h */
 Actor *func_80358344(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void func_80358684(Actor *this);
 
 typedef struct {
     u8 unk0;
-    // u8 pad1[0x3];
     f32 unk4;
     f32 unk8[3];
     f32 unk14;
@@ -38,28 +38,6 @@ extern ActorInfo D_803728A0 = {
 extern struct31s D_803728C4;
 extern struct43s D_803728EC;
 
-/* .rodata */
-extern f64 D_80379600;
-extern f32 D_80379608;
-extern f32 D_8037960C;
-extern f32 D_80379610;
-extern f32 D_80379614;
-extern f32 D_80379618;
-extern f32 D_8037961C;
-extern f64 D_80379620;
-extern f64 D_80379628;
-extern f32 D_80379630;
-extern f32 D_80379634;
-extern f32 D_80379638;
-extern f64 D_80379640;
-extern f64 D_80379648;
-extern f64 D_80379650;
-extern f64 D_80379658;
-extern f64 D_80379660;
-extern f64 D_80379668;
-extern f32 D_80379670;
-extern f32 D_80379674;
-
 /* .code */
 bool func_80357C30(Actor *this) {
     ActorLocal_core2_D0CA0 *local;
@@ -71,7 +49,7 @@ bool func_80357C30(Actor *this) {
     if (!this->marker->unk14_21) {
         return TRUE;
     }
-    func_80255FE4(sp20, local->unk8, local->unk18, func_802575BC(local->unk4 + D_80379600));
+    func_80255FE4(sp20, local->unk8, local->unk18, func_802575BC(local->unk4 + 0.05));
     sp20[1] += 60.0f;
     return !func_80320DB0(sp20, 50.0f, sp2C, 0);
 }
@@ -180,7 +158,7 @@ void func_80357F0C(Actor *this, s32 next_state) {
         FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 1.2f, 32200);
         func_80335924(this->unk148, 0x23A, 0.4f, 1.0f);
         func_80335A8C(this->unk148, 1);
-        timed_playSfx(D_80379610, 0x3FC, randf2(D_80379608, D_8037960C), 32000);
+        timed_playSfx(0.8f, 0x3FC, randf2(0.97f, 1.05f), 32000);
         local->unk39 = 0;
         local->unk28 = 2.0f;
     }
@@ -288,43 +266,23 @@ void func_80358610(Actor *this) {
     func_80358524(this->position, 4, 0x520);
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D0CA0/func_80358684.s")
-#else
 void func_80358684(Actor *this) {
-    ActorLocal_core2_D0CA0 *local;
-    f32 sp94[4];
-    s32 next_state;
+    f32 sp94[3];
+    ActorLocal_core2_D0CA0 *local; //sp90
+    s32 next_state; //sp8C
     f32 sp88;
-    f32 sp84;
+    f32 sp84; //sp84
     f32 sp80;
     f32 sp7C;
+    f32 sp78;
+    f32 sp74;
     f32 sp70;
+    u32 pad6C;
     f32 sp60[3];
     f32 sp54[3];
     f32 sp48[3];
     f32 sp3C[3];
-    f32 *sp30;
-    f32 sp2C;
-    f32 temp_a3;
-    f32 temp_f0;
-    f32 temp_f0_2;
-    f32 temp_f2;
-    f32 temp_f2_2;
-    f32 temp_f2_3;
-    f32 temp_f2_4;
-    f32 var_f0;
-    f32 var_f12;
-    f32 var_f16;
-    f32 var_f18;
-    f32 var_f2;
-    f32 var_f2_2;
-    f64 temp_f0_3;
-    f64 temp_f12;
-    u32 temp_t1;
-    u32 temp_t2;
-    u32 temp_t3;
-    u32 var_v0;
+    
 
     local = (ActorLocal_core2_D0CA0 *)&this->local;
     next_state = 0;
@@ -356,43 +314,30 @@ void func_80358684(Actor *this) {
         func_803584BC(this);
     }
     player_getPosition(sp94);
-    if (this->state != 0 && (this->state < 6)) {
-        temp_f0 = func_8030E200(local->unk0);
+    if ((this->state > 0) && (this->state < 6)) {
+        sp84 = func_8030E200(local->unk0);
         if (local->unk39 == 1) {
-            var_f16 = D_80379614;
-            var_f18 = 1.0f;
+            sp80 = 0.9f;
+            sp7C = 1.0f;
         } else {
-            var_f16 = D_80379618;
-            var_f18 = D_8037961C;
+            sp80 = 0.8f;
+            sp7C = 0.9f;
         }
-        if (temp_f0 < var_f16) {
-            var_f2 = (f32) ((f64) temp_f0 + D_80379620);
-        } else if (var_f18 < temp_f0) {
-            var_f2 = (f32) ((f64) temp_f0 - D_80379628);
+        if (sp84 < sp80) {
+            sp84 += 0.02;
+        } else if (sp7C < sp84) {
+            sp84 -= 0.02;
         } else {
-            sp84 = temp_f0;
-            sp80 = var_f16;
-            sp7C = var_f18;
-            temp_f2 = temp_f0 + randf2(D_80379630, D_80379634);
-            if (temp_f2 < var_f16) {
-                var_f2 = var_f16;
-            } else {
-                if (var_f18 < temp_f2) {
-                    var_f0 = var_f18;
-                } else {
-                    var_f0 = temp_f2;
-                }
-                var_f2 = var_f0;
-            }
+            sp84 += randf2(-0.05f, 0.05f);
+            sp84 = (sp84 < sp80) ? sp80 
+                 : (sp7C < sp84) ? sp7C 
+                 : sp84;
         }
-        func_8030DBB4(local->unk0, var_f2);
-        temp_f2_2 = ml_vec3f_distance(sp94, this->position) / 2000.0f;
-        var_f12 = 1.0f - temp_f2_2;
-        if (temp_f2_2 > 1.0f) {
-            var_f12 = 0.0f;
-        }
-        if (var_f12 > 0.0f) {
-            sfxsource_setSampleRate(var_f12, local->unk0, (s32) (var_f12 * D_80379638));
+        func_8030DBB4(local->unk0, sp84);
+        sp78 = 1.0f - ml_vec3f_distance(sp94, this->position) / 2000.0f;
+        sp78 = (0.0f > sp78) ? 0 : sp78;
+        if (sp78 > 0.0f) {
+            sfxsource_setSampleRate(local->unk0, (s32) (sp78 * 10000.0f));
             func_8030E2C4(local->unk0);
         }
     }
@@ -400,6 +345,7 @@ void func_80358684(Actor *this) {
         if (func_8025773C(&local->unk28, sp88)) {
             next_state = 2;
         }
+        
         if (local->unk39 == 2) {
             if (this->state == 3) {
                 local->unk4 += 2 * sp88;
@@ -417,54 +363,47 @@ void func_80358684(Actor *this) {
                         if (func_8033567C(this->unk148) != 0x23B) {
                             func_80335924(this->unk148, 0x23B, 0.2f, 0.75f);
                             func_80335A8C(this->unk148, 2);
-                        } else if (D_80379640 <= func_80335684(this->unk148)) {
+                        } else if (0.575 <= func_80335684(this->unk148)) {
                             local->unk39 = 1U;
                         }
                     }
                 }
             }
             if (local->unk39 == 2) {
-                this->yaw = local->unk14 + (func_802575BC(local->unk4) * (local->unk24 - local->unk14));
+                sp74 = func_802575BC(local->unk4);
+                this->yaw = local->unk14 + (sp74 * (local->unk24 - local->unk14));
             } else {
                 local->unk4 = 0.0f;
                 local->unk14 = local->unk24;
             }
         }
         if (local->unk39 == 1) {
-            sp30 = this + 4;
-            sp2C = 1.0f * sp88;
-            if ((func_80357C30(this) == 0) || ((this->state == 3) && (func_80329210(this, sp30) == 0))) {
+            if ((func_80357C30(this) == 0) || ((this->state == 3) && (func_80329210(this, this->position) == 0))) {
                 local->unk18[0] = (f32) this->position[0];
                 local->unk18[1] = (f32) this->position[1];
                 local->unk18[2] = (f32) this->position[2];
                 local->unk4 = 1.0f;
             }
-            local->unk4 = (f32) (local->unk4 + sp2C);
+            local->unk4 += 1 * sp88;
             if (local->unk4 >= 1.0f) {
                 local->unk39 = 0U;
                 local->unk4 = 1.0f;
             }
             sp70 = func_802575BC(local->unk4);
-            func_80255FE4(sp30, local->unk8, local->unk18, sp70);
+            func_80255FE4(this->position, local->unk8, local->unk18, sp70);
             this->yaw = local->unk14 + (sp70 * (local->unk24 - local->unk14));
             if ((func_8033567C(this->unk148) == 0x23B) && (func_80335794(this->unk148) > 0)) {
                 func_80335924(this->unk148, 0x23C, 0.1f, 0.45f);
                 func_80335A8C(this->unk148, 1);
             }
-            if ((local->unk39 == 0) || ((func_8033567C(this->unk148) == 0x23C) && (D_80379648 <= (f64) local->unk4))) {
+            if ((local->unk39 == 0) || ((func_8033567C(this->unk148) == 0x23C) && (0.7 <= (f64) local->unk4))) {
                 func_80335924(this->unk148, 0x23A, 0.3f, 0.45f);
                 func_80335A8C(this->unk148, 1);
             }
             if (this->state == 3) {
-                temp_f12 = D_80379650;
-                temp_f0_3 = (f64) local->unk4;
-                if (temp_f12 <= temp_f0_3) {
-                    if (D_80379658 < temp_f0_3) {
-                        var_f2_2 = 0.0f;
-                    } else {
-                        var_f2_2 = (f32) (1.0 - ((temp_f0_3 - temp_f12) / D_80379660));
-                    }
-                    func_8030DBB4(local->unk0, (f32) (((f64) var_f2_2 * D_80379668) + 1.0));
+                if (0.0f <= local->unk4 - 0.2) {
+                    sp84 = (0.8 < local->unk4) ? 0.0f : (f32) (1.0 - ((local->unk4 - 0.2) / 0.6));
+                    func_8030DBB4(local->unk0,  1.0 + (sp84 * 0.3999999999999999));
                 }
             }
         }
@@ -494,11 +433,12 @@ void func_80358684(Actor *this) {
                 } else {
                     next_state = 1;
                 }
-            } else if ((this->state == 2) || (local->unk4 < 0.5)) {
+            } else if ((local->unk39 == 2) || (local->unk4 < 0.5)) {
                 sp48[0] = sp94[0];
-                sp48[1] = sp94[1] + 50.0f;
+                sp48[1] = sp94[1];
                 sp48[2] = sp94[2];
-                func_80357E34(this, &sp48);
+                sp48[1] += 50.0f;
+                func_80357E34(this, sp48);
             }
         }
         if ((this->state == 5) || (this->state == 4)) {
@@ -512,16 +452,16 @@ void func_80358684(Actor *this) {
                 sp3C[2] = this->position[2] - sp94[2];
                 sp3C[1] = 0.0f;
                 ml_vec3f_set_length(sp3C, 200.0f * sp88);
-                this->position[0] += sp3C[0];
-                this->position[1] += sp3C[1];
-                this->position[2] += sp3C[2];
-                this->position[1] += local->unk36;
-                local->unk36 -= D_80379670 * sp88;
+                this->position[0] = this->position[0] + sp3C[0];
+                this->position[1] = this->position[1] + sp3C[1];
+                this->position[2] = this->position[2] + sp3C[2];
+                this->position[1] += local->unk36*sp88;
+                local->unk36 -= 3000.0f * sp88;
                 if (this->position[1] < func_80309724(this->position)) {
                     this->position[1] = func_80309724(this->position);
                     next_state = 7;
                     FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 1.2f, 32200);
-                    timed_playSfx(D_80379674, SFX_66_BIRD_AUUGHH, 1.6f, 32000);
+                    timed_playSfx(0.1f, SFX_66_BIRD_AUUGHH, 1.6f, 32000);
                 }
             } else if (func_80335794(this->unk148) > 0) {
                 next_state = 7;
@@ -537,4 +477,3 @@ void func_80358684(Actor *this) {
         }
     }
 }
-#endif
