@@ -47,14 +47,9 @@ void func_8034D634(s32 *mesh_id, BKVtxRef *src, Vtx *dst, Struct6Ds *arg3){
     dst->v.ob[2] = (s16)(src->v.v.ob[2] + sp18[2]);
 }
 
-#ifndef NONMATCHING
-void func_8034D700(s32 *mesh_id, BKVtxRef *src, Vtx *dst, Struct6Ds *arg3);
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C62B0/func_8034D700.s")
-#else
 void func_8034D700(s32 *mesh_id, BKVtxRef *src, Vtx *dst, Struct6Ds *arg3){
-    dst->v.ob[1] = src->v.v.ob[1] + (s32)(arg3->unk4 + ((arg3->unk44 / arg3->unk48) * (arg3->unk8 - arg3->unk4)));
+    dst->v.ob[1] = src->v.v.ob[1] + (u16)(s32)(arg3->unk4 + ((arg3->unk44 / arg3->unk48) * (arg3->unk8 - arg3->unk4)));
 }
-#endif
 
 void func_8034D740(s32 *mesh_id, BKVtxRef *src, Vtx *dst, Struct6Ds *arg3){
     f32 temp_f0;
@@ -98,7 +93,7 @@ void func_8034DA7C(s32 *mesh_id, BKVtxRef *src, Vtx *dst, Struct6Ds *arg3)  {
 
 void func_8034DBB8(Struct6Ds *arg0){
     if(arg0->unk48 == 0.0f){
-        arg0->unk48 = D_80379200;
+        arg0->unk48 = 0.00001f;
     }
 
     if(arg0->unkC != NULL){
@@ -199,12 +194,7 @@ void func_8034DF30(Struct6Ds *arg0, f32 arg1[4], f32 arg2[4], f32 arg3) {
     arg0->unk60[3] = arg2[3];
     arg0->unk70 = 0.0f;
     arg0->unk28 = 0;
-    if (arg3 > 0.0f) {
-        arg0->unk74 = (f32) (f64) arg3;
-    }
-    else{
-        arg0->unk74 = (f32) D_80379208;
-    }
+    arg0->unk74 = (arg3 > 0.0f) ? arg3 : 0.001;
 }
 
 void func_8034DFB0(Struct6Ds *arg0, s32 arg1[4], s32 arg2[4], f32 arg3) {
@@ -217,11 +207,7 @@ void func_8034DFB0(Struct6Ds *arg0, s32 arg1[4], s32 arg2[4], f32 arg3) {
     arg0->unk88[2] = (f32) arg2[2];
     arg0->unk94 = (f32) arg2[3];
     arg0->unk28 = 0;
-    if (arg3 > 0.0f) {
-        arg0->unk9C = (f32) (f64) arg3;
-    } else {
-        arg0->unk9C = (f32) D_80379210;
-    }
+    arg0->unk9C = (arg3 > 0.0f) ? arg3 : 0.001;
     arg0->unk98 = 0.0f;
 }
 
@@ -232,11 +218,7 @@ void func_8034E088(Struct6Ds *arg0, s32 arg1, s32 arg2, f32 arg3){
     arg0->unk28 = 0;
     arg0->unk84 = (f32) arg1;
     arg0->unk94 = (f32) arg2;
-    if (arg3 > 0.0f) {
-        arg0->unk9C = (f32) (f64) arg3;
-    } else {
-        arg0->unk9C = (f32) D_80379218;
-    }
+    arg0->unk9C = (arg3 > 0.0f) ? arg3 : 0.001;
     arg0->unk98 = 0.0f;
 }
 
@@ -350,8 +332,8 @@ void func_8034E26C(Struct6Ds *arg0, BKModel *model, s32 mesh_id) {
             sp20 += randi2(-0xF, 0xF);
             sp20 = MIN (0x7FFF, sp20);
             sp20 = MAX(31000, sp20);
-            if (D_80379220 <= sp28) {
-                sp20 = (1.0 - ((sp28 - D_80379220) / D_80379228)) * sp20;
+            if (0.85 <= sp28) {
+                sp20 = (1.0 - ((sp28 - 0.85) / 0.15000000000000002)) * sp20;
             }
         func_8030DBB4(arg0->unk0, sp24);
         sfxsource_setSampleRate(arg0->unk0, sp20);
