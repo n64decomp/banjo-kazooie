@@ -210,7 +210,7 @@ bool func_8033B338(void **sprite_ptr, BKSpriteDisplayData **arg1) {
     *sprite_ptr = NULL;
     *arg1 = NULL;
 
-    if(sprite_ptr);
+    // if(sprite_ptr);
 
     return TRUE;
 }
@@ -399,7 +399,7 @@ void func_8033BB00(void *arg0, s32 arg1){
 }
 
 //assetCache_init
-void func_8033BB84(void){
+void assetCache_init(void){
     D_80370A1C = 0;
     func_8033B180();
     D_80383CD0 = malloc(600);
@@ -475,9 +475,8 @@ void *func_8033BDAC(enum asset_e id, void *dst, s32 size) {
     if (phi_v0 == 0x96) {
         return 0;
     }
-    temp_v1_2 = D_80383CC4[id].offset;
-    comp_size = D_80383CC4[id + 1].offset; - temp_v1_2;
-    phi_v1 = temp_v1_2;
+    phi_v1 = D_80383CC4[id].offset;
+    comp_size = D_80383CC4[id + 1].offset - phi_v1;
     if (comp_size & 1) {
         comp_size++;
     }

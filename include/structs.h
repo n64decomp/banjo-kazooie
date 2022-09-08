@@ -835,7 +835,7 @@ typedef struct {
 }Struct7Fs;
 
 typedef struct {
-    s32 unk0;
+    struct struct_B1400_1_s *unk0;
     struct animation_file_s *unk4;
     f32 unk8;
     f32 unkC;
@@ -847,7 +847,7 @@ typedef struct {
     f32 unk1C;
     f32 unk20;
     s32 unk24;
-    s32 unk28;
+    struct struct_B1400_1_s *unk28;
     f32 unk2C;
     u8 unk30;
     // u8 pad31[3];

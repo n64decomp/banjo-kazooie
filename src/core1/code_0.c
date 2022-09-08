@@ -100,7 +100,7 @@ void func_8023DC0C(void){
     func_80254028();
     func_8025AFB0();
     func_8033EF58();
-    func_8033BB84();
+    assetCache_init();
     func_8024F05C();
     func_80250C84();
     func_8023FB1C();

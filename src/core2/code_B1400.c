@@ -1,7 +1,6 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
-#include "animation.h"
 
 extern void func_8024128C(Mtx *, s32, f32, f32, f32, f32, f32, f32, f32, f32, f32);
 extern void func_802ED52C(s32, f32[3], f32);
@@ -1051,7 +1050,11 @@ int func_803391A4(Gfx **gfx, Mtx **mtx, f32 position[3], f32 arg3[3], f32 scale,
 }
 #endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A048.s")
+BKModelUnk28List *func_8033A048(BKModelBin *arg0){
+    if(arg0->unk28 == 0)
+        return NULL;
+    return (BKModelUnk28List *)((s32)arg0 + arg0->unk28);
+}
 
 s32 func_8033A064(void){
     return D_80383700;
@@ -1115,7 +1118,9 @@ BKVertexList *func_8033A148(BKModelBin *arg0){
     return (BKVertexList *)((s32)arg0 + arg0->vtx_list_offset_10);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A154.s")
+BKModelUnk20List *func_8033A154(BKModelBin *arg0){
+    return (arg0->unk20 == 0) ? NULL : (BKModelUnk20List *)((s32)arg0 + arg0->unk20);
+}
 
 s32 func_8033A170(void){
     return D_80370990;
@@ -1135,16 +1140,12 @@ void func_8033A1A4(void){
     D_80383730 = func_802EA154();
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A1FC.s")
-#else
 void func_8033A1FC(void){
     s32 i;
     for(i = 0; i < 0x2A; i++){
         D_80383658[i] = 0;
     }
 }
-#endif
 
 void func_8033A238(s32 arg0){
     D_80383700 = arg0;
@@ -1273,33 +1274,3 @@ void func_8033A4D8(void){
         D_80383730 = func_802EA374(D_80383730);
     }
 }
-
-///BREAk???
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A510.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A57C.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A5B8.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A670.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A6B0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A6F0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A710.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A750.s")
-
-void func_8033A8F0(Struct_B1400 **arg0, s32 arg1, f32 arg2[4]){
-    func_80345250(*arg0 + arg1, arg2);
-}
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A928.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A968.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A9A8.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A9E4.s")

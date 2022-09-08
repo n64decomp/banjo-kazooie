@@ -13,8 +13,15 @@ void anim_80289798(Animation *this, s32 arg1);
 void anim_setDuration(Animation *this, f32 arg1);
 
 typedef struct {
-    u8 pad0[40];
+    f32 unk0[4];
+    f32 unk10[3];
+    f32 unk1C[3];
 }Struct_B1400;
+
+typedef struct struct_B1400_1_s{
+    Struct_B1400 *unk0;
+    s32 unk4;
+}Struct_B1400_1;
 
 typedef union
 {
