@@ -2,10 +2,19 @@
 #include "functions.h"
 #include "variables.h"
 
-extern u8 D_80370338[];
+extern u8 D_80370338[4];
+extern u8 D_8037033C;
 
 /* .bss */
-u8 pad_80383610[0x24];
+s32 D_80383610;
+s32 D_80383614;
+s32 D_80383618;
+s32 D_8038361C;
+s32 D_80383620;
+s32 D_80383624;
+s32 D_80383628;
+s32 D_8038362C;
+u32 D_80383630;
 u32 D_80383634;
 u32 D_80383638;
 s32 D_8038363C;
@@ -362,11 +371,31 @@ void func_80337B68(Gfx **gfx, Vtx **vtx, Struct84s *texture_list, s32 texture_in
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AEDA0/func_803381B4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AEDA0/func_80338270.s")
+void func_803382D8(s32 arg0);
+void func_803382E4(s32 arg0);
+void func_803382F0(s32 arg0);
+void func_803382FC(s32 arg0);
+void func_80338308(s32 arg0, s32 arg1);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AEDA0/func_803382B4.s")
+void func_80338270(){
+    func_803382D8(0xFF);
+    func_803382E4(0);
+    func_803382F0(0);
+    func_803382FC(0xFF);
+    func_80338308(100, 100);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AEDA0/func_803382D8.s")
+}
+
+void func_803382B4(s32 arg0, s32 arg1, s32 arg2, s32 arg3){
+    D_80383620 = arg0;
+    D_80383624 = arg1;
+    D_80383628 = arg2;
+    D_8038362C = arg3;
+}
+
+void func_803382D8(s32 arg0){
+    D_80383630 = arg0;
+}
 
 void func_803382E4(s32 arg0){
     D_80383634 = arg0;
@@ -390,10 +419,16 @@ void func_8033831C(s32 *arg0, s32 *arg1){
     *arg1 = D_80383644;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AEDA0/func_80338338.s")
+void func_80338338(s32 r, s32 g, s32 b){
+    D_80383610 = r;
+    D_80383614 = g;
+    D_80383618 = b;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AEDA0/func_80338354.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AEDA0/func_80338370.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AEDA0/func_8033837C.s")
+void func_8033837C(s32 arg0){
+    D_8037033C = arg0;
+}

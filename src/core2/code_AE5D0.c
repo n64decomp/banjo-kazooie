@@ -4,8 +4,8 @@
 
 #include "animation.h"
 
-extern void func_8033AA50(void *, f32, s32);
-extern void func_8033A750(s32, s32, s32, f32);
+extern void func_8033AA50(void *, f32, Struct_B1400_1 *);
+extern void func_8033A750(s32, s32, Struct_B1400_1 *, f32);
 
 /* .code */
 void func_80335560(Struct80s *self){
@@ -85,7 +85,7 @@ s32 func_803356A0(Struct80s *self){
     }
 
     if(self->unk28 == 0){
-        self->unk28 = func_8033A710();
+        self->unk28 = (Struct_B1400_1 *) func_8033A710();
     }
     func_8033AA50(self->unk4, self->unk8, self->unk28);
     func_8033A750(self->unk0, self->unk24, self->unk28, self->unk20);

@@ -2,21 +2,24 @@
 #include "functions.h"
 #include "variables.h"
 
-extern f32 func_80323540(struct56s *, f32, f32, f32);
+extern void func_80250530(s32, u16, f32);
+extern s32  func_80255D44(s32);
 extern void sfxsource_setSampleRate(u8, s32);
 extern bool func_80323240(struct56s *, f32, f32[3]);
 extern f32  func_803234FC(struct56s *, f32, f32);
+extern f32  func_80323540(struct56s *, f32, f32, f32);
 extern f32  func_803237E8(struct56s *);
 extern f32  func_80323FDC(struct56s *, f32, f32, s32 *);
 extern f32  func_803240E0(struct56s *, f32, f32, s32 *);
-extern void func_80250530(s32, u16, f32);
-extern s32 func_80255D44(s32);
+extern void func_8032417C(struct56s *, f32, f32[3], f32[3]);
+extern void func_80328FF0(Actor *, f32);
 
 extern struct56s **D_80371E70;
 extern void **D_80371E74;
 extern s32 D_80371E78;
 extern s32 D_80371E7C;
 extern s32 D_80371E80;
+
 
 typedef struct {
     f32 unk0;
@@ -180,12 +183,16 @@ typedef struct{
 }Struct_glspline_t1;
 
 typedef struct{
-    u8 pad0[0xC];
+    f32 unk0;
+    u8 pad0[0x8];
     struct{
         u32 pad_bit31:31;
         u32 bit0:1;
     }unkC;
-    u8 pad10[0x4];
+    struct {
+        u32 pad_31:31;
+        u32 bit0:1;
+    }unk10;
 }Struct_glspline_common;
 
 typedef union{
@@ -204,6 +211,12 @@ typedef struct{
 /* .rodata */
 extern char D_80378FF0[];
 extern f32 D_8037901C;
+
+extern f64 D_80379058;
+extern f64 D_80379060;
+extern f64 D_80379068;
+extern f64 D_80379070;
+
 
 /* .bss */
 s16 *D_803858A0;
@@ -315,15 +328,72 @@ int func_80342064(s32 arg0){
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B9770/func_80342070.s")
+s32 func_80342070(s32 arg0){
+    glspline_list **temp_v0 = D_80371E74;
+    glspline_list *temp_v1;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B9770/func_803420BC.s")
+    if(arg0 == -1)
+        return 0;
 
-s32 func_803421A4(s32, f32);
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B9770/func_803421A4.s")
+    temp_v1 = temp_v0[arg0];
+    if (temp_v1->unk0 == 0) {
+        return 0;
+    }
+    return temp_v1->spline[0].t1.unk10.bit31;
+}
 
+s32 func_803420BC(s32 arg0, s32 arg1, s32 arg2){
+    glspline_list **temp_v0 = D_80371E74;
+    glspline_list *temp_v1;
+    s32 temp_a1;
+    s32 var_a0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B9770/func_80342244.s")
+    if(arg0 == -1)
+        return 0;
+
+    temp_v1 = temp_v0[arg0];
+    temp_a1 = temp_v1->unk0;
+    if (temp_a1 == 0) {
+        return 0;
+    }
+
+    for(var_a0 = 0; (var_a0 < temp_a1) && arg1 != temp_v1->spline[var_a0].t1.unk10.bit31; var_a0++);
+
+    if (var_a0 == temp_a1) {
+        return 0;
+    }
+
+    var_a0 += arg2;
+    while(var_a0 < 0){ var_a0 += temp_a1; }
+    while(var_a0 >= temp_a1){ var_a0 -= temp_a1; }
+    return temp_v1->spline[var_a0].t1.unk10.bit31;
+}
+
+s32 func_803421A4(s32 arg0, f32 arg1) {
+    glspline_list **temp_v0 = D_80371E74;
+    glspline_list *temp_v1;
+    s32 var_a3;
+    Union_glspline *i_ptr;
+    Union_glspline *temp_a2;
+
+    if (arg0 == -1) {
+        return 0;
+    }
+    temp_v1 = temp_v0[arg0];
+    if (temp_v1->unk0 == 0) {
+        return 0;
+    }
+    i_ptr = temp_v1->spline;
+    temp_a2 = i_ptr + temp_v1->unk0;
+    for(var_a3 = 0; (i_ptr < temp_a2) && (i_ptr->common.unk0 < arg1); i_ptr++){
+        var_a3++;
+    }
+    return var_a3;
+}
+
+s32 func_80342244(s32 arg0){
+    return (arg0 < 180) ? (arg0 + 180) : (arg0 - 180);
+}
 
 f32 func_80342260(s32 arg0, f32 arg1, s32 arg2){
     return func_803234FC(func_80342038(arg0), arg1, 1.0f) / ((f32)arg2 /4);
@@ -629,9 +699,95 @@ s32 func_803422D4(Actor *arg0, Union_glspline *arg1, glspline_list *arg2) {
 }
 #endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B9770/func_803430B4.s")
+void func_803430B4(Actor *arg0) {
+    f32 d_yaw;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B9770/func_803431D0.s")
+    if ((arg0->marker->unk14_20 == 0x12) && (arg0->unk138_30 == 1)) {
+        d_yaw = arg0->yaw_moving - arg0->yaw;
+        while (d_yaw >= 360.0f) { d_yaw -= 360.0f; }
+        while (d_yaw < 0.0f)    { d_yaw += 360.0f; }
+
+        if (d_yaw >= 180.0f) {
+            d_yaw = 360.0f - d_yaw;
+        }
+        arg0->unk10_3 = (d_yaw < D_80379058) ? 3
+                      : (d_yaw < D_80379060) ? 2 
+                      : 1;
+    }
+}
+
+void func_803431D0(Actor *arg0, s32 arg1, s32 arg2, s32 arg3) {
+    f32 sp64[3];
+    f32 sp58[3];
+    f32 sp4C[3];
+    f32 sp40[3];
+    f32 sp3C;
+    s32 pad38;
+    f32 var_f2;
+
+    if (arg1 & 0x300) {
+        func_8032417C(func_80342038(arg0->unk44_14), arg0->unk48, sp64, sp58);
+        if (arg1 & 1) {
+            if (arg1 & 0x100) {
+                arg0->yaw_moving = sp58[1];
+            }
+            if (arg1 & 0x200) {
+                arg0->unk6C = sp58[0];
+            }
+        } else {
+            if (arg1 & 0x100) {
+                if (sp58[1] >= 180.0f) {
+                    arg0->yaw_moving = sp58[1] - 180.0f;
+                } else {
+                    arg0->yaw_moving = sp58[1] + 180.0f;
+                }
+            }
+            if (arg1 & 0x200) {
+                arg0->unk6C = (D_80379068 - sp58[0]);
+            }
+        }
+    }
+    if (arg0->unk10_4) {
+        player_getPosition(sp4C);
+        func_802BC434(sp40, sp4C, arg0->position);
+        if (arg0->marker->unk14_20 != 0x12) {
+            sp40[1] += 180.0f;
+            while (sp40[1] >= 360.0f) {
+                    sp40[1] -= 360.0f;
+            }
+            sp40[0] = 360.0f - sp40[0];
+        }
+        arg0->yaw_moving = sp40[1];
+        arg0->unk6C = sp40[0];
+    } else {
+        if ((arg0->unk70 <= arg0->unk48) && (arg0->unk48 < arg0->unk74)) {
+            sp3C = (arg0->unk48 - arg0->unk70) / (arg0->unk74 - arg0->unk70);
+            if (arg0->unkF4_24 & 1) {
+                if (arg1 & 0x800) {
+                    var_f2 = mlDiffDegF(arg0->unk38_21, arg0->unk38_13) * sp3C + arg0->unk38_13;
+                    while (var_f2 >= 360.0f) { var_f2 -= 360.0f; }
+                    while (var_f2 < 0.0f) { var_f2 += 360.0f; }
+                    arg0->yaw_moving = var_f2;
+                }
+                if (arg1 & 0x1000) {
+                    var_f2 = mlDiffDegF(arg0->unk78_22, arg0->unk78_31) * sp3C + arg0->unk78_31;
+                    while (var_f2 >= 360.0f) { var_f2 -= 360.0f; }
+                    while (var_f2 < 0.0f) { var_f2 += 360.0f; }
+                    arg0->unk6C = var_f2;
+                }
+            }
+            if (arg0->unkF4_24 & 2) {
+                arg0->unk4C = ((arg0->unk144 - arg0->unk140) * sp3C) + arg0->unk140;
+            }
+        } else if ((arg0->unk70 != 0.0f) || (arg0->unk74 != 0.0f)) {
+            arg0->unk70 = 0.0f;
+            arg0->unk74 = 0.0f;
+        }
+    }
+    func_803430B4(arg0);
+    func_80328FB0(arg0, (f32) arg2);
+    func_80328FF0(arg0, (f32) arg3);
+}
 
 s32 func_80343654(Actor *this){
     s32 tmp_v1;
@@ -641,11 +797,49 @@ s32 func_80343654(Actor *this){
     return tmp_a0 + tmp_v1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B9770/func_80343694.s")
+s32 func_80343694(Actor *actor, s32 indx, s32 begin, s32 end, s32 count, s32 stride) {
+    glspline_list **temp_v0;
+    glspline_list *temp_s5;
+    Union_glspline *start_ptr;
+    Union_glspline *end_ptr;
+    bool var_v1;
+    f32 sp48;
+    Union_glspline *i_ptr;
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B9770/func_803438E0.s")
-#else
+    temp_v0 = D_80371E74;
+    temp_s5 = temp_v0[indx];
+    var_v1 = 0;
+    if (temp_s5->unk0 == 0) {
+        return 0;
+    }
+    start_ptr = temp_s5->spline;
+    i_ptr = temp_s5->spline + ((begin == -9999) ? temp_s5->unk0 - 1 : begin);
+    end_ptr = temp_s5->spline + ((end == -9999) ? temp_s5->unk0 + count : end);
+    for(; (i_ptr != end_ptr) && (var_v1 != 1); i_ptr += stride){
+        if( ((stride >= 1) && (i_ptr->common.unk10.bit0 == 0)) 
+            || ((stride < 0) && (i_ptr->common.unk10.bit0 == 1))
+        ) {
+            if (D_80371E80 == 1) {
+                sp48 = i_ptr->common.unk0;
+            }
+            var_v1 = func_803422D4(actor, i_ptr, temp_s5);
+            if( ((actor->unk70 != 0.0f) || (actor->unk74 != 0.0f)) 
+                && (!(actor->unk70 <= actor->unk48) || !(actor->unk48 < actor->unk74))
+            ) {
+                actor->unk70 = 0.0f;
+                actor->unk74 = 0.0f;
+            }
+            if ((var_v1 == 1) && (actor->modelCacheIndex == 0x66) && (actor->unk70 != actor->unk74)) {
+                var_v1 = 0;
+            }
+        }
+    }
+    if ((D_80371E80 == 1) && (var_v1 == 1)) {
+        actor->unk48 = sp48 + D_80379070;
+    }
+    return var_v1;
+}
+
 s32 func_803438E0(Actor *actor, s32 arg1, s32 arg2, s32 arg3) {
     s32 sp4C;
     s32 sp48;
@@ -653,15 +847,13 @@ s32 func_803438E0(Actor *actor, s32 arg1, s32 arg2, s32 arg3) {
     f32 sp40;
     s32 sp3C;
     s32 temp_v0;
-    s32 sp28;
 
     sp44 = 0;
     sp40 = actor->unk4C;
-    sp28 = actor->unk44_14;
-    if (sp28 == -1) {
+    if (actor->unk44_14 == -1) {
         return 0;
     }
-    sp4C = func_803421A4(sp28, actor->unk48);
+    sp4C = func_803421A4(actor->unk44_14, actor->unk48);
     if ((actor->unk54 == 0.0f) && (actor->unk138_3 == 0)) {
         if (actor->marker->unk14_20 == 0xB0) {
             actor->unk48 = func_803240E0(D_80371E70[actor->unk44_14], actor->unk48, sp40, &sp44);
@@ -715,7 +907,6 @@ s32 func_803438E0(Actor *actor, s32 arg1, s32 arg2, s32 arg3) {
     }
     return 1;
 }
-#endif
 
 int func_80343D50(Actor *this, s32 arg1, s32 arg2, s32 arg3){
     s32 s0;
