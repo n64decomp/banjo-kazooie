@@ -222,6 +222,7 @@ extern f64 D_80379070;
 s16 *D_803858A0;
 
 /* .code */
+//glspline_clamp
 f32 func_80340700(f32 value, f32 min, f32 max) {
     return (value < min) ? min
          : (max < value) ? max
@@ -234,25 +235,24 @@ bool func_80340748(s32 arg0, s32 arg1, s32 arg2, f32 arg3[3], s32 arg4, s32 arg5
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B9770/func_80340760.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B9770/func_80340A4C.s")
-// f32 func_80340A4C(f32 arg0, s32 arg1, f32 *arg2){
-//     s32 tmp_v1;
-//     s32 sp30;
-//     f32 sp24[3];
-//     f32 f20;
+f32 func_80340A4C(f32 arg0, s32 arg1, f32 *arg2) {
+    s32 tmp_v1;
+    s32 tmp_t7;
+    f32 sp24[3];
+    f32 *var_a0;
 
-//     sp30 = arg1 - 3;
-//     f20 = func_80340700( arg0, 0.0f, 1.0f)*sp30;
-//     tmp_v1 = f20;
-//     arg1 -= 4;
-//     tmp_v1 = MIN(tmp_v1, arg1);
-//     arg2 += tmp_v1;
-//     f20 -= tmp_v1;
-//     sp24[2] = -0.5*arg2[0] +  1.5*arg2[1] + -1.5*arg2[2] +  0.5*arg2[3];
-//     sp24[1] =  1.0*arg2[0] + -2.5*arg2[1] +  2.0*arg2[2] + -0.5*arg2[3];
-//     sp24[0] = -0.5*arg2[0] +  0.5*arg2[2];
-//     return f20*(sp24[0] + f20*(sp24[1] + f20*sp24[2])) + (f64)arg2[1];
-// }
+    tmp_t7 = arg1 - 3;
+    tmp_v1 = arg0 = tmp_t7 * func_80340700(arg0, 0.0f, 1.0f);
+    tmp_v1 = (tmp_v1 >= (arg1 - 4)) ? (arg1 - 4) : (tmp_v1);
+    arg2 += tmp_v1;
+    arg0 -= tmp_v1;
+    
+    sp24[2] = -0.5*arg2[0] +  1.5*arg2[1] + -1.5*arg2[2] +  0.5*arg2[3];
+    sp24[1] =  1.0*arg2[0] + -2.5*arg2[1] +  2.0*arg2[2] + -0.5*arg2[3];
+    sp24[0] = -0.5*arg2[0] +  0.0*arg2[1] +  0.5*arg2[2] +  0.0*arg2[3];
+    
+    return (((((sp24[2] * arg0) + sp24[1]) * arg0) + sp24[0]) * arg0) + (1.0*arg2[1]);
+}
 
 void func_80340BE4(f32 arg0, s32 arg1, s32 arg2, s32 arg3, f32 * arg4, f32 arg5[3]);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B9770/func_80340BE4.s")
