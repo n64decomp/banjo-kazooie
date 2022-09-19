@@ -22,7 +22,7 @@ f32 func_8028EBA4(void);
 extern void func_8032FFF4(ActorMarker *, ActorMarker *, s32);
 extern void func_802C9334(s32, Actor *);
 extern void func_8032B3A0(Actor *, ActorMarker *);
-extern void func_8032EE0C(GenMethod_1, s32);
+extern void func_8032EE0C(GenMethod_2, s32);
 extern void func_8032EE20(void);
 extern void func_802C4014(GenMethod_5, s32, s32, s32, s32, s32);
 

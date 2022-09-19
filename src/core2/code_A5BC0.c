@@ -38,6 +38,8 @@ typedef union{
     u32 word;
 } tmp_bitfield;
 
+typedef bool( *Method_Core2_A5BC0)(NodeProp *, s32);
+
 s32 func_80320DB0(f32[3], f32, f32[3], u32);
 extern void func_80320EB0(ActorMarker *, f32, s32);
 extern void func_80320ED8(ActorMarker *, f32, s32);
@@ -67,7 +69,7 @@ extern f64 D_80378EB0;
 s32 D_803833F0[3];
 s32 D_803833FC;
 s32 D_80383400;
-s32 D_80383404;
+Cube *D_80383404;
 s32 D_80383408;
 s32 D_8038340C;
 f32 D_80383410[3];
@@ -79,8 +81,8 @@ int D_80383448;
 s32 D_80383450[0x40];
 vector(ActorMarker *) *D_80383550;
 vector(ActorMarker *) *D_80383554;
-UNK_TYPE(s32) D_80383558;
-UNK_TYPE(s32) D_8038355C;
+Method_Core2_A5BC0 D_80383558;
+s32 D_8038355C;
 
 /* .code */
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_8032CB50.s")
@@ -700,9 +702,57 @@ s32 func_8032E49C(Cube *cube, enum actor_e *actor_id_list, NodeProp **node_list,
     return found_cnt;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_8032E5A8.s")
+s32 func_8032E5A8(Cube *cube, s32 arg1, f32 (*arg2)[3], s32 capacity) {
+    s32 count;
+    NodeProp *end_node;
+    NodeProp *i_node;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_8032E6CC.s")
+    count = 0;
+    if (cube != NULL) {
+        if (cube->prop1Cnt != 0) {
+            i_node = cube->prop1Ptr;
+            end_node = cube->prop1Ptr + cube->prop1Cnt;
+            while((i_node < end_node) && (count < capacity)){
+                if( ( (i_node->unk6.bit0 == 1) 
+                      || ((i_node->unk6.bit0 == 0) && (i_node->unk10_6 == 1))
+                    ) 
+                    && (i_node->unk6.bit6 == 6) && (arg1 == i_node->unk8)
+                ) {
+                    arg2[count][0] = (f32) i_node->x;
+                    arg2[count][1] = (f32) i_node->y;
+                    arg2[count][2] = (f32) i_node->z;
+                    count++;
+                }
+                i_node++;
+            }
+        }
+    }
+    return count;
+}
+
+bool func_8032E6CC(Cube *cube, s32 *arg1, s32 arg2) {
+    NodeProp *end_node;
+    NodeProp *i_node;
+
+    if (cube != NULL) {
+        if (cube->prop1Cnt != 0) {
+            i_node = cube->prop1Ptr;
+            end_node = cube->prop1Ptr + cube->prop1Cnt;
+            while (i_node < end_node) {
+                if( ( (i_node->unk6.bit0 == 1) 
+                      || ((i_node->unk6.bit0 == 0) && (i_node->unk10_6 == 1))
+                    ) 
+                    && (i_node->unk6.bit6 == 6) && (arg2 == i_node->unk8)
+                ) {
+                    *arg1 = i_node->unkC_31;
+                    return TRUE;
+                }
+                i_node++;
+            }
+        }
+    }
+    return FALSE;
+}
 
 void func_8032E784(Cube *cube, s32 cnt){
     if(cube->prop1Ptr != NULL){
@@ -712,49 +762,26 @@ void func_8032E784(Cube *cube, s32 cnt){
     cube->unk0_4 = 0; 
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_8032E7E8.s")
-#else
 void func_8032E7E8(NodeProp *node, Cube *cube, s32 cnt) {
-    s32 temp_a0;
-    s32 temp_s2;
-    s32 temp_s2_2;
-    s32 actor;
-    s32 model_cache_ptr;
-    u32 temp_t8;
-    void *actor_2;
-    void *actor_3;
-    void *actor_4;
-    void *actor_5;
-    void *model_cache_ptr_2;
-    void *phi_s0;
     NodeProp *iPtr;
     s32 phi_s3;
-    s32 phi_s2;
-    s32 phi_a0;
-    s32 phi_s2_2;
-    s32 phi_a0_2;
-    void *i;
-    void *i_2;
-    void *i_3;
-    s32 phi_s2_3;
     s32 i;
-    s32 val;
 
     cube->unk0_4 = 0;
     phi_s3 = cnt - 1;
     for(i = 0; i < cnt; i++){
-        if( (node[i].unk4_6 == 6) 
-            || (node[i].unk4_6 == 8)
-            || (node[i].unk4_6 == 7) 
-            || (node[i].unk4_6 == 9) 
-            || (node[i].unk4_6 == 0xA) 
-            || (node[i].unk4_0 == 1)
+        iPtr = node + i;
+        if( (iPtr->unk6.bit6 == 6) 
+            || (iPtr->unk6.bit6 == 8)
+            || (iPtr->unk6.bit6 == 7) 
+            || (iPtr->unk6.bit6 == 9) 
+            || (iPtr->unk6.bit6 == 0xA) 
+            || (iPtr->unk6.bit0 == 1)
         ){
             memcpy(&cube->prop1Ptr[phi_s3], &node[i], sizeof(NodeProp));
             phi_s3--;
         } else {
-            memcpy(&cube->prop1Ptr[cube->prop1Cnt], &node[i], sizeof(NodeProp));
+            memcpy(&cube->prop1Ptr[cube->unk0_4], &node[i], sizeof(NodeProp));
             cube->unk0_4++;
         }
     }
@@ -762,12 +789,11 @@ void func_8032E7E8(NodeProp *node, Cube *cube, s32 cnt) {
     
     for(i = 0; i < cnt; i++){
         iPtr = &cube->prop1Ptr[i];
-        if(!iPtr->unk4_0){
+        if(!iPtr->unk6.bit0){
             iPtr->unk10_6 = TRUE;
         }
     }
 }
-#endif
 
 #ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_8032EA24.s")
@@ -855,9 +881,14 @@ void func_8032EA24(Struct61s *file_ptr, Cube *cube) {
 }
 #endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_8032EE0C.s")
+void func_8032EE0C(Method_Core2_A5BC0 arg0, s32 arg1){
+    D_80383558 = arg0;
+    D_8038355C = arg1;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_8032EE20.s")
+void func_8032EE20(void){
+    D_80383558 = NULL;
+}
 
 void func_8032EE2C(s32 arg0[3], s32 arg1, s32 arg2) {
     D_803833F0[0] = (s32) arg0[0];
@@ -870,8 +901,46 @@ void func_8032EE2C(s32 arg0[3], s32 arg1, s32 arg2) {
     D_8038340C = 0;
 }
 
+void func_8032EE80(Cube *cube) {
+    s32 var_v0;
+    s32 var_s1;
+    s32 var_t0;
+    Prop *var_a1;
+    NodeProp *var_s0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_8032EE80.s")
+    if ((cube->prop2Cnt != 0) && ((D_80383400 == 1) || (D_80383400 == 2))) {
+        var_a1 = cube->prop2Ptr;
+        for(var_t0 = 0; var_t0 < cube->prop2Cnt; var_t0++, var_a1++){
+            if (!var_a1->markerFlag) {
+                if (((var_a1->unk4[0] - D_803833F0[0]) * (var_a1->unk4[0] - D_803833F0[0])) + ((var_a1->unk4[1] - D_803833F0[1]) * (var_a1->unk4[1] - D_803833F0[1])) + ((var_a1->unk4[2] - D_803833F0[2]) * (var_a1->unk4[2] - D_803833F0[2])) < D_803833FC) {
+                    var_v0 = (var_a1->unk8_1) ? 2 : 1;
+                    if (var_v0 == D_80383400) {
+                        D_803833FC = ((var_a1->unk4[0] - D_803833F0[0]) * (var_a1->unk4[0] - D_803833F0[0])) + ((var_a1->unk4[1] - D_803833F0[1]) * (var_a1->unk4[1] - D_803833F0[1])) + ((var_a1->unk4[2] - D_803833F0[2]) * (var_a1->unk4[2] - D_803833F0[2]));
+                        D_80383404 = cube;
+                        D_80383408 = var_a1;
+                        D_8038340C = D_80383400;
+                    }
+                }
+            }
+        }
+    }
+
+    if (cube->prop1Cnt != 0) {
+        if (D_80383400 == 3) {
+            var_s0 = cube->prop1Ptr;
+            for(var_s1 = 0; var_s1 < cube->prop1Cnt; var_s1++, var_s0++){
+                if (((var_s0->x - D_803833F0[0]) * (var_s0->x - D_803833F0[0])) + ((var_s0->y - D_803833F0[1]) * (var_s0->y - D_803833F0[1])) + ((var_s0->z - D_803833F0[2]) * (var_s0->z - D_803833F0[2])) < D_803833FC) {
+                    if (D_80383558 == NULL || D_80383558(var_s0, D_8038355C)) {
+                        D_803833FC = ((var_s0->x - D_803833F0[0]) * (var_s0->x - D_803833F0[0])) + ((var_s0->y - D_803833F0[1]) * (var_s0->y - D_803833F0[1])) + ((var_s0->z - D_803833F0[2]) * (var_s0->z - D_803833F0[2]));
+                        D_80383404 = cube;
+                        D_80383408 = var_s0;
+                        D_8038340C = D_80383400;
+                    }
+                }
+            }
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_8032F170.s")
 
