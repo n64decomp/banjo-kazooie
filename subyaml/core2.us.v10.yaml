@@ -322,7 +322,7 @@ segments:
   - [0x9D760, c, code_9D760] #DONE
   - [0x9D860, c, timedfuncqueue] #DONE
   - [0x9E370, c, code_9E370]
-  - [0xA4D00, c, code_A4D00]
+  - [0xA4D00, c, code_A4D00] #DONE
   - [0xA5BC0, c, code_A5BC0]
   - [0xABC00, c, code_ABC00]
   - [0xAC520, c, code_AC520]
@@ -563,6 +563,8 @@ segments:
   - [0xE7330, .data, code_9B990]
   - [0xE7490, .data, code_9D640]
   - [0xE75D0, bin, data_E75D0]
+  - [0xE7640, .data, code_A4D00]
+  - [0xE7820, bin, data_E7820]
   - [0xE7870, .data, code_A5BC0]
   - [0xE78A0, bin, data_E78A0]
   - [0xE89F0, bin, data_E89F0] # .data, code_AD110]
@@ -792,6 +794,7 @@ segments:
   - [0xF1E10, .rodata, code_9C170]
   - [0xF1E60, .rodata, code_9E370] 
   - [0xF1EC0, bin, data_F1EC0]
+  - [0xF1EE0, .rodata, code_A4D00]
   - [0xF1F10, .rodata, code_A5BC0]
   - [0xF1F30, .rodata, code_AD110]
   - [0xF1F50, .rodata, code_AE5D0]

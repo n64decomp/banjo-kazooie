@@ -3,23 +3,70 @@
 #include "variables.h"
 #include "structs.h"
 
+extern s32  func_80244E54(f32[3], f32[3], f32 [3], u32, f32, f32);
+extern void func_80244F00(f32[3], f32, f32, s32, s32);
+
 extern s32  func_80320DB0(f32[3], f32, f32[3], u32);
 extern void func_80320ED8(ActorMarker *, f32, s32);
 extern f32  func_8033229C(ActorMarker *marker);
-extern f32 func_80309B24(f32 [3]);
+extern f32  func_80309B24(f32 [3]);
+extern f32  ml_vec3f_dot_product(f32[3], f32[3]);
+extern f32  ml_vec3f_distance_squared(f32[3], f32[3]);
+extern Struct66s *func_80320C94(f32 arg0[3], f32 arg1[3], f32 arg2, f32 arg3[3], s32 arg4, u32 arg5);
 
-
+/* .h */
 typedef bool (*method_core2_A4D00_0)(Actor *, f32[3], s32, s32);
 
-/* .data */
-method_core2_A4D00_0 D_8036E5D0[][6];
+typedef struct {
+    f32 unk0[3];
+    f32 unkC[3];
+    Struct66s * unk18;
+    f32 unk1C[3];
+    f32 unk28[3];
+    f32 unk34[3];
+    s32 unk40;
+    f32 unk44[3];
+    u8 pad50[0x3C];
+    s32 unk8C;
+}Struct_A4D00;
 
-/* .rodata */
-extern f64 D_80378E70;
-extern f64 D_80378E78;
-extern f64 D_80378E80;
-extern f64 D_80378E88;
-extern f32 D_80378E90;
+bool func_8032BC90(Actor *actor, f32 arg1[3], s32 arg2, s32 arg3);
+bool func_8032BD88(Actor *arg0, f32 arg1[3], s32 arg2, s32 arg3);
+bool func_8032C280(Actor *arg0, f32 arg1[3], s32 arg2, s32 arg3);
+bool func_8032C2F0(Actor *arg0, f32 arg1[3], s32 arg2, s32 arg3);
+bool func_8032C404(Actor *arg0, f32 arg1[3], s32 arg2, s32 arg3);
+bool func_8032C4AC(Actor *arg0, f32 arg1[3], s32 arg2, s32 arg3);
+bool func_8032C660(Actor *arg0, f32 arg1[3], s32 arg2, s32 arg3);
+bool func_8032C6E0(Actor *actor, f32 arg1[3], s32 arg2, s32 arg3);
+bool func_8032C79C(Actor *arg0, f32 arg1[3], s32 arg2, s32 arg3);
+bool func_8032C99C(Actor *actor, f32 arg1[3], s32 arg2, s32 arg3);
+bool func_8032C9C0(Actor *actor, f32 arg1[3], s32 arg2, s32 arg3);
+bool func_8032CA40(Actor *actor, f32 arg1[3], s32 arg2, s32 arg3);
+
+/* .data */
+method_core2_A4D00_0 D_8036E5D0[][6] = {
+    {func_8032C404, func_8032C4AC,          NULL, func_8032C280,          NULL, func_8032C79C},
+    {func_8032C404, func_8032C4AC,          NULL, func_8032BD88,          NULL,          NULL},
+    {func_8032C404, func_8032C4AC,          NULL,          NULL,          NULL, func_8032C79C},
+    {func_8032C404, func_8032C4AC,          NULL,          NULL,          NULL,          NULL},
+    {func_8032C404,          NULL,          NULL, func_8032C280,          NULL, func_8032C79C},
+    {func_8032C404,          NULL,          NULL, func_8032BD88,          NULL,          NULL},
+    {func_8032C404,          NULL,          NULL,          NULL,          NULL, func_8032C79C},
+    {func_8032C404,          NULL,          NULL,          NULL,          NULL,          NULL},
+    {func_8032C2F0, func_8032C660,          NULL, func_8032C280,          NULL, func_8032C79C},
+    {func_8032C2F0, func_8032C660,          NULL, func_8032BD88,          NULL,          NULL},
+    {func_8032C2F0, func_8032C660,          NULL, func_8032C280, func_8032CA40, func_8032C79C},
+    {func_8032C2F0, func_8032C660,          NULL, func_8032BD88, func_8032CA40,          NULL},
+    {         NULL,          NULL,          NULL, func_8032BC90,          NULL,          NULL},
+    {func_8032C2F0, func_8032C4AC,          NULL, func_8032C280,          NULL, func_8032C6E0},
+    {func_8032C2F0, func_8032C660,          NULL,          NULL,          NULL, func_8032C6E0},
+    {func_8032C2F0, func_8032C660,          NULL, func_8032BD88,          NULL, func_8032C6E0},
+    {         NULL,          NULL,          NULL, func_8032BC90,          NULL, func_8032C6E0},
+    {func_8032C404, func_8032C4AC, func_8032C9C0, func_8032C280,          NULL, func_8032C79C},
+    {func_8032C404, func_8032C4AC, func_8032C99C, func_8032C280,          NULL, func_8032C79C},
+    {func_8032C404,          NULL,          NULL,          NULL,          NULL, func_8032C6E0}
+};
+
 /* .bss */
 Prop *D_803833D0;
 
@@ -49,8 +96,111 @@ void func_8032BD64(f32 arg0[3]){
     ml_vec3f_copy(arg0, D_803833D8);
 }
 
-bool func_8032BD88(Actor *arg0, f32 arg1[3], s32 arg2, s32 arg3);
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A4D00/func_8032BD88.s")
+bool func_8032BD88(Actor *arg0, f32 arg1[3], s32 arg2, s32 arg3){
+    s32 i;
+    s32 temp_s7;
+    Struct_A4D00 *var_fp;
+    Struct_A4D00 *var_s2;
+    s32 sp29C;
+    f32 var_f22;
+    f32 var_f24;
+    u32 sp290;
+    f32 sp284[3];
+    f32 sp278[3];
+    f32 sp26C[3];
+    Struct_A4D00 spBC[3];
+    f32 temp_f20;
+    s32 pad8C;
+    f32 sp88;
+    f32 sp84;
+
+    temp_s7 = arg0->unk154;
+    var_f24 = func_8033229C(arg0->marker);
+    var_fp = NULL;
+    sp290 =  arg0->marker->propPtr->unk8_3;
+    arg0->marker->propPtr->unk8_3 = 0;
+    ml_vec3f_diff_copy(sp278, arg0->position, arg1);
+    sp284[0] = arg1[0] - arg0->position[0];
+    sp284[1] = arg1[1] - arg0->position[1];
+    sp284[2] = arg1[2] - arg0->position[2];
+    if (&func_8032C4AC == D_8036E5D0[arg2][1]) {
+        sp29C = TRUE;
+        var_f24 = var_f24 * 0.6;
+        var_f22 = MAX(arg0->marker->unk38[1], var_f24 * 1.25);
+    } else {
+        if (!spBC[i].unk44){}
+        sp29C = FALSE;
+        var_f24 = var_f24 * 0.5;
+        var_f22 = arg0->marker->unk38[1];
+    }
+    func_80244F00(arg1, var_f24, var_f22, sp29C, temp_s7);
+    sp88 = ((var_f24 * 2) - 4);
+    sp84 = sp88* sp88;
+
+    for(i = 0; i < 3; i++){
+        var_s2 = (i != 0) ? &spBC[i - 1] : NULL;
+        if (i != 0) {
+            ml_vec3f_copy(spBC[i].unk0, var_s2->unk0);
+            ml_vec3f_copy(spBC[i].unkC, var_s2->unkC);
+        } else {
+            ml_vec3f_copy(spBC[i].unk0, arg0->position);
+            ml_vec3f_copy(spBC[i].unkC, arg1);
+        }
+        if (sp84 < ml_vec3f_distance_squared(spBC[i].unkC, spBC[i].unk0)) {
+            temp_f20 = spBC[i].unk0[1];
+            spBC[i].unk40 = func_80244E54(spBC[i].unkC, spBC[i].unk0, spBC[i].unk44, temp_s7, var_f24 - 1.0f, var_f22);
+            if (spBC[i].unk40 != 0) {
+                if ((spBC[i].unk44[1] >= 0.0) && (spBC[i].unk44[1] < 0.02)) {
+                    spBC[i].unk0[1] = temp_f20;
+                }
+            }
+        } else {
+            spBC[i].unk40 = 0;
+        }
+        
+        spBC[i].unk8C = sp29C;
+        spBC[i].unk34[0] = spBC[i].unkC[0];\
+        spBC[i].unk34[1] = spBC[i].unkC[1] + var_f22;\
+        spBC[i].unk34[2] = spBC[i].unkC[2];
+
+        spBC[i].unk28[0] = spBC[i].unk0[0];\
+        spBC[i].unk28[1] = spBC[i].unk0[1] + var_f22;\
+        spBC[i].unk28[2] = spBC[i].unk0[2];
+
+        spBC[i].unk18 = func_80320C94(spBC[i].unk34, spBC[i].unk28, var_f24, spBC[i].unk1C, 3, temp_s7);
+
+        if(spBC[i].unk18 == NULL)
+            break;
+
+        var_fp = &spBC[i];
+        if ((i == 2) && (spBC[i].unk18 == spBC[0].unk18) && (var_s2->unk18 != spBC[i].unk18)) {
+            ml_vec3f_add(sp26C, spBC[i].unk1C, var_s2->unk1C);
+            ml_vec3f_normalize(sp26C);
+            ml_vec3f_copy(spBC[i].unk1C, sp26C);
+        }
+        if (func_80258368(spBC[i].unk1C) != 0) {
+            func_802451A4(spBC[i].unkC, spBC[i].unk0, spBC[i].unk34, spBC[i].unk28, spBC[i].unk1C, (i == 0));
+        }
+
+    }
+
+    if (i == 3) {
+        ml_vec3f_copy(arg0->position, arg1);
+    } else if (var_fp != NULL) {
+        temp_f20 = gu_sqrtf((sp284[0] * sp284[0]) + (sp284[1] * sp284[1]) + (sp284[2] * sp284[2]));
+        arg0->position[0] = var_fp->unk0[0];
+        arg0->position[1] = var_fp->unk0[1];
+        arg0->position[2] = var_fp->unk0[2];
+        if ((temp_f20 != 0.0f) && ((ml_vec3f_dot_product(var_fp->unk1C, sp284) / temp_f20) < 0.93969262)) {
+            var_fp = NULL;
+        }
+    }
+    arg0->marker->propPtr->unk8_3 = sp290;
+    if (var_fp != NULL) {
+        ml_vec3f_copy(D_803833D8, var_fp->unk1C);
+    }
+    return (var_fp != NULL) ? TRUE : FALSE;
+}
 
 bool func_8032C280(Actor *arg0, f32 arg1[3], s32 arg2, s32 arg3) {
     if ((arg0->unk10_25 != 0) && !func_80307390(arg0->unk10_25 - 1, arg0->unk10_18 - 1)) {
@@ -83,7 +233,7 @@ bool func_8032C404(Actor *arg0, f32 arg1[3], s32 arg2, s32 arg3) {
     sp1C[0] = arg0->unk28;
     sp1C[1] = 0.0f;
     sp1C[2] = 0.0f;
-    ml_vec3f_yaw_rotate_copy(sp1C, sp1C, arg0->yaw - D_80378E88);
+    ml_vec3f_yaw_rotate_copy(sp1C, sp1C, arg0->yaw - 90.0);
     arg0->position[0] += sp1C[0];
     arg0->position[1] += sp1C[1];
     arg0->position[2] += sp1C[2];
@@ -117,7 +267,7 @@ bool func_8032C4AC(Actor *arg0, f32 arg1[3], s32 arg2, s32 arg3) {
             arg0->position[1] = sp40[1];
             arg0->position[2] = sp40[2];
         } else {
-            arg0->position[1] = (arg0->position[1] + arg0->unk170 < D_80378E90) ? D_80378E90 : arg0->position[1] + arg0->unk170;
+            arg0->position[1] = MAX(-100000.0f, arg0->position[1] + arg0->unk170);
         }
     }
     return FALSE;
