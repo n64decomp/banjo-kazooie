@@ -21,28 +21,48 @@ void func_80247224(void);
 #define CORE1_8C50_EVENT_PRENMI 11
 #define CORE1_8C50_EVENT_CONT_TIMER 13
 
-/* .data */
+/* .extern */
 extern u64 D_80272590[]; // ucode
 extern u64 D_802731F0[];
 extern u64 D_80274620[];
-extern OSTask D_80275910;
-extern OSTask D_80275950;
-extern s32 D_80275990;
-extern s32 D_80275994;
-extern s32 D_80275998;
-extern s32 D_8027599C;
-extern s32 D_802759A0;
-// static s32 D_802759A4;
-extern OSViMode D_802759A8;
-extern OSViMode D_802759F8;
+
 extern u64 D_80278E80[]; //ucode_data
 extern u64 D_80279130[];
 extern u64 D_80279930[];
 
+/* .data */
+OSTask D_80275910 = {
+    /* type */ 2, 
+    /* flags */ 0,
+    NULL, 0,        /* ucode_boot */
+    NULL, 0x1000,   /* ucode */
+    NULL, 0x800,    /* ucode_data */
+    NULL, 0,        /* dram_stack */
+    NULL, NULL,     /* output_buff */
+    NULL, 0,        /* data */
+    NULL, 0,        /* yield_data */
+} ;
+
+OSTask D_80275950 = {
+    /* type */ 1, 
+    /* flags */ 0,
+    NULL, 0,                /* ucode_boot */
+    NULL, 0x1000,           /* ucode */
+    NULL, 0x800,            /* ucode_data */
+    0x80000400, 0x400,      /* dram_stack */
+    0x80000800, 0x8000E800, /* output_buff */
+    NULL, 0,                /* data */
+    NULL, 0xC00,            /* yield_data */
+} ;
+
+s32 D_80275990 = 0;
+s32 D_80275994 = 0;
+s32 D_80275998 = 0;
+s32 D_8027599C = 0;
+
 
 /* .bss */
-s32 D_8027EF40;
-u8 D_8027EF44[0xC20];
+u64 D_8027EF40[0x185];
 OSMesgQueue D_8027FB60;
 OSMesg      D_8027FB78[20];
 OSMesgQueue D_8027FBC8;
@@ -70,7 +90,8 @@ s32 D_802806D0;
 
 /* .code */
 void func_80246670(OSMesg arg0){
-    sizeof(OSThread);
+    static s32 D_802759A0 = 1;
+    
     osSendMesg(&D_8027FB60, arg0, 1);
     if((s32) arg0 == 3 ){
         D_80275994 = 0x1e;
@@ -214,11 +235,8 @@ void func_80246C2C(void){
     }
 }
 
-#ifndef NONMATCHING //MATCHES but requires .data defined for local static variable
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_8C50/func_80246D78.s")
-#else
 void func_80246D78(void){
-    static s32 D_802759A4;
+    static s32 D_802759A4 = 0;
     s32 sp2C = (D_8027FC0C != 0) && (D_8028062C == D_80280628) && (D_8027FC18 == 2) && (D_8027FC1C == 0x10);
     volatile s32 sp30;
 
@@ -269,9 +287,46 @@ void func_80246D78(void){
         osSetTimer(&D_802806B0, ((osClockRate / 60)* 2) / 3, 0, &D_8027FB60, CORE1_8C50_EVENT_CONT_TIMER);
     }
 }
-#endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_8C50/func_80247000.s")
+void func_80247000(void) {
+    Struct_Core1_8C50_s *sp1C;
+    s32 temp_v1;
+    Struct_Core1_8C50_s *temp_v0;
+
+    temp_v1 = D_8027FC1C;
+    if (D_8027FC1C == 0x20) {
+        sp1C = D_80280630[D_80280684];
+        D_80280684 = (D_80280684 + 1) % 20;
+        D_8027FC24 = (osSpTaskYielded(&D_80275950) == 1);
+        func_80246794(sp1C);
+        D_8027599C = 0;
+        return;
+    }
+
+    if (D_8027FC1C == 4) {
+        osSendMesg(D_8027FC08[1].unk0, D_8027FC08[1].unk4, 0);
+    }
+
+    if ((D_8027FC1C == 4) && (D_8027FC24 != 0)) {
+        osSpTaskLoad(&D_80275950);
+        osSpTaskStartGo(&D_80275950);
+        D_8027FC1C = D_8027FC20;
+        D_8027FC24 = 0;
+        return;
+    }
+
+    D_8027FC1C = 0x10;
+    if ((D_8028062C != D_80280628) && (D_8027FC10 == 0)) {
+        func_80246A14(D_802805D8[D_8028062C]);
+        D_8028062C = (D_8028062C + 1) % 20;
+        return;
+    }
+    
+    if ((D_8027FC0C != 0) && (D_8027FC14 == 2) && !(osDpGetStatus() & 2)) {
+        osSendMesg(&D_8027FBC8, NULL, 0);
+        D_8027FC0C -= 1;
+    }
+}
 
 void func_802471D8(OSMesg arg0){
     D_8027FC10 = TRUE;
@@ -299,6 +354,43 @@ void func_80247224(void){
 void func_80247304(void){};
 
 void func_8024730C(void){
+    static OSViMode D_802759A8 = {
+        OS_VI_MPAL_LPN1, /* type */
+        { 
+          VI_CTRL_TYPE_16 | VI_CTRL_GAMMA_DITHER_ON | VI_CTRL_GAMMA_ON | 0x3200,       /*ctrl*/
+          320,          /*width*/
+          0x4651E39,    /*burst*/
+          0x20D,        /*vSync*/
+          0x40C11,      /* hSync*/
+          0xC190C1A,    /* leap*/
+          0x6C02EC,     /* hStart*/
+          0, /* xScale*/
+          0, /* vCurrent*/
+        },
+        {
+            {640, 1024, 0x2501FF, 0xE0204, 2},
+            {640, 1024, 0x2501FF, 0xE0204, 2}
+        }
+    };
+    static OSViMode D_802759F8 = {
+        OS_VI_NTSC_LPN1, /* type */
+        { 
+          VI_CTRL_TYPE_16 | VI_CTRL_GAMMA_DITHER_ON | VI_CTRL_GAMMA_ON | 0x3200,       /*ctrl*/
+          320,          /*width*/
+          0x3E52239,    /*burst*/
+          0x20D,        /*vSync*/
+          0xC15,        /* hSync*/
+          0xC150C15,    /* leap*/
+          0x6C02EC,     /* hStart*/
+          0, /* xScale*/
+          0, /* vCurrent*/
+        },
+        {
+            {0x280, 1024, 0x2501FF, 0xE0204, 2},
+            {640, 1024, 0x2501FF, 0xE0204, 2}
+        }
+    };
+
     static s32 D_802806D4;
 
     if(!D_802806D4){
@@ -344,11 +436,8 @@ void func_802473B4(void *arg0){
     }while(1);
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_8C50/func_80247560.s")
-#else
 void func_80247560(void){
-    u32 tmp_v0;
+    u64 *tmp_v0;
     osCreateMesgQueue(&D_8027FB60, &D_8027FB78, 20);
     osCreateMesgQueue(&D_8027FBC8, &D_8027FBE0, 10);
     osSetEventMesg(OS_EVENT_DP, &D_8027FB60, CORE1_8C50_EVENT_DP);
@@ -361,14 +450,16 @@ void func_80247560(void){
     D_8027FC14 = D_8027FC18 = 2;
     D_8027FC1C = D_8027FC20 = 0x10;
     D_8027FC24 = 0;
-    D_80280628 = D_8028062C = 0;
-    D_80280680 = D_80280684 = 0;
-    for(tmp_v0 = &D_8027EF40; tmp_v0 & 0xF; tmp_v0++){}
-    D_80275950.yield_data_size = tmp_v0;
-    osCreateThread(&D_80280428, 5, func_802473B4, NULL, &D_80280428, 60);
+    D_8028062C = 0;
+    D_80280628 = 0;
+    D_80280684 = 0;
+    D_80280680 = 0;
+    tmp_v0 = D_8027EF40;
+    while((u32)tmp_v0 % 0x10){((u32)tmp_v0)++;}
+    D_80275950.t.yield_data_ptr = tmp_v0;
+    osCreateThread(&D_80280428, 5, func_802473B4, NULL, &pad_8027FC28[2040], 60);
     osStartThread(&D_80280428);
 }
-#endif
 
 void func_802476DC(void){
     D_802806D0 = 1;
