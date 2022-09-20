@@ -579,7 +579,7 @@ s32 func_802E48D8(void){
     if( !level_get() )
         return NULL;
     
-    func_80343F3C();
+    glspline_defrag();
     func_80288470();
     func_802F1320();
     func_802BA128();

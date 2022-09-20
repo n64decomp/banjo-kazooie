@@ -67,16 +67,15 @@ BKMeshList *func_8033F2AC(BKModel *arg0){
     return arg0->meshList_0;
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B8080/func_8033F2B4.s")
-#else
 void func_8033F2B4(BKModel *model, s32 mesh_id, s16 arg2[3], s16 arg3[3]) {
+    s32 pad2C;
+    s32 pad28;
     BKMesh *mesh;
+    Vtx *vtx_pool;
+    Vtx *i_vtx;
     s16 *mesh_begin;
     s16 *mesh_end;
     s16 *phi_t4;
-    Vtx *i_vtx;
-    Vtx *vtx_pool;
     s32 i;
 
     mesh = func_802E9F9C(model->meshList_0, mesh_id);
@@ -97,7 +96,6 @@ void func_8033F2B4(BKModel *model, s32 mesh_id, s16 arg2[3], s16 arg3[3]) {
         }
     }
 }
-#endif
 
 //return mesh id "position" is over/under
 s32 func_8033F3C0(BKModel *model, f32 position[3]){

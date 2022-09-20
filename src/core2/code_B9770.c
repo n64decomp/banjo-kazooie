@@ -9,16 +9,13 @@ extern bool func_80323240(struct56s *, f32, f32[3]);
 extern f32  func_803234FC(struct56s *, f32, f32);
 extern f32  func_80323540(struct56s *, f32, f32, f32);
 extern f32  func_803237E8(struct56s *);
+extern f32  func_80323F74(struct56s *, f32, f32);
 extern f32  func_80323FDC(struct56s *, f32, f32, s32 *);
 extern f32  func_803240E0(struct56s *, f32, f32, s32 *);
 extern void func_8032417C(struct56s *, f32, f32[3], f32[3]);
 extern void func_80328FF0(Actor *, f32);
 
-extern struct56s **D_80371E70;
-extern void **D_80371E74;
-extern s32 D_80371E78;
-extern s32 D_80371E7C;
-extern s32 D_80371E80;
+
 
 
 typedef struct {
@@ -208,6 +205,24 @@ typedef struct{
     Union_glspline spline[];
 }glspline_list;
 
+typedef struct {
+    s16 unk0;
+    s16 unk2[3];
+    u16 unk8_15:1;
+    u16 unk8_14:1;
+    u16 unk8_13:1;
+    u16 pad8_12:13;
+}Struct_glspline_803411B0;
+
+s32 func_80341BC8(struct56s *arg0, glspline_list * arg1);
+
+/* .data */
+extern struct56s **D_80371E70;
+extern glspline_list **D_80371E74;
+extern s32 D_80371E78;
+extern s32 D_80371E7C;
+extern s32 D_80371E80;
+
 /* .rodata */
 extern char D_80378FF0[];
 extern f32 D_8037901C;
@@ -257,20 +272,237 @@ f32 func_80340A4C(f32 arg0, s32 arg1, f32 *arg2) {
 void func_80340BE4(f32 arg0, s32 arg1, s32 arg2, s32 arg3, f32 * arg4, f32 arg5[3]);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B9770/func_80340BE4.s")
 
-void func_80341180(f32 arg0, s32 arg1, s32 arg2, f32 * arg3, f32 arg4[3]){
+void func_80341180(f32 arg0, s32 arg1, s32 arg2, f32 arg3[3], f32 arg4[3]){
     func_80340BE4(arg0, arg1, arg2, arg2, arg3, arg4);
 }
 
-
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B9770/func_803411B0.s")
+#else
+void func_803411B0(void) {
+    s32 spE4;
+    s32 spE0;
+    Struct_glspline_803411B0 *spD8;
+    s32 spCC[3];
+    s32 spC8;
+    s32 spC4;
+    struct56s *spB4;
+    glspline_list *spA8;
+    struct56s *spA4;
+    Union_glspline *sp80;
+    Struct_glspline_803411B0 *sp50;
+    Union_glspline *temp_s6;
+    Union_glspline *var_s0_2;
+    Union_glspline *var_s1_2;
+    s32 temp_v0_2;
+    s32 var_a0;
+    s32 var_a0_3;
+    s32 var_a0_4;
+    s32 var_a0_5;
+    s32 var_fp;
+    s32 var_s0;
+    s32 var_s2;
+    s32 var_s2_2;
+    s32 var_s5;
+    s32 var_s7;
+    s32 var_v1;
+    Union_glspline *temp_s3_2;
+    Union_glspline *temp_v0_16;
+    Struct_glspline_803411B0 *temp_v0_17;
+    Struct_glspline_803411B0 *var_v0_4;
+    s16 *i_ptr;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B9770/func_80341A54.s")
+    D_80371E80 = 0;
+    D_80371E70 = malloc(0);
+    D_80371E74 = malloc(0);
+    D_80371E78 = 0;
+    D_803858A0 = (s16 *) malloc(0x80*sizeof(s16));
+    for(var_v1 = 0; var_v1 < 0x80; var_v1++){
+        D_803858A0[var_v1] = 0;
+    }
+    spE4 = func_80307E1C(D_803858A0) + 1;
+    if (spE4 > 1) {
+        spD8 = (Struct_glspline_803411B0 *)malloc(spE4 * sizeof(Struct_glspline_803411B0));
+        for(var_a0 = 0; var_a0 < spE4; var_a0++){
+            spD8[var_a0].unk0 = -1;
+        }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B9770/func_80341BA0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B9770/func_80341BC8.s")
+        func_80307EA8(0, spCC, &spC8, &spC4);
+        do {
+            temp_v0_2 = func_80307EA8(1, spCC, &spC8, &spC4);
+            if (temp_v0_2 >= 0) {
+                spD8[temp_v0_2].unk0 = (s16) spC8;
+                spD8[temp_v0_2].unk2[0] = (s16) spCC[0];
+                spD8[temp_v0_2].unk2[1] = (s16) spCC[1];
+                spD8[temp_v0_2].unk2[2] = (s16) spCC[2];
+                spD8[temp_v0_2].unk8_13 = spC4;
+            }
+        } while (temp_v0_2 >= 0);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B9770/func_80341C78.s")
+        for(spE0 = 1; spE0 < spE4; spE0++) {
+            spD8[spE0].unk8_15 = 0;
+            if ((spD8[spE0].unk0 >= spE4) || (spD8[spE0].unk0 == -1)) {
+                spD8[spE0].unk0 = 0;
+            }
+        }
+
+        for(spE0 = 1; spE0 < spE4; spE0++) {
+            if (spD8[spE0].unk0 > 0) {
+                spD8[spD8[spE0].unk0].unk8_15 = 1;
+            }
+        }
+
+        for(spE0 = 1; spE0 < spE4; spE0++) {
+                if( (spD8[spE0].unk8_13 == 1) 
+                    && ((spD8[spE0].unk8_15 != 0) || (spD8[spE0].unk0 <= 0)) 
+                    && ((spD8[spE0].unk8_15 != 1) || (spD8[spE0].unk0 <= 0)) 
+                    && ((spD8[spE0].unk8_15 != 1) || (spD8[spE0].unk0 != 0))
+                ) {
+                    func_8032DC70();
+                    spD8[spE0].unk0 = -1;
+                    spD8[spE0].unk8_13 = 0;
+                }
+        }
+
+        for(spE0 = 1; spE0 < spE4; spE0++) {
+            if (spD8[spE0].unk0 > 0) {
+                if (spD8[spE0].unk8_15 == 0) {
+                    if (!spD8[spE0].unk8_13) {
+                            var_s7 = 1;
+                            var_s0 = 0;
+                            var_fp = 0;
+                            for(var_s5 = 1; var_s5 < spE4; var_s5++){
+                                spD8[var_s5].unk8_14 = 0;
+                            }
+
+                            var_v0_4 = &spD8[spE0];
+                            while ((var_v0_4->unk0 != 0) && !(var_v0_4->unk8_14)) {
+                                var_v0_4->unk8_14 = 1;
+                                var_s7 += (var_v0_4->unk8_13 == 0) ? 1 : 0;
+                                var_s0 += (var_v0_4->unk8_13 == 0) ? 0 : 1;
+                                var_v0_4 = &spD8[var_v0_4->unk0];
+                            }
+
+                            spB4 = (struct56s *) malloc(sizeof(struct56s) + (var_s7 * 3* sizeof(f32)));
+                            spB4->unk0 = var_s7;
+                            spB4->unk4 = 0;
+                            spA8 = (glspline_list *)malloc(sizeof(glspline_list) + var_s0*sizeof(Union_glspline));
+                            spA8->unk0 = var_s0;
+                            var_s1_2 = &spA8->spline[0];
+                            var_s2 = var_s0;
+                            for(var_a0_4 = spE0; (var_s2 != 0);  var_a0_4 = spD8[var_a0_4].unk0){
+                                if (spD8[var_a0_4].unk8_13 == 1) {
+                                        temp_v0_16 = func_803080C8();
+                                        temp_v0_16->t1.unk8.pad_bit7 = (s8) D_80371E78;
+                                        memcpy(var_s1_2, temp_v0_16, 0x14);
+                                        var_s1_2++;
+                                        var_s2--;
+                                    }
+                            }
+                            temp_s6 = &spA8->spline[0];
+                            temp_s3_2 = &spA8->spline[spA8->unk0];
+                            var_s2_2 = 0;
+                            do {
+                                for(var_s0_2 = temp_s6; var_s0_2 < temp_s3_2; var_s0_2++){
+                                    if ((var_s0_2 + 1)->common.unk0 < var_s0_2->common.unk0) {
+                                        memcpy(sp80, var_s0_2, sizeof(Union_glspline));
+                                        memcpy(var_s0_2, var_s0_2 + 1, sizeof(Union_glspline));
+                                        memcpy(var_s0_2 + 1, sp80, sizeof(Union_glspline));
+                                        var_s2_2++;
+                                    }
+                                }
+                            } while (var_s2_2 != 0);
+                            while(var_s7 != 0){
+                                    temp_v0_17 = &spD8[spE0];
+                                    if (!(temp_v0_17->unk8_13)) {
+                                        spB4->unk8[var_fp][0] = (f32) temp_v0_17->unk2[0];
+                                        spB4->unk8[var_fp][1] = (f32) temp_v0_17->unk2[1];
+                                        spB4->unk8[var_fp][2] = (f32) temp_v0_17->unk2[2];
+                                        var_s7--;
+                                    }
+                            }
+                            func_80341BC8(spB4, spA8);
+                    }
+                }
+            }
+        }
+        free(spD8);
+    }
+}
+#endif
+
+//glspline_free
+void func_80341A54(void) {
+    s32 var_s0;
+
+    for(var_s0 = 0; var_s0 < 0x40; var_s0++){
+        if (D_803858A0[var_s0] != 0) {
+            func_8030DA44(D_803858A0[var_s0]);
+        }
+    }
+
+    for(var_s0 = 0x40; var_s0 < 0x80; var_s0++){
+        if (D_803858A0[var_s0] != 0) {
+            func_8025A7DC(func_80255D30(D_803858A0[var_s0]));
+        }
+    }
+
+    for(var_s0 = 0; var_s0 < D_80371E78; var_s0++){
+        free(D_80371E70[var_s0]);
+        free(D_80371E74[var_s0]);
+    }
+    free(D_80371E70);
+    free(D_80371E74);
+    free(D_803858A0);
+    D_80371E70 = NULL;
+    D_80371E74 = NULL;
+    D_80371E78 = 0;
+    D_803858A0 = NULL;
+}
+
+void func_80341BA0(void){
+    func_80341A54();
+    func_803411B0();
+}
+
+s32 func_80341BC8(struct56s *arg0, glspline_list * arg1) {
+    s32 temp_t7;
+    void *temp_v0;
+    void *temp_v0_2;
+
+    D_80371E78++;
+    D_80371E70 = (struct56s **)realloc(D_80371E70, D_80371E78 * sizeof(struct56s *));
+
+    D_80371E70[D_80371E78 - 1] = arg0;
+    D_80371E74 = (glspline_list **)realloc(D_80371E74, D_80371E78 * sizeof(glspline_list *));
+    D_80371E74[D_80371E78 - 1] = arg1;
+    return D_80371E78 - 1;
+}
+
+
+s32 func_80341C78(s32 arg0[3]) {
+    struct56s *temp_a0;
+    s32 var_a3;
+    s32 var_v1;
+    f32 *var_a2;
+    f32 sp4[3];
+
+    sp4[0] = (f32) arg0[0];
+    sp4[1] = (f32) arg0[1];
+    sp4[2] = (f32) arg0[2];
+    for(var_v1 = 0; var_v1 < D_80371E78; var_v1++){
+        temp_a0 = D_80371E70[var_v1];
+        var_a2 = temp_a0->unk8;
+        for (var_a3 = 0; var_a3 < temp_a0->unk0; var_a3++) {
+            if( (sp4[0] == var_a2[0]) && (sp4[1] == var_a2[1]) && (sp4[2] == var_a2[2])) {
+                return var_v1;
+            }
+            var_a2+=3;
+        }
+    }
+    return -1;
+}
 
 #ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B9770/func_80341D5C.s")
@@ -308,15 +540,46 @@ s32 func_80341D5C(s32 arg0[3], s32 arg1[3]){
 }
 #endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B9770/func_80341EC4.s")
+s32 func_80341EC4(f32 arg0[3]){
+    s32 sp1C[3];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B9770/func_80341EF0.s")
+    ml_vec3f_to_vec3w(sp1C, arg0);
+    return func_80341C78(sp1C);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B9770/func_80341F2C.s")
+struct56s *func_80341EF0(f32 arg0[3]){
+    s32 sp1C[3];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B9770/func_80341F64.s")
+    ml_vec3f_to_vec3w(sp1C, arg0);
+    return D_80371E70[func_80341C78(sp1C)];
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B9770/func_80341FB0.s")
+s32 func_80341F2C(s32 arg0){
+    s32 sp1C[3];
+    if(!func_80304DD0(arg0, sp1C)){
+        return -1;
+    }
+    return func_80341C78(sp1C);
+}
+
+struct56s *func_80341F64(s32 arg0){
+    s32 sp1C[3];
+    if(!func_80304DD0(arg0, sp1C)){
+        return NULL;
+    }
+    return D_80371E70[func_80341C78(sp1C)];
+}
+
+f32 func_80341FB0(s32 arg0, f32 arg1, s32 arg2, f32 arg3) {
+    f32 sp1C;
+
+    if (arg0 == -1) {
+        return arg1;
+    }
+    sp1C = func_80323F74(D_80371E70[arg0], arg1, arg3);
+    func_80323240(D_80371E70[arg0], sp1C, arg2);
+    return sp1C;
+}
 
 struct56s *func_80342038(s32 indx){
     if(indx == -1)
@@ -952,22 +1215,22 @@ struct56s *func_80343F00(s32 indx, f32 arg1[3]){
     return out;
 }
 
-void func_80343F3C(void) {
+void glspline_defrag(void) {
     s32 i;
 
     if (D_80371E70 != 0) {
-        D_80371E70 = (struct56s *)defrag(D_80371E70);
+        D_80371E70 = (struct56s **) defrag(D_80371E70);
     }
     if (D_80371E74 != 0) {
-        D_80371E74 = defrag(D_80371E74);
+        D_80371E74 = (glspline_list **) defrag(D_80371E74);
     }
     if (D_803858A0 != 0) {
-        D_803858A0 = defrag(D_803858A0);
+        D_803858A0 = (s16 *) defrag(D_803858A0);
     }
 
     for(i = 0; i < D_80371E78; i++){
-        D_80371E74[i] = defrag(D_80371E74[i]);
-        D_80371E70[i] = defrag(D_80371E70[i]);
+        D_80371E74[i] = (glspline_list *) defrag(D_80371E74[i]);
+        D_80371E70[i] = (struct56s *) defrag(D_80371E70[i]);
     }
 }
 

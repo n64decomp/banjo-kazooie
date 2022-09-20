@@ -21,6 +21,7 @@ u8  D_80385FF0[0xB];
 f32 D_80386000[0xE]; //timescores
 s32 D_80386038;
 
+/* .code */
 void func_80345EB0(enum item_e item){
     if(func_802FAFE8(item)){
         func_803463D4(item, (s32)(-time_getDelta()*60.0f * 1.1));
@@ -59,6 +60,7 @@ s32 func_80345FB4(enum item_e item, s32 diff, s32 arg2){\
     s32 sp28;
     s32 sp24; //without this var newVal is too high, but sp1C is correct
     s32 newVal;
+
 
     oldVal = D_80385F30[item];
 
@@ -127,7 +129,7 @@ s32 func_80345FB4(enum item_e item, s32 diff, s32 arg2){\
                 bs_checkInterrupt(BS_INTR_11_DROWN);
                 D_80385FE4 = 1;
             }
-            if(sp2C && sp30 != sp2C ){
+            if(sp2C != 0 && sp30 != sp2C ){
                 if(sp2C < sp30){
                     func_8025A6EC(SFX_AIR_METER_DROPPING, 28000);
                 }
