@@ -44,8 +44,8 @@ void func_80308EC8(void);
 
 /* .data */
 
-extern void *D_8036ABA0;
-extern void *D_8036ABA4;
+
+
 
 extern ActorInfo D_803675F0;
 extern ActorInfo D_80367838;
@@ -69,9 +69,11 @@ extern u8 D_8036A9E4[];
 extern s16 D_8036ABD4;
 
 
-
-extern s16 D_8036ABAC[];
-extern s16 D_8036ABC0[];
+extern s16 *D_8036ABA0;
+extern s16 *D_8036ABA4;
+extern s32  D_8036ABA8; //max index of D_8036ABA4
+extern s16  D_8036ABAC[];
+extern s16  D_8036ABC0[];
 
 /* .rodata */
 
@@ -79,10 +81,10 @@ extern s16 D_8036ABC0[];
 struct {
     Cube *cube_list;
     f32 unk4;
-    s32 min[3];
-    s32 max[3];
-    s32 stride[2];
-    s32 cubeCnt;
+    s32 min[3]; //8
+    s32 max[3]; //14
+    s32 stride[2]; //20
+    s32 cubeCnt; 
     s32 unk2C;
     s32 width[3];
     // s32 unk34;
@@ -92,8 +94,11 @@ struct {
     s32 unk44;
 } D_80381FA0;
 
+
 u8 D_80381FE8[0x50];
-Cube *D_80382038[0x20];
+Cube *D_80382038[0x1C];
+s32 D_803820A8[3];
+s32 D_803820B4;
 s32 D_803820B8[0x20]; //ActorProp *, (maybe Prop *)
 s32 pad_80382138;
 s32 D_8038213C;
@@ -110,9 +115,6 @@ void func_80301F10(Cube *cube, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     func_8032D510(cube, gfx, mtx, vtx);
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80301F50.s")
-#else
 void func_80301F50(Gfx **gfx, Mtx **mtx, Vtx **vtx, s32 arg3[3], s32 arg4[3], s32 arg5[3]) {
     s32 sp54;
     s32 sp50;
@@ -121,103 +123,125 @@ void func_80301F50(Gfx **gfx, Mtx **mtx, Vtx **vtx, s32 arg3[3], s32 arg4[3], s3
     Cube *sp44;
     Cube *var_fp;
 
-    sp44 = D_80381FA0.cube_list + arg4[1]*D_80381FA0.stride[0];
-    for(sp50 = arg4[1]; sp50 < arg3[1]; sp50++) {
-        var_fp = sp44 + arg4[0];
-        for(sp54 = arg4[0]; sp54 < arg3[0]; sp54++) {
-
-            var_s0 = var_fp + arg4[2]*D_80381FA0.stride[1];
-            for(var_s1 = arg4[2]; var_s1 < arg3[2]; var_s1++) {
+    sp50 = arg4[1];
+    sp44 = D_80381FA0.cube_list + sp50*D_80381FA0.stride[0];
+    while(sp50 < arg3[1]) {
+        sp54 = arg4[0];
+        var_fp = sp44 + sp54;
+        while(sp54 < arg3[0]) {
+            var_s1 = arg4[2];
+            var_s0 = var_fp + var_s1*D_80381FA0.stride[1];
+            while(var_s1 < arg3[2]) {
                 if ((var_s0->prop2Cnt != 0) && func_8024D9B0(var_s0) != 0) {
                     func_80301F10(var_s0, gfx, mtx, vtx);
                 }
+                var_s1++;
                 var_s0 += D_80381FA0.stride[1];
             }
 
-            var_s0 = var_fp + arg5[2]*D_80381FA0.stride[1];
-            for(var_s1 = arg5[2]; var_s1 >= arg3[2]; var_s1--) {
+            var_s1 = arg5[2];
+            var_s0 = var_fp + var_s1*D_80381FA0.stride[1];
+            while( var_s1 >= arg3[2]) {
                 if ((var_s0->prop2Cnt != 0) && func_8024D9B0(var_s0) != 0) {
                     func_80301F10(var_s0, gfx, mtx, vtx);
                 }
+                var_s1--;
                 var_s0 -= D_80381FA0.stride[1];
             }
+            sp54++;
             var_fp++;
         }
 
-        var_fp = sp44 + arg5[0];
-        for(sp54 = arg5[0]; sp54 >= arg3[0]; sp54--) {
-            var_s0 = var_fp + arg4[2]*D_80381FA0.stride[1];
-            for(var_s1 = arg4[2]; var_s1 < arg3[2]; var_s1++) {
+        sp54 = arg5[0];
+        var_fp = sp44 + sp54;
+        while(sp54 >= arg3[0]) {
+            var_s1 = arg4[2];
+            var_s0 = var_fp + var_s1*D_80381FA0.stride[1];
+            while(var_s1 < arg3[2]) {
                 if ((var_s0->prop2Cnt != 0) && func_8024D9B0(var_s0) != 0) {
                     func_80301F10(var_s0, gfx, mtx, vtx);
                 }
+                var_s1++;
                 var_s0 += D_80381FA0.stride[1];
             }
 
-            var_s0 = var_fp + arg5[2]*D_80381FA0.stride[1];
-            for(var_s1 = arg5[2]; var_s1 >= arg3[2]; var_s1--) {
+            var_s1 = arg5[2];
+            var_s0 = var_fp + var_s1*D_80381FA0.stride[1];
+            while(var_s1 >= arg3[2]) {
                 if ((var_s0->prop2Cnt != 0) && func_8024D9B0(var_s0) != 0) {
                     func_80301F10(var_s0, gfx, mtx, vtx);
                 }
+                var_s1--;
                 var_s0 -= D_80381FA0.stride[1];
             }
+            sp54--;
             var_fp--;
         }
+        sp50++;
         sp44 += D_80381FA0.stride[0];
     }
 
-    sp44 = D_80381FA0.cube_list + arg5[1]*D_80381FA0.stride[0];
-    for(sp50 = arg5[1]; sp50 >= arg3[1]; sp50--) {
+    sp50 = arg5[1];
+    sp44 = D_80381FA0.cube_list + sp50*D_80381FA0.stride[0];
+    while(sp50 >= arg3[1]) {
 
-        var_fp = sp44 + arg4[0];
-        for(sp54 = arg4[0]; sp54 < arg3[0]; sp54++) {
+        sp54 = arg4[0];
+        var_fp = sp44 + sp54;
+        while(sp54 < arg3[0]) {
 
-            var_s0 = var_fp + arg4[2]*D_80381FA0.stride[1];
-            for(var_s1 = arg4[2]; var_s1 < arg3[2]; var_s1++) {
+            var_s1 = arg4[2];
+            var_s0 = var_fp + var_s1*D_80381FA0.stride[1];
+            while( var_s1 < arg3[2]) {
                 if ((var_s0->prop2Cnt != 0) && func_8024D9B0(var_s0) != 0) {
                     func_80301F10(var_s0, gfx, mtx, vtx);
                 }
+                var_s1++;
                 var_s0 += D_80381FA0.stride[1];
             }
 
-            var_s0 = var_fp + arg5[2]*D_80381FA0.stride[1];
-            for(var_s1 = arg5[2]; var_s1 >= arg3[2]; var_s1--) {
+            var_s1 = arg5[2];
+            var_s0 = var_fp + var_s1*D_80381FA0.stride[1];
+            while( var_s1 >= arg3[2]) {
                 if ((var_s0->prop2Cnt != 0) && func_8024D9B0(var_s0) != 0) {
                     func_80301F10(var_s0, gfx, mtx, vtx);
                 }
+                var_s1--;
                 var_s0 -= D_80381FA0.stride[1];
             }
+            sp54++;
             var_fp++;
         }
 
-        var_fp = sp44 + arg5[0];
-        for(sp54 = arg5[0]; sp54 >= arg3[0]; sp54--) {
-
-            var_s0 = var_fp + arg4[2]*D_80381FA0.stride[1];
-            for(var_s1 = arg4[2]; var_s1 < arg3[2]; var_s1++) {
+        sp54 = arg5[0];
+        var_fp = sp44 + sp54;
+        while(sp54 >= arg3[0]) {
+            var_s1 = arg4[2];            
+            var_s0 = var_fp + var_s1*D_80381FA0.stride[1];
+            while(var_s1 < arg3[2]) {
                 if ((var_s0->prop2Cnt != 0) && func_8024D9B0(var_s0) != 0) {
                     func_80301F10(var_s0, gfx, mtx, vtx);
                 }
+                var_s1++;
                 var_s0 += D_80381FA0.stride[1];
             }
 
-            var_s0 = var_fp + arg5[2]*D_80381FA0.stride[1];
-            for(var_s1 = arg5[2]; var_s1 >= arg3[2]; var_s1--) {
+            var_s1 = arg5[2];            
+            var_s0 = var_fp + var_s1*D_80381FA0.stride[1];
+            while(var_s1 >= arg3[2]) {
                 if ((var_s0->prop2Cnt != 0) && func_8024D9B0(var_s0) != 0) {
                     func_80301F10(var_s0, gfx, mtx, vtx);
                 }
+                var_s1--;
                 var_s0 -= D_80381FA0.stride[1];
             }
+            sp54--;
             var_fp--;
         }
+        sp50--;
         sp44 -= D_80381FA0.stride[0];
     }
 }
-#endif
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80302634.s")
-#else
 void func_80302634(Gfx **gfx, Mtx **mtx, Vtx **vtx, s32 arg3[3], s32 arg4[3], s32 arg5[3]) {
     s32 sp54;
     s32 sp50;
@@ -226,9 +250,11 @@ void func_80302634(Gfx **gfx, Mtx **mtx, Vtx **vtx, s32 arg3[3], s32 arg4[3], s3
     Cube *sp44;
     Cube *var_fp;
 
-    sp44 = D_80381FA0.cube_list + arg4[1]*D_80381FA0.stride[0];
-    for(sp50 = arg4[1]; sp50 < arg3[1]; sp50++) {
-        var_s0 = sp44 + arg4[2]*D_80381FA0.stride[1];
+    sp50 = arg4[1];
+    sp44 = D_80381FA0.cube_list + sp50*D_80381FA0.stride[0];
+    while(sp50 < arg3[1]) {
+        sp54 = arg4[2];
+        var_s0 = sp44 + sp54*D_80381FA0.stride[1];
         for(sp54 = arg4[2]; sp54 < arg3[2]; sp54++) {
             var_fp = var_s0 + arg4[0];
             for(var_s1 = arg4[0]; var_s1 < arg3[0]; var_s1++) {
@@ -248,7 +274,8 @@ void func_80302634(Gfx **gfx, Mtx **mtx, Vtx **vtx, s32 arg3[3], s32 arg4[3], s3
             var_s0 += D_80381FA0.stride[1];
         }
 
-        var_s0 = sp44 + arg5[2]*D_80381FA0.stride[1];
+        sp54 = arg5[2];
+        var_s0 = sp44 + sp54*D_80381FA0.stride[1];
         for(sp54 = arg5[2]; sp54 >= arg3[2]; sp54--) {
             var_fp = var_s0 + arg4[0];
             for(var_s1 = arg4[0]; var_s1 < arg3[0]; var_s1++) {
@@ -267,12 +294,15 @@ void func_80302634(Gfx **gfx, Mtx **mtx, Vtx **vtx, s32 arg3[3], s32 arg4[3], s3
             }
             var_s0 -= D_80381FA0.stride[1];
         }
+        sp50++;
         sp44 += D_80381FA0.stride[0];
     }
 
-    sp44 = D_80381FA0.cube_list + arg5[1]*D_80381FA0.stride[0];
-    for(sp50 = arg4[1]; sp50 >= arg3[1]; sp50--) {
-        var_s0 = sp44 + arg4[2]*D_80381FA0.stride[1];
+    sp50 = arg5[1];
+    sp44 = D_80381FA0.cube_list + sp50*D_80381FA0.stride[0];
+    while(sp50 >= arg3[1]) {
+        sp54 = arg4[2];
+        var_s0 = sp44 + sp54*D_80381FA0.stride[1];
         for(sp54 = arg4[2]; sp54 < arg3[2]; sp54++) {
             var_fp = var_s0 + arg4[0];
             for(var_s1 = arg4[0]; var_s1 < arg3[0]; var_s1++) {
@@ -292,7 +322,8 @@ void func_80302634(Gfx **gfx, Mtx **mtx, Vtx **vtx, s32 arg3[3], s32 arg4[3], s3
             var_s0 += D_80381FA0.stride[1];
         }
 
-        var_s0 = sp44 + arg5[2]*D_80381FA0.stride[1];
+        sp54 = arg5[2];
+        var_s0 = sp44 + sp54*D_80381FA0.stride[1];
         for(sp54 = arg5[2]; sp54 >= arg3[2]; sp54--) {
             var_fp = var_s0 + arg4[0];
             for(var_s1 = arg4[0]; var_s1 < arg3[0]; var_s1++) {
@@ -311,10 +342,10 @@ void func_80302634(Gfx **gfx, Mtx **mtx, Vtx **vtx, s32 arg3[3], s32 arg4[3], s3
             }
             var_s0 -= D_80381FA0.stride[1];
         }
+        sp50--;
         sp44 -= D_80381FA0.stride[0];
     }
 }
-#endif
 
 void func_80302C94(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     f32 sp6C[3];
@@ -1250,21 +1281,94 @@ void func_8030578C(void){
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_803058C0.s")
+s32 func_803058C0(f32 arg0) {
+    return ((arg0 >= 0.0f) ? arg0 / 1000 : (arg0 / 1000) - 1.0f) - D_80381FA0.min[1];
+}
 
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80305924.s")
+#else
+s16 *func_80305924(void) {
+    s32 var_v1;
+    s16 *temp_a0;
+    s16 *var_v0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80305990.s")
+    temp_a0 = (s16*) malloc(D_8036ABA8 * sizeof(s16));
+    for(var_v1 = 0; var_v1 < D_8036ABA8; var_v1++){
+        var_v0 = temp_a0 + var_v1;
+        *var_v0 = 0;
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80305BD4.s")
+    return temp_a0;
+}
+#endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80305C30.s")
+void func_80305990(s32 arg0) {
+    s32 sp1C[3];
+    s16 *temp_v0;
+    Cube *cube;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80305C84.s")
+    D_8036ABA8 = (D_80381FA0.max[1] - D_80381FA0.min[1]) + 1;
+    if ((arg0 == 0) && (D_8036ABA0 == NULL)) {
+        D_8036ABA0 = func_80305924();
+    }
+    if ((arg0 == 1) && (D_8036ABA4 == NULL)) {
+        D_8036ABA4 = func_80305924();
+    }
+    for(sp1C[1] = 0; sp1C[1] <= D_80381FA0.max[1] - D_80381FA0.min[1]; sp1C[1]++){
+        for(sp1C[0] = 0; sp1C[0] <= D_80381FA0.max[0] - D_80381FA0.min[0]; sp1C[0]++){
+            for(sp1C[2] = 0; sp1C[2] <= D_80381FA0.max[2] - D_80381FA0.min[2]; sp1C[2]++){
+                    cube = D_80381FA0.cube_list + sp1C[0] + sp1C[1]*D_80381FA0.stride[0] + sp1C[2]*D_80381FA0.stride[1];
+                    if ((arg0 == 0) && (cube->prop1Ptr != NULL)) {
+                        temp_v0 = D_8036ABA0 + sp1C[1];
+                        *temp_v0 += cube->prop1Cnt;
+                    }
+                    if ((arg0 == 1) && (cube->prop2Ptr != NULL)) {
+                        temp_v0 = D_8036ABA4 + sp1C[1];
+                        *temp_v0 += cube->prop2Cnt;
+                    }
+            }
+        }
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80305CD8.s")
+void func_80305BD4(void){
+    if(D_8036ABA0 != NULL){
+        free(D_8036ABA0);
+        D_8036ABA0 = NULL;
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80305D14.s")
+    if(D_8036ABA4 != NULL){
+        free(D_8036ABA4);
+        D_8036ABA4 = NULL;
+    }
+
+    D_8036ABA8 = 0;
+}
+
+bool func_80305C30(s32 arg0){
+    if(!((arg0 >= 0) && (arg0 < D_8036ABA8)))
+        return 0;
+    
+    return ((D_8036ABA0[arg0] != 0)) ? 1 : 0;
+}
+
+bool func_80305C84(s32 arg0){
+    if(!((arg0 >= 0) && (arg0 < D_8036ABA8)))
+        return 0;
+    
+    return ((D_8036ABA4[arg0] != 0)) ? 1 : 0;
+}
+
+void func_80305CD8(s32 arg0, s32 arg1){
+    if((arg0 >= 0) && (arg0 < D_8036ABA8)){
+        D_8036ABA4[arg0] += arg1;
+    }
+}
+
+bool func_80305D14(void){
+    return (D_8036ABA4 != NULL) ? TRUE : FALSE;
+}
 
 void func_80305D38(void){
     D_8036A9BC = malloc(0);
@@ -1310,9 +1414,77 @@ void func_80305D38(void){
 //     }
 // }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80305F04.s")
+void func_80305F04(s32 *arg0, Struct_core2_7AF80_1 **arg1) {
+    bool continue_loop;
+    Struct_core2_7AF80_2 *b_elem;
+    Struct_core2_7AF80_1 *b_list;
+    Struct_core2_7AF80_2 *a_elem;
+    Struct_core2_7AF80_1 *a_list;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_803062D0.s")
+    if ((D_8036A9BC != NULL) && (D_8036A9B8 != 0)) {
+        for(a_list = *arg1; a_list < *arg1 + *arg0; a_list++){
+            for(b_list = a_list + 1; b_list < *arg1 + *arg0; b_list++) {
+                //same types and neither A or B are empty
+                if ((a_list->unk4 == b_list->unk4) &&  (a_list->unk0 != 0) &&  (b_list->unk0 != 0)) {
+                    
+                    continue_loop = TRUE;
+                    for(a_elem = a_list->unk8; (a_elem < a_list->unk8 + a_list->unk0) && continue_loop; a_elem++){
+                        for(b_elem = b_list->unk8; (b_elem < b_list->unk8 + b_list->unk0) && continue_loop; b_elem++) {
+                            if ((((a_elem->unk0[0] - b_elem->unk0[0]) * (a_elem->unk0[0] - b_elem->unk0[0])) + ((a_elem->unk0[2] - b_elem->unk0[2]) * (a_elem->unk0[2] - b_elem->unk0[2]))) < ((a_elem->unkC + b_elem->unkC) * (a_elem->unkC + b_elem->unkC))) {
+                                //concat b_list to end of a_list
+                                a_list->unk8 = (Struct_core2_7AF80_2 *) realloc(a_list->unk8, (a_list->unk0 + b_list->unk0)*sizeof(Struct_core2_7AF80_2));
+                                memcpy(a_list->unk8 + a_list->unk0, b_list->unk8, b_list->unk0 * sizeof(Struct_core2_7AF80_2));
+                                a_list->unk0 = (s32) (a_list->unk0 + b_list->unk0);
+                                
+                                b_list->unk0 = 0;
+                                free(b_list->unk8);
+                                b_list->unk8 = NULL;
+                                
+                                b_list = a_list;
+                                continue_loop = FALSE;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        //remove empty lists
+        for(a_list =  *arg1; a_list < *arg1 + *arg0; a_list++){
+            if (a_list->unk0 == 0) { //A is empty
+                continue_loop = TRUE;
+                for(b_list = a_list + 1; (b_list < *arg1 + *arg0) && continue_loop; b_list++){
+                    if (b_list->unk0 != 0) { //B is not empty
+                        //swap A an B
+                        memcpy(a_list, b_list, sizeof(Struct_core2_7AF80_1));
+                        b_list->unk0 = 0;
+                        b_list->unk8 = NULL;
+
+                        continue_loop = FALSE;
+                    }
+                }
+            }
+        }
+
+        //find first empty list (end)
+        for(a_list = *arg1; (a_list < *arg1 + *arg0) && (a_list->unk0 != 0); a_list++) { }
+
+        *arg0 = (a_list - *arg1); //count
+        *arg1 = (Struct_core2_7AF80_1 *)realloc((void *) *arg1, *arg0 * sizeof(Struct_core2_7AF80_1)); //ptr
+    }
+}
+
+
+void func_803062D0(void) {
+    Cube* var_s0;
+
+    for (var_s0 = D_80381FA0.cube_list; var_s0 < (D_80381FA0.cube_list + D_80381FA0.cubeCnt); var_s0++) {
+        func_803303B8(var_s0);
+    }
+    func_80305F04(&D_8036A9B8, &D_8036A9BC);
+    func_80305F04(&D_8036A9C4, &D_8036A9C8);
+    func_80305F04(&D_8036A9D0, &D_8036A9D4);
+}
 
 void func_80306390(void){
     D_8036A9C0 = D_8036A9BC - 1;
@@ -1552,7 +1724,41 @@ s32 func_80306DDC(Struct_core2_7AF80_2 *arg0) {
     return -1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80306EF4.s")
+s32 func_80306EF4(s32 arg0[3], s32 arg1, u32 arg2) {
+    s32 temp_s4;
+    s32 temp_s6;
+    Struct_core2_7AF80_2 *var_s0;
+    Struct_core2_7AF80_1 *var_s1;
+
+    temp_s4 = arg0[1] + arg1 / 2;
+    temp_s6 = arg0[1] - arg1 / 2;
+    for(var_s1 = D_8036A9C8; var_s1 < D_8036A9C8 + D_8036A9C4; var_s1++) {
+        if (D_80381FE8[var_s1->unk4] != 0) {
+            if (arg2 & 1) {
+                var_s0 = var_s1->unk8;
+                for(var_s0 = var_s1->unk8; var_s0 < var_s1->unk8 + var_s1->unk0; var_s0++){
+                    if( (var_s0->unk10_3 & arg2)
+                        && (temp_s4 >= var_s0->unk0[1]) && (temp_s6 < var_s0->unk0[1]) 
+                        && (func_80259328(arg0, (void *) var_s0, var_s0->unkC))
+                    ) {
+                            return var_s1 - D_8036A9C8;
+                        }
+                }
+            }
+            else{
+                for(var_s0 = var_s1->unk8; var_s0 < var_s1->unk8 + var_s1->unk0; var_s0++){
+                    if( (var_s0->unk10_3 & arg2) 
+                        && ((var_s0->unk10_3 & 2) || ((temp_s4 >= var_s0->unk0[1]) && (temp_s6 < var_s0->unk0[1])))
+                        && (func_80259328(arg0, (void *) var_s0, var_s0->unkC))
+                    ) {
+                        return var_s1 - D_8036A9C8;
+                    }
+                }
+            }
+        }
+    }
+    return -1;
+}
 
 s32 func_80307164(Struct_core2_7AF80_2 *arg0) {
     Struct_core2_7AF80_1 *phi_v1;
@@ -1665,7 +1871,7 @@ bool func_80307390(s32 arg0, s32 arg1) {
 //     return -1;
 // }
 
-bool func_803077FC(f32 arg0[3], s32 *arg1, s32 *arg2, s32 arg3, s32 arg4) {
+bool func_803077FC(f32 arg0[3], s32 *arg1, s32 *arg2, s32 arg3, u32 arg4) {
     s32 sp3C[3];
 
     sp3C[0] = (s32) arg0[0];
@@ -1698,10 +1904,84 @@ bool func_803077FC(f32 arg0[3], s32 *arg1, s32 *arg2, s32 arg3, s32 arg4) {
     return FALSE;
 }
 
-
-Cube *func_80307948(s32 arg0[3]);
+#ifndef NONMATCHING
+Cube **func_80307948(s32 arg0[3]);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80307948.s")
+#else
+Cube **func_80307948(s32 arg0[3]) {
+    s32 sp34[3];
+    s32 sp24[3];
+    // ? *var_a2;
+    s32 *var_a1;
+    Cube *var_t2;
+    s32 *var_v0;
+    s32 temp_a0;
+    s32 temp_a1;
+    s32 temp_a1_2;
+    s32 temp_a2;
+    s32 temp_a2_2;
+    s32 temp_lo;
+    s32 temp_t0;
+    s32 temp_t0_2;
+    s32 temp_t5;
+    s32 temp_t6;
+    s32 temp_t6_2;
+    s32 temp_t7;
+    s32 temp_t7_2;
+    s32 temp_t8;
+    s32 temp_t9;
+    s32 temp_v0;
+    s32 temp_v1;
+    s32 var_a0;
+    s32 var_a0_2;
+    s32 var_a3;
+    s32 var_t1;
+    s32 var_v0_2;
+    s32 var_v1;
+    s32 i;
 
+    for(i = 0; i < 3; i++){
+        sp34[i] = ((arg0[i] >= 0) ? (arg0[i] / 1000) : ((arg0[i]/1000) - 1)) - D_80381FA0.min[i];
+    }
+
+    var_v1 = 0;
+    if(    (sp34[0] > 0) && (sp34[0] < (D_80381FA0.width[0] - 1)) 
+        && (sp34[1] > 0) && (sp34[1] < (D_80381FA0.width[1] - 1))
+        && (sp34[2] > 0) && (sp34[2] < (D_80381FA0.width[2] - 1))
+    ) {
+        for(sp24[0] = sp34[0] - 1; sp24[0] < sp34[0] + 2; sp24[0]++){
+            for(sp24[1] = sp34[1] - 1; sp24[1] < sp34[1] + 2; sp24[1]++){
+                for(sp24[2] = sp34[2] - 1; sp24[2] < sp34[2] + 2; sp24[2]++){
+                    temp_lo = sp24[0] + (sp24[1] * D_80381FA0.stride[0]) + (sp24[2] * D_80381FA0.stride[1]);
+                    if (var_t2[temp_lo].unk0_4) {
+                        D_80382038[var_v1++] = D_80381FA0.cube_list + temp_lo;
+                    }
+                }
+            }
+        }
+    } else {
+        for(sp24[0] = sp34[0] - 1; sp24[0] < sp34[0] + 2; sp24[0]++){
+            if ((sp24[0] >= 0) && (sp24[0] < D_80381FA0.width[0])) {
+                for(sp24[1] = sp34[1] - 1; sp24[1] < sp34[1] + 2; sp24[1]++){
+                    if ((sp24[1] >= 0) && (sp24[1] < D_80381FA0.width[1])) {
+                        for(sp24[2] = sp34[2] - 1; sp24[2] < sp34[2] + 2; sp24[2]++){
+                            if ((sp24[2] >= 0) && (sp24[2] < D_80381FA0.width[2])) {
+                                temp_lo = sp24[0] + (sp24[1] * D_80381FA0.stride[0]) + (sp24[2] * D_80381FA0.stride[1]);
+                                if (D_80381FA0.cube_list[temp_lo].unk0_4) {
+                                    D_80382038[var_v1] = D_80381FA0.cube_list + temp_lo;
+                                    var_v1++;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    D_80382038[var_v1] = NULL;
+    return D_80382038;
+}
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80307CA0.s")
 // void func_80307CA0(ActorMarker *marker) {
@@ -1758,7 +2038,65 @@ u32 func_80307E1C(void) {
     return phi_v1;
 }
 
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80307EA8.s")
+#else
+u32 func_80307EA8(s32 arg0, s32 arg1[3], s32 *arg2, s32 *arg3) {
+    s32 temp_lo;
+    s32 temp_t1;
+    s32 temp_t6;
+    s32 temp_t6_2;
+    u32 var_s2;
+    u32 var_s4;
+    NodeProp *temp_a0;
+    Cube *temp_v0;
+
+    var_s4 = 0;
+    if (arg0 == 0) {
+        D_803820A8[0] = (s32) D_80381FA0.min[0];
+        D_803820A8[1] = (s32) D_80381FA0.min[1];
+        D_803820A8[2] = (s32) D_80381FA0.min[2];
+        D_803820B4 = 0;
+        return 0;
+    }
+    while(var_s4 == 0){
+        var_s2 = D_803820B4;
+        if (D_80381FA0.max[0] < D_803820A8[0]) {
+            return -1U;
+        }
+
+        temp_v0 = cube_atIndices(D_803820A8);
+        if ((temp_v0 != NULL) && (temp_v0->prop1Cnt != 0)) {
+            *arg2 =   temp_v0->prop1Ptr[var_s2].unk10_19;
+            var_s4 =  temp_v0->prop1Ptr[var_s2].unk10_31;
+            *arg3 =   temp_v0->prop1Ptr[var_s2].unk6.bit0;
+            arg1[0] = temp_v0->prop1Ptr[var_s2].x;
+            arg1[1] = temp_v0->prop1Ptr[var_s2].y;
+            arg1[2] = temp_v0->prop1Ptr[var_s2].z;
+            var_s2++;
+        }
+        if ((temp_v0 == NULL) || (var_s2 >= temp_v0->prop1Cnt)) {
+            var_s2 = 0;
+            D_803820A8[2]++;
+            if (D_80381FA0.max[2] < D_803820A8[2]) {
+                D_803820A8[2] = D_80381FA0.min[2];
+                D_803820A8[1]++;
+                if (D_80381FA0.max[1] < D_803820A8[1]) {
+                    D_803820A8[1] = D_80381FA0.min[1];
+                    D_803820A8[0]++;
+                    if (D_80381FA0.max[0] < D_803820A8[0]) {
+                        D_803820B4 = 0;
+                        return (var_s4 != 0) ? var_s4 : -1;
+                    }
+                }
+            }
+        }
+        D_803820B4 = var_s2;
+    }
+
+    return var_s4;
+}
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_803080C8.s")
 
@@ -1929,11 +2267,11 @@ void func_803086B4(void) {
     };
     if (func_8023DB5C() & 1) {
         if (D_8036ABA0 != NULL) { 
-            D_8036ABA0 = defrag(D_8036ABA0);
+            D_8036ABA0 = (s16*) defrag(D_8036ABA0);
         }
 
         if (D_8036ABA4 != NULL) { 
-            D_8036ABA4 = defrag(D_8036ABA4);
+            D_8036ABA4 = (s16*) defrag(D_8036ABA4);
         }
 
         if (D_8036A9BC != NULL) {

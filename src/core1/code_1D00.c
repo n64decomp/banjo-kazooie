@@ -60,9 +60,6 @@ void func_802403F0(void);
 void amgrStartThread(void);
 
 
-
-extern s32 D_80000300;
-
 s32 D_80275770 = 0;
 s32 D_80275774 = 0;
 u8  D_80275778 = 0;
@@ -288,7 +285,7 @@ void func_8023FB1C(void){
     D_8027D000 = (u8 *) malloc(0x21000);
     bzero(D_8027D000, 0x21000);
     alHeapInit(&D_8027CFF0, D_8027D000, 0x21000);
-    if(D_80000300 != 1)
+    if(osTvType != OS_TV_NTSC)
         osViClock = 0x2e6025c;
     func_8023FBB8();
     func_80335220();

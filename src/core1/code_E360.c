@@ -66,7 +66,7 @@ void func_8024BE30(void){
 
     func_8024C428();
     osCreateViManager(0xfe);
-    if(D_80000300 != 1)
+    if(osTvType != OS_TV_NTSC)
         osViSetMode(&D_80275CD0); //PAL  
     else
         osViSetMode(&D_80275C80); //NTSC

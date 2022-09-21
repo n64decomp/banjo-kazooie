@@ -3,8 +3,6 @@
 #include "variables.h"
 
 
-extern s32 D_80000300;
-
 typedef struct {
     s32 unk0;
     s32 unk4;
@@ -75,7 +73,7 @@ s32 D_8027FC18;
 s32 D_8027FC1C;
 s32 D_8027FC20;
 s32 D_8027FC24;
-u8 pad_8027FC28[0x7F8];
+u8 pad_8027FC28[2040]; //stack for thread D_80280428;
 OSThread D_80280428;
 Struct_Core1_8C50_s * D_802805D8[20];
 volatile s32 D_80280628;
@@ -395,7 +393,7 @@ void func_8024730C(void){
 
     if(!D_802806D4){
         D_802806D4 = TRUE;
-        if(D_80000300 != TRUE){
+        if(osTvType != OS_TV_NTSC){
             osViSetMode(&D_802759A8);
         } else {
             osViSetMode(&D_802759F8);
@@ -413,6 +411,7 @@ void func_80247380(void){
     }
 }
 
+//resetproc
 void func_802473B4(void *arg0){
     OSMesg msg = NULL;
     do{
@@ -436,6 +435,7 @@ void func_802473B4(void *arg0){
     }while(1);
 }
 
+//resetThreadCreate
 void func_80247560(void){
     u64 *tmp_v0;
     osCreateMesgQueue(&D_8027FB60, &D_8027FB78, 20);
