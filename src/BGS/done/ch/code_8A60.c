@@ -18,15 +18,15 @@ ActorAnimationInfo D_80390B90[] = {
     {0xD5, 0.5f},
     {0xD5, 1e+8f}
 };
-ActorInfo D_80390BD8 = {0xF5, 0x14E, 0x3F5, 1, D_80390B90, func_8038EEA4, func_80326224, func_80325888, 0, 0, 0.0f, 0}; 
-ActorInfo D_80390BFC = {0xFD, 0x1FB, 0x3F5, 1, D_80390B90, func_8038F06C, func_80326224, func_80325888, 0, 0, 0.0f, 0};
+ActorInfo D_80390BD8 = {MARKER_F5_BGS_ELEVATED_WALKWAY_SWITCH, ACTOR_14E_BGS_ELEVATED_WALKWAY_SWITCH, ASSET_3F5_BGS_JIGGY_SWITCH, 1, D_80390B90, func_8038EEA4, func_80326224, func_80325888, 0, 0, 0.0f, 0}; 
+ActorInfo D_80390BFC = {MARKER_FD_BGS_MAZE_SWITCH,             ACTOR_1FB_BGS_MAZE_SWITCH,             ASSET_3F5_BGS_JIGGY_SWITCH, 1, D_80390B90, func_8038F06C, func_80326224, func_80325888, 0, 0, 0.0f, 0};
 
 void func_8038EE50(void){
     f32 sp24[3];
 
     if(func_80304E24(0x14d, sp24)){
         jiggySpawn(JIGGY_20_BGS_ELEVATED_WALKWAY, sp24);
-        func_802C3F04(func_802C4140, 0x4C, *((u32 *) &sp24[0]), *((u32 *) &sp24[1]), *((u32 *) &sp24[2]));
+        func_802C3F04(func_802C4140, ACTOR_4C_STEAM, *((u32 *) &sp24[0]), *((u32 *) &sp24[1]), *((u32 *) &sp24[2]));
     }
 }
 
@@ -35,7 +35,7 @@ void func_8038EEA4(Actor *this){
     if(mapSpecificFlags_get(7)){
         mapSpecificFlags_set(7, 0);
         if(!mapSpecificFlags_get(3) || (item_getCount(0) > 0)){
-            func_802D68F0(0x2D);
+            func_802D68F0(45);
         }
     }
     if(!mapSpecificFlags_get(5)){
@@ -55,7 +55,7 @@ void func_8038EEA4(Actor *this){
     } //L8038EFB4
     if( this->velocity_x != 0.0f && !mapSpecificFlags_get(3) && func_802BB270()){
         mapSpecificFlags_set(3,1);
-        func_802D68F0(0x2D);
+        func_802D68F0(45);
         item_set(ITEM_6_HOURGLASS,1);
     } //L8038EFB4
 }
@@ -65,7 +65,7 @@ void func_8038F018(void){
 
     if(func_80304E24(0x1fc, sp24)){
         jiggySpawn(JIGGY_25_BGS_MAZE, sp24);
-        func_802C3F04(func_802C4140, 0x4C, *((u32 *) &sp24[0]), *((u32 *) &sp24[1]), *((u32 *) &sp24[2]));
+        func_802C3F04(func_802C4140, ACTOR_4C_STEAM, *((u32 *) &sp24[0]), *((u32 *) &sp24[1]), *((u32 *) &sp24[2]));
     }
 }
 
@@ -74,7 +74,7 @@ void func_8038F06C(Actor *this){
     if(mapSpecificFlags_get(8)){
         mapSpecificFlags_set(8, 0);
         if(!mapSpecificFlags_get(0xC) || (item_getCount(0) > 0)){
-            func_802D68F0(0xA);
+            func_802D68F0(10);
         }
     }
     if(!mapSpecificFlags_get(9)){
@@ -94,7 +94,7 @@ void func_8038F06C(Actor *this){
     } //L8038EFB4
     if( this->velocity_x != 0.0f && !mapSpecificFlags_get(0xC) && func_802BB270()){
         mapSpecificFlags_set(0xC,1);
-        func_802D68F0(0xA);
+        func_802D68F0(10);
         item_set(ITEM_6_HOURGLASS,1);
     } //L8038EFB4
 }

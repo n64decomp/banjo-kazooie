@@ -35,7 +35,7 @@ extern ActorInfo D_80367130 = {
     0, NULL, 
     func_802CCC5C, NULL, func_802CCA7C, 
     0, 0, 1.0f, 0
-};
+}; 
 
 
 /* .code */

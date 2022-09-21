@@ -104,9 +104,7 @@ s32 pad_80382138;
 s32 D_8038213C;
 s32 D_80382140;
 s32 D_80382144;
-s32 D_80382148;
-s16 D_80382150[0x48];
-u32 D_803821E0[0x5B];
+
 
 
 /* .code */
@@ -598,15 +596,15 @@ void * func_80303800(f32 volume_p1[3], f32 volume_p2[3], f32 arg2[3], u32 arg3) 
 
 //Struct66s *
 #ifndef NONMATCHING
-void * func_80303960(f32 volume_p1[3], f32 volume_p2[3], f32 radius, f32 arg3[3], s32 arg4, u32 arg5);
+Struct66s * func_80303960(f32 volume_p1[3], f32 volume_p2[3], f32 radius, f32 arg3[3], s32 arg4, u32 flags);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80303960.s")
 #else
-void * func_80303960(f32 volume_p1[3], f32 volume_p2[3], f32 radius, f32 arg3[3], s32 arg4, u32 arg5) {
+Struct66s * func_80303960(f32 volume_p1[3], f32 volume_p2[3], f32 radius, f32 arg3[3], s32 arg4, u32 flags) {
     s32 cube_indx[3];
     s32 min[3];
     s32 max[3];
-    void *temp_v0;
-    void *var_s5;
+    Struct66s *temp_v0;
+    Struct66s *var_s5;
 
     var_s5 = NULL;
     cube_volumeToIndices(min, max, volume_p1, volume_p2, radius + D_80381FA0.unk4);
@@ -629,12 +627,12 @@ void * func_80303960(f32 volume_p1[3], f32 volume_p2[3], f32 radius, f32 arg3[3]
 #endif
 
 //Struct66s *
-void * func_80303AF0(f32 position[3], f32 radius, f32 arg2[3], u32 arg3) {
+Struct66s * func_80303AF0(f32 position[3], f32 radius, f32 arg2[3], u32 arg3) {
     s32 cube_indx[3];
     s32 min[3];
     s32 max[3];
-    void *temp_v0;
-    void *var_s5;
+    Struct66s *temp_v0;
+    Struct66s *var_s5;
 
     var_s5 = NULL;
     cube_volumeToIndices(min, max, position, position, radius + D_80381FA0.unk4);
@@ -712,31 +710,24 @@ void func_80303F6C(s32 indx, s32 arg1){
     D_80381FE8[indx] = arg1;
 }
 
-#ifndef NONMATCHING
-Prop *func_80303F7C(ActorMarker *arg0, f32 arg1, s32 arg2, s32 arg3);
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80303F7C.s")
-#else
 ActorProp *func_80303F7C(ActorMarker *arg0, f32 arg1, s32 arg2, s32 arg3) {
     s32 temp_v1;
     s32 phi_a0;
+    static s32 D_80382148;
 
-    // phi_a0 = D_80382148;
     if (arg3 == 0) {
         func_80303D78(arg0, arg1, arg2);
         D_80382148 = 0;
         return 0;
     }
     else{
-        phi_a0 = D_80382148;
-        temp_v1 = *(&D_803820B8 + phi_a0);
-        phi_a0++;
+        temp_v1 = D_803820B8[D_80382148];
         if (temp_v1 != 0) {
-            D_80382148 = phi_a0;
+            D_80382148++;
         }
         return temp_v1;
     }
 }
-#endif
 
 ActorProp *func_80303FE4(ActorMarker *arg0, f32 arg1, s32 arg2) {
     func_80303D78(arg0, arg1, arg2);
@@ -1040,10 +1031,10 @@ s32 func_80304DB8(NodeProp *arg0) {
     return arg0->unkC_22;
 }
 
-s32 func_80304DD0(s32 arg0, s32 *arg1) {
+s32 func_80304DD0(enum actor_e actor_id, s32 *arg1) {
     NodeProp *temp_v0;
 
-    temp_v0 = func_803049CC(arg0, 0);
+    temp_v0 = func_803049CC(actor_id, 0);
     if (temp_v0 != 0) {
         arg1[0] = (s32) temp_v0->x;
         arg1[1] = (s32) temp_v0->y;
@@ -1384,11 +1375,11 @@ void func_80305D38(void){
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80305D94.s")
 // void func_80305D94(void){
 //     Struct_core2_7AF80_1 * i;
-//     s32 j;
+//     u32 j;
 //     s32 k;
 //     if(D_8036A9BC != NULL){
-//         for(i = D_8036A9BC; i < D_8036A9BC + D_8036A9B8; i++){
-//             free(i->unk8);
+//         for(j = 0; j < D_8036A9B8; j++){
+//             free((D_8036A9BC + j)->unk8);
 //         }
 //         free(D_8036A9BC);
 //         D_8036A9BC = NULL;
@@ -1397,7 +1388,7 @@ void func_80305D38(void){
 
 //     if(D_8036A9C8 != NULL){
 //         for(j = 0; j < D_8036A9C4; j++){
-//             free(D_8036A9C8[j].unk8);
+//             free((D_8036A9C8 + j)->unk8);
 //         }
 //         free(D_8036A9C8);
 //         D_8036A9C8 = NULL;
@@ -1405,12 +1396,12 @@ void func_80305D38(void){
 //     }
 
 //     if(D_8036A9D4 != NULL){
-//         for(k = 0; k < (u32)D_8036A9D0; k++){
-//             free(D_8036A9D4[k].unk8);
+//         for(j = 0; j < D_8036A9D0; j++){
+//             free((D_8036A9D4 + j)->unk8);
 //         }
 //         free(D_8036A9D4);
-//         D_8036A9D4 = NULL;
 //         D_8036A9D0 = 0;
+//         D_8036A9D4 = NULL;
 //     }
 // }
 
@@ -2176,43 +2167,43 @@ bool func_803082D8(Cube *arg0, s32 *arg1, bool arg2, bool arg3) {
 //     goto loop_7;
 // }
 
-s32 func_803084F0(s32 arg0){
+enum actor_e func_803084F0(s32 arg0){
     s32 var_v1;
     switch (arg0) {
-        case 1: var_v1 = 1; break;
-        case 0x2: var_v1 = 2; break;
-        case 0x3: var_v1 = 0x15; break;
-        case 0x4: var_v1 = 0x76; break;
-        case 0x5: var_v1 = 0x77; break;
-        case 0x6: var_v1 = 0x78; break;
-        case 0x7: var_v1 = 0x79; break;
-        case 0x8: var_v1 = 0x7A; break;
-        case 0x9: var_v1 = 0x7B; break;
-        case 0xA: var_v1 = 0x7C; break;
-        case 0xB: var_v1 = 0x7D; break;
-        case 0xC: var_v1 = 0x7E; break;
-        case 0xD: var_v1 = 0x7F; break;
-        case 0xE: var_v1 = 0x75; break;
-        case 0xF: var_v1 = 0x74; break;
-        case 0x10: var_v1 = 0x73; break;
-        case 0x11: var_v1 = 0x72; break;
-        case 0x12: var_v1 = 0x103; break;
-        case 0x13: var_v1 = 0x104; break;
-        case 0x14: var_v1 = 0x105; break;
-        case 0x15: var_v1 = 0x106; break; 
-        case 0x16: var_v1 = 0x107; break;
-        case 0x17: var_v1 = 0x158; break;
-        case 0x18: var_v1 = 0x15A; break;
-        case 0x19: var_v1 = 0x15C; break; 
-        case 0x5B: var_v1 = 0x1CD; break;
-        case 0x5C: var_v1 = 0x1CE; break;
-        case 0x5D: var_v1 = 0x1CF; break;
-        case 0x5E: var_v1 = 0x1D0; break;
-        case 0x5F: var_v1 = 0x1D1; break;
-        case 0x60: var_v1 = 0x1D2; break;
-        case 0x61: var_v1 = 0x1D3; break;
-        case 0x62: var_v1 = 0x1D4; break;
-        case 0x65: var_v1 = 0x379; break;
+        case 1: var_v1 = ACTOR_1_UNKNOWN; break;
+        case 0x2: var_v1 = ACTOR_2_UNKNOWN; break;
+        case 0x3: var_v1 = ACTOR_15_UNKNOWN; break;
+        case 0x4: var_v1 = ACTOR_76_UNKNOWN; break;
+        case 0x5: var_v1 = ACTOR_77_UNKNOWN; break;
+        case 0x6: var_v1 = ACTOR_78_UNKNOWN; break;
+        case 0x7: var_v1 = ACTOR_79_UNKNOWN; break;
+        case 0x8: var_v1 = ACTOR_7A_UNKNOWN; break;
+        case 0x9: var_v1 = ACTOR_7B_UNKNOWN; break;
+        case 0xA: var_v1 = ACTOR_7C_UNKNOWN; break;
+        case 0xB: var_v1 = ACTOR_7D_UNKNOWN; break;
+        case 0xC: var_v1 = ACTOR_7E_UNKNOWN; break;
+        case 0xD: var_v1 = ACTOR_7F_UNKNOWN; break;
+        case 0xE: var_v1 = ACTOR_75_UNKNOWN; break;
+        case 0xF: var_v1 = ACTOR_74_UNKNOWN; break;
+        case 0x10: var_v1 = ACTOR_73_UNKNOWN; break;
+        case 0x11: var_v1 = ACTOR_72_UNKNOWN; break;
+        case 0x12: var_v1 = ACTOR_103_UNKNOWN; break;
+        case 0x13: var_v1 = ACTOR_104_UNKNOWN; break;
+        case 0x14: var_v1 = ACTOR_105_UNKNOWN; break;
+        case 0x15: var_v1 = ACTOR_106_UNKNOWN; break; 
+        case 0x16: var_v1 = ACTOR_107_UNKNOWN; break;
+        case 0x17: var_v1 = ACTOR_158_UNKNOWN; break;
+        case 0x18: var_v1 = ACTOR_15A_UNKNOWN; break;
+        case 0x19: var_v1 = ACTOR_15C_UNKNOWN; break; 
+        case 0x5B: var_v1 = ACTOR_1CD_UNKNOWN; break;
+        case 0x5C: var_v1 = ACTOR_1CE_UNKNOWN; break;
+        case 0x5D: var_v1 = ACTOR_1CF_UNKNOWN; break;
+        case 0x5E: var_v1 = ACTOR_1D0_UNKNOWN; break;
+        case 0x5F: var_v1 = ACTOR_1D1_UNKNOWN; break;
+        case 0x60: var_v1 = ACTOR_1D2_UNKNOWN; break;
+        case 0x61: var_v1 = ACTOR_1D3_UNKNOWN; break;
+        case 0x62: var_v1 = ACTOR_1D4_UNKNOWN; break;
+        case 0x65: var_v1 = ACTOR_379_UNKNOWN; break;
         default: case 0: var_v1 = 0;
 
     }
@@ -2305,6 +2296,10 @@ bool func_803088C8(s32 arg0) {
     return (D_8036ABAC[i] == -1) ? FALSE : TRUE;
 }
 
+/* .bss */ //must be defined AFTER func_80303F7C for local static alignment
+s16 D_80382150[0x48];
+
+/* .code */
 void func_8030895C(s32 arg0){
     D_80382150[D_8036ABD4] = arg0;
     D_8036ABD4++;
@@ -2391,6 +2386,10 @@ void func_80308D2C(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     func_8032F464(0);
 }
 
+/* .bss */
+u32 D_803821E0[0x5B];
+
+/* .code */
 void func_80308EC8(void){
     s32 i;
     for(i = 0; i < 0x5B; i++){

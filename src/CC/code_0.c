@@ -14,27 +14,10 @@ void func_803864D4(Actor *this);
 
 /* .data */
 ActorInfo D_80389AA0 = {
-    0x4B, 0x43, 0x890, 0, NULL, 
+    MARKER_4B_CC_SCREW, ACTOR_43_CLACKER_SCREW, ASSET_890_MODEL_SCREW, 0, NULL, 
     func_803864D4, func_80326224 , func_80325888,  
     0, 0, 0.0f, 0
 };
-
-/* .rodata */
-extern f32 D_80389EB0;
-extern f32 D_80389EB4;
-extern f64 D_80389EB8;
-extern f64 D_80389EC0;
-extern f64 D_80389EC8;
-extern f64 D_80389ED0;
-extern f64 D_80389ED8;
-extern f64 D_80389EE0;
-extern f64 D_80389EE8;
-extern f64 D_80389EF0;
-// 0000 3AC0: 45B1F800 3D4CCCCD 3FE3333333333333
-// 0000 3AD0: 4056800000000000 4066800000000000
-// 0000 3AE0: 400921FB54524550 3FB999999999999A
-// 0000 3AF0: 4056800000000000 4066800000000000
-// 0000 3B00: 400921FB54524550 0000000000000000
 
 /* .code */
 void func_803863F0(Actor *this, s32 next_state){
@@ -59,9 +42,6 @@ void func_803863F0(Actor *this, s32 next_state){
 
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/CC/code_0/func_803864D4.s")
-#else
 void func_803864D4(Actor *this){
     ActorMarker *marker = this->marker;//sp5C;
     ActorLocal_CC_0 * local = (ActorLocal_CC_0 *)this->local;
@@ -100,43 +80,44 @@ void func_803864D4(Actor *this){
         func_803863F0(this, 4);
     }
     
-    if(this->state == 2){
-        if(1.0 <= local->unk8)
+    if((this->state == 2) && (1.0 <= local->unk8)){
             func_803863F0(this, 3);
     }//L803866B4
 
-    if(this->state == 4){
-        if(1.0 <= local->unk8)
+    if((this->state == 4) && (1.0 <= local->unk8)){
             func_803863F0(this, 1);
     }//L80386714
 
     if(this->state == 1){
-        TUPLE_COPY(this->position, sp4C);
+        this->position[0] = sp4C[0];
+        this->position[1] = sp4C[1];
+        this->position[2] = sp4C[2];
     }
     else if(this->state == 2)
     {//L80386734
-        sp2C = local->unk8*(f64)1;
+        sp2C = local->unk8/1.0;
         if(local->unkC && 0.6 < sp2C){
-            FUNC_8030E8B4(SFX_91_METALLIC_SOUND, 1.0f, 32000, this->position, 100, 6000);
+            FUNC_8030E8B4(SFX_91_METALLIC_SOUND, 1.0, 32000, this->position, 100, 6000);
             local->unkC = 0;
         }//L80386798
-        sin_result = sinf(((sp2C*90.0)/180.0)*M_PI);
-        this->position_x = (sp40[0] - sp4C[0])*sin_result + sp4C[0];
-        this->position_y = (sp40[1] - sp4C[1])*sin_result + sp4C[1];
-        this->position_z = (sp40[2] - sp4C[2])*sin_result + sp4C[2];
+        sin_result = sinf(((sp2C*90.0)/180.0)*BAD_PI);
+        this->position_x = sp4C[0] + (sp40[0] - sp4C[0])*sin_result;
+        this->position_y = sp4C[1] + (sp40[1] - sp4C[1])*sin_result;
+        this->position_z = sp4C[2] + (sp40[2] - sp4C[2])*sin_result;
     }//L80386818
     else if(this->state == 3){
-        TUPLE_COPY(this->position, sp40);
+        this->position[0] = sp40[0];
+        this->position[1] = sp40[1];
+        this->position[2] = sp40[2];
     }
     else if(this->state == 4){
-        sp2C = 1 - local->unk8*(f64)1;
+        sp2C = 1 - local->unk8/1.0;
         if(local->unkC && sp2C < 0.1){
             local->unkC = 0;
         }//L8038688C
-        sin_result = sinf(((sp2C*90.0)/180.0)*M_PI);
-        this->position_x = (sp40[0] - sp4C[0])*sin_result + sp4C[0];
-        this->position_y = (sp40[1] - sp4C[1])*sin_result + sp4C[1];
-        this->position_z = (sp40[2] - sp4C[2])*sin_result + sp4C[2];
+        sin_result = sinf(((sp2C*90.0)/180.0)*BAD_PI);
+        this->position_x = sp4C[0] + (sp40[0] - sp4C[0])*sin_result;
+        this->position_y = sp4C[1] + (sp40[1] - sp4C[1])*sin_result;
+        this->position_z = sp4C[2] + (sp40[2] - sp4C[2])*sin_result;
     }//L80386904
 }
-#endif

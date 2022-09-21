@@ -53,7 +53,7 @@ segments:
       - [0x00003810, .data, code_1F70]
       - [0x00003840, bin, ch/sawblade]
       - [0x00003A50, .data, code_3400]
-      - [0x00003AC0, bin, rodata_0] # - [0x00003AC0, .rodata, code_0]
+      - [0x00003AC0, .rodata, code_0]
       - [0x00003B10, .rodata, code_530]
       - [0x00003B20, .rodata, ch/tooth]
       - [0x00003B30, .rodata, code_1B90]

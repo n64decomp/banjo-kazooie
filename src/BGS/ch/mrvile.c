@@ -29,7 +29,7 @@ typedef struct chmrvile_s{
 } ActorLocal_MrVile;
 
 /* .data */
-ActorInfo D_80390A70 = {0xC8, 0x13A, 0x373, 0x00, NULL,
+ActorInfo D_80390A70 = {MARKER_C8_MR_VILE, ACTOR_13A_MR_VILE, ASSET_373_MODEL_MR_VILE, 0x00, NULL,
     chvile_update, NULL, chvile_draw,
     0, 0, 0.0f, 0
 };

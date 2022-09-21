@@ -4,7 +4,7 @@
 
 typedef struct{
     s32 unk0;
-    ActorMarker *unk4; //tiptup_marker
+    ActorMarker *tiptup_marker; //tiptup_marker
     f32 unk8;
     s32 unkC;
 }ActorLocal_BGS_3030;
@@ -13,12 +13,12 @@ void func_80389668(Actor *this);
 Actor *func_80389610(ActorMarker *marker, Gfx **, Mtx **, Vtx**);
 
 /* .data */
-ActorInfo D_80390880 = { 0x019B, 0x27B, 0x3F9, 0, NULL, func_80389668, NULL, func_80389610, 0, 0, 1.5f, 0};
-ActorInfo D_803908A4 = { 0x019C, 0x27C, 0x3F9, 0, NULL, func_80389668, NULL, func_80389610, 0, 0, 1.5f, 0};
-ActorInfo D_803908C8 = { 0x019D, 0x27D, 0x3F9, 0, NULL, func_80389668, NULL, func_80389610, 0, 0, 1.5f, 0};
-ActorInfo D_803908EC = { 0x019E, 0x27E, 0x3F9, 0, NULL, func_80389668, NULL, func_80389610, 0, 0, 1.5f, 0};
-ActorInfo D_80390910 = { 0x019F, 0x27F, 0x3F9, 0, NULL, func_80389668, NULL, func_80389610, 0, 0, 1.5f, 0};
-ActorInfo D_80390934 = { 0x01A0, 0x280, 0x3F9, 0, NULL, func_80389668, NULL, func_80389610, 0, 0, 1.5f, 0};
+ActorInfo D_80390880 = { MARKER_19B_CHOIR_TURTLE_YELLOW, ACTOR_27B_CHOIR_TURTLE_YELLOW, ASSET_3F9_MODEL_CHOIR_TURTLE, 0, NULL, func_80389668, NULL, func_80389610, 0, 0, 1.5f, 0};
+ActorInfo D_803908A4 = { MARKER_19C_CHOIR_TURTLE_CYAN,   ACTOR_27C_CHOIR_TURTLE_CYAN,   ASSET_3F9_MODEL_CHOIR_TURTLE, 0, NULL, func_80389668, NULL, func_80389610, 0, 0, 1.5f, 0};
+ActorInfo D_803908C8 = { MARKER_19D_CHOIR_TURTLE_BLUE,   ACTOR_27D_CHOIR_TURTLE_BLUE,   ASSET_3F9_MODEL_CHOIR_TURTLE, 0, NULL, func_80389668, NULL, func_80389610, 0, 0, 1.5f, 0};
+ActorInfo D_803908EC = { MARKER_19E_CHOIR_TURTLE_RED,    ACTOR_27E_CHOIR_TURTLE_RED,    ASSET_3F9_MODEL_CHOIR_TURTLE, 0, NULL, func_80389668, NULL, func_80389610, 0, 0, 1.5f, 0};
+ActorInfo D_80390910 = { MARKER_19F_CHOIR_TURTLE_PINK,   ACTOR_27F_CHOIR_TURTLE_PINK,   ASSET_3F9_MODEL_CHOIR_TURTLE, 0, NULL, func_80389668, NULL, func_80389610, 0, 0, 1.5f, 0};
+ActorInfo D_80390934 = { MARKER_1A0_CHOIR_TURTLE_PURPLE, ACTOR_280_CHOIR_TURTLE_PURPLE, ASSET_3F9_MODEL_CHOIR_TURTLE, 0, NULL, func_80389668, NULL, func_80389610, 0, 0, 1.5f, 0};
 
 /* .code */
 void func_80389420(ActorMarker *marker) {
@@ -33,19 +33,19 @@ void func_80389488(Actor *this, s32 next_state) {
 
     local = (ActorLocal_BGS_3030 *)&this->local;
     if (next_state == 1) {
-        func_80335924(this->unk148, 0x12D, 0.2f, randf2(2.0f, 2.5f));
+        func_80335924(this->unk148, ASSET_12D_ANIM_CHOIR_TURTLE_IDLE, 0.2f, randf2(2.0f, 2.5f));
         func_80335A74(this->unk148, randf2(0.0f, 1.0f));
     }
     if (next_state == 2) {
-        func_80335924(this->unk148, 0x12E, 0.1f, 1.6666666f);
+        func_80335924(this->unk148, ASSET_12E_ANIM_CHOIR_TURTLE_SING, 0.1f, 1.6666666f);
         timed_playSfx(0.8333333, SFX_86_TIPTUP_CHORUS_AH, local->unk8, 0x7FFF);
     }
     if (next_state == 3) {
         func_8030E6A4(SFX_86_TIPTUP_CHORUS_AH, local->unk8, 0x7FFF);
-        func_80335924(this->unk148, 0x12F, 0.1f, 1.75f);
+        func_80335924(this->unk148, ASSET_12F_ANIM_CHOIR_TURTLE_HURT, 0.1f, 1.75f);
         func_80335800(this->unk148, 0.9f, func_80389420, (s32)this->marker);
-        if (local->unk4 != NULL) {
-            func_80388E94(local->unk4, local->unk0);
+        if (local->tiptup_marker != NULL) {
+            func_80388E94(local->tiptup_marker, local->unk0);
         }
     }
     this->state = next_state;
@@ -68,7 +68,7 @@ Actor *func_80389610(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
 void func_80389668(Actor *this) {
     ActorLocal_BGS_3030 *local;
     f32 sp30;
-    Actor *temp_v0_2;
+    Actor *tiptup;
 
     local = (ActorLocal_BGS_3030 *)&this->local;
     if (!this->unk16C_4) {
@@ -77,7 +77,7 @@ void func_80389668(Actor *this) {
         marker_setCollisionScripts(this->marker, NULL, func_803895D0, NULL);
         local->unk0 = 1;
         local->unkC = 0;
-        local->unk4 = NULL;
+        local->tiptup_marker = NULL;
         local->unk8 = 1.0f;
         func_80389488(this, 1);
         if (jiggyscore_isSpawned(JIGGY_27_BGS_TIPTUP) && !func_803203FC(2) && !func_803203FC(1)) {
@@ -88,14 +88,14 @@ void func_80389668(Actor *this) {
 
     local->unkC++;
     if (local->unkC == 2) {
-        temp_v0_2 = func_80326D68(this->position, 0x27A, -1, &sp30);
-        local->unk4 = (temp_v0_2 != NULL) ? temp_v0_2->marker : NULL;
-        if (local->unk4 != NULL) {
-            func_80388FFC(local->unk4, &local->unk0, &local->unk8);
+        tiptup = func_80326D68(this->position, ACTOR_27A_TIPTUP, -1, &sp30);
+        local->tiptup_marker = (tiptup != NULL) ? tiptup->marker : NULL;
+        if (local->tiptup_marker != NULL) {
+            func_80388FFC(local->tiptup_marker, &local->unk0, &local->unk8);
         }
     }
     if (this->state == 1) {
-        if (local->unk4 != NULL && (func_80388E70(local->unk4) == local->unk0)) {
+        if (local->tiptup_marker != NULL && (func_80388E70(local->tiptup_marker) == local->unk0)) {
             func_80389488(this, 2);
         }
     }

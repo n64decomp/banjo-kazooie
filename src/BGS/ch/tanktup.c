@@ -14,6 +14,13 @@ extern void func_802C3E10(void(*arg0)(void), ActorMarker *, s32, s32);
 void func_8038F6A4(Actor *);
 
 /* .data */
+enum chtanktup_leg_e {
+    TANKTUP_LEG_FRONT_LEFT,
+    TANKTUP_LEG_BACK_LEFT,
+    TANKTUP_LEG_FRONT_RIGHT,
+    TANKTUP_LEG_BACK_RIGHT,
+};
+
 ActorAnimationInfo D_80390C20[] = {
     {0, 0.0f},
     {0x101, 7.5f},
@@ -21,16 +28,16 @@ ActorAnimationInfo D_80390C20[] = {
     {0x107, 1.75f}
 };
 
-ActorInfo D_80390C40 = {0x6C, 0xE8, 0x3EE, 0x01, D_80390C20,
+ActorInfo D_80390C40 = {MARKER_6C_TANKTUP, ACTOR_E8_TANKTUP, ASSET_3EE_TANKTUP, 0x01, D_80390C20,
     func_8038F6A4, func_80326224, func_80325888,
     0, 0x80, 0.0f, 0
 };
 
 /* .code */
-void func_8038F470(ActorMarker *this, s32 arg1, s32 arg2){
+void func_8038F470(ActorMarker *this, s32 arg1, enum chtanktup_leg_e leg_id){
     Actor* thisActor;
     f32 pad;
-    Actor* sp24;
+    Actor* leg;
     f32 sp18[3];
 
     thisActor = marker_getActor(this);
@@ -39,14 +46,14 @@ void func_8038F470(ActorMarker *this, s32 arg1, s32 arg2){
     sp18[2] = thisActor->position_z;
     sp18[1] += 50.0f;
 
-    sp24 = func_8032813C(arg2 + 0xe9, sp18, (s32)thisActor->yaw);
-    func_80328B8C(sp24, arg1 + 1, 0, -1);
-    sp24->unk10_12 = arg2;
+    leg = func_8032813C(leg_id + ACTOR_E9_TANKTUP_LEG_FL, sp18, (s32)thisActor->yaw);
+    func_80328B8C(leg, arg1 + 1, 0, -1);
+    leg->unk10_12 = leg_id;
 }
 
 void func_8038F51C(Actor *this){
     Actor * spawnPtr;
-    spawnPtr = func_80326D68(this->position, 0xe8, -1, 0);
+    spawnPtr = func_80326D68(this->position, ACTOR_E8_TANKTUP, -1, 0);
     spawnPtr->tanktup.unk0[this->unk10_12] = 1;
     spawnPtr->tanktup.unk10 = 1;
 }
@@ -58,7 +65,7 @@ s32 func_8038F570(s16 *arg0){
     pos[0] = (f32)arg0[0];
     pos[1] = (f32)arg0[1];
     pos[2] = (f32)arg0[2];
-    spawnPtr = func_80326D68(pos, 0xe8, -1, 0);
+    spawnPtr = func_80326D68(pos, ACTOR_E8_TANKTUP, -1, 0);
     return spawnPtr->state == 3;
 
 
@@ -99,7 +106,7 @@ void func_8038F6A4(Actor *this) {
 
 
     if(!this->initialized){
-        temp_v0 = func_80304C38(0x32B, this);
+        temp_v0 = func_80304C38(ACTOR_32B_UNKNOWN, this);
         if (temp_v0 == NULL) {
             local->unk18[0] = 3672.0f;
             local->unk18[1] = 100.0f;

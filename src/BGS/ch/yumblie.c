@@ -28,7 +28,7 @@ void chyumblie_update(Actor *);
 Actor *chyumblie_draw(ActorMarker *this, Gfx **gfx, Mtx** mtx, Vtx **vtx);
 
 /* .data */
-ActorInfo D_80390A40 = {0xC7, actor_yumblie, 0x3F6, 0x00, NULL,
+ActorInfo D_80390A40 = {MARKER_C7_YUMBLIE, ACTOR_139_YUMBLIE, ASSET_3F6_MODEL_YUMBLIE, 0x00, NULL,
     chyumblie_update, NULL, chyumblie_draw,
     0, 0, 0.0f, 0
 };
@@ -157,7 +157,7 @@ void chyumblie_update(Actor *this){
     }
 
     if(s0->game_marker == NULL){
-        s0->game_marker = func_80326D68(this->position, 0x138, -1, &sp48)->marker;
+        s0->game_marker = func_80326D68(this->position, ACTOR_138_VILE_GAME_CTRL, -1, &sp48)->marker;
     }
     sp50 = func_80335684(this->unk148);
     if(this->state == YUMBLIE_STATE_1_UNDER_GROUND){

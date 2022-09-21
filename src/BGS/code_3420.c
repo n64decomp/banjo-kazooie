@@ -36,7 +36,7 @@ void func_8038A068(Actor *this, s32 next_state);
 void chvilegame_update(Actor *this);
 
 /* .data */
-ActorInfo D_80390960 = {0xC6, 0x138, 0, 0, NULL, chvilegame_update, NULL, func_80325340, 0, 0, 0.0f, 0};
+ActorInfo D_80390960 = {MARKER_C6_VILE_GAME_CTRL, ACTOR_138_VILE_GAME_CTRL, 0, 0, NULL, chvilegame_update, NULL, func_80325340, 0, 0, 0.0f, 0};
 enum asset_e D_80390984[] = {    0, 0xC66, 0xC68, 0xC6A, 0xC92, 0xC93, 0xC94,    0};
 enum asset_e D_803909A4[] = {    0, 0xC67, 0xC69,     0, 0xC95, 0xC96, 0xC97};
 enum asset_e D_803909C0[] = {    0, 0xC6E, 0xC6F,     0, 0xC95, 0xC96, 0xC97};

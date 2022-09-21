@@ -23,7 +23,7 @@ void func_80389080(Actor *this);
 Actor *func_80325888(ActorMarker *, Gfx **, Mtx **, Vtx **);
 
 ActorInfo D_80390830 = {
-    0x19A, 0x27A, 0x3F8,
+    MARKER_19A_TIPTUP, ACTOR_27A_TIPTUP, ASSET_3F8_MODEL_TIPTUP,
     0, NULL,
     func_80389080, NULL, func_80325888,
     0, 0, 2.5f, 0
