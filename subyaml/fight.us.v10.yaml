@@ -54,8 +54,8 @@ segments:
       - [0xBBC0, .data, code_9D40]
       - [0xBCA0, .data, code_AED0]
       - [0xBCD0, .rodata, code_180]
-      - [0xBE90, bin, fight_data_BE90]
-      - [0xBF20, bin, fight_data_BF20]
+      # - [0xBE90, bin, fight_data_BE90]
+      # - [0xBF20, bin, fight_data_BF20]
       - [0xC090, .rodata, code_5ED0]
       - [0xC140, .rodata, code_6E90]
       - [0xC150, .rodata, code_7580]
@@ -71,6 +71,7 @@ segments:
     start: 0xC350
     vram:  0x80392740
     subsegments:
+      - [0x0000C350, .bss, code_0]
       - [0x0000C350, .bss, code_180]
       - [0x0000C350, .bss, code_87A0]
       - [0x0000C350, .bss, code_9D40]

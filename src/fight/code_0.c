@@ -3,6 +3,8 @@
 #include "variables.h"
 
 #include "prop.h"
+
+
 extern ActorInfo D_80366F68;
 
 extern ActorInfo D_80391500;
@@ -19,6 +21,9 @@ extern ActorInfo D_80391B24;
 extern ActorInfo D_80391DC0;
 extern ActorInfo D_80392018;
 extern ActorInfo D_80392090;
+
+/* .bss */
+u8 pad_80392740[0x10]; //for calcing checksum?
 
 void func_803863F0(void)
 {

@@ -221,27 +221,25 @@ extern f32 D_80392478;
 
 
 /* .bss */
-// u8 pad_80392740[0x10];
-// f32 D_80392750;
-extern f32 D_80392758[3];
-extern f32 D_80392768[3];
-extern f32 D_80392778[3];
-extern f32 D_80392788[3];
-extern f32 D_80392798[3];
-extern ActorMarker *D_803927A4;
-extern ActorMarker *D_803927A8;
-extern ActorMarker *D_803927B0[4];
-extern u8 D_803927C4;
-extern u8 D_803927C5;
-extern u8 D_803927C6;
-extern u8 D_803927C7;
-extern u8 D_803927C8;
-extern u8 D_803927C9;
-extern f32 D_803927D0[3][3];
-extern f32 D_803928B8[3];
-extern f32 D_803927C0;
-extern s32 D_803928C4;
-extern f32 D_803928C8[3];
+// static f32 D_80392750;
+f32 D_80392758[3];
+f32 D_80392768[3];
+f32 D_80392778[3];
+f32 D_80392788[3];
+f32 D_80392798[3];
+ActorMarker *D_803927A4;
+ActorMarker *D_803927A8;
+ActorMarker *D_803927B0[4];
+f32 D_803927C0;
+u8 D_803927C4;
+u8 D_803927C5;
+u8 D_803927C6;
+u8 D_803927C7;
+u8 D_803927C8;
+u8 D_803927C9;
+f32 D_803927D0[0x12][3];
+f32 D_803928B8[3];
+// static s32 D_803928C4;
 
 
 /* .code */
@@ -1291,13 +1289,11 @@ void func_8038938C(ActorMarker *marker) {
 }
 
 void func_80389720(s32 arg0) {
-    static u8 pad[0x10];
     static f32 D_80392750;
     s32 pad24;
     s32 pad20;
     Actor *sp1C;
     ActorLocal_fight_180 *local;
-    // f32 tmp_a2;
 
     local = (ActorLocal_fight_180 *)&func_80326EEC(0x38B)->local;
 
@@ -1320,8 +1316,11 @@ void func_80389720(s32 arg0) {
         break;
     case 5:
         //closest non-static match
+        //{
+        // f32 tmp_a2;
         // D_80392750 = tmp_a2 = ((local->unk7) ? 0.0f : 180.0f);
         // sp1C = func_8032813C(0x3A9, D_80391798, (s32)tmp_a2);
+        //}
         D_80392750 = ((local->unk7) ? 0.0f : 180.0f);
         sp1C = func_8032813C(0x3A9, D_80391798, (s32)D_80392750);
         break;
@@ -1498,16 +1497,12 @@ void func_80389F54(void) {
     D_803927C4 = (u8)0;
 }
 
-#ifndef NONMATCHING //matches if .bss defined
-#pragma GLOBAL_ASM("asm/nonmatchings/fight/code_180/func_80389F7C.s")
-#else
-
 void func_80389F7C(Actor *this, s32 arg1) {
+    static s32 D_803928C4;
     ActorLocal_fight_180 *local;
     f32 sp48;
     f32 sp3C[3];
     s32 i;
-    static s32 D_803928C4;
     // static u8 pad[0x180];
 
     local = (ActorLocal_fight_180 *)&this->local;
@@ -1604,7 +1599,6 @@ void func_80389F7C(Actor *this, s32 arg1) {
         break;
     }
 }
-#endif
 
 ActorMarker *func_8038A4E8(Actor *this, f32 arg1) {
     Actor *actor;
@@ -1627,11 +1621,8 @@ ActorMarker *func_8038A4E8(Actor *this, f32 arg1) {
     return NULL;
 }
 
-#ifndef NONMATCHING //matches if .rodata defined
-void func_8038A5F4(ActorMarker *marker);
-#pragma GLOBAL_ASM("asm/nonmatchings/fight/code_180/func_8038A5F4.s")
-#else
 void func_8038A5F4(ActorMarker *marker) {
+
     Actor *this;
     ActorLocal_fight_180 *local;
     f32 sp74;
@@ -1706,6 +1697,7 @@ void func_8038A5F4(ActorMarker *marker) {
             func_80386BEC(this, 3.0f);
             if (this->unk60 > 0.0) {
                 this->unk60 -= sp74;
+                break;
             }
             if (func_80386BEC(this, 3.0f)) {
                 func_80389F7C(this, 0x1E);
@@ -1768,7 +1760,6 @@ void func_8038A5F4(ActorMarker *marker) {
             break;
     }
 }
-#endif
 
 void func_80328B8C(Actor *, s32, f32, s32);
 
@@ -1776,10 +1767,6 @@ void func_8038AC50(ActorMarker *arg0) {
     func_80328B8C(marker_getActor(arg0), 0x24, 0.0001f, 1);
 }
 
-#ifndef NONMATCHING //matches but requires .rodata
-void func_8038AC88(Actor *this, s32 arg1);
-#pragma GLOBAL_ASM("asm/nonmatchings/fight/code_180/func_8038AC88.s")
-#else
 void func_8038AC88(Actor *this, s32 arg1) {
     ActorLocal_fight_180 *local;
     s32 sp28;
@@ -1855,7 +1842,6 @@ void func_8038AC88(Actor *this, s32 arg1) {
             break;
     }
 }
-#endif
 
 void func_8038AF84(ActorMarker *arg0) {
     func_8038AC88(marker_getActor(arg0), 0x29);
@@ -1865,11 +1851,8 @@ void func_8038AFB0(void) {
     func_802E4078(MAP_87_CS_SPIRAL_MOUNTAIN_5, 0, 1);
 }
 
-#ifndef NONMATCHING //matches but requires .rodata
-void func_8038AFD8(ActorMarker *marker);
-#pragma GLOBAL_ASM("asm/nonmatchings/fight/code_180/func_8038AFD8.s")
-#else
 void func_8038AFD8(ActorMarker *marker) {
+    static f32 D_803928C8[3];
     Actor *this;
     ActorLocal_fight_180 *local;
     f32 sp3C;
@@ -2023,15 +2006,13 @@ void func_8038AFD8(ActorMarker *marker) {
                 FUNC_8030E624(SFX_164_EH, 1.0f, 25000);
             }
             if (actor_animationIsAt(this, 0.4f)) {
-                // func_8030E624(0x89786964U);
                 FUNC_8030E624(SFX_164_EH, 1.075f, 25000);
             }
             if (actor_animationIsAt(this, 0.6f)) {
                 FUNC_8030E624(SFX_164_EH, 1.1f, 25000);
             }
             if (actor_animationIsAt(this, 0.7f)) {
-                // func_8030E624(0x93186964U);
-                FUNC_8030E624(SFX_164_EH, 1.5f, 25000);
+                FUNC_8030E624(SFX_164_EH, 1.15f, 25000);
             }
             if (actor_animationIsAt(this, 0.81f)) {
                 FUNC_8030E624(SFX_130_GRUNTY_ECHOING_CRY, 1.0f, 32000);
@@ -2055,7 +2036,6 @@ void func_8038AFD8(ActorMarker *marker) {
             break;
     }
 }
-#endif
 
 void func_8038B730(ActorMarker *marker, enum asset_e text_id, s32 arg2) {
     Actor *sp1C;
@@ -2083,10 +2063,6 @@ void func_8038B780(ActorMarker *marker) {
 
 void func_8038B82C(ActorMarker *marker) { return; }
 
-#ifndef NONMATCHING //matches but requires .rodata
-void func_8038B834(ActorMarker *, ActorMarker *);
-#pragma GLOBAL_ASM("asm/nonmatchings/fight/code_180/func_8038B834.s")
-#else
 bool func_8038B834(ActorMarker *marker, ActorMarker * arg1) {
     Actor *this;
     ActorLocal_fight_180 *local;
@@ -2123,7 +2099,6 @@ bool func_8038B834(ActorMarker *marker, ActorMarker * arg1) {
     }
     return TRUE;
 }
-#endif
 
 void func_8038B9AC(ActorMarker *marker, ActorMarker *other_marker) {
     Actor *this;
@@ -2183,7 +2158,7 @@ void func_8038BB8C(ActorMarker *marker, ActorMarker *other_marker) {
     this = marker_getActor(marker);
     local = (ActorLocal_fight_180 *)&this->local;
     if (local->unk0 == 1) {
-        func_8030E878(SFX_EA_GRUNTY_LAUGH_1, randf2(D_80392440, D_80392444), 32000, this->position, D_80392448, D_8039244C);
+        func_8030E878(SFX_EA_GRUNTY_LAUGH_1, randf2(0.95, 1.05), 32000, this->position, 5000.0f, 12000.0f);
         if (local->unk10 == 0) {
             if (func_80311480(randi2(0, 5) + 0x10ED, 0, NULL, NULL, NULL, NULL)) {
                 local->unk10++;
@@ -2206,9 +2181,6 @@ void func_8038BCB8(ActorMarker *marker) {
     D_803927A4 = spawn_child_actor(0x3AF, &sp1C)->marker;
 }
 
-#ifndef NONMATHCING
-#pragma GLOBAL_ASM("asm/nonmatchings/fight/code_180/func_8038BCF0.s")
-#else
 void func_8038BCF0(Actor *this){
     ActorLocal_fight_180 *local;
     s32 i;
@@ -2241,11 +2213,9 @@ void func_8038BCF0(Actor *this){
         local->unk9 = 0;
         local->unkB = 0;
 
-        for(i = 0; i < 4; i++){ D_803927B0[i] = NULL;}
-        // D_803927B0[1] = NULL;
-        // D_803927B0[0] = NULL;
-        // D_803927B0[2] = NULL;
-        // D_803927B0[3] = NULL;
+        for(i = 0; i < 4; i++){
+            D_803927B0[i] = NULL;
+        }
 
         func_802C3C88(func_8038BCB8, this->marker);
         func_80387728(this->marker, 0);
@@ -2261,7 +2231,7 @@ void func_8038BCF0(Actor *this){
         func_8034C9B0(0);
         func_80386698(2.0f);
         tmp_s0 = func_802F9AA8(SFX_9A_MECHANICAL_CLOSING);
-        func_802F9DB8(tmp_s0, D_80392450, D_80392450, 0.0f);
+        func_802F9DB8(tmp_s0, 0.6, 0.6, 0.0f);
         func_802F9FD0(tmp_s0, 0.0f, 2.0f, 0.0f);
         func_802FA060(tmp_s0, 25000, 25000, 0);
         timed_playSfx(2.0f, SFX_7F_HEAVYDOOR_SLAM, 1.0f, 32000);
@@ -2320,7 +2290,6 @@ void func_8038BCF0(Actor *this){
         }
     }//L8038C0C8
 }
-#endif
 
 void func_8038C0DC(f32 (*arg0)[3]) {
     (*arg0)[0] = D_80392798[0];
@@ -2345,25 +2314,19 @@ f32 func_8038DFA0();
 void func_80324E88(f32);
 f32 func_80391240();
 
-
-// Very minor stack diff
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/fight/code_180/func_8038C148.s")
-#else
 void func_8038C148(void) {
-    Actor *sp4C;
+    Actor *sp4C = func_80326EEC(0x38B);
     ActorLocal_fight_180 *sp48;
-    f32 temp_f20;
+    s32 pad44;
     f32 sp40;
-    f32 temp_f12;
+    f32 temp_f20;
     s32 phi_s0;
     f32 sp34;
-    f32 temp_f12_2;
 
-    sp4C = func_80326EEC(0x38B);
     sp48 = (ActorLocal_fight_180 *)&sp4C->local;
     sp34 = func_8038DFA0();
-    temp_f20 = sp34 + func_80391234();
+    temp_f20 =  sp34 + func_80391234();
+    
     sp40 = func_80391240();
     phi_s0 = 0x14;
     func_80320004(0xFC, 1);
@@ -2375,17 +2338,16 @@ void func_8038C148(void) {
     func_80324E38(0, 1);
     timed_setCameraToNode(0, phi_s0);
     func_80324E88(temp_f20);
-    timedFunc_set_0(temp_f20 * D_80392470, &func_8038C138);
+    timedFunc_set_0(temp_f20 * 0.08, &func_8038C138);
     timed_setCameraToNode(temp_f20, phi_s0 + 1);
-    temp_f12 = temp_f20 + sp40;
-    func_80324E88(temp_f12);
-    timedFunc_set_1(temp_f12, func_8038C10C, (s32)sp4C->marker);
-    timed_setCameraToNode(temp_f12, phi_s0 + 2);
-    temp_f12_2 = temp_f12 + D_80392478;
-    func_80324E88(temp_f12_2);
-    timed_setCameraToNode(temp_f12_2, phi_s0 + 3);
+    
+    func_80324E88(temp_f20 + sp40);
+    timedFunc_set_1(temp_f20 + sp40, func_8038C10C, (s32)sp4C->marker);
+    timed_setCameraToNode(temp_f20 + sp40, phi_s0 + 2);
+    
+    func_80324E88(temp_f20 + sp40 + 2.88f);
+    timed_setCameraToNode(temp_f20 + sp40 + 2.88f, phi_s0 + 3);
 }
-#endif
 
 void func_8038C27C(s32 arg0) {
     D_803927C4 = arg0;
