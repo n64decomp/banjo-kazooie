@@ -165,6 +165,7 @@ TOTAL_PROG_CSV    := progress/progress.total.csv
 TOTAL_PROG_SVG    := progress/progress_total.svg
 OVERLAY_PROG_CSVS := $(addprefix progress/progress., $(addsuffix .csv, $(OVERLAYS)))
 OVERLAY_PROG_SVGS := $(addprefix progress/progress_, $(addsuffix .svg, $(OVERLAYS)))
+README_MD         := README.md
 
 # Creates a list of all the object files for the given overlay
 define get_overlay_objects
@@ -281,10 +282,14 @@ $(MAIN_PROG_CSV): $(ELF)
 $(TOTAL_PROG_SVG): $(TOTAL_PROG_CSV)
 	$(call print0,Creating total progress svg)
 	@$(PROGRESS_READ) $< $(VERSION) total
+	
 
 $(TOTAL_PROG_CSV): $(OVERLAY_PROG_CSVS) $(MAIN_PROG_CSV)
 	$(call print0,Calculating total progress)
 	@cat $^ > $@
+
+$(README_MD): $(TOTAL_PROG_SVG)
+	@head -n 21 $< | tail -n 1 | head -c -8 | tail -c +32 | xargs -i sed -i "/# banjo*/c\# banjo ({})" $@
 
 # Verify that each overlay matches
 verify-each: $(addprefix verify-,$(OVERLAYS)) 
@@ -490,7 +495,7 @@ $(BUILD_DIR)/bk_boot.elf: $(filter-out $(CRC_OBJS),$(MAIN_ALL_OBJS)) $(BK_BOOT_L
 	@$(LD) -T $(BK_BOOT_LD_SCRIPT) -Map $(ELF:.elf=.map) --no-check-sections --accept-unknown-input-arch -T undefined_syms.libultra.txt -T undefined_syms_auto.$(VERSION).txt -o $@
 
 # .elf -> .z64
-$(Z64) : $(ELF) $(OVERLAY_PROG_SVGS) $(MAIN_PROG_SVG) $(TOTAL_PROG_SVG)
+$(Z64) : $(ELF) $(OVERLAY_PROG_SVGS) $(MAIN_PROG_SVG) $(TOTAL_PROG_SVG) $(README_MD)
 	$(call print1,Creating z64:,$@)
 	@$(OBJCOPY) $< $@ -O binary $(OCOPYFLAGS)
 
