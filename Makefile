@@ -559,6 +559,9 @@ build/$(VERSION)/src/core1/done/io/sptask.c.o: OPT_FLAGS = -O1
 build/$(VERSION)/src/core1/done/ll.c.o: OPT_FLAGS := -O1
 build/$(VERSION)/src/core1/done/ll.c.o: MIPSBIT := -mips3 -o32
 
+build/$(VERSION)/src/fight/code_180.c.o: OPT_FLAGS := -O2 -g0
+
+
 build/$(VERSION)/src/bk_boot_27F0.c.o: OPT_FLAGS = -O2
 build/$(VERSION)/src/done/destroythread.c.o: OPT_FLAGS := -O1
 build/$(VERSION)/src/done/pirawdma.c.o: OPT_FLAGS := -O1

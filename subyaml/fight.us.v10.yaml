@@ -41,8 +41,12 @@ segments:
       - [0x9850, c, code_9850] #DONE
       - [0x9D40, c, code_9D40] #DONE
       - [0xAED0, c, code_AED0] #DONE
-
-      - [0xAF90, linker, data] # Data section
+  - name: fight-data
+    dir: fight
+    type: code
+    start: 0xAF90
+    vram: 0x80391380
+    subsegments:
       - [0xAF90, .data, code_180]
       - [0xB420, .data, code_5ED0]
       - [0xB5A0, .data, code_6E90]

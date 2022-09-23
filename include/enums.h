@@ -1859,8 +1859,23 @@ enum actor_e
     ACTOR_387_PORTRAIT_OF_TEEHEE,
     ACTOR_388_PORTRAIT_OF_MINION,
 
+    ACTOR_38B_GRUNTILDA_FINAL_BOSS = 0x38B,
+
     ACTOR_39F_FIGHT_FLIGHT_PAD = 0x39F,
     ACTOR_3A0_ICECUBE_B,
+
+    ACTOR_3A2_JINJO_STATUE = 0x3A2,
+
+    ACTOR_3A5_BOSS_JINJO_ORANGE = 0x3A5,
+    ACTOR_3A6_BOSS_JINJO_GREEN,
+    ACTOR_3A7_BOSS_JINJO_PINK,
+    ACTOR_3A8_BOSS_JINJO_YELLOW,
+    ACTOR_3A9_JINJONATOR_STATUE,
+
+    ACTOR_3AB_GRUNTY_SPELL_BARRIER = 0x3AB,
+    ACTOR_3AC_JINJONATOR = 0x3AC,
+
+    ACTOR_3AF_GRUNTY_SHADOW = 0x3AF,
 
     ACTOR_3BA_UNKOWN        = 0x3ba,
 
@@ -2639,14 +2654,15 @@ enum asset_e
     // Unused
     // Unused
     // Unused
-    // 3bb Yellow Jinjo
+    ASSET_3BB_MODEL_JINJO_YELLOW = 0x3BB,
+    ASSET_3BC_MODEL_JINJO_ORANGE,
     // 3bc Orange Jinjo
     // 3bd TTC Lighthouse A
     // 3be TTC Lighthouse B
     ASSET_3BF_MODEL_PLAYER_SHADOW = 0x3BF,
     // 3c0 Blue Jinjo
-    // 3c1 Pink Jinjo
-    // 3c2 Green Jinjo
+    ASSET_3C1_MODEL_JINJO_PINK = 0x3C2,
+    ASSET_3C2_MODEL_JINJO_GREEN,
     // Unused
     // Unused
     ASSET_3C5_MODEL_GRUBLIN           = 0x3c5,
@@ -3027,7 +3043,7 @@ enum asset_e
     // 53a Shrapnel Eye (Upon Death)
     // 53b Shrapnel Spike (Upon Death)
     // 53c Shrapnel Metal Plate (Upon Death)
-    // 53d Gruntilda On Broomstick
+    ASSET_53D_MODEL_GRUNTILDA_FINAL_BOSS = 0x53D,
     // 53e Gnawty's Bed
     // 53f Gnawty's Shelves
     // 540 GL Shock Jump Pad Switch
@@ -3036,7 +3052,7 @@ enum asset_e
     // 543 Final Battle Jinjo Stand
     // 544 Final Battle Jinjonator Stand
     // 545 Final Battle Stone Jinjo
-    // 546 Grunty's Barrier Spell
+    ASSET_546_MODEL_GRUNTY_BARRIER_SPELL = 0x546,
     // 547 GL Blue Egg Refill Pillow
     // 548 GL Red Feather Refill Pillow
     // 549 GL Gold Feather Refill Pillow
@@ -3047,7 +3063,7 @@ enum asset_e
     // 54e Copyright Info (Title Screen)
     // 54f Cheato
     // 550 Large Door To Final Battle
-    // 551 Jinjonator
+    ASSET_551_JINJONATOR = 0x551,
     // 552 Broomstick Head (Upon Breaking)
     // 553 Broomstick Shaft Short (Upon Breaking)
     // 554 Broomstick Shaft Long (Upon Breaking)
@@ -3950,8 +3966,16 @@ enum marker_e{
     MARKER_25A_PORTRAIT_OF_TEEHEE,
     MARKER_25B_PORTRAIT_OF_MINION,
 
-    MARKER_25F_ICECUBE_B = 0x25F,
+    MARKER_25E_GRUNTILDA_FINAL_BOSS = 0x25E,
+    MARKER_25F_ICECUBE_B,
 
+    MARKER_27B_BOSS_JINJO_ORANGE = 0x27B,
+    MARKER_27C_BOSS_JINJO_GREEN,
+    MARKER_27D_BOSS_JINJO_PINK,
+    MARKER_27E_BOSS_JINJO_YELLOW,
+
+    MARKER_284_GRUNTY_SPELL_BARRIER = 0x284,
+    MARKER_285_JINJONATOR,
 
     MARKER_295_GRUNTLING_BLUE = 0x295,
     MARKER_296_TEEHEE_PURPLE,
