@@ -33,15 +33,12 @@ void func_8038A9C0(void){
 
 void func_8038AA58(void){}
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_45D0/func_8038AA60.s")
-#else
 void func_8038AA60(void){
     switch(D_80392F50.unk0){
         case 1:
             if(D_80392F50.unk4 <= 0){
-                func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);
                 D_80392F50.unk0 = 2;
+                func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);
                 D_80392F50.unk8 = 0;
             }
             break;
@@ -64,16 +61,11 @@ void func_8038AA60(void){
                 D_80392F50.unk8++;
             }
             break;
-        
-        default:
         case 0:
         case 3://L8038A96C
-            
             break;
     }
-    
 }
-#endif
 
 void func_8038AB40(void){
     D_80392F50.unk4--;

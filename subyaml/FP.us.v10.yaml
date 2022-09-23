@@ -38,7 +38,7 @@ segments:
       - [0x2350, c, code_2350] #DONE
       - [0x3E00, c, code_3E00] #DONE
       - [0x4400, c, code_4400] #DONE
-      - [0x45D0, c, code_45D0]
+      - [0x45D0, c, code_45D0] #DONE
       - [0x4770, c, code_4770] #DONE
       - [0x5CC0, c, code_5CC0]
       - [0x6AE0, c, code_6AE0] #DONE
