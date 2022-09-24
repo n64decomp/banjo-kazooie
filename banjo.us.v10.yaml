@@ -115,6 +115,7 @@ segments:
 - name: crc
   type: bin
   start: 0x5E70
+  align: 16
   subsegments:
   - [0x5E70, bin, crc]
 - name: assets
