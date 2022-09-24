@@ -22,7 +22,7 @@ options:
   asset_path: bin
   build_path: build/us.v10
 segments:
-  - name: TTC-code
+  - name: TTC
     dir: TTC
     type: code
     start: 0x00000000
@@ -38,12 +38,6 @@ segments:
       - [0x35D0, c, code_35D0] #DONE
       - [0x3E30, c, code_3E30]
       - [0x5BD0, c, ch/treasure] #DONE
-  - name: TTC-data
-    dir: TTC
-    type: code
-    start: 0x00005FC0
-    vram: 0x8038C3B0
-    subsegments:
       - [0x00005FC0, bin, ttc_data_5FC0]
       - [0x00006370, .data, ch/lockup]
       - [0x00006430, .data, code_35D0]
@@ -58,12 +52,6 @@ segments:
       - [0x00006A30, .rodata, code_35D0] #- [0x6A30, bin, ttc_data_6A30] #
       - [0x00006A60, bin, data_6A60]
       - [0x000072B0, .rodata, ch/treasure]
-  - name: TTC-bss
-    dir: TTC
-    type: code
-    start: 0x00007300
-    vram: 0x8038D6F0
-    subsegments:
       - [0x7300, .bss, code_3040]
       - [0x7300, .bss, code_35D0]
   - [0x00007300]

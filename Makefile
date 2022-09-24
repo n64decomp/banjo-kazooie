@@ -269,7 +269,7 @@ $(OVERLAY_PROG_SVGS) : progress/progress_%.svg: progress/progress.%.csv
 
 $(OVERLAY_PROG_CSVS) : progress/progress.%.csv: $(BUILD_DIR)/%.elf
 	$(call print1,Calculating progress for:,$*)
-	@$(PROGRESS) . $(BUILD_DIR)/$*.elf .$*_code --version $(VERSION) --subcode $* > $@
+	@$(PROGRESS) . $(BUILD_DIR)/$*.elf .$* --version $(VERSION) --subcode $* > $@
 
 $(MAIN_PROG_SVG): $(MAIN_PROG_CSV)
 	$(call print1,Creating progress svg for:,boot)
@@ -412,10 +412,17 @@ ifneq ($(CORE2_CODE_CRC_C_OBJS),)
 	$(call print1,Linking elf:,$@)
 	@$(LD) -T $(CORE2_TEMP_LD) -Map $(BUILD_DIR)/core2.map $(LDFLAGS_COMMON) -T undefined_syms_auto.core2.$(VERSION).txt -T undefined_funcs_auto.core2.$(VERSION).txt -o $@
   
+  $(BUILD_DIR)/core2.temp.full : $(BUILD_DIR)/core2.temp.elf
+	@$(OBJCOPY) -I elf32-tradbigmips -O binary $< $@
+
   # core2.temp.elf -> core2.temp.code
-  $(BUILD_DIR)/core2.temp.code : $(BUILD_DIR)/core2.temp.elf
+  $(BUILD_DIR)/core2.temp.code : $(BUILD_DIR)/core2.temp.full $(BUILD_DIR)/core2.temp.elf
 	$(call print2,Converting initial core2 code:,$<,$@)
-	@$(OBJCOPY) -O binary --only-section .core2_code $< $@
+	@head -c $(shell {\
+		text_offset=0x$$(nm $(BUILD_DIR)/core2.temp.elf | grep core2_TEXT_START | head -c 8) ;\
+		data_offset=0x$$(nm $(BUILD_DIR)/core2.temp.elf | grep core2_DATA_START | head -c 8) ;\
+		echo $$(($$data_offset - $$text_offset)) ;\
+	}) $< > $@
   
   # core2 code -> core2 code crc
   $(BUILD_DIR)/core2.code.crc : $(BUILD_DIR)/core2.temp.code $(BK_CRC)
@@ -442,14 +449,24 @@ $(CORE2_DATA_CRC_C_OBJS) : $(BUILD_DIR)/%.o : % $(BUILD_DIR)/core2.data.crc | $(
 		--assembler "$(AS) $(ASFLAGS)" --asm-prelude include/prelude.s
 
 # .elf -> .code
-$(OVERLAY_CODE_BINS) : $(BUILD_DIR)/%.code : $(BUILD_DIR)/%.elf
+$(OVERLAY_CODE_BINS) : $(BUILD_DIR)/%.code : $(BUILD_DIR)/%.full $(BUILD_DIR)/%.elf
 	$(call print2,Converting overlay code:,$<,$@)
-	@$(OBJCOPY) -I elf32-tradbigmips -O binary --only-section .$*_code --only-section .$*_mips3 $< $@
+	@head -c $(shell {\
+		text_offset=0x$$(nm $(BUILD_DIR)/$*.elf | grep $*_TEXT_START | head -c 8) ;\
+		data_offset=0x$$(nm $(BUILD_DIR)/$*.elf | grep $*_DATA_START | head -c 8) ;\
+		echo $$(($$data_offset - $$text_offset)) ;\
+	}) $< > $@
+#	@$(OBJCOPY) -I elf32-tradbigmips -O binary --only-section .$*_code --only-section .$*_mips3 $< $@
 
 # .elf -> .data
-$(OVERLAY_DATA_BINS) : $(BUILD_DIR)/%.data : $(BUILD_DIR)/%.elf
+$(OVERLAY_DATA_BINS) : $(BUILD_DIR)/%.data : $(BUILD_DIR)/%.full $(BUILD_DIR)/%.elf
 	$(call print2,Converting overlay data:,$<,$@)
-	@$(OBJCOPY) -I elf32-tradbigmips -O binary --only-section .$*_data --only-section .*_data_* $< $@
+	@tail -c +$(shell {\
+		text_offset=0x$$(nm $(BUILD_DIR)/$*.elf | grep $*_TEXT_START | head -c 8) ;\
+		data_offset=0x$$(nm $(BUILD_DIR)/$*.elf | grep $*_DATA_START | head -c 8) ;\
+		echo $$(($$data_offset - $$text_offset + 1)) ;\
+	}) $< > $@
+#	@$(OBJCOPY) -I elf32-tradbigmips -O binary --only-section .$*_data --only-section .*_data_* $< $@
 
 # .elf -> .full
 $(BUILD_DIR)/%.full : $(BUILD_DIR)/%.elf

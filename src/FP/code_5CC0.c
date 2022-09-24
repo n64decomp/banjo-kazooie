@@ -217,9 +217,9 @@ bool func_8038C718(Actor *this, f32 arg1){
     f32 tmp;
 
     this->position[0] += this->velocity[0];
-    this->position_y += (this->velocity_y += D_80392DB8);
+    this->position_y += (this->velocity_y += -3.2);
     this->position_z += this->velocity_z;
-    tmp = D_80392DC0 < animctrl_getAnimTimer(this->animctrl) + this->unk1C[0] ? D_80392DC8 : animctrl_getAnimTimer(this->animctrl) + this->unk1C[0];
+    tmp = 0.9999 < animctrl_getAnimTimer(this->animctrl) + this->unk1C[0] ? 0.999999 : animctrl_getAnimTimer(this->animctrl) + this->unk1C[0];
     animctrl_setAnimTimer(this->animctrl, tmp);
 
     if(arg1 == 0.0f)

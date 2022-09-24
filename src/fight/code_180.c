@@ -2183,7 +2183,7 @@ void func_8038BB8C(ActorMarker *marker, ActorMarker *other_marker) {
     this = marker_getActor(marker);
     local = (ActorLocal_fight_180 *)&this->local;
     if (local->unk0 == 1) {
-        func_8030E878(SFX_EA_GRUNTY_LAUGH_1, randf2(D_80392440, D_80392444), 32000, this->position, D_80392448, D_8039244C);
+        func_8030E878(SFX_EA_GRUNTY_LAUGH_1, randf2(0.95f, 1.05f), 32000, this->position, 5000.0f, 12000.0f);
         if (local->unk10 == 0) {
             if (func_80311480(randi2(0, 5) + 0x10ED, 0, NULL, NULL, NULL, NULL)) {
                 local->unk10++;

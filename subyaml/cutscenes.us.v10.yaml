@@ -22,7 +22,7 @@ options:
   asset_path: bin
   build_path: build/us.v10
 segments:
-  - name: cutscenes-code
+  - name: cutscenes
     dir: cutscenes
     type: code
     start: 0x00000000
@@ -33,12 +33,6 @@ segments:
       - [0x6730, c, code_6730] #DONE
       - [0x69F0, c, code_69F0] #DONE
       - [0x6C90, c, code_6C90] #DONE
-  - name: cutscenes-data
-    dir: cutscenes
-    type: code
-    start: 0x00006F60
-    vram: 0x8038D350
-    subsegments:
       - [0x00006F60, bin, data_6F60]
       - [0x000078A0, .data, code_60F0]
       - [0x00008310, .data, code_6730]

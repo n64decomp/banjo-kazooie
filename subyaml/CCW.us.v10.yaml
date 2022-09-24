@@ -22,7 +22,7 @@ options:
   asset_path: bin
   build_path: build/us.v10
 segments:
-  - name: CCW-code
+  - name: CCW
     dir: CCW
     type: code
     start: 0x00000000
@@ -56,12 +56,6 @@ segments:
       - [0x7BF0, c, code_7BF0] #DONE
       - [0x8050, c, code_8050] #DONE
       - [0x8670, c, code_8670] #DONE
-  - name: CCW-data
-    dir: CCW
-    type: code
-    start: 0x00008760
-    vram: 0x8038EB50
-    subsegments:
       - [0x00008760, bin, data_8760]
       - [0x00008920, .data, code_2B00]
       - [0x00008A80, bin, data_8A80]

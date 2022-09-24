@@ -226,6 +226,7 @@ alLoadNew       = 0x80268934;
 alEnvmixerNew   = 0x802689DC;
 _init_lpfilter   = 0x80268A80;
 alFxNew         = 0x80268B20;
+_doModFunc      = 0x80268F60;
 alFxParamHdl    = 0x802695F8;
 alFxParam       = 0x80269854;
 alFxPull        = 0x8026986C;

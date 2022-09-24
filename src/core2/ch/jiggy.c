@@ -5,8 +5,7 @@
 extern void func_802BE720(void);
 extern f32 func_8033A244(f32);
 extern void func_8033A280(f32);
-
-extern u8 D_80329904[];
+extern void func_80329904(ActorMarker *, s32, f32 *);
 
 typedef struct chjiggy_s{
     u32 unk0;
@@ -129,7 +128,7 @@ void func_802C7DC0(Actor *this){
     if(this->marker->unk14_21){
         for(i = 0; i < 4; i++){
             if(randf() < 0.015){
-                func_8033E73C(this->marker, i + 5, &D_80329904);
+                func_8033E73C(this->marker, i + 5, func_80329904);
                 func_8033E3F0(8, 1);
             }
         }

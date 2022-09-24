@@ -22,7 +22,7 @@ options:
   asset_path: bin
   build_path: build/us.v10
 segments:
-  - name: RBB-code
+  - name: RBB
     dir: RBB
     type: code
     start: 0x00000000
@@ -56,12 +56,6 @@ segments:
       - [0x9670, c, code_9670]
       - [0x9840, c, code_9840]
       - [0x99F0, c, code_99F0]
-  - name: RBB-data
-    dir: RBB
-    type: code
-    start: 0x00009C60
-    vram: 0x80390050
-    subsegments:
       - [0x00009C60, .data, code_0]
       - [0x00009CE0, .data, code_640]
       - [0x00009E10, .data, code_CA0]
@@ -107,12 +101,6 @@ segments:
       - [0x0000ADB0, .rodata, code_7FD0]
       - [0x0000AE00, .rodata, code_8520]
       - [0x0000AE70, .rodata, code_9670]
-  - name: RBB-bss
-    dir: RBB
-    type: code
-    start: 0x0000AE80
-    vram: 0x80391270
-    subsegments:
       - [0xAE80, .bss, code_5F80]
       - [0xAE80, .bss, code_8520]
       - [0xAE80, .bss, code_8520]

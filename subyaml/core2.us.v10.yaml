@@ -22,7 +22,7 @@ options:
   asset_path: bin
   build_path: build/us.v10
 segments:
-- name: core2-code
+- name: core2
   dir: core2
   type: code
   start: 0x00000
@@ -416,12 +416,6 @@ segments:
   - [0xDAAA0, c, code_DAAA0] #DONE
   - [0xDB010, c, code_DB010] #DONE
   - [0xDC4B0, c, code_DC4B0] #DONE
-- type: code
-  name: core2-data
-  dir: core2
-  start: 0xDC600
-  vram:  0x80363590
-  subsegments:
   - [0xDC600, bin, data_DC600]
   - [0xDC630, .data, code_1550]
   - [0xDC650, .data, code_2890]
@@ -859,12 +853,6 @@ segments:
   - [0xF2AF0, .rodata, code_DA3A0]
   - [0xF2B00, .rodata, code_DA760]
   - [0xF2B20, .rodata, code_DB010]
-- type: code
-  name: core2-bbs
-  dir: core2
-  start: 0xf2c00
-  vram:  0x80379B90
-  subsegments:
   - [0xf2c00, .bss, code_AD0]
   - [0xf2c00, .bss, code_10E0]
   - [0xf2c00, .bss, code_1550]

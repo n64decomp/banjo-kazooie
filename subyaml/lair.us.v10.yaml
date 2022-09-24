@@ -22,7 +22,7 @@ options:
   asset_path: bin
   build_path: build/us.v10
 segments:
-  - name: lair-code
+  - name: lair
     dir: lair
     type: code
     start: 0x00000000
@@ -42,12 +42,6 @@ segments:
       - [0xBBD0, c, code_BBD0] #DONE
       - [0xC1C0, c, code_C1C0] #DONE
       - [0xC6C0, c, code_C6C0] #DONE
-  - name: lair-data
-    dir: lair
-    type: code
-    start: 0x0000C8C0
-    vram: 0x80392CB0
-    subsegments:
       - [0x0000C8C0, bin, data_C8C0] #.data, code_0]
       - [0x0000D130, bin, data_D130] #.data, code_42A0]
       - [0x0000D320, .data, code_5640]
@@ -74,11 +68,5 @@ segments:
       - [0x0000EF00, .rodata, code_BBD0]
       - [0x0000EF40, .rodata, code_C1C0]
       - [0x0000EF50, .rodata, code_C6C0]
-  - name: lair-bss
-    dir: lair
-    type: code
-    start: 0x0000EF60
-    vram: 0x80395350
-    subsegments:
       - [0x0000EF60, .bss, code_0]
   - [0x0000EF60]

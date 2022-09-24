@@ -22,7 +22,7 @@ options:
   asset_path: bin
   build_path: build/us.v10
 segments:
-  - name: GV-code
+  - name: GV
     dir: GV
     type: code
     start: 0x00000000
@@ -61,12 +61,6 @@ segments:
       - [0x9C10, c, code_9C10] #DONE
       - [0x9DB0, c, code_9DB0] #DONE
       - [0xA490, c, code_A490] #DONE
-  - name: GV-data
-    dir: GV
-    type: code
-    start: 0x0000A7E0
-    vram: 0x80390BD0
-    subsegments:
       - [0x0000A7E0, .data, code_0]
       - [0x0000A830, .data, code_230]
       - [0x0000A890, .data, code_D60]

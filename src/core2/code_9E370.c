@@ -48,7 +48,6 @@ typedef struct {
 }Actorlocal_Core2_9E370;
 
 /* .data */
-extern s32 D_803255FC;
 extern ActorArray *D_8036E560; //actorArrayPtr
 extern s32 D_8036E564;
 extern s32 D_8036E568;
@@ -972,7 +971,7 @@ Actor *actor_new(s32 (* position)[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
     }
 
     if(flags & 0x100){
-        D_80383390->unk130 = &D_803255FC;
+        D_80383390->unk130 = func_803255FC;
     }
 
     if(flags & 0x200){

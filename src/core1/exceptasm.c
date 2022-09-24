@@ -5,9 +5,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/exceptasm/func_8026A2E0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/exceptasm/func_8026A2F0.s")
+// #pragma GLOBAL_ASM("asm/nonmatchings/core1/exceptasm/func_8026A2F0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/exceptasm/func_8026A300.s")
+// #pragma GLOBAL_ASM("asm/nonmatchings/core1/exceptasm/func_8026A300.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/exceptasm/func_8026A824.s")
 
