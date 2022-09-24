@@ -144,6 +144,7 @@ OVERLAY_RZIPS     := $(addprefix $(BIN_ROOT)/,$(addsuffix .$(VERSION).rzip.bin,$
 OVERLAY_RZIP_OUTS := $(addprefix $(BUILD_DIR)/,$(addsuffix .rzip.bin,$(OVERLAYS)))
 OVERLAY_RZIP_OBJS := $(addprefix $(BUILD_DIR)/$(BIN_ROOT)/,$(addsuffix .$(VERSION).rzip.bin.o,$(OVERLAYS)))
 CRC_OBJS          := $(BUILD_DIR)/$(BIN_ROOT)/crc.bin.o
+DUMMY_CRC_OBJ     := $(BUILD_DIR)/$(BIN_ROOT)/dummy_crc.bin.o
 ASSET_OBJS        := $(BUILD_DIR)/$(BIN_ROOT)/assets.bin.o
 BIN_OBJS          := $(filter-out $(OVERLAY_RZIP_OBJS) $(CRC_OBJS) $(ASSET_OBJS),$(BIN_OBJS))
 ALL_OBJS          := $(C_OBJS) $(ASM_OBJS) $(BIN_OBJS) $(OVERLAY_RZIP_OBJS) $(CRC_OBJS)
@@ -351,6 +352,16 @@ $(CRC_OBJS) : $(BUILD_DIR)/crc.bin
 	$(call print2,Objcopying:,$<,$@)
 	@$(OBJCOPY) $(BINOFLAGS) $< $@
 
+# Creates a dummy crc file of 32 bytes to use in the initial link
+$(BUILD_DIR)/dummy_crc.bin:
+	$(call print1,Creating dummy crc file:$@)
+	truncate -s 32 $@
+
+# .bin -> .o (dummy crc)
+$(DUMMY_CRC_OBJ) : $(BUILD_DIR)/dummy_crc.bin
+	$(call print2,Objcopying:,$<,$@)
+	@$(OBJCOPY) $(BINOFLAGS) $< $@
+
 # .c -> .o
 $(BUILD_DIR)/%.c.o : %.c | $(C_BUILD_DIRS)
 	$(call print2,Compiling:,$<,$@)
@@ -504,10 +515,10 @@ $(ELF): $(MAIN_ALL_OBJS) $(LD_SCRIPT) $(OVERLAY_RZIP_OBJS) $(addprefix $(BUILD_D
 	@$(LD) $(LDFLAGS) -T undefined_syms_auto.$(VERSION).txt -o $@
 
 $(BK_BOOT_LD_SCRIPT): $(LD_SCRIPT)
-	sed '\|$(CRC_OBJS)|d'  $< > $@
+	sed 's|$(CRC_OBJS)|$(DUMMY_CRC_OBJ)|'  $< > $@
 
 # .o -> .elf (game)
-$(BUILD_DIR)/bk_boot.elf: $(filter-out $(CRC_OBJS),$(MAIN_ALL_OBJS)) $(BK_BOOT_LD_SCRIPT) $(OVERLAY_RZIP_OBJS) $(addprefix $(BUILD_DIR)/, $(addsuffix .full, $(OVERLAYS)))
+$(BUILD_DIR)/bk_boot.elf: $(DUMMY_CRC_OBJ) $(filter-out $(CRC_OBJS),$(MAIN_ALL_OBJS)) $(BK_BOOT_LD_SCRIPT) $(OVERLAY_RZIP_OBJS) $(addprefix $(BUILD_DIR)/, $(addsuffix .full, $(OVERLAYS)))
 	$(call print1,Linking elf:,$@)
 	@$(LD) -T $(BK_BOOT_LD_SCRIPT) -Map $(ELF:.elf=.map) --no-check-sections --accept-unknown-input-arch -T undefined_syms.libultra.txt -T undefined_syms_auto.$(VERSION).txt -o $@
 
