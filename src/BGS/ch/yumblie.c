@@ -61,7 +61,7 @@ void chyumblie_set_state(Actor* this, enum chyumblie_state_e next_state){
     if(next_state == 2){
         this->yaw = randf2(0.0f, 360.0f);
         s0->unk4 = func_8038B160(this);
-        func_8038AC54(s0->game_marker, this->marker, this->position, s0->unk4);
+        chvilegame_new_piece(s0->game_marker, this->marker, this->position, s0->unk4);
         func_80335924(this->unk148, (s0->unk4)? ASSET_128_ANIM_GRUMBLIE_APPEAR : ASSET_125_ANIM_YUMBLIE_APPEAR, 0.0f, 1.5f);
         func_80335A8C(this->unk148, 2);
     }

@@ -185,7 +185,7 @@ void func_802C4768(s32 gamenum){
                 break;
         }//L802C4858
         strcat(D_8037DD48, ": TIME ");
-        strcat(D_8037DD48, func_80311C64(itemscore_timeScores_getTotal()));
+        strcat(D_8037DD48, gcpausemenu_TimeToA(itemscore_timeScores_getTotal()));
         strcat(D_8037DD48, ",");
         strcat(D_8037DD48, "");
 

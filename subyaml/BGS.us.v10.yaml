@@ -22,7 +22,7 @@ options:
   asset_path: bin
   build_path: build/us.v10
 segments:
-  - name: BGS-code
+  - name: BGS
     dir: BGS
     type: code
     start: 0x00000000
@@ -46,13 +46,6 @@ segments:
       - [0x9750, c, code_9750] #DONE
       - [0x98C0, c, done/ch/bigalligator] #DONE
       - [0x9920, c, ch/leafboat] #DONE
-  - name: BGS-data
-    dir: BGS
-    type: code
-    start: 0x0000A2A0
-    vram: 0x80390690
-    subsegments:
-    #80390a40 #80390a70
       - [0x0000A2A0, .data, ch/flibbit]
       - [0x0000A2D0, .data, done/ch/pinkegg]
       - [0x0000A3C0, .data, ch/croctus]
@@ -84,11 +77,5 @@ segments:
       - [0x0000ADC0, bin, data_ADC0] # .rodata, ch/tanktup]
       - [0x0000ADD0, .rodata, code_9750]
       - [0x0000ADE0, .rodata, ch/leafboat]
-  - name: BGS-bss
-    dir: BGS
-    type: code
-    start: 0x0000AE40
-    vram: 0x80391230
-    subsegments:
-       - [0x0000AE40, .bss, done/ch/code_6730]
+      - [0x0000AE40, .bss, done/ch/code_6730]
   - [0x0000AE40]

@@ -22,7 +22,7 @@ options:
   asset_path: bin
   build_path: build/us.v10
 segments:
-  - name: SM-code
+  - name: SM
     dir: SM
     type: code
     start: 0x00000000
@@ -40,12 +40,6 @@ segments:
       - [0x4070, c, code_4070]
       - [0x44D0, c, code_44D0]
       - [0x46C0, c, code_46C0]
-  - name: SM-data
-    dir: SM
-    type: code
-    start: 0x000046D0
-    vram: 0x8038AAC0
-    subsegments:
       - [0x000046D0, .data, code_0]
       - [0x000046F0, .data, code_F0]
       - [0x00004700, .data, code_5B0]
@@ -61,11 +55,5 @@ segments:
       - [0x00004DE0, .rodata, ch/vegetables]
       - [0x00004E10, .rodata, code_2990]
       - [0x00004F20, .rodata, code_44D0]
-  - name: SM-bss
-    dir: SM
-    type: code
-    start: 0x00004F30
-    vram: 0x8038B320
-    subsegments:
       - [0x00004F30, .bss, code_F0]
   - [0x00004F30]

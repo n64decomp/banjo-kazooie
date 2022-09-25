@@ -81,7 +81,7 @@ struct41FB0s D_80366460[] = {
     {0x0009, ACTOR_47_EMPTY_HONEYCOMB,  1, SFX_3E9_UNKNOWN,         1, 16000,   0.0f,   0.0f,  200.0f,   0.0f, 300.0f,   0.0f, 0.6f,   0.0f},
     /*YUM YUM EGG*/     {0x0001, ACTOR_52_BLUE_EGG,         1, SFX_21_EGG_BOUNCE_1,     1, 16000,   0.0f, 350.0f,  500.0f, 500.0f,   0.0f, 350.0f, 0.6f,   0.0f},
     /*YUM YUM FEATHER*/ {0x0001, ACTOR_129_RED_FEATHER,     1, SFX_21_EGG_BOUNCE_1,     1, 16000,   0.0f, 350.0f,  500.0f, 500.0f,   0.0f, 350.0f, 0.6f,   0.0f},
-    {0x0005, ACTOR_46_JIGGY,            1, 0,                       0,     0,   0.0f,   0.0f,  100.0f,   0.0f,   0.0f,   0.0f, 0.75f,  0.0f},
+    /*0x10*/{0x0005, ACTOR_46_JIGGY,            1, 0,                       0,     0,   0.0f,   0.0f,  100.0f,   0.0f,   0.0f,   0.0f, 0.75f,  0.0f},
     {0x0005, 0x06A,                     1, 0,                       0,     0,   0.0f,   0.0f,  200.0f,   0.0f,   0.0f,   0.0f, 0.6f,   0.0f},
     {0x0009, ACTOR_46_JIGGY,            1, SFX_3E9_UNKNOWN,         1, 16000,   0.0f,   0.0f,  650.0f,   0.0f, 950.0f,   0.0f, 0.6f,   0.0f},
     {0x0001, ACTOR_51_MUSIC_NOTE,       1, SFX_21_EGG_BOUNCE_1,     1, 16000, 125.0f,  25.0f,  725.0f, 125.0f, 125.0f,  25.0f, 0.6f,   0.0f},

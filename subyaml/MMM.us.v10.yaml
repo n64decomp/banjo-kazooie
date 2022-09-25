@@ -22,7 +22,7 @@ options:
   asset_path: bin
   build_path: build/us.v10
 segments:
-  - name: MMM-code
+  - name: MMM
     dir: MMM
     type: code
     start: 0x00000000
@@ -40,12 +40,6 @@ segments:
       - [0x3D50, c, code_3D50] #DONE
       - [0x47D0, c, code_47D0] #DONE
       - [0x5000, c, code_5000] #DONE
-  - name: MMM-data
-    dir: MMM
-    type: code
-    start: 0x000055F0
-    vram: 0x8038B9E0
-    subsegments:
       - [0x000055F0, .data, ch/loggo]
       - [0x00005630, .data, ch/napper]
       - [0x00005660, .data, code_DC0]
@@ -67,11 +61,5 @@ segments:
       - [0x00006070, .rodata, code_3D50]
       - [0x00006090, .rodata, code_47D0]
       - [0x000060C0, .rodata, code_5000]
-  - name: MMM-bss
-    dir: MMM
-    type: code
-    start: 0x000060D0
-    vram: 0x8038C4C0
-    subsegments:
       - [0x60D0, .bss, code_2040]
   - [0x000060D0]

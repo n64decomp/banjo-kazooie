@@ -20,6 +20,9 @@ extern ActorInfo D_80391DC0;
 extern ActorInfo D_80392018;
 extern ActorInfo D_80392090;
 
+/* .bss */
+u8 pad_80392750[0x10];
+
 void func_803863F0(void)
 {
     spawnableActorList_add(&D_80391B00, actor_new, 0X108444);

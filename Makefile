@@ -144,6 +144,7 @@ OVERLAY_RZIPS     := $(addprefix $(BIN_ROOT)/,$(addsuffix .$(VERSION).rzip.bin,$
 OVERLAY_RZIP_OUTS := $(addprefix $(BUILD_DIR)/,$(addsuffix .rzip.bin,$(OVERLAYS)))
 OVERLAY_RZIP_OBJS := $(addprefix $(BUILD_DIR)/$(BIN_ROOT)/,$(addsuffix .$(VERSION).rzip.bin.o,$(OVERLAYS)))
 CRC_OBJS          := $(BUILD_DIR)/$(BIN_ROOT)/crc.bin.o
+DUMMY_CRC_OBJ     := $(BUILD_DIR)/$(BIN_ROOT)/dummy_crc.bin.o
 ASSET_OBJS        := $(BUILD_DIR)/$(BIN_ROOT)/assets.bin.o
 BIN_OBJS          := $(filter-out $(OVERLAY_RZIP_OBJS) $(CRC_OBJS) $(ASSET_OBJS),$(BIN_OBJS))
 ALL_OBJS          := $(C_OBJS) $(ASM_OBJS) $(BIN_OBJS) $(OVERLAY_RZIP_OBJS) $(CRC_OBJS)
@@ -269,7 +270,7 @@ $(OVERLAY_PROG_SVGS) : progress/progress_%.svg: progress/progress.%.csv
 
 $(OVERLAY_PROG_CSVS) : progress/progress.%.csv: $(BUILD_DIR)/%.elf
 	$(call print1,Calculating progress for:,$*)
-	@$(PROGRESS) . $(BUILD_DIR)/$*.elf .$*_code --version $(VERSION) --subcode $* > $@
+	@$(PROGRESS) . $(BUILD_DIR)/$*.elf .$* --version $(VERSION) --subcode $* > $@
 
 $(MAIN_PROG_SVG): $(MAIN_PROG_CSV)
 	$(call print1,Creating progress svg for:,boot)
@@ -351,6 +352,16 @@ $(CRC_OBJS) : $(BUILD_DIR)/crc.bin
 	$(call print2,Objcopying:,$<,$@)
 	@$(OBJCOPY) $(BINOFLAGS) $< $@
 
+# Creates a dummy crc file of 32 bytes to use in the initial link
+$(BUILD_DIR)/dummy_crc.bin:
+	$(call print1,Creating dummy crc file:$@)
+	truncate -s 32 $@
+
+# .bin -> .o (dummy crc)
+$(DUMMY_CRC_OBJ) : $(BUILD_DIR)/dummy_crc.bin
+	$(call print2,Objcopying:,$<,$@)
+	@$(OBJCOPY) $(BINOFLAGS) $< $@
+
 # .c -> .o
 $(BUILD_DIR)/%.c.o : %.c | $(C_BUILD_DIRS)
 	$(call print2,Compiling:,$<,$@)
@@ -412,10 +423,17 @@ ifneq ($(CORE2_CODE_CRC_C_OBJS),)
 	$(call print1,Linking elf:,$@)
 	@$(LD) -T $(CORE2_TEMP_LD) -Map $(BUILD_DIR)/core2.map $(LDFLAGS_COMMON) -T undefined_syms_auto.core2.$(VERSION).txt -T undefined_funcs_auto.core2.$(VERSION).txt -o $@
   
+  $(BUILD_DIR)/core2.temp.full : $(BUILD_DIR)/core2.temp.elf
+	@$(OBJCOPY) -I elf32-tradbigmips -O binary $< $@
+
   # core2.temp.elf -> core2.temp.code
-  $(BUILD_DIR)/core2.temp.code : $(BUILD_DIR)/core2.temp.elf
+  $(BUILD_DIR)/core2.temp.code : $(BUILD_DIR)/core2.temp.full $(BUILD_DIR)/core2.temp.elf
 	$(call print2,Converting initial core2 code:,$<,$@)
-	@$(OBJCOPY) -O binary --only-section .core2_code $< $@
+	@head -c $(shell {\
+		text_offset=0x$$(nm $(BUILD_DIR)/core2.temp.elf | grep core2_TEXT_START | head -c 8) ;\
+		data_offset=0x$$(nm $(BUILD_DIR)/core2.temp.elf | grep core2_DATA_START | head -c 8) ;\
+		echo $$(($$data_offset - $$text_offset)) ;\
+	}) $< > $@
   
   # core2 code -> core2 code crc
   $(BUILD_DIR)/core2.code.crc : $(BUILD_DIR)/core2.temp.code $(BK_CRC)
@@ -442,14 +460,24 @@ $(CORE2_DATA_CRC_C_OBJS) : $(BUILD_DIR)/%.o : % $(BUILD_DIR)/core2.data.crc | $(
 		--assembler "$(AS) $(ASFLAGS)" --asm-prelude include/prelude.s
 
 # .elf -> .code
-$(OVERLAY_CODE_BINS) : $(BUILD_DIR)/%.code : $(BUILD_DIR)/%.elf
+$(OVERLAY_CODE_BINS) : $(BUILD_DIR)/%.code : $(BUILD_DIR)/%.full $(BUILD_DIR)/%.elf
 	$(call print2,Converting overlay code:,$<,$@)
-	@$(OBJCOPY) -I elf32-tradbigmips -O binary --only-section .$*_code --only-section .$*_mips3 $< $@
+	@head -c $(shell {\
+		text_offset=0x$$(nm $(BUILD_DIR)/$*.elf | grep $*_TEXT_START | head -c 8) ;\
+		data_offset=0x$$(nm $(BUILD_DIR)/$*.elf | grep $*_DATA_START | head -c 8) ;\
+		echo $$(($$data_offset - $$text_offset)) ;\
+	}) $< > $@
+#	@$(OBJCOPY) -I elf32-tradbigmips -O binary --only-section .$*_code --only-section .$*_mips3 $< $@
 
 # .elf -> .data
-$(OVERLAY_DATA_BINS) : $(BUILD_DIR)/%.data : $(BUILD_DIR)/%.elf
+$(OVERLAY_DATA_BINS) : $(BUILD_DIR)/%.data : $(BUILD_DIR)/%.full $(BUILD_DIR)/%.elf
 	$(call print2,Converting overlay data:,$<,$@)
-	@$(OBJCOPY) -I elf32-tradbigmips -O binary --only-section .$*_data --only-section .*_data_* $< $@
+	@tail -c +$(shell {\
+		text_offset=0x$$(nm $(BUILD_DIR)/$*.elf | grep $*_TEXT_START | head -c 8) ;\
+		data_offset=0x$$(nm $(BUILD_DIR)/$*.elf | grep $*_DATA_START | head -c 8) ;\
+		echo $$(($$data_offset - $$text_offset + 1)) ;\
+	}) $< > $@
+#	@$(OBJCOPY) -I elf32-tradbigmips -O binary --only-section .$*_data --only-section .*_data_* $< $@
 
 # .elf -> .full
 $(BUILD_DIR)/%.full : $(BUILD_DIR)/%.elf
@@ -487,10 +515,10 @@ $(ELF): $(MAIN_ALL_OBJS) $(LD_SCRIPT) $(OVERLAY_RZIP_OBJS) $(addprefix $(BUILD_D
 	@$(LD) $(LDFLAGS) -T undefined_syms_auto.$(VERSION).txt -o $@
 
 $(BK_BOOT_LD_SCRIPT): $(LD_SCRIPT)
-	sed '\|$(CRC_OBJS)|d'  $< > $@
+	sed 's|$(CRC_OBJS)|$(DUMMY_CRC_OBJ)|'  $< > $@
 
 # .o -> .elf (game)
-$(BUILD_DIR)/bk_boot.elf: $(filter-out $(CRC_OBJS),$(MAIN_ALL_OBJS)) $(BK_BOOT_LD_SCRIPT) $(OVERLAY_RZIP_OBJS) $(addprefix $(BUILD_DIR)/, $(addsuffix .full, $(OVERLAYS)))
+$(BUILD_DIR)/bk_boot.elf: $(DUMMY_CRC_OBJ) $(filter-out $(CRC_OBJS),$(MAIN_ALL_OBJS)) $(BK_BOOT_LD_SCRIPT) $(OVERLAY_RZIP_OBJS) $(addprefix $(BUILD_DIR)/, $(addsuffix .full, $(OVERLAYS)))
 	$(call print1,Linking elf:,$@)
 	@$(LD) -T $(BK_BOOT_LD_SCRIPT) -Map $(ELF:.elf=.map) --no-check-sections --accept-unknown-input-arch -T undefined_syms.libultra.txt -T undefined_syms_auto.$(VERSION).txt -o $@
 

@@ -22,7 +22,7 @@ options:
   asset_path: bin
   build_path: build/us.v10
 segments:
-  - name: CC-code
+  - name: CC
     dir: CC
     type: code
     start: 0x00000000
@@ -38,12 +38,6 @@ segments:
       - [0x1F70, c, code_1F70] #DONE
       - [0x3130, c, ch/sawblade] #Done
       - [0x3400, c, code_3400] #Done
-  - name: CC-data
-    dir: CC
-    type: code
-    start: 0x000036B0
-    vram: 0x80389AA0
-    subsegments:
       - [0x000036B0, .data, code_0]
       - [0x000036E0, .data, code_530]
       - [0x00003710, .data, code_BF0]

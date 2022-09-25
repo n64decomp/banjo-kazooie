@@ -22,7 +22,7 @@ options:
   asset_path: bin
   build_path: build/us.v10
 segments:
-- name: core1-code
+- name: core1
   dir: core1
   type: code
   start: 0x00000000
@@ -112,7 +112,7 @@ segments:
   - [0x265D0, c, done/gu/sinf]            #DONE
   - [0x26790, c, done/audio/cents2ratio]  #DONE
   - [0x267E0, c, done/audio/heapinit]     #DONE
-  - [0x26820, bin, padding] # 0x60 bytes of zeroes?
+  - [0x26820, asm, padding] # 0x60 bytes of zeroes?
   - [0x26880, c, done/os/createmesgqueue] #DONE
   - [0x268B0, c, done/io/aisetfreq]       #DONE
   - [0x26A10, c, done/audio/sl]           #DONE
@@ -232,19 +232,7 @@ segments:
   - [0x34A80, c, done/io/epirawread]    #DONE
   - [0x34AD0, c, done/os/setglobalintmask] #DONE
   - [0x34B20, c, done/os/yieldthread]   #DONE
-- name: core1-mips3
-  dir: core1
-  type: code
-  start: 0x34B70
-  vram:  0x80272590
-  subsegments:
-  - [0x34B70, bin, data_34B70]
-- name: core1-data
-  dir: core1
-  type: code
-  start: 0x000037BF0
-  vram:  0x80275610
-  subsegments:
+  - [0x34B70, c, code_34B70] #mips3
   - [0x37BF0, bin, data_37BF0] #data Section
   - [0x37C50, .data, code_660]
   - [0x37D50, .data, code_1D00]
@@ -311,12 +299,6 @@ segments:
   - [0x3B3D0, .rodata, done/audio/env]
   - [0x3B420, .rodata, done/audio/resample]
   - [0x3B460, bin, data_3B460]
-- type: code
-  name: core1-bbs
-  dir: core1
-  start: 0x00003C710
-  vram:  0x8027A130
-  subsegments:
   - [0x3c710, .bss, code_0]
   - [0x3c710, .bss, code_660]
   - [0x3c710, .bss, inflate]

@@ -29,7 +29,6 @@ segments:
     start: 0x00000000
     vram: 0x803863F0
     subsegments:
-      - [0x0, linker, code] # Code section
       - [0x0, c, code_0] #DONE
       - [0x180, c, code_180] 
       - [0x5ED0, c, code_5ED0] #DONE
@@ -41,8 +40,6 @@ segments:
       - [0x9850, c, code_9850] #DONE
       - [0x9D40, c, code_9D40] #DONE
       - [0xAED0, c, code_AED0] #DONE
-
-      - [0xAF90, linker, data] # Data section
       - [0xAF90, .data, code_180]
       - [0xB420, .data, code_5ED0]
       - [0xB5A0, .data, code_6E90]
@@ -54,8 +51,6 @@ segments:
       - [0xBBC0, .data, code_9D40]
       - [0xBCA0, .data, code_AED0]
       - [0xBCD0, .rodata, code_180]
-      - [0xBE90, bin, fight_data_BE90]
-      - [0xBF20, bin, fight_data_BF20]
       - [0xC090, .rodata, code_5ED0]
       - [0xC140, .rodata, code_6E90]
       - [0xC150, .rodata, code_7580]
@@ -65,12 +60,7 @@ segments:
       - [0xC220, .rodata, code_9850]
       - [0xC230, .rodata, code_9D40]
       - [0xC340, .rodata, code_AED0]
-  - type: code
-    name: fight-bbs
-    dir: fight
-    start: 0xC350
-    vram:  0x80392740
-    subsegments:
+      - [0x0000C350, .bss, code_0]
       - [0x0000C350, .bss, code_180]
       - [0x0000C350, .bss, code_87A0]
       - [0x0000C350, .bss, code_9D40]

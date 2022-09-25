@@ -22,7 +22,7 @@ options:
   asset_path: bin
   build_path: build/us.v10
 segments:
-  - name: MM-code
+  - name: MM
     dir: MM
     type: code
     start: 0x00000000
@@ -39,12 +39,6 @@ segments:
       - [0x25B0, c, ch/grublin]
       - [0x2740, c, ch/jujuhitbox]
       - [0x2BE0, c, ch/juju]
-  - name: MM-data
-    dir: MM
-    type: code
-    start: 0x000034A0
-    vram: 0x80389890
-    subsegments:
       - [0x34A0, .data, ch/orangepad]
       - [0x34D0, .data, ch/hut]
       - [0x3530, .data, ch/chimpystump]
