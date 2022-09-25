@@ -60,6 +60,7 @@ segments:
       - [0xC220, .rodata, code_9850]
       - [0xC230, .rodata, code_9D40]
       - [0xC340, .rodata, code_AED0]
+      - [0x0000C350, .bss, code_0]
       - [0x0000C350, .bss, code_180]
       - [0x0000C350, .bss, code_87A0]
       - [0x0000C350, .bss, code_9D40]

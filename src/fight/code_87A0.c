@@ -76,7 +76,7 @@ f32 D_80391DA4[4] = {0.0f, 0.01f, 0.7f, 0.8f};
 f32 D_80391DB4[2] = {0.0f, 0.65f}; 
 
 /* .bss */
-u8 pad[0x180]; //TODO!!!! define other file .bss sections
+// u8 pad[0x180]; //TODO!!!! define other file .bss sections
 u8 D_803928E0;
 u8 D_803928E1;
 u8 D_803928E2;
