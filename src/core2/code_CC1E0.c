@@ -36,6 +36,7 @@ extern f32 D_80379438;
 extern f64 D_80379440;
 extern f64 D_80379448;
 
+
 /* .code */
 void fxegg_shatter(u8 projectile_indx){
     f32 position[3];
@@ -143,7 +144,7 @@ bool fxegg_isCollidingWithPlayer(f32 arg0[3]){
     player_getPosition(sp2C);
     ml_vec3f_diff_copy(sp20, sp2C, arg0);
     return (sp2C[1] < arg0[1]) && (arg0[1] < sp2C[1] + 100.0f)
-        && (sp20[0]*sp20[0] + sp20[2]*sp20[2] < D_80379430);
+        && (sp20[0]*sp20[0] + sp20[2]*sp20[2] < 4900.0f);
 }
 
 void func_80353580(ActorMarker *marker){
@@ -214,7 +215,7 @@ void fxegg_head_update(void){
     sp78 = func_8033EA14(1);
     tmp_f24 = func_8033EA14(2);
     tmp_f24 -= time_getDelta();
-    sp6C = ml_map_f(sp78, 0.0f, 2.0f, 0.0333f, D_80379434);
+    sp6C = ml_map_f(sp78, 0.0f, 2.0f, 0.0333f, 0.1f);
     while(tmp_f24 <= 0.0f){//L80353868
         tmp_f24 += sp6C;
         projectile_getPosition(projectile_indx, sp7C);
@@ -319,7 +320,7 @@ void fxegg_ass_update(void) {
     sp64 = func_8033EA14(1);
     var_f22 = func_8033EA14(2);
     var_f22 -= time_getDelta();
-    sp58 = ml_map_f(sp64, 0.0f, 3.0f, 0.0333f, D_80379438);
+    sp58 = ml_map_f(sp64, 0.0f, 3.0f, 0.0333f, 0.1f);
     while (var_f22 <= 0.0f) {
         var_f22 += sp58;
         projectile_getPosition(projectile_indx, sp68);
@@ -342,7 +343,7 @@ void fxegg_ass_update(void) {
     }
     func_803531C8(projectile_indx, 1);
     func_80344E7C(sp8E, sp74);
-    if (D_80379440 < func_8033EA14(1)) {
+    if (0.6 < func_8033EA14(1)) {
         projectile_getPosition(projectile_indx, sp80);
         if (fxegg_isCollidingWithPlayer(sp80)) {
             collect_egg(NULL);
@@ -355,7 +356,7 @@ void fxegg_ass_update(void) {
     func_8033EA40(0, min_f(temp_f20 + 8.0f, 50.0f));
     sp64 += time_getDelta();
     func_8033EA40(1, sp64);
-    if ((D_80379448 < sp64) && (func_80344EC0(sp8E) || (sp64 > 3.5))) {
+    if ((2.8 < sp64) && (func_80344EC0(sp8E) || (sp64 > 3.5))) {
         func_8033E984();
         fxegg_shatter(projectile_indx);
     }

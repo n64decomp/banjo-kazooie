@@ -50,9 +50,6 @@ void func_80348044(Gfx **gfx, BKSprite* sprite, s32 frame, s32 tmem, s32 rtile, 
 		((height)-1) << G_TEXTURE_IMAGE_FRAC)			\
 }
 
-/* .rodata */
-extern f64 D_80379140;
-
 /* .bss */
 s32 D_80386070;
 s32 D_80386074;
@@ -94,7 +91,7 @@ void func_80347E60(Struct81s *arg0) {
 
     actor = marker_getActor(arg0->marker);
     if (actor->unk54 > 0.0) {
-        temp_f0 = sinf((actor->unk54 * D_80379140) / 3.0);
+        temp_f0 = sinf((actor->unk54 * M_PI) / 3.0);
         if (temp_f0 < 0.0f) {
             var_f12 = 0.0f;
         } else {

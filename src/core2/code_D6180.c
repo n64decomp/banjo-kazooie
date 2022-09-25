@@ -88,11 +88,11 @@ void func_8035D2FC(Actor *this) {
     local->unk10 = 0x10C; //SFX_10C_MUMMY_TALKING
     local->unk12 = 20000;
     local->unk14 = 1.5f;
-    local->unk18 = D_80379860;
+    local->unk18 = 0.2f;
     local->unk1C = 0x10D; //SFX_10D_ANCIENT_ONE_TALKING
     local->unk1E = 20000;
-    local->unk20 = D_80379864;
-    local->unk24 = D_80379868;
+    local->unk20 = 1.9f;
+    local->unk24 = 0.35f;
     local->unk28 = 0xC5; //SFX_C5_TWINKLY_POP
     local->unk2A = 20000;
     local->unk2C = 1.0f;

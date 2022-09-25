@@ -222,11 +222,11 @@ void func_802FD80C(s32 arg0, struct8s * arg1){
        
         if(arg0 == 0){
             if(arg1->unk60 < 1.0f || arg1->unk60 >= 12.0f)
-                phi_f16 = D_803773A0;
+                phi_f16 = 0.333f;
         }
         if(arg0 == 1){
             if(arg1->unk60 > 10.0f)
-                phi_f16 = D_803773A4;
+                phi_f16 = 0.333f;
         }
         if(arg0 < 6){
             if(item_getCount(arg0) < 30){

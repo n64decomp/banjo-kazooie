@@ -729,7 +729,7 @@ void _printbuffer_push_new(s32 x, s32 y, u8 * string) {
 void print_bold_overlapping(s32 x, s32 y, f32 arg2, u8* string){
     _printbuffer_push_new(x, y, string);
     if(print_sCurrentPtr){
-        strcpy(print_sCurrentPtr->fmtString, D_80377240); // strcpy(print_sCurrentPtr->fmtString, "fl");
+        strcpy(print_sCurrentPtr->fmtString, "fl");
         print_sCurrentPtr->unk10 = arg2;
     }
 }
@@ -737,21 +737,21 @@ void print_bold_overlapping(s32 x, s32 y, f32 arg2, u8* string){
 void print_bold_spaced(s32 x, s32 y, u8* string){
     _printbuffer_push_new(x, y, string);
     if(print_sCurrentPtr){
-        strcpy(print_sCurrentPtr->fmtString, D_80377244); // strcpy(print_sCurrentPtr->fmtString, "f");
+        strcpy(print_sCurrentPtr->fmtString, "f");
     }
 }
 
 void print_dialog(s32 x, s32 y, u8* string){
     _printbuffer_push_new(x, y, string);
     if(print_sCurrentPtr){
-        strcpy(print_sCurrentPtr->fmtString, D_80377248); // strcpy(print_sCurrentPtr->fmtString, "elq");
+        strcpy(print_sCurrentPtr->fmtString, "elq");
     }
 }
 
 void print_dialog_w_bg(s32 x, s32 y, u8* string){
     _printbuffer_push_new(x, y, string);
     if(print_sCurrentPtr){
-        strcpy(print_sCurrentPtr->fmtString, D_8037724C); // strcpy(print_sCurrentPtr->fmtString, "pb");
+        strcpy(print_sCurrentPtr->fmtString, "pb");
     }
 }
 
@@ -760,7 +760,7 @@ void print_dialog_gradient(s32 x, s32 y, u8* string, u8 arg3, u8 arg4){
     if(print_sCurrentPtr){
         print_sCurrentPtr->unk4 = arg3;
         print_sCurrentPtr->unk6 = arg4;
-        strcpy(print_sCurrentPtr->fmtString, D_80377250); // strcpy(print_sCurrentPtr->fmtString, "v");
+        strcpy(print_sCurrentPtr->fmtString, "v");
     }
 }
 
@@ -769,7 +769,7 @@ void func_802F79D0(s32 x, s32 y, u8* string, s32 arg3, s32 arg4){
     if(print_sCurrentPtr){
         print_sCurrentPtr->unk4 = arg3;
         print_sCurrentPtr->unk6 = arg4;
-        strcpy(print_sCurrentPtr->fmtString, D_80377254); // strcpy(print_sCurrentPtr->fmtString, "delq");
+        strcpy(print_sCurrentPtr->fmtString, "delq");
 
     }
 }

@@ -13,7 +13,6 @@ extern u8 D_80370A14; //assetCache_size;
 extern u8 D_80370A18;
 extern s32 D_80370A10;
 
-extern f32 D_80378F50;
 
 /* .bss */
 s32 D_80383CB0;
@@ -39,7 +38,7 @@ void func_8033BAB0(enum asset_e asset_id, s32 offset, s32 size, void *dst_ptr);
 /* .core2 */
 f32 func_8033AA10(AnimationFile *this, s32 arg1){
     if(arg1 == this->unk2)
-        return D_80378F50;
+        return 0.999999f;
     return (f32)(arg1 - this->unk0)/(f32)(this->unk2 - this->unk0);
 }
 

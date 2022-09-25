@@ -684,7 +684,7 @@ void func_803106BC(s32 text_id, s32 arg1, ActorMarker *marker, void(*callback)(A
 void func_80310A5C(s32 next_state, s32 arg1, s32 arg2, s32 arg3, s32 arg4){
     s32 i;
     f32 tmpf;
-    for(i = 0, tmpf = D_80378534; i< 2; i++){
+    for(i = 0, tmpf = 0.4f; i< 2; i++){
         if(D_80382E20.zoombox[i]){
             func_803184C8(D_80382E20.zoombox[i], arg2, next_state, arg1, tmpf, arg3, arg4);
         }

@@ -37,15 +37,6 @@ ActorInfo D_80368620 = {
     0, 0, 0.0f, 0
 };
 
-/* .rodata */
-extern f32 D_80377050;
-// extern jmptble D_80377054;
-extern f64 D_80377080;
-extern f32 D_80377088;
-extern f64 D_80377090;
-extern f64 D_80377098;
-
-
 /* .bss */
 ActorMarker *D_8037E620;
 f32 D_8037E628;
@@ -57,10 +48,8 @@ void func_802E0CD0(Actor *this){
     this->unk28 = 4.0f;
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_59D40/func_802E0CE0.s")
-#else
 void func_802E0CE0(Actor *this) {
+    ActorLocal_core2_59D40 *local = (ActorLocal_core2_59D40 *)&this->local;
     s32 temp_v0;
 
     if (this->unk38_31 != 0) {
@@ -73,7 +62,8 @@ void func_802E0CE0(Actor *this) {
             if( !this->unk138_24 ) {
                 if(temp_v0 < 4) {
                     if(func_80311480(0xA1B + temp_v0, 0, NULL, NULL, NULL, NULL)){
-                        mapSpecificFlags_setN(8, temp_v0++, 3);
+                        temp_v0++;
+                        mapSpecificFlags_setN(8, temp_v0, 3);
                         this->unk138_24 = TRUE;
                     }
                 }
@@ -82,15 +72,13 @@ void func_802E0CE0(Actor *this) {
         func_80328B8C(this, 3, 0.0f, -1);
     }
 }
-#endif
 
 bool func_802E0DC0(f32 arg0[3]){
     f32 sp2C[3];
     f32 pad0;
 
     player_getPosition(sp2C);
-    // return (4000000.0f < ml_vec3f_distance_squared(sp2C, arg0))
-    return (D_80377050 < ml_vec3f_distance_squared(sp2C, arg0))
+    return (4000000.0f < ml_vec3f_distance_squared(sp2C, arg0))
         || ( (arg0[1] - func_80309724(arg0) < 70.0f) && (func_80309B24(arg0) - arg0[1] < 70.0f));
 }
 
@@ -182,8 +170,8 @@ void func_802E1168(Actor *this) {
     f32 sp40;
     s32 tmp;
 
-    local = (ActorLocal_core2_59D40 *)&this->local;
     sp5C = time_getDelta();
+    local = (ActorLocal_core2_59D40 *)&this->local;
 
     if (!this->initialized) {
         this->initialized = TRUE;
@@ -197,14 +185,13 @@ void func_802E1168(Actor *this) {
     
     if(func_802E0DC0(this->position) || ((sp54 != 1) && (sp54 != 2))) {
         local->unk8 = MIN(3.5, local->unk8 + sp5C);
-        if (3.5 == local->unk8) {
+        if (local->unk8 == 3.5) {
             func_802E0EC8();
         }
     } else {
         local->unk8 = 0.0f;
     }
     
-    if(1);
     switch(this->state){
         case 1: //802E12C8
             if (func_80328BD4(this, 2, 0.0f, 1, 0.03f) != 0) {
@@ -333,10 +320,9 @@ void func_802E17E8(void) {
         nodeprop_getPosition(func_80304CAC(0x3CB, sp50), sp50);
     }
     else{
-        sp4C = randf2(0.0f, D_80377088);
-        // temp_f0 = randf2(0.0f, 3.28f);
-        sp50[0] += D_80377090 * cosf(sp4C);
-        sp50[2] += D_80377098 * sinf(sp4C);
+        sp4C = randf2(0.0f, 3.28f);
+        sp50[0] += 1000.0 * cosf(sp4C);
+        sp50[2] += 1000.0 * sinf(sp4C);
         
         sp38[0] = sp50[0];
         sp38[1] = sp50[1];

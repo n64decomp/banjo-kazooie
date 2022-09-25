@@ -448,9 +448,9 @@ void func_80351E60(Struct6Bs *arg0, Struct68s *arg1, f32 arg2) {
     f32 sp24[3];
 
     arg0->unk34 += arg2;
-    arg0->unk10[1] = sinf(((arg0->unk34 * arg0->unk0) / D_80379350) * D_80379358) * 20.0f;
-    arg0->unk4[0] = cosf(((arg0->unk34 * arg0->unk0) / D_80379360) * D_80379368) * 7.5;
-    arg0->unk4[1] = sinf(((arg0->unk34 * arg0->unk0) / D_80379370) * D_80379378) * 3.0f;
+    arg0->unk10[1] = sinf(((arg0->unk34 * arg0->unk0) / 180.0) * BAD_PI) * 20.0f;
+    arg0->unk4[0] = cosf(((arg0->unk34 * arg0->unk0) / 180.0) * BAD_PI) * 7.5;
+    arg0->unk4[1] = sinf(((arg0->unk34 * arg0->unk0) / 180.0) * BAD_PI) * 3.0f;
     sp24[0] =  arg0->unk1C[0] + arg0->unk10[0];
     sp24[1] =  arg0->unk1C[1] + arg0->unk10[1];
     sp24[2] =  arg0->unk1C[2] + arg0->unk10[2];

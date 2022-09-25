@@ -31,7 +31,7 @@ extern f64 D_80376658;
 
 /* .code */
 void func_802D0A00(Actor *this) {
-    this->unk28 = randf2(1.5f, /*2.3f*/D_80376640);
+    this->unk28 = randf2(1.5f, 2.3f);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_49A70/func_802D0A38.s")

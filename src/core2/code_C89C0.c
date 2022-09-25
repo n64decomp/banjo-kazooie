@@ -87,10 +87,10 @@ void func_8034F950(Struct_core2_C89C0_0 *arg0) {
     ml_vec3f_yaw_rotate_copy(sp70, sp70, arg0->unk14);
     ml_vec3f_normalize(sp7C);
     if ((sp70[0]*sp7C[0] + sp70[1]*sp7C[1] + sp70[2]*sp7C[2]) < 0.0f) {
-        arg0->unk34 = randf2(D_80379300, D_80379304);
+        arg0->unk34 = randf2(0.1f, 0.3f);
         arg0->unk30 = randf2(0.5f, 1.0f);
     } else {
-        arg0->unk30 = (randf2(D_80379308, 1.0f) * func_80256AB4(sp70[0], sp70[2], sp7C[0], sp7C[2]));
+        arg0->unk30 = (randf2(0.1f, 1.0f) * func_80256AB4(sp70[0], sp70[2], sp7C[0], sp7C[2]));
     }
     arg0->unk30 = (arg0->unk30 > 1.0f) ? 1.0f : arg0->unk30;
     arg0->unk30 = (arg0->unk30 < -1.0f) ? -1.0f : arg0->unk30;
@@ -121,7 +121,7 @@ Actor* func_8034FCDC(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     sp2C[1] = sp28->unk14;
     sp2C[2] = 0.0f;
     set_model_render_mode(2);
-    func_803391A4(gfx, mtx, sp28->unk8, sp2C, sp28->unk18 * D_80379310, NULL, D_80386150.unk0);
+    func_803391A4(gfx, mtx, sp28->unk8, sp2C, sp28->unk18 * 0.1, NULL, D_80386150.unk0);
 
     return NULL;
 }
@@ -144,7 +144,7 @@ void func_8034FDA0(s32 arg0) {
     D_80386150.unkC->unk1C = arg0;
     D_80386150.unkC->unk20 = 10.0f;
     D_80386150.unkC->unk24 = 20.0f;
-    D_80386150.unkC->unk28 = D_80379318;
+    D_80386150.unkC->unk28 = 0.01f;
     D_80386150.unkC->unk2C = 0.0f;
     func_80323240(func_80342038(D_80386150.unkC->unk1C), D_80386150.unkC->unk2C, D_80386150.unkC->unkC);
     D_80386150.unkC++;

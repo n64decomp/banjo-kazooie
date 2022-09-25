@@ -22,15 +22,6 @@ extern ActorInfo D_803730D8 = {
     2500, 0, 0.9f, 0
 };
 
-
-/* .rodata */
-extern f64 D_803799C0;
-extern f64 D_803799C8;
-extern f64 D_803799D0;
-extern f64 D_803799D8;
-extern f64 D_803799E0;
-extern f64 D_803799E8;
-
 /* .code */
 void func_8035F970(Actor *this){
     func_80328A84(this, 1);
@@ -195,10 +186,10 @@ bool func_8035FF5C(Actor *this){
 }
 
 void func_8035FFAC(Actor *this, f32 arg1){
-    if(arg1 < 0.0f && randf() < D_803799C0){
+    if(arg1 < 0.0f && randf() < 0.82){
         this->velocity_y = 0.0f;
     }
-    else if(randf() < D_803799C8){
+    else if(randf() < 0.92){
         this->velocity_y = 1.0f;
     }
 }
@@ -239,7 +230,7 @@ bool func_80360198(Actor *this) {
 
     func_80328FB0(this, 5.0f);
     func_80360044(this);
-    this->unk28 += (this->velocity[1] * D_803799D0) - (D_803799D8 * this->unk28);
+    this->unk28 += (this->velocity[1] * 0.45) - (0.001 * this->unk28);
     if (this->unk28 > 13.0) {
         this->unk28 = 13.0f;
     }
@@ -247,7 +238,7 @@ bool func_80360198(Actor *this) {
         this->unk28 = -13.0f;
     }
 
-    this->velocity[0] += ((this->velocity[1] * D_803799E0) - D_803799E8);
+    this->velocity[0] += ((this->velocity[1] * 0.9) - 0.6);
     if (this->velocity[0] > 6.0) {
         this->velocity[0] = 6.0f;
     }

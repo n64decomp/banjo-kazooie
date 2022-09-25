@@ -227,12 +227,6 @@ extern s32 D_80371E80;
 extern char D_80378FF0[];
 extern f32 D_8037901C;
 
-extern f64 D_80379058;
-extern f64 D_80379060;
-extern f64 D_80379068;
-extern f64 D_80379070;
-
-
 /* .bss */
 s16 *D_803858A0;
 
@@ -973,8 +967,8 @@ void func_803430B4(Actor *arg0) {
         if (d_yaw >= 180.0f) {
             d_yaw = 360.0f - d_yaw;
         }
-        arg0->unk10_3 = (d_yaw < D_80379058) ? 3
-                      : (d_yaw < D_80379060) ? 2 
+        arg0->unk10_3 = (d_yaw < 1.8) ? 3
+                      : (d_yaw < 3.2) ? 2 
                       : 1;
     }
 }
@@ -1006,7 +1000,7 @@ void func_803431D0(Actor *arg0, s32 arg1, s32 arg2, s32 arg3) {
                 }
             }
             if (arg1 & 0x200) {
-                arg0->unk6C = (D_80379068 - sp58[0]);
+                arg0->unk6C = (360.0 - sp58[0]);
             }
         }
     }
@@ -1098,7 +1092,7 @@ s32 func_80343694(Actor *actor, s32 indx, s32 begin, s32 end, s32 count, s32 str
         }
     }
     if ((D_80371E80 == 1) && (var_v1 == 1)) {
-        actor->unk48 = sp48 + D_80379070;
+        actor->unk48 = sp48 + 0.00001;
     }
     return var_v1;
 }

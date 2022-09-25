@@ -26,10 +26,6 @@ extern s16 D_80368AB8;
 extern Gfx D_80368B08[];
 extern Struct_core2_6B030_1 D_80368B28[];
 
-/* .rodata */
-extern f32 D_803771E0;
-extern f32 D_803771E4;
-
 /* .bss */
 f32 *D_80380A10;
 Mtx D_80380A18;
@@ -64,8 +60,8 @@ void func_802F1FC0(Struct65s *self, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     temp_s5 = (s32) ((f32)self->unk20 * ((1.0f - (self->unk25 / 255.0f)) + ((self->unk25 / 255.0f) - temp_f2)));
     func_80251BCC(&D_80380A18);
     func_8025235C(&spD0, &spD0);
-    spD0[0] = (D_803771E0 * spD0[0]) / spD0[2];
-    spD0[1] = (D_803771E4 * spD0[1]) / spD0[2];
+    spD0[0] = (-297.0f * spD0[0]) / spD0[2];
+    spD0[1] = (297.0f * spD0[1]) / spD0[2];
     spC4 = (s32) (spD0[0] + (f32) (D_80276588 / 2));
     spC0 = (s32) (spD0[1] + (f32) (D_8027658C / 2));
     if (spC4 < 0) {

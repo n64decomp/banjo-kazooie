@@ -142,14 +142,14 @@ ParticleEmitter *func_802F3670(s16 arg0[3], f32 arg1, enum asset_e sprite_id){
 void func_802F36DC(s16 arg0[3]){
     ParticleEmitter *p_emitter = func_802F3670(arg0, 10.0f, ASSET_713_SPRITE_SPARKLE_YELLOW);
     particleEmitter_setPositionAndVelocityRanges(p_emitter, &D_80368BD0);
-    func_802EFB70(p_emitter, D_803771F0, D_803771F0);
+    func_802EFB70(p_emitter, 0.32f, 0.32f);
     particleEmitter_emitN(p_emitter, 10);
 }
 
 void func_802F373C(s16 arg0[3]){
     ParticleEmitter *p_emitter = func_802F3670(arg0, 10.0f, ASSET_713_SPRITE_SPARKLE_YELLOW);
     particleEmitter_setPositionAndVelocityRanges(p_emitter, &D_80368C00);
-    func_802EFB70(p_emitter, D_803771F4, D_803771F4);
+    func_802EFB70(p_emitter, 0.32f, 0.32f);
     particleEmitter_emitN(p_emitter, 7);
 }
 
@@ -185,7 +185,7 @@ void func_802F38F0(s16 arg0[3]){
         -75.0f, 100.0f, -75.0f,
         75.0f, 250.0f, 75.0f
     );
-    func_802EFB70(p_emitter, D_803771F8, D_803771F8);
+    func_802EFB70(p_emitter, 0.3f, 0.3f);
     particleEmitter_emitN(p_emitter, 5);
 }
 
@@ -202,7 +202,7 @@ void func_802F39D8(s16 arg0[3]){
         -75.0f, 100.0f, -75.0f,
         75.0f, 250.0f, 75.0f
     );
-    func_802EFB70(p_emitter, D_803771FC, D_803771FC);
+    func_802EFB70(p_emitter, 0.3f, 0.3f);
     particleEmitter_emitN(p_emitter, 5);
 }
 
@@ -216,7 +216,7 @@ void func_802F3A60(s16 arg0[3]){
 void func_802F3AC0(s16 arg0[3]){
     ParticleEmitter *p_emitter = func_802F3670(arg0, 10.0f, ASSET_718_SPRITE_SPARKLE_WHITE_2);
     particleEmitter_setPositionAndVelocityRanges(p_emitter, &D_80368CC0);
-    func_802EFB70(p_emitter, D_80377200, D_80377200);
+    func_802EFB70(p_emitter, 0.4f, 0.4f);
     particleEmitter_emitN(p_emitter, 7);
     func_802EFEC0(p_emitter, 1.5f, 1.5f);
 }
@@ -224,7 +224,7 @@ void func_802F3AC0(s16 arg0[3]){
 void func_802F3B3C(s16 arg0[3]){
     ParticleEmitter *p_emitter = func_802F3670(arg0, 10.0f, ASSET_713_SPRITE_SPARKLE_YELLOW);
     particleEmitter_setPositionAndVelocityRanges(p_emitter, &D_80368CF0);
-    func_802EFB70(p_emitter, D_80377204, D_80377204);
+    func_802EFB70(p_emitter, 0.27f, 0.27f);
     particleEmitter_emitN(p_emitter, 5);
 }
 

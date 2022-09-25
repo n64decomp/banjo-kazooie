@@ -370,12 +370,6 @@ extern GeoListFunc D_80370994[] = {
     func_8033878C
 };
 
-/* .rodata */
-extern f32 D_80378F40;
-extern f32 D_80378F44;
-extern f32 D_80378F48;
-extern f32 D_80378F4C;
-
 /* .bss */
 s32 D_80383650;
 s32 D_80383658[0x2A];
@@ -434,7 +428,7 @@ f32 D_80383C98[3];
 /* .code */
 void func_80338390(void){
     D_80383700 = 0;
-    D_80383708 = D_80378F40;
+    D_80383708 = 30000.0f;
     D_80383704 = TRUE;
     D_8038370C = 1.0f;
     D_80383710 = FALSE;
@@ -820,9 +814,9 @@ int func_803391A4(Gfx **gfx, Mtx **mtx, f32 position[3], f32 arg3[3], f32 scale,
     spF4[1] = spE0[1] - D_80383C38[1];
     spF4[2] = spE0[2] - D_80383C38[2];
 
-    if( ((spF4[0] < D_80378F44) || (D_80378F48 < spF4[0]))
-        || ((spF4[1] < D_80378F44) || (D_80378F48 < spF4[1]))
-        || ((spF4[2] < D_80378F44) || (D_80378F48 < spF4[2]))
+    if( ((spF4[0] < -17000.0f) || (17000.0f < spF4[0]))
+        || ((spF4[1] < -17000.0f) || (17000.0f < spF4[1]))
+        || ((spF4[2] < -17000.0f) || (17000.0f < spF4[2]))
     ){
         func_80338390();
         return 0;
@@ -977,7 +971,7 @@ int func_803391A4(Gfx **gfx, Mtx **mtx, f32 position[3], f32 arg3[3], f32 scale,
 
     if(D_80383C54->geo_typ_A & 4){ //env mapping
         if(0.0f == spF4[2]){
-            spF4[2] = D_80378F4C;
+            spF4[2] = -0.1f;
         }
         func_8024128C(*mtx, D_803837E0.unk400, D_803837E0.unk408[0], D_803837E0.unk408[1], D_803837E0.unk408[2], spF4[0], spF4[1], spF4[2], 0.0f, 1.0f, 0.0f);
         gSPLookAt((*gfx)++, D_803837E0.unk400);

@@ -23,9 +23,6 @@ BKModelBin *func_8030A428(s32 arg0);
 /* .data */
 s32 D_8036B800;
 
-/* .rodata */
-extern f32 D_80377730;
-
 /* .bss */
 struct_7AF80_0 *D_80382390; //prop models ???
 struct_7AF80_1 *D_80382394; //prop_sprites ???
@@ -35,7 +32,7 @@ void func_8030A2D0(Gfx **gfx, Mtx **mtx, Vtx **vtx, f32 arg3[3], f32 arg4[3], f3
     BKModelBin * sp2C;
     
     sp2C = func_8030A428(arg6);
-    func_8033A244(D_80377730);
+    func_8033A244(3700.0f);
     func_8033A28C(1);
     set_model_render_mode(1);
     func_8033A1FC();

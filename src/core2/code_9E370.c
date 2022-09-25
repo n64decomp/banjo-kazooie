@@ -63,12 +63,6 @@ extern s32 D_8036E5B0[4];
 extern s32 D_8036E5C0[4];
 
 
-/* .rodata */
-extern f32 D_80378E50;
-extern f64 D_80378E58;
-extern f64 D_80378E60;
-extern f64 D_80378E68;
-
 /* .bss */
 Actor *D_80383390;
 s32 D_80383394;
@@ -661,7 +655,7 @@ Actor *func_80326D68(f32 position[3], enum actor_e actor_id, s32 arg2, f32 *min_
     if (D_8036E560 != NULL) {
         begin = D_8036E560->data;
         closest_actor = NULL;
-        min_dist = D_80378E50;
+        min_dist = 1e+10f;
         for(i_actor = begin; (i_actor - begin) < D_8036E560->cnt; i_actor++){
             if ( ((actor_id == i_actor->modelCacheIndex) || (actor_id < 0)) 
                  && (arg2 != i_actor->state) 
@@ -1154,7 +1148,7 @@ void func_80328478(f32 arg0[3], f32 arg1, f32 arg2){
     sp1C[0] = arg2;
     sp1C[1] = 0.0f;
     sp1C[2] = 0.0f;
-    ml_vec3f_yaw_rotate_copy(sp1C, sp1C, arg1 - D_80378E58);
+    ml_vec3f_yaw_rotate_copy(sp1C, sp1C, arg1 - 90.0);
 
     arg0[0] += sp1C[0]; 
     arg0[1] += sp1C[1]; 
@@ -1212,8 +1206,8 @@ int func_8032863C(AnimCtrl *anim_ctrl, f32 min, f32 max) {
         return -1;
     }
     sp18 = animctrl_isPlayedForwards(anim_ctrl);
-    if( ((sp18 == 0) && (min <= timer) && (timer < (min + D_80378E60))) 
-        || ((sp18 == 1) && (timer < max) && ((max - D_80378E68) <= timer))
+    if( ((sp18 == 0) && (min <= timer) && (timer < (min + 0.015))) 
+        || ((sp18 == 1) && (timer < max) && ((max - 0.015) <= timer))
     ) {
         sp18 = (sp18) ? 0 : 1;
         animctrl_setDirection(anim_ctrl, sp18);

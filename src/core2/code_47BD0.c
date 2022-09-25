@@ -274,8 +274,7 @@ bool func_802CF5E4(Actor *this){
 }
 
 void func_802CF610(Actor *this, ParticleEmitter *p_ctrl, f32 position[3]) {
-    func_8030E6A4(SFX_66_BIRD_AUUGHH, randf2(1.75f, D_803765E4), 15000);
-    // func_8030E6A4(SFX_66_BIRD_AUUGHH, randf2(1.75f, 1.85f), 15000);
+    func_8030E6A4(SFX_66_BIRD_AUUGHH, randf2(1.75f, 1.85f), 15000);
     particleEmitter_setPosition(p_ctrl, position);
     func_802EFA70(p_ctrl, 2);
     func_802EF9F8(p_ctrl, 0.5f);

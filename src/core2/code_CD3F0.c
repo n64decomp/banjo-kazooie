@@ -69,10 +69,10 @@ void func_8035451C(void) {
     func_8033FE2C(temp_v0, 9.0f);
     temp_f16 = ml_map_f(temp_f20, 0.0f, sp38, sp30, 20.0f);
     func_8033FFE4(temp_v0, temp_f16, temp_f16);
-    if (temp_f20 < D_80379470) {
+    if (temp_f20 < 0.1) {
         func_8033FC34(temp_v0, ml_map_f(temp_f20, 0.0f, 0.1f, 20.0f, 210.0f));
     } else {
-        func_8033FC34(temp_v0, ml_map_f(temp_f20, D_80379478, sp38, 210.0f, 20.0f));
+        func_8033FC34(temp_v0, ml_map_f(temp_f20, 0.1f, sp38, 210.0f, 20.0f));
     }
     temp_f20 += time_getDelta();
     temp_s0->unk0 = temp_f20;

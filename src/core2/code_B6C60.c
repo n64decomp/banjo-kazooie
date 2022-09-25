@@ -2,8 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-/* .rodata */
-extern f64 D_80378F80;
 
 /* .bss */
 s32 D_80384470;
@@ -24,6 +22,6 @@ void func_8033DC18(void){}
 f32 func_8033DC20(void){
     f32 out;
     D_80384470 = func_8024BD94();
-    out = D_80378F80*D_80384470;
+    out = 0.016666666666666666*D_80384470;
     return out;
 }

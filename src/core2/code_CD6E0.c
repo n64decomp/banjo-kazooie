@@ -56,7 +56,7 @@ void func_803546E8(void) {
     func_80344EE4(sp47, -700.0f, -22000.0f);
     func_802589E4(sp28, D_803726EC, 250.0f);
     sp28[1] = 250.0f;
-    D_803726EC = mlNormalizeAngle(D_803726EC + D_80379480);
+    D_803726EC = mlNormalizeAngle(D_803726EC + 45.0);
     func_80344E3C(sp47, sp28);
     func_80344D94(sp47, sp34);
     temp_s0->unk20 = 0x14;
@@ -475,7 +475,7 @@ void func_80355864(void) {
 
     func_802589E4(sp2C, D_803726EC, sp28);
     sp2C[1] = sp28 * ((sp44 * 0.5) + 1.0);
-    D_803726EC = mlNormalizeAngle(D_803726EC + D_803794B0);
+    D_803726EC = mlNormalizeAngle(D_803726EC + 45.0);
     func_80344E3C(sp57, sp2C);
     func_80344D94(sp57, sp38);
     sp48->unk20 = 0x14;
