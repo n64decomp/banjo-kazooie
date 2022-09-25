@@ -815,7 +815,7 @@ segments:
   - [0xF2230, .rodata, code_C5CC0]
   - [0xF2240, .rodata, code_C5F00]
   - [0xF2270, .rodata, code_C62B0]
-  - [0xF22A0, bin, data_F22A0] # .rodata, code_C76D0]
+  - [0xF22A0, .rodata, code_C76D0]
   - [0xF22E0, .rodata, code_C7CC0]
   - [0xF2320, .rodata, code_C8230]
   - [0xF2330, .rodata, code_C8360]

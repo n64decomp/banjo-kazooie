@@ -47,9 +47,6 @@ void func_8034E78C(Struct73s *arg0, s32 arg1, f32 arg2){
     func_8034E7B8(arg0, arg1, arg2, 1, arg2);
 }
 
-#ifndef NONMATCHING //.matches but requires .rodata
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C76D0/func_8034E7B8.s")
-#else
 void func_8034E7B8(Struct73s *arg0, s32 arg1, f32 arg2, s32 arg3, f32 arg4) {
     f32 var_f0;
     s32 temp_s0;
@@ -69,26 +66,15 @@ void func_8034E7B8(Struct73s *arg0, s32 arg1, f32 arg2, s32 arg3, f32 arg4) {
         }
     }
 }
-#endif
-
-
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C76D0/func_8034E8E4.s")
-#else
-// extern f64 D_80379238;
-// extern f64 D_80379240;
-// extern f64 D_80379248;
-// extern f64 D_80379250;
-// extern f64 D_80379258;
-// extern f64 D_80379260;
-// extern f64 D_80379268;
 
 void func_8034E8E4(Struct73s *arg0, BKModel *arg1, s32 arg2) {
+    f32 sp3C;
     f32 sp38;
     f32 sp30[2];
-    f32 sp28;
-    f32 cos;
     f32 sin;
+    f32 cos;
+    f32 sp2C;
+    f32 sp28;
 
     sp38 = time_getDelta();
     arg0->unk4 += sp38;
@@ -97,16 +83,16 @@ void func_8034E8E4(Struct73s *arg0, BKModel *arg1, s32 arg2) {
     sp30[0] = (sin*100.0f + 150.0f*cos)*0.8;
 
     
-    sin = sinf(arg0->unk4 * 0.5 * BAD_PI);
-    cos = cosf(arg0->unk4 * 0.22 * BAD_PI);
-    sp30[1] = (cos* 100.0f + 50.0f*sin)*0.8;
+    cos = sinf(arg0->unk4 * 0.5 * BAD_PI);
+    sin = cosf(arg0->unk4 * 0.22 * BAD_PI);
+    sp30[1] = (sin* 100.0f + 50.0f*cos)*0.8;
 
     arg0->d_tc[0] = (sp30[0] >= 0.0) ? sp30[0] + 0.5 : sp30[0] - 0.5;
     arg0->d_tc[1] = (sp30[1] >= 0.0) ? sp30[1] + 0.5 : sp30[1] - 0.5;
 
     cos = cosf(arg0->unk4 * 0.5 * BAD_PI);
     sin = sinf(arg0->unk4 * 0.11 * BAD_PI);
-    sp28 = sin*(arg0->unk8 * 0.25) + (arg0->unk8* 0.75)*cos;
+    sp2C = sin*(arg0->unk8 * 0.25) + (arg0->unk8* 0.75)*cos;
     
     if (arg0->unk14 < arg0->unk1C) {
         arg0->unk18 = arg0->unk14;
@@ -115,8 +101,8 @@ void func_8034E8E4(Struct73s *arg0, BKModel *arg1, s32 arg2) {
             arg0->unk14 = arg0->unk1C;
         }
     }
-    sp28 += (arg0->unk14 < arg0->unk1C) ? arg0->unkC + ((arg0->unk14 / arg0->unk1C) * (arg0->unkE - arg0->unkC)) : arg0->unkE;
+    sp28 = ((arg0->unk14 < arg0->unk1C) ? arg0->unkC + ((arg0->unk14 / arg0->unk1C) * (arg0->unkE - arg0->unkC)) : arg0->unkE);
+    sp28 += sp2C;
     arg0->dy = (sp28 >= 0.0) ? sp28 + 0.5 : sp28 - 0.5;
     func_8033F120(arg1, arg2, func_8034E660, (s32) arg0);
 }
-#endif
