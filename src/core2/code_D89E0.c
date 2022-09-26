@@ -268,10 +268,11 @@ f32 func_803603AC(Actor *this, s32 arg1, u8 arg2);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D89E0/func_803603AC.s")
 #else
 f32 func_803603AC(Actor *this, s32 arg1, u8 arg2){
-    f32 sp20[3];
     f32 num;
     f32 den;
     f32 phi_f2;
+    f32 sp2C[3];
+    f32 sp20[3];
 
     switch (arg2) {
     case 1:
@@ -284,15 +285,24 @@ f32 func_803603AC(Actor *this, s32 arg1, u8 arg2){
         sp20[2] = this->unk1C[2];
         break;
     }
-    
-    den = (this->position[0] - sp20[0])*(this->position[0] - sp20[0]) + (this->position[2] - sp20[2])*(this->position[2] - sp20[2]);
-    num = (this->position[1] - sp20[1]) - (f32)arg1;
+
+    sp2C[0] = (this->position[0] - sp20[0]);
+    sp2C[1] = (this->position[1] - sp20[1]);
+    sp2C[2] = (this->position[2] - sp20[2]);
+
+    den =(sp2C[0]*sp2C[0] + sp2C[2]*sp2C[2]);
+    if(den);
+    num = (sp2C[1] - arg1);
     if(num == 0.0 || den == 0.0)
         return 0.0f;
-    phi_f2 = -num/den;
-    return (phi_f2 >= 4.0f) ? 4.0f
-           : (phi_f2 <= -4.0f) ? -4.0f 
-           : phi_f2;
+        
+    phi_f2 = -(this->unk28*num)/den;
+    if (phi_f2 >= 4.0f) {
+        return 4.0f;
+    }
+    if(-4.0f >= phi_f2) 
+        phi_f2 = -4.0f; 
+    return phi_f2;
 }
 #endif
 

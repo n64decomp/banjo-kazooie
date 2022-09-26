@@ -40,7 +40,7 @@ segments:
       - [0x4400, c, code_4400] #DONE
       - [0x45D0, c, code_45D0] #DONE
       - [0x4770, c, code_4770] #DONE
-      - [0x5CC0, c, code_5CC0]
+      - [0x5CC0, c, code_5CC0] #DONE
       - [0x6AE0, c, code_6AE0] #DONE
       - [0x7980, c, code_7980] #DONE
       - [0x8330, c, code_8330] #DONE

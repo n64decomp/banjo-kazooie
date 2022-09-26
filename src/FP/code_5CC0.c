@@ -265,9 +265,6 @@ void func_8038C94C(ActorMarker *caller, enum asset_e text_id, s32 arg2){
     }
 }
 
-#ifndef NONAMTCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_5CC0/func_8038C9A0.s")
-#else
 void func_8038C9A0(Actor *this){
     Actor *other; //sp34
     void * sp30;
@@ -302,16 +299,15 @@ void func_8038C9A0(Actor *this){
         FUNC_8030E8B4(SFX_7B_ICE_BREAKING_1, 1.0f, 32000, this->position, 0x6d6, 0xdac);\
         marker_despawn(this->marker);
         return;
-    }//L8038CB04
+    }
 
     switch(this->state){
         case 1:// 8038CB2C
-            if(func_8038C718(this, 0))
-                break;
-
-            func_80328B8C(this, 2, 0.001f, 1);
-            func_8038C428(this, D_80392088, randf2(20.0f, 24.0f));
-            this->unk60 = this->yaw;
+            if(!func_8038C718(this, 0)){
+                func_80328B8C(this, 2, 0.001f, 1);
+                func_8038C428(this, D_80392088, randf2(20.0f, 24.0f));
+                this->unk60 = this->yaw;
+            }
             break;
 
         case 2:// 8038CB8C
@@ -331,27 +327,25 @@ void func_8038C9A0(Actor *this){
                 this->unk38_31 = FALSE;
             }
 
-            if(func_8038C718(this, 0.0f))
-                return;
-
-            if(func_8038C844(this->position, D_80392088)){
-                func_80328B8C(this, 3, 0.001f, 1);
-                func_8038C428(this, D_80392094, 0.0f);
-            }
-            else{
-                func_8038C428(this, D_80392088, randf2(20.0f, 24.0f));
+            if(!func_8038C718(this, 0.0f)){
+                if(func_8038C844(this->position, D_80392088)){
+                    func_80328B8C(this, 3, 0.001f, 1);
+                    func_8038C428(this, D_80392094, 0.0f);
+                }
+                else{
+                    func_8038C428(this, D_80392088, randf2(20.0f, 24.0f));
+                }
             }
             break;
 
         case 3:// 8038CCFC
-            if(func_8038C718(this, 0.0f)) 
-                break;
-
-            if(other->unk38_31 != 0){
-                other->unk38_31--;
+            if(!func_8038C718(this, 0.0f)){
+                if(other->unk38_31 != 0){
+                    other->unk38_31--;
+                }
+                func_8025A6EC(COMUSIC_2B_DING_B, 28000);
+                marker_despawn(this->marker);
             }
-            func_8025A6EC(COMUSIC_2B_DING_B, 28000);
-            marker_despawn(this->marker);
             break;
 
         case 4:// 8038CD58
@@ -373,20 +367,19 @@ void func_8038C9A0(Actor *this){
         case 5:// 8038CE14
             this->yaw_moving = (f32)func_80329784(this);
             func_80328FB0(this, 8.0f);
-            if(func_8038C718(this, this->unk1C[1]))
-                break;
-            
-            this->velocity[1] = randf2(14.0f, 20.0f);
+            if(!func_8038C718(this, this->unk1C[1])){
+                this->velocity[1] = randf2(14.0f, 20.0f);
+            }
             break;
 
         case 6:// 8038CE64
             this->position_y -= 5.0f;
             if(this->position_y < this->unk1C[2] - 50.0f){
-                this->velocity_x = 0.0f;
+                other->velocity_x = 0.0f;
                 marker_despawn(this->marker);
-                return;
             }
+            break;
+        default:
             break;
     }//L8038CEB0
 }
-#endif
