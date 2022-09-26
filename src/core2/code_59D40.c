@@ -157,10 +157,6 @@ f32 func_802E10F0(f32 arg0) {
     return arg0;
 }
 
-
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_59D40/func_802E1168.s")
-#else
 void func_802E1168(Actor *this) {
     f32 sp5C;
     ActorLocal_core2_59D40 *local;
@@ -262,6 +258,8 @@ void func_802E1168(Actor *this) {
                 func_802E0EC8();
             }
             break;
+        default:
+            break;
     }//L802E1630
 
     local = (ActorLocal_core2_59D40 *)&this->local;
@@ -293,7 +291,6 @@ void func_802E1168(Actor *this) {
     actor_setOpacity(this, local->unk4);
     this->unk124_9 = (255.0 == local->unk4) ? 1 : 2;
 }
-#endif
 
 extern f32 D_8037E624;
 void func_802E1790(void){

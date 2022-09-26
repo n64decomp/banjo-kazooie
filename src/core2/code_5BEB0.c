@@ -47,25 +47,25 @@ void mapSavestate_defrag_all(void){
 #else
 void mapSavestate_save(enum map_e map){
     u32 wSize;
-    volatile u32 * sp38;
+    MapSavestate * sp38;
     s32 iBit;
     s32 bit_max;
     s32 reg_s4;
     u32* reg_v1;
     u32* valPtr;
+    s32 i;
 
       
     wSize = 4;
     if(D_8037E650[map])
         free(D_8037E650[map]);
       
-    D_8037E650[map] = (MapSavestate *) malloc(4*sizeof(u32));
-    sp38 =   D_8037E650[map];
+    D_8037E650[map] = sp38 = (MapSavestate *) malloc(4*sizeof(u32));
 
-    *sp38 = mapSpecificFlags_getAll();
+    sp38->flags = mapSpecificFlags_getAll();
     
     iBit = 0x20;
-    func_80308230(1, D_8037E650[map]);
+    func_80308230(1);
     func_803083B0(-1);
     
     for(reg_s4 = func_803083B0(-2); reg_s4 != -1; reg_s4 = func_803083B0(-2, valPtr)){
