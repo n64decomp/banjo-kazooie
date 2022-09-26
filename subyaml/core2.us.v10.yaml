@@ -163,7 +163,7 @@ segments:
   - [0x39190, c, code_39190] #DONE
   - [0x396B0, c, code_396B0] #DONE
   - [0x39A10, c, code_39A10] #DONE
-  - [0x39EF0, c, code_39EF0]
+  - [0x39EF0, c, code_39EF0] #DONE
   - [0x3AE10, c, code_3AE10] #DONE
   - [0x3B2C0, c, done/code_3B2C0] #DONE
   - [0x3B5C0, c, code_3B5C0] #DONE

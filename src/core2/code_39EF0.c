@@ -330,9 +330,6 @@ void func_802C1B20(f32 arg0){
     D_8037DC10 = arg0;
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_39EF0/func_802C1B2C.s")
-#else
 void func_802C1B2C(void) {
     f32 sp7C[3];
     f32 sp70[3];
@@ -341,34 +338,30 @@ void func_802C1B2C(void) {
     f32 sp4C[3];
     f32 sp40[3];
     f32 sp3C;
+    f32 sp38;
     f32 sp34;
     f32 sp30;
-    f32 phi_f0;
+    
 
     func_802BD384(sp64);
     sp34 = D_8037DC10;
     func_802C02D4(sp7C);
     sp30 = time_getDelta();
+    if (sp30);
     ml_vec3f_diff_copy(sp40, sp64, sp7C);
     sp3C = gu_sqrtf(sp40[0]*sp40[0] + sp40[2]*sp40[2]);
-    sp3C += func_80259198((sp34 - sp3C) * sp30 * 2, sp30 * 800.0f);
+    sp3C += func_80259198(sp30*(sp34 - sp3C)*2 , sp30 * 800.0f);
     func_8025727C(sp7C[0], sp7C[1], sp7C[2], sp64[0], sp64[1], sp64[2], &sp4C[0], &sp4C[1]);
-    sp40[1] = mlDiffDegF(mlNormalizeAngle(func_8028EBA4() + 180.0f), sp4C[1]) * sp30 * 0.77;
+    sp40[1] = sp30 * 0.77 * mlDiffDegF(mlNormalizeAngle(func_8028EBA4() + 180.0f), sp4C[1]);
     sp40[1] = func_80259198(sp40[1], sp30 * 300.0f);
-    sp4C[1] = mlNormalizeAngle(sp40[1] + sp4C[1]);
+    sp4C[1] = mlNormalizeAngle(sp4C[1] + sp40[1]);
     func_80256E24(&sp58, 0.0f, sp4C[1], 0.0f, 0.0f, sp3C);
-    sp70[0] = sp58[0] + sp7C[0];
+    sp70[0] = sp7C[0] + sp58[0];
     sp70[1] = sp64[1];
-    sp70[2] = sp58[2] + sp7C[2];
+    sp70[2] = sp7C[2] + sp58[2];
     sp40[1] = sp7C[1] - sp64[1];
     if (mlAbsF(sp40[1]) > 200.0f) {
-        if (sp40[1] > 0.0f) {
-            phi_f0 = 2* sp30 * (200.0f - sp40[1]);
-        } else {
-            phi_f0 = sp30 *(-200.0f - sp40[1]) * 2;
-
-        }
-        sp70[1] = sp64[1] - phi_f0;
+        sp70[1] = sp64[1] - ((sp40[1] > 0.0f) ? sp30 * (200.0f - sp40[1]) * 2 : sp30 * (-200.0f - sp40[1]) * 2);
     }
     func_802BD334(sp70);
     if (func_802BE60C()) {
@@ -376,6 +369,4 @@ void func_802C1B2C(void) {
     }
     func_802BE6FC(sp4C, sp7C);
     func_802BD720(sp4C);
-    if(sp30);
 }
-#endif

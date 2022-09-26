@@ -129,7 +129,7 @@ void func_80299EC0(f32 arg0[3]) {
     arg0[2] = 255.0f;
     if (D_8037C6F0.unk0 == 1) {
         sp78 = 50;
-    } else if (func_8028EE84() != BSWATERGROUP_0_NONE) {
+    } else if (func_8028EE84() == BSWATERGROUP_0_NONE) {
         sp78 = 200;
     } else {
         sp78 = 250;
@@ -151,8 +151,8 @@ void func_80299EC0(f32 arg0[3]) {
         temp_v1 =  vtx_buffer + sp6C->unk0[i];
         sp48[i][0] = (f32) temp_v1->v.ob[0];
         sp48[i][1] = (f32) temp_v1->v.ob[1];
-        sp48[i][1] = 0.0f;
         sp48[i][2] = (f32) temp_v1->v.ob[2];
+        sp48[i][1] = 0.0f;
 
         sp7C[i][0] = (f32) temp_v1->v.cn[0];
         sp7C[i][1] = (f32) temp_v1->v.cn[1];
@@ -161,21 +161,19 @@ void func_80299EC0(f32 arg0[3]) {
     // spEC[1] = 0.0f;
 
     spE0[0] = spEC[0] - sp48[0][0];
-    spE0[1] = 0.0f;
     spE0[2] = spEC[2] - sp48[0][2];
+    spE0[1] = 0.0f;
 
     spAC[0] = sp48[0][0] - sp48[1][0];
-    spAC[1] = 0.0f;
     spAC[2] = sp48[0][2] - sp48[1][2];
+    spAC[1] = 0.0f;
 
     spB8[0] = -(sp48[2][2] - sp48[1][2]);
-    spB8[1] = 0.0f;
     spB8[2] = sp48[2][0] - sp48[1][0];
+    spB8[1] = 0.0f;
 
     phi_f18 =  (spE0[0] * spB8[0]) + (spE0[1] * spB8[1]) + (spB8[2] * spE0[2]);
-    if(phi_f18 == 0.0f){
-        phi_f18 = D_80374CF0;
-    }
+    phi_f18 = (phi_f18 == 0.0f)? 0.1f : phi_f18;
 
     temp_f0_2 = -((spB8[2] * spAC[2]) + ((spAC[0] * spB8[0]) + 0.0f)) / phi_f18;
     spA0[0] = (spE0[0] * temp_f0_2) + sp48[0][0];
@@ -186,7 +184,7 @@ void func_80299EC0(f32 arg0[3]) {
     spD4[1] = spA0[1] - sp48[1][1];
     spD4[2] = spA0[2] - sp48[1][2];
 
-    temp_f2_2 = gu_sqrtf(spD4[0]*spD4[0] + spD4[1]*spD4[1] + spD4[2]*spD4[2]) / (gu_sqrtf(spB8[0] * spB8[0] + spB8[1] * spB8[1] + spB8[2] * spB8[2]) + D_80374CF8);
+    temp_f2_2 = gu_sqrtf(spD4[0]*spD4[0] + spD4[1]*spD4[1] + spD4[2]*spD4[2]) / (gu_sqrtf(spB8[0] * spB8[0] + spB8[1] * spB8[1] + spB8[2] * spB8[2]) + 0.01);
     for(i = 0; i < 3; i++){
         arg0[i] = sp7C[1][i] + (sp7C[2][i] - sp7C[1][i])*temp_f2_2;
     }
@@ -194,7 +192,7 @@ void func_80299EC0(f32 arg0[3]) {
     spD4[0] = spA0[0] - sp48[0][0];
     spD4[1] = spA0[1] - sp48[0][1];
     spD4[2] = spA0[2] - sp48[0][2];
-    temp_f2_4 = (1.0 - (gu_sqrtf(spE0[0]*spE0[0] + spE0[1]*spE0[1] + spE0[2]*spE0[2]) / (gu_sqrtf(spD4[0]*spD4[0] + spD4[1]*spD4[1] + spD4[2]*spD4[2]) + D_80374D00)));
+    temp_f2_4 = (1.0 - (gu_sqrtf(spE0[0]*spE0[0] + spE0[1]*spE0[1] + spE0[2]*spE0[2]) / (gu_sqrtf(spD4[0]*spD4[0] + spD4[1]*spD4[1] + spD4[2]*spD4[2]) + 0.01)));
 
     for(i = 0; i < 3; i++){
         arg0[i] += (sp7C[0][i] - arg0[i])*temp_f2_4;
@@ -208,7 +206,7 @@ void func_80299EC0(f32 arg0[3]) {
         if(arg0[i] > 255.0f){ arg0[i] = 255.0f; }
         if(arg0[i] < 0.0f) {  arg0[i] = 0.0f; }
     }
-    arg0[0] = ((arg0[0] + arg0[1] + arg0[2]) * (f32) (0xFF - sp78)) / D_80374D08 + sp78;
+    arg0[0] = ((arg0[0] + arg0[1] + arg0[2]) * (f32) (0xFF - sp78)) / 765.0f + sp78;
     arg0[1] = arg0[0];
     arg0[2] = arg0[0];
 }
