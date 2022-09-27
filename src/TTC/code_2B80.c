@@ -9,24 +9,18 @@ extern void func_803272D0(f32 arg0[3], f32 arg1, s32 arg2, int (*arg3)(Actor *))
 void func_80388FBC(Actor *this);
 
 /* .data */
-extern ActorAnimationInfo D_8038C700[];
+ActorAnimationInfo D_8038C700[] = {
+    {0x000, 0.0f},
+    {0x239, 2.5f},
+    {0x239, 2.5f}
+};
 
-extern ActorInfo D_8038C718 = { 
+ActorInfo D_8038C718 = { 
     MARKER_33_LEAKY,  ACTOR_1E_LEAKY, ASSET_51A_MODEL_LEAKY,
     0x1, D_8038C700,
     func_80388FBC, func_80326224, func_80325888,
     0, 0, 0.0f, 0
 };
-
-extern f32 D_8038C73C[3];
-
-/* .rodata */
-extern f32 D_8038CDD0;
-extern f32 D_8038CDD4;
-extern f32 D_8038CDD8;
-extern f32 D_8038CDDC;
-extern f32 D_8038CDE0;
-extern f32 D_8038CDE4;
 
 /* .code */
 bool func_80388F70(Actor *this){
@@ -34,6 +28,7 @@ bool func_80388F70(Actor *this){
 }
 
 void func_80388F88(void){
+    static f32 D_8038C73C[3] = {2500.0f, 250.0f, 4600.0f};
     func_803272D0(D_8038C73C, 2000.0f, 2, func_80388F70);
 }
 
@@ -46,7 +41,7 @@ void func_80388FBC(Actor *this) {
         this->marker->propPtr->unk8_3 = FALSE;
         if (levelSpecificFlags_get(5) != 0) {
             levelSpecificFlags_set(5, 0);
-            timedFunc_set_1(0.5f, func_8025A70C, 0x2D);
+            timedFunc_set_1(0.5f, (TFQM1)func_8025A70C, COMUSIC_2D_PUZZLE_SOLVED_FANFARE);
         }
         if (levelSpecificFlags_get(2) != 0) {
             temp_v0_2 = func_8034C5AC(300);
@@ -68,11 +63,11 @@ void func_80388FBC(Actor *this) {
     }
     if (func_803114B0() == 0) {
         if (actor_animationIsAt(this, 0.83f)) {
-            func_8030E878(0x109, randf2(D_8038CDD0, D_8038CDD4), 22000, this->position, 400.0f, 1000.0f);
+            func_8030E878(0x109, randf2(0.775f, 0.825f), 22000, this->position, 400.0f, 1000.0f);
             return;
         }
         if (actor_animationIsAt(this, 0.01f)) {
-            func_8030E878(0x109, randf2(D_8038CDD8, D_8038CDDC), 18000, this->position, 400.0f, 1000.0f);
+            func_8030E878(0x109, randf2(1.025f, 1.075f), 18000, this->position, 400.0f, 1000.0f);
             return;
         }
         if( actor_animationIsAt(this, 0.15f) 
@@ -80,17 +75,17 @@ void func_80388FBC(Actor *this) {
             || actor_animationIsAt(this, 0.53f)
             || actor_animationIsAt(this, 0.66f)
         ){
-            func_8030E878(0x109, randf2(D_8038CDE0, D_8038CDE4), 14000, this->position, 400.0f, 1000.0f);
+            func_8030E878(0x109, randf2(1.225f, 1.275f), 14000, this->position, 400.0f, 1000.0f);
         }
     }
 }
 
 void func_80389288(ActorMarker *caller, enum asset_e text_id, s32 arg2){
     Actor *this = marker_getActor(caller);
-    s32 temp_v0;
+    Struct73s *temp_v0;
     func_80328A84(this, 2);
     temp_v0 = func_8034C5AC(300);
-    if(temp_v0){
+    if(temp_v0 != NULL){
         func_8034E7B8(temp_v0, -600, 4.0f, 2, 10.0f);
     }
 

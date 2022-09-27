@@ -5,7 +5,9 @@
 extern s32 D_80276CB0;
 
 /* .data */
-extern s32 D_8038C754;
+s32 D_8038C750 = 0x0016D2FD;
+s32 D_8038C754 = 0xFB70B01D;
+s32 D_8038C758 = 0x0004EFAC;
 
 /* .bss */
 struct {

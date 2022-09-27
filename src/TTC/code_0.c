@@ -9,19 +9,20 @@ extern ActorProp * func_80320EB0(ActorMarker *, f32, s32);
 void func_80386FDC(Actor *this);
 
 /* .data */
-extern ActorAnimationInfo D_8038C3B0[];
+ActorAnimationInfo D_8038C3B0[] = {
+    {0x00, 0.0f},
+    {0xAA, 2.0f},
+    {0x24, 1.0f},
+    {0xAB, 0.6f}
+};
 
-extern ActorInfo D_8038C3D0 = { 
+ActorInfo D_8038C3D0 = { 
     MARKER_15_CLAM, ACTOR_69_CLAM, ASSET_351_MODEL_CLAM,
     0x1, D_8038C3B0,
     func_80386FDC, func_80326224, func_80325888, 
     4500, 0x366, 1.6f, 0
 };
-extern struct41s *D_8038C3F4;
-extern struct41s *D_8038C424;
-extern struct41s *D_8038C454;
-extern struct31s *D_8038C484;
-extern struct41s *D_8038C4AC;
+
 
 /* .code */
 void func_803863F0(enum sfx_e sfx_id, f32 arg1, s32 arg2, f32 position[3], f32 arg4, f32 arg5){
@@ -148,6 +149,10 @@ void func_80386A9C(ParticleEmitter *pCtrl, f32 position[3]){
 }
 
 void func_80386B54(f32 position[3], s32 count){
+    static struct41s D_8038C3F4 = {
+        {{-50.0f,   750.0f, -50.0f}, {120.0f,   900.0f, 120.0f}},
+        {{  0.0f, -1800.0f,   0.0f}, {  0.0f, -1800.0f,   0.0f}}
+    };
     ParticleEmitter *pCtrl;
 
     pCtrl = partEmitList_pushNew(count);
@@ -160,6 +165,10 @@ void func_80386B54(f32 position[3], s32 count){
 }
 
 void func_80386C08(f32 position[3], s32 count){
+    static struct41s D_8038C424 = {
+        {{-80.0f,   400.0f, -80.0f}, {160.0f,   860.0f, 160.0f}},
+        {{  0.0f, -1400.0f,   0.0f}, {  0.0f, -1400.0f,   0.0f}}
+    };
     ParticleEmitter *pCtrl;
 
     pCtrl = partEmitList_pushNew(count);
@@ -172,6 +181,10 @@ void func_80386C08(f32 position[3], s32 count){
 }
 
 void func_80386CBC(f32 position[3], s32 count){
+    static struct41s D_8038C454 = {
+        {{-200.0f,  850.0f, -200.0f}, {400.0f,  1000.0f, 400.0f}},
+        {{  0.0f, -1800.0f,    0.0f}, {  0.0f, -1800.0f,   0.0f}}
+    };
     ParticleEmitter *pCtrl;
 
     pCtrl = partEmitList_pushNew(count);
@@ -184,6 +197,19 @@ void func_80386CBC(f32 position[3], s32 count){
 }
 
 void func_80386D68(f32 position[3], enum asset_e sprite_id, s32 count){
+    static struct31s D_8038C484 = {
+    {0.2f,  0.35f},
+    {0.0f,  0.0f},
+    {0.0f,  0.01f},
+    {0.45f, 0.45f},
+     0.0f,  0.5f
+    };
+
+    static struct41s D_8038C4AC = {
+        {{-340.0f,   100.0f, -340.0f}, {340.0f,   250.0f, 340.0f}},
+        {{   0.0f, -1200.0f,    0.0f}, {  0.0f, -1200.0f, 0.0f}}
+    };
+
     ParticleEmitter *pCtrl;
     
     pCtrl = partEmitList_pushNew(count);

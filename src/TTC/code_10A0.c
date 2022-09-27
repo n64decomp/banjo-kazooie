@@ -20,9 +20,16 @@ void func_80387CF4(Actor *this);
 Actor *func_80387D6C(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 
 /* .data */
-extern ActorAnimationInfo D_8038C4E0[];
+ActorAnimationInfo D_8038C4E0[] = {
+    {0x00, 0.0f},
+    {0xB5, 2.0f},
+    {0xB6, 2.0f},
+    {0xB6, 2.0f},
+    {0xB7, 1.4f},
+    {0xB8, 0.8f}
+};
 
-extern ActorInfo D_8038C510 = { 
+ActorInfo D_8038C510 = { 
     MARKER_A3_BLUBBER, ACTOR_115_BLUBBER, ASSET_370_MODEL_BLUBBER,
     0x1, D_8038C4E0, 
     func_803878CC, func_80387CF4, func_80387D6C, 

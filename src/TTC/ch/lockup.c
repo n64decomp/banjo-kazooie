@@ -145,7 +145,7 @@ void func_80389600(Actor *this){
                 func_80389530(this);
                 for(i = 5; i < 0xe; i++){
                     func_8034A174(this->marker->unk44, i, this->unk1C);
-                    func_802EE6CC(this->unk1C, &D_8038C80C, &D_8038C7FC, 1, 0.4f, 50.0f, 0xb4, 0xa0, 0);
+                    func_802EE6CC(this->unk1C, D_8038C80C, D_8038C7FC, 1, 0.4f, 50.0f, 0xb4, 0xa0, 0);
                 }
             }
             break;

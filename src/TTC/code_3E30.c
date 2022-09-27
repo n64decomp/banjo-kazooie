@@ -6,6 +6,7 @@
 
 /* extern */
 extern void func_802D6310(f32, enum map_e, s32, s32, enum bkprog_e);
+extern BKModel *func_80309744(s32);
 
 extern u8 D_8037DCC0[7];
 
@@ -271,7 +272,7 @@ void func_8038AC48(Struct_TTC_3E30_1 *arg0) {
     temp_s5 = func_803203FC(2);
     phi_s7 = FALSE;
     sp3C = func_8038BD10(arg0);
-    for(i_ptr = &D_8038CA6C; i_ptr->unk0 != 0; i_ptr++){
+    for(i_ptr = D_8038CA6C; i_ptr->unk0 != 0; i_ptr++){
         phi_s1 = (D_8038D720.unk8 == 0) ? 1 : 0;
         if (!temp_s5) {
             for(i = 1; i < 4; i++){
@@ -372,8 +373,6 @@ void func_8038AFC8(void){
 
     func_8038B5B4();
 }
-
-
 
 void func_8038B04C(void){
     if(D_8038D720.unk0){

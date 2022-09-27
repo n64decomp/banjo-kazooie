@@ -7,20 +7,36 @@ Actor *func_80387EB0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 
 
 /* .data */
-extern ActorAnimationInfo D_8038C540[];
+ActorAnimationInfo D_8038C540[] = {
+    {0x00, 0.0f},
+    {0xC0, 2.0f},
+    {0xBD, 1.5f},
+    {0xBF, 1.2f},
+    {0xBE, 1.3f},
+    {0xC0, 2.0f},
+    {0x133, 3.0f},
+    {0x00, 0.0f}
+};
 
-extern ActorInfo D_8038C580 = { 
+ActorInfo D_8038C580 = { 
     MARKER_A5_NIPPER, ACTOR_117_NIPPER, ASSET_3D5_MODEL_NIPPER,
     0x1, D_8038C540,
     func_80388434, func_80326224, func_80387EB0,
     0, 0x299, 10.0f, 0
 };
 
-extern s32 D_8038C5A4[3];
-extern struct31s D_8038C5B0;
+
 
 /* .code */
 void func_80387DC0(f32 *position, s32 count) {
+    static s32 D_8038C5A4[3] = {180, 180, 180};
+    static struct31s D_8038C5B0 = {
+        {0.1f, 0.5f},
+        {1.4f, 2.8f},
+        {0.0f, 0.01f},
+        {0.5f, 1.4f},
+        0.0f, 0.01f
+    };
     ParticleEmitter *pCtrl;
 
     pCtrl = partEmitList_pushNew(count);
@@ -325,6 +341,6 @@ bool func_80388A44(s16 arg0[3]){
     sp1C[1] = (f32) arg0[1];
     sp1C[2] = (f32) arg0[2];
 
-    nipper = func_80326D68(&sp1C, ACTOR_117_NIPPER, -1, NULL);
+    nipper = func_80326D68(sp1C, ACTOR_117_NIPPER, -1, NULL);
     return nipper->state == 7;
 }

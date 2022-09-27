@@ -38,7 +38,12 @@ segments:
       - [0x35D0, c, code_35D0] #DONE
       - [0x3E30, c, code_3E30] #DONE
       - [0x5BD0, c, ch/treasure] #DONE
-      - [0x00005FC0, bin, ttc_data_5FC0]
+      - [0x00005FC0, .data, code_0]
+      - [0x000060F0, .data, code_10A0]
+      - [0x00006150, .data, code_19D0]
+      - [0x000061F0, .data, code_26D0]
+      - [0x00006310, .data, code_2B80]
+      - [0x00006360, .data, code_3040]
       - [0x00006370, .data, ch/lockup]
       - [0x00006430, .data, code_35D0]
       - [0x00006590, .data, code_3E30]
@@ -47,9 +52,9 @@ segments:
       - [0x00006950, .rodata, code_10A0]
       - [0x00006980, .rodata, code_19D0]
       - [0x000069A0, .rodata, code_26D0]
-      - [0x000069E0, bin, ttc_data_69E0]
+      - [0x000069E0, .rodata, code_2B80]
       - [0x00006A00, .rodata, ch/lockup]
-      - [0x00006A30, .rodata, code_35D0] #- [0x6A30, bin, ttc_data_6A30] #
+      - [0x00006A30, .rodata, code_35D0]
       - [0x00006A60, .rodata, code_3E30]
       - [0x000072B0, .rodata, ch/treasure]
       - [0x7300, .bss, code_3040]
