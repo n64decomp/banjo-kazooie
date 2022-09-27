@@ -15,15 +15,16 @@ u32 func_8038B600(void);
 
 typedef struct {
     u8 *unk0;
-    union{
-        s16 h;
-        struct{
-            u8 byte_0;
-            u8 byte_1;
-        }b;
-    }unk4;
+    u8 unk4;
+    u8 unk5;
     s16 unk6;
-} struct_ttc_3E30_s;
+} struct_ttc_3E30_4_s;
+
+typedef struct {
+    u8 *unk0;
+    s16 unk4;
+    s16 unk6;
+} struct_ttc_3E30_3_s;
 
 typedef struct {
     s16 unk0;
@@ -39,18 +40,58 @@ typedef struct {
 
 s32 func_8038B778(void);
 
-extern s32 D_8038C980;
-extern Struct_TTC_3E30_1 D_8038C984[];
-extern struct_ttc_3E30_s D_8038CA6C[];
-extern u8 D_8038CC78;
-extern Struct_TTC_3E30_2 D_8038CC7C[];
-extern s32 D_8038CAD4;
-extern struct_ttc_3E30_s D_8038CAD8[];
-extern u8 D_8038CF0C[] = "j4663n86pink";
-extern u8 D_8038CF1C[] = "knip68n3664j";
+/* .data */
+s32 D_8038C980 = 0;
+Struct_TTC_3E30_1 D_8038C984[] ={
+    {0x02, 0x70, 0, 0.0f}, 
+    {0x04, 0x35, 0, 0.0f}, 
+    {0x06, 0x6E, 0, 0.0f}, 
+    {0x08, 0x62, 0, 0.0f}, 
+    {0x0A, 0x61, 0, 0.0f}, 
+    {0x0C, 0x6A, 0, 0.0f}, 
+    {0x0E, 0x30, 0, 0.0f}, 
+    {0x10, 0x31, 0, 0.0f}, 
+    {0x12, 0x69, 0, 0.0f}, 
+    {0x14, 0x39, 0, 0.0f}, 
+    {0x16, 0x72, 0, 0.0f}, 
+    {0x18, 0x6C, 0, 0.0f}, 
+    {0x1A, 0x36, 0, 0.0f}, 
+    {0x1C, 0x32, 0, 0.0f}, 
+    {0x1E, 0x33, 0, 0.0f}, 
+    {0x20, 0x67, 0, 0.0f}, 
+    {0x22, 0x65, 0, 0.0f}, 
+    {0x24, 0x34, 0, 0.0f}, 
+    {0x26, 0x68, 0, 0.0f}, 
+    {0x28, 0x64, 0, 0.0f}, 
+    {0x2A, 0x63, 0, 0.0f}, 
+    {0x2C, 0x36, 0, 0.0f}, 
+    {0x2E, 0x6E, 0, 0.0f}, 
+    {0x30, 0x37, 0, 0.0f}, 
+    {0x32, 0x36, 0, 0.0f}, 
+    {0x34, 0x6D, 0, 0.0f}, 
+    {0x36, 0x6B, 0, 0.0f}, 
+    {0x38, 0x38, 0, 0.0f}, 
+    {0x00, 0x00, 0, 0.0f}
+};
 
 
-extern struct{
+struct_ttc_3E30_3_s D_8038CA6C[] = {
+    {"knip68n3664j",        0x0001, 0}, //BANJOKAZOOIE
+    {"kbgjj552",            0x0002, 0}, //BLUEEGGS
+    {"9jlcjndmj92",         0x0004, 0}, //REDFEATHERS
+    {"56blcjndmj92",        0x0008, 0}, //GOLDFEATHERS
+    {"k6ddbj2k6ig26ij",     0x0010, 0}, //BOTTLESBONUSONE
+    {"k6ddbj2k6ig2d76",     0x0020, 0}, //BOTTLESBONUSTWO
+    {"k6ddbj2k6ig2dm9jj",   0x0040, 0}, //BOTTLESBONUSTHREE
+    {"k6ddbj2k6ig2c6g9",    0x0080, 0}, //BOTTLESBONUSFOUR
+    {"k6ddbj2k6ig2c4aj",    0x0100, 0}, //BOTTLESBONUSFIVE
+    {"k45k6ddbj2k6ig2",     0x0200, 0}, //BIGBOTTLESBONUS
+    {"742me7n2meknip6",     0x0400, 0}, //WISHYWASHYBANJO
+    {"i6k6ig2",             0x0800, 0}, //NOBONUS
+    0
+};
+
+struct{
     BKModel *unk0;
     BKModel *unk4;
     u8  unk8;
@@ -223,7 +264,7 @@ void func_8038AC48(Struct_TTC_3E30_1 *arg0) {
     bool temp_s5;
     s32 i;
     u32 var_v0;
-    struct_ttc_3E30_s *i_ptr;
+    struct_ttc_3E30_3_s *i_ptr;
     s32 phi_s1;
     bool phi_s7;
 
@@ -246,7 +287,7 @@ void func_8038AC48(Struct_TTC_3E30_1 *arg0) {
                 phi_s1 |= 0x800;
             }
         }
-        if (i_ptr->unk4.h & phi_s1) {
+        if (i_ptr->unk4 & phi_s1) {
             if (func_8038BF68() && !temp_s5) {
                 i_ptr->unk6 = 0;
                 func_8038A258(2);
@@ -257,7 +298,7 @@ void func_8038AC48(Struct_TTC_3E30_1 *arg0) {
                 if (func_8038BF68()) {
                     i_ptr->unk6 = 0;
                 } else {
-                    if (i_ptr->unk4.h & 0xFFE) {
+                    if (i_ptr->unk4 & 0xFFE) {
                         func_8038A258(2);
                         func_8038A5D8(arg0, 5);
                     } else {
@@ -272,7 +313,7 @@ void func_8038AC48(Struct_TTC_3E30_1 *arg0) {
                             func_803204E4(5, 1);
                             func_8038A258(2);
                         } else {
-                            var_v0 = i_ptr->unk4.h;
+                            var_v0 = i_ptr->unk4;
                             if (var_v0 & 1) {
                                 D_8038D720.unk8 = 2U;
                                 D_8038D720.unkC = 0.0f;
@@ -318,19 +359,21 @@ void func_8038AC48(Struct_TTC_3E30_1 *arg0) {
 }
 
 void func_8038AFC8(void){
-    struct_ttc_3E30_s *iPtr;
+    struct_ttc_3E30_3_s *iPtr;
 
     for(iPtr = D_8038CA6C; iPtr->unk0 != NULL; iPtr++){
         iPtr->unk6 = 0;
     }
 
     if(func_803203FC(2))
-        strcpy(D_8038CA6C[0].unk0, D_8038CF0C);
+        strcpy(D_8038CA6C[0].unk0, "j4663n86pink"); //EIOOZAKOJNAB
     else
-        strcpy(D_8038CA6C[0].unk0, D_8038CF1C);
+        strcpy(D_8038CA6C[0].unk0, "knip68n3664j"); //BANJOKAZOOIE
 
     func_8038B5B4();
 }
+
+
 
 void func_8038B04C(void){
     if(D_8038D720.unk0){
@@ -463,17 +506,81 @@ bool func_8038B550(void){
     return NOT(D_8038D720.unk8 < 2);
 }
 
+s32 D_8038CAD4 = 0;
+struct_ttc_3E30_4_s D_8038CAD8[] = {
+    {"0mjnd", 0, 0x00, 00}, //CHEAT
+    {"i67knip674bbkjnkbjd62jj4d6iinkigd2dnkbj",            0, 0x01, 00}, //NOW BANJO WILL BE ABLE TO SEE IT ON NABNUTS TABLE
+    {"dm422j09jde6gbbkj59nkk4i4idmj0nrdn4i20nk4i",         0, 0x02, 00}, //THIS SECRET YOULL BE GRABBIN IN THE CAPTAINS CABIN
+    {"n14l2ddmjmngidjl5b661n2j09jd4idmjkndm9661",          0, 0x03, 00}, //AMIDST THE HAUNTED GLOOM A SECRET IN THE BATHROOM
+    {"nlj2j9dl6696rji274ljni04jid2j09jd27n4d4i24lj",       0, 0x04, 00}, //A DESERT DOOR OPENS WIDE ANCIENT SECRETS WAIT INSIDE
+    {"6gd6cdmj2jn4d942j2d69jajnb169j2j09jdr943j2",         0, 0x05, 00}, //OUT OF THE SEA IT RISES TO REVEAL MORE SECRET PRIZES
+    {"l6ide6g56nildjbbmj9nk6gddmj2j09jd4imj90jbbn9",       0, 0x06, 00}, //DONT YOU GO AND TELL HER ABOUT THE SECRET IN HER CELLAR
+    {"i67e6g0ni2jjni40j40j8je7m40me6g0nimnajc69c9jj",      0, 0x07, 00}, //NOW YOU CAN SEE A NICE ICE KEY WHICH YOU CAN HAVE FOR FREE
+    {"56945md6idm96g5mi6djl669d76",                        0, 0x7A, 00}, //GO RIGHT ON THROUGH NOTE DOOR TWO
+    {"i6djl669dm9jj5jd4ic69c9jj",                          0, 0x7B, 00}, //NOTE DOOR THREE GET IN FOR FREE
+    {"dn8jnd6g9dm96g5mi6djl669c6g9",                       0, 0x7C, 00}, //TAKE A TOUR THROUGH NOTE DOOR FOUR
+    {"g2jdm420mjndi6djl669c4aj42kjnd",                     0, 0x7D, 00}, //USE THIS CHEAT NOTE DOOR FIVE IS BEAT
+    {"dm42d94082g2jld66rjii6djl66924h",                    0, 0x7E, 00}, //THIS TRICKS USED TO OPEN NOTE DOOR SIX
+    {"dmj2jajidmi6djl66942i67i6169j",                      0, 0x7F, 00}, //THE SEVENTH NOTE DOOR IS NOW NO MORE
+    {"e6g0ni5jd7jdcjjdi670bni8j92p455e42061rbjdj",         0, 0x80, 00}, //YOU CAN GET WET FEET NOW CLANKERS JIGGY IS COMPLETE
+    {"dmjp455e2cgbb6cce6g2d61r4id6l4i5ekgkkbj5b66r27n1r",  0, 0x81, 00}, //THE JIGGYS FULL OFF YOU STOMP IN TO DINGY BUBBLEGLOOP SWAMP
+    {"dmjp455e2l6ij266cce6g564id6c9jj3jj3erjn8nil4d22i67", 0, 0x82, 00}, //THE JIGGYS DONE SO OFF YOU GO INTO FREEZEEZY PEAK AND ITS SNOW
+    {"56k42p455e42i67l6ijd9j86i4inil5jd261j2gi",           0, 0x83, 00}, //GOBIS JIGGY IS NOW DONE TREK ON IN AND GET SOME SUN
+    {"dmjp455e2i671nlj7m6bj4id6dmj1ni246ie6g0ni2d96bb",    0, 0x84, 00}, //THE JIGGYS NOW MADE WHOLE INTO THE MANSION YOU CAN STROLL
+    {"dmjp455e2l6ij26dn8jnd94r6id6dmj9g2dekg08jd2m4r",     0, 0x85, 00}, //THE JIGGYS DONE SO TAKE A TRIP ON TO THE RUSTY BUCKET SHIP
+    {"0b4080b608766l42b6d26ccgi566i4idmjp455e2l6ij",       0, 0x86, 00}, //CLICK CLOCK WOOD IS LOTS OF FUN GO ON IN THE JIGGYS DONE
+    {"b6d26c56j274dm1nieknip62",                           0, 0x87, 00}, //LOTS OF GOES WITH MANY BANJOS
+    {"knip6kj52c69rbjide6cj552",                           0, 0x88, 00}, //BANJO BEGS FOR PLENTY OF EGGS
+    {"i67e6g0nicbem45m4idmj28e",                           0, 0x89, 00}, //NOW YOU CAN FLY HIGH IN THE SKY
+    {"n56blji5b67d6r96dj0dknip6",                          0, 0x8A, 00}, //A GOLDEN GLOW TO PROTECT BANJO
+    {"k6dmr4rj2n9jdmj9jd60bni8j92bn49",                    0, 0x91, 00}, //BOTH PIPES ARE THERE TO CLANKERS LAIR
+    {"e6gbb0jn2jd6594rj7mjigr56j2nr4rj",                   0, 0x92, 00}, //YOULL CEASE TO GRIPE WHEN UP GOES A PIPE
+    {"dmj9j2i67mj9jlni8j9dmni4i74dm0bni8j9",               0, 0x93, 00}, //THERES NOWHERE DANKER THAN IN WITH CLANKER
+    {"e6gbbkjn1n3jli67dmj27n1rr400e594bbj429n42jl",        0, 0x94, 00}, //YOULL BE AMAZED NOW THE SWAMP PICCY GRILLE IS RAISED
+    {"l6idlj2rn49dmjd9jjp455er6l4g142i67dmj9j",            0, 0x95, 00}, //DONT DESPAIR THE TREE JIGGY PODIUM IS NOW THERE
+    {"2mj2nig5beknd26bjd29j16ajmj9594bbjnilmnd",           0, 0x96, 00}, //SHES AN UGLY BAT SO LETS REMOVE HER GRILLE AND HAT
+    {"4d2e6g9bg08elnen2dmj40jknbb1jbd2n7ne",               0, 0x97, 00}, //ITS YOUR LUCKY DAY AS THE ICE BALL MELTS AWAY
+    {"i674id6dmj27n1re6g0ni2d61r",                         0, 0x98, 00}, //NOW IN TO THE SWAMP YOU CAN STOMP
+    {"dmje0ng2jd96gkbjkgdi67dmje9j9gkkbj",                 0, 0x99, 00}, //THEY CAUSE TROUBLE BUT NOW THEYRE RUBBLE
+    {"e6gbbkj5bnld62jjdmj2m608pg1rrnl",                    0, 0x9A, 00}, //YOULL BE GLAD TO SEE THE SHOCK JUMP PAD
+    {"dm42061j24imniled66rji261j7mj9j2nile",               0, 0x9B, 00}, //THIS COMES IN HANDY TO OPEN SOMEWHERE SANDY
+    {"7jk22d6re6g9rbne26dn8jdmj1n7ne",                     0, 0x9C, 00}, //WEBS STOP YOUR PLAY SO TAKE THEM AWAY
+    {"59gide74bb09ei67e6gaj21n2mjlmj9jej",                 0, 0x9D, 00}, //GRUNTY WILL CRY NOW YOUVE SMASHED HER EYE
+    {"e6g76idkj2nli67e6g0nig2jdmjcbernl",                  0, 0x9E, 00}, //YOU WONT BE SAD NOW YOU CAN USE THE FLY PAD
+    {"i67e6g0ni56nild9gl5j4idmj2i67",                      0, 0x9F, 00}, //NOW YOU CAN GO AND TRUDGE IN THE SNOW
+    {"dmj1ni246i6c5m62d2n9ji67e6g9m62d2",                  0, 0xA0, 00}, //THE MANSION OF GHOSTS ARE NOW YOUR HOSTS
+    {"e6g76idmnajd67n4di67dmj9j2i609erd5ndj",              0, 0xA1, 00}, //YOU WONT HAVE TO WAIT NOW THERES NO CRYPT GATE
+    {"dm422m6gbl5jd94l6cdmj09erd06cc4ib4l",                0, 0xA2, 00}, //THIS SHOULD GET RID OF THE CRYPT COFFIN LID
+    {"gre6g5674dm6gdnm4d0mgrd6dmj7ndj9bjajb274d0m",        0, 0xA3, 00}, //UP YOU GO WITHOUT A HITCH UP TO THE WATER LEVEL SWITCH
+    {"7mei6ddn8jnd94r4i24lj59gide29g2de2m4r",              0, 0xA4, 00}, //WHY NOT TAKE A TRIP INSIDE GRUNTYS RUSTY SHIP
+    {"dmj594bbj56j2k661d6dmj2m4rr40dg9j9661",              0, 0xA5, 00}, //THE GRILLE GOES BOOM TO THE SHIP PICTURE ROOM
+    {"6i0j4d2m6ijkgddmjb6i5dgiijb594bbj4256ij",            0, 0xA6, 00}, //ONCE IT SHONE BUT THE LONG TUNNEL GRILLE IS GONE
+    {"dm426ij2566ln2e6g0nijidj9dmj766l",                   0, 0xA7, 00}, //THIS ONES GOOD AS YOU CAN ENTER THE WOOD
+    {"nijij95ekn9d65jde6gcn9",                             0, 0xA8, 00}, //AN ENERGY BAR TO GET YOU FAR
+    {"l6idkjnlg1k6562jj1g1k6",                             0, 0xA9, 00}, //DONT BE A DUMBO GO SEE MUMBO
+    {"54ajdmjkjn9b6d26cn49",                               0, 0xAA, 00}, //GIVE THE BEAR LOTS OF AIR
+    0
+};
+
+u8 D_8038CC78 = 0;
+Struct_TTC_3E30_2 D_8038CC7C[] = {
+    {0x7A, 0x7F},
+    {0x80, 0x86},
+    {0x91, 0xA7},
+    0
+};
+
 void func_8038B564(s32 arg0, s32 arg1, enum map_e map_id, s32 arg3, s32 arg4){
-    if(arg1 == D_8038CAD8[arg0].unk4.b.byte_1){
+    if(arg1 == D_8038CAD8[arg0].unk5){
         func_802D6310(1.0f, map_id, arg3, arg4, 0);
     }
 }
 
 void func_8038B5B4(void) {
-    struct_ttc_3E30_s *i_ptr;
+    struct_ttc_3E30_4_s *i_ptr;
 
     for(i_ptr = &D_8038CAD8[0]; i_ptr->unk0 != NULL; i_ptr++){
-        i_ptr->unk4.b.byte_0 = 0;
+        i_ptr->unk4 = 0;
     }
     D_8038CC78 = 0;
     func_8038AB44();
@@ -482,7 +589,7 @@ void func_8038B5B4(void) {
 u32 func_8038B600(void) {
     s32 addr = (s32)&D_8038CAD8;
     s32 scrambled;
-    struct_ttc_3E30_s * i_ptr;
+    struct_ttc_3E30_4_s * i_ptr;
     u32 var_a3;
     u32 var_v0;
 
@@ -492,10 +599,10 @@ u32 func_8038B600(void) {
 
     addr  = (((scrambled & 0xFF000000) >> 8) + ((scrambled << 8) & 0xFF00)) ^ scrambled;
 
-    i_ptr = (struct_ttc_3E30_s *)addr;
+    i_ptr = (struct_ttc_3E30_4_s *)addr;
     var_a3 = 0x03148C41;
     while(i_ptr->unk0 != NULL){
-        for(var_v0 = 0; var_v0 < i_ptr->unk4.b.byte_0; var_v0++){
+        for(var_v0 = 0; var_v0 < i_ptr->unk4; var_v0++){
             var_a3 = ((i_ptr->unk0[var_v0] ^ var_a3) << 5) + (var_a3 >> 0x18);
         }
         for(var_v0 = var_v0; i_ptr->unk0[var_v0] != 0; var_v0++){
@@ -507,7 +614,7 @@ u32 func_8038B600(void) {
 }
 
 void func_8038B6D4(s32 arg0, s32 arg1, s32 arg2, enum bkprog_e prog_id, s32 prog_val, s32 prog_bit_size, enum bkprog_e arg6){
-    if( ((arg2 + 20 == D_8038CAD8[arg1].unk4.b.byte_1) && func_803203FC(arg2))
+    if( ((arg2 + 20 == D_8038CAD8[arg1].unk5) && func_803203FC(arg2))
         || arg0 == 3
     ){
         func_80320044(prog_id, prog_val, prog_bit_size);
@@ -526,7 +633,7 @@ s32 func_8038B778(void){
 }
 
 void func_8038B79C(s32 arg0, s32 arg1, s32 arg2, enum item_e item_id, s32 item_diff, s32 item_val) {
-    if (((arg2 + 0x14) == D_8038CAD8[arg1].unk4.b.byte_1) || (arg0 == 1)) {
+    if (((arg2 + 0x14) == D_8038CAD8[arg1].unk5) || (arg0 == 1)) {
         if (item_diff != 0) {
             func_803463D4(item_id, item_diff);
             return;
@@ -536,12 +643,12 @@ void func_8038B79C(s32 arg0, s32 arg1, s32 arg2, enum item_e item_id, s32 item_d
 }
 
 void func_8038B800(s32 arg0) {
-    struct_ttc_3E30_s *sp30;
+    struct_ttc_3E30_4_s *sp30;
     s32 sp38;
 
     sp30 = &D_8038CAD8[arg0];
-    sp38 = sp30->unk4.b.byte_1 - 0x14;
-    sns_set_item_and_update_payload(sp30->unk4.b.byte_1, 1, 1);
+    sp38 = sp30->unk5 - 0x14;
+    sns_set_item_and_update_payload(sp30->unk5, 1, 1);
     func_8038B564(arg0, 1, MAP_61_CCW_WINTER_NABNUTS_HOUSE, 0x83, 0x1B);
     func_8038B564(arg0, 2, MAP_3F_RBB_CAPTAINS_CABIN, 0x84, 0x1C);
     func_8038B564(arg0, 3, MAP_2C_MMM_BATHROOM, 0x85, 0x1D);
@@ -549,7 +656,7 @@ void func_8038B800(s32 arg0) {
     func_8038B564(arg0, 5, MAP_7_TTC_TREASURE_TROVE_COVE, 0x87, 0x1F);
     func_8038B564(arg0, 6, MAP_1D_MMM_CELLAR, 0x88, 0x20);
     func_8038B564(arg0, 7, MAP_7F_FP_WOZZAS_CAVE, 0x89, 0x21);
-    if (sp30->unk4.b.byte_1 >= 0x14) {
+    if (sp30->unk5 >= 0x14) {
         func_8030E58C(SFX_2B_BULL_MOO_1, 1.5f);
         func_803204E4(0x65, 1);
         func_803204E4(sp38, 1);
@@ -587,13 +694,13 @@ void func_8038BB10(ActorMarker *caller, enum asset_e text_id, s32 arg2) {
 void func_8038BBA0(s32 arg0) {
     s32 i;
 
-    if ((s32) D_8038CAD8[arg0].unk4.b.byte_1 >= 0x14) {
-        if (func_803203FC(D_8038CAD8[arg0].unk4.b.byte_1 - 0x14)) {
+    if ((s32) D_8038CAD8[arg0].unk5 >= 0x14) {
+        if (func_803203FC(D_8038CAD8[arg0].unk5 - 0x14)) {
             func_8038B5B4();
             return;
         }
         for( i = 0; D_8038CC7C[i].unk0 != 0; i++){
-            if ((D_8038CAD8[arg0].unk4.b.byte_1 >= D_8038CC7C[i].unk0) && (D_8038CC7C[i].unk2 >= D_8038CAD8[arg0].unk4.b.byte_1)) {
+            if ((D_8038CAD8[arg0].unk5 >= D_8038CC7C[i].unk0) && (D_8038CC7C[i].unk2 >= D_8038CAD8[arg0].unk5)) {
                 switch (func_8038B778()) {
                     case 0:
                         func_8038B750(1);
@@ -619,33 +726,23 @@ void func_8038BBA0(s32 arg0) {
     func_8038B5B4();
 }
 
-extern f32 D_8038D68C;
-extern f32 D_8038D690;
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/TTC/code_3E30/func_8038BD10.s")
-#else
 bool func_8038BD10(Struct_TTC_3E30_1 *arg0) {
-    struct_ttc_3E30_s *var_s0;
-    s32 *var_v0;
-    s32 temp_v0;
-    s32 var_a0;
+    struct_ttc_3E30_4_s *var_s0;
+    struct_ttc_3E30_4_s *var_v0;
     s32 var_a2;
     s32 var_s1;
     s32 var_s2;
     s32 var_v1;
-    u8 temp_a1;
-    u8 temp_v0_2;
-    u8 temp_v1;
 
     if ((D_8038CC78 == 2) || (func_8038B778() == 3)) {
-        return FALSE;
+        return 0;
     }
     if (D_8038CC78 == 0) {
         var_a2 = 0;
-        if (D_8038CAD8[0].unk0[D_8038CAD8[0].unk4.b.byte_0] == 0) {
-            for(var_v1 = 0; D_8038CAD8[var_s1].unk0 != NULL; var_v1++){
-                if (arg0->unk2 == D_8038CAD8[0].unk0[D_8038CAD8[0].unk4.b.byte_0]) {
-                    D_8038CAD8[0].unk4.b.byte_0++;
+        if (*(D_8038CAD8[0].unk4 + D_8038CAD8[0].unk0) == 0) {
+            for(var_v1 = 0; (D_8038CAD8 + var_v1)->unk0 != NULL; var_v1++){
+                if (arg0->unk2 == (D_8038CAD8 + var_v1)->unk0[(D_8038CAD8 + var_v1)->unk4]) {
+                    (D_8038CAD8 + var_v1)->unk4++;
                     var_a2 += 1;
                 }
             }
@@ -658,47 +755,48 @@ bool func_8038BD10(Struct_TTC_3E30_1 *arg0) {
             func_8038AB44();
             return 0;
         }
-        if (arg0->unk2 == temp_v1) {
-            func_8030E58C(SFX_2B_BULL_MOO_1, randf2(D_8038D68C, D_8038D690));
-            D_8038CAD8[0].unk4.b.byte_0++;
+        if (arg0->unk2 == D_8038CAD8[0].unk0[D_8038CAD8[0].unk4]) {
+            func_8030E58C(SFX_2B_BULL_MOO_1, randf2(0.6f, 0.7f));
+            D_8038CAD8[0].unk4++;
             func_8038AB44();
-            return TRUE;
+            return 1;
         }
         D_8038CC78 = 2;
         func_8038AB44();
-        return FALSE;
+        return 0;
     }
+    
     func_8038AB44();
     if (D_8038CC78 == 1) {
         var_s2 = 0;
-        for(var_s1 = 1; D_8038CAD8[var_s1].unk0 != NULL; var_s1++){
-                if ((D_8038CAD8[var_s1].unk4.b.byte_0 != 0) && (arg0->unk2 == D_8038CAD8[var_s1].unk0[D_8038CAD8[var_s1].unk4.b.byte_0])) {
+        for(var_s1 = 1; (D_8038CAD8 + var_s1)->unk0 != 0; var_s1++){
+                if (((D_8038CAD8 + var_s1)->unk4 != 0) && (arg0->unk2 == (D_8038CAD8 + var_s1)->unk0[(D_8038CAD8 + var_s1)->unk4])) {
                     var_s2 += 1;
-                    D_8038CAD8[var_s1].unk4.b.byte_0++;
+                    (D_8038CAD8 + var_s1)->unk4++;
                     func_8038AB44();
-                    if (D_8038CAD8[var_s1].unk0[D_8038CAD8[var_s1].unk4.b.byte_0] == 0) {
-                        if (D_8038CAD8[var_s1].unk4.b.byte_1 != 0) {
+                    if ((D_8038CAD8 + var_s1)->unk0[(D_8038CAD8 + var_s1)->unk4] == '\0') {
+                        if ((D_8038CAD8 + var_s1)->unk5 != 0) {
                             func_8038BBA0(var_s1);
                         }
-                        return TRUE;
+                        return 1;
                     }
                 }
                 else{
-                    D_8038CAD8[var_s1].unk4.b.byte_0 = 0U;
+                    (D_8038CAD8 + var_s1)->unk4 = 0U;
                     func_8038AB44();
                 }
         }
         if (var_s2 == 0) {
             D_8038CC78 = 2;
-            return FALSE;
+            return 0;
         }
+        
     }
-    return TRUE;
+    return 1;
 }
-#endif
 
 bool func_8038BF68(void){
-    return *(u8*)(D_8038CAD8[0].unk4.b.byte_0 + (s32)D_8038CAD8[0].unk0) == 0;
+    return *(u8*)(D_8038CAD8[0].unk4 + (s32)D_8038CAD8[0].unk0) == 0;
 }
 
 
