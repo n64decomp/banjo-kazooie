@@ -17,7 +17,7 @@ options:
   symbol_addrs_path:   symbol_addrs.us.v10.txt
   undefined_funcs_auto_path: undefined_funcs_auto.MM.us.v10.txt
   undefined_syms_auto_path: undefined_syms_auto.MM.us.v10.txt
-  base_path: .
+  base_path: ..
   target_path: build/us.v10/MM.us.v10.bin
   asset_path: bin
   build_path: build/us.v10

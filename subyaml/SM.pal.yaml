@@ -17,7 +17,7 @@ options:
   symbol_addrs_path:   symbol_addrs.pal.txt
   undefined_funcs_auto_path: undefined_funcs_auto.SM.pal.txt
   undefined_syms_auto_path: undefined_syms_auto.SM.pal.txt
-  base_path: .
+  base_path: ..
   target_path: build/pal/SM.pal.bin
   asset_path: bin
   build_path: build/pal

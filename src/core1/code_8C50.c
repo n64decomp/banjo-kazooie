@@ -20,13 +20,13 @@ void func_80247224(void);
 #define CORE1_8C50_EVENT_CONT_TIMER 13
 
 /* .extern */
-extern void (*func_80272590)(void);
-extern void (*func_802731F0)(void);
-extern u64 D_80274620[];
+extern u8 D_80272590[];
+extern u8 D_802731F0[];
+extern u8 D_80274620[];
 
-extern u64 D_80278E80[]; //ucode_data
-extern u64 D_80279130[];
-extern u64 D_80279930[];
+extern u8 D_80278E80[]; //ucode_data
+extern u8 D_80279130[];
+extern u8 D_80279930[];
 
 /* .data */
 OSTask D_80275910 = {
@@ -120,7 +120,7 @@ void func_80246744(OSMesg arg0){
 
 void func_80246794(Struct_Core1_8C50_s * arg0){
     func_80255D0C(&D_80275910.t.ucode_boot, &D_80275910.t.ucode_boot_size);
-    D_80275910.t.ucode = &func_80272590;
+    D_80275910.t.ucode = D_80272590;
     D_80275910.t.ucode_data = D_80278E80;
     D_80275910.t.data_ptr = (void*) arg0->unk8;
     D_80275910.t.data_size = (arg0->unkC - arg0->unk8) >> 3 << 3;
@@ -134,7 +134,7 @@ void func_80246794(Struct_Core1_8C50_s * arg0){
 
 void func_80246844(Struct_Core1_8C50_s * arg0){
     func_80255D0C(&D_80275950.t.ucode_boot, &D_80275950.t.ucode_boot_size);
-    D_80275950.t.ucode = &func_802731F0;
+    D_80275950.t.ucode = D_802731F0;
     D_80275950.t.ucode_data = D_80279130;
     D_80275950.t.data_ptr = (void*) arg0->unk8;
     D_80275950.t.data_size = (arg0->unkC - arg0->unk8) >> 3 << 3;

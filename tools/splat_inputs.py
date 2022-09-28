@@ -12,8 +12,8 @@ def main(config_path):
         config = yaml.load(f.read(), Loader=yaml.SafeLoader)
 
     options.initialize(config, config_path, None, None)
-    options.set("modes", [])
-    options.set("verbose", False)
+    options.opts.modes = []
+    options.opts.verbose = False
 
     all_segments = initialize_segments(config["segments"])
 
