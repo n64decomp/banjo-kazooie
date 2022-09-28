@@ -74,7 +74,7 @@ segments:
       - [0x0000ACB0, .rodata, ch/yellowflibbit]
       - [0x0000ADA0, .rodata, done/ch/mudhut]
       - [0x0000ADB0, .rodata, done/ch/code_8A60]
-      - [0x0000ADC0, bin, data_ADC0] # .rodata, ch/tanktup]
+      - [0x0000ADC0, .rodata, ch/tanktup]
       - [0x0000ADD0, .rodata, code_9750]
       - [0x0000ADE0, .rodata, ch/leafboat]
       - [0x0000AE40, .bss, done/ch/code_6730]

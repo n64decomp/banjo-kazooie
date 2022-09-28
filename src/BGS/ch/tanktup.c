@@ -88,8 +88,6 @@ void func_8038F610(Actor *this) {
     }
 }
 
-extern f32 D_803911B0;
-extern f32 D_803911B4;
 
 void func_8028F94C(s32, f32[3]);
 void func_8028F918(s32);
@@ -100,10 +98,9 @@ void func_8028F918(s32);
 void func_8038F6A4(Actor *this) {
     ActorLocal_TanktupBody * local = (ActorLocal_TanktupBody *)&this->local;
     f32 sp48[3];
-    Prop *temp_v0;
-    volatile s32 sp44;
+    s32 sp44;
+    NodeProp *temp_v0;
     f32 sp34[3];
-
 
     if(!this->initialized){
         temp_v0 = func_80304C38(ACTOR_32B_UNKNOWN, this);
@@ -177,7 +174,7 @@ void func_8038F6A4(Actor *this) {
             break;
 
         case 3:
-            (local);
+            // (local);
             if (actor_animationIsAt(this, 0.1f) != 0) {
                 timed_setCameraToNode(0.0f, 0xD);
             }

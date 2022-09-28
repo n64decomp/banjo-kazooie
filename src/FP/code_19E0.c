@@ -39,9 +39,6 @@ Actor *func_80387DD0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     return func_80325888(marker, gfx, mtx, vtx);
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_19E0/func_80387EE4.s")
-#else
 bool func_80387EE4(Actor *this) {
     ActorLocal_FP_19E0 *local  = (ActorLocal_FP_19E0 *)&this->local;
     f32 temp_f2;
@@ -51,15 +48,14 @@ bool func_80387EE4(Actor *this) {
     f32 sp38[3];
     f32 sp34;
     f32 temp_f12;
-    f32 temp_f14;
     s32 var_v1;
 
     player_getPosition(sp38);
-    temp_f22 = (this->unk1C[0] - this->position[0]);
     temp_f20 = (this->position[2] - this->unk1C[2]);
+    temp_f22 = (this->unk1C[0] - this->position[0]);
     temp_f2 = ((temp_f20 * this->position[0]) + (temp_f22* this->position[2]));
     temp_f0 = ((temp_f20 * sp38[0]) + (temp_f22*sp38[2]));
-    sp34 = ((sp38[0] - this->position[0]) * temp_f22) + ((sp38[2] - this->position[2])*(this->unk1C[2] - this->position[2]));
+    sp34 = ((sp38[0] - this->position[0])*(this->unk1C[0] - this->position[0])) + ((sp38[2] - this->position[2])*(this->unk1C[2] - this->position[2]));
     var_v1 = (temp_f0 < temp_f2) ? 1 : 0;
     if (!(this->initialized) || (local->unk0 == var_v1) || !(sp34 >= 0.0f) || !(sp34 <= ((temp_f20 * temp_f20) + (temp_f22 * temp_f22)))) {
         local->unk0 = var_v1;
@@ -69,39 +65,33 @@ bool func_80387EE4(Actor *this) {
     local->unk0 = var_v1;
     return 1;
 }
-#endif
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_19E0/func_80388000.s")
-#else
 bool func_80388000(Actor *this) {
     ActorLocal_FP_19E0 *local  = (ActorLocal_FP_19E0 *)&this->local;
-    f32 sp38[3];
-    f32 sp34;
+    f32 temp_f2;
     f32 temp_f0;
-    f32 temp_f12;
     f32 temp_f20;
     f32 temp_f22;
-    f32 temp_f2;
+    f32 sp38[3];
+    f32 sp34;
+    f32 temp_f12;
     s32 var_v1;
 
-    func_8038A09C(sp38, this);
-    temp_f22 = (this->unk1C[0] - this->position[0]);
+    func_8038A09C(sp38);
     temp_f20 = (this->position[2] - this->unk1C[2]);
+    temp_f22 = (this->unk1C[0] - this->position[0]);
     temp_f2 = ((temp_f20 * this->position[0]) + (temp_f22* this->position[2]));
     temp_f0 = ((temp_f20 * sp38[0]) + (temp_f22*sp38[2]));
-    sp34 = ((sp38[0] - this->position[0]) * temp_f22) + ((sp38[2] - this->position[2])*(this->unk1C[2] - this->position[2]));
-    var_v1 = ((temp_f0 < temp_f2)? 1 : 0) ;
+    sp34 = ((sp38[0] - this->position[0])*(this->unk1C[0] - this->position[0])) + ((sp38[2] - this->position[2])*(this->unk1C[2] - this->position[2]));
+    var_v1 = (temp_f0 < temp_f2) ? 1 : 0;
     if ((this->velocity[2] == 0.0f) || (local->unk1 == var_v1) || !(sp34 >= 0.0f) || !(sp34 <= ((temp_f20 * temp_f20) + (temp_f22 * temp_f22)))) {
         local->unk1 = var_v1;
         this->velocity[2] = 1.0f;
-        return FALSE;
+        return 0;
     }
     local->unk1 = var_v1;
-    return TRUE;
-
+    return 1;
 }
-#endif
 
 void func_8038811C(ActorMarker *this_marker, ActorMarker *other_marker){
     Actor *this = marker_getActor(this_marker);
