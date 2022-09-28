@@ -8,12 +8,12 @@ Actor *func_8038C380(ActorMarker* marker, Gfx** gfx, Mtx** mtx, Vtx** vtx);
 void func_8038C41C(Actor *this);
 
 /* .data */
-extern ActorInfo D_8038F380 = { 0x1C6, 0x310, 0x501, 0x0, NULL, func_8038C41C, NULL, func_80325888, 0, 0, 0.0f, 0};
-extern ActorInfo D_8038F3A4 = { 0x1C7, 0x311, 0x462, 0x0, NULL, func_8038C41C, NULL, func_8038C380, 0, 0, 0.0f, 0};
-extern ActorInfo D_8038F3C8 = { 0x1C8, 0x312, 0x463, 0x0, NULL, func_8038C41C, NULL, func_80325888, 0, 0, 0.0f, 0};
-extern ActorInfo D_8038F3EC = { 0x1C9, 0x313, 0x464, 0x0, NULL, func_8038C41C, NULL, func_80325888, 0, 0, 0.0f, 0};
-extern ActorInfo D_8038F410 = { 0x1CA, 0x314, 0x502, 0x0, NULL, func_8038C41C, NULL, func_80325888, 0, 0, 2.0f, 0};
-extern ActorInfo D_8038F434 = { 0x1CB, 0x315, 0x48D, 0x0, NULL, func_8038C41C, NULL, func_8038C380, 0, 0, 0.0f, 0};
+ActorInfo D_8038F380 = { 0x1C6, 0x310, 0x501, 0x0, NULL, func_8038C41C, NULL, func_80325888, 0, 0, 0.0f, 0};
+ActorInfo D_8038F3A4 = { 0x1C7, 0x311, 0x462, 0x0, NULL, func_8038C41C, NULL, func_8038C380, 0, 0, 0.0f, 0};
+ActorInfo D_8038F3C8 = { 0x1C8, 0x312, 0x463, 0x0, NULL, func_8038C41C, NULL, func_80325888, 0, 0, 0.0f, 0};
+ActorInfo D_8038F3EC = { 0x1C9, 0x313, 0x464, 0x0, NULL, func_8038C41C, NULL, func_80325888, 0, 0, 0.0f, 0};
+ActorInfo D_8038F410 = { 0x1CA, 0x314, 0x502, 0x0, NULL, func_8038C41C, NULL, func_80325888, 0, 0, 2.0f, 0};
+ActorInfo D_8038F434 = { 0x1CB, 0x315, 0x48D, 0x0, NULL, func_8038C41C, NULL, func_8038C380, 0, 0, 0.0f, 0};
 
 /* .code */
 void func_8038BFE0(ActorMarker* marker) {

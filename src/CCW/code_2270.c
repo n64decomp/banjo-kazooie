@@ -20,8 +20,18 @@ Actor *func_803889AC(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void func_80388AA0(Actor *this);
 
 /* .data */
-extern Struct_CCW_2270_0 D_8038ECD0[];
-extern ActorInfo D_8038ECE8 = { 0x1B1, 0x29E, ASSET_3E0_MODEL_GOBI, 0x0, NULL, func_80388AA0, func_80388AA0, func_803889AC, 0, 0, 1.0f, 0};
+Struct_CCW_2270_0 D_8038ECD0[] = {
+    {MAP_44_CCW_SUMMER, 0xCDE, 0xCDF, 0x000},
+    {MAP_45_CCW_AUTUMN, 0x000, 0x000, 0xCE0},
+    0
+};
+
+ActorInfo D_8038ECE8 = { 
+    0x1B1, 0x29E, ASSET_3E0_MODEL_GOBI,
+    0x0, NULL,
+    func_80388AA0, func_80388AA0, func_803889AC,
+    0, 0, 1.0f, 0
+};
 
 /* .code */
 void func_80388660(ActorMarker* marker, s32 arg1) {

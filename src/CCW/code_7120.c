@@ -9,17 +9,20 @@ typedef struct {
 void func_8038D85C(Actor *this);
 
 /* .data */
-extern ActorInfo D_8038F640 = {
+ActorInfo D_8038F640 = {
     0x1BF, 0x2AC, 0x490,
     0x0, NULL,
     func_8038D85C, NULL, func_80325888,
     0, 0, 2.2f, 0
 };
-extern s32 D_8038F664[3];
-extern struct42s D_8038F670;
-extern struct43s D_8038F6A0;
 
+/* .code */
 void func_8038D510(Actor *this) {
+    static s32 D_8038F664[3] = {0xDE, 0xA7, 0x71};
+    static struct42s D_8038F670 = {
+        {{  0.0f,  50.0f,   0.0f}, { 70.0f, 100.0f,  70.0f}},
+        {{100.0f, 100.0f, 100.0f}, {150.0f, 400.0f, 200.0f}}
+    };
     ParticleEmitter *pCtrl;
 
     pCtrl = partEmitList_pushNew(6);
@@ -36,6 +39,12 @@ void func_8038D510(Actor *this) {
 }
 
 void func_8038D5DC(Actor *this) {
+    static struct43s D_8038F6A0 ={
+        {{-100.0f,  -50.0f, -100.0f}, {100.0f,   50.0f, 100.0f}},
+        {{   0.0f, -800.0f,    0.0f}, {  0.0f, -800.0f,   0.0f}},
+        {{-100.0f,    0.0f, -200.0f}, {100.0f,  400.0f, 200.0f}}
+    };
+
     ParticleEmitter *pCtrl;
 
     pCtrl = partEmitList_pushNew(30);

@@ -32,7 +32,7 @@ segments:
       - [0x570, c, ch/hut]
       - [0x8B0, c, ch/chimpystump]
       - [0xAE0, c, ch/conga]
-      - [0x1AD0, c, code_1AD0]
+      - [0x1AD0, c, crc]
       - [0x1BA0, c, ch/orange]
       - [0x1F10, c, ch/lmonkey] #chimpy
       - [0x24C0, c, code_24C0]
@@ -43,7 +43,7 @@ segments:
       - [0x34D0, .data, ch/hut]
       - [0x3530, .data, ch/chimpystump]
       - [0x3560, .data, ch/conga]
-      - [0x35D0, .data, code_1AD0]
+      - [0x35D0, .data, crc]
       - [0x35E0, .data, ch/orange]
       - [0x3620, .data, ch/lmonkey]
       - [0x3670, .data, ch/grublin]

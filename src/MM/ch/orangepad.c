@@ -11,17 +11,12 @@ extern void func_802EFA20(ParticleEmitter *, f32, f32);
 /* public functions */
 void func_80386768(Actor *);
 
-
-
 /* .data */
 ActorInfo chorangepadInfo = { MARKER_66_ORANGE_PAD, ACTOR_57_ORANGE_PAD, ASSET_2EB_MODEL_ORANGE_PAD, 
     0, NULL,
     func_80386768, func_80326224, func_80325888,
     0, 0, 0.0f, 0
 };
-
-extern f32 D_80389B40;
-extern f64 D_80389B48;
 
 /*.code */
 void func_803863F0(s32 x, s32 y, s32 z){

@@ -24,7 +24,7 @@ extern ActorInfo D_80389E44;
 extern ActorInfo D_80389E68;
 extern ActorInfo D_80389E8C;
 
-
+/* .code */
 void func_80387DA0(void)
 {
     spawnableActorList_add(&D_80389AA0, actor_new, 0X4080);

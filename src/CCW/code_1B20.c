@@ -21,9 +21,15 @@ Actor *func_803882F4(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void func_80388478(Actor *this);
 
 /* .data */
-extern Struct_CCW_1B20_0 D_8038EC40[4];
-extern ActorInfo D_8038EC70 = { 0x1B0, 0x29D, 0x447, 0x0, NULL, func_80388478, NULL, func_803882F4, 0, 0, 1.0f, 0};
-extern f32 D_8038EC94[3];
+Struct_CCW_1B20_0 D_8038EC40[4] ={
+    {0x173, 4, 0, 0x173, 0x181, 0xE3, 0},
+    {0x181, 1, 1, 0x174, 0x182, 0xE4, 0},
+    {0x182, 1, 1, 0x175, 0x183, 0xE5, 1},
+    {0x183, 1, 1, 0x000, 0x000, 0x00, 0}
+};
+
+ActorInfo D_8038EC70 = { 0x1B0, 0x29D, 0x447, 0x0, NULL, func_80388478, NULL, func_803882F4, 0, 0, 1.0f, 0};
+f32 D_8038EC94[3] = {200.0f,  2120.0f, -5570.0f};
 
 /* .code */
 void func_80387F10() {
@@ -79,8 +85,6 @@ void func_80387F64(Actor *this, s32 next_state){
     }
     this->state = next_state;
 }
-
-
 
 bool func_80388260(ActorMarker *marker, s32 arg1){
     return marker->unk40_31 != 1;

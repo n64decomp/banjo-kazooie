@@ -342,6 +342,7 @@ timedFuncQueue_update = 0x803251D4;
 func_80325340 = 0x80325340;
 func_80325E78 = 0x80325E78;
 func_80325F2C = 0x80325F2C;
+func_80325F84 = 0x80325F84;
 func_80326224 = 0x80326224;
 actor_setOpacity = 0x8032628C;
 actor_new = 0x803272F8;

@@ -24,8 +24,13 @@ typedef struct {
 void func_80387A40(Actor *this);
 
 /* .data */
-extern Struct_CCW_14B0_0 D_8038EC00[];
-extern ActorInfo D_8038EC14 = { 0x1AF, 0x29C, 0x446, 0x0, NULL, func_80387A40, NULL, func_80325888, 0, 0, 1.0f, 0};
+Struct_CCW_14B0_0 D_8038EC00[] = {
+    {MAP_5B_CCW_SPRING_ZUBBA_HIVE, 0x7, 0x4C, 0xCE1},
+    {MAP_5C_CCW_AUTUMN_ZUBBA_HIVE, 0x8, 0x00, 0xCE5},
+    0
+};
+
+ActorInfo D_8038EC14 = { 0x1AF, 0x29C, 0x446, 0x0, NULL, func_80387A40, NULL, func_80325888, 0, 0, 1.0f, 0};
 
 /* .code */
 void func_803878A0(Actor *this, s32 next_state) {

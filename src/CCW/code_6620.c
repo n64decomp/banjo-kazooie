@@ -19,8 +19,19 @@ Actor *func_8038CBF0(ActorMarker *this, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void func_8038CC4C(Actor *this);
 
 /* .data */
-extern Struct_CCW_6620_0 D_8038F490[];
-extern ActorInfo D_8038F4A8 = { 0x1BD, 0x2AA, 0x48F, 0x0, NULL, func_8038CC4C, NULL, func_8038CBF0, 0, 0, 2.2f, 0};
+Struct_CCW_6620_0 D_8038F490[] ={
+    {0x43, 0, 0xCCE},
+    {0x45, 1, 0xCD1},
+    {0x46, 1, 0xCD3},
+    0
+};
+
+ActorInfo D_8038F4A8 = { 
+    0x1BD, 0x2AA, 0x48F,
+    0x0, NULL,
+    func_8038CC4C, NULL, func_8038CBF0,
+    0, 0, 2.2f, 0
+};
 
 /* .code */
 void func_8038CA10(ActorMarker *marker) {

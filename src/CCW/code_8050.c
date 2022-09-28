@@ -40,17 +40,35 @@ void func_8038E964(Actor *this);
 Actor *func_8038E56C(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 
 /* .data */
-extern ActorAnimationInfo D_8038F930[];
-extern ActorInfo D_8038F988 = {
+ActorAnimationInfo D_8038F930[] = {
+    {0x000, 0.0f},
+    {0x243, 4.0f},
+    {0x243, 0.7f},
+    {0x245, 0.7f},
+    {0x244, 0.9f},
+    {0x246, 1.6f},
+    {0x243, 1.5f},
+    {0x245, 0.5f},
+    {0x243, 1.5f},
+    {0x243, 1e+06f},
+    {0x243, 1e+06f}
+};
+
+ActorInfo D_8038F988 = {
     MARKER_1E2_GRUBLIN_HOOD, ACTOR_375_GRUBLIN_HOOD, ASSET_52C_MODEL_GRUBLIN_HOOD,
     0x1, D_8038F930,
     func_8038E964, func_80326224, func_8038E56C,
     2500, 0, 1.0f, 0
 };
-extern struct43s D_8038F9AC;
 
 /* .code */
 void func_8038E440(ParticleEmitter *pCtrl, Actor *actor, enum asset_e model_id){
+    static struct43s D_8038F9AC = {
+        {{-200.0f,   200.0f, -200.0f}, {200.0f,   400.0f, 200.0f}},
+        {{   0.0f, -1800.0f,    0.0f}, {  0.0f, -1800.0f,   0.0f}},
+        {{ -50.0f,   200.0f,  -50.0f}, { 50.0f,   400.0f,  50.0f}}
+    };
+
     func_802DABA0(pCtrl, actor->position, actor->scale, model_id);
     func_802EFE24(pCtrl, 
         -600.0f, -600.0f, -600.0f, 

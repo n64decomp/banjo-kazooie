@@ -14,13 +14,25 @@ Actor *func_8038AA38(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void func_8038AA8C(Actor *this);
 
 /* .data */
-extern ActorInfo D_8038F190 = {
+ActorInfo D_8038F190 = {
     0x1B6, 0x2A3, 0x487,
     0x0, NULL,
     func_8038AA8C, NULL, func_8038AA38,
     0, 0, 0.0f, 0
 };
-extern Struct_CCW_4530_0 D_8038F1B4[];
+
+Struct_CCW_4530_0 D_8038F1B4[] = {
+    {0.15f, 0.9f,  SFX_A5_EYRIE_CRY, 25000},
+    {0.3f,  1.0f,  SFX_A5_EYRIE_CRY, 32000},
+    {0.6f,  0.8f,  SFX_2_CLAW_SWIPE, 20000},
+    {0.68f, 0.85f, SFX_2_CLAW_SWIPE, 23000},
+    {0.75f, 0.9f,  SFX_2_CLAW_SWIPE, 28000},
+    {0.8f,  0.95f, SFX_2_CLAW_SWIPE, 30000},
+    {0.81f, 1.0f,  SFX_A5_EYRIE_CRY, 32000},
+    {0.86f, 1.0f,  SFX_2_CLAW_SWIPE, 31000},
+    {0.93f, 1.0f,  SFX_2_CLAW_SWIPE, 32000},
+0
+};
 
 /* .code */
 void func_8038A920(ActorMarker* marker, enum asset_e text_id, s32 arg2) {

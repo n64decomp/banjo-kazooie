@@ -20,8 +20,8 @@ enum nabnut_state_e{
 };
 
 /* .data */
-extern f32 D_8038F350[3];
-extern ActorInfo D_8038F35C = {
+f32 D_8038F350[3] = {0.0f, 0.0f, 0.0f};
+ActorInfo D_8038F35C = {
     MARKER_1BB_NABNUT, ACTOR_2A8_NABNUT, ASSET_502_MODEL_NABNUT,
     0x0, NULL, 
     chnabnut_update, chnabnut_update, chnabnut_draw,

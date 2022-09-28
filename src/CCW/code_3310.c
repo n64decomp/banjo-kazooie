@@ -44,12 +44,63 @@ Actor *func_80389B24(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void func_80389BFC(Actor *this);
 
 /* .data */
-extern Struct_CCW_3310_1 D_8038F060[];
-extern Struct_CCW_3310_0 D_8038F080[];
-extern ActorInfo D_8038F130 = { MARKER_1B4_EEYRIE_BABY, ACTOR_2A1_EEYRIE_BABY, ASSET_484_MODEL_EAGLE_BABY, 0x0, NULL, func_80389BFC, NULL, func_80389B24, 0, 0, 0.0f, 0};
+Struct_CCW_3310_1 D_8038EEA0[] = {
+    {0.11f, SFX_4A_CLUCKER_AHH, 1.1f, 25000},
+    {0.22f, SFX_4A_CLUCKER_AHH, 1.1f, 25000},
+    {0.34f, SFX_4A_CLUCKER_AHH, 1.1f, 25000},
+    {0.55f, SFX_2_CLAW_SWIPE,   1.1f, 25000},
+    {0.65f, SFX_2_CLAW_SWIPE,   1.0f, 26000},
+    {0.77f, SFX_2_CLAW_SWIPE,   1.1f, 25000},
+    {0.87f, SFX_2_CLAW_SWIPE,   1.0f, 24000},
+    0
+};
+
+Struct_CCW_3310_1 D_8038EF20[] = {
+    {0.1f,  SFX_80_YUMYUM_CLACK,  0.9f, 15000},
+    {0.25f, SFX_4C_LIP_SMACK,     1.0f, 15000},
+    {0.31f, SFX_4C_LIP_SMACK,     0.9f, 15000},
+    {0.38f, SFX_4C_LIP_SMACK,     1.0f, 15000},
+    {0.48f, SFX_4C_LIP_SMACK,     0.9f, 15000},
+    {0.55f, SFX_97_BLUBBER_BURPS, 0.9f, 32700},
+    {0.6f , SFX_2C_PULLING_NOISE, 0.7f, 25000},
+    {0.73f, SFX_2C_PULLING_NOISE, 0.8f, 27000},
+    {0.85f, SFX_2C_PULLING_NOISE, 0.9f, 29000},
+    0
+};
+
+Struct_CCW_3310_1 D_8038EFC0[] = {
+    {0.2f , SFX_105_EYRIE_YAWN,        1.1f, 25000},
+    {0.27f, SFX_105_EYRIE_YAWN,        1.0f, 25000},
+    {0.35f, SFX_105_EYRIE_YAWN,        0.9f, 25000},
+    {0.6f , SFX_106_EYRIE_LIPSMACK,    1.0f, 25000},
+    {0.66f, SFX_106_EYRIE_LIPSMACK,    0.9f, 23000},
+    {0.83f, SFX_1D_HITTING_AN_ENEMY_1, 0.7f, 27000},
+    0
+};
+
+Struct_CCW_3310_1 D_8038F030[] = {
+    {0.2f , SFX_5D_BANJO_RAAOWW, 1.0f, 25000},
+    {0.72f, SFX_5E_BANJO_PHEWWW, 1.0f, 25000},
+    0
+};
+
+Struct_CCW_3310_1 D_8038F060[] = {
+    {0.95f, SFX_106_EYRIE_LIPSMACK, 1.0f, 25000},
+    0
+};
+
+Struct_CCW_3310_0 D_8038F080[] = {
+    {MAP_43_CCW_SPRING,    0, 0xE6,     0,       NULL, 3,     0,       NULL, 0x18F, D_8038EFC0, 0x190, D_8038F030, 0,   0,     0,     0},
+    {MAP_44_CCW_SUMMER, 0xE6, 0xE7, 0x191, D_8038EEA0, 2, 0x192, D_8038EF20, 0x193, D_8038EFC0, 0x194, D_8038F030, 2,   5, 0x21A, 0xCD7},
+    {MAP_45_CCW_AUTUMN, 0xE7, 0xE8, 0x195, D_8038EEA0, 2, 0x196, D_8038EF20, 0x197, D_8038EFC0, 0x198, D_8038F030, 4, 0xA, 0x21B, 0xCDA},
+    0
+};
+
+ActorInfo D_8038F130 = { MARKER_1B4_EEYRIE_BABY, ACTOR_2A1_EEYRIE_BABY, ASSET_484_MODEL_EAGLE_BABY, 0x0, NULL, func_80389BFC, NULL, func_80389B24, 0, 0, 0.0f, 0};
 
 /* .bss */
-extern f32 D_8038FDE0[3];
+u8  pad_8038FDD0[0x10];
+f32 D_8038FDE0[3];
 
 /* .code */
 void func_80389700(ActorMarker *marker, enum asset_e text_id, s32 arg2) {

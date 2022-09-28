@@ -6,9 +6,13 @@
 void func_8038E0C8(Actor *this);
 
 /* .data */
-extern ActorAnimationInfo D_8038F8F0[];
+ActorAnimationInfo D_8038F8F0[] = {
+    {0x000, 0.0f}, 
+    {0x16C, 2.0f}, 
+    {0x16B, 1.2f}
+};
 
-extern ActorInfo D_8038F908 = { 
+ActorInfo D_8038F908 = { 
     MARKER_1F9_SNARE_BEAR, ACTOR_1E9_SNARE_BEAR, ASSET_440_MODEL_SNAREBEAR,
     0x1, D_8038F8F0,
     func_8038E0C8, func_80326224, func_80325888,

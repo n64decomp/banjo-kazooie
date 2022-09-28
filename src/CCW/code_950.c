@@ -16,7 +16,7 @@ typedef struct{
 void chwasp_update(Actor *this);
 
 /* .data */
-extern ActorInfo D_8038EBD0 = { MARKER_1AE_ZUBBA, ACTOR_29B_ZUBBA, ASSET_446_MODEL_ZUBBA, 0x0, NULL, chwasp_update, NULL, func_80325888, 0, 0, 1.0f, 0};
+ActorInfo D_8038EBD0 = { MARKER_1AE_ZUBBA, ACTOR_29B_ZUBBA, ASSET_446_MODEL_ZUBBA, 0x0, NULL, chwasp_update, NULL, func_80325888, 0, 0, 1.0f, 0};
 
 /* .code */
 void chwasp_setState(Actor *this, s32 next_state) {

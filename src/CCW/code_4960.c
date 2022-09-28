@@ -13,13 +13,17 @@ Actor *func_8038AE64(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void func_8038AEBC(Actor *this);
 
 /* .data */
-extern ActorInfo D_8038F230 = {
+ActorInfo D_8038F230 = {
     0x1C4, 0x30E, 0x487,
     0x0, NULL,
     func_8038AEBC, func_8038AEBC, func_8038AE64,
     0, 0, 0.0f, 0
 };
-extern Struct_CCW_4960_0 D_8038F254[];
+
+Struct_CCW_4960_0 D_8038F254[] = {
+    {0.5f, 0.8f, SFX_2_CLAW_SWIPE, 20000},
+    0
+};
 
 /* .code */
 void func_8038AD50(Actor *this, s32 next_state) {

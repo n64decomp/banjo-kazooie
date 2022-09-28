@@ -3,7 +3,11 @@
 #include "functions.h"
 #include "variables.h"
 
-u8 D_803899C0[] = {0x00, 0x0C, 0x74, 0x0C, 0xCD, 0x24, 0x9C, 0xB3, 0x00, 0x00, 0xD4, 0x4F};
+/* .data */
+//TODO Implement CRC calculation in Makefile(?)
+u32 D_803899C0 = 0x000C740C; //MM.code CRC1
+u32 D_803899C4 = 0xCD249CB3; //MM.code CRC2
+u32 D_803899C8 = 0x0000D44F; //MM.data CRC1 (with this value = 0)
 
 void func_802D1724(void);
 

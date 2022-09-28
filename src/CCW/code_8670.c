@@ -5,7 +5,7 @@
 void func_8038EAD4(Actor *this);
 
 /* .data */
-extern ActorInfo D_8038FA00 = { 0x1E3, 0x374, 0x0, 0x0, NULL, func_8038EAD4, func_80326224, func_80325340, 0, 0, 0.0f, 0};
+ActorInfo D_8038FA00 = { 0x1E3, 0x374, 0x0, 0x0, NULL, func_8038EAD4, func_80326224, func_80325340, 0, 0, 0.0f, 0};
 
 /* .code */
 bool func_8038EA60(s32 arg0, s32 arg1, s32 arg2) {

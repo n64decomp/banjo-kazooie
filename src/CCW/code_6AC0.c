@@ -12,16 +12,43 @@ typedef struct{
 void func_8038CFB4(Actor *this);
 
 /* .data */
-extern ActorInfo D_8038F4D0 = { 
+ActorInfo D_8038F4D0 = { 
     0x1BE, 0x2AB, 0x48F,
     0x0, NULL,
     func_8038CFB4, func_8038CFB4, func_80325888,
     0, 0, 2.2f, 0
 };
 
-extern Struct_CCW_6AC0_0 D_8038F4F4[];
-extern Struct_CCW_6AC0_0 D_8038F53C[];
-extern Struct_CCW_6AC0_0 D_8038F5D8[];
+Struct_CCW_6AC0_0 D_8038F4F4[] = {
+    {0.11f, 1.0f, SFX_10_BANJO_LANDING_07, 9000},
+    {0.23f, 1.0f, SFX_10_BANJO_LANDING_07, 9000},
+    {0.34f, 1.0f, SFX_10_BANJO_LANDING_07, 9000},
+    {0.58f, 1.0f, SFX_4D_WET_WIGGLING,     9000},
+    {0.8f,  1.0f, SFX_4D_WET_WIGGLING,     9000},
+    0
+};
+
+Struct_CCW_6AC0_0 D_8038F53C[] = {
+    {0.07f, 1.6f, SFX_56_BANJO_HUI,        32000},
+    {0.17f, 1.0f, SFX_10_BANJO_LANDING_07,  9000},
+    {0.22f, 1.6f, SFX_55_BANJO_HOO_2,      32000},
+    {0.31f, 1.0f, SFX_10_BANJO_LANDING_07,  9000},
+    {0.33f, 1.6f, SFX_54_BANJO_HOO_1,      32000},
+    {0.45f, 1.0f, SFX_10_BANJO_LANDING_07,  9000},
+    {0.49f, 1.7f, SFX_55_BANJO_HOO_2,      32600},
+    {0.6f,  1.0f, SFX_10_BANJO_LANDING_07,  9000},
+    {0.63f, 1.7f, SFX_56_BANJO_HUI,        32600},
+    {0.74f, 1.0f, SFX_10_BANJO_LANDING_07,  9000},
+    {0.79f, 1.6f, SFX_54_BANJO_HOO_1,      32000},
+    {0.9f,  1.0f, SFX_10_BANJO_LANDING_07,  9000},
+    0
+};
+
+Struct_CCW_6AC0_0 D_8038F5D8[] = {
+    {0.01f, 1.0f, SFX_10_BANJO_LANDING_07, 9000},
+    {0.5f,  1.0f, SFX_10_BANJO_LANDING_07, 9000},
+    0
+};
 
 /* .code */
 void func_8038CEB0(Actor *this, s32 next_state) {
@@ -67,11 +94,11 @@ void func_8038CFB4(Actor *this) {
     } 
 
     if (this->state == 1) {
-        phi_s0 = &D_8038F4F4;
+        phi_s0 = D_8038F4F4;
     } else if (this->state == 2) {
-        phi_s0 = &D_8038F53C;
+        phi_s0 = D_8038F53C;
     } else if (this->state == 3) {
-        phi_s0 = &D_8038F5D8;
+        phi_s0 = D_8038F5D8;
     } else{
         phi_s0 = NULL;
     }
@@ -88,8 +115,8 @@ void func_8038CFB4(Actor *this) {
 
     if (this->state == 1) {
         if (!this->unk138_24) {
-            player_getPosition(&sp60);
-            if (ml_vec3f_distance(this->position, &sp60) < 900.0f) {
+            player_getPosition(sp60);
+            if (ml_vec3f_distance(this->position, sp60) < 900.0f) {
                 func_80311480(0xCCF, 4, NULL, NULL, NULL, NULL);
                 this->unk138_24 = TRUE;
             }

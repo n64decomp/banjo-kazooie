@@ -16,9 +16,13 @@ void func_8038D368(Actor *this);
 Actor *func_8038D30C(ActorMarker* marker, Gfx** gfx, Mtx** mtx, Vtx** vtx);
 
 /* .data */
-extern Struct_CCW_6EC0_0 D_8038F600[];
+Struct_CCW_6EC0_0 D_8038F600[] = {
+    {MAP_45_CCW_AUTUMN, 0xCD2,     0},
+    {MAP_46_CCW_WINTER, 0xCD4, 0xCD5},
+    0
+};
 
-extern ActorInfo D_8038F614 = { 
+ActorInfo D_8038F614 = { 
     0x1CE, 0x31A, 0x48F,
     0x0, NULL,
     func_8038D368, NULL, func_8038D30C,

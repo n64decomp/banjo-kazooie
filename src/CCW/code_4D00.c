@@ -18,8 +18,23 @@ typedef struct {
 void func_8038B19C(Actor *this);
 
 /* .data */
-extern ActorInfo D_8038F270 = { 0x1B9, 0x2A6, 0x502, 0x0, NULL, func_8038B19C, NULL, func_80325888, 0, 0, 0.0f, 0};
-extern Struct_CCW_4D00_0 D_8038F294[];
+ActorInfo D_8038F270 = {
+    0x1B9, 0x2A6, 0x502,
+    0x0, NULL,
+    func_8038B19C, NULL, func_80325888,
+    0, 0, 0.0f, 0
+};
+
+Struct_CCW_4D00_0 D_8038F294[] = {
+    {0.12f, 1.6f,  SFX_A7_WOODEN_SWOSH,  8000},
+    {0.21f, 1.7f,  SFX_A7_WOODEN_SWOSH,  8500},
+    {0.3f , 1.6f,  SFX_A7_WOODEN_SWOSH,  8000},
+    {0.51f, 1.0f,  SFX_4C_LIP_SMACK,    22000},
+    {0.65f, 1.05f, SFX_4C_LIP_SMACK,    23000},
+    {0.76f, 1.0f,  SFX_4C_LIP_SMACK,    22000},
+    {0.88f, 1.0f,  SFX_4C_LIP_SMACK,    23000},
+    0
+};
 
 /* .code */
 void func_8038B0F0(Actor *this, s32 next_state) {
