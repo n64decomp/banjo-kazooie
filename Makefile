@@ -208,7 +208,7 @@ endef
 ### Flags ###
 
 # Build tool flags
-CFLAGS         := -c -Wab,-r4300_mul -non_shared -G 0 -Xfullwarn -Xcpluscomm $(OPT_FLAGS) $(MIPSBIT) -D_FINALROM -DF3DEX_GBI -DVERSION='$(C_VERSION)'
+CFLAGS         := -c -Wab,-r4300_mul -non_shared -G 0 -Xcpluscomm $(OPT_FLAGS) $(MIPSBIT) -D_FINALROM -DF3DEX_GBI -DVERSION='$(C_VERSION)'
 CFLAGS         += -woff 649,654,838,807
 CFLAGS         += $(IN_CFLAGS)
 CPPFLAGS       := -D_FINALROM -DN_MICRO
@@ -303,7 +303,7 @@ define overlay_rules
   # split overlay
   $(BUILD_DIR)/$(1)_SPLAT_TIMESTAMP : $(SUBYAML)/$(1).$(VERSION).yaml $(BUILD_DIR)/$(1).$(VERSION).bin $(SYMBOL_ADDRS)
 	$(call print1,Splitting bin:,$$<)
-	$(SPLAT) --target $(BUILD_DIR)/$(1).$(VERSION).bin $(SUBYAML)/$(1).$(VERSION).yaml --basedir .
+	$(SPLAT) $(SUBYAML)/$(1).$(VERSION).yaml
 	@touch $$@
 	@touch $(1).ld
   # Dummy target to make sure extraction happens before compilation, mainly for extracted asm
@@ -464,7 +464,7 @@ $(OVERLAY_CODE_BINS) : $(BUILD_DIR)/%.code : $(BUILD_DIR)/%.full $(BUILD_DIR)/%.
 	$(call print2,Converting overlay code:,$<,$@)
 	@head -c $(shell {\
 		text_offset=0x$$(nm $(BUILD_DIR)/$*.elf | grep $*_TEXT_START | head -c 8) ;\
-		data_offset=0x$$(nm $(BUILD_DIR)/$*.elf | grep $*_DATA_START | head -c 8) ;\
+		data_offset=0x$$(nm $(BUILD_DIR)/$*.elf | grep $*_DATA_START | sort -r | head -c 8) ;\
 		echo $$(($$data_offset - $$text_offset)) ;\
 	}) $< > $@
 #	@$(OBJCOPY) -I elf32-tradbigmips -O binary --only-section .$*_code --only-section .$*_mips3 $< $@
@@ -474,7 +474,7 @@ $(OVERLAY_DATA_BINS) : $(BUILD_DIR)/%.data : $(BUILD_DIR)/%.full $(BUILD_DIR)/%.
 	$(call print2,Converting overlay data:,$<,$@)
 	@tail -c +$(shell {\
 		text_offset=0x$$(nm $(BUILD_DIR)/$*.elf | grep $*_TEXT_START | head -c 8) ;\
-		data_offset=0x$$(nm $(BUILD_DIR)/$*.elf | grep $*_DATA_START | head -c 8) ;\
+		data_offset=0x$$(nm $(BUILD_DIR)/$*.elf | grep $*_DATA_START | sort -r | head -c 8) ;\
 		echo $$(($$data_offset - $$text_offset + 1)) ;\
 	}) $< > $@
 #	@$(OBJCOPY) -I elf32-tradbigmips -O binary --only-section .$*_data --only-section .*_data_* $< $@
