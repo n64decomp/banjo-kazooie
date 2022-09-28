@@ -99,7 +99,7 @@ extern struct {
     u8 UNK_07;
 
     f32 unk8;
-} D_80394354[]; // unk size
+} D_80394354[];
 
 // ?
 extern struct {

@@ -5,12 +5,11 @@
 extern void func_8028F710(s32, f32);
 
 /* .data */
-u8 D_80390F30[] = {
-    0x00, 0x27, 0x45, 0x30, 
-    0xAA, 0x18, 0xBB, 0xF3, 
-    0x00, 0x03, 0x03, 0x1C, 
-    0x00, 0x00, 0x00, 0x00
-};
+//TODO Implement CRC calculation in Makefile(?)
+u32 D_80390F30 = 0x00274530; //GV.code CRC1
+u32 D_80390F34 = 0xAA18BBF3; //GV.code CRC2
+u32 D_80390F38 = 0x0003031C; //GV.data CRC1 (with this value = 0)
+
 
 /* .code */
 void func_80389F00(void){

@@ -143,40 +143,6 @@ extern struct31s D_803934AC;
 extern struct42s D_803934D4;
 extern s32       D_80393504[4];
 
-/* .rodata */
-extern f32 D_80394D50;
-extern f64 D_80394D58;
-extern f32 D_80394D60;
-extern f32 D_80394D64;
-extern f32 D_80394D68;
-extern f32 D_80394D6C;
-extern f32 D_80394D70;
-extern f32 D_80394D74;
-extern f32 D_80394D78;
-extern f32 D_80394D7C;
-
-extern f64 D_80394F88;
-
-extern f32 D_80394D80;
-extern f32 D_80394D84;
-extern f32 D_80394D88;
-extern f32 D_80394D8C; //! .rodata : 0.9f
-extern f64 D_80394D90; //! .rodata : 1.7
-extern f64 D_80394D98; //! .rodata : 1.1
-extern f32 D_80394FC0;
-extern f32 D_80394FC4;
-extern f32 D_80394FC8;
-extern f32 D_80394FCC;
-extern f32 D_80394FD0;
-extern f32 D_80394FD4;
-extern f32 D_80394FD8;
-extern f32 D_80394FDC;
-extern f32 D_80394FE0;
-extern f32 D_80394FE4;
-extern f32 D_80394FE8;
-extern f32 D_80394FEC;
-extern f32 D_80394FF0;
-
 /* .bss */
 
 

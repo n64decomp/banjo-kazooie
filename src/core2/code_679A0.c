@@ -164,11 +164,7 @@ void func_802EEE3C(ParticleEmitter *this, Gfx **gfx, Mtx **mtx, Vtx **vtx, s32 a
     f32 sp80[3];
     f32 sp74[3];
     Particle *iPtr;
-    s32 tmp_a0;
-    s32 tmp_a1;
-    s32 tmp_a2;
-    s32 tmp_a3;
-    
+
     if(arg4 != (this->unk18 & 0x4))
         return;
 
@@ -180,8 +176,8 @@ void func_802EEE3C(ParticleEmitter *this, Gfx **gfx, Mtx **mtx, Vtx **vtx, s32 a
             if( 0.0f != this->unk10 || 1.0 != this->unk14 || this->unk49 != 0xff ){
                 func_8033A410((s32) (iPtr->unkC*this->unk49));
             }//L802EEF5C
-            tmp_a3 = (this->unk18 & 0x10)?0:1;
-            set_model_render_mode(tmp_a3);
+            // tmp_a3 = (this->unk18 & 0x10)?0:1;
+            set_model_render_mode((this->unk18 & 0x10)?0:1);
             func_803391A4(gfx, mtx, sp8C, iPtr->unk24, iPtr->size_30, NULL, this->model_20);
         }
     }
@@ -192,14 +188,14 @@ void func_802EEE3C(ParticleEmitter *this, Gfx **gfx, Mtx **mtx, Vtx **vtx, s32 a
                 || this->unk3C[2] != 0xff 
                 || this->unk49 != 0xff 
             ){
-                tmp_a3 = (this->unk18 & 0x10)? 9: 0xf;
-                func_803382E4(tmp_a3);
+                func_803382E4((this->unk18 & 0x10)? 9: 0xf);
                 func_80338338(this->unk3C[0], this->unk3C[1], this->unk3C[2]);
-                tmp_a0 = (this->unk3C[0] < 8)? 0 : this->unk3C[0] - 8;
-                tmp_a1 = (this->unk3C[1] < 8)? 0 : this->unk3C[1] - 8;
-                tmp_a2 = (this->unk3C[2] < 8)? 0 : this->unk3C[2] - 8;
-                tmp_a3 = (this->unk18 & 0x20)? 0xff : this->unk49;
-                func_803382B4(tmp_a0, tmp_a1, tmp_a2, tmp_a3);
+                func_803382B4(
+                    (this->unk3C[0] < 8)? 0 : this->unk3C[0] - 8,
+                    (this->unk3C[1] < 8)? 0 : this->unk3C[1] - 8,
+                    (this->unk3C[2] < 8)? 0 : this->unk3C[2] - 8,
+                    (this->unk18 & 0x20)? 0xff : this->unk49
+                );
                 func_80338370();
                 func_80335D30(gfx);
             }

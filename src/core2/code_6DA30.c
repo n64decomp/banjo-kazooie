@@ -32,7 +32,7 @@ typedef struct map_font_texture_map{
 typedef struct{
     u8 unk0;
     u8 unk1;
-    u8 pad2[1];
+    s8 unk2;
     s8 unk3;
 }Struct_6DA30_0_s;
 
@@ -46,7 +46,7 @@ extern struct {
     u8 unk3;
 } D_80369078;
 
-extern s32 D_80369068[];
+extern s32 D_80369068[]; //max letter width
 extern MapFontTextureMap D_8036907C[];
 
 extern u8 D_80369200[];
@@ -71,7 +71,7 @@ extern u8 D_8037724C[4];
 extern u8 D_80377250[4];
 extern u8 D_80377254[4];
 
-s8 D_80380AB0;
+char D_80380AB0;
 BKSprite *D_80380AB8[0x5];
 
 FontLetter  *print_sFonts[4];
@@ -79,7 +79,7 @@ PrintBuffer *print_sPrintBuffer;
 PrintBuffer *print_sCurrentPtr;
 s32 D_80380AE8;
 s32 D_80380AEC;
-s32 D_80380AF0;
+s32 D_80380AF0; //print_sMonospaced
 s32 D_80380AF4;
 s32 D_80380AF8;
 s32 D_80380AFC;
@@ -96,6 +96,8 @@ s8 D_80380F20[0x80];
 f32 D_80380FA0;
 f32 D_80380FA8[0x20];
 
+
+void func_802F7A2C(s32 arg0);
 
 //returns map texture assetID for current map;
 enum asset_e func_802F49C0(void){
@@ -288,25 +290,23 @@ void func_802F5188(void){
     func_802F5010();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6DA30/func_802F51B8.s")
-/*void func_802F51B8(void){
+void func_802F51B8(void){
     s32 i, j;
     s32 length;
     int found;
 
     length = strlen(D_80369200);
-    D_80380AEC = 0;
-    D_80380AF0 = 0;
-    D_80380AF4 = 0;
-    D_80380AF8 = 0;
-    D_80380AFC = 0;
-    D_80380B00 = 0;
-    D_80380B04 = 0;
-    print_sInFontFormatMode = FALSE;
-    D_80380B0C = 0;
-    D_80380B10 = 0;
+    D_80380AE8 = \
+    D_80380AEC = \
+    D_80380AF0 = \
+    D_80380AF4 = \
+    D_80380AF8 = \
+    D_80380AFC = \
+    print_sInFontFormatMode = \
+    D_80380B04 = \
+    D_80380B00 = \
+    D_80380B10 = \
     D_80380B14 = 0;
-    D_80380AE8 = 0;
     D_80380AB0 = 0;
     func_802F7A2C(3);
     D_80380AB8[0] = assetcache_get(SPRITE_DIALOG_FONT_ALPHAMASK);
@@ -327,12 +327,11 @@ void func_802F5188(void){
         }//L802F5330
         if(!found)
             D_80380F20[i] = -1;
-        //L802F533C
     }
     assetcache_release(D_80380AB8[4]);
     D_80380AB8[4] = NULL;
     D_80380B1C = func_802F49C0();
-}//*/
+}
 
 void func_802F5374(void){
     if(D_80380B18 > 0 && --D_80380B18 == 0){
@@ -365,7 +364,7 @@ void func_802F542C(void){
 }
 
 //returns the pixel data and type for a given letter
-void *func_802F5494(s32 letterId, s32 *fontType){
+BKSpriteTextureBlock *func_802F5494(s32 letterId, s32 *fontType){
     if(D_80380AE8 != 1 || (D_80380AE8 == 1 && letterId < 0xA)){
         *fontType = D_80380AB8[D_80380AE8]->type;
         return print_sFonts[D_80380AE8][letterId].unk0;
@@ -641,8 +640,58 @@ void _printbuffer_draw_letter(s32 letter, f32* xPtr, f32* yPtr, f32 arg3, Gfx **
 }
 #endif
 
-f32 func_802F6C90(u8 letter, f32* xPtr, f32 *yPtr, f32 arg3);
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6DA30/func_802F6C90.s")
+f32 func_802F6C90(u8 letter, f32* xPtr, f32 *yPtr, f32 arg3){
+    s32 sp44;
+    s32 i;
+    bool var_v0;
+    f32 sp38;
+    s32 sp34;
+    f32 var_f2;
+    s32 sp2C;
+
+    sp38 = *xPtr;
+    var_v0 = FALSE;
+    sp34 = 0;
+    if (D_80380AE8 == 1) {
+        if (letter < 0x80) {
+            if (D_80380F20[letter] >= 0) {
+                for(i = 0; D_80369000[i].unk0 != 0; i++) {
+                    if ((D_80369000[i].unk1 == letter) && (D_80369000[i].unk0 == D_80380AB0)) {
+                        sp34 = D_80369000[i].unk2;
+                        break;
+                    }
+                }
+                D_80380AB0 = letter;
+                sp44 = D_80380F20[letter];
+                var_v0 = TRUE;
+                sp38 += sp34 * arg3;
+            }
+        }
+    }
+    else{
+        return *xPtr;
+    }
+    if (!var_v0 || print_sInFontFormatMode) {
+        if (letter == ' ') {
+            var_f2 = (D_80380AF0) ? D_80369068[D_80380AE8] : 0.8*D_80369068[D_80380AE8];
+        }
+        else{
+            return *xPtr;
+        }
+    }
+    else {
+        if(D_80380AF0){
+            var_f2 = D_80369068[D_80380AE8];
+        }
+        else{
+            var_f2 = func_802F5494(sp44, &sp2C)->x;
+        }
+    }
+    var_f2 += (sp34 - 4);
+    *xPtr += var_f2 * arg3;
+    
+    return sp38;
+}
 
 void printbuffer_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     s32 j;
