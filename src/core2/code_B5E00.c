@@ -35,12 +35,14 @@ void func_8033CE14(s32 gamenum){
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B5E00/func_8033CE40.s")
 #else
 void func_8033CE40(void) {
-    s32 sp48[4];
-    s32 var_s0;
-    s32 var_s0_2;
     s32 i;
+    s32 var_s0;
+    s32 sp48[4];
+    
 
-    for(i = 0; i < 4; i++){
+    D_80383F04 = -1;
+    sp48[3] = 0;
+    for(i = 0; i < 3; i++){
         D_80383F00[i] = -1;
         sp48[i] = 0;
     }
@@ -55,11 +57,12 @@ void func_8033CE40(void) {
             D_80383F04 = var_s0;
         }
     }
+    sp48[D_80383F04] = 1;
     for(i = 0; i < 3; i++){
-        for(var_s0_2 = 0; (var_s0_2 < 4) && (D_80383F00[i] == -1);  var_s0_2++){
-            if (sp48[var_s0_2] == 0) {
-                sp48[var_s0_2] = 1;
-                D_80383F00[i] = var_s0_2;
+        for(var_s0 = 0; (var_s0 < 4) && (D_80383F00[i] == -1);  var_s0++){
+            if (sp48[var_s0] == 0) {
+                sp48[var_s0] = 1;
+                D_80383F00[i] = var_s0;
             }
         }
     }
