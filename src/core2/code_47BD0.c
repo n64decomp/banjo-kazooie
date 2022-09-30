@@ -70,9 +70,6 @@ void func_802CEBA8(Actor *this){
     D_8037DCBC = 0;
 }
 
-#ifndef NONMATCHING //requires .rodata defined
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_47BD0/func_802CEBFC.s")
-#else
 Actor *func_802CEBFC(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     Actor *this;
     ActorLocal_core2_47BD0 *local;
@@ -87,7 +84,7 @@ Actor *func_802CEBFC(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     phi_fp = func_80330B1C(marker);
     for(phi_s2 = 0, phi_s0 = local->unk8; phi_s2 < local->unk0; phi_s2++){
         sp80[0] = 0.0f;
-        sp80[1] = phi_s0->unk28 - 90.0f;
+        sp80[1] = phi_s0->unk24[1] - 90.0f;
         sp80[2] = 0.0f;
 
         sp8C[0] = this->position[0] + phi_s0->unk0[0];
@@ -109,7 +106,6 @@ Actor *func_802CEBFC(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     }
     return this;
 }
-#endif
 
 void func_802CEDE4(f32 arg0[3], f32 p_ctrl[3], f32 arg2, f32 *arg3, f32 arg4, f32 arg5){
     s32 phi_s1;
@@ -306,6 +302,8 @@ void func_802CF7CC(Actor *this) {
 void func_802CF83C(Actor *this);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_47BD0/func_802CF83C.s")
 #else
+extern bool func_80309DBC(f32[3], f32[3], f32, f32 sp54[3], s32, s32);
+
 extern f64 D_803765E8;
 extern f64 D_80376620;
 extern f64 D_80376628;
@@ -397,20 +395,12 @@ void func_802CF83C(Actor *this) {
                 this->unk100 = NULL;
             }
         }
-        temp_v0_3 = this->unk100;
-        if (temp_v0_3 != NULL) {
-            local->unk24 = temp_v0_3->unk5C;
-        } else {
-            local->unk24 = NULL;
-        }
+         local->unk24 = (this->unk100 != NULL) ? this->unk100->unk5C : 0;
         local->unk5 = 1;
         if (this->unk100 != NULL) {
             func_80320004(BKPROG_D_BEEHIVE_TEXT, TRUE);
         }
-        phi_a1 = 2U;
-        if (this->unk100 != NULL) {
-            phi_a1 = 1U;
-        }
+        phi_a1 = (this->unk100 != NULL) ? 1 : 2;
         func_80328A84(this, phi_a1);
         this->unk60 = 0.0f;
         func_802CF040(this);
@@ -418,9 +408,10 @@ void func_802CF83C(Actor *this) {
     }
 
     if (subaddie_playerIsWithinSphere(this, 0xFA0)) {
-        if (!subaddie_playerIsWithinSphere(this, 0x5DC) == 0) {
-            if (this->unk44_31 != 0) {
-                func_8030DA44(this->unk44_31);
+        if (!subaddie_playerIsWithinSphere(this, 0x5DC)) {
+            u8 temp = this->unk44_31;
+            if (temp!= 0) {
+                func_8030DA44(temp);
                 this->unk44_31 = 0;
                 D_8037DCBC = 0;
             }
@@ -446,9 +437,9 @@ block_40:
                 this->velocity[0] += (sp7C[0] * temp_f0);
                 this->velocity[1] += (sp7C[1] * temp_f0);
                 this->velocity[2] += (sp7C[2] * temp_f0);
-                this->unk1C[0] = sp7C[0] * D_803765E8 + this->position[0];
-                this->unk1C[1] = sp7C[1] * D_803765E8 + this->position[1];
-                this->unk1C[2] = sp7C[2] * D_803765E8 + this->position[2];
+                this->unk1C[0] = sp7C[0] * 37.5 + this->position[0];
+                this->unk1C[1] = sp7C[1] * 37.5 + this->position[1];
+                this->unk1C[2] = sp7C[2] * 37.5 + this->position[2];
                 if (this->state != 6) {
                     local->unk6 = this->state;
                     func_80328A84(this, 6);
@@ -512,12 +503,12 @@ block_40:
                 if ((this->state == 3) || (this->state == 4)) {
                     phi_f2 = 0.0;
                 } else {
-                    phi_f2 = D_80376620;
+                    phi_f2 = 0.8;
                 }
                 if ((this->state == 3) || (this->state == 4)) {
-                    phi_f0 = D_80376628;
+                    phi_f0 = 1.1;
                 } else {
-                    phi_f0 = D_80376630;
+                    phi_f0 = 0.9;
                 }
                 func_8030DBFC(this->unk44_31, phi_f2, phi_f0, 0.05f);
                 func_8030DEB4(this->unk44_31, 500.0f, 1500.0f);
