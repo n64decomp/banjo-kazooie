@@ -7,48 +7,128 @@
 extern f32 func_80309B24(f32[3]);
 
 /* .h */
-void func_802D10A4(Actor *this);
+void chshrapnel_update(Actor *this);
 
 typedef struct {
     s32 unk0;
 }ActorLocal_core2_49A70;
 
-
 /* .data */
-extern ActorAnimationInfo D_803673C0[];
-extern ActorInfo D_80367404 = { 
-    0x65, 0x56, 0x3EC,
-    0x1, D_803673C0,
-    func_802D10A4, func_80326224, func_80325888, 
-    2500, 0x333, 0.0f, 0
+ActorAnimationInfo D_803673C0[] = {
+    {0, 0.0f},
+    {0x1F4, 1.0f},
+    {0x1F4, 1.0f},
+    {0x92, 0.75f},
+    {0x92, 0.75f},
+    {0x1F4, 1.0f},
+    {0x1F4, 1.0f}
 };
 
-/* .rodata */
-extern f32 D_80376640;
-extern f64 D_80376648;
-extern f64 D_80376650;
-extern f64 D_80376658;
+s32 D_803673F8[3] = {0xDE, 0xA7, 0x71};
+
+ActorInfo D_80367404 = { 
+    MARKER_65_SHRAPNEL, ACTOR_56_SHRAPNEL, ASSET_3EC_MODEL_SHRAPNEL,
+    0x1, D_803673C0,
+    chshrapnel_update, func_80326224, func_80325888, 
+    2500, 0x333, 0.0f, 0
+};
 
 /* .code */
 void func_802D0A00(Actor *this) {
     this->unk28 = randf2(1.5f, 2.3f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_49A70/func_802D0A38.s")
+void func_802D0A38(Actor *this){
+    if(this->unk38_31 != 0){
+        this->unk38_31--;
+    }
+    else{
+        if(func_80329530(this, 600) && func_803292E0(this)){
+            this->unk28 = 0.0f;
+            func_80328B8C(this, 2, 0.0f, 1);
+        }
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_49A70/func_802D0AB8.s")
+void func_802D0AB8(Actor *this) {
+    func_80328B8C(this, 1, 0.0f, 0);
+    func_802D0A00(this);
+    func_80328CEC(this, (s32) this->yaw_moving, 0x87, 0xAF);
+    this->unk38_31 = 0x1E;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_49A70/func_802D0B24.s")
+void func_802D0B24(s32 arg0){
+    Actor *this = reinterpret_cast(Actor *, arg0);
+    func_8032813C(0xF3, this->unk1C, 0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_49A70/func_802D0B54.s")
+void func_802D0B54(Actor *this) {
+    ParticleEmitter *temp_v0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_49A70/func_802D0CB4.s")
+    func_802BB3DC(0, 60.0f, 0.9f);
+    temp_v0 = partEmitList_pushNew(1U);
+    particleEmitter_setSprite(temp_v0, ASSET_4A0_SPRITE_EXPLOSION);
+    func_802EFA5C(temp_v0, 0.1f, 0.2f);
+    func_802EFA70(temp_v0, 8);
+    particleEmitter_setStartingFrameRange(temp_v0, 0, 0);
+    particleEmitter_setParticleFramerateRange(temp_v0, 4.0f, 4.0f);
+    particleEmitter_setParticleSpawnPositionRange(temp_v0, 0.0f, 200.0f, 0.0f, 0.0f, 200.0f, 0.0f);
+    particleEmitter_setPosition(temp_v0, this->position);
+    func_802EFB70(temp_v0, 3.0f, 3.0f);
+    func_802EFB84(temp_v0, 8.0f, 8.0f);
+    func_802EFEC0(temp_v0, 0.5f, 0.5f);
+    particleEmitter_setParticleVelocityRange(temp_v0, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
+    particleEmitter_emitN(temp_v0, 1);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_49A70/func_802D0DDC.s")
 
-extern void func_802D0F30(ActorMarker *marker, ActorMarker *other_marker);
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_49A70/func_802D0F30.s")
+void func_802D0CB4(Actor *this) {
+    ParticleEmitter *temp_v0;
 
+    temp_v0 = partEmitList_pushNew(6U);
+    particleEmitter_setSprite(temp_v0, ASSET_70E_SPRITE_SMOKE_2);
+    func_802EFA5C(temp_v0, 0.05f, 0.1f);
+    particleEmitter_setStartingFrameRange(temp_v0, 0, 7);
+    particleEmitter_setPosition(temp_v0, this->position);
+    func_802EFB70(temp_v0, 1.0f, 1.5f);
+    func_802EFB84(temp_v0, 2.0f, 3.0f);
+    particleEmitter_setParticleSpawnPositionRange(temp_v0, -75.0f, 25.0f, -75.0f, 75.0f, 75.0f, 75.0f);
+    particleEmitter_setParticleVelocityRange(temp_v0, -70.0f, 50.0f, -70.0f, 70.0f, 100.0f, 70.0f);
+    func_802EFFA8(temp_v0, &D_803673F8);
+    func_802EFEC0(temp_v0, 3.0f, 4.0f);
+    particleEmitter_emitN(temp_v0, 6);
+}
+
+void func_802D0DDC(Actor *this, enum model_e model_id, s32 n) {
+    ParticleEmitter *temp_v0;
+
+    temp_v0 = partEmitList_pushNew(n);
+    particleEmitter_setParticleAccelerationRange(temp_v0, 0.0f, -800.0f, 0.0f, 0.0f, -800.0f, 0.0f);
+    func_802EF9F8(temp_v0, 0.6f);
+    func_802EFA18(temp_v0, 1);
+    particleEmitter_setModel(temp_v0, model_id);
+    particleEmitter_setPosition(temp_v0, this->position);
+    func_802EFB70(temp_v0, 0.05f, 2.0f);
+    func_802EFE24(temp_v0, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
+    particleEmitter_setSpawnIntervalRange(temp_v0, 0.0f, 0.01f);
+    func_802EFEC0(temp_v0, 10.0f, 10.0f);
+    particleEmitter_setParticleVelocityRange(temp_v0, -500.0f, 400.0f, -500.0f, 500.0f, 800.0f, 500.0f);
+    particleEmitter_emitN(temp_v0, n);
+}
+
+void func_802D0F30(ActorMarker *marker, ActorMarker *other_marker) {
+    Actor *this;
+
+    this = marker_getActor(marker);
+    FUNC_8030E8B4(SFX_1B_EXPLOSION_1, 1.0f, 32736, this->position, 1250, 2500);
+    func_802C3C88((GenMethod_1)func_802D0B24, reinterpret_cast(s32, this));
+    func_802D0B54(this);
+    func_802D0CB4(this);
+    func_802D0DDC(this, ASSET_53A_MODEL_SHRAPNAL_PIECE_EYE, 2);
+    func_802D0DDC(this, ASSET_53B_MODEL_SHRAPNAL_PIECE_SPIKE, 8);
+    func_802D0DDC(this, ASSET_53C_MODEL_SHRAPNAL_PIECE_PLATE, 8);
+    marker_despawn(marker);
+}
 
 void func_802D0FC8(Actor *this) {
     this->unk4C += time_getDelta();
@@ -64,13 +144,9 @@ void func_802D0FC8(Actor *this) {
     }
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_49A70/func_802D10A4.s")
-#else
-void func_802D10A4(Actor *this) {
+void chshrapnel_update(Actor *this) {
     f32 tick;
     f32 player_position[3];
-    f32 var_f2;
 
     tick = time_getDelta();
     if (!this->initialized) {
@@ -99,8 +175,7 @@ void func_802D10A4(Actor *this) {
             this->yaw_moving = (f32) func_80329784(this);
             func_80328FB0(this, 4.0f);
             if (func_80329480(this)) {
-                var_f2 = ABS(player_position[1] - this->unk1C[1]);
-                if (250.0 > var_f2) {
+                if (250.0 > ABS(player_position[1] - this->unk1C[1])) {
                     func_80328A84(this, 3);
                     actor_loopAnimation(this);
                     FUNC_8030E8B4(SFX_C4_TWINKLY_MUNCHER_GRR, 0.6f, 32750, this->position, 1250, 2500);
@@ -113,8 +188,7 @@ void func_802D10A4(Actor *this) {
             this->yaw_moving = (f32) func_80329784(this);
             func_80328FB0(this, this->unk28 / 2);
             this->unk28 = MIN( 50.0, (this->unk28 + tick));
-            var_f2 = ABS(player_position[1] - this->unk1C[1]);
-            if ((250.0 <= var_f2) || !func_80329054(this, 0)) {
+            if ((250.0 <= ABS(player_position[1] - this->unk1C[1])) || !func_80329054(this, 0)) {
                 func_802D0AB8(this);
             }
             break;
@@ -126,4 +200,3 @@ void func_802D10A4(Actor *this) {
             break;
     }
 }
-#endif

@@ -325,7 +325,7 @@ segments:
   - [0xA4D00, c, code_A4D00] #DONE
   - [0xA5BC0, c, code_A5BC0]
   - [0xABC00, c, code_ABC00]
-  - [0xAC520, c, code_AC520]
+  - [0xAC520, c, code_AC520] #DONE
   - [0xAD110, c, code_AD110] #DONE
   - [0xAD5B0, c, code_AD5B0] #DONE
   - [0xAE290, c, code_AE290] #DONE
@@ -335,7 +335,7 @@ segments:
   - [0xB3580, c, code_B3580] #DONE
   - [0xB3A80, c, code_B3A80]
   - [0xB5040, c, code_B5040] #DONE
-  - [0xB5E00, c, code_B5E00]
+  - [0xB5E00, c, code_B5E00] #DONE
   - [0xB62B0, c, code_B62B0] #DONE
   - [0xB6640, c, code_B6640] #DONE
   - [0xB66D0, c, string]     #DONE
@@ -485,7 +485,7 @@ segments:
   - [0xE0330, .data, ch/beehive]
   - [0xE0380, bin, data_E0380]
   - [0xE03B0, .data, ch/soundsource]
-  - [0xE0430, bin, data_E0430]
+  - [0xE0430, .data, code_49A70]
   - [0xE04A0, .data, ch/gloop]
   - [0xE0500, bin, data_E0500]
   - [0xE05A0, .data, code_4BD70]
@@ -562,7 +562,8 @@ segments:
   - [0xE7640, .data, code_A4D00]
   - [0xE7820, bin, data_E7820]
   - [0xE7870, .data, code_A5BC0]
-  - [0xE78A0, bin, data_E78A0]
+  - [0xE78A0, .data, code_ABC00]
+  - [0xE89E0, .data, code_AC520]
   - [0xE89F0, bin, data_E89F0] # .data, code_AD110]
   - [0xE92C0, bin, data_E92C0]
   - [0xE9B30, .data, code_B62B0]

@@ -22,9 +22,6 @@ typedef struct struct_22_s{
     u8 pad35[0x3];
 } Struct_core2_AC520_0;//size 0x38
 
-/* .data */
-extern s32 D_8036F970[3];
-
 /* .bss */
 struct {
     vector(Struct_core2_AC520_0) *unk0;
@@ -225,6 +222,7 @@ s32 func_80333C78(s32 arg0){
 }
 
 void func_80333D48(BKVertexList *arg0, f32 position[3], f32 rotation[3], f32 scale, s32 arg4, BKVertexList *arg5) {
+    static s32 D_8036F970[3] = {0, 0, 0};
     Vtx *i_ptr;
     Vtx *end_ptr;
     Vtx *ref_ptr;

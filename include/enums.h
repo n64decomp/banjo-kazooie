@@ -1537,8 +1537,8 @@ enum actor_e
     ACTOR_53_RED_ARROW,
     ACTOR_54_RED_QUESTION_MARK,
     ACTOR_55_RED_X,
-
-    ACTOR_57_ORANGE_PAD        = 0x57,
+    ACTOR_56_SHRAPNEL,
+    ACTOR_57_ORANGE_PAD,
 
     ACTOR_59_JUJU              = 0x59,
     ACTOR_5A_JIGGY_IN_HAND,
@@ -2689,8 +2689,8 @@ enum asset_e
     ASSET_3E9_MODEL_RED_ARROW,
     ASSET_3EA_MODEL_RED_X,
     ASSET_3EB_MODEL_RED_QUESTION_MARK,
-    // 3ec Shrapnel
-    ASSET_3ED_MODEL_BUZZBOMB = 0x3ED,
+    ASSET_3EC_MODEL_SHRAPNEL,
+    ASSET_3ED_MODEL_BUZZBOMB,
     ASSET_3EE_TANKTUP,
     ASSET_3EF_MODEL_TANKTUP_LEG_FL,
     ASSET_3F0_MODEL_TANKTUP_LEG_BL,
@@ -3024,9 +3024,9 @@ enum asset_e
     // 537 Flight Pad Yellow Fragment
     // 538 Jiggy Podium (Beta?)
     // 539 Brentilda
-    // 53a Shrapnel Eye (Upon Death)
-    // 53b Shrapnel Spike (Upon Death)
-    // 53c Shrapnel Metal Plate (Upon Death)
+    ASSET_53A_MODEL_SHRAPNAL_PIECE_EYE = 0x53A,
+    ASSET_53B_MODEL_SHRAPNAL_PIECE_SPIKE,
+    ASSET_53C_MODEL_SHRAPNAL_PIECE_PLATE,
     // 53d Gruntilda On Broomstick
     // 53e Gnawty's Bed
     // 53f Gnawty's Shelves
@@ -3730,8 +3730,8 @@ enum marker_e{
     MARKER_62_RED_ARROW,
     MARKER_63_RED_QUESTION_MARK,
     MARKER_64_RED_X,
-
-    MARKER_66_ORANGE_PAD = 0x66,
+    MARKER_65_SHRAPNEL,
+    MARKER_66_ORANGE_PAD,
     MARKER_67_JUJU = 0x67,
 
     MARKER_69_CHUMP_FISH = 0x69,

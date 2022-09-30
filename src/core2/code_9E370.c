@@ -1158,13 +1158,13 @@ void func_80328478(f32 arg0[3], f32 arg1, f32 arg2){
 #ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80328508.s")
 #else
-bool func_80328508(Actor * arg0, u32 arg1){
+bool func_80328508(Actor * arg0, s32 arg1){
     ActorAnimationInfo *animInfo;
 
     arg0->state = arg1;
-    if(arg0->unk18 == NULL)
+    if(arg0->unk18 != NULL)
         return 0;
-
+    
     animInfo = &arg0->unk18[arg1];
 
     if(animInfo->index != NULL){

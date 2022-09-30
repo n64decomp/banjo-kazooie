@@ -12,12 +12,17 @@ extern void func_80347CF4(Struct81s *);
 extern void func_80347DD0(Struct81s *, Gfx **, Mtx **, Vtx **);
 extern void func_80347DE4(Struct81s *);
 
+void func_80347E34(Struct81s*);
+void func_80347E60(Struct81s*);
+void func_80347FA4(Struct81s *, Gfx**, Mtx **, Vtx **);
+void func_80347FB8(Struct81s*);
+
 
 typedef struct {
-    void (*unk0)(void **);
-    void (*unk4)(void **);
-    void (*unk8)(void **, Gfx**, Mtx **, Vtx **);
-    void (*unkC)(void **);
+    void (*unk0)(Struct81s *);
+    void (*unk4)(Struct81s *);
+    void (*unk8)(Struct81s *, Gfx**, Mtx **, Vtx **);
+    void (*unkC)(Struct81s *);
     Struct81s unk10;
 }Struct_core2_ABC00_0;
 
@@ -25,8 +30,109 @@ void func_803331D8(enum jiggy_e, f32[3]);
 void func_803332D0(Actor *);
 
 /* .data */
-extern u8 D_8036E830;
-extern Struct_core2_ABC00_0 D_8036E834[];
+u8 D_8036E830 = 0;
+Struct_core2_ABC00_0 D_8036E834[] = {
+    {func_80347E34, func_80347E60, func_80347FA4, func_80347FB8, {0x7,  NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347E34, func_80347E60, func_80347FA4, func_80347FB8, {0x4,  NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347E34, func_80347E60, func_80347FA4, func_80347FB8, {0x4,  NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347E34, func_80347E60, func_80347FA4, func_80347FB8, {0x7,  NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347E34, func_80347E60, func_80347FA4, func_80347FB8, {0x15, NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347E34, func_80347E60, func_80347FA4, func_80347FB8, {0x4,  NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347E34, func_80347E60, func_80347FA4, func_80347FB8, {0x7,  NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347CC8, func_80347CF4, func_80347DD0, func_80347DE4, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347E34, func_80347E60, func_80347FA4, func_80347FB8, {0xC,  NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347E34, func_80347E60, func_80347FA4, func_80347FB8, {0x7,  NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347E34, func_80347E60, func_80347FA4, func_80347FB8, {0xC,  NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347E34, func_80347E60, func_80347FA4, func_80347FB8, {0x9,  NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347E34, func_80347E60, func_80347FA4, func_80347FB8, {0x8,  NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347E34, func_80347E60, func_80347FA4, func_80347FB8, {0x9,  NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347E34, func_80347E60, func_80347FA4, func_80347FB8, {0x7,  NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347E34, func_80347E60, func_80347FA4, func_80347FB8, {0x12, NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0x1E, NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347E34, func_80347E60, func_80347FA4, func_80347FB8, {0xC,  NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347E34, func_80347E60, func_80347FA4, func_80347FB8, {0xC,  NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347E34, func_80347E60, func_80347FA4, func_80347FB8, {0xC,  NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347E34, func_80347E60, func_80347FA4, func_80347FB8, {0xC,  NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347E34, func_80347E60, func_80347FA4, func_80347FB8, {0x7,  NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347E34, func_80347E60, func_80347FA4, func_80347FB8, {0x8,  NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347E34, func_80347E60, func_80347FA4, func_80347FB8, {0x8,  NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347E34, func_80347E60, func_80347FA4, func_80347FB8, {0x4,  NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+    {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
+};
 
 /* .bss */
 s32 D_80383560;
@@ -166,9 +272,19 @@ void func_80333270(enum jiggy_e jiggy_id, f32 position[3], void (*method)(Actor 
     ptr->unk10.unk18 = other_marker;
 }
 
+#ifndef NONMATCHING
 void func_803332D0(Actor *);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_ABC00/func_803332D0.s")
-
+#else
+void func_803332D0(Actor * arg0){
+    // s32 indx = func_802C8088(arg0) - 1;
+    // s32 size = 0x2C;
+    Struct_core2_ABC00_0 *ptr = D_8036E834 + (func_802C8088(arg0) - 1);
+    Struct81s *sp18 = &ptr->unk10;
+    ptr->unkC(sp18);
+    sp18->marker = NULL;
+}
+#endif
 
 void func_80333334(enum jiggy_e jiggy_id) {
     Struct_core2_ABC00_0 *temp_v0;
