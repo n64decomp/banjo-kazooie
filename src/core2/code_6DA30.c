@@ -111,29 +111,32 @@ enum asset_e func_802F49C0(void){
 }
 
 // this function reassigns the referenced font mask pixel 
-// using the texture @ pixel (x,y) 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6DA30/func_802F4A24.s")
-/*void func_802F4A24(BKSpriteTextureBlock *arg0, u32 *arg1, s32 arg2, s32 arg3) {
-    s32 temp_lo;
-    s32 temp_t0;
-    u32 red;
-    u32 blue;
-    u32 green;
-    u32 alpha;
-    s32 _x = MIN(MAX(0, arg2), arg0->w - 1);
-    s32 _y = MIN(MAX(0, arg3), arg0->h - 1);
-
-    temp_t0 = ((u16 *) (arg0 + 1))[_x +  _y * arg0->w];
+// using the texture @ pixel (x,y)
+void func_802F4A24(BKSpriteTextureBlock *texture, u32 *font, s32 x, s32 y) {
+    u16 *var_v0;
+    s32 r5;
+    s32 g5;
+    s32 b5;
+    s32 a8;
+    s32 i8;
+    x = MIN(MAX(0, x), texture->w - 1);
+    y = MIN(MAX(0, y), texture->h - 1);
     
-    if(temp_t0);
-    blue = ((temp_t0 >> 1) & ((1<< 5)  - 1));
-    green = ((temp_t0 >> 6) & ((1<< 5)  - 1));
-    red = ((temp_t0 >> 11) & ((1<< 5) - 1));
-    temp_lo = (s32) ((*arg1 >> 11) & 0xFF) / 0x1F;
+    var_v0 = ((u16*)(texture + 1)) + x + y * texture->w;
 
+    r5 = ((*var_v0 >> 11) & 0x1F);
+    g5 = ((*var_v0 >> 6) & 0x1F);
+    b5 = ((*var_v0 >> 1) & 0x1F);
+    
+    a8 = (*font >> 0) & 0xff;
+    i8 = (*font >> 8) & 0xff;
 
-    *arg1 = (( ((red * temp_lo) << 0x18) | ((green * temp_lo) << 0x10)) | ((blue * temp_lo) << 8)) | (*arg1 & 0xff);
-}//*/
+    r5*=(i8/ 0x1F);
+    g5*=(i8/ 0x1F);
+    b5*=(i8/ 0x1F);
+
+    *font = (r5 << 0x18) | (g5 << 0x10) | (b5 << 8) | (a8 << 0);
+}
 
 //this function applies the texture to the font alpha mask.
 void func_802F4B58(BKSpriteTextureBlock *alphaMask, BKSpriteTextureBlock *texture){

@@ -237,7 +237,6 @@ void func_80333D48(BKVertexList *arg0, f32 position[3], f32 rotation[3], f32 sca
     f32 sp68[3];
     Struct_core2_AC520_0 *struct_ptr;
     f32 temp_f0;
-    s8* tmp;
 
     func_803334B0(position, rotation, scale, arg4, func_802EC920(arg0));
     if (D_80383570.unk44 == (&D_80383570.unk4[0])) {
@@ -246,7 +245,7 @@ void func_80333D48(BKVertexList *arg0, f32 position[3], f32 rotation[3], f32 sca
     }
     ref_ptr = vtxList_getVertices(arg5);
     func_802EC8FC(arg0, &i_ptr, &end_ptr);
-    for(; i_ptr < end_ptr; i_ptr++, ref_ptr++){
+    for(i_ptr = i_ptr; i_ptr < end_ptr; i_ptr++, ref_ptr++){
 
         sp68[0] = sp68[1] = sp68[2] = 0.0f;
         sp74[0] = ref_ptr->v.ob[0];\
@@ -269,10 +268,10 @@ void func_80333D48(BKVertexList *arg0, f32 position[3], f32 rotation[3], f32 sca
                 }
             }
         }
-        
+
         i_ptr->v.cn[0] = (s8)((ref_ptr->v.cn[0]*sp68[0])/256.0);
         i_ptr->v.cn[1] = (s8)((ref_ptr->v.cn[1]*sp68[1])/256.0);
         i_ptr->v.cn[2] = (s8)((ref_ptr->v.cn[2]*sp68[2])/256.0);
     }
 } 
-#endif;
+#endif

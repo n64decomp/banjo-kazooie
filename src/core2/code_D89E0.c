@@ -291,7 +291,7 @@ f32 func_803603AC(Actor *this, s32 arg1, u8 arg2){
     sp2C[2] = (this->position[2] - sp20[2]);
 
     den =(sp2C[0]*sp2C[0] + sp2C[2]*sp2C[2]);
-    if(den);
+    // if(den);
     num = (sp2C[1] - arg1);
     if(num == 0.0 || den == 0.0)
         return 0.0f;

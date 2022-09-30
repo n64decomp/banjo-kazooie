@@ -66,45 +66,42 @@ void func_8033CE40(void) {
 }
 #endif
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B5E00/func_8033CFD4.s")
-#else
-int func_8033CFD4(s32 gamenum){
-    s32 prev = D_80383F00[gamenum];
-    s32 next = D_80383F04;
-    u32 i;
+s32 func_8033CFD4(s32 gamenum){
+    s32 next;
+    s32 var_s3;
+    u32 i = 3;
     s32 tmp_s1;
-    SaveData *tmp_s2;
+    SaveData *var_a1;
 
-    D_80383F00[gamenum] = next;
-    bcopy(&D_80383D20[D_80383F00[prev]], &D_80383D20[next], 0x78);
-    tmp_s2 = &D_80383D20[D_80383F04];
-    tmp_s2->unk1 = gamenum + 1;
-    savedata_update_crc(tmp_s2, 0x78);
-    for(i = 3; i > 0; i--){//L8033D070
-        tmp_s1 = func_8033CC98(next, tmp_s2);
+
+    var_s3 = D_80383F04;
+    next = D_80383F00[gamenum];
+    D_80383F00[gamenum] = D_80383F04;
+    bcopy(&D_80383D20[next], &D_80383D20[var_s3], 0x78);
+    var_a1 = D_80383D20 + var_s3;
+    var_a1->unk1 = gamenum + 1;
+    savedata_update_crc(var_a1, sizeof(SaveData));
+    for(tmp_s1 = 1; tmp_s1 && i > 0; i--){//L8033D070
+        tmp_s1 = func_8033CC98(var_s3, var_a1);
         if(!tmp_s1){
             func_8033CE14(gamenum);
         }
-        if(!tmp_s1)
-            break;
     }
     if(!tmp_s1){
         for(i = 3; i > 0; i--){//L8033D070
-            tmp_s1 = func_8033CCD0(prev);
+            tmp_s1 = func_8033CCD0(next);
             if(!tmp_s1)
                 break;
         }
     }
     if(tmp_s1){
-        D_80383F00[gamenum] = prev;
+        D_80383F00[gamenum] = next;
     }
     else{
-        D_80383F04 = prev;
+        D_80383F04 = next;
     }
     return tmp_s1;
 }
-#endif
 
 void func_8033D0FC(s32 gamenum){
     s32 filenum = D_80383F00[gamenum];

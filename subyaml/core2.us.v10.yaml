@@ -84,7 +84,7 @@ segments:
   - [0x13900, c, code_13900] #DONE
   - [0x13A00, c, code_13A00] #DONE
   - [0x13FC0, c, code_13FC0] #DONE
-  - [0x13FC0, c, code_14420] #DONE
+  - [0x14420, c, code_14420] #DONE
   - [0x15F20, c, code_15F20]  #DONE
   - [0x16010, c, code_16010]  #DONE
   - [0x16C60, c, code_16C60]  #DONE
