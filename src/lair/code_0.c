@@ -415,13 +415,13 @@ void func_80386D78(Actor *this) {
             } else {
                 this->scale = (this->scale < 1.0) ? this->scale + 0.04 : 1.0;
                 if (this->scale < 1.0) {
-                    this->yaw_moving += 8.0;
-                    if (this->yaw_moving >= 360.0f) {
-                        phi_f2 = this->yaw_moving - 360.0f;
+                    this->yaw_ideal += 8.0;
+                    if (this->yaw_ideal >= 360.0f) {
+                        phi_f2 = this->yaw_ideal - 360.0f;
                     } else {
-                        phi_f2 = this->yaw_moving;
+                        phi_f2 = this->yaw_ideal;
                     }
-                    this->yaw_moving = phi_f2;
+                    this->yaw_ideal = phi_f2;
                     this->yaw = phi_f2;
                 }
             }
@@ -804,7 +804,7 @@ void func_803880BC(Actor *this)
         this->position_y -= 51.f;
         this->unk1C[0] = 0;
 
-        func_802C3C88((GenMethod_1)func_80387E94, reinterpret_cast(s32, this->marker));
+        __spawnqueue_add_1((GenMethod_1)func_80387E94, reinterpret_cast(s32, this->marker));
 
         if (func_803203FC(0xBC) && !func_8031FF1C(0x9A))
             FUNC_8030E624(SFX_3F6_UNKNOWN, 0.75f, 30000);
@@ -1496,7 +1496,7 @@ void func_8038982C(Actor *this)
         this->initialized = TRUE;
 
         if (!func_8031FF1C(BKPROG_9E_CRYPT_COFFIN_LID_OPEN))
-            func_802C3C88((GenMethod_1)func_803897D4, reinterpret_cast(s32, this->marker));
+            __spawnqueue_add_1((GenMethod_1)func_803897D4, reinterpret_cast(s32, this->marker));
     }
 }
 

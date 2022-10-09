@@ -53,7 +53,7 @@ void func_802D0A38(Actor *this){
 void func_802D0AB8(Actor *this) {
     func_80328B8C(this, 1, 0.0f, 0);
     func_802D0A00(this);
-    func_80328CEC(this, (s32) this->yaw_moving, 0x87, 0xAF);
+    func_80328CEC(this, (s32) this->yaw_ideal, 0x87, 0xAF);
     this->unk38_31 = 0x1E;
 }
 
@@ -121,7 +121,7 @@ void func_802D0F30(ActorMarker *marker, ActorMarker *other_marker) {
 
     this = marker_getActor(marker);
     FUNC_8030E8B4(SFX_1B_EXPLOSION_1, 1.0f, 32736, this->position, 1250, 2500);
-    func_802C3C88((GenMethod_1)func_802D0B24, reinterpret_cast(s32, this));
+    __spawnqueue_add_1((GenMethod_1)func_802D0B24, reinterpret_cast(s32, this));
     func_802D0B54(this);
     func_802D0CB4(this);
     func_802D0DDC(this, ASSET_53A_MODEL_SHRAPNAL_PIECE_EYE, 2);
@@ -172,7 +172,7 @@ void chshrapnel_update(Actor *this) {
             break;
 
         case 2:
-            this->yaw_moving = (f32) func_80329784(this);
+            this->yaw_ideal = (f32) func_80329784(this);
             func_80328FB0(this, 4.0f);
             if (func_80329480(this)) {
                 if (250.0 > ABS(player_position[1] - this->unk1C[1])) {
@@ -185,7 +185,7 @@ void chshrapnel_update(Actor *this) {
             break;
 
         case 3:
-            this->yaw_moving = (f32) func_80329784(this);
+            this->yaw_ideal = (f32) func_80329784(this);
             func_80328FB0(this, this->unk28 / 2);
             this->unk28 = MIN( 50.0, (this->unk28 + tick));
             if ((250.0 <= ABS(player_position[1] - this->unk1C[1])) || !func_80329054(this, 0)) {

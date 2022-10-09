@@ -511,7 +511,7 @@ void func_8038D1E4(void)
     }
 
     if (cleanupDelay > 0.0) // f64
-        timedFunc_set_1(cleanupDelay, (TFQM1)func_8038D670, FFA_4_UNK);
+        timedFunc_set_1(cleanupDelay, (GenMethod_1)func_8038D670, FFA_4_UNK);
 }
 
 void func_8038D394(void)

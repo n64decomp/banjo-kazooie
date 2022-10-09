@@ -636,7 +636,7 @@ static void __n_CSPHandleMIDIMsg(N_ALCSPlayer *seqp, N_ALEvent *event)
                     }
                     break;
                 case (0x7D):
-                    seqp->chanState[chan].unk9 = byte2;
+                    seqp->chanState[chan].unkA = byte2;
                     for (vs = seqp->vAllocHead; vs != 0; vs = vs->next)
                     {
                         if ((vs->channel == chan) && (vs->envPhase != AL_PHASE_RELEASE))

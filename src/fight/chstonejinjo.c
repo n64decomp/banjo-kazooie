@@ -1,12 +1,13 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "fight.h"
 
 extern Actor *func_80326EEC();
 extern void func_80328B8C(Actor*, s32, f32, s32);
-extern f32 func_8038D268(void);
+extern f32 chbossjinjo_8038D268(void);
 
-void func_8038DA04(Actor *);
+void chstonejinjo_update(Actor *);
 
 /* .data */
 ActorAnimationInfo D_803919F0[] ={
@@ -15,31 +16,35 @@ ActorAnimationInfo D_803919F0[] ={
     {0x265, 1e+8f},
     {0x265, 1e+8f},
 };
-ActorInfo D_80391A10 = { 0x276, 0x3A1, 0x545, 0x1, D_803919F0, func_8038DA04, func_80326224, func_80325888, 0, 0x800, 1.0f, 0};
-
+ActorInfo D_80391A10 = {
+    MARKER_276_STONE_JINJO, ACTOR_3A1_STONE_JINJO, ASSET_545_MODEL_STONE_JINJO,
+    0x1, D_803919F0,
+    chstonejinjo_update, func_80326224, func_80325888,
+    0, 0x800, 1.0f, 0
+};
 
 /* .code */
-void func_8038D970(ActorMarker *arg0) {
-    Actor *temp_v0;
-    Actor *phi_v0;
+void chstonejinjo_spawnJinjo(ActorMarker *marker) {
+    Actor *this;
+    Actor *jinjo;
 
-    temp_v0 = marker_getActor(arg0);
-    if (temp_v0->unkF4_8 == 5) {
-        phi_v0 = spawn_child_actor(0x3AC, &temp_v0);
+    this = marker_getActor(marker);
+    if (this->unkF4_8 == BOSSJINJO_JINJONATOR) {
+        jinjo = spawn_child_actor(ACTOR_3AC_JINJONATOR, &this);
     } else {
-        phi_v0 = spawn_child_actor((temp_v0->unkF4_8) + 0x3A4, &temp_v0);
+        jinjo = spawn_child_actor((this->unkF4_8) + 0x3A4, &this);
     }
-    phi_v0->unkF4_8 = temp_v0->unkF4_8;
-    phi_v0->unk60 = temp_v0->unk1C[0];
-    phi_v0->scale = temp_v0->scale;
+    jinjo->unkF4_8 = this->unkF4_8;
+    jinjo->unk60 = this->unk1C[0];
+    jinjo->scale = this->scale;
 }
 
-void func_8038DA04(Actor *this) {
+void chstonejinjo_update(Actor *this) {
     if (!this->unk16C_4) {
         this->unk16C_4 = TRUE;
         this->marker->propPtr->unk8_3 = TRUE;
         actor_collisionOff(this);
-        if (this->unkF4_8 == 5) {
+        if (this->unkF4_8 == BOSSJINJO_JINJONATOR) {
             this->marker->unk40_23 = TRUE;
             this->marker->unk40_20 = TRUE;
             this->unk1C[0] = 6.0f;
@@ -54,7 +59,7 @@ void func_8038DA04(Actor *this) {
         animctrl_setAnimTimer(this->animctrl, 0.0f);
         break;
     case 2:
-        if (this->unkF4_8 != 5) {
+        if (this->unkF4_8 != BOSSJINJO_JINJONATOR) {
             if (actor_animationIsAt(this, 0.001f)) {
                 FUNC_8030E8B4(SFX_D_EGGSHELL_BREAKING, 1.2f, 25000, this->position, 1000, 5000);
                 func_8030E878(SFX_80_YUMYUM_CLACK, randf2(0.6f, 0.8f), 20000, this->position, 1000.0f, 5000.0f);
@@ -91,10 +96,10 @@ void func_8038DA04(Actor *this) {
                 || actor_animationIsAt(this, 0.9f)
                 || actor_animationIsAt(this, 0.98f)
             ) {
-                func_8030E6A4(SFX_3_DULL_CANNON_SHOT, randf2(1.2f, 1.4f), 0x4E20);
+                func_8030E6A4(SFX_3_DULL_CANNON_SHOT, randf2(1.2f, 1.4f), 20000);
             }
         }
-        if (actor_animationIsAt(this, 0.999f) != 0) {
+        if (actor_animationIsAt(this, 0.999f)) {
             func_80328B8C(this, 3, 0.99999f, 1);
             actor_playAnimationOnce(this);
             func_80326310(this);
@@ -103,7 +108,7 @@ void func_8038DA04(Actor *this) {
     }
 }
 
-void func_8038DE98(ActorMarker *marker){
+void chstonejinjo_breakOpen(ActorMarker *marker){
     Actor *actor = marker_getActor(marker);
     s32 sp38;
     f32 sp34;
@@ -114,10 +119,10 @@ void func_8038DE98(ActorMarker *marker){
         func_80328B8C(actor, 2, 0.0f, 1);
         actor_playAnimationOnce(actor);
         animctrl_setDuration(actor->animctrl, actor->unk1C[0]);
-        func_802C3C88((GenMethod_1)func_8038D970, reinterpret_cast(s32, actor->marker));
-        if(!func_8031FF1C(0xD1) && actor->unkF4_8 != 5){
+        SPAWNQUEUE_ADD_1(chstonejinjo_spawnJinjo, actor->marker);
+        if(!func_8031FF1C(BKPROG_D1_HAS_ACTIVATED_A_JINJO_STATUE_IN_FINAL_FIGHT) && actor->unkF4_8 != BOSSJINJO_JINJONATOR){
             sp38 = 0x30 + actor->unkF4_8*2;
-            sp34 = func_8038D268();
+            sp34 = chbossjinjo_8038D268();
             sp30 = actor->unk1C[0] + sp34;
             func_8038C0DC(&sp24);
             func_8028F94C(2, &sp24);
@@ -130,5 +135,5 @@ void func_8038DE98(ActorMarker *marker){
 }
 
 f32 func_8038DFA0(void) {
-    return func_80326EEC(0x3A1)->unk1C_x;
+    return func_80326EEC(ACTOR_3A1_STONE_JINJO)->unk1C_x;
 }

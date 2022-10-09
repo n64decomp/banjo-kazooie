@@ -773,7 +773,7 @@ s32 func_803422D4(Actor *arg0, Union_glspline *arg1, glspline_list *arg2) {
                         if (arg0->marker->unk14_20 == 0x12) {
                             arg0->yaw = (f32) func_80342244((s32) arg0->yaw);
                         }
-                    arg0->yaw_moving = arg0->yaw;
+                    arg0->yaw_ideal = arg0->yaw;
                 }
                 if (sp4C != -9999.0f) {
                     arg0->pitch = sp4C;
@@ -932,7 +932,7 @@ s32 func_803422D4(Actor *arg0, Union_glspline *arg1, glspline_list *arg2) {
                     arg0->unk38_13 = func_80342244(arg0->unk38_13);
                     arg0->unk38_21 = func_80342244(arg0->unk38_21);
                 }
-                arg0->yaw = arg0->yaw_moving = (f32) arg0->unk38_13;
+                arg0->yaw = arg0->yaw_ideal = (f32) arg0->unk38_13;
                 arg0->pitch = arg0->unk6C = (f32) arg0->unk78_31;
             }
             if (arg1->t1.unk4.bit17 & 2) {
@@ -942,9 +942,9 @@ s32 func_803422D4(Actor *arg0, Union_glspline *arg1, glspline_list *arg2) {
         }
         if (!arg0->unk10_4) {
             if (arg0->unk10_8) {
-                arg0->yaw_moving = (f32)arg1->t1.unkC.bit31;
+                arg0->yaw_ideal = (f32)arg1->t1.unkC.bit31;
                 if (arg0->marker->unk14_20 == 0x12) {
-                    arg0->yaw_moving = (f32) func_80342244((s32) arg0->yaw_moving);
+                    arg0->yaw_ideal = (f32) func_80342244((s32) arg0->yaw_ideal);
                 }
             }
             if (arg0->unk10_7) {
@@ -960,7 +960,7 @@ void func_803430B4(Actor *arg0) {
     f32 d_yaw;
 
     if ((arg0->marker->unk14_20 == 0x12) && (arg0->unk138_30 == 1)) {
-        d_yaw = arg0->yaw_moving - arg0->yaw;
+        d_yaw = arg0->yaw_ideal - arg0->yaw;
         while (d_yaw >= 360.0f) { d_yaw -= 360.0f; }
         while (d_yaw < 0.0f)    { d_yaw += 360.0f; }
 
@@ -986,7 +986,7 @@ void func_803431D0(Actor *arg0, s32 arg1, s32 arg2, s32 arg3) {
         func_8032417C(func_80342038(arg0->unk44_14), arg0->unk48, sp64, sp58);
         if (arg1 & 1) {
             if (arg1 & 0x100) {
-                arg0->yaw_moving = sp58[1];
+                arg0->yaw_ideal = sp58[1];
             }
             if (arg1 & 0x200) {
                 arg0->unk6C = sp58[0];
@@ -994,9 +994,9 @@ void func_803431D0(Actor *arg0, s32 arg1, s32 arg2, s32 arg3) {
         } else {
             if (arg1 & 0x100) {
                 if (sp58[1] >= 180.0f) {
-                    arg0->yaw_moving = sp58[1] - 180.0f;
+                    arg0->yaw_ideal = sp58[1] - 180.0f;
                 } else {
-                    arg0->yaw_moving = sp58[1] + 180.0f;
+                    arg0->yaw_ideal = sp58[1] + 180.0f;
                 }
             }
             if (arg1 & 0x200) {
@@ -1014,7 +1014,7 @@ void func_803431D0(Actor *arg0, s32 arg1, s32 arg2, s32 arg3) {
             }
             sp40[0] = 360.0f - sp40[0];
         }
-        arg0->yaw_moving = sp40[1];
+        arg0->yaw_ideal = sp40[1];
         arg0->unk6C = sp40[0];
     } else {
         if ((arg0->unk70 <= arg0->unk48) && (arg0->unk48 < arg0->unk74)) {
@@ -1024,7 +1024,7 @@ void func_803431D0(Actor *arg0, s32 arg1, s32 arg2, s32 arg3) {
                     var_f2 = mlDiffDegF(arg0->unk38_21, arg0->unk38_13) * sp3C + arg0->unk38_13;
                     while (var_f2 >= 360.0f) { var_f2 -= 360.0f; }
                     while (var_f2 < 0.0f) { var_f2 += 360.0f; }
-                    arg0->yaw_moving = var_f2;
+                    arg0->yaw_ideal = var_f2;
                 }
                 if (arg1 & 0x1000) {
                     var_f2 = mlDiffDegF(arg0->unk78_22, arg0->unk78_31) * sp3C + arg0->unk78_31;
@@ -1133,7 +1133,7 @@ s32 func_803438E0(Actor *actor, s32 arg1, s32 arg2, s32 arg3) {
     sp48 = func_803421A4(actor->unk44_14, actor->unk48);
     if (!actor->unk44_1) {
         actor->unk44_1 = TRUE;
-        actor->yaw = actor->yaw_moving;
+        actor->yaw = actor->yaw_ideal;
         actor->pitch = actor->unk6C;
     }
     if ((sp4C == sp48) && (sp44 == 0)) {

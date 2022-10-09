@@ -65,7 +65,7 @@ void func_8038D47C(Actor *this){
         mapSpecificFlags_set(0x10, 0);
         this->unk16C_4 = TRUE;
         if(func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE) && gcparade_8031B4F4() == -3){
-            timedFunc_set_1(1.5f, (TFQM1)func_8038D450, reinterpret_cast(s32, this->marker));
+            timedFunc_set_1(1.5f, (GenMethod_1)func_8038D450, reinterpret_cast(s32, this->marker));
         }
     }//L8038D5EC
 

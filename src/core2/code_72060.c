@@ -7,6 +7,8 @@ typedef struct {
     f32 unkC[3];
 }Struct_core2_72060_0;
 
+extern f32  func_8024C788();
+extern int  func_8024DD34(f32, f32, f32);
 extern void func_80251B5C(f32, f32, f32);
 extern void func_80251F8C(f32);
 extern void func_8025208C(f32);
@@ -75,7 +77,89 @@ void func_802F9134(s32 gfx){
     }
 }
 
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_72060/func_802F919C.s")
+#else
+void func_802F919C(void) {
+    f32 temp_f20;
+    s32 sp68;
+    s32 var_v1;
+    s32 sp60;
+    struct4Ds *sp5C;
+    f32 sp58;
+    f32 sp4C[3];
+    f32 var_f20;
+    s32 sp44;
+    struct4Ds *sp40;
+
+
+    if (D_80369280 != NULL) {
+        if (func_802BEF64() != 0) {
+            D_80369284 = 0;
+            return;
+        }
+        temp_f20 = time_getDelta();
+        sp60 = (func_8023DB5C() & 1) * 2;
+        player_getPosition(D_80381040);
+        
+        D_80369280->unkC[0] = D_80381040[0] - D_80369280->unk0[0];
+        D_80369280->unkC[1] = D_80381040[1] - D_80369280->unk0[1];
+        D_80369280->unkC[2] = D_80381040[2] - D_80369280->unk0[2];
+        D_80369280->unk0[0] = D_80381040[0];
+        D_80369280->unk0[1] = D_80381040[1];
+        D_80369280->unk0[2] = D_80381040[2];
+        D_8038104C = D_80381040[1] - 300.0f;
+
+        for(sp68 = 0; sp68 < D_80369284; sp68++){
+            sp5C = D_80369280->unk1C + sp68;
+            for(var_v1 = 0; var_v1 < 3; var_v1++){
+                sp5C->unk0[var_v1] += sp5C->unkC[var_v1] * temp_f20;
+            }
+            sp5C->unkC[sp60] += ((randf() * 30.0) - 15.0);
+        }
+
+        D_8036928C++;
+        if (D_8036928C < D_80369284) {
+            if (ml_vec3f_distance(D_80369280[0].unk1C[D_8036928C].unk0, D_80381040) > 1300.0f) {
+                func_802F9134(D_8036928C);
+            }
+        } else {
+            D_8036928C = 0;
+        }
+        if (D_80369280->unk18 == 1) {
+            if (D_80369284 < 100) {
+                sp40 = D_80369280->unk1C + D_80369284;
+                D_80369284++;
+                sp58 = randf2(100.0f, 1300.0f);
+                sp4C[0] = 0.0f;
+                sp4C[1] = randf() * 200.0f + 200.0f;
+                sp4C[2] = -sp58;
+                if ((D_80369280->unkC[0]*D_80369280->unkC[0] + D_80369280->unkC[1]*D_80369280->unkC[1] + D_80369280->unkC[2]*D_80369280->unkC[2]) < 25.0f) {
+                    var_f20 = 100.0f;
+                } else {
+                    var_f20 = 70.0f;
+                }
+                ml_vec3f_yaw_rotate_copy(sp4C, sp4C, func_8024C788() + randf2(-var_f20, var_f20));
+                sp4C[0] += D_80381040[0];
+                sp4C[1] += D_80381040[1];
+                sp4C[2] += D_80381040[2];
+                if (sp58 < 650.0) {
+                    for(sp44 = 0; sp44 < 5 && func_8024DD34(sp4C[0], sp4C[1] - 10.0f, sp4C[2]) ; sp44++){
+                        sp4C[1] += 200.0f;
+                    }
+                }
+                sp40->unk0[0] = sp4C[0];
+                sp40->unk0[1] = sp4C[1];
+                sp40->unk0[2] = sp4C[2];
+                sp40->unkC[0] = 0.0f;
+                sp40->unkC[1] = randf2(-150.0f, -50.0f);
+                sp40->unkC[2] = 0.0f;
+            }
+        }
+    }
+}
+#endif
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_72060/func_802F962C.s")
 // void func_802F962C(Gfx **gfx, Mtx **mtx, Vtx **vtx) {

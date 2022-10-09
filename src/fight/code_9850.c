@@ -11,7 +11,8 @@ Actor *func_8038FC40(ActorMarker *marker, Gfx **gdl, Mtx **mptr, Vtx **arg3);
 
 /* .data */
 ActorInfo D_80391DC0 = {
-    0x25D, 0x38A, 0x6C7, 0x1, NULL,
+    0x25D, 0x38A, ASSET_6C7_SPRITE_SMOKE_GREEN_2,
+    0x1, NULL,
     func_8038FE94, func_80326224, func_8038FC40,
     0, 0, 1.0f, 0
 };

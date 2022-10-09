@@ -407,7 +407,7 @@ void func_803899B0(Actor * this){
     }//L80389B20
 
     if(!this->unk16C_4){
-        func_802C3C88((GenMethod_1)func_80389948, reinterpret_cast(s32, this->marker));
+        __spawnqueue_add_1((GenMethod_1)func_80389948, reinterpret_cast(s32, this->marker));
         this->unk16C_4 = 1;
     }//L80389B4C
 
@@ -420,7 +420,7 @@ void func_803899B0(Actor * this){
     switch (this->state)
     {
     case 1://L80389BAC
-        this->yaw_moving = (f32)func_80329784(this);
+        this->yaw_ideal = (f32)func_80329784(this);
         func_80328FB0(this, 4.0f);
         if( (this->unkF4_8 == 1 && !mapSpecificFlags_get(1))
             || (this->unkF4_8 == 8 && !mapSpecificFlags_get(2))
@@ -467,7 +467,7 @@ void func_803899B0(Actor * this){
         }
         break;
     case 2://L80389E2C
-        this->yaw_moving = func_80329784(this);
+        this->yaw_ideal = func_80329784(this);
         func_80328FB0(this, 4.0f);
         if( (f64) 0.0 < animctrl_getAnimTimer(this->animctrl)
             && animctrl_getAnimTimer(this->animctrl) < 0.16
@@ -494,7 +494,7 @@ void func_803899B0(Actor * this){
         }
         break;
     case 3://L80389FAC
-        this->yaw_moving = func_80329784(this);
+        this->yaw_ideal = func_80329784(this);
         func_80328FB0(this, 4.0f);
         if( ( actor_animationIsAt(this, 0.37f)
               || actor_animationIsAt(this, 0.66f)

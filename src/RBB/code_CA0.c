@@ -102,13 +102,13 @@ void func_80387488(ActorMarker *marker){
     if(-50.0f < sp1C[1] && sp1C[1] < 600.0f){
         sp1C[1] = 0;
         if(ml_vec3f_distance(&sp1C, &D_80390264) < 500.0f){
-            timedFunc_set_1(1.0f, (TFQM1) func_80387488, (s32)actor->marker);
+            timedFunc_set_1(1.0f, (GenMethod_1) func_80387488, (s32)actor->marker);
             return;
         }
     }
     func_80324E38(0.0f, 3);
     timed_setCameraToNode(0.0f, 6);
-    timedFunc_set_1(0.5f, (TFQM1) func_80387308, (s32) actor->marker);
+    timedFunc_set_1(0.5f, (GenMethod_1) func_80387308, (s32) actor->marker);
 }
 
 void func_8038756C(Actor *this, s32 arg1){

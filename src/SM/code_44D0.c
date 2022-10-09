@@ -48,8 +48,8 @@ void func_8038A8F8(Actor *this){
         if( !mapSpecificFlags_get(2) 
             || (mapSpecificFlags_get(3) && !mapSpecificFlags_get(0xf))
         ){ //L8038AA54
-            this->yaw_moving = ml_vec3f_distance(this->velocity, this->unk1C) / 150.0;
-            func_8028F3D8(this->unk1C, this->yaw_moving, func_8038A8C0, this->marker);
+            this->yaw_ideal = ml_vec3f_distance(this->velocity, this->unk1C) / 150.0;
+            func_8028F3D8(this->unk1C, this->yaw_ideal, func_8038A8C0, this->marker);
             mapSpecificFlags_set(0x10, 1);
         }
     }

@@ -141,13 +141,13 @@ void func_802E1DE8(Actor *this){
 }
 
 void func_802E1E20(Actor *this, f32 arg1){
-    this->yaw_moving = func_80329784(this);
+    this->yaw_ideal = func_80329784(this);
     func_80328FB0(this, 6.0f);
 }
 
 int func_802E1E5C(Actor *this, s32 arg1){
     f32 f0;
-    f0 = this->yaw - this->yaw_moving;
+    f0 = this->yaw - this->yaw_ideal;
     if((f0 < arg1) && (-arg1 < f0)){
         return 1;
     }
@@ -183,7 +183,7 @@ void func_802E1FD0(ActorMarker *marker, ActorMarker *other_marker){
     FUNC_8030E8B4(SFX_3EA_UNKNOWN, 1.0f, 30000, actor->position, 1500, 4500);
     FUNC_8030E8B4(SFX_2F_ORANGE_SPLAT, 1.0f, 30000, actor->position, 1500, 4500);
 
-    func_802C3C88((GenMethod_1)func_802E1BD0, (s32)actor->marker);
+    __spawnqueue_add_1((GenMethod_1)func_802E1BD0, (s32)actor->marker);
     if(map_get() == MAP_27_FP_FREEZEEZY_PEAK)
         func_8038A978();
     func_802E1CB8(actor->position, 0xC);
@@ -309,7 +309,7 @@ void func_802E20E8(Actor *this){
                     && local->unkB
                 ){
                     func_8030E878(SFX_8F_SNOWBALL_FLYING, randf2(0.95f, 1.05f), 30000, this->position, 800.0f, 3050.0f);
-                    func_802C3C88((GenMethod_1)func_802E1B24, (s32)this->marker);
+                    __spawnqueue_add_1((GenMethod_1)func_802E1B24, (s32)this->marker);
                     local->unk9 = FALSE;
                 }
                 

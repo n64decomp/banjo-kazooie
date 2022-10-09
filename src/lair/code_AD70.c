@@ -254,7 +254,7 @@ void func_80391B04(Actor *this) {
         this->position[1] += this->velocity[1] * sp44;
         this->position[2] += this->velocity[2] * sp44;
         this->velocity[1] += -1000.0f * sp44;
-        this->yaw += this->yaw_moving * sp44;
+        this->yaw += this->yaw_ideal * sp44;
         this->pitch += this->unk6C * sp44;
         if ((this->velocity[1] < 0.0) && (this->position[1] < this->unk1C[1])) {
             func_80391810(this, 3);
@@ -304,7 +304,7 @@ void func_80391EA8(ActorMarker *marker, ActorMarker *a1, f32 a2[3], f32 f1, f32 
 
     actor->unk28 = f1;
 
-    actor->yaw_moving = randf2( 240,  480);
+    actor->yaw_ideal = randf2( 240,  480);
     actor->unk6C      = randf2(-240, -480);
 
     actor->scale = scale;

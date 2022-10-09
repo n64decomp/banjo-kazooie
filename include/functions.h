@@ -582,7 +582,10 @@ f32 climbGetTopY(void);
 void func_802596AC(f32 a0[3], f32 a1[3], f32 a2[3], f32 a3[3]);
 
 void func_8024E55C(s32, void *);
-void func_802C3C88(GenMethod_1, s32);
+
+void __spawnqueue_add_1(GenMethod_1, s32);
+#define SPAWNQUEUE_ADD_1(method, arg0) __spawnqueue_add_1((GenMethod_1) (method), reinterpret_cast(s32, (arg0)))
+
 void func_802FAD64(enum item_e);
 void nodeprop_getPosition(NodeProp *, f32[3]);
 bool func_80311480(s32 text_id, s32 arg1, f32 *pos, ActorMarker *marker, void(*callback)(ActorMarker *, enum asset_e, s32), void(*arg5)(ActorMarker *, enum asset_e, s32));

@@ -9,7 +9,7 @@ extern Actor *func_80325CAC(ActorMarker*, Gfx**, Mtx**, Vtx **);
 bool func_80320C94(f32 [3], f32[3], f32, f32[3], s32, u32);
 f32 func_8033229C(ActorMarker *);
 void func_8038CED8(f32 [3], s32, f32, f32);
-void func_8038C5F0(Actor *, s32, s32, f32);
+void chbossjinjo_spawnParticles(Actor *, s32, s32, f32);
 
 typedef struct {
     f32 unk0;
@@ -19,13 +19,15 @@ void func_8038F620(Actor *this);
 
 /* .data */
 ActorInfo D_80391B00 = {
-    0x25C, 0x389, 0x541, 0x1, NULL,
+    MARKER_25C_GRUNTY_SPELL_FIREBALL, ACTOR_389_GRUNTY_SPELL_FIREBALL, ASSET_541_SPRITE_FIREBALL_SPELL_ATTACK,
+    0x1, NULL,
     func_8038F620, func_80326224, func_80325888,
     0, 0, 1.0f, 0
 };
 
 ActorInfo D_80391B24 = {
-    0x280, 0x3AA, 0x6C9, 0x1, NULL,
+    MARKER_280_GRUNTY_SPELL_GREEN_ATTACK, ACTOR_3AA_GRUNTY_SPELL_GREEN_ATTACK, ASSET_6C9_SPRITE_GREEN_SPELL_ATTACK,
+    0x1, NULL,
     func_8038F620, func_80326224, func_80325CAC,
     0, 0, 1.0f, 0
 };
@@ -83,10 +85,6 @@ u8 D_803928E2;
 u8 D_803928E3;
 u8 D_803928E4;
 u8 D_803928E5;
-f32 D_803928E8[3];
-f32 D_803928F8[3];
-f32 D_80392908[3];
-extern f32 D_80392914;
 
 /* .code */
 void func_8038EB90(ActorMarker *arg0, f32 *arg1) {
@@ -168,6 +166,7 @@ void func_8038F050(void) {
 }
 
 void func_8038F084(ActorMarker *marker){
+    static f32 D_803928E8[3];
     Actor *actor = marker_getActor(marker);
     ActorLocal_fight_87A0 *local = (ActorLocal_fight_87A0 *)&actor->local;
     
@@ -183,7 +182,7 @@ void func_8038F084(ActorMarker *marker){
         timedFunc_set_0(0.3f, func_8038F050);
         actor->unk58_0 = 0;
         actor->scale *=  1.6;
-        if(actor->marker->unk14_20 != 0x280){
+        if(actor->marker->unk14_20 != MARKER_280_GRUNTY_SPELL_GREEN_ATTACK){
             func_8038EBE0(actor->position, 4, ASSET_713_SPRITE_SPARKLE_YELLOW, 
                 D_80391C0C, D_80391C24, D_80391C3C,
                 D_80391C54, D_80391C64, D_80391C74
@@ -211,7 +210,7 @@ void func_8038F084(ActorMarker *marker){
             func_8038EEFC(actor->position, 3, D_80391BFC);
             func_8038CED8(actor->position, 0x558, 0.15f, 0.5f);
             actor->position_y += 260.0f;
-            func_8038C5F0(actor, 0x712, ASSET_6C3_SPRITE_SMOKE_GREEN, 1.6f);
+            chbossjinjo_spawnParticles(actor, 0x712, ASSET_6C3_SPRITE_SMOKE_GREEN, 1.6f);
         }
         local->unk0 = 0.66f;
         func_80328A84(actor, 2);
@@ -268,9 +267,12 @@ void func_8038F5F8(Actor *arg0) {
 }
 
 void func_8038F620(Actor *this){
+    static f32 D_803928F8[3];
+    static f32 D_80392908[3];
+    static f32 D_80392914;
+
     ActorLocal_fight_87A0 * local = (ActorLocal_fight_87A0 *)&this->local;
     f32 sp40 = time_getDelta();
-    static f32 D_80392914;
 
     if(!this->unk16C_4){
         this->unk16C_4 = 1;
@@ -279,7 +281,7 @@ void func_8038F620(Actor *this){
         actor_collisionOn(this);
         this->unk60 = 8.0f;
         this->scale = 0.1f;
-        if( this->marker->unk14_20 == 0x280){
+        if( this->marker->unk14_20 == MARKER_280_GRUNTY_SPELL_GREEN_ATTACK){
             actor_collisionOff(this);
             func_803300D8(this->marker, func_8038F5F8);
             func_80324CFC(0.0f, COMUSIC_43_ENTER_LEVEL_GLITTER, 32000);
@@ -299,29 +301,24 @@ void func_8038F620(Actor *this){
             );
         }
     }//L8038F79C
-    if(D_803928E5 && this->marker->unk14_20 == 0x280){
+    if(D_803928E5 && this->marker->unk14_20 == MARKER_280_GRUNTY_SPELL_GREEN_ATTACK){
         func_802BAD08(this->position);
     }//L8038F7D4
 
     switch(this->state){
         case 1://L8038F7F8
-            { // TODO: get rid of f0, maybe D_80392914 is static?
-                // f32 temp_f0;
-                
-                D_80392914 = sp40*1.4;
-                // temp_f0 = this->scale + D_80392914;
-                this->scale = (this->scale + D_80392914 < 1.0) ? this->scale + D_80392914 : 1.0f;
-            }
+            D_80392914 = sp40*1.4;
+            this->scale = (this->scale + D_80392914 < 1.0) ? this->scale + D_80392914 : 1.0f;
 
             switch(this->marker->unk14_20){
-                case 0x25C://L8038F8AC
+                case MARKER_25C_GRUNTY_SPELL_FIREBALL://L8038F8AC
                     func_8038ED9C(this->position, ASSET_4A0_SPRITE_EXPLOSION, 1, 
                         D_80391CEC, D_80391D34, 
                         D_80391CF4, D_80391D04, D_80391D14
                     );
                     break;
-                case 0x280://L8038F8C8
-                    func_8038ED9C(this->position, ASSET_6C9_SPRITE_SMOKE_GREEN_BIG, 1, 
+                case MARKER_280_GRUNTY_SPELL_GREEN_ATTACK://L8038F8C8
+                    func_8038ED9C(this->position, ASSET_6C9_SPRITE_GREEN_SPELL_ATTACK, 1, 
                         D_80391CEC, D_80391D34, 
                         D_80391CF4, D_80391D1C, D_80391D2C
                     );
@@ -360,7 +357,7 @@ void func_8038F620(Actor *this){
                 }
             }
             // L8038FABC
-            if( this->marker->unk14_20 != 0x280
+            if( this->marker->unk14_20 != MARKER_280_GRUNTY_SPELL_GREEN_ATTACK
                 && func_8028F25C()
             ){
                 func_8038F084(this->marker);

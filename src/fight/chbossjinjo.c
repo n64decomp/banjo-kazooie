@@ -24,25 +24,29 @@ ActorAnimationInfo D_80391810[] = {
 };
 
 ActorInfo D_80391840 = {
-    0x27B, 0x3A5, 0x3BC, 0x1, D_80391810,
+    MARKER_27B_BOSS_JINJO_ORANGE, ACTOR_3A5_BOSS_JINJO_ORANGE, ASSET_3BC_MODEL_JINJO_ORANGE,
+    0x1, D_80391810,
     func_8038C840, func_8038D014, func_80325888,
     0, 0, 1.0f, 0
 };
 
 ActorInfo D_80391864 = {
-    0x27C, 0x3A6, 0x3C2, 0x1, D_80391810,
+    MARKER_27C_BOSS_JINJO_GREEN, ACTOR_3A6_BOSS_JINJO_GREEN, ASSET_3C2_MODEL_JINJO_GREEN,
+    0x1, D_80391810,
     func_8038C840, func_8038D014, func_80325888,
     0, 0, 1.0f, 0
 };
 
 ActorInfo D_80391888 = {
-    0x27D, 0x3A7, 0x3C1, 0x1, D_80391810,
+    MARKER_27D_BOSS_JINJO_PINK, ACTOR_3A7_BOSS_JINJO_PINK, ASSET_3C1_MODEL_JINJO_PINK,
+    0x1, D_80391810,
     func_8038C840, func_8038D014, func_80325888,
     0, 0, 1.0f, 0
 };
 
 ActorInfo D_803918AC = {
-    0x27E, 0x3A8, 0x3BB, 0x1, D_80391810,
+    MARKER_27E_BOSS_JINJO_YELLOW, ACTOR_3A8_BOSS_JINJO_YELLOW, ASSET_3BB_MODEL_JINJO_YELLOW,
+    0x1, D_80391810,
     func_8038C840, func_8038D014, func_80325888,
     0, 0, 1.0f, 0
 };
@@ -114,7 +118,7 @@ void func_8038C5BC(void){
     func_80386654(1.0f, &D_80391948, &D_80391958);
 }
 
-void func_8038C5F0(Actor *this, enum asset_e arg1, enum asset_e arg2, f32 arg3){
+void chbossjinjo_spawnParticles(Actor *this, enum asset_e arg1, enum asset_e arg2, f32 arg3){
     f32 sp1C[3];
     func_8038C0DC(&sp1C);
     func_8038C2C0(this->position, 0x20, arg1, arg3);
@@ -123,32 +127,32 @@ void func_8038C5F0(Actor *this, enum asset_e arg1, enum asset_e arg2, f32 arg3){
     timedFunc_set_0(0.3f, func_8038C5BC);
 }
 
-void func_8038C674(Actor *this){
-    s32 a1;
-    s32 a2;
+void chbossjinjo_spawnAttackParticles(Actor *this){
+    s32 sparkle_sprite_id;
+    s32 smoke_sprite_id;
     switch(this->marker->unk14_20){
         default:
-            a1 = ASSET_718_SPRITE_SPARKLE_WHITE_2;
-            a2 = ASSET_6C2_SPRITE_SMOKE_WHITE;
+            sparkle_sprite_id = ASSET_718_SPRITE_SPARKLE_WHITE_2;
+            smoke_sprite_id = ASSET_6C2_SPRITE_SMOKE_WHITE;
             break;
-        case 0x27b:
-            a1 = ASSET_71B_SPRITE_SPARKLE_ORANGE_2;
-            a2 = ASSET_6C5_SPRITE_SMOKE_ORANGE;
+        case MARKER_27B_BOSS_JINJO_ORANGE:
+            sparkle_sprite_id = ASSET_71B_SPRITE_SPARKLE_ORANGE_2;
+            smoke_sprite_id = ASSET_6C5_SPRITE_SMOKE_ORANGE;
             break;
-        case 0x27c:
-            a1 = ASSET_719_SPRITE_SPARKLE_GREEN_2;
-            a2 = ASSET_6C3_SPRITE_SMOKE_GREEN;
+        case MARKER_27C_BOSS_JINJO_GREEN:
+            sparkle_sprite_id = ASSET_719_SPRITE_SPARKLE_GREEN_2;
+            smoke_sprite_id = ASSET_6C3_SPRITE_SMOKE_GREEN;
             break;
-        case 0x27d:
-            a1 = ASSET_71A_SPRITE_SPARKLE_PINK_2;
-            a2 = ASSET_6C6_SPRITE_SMOKE_PINK;
+        case MARKER_27D_BOSS_JINJO_PINK:
+            sparkle_sprite_id = ASSET_71A_SPRITE_SPARKLE_PINK_2;
+            smoke_sprite_id = ASSET_6C6_SPRITE_SMOKE_PINK;
             break;
-        case 0x27e:
-            a1 = ASSET_717_SPRITE_SPARKLE_YELLOW_2;
-            a2 = ASSET_6C4_SPRITE_SMOKE_YELLOW;
+        case MARKER_27E_BOSS_JINJO_YELLOW:
+            sparkle_sprite_id = ASSET_717_SPRITE_SPARKLE_YELLOW_2;
+            smoke_sprite_id = ASSET_6C4_SPRITE_SMOKE_YELLOW;
             break;
     }
-    func_8038C5F0(this, a1, a2, 1.0f);
+    chbossjinjo_spawnParticles(this, sparkle_sprite_id, smoke_sprite_id, 1.0f);
 }
 
 
@@ -313,7 +317,7 @@ void func_8038C840(Actor *this){
     }//L8038CEC8
 }
 
-void func_8038CED8(f32 arg0[3], s32 arg1, f32 arg2, f32 arg3){
+void func_8038CED8(f32 arg0[3], enum asset_e model_id, f32 arg2, f32 arg3){
     ParticleEmitter *s0 = partEmitList_pushNew(1);
     f32 sp40[3];
     f32 sp34[3];
@@ -325,7 +329,7 @@ void func_8038CED8(f32 arg0[3], s32 arg1, f32 arg2, f32 arg3){
     sp34[2] = sp40[2] - arg0[2];
     ml_vec3f_set_length(sp34, 20.0f);
     
-    particleEmitter_setModel(s0, arg1);
+    particleEmitter_setModel(s0, model_id);
     particleEmitter_setPosition(s0, arg0);
     particleEmitter_setParticleVelocityRange(s0, sp34[0], sp34[1], sp34[2], sp34[0], sp34[1], sp34[2]);
     D_80391968.unk20 = arg3;
@@ -369,16 +373,16 @@ void func_8038D014(Actor *this){
                 marker_despawn(this->marker);
                 switch (this->marker->unk14_20)
                 {
-                case 0x27b:
+                case MARKER_27B_BOSS_JINJO_ORANGE:
                     temp_a1 = 0x557;
                     break;
-                case 0x27c:
+                case MARKER_27C_BOSS_JINJO_GREEN:
                     temp_a1 = 0x558;
                     break;
-                case 0x27d:
+                case MARKER_27D_BOSS_JINJO_PINK:
                     temp_a1 = 0x559;
                     break;
-                case 0x27e:
+                case MARKER_27E_BOSS_JINJO_YELLOW:
                     temp_a1 = 0x556;
                     break;
                 default:
@@ -393,13 +397,13 @@ void func_8038D014(Actor *this){
 }
 
 
-void func_8038D214(ActorMarker *marker){
+void chbossjinjo_attack(ActorMarker *marker){
     Actor *actor = marker_getActor(marker);
-    func_8038C674(actor);
+    chbossjinjo_spawnAttackParticles(actor);
     FUNC_8030E8B4(SFX_1B_EXPLOSION_1, 1.0f, 32000, actor->position, 1000, 6500);
     marker_despawn(actor->marker);
 }
 
-f32 func_8038D268(void){
+f32 chbossjinjo_8038D268(void){
     return 2.26f;
 }

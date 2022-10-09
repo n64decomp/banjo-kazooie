@@ -491,7 +491,8 @@ typedef struct{
 }struct4Cs;
 
 typedef struct struct_4D_s{
-    u8 unk0[0x18];
+    f32 unk0[3];
+    f32 unkC[3];
 }struct4Ds;
 
 typedef struct{

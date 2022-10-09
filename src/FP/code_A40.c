@@ -99,7 +99,7 @@ void chXmasTree_update(Actor *this){
             sfxsource_setSampleRate(this->unk44_31, 28000);
         }
         func_802C3BF8(func_80386FB4);
-        func_802C3C88(func_80386FE0, this->marker);
+        __spawnqueue_add_1(func_80386FE0, this->marker);
         if(func_8031FF1C(0x13)){
             func_80386F84(this);
             mapSpecificFlags_set(2, FALSE);

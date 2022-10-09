@@ -135,7 +135,7 @@ void func_80388D04(s32 arg0){
 void func_80388D34(Actor *this){
     func_80388C78(this);
     if(!this->unk16C_4){
-        func_802C3C88((GenMethod_1)func_80388D04, (s32)this->marker);
+        __spawnqueue_add_1((GenMethod_1)func_80388D04, (s32)this->marker);
         this->unk16C_4 = TRUE;
     }
 }

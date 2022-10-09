@@ -50,7 +50,7 @@ void func_8035FA48(Actor *this){
 
 void func_8035FA74(Actor *this){
     ActorLocal_Core2_D89E0 *local = (ActorLocal_Core2_D89E0 *)&this->local;
-    this->yaw_moving = local->unk4;
+    this->yaw_ideal = local->unk4;
     func_80328A84(this, 5);
     actor_loopAnimation(this);
 }
@@ -197,7 +197,7 @@ void func_8035FFAC(Actor *this, f32 arg1){
 void func_80360044(Actor *this) {
     f32 var_f0;
 
-    var_f0 = this->yaw_moving - this->yaw;
+    var_f0 = this->yaw_ideal - this->yaw;
     if (var_f0 >= 180.0f) {
         var_f0 -= 360.0f;
     }
@@ -308,7 +308,7 @@ f32 func_803603AC(Actor *this, s32 arg1, u8 arg2){
 
 int func_803604E8(Actor *this){
     f32 tmp_f0;
-    this->yaw_moving = (f32) func_80329784(this);
+    this->yaw_ideal = (f32) func_80329784(this);
     tmp_f0 = func_803603AC(this, 170, 1);
     func_8035FFAC(this, tmp_f0);
     if(!func_80360198(this)){
@@ -323,7 +323,7 @@ bool func_8036054C(Actor *this) {
     s32 phi_s2;
 
     if (this->unk60 == 0.0f) {
-        this->yaw_moving = func_80257204(this->position[0], this->position[2], this->unk1C[0], this->unk1C[2]);
+        this->yaw_ideal = func_80257204(this->position[0], this->position[2], this->unk1C[0], this->unk1C[2]);
         func_8035FFAC(this, func_803603AC(this, -110, 2));
     }
     else{
@@ -341,16 +341,16 @@ bool func_8036054C(Actor *this) {
         phi_s1 = 0;
         do{
             if (this->unk38_0) {
-                phi_v0 = func_80329140(this, (s32) this->yaw_moving, 0xC8);
+                phi_v0 = func_80329140(this, (s32) this->yaw_ideal, 0xC8);
             } else {
-                phi_v0 = func_80329078(this, (s32) this->yaw_moving, 0xC8);
+                phi_v0 = func_80329078(this, (s32) this->yaw_ideal, 0xC8);
             }
 
             if(phi_v0 == 0){
                 phi_s1++;
-                this->yaw_moving += 30.0f;
-                if (this->yaw_moving >= 360.0f) {
-                    this->yaw_moving -= 360.0f;
+                this->yaw_ideal += 30.0f;
+                if (this->yaw_ideal >= 360.0f) {
+                    this->yaw_ideal -= 360.0f;
                 }
             }
         } while ( phi_v0 == 0 && phi_s1 < 0xC);

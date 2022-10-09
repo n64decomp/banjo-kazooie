@@ -47,7 +47,7 @@ void func_80392690(ActorMarker *marker, enum asset_e text_id, s32 arg2){
     func_8030E6D4(SFX_EA_GRUNTY_LAUGH_1);
     func_80328B8C(this, 5, 0.0f, 1);
     actor_loopAnimation(this);
-    this->yaw_moving = 79.0f;
+    this->yaw_ideal = 79.0f;
     animctrl_setTransitionDuration(this->animctrl, 0.4f);
 }
 

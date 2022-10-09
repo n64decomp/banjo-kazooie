@@ -69,7 +69,7 @@ void func_803865F4(Actor *this, s32 next_state) {
             func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);
             func_80324E38(0.0f, 3);
             timed_setCameraToNode(2.0f, 4);
-            timedFunc_set_1(2.0f, (TFQM1)func_80386550, (s32) this->marker);
+            timedFunc_set_1(2.0f, (GenMethod_1)func_80386550, (s32) this->marker);
             func_80324E88(4.0f);
             func_80324E38(4.0f, 0);
         }

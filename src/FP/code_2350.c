@@ -584,7 +584,7 @@ void func_803896FC(Actor *this){
                     case 1: //L80389F78
                         if(this->unk38_31 == 2){
                             if(jiggyscore_isCollected(JIGGY_30_FP_BOGGY_2)){
-                                func_802C3C88(func_80388F54, this->marker);
+                                __spawnqueue_add_1(func_80388F54, this->marker);
                                 func_8038B9BC();
                                 marker_despawn(this->marker);
                             }

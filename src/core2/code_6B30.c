@@ -133,7 +133,7 @@ void func_8028DE6C(enum actor_e actor_id){
         func_802948F8(marker);
     }
     else{
-        func_802C3C88(func_8028DE0C, carriedObject_getActorID());
+        __spawnqueue_add_1(func_8028DE0C, carriedObject_getActorID());
     }
 }
 

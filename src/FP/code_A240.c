@@ -46,7 +46,7 @@ void func_80390630(Actor *this){
     func_8028E668(this->position, 200.0f, -40.0f, 160.0f);
     
     if(this->state == 1){
-        this->yaw_moving = (f32)func_80329784(this);
+        this->yaw_ideal = (f32)func_80329784(this);
         func_80328FB0(this, 1.0f);
 
         if(!func_803114B0()){

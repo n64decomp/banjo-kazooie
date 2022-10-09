@@ -9,7 +9,7 @@ extern void func_802F9E44(s32, f32, f32, f32, f32);
 extern void func_80387470(Actor *, f32 [3], f32, f32, f32, f32, f32);
 extern void func_8038C0DC(f32[3]);
 
-extern void func_8038C5F0(Actor *, enum asset_e, enum asset_e, f32);
+extern void chbossjinjo_spawnParticles(Actor *, enum asset_e, enum asset_e, f32);
 
 typedef struct{
     f32 unk0;
@@ -23,7 +23,7 @@ typedef struct{
     s32 unk28;
 }ActorLocal_fight_9850;
 
-void func_8039049C(Actor *this);
+void chjinjonator_update(Actor *this);
 
 /* .data */
 
@@ -45,13 +45,24 @@ ActorAnimationInfo D_80391FB0[] = {
 };
 
 ActorInfo D_80392018 = {
-    0x285, 0x3AC, 0x551, 0x1, D_80391FB0,
-    func_8039049C, func_80326224, func_80325888,
+    MARKER_285_JINJONATOR, ACTOR_3AC_JINJONATOR, ASSET_551_MODEL_JINJONATOR,
+    0x1, D_80391FB0,
+    chjinjonator_update, func_80326224, func_80325888,
     0, 0, 1.0f, 0
 };
 
 s32 D_8039203C[] = {0xDC, 0x96, 0x82, 0xB4, 0xD2, 0xAA, 0xC8, 0x96, 0xB4};
-s32 D_80392060[] = {0x9A, 0x9B, 0x9C, 0x9D, 0x9E, 0x9F, 0xA0, 0xA1, 0xA2};
+s32 D_80392060[] = {
+    COMUSIC_9A_JINJONATOR_HITS_GRUNTY_A,
+    COMUSIC_9B_JINJONATOR_HITS_GRUNTY_B,
+    COMUSIC_9C_JINJONATOR_HITS_GRUNTY_C,
+    COMUSIC_9D_JINJONATOR_HITS_GRUNTY_D,
+    COMUSIC_9E_JINJONATOR_HITS_GRUNTY_E,
+    COMUSIC_9F_JINJONATOR_HITS_GRUNTY_F,
+    COMUSIC_A0_JINJONATOR_HITS_GRUNTY_G,
+    COMUSIC_A1_JINJONATOR_HITS_GRUNTY_H,
+    COMUSIC_A2_JINJONATOR_HITS_GRUNTY_I
+};
 
 /* .bss */
 f32 D_80392720;
@@ -59,7 +70,7 @@ f32 D_80392724;
 f32 D_80392920[3];
 
 /* .code */
-void func_80390130(f32 position[3], int count, enum asset_e sprite_id){
+void chjinjonator_80390130(f32 position[3], int count, enum asset_e sprite_id){
     ParticleEmitter *s0 = partEmitList_pushNew(count);
     particleEmitter_setSprite(s0, sprite_id);
     particleEmitter_setStartingFrameRange(s0, 1, 6);
@@ -76,18 +87,18 @@ void func_80390130(f32 position[3], int count, enum asset_e sprite_id){
     particleEmitter_emitN(s0, count);
 }
 
-void func_80390278(Actor *this){
+void chjinjonator_80390278(Actor *this){
     f32 sp34[3];
     int i;
     for(i = 0; i < 4; i++){
         if(randf() < 0.3){
             func_8034A174(this->marker->unk44, i + 5, sp34);
-            func_80390130(sp34, 1, ASSET_718_SPRITE_SPARKLE_WHITE_2);
+            chjinjonator_80390130(sp34, 1, ASSET_718_SPRITE_SPARKLE_WHITE_2);
         }
     }
 }
 
-void func_80390318(Actor *this, s32 arg1){
+void chjinjonator_spawnAttackParticles(Actor *this, s32 arg1){
     s32 sp1C;
     s32 sp18;
     
@@ -118,16 +129,16 @@ void func_80390318(Actor *this, s32 arg1){
             sp18 = ASSET_6C2_SPRITE_SMOKE_WHITE;
             break;
     }
-    func_8038C5F0(this, sp1C, sp18, 2.0f);
+    chbossjinjo_spawnParticles(this, sp1C, sp18, 2.0f);
 }
 
-void func_803903C4(Actor *this){
+void chjinjonator_803903C4(Actor *this){
     animctrl_setSmoothTransition(this->animctrl, FALSE);
     func_80328B8C(this, 7, 0.001f, 1);
     actor_loopAnimation(this);
 }
 
-void func_8039040C(Actor *this){
+void chjinjonator_8039040C(Actor *this){
     ActorLocal_fight_9850 *local = (ActorLocal_fight_9850 *)&this->local;
     f32 tick = time_getDelta();
     
@@ -137,7 +148,7 @@ void func_8039040C(Actor *this){
         func_8030E2C4(this->unk44_31);
 }
 
-void func_8039049C(Actor *this){
+void chjinjonator_update(Actor *this){
     ActorLocal_fight_9850 *local = (ActorLocal_fight_9850 *)&this->local;
     f32 sp58;
     f32 sp54;
@@ -170,7 +181,7 @@ void func_8039049C(Actor *this){
 
     switch(this->state){
         case 1: //803905D4
-            func_8039040C(this);
+            chjinjonator_8039040C(this);
             animctrl_setAnimTimer(this->animctrl, 0.0f);
             this->unk60 -= sp58;
             if(this->unk60 < 0.0){
@@ -180,7 +191,7 @@ void func_8039049C(Actor *this){
             break;
 
         case 2: //80390648
-            func_8039040C(this);
+            chjinjonator_8039040C(this);
             if(actor_animationIsAt(this, 0.27f))
                 FUNC_8030E624(SFX_D0_GRIMLET_SQUEAK, 0.7f, 29000);
 
@@ -196,12 +207,12 @@ void func_8039049C(Actor *this){
                 func_8030DA44(this->unk44_31);
                 this->unk44_31 = 0;
                 local->unk0 = (320.0f - this->position_y) * 0.5;
-                func_80324CFC(0.0f, 0x8c, 0x7d00);
+                func_80324CFC(0.0f, COMUSIC_8C_JINJONATOR_POWERUP, 32000);
             }
             break;
 
         case 3: //8039073C
-            func_80390278(this);
+            chjinjonator_80390278(this);
             if(this->position_y < 320.0f){
                 this->position_y = MIN(320.0f, this->position_y + local->unk0*sp58);
             }//L803907A0
@@ -214,13 +225,13 @@ void func_8039049C(Actor *this){
             break;
 
         case 4: //803907D4
-            func_80390278(this);
+            chjinjonator_80390278(this);
             func_80328B8C(this, 5, 0.001f, 1);
             actor_playAnimationOnce(this);
             break;
 
         case 5: //80390804
-            func_80390278(this);
+            chjinjonator_80390278(this);
             if(actor_animationIsAt(this, 0.998f)){
                 animctrl_setSmoothTransition(this->animctrl, FALSE);
                 func_80328B8C(this, 6, 0.0001f, 1);
@@ -240,27 +251,27 @@ void func_8039049C(Actor *this){
         case 6: //803908BC
             this->position[1] = MIN(1e+8f, this->position[1] + 80.0f*sp58);
             animctrl_setDuration(this->animctrl, MAX(0.4, sp54 - (0.5*sp58)));
-            func_80390278(this);
+            chjinjonator_80390278(this);
             if(actor_animationIsAt(this, 0.25f) || actor_animationIsAt(this, 0.75f)){
                 FUNC_8030E624(SFX_2_CLAW_SWIPE, local->unk1C, 26000);
                 local->unk1C += 0.04;
             }//L80390A4C
-            func_8039040C(this);
+            chjinjonator_8039040C(this);
             if(actor_animationIsAt(this, 0.5f)){
                 if(--local->unk28 <= 0){
-                func_803903C4(this);
-                FUNC_8030E8B4(SFX_135_CARTOONY_SPRING, 1.0f, 32000, this->position, 10000, 16000);
-                func_80324D54(0.1f, SFX_C1_BUZZBOMB_ATTACK, 0.85f, 32000, this->position, 5000.0f, 12000.0f);
-                if((u8)this->unk44_31){
-                    func_8030E394(this->unk44_31);
-                    func_8030DA44(this->unk44_31);
-                    this->unk44_31 = 0;
-                }
-                func_80324D2C(0.0f, COMUSIC_8C_JINJONATOR_POWERUP);
-                func_8034A174(this->marker->unk44, 0x1f, this->position);
-                this->velocity[0] = (this->position[0] - this->unk1C[0]) / sp58;
-                this->velocity[1] = (this->position[1] - this->unk1C[1]) / sp58;
-                this->velocity[2] = (this->position[2] - this->unk1C[2]) / sp58;
+                    chjinjonator_803903C4(this);
+                    FUNC_8030E8B4(SFX_135_CARTOONY_SPRING, 1.0f, 32000, this->position, 10000, 16000);
+                    func_80324D54(0.1f, SFX_C1_BUZZBOMB_ATTACK, 0.85f, 32000, this->position, 5000.0f, 12000.0f);
+                    if((u8)this->unk44_31){
+                        func_8030E394(this->unk44_31);
+                        func_8030DA44(this->unk44_31);
+                        this->unk44_31 = 0;
+                    }
+                    func_80324D2C(0.0f, COMUSIC_8C_JINJONATOR_POWERUP);
+                    func_8034A174(this->marker->unk44, 0x1f, this->position);
+                    this->velocity[0] = (this->position[0] - this->unk1C[0]) / sp58;
+                    this->velocity[1] = (this->position[1] - this->unk1C[1]) / sp58;
+                    this->velocity[2] = (this->position[2] - this->unk1C[2]) / sp58;
                 }
                 
             }//L80390B60
@@ -270,7 +281,7 @@ void func_8039049C(Actor *this){
             break;
         case 7: //80390B78
             sp50 = local->unk24*0.11 + 1.0;
-            func_80390278(this);
+            chjinjonator_80390278(this);
             func_8038C0DC(local->unk8);
             local->unk8[1] += 100.0f;
             func_80387470(this, local->unk8, sp50*2400.0f, sp50*2400.0f*4.2, 170.0f, sp50*2500.0f, 0.0f);
@@ -281,7 +292,7 @@ void func_8039049C(Actor *this){
             
             if(actor_animationIsAt(this, 0.999f)){
                 func_8034A174(this->marker->unk44, 0x1f, this->position);
-                func_803903C4(this);
+                chjinjonator_803903C4(this);
                 FUNC_8030E8B4(SFX_135_CARTOONY_SPRING, 1.0f, 32000, this->position, 10000, 16000);
                 func_80324D54(0.1f, SFX_C1_BUZZBOMB_ATTACK, 0.85f, 32000, this->position, 5000.0f, 12000.0f);
                 this->velocity[2] = 0.0f;
@@ -346,7 +357,7 @@ void func_8039049C(Actor *this){
             break;
         case 12: //80390F7C
             sp48 = local->unk24*0.11 + 1.0;
-            func_80390278(this);
+            chjinjonator_80390278(this);
             func_8038C0DC(local->unk8);
             local->unk8[1] += 100.0f; 
             func_80387470(this, local->unk8, sp48*2400.0f, sp48*2400.0f*4.2, 170.0f, sp48*2500.0f, 0.0f);
@@ -355,7 +366,7 @@ void func_8039049C(Actor *this){
     func_8034A174(this->marker->unk44, 0x1f, D_80392920);
 }
 
-void func_80391070(ActorMarker *marker, s32 arg1, s32 arg2) {
+void chjinjonator_attack(ActorMarker *marker, s32 hit_count, bool mirrored) {
     Actor *temp_s0;
     ActorLocal_fight_9850 *local;
     s32 pad;
@@ -363,23 +374,23 @@ void func_80391070(ActorMarker *marker, s32 arg1, s32 arg2) {
     temp_s0 = marker_getActor(marker);
     local = (ActorLocal_fight_9850 *)&temp_s0->local;
     
-    func_8025A6EC(D_80392060[arg1-1], 20000);
+    func_8025A6EC(D_80392060[hit_count-1], 20000);
 
-    func_80390318(temp_s0, arg1);
+    chjinjonator_spawnAttackParticles(temp_s0, hit_count);
     FUNC_8030E8B4(SFX_1B_EXPLOSION_1, 1.0f, 32000, temp_s0->position, 1000, 6500);
 
     temp_s0->velocity[2] = 0.0f;
     temp_s0->velocity[1] = 0.0f;
     temp_s0->velocity[0] = 0.0f;
     
-    temp_s0->yaw = (f32)D_8039203C[arg1-1];
-    if (arg2 != 0) {
+    temp_s0->yaw = (f32)D_8039203C[hit_count-1];
+    if (mirrored) {
         temp_s0->yaw = (f32) (temp_s0->yaw + 180.0f);
     }
-    local->unk24 = arg1;
+    local->unk24 = hit_count;
     animctrl_setSmoothTransition(temp_s0->animctrl, 1);
     actor_playAnimationOnce(temp_s0);
-    if (&D_8039203C[arg1] >= D_80392060) {
+    if (&D_8039203C[hit_count] >= D_80392060) {
         func_80328B8C(temp_s0, 9, 0.001f, 1);
         return;
     }
@@ -387,33 +398,33 @@ void func_80391070(ActorMarker *marker, s32 arg1, s32 arg2) {
     animctrl_setDuration(temp_s0->animctrl, (f32) (1.75 - 0.11 * local->unk24));
 }
 
-void func_803911F8(ActorMarker *marker){
+void chjinjonator_finalAttack(ActorMarker *marker){
     Actor *actor = marker_getActor(marker);
-    func_80390318(actor, 0xa);
+    chjinjonator_spawnAttackParticles(actor, 0xa);
     marker_despawn(actor->marker);
 }
 
-f32 func_80391234(void){
+f32 chjinjonator_80391234(void){
     return 3.3f;
 }
 
-f32 func_80391240(void){
+f32 chjinjonator_80391240(void){
     return 2.0;
 }
 
-f32 func_80391250(void){
+f32 chjinjonator_80391250(void){
     return 4.62f;
 }
 
-s32 func_8039125C(ActorMarker *marker){
+bool chjinjonator_8039125C(ActorMarker *marker){
     u32 state = (u32) (marker_getActor(marker))->state;
     if (state == 0x7 || state == 0xC) {
-        return 1;
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }
 
-void func_8039129C(f32 arg0[3]) {
+void chjinjonator_8039129C(f32 arg0[3]) {
     arg0[0] = D_80392920[0];
     arg0[1] = D_80392920[1];
     arg0[2] = D_80392920[2];

@@ -68,7 +68,7 @@ void func_8038A948(Actor *this){
         this->initialized = TRUE;
         this->marker->propPtr->unk8_3 = TRUE;
         actor_collisionOff(this);
-        func_802C3C88((GenMethod_1)func_8038A8CC, (s32)this->marker);
+        __spawnqueue_add_1((GenMethod_1)func_8038A8CC, (s32)this->marker);
         this->velocity_y = 0.0f;
     }
 }
@@ -84,7 +84,7 @@ void func_8038A9C0(Actor *this){
         this->unk16C_4 = TRUE;
         this->marker->propPtr->unk8_3 = TRUE;
         actor_collisionOff(this);
-        func_802C3C88((GenMethod_1)func_8038A8CC, (s32)this->marker);
+        __spawnqueue_add_1((GenMethod_1)func_8038A8CC, (s32)this->marker);
         sp24 = subaddie_getLinkedActor(this);
         this->unk1C[1] = this->unk48;
         this->pitch = 0.0f;

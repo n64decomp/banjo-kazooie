@@ -10,7 +10,8 @@ void func_8038D568(Actor *this);
 
 /* .data */
 ActorInfo D_80391990 = {
-    0x27A, 0x3A2, 0x543, 0x1, NULL,
+    MARKER_27A_JINJO_STATUE_BASE, ACTOR_3A2_JINJO_STATUE_BASE, ASSET_543_MODEL_JINJO_STATUE_BASE,
+    0x1, NULL,
     func_8038D568, func_80326224, func_80325888,
     0, 0x800, 0.0f, 0
 };
@@ -26,9 +27,9 @@ struct31s D_803919C0 = {
 };
 
 /* .code */
-void func_8038D280(ActorMarker *arg0) {
+void chbossjinjobase_spawnStoneJinjo(ActorMarker *arg0) {
     Actor *sp1C = marker_getActor(arg0);
-    Actor *temp_v0 = spawn_child_actor(0x3A1, &sp1C);
+    Actor *temp_v0 = spawn_child_actor(ACTOR_3A1_STONE_JINJO, &sp1C);
 
     temp_v0->unkF4_8 = sp1C->unkF4_8;
     temp_v0->position_y = temp_v0->position_y + 172.0f;
@@ -66,7 +67,7 @@ void func_8038D428(ActorMarker *arg0, ActorMarker *arg1) {
         temp_v0->unk38_31++;
         if (temp_v0->unk38_31 >= 3) {
             func_80328A84(temp_v0, 3);
-            func_8038DE98(temp_v0->unk100);
+            chstonejinjo_breakOpen(temp_v0->unk100);
             func_8038D3DC(temp_v0, 0x19A, -100.0f, 0.0f, 1.2f);
             func_80324D54(1.2f, SFX_90_SWITCH_PRESS, 1.0f, 32000, temp_v0->position, 1000.0f, 2000.0f);
         }
@@ -106,13 +107,13 @@ void func_8038D568(Actor *this){
         actor_collisionOn(this);
         this->unk38_31 = 0;
         this->unk44_31 = func_8030D90C();
-        sfxsource_setSfxId(this->unk44_31, 0x3f9);
+        sfxsource_setSfxId(this->unk44_31, SFX_3F9_UNKNOWN);
         func_8030DD14(this->unk44_31, 2);
         func_8030DBB4(this->unk44_31, 1.4f);
         sfxsource_setSampleRate(this->unk44_31, 32000);
         
         local->unk0 = func_8030D90C();
-        sfxsource_setSfxId(local->unk0, 0x405);
+        sfxsource_setSfxId(local->unk0, SFX_405_UNKNOWN);
         func_8030DD14(local->unk0, 2);
         func_8030DBB4(local->unk0, 0.7f);
         sfxsource_setSampleRate(local->unk0, 12000);
@@ -128,14 +129,14 @@ void func_8038D568(Actor *this){
         func_802BB3DC(0, 8.0f, 0.92f);
         func_802C3F04((GenMethod_4)func_802C4140, 0x3ad, *(s32*)&this->unk1C[0], *(s32*)&this->unk1C[1], *(s32*)&this->unk1C[2]);
         func_8038D2EC(this->unk1C, 0x10);
-        func_802C3C88((GenMethod_1)func_8038D280, reinterpret_cast(s32, this->marker));
+        SPAWNQUEUE_ADD_1(chbossjinjobase_spawnStoneJinjo, this->marker);
     }
     else{//L8038D774
         if(this->state == 1){
             other = marker_getActor(this->unk100);
             sp3C = this->velocity_y * sp48;
             if(this->position_y + sp3C < this->unk1C[1]){
-                if(!func_8031FF1C(0xd2) || this->unkF4_8 == 1){
+                if( !func_8031FF1C(BKPROG_D2_HAS_SPAWNED_A_JINJO_STATUE_IN_FINAL_FIGHT) || this->unkF4_8 == 1){
                     func_8030E2C4(this->unk44_31);
                     func_8030E2C4(local->unk0);
                 }

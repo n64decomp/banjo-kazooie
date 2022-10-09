@@ -97,7 +97,7 @@ segments:
   - [0x227F0, c, done/audio/n_drvrNew]      #DONE
   - [0x22D50, c, done/audio/n_save]         #DONE
   - [0x22DA0, c, done/audio/n_envresample]  #DONE
-  - [0x22E40, c, code_22E40]
+  - [0x22E40, c, code_22E40] #n_seqplayer.c
   - [0x25360, c, done/audio/n_synstartvoiceparam] #DONE
   - [0x25440, c, done/audio/n_mainbus]    #DONE
   - [0x254C0, c, done/audio/n_load]       #DONE
@@ -285,6 +285,7 @@ segments:
   - [0x3AD30, bin, data_3AD30]
   - [0x3AD60, .rodata, done/audio/n_drvrNew]
   - [0x3AD80, bin, data_3AD80]
+  - [0x3ADD0, bin, data_3ADD0] # .rodata, code_22E40]
   - [0x3B180, .rodata, done/audio/n_resample]
   - [0x3B190, .rodata, done/gu/sinf]
   - [0x3B1E0, .rodata, done/audio/cents2ratio]

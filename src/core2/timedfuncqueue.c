@@ -13,7 +13,7 @@ typedef struct timed_function_queue_s{
     u8  pad5[3];
     union {
         TFQM0 func0;
-        TFQM1 func1;
+        GenMethod_1 func1;
         TFQM2 func2;
         TFQM3 func3;
         TFQM4 func4;
@@ -174,7 +174,7 @@ void func_80324CFC(f32 time, s32 id, s32 volume){
 }
 
 void func_80324D2C(f32 time, enum comusic_e arg0){
-    timedFunc_set_1(time, (TFQM1) func_80324A48, arg0);
+    timedFunc_set_1(time, (GenMethod_1) func_80324A48, arg0);
 }
 
 void func_80324D54(f32 time, enum sfx_e sfx_id, f32 arg2, s32 arg3, f32 position[3], f32 arg5, f32 arg6){
@@ -212,11 +212,11 @@ void func_80324DBC(f32 time, enum asset_e text_id, s32 arg2, f32 position[3], Ac
 
 
 void func_80324E38(f32 time, s32 arg0){
-    timedFunc_set_1(time, (TFQM1) func_80324BA0, arg0);
+    timedFunc_set_1(time, (GenMethod_1) func_80324BA0, arg0);
 }
 
 void timed_setCameraToNode(f32 time, s32 arg0){
-    timedFunc_set_1(time, (TFQM1) set_camera_to_node, arg0);
+    timedFunc_set_1(time, (GenMethod_1) set_camera_to_node, arg0);
 }
 
 void func_80324E88(f32 time){
@@ -227,7 +227,7 @@ void timedFunc_set_0(f32 time, TFQM0 funcPtr){
     __timedFuncQueue_insert(time, 0, (void *) funcPtr, 0, 0, 0, 0, 0);
 }
 
-void timedFunc_set_1(f32 time, TFQM1 funcPtr, s32 arg0){
+void timedFunc_set_1(f32 time, GenMethod_1 funcPtr, s32 arg0){
     __timedFuncQueue_insert(time, 1, (void *) funcPtr, arg0, 0, 0, 0, 0);
 }
 

@@ -180,7 +180,7 @@ typedef struct actor_s{
     u32 unk58_0: 1;
     f32 unk5C;
     f32 unk60; //0x60
-    f32 yaw_moving; //0x64
+    f32 yaw_ideal; //0x64
     f32 pitch;//0x68
     f32 unk6C;
     f32 unk70;

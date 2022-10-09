@@ -266,7 +266,7 @@ void func_8038C94C(ActorMarker *caller, enum asset_e text_id, s32 arg2){
     Actor *this = marker_getActor(caller);
     if(!func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE)){
         func_80328A84(this, 6);
-        func_802C3C88(func_8038C8F0, this->marker);
+        __spawnqueue_add_1(func_8038C8F0, this->marker);
     }
 }
 
@@ -370,7 +370,7 @@ void func_8038C9A0(Actor *this){
             break;
 
         case 5:// 8038CE14
-            this->yaw_moving = (f32)func_80329784(this);
+            this->yaw_ideal = (f32)func_80329784(this);
             func_80328FB0(this, 8.0f);
             if(!func_8038C718(this, this->unk1C[1])){
                 this->velocity[1] = randf2(14.0f, 20.0f);

@@ -166,7 +166,7 @@ void func_8028B9A8(s32 arg0){
 }
 
 void func_8028BA00(s32 arg0){
-    func_802C3C88(func_8028B9A8, arg0);
+    __spawnqueue_add_1(func_8028B9A8, arg0);
     if(arg0);
 }
 

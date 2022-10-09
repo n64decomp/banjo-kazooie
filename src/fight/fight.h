@@ -1,0 +1,12 @@
+#ifndef _FIGHT_INTERNAL_H_
+#define _FIGHT_INTERNAL_H_
+
+enum bossjinjo_e{
+    BOSSJINJO_ORANGE = 1,
+    BOSSJINJO_GREEN,
+    BOSSJINJO_PINK,
+    BOSSJINJO_YELLOW,
+    BOSSJINJO_JINJONATOR
+};
+
+#endif

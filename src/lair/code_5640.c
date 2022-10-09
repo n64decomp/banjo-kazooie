@@ -115,7 +115,7 @@ void func_8038BCF0(Actor *this) {
     }
 
     func_8028E668(this->position, 280.0f, -40.0f, 160.0f);
-    this->yaw_moving = (f32) func_80329784(this);
+    this->yaw_ideal = (f32) func_80329784(this);
     func_80328FB0(this, 3.0f);
     func_8024E55C(0, sp78);
     player_getPosition(sp64);

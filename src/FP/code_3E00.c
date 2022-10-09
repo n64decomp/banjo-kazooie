@@ -120,7 +120,7 @@ void func_8038A384(Actor *this){
          : (sp34 == 2) ? 0xC18
          : 0xC19;
 
-    this->yaw_moving = (f32)func_80329784(this);
+    this->yaw_ideal = (f32)func_80329784(this);
     func_80328FB0(this, 2.0f);
     func_8028E668(this->position, 100.0f, -10.0f, 100.0f);
 

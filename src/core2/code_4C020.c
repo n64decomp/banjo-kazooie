@@ -1141,7 +1141,7 @@ void func_802D6264(f32 arg0, enum map_e arg1, s32 arg2, s32 arg3, s32 arg4, enum
     D_803676A0 = 0;
 
     if(arg1 != D_80367694){
-        timedFunc_set_1(arg0, (TFQM1) func_802D61FC, arg1);
+        timedFunc_set_1(arg0, (GenMethod_1) func_802D61FC, arg1);
     }
     else{
         timedFunc_set_0(arg0, func_802D63D4);

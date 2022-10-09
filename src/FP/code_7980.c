@@ -222,7 +222,7 @@ void func_8038E094(Actor *this){
 
         case 6: //L8038E698
             this->marker->propPtr->unk8_3 = FALSE;
-            this->yaw_moving = (f32)func_80329784(this);
+            this->yaw_ideal = (f32)func_80329784(this);
             func_80328FB0(this, 12.0f);
             break;
 

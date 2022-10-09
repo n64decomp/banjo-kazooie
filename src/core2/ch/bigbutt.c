@@ -66,7 +66,7 @@ void func_802C5F44(Actor *this){
 void func_802C5F94(Actor *this){
     func_80328A84(this, 2);
     func_802C5E80(this);
-    func_80328CEC(this, (s32)this->yaw_moving, 135, 175);
+    func_80328CEC(this, (s32)this->yaw_ideal, 135, 175);
     this->unk38_31 = 150;
 }
 
@@ -162,13 +162,13 @@ void func_802C6240(Actor *this){
                 func_80328CEC(this, (s32)this->yaw, 90, 150);
             }//L802C64EC
             if(!(func_8023DB5C() & 0xf))
-                func_80328CEC(this, (s32)this->yaw_moving, 10, 20);
+                func_80328CEC(this, (s32)this->yaw_ideal, 10, 20);
             
             if(!(func_8023DB5C() & 0x7))
                 func_80328BD4(this, 1, 0.16f, 1, 0.02f);
             
             if( !(func_8023DB5C() & 0xf)
-                && func_80329078(this, (s32)this->yaw_moving, 150)
+                && func_80329078(this, (s32)this->yaw_ideal, 150)
                 && func_80328B38(this, 3, 0.13f)
             ){
                 this->unk28 = randf2(7.1f, 8.4f);
@@ -178,7 +178,7 @@ void func_802C6240(Actor *this){
 
         case 0x8: //L802C65D0
             func_802C5F44(this);
-            this->yaw_moving = func_80329784(this);
+            this->yaw_ideal = func_80329784(this);
             func_80328FB0(this, 4.0f);
             if(func_80329480(this))
                 func_80328A84(this, 6);
@@ -198,7 +198,7 @@ void func_802C6240(Actor *this){
 
         case 0x6: //L802C66D0
             animctrl_setDuration(this->animctrl, D_80366010[6].duration - (3 - this->unk10_12)*0.1085);
-            this->yaw_moving = (f32)func_80329784(this);
+            this->yaw_ideal = (f32)func_80329784(this);
             if(!func_803294B4(this, 0x21)){
                 func_80328A84(this, 8);
             }
@@ -224,13 +224,13 @@ void func_802C6240(Actor *this){
             if(30.0f < this->unk28)
                 this->unk28 = 30.0f;
 
-            this->yaw_moving = (f32)func_80329784(this);
+            this->yaw_ideal = (f32)func_80329784(this);
             func_80328FB0(this, 9.0f);
             if(!func_80329030(this, 0))
                 func_802C5F94(this);
 
             if(func_80329530(this, 320)){
-                if(func_80329078(this, (s32)this->yaw_moving,200)){
+                if(func_80329078(this, (s32)this->yaw_ideal,200)){
                     animctrl_setPlaybackType(this->animctrl, ANIMCTRL_ONCE);
                     func_80328A84(this, 4);
                     this->unk28  += 5.7;
@@ -252,7 +252,7 @@ void func_802C6240(Actor *this){
 
         case 0x4: //L802C6A14
             if(animctrl_getAnimTimer(this->animctrl) < 0.99){
-                this->yaw_moving = (f32)func_80329784(this);
+                this->yaw_ideal = (f32)func_80329784(this);
                 func_80328FB0(this, 1.0f);
             }
             func_80329030(this, 0);

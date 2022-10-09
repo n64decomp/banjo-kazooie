@@ -93,7 +93,7 @@ void func_8038F454(Actor *this){
         actor_loopAnimation(this);
         timed_setCameraToNode(0.0f, 0x2e);
         func_80324DBC(0.0f, 0xc1b, 0x2a, this->position, this->marker, func_8038F330, NULL);
-        timedFunc_set_1(2.5f, (TFQM1)func_8038F3F4, (s32)this->marker);
+        timedFunc_set_1(2.5f, (GenMethod_1)func_8038F3F4, (s32)this->marker);
     }
     else{
         func_8038F2B8(this);
@@ -111,7 +111,7 @@ void func_8038F560(Actor *this){
 }
 
 void func_8038F598(Actor *this, f32 arg1){
-    this->yaw_moving = func_80329784(this);
+    this->yaw_ideal = func_80329784(this);
     func_80328FB0(this, arg1);
 }
 
@@ -119,7 +119,7 @@ bool func_8038F5D4(Actor *this, f32 arg1[3], f32 arg2, f32 arg3, s32 arg4){
     f32 sp24;
 
     sp24 = animctrl_getAnimTimer(this->animctrl);
-    this->yaw_moving = (f32) func_803297C8(this, arg1);
+    this->yaw_ideal = (f32) func_803297C8(this, arg1);
     func_80328FB0(this, arg3);
     if(actor_animationIsAt(this, 0.9f)){
         FUNC_8030E8B4(SFX_3F2_UNKNOWN, 0.8f, 24000, this->position, 500, 2000);
@@ -137,7 +137,7 @@ bool func_8038F6C4(Actor *this, f32 arg1[3], f32 arg2){
 
     func_80328C64(this, func_803297C8(this, arg1));
     func_80328FB0(this, arg2);
-    dTheta = this->yaw - this->yaw_moving;
+    dTheta = this->yaw - this->yaw_ideal;
     if(-arg2 <= dTheta && dTheta <= arg2){
         return TRUE;
     }
@@ -190,7 +190,7 @@ void func_8038F7AC(Actor *this){
             this->position[0] = local->unkC[0];\
             this->position[1] = local->unkC[1];\
             this->position[2] = local->unkC[2];
-            func_802C3C88(func_8038F758, this->marker);
+            __spawnqueue_add_1(func_8038F758, this->marker);
             local->unk30 = FALSE;
         }
     }//L8038F910

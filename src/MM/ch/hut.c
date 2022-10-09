@@ -92,7 +92,7 @@ void    chhut_update(Actor *this){
                 func_8030E484(SFX_5B_HEAVY_STUFF_FALLING);
                 func_80328A84(this, 1);
                 actor_playAnimationOnce(this);
-                func_802C3C88((GenMethod_1)func_803869EC, (s32)this->marker);
+                __spawnqueue_add_1((GenMethod_1)func_803869EC, (s32)this->marker);
                 func_802C8F70(this->yaw);
                 if(D_8037DCB0 < 5){
                     func_802C3F04(func_802C4218, D_803898D8[D_8037DCB0], *(s32*)(&sp3C[0]),*(s32*)(&sp3C[1]),*(s32*)(&sp3C[2]));

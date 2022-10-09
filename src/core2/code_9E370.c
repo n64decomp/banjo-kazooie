@@ -787,7 +787,7 @@ Actor *actor_new(s32 (* position)[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
     D_80383390->position_z = (f32)(*position)[2];
     D_80383390->unkF4_8 = 0;
     D_80383390->yaw = (f32) yaw;
-    D_80383390->yaw_moving = (f32) yaw;
+    D_80383390->yaw_ideal = (f32) yaw;
     D_80383390->pitch = 0.0f;
     D_80383390->roll = 0.0f;
     D_80383390->unk6C = 0.0f;
@@ -1335,7 +1335,7 @@ void func_80328C64(Actor * this, int arg1){
     int retVal = arg1;
     while(retVal < 0) retVal += 0x168;
     while(retVal >= 0x168) retVal -= 0x168;
-    this->yaw_moving = retVal;
+    this->yaw_ideal = retVal;
 }
 
 void func_80328CA8(Actor *arg0, s32 angle) {
@@ -1395,7 +1395,7 @@ f32 func_80328DCC(Actor *this, f32 angle, f32 angle_ideal, s32 arg3) {
 }
 
 void func_80328FB0(Actor *this, f32 arg1){
-    this->yaw = func_80328DCC(this, this->yaw, this->yaw_moving, (s32)arg1);
+    this->yaw = func_80328DCC(this, this->yaw, this->yaw_ideal, (s32)arg1);
 }
 
 void func_80328FF0(Actor *arg0, f32 arg1) {
@@ -1502,14 +1502,14 @@ bool func_8032944C(Actor *this){
 bool func_80329480(Actor *this){
     s32 v1;
 
-    v1 = this->yaw - this->yaw_moving;
+    v1 = this->yaw - this->yaw_ideal;
     return ((-3 <= v1) && (v1 <= 3));
 }
 
 bool func_803294B4(Actor *this, s32 arg1){
     s32 v1;
 
-    v1 = this->yaw - this->yaw_moving;
+    v1 = this->yaw - this->yaw_ideal;
     return ((-arg1 <= v1) && (v1 <= arg1));
 }
 
@@ -1938,7 +1938,7 @@ void func_8032A88C(Actor *arg0) {
     Actorlocal_Core2_9E370 *sp20;
 
     sp20 = &arg0->local;
-    arg0->yaw_moving = (f32) func_803297C8(arg0, sp20->unk0);
+    arg0->yaw_ideal = (f32) func_803297C8(arg0, sp20->unk0);
     func_80328FB0(arg0, 6.0f);
     func_80329030(arg0, 0);
     if ((((arg0->position[0] - sp20->unk0[0]) * (arg0->position[0] - sp20->unk0[0])) + ((arg0->position[2] - sp20->unk0[2]) * (arg0->position[2] - sp20->unk0[2]))) <= 144.0f) {

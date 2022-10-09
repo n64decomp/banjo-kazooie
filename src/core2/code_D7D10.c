@@ -100,7 +100,7 @@ void func_8035EEC0(Actor *this){
 }
 
 void func_8035EF00(Actor *this, f32 arg1){
-    this->yaw_moving = (f32)func_80329784(this);
+    this->yaw_ideal = (f32)func_80329784(this);
     func_80328FB0(this, arg1);
 }
 
@@ -248,7 +248,7 @@ void func_8035F138(Actor *this) {
                 break;
             }
 
-            this->yaw_moving = (f32)(s32)func_80257204(this->position[0], this->position[2], this->unk1C[0], this->unk1C[2]);
+            this->yaw_ideal = (f32)(s32)func_80257204(this->position[0], this->position[2], this->unk1C[0], this->unk1C[2]);
             func_80328FB0(this, 7.0f);
             func_80329030(this, 2);
             break;
@@ -270,7 +270,7 @@ void func_8035F138(Actor *this) {
                 func_8035EE48(this);
                 break;
             }
-            this->yaw_moving = this->velocity[0];
+            this->yaw_ideal = this->velocity[0];
             func_80328FB0(this, 7.5f);
             func_80329030(this, 2);
             break;

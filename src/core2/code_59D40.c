@@ -209,7 +209,7 @@ void func_802E1168(Actor *this) {
 
         case 3: //802E13AC
             func_803297FC(this, &sp44, &sp40);
-            this->yaw_moving = sp40;
+            this->yaw_ideal = sp40;
             this->unk6C = func_802E10F0(sp44);
             func_80328FB0(this, 4.0f);
             func_80328FF0(this, 3.0f);
@@ -221,7 +221,7 @@ void func_802E1168(Actor *this) {
 
         case 4: //802E1424
             func_803297FC(this, &sp44, &sp40);
-            this->yaw_moving = sp40;
+            this->yaw_ideal = sp40;
             this->unk6C = func_802E10F0(sp44);
             func_80328FB0(this, this->unk28 / 2);
             func_80328FF0(this, this->unk28 / 2);
@@ -235,7 +235,7 @@ void func_802E1168(Actor *this) {
             }
             if (actor_animationIsAt(this, 0.99f)) {
                 func_802E0CD0(this);
-                func_80328CEC(this, (s32) this->yaw_moving, 0x87, 0xAF);
+                func_80328CEC(this, (s32) this->yaw_ideal, 0x87, 0xAF);
                 this->unk38_31 = 0x78;
                 func_80328B8C(this, 2, 0.0f, 1);
                 actor_loopAnimation(this);

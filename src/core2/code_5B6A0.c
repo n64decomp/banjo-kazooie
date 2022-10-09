@@ -114,6 +114,7 @@ void func_802E28D0(Actor *this) {
         marker_setCollisionScripts(this->marker, NULL, NULL, func_802E28A4);
         if(local->unk0 == 0){
             player_getPosition(this->unk1C);
+            local->unk0 = 1;
             return;
         }
         this->initialized = TRUE;
@@ -170,12 +171,12 @@ void func_802E28D0(Actor *this) {
         break;
     case 2:
         this->marker->unk40_22 = NOT(func_8028F170());
-        this->velocity[0] += 0.7;
-        this->velocity[1] += 0.7;
-        this->velocity[2] += 0.7;
-        this->position[0] +=  this->velocity[0];
-        this->position[1] +=  this->velocity[1];
-        this->position[2] +=  this->velocity[2];
+        this->velocity[0] *= 0.7;\
+        this->velocity[1] *= 0.7;\
+        this->velocity[2] *= 0.7;
+        this->position[0] =  this->position[0] + this->velocity[0];
+        this->position[1] =  this->position[1] + this->velocity[1];
+        this->position[2] =  this->position[2] + this->velocity[2];
         break;
     }
 }

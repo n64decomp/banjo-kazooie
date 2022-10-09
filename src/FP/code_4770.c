@@ -159,7 +159,7 @@ void func_8038AEE0(s32 indx){
 }
 
 void func_8038B00C(s32 indx){
-    func_802C3C88(func_8038AEE0, indx);
+    __spawnqueue_add_1(func_8038AEE0, indx);
 }
 
 void func_8038B034(void){
@@ -211,7 +211,7 @@ void func_8038B1D0(enum jiggy_e jiggy_id){
     timed_setCameraToNode(0.0f, 3);
     timedFunc_set_0(0.0f, func_8038AEA0);
     timedFunc_set_0(0.0f, func_8038B0B8);
-    timedFunc_set_1(0.1f, (TFQM1) func_8038B130, jiggy_id);
+    timedFunc_set_1(0.1f, (GenMethod_1) func_8038B130, jiggy_id);
     timedFunc_set_0(5.0f, func_8038B190);
     timedFunc_set_0(5.0f, func_8038B1C4);
     func_80324E88(5.0f);

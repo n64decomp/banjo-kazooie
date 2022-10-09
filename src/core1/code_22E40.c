@@ -1,6 +1,8 @@
 #include <ultra64.h>
-#include "functions.h"
-#include "variables.h"
+#include "n_libaudio.h"
+#include "n_synth.h"
+// #include "functions.h"
+// #include "variables.h"
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_22E40/func_80260860.s")
 
@@ -10,6 +12,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_22E40/n_alEnvmixerPull.s")
 
+#ifdef NONMATCHING
+#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_22E40/__postNextSeqEvent.s")
+#else
 void __postNextSeqEvent(ALSeqPlayer *seqp) 
 {
     ALEvent     evt;
@@ -42,8 +47,8 @@ void __postNextSeqEvent(ALSeqPlayer *seqp)
     evt.type = AL_SEQ_REF_EVT;
     //alEvtqPostEvent(&seqp->evtq, &evt, deltaTicks * seqp->uspt);
     alEvtqPostEvent(&seqp->evtq, &evt, deltaTicks * seqp->uspt);
-
 }
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_22E40/__setInstChanState.s")
 

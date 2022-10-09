@@ -365,7 +365,7 @@ void func_8038F350(Actor *this, s32 next_state){
         } else if (this->unkF4_8 == 0xA) {
             func_80324DBC(1.0f, 0xFAC, 4, NULL, this->marker, func_8038F0C0, NULL);
         }
-        timedFunc_set_1(2.0f, (TFQM1) func_8038EBEC, (s32) this->marker);
+        timedFunc_set_1(2.0f, (GenMethod_1) func_8038EBEC, (s32) this->marker);
         this->unk60 = 3.0f;
             break;
     }

@@ -152,16 +152,16 @@ void func_80387FD4(Actor *this){
                 func_80324D2C(4.5f, COMUSIC_43_ENTER_LEVEL_GLITTER);
                 func_80328B8C(this, 5, 0.79f, 1);
                 if (this->unkF4_8 == 5) {
-                    timedFunc_set_1(0.9f, (TFQM1) func_80387E40, (s32) this->marker);
+                    timedFunc_set_1(0.9f, (GenMethod_1) func_80387E40, (s32) this->marker);
                 } else {
                     func_80326310(this);
                 }
                 if (this->unkF4_8 < 5) {
                     bgs_D_803907B8[this->unkF4_8]->propPtr->unk8_4 = TRUE;
-                    timedFunc_set_1(1.1f, (TFQM1)func_80387E00, bgs_D_803907B8[this->unkF4_8]);
+                    timedFunc_set_1(1.1f, (GenMethod_1)func_80387E00, bgs_D_803907B8[this->unkF4_8]);
                     func_802BAFE4(D_803907B0[this->unkF4_8-1]);
                 } else {
-                    timedFunc_set_1(0.8f, (TFQM1)func_80387D90, (s32) this->marker);
+                    timedFunc_set_1(0.8f, (GenMethod_1)func_80387D90, (s32) this->marker);
                 }
                 func_802C3D3C(&func_80387D18, this->marker, 0x46);
             }

@@ -177,7 +177,7 @@ void func_80388028(Actor *this){
         this->unk16C_4 = TRUE;
         this->unk16C_0 = TRUE;
         marker_setCollisionScripts(this->marker, NULL, func_80387CF4, func_80387D1C);
-        func_802C3C88(func_80387D48, this->marker);
+        __spawnqueue_add_1(func_80387D48, this->marker);
         func_80387B14(this, (this->state < 5) ? 1 : 6);
     }//L803880B4
 

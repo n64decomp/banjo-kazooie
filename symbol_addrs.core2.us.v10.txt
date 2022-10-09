@@ -167,6 +167,7 @@ bsstand_update = 0x802B4D20;
 bsstand_end = 0x802B5248;
 bstwirl_hitboxActive = 0x802B6A40;
 set_camera_to_node = 0x802BAE20;
+__spawnqueue_add_1 = 0x802C3C88;
 func_802C4140 = 0x802C4140;
 func_802C418C = 0x802C418C;
 func_802C4218 = 0x802C4218;

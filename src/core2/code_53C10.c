@@ -87,7 +87,7 @@ void func_802DAE40(Actor *this) {
 
     func_80328A84(this, 2);
     func_802DAE10(this);
-    func_80328CEC(this, (s32) this->yaw_moving, (s32) (this->yaw + 160.0f) % 360, (s32) (this->yaw + 200.0f) % 360);
+    func_80328CEC(this, (s32) this->yaw_ideal, (s32) (this->yaw + 160.0f) % 360, (s32) (this->yaw + 200.0f) % 360);
     this->unk38_31 = 0x5A;
 }
 
@@ -127,7 +127,7 @@ bool func_802DAFBC(Actor *this) {
     if (temp_v0 & 4) {
         func_8032C9E0(sp38);
         sp34 = func_80257248(sp38, this->position);
-        if (((func_8023DB5C() - local->unk38) == 0x1E) && ((sp34 - this->yaw_moving < 15.0f) && (sp34 - this->yaw_moving > -15.0f))) {
+        if (((func_8023DB5C() - local->unk38) == 0x1E) && ((sp34 - this->yaw_ideal < 15.0f) && (sp34 - this->yaw_ideal > -15.0f))) {
             func_802DAF2C(this->position, this->yaw, this->unk28);
         } else {
             func_80328CEC(this, (s32) sp34, 0, 0xF);
@@ -139,13 +139,13 @@ bool func_802DAFBC(Actor *this) {
         func_802DAE10(this);
         this->unk38_31 = 0x5A;
         func_80328B8C(this, 2, sp44, 1);
-        func_80328CEC(this, (s32) this->yaw_moving, 0xB3, 0xB4);
+        func_80328CEC(this, (s32) this->yaw_ideal, 0xB3, 0xB4);
         this->unk38_0 = TRUE;
     } else {
         func_802DAE10(this);
         this->unk38_31 = 0x5A;
         func_80328B8C(this, 8, sp44, 1);
-        func_80328CEC(this, (s32) this->yaw_moving, 120, 180);
+        func_80328CEC(this, (s32) this->yaw_ideal, 120, 180);
     }
     return TRUE;
 }
@@ -271,7 +271,7 @@ void func_802DB5A0(Actor *this) {
                     phi_f14 -= 1.0;
                 }
                 func_80328B8C(this, 2, phi_f14, 1);
-                this->yaw_moving = this->yaw;
+                this->yaw_ideal = this->yaw;
                 func_802DAE10(this);
             }
             break;
@@ -281,13 +281,13 @@ void func_802DB5A0(Actor *this) {
             func_802DB3B0(this);
             if (this->unk38_31 == 0) {
                 if (!(func_8023DB5C() & 0xF)) {
-                    func_80328CEC(this, this->yaw_moving, 0xA, 0x14);
+                    func_80328CEC(this, this->yaw_ideal, 0xA, 0x14);
                 }
                 if (!(func_8023DB5C() & 7)) {
                     func_80328B38(this, 1, 0.02f);
                 }
                 if( !(func_8023DB5C() & 0xF) 
-                   && func_80329078(this, (s32) this->yaw_moving, 0x96)
+                   && func_80329078(this, (s32) this->yaw_ideal, 0x96)
                 ) {
                     if (func_80328B38(this, 3, 0.13f) != 0) {
                         this->unk28 = randf2((f32)local->unk8, (f32)local->unk9);
@@ -300,7 +300,7 @@ void func_802DB5A0(Actor *this) {
             
         case 6://L802DB8C0
             func_802DB264(this);
-            this->yaw_moving = (f32) func_80329784(this);
+            this->yaw_ideal = (f32) func_80329784(this);
             func_80328FB0(this, 4.0f);
             if (func_80329480(this)) {
                 this->unk10_12 = local->unkC_31;
@@ -323,7 +323,7 @@ void func_802DB5A0(Actor *this) {
             if (this->unk10_12 < local->unkC_31) {
                 animctrl_setDuration(this->animctrl, this->unk18[4].duration - ((local->unkC_31 - this->unk10_12) * 0.1));
             }
-            this->yaw_moving = (f32) func_80329784(this);
+            this->yaw_ideal = (f32) func_80329784(this);
             if (!func_803294B4(this, 0x21)) {
                 func_80328A84(this, 6);
             }
@@ -348,7 +348,7 @@ void func_802DB5A0(Actor *this) {
         case 7://L802DBB4C
             if (this->unk38_31 == 0) {
                 if ((func_8023DB5C() & 0xF) == 9) {
-                    this->yaw_moving = (f32) func_80329784(this);
+                    this->yaw_ideal = (f32) func_80329784(this);
                 }
             }
             func_80328FB0(this, (f32)local->unkB);

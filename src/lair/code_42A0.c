@@ -378,7 +378,7 @@ void func_8038AE2C(Actor *this) {
             if( func_8038ADF0(sp38, (s32) this->velocity[0]) 
                 || func_8038ADF0((s32) this->velocity[0], sp38)
             ) {
-                this->yaw_moving = (f32) sp38;
+                this->yaw_ideal = (f32) sp38;
             }
             func_80328FB0(this, 3.0f);
             if( actor_animationIsAt(this, 0.114f)

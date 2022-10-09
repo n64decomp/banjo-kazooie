@@ -144,7 +144,7 @@ void func_802D7C24(ActorMarker *marker, ActorMarker *other_marker) {
                 break;
         }
         if (var_a3 != 0) {
-            timedFunc_set_1(0.5f, (TFQM1)func_802D7BE8, var_a3);
+            timedFunc_set_1(0.5f, (GenMethod_1)func_802D7BE8, var_a3);
         }
         func_8028F030(this->modelCacheIndex);
         marker_despawn(marker);

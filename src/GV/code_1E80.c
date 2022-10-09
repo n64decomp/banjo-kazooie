@@ -63,10 +63,10 @@ void chgobi3_setState(Actor *this, s32 next_state){
 
     if(next_state == 3){
         func_80324E38(0.0f, 3);
-        timedFunc_set_1(0.02f, (TFQM1)func_80388270, (s32)this);
+        timedFunc_set_1(0.02f, (GenMethod_1)func_80388270, (s32)this);
         timed_setCameraToNode(0.1f, 0x12);
         timed_playSfx(0.2f, SFX_4C_LIP_SMACK, 1.0f, 32000);
-        timedFunc_set_1(0.2f, (TFQM1)func_80388298, (s32)this);
+        timedFunc_set_1(0.2f, (GenMethod_1)func_80388298, (s32)this);
         func_80335924(this->unk148, ASSET_FC_ANIM_GOBI_SPITTING, 0.2f, 1.0f);
     }
 

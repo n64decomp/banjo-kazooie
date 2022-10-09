@@ -100,7 +100,7 @@ void func_8038EB8C(Actor *this){
                     if(tmp == 5){
                         func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);
                     }
-                    func_802C3C88(func_8038EB4C, this->marker);
+                    __spawnqueue_add_1(func_8038EB4C, this->marker);
                     if(tmp < 5){
                         func_802C3F04(func_802C4218,D_80390B50[tmp], ((u32 *)diffPos)[0], ((u32 *)diffPos)[1], ((u32 *)diffPos)[2]);
                     } else {

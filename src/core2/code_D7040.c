@@ -212,7 +212,7 @@ void func_8035E84C(Actor *this) {
                 func_8035E0D0(this);
             }
             if (func_8034A6FC(0.73f, 0.76f) && func_80329078(this, (s32) this->yaw, 750) ) {
-                this->yaw_moving = this->yaw;
+                this->yaw_ideal = this->yaw;
                 this->velocity[0] = 35.0f;
                 this->unk28 = 19.4444447f;
                 this->unk38_31 = 0x3A;

@@ -224,7 +224,7 @@ void __chicecube_die(ActorMarker *marker, ActorMarker *other_marker){
     func_8035A04C(actor->position, 12, ASSET_505_MODEL_ICECUBE_CHUNK, actor->scale);
     func_8035A228(actor->position, 6, ASSET_700_SPRITE_DUST, actor->scale);
     if(actor->unkF4_8 != 1){
-        func_802C3C88(__chicecube_spawnHalfCubes, actor->marker);
+        __spawnqueue_add_1(__chicecube_spawnHalfCubes, actor->marker);
     }
     marker_despawn(actor->marker);
 }

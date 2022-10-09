@@ -298,7 +298,7 @@ void func_802C4C14(Actor *this){
         return;
 
     if(!this->initialized){
-        func_802C3C88(func_802C4BB4, this->marker);
+        __spawnqueue_add_1(func_802C4BB4, this->marker);
         func_802C7318(this);
         this->unk130 = func_802C71F0;
         if(sp84 == 0){

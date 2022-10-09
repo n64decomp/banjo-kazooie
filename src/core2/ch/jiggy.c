@@ -83,7 +83,7 @@ void func_802C7B8C(Actor *this, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5
         timedFunc_set_4(0.6f, (TFQM4)func_802C7AF8, (s32)this->position[0], (s32)this->position[1], (s32)this->position[2], arg4);
         timedFunc_set_2(0.6f, (TFQM2)func_802C7AB0, (s32)this->marker, arg5);
         timedFunc_set_0(1.0f, (TFQM0)func_802BE720);
-        timedFunc_set_1(3.9f, (TFQM1)func_802C7B6C, arg4);
+        timedFunc_set_1(3.9f, (GenMethod_1)func_802C7B6C, arg4);
         mapSpecificFlags_set(arg1, 1);
     }
 }
@@ -95,7 +95,7 @@ void func_802C7CA4(Actor *this){
     if(360.0f <= this->yaw){
         this->yaw -= 360.0f;
     }
-    this->yaw_moving = this->yaw;
+    this->yaw_ideal = this->yaw;
 }
 
 //chjiggy_draw

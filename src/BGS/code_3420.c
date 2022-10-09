@@ -374,9 +374,9 @@ void chvilegame_player_consume_piece(Actor *this) {
                         item_inc(ITEM_16_LIFE);
                         func_8025A6EC(COMUSIC_15_EXTRA_LIFE_COLLECTED, 0x7FF8);
                     }
-                    timedFunc_set_1(0.0f, (TFQM1)func_802FDCB8, ITEM_1A_PLAYER_VILE_SCORE);
-                    timedFunc_set_1(0.5f, (TFQM1)func_802FDCB8, ITEM_1A_PLAYER_VILE_SCORE);
-                    timedFunc_set_1(1.0f, (TFQM1)func_802FDCB8, ITEM_1A_PLAYER_VILE_SCORE);
+                    timedFunc_set_1(0.0f, (GenMethod_1)func_802FDCB8, ITEM_1A_PLAYER_VILE_SCORE);
+                    timedFunc_set_1(0.5f, (GenMethod_1)func_802FDCB8, ITEM_1A_PLAYER_VILE_SCORE);
+                    timedFunc_set_1(1.0f, (GenMethod_1)func_802FDCB8, ITEM_1A_PLAYER_VILE_SCORE);
                 }
                 func_8028F6B8(BS_INTR_17, (i_ptr->type != YUMBLIE) ? ASSET_3F7_MODEL_GRUMBLIE : ASSET_3F6_MODEL_YUMBLIE);
                 if (!is_correct_type) {
@@ -406,9 +406,9 @@ bool chvilegame_cpu_consume_piece(ActorMarker *marker, f32 position[3]) {
     for(i_ptr = begin; i_ptr < end; i_ptr++){
         if ((ml_vec3f_distance(i_ptr->position, position) < 50.0f) && func_8038B684(i_ptr->marker)) {
             local->vile_score++;
-            timedFunc_set_1(0.0f, (TFQM1)func_802FDCB8, ITEM_1B_VILE_VILE_SCORE);
-            timedFunc_set_1(0.5f, (TFQM1)func_802FDCB8, ITEM_1B_VILE_VILE_SCORE);
-            timedFunc_set_1(1.0f, (TFQM1)func_802FDCB8, ITEM_1B_VILE_VILE_SCORE);
+            timedFunc_set_1(0.0f, (GenMethod_1)func_802FDCB8, ITEM_1B_VILE_VILE_SCORE);
+            timedFunc_set_1(0.5f, (GenMethod_1)func_802FDCB8, ITEM_1B_VILE_VILE_SCORE);
+            timedFunc_set_1(1.0f, (GenMethod_1)func_802FDCB8, ITEM_1B_VILE_VILE_SCORE);
             return TRUE;
         }
     }

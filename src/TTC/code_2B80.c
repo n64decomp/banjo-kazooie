@@ -41,7 +41,7 @@ void func_80388FBC(Actor *this) {
         this->marker->propPtr->unk8_3 = FALSE;
         if (levelSpecificFlags_get(5) != 0) {
             levelSpecificFlags_set(5, 0);
-            timedFunc_set_1(0.5f, (TFQM1)func_8025A70C, COMUSIC_2D_PUZZLE_SOLVED_FANFARE);
+            timedFunc_set_1(0.5f, (GenMethod_1)func_8025A70C, COMUSIC_2D_PUZZLE_SOLVED_FANFARE);
         }
         if (levelSpecificFlags_get(2) != 0) {
             temp_v0_2 = func_8034C5AC(300);

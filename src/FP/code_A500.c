@@ -72,7 +72,7 @@ void func_80390B2C(ActorMarker *marker){
 void func_80390B70(Actor *this){
     func_80324E38(0.0f, 3);
     timed_setCameraToNode(0.0f, 0);
-    timedFunc_set_1(0.6f, (TFQM1)func_80390ABC, this->marker);
+    timedFunc_set_1(0.6f, (GenMethod_1)func_80390ABC, this->marker);
     timedFunc_set_1(2.5f, func_80390B2C, this->marker);
 }
 

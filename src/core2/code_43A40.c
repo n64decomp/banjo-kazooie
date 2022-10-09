@@ -75,7 +75,7 @@ void func_802CAA44(Actor *this){
     if(map_get() == MAP_12_GV_GOBIS_VALLEY){
         this->unk6C = 352.0f;
         this->pitch = 352.0f;
-        this->yaw_moving = 90.0f;
+        this->yaw_ideal = 90.0f;
         this->yaw = 90.0f;
     }
 }

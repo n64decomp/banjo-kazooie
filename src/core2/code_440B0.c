@@ -61,7 +61,7 @@ void func_802CB078(Actor *this) {
 void func_802CB140(Actor *this) {
     func_80328A84(this, 2U);
     func_802CB040(this);
-    func_80328CEC(this, (s32) this->yaw_moving, 135, 175);
+    func_80328CEC(this, (s32) this->yaw_ideal, 135, 175);
     this->unk38_31 = 150;
 }
 
@@ -254,7 +254,7 @@ void func_802CBAAC(Actor *this) {
             marker_despawn(this->marker);
             return;
         }
-        this->yaw_moving = (f32) func_80329784(this);
+        this->yaw_ideal = (f32) func_80329784(this);
         func_80328FB0(this, 4.0f);
         return;
     }
@@ -319,7 +319,7 @@ void func_802CBAAC(Actor *this) {
             break;
 
         case 3: //L802CBF44
-            this->yaw_moving = (f32) func_80329784(this);
+            this->yaw_ideal = (f32) func_80329784(this);
             func_80328FB0(this, 4.0f);
             if (func_80329480(this)) {
                 func_80328A84(this, 4);
@@ -328,7 +328,7 @@ void func_802CBAAC(Actor *this) {
             break;
 
         case 8: //L802CBF9C
-            this->yaw_moving = func_80329784(this) + 90.0;
+            this->yaw_ideal = func_80329784(this) + 90.0;
             func_80328FB0(this, 4.0f);
             if (func_80329480(this)) {
                 func_80328A84(this, 9);
@@ -340,7 +340,7 @@ void func_802CBAAC(Actor *this) {
 
         case 4: //L802CC024
             if ((func_8023DB5C() & 0xF) == 9) {
-                this->yaw_moving = (f32) func_80329784(this);
+                this->yaw_ideal = (f32) func_80329784(this);
             }
             func_80328FB0(this, 7.0f);
             if (func_8032CA80(this, (this->modelCacheIndex == 0xF2)? 0xD : 0)) {

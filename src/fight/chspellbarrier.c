@@ -3,7 +3,7 @@
 #include "variables.h"
 
 
-extern ActorMarker *func_8038A4E8(Actor*, f32);
+extern ActorMarker *chfinalboss_findCollidingJinjo(Actor*, f32);
 void func_80386654(f32 arg0, f32 (*arg1)[4], f32 (*arg2)[4]);
 
 typedef struct {
@@ -23,12 +23,13 @@ typedef struct {
     u8 unk10;
 } ActorLocal_fight_8390;
 
-void func_8038E844(Actor *this);
+void chspellbarrier_update(Actor *this);
 
 /* .data */
 ActorInfo D_80391AD0 = {
-    0x284, 0x3AB, 0x546, 0x1, NULL,
-    func_8038E844, func_80326224, func_80325888,
+    MARKER_284_GRUNTY_SPELL_BARRIER, ACTOR_3AB_GRUNTY_SPELL_BARRIER, ASSET_546_MODEL_GRUNTY_SPELL_BARRIER,
+    0x1, NULL,
+    chspellbarrier_update, func_80326224, func_80325888,
     0, 0, 0.0f, 0
 };
 
@@ -50,22 +51,22 @@ void func_8038E780(ActorMarker *arg0, ActorMarker *arg1) {
 }
 
 void func_8038E7EC(Actor *arg0) {
-    ActorLocal_fight_8390 *temp_v0 = (ActorLocal_fight_8390 *)&arg0->local;
+    ActorLocal_fight_8390 *local = (ActorLocal_fight_8390 *)&arg0->local;
 
     if ((u8)arg0->unk44_31) {
         func_8030DA44(arg0->unk44_31);
         arg0->unk44_31 = 0;
     }
-    if (temp_v0->unk10 != 0) {
-        func_8030DA44(temp_v0->unk10);
-        temp_v0->unk10 = (u8)0;
+    if (local->unk10 != 0) {
+        func_8030DA44(local->unk10);
+        local->unk10 = (u8)0;
     }
 }
 
-void func_8038E844(Actor *this){
+void chspellbarrier_update(Actor *this){
     ActorLocal_fight_8390 *local = (ActorLocal_fight_8390 *)&this->local;
     f32 sp38 = time_getDelta();
-    ActorMarker *temp_v0;
+    ActorMarker *jinjo_marker;
 
     if(!this->unk16C_4){
         this->unk16C_4 = 1;
@@ -85,11 +86,11 @@ void func_8038E844(Actor *this){
         func_8030DBB4(local->unk10, 1.0f);
         FUNC_8030E8B4(SFX_416, 0.8f, 32000, this->position, 10000, 25000);
     }//L8038E97C
-    temp_v0 = func_8038A4E8(this, 600.0f);
-    if(temp_v0){
-        if(temp_v0->unk14_20 == 0x285){
+    jinjo_marker = chfinalboss_findCollidingJinjo(this, 600.0f);
+    if(jinjo_marker){
+        if(jinjo_marker->unk14_20 == MARKER_285_JINJONATOR){
             marker_despawn(this->marker);
-            func_8038C100();
+            chfinalboss_spellBarrierInactive();
             return;
         }
         else{
