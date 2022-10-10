@@ -2,6 +2,21 @@
 #include "functions.h"
 #include "variables.h"
 
+Mtx *func_8024DD9C(void);
+void func_80251BCC(Mtx *);
+void func_80252330(f32, f32, f32);
+void mlMtxApply(Mtx *);
+void func_803382D8(s32 arg0);
+void func_803382E4(s32 arg0);
+void func_803382F0(s32 arg0);
+void func_803382FC(s32 arg0);
+void func_80338308(s32 arg0, s32 arg1);
+
+/* .data */
+extern Gfx D_80370260[];
+extern Gfx D_80370290[];
+extern Gfx D_803702C0[];
+extern Gfx D_80370308[];
 extern u8 D_80370338[4];
 extern u8 D_8037033C;
 
@@ -21,15 +36,136 @@ s32 D_8038363C;
 s32 D_80383640;
 s32 D_80383644;
 
+void func_803380F8(Gfx **gfx, Mtx **mtx, f32 arg2[3]);
+void func_803381B4(Gfx **gfx, Mtx **mtx, f32 arg2[3]);
+
 /* .code */
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AEDA0/func_80335D30.s")
+void func_80335D30(Gfx **gfx){
+    gDPPipeSync((*gfx)++);
+    if (D_80370338[0] == 0) {
+        gDPSetColorDither((*gfx)++, G_CD_DISABLE);
+    }//L80335D7C
+    switch(D_80383634 + 1){
+    case 0:
+        return;
+        
+    case 15:
+        gSPDisplayList((*gfx)++, D_803702C0);
+        gDPSetPrimColor((*gfx)++, 0, 0, D_80383610, D_80383614, D_80383618, 0xFF);
+        return;
+
+    case 12:
+        gSPDisplayList((*gfx)++, D_80370290);
+        gDPSetCombineMode((*gfx)++, G_CC_MODULATEIA_PRIM, G_CC_MODULATEIA_PRIM);
+        gDPSetPrimColor((*gfx)++, 0, 0, D_80383610, D_80383614, D_80383618, 0xFF);
+        return;
+
+    case 10:
+        gSPDisplayList((*gfx)++, D_80370260);
+        gDPSetCombineLERP((*gfx)++, PRIMITIVE, ENVIRONMENT, TEXEL0, ENVIRONMENT, TEXEL0, 0, PRIMITIVE, 0, PRIMITIVE, ENVIRONMENT, TEXEL0, ENVIRONMENT, TEXEL0, 0, PRIMITIVE, 0);
+        gDPSetPrimColor((*gfx)++, 0, 0, D_80383610, D_80383614, D_80383618, D_8038363C);
+        gDPSetEnvColor((*gfx)++, D_80383620, D_80383624, D_80383628, 0xFF);
+        return;
+
+    case 16:
+        gSPDisplayList((*gfx)++, D_80370290);
+        gDPSetCombineLERP((*gfx)++, PRIMITIVE, ENVIRONMENT, TEXEL0, ENVIRONMENT, TEXEL0, 0, PRIMITIVE, 0, PRIMITIVE, ENVIRONMENT, TEXEL0, ENVIRONMENT, TEXEL0, 0, PRIMITIVE, 0);
+        gDPSetPrimColor((*gfx)++, 0, 0, D_80383610, D_80383614, D_80383618, D_8038363C);
+        gDPSetEnvColor((*gfx)++, D_80383620, D_80383624, D_80383628, 0xFF);
+        return;
+
+    case 8:
+        if (D_8038361C != 0) {
+            gSPDisplayList((*gfx)++, D_80370308);
+            gDPSetCombineLERP((*gfx)++, TEXEL0, 0, PRIMITIVE, 0, TEXEL0, 0, PRIMITIVE, 0, PRIMITIVE, COMBINED, ENVIRONMENT, COMBINED, 0, 0, 0, COMBINED);
+            gDPSetEnvColor((*gfx)++, D_8038361C, D_8038361C, D_8038361C, 0xFF);
+        } else {
+            gSPDisplayList((*gfx)++, D_80370260);
+            gDPSetCombineMode((*gfx)++, G_CC_MODULATEIA_PRIM, G_CC_MODULATEIA_PRIM);
+        }
+        gDPSetPrimColor((*gfx)++, 0, 0, D_80383610, D_80383614, D_80383618, D_8038363C);
+        return;
+
+    case 7:
+        if (D_8038361C != 0) {
+            gSPDisplayList((*gfx)++, D_80370308);
+            gDPSetCombineLERP((*gfx)++, TEXEL0, 0, PRIMITIVE, 0, 0, 0, 0, TEXEL0, PRIMITIVE, COMBINED, PRIMITIVE_ALPHA, COMBINED, 0, 0, 0, COMBINED);
+            gDPSetPrimColor((*gfx)++, 0, 0, D_80383610, D_80383614, D_80383618, D_8038361C);
+        } else {
+            gSPDisplayList((*gfx)++, D_80370260);
+            gDPSetCombineMode((*gfx)++, G_CC_MODULATEIA_PRIM, G_CC_MODULATEIA_PRIM);
+            gDPSetPrimColor((*gfx)++, 0, 0, D_80383610, D_80383614, D_80383618, 0xFF);
+        }
+        return;
+
+    case 6:
+        gSPDisplayList((*gfx)++, D_80370260);
+        gDPSetCombineMode((*gfx)++, G_CC_MODULATEIA_PRIM, G_CC_MODULATEIA_PRIM);
+        gDPSetPrimColor((*gfx)++, 0, 0, D_80383610, D_80383614, D_80383618, D_8038363C);
+        return;
+
+    case 13:
+        gSPDisplayList((*gfx)++, D_80370290);
+        gDPSetCombineMode((*gfx)++, G_CC_MODULATEIA_PRIM, G_CC_MODULATEIA_PRIM);
+        gDPSetPrimColor((*gfx)++, 0, 0, D_80383610, D_80383614, D_80383618, D_8038363C);
+        return;
+
+    case 5:
+        gSPDisplayList((*gfx)++, D_80370260);
+        gDPSetCombineMode((*gfx)++, G_CC_MODULATEIA_PRIM, G_CC_MODULATEIA_PRIM);
+        gDPSetPrimColor((*gfx)++, 0, 0, D_80383610, D_80383614, D_80383618, 0xFF);
+        return;
+
+    case 9:
+        gSPDisplayList((*gfx)++, D_80370260);
+        gDPSetCombineMode((*gfx)++, G_CC_MODULATEIA_PRIM, G_CC_MODULATEIA_PRIM);
+        gDPSetPrimColor((*gfx)++, 0, 0, D_80383630, D_80383630, D_80383630, D_8038363C);
+        return;
+
+    case 14:
+        gSPDisplayList((*gfx)++, D_80370290);
+        gDPSetCombineMode((*gfx)++, G_CC_MODULATEIA_PRIM, G_CC_MODULATEIA_PRIM);
+        gDPSetPrimColor((*gfx)++, 0, 0, D_80383630, D_80383630, D_80383630, D_8038363C);
+        return;
+
+    case 1:
+        gSPDisplayList((*gfx)++, D_80370260);
+        gDPSetCombineMode((*gfx)++, G_CC_MODULATEIA_PRIM, G_CC_MODULATEIA_PRIM);
+        gDPSetPrimColor((*gfx)++, 0, 0, D_80383630, D_80383630, D_80383630, 0xFF);
+        return;
+
+    case 2:
+        gSPDisplayList((*gfx)++, D_80370260);
+        gDPSetCombineLERP((*gfx)++, 0, 0, 0, PRIMITIVE, TEXEL0, 0, PRIMITIVE, 0, 0, 0, 0, PRIMITIVE, TEXEL0, 0, PRIMITIVE, 0);
+        gDPSetPrimColor((*gfx)++, 0, 0, 0, 0, 0, D_8038363C);
+        return;
+
+    case 11:
+        gSPDisplayList((*gfx)++, D_80370290);
+        gDPSetCombineLERP((*gfx)++, 0, 0, 0, PRIMITIVE, TEXEL0, 0, PRIMITIVE, 0, 0, 0, 0, PRIMITIVE, TEXEL0, 0, PRIMITIVE, 0);
+        gDPSetPrimColor((*gfx)++, 0, 0, 0, 0, 0, D_8038363C);
+        return;
+
+    case 4:
+        gSPDisplayList((*gfx)++, D_80370260);
+        gDPSetCombineMode((*gfx)++, G_CC_MODULATEIA_PRIM, G_CC_MODULATEIA_PRIM);
+        gDPSetPrimColor((*gfx)++, 0, 0, D_80383620, D_80383624, D_80383628, D_8038362C);
+        return;
+
+    default://L80336814
+        gSPDisplayList((*gfx)++, D_80370260);
+        gDPSetCombineLERP((*gfx)++, 0, 0, 0, TEXEL0, 0, 0, 0, PRIMITIVE, 0, 0, 0, TEXEL0, 0, 0, 0, PRIMITIVE);
+        gDPSetPrimColor((*gfx)++, 0, 0, 0, 0, 0, 0xFF);
+        return;
+    }
+}
 
 void func_8033687C( Gfx **gfx )
  {
      /* Turn off texturing */
      gDPPipeSync((*gfx)++);
      if (D_80370338[0] == 0) {
-        gDPSetColorDither((*gfx)++, 0);
+        gDPSetColorDither((*gfx)++, G_CD_MAGICSQ);
         D_80370338[0] = 1;
      }
 
@@ -363,19 +499,45 @@ void func_80337B68(Gfx **gfx, Vtx **vtx, Struct84s *texture_list, s32 texture_in
 }
 #endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AEDA0/func_80338048.s")
+void func_80338048(Gfx **gfx, Mtx **mtx, Vtx **vtx, f32 arg3[3], Struct84s *arg4, s32 arg5) {
+    func_803380F8(gfx, mtx, arg3);
+    func_80337B68(gfx, vtx, arg4, arg5);
+    gSPPopMatrix((*gfx)++, G_MTX_MODELVIEW);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AEDA0/func_803380A0.s")
+void func_803380A0(Gfx **gfx, Mtx **mtx, Vtx **vtx, f32 arg3[3], Struct84s *arg4, s32 arg5) {
+    func_803381B4(gfx, mtx, arg3);
+    func_80337B68(gfx, vtx, arg4, arg5);
+    gSPPopMatrix((*gfx)++, G_MTX_MODELVIEW);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AEDA0/func_803380F8.s")
+void func_803380F8(Gfx **gfx, Mtx **mtx, f32 arg2[3]) {
+    f32 sp2C[3];
+    f32 sp20[3];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AEDA0/func_803381B4.s")
+    func_8024C5CC(sp2C);
+    sp20[0] = arg2[0] - sp2C[0];
+    sp20[1] = arg2[1] - sp2C[1];
+    sp20[2] = arg2[2] - sp2C[2];
+    func_80251BCC(func_8024DD90());
+    func_80252330(sp20[0], sp20[1], sp20[2]);
+    mlMtxApply(*mtx);
+    gSPMatrix((*gfx)++, (*mtx)++, G_MTX_PUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
+}
 
-void func_803382D8(s32 arg0);
-void func_803382E4(s32 arg0);
-void func_803382F0(s32 arg0);
-void func_803382FC(s32 arg0);
-void func_80338308(s32 arg0, s32 arg1);
+void func_803381B4(Gfx **gfx, Mtx **mtx, f32 arg2[3]) {
+    f32 sp2C[3];
+    f32 sp20[3];
+
+    func_8024C5CC(sp2C);
+    sp20[0] = arg2[0] - sp2C[0];
+    sp20[1] = arg2[1] - sp2C[1];
+    sp20[2] = arg2[2] - sp2C[2];
+    func_80251BCC(func_8024DD9C());
+    func_80252330(sp20[0], sp20[1], sp20[2]);
+    mlMtxApply(*mtx);
+    gSPMatrix((*gfx)++, (*mtx)++, G_MTX_PUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
+}
 
 void func_80338270(){
     func_803382D8(0xFF);
@@ -425,9 +587,13 @@ void func_80338338(s32 r, s32 g, s32 b){
     D_80383618 = b;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AEDA0/func_80338354.s")
+void func_80338354(s32 arg0){
+    D_8038361C = arg0 / 8 ;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AEDA0/func_80338370.s")
+void func_80338370(void){
+    D_80370338[0] = 0;
+}
 
 void func_8033837C(s32 arg0){
     D_8037033C = arg0;

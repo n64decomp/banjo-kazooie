@@ -1,14 +1,14 @@
 #ifndef ENUMS_H
 #define ENUMS_H
 
-#define SPRITE_TYPE_CI4 (1 << 0)
-#define SPRITE_TYPE_CI8 (1 << 2)
-#define SPRITE_TYPE_I4 (1 << 5)
-#define SPRITE_TYPE_I8 (1 << 6)
-#define SPRITE_TYPE_IA4 (1 << 7)
-#define SPRITE_TYPE_IA8 (1 << 8)
-#define SPRITE_TYPE_UNKNOWN_200 (1 << 9)
-#define SPRITE_TYPE_RGBA16 (1 << 10)
+#define SPRITE_TYPE_CI4 (1 << 0) //0x001
+#define SPRITE_TYPE_CI8 (1 << 2) //0x004
+#define SPRITE_TYPE_I4 (1 << 5)  //0x020
+#define SPRITE_TYPE_I8 (1 << 6)  //0x040
+#define SPRITE_TYPE_IA4 (1 << 7) //0x080
+#define SPRITE_TYPE_IA8 (1 << 8) //0x100
+#define SPRITE_TYPE_UNKNOWN_200 (1 << 9) //0x200
+#define SPRITE_TYPE_RGBA16 (1 << 10) ////0x400
 #define SPRITE_TYPE_RGBA32 (1 << 11)
 
 enum bkprog_e{
@@ -3055,7 +3055,7 @@ enum asset_e
     ASSET_543_MODEL_JINJO_STATUE_BASE = 0x543,
     ASSET_544_MODEL_JINJONATOR_STATUE_BASE,
     ASSET_545_MODEL_STONE_JINJO,
-    ASSET_546_MODEL_GRUNTY_SPELL_BARRIER = 0x546,
+    ASSET_546_MODEL_GRUNTY_SPELL_BARRIER,
     // 547 GL Blue Egg Refill Pillow
     // 548 GL Red Feather Refill Pillow
     // 549 GL Gold Feather Refill Pillow

@@ -52,6 +52,8 @@ segments:
   - [0x13680, c, code_13680]
   - [0x136D0, c, code_136D0]
   - [0x13990, c, code_13990]
+  - [0x155F0, hasm, code_155F0] #DONE
+  - [0x15630, c, code_15630] #DONE
   - [0x15770, c, code_15770]
   - [0x15B30, c, code_15B30] #DONE
   - [0x16A50, c, memory]
@@ -97,7 +99,8 @@ segments:
   - [0x227F0, c, done/audio/n_drvrNew]      #DONE
   - [0x22D50, c, done/audio/n_save]         #DONE
   - [0x22DA0, c, done/audio/n_envresample]  #DONE
-  - [0x22E40, c, code_22E40] #n_seqplayer.c
+  - [0x22E40, c, n_env]
+  - [0x237F0, c, done/audio/n_seqplayer]
   - [0x25360, c, done/audio/n_synstartvoiceparam] #DONE
   - [0x25440, c, done/audio/n_mainbus]    #DONE
   - [0x254C0, c, done/audio/n_load]       #DONE
@@ -267,7 +270,7 @@ segments:
   - [0x39B60, .data, done/io/vimodempallan1]
   - [0x39B60, .data, done/io/vimodentsclan1]
   - [0x39C00, bin, data_39C00] # .rodata, code_1D00]
-  - [0x39C20, bin, data_39C20] # .rodata, code_31C0]
+  - [0x39C20, .rodata, code_31C0]
   - [0x39C30, bin, data_39C30] # .rodata, code_3A70]
   - [0x39CA0, bin, data_39CA0] # .rodata, code_72B0]
   - [0x39CD0, bin, data_39CD0] # .rodata, code_7F60]
@@ -285,7 +288,7 @@ segments:
   - [0x3AD30, bin, data_3AD30]
   - [0x3AD60, .rodata, done/audio/n_drvrNew]
   - [0x3AD80, bin, data_3AD80]
-  - [0x3ADD0, bin, data_3ADD0] # .rodata, code_22E40]
+  - [0x3ADD0, .rodata, done/audio/n_seqplayer]
   - [0x3B180, .rodata, done/audio/n_resample]
   - [0x3B190, .rodata, done/gu/sinf]
   - [0x3B1E0, .rodata, done/audio/cents2ratio]

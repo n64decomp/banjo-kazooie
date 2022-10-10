@@ -35,7 +35,7 @@ mlMtxRotYaw       = 0x80251D84;
 mlMtxRotRoll      = 0x80251E80;
 mlMtxRotate       = 0x80252188;
 mlMtxScale_xyz    = 0x802521C0;
-mlMtxScale        = 0x80252280; 
+mlMtxScale        = 0x80252280;
 mlMtx_apply_vec3s = 0x802525A4;
 mlMtxTranslate    = 0x80252980;
 

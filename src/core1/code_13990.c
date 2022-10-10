@@ -33,7 +33,32 @@ void mlMtxApply(Mtx *mPtr){
     func_80245A7C(D_80282FD0, mPtr);
 }
 
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_802514BC.s")
+#else
+void func_802514BC(Mtx *arg0) {
+    s32 i, j, k;
+    f32 tmp;
+    f32 sp38[4][4];
+    f32 (*sp34)[4];
+    f32 (*var_s0)[4];
+
+
+    sp34 = reinterpret_cast(f32 *, *D_80282FD0);
+    var_s0 = reinterpret_cast(f32 *, arg0);
+    
+    for(i = 0; i < 4; i++){
+        for(j = 0; j < 4; j++){
+            tmp = 0.0f;
+            for(k = 0; k < 4; k++){
+                tmp += var_s0[i][k] * sp34[k][j];
+            }
+            sp38[i][j] = tmp;
+        }
+    }
+    func_80253010(sp34, &sp38, sizeof(Mtx));
+}
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_802515D4.s")
 
@@ -57,31 +82,13 @@ void func_80251738(void){
     v0[0] = 1.0f; 
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_80251788.s")
-#else
 f32 *func_80251788(f32 arg0, f32 arg1, f32 arg2){
-    f32 (* v0)[4][4] = (f32 *) ++D_80282FD0;
-
-    (*v0)[0][3] = 0.0f;
-    (*v0)[0][2] = 0.0f;
-    (*v0)[0][1] = 0.0f;
-    (*v0)[1][3] = 0.0f;
-    (*v0)[1][2] = 0.0f;
-    (*v0)[1][0] = 0.0f;
-    (*v0)[2][3] = 0.0f;
-    (*v0)[2][1] = 0.0f;
-    (*v0)[2][0] = 0.0f;
-    (*v0)[0][0] = 1.0f;
-    (*v0)[1][1] = 1.0f;
-    (*v0)[2][2] = 1.0f;
-    (*v0)[3][3] = 1.0f;
-    (*v0)[3][2] = arg2;
-    (*v0)[3][1] = arg1;
-    (*v0)[3][0] = arg0;
-    return &(*v0)[3][3];
+    f32 * var_v0 = ++D_80282FD0;
+    *(var_v0++) = 1.0f; *(var_v0++) = 0.0f; *(var_v0++) = 0.0f; *(var_v0++) = 0.0f;
+    *(var_v0++) = 0.0f; *(var_v0++) = 1.0f; *(var_v0++) = 0.0f; *(var_v0++) = 0.0f;
+    *(var_v0++) = 0.0f; *(var_v0++) = 0.0f; *(var_v0++) = 1.0f; *(var_v0++) = 0.0f;
+    *(var_v0++) = arg0; *(var_v0++) = arg1; *(var_v0++) = arg2; *(var_v0++) = 1.0f;
 }
-#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_802517F8.s")
 
@@ -92,7 +99,7 @@ f32 *func_80251788(f32 arg0, f32 arg1, f32 arg2){
 //mlMtx
 void mlMtxIdent(void){
     s32 i;
-    f32 *v0 = D_80282FD0 = D_80282810;
+    f32 *v0 = D_80282FD0 = &D_80282810;
     for(i = 0; i<3; i++){
         v0[0] = 1.0f;
         v0[1] = 0.0f;
@@ -104,7 +111,13 @@ void mlMtxIdent(void){
     v0[0] = 1.0f; 
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_80251B5C.s")
+void func_80251B5C(f32 arg0, f32 arg1, f32 arg2){
+    f32 * var_v0 = D_80282FD0 = &D_80282810;
+    *(var_v0++) = 1.0f; *(var_v0++) = 0.0f; *(var_v0++) = 0.0f; *(var_v0++) = 0.0f;
+    *(var_v0++) = 0.0f; *(var_v0++) = 1.0f; *(var_v0++) = 0.0f; *(var_v0++) = 0.0f;
+    *(var_v0++) = 0.0f; *(var_v0++) = 0.0f; *(var_v0++) = 1.0f; *(var_v0++) = 0.0f;
+    *(var_v0++) = arg0; *(var_v0++) = arg1; *(var_v0++) = arg2; *(var_v0++) = 1.0f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_80251BCC.s")
 
@@ -347,62 +360,3 @@ void func_80252FC8(f32 arg0[3]){
     mlMtxRotRoll(-arg0[2]);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_80253010.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_80253034.s")
-
-typedef struct{
-    u32 unk0;
-    u32 unk4;
-}struct49s;
-
-extern struct49s D_803FFE10[];
-
-extern u8  D_8000E800;
-extern u8  D_8002D500;
-extern u32 D_8027BF2C;
-extern u32 D_8027BF30;
-
-void func_80253050(
-    s32 overlay_id, u32 ram_start, u32 ram_end, u32 rom_start, u32 rom_end, 
-    u32 code_start, u32 code_end, u32 data_start, u32 data_end, u32 bss_start, u32 bss_end
-){
-    u32 sp34;
-    u32 sp30;
-    u32 sp2C;
-    u32 *tmp;
-
-    osWriteBackDCacheAll();
-    osInvalDCache(ram_start, ram_end - ram_start);
-    osInvalICache(ram_start, ram_end - ram_start);
-
-    if(bss_start){
-        osInvalDCache(bss_start, bss_end - bss_start);
-    }
-
-    rom_start = D_803FFE10[overlay_id].unk0;
-    rom_end = D_803FFE10[overlay_id].unk4;
-
-    if(overlay_id){
-        func_80254008();
-        sp34 = &D_8000E800;
-    }
-    else{
-        sp34 = &D_8002D500;
-    }
-    func_802405F0(sp34, rom_start, rom_end - rom_start);
-    rarezip_uncompress(&sp34, &ram_start);
-    sp2C = D_8027BF2C;
-    sp30 = D_8027BF30;
-    rarezip_uncompress(&sp34, &ram_start);
-
-    if(bss_start){
-        bzero(bss_start, bss_end - bss_start);
-        osWriteBackDCacheAll();
-        tmp = (u32*) bss_start;
-        tmp[0] = sp2C;
-        tmp[1] = sp30;
-        tmp[2] = D_8027BF2C;
-        tmp[3] = D_8027BF30;
-    }
-}
