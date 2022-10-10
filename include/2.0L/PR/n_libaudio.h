@@ -123,12 +123,12 @@ Acmd *n_alAudioFrame(Acmd *cmdList, s32 *cmdLen,
  * Sequence Player stuff
  */
 typedef struct {
-    struct N_ALVoice_s    *voice;
+    N_ALVoice    *voice;
 } N_ALNoteEvent;
 
 
 typedef struct {
-    struct N_ALVoice_s    *voice;
+    N_ALVoice    *voice;
     ALMicroTime         delta;
     u8                  vol;
 } N_ALVolumeEvent;

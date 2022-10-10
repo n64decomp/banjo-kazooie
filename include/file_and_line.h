@@ -10,7 +10,6 @@ extern void func_8033F000(const char *, const char *, int);
     #define matching_assert(EX, F, L) assert(EX)
 #else
     #define LINE(line_num) line_num
-    #define FILE(file_name) "file_name"
     #ifdef __ANSI_CPP__
         #define FILE(file_name) # file_name
     #else
@@ -23,7 +22,6 @@ extern void func_8033F000(const char *, const char *, int);
         #define matching_assert(EX, F , L)  ((EX)?((void)0):func_8033F000("EX", "F", L))
     #endif
 #endif
-
 
 
 #endif
