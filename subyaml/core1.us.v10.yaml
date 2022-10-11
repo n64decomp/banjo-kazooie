@@ -94,7 +94,7 @@ segments:
   - [0x21AF0, c, done/audio/code_21AF0]     #DONE
   - [0x21B50, c, done/audio/code_21B50]     #DONE
   - [0x21C50, c, done/audio/n_synallocfx]   #DONE
-  - [0x21CB0, c, done/audio/n_reverb]
+  - [0x21CB0, c, done/audio/n_reverb]       #DONE
   - [0x22740, c, done/audio/n_auxbus]       #DONE
   - [0x227F0, c, done/audio/n_drvrNew]      #DONE
   - [0x22D50, c, done/audio/n_save]         #DONE
@@ -127,7 +127,7 @@ segments:
   - [0x26DB0, c, done/os/pidma]           #DONE
   - [0x26EC0, c, done/os/stopthread]      #DONE
   - [0x26F80, c, done/os/startthread]     #DONE
-  - [0x270D0, c, os/writebackdcache]
+  - [0x270D0, hasm, os/writebackdcache]   #DONE
   - [0x27150, hasm, invaldcache]          #DONE
   - [0x27200, c, done/io/pimgr]           #DONE
   - [0x27390, c, done/os/destroythread]   #DONE
@@ -179,7 +179,7 @@ segments:
   - [0x2C810, hasm, setfpccsr]            #DONE
   - [0x2C820, c, done/io/sirawread]       #DONE
   - [0x2C870, c, done/io/sirawwrite]      #DONE
-  - [0x2C8C0, c, exceptasm]
+  - [0x2C8C0, hasm, exceptasm]
   - [0x2D230, c, done/io/pirawread]       #DONE
   - [0x2D290, hasm, interrupt]
   - [0x2D2D0, c, done/os/thread]          #DONE
