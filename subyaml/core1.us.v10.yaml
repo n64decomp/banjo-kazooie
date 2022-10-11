@@ -94,7 +94,7 @@ segments:
   - [0x21AF0, c, done/audio/code_21AF0]     #DONE
   - [0x21B50, c, done/audio/code_21B50]     #DONE
   - [0x21C50, c, done/audio/n_synallocfx]   #DONE
-  - [0x21CB0, c, n_reverb]
+  - [0x21CB0, c, done/audio/n_reverb]
   - [0x22740, c, done/audio/n_auxbus]       #DONE
   - [0x227F0, c, done/audio/n_drvrNew]      #DONE
   - [0x22D50, c, done/audio/n_save]         #DONE
@@ -285,7 +285,7 @@ segments:
   - [0x3A950, .rodata, code_1D5D0]
   - [0x3A9B0, .rodata, done/audio/n_synthesizer]
   - [0x3A9C0, bin, data_3A9C0] # .rodata, done/audio/n_csplayer]
-  - [0x3AD30, bin, data_3AD30]
+  - [0x3AD30, .rodata, done/audio/n_reverb]
   - [0x3AD60, .rodata, done/audio/n_drvrNew]
   - [0x3AD80, bin, data_3AD80]
   - [0x3ADD0, .rodata, done/audio/n_seqplayer]

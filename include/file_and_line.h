@@ -1,6 +1,6 @@
 #ifndef _FILE_AND_LINE_H_
 #define _FILE_AND_LINE_H_
-
+#include <assert.h>
 extern void func_8033F000(const char *, const char *, int);
 
 

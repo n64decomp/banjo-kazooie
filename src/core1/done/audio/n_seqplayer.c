@@ -865,7 +865,6 @@ ALSound *__n_lookupSoundQuick(N_ALSeqPlayer *seqp, u8 key, u8 vel, u8 chan)
 s16 __n_vsVol(N_ALVoiceState *vs, N_ALSeqPlayer *seqp)
 {
     u32 t1, t2;    
-        ALChanState *temp_a2;
     t1 = (vs->tremelo*vs->velocity*vs->envGain*seqp->chanState[vs->channel].unkA) >> 13;
     t2 = (vs->sound->sampleVolume*seqp->vol*seqp->chanState[vs->channel].vol) >> 14;
     
