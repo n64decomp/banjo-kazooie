@@ -68,7 +68,7 @@ segments:
   - [0x1E360, c, done/code_1E360]           #DONE
   - [0x1E6E0, c, code_1E6E0]                #DONE
   - [0x1E820, c, code_1E820]
-  - [0x1E8C0, c, done/code_1E8C0]           #DONE
+  - [0x1E8C0, c, done/audio/n_sl]           #DONE
   - [0x1E950, c, done/audio/n_synthesizer]  #DONE
   - [0x1F330, c, done/audio/event]          #DONE
   - [0x1F610, c, done/audio/n_synaddplayer] #DONE
@@ -93,21 +93,22 @@ segments:
   - [0x21AB0, c, done/audio/cspgettempo]    #DONE
   - [0x21AF0, c, done/audio/code_21AF0]     #DONE
   - [0x21B50, c, done/audio/code_21B50]     #DONE
+  - [0x21BF0, c, done/audio/n_syndelete]    #DONE
   - [0x21C50, c, done/audio/n_synallocfx]   #DONE
   - [0x21CB0, c, done/audio/n_reverb]       #DONE
   - [0x22740, c, done/audio/n_auxbus]       #DONE
   - [0x227F0, c, done/audio/n_drvrNew]      #DONE
   - [0x22D50, c, done/audio/n_save]         #DONE
   - [0x22DA0, c, done/audio/n_envresample]  #DONE
-  - [0x22E40, c, n_env]
+  - [0x22E40, c, done/audio/n_env]          #DONE
   - [0x237F0, c, done/audio/n_seqplayer]  #DONE
   - [0x25360, c, done/audio/n_synstartvoiceparam] #DONE
   - [0x25440, c, done/audio/n_mainbus]    #DONE
   - [0x254C0, c, done/audio/n_load]       #DONE
   - [0x25680, c, audio/n_adpcm]
   - [0x25C40, c, done/audio/n_resample]   #DONE
-  - [0x25E20, c, code_25E20]
-  - [0x26110, c, code_26110]              #DONE
+  - [0x25E20, c, audio/n_seq]
+  - [0x26110, c, done/audio/n_synsetpriority] #DONE
   - [0x26120, asm, os/invaldcache]        #DONE
   - [0x261C0, asm, os/writebackdcacheall] #DONE
   - [0x261F0, c, os/initialize]           #DONE
@@ -179,13 +180,13 @@ segments:
   - [0x2C810, hasm, setfpccsr]            #DONE
   - [0x2C820, c, done/io/sirawread]       #DONE
   - [0x2C870, c, done/io/sirawwrite]      #DONE
-  - [0x2C8C0, hasm, exceptasm]
+  - [0x2C8C0, hasm, exceptasm]            #DONE
   - [0x2D230, c, done/io/pirawread]       #DONE
-  - [0x2D290, hasm, interrupt]
+  - [0x2D290, hasm, interrupt]            #DONE
   - [0x2D2D0, c, done/os/thread]          #DONE
   - [0x2D310, c, done/audio/synthesizer]  #DONE
   - [0x2D9F0, c, done/audio/syndelete]    #DONE
-  - [0x2DA00, hasm, probetlb]
+  - [0x2DA00, hasm, probetlb]             #DONE
   - [0x2DAC0, c, done/io/ai]              #DONE
   - [0x2DAF0, c, done/os/jammesg]         #DONE
   - [0x2DC40, c, done/io/pigetcmdq]       #DONE
@@ -253,7 +254,8 @@ segments:
   - [0x38BA0, .data, code_18310]
   - [0x39290, bin, data_39290]
   - [0x39470, .data, done/audio/n_drvrNew]
-  - [0x39600, bin, data_39600]
+  - [0x39600, .data, done/audio/n_env]
+  - [0x39700, bin, data_39700]
   - [0x39730, .data, done/io/aisetnextbuf]
   - [0x39740, .data, done/io/pimgr]
   - [0x39770, .data, done/io/vimgr]
@@ -287,7 +289,7 @@ segments:
   - [0x3A9C0, bin, data_3A9C0] # .rodata, done/audio/n_csplayer]
   - [0x3AD30, .rodata, done/audio/n_reverb]
   - [0x3AD60, .rodata, done/audio/n_drvrNew]
-  - [0x3AD80, bin, data_3AD80]
+  - [0x3AD80, .rodata, done/audio/n_env]
   - [0x3ADD0, .rodata, done/audio/n_seqplayer]
   - [0x3B180, .rodata, done/audio/n_resample]
   - [0x3B190, .rodata, done/gu/sinf]

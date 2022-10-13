@@ -4,7 +4,7 @@
 #include "2.0L/PR/sched.h"
 #include "n_libaudio.h"
 
-extern void func_8025C320(s32, ALSynConfig *);
+extern void n_alInit(N_ALGlobals *, ALSynConfig *);
 
 typedef struct AudioInfo_s {
 	short         *data;          /* Output data pointer */
@@ -51,7 +51,7 @@ typedef struct struct_core1_1D00_5_s{
     }unkC;
 }OscState;
 
-void func_8023FBB8(void);
+void amgrCreate(void);
 void func_8023FE80(void *);
 // void func_802403B8(void);
 void amgrHandleDoneMsg(AudioInfo *info);
@@ -160,7 +160,7 @@ Struct_1D00_3 D_8027D5C0[90];
 s32 D_8027DCC8;
 s32 D_8027DCCC;
 s32 D_8027DCD0;
-N_ALSynth D_8027DCD8;
+N_ALGlobals D_8027DCD8;
 ALSynConfig D_8027DD50;
 s32 D_8027DD74;
 s32 D_8027DD78;
@@ -287,14 +287,13 @@ void func_8023FB1C(void){
     alHeapInit(&D_8027CFF0, D_8027D000, 0x21000);
     if(osTvType != OS_TV_NTSC)
         osViClock = 0x2e6025c;
-    func_8023FBB8();
+    amgrCreate();
     func_80335220();
     func_8024F4E0();
     amgrStartThread();
 }
 
-//amgrCreate
-void func_8023FBB8(void) {
+void amgrCreate(void) {
     int i;
 
     osCreateMesgQueue(&D_8027D008, &D_8027D020, 0x32);
@@ -315,7 +314,7 @@ void func_8023FBB8(void) {
     D_8027DD50.params = (void*) &D_8027577C;
     D_8027DD50.heap = &D_8027CFF0;
     D_8027DD50.outputRate = osAiSetFrequency(22000);
-    func_8025C320(&D_8027DCD8, &D_8027DD50);
+    n_alInit(&D_8027DCD8, &D_8027DD50);
     D_8027D5C0[0].unk0.prev = NULL;
     D_8027D5C0[0].unk0.next = NULL;
     for(i = 0; i < 89; i++){

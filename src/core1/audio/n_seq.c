@@ -25,7 +25,7 @@ void func_80263840(void){}
 
 void func_80263848(void){}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_25E20/func_80263850.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core1/audio/n_seq/func_80263850.s")
 
 void func_802639FC(struct struct_core2_25E20_1 *arg0, struct struct_core2_25E20_0 *arg1, u32 arg2) {
     u32 var_v0;

@@ -63,6 +63,10 @@ typedef struct N_ALEnvMixer_s {
     s32         delta;
     s32         segEnd;
     s32         first;
+    ALParam     *ctrlList;
+    ALParam     *ctrlTail;
+    ALFilter    **sources;
+    s32         motion;
 } N_ALEnvMixer;
 
 

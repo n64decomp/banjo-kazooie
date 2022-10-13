@@ -8,29 +8,28 @@
 extern N_ALSynth *D_80276E80;
 extern N_ALSynth *D_80276E84;
 
-void func_8025C2E0(s32 a0)
+void n_alInit(N_ALGlobals *g, ALSynConfig *config)
+{
+    if (D_80276E80 != NULL)
+        return;
+
+    D_80276E80 = &g->drvr;
+
+    if (D_80276E84 != NULL)
+        return;
+
+    D_80276E84 = &g->drvr;
+
+    n_alSynNew(config);
+}
+
+void n_alClose(N_ALGlobals *glob)
 {
     if (D_80276E80)
     {
-        func_8025F610();
+        n_alSynDelete();
 
         D_80276E80 = NULL;
         D_80276E84 = NULL;
     }
 }
-
-void func_8025C320(N_ALSynth *synth, ALSynConfig *config)
-{
-    if (D_80276E80 != NULL)
-        return;
-
-    D_80276E80 = synth;
-
-    if (D_80276E84 != NULL)
-        return;
-
-    D_80276E84 = synth;
-
-    n_alSynNew(config);
-}
-
