@@ -101,21 +101,21 @@ segments:
   - [0x22D50, c, done/audio/n_save]         #DONE
   - [0x22DA0, c, done/audio/n_envresample]  #DONE
   - [0x22E40, c, done/audio/n_env]          #DONE
-  - [0x237F0, c, done/audio/n_seqplayer]  #DONE
+  - [0x237F0, c, done/audio/n_seqplayer]    #DONE
   - [0x25360, c, done/audio/n_synstartvoiceparam] #DONE
-  - [0x25440, c, done/audio/n_mainbus]    #DONE
-  - [0x254C0, c, done/audio/n_load]       #DONE
+  - [0x25440, c, done/audio/n_mainbus]      #DONE
+  - [0x254C0, c, done/audio/n_load]         #DONE
   - [0x25680, c, audio/n_adpcm]
-  - [0x25C40, c, done/audio/n_resample]   #DONE
-  - [0x25E20, c, audio/n_seq]
+  - [0x25C40, c, done/audio/n_resample]     #DONE
+  - [0x25E20, c, done/audio/n_seq]          #DONE
   - [0x26110, c, done/audio/n_synsetpriority] #DONE
-  - [0x26120, asm, os/invaldcache]        #DONE
-  - [0x261C0, asm, os/writebackdcacheall] #DONE
-  - [0x261F0, c, os/initialize]           #DONE
-  - [0x26480, c, done/os/createthread]    #DONE
-  - [0x265D0, c, done/gu/sinf]            #DONE
-  - [0x26790, c, done/audio/cents2ratio]  #DONE
-  - [0x267E0, c, done/audio/heapinit]     #DONE
+  - [0x26120, asm, os/invaldcache]          #DONE
+  - [0x261C0, asm, os/writebackdcacheall]   #DONE
+  - [0x261F0, c, os/initialize]             #DONE
+  - [0x26480, c, done/os/createthread]      #DONE
+  - [0x265D0, c, done/gu/sinf]              #DONE
+  - [0x26790, c, done/audio/cents2ratio]    #DONE
+  - [0x267E0, c, done/audio/heapinit]       #DONE
   - [0x26820, asm, padding] # 0x60 bytes of zeroes?
   - [0x26880, c, done/os/createmesgqueue] #DONE
   - [0x268B0, c, done/io/aisetfreq]       #DONE

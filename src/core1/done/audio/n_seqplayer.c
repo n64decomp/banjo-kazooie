@@ -24,7 +24,7 @@ void __n_setInstChanState(N_ALSeqPlayer *seqp, ALInstrument *inst, s32 chan);
 void __n_resetPerfChanState(N_ALSeqPlayer *seqp, s32 chan);
 void __n_initChanState(N_ALSeqPlayer *seqp);
 void __n_seqpStopOsc(N_ALSeqPlayer *seqp, N_ALVoiceState *vs);
-void func_80263850(ALSeq *, N_ALEvent *);
+void n_alSeqEvent(ALSeq *, N_ALEvent *);
 
 
 static  ALMicroTime     __n_seqpVoiceHandler(void *node);
@@ -323,7 +323,7 @@ __n_handleNextSeqEvent(N_ALSeqPlayer *seqp)
     if (seqp->target == NULL)
 	return;
 
-    func_80263850(seqp->target, &evt);
+    n_alSeqEvent(seqp->target, &evt);
 
     switch (evt.type)
     {
