@@ -437,6 +437,7 @@ rmonPrintf = 0x80269BCC;
 dtor = 0x80285900;
 __osContinitialized = 0x802771B0;
 osClockRate = 0x80277120;
+__osShutdown = 0x8027712C;
 _MotorStopData = 0x802859A0;
 _MotorStartData = 0x80285AA0;
 _motorstartbuf = 0x80285BC0;

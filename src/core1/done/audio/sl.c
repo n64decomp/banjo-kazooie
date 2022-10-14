@@ -2,6 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
+ALGlobals *alGlobals = NULL;
+
 void alInit(ALGlobals *g, ALSynConfig *c){
     if (!alGlobals) { /* already initialized? */
         alGlobals = g;
@@ -31,8 +33,3 @@ void alUnlink(ALLink *ln){
         if (ln->prev)
         ln->prev->next = ln->next;
 }
-
-
-
-
-

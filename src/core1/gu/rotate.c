@@ -8,7 +8,7 @@ f32 sinf(f32);
 f32 cosf(f32);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/gu/rotate/guRotateF.s")
-// MATCHING but need to resolve core1 data section for static D_80285900
+// MATCHING but need to resolve core1 bss section for static D_80285900
 // void guRotateF(float mf[4][4], float a, float x, float y, float z)
 // {
 //     static f32 D_80285900 = 3.1415926 / 180.0;
@@ -45,7 +45,7 @@ f32 cosf(f32);
 // }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/gu/rotate/guRotate.s")
-// MATCHING with -O3, need to resolve data section
+// MATCHING with -O3, need to resolve bss section
 // void guRotate(Mtx *m, float a, float x, float y, float z)
 // {
 // 	float	mf[4][4];

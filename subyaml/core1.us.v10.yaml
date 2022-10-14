@@ -134,7 +134,7 @@ segments:
   - [0x27390, c, done/os/destroythread]   #DONE
   - [0x27490, c, done/os/sendmesg]        #DONE
   - [0x275E0, c, done/os/settreadpri]     #DONE
-  - [0x276C0, c, gu/mtxutil]
+  - [0x276C0, c, done/gu/mtxutil]         #DONE
   - [0x27930, c, done/gu/sqrtf]           #DONE
   - [0x27940, c, gu/cosf]
   - [0x27AB0, hasm, ultra/setintmask]     #DONE
@@ -255,7 +255,8 @@ segments:
   - [0x39290, bin, data_39290]
   - [0x39470, .data, done/audio/n_drvrNew]
   - [0x39600, .data, done/audio/n_env]
-  - [0x39700, bin, data_39700]
+  - [0x39700, .data, os/initialize]
+  - [0x39720, .data, done/audio/sl]
   - [0x39730, .data, done/io/aisetnextbuf]
   - [0x39740, .data, done/io/pimgr]
   - [0x39770, .data, done/io/vimgr]
@@ -286,7 +287,7 @@ segments:
   - [0x3A920, .rodata, code_1BE90]
   - [0x3A950, .rodata, code_1D5D0]
   - [0x3A9B0, .rodata, done/audio/n_synthesizer]
-  - [0x3A9C0, bin, data_3A9C0] # .rodata, done/audio/n_csplayer]
+  - [0x3A9C0, bin, data_3A9C0] # .rodata, audio/n_csplayer]
   - [0x3AD30, .rodata, done/audio/n_reverb]
   - [0x3AD60, .rodata, done/audio/n_drvrNew]
   - [0x3AD80, .rodata, done/audio/n_env]
