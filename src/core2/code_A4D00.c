@@ -12,7 +12,7 @@ extern f32  func_8033229C(ActorMarker *marker);
 extern f32  func_80309B24(f32 [3]);
 extern f32  ml_vec3f_dot_product(f32[3], f32[3]);
 extern f32  ml_vec3f_distance_squared(f32[3], f32[3]);
-extern Struct66s *func_80320C94(f32 arg0[3], f32 arg1[3], f32 arg2, f32 arg3[3], s32 arg4, u32 arg5);
+extern BKCollisionTri *func_80320C94(f32 arg0[3], f32 arg1[3], f32 arg2, f32 arg3[3], s32 arg4, u32 arg5);
 
 /* .h */
 typedef bool (*method_core2_A4D00_0)(Actor *, f32[3], s32, s32);
@@ -20,7 +20,7 @@ typedef bool (*method_core2_A4D00_0)(Actor *, f32[3], s32, s32);
 typedef struct {
     f32 unk0[3];
     f32 unkC[3];
-    Struct66s * unk18;
+    BKCollisionTri * unk18;
     f32 unk1C[3];
     f32 unk28[3];
     f32 unk34[3];

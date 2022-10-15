@@ -323,13 +323,6 @@ typedef struct struct_1C_1_s{
     u8 *string; //0x4
 }struct1Cs_1;
 
-typedef struct struct_1D_s{
-    BKModel *unk0;
-    s16 unk4;
-    u8 unk6;
-    u8 pad7[1];
-    u8 pad8[0xA0];//union of subtypes
-}struct1Ds;
 
 typedef struct struct_1E_s{
     void (* unk0)(void * arg0, s32 arg1, s32 arg2, s32 arg3);
@@ -665,10 +658,6 @@ typedef struct struct_65_s{
     u8 unk27;
 }Struct65s;
 
-typedef struct struct_66_s{
-    u8 pad0[0x8];
-    s32 unk8;
-}Struct66s;
 
 typedef void  (*Struct68DrawMethod)(void *, struct struct_68_s *, f32[3], f32[3], f32, BKModelBin*, Gfx**, Mtx**, Vtx**);
 
@@ -817,6 +806,15 @@ typedef union {
     Struct74s type_74;
     Struct77s type_77;
 }Struct70s;
+
+typedef struct struct_1D_s{
+    BKModel *unk0;
+    s16 unk4;
+    u8 unk6;
+    // u8 pad7[1];
+    Struct70s unk8;//union of subtypes
+}struct1Ds;
+
 
 typedef struct {
     u8 unk0;

@@ -11,8 +11,8 @@ extern f32 func_803243D0(struct56s *arg0, f32 arg1[3]);
 extern void func_802CAF14(u32*, s32, bool);
 extern void func_8032D510(Cube *, Gfx **, Mtx **, Vtx **);
 extern ActorProp *func_803322F0(Cube *, ActorMarker *, f32, s32, s32 *);
-extern Struct66s *func_803319C0(Cube *cube, f32 position[3], f32 radius, f32 arg2[3], u32 flags);
-extern Struct66s *func_80331638(Cube *cube, f32 volume_p1[3], f32 volume_p2[3], f32 radius, f32 arg2[3], s32, u32 flags);
+extern BKCollisionTri *func_803319C0(Cube *cube, f32 position[3], f32 radius, f32 arg2[3], u32 flags);
+extern BKCollisionTri *func_80331638(Cube *cube, f32 volume_p1[3], f32 volume_p2[3], f32 radius, f32 arg2[3], s32, u32 flags);
 
 typedef struct {
     s32 unk0;
@@ -542,7 +542,7 @@ void func_80303664(s32 arg0[3], s32 arg1[3]){
     arg1[2] = D_80381FA0.max[2];
 }
 
-//Struct66s *
+//BKCollisionTri *
 void * func_803036A0(f32 volume_p1[3], f32 volume_p2[3], f32 arg2[3], u32 arg3) {
     s32 cube_indx[3];
     s32 min[3];
@@ -594,17 +594,17 @@ void * func_80303800(f32 volume_p1[3], f32 volume_p2[3], f32 arg2[3], u32 arg3) 
     return NULL;
 }
 
-//Struct66s *
+//BKCollisionTri *
 #ifndef NONMATCHING
-Struct66s * func_80303960(f32 volume_p1[3], f32 volume_p2[3], f32 radius, f32 arg3[3], s32 arg4, u32 flags);
+BKCollisionTri * func_80303960(f32 volume_p1[3], f32 volume_p2[3], f32 radius, f32 arg3[3], s32 arg4, u32 flags);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80303960.s")
 #else
-Struct66s * func_80303960(f32 volume_p1[3], f32 volume_p2[3], f32 radius, f32 arg3[3], s32 arg4, u32 flags) {
+BKCollisionTri * func_80303960(f32 volume_p1[3], f32 volume_p2[3], f32 radius, f32 arg3[3], s32 arg4, u32 flags) {
     s32 cube_indx[3];
     s32 min[3];
     s32 max[3];
-    Struct66s *temp_v0;
-    Struct66s *var_s5;
+    BKCollisionTri *temp_v0;
+    BKCollisionTri *var_s5;
 
     var_s5 = NULL;
     cube_volumeToIndices(min, max, volume_p1, volume_p2, radius + D_80381FA0.unk4);
@@ -626,13 +626,13 @@ Struct66s * func_80303960(f32 volume_p1[3], f32 volume_p2[3], f32 radius, f32 ar
 }
 #endif
 
-//Struct66s *
-Struct66s * func_80303AF0(f32 position[3], f32 radius, f32 arg2[3], u32 arg3) {
+//BKCollisionTri *
+BKCollisionTri * func_80303AF0(f32 position[3], f32 radius, f32 arg2[3], u32 arg3) {
     s32 cube_indx[3];
     s32 min[3];
     s32 max[3];
-    Struct66s *temp_v0;
-    Struct66s *var_s5;
+    BKCollisionTri *temp_v0;
+    BKCollisionTri *var_s5;
 
     var_s5 = NULL;
     cube_volumeToIndices(min, max, position, position, radius + D_80381FA0.unk4);

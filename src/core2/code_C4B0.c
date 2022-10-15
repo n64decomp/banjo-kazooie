@@ -9,10 +9,10 @@ extern f32        func_8031C5E4(struct0*);
 extern void       func_8031C5FC(struct0 *, f32);
 extern void       func_80244FC0(f32 arg0[3], f32 arg1[3], f32 arg2, f32 arg3, s32 arg4, u32 arg5);
 extern s32        func_80244E54(f32[3], f32[3], f32 [3], u32, f32, f32);
-extern Struct66s *func_802457C4(f32[3], f32[3], f32, f32, f32[3], s32, u32);
+extern BKCollisionTri *func_802457C4(f32[3], f32[3], f32, f32, f32[3], s32, u32);
 extern f32        func_80255D70(f32 arg0);
 extern s32        func_8029463C(void);
-extern Struct66s *func_80320C94(f32[3], f32[3], f32, f32[3], s32, u32);
+extern BKCollisionTri *func_80320C94(f32[3], f32[3], f32, f32[3], s32, u32);
 
 void func_80294378(s32 arg0);
 void func_80294384(s32 arg0);
@@ -21,7 +21,7 @@ void func_80294390(void);
 typedef struct {
     f32 unk0[3];
     f32 unkC[3];
-    Struct66s *unk18;
+    BKCollisionTri *unk18;
     f32 unk1C[3];
     f32 unk28[3];
     f32 unk34[3];

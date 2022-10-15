@@ -1785,9 +1785,9 @@ s32 func_80331638(Cube *cube, f32 arg1[3], f32 arg2[3], f32 arg3, f32 arg4[3], s
 #ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_803319C0.s")
 #else
-Struct66s *func_803319C0(Cube *arg0, f32 arg1[3], f32 arg2, s32 arg3, f32 arg4[3], u32 arg5) {
-    Struct66s *var_s7;
-    Struct66s *var_v0;
+BKCollisionTri *func_803319C0(Cube *arg0, f32 arg1[3], f32 arg2, s32 arg3, f32 arg4[3], u32 arg5) {
+    BKCollisionTri *var_s7;
+    BKCollisionTri *var_v0;
     s32 var_s3;
     Prop *var_s0;
 

@@ -5,9 +5,9 @@
 extern void func_80303F7C(ActorMarker *, f32, s32, s32);
 extern ActorProp *func_80303FE4(ActorMarker *, f32, s32);
 
-typedef Struct66s * (*Method_Core2_999A0_0)(f32[3], f32[3], f32[3], u32);
-typedef Struct66s * (*Method_Core2_999A0_1)(f32[3], f32[3], f32, f32[3], s32, u32);
-typedef Struct66s * (*Method_Core2_999A0_2)(f32[3], f32, f32[3], u32);
+typedef BKCollisionTri * (*Method_Core2_999A0_0)(f32[3], f32[3], f32[3], u32);
+typedef BKCollisionTri * (*Method_Core2_999A0_1)(f32[3], f32[3], f32, f32[3], s32, u32);
+typedef BKCollisionTri * (*Method_Core2_999A0_2)(f32[3], f32, f32[3], u32);
 typedef void * (*Method_Core2_999A0_3)(void);
 
 typedef struct {
@@ -25,7 +25,7 @@ struct {
 }D_80383230;
 
 /* .public */
-Struct66s *func_80320B98(f32 arg0[3], f32 arg1[3], f32 arg2[3], u32 arg3);
+BKCollisionTri *func_80320B98(f32 arg0[3], f32 arg1[3], f32 arg2[3], u32 arg3);
 void func_80320B44(Method_Core2_999A0_0 arg0, Method_Core2_999A0_1 arg1, Method_Core2_999A0_2 arg2, Method_Core2_999A0_3 arg3);
 
 /* .code */
@@ -103,10 +103,10 @@ void func_80320B84(void){
     D_80383230.unk84 = NULL;
 }
 
-Struct66s *func_80320B98(f32 arg0[3], f32 arg1[3], f32 arg2[3], u32 arg3) {
+BKCollisionTri *func_80320B98(f32 arg0[3], f32 arg1[3], f32 arg2[3], u32 arg3) {
     Struct_core2_999A0_0 *var_s0;
-    Struct66s * temp_v0_2;
-    Struct66s * var_s7;
+    BKCollisionTri * temp_v0_2;
+    BKCollisionTri * var_s7;
 
     var_s7 = NULL;
     D_80383230.unk84 = NULL;
@@ -126,10 +126,10 @@ Struct66s *func_80320B98(f32 arg0[3], f32 arg1[3], f32 arg2[3], u32 arg3) {
     return var_s7;
 }
 
-Struct66s *func_80320C94(f32 arg0[3], f32 arg1[3], f32 arg2, f32 arg3[3], s32 arg4, u32 arg5) {
+BKCollisionTri *func_80320C94(f32 arg0[3], f32 arg1[3], f32 arg2, f32 arg3[3], s32 arg4, u32 arg5) {
     Struct_core2_999A0_0 *var_s0;
-    Struct66s * temp_v0_2;
-    Struct66s * var_s7;
+    BKCollisionTri * temp_v0_2;
+    BKCollisionTri * var_s7;
 
     var_s7 = NULL;
     D_80383230.unk84 = NULL;
@@ -149,10 +149,10 @@ Struct66s *func_80320C94(f32 arg0[3], f32 arg1[3], f32 arg2, f32 arg3[3], s32 ar
     return var_s7;
 }
 
-Struct66s *func_80320DB0(f32 arg0[3], f32 arg1, f32 arg2[3], u32 arg3) {
+BKCollisionTri *func_80320DB0(f32 arg0[3], f32 arg1, f32 arg2[3], u32 arg3) {
     Struct_core2_999A0_0 *var_s0;
-    Struct66s * temp_v0_2;
-    Struct66s * var_s7;
+    BKCollisionTri * temp_v0_2;
+    BKCollisionTri * var_s7;
 
     var_s7 = NULL;
     D_80383230.unk84 = NULL;

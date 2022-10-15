@@ -5,7 +5,7 @@
 extern void func_802BEA4C(f32[3], f32[3], f32, f32[3]);
 extern void func_802BEBE8(f32[3], f32[3], f32, f32[3]);
 extern void func_802BEAAC(f32[3], f32[3], f32, f32[3], f32[3], f32[3], f32[3]);
-extern Struct66s *func_80320B98(f32[3], f32[3], f32[3], s32);
+extern BKCollisionTri *func_80320B98(f32[3], f32[3], f32[3], s32);
 f32 func_802BB938(f32[3], f32[3]);
 f32 func_802BBD48(void);
 f32 func_802BBEA4(f32 arg0[3], f32 arg1[3], f32 arg2, s32 arg3, s32 arg4);
@@ -194,7 +194,7 @@ f32 func_802BBEA4(f32 arg0[3], f32 arg1[3], f32 arg2, s32 arg3, s32 arg4) {
     f32 sp4C[3];
     f32 phi_f2;
     f32 sp3C[3];
-    Struct66s *sp38;
+    BKCollisionTri *sp38;
     s32 i;
 
     if (arg3 == 0) {
@@ -207,7 +207,7 @@ f32 func_802BBEA4(f32 arg0[3], f32 arg1[3], f32 arg2, s32 arg3, s32 arg4) {
     sp38 = func_80320B98(arg0, sp4C, sp3C, arg4);
     if (sp38 != NULL) {
         phi_f2 = ml_vec3f_distance(arg0, &sp4C);
-        D_8037D8D0.unk0[D_8037D8D0.unk30] = sp38->unk8;
+        D_8037D8D0.unk0[D_8037D8D0.unk30] = sp38->flags;
     } else {
         phi_f2 = arg2;
         D_8037D8D0.unk0[D_8037D8D0.unk30] = 0;

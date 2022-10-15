@@ -4,7 +4,9 @@
 
 extern f32 D_80275908;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_7F60/func_80245980.s")
+s32 func_80245980(f32 arg0){
+	return arg0*65536.0f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_7F60/func_802459A0.s")
 

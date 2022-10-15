@@ -502,8 +502,8 @@ void func_80346C10(enum bs_e *retVal, enum bs_e fail_state, enum bs_e success_st
 void func_80347A14(s32);
 void func_8034A174(struct5Bs *this, s32 indx,f32 dst[3]);
 Struct61s *func_8034AB6C(enum map_e map_id);
-Struct6Ds *func_8034C528(s32);
-Struct73s *func_8034C5AC(s32);
+Struct70s *func_8034C528(s32);
+Struct70s *func_8034C5AC(s32);
 void func_8034DC08(Struct6Ds *, f32[3], f32[3], f32, s32);
 void func_8034DDF0(Struct6Ds *arg0, f32 arg1[3], f32 arg2[3], f32 arg3, s32 arg4);
 void func_8034DE60(Struct6Ds *, f32, f32, f32, s32);
