@@ -2,6 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
+extern f32 D_80275908;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_7F60/func_80245980.s")
 
@@ -47,12 +48,53 @@ void _guMtxIdentF_80245D44(float mf[4][4]) //static
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_7F60/func_8024632C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_7F60/func_802464B0.s")
+void func_802464B0(f32 mf[4][4], f32 arg1){
+	f32 c, s;
+	arg1 *= D_80275908;
+	_guMtxIdentF_80245D44(mf);
+	c = cosf(arg1);
+	mf[1][1] = c;
+	mf[2][2] = c;
+	s = sinf(arg1);
+	mf[1][2] = s;
+	mf[2][1] = -s;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_7F60/func_80246510.s")
+void func_80246510(f32 mf[4][4], f32 arg1){
+	f32 c, s;
+	arg1 *= D_80275908;
+	_guMtxIdentF_80245D44(mf);
+	c = cosf(arg1);
+	mf[0][0] = c;
+	mf[2][2] = c;
+	s = sinf(arg1);
+	mf[2][0] = s;
+	mf[0][2] = -s;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_7F60/func_80246570.s")
+void func_80246570(f32 mf[4][4], f32 arg1){
+	f32 c, s;
+	arg1 *= D_80275908;
+	_guMtxIdentF_80245D44(mf);
+	c = cosf(arg1);
+	mf[0][0] = c;
+	mf[1][1] = c;
+	s = sinf(arg1);
+	mf[0][1] = s;
+	mf[1][0] = -s;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_7F60/func_802465D0.s")
+void func_802465D0(f32 mf[4][4], f32 arg1, f32 arg2, f32 arg3){
+	_guMtxIdentF_80245D44(mf);
+	mf[0][0] = arg1;
+	mf[1][1] = arg2;
+	mf[2][2] = arg3;
+	mf[3][3] = 1.0f;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_7F60/func_80246624.s")
+void func_80246624(f32 mf[4][4], f32 arg1, f32 arg2, f32 arg3){
+	_guMtxIdentF_80245D44(mf);
+	mf[3][0] = arg1;
+	mf[3][1] = arg2;
+	mf[3][2] = arg3;
+}

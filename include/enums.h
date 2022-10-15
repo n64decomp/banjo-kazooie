@@ -357,6 +357,7 @@ enum button_e{
 };
 
 #define FACE_BUTTON(button) (button - BUTTON_A)
+#define SIDE_BUTTON(button) (button - BUTTON_Z)
 
 enum joystick_e{
     JOYSTICK_X = 0x0,

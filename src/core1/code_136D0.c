@@ -16,15 +16,11 @@ typedef struct struct_2a_s{
     u32 bss_end;
 } struct2As;
 
-extern u8 D_80363590;
-extern u8 D_80379B90;
 
 extern u8 D_803A5D00;
-extern u8 D_F55960;
-extern u8 D_1048560;
 
-
-extern struct2As D_802762D0[] = {
+/* .data */
+struct2As D_802762D0[] = {
     {"gs",          0x80286F90, 0x803863F0, 0x00F55960, 0x01048560, 0x80286F90, 0x80363590, 0x80363590, 0x80379B90, 0x80379B90, 0x803863F0},
     {"coshow",      0x803863F0, 0x80386430, 0x010BCD00, 0x010BCD20, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000},
     {"whale",       0x803863F0, 0x8038A000, 0x01048560, 0x0104C0E0, 0x803863F0, 0x80389AA0, 0x80389AA0, 0x80389F70, 0x80389F70, 0x8038A000},
@@ -41,12 +37,11 @@ extern struct2As D_802762D0[] = {
     {"witch",       0x803863F0, 0x80395470, 0x01098070, 0x010A6FD0, 0x803863F0, 0x80392CB0, 0x80392CB0, 0x80395350, 0x80395350, 0x80395470},
     {"battle",      0x803863F0, 0x80392930, 0x010A6FD0, 0x010B3320, 0x803863F0, 0x80391380, 0x80391380, 0x80392740, 0x80392740, 0x80392930},
 };
-extern u8 D_80286F90;
-extern s32 D_80276564 = 15;
+s32 D_80276564 = 15;
 
+/* .bss */
 enum overlay_e D_80282800;
 
-extern u8 D_803863F0;
 
 void func_802513A4(void);
 
@@ -115,8 +110,6 @@ int is_overlay_loaded(int overlay_id){
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_136D0/load_overlay.s")
 #else
 bool load_overlay(enum overlay_e overlay_id){
-    struct2As *rom_info;
-
     if(overlay_id == 0)
         return FALSE;
 
@@ -124,14 +117,13 @@ bool load_overlay(enum overlay_e overlay_id){
         return FALSE;
 
     D_80282800 = overlay_id;
-    rom_info = &D_802762D0[D_80282800];
     func_80253050(
         overlay_id, 
-        rom_info->ram_start,  rom_info->ram_end,  
-        rom_info->unkC,       rom_info->unk10,     
-        rom_info->code_start, rom_info->code_end,
-        rom_info->data_start, rom_info->data_end,
-        rom_info->bss_start,  rom_info->bss_end
+        D_802762D0[overlay_id].ram_start,  D_802762D0[overlay_id].ram_end,  
+        D_802762D0[overlay_id].unkC,       D_802762D0[overlay_id].unk10,     
+        D_802762D0[overlay_id].code_start, D_802762D0[overlay_id].code_end,
+        D_802762D0[overlay_id].data_start, D_802762D0[overlay_id].data_end,
+        D_802762D0[overlay_id].bss_start,  D_802762D0[overlay_id].bss_end
     );
     return TRUE;
 }
@@ -143,11 +135,32 @@ s32 func_802512FC(void){
 }
 
 #ifdef NONMATCHING
+//this matches, but requires core2 section address to be linked to core
+//needed for shiftability
+extern u8 core2_VRAM_START[]; //core2 RAM start
+extern u8 core2_VRAM_END[]; //core2 RAM end
+
+extern u8 core2_us_v10_rzip_ROM_START[];
+extern u8 core2_us_v10_rzip_ROM_END[];
+extern u8 core2_TEXT_START[];
+extern u8 core2_TEXT_END[];
+extern u8 core2_DATA_START[];
+extern u8 core2_DATA_END[];
+extern u8 core2_BSS_START[];
+extern u8 core2_BSS_END[];
+
 void func_80251308(void){
     func_802512FC();
-    func_80253050(0, &D_80286F90, &D_803863F0, &D_F55960, &D_1048560, &D_80286F90, &D_80363590, &D_80363590, &D_80379B90, &D_80379B90, &D_803863F0);
+    func_80253050(0, 
+        core2_VRAM_START, core2_VRAM_END,
+        core2_us_v10_rzip_ROM_START, core2_us_v10_rzip_ROM_END,
+        core2_TEXT_START, core2_TEXT_END,
+        core2_DATA_START, core2_DATA_END,
+        core2_BSS_START, core2_BSS_END
+    );
     func_802511C4();
 }
+
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_136D0/func_80251308.s")
 #endif

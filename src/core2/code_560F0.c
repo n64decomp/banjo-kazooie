@@ -142,7 +142,7 @@ void func_802DD080(Gfx **gfx, Mtx **mtx) {
 }
 
 void func_802DD158(Gfx **gfx, Mtx** mtx){
-    func_8024E2FC(gfx, mtx);
+    func_8024E2FC();
     func_8024C904(gfx, mtx);
 }
 

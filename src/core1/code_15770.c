@@ -3,7 +3,7 @@
 #include "variables.h"
 
 extern struct {
-    void *unk0;
+    u16 *unk0;
     int unk4;
 } D_80282FE0;
 

@@ -36,13 +36,12 @@ void gczoombox_update(gczoombox_t *);
 void func_8024E6E0(s32, void *);
 void func_8024E60C(s32, void *);
 void func_8024E71C(s32, void *);
-void func_8024E55C(s32, void *);
 s32 getGameMode(void);
 
 void gczoombox_highlight(gczoombox_t *, int);
 void func_802DC5B8(void);
 void func_802DC560(s32, s32);
-s32 func_8024E67C(enum button_e);
+s32 func_8024E67C(s32 controller_index);
 bool func_803188B4(gczoombox_t*);
 bool func_803183A4(gczoombox_t*, char *);
 bool func_8031FF1C(enum bkprog_e);
@@ -912,7 +911,7 @@ s32 gcPauseMenu_update(void){
                     gcPauseMenu_setState(2);
                 }
             }
-            if(func_8024E67C(BUTTON_START) == 1){
+            if(func_8024E67C(0) == 1){
                 gcPauseMenu_setState(6);
             }
             break;
@@ -926,7 +925,7 @@ s32 gcPauseMenu_update(void){
                 func_802FACA4(ITEM_16_LIFE);
                 D_80383010.unk70_30 = 0;
             }
-            if(func_8024E67C(BUTTON_START) == 1){
+            if(func_8024E67C(0) == 1){
                 gcPauseMenu_setState(6);
             }else if(face_button[FACE_BUTTON(BUTTON_A)] == 1){
                 switch(D_80383010.selection){
@@ -1042,7 +1041,7 @@ s32 gcPauseMenu_update(void){
                     if(D_8036C4E0[D_80383010.selection].unkF = func_803183A4(D_80383010.zoombox[D_80383010.selection], (D_80383010.unk3_6)? "ARE YOU SURE?" : "A - YES, B - NO"))
                         D_80383010.unkC = 0.0;
                 }//L80313AF4
-                if(func_8024E67C(BUTTON_START) == 1){
+                if(func_8024E67C(0) == 1){
                     gcPauseMenu_setState(6);
                 }else if(face_button[FACE_BUTTON(BUTTON_B)] == 1){
                     D_80383010.unk4 = (D_80383010.return_to_lair_disabled)? 3 : 4;
@@ -1079,7 +1078,7 @@ s32 gcPauseMenu_update(void){
                 gcpausemenu_printTotalsHeader(D_80383010.selection);
                 gcpausemenu_80312FD0(1);
                 gcpausemenu_updateBButtonAndJoystickSprites();
-                if(func_8024E67C(BUTTON_START) == 1){
+                if(func_8024E67C(0) == 1){
                     D_80383010.unk1 = 3;
                     gcPauseMenu_setState(0xA);
                 }else if(face_button[FACE_BUTTON(BUTTON_B)] == 1){
@@ -1159,7 +1158,7 @@ s32 gcPauseMenu_update(void){
             case 0x10:
                 gcpausemenu_printTotalsHeader(D_80383010.selection);
                 gcpausemenu_updateBButtonAndJoystickSprites();
-                if(func_8024E67C(BUTTON_START) == 1){
+                if(func_8024E67C(0) == 1){
                     D_80383010.unk1 = 3;
                     gcPauseMenu_setState(0x11);
                 }//L80313EFC

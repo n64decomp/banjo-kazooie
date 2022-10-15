@@ -28,7 +28,7 @@ typedef struct music_track_s{
 typedef struct music_track_meta_s{
     char *name;
     u16  unk4;
-    u8 pad6[2];
+    // u8 pad6[2];
 }MusicTrackMeta;
 
 #endif

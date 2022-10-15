@@ -3,6 +3,7 @@
 #include "variables.h"
 
 #include "music.h"
+#include "n_libaudio.h"
 
 extern void func_8025F570(ALCSPlayer *, u8);
 extern void func_8025F510(ALCSPlayer *, u8, u8);
@@ -23,26 +24,194 @@ void func_8024AF48(void);
 void func_8024FB8C(void);
 
 /* .data */
-extern MusicTrackMeta D_80275D40[0xB0];
-extern s32          D_802762C0;
-extern s32          D_802762C4;
+MusicTrackMeta D_80275D40[0xB0] = {
+    {"Blank", 15000},
+    {"Scrap", 15000},
+    {"Jungle 2", 20000},
+    {"Snow 2", 20000},
+    {"Bells", 21000},
+    {"Beach", 20000},
+    {"Swamp", 15000},
+    {"Crab Cave", 20000},
+    {"Title", 15000},
+    {"Notes", 15000},
+    {"Jinjo", 15000},
+    {"Feather", 15000},
+    {"Egg", 15000},
+    {"Jigpiece", 28000},
+    {"Sky", 0x7FFF},
+    {"Spooky", 21000},
+    {"Training", 15000},
+    {"Lighthouse", 24000},
+    {"Crab", 15000},
+    {"Shell", 0x7FFF},
+    {"Feather Inv", 15000},
+    {"Extra life", 15000},
+    {"Honeycomb", 15000},
+    {"Empty honey piece", 15000},
+    {"Extra honey", 15000},
+    {"Mystery", 15000},
+    {"You lose", 20000},
+    {"Termite nest", 0x7FFF},
+    {"Outside whale", 15000},
+    {"Spell", 15000},
+    {"Witch House", 23000},
+    {"In whale", 0x4650},
+    {"Desert", 20000},
+    {"In spooky", 0x4650},
+    {"Grave", 24000},
+    {"Church", 28000},
+    {"Sphinx", 20000},
+    {"Invulnerabilty", 28000},
+    {"Collapse", 15000},
+    {"Snake", 15000},
+    {"Sandcastle", 15000},
+    {"Summer", 20000},
+    {"Winter", 0x6978},
+    {"Right", 28000},
+    {"Wrong", 0x7D00},
+    {"Achieve", 0x7D00},
+    {"Autumn", 0x55F0},
+    {"Default forest", 0x7530},
+    {"5 Jinjos", 15000},
+    {"Game over", 15000},
+    {"Nintendo", 15000},
+    {"Ship", 24000},
+    {"Shark", 15000},
+    {"Ship inside", 24000},
+    {"100 Notes", 15000},
+    {"Door Open", 15000},
+    {"Organ sequence", 0x4650},
+    {"Advent", 15000},
+    {"Slalom", 15000},
+    {"Race win", 15000},
+    {"Race lose", 15000},
+    {"Jigsaw magic", 15000},
+    {"Oh dear", 15000},
+    {"Up", 15000},
+    {"Down", 15000},
+    {"Shamen Hut", 0x4A38},
+    {"Jig 10", 0x61A8},
+    {"Carpet", 15000},
+    {"Squirrel", 15000},
+    {"Hornet", 15000},
+    {"Treetop", 0x7D00},
+    {"Turtle Shell", 0x61A8},
+    {"House Summer", 15000},
+    {"House Autumn", 15000},
+    {"Out Buildings", 15000},
+    {"Hornet 2", 15000},
+    {"Cabins", 15000},
+    {"Rain", 15000},
+    {"Jigsaw Open", 15000},
+    {"Jigsaw Close", 15000},
+    {"Witch 1", 23000},
+    {"Witch 2", 23000},
+    {"Witch 3", 23000},
+    {"Witch 4", 23000},
+    {"Witch 5", 23000},
+    {"Mr Vile", 15000},
+    {"Bridge", 0x55F0},
+    {"Turbo Talon Trot", 28000},
+    {"Long legs", 28000},
+    {"Witch 6", 23000},
+    {"Boggy sad", 15000},
+    {"Boggy happy", 15000},
+    {"Quit", 15000},
+    {"Witch 7", 23000},
+    {"Witch 8", 23000},
+    {"Spring", 0x4650},
+    {"Squirrel attic", 0x6590},
+    {"Lights", 15000},
+    {"Box", 0x4268},
+    {"Witch 9", 23000},
+    {"Open up", 15000},
+    {"Puzzle complete", 0x61A8},
+    {"Xmas tree", 15000},
+    {"Puzzle in", 15000},
+    {"Lite tune", 15000},
+    {"Open extra", 15000},
+    {"Ouija", 0x7148},
+    {"Wozza", 15000},
+    {"Intro", 20000},
+    {"Gnawty", 15000},
+    {"Banjo's Pad", 15000},
+    {"Pause", 15000},
+    {"Cesspit", 0x61A8},
+    {"Quiz", 15000},
+    {"Frog", 20000},
+    {"GameBoy", 15000},
+    {"Lair", 15000},
+    {"Red Extra", 0x7D00},
+    {"Gold Extra", 0x7D00},
+    {"Egg Extra", 0x7D00},
+    {"Note door", 15000},
+    {"Cheaty", 15000},
+    {"Fairy", 20000},
+    {"Skull", 0x61A8},
+    {"Square Grunty", 0x61A8},
+    {"Square Banjo", 0x61A8},
+    {"Square Joker", 0x7530},
+    {"Square Music", 0x61A8},
+    {"Lab", 20000},
+    {"Fade Up", 0x61A8},
+    {"Puzzle Out", 15000},
+    {"Secret Gobi", 20000},
+    {"Secret Beach", 20000},
+    {"Secret Ice", 20000},
+    {"Secret Spooky", 20000},
+    {"Secret Squirrel", 20000},
+    {"Secret Egg", 20000},
+    {"Jinjup", 0x7D00},
+    {"Turbo Talon Trot short", 28000},
+    {"Fade Down", 0x61A8},
+    {"Big Jinjo", 0x7D00},
+    {"T1000", 15000},
+    {"Credits", 15000},
+    {"T1000x", 20000},
+    {"Big Door", 20000},
+    {"Descent", 20000},
+    {"Wind up", 20000},
+    {"Air", 20000},
+    {"Do jig", 20000},
+    {"Picture", 28000},
+    {"Piece up", 20000},
+    {"Piece down", 20000},
+    {"Spin", 20000},
+    {"BarBQ", 15000},
+    {"Chord1", 20000},
+    {"Chord2", 20000},
+    {"Chord3", 20000},
+    {"Chord4", 20000},
+    {"Chord5", 20000},
+    {"Chord6", 20000},
+    {"Chord7", 20000},
+    {"Chord8", 20000},
+    {"Chord9", 20000},
+    {"Chord10", 20000},
+    {"Shock1", 20000},
+    {"Shock2", 20000},
+    {"Shock3", 20000},
+    {"Shock4", 20000},
+    {"Sad grunt", 20000},
+    {"Podium", 20000},
+    {"Endbit", 20000},
+    {"Rock", 20000},
+    {"Last Bit", 20000},
+    {"Unnamed piece", 15000},
+    {"Unnamed piece", 15000},
+    0
+};
+s32 D_802762C0 = 0;
+s32 D_802762C4 = 0;
 
-/* .rodata */
-extern f32          D_80278180;
-extern f32          D_80278184;
-
-
-/* .data */
+/* .bss */
 MusicTrack   D_80281720[6];
 MusicTrack **D_802820E0;
 ALSeqpConfig D_802820E8;
 u16          D_80282104; //called as u16 someplaces and s16 others
 ALBank *     D_80282108;
 structBs     D_80282110[0x20];
-
-
-
-/* .rodata */
 
 /* .code */
 void func_8024F4E0(void){
@@ -70,7 +239,7 @@ void func_8024F4E0(void){
     D_802820E8.stopOsc = NULL;
     func_8023FA64(&D_802820E8);
     for(i = 0; i < 6; i++){
-        n_alCSPNew(&D_80281720[i].cseqp, &D_802820E8); //alCSPNew
+        n_alCSPNew(&D_80281720[i].cseqp, &D_802820E8);
     }
 
     alBnkfNew(bnk_f, (u8 *)&D_EADE60);
@@ -322,7 +491,7 @@ s32 func_802500C0(void){
     return *(s16 *)&D_80282104;
 }
 
-ALCSPlayer *func_802500CC(s32 arg0){
+N_ALCSPlayer *func_802500CC(s32 arg0){
     return &D_80281720[arg0].cseqp;
 }
 
@@ -362,8 +531,8 @@ void func_80250200(s32 arg0, s16 chan, s16 arg2, f32 arg3){
     mask = osSetIntMask(OS_IM_NONE);
     tmpf = (!func_80250074(arg0))? func_8025F4A0(sp28, chan) :127.0f;
 
-    if(arg3 < D_80278180){
-        arg3 = D_80278180;
+    if(arg3 < 0.0333333351f){
+        arg3 = 0.0333333351f;
     }
 
     for(i = 0; i< 0x20; i++){
@@ -391,8 +560,8 @@ void func_80250360(s32 arg0, s32 arg1, f32 arg2){
     sp24 = func_802500CC(arg0);
     sp1C = osSetIntMask(1);
     tempo = alCSPGetTempo(sp24);
-    if( arg2 < D_80278184){
-        arg2 = D_80278184;
+    if( arg2 < 0.0333333351f){
+        arg2 = 0.0333333351f;
     }
     for(i = 0; i < 0x20; i++){
         if(D_80282110[i].unk8 == D_80282110[i].unk10 
@@ -466,9 +635,8 @@ void func_80250604(s32 arg0, s32 arg1, f32 arg2){
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_80250650.s")
 #else
 void func_80250650(void) {
-    ALCSPlayer *csplayer;
+    N_ALCSPlayer *csplayer;
     s32 i;
-    s32 mask;
 
     for(i = 0; i < 0x20; i++){
         csplayer = func_802500CC(D_80282110[i].unk0);
@@ -482,7 +650,7 @@ void func_80250650(void) {
                 alCSPSetTempo(csplayer, (s32) D_80282110[i].unk8);
             } else {
                 func_8025F510(csplayer,D_80282110[i].chan, D_80282110[i].unk8);
-                if ((csplayer->chanMask) & (1U << D_80282110[i].chan)) {
+                if (((csplayer->chanMask) & (1 << D_80282110[i].chan))) {
                     if (D_80282110[i].unk8 == 0.0) {
                         func_8025F5C0(csplayer, D_80282110[i].chan);
                     }
