@@ -896,4 +896,12 @@ typedef struct{
     // u8 pad16[2];
     void *unk18;
 }struct86s;
+
+typedef struct {
+    s32 unk0; //sound state cnt
+    s32 unk4;
+    s32 unk8; //maxSounds
+    ALHeap *unkC; //heap
+    u16 unk10;
+}Struct87s;
 #endif
