@@ -2,6 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 #include "n_libaudio.h"
+#include "n_synth.h"
 
 void func_802444C0(N_AL_Struct81s *arg0);
 void func_80244050(ALEventQueue *arg0, N_AL_Struct81s *arg1, u16 arg2);
@@ -195,36 +196,33 @@ void func_80244190(N_AL_Struct81s *arg0) {
 }
 #endif
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_5650/func_8024431C.s")
-#else
 N_AL_Struct81s *func_8024431C(ALBank *bank, ALSound *sound) {
-    s32 pad;
+    s32 sp24;
     ALKeyMap *sp30;
     N_AL_Struct81s *temp_s0;
     OSIntMask mask;
-    s32 sp24;
 
     temp_s0 = D_802758C0.unk8;
     sp30 = sound->keyMap;
     if (temp_s0 != NULL) {
         mask = osSetIntMask(OS_IM_NONE);
-        D_802758C0.unk8 = (N_AL_Struct81s *) temp_s0->unk0.next;
+        D_802758C0.unk8 = (N_AL_Struct81s *) temp_s0->node.next;
         alUnlink((ALLink *)temp_s0);
         if (D_802758C0.unk0 != NULL) {
-            temp_s0->unk0.next = D_802758C0.unk0;
-            temp_s0->unk0.prev = NULL;
-            D_802758C0.unk0->unk0.prev = temp_s0;
+            temp_s0->node.next = D_802758C0.unk0;
+            temp_s0->node.prev = NULL;
+            D_802758C0.unk0->node.prev = temp_s0;
             D_802758C0.unk0 = temp_s0;
         } else {
-            temp_s0->unk0.prev = NULL;
-            temp_s0->unk0.next = NULL;
+            temp_s0->node.prev = NULL;
+            temp_s0->node.next = NULL;
             D_802758C0.unk0 = temp_s0;
             D_802758C0.unk4 = temp_s0;
         }
         osSetIntMask(mask);
-        sp24 = ((sound->envelope->decayTime + 1) == 0) + 0x40;
-        temp_s0->unk36 = sp24;
+        sp24 = ((sound->envelope->decayTime + 1) == 0);
+        // sp24 = sp20 + 0x40;
+        temp_s0->unk36 = sp24 + 0x40;
         temp_s0->unk40 = 5;
         temp_s0->unk38 = 2;
         temp_s0->unk8 = sound;
@@ -239,7 +237,7 @@ N_AL_Struct81s *func_8024431C(ALBank *bank, ALSound *sound) {
         } else {
             temp_s0->unk28 = alCents2Ratio(((sp30->keyBase * 0x64) + sp30->detune) - 0x1770);
         }
-        if (sp24 != 0x40) {
+        if (sp24 != 0) {
             temp_s0->unk3F |= 2;
         }
         temp_s0->unk3E = 0;
@@ -248,7 +246,6 @@ N_AL_Struct81s *func_8024431C(ALBank *bank, ALSound *sound) {
     }
     return temp_s0;
 }
-#endif
 
 void func_802444C0(N_AL_Struct81s *arg0){
     N_AL_Struct81s *var_v0;
