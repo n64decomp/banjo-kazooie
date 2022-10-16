@@ -169,7 +169,77 @@ void func_802424D4(Gfx **gfx, Mtx **mtx, Vtx **vtx, f32 arg3[3], f32 arg4[3], f3
     }
 }
 
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_3A70/func_80242BE8.s")
+#else
+void func_80242BE8(Gfx **gfx, Vtx **arg1, f32 arg2[2][2][2][3], s32 arg3[3], s32 *arg4, s32 arg5) {
+    f32 sp84[3];
+    f32 *temp_a0;
+    f32 *var_v0;
+    f32 temp_f12;
+    f32 var_f18;
+    s32 temp_a2;
+    s32 var_a2;
+    s32 var_a3;
+    s32 var_t2;
+    s32 var_v1;
+    void *temp_v0;
+    void *temp_v0_10;
+    void *temp_v0_11;
+    void *temp_v0_12;
+    void *temp_v0_13;
+    void *temp_v0_14;
+    void *temp_v0_15;
+    void *temp_v0_16;
+    void *temp_v0_2;
+    void *temp_v0_3;
+    void *temp_v0_4;
+    void *temp_v0_5;
+    void *temp_v0_6;
+    void *temp_v0_7;
+    void *temp_v0_8;
+    void *temp_v0_9;
 
-// BREAK???===
+    func_8024C5CC(sp84);
+    gSPDisplayList((*gfx)++, D_80275880);
+    var_t2 = 0;
+    if(arg5){
+        gSPSetGeometryMode((*gfx)++, G_CULL_BACK);
+    }
+    else{
+        gSPSetGeometryMode((*gfx)++, G_CULL_FRONT);
+    }
+    gSPVertex((*gfx)++, *arg1, 8, 0);
+    for(var_t2 = 0; var_t2 < 2; var_t2++){
+        for(var_a3 = 0; var_a3 < 2; var_a3++){
+            for(var_v1 = 0; var_v1 < 2; var_v1++){
+                (*arg1)->v.ob[0] = arg2[var_t2][var_a3][var_v1][0] - sp84[0];
+                (*arg1)->v.ob[1] = arg2[var_t2][var_a3][var_v1][1] - sp84[1];
+                (*arg1)->v.ob[2] = arg2[var_t2][var_a3][var_v1][2] - sp84[2];
+                (*arg1)->v.flag  = 0;
+                (*arg1)->v.tc[0] = 0;
+                (*arg1)->v.tc[1] = 0;
+                (*arg1)->v.cn[0] = 0;
+                (*arg1)->v.cn[1] = 0;
+                (*arg1)->v.cn[2] = 0;
+                (*arg1)->v.cn[3] = 0;
+                (*arg1)++;
+            }
+        }
+    }
+    gDPPipeSync((*gfx)++);
+    gDPSetPrimColor((*gfx)++, 0, 0, arg3[0], arg3[1], arg3[2], *arg4);
+    gSP2Triangles((*gfx)++, 7, 3, 5, 0, 5, 3, 1, 0);
+    gSP1Quadrangle((*gfx)++, 6, 4, 0, 2, 0);
 
+    gDPPipeSync((*gfx)++);
+    gDPSetPrimColor((*gfx)++, 0, 0, arg3[0], arg3[1], arg3[2], *arg4);
+    gSP1Quadrangle((*gfx)++, 7, 6, 2, 3, 0);
+    gSP2Triangles((*gfx)++, 4, 5, 0, 0, 5, 1, 0, 0);
+
+    gDPPipeSync((*gfx)++);
+    gDPSetPrimColor((*gfx)++, 0, 0, arg3[0], arg3[1], arg3[2], *arg4);
+    gSP1Quadrangle((*gfx)++, 5, 4, 6, 7, 0);
+    gSP2Triangles((*gfx)++, 0, 1, 2, 0, 1, 3, 2, 0);
+}
+#endif

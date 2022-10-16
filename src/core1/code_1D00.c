@@ -460,7 +460,7 @@ s32 func_80240204(s32 addr, s32 len, void *state){
     }
     temp_s0_3 = D_8027D5B0.unk8;
     if (temp_s0_3 == NULL) {
-        func_80247F24(2, 0x7D1, sp30, addr);
+        func_80247F24(2, 0x7D1);
         func_802483D8();
         return osVirtualToPhysical(D_8027D5B0.unk4);
     }
