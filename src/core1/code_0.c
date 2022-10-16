@@ -24,7 +24,7 @@ u64      D_8027BEF0;
 
 extern u8 D_80286F90;
 
-extern u8 D_803A5D00[2][0x1ECC0];
+extern u16 D_803A5D00[2][0x1ECC0/2];
 
 void func_8023DA20(s32 arg0){ 
     bzero(&D_8027A130, &D_80286F90 - (u8*)&D_8027A130);
@@ -131,6 +131,7 @@ void func_8023DD0C(void){
     s32 r;
     s32 g;
     s32 b;
+    u16 rgba;
 
     if((func_8023DB5C() & 0x7f) == 0x11)
         sns_write_payload_over_heap();
@@ -170,19 +171,20 @@ void func_8023DD0C(void){
         || !levelSpecificFlags_validateCRC1()
         || !func_80320240()
     ){
+        s32 offset;
         //render weird CRC failure image
         for(x= 0x1e; x< D_8027658C - 0x1e; x++){//L8023DEB4
+            g = x >> 3;
             for(y = 0x14; y < 0xeb; y++){
                 b = ((func_8023DB5C() << 3) + y*y + x*x) >> 3;
-                g = x >> 3;
                 r = y >> 3;
-                *(u16*)&D_803A5D00[1][((D_80276588 - 0xff)/2 + y + x*D_80276588)*2] =
-                *(u16*)&D_803A5D00[0][((D_80276588 - 0xff)/2 + y + x*D_80276588)*2] =
-                    _SHIFTL(b, 1, 5) 
-                    | _SHIFTL(g, 6, 5) 
-                    | _SHIFTL(r, 11, 5) 
-                    | _SHIFTL(1, 0, 1 )
-                    ;
+                rgba = _SHIFTL(b, 1, 5);
+                rgba |= _SHIFTL(r, 11, 5 );
+                rgba |= _SHIFTL(g, 6, 5);
+                rgba |= _SHIFTL(1, 0, 1 );
+                offset = ((D_80276588 - 0xff)/2 + y + x*D_80276588);
+                D_803A5D00[0][offset] = rgba;
+                D_803A5D00[1][offset] = rgba;
             }
         }
     }//L8023DF70

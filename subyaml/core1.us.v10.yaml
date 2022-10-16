@@ -36,7 +36,8 @@ segments:
   - [0x2BD0, c, code_2BD0]
   - [0x2DA0, c, code_2DA0] #DONE
   - [0x2FA0, c, code_2FA0] #DONE
-  - [0x31C0, c, code_31C0]
+  - [0x31C0, c, code_31C0] #DONE
+  - [0x3250, c, code_3250] #DONE
   - [0x3A70, c, code_3A70]
   - [0x5650, c, code_5650]
   - [0x7090, c, code_7090] #DONE
@@ -247,7 +248,7 @@ segments:
   - [0x37D50, .data, code_1D00]
   - [0x37E30, bin, data_37E30] #data Section
   - [0x37E40, .data, code_2FA0]
-  - [0x37E50, .data, code_31C0]
+  - [0x37E50, .data, code_3250]
   - [0x37E60, .data, code_3A70]
   - [0x37EA0, bin, data_37EA0] # .data, code_5650]
   - [0x37EC0, bin, data_37EC0]
@@ -280,7 +281,7 @@ segments:
   - [0x39B60, .data, done/io/vimodempallan1]
   - [0x39B60, .data, done/io/vimodentsclan1]
   - [0x39C00, bin, data_39C00] # .rodata, code_1D00]
-  - [0x39C20, .rodata, code_31C0]
+  - [0x39C20, .rodata, code_3250]
   - [0x39C30, bin, data_39C30] # .rodata, code_3A70]
   - [0x39C40, .rodata, code_5650]
   - [0x39CA0, .rodata, code_72B0]

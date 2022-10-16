@@ -303,7 +303,62 @@ void draw_sprite_rgba16(s32 x, s32 y, BKSprite *sprite, s32 frame, bool alpha_en
     }
 }
 
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_9D30/draw_sprite_i4.s")
+#else
+void draw_sprite_i4(s32 x, s32 y, BKSprite *sprite, s32 frame, bool aplha_enabled) {
+    BKSpriteFrame *frame_ptr;
+    BKSpriteTextureBlock *chunk_ptr;
+    s16 *temp_v0;
+    u8 *tmem;
+    s32 fb_x;
+    s32 fb_y;
+    s32 p1;
+    s32 p2;
+    u16 *framebuffer_ptr;
+    s32 txtr_y;
+    s32 i_chunk;
+    s32 txtr_x;
+    u16 *fb_pxl_ptr;
+
+    framebuffer_ptr = &D_803A5D00[D_802806EC][0];
+    frame_ptr = spriteGetFramePtr(sprite, frame);
+    if (!aplha_enabled) {
+        set_prim_color(0, 0, 0x80);
+        draw_prim_rect(x, y, frame_ptr->w, frame_ptr->h);
+    }
+    chunk_ptr = (BKSpriteTextureBlock *)(frame_ptr + 1);
+    for(i_chunk = 0; i_chunk < frame_ptr->chunkCnt; i_chunk++) {
+        for(tmem = (u8*)(chunk_ptr + 1); (s32)tmem % 8; tmem++);
+        
+        for(txtr_y = 0; txtr_y < chunk_ptr->h; txtr_y++) {
+            for(txtr_x = 0; txtr_x < chunk_ptr->w; txtr_x += 2) {
+                fb_x = chunk_ptr->x + x + txtr_x;
+                if ((fb_x >= 0) &&  (fb_x < D_80276588)) {
+                    fb_y = chunk_ptr->y + y + txtr_y;
+                    if ((fb_y >= 0) && (fb_y < D_8027658C)) {
+                        fb_pxl_ptr = framebuffer_ptr + fb_x + (fb_y * D_80276588);
+                        p1 = (*tmem >> 4);
+                        p2 = (*tmem & 0xF);
+                        if (p1) {
+                            *fb_pxl_ptr = (p1 << 0xC) | (p1 << 0x7) | (p1 << 0x2) | 1;
+                        } else if (!aplha_enabled) {
+                            *fb_pxl_ptr = 1;
+                        }
+                        if (p2) {
+                            *(fb_pxl_ptr + 1) = (p2 << 0xC) | (p2 << 7) | (p2 << 2) | 1;
+                        } else if (!aplha_enabled) {
+                            *(fb_pxl_ptr + 1) = 1;
+                        }
+                    }
+                }
+                tmem++;
+            }
+        }
+        chunk_ptr = (BKSpriteTextureBlock *) tmem;
+    }
+}
+#endif
 
 #ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_9D30/draw_sprite_ia4.s")
@@ -345,13 +400,13 @@ void draw_sprite_ia4(s32 x, s32 y, BKSprite *sprite, s32 frame, bool aplha_enabl
                     if ((fb_y >= 0) && (fb_y < D_8027658C)) {
                         fb_pxl_ptr = framebuffer_ptr + fb_x + (fb_y * D_80276588);
                         p1 = (*tmem >> 4);
-                        p2 = *tmem & 0xF;
+                        p2 = (*tmem & 0xF);
                         p1_i = p1 & 0xE;
                         p1_a = p1 & 1;
                         p2_i = p2 & 0xE;
                         p2_a = p2 & 1;
-                        if (p1_a) {
-                            *fb_pxl_ptr = (p1_i << 0xC) | (p1_i << 7) | (p1_i << 2) | p1_a;
+                        if (p1 & 1) {
+                            *fb_pxl_ptr = (p1_i << 0xC) | (p1_i << 0x7) | (p1_i << 0x2) | (p1 & 1);
                         } else if (!aplha_enabled) {
                             *fb_pxl_ptr = 1;
                         }

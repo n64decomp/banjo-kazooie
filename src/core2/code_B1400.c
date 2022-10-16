@@ -2,7 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void func_8024128C(Mtx *, s32, f32, f32, f32, f32, f32, f32, f32, f32, f32);
 extern void func_802ED52C(s32, f32[3], f32);
 extern void func_80252AF0(f32[3], f32[3], f32[3], f32, f32[3]);
 extern void mlMtxRotate(f32, f32, f32);
@@ -973,7 +972,7 @@ int func_803391A4(Gfx **gfx, Mtx **mtx, f32 position[3], f32 arg3[3], f32 scale,
         if(0.0f == spF4[2]){
             spF4[2] = -0.1f;
         }
-        func_8024128C(*mtx, D_803837E0.unk400, D_803837E0.unk408[0], D_803837E0.unk408[1], D_803837E0.unk408[2], spF4[0], spF4[1], spF4[2], 0.0f, 1.0f, 0.0f);
+        guLookAtReflect(*mtx, D_803837E0.unk400, D_803837E0.unk408[0], D_803837E0.unk408[1], D_803837E0.unk408[2], spF4[0], spF4[1], spF4[2], 0.0f, 1.0f, 0.0f);
         gSPLookAt((*gfx)++, D_803837E0.unk400);
         osWritebackDCache(D_803837E0.unk400, sizeof(LookAt));
         D_803837E0.unk400++;
