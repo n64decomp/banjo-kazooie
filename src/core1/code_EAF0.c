@@ -146,6 +146,7 @@ void func_8024C964(Gfx **gfx, Mtx **mtx, f32 near, f32 far){
         near = 750.0f;
         far = 1250.0f;
     }
+    
 
     guPerspective(*mtx, &sp5e, D_80275D20, D_80275D24, near, far, 0.5f);
     gSPPerspNormalize((*gfx)++, sp5e);
@@ -283,34 +284,41 @@ void func_8024CFD4(void){
     func_8025235C(D_80280EA0, D_80280EA0);
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_EAF0/func_8024D1EC.s")
-#else
 void func_8024D1EC(f32 arg0[4], f32 arg1[4], f32 arg2[4], f32 arg3[4]){
-    arg0[0] = D_80280ED0[0][0];
-    arg1[0] = D_80280ED0[1][0];
-    arg2[0] = D_80280ED0[2][0];
-    arg3[0] = D_80280ED0[3][0];
-    arg0[1] = D_80280ED0[0][1];
-    arg1[1] = D_80280ED0[1][1];
-    arg2[1] = D_80280ED0[2][1];
-    arg3[1] = D_80280ED0[3][1];
-    arg0[2] = D_80280ED0[0][2];
-    arg1[2] = D_80280ED0[1][2];
-    arg2[2] = D_80280ED0[2][2];
-    arg3[2] = D_80280ED0[3][2];
-    arg0[3] = D_80280ED0[0][3];
-    arg1[3] = D_80280ED0[1][3];
-    arg2[3] = D_80280ED0[2][3];
-    arg3[3] = D_80280ED0[3][3];
+    s32 i;
+    for(i = 0; i < 4; i++){
+        arg0[i] = D_80280ED0[0][i];
+        arg1[i] = D_80280ED0[1][i];
+        arg2[i] = D_80280ED0[2][i];
+        arg3[i] = D_80280ED0[3][i];
+    }
 }
-#endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_EAF0/func_8024D2B0.s")
+void func_8024D2B0(f32 arg0[4], f32 arg1[4], f32 arg2[4], f32 arg3[4]){
+    s32 i;
+    for(i = 0; i < 4; i++){
+        D_80280ED0[0][i] = arg0[i];
+        D_80280ED0[1][i] = arg1[i];
+        D_80280ED0[2][i] = arg2[i];
+        D_80280ED0[3][i] = arg3[i];
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_EAF0/func_8024D374.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_EAF0/func_8024D8F4.s")
+void func_8024D8F4(Cube *cube) {
+    f32 sp24[3];
+    f32 sp18[3];
+
+    sp24[0] = (f32) ((cube->x * 1000) - 150);
+    sp24[1] = (f32) ((cube->y * 1000) - 150);
+    sp24[2] = (f32) ((cube->z * 1000) - 150);
+    sp18[0] = sp24[0] + 1300.0f;
+    sp18[1] = sp24[1] + 1300.0f;
+    sp18[2] = sp24[2] + 1300.0f;
+    func_8024D374(sp24, sp18);
+}
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_EAF0/func_8024D9B0.s")
 
