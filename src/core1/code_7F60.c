@@ -123,7 +123,33 @@ void func_80245F34(f32 *arg0, f32 *arg1, f32 *arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_7F60/guPerspective.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_7F60/func_8024632C.s")
+void func_8024632C(f32 mf[4][4], f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
+    f32 sp34;
+    f32 sp30;
+    f32 sp2C;
+    f32 sp28;
+    volatile f32 sp24;
+
+    func_80245F34(&arg2, &arg3, &arg4);
+    arg1 *= D_80275908;
+    sp34 = sinf(arg1);
+    sp30 = cosf(arg1);
+    sp2C = arg2 * arg3 * (1.0f - sp30);
+    sp28 = arg3 * arg4 * (1.0f - sp30);
+    sp24 = (arg4 * arg2 * (1.0f - sp30));
+    _guMtxIdentF_80245D44(mf);
+    mf[0][0] = ((1.0f - (arg2 * arg2)) * sp30) + (arg2 * arg2);
+    mf[2][1] = (sp28 - (arg2 * sp34));
+    mf[1][2] = ((arg2 * sp34) + sp28);
+
+    mf[1][1] = (((1.0f - (arg3 * arg3)) * sp30) + (arg3 * arg3));
+    mf[2][0] = ((arg3 * sp34) + sp24);
+    mf[0][2] = (sp24 - (arg3 * sp34));
+	
+    mf[2][2] = (((1.0f - (arg4 * arg4)) * sp30) + (arg4 * arg4));
+    mf[1][0] = (sp2C - (arg4 * sp34));
+    mf[0][1] = (arg4 * sp34) + sp2C;
+}
 
 void func_802464B0(f32 mf[4][4], f32 arg1){
 	f32 c, s;
