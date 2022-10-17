@@ -306,7 +306,7 @@ void func_8024D2B0(f32 arg0[4], f32 arg1[4], f32 arg2[4], f32 arg3[4]){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_EAF0/func_8024D374.s")
 
-void func_8024D8F4(Cube *cube) {
+bool func_8024D8F4(Cube *cube) {
     f32 sp24[3];
     f32 sp18[3];
 
@@ -316,11 +316,31 @@ void func_8024D8F4(Cube *cube) {
     sp18[0] = sp24[0] + 1300.0f;
     sp18[1] = sp24[1] + 1300.0f;
     sp18[2] = sp24[2] + 1300.0f;
-    func_8024D374(sp24, sp18);
+    return func_8024D374(sp24, sp18);
 }
 
+bool func_8024D9B0(Cube *cube) {
+    f32 sp34[3];
+    f32 sp28[3];
+    f32 sp1C[3];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_EAF0/func_8024D9B0.s")
+    if (cube->x == -0x10) {
+        return TRUE;
+    }
+    sp1C[0] = (f32) ((cube->x * 1000) + 500) - D_80280EB0[0];
+    sp1C[1] = (f32) ((cube->y * 1000) + 500) - D_80280EB0[1];
+    sp1C[2] = (f32) ((cube->z * 1000) + 500) - D_80280EB0[2];
+    if (LENGTH_SQ_VEC3F(sp1C) > 1.6e7f) {
+        return FALSE;
+    }
+    sp34[0] = (f32) ((cube->x * 1000) - 150);
+    sp34[1] = (f32) ((cube->y * 1000) - 150);
+    sp34[2] = (f32) ((cube->z * 1000) - 150);
+    sp28[0] = sp34[0] + 1300.0f;
+    sp28[1] = sp34[1] + 1300.0f;
+    sp28[2] = sp34[2] + 1300.0f;
+    return func_8024D374(sp34, sp28);
+}
 
 bool func_8024DB50(f32 arg0[3], f32 arg1) {
     f32 sp3C[3];
@@ -355,7 +375,9 @@ bool func_8024DD0C(f32 arg0[3]){
     return func_8024DC04(arg0[0], arg0[1], arg0[2]);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_EAF0/func_8024DD34.s")
+bool func_8024DD34(f32 arg0, f32 arg1, f32 arg2) {
+    return ((D_80280ED0[2][0]*arg0 + D_80280ED0[2][1]*arg1 + D_80280ED0[2][2]*arg2 + D_80280ED0[2][3]) <= 0.0f);
+}
 
 Mtx *func_8024DD90(void){
     return &D_80280F98;
