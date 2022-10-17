@@ -2,6 +2,9 @@
 #include "functions.h"
 #include "variables.h"
 
+extern void func_802FB020(struct8s *, s32);
+
+
 extern f32 D_80369830[];
 extern s32 D_80369854;
 
@@ -35,44 +38,35 @@ void func_802FB8F8(void){
     }
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_74910/func_802FB93C.s")
-#else
 void func_802FB93C(struct8s *arg0) {
-    void *sp18;
-    s32 temp_a1;
-    s32 temp_t9;
     s32 var_v1;
-    void **var_v0;
-    void **var_v0_2;
-    void *temp_a0;
-    struct8s *temp_t0;
-    void *temp_v0;
+    struct8s *sp20;
+
 
     for(var_v1 = 0; var_v1 < D_80369854; var_v1++){
         if (arg0 == D_80381540[var_v1]) {
+            sp20 = D_80381540[0];
             func_802FB020(D_80381540[var_v1], 1);
-            D_80381540[var_v1]->unk10 = 3.0f;
-            if (D_80381540[var_v1]->unk18 == 0) {
-                D_80381540[var_v1]->unk1C = 0.0f;
+            sp20->unk10 = 3.0f;
+            if (sp20->unk18 == 0) {
+                sp20->unk1C = 0.0f;
             }
+            return;
         }
     }
 
-    for(var_v1 = D_80369854; var_v1 > 0; var_v0--){
+    for(var_v1 = D_80369854; var_v1 > 0; var_v1--){
         D_80381540[var_v1] = D_80381540[var_v1 - 1];
-        var_v1--;
     }
-
     D_80381540[0] = arg0;
-    if ((temp_a1 != 0) && (func_802FDD0C(D_80381540[1]) == 0x2A)) {
-        temp_t0 = D_80381540[1];
-        D_80381540[1] = D_80381540[0];
-        D_80381540[0] = temp_t0;
+
+    
+    if (D_80369854 && (func_802FDD0C(D_80381540[1]) == 0x2A)) {
+        D_80381540[0] = D_80381540[1];
+        D_80381540[1] = arg0;
     }
     D_80369854++;
 }
-#endif
 
 void func_802FBA54(s32 arg0, struct8s *arg1){
     func_802FB93C(arg1);
@@ -117,30 +111,23 @@ void func_802FBB18(void) {
     }
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_74910/func_802FBBC0.s")
-#else
 void func_802FBBC0(void) {
     struct8s *sp1C;
     f32 temp_f0;
-    struct8s *temp_a2;
-    s32 temp_v0;
-    s32 temp_v0_2;
-    s32 temp_v0_3;
-    s32 temp_v1;
-    s32 var_a0;
     s32 var_v0;
-    s32 var_v1;
+    bool var_v1;
 
-    var_a0 = D_80369854;
-    sp1C = D_80381540;
+    sp1C = D_80381540[0];
     if(D_80369854 != 0){
         switch(sp1C->unk0){
+            default:
+                break;
             case 1:
-                sp1C->unk1C += sp1C->unk14 * D_80369830[sp1C->unk18];
-                if (D_80369830[sp1C->unk18] == 0.0) {
-                    sp1C->unk0 = 2;
+                temp_f0 = D_80369830[sp1C->unk18];
+                sp1C->unk1C += sp1C->unk14 * temp_f0;
+                if (temp_f0 == 0.0) {
                     sp1C->unk10 = 3.0f;
+                    sp1C->unk0 = 2;
                 } else {
                     sp1C->unk18++;
                 }
@@ -154,30 +141,29 @@ void func_802FBBC0(void) {
                 break;
 
             case 3:
-                if (D_80381554 != 0) {
-                    var_v1 = (sp1C->unk1C < -20.0f) ? TRUE : FALSE;
-                } else {
-                    var_v1 = (sp1C->unk18 == 0);
-                }
+                var_v1 = (D_80381554 != 0) ? (sp1C->unk1C < -20.0f) : (!sp1C->unk18);
                 if (var_v1) {
                     D_80381554 = 0;
                     func_802FB020(sp1C, 0);
-                } else {
-                    temp_v0_3 = sp1C->unk18 - 1;
-                    sp1C->unk18 = (temp_v0_3 < 0) ? 0 : temp_v0_3;
-                    sp1C->unk1C -= sp1C->unk14 * D_80369830[sp1C->unk18];
+                    break;
                 }
+                else{
+                    sp1C->unk18 = MAX(0, sp1C->unk18 - 1);
+                    temp_f0 = D_80369830[sp1C->unk18];
+    
+                    sp1C->unk1C -= sp1C->unk14 * temp_f0;
+                }
+
                 break;
         }
-    }
-
-    for(var_v0 = 1; var_v0 < D_80369854; var_v0++){
-        if (temp_a2->unk0 == 2) {
-            D_80381540[var_v0]->unk0 = temp_a2->unk0;
+    
+        for(var_v0 = 1; var_v0 < D_80369854; var_v0++){
+            if (sp1C->unk0 == 2) {
+                D_80381540[var_v0]->unk0 = sp1C->unk0;
+            }
         }
-    }
+    }    
 }
-#endif
 
 void func_802FBDFC(void){}
 
