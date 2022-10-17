@@ -34,38 +34,28 @@ void func_802FCE88(void){
     }
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_75E90/func_802FCECC.s")
-#else
 void func_802FCECC(struct8s *arg0) {
-    s32 temp_a1;
-    s32 temp_t9;
-    s32 var_v1;
-    struct8s **var_v0;
-    void **var_v0_2;
-    struct8s *temp_a0;
-    struct8s *sp18;
+    s32 var_v0;
+    struct8s *sp20;
 
-    for(var_v1 = 0; var_v1 < D_80369914; var_v1++){
-        temp_a0 = D_80381590[var_v1];
-        if (arg0 == temp_a0) {
-            sp18 = D_80381590[0];
-            func_802FB020(temp_a0, 1);
-            sp18->unk10 = 3.0f;
-            if (sp18->unk18 == 0) {
-                sp18->unk1C = 0.0f;
+    for(var_v0 = 0; var_v0 < D_80369914; var_v0++){
+        if (arg0 == D_80381590[var_v0]) {
+            sp20 = D_80381590[0];
+            func_802FB020(D_80381590[var_v0], 1);
+            sp20->unk10 = 3.0f;
+
+            if (sp20->unk18 == 0) {
+                sp20->unk1C = 0.0f;
             }
-            break;
+            return;
         }
-    } 
-    var_v0 = D_80381590 + D_80369914;
-    for(var_v1 = 0; var_v1 < D_80369914; var_v1++){
-        var_v0[-var_v1] = var_v0[-(var_v1 + 1)];
+    }
+    for(var_v0 = D_80369914; var_v0> 0; var_v0--) {
+        D_80381590[var_v0] = D_80381590[var_v0-1];
     }
     D_80381590[0] = arg0;
     D_80369914++;
 }
-#endif
 
 void func_802FCFA0(s32 arg0, struct8s *arg1){
     func_802FCECC(arg1);
