@@ -270,7 +270,7 @@ segments:
   - [0x73640, c, code_73640] #DONE
   - [0x74090, c, code_74090] #DONE
   - [0x74290, c, code_74290] #DONE
-  - [0x74420, c, code_74420]
+  - [0x74420, c, code_74420] #DONE
   - [0x74910, c, code_74910]
   - [0x74ED0, c, code_74ED0]
   - [0x75480, c, code_75480]

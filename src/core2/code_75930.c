@@ -66,6 +66,12 @@ void func_802FCAE0(s32 arg0, struct8s *arg1){
 
 void func_802FCD4C(void){}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_75930/func_802FCD54.s")
+bool func_802FCD54(void){
+    struct8s *var_v1 = D_80381580[0];
+    if(D_803698E4 == 0)
+        return 0;
+
+    return (var_v1->unk0 == 1 || var_v1->unk0 == 2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_75930/func_802FCD98.s")
