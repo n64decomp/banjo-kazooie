@@ -33,7 +33,28 @@ void func_802FC468(void){
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_75480/func_802FC4AC.s")
+void func_802FC4AC(struct8s *arg0) {
+    s32 var_v0;
+    struct8s *sp20;
+
+    for(var_v0 = 0; var_v0 < D_803698B4; var_v0++){
+        if (arg0 == D_80381570[var_v0]) {
+            sp20 = D_80381570[0];
+            func_802FB020(D_80381570[var_v0], 1);
+            sp20->unk10 = 3.0f;
+
+            if (sp20->unk18 == 0) {
+                sp20->unk1C = 0.0f;
+            }
+            return;
+        }
+    }
+    for(var_v0 = D_803698B4; var_v0> 0; var_v0--) {
+        D_80381570[var_v0] = D_80381570[var_v0-1];
+    }
+    D_80381570[0] = arg0;
+    D_803698B4++;
+}
 
 void func_802FC580(s32 arg0, struct8s * arg1){
     func_802FC4AC(arg1);
