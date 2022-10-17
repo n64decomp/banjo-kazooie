@@ -286,7 +286,7 @@ segments:
   - [0x79C80, c, code_79C80] #DONE
   - [0x7A760, c, code_7A760] #DONE
   - [0x7AF80, c, code_7AF80]
-  - [0x82000, c, code_82000]
+  - [0x82000, c, code_82000] #DONE
   - [0x83340, c, code_83340]
   - [0x83D70, c, gc/section] #DONE
   - [0x840D0, c, gc/sky] #DONE

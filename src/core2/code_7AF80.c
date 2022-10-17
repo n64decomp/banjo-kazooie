@@ -611,14 +611,14 @@ BKCollisionTri * func_80303960(f32 volume_p1[3], f32 volume_p2[3], f32 radius, f
     for(cube_indx[0] = min[0]; cube_indx[0] <= max[0]; cube_indx[0]++){
         for(cube_indx[1] = min[1]; cube_indx[1] <= max[1]; cube_indx[1]++){
             for(cube_indx[2] = min[2]; cube_indx[2] <= max[2]; cube_indx[2]++){
-                temp_v0 = func_80331638(cube_atIndices(cube_indx), volume_p1, volume_p2, radius, arg3, arg4, arg5);
+                temp_v0 = func_80331638(cube_atIndices(cube_indx), volume_p1, volume_p2, radius, arg3, arg4, flags);
                 if (temp_v0 != NULL) {
                     var_s5 = temp_v0;
                 }
             }
         }
     }
-    temp_v0 = func_80331638(func_8030364C(), volume_p1, volume_p2, radius, arg3, arg4, arg5);
+    temp_v0 = func_80331638(func_8030364C(), volume_p1, volume_p2, radius, arg3, arg4, flags);
     if (temp_v0 != NULL) {
         var_s5 = temp_v0;
     }
@@ -1200,7 +1200,20 @@ void spawnableActorList_addIfMapVisited(ActorInfo *arg0, Actor *(*arg1)(s32[3], 
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80305510.s")
+NodeProp *func_80305510(s32 arg0) {
+    NodeProp *var_v0;
+    s32 sp20;
+    u32 var_v1;
+
+    var_v0 = func_803080C8(arg0);
+    sp20 = 1;
+    while ((var_v0 != NULL) && ((sp20 == 1) || (var_v0->unk6.bit0 == 1)) && (var_v0->unk10_19 != 0)) {
+        var_v1 = var_v0->unk10_19;
+        var_v0 = func_803080C8(var_v1);
+        sp20 = 0;
+    }
+    return ((sp20 == 1) || (var_v0 == NULL) || (var_v0->unk6.bit0 == 1)) ? NULL : var_v0;
+}
 
 Actor * func_803055E0(enum actor_e arg0, s32 arg1[3], s32 arg2, s32 arg3, s32 arg4){
     Actor *actor = func_803056FC(arg0, arg1, arg2);
@@ -1235,9 +1248,7 @@ Actor * func_803055E0(enum actor_e arg0, s32 arg1[3], s32 arg2, s32 arg3, s32 ar
 Actor *func_803056FC(enum actor_e arg0, s32 arg1[3], s32 arg2) {
     s32 i;
 
-    if (func_80320248() == 0) {
-        arg0 = ACTOR_4_BIGBUTT;
-    }
+    arg0 = !func_80320248() ? ACTOR_4_BIGBUTT : arg0;
     for(i=0; i < sSpawnableActorSize; i++){
         if(arg0 == sSpawnableActorList[i].infoPtr->actorId)
             return sSpawnableActorList[i].spawnFunc(arg1, arg2, sSpawnableActorList[i].infoPtr, sSpawnableActorList[i].unk8);
@@ -1372,38 +1383,39 @@ void func_80305D38(void){
     D_8036A9D0 = 0;
 }
 
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80305D94.s")
-// void func_80305D94(void){
-//     Struct_core2_7AF80_1 * i;
-//     u32 j;
-//     s32 k;
-//     if(D_8036A9BC != NULL){
-//         for(j = 0; j < D_8036A9B8; j++){
-//             free((D_8036A9BC + j)->unk8);
-//         }
-//         free(D_8036A9BC);
-//         D_8036A9BC = NULL;
-//         D_8036A9B8 = 0;
-//     }
+#else
+void func_80305D94(void){
+    s32 j;
+    if(D_8036A9BC != NULL){
+        for(j = 0; j < D_8036A9B8; j++){
+            free(D_8036A9BC[j].unk8);
+        }
+        free(D_8036A9BC);
+        D_8036A9BC = NULL;
+        D_8036A9B8 = 0;
+    }
 
-//     if(D_8036A9C8 != NULL){
-//         for(j = 0; j < D_8036A9C4; j++){
-//             free((D_8036A9C8 + j)->unk8);
-//         }
-//         free(D_8036A9C8);
-//         D_8036A9C8 = NULL;
-//         D_8036A9C4 = 0;
-//     }
+    if(D_8036A9C8 != NULL){
+        for(j = 0; j < D_8036A9C4; j++){
+            free(D_8036A9C8[j].unk8);
+        }
+        free(D_8036A9C8);
+        D_8036A9C8 = NULL;
+        D_8036A9C4 = 0;
+    }
 
-//     if(D_8036A9D4 != NULL){
-//         for(j = 0; j < D_8036A9D0; j++){
-//             free((D_8036A9D4 + j)->unk8);
-//         }
-//         free(D_8036A9D4);
-//         D_8036A9D0 = 0;
-//         D_8036A9D4 = NULL;
-//     }
-// }
+    if(D_8036A9D4 != NULL){
+        for(j = 0; j < D_8036A9D0; j++){
+            free(D_8036A9D4[j].unk8);
+        }
+        free(D_8036A9D4);
+        D_8036A9D0 = 0;
+        D_8036A9D4 = NULL;
+    }
+}
+#endif
 
 void func_80305F04(s32 *arg0, Struct_core2_7AF80_1 **arg1) {
     bool continue_loop;

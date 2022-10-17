@@ -6,6 +6,12 @@ extern UNK_TYPE(s32) func_802E8E88(BKCollisionList *, BKVertexList *, f32[3], f3
 extern UNK_TYPE(s32) func_802E92AC(BKCollisionList *, BKVertexList *, f32[3], f32, f32[3], s32);
 extern UNK_TYPE(s32) func_802EC394(BKMeshList *, UNK_TYPE(s32), UNK_TYPE(s32), f32, UNK_TYPE(s32), UNK_TYPE(s32), UNK_TYPE(s32));
 extern void func_802EC458(BKVertexList *, s32[3], s32[3]);
+extern void func_8033A494(s32);
+extern void set_model_render_mode(s32);
+extern void func_8033A388(s32, s32, s32, s32);
+extern void func_802F7BC0(Gfx **, Mtx **, Vtx **);
+extern void func_8033A450(s32);
+extern void func_8033A45C(s32, s32);
 
 
 BKCollisionTri *func_80309B48(f32 arg0[3], f32 arg1[3], f32 arg2[3], s32 arg3) ;
@@ -174,6 +180,8 @@ struct {
     f32 unk30;
 }D_80382350;
 
+enum asset_e func_8030A068(void);
+
 /* .code */
 Struct_core2_82000_0 *func_80308F90(enum map_e map_id){
     Struct_core2_82000_0 *i_ptr;
@@ -230,23 +238,121 @@ f32 func_80308FDC(f32 arg0[3], u32 arg1) {
     return 0.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_82000/func_803091D4.s")
-// void func_803091D4(Gfx **gfx, Mtx **mtx, Vtx **vtx){
-//     if( func_80320708() 
-//         && levelSpecificFlags_validateCRC2() 
-//         && func_80320248()
-//     ){
-//         if(func_8030A068() == 0x14cf){
-//             func_8033A45C(1, 0);
-//             func_8033A45C(2, 1);
-//         }
+void func_803091D4(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
+    s32 temp_a0;
 
-//         switch(map_get())
-//         {
+    if (func_80320708() && levelSpecificFlags_validateCRC2() && func_80320248()) {
+        if (func_8030A068() == 0x14CF) {
+            func_8033A45C(1, 0);
+            func_8033A45C(2, 1);
+        }
+        // temp_v0 = map_get();
+        switch (map_get()) {                          /* irregular */
+        case MAP_88_CS_SPIRAL_MOUNTAIN_6:
+            if (mapSpecificFlags_get(0) != 0) {
+                func_8033A45C(1, 1);
+                func_8033A45C(2, 0);
+            }
+            break;
 
-//         }
-//     }
-// }
+        case MAP_12_GV_GOBIS_VALLEY:
+            func_8033A45C(1, levelSpecificFlags_get(6) ? 1 : 0);
+            func_8033A45C(2, jiggyscore_isCollected(JIGGY_42_GV_WATER_PYRAMID) ? 0 : 1);
+            func_8033A45C(5, jiggyscore_isCollected(JIGGY_42_GV_WATER_PYRAMID) ? 1 : 0);
+            break;
+
+        case MAP_14_GV_SANDYBUTTS_MAZE:
+            func_8033A45C(5, (func_8028ECAC() == 4) ? 1 : 0);
+            break;
+
+        case MAP_E_MM_MUMBOS_SKULL:
+            func_8033A45C(1, 1);
+            func_8033A45C(5, 1);
+            break;
+
+        case MAP_47_BGS_MUMBOS_SKULL:
+            func_8033A45C(1, 2);
+            func_8033A45C(5, 2);
+            break;
+
+        case MAP_48_FP_MUMBOS_SKULL:
+            func_8033A45C(1, 3);
+            func_8033A45C(5, 3);
+            break;
+
+        case MAP_30_MMM_MUMBOS_SKULL:
+            func_8033A45C(1, 4);
+            func_8033A45C(5, 4);
+            break;
+            
+        case MAP_4A_CCW_SPRING_MUMBOS_SKULL:
+            func_8033A45C(1, 5);
+            func_8033A45C(5, 5);
+            break;
+        case MAP_4B_CCW_SUMMER_MUMBOS_SKULL:
+            func_8033A45C(1, 6);
+            func_8033A45C(5, 6);
+            break;
+        case MAP_4C_CCW_AUTUMN_MUMBOS_SKULL:
+            func_8033A45C(1, 7);
+            func_8033A45C(5, 7);
+            break;
+        case MAP_4D_CCW_WINTER_MUMBOS_SKULL:
+            func_8033A45C(1, 8);
+            func_8033A45C(5, 8);
+            break;
+        case MAP_5E_CCW_SPRING_NABNUTS_HOUSE:
+        case MAP_5F_CCW_SUMMER_NABNUTS_HOUSE:
+        case MAP_60_CCW_AUTUMN_NABNUTS_HOUSE:
+            func_8033A45C(1, 1);
+            func_8033A45C(2, 0);
+            break;
+        case MAP_61_CCW_WINTER_NABNUTS_HOUSE:
+            func_8033A45C(1, 0);
+            func_8033A45C(2, 1);
+            break;
+        case MAP_1D_MMM_CELLAR:
+            func_8033A45C(1, func_80326EEC(0x191) ?  0 : 1);
+            break;
+        case MAP_7C_CS_INTRO_BANJOS_HOUSE_1:
+        case MAP_89_CS_INTRO_BANJOS_HOUSE_2:
+        case MAP_8A_CS_INTRO_BANJOS_HOUSE_3:
+        case MAP_8C_SM_BANJOS_HOUSE:
+        case MAP_91_FILE_SELECT:
+            func_8033A45C(5, 1);
+            break;
+        case MAP_7B_CS_INTRO_GL_DINGPOT_1:
+        case MAP_81_CS_INTRO_GL_DINGPOT_2:
+            func_8033A45C(4, 0);
+            func_8033A45C(5, 0);
+            func_8033A45C(6, 0);
+            break;
+        case MAP_82_CS_ENTERING_GL_MACHINE_ROOM:
+        case MAP_83_CS_GAME_OVER_MACHINE_ROOM:
+        case MAP_84_CS_UNUSED_MACHINE_ROOM:
+            func_8033A45C(4, 1);
+            func_8033A45C(5, 1);
+            func_8033A45C(6, 1);
+            break;
+        case MAP_93_GL_DINGPOT:
+            func_8033A45C(4, 1);
+            func_8033A45C(5, 1);
+            func_8033A45C(6, (func_8038EAE0(0xA) || func_8031FF1C(0xE2) || func_803203FC(0xC1)));
+            break;
+        }
+        func_8033A450(D_80382350.unk24);
+        set_model_render_mode(1);
+        temp_a0 = D_80382350.unk0;
+        if (temp_a0 != 0) {
+            func_8033A494(temp_a0);
+        }
+        func_8033A388(D_80382350.unk2C, D_80382350.unk2D, D_80382350.unk2E, 0xFF);
+        func_803391A4(gfx, mtx, NULL, NULL, D_80382350.unk28->unk14, NULL, D_80382350.unk18);
+        if (!func_80309F78()) {
+            func_802F7BC0(gfx, mtx, vtx);
+        }
+    }
+}
 
 void func_80309628(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     s32 temp_a0;
@@ -256,8 +362,9 @@ void func_80309628(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
             func_8033A45C(1, (func_80326EEC(0x191) != NULL) ? 0 : 1);
         }
         set_model_render_mode(2);
-        if (D_80382350.unk4 != 0) {
-            func_8033A494(D_80382350.unk4);
+        temp_a0 = D_80382350.unk4;
+        if (temp_a0 != 0) {
+            func_8033A494(temp_a0);
         }
         func_8033A388(D_80382350.unk2C, D_80382350.unk2D, D_80382350.unk2E, 0xFF);
         func_803391A4(gfx, mtx, NULL, NULL, D_80382350.unk28->unk14, NULL, D_80382350.unk1C);
