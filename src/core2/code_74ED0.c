@@ -2,7 +2,11 @@
 #include "functions.h"
 #include "variables.h"
 
+extern void func_802FB020(struct8s *, s32);
+
+
 /* .data */
+extern f32 D_80369860[9];
 extern s32 D_80369884;
 
 /* .bss */
@@ -34,7 +38,35 @@ void func_802FBEB8(void){
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_74ED0/func_802FBEFC.s")
+void func_802FBEFC(struct8s *arg0) {
+    s32 var_v1;
+    struct8s *sp20;
+
+
+    for(var_v1 = 0; var_v1 < D_80369884; var_v1++){
+        if (arg0 == D_80381560[var_v1]) {
+            sp20 = D_80381560[0];
+            func_802FB020(D_80381560[var_v1], 1);
+            sp20->unk10 = 3.0f;
+            if (sp20->unk18 == 0) {
+                sp20->unk1C = 0.0f;
+            }
+            return;
+        }
+    }
+
+    for(var_v1 = D_80369884; var_v1 > 0; var_v1--){
+        D_80381560[var_v1] = D_80381560[var_v1 - 1];
+    }
+    D_80381560[0] = arg0;
+
+    
+    if (D_80369884 && (func_802FDD0C(D_80381560[1]) == 0x29)) {
+        D_80381560[0] = D_80381560[1];
+        D_80381560[1] = arg0;
+    }
+    D_80369884++;
+}
 
 void func_802FC014(s32 arg0, struct8s * arg1){
     func_802FBEFC(arg1);
@@ -63,7 +95,66 @@ void func_802FC0C4(s32 arg0, struct8s *arg1){
     D_80369884 = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_74ED0/func_802FC0D8.s")
+void func_802FC0D8(void) {
+    struct8s *sp1C;
+    f32 temp_f0;
+    s32 var_v0;
+    bool var_v1;
+
+    sp1C = D_80381560[0];
+    if(D_80369884 != 0){
+        switch(sp1C->unk0){
+            default:
+                break;
+            case 1:
+                temp_f0 = D_80369860[sp1C->unk18];
+                sp1C->unk1C += sp1C->unk14 * temp_f0;
+                if (temp_f0 == 0.0) {
+                    sp1C->unk10 = 3.0f;
+                    sp1C->unk0 = 2;
+                } else {
+                    sp1C->unk18++;
+                }
+                break;
+
+            case 2:
+                if (getGameMode() != GAME_MODE_4_PAUSED) {
+                    sp1C->unk10 -= time_getDelta();
+                    if (sp1C->unk10 < 0.0f) {
+                        sp1C->unk0 = 3;
+                        for(var_v0 = 1; var_v0 < D_80369884; var_v0++){
+                            func_802FC05C(3, D_80381560[var_v0]);
+                            func_802FB020(D_80381560[var_v0], sp1C->unk0);
+                        }
+                        D_8038156C = 1;
+                    }
+                }
+                break;
+
+            case 3:
+                var_v1 = (D_8038156C != 0) ? (sp1C->unk1C < -20.0f) : (!sp1C->unk18);
+                if (var_v1) {
+                    D_8038156C = 0;
+                    func_802FB020(sp1C, 0);
+                    break;
+                }
+                else{
+                    sp1C->unk18 = MAX(0, sp1C->unk18 - 1);
+                    temp_f0 = D_80369860[sp1C->unk18];
+
+                    sp1C->unk1C -= sp1C->unk14 * temp_f0;
+                }
+
+                break;
+        }
+
+        for(var_v0 = 1; var_v0 < D_80369884; var_v0++){
+            if (sp1C->unk0 == 2) {
+                D_80381560[var_v0]->unk0 = sp1C->unk0;
+            }
+        }
+    }
+}
 
 bool func_802FC390(void){
     s32 *phi_v1 = D_80381560[0];
