@@ -13,6 +13,7 @@ extern void func_80251B5C(f32, f32, f32);
 extern void func_80251F8C(f32);
 extern void func_8025208C(f32);
 extern void func_80252A38(f32, f32, f32);
+extern void mlMtxApply(Mtx *);
 
 extern struct4Cs * D_80369280;
 extern s32 D_80369284;
@@ -209,9 +210,6 @@ void func_802F919C(void) {
 //     }
 // }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_72060/func_802F989C.s")
-#else
 bool func_802F989C(Gfx **gfx, Mtx **mtx, f32 arg2[3]) {
 
     D_80381070[0] = arg2[0] - D_80381050[0];\
@@ -237,4 +235,3 @@ bool func_802F989C(Gfx **gfx, Mtx **mtx, f32 arg2[3]) {
     }
     return FALSE;
 }
-#endif
