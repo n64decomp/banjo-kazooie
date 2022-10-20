@@ -15,7 +15,7 @@ extern u8 D_8002D500;
 extern u8 D_8023DA20;
 extern u32 D_803FFE00[4];
 
-void func_80000594(u8 *, u8 *);
+void func_80000594(u8 **, u8 **);
 void func_8023DA20(s32);
 
 void func_80000450(s32 arg0){

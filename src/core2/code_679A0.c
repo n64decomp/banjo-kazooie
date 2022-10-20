@@ -257,20 +257,17 @@ void func_802EF3F4(ParticleEmitter *this, f32 position_min[3], f32 position_max[
     }
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_679A0/func_802EF4AC.s")
-#else
 void func_802EF4AC(ParticleEmitter *this, f32 arg1[3], f32 arg2[3], s32 arg3) {
     f32 sp3C[3];
     f32 temp_f0;
     s32 temp_s4;
     s32 i;
 
-    temp_s4 = arg3 - 1;
-    sp3C[0] = arg2[0] - arg1[0];
-    sp3C[1] = arg2[1] - arg1[1];
+    arg3 -= 1;
+    sp3C[0] = arg2[0] - arg1[0];\
+    sp3C[1] = arg2[1] - arg1[1];\
     sp3C[2] = arg2[2] - arg1[2];
-    for(i = 0; i < (arg3 - 1); i++){
+    for(i = 0; i <= arg3; i++){
         if (this->pList_end_128 < this->pList_capacity_12C) {
             __particleEmitter_initParticle(this, this->pList_end_128);
             this->pList_end_128->position_18[0] = arg1[0] + sp3C[0]*((f32)i / arg3);
@@ -280,7 +277,6 @@ void func_802EF4AC(ParticleEmitter *this, f32 arg1[3], f32 arg2[3], s32 arg3) {
         }
     }
 }
-#endif
 
 //particleEmitter_emitN
 void particleEmitter_emitN(ParticleEmitter *this, int n){

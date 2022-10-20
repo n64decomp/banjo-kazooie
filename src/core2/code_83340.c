@@ -22,6 +22,8 @@ BKModelBin *func_8030A428(s32 arg0);
 
 /* .data */
 s32 D_8036B800;
+s32 D_8036B804;
+s32 D_8036B808;
 
 /* .bss */
 struct_7AF80_0 *D_80382390; //prop models ???
@@ -39,7 +41,24 @@ void func_8030A2D0(Gfx **gfx, Mtx **mtx, Vtx **vtx, f32 arg3[3], f32 arg4[3], f3
     func_803391A4(gfx, mtx, arg3, arg4, arg5, NULL, sp2C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_83340/func_8030A350.s")
+void func_8030A350(Gfx **gfx, Mtx **mtx, Vtx **Vtx, f32 arg3[3], f32 arg4, s32 arg5, Cube *arg6, s32 arg7, s32 arg8, s32 arg9, s32 argA, s32 argB) {
+    f32 sp2C[3];
+    BKSpriteDisplayData *sp28;
+
+    sp28 = func_8030A4D4(arg5);
+    sp2C[0] = arg4;
+    sp2C[1] = arg4;
+    sp2C[2] = arg4;
+    func_80338338(0xFF - (arg7 * 0x10), 0xFF - (arg8 * 0x10), 0xFF - (arg9 * 0x10));
+    if (func_80344C20(sp28) & 0xB00) {
+        func_803382E4(0xB);
+    } else {
+        func_803382E4(0xE);
+    }
+    func_80335D30(gfx);
+    func_80344138(sp28, argB, argA, arg3, sp2C, gfx, mtx);
+    func_8033687C(gfx);
+}
 
 BKModelBin *func_8030A428(s32 arg0){
     if(D_80382390[arg0].unk0 == NULL){
@@ -131,7 +150,51 @@ void func_8030A78C(void){//init
     }
 }
 
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_83340/func_8030A850.s")
+#else
+void func_8030A850(s32 arg0) {
+    struct_7AF80_0 *sp3C;
+    struct_7AF80_1 *temp_a0_2;
+    s32 sp34;
+    s32 sp30;
+    s32 temp_a0;
+    s32 temp_s3;
+    s32 var_s0;
+    s32 var_s0_2;
+    s32 var_v1;
+    s32 var_v1_2;
+    s32 var_v1_3;
+    s32 var_v1_4;
+    void *temp_v1;
+
+    sp34 = func_8023DB5C();
+    sp30 = func_80255B08(arg0);
+    temp_s3 = sp34 - sp30;
+    for(var_s0 = 0; (D_80382390 != 0) && (var_s0 < ((arg0 == 1) ? 0x28 : 0x2A1)); var_s0++){
+        sp3C = &D_80382390[D_8036B804];
+        if ((sp3C->unk0 != 0) && ((sp3C->unk4 < temp_s3) || (arg0 == 3))){
+            assetcache_release(sp3C->unk0);
+            sp3C->unk0 = 0;
+            if( (arg0 != 1) && (func_80254BC4(1))){
+                return;
+            }
+            D_8036B804++;
+            D_8036B804 %= 0x2A1;
+        }
+    }
+
+    for(var_s0 = 0; (D_80382394 != 0) && (var_s0 < ((arg0 == 1) ? 0x28 : 0x167)); var_s0++){
+        temp_a0_2 = &D_80382394[D_8036B808];
+        if ((temp_a0_2->unk0 != 0) && ((temp_a0_2->unk8 < temp_s3) || (arg0 == 3))){
+            func_8033B338(&temp_a0_2->unk0, &temp_a0_2->unk4);
+            if( (arg0 != 1) && (func_80254BC4(1))){
+                return;
+            }
+        }
+    }
+}
+#endif
 
 void func_8030AA6C(void) {
     BKModelBin *temp_a0;

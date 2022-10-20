@@ -28,7 +28,7 @@ s16 *D_80383CDC; //assetCache_indexs
 vector(struct21s) *D_80383CE0[2];
 
 /* .public */
-s32 assetcache_release(void * arg0);
+extern s32 assetcache_release(void * arg0);
 
 f32  func_8033ABA0(AnimationFile *anim_file, f32 arg1);
 f32  func_8033AC38(AnimationFile *anim_file, AnimationFileElement *arg1, f32 arg2);
@@ -205,7 +205,7 @@ bool func_8033B338(void **sprite_ptr, BKSpriteDisplayData **arg1) {
     if (*sprite_ptr == NULL) {
         return FALSE;
     }
-    assetcache_release(*sprite_ptr);
+    (assetcache_release)(*sprite_ptr);
     *sprite_ptr = NULL;
     *arg1 = NULL;
 

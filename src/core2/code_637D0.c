@@ -5,7 +5,7 @@
 extern void func_80252C08(f32[3], f32[3], f32, f32[3]);
 extern void func_80252CC4(f32[3], f32[3], f32, s32);
 extern void func_802524F0(f32[3], f32, f32, f32);
-
+extern  s32 func_802EBAE0(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 scale, s32 arg4, s32 arg5, f32 arg6[3], f32 arg7, f32 arg8[3]);
 /* .bss */
 Mtx D_80380880;
 
@@ -315,8 +315,9 @@ s32 func_802EB458(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 
 s32 func_802EB8A0(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 scale, s32 arg4, s32 arg5, f32 arg6[3], f32 arg7);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_637D0/func_802EB8A0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_637D0/func_802EBA98.s")
-
+bool func_802EBA98(BKModelUnk14List *arg0, f32 arg1[3], s32 arg2, f32 arg3, s32 arg4, f32 arg5[3], f32 arg6, f32 arg7[3]){
+    return func_802EBAE0(arg0, arg1, arg2, arg3, arg4, NULL, arg5, arg6, arg7);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_637D0/func_802EBAE0.s")
 // s32 func_802EBAE0(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 scale, s32 arg4, s32 arg5, f32 arg6[3], f32 arg7, f32 arg8[3]) {
@@ -415,7 +416,7 @@ s32 func_802EBD3C(BKModelUnk14List *arg0, f32 arg1[3], f32 arg2[3], f32 arg3, s3
 #endif
 
 #ifndef NONMATCHING
-s32 func_802EC000(BKModelUnk14List *arg0, s32 arg1, s32 arg2, f32 arg3, s32 arg4, s32 arg5, s32 arg6);
+s32 func_802EC000(BKModelUnk14List *arg0, f32 arg1[3], f32 arg2[3], f32 arg3, s32 arg4, f32 arg5[3], s32 arg6);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_637D0/func_802EC000.s")
 #else
 s32 func_802EC000(BKModelUnk14List *arg0, f32 arg1[3], f32 arg2[3], f32 arg3, s32 arg4, f32 arg5[3], s32 arg6){
@@ -454,9 +455,40 @@ s32 func_802EC000(BKModelUnk14List *arg0, f32 arg1[3], f32 arg2[3], f32 arg3, s3
 }
 #endif
 
-
-s32 func_802EC238(BKModelUnk14List *arg0, s32 arg1, s32 arg2, f32 arg3, s32 arg4, s32 arg5, s32 arg6);
+#ifndef NONMATCHING
+s32 func_802EC238(BKModelUnk14List *arg0, f32 arg1[3], f32 arg2[3], f32 arg3, f32 arg4[3], s32 arg5, s32 arg6);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_637D0/func_802EC238.s")
+#else
+s32 func_802EC238(BKModelUnk14List *arg0, f32 arg1[3], f32 arg2[3], f32 arg3, f32 arg4[3], s32 arg5, s32 arg6){
+    BKModelUnk14_0 *t0_ptr;
+    BKModelUnk14_1 *t1_ptr;
+    f32 sp54[3];
+    BKModelUnk14_2 *var_s0;
+    BKModelUnk14_2 *temp_s4;
+    f32 sp40[3];
+
+
+    t0_ptr = (BKModelUnk14_0 *)(arg0 + 1);
+    t1_ptr = (BKModelUnk14_1 *)(t0_ptr + arg0->cnt0);
+    var_s0 = (BKModelUnk14_2 *)(t1_ptr + arg0->cnt2);
+    temp_s4 = var_s0 + arg0->unk4;
+    mlMtxIdent();
+    func_80252CC4(arg1, arg2, arg3, arg4);
+    func_8025235C(sp54, arg5);
+    for(var_s0 = var_s0; var_s0 < temp_s4; var_s0++) {
+        if ((var_s0->unk8 != 0) && ((arg6 == 0) || (arg6 == var_s0->unk8))) {
+            sp40[0] = var_s0->unk2[0];
+            sp40[1] = var_s0->unk2[1];
+            sp40[2] = var_s0->unk2[2];
+            arg3 = var_s0->unk0;
+            if (ml_vec3f_distance(sp40, sp54) < arg3) {
+                return var_s0->unk8;
+            }
+        }
+    }
+    return 0U;
+}
+#endif
 
 s32 func_802EC394(BKModelUnk14List *arg0, s32 arg1, s32 arg2, f32 arg3, s32 arg4, s32 arg5, s32 arg6) {
     s32 phi_v0;

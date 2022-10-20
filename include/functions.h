@@ -495,7 +495,7 @@ Struct80s *func_803358B4(void);
 void func_80335924(Struct80s *, enum asset_e anim_id, f32, f32);
 void func_80335A74(Struct80s *self, f32 arg1);
 void func_80335A94(Struct80s *, f32, s32);
-void  func_803391A4(Gfx**, Mtx**, f32 [3], f32[3], f32, f32*, BKModelBin*);
+int func_803391A4(Gfx**, Mtx**, f32 [3], f32[3], f32, f32*, BKModelBin*);
 void func_8033A280(f32);
 
 void func_80346C10(enum bs_e *retVal, enum bs_e fail_state, enum bs_e success_state, enum item_e item_id, int use_item);
