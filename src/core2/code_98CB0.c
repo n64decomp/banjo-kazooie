@@ -43,6 +43,49 @@ u8 D_803831F8[0x21]; //copy of D_803831D0
 
 /* .code */
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_98CB0/func_8031FC40.s")
+// void func_8031FC40(void) {
+//     s32 scrambled_ptr;
+//     s32 temp_a1;
+//     s32 temp_lo;
+//     s32 temp_t0;
+//     s32 temp_t1;
+//     s32 temp_t6;
+//     s32 temp_t9;
+//     s32 var_a0;
+//     s32 var_t3;
+//     u32 var_v0;
+//     u32 var_v1;
+//     u8 temp_a3;
+
+//     temp_t0 = (((s32) &D_803831A0.unk8 & 0xE0000000) >> 0xF) 
+//         + (((s32) &D_803831A0.unk8 & 0x1FC00000) >> 0x16) 
+//         + (((s32) &D_803831A0.unk8 & 0x300000) << 0xA) 
+//         + (((s32) &D_803831A0.unk8 & 0xF0000) << 7) 
+//         + (((s32) &D_803831A0.unk8 & 0xE000) << 0xE) 
+//         + (((s32) &D_803831A0.unk8 & 0x1800) >> 4) 
+//         + (((s32) &D_803831A0.unk8 & 0x780) << 0xA) 
+//         + (((s32) &D_803831A0.unk8 & 0x60) << 4) 
+//         + (((s32) &D_803831A0.unk8 & 0x18) << 0x12) 
+//         + (((s32) &D_803831A0.unk8 & 7) << 0xB);
+//     temp_t9 = (temp_t0 & 0x38000000);
+//     var_v0 = 0x17536C34;
+//     var_t3 = temp_t9 >> 0x18;
+//     if (temp_t9 < 0) {
+//         var_t3 = (s32) (0xFFFFFF + temp_t9) >> 0x18;
+//     }
+//     temp_a1 = (((temp_t0 & 0x1C07F) << 0xF) + ((u32) (temp_t0 & 0xC7800000) >> 0x11)) | (var_t3 + ((s32) (temp_t0 & 0x180) >> 6));
+//     temp_t1 = ((temp_t0 & 0x1E0600) << 0xB) | ((s32) (temp_t0 & 0x603800) >> 3);
+//     var_a0 = ((temp_a1 & 0x3FE000) << 7) 
+//            | (((temp_t1 >> 8) & 7) + ((temp_a1 << 0xA) & 0xFF800)) 
+//            | ((((u32) (temp_t1 & 0xF0000000) >> 0x15) + (temp_a1 & 0xE0000000)) ^ ((s32) ((temp_t1 >> 6) & 0xF000) >> 9));
+//     for(var_v1 = 0; var_v1 < 0x25; var_v1++){
+//         u8 byte = *(u8*)(var_a0 + var_v1);
+//         var_v0 = ((byte * 0x1B) + (var_v0 >> 0xB)) ^ (((var_v0 - byte) & 0x1F) << 0xF);
+//     }
+//     scrambled_ptr = (((s32) &D_803831A0 & 0x55555555) * 2) + ((u32) ((s32) &D_803831A0 & 0xAAAAAAAA) >> 1);
+//     *(s32 *)(((scrambled_ptr & 0x55555555) * 2) | ((u32) (scrambled_ptr & 0xAAAAAAAA) >> 1)) = var_v0;
+// }
+
 
 u32 func_8031FE40(void) {
     u8 *obscured_addr;

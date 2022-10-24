@@ -182,10 +182,10 @@ void func_802FA0B0(s32 arg0, s32 arg1){
 #else
 void func_802FA0F8(void){
     //stack allocation too large
-    f32 tick;
     struct4Es *iPtr;
     struct4Es *startPtr;
     struct4Es *endPtr;
+    f32 tick;
     f32 f20;
 
     tick = time_getDelta();

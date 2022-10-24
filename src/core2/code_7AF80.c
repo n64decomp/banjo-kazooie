@@ -43,10 +43,6 @@ void func_80308F0C(Cube *cube);
 void func_80308EC8(void);
 
 /* .data */
-
-
-
-
 extern ActorInfo D_803675F0;
 extern ActorInfo D_80367838;
 

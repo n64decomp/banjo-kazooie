@@ -29,6 +29,8 @@ s32 D_8036B808;
 struct_7AF80_0 *D_80382390; //prop models ???
 struct_7AF80_1 *D_80382394; //prop_sprites ???
 
+BKSpriteDisplayData *func_8030A4D4(s32 arg0);
+
 
 void func_8030A2D0(Gfx **gfx, Mtx **mtx, Vtx **vtx, f32 arg3[3], f32 arg4[3], f32 arg5, s32 arg6, Cube* arg7){
     BKModelBin * sp2C;

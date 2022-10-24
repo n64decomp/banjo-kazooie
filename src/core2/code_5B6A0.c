@@ -15,20 +15,12 @@ Actor *func_802E2630(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void func_802E28D0(Actor *this);
 
 /* .data */
-extern ActorInfo D_80368710 = { 
+ActorInfo D_80368710 = { 
     0xB2, 0x125, 0x378, 
     0x1, NULL, 
     func_802E28D0, func_80326224, func_802E2630, 
     0, 0x800, 0.8f, 0
 };
-
-extern f32 D_803687A4[4];
-extern struct31s D_80368734;
-extern struct43s D_8036875C;
-
-/* .rodata */
-extern f64 D_803770F0;
-extern f64 D_803770F8;
 
 /* .bss */
 f32 D_8037E640[3];
@@ -45,10 +37,16 @@ Actor *func_802E2630(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     return this;
 }
 
-
 void func_802E26A4(f32 position[3]) {
+    static struct31s D_80368734 = {{0.65f, 1.1}, {0.0f, 0.0f}, {0.0f, 0.01f}, {0.8f, 0.8f}, 0.0f, 0.5f};
+    static struct43s D_8036875C = {
+        {{-220.0f,  210.0f, -220.0f}, {280.0f,  460.0f, 280.0f}},
+        {{   0.0f, -800.0f,    0.0f}, {  0.0f, -800.0f,   0.0f}},
+        {{ -20.0f,  -20.0f,  -20.0f}, { 20.0f,   20.0f,  20.0f}}
+    };
     ParticleEmitter *pCtrl;
 
+     
     pCtrl = partEmitList_pushNew(8);
     particleEmitter_setModel(pCtrl, 0x37A);
     particleEmitter_setPosition(pCtrl, position);
@@ -59,6 +57,7 @@ void func_802E26A4(f32 position[3]) {
 }
 
 void func_802E2748(Actor *this, s32 arg1) {
+    static f32 D_803687A4[4] = {0.2f, 0.3f, 1.0f, 1.2f};
     if (arg1 != 0) {
         D_8037E640[0] = this->position[0];
         D_8037E640[1] = this->position[1];
@@ -80,7 +79,6 @@ void func_802E2748(Actor *this, s32 arg1) {
     }
 }
 
-
 void func_802E28A4(ActorMarker *marker, ActorMarker *other_marker){
     Actor *this;
 
@@ -88,27 +86,21 @@ void func_802E28A4(ActorMarker *marker, ActorMarker *other_marker){
     func_802E2748(this, 0);
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5B6A0/func_802E28D0.s")
-#else
 void func_802E28D0(Actor *this) {
-    ActorLocal_core2_5B6A0 *local;
     f32 sp7C[3];
     f32 sp70[3];
     f32 sp64[3];
     f32 sp58[3];
-    Actor *phi_a1;
-    u32 *temp_v0_3;
-    s32 phi_a1_2;
+    ActorLocal_core2_5B6A0 *local = (ActorLocal_core2_5B6A0 *)&this->local; 
+    BKCollisionTri *temp_v0_3;
+    s32 phi_a1;
     s32 i;
 
-    if(this->unk38_31 == 0 && func_80329530(500)){
+    if(this->unk38_31 == 0 && func_80329530(this, 500)){
         FUNC_8030E8B4(SFX_C_TAKING_FLIGHT_LIFTOFF, 0.85f, 32000, this->position, 1250, 2500);
         this->unk38_31 = 1;
     }
 
-    phi_a1 = NULL;
-    local = (ActorLocal_core2_5B6A0 *)&this->local; 
 
     if(!this->initialized){
         marker_setCollisionScripts(this->marker, NULL, NULL, func_802E28A4);
@@ -120,10 +112,9 @@ void func_802E28D0(Actor *this) {
         this->initialized = TRUE;
         player_getPosition(sp7C);
         sp7C[1] += 1.0f;
-        phi_a1_2 = (func_8023DB5C() & 1) ? 0x15 : 0x2B;
-        phi_a1 = &this;
+        phi_a1 = (func_8023DB5C() & 1) ? 0x15 : 0x2B;
         for(i = 0; i < 3; i++){
-            sp58[i] = (sp7C[i] - this->unk1C[i]) * phi_a1_2;
+            sp58[i] = sp7C[i] + (sp7C[i] - this->unk1C[i]) * phi_a1;
         }
 
         this->velocity[0] = (sp58[0] - this->position[0])/32;
@@ -137,12 +128,11 @@ void func_802E28D0(Actor *this) {
         sp64[0] = this->position[0];
         sp64[1] = this->position[1];
         sp64[2] = this->position[2];
-        this->position[0] += this->velocity[0];
-        this->position[1] += this->velocity[1];
-        this->position[2] += this->velocity[2];
-
-        this->pitch += 10.0f;
+        this->position[0] = this->position[0] + this->velocity[0];
+        this->position[1] = this->position[1] + this->velocity[1];
+        this->position[2] = this->position[2] + this->velocity[2];
         this->velocity_y -= 2.0f;
+        this->pitch += 10.0f;
         this->yaw += 10.0f;
 
         if(this->pitch > 360.0f){
@@ -152,7 +142,7 @@ void func_802E28D0(Actor *this) {
             this->yaw -= 360.0f;
         }
         if (local->unk4 >= 6) {
-            temp_v0_3 = func_80320C94(sp64, this->position, func_8033229C(this->marker) * 1.2, &sp70, 5, 0);
+            temp_v0_3 = func_80320C94(sp64, this->position, func_8033229C(this->marker) * 1.2, sp70, 5, 0);
             if (temp_v0_3 != 0) {
                 func_802E2748(this, *((u32*)temp_v0_3 + 2) & 0x20000);
                 return;
@@ -174,11 +164,9 @@ void func_802E28D0(Actor *this) {
         this->velocity[0] *= 0.7;
         this->velocity[1] *= 0.7;
         this->velocity[2] *= 0.7;
-        this->position[0] += this->velocity[0];
-        this->position[1] += this->velocity[1];
-        this->position[2] += this->velocity[2];
+        this->position[0] = this->position[0] + this->velocity[0];\
+        this->position[1] = this->position[1] + this->velocity[1];\
+        this->position[2] = this->position[2] + this->velocity[2];
         break;
     }
 }
-#endif
-

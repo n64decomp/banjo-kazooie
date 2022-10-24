@@ -302,15 +302,18 @@ void func_802CF7CC(Actor *this) {
 void func_802CF83C(Actor *this);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_47BD0/func_802CF83C.s")
 #else
+extern void func_8030DBFC(u8, f32, f32, f32);
 extern bool func_80309DBC(f32[3], f32[3], f32, f32 sp54[3], s32, s32);
-
-extern f64 D_803765E8;
-extern f64 D_80376620;
-extern f64 D_80376628;
-extern f64 D_80376630;
-extern s32 D_8037DCBC;
-
+extern void func_80320004(s32, bool);
+extern void func_8030DEB4(u8, f32, f32);
+extern void func_8030DF68(u8, f32[3]);
+extern void func_8030E2C4(u8);
+extern void sfxsource_setSampleRate(u8, s32);
+extern void ml_vec3f_normalize(f32[3]);
+extern void func_8028E9C4(s32, f32[3]);
 void func_802CF83C(Actor *this) {
+    Actor *beehive;
+    ActorLocal_core2_47BD0 *local = (ActorLocal_core2_47BD0 *)&this->local;
     f32 spB4[3];
     f32 spB0;
     f32 spAC;
@@ -319,50 +322,25 @@ void func_802CF83C(Actor *this) {
     f32 sp88[3];
     f32 sp7C[3];
     s32 sp78;
-    f32 *sp64;
-    f32 *sp44;
-    f32 *sp40;
-    Actor *beehive;
-    ActorMarker *temp_v0_3;
-    f32 *temp_a0;
     f32 temp_f0;
-    f32 temp_f14;
-    f32 temp_f14_2;
-    f32 temp_f16;
-    f32 temp_f16_2;
-    f32 temp_f18;
-    f32 temp_f18_2;
-    f32 temp_f8;
-    f64 temp_f2;
-    s16 temp_t7;
-    u32 temp_t0;
-    u32 temp_t1;
-    u32 temp_t2;
-    u32 temp_t3;
-    u8 temp_a0_2;
-    ActorLocal_core2_47BD0 *local;
-    u32 phi_a1;
-    f64 phi_f2;
-    f64 phi_f0;
+    f32 sp68[3];
+    
 
-    local = (ActorLocal_core2_47BD0 *)&this->local;
+
     spAC = time_getDelta();
     sp78 = 0;
     if (!this->initialized) {
         this->initialized = TRUE;
         beehive = func_80326D68(this->position, ACTOR_12_BEEHIVE, -1, &spB0);
-        if (beehive != NULL) {
-            this->unk100 = beehive->marker;
-        } else {
-            this->unk100 = NULL;
-        }
-        if (spB0 > 500.0f) {
+        this->unk100 = (beehive != NULL) ? beehive->marker : NULL;
+        if(500.0f < spB0){
             this->unk100 = NULL;
         }
         sp78 = 1;
-        local->unk18 = this->position[1];
-        local->unkC[0] = ((this->unk100) ? beehive->position : this->position)[0];\
-        local->unkC[1] = ((this->unk100) ? beehive->position : this->position)[1];\
+        local->unk18 = (f32) this->position[1];
+        
+        local->unkC[0] = ((this->unk100) ? beehive->position : this->position)[0];
+        local->unkC[1] = ((this->unk100) ? beehive->position : this->position)[1];
         local->unkC[2] = ((this->unk100) ? beehive->position : this->position)[2];
 
         local->unkC[1] += 250.0f;
@@ -370,15 +348,21 @@ void func_802CF83C(Actor *this) {
         this->position[0] = local->unkC[0];
         this->position[1] = local->unkC[1];
         this->position[2] = local->unkC[2];
-        sp94[0] = this->position[0]; sp94[1] = this->position[1]; sp94[2] = this->position[2];
+        
+        sp94[0] = this->position[0];
+        sp94[1] = this->position[1];
+        sp94[2] = this->position[2];
+        
+        sp88[0] = this->position[0];
+        sp88[1] = this->position[1];
+        sp88[2] = this->position[2];
+        
         sp94[1] += 50.0f;
-        sp88[0] = this->position[0]; sp88[1] = this->position[1]; sp88[2] = this->position[2];
         sp88[1] -= 500.0f;
         if (func_80309B48(sp94, sp88, sp7C, 0x5E0000)) {
             local->unk18 = sp88[1];
         }
     }
-
     if (!this->unk16C_4) {
         this->unk16C_4 = TRUE;
         func_803300D8(this->marker, func_802CEBA8);
@@ -400,8 +384,7 @@ void func_802CF83C(Actor *this) {
         if (this->unk100 != NULL) {
             func_80320004(BKPROG_D_BEEHIVE_TEXT, TRUE);
         }
-        phi_a1 = (this->unk100 != NULL) ? 1 : 2;
-        func_80328A84(this, phi_a1);
+        func_80328A84(this, (this->unk100 != NULL) ? 1 : 2);
         this->unk60 = 0.0f;
         func_802CF040(this);
         this->unk38_0 = func_803203FC(1) | func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE);
@@ -423,23 +406,22 @@ void func_802CF83C(Actor *this) {
             }
             this->unk58_0 = TRUE;
         }
-block_40:
         sp94[0] = this->position[0];
         sp94[1] = this->position[1];
         sp94[2] = this->position[2];
-        sp88[0] = (this->velocity[0] * spAC) + this->position[0];
-        sp88[1] = (this->velocity[1] * spAC) + this->position[1];
-        sp88[2] = (this->velocity[2] * spAC) + this->position[2];
+        sp88[0] = this->position[0] + (this->velocity[0] * spAC);
+        sp88[1] = this->position[1] + (this->velocity[1] * spAC);
+        sp88[2] = this->position[2] + (this->velocity[2] * spAC);
         if (this->state != 7) {
             if (func_80309DBC(sp94, sp88, 75.0f, sp7C, 3, 0)) {
-                ml_vec3f_normalize(&sp7C);
+                ml_vec3f_normalize(sp7C);
                 temp_f0 = (this->velocity[0]*sp7C[0] + this->velocity[1]*sp7C[1] + this->velocity[2]*sp7C[2]) * -1.5;
-                this->velocity[0] += (sp7C[0] * temp_f0);
-                this->velocity[1] += (sp7C[1] * temp_f0);
-                this->velocity[2] += (sp7C[2] * temp_f0);
-                this->unk1C[0] = sp7C[0] * 37.5 + this->position[0];
-                this->unk1C[1] = sp7C[1] * 37.5 + this->position[1];
-                this->unk1C[2] = sp7C[2] * 37.5 + this->position[2];
+                this->velocity[0] = this->velocity[0] + (sp7C[0] * temp_f0);
+                this->velocity[1] = this->velocity[1] + (sp7C[1] * temp_f0);
+                this->velocity[2] = this->velocity[2] + (sp7C[2] * temp_f0);
+                this->unk1C[0] = this->position[0] + sp7C[0] * 37.5;
+                this->unk1C[1] = this->position[1] + sp7C[1] * 37.5;
+                this->unk1C[2] = this->position[2] + sp7C[2] * 37.5;
                 if (this->state != 6) {
                     local->unk6 = this->state;
                     func_80328A84(this, 6);
@@ -469,52 +451,112 @@ block_40:
                 }
             }
         }
-        func_8028E9C4(5, &spB4);
-        switch(this->state){
-            case 1:
-                if( !func_8031FF1C(0x8F) 
-                    && subaddie_playerIsWithinCylinder(this, 0xFA, 0x12C) 
-                    && ((func_8028ECAC() == 0) || (func_8028ECAC() == BSGROUP_8_TROT)) 
-                    && (player_getTransformation() == TRANSFORM_1_BANJO) 
-                    && func_80311480(0xDA6, 0, NULL, NULL, NULL, NULL) 
-                ) {
-                    func_80320004(0x8F, TRUE);
+        func_8028E9C4(5, spB4);
+        switch (this->state) {
+        case 1:
+            if (!func_8031FF1C(0x8F) && subaddie_playerIsWithinCylinder(this, 0xFA, 0x12C) 
+                && ((func_8028ECAC() == 0) || (func_8028ECAC() == 8)) 
+                && (player_getTransformation() == 1) 
+                && (func_80311480(0xDA6, 0, NULL, NULL, NULL, NULL) != 0)
+            ) {
+                func_80320004(0x8F, TRUE);
+            }
+            if (func_802CF5E4(this)) {
+                func_80328A84(this, 2U);
+            }
+            if (ml_vec3f_distance(this->position, this->unk1C) < 50.0f) {
+                func_802CEF54(this, local->unkC, 100.0f);
+            }
+            break;
+        case 2:
+            if (ml_vec3f_distance(this->position, this->unk1C) < 50.0f) {
+                func_802CEF54(this, local->unkC, 100.0f);
+            }
+            func_802CF518(this);
+            break;
+        case 3:
+            this->unk1C[0] = spB4[0];
+            this->unk1C[1] = spB4[1];
+            this->unk1C[2] = spB4[2];
+            this->unk1C[1] += 50.0f;
+            this->unk28 = 400.0f;
+            if (ml_vec3f_distance(this->position, this->unk1C) < 100.0f) {
+                func_802CEF54(this, spB4, 50.0f);
+                func_80328A84(this, 4);
+            }
+            func_802CF57C(this);
+            break;
+        case 4:
+            spB4[1] += 50.0f;
+            this->unk60 += spAC;
+            if ((this->unk60 - 0.5 > 0.0) && (local->unk0 > 0) && (func_8028ECAC() != 3)) {
+                func_8028F504(0xD);
+                this->unk60 -= 0.5;
+            }
+            if ((this->unk60 > 0.2) && (func_8028ECAC() == 3)) {
+                if (local->unk0-- > 0) {
+                    sp68[0] = local->unk8[local->unk0].unk0[0] + this->position[0];
+                    sp68[1] = local->unk8[local->unk0].unk0[1] + this->position[1];
+                    sp68[2] = local->unk8[local->unk0].unk0[2] + this->position[2];
+                    func_802CF610(this, partEmitList_pushNew(1), sp68);
+                    this->unk60 -= 0.2;
                 }
-                if (func_802CF5E4(this)) {
-                    func_80328A84(this, 2);
+            }
+            if (local->unk0 == 0) {
+                marker_despawn(this->marker);
+            }
+            if (ml_vec3f_distance(this->position, this->unk1C) < 50.0f) {
+                func_802CEF54(this, (s32 *) spB4, 50.0f);
+            }
+            if (ml_vec3f_distance(this->position, spB4) > 100.0f) {
+                func_80328A84(this, 3);
+            }
+            func_802CF57C(this);
+            break;
+        case 5:
+            if (ml_vec3f_distance(this->position, this->unk1C) < 50.0f) {
+                func_80328A84(this, 2);
+            }
+            func_802CF518(this);
+            break;
+        case 6:
+            if (ml_vec3f_distance(this->position, this->unk1C) < 50.0f) {
+                func_80328A84(this, local->unk6);
+            }
+            break;
+        case 7:
+            if (this->position[1] - 100.0f < local->unk1C) {
+                if (local->unk0 > 0) {
+                    local->unk0--;
                 }
-                if (ml_vec3f_distance(this->position, this->unk1C) < 50.0f) {
-                    func_802CEF54(this, local->unkC, 100.0f);
+            }
+            if (local->unk1C < this->position[1] - 100.0f) {
+                if (local->unk0 < local->unk4) {
+                    local->unk0++;
+                } else {
+                    func_80328A84(this, local->unk7);
                 }
-                break;
+            }
+            break;
         }
         if (local->unk5) {
             func_802CF434(this);
         }
-        local->unk5 = FALSE;
-
-        if( (local->unk0 > 0) 
-            && func_80329530(this, 0x5DC)  && !this->unk38_0
-        ) {
-            if (!this->unk44_31) {
+        local->unk5 = 0;
+        if ((local->unk0 > 0) && func_80329530(this, 1500) && !this->unk38_0) {
+            if (this->unk44_31 == 0) {
                 func_802CF7CC(this);
             }
-            if (this->unk44_31) {
-                if ((this->state == 3) || (this->state == 4)) {
-                    phi_f2 = 0.0;
-                } else {
-                    phi_f2 = 0.8;
-                }
-                if ((this->state == 3) || (this->state == 4)) {
-                    phi_f0 = 1.1;
-                } else {
-                    phi_f0 = 0.9;
-                }
-                func_8030DBFC(this->unk44_31, phi_f2, phi_f0, 0.05f);
+            if (this->unk44_31 != 0) {
+                func_8030DBFC(this->unk44_31, 
+                    ((this->state == 3) || (this->state == 4)) ? 1.0 : 0.8, 
+                    ((this->state == 3) || (this->state == 4)) ? 1.1 : 0.9, 
+                    0.05f
+                );
                 func_8030DEB4(this->unk44_31, 500.0f, 1500.0f);
                 func_8030DF68(this->unk44_31, this->position);
                 func_8030E2C4(this->unk44_31);
-                sfxsource_setSampleRate(this->unk44_31, ((gu_sqrtf(this->velocity[0]*this->velocity[0] + this->velocity[1]*this->velocity[1] + this->velocity[2]*this->velocity[2])/ this->unk28) * 8000.0f) + 2000.0f);
+                sfxsource_setSampleRate(this->unk44_31, (s32)(((gu_sqrtf(this->velocity[0]*this->velocity[0] + this->velocity[1]*this->velocity[1] + this->velocity[2]*this->velocity[2])/ this->unk28) * 8000.0f) + 2000.0f));
             }
         }
     }
