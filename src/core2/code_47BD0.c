@@ -2,6 +2,16 @@
 #include "functions.h"
 #include "variables.h"
 
+
+extern void func_8030DBFC(u32, f32, f32, f32);
+extern bool func_80309DBC(f32[3], f32[3], f32, f32 sp54[3], s32, s32);
+extern void func_80320004(s32, bool);
+extern void func_8030DEB4(u8, f32, f32);
+extern void func_8030DF68(u8, f32[3]);
+extern void func_8030E2C4(u8);
+extern void sfxsource_setSampleRate(u8, s32);
+extern void ml_vec3f_normalize(f32[3]);
+
 typedef struct{
     f32 unk0[3];
     f32 unkC[3];
@@ -23,22 +33,18 @@ typedef struct{
     s32 unk24;
 }ActorLocal_core2_47BD0;
 
-void func_802CF83C(Actor *this);
-Actor *func_802CEBFC(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
+/* .h */
+void chBeeSwarm_update(Actor *this);
+Actor *chBeeSwarm_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 
-extern f32 D_803765E4;
-
-extern s32 D_8037DCBC;
 
 /* .data */
-extern ActorInfo D_80367310 = {0x217, ACTOR_34D_BEE_SWARM, 0x49E, 
+ActorInfo D_80367310 = {MARKER_217_BEE_SWARM, ACTOR_34D_BEE_SWARM, ASSET_49E_SPRITE_BEE_SWARM, 
     1, NULL, 
-    func_802CF83C, NULL, func_802CEBFC,
+    chBeeSwarm_update, NULL, chBeeSwarm_draw,
     0, 0, 1.0f, 0
 }; 
 
-/* .rodata */
-extern f32 D_803765E0;
 
 /* .bss */
 extern s32 D_8037DCBC;
@@ -55,7 +61,7 @@ void func_802CEB60(Actor *this){
     }
 }
 
-void func_802CEBA8(Actor *this){
+void chBeeSwarm_802CEBA8(Actor *this){
     ActorLocal_core2_47BD0 *local;
 
     local = (ActorLocal_core2_47BD0 *)&this->local;
@@ -70,7 +76,7 @@ void func_802CEBA8(Actor *this){
     D_8037DCBC = 0;
 }
 
-Actor *func_802CEBFC(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
+Actor *chBeeSwarm_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     Actor *this;
     ActorLocal_core2_47BD0 *local;
     BKModelBin *phi_fp;
@@ -107,16 +113,16 @@ Actor *func_802CEBFC(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     return this;
 }
 
-void func_802CEDE4(f32 arg0[3], f32 p_ctrl[3], f32 arg2, f32 *arg3, f32 arg4, f32 arg5){
+void func_802CEDE4(f32 target_position[3], f32 p_ctrl[3], f32 distance, f32 *arg3, f32 arg4, f32 arg5){
     s32 phi_s1;
 
     phi_s1 = 0;
     do{
-        p_ctrl[0] = randf2(-arg2, arg2);
-        p_ctrl[1] = randf2(-arg2, arg2);
-        p_ctrl[2] = randf2(-arg2, arg2);
+        p_ctrl[0] = randf2(-distance, distance);
+        p_ctrl[1] = randf2(-distance, distance);
+        p_ctrl[2] = randf2(-distance, distance);
         phi_s1++;
-    }while(phi_s1 < 10 &&  ml_vec3f_distance(arg0, p_ctrl) < arg2);
+    }while(phi_s1 < 10 &&  ml_vec3f_distance(target_position, p_ctrl) < distance);
     *arg3 =  randf2(arg4, arg5);
 }
 
@@ -153,7 +159,7 @@ void func_802CEF54(Actor *this, f32 arg1[3], f32 arg2){
     this->unk1C[2] = this->unk1C[2] + arg1[2];
 }
 
-void func_802CF040(Actor *this) {
+void chBeeSwarm_802CF040(Actor *this) {
     Struct_core2_47BD0_0 *phi_s0;
     s32 phi_s1;
     ActorLocal_core2_47BD0 *local;
@@ -176,7 +182,7 @@ void func_802CF040(Actor *this) {
     func_802CEF54(this, local->unkC, 100.0f);
 }
 
-void func_802CF174(f32 arg0[3], f32 arg1, f32 arg2) {
+void chBeeSwarm_802CF174(f32 arg0[3], f32 arg1, f32 arg2) {
     f32 temp_f0;
 
     if (arg1 != 0.0f) {
@@ -187,7 +193,7 @@ void func_802CF174(f32 arg0[3], f32 arg1, f32 arg2) {
     }
 }
 
-void func_802CF1C8(f32 arg0[3], f32 arg1[3], f32 arg2[3], f32 arg3, f32 arg4, f32 *arg5, f32 arg6[3]) {
+void chBeeSwarm_802CF1C8(f32 arg0[3], f32 arg1[3], f32 arg2[3], f32 arg3, f32 arg4, f32 *arg5, f32 arg6[3]) {
     f32 sp4C;
     f32 temp_f12;
     f32 sp3C[3];
@@ -199,9 +205,9 @@ void func_802CF1C8(f32 arg0[3], f32 arg1[3], f32 arg2[3], f32 arg3, f32 arg4, f3
     arg6[2] = arg0[2] - arg1[2];
     temp_f12 = gu_sqrtf(arg6[0]*arg6[0] + arg6[1]*arg6[1] + arg6[2]*arg6[2]);
     if (temp_f12 < (2 * arg4)) {
-        func_802CF174(arg6, temp_f12, 8 * arg3);
+        chBeeSwarm_802CF174(arg6, temp_f12, 8 * arg3);
     } else {
-        func_802CF174(arg6, temp_f12, 2 * arg3);
+        chBeeSwarm_802CF174(arg6, temp_f12, 2 * arg3);
     }
     arg1[0] += (arg2[0] * sp4C) + (arg6[0] * sp4C * sp4C);
     arg1[1] += (arg2[1] * sp4C) + (arg6[1] * sp4C * sp4C);
@@ -212,7 +218,7 @@ void func_802CF1C8(f32 arg0[3], f32 arg1[3], f32 arg2[3], f32 arg3, f32 arg4, f3
     arg2[2] += arg6[2] * sp4C;
     temp_f12 = gu_sqrtf(arg2[0]*arg2[0] + arg2[1]*arg2[1] + arg2[2]*arg2[2]);
     if (arg3 < temp_f12) {
-        func_802CF174(arg2, temp_f12, arg3);
+        chBeeSwarm_802CF174(arg2, temp_f12, arg3);
     }
     if (arg5 != 0) {
         sp3C[0] = sp3C[1] = sp3C[2] = 0.0f;
@@ -220,7 +226,7 @@ void func_802CF1C8(f32 arg0[3], f32 arg1[3], f32 arg2[3], f32 arg3, f32 arg4, f3
     }
 }
 
-void func_802CF434(Actor *this) {
+void chBeeSwarm_802CF434(Actor *this) {
     ActorLocal_core2_47BD0 *local;
     Struct_core2_47BD0_0 *phi_s0;
     s32 phi_s2;
@@ -230,7 +236,7 @@ void func_802CF434(Actor *this) {
 
     local = (ActorLocal_core2_47BD0 *) &this->local;
     for(phi_s2 = 0, phi_s0 = local->unk8; phi_s2 < local->unk0; phi_s2++){
-        func_802CF1C8(phi_s0->unk18, phi_s0->unk0, phi_s0->unkC, phi_s0->unk24[2], 150.0f, phi_s0->unk24, &sp58);
+        chBeeSwarm_802CF1C8(phi_s0->unk18, phi_s0->unk0, phi_s0->unkC, phi_s0->unk24[2], 150.0f, phi_s0->unk24, &sp58);
         if (ml_vec3f_distance(phi_s0->unk0, phi_s0->unk18) < 50.0f) {
             func_802CEEA4(this, phi_s0);
         }
@@ -238,7 +244,7 @@ void func_802CF434(Actor *this) {
     }
 }
 
-void func_802CF518(Actor *this) {
+void chBeeSwarm_802CF518(Actor *this) {
     if( func_803292E0(this) 
         && func_80329530(this, 900) 
         && func_8028EE84() == BSWATERGROUP_0_NONE 
@@ -248,7 +254,7 @@ void func_802CF518(Actor *this) {
     }
 }
 
-void func_802CF57C(Actor *this) {
+void chBeeSwarm_802CF57C(Actor *this) {
     ActorLocal_core2_47BD0 *local;
 
     local = (ActorLocal_core2_47BD0 *) &this->local;
@@ -258,7 +264,7 @@ void func_802CF57C(Actor *this) {
     }
 }
 
-bool func_802CF5E4(Actor *this){
+bool chBeeSwarm_802CF5E4(Actor *this){
     ActorLocal_core2_47BD0 *local;
     ActorMarker *other;
     bool out = 1;
@@ -269,7 +275,7 @@ bool func_802CF5E4(Actor *this){
     return out;
 }
 
-void func_802CF610(Actor *this, ParticleEmitter *p_ctrl, f32 position[3]) {
+void chBeeSwarm_802CF610(Actor *this, ParticleEmitter *p_ctrl, f32 position[3]) {
     func_8030E6A4(SFX_66_BIRD_AUUGHH, randf2(1.75f, 1.85f), 15000);
     particleEmitter_setPosition(p_ctrl, position);
     func_802EFA70(p_ctrl, 2);
@@ -288,30 +294,17 @@ void func_802CF610(Actor *this, ParticleEmitter *p_ctrl, f32 position[3]) {
     particleEmitter_emitN(p_ctrl, 1);
 }
 
-void func_802CF7CC(Actor *this) {
+void chBeeSwarm_802CF7CC(Actor *this) {
     if (D_8037DCBC == 0) {
         this->unk44_31 = func_8030D90C();
-        sfxsource_setSfxId(this->unk44_31, 0x3FA);
+        sfxsource_setSfxId(this->unk44_31, SFX_3FA_HONEYCOMB_TALKING);
         func_8030DD14(this->unk44_31, 2);
         func_8030DD90(this->unk44_31, 2);
         D_8037DCBC = 1;
     }
 }
 
-#ifndef NONMATCHING
-void func_802CF83C(Actor *this);
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_47BD0/func_802CF83C.s")
-#else
-extern void func_8030DBFC(u8, f32, f32, f32);
-extern bool func_80309DBC(f32[3], f32[3], f32, f32 sp54[3], s32, s32);
-extern void func_80320004(s32, bool);
-extern void func_8030DEB4(u8, f32, f32);
-extern void func_8030DF68(u8, f32[3]);
-extern void func_8030E2C4(u8);
-extern void sfxsource_setSampleRate(u8, s32);
-extern void ml_vec3f_normalize(f32[3]);
-extern void func_8028E9C4(s32, f32[3]);
-void func_802CF83C(Actor *this) {
+void chBeeSwarm_update(Actor *this) {
     Actor *beehive;
     ActorLocal_core2_47BD0 *local = (ActorLocal_core2_47BD0 *)&this->local;
     f32 spB4[3];
@@ -325,8 +318,6 @@ void func_802CF83C(Actor *this) {
     f32 temp_f0;
     f32 sp68[3];
     
-
-
     spAC = time_getDelta();
     sp78 = 0;
     if (!this->initialized) {
@@ -365,9 +356,9 @@ void func_802CF83C(Actor *this) {
     }
     if (!this->unk16C_4) {
         this->unk16C_4 = TRUE;
-        func_803300D8(this->marker, func_802CEBA8);
+        func_803300D8(this->marker, chBeeSwarm_802CEBA8);
         actor_collisionOff(this);
-        local->unk20 = assetcache_get(0x3BF);
+        local->unk20 = assetcache_get(ASSET_3BF_MODEL_PLAYER_SHADOW);
         if (sp78 == 0) {
             beehive = func_80326D68(this->position, ACTOR_12_BEEHIVE, -1, &spB0);
             if (beehive != NULL) {
@@ -386,179 +377,177 @@ void func_802CF83C(Actor *this) {
         }
         func_80328A84(this, (this->unk100 != NULL) ? 1 : 2);
         this->unk60 = 0.0f;
-        func_802CF040(this);
+        chBeeSwarm_802CF040(this);
         this->unk38_0 = func_803203FC(1) | func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE);
     }
 
-    if (subaddie_playerIsWithinSphere(this, 0xFA0)) {
-        if (!subaddie_playerIsWithinSphere(this, 0x5DC)) {
-            u8 temp = this->unk44_31;
-            if (temp!= 0) {
-                func_8030DA44(temp);
-                this->unk44_31 = 0;
-                D_8037DCBC = 0;
+    if (!subaddie_playerIsWithinSphere(this, 0xFA0)) 
+        return;
+    if (!subaddie_playerIsWithinSphere(this, 0x5DC)) {
+        if ((u8)this->unk44_31 != 0) {
+            func_8030DA44(this->unk44_31);
+            this->unk44_31 = 0;
+            D_8037DCBC = 0;
+        }
+    }
+    if (map_get() == MAP_27_FP_FREEZEEZY_PEAK) {
+        if (func_8038BFA0()) {
+            this->unk58_0 = FALSE;
+            return;
+        }
+        this->unk58_0 = TRUE;
+    }
+    sp94[0] = this->position[0];
+    sp94[1] = this->position[1];
+    sp94[2] = this->position[2];
+    sp88[0] = this->position[0] + (this->velocity[0] * spAC);
+    sp88[1] = this->position[1] + (this->velocity[1] * spAC);
+    sp88[2] = this->position[2] + (this->velocity[2] * spAC);
+    if (this->state != 7) {
+        if (func_80309DBC(sp94, sp88, 75.0f, sp7C, 3, 0)) {
+            ml_vec3f_normalize(sp7C);
+            temp_f0 = (this->velocity[0]*sp7C[0] + this->velocity[1]*sp7C[1] + this->velocity[2]*sp7C[2]) * -1.5;
+            this->velocity[0] = this->velocity[0] + (sp7C[0] * temp_f0);
+            this->velocity[1] = this->velocity[1] + (sp7C[1] * temp_f0);
+            this->velocity[2] = this->velocity[2] + (sp7C[2] * temp_f0);
+            this->unk1C[0] = this->position[0] + sp7C[0] * 37.5;
+            this->unk1C[1] = this->position[1] + sp7C[1] * 37.5;
+            this->unk1C[2] = this->position[2] + sp7C[2] * 37.5;
+            if (this->state != 6) {
+                local->unk6 = this->state;
+                func_80328A84(this, 6);
             }
         }
-        if (map_get() == MAP_27_FP_FREEZEEZY_PEAK) {
-            if (func_8038BFA0()) {
-                this->unk58_0 = FALSE;
-                return;
+        chBeeSwarm_802CF1C8(this->unk1C, this->position, this->velocity, this->unk28, 100.0f, 0, &spA0);
+    }
+    if (map_get() == MAP_78_GL_RBB_AND_MMM_PUZZLE) {
+        if (this->unk38_31++ == 0x1E) {
+            this->unk38_31 = 0;
+            sp88[0] = this->position[0];
+            sp88[1] = this->position[1];
+            sp88[2] = this->position[2];
+            sp94[1] += 1000.0f;
+            sp88[1] -= 1000.0f;
+            if (func_80309B48(sp94, sp88, sp7C, 0xF800FF0F)) {
+                local->unk1C = sp88[1];
+            } else {
+                local->unk1C = -16000.0f;
             }
-            this->unk58_0 = TRUE;
-        }
-        sp94[0] = this->position[0];
-        sp94[1] = this->position[1];
-        sp94[2] = this->position[2];
-        sp88[0] = this->position[0] + (this->velocity[0] * spAC);
-        sp88[1] = this->position[1] + (this->velocity[1] * spAC);
-        sp88[2] = this->position[2] + (this->velocity[2] * spAC);
-        if (this->state != 7) {
-            if (func_80309DBC(sp94, sp88, 75.0f, sp7C, 3, 0)) {
-                ml_vec3f_normalize(sp7C);
-                temp_f0 = (this->velocity[0]*sp7C[0] + this->velocity[1]*sp7C[1] + this->velocity[2]*sp7C[2]) * -1.5;
-                this->velocity[0] = this->velocity[0] + (sp7C[0] * temp_f0);
-                this->velocity[1] = this->velocity[1] + (sp7C[1] * temp_f0);
-                this->velocity[2] = this->velocity[2] + (sp7C[2] * temp_f0);
-                this->unk1C[0] = this->position[0] + sp7C[0] * 37.5;
-                this->unk1C[1] = this->position[1] + sp7C[1] * 37.5;
-                this->unk1C[2] = this->position[2] + sp7C[2] * 37.5;
-                if (this->state != 6) {
-                    local->unk6 = this->state;
-                    func_80328A84(this, 6);
+            if ((this->position[1] - 100.0f) < local->unk1C) {
+                if (this->state != 7) {
+                    local->unk7 = this->state;
+                    local->unk4 = local->unk0;
+                    func_80328A84(this, 7);
                 }
-            }
-            func_802CF1C8(this->unk1C, this->position, this->velocity, this->unk28, 100.0f, 0, &spA0);
-        }
-        if (map_get() == MAP_78_GL_RBB_AND_MMM_PUZZLE) {
-            if (this->unk38_31++ == 0x1E) {
-                this->unk38_31 = 0;
-                sp88[0] = this->position[0];
-                sp88[1] = this->position[1];
-                sp88[2] = this->position[2];
-                sp94[1] += 1000.0f;
-                sp88[1] -= 1000.0f;
-                if (func_80309B48(sp94, sp88, sp7C, 0xF800FF0F)) {
-                    local->unk1C = sp88[1];
-                } else {
-                    local->unk1C = -16000.0f;
-                }
-                if ((this->position[1] - 100.0f) < local->unk1C) {
-                    if (this->state != 7) {
-                        local->unk7 = this->state;
-                        local->unk4 = local->unk0;
-                        func_80328A84(this, 7);
-                    }
-                }
-            }
-        }
-        func_8028E9C4(5, spB4);
-        switch (this->state) {
-        case 1:
-            if (!func_8031FF1C(0x8F) && subaddie_playerIsWithinCylinder(this, 0xFA, 0x12C) 
-                && ((func_8028ECAC() == 0) || (func_8028ECAC() == 8)) 
-                && (player_getTransformation() == 1) 
-                && (func_80311480(0xDA6, 0, NULL, NULL, NULL, NULL) != 0)
-            ) {
-                func_80320004(0x8F, TRUE);
-            }
-            if (func_802CF5E4(this)) {
-                func_80328A84(this, 2U);
-            }
-            if (ml_vec3f_distance(this->position, this->unk1C) < 50.0f) {
-                func_802CEF54(this, local->unkC, 100.0f);
-            }
-            break;
-        case 2:
-            if (ml_vec3f_distance(this->position, this->unk1C) < 50.0f) {
-                func_802CEF54(this, local->unkC, 100.0f);
-            }
-            func_802CF518(this);
-            break;
-        case 3:
-            this->unk1C[0] = spB4[0];
-            this->unk1C[1] = spB4[1];
-            this->unk1C[2] = spB4[2];
-            this->unk1C[1] += 50.0f;
-            this->unk28 = 400.0f;
-            if (ml_vec3f_distance(this->position, this->unk1C) < 100.0f) {
-                func_802CEF54(this, spB4, 50.0f);
-                func_80328A84(this, 4);
-            }
-            func_802CF57C(this);
-            break;
-        case 4:
-            spB4[1] += 50.0f;
-            this->unk60 += spAC;
-            if ((this->unk60 - 0.5 > 0.0) && (local->unk0 > 0) && (func_8028ECAC() != 3)) {
-                func_8028F504(0xD);
-                this->unk60 -= 0.5;
-            }
-            if ((this->unk60 > 0.2) && (func_8028ECAC() == 3)) {
-                if (local->unk0-- > 0) {
-                    sp68[0] = local->unk8[local->unk0].unk0[0] + this->position[0];
-                    sp68[1] = local->unk8[local->unk0].unk0[1] + this->position[1];
-                    sp68[2] = local->unk8[local->unk0].unk0[2] + this->position[2];
-                    func_802CF610(this, partEmitList_pushNew(1), sp68);
-                    this->unk60 -= 0.2;
-                }
-            }
-            if (local->unk0 == 0) {
-                marker_despawn(this->marker);
-            }
-            if (ml_vec3f_distance(this->position, this->unk1C) < 50.0f) {
-                func_802CEF54(this, (s32 *) spB4, 50.0f);
-            }
-            if (ml_vec3f_distance(this->position, spB4) > 100.0f) {
-                func_80328A84(this, 3);
-            }
-            func_802CF57C(this);
-            break;
-        case 5:
-            if (ml_vec3f_distance(this->position, this->unk1C) < 50.0f) {
-                func_80328A84(this, 2);
-            }
-            func_802CF518(this);
-            break;
-        case 6:
-            if (ml_vec3f_distance(this->position, this->unk1C) < 50.0f) {
-                func_80328A84(this, local->unk6);
-            }
-            break;
-        case 7:
-            if (this->position[1] - 100.0f < local->unk1C) {
-                if (local->unk0 > 0) {
-                    local->unk0--;
-                }
-            }
-            if (local->unk1C < this->position[1] - 100.0f) {
-                if (local->unk0 < local->unk4) {
-                    local->unk0++;
-                } else {
-                    func_80328A84(this, local->unk7);
-                }
-            }
-            break;
-        }
-        if (local->unk5) {
-            func_802CF434(this);
-        }
-        local->unk5 = 0;
-        if ((local->unk0 > 0) && func_80329530(this, 1500) && !this->unk38_0) {
-            if (this->unk44_31 == 0) {
-                func_802CF7CC(this);
-            }
-            if (this->unk44_31 != 0) {
-                func_8030DBFC(this->unk44_31, 
-                    ((this->state == 3) || (this->state == 4)) ? 1.0 : 0.8, 
-                    ((this->state == 3) || (this->state == 4)) ? 1.1 : 0.9, 
-                    0.05f
-                );
-                func_8030DEB4(this->unk44_31, 500.0f, 1500.0f);
-                func_8030DF68(this->unk44_31, this->position);
-                func_8030E2C4(this->unk44_31);
-                sfxsource_setSampleRate(this->unk44_31, (s32)(((gu_sqrtf(this->velocity[0]*this->velocity[0] + this->velocity[1]*this->velocity[1] + this->velocity[2]*this->velocity[2])/ this->unk28) * 8000.0f) + 2000.0f));
             }
         }
     }
+    func_8028E9C4(5, spB4);
+    switch (this->state) {
+    case 1:
+        if (!func_8031FF1C(0x8F) && subaddie_playerIsWithinCylinder(this, 250, 300) 
+            && ((func_8028ECAC() == 0) || (func_8028ECAC() == BSGROUP_8_TROT)) 
+            && (player_getTransformation() == TRANSFORM_1_BANJO) 
+            && (func_80311480(0xDA6, 0, NULL, NULL, NULL, NULL) != 0)
+        ) {
+            func_80320004(0x8F, TRUE);
+        }
+        if (chBeeSwarm_802CF5E4(this)) {
+            func_80328A84(this, 2U);
+        }
+        if (ml_vec3f_distance(this->position, this->unk1C) < 50.0f) {
+            func_802CEF54(this, local->unkC, 100.0f);
+        }
+        break;
+    case 2:
+        if (ml_vec3f_distance(this->position, this->unk1C) < 50.0f) {
+            func_802CEF54(this, local->unkC, 100.0f);
+        }
+        chBeeSwarm_802CF518(this);
+        break;
+    case 3:
+        this->unk1C[0] = spB4[0];
+        this->unk1C[1] = spB4[1];
+        this->unk1C[2] = spB4[2];
+        this->unk1C[1] += 50.0f;
+        this->unk28 = 400.0f;
+        if (ml_vec3f_distance(this->position, this->unk1C) < 100.0f) {
+            func_802CEF54(this, spB4, 50.0f);
+            func_80328A84(this, 4);
+        }
+        chBeeSwarm_802CF57C(this);
+        break;
+    case 4:
+        spB4[1] += 50.0f;
+        this->unk60 += spAC;
+        if ((this->unk60 - 0.5 > 0.0) && (local->unk0 > 0) && (func_8028ECAC() != 3)) {
+            func_8028F504(0xD);
+            this->unk60 -= 0.5;
+        }
+        if ((this->unk60 > 0.2) && (func_8028ECAC() == 3)) {
+            if (local->unk0-- > 0) {
+                sp68[0] = local->unk8[local->unk0].unk0[0] + this->position[0];
+                sp68[1] = local->unk8[local->unk0].unk0[1] + this->position[1];
+                sp68[2] = local->unk8[local->unk0].unk0[2] + this->position[2];
+                chBeeSwarm_802CF610(this, partEmitList_pushNew(1), sp68);
+                this->unk60 -= 0.2;
+            }
+        }
+        if (local->unk0 == 0) {
+            marker_despawn(this->marker);
+        }
+        if (ml_vec3f_distance(this->position, this->unk1C) < 50.0f) {
+            func_802CEF54(this, (s32 *) spB4, 50.0f);
+        }
+        if (ml_vec3f_distance(this->position, spB4) > 100.0f) {
+            func_80328A84(this, 3);
+        }
+        chBeeSwarm_802CF57C(this);
+        break;
+    case 5:
+        if (ml_vec3f_distance(this->position, this->unk1C) < 50.0f) {
+            func_80328A84(this, 2);
+        }
+        chBeeSwarm_802CF518(this);
+        break;
+    case 6:
+        if (ml_vec3f_distance(this->position, this->unk1C) < 50.0f) {
+            func_80328A84(this, local->unk6);
+        }
+        break;
+    case 7:
+        if (this->position[1] - 100.0f < local->unk1C) {
+            if (local->unk0 > 0) {
+                local->unk0--;
+            }
+        }
+        if (local->unk1C < this->position[1] - 100.0f) {
+            if (local->unk0 < local->unk4) {
+                local->unk0++;
+            } else {
+                func_80328A84(this, local->unk7);
+            }
+        }
+        break;
+    }
+    if (local->unk5) {
+        chBeeSwarm_802CF434(this);
+    }
+    local->unk5 = 0;
+    if ((local->unk0 > 0) && func_80329530(this, 1500) && !this->unk38_0) {
+        if (this->unk44_31 == 0) {
+            chBeeSwarm_802CF7CC(this);
+        }
+        if (this->unk44_31 != 0) {
+            func_8030DBFC(this->unk44_31, 
+                ((this->state == 3) || (this->state == 4)) ? 1.0 : 0.8, 
+                ((this->state == 3) || (this->state == 4)) ? 1.1 : 0.9, 
+                0.05f
+            );
+            func_8030DEB4(this->unk44_31, 500.0f, 1500.0f);
+            func_8030DF68(this->unk44_31, this->position);
+            func_8030E2C4(this->unk44_31);
+            sfxsource_setSampleRate(this->unk44_31, (s32)(((gu_sqrtf(this->velocity[0]*this->velocity[0] + this->velocity[1]*this->velocity[1] + this->velocity[2]*this->velocity[2])/ this->unk28) * 8000.0f) + 2000.0f));
+        }
+    }
 }
-#endif

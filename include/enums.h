@@ -2890,7 +2890,7 @@ enum asset_e
     ASSET_49B_MODEL_TWINKLY_SHARD_RED,
     // 49c (Green & Red Area?)
     ASSET_49D_MODEL_SEAMAN_GRUBLIN = 0x49D,
-    // 49e 2D Bee (Used In Swarms)
+    ASSET_49E_SPRITE_BEE_SWARM,
     // 49f 2D Glowing Bee (Beta)
     ASSET_4A0_SPRITE_EXPLOSION = 0x4A0,
     // 4a1 Brick Wall Near GV Entrance
@@ -3942,7 +3942,8 @@ enum marker_e{
 
     MARKER_20F_WOZZA_IN_CAVE = 0x20F,
 
-    MARKER_218_LIMBO = 0x218,
+    MARKER_217_BEE_SWARM = 0x217,
+    MARKER_218_LIMBO,
     MARKER_219_MUMMUM,
     MARKER_21A_SEAMAN_GRUBLIN,
 

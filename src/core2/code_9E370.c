@@ -2142,7 +2142,7 @@ void func_8032AF94(void) {
                 temp_s0->marker->unk50 = func_803406D4(temp_s0->marker->unk50);
             }
 
-            if (temp_s0->marker->unk14_20 == 0x217) {
+            if (temp_s0->marker->unk14_20 == MARKER_217_BEE_SWARM) {
                 func_802CEB60(temp_s0);
             }
         }

@@ -191,7 +191,7 @@ segments:
   - [0x468E0, c, ch/code_468E0] #DONE
   - [0x46BC0, c, ch/jinjo]
   - [0x47850, c, ch/beehive] #DONE
-  - [0x47BD0, c, code_47BD0]
+  - [0x47BD0, c, code_47BD0] #DONE
   - [0x49570, c, ch/soundsource] #DONE
   - [0x49A70, c, code_49A70] #DONE
   - [0x4A420, c, ch/gloop] #DONE
@@ -483,7 +483,7 @@ segments:
   - [0xE01D0, .data, ch/code_468E0]
   - [0xE0220, bin, data_E0220]
   - [0xE0330, .data, ch/beehive]
-  - [0xE0380, bin, data_E0380]
+  - [0xE0380, .data, code_47BD0]
   - [0xE03B0, .data, ch/soundsource]
   - [0xE0430, .data, code_49A70]
   - [0xE04A0, .data, ch/gloop]
