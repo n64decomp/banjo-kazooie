@@ -39,14 +39,14 @@ void func_803546E8(void) {
     sp47 = func_8033E93C();
     temp_s0 = func_8033E960();
     player_getPosition(sp34);
-    temp_s0->unk0 = randf2(-10.0f, 10.0f);
-    temp_s0->unk4 = (randf() * 35.0f) + 50.0f;
-    temp_s0->unk8 = randf2(-10.0f, 10.0f);
+    temp_s0->unk0[0] = randf2(-10.0f, 10.0f);
+    temp_s0->unk0[1] = (randf() * 35.0f) + 50.0f;
+    temp_s0->unk0[2] = randf2(-10.0f, 10.0f);
     func_802589E4(sp28, func_8028EBA4(), 48.0f);
     sp28[1] = 0.0f;
-    temp_s0->unk0 += sp28[0];
-    temp_s0->unk4 += sp28[1];
-    temp_s0->unk8 += sp28[2];
+    temp_s0->unk0[0] += sp28[0];
+    temp_s0->unk0[1] += sp28[1];
+    temp_s0->unk0[2] += sp28[2];
     projectile_setSprite(sp4F, ASSET_713_SPRITE_SPARKLE_YELLOW);
     projectile_setPosition(sp4F, sp34);
     func_8033FCD8(sp4F, 0xC);
@@ -84,16 +84,90 @@ void func_8035489C(void) {
         playerVelocity[1] = 0.0f;
         playerPosition[0] += playerVelocity[0] * time_getDelta();
         playerPosition[2] += playerVelocity[2] * time_getDelta();
-        playerPosition[0] += temp_s0->unk0;
-        playerPosition[1] += temp_s0->unk4;
-        playerPosition[2] += temp_s0->unk8;
+        playerPosition[0] += temp_s0->unk0[0];
+        playerPosition[1] += temp_s0->unk0[1];
+        playerPosition[2] += temp_s0->unk0[2];
         projectile_setPosition(temp_v0, playerPosition);
     }
 }
 
 void func_80354990(void){}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_CD6E0/func_80354998.s")
+void func_80354998(void) {
+    u8 sp57;
+    ActorMarker *sp50;
+    struct54s *sp4C;
+    u8 sp4B;
+    ParticleStruct0s *temp_s0;
+    f32 sp38[3];
+    f32 sp2C[3];
+    s32 sp28;
+
+    sp57 = func_8033E8D0();
+    sp50 = func_8033E864();
+    sp4C = func_8033E8F4();
+    sp4B = func_8033E93C();
+    temp_s0 = func_8033E960();
+    ml_vec3f_clear(sp38);
+    temp_s0->unk0[0] = randf2(-2.0f, 2.0f);
+    temp_s0->unk0[1] = 0.0f;
+    randf2(-10.0f, 10.0f);
+    temp_s0->unk0[2] = randf2(-2.0f, 2.0f);
+    temp_s0->unkC[0] = 0.0f;
+    temp_s0->unkC[1] = -0.05f;
+    temp_s0->unkC[2] = 0.0f;
+    func_80287E9C(sp4C);
+    func_80287FD0(sp4C, 3.0f);
+    func_80287F7C(sp4C, 3);
+    switch (sp50->modelId) {                        /* irregular */
+    case 0x3BB:
+        sp28 = 7;
+        break;
+    case 0x3BC:
+        sp28 = 0xB;
+        break;
+    case 0x3C0:
+    case 0x551:
+        sp28 = 8;
+        break;
+    case 0x3C1:
+        sp28 = 0xA;
+        break;
+    case 0x3C2:
+        sp28 = 9;
+        break;
+    case 0x548:
+        sp28 = 5;
+        ml_vec3f_clear(temp_s0->unk0);
+        ml_vec3f_clear(temp_s0->unkC);
+        break;
+    case 0x549:
+        sp28 = 3;
+        ml_vec3f_clear(temp_s0->unk0);
+        ml_vec3f_clear(temp_s0->unkC);
+        break;
+    case 0x547:
+        sp28 = 1;
+        ml_vec3f_clear(temp_s0->unk0);
+        ml_vec3f_clear(temp_s0->unkC);
+        break;
+    default:
+        sp28 = 3;
+        ml_vec3f_clear(temp_s0->unk0);
+        ml_vec3f_clear(temp_s0->unkC);
+        break;
+    }
+    projectile_setSprite(sp57, sp28 + 0x710);
+    projectile_setPosition(sp57, sp38);
+    func_80344E18(sp4B, 3);
+    sp2C[0] = 0.0f;
+    sp2C[1] = 0.0f;
+    sp2C[2] = 0.0f;
+    func_80344E3C(sp4B, sp2C);
+    func_80344D94(sp4B, sp38);
+    temp_s0->unk20 = 0x14;
+    func_80354670(sp57, 0x14);
+}
 
 void func_80354C18(void) {
     ParticleStruct0s* temp_s0;
@@ -128,16 +202,16 @@ void func_80354C18(void) {
             projectile_getPosition(temp_s1, sp34);
         }
         func_80344E7C(sp4B, sp28);
-        sp28[0] += temp_s0->unkC;
-        sp28[1] += temp_s0->unk10;
-        sp28[2] += temp_s0->unk14;
+        sp28[0] += temp_s0->unkC[0];
+        sp28[1] += temp_s0->unkC[1];
+        sp28[2] += temp_s0->unkC[2];
         func_80344E3C(sp4B, sp28);
-        temp_s0->unk0 += sp28[0];
-        temp_s0->unk4 += sp28[1];
-        temp_s0->unk8 += sp28[2];
-        sp34[0] += temp_s0->unk0;
-        sp34[1] += temp_s0->unk4;
-        sp34[2] += temp_s0->unk8;
+        temp_s0->unk0[0] += sp28[0];
+        temp_s0->unk0[1] += sp28[1];
+        temp_s0->unk0[2] += sp28[2];
+        sp34[0] += temp_s0->unk0[0];
+        sp34[1] += temp_s0->unk0[1];
+        sp34[2] += temp_s0->unk0[2];
         projectile_setPosition(temp_s1, sp34);
     }
     func_8033FC34(temp_s1, 0xB4);
@@ -160,9 +234,9 @@ void func_80354DD0(void) {
     sp3F = func_8033E93C();
     temp_s0 = func_8033E960();
     ml_vec3f_clear(sp2C);
-    temp_s0->unk0 = randf2(-50.0f, 50.0f);
-    temp_s0->unk4 = randf2(-65.0f, -65.0f);
-    temp_s0->unk8 = randf2(-50.0f, 50.0f);
+    temp_s0->unk0[0] = randf2(-50.0f, 50.0f);
+    temp_s0->unk0[1] = randf2(-65.0f, -65.0f);
+    temp_s0->unk0[2] = randf2(-50.0f, 50.0f);
     projectile_setSprite(temp_s1, ASSET_710_SPRITE_SPARKLE_PURPLE);
     func_8033FC60(temp_s1, 0xE1, 0xFF, 0);
     projectile_setPosition(temp_s1, sp2C);
@@ -203,9 +277,9 @@ void func_80354EEC(void) {
             } else {
                 func_8033FC98(temp_s1, 1);
             }
-            sp28[0] += temp_s0->unk0;
-            sp28[1] += temp_s0->unk4;
-            sp28[2] += temp_s0->unk8;
+            sp28[0] += temp_s0->unk0[0];
+            sp28[1] += temp_s0->unk0[1];
+            sp28[2] += temp_s0->unk0[2];
             projectile_setPosition(temp_s1, sp28);
         }
     }
@@ -228,9 +302,9 @@ void func_8035500C(void) {
     sp3F = func_8033E93C();
     temp_s0 = func_8033E960();
     ml_vec3f_clear(sp2C);
-    temp_s0->unk0 = randf2(-40.0f, 40.0f);
-    temp_s0->unk4 = randf2(-40.0f, 40.0f);
-    temp_s0->unk8 = randf2(-40.0f, 40.0f);
+    temp_s0->unk0[0] = randf2(-40.0f, 40.0f);
+    temp_s0->unk0[1] = randf2(-40.0f, 40.0f);
+    temp_s0->unk0[2] = randf2(-40.0f, 40.0f);
     projectile_setSprite(sp47, 0x70F);
     func_8033FC60(sp47, 0xFF, 0xE6, 0xF5);
     projectile_setPosition(sp47, sp2C);
@@ -269,10 +343,10 @@ void func_80355134(void) {
         func_80354670(temp_s1, temp_s0->unk20);
         if (temp_s0->unk20 >= 0x13) {
             sp38(sp3C, sp34, sp28);
-            temp_s0->unk4 -= time_getDelta() * 200.0f;
-            sp28[0] += temp_s0->unk0;
-            sp28[1] += temp_s0->unk4;
-            sp28[2] += temp_s0->unk8;
+            temp_s0->unk0[1] -= time_getDelta() * 200.0f;
+            sp28[0] += temp_s0->unk0[0];
+            sp28[1] += temp_s0->unk0[1];
+            sp28[2] += temp_s0->unk0[2];
             projectile_setPosition(temp_s1, sp28);
         } else {
             projectile_getPosition(temp_s1, sp28);
@@ -299,9 +373,9 @@ void func_8035529C(void) {
     sp47 = func_8033E93C();
     sp40 = func_8033E960();
     ml_vec3f_clear(sp34);
-    sp40->unk0 = randf2(-40.0f, 40.0f);
-    sp40->unk4 = 0.0f;
-    sp40->unk8 = randf2(-40.0f, 40.0f);
+    sp40->unk0[0] = randf2(-40.0f, 40.0f);
+    sp40->unk0[1] = 0.0f;
+    sp40->unk0[2] = randf2(-40.0f, 40.0f);
     projectile_setSprite(sp4F, 0x70F);
     func_8033FC60(sp4F, randi2(0xD2, 0xFF), randi2(0xBE, 0xFF), randi2(0xC8, 0xFF));
     projectile_setPosition(sp4F, sp34);
@@ -340,10 +414,10 @@ void func_803553E8(void) {
         func_80354670(temp_s1, temp_s0->unk20);
         if (temp_s0->unk20 >= 0xD) {
             sp38(sp3C, sp34, sp28);
-            temp_s0->unk4 -= time_getDelta() * 40.0f;
-            sp28[0] += temp_s0->unk0;
-            sp28[1] += temp_s0->unk4;
-            sp28[2] += temp_s0->unk8;
+            temp_s0->unk0[1] -= time_getDelta() * 40.0f;
+            sp28[0] += temp_s0->unk0[0];
+            sp28[1] += temp_s0->unk0[1];
+            sp28[2] += temp_s0->unk0[2];
             projectile_setPosition(temp_s1, sp28);
         } else {
             projectile_getPosition(temp_s1, sp28);
@@ -371,9 +445,9 @@ void func_80355550(void) {
     sp37 = func_8033E93C();
     sp30 = func_8033E960();
     ml_vec3f_clear(sp24);
-    sp30->unk0 = randf2(-30.0f, 30.0f);
-    sp30->unk4 = randf2(-30.0f, 30.0f);
-    sp30->unk8 = randf2(-30.0f, 30.0f);
+    sp30->unk0[0] = randf2(-30.0f, 30.0f);
+    sp30->unk0[1] = randf2(-30.0f, 30.0f);
+    sp30->unk0[2] = randf2(-30.0f, 30.0f);
     if ((f64) randf() < 0.25) {
         projectile_setSprite(sp3F, ASSET_711_SPRITE_SPARKLE_DARK_BLUE);
     } else if ((f64) randf() < 0.5) {
@@ -419,10 +493,10 @@ void func_8035570C(void) {
         func_80354670(temp_s1, temp_s0->unk20);
         if (temp_s0->unk20 >= 0x13) {
             sp38(sp3C, sp34, sp28);
-            temp_s0->unk4 -= time_getDelta() * 80.0f;
-            sp28[0] += temp_s0->unk0;
-            sp28[1] += temp_s0->unk4;
-            sp28[2] += temp_s0->unk8;
+            temp_s0->unk0[1] -= time_getDelta() * 80.0f;
+            sp28[0] += temp_s0->unk0[0];
+            sp28[1] += temp_s0->unk0[1];
+            sp28[2] += temp_s0->unk0[2];
             projectile_setPosition(temp_s1, sp28);
         } else {
             projectile_getPosition(temp_s1, sp28);
@@ -459,9 +533,9 @@ void func_80355864(void) {
     sp38[0] = sp4C->position[0];
     sp38[1] = sp4C->position[1];
     sp38[2] = sp4C->position[2];
-    sp48->unk0 = randf2(-10.0f, 10.0f);
-    sp48->unk4 = (f32) ((randf() * 45.0f) + 10.0f);
-    sp48->unk8 = randf2(-10.0f, 10.0f);
+    sp48->unk0[0] = randf2(-10.0f, 10.0f);
+    sp48->unk0[1] = (f32) ((randf() * 45.0f) + 10.0f);
+    sp48->unk0[2] = randf2(-10.0f, 10.0f);
     projectile_setSprite(sp5F, 0x713);
     projectile_setPosition(sp5F, &sp38);
     func_8033FCD8(sp5F, 0xC);
@@ -517,9 +591,9 @@ void func_80355B00(void) {
         sp28[0] += sp34[0] * time_getDelta();
         sp28[2] += sp34[2] * time_getDelta();
 
-        sp28[0] += sp44->unk0;
-        sp28[1] += sp44->unk4;
-        sp28[2] += sp44->unk8;
+        sp28[0] += sp44->unk0[0];
+        sp28[1] += sp44->unk0[1];
+        sp28[2] += sp44->unk0[2];
         projectile_setPosition(sp43, sp28);
     }
 }

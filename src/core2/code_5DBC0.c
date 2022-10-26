@@ -80,7 +80,7 @@ struct5DBC0s *func_802E4B50(void){
 void func_802E4C0C(struct5DBC0_2s * arg0, u32 arg1){
     // u32 i, v0;
     u32 v0;
-    while(--arg1 != 0){
+    while(--arg1 > 0){
         // arg1--;
         assetcache_release(arg0[arg1].font_bin);
         free(arg0[arg1].letter_texture);

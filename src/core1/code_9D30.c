@@ -362,7 +362,70 @@ void func_802485C8(UNK_TYPE(s32) arg0){
 }
 
 //BREAK?
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_9D30/draw_sprite_ci4.s")
+#else
+void draw_sprite_ci4(s32 x, s32 y, BKSprite *sprite, s32 frame, s32 alpha_enabled) {
+    BKSpriteFrame *sprite_frame;
+    u16 *palette;
+    s32 fb_y;
+    s32 fb_x;
+    s32 iy;
+    s32 i_chunk;
+    s32 ix;
+    u8 *tmem;
+    BKSpriteTextureBlock *chunk;
+    u16 *pxl_ptr;
+    u16 *framebuffer;
+    s32 indx1;
+    s32 indx2;
+    s32 color1;
+    s32 color2;
+
+    framebuffer = D_803A5D00[D_802806EC];
+    sprite_frame = spriteGetFramePtr(sprite, (u32) frame);
+    if (alpha_enabled == 0) {
+        set_prim_color(0, 0, 0x80);
+        draw_prim_rect(x, y, sprite_frame->w, sprite_frame->h);
+    }
+
+    palette = (u16 *)(sprite_frame + 1);
+    for(tmem = palette; (s32)tmem % 8; tmem++);
+    palette = tmem;
+    chunk = (BKSpriteTextureBlock *)(palette + 0x10);
+    for(i_chunk = 0; i_chunk < sprite_frame->chunkCnt; i_chunk++){
+        for(tmem = (u16 *)(chunk + 1); (s32)tmem % 8; tmem++);
+
+        for(iy = 0; iy < chunk->h; iy++){
+            for(ix = 0; ix < chunk->w; ix += 2){
+                indx1 = (*tmem >> 4) & 0xF;
+                indx2 = (*tmem >> 0) & 0xF;
+                fb_x = chunk->x + x + ix;
+                if (0 <= fb_x && fb_x < D_80276588) {
+                    fb_y = chunk->y + y + iy;
+                    if ((fb_y >= 0) && (fb_y < D_8027658C)) {
+                        pxl_ptr = framebuffer + fb_x + (fb_y * D_80276588);
+                        color1 = palette[indx1];
+                        if (color1 & 1) {
+                            *pxl_ptr = color1;
+                        } else if (!alpha_enabled) {
+                            *pxl_ptr = 1U;
+                        }
+                        color2 = palette[indx2];
+                        if (color2 & 1) {
+                            *(pxl_ptr + 1) = color2;
+                        } else if (!alpha_enabled) {
+                            *(pxl_ptr + 1) = 1U;
+                        }
+                    }
+                }
+                tmem++;
+            }
+        }
+        chunk = (BKSpriteTextureBlock *) tmem;
+    }
+}
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_9D30/draw_sprite_ci8.s")
 

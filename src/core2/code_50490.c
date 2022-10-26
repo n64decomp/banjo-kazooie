@@ -54,9 +54,6 @@ Actor *func_802D745C(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     return marker_getActor(marker);
 }
 
-#ifdef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_50490/func_802D7484.s")
-#else
 Actor *func_802D7484(s32 position[3], s32 yaw, ActorInfo *arg2, u32 arg3) {
     s32 sp3C;
     ActorLocal_core2_50490 * local;
@@ -70,7 +67,6 @@ Actor *func_802D7484(s32 position[3], s32 yaw, ActorInfo *arg2, u32 arg3) {
     sp34->marker->collidable = FALSE;
     return sp34;
 }
-#endif
 
 Actor * func_802D7558(s32 *arg0, s32 arg1, ActorInfo *arg2, u32 arg3) {
     D_80367A80 = 1.2f;
