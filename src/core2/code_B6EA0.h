@@ -7,9 +7,32 @@
 
 typedef s32 (*FuncUnk40)(ActorMarker *, s32, f32[3]);
 
-typedef struct particle_struct_0_s{
+typedef struct particle_struct_1_s{
     f32 unk0[3];
     f32 unkC[3];
+    u8 pad18[8];
+    s32 unk20;
+    s32 unk24;
+    s32 unk28;
+    u8 pad24[0x4];
+    ActorMarker *marker_30;
+    struct54s *unk34;
+    ActorMarker *unk38;
+    s32 unk3C;
+    FuncUnk40 unk40;
+    u8 unk44;
+    u8 unk45;
+    u8 unk46;
+    u8 unk47;
+} ParticleStruct1s;
+
+typedef struct particle_struct_0_s{
+    f32 unk0;
+    f32 unk4;
+    f32 unk8;
+    f32 unkC;
+    f32 unk10;
+    f32 unk14;
     u8 pad18[8];
     s32 unk20;
     s32 unk24;

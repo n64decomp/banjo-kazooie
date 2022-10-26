@@ -4,6 +4,8 @@
 #include "osint.h"
 
 OSDevMgr __osViDevMgr = {0};
+
+/* .bss */
 /*static*/ OSThread viThread;
 /*static*/ unsigned char viThreadStack[OS_VIM_STACKSIZE];
 /*static*/ OSMesgQueue viEventQueue;
@@ -54,7 +56,7 @@ void osCreateViManager(OSPri pri)
 		}
 	}
 }
-extern u16 retrace;
+u16 retrace;
 static void viMgrMain(void *arg)
 {
 	__OSViContext *vc;

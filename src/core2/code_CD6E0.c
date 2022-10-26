@@ -30,7 +30,7 @@ void func_803546E8(void) {
     u8 sp4F;
     struct54s* sp48;
     u8 sp47;
-    ParticleStruct0s* temp_s0;
+    ParticleStruct1s* temp_s0;
     f32 sp34[3];
     f32 sp28[3];
 
@@ -64,7 +64,7 @@ void func_803546E8(void) {
 }
 
 void func_8035489C(void) {
-    ParticleStruct0s* temp_s0;
+    ParticleStruct1s* temp_s0;
     u8 temp_v0;
     f32 playerVelocity[3];
     f32 playerPosition[3];
@@ -98,7 +98,7 @@ void func_80354998(void) {
     ActorMarker *sp50;
     struct54s *sp4C;
     u8 sp4B;
-    ParticleStruct0s *temp_s0;
+    ParticleStruct1s *temp_s0;
     f32 sp38[3];
     f32 sp2C[3];
     s32 sp28;
@@ -170,7 +170,7 @@ void func_80354998(void) {
 }
 
 void func_80354C18(void) {
-    ParticleStruct0s* temp_s0;
+    ParticleStruct1s* temp_s0;
     s32 pad;
     ActorMarker *sp4C;
     u8 sp4B;
@@ -221,7 +221,7 @@ void func_80354C18(void) {
 void func_80354DC8(void){}
 
 void func_80354DD0(void) {
-    ParticleStruct0s* temp_s0;
+    ParticleStruct1s* temp_s0;
     struct54s* sp40;
     u8 sp3F;
     u8 pad3C[3];
@@ -253,7 +253,7 @@ void func_80354DD0(void) {
 }
 
 void func_80354EEC(void) {
-    ParticleStruct0s* temp_s0;
+    ParticleStruct1s* temp_s0;
     s32 pad;
     ActorMarker *sp3C;
     FuncUnk40 sp38;
@@ -293,7 +293,7 @@ void func_8035500C(void) {
     u8 sp47;
     struct54s* sp40;
     u8 sp3F;
-    ParticleStruct0s* temp_s0;
+    ParticleStruct1s* temp_s0;
     f32 sp2C[3];
     f32 sp20[3];
 
@@ -322,7 +322,7 @@ void func_8035500C(void) {
 }
 
 void func_80355134(void) {
-    ParticleStruct0s* temp_s0;
+    ParticleStruct1s* temp_s0;
     u8 temp_s1;
     ActorMarker *sp3C;
     FuncUnk40 sp38;
@@ -364,7 +364,7 @@ void func_8035529C(void) {
     u8 sp4F;
     struct54s* sp48;
     u8 sp47;
-    ParticleStruct0s* sp40;
+    ParticleStruct1s* sp40;
     f32 sp34[3];
     f32 sp28[3];
 
@@ -393,7 +393,7 @@ void func_8035529C(void) {
 }
 
 void func_803553E8(void) {
-    ParticleStruct0s* temp_s0;
+    ParticleStruct1s* temp_s0;
     u8 temp_s1;
     ActorMarker *sp3C;
     FuncUnk40 sp38;
@@ -436,7 +436,7 @@ void func_80355550(void) {
     u8 sp3F;
     struct54s *sp38;
     u8 sp37;
-    ParticleStruct0s *sp30;
+    ParticleStruct1s *sp30;
     f32 sp24[3];
     f32 sp18[3];
 
@@ -474,7 +474,7 @@ void func_80355550(void) {
 }
 
 void func_8035570C(void) {
-    ParticleStruct0s* temp_s0;
+    ParticleStruct1s* temp_s0;
     u8 temp_s1;
     ActorMarker *sp3C;
     FuncUnk40 sp38;
@@ -517,7 +517,7 @@ void func_80355864(void) {
     static s32 D_803863E4;
     f32 var_f2;
     Actor *sp4C;
-    ParticleStruct0s *sp48;
+    ParticleStruct1s *sp48;
     s32 sp44;
     f32 sp38[3];
     f32 sp2C[3];
@@ -559,7 +559,7 @@ void func_80355864(void) {
 }
 
 void func_80355B00(void) {
-    ParticleStruct0s *sp44;
+    ParticleStruct1s *sp44;
     u8 sp43;
     ActorMarker *pad40;
     Actor *sp38;

@@ -42,6 +42,7 @@ typedef union{
 
 typedef bool( *Method_Core2_A5BC0)(NodeProp *, s32);
 
+s32 func_80330974(ActorMarker *marker, s32 arg1, f32 arg2, s32 arg3);
 s32 func_80320DB0(f32[3], f32, f32[3], u32);
 extern void func_80320EB0(ActorMarker *, f32, s32);
 extern void func_80320ED8(ActorMarker *, f32, s32);
@@ -51,13 +52,15 @@ void func_8032CD60(Prop *);
 f32 func_8033A244(f32);
 void func_8032F64C(f32 *pos, ActorMarker * marker);
 
+
 /* .data */
 extern s32 D_8036E7B0;
 extern ModelCache *modelCache; //D_8036E7C0 //model pointer array pointer
 extern u8 *D_8036E7C4;
 extern ActorMarker *D_8036E7C8;
-extern s16 D_8036E7E0[];
-extern s16 D_8036E7FC[];
+extern Struct6Cs D_8036E7D0; //= {NULL, NULL, NULL, func_80330974};
+extern s16 D_8036E7E0[];//= {0x2D2, 0x2DD, 0x580, 0x6D1, 0x6D6, 0x6D7, 0x364, 0x2E8, 0x309, 0x30A, 0x704, 0x30D, 0x6C7, -1};
+extern s16 D_8036E7FC[]; //={-1};
 //extern s32 D_8036E800;
 // extern u32 D_8036E804[8];
 
@@ -969,12 +972,8 @@ void func_8032F194(ActorMarker *marker, s32 position[3], Cube *cube) {
 #ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_8032F21C.s")
 #else
-s32 func_8032F21C(Cube *cube, s32 position[3], ActorMarker *marker, bool arg3) {
+void func_8032F21C(Cube *cube, s32 position[3], ActorMarker *marker, bool arg3) {
     ActorProp *sp1C;
-    u8 temp_t0;
-    u8 temp_t2;
-    u8 temp_t6;
-    u8 temp_t8;
 
     sp1C = func_8032D80C(cube);
     sp1C->unk8_0 = TRUE;
@@ -982,8 +981,8 @@ s32 func_8032F21C(Cube *cube, s32 position[3], ActorMarker *marker, bool arg3) {
     sp1C->y = (s16) position[1];
     sp1C->z = (s16) position[2];
     sp1C->marker = marker;
-    sp1C->unk8_15 = 0;
     sp1C->unk8_1 = arg3;
+    sp1C->unk8_15 = 0;
     sp1C->unk8_5 = FALSE;
 
     sp1C->unk8_10 = (func_802E4A08(position)) ? 0xF : (u8)(randf() * 32);
@@ -1460,8 +1459,9 @@ s32 func_80330974(ActorMarker *marker, s32 arg1, f32 arg2, s32 arg3) {
     return 0;
 }
 
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_80330B10.s")
+Struct6Cs *func_80330B10(void){
+    return &D_8036E7D0;
+}
 
 //marker_loadModelBin
 BKModelBin *func_80330B1C(ActorMarker *this){
@@ -1588,6 +1588,7 @@ s32 func_80330F94(NodeProp *arg0, s32 arg1[3]){
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_80330FBC.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_80330FC4.s")
+
 
 void func_80330FCC(ActorMarker *marker, s32 arg1[3]){
     arg1[0] = marker->propPtr->x;

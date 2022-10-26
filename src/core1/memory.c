@@ -19,7 +19,7 @@ extern void func_80253010(void *dest, void *src, s32 size);
 #define HEAP_SIZE 0x210520
 #define LAST_HEAP_BLOCK HEAP_SIZE/sizeof(EmptyHeapBlock) - 1
 
-enum {
+extern enum {
     HEAP_BLOCK_EMPTY = 0,
     HEAP_BLOCK_USED  = 1,
     HEAP_BLOCK_PERM  = 2
@@ -46,11 +46,7 @@ extern EmptyHeapBlock D_8023DA00;
 extern struct{
     bool unk0;
 }D_802765B0;
-extern void *D_80283224;
-extern void *D_80283228;
-extern s32 D_8028322C;
-extern u32 heap_requested_size;
-extern HeapHeader * D_80283234;
+
 extern u32 heap_occupiedBytes; //occupied heap size
 extern u8 D_80276594;
 extern u8 D_80276598;
@@ -61,8 +57,13 @@ extern void *D_802765A8;
 extern s32 D_802765AC;
 extern UNK_TYPE(void *) D_802765B4;
 
-extern s32 D_80283220;
-extern struct {
+s32 D_80283220;
+void *D_80283224;
+void *D_80283228;
+s32 D_8028322C;
+u32 heap_requested_size;
+HeapHeader * D_80283234;
+struct {
     void *unk0[0x10];
     void **unk40;
 }D_80283238;

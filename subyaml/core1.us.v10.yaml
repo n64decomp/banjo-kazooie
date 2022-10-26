@@ -160,7 +160,7 @@ segments:
   - [0x28AD0, c, done/io/viblack]         #DONE
   - [0x28B40, c, done/gu/ortho]           #DONE
   - [0x28D00, c, done/gu/translate]       #DONE
-  - [0x28DA0, c, gu/rotate]
+  - [0x28DA0, c, done/gu/rotate]
   - [0x28F90, c, done/io/contreaddata]    #DONE
   - [0x291F0, c, done/io/controller]      #DONE
   - [0x295B0, c, done/io/contsetch]       #DONE
@@ -307,7 +307,7 @@ segments:
   - [0x3B190, .rodata, done/gu/sinf]
   - [0x3B1E0, .rodata, done/audio/cents2ratio]
   - [0x3B1F0, bin, data_3B1F0] # .rodata, ultra/setintmask] # splat bug preventing this from linking correctly
-  - [0x3B2C0, bin, data_3B2C0] # .rodata, gu/rotate] # need to resolve .data section first
+  - [0x3B2C0, .rodata, done/gu/rotate] # need to resolve .data section first
   - [0x3B2D0, .rodata, done/audio/cseq]
   - [0x3B2E0, .rodata, done/audio/drvrNew]
   - [0x3B300, .rodata, done/audio/reverb]
@@ -342,4 +342,17 @@ segments:
   - [0x3c710, .bss, code_12F10]
   - [0x3c710, .bss, code_13640]
   - [0x3c710, .bss, code_136D0]
+  - [0x3c710, .bss, code_13990]
+  - [0x3c710, .bss, code_15770]
+  - [0x3c710, .bss, code_15B30]
+  - [0x3c710, .bss, memory]
+  - [0x3c710, .bss, code_18210]
+  - [0x3c710, .bss, code_1D5D0]
+  - [0x3c710, .bss, done/code_1E360]
+  - [0x3c710, .bss, os/initialize]
+  - [0x3c710, .bss, done/io/pimgr]
+  - [0x3c710, .bss, done/io/sptask]
+  - [0x3c710, .bss, done/os/seteventmesg]
+  - [0x3c710, .bss, done/io/vimgr]
+  - [0x3c710, .bss, done/gu/rotate]
 - [0x3c710] # core1 end

@@ -4,7 +4,13 @@
 #include "SnS.h"
 #include "save.h"
 
-
+/* .bss */
+StopNSwop_Data snsParsedKeys;
+struct GlobalSave gSaveData;
+s32 snsMinKeyToParse;
+s32 snsMaxKeyToParse;
+s32 snsParsedCurrPos;
+u32  snsBackedUpItems;
 
 void sns_init_parsing_params(s32 min, s32 max)
 {

@@ -20,6 +20,7 @@ OSTime osClockRate = OS_CLOCK_RATE;
 s32 osViClock = VI_NTSC_CLOCK;
 u32 __osShutdown = 0;
 u32 __OSGlobalIntMask = OS_IM_ALL;
+/* .bss */
 u32 __osFinalrom;
 
 void __osInitialize_common()

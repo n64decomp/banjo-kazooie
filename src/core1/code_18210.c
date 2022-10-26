@@ -2,11 +2,11 @@
 #include "functions.h"
 #include "variables.h"
 
-extern u64 D_80283280[];
-
-extern s32 D_80283380;
-extern s32 D_80283384;
-extern s32 D_80283388;
+/* .bss */
+u8 D_80283280[0x100];
+s32 D_80283380;
+s32 D_80283384;
+s32 D_80283388;
 
 void func_80255C30(void) {
     D_80283384 = *(s32 *)0xA4000000 ^ -1;

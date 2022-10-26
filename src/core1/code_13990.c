@@ -4,13 +4,18 @@
 
 #include "ml/mtx.h"
 
-extern Mtx *D_80282FD0;
-extern Mtx_t D_80282810;
+
 
 f32 func_80263FF0(f32);
 f32 cosf(f32);
 extern f64 D_80278220;
 
+/*.bss*/
+Mtx_t D_80282810;
+u8 pad_D_80282850[0x780];
+Mtx * D_80282FD0;
+
+/*.code*/
 #ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_802513B0.s")
 #else

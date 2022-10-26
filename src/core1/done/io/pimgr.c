@@ -7,10 +7,12 @@ extern u32 __osPiAccessQueueEnabled;
 OSDevMgr __osPiDevMgr = {0};
 OSPiHandle *__osPiTable = NULL;
 OSPiHandle *__osCurrentHandle[2] = {&CartRomHandle, &LeoDiskHandle};
-extern OSThread piThread;
-extern char piThreadStack[OS_PIM_STACKSIZE];
-extern OSMesgQueue piEventQueue;
-extern OSMesg piEventBuf;
+
+/* .bss */
+OSThread piThread;
+char piThreadStack[OS_PIM_STACKSIZE];
+OSMesgQueue piEventQueue;
+OSMesg piEventBuf;
 
 void osCreatePiManager(OSPri pri, OSMesgQueue *cmdQ, OSMesg *cmdBuf, s32 cmdMsgCnt)
 {

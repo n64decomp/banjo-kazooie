@@ -802,24 +802,17 @@ s32 gcpausemenu_getMaxPage(void){
     return D_80383010.page_cnt;
 }
 
-#ifndef NONMATCHING
-void gcpausemenu_getNextPage(s32);
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/gc/pauseMenu/gcpausemenu_getNextPage.s")
-#else
 void gcpausemenu_getNextPage(s32 arg0) {
     D_80383010.unk9 = D_80383010.selection;
     do{
         D_80383010.unk9 += arg0;
+        if((D_80383010.unk39 != 0) && (D_80383010.unk9 == 0xC))
+                break;
     }
-    while(((D_80383010.unk39 == 0) || (D_80383010.unk9 != 0xC)) 
-        && (D_80383010.unk9 != 0) 
-        && itemscore_timeScores_get(D_8036C58C[D_80383010.unk9].level_id) == 0
-    );
+    while( (D_80383010.unk9 != 0) && itemscore_timeScores_get(D_8036C58C[D_80383010.unk9].level_id) == 0);
     gcPauseMenu_setState((D_80383010.unk9 == 0xC) ? 0xA : 0xC);
     D_80383010.unk7 = 6;
 }
-#endif
-
 
 void gcpausemenu_updateBButtonAndJoystickSprites(void) {
     f32 temp_f12;

@@ -11,23 +11,27 @@ typedef struct {
     s32 unk14;
 }Struct_Core1_15B30;
 
-extern Gfx *D_80276580[2];
-extern Mtx *D_80282FF0[2];
-extern Vtx *D_80282FF8[2];
-extern s32 D_80283000;
-extern s32 D_80283004;
-extern Struct_Core1_15B30 D_80283008[];
-extern s32 D_802831E8;
-extern OSMesgQueue D_802831F0;
-extern OSMesg D_80283208;
-extern u16 D_8028320C;
-extern u16 D_8028320E;
-extern u16 D_80283210;
-extern u16 D_80283212;
-extern Gfx *D_80283214;
-
 extern u8 D_803A5D00[2][0x1ecc0];
 
+/* .data */
+extern Gfx *D_80276580[2];
+
+/* .bss */
+Mtx *D_80282FF0[2];
+Vtx *D_80282FF8[2];
+s32  D_80283000;
+s32  D_80283004;
+Struct_Core1_15B30 D_80283008[20];
+s32 D_802831E8;
+OSMesgQueue D_802831F0;
+OSMesg D_80283208;
+u16  D_8028320C;
+u16  D_8028320E;
+u16  D_80283210;
+u16  D_80283212;
+Gfx *D_80283214;
+
+/* .h */
 void func_80254348(void);
 void func_80254464(void);
 

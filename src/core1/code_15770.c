@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-extern struct {
+struct {
     u16 *unk0;
     int unk4;
 } D_80282FE0;
