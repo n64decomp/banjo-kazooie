@@ -160,7 +160,7 @@ segments:
   - [0x28AD0, c, done/io/viblack]         #DONE
   - [0x28B40, c, done/gu/ortho]           #DONE
   - [0x28D00, c, done/gu/translate]       #DONE
-  - [0x28DA0, c, done/gu/rotate]
+  - [0x28DA0, c, done/gu/rotate]          #DONE
   - [0x28F90, c, done/io/contreaddata]    #DONE
   - [0x291F0, c, done/io/controller]      #DONE
   - [0x295B0, c, done/io/contsetch]       #DONE
@@ -355,4 +355,7 @@ segments:
   - [0x3c710, .bss, done/os/seteventmesg]
   - [0x3c710, .bss, done/io/vimgr]
   - [0x3c710, .bss, done/gu/rotate]
+  - [0x3c710, .bss, done/io/controller]
+  - [0x3c710, .bss, done/io/motor]
+  - [0x3c710, .bss, done/io/cartrominit]
 - [0x3c710] # core1 end

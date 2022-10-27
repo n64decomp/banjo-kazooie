@@ -156,16 +156,13 @@ void func_802EED1C(ParticleEmitter *this, f32 arg1, f32 arg2[3]){
     }
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_679A0/func_802EEE3C.s")
-#else
-void func_802EEE3C(ParticleEmitter *this, Gfx **gfx, Mtx **mtx, Vtx **vtx, s32 arg4){
+void func_802EEE3C(ParticleEmitter *this, Gfx **gfx, Mtx **mtx, Vtx **vtx, u32 arg4){
     f32 sp8C[3];
     f32 sp80[3];
     f32 sp74[3];
     Particle *iPtr;
 
-    if(arg4 != (this->unk18 & 0x4))
+    if(reinterpret_cast(u32, arg4) != (this->unk18 & 0x4) != 0)
         return;
 
     if(this->model_20 != NULL){
@@ -180,65 +177,61 @@ void func_802EEE3C(ParticleEmitter *this, Gfx **gfx, Mtx **mtx, Vtx **vtx, s32 a
             set_model_render_mode((this->unk18 & 0x10)?0:1);
             func_803391A4(gfx, mtx, sp8C, iPtr->unk24, iPtr->size_30, NULL, this->model_20);
         }
+        return;
     }
-    else {
-        if(this->unk34){//L802EEFC4
-            if( this->unk3C[0] != 0xff 
-                || this->unk3C[1] != 0xff 
-                || this->unk3C[2] != 0xff 
-                || this->unk49 != 0xff 
-            ){
-                func_803382E4((this->unk18 & 0x10)? 9: 0xf);
-                func_80338338(this->unk3C[0], this->unk3C[1], this->unk3C[2]);
-                func_803382B4(
-                    (this->unk3C[0] < 8)? 0 : this->unk3C[0] - 8,
-                    (this->unk3C[1] < 8)? 0 : this->unk3C[1] - 8,
-                    (this->unk3C[2] < 8)? 0 : this->unk3C[2] - 8,
-                    (this->unk18 & 0x20)? 0xff : this->unk49
-                );
-                func_80338370();
-                func_80335D30(gfx);
-            }
-            else if(this->unk18 & 0x10){//L802EF0C0
-                gSPDisplayList((*gfx)++, D_80368978);
-            }
-            else{//L802EF0EC
-                gSPDisplayList((*gfx)++, D_80368940);
-            }//L802EF10C
-            sp80[0] = 90.0f;
-            sp80[1] = 0.0f;
-            sp80[2] = 0.0f;
-            for(iPtr = this->pList_start_124; iPtr < this->pList_end_128; iPtr++){
-                gDPSetPrimColor((*gfx)++, 0, 0, this->unk3C[0], this->unk3C[1], this->unk3C[2], iPtr->unkC*this->unk49);
-                sp8C[0] = iPtr->position_18[0] + this->unk4[0];
-                sp8C[1] = iPtr->position_18[1] + this->unk4[1];
-                sp8C[2] = iPtr->position_18[2] + this->unk4[2];
+    
+    if(this->unk34){//L802EEFC4
+        if( this->unk3C[0] != 0xff 
+            || this->unk3C[1] != 0xff 
+            || this->unk3C[2] != 0xff 
+            || this->unk49 != 0xff 
+        ){
+            func_803382E4((this->unk18 & 0x10)? 9: 0xf);
+            func_80338338(this->unk3C[0], this->unk3C[1], this->unk3C[2]);
+            func_803382B4(
+                (this->unk3C[0] < 8)? 0 : this->unk3C[0] - 8,
+                (this->unk3C[1] < 8)? 0 : this->unk3C[1] - 8,
+                (this->unk3C[2] < 8)? 0 : this->unk3C[2] - 8,
+                (this->unk18 & 0x20)? 0xff : this->unk49
+            );
+            func_80338370();
+            func_80335D30(gfx);
+        }
+        else if(this->unk18 & 0x10){//L802EF0C0
+            gSPDisplayList((*gfx)++, D_80368978);
+        }
+        else{//L802EF0EC
+            gSPDisplayList((*gfx)++, D_80368940);
+        }//L802EF10C
+        sp80[0] = 90.0f;
+        sp80[1] = 0.0f;
+        sp80[2] = 0.0f;
+        for(iPtr = this->pList_start_124; iPtr < this->pList_end_128; iPtr++){
+            gDPSetPrimColor((*gfx)++, 0, 0, this->unk3C[0], this->unk3C[1], this->unk3C[2], iPtr->unkC*this->unk49);
+            sp8C[0] = iPtr->position_18[0] + this->unk4[0];
+            sp8C[1] = iPtr->position_18[1] + this->unk4[1];
+            sp8C[2] = iPtr->position_18[2] + this->unk4[2];
 
-                sp74[0] = iPtr->size_30;
-                sp74[1] = iPtr->size_30;
-                sp74[2] = iPtr->size_30;
-                if(0.0f != this->unk108){
-                    func_802EED1C(this, iPtr->age_48, sp74);
-                }
-                func_80344C2C(this->unk0_16);
-                if(this->unk18 & 1){
-                    func_80344720(this->unk34, (s32)iPtr->frame_10, 0, sp8C, sp80, sp74, gfx, mtx);
-                }//L802EF2F8
-                else{
-                    func_80344424(this->unk34, (s32)iPtr->frame_10, 0, sp8C, sp74, iPtr->unk24[2], gfx, mtx);
-                }//L802EF324
-            }//L802EF338
-            if( this->unk3C[0] != 0xff 
-                || this->unk3C[1] != 0xff 
-                || this->unk3C[2] != 0xff 
-                || this->unk49 != 0xff 
-            ){
-                func_8033687C(gfx);
+            sp74[0] = iPtr->size_30;
+            sp74[1] = iPtr->size_30;
+            sp74[2] = iPtr->size_30;
+            if(0.0f != this->unk108){
+                func_802EED1C(this, iPtr->age_48, sp74);
             }
+            func_80344C2C(this->unk0_16);
+            if(this->unk18 & 1){
+                func_80344720(this->unk34, (s32)iPtr->frame_10, 0, sp8C, sp80, sp74, gfx, mtx);
+            }//L802EF2F8
+            else{
+                func_80344424(this->unk34, (s32)iPtr->frame_10, 0, sp8C, sp74, iPtr->unk24[2], gfx, mtx);
+            }//L802EF324
+        }//L802EF338
+        if( this->unk3C[0] != 0xff || this->unk3C[1] != 0xff || this->unk3C[2] != 0xff || this->unk49 != 0xff 
+        ){
+            func_8033687C(gfx);
         }
     }
 }
-#endif
 
 void func_802EF3A8(ParticleEmitter *this, Gfx **gdl, Mtx **mPtr, Vtx **vPtr){
     func_802EEE3C(this, gdl, mPtr, vPtr, 4);

@@ -2,12 +2,9 @@
 #include "functions.h"
 #include "variables.h"
 
-// extern f32 D_80285900;
-
 f32 sinf(f32);
 f32 cosf(f32);
 
-// MATCHING but need to resolve core1 bss section for static D_80285900
 void guRotateF(float mf[4][4], float a, float x, float y, float z)
 {
     static f32 D_80285900 = 3.1415926 / 180.0;
@@ -43,7 +40,6 @@ void guRotateF(float mf[4][4], float a, float x, float y, float z)
 	mf[0][1] = ab+z*sine;
 }
 
-// MATCHING with -O3, need to resolve bss section
 void guRotate(Mtx *m, float a, float x, float y, float z)
 {
 	float	mf[4][4];

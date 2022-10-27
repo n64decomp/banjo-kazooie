@@ -250,7 +250,7 @@ segments:
   - [0x66FB0, c, code_66FB0] #DONE
   - [0x67490, c, gc/bound]   #DONE
   - [0x67650, c, code_67650] #DONE
-  - [0x679A0, c, code_679A0] 
+  - [0x679A0, c, code_679A0] #DONE
   - [0x69F60, c, code_69F60] #DONE
   - [0x6A4B0, c, code_6A4B0]
   - [0x6AEF0, c, code_6AEF0] #DONE
