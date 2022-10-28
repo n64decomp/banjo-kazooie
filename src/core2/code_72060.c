@@ -14,12 +14,15 @@ extern void func_80251F8C(f32);
 extern void func_8025208C(f32);
 extern void func_80252A38(f32, f32, f32);
 extern void mlMtxApply(Mtx *);
+extern f32 func_802EC920(BKVertexList *);
+extern bool func_8024DB50(f32[3], f32);
 
 extern struct4Cs * D_80369280;
 extern s32 D_80369284;
-extern void * D_80369288;
+extern BKModelBin * D_80369288;
 extern s32 D_8036928C;
 extern Gfx D_80369290[];
+extern Gfx D_803692B0[];
 
 extern f32 D_80377350;
 extern f32 D_80377354;
@@ -31,7 +34,7 @@ f32 D_80381050[3];
 f32 D_80381060[3];
 f32 D_80381070[3];
 f32 D_80381080[3];
-s32 D_8038108C;
+f32 D_8038108C;
 Gfx *D_80381090;
 Struct_core2_72060_0 *D_80381094;
 
@@ -161,54 +164,42 @@ void func_802F919C(void) {
 }
 #endif
 
+void func_802F962C(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
+    u32 temp_s0_3;
+    u32 temp_s0_4;
+    void *temp_s0;
+    void *temp_s0_2;
+    BKVertexList *temp_s3;
+    void *temp_s3_2;
+    void *temp_s4;
+    void *temp_s4_2;
+    BKGfxList *gfx_list;
+    struct4Ds *phi_s0;
+    void *phi_s0_2;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_72060/func_802F962C.s")
-// void func_802F962C(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
-//     u32 temp_s0_3;
-//     u32 temp_s0_4;
-//     void *temp_s0;
-//     void *temp_s0_2;
-//     void *temp_s3;
-//     void *temp_s3_2;
-//     void *temp_s4;
-//     void *temp_s4_2;
-//     void *temp_v1;
-//     void *temp_v1_2;
-//     void *temp_v1_3;
-//     void *phi_s0;
-//     void *phi_s0_2;
+    if ((D_80369280 != NULL) && (D_80369284 != 0)) {
+        func_8024C5CC(D_80381050);
+        func_8024C764(D_80381060);
+        D_80381090 = (s32)D_80369288 + D_80369288->gfx_list_offset_C + sizeof(BKGfxList);
+        temp_s3 = (BKVertexList *)((s32)D_80369288 + D_80369288->vtx_list_offset_10);
+        D_8038108C = func_802EC920(temp_s3);
+        func_80349AD0();
+        gSPSegment((*gfx)++, 0x01, osVirtualToPhysical(temp_s3 + 1));
+        gSPSegment((*gfx)++, 0x02, osVirtualToPhysical((s32)D_80369288 + D_80369288->texture_list_offset_8 + sizeof(BKTextureList) + sizeof(BKTextureHeader)));
+        gSPSetGeometryMode((*gfx)++, G_ZBUFFER);
+        gSPDisplayList((*gfx)++, D_80369290);
+        gSPSegment((*gfx)++, 0x03, osVirtualToPhysical(&D_803692B0));
 
-//     if ((D_80369280 != NULL) && (D_80369284 != 0)) {
-//         func_8024C5CC(D_80381050);
-//         func_8024C764(D_80381060);
-//         temp_v1 = D_80369288;
-//         D_80381090 = temp_v1 + temp_v1->unkC + 8;
-//         temp_s3 = temp_v1 + temp_v1->unk10;
-//         D_8038108C = func_802EC920(temp_s3);
-//         func_80349AD0();
-//         gSPSegment((*gfx)++, 0x01, osVirtualToPhysical(temp_s3 + 0x18));
-//         gSPSegment((*gfx)++, 0x02, osVirtualToPhysical(temp_v1_2 + temp_v1_2->unk8 + 0x18));
-//         gSPSetGeometryMode((*gfx)++, G_ZBUFFER);
-//         gSPDisplayList((*gfx)++, D_80369290);
-//         gSPSegment((*gfx)++, 0x03, osVirtualToPhysical(&D_803692B0));
-
-//         temp_v1_3 = D_80369288;
-//         D_80381094 = temp_v1_3 + temp_v1_3->unk4;
-//         temp_s0_3 = D_80369280->unk1C;
-//         phi_s0 = (void *) temp_s0_3;
-//         if (temp_s0_3 < (u32) (temp_s0_3 + (D_80369284 * 0x18))) {
-//             do {
-//                 phi_s0_2 = phi_s0;
-//                 if ((func_802F989C(gfx, mtx, phi_s0) == 0) && (phi_s0->unk4 < D_8038104C)) {
-//                     func_802F9134((s32) (phi_s0 - D_80369280->unk1C) / 24);
-//                     phi_s0_2 = phi_s0 - 0x18;
-//                 }
-//                 temp_s0_4 = phi_s0_2 + 0x18;
-//                 phi_s0 = (void *) temp_s0_4;
-//             } while (temp_s0_4 < (u32) (D_80369280->unk1C + (D_80369284 * 0x18)));
-//         }
-//     }
-// }
+        D_80381094 = (BKGeoList *)((s32)D_80369288 + D_80369288->geo_list_offset_4);
+        
+        for(phi_s0 = D_80369280->unk1C; phi_s0 < D_80369280->unk1C + D_80369284; phi_s0++) {
+            if ((func_802F989C(gfx, mtx, phi_s0) == 0) && (phi_s0->unk0[1] < D_8038104C)) {
+                func_802F9134(phi_s0 - D_80369280->unk1C);
+                phi_s0--;
+            }
+        }
+    }
+}
 
 bool func_802F989C(Gfx **gfx, Mtx **mtx, f32 arg2[3]) {
 

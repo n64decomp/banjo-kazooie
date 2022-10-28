@@ -27,7 +27,35 @@ void *array_begin(SLA *this){
     return (void*)(this + 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/sla/func_802EDAA4.s")
+void *func_802EDAA4(SLA **this, s32 *arg1) {
+    s32 new_cnt;
+    SLA *var_s0;
+    s16 *first_ptr;
+    s16 *i_ptr;
+    s32 prev_cnt;
+    s32 i;
+
+    var_s0 = *this;
+    first_ptr = (s16*)var_s0->unk4;
+    if (*first_ptr == 0) {
+        prev_cnt = var_s0->elem_cnt;
+        new_cnt = prev_cnt + 10;
+        var_s0 = realloc(var_s0, (var_s0->elem_size * new_cnt) + sizeof(SLA));
+        first_ptr = (s16*)var_s0->unk4;
+        var_s0->elem_cnt = new_cnt;
+        *this = var_s0;
+        for(i = new_cnt - 1, i_ptr = &var_s0->unk4[i * var_s0->elem_size]; i >= prev_cnt; i--){
+            *i_ptr = *first_ptr;
+            *first_ptr = i;
+            i_ptr = (s32)i_ptr - var_s0->elem_size;
+        }
+    }
+    i = *first_ptr;
+    i_ptr = (s32)first_ptr + (i * var_s0->elem_size);
+    *arg1 = i;
+    *first_ptr = *i_ptr;
+    return (s32) i_ptr;
+}
 
 #ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/sla/func_802EDC18.s")

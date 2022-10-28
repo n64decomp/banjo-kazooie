@@ -191,7 +191,7 @@ void func_802FD360(struct8s *arg0, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     func_8024C904(gfx, mtx);
 }
 
-struct8s *func_802FD7B0(enum item_e item_id) {
+struct8s *fxcommon2score_new(enum item_e item_id) {
     s32 i;
     struct8s *v1;
 
@@ -204,7 +204,7 @@ struct8s *func_802FD7B0(enum item_e item_id) {
     return NULL;
 }
 
-void func_802FD80C(s32 arg0, struct8s * arg1){
+void fxcommon2score_update(s32 arg0, struct8s * arg1){
     s32 tmp;
     f32 two = 2.0f;
     f32 phi_f16;
@@ -213,7 +213,7 @@ void func_802FD80C(s32 arg0, struct8s * arg1){
     tmp = func_802FB0D4(arg1);
     phi_f16 = 1.0f;
     if(!tmp) {
-        func_802FDC80(arg0, arg1);
+        fxcommon2score_free(arg0, arg1);
     }
     else{
         if(arg1->unk50 == NULL && arg1->unk24){
@@ -271,7 +271,7 @@ void func_802FD80C(s32 arg0, struct8s * arg1){
     }
 }
 
-void func_802FDAF4(enum item_e item_id, struct8s *arg1, Gfx **gfx, Mtx **mtx, Vtx **vtx){
+void fxcommon2score_draw(enum item_e item_id, struct8s *arg1, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     f32 pad;
     s32 sp38;
     f32 sp34;
@@ -308,7 +308,7 @@ void func_802FDAF4(enum item_e item_id, struct8s *arg1, Gfx **gfx, Mtx **mtx, Vt
     func_802FD360(arg1, gfx, mtx, vtx);
 }
 
-void func_802FDC80(enum item_e item_id, struct8s *arg1){
+void fxcommon2score_free(enum item_e item_id, struct8s *arg1){
     if(arg1->unk50){
         func_8033BD4C(arg1->unk50); //assetCache_free
         arg1->unk50 = NULL;

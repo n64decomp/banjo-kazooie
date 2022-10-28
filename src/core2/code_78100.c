@@ -106,7 +106,7 @@ struct7s *func_802FF090(s32 arg0) {
 }
 #endif
 
-void func_802FF358(enum item_e item_id, struct8s * arg1){
+void fxjinjoscore_free(enum item_e item_id, struct8s * arg1){
     s32 i;
 
     for(i = 0; i < 5; i++){
@@ -121,6 +121,7 @@ void func_802FF358(enum item_e item_id, struct8s * arg1){
 #ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_78100/func_802FF3B8.s")
 #else
+//fxjinjoscore_draw
 void func_802FF3B8(s32 arg0, struct8s *arg1, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     s32 sp11C;
     s32 sp118;
@@ -154,7 +155,7 @@ void func_802FF3B8(s32 arg0, struct8s *arg1, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
             gDPPipeSync((*gfx)++);
             for (var_s5 = spF0; var_s5 >= 0; var_s5--){
                 gDPPipeSync((*gfx)++);
-                if (spF0) {
+                if (var_s5) {
                     gDPSetCombineLERP((*gfx)++, 0, 0, 0, PRIMITIVE, TEXEL0, 0, PRIMITIVE, 0, 0, 0, 0, PRIMITIVE, TEXEL0, 0, PRIMITIVE, 0);
                     gDPSetPrimColor((*gfx)++, 0, 0, 0x00, 0x00, 0x00, 0x8C);
                 } else {
@@ -195,7 +196,7 @@ bool func_802FFA10(f32 arg0, s32 arg1, s32 arg2){
     return (D_80381E78[arg1 - 1] < arg0);
 }
 
-void func_802FFA50(enum item_e item_id, struct8s *arg1) {
+void fxjinjoscore_update(enum item_e item_id, struct8s *arg1) {
     f32 var_f24;
     s32 temp_s3;
     s32 jinjo_id;
@@ -215,7 +216,7 @@ void func_802FFA50(enum item_e item_id, struct8s *arg1) {
             break;
 
         case 0:
-            func_802FF358(item_id, arg1);
+            fxjinjoscore_free(item_id, arg1);
             break;
         
         default:

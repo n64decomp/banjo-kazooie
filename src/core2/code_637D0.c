@@ -80,6 +80,7 @@ s32 func_802EA864(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 
 }
 
 #ifndef NONMATCHING
+s32 func_802EAB34(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 scale, f32 arg4[3], f32 arg5[3], f32 arg6);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_637D0/func_802EAB34.s")
 #else
 s32 func_802EAB34(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 scale, f32 arg4[3], f32 arg5[3], f32 arg6){
@@ -312,55 +313,95 @@ s32 func_802EB458(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 
 }
 #endif
 
-s32 func_802EB8A0(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 scale, s32 arg4, s32 arg5, f32 arg6[3], f32 arg7);
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_637D0/func_802EB8A0.s")
+s32 func_802EB8A0(BKModelUnk14List *arg0, f32 *position, f32 *rotation, f32 scale, s32 arg4, s32 arg5, f32 *arg6, f32 arg7) {
+    BKModelUnk14_0 *t0_ptr;
+    BKModelUnk14_1 *t1_ptr;
+    f32 sp74[3];
+    f32 sp68[3];
+    f32 sp5C[3];
+    BKModelUnk14_2 *temp_s4;
+    BKModelUnk14_2 *var_s0;
+    f32 temp_f0;
+    f32 sp44[3];
+
+    mlMtxIdent();
+    func_80252CC4(position, rotation, scale, arg4);
+    func_8025235C(&sp74, arg6);
+    t0_ptr = (BKModelUnk14_0 *)(arg0 + 1);
+    t1_ptr = (BKModelUnk14_1 *)(t0_ptr + arg0->cnt0);
+    var_s0 = (BKModelUnk14_2 *)(t1_ptr  + arg0->cnt2);
+    temp_s4 = var_s0  + arg0->unk4;
+    arg7 /= scale;
+    for(var_s0 = var_s0; var_s0 < temp_s4; var_s0++){
+        sp68[0] = (f32) var_s0->unk2[0];
+        sp68[1] = (f32) var_s0->unk2[1];
+        sp68[2] = (f32) var_s0->unk2[2];
+        sp5C[0] = sp68[0] + (f32) var_s0->unk0;
+        sp5C[1] = sp68[1];
+        sp5C[2] = sp68[2];
+        func_80251BCC(func_802EA110(arg5, var_s0->unk9));
+        func_8025235C(sp68, sp68);
+        func_8025235C(sp5C, sp5C);
+        sp44[0] = sp5C[0] - sp68[0];
+        sp44[1] = sp5C[1] - sp68[1];
+        sp44[2] = sp5C[2] - sp68[2];
+        temp_f0 = gu_sqrtf(sp44[0]*sp44[0] + sp44[1]*sp44[1] + sp44[2]*sp44[2]);
+        if ((arg7 + temp_f0 >= ml_vec3f_distance(sp68, sp74))) {
+            return (s32) var_s0->unk8;
+        }
+    }
+    return 0;
+}
 
 bool func_802EBA98(BKModelUnk14List *arg0, f32 arg1[3], s32 arg2, f32 arg3, s32 arg4, f32 arg5[3], f32 arg6, f32 arg7[3]){
     return func_802EBAE0(arg0, arg1, arg2, arg3, arg4, NULL, arg5, arg6, arg7);
 }
 
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_637D0/func_802EBAE0.s")
-// s32 func_802EBAE0(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 scale, s32 arg4, s32 arg5, f32 arg6[3], f32 arg7, f32 arg8[3]) {
-//     f32 sp3C[3];
-//     f32 temp_f0;
-//     s32 phi_v0;
+#else
+s32 func_802EBAE0(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 scale, s32 arg4, s32 arg5, f32 arg6[3], f32 arg7, f32 arg8[3]) {
+    f32 sp3C[3];
+    f32 temp_f0;
+    s32 phi_v0;
 
-//     sp3C[0] = arg6[0] - position[0];
-//     sp3C[1] = arg6[1] - position[1];
-//     sp3C[2] = arg6[2] - position[2];
-//     temp_f0 = (arg7 + (arg0->unk6 * scale));
-//     if( (arg0->unk6 > 0) 
-//         && ((temp_f0 * temp_f0) < (sp3C[0] * sp3C[0]) + (sp3C[1] * sp3C[1]) + (sp3C[2] * sp3C[2]))
-//     ) {
-//         return 0;
-//     }
-//     if (arg5 != NULL) {
-//         mlMtxIdent();
-//         func_80252C08(position, rotation, scale, arg4);
-//         func_802513B0(&D_80380880);
-//         phi_v0 = func_802EB8A0(arg0, position, rotation, scale, arg4, arg5, arg6, arg7);
-//         if (phi_v0 == 0) {
-//             phi_v0 = func_802EAED4(arg0, position, rotation, scale, arg4, arg5, arg6, arg7);
-//         }
-//         if (phi_v0 == 0) {
-//             phi_v0 = func_802EB458(arg0, position, rotation, scale, arg4, arg5, arg6, arg7);
-//         }
-//     } else {
-//         phi_v0 = func_802EAD5C(arg0, position, rotation, scale, arg4, arg6, arg7);
-//         if(phi_v0 == 0){
-//             phi_v0 = func_802EA864(arg0, position, rotation, scale, arg4, arg6, arg7);
-//         }
-//         if(phi_v0 == 0){
-//             phi_v0 = func_802EAB34(arg0, position, rotation, scale, arg4, arg6, arg7);
-//         }
-//     }
-//     if (phi_v0 != 0) {
-//         arg8[0] = 0.0f;
-//         arg8[1] = 1.0f;
-//         arg8[2] = 0.0f;
-//     }
-//     return phi_v0;
-// }
+    sp3C[0] = arg6[0] - position[0];
+    sp3C[1] = arg6[1] - position[1];
+    sp3C[2] = arg6[2] - position[2];
+    temp_f0 = (arg7 + (arg0->unk6 * scale));
+    if( (arg0->unk6 > 0) 
+        && ((temp_f0 * temp_f0) < (sp3C[0] * sp3C[0]) + (sp3C[1] * sp3C[1]) + (sp3C[2] * sp3C[2]))
+    ) {
+        return 0;
+    }
+    if (arg5 != NULL) {
+        mlMtxIdent();
+        func_80252C08(position, rotation, scale, arg4);
+        func_802513B0(&D_80380880);
+        phi_v0 = func_802EB8A0(arg0, position, rotation, scale, arg4, arg5, arg6, arg7);
+        if (phi_v0 == 0) {
+            phi_v0 = func_802EAED4(arg0, position, rotation, scale, arg4, arg5, arg6, arg7);
+        }
+        if (phi_v0 == 0) {
+            phi_v0 = func_802EB458(arg0, position, rotation, scale, arg4, arg5, arg6, arg7);
+        }
+    } else {
+        phi_v0 = func_802EAD5C(arg0, position, rotation, scale, arg4, arg6, arg7);
+        if(phi_v0 == 0){
+            phi_v0 = func_802EA864(arg0, position, rotation, scale, arg4, arg6, arg7);
+        }
+        if(phi_v0 == 0){
+            phi_v0 = func_802EAB34(arg0, position, rotation, scale, arg4, arg6, arg7);
+        }
+    }
+    if (phi_v0 != 0) {
+        arg8[0] = 0.0f;
+        arg8[1] = 1.0f;
+        arg8[2] = 0.0f;
+    }
+    return phi_v0;
+}
+#endif
 
 #ifndef NONMATCHING
 s32 func_802EBD3C(BKModelUnk14List *arg0, f32 arg1[3], f32 arg2[3], f32 arg3, s32 arg4, f32 arg5[3], s32 arg6);
