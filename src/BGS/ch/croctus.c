@@ -218,7 +218,7 @@ void func_80387FD4(Actor *this){
     }
 }
 
-void bgs_func_803885DC(void){
+void BGS_func_803885DC(void){
     s32 i;
     for(i = 0; i<5; i++)
         bgs_D_803907B8[i] = 0;

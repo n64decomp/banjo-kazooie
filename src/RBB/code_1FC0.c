@@ -36,7 +36,7 @@ void func_803883B0(Actor *this, s32 arg1){
     this->state = arg1;
 }
 
-void func_80388430(ActorMarker * marker, ActorMarker *other_marker){
+void RBB_func_80388430(ActorMarker * marker, ActorMarker *other_marker){
     Actor * actor = marker_getActor(marker);
     ActorLocal_RBB_1FC0 *local = (ActorLocal_RBB_1FC0 *) &actor->local;
     func_8030E6D4(SFX_111_WHIPCRACK_DEATH);
@@ -97,7 +97,7 @@ void func_80388620(Actor *this){
     if(!this->unk16C_4){
         this->unk16C_4 = 1;
         this->marker->propPtr->unk8_3 = 1;
-        marker_setCollisionScripts(this->marker, func_80388430, NULL, NULL);
+        marker_setCollisionScripts(this->marker, RBB_func_80388430, NULL, NULL);
         local->unk4 = 0;
         local->unk0 = 0.0f;
         local->unk8 = 0.0f;

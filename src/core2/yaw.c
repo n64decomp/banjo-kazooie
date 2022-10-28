@@ -72,7 +72,7 @@ void func_802990B4(void){
     func_802991A8(1);
 }
 
-void func_80299118(void){
+void yaw_update(void){
     switch(D_8037C698){
         case 0:
             break;
@@ -96,7 +96,7 @@ void yaw_setIdeal(f32 arg0){
     D_8037C694 = mlNormalizeAngle(arg0);
 }
 
-void func_802991D8(f32 arg0){
+void yaw_set(f32 arg0){
     D_8037C690 = mlNormalizeAngle(arg0);
 }
 

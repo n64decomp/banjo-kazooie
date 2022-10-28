@@ -15,7 +15,7 @@ extern ActorInfo chjujuInfo;
 extern ActorInfo chorangepadInfo;
 extern ActorInfo chlmonkeyInfo;
 
-void func_803888B0(void){
+void MM_func_803888B0(void){
     spawnableActorList_add( &chhutInfo,          actor_new,     0X400);
     spawnableActorList_add( &chchimpystump,      actor_new,       0x0);
     spawnableActorList_add( &chgrublinInfo,      actor_new, 0X2000121);

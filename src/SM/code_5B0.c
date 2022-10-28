@@ -6,8 +6,8 @@
 
 void func_803869A0(Actor*, f32, f32);
 void func_802C4218(s32, f32, f32, f32);
-void func_80386EF4(Actor *this);
-void func_80386A00(Actor *this);
+void SM_func_80386EF4(Actor *this);
+void SM_func_80386A00(Actor *this);
 
 /*.data */
 ActorAnimationInfo D_8038AAF0[] = {
@@ -18,14 +18,14 @@ ActorAnimationInfo D_8038AAF0[] = {
 ActorInfo D_8038AB00 = {
     MARKER_135_QUARRIE, ACTOR_16F_QUARRIE, ASSET_42D_MODEL_QUARRIE, 
     1,  NULL,
-    func_80386EF4, func_80326224, func_80325E78,
+    SM_func_80386EF4, func_80326224, func_80325E78,
     2000, 0, 5.0f, 0
 };
 
 ActorInfo D_8038AB24 = {
     MARKER_29D_ROCK_TRAPPING_GRUNTY, ACTOR_3CA_ROCK_TRAPPING_GRUNTY, ASSET_47B_MODEL_ROCK,
     1, D_8038AAF0,
-    func_80386A00, func_80326224, func_80325E78, 
+    SM_func_80386A00, func_80326224, func_80325E78, 
     0, 0, 0.0f, 0
 };
 
@@ -50,7 +50,7 @@ void func_803869A0(Actor *this, f32 arg1, f32 arg2) {
     }
 }
 
-void func_80386A00(Actor *this) {
+void SM_func_80386A00(Actor *this) {
     if (this->unk16C_4 <= 0) {
         if (func_8031FF1C(BKPROG_FC_DEFEAT_GRUNTY) == 0) {
             marker_despawn(this->marker);
@@ -99,7 +99,7 @@ void func_80386C2C(ParticleEmitter *p_ctrl, f32 *arg1, s32 arg2, f32 arg3) {
     particleEmitter_emitN(p_ctrl, arg2);
 }
 
-void func_80386D68(Actor *this){
+void SM_func_80386D68(Actor *this){
     FUNC_8030E8B4(SFX_9B_BOULDER_BREAKING_1, 1.0f, 32000, this->position, 1000, 2000);
 
     this->unk44_31 = func_8030D90C();
@@ -122,11 +122,11 @@ void func_80386EB4(ActorMarker *marker, ActorMarker *other_marker) {
     Actor *this;
     this = marker_getActor(marker);
     if ((this->state ) == 2) {
-        func_80386D68(this);
+        SM_func_80386D68(this);
     }
 }
 
-void func_80386EF4(Actor *this) {
+void SM_func_80386EF4(Actor *this) {
     u32 temp_t3;
     Actor *other;
     if ((this->unk16C_4) <= 0) {

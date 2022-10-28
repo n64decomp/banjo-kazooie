@@ -59,20 +59,6 @@ PROGRESS_READ     := $(PYTHON) tools/progress_read.py
 # Inputs
 OVERLAYS := core1 core2 MM TTC CC BGS FP lair GV CCW RBB MMM SM fight cutscenes
 
-# Creates a list of all the source files for the given overlay (e.g. BGS_C_SRCS)
-# Appends that list to OVERLAY_C_FILES
-define get_overlay_sources
-  $(1)_C_SRCS      := $(filter $(SRC_ROOT)/$(1)/%,$(ALL_C_SRCS))
-  $(1)_ASM_SRCS    := $(filter $(ASM_ROOT)/$(1)/%,$(ALL_ASM_SRCS))
-  $(1)_BINS        := $(filter $(BIN_ROOT)/$(1)/%,$(ALL_BINS))
-  OVERLAY_C_SRCS   += $$($(1)_C_SRCS)
-  OVERLAY_ASM_SRCS += $$($(1)_ASM_SRCS)
-  OVERLAY_BINS     += $$($(1)_BINS)
-  # Overlay inputs
-  $(1)_NEW_FILES := $$(filter $(BIN_ROOT)/$(1)/%, $(NEW_BINS)) $$(filter $(SRC_ROOT)/$(1)/%, $(NEW_C_SRCS)) $$(filter $(ASM_ROOT)/$(1)/%, $(NEW_ASM_SRCS)) $$(filter $(ASM_ROOT)/data/$(1)/%, $(NEW_ASM_SRCS))
-  OVERLAY_NEW_FILES += $$($(1)_NEW_FILES)
-endef
-
 # Source files
 SRC_ROOT          := src
 ASM_ROOT          := asm
@@ -84,35 +70,27 @@ NONMATCHING_DIR   := $(ASM_ROOT)/$(NONMATCHINGS)
 BUILD_ROOT        := build
 BUILD_DIR         := $(BUILD_ROOT)/$(VERSION)
 ALL_ASSET_FILES   := $(shell find $(ASSET_ROOT) -type f -iname '*.*' 2> /dev/null)
-ALL_C_SRCS        := $(shell find $(SRC_ROOT) -type f -iname '*.c' 2> /dev/null)
+C_SRCS            := $(shell find $(SRC_ROOT) -type f -iname '*.c' 2> /dev/null)
+BOOT_C_SRCS       := $(wildcard $(SRC_ROOT)/done/*.c)
 ALL_ASM_SRCS      := $(filter-out $(ASM_ROOT)/$(NONMATCHINGS), $(shell find $(ASM_ROOT) -name $(NONMATCHINGS) -prune -o -iname '*.s' 2> /dev/null))
 ALL_BINS          := $(shell find $(BIN_ROOT) -type f -iname '*.bin' 2> /dev/null)
-# Files referenced in the splat files
-YAML_CALL := $(SPLAT_INPUTS) $(BASENAME).$(VERSION).yaml $(addprefix $(SUBYAML)/, $(addsuffix .$(VERSION).yaml, $(OVERLAYS)))
-YAML_SRCS   := $(shell $(SPLAT_INPUTS) $(BASENAME).$(VERSION).yaml $(addprefix $(SUBYAML)/, $(addsuffix .$(VERSION).yaml, $(OVERLAYS))))
+# Files referenced in the splat file
+YAML_CALL := $(SPLAT_INPUTS) decompressed.$(VERSION).yaml
+YAML_SRCS   := $(sort $(shell $(SPLAT_INPUTS) decompressed.$(VERSION).yaml))
 YAML_C_SRCS := $(filter %.c, $(YAML_SRCS))
 YAML_ASM_SRCS := $(filter %.s, $(YAML_SRCS))
 YAML_BINS := $(filter %.bin, $(YAML_SRCS))
 # Files that need to be extracted
-NEW_C_SRCS := $(filter-out $(ALL_C_SRCS), $(YAML_C_SRCS))
+NEW_C_SRCS := $(filter-out $(C_SRCS), $(YAML_C_SRCS))
 NEW_ASM_SRCS := $(filter-out $(ALL_ASM_SRCS), $(YAML_ASM_SRCS))
 NEW_BINS := $(filter-out $(ALL_BINS), $(YAML_BINS))
 NEW_FILES := $(NEW_C_SRCS) $(NEW_ASM_SRCS) $(NEW_BINS)
-$(foreach overlay,$(OVERLAYS),$(eval $(call get_overlay_sources,$(overlay))))
-# Files for the rom itself
-MAIN_C_SRCS   := $(filter-out $(OVERLAY_C_SRCS),$(ALL_C_SRCS))
-MAIN_ASM_SRCS := $(filter-out $(OVERLAY_ASM_SRCS),$(ALL_ASM_SRCS))
-MAIN_BINS     := $(filter-out $(OVERLAY_BINS),$(ALL_BINS))
-# Files that need to be extracted for the rom itself
-MAIN_NEW_FILES := $(filter-out $(OVERLAY_NEW_FILES), $(NEW_FILES))
+BOOT_ASM_SRCS := $(filter-out asm/core1/%,$(NEW_ASM_SRCS) $(ALL_ASM_SRCS))
 # Any source files that have GLOBAL_ASM in them or do not exist before splitting
 GLOBAL_ASM_C_SRCS := $(shell $(GREP) GLOBAL_ASM $(SRC_ROOT) </dev/null) $(NEW_C_SRCS)
-CORE2_CODE_CRC_C_SRCS := $(shell $(GREP) CORE2_CODE_CRC2 $(SRC_ROOT) </dev/null)
-CORE2_DATA_CRC_C_SRCS := $(shell $(GREP) CORE2_DATA_CRC2 $(SRC_ROOT) </dev/null)
-
 
 # Build folders
-C_DIRS         := $(sort $(dir $(ALL_C_SRCS) $(NEW_C_SRCS)))
+C_DIRS         := $(sort $(dir $(C_SRCS) $(NEW_C_SRCS)))
 ASM_DIRS       := $(sort $(dir $(ALL_ASM_SRCS) $(NEW_ASM_SRCS)))
 BIN_DIRS       := $(sort $(dir $(ALL_BINS) $(NEW_BINS)))
 C_BUILD_DIRS   := $(addprefix $(BUILD_DIR)/,$(C_DIRS))
@@ -122,42 +100,27 @@ ALL_DIRS       := $(C_BUILD_DIRS) $(ASM_BUILD_DIRS) $(BIN_BUILD_DIRS) $(BUILD_DI
 
 # Build files
 BASEROM           := baserom.$(VERSION).z64
-C_OBJS            := $(addprefix $(BUILD_DIR)/,$(ALL_C_SRCS:.c=.c.o))
+C_OBJS            := $(addprefix $(BUILD_DIR)/,$(C_SRCS:.c=.c.o))
+BOOT_C_OBJS       := $(addprefix $(BUILD_DIR)/,$(BOOT_C_SRCS:.c=.c.o))
 GLOBAL_ASM_C_OBJS := $(addprefix $(BUILD_DIR)/,$(GLOBAL_ASM_C_SRCS:.c=.c.o))
-CORE2_CODE_CRC_C_OBJS := $(addprefix $(BUILD_DIR)/,$(CORE2_CODE_CRC_C_SRCS:.c=.c.o))
-CORE2_DATA_CRC_C_OBJS := $(addprefix $(BUILD_DIR)/,$(CORE2_DATA_CRC_C_SRCS:.c=.c.o))
-# TODO remove this when all files in GLOBAL_ASM_C_OBJS are matched
-GLOBAL_ASM_C_OBJS := $(filter-out $(CORE2_DATA_CRC_C_OBJS),$(GLOBAL_ASM_C_OBJS))
 C_DEPS            := $(C_OBJS:.o=.d)
 ASM_OBJS          := $(addprefix $(BUILD_DIR)/,$(ALL_ASM_SRCS:.s=.s.o) $(NEW_ASM_SRCS:.s=.s.o))
+BOOT_ASM_OBJS     := $(addprefix $(BUILD_DIR)/,$(BOOT_ASM_SRCS:.s=.s.o))
 BIN_OBJS          := $(addprefix $(BUILD_DIR)/,$(ALL_BINS:.bin=.bin.o) $(NEW_BINS:.bin=.bin.o))
 Z64               := $(addprefix $(BUILD_DIR)/,$(BASENAME).$(VERSION).z64)
 ELF               := $(Z64:.z64=.elf)
 LD_SCRIPT         := $(BASENAME).ld
 BK_BOOT_LD_SCRIPT := bk_boot.ld
-OVERLAY_ELFS      := $(addprefix $(BUILD_DIR)/,$(addsuffix .elf,$(OVERLAYS)))
-OVERLAY_CODE_BINS := $(OVERLAY_ELFS:.elf=.code)
-OVERLAY_DATA_BINS := $(OVERLAY_ELFS:.elf=.data)
-OVERLAY_BINS      := $(addprefix $(BUILD_DIR)/,$(addsuffix .$(VERSION).bin,$(OVERLAYS)))
 ASSET_BIN         := $(BUILD_DIR)/assets.bin
-OVERLAY_RZIPS     := $(addprefix $(BIN_ROOT)/,$(addsuffix .$(VERSION).rzip.bin,$(OVERLAYS)))
-OVERLAY_RZIP_OUTS := $(addprefix $(BUILD_DIR)/,$(addsuffix .rzip.bin,$(OVERLAYS)))
-OVERLAY_RZIP_OBJS := $(addprefix $(BUILD_DIR)/$(BIN_ROOT)/,$(addsuffix .$(VERSION).rzip.bin.o,$(OVERLAYS)))
-CRC_OBJS          := $(BUILD_DIR)/$(BIN_ROOT)/crc.bin.o
 DUMMY_CRC_OBJ     := $(BUILD_DIR)/$(BIN_ROOT)/dummy_crc.bin.o
 ASSET_OBJS        := $(BUILD_DIR)/$(BIN_ROOT)/assets.bin.o
-BIN_OBJS          := $(filter-out $(OVERLAY_RZIP_OBJS) $(CRC_OBJS) $(ASSET_OBJS),$(BIN_OBJS))
-ALL_OBJS          := $(C_OBJS) $(ASM_OBJS) $(BIN_OBJS) $(OVERLAY_RZIP_OBJS) $(CRC_OBJS)
+BIN_OBJS          := $(filter-out $(ASSET_OBJS),$(BIN_OBJS))
+ALL_OBJS          := $(C_OBJS) $(ASM_OBJS) $(BIN_OBJS)
 SYMBOL_ADDRS      := symbol_addrs.$(VERSION).txt
 SYMBOL_ADDR_FILES := $(filter-out $(SYMBOL_ADDRS), $(wildcard symbol_addrs.*.$(VERSION).txt))
-MIPS3_OBJS        := $(BUILD_DIR)/$(SRC_ROOT)/done/ll.c.o $(BUILD_DIR)/$(SRC_ROOT)/core1/done/ll.c.o
-# Object files for the rom itself
-MAIN_C_OBJS       := $(addprefix $(BUILD_DIR)/,$(MAIN_C_SRCS:.c=.c.o))
-MAIN_ASM_OBJS     := $(addprefix $(BUILD_DIR)/,$(MAIN_ASM_SRCS:.s=.s.o))
-MAIN_BIN_OBJS     := $(addprefix $(BUILD_DIR)/,$(MAIN_BINS:.bin=.bin.o))
-MAIN_OBJS         := $(MAIN_C_OBJS) $(MAIN_ASM_OBJS) $(MAIN_BIN_OBJS)
-# Includes the build artifacts of any files to be extracted
-MAIN_ALL_OBJS := $(MAIN_OBJS) $(addprefix $(BUILD_DIR)/, $(addsuffix .o, $(MAIN_NEW_FILES)))
+MIPS3_OBJS        := $(BUILD_DIR)/$(SRC_ROOT)/core1/done/ll.c.o
+BOOT_MIPS3_OBJS   := $(BUILD_DIR)/$(SRC_ROOT)/done/ll.c.o
+BOOT_C_OBJS       := $(filter-out $(BOOT_MIPS3_OBJS),$(BOOT_C_OBJS))
 
 # Progress files
 MAIN_PROG_CSV     := progress/progress.bk_boot.csv
@@ -167,18 +130,6 @@ TOTAL_PROG_SVG    := progress/progress_total.svg
 OVERLAY_PROG_CSVS := $(addprefix progress/progress., $(addsuffix .csv, $(OVERLAYS)))
 OVERLAY_PROG_SVGS := $(addprefix progress/progress_, $(addsuffix .svg, $(OVERLAYS)))
 README_MD         := README.md
-
-# Creates a list of all the object files for the given overlay
-define get_overlay_objects
-  $(1)_C_OBJS      := $(addprefix $(BUILD_DIR)/,$($(1)_C_SRCS:.c=.c.o))
-  $(1)_ASM_OBJS    := $(addprefix $(BUILD_DIR)/,$($(1)_ASM_SRCS:.s=.s.o))
-  $(1)_BIN_OBJS    := $(addprefix $(BUILD_DIR)/,$($(1)_BINS:.bin=.bin.o))
-  $(1)_OBJS        := $$($(1)_C_OBJS) $$($(1)_ASM_OBJS) $$($(1)_BIN_OBJS)
-  $(1)_ALL_OBJS    := $$($(1)_OBJS) $$(addprefix $(BUILD_DIR)/, $$(addsuffix .o, $$($(1)_NEW_FILES)))
-  OVERLAY_OBJS     += $$($(1)_OBJS)
-endef
-
-$(foreach overlay,$(OVERLAYS),$(eval $(call get_overlay_objects,$(overlay))))
 
 ### Functions ###
 
@@ -238,31 +189,15 @@ $(addprefix progress-,$(OVERLAYS)) : progress-% : progress/progress.%.csv
 
 # Verify that the roms match, also sets up diff_settings
 verify: $(Z64)
-	@$(DIFF) $(BASEROM) $(Z64) > /dev/null && \
+	@$(DIFF) decompressed.us.v10.z64 $(Z64) > /dev/null && \
 	$(PRINT) "$(YELLOW)        _\n      _( )_\n     [     ]_\n      ) _   _)\n     [_( )_]\n$(BLUE)$(BASENAME).$(VERSION).z64$(NO_COL): $(GREEN)OK$(NO_COL)\n" || \
 	$(PRINT) "$(BLUE)$(BASEROM) $(RED)differs$(NO_COL)\n"
-	@$(PRINT) "def apply(config, args):\n" > diff_settings.py
-	@$(PRINT) "\tconfig[\"baseimg\"] = \"$(BASEROM)\"\n" >> diff_settings.py
-	@$(PRINT) "\tconfig[\"myimg\"] = \"$(Z64)\"\n" >> diff_settings.py
-	@$(PRINT) "\tconfig[\"mapfile\"] = \"$(Z64:.z64=.map)\"\n" >> diff_settings.py
-	@$(PRINT) "\tconfig[\"source_directories\"] = ['$(SRC_ROOT)', 'include']\n" >> diff_settings.py
-	@$(PRINT) "\tconfig[\"makeflags\"] = ['-s']\n" >> diff_settings.py
-
-# Musical note print for individual overlays
-# Need to figure out how to print this only when building a single overlay
-# $(YELLOW)    ╒════╕\n    │    │\n   _│   _│\n  └─┘  └─┘\n
-
-# Verify that any given overlay matches, also sets up diff_settings
-verify-%: $(BUILD_DIR)/%.rzip.bin $(BIN_ROOT)/%.$(VERSION).rzip.bin $(BUILD_DIR)/%.full progress/progress_%.svg
-	@$(DIFF) $< $(BIN_ROOT)/$*.$(VERSION).rzip.bin > /dev/null && \
-	$(PRINT) "$(BLUE)%-10s$(NO_COL): $(GREEN)OK$(NO_COL)\n" "$*" || \
-	$(PRINT) "$(BLUE)$* $(RED)differs$(NO_COL)\n"
-	@$(PRINT) "def apply(config, args):\n" > diff_settings.py
-	@$(PRINT) "\tconfig[\"baseimg\"] = \"$(BUILD_DIR)/$*.$(VERSION).bin\"\n" >> diff_settings.py
-	@$(PRINT) "\tconfig[\"myimg\"] = \"$(BUILD_DIR)/$*.full\"\n" >> diff_settings.py
-	@$(PRINT) "\tconfig[\"mapfile\"] = \"$(BUILD_DIR)/$*.map\"\n" >> diff_settings.py
-	@$(PRINT) "\tconfig[\"source_directories\"] = ['$(SRC_ROOT)/$*', 'include']\n" >> diff_settings.py
-	@$(PRINT) "\tconfig[\"makeflags\"] = ['TARGET=$*','-s']\n" >> diff_settings.py
+#	@$(PRINT) "def apply(config, args):\n" > diff_settings.py
+#	@$(PRINT) "\tconfig[\"baseimg\"] = \"$(BASEROM)\"\n" >> diff_settings.py
+#	@$(PRINT) "\tconfig[\"myimg\"] = \"$(Z64)\"\n" >> diff_settings.py
+#	@$(PRINT) "\tconfig[\"mapfile\"] = \"$(Z64:.z64=.map)\"\n" >> diff_settings.py
+#	@$(PRINT) "\tconfig[\"source_directories\"] = ['$(SRC_ROOT)', 'include']\n" >> diff_settings.py
+#	@$(PRINT) "\tconfig[\"makeflags\"] = ['-s']\n" >> diff_settings.py
 
 $(OVERLAY_PROG_SVGS) : progress/progress_%.svg: progress/progress.%.csv
 	$(call print1,Creating progress svg for:,$*)
@@ -292,29 +227,6 @@ $(TOTAL_PROG_CSV): $(OVERLAY_PROG_CSVS) $(MAIN_PROG_CSV)
 $(README_MD): $(TOTAL_PROG_SVG)
 	@head -n 21 $< | tail -n 1 | head -c -8 | tail -c +32 | xargs -i sed -i "/# banjo*/c\# banjo ({})" $@
 
-# Verify that each overlay matches
-verify-each: $(addprefix verify-,$(OVERLAYS)) 
-
-# per-overlay rules
-define overlay_rules
-  # .o -> .elf (overlay)
-  $(BUILD_DIR)/$(1).elf : $$($(1)_ALL_OBJS) $(1).ld
-	$(LD) -T $(1).ld -R core2.elf --allow-multiple-definition -Map $(BUILD_DIR)/$(1).map $$(LDFLAGS_COMMON) -T undefined_syms_auto.$(1).$(VERSION).txt -T undefined_funcs_auto.$(1).$(VERSION).txt -o $$@
-  # split overlay
-  $(BUILD_DIR)/$(1)_SPLAT_TIMESTAMP : $(SUBYAML)/$(1).$(VERSION).yaml $(BUILD_DIR)/$(1).$(VERSION).bin $(SYMBOL_ADDRS)
-	$(call print1,Splitting bin:,$$<)
-	$(SPLAT) $(SUBYAML)/$(1).$(VERSION).yaml
-	@touch $$@
-	@touch $(1).ld
-  # Dummy target to make sure extraction happens before compilation, mainly for extracted asm
-  $$($(1)_C_SRCS) $$($(1)_ASM_SRCS) $$($(1)_BINS) : | $(BUILD_DIR)/$(1)_SPLAT_TIMESTAMP
-	@:
-  # Dummy target to make sure extraction happens before processing extracted files and linking
-  $$($(1)_NEW_FILES) $(1).ld: $(BUILD_DIR)/$(1)_SPLAT_TIMESTAMP
-	@:
-endef
-$(foreach overlay,$(OVERLAYS),$(eval $(call overlay_rules,$(overlay))))
-
 # Additional symbols for core2
 $(BUILD_DIR)/core2.elf: LDFLAGS_COMMON = -T symbol_addrs.core1.$(VERSION).txt -T symbol_addrs.core2.$(VERSION).txt -T symbol_addrs.global.$(VERSION).txt -T undefined_syms.$(VERSION).txt -T undefined_syms.libultra.txt --no-check-sections --accept-unknown-input-arch -T level_symbols.$(VERSION).txt
 $(BUILD_DIR)/core2.temp.elf: LDFLAGS_COMMON = -T symbol_addrs.core1.$(VERSION).txt -T symbol_addrs.core2.$(VERSION).txt -T symbol_addrs.global.$(VERSION).txt -T undefined_syms.$(VERSION).txt -T undefined_syms.libultra.txt --no-check-sections --accept-unknown-input-arch -T level_symbols.$(VERSION).txt
@@ -329,28 +241,19 @@ $(BUILD_DIR)/%.s.o: %.s | $(ASM_BUILD_DIRS)
 	$(call print2,Assembling:,$<,$@)
 	@$(GCC) $(GCC_ASFLAGS) $(INCLUDE_CFLAGS) -o $@ $<
 
+# .s -> .o (boot)
+$(BOOT_ASM_OBJS) : $(BUILD_DIR)/%.s.o : %.s | $(ASM_BUILD_DIRS)
+	$(call print2,Assembling:,$<,$@)
+	@$(GCC) $(GCC_ASFLAGS) $(INCLUDE_CFLAGS) -o $@ $<
+	$(OBJCOPY) --prefix-symbols=boot_ $@
+
 # .bin -> .o
 $(BIN_OBJS) : $(BUILD_DIR)/%.bin.o : %.bin | $(BIN_BUILD_DIRS)
 	$(call print2,Objcopying:,$<,$@)
 	@$(OBJCOPY) $(BINOFLAGS) $< $@
 
-# .bin -> .o (overlay)
-$(OVERLAY_RZIP_OBJS) : $(BUILD_DIR)/$(BIN_ROOT)/%.$(VERSION).rzip.bin.o : $(BUILD_DIR)/%.rzip.bin
-	$(call print2,Objcopying:,$<,$@)
-	@$(OBJCOPY) $(BINOFLAGS) $< $@
-
 $(BUILD_DIR)/bk_boot.full: $(BUILD_DIR)/bk_boot.elf
 	@mips-linux-gnu-objcopy -I elf32-tradbigmips -O binary --only-section .boot_bk_boot $(BUILD_DIR)/bk_boot.elf $@
-
-$(BUILD_DIR)/crc.bin : $(BUILD_DIR)/bk_boot.full $(BUILD_DIR)/core1.code $(BUILD_DIR)/core1.data $(BK_CRC)
-	@$(BK_CRC) $(BUILD_DIR)/bk_boot.full > $(BUILD_DIR)/crc.bin
-	@$(BK_CRC) $(BUILD_DIR)/core1.code >> $(BUILD_DIR)/crc.bin
-	@$(BK_CRC) $(BUILD_DIR)/core1.data >> $(BUILD_DIR)/crc.bin
-
-# .bin -> .o (overlay crc check)
-$(CRC_OBJS) : $(BUILD_DIR)/crc.bin
-	$(call print2,Objcopying:,$<,$@)
-	@$(OBJCOPY) $(BINOFLAGS) $< $@
 
 # Creates a dummy crc file of 32 bytes to use in the initial link
 $(BUILD_DIR)/dummy_crc.bin:
@@ -381,112 +284,37 @@ $(GLOBAL_ASM_C_OBJS) : $(BUILD_DIR)/%.c.o : %.c | $(C_BUILD_DIRS)
 	@$(ASM_PROCESSOR) $(OPT_FLAGS) $< --post-process $@ \
 		--assembler "$(AS) $(ASFLAGS)" --asm-prelude include/prelude.s
 
+# .c -> .o (boot)
+$(BOOT_C_OBJS) : $(BUILD_DIR)/%.c.o : %.c | $(C_BUILD_DIRS)
+	$(call print2,Compiling:,$<,$@)
+	@$(CC) $(CFLAGS) $(CPPFLAGS) $(INCLUDE_CFLAGS) $(OPT_FLAGS) $(MIPSBIT) -o $@ $<
+	mips-linux-gnu-strip $@ -N asdasdasasdasd
+	$(OBJCOPY) --prefix-symbols=boot_ $@
+	$(OBJCOPY) --strip-unneeded $@
+
+# .c -> .o (mips3, boot)
+$(BOOT_MIPS3_OBJS) : $(BUILD_DIR)/%.c.o : %.c | $(C_BUILD_DIRS)
+	$(call print2,Compiling:,$<,$@)
+	@$(CC) -c -32 $(CFLAGS) $(CPPFLAGS) $(INCLUDE_CFLAGS) $(OPT_FLAGS) $(LOOP_UNROLL) $(MIPSBIT) -o $@ $<
+	@tools/set_o32abi_bit.py $@
+	$(OBJCOPY) --prefix-symbols=boot_ $@
+	$(OBJCOPY) --strip-unneeded $@
+
 # Split baserom
-$(BUILD_DIR)/SPLAT_TIMESTAMP: $(BASENAME).$(VERSION).yaml $(SYMBOL_ADDRS) | $(BUILD_DIR)
+$(BUILD_DIR)/SPLAT_TIMESTAMP: decompressed.$(VERSION).yaml $(SYMBOL_ADDRS) | $(BUILD_DIR)
 	$(call print1,Splitting rom:,$<)
 	@touch $@
-	@$(SPLAT) $(BASENAME).$(VERSION).yaml
+	@$(SPLAT) decompressed.$(VERSION).yaml
 	@touch $(LD_SCRIPT)
+	sed -i '7s/.*/glabel D_80392D90\n .double 0.99999/' asm/nonmatchings/FP/code_5CC0/func_8038C428.s
 # Dummy target to make the LD script and overlay rzips depend on splat being run
 #   without causing it to be rerun once for every overlay
 # Bin files are also dependent on the splat timestamp since they get overwritten on resplit
-$(MAIN_NEW_FILES) $(LD_SCRIPT) $(MAIN_BINS) : $(BUILD_DIR)/SPLAT_TIMESTAMP
+$(NEW_FILES) $(LD_SCRIPT) $(ALL_BINS) : $(BUILD_DIR)/SPLAT_TIMESTAMP
 	@:
 # Dummy target to make sure extraction happens before compilation, mainly for extracted asm
-$(MAIN_C_SRCS) $(MAIN_ASM_SRCS) : | $(BUILD_DIR)/SPLAT_TIMESTAMP
+$(C_SRCS) $(ASM_SRCS) : | $(BUILD_DIR)/SPLAT_TIMESTAMP
 	@:
-
-# .rzip.bin -> .bin
-$(OVERLAY_BINS) : $(BUILD_DIR)/%.$(VERSION).bin : $(BIN_ROOT)/%.$(VERSION).rzip.bin $(BK_INFLATE) | $(BUILD_DIR)
-	$(call print1,Decompressing rzip:,$<)
-	@$(BK_INFLATE) $< $@
-
-# Special rules to handle core2 code checksumming
-ifneq ($(CORE2_CODE_CRC_C_OBJS),)
-  CORE2_TEMP_LD := core2.temp.ld
-  CORE2_CODE_CRC_C_TEMP_OBJS := $(CORE2_CODE_CRC_C_OBJS:.c.o=.c.o_)
-  core2_NON_CRC_OBJS := $(filter-out $(CORE2_CODE_CRC_C_OBJS),$(core2_ALL_OBJS))
-  
-  # core2.ld -> core2.temp.ld
- $(CORE2_TEMP_LD) : core2.ld
-	$(call print0,Creating linker script for initial core2 linking step)
-	@$(CP) $< $@
-	$(foreach obj, $(CORE2_CODE_CRC_C_OBJS), sed -i 's:$(obj):$(obj)_:g' $@)
-  
-  # core2 .c -> .o with zero for core2 code CRC
-  $(CORE2_CODE_CRC_C_TEMP_OBJS) : $(BUILD_DIR)/%.c.o_ : %.c | $(C_BUILD_DIRS)
-	$(call print2,Compiling temp file:,$<,$@)
-	@$(CC) $(CFLAGS) $(CPPFLAGS) $(INCLUDE_CFLAGS) $(OPT_FLAGS) $(MIPSBIT) -o $@ $<
-  
-  # core2 objects with zero for code CRC -> core2.temp.elf
-  $(BUILD_DIR)/core2.temp.elf : $(core2_NON_CRC_OBJS) $(CORE2_TEMP_LD) $(CORE2_CODE_CRC_C_TEMP_OBJS)
-	$(call print1,Linking elf:,$@)
-	@$(LD) -T $(CORE2_TEMP_LD) -Map $(BUILD_DIR)/core2.map $(LDFLAGS_COMMON) -T undefined_syms_auto.core2.$(VERSION).txt -T undefined_funcs_auto.core2.$(VERSION).txt -o $@
-  
-  $(BUILD_DIR)/core2.temp.full : $(BUILD_DIR)/core2.temp.elf
-	@$(OBJCOPY) -I elf32-tradbigmips -O binary $< $@
-
-  # core2.temp.elf -> core2.temp.code
-  $(BUILD_DIR)/core2.temp.code : $(BUILD_DIR)/core2.temp.full $(BUILD_DIR)/core2.temp.elf
-	$(call print2,Converting initial core2 code:,$<,$@)
-	@head -c $(shell {\
-		text_offset=0x$$(nm $(BUILD_DIR)/core2.temp.elf | grep core2_TEXT_START | head -c 8) ;\
-		data_offset=0x$$(nm $(BUILD_DIR)/core2.temp.elf | grep core2_DATA_START | head -c 8) ;\
-		echo $$(($$data_offset - $$text_offset)) ;\
-	}) $< > $@
-  
-  # core2 code -> core2 code crc
-  $(BUILD_DIR)/core2.code.crc : $(BUILD_DIR)/core2.temp.code $(BK_CRC)
-	$(call print0,Calculating core2 code CRC)
-	@$(BK_CRC) -D CORE2_CODE $< > $@
-  
-  # core2 .c -> .o with correct core2 code CRC
-  $(CORE2_CODE_CRC_C_OBJS) : $(BUILD_DIR)/%.c.o : %.c $(BUILD_DIR)/core2.code.crc | $(C_BUILD_DIRS)
-	$(call print2,Compiling:,$<,$@)
-	@$(CC) $(CFLAGS) $(CPPFLAGS) $(INCLUDE_CFLAGS) $(OPT_FLAGS) $(MIPSBIT) $(shell cat $(BUILD_DIR)/core2.code.crc) -o $@ $<
-endif
-
-# core2 data -> core2 data CRC
-$(BUILD_DIR)/core2.data.crc : $(BUILD_DIR)/core2.data $(BK_CRC)
-	$(call print0,Calculating core2 data CRC)
-	@$(BK_CRC) -D CORE2_DATA $< > $@
-
-# core1 .c -> .o with correct core2 data CRC
-$(CORE2_DATA_CRC_C_OBJS) : $(BUILD_DIR)/%.o : % $(BUILD_DIR)/core2.data.crc | $(C_BUILD_DIRS)
-	$(call print2,Compiling file with core2 data CRC (with ASM Processor):,$<,$@)
-	@$(ASM_PROCESSOR) $(OPT_FLAGS) $< > $(BUILD_DIR)/$<
-	@$(CC) -32 $(CFLAGS) $(CPPFLAGS) $(INCLUDE_CFLAGS) $(OPT_FLAGS) $(MIPSBIT) $(shell cat $(BUILD_DIR)/core2.data.crc) -o $@ $(BUILD_DIR)/$<
-	@$(ASM_PROCESSOR) $(OPT_FLAGS) $< --post-process $@ \
-		--assembler "$(AS) $(ASFLAGS)" --asm-prelude include/prelude.s
-
-# .elf -> .code
-$(OVERLAY_CODE_BINS) : $(BUILD_DIR)/%.code : $(BUILD_DIR)/%.full $(BUILD_DIR)/%.elf
-	$(call print2,Converting overlay code:,$<,$@)
-	@head -c $(shell {\
-		text_offset=0x$$(nm $(BUILD_DIR)/$*.elf | grep $*_TEXT_START | head -c 8) ;\
-		data_offset=0x$$(nm $(BUILD_DIR)/$*.elf | grep $*_DATA_START | sort -r | head -c 8) ;\
-		echo $$(($$data_offset - $$text_offset)) ;\
-	}) $< > $@
-#	@$(OBJCOPY) -I elf32-tradbigmips -O binary --only-section .$*_code --only-section .$*_mips3 $< $@
-
-# .elf -> .data
-$(OVERLAY_DATA_BINS) : $(BUILD_DIR)/%.data : $(BUILD_DIR)/%.full $(BUILD_DIR)/%.elf
-	$(call print2,Converting overlay data:,$<,$@)
-	@tail -c +$(shell {\
-		text_offset=0x$$(nm $(BUILD_DIR)/$*.elf | grep $*_TEXT_START | head -c 8) ;\
-		data_offset=0x$$(nm $(BUILD_DIR)/$*.elf | grep $*_DATA_START | sort -r | head -c 8) ;\
-		echo $$(($$data_offset - $$text_offset + 1)) ;\
-	}) $< > $@
-#	@$(OBJCOPY) -I elf32-tradbigmips -O binary --only-section .$*_data --only-section .*_data_* $< $@
-
-# .elf -> .full
-$(BUILD_DIR)/%.full : $(BUILD_DIR)/%.elf
-	@$(OBJCOPY) -I elf32-tradbigmips -O binary $< $@
-
-# .data + .code -> .rzip.bin
-$(BUILD_DIR)/%.rzip.bin : $(BUILD_DIR)/%.code $(BUILD_DIR)/%.data $(BK_DEFLATE)
-	$(call print1,Compressing overlay:,$@)
-	@cd $(BK_TOOLS) && ../../$(BK_DEFLATE) ../../$@ ../../$(BUILD_DIR)/$*.code ../../$(BUILD_DIR)/$*.data
 
 # .bin -> .yaml
 $(ASSET_ROOT)/assets.yaml : $(BIN_ROOT)/assets.bin $(BK_ASSET_TOOL)
@@ -510,20 +338,21 @@ $(ASSET_OBJS): $(ASSET_BIN)
 	@$(OBJCOPY) $(BINOFLAGS) $< $@
 
 # .o -> .elf (game)
-$(ELF): $(MAIN_ALL_OBJS) $(LD_SCRIPT) $(OVERLAY_RZIP_OBJS) $(addprefix $(BUILD_DIR)/, $(addsuffix .full, $(OVERLAYS))) $(ASSET_OBJS)
+$(ELF): $(ALL_OBJS) $(LD_SCRIPT) $(ASSET_OBJS)
 	$(call print1,Linking elf:,$@)
-	@$(LD) $(LDFLAGS) -T undefined_syms_auto.$(VERSION).txt -o $@
+	@$(LD) $(LDFLAGS) -T undefined_syms_auto.$(VERSION).txt -T undefined_syms.$(VERSION).txt -T rzip_dummy_addrs.txt -o $@
 
 $(BK_BOOT_LD_SCRIPT): $(LD_SCRIPT)
 	sed 's|$(CRC_OBJS)|$(DUMMY_CRC_OBJ)|'  $< > $@
 
 # .o -> .elf (game)
-$(BUILD_DIR)/bk_boot.elf: $(DUMMY_CRC_OBJ) $(filter-out $(CRC_OBJS),$(MAIN_ALL_OBJS)) $(BK_BOOT_LD_SCRIPT) $(OVERLAY_RZIP_OBJS) $(addprefix $(BUILD_DIR)/, $(addsuffix .full, $(OVERLAYS)))
+$(BUILD_DIR)/bk_boot.elf: $(DUMMY_CRC_OBJ) $(filter-out $(CRC_OBJS),$(MAIN_ALL_OBJS)) $(BK_BOOT_LD_SCRIPT) $(ASSET_OBJS)
 	$(call print1,Linking elf:,$@)
-	@$(LD) -T $(BK_BOOT_LD_SCRIPT) -Map $(ELF:.elf=.map) --no-check-sections --accept-unknown-input-arch -T undefined_syms.libultra.txt -T undefined_syms_auto.$(VERSION).txt -o $@
+	@$(LD) -T $(BK_BOOT_LD_SCRIPT) -Map $(ELF:.elf=.map) --no-check-sections --accept-unknown-input-arch -T undefined_syms.libultra.txt -T undefined_syms_auto.$(VERSION).txt  -T undefined_syms.$(VERSION).txt -T rzip_dummy_addrs.txt -o $@
 
 # .elf -> .z64
-$(Z64) : $(ELF) $(OVERLAY_PROG_SVGS) $(MAIN_PROG_SVG) $(TOTAL_PROG_SVG) $(README_MD)
+$(Z64) : $(ELF)
+#$(OVERLAY_PROG_SVGS) $(MAIN_PROG_SVG) $(TOTAL_PROG_SVG) $(README_MD)
 	$(call print1,Creating z64:,$@)
 	@$(OBJCOPY) $< $@ -O binary $(OCOPYFLAGS)
 
@@ -550,9 +379,6 @@ $(SYMBOL_ADDRS): $(SYMBOL_ADDR_FILES)
 	$(call print0,Combining symbol address files)
 	@$(CAT) symbol_addrs.*.$(VERSION).txt > $@
 
-# Shorthand rules for each overlay (e.g. SM)
-$(OVERLAYS): %: verify-%
-
 clean:
 	$(call print0,Cleaning build artifacts)
 	@$(RM) -rf $(BUILD_ROOT)
@@ -564,7 +390,6 @@ clean:
 	@$(RM) -rf $(ASM_ROOT)/core1/os
 	@$(RM) -f undefined_syms_auto* undefined_funcs_auto*
 	@$(RM) -f *.ld
-	@$(RM) -f $(SYMBOL_ADDRS)
 
 # Per-file flag definitions
 build/$(VERSION)/src/core1/io/%.c.o: OPT_FLAGS = -O1

@@ -16,7 +16,7 @@ typedef struct {
 }ActorLocal_Blubber;
 
 void func_803878CC(Actor *this);
-void func_80387CF4(Actor *this);
+void TTC_func_80387CF4(Actor *this);
 Actor *func_80387D6C(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 
 /* .data */
@@ -29,10 +29,10 @@ ActorAnimationInfo D_8038C4E0[] = {
     {0xB8, 0.8f}
 };
 
-ActorInfo D_8038C510 = { 
+ActorInfo TTC_D_8038C510 = { 
     MARKER_A3_BLUBBER, ACTOR_115_BLUBBER, ASSET_370_MODEL_BLUBBER,
     0x1, D_8038C4E0, 
-    func_803878CC, func_80387CF4, func_80387D6C, 
+    func_803878CC, TTC_func_80387CF4, func_80387D6C, 
     0, 0x399, 1.8f, 0
 };
 
@@ -237,7 +237,7 @@ void func_803878CC(Actor * this){
     }
 }
 
-void func_80387CF4(Actor *this){
+void TTC_func_80387CF4(Actor *this){
     func_80343DEC(this);
     if(0.99 <= this->unk48){
         func_8028F918(0);

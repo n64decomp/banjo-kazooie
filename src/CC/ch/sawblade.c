@@ -119,7 +119,7 @@ void func_80389520(ActorMarker *marker, ActorMarker *otherMarker){
     FUNC_8030E624(SFX_65_METALLIC_SCRATCH, 1.0f, 30000);
 }
 
-void func_8038954C(ActorMarker *marker, ActorMarker *otherMarker){
+void CC_func_8038954C(ActorMarker *marker, ActorMarker *otherMarker){
     Actor *actor = marker_getActor(marker);
     ActorLocal_CC_3130 *local = (ActorLocal_CC_3130 *) &actor->local;
 
@@ -138,7 +138,7 @@ void chSawblade_update(Actor *this){
         this->unk16C_4 = TRUE;
         this->roll = this->yaw;
         this->yaw =  0.0f;
-        marker_setCollisionScripts(this->marker, func_80389520, NULL, func_8038954C);
+        marker_setCollisionScripts(this->marker, func_80389520, NULL, CC_func_8038954C);
         local->unk0 = &D_80389C30[(this->modelCacheIndex < 0x43) ? this->modelCacheIndex - 0x3D : this->modelCacheIndex - 0x28A];
         local->unk4 = 0;
         func_80256C60(this->position, 100);

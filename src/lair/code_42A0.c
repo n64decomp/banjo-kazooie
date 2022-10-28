@@ -71,7 +71,7 @@ void func_8038A730(Actor *this, f32 *arg1, enum sfx_e arg2, enum sfx_e arg3, u32
     }
 }
 
-void func_8038A864(Actor *this) {
+void lair_func_8038A864(Actor *this) {
     switch (this->state) {
     case 2:
         func_8038A730(this, D_80393670, SFX_3F_CAULDRON_SQEAK_1, SFX_40_CAULDRON_SQEAK_2, 11000);
@@ -172,7 +172,7 @@ void func_8038ADC0(ActorMarker *marker, enum asset_e text_id, s32 arg2){
     func_80320004(0xF3, TRUE);
 }
 
-bool func_8038ADF0(s32 arg0, s32 arg1) {
+bool lair_func_8038ADF0(s32 arg0, s32 arg1) {
     s32 phi_v1;
 
     phi_v1 = arg1 - arg0;
@@ -192,7 +192,7 @@ void func_8038AE2C(Actor *this) {
     s32 sp38;
     f32 sp34;
     
-    func_8038A864(this);
+    lair_func_8038A864(this);
     if (!this->unk16C_4) {
         sp50 = FALSE;
         this->unk16C_4 = TRUE;
@@ -375,8 +375,8 @@ void func_8038AE2C(Actor *this) {
             }
             func_8038AC7C(this);
             sp38 = func_80329784(this);
-            if( func_8038ADF0(sp38, (s32) this->velocity[0]) 
-                || func_8038ADF0((s32) this->velocity[0], sp38)
+            if( lair_func_8038ADF0(sp38, (s32) this->velocity[0]) 
+                || lair_func_8038ADF0((s32) this->velocity[0], sp38)
             ) {
                 this->yaw_ideal = (f32) sp38;
             }

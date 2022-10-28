@@ -20,7 +20,7 @@ void func_80387F80(void){
     func_8034E71C(func_8034C5AC(0x131), 0x190, 0.0f);
 }
 
-void func_80387FB0(void){
+void CC_func_80387FB0(void){
     item_set(ITEM_0_HOURGLASS_TIMER, 48*60 - 1);
     item_set(ITEM_6_HOURGLASS, 1);
     D_80389F90.unk1 = 1;
@@ -41,7 +41,7 @@ s32 func_80388010(void){
 void func_8038803C(s32 arg0){
     if(arg0 == D_80389F90.unk0){
         if(arg0 == 1){
-            func_80387FB0();
+            CC_func_80387FB0();
         }
         D_80389F90.unk0++;
         if(D_80389F90.unk0 >= 9){

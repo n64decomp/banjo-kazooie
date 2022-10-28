@@ -155,7 +155,7 @@ void            _n_collectPVoices();
 s32             _n_timeToSamples(s32 micros);
 ALMicroTime     _n_samplesToTime(s32 samples);
 
-int n_alEnvmixerResampleParam(N_PVoice *v, s32 paramId, void* param);
+int n_alEnvmixerParam(N_PVoice *v, s32 paramId, void* param);
 //n_alLoadParam
 int n_alLoadParam(N_PVoice *v, s32 paramId, void* param);
 #endif

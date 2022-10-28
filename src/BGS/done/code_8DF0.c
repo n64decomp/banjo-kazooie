@@ -16,8 +16,8 @@ extern ActorInfo D_80390C88;
 extern ActorInfo D_80390CC8;
 extern ActorInfo D_80390D08;
 extern ActorInfo D_80390D48;
-extern ActorInfo D_80390AB0;
-extern ActorInfo D_80390AE0;
+extern ActorInfo BGS_D_80390AB0;
+extern ActorInfo BGS_D_80390AE0;
 extern ActorInfo D_80390960;
 extern ActorInfo D_80390A40;
 extern ActorInfo D_80390A70;
@@ -33,7 +33,7 @@ extern ActorInfo D_80390D70;
 extern ActorInfo D_80390BD8;
 extern ActorInfo D_80390BFC;
 
-void bgs_func_8038F1E0(void){//bgs_updateSpawnableActors
+void BGS_func_8038F1E0(void){//bgs_updateSpawnableActors
     spawnableActorList_add(&D_80390804, actor_new, 0x00000088);//croctus
     spawnableActorList_add(&D_80390690, actor_new, 0x020108A1); //flibbit
     spawnableActorList_add(&D_803906F8, actor_new, 0x400); //pink_egg_largest
@@ -47,8 +47,8 @@ void bgs_func_8038F1E0(void){//bgs_updateSpawnableActors
     spawnableActorList_add(&D_80390CC8, actor_new, 0x400042c);//tanktup_leg
     spawnableActorList_add(&D_80390D08, actor_new, 0x400042c);//tanktup_leg
     spawnableActorList_add(&D_80390D48, actor_new, 0x400042c);//tanktup_leg
-    spawnableActorList_add(&D_80390AB0, actor_new, 0x81);
-    spawnableActorList_add(&D_80390AE0, actor_new, 0x20108a1); //yellow_flibbit
+    spawnableActorList_add(&BGS_D_80390AB0, actor_new, 0x81);
+    spawnableActorList_add(&BGS_D_80390AE0, actor_new, 0x20108a1); //yellow_flibbit
     spawnableActorList_add(&D_80390960, actor_new, 0);
     spawnableActorList_add(&D_80390A40, actor_new, 0x880); //yumblie
     spawnableActorList_add(&D_80390A70, actor_new, 0x9a2); //mr. vile

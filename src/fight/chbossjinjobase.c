@@ -74,7 +74,7 @@ void func_8038D428(ActorMarker *arg0, ActorMarker *arg1) {
     }
 }
 
-void func_8038D510(Actor *arg0) {
+void fight_func_8038D510(Actor *arg0) {
     ActorLocal_fight_6E90 *sp18 = (ActorLocal_fight_6E90 *)&arg0->local;
 
     if ((u8)arg0->unk44_31 != 0) {
@@ -102,7 +102,7 @@ void func_8038D568(Actor *this){
     if(!this->unk16C_4){
         this->unk16C_4 = 1;
         marker_setCollisionScripts(this->marker, NULL, func_8038D428, NULL);
-        func_803300D8(this->marker, func_8038D510);
+        func_803300D8(this->marker, fight_func_8038D510);
         this->marker->propPtr->unk8_3 = 1;
         actor_collisionOn(this);
         this->unk38_31 = 0;

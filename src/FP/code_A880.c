@@ -7,12 +7,12 @@ extern s32 func_8024DB50(f32[3], f32);
 void func_80390EB0(Actor *this);
 
 /* .data */
-extern ActorInfo D_80392840 = { MARKER_245_XMAS_TREE_EGG_TOLL, ACTOR_353_XMAS_TREE_EGG_TOLL, ASSET_402_MODEL_EGG_TOLL,
+extern ActorInfo FP_D_80392840 = { MARKER_245_XMAS_TREE_EGG_TOLL, ACTOR_353_XMAS_TREE_EGG_TOLL, ASSET_402_MODEL_EGG_TOLL,
     0x0, NULL,
     func_80390EB0, func_80326224, func_80325340,
     2000, 0, 0.0f, 0
 };
-struct40s D_80392864;
+extern struct40s FP_D_80392864;
 s32 D_80392894[3];
 struct40s D_803928A0;
 s32 D_803928D0[3];
@@ -33,7 +33,7 @@ void func_80390C70(f32 position[3]){
         0.0f, 40.0f, 0.0f,
         0.0f, 90.0f, 0.0f
     );
-    func_802EFC28(pCtrl, &D_80392864);
+    func_802EFC28(pCtrl, &FP_D_80392864);
 }
 
 void func_80390D58(f32 position[3]){

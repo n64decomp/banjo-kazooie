@@ -89,7 +89,7 @@ void func_8038BB40(ActorMarker * arg0){
     }
 }
 
-void func_8038BBA0(Actor *this, s32 arg1){
+void BGS_func_8038BBA0(Actor *this, s32 arg1){
     ActorLocal_MrVile *local;
     
     local = (ActorLocal_MrVile *)&this->local;
@@ -138,7 +138,7 @@ void func_8038BD84(Actor *this){
     local->unk28[0] = 0.0f;
     local->unk28[1] = 0.0f; 
     local->unk28[2] = 0.0f;
-    func_8038BBA0(this, 101);
+    BGS_func_8038BBA0(this, 101);
 }
 
 void func_8038BDD4(Actor *this) {
@@ -200,26 +200,26 @@ void func_8038C0C8(Actor * this, s32 next_state){
 
     local = (ActorLocal_MrVile *)&this->local;
     if(next_state == 1)
-        func_8038BBA0(this, 101);
+        BGS_func_8038BBA0(this, 101);
 
     if(next_state == 2)
-        func_8038BBA0(this, 101);
+        BGS_func_8038BBA0(this, 101);
 
     if(next_state == 3)
-        func_8038BBA0(this, 102);
+        BGS_func_8038BBA0(this, 102);
 
     if(next_state == 4)
-        func_8038BBA0(this, 102);
+        BGS_func_8038BBA0(this, 102);
 
     if(next_state == 5){
         local->target_position[0] = local->target_position[1] = local->target_position[2] = 0.0f;
-        func_8038BBA0(this, 102);
+        BGS_func_8038BBA0(this, 102);
     }
 
     if(next_state == 6){
         local->target_position[0] = local->target_position[1] = local->target_position[2] = 0.0f;
         local->unk24 = 300.0f;
-        func_8038BBA0(this, 102);
+        BGS_func_8038BBA0(this, 102);
     }
 
     this->state = next_state; 
@@ -269,7 +269,7 @@ bool func_8038C2A8(ActorMarker *marker) {
 }
 
 
-bool func_8038C338(ActorMarker *marker){
+bool BGS_func_8038C338(ActorMarker *marker){
     Actor *this;
 
     this = marker_getActor(marker);
@@ -312,14 +312,14 @@ void func_8038C408(ActorMarker *marker){
     func_8038C0C8(this, 5);
 }
 
-void func_8038C434(ActorMarker *marker){
+void BGS_func_8038C434(ActorMarker *marker){
     Actor *this;
 
     this = marker_getActor(marker);
     func_8038C0C8(this, 6);
 }
 
-void func_8038C460(ActorMarker *arg0){
+void BGS_func_8038C460(ActorMarker *arg0){
     func_8038C0C8(marker_getActor(arg0), 1);
 }
 
@@ -394,22 +394,22 @@ void chvile_update(Actor *this) {
             func_80258A4C(this->position, this->yaw - 90.0f, local->target_position, &sp70, &sp6C, &sp68);
             if (local->unkC == 102) {
                 if ((-0.8 < sp68) && (sp68 < 0.8) && (sp70 <= 150.0f) && var_v1) {
-                    func_8038BBA0(this, 103);
+                    BGS_func_8038BBA0(this, 103);
                 }
             }
             if (local->unkC == 103) {
                 if (sp70 <= 50.0f) {
                     if (chvilegame_cpu_consume_piece(local->game_marker, local->target_position)) {
-                        func_8038BBA0(this, 104);
+                        BGS_func_8038BBA0(this, 104);
                     } else {
-                        func_8038BBA0(this, 102);
+                        BGS_func_8038BBA0(this, 102);
                     }
                 } else if (func_80335794(this->unk148) >= 3) {
-                    func_8038BBA0(this, 102);
+                    BGS_func_8038BBA0(this, 102);
                 }
             }
             if ((local->unkC == 104) && (func_80335794(this->unk148) >= 3)) {
-                func_8038BBA0(this, 102);
+                BGS_func_8038BBA0(this, 102);
             }
         }
     }
@@ -417,7 +417,7 @@ void chvile_update(Actor *this) {
         player_getPosition(local->target_position);
         local->unk10 = 500.0f;
         if ((local->unkC == 102) && (ml_vec3f_distance(this->position, local->target_position) < 200.0f)) {
-            func_8038BBA0(this, 103);
+            BGS_func_8038BBA0(this, 103);
         }
         if ((local->unkC == 103) && (func_80335794(this->unk148) >= 2)) {
             func_8038C0C8(this, 1);

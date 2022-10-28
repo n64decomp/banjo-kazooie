@@ -373,7 +373,7 @@ bool amgr_handleFrameMsg(AudioInfo *info, AudioInfo *prev_info){
     func_802403F0();
     func_8023FFAC();
     if(prev_info){
-        sp30 = osAiSetNextBuf(prev_info->data, prev_info->frameSamples*4);
+        sp30 = osAiSetNextBuffer(prev_info->data, prev_info->frameSamples*4);
     }//L8024003C
     if(sp30 == -1){
         func_80247F24(2, 0x7d2);

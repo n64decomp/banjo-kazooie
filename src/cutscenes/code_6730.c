@@ -39,7 +39,7 @@ extern struct41s D_8038E770 ={
 };
 
 /* .code */
-void func_8038CB20(ParticleEmitter *pCtrl){
+void cutscenes_func_8038CB20(ParticleEmitter *pCtrl){
     particleEmitter_setSprite(pCtrl, ASSET_713_SPRITE_SPARKLE_YELLOW);
     func_802EFFA8(pCtrl, D_8038E73C);
     func_802EF9E4(pCtrl, 230);
@@ -77,7 +77,7 @@ void func_8038CCA8(Actor *this){
         animctrl_setSmoothTransition(this->animctrl, 0);
         this->unk60 = this->yaw/4;
         local->unk0 = partEmitList_pushNew(0xA0);
-        func_8038CB20(local->unk0);
+        cutscenes_func_8038CB20(local->unk0);
     }
 
     switch(this->state){

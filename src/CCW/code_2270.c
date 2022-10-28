@@ -15,7 +15,7 @@ typedef struct{
     void *unk8;
 }ActorLocal_CCW_2270;
 
-void func_8038868C(Actor *this, s32 next_state);
+void CCW_func_8038868C(Actor *this, s32 next_state);
 Actor *func_803889AC(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void func_80388AA0(Actor *this);
 
@@ -34,11 +34,11 @@ ActorInfo D_8038ECE8 = {
 };
 
 /* .code */
-void func_80388660(ActorMarker* marker, s32 arg1) {
-    func_8038868C(marker_getActor(marker), arg1);
+void CCW_func_80388660(ActorMarker* marker, s32 arg1) {
+    CCW_func_8038868C(marker_getActor(marker), arg1);
 }
 
-void func_8038868C(Actor *this, s32 next_state) {
+void CCW_func_8038868C(Actor *this, s32 next_state) {
     ActorLocal_CCW_2270 *local;
 
     local = (ActorLocal_CCW_2270*)&this->local;
@@ -60,7 +60,7 @@ void func_8038868C(Actor *this, s32 next_state) {
         timed_playSfx(0.8f, SFX_4B_GULPING, 0.8f, 28000);
         timed_playSfx(1.4f, SFX_4B_GULPING, 0.8f, 28000);
         timed_playSfx(2.0f, SFX_4B_GULPING, 0.8f, 28000);
-        timedFunc_set_2(3.2f, (TFQM2) func_80388660, (s32) this->marker, 3);
+        timedFunc_set_2(3.2f, (TFQM2) CCW_func_80388660, (s32) this->marker, 3);
     }
     if (next_state == 3) {
         func_803883F4();
@@ -95,7 +95,7 @@ void func_8038894C(ActorMarker* marker, ActorMarker *other_marker) {
     Actor* actor = marker_getActor(marker);
     if (actor->state == 1) {
         actor_collisionOff(actor);
-        timedFunc_set_2(0.5f, (TFQM2)func_80388660, (s32)actor->marker, 2);
+        timedFunc_set_2(0.5f, (TFQM2)CCW_func_80388660, (s32)actor->marker, 2);
     }
 }
 
@@ -150,9 +150,9 @@ void func_80388AA0(Actor *this) {
         }
 
         if( (map_get() == MAP_44_CCW_SUMMER) && func_8031FF1C(0xE3) && !func_8031FF1C(0xE4)) {
-            func_8038868C(this, 1);
+            CCW_func_8038868C(this, 1);
         } else if( (map_get() == MAP_45_CCW_AUTUMN) && func_8031FF1C(0xE4) && !func_8031FF1C(0xE5) ) {
-            func_8038868C(this, 1);
+            CCW_func_8038868C(this, 1);
         } else{
             marker_despawn(this->marker);
         }
@@ -177,9 +177,9 @@ void func_80388AA0(Actor *this) {
     if(this->state == 3){
         if (!func_80388438()) {
             if (map_get() == MAP_44_CCW_SUMMER) {
-                func_8038868C(this, 4);
+                CCW_func_8038868C(this, 4);
             } else {
-                func_8038868C(this, 5);
+                CCW_func_8038868C(this, 5);
             }
         }
     }
@@ -203,14 +203,14 @@ void func_80388AA0(Actor *this) {
 
     if (this->state == 5){
         if(func_80335794(this->unk148) > 0) {
-            func_8038868C(this, 6);
+            CCW_func_8038868C(this, 6);
         }
     }
 
     if (this->state == 6) {
         func_80326224(this);
         if (0.99 < (f64) this->unk48) {
-            func_8038868C(this, 7);
+            CCW_func_8038868C(this, 7);
         }
     }
 }

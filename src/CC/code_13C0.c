@@ -66,7 +66,7 @@ void func_80387940(Struct_CC_13C0_1 *arg0, Struct68s *arg1) {
     func_803878F0(arg0, arg1, 1);
 }
 
-void func_80387960(Struct_CC_13C0_1 *arg0, Struct68s *arg1) {
+void CC_func_80387960(Struct_CC_13C0_1 *arg0, Struct68s *arg1) {
     func_803878F0(arg0, arg1, 2);
 }
 
@@ -82,19 +82,19 @@ void func_803879C0(Struct_CC_13C0_1 *arg0, Struct68s *arg1) {
     func_803878F0(arg0, arg1, 5);
 }
 
-void func_803879E0(Struct_CC_13C0_1 *arg0, Struct68s *arg1) {
+void CC_func_803879E0(Struct_CC_13C0_1 *arg0, Struct68s *arg1) {
     func_803878F0(arg0, arg1, 6);
 }
 
-void func_80387A00(Struct_CC_13C0_1 *arg0, Struct68s *arg1) {
+void CC_func_80387A00(Struct_CC_13C0_1 *arg0, Struct68s *arg1) {
     func_803878F0(arg0, arg1, 7);
 }
 
-void func_80387A20(Struct_CC_13C0_1 *arg0, Struct68s *arg1) {
+void CC_func_80387A20(Struct_CC_13C0_1 *arg0, Struct68s *arg1) {
     func_803878F0(arg0, arg1, 8);
 }
 
-void func_80387A40(Struct_CC_13C0_1* arg0, Struct68s* arg1, f32 arg2) {
+void CC_func_80387A40(Struct_CC_13C0_1* arg0, Struct68s* arg1, f32 arg2) {
     s32 temp_v0;
     f32 sp50[3];
     f32 sp44[3];
@@ -160,7 +160,7 @@ void func_80387CC0(void){
 
 }
 
-void func_80387D4C(void){
+void CC_func_80387D4C(void){
     u32 sp1C;
     u32 tmp_v0;
     osPiReadIo(0x504, &sp1C);

@@ -20,7 +20,7 @@ u8 func_80389524() {
     return D_8038C4E0.unk0;
 }
 
-u8 func_80389530() {
+u8 MMM_func_80389530() {
     return D_8038C4E0.unk2;
 }
 

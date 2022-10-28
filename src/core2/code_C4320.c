@@ -211,13 +211,13 @@ void func_8034B8C0(enum map_e map_id, s32 demo_id) {
         func_802E4A70();
     }
     if ((demo_id == 0x5B) || (demo_id == 0x5F)) {
-        func_8025BC04();
+        sns_backup_items_and_unlock_all();
     }
 }
 
 void func_8034B940(void){
     demo_free();
-    func_8025BCEC();
+    sns_restore_backed_up_items();
 }
 
 void func_8034B968(void){

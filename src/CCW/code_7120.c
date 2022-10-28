@@ -17,7 +17,7 @@ ActorInfo D_8038F640 = {
 };
 
 /* .code */
-void func_8038D510(Actor *this) {
+void CCW_func_8038D510(Actor *this) {
     static s32 D_8038F664[3] = {0xDE, 0xA7, 0x71};
     static struct42s D_8038F670 = {
         {{  0.0f,  50.0f,   0.0f}, { 70.0f, 100.0f,  70.0f}},
@@ -70,7 +70,7 @@ void func_8038D6D8(Actor *this, s32 next_state) {
     if (next_state == 2) {
         this->marker->propPtr->unk8_3 = FALSE;
         func_802BB3DC(0, 60.0f, 0.7f);
-        func_8038D510(this);
+        CCW_func_8038D510(this);
         func_8038D5DC(this);
         FUNC_8030E624(SFX_9B_BOULDER_BREAKING_1, 0.3f, 15000);
         FUNC_8030E624(SFX_9B_BOULDER_BREAKING_1, 0.5f, 15000);

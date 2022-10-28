@@ -140,7 +140,7 @@ bool SM_CRCs_are_valid(void){
     return FALSE;
 }
 
-void func_80386810(void)
+void SM_func_80386810(void)
 {
     spawnableActorList_add(&D_8038AB00,  actor_new, 0X2000180);
     spawnableActorList_add(&D_8038ABF0,  actor_new, 0X80);

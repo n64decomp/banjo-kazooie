@@ -29,7 +29,7 @@ void func_8038BA30(ActorMarker *marker, enum asset_e text_id, s32 arg2){
     func_80320424(0x20 + this->unkF4_8*6 + phi_v1, 2);
 }
 
-void func_8038BA88(ActorMarker *marker, enum asset_e text_id, s32 arg2){
+void lair_func_8038BA88(ActorMarker *marker, enum asset_e text_id, s32 arg2){
     Actor *this;
 
     this = marker_getActor(marker);
@@ -44,7 +44,7 @@ void func_8038BADC(ActorMarker *marker, enum asset_e text_id, s32 arg2) {
     if (text_id == ((ActorLocal_lair_5640 *)&this->local)->unk0 + 2) {
         if (!func_8031FF1C(this->unkF4_8 + 0xE8)) {
             if (item_getCount(ITEM_14_HEALTH) < item_getCount(ITEM_15_HEALTH_TOTAL)) {
-                func_80311480(0x10A2, 0xF, this->position, this->marker, func_8038BADC, func_8038BA88);
+                func_80311480(0x10A2, 0xF, this->position, this->marker, func_8038BADC, lair_func_8038BA88);
                 return;
             }
         }

@@ -25,7 +25,7 @@ ActorInfo D_8038C3D0 = {
 
 
 /* .code */
-void func_803863F0(enum sfx_e sfx_id, f32 arg1, s32 arg2, f32 position[3], f32 arg4, f32 arg5){
+void TTC_func_803863F0(enum sfx_e sfx_id, f32 arg1, s32 arg2, f32 position[3], f32 arg4, f32 arg5){
     if(func_803114B0()){
         arg2 -= 10000;
         if(arg2 < 0)
@@ -40,7 +40,7 @@ void func_80386454(Actor *this){
     animctrl_setDuration(this->animctrl, randf2(1.9f, 2.1f));
 }
 
-bool func_803864B0(Actor *this, f32 arg1) {
+bool TTC_func_803864B0(Actor *this, f32 arg1) {
     f32 sp5C;
     f32 sp58;
     f32 pad;
@@ -88,7 +88,7 @@ bool func_803864B0(Actor *this, f32 arg1) {
     if ((func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE) ? 0 : 0x11) < this->unk28) {
         this->unk28 = (func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE) != 0) ? 0.0f : 17.0f;
     } else if (sp38 == 0) {
-        func_803863F0(SFX_AE_YUMYUM_TALKING, randf2(0.9f, 1.0f), 22000, this->position, 500.0f, 2000.0f);
+        TTC_func_803863F0(SFX_AE_YUMYUM_TALKING, randf2(0.9f, 1.0f), 22000, this->position, 500.0f, 2000.0f);
     }
     return 1;
 
@@ -104,7 +104,7 @@ bool func_80386760(Actor *this, s32 arg1) {
 
     animctrl_setDuration(this->animctrl, 1.0f);
     sp2C = (s32) ((f64) (60.0f / (f32) func_8033DD90()) * 0.5);
-    if ((this->unk1C[0] != 0.0f) || !func_803864B0(this, sp2C)) {
+    if ((this->unk1C[0] != 0.0f) || !TTC_func_803864B0(this, sp2C)) {
         if (((f64) animctrl_getAnimTimer(this->animctrl) < 0.1) && ((f64) randf() < 0.5)) {
             if (this->unk1C[0] != 0.0f) {
                 arg1 *= 2;
@@ -148,7 +148,7 @@ void func_80386A9C(ParticleEmitter *pCtrl, f32 position[3]){
     func_802EFA70(pCtrl, 2);
 }
 
-void func_80386B54(f32 position[3], s32 count){
+void TTC_func_80386B54(f32 position[3], s32 count){
     static struct41s D_8038C3F4 = {
         {{-50.0f,   750.0f, -50.0f}, {120.0f,   900.0f, 120.0f}},
         {{  0.0f, -1800.0f,   0.0f}, {  0.0f, -1800.0f,   0.0f}}
@@ -196,7 +196,7 @@ void func_80386CBC(f32 position[3], s32 count){
     particleEmitter_emitN(pCtrl, count);
 }
 
-void func_80386D68(f32 position[3], enum asset_e sprite_id, s32 count){
+void TTC_func_80386D68(f32 position[3], enum asset_e sprite_id, s32 count){
     static struct31s D_8038C484 = {
     {0.2f,  0.35f},
     {0.0f,  0.0f},
@@ -227,9 +227,9 @@ void func_80386DF4(ActorMarker *this_marker, ActorMarker *other_marker){
     this = marker_getActor(this_marker);
     this->marker->collidable = FALSE;
     this->unk138_27 = TRUE;
-    func_803863F0(SFX_1D_HITTING_AN_ENEMY_1, 1.0f, 26000, this->position, 1500.0f, 2000.0f);
-    func_803863F0(SFX_115_BUZZBOMB_DEATH, 1.2f, 26000, this->position, 1500.0f, 2000.0f);
-    func_80386B54(this->position, 2);
+    TTC_func_803863F0(SFX_1D_HITTING_AN_ENEMY_1, 1.0f, 26000, this->position, 1500.0f, 2000.0f);
+    TTC_func_803863F0(SFX_115_BUZZBOMB_DEATH, 1.2f, 26000, this->position, 1500.0f, 2000.0f);
+    TTC_func_80386B54(this->position, 2);
     func_80386C08(this->position, 2);
     func_80386CBC(this->position, 0xC);
     func_803115C4(0xa14);
@@ -301,7 +301,7 @@ void func_80386FDC(Actor *this){
                 func_80328B8C(this, 2, 0.01f, 1);
                 actor_playAnimationOnce(this);
                 animctrl_setDuration(this->animctrl, 1.0f);
-                func_803863F0(SFX_3F2_UNKNOWN, randf2(1.0f, 1.1f), 22000, this->position, 1500.0f, 2000.0f);
+                TTC_func_803863F0(SFX_3F2_UNKNOWN, randf2(1.0f, 1.1f), 22000, this->position, 1500.0f, 2000.0f);
             }
             else{
                 animctrl_setDuration(this->animctrl, 2.0f);
@@ -312,7 +312,7 @@ void func_80386FDC(Actor *this){
             this->position_y += this->velocity_y;
             this->velocity_y += -5.0f;
             if(actor_animationIsAt(this, 0.63f)){
-                func_803863F0(SFX_80_YUMYUM_CLACK, 1.0f, 20000, this->position, 1500.0f, 2000.0f);
+                TTC_func_803863F0(SFX_80_YUMYUM_CLACK, 1.0f, 20000, this->position, 1500.0f, 2000.0f);
             }
 
             if(this->position_y <= sp48){
@@ -339,7 +339,7 @@ void func_80386FDC(Actor *this){
             }
 
             if(actor_animationIsAt(this, 0.8f) && 2.0f == this->velocity_x){
-                func_803863F0(SFX_4B_GULPING, randf2(0.8f, 0.9f), 22000, this->position, 700.0f, 2000.0f);
+                TTC_func_803863F0(SFX_4B_GULPING, randf2(0.8f, 0.9f), 22000, this->position, 700.0f, 2000.0f);
                 break;
             }//L803873C4
 
@@ -347,15 +347,15 @@ void func_80386FDC(Actor *this){
 
             if(!this->marker->unk14_21) break;
 
-            func_803863F0(SFX_4C_LIP_SMACK, 1.0f, 20000, this->position, 500.0f, 2000.0f);
+            TTC_func_803863F0(SFX_4C_LIP_SMACK, 1.0f, 20000, this->position, 500.0f, 2000.0f);
             func_8034A174(this->marker->unk44, 5, sp38);
 
             switch(this->unk38_31){
                 case 0x60:
-                    func_80386D68(sp38, ASSET_718_SPRITE_SPARKLE_WHITE_2, 8);
+                    TTC_func_80386D68(sp38, ASSET_718_SPRITE_SPARKLE_WHITE_2, 8);
                     break;
                 case 0xb5:
-                    func_80386D68(sp38, ASSET_715_SPRITE_SPARKLE_RED, 8);
+                    TTC_func_80386D68(sp38, ASSET_715_SPRITE_SPARKLE_RED, 8);
                     break;
             }
             break;

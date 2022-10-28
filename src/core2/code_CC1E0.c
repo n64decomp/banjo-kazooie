@@ -112,7 +112,7 @@ s32 func_803531C8(u8 projectile_indx, s32 arg1){
                     break;
 
                 case MARKER_34_CEMETARY_POT: //L80353400
-                    if(func_802458A8(sp40, other_marker, 0x3C) && func_80387340(other_marker)){
+                    if(func_802458A8(sp40, other_marker, 0x3C) && MMM_func_80387340(other_marker)){
                         func_8033E984();
                     }
                     break;

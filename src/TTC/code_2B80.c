@@ -23,13 +23,13 @@ ActorInfo D_8038C718 = {
 };
 
 /* .code */
-bool func_80388F70(Actor *this){
+bool TTC_func_80388F70(Actor *this){
     return this->modelCacheIndex == 0x56;
 }
 
 void func_80388F88(void){
     static f32 D_8038C73C[3] = {2500.0f, 250.0f, 4600.0f};
-    func_803272D0(D_8038C73C, 2000.0f, 2, func_80388F70);
+    func_803272D0(D_8038C73C, 2000.0f, 2, TTC_func_80388F70);
 }
 
 void func_80388FBC(Actor *this) {

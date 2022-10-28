@@ -65,7 +65,7 @@ Actor *func_80387EB0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     return func_80325888(marker, gfx, mtx, vtx);
 }
 
-void func_80387F18(Actor *this) {
+void TTC_func_80387F18(Actor *this) {
     func_80328AEC(this, 3);
     this->unk1C[0] = 0.0f;
     switch((s32)this->unk60){
@@ -83,15 +83,15 @@ void func_80387F18(Actor *this) {
     }
 }
 
-void func_80387FB0(ActorMarker *caller, enum asset_e text_id, s32 arg2){
+void TTC_func_80387FB0(ActorMarker *caller, enum asset_e text_id, s32 arg2){
     Actor *this;
     this = marker_getActor(caller);
-    func_80387F18(this);
+    TTC_func_80387F18(this);
     func_802BAE4C();
     comusic_8025AB44(COMUSIC_12_TTC_NIPPER, -1, 300);
 }
 
-void func_80387FF4(Actor *this) {
+void TTC_func_80387FF4(Actor *this) {
     s32 i;
 
     func_80328B8C(this, 4, 0.01f, 1);
@@ -140,12 +140,12 @@ void func_80388178(ActorMarker *this_marker, ActorMarker *other_marker) {
     }
     
     if (this->unk60 == 80.0f) {
-        func_80387FF4(this);
+        TTC_func_80387FF4(this);
         this->unk60 = 40.0f;
         return;
     }
 
-    func_80387FF4(this);
+    TTC_func_80387FF4(this);
     this->unk60 = 80.0f;
     func_80311480(0xA10, 4, NULL, NULL, NULL, NULL);
     return;
@@ -234,14 +234,14 @@ void func_80388434(Actor *this){
                     && temp_v0 != 10
                 ){
                     func_80328B8C(this, 5, 0.01f, 1);
-                    if(func_80311480(0xa0e, 0xf, this->position, this->marker, func_80387FB0, NULL)){
+                    if(func_80311480(0xa0e, 0xf, this->position, this->marker, TTC_func_80387FB0, NULL)){
                         this->unk138_24 = TRUE;
                     }
                     comusic_8025AB44(COMUSIC_12_TTC_NIPPER, 5000, 300);
                     set_camera_to_node(11);
                 }
                 else{//L803886B0
-                    func_80387F18(this);
+                    TTC_func_80387F18(this);
                 }
                 break;
             }
@@ -263,7 +263,7 @@ void func_80388434(Actor *this){
             }
 
             if(this->unk60 <= this->unk38_31){
-                func_80387F18(this);
+                TTC_func_80387F18(this);
                 break;
             }
             this->unk38_31++;
@@ -300,7 +300,7 @@ void func_80388434(Actor *this){
 
         case 4:// L80388910
             if(actor_animationIsAt(this, 0.99f)){
-                func_80387F18(this);
+                TTC_func_80387F18(this);
             }
             break;
 

@@ -24,7 +24,8 @@ ActorInfo D_80390D60 = { 0xBE, 0x130, 0x3E4,
 f32 D_80390D84[3] = {5644.0f, 2930.0f, -3258.0f};
 
 /*.bss */
-u8 D_80391A60;
+u8 GV_pad1[0x10];
+u8 GV_D_80391A60;
 
 /* .code */
 void func_80388B20(Actor *this, s32 next_state){
@@ -32,11 +33,11 @@ void func_80388B20(Actor *this, s32 next_state){
 
     this->state = next_state;
     local->unk14 = 0.0f;
-    D_80391A60 = FALSE;
+    GV_D_80391A60 = FALSE;
     if(this->state == 2){
         this->marker->propPtr->unk8_3 = FALSE;
         local->unk14 = 2.6f;
-        D_80391A60 = TRUE;
+        GV_D_80391A60 = TRUE;
         func_8028F428(2, this->marker);
         FUNC_8030E624(SFX_9B_BOULDER_BREAKING_1, 0.3f, 9000);
         FUNC_8030E624(SFX_9B_BOULDER_BREAKING_1, 0.5f, 9000);
@@ -79,7 +80,7 @@ Actor *func_80388C64(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 }
 
 s32 func_80388D78(void){
-    return D_80391A60;
+    return GV_D_80391A60;
 }
 
 void func_80388D84(Actor *this){
@@ -103,7 +104,7 @@ void func_80388DC8(Actor *this){
         marker_setCollisionScripts(this->marker, NULL, NULL, func_80388C24);
         local->unkC = particleEmitter_new(20);
         local->unk10 = particleEmitter_new(30);
-        D_80391A60 = FALSE;
+        GV_D_80391A60 = FALSE;
         sp28 = func_80326D68(this->position, ACTOR_12E_GOBI_1, -1, &sp2C);
         if(sp28){
             this->position_x = sp28->position_x;

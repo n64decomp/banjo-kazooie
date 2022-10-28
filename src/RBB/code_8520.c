@@ -41,7 +41,7 @@ ActorInfo D_80390DAC = {
     0, 0, 0.0f, 0
 };
 
-s32 D_80390DD0[3] = {0xDE, 0xA7, 0x71};
+s32 RBB_D_80390DD0[3] = {0xDE, 0xA7, 0x71};
 s32 D_80390DDC[4] = {0xFF, 0xFF, 0xFF, 0xFF};
 s32 D_80390DEC[4] = {0,0,0,0};
 
@@ -116,7 +116,7 @@ void func_8038EC14(Actor *this){
     func_802EFB84(other, 2.0f, 3.0f);
     particleEmitter_setParticleSpawnPositionRange(other, -75.0f, 25.0f, -75.0f, 75.0f, 75.0f, 75.0f);
     particleEmitter_setParticleVelocityRange(other, -70.0f, 50.0f, -70.0f, 70.0f, 100.0f, 70.0f);
-    func_802EFFA8(other, &D_80390DD0);
+    func_802EFFA8(other, &RBB_D_80390DD0);
     func_802EFEC0(other, 3.0f, 4.0f);
     particleEmitter_emitN(other, 6);
 }

@@ -14,11 +14,10 @@ void chfinalboss_update(Actor *this);
 void func_802C8F70(f32);
 s32 func_803297C8(Actor*, f32*);
 Actor *func_8032813C();
-void func_803900DC(ActorMarker *, f32 *, f32, f32);
+void fight_func_803900DC(ActorMarker *, f32 *, f32, f32);
 extern Actor* func_80329958(ActorMarker *this, s32 arg1);
 extern void func_803298D8();
 void func_80324E88(f32);
-extern void func_80324E60(Actor*, s32, f32);
 extern void func_80324CFC(f32, enum comusic_e, s32);
 extern void sfxsource_setSampleRate(u8, s32);
 extern void func_80328FF0(Actor *arg0, f32 arg1);
@@ -64,8 +63,8 @@ typedef struct ch_fight_180_s{
 }ActorLocal_fight_180;
 
 /* .data */
-f32 D_80391380[4] = {1.0f, 1.0f, 1.0f, 1.0f};
-f32 D_80391390[4] = {0.33f, 0.33f, 0.33f, 1.0f};
+f32 fight_D_80391380[4] = {1.0f, 1.0f, 1.0f, 1.0f};
+f32 fight_D_80391390[4] = {0.33f, 0.33f, 0.33f, 1.0f};
 ActorAnimationInfo D_803913A0[] = {
     { 0, 0.0f},
     { 0x1C5, 0.6f},
@@ -113,13 +112,13 @@ ActorAnimationInfo D_803913A0[] = {
     { 0x266, 4.0f}
 };
 
-ActorInfo D_80391500 = {
+ActorInfo fight_D_80391500 = {
     MARKER_25E_GRUNTILDA_FINAL_BOSS, ACTOR_38B_GRUNTILDA_FINAL_BOSS, ASSET_53D_MODEL_GRUNTILDA_FINAL_BOSS, 
     1,  D_803913A0,
     chfinalboss_update, func_80326224, chfinalboss_draw,
     0, 0, 0.0f, 0
 };
-f32 D_80391524[3] = {0.0f, -8.0f, 400.0f};
+f32 fight_D_80391524[3] = {0.0f, -8.0f, 400.0f};
 
 f32 D_80391530[3] = {0.0f, -8.0f, 0.0f};
 
@@ -172,7 +171,7 @@ struct43s D_80391678 = {
 
 s32 D_803916C0[3] = {0xff, 0xff, 0xff};
 s32 D_803916CC[3] = {0xff, 0, 0};
-s32 D_803916D8[3] = {0x4B, 0x4B, 0x4B};
+s32 fight_D_803916D8[3] = {0x4B, 0x4B, 0x4B};
 
 f32 D_803916E4[4] = {0.1f, 0.2f, 1.9f, 3.9f};
 
@@ -325,7 +324,7 @@ void func_80386698(f32 arg0) {
 
     temp_v0 = func_8034C528(0x19A);
     if (temp_v0 != NULL) {
-        func_8034DDF0(temp_v0, D_80391524, D_80391530, arg0, 1);
+        func_8034DDF0(temp_v0, fight_D_80391524, D_80391530, arg0, 1);
     }
 }
 
@@ -402,9 +401,9 @@ void func_803869BC(Actor *this) {
             sp30[2] = D_803916CC[2];
             sp2C = 0x715;
         } else if ((temp_t3 == 8) || (temp_t3 == 9)) {
-            sp30[0] = D_803916D8[0];
-            sp30[1] = D_803916D8[1];
-            sp30[2] = D_803916D8[2];
+            sp30[0] = fight_D_803916D8[0];
+            sp30[1] = fight_D_803916D8[1];
+            sp30[2] = fight_D_803916D8[2];
             sp2C = 0x000;
         } else {
             sp30[0] = D_803916C0[0];
@@ -425,7 +424,7 @@ void func_803869BC(Actor *this) {
     }
 }
 
-void func_80386B54(f32 *arg0, f32 arg1) {
+void fight_func_80386B54(f32 *arg0, f32 arg1) {
     f32 sp34;
     f32 sp28[3];
     s32 i;
@@ -437,7 +436,7 @@ void func_80386B54(f32 *arg0, f32 arg1) {
     }
 }
 
-bool func_80386BEC(Actor *this, f32 arg1) {
+bool fight_func_80386BEC(Actor *this, f32 arg1) {
     this->yaw_ideal = (f32) func_80329784(this);
     func_80328FB0(this, arg1);
     if ((this->yaw_ideal < (this->yaw + arg1)) && ((this->yaw - arg1) < this->yaw_ideal)) {
@@ -459,7 +458,7 @@ bool func_80386C68(Actor *this, f32 arg1) {
     return FALSE;
 }
 
-void func_80386CF8(Actor *actor) {
+void fight_func_80386CF8(Actor *actor) {
     f32 sp4C[3];
     f32 sp40[3];
     f32 sp34[3];
@@ -510,7 +509,7 @@ void func_80386EC0(s32 arg0) {
 
     marker = func_8032813C(0x38A, D_80392758, 0)->marker;
     func_8030E878(SFX_147_GRUNTY_SPELL_ATTACK_2, randf2(0.95f, 1.05f), 32000, D_80392758, 5000.0f, 12000.0f);
-    func_803900DC(marker, D_80392758, D_80392768[1], D_80392768[2]);
+    fight_func_803900DC(marker, D_80392758, D_80392768[1], D_80392768[2]);
 }
 
 void func_80386F5C(ActorMarker * arg0, f32 arg1[3], f32 arg2, f32 arg3) {
@@ -528,7 +527,7 @@ void func_80386FD8(s32 arg0) {
 
     marker = func_8032813C(0x389, D_80392758, 0)->marker;
     func_8030E878(SFX_146_GRUNTY_SPELL_ATTACK_1, randf2(0.95f, 1.05f), 32000, D_80392758, 5000.0f, 12000.0f);
-    func_8038FB84(marker, D_80392758, D_80392768, D_80392778);
+    fight_func_8038FB84(marker, D_80392758, D_80392768, D_80392778);
 }
 
 void func_80387074(s32 arg0) {
@@ -536,7 +535,7 @@ void func_80387074(s32 arg0) {
 
     marker = func_8032813C(0x3AA, D_80392758, 0)->marker;
     func_8030E878(SFX_146_GRUNTY_SPELL_ATTACK_1, randf2(0.95f, 1.05f), 32000, D_80392758, 5000.0f, 12000.0f);
-    func_8038FB84(marker, D_80392758, D_80392768, D_80392778);
+    fight_func_8038FB84(marker, D_80392758, D_80392768, D_80392778);
 }
 
 void func_80387110(ActorMarker *marker, f32 arg1[3], f32 arg2, s32 arg3) {
@@ -553,7 +552,7 @@ void func_80387110(ActorMarker *marker, f32 arg1[3], f32 arg2, s32 arg3) {
     D_80392758[1] += 80.0f;
     
     if (arg3 == 0) {
-        func_80386B54(sp2C, arg2);
+        fight_func_80386B54(sp2C, arg2);
     } else if (local->mirror_phase5 == 0) {
         sp2C[0] = D_80391710[0];
         sp2C[1] = D_80391710[1];
@@ -586,7 +585,7 @@ void func_803872F8(Actor *arg0) {
     func_80387110(arg0->marker, vec, 3.0f, 1);
 }
 
-s32 func_80387340(Actor *this, f32 arg1) {
+s32 fight_func_80387340(Actor *this, f32 arg1) {
     f32 sp24[3];
 
     if (actor_animationIsAt(this, 0.50f) != 0) {
@@ -762,7 +761,7 @@ void func_80387B00(Actor *this) {
     
     local = (ActorLocal_fight_180 *) this->local;
 
-    func_80386B54(sp28, 0.80f);
+    fight_func_80386B54(sp28, 0.80f);
     this->unk1C_x = sp28[0];
     this->unk1C_y = sp28[1];
     this->unk1C_z = sp28[2];
@@ -813,7 +812,7 @@ void func_80387BFC(Actor *this, f32 arg1) {
     sp44[2] *= this->unk28;
 }
 
-void func_80387D4C(Actor *actor) {
+void fight_func_80387D4C(Actor *actor) {
     ActorLocal_fight_180 *local;
     f32 sp20[3];
 
@@ -1056,9 +1055,9 @@ void chfinalboss_phase1_update(ActorMarker *marker) {
         func_80386600(this->marker, 0);
         func_803869BC(this);
         func_80387ACC(this, 60.0f * sp54);
-        if (func_80386BEC(this, 240.0f * sp54)) {
+        if (fight_func_80386BEC(this, 240.0f * sp54)) {
             chfinalboss_phase1_setState(this, 5);
-            func_80386654(1.0f, D_80391380, D_80391390);
+            func_80386654(1.0f, fight_D_80391380, fight_D_80391390);
         }
         break;
     case 5:
@@ -1091,7 +1090,7 @@ void chfinalboss_phase1_update(ActorMarker *marker) {
             FUNC_8030E8B4(SFX_C4_TWINKLY_MUNCHER_GRR, 0.6f, 28000, this->position, 2000, 10000);
         }
         if ((local->unk14 * 0.75) < local->unk20) {
-            func_80386B54(sp40, 0);
+            fight_func_80386B54(sp40, 0);
             this->unk1C[0] = sp40[0];
             this->unk1C[1] = sp40[1];
             this->unk1C[2] = sp40[2];
@@ -1123,7 +1122,7 @@ void chfinalboss_phase1_update(ActorMarker *marker) {
         func_80328FB0(this, 30.0f * sp54);
         if (this->unk28 < 0) {
             chfinalboss_phase1_setState(this, 4);
-            func_80386654(1.5f, D_80391390, D_80391380);
+            func_80386654(1.5f, fight_D_80391390, fight_D_80391380);
         }
         break;
     case 8:
@@ -1132,11 +1131,11 @@ void chfinalboss_phase1_update(ActorMarker *marker) {
         this->unk28 = this->unk28 + local->unk28 * sp54;
         local->unk20 = local->unk20 - this->unk28 * sp54;
         func_80387ACC(this, 60.0f * sp54);
-        func_80387D4C(this);
+        fight_func_80387D4C(this);
         func_80328FB0(this, 30.0f * sp54);
         if (this->unk28 < 0) {
             chfinalboss_phase1_setState(this, 9);
-            func_80386654(2.0f, D_80391390, D_80391380);
+            func_80386654(2.0f, fight_D_80391390, fight_D_80391380);
             this->unk60 = 4.0f;
         }
         break;
@@ -1154,9 +1153,9 @@ void chfinalboss_phase1_update(ActorMarker *marker) {
         break;
     case 10:
         func_80387ACC(this, 60.0f * sp54);
-        func_80386BEC(this, 30.0f);
+        fight_func_80386BEC(this, 30.0f);
         func_8038871C(this, 460.0f, 400.0f * sp54);
-        func_80387340(this, 1.0f);
+        fight_func_80387340(this, 1.0f);
         if (actor_animationIsAt(this, 0.9999f)) {
             chfinalboss_phase1_setState(this, 2);
             func_803880A0(this, 2000.0f);
@@ -1164,14 +1163,14 @@ void chfinalboss_phase1_update(ActorMarker *marker) {
         break;
     case 11:
         func_80387ACC(this, 60.0f * sp54);
-        func_80386BEC(this, 30.0f);
+        fight_func_80386BEC(this, 30.0f);
         if (local->unk9) {
             func_8038871C(this, 460.0f, 400.0f * sp54);
         }
         break;
     case 12:
         func_80387ACC(this, 60.0f * sp54);
-        func_80386BEC(this, 30.0f);
+        fight_func_80386BEC(this, 30.0f);
         func_8038871C(this, 460.0f, 400.0f * sp54);
         func_803873DC(this, 600.0f, 2000.0f);
         if (actor_animationIsAt(this, 0.9999f)) {
@@ -1182,7 +1181,7 @@ void chfinalboss_phase1_update(ActorMarker *marker) {
         break;
     case 13:
         func_80387ACC(this, 60.0f * sp54);
-        func_80386BEC(this, 30.0f);
+        fight_func_80386BEC(this, 30.0f);
         if (actor_animationIsAt(this, 0.9999f)) {
             if (local->hits >= 4) {
                 chfinalboss_phase1_setState(this, 0xB);
@@ -1255,13 +1254,13 @@ void chfinalboss_phase2_update(ActorMarker *marker) {
             break;
 
         case 15:
-            if (func_80386BEC(this, 9.0f)) {
+            if (fight_func_80386BEC(this, 9.0f)) {
                 chfinalboss_phase2_setState(this, 0x10);
             }
             break;
         case 16:
-            func_80386BEC(this, 3.0f);
-            func_80387340(this, 1.3f);
+            fight_func_80386BEC(this, 3.0f);
+            fight_func_80387340(this, 1.3f);
             if (actor_animationIsAt(this, 0.9999f)) {
                 chfinalboss_phase2_setState(this, 0x12);
                 local->unk3++;
@@ -1275,19 +1274,19 @@ void chfinalboss_phase2_update(ActorMarker *marker) {
             }
             break;
         case 17:
-            func_80386BEC(this, 3.0f);
+            fight_func_80386BEC(this, 3.0f);
             func_803873DC(this, 1200.0f, 2400.0f);
             if (actor_animationIsAt(this, 0.9999f)) {
                 chfinalboss_setPhase(this->marker, 3);
             }
             break;
         case 18:
-            func_80386BEC(this, 3.0f);
+            fight_func_80386BEC(this, 3.0f);
             if (this->unk60 > 0.0) {
                 this->unk60 = this->unk60 - sp4C;
                 break;
             }
-            if (func_80386BEC(this, 3.0f)) {
+            if (fight_func_80386BEC(this, 3.0f)) {
                 chfinalboss_phase2_setState(this, 0x10);
             }
             break;
@@ -1405,7 +1404,7 @@ void chfinalboss_phase3_setState(Actor *this, s32 arg1) {
         FUNC_8030E8B4(SFX_131_GRUNTY_WEEEGH, 1.0f, 32000, this->position, 5000, 12000);
         break;
     case 26:
-        func_80386CF8(this);
+        fight_func_80386CF8(this);
         func_80324E38(0.0f, 1);
         func_80311480(randi2(0, 5) + 0x112C, 0xA8, NULL, this->marker, chfinalboss_phase3_endTextCallback, NULL);
         break;
@@ -1421,7 +1420,7 @@ u8  D_8039283C;
 u8  D_8039283D;
 u8  D_8039283E;
 u8  D_8039283F;
-u8  D_80392840;
+u8  fight_D_80392840;
 u8  D_80392841;
 u8  D_80392842;
 u8  D_80392843;
@@ -1457,7 +1456,7 @@ u8  D_80392860;
 u8  D_80392861;
 u8  D_80392862;
 u8  D_80392863;
-u8  D_80392864;
+u8  fight_D_80392864;
 u8  D_80392865;
 u8  D_80392866;
 u8  D_80392867;
@@ -1519,13 +1518,13 @@ void chfinalboss_phase3_update(ActorMarker *marker) {
         }
         break;
     case 23:
-        if (func_80386BEC(this, 9.0f) && (func_80297C6C() != 3)) {
+        if (fight_func_80386BEC(this, 9.0f) && (func_80297C6C() != 3)) {
             chfinalboss_phase3_setState(this, 0x18);
         }
         break;
     case 24:
-        func_80386BEC(this, 3.0f);
-        if (func_80387340(this, 1.3f)) {
+        fight_func_80386BEC(this, 3.0f);
+        if (fight_func_80387340(this, 1.3f)) {
             local->unk3++;
         }
         if (actor_animationIsAt(this, 0.9999f)) {
@@ -1759,15 +1758,15 @@ void chfinalboss_phase4_update(ActorMarker *marker) {
             break;
 
         case 29:
-            if ((func_80386BEC(this, 9.0f)) && (func_80297C6C() != 3) && (D_803927C4 == 0)) {
+            if ((fight_func_80386BEC(this, 9.0f)) && (func_80297C6C() != 3) && (D_803927C4 == 0)) {
                 chfinalboss_phase4_setState(this, 0x1E);
             }
             break;
 
         case 30:
-            func_80386BEC(this, 3.0f);
+            fight_func_80386BEC(this, 3.0f);
             if (D_803927C4 == 0) {
-                func_80387340(this, 1.0f);
+                fight_func_80387340(this, 1.0f);
                 if (actor_animationIsAt(this, 0.9999f)) {
                     static f32 D_803917D0[4] = {2.4f, 2.1f, 1.8f, 1.5f};
 
@@ -1781,12 +1780,12 @@ void chfinalboss_phase4_update(ActorMarker *marker) {
             break;
 
         case 31:
-            func_80386BEC(this, 3.0f);
+            fight_func_80386BEC(this, 3.0f);
             if (this->unk60 > 0.0) {
                 this->unk60 -= sp74;
                 break;
             }
-            if (func_80386BEC(this, 3.0f)) {
+            if (fight_func_80386BEC(this, 3.0f)) {
                 chfinalboss_phase4_setState(this, 0x1E);
             }
             break;
@@ -1798,7 +1797,7 @@ void chfinalboss_phase4_update(ActorMarker *marker) {
             break;
 
         case 33:
-            func_80386BEC(this, 3.0f);
+            fight_func_80386BEC(this, 3.0f);
             sp5C[0] = this->position[0] + (this->velocity[0] * sp74);
             sp5C[1] = this->position[1] + (this->velocity[1] * sp74);
             sp5C[2] = this->position[2] + (this->velocity[2] * sp74);
@@ -1999,22 +1998,22 @@ void chfinalboss_phase5_update(ActorMarker *marker) {
     }
     switch (this->state) {
         case 35:
-            func_80386BEC(this, 3.0f);
+            fight_func_80386BEC(this, 3.0f);
             break;
 
         case 36:
-            if (func_80386BEC(this, 9.0f) && (func_80297C6C() != 3)) {
+            if (fight_func_80386BEC(this, 9.0f) && (func_80297C6C() != 3)) {
                 chfinalboss_phase5_setState(this, 0x25);
             }
             break;
 
         case 37:
-            func_80386BEC(this, 3.0f);
+            fight_func_80386BEC(this, 3.0f);
             if (func_80297C6C() == 3) {
                 chfinalboss_phase5_setState(this, 0x24);
                 break;
             }
-            if (func_80387340(this, 1.0f)) {
+            if (fight_func_80387340(this, 1.0f)) {
                 local->unk3++;
             }
             if ((actor_animationIsAt(this, 0.9999f)) && (local->unk3 >= 5)) {
@@ -2023,7 +2022,7 @@ void chfinalboss_phase5_update(ActorMarker *marker) {
             break;
 
         case 38:
-            func_80386BEC(this, 3.0f);
+            fight_func_80386BEC(this, 3.0f);
             func_803873DC(this, 700.0f, 2400.0f);
             if (actor_animationIsAt(this, 0.9999f)) {
                 chfinalboss_phase5_setState(this, 0x27);
@@ -2035,7 +2034,7 @@ void chfinalboss_phase5_update(ActorMarker *marker) {
             if (local->unk8) {
                 func_80386C68(this, 4.5f);
             } else {
-                func_80386BEC(this, 3.0f);
+                fight_func_80386BEC(this, 3.0f);
             }
             if (this->unk60 > 0.0) {
                 this->unk60 -= dt;
@@ -2317,7 +2316,7 @@ void chfinalboss_update(Actor *this){
         func_80386628(this->marker, 1);
         func_8038FC00();
 
-        func_80386654(1.0f, D_80391380, D_80391390);
+        func_80386654(1.0f, fight_D_80391380, fight_D_80391390);
         func_8028F784(1);
         func_8028F4B8(D_80391804, 2000.0f, -2800.0f);
         func_8028FA14(0x93, 2);
@@ -2384,7 +2383,7 @@ void chfinalboss_update(Actor *this){
     }//L8038C0C8
 }
 
-void func_8038C0DC(f32 (*arg0)[3]) {
+void fight_func_8038C0DC(f32 (*arg0)[3]) {
     (*arg0)[0] = D_80392798[0];
     (*arg0)[1] = D_80392798[1];
     (*arg0)[2] = D_80392798[2];

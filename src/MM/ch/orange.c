@@ -11,13 +11,13 @@
 f32 func_80309724(f32*);
 
 /* public functions */
-void    func_80387FF4(Actor *this);
+void    MM_func_80387FF4(Actor *this);
 Actor*  func_80388188(ActorMarker *, Gfx **, Mtx**, Vtx**);
 
 /* .data */
 ActorInfo chorangeInfo = { MARKER_C_ORANGE_PROJECTILE, ACTOR_14_ORANGE_PROJECTILE, ASSET_2D2_MODEL_ORANGE, 
     1, NULL,
-    func_80387FF4, func_80326224, func_80388188,
+    MM_func_80387FF4, func_80326224, func_80388188,
     0, 0, 0.6f, 0
 };
 
@@ -35,7 +35,7 @@ void func_80387F90(ActorMarker *arg0, ActorMarker *other_marker){
     if(arg0);
 }
 
-void func_80387FF4(Actor * this){
+void MM_func_80387FF4(Actor * this){
     f32 temp_f2;
     f32 temp_f0;
 

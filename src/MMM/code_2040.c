@@ -160,7 +160,7 @@ ActorInfo D_8038BDFC = {
 s32 D_8038BE20[4] = {0x87, 0x87, 0x87, 0xB4};
 
 /* .code */
-f32 func_80388430(Actor *this, s32 arg1, s32 arg2, f32 arg3) {
+f32 MMM_func_80388430(Actor *this, s32 arg1, s32 arg2, f32 arg3) {
     f32 sp4C[3];
     f32 sp40[3];
     f32 sp34[3];
@@ -230,11 +230,11 @@ void func_803888B8(Actor *this){
         case 4:
             switch(this->marker->unk14_20){
                 case 0x9F:
-                    this->roll = func_80388430(this, 0, -1, this->roll);
+                    this->roll = MMM_func_80388430(this, 0, -1, this->roll);
                     break;
                 case 0xa0:
                 case 0xff:
-                    this->pitch = func_80388430(this, 2, 1, this->pitch);
+                    this->pitch = MMM_func_80388430(this, 2, 1, this->pitch);
                     break;
             }
             break;
@@ -390,7 +390,7 @@ void func_803890B8(Actor *this) {
     func_8038AC04();
 }
 
-void func_803890E0(void){
+void MMM_func_803890E0(void){
     spawnableActorList_add(&D_8038BC28, actor_new, 0);
     spawnableActorList_add(&D_8038BCDC, actor_new, 0);
     spawnableActorList_add(&D_8038BC4C, actor_new, 0);

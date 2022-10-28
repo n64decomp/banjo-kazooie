@@ -12,7 +12,7 @@ typedef struct {
 }ActorLocal_RBB_9840;
 
 /* .data */
-s16 D_80390E30[2] = {0x177, 0x17F};
+s16 RBB_D_80390E30[2] = {0x177, 0x17F};
 ActorInfo D_80390E34 = {
     0x1D2, 0x31B, 0x0, 0x0, NULL,
     func_8038FC48, NULL, func_80325340,
@@ -38,7 +38,7 @@ void func_8038FC48(Actor *this){
     if(!this->unk16C_4){
         this->unk16C_4 = 1;
         actor_collisionOff(this);
-        local->unk4 = D_80390E30 + (this->marker->unk14_20 - 0x1d2);
+        local->unk4 = RBB_D_80390E30 + (this->marker->unk14_20 - 0x1d2);
         local->unk8 = NULL;
         
         local->unk0 = func_802F9AA8(0x400);

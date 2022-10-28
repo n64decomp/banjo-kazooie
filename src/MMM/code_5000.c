@@ -86,7 +86,7 @@ void func_8038B630(Struct5Fs *arg0, Struct68s *arg1){
 
 }
 
-void func_8038B6D4(Struct5Fs * arg0, Struct68s *arg1) {
+void MMM_func_8038B6D4(Struct5Fs * arg0, Struct68s *arg1) {
     arg0->unk0 = 1.0f;
     func_8038B6FC(arg0, arg1);
 }

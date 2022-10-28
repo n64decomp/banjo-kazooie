@@ -7,7 +7,7 @@ void func_80329904(ActorMarker *, s32, void *);
 
 
 void func_8038A948(Actor *this);
-void func_8038A9C0(Actor *this);
+void GV_func_8038A9C0(Actor *this);
 Actor *func_8038A7A0(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 
 /* .data */
@@ -18,7 +18,7 @@ ActorAnimationInfo D_80391000[] = {
 
 ActorInfo D_80391010 = { MARKER_A7_MAGIC_CARPET_1, ACTOR_119_MAGIC_CARPET_1, ASSET_3DC_MODEL_MAGIC_CARPET, 
     0x1, D_80391000, 
-    func_8038A948, func_8038A9C0, func_8038A7A0, 
+    func_8038A948, GV_func_8038A9C0, func_8038A7A0, 
     2500, 0, 0.0f, 0
 };
 
@@ -73,7 +73,7 @@ void func_8038A948(Actor *this){
     }
 }
 
-void func_8038A9C0(Actor *this){
+void GV_func_8038A9C0(Actor *this){
     Actor * sp24;
     if(!this->initialized){
         this->initialized = TRUE;

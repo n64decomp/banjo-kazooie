@@ -7,7 +7,7 @@
     #define CORE2_DATA_CRC2 0
 #endif
 
-extern s32 D_803727F4;
+extern s32 core1_D_803727F4 = CORE2_DATA_CRC2;
 
 extern struct {
     u8 pad0[4];
@@ -74,7 +74,7 @@ f32 func_8024E420(s32 arg0, s32 arg1, s32 arg2) {
     f32 phi_f2;
 
     phi_f2 = 0.0125f;
-    if ((D_80379B90.unk4 != D_803727F4) || (D_80379B90.unkC != D_80276574)) {
+    if ((D_80379B90.unk4 != core1_D_803727F4) || (D_80379B90.unkC != D_80276574)) {
         phi_f2 = 0.00625f;
     }
     if (arg0 > 0) {

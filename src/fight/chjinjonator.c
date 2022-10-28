@@ -7,7 +7,7 @@ extern void func_80328B8C(Actor *, s32, f32, s32);
 extern void func_80324CFC(f32, s32, s32);
 extern void func_802F9E44(s32, f32, f32, f32, f32);
 extern void func_80387470(Actor *, f32 [3], f32, f32, f32, f32, f32);
-extern void func_8038C0DC(f32[3]);
+extern void fight_func_8038C0DC(f32[3]);
 
 extern void chbossjinjo_spawnParticles(Actor *, enum asset_e, enum asset_e, f32);
 
@@ -282,7 +282,7 @@ void chjinjonator_update(Actor *this){
         case 7: //80390B78
             sp50 = local->unk24*0.11 + 1.0;
             chjinjonator_80390278(this);
-            func_8038C0DC(local->unk8);
+            fight_func_8038C0DC(local->unk8);
             local->unk8[1] += 100.0f;
             func_80387470(this, local->unk8, sp50*2400.0f, sp50*2400.0f*4.2, 170.0f, sp50*2500.0f, 0.0f);
             break;
@@ -358,7 +358,7 @@ void chjinjonator_update(Actor *this){
         case 12: //80390F7C
             sp48 = local->unk24*0.11 + 1.0;
             chjinjonator_80390278(this);
-            func_8038C0DC(local->unk8);
+            fight_func_8038C0DC(local->unk8);
             local->unk8[1] += 100.0f; 
             func_80387470(this, local->unk8, sp48*2400.0f, sp48*2400.0f*4.2, 170.0f, sp48*2500.0f, 0.0f);
             break;

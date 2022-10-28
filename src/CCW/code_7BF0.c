@@ -25,7 +25,7 @@ void func_8038DFE0(Actor* actor) {
     actor->unk38_31 = randi2(0, 0);
 }
 
-void func_8038E034(Actor* actor) {
+void CCW_func_8038E034(Actor* actor) {
     func_80328B8C(actor, 2, 0.001f, 1);
 }
 
@@ -101,7 +101,7 @@ void func_8038E0C8(Actor *this) {
             && (this->unk38_31 == 0) 
             && (player_getTransformation() == TRANSFORM_1_BANJO)
         ) {
-            func_8038E034(this);
+            CCW_func_8038E034(this);
         }
         break;
 

@@ -213,7 +213,7 @@ Acmd *n_alAudioFrame(Acmd *cmdList, s32 *cmdLen, s16 *outBuf, s32 outLen)
  * Synthesis driver private interfaces
  ***********************************************************************/
 
-ALParam *__allocParam() 
+ALParam *__n_allocParam() 
 {
     ALParam *update = 0;
 

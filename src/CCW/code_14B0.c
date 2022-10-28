@@ -21,7 +21,7 @@ typedef struct {
     f32 unk18[3];
 }ActorLocal_CCW_14B0;
 
-void func_80387A40(Actor *this);
+void CCW_func_80387A40(Actor *this);
 
 /* .data */
 Struct_CCW_14B0_0 D_8038EC00[] = {
@@ -30,7 +30,7 @@ Struct_CCW_14B0_0 D_8038EC00[] = {
     0
 };
 
-ActorInfo D_8038EC14 = { 0x1AF, 0x29C, 0x446, 0x0, NULL, func_80387A40, NULL, func_80325888, 0, 0, 1.0f, 0};
+ActorInfo D_8038EC14 = { 0x1AF, 0x29C, 0x446, 0x0, NULL, CCW_func_80387A40, NULL, func_80325888, 0, 0, 1.0f, 0};
 
 /* .code */
 void func_803878A0(Actor *this, s32 next_state) {
@@ -53,12 +53,12 @@ void func_803878A0(Actor *this, s32 next_state) {
     this->state = next_state;
 }
 
-void func_80387A20(Actor *this){
+void CCW_func_80387A20(Actor *this){
     ActorLocal_CCW_14B0 *local = (ActorLocal_CCW_14B0 *)&this->local;
     func_8030DA44(local->unk0);
 }
 
-void func_80387A40(Actor *this) {
+void CCW_func_80387A40(Actor *this) {
     ActorLocal_CCW_14B0 *local;
     f32 sp68;
     f32 sp5C[3];
@@ -71,7 +71,7 @@ void func_80387A40(Actor *this) {
     sp68 = time_getDelta();
     if (!this->unk16C_4) {
         this->unk16C_4 = TRUE;
-        this->marker->unk30 = func_80387A20;
+        this->marker->unk30 = CCW_func_80387A20;
         local->unk4 = &D_8038EC00[0];
         while((local->unk4->unk0 != 0) && (map_get() != local->unk4->unk0)) {
             local->unk4++;

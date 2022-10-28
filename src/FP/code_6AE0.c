@@ -5,7 +5,7 @@
 extern void func_80324CD8(f32);
 extern Actor *func_8032813C(enum actor_e, f32[3], s32);
 
-Actor *func_8038CED0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
+Actor *FP_func_8038CED0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void func_8038D6C8(Actor *this);
 
 /* .data */
@@ -19,7 +19,7 @@ ActorAnimationInfo D_803920C0[] ={
 
 ActorInfo D_803920E8 = { 0x204, 0x336, 0x442,
     0x1, D_803920C0,
-    func_8038D6C8, func_80326224, func_8038CED0,
+    func_8038D6C8, func_80326224, FP_func_8038CED0,
     0, 0, 0.0f, 0
 };
 
@@ -115,7 +115,7 @@ enum actor_e D_8039236C[4] = {
 f32 D_8039237C[3] = {-3940.0f, 69.0f, 3570.0f};
 
 /* .code */
-Actor *func_8038CED0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
+Actor *FP_func_8038CED0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     Actor *this = marker_getActor(marker);
     if( func_8038BFA0() || func_8031FF1C(BKPROG_13) ){
         if(0.0f == this->velocity[1])

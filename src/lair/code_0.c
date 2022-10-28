@@ -20,25 +20,25 @@ extern void  *func_8034C2C4(ActorMarker *, s32);
 
 
 
-void   func_803863F0(Actor *this);
-void   func_803864B0(Actor *this);
-void   func_80386550(Actor *this);
+void   lair_func_803863F0(Actor *this);
+void   lair_func_803864B0(Actor *this);
+void   lair_func_80386550(Actor *this);
 Actor *func_8038664C(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void   func_80386D78(Actor *this);
-void   SM_CRCs_are_valid(Actor *this);
+void   func_80386780(Actor *this);
 void   func_803867A8(Actor *this);
 void   func_80386D20(Actor *this);
 void   func_803870DC(Actor *this);
-Actor *func_80387560(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
+Actor *lair_func_80387560(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void   func_80387730(Actor *this);
 void   func_803880BC(Actor *this);
 void   func_8038824C(Actor *this);
 void   func_803882B0(Actor *this);
 void   func_80388524(Actor *this);
 void   func_80388FC8(Actor *this);
-void   func_80389204(Actor *this);
+void   lair_func_80389204(Actor *this);
 void   func_803893B8(Actor *this);
-void   func_803894B0(Actor *this);
+void   lair_func_803894B0(Actor *this);
 void   func_8038982C(Actor *this);
 void   func_80389898(Actor *this);
 void   func_80389D08(Actor *this);
@@ -57,7 +57,7 @@ void   func_80389FF4(Actor *this);
 void   func_8038A014(Actor *this);
 void   func_8038A034(Actor *this);
 void   func_8038A064(Actor *this);
-void   func_8038A084(Actor *this);
+void   lair_func_8038A084(Actor *this);
 void   func_8038A0A4(Actor *this);
 
 extern ActorInfo D_80393560;
@@ -86,7 +86,7 @@ extern ActorInfo D_80394C94;
 
 /* .data */
 extern ActorAnimationInfo D_80392CB0[];
-extern ActorInfo D_80392D90 = { 0x270, 0x2D8, 0x3B2, 0x1, NULL, func_802D3D54, func_80326224, func_80325E78, 0, 0, 0.0f, 0};
+extern ActorInfo lair_D_80392D90 = { 0x270, 0x2D8, 0x3B2, 0x1, NULL, func_802D3D54, func_80326224, func_80325E78, 0, 0, 0.0f, 0};
 extern ActorInfo D_80392DB4 = { 0x110, 0x214, 0x4AB, 0x1, D_80392CB0, func_803896D4, func_80326224, func_80325888, 0, 0, 0.0f, 0};
 extern ActorInfo D_80392DD8 = { 0x113, 0x217, 0x4A9, 0x1, D_80392CB0, func_803896F4, func_80326224, func_80325888, 0, 0, 0.0f, 0};
 extern ActorInfo D_80392DFC = { 0x115, 0x219, 0x4AA, 0x1, D_80392CB0, func_80389714, func_80326224, func_80325888, 0, 0, 0.0f, 0};
@@ -95,14 +95,14 @@ extern ActorInfo D_80392E44 = { 0x11C, 0x222, 0x4B2, 0x1, D_80392CB0, func_80389
 extern ActorInfo D_80392E68 = { 0x11D, 0x223, 0x4B0, 0x1, D_80392CB0, func_80389784, func_80326224, func_80325888, 0, 0, 0.0f, 0};
 extern ActorInfo D_80392E8C = { 0x232, 0x23C, 0x4B8, 0x1, D_80392CB0, func_803897AC, func_80326224, func_80325888, 0, 0, 0.0f, 0};
 extern ActorInfo D_80392EB0 = { 0x23F, 0x246, 0x534, 0x1, D_80392CB0, func_80386D20, func_80326224, func_80325888, 0, 0, 0.0f, 0};
-extern ActorInfo D_80392ED4 = { 0x241, 0x248, 0x540, 0x1, D_80392CB0, SM_CRCs_are_valid, func_80326224, func_80325888, 0, 0, 0.0f, 0};
-extern ActorInfo D_80392EF8 = { 0x109, 0x20D, 0x4A1, 0x1, D_80392CB0, func_80386550, func_80326224, func_80325888, 0, 0, 0.0f, 0x85};
+extern ActorInfo D_80392ED4 = { 0x241, 0x248, 0x540, 0x1, D_80392CB0, func_80386780, func_80326224, func_80325888, 0, 0, 0.0f, 0};
+extern ActorInfo D_80392EF8 = { 0x109, 0x20D, 0x4A1, 0x1, D_80392CB0, lair_func_80386550, func_80326224, func_80325888, 0, 0, 0.0f, 0x85};
 extern ActorInfo D_80392F1C = { 0x264, 0x2E5, 0x550, 0x19, D_80392CB0, func_80388524, func_80326224, func_80325888, 0, 0, 0.0f, 0};
-extern ActorInfo D_80392F40 = { 0x224, 0x230, 0x4BF, 0xB, D_80392CB0, func_803863F0, func_80326224, func_80325888, 0, 0, 0.0f, 0x88};
-extern ActorInfo D_80392F64 = { 0x225, 0x231, 0x4D5, 0xE, D_80392CB0, func_803864B0, func_80326224, func_80325888, 0, 0, 0.0f, 0x88};
+extern ActorInfo D_80392F40 = { 0x224, 0x230, 0x4BF, 0xB, D_80392CB0, lair_func_803863F0, func_80326224, func_80325888, 0, 0, 0.0f, 0x88};
+extern ActorInfo D_80392F64 = { 0x225, 0x231, 0x4D5, 0xE, D_80392CB0, lair_func_803864B0, func_80326224, func_80325888, 0, 0, 0.0f, 0x88};
 extern ActorInfo D_80392F88 = { 0x111, 0x215, 0x4A4, 0x1, NULL, func_80388FC8, func_80326224, func_80325E78, 0, 0, 0.0f, 0};
 extern ActorInfo D_80392FAC = { 0x112, 0x216, 0x4A5, 0x1, NULL, func_80388FC8, func_80326224, func_80325E78, 0, 0, 0.0f, 0};
-extern ActorInfo D_80392FD0 = { 0x114, 0x218, 0x4A6, 0x1, NULL, func_80389204, func_80326224, func_80325E78, 0, 0, 0.0f, 0};
+extern ActorInfo D_80392FD0 = { 0x114, 0x218, 0x4A6, 0x1, NULL, lair_func_80389204, func_80326224, func_80325E78, 0, 0, 0.0f, 0};
 extern ActorInfo D_80392FF4 = { 0x10D, 0x211, 0x4A3, 0x1, NULL, func_80388524, func_80326224, func_80325E78, 0, 0, 0.0f, 0};
 extern ActorInfo D_80393018 = { 0x22C, 0x23A, 0x4D9, 0x1, NULL, func_803882B0, func_80326224, func_80325E78, 0, 0, 0.0f, 0};
 extern ActorInfo D_8039303C = { 0x164, 0x259, 0x507, 0x1, NULL, func_803880BC, func_80326224, func_80325E78, 0, 0, 0.0f, 0};
@@ -118,16 +118,16 @@ extern ActorInfo D_80393180 = { 0x228, 0x235, 0x4D7, 0x1, NULL, func_80388524, f
 extern ActorInfo D_803931A4 = { 0x229, 0x236, 0x4D8, 0x1, NULL, func_80388524, func_80326224, func_80325E78, 0, 0, 0.0f, 0x8B};
 extern ActorInfo D_803931C8 = { MARKER_121_GLASS_EYE, ACTOR_227_GLASS_EYE, ASSET_4BD_MODEL_GLASS_EYE, 0x1, NULL, func_8038A034, func_80326224, func_80325888, 0, 0, 0.0f, 0x89};
 extern ActorInfo D_803931EC = { 0x116, 0x21A, 0x4AC, 0x1, NULL, func_803893B8, func_80326224, func_80325E78, 0, 0, 0.0f, 0x82};
-extern ActorInfo D_80393210 = { 0x117, 0x21B, 0x4AD, 0x1, NULL, func_803894B0, func_80326224, func_80325E78, 0, 0, 0.0f, 0x82};
+extern ActorInfo D_80393210 = { 0x117, 0x21B, 0x4AD, 0x1, NULL, lair_func_803894B0, func_80326224, func_80325E78, 0, 0, 0.0f, 0x82};
 extern ActorInfo D_80393234 = { 0x10B, 0x20F, 0x4B4, 0x1, NULL, func_80388524, func_80326224, func_80325E78, 0, 0, 0.0f, 0x90};
 extern ActorInfo D_80393258 = { 0x10C, 0x210, 0x4AE, 0x1, NULL, func_80388524, func_80326224, func_80325E78, 0, 0, 0.0f, 0x84};
 extern ActorInfo D_8039327C = { 0x10E, 0x212, 0x4A7, 0x1, NULL, func_80388524, func_80326224, func_80325E78, 0, 0, 0.0f, 0x7F};
 extern ActorInfo D_803932A0 = { 0x120, 0x226, 0x4BC, 0x1, NULL, func_80388524, func_80326224, func_80325E78, 0, 0, 0.0f, 0x87};
 extern ActorInfo D_803932C4 = { 0x122, 0x228, 0x4BE, 0x1, NULL, func_80388524, func_80326224, func_80325E78, 0, 0, 0.0f, 0x8C};
 extern ActorInfo D_803932E8 = { 0x10F, 0x213, 0x4A8, 0x1, NULL, func_803875F0, func_80326224, func_80325E78, 0, 0, 0.0f, 0x80};
-extern ActorInfo D_8039330C = { 0x118, 0x21E, 0x4B1, 0x1, NULL, func_8038A084, func_80326224, func_80325E78, 0, 0, 0.0f, 0x8F};
+extern ActorInfo D_8039330C = { 0x118, 0x21E, 0x4B1, 0x1, NULL, lair_func_8038A084, func_80326224, func_80325E78, 0, 0, 0.0f, 0x8F};
 extern ActorInfo D_80393330 = { 0x119, 0x21F, 0x4B6, 0x1, NULL, func_8038A0A4, func_80326224, func_80325E78, 0, 0, 0.0f, 0x92};
-extern ActorInfo D_80393354 = { 0x266, 0x2E3, 0x563, 0x1, NULL, func_803870DC, func_80326224, func_80387560, 0, 0, 0.0f, 0};
+extern ActorInfo D_80393354 = { 0x266, 0x2E3, 0x563, 0x1, NULL, func_803870DC, func_80326224, lair_func_80387560, 0, 0, 0.0f, 0};
 extern ActorInfo D_80393378 = { 0x17D, 0x1E1, 0x517, 0x1, NULL, func_80389D08, func_80326224, func_80389E10, 0, 0, 0.0f, 0x8D};
 extern ActorInfo D_8039339C = { 0x234, 0x23E, 0x4E1, 0x12, D_80392CB0, func_8038982C, func_80326224, func_80325E78, 0, 0, 0.0f, 0};
 extern ActorInfo D_803933C0 = { 0x163, 0x258, 0x511, 0x12, D_80392CB0, func_80389898, func_80326224, func_8038664C, 0, 0, 0.0f, 0x8E};
@@ -147,7 +147,7 @@ extern s32       D_80393504[4];
 
 
 //chcobweb
-void func_803863F0(Actor *this)
+void lair_func_803863F0(Actor *this)
 {
     if(!this->initialized)
     {
@@ -171,7 +171,7 @@ void func_803863F0(Actor *this)
 }
 
 //chbigyellowcobweb
-void func_803864B0(Actor *this)
+void lair_func_803864B0(Actor *this)
 {
     if (!this->initialized)
     {
@@ -194,7 +194,7 @@ void func_803864B0(Actor *this)
     }
 }
 
-void func_80386550(Actor *this)
+void lair_func_80386550(Actor *this)
 {
     if (!this->initialized)
     {
@@ -265,7 +265,7 @@ ParticleEmitter *func_803866D8(s32 a0)
     return ptr;
 }
 
-void SM_CRCs_are_valid(Actor *this)
+void func_80386780(Actor *this)
 {
     func_802D4AC0(this, 0x8000C6, 0xC7);
 }
@@ -376,7 +376,7 @@ void func_80386D20(Actor *this)
     func_802D4A9C(this, 0);
 }
 
-void chwasp_setState(void)
+void func_80386D40(void)
 {
     func_802D68F0(0xC);
     item_set(ITEM_6_HOURGLASS, TRUE);
@@ -442,7 +442,7 @@ void func_80386D78(Actor *this) {
         this->unk60 = 26.0f;
         this->position[1] = this->unk1C[1];
         func_802BAFE4(0x80);
-        timedFunc_set_0(3.0f, chwasp_setState);
+        timedFunc_set_0(3.0f, func_80386D40);
     }
 }
 
@@ -520,7 +520,7 @@ void func_803870DC(Actor *this) {
     }
 }
 
-Actor *func_80387560(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx)
+Actor *lair_func_80387560(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx)
 {
     Actor *actor = marker_getActor(marker);
     u32 i;
@@ -853,7 +853,7 @@ void func_8038824C(Actor *this)
 }
 
 
-void func_80388278(Actor *this)
+void lair_func_80388278(Actor *this)
 {
     void func_802F9D38(s32);
 
@@ -1145,7 +1145,7 @@ void func_80388524(Actor *this) {
                 this->position[1] += 5.0f;
                 if (this->unk1C[1] < this->position[1]) {
                     func_80388404(0x36, SFX_6C_LOCKUP_CLOSING, 1.0f, 15000);
-                    func_80388278(this);
+                    lair_func_80388278(this);
                     marker_despawn(this->marker);
                 }
                 break;
@@ -1154,7 +1154,7 @@ void func_80388524(Actor *this) {
                 this->position[1] += 5.0f;
                 if (this->unk1C[1] < this->position[1]) {
                     func_80388404(0x33, SFX_7F_HEAVYDOOR_SLAM, 1.0f, 17000);
-                    func_80388278(this);
+                    lair_func_80388278(this);
                     marker_despawn(this->marker);
                 }
                 break;
@@ -1179,7 +1179,7 @@ void func_80388524(Actor *this) {
                 this->position[1] += 5.0f;
                 if (this->unk1C[1] < this->position[1]) {
                     func_80388404(0x38, SFX_7F_HEAVYDOOR_SLAM, 1.0f, 17000);
-                    func_80388278(this);
+                    lair_func_80388278(this);
                     marker_despawn(this->marker);
                 }
                 break;
@@ -1196,7 +1196,7 @@ void func_80388524(Actor *this) {
                 this->position[1] += 3.2;
                 if (this->unk1C[1] <= this->position[1]) {
                     func_80388404(0x39, SFX_6C_LOCKUP_CLOSING, 1.0f, 20000);
-                    func_80388278(this);
+                    lair_func_80388278(this);
                     marker_despawn(this->marker);
                 }
                 break;
@@ -1206,7 +1206,7 @@ void func_80388524(Actor *this) {
                     sp28 = func_80326EEC(0x236);
                     this->unk1C[0] += 3.6;
                     if (this->unk1C[0] > 250.0f) {
-                        func_80388278(this);
+                        lair_func_80388278(this);
                         marker_despawn(this->marker);
                         marker_despawn(sp28->marker);
                         func_80320004(0x35, TRUE);
@@ -1299,7 +1299,7 @@ void func_80388FC8(Actor *this)
     }
 }
 
-void func_80389204(Actor *this)
+void lair_func_80389204(Actor *this)
 {
     func_802D3D74(this);
 
@@ -1399,7 +1399,7 @@ void func_803893B8(Actor *this)
     }
 }
 
-void func_803894B0(Actor *this)
+void lair_func_803894B0(Actor *this)
 {
     void func_802EE2E8(Actor *, s32, s32, s32, f32, f32, f32);
     func_802D3D74(this);
@@ -1511,7 +1511,7 @@ void func_80389898(Actor *this)
             if (this->unk10_12)
             {
                 func_80328AC8(this, 0x13);
-                func_803298AC(this);
+                actor_playAnimationOnce(this);
                 func_80320004(BKPROG_9E_CRYPT_COFFIN_LID_OPEN, TRUE);
             }
 
@@ -1561,7 +1561,7 @@ void func_80389934(Actor *this)
             if (--this->unk1C[0] == 0)
             {
                 func_80328AC8(this, 0x17);
-                func_803298AC(this);
+                actor_playAnimationOnce(this);
                 FUNC_8030E624(SFX_3F6_UNKNOWN, 0.6f, 32000);
                 func_8025A6EC(COMUSIC_3D_JIGGY_SPAWN, 0x7FFF);
             }
@@ -1766,7 +1766,7 @@ void func_8038A064(Actor *this)
     func_80389FA8(this, BKPROG_C5_RAREWARE_BOX_BROKEN);
 }
 
-void func_8038A084(Actor *this)
+void lair_func_8038A084(Actor *this)
 {
     func_80389FA8(this, BKPROG_CD_GRATE_TO_WATER_SWITCH_3_OPEN);
 }
@@ -1776,7 +1776,7 @@ void func_8038A0A4(Actor *this)
     func_80389FA8(this, BKPROG_CE_GRATE_TO_MMM_PUZZLE_OPEN);
 }
 
-void func_8038A0C4(void)
+void lair_func_8038A0C4(void)
 {
     spawnableActorList_add(&D_80392F40, actor_new, 0x18628);
     spawnableActorList_add(&D_80392F64, actor_new, 0x18608);
@@ -1847,5 +1847,5 @@ void func_8038A0C4(void)
     spawnableActorList_add(&D_80394CF0, actor_new, 0x80508);
     spawnableActorList_add(&D_80394C94, actor_new, 0x500);
     spawnableActorList_add(&D_80393354, actor_new, 0x8602);
-    spawnableActorList_add(&D_80392D90, actor_new, 0x20000);
+    spawnableActorList_add(&lair_D_80392D90, actor_new, 0x20000);
 }

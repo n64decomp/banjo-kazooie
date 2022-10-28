@@ -2,11 +2,11 @@
 #include "functions.h"
 #include "variables.h"
 
-Actor *func_8038954C(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
+Actor *CCW_func_8038954C(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void func_803895F4(Actor *this);
 
 /* .data */
-ActorInfo D_8038EE70 = { 0x1B3, 0x2A0, 0x483, 0x0, NULL, func_803895F4, NULL, func_8038954C, 0, 0, 0.0f, 0};
+ActorInfo D_8038EE70 = { 0x1B3, 0x2A0, 0x483, 0x0, NULL, func_803895F4, NULL, CCW_func_8038954C, 0, 0, 0.0f, 0};
 
 /* .code */
 void func_80389440(Actor *this, s32 next_state) {
@@ -33,7 +33,7 @@ void func_8038950C(ActorMarker* marker, ActorMarker* other_marker) {
     }
 }
 
-Actor *func_8038954C(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
+Actor *CCW_func_8038954C(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     Actor *this;
 
     this = marker_getActor(marker);

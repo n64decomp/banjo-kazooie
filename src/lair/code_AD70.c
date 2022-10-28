@@ -72,7 +72,7 @@ void func_80391160(f32 pos[3], u32 count)
     particleEmitter_emitN(p, count);
 }
 
-void func_80391254(f32 pos[3], u32 count, enum asset_e sprite)
+void lair_func_80391254(f32 pos[3], u32 count, enum asset_e sprite)
 {
     ParticleEmitter *p = partEmitList_pushNew(count);
     particleEmitter_setSprite(p, sprite);
@@ -189,8 +189,8 @@ void func_80391810(Actor *this, s32 next_state) {
         break;
     case 2:
         FUNC_8030E8B4(SFX_148_GRUNTY_SPELL_LANDING, 1.0f, 20000, this->position, 1500, 3000);
-        func_80391254(this->position, 2, 0x4A0);
-        func_80391254(this->position, 2, 0x6C1);
+        lair_func_80391254(this->position, 2, 0x4A0);
+        lair_func_80391254(this->position, 2, 0x6C1);
         func_80391160(this->position, 4);
         func_8039137C(this->position, 4, 0x711);
         func_8039137C(this->position, 4, 0x712);

@@ -22,12 +22,12 @@ s32      D_8027BEE8;
 s32      D_8027BEEC;
 u64      D_8027BEF0;
 
-extern u8 D_80286F90;
+extern u8 core2_TEXT_START[];
 
 extern u16 D_803A5D00[2][0x1ECC0/2];
 
 void func_8023DA20(s32 arg0){ 
-    bzero(&D_8027A130, &D_80286F90 - (u8*)&D_8027A130);
+    bzero(&D_8027A130, core2_TEXT_START - (u8*)&D_8027A130);
     osWriteBackDCacheAll();
     sns_find_and_parse_payload();
     osInitialize();

@@ -22,25 +22,25 @@ ActorInfo D_80390C88 = {MARKER_6D_TANKTUP_LEG, ACTOR_E9_TANKTUP_LEG_FL, ASSET_3E
 };
 u8 pad_80390CCC[4] = {0};
 
-ActorAnimationInfo D_80390CB0[3] = {
+ActorAnimationInfo BGS_D_80390CB0[3] = {
     {0, 0.0f},
     {0x104, 8000000.0f},
     {0x104, 0.75f}
 };
 
-ActorInfo D_80390CC8 = {MARKER_6D_TANKTUP_LEG, ACTOR_EA_TANKTUP_LEG_BL, ASSET_3F0_MODEL_TANKTUP_LEG_BL, 0x01, D_80390CB0,
+ActorInfo D_80390CC8 = {MARKER_6D_TANKTUP_LEG, ACTOR_EA_TANKTUP_LEG_BL, ASSET_3F0_MODEL_TANKTUP_LEG_BL, 0x01, BGS_D_80390CB0,
     func_8038FBF8, func_80326224, func_80325888,
     0, 0x166, 0.0f, 0
 };
 u8 pad_80390CEC[4] = {0};
 
-ActorAnimationInfo D_80390CF0[3] = {
+ActorAnimationInfo BGS_D_80390CF0[3] = {
     {0, 0.0f},
     {0x105, 8000000.0f},
     {0x105, 0.75f}
 };
 
-ActorInfo D_80390D08 = {MARKER_6D_TANKTUP_LEG, ACTOR_EB_TANKTUP_LEG_FR, ASSET_3F1_MODEL_TANKTUP_LEG_FR, 0x01, D_80390CF0,
+ActorInfo D_80390D08 = {MARKER_6D_TANKTUP_LEG, ACTOR_EB_TANKTUP_LEG_FR, ASSET_3F1_MODEL_TANKTUP_LEG_FR, 0x01, BGS_D_80390CF0,
     func_8038FBF8, func_80326224, func_80325888,
     0, 0x166, 0.0f, 0
 };
@@ -67,7 +67,7 @@ void func_8038FB40(ActorMarker *this, s32 arg1){
     FUNC_8030E624(SFX_A_BANJO_LANDING_05, 0.8f, 32750);
 }
 
-void func_8038FB84(ActorMarker *this, ActorMarker *other_marker){
+void BGS_func_8038FB84(ActorMarker *this, ActorMarker *other_marker){
     Actor *thisActor;
 
     thisActor = marker_getActor(this);
@@ -81,7 +81,7 @@ void func_8038FBF8(Actor *this){
     if(!this->initialized){
         this->initialized = 1;
         this->marker->propPtr->unk8_3 = 1;
-        marker_setCollisionScripts(this->marker, NULL, NULL, func_8038FB84);
+        marker_setCollisionScripts(this->marker, NULL, NULL, BGS_func_8038FB84);
     }
     if(this->state == 2){
         if(animctrl_isAt(this->animctrl, 0.65f)){

@@ -81,7 +81,7 @@ volatile s32 D_8028062C;
 Struct_Core1_8C50_s * D_80280630[20];
 volatile s32 D_80280680;
 volatile s32 D_80280684;
-s32 D_80280688;
+void* D_80280688;
 OSTimer D_80280690; //audio_timer
 OSTimer D_802806B0; //controller_timer
 s32 D_802806D0;
@@ -216,7 +216,7 @@ void func_80246B94(void){
 void func_80246C2C(void){
     if((D_8027FC14 << 1) < 0){
         osDpSetStatus(DPC_SET_FREEZE);
-        D_80280688 = osViGetCurrFrameBuffer();
+        D_80280688 = osViGetCurrentFramebuffer();
         func_8024BFAC();
     }
     D_8027FC14 = D_8027FC18 = 2;
@@ -239,7 +239,7 @@ void func_80246D78(void){
     volatile s32 sp30;
 
     sp30 = FALSE;
-    if( osViGetCurrFrameBuffer() != D_80280688 || sp2C){
+    if( osViGetCurrentFramebuffer() != D_80280688 || sp2C){
         if(osDpGetStatus() & DPC_STATUS_FREEZE){
             osDpSetStatus(DPC_CLR_FREEZE);
 

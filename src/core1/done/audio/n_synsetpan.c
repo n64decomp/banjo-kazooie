@@ -22,6 +22,6 @@ void    n_alSynSetPan(N_ALVoice *v, u8 pan)
         update->data.i = pan;
         update->next   = 0;
 
-        n_alEnvmixerResampleParam(v->pvoice, AL_FILTER_ADD_UPDATE, update);        
+        n_alEnvmixerParam(v->pvoice, AL_FILTER_ADD_UPDATE, update);        
     }
 }

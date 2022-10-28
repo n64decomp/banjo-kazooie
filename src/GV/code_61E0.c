@@ -2,8 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
-void func_8038C658(Actor *this);
-Actor *func_8038C5D0(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
+void GV_func_8038C658(Actor *this);
+Actor *GV_func_8038C5D0(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 
 /* .data */
 ActorAnimationInfo D_80391190[] = {
@@ -17,32 +17,33 @@ ActorAnimationInfo D_80391190[] = {
 
 ActorInfo D_803911C0 = { 0xAC, 0x11E, 0x3E5,
     0, D_80391190,
-    func_8038C658, func_80326224, func_8038C5D0,
+    GV_func_8038C658, func_80326224, GV_func_8038C5D0,
     0, 0, 0.0f, 0
 };
 
 /* .bss */
-s32 D_80391A90;
+u8 GV_pad2[0x10];
+s32 GV_D_80391A90;
 
 /* .code */
-Actor *func_8038C5D0(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
+Actor *GV_func_8038C5D0(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     Actor *this = marker_getActor(this_marker);
     if( this->state == 2
         || this->state == 3
         || this->state == 4
         || this->state == 5
     ){
-        if(!D_80391A90)
+        if(!GV_D_80391A90)
             return func_80325888(this_marker, gfx, mtx, vtx);
     }
     return this;
 }
 
-void func_8038C658(Actor *this){
+void GV_func_8038C658(Actor *this){
     s32 sp24;
     if(!this->initialized){
         actor_collisionOff(this);
-        D_80391A90 = FALSE;
+        GV_D_80391A90 = FALSE;
         this->initialized = TRUE;
         this->position_y += 4.0f;
     }
@@ -51,13 +52,13 @@ void func_8038C658(Actor *this){
         this->unk16C_4 = TRUE;
         func_80328B8C(this, this->state, 0.01f, 1);
     }
-    sp24 = func_8038C5BC();
-    if(D_80391A90)
+    sp24 = GV_func_8038C5BC();
+    if(GV_D_80391A90)
         marker_despawn(this->marker);
     if(this->state != sp24)
         func_80328A84(this, sp24);
 }
 
 void func_8038C748(void){
-    D_80391A90 = TRUE;
+    GV_D_80391A90 = TRUE;
 }

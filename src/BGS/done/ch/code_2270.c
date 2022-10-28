@@ -3,7 +3,7 @@
 #include "variables.h"
 
 void func_80324E88(f32);
-void func_803888E4(Actor *this, s32 arg1);
+void BGS_func_803888E4(Actor *this, s32 arg1);
 
 typedef struct{
     u32 unk0;
@@ -33,11 +33,11 @@ s16 D_8039085C[] = {0, 0xC77, 0xC79, 0xC7B}; //success texts
 u8  D_80390864[] = {3, 3, 5, 7};              //chchoirgame_sequence_length
 f32 D_80390868[3] = {0.0f, 100.0f, -1020.0f}; //chchoirgame_jiggy_position
 
-void func_80388660(ActorMarker *this){
-    func_803888E4(marker_getActor(this), 6);
+void BGS_func_80388660(ActorMarker *this){
+    BGS_func_803888E4(marker_getActor(this), 6);
 }
 
-void func_8038868C(void){
+void BGS_func_8038868C(void){
     jiggySpawn(JIGGY_27_BGS_TIPTUP, D_80390868);
 }
 
@@ -61,14 +61,14 @@ void func_803886F4(ActorMarker *this){
     thisActor = marker_getActor(this);
     item_set(ITEM_6_HOURGLASS, 1);
     item_set(ITEM_0_HOURGLASS_TIMER, 30*60-1);
-    func_803888E4(thisActor, 5);
+    BGS_func_803888E4(thisActor, 5);
 }
 
 void func_8038873C(void){
     func_8025A6EC(COMUSIC_2B_DING_B, 28000);
 }
 
-void func_80388760(void){
+void BGS_func_80388760(void){
     func_8025A6EC(COMUSIC_2C_BUZZER, 28000);
 }
 
@@ -79,20 +79,20 @@ void func_80388784(ActorMarker *this, s32 arg1, s32 arg2){
     switch(arg1){
         case 0xc72:
         case 0xc74:
-            func_803888E4(thisActor, 3);
+            BGS_func_803888E4(thisActor, 3);
             break;
         case 0xc78:
         case 0xc7a:
         case 0xc7c:
-            func_803888E4(thisActor, 4);
+            BGS_func_803888E4(thisActor, 4);
             break;
         case 0xc77:
         case 0xc79:
             func_80324E38(0.0f, 0);
-            func_803888E4(thisActor, 3);
+            BGS_func_803888E4(thisActor, 3);
             break;
         case 0xc7b:
-            timedFunc_set_0(0.0f, func_8038868C);
+            timedFunc_set_0(0.0f, BGS_func_8038868C);
             func_80324E88(2.5f);
             func_80324E38(2.5f, 0);
             break;
@@ -117,11 +117,11 @@ void func_80388848(ActorMarker *this){
         func_803204E4(5,1);
     }
     else{
-        func_80388660(thisActor->marker);
+        BGS_func_80388660(thisActor->marker);
     }
 }
 
-void func_803888E4(Actor *this, s32 arg1){
+void BGS_func_803888E4(Actor *this, s32 arg1){
     ActorLocal_BGS_2270 *unqPtr;
     f32 sp54;
 
@@ -242,7 +242,7 @@ void func_80388E94(ActorMarker *this, s32 arg1){
         }
         else{
             func_8028F55C(1, thisActor->marker);
-            timedFunc_set_0(0.5f, func_80388760);
+            timedFunc_set_0(0.5f, BGS_func_80388760);
            if(!mapSpecificFlags_get(1) && !func_803203FC(2) && func_80311480(0xc75, 0, NULL, NULL, NULL, NULL))
                mapSpecificFlags_set(1,TRUE);
         }
@@ -296,7 +296,7 @@ void func_80389080(Actor *this){
             unqPtr->unkA = 3;
             this->position_y = this->position_y - 300.0f;
         }
-        func_803888E4(this, 1);
+        BGS_func_803888E4(this, 1);
         if(jiggyscore_isSpawned(JIGGY_27_BGS_TIPTUP) && !func_803203FC(2) && !func_803203FC(1))
             marker_despawn(this->marker);
     }
@@ -315,12 +315,12 @@ void func_80389080(Actor *this){
             if(func_803203FC(2)){
                 if(func_803203FC(3)){
                     func_80324E38(0.0f,0);
-                    func_803888E4(this, 3);
+                    BGS_func_803888E4(this, 3);
                 }
             }
             else{
                 if(ml_vec3f_distance(this->position, &sp44) < 300.0f && player_getTransformation() == TRANSFORM_1_BANJO && !jiggyscore_isSpawned(JIGGY_27_BGS_TIPTUP)){
-                    func_803888E4(this, 2);
+                    BGS_func_803888E4(this, 2);
                 }
             }
         }
@@ -334,7 +334,7 @@ void func_80389080(Actor *this){
             } //L80389370
             else{
                 if(ml_vec3f_distance(this->position, &sp44) >= 300.0f)
-                    func_803888E4(this, 1);
+                    BGS_func_803888E4(this, 1);
             }
         }//L803893A0
         if(this->state == 6){

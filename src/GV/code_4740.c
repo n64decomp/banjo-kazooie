@@ -34,7 +34,7 @@ struct43s D_803910D4 = {
 };
 
 /* .bss */
-f32 D_80391A70[3];
+f32 GV_D_80391A70[3];
 
 /* .code */
 void func_8038AB30(ParticleEmitter *pCtrl, f32 position[3], s32 cnt){
@@ -233,15 +233,15 @@ void func_8038B124(Actor *this){
                 func_8038ABD8(this->position, 8);
             }
             else{
-                D_80391A70[0] = 2*this->unk28;
-                D_80391A70[1] = 0.0f;
-                D_80391A70[2] = 0.0f;
-                ml_vec3f_yaw_rotate_copy(D_80391A70, D_80391A70, this->yaw - 90.0);
+                GV_D_80391A70[0] = 2*this->unk28;
+                GV_D_80391A70[1] = 0.0f;
+                GV_D_80391A70[2] = 0.0f;
+                ml_vec3f_yaw_rotate_copy(GV_D_80391A70, GV_D_80391A70, this->yaw - 90.0);
 
-                D_80391A70[0] = D_80391A70[0] + this->position[0]; 
-                D_80391A70[1] = D_80391A70[1] + this->position[1]; 
-                D_80391A70[2] = D_80391A70[2] + this->position[2];  
-                func_8038ABD8(D_80391A70, 1);
+                GV_D_80391A70[0] = GV_D_80391A70[0] + this->position[0]; 
+                GV_D_80391A70[1] = GV_D_80391A70[1] + this->position[1]; 
+                GV_D_80391A70[2] = GV_D_80391A70[2] + this->position[2];  
+                func_8038ABD8(GV_D_80391A70, 1);
             }
             break;
 
@@ -261,10 +261,10 @@ void func_8038B124(Actor *this){
 
         case 5: //L8038B67C
             if(this->marker->unk14_21 && actor_animationIsAt(this, 0.79f)){
-                func_8034A174(this->marker->unk44, 5, D_80391A70);
-                func_8038ACEC(D_80391A70, 2);
-                func_8034A174(this->marker->unk44, 6, D_80391A70);
-                func_8038ACEC(D_80391A70, 3);
+                func_8034A174(this->marker->unk44, 5, GV_D_80391A70);
+                func_8038ACEC(GV_D_80391A70, 2);
+                func_8034A174(this->marker->unk44, 6, GV_D_80391A70);
+                func_8038ACEC(GV_D_80391A70, 3);
                 func_802BB3DC(0, 18.0f, 0.92f);
                 func_8030E878(SFX_3_DULL_CANNON_SHOT, 1.0f, 32000, this->position, 2250.0f, 4500.0f);
             }//L8038B734
@@ -304,12 +304,12 @@ void func_8038B124(Actor *this){
         case 9: //L8038B870
             func_80328A84(this, 0xA);
             func_8038ACEC(this->position, 2);
-            func_8034A174(this->marker->unk44, 5, D_80391A70);
-            func_8038ACEC(D_80391A70, 2);
-            func_8038ADFC(D_80391A70, 3);
-            func_8034A174(this->marker->unk44, 6, D_80391A70);
-            func_8038ACEC(D_80391A70, 3);
-            func_8038ADFC(D_80391A70, 2);
+            func_8034A174(this->marker->unk44, 5, GV_D_80391A70);
+            func_8038ACEC(GV_D_80391A70, 2);
+            func_8038ADFC(GV_D_80391A70, 3);
+            func_8034A174(this->marker->unk44, 6, GV_D_80391A70);
+            func_8038ACEC(GV_D_80391A70, 3);
+            func_8038ADFC(GV_D_80391A70, 2);
             break;
 
         case 10: //L8038B900

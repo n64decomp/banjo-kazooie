@@ -3,20 +3,20 @@
 #include "variables.h"
 
 Actor *func_80386B80(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
-void func_80386CF8(Actor *this);
+void FP_func_80386CF8(Actor *this);
 
 /* .data */
-ActorAnimationInfo D_80391A90[] ={
+ActorAnimationInfo FP_D_80391A90[] ={
     {0, 0.0},
     {ASSET_143_ANIM_SNOWMAN_BUTTON, 800000.0f},
     {ASSET_143_ANIM_SNOWMAN_BUTTON, 0.5f},
     {ASSET_143_ANIM_SNOWMAN_BUTTON, 800000.0f}
 };
 
-ActorInfo D_80391AB0 = { 
+ActorInfo FP_D_80391AB0 = { 
     MARKER_B9_FP_SNOWMAN_BUTTON, ACTOR_116_FP_SNOWMAN_BUTTON, ASSET_421_MODEL_FP_SNOWMAN_BUTTON, 
-    0x1, D_80391A90, 
-    func_80386CF8, func_80326224, func_80386B80, 
+    0x1, FP_D_80391A90, 
+    FP_func_80386CF8, func_80326224, func_80386B80, 
     0, 0x800, 0.0f, 0
 };
 
@@ -45,7 +45,7 @@ Actor *func_80386B80(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 
 }
 
-void func_80386BEC(Actor *this){
+void FP_func_80386BEC(Actor *this){
     f32 plyr_pos[3];
     ParticleEmitter *pCtrl = partEmitList_pushNew(12);
     
@@ -67,11 +67,11 @@ void func_80386CB8(ActorMarker *this_marker, ActorMarker *other_marker){
     Actor *this = marker_getActor(this_marker);
     
     if(this->state == 1)
-        func_80386BEC(this);
+        FP_func_80386BEC(this);
     
 }
 
-void func_80386CF8(Actor *this){
+void FP_func_80386CF8(Actor *this){
     marker_setCollisionScripts(this->marker, NULL, NULL, func_80386CB8);
     this->marker->propPtr->unk8_3 = TRUE;
     actor_collisionOn(this);

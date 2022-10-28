@@ -5,22 +5,22 @@
 void func_803867BC(Actor *this);
 
 /* .data */
-ActorAnimationInfo D_803919F0[] ={
+ActorAnimationInfo FP_D_803919F0[] ={
     {ASSET_1A1_ANIM_SLED, 1.0f},
     {ASSET_1A1_ANIM_SLED, 1.0f},
     {ASSET_1A1_ANIM_SLED, 1.0f},
     {ASSET_1A1_ANIM_SLED, 1.0f}
 };
 
-ActorInfo D_80391A10 = {
+ActorInfo FP_D_80391A10 = {
     MARKER_3B_SCARF_SLED, ACTOR_181_SCARF_SLED, ASSET_352_MODEL_SLED,
-    0, D_803919F0,
+    0, FP_D_803919F0,
     NULL,  func_803867BC, func_80325888,
     1000, 0,  0.0f, 0
 };
 
 /* .code */
-void func_803863F0(Actor *this, s32 next_state){
+void FP_func_803863F0(Actor *this, s32 next_state){
     func_80328A84(this, next_state);
     
     if(next_state == 2){
@@ -47,7 +47,7 @@ void func_803864F4(ActorMarker *this_marker, ActorMarker *other_marker){
     if(player_getTransformation() != TRANSFORM_1_BANJO) return;
 
     if(func_8028F68C(BS_INTR_27_BANJO_SLED, this->marker))
-        func_803863F0(this, 2);
+        FP_func_803863F0(this, 2);
 }
 
 void func_8038655C(Actor *this){
@@ -128,7 +128,7 @@ void func_803867BC(Actor *this){
         this->marker->propPtr->unk8_3 = TRUE;
         this->unk10_12 = 0;
         ml_vec3f_clear(this->velocity);
-        func_803863F0(this, 1);
+        FP_func_803863F0(this, 1);
     }
 
     if(!this->unk16C_4){

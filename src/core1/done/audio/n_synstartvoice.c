@@ -43,7 +43,7 @@ void n_alSynStartVoice( N_ALVoice *v, ALWaveTable *table)
         update->next   = 0;
         update->unity  = v->unityPitch;
 
-	n_alEnvmixerResampleParam(v->pvoice, AL_FILTER_ADD_UPDATE, update);        
+	n_alEnvmixerParam(v->pvoice, AL_FILTER_ADD_UPDATE, update);        
     }
 }
 

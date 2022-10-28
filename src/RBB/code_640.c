@@ -30,22 +30,22 @@ extern ActorInfo D_803908E4;
 extern ActorInfo D_80390908;
 extern ActorInfo D_803909B0;
 extern ActorInfo D_803909D4;
-extern ActorInfo D_803909F8;
+extern ActorInfo RBB_D_803909F8;
 extern ActorInfo D_80390A50;
 extern ActorInfo D_80390380;
 extern ActorInfo D_80390A80; //anchorswitch
-extern ActorInfo D_80390AB0; //dolphin
-extern ActorInfo D_80390AE0; //anchor
-extern ActorInfo D_80390B10;
+extern ActorInfo RBB_D_80390AB0; //dolphin
+extern ActorInfo RBB_D_80390AE0; //anchor
+extern ActorInfo RBB_D_80390B10;
 extern ActorInfo D_80390B40; //rarewareflag
-extern ActorInfo D_80390BD0;
+extern ActorInfo RBB_D_80390BD0;
 extern ActorInfo D_80390BF4;
 extern ActorInfo D_80390C18;
-extern ActorInfo D_80390C3C;
-extern ActorInfo D_80390CF0;
+extern ActorInfo RBB_D_80390C3C;
+extern ActorInfo RBB_D_80390CF0;
 extern ActorInfo D_80390D88;
 extern ActorInfo D_80390DAC; //TNTpart_IDStruct;
-extern ActorInfo D_80390E00;
+extern ActorInfo RBB_D_80390E00;
 extern ActorInfo D_80390E34;
 extern ActorInfo D_80390E58;
 extern ActorInfo D_803900E0;
@@ -168,7 +168,7 @@ void func_80386BF8(Actor *arg0){
     func_802D4A9C(arg0, 0);
 }
 
-void rbb_func_80386C48(void){
+void RBB_func_80386C48(void){
     spawnableActorList_add(&D_80390D20, actor_new, 0x4880);
     spawnableActorList_add(&D_80390050, actor_new, 0);
     spawnableActorList_add(&D_80390200, actor_new, 0x80);
@@ -195,22 +195,22 @@ void rbb_func_80386C48(void){
     spawnableActorList_add(&D_80390908, actor_new, 0x80);
     spawnableActorList_add(&D_803909B0, actor_new, 0x880);
     spawnableActorList_add(&D_803909D4, actor_new, 0x880);
-    spawnableActorList_add(&D_803909F8, actor_new, 0x880);
+    spawnableActorList_add(&RBB_D_803909F8, actor_new, 0x880);
     spawnableActorList_add(&D_80390A50, actor_new, 0x80);
     spawnableActorList_add(&D_80390380, actor_new, 0x9aa);
     spawnableActorList_add(&D_80390A80, actor_new, 0x80); //anchorswitch
-    spawnableActorList_add(&D_80390AB0, actor_new, 0x8C8); //dolphin
-    spawnableActorList_add(&D_80390AE0, actor_new, 0xC80); //anchor
-    spawnableActorList_add(&D_80390B10, actor_new, 0x80);
+    spawnableActorList_add(&RBB_D_80390AB0, actor_new, 0x8C8); //dolphin
+    spawnableActorList_add(&RBB_D_80390AE0, actor_new, 0xC80); //anchor
+    spawnableActorList_add(&RBB_D_80390B10, actor_new, 0x80);
     spawnableActorList_add(&D_80390B40, actor_new, 0x880); //rarewareflag
-    spawnableActorList_add(&D_80390BD0, actor_new, 0xc2c);
+    spawnableActorList_add(&RBB_D_80390BD0, actor_new, 0xc2c);
     spawnableActorList_add(&D_80390BF4, actor_new, 0xc2c);
     spawnableActorList_add(&D_80390C18, actor_new, 0xc2c);
-    spawnableActorList_add(&D_80390C3C, actor_new, 0xc2c);
-    spawnableActorList_add(&D_80390CF0, actor_new, 0x80);
+    spawnableActorList_add(&RBB_D_80390C3C, actor_new, 0xc2c);
+    spawnableActorList_add(&RBB_D_80390CF0, actor_new, 0x80);
     spawnableActorList_add(&D_80390D88, actor_new, 0x2000889);
     spawnableActorList_add(&D_80390DAC, actor_new, 0x2000889);
-    spawnableActorList_add(&D_80390E00, actor_new, 0x80);
+    spawnableActorList_add(&RBB_D_80390E00, actor_new, 0x80);
     spawnableActorList_add(&D_80390E34, actor_new, 0x80);
     spawnableActorList_add(&D_80390E58, actor_new, 0x80);
     spawnableActorList_add(&D_803900E0, actor_new, 0);

@@ -218,7 +218,7 @@ Acmd *n_alEnvmixerPull(void *filter, s32 sampleOffset,  Acmd *p)
                    * Changing to STOPPED and reset the filter
                    */
                 ptr = __n_pullSubFrame(e, &inp, &loutp, samples,  ptr);
-                 n_alEnvmixerResampleParam(e, 4, 0);
+                 n_alEnvmixerParam(e, 4, 0);
             }
             break;
 
@@ -252,7 +252,7 @@ Acmd *n_alEnvmixerPull(void *filter, s32 sampleOffset,  Acmd *p)
                * on down the chain
                */
 	            ptr = __n_pullSubFrame(e, &inp, &loutp, samples, ptr);
-               n_alEnvmixerResampleParam(e, e->em_ctrlList->type, e->em_ctrlList->data.i);
+               n_alEnvmixerParam(e, e->em_ctrlList->type, e->em_ctrlList->data.i);
               break;
         }
         loutp  += (samples<<1);

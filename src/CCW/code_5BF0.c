@@ -33,7 +33,7 @@ void func_8038C0E8(ActorMarker* marker) {
     func_8030E878(SFX_81_UUU, sp20, (s32)randf2(10000.0f, 31000.0f), sp24->position, 500.0f, 2500.0f);
 }
 
-void func_8038C16C(Actor *this, s32 next_state) {
+void CCW_func_8038C16C(Actor *this, s32 next_state) {
     Actor *other;
 
     if (next_state == 1) {
@@ -102,9 +102,9 @@ void func_8038C41C(Actor *this) {
             && !jiggyscore_isSpawned(JIGGY_4A_CCW_NABNUT) 
             && (this->marker->unk14_20 == 0x1C6 || this->marker->unk14_20 == 0x1CA)
         ){
-            func_8038C16C(this, 1);
+            CCW_func_8038C16C(this, 1);
         } else {
-            func_8038C16C(this, 2);
+            CCW_func_8038C16C(this, 2);
         }
     }
 

@@ -30,7 +30,7 @@ Struct_GV_9DB0_1 D_80391650[] = {
     {0x19F, 7, 0 },
     {0x000, 0, 0 },
 };
-f32 D_803916D8[3] = {0.0f, 100.0f, 0.0f};
+f32 GV_D_803916D8[3] = {0.0f, 100.0f, 0.0f};
 
 /*.bss */
 extern struct {
@@ -63,7 +63,7 @@ void func_80390218(void *arg0){
 }
 
 void func_80390248(void){
-    jiggySpawn(JIGGY_40_GV_MATCHING_GAME, D_803916D8);
+    jiggySpawn(JIGGY_40_GV_MATCHING_GAME, GV_D_803916D8);
 }
 
 //matchingGame_setState

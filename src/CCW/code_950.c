@@ -83,7 +83,7 @@ void func_80387124(ActorMarker* marker, ActorMarker *other_marker) {
     chwasp_setState(marker_getActor(marker), 3);
 }
 
-void func_80387150(ActorMarker* marker, ActorMarker *other_marker) {
+void CCW_func_80387150(ActorMarker* marker, ActorMarker *other_marker) {
     chwasp_setState(marker_getActor(marker), 4);
 }
 
@@ -120,7 +120,7 @@ void chwasp_update(Actor *this) {
         func_8030DD14(local->unk0, 2);
         func_8030DBB4(local->unk0, 0.9f);
         sfxsource_setSampleRate(local->unk0, 0);
-        marker_setCollisionScripts(this->marker, func_80387124, NULL, func_80387150);
+        marker_setCollisionScripts(this->marker, func_80387124, NULL, CCW_func_80387150);
         chwasp_setState(this, 1);
         return;
     }

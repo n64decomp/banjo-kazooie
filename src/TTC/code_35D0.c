@@ -9,7 +9,7 @@ typedef struct {
     s32 unk0;
 }ActorLocal_TreasureHunt;
 
-void func_80389E90(Actor *this);
+void TTC_func_80389E90(Actor *this);
 Actor *func_8038A0D0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 
 extern u32 D_8037DCB4;
@@ -38,21 +38,21 @@ s32 D_8038C898[6] = {
 ActorInfo D_8038C8B0 = {
     MARKER_62_RED_ARROW, ACTOR_53_RED_ARROW, ASSET_3E9_MODEL_RED_ARROW, 
     0, NULL, 
-    func_80389E90, func_80326224, func_8038A0D0,
+    TTC_func_80389E90, func_80326224, func_8038A0D0,
     0, 0x400, 0.0f, 0
 }; 
 
 ActorInfo D_8038C8D4 = {
     MARKER_63_RED_QUESTION_MARK, ACTOR_54_RED_QUESTION_MARK, ASSET_3EB_MODEL_RED_QUESTION_MARK, 
     0, NULL, 
-    func_80389E90, func_80326224, func_8038A0D0,
+    TTC_func_80389E90, func_80326224, func_8038A0D0,
     0, 0x400, 0.0f, 0
 }; 
 
 ActorInfo D_8038C8F8 = {
     MARKER_64_RED_X, ACTOR_55_RED_X, ASSET_3EA_MODEL_RED_X, 
     0, NULL, 
-    func_80389E90, func_80326224, func_8038A0D0,
+    TTC_func_80389E90, func_80326224, func_8038A0D0,
     0, 0x400, 0.0f, 0
 }; 
 
@@ -71,7 +71,7 @@ struct42s D_8038C950 = {
 };
 
 /* .code */
-bool func_803899C0(void) {
+bool TTC_func_803899C0(void) {
     enum comusic_e phi_a0;
     s32 phi_a1;
 
@@ -114,7 +114,7 @@ void func_80389A9C(void) {
 }
 
 void func_80389B38(s32 arg0){
-    if(D_8037DCB4 == arg0 && func_803899C0()){
+    if(D_8037DCB4 == arg0 && TTC_func_803899C0()){
         if(arg0 == 0 && !jiggyscore_isCollected(JIGGY_11_TTC_RED_X)){
             func_80311480(0xA18, 4, NULL, NULL, NULL, NULL);
         }
@@ -128,7 +128,7 @@ void func_80389B38(s32 arg0){
     }
 }
 
-void func_80389BFC(ActorMarker *this, ActorMarker *arg1){\
+void TTC_func_80389BFC(ActorMarker *this, ActorMarker *arg1){\
     func_80389B38(0);
 }
 
@@ -152,7 +152,7 @@ void func_80389CC4(s16 arg0[3], s32 arg1){
     static ParticleEmitter *D_8038D700;
     static f32 D_8038D708[3];
 
-    if(D_8037DCB4 == 5 && func_803899C0()){
+    if(D_8037DCB4 == 5 && TTC_func_803899C0()){
         D_8038D708[0] = (f32)arg0[0];
         D_8038D708[1] = (f32)arg0[1];
         D_8038D708[2] = (f32)arg0[2];
@@ -179,7 +179,7 @@ void func_80389E84(void){
     D_8037DCB4 = 0;
 }
 
-void func_80389E90(Actor *this){
+void TTC_func_80389E90(Actor *this){
     f32 tick = time_getDelta();
     ActorLocal_TreasureHunt *local = (ActorLocal_TreasureHunt*)&this->local;
     f64 tmp_f12;

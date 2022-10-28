@@ -5,7 +5,7 @@
 #include "SnS.h"
 
 extern ActorInfo D_8038C3D0;
-extern ActorInfo D_8038C510;
+extern ActorInfo TTC_D_8038C510;
 extern ActorInfo D_8038C580;
 extern ActorInfo D_8038C5E0;
 extern ActorInfo D_8038C604;
@@ -24,7 +24,7 @@ extern ActorInfo D_8038C8D4;
 extern ActorInfo D_8038C8F8;
 extern ActorInfo gChTreasureInfo;
 
-void func_80388C78(Actor *this);
+void TTC_func_80388C78(Actor *this);
 void func_80388CB8(Actor *this);
 void func_80388D34(Actor *this);
 void func_802D3D54(Actor *this);
@@ -62,21 +62,21 @@ ActorInfo D_8038C64C = {
 ActorInfo D_8038C670 = {
     0x26A, 0x2DF, 0x3BE,
     0x1, NULL, 
-    func_80388C78, func_80326224, func_80325E78,
+    TTC_func_80388C78, func_80326224, func_80325E78,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_8038C694 = {
     0x268, 0x2E0, 0x3B6,
     0x1, NULL, 
-    func_80388C78, func_80326224, func_80325E78,
+    TTC_func_80388C78, func_80326224, func_80325E78,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_8038C6B8 = {
     0x269, 0x2E1, 0x3B7,
     0x1, NULL, 
-    func_80388C78, func_80326224, func_80325E78,
+    TTC_func_80388C78, func_80326224, func_80325E78,
     0, 0, 0.0f, 0
 };
 
@@ -88,12 +88,12 @@ ActorInfo D_8038C6DC = {
 };
 
 /* .code */
-void func_80388AC0(void)
+void TTC_func_80388AC0(void)
 {
     spawnableActorList_add(&D_8038C5E0, actor_new, 0);
     spawnableActorList_add(&D_8038C604, actor_new, 0);
     spawnableActorList_add(&D_8038C580, actor_new, 0X4100168);
-    spawnableActorList_add(&D_8038C510, actor_new, 0X4000101);
+    spawnableActorList_add(&TTC_D_8038C510, actor_new, 0X4000101);
     spawnableActorList_add(&D_8038C718, actor_new, 0X188);
     spawnableActorList_add(&D_8038C790, actor_new, 0X148);
     spawnableActorList_add(&D_8038C7B4, actor_new, 0X148);
@@ -111,7 +111,7 @@ void func_80388AC0(void)
     spawnableActorList_add(&D_8038C3D0, actor_new, 0X2000041);
 }
 
-void func_80388C78(Actor *this){
+void TTC_func_80388C78(Actor *this){
     if(!this->initialized){
         func_802D3D74(this);
         this->initialized = TRUE;
@@ -133,7 +133,7 @@ void func_80388D04(s32 arg0){
 }
 
 void func_80388D34(Actor *this){
-    func_80388C78(this);
+    TTC_func_80388C78(this);
     if(!this->unk16C_4){
         __spawnqueue_add_1((GenMethod_1)func_80388D04, (s32)this->marker);
         this->unk16C_4 = TRUE;

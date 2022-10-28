@@ -2,7 +2,7 @@
 #include "n_synth.h"
 
 
-s32
+int
   n_alEnvmixerParam(N_PVoice *filter, s32 paramID, void *param)
 {
   N_PVoice	*e =  filter;

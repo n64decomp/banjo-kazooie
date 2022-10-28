@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void func_8038B6D4(f32* arg0, s32 arg1);
+extern void MMM_func_8038B6D4(f32* arg0, s32 arg1);
 
 /* internal definitions */
 typedef struct {
@@ -145,7 +145,7 @@ extern struct {
 }D_8038C4F0;
 
 /* .code */
-void func_80389810(ActorMarker *caller, enum asset_e text_id, s32 arg2) {
+void MMM_func_80389810(ActorMarker *caller, enum asset_e text_id, s32 arg2) {
     switch (D_8038C4F0.unkC) {
     case 2:
         func_80389A0C(3);
@@ -162,11 +162,11 @@ void func_80389810(ActorMarker *caller, enum asset_e text_id, s32 arg2) {
     }
 }
 
-void func_803898A0() {
+void MMM_func_803898A0() {
     jiggySpawn(JIGGY_60_MMM_MOTZHAND, D_8038C1E0);
 }
 
-void func_803898C8() {
+void MMM_func_803898C8() {
     func_8025A58C(0, 450);
 }
 
@@ -175,10 +175,10 @@ void func_803898EC() {
 }
 
 void func_80389910() {
-    func_80311480(0xAD5, 0xE, NULL, NULL, func_80389810, NULL);
+    func_80311480(0xAD5, 0xE, NULL, NULL, MMM_func_80389810, NULL);
     timedFunc_set_2(0.0f, func_8025A6EC, COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 0x7FFF);
     timed_setCameraToNode(2.0f, 0);
-    timedFunc_set_0(2.1f, func_803898A0);
+    timedFunc_set_0(2.1f, MMM_func_803898A0);
     timedFunc_set_0(6.0f, func_803898EC);
     func_80324E88(6.0f);
     func_80324E38(6.0f, 0);
@@ -195,10 +195,10 @@ void func_80389A0C(s32 next_state){
     if(next_state == 2){
         if(D_8038C4F0.unkD == 0){
             D_8038C4F0.unkD = 1;
-            func_80311480(0xad3, 4, NULL, NULL, func_80389810, NULL);
+            func_80311480(0xad3, 4, NULL, NULL, MMM_func_80389810, NULL);
         }
         else{//L80389A84
-            func_80311480(0xad6, 4, NULL, NULL, func_80389810, NULL);
+            func_80311480(0xad6, 4, NULL, NULL, MMM_func_80389810, NULL);
         }
     }//L80389A9C
 
@@ -215,18 +215,18 @@ void func_80389A0C(s32 next_state){
     }//L80389AF4
 
     if(next_state == 4){
-        func_80311480(0xadd, 4, NULL, NULL, func_80389810, NULL);
+        func_80311480(0xadd, 4, NULL, NULL, MMM_func_80389810, NULL);
         func_80387720(D_8038C4F0.unk4);
     }
 
     if(next_state == 5){
         D_8038C4F0.unkD++;
-        func_80311480(0xad4, 4, NULL, NULL, func_80389810, NULL);
+        func_80311480(0xad4, 4, NULL, NULL, MMM_func_80389810, NULL);
         func_80387720(D_8038C4F0.unk4);
     }
 
     if(next_state == 6){
-        func_803898C8();
+        MMM_func_803898C8();
         timedFunc_set_0(1.25f, func_803899BC);
         func_80387654(D_8038C4F0.unk4);
     }
@@ -266,7 +266,7 @@ void func_80389BCC(s32 key_indx, f32 position[3]) {
     }
 }
 
-void func_80389CD8() {}
+void MMM_func_80389CD8() {}
 
 void func_80389CE0() {}
 
@@ -296,7 +296,7 @@ int func_80389CE8(s32 arg0, s32 arg1, s32 arg2){
 void func_80389D9C(s32 key_id){
     s32 sp24;
     sp24 = D_8038C198[key_id].unk1;
-    func_8038B6D4(func_803517B8(sp24), func_803517E8(sp24));
+    MMM_func_8038B6D4(func_803517B8(sp24), func_803517E8(sp24));
     D_8038C4F0.unk0++;
 }
 

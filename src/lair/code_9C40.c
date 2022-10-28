@@ -35,7 +35,7 @@ s32 func_80390084(void) {
     return phi_s1;
 }
 
-void func_803900DC(ActorMarker *marker, enum asset_e text_id, s32 arg2){
+void lair_func_803900DC(ActorMarker *marker, enum asset_e text_id, s32 arg2){
 
 }
 
@@ -64,10 +64,10 @@ void func_80390174(ActorMarker *marker, s32 arg1) {
     sp28 = this->marker->unk14_20 - 0x16D;
     func_8028F94C(2, this->position);
     if (func_8031FF1C(sp28 + 0xAD)) {
-        func_80311480(sp28 + 0xF83, 0xE, this->position, this->marker, func_803900EC, func_803900DC);
+        func_80311480(sp28 + 0xF83, 0xE, this->position, this->marker, func_803900EC, lair_func_803900DC);
         return;
     }
-    func_80311174(func_80390084() + 0xFA5, 0xE, this->position, this->marker, func_803900EC, func_803900DC, func_80390158);
+    func_80311174(func_80390084() + 0xFA5, 0xE, this->position, this->marker, func_803900EC, lair_func_803900DC, func_80390158);
 }
 
 void func_8039024C(Actor *this){

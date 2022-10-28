@@ -25,7 +25,7 @@ typedef struct {
 Actor *func_80388740(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void func_80388D70(ActorMarker *caller, enum asset_e text_id, s32 arg2);
 void func_80388EE8(ParticleEmitter *pCtrl);
-void func_80388F4C(Actor *this);
+void FP_func_80388F4C(Actor *this);
 void func_803896FC(Actor *this);
 
 /* .data */
@@ -47,7 +47,7 @@ ActorAnimationInfo D_80391C80[] = {
 
 ActorInfo D_80391CE8 = { 0x97, ACTOR_C8_BOGGY_2, ASSET_38A_MODEL_BOGGY_1, 
     0x1, D_80391C80, 
-    func_80388F4C, func_803896FC, func_80388740, 
+    FP_func_80388F4C, func_803896FC, func_80388740, 
     0, 0, 1.4f, 0
 };
 f32 D_80391D0C[3] = {1842.0f, 658.0f, 5758.0f};
@@ -67,7 +67,7 @@ struct42s D_80391D58 = {
 };
 
 f32 D_80391D88[3] = { 1592.0f, 673.0f, 5895.0f};
-f32 D_80391D94[3] = {0.0f, 0.0f, 0.0f};
+f32 FP_D_80391D94[3] = {0.0f, 0.0f, 0.0f};
 s32 D_80391DA0[3] = {0x5F5, 0x292, 0x1539};
 s32 D_80391DAC[3] = {-0x11F8, 0x637, -0x1816};
 Struct_FP_2350 D_80391DB8[7]={
@@ -117,7 +117,7 @@ Actor *func_80388740(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     return this;
 }
 
-void func_803888E4(Actor *this){
+void FP_func_803888E4(Actor *this){
     func_80328B8C(this, 0xC, 0.0001f, 1);
     if(!jiggyscore_isSpawned(JIGGY_30_FP_BOGGY_2)){
         if(mapSpecificFlags_get(5)){
@@ -200,7 +200,7 @@ void func_80388C88(Actor *this){
     local->unk18 = 1;
 }
 
-bool func_80388CA0(Actor *this){
+bool FP_func_80388CA0(Actor *this){
     ActorLocal_FP_2350 *local = (ActorLocal_FP_2350 *)&this->local;
     u32 sp20;
 
@@ -241,7 +241,7 @@ void func_80388D70(ActorMarker *caller, enum asset_e text_id, s32 arg2){
         default://L80388E78
             switch(arg2){
                 case 1:
-                    func_803888E4(this);
+                    FP_func_803888E4(this);
                     mapSpecificFlags_set(6, TRUE);
                     break;
                 case 0:
@@ -263,10 +263,10 @@ void func_80388EE8(ParticleEmitter *pCtrl){
     func_802F0D54(pCtrl);
 }
 
-void func_80388F4C(Actor *this){}
+void FP_func_80388F4C(Actor *this){}
 
 void func_80388F54(ActorMarker *marker){
-    Actor *other  = func_80328230(ACTOR_C8_BOGGY_2, D_80391D88, D_80391D94);
+    Actor *other  = func_80328230(ACTOR_C8_BOGGY_2, D_80391D88, FP_D_80391D94);
     func_80343DEC(other);
 }
 
@@ -463,11 +463,11 @@ void func_803896FC(Actor *this){
 
     switch(this->state){
         case 1:// L803899B8
-            if(func_80388CA0(this)){
+            if(FP_func_80388CA0(this)){
                 func_80388B18(this, local->unk19);
             }//L803899DC
             else if(!jiggyscore_isCollected(JIGGY_30_FP_BOGGY_2) && func_8028ECAC() == BSGROUP_C_WALRUS_SLED){
-                func_803888E4(this);
+                FP_func_803888E4(this);
             }
             else if( func_80329530(this, 0x1C2)
                 && func_8028ECAC() == 0
