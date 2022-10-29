@@ -108,7 +108,7 @@ segments:
   - [0x25360, c, done/audio/n_synstartvoiceparam] #DONE
   - [0x25440, c, done/audio/n_mainbus]      #DONE
   - [0x254C0, c, done/audio/n_load]         #DONE
-  - [0x25680, c, done/audio/n_adpcm]
+  - [0x25680, c, done/audio/n_adpcm]        #DONE
   - [0x25C40, c, done/audio/n_resample]     #DONE
   - [0x25E20, c, done/audio/n_seq]          #DONE
   - [0x26110, c, done/audio/n_synsetpriority] #DONE
