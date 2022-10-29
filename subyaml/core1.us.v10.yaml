@@ -139,7 +139,7 @@ segments:
   - [0x275E0, c, done/os/settreadpri]     #DONE
   - [0x276C0, c, done/gu/mtxutil]         #DONE
   - [0x27930, c, done/gu/sqrtf]           #DONE
-  - [0x27940, c, done/gu/cosf]
+  - [0x27940, c, done/gu/cosf]            #DONE
   - [0x27AB0, hasm, ultra/setintmask]     #DONE
   - [0x27B50, c, done/io/dpsetstat]       #DONE
   - [0x27B60, c, done/io/sptask]          #DONE
