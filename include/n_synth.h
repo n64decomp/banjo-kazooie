@@ -23,7 +23,7 @@
 #define N_AL_DIVIDED            368
 
 typedef struct N_ALLoadFilter_s{
-    //ALFilter                    filter;
+    u8                          pad0[0xC];
     ADPCM_STATE                 *state; //0xC
     ADPCM_STATE                 *lstate; //0x10
     ALRawLoop                   loop; //0x14
