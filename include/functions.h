@@ -192,7 +192,7 @@ void func_802FDDC4(s32, struct8s *);
 
 struct7s *func_802FF090(enum item_e);
 void fxjinjoscore_update(enum item_e, struct8s *);
-void func_802FF3B8(s32, struct8s *, Gfx**, Mtx**, Vtx **);
+void fxjinjoscore_draw(s32, struct8s *, Gfx**, Mtx**, Vtx **);
 void fxjinjoscore_free(enum item_e, struct8s *);
 
 struct7s *func_802FFE4C(s32);

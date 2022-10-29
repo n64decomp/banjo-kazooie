@@ -58,7 +58,7 @@ ItemPrint D_803692F8[0x2C] = {
     { fxcommon2score_new, fxcommon2score_update, fxcommon2score_draw, fxcommon2score_free, 1, NULL }, //ITEM_F_RED_FEATHER
     { fxcommon2score_new, fxcommon2score_update, fxcommon2score_draw, fxcommon2score_free, 1, NULL }, //ITEM_10_GOLD_FEATHER
     { fxcommon1score_new, fxcommon1score_update, fxcommon1score_draw, fxcommon1score_free, 0, NULL }, //17
-    { func_802FF090, fxjinjoscore_update, func_802FF3B8, fxjinjoscore_free, 3, NULL }, //ITEM_12_JINJOS
+    { func_802FF090, fxjinjoscore_update, fxjinjoscore_draw, fxjinjoscore_free, 3, NULL }, //ITEM_12_JINJOS
     { func_802FDE2C, func_802FE844, func_802FDEE0, func_802FDDC4, 0, NULL }, //ITEM_13_EMPTY_HONEYCOMB
     { func_80300CD8, func_80301348, func_80300D0C, func_80300C70, 0, NULL }, //ITEM_14_HEALTH
     { fxcommon1score_new, fxcommon1score_update, fxcommon1score_draw, fxcommon1score_free, 0, NULL }, //ITEM_15_HEALTH_TOTAL

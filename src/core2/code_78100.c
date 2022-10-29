@@ -118,75 +118,79 @@ void fxjinjoscore_free(enum item_e item_id, struct8s * arg1){
 
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_78100/func_802FF3B8.s")
-#else
 //fxjinjoscore_draw
-void func_802FF3B8(s32 arg0, struct8s *arg1, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
-    s32 sp11C;
-    s32 sp118;
-    s32 sp114;
-    s32 spF0;
-    f32 temp_f14;
-    f32 temp_f20;
-    f32 var_f28;
-    f32 var_f30;
-    BKSprite *temp_a1;
-    s32 var_s5;
-    s32 var_v0;
-    s32 var_v0_2;
-    s32 var_v1;
+void fxjinjoscore_draw(s32 arg0, struct8s *arg1, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
+    BKSprite *sprite; // s1
+    s32 draw_index; // s5
+    s32 texture_width; // sp11C
+    s32 texture_height; // sp118
+    s32 jinjo_id; // sp114
+    f32 center_y; // f14 (sp110)
+    f32 center_x; // f20 (sp10C)
+    f32 x_offset; // f26 (sp108)
+    f32 y_offset; // f28 (sp104)
+    f32 pos_x; // f30 (sp100)
+    s32 i; // v1 (spFC)
+    s32 j; // v0_2 (spF8)
 
     gSPDisplayList((*gfx)++, D_8036A228);
     func_8024C7B8(gfx, mtx);
-    var_f30 = 44.0f;
-    for(sp114 = 0; sp114 < 5; sp114++){
-        temp_a1 = D_80381E40[sp114];
-        spF0 = (D_80381E58[sp114] != 0) ? 1 : 0;
-        if (temp_a1 != NULL) {
-            var_f28 = 0.0f;
-            func_80347FC0(gfx, temp_a1, (s32) D_80381E60[sp114], 0, 0, 0, 0, 2, 2, &sp11C, &sp118);
-            gDPSetTextureImage((*gfx)++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, D_80381620[(s32)D_80381E60[sp114]][sp114]);
-            // gDPSetTextureImage((*gfx)++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, 0);
-            gDPTileSync((*gfx)++);
-            gDPSetTile((*gfx)++, G_IM_FMT_RGBA, G_IM_SIZ_4b, 0, 0x0100, G_TX_LOADTILE, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD);
-            gDPLoadSync((*gfx)++);
-            gDPLoadTLUTCmd((*gfx)++, G_TX_LOADTILE, 15);
-            gDPPipeSync((*gfx)++);
-            for (var_s5 = spF0; var_s5 >= 0; var_s5--){
+    pos_x = 44.0f;
+    // Draw all jinjo heads
+    for(jinjo_id = 0; jinjo_id < 5; jinjo_id++){
+        s32 jinjo_collected; // spF0 <----
+        sprite = D_80381E40[jinjo_id];
+        jinjo_collected = (D_80381E58[jinjo_id] != 0) ? 1 : 0;
+        if (sprite != NULL) {
+            func_80347FC0(gfx, sprite, (s32) D_80381E60[jinjo_id], 0, 0, 0, 0, 2, 2, &texture_width, &texture_height);
+            // Load the palette for the corresponding jinjo color
+            gDPLoadTLUT_pal16((*gfx)++, 0, D_80381620[(s32)D_80381E60[jinjo_id]][jinjo_id]);
+            x_offset = 0.0f;
+            y_offset = 0.0f;
+            // Draw the jinjo head, once if uncollected and twice if collected
+            // If the head is drawn twice then the first draw will be the drop shadow
+            for (draw_index = jinjo_collected; draw_index >= 0; draw_index--){
                 gDPPipeSync((*gfx)++);
-                if (var_s5) {
+                // Draw 0 is the jinjo's head, anything else is a shadow
+                if (draw_index != 0) {
+                    // Use only primitive color as the color input in order to make a solid color shadow
                     gDPSetCombineLERP((*gfx)++, 0, 0, 0, PRIMITIVE, TEXEL0, 0, PRIMITIVE, 0, 0, 0, 0, PRIMITIVE, TEXEL0, 0, PRIMITIVE, 0);
+                    // Set up a translucent black for primitive color to draw the shadow
                     gDPSetPrimColor((*gfx)++, 0, 0, 0x00, 0x00, 0x00, 0x8C);
                 } else {
+                    // Use the texture as the color input
                     gDPSetCombineLERP((*gfx)++, 0, 0, 0, TEXEL0, TEXEL0, 0, PRIMITIVE, 0, 0, 0, 0, TEXEL0, TEXEL0, 0, PRIMITIVE, 0);
-                    gDPSetPrimColor((*gfx)++, 0, 0, 0x00, 0x00, 0x00, spF0 ? 0xFF : 0x6E);
+                    // If the jinjo is collected then it's drawn fully opaque, otherwise it's drawn with partial alpha
+                    gDPSetPrimColor((*gfx)++, 0, 0, 0x00, 0x00, 0x00, jinjo_collected ? 0xFF : 0x6E);
                 }
-                temp_f20 = (var_f30 - ((f32) D_80276588 / 2)) - var_f28;
-                temp_f14 = ((((f32) D_8027658C / 2) + func_802FB0E4(arg1)) - 266.0f + 40.0f + var_f28) - D_80381E78[sp114];
+                center_x = pos_x - (f32) D_80276588 / 2 + x_offset;
+                center_y = (f32) D_8027658C / 2 + func_802FB0E4(arg1) - 266.0f + 40.0f + y_offset - D_80381E78[jinjo_id];
                 gSPVertex((*gfx)++, *vtx, 4, 0);
-                for(var_v1 = 0; var_v1 < 2; var_v1++){
-                    for(var_v0_2 = 0; var_v0_2  < 2; var_v0_2++){
-                        (*vtx)->v.ob[0] = (s16) (s32) (((((sp11C * D_80381E54) * (f32) var_v0_2) - ((sp11C * D_80381E54) / 2)) + temp_f20) * 4);
-                        (*vtx)->v.ob[1] = (s16) (s32) (((((sp118 * D_80381E54) / 2) - ((sp118 * D_80381E54) * var_v1)) + temp_f14) * 4);
-                        (*vtx)->v.ob[2] = -0x14;
-                        (*vtx)->v.tc[0] = (s16) (((sp11C - 1) * var_v0_2) << 6);
-                        (*vtx)->v.tc[1] = (s16) (((sp118 - 1) * var_v1) << 6);
+                // Set up the positions of the four vertices
+                for(i = 0; i < 2; i++){
+                    for(j = 0; j  < 2; j++){
+                        (*vtx)->v.ob[0] = ((texture_width  * D_80381E54 * j) - (texture_width  * D_80381E54 / 2) + center_x) * 4;
+                        (*vtx)->v.ob[1] = ((texture_height * D_80381E54 / 2) - (texture_height * D_80381E54 * i) + center_y) * 4;
+                        (*vtx)->v.ob[2] = -20;
+                        (*vtx)->v.tc[0] = ((texture_width  - 1) * j) << 6;
+                        (*vtx)->v.tc[1] = ((texture_height - 1) * i) << 6;
                         (*vtx)++;
                     }
                 }
+                // Draw a quad made of the four vertices
                 gSP1Quadrangle((*gfx)++, 0, 1, 3, 2, 0);
-                var_f28 += 2.0f;
+                x_offset += -2;
+                y_offset += 2;
             }
         }
-        var_f30 += 32.0f;
+        // Move the next jinjo head over by 32 pixels
+        pos_x += 32.0f;
     }
     gDPPipeSync((*gfx)++);
     gDPSetTextureLUT((*gfx)++, G_TT_NONE);
     gDPPipelineMode((*gfx)++, G_PM_NPRIMITIVE);
     func_8024C904(gfx, mtx);
 }
-#endif;
 
 bool func_802FFA10(f32 arg0, s32 arg1, s32 arg2){
     if(arg1 == 0){
