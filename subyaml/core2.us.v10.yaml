@@ -280,7 +280,7 @@ segments:
   - [0x763D0, c, code_763D0] #DONE
   - [0x76D90, c, code_76D90]
   - [0x77E50, c, code_77E50] #DONE
-  - [0x78100, c, code_78100] #DONE
+  - [0x78100, c, code_78100]
   - [0x78E50, c, code_78E50]
   - [0x79830, c, fxcommon3score] #DONE
   - [0x79C80, c, code_79C80] #DONE
