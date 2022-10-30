@@ -25,10 +25,7 @@ extern ActorInfo D_8038B044; //chBanjosChair
 extern ActorInfo D_8038B080; //chBanjosStove
 extern ActorInfo D_8038AB24;
 
-extern u32 D_803FFE00;
-extern u32 D_803FFE04;
-extern u32 D_803FFE08;
-extern u32 D_803FFE0C;
+extern u32 D_803FFE00[4];
 
 /* .data */
 s32 D_8038AAE0 = 0x000FE2C1; //compiled SM_code_crc_1
@@ -114,15 +111,15 @@ void func_80386614(u8 *arg0, u8 *arg1, s32 *arg2, s32 *arg3){
     *arg3 = temp_v1;
 }
 
-extern s32 D_00005E70;
+extern u8 crc_ROM_START[];
 
 int func_803866CC(void){
     u32 sp24;
 
-    if( (osPiReadIo((u32)&D_00005E70 + 8, &sp24), sp24 == D_803FFE00)
-        && (osPiReadIo((u32)&D_00005E70 + 12, &sp24), sp24 == D_803FFE04)
-        && (osPiReadIo((u32)&D_00005E70 + 16, &sp24), sp24 == D_803FFE08)
-        && (osPiReadIo((u32)&D_00005E70 + 20, &sp24), sp24 == D_803FFE0C)
+    if( (osPiReadIo((u32)crc_ROM_START + 8, &sp24), sp24 == D_803FFE00[0])
+        && (osPiReadIo((u32)crc_ROM_START + 12, &sp24), sp24 == D_803FFE00[1])
+        && (osPiReadIo((u32)crc_ROM_START + 16, &sp24), sp24 == D_803FFE00[2])
+        && (osPiReadIo((u32)crc_ROM_START + 20, &sp24), sp24 == D_803FFE00[3])
     ){
         return 1;
     }

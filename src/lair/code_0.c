@@ -12,7 +12,7 @@ extern void func_802D3D74(Actor *this);
 extern void func_802D4830(Actor *, s32, f32);
 extern void func_802EE6CC(f32[3], f32[3], s32[4], s32, f32, f32, s32, s32, s32);
 extern void func_80324CFC(f32, enum comusic_e, s32);
-extern int  func_8032886C(Actor *, f32);
+extern int  actor_animationIsAt(Actor *, f32);
 extern void func_80328B8C(Actor *, s32, f32, s32);
 extern void func_8033A45C(s32, s32);
 extern void func_8034E0FC(void *, s32);
@@ -214,7 +214,7 @@ void lair_func_80386550(Actor *this)
             this->pitch -= 2;
             this->position_y--;
 
-            if (func_8032886C(this, 0.95f))
+            if (actor_animationIsAt(this, 0.95f))
             {
                 func_80326310(this);
                 func_80328B8C(this, 10, 0.98f, 1);
@@ -1519,7 +1519,7 @@ void func_80389898(Actor *this)
         }
         case 19:
         {
-            if (func_8032886C(this, 0.7f))
+            if (actor_animationIsAt(this, 0.7f))
                 marker_despawn(this->marker);
 
             break;
@@ -1570,7 +1570,7 @@ void func_80389934(Actor *this)
         }
         case 23:
         {
-            if (func_8032886C(this, 0.95f))
+            if (actor_animationIsAt(this, 0.95f))
             {
                 func_80328B8C(this, 0x18, 0.999f, 1);
                 FUNC_8030E624(SFX_7F_HEAVYDOOR_SLAM, 1.0f, 26000,);
@@ -1587,7 +1587,7 @@ void func_80389934(Actor *this)
 f32 func_80389AAC(Actor *this, f32 a1)
 {
     // defs
-    f32   func_8034A754(f32, f32);
+    f32   randf2(f32, f32);
     void *func_80309B48(f32 *, f32 *, f32 *, u32);
 
     f32 vec3[3]; // $sp + 54
@@ -1642,7 +1642,7 @@ f32 func_80389AAC(Actor *this, f32 a1)
                 break;
         }
 
-        func_8030E878(SFX_82_METAL_BREAK, func_8034A754(0.93f, 1.07f), 32760, this->position, 100, 1350.0f);
+        func_8030E878(SFX_82_METAL_BREAK, randf2(0.93f, 1.07f), 32760, this->position, 100, 1350.0f);
 
         this->unk60 = 1;
     }

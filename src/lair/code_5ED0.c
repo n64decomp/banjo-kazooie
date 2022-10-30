@@ -62,22 +62,21 @@ extern s32  func_803203FC(s32);  // get volatile flag
 extern void func_80295864(s32);  // set unlocked moves bitfield
 extern s32  func_802957F0(void); // get unlocked moves bitfield
 
-extern s32  func_80345FA0(s32); // item count get
+extern s32  item_getCount(s32); // item count get
 extern void func_803463F4(s32, s32); // item count set
 
 extern void func_80318614(gczoombox_t *, s32);
 extern bool func_803183A4(gczoombox_t *, u8 *);
-extern void func_8031841C(gczoombox_t *);
-extern void func_803183FC(gczoombox_t *);
+extern void gczoombox_minimize(gczoombox_t *);
+extern void gczoombox_close(gczoombox_t *);
 
-extern void func_8025AB44(s32, s32, s32);
 extern void func_80250530(s32, u16, f32);
 
 extern void func_8025A55C(s32, s32, s32);
 
 extern void func_80324CFC(f32, s16, s16);
-extern void func_803183EC(gczoombox_t *);
-extern void func_8031840C(gczoombox_t *);
+extern void gczoombox_open(gczoombox_t *);
+extern void gczoombox_maximize(gczoombox_t *);
 
 extern void *func_80309744(s32);
 extern void  func_8029A95C(s32); // set transformation
@@ -313,7 +312,7 @@ void lair_func_8038CD48(void)
 void func_8038CE00(void)
 {
     func_802BBC58(1);
-    func_802BAE20(0);
+    set_camera_to_node(0);
 }
 
 void func_8038CE28(void)
@@ -331,7 +330,7 @@ void func_8038CE28(void)
         D_8037DCB8->unk3C[i] = 0;
 
     // set joker card count to 0
-    func_803463F4(ITEM_27_JOKER_CARD, func_80345FA0(0x27) * -1);
+    func_803463F4(ITEM_27_JOKER_CARD, item_getCount(0x27) * -1);
 
     D_8037DCB8->unk8     = 0;
     D_8037DCB8->unk4     = NULL;
@@ -365,7 +364,7 @@ void lair_func_8038CF18(void)
             D_8037DCB8->unk3C[i] = 0;
 
         // set joker card count to 0
-        func_803463F4(ITEM_27_JOKER_CARD, func_80345FA0(ITEM_27_JOKER_CARD) * -1);
+        func_803463F4(ITEM_27_JOKER_CARD, item_getCount(ITEM_27_JOKER_CARD) * -1);
     }
 
     lair_func_8038C6BC();
@@ -428,8 +427,8 @@ void func_8038D0BC(s32 a0, s32 a1)
     if (a1 == 3)
     {
         func_80318614(D_8037DCB8->unk20, 0);
-        func_8031841C(D_8037DCB8->unk20);
-        func_803183FC(D_8037DCB8->unk20);
+        gczoombox_minimize(D_8037DCB8->unk20);
+        gczoombox_close(D_8037DCB8->unk20);
     }
 
     if (a1 == 6)
@@ -441,7 +440,7 @@ void func_8038D0BC(s32 a0, s32 a1)
 void func_8038D16C(s32 a0, u16 a1)
 {
     func_8025A6EC(a0, 0);
-    func_8025AB44(a0, 28000, 500);
+    comusic_8025AB44(a0, 28000, 500);
     func_80250530(func_8025ADD4(a0), a1, 0);
 }
 
@@ -479,8 +478,8 @@ void func_8038D1E4(void)
                 0, 0, func_8038D0BC
             );
             func_80318614(D_8037DCB8->unk20, 0);
-            func_803183EC(D_8037DCB8->unk20);
-            func_8031840C(D_8037DCB8->unk20);
+            gczoombox_open(D_8037DCB8->unk20);
+            gczoombox_maximize(D_8037DCB8->unk20);
 
             break;
         }

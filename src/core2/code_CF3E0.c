@@ -82,9 +82,10 @@ void func_80356560(s32 arg0) {
 #endif
 
 // bk_boot segment start (skipping entry function)
-extern u8 D_00001050[];
+extern u8 boot_bk_boot_ROM_START[];
 // bk_boot segment end
-extern u8 D_00005E70[];
+extern u8 boot_bk_boot_ROM_END[];
+extern u8 crc_ROM_START[];
 
 // bk_boot segment crc next word
 s32 D_803727F0 = 0;
@@ -101,10 +102,10 @@ s32 D_80372808 = 0;
 
 // init bk_boot crc
 void func_80356580(void) {
-    D_803727FC = (s32) D_00001050;
+    D_803727FC = (s32) boot_bk_boot_ROM_START;
     D_80372800 = 0;
     D_80372804 = -1;
-    D_80372808 = (s32) (D_00005E70 - D_00001050);
+    D_80372808 = (s32) (boot_bk_boot_ROM_END - boot_bk_boot_ROM_START);
 }
 
 // advance bk_boot crc by one word
@@ -137,10 +138,10 @@ s32 func_803565BC(void) {
             D_80372808 = D_80372808 - 4;
         } else {
             D_803727FC = 0;
-            osPiReadIo((u32)D_00005E70 + 0, &crc1);
+            osPiReadIo((u32)crc_ROM_START + 0, &crc1);
             if (crc1 != D_80372800)
                 return 0;
-            osPiReadIo((u32)D_00005E70 + 4, &crc2);
+            osPiReadIo((u32)crc_ROM_START + 4, &crc2);
             if (crc2 != D_80372804)
                 return 0;
         }

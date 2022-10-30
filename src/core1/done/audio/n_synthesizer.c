@@ -9,7 +9,7 @@
 #endif
 
 extern ALCmdHandler n_alAuxBusPull;
-extern ALCmdHandler func_8025FE6C;
+extern ALCmdHandler n_alFxPull;
 extern void alN_PVoiceNew(N_PVoice *mv, ALDMANew dmaNew, ALHeap *hp);
 
 
@@ -77,7 +77,7 @@ void n_alSynNew(ALSynConfig *c)
          * Allocate an effect and set parameters
          */
         n_syn->auxBus->fx = n_alSynAllocFX(0, c, hp);
-        n_syn->mainBus->filter.handler = &func_8025FE6C;
+        n_syn->mainBus->filter.handler = &n_alFxPull;
     } else{
         /*
          * Connect the aux bus to the main bus

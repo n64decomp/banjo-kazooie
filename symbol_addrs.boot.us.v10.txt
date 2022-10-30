@@ -8,3 +8,4 @@ osMapTLBRdb = 0x80002C70;
 __osProbeTLB = 0x80003BD0;
 __osDisableInt = 0x80003FC0;
 __osRestoreInt = 0x80003FE0;
+bk_boot_BSS_START = 0x80005270;
