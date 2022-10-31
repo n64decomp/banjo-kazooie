@@ -266,7 +266,7 @@ segments:
   - [0x70F20, c, code_70F20] #DONE
   - [0x71820, c, code_71820] #DONE
   - [0x72060, c, code_72060]
-  - [0x72B10, c, code_72B10]
+  - [0x72B10, c, code_72B10] #DONE
   - [0x73640, c, code_73640] #DONE
   - [0x74090, c, code_74090] #DONE
   - [0x74290, c, code_74290] #DONE

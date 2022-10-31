@@ -177,16 +177,12 @@ void func_802FA0B0(s32 arg0, s32 arg1){
     }
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_72B10/func_802FA0F8.s")
-#else
 void func_802FA0F8(void){
-    //stack allocation too large
-    struct4Es *iPtr;
+    f32 tick;
     struct4Es *startPtr;
     struct4Es *endPtr;
-    f32 tick;
     f32 f20;
+    struct4Es *iPtr;
 
     tick = time_getDelta();
     startPtr = vector_getBegin(D_803810A0);
@@ -245,9 +241,8 @@ void func_802FA0F8(void){
                 sfxsource_setSampleRate(iPtr->unk0, (s32)iPtr->unk8);
             }
         }//L802FA4A0
-    }//L802FA4B4
+    }//L802FA4B4  
 }
-#endif
 
 void func_802FA4E0(void){
     D_803810A0 = vector_defrag(D_803810A0);
