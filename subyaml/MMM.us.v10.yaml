@@ -37,6 +37,7 @@ segments:
       - [0x2F60, c, code_2F60] #DONE
       - [0x3120, c, code_3120] #DONE
       - [0x3420, c, code_3420] #DONE
+      - [0x3420, c, crc] #DONE
       - [0x3D50, c, code_3D50] #DONE
       - [0x47D0, c, code_47D0] #DONE
       - [0x5000, c, code_5000] #DONE
@@ -49,7 +50,7 @@ segments:
       - [0x00005A40, .data, code_2F60]
       - [0x00005B30, .data, code_3420]
       - [0x00005E00, .data, code_3D50]
-      - [0x00005F10, bin, data_5F10]
+      - [0x00005F10, .data, crc]
       - [0x00005F20, .data, code_5000]
       - [0x00005F50, .rodata, ch/loggo]
       - [0x00005F80, .rodata, ch/napper]

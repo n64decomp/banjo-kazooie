@@ -7,7 +7,7 @@
     #define CORE2_DATA_CRC2 0
 #endif
 
-extern s32 D_803727F4 = CORE2_DATA_CRC2;
+extern s32 D_803727F4;
 
 extern struct {
     u8 pad0[4];
@@ -36,7 +36,7 @@ typedef struct {
 /* .data */
 extern s32 D_80275D38;
 
-extern s32 D_80276574;
+extern s32 D_80276574; // = CORE2_DATA_CRC2
 
 
 /* .bss */

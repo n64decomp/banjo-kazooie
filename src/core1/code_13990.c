@@ -5,10 +5,17 @@
 #include "ml/mtx.h"
 
 
-
+void func_8024632C(Mtx*, f32, f32, f32, f32);
 f32 func_80263FF0(f32);
 f32 cosf(f32);
+
+extern f32 D_80276578;
+extern f32 D_8027657C;
+
+
 extern f64 D_80278220;
+extern f64 D_80278228;
+extern f64 D_80278230;
 
 /*.bss*/
 Mtx_t D_80282810;
@@ -124,47 +131,129 @@ void func_80251B5C(f32 arg0, f32 arg1, f32 arg2){
     *(var_v0++) = arg0; *(var_v0++) = arg1; *(var_v0++) = arg2; *(var_v0++) = 1.0f;
 }
 
+void func_80245DCC(Mtx *,Mtx *, Mtx *);
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_80251BCC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_80251C20.s")
+void func_80251C20(f32 arg0, f32 arg1, f32 arg2, f32 arg3) {
+    func_8024632C(D_80282FD0 + 1, arg0, arg1, arg2, arg3);
+    func_80245DCC(D_80282FD0 + 1, D_80282FD0, D_80282FD0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/mlMtxRotPitch.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/mlMtxRotYaw.s")
-/*void mlMtxRotYaw(f32 yaw) {
-    f32 sin;
+void mlMtxRotPitch(f32 arg0) {
     f32 cos;
-    f32 phi_f12;
-    f32 phi_f10;
-    f32 phi_f8;
-    f32 phi_f4;
-    f32 *phi_v0;
-    s32 phi_v1;
+    f32 sin;
+    f32 var_f10;
+    f32 var_f18;
 
-    if (yaw == 0.0f)
-        return;
+    if (arg0 != 0.0f) {
+        arg0 *= D_80276578;
+        sin = sinf(arg0);
+        cos = cosf(arg0);
+        var_f18 = reinterpret_cast(f32, D_80282FD0->m[1][0]);
+        var_f10 = reinterpret_cast(f32, D_80282FD0->m[2][0]);
+        reinterpret_cast(f32, D_80282FD0->m[1][0]) = var_f18*cos + var_f10*sin;
+        reinterpret_cast(f32, D_80282FD0->m[2][0]) = var_f18*-sin + var_f10*cos;
 
-    sin = sinf(yaw*0.0174533);
-    cos = cosf(yaw*0.0174533);
-    phi_v0 = D_80282FD0;
-    for(phi_v1 = 0; phi_v1 < 0xC; phi_v1 += 4){
-        phi_v0 = (u32)D_80282FD0 + phi_v1;
-        phi_f12 = phi_v0[0] * cos;
-        phi_f10 = phi_v0[8] * sin;
-        phi_f8 = phi_v0[0] * sin;
-        phi_f4 = phi_v0[8] * cos;
-        phi_v0[0] = phi_f12 - phi_f10;
-        phi_v0 = (u32)D_80282FD0 + phi_v1;
-        phi_v0[8] = phi_f8 + phi_f4;
+        var_f18 = reinterpret_cast(f32, D_80282FD0->m[1][1]);
+        var_f10 = reinterpret_cast(f32, D_80282FD0->m[2][1]);
+        reinterpret_cast(f32, D_80282FD0->m[1][1]) = var_f18*cos + var_f10*sin;
+        reinterpret_cast(f32, D_80282FD0->m[2][1]) = var_f18*-sin + var_f10*cos;
+
+        var_f18 = reinterpret_cast(f32, D_80282FD0->m[1][2]);
+        var_f10 = reinterpret_cast(f32, D_80282FD0->m[2][2]);
+        reinterpret_cast(f32, D_80282FD0->m[1][2]) = var_f18*cos + var_f10*sin;
+        reinterpret_cast(f32, D_80282FD0->m[2][2]) = var_f18*-sin + var_f10*cos;
     }
+}
 
-}//*/
+void mlMtxRotYaw(f32 arg0) {
+    f32 cos;
+    f32 sin;
+    f32 var_f10;
+    f32 var_f18;
+    s32 i;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/mlMtxRotRoll.s")
+    if (arg0 != 0.0f) {
+        arg0 *= D_80278220;
+        sin = sinf(arg0);
+        cos = cosf(arg0);
+        for(i = 0; i < 3; i++){
+            var_f18 = reinterpret_cast(f32, D_80282FD0->m[0][i]);
+            var_f10 = reinterpret_cast(f32, D_80282FD0->m[2][i]);
+            reinterpret_cast(f32, D_80282FD0->m[0][i]) = var_f18*cos - var_f10*sin;
+            reinterpret_cast(f32, D_80282FD0->m[2][i]) = var_f18*sin + var_f10*cos;
+        }
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_80251F8C.s")
+void mlMtxRotRoll(f32 arg0) {  
+    f32 cos;
+    f32 sin;
+    f32 var_f10;
+    f32 var_f18;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_8025208C.s")
+    if (arg0 != 0.0f) {
+        arg0 *= D_8027657C;
+        sin = sinf(arg0);
+        cos = cosf(arg0);
+        var_f18 = reinterpret_cast(f32, D_80282FD0->m[0][0]);
+        var_f10 = reinterpret_cast(f32, D_80282FD0->m[1][0]);
+        reinterpret_cast(f32, D_80282FD0->m[0][0]) = var_f18*cos + var_f10*sin;
+        reinterpret_cast(f32, D_80282FD0->m[1][0]) = var_f18*-sin + var_f10*cos;
+
+        var_f18 = reinterpret_cast(f32, D_80282FD0->m[0][1]);
+        var_f10 = reinterpret_cast(f32, D_80282FD0->m[1][1]);
+        reinterpret_cast(f32, D_80282FD0->m[0][1]) = var_f18*cos + var_f10*sin;
+        reinterpret_cast(f32, D_80282FD0->m[1][1]) = var_f18*-sin + var_f10*cos;
+
+        var_f18 = reinterpret_cast(f32, D_80282FD0->m[0][2]);
+        var_f10 = reinterpret_cast(f32, D_80282FD0->m[1][2]);
+        reinterpret_cast(f32, D_80282FD0->m[0][2]) = var_f18*cos + var_f10*sin;
+        reinterpret_cast(f32, D_80282FD0->m[1][2]) = var_f18*-sin + var_f10*cos;
+    }
+}
+
+
+void func_80251F8C(f32 arg0) {
+    f32 cos;
+    f32 sin;
+    f32 var_f10;
+    f32 var_f18;
+    s32 i;
+
+    if (arg0 != 0.0f) {
+        arg0 *= D_80278228;
+        sin = sinf(arg0);
+        cos = cosf(arg0);
+        for(i = 0; i < 3; i++){
+            var_f18 = reinterpret_cast(f32, D_80282FD0->m[1][i]);
+            var_f10 = reinterpret_cast(f32, D_80282FD0->m[2][i]);
+            reinterpret_cast(f32, D_80282FD0->m[1][i]) = var_f18*cos + var_f10*sin;
+            reinterpret_cast(f32, D_80282FD0->m[2][i]) = var_f18*-sin +var_f10*cos;
+        }
+    }
+}
+
+void func_8025208C(f32 arg0) {
+    f32 cos;
+    f32 sin;
+    f32 var_f10;
+    f32 var_f18;
+    s32 i;
+
+    if (arg0 != 0.0f) {
+        arg0 *= D_80278230;
+        sin = sinf(arg0);
+        cos = cosf(arg0);
+        for(i = 0; i < 3; i++){
+            var_f18 = reinterpret_cast(f32, D_80282FD0->m[0][i]);
+            var_f10 = reinterpret_cast(f32, D_80282FD0->m[2][i]);
+            reinterpret_cast(f32, D_80282FD0->m[0][i]) = var_f18*cos - var_f10*sin;
+            reinterpret_cast(f32, D_80282FD0->m[2][i]) = var_f18*sin + var_f10*cos;
+        }
+    }
+}
+
 
 void mlMtxRotate(f32 pitch, f32 yaw, f32 roll){
     mlMtxRotYaw(yaw);
@@ -196,9 +285,32 @@ void func_80252330(f32 x, f32 y, f32 z){
     reinterpret_cast(f32, D_80282FD0->m[3][2]) = z;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_8025235C.s")
+void func_8025235C(f32 arg0[3], f32 arg1[3]) {
+    s32 i;
+    f32 sp0[3];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_80252434.s")
+    sp0[0] = arg1[0];
+    sp0[1] = arg1[1];
+    sp0[2] = arg1[2];
+    
+    for(i = 0; i < 3; i++){
+        arg0[i] = sp0[0]*reinterpret_cast(f32, D_80282FD0->m[0][i]) 
+                  + sp0[1]*reinterpret_cast(f32, D_80282FD0->m[1][i]) 
+                  + sp0[2]*reinterpret_cast(f32, D_80282FD0->m[2][i]) 
+                  + reinterpret_cast(f32, D_80282FD0->m[3][i]);
+    }
+}
+
+void func_80252434(f32 arg0[3], f32 arg1[3]) {
+    s32 i;
+    
+    for(i = 0; i < 3; i++){
+        arg0[i] = arg1[0]*reinterpret_cast(f32, D_80282FD0->m[0][i]) 
+                  + arg1[1]*reinterpret_cast(f32, D_80282FD0->m[1][i]) 
+                  + arg1[2]*reinterpret_cast(f32, D_80282FD0->m[2][i]) 
+                  + reinterpret_cast(f32, D_80282FD0->m[3][i]);
+    }
+}
 
 void func_802524F0(f32 dst[3], f32 x, f32 y, f32 z) {
     dst[0] = x*((f32 (*)[4])D_80282FD0)[0][0] + y*((f32 (*)[4])D_80282FD0)[1][0] + z*((f32 (*)[4])D_80282FD0)[2][0] + ((f32 (*)[4])D_80282FD0)[3][0];
