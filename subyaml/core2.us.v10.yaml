@@ -291,7 +291,7 @@ segments:
   - [0x83D70, c, gc/section] #DONE
   - [0x840D0, c, gc/sky] #DONE
   - [0x84470, c, gc/transition] #DONE
-  - [0x851D0, c, code_851D0]
+  - [0x851D0, c, code_851D0] #DONE
   - [0x857B0, c, code_857B0] #DONE
   - [0x85800, c, code_85800] #DONE
   - [0x87E30, c, code_87E30]

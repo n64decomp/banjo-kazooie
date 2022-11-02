@@ -187,7 +187,7 @@ void fxcommon2score_free(enum item_e, struct8s *);
 
 struct7s *func_802FDE2C(s32);
 void func_802FE844(s32, struct8s *);
-void func_802FDEE0(s32, struct8s *, Gfx**, Mtx**, s32*);
+void func_802FDEE0(s32, struct8s *, Gfx**, Mtx**, Vtx **);
 void func_802FDDC4(s32, struct8s *);
 
 struct7s *func_802FF090(enum item_e);

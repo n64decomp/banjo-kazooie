@@ -83,173 +83,28 @@ void func_8030C2D4(Gfx **gdl, Mtx **mptr, Vtx **vptr){
     func_80253640(gdl, D_803A5D00[func_8024BDA0()]);
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_851D0/func_8030C33C.s")
-#else
 void func_8030C33C(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
-    s32 sp80;
-    s32 sp74;
-    s32 sp70;
-    s32 sp64;
-    s32 sp60;
-    s32 sp54;
-    s32 sp50;
-    s32 sp48;
-    s32 sp40;
-    s16 temp_s4;
-    s16 temp_t4;
-    s32 temp_a0;
-    s32 temp_a1;
-    s32 temp_a3;
-    s32 temp_t6;
-    s32 temp_t8;
-    void *temp_a1_2;
-    void *temp_a2;
-    void *temp_s0;
-    void *temp_s0_2;
-    void *temp_s0_3;
-    void *temp_s0_4;
-    void *temp_s0_5;
-    void *temp_s0_6;
-    void *temp_s0_7;
-    void *temp_s0_8;
-    void *temp_s0_9;
-    void *temp_s2;
-    s32 phi_ra;
-    s32 phi_t5;
-    s32 phi_t4;
-    s32 phi_t3;
-    s32 phi_t2;
-    s32 phi_t1;
-    s32 phi_s3;
-    s32 phi_s5;
-    s16 phi_s6;
-    s32 phi_v0;
-    s16 phi_v1;
-    s16 phi_s4;
-    s16 phi_t4_2;
-    s16 phi_v0_2;
-    s16 phi_v1_2;
-    s32 phi_v0_3;
-    s32 phi_a0;
-    s32 phi_s7;
-
+    s32 x, y;
+ 
     gSPDisplayList((*gfx)++, D_8036C450);
-    sp64 = 0x1F;
-    sp54 = 0x130;
-    sp74 = 0;
-    phi_t4_2 = 0xB0;
-    do {
-        phi_ra = sp74 << 5;
-        phi_t5 = (0x40 + 7);
-        phi_t4 = (s32) phi_t4_2;
-        phi_t3 = (s32) sp56;
-        phi_t2 = (sp64 << 2) & 0xFFF;
-        phi_t1 = (sp74 << 2) & 0xFFF;
-        phi_s3 = 0;
-        phi_s5 = 0x1F;
-        phi_s6 = 0x188;
-        phi_s4 = 0x108;
-        phi_s7 = 0;
-loop_2:
-        sp40 = phi_ra;
-        sp80 = phi_t5;
-        sp48 = phi_t4;
-        sp50 = phi_t3;
-        sp60 = phi_t2;
-        sp70 = phi_t1;
-
-        // gDPLoadTextureTile((*gfx)++, &D_80382450, G_IM_FMT_IA, G_IM_SIZ_16b, 160, height, uls, ult, lrs, lrt, pal, cms, cmt, masks, maskt, shifts, shiftt)
-
-        gDPSetTextureImage((*gfx)++, G_IM_FMT_IA, G_IM_SIZ_16b, 160, D_80382450);
-        // temp_a1 = (((0x40 + 7 >> 3) & 0x1FF) << 9) | 0xF5700000;
-        // temp_s0_2->unk0 = temp_a1;
-        // temp_s0_2->unk4 = 0x07080200;
-        gDPSetTile((*gfx)++, G_IM_FMT_IA, G_IM_SIZ_32b, 427, 0x0101, G_TX_RENDERTILE, 0, G_TX_NOMIRROR | G_TX_WRAP, 1, 12, G_TX_NOMIRROR | G_TX_WRAP, 8, 7);
-        gDPLoadSync((*gfx)++);
-        // temp_a3 = ((phi_s3 * 4) & 0xFFF) << 0xC;
-        // temp_a0 = ((phi_s5 * 4) & 0xFFF) << 0xC;
-        // temp_s0_4->unk0 = (s32) (temp_a3 | 0xF4000000 | phi_t1);
-        // temp_s0_4->unk4 = (s32) (temp_a0 | 0x07000000 | phi_t2);
-        gDPLoadTile((*gfx)++, G_TX_LOADTILE, 0, 0, 0, 0);
-        gDPPipeSync((*gfx)++);
-
-        // temp_s0_6->unk0 = temp_a1;
-        // temp_s0_6->unk4 = 0x00080200;
-        gDPSetTile((*gfx)++, G_IM_FMT_IA, G_IM_SIZ_16b, 0, 0x0100, G_TX_RENDERTILE, 0, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOLOD);
-        // temp_s0_7->unk4 = (s32) (temp_a0 | phi_t2);
-        // temp_s0_7->unk0 = (s32) (temp_a3 | 0xF2000000 | phi_t1);
-        gDPSetTileSize((*gfx)++, G_TX_RENDERTILE, 0, 0, 0, 0);
-        temp_a1_2 = *gfx;
-        *gfx = temp_a1_2 + 8;
-        if ((s32) phi_s6 > 0) {
-            phi_v1 = (s16) (phi_s7 + 0x188);
-        } else {
-            phi_v1 = 0;
+    for (y = 0; y < 4; y++) {
+        for(x = 0; x < 5; x++){
+            gDPLoadTextureTile((*gfx)++, osVirtualToPhysical(D_80382450), G_IM_FMT_IA, G_IM_SIZ_16b, 160, 128,
+                0x20*x, 0x20*y, 0x20*(x + 1) - 1, 0x20*(y + 1) - 1,
+                0,
+                G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP,
+                G_TX_NOMASK, G_TX_NOMASK,
+                G_TX_NOLOD, G_TX_NOLOD);
+            gSPScisTextureRectangle((*gfx)++,
+                (0x20*x + 0x42)*4,       (0x20*y + 0x2C)*4,
+                (0x20*(x + 1) + 0x42)*4, (0x20*(y + 1) + 0x2C)*4,
+                0,
+                0x20*x << 5, 0x20*y << 5,
+                1 << 10, 1 << 10);
         }
-        if (phi_t3 > 0) {
-            phi_v0 = phi_t3;
-        } else {
-            phi_v0 = 0;
-        }
-        temp_a1_2->unk0 = (s32) ((phi_v0 & 0xFFF) | 0xE4000000 | ((phi_v1 & 0xFFF) << 0xC));
-        if ((s32) phi_s4 > 0) {
-            phi_v1_2 = phi_s4;
-        } else {
-            phi_v1_2 = 0;
-        }
-        if ((s32) phi_t4_2 > 0) {
-            phi_v0_2 = phi_t4_2;
-        } else {
-            phi_v0_2 = 0;
-        }
-        temp_a1_2->unk4 = (s32) ((phi_v0_2 & 0xFFF) | ((phi_v1_2 & 0xFFF) << 0xC));
-        temp_a2 = *gfx;
-        *gfx = temp_a2 + 8;
-        temp_a2->unk0 = 0xB4000000;
-        phi_s5 += 0x20;
-        if ((s32) phi_s4 < 0) {
-            temp_t6 = (s32) (phi_s4 << 0xA) >> 7;
-            if (temp_t6 < 0) {
-                phi_a0 = temp_t6;
-            } else {
-                phi_a0 = 0;
-            }
-        } else {
-            phi_a0 = 0;
-        }
-        if (phi_t4 < 0) {
-            temp_t8 = (s32) (phi_t4_2 << 0xA) >> 7;
-            if (temp_t8 < 0) {
-                phi_v0_3 = temp_t8;
-            } else {
-                phi_v0_3 = 0;
-            }
-        } else {
-            phi_v0_3 = 0;
-        }
-        temp_a2->unk4 = (s32) (((phi_ra - phi_v0_3) & 0xFFFF) | (((phi_s3 << 5) - phi_a0) << 0x10));
-        temp_s0_8 = *gfx;
-        temp_s4 = phi_s4 + 0x80;
-        *gfx = temp_s0_8 + 8;
-        temp_s0_8->unk0 = 0xB3000000;
-        temp_s0_8->unk4 = 0x04000400;
-        phi_s3 += 0x20;
-        phi_s6 += 0x80;
-        phi_s4 = temp_s4;
-        phi_s7 += 0x80;
-        if (temp_s4 != 0x388) {
-            goto loop_2;
-        }
-        temp_t4 = phi_t4 + 0x80;
-        sp74 += 0x20;
-        sp54 += 0x80;
-        sp64 += 0x20;
-        phi_t4_2 = temp_t4;
-    } while (temp_t4 != 0x2B0);
+    }
     gSPDisplayList((*gfx)++, D_8036C4A8);
 }
-#endif
 
 
 s32 func_8030C704(void){

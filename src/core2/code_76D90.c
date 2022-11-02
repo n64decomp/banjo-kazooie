@@ -18,7 +18,7 @@ f32 func_802FB0E4(s32);
 
 extern void *D_8036A010;
 extern void *D_8036A014;
-extern f32 D_8036A018[];
+extern s32 D_8036A018[];
 extern Gfx D_8036A030[];
 
 
@@ -93,96 +93,88 @@ f32 func_802FDE60(f32 arg0) {
     return arg0;
 }
 
-#if 1
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_76D90/func_802FDEE0.s")
 #else
-void func_802FDEE0(s32 arg0, struct8s *arg1, Gfx **arg2, Mtx **arg3, s32 *arg4){
+void func_802FDEE0(s32 arg0, struct8s *arg1, Gfx **arg2, Mtx **arg3, Vtx **arg4){
+    s32 var_v0;
+    s32 var_v1;
+    s32 sp13C;
+    s32 sp138;
     s32 sp134;
     f32 sp130;
+    f32 sp12C;
+    f32 sp128;
     f32 sp124;
-    s32 phi_a1;
-    s32 phi_s4;
-    s32 phi_v0;
-    s32 phi_v1;
-    f64 phi_f24;
-    f32 temp_f30;
-    s32 i;
+    f64 var_f24;
+    u32 sp118;
+    f32 sp110;
 
-    if(!D_8036A010)
-        return;
 
-    phi_a1 = (D_803815C0 == 2) ? ((D_8036A014) ? D_8036A014: D_8036A010) : D_8036A010;
-    //func_80347FC0(arg2, phi_a1, 0, 0, 0, 0, 0, 2, 2, &sp13C, &sp138);
-    func_8024C7B8(arg2, arg3);
-    gSPDisplayList((*arg2)++, D_8036A030);
-    phi_s4 = 2;
-    for(sp134 = 0; sp134 < phi_a1; sp134++){
+
+    sp118 = D_803815C0 == 2;
+    if (D_8036A010 != 0) {
+        func_80347FC0(arg2, (sp118 ) ? (D_8036A014 != 0) ? D_8036A014 : D_8036A010 : D_8036A010, 0, 0, 0, 0, 0, 2, 2, &sp13C, &sp138);
+        func_8024C7B8(arg2, arg3);
+        gSPDisplayList((*arg2)++, D_8036A030);
+        for(sp134 = 0; sp134 < (sp118) ? (D_8036A014 != 0) ? 2 : 1 : 6; sp134++){
+            sp110 = D_8036A018[sp134] * -0x3C;
+            gDPPipeSync((*arg2)++);
+            if (sp118) {
+                    if (sp134 != 0) {
+                        func_80347FC0(arg2, D_8036A010, 0, 0, 0, 0, 0, 2, 2, &sp13C, &sp138);
+                        gDPSetPrimColor((*arg2)++, 0, 0, 0x00, 0x00, 0x00, (0xFF - D_803815E4));
+                    } else {
+                        gDPSetPrimColor((*arg2)++, 0, 0, 0x00, 0x00, 0x00, D_803815E4);
+                    }
+            } else {
+                if (D_803815D4 <= D_8036A018[sp134]) {
+                    gDPSetPrimColor((*arg2)++, 0, 0, 0x00, 0x00, 0x00, 0x50);
+                }
+                else{
+                    if ((D_803815EC != 0) && ((D_803815D4 - 1.0f) == D_8036A018[sp134])) {
+                        gDPSetPrimColor((*arg2)++, 0, 0, 0x00, 0x00, 0x00, D_803815E8);
+                    } else {
+                        gDPSetPrimColor((*arg2)++, 0, 0, 0x00, 0x00, 0x00, 0xFF);
+                    }
+                }
+            }
+            sp128 = (244.0f - ((f32) D_80276588 / 2));
+            sp124 = func_802FB0E4(arg1) + ((f32) D_8027658C / 2) - 246.0f;
+            guTranslate(*arg3, sp128 * 4.0f, sp124 * 4.0f, 0.0f);
+            gSPMatrix((*arg2)++, OS_K0_TO_PHYSICAL((*arg3)++), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
+
+            
+            guRotate(*arg3, func_802FDE60(D_803815D8 + D_803815DC), 0.0f, 0.0f, 1.0f);
+            gSPMatrix((*arg2)++, OS_K0_TO_PHYSICAL((*arg3)++), G_MTX_NOPUSH | G_MTX_MUL | G_MTX_MODELVIEW);
+
+            guScale(*arg3, D_803815E0, D_803815E0, D_803815E0);
+            gSPMatrix((*arg2)++, OS_K0_TO_PHYSICAL((*arg3)++), G_MTX_NOPUSH | G_MTX_MUL | G_MTX_MODELVIEW);
+            
+            guTranslate(*arg3, -sp128 * 4.0f, -sp124 * 4.0f, 0.0f);
+            gSPMatrix((*arg2)++, OS_K0_TO_PHYSICAL((*arg3)++), G_MTX_NOPUSH | G_MTX_MUL | G_MTX_MODELVIEW);
+            var_f24 = MIN(1.0, MAX(0.0, D_803815C8));
+            sp130 = cosf(((D_803815CC + sp110) * 0.017453292519943295)) * (var_f24 * 24.5) * D_803815D0;
+            var_f24 = MIN(1.0, MAX(0.0, D_803815C8));
+            sp12C = sinf(((D_803815CC + sp110) * 0.017453292519943295))* (var_f24 * 24.5) * D_803815D0;
+            gSPVertex((*arg2)++, *arg4, 4, 0);
+            for(var_v1 = 0; var_v1 < 2; var_v1++){
+                    for(var_v0 = 0; var_v0 < 2; var_v0++, (*arg4)++){
+                        (*arg4)->v.ob[0] = ((((sp13C * D_803815D0) * var_v0) - ((sp13C * D_803815D0) / 2)) + (s32) (sp130 + sp128)) * 4.0f;
+                        (*arg4)->v.ob[1] = ((((sp138 * D_803815D0) / 2) - ((sp138 * D_803815D0) * var_v1)) + (s32) (sp12C + sp124)) * 4.0f;
+                        (*arg4)->v.ob[2] = -0x14;
+                        (*arg4)->v.tc[0] = (s16) ((sp13C - 1) * var_v0 << 9);
+                        (*arg4)->v.tc[1] = (s16) ((sp138 - 1) * var_v1 << 9);
+                          
+                    }
+            }
+            gSP1Quadrangle((*arg2)++, 0, 1, 3, 2, 0);
+        }
         gDPPipeSync((*arg2)++);
-        if(D_803815C0 == 2){
-            if(sp134 != 0){
-                //func_80347FC0(arg2, D_8036A010, 0, 0, 0, 0, 0, phi_s4, phi_s4, &sp13C, &sp138);
-                gDPSetPrimColor((*arg2)++, 0, 0, 0x00, 0x00, 0x00, (0xFF - D_803815E4)& 0xFF);
-            }
-            else{
-                gDPSetPrimColor((*arg2)++, 0, 0, 0x00, 0x00, 0x00, D_803815E4 & 0xFF);
-            }
-        }
-        else{
-            if(D_803815D4 < D_8036A018[sp134]){
-                gDPSetPrimColor((*arg2)++, 0, 0, 0x00, 0x00, 0x00, 0x50);
-            }else if(D_803815EC && (D_803815D4 - 1.0f) == D_8036A018[sp134]){
-                gDPSetPrimColor((*arg2)++, 0, 0, 0x00, 0x00, 0x00, D_803815E8 & 0xFF);
-            }else{
-                gDPSetPrimColor((*arg2)++, 0, 0, 0x00, 0x00, 0x00, 0xFF);
-            }
-        }
-
-
-        //if statements here
-        temp_f30 = 244.0f - ((f32) D_80276588 / 2.0f);
-        sp124 = (func_802FB0E4(arg1) + ((f32) D_8027658C / 2.0f)) - 246.0f;
-        guTranslate(*arg3, temp_f30 * 4.0f, sp124, 0);
-        gSPMatrix((*arg2)++, 0x80000000 + (*arg3)++, G_MTX_NOPUSH | G_MTX_MUL | G_MTX_MODELVIEW);
-
-        guRotate(*arg3, func_802FDE60(D_803815D8 + D_803815DC), 0, 0, 1.0f);
-        gSPMatrix((*arg2)++, 0x80000000 + (*arg3)++, G_MTX_NOPUSH | G_MTX_MUL | G_MTX_MODELVIEW);
-
-        guScale(*arg3, D_803815E0, D_803815E0, D_803815E0);
-        gSPMatrix((*arg2)++, 0x80000000 + (*arg3)++, G_MTX_NOPUSH | G_MTX_MUL | G_MTX_MODELVIEW);
-        
-        guTranslate(*arg3, -temp_f30 * 4.0f, -sp124 * 4.0f, 0);
-        gSPMatrix((*arg2)++, 0x80000000 + (*arg3)++, G_MTX_NOPUSH | G_MTX_MUL | G_MTX_MODELVIEW);
-        
-        phi_f24 = _76D90_MIN(_76D90_MAX(D_803815C8, 0.0),1.0);
-        sp134 = temp_f18 = ((f64) cosf((f32) ((f64) (*(void *)0x803815CC + sp110) * D_803773B0)) * (phi_f24 * D_803773B8) * D_803815D0);
-        gSPVertex((*arg2)++, *arg4, 4, 0);
-        do{
-            for(phi_v0 = 0; phi_v0 < phi_s4; phi_v0++){
-                // temp_f24 = (f32) sp13C * D_803815D0;
-                //(*arg4)->v.ob[0] = ((((temp_f24 * (f32) phi_v0) - (temp_f24 / 2.0f)) + temp_f14) * 4.0f);
-                // temp_f30_2 = (f32) sp138 * D_803815D0;
-                //(*arg4)->v.ob[1] = ((((temp_f30_2 * (f32) phi_v0) - (temp_f30_2 / 2.0f)) + temp_f14) * 4.0f);
-                // (*arg4)->unk4 = (u16)-0x14;
-                // (*arg4)->unk8 = (s16) (((sp13C - 1) * phi_v0) << 9);
-                // (*arg4)->unkA = (s16) (((sp138 - 1) * phi_v1) << 9);
-                // *arg4 = (void *) (*arg4 + 0x10);
-                //(*arg4)++
-            }// loop43
-            phi_v1++;
-        }while(phi_v1 != phi_s4); // loop42
-        phi_a1 = (D_803815C0 == 2) ? ((D_8036A014) ? ++phi_s4: 1) : 6;
+        gDPSetTextureLUT((*arg2)++, G_TT_NONE);
+        gDPPipelineMode((*arg2)++, G_PM_NPRIMITIVE);
+        func_8024C904(arg2, arg3);
     }
-    
-    
-
-
-    //L802FE7A0
-    //gSP1Quadrangle((*arg2)++, 0, 1, 3, 2, 0);
-    gDPPipeSync((*arg2)++);
-    gDPSetTextureLUT((*arg2)++, G_TT_NONE);
-    gDPPipelineMode((*arg2)++, G_PM_NPRIMITIVE);
-    func_8024C904(arg2, arg3, arg4);
-    //L802FE7FC
 }
 #endif
 
