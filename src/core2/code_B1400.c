@@ -899,7 +899,7 @@ int func_803391A4(Gfx **gfx, Mtx **mtx, f32 position[3], f32 arg3[3], f32 scale,
         }////L80339764
     }//L80339764
 
-    gSPSegment((*gfx)++, 0x01, osVirtualToPhysical((void*)((s32)D_80383728 + sizeof(BKVertexList))));
+    gSPSegment((*gfx)++, 1, osVirtualToPhysical((void*)((s32)D_80383728 + sizeof(BKVertexList))));
     gSPSegment((*gfx)++, 0x02, osVirtualToPhysical((void*)((s32)D_80383720 + D_80383720->cnt_4*sizeof(BKTextureHeader) + sizeof(BKTextureList))));
 
     if(D_80383724){

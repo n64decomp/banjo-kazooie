@@ -184,7 +184,7 @@ void func_802F962C(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
         temp_s3 = (BKVertexList *)((s32)D_80369288 + D_80369288->vtx_list_offset_10);
         D_8038108C = func_802EC920(temp_s3);
         func_80349AD0();
-        gSPSegment((*gfx)++, 0x01, osVirtualToPhysical(temp_s3 + 1));
+        gSPSegment((*gfx)++, 1, osVirtualToPhysical(temp_s3 + 1));
         gSPSegment((*gfx)++, 0x02, osVirtualToPhysical((s32)D_80369288 + D_80369288->texture_list_offset_8 + sizeof(BKTextureList) + sizeof(BKTextureHeader)));
         gSPSetGeometryMode((*gfx)++, G_ZBUFFER);
         gSPDisplayList((*gfx)++, D_80369290);

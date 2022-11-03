@@ -48,19 +48,18 @@ typedef struct {
 }Actorlocal_Core2_9E370;
 
 /* .data */
-extern ActorArray *D_8036E560; //actorArrayPtr
-extern s32 D_8036E564;
-extern s32 D_8036E568;
-extern s32 D_8036E56C;
-extern void *D_8036E570;
-extern  u8 D_8036E574;
-extern  u8 D_8036E578;
-extern  u8 D_8036E57C;
-extern f32 D_8036E580;
-extern f32 D_8036E58C[3];
-extern f32 D_8036E598[6];
-extern s32 D_8036E5B0[4];
-extern s32 D_8036E5C0[4];
+ActorArray *D_8036E560 = NULL; //actorArrayPtr
+s32 D_8036E564 = 0;
+s32 D_8036E568 = 0;
+s32 D_8036E56C = 0;
+void *D_8036E570 = NULL;
+u8 D_8036E574 = 0;
+u8 D_8036E578 = 0;
+u8 D_8036E57C = 0;
+f32 D_8036E580[3] = {0.0f, -8.0f, 0.0f};
+f32 D_8036E58C[3] = {0.0f, -16.0f, 0.0f};
+f32 D_8036E598[4] = {1000.f, 20.0f, 10.5f, 1.0f};
+
 
 
 /* .bss */
@@ -222,7 +221,7 @@ Actor *func_80325888(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     this = func_80325300(marker, sp3C);
     func_8033A2D4(func_803253A0, this);
     func_8033A2E8(func_80325794, marker);
-    func_803391A4(gfx, mtx, this->position, sp3C, this->scale, (this->unk104 != NULL) ? &D_8036E580 : NULL, func_803257B4(marker));
+    func_803391A4(gfx, mtx, this->position, sp3C, this->scale, (this->unk104 != NULL) ? D_8036E580 : NULL, func_803257B4(marker));
     return this;
 }
 
@@ -344,7 +343,7 @@ Actor *func_80325E78(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     set_model_render_mode(1);
     func_8033A2D4(func_803253A0, this);
     func_8033A2E8(func_80325794, marker);
-    func_803391A4(gfx, mtx, this->position, rotation, this->scale, (this->unk104 != NULL) ?  &D_8036E580 : NULL, func_803257B4(marker));
+    func_803391A4(gfx, mtx, this->position, rotation, this->scale, (this->unk104 != NULL) ?  D_8036E580 : NULL, func_803257B4(marker));
     return this;
 }
 
@@ -2052,24 +2051,23 @@ void func_8032ACA8(Actor *arg0) {
     }
 }
 
-#ifndef NONMATCHING
+#ifdef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032AD7C.s")
 #else
-extern s32 D_8036E5A8;
 void func_8032AD7C(s32 arg0) {
     s32 var_s0;
+    static s32 D_8036E5A8 = 0;
     
 
     if (D_8036E560 != NULL) {
         if (D_8036E5A8 >= D_8036E560->cnt) {
             D_8036E5A8 = 0;
         }
-        for(var_s0 = 0; var_s0 < (arg0 == 1) ? 0xF : D_8036E560->cnt; var_s0++){
+        for(var_s0 = 0; var_s0 < ((arg0 == 1) ? 0xF : D_8036E560->cnt); var_s0++){
             if (func_80330E28(&D_8036E560->data[D_8036E5A8]) == NULL) {
                 func_8032ACA8(&D_8036E560->data[D_8036E5A8]);
             }
-            D_8036E5A8++;
-            D_8036E5A8 %= D_8036E560->cnt;
+            D_8036E5A8 = (D_8036E5A8 + 1) % D_8036E560->cnt;
         }
     }
 }
@@ -2085,11 +2083,6 @@ void func_8032AEB4(void) {
     }
 }
 
-
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032AF94.s")
-#else
-extern s32 D_8036E5AC;
 void func_8032AF94(void) {
     AnimCtrl *temp_a0_4;
     ParticleEmitter *temp_a0_2;
@@ -2105,6 +2098,8 @@ void func_8032AF94(void) {
     s32 var_s1;
     Actor *temp_s0;
     void *temp_s0_2;
+    static s32 D_8036E5AC = 0;
+
 
     if (D_8036E560 != NULL) {
         for(var_s1 = 0; var_s1 < 8; var_s1++){
@@ -2157,7 +2152,6 @@ void func_8032AF94(void) {
         D_8036E570 = func_802F3364(D_8036E570);
     }
 }
-#endif
 
 ActorMarker *func_8032B16C(enum jiggy_e jiggy_id) {
     Actor *temp_s3;
@@ -2201,6 +2195,8 @@ bool func_8032B38C(NodeProp *node, s32 arg1){
 
 void func_8032B3A0(Actor *this, ActorMarker *arg1) {
     f32 sp54[3];
+    static s32 D_8036E5B0[4] = {0xFF, 0xFF, 0xFF, 0xC8};
+
 
     if (arg1 != NULL) {
         sp54[0] = this->position[0];
@@ -2218,6 +2214,7 @@ void func_8032B3A0(Actor *this, ActorMarker *arg1) {
 
 void func_8032B4DC(Actor *this, ActorMarker *arg1, s32 arg2) {
     f32 sp3C[3];
+    static s32 D_8036E5C0[4] = {0xFF, 0xFF, 0xFF, 0xC8};
 
     if (arg1 != NULL) {
         func_8034A174(this->marker->unk44, arg2, &sp3C);

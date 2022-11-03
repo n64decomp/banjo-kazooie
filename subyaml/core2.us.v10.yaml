@@ -558,7 +558,7 @@ segments:
   - [0xE6EF0, .data, code_9B650]
   - [0xE7330, .data, code_9B990]
   - [0xE7490, .data, code_9D640]
-  - [0xE75D0, bin, data_E75D0]
+  - [0xE75D0, .data, code_9E370]
   - [0xE7640, .data, code_A4D00]
   - [0xE7820, bin, data_E7820]
   - [0xE7870, .data, code_A5BC0]

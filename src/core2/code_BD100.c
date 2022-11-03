@@ -149,7 +149,7 @@ void func_80344424(BKSpriteDisplayData *arg0, s32 frame, bool mirrored, f32 arg3
     mlMtxApply(*mtx);
     gSPMatrix((*gfx)++, (*mtx)++, G_MTX_PUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
     temp_a3 = (BKSpriteFrameDisplayData *)((s32)arg0 + sizeof(BKSpriteDisplayData) + frame*sizeof(BKSpriteFrameDisplayData));
-    gSPSegment((*gfx)++, 0x01, osVirtualToPhysical(temp_a3->vtx));
+    gSPSegment((*gfx)++, 1, osVirtualToPhysical(temp_a3->vtx));
     gSPDisplayList((*gfx)++, temp_a3->gfx);
     gSPPopMatrix((*gfx)++, G_MTX_MODELVIEW);
     func_80349AD0();
@@ -196,7 +196,7 @@ void func_80344720(BKSpriteDisplayData *arg0, s32 frame, bool mirrored, f32 arg3
     mlMtxApply(*mtx);
     gSPMatrix((*gfx)++, (*mtx)++, G_MTX_PUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
     temp_a3 = (BKSpriteFrameDisplayData *)((s32)arg0 + sizeof(BKSpriteDisplayData) + frame*sizeof(BKSpriteFrameDisplayData));
-    gSPSegment((*gfx)++, 0x01, osVirtualToPhysical(temp_a3->vtx));
+    gSPSegment((*gfx)++, 1, osVirtualToPhysical(temp_a3->vtx));
     gSPDisplayList((*gfx)++, temp_a3->gfx);
     gSPPopMatrix((*gfx)++, G_MTX_MODELVIEW);
     func_80349AD0();
