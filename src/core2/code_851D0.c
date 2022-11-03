@@ -4,6 +4,17 @@
 
 extern u8 D_803A5D00[2][0x1ecc0];
 
+
+#define TILE_SIZE 32
+#define TILE_COUNT_X 5
+#define TILE_COUNT_Y 4
+#define IMAGE_WIDTH (TILE_SIZE * TILE_COUNT_X)
+#define IMAGE_HEIGHT (TILE_SIZE * TILE_COUNT_Y)
+#define SCREEN_WIDTH 292
+#define SCREEN_HEIGHT 216
+#define HORIZONTAL_MARGIN (((SCREEN_WIDTH) - IMAGE_WIDTH) / 2)
+#define VERTICAL_MARGIN (((SCREEN_HEIGHT) - IMAGE_HEIGHT) / 2)
+
 /* .data */
 Gfx D_8036C450[] = {
     gsDPPipeSync(),
@@ -42,7 +53,7 @@ void func_8030C180(void){
 
 void func_8030C1A0(void){
     if(D_80382454 == NULL){
-        D_80382454 = D_80382450 = malloc(0xA040);
+        D_80382454 = D_80382450 = malloc(IMAGE_WIDTH * IMAGE_HEIGHT * sizeof(u16) + 64);
 
         while((s32)D_80382450 & 0x3F){
             D_80382450++;
@@ -83,26 +94,32 @@ void func_8030C2D4(Gfx **gdl, Mtx **mptr, Vtx **vptr){
     func_80253640(gdl, D_803A5D00[func_8024BDA0()]);
 }
 
+// Draws a 160x128 image pointed to by D_80382450 into the center of the screen
 void func_8030C33C(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     s32 x, y;
- 
+
+    // Set up the rendering state to draw the image
     gSPDisplayList((*gfx)++, D_8036C450);
-    for (y = 0; y < 4; y++) {
-        for(x = 0; x < 5; x++){
-            gDPLoadTextureTile((*gfx)++, osVirtualToPhysical(D_80382450), G_IM_FMT_IA, G_IM_SIZ_16b, 160, 128,
-                0x20*x, 0x20*y, 0x20*(x + 1) - 1, 0x20*(y + 1) - 1,
+    // Iterate over every tile in the image
+    for (y = 0; y < TILE_COUNT_Y; y++) {
+        for(x = 0; x < TILE_COUNT_X; x++){
+            // Load the current tile from the image
+            gDPLoadTextureTile((*gfx)++, osVirtualToPhysical(D_80382450), G_IM_FMT_IA, G_IM_SIZ_16b, IMAGE_WIDTH, IMAGE_HEIGHT,
+                TILE_SIZE * x, TILE_SIZE * y, TILE_SIZE * (x + 1) - 1, TILE_SIZE * (y + 1) - 1,
                 0,
                 G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP,
                 G_TX_NOMASK, G_TX_NOMASK,
                 G_TX_NOLOD, G_TX_NOLOD);
+            // Draw the tile to the screen at the target position
             gSPScisTextureRectangle((*gfx)++,
-                (0x20*x + 0x42)*4,       (0x20*y + 0x2C)*4,
-                (0x20*(x + 1) + 0x42)*4, (0x20*(y + 1) + 0x2C)*4,
+                (TILE_SIZE * x + HORIZONTAL_MARGIN) * 4,       (TILE_SIZE * y + VERTICAL_MARGIN) * 4,
+                (TILE_SIZE * (x + 1) + HORIZONTAL_MARGIN) * 4, (TILE_SIZE * (y + 1) + VERTICAL_MARGIN) * 4,
                 0,
-                0x20*x << 5, 0x20*y << 5,
+                TILE_SIZE * x << 5, TILE_SIZE * y << 5,
                 1 << 10, 1 << 10);
         }
     }
+    // Reset the rendering state
     gSPDisplayList((*gfx)++, D_8036C4A8);
 }
 
