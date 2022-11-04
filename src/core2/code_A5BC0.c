@@ -800,91 +800,76 @@ void func_8032E7E8(NodeProp *node, Cube *cube, s32 cnt) {
     }
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_8032EA24.s")
-#else
-void func_8032EA24(Struct61s *file_ptr, Cube *cube) {
+void cube_fromFile(Struct61s *file_ptr, Cube *cube) {
     u8 sp47;
     u8 sp46;
+    NodeProp *temp_v0;
+    OtherNode *var_v1_3;
+    Prop *var_v1_2;
     s32 sp34;
-    s32 sp2C;
-    s32 temp_s0_3;
-    s32 actor_4;
-    s32 actor_5;
-    u8 temp_t1;
-    NodeProp *temp_a0;
-    NodeProp *temp_s0;
-    NodeProp *i;
-    Prop *i_2;
+    s32 temp_v0_5;
 
     cube_free(cube);
-    if (func_8034B040(file_ptr, 0xA, sp46)) {
+    if (func_8034B040(file_ptr, 0xA, &sp46)) {
         func_8032E784(cube, sp46);
-        cube->prop1Ptr = malloc(sp46 *sizeof(NodeProp));
-        temp_s0 = malloc(sp46*sizeof(NodeProp));
-        func_8034B080(file_ptr, 0xB, temp_s0, cube->prop1Cnt * sizeof(NodeProp));
-        func_8032E7E8(temp_s0, cube, sp46);
-    } else if (func_8034B040(file_ptr, 6, sp46)) {
+        cube->prop1Ptr = (NodeProp*) malloc(sp46 * sizeof(NodeProp));
+        temp_v0 = (NodeProp*) malloc(sp46 * sizeof(NodeProp));
+        func_8034B080(file_ptr, 0xB, temp_v0, cube->prop1Cnt * sizeof(NodeProp));
+        func_8032E7E8(temp_v0, cube, sp46);
+        
+    } else if (func_8034B040(file_ptr, 6, &sp46)) {
         func_8032E784(cube, sp46);
-        cube->prop1Ptr = malloc(sp46 *sizeof(NodeProp));
-        temp_s0 = malloc(sp46*sizeof(NodeProp));
-        func_8034B080(file_ptr, 7, temp_s0, cube->prop1Cnt * sizeof(NodeProp));
-        for(i = temp_s0; i < temp_s0 + sp46; i++){
-            if (i->unk4_0 && !i->unkC_0) {
-                i->unk4_17 = 0;
-                i->unk10_4 = 0;
+        cube->prop1Ptr = (OtherNode*) malloc(sp46 * sizeof(OtherNode));
+        temp_v0 = (OtherNode*) malloc(sp46 * sizeof(OtherNode));
+        func_8034B080(file_ptr, 7, temp_v0, cube->prop1Cnt * sizeof(OtherNode));
+        for(var_v1_3 = temp_v0; var_v1_3 < (OtherNode*)&temp_v0[sp46]; var_v1_3++){
+            if(var_v1_3->unk4_0 && !var_v1_3->unkC_0){
+                var_v1_3->unk4_17 = 0;
+                var_v1_3->unk10_4 = 0;
             }
         }
-        func_8032E7E8(temp_s0, cube, sp46);
+        func_8032E7E8(temp_v0, cube, sp46);
     }
+
     if (func_8034B040(file_ptr, 8, &sp47)) {
-        temp_s0_3 = func_803203FC(2);
-        sp2C = func_803203FC(1);
-        sp34 = func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE) + sp2C + temp_s0_3;
-        if (sp34 != 0) {
-            if (gcparade_8031B4CC() != 0) {
-                sp34 = 0;
-            }
+        sp34 = func_803203FC(1) +  func_803203FC(2) + func_803203FC(0x1F);
+        
+        if ((sp34) && gcparade_8031B4CC()) {
+            sp34 = 0;
         }
-        if (cube->prop2Ptr != 0) {
+        if (cube->prop2Ptr != NULL) {
             free(cube->prop2Ptr);
         }
         cube->prop2Cnt = sp47;
         cube->prop2Ptr = (Prop *) malloc(sp47 * sizeof(Prop));
         func_8034B080(file_ptr, 9, cube->prop2Ptr, cube->prop2Cnt * sizeof(Prop));
-        for(i_2 = cube->prop2Ptr; i_2 < cube->prop2Ptr + sp47; i_2++){
-            i_2->unk8_4 = 1;
-            if(i_2->unk8_1){
-                i_2->actorProp.unk8_5 = 0;
-            }
-            if(sp34){
-                if(!i_2->markerFlag && !i_2->unk8_1){
-                    switch(i_2->spriteProp.unk0_31 + 0x572){
-                        case 0x580:
-                        case 0x6D1:
-                        case 0x6D6:
-                        case 0x6D7:
-                            i_2->spriteProp.unk8_4 = 0; 
-                            break;
+        for(var_v1_2 = cube->prop2Ptr; var_v1_2 < cube->prop2Ptr + sp47; var_v1_2++){
+                var_v1_2->unk8_4 = 1;
+                if (var_v1_2->unk8_1) {
+                    var_v1_2->unk8_5 = 0;
+                }
+                if (sp34) {
+                    if (!(var_v1_2->markerFlag) && !(var_v1_2->unk8_1)){
+                        temp_v0_5 = var_v1_2->spriteProp.unk0_31 + 0x572;
+                        if((temp_v0_5 == 0x580) || (temp_v0_5 == 0x6D1) || (temp_v0_5 == 0x6D6) || (temp_v0_5 == 0x6D7)){
+                            var_v1_2->unk8_4 = 0;
+                        }
                     }
                 }
-            }
         }
-
+            
     }
-
-    if ((cube->prop2Ptr != NULL) && (cube->prop2Cnt == 0)) {
+    if ((cube->prop2Ptr != NULL) && ((cube->prop2Cnt) == 0)) {
         free(cube->prop2Ptr);
         cube->prop2Ptr = NULL;
     }
-
+    
     if ((cube->prop1Ptr != NULL) && (cube->prop1Cnt == 0)) {
         free(cube->prop1Ptr);
         cube->prop1Ptr = NULL;
         cube->unk0_4 = 0;
     }
 }
-#endif
 
 void func_8032EE0C(Method_Core2_A5BC0 arg0, s32 arg1){
     D_80383558 = arg0;

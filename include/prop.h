@@ -353,6 +353,21 @@ typedef struct {
     u32 unk10_0 : 2;
 } NodeProp;
 
+typedef struct {
+    u8 pad0[0x4];
+    u32 pad4_31:14;
+    u32 unk4_17:2;
+    u32 pad4_15:8;
+    u32 pad4_7:7;
+    u32 unk4_0:1;
+    u8 pad8[0x4];
+    u32 padC_31:31;
+    u32 unkC_0:1;
+    u32 pad10_31:27;
+    u32 unk10_4:4; 
+    u32 pad10_0:1; 
+} OtherNode; //can be inplace of NodeProp (see cube_fromFile)
+
 typedef struct cude_s{
     s32 x:5;
     s32 y:5;

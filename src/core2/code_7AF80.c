@@ -854,7 +854,7 @@ void func_803045E0(Cube *cube, Struct61s* file_ptr) {
             func_8034ADB4(file_ptr, sp2C, 3);
         } else if (!func_8034B190(file_ptr, 2, &sp2C, 3) && func_8034AF98(file_ptr, 3) 
         ) {
-            func_8032EA24(file_ptr, cube);
+            cube_fromFile(file_ptr, cube);
         }
     }
 }
