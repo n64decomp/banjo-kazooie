@@ -149,7 +149,7 @@ typedef struct{
         u32 bit15: 9;
         u32 bit6: 3;
         u32 bit3: 3;
-        u32 pad_bit0: 1;
+        u32 bit0: 1;
     }unk4;
     struct{
         u32 bit31: 10;
@@ -230,6 +230,9 @@ extern f32 D_8037901C;
 /* .bss */
 s16 *D_803858A0;
 
+/* .h */
+struct56s *func_80342038(s32 indx);
+
 /* .code */
 //glspline_clamp
 f32 func_80340700(f32 value, f32 min, f32 max) {
@@ -242,7 +245,61 @@ bool func_80340748(s32 arg0, s32 arg1, s32 arg2, f32 arg3[3], s32 arg4, s32 arg5
     return FALSE;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B9770/func_80340760.s")
+s32 func_80340760(s32 arg0, s32 *arg1, f32 *arg2, s32 arg3, s32 arg4, f32 *arg5, f32 *arg6) {
+    glspline_list **temp_t0 = D_80371E74;
+    glspline_list *temp_a0;
+    Union_glspline *temp_v0;
+    Union_glspline *var_v1;
+    s32 var_a2;
+
+    *arg5 = -9999.0f;
+    *arg6 = -9999.0f;
+    if (arg4 != -1) {
+        temp_a0 = temp_t0[arg4];
+        var_v1 = (temp_a0 + 1);
+        temp_v0 = var_v1 + temp_a0->unk0;
+        for(var_v1 = var_v1; (arg0 != var_v1->t1.unk10.bit31) && (var_v1 < temp_v0); var_v1++){
+            continue;
+        }
+        
+        if (var_v1 < temp_v0) {
+            if (var_v1->t1.unk4.bit0 == 1) {
+                if (!var_v1->t1.unkC.bit0  && (var_v1->t1.unk4.bit6 == 7)) {
+                    *arg5 = (f32)var_v1->t1.unkC.bit31;
+                    *arg6 = (f32)var_v1->t1.unk4.bit15;
+                }
+            }
+            *arg1 = arg4;
+            *arg2 = var_v1->t1.unk0;
+            func_80323240(func_80342038(arg4), var_v1->t1.unk0, arg3);
+            return 1;
+        }
+    }
+    
+    for(var_a2 = 0; var_a2 < D_80371E78; var_a2++){
+        if (var_a2 != arg4) {
+            temp_a0 = temp_t0[var_a2];
+            var_v1 = (temp_a0 + 1);
+            temp_v0 = var_v1 + temp_a0->unk0;
+            for(var_v1 = var_v1; (arg0 != var_v1->t1.unk10.bit31) && (var_v1 < temp_v0); var_v1++){
+                continue;
+            }
+            if (var_v1 < temp_v0) {
+                if (var_v1->t1.unk4.bit0 == 1) {
+                    if (!var_v1->t1.unkC.bit0  && (var_v1->t1.unk4.bit6 == 7)) {
+                        *arg5 = (f32)var_v1->t1.unkC.bit31;
+                        *arg6 = (f32)var_v1->t1.unk4.bit15;
+                    }  
+                }
+                *arg1 = var_a2;
+                *arg2 = var_v1->t1.unk0;
+                func_80323240(func_80342038(var_a2), var_v1->t1.unk0, arg3);
+                return 1;
+            }
+        }
+    }
+    return 0;
+}
 
 f32 func_80340A4C(f32 arg0, s32 arg1, f32 *arg2) {
     s32 tmp_v1;

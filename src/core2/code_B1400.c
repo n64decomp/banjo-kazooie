@@ -1078,7 +1078,9 @@ BKEffectsList *func_8033A0B0(BKModelBin *arg0){
     return (BKEffectsList *)((s32)arg0 + arg0->effects_list_setup_24);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_8033A0CC.s")
+f32 func_8033A0CC(UNK_TYPE(void *) arg0){
+    return *(f32 *)((s32)arg0 + 0x34);
+}
 
 BKAnimationList *func_8033A0D4(BKModelBin *arg0){
     if(arg0->animation_list_offset_18 == 0)

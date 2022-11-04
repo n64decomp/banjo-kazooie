@@ -1570,10 +1570,13 @@ s32 func_80330F94(NodeProp *arg0, s32 arg1[3]){
     return arg0->unk6.bit15;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_80330FBC.s")
+void func_80330FBC(UNK_TYPE(void *)arg0, s32 arg1){
+    *(s32*)((s32)arg0 + 0xC) = arg1;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_80330FC4.s")
-
+s32 func_80330FC4(UNK_TYPE(void *)arg0){
+    return *(s32*)((s32)arg0 + 0xC);
+}
 
 void func_80330FCC(ActorMarker *marker, s32 arg1[3]){
     arg1[0] = marker->propPtr->x;

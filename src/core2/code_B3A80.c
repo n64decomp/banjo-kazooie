@@ -33,6 +33,7 @@ extern s32 assetcache_release(void * arg0);
 f32  func_8033ABA0(AnimationFile *anim_file, f32 arg1);
 f32  func_8033AC38(AnimationFile *anim_file, AnimationFileElement *arg1, f32 arg2);
 s32  func_8033AC0C(AnimationFile *this);
+void func_8033AFB8(Struct_B1400 *arg0, s32 arg1, f32 arg2[3][3]);
 void func_8033BAB0(enum asset_e asset_id, s32 offset, s32 size, void *dst_ptr);
 
 /* .core2 */
@@ -93,29 +94,61 @@ s32 func_8033AC30(AnimationFile *this){
     return this->elem_cnt;
 }
 
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B3A80/func_8033AC38.s")
-// f32 func_8033AC38(AnimationFile *this, AnimationFileElement *elem, f32 arg2){
-//     f32 sp38[4];
-//     AnimationFileData *tmp_a0;
-//     int i;
+#else
+f32 func_8033AC38(AnimationFile *this, AnimationFileElement *elem, f32 arg2){
+    AnimationFileData *var_a0;
+    AnimationFileData *var_a2;
+    AnimationFileData *var_v0;
+    f32 temp_f12;
+    f32 sp38[4];
+    u32 temp_t2;
 
-//     if((s32)arg2 < elem->data[0].unk0_13){
-//         sp38[0] = sp38[1] = D_803709E0[elem->unk0_3];
-//         sp38[2] = (f32)elem->data[0].unk2/64;
-//         sp38[3] = (elem->data[0].unk0_15 == 1 && elem->unk2 >= 2) ? (f32)elem->data[1].unk2/64 : sp38[2];
-//         return func_80340A4C((arg2 - this->unk0)/(elem->data[0].unk0_13 - this->unk0), 4, sp38);
-//     }////L8033AD30
+    var_a2 = &elem->data[0];
+    if ((s32)arg2 < var_a2->unk0_13) {
+        sp38[0] = sp38[1] = D_803709E0[elem->unk0_3];
+        sp38[2] = (f32) var_a2->unk2 / 64;
+        sp38[3] = (var_a2->unk0_15 == 1 && elem->data_cnt >= 2) ? (f32)(var_a2 + 1)->unk2/64 : sp38[2];
+        return func_80340A4C((arg2 - this->unk0)/(var_a2->unk0_13 - this->unk0), 4, sp38);
+    }
+    var_a0 = &elem->data[elem->data_cnt-1];
+    var_a0--;
+    if ((s32) arg2 >= (var_a0->unk0_13)) {
+        sp38[1] = (f32) var_a0->unk2 / 64;
+        sp38[0] =  ((var_a0->unk0_14 == 1) && (elem->data_cnt >= 2)) ? (f32) (var_a0 - 1)->unk2 / 64 : sp38[1];
+        sp38[2] = sp38[3] = sp38[1];
 
-//     tmp_a0 = &elem->data[elem->unk2];
-//     if(!((s32)arg2 < tmp_a0[-1].unk0_13)){
-//         sp38[1] = (f32)tmp_a0->unk2/ 64;
-//         sp38[0] = (tmp_a0->unk0_15 == 1 && tmp_a0->unk2 >= 2) ? (f32)elem->data[-1].unk2/64 : sp38[1];
-//         sp38[2] = sp38[3] = sp38[1];
-//         return func_80340A4C(64.0f - (f32)tmp_a0->unk0_13, 4, sp38);
-//     }//L8033AE0C
-// }
+        return func_80340A4C(arg2 - var_a0->unk0_13, 4, sp38);
+    }
 
-func_8033AFB8(Struct_B1400 *arg0, s32 arg1, f32 arg2[3][3]){
+    
+    var_v0 = var_a2 + 1;
+    while (var_v0 < var_a0){
+            var_v0 = &var_a2[(var_a0 - var_a2)/2];
+            if (var_v0->unk0_13 <= (s32)arg2) {
+                var_a2 = var_v0;
+                var_v0 = var_v0 + 1;
+            } else {
+                var_a0 = var_v0;
+                var_v0 = var_a2 + 1;
+            }
+    }
+    
+    sp38[1] = (f32) var_a2->unk2 / 64;
+    sp38[2] = (f32) var_a0->unk2 / 64;
+    temp_f12 = (arg2 - var_a2->unk0_13) / (var_a0->unk0_13 - var_a2->unk0_13);
+    if ((var_a2->unk0_14 == 0) && (var_a0->unk0_15 == 0)) {
+        return ((sp38[2] - sp38[1]) * temp_f12) + sp38[1];
+    }
+    
+    sp38[0] = (var_a2->unk0_14 == 1 && (var_a2 - 1) >= &elem->data[0]) ?  (f32)(var_a2 - 1)->unk2/64 : sp38[1];
+    sp38[3] = (var_a0->unk0_15 == 1 && (var_a0 + 1) < &elem->data[elem->data_cnt]) ? (f32)(var_a0 + 1)->unk2/64 : sp38[2];
+    return func_80340A4C(temp_f12, 4, sp38);
+}
+#endif
+
+void func_8033AFB8(Struct_B1400 *arg0, s32 arg1, f32 arg2[3][3]){
     f32 sp18[4]; 
     func_80345CD4(sp18, arg2[0]);
     func_8033A8F0(arg0, arg1, sp18);

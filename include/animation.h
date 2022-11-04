@@ -26,7 +26,8 @@ typedef struct struct_B1400_1_s{
 typedef union
 {
     struct{
-        u16 unk0_15: 2;
+        u16 unk0_15: 1;
+        u16 unk0_14: 1;
         u16 unk0_13: 14;
         s16 unk2;
     };
