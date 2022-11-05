@@ -149,7 +149,25 @@ void func_80254630(void * dst, void *src, int size){
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/memory/func_80254658.s")
+void func_80254658(u8* arg0, u8* arg1, s32 arg2) {
+    if(arg0 < arg1){
+        if(arg2--){
+            do{
+                *(arg0++) = *(arg1++);
+                
+            }while(arg2--);
+        }
+    }else{
+        arg0 += arg2 -1;
+        arg1 += arg2 -1;
+        if(arg2--){
+            do{
+                *(arg0--) = *(arg1--);
+                    
+            }while(arg2--);
+        }
+    }
+}
 
 s32 heap_get_size(void){ return HEAP_SIZE; }
 

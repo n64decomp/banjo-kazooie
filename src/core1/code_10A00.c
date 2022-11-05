@@ -55,7 +55,7 @@ OSMesgQueue D_802812F0;
 f32 D_80281308[4];
 OSContStatus D_80281318;
 u8 pad_D_80281320[0x8];
-s32 D_80281328;
+volatile s32 D_80281328;
 OSThread D_80281330;
 u8 pad_D_802814E0[0x200];
 f32 D_802816E0;
@@ -161,9 +161,14 @@ void func_8024E71C(s32 controller_index, f32 dst[2]){
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_10A00/func_8024E7C8.s")
 #else
 void func_8024E7C8(void){
-    u32 s0;
+    s32 i, j;
     s32 sp5C;
+    u32 s0;
+    s32 temp_t6;
+    u16 temp_v0_3;
 
+
+    
     if(func_8023E000() == 3)
         func_802E4384();
 
@@ -184,42 +189,132 @@ void func_8024E7C8(void){
         if(D_802816E0 < 1.0 || getGameMode() == GAME_MODE_9_BANJO_AND_KAZOOIE){
             s0 = 0;
         }
-
-        if(D_802812D0.button & s0 || demo_readInput(D_802812B8, &sp5C) < 1){
+        temp_t6 = demo_readInput(&D_802812B8, &sp5C) == 0;
+        if(D_802812D0.button & s0 || temp_t6){
             if(D_802812D0.button & s0){
                 func_803204E4(0x64, 1);
             }
             else{
                 func_803204E4(0x63, 1);
             }
-            func_8033DD90();
         }//L8024E944
+        func_8033DD04(sp5C);
+        
     }//L8024E94C
+    sp5C = func_8033DD90();
+
+
+    randf();
+//     var_s0_2 = &D_80281250;
+//     var_s1 = &D_802812B8
+    for(i = 0; i < 4; i++){
+//         temp_t5 = var_s1->unk0;
+//         temp_t1 = temp_t5 & 0x20;
+        if ((D_802812B8[i].button & 0x20) && (D_802812B8[i].button & 0x10)) {
+            D_802810E0[i][0] = (D_802812B8[i].button & 0x0004) ? D_802810E0[i][0] + 1 : 0;
+            D_802810E0[i][1] = (D_802812B8[i].button & 0x2000) ? D_802810E0[i][1] + 1 : 0;
+            D_802810E0[i][2] = (D_802812B8[i].button & 0x8000) ? D_802810E0[i][2] + 1 : 0;
+            D_802810E0[i][3] = (D_802812B8[i].button & 0x4000) ? D_802810E0[i][3] + 1 : 0;
+            D_802810E0[i][4] = (D_802812D0.button & 0x4000) ? D_802810E0[i][4] + 1 : 0;
+            for(j = 0; j < 0xE; j++){
+                ((s32*)&D_80281138[i])[j] = 0;
+            }
+            for(j = 0; (j < 0xE) && (i == 0); j++){
+                ((s32*)&D_80281218)[j] = 0;
+            }
+            D_80281250[i].unk0 = 0;
+            D_80281250[i].unk2 = 0;
+            D_80281250[i].unk4 = 0;
+            D_80281250[i].unk6 = 0;
+            D_80281250[i].joystick[0] = 0.0f;
+            D_80281250[i].joystick[1] = 0.0f;
+            D_80281250[i].unk8 = 0.0f;
+            D_80281250[i].unkC = 0.0f;
+        } else {
+//             temp_a0 = (i * 0x14) + &D_802810E0;
+//             temp_a1 = (i * 0x38) + &D_80281138;
+//             temp_t4 = (i * 4) + &D_80281308;
+            
+            for(j = 0; j < 5; j++){
+                D_802810E0[i][j] = 0;
+            }
+            
+            D_80281138[i].face_button[0] = (D_802812B8[i].button & 0x8000) ? D_80281138[i].face_button[0] + 1 : 0;
+            D_80281138[i].face_button[1] = (D_802812B8[i].button & 0x4000) ? D_80281138[i].face_button[1] + 1 : 0;
+            D_80281138[i].face_button[2] = (D_802812B8[i].button & 0x0002) ? D_80281138[i].face_button[2] + 1 : 0;
+            D_80281138[i].face_button[3] = (D_802812B8[i].button & 0x0004) ? D_80281138[i].face_button[3] + 1 : 0;
+            D_80281138[i].face_button[4] = (D_802812B8[i].button & 0x0008) ? D_80281138[i].face_button[4] + 1 : 0;
+            D_80281138[i].face_button[5] = (D_802812B8[i].button & 0x0001) ? D_80281138[i].face_button[5] + 1 : 0;
+            
+            D_80281138[i].side_button[0] = (D_802812B8[i].button & 0x2000) ? D_80281138[i].side_button[0] + 1 : 0;
+            D_80281138[i].side_button[1] = (D_802812B8[i].button & 0x0020) ? D_80281138[i].side_button[1] + 1 : 0;
+            D_80281138[i].side_button[2] = (D_802812B8[i].button & 0x0010) ? D_80281138[i].side_button[2] + 1 : 0;
+
+            D_80281138[i].unk24[0] = (D_802812B8[i].button & 0x0800) ? D_80281138[i].unk24[0] + 1 : 0;
+            D_80281138[i].unk24[1] = (D_802812B8[i].button & 0x0400) ? D_80281138[i].unk24[1] + 1 : 0;
+            D_80281138[i].unk24[2] = (D_802812B8[i].button & 0x0200) ? D_80281138[i].unk24[2] + 1 : 0;
+            D_80281138[i].unk24[3] = (D_802812B8[i].button & 0x0100) ? D_80281138[i].unk24[3] + 1 : 0;
+            D_80281138[i].start_button = (D_802812B8[i].button & 0x1000) ? D_80281138[i].start_button + 1 : 0;
+            
+            if(i == 0){
+                D_80281218.face_button[0] = (D_802812D0.button & 0x8000) ? D_80281218.face_button[0] + 1 : 0;
+                D_80281218.face_button[1] = (D_802812D0.button & 0x4000) ? D_80281218.face_button[1] + 1 : 0;
+                D_80281218.face_button[2] = (D_802812D0.button & 0x0002) ? D_80281218.face_button[2] + 1 : 0;
+                D_80281218.face_button[3] = (D_802812D0.button & 0x0004) ? D_80281218.face_button[3] + 1 : 0;
+                D_80281218.face_button[4] = (D_802812D0.button & 0x0008) ? D_80281218.face_button[4] + 1 : 0;
+                D_80281218.face_button[5] = (D_802812D0.button & 0x0001) ? D_80281218.face_button[5] + 1 : 0;
+                
+                D_80281218.side_button[0] = (D_802812D0.button & 0x2000) ? D_80281218.side_button[0] + 1 : 0;
+                D_80281218.side_button[1] = (D_802812D0.button & 0x0020) ? D_80281218.side_button[1] + 1 : 0;
+                D_80281218.side_button[2] = (D_802812D0.button & 0x0010) ? D_80281218.side_button[2] + 1 : 0;
+    
+                D_80281218.unk24[0] = (D_802812D0.button & 0x0800) ? D_80281218.unk24[0] + 1 : 0;
+                D_80281218.unk24[1] = (D_802812D0.button & 0x0400) ? D_80281218.unk24[1] + 1 : 0;
+                D_80281218.unk24[2] = (D_802812D0.button & 0x0200) ? D_80281218.unk24[2] + 1 : 0;
+                D_80281218.unk24[3] = (D_802812D0.button & 0x0100) ? D_80281218.unk24[3] + 1 : 0;
+                D_80281218.start_button = (D_802812D0.button & 0x1000) ? D_80281218.start_button + 1 : 0;
+            }
+            
+            temp_v0_3 = D_80281250[i].unk0;
+            D_80281250[i].unk0 = D_802812D0.button;
+            D_80281250[i].unk4 = ~temp_v0_3 & D_802812D0.button; //pressed buttons
+            D_80281250[i].unk6 = ~D_802812D0.button & temp_v0_3; //unpressed buttons
+            D_80281250[i].unk2 = temp_v0_3; //previous buttons
+            D_80281250[i].unk8 = D_80281250[i].joystick[0];
+            D_80281250[i].unkC = D_80281250[i].joystick[1];
+            D_80281250[i].joystick[0] = func_8024E420(D_802812B8[i].stick_x, 7, 0x3B);
+            D_80281250[i].joystick[1] = func_8024E420(D_802812B8[i].stick_y, 7, 0x3D);
+
+            D_80281308[i] = ((D_80281250[i].unk4 != 0) 
+                || (D_80281250[i].unk8 != D_80281250[i].joystick[0]) 
+                || (D_80281250[i].unkC != D_80281250[i].joystick[1])
+            )  ? 0.0f : D_80281308[i] + time_getDelta();
+
+        }
+
+    }
+    osSetThreadPri(NULL, 0x14);
 }
 #endif
 
-void func_8024EF74(void){
+void func_8024EF74(){
     func_8024F35C(0);
     if(!D_80281318.errno)
         osContGetReadData(D_802812B8);
 }
 
-#ifndef NONMATCHING
-void func_8024EFB0(void *);
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_10A00/func_8024EFB0.s")
-#else
+
 void func_8024EFB0(void *arg0){
-    while(1){
-        osRecvMesg(&D_802812D8, &D_802812F0, 1);
+    do{
+        osRecvMesg(&D_802812D8, 0, 1);
         if(D_80281328 == TRUE){
             func_8024EF74();
         }
         else{
-            osSendMesg(&D_802812D8, 0, 0);
+            osSendMesg(&D_802812F0, 0, 0);
         }
-    }
+    }while(1);
 }
-#endif
 
 void func_8024F05C(void){
     osCreateMesgQueue(&D_802812D8, &D_802812B0, 1);
@@ -247,16 +342,12 @@ void func_8024F180(void){
         func_802DD040(0,0);
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_10A00/func_8024F1B0.s")
-#else
 void func_8024F1B0(void){
     if(D_80281328 == 0){
         func_8024F35C(1);
         osContStartReadData(&D_802812D8);
     }
 }
-#endif
 
 void func_8024F1F0(void){
     osRecvMesg(&D_802812D8, NULL, 1);
@@ -301,23 +392,20 @@ OSMesgQueue *func_8024F350(void){
     return &D_802812D8;
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_10A00/func_8024F35C.s")
-#else
 void func_8024F35C(bool arg0){
-    s32 *ptr = &D_80281328;
     if(!arg0)
         func_8024F4AC();
     else
         func_8024F450();
 
-    if(arg0 || D_802816E8.validCount == 1)
-        *ptr = arg0; 
-
+    if(arg0 || D_802816E8.validCount == 1){
+        D_80281328 = arg0; 
+    }
 }
-#endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_10A00/func_8024F3B4.s")
+s32 func_8024F3B4(void){
+    return D_80281328;
+}
 
 int func_8024F3C4(int arg0){
     return D_802812B8[arg0].button + D_802812B8[arg0].stick_x + D_802812B8[arg0].stick_y;

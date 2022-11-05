@@ -23,19 +23,15 @@ u8 pad_D_80282850[0x780];
 Mtx * D_80282FD0;
 
 /*.code*/
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_802513B0.s")
-#else
-void func_802513B0(f32 arg0[4][4]){
-    s32 i;
-    s32 j;
-    for(i = 0; i < 4; i++){
+void func_802513B0(f32 *arg0) {
+    s32 var_v0, j;
+
+    for(var_v0 = 0; var_v0 < 4; var_v0++){
         for(j = 0; j < 4; j++){
-            reinterpret_cast(f32, arg0[i][j]) = reinterpret_cast(f32, D_80282FD0->m[i][j]);
+            *(arg0++) = reinterpret_cast(f32, D_80282FD0->m[var_v0][j]);
         }
     }
 }
-#endif
 
 Mtx *func_80251488(void){
     return D_80282FD0;
