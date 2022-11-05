@@ -240,9 +240,53 @@ void func_80247F9C(s32 arg0){
     func_802484D0();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_9D30/func_80247FD0.s")
+void func_80247FD0(u32 arg0) {
+    s32 var_s0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_9D30/func_80248098.s")
+    D_80275BC4 = D_80275BBC;
+    D_80275BD4 = 2;
+    func_80247CEC(D_80275BCC, 0x25, 2);
+     var_s0 = (arg0 >= 0x01000000U) ? 0x1C
+            : (arg0 >= 0x10000U) ? 0x14
+            :0xC;
+    if (var_s0 >= 0) {
+        do {
+            func_80247CEC(D_80275BCC, ((s32) arg0 >> var_s0) & 0xF, 2);
+            var_s0 -= 4;
+        } while (var_s0 >= 0);
+    }
+    func_80248520();
+}
+
+void func_80248098(f32 arg0) {
+    f32 var_f22;
+    s32 var_s0;
+
+    D_80275BC4 = D_80275BBC;
+    D_80275BD4 = 2;
+    if (arg0 < 0.0f) {
+        func_80247CEC(D_80275BCC, 0x26, 2);
+        arg0 *= -1.0f;
+    }
+    var_f22 = 1e+09;
+    while((var_f22 >= 10.0f) && (arg0 < var_f22)) {
+        var_f22 /= 10.0f;
+    }
+    while (1e-09 <= var_f22) {
+            if ((0.09 < var_f22) && (var_f22 < 0.11)) {
+                func_80247CEC(D_80275BCC, 0x24, 2);
+            }
+            
+            var_s0 = 0;
+            while (var_f22 <= arg0) {
+                    arg0 -= var_f22;
+                    var_s0 += 1;
+            }
+            func_80247CEC(D_80275BCC, var_s0, 2);
+            var_f22 /= 10.0f;
+    }
+    func_80248520();
+}
 
 s32 func_8024824C(s32 arg0) {
     if ((arg0 >= (s32) D_80275BE8[0]) && ((s32) D_80275BE8[1] >= arg0)) {
