@@ -158,10 +158,6 @@ s32 func_802EAD5C(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 
     return 0;
 }
 
-#ifndef NONMATCHING
-s32 func_802EAED4(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 scale, s32 arg4, s32 arg5, f32 arg6[3], f32 arg7);
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_637D0/func_802EAED4.s")
-#else
 s32 func_802EAED4(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 scale, s32 arg4, struct58s *arg5, f32 arg6[3], f32 arg7) {
     f32 spF4[3];
     f32 spE8[3];
@@ -211,7 +207,8 @@ s32 func_802EAED4(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 
         spA4[0] = arg6[0] - spB0[0];
         spA4[1] = arg6[1] - spB0[1];
         spA4[2] = arg6[2] - spB0[2];
-        if ((arg7 <= ((spA4[0]*spBC[0]) + (spA4[1]*spBC[1]) + (spA4[2]*spBC[2])))) {
+        if (!(arg7 <= ((spA4[0]*spBC[0]) + (spA4[1]*spBC[1]) + (spA4[2]*spBC[2])))) {
+            if (1) {}
             sp8C[0] = arg6[0] - sp98[0];
             sp8C[1] = arg6[1] - sp98[1];
             sp8C[2] = arg6[2] - sp98[2];
@@ -222,6 +219,7 @@ s32 func_802EAED4(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 
                 spBC[2] = spB0[2] - sp80[2];
                 ml_vec3f_normalize(spBC);
                 if (!(arg7 <= ((spA4[0]*spBC[0]) + (spA4[1]*spBC[1]) + (spA4[2]*spBC[2])))) {
+                    if (1) {}
                     sp74[0] = arg6[0] - sp80[0];
                     sp74[1] = arg6[1] - sp80[1];
                     sp74[2] = arg6[2] - sp80[2];
@@ -232,6 +230,7 @@ s32 func_802EAED4(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 
                         spBC[2] = spB0[2] - sp68[2];
                         ml_vec3f_normalize(spBC);
                         if (!(arg7 <= ((spA4[0]*spBC[0]) + (spA4[1]*spBC[1]) + (spA4[2]*spBC[2])))) {
+                            if (1) {}
                             sp5C[0] = arg6[0] - sp68[0];
                             sp5C[1] = arg6[1] - sp68[1];
                             sp5C[2] = arg6[2] - sp68[2];
@@ -247,7 +246,6 @@ s32 func_802EAED4(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 
     }
     return 0;
 }
-#endif
 
 #ifndef NONMATCHING
 s32 func_802EB458(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 scale, s32 arg4, s32 arg5, f32 arg6[3], f32 arg7);

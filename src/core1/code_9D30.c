@@ -317,26 +317,19 @@ s32 func_8024824C(s32 arg0) {
 }
 
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_9D30/func_80248330.s")
-#else
 void func_80248330(u8 *arg0){
     s32 i;
-    s32 val;
+    s32 var_v0;
 
     D_80275BC4 = D_80275BBC;
     D_80275BD4 = 2;
-    i = 0;
-    val = arg0[i];
-    while(arg0[i] != 0){
-        val = arg0[i];
-        func_8024824C(val);
-        func_80247CEC(D_80275BCC, val, 2);
-        i++;
+    for(i = 0; arg0[i] != 0; i++){
+        var_v0 = arg0[i];
+        func_80247CEC(D_80275BCC, func_8024824C(var_v0), 2);
     }
     func_80248520();
 }
-#endif
+
 
 void func_802483B8(void){
     D_80275BD0 = 1;
@@ -518,9 +511,6 @@ void draw_sprite_rgba16(s32 x, s32 y, BKSprite *sprite, s32 frame, bool alpha_en
     }
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_9D30/draw_sprite_i4.s")
-#else
 void draw_sprite_i4(s32 x, s32 y, BKSprite *sprite, s32 frame, bool aplha_enabled) {
     BKSpriteFrame *frame_ptr;
     BKSpriteTextureBlock *chunk_ptr;
@@ -552,9 +542,9 @@ void draw_sprite_i4(s32 x, s32 y, BKSprite *sprite, s32 frame, bool aplha_enable
                 if ((fb_x >= 0) &&  (fb_x < D_80276588)) {
                     fb_y = chunk_ptr->y + y + txtr_y;
                     if ((fb_y >= 0) && (fb_y < D_8027658C)) {
-                        fb_pxl_ptr = framebuffer_ptr + fb_x + (fb_y * D_80276588);
                         p1 = (*tmem >> 4);
                         p2 = (*tmem & 0xF);
+                        fb_pxl_ptr = framebuffer_ptr + fb_x + (fb_y * D_80276588);
                         if (p1) {
                             *fb_pxl_ptr = (p1 << 0xC) | (p1 << 0x7) | (p1 << 0x2) | 1;
                         } else if (!aplha_enabled) {
@@ -573,7 +563,6 @@ void draw_sprite_i4(s32 x, s32 y, BKSprite *sprite, s32 frame, bool aplha_enable
         chunk_ptr = (BKSpriteTextureBlock *) tmem;
     }
 }
-#endif
 
 #ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_9D30/draw_sprite_ia4.s")

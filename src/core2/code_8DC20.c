@@ -13,9 +13,6 @@ s32 D_803830A0;
 
 
 /* .code */
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_8DC20/func_80314BB0.s")
-#else
 void func_80314BB0(Gfx **gfx, Mtx **mtx, Vtx **vtx, void * frame_buffer_1, void *frame_buffer_2) {
     s32 x;
     s32 y;
@@ -28,7 +25,7 @@ void func_80314BB0(Gfx **gfx, Mtx **mtx, Vtx **vtx, void * frame_buffer_1, void 
                 0x20*x, 0x20*y, 0x20*(x + 1) - 1, 0x20*(y + 1) - 1,
                 NULL, G_TX_CLAMP, G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK, 0, 0
             );
-            gSPScisTextureRectangle((*gfx)++, 0x80*x, 0x80*y, 0x80*(x + 1), 0x80*(y + 1), 
+            gSPScisTextureRectangle((*gfx)++, (0x20*x)*4, (0x20*y)*4, 0x20*(x + 1)*4, (0x20*(y + 1)*4), 
                 G_TX_RENDERTILE, (0x20*x)<<5, (0x20*y)<<5, 0x400, 0x400
             );
         }
@@ -36,7 +33,6 @@ void func_80314BB0(Gfx **gfx, Mtx **mtx, Vtx **vtx, void * frame_buffer_1, void 
     gSPDisplayList((*gfx)++, D_8036C690);
     gDPSetColorImage((*gfx)++, G_IM_FMT_RGBA, G_IM_SIZ_16b, D_80276588, OS_PHYSICAL_TO_K0(D_803A5D00[func_8024BDA0()]));
 }
-#endif
 
 void func_80315084(Gfx **gfx, Mtx **mtx, Vtx **vtx){
     func_80335128(0);

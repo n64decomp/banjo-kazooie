@@ -296,7 +296,7 @@ segments:
   - [0x85800, c, code_85800] #DONE
   - [0x87E30, c, code_87E30]
   - [0x8A7B0, c, gc/pauseMenu] #DONE
-  - [0x8DC20, c, code_8DC20]
+  - [0x8DC20, c, code_8DC20] #DONE
   - [0x8E270, c, gc/zoombox] #DONE
   - [0x91E10, c, code_91E10]
   - [0x935F0, c, code_935F0] #DONE #chminigmae
