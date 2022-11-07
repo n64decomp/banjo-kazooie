@@ -241,7 +241,7 @@ segments:
   - [0x630D0, c, code_630D0] #DONE
   - [0x63410, c, code_63410] #DONE
   - [0x63690, c, code_63690] #DONE
-  - [0x637D0, c, code_637D0]
+  - [0x637D0, c, code_637D0] #DONE
   - [0x654C0, c, code_654C0] #DONE
   - [0x66490, c, code_66490] #DONE
   - [0x66690, c, vla]        #DONE
