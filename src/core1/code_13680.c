@@ -23,13 +23,9 @@ s32 spriteGetFrameCount(BKSprite *this){
     return this->frameCnt;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13680/spriteGetFramePtr.s")
-// //NONMATCHING bad RegAlloc
-/*BKSpriteFrame *spriteGetFramePtr(BKSprite *this, u32 frame){
-    u32 f_data;
-    u32 *f_array = this + 1;
-    
-    
-    f_data = (u32)(f_array + this->frameCnt) + f_array[frame];
-    return f_data;
-}//*/
+BKSpriteFrame *spriteGetFramePtr(BKSprite *this, u32 frame)
+{
+  BKSpriteFrame * new_var;
+  new_var = this->offsets[frame] + ((s32) ((*this).offsets + this->frameCnt));
+  return new_var;
+}

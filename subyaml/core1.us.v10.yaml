@@ -52,7 +52,7 @@ segments:
   - [0x11AC0, c, code_11AC0]
   - [0x12F10, c, code_12F10] #DONE
   - [0x13640, c, code_13640] #DONE
-  - [0x13680, c, code_13680]
+  - [0x13680, c, code_13680] #DONE
   - [0x136D0, c, code_136D0]
   - [0x13990, c, code_13990]
   - [0x155F0, hasm, code_155F0] #DONE
