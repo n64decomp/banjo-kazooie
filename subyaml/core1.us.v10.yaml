@@ -49,7 +49,7 @@ segments:
   - [0xE360, c, code_E360]    #DONE
   - [0xEAF0, c, code_EAF0]
   - [0x10A00, c,code_10A00]
-  - [0x11AC0, c, code_11AC0]
+  - [0x11AC0, c, code_11AC0] #DONE
   - [0x12F10, c, code_12F10] #DONE
   - [0x13640, c, code_13640] #DONE
   - [0x13680, c, code_13680] #DONE

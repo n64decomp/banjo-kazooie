@@ -631,12 +631,10 @@ void func_80250604(s32 arg0, s32 arg1, f32 arg2){
     }
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_11AC0/func_80250650.s")
-#else
 void func_80250650(void) {
     N_ALCSPlayer *csplayer;
     s32 i;
+    s32 channel;
 
     for(i = 0; i < 0x20; i++){
         csplayer = func_802500CC(D_80282110[i].unk0);
@@ -650,7 +648,9 @@ void func_80250650(void) {
                 alCSPSetTempo(csplayer, (s32) D_80282110[i].unk8);
             } else {
                 func_8025F510(csplayer,D_80282110[i].chan, D_80282110[i].unk8);
-                if (((csplayer->chanMask) & (1 << D_80282110[i].chan))) {
+                channel = D_80282110[i].chan;
+
+                if (((csplayer->chanMask) & (1 << channel))) {
                     if (D_80282110[i].unk8 == 0.0) {
                         func_8025F5C0(csplayer, D_80282110[i].chan);
                     }
@@ -663,4 +663,3 @@ void func_80250650(void) {
         }
     }
 }
-#endif
