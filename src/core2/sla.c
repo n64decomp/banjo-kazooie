@@ -57,22 +57,22 @@ void *func_802EDAA4(SLA **this, s32 *arg1) {
     return (s32) i_ptr;
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/sla/func_802EDC18.s")
-#else
-int func_802EDC18(SLA *this, s32 arg1){
-    s32 tmp_v0 = this->unk4;
-    s16 *v1;
-    s32 offset;
-    for(v1 = (s16*)tmp_v0; *v1; ){
-        if(*v1 == arg1)
-            return 0;
-        v1 = (s16*)(tmp_v0 + ((s32)*v1*this->elem_size));
+int func_802EDC18(SLA *this, s32 arg1)
+{
+  u8 *tmp_v0 = this->unk4;
+  s16 *i_ptr;
+  u8 *new_var;
+  new_var = this->unk4;
+  for (i_ptr = (s16 *) new_var; *i_ptr; i_ptr = (s16 *) (((*i_ptr) * this->elem_size) + (new_var = tmp_v0)))
+  {
+    if ((*i_ptr) == arg1)
+    {
+      return 0;
     }
-    return 1;
-}
-#endif
+  }
 
+  return 1;
+}
 void array_free(SLA *this){
     free(this);
 }
