@@ -61,25 +61,28 @@ void func_80243070(Struct87s *arg0) {
     D_802758CC->nextDelta = alEvtqNextEvent(&D_802758CC->evtq, &D_802758CC->nextEvent);
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_5650/func_8024324C.s")
-#else
-void func_8024324C(N_ALSndPlayer *arg0) {
-    N_ALEvent sp3C;
-
-    do {
-        if (arg0->nextEvent.type == 0x20) {
-            sp3C.type = 0x20;
-            alEvtqPostEvent(&arg0->evtq, (ALEvent *) &sp3C, arg0->frameTime);
-            func_80244190(arg0);
-        } else {
-            func_802432F8(arg0, &arg0->nextEvent);
-        }
-        arg0->nextDelta = alEvtqNextEvent(&arg0->evtq, &arg0->nextEvent);
-    } while (arg0->nextDelta == 0);
-    arg0->curTime += arg0->nextDelta;
+void func_8024324C(N_ALSndPlayer *arg0)
+{
+  N_ALSndPlayer *new_var = (N_ALSndPlayer *)arg0;
+  N_ALEvent sp3C;
+  
+  do
+  {
+    if ((new_var->nextEvent.type & 0xFFFFFFFF) == 0x20)
+    {
+      sp3C.type = 0x20;
+      alEvtqPostEvent(&new_var->evtq, (ALEvent *) (&sp3C), new_var->frameTime);
+      func_80244190(new_var);
+    }
+    else
+    {
+      func_802432F8(new_var, &arg0->nextEvent);
+    }
+    new_var->nextDelta = alEvtqNextEvent(&new_var->evtq, &arg0->nextEvent);
+  }
+  while (arg0->nextDelta == 0);
+  new_var->curTime += new_var->nextDelta;
 }
-#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_5650/func_802432F8.s")
 
