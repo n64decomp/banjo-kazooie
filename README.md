@@ -1,4 +1,4 @@
-# banjo (93.6207%)
+# banjo (93.6257%)
 
 <img src="./progress/progress_total.svg">
 
