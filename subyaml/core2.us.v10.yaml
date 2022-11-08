@@ -377,7 +377,7 @@ segments:
   - [0xC8360, c, code_C8360] #DONE
   - [0xC8490, c, code_C8490] #DONE
   - [0xC8760, c, code_C8760] #DONE
-  - [0xC89C0, c, code_C89C0]
+  - [0xC89C0, c, code_C89C0] #DONE
   - [0xC97F0, c, code_C97F0] #DONE
   - [0xC9E70, c, code_C9E70] #DONE
   - [0xC9F00, c, code_C9F00] #DONE

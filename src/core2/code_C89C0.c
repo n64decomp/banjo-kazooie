@@ -224,16 +224,15 @@ void func_80350174(void) {
     }
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C89C0/func_80350250.s")
-#else
 void func_80350250(void) {
     f32 sp7C[3];
     f32 sp70[3];
     f32 temp_f22;
+
     Struct_core2_C89C0_1 *var_s0;
     Struct_core2_C89C0_0 *var_s0_2;
 
+    
     temp_f22 = time_getDelta();
     if ((D_80386150.unk0 != NULL) && (func_80334904() == 2)) {
         player_getPosition(sp7C);
@@ -274,11 +273,12 @@ void func_80350250(void) {
         }
 
         for(var_s0_2 = D_80386150.unk14; var_s0_2 < D_80386150.unk18; var_s0_2++) {
+            if(1);
             if (var_s0_2->unk4->unk4 != 0) {
                 func_8034F950(var_s0_2);
-                var_s0_2->unk1C += var_s0_2->unk34 * (3.0f - var_s0_2->unk18) * 100.0f * temp_f22;
-                var_s0_2->unk20 += var_s0_2->unk38 * (3.0f - var_s0_2->unk18) * 20.0f * temp_f22;
-                var_s0_2->unk14 += var_s0_2->unk30 * (3.0f - var_s0_2->unk18) * 180.0f * temp_f22;
+                var_s0_2->unk1C += var_s0_2->unk34 *  (3 - var_s0_2->unk18) * 100.0f * temp_f22;
+                var_s0_2->unk20 += var_s0_2->unk38 *  (3 - var_s0_2->unk18) * 20.0f * temp_f22;
+                var_s0_2->unk14 += var_s0_2->unk30 *  (3 - var_s0_2->unk18) * 180.0f * temp_f22;
                 if (var_s0_2->unk1C > 0.0f) {
                     var_s0_2->unk1C -= var_s0_2->unk1C * temp_f22;
                     if (var_s0_2->unk1C < 0.0f) {
@@ -286,8 +286,8 @@ void func_80350250(void) {
                     }
                 }
                 var_s0_2->unk20 -= var_s0_2->unk20 * temp_f22;
-                sp70[0] = -var_s0_2->unk1C * temp_f22;
-                sp70[1] = 0.0f;
+                sp70[0] = -var_s0_2->unk1C * temp_f22;\
+                sp70[1] = 0.0f;\
                 sp70[2] = 0.0f;
                 ml_vec3f_yaw_rotate_copy(&sp70, &sp70, var_s0_2->unk14);
                 var_s0_2->unk8[0] = var_s0_2->unk8[0] + sp70[0];
@@ -299,7 +299,6 @@ void func_80350250(void) {
         }
     }
 }
-#endif
 
 void func_803506DC(void){
     s32 sp1C = D_80386150.unk8;
