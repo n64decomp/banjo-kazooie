@@ -1282,23 +1282,20 @@ s32 func_803058C0(f32 arg0) {
     return ((arg0 >= 0.0f) ? arg0 / 1000 : (arg0 / 1000) - 1.0f) - D_80381FA0.min[1];
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80305924.s")
-#else
 s16 *func_80305924(void) {
+    s16 *new_var;
     s32 var_v1;
     s16 *temp_a0;
     s16 *var_v0;
 
     temp_a0 = (s16*) malloc(D_8036ABA8 * sizeof(s16));
     for(var_v1 = 0; var_v1 < D_8036ABA8; var_v1++){
-        var_v0 = temp_a0 + var_v1;
+        var_v0 = (new_var = temp_a0) + var_v1;
         *var_v0 = 0;
     }
 
     return temp_a0;
 }
-#endif
 
 void func_80305990(s32 arg0) {
     s32 sp1C[3];
