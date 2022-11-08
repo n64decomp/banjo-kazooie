@@ -920,43 +920,49 @@ void func_8024A490(s32 x, s32 y, s32 w, s32 h) {
     }
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_9D30/func_8024A564.s")
-#else
-void func_8024A564(s32 x, s32 y, u16 *arg2, s32 arg3, s32 arg4, f32 arg5, f32 arg6) {
-    s32 temp_a2;
-    s32 temp_a2_2;
-    s32 temp_a2_3;
-    s32 temp_f6;
-    s32 temp_f6_2;
-    s32 temp_lo;
-    s32 temp_t5;
-    s32 var_a0;
-    s32 var_a2;
-    s32 var_t1;
-    s32 var_t3;
-    s32 var_v0;
-    s32 var_v1;
-    u16 temp_t8;
-    s16 *var_t0;
-    s16 *var_t2;
-
-    var_v0 = 0;
-    var_v1 = D_80276588;
-    var_t0 = &D_803A5D00[D_802806EC][x + y * D_80276588];
-    for( var_t1 = (arg4 * arg6) + 0.5; var_t1 != 0; var_t1--){
-        var_a2 = ((var_v0 >> 8) * arg3) << 8;
-        var_t2 = var_t0;
-        var_v0 += (s32) ((f64) (256.0f / arg6) + 0.5);
-        for(var_t3 = (arg3 * arg5) + 0.5; var_t3 != 0; var_t3--){
-            *var_t2 = arg2[var_a2 >> 8];
-            var_a2 += (s32) ((f64) (256.0f / arg5) + 0.5);
-            var_t2++;
-        }
-        var_t0 += D_80276588;
+void func_8024A564(s32 x, s32 y, u16 *arg2, s32 arg3, s32 arg4, f32 arg5, f32 arg6)
+{
+  s32 temp_a2;
+  s32 temp_a2_2;
+  s32 temp_a2_3;
+  s32 temp_f6;
+  s32 temp_f6_2;
+  s32 temp_lo;
+  s32 temp_t5;
+  s32 var_a0;
+  s32 var_a2;
+  s32 new_var;
+  f32 new_var3;
+  s32 new_var2;
+  s32 var_t1;
+  s32 var_t3;
+  s32 var_v0;
+  s32 var_v1;
+  u16 temp_t8;
+  s16 *var_t0;
+  s16 *var_t2;
+  var_v0 = 0;
+  var_v1 = D_80276588;
+  var_t0 = &D_803A5D00[D_802806EC][x + (y * D_80276588)];
+  new_var = (s32) (((f64) (256.0f / (new_var3 = arg6))) + 0.5);
+  new_var2 = (s32) (((f64) (256.0f / arg5)) + 0.5);
+  for (var_t1 = (arg4 * arg6) + 0.5; var_t1 != 0; var_t1--)
+  {
+    temp_lo = (arg3 * arg5) + 0.5;
+    var_a2 = ((var_v0 >> 8) * arg3) << 8;
+    var_t2 = var_t0;
+    for (var_t3 = temp_lo; var_t3 != 0; var_t3--)
+    {
+      *var_t2 = arg2[var_a2 >> 8];
+      var_a2 += new_var2;
+      var_t2++;
     }
+
+    var_t0 += D_80276588;
+    var_v0 += new_var;
+  }
+
 }
-#endif
 
 //fills in rectangle in frame buffer with D_802806E0 color
 void draw_prim_rect(s32 x, s32 y, s32 w, s32 h) {
