@@ -22,7 +22,7 @@ extern s32 D_80275A68;
 extern s32 D_80275A6C;
 extern s32 D_80275A70;
 extern u8  D_80275A74[];
-extern u32 D_80275A7C[][2];
+extern u32 D_80275A7C[0x140];
 
 extern s16 D_80275BBC;
 extern s16 D_80275BC0;
@@ -116,9 +116,6 @@ void func_80247A40(s32 arg0) {
     func_802478C0(D_80275A50[arg0][0], D_80275A50[arg0][1], D_80275A50[arg0][2]);
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_9D30/func_80247A7C.s")
-#else
 void func_80247A7C(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 r, s32 g, s32 b) {
     s32 var_s3;
     s32 sp48;
@@ -130,23 +127,23 @@ void func_80247A7C(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 r, s32 
     s32 var_s0;
     u32 temp_t4;
     u32 var_s4;
-
+    u32 *ptr = D_80275A7C + (arg1*2);
+    
     var_s4 = 0x10000000;
-    sp44 = D_80275A7C[arg1][0];
-    sp40 = D_80275A7C[arg1][1];
-    for(sp48 = 0; sp48 != 5; sp48++){
+    sp44 = ptr[0];
+    sp40 = ptr[1];
+    for(sp48 = 0; sp48 < 5; sp48++){
         temp_lo = sp48 * arg2;
-        temp_s1 = arg2 + arg3 + arg3;
         for(var_s3 = 0; var_s3 != sp44; var_s3++){
             var_s4 >>= 1;
             if (sp40 & var_s4) {
                 func_80247750(r, g, b);
-                func_80247818((D_80275BC4 + arg2*var_s3) - arg3, (D_80275BC8 + temp_lo) - arg3, temp_s1, temp_s1);
+                func_80247818((D_80275BC4 + arg2*var_s3) - arg3, (D_80275BC8 + temp_lo) - arg3, (arg2 + arg3) + arg3, (arg2 + arg3) + arg3);
             } else {
                 if (arg4 != 0) {
                     func_80247750(0, 0, 0);
                 }
-                func_80247818((D_80275BC4 + arg2*var_s3) - arg3, (D_80275BC8 + temp_lo) - arg3, temp_s1, temp_s1);
+                func_80247818((D_80275BC4 + arg2*var_s3) - arg3, (D_80275BC8 + temp_lo) - arg3, (arg2 + arg3) + arg3, (arg2 + arg3) + arg3);
             }
         }
     }
@@ -154,8 +151,6 @@ void func_80247A7C(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 r, s32 
         D_80275BC4 += (sp44 * arg2) + 2;
     }
 }
-#endif
-
 
 void func_80247C20(void) {
     s16 *var_v0;
@@ -564,9 +559,6 @@ void draw_sprite_i4(s32 x, s32 y, BKSprite *sprite, s32 frame, bool aplha_enable
     }
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_9D30/draw_sprite_ia4.s")
-#else
 void draw_sprite_ia4(s32 x, s32 y, BKSprite *sprite, s32 frame, bool aplha_enabled) {
     BKSpriteFrame *frame_ptr;
     BKSpriteTextureBlock *chunk_ptr;
@@ -602,19 +594,19 @@ void draw_sprite_ia4(s32 x, s32 y, BKSprite *sprite, s32 frame, bool aplha_enabl
                 if ((fb_x >= 0) &&  (fb_x < D_80276588)) {
                     fb_y = chunk_ptr->y + y + txtr_y;
                     if ((fb_y >= 0) && (fb_y < D_8027658C)) {
-                        fb_pxl_ptr = framebuffer_ptr + fb_x + (fb_y * D_80276588);
+                        fb_pxl_ptr = framebuffer_ptr + fb_x + (fb_y * D_80276588);\
                         p1 = (*tmem >> 4);
                         p2 = (*tmem & 0xF);
                         p1_i = p1 & 0xE;
                         p1_a = p1 & 1;
                         p2_i = p2 & 0xE;
                         p2_a = p2 & 1;
-                        if (p1 & 1) {
-                            *fb_pxl_ptr = (p1_i << 0xC) | (p1_i << 0x7) | (p1_i << 0x2) | (p1 & 1);
+                        if (p1_a) { \
+                            *fb_pxl_ptr = ((p1_i << 0xC) | (p1_i << 0x7) | (p1_i << 0x2)) | p1_a;
                         } else if (!aplha_enabled) {
                             *fb_pxl_ptr = 1;
                         }
-                        if (p2_a) {
+                        if (p2_a) {\
                             *(fb_pxl_ptr + 1) = (p2_i << 0xC) | (p2_i << 7) | (p2_i << 2) | p2_a;
                         } else if (!aplha_enabled) {
                             *(fb_pxl_ptr + 1) = 1;
@@ -627,7 +619,6 @@ void draw_sprite_ia4(s32 x, s32 y, BKSprite *sprite, s32 frame, bool aplha_enabl
         chunk_ptr = (BKSpriteTextureBlock *) tmem;
     }
 }
-#endif
 
 void draw_sprite_i8(s32 x, s32 y, BKSprite *sprite, s32 frame, s32 alpha_enabled) {
     BKSpriteFrame *frame_ptr;
