@@ -278,7 +278,7 @@ segments:
   - [0x75E90, c, code_75E90] #DONE
   - [0x76390, c, code_76390] #DONE
   - [0x763D0, c, code_763D0] #DONE
-  - [0x76D90, c, code_76D90]
+  - [0x76D90, c, code_76D90] #DONE
   - [0x77E50, c, code_77E50] #DONE
   - [0x78100, c, code_78100]
   - [0x78E50, c, code_78E50]

@@ -93,12 +93,8 @@ f32 func_802FDE60(f32 arg0) {
     return arg0;
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_76D90/func_802FDEE0.s")
-#else
 void func_802FDEE0(s32 arg0, struct8s *arg1, Gfx **arg2, Mtx **arg3, Vtx **arg4){
-    s32 var_v0;
-    s32 var_v1;
+    f64 var_f24;
     s32 sp13C;
     s32 sp138;
     s32 sp134;
@@ -106,18 +102,19 @@ void func_802FDEE0(s32 arg0, struct8s *arg1, Gfx **arg2, Mtx **arg3, Vtx **arg4)
     f32 sp12C;
     f32 sp128;
     f32 sp124;
-    f64 var_f24;
+    s32 var_v0;
+    s32 var_v1;
     u32 sp118;
+    f32 pad;
+
     f32 sp110;
-
-
 
     sp118 = D_803815C0 == 2;
     if (D_8036A010 != 0) {
         func_80347FC0(arg2, (sp118 ) ? (D_8036A014 != 0) ? D_8036A014 : D_8036A010 : D_8036A010, 0, 0, 0, 0, 0, 2, 2, &sp13C, &sp138);
         func_8024C7B8(arg2, arg3);
         gSPDisplayList((*arg2)++, D_8036A030);
-        for(sp134 = 0; sp134 < (sp118) ? (D_8036A014 != 0) ? 2 : 1 : 6; sp134++){
+        for(sp134 = 0; sp134 < ((sp118)? ((D_8036A014 != 0) ? 2 : 1) : 6); sp134++){
             sp110 = D_8036A018[sp134] * -0x3C;
             gDPPipeSync((*arg2)++);
             if (sp118) {
@@ -143,14 +140,10 @@ void func_802FDEE0(s32 arg0, struct8s *arg1, Gfx **arg2, Mtx **arg3, Vtx **arg4)
             sp124 = func_802FB0E4(arg1) + ((f32) D_8027658C / 2) - 246.0f;
             guTranslate(*arg3, sp128 * 4.0f, sp124 * 4.0f, 0.0f);
             gSPMatrix((*arg2)++, OS_K0_TO_PHYSICAL((*arg3)++), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
-
-            
             guRotate(*arg3, func_802FDE60(D_803815D8 + D_803815DC), 0.0f, 0.0f, 1.0f);
             gSPMatrix((*arg2)++, OS_K0_TO_PHYSICAL((*arg3)++), G_MTX_NOPUSH | G_MTX_MUL | G_MTX_MODELVIEW);
-
             guScale(*arg3, D_803815E0, D_803815E0, D_803815E0);
             gSPMatrix((*arg2)++, OS_K0_TO_PHYSICAL((*arg3)++), G_MTX_NOPUSH | G_MTX_MUL | G_MTX_MODELVIEW);
-            
             guTranslate(*arg3, -sp128 * 4.0f, -sp124 * 4.0f, 0.0f);
             gSPMatrix((*arg2)++, OS_K0_TO_PHYSICAL((*arg3)++), G_MTX_NOPUSH | G_MTX_MUL | G_MTX_MODELVIEW);
             var_f24 = MIN(1.0, MAX(0.0, D_803815C8));
@@ -176,7 +169,6 @@ void func_802FDEE0(s32 arg0, struct8s *arg1, Gfx **arg2, Mtx **arg3, Vtx **arg4)
         func_8024C904(arg2, arg3);
     }
 }
-#endif
 
 extern f64 D_803773E0;
 void func_802FE844(s32 arg0, struct8s *arg1){
