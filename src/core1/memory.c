@@ -183,9 +183,6 @@ void func_802546FC(void){
     D_80283228 = NULL;
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/memory/heap_init.s")
-#else
 void heap_init(void){
     bzero(D_8002D500, HEAP_SIZE);
     func_802546FC();
@@ -197,29 +194,28 @@ void heap_init(void){
     D_802765A8 = 0;
     D_802765AC = 0;
     D_802765B0.unk0 = FALSE;
-    D_8002D500[0].hdr.unkC_7 = 2;
     D_8002D500[0].hdr.prev = NULL;
     D_8002D500[0].hdr.next = &D_8002D500[1];
+    D_8002D500[0].hdr.unkC_7 = 2;
     D_8002D500[0].hdr.unusedBytes_C_31 = 0;
     D_8002D500[0].prev_free = NULL;
     D_8002D500[0].next_free = &D_8002D500[1];
 
-    D_8002D500[1].hdr.unkC_7 = 0;
     D_8002D500[1].hdr.prev = &D_8002D500[0];
     D_8002D500[1].hdr.next = &D_8002D500[LAST_HEAP_BLOCK];
+    D_8002D500[1].hdr.unkC_7 = 0;
     D_8002D500[1].hdr.unusedBytes_C_31 = 0;
     D_8002D500[1].prev_free = &D_8002D500[0];
     D_8002D500[1].next_free = &D_8002D500[LAST_HEAP_BLOCK];
 
-    D_8002D500[LAST_HEAP_BLOCK].hdr.unkC_7 = 2;
-    D_8002D500[LAST_HEAP_BLOCK].hdr.prev = &D_8002D500[0];
+    D_8002D500[LAST_HEAP_BLOCK].hdr.prev = &D_8002D500[1];
     D_8002D500[LAST_HEAP_BLOCK].hdr.next = &D_8002D500[LAST_HEAP_BLOCK + 1];
+    D_8002D500[LAST_HEAP_BLOCK].hdr.unkC_7 = 2;
     D_8002D500[LAST_HEAP_BLOCK].hdr.unusedBytes_C_31 = 0;
-    D_8002D500[LAST_HEAP_BLOCK].prev_free = &D_8002D500[0];
+    D_8002D500[LAST_HEAP_BLOCK].prev_free = &D_8002D500[1];
     D_8002D500[LAST_HEAP_BLOCK].next_free = NULL;
     sns_init_base_payloads();
 }
-#endif
 
 void *func_8025484C(s32 size){
     D_802765B4 = malloc(ALIGN((u32)&D_8002D500[1] + 0x100, 0x100)  - (u32)&D_8002D500[1] - sizeof(EmptyHeapBlock));
