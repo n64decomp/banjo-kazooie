@@ -94,9 +94,6 @@ s32 func_8033AC30(AnimationFile *this){
     return this->elem_cnt;
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B3A80/func_8033AC38.s")
-#else
 f32 func_8033AC38(AnimationFile *this, AnimationFileElement *elem, f32 arg2){
     AnimationFileData *var_a0;
     AnimationFileData *var_a2;
@@ -112,7 +109,7 @@ f32 func_8033AC38(AnimationFile *this, AnimationFileElement *elem, f32 arg2){
         sp38[3] = (var_a2->unk0_15 == 1 && elem->data_cnt >= 2) ? (f32)(var_a2 + 1)->unk2/64 : sp38[2];
         return func_80340A4C((arg2 - this->unk0)/(var_a2->unk0_13 - this->unk0), 4, sp38);
     }
-    var_a0 = &elem->data[elem->data_cnt-1];
+    var_a0 = var_a2 + elem->data_cnt;
     var_a0--;
     if ((s32) arg2 >= (var_a0->unk0_13)) {
         sp38[1] = (f32) var_a0->unk2 / 64;
@@ -128,25 +125,25 @@ f32 func_8033AC38(AnimationFile *this, AnimationFileElement *elem, f32 arg2){
             var_v0 = &var_a2[(var_a0 - var_a2)/2];
             if (var_v0->unk0_13 <= (s32)arg2) {
                 var_a2 = var_v0;
-                var_v0 = var_v0 + 1;
+                if (!var_a2);
             } else {
                 var_a0 = var_v0;
-                var_v0 = var_a2 + 1;
             }
+            var_v0 = var_a2 + 1;
+        
     }
     
     sp38[1] = (f32) var_a2->unk2 / 64;
     sp38[2] = (f32) var_a0->unk2 / 64;
     temp_f12 = (arg2 - var_a2->unk0_13) / (var_a0->unk0_13 - var_a2->unk0_13);
     if ((var_a2->unk0_14 == 0) && (var_a0->unk0_15 == 0)) {
-        return ((sp38[2] - sp38[1]) * temp_f12) + sp38[1];
+        return sp38[1] + ((sp38[2] - sp38[1]) * temp_f12);
     }
     
     sp38[0] = (var_a2->unk0_14 == 1 && (var_a2 - 1) >= &elem->data[0]) ?  (f32)(var_a2 - 1)->unk2/64 : sp38[1];
     sp38[3] = (var_a0->unk0_15 == 1 && (var_a0 + 1) < &elem->data[elem->data_cnt]) ? (f32)(var_a0 + 1)->unk2/64 : sp38[2];
     return func_80340A4C(temp_f12, 4, sp38);
 }
-#endif
 
 void func_8033AFB8(Struct_B1400 *arg0, s32 arg1, f32 arg2[3][3]){
     f32 sp18[4]; 
@@ -475,28 +472,14 @@ void func_8033BD8C(void* arg0){
     func_8033B0D0(arg0);
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B3A80/func_8033BDAC.s")
-#else
-void *func_8033BDAC(enum asset_e id, void *dst, s32 size) {
+s32 func_8033BDAC(enum asset_e id, void *dst, s32 size) {
     s32 comp_size;
-    u8 sp2B;
-    s32 aligned_decomp_size;
-    s32 sp20;
-    s16 *temp_a0;
-    s32 temp_s0;
-    s32 temp_s1;
-    s32 temp_t0;
-    s32 temp_v0;
-    s32 temp_v0_3;
-    s32 temp_v1_2;
-    s32 temp_v1_3;
-    u8 temp_v1;
-    void *temp_v0_2;
+    s32 var_s0;
+    s32 sp34;
     s32 phi_v0;
-    s8 phi_v0_2;
-    s32 decomp_ptr;
-    s32 phi_v1;
+    s32 comp_ptr;
+    u8 sp2B;
+    s32 sp20;
 
     //find asset in cache
     for(phi_v0 = 0; phi_v0 < D_80370A14 && id != D_80383CDC[phi_v0]; phi_v0++);
@@ -504,48 +487,54 @@ void *func_8033BDAC(enum asset_e id, void *dst, s32 size) {
     if (phi_v0 == 0x96) {
         return 0;
     }
-    phi_v1 = D_80383CC4[id].offset;
-    comp_size = D_80383CC4[id + 1].offset - phi_v1;
-    if (comp_size & 1) {
-        comp_size++;
+    comp_ptr = D_80383CC4[id + 1].offset - D_80383CC4[id].offset;
+    if (comp_ptr & 1) {
+        comp_ptr++;
     }
+    sp34 = comp_ptr;
+        
     if (D_80383CC4[id].compFlag & 1) {
         func_8033BAB0(id, 0, 0x10, &D_80383CB0);
         D_80370A10 = rarezip_get_uncompressed_size(&D_80383CB0);
 
         // get aligned uncompressed size
-        aligned_decomp_size = D_80370A10;
-        if (aligned_decomp_size & 0xF) {
-            aligned_decomp_size = (aligned_decomp_size - (aligned_decomp_size & 0xF)) + 0x10;
+        var_s0 = D_80370A10;
+        if (var_s0 & 0xF) {
+            var_s0 = (var_s0 - (var_s0 & 0xF)) + 0x10;
         }
 
-        if (size >= (comp_size + aligned_decomp_size)) {
+        if (size >= (comp_ptr + var_s0)) {
             sp2B = 1;
-            decomp_ptr = (s32)dst + aligned_decomp_size;
+            comp_ptr = (s32)dst + var_s0;
         }
-        else if(size >= aligned_decomp_size) {
+        else if(size >= var_s0) {
             sp2B = 2;
-            decomp_ptr = malloc(size);
+            comp_ptr = malloc(comp_ptr);
         }
         else{
             return 0;
         }
     }
     else{
-        if (comp_size & (0x10 -1)) {
-            comp_size = (comp_size - (comp_size & (0x10 -1))) + 0x10;
+        var_s0 = comp_ptr;
+        if(comp_ptr & (0x10 -1)) 
+           var_s0 = (comp_ptr - (comp_ptr & (0x10 -1))) + 0x10;
+        
+        if(size >= comp_ptr){
+            comp_ptr = dst;
         }
-        if(size < comp_size)
+        else{
             return 0;
+        }
     }
-    func_802405F0(decomp_ptr, D_80383CC4[id].offset + D_80383CCC, comp_size);
+    comp_size = D_80383CC4[id].offset + D_80383CCC;
+    func_802405F0(comp_ptr, comp_size, sp34);
     if (D_80383CC4[id].compFlag & 1) {
-        rarezip_inflate(decomp_ptr, dst);
+        rarezip_inflate(comp_ptr, dst);
         osWritebackDCache(dst, D_80370A10);
         if (sp2B == 2) {
-            free(decomp_ptr);
+            free(comp_ptr);
         }
     }
-    return decomp_ptr;
+    return var_s0;
 }
-#endif

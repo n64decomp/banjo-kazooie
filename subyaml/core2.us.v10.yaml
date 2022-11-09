@@ -333,7 +333,7 @@ segments:
   - [0xAEDA0, c, code_AEDA0]
   - [0xB1400, c, code_B1400]
   - [0xB3580, c, code_B3580] #DONE
-  - [0xB3A80, c, code_B3A80]
+  - [0xB3A80, c, code_B3A80] #DONE
   - [0xB5040, c, code_B5040] #DONE
   - [0xB5E00, c, code_B5E00] #DONE
   - [0xB62B0, c, code_B62B0] #DONE
