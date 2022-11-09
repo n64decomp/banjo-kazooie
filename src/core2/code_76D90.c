@@ -106,7 +106,6 @@ void func_802FDEE0(s32 arg0, struct8s *arg1, Gfx **arg2, Mtx **arg3, Vtx **arg4)
     s32 var_v1;
     u32 sp118;
     f32 pad;
-
     f32 sp110;
 
     sp118 = D_803815C0 == 2;

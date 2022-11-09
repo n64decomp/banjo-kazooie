@@ -32,7 +32,7 @@ segments:
   - [0x00000000, c, code_0]
   - [0x0660, c, code_660]  #DONE
   - [0x07C0, c, inflate]   #DONE
-  - [0x1D00, c, code_1D00]
+  - [0x1D00, c, code_1D00] #DONE
   - [0x2BD0, c, code_2BD0]
   - [0x2DA0, c, code_2DA0] #DONE
   - [0x2FA0, c, code_2FA0] #DONE

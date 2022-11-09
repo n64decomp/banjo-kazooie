@@ -424,72 +424,59 @@ void amgrHandleDoneMsg(AudioInfo *info)
 	}
 }
 
-#ifndef NONMATCHING
-s32 func_80240204(s32 addr, s32 len, void *state);
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1D00/func_80240204.s")
-#else
 s32 func_80240204(s32 addr, s32 len, void *state){
     void *sp44;
     s32 sp40;
-    Struct_1D00_3 *sp30;
-    Struct_1D00_3 *temp_s0;
-    ALLink *temp_s0_2;
-    Struct_1D00_3 *temp_s0_3;
-    Struct_1D00_3 *temp_v0_2;
-    s32 temp_t4;
-    s32 temp_v0_3;
-    s32 temp_v1;
-    u32 temp_a3;
-    u32 temp_v0;
-    void *temp_t0;
     Struct_1D00_3 *phi_s0;
-    Struct_1D00_3 *phi_a2;
+    Struct_1D00_3 *phi_v0;
+    s32 new_var;
+    Struct_1D00_3 *sp30;
 
     phi_s0 = D_8027D5B0.unk4;
     sp30 = NULL;
-    while (temp_s0 != NULL) {
-        temp_v0 = phi_s0->unk8;
-        if (addr >= temp_v0) {
-            sp30 = phi_s0;
-            if ((temp_v0 + 0x200) >= (addr + len)) {
-                phi_s0->unkC = (s32) D_8027DCC8;
-                return osVirtualToPhysical((phi_s0->unk10 + addr) - temp_v0);
-            }
-            phi_s0 = phi_s0->unk0.next;
+    while (phi_s0 != NULL ) {
+        new_var = (phi_s0->unk8 + 0x200);
+        if ((phi_s0->unk8 > addr)) break;
+        
+        sp30 = phi_s0;
+        if ((addr + len) <= new_var) {
+            phi_s0->unkC = (s32) D_8027DCC8;
+            return osVirtualToPhysical(phi_s0->unk10 + (addr - phi_s0->unk8));
         }
+        phi_s0 = phi_s0->unk0.next;
+
     }
-    temp_s0_3 = D_8027D5B0.unk8;
-    if (temp_s0_3 == NULL) {
+    phi_s0 = D_8027D5B0.unk8;
+    if (phi_s0 == NULL) {
         func_80247F24(2, 0x7D1);
         func_802483D8();
         return osVirtualToPhysical(D_8027D5B0.unk4);
     }
-    D_8027D5B0.unk8 = temp_s0_3->unk0.next;
-    alUnlink(temp_s0_3);
+    D_8027D5B0.unk8 = phi_s0->unk0.next;
+    alUnlink(phi_s0);
     if (sp30 != NULL) {
-        alLink(temp_s0_3, sp30);
+        alLink(phi_s0, sp30);
     } else {
-        temp_v0_2 = D_8027D5B0.unk4;
-        if (temp_v0_2 != NULL) {
-            D_8027D5B0.unk4 = temp_s0_3;
-            temp_s0_3->unk0.next = (ALLink *)temp_v0_2;
-            temp_s0_3->unk0.prev = NULL;
-            temp_v0_2->unk0.prev = (ALLink *)temp_s0_3;
+        phi_v0 = D_8027D5B0.unk4;
+        if (phi_v0 != NULL) {
+            D_8027D5B0.unk4 = phi_s0;
+            phi_s0->unk0.next = (ALLink *)phi_v0;
+            phi_s0->unk0.prev = NULL;
+            phi_v0->unk0.prev = (ALLink *)phi_s0;
         } else {
-            D_8027D5B0.unk4 = temp_s0_3;
-            temp_s0_3->unk0.next = NULL;
-            temp_s0_3->unk0.prev = NULL;
+            D_8027D5B0.unk4 = phi_s0;
+            phi_s0->unk0.next = NULL;
+            phi_s0->unk0.prev = NULL;
         }
     }
+    sp44 = phi_s0->unk10;
     sp40 = addr & 1;
-    sp44 = temp_s0_3->unk10;
-    sp40 = temp_v0_3;
-    temp_s0_3->unk8 = addr - sp40;
-    temp_s0_3->unkC = (s32) D_8027DCC8;
-    osPiStartDma(&D_8027D100[D_8027DCCC++], 1, 0, temp_a3, sp44, 0x200U, &D_8027D008);
+    addr -= sp40;
+    phi_s0->unk8 = addr;
+    phi_s0->unkC = (s32) D_8027DCC8;
+    osPiStartDma(&D_8027D100[D_8027DCCC++], 1, 0, addr, sp44, 0x200U, &D_8027D008);
     return osVirtualToPhysical(sp44) + sp40;
 }
-#endif
 
 void *func_802403B8(void *state) {
     if (D_8027D5B0.unk0 == 0) {
