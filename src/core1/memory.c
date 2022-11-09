@@ -430,17 +430,13 @@ void func_80254F90(void){
     }
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/memory/_heap_sortEmptyBlock.s")
-#else
-//moves empty block (arg0) to keep empty block list sorted by size
 void _heap_sortEmptyBlock(EmptyHeapBlock * arg0){
     EmptyHeapBlock *v0 = arg0;
     EmptyHeapBlock *v1;
     EmptyHeapBlock *a2 = &D_8002D500[LAST_HEAP_BLOCK];
 
     //move arg0 back while larger than next
-    while( arg0->next_free < a2
+    while( arg0->next_free < &D_8002D500[LAST_HEAP_BLOCK]
         && (s32)chunkSize(&v0->next_free->hdr) + 0x10 < (s32)chunkSize(&v0->hdr) + 0x10
     ){  
         v1 = arg0->next_free;
@@ -453,10 +449,11 @@ void _heap_sortEmptyBlock(EmptyHeapBlock * arg0){
     }
     
     //move arg0 foward while smaller prev
-    while( ( arg0->prev_free >= (EmptyHeapBlock *)((u8*)D_8002D500 + 1))
+    while( ( (v1 = arg0->prev_free) > &D_8002D500[0])
         && (s32)chunkSize(&v0->hdr) + 0x10 < (s32)chunkSize(&v0->prev_free->hdr) + 0x10
     ){
         a2 = arg0->prev_free;
+
         arg0->next_free->prev_free = a2;
         a2->next_free = arg0->next_free;
         arg0->next_free = a2;
@@ -465,7 +462,6 @@ void _heap_sortEmptyBlock(EmptyHeapBlock * arg0){
         a2->prev_free = arg0;
     }
 }
-#endif
 
 void free(void * ptr){
     HeapHeader *sPtr; //stack_ptr
