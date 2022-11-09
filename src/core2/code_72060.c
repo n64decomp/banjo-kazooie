@@ -81,9 +81,6 @@ void func_802F9134(s32 gfx){
     }
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_72060/func_802F919C.s")
-#else
 void func_802F919C(void) {
     f32 temp_f20;
     s32 sp68;
@@ -119,12 +116,14 @@ void func_802F919C(void) {
             for(var_v1 = 0; var_v1 < 3; var_v1++){
                 sp5C->unk0[var_v1] += sp5C->unkC[var_v1] * temp_f20;
             }
+
             sp5C->unkC[sp60] += ((randf() * 30.0) - 15.0);
         }
 
         D_8036928C++;
         if (D_8036928C < D_80369284) {
-            if (ml_vec3f_distance(D_80369280[0].unk1C[D_8036928C].unk0, D_80381040) > 1300.0f) {
+            sp5C = &D_80369280[0].unk1C[D_8036928C];
+            if (ml_vec3f_distance((*sp5C).unk0, D_80381040) > 1300.0f) {
                 func_802F9134(D_8036928C);
             }
         } else {
@@ -162,7 +161,6 @@ void func_802F919C(void) {
         }
     }
 }
-#endif
 
 void func_802F962C(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     u32 temp_s0_3;
