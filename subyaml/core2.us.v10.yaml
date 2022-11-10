@@ -189,7 +189,7 @@ segments:
   - [0x440B0, c, code_440B0]    #DONE
   - [0x45310, c, code_45310]    #DONE
   - [0x468E0, c, ch/code_468E0] #DONE
-  - [0x46BC0, c, ch/jinjo]
+  - [0x46BC0, c, ch/jinjo]   #DONE
   - [0x47850, c, ch/beehive] #DONE
   - [0x47BD0, c, code_47BD0] #DONE
   - [0x49570, c, ch/soundsource] #DONE

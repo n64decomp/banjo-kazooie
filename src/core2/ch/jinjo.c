@@ -77,7 +77,6 @@ void func_802CDC9C(Actor *this, s16 arg1){
     this->yaw = tmpf;
 }
 
-
 void func_802CDD3C(Actor * this){
     ActorLocal_Jinjo *localPtr = &this->jinjo;
     if(localPtr->unkC != 0){
@@ -86,7 +85,6 @@ void func_802CDD3C(Actor * this){
     }
 }
 
-#ifdef NONMATCHING
 void func_802CDD78(Actor * this){
     f32 sp7C[3];
     f32 sp70[3];
@@ -98,14 +96,17 @@ void func_802CDD78(Actor * this){
     // f32 sp5C;
     ActorLocal_Jinjo *local; //= &this->jinjo; //sp34
     f32 sp58 = time_getDelta();
+    s32 i;
     int sp50;
+    f32 *sp30;
+    
     //f32 sp4C; //unused
     f32 sp40[3];
     //s32 sp3C;
     //s32 sp38;
-    f32 *sp30;
+    
     f32 tmp_f0;
-    s32 i;
+    
     
     local = &this->jinjo;
     if(!this->initialized){
@@ -123,7 +124,9 @@ void func_802CDD78(Actor * this){
     func_8028E964(sp7C);
     func_80257F18(sp30, sp7C, &sp6C);
     sp64 = (this->yaw * 182.04444);
-    sp66 = sp64 - (s32)(sp6C*182.04444);
+    // sp66 = sp64 - (s32)(sp6C*182.04444);
+    sp66 = (s32) (sp6C * 182.04444);
+    sp66 = sp64 - sp66;
     sp60 = func_8028AED4(sp30, 55.0f);
 
     switch(this->state){
@@ -189,26 +192,26 @@ void func_802CDD78(Actor * this){
         case 7:
         case 8:
             sp50 = this->state == 7;
-            if(!sp50 || 0.8 < animctrl_getAnimTimer(this->animctrl)){//L802CE158
+            if(!sp50 || 0.1 < animctrl_getAnimTimer(this->animctrl)){//L802CE158
                 player_getVelocity(sp70);
-                sp70[0] *= sp58*6.0f;
-                sp70[1] *= sp58*6.0f;
+                sp70[0] *= sp58*6.0f;\
+                sp70[1] *= sp58*6.0f;\
                 sp70[2] *= sp58*6.0f;
-                sp70[0] += sp7C[0];
-                sp70[1] += sp7C[1];
-                sp70[2] += sp7C[2];
-                sp70[0] -=  this->position_x;
-                sp70[1] -=  this->position_y;
+                sp70[0] = sp70[0] + sp7C[0];\
+                sp70[1] = sp70[1] + sp7C[1];\
+                sp70[2] = sp70[2] + sp7C[2];
+                sp70[0] -=  this->position_x;\
+                sp70[1] -=  this->position_y;\
                 sp70[2] -=  this->position_z;
                 sp70[0] *= sp58*3.0f;
                 sp70[1] *= sp58*3.0f;
                 sp70[2] *= sp58*3.0f;
-                this->position_x += sp70[0];
-                this->position_y += sp70[1];
-                this->position_z += sp70[2];
-                if(sp50 || animctrl_getAnimTimer(this->animctrl) < 0.3){
+                this->position_x = this->position_x + sp70[0];
+                this->position_y = this->position_y + sp70[1];
+                this->position_z = this->position_z + sp70[2];
+                if(sp50 || animctrl_getAnimTimer(this->animctrl) < 0.8){
                     for(i = 0; i < 4; i++){
-                        if(randf() < 0.2){
+                        if(randf() < 0.3){
                             func_8033E73C(this->marker, i + 5, func_80329904);
                             func_8033E3F0(8, this->marker->unk14_21);
                         } //L802CE2C4
@@ -217,13 +220,13 @@ void func_802CDD78(Actor * this){
             }
 
             if(sp50){ 
-                if(animctrl_getAnimTimer(this->animctrl) < 0.9)
+                if(animctrl_getAnimTimer(this->animctrl) < 0.2)
                     func_802CDC9C(this, sp66);
 
                 if(actor_animationIsAt(this, 0.1f)){
                     local->unkC = func_802F9AA8(SFX_18_BIGBUTT_SLIDE);
                     func_802F9EC4(local->unkC, sp30, 500, 2000);
-                    func_802F9F80(local->unkC, 0.0f, 0x50061c46, 0.0f);
+                    func_802F9F80(local->unkC, 0.0f, 9e+09, 0.0f);
                     func_802FA0B0(local->unkC, 0);
                     func_8025A6EC(COMUSIC_43_ENTER_LEVEL_GLITTER, 0x7FFF);
                     func_8025AABC(COMUSIC_43_ENTER_LEVEL_GLITTER);
@@ -256,9 +259,9 @@ void func_802CDD78(Actor * this){
                 }//L802CE518
 
                 if(actor_animationIsAt(this,0.85f)){ 
-                    if(local->unk4){
-                        func_802F9D38();
-                        local->unk4 = 0;
+                    if(local->unkC){
+                        func_802F9D38(local->unkC);
+                        local->unkC = 0;
                     }
                     func_8030E4E4(SFX_19_BANJO_LANDING_08);
                     func_8025A7DC(COMUSIC_43_ENTER_LEVEL_GLITTER);
@@ -278,7 +281,7 @@ void func_802CDD78(Actor * this){
             }
             break;
     }//L802CE5F0
-    if(this->state < 4 &&  !(((sp66 >= 0)? sp66: -sp66) <= 0x100)){
+    if(this->state < 4 &&  !(((sp66 >= 0)? sp66: -sp66) <= 0x1000)){
         func_80328B8C(this, 4, 0.0f, -1);
         actor_playAnimationOnce(this);
     }//L802CE630
@@ -298,7 +301,7 @@ void func_802CDD78(Actor * this){
                     if(local->unk8){
                         func_8030E988(SFX_17_JINJO_WHISTLE, 1.0f, 22000, sp30, 120.0f, 1200.0f);
                     }else{
-                        FUNC_8030E8B4(SFX_27_JINJO_HI, 1.0f, 22000, sp30, 120, 1200);
+                        FUNC_8030E8B4(SFX_17_JINJO_WHISTLE, 1.0f, 22000, sp30, 120, 1200);
                     }
                 }
                 break;
@@ -307,7 +310,7 @@ void func_802CDD78(Actor * this){
                     if(local->unk8){
                         func_8030E988(SFX_27_JINJO_HI, 1.0f, 22000, sp30, 120.0f, 1200.0f);
                     }else{
-                        FUNC_8030E8B4(SFX_17_JINJO_WHISTLE, 1.0f, 22000, sp30, 120, 1200);
+                        FUNC_8030E8B4(SFX_27_JINJO_HI, 1.0f, 22000, sp30, 120, 1200);
                     }
                 }
                 break;
@@ -316,6 +319,3 @@ void func_802CDD78(Actor * this){
         }
     }//L802CE7CC
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/ch/jinjo/func_802CDD78.s")
-#endif
