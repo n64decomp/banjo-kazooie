@@ -92,113 +92,138 @@ void func_8038F610(Actor *this) {
 void func_8028F94C(s32, f32[3]);
 void func_8028F918(s32);
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/BGS/ch/tanktup/func_8038F6A4.s")
-#else
-void func_8038F6A4(Actor *this) {
-    ActorLocal_TanktupBody * local = (ActorLocal_TanktupBody *)&this->local;
-    f32 sp48[3];
-    s32 sp44;
-    NodeProp *temp_v0;
-    f32 sp34[3];
+void func_8038F6A4(Actor *this)
+{
+  ActorLocal_TanktupBody *local = (ActorLocal_TanktupBody *) (&this->local);
+  f32 sp48[3];
+  s32 sp44;
+  Prop *temp_v0;
+  if (!this->initialized)
+  {
+    temp_v0 = func_80304C38(ACTOR_32B_UNKNOWN, this);
+    if (temp_v0 == 0)
+    {
+      local->unk18[0] = 3672.0f;
+      local->unk18[1] = 100.0f;
+      local->unk18[2] = 987.0f;
+    }
+    else
+    {
+      nodeprop_getPosition(temp_v0, local->unk18);
+    }
+    this->unk138_24 = 0;
+    this->initialized = 1;
+  }
+  if (!this->unk16C_4)
+  {
+    this->unk16C_4 = 1;
+    this->marker->propPtr->unk8_3 = 1;
+    actor_collisionOff(this);
+    this->scale = 1.0f;
+    for (sp44 = 0; sp44 < 4; sp44++)
+    {
+      if (local->unk0[sp44] == 0)
+      {
+        func_802C3E10(func_8038F470, *((s32 *) (&this->marker)), local->unk0[sp44], sp44);
+      }
+    }
 
-    if(!this->initialized){
-        temp_v0 = func_80304C38(ACTOR_32B_UNKNOWN, this);
-        if (temp_v0 == NULL) {
-            local->unk18[0] = 3672.0f;
-            local->unk18[1] = 100.0f;
-            local->unk18[2] = 987.0f;
-        } else {
-            nodeprop_getPosition(temp_v0, local->unk18);
+    if (local)
+    {
+      ;
+    }
+  }
+  switch (this->state)
+  {
+    case 1:
+      func_8038F610(this);
+      player_getPosition(sp48);
+      if (!this->unk138_24)
+    {
+      if ((((ml_vec3f_distance(local->unk18, sp48) < 250.0f) && (ml_vec3f_distance(local->unk18, sp48) > 80.0f)) && (!func_8028ECAC())) && (player_getTransformation() == TRANSFORM_1_BANJO))
+      {
+        func_80311480(0xC7E, 0, 0, 0, 0, 0);
+        this->unk138_24 = 1;
+      }
+    }
+      if (local->unk10)
+    {
+      func_80328B8C(this, 2, 0.0f, -1);
+      local->unk10 = 0;
+      sp44 = 0;
+        if(&sp44);
+      local->unk14 = 1;
+      for (; sp44 < 4; sp44++)
+      {
+        if (local->unk0[sp44] == 0)
+        {
+          local->unk14 = 0;
         }
-        this->unk138_24 = FALSE;
-        this->initialized = TRUE;
-    }
+      }
 
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
-        this->marker->propPtr->unk8_3 = TRUE;
-        actor_collisionOff(this);
-        this->scale = 1.0f;
-        for(sp44 = 0; sp44 < 4; sp44++){
-            if (local->unk0[sp44] == 0) {
-                func_802C3E10(func_8038F470, this->marker, local->unk0[sp44], sp44);
-            }
+      if ((!this->unk138_23) && (!local->unk14))
+      {
+        if (func_80311480(0xC80, 0, 0, 0, 0, 0))
+        {
+          this->unk138_23 = 1;
         }
+      }
     }
-    switch(this->state){
-        case 1:
-            func_8038F610(this);
-            player_getPosition(&sp48);
-            if (!this->unk138_24) {
-                if( ml_vec3f_distance(local->unk18, &sp48) < 250.0f
-                    && ml_vec3f_distance(local->unk18, &sp48) > 80.0f
-                    && !func_8028ECAC()
-                    && player_getTransformation() == TRANSFORM_1_BANJO
-                ) {
-                    func_80311480(0xC7E, 0, NULL, NULL, NULL, NULL);
-                    this->unk138_24 = TRUE;
-                }
-            }
-            if (local->unk10) {
-                func_80328B8C(this, 2, 0.0f, -1);
-                local->unk10 = 0;
-                local->unk14 = TRUE;\
-                for(sp44 = 0; sp44 < 4; sp44++){
-                    if(local->unk0[sp44] == 0){
-                        local->unk14 = FALSE;
-                    }
-                }
-                if(!this->unk138_23 && !local->unk14){
-                    if(func_80311480(0xC80, 0, NULL, NULL, NULL, NULL))
-                        this->unk138_23 = TRUE;
-                }
-            }
-            break;
+      break;
 
-        case 2:
-            func_8038F610(this);
-            if (actor_animationIsAt(this, 0.6f) && local->unk14) {
-                func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);
-                func_8028F94C(2, local->unk18);
-            }
-            if (actor_animationIsAt(this, 0.99f)) {
-                if (!local->unk14) {
-                    func_80328B8C(this, 1, 0.0f, -1);
-                }
-                else{
-                    func_80328B8C(this, 3, 0.0f, -1);
-                    actor_playAnimationOnce(this);
-                }
-            }
-            break;
-
-        case 3:
-            // (local);
-            if (actor_animationIsAt(this, 0.1f) != 0) {
-                timed_setCameraToNode(0.0f, 0xD);
-            }
-            if (actor_animationIsAt(this, 0.55f) != 0) {
-                func_8030E624(0x797FF885U);
-            }
-            if (actor_animationIsAt(this, 0.4f) != 0) {
-                func_8034A174(this->marker->unk44, 6, sp34);
-                func_802C8F70(this->yaw);
-                sp34[1] -= 125.0f;
-                jiggySpawn(JIGGY_26_BGS_TANKTUP, sp34);
-            }
-            if (actor_animationIsAt(this, 0.9f) != 0) {
-                func_8028F918(0);
-                if (jiggyscore_isCollected(JIGGY_26_BGS_TANKTUP) == 0) {
-                    func_80311480(0xC7F, 0xF, this->position, this->marker, func_8038F5E4, NULL);
-                }
-                else{
-                    func_8038F5E4(this->marker, 0xC7F, -1);
-                }
-            }
-            break;
+    case 2:
+      func_8038F610(this);
+      if (actor_animationIsAt(this, 0.6f) && local->unk14)
+    {
+      func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);
+      func_8028F94C(2, local->unk18);
     }
+      if (actor_animationIsAt(this, 0.99f))
+    {
+      if (!local->unk14)
+      {
+        func_80328B8C(this, 1, 0.0f, -1);
+      }
+      else
+      {
+        func_80328B8C(this, 3, 0.0f, -1);
+        actor_playAnimationOnce(this);
+      }
+    }
+      break;
+
+    case 3:
+      if (actor_animationIsAt(this, 0.1f) != 0)
+    {
+      timed_setCameraToNode(0.0f, 0xD);
+    }
+      if (actor_animationIsAt(this, 0.55f) != 0)
+    {
+      func_8030E624(0x797FF885U);
+    }
+      if (actor_animationIsAt(this, 0.4f) != 0)
+    {
+      f32 sp34[3];
+      func_8034A174(this->marker->unk44, 6, sp34);
+      func_802C8F70(this->yaw);
+      sp34[1] -= 125.0f;
+      jiggySpawn(JIGGY_26_BGS_TANKTUP, sp34);
+    }
+      if (actor_animationIsAt(this, 0.9f) != 0)
+    {
+      func_8028F918(0);
+      if (jiggyscore_isCollected(JIGGY_26_BGS_TANKTUP) == 0)
+      {
+        func_80311480(0xC7F, 0xF, this->position, this->marker, func_8038F5E4, 0);
+      }
+      else
+      {
+        func_8038F5E4(this->marker, 0xC7F, -1);
+      }
+    }
+      break;
+
+  }
+
 }
-#endif
-
 
