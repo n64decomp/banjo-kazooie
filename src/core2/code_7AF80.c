@@ -1236,21 +1236,20 @@ Actor * func_803055E0(enum actor_e arg0, s32 arg1[3], s32 arg2, s32 arg3, s32 ar
     return actor;
 }
 
-
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_803056FC.s")
-#else
-Actor *func_803056FC(enum actor_e arg0, s32 arg1[3], s32 arg2) {
-    s32 i;
-
-    arg0 = !func_80320248() ? ACTOR_4_BIGBUTT : arg0;
-    for(i=0; i < sSpawnableActorSize; i++){
-        if(arg0 == sSpawnableActorList[i].infoPtr->actorId)
-            return sSpawnableActorList[i].spawnFunc(arg1, arg2, sSpawnableActorList[i].infoPtr, sSpawnableActorList[i].unk8);
+Actor *func_803056FC(enum actor_e arg0, s32 arg1[3], s32 arg2)
+{
+  s32 i;
+  arg0 = (!func_80320248()) ? (ACTOR_4_BIGBUTT) : (arg0);
+  for (i = 0; i < sSpawnableActorSize; i++)
+  {
+    if (arg0 == sSpawnableActorList[i].infoPtr->actorId)
+    {
+      return sSpawnableActorList[i].spawnFunc(arg1, arg2, ((0, sSpawnableActorList[i])).infoPtr, sSpawnableActorList[i].unk8);
     }
-    return NULL;
+  }
+
+  return NULL;
 }
-#endif
 
 void func_8030578C(void){
     int i;
@@ -1375,14 +1374,14 @@ void func_80305D38(void){
     D_8036A9D0 = 0;
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80305D94.s")
-#else
 void func_80305D94(void){
-    s32 j;
+    Struct_core2_7AF80_1 *iPtr;
+    Struct_core2_7AF80_1 *end_ptr;
+    unsigned int j;
     if(D_8036A9BC != NULL){
-        for(j = 0; j < D_8036A9B8; j++){
-            free(D_8036A9BC[j].unk8);
+        end_ptr = &D_8036A9BC[D_8036A9B8];
+        for(iPtr = D_8036A9BC; iPtr < end_ptr; iPtr++){
+            free(iPtr->unk8);
         }
         free(D_8036A9BC);
         D_8036A9BC = NULL;
@@ -1390,8 +1389,9 @@ void func_80305D94(void){
     }
 
     if(D_8036A9C8 != NULL){
-        for(j = 0; j < D_8036A9C4; j++){
-            free(D_8036A9C8[j].unk8);
+        end_ptr = &D_8036A9C8[D_8036A9C4];
+        for(iPtr = D_8036A9C8; iPtr < end_ptr; iPtr++){
+            free(iPtr->unk8);
         }
         free(D_8036A9C8);
         D_8036A9C8 = NULL;
@@ -1399,15 +1399,15 @@ void func_80305D94(void){
     }
 
     if(D_8036A9D4 != NULL){
-        for(j = 0; j < D_8036A9D0; j++){
-            free(D_8036A9D4[j].unk8);
+        end_ptr = &D_8036A9D4[D_8036A9D0];
+        for(iPtr = D_8036A9D4; iPtr < end_ptr; iPtr++){
+            free(iPtr->unk8);
         }
         free(D_8036A9D4);
-        D_8036A9D0 = 0;
         D_8036A9D4 = NULL;
+        D_8036A9D0 = 0;
     }
 }
-#endif
 
 void func_80305F04(s32 *arg0, Struct_core2_7AF80_1 **arg1) {
     bool continue_loop;

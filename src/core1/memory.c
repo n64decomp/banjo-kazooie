@@ -321,6 +321,7 @@ void *func_80254BD0(s32 *size, u32 arg1) {
     while(arg1 != 0){
         var_v1 = var_v1->prev_free;
         if (var_v1 == &D_8002D500[0]) {
+            //less than n blocks
             return NULL;
         }
         arg1--;
