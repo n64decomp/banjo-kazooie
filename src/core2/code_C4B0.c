@@ -303,9 +303,6 @@ f32 func_80293EAC(f32 arg0, f32 arg1, f32 arg2){
      return arg1;
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C4B0/func_80293F0C.s")
-#else
 void func_80293F0C(void){
     f32 sp44[3];
     f32 sp38[3];
@@ -333,7 +330,7 @@ void func_80293F0C(void){
             _player_getPosition(D_8037C218);
             func_80298504(D_8037C228);
             ml_vec3f_diff_copy(D_8037C238, D_8037C218, D_8037C228);
-            if ((D_8037C274 == 3) && func_8031C594(D_8037C200) && ((func_8031C5E4(D_8037C200) - 70.0f) < D_8037C218[1])) {
+            if ((D_8037C274 == 3) && func_8031C594(D_8037C200) && (D_8037C218[1] > (func_8031C5E4(D_8037C200) - 70.0f))) {
                 D_8037C218[1] = func_8031C5E4(D_8037C200) - 70.0f;
                 D_8037C27E = 1;
                 player_setYVelocity(1.0f);
@@ -391,13 +388,11 @@ void func_80293F0C(void){
     func_80298504(sp2C);
     _player_getPosition(sp38);
     ml_vec3f_diff_copy(D_8037C268, sp38, sp2C);
-    // temp_a1 = D_8037C204;
     if (D_8037C204) {
         func_8024587C(&D_8037C208, D_8037C204);
         D_8037C204 = &D_8037C208;
     }
 }
-#endif
 
 void func_8029436C(s32 arg0){
      D_8037C27F = arg0;

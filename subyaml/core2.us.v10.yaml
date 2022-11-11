@@ -324,7 +324,7 @@ segments:
   - [0x9E370, c, code_9E370]
   - [0xA4D00, c, code_A4D00] #DONE
   - [0xA5BC0, c, code_A5BC0]
-  - [0xABC00, c, code_ABC00]
+  - [0xABC00, c, code_ABC00] #DONE
   - [0xAC520, c, code_AC520] #DONE
   - [0xAD110, c, code_AD110] #DONE
   - [0xAD5B0, c, code_AD5B0] #DONE

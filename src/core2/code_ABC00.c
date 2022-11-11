@@ -272,19 +272,16 @@ void func_80333270(enum jiggy_e jiggy_id, f32 position[3], void (*method)(Actor 
     ptr->unk10.unk18 = other_marker;
 }
 
-#ifndef NONMATCHING
-void func_803332D0(Actor *);
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_ABC00/func_803332D0.s")
-#else
-void func_803332D0(Actor * arg0){
-    // s32 indx = func_802C8088(arg0) - 1;
-    // s32 size = 0x2C;
-    Struct_core2_ABC00_0 *ptr = D_8036E834 + (func_802C8088(arg0) - 1);
-    Struct81s *sp18 = &ptr->unk10;
-    ptr->unkC(sp18);
-    sp18->marker = NULL;
+void func_803332D0(Actor *arg0)
+{
+  s32 indx = func_802C8088(arg0) - 1;
+  Struct81s *sp18 = &D_8036E834[indx].unk10;
+  if (D_8036E834[indx].unkC)
+  {
+  }
+  D_8036E834[indx].unkC(sp18);
+  sp18->marker = 0;
 }
-#endif
 
 void func_80333334(enum jiggy_e jiggy_id) {
     Struct_core2_ABC00_0 *temp_v0;
