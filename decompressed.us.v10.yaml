@@ -145,7 +145,7 @@ segments:
   - [0xF19250, c, code_0]
   - [0xF198B0, c, code_660]  #DONE
   - [0xF19A10, c, inflate]   #DONE
-  - [0xF1AF50, c, code_1D00]
+  - [0xF1AF50, c, code_1D00] #DONE
   - [0xF1BE20, c, code_2BD0]
   - [0xF1BFF0, c, code_2DA0] #DONE
   - [0xF1C1F0, c, code_2FA0] #DONE
@@ -162,10 +162,10 @@ segments:
   - [0xF275B0, c, code_E360]    #DONE
   - [0xF27D40, c, code_EAF0]
   - [0xF29C50, c,code_10A00]
-  - [0xF2AD10, c, code_11AC0]
+  - [0xF2AD10, c, code_11AC0] #DONE
   - [0xF2C160, c, code_12F10] #DONE
   - [0xF2C890, c, code_13640] #DONE
-  - [0xF2C8D0, c, code_13680]
+  - [0xF2C8D0, c, code_13680] #DONE
   - [0xF2C920, c, code_136D0]
   - [0xF2CBE0, c, code_13990]
   - [0xF2E840, hasm, code_155F0] #DONE
@@ -221,7 +221,7 @@ segments:
   - [0xF3E5B0, c, done/audio/n_synstartvoiceparam] #DONE
   - [0xF3E690, c, done/audio/n_mainbus]      #DONE
   - [0xF3E710, c, done/audio/n_load]         #DONE
-  - [0xF3E8D0, c, audio/n_adpcm]
+  - [0xF3E8D0, c, done/audio/n_adpcm]        #DONE
   - [0xF3EE90, c, done/audio/n_resample]     #DONE
   - [0xF3F070, c, done/audio/n_seq]          #DONE
   - [0xF3F360, c, done/audio/n_synsetpriority] #DONE
@@ -252,7 +252,7 @@ segments:
   - [0xF40830, c, done/os/settreadpri]     #DONE
   - [0xF40910, c, done/gu/mtxutil]         #DONE
   - [0xF40B80, c, done/gu/sqrtf]           #DONE
-  - [0xF40B90, c, gu/cosf]
+  - [0xF40B90, c, done/gu/cosf]            #DONE
   - [0xF40D00, hasm, ultra/setintmask]     #DONE
   - [0xF40DA0, c, done/io/dpsetstat]       #DONE
   - [0xF40DB0, c, done/io/sptask]          #DONE
@@ -273,7 +273,7 @@ segments:
   - [0xF41D20, c, done/io/viblack]         #DONE
   - [0xF41D90, c, done/gu/ortho]           #DONE
   - [0xF41F50, c, done/gu/translate]       #DONE
-  - [0xF41FF0, c, done/gu/rotate]
+  - [0xF41FF0, c, done/gu/rotate]          #DONE
   - [0xF421E0, c, done/io/contreaddata]    #DONE
   - [0xF42440, c, done/io/controller]      #DONE
   - [0xF42800, c, done/io/contsetch]       #DONE
@@ -399,7 +399,7 @@ segments:
   - [0xF52E90, .rodata, code_5650]
   - [0xF52EF0, .rodata, code_72B0]
   - [0xF52F10, .rodata, code_7F60]
-  - [0xF52F30, bin, data_39CE0] # .rodata, code_9D30]
+  - [0xF52F30, .rodata, code_9D30]
   - [0xF52F50, .rodata, done/code_CE60]
   - [0xF53220, .rodata, code_EAF0]
   - [0xF532A0, .rodata, code_10A00]
@@ -419,7 +419,8 @@ segments:
   - [0xF543D0, .rodata, done/audio/n_resample]
   - [0xF543E0, .rodata, done/gu/sinf]
   - [0xF54430, .rodata, done/audio/cents2ratio]
-  - [0xF54440, bin, data_3B1F0] # .rodata, ultra/setintmask] # splat bug preventing this from linking correctly
+  - [0xF54440, .rodata, done/gu/cosf]
+  - [0xF54490, bin, data_3B1F0] # .rodata, ultra/setintmask] # splat bug preventing this from linking correctly
   - [0xF54510, .rodata, done/gu/rotate] # need to resolve .data section first
   - [0xF54520, .rodata, done/audio/cseq]
   - [0xF54530, .rodata, done/audio/drvrNew]
@@ -468,6 +469,9 @@ segments:
   - [0xF55960, .bss, done/os/seteventmesg]
   - [0xF55960, .bss, done/io/vimgr]
   - [0xF55960, .bss, done/gu/rotate]
+  - [0xF55960, .bss, done/io/controller]
+  - [0xF55960, .bss, done/io/motor]
+  - [0xF55960, .bss, done/io/cartrominit]
 - name: core2
   dir: core2
   type: code
@@ -635,7 +639,7 @@ segments:
   - [0xF99A10, c, code_440B0]    #DONE
   - [0xF9AC70, c, code_45310]    #DONE
   - [0xF9C240, c, ch/code_468E0] #DONE
-  - [0xF9C520, c, ch/jinjo]
+  - [0xF9C520, c, ch/jinjo]   #DONE
   - [0xF9D1B0, c, ch/beehive] #DONE
   - [0xF9D530, c, code_47BD0] #DONE
   - [0xF9EED0, c, ch/soundsource] #DONE
@@ -687,16 +691,16 @@ segments:
   - [0xFB8A30, c, code_630D0] #DONE
   - [0xFB8D70, c, code_63410] #DONE
   - [0xFB8FF0, c, code_63690] #DONE
-  - [0xFB9130, c, code_637D0]
+  - [0xFB9130, c, code_637D0] #DONE
   - [0xFBAE20, c, code_654C0] #DONE
   - [0xFBBDF0, c, code_66490] #DONE
   - [0xFBBFF0, c, vla]        #DONE
-  - [0xFBC410, c, sla]
+  - [0xFBC410, c, sla]        #DONE
   - [0xFBC6F0, c, code_66D90] #DONE
   - [0xFBC910, c, code_66FB0] #DONE
   - [0xFBCDF0, c, gc/bound]   #DONE
   - [0xFBCFB0, c, code_67650] #DONE
-  - [0xFBD300, c, code_679A0] 
+  - [0xFBD300, c, code_679A0] #DONE
   - [0xFBF8C0, c, code_69F60] #DONE
   - [0xFBFE10, c, code_6A4B0]
   - [0xFC0850, c, code_6AEF0] #DONE
@@ -711,8 +715,8 @@ segments:
   - [0xFC6590, c, code_70C30] #DONE
   - [0xFC6880, c, code_70F20] #DONE
   - [0xFC7180, c, code_71820] #DONE
-  - [0xFC79C0, c, code_72060]
-  - [0xFC8470, c, code_72B10]
+  - [0xFC79C0, c, code_72060] #DONE
+  - [0xFC8470, c, code_72B10] #DONE
   - [0xFC8FA0, c, code_73640] #DONE
   - [0xFC99F0, c, code_74090] #DONE
   - [0xFC9BF0, c, code_74290] #DONE
@@ -724,7 +728,7 @@ segments:
   - [0xFCB7F0, c, code_75E90] #DONE
   - [0xFCBCF0, c, code_76390] #DONE
   - [0xFCBD30, c, code_763D0] #DONE
-  - [0xFCC6F0, c, code_76D90]
+  - [0xFCC6F0, c, code_76D90] #DONE
   - [0xFCD7B0, c, code_77E50] #DONE
   - [0xFCDA60, c, code_78100]
   - [0xFCE7B0, c, code_78E50]
@@ -737,12 +741,12 @@ segments:
   - [0xFD96D0, c, gc/section] #DONE
   - [0xFD9A30, c, gc/sky] #DONE
   - [0xFD9DD0, c, gc/transition] #DONE
-  - [0xFDAB30, c, code_851D0]
+  - [0xFDAB30, c, code_851D0] #DONE
   - [0xFDB110, c, code_857B0] #DONE
   - [0xFDB160, c, code_85800] #DONE
   - [0xFDD790, c, code_87E30]
   - [0xFE0110, c, gc/pauseMenu] #DONE
-  - [0xFE3580, c, code_8DC20]
+  - [0xFE3580, c, code_8DC20] #DONE
   - [0xFE3BD0, c, gc/zoombox] #DONE
   - [0xFE7770, c, code_91E10]
   - [0xFE8F50, c, code_935F0] #DONE #chminigmae
@@ -770,7 +774,7 @@ segments:
   - [0xFF3CD0, c, code_9E370]
   - [0xFFA660, c, code_A4D00] #DONE
   - [0xFFB520, c, code_A5BC0]
-  - [0x1001560, c, code_ABC00]
+  - [0x1001560, c, code_ABC00] #DONE
   - [0x1001E80, c, code_AC520] #DONE
   - [0x1002A70, c, code_AD110] #DONE
   - [0x1002F10, c, code_AD5B0] #DONE
@@ -779,7 +783,7 @@ segments:
   - [0x1004700, c, code_AEDA0]
   - [0x1006D60, c, code_B1400]
   - [0x1008EE0, c, code_B3580] #DONE
-  - [0x10093E0, c, code_B3A80]
+  - [0x10093E0, c, code_B3A80] #DONE
   - [0x100A9A0, c, code_B5040] #DONE
   - [0x100B760, c, code_B5E00] #DONE
   - [0x100BC10, c, code_B62B0] #DONE
@@ -823,7 +827,7 @@ segments:
   - [0x101DCC0, c, code_C8360] #DONE
   - [0x101DDF0, c, code_C8490] #DONE
   - [0x101E0C0, c, code_C8760] #DONE
-  - [0x101E320, c, code_C89C0]
+  - [0x101E320, c, code_C89C0] #DONE
   - [0x101F150, c, code_C97F0] #DONE
   - [0x101F7D0, c, code_C9E70] #DONE
   - [0x101F860, c, code_C9F00] #DONE
@@ -1004,7 +1008,7 @@ segments:
   - [0x103C850, .data, code_9B650]
   - [0x103CC90, .data, code_9B990]
   - [0x103CDF0, .data, code_9D640]
-  - [0x103CF30, bin, data_E75D0]
+  - [0x103CF30, .data, code_9E370]
   - [0x103CFA0, .data, code_A4D00]
   - [0x103D180, bin, data_E7820]
   - [0x103D1D0, .data, code_A5BC0]
@@ -1677,6 +1681,7 @@ segments:
   - [0x105A670, c, code_2F60] #DONE
   - [0x105A830, c, code_3120] #DONE
   - [0x105AB30, c, code_3420] #DONE
+  - [0x105B460, c, crc] #DONE
   - [0x105B460, c, code_3D50] #DONE
   - [0x105BEE0, c, code_47D0] #DONE
   - [0x105C710, c, code_5000] #DONE
@@ -1689,7 +1694,7 @@ segments:
   - [0x105D150, .data, code_2F60]
   - [0x105D240, .data, code_3420]
   - [0x105D510, .data, code_3D50]
-  - [0x105D620, bin, data_5F10]
+  - [0x105D620, .data, crc]
   - [0x105D630, .data, code_5000]
   - [0x105D660, .rodata, ch/loggo]
   - [0x105D690, .rodata, ch/napper]
