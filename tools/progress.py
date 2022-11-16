@@ -16,7 +16,7 @@ def get_functions(elffile, section, ending=None):
     functions = {}
 
     for line in nm_lines:
-        if f"g     F {section}" in line or "g     F *ABS*	" in line:
+        if f"g     F {section}" in line:
             components = line.split()
             size = int(components[4], 16)
             name = components[5]
@@ -24,14 +24,16 @@ def get_functions(elffile, section, ending=None):
 
     return functions
 
-def generate_csv(functions, nonmatching_funcs, version, section):
+def generate_csv(functions, nonmatching_funcs, version, section, subcode):
     ret = []
     ret.append("version,section,function,length,matching")
     for func in functions:
         length = functions[func]["length"]
         if length > 0:
             matching = "no" if func in nonmatching_funcs else "yes"
-            ret.append(f"{version},{section},{func},{length},{matching}")
+            # Strip the boot_ prefix off symbols in bk_boot
+            func_name = func if subcode else func[5:]
+            ret.append(f"{version},{section},{func_name},{length},{matching}")
     return "\n".join(ret)
 
 def get_nonmatching_funcs(basedir, subcode):
@@ -64,7 +66,7 @@ def main(basedir, elffile, section, ending, version, subcode):
     functions = get_functions(elffile, section, ending)
     section_name = section.split("_")[-1] # .code_game -> game
     nonmatching_funcs = get_nonmatching_funcs(basedir, subcode)
-    csv = generate_csv(functions, nonmatching_funcs, version, section_name)
+    csv = generate_csv(functions, nonmatching_funcs, version, section_name, subcode)
     print(csv)
 
 if __name__ == '__main__':

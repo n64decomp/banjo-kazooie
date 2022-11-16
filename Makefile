@@ -192,20 +192,14 @@ verify: $(Z64)
 	@$(DIFF) decompressed.us.v10.z64 $(Z64) > /dev/null && \
 	$(PRINT) "$(YELLOW)        _\n      _( )_\n     [     ]_\n      ) _   _)\n     [_( )_]\n$(BLUE)$(BASENAME).$(VERSION).z64$(NO_COL): $(GREEN)OK$(NO_COL)\n" || \
 	$(PRINT) "$(BLUE)$(BASEROM) $(RED)differs$(NO_COL)\n"
-#	@$(PRINT) "def apply(config, args):\n" > diff_settings.py
-#	@$(PRINT) "\tconfig[\"baseimg\"] = \"$(BASEROM)\"\n" >> diff_settings.py
-#	@$(PRINT) "\tconfig[\"myimg\"] = \"$(Z64)\"\n" >> diff_settings.py
-#	@$(PRINT) "\tconfig[\"mapfile\"] = \"$(Z64:.z64=.map)\"\n" >> diff_settings.py
-#	@$(PRINT) "\tconfig[\"source_directories\"] = ['$(SRC_ROOT)', 'include']\n" >> diff_settings.py
-#	@$(PRINT) "\tconfig[\"makeflags\"] = ['-s']\n" >> diff_settings.py
 
 $(OVERLAY_PROG_SVGS) : progress/progress_%.svg: progress/progress.%.csv
 	$(call print1,Creating progress svg for:,$*)
 	@$(PROGRESS_READ) $< $(VERSION) $*
 
-$(OVERLAY_PROG_CSVS) : progress/progress.%.csv: $(BUILD_DIR)/%.elf
+$(OVERLAY_PROG_CSVS) : progress/progress.%.csv: $(ELF)
 	$(call print1,Calculating progress for:,$*)
-	@$(PROGRESS) . $(BUILD_DIR)/$*.elf .$* --version $(VERSION) --subcode $* > $@
+	@$(PROGRESS) . $(ELF) .$* --version $(VERSION) --subcode $* > $@
 
 $(MAIN_PROG_SVG): $(MAIN_PROG_CSV)
 	$(call print1,Creating progress svg for:,boot)
@@ -226,10 +220,6 @@ $(TOTAL_PROG_CSV): $(OVERLAY_PROG_CSVS) $(MAIN_PROG_CSV)
 
 $(README_MD): $(TOTAL_PROG_SVG)
 	@head -n 21 $< | tail -n 1 | head -c -8 | tail -c +32 | xargs -i sed -i "/# banjo*/c\# banjo ({})" $@
-
-# Additional symbols for core2
-$(BUILD_DIR)/core2.elf: LDFLAGS_COMMON = -T symbol_addrs.core1.$(VERSION).txt -T symbol_addrs.core2.$(VERSION).txt -T symbol_addrs.global.$(VERSION).txt -T undefined_syms.$(VERSION).txt -T undefined_syms.libultra.txt --no-check-sections --accept-unknown-input-arch -T level_symbols.$(VERSION).txt
-$(BUILD_DIR)/core2.temp.elf: LDFLAGS_COMMON = -T symbol_addrs.core1.$(VERSION).txt -T symbol_addrs.core2.$(VERSION).txt -T symbol_addrs.global.$(VERSION).txt -T undefined_syms.$(VERSION).txt -T undefined_syms.libultra.txt --no-check-sections --accept-unknown-input-arch -T level_symbols.$(VERSION).txt
 
 # mkdir
 $(ALL_DIRS) :
