@@ -303,10 +303,10 @@ $(BOOT_MIPS3_OBJS) : $(BUILD_DIR)/%.c.o : %.c | $(C_BUILD_DIRS)
 # Split baserom
 $(BUILD_DIR)/SPLAT_TIMESTAMP: decompressed.$(VERSION).yaml $(SYMBOL_ADDRS) | $(BUILD_DIR)
 	$(call print1,Splitting rom:,$<)
-	@touch $@
 	@$(SPLAT) decompressed.$(VERSION).yaml
+	@touch $@
 	@touch $(LD_SCRIPT)
-	sed -i '7s/.*/glabel D_80392D90\n .double 0.99999/' asm/nonmatchings/FP/code_5CC0/func_8038C428.s
+
 # Dummy target to make the LD script and overlay rzips depend on splat being run
 #   without causing it to be rerun once for every overlay
 # Bin files are also dependent on the splat timestamp since they get overwritten on resplit

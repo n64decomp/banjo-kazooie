@@ -70,3 +70,4 @@ core2_TEXT_START = 0x80286F90;
 ml_min_w = 0x80258948;
 guLookAtReflect = 0x8024128C;
 D_80392D90 = 0x80392D90; // defined:false rom:0x108A9D0
+lair_D_80392D90 = 0x80392D90; // defined:false rom:0x10A4A10
