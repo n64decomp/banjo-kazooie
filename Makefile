@@ -48,6 +48,8 @@ BK_TOOLS          := tools/bk_tools
 BK_CRC            := tools/bk_crc/bk_crc
 BK_INFLATE        := $(BK_TOOLS)/bk_inflate_code
 BK_DEFLATE        := $(BK_TOOLS)/bk_deflate_code
+BK_ROM_COMPRESS   := tools/bk_rom_compressor/bk_rom_compress
+BK_ROM_DECOMPRESS := tools/bk_rom_compressor/bk_rom_decompress
 BK_ASSET_TOOL     := tools/bk_asset_tool/bk_asset_tool
 ASM_PROCESSOR     := $(PYTHON) $(ASM_PROCESSOR_DIR)/asm_processor.py
 SPLAT_INPUTS      := $(PYTHON) tools/splat_inputs.py
@@ -99,28 +101,29 @@ BIN_BUILD_DIRS := $(addprefix $(BUILD_DIR)/,$(BIN_DIRS))
 ALL_DIRS       := $(C_BUILD_DIRS) $(ASM_BUILD_DIRS) $(BIN_BUILD_DIRS) $(BUILD_DIR)
 
 # Build files
-BASEROM           := baserom.$(VERSION).z64
-C_OBJS            := $(addprefix $(BUILD_DIR)/,$(C_SRCS:.c=.c.o))
-BOOT_C_OBJS       := $(addprefix $(BUILD_DIR)/,$(BOOT_C_SRCS:.c=.c.o))
-GLOBAL_ASM_C_OBJS := $(addprefix $(BUILD_DIR)/,$(GLOBAL_ASM_C_SRCS:.c=.c.o))
-C_DEPS            := $(C_OBJS:.o=.d)
-ASM_OBJS          := $(addprefix $(BUILD_DIR)/,$(ALL_ASM_SRCS:.s=.s.o) $(NEW_ASM_SRCS:.s=.s.o))
-BOOT_ASM_OBJS     := $(addprefix $(BUILD_DIR)/,$(BOOT_ASM_SRCS:.s=.s.o))
-BIN_OBJS          := $(addprefix $(BUILD_DIR)/,$(ALL_BINS:.bin=.bin.o) $(NEW_BINS:.bin=.bin.o))
-Z64               := $(addprefix $(BUILD_DIR)/,$(BASENAME).$(VERSION).z64)
-ELF               := $(Z64:.z64=.elf)
-LD_SCRIPT         := $(BASENAME).ld
-BK_BOOT_LD_SCRIPT := bk_boot.ld
-ASSET_BIN         := $(BUILD_DIR)/assets.bin
-DUMMY_CRC_OBJ     := $(BUILD_DIR)/$(BIN_ROOT)/dummy_crc.bin.o
-ASSET_OBJS        := $(BUILD_DIR)/$(BIN_ROOT)/assets.bin.o
-BIN_OBJS          := $(filter-out $(ASSET_OBJS),$(BIN_OBJS))
-ALL_OBJS          := $(C_OBJS) $(ASM_OBJS) $(BIN_OBJS)
-SYMBOL_ADDRS      := symbol_addrs.$(VERSION).txt
-SYMBOL_ADDR_FILES := $(filter-out $(SYMBOL_ADDRS), $(wildcard symbol_addrs.*.$(VERSION).txt))
-MIPS3_OBJS        := $(BUILD_DIR)/$(SRC_ROOT)/core1/done/ll.c.o
-BOOT_MIPS3_OBJS   := $(BUILD_DIR)/$(SRC_ROOT)/done/ll.c.o
-BOOT_C_OBJS       := $(filter-out $(BOOT_MIPS3_OBJS),$(BOOT_C_OBJS))
+BASEROM              := baserom.$(VERSION).z64
+DECOMPRESSED_BASEROM := decompressed.$(VERSION).z64
+C_OBJS               := $(addprefix $(BUILD_DIR)/,$(C_SRCS:.c=.c.o))
+BOOT_C_OBJS          := $(addprefix $(BUILD_DIR)/,$(BOOT_C_SRCS:.c=.c.o))
+GLOBAL_ASM_C_OBJS    := $(addprefix $(BUILD_DIR)/,$(GLOBAL_ASM_C_SRCS:.c=.c.o))
+C_DEPS               := $(C_OBJS:.o=.d)
+ASM_OBJS             := $(addprefix $(BUILD_DIR)/,$(ALL_ASM_SRCS:.s=.s.o) $(NEW_ASM_SRCS:.s=.s.o))
+BOOT_ASM_OBJS        := $(addprefix $(BUILD_DIR)/,$(BOOT_ASM_SRCS:.s=.s.o))
+BIN_OBJS             := $(addprefix $(BUILD_DIR)/,$(ALL_BINS:.bin=.bin.o) $(NEW_BINS:.bin=.bin.o))
+Z64                  := $(addprefix $(BUILD_DIR)/,$(BASENAME).$(VERSION).z64)
+ELF                  := $(Z64:.z64=.elf)
+LD_SCRIPT            := $(BASENAME).ld
+BK_BOOT_LD_SCRIPT    := bk_boot.ld
+ASSET_BIN            := $(BUILD_DIR)/assets.bin
+DUMMY_CRC_OBJ        := $(BUILD_DIR)/$(BIN_ROOT)/dummy_crc.bin.o
+ASSET_OBJS           := $(BUILD_DIR)/$(BIN_ROOT)/assets.bin.o
+BIN_OBJS             := $(filter-out $(ASSET_OBJS),$(BIN_OBJS))
+ALL_OBJS             := $(C_OBJS) $(ASM_OBJS) $(BIN_OBJS)
+SYMBOL_ADDRS         := symbol_addrs.$(VERSION).txt
+SYMBOL_ADDR_FILES    := $(filter-out $(SYMBOL_ADDRS), $(wildcard symbol_addrs.*.$(VERSION).txt))
+MIPS3_OBJS           := $(BUILD_DIR)/$(SRC_ROOT)/core1/done/ll.c.o
+BOOT_MIPS3_OBJS      := $(BUILD_DIR)/$(SRC_ROOT)/done/ll.c.o
+BOOT_C_OBJS          := $(filter-out $(BOOT_MIPS3_OBJS),$(BOOT_C_OBJS))
 
 # Progress files
 MAIN_PROG_CSV     := progress/progress.bk_boot.csv
@@ -188,8 +191,8 @@ $(addprefix progress-,$(OVERLAYS)) : progress-% : progress/progress.%.csv
 	@$(PROGRESS_READ) $< $(VERSION) $*
 
 # Verify that the roms match, also sets up diff_settings
-verify: $(Z64)
-	@$(DIFF) decompressed.us.v10.z64 $(Z64) > /dev/null && \
+verify: $(DECOMPRESSED_BASEROM) $(Z64)
+	@$(DIFF) $(DECOMPRESSED_BASEROM) $(Z64) > /dev/null && \
 	$(PRINT) "$(YELLOW)        _\n      _( )_\n     [     ]_\n      ) _   _)\n     [_( )_]\n$(BLUE)$(BASENAME).$(VERSION).z64$(NO_COL): $(GREEN)OK$(NO_COL)\n" || \
 	$(PRINT) "$(BLUE)$(BASEROM) $(RED)differs$(NO_COL)\n"
 
@@ -291,7 +294,7 @@ $(BOOT_MIPS3_OBJS) : $(BUILD_DIR)/%.c.o : %.c | $(C_BUILD_DIRS)
 	$(OBJCOPY) --strip-unneeded $@
 
 # Split baserom
-$(BUILD_DIR)/SPLAT_TIMESTAMP: decompressed.$(VERSION).yaml $(SYMBOL_ADDRS) | $(BUILD_DIR)
+$(BUILD_DIR)/SPLAT_TIMESTAMP: decompressed.$(VERSION).yaml $(SYMBOL_ADDRS) $(DECOMPRESSED_BASEROM) | $(BUILD_DIR)
 	$(call print1,Splitting rom:,$<)
 	@$(SPLAT) decompressed.$(VERSION).yaml
 	@touch $@
@@ -340,6 +343,10 @@ $(BUILD_DIR)/bk_boot.elf: $(DUMMY_CRC_OBJ) $(filter-out $(CRC_OBJS),$(MAIN_ALL_O
 	$(call print1,Linking elf:,$@)
 	@$(LD) -T $(BK_BOOT_LD_SCRIPT) -Map $(ELF:.elf=.map) --no-check-sections --accept-unknown-input-arch -T undefined_syms.libultra.txt -T undefined_syms_auto.$(VERSION).txt  -T undefined_syms.$(VERSION).txt -T rzip_dummy_addrs.txt -o $@
 
+# .z64 -> decompressed .z64 
+$(DECOMPRESSED_BASEROM): $(BASEROM) $(BK_ROM_DECOMPRESS)
+	@$(BK_ROM_DECOMPRESS) $< $@
+
 # .elf -> .z64
 $(Z64) : $(ELF)
 #$(OVERLAY_PROG_SVGS) $(MAIN_PROG_SVG) $(TOTAL_PROG_SVG) $(README_MD)
@@ -364,6 +371,14 @@ $(BK_TOOLS)/%: $(BK_TOOLS)/gzip-1.2.4/gzip
 $(BK_CRC) :
 	g++ $@.cpp -o $@
 
+$(BK_ROM_COMPRESS):
+	@$(CD) tools/bk_rom_compressor && cargo build --release
+	@$(CP) tools/bk_rom_compressor/target/release/bk_rom_compress $@
+
+$(BK_ROM_DECOMPRESS):
+	@$(CD) tools/bk_rom_compressor && cargo build --release
+	@$(CP) tools/bk_rom_compressor/target/release/bk_rom_decompress $@
+
 # Combined symbol addresses file
 $(SYMBOL_ADDRS): $(SYMBOL_ADDR_FILES)
 	$(call print0,Combining symbol address files)
@@ -372,6 +387,7 @@ $(SYMBOL_ADDRS): $(SYMBOL_ADDR_FILES)
 clean:
 	$(call print0,Cleaning build artifacts)
 	@$(RM) -rf $(BUILD_ROOT)
+	@$(RM) -rf $(DECOMPRESSED_BASEROM)
 	@$(RM) -rf $(BIN_ROOT)
 	@$(RM) -rf $(NONMATCHING_DIR)
 	@$(RM) -rf $(ASM_ROOT)/*.s
