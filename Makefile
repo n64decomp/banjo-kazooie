@@ -48,8 +48,8 @@ BK_TOOLS          := tools/bk_tools
 BK_CRC            := tools/bk_crc/bk_crc
 BK_INFLATE        := $(BK_TOOLS)/bk_inflate_code
 BK_DEFLATE        := $(BK_TOOLS)/bk_deflate_code
-BK_ROM_COMPRESS   := tools/bk_rom_compressor/bk_rom_compress
-BK_ROM_DECOMPRESS := tools/bk_rom_compressor/bk_rom_decompress
+BK_ROM_COMPRESS   := tools/bk_rom_compressor/target/release/bk_rom_compress
+BK_ROM_DECOMPRESS := tools/bk_rom_compressor/target/release/bk_rom_decompress
 BK_ASSET_TOOL     := tools/bk_asset_tool/bk_asset_tool
 ASM_PROCESSOR     := $(PYTHON) $(ASM_PROCESSOR_DIR)/asm_processor.py
 SPLAT_INPUTS      := $(PYTHON) tools/splat_inputs.py
@@ -110,7 +110,8 @@ C_DEPS               := $(C_OBJS:.o=.d)
 ASM_OBJS             := $(addprefix $(BUILD_DIR)/,$(ALL_ASM_SRCS:.s=.s.o) $(NEW_ASM_SRCS:.s=.s.o))
 BOOT_ASM_OBJS        := $(addprefix $(BUILD_DIR)/,$(BOOT_ASM_SRCS:.s=.s.o))
 BIN_OBJS             := $(addprefix $(BUILD_DIR)/,$(ALL_BINS:.bin=.bin.o) $(NEW_BINS:.bin=.bin.o))
-Z64                  := $(addprefix $(BUILD_DIR)/,$(BASENAME).$(VERSION).z64)
+Z64                  := $(addprefix $(BUILD_DIR)/,$(BASENAME).$(VERSION).uncompressed.z64)
+FINAL_Z64            := $(addprefix $(BUILD_DIR)/,$(BASENAME).$(VERSION).z64)
 ELF                  := $(Z64:.z64=.elf)
 LD_SCRIPT            := $(BASENAME).ld
 BK_BOOT_LD_SCRIPT    := bk_boot.ld
@@ -124,6 +125,7 @@ SYMBOL_ADDR_FILES    := $(filter-out $(SYMBOL_ADDRS), $(wildcard symbol_addrs.*.
 MIPS3_OBJS           := $(BUILD_DIR)/$(SRC_ROOT)/core1/done/ll.c.o
 BOOT_MIPS3_OBJS      := $(BUILD_DIR)/$(SRC_ROOT)/done/ll.c.o
 BOOT_C_OBJS          := $(filter-out $(BOOT_MIPS3_OBJS),$(BOOT_C_OBJS))
+COMPRESSED_SYMBOLS   := $(BUILD_DIR)/compressed_symbols.txt
 
 # Progress files
 MAIN_PROG_CSV     := progress/progress.bk_boot.csv
@@ -191,8 +193,13 @@ $(addprefix progress-,$(OVERLAYS)) : progress-% : progress/progress.%.csv
 	@$(PROGRESS_READ) $< $(VERSION) $*
 
 # Verify that the roms match, also sets up diff_settings
-verify: $(DECOMPRESSED_BASEROM) $(Z64)
+verify-decompressed: $(DECOMPRESSED_BASEROM) $(Z64)
 	@$(DIFF) $(DECOMPRESSED_BASEROM) $(Z64) > /dev/null && \
+	$(PRINT) "$(YELLOW)        _\n      _( )_\n     [     ]_\n      ) _   _)\n     [_( )_]\n$(BLUE)$(BASENAME).$(VERSION).uncompressed.z64$(NO_COL): $(GREEN)OK$(NO_COL)\n" || \
+	$(PRINT) "$(BLUE)$(BASEROM) $(RED)differs$(NO_COL)\n"
+
+verify: $(BASEROM) $(FINAL_Z64)
+	@$(DIFF) $(BASEROM) $(FINAL_Z64) > /dev/null && \
 	$(PRINT) "$(YELLOW)        _\n      _( )_\n     [     ]_\n      ) _   _)\n     [_( )_]\n$(BLUE)$(BASENAME).$(VERSION).z64$(NO_COL): $(GREEN)OK$(NO_COL)\n" || \
 	$(PRINT) "$(BLUE)$(BASEROM) $(RED)differs$(NO_COL)\n"
 
@@ -343,15 +350,26 @@ $(BUILD_DIR)/bk_boot.elf: $(DUMMY_CRC_OBJ) $(filter-out $(CRC_OBJS),$(MAIN_ALL_O
 	$(call print1,Linking elf:,$@)
 	@$(LD) -T $(BK_BOOT_LD_SCRIPT) -Map $(ELF:.elf=.map) --no-check-sections --accept-unknown-input-arch -T undefined_syms.libultra.txt -T undefined_syms_auto.$(VERSION).txt  -T undefined_syms.$(VERSION).txt -T rzip_dummy_addrs.txt -o $@
 
-# .z64 -> decompressed .z64 
+# decompress baserom
 $(DECOMPRESSED_BASEROM): $(BASEROM) $(BK_ROM_DECOMPRESS)
 	@$(BK_ROM_DECOMPRESS) $< $@
+
+# generate compressed ROM symbols
+$(COMPRESSED_SYMBOLS): $(ELF) $(Z64) $(BK_ROM_COMPRESS)
+	@$(BK_ROM_COMPRESS) --symbols $(ELF) $(Z64) $@
+
+# compress ROM
+$(FINAL_Z64) : $(ELF) $(Z64) $(BK_ROM_COMPRESS)
+	@$(BK_ROM_COMPRESS) $(ELF) $(Z64) $@
 
 # .elf -> .z64
 $(Z64) : $(ELF)
 #$(OVERLAY_PROG_SVGS) $(MAIN_PROG_SVG) $(TOTAL_PROG_SVG) $(README_MD)
 	$(call print1,Creating z64:,$@)
 	@$(OBJCOPY) $< $@ -O binary $(OCOPYFLAGS)
+
+$(COMPRESSED_Z64) : $(Z64) $(ELF) $(BK_ROM_COMPRESS)
+	$(BK_ROM_COMPRESS) --version $(VERSION) --symbols
 
 $(BK_TOOLS)/gzip-1.2.4/gzip: $(BK_TOOLS)/gzip-1.2.4/Makefile
 	@$(CD) $(BK_TOOLS)/gzip-1.2.4 && $(MAKE) gzip
@@ -372,12 +390,10 @@ $(BK_CRC) :
 	g++ $@.cpp -o $@
 
 $(BK_ROM_COMPRESS):
-	@$(CD) tools/bk_rom_compressor && cargo build --release
-	@$(CP) tools/bk_rom_compressor/target/release/bk_rom_compress $@
+	@$(CD) tools/bk_rom_compressor && cargo build --release --bin bk_rom_compress
 
 $(BK_ROM_DECOMPRESS):
-	@$(CD) tools/bk_rom_compressor && cargo build --release
-	@$(CP) tools/bk_rom_compressor/target/release/bk_rom_decompress $@
+	@$(CD) tools/bk_rom_compressor && cargo build --release --bin bk_rom_decompress
 
 # Combined symbol addresses file
 $(SYMBOL_ADDRS): $(SYMBOL_ADDR_FILES)
@@ -459,7 +475,7 @@ MAKEFLAGS += -r
 .SUFFIXES:
 
 # Phony targets
-.PHONY: all clean verify $(OVERLAYS) progress $(addprefix progress-,$(OVERLAYS))
+.PHONY: all clean verify verify-decompressed $(OVERLAYS) progress $(addprefix progress-,$(OVERLAYS))
 
 # Set up pipefail
 SHELL = /bin/bash -e -o pipefail
