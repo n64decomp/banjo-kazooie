@@ -128,7 +128,7 @@ TOTAL_PROG_CSV    := progress/progress.total.csv
 TOTAL_PROG_SVG    := progress/progress_total.svg
 OVERLAY_PROG_CSVS := $(addprefix progress/progress., $(addsuffix .csv, $(OVERLAYS)))
 OVERLAY_PROG_SVGS := $(addprefix progress/progress_, $(addsuffix .svg, $(OVERLAYS)))
-README_MD         := README.md
+README            := README.md
 
 ### Functions ###
 
@@ -179,7 +179,7 @@ progress: $(OVERLAY_PROG_CSVS) $(MAIN_PROG_CSV) $(TOTAL_PROG_CSV)
 	@$(foreach overlay,$(OVERLAYS),$(PROGRESS_READ) progress/progress.$(overlay).csv $(VERSION) $(overlay) &&) \
 	$(PROGRESS_READ) $(MAIN_PROG_CSV) $(VERSION) bk_boot
 	@$(PROGRESS_READ) $(TOTAL_PROG_CSV) $(VERSION) total
-	@head -n 21 $(TOTAL_PROG_CSV) | tail -n 1 | head -c -8 | tail -c +32 | xargs -i sed -i "/# banjo*/c\# banjo ({})" $(README_MD)
+	@head -n 21 $(TOTAL_PROG_SVG) | tail -n 1 | head -c -8 | tail -c +32 | xargs -i sed -i "/# banjo*/c\# banjo ({})" $(README)
 
 # Shows progress for a single overlay (e.g. progress-SM)
 $(addprefix progress-,$(OVERLAYS)) : progress-% : progress/progress.%.csv

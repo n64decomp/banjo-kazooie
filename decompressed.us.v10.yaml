@@ -158,6 +158,7 @@ segments:
   - [0xF211B0, c, code_7F60]
   - [0xF21EA0, c, code_8C50] #DONE
   - [0xF22F80, c, code_9D30]
+  - [0xF23E00, c, code_ABB0]
   - [0xF260B0, c, done/code_CE60] #DONE
   - [0xF275B0, c, code_E360]    #DONE
   - [0xF27D40, c, code_EAF0]
@@ -366,7 +367,8 @@ segments:
   - [0xF510F0, bin, data_37EA0] # .data, code_5650]
   - [0xF51110, bin, data_37EC0]
   - [0xF51140, .data, code_8C50]
-  - [0xF51280, bin, data_38030]
+  - [0xF51280, .data, code_9D30]
+  - [0xF51430, .data, code_ABB0]
   - [0xF51440, bin, data_381F0] # .data, done/code_CE60]
   - [0xF514B0, bin, data_38260]
   - [0xF51570, .data, code_11AC0]
@@ -400,6 +402,7 @@ segments:
   - [0xF52EF0, .rodata, code_72B0]
   - [0xF52F10, .rodata, code_7F60]
   - [0xF52F30, .rodata, code_9D30]
+  # - [0xF52F30, .rodata, code_ABB0]
   - [0xF52F50, .rodata, done/code_CE60]
   - [0xF53220, .rodata, code_EAF0]
   - [0xF532A0, .rodata, code_10A00]
@@ -447,7 +450,7 @@ segments:
   - [0xF55960, .bss, code_7090]
   - [0xF55960, .bss, code_72B0]
   - [0xF55960, .bss, code_8C50]
-  - [0xF55960, .bss, code_9D30]
+  - [0xF55960, .bss, code_ABB0]
   - [0xF55960, .bss, done/code_CE60]
   - [0xF55960, .bss, code_E360]
   - [0xF55960, .bss, code_EAF0]
