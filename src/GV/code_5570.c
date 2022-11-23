@@ -9,7 +9,7 @@ typedef struct {
     s32 unk0;
 }ActorLocal_Grabba;
 
-void func_8038BEA0(Actor *this);
+void GV_func_8038BEA0(Actor *this);
 
 /* .data */
 ActorAnimationInfo D_80391120[] ={
@@ -24,7 +24,7 @@ ActorAnimationInfo D_80391120[] ={
 
 ActorInfo D_80391158 = { MARKER_A6_GRABBA, ACTOR_118_GRABBA, ASSET_371_MODEL_GRABBA, 
     0x1, D_80391120, 
-    func_8038BEA0, func_80326224, func_80325888, 
+    GV_func_8038BEA0, func_80326224, func_80325888, 
     0, 0, 0.0f, 0
 };
 
@@ -153,7 +153,7 @@ void func_8038BD8C(f32 position[3], s32 cnt){
     particleEmitter_emitN(pCtrl, cnt);
 }
 
-void func_8038BEA0(Actor *this){
+void GV_func_8038BEA0(Actor *this){
     ActorLocal_Grabba *local = (ActorLocal_Grabba *)&this->local;
     f32 sp38[3];
 
@@ -318,6 +318,6 @@ void func_8038BEA0(Actor *this){
     }//L8038C5AC
 }
 
-s32 func_8038C5BC(void){
+s32 GV_func_8038C5BC(void){
     return D_80391A80;
 }

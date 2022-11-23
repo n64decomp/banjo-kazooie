@@ -44,7 +44,7 @@ extern Struct_FP_4770 D_80393280[0x27];
 
 
 /* .code */
-void func_8038AB60(s32 arg0){
+void FP_func_8038AB60(s32 arg0){
     int i;
 
     func_8028F8F8(0xe, arg0 ^ 1);
@@ -176,7 +176,7 @@ void func_8038B074(s32 indx){
     }
 }
 
-void func_8038B0B8(void){
+void FP_func_8038B0B8(void){
     int i;
     for(i = 0; i < 5; i++){
         func_8038B074(i);
@@ -210,7 +210,7 @@ void func_8038B1C4(void){
 void func_8038B1D0(enum jiggy_e jiggy_id){
     timed_setCameraToNode(0.0f, 3);
     timedFunc_set_0(0.0f, func_8038AEA0);
-    timedFunc_set_0(0.0f, func_8038B0B8);
+    timedFunc_set_0(0.0f, FP_func_8038B0B8);
     timedFunc_set_1(0.1f, (GenMethod_1) func_8038B130, jiggy_id);
     timedFunc_set_0(5.0f, func_8038B190);
     timedFunc_set_0(5.0f, func_8038B1C4);
@@ -221,7 +221,7 @@ void func_8038B1D0(enum jiggy_e jiggy_id){
 void func_8038B268(void){
     func_80324E88(0.0f);
     timedFunc_set_0(0.0f, func_8038AEA0);
-    timedFunc_set_0(0.0f, func_8038B0B8);
+    timedFunc_set_0(0.0f, FP_func_8038B0B8);
     func_8028FA14(map_get(), 0x11);
     func_8028F66C(BS_INTR_2A);
 }
@@ -264,7 +264,7 @@ void func_8038B39C(void){
     }
     func_8028F918(1);
     func_8025A6EC(COMUSIC_3B_MINIGAME_VICTORY, 28000);
-    func_8038AB60(0);
+    FP_func_8038AB60(0);
     func_8038ABDC();
     timed_setCameraToNode(0.0f, 1);
 }
@@ -278,7 +278,7 @@ void func_8038B410(void){
     
     sp2C->unk38_31 = 1;
     func_8025A6EC(COMUSIC_3C_MINIGAME_LOSS, 28000);
-    func_8038AB60(0);
+    FP_func_8038AB60(0);
     func_8038ABDC();
     if(!jiggyscore_isCollected(JIGGY_30_FP_BOGGY_2)){
         timed_setCameraToNode(0.0f, 1);
@@ -355,7 +355,7 @@ void func_8038B544(void){
 void func_8038B7A4(void){
     int i;
 
-    func_8038AB60(0);
+    FP_func_8038AB60(0);
 
     if(map_get() != MAP_27_FP_FREEZEEZY_PEAK || jiggyscore_isCollected(JIGGY_2C_FP_BOGGY_3)){
         D_803935A8.unk0 = 0;
@@ -442,11 +442,11 @@ void func_8038B9C8(void){
     D_803935A8.unk18 = 0;
     D_803935A8.unk19 = 0;
     D_803935A8.unk1A = 0;
-    func_8038AB60(1);
+    FP_func_8038AB60(1);
     D_803935A8.unk0 = 2;
 }
 
-void func_8038BA88(s32 arg0){
+void FP_func_8038BA88(s32 arg0){
 
     D_803935A8.unk8 = --arg0;
     func_8038AC20(arg0, 3);
@@ -517,7 +517,7 @@ void func_8038BC0C(s32 arg0){
                 if(D_803935A8.unk1A)
                         break;
                 D_803935A8.unk1A = TRUE;
-                func_8038AB60(0);
+                FP_func_8038AB60(0);
                 if(!func_8028F22C()){
                     func_8028F918(2);
                     func_80311480(0xc10, 0x20, NULL, NULL, func_8038B2C8, NULL);

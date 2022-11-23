@@ -7,12 +7,12 @@
 
 /* typedefs and declarations */
 void func_803881E8(Actor *this, s32 arg1);
-void func_803882F4(Actor *this);
+void RBB_func_803882F4(Actor *this);
 
 /* .data */
 ActorInfo D_80390270 = {
     0x184, 0x174, 0x402, 0x0, NULL,
-    func_803882F4, NULL, func_80325340,
+    RBB_func_803882F4, NULL, func_80325340,
     0, 0, 0.0f, 0
 };
 
@@ -43,7 +43,7 @@ struct41s D_80390344= {
 };
 
 /*.code */
-void func_80387960(f32 arg0){
+void RBB_func_80387960(f32 arg0){
     f32 sp34[3]; 
     void * temp_v0;
     f32 sp24[3];
@@ -159,11 +159,11 @@ void func_80387E20(void){
     func_802EF3F4(actor, &D_8039032C, &D_80390338, 0x19);
 }
 
-void func_80387F18(ActorMarker *marker, s32 arg1){
+void RBB_func_80387F18(ActorMarker *marker, s32 arg1){
     func_803881E8(marker_getActor(marker), arg1);
 }
 
-void func_80387F44(void){
+void RBB_func_80387F44(void){
     func_80250E94(0.5f, 1.0f, 1.5f, 0.0f, 1.0f, 1.5f);
 }
 
@@ -187,13 +187,13 @@ void func_80387F88(ActorMarker *marker){
     timed_playSfx(3.0f, SFX_1A_BIG_THINGS_FALL_OVER, 0.6f, 22000);
     func_80324E88(4.0f);
     func_80324E38(4.0f, 0);
-    timedFunc_set_2(4.0f, (TFQM2) func_80387F18, (s32) actor->marker, 3);
+    timedFunc_set_2(4.0f, (TFQM2) RBB_func_80387F18, (s32) actor->marker, 3);
 }
 
 void func_80388154(ActorMarker *marker){
     Actor *actor = marker_getActor(marker);
     func_803879F0();
-    timedFunc_set_0(0.0f, (TFQM0) func_80387F44);
+    timedFunc_set_0(0.0f, (TFQM0) RBB_func_80387F44);
     timed_playSfx(0.0f, SFX_7F_HEAVYDOOR_SLAM, 1.0f, 0x7fc6);
     timedFunc_set_2(1.2f, (TFQM2) func_80387B8C, 0x19f, 0);
     timed_setCameraToNode(1.2f, 8);
@@ -203,7 +203,7 @@ void func_80388154(ActorMarker *marker){
 void func_803881E8(Actor *this, s32 arg1){
     this->state = arg1;
     if(this->state == 2){
-        func_80387960(0.05f);
+        RBB_func_80387960(0.05f);
         timedFunc_set_2(0.05f, (TFQM2)func_80387BEC, 0x19f, 0x1f4);
         timedFunc_set_2(0.1f, (TFQM2)func_8025A6EC, COMUSIC_2B_DING_B, 28000);
         func_80324E38(0.2f, 3);
@@ -219,12 +219,12 @@ void func_803882B4(ActorMarker *marker, s32 arg1){
         func_803881E8(actor, 2);
 }
 
-void func_803882F4(Actor *this){
+void RBB_func_803882F4(Actor *this){
     if(!this->unk16C_4){
         this->unk16C_4 = 1;
         if(levelSpecificFlags_get(0x2d)){
             func_80387AC0();
-            func_80387960(0.0f);
+            RBB_func_80387960(0.0f);
             func_80387B24();
             func_803881E8(this, 3);
         }else{

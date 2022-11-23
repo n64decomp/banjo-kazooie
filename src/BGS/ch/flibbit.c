@@ -33,7 +33,7 @@ ActorInfo D_80390690 = {
 f32 D_803906B4[3] = {0.0f, 0.0f, 0.0f};
 
 /* .code */
-bool func_803863F0(Actor *this, f32 arg1[3], s32 arg2){
+bool BGS_func_803863F0(Actor *this, f32 arg1[3], s32 arg2){
 
     ActorLocal_Flibbit *local = (ActorLocal_Flibbit *)&this->local;
 
@@ -73,7 +73,7 @@ bool func_80386564(Actor *this){
             sp30[1] = sp3C[1] + this->position_y;
             sp30[2] = sp3C[2] + this->position_z;
             if(func_80329210(this, sp30))
-                return func_803863F0(this, sp30, 1);
+                return BGS_func_803863F0(this, sp30, 1);
         }
     }
     return 0;
@@ -109,7 +109,7 @@ s32 func_803866A4(Actor *this) {
             sp3C[2] = (f32) local->unkE[2];
         }
         if (func_80329210(this, sp3C) != 0) {
-            return func_803863F0(this, sp3C, 0);
+            return BGS_func_803863F0(this, sp3C, 0);
         }
     }
     return 0;
@@ -143,7 +143,7 @@ bool func_8038686C(Actor *this) {
         sp68[1] += this->position[1];
         sp68[2] += this->position[2];
         if (func_80329210(this, sp68)) {
-            return func_803863F0(this, sp68, 0);
+            return BGS_func_803863F0(this, sp68, 0);
         }
     }
     return FALSE;
@@ -242,7 +242,7 @@ void func_80386AEC(Actor *this, s32 next_state) {
 
 }
 
-void func_80386E30(ActorMarker *this, ActorMarker *other){
+void BGS_func_80386E30(ActorMarker *this, ActorMarker *other){
     Actor *thisActor = marker_getActor(this);
     if(thisActor->state < 6){
         func_80386AEC(thisActor, 4);
@@ -325,7 +325,7 @@ void chflibbit_update(Actor *this){
 
     if(!this->unk16C_4){
         this->unk16C_4 = TRUE;
-        marker_setCollisionScripts(this->marker, func_80386E30, func_80386E70, func_80386EB0);
+        marker_setCollisionScripts(this->marker, BGS_func_80386E30, func_80386E70, func_80386EB0);
         local->unk1C[0] = randf2(-2.0f, -1.0f);
         local->unk1C[1] = randf2(-2.0f, -1.0f);
 

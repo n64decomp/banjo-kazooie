@@ -65,7 +65,7 @@ struct {
     u8 unk8;
     BKModel *unkC;
     s32 unk10;
-} D_8038C510;
+} MMM_D_8038C510;
 
 /* .code */
 void func_8038A140(UNK_TYPE(s32) arg0) {
@@ -78,20 +78,20 @@ void func_8038A140(UNK_TYPE(s32) arg0) {
         timedFunc_set_1(3.0f, func_8038A140, 3);
     }
     if (arg0 == 3) {
-        if (D_8038C510.unk8 == 1) {
+        if (MMM_D_8038C510.unk8 == 1) {
             mapSpecificFlags_set(3, 1);
         }
         item_set(ITEM_0_HOURGLASS_TIMER, 75*60 - 1);
         item_set(6, 1);
     }
-    if (D_8038C510.unk8 == 3) {
+    if (MMM_D_8038C510.unk8 == 3) {
         item_set(6, 0);
         mapSpecificFlags_set(4, 1);
     }
     if (arg0 == 4) {
         func_8028F66C(BS_INTR_F);
     }
-    D_8038C510.unk8 = arg0;
+    MMM_D_8038C510.unk8 = arg0;
 }
 
 Struct_MMM_3D50_0 *func_8038A26C(s32 arg0){
@@ -116,7 +116,7 @@ void func_8038A2B8(void){
     }
 }
 
-void func_8038A2F0(s32 mesh_id, BKVtxRef *ref_vert, Vtx* vert, Struct_MMM_3D50_0 *arg3) {
+void MMM_func_8038A2F0(s32 mesh_id, BKVtxRef *ref_vert, Vtx* vert, Struct_MMM_3D50_0 *arg3) {
     f32 temp_f2;
 
     if (arg3->unk4 < 0.5) {
@@ -134,7 +134,7 @@ void func_8038A2F0(s32 mesh_id, BKVtxRef *ref_vert, Vtx* vert, Struct_MMM_3D50_0
 }
 
 
-void func_8038A54C(Struct_MMM_3D50_0 *arg0, s32 arg1){
+void MMM_func_8038A54C(Struct_MMM_3D50_0 *arg0, s32 arg1){
     s32 v0 = arg0->unk3;
     arg0->unk3 = arg1;
     arg0->unk4 = 0.0f;
@@ -165,10 +165,10 @@ void func_8038A750(void){
     for(v1 = &D_8038C1F0[0]; v1->unk0 != 0; v1++){
         v1->unk4 += f20;
         if(v1->unk3 == 1){
-            func_8033F120(D_8038C510.unk0, v1->unk0, func_8038A2F0, v1);
+            func_8033F120(MMM_D_8038C510.unk0, v1->unk0, MMM_func_8038A2F0, v1);
         }
         else if(v1->unk3 == 3){
-            func_8033F120(D_8038C510.unk0, v1->unk0, func_8038A58C, v1);
+            func_8033F120(MMM_D_8038C510.unk0, v1->unk0, func_8038A58C, v1);
         }
     }
 }
@@ -179,9 +179,9 @@ void func_8038A82C(Struct_MMM_3D50_0 * arg0){
     Struct_MMM_3D50_1 *iPtr;
 
     if(arg0->unk2 == 'X'){
-        func_8038A54C(arg0, 1);
+        MMM_func_8038A54C(arg0, 1);
         player_getPosition(sp44);
-        func_8038AD10(D_8038C510.unkC, D_8038C510.unk10, sp38);
+        func_8038AD10(MMM_D_8038C510.unkC, MMM_D_8038C510.unk10, sp38);
         sp38[1] = sp44[1];
         func_8028F620(sp38, 300.0f, -1500.0f);
         return;
@@ -189,10 +189,10 @@ void func_8038A82C(Struct_MMM_3D50_0 * arg0){
     for(iPtr = &D_8038C2F0[0]; iPtr->unk0 != 0; iPtr++){//L8038A8C8
         if(arg0->unk2 == iPtr->unk0[iPtr->unk4]){
             iPtr->unk4++;
-            func_8038A54C(arg0, 3);
+            MMM_func_8038A54C(arg0, 3);
             if( iPtr->unk0[iPtr->unk4] == 0){
                 func_8038A140(5);
-                func_8038AF3C(D_8038C510.unkC, D_8038C510.unk10);
+                func_8038AF3C(MMM_D_8038C510.unkC, MMM_D_8038C510.unk10);
                 func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 32000);
             }
             else{
@@ -216,12 +216,12 @@ void func_8038A994() {
 
 void func_8038A9B4(void){
     
-    D_8038C510.unk8 = 0;
+    MMM_D_8038C510.unk8 = 0;
     
     if(map_get() == MAP_24_MMM_TUMBLARS_SHED){
-        D_8038C510.unkC = NULL;
-        D_8038C510.unk0 = func_80309744(0);
-        D_8038C510.unk4 = NULL;
+        MMM_D_8038C510.unkC = NULL;
+        MMM_D_8038C510.unk0 = func_80309744(0);
+        MMM_D_8038C510.unk4 = NULL;
 
         func_8038A2B8();
         func_8038A964();
@@ -235,8 +235,8 @@ void func_8038A9B4(void){
 }
 
 void func_8038AA30(BKModel *arg0, s32 arg1){
-    D_8038C510.unkC = arg0;
-    D_8038C510.unk10 = arg1;
+    MMM_D_8038C510.unkC = arg0;
+    MMM_D_8038C510.unk10 = arg1;
 }
 
 void func_8038AA44(void){
@@ -244,12 +244,12 @@ void func_8038AA44(void){
     f32 sp28[3];
     Struct_MMM_3D50_0 *sp24;
 
-    if(D_8038C510.unk8 == 0) return;
+    if(MMM_D_8038C510.unk8 == 0) return;
 
     func_8038A750();
-    if( D_8038C510.unk8 == 1
-        && D_8038C510.unkC != NULL
-        && func_8038AD4C(D_8038C510.unkC, D_8038C510.unk10)
+    if( MMM_D_8038C510.unk8 == 1
+        && MMM_D_8038C510.unkC != NULL
+        && func_8038AD4C(MMM_D_8038C510.unkC, MMM_D_8038C510.unk10)
     ){
         if(!levelSpecificFlags_get(0x2f)){
             levelSpecificFlags_set(0x2f, TRUE);
@@ -260,33 +260,33 @@ void func_8038AA44(void){
         }
     }
 
-    if(D_8038C510.unk8 == 3){
+    if(MMM_D_8038C510.unk8 == 3){
         if(item_empty(ITEM_6_HOURGLASS)){
             func_8038A140(4);
         }
-        else if( D_8038C510.unkC != NULL
-            && func_8038AD4C(D_8038C510.unkC, D_8038C510.unk10)
+        else if( MMM_D_8038C510.unkC != NULL
+            && func_8038AD4C(MMM_D_8038C510.unkC, MMM_D_8038C510.unk10)
         ){
-            func_8038AD10(D_8038C510.unkC, D_8038C510.unk10, sp28);
-            tmp_v0 = func_8033F3C0(D_8038C510.unk0, sp28);
+            func_8038AD10(MMM_D_8038C510.unkC, MMM_D_8038C510.unk10, sp28);
+            tmp_v0 = func_8033F3C0(MMM_D_8038C510.unk0, sp28);
             if(tmp_v0){
                 sp24 = func_8038A26C(tmp_v0);
                 if( sp24 
                     && sp24->unk3 == 2
-                    && sp24 != D_8038C510.unk4
+                    && sp24 != MMM_D_8038C510.unk4
                 ){
                     func_8038A82C(sp24);
-                    D_8038C510.unk4 = sp24;
+                    MMM_D_8038C510.unk4 = sp24;
                 }
             }
             else{
-                D_8038C510.unk4 = 0;
+                MMM_D_8038C510.unk4 = 0;
             }
         }
     }//L8038AB7C
 
-    if( D_8038C510.unk8 == 5
-        && func_8038AD38(D_8038C510.unkC, D_8038C510.unk10)
+    if( MMM_D_8038C510.unk8 == 5
+        && func_8038AD38(MMM_D_8038C510.unkC, MMM_D_8038C510.unk10)
     ){
         func_8038A140(6);
     }

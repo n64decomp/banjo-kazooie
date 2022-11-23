@@ -29,7 +29,7 @@ ActorInfo D_80391318 = { 0xAA, 0x11C, 0x3DE,
 extern struct {
     s32 unk0;
     s32 unk4;
-}D_80391AB0;
+}GV_D_80391AB0;
 extern s32 D_80391AB8;
 
 /* .code */
@@ -69,25 +69,25 @@ Actor *func_8038DA18(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 }
 
 
-void func_8038DB0C(Actor *this){
+void GV_func_8038DB0C(Actor *this){
     func_80328B8C(this, 1, 0.99f, 0);
     animctrl_setPlaybackType(this->animctrl, ANIMCTRL_STOPPED);
 }
 
 void func_8038DB4C(s32 arg0){
-    D_80391AB0.unk0 = arg0;
+    GV_D_80391AB0.unk0 = arg0;
 }
 
 void func_8038DB58(s32 arg0){
-    D_80391AB0.unk4 = arg0;
+    GV_D_80391AB0.unk4 = arg0;
 }
 
 s32 func_8038DB64(void){
-    return D_80391AB0.unk4;
+    return GV_D_80391AB0.unk4;
 }
 
 void func_8038DB70(void){
-    D_80391AB0.unk4++;
+    GV_D_80391AB0.unk4++;
 }
 
 
@@ -141,7 +141,7 @@ void func_8038DBDC(Actor *this){
                 }
             }
             else if(actor_animationIsAt(this, 0.99f)){//L8038DD94
-                func_8038DB0C(this);
+                GV_func_8038DB0C(this);
                 func_8038DB88(this);
             }
             else{ //L8038DDC0
@@ -211,7 +211,7 @@ void func_8038DBDC(Actor *this){
             break;
         case 6: //8038E080
             if(actor_animationIsAt(this, 0.89f)){
-                func_8038DB0C(this);
+                GV_func_8038DB0C(this);
                 func_8038DB88(this);
             }
             else{ 

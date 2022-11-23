@@ -71,7 +71,7 @@ struct31s D_80391968 = {
 };
 
 /* .code */
-void func_8038C2C0(f32 position[3], s32 count, enum asset_e id, f32 arg3){
+void fight_func_8038C2C0(f32 position[3], s32 count, enum asset_e id, f32 arg3){
     ParticleEmitter * temp_s0 = partEmitList_pushNew(count);
     f32 sp24;
 
@@ -110,21 +110,21 @@ void func_8038C424(f32 position[3], s32 count, enum asset_e id, f32 arg3){
     particleEmitter_emitN(temp_s0, count);
 }
 
-void func_8038C588(void){
+void fight_func_8038C588(void){
     func_80386654(1.0f, &D_80391958, &D_80391948);
 }
 
-void func_8038C5BC(void){
+void fight_func_8038C5BC(void){
     func_80386654(1.0f, &D_80391948, &D_80391958);
 }
 
 void chbossjinjo_spawnParticles(Actor *this, enum asset_e arg1, enum asset_e arg2, f32 arg3){
     f32 sp1C[3];
-    func_8038C0DC(&sp1C);
-    func_8038C2C0(this->position, 0x20, arg1, arg3);
+    fight_func_8038C0DC(&sp1C);
+    fight_func_8038C2C0(this->position, 0x20, arg1, arg3);
     func_8038C424(this->position, 4, arg2, arg3);
-    timedFunc_set_0(0.0f, func_8038C588);
-    timedFunc_set_0(0.3f, func_8038C5BC);
+    timedFunc_set_0(0.0f, fight_func_8038C588);
+    timedFunc_set_0(0.3f, fight_func_8038C5BC);
 }
 
 void chbossjinjo_spawnAttackParticles(Actor *this){
@@ -156,7 +156,7 @@ void chbossjinjo_spawnAttackParticles(Actor *this){
 }
 
 
-void func_8038C6FC(Actor *this, s16 arg1){
+void fight_func_8038C6FC(Actor *this, s16 arg1){
     f32 temp_f2 = this->yaw;
     f32 tick = time_getDelta();
     
@@ -250,7 +250,7 @@ void func_8038C840(Actor *this){
             }//L8038CB9C
             if(sp48){
                 if(animctrl_getAnimTimer(this->animctrl) < 0.2){
-                    func_8038C6FC(this, sp42);
+                    fight_func_8038C6FC(this, sp42);
                 }
                 
                 if(actor_animationIsAt(this, 0.1f)){
@@ -309,7 +309,7 @@ void func_8038C840(Actor *this){
             }
             break; 
         case 5: // 8038CE68
-            func_8038C0DC(&sp50);
+            fight_func_8038C0DC(&sp50);
             sp50[1] += 100.0f;
             func_80387470(this, sp50, 1200.0f, 3840.0f, 200.0f, 2500.0f, 70.0f);
             func_8038C79C(this);

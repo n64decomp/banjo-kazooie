@@ -14,7 +14,7 @@ typedef struct {
 extern Struct_FP_45D0_0 D_80392F50;
 
 /* .code */
-void func_8038A9C0(void){
+void FP_func_8038A9C0(void){
         if( map_get() != MAP_27_FP_FREEZEEZY_PEAK
         || jiggyscore_isCollected(JIGGY_2D_FP_SNOWMAN_BUTTONS)
         || jiggyscore_isSpawned(JIGGY_2D_FP_SNOWMAN_BUTTONS)

@@ -15,7 +15,7 @@ typedef struct{
     f32 unk4[3];
 }ActorLocal_CCW_6620;
 
-Actor *func_8038CBF0(ActorMarker *this, Gfx **gfx, Mtx **mtx, Vtx **vtx);
+Actor *CCW_func_8038CBF0(ActorMarker *this, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void func_8038CC4C(Actor *this);
 
 /* .data */
@@ -29,7 +29,7 @@ Struct_CCW_6620_0 D_8038F490[] ={
 ActorInfo D_8038F4A8 = { 
     0x1BD, 0x2AA, 0x48F,
     0x0, NULL,
-    func_8038CC4C, NULL, func_8038CBF0,
+    func_8038CC4C, NULL, CCW_func_8038CBF0,
     0, 0, 2.2f, 0
 };
 
@@ -67,7 +67,7 @@ void func_8038CB40(Actor *this, s32 next_state) {
 }
 
 
-Actor *func_8038CBF0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
+Actor *CCW_func_8038CBF0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     Actor *this;
     ActorLocal_CCW_6620 *local;
 

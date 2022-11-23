@@ -21,7 +21,7 @@ void func_80328B8C(Actor*, s32, f32, s32);
 void func_802C8F70(f32);
 void func_80324E88(f32);
 Actor *func_8032811C(s32 actor_id, s32 position[3], s32 yaw);
-void func_80387F44(void);
+void MM_func_80387F44(void);
 
 void func_803876D0(Actor *);
 
@@ -48,7 +48,7 @@ ActorAnimationInfo chCongaAnimations[9] = {
     {ASSET_52_ANIM_CONGA_OW, 1.0f}
 };
 
-ActorInfo D_80389998 = { MARKER_7_CONGA, ACTOR_8_CONGA, ASSET_35C_MODEL_CONGA,
+ActorInfo chcongaInfo = { MARKER_7_CONGA, ACTOR_8_CONGA, ASSET_35C_MODEL_CONGA,
     1, chCongaAnimations,
     func_803876D0, func_80326224, func_80325888,
     0, 0x333, 0.0f, 0
@@ -180,7 +180,7 @@ void func_803873C8(ActorMarker *congaMarker){
     f32 iVelY;
 
     congaPtr->unk10_12 -= (congaPtr->unk10_12 && ( conga_state == 7));
-    func_80387F44();
+    MM_func_80387F44();
     congaPtr->unk28 = 2.0f;
     orangePtr = func_8032811C(ACTOR_14_ORANGE_PROJECTILE, conga_localPtr->orangeSpawnPosition, congaPtr->yaw);
 

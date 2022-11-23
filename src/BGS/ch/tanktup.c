@@ -21,14 +21,14 @@ enum chtanktup_leg_e {
     TANKTUP_LEG_BACK_RIGHT,
 };
 
-ActorAnimationInfo D_80390C20[] = {
+ActorAnimationInfo BGS_D_80390C20[] = {
     {0, 0.0f},
     {0x101, 7.5f},
     {0x102, 1.75f},
     {0x107, 1.75f}
 };
 
-ActorInfo D_80390C40 = {MARKER_6C_TANKTUP, ACTOR_E8_TANKTUP, ASSET_3EE_TANKTUP, 0x01, D_80390C20,
+ActorInfo D_80390C40 = {MARKER_6C_TANKTUP, ACTOR_E8_TANKTUP, ASSET_3EE_TANKTUP, 0x01, BGS_D_80390C20,
     func_8038F6A4, func_80326224, func_80325888,
     0, 0x80, 0.0f, 0
 };

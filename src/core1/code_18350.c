@@ -707,7 +707,7 @@ f32 func_80257AD4(f32 val1, f32 val2)
     return sinf((func_802588B0(val1, val2) / val2) * (2*BAD_PI));
 }
 
-f32 ml_f_map(f32 a, f32 b, f32 c, f32 d, f32 e)
+f32 ml_map_f(f32 a, f32 b, f32 c, f32 d, f32 e)
 {
     f32 val;
 
@@ -756,9 +756,9 @@ f32 func_80257C48(f32 arg0, f32 arg1, f32 arg2)
 
 f32 func_80257C60(f32 a, f32 b, f32 c, f32 d, f32 e, f32 (*func)(f32))
 {
-    f32 val = func(ml_f_map(a, b, c, 0.f, 1.f));
+    f32 val = func(ml_map_f(a, b, c, 0.f, 1.f));
 
-    return ml_f_map(val, 0, 1, d, e);
+    return ml_map_f(val, 0, 1, d, e);
 }
 
 f32 func_80257CC0(f32 a, f32 b, f32 c, f32 d, f32 e)
@@ -774,9 +774,9 @@ f32 func_80257CF8(f32 a, f32 b, f32 c, f32 d, f32 e)
 f32 func_80257D30(f32 a, f32 b, f32 c, f32 d, f32 e)
 {
     if (a < 0)
-        return ml_f_map(a, -b, -c, -d, -e);
+        return ml_map_f(a, -b, -c, -d, -e);
     else
-        return ml_f_map(a, b, c, d, e);
+        return ml_map_f(a, b, c, d, e);
 }
 
 void func_80257DB0(f32 arg0[3], f32 arg1[3], f32 arg2[3])

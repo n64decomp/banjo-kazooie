@@ -15,7 +15,7 @@ ActorInfo D_80390D90 = {
 };
 
 /* .code */
-void func_80388F70(Actor *this, s32 next_state){
+void GV_func_80388F70(Actor *this, s32 next_state){
     this->state = next_state;
     if(this->state == 1){
         func_80335924(this->unk148, ASSET_FE_ANIM_TRUCKER_SHORT, 0.1f, 2.5f);
@@ -62,10 +62,10 @@ void func_80389144(Actor *this){
         actor_collisionOff(this);
         mapSpecificFlags_set(0xC, FALSE);
         if(jiggyscore_isSpawned(JIGGY_45_GV_GOBI_2) && !func_803203FC(1)){
-            func_80388F70(this, 3);
+            GV_func_80388F70(this, 3);
         }
         else{//L803891CC
-            func_80388F70(this, 1);
+            GV_func_80388F70(this, 1);
         }
     }//L803891D8
     if( this->state == 1
@@ -87,5 +87,5 @@ void func_80389144(Actor *this){
     }
 
     if(sp28)
-        func_80388F70(this, sp28);
+        GV_func_80388F70(this, sp28);
 }

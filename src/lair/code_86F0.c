@@ -22,11 +22,11 @@ typedef struct {
 }Struct_lair_86F0_0;
 
 void func_8038F350(Actor *this, s32 next_state);
-void func_8038F924(Actor *this);
+void lair_func_8038F924(Actor *this);
 
 /* .data */
-ActorInfo D_803947B0 = { 0x1EB, 0x3B7, 0x48B, 0x1, NULL, func_8038F924, func_80326224, func_80325888, 0, 0, 0.0f, 0};
-ActorInfo D_803947D4 = { 0x1EB, 0x3BC, 0x538, 0x1, NULL, func_8038F924, func_80326224, func_80325888, 0, 0, 0.0f, 0};
+ActorInfo D_803947B0 = { 0x1EB, 0x3B7, 0x48B, 0x1, NULL, lair_func_8038F924, func_80326224, func_80325888, 0, 0, 0.0f, 0};
+ActorInfo D_803947D4 = { 0x1EB, 0x3BC, 0x538, 0x1, NULL, lair_func_8038F924, func_80326224, func_80325888, 0, 0, 0.0f, 0};
 Struct_lair_86F0_0 D_803947F8[0xb] ={
     {0x01, 0x1, 0x5D},
     {0x02, 0x2, 0x5E},
@@ -373,7 +373,7 @@ void func_8038F350(Actor *this, s32 next_state){
 }
 
 
-void func_8038F800(Actor *this) {
+void lair_func_8038F800(Actor *this) {
     s32 temp_v0;
     s32 phi_s0;
 
@@ -385,7 +385,7 @@ void func_8038F800(Actor *this) {
     }
 }
 
-void func_8038F894(Actor *this, s32 arg1) {
+void lair_func_8038F894(Actor *this, s32 arg1) {
     if (item_getCount(ITEM_26_JIGGY_TOTAL) > 0) {
         func_8038F350(this, arg1);
         return;
@@ -399,7 +399,7 @@ void func_8038F894(Actor *this, s32 arg1) {
     func_80320004(0xDE, 1);
 }
 
-void func_8038F924(Actor *this) {
+void lair_func_8038F924(Actor *this) {
     ActorLocal_lair_86F0 *local;
     s32 sp7C[6]; //buttons
     s32 phi_v1;
@@ -426,7 +426,7 @@ void func_8038F924(Actor *this) {
             local->unk4++;
             local->unk0 |= (1 << func_8038F0EC(this));
         }
-        func_8038F800(this);
+        lair_func_8038F800(this);
         marker_setCollisionScripts(this->marker, func_8038EC94, NULL, NULL);
         this->marker->propPtr->unk8_3 = TRUE;
         this->unk16C_4 = TRUE;
@@ -494,11 +494,11 @@ void func_8038F924(Actor *this) {
         case 4: //L8038FE28
             if ((func_803114C4() != 0xF7C) && (func_803114C4() != 0xF7D)) {
                 if (sp7C[FACE_BUTTON(BUTTON_A)] == 1) {
-                    func_8038F894(this, 5);
+                    lair_func_8038F894(this, 5);
                 } else if (sp7C[FACE_BUTTON(BUTTON_B)] == 1) {
                     func_8038F350(this, 1);
                 } else if ((sp6C[0] == 1) && func_8031FF1C(0xE0)) {
-                    func_8038F894(this, 6);
+                    lair_func_8038F894(this, 6);
                 } else if (sp7C[FACE_BUTTON(BUTTON_C_DOWN)] == 1) {
                     if (local->unk4) {
                         func_8038F350(this, 8);

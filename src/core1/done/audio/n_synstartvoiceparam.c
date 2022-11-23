@@ -36,7 +36,7 @@ void n_alSynStartVoiceParams(N_ALVoice *v, ALWaveTable *w,
         update->samples = _n_timeToSamples( t);
         update->wave    = w;
         
-        n_alEnvmixerResampleParam(v->pvoice, AL_FILTER_ADD_UPDATE, update);        
+        n_alEnvmixerParam(v->pvoice, AL_FILTER_ADD_UPDATE, update);        
     }
     
 }

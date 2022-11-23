@@ -48,7 +48,7 @@ enum FF_Action
 
 /* .h */
 void func_8038D670(enum FF_Action next_state);// ff_set_state
-void func_8038C6BC(void);
+void lair_func_8038C6BC(void);
 
 /* extern */
 extern void func_802FACA4(enum item_e);
@@ -62,22 +62,21 @@ extern s32  func_803203FC(s32);  // get volatile flag
 extern void func_80295864(s32);  // set unlocked moves bitfield
 extern s32  func_802957F0(void); // get unlocked moves bitfield
 
-extern s32  func_80345FA0(s32); // item count get
+extern s32  item_getCount(s32); // item count get
 extern void func_803463F4(s32, s32); // item count set
 
 extern void func_80318614(gczoombox_t *, s32);
 extern bool func_803183A4(gczoombox_t *, u8 *);
-extern void func_8031841C(gczoombox_t *);
-extern void func_803183FC(gczoombox_t *);
+extern void gczoombox_minimize(gczoombox_t *);
+extern void gczoombox_close(gczoombox_t *);
 
-extern void func_8025AB44(s32, s32, s32);
 extern void func_80250530(s32, u16, f32);
 
 extern void func_8025A55C(s32, s32, s32);
 
 extern void func_80324CFC(f32, s16, s16);
-extern void func_803183EC(gczoombox_t *);
-extern void func_8031840C(gczoombox_t *);
+extern void gczoombox_open(gczoombox_t *);
+extern void gczoombox_maximize(gczoombox_t *);
 
 extern void *func_80309744(s32);
 extern void  func_8029A95C(s32); // set transformation
@@ -114,7 +113,7 @@ extern struct {
 
 /* .code */
 // FF: get total number of questions per type
-s16 func_8038C2C0(enum ff_question_type_e type)
+s16 lair_func_8038C2C0(enum ff_question_type_e type)
 {
     return FF_QuestionTypeInfoArr[type].totalQuestionCount;
 }
@@ -129,13 +128,13 @@ void func_8038C2D4(enum ff_question_type_e type)
 }
 
 // FF: set isAsked flag for type and question
-void func_8038C338(enum ff_question_type_e type, s32 questionIdx, int val)
+void lair_func_8038C338(enum ff_question_type_e type, s32 questionIdx, int val)
 {
     func_803208C0(FF_QuestionTypeInfoArr[type].startingFlagIdx + questionIdx, val);
 }
 
 // FF: get isAsked flag for type and question
-int func_8038C370(enum ff_question_type_e type, s32 questionIdx)
+int lair_func_8038C370(enum ff_question_type_e type, s32 questionIdx)
 {
     return func_803207F0(FF_QuestionTypeInfoArr[type].startingFlagIdx + questionIdx);
 }
@@ -148,7 +147,7 @@ void func_8038C3A0(u32 a0, BKVtxRef *a1, Vtx *a2, Struct_lair_5ED0_0 *a3)
     a2->v.cn[2] = a1->v.v.cn[2] * a3->unk10;
 }
 
-void *func_8038C5B8(s32 a0)
+void *lair_func_8038C5B8(s32 a0)
 {
     Struct_lair_5ED0_0 *ptr;
 
@@ -169,25 +168,25 @@ void *func_8038C5B8(s32 a0)
     return ptr;
 }
 
-void func_8038C610(s32 a0)
+void lair_func_8038C610(s32 a0)
 {
     func_8034DEB4(func_8034C528(a0 + 200), -3000);
 }
 
-void func_8038C640(s32 a0, Struct_lair_5ED0_0 *a1)
+void lair_func_8038C640(s32 a0, Struct_lair_5ED0_0 *a1)
 {
     s32 i;
 
     for (i = 0; i < ARRLEN(a1->unk0); i++)
         if (a1->unk0[i])
-            func_8038C610(a1->unk0[i]);
+            lair_func_8038C610(a1->unk0[i]);
 
     a1->unk9 = 1;
 
     func_803208C0(a0 - FF_QNF_CNT, TRUE);
 }
 
-void func_8038C6BC(void)
+void lair_func_8038C6BC(void)
 {
     s32 s1, s3;
 
@@ -202,7 +201,7 @@ void func_8038C6BC(void)
         if (ptr->unk9 == s3)
         {
             ptr->unk10 = 0.95f;
-            func_8038C640(s1, ptr);
+            lair_func_8038C640(s1, ptr);
         }
         else
         {
@@ -260,7 +259,7 @@ void func_8038CC10(void)
     func_8030E2C4(D_8037DCB8->UNK_18);
 }
 
-void func_8038CC9C(void)
+void lair_func_8038CC9C(void)
 {
     if (!D_8037DCB8->UNK_18)
         return;
@@ -283,7 +282,7 @@ void func_8038CCEC(void)
     func_802C5994();
 }
 
-void func_8038CD48(void)
+void lair_func_8038CD48(void)
 {
     if (D_8037DCB8 == NULL)
         return;
@@ -301,7 +300,7 @@ void func_8038CD48(void)
     D_8037DCB8->unk20 = NULL;
 
     if (D_8037DCB8->UNK_18)
-        func_8038CC9C();
+        lair_func_8038CC9C();
 
     if (!func_803203FC(1) && !func_803203FC(2))
         func_803204E4(0, FALSE);
@@ -313,7 +312,7 @@ void func_8038CD48(void)
 void func_8038CE00(void)
 {
     func_802BBC58(1);
-    func_802BAE20(0);
+    set_camera_to_node(0);
 }
 
 void func_8038CE28(void)
@@ -331,7 +330,7 @@ void func_8038CE28(void)
         D_8037DCB8->unk3C[i] = 0;
 
     // set joker card count to 0
-    func_803463F4(ITEM_27_JOKER_CARD, func_80345FA0(0x27) * -1);
+    func_803463F4(ITEM_27_JOKER_CARD, item_getCount(0x27) * -1);
 
     D_8037DCB8->unk8     = 0;
     D_8037DCB8->unk4     = NULL;
@@ -344,7 +343,7 @@ void func_8038CE28(void)
     func_8038BC24();
 }
 
-void func_8038CF18(void)
+void lair_func_8038CF18(void)
 {
     s32 i;
 
@@ -365,10 +364,10 @@ void func_8038CF18(void)
             D_8037DCB8->unk3C[i] = 0;
 
         // set joker card count to 0
-        func_803463F4(ITEM_27_JOKER_CARD, func_80345FA0(ITEM_27_JOKER_CARD) * -1);
+        func_803463F4(ITEM_27_JOKER_CARD, item_getCount(ITEM_27_JOKER_CARD) * -1);
     }
 
-    func_8038C6BC();
+    lair_func_8038C6BC();
 
     ptr = D_8037DCB8->unk48->data;
 
@@ -428,8 +427,8 @@ void func_8038D0BC(s32 a0, s32 a1)
     if (a1 == 3)
     {
         func_80318614(D_8037DCB8->unk20, 0);
-        func_8031841C(D_8037DCB8->unk20);
-        func_803183FC(D_8037DCB8->unk20);
+        gczoombox_minimize(D_8037DCB8->unk20);
+        gczoombox_close(D_8037DCB8->unk20);
     }
 
     if (a1 == 6)
@@ -441,7 +440,7 @@ void func_8038D0BC(s32 a0, s32 a1)
 void func_8038D16C(s32 a0, u16 a1)
 {
     func_8025A6EC(a0, 0);
-    func_8025AB44(a0, 28000, 500);
+    comusic_8025AB44(a0, 28000, 500);
     func_80250530(func_8025ADD4(a0), a1, 0);
 }
 
@@ -479,8 +478,8 @@ void func_8038D1E4(void)
                 0, 0, func_8038D0BC
             );
             func_80318614(D_8037DCB8->unk20, 0);
-            func_803183EC(D_8037DCB8->unk20);
-            func_8031840C(D_8037DCB8->unk20);
+            gczoombox_open(D_8037DCB8->unk20);
+            gczoombox_maximize(D_8037DCB8->unk20);
 
             break;
         }
@@ -576,10 +575,10 @@ void func_8038D548(s32 a0)
     s32 s0;
 
     for (s0 = FF_QNF_START; s0 != FF_QNF_END; s0++)
-        func_8038C610(s0);
+        lair_func_8038C610(s0);
 
     if (a0)
-        func_8038C610(296);
+        lair_func_8038C610(296);
 }
 
 void func_8038D5A0(void)
@@ -589,7 +588,7 @@ void func_8038D5A0(void)
 
     for (s0 = FF_QNF_START; s0 != FF_QNF_END; s0++, ptr++)
     {
-        func_8038C610(s0);
+        lair_func_8038C610(s0);
 
         ptr->unk9 = 1;
 
@@ -679,10 +678,10 @@ void func_8038D670(enum FF_Action next_state) {
         case FFA_6_TRIGGER_QUESTION_POST_EFFECTS: //L8038D940
             func_8038D48C();
             if (D_8037DCB8->unkF == 1) {
-                func_8038C640(D_8037DCB8->unk8, D_8037DCB8->unk4);
-                func_8038C338(D_8037DCB8->ffQuestionType, D_8037DCB8->unkC, 1);
+                lair_func_8038C640(D_8037DCB8->unk8, D_8037DCB8->unk4);
+                lair_func_8038C338(D_8037DCB8->ffQuestionType, D_8037DCB8->unkC, 1);
                 D_8037DCB8->unk3C[D_8037DCB8->ffQuestionType]++;
-                if (func_8038C2C0(D_8037DCB8->ffQuestionType) == D_8037DCB8->unk3C[D_8037DCB8->ffQuestionType]) {
+                if (lair_func_8038C2C0(D_8037DCB8->ffQuestionType) == D_8037DCB8->unk3C[D_8037DCB8->ffQuestionType]) {
                     D_8037DCB8->unk3C[D_8037DCB8->ffQuestionType] = 0;
                     func_8038C2D4(D_8037DCB8->ffQuestionType);
                 }
@@ -723,7 +722,7 @@ void func_8038D670(enum FF_Action next_state) {
                 }
                 if (D_8037DCB8->unk4->unk8 >= 7) {
                     func_803208C0(func_8038D60C(D_8037DCB8->unk8), TRUE);
-                    func_8038C640(D_8037DCB8->unk8, D_8037DCB8->unk4);
+                    lair_func_8038C640(D_8037DCB8->unk8, D_8037DCB8->unk4);
                 }
                 if (func_803203FC(0xA3)) {
                     func_80356540(0xA4);
@@ -816,10 +815,10 @@ void func_8038DE34(enum ff_question_type_e type)
         do
         {
             // Generate random question index in the valid range for the type
-            randQuestionIdx = randi2(0, func_8038C2C0(type));
+            randQuestionIdx = randi2(0, lair_func_8038C2C0(type));
 
             // Try again if question already asked
-        } while (func_8038C370(type, randQuestionIdx));
+        } while (lair_func_8038C370(type, randQuestionIdx));
 
         // Save to storage struct
         D_8037DCB8->unkC = randQuestionIdx;
@@ -850,7 +849,7 @@ void func_8038DE34(enum ff_question_type_e type)
             }
 
             // Try again if question already asked
-        } while (func_8038C370(type, D_8037DCB8->unkC));
+        } while (lair_func_8038C370(type, D_8037DCB8->unkC));
     }
 }
 
@@ -866,7 +865,7 @@ void func_8038DFBC(void)
     timed_playSfx(0.75f, 0x51, 0.5f, 32760);
 
     timedFunc_set_0(1.0f, func_8038CC10);
-    timedFunc_set_0(2.2f, func_8038CC9C);
+    timedFunc_set_0(2.2f, lair_func_8038CC9C);
 }
 
 void func_8038E070(void)
@@ -876,7 +875,7 @@ void func_8038E070(void)
     func_8028F918(2);
 }
 
-void func_8038E0B0(void) {
+void lair_func_8038E0B0(void) {
     s32 sp48[6]; //buttons
     s32 temp_v0;
     s32 sp3C[2]; //joystick
@@ -900,7 +899,7 @@ void func_8038E0B0(void) {
                 }
             }
             D_8037DCB8->unk8 = temp_v0;
-            D_8037DCB8->unk4 = func_8038C5B8(D_8037DCB8->unk8);
+            D_8037DCB8->unk4 = lair_func_8038C5B8(D_8037DCB8->unk8);
         }
         sp38 = MIN((D_8037DCB8->unk8 != 0) ? D_8037DCB8->unk4->unk8 : -1, FFTT_7_JOKER);
         if ((D_8037DCB8->unk8 != 0) && (D_8037DCB8->unk4->unk9 == 0) && func_8028F20C()) {
@@ -983,7 +982,7 @@ void func_8038E0B0(void) {
                         }
                         if (func_8028EFC8() && (sp48[FACE_BUTTON(BUTTON_B)] == 1)) {
                             if ((item_getCount(ITEM_27_JOKER_CARD) > 0) && (sp28 < 0x5B)) {
-                                func_8038C640(D_8037DCB8->unk8, D_8037DCB8->unk4);
+                                lair_func_8038C640(D_8037DCB8->unk8, D_8037DCB8->unk4);
                                 item_dec(ITEM_27_JOKER_CARD);
                                 func_8030E6D4(SFX_3EA_UNKNOWN);
                                 func_80356540(0xA9);
@@ -997,7 +996,7 @@ void func_8038E0B0(void) {
                     }
                 } else {
                     if (D_8037DCB8->unk4->unk9 == 2) {
-                        func_8038C640(D_8037DCB8->unk8, D_8037DCB8->unk4);
+                        lair_func_8038C640(D_8037DCB8->unk8, D_8037DCB8->unk4);
                     }
                 }
                 break;
@@ -1053,7 +1052,7 @@ void func_8038E0B0(void) {
     }
 }
 
-void func_8038E768(Gfx **dl, Mtx **m, Vtx **v)
+void lair_func_8038E768(Gfx **dl, Mtx **m, Vtx **v)
 {
     if (map_get() != MAP_8E_GL_FURNACE_FUN)
         return;

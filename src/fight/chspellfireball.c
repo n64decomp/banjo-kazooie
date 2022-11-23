@@ -18,7 +18,7 @@ typedef struct {
 void func_8038F620(Actor *this);
 
 /* .data */
-ActorInfo D_80391B00 = {
+ActorInfo fight_D_80391B00 = {
     MARKER_25C_GRUNTY_SPELL_FIREBALL, ACTOR_389_GRUNTY_SPELL_FIREBALL, ASSET_541_SPRITE_FIREBALL_SPELL_ATTACK,
     0x1, NULL,
     func_8038F620, func_80326224, func_80325888,
@@ -73,13 +73,13 @@ f32 D_80391D34[6] = {0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f};
 f32 D_80391D4C[6] = {-50.0f, -50.0f, -50.0f, 50.0f, 50.0f, 50.0f};
 f32 D_80391D64[6] = {0.0f, -1200.0f, 0.0f, 0.0f, -1200.0f, 0.0f};
 f32 D_80391D7C[6] = {-260.0f, -260.0f, -260.0f, 260.0f, 260.0f, 260.0f};
-f32 D_80391D94[4] = {0.15f, 0.3f, 0.0f, 0.0f}; 
+f32 fight_D_80391D94[4] = {0.15f, 0.3f, 0.0f, 0.0f}; 
 f32 D_80391DA4[4] = {0.0f, 0.01f, 0.7f, 0.8f}; 
 f32 D_80391DB4[2] = {0.0f, 0.65f}; 
 
 /* .bss */
 // u8 pad[0x180]; //TODO!!!! define other file .bss sections
-u8 D_803928E0;
+u8 fight_D_803928E0;
 u8 D_803928E1;
 u8 D_803928E2;
 u8 D_803928E3;
@@ -226,8 +226,8 @@ void func_8038F3B4(ActorMarker *marker, ActorMarker *other){
     func_8038F084(marker);
     switch(func_80320424(0x23, 3)){
         case 1: //8038F41C
-            if(!D_803928E0 && func_80311480(randi2(0, 5) + 0x10f2, 0, 0, 0, 0, 0))
-                D_803928E0 = 1;
+            if(!fight_D_803928E0 && func_80311480(randi2(0, 5) + 0x10f2, 0, 0, 0, 0, 0))
+                fight_D_803928E0 = 1;
             break;
         case 2: //8038F468
             if(!D_803928E1 && func_80311480(randi2(0, 5) + 0x110b, 0, 0, 0, 0, 0))
@@ -380,7 +380,7 @@ void func_8038F620(Actor *this){
     }//L8038FB74
 }
 
-void func_8038FB84(ActorMarker *arg0, f32 *arg1, f32 *arg2, f32 *arg3) {
+void fight_func_8038FB84(ActorMarker *arg0, f32 *arg1, f32 *arg2, f32 *arg3) {
     Actor *temp_v0 = marker_getActor(arg0);
 
     temp_v0->position_x = arg1[0];
@@ -395,7 +395,7 @@ void func_8038FB84(ActorMarker *arg0, f32 *arg1, f32 *arg2, f32 *arg3) {
 }
 
 void func_8038FC00(void) {
-    D_803928E0 = (u8)0;
+    fight_D_803928E0 = (u8)0;
     D_803928E1 = (u8)0;
     D_803928E2 = (u8)0;
     D_803928E3 = (u8)0;

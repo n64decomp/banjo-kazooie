@@ -9,7 +9,7 @@ void func_80389634(Actor *this);
 void func_803898B8(Actor *this);
 
 /* .data */
-ActorAnimationInfo D_80390E00[] = {
+ActorAnimationInfo GV_D_80390E00[] = {
     {0x00, 0.0f},
     {0xCD, 8000000.0f},
     {0xCD, 2.5f},
@@ -18,14 +18,14 @@ ActorAnimationInfo D_80390E00[] = {
     {0xCD, 4.5f},
 };
 
-ActorInfo D_80390E30 = { 0xA8, 0x11A, 0x33D, 
-    0x1, D_80390E00, 
+ActorInfo GV_D_80390E30 = { 0xA8, 0x11A, 0x33D, 
+    0x1, GV_D_80390E00, 
     func_80389634, func_80326224, func_80325888, 
     2500, 0, 0.0f, 0
 };
 
 ActorInfo D_80390E54 = { 0x23B, 0x244, 0x33D, 
-    0x1, D_80390E00, 
+    0x1, GV_D_80390E00, 
     func_803898B8, func_80326224, func_80325888, 
     0, 0, 0.0f, 0
 };
@@ -33,7 +33,7 @@ s32 D_80390E78[4] = {0xff, 0xd0, 0x5d, 0xb4};
 s32 D_80390E88[4] = {0, 0, 0, 0};
 
 /* .code */
-void func_803894B0(Actor *this){
+void GV_func_803894B0(Actor *this){
     this->marker->propPtr->unk8_3 = TRUE;
     actor_collisionOff(this);
     func_80328B8C(this, 1, 0.01f, 1);
@@ -68,7 +68,7 @@ void func_80389634(Actor *this){
     switch(this->state){
         case 1: //L80389680
             if(!this->initialized){
-                func_803894B0(this);
+                GV_func_803894B0(this);
             }
             if(func_80329530(this, 500) && func_8038957C(this)){
                 func_80328B8C(this, 2, 0.01f, 1);
@@ -120,7 +120,7 @@ void func_80389634(Actor *this){
 
 void func_803898B8(Actor *this){
     if(!this->initialized){
-        func_803894B0(this);
+        GV_func_803894B0(this);
         if(func_8031FF1C(BKPROG_A4_UNKOWN))
             func_80328B8C(this, 3, 0.5f, 1);
         this->unk1C[0] = 0.0f;

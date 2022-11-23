@@ -29,7 +29,7 @@ void func_803871D4(s32 arg0) {
     levelSpecificFlags_setN(0x39, arg0, 3);
 }
 
-void func_803871FC(Actor *this){
+void MMM_func_803871FC(Actor *this){
     switch(this->state){
         case 1:
             func_8033A45C(3, FALSE);
@@ -50,7 +50,7 @@ void func_80387280(Actor *this){
     this->marker->propPtr->unk8_3 = TRUE;
     if(!this->initialized){
         this->initialized = TRUE;
-        this->unk130 = func_803871FC;
+        this->unk130 = MMM_func_803871FC;
     }
 
     switch(this->state){
@@ -66,7 +66,7 @@ void func_80387280(Actor *this){
     }
 }
 
-bool func_80387340(ActorMarker *marker){
+bool MMM_func_80387340(ActorMarker *marker){
     Actor *actor = marker_getActor(marker);
     f32 sp20[3];
     s32 sp1C;

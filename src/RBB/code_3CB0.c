@@ -35,7 +35,7 @@ ActorInfo D_80390738 = {
 };
 
 /* .code */
-void func_8038A0A0(Actor *this, s32 arg1){
+void RBB_func_8038A0A0(Actor *this, s32 arg1){
     ActorLocal_RBB_3CB0 *local = (ActorLocal_RBB_3CB0 *)&this->local;
 
     if(arg1 == 1)
@@ -62,7 +62,7 @@ void func_8038A0A0(Actor *this, s32 arg1){
 void func_8038A1C8(ActorMarker *marker, s32 arg1){
     Actor *actor = marker_getActor(marker);
     if(actor->state == 1){
-        func_8038A0A0(actor, 2);
+        RBB_func_8038A0A0(actor, 2);
     }
     else if(actor->state == 2){
         func_8038FF40();
@@ -109,16 +109,16 @@ void func_8038A324(Actor *this){
         this->position_y = (f32)local->unk0->unk0[1];
         this->position_z = (f32)local->unk0->unk0[2];
         if(levelSpecificFlags_get(local->unk0->unkA))
-            func_8038A0A0(this, 2);
+            RBB_func_8038A0A0(this, 2);
         else
-            func_8038A0A0(this, 1);
+            RBB_func_8038A0A0(this, 1);
     }//L8038A47C
     if(this->state == 2){
         if( !levelSpecificFlags_get(local->unk0->unkA)
             && !levelSpecificFlags_get(3)
             && !levelSpecificFlags_get(4)
         ){
-            func_8038A0A0(this, 1);
+            RBB_func_8038A0A0(this, 1);
         }
     }
 }

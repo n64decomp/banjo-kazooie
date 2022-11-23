@@ -4,12 +4,12 @@
 
 extern int func_8024DB50(f32[3], f32);
 
-void func_8038A084(Actor *this);
+void GV_func_8038A084(Actor *this);
 
 /* .data */
 ActorInfo D_80390F40 = { 0x24F, 0x37C, 0x0, 
     0, NULL, 
-    func_8038A084, func_80326224, func_80325340, 
+    GV_func_8038A084, func_80326224, func_80325340, 
     2000, 0, 0.0f, 0
 };
 
@@ -45,7 +45,7 @@ void func_80389FA0(f32 position[3]){
     func_802EFC28(pCtrl, &D_80390F64);
 }
 
-void func_8038A084(Actor *this){
+void GV_func_8038A084(Actor *this){
     if(this->unkF4_8 == 6 && !this->unk16C_4){
         this->unk16C_4 = TRUE;
         if( jiggyscore_isCollected(JIGGY_42_GV_WATER_PYRAMID) && this->yaw == 1.0f){

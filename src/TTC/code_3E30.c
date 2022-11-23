@@ -168,7 +168,7 @@ void func_8038A37C(s32 arg0, BKVtxRef *ref, Vtx *dst, s32 arg3) {
     }
 }
 
-void func_8038A5D8(Struct_TTC_3E30_1 *arg0, s32 arg1) {
+void TTC_func_8038A5D8(Struct_TTC_3E30_1 *arg0, s32 arg1) {
     s32 temp_v0;
 
     temp_v0 = arg0->unk3;
@@ -301,9 +301,9 @@ void func_8038AC48(Struct_TTC_3E30_1 *arg0) {
                 } else {
                     if (i_ptr->unk4 & 0xFFE) {
                         func_8038A258(2);
-                        func_8038A5D8(arg0, 5);
+                        TTC_func_8038A5D8(arg0, 5);
                     } else {
-                        func_8038A5D8(arg0, 3);
+                        TTC_func_8038A5D8(arg0, 3);
                     }
                     if (i_ptr->unk0[i_ptr->unk6] == 0) {
                         func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 32000);
@@ -355,7 +355,7 @@ void func_8038AC48(Struct_TTC_3E30_1 *arg0) {
         }
     }
     if ((func_8038BF68() == 0) && (phi_s7 == 0) && (D_8038D720.unk8 == 0)) {
-        func_8038A5D8(arg0, 1);
+        TTC_func_8038A5D8(arg0, 1);
     }
 }
 
@@ -612,7 +612,7 @@ u32 func_8038B600(void) {
     return var_a3;
 }
 
-void func_8038B6D4(s32 arg0, s32 arg1, s32 arg2, enum bkprog_e prog_id, s32 prog_val, s32 prog_bit_size, enum bkprog_e arg6){
+void TTC_func_8038B6D4(s32 arg0, s32 arg1, s32 arg2, enum bkprog_e prog_id, s32 prog_val, s32 prog_bit_size, enum bkprog_e arg6){
     if( ((arg2 + 20 == D_8038CAD8[arg1].unk5) && func_803203FC(arg2))
         || arg0 == 3
     ){
@@ -660,13 +660,13 @@ void func_8038B800(s32 arg0) {
         func_803204E4(0x65, 1);
         func_803204E4(sp38, 1);
     }
-    func_8038B6D4(0, arg0, 0x6C, 0x60, 5, 3, 0x33);
-    func_8038B6D4(0, arg0, 0x6D, 0x63, 7, 3, 0x34);
-    func_8038B6D4(0, arg0, 0x6E, 0x66, 8, 4, 0x35);
-    func_8038B6D4(0, arg0, 0x6F, 0x6A, 9, 4, 0x36);
-    func_8038B6D4(0, arg0, 0x70, 0x6E, 0xA, 4, 0x37);
-    func_8038B6D4(0, arg0, 0x71, 0x72, 0xC, 4, 0x38);
-    func_8038B6D4(0, arg0, 0x72, 0x76, 0xF, 4, 0x39);
+    TTC_func_8038B6D4(0, arg0, 0x6C, 0x60, 5, 3, 0x33);
+    TTC_func_8038B6D4(0, arg0, 0x6D, 0x63, 7, 3, 0x34);
+    TTC_func_8038B6D4(0, arg0, 0x6E, 0x66, 8, 4, 0x35);
+    TTC_func_8038B6D4(0, arg0, 0x6F, 0x6A, 9, 4, 0x36);
+    TTC_func_8038B6D4(0, arg0, 0x70, 0x6E, 0xA, 4, 0x37);
+    TTC_func_8038B6D4(0, arg0, 0x71, 0x72, 0xC, 4, 0x38);
+    TTC_func_8038B6D4(0, arg0, 0x72, 0x76, 0xF, 4, 0x39);
     func_8038B79C(0, arg0, 0x94, ITEM_15_HEALTH_TOTAL, 0, 8);
     func_8038B79C(0, arg0, 0x77, ITEM_14_HEALTH, 0, item_getCount(ITEM_15_HEALTH_TOTAL));
     func_8038B79C(0, arg0, 0x95, ITEM_1C_MUMBO_TOKEN, 0, 99);
@@ -690,7 +690,7 @@ void func_8038BB10(ActorMarker *caller, enum asset_e text_id, s32 arg2) {
     func_8038B5B4();
 }
 
-void func_8038BBA0(s32 arg0) {
+void TTC_func_8038BBA0(s32 arg0) {
     s32 i;
 
     if ((s32) D_8038CAD8[arg0].unk5 >= 0x14) {
@@ -775,7 +775,7 @@ bool func_8038BD10(Struct_TTC_3E30_1 *arg0) {
                     func_8038AB44();
                     if ((D_8038CAD8 + var_s1)->unk0[(D_8038CAD8 + var_s1)->unk4] == '\0') {
                         if ((D_8038CAD8 + var_s1)->unk5 != 0) {
-                            func_8038BBA0(var_s1);
+                            TTC_func_8038BBA0(var_s1);
                         }
                         return 1;
                     }

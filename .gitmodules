@@ -1,6 +1,3 @@
-[submodule "tools/bk_tools"]
-	path = tools/bk_tools
-	url = https://github.com/MittenzHugg/bk_tools.git
 [submodule "tools/asm-differ"]
 	path = tools/asm-differ
 	url = https://github.com/simonlindholm/asm-differ.git
@@ -16,3 +13,6 @@
 [submodule "tools/bk_asset_tool"]
 	path = tools/bk_asset_tool
 	url = https://github.com/MittenzHugg/bk_asset_tool.git
+[submodule "tools/bk_rom_compressor"]
+	path = tools/bk_rom_compressor
+	url = https://github.com/MittenzHugg/bk_rom_compressor.git

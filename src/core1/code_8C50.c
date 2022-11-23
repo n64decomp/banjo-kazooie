@@ -20,38 +20,38 @@ void func_80247224(void);
 #define CORE1_8C50_EVENT_CONT_TIMER 13
 
 /* .extern */
-extern u8 D_80272590[];
-extern u8 D_802731F0[];
-extern u8 D_80274620[];
+extern u8 n_aspMainTextStart[];
+extern u8 gSPF3DEX_fifoTextStart[];
+extern u8 gSPL3DEX_fifoTextStart[];
 
-extern u8 D_80278E80[]; //ucode_data
-extern u8 D_80279130[];
-extern u8 D_80279930[];
+extern u8 n_aspMainDataStart[];
+extern u8 gSPF3DEX_fifoDataStart[];
+extern u8 gSPL3DEX_fifoDataStart[];
 
 /* .data */
 OSTask D_80275910 = {
-    /* type */ 2, 
+    /* type */ M_AUDTASK, 
     /* flags */ 0,
-    NULL, 0,        /* ucode_boot */
-    NULL, 0x1000,   /* ucode */
-    NULL, 0x800,    /* ucode_data */
-    NULL, 0,        /* dram_stack */
-    NULL, NULL,     /* output_buff */
-    NULL, 0,        /* data */
-    NULL, 0,        /* yield_data */
-} ;
+    NULL, 0,                  /* ucode_boot */
+    NULL, SP_UCODE_SIZE,      /* ucode */
+    NULL, SP_UCODE_DATA_SIZE, /* ucode_data */
+    NULL, 0,                  /* dram_stack */
+    NULL, NULL,               /* output_buff */
+    NULL, 0,                  /* data */
+    NULL, 0,                  /* yield_data */
+};
 
 OSTask D_80275950 = {
-    /* type */ 1, 
+    /* type */ M_GFXTASK, 
     /* flags */ 0,
-    NULL, 0,                /* ucode_boot */
-    NULL, 0x1000,           /* ucode */
-    NULL, 0x800,            /* ucode_data */
-    0x80000400, 0x400,      /* dram_stack */
-    0x80000800, 0x8000E800, /* output_buff */
-    NULL, 0,                /* data */
-    NULL, 0xC00,            /* yield_data */
-} ;
+    NULL, 0,                  /* ucode_boot */
+    NULL, SP_UCODE_SIZE,      /* ucode */
+    NULL, SP_UCODE_DATA_SIZE, /* ucode_data */
+    0x80000400, 0x400,        /* dram_stack */
+    0x80000800, 0x8000E800,   /* output_buff */
+    NULL, 0,                  /* data */
+    NULL, OS_YIELD_DATA_SIZE, /* yield_data */
+};
 
 s32 D_80275990 = 0;
 s32 D_80275994 = 0;
@@ -60,7 +60,8 @@ s32 D_8027599C = 0;
 
 
 /* .bss */
-u64 D_8027EF40[0x185];
+u64 D_8027EF40[OS_YIELD_DATA_SIZE / sizeof(u64)];
+static u8 pad[0x28]; // 8027FB40
 OSMesgQueue D_8027FB60;
 OSMesg      D_8027FB78[20];
 OSMesgQueue D_8027FBC8;
@@ -81,7 +82,7 @@ volatile s32 D_8028062C;
 Struct_Core1_8C50_s * D_80280630[20];
 volatile s32 D_80280680;
 volatile s32 D_80280684;
-s32 D_80280688;
+void* D_80280688;
 OSTimer D_80280690; //audio_timer
 OSTimer D_802806B0; //controller_timer
 s32 D_802806D0;
@@ -120,8 +121,8 @@ void func_80246744(OSMesg arg0){
 
 void func_80246794(Struct_Core1_8C50_s * arg0){
     func_80255D0C(&D_80275910.t.ucode_boot, &D_80275910.t.ucode_boot_size);
-    D_80275910.t.ucode = D_80272590;
-    D_80275910.t.ucode_data = D_80278E80;
+    D_80275910.t.ucode = n_aspMainTextStart;
+    D_80275910.t.ucode_data = n_aspMainDataStart;
     D_80275910.t.data_ptr = (void*) arg0->unk8;
     D_80275910.t.data_size = (arg0->unkC - arg0->unk8) >> 3 << 3;
     osWritebackDCache(D_80275910.t.data_ptr , D_80275910.t.data_size);
@@ -134,8 +135,8 @@ void func_80246794(Struct_Core1_8C50_s * arg0){
 
 void func_80246844(Struct_Core1_8C50_s * arg0){
     func_80255D0C(&D_80275950.t.ucode_boot, &D_80275950.t.ucode_boot_size);
-    D_80275950.t.ucode = D_802731F0;
-    D_80275950.t.ucode_data = D_80279130;
+    D_80275950.t.ucode = gSPF3DEX_fifoTextStart;
+    D_80275950.t.ucode_data = gSPF3DEX_fifoDataStart;
     D_80275950.t.data_ptr = (void*) arg0->unk8;
     D_80275950.t.data_size = (arg0->unkC - arg0->unk8) >> 3 << 3;
     osWritebackDCache(D_80275950.t.data_ptr , D_80275950.t.data_size);
@@ -152,8 +153,8 @@ void func_80246844(Struct_Core1_8C50_s * arg0){
 
 void func_8024692C(Struct_Core1_8C50_s * arg0){
     func_80255D0C(&D_80275950.t.ucode_boot, &D_80275950.t.ucode_boot_size);
-    D_80275950.t.ucode = D_80274620;
-    D_80275950.t.ucode_data = D_80279930;
+    D_80275950.t.ucode = gSPL3DEX_fifoTextStart;
+    D_80275950.t.ucode_data = gSPL3DEX_fifoDataStart;
     D_80275950.t.data_ptr = (void*) arg0->unk8;
     D_80275950.t.data_size = (arg0->unkC - arg0->unk8) >> 3 << 3;
     osWritebackDCache(D_80275950.t.data_ptr , D_80275950.t.data_size);
@@ -216,7 +217,7 @@ void func_80246B94(void){
 void func_80246C2C(void){
     if((D_8027FC14 << 1) < 0){
         osDpSetStatus(DPC_SET_FREEZE);
-        D_80280688 = osViGetCurrFrameBuffer();
+        D_80280688 = osViGetCurrentFramebuffer();
         func_8024BFAC();
     }
     D_8027FC14 = D_8027FC18 = 2;
@@ -239,7 +240,7 @@ void func_80246D78(void){
     volatile s32 sp30;
 
     sp30 = FALSE;
-    if( osViGetCurrFrameBuffer() != D_80280688 || sp2C){
+    if( osViGetCurrentFramebuffer() != D_80280688 || sp2C){
         if(osDpGetStatus() & DPC_STATUS_FREEZE){
             osDpSetStatus(DPC_CLR_FREEZE);
 

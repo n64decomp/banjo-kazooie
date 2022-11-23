@@ -34,7 +34,7 @@ typedef struct{
     f32 unk28;
 } ActorLocal_RBB_5F80;
 
-void func_8038CC9C(Actor *this, s32 new_state);
+void RBB_func_8038CC9C(Actor *this, s32 new_state);
 void func_8038D7E8(ActorMarker *marker, s32 arg1);
 Actor *func_8038D638(ActorMarker *marker, Gfx **gdl, Mtx ** mptr, s32 arg3);
 void func_8038D8BC(Actor *this);
@@ -47,7 +47,7 @@ Struct_RBB_5F80 D_80390B70[4] = {
     {ACTOR_284_BOSS_BOOM_BOX_SMALL,  0.25f,  2.0f,  0x5, 0x02, 0x2, 1.5f, 1.1f},
 };
 
-ActorInfo D_80390BD0 = {
+ActorInfo RBB_D_80390BD0 = {
     MARKER_1A1_BOSS_BOOM_BOX_LARGEST, ACTOR_281_BOSS_BOOM_BOX_LARGEST, ASSET_428_MODEL_BOSS_BOOM_BOX, 0x0, NULL,
     func_8038D8BC, NULL, func_8038D638,
     0, 0, 0.0f, 0
@@ -65,7 +65,7 @@ ActorInfo D_80390C18 = {
     0, 0, 0.0f, 0
 };
 
-ActorInfo D_80390C3C = {
+ActorInfo RBB_D_80390C3C = {
     MARKER_1A4_BOSS_BOOM_BOX_SMALL, ACTOR_284_BOSS_BOOM_BOX_SMALL, ASSET_428_MODEL_BOSS_BOOM_BOX, 0x0, NULL,
     func_8038D8BC, NULL, func_8038D638,
     0, 0, 0.0f, 0
@@ -93,9 +93,9 @@ s32 pad_80391284;
 f32 D_80391288[3];
 
 /* .code */
-void func_8038C370(ActorMarker *marker, s32 arg1){
+void RBB_func_8038C370(ActorMarker *marker, s32 arg1){
     Actor *actor = marker_getActor(marker);
-    func_8038CC9C(actor, arg1);
+    RBB_func_8038CC9C(actor, arg1);
 }
 
 void func_8038C39C(Actor *this){
@@ -120,7 +120,7 @@ void func_8038C39C(Actor *this){
     particleEmitter_emitN(other, local->unk0->unkE);
 }
 
-void func_8038C538(Actor *this){
+void RBB_func_8038C538(Actor *this){
     ActorLocal_RBB_5F80 *local = (ActorLocal_RBB_5F80 *) &this->local;
     ParticleEmitter *other = partEmitList_pushNew(3*local->unk0->unkE);
     particleEmitter_setSprite(other, ASSET_70E_SPRITE_SMOKE_2);
@@ -144,7 +144,7 @@ void func_8038C538(Actor *this){
 
 }
 
-void func_8038C70C(Actor *this){
+void RBB_func_8038C70C(Actor *this){
     ActorLocal_RBB_5F80 *local = (ActorLocal_RBB_5F80 *) &this->local;
     ParticleEmitter *other = partEmitList_pushNew(0xa);
 
@@ -230,7 +230,7 @@ void func_8038CB68(ActorMarker *marker, s32 arg1, s32 arg2){
     Actor *actor = marker_getActor(marker);
     func_80324E88(0.0f);
     func_80324E38(0.0f, 0);
-    timedFunc_set_2(0.0f, (TFQM2)func_8038C370, actor->marker, 3);
+    timedFunc_set_2(0.0f, (TFQM2)RBB_func_8038C370, actor->marker, 3);
 }
 
 void func_8038CBC0(void){
@@ -239,7 +239,7 @@ void func_8038CBC0(void){
         func_802C8090(actor);
 }
 
-int func_8038CBF0(Actor *this){
+int RBB_func_8038CBF0(Actor *this){
     f32 sp2C[3];
     f32 sp20[3];
     ActorLocal_RBB_5F80 *local = (ActorLocal_RBB_5F80 *) &this->local;
@@ -258,7 +258,7 @@ int func_8038CBF0(Actor *this){
 
 }
 
-void func_8038CC9C(Actor *this, s32 new_state){
+void RBB_func_8038CC9C(Actor *this, s32 new_state){
     f32 sp8C[3];
     f32 sp80[3];
     ActorLocal_RBB_5F80 *local = (ActorLocal_RBB_5F80 *) &this->local;
@@ -320,7 +320,7 @@ void func_8038CC9C(Actor *this, s32 new_state){
             item_set(ITEM_0_HOURGLASS_TIMER, 0x1067);
             func_80324E88(2.4f);
             func_80324E38(2.4f, 0);
-            timedFunc_set_2(2.4f, (TFQM2)func_8038C370, (s32)this->marker, 3);
+            timedFunc_set_2(2.4f, (TFQM2)RBB_func_8038C370, (s32)this->marker, 3);
         }
         else{//L8038CEFC
             timedFunc_set_3(2.4f, (TFQM3)comusic_8025AB44, COMUSIC_62_RBB_BOOMBOX, 0x1f40, 0x12C);
@@ -351,8 +351,8 @@ void func_8038CC9C(Actor *this, s32 new_state){
         local->unk14[2] = sp80[2] + this->position_z;
         local->unk14[1] = 0.0f;
         func_8038CA70(this, &local->unk14);
-        func_8038C70C(this);
-        func_8038C538(this);
+        RBB_func_8038C70C(this);
+        RBB_func_8038C538(this);
     }//L8038D17C
 
     if(this->state == 6){
@@ -398,11 +398,11 @@ void func_8038CC9C(Actor *this, s32 new_state){
         local->unk14[0] = this->position_x;
         local->unk14[1] = this->position_y;
         local->unk14[2] = this->position_z;
-        local->unk20 = func_8038CBF0(this);
+        local->unk20 = RBB_func_8038CBF0(this);
     }//L8038D3FC
 
     if(this->state == 3 || this->state == 4 || this->state == 5){
-        local->unk20 = func_8038CBF0(this);
+        local->unk20 = RBB_func_8038CBF0(this);
         if( local->unk20 == 0){
             sp64 = local->unk0->unk4*300.0f;
             for(i = 0; i < 10; i++){
@@ -410,7 +410,7 @@ void func_8038CC9C(Actor *this, s32 new_state){
                 local->unk14[1] = local->unk14[1];
                 local->unk14[2] = local->unk8[2] + randf2(-sp64, sp64);
                 func_8038CA70(this, &local->unk14);
-                local->unk20 = func_8038CBF0(this);
+                local->unk20 = RBB_func_8038CBF0(this);
                 if(local->unk20)
                     break;
             }
@@ -434,7 +434,7 @@ void func_8038CC9C(Actor *this, s32 new_state){
 
 void func_8038D590(ActorMarker *marker, s32 arg1){
     Actor *actor = marker_getActor(marker);
-    func_8038CC9C(actor, 4);
+    RBB_func_8038CC9C(actor, 4);
 }
 
 void func_8038D5BC(ActorMarker *marker, s32 arg1){
@@ -442,7 +442,7 @@ void func_8038D5BC(ActorMarker *marker, s32 arg1){
     ActorLocal_RBB_5F80 *local = (ActorLocal_RBB_5F80 *) &actor->local;
 
     func_8030E6A4(0x3f5, local->unk0->unk10, 0x4e20);
-    func_8038CC9C(actor, 4);
+    RBB_func_8038CC9C(actor, 4);
     func_8038C8A8(actor);
 }
 
@@ -480,9 +480,9 @@ void func_8038D7E8(ActorMarker *marker, s32 arg1){
     func_8030E6A4(SFX_D7_GRABBA_DEATH, local->unk0->unk10, 0x7530);
     local->unk4 += (arg1) ? 1 : 5;
     if(local->unk4 >= local->unk0->unkC)
-        func_8038CC9C(actor, 5);
+        RBB_func_8038CC9C(actor, 5);
     else{
-        func_8038CC9C(actor, 4);
+        RBB_func_8038CC9C(actor, 4);
     }
 
     if(!arg1)
@@ -518,11 +518,11 @@ void func_8038D8BC(Actor *this){
         marker_setCollisionScripts(this->marker, func_8038D590, func_8038D5BC, func_8038D608);
         func_803300D8(this->marker, func_8038D8B4);
         if(local->unk0->unk0 == ACTOR_281_BOSS_BOOM_BOX_LARGEST){
-            func_8038CC9C(this, 1);
+            RBB_func_8038CC9C(this, 1);
             D_80391280 = 0;
         }
         else{
-            func_8038CC9C(this, 7);
+            RBB_func_8038CC9C(this, 7);
         }
 
         if(jiggyscore_isSpawned(JIGGY_56_RBB_BOSS_BOOM_BOX) && !func_803203FC(2))
@@ -544,12 +544,12 @@ void func_8038D8BC(Actor *this){
     if(this->state == 1){
         if(func_803203FC(2)){
             if(func_803203FC(3)){
-                func_8038CC9C(this, 2);
+                RBB_func_8038CC9C(this, 2);
             }
         }
         else{//L8038DAA8
             if(ml_vec3f_distance(&this->position, &sp64) < 1200.0f){
-                func_8038CC9C(this, 2);
+                RBB_func_8038CC9C(this, 2);
             }
         }
     }//L8038DAD8
@@ -578,7 +578,7 @@ void func_8038D8BC(Actor *this){
             if(item_empty(ITEM_0_HOURGLASS_TIMER)){
                 func_803204E4(3, 0);
                 func_803204E4(5, 0);
-                func_8038CC9C(this, 8);
+                RBB_func_8038CC9C(this, 8);
             }
         }
         func_8033568C(this->unk148, &sp54, &sp50);
@@ -589,13 +589,13 @@ void func_8038D8BC(Actor *this){
         }
 
         if(func_80335794(this->unk148) > 0)
-            func_8038CC9C(this, 3);
+            RBB_func_8038CC9C(this, 3);
         
     }//L8038DD64
 
     if(this->state == 5){
         if(func_80335794(this->unk148) > 0){
-            func_8038CC9C(this, 6);
+            RBB_func_8038CC9C(this, 6);
         }else{
             tmp_f2 = func_80335684(this->unk148);
             if(tmp_f2 <= 0.3)
@@ -608,6 +608,6 @@ void func_8038D8BC(Actor *this){
 
     if(this->state == 7){
         if(func_80335794(this->unk148) > 0)
-            func_8038CC9C(this, 3);
+            RBB_func_8038CC9C(this, 3);
     }
 }

@@ -8,7 +8,7 @@ extern s32 func_802EDD8C(f32 (*)[3], f32, f32);
 void func_8038B900(Actor *this);
 
 /* .data */
-ActorInfo D_80390AB0 = {
+ActorInfo RBB_D_80390AB0 = {
     0x30, 0x1C8, 0x41C, 0x0, NULL,
     NULL, func_8038B900, func_80325888,
     0, 0, 0.0f, 0

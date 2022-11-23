@@ -18,17 +18,17 @@ typedef struct {
 }ActorLocal_Yellow_Flibbit;
 
 Actor *func_8038DE5C(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx** vtx);
-void func_8038E034(Actor *this);
+void BGS_func_8038E034(Actor *this);
 
 /* .data */
-ActorInfo D_80390AE0 = {
+ActorInfo BGS_D_80390AE0 = {
     MARKER_C5_FLIBBIT_YELLOW, ACTOR_137_FLIBBIT_YELLOW, ASSET_385_MODEL_FLIBBIT_YELLOW,
     0, NULL, 
-    func_8038E034, NULL, func_8038DE5C,
+    BGS_func_8038E034, NULL, func_8038DE5C,
     0, 0, 1.0f, 0
 };
 s32 D_80390B04[3] = {0xFF, 0xB3, 0};
-f32 D_80390B10[3] = {0.0f, 0.0f, 0.0f};
+f32 BGS_D_80390B10[3] = {0.0f, 0.0f, 0.0f};
 
 /* .code */
 void func_8038D1E0(Actor *this) {
@@ -325,7 +325,7 @@ Actor *func_8038DE5C(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     return this;
 }
 
-void func_8038E034(Actor *this) {
+void BGS_func_8038E034(Actor *this) {
     f32 spB4[3];
     f32 spA8[3];
     f32 spA4;
@@ -365,7 +365,7 @@ void func_8038E034(Actor *this) {
     } 
     if (!local->unk2) {
         local->unk2 = TRUE;
-        func_8038CED0();
+        BGS_func_8038CED0();
     }
     player_getPosition(spB4);
     spA8[0] = spB4[0] - this->position[0];
@@ -446,7 +446,7 @@ void func_8038E034(Actor *this) {
                 sp60[0] = (f32) (local->unkA[0] - local->unk4[0]);
                 sp60[1] = (f32) (local->unkA[1] - local->unk4[1]);
                 sp60[2] = (f32) (local->unkA[2] - local->unk4[2]);
-                func_80258A4C(D_80390B10, this->yaw - 90.0f, sp60, &sp74, &sp70, &sp6C);
+                func_80258A4C(BGS_D_80390B10, this->yaw - 90.0f, sp60, &sp74, &sp70, &sp6C);
                 this->yaw += sp6C * 220.0f * sp9C;
             }
         }

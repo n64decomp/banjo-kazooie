@@ -30,7 +30,7 @@ ActorInfo D_80389AD0 = {
 f32 D_80389AF4[3] = {6200.0f, -2600.0f, 0.0f};
 
 /* .code */
-void func_80386920(Actor *this, s32 next_state){
+void CC_func_80386920(Actor *this, s32 next_state){
     ActorLocal_CC_530 *local = (ActorLocal_CC_530 *)&this->local;
     f32 sp28[3];
     s16 sp20[3];
@@ -57,7 +57,7 @@ void func_80386920(Actor *this, s32 next_state){
     }
 
     if(next_state == 4){
-        func_8038868C();
+        CC_func_8038868C();
         func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 0x7FFF);
     }
 
@@ -76,7 +76,7 @@ void func_80386AD0(ActorMarker *arg0, s32 arg1) {
 
 void func_80386AF8(Actor *arg0) {
     ActorLocal_CC_530 *local = (ActorLocal_CC_530 *)&arg0->local;
-    func_80386920(arg0, 0);
+    CC_func_80386920(arg0, 0);
     func_8030DA44(local->unk0);
 }
 
@@ -107,10 +107,10 @@ void func_80386B28(Actor *this){
         this->position_y = -2620.0f;
         this->position_z = -20.0f;
         if(jiggyscore_isSpawned(JIGGY_17_CC_CLANKER_RAISED)){
-            func_80386920(this, 5);
+            CC_func_80386920(this, 5);
         }
         else{
-            func_80386920(this, 1);
+            CC_func_80386920(this, 1);
         }
     }
     else{//L80386C40
@@ -159,10 +159,10 @@ void func_80386B28(Actor *this){
         local->unk4[2] = sp58[2];
         if(this->state == 0x1 && local->unk2 == 1){
             if(--local->unk3 == 0){
-                func_80386920(this, 4);
+                CC_func_80386920(this, 4);
             }
             else{
-                func_80386920(this, 2);
+                CC_func_80386920(this, 2);
             }
         }//L80386E4C
 
@@ -172,7 +172,7 @@ void func_80386B28(Actor *this){
             }
             this->pitch = (f32)local->unk10 + 30.0f*local->unk14;
             if(1.0f <= local->unk14){
-                func_80386920(this, 3);
+                CC_func_80386920(this, 3);
             }
         }//L80386EC0
 
@@ -182,7 +182,7 @@ void func_80386B28(Actor *this){
             }
             this->pitch = (f32)local->unk10 + 30.0f*(1.0f - local->unk14);
             if(1.0f <= local->unk14){
-                func_80386920(this, 1);
+                CC_func_80386920(this, 1);
             }
         }//L80386F44
 
@@ -192,7 +192,7 @@ void func_80386B28(Actor *this){
             }
             this->pitch = (f32)local->unk10 + 180.0f*(local->unk14/5.0f);
             if(5.0f <= local->unk14){
-                func_80386920(this, 5);
+                CC_func_80386920(this, 5);
                 func_80388EA4();
             }
         }//L80386FC0

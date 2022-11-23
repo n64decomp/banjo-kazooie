@@ -112,7 +112,7 @@ void func_80388664(void) {
     jiggySpawn(JIGGY_17_CC_CLANKER_RAISED, D_80389C00);
 }
 
-void func_8038868C(void) {
+void CC_func_8038868C(void) {
     func_80324E38(0, 3);
     timed_setCameraToNode(0, 0);
     timed_setCameraToNode(5.5f, 1);
@@ -128,7 +128,7 @@ void func_8038868C(void) {
 }
 
 
-void func_80388760(Gfx **gfx, Mtx **mtx, Vtx **vtx){
+void CC_func_80388760(Gfx **gfx, Mtx **mtx, Vtx **vtx){
     BKVertexList *tmp_v0;
     s32 s1;
     f32 spA4[3];
@@ -237,11 +237,11 @@ void func_80388C50(s32 arg0, s32 arg1){
     func_8031CD20(arg0, 0xb, 1);
 }
 
-void func_80388C78(s32 arg0, s32 arg1){
+void CC_func_80388C78(s32 arg0, s32 arg1){
     func_8031CD20(arg0, 0xb, 2);
 }
 
-int func_80388CA0(void){
+int CC_func_80388CA0(void){
     return D_80389FA0.unk21 == 3;
 }
 
@@ -317,7 +317,7 @@ void func_80388ED4(s32 arg0){
     D_80389FA0.unk8 = 1.0f;
 }
 
-void func_80388F4C(void){
+void CC_func_80388F4C(void){
     f32 sp6C[3];
     f32 sp68 = time_getDelta();
     f32 sp64;
@@ -327,7 +327,7 @@ void func_80388F4C(void){
     BKCollisionTri *tmp_v0;
     f32 pad[3];
 
-    func_80387D4C();
+    CC_func_80387D4C();
     if(D_80389FA0.unk21 != 0 && func_80334904() == 2){
         player_getPosition(sp6C);
         D_80389FA0.unk20 = (ml_vec3f_distance(sp6C, D_80389FA0.unkC) < 200.0f);

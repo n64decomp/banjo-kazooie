@@ -605,7 +605,7 @@ ActorInfo D_8038E6D4 =
 };
 
 
-void func_8038C4E0(void){
+void cutscene_func_8038C4E0(void){
     spawnableActorList_add(&D_8038DC90, actor_new, 0X40);
     spawnableActorList_add(&D_8038DCFC, actor_new, 0X140);
     spawnableActorList_add(&D_8038DCD8, actor_new, 0X2000);

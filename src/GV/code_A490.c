@@ -3,10 +3,11 @@
 #include "variables.h"
 
 /* .bss */
+u8 GV_pad3[0x40];
 struct {
     u8 unk0;
     f32 unk4;
-}D_80391B00;
+}GV_D_80391B00;
 
 /* .code */
 void func_80390880(void){
@@ -20,8 +21,8 @@ void func_80390880(void){
 
 void func_803908C4(s32 arg0){
     void *tmp_v0;
-    D_80391B00.unk0 = arg0;
-    if(D_80391B00.unk0 == 2){
+    GV_D_80391B00.unk0 = arg0;
+    if(GV_D_80391B00.unk0 == 2){
         func_80324E38(0.0f, 3);
         timed_setCameraToNode(0.0f, 0);
         timedFunc_set_0(3.0f, func_80390880);
@@ -36,7 +37,7 @@ void func_803908C4(s32 arg0){
         }
     }
 
-    if(D_80391B00.unk0 == 3){
+    if(GV_D_80391B00.unk0 == 3){
         levelSpecificFlags_set(6, TRUE);
         func_803228D8();
         func_803204E4(0xe, 1);
@@ -51,7 +52,7 @@ void func_803909F4(void){
     void *tmp_v0_2;
 
 
-    D_80391B00.unk0 = 0;
+    GV_D_80391B00.unk0 = 0;
     if(map_get() != MAP_15_GV_WATER_PYRAMID) return;
 
     if(jiggyscore_isCollected(JIGGY_42_GV_WATER_PYRAMID)){
@@ -64,7 +65,7 @@ void func_803909F4(void){
             func_8034E71C(tmp_v0_2, -1460, 0.0f);
     }
     else{
-        D_80391B00.unk4 = 0.0f;
+        GV_D_80391B00.unk4 = 0.0f;
         func_803908C4(1);
     }
 }
@@ -75,23 +76,23 @@ void func_80390A94(void){
 
     time_delta = time_getDelta();
 
-    if(!D_80391B00.unk0) return;
+    if(!GV_D_80391B00.unk0) return;
 
-    if(D_80391B00.unk0 == 1){
-        if(0.0f < D_80391B00.unk4){
-            D_80391B00.unk4 -= time_delta;
-            if(D_80391B00.unk4 <= 0.0f){
+    if(GV_D_80391B00.unk0 == 1){
+        if(0.0f < GV_D_80391B00.unk4){
+            GV_D_80391B00.unk4 -= time_delta;
+            if(GV_D_80391B00.unk4 <= 0.0f){
                 func_803908C4(2);
             }
         }
         else{
             if(jiggyscore_isCollected(JIGGY_42_GV_WATER_PYRAMID)){
-                D_80391B00.unk4 = 0.01f;
+                GV_D_80391B00.unk4 = 0.01f;
             }
         }
     }//L80390B34
 
-    if(D_80391B00.unk0 == 2){
+    if(GV_D_80391B00.unk0 == 2){
         tmp_v0 = func_8034C528(0x190);
         if(tmp_v0 && func_8034DC78(tmp_v0) == 1){
             func_8030E760(SFX_7F_HEAVYDOOR_SLAM, 0.8f, 0x7fd0);

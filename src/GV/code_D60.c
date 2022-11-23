@@ -24,20 +24,22 @@ ActorInfo D_80390C80 = { MARKER_BC_GOBI_1, ACTOR_12E_GOBI_1, ASSET_3E0_MODEL_GOB
     0, 0x533, 0.0f, 0
 };
 
+
 /* .bss */
+u8 GV_pad0[0x10];
 struct {
     u8 unk0;
     u8 unk1;
-}D_80391A40;
+}GV_D_80391A40;
 
 
 /* .code */
-void func_80387150(Actor *this, s32 next_state){
+void GV_func_80387150(Actor *this, s32 next_state){
     ActorLocal_GV_D60 *local = (ActorLocal_GV_D60 *)&this->local;
     
     this->state = next_state;
-    D_80391A40.unk0 = FALSE;
-    D_80391A40.unk1 = FALSE;
+    GV_D_80391A40.unk0 = FALSE;
+    GV_D_80391A40.unk1 = FALSE;
 
     if(this->state == 1){
         func_80335924(this->unk148, 0xd9, 0.5f, 4.0f);
@@ -47,14 +49,14 @@ void func_80387150(Actor *this, s32 next_state){
     if(this->state == 2){
         func_80335924(this->unk148, 0xda, 1.0f, 5.0f);
         local->unkC = 0.9f;
-        D_80391A40.unk0 = TRUE;
+        GV_D_80391A40.unk0 = TRUE;
     }
 
     if(this->state == 3){
         func_8028F918(2);
         func_80335924(this->unk148, 0xf7, 1.0f, 5.33f);
         local->unk14 = 0.01f;
-        D_80391A40.unk1 = TRUE;
+        GV_D_80391A40.unk1 = TRUE;
     }
 
     if(this->state == 4){
@@ -78,16 +80,16 @@ Actor *chgobi1_draw(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 }
 
 s32 func_80387354(void){
-    return D_80391A40.unk0;
+    return GV_D_80391A40.unk0;
 }
 
 s32 func_80387360(void){
-    return D_80391A40.unk1;
+    return GV_D_80391A40.unk1;
 }
 
 void func_8038736C(Actor *this){
     ActorLocal_GV_D60 *local = (ActorLocal_GV_D60 *)&this->local;
-    func_80387150(this, 0);
+    GV_func_80387150(this, 0);
     func_8030DA44(local->unk0[0]);
     func_8030DA44(local->unk0[1]);
 }
@@ -118,8 +120,8 @@ void func_80387408(Actor *this){
         marker->unk30 = func_8038736C;
         marker->propPtr->unk8_3 = TRUE;
         marker->collidable = TRUE;
-        D_80391A40.unk0 = 0;
-        D_80391A40.unk1 = 0;
+        GV_D_80391A40.unk0 = 0;
+        GV_D_80391A40.unk1 = 0;
         local->unk0[0] = func_8030D90C();
         local->unk0[1] = func_8030D90C();
         local->unk8 = 0.0f;
@@ -128,7 +130,7 @@ void func_80387408(Actor *this){
         local->unk14 = 0.0f;
         this->unk1C[0] = 0.0f;
         this->unk1C[1] = 0.0f;
-        func_80387150(this, 1);
+        GV_func_80387150(this, 1);
         if(jiggyscore_isSpawned(JIGGY_44_GV_GOBI_1) && ! func_803203FC(1)){
             marker_despawn(this->marker);
         }
@@ -228,5 +230,5 @@ void func_80387408(Actor *this){
     this->unk1C[0] = 0.0f;
 
     if(sp6C)
-        func_80387150(this, sp6C);
+        GV_func_80387150(this, sp6C);
 }

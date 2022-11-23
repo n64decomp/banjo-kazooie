@@ -193,15 +193,15 @@ void func_802C2B5C(void){
     func_802E1790();
     switch(loaded_asm_file){
         case OVERLAY_2_WHALE:
-            cc_func_803870E0();
+            CC_func_803870E0();
             break;
         case OVERLAY_4_DESERT:
-            gv_func_80387118();
+            GV_func_80387118();
             break;
         case OVERLAY_5_BEACH:
             break;
         case OVERLAY_7_SWAMP:
-            bgs_func_803885DC();
+            BGS_func_803885DC();
             break;
         default:
             break;
@@ -363,37 +363,37 @@ void func_802C2B5C(void){
             cutscene_func_8038C4E0();
             break;
         case OVERLAY_B_TRAINING:
-            sm_func_80386810();
+            SM_func_80386810();
             break;
         case OVERLAY_3_HAUNTED:
-            mmm_func_803890E0();
+            MMM_func_803890E0();
             break;
         case OVERLAY_2_WHALE:
-            cc_func_80387DA0();
+            CC_func_80387DA0();
             break;
         case OVERLAY_4_DESERT:
-            gv_func_8038F154();
+            GV_func_8038F154();
             break;
         case OVERLAY_5_BEACH:
-            ttc_func_80388AC0();
+            TTC_func_80388AC0();
             break;
         case OVERLAY_6_JUNGLE:
-            mm_func_803888B0();
+            MM_func_803888B0();
             break;
         case OVERLAY_7_SWAMP:
-            bgs_func_8038F1E0();
+            BGS_func_8038F1E0();
             break;
         case OVERLAY_8_SHIP:
-            rbb_func_80386C48();
+            RBB_func_80386C48();
             break;
         case OVERLAY_9_SNOW:
-            fp_func_80391324();
+            FP_func_80391324();
             spawnableActorList_add(&D_80367BC8, actor_new, 0x8);
             spawnableActorList_add(&D_80367BEC, actor_new, 0x8);
             spawnableActorList_add(&D_80367C10, actor_new, 0x8);
             break;
         case OVERLAY_A_TREE:
-            ccw_func_8038DB6C();
+            CCW_func_8038DB6C();
             break;
     }
 

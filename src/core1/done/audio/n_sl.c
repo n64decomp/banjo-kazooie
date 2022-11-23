@@ -6,7 +6,7 @@
 
 
 extern N_ALSynth *D_80276E80;
-extern N_ALSynth *D_80276E84;
+extern N_ALSynth *n_syn;
 
 void n_alInit(N_ALGlobals *g, ALSynConfig *config)
 {
@@ -15,10 +15,10 @@ void n_alInit(N_ALGlobals *g, ALSynConfig *config)
 
     D_80276E80 = &g->drvr;
 
-    if (D_80276E84 != NULL)
+    if (n_syn != NULL)
         return;
 
-    D_80276E84 = &g->drvr;
+    n_syn = &g->drvr;
 
     n_alSynNew(config);
 }
@@ -30,6 +30,6 @@ void n_alClose(N_ALGlobals *glob)
         n_alSynDelete();
 
         D_80276E80 = NULL;
-        D_80276E84 = NULL;
+        n_syn = NULL;
     }
 }

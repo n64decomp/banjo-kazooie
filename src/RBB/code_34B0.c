@@ -2,17 +2,17 @@
 #include "functions.h"
 #include "variables.h"
 
-void func_803899C0(Actor *this);
+void RBB_func_803899C0(Actor *this);
 
 /* .data */
 ActorInfo D_803906B0 = {
     0x194, 0x1BE, 0x412, 0x0, NULL,
-    func_803899C0, NULL, func_80325888,
+    RBB_func_803899C0, NULL, func_80325888,
     0, 0, 0.0f, 0
 };
 
 /* .code */
-void func_803898A0(void){
+void RBB_func_803898A0(void){
     mapSpecificFlags_set(0, 1);
 }
 
@@ -23,7 +23,7 @@ void func_803898C4(Actor * this, s32 arg1){
         this->position_y -= 35.0f;
         func_80324E38(1.0f, 3);
         timed_setCameraToNode(1.0f, 0);
-        timedFunc_set_0(1.0f, func_803898A0);
+        timedFunc_set_0(1.0f, RBB_func_803898A0);
         func_80324E88(5.0f);
         func_80324E38(5.0f, 0);
     }
@@ -36,7 +36,7 @@ void func_80389980(ActorMarker *marker, s32 arg1){
     }
 }
 
-void func_803899C0(Actor *this){
+void RBB_func_803899C0(Actor *this){
     if(!this->unk16C_4){
         this->marker->propPtr->unk8_3 = 1;
         this->unk16C_4 = 1;

@@ -8,7 +8,7 @@ void func_8038C0FC(Actor *this, s32 new_state);
 void func_8038C204(Actor *this);
 
 /* .data */
-ActorInfo D_80390B10 = {
+ActorInfo RBB_D_80390B10 = {
     0x199, 0x1CB, 0x0, 0x0, NULL,
     func_8038C204, NULL, func_80325340,
     0, 0, 0.0f, 0

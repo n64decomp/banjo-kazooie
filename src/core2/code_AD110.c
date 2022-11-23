@@ -292,7 +292,7 @@ extern void func_8031FB14(s32, s32);
 
 extern void func_802C1674(s32, s32);
 extern void func_802C169C(s32, s32);
-extern void func_80389BFC(s32, s32);
+extern void core2_func_80389BFC(s32, s32);
 extern void func_80389C24(s32, s32);
 extern void func_80389C4C(s32, s32);
 extern void func_80389C74(s32, s32);
@@ -414,7 +414,7 @@ Method_core2_AD110 D_8036FE5C[]; /* ={
     func_8033443C, func_8033443C, func_8033443C, func_8033443C,
     func_8033443C, func_8033443C, func_8033443C, func_8033443C,
     func_8033443C, func_8033443C, func_8033443C, func_8033443C,
-    func_8033443C, func_80389BFC, func_80389C24, func_80389C4C,
+    func_8033443C, core2_func_80389BFC, func_80389C24, func_80389C4C,
     func_80389C74, func_80389C9C, func_80389CC4, func_802D2B94,
     func_802D2C24, func_8033443C, func_8033443C, func_8033443C,
     func_8033443C, func_8033443C, func_8033443C, func_8033443C,

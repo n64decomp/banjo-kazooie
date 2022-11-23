@@ -22,6 +22,6 @@ void    n_alSynSetPitch( N_ALVoice *v, f32 pitch)
         update->data.f = pitch;
         update->next   = 0;
 
-        n_alEnvmixerResampleParam(v->pvoice, AL_FILTER_ADD_UPDATE, update);      
+        n_alEnvmixerParam(v->pvoice, AL_FILTER_ADD_UPDATE, update);      
     }
 }

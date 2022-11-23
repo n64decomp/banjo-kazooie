@@ -38,7 +38,7 @@ void __chAttackTutorial_spawnEnemy(ActorMarker *marker, s32 enemy_id){
     if(marker);
 }
 
-s32 func_803871FC(Actor *this, s32 arg1){
+s32 SM_func_803871FC(Actor *this, s32 arg1){
     volatile s32 sp1C;
     s32 tmp_v0;
     
@@ -82,7 +82,7 @@ void chAttackTutorial_setState(Actor * this, s32 arg1){
     case 2://L803873E0
         
         this->unk38_31 = 0;
-        func_803871FC(this, ++this->unk10_12);
+        SM_func_803871FC(this, ++this->unk10_12);
         break;
     case 3://L8038742C
         mapSpecificFlags_set(5,1);
@@ -94,7 +94,7 @@ void chAttackTutorial_setState(Actor * this, s32 arg1){
         if(!honeycombscore_get(HONEYCOMB_17_SM_COLIWOBBLE)){
             this->unk10_12 = 3;
             this->unk38_31 = 1;
-            func_803871FC(this, this->unk10_12);
+            SM_func_803871FC(this, this->unk10_12);
         }
         break;
     }//L803874A8
@@ -155,7 +155,7 @@ void func_80387690(ActorMarker *marker, enum asset_e text_id, s32 arg2){
         case 0xE14:
         case 0xE16:
         case 0xE18:
-            func_803871FC(actor, actor->unk10_12);
+            SM_func_803871FC(actor, actor->unk10_12);
             break;
         case 0xE15:
             ability_unlock(ABILITY_C_ROLL);

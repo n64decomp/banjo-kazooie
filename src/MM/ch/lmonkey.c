@@ -44,7 +44,7 @@ void func_80388300(Actor **arg0){
     if(arg0);
 }
 
-void func_803883AC(Actor *this){
+void MM_func_803883AC(Actor *this){
     f32 sp2C;
     f32 sp28;
     static D_80389A5C = 0;
@@ -85,7 +85,7 @@ void func_803885D0(Actor *this){
         func_80343DEC(this);
     }else{//L80388630
         if(func_80329530(this, 0x2BC) && !func_803114B0()){
-            func_803883AC(this);
+            MM_func_803883AC(this);
         }//L8038865C
         switch(this->state){
             case 1://L80388690

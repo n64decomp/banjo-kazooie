@@ -24,6 +24,6 @@ void    n_alSynSetFXMix(N_ALVoice *v, u8 fxmix)
 	    update->data.i = fxmix;
         update->next   = 0;
 
-        n_alEnvmixerResampleParam(v->pvoice, AL_FILTER_ADD_UPDATE, update);        
+        n_alEnvmixerParam(v->pvoice, AL_FILTER_ADD_UPDATE, update);        
     }
 }

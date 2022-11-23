@@ -10,7 +10,7 @@ extern f32 chbossjinjo_8038D268(void);
 void chstonejinjo_update(Actor *);
 
 /* .data */
-ActorAnimationInfo D_803919F0[] ={
+ActorAnimationInfo fight_D_803919F0[] ={
     {0, 0.0f},
     {0x265, 1e+8f},
     {0x265, 1e+8f},
@@ -18,7 +18,7 @@ ActorAnimationInfo D_803919F0[] ={
 };
 ActorInfo D_80391A10 = {
     MARKER_276_STONE_JINJO, ACTOR_3A1_STONE_JINJO, ASSET_545_MODEL_STONE_JINJO,
-    0x1, D_803919F0,
+    0x1, fight_D_803919F0,
     chstonejinjo_update, func_80326224, func_80325888,
     0, 0x800, 1.0f, 0
 };
@@ -124,7 +124,7 @@ void chstonejinjo_breakOpen(ActorMarker *marker){
             sp38 = 0x30 + actor->unkF4_8*2;
             sp34 = chbossjinjo_8038D268();
             sp30 = actor->unk1C[0] + sp34;
-            func_8038C0DC(&sp24);
+            fight_func_8038C0DC(&sp24);
             func_8028F94C(2, &sp24);
             func_8038C27C(1);
             timed_setCameraToNode(0 * sp30, sp38);

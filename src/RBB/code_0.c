@@ -43,7 +43,7 @@ Struct_RBB_0_1 D_80390074[4] = {
 };
 
 /* .code */
-void func_803863F0(Actor *actor, s32 arg1){
+void RBB_func_803863F0(Actor *actor, s32 arg1){
     ActorLocal_RBB_0 * local = (ActorLocal_RBB_0 *) &actor->local;
     void *temp_a0;
     f32 sp3C[3];
@@ -92,7 +92,7 @@ void func_803865A4(ActorMarker *marker, s32 arg1){
 void func_803865D0(ActorMarker *marker){
     Actor* actor = marker_getActor(marker);
     ActorLocal_RBB_0 * local = (ActorLocal_RBB_0 *) &actor->local;
-    func_803863F0(actor, 1);
+    RBB_func_803863F0(actor, 1);
     timed_setCameraToNode(0.0f, D_80390074[local->unk4].unk0);
     timedFunc_set_2(0.75*D_80390074[local->unk4].unk4, (TFQM2) func_803865A4, actor->marker, 4);
     func_80324E88(0.75*D_80390074[local->unk4].unk4);
@@ -158,7 +158,7 @@ void func_803868F0(Actor *this){
             local->unk4 = (this->unk78_13 == 0xB)?  3: local->unk4;
             func_803866F4(this, 1);
         }
-        func_803863F0(this, 0);
+        RBB_func_803863F0(this, 0);
     }//L803869F4
     if(this->state == 2){
         if(--local->unkC <= 0){

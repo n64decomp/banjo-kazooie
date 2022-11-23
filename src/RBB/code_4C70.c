@@ -40,7 +40,7 @@ ActorInfo D_803909D4 = {
     0, 0, 0.0f, 0
 };
 
-ActorInfo D_803909F8 = {
+ActorInfo RBB_D_803909F8 = {
     0x2C, 0x1C4, 0x416, 0x0, NULL,
     func_8038B340, NULL, func_8038B230,
     0, 0, 0.0f, 0
@@ -65,7 +65,7 @@ Struct_RBB_4C70 *func_8038B060(Actor *this){
     return NULL;
 }
 
-void func_8038B0B8(Actor *this, s32 arg1){
+void RBB_func_8038B0B8(Actor *this, s32 arg1){
     ActorLocal_RBB_4C70 *local = (ActorLocal_RBB_4C70 *)&this->local;
     ParticleEmitter *other;
 
@@ -137,16 +137,16 @@ void func_8038B340(Actor * this){
         this->yaw = -90.0f;
         this->scale = 0.25f;
 
-        func_8038B0B8(this, 1);
+        RBB_func_8038B0B8(this, 1);
     }//L8038B3E4
 
     if(this->state == 1){
         if(mapSpecificFlags_get(local->unk0->unk10))
-            func_8038B0B8(this, 2);
+            RBB_func_8038B0B8(this, 2);
     }
 
     if(this->state == 2){
         if( func_80335794(this->unk148) > 0 )
-            func_8038B0B8(this, 1);
+            RBB_func_8038B0B8(this, 1);
     }
 }

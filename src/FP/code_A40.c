@@ -2,21 +2,21 @@
 #include "functions.h"
 #include "variables.h"
 
-Actor *func_80386E30(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
+Actor *FP_func_80386E30(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void chXmasTree_update(Actor *this);
 
 /* .data */
 ActorInfo D_80391B50 = { 
     MARKER_BA_XMAS_TREE, ACTOR_15F_XMAS_TREE, ASSET_488_MODEL_XMAS_TREE, 
     0x1, NULL, 
-    chXmasTree_update, func_80326224, func_80386E30,
+    chXmasTree_update, func_80326224, FP_func_80386E30,
     0, 0, 0.0f, 0
 };
 
 s32 chXmasTree_switch_spawn_position[3] = {-0x1220, 0x6A, 0x1945};
 
 /* .code */
-Actor *func_80386E30(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
+Actor *FP_func_80386E30(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     Actor *this = marker_getActor(marker);
     func_8033A45C(5, this->unk38_31);
     func_8033A45C(6, func_8031FF1C(0x13) && !func_8033A0F0(5));
@@ -34,7 +34,7 @@ void func_80386EAC(Actor *this){
     }
 }
 
-void func_80386EF4(Actor *this, int arg1){
+void FP_func_80386EF4(Actor *this, int arg1){
     this->unk38_31 = arg1;
     mapSpecificFlags_set(0, this->unk38_31);
 
@@ -49,14 +49,14 @@ void func_80386F3C(void){
 
 void func_80386F84(Actor * this){
     func_80328A84(this, 2);
-    func_80386EF4(this, 0);
+    FP_func_80386EF4(this, 0);
 }
 
 void func_80386FB4(void){
     func_8032811C(ACTOR_338_XMAS_TREE_SWITCH, chXmasTree_switch_spawn_position, 350);
 }
 
-void func_80386FE0(void *marker){
+void FP_func_80386FE0(void *marker){
     Actor *this = marker_getActor(reinterpret_cast(ActorMarker *, marker));
     Actor *child = spawn_child_actor(0x339, &this);
     s32 pad;
@@ -99,7 +99,7 @@ void chXmasTree_update(Actor *this){
             sfxsource_setSampleRate(this->unk44_31, 28000);
         }
         func_802C3BF8(func_80386FB4);
-        __spawnqueue_add_1(func_80386FE0, this->marker);
+        __spawnqueue_add_1(FP_func_80386FE0, this->marker);
         if(func_8031FF1C(0x13)){
             func_80386F84(this);
             mapSpecificFlags_set(2, FALSE);
@@ -108,13 +108,13 @@ void chXmasTree_update(Actor *this){
 
     this->unk124_9 = 1;
     if(jiggyscore_isCollected(JIGGY_2F_FP_XMAS_TREE) || levelSpecificFlags_get(0x29)){
-        func_80386EF4(this, 1);
+        FP_func_80386EF4(this, 1);
         return;
     }
 
     switch(this->state){
         case 1: // L80387268
-            func_80386EF4(this, 0);
+            FP_func_80386EF4(this, 0);
             if(func_8031FF1C(0x13)){
                 func_80386F84(this);
             }
@@ -133,14 +133,14 @@ void chXmasTree_update(Actor *this){
         case 3: // L803872F0
             if(0.0 <= this->unk60){
                 if( 1.8 < this->unk60){
-                    func_80386EF4(this, 0);
+                    FP_func_80386EF4(this, 0);
                 }
                 else if(this->unk60 < 0.2){//L80387340
-                    func_80386EF4(this, 1);
+                    FP_func_80386EF4(this, 1);
                 }
                 else{
                     if(randf() < 0.2){
-                        func_80386EF4(this, this->unk38_31 ^ 1);
+                        FP_func_80386EF4(this, this->unk38_31 ^ 1);
                         func_8038709C(this);
                     }
                 }//L803873AC
@@ -149,7 +149,7 @@ void chXmasTree_update(Actor *this){
             else{//L803873BC
                 if(func_802BB270()){
                     func_80328A84(this, 4);
-                    func_80386EF4(this, 1);
+                    FP_func_80386EF4(this, 1);
                     item_set(ITEM_0_HOURGLASS_TIMER, 3600 - 1);
                     item_set(ITEM_6_HOURGLASS, TRUE);
 
@@ -160,7 +160,7 @@ void chXmasTree_update(Actor *this){
         case 4: // L80387400
             if(mapSpecificFlags_get(3)){
                 func_80328A84(this, 6);
-                func_80386EF4(this, 1);
+                FP_func_80386EF4(this, 1);
                 item_set(ITEM_6_HOURGLASS, FALSE);
                 tmp_a0 = this->unk44_31;
                 if(tmp_a0){
@@ -189,14 +189,14 @@ void chXmasTree_update(Actor *this){
         case 5: // L803874EC
             if(0.0 <= this->unk60){
                 if( 1.8 < this->unk60){
-                    func_80386EF4(this, 1);
+                    FP_func_80386EF4(this, 1);
                 }
                 else if(this->unk60 < 0.2){
-                    func_80386EF4(this, 0);
+                    FP_func_80386EF4(this, 0);
                 }
                 else{
                     if(randf() < 0.2){
-                        func_80386EF4(this, this->unk38_31 ^ 1);
+                        FP_func_80386EF4(this, this->unk38_31 ^ 1);
                         func_8038709C(this);
                     }
                 }

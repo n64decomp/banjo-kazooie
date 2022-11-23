@@ -29,7 +29,7 @@ extern ActorInfo D_80389B24 = {
 u8 D_80389F80;
 
 /* .code */
-void func_80386FE0(Actor *this, s32 next_state){
+void CC_func_80386FE0(Actor *this, s32 next_state){
     ActorLocal_CC_BF0 *local = (ActorLocal_CC_BF0 *)&this->local;
     s32 prev_state = this->state;
     this->state = next_state;
@@ -54,7 +54,7 @@ void func_80386FE0(Actor *this, s32 next_state){
     }
 }
 
-void func_803870E0(void) {
+void CC_func_803870E0(void) {
     D_80389F80 = 0;
 }
 
@@ -82,9 +82,9 @@ void func_803870F8(Actor *this){
         this->roll = 0.0f;
         local->unk0 = (marker->modelId == 0x309) ? 1 : 2;
         local->egg_count = 0;
-        func_80386FE0(this, 1);
+        CC_func_80386FE0(this, 1);
         if(levelSpecificFlags_get((local->unk0 == 1)? LEVEL_FLAG_0_CC_TOKEN_TOOTH_OPEN: LEVEL_FLAG_1_CC_JIGGY_TOOTH_OPEN)){
-            func_80386FE0(this, 3);
+            CC_func_80386FE0(this, 3);
         }
     }//L803871D8
     player_getPosition(&sp70);
@@ -119,7 +119,7 @@ void func_803870F8(Actor *this){
         D_80389F80 = 0;
         local->egg_count++;
         if(local->egg_count == 3){
-            func_80386FE0(this, 2);
+            CC_func_80386FE0(this, 2);
         }else{
             func_8025A6EC(COMUSIC_2B_DING_B, 28000);
         }
@@ -131,7 +131,7 @@ void func_803870F8(Actor *this){
                 ((flagCnt == 0)? 0xd30 : 0xd31) :
                 ((flagCnt == 0)? 0xd2e : 0xd2f), 4, NULL, NULL, NULL, NULL);
         }
-        func_80386FE0(this, 3);
+        CC_func_80386FE0(this, 3);
     }//L80387474
 
     if(this->state == 3){

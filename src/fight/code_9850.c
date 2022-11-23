@@ -22,12 +22,12 @@ f32 D_80391DF4[4] = {0.3f, 0.3f, 0.3f, 1.0f};
 s32 D_80391E04[2] = {1, 9}; 
 f32 D_80391E0C[4] = {4.5f, 4.5f, 4.5f, 4.5f};
 f32 D_80391E1C[4] = {0.0f, 0.0f, 0.85f, 1.35f};
-f32 D_80391E2C[2] = {0.6f, 0.7f};
+f32 fight_D_80391E2C[2] = {0.6f, 0.7f};
 f32 D_80391E34[6] = {-130.0f, 0.0f, -130.0f, 130.0f, 0.0f, 130.0f}; 
 f32 D_80391E4C[4] = {1.1f, 1.1f, 4.0f, 5.4f};
 
 f32 D_80391E5C[6] = {-20.0f, 0.0f, -20.0f, 20.0f, 40.0f, 20.0f};
-f32 D_80391E74[6] = {0.0f, -1200.0f, 0.0f, 0.0f, -1200.0f, 0.0f};
+f32 fight_D_80391E74[6] = {0.0f, -1200.0f, 0.0f, 0.0f, -1200.0f, 0.0f};
 f32 D_80391E8C[6] = {-420.0f, 410.0f, -420.0f, 480.0f, 860.0f, 480.0f};
 f32 D_80391EA4[4] = {0.35f, 0.65f, 0.0f, 0.0f};
 f32 D_80391EB4[4] = {0.0f, 0.01f, 2.0f, 2.3f}; 
@@ -73,17 +73,17 @@ void func_8038FCF0(ActorMarker *marker, ActorMarker *other_marker){
     timedFunc_set_0(0.0f, func_8038FC88);
     timedFunc_set_0(0.3f, func_8038FCBC);
     func_8038EBE0(actor->position, 4, ASSET_710_SPRITE_SPARKLE_PURPLE,
-        &D_80391E5C, &D_80391E74, &D_80391E8C,
+        &D_80391E5C, &fight_D_80391E74, &D_80391E8C,
         &D_80391EA4, &D_80391EB4, &D_80391EC4
     );
     func_8038EBE0(actor->position, 4, ASSET_711_SPRITE_SPARKLE_DARK_BLUE,
-        &D_80391E5C, &D_80391E74, &D_80391E8C,
+        &D_80391E5C, &fight_D_80391E74, &D_80391E8C,
         &D_80391EA4, &D_80391EB4, &D_80391EC4
     );
     func_8038EEFC(actor->position, 3, &D_80391E4C);
     func_8038ED9C(&sp38, 0x6C8, 3, 
         &D_80391E04, &D_80391E34, 
-        &D_80391E0C, &D_80391E1C, &D_80391E2C
+        &D_80391E0C, &D_80391E1C, &fight_D_80391E2C
     );
     marker_despawn(actor->marker);
 }
@@ -132,7 +132,7 @@ void func_8038FE94(Actor *this){
     }
 }
 
-void func_803900DC(ActorMarker *marker, f32 (*arg1)[3], f32 arg2, f32 arg3){
+void fight_func_803900DC(ActorMarker *marker, f32 (*arg1)[3], f32 arg2, f32 arg3){
     Actor *actor = marker_getActor(marker);
     actor->position_x = (*arg1)[0];
     actor->position_y = (*arg1)[1];

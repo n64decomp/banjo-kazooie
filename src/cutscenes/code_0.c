@@ -63,7 +63,7 @@ extern struct31s D_8038D8A4;
 extern struct42s D_8038D8D4;
 
 /* .code */
-void func_803863F0(void){
+void cutscenes_func_803863F0(void){
     func_8025A2D8();
 }
 
@@ -192,7 +192,7 @@ void func_80386990(void){
     func_802F9DB8(indx, 0.6f, 0.7f, 0.04f);
 }
 
-void func_80386A00(void){
+void cutscenes_func_80386A00(void){
     s32 indx;
     
     indx = func_802F9AA8(SFX_191_STATIC);
@@ -381,7 +381,7 @@ void func_80387424(s32 arg0) {
     particleEmitter_emitN(pCtrl, 8);
 }
 
-void func_80387560(s32 arg0) {
+void cutscenes_func_80387560(s32 arg0) {
     Actor *sp44;
     ParticleEmitter *pCtrl;
     f32 sp34[3];
@@ -457,7 +457,7 @@ void func_803878A4(s32 arg0) {
     particleEmitter_emitN(pCtrl, 1);
 }
 
-void func_803879E0(s32 arg0) {
+void cutscenes_func_803879E0(s32 arg0) {
     Actor *sp44;
     ParticleEmitter *pCtrl;
     f32 sp34[3];
@@ -639,7 +639,7 @@ void func_8038837C(s32 arg0, s32 arg1) {
     func_80288F78(arg0, 0.03f, 0x012A8CFAU);
 }
 
-void func_803883AC(s32 arg0, s32 arg1) {
+void cutscenes_func_803883AC(s32 arg0, s32 arg1) {
     func_80288F78(arg0, 0.0282f, 0x012A8CFAU);
     func_80288F78(arg0, 0.6107f, 0x207375U);
     func_80288F78(arg0, 0.6107f, 0xF9534EU);
@@ -676,7 +676,7 @@ void func_803884DC(s32 arg0, s32 arg1) {
     func_80288F78(arg0, 0.2f, 0x017D80FA);
 }
 
-void func_80388660(s32 arg0, s32 arg1) {
+void cutscenes_func_80388660(s32 arg0, s32 arg1) {
     func_8028913C(arg0, 1);
     func_80361C64(arg0, 0.001f, arg1, 3, 0);
     func_8028913C(arg0, 1);
@@ -825,14 +825,14 @@ void func_803890CC(s32 arg0, s32 arg1) {
     func_8028913C(arg0, 1);
     func_80361C64(arg0, 0.01f, arg1, 4, 1);
     func_80361D7C(arg0, 0.08f, arg1, 5, 0x6DB375U);
-    func_80288D40(arg0, 0.08f, func_80387560, arg1);
+    func_80288D40(arg0, 0.08f, cutscenes_func_80387560, arg1);
     func_80361D7C(arg0, 0.2f, arg1, 5, 0x6DB375U);
-    func_80288D40(arg0, 0.2f, func_80387560, arg1);
+    func_80288D40(arg0, 0.2f, cutscenes_func_80387560, arg1);
     func_80361D7C(arg0, 0.3f, arg1, 5, 0x6DB375U);
-    func_80288D40(arg0, 0.3f, func_80387560, arg1);
+    func_80288D40(arg0, 0.3f, cutscenes_func_80387560, arg1);
 }
 
-void func_80389204(s32 arg0, s32 arg1) {
+void cutscenes_func_80389204(s32 arg0, s32 arg1) {
     func_8028913C(arg0, 1);
     func_80361C64(arg0, 0.01f, reinterpret_cast(s32, arg1), 3, 2);
     func_8028913C(arg0, 1);
@@ -905,13 +905,13 @@ void func_803896C8(s32 arg0, s32 arg1) {
     func_80361C24(arg0, 0.65f, arg1, 7);
 }
 
-void func_80389850(s32 arg0, s32 arg1) {
+void cutscenes_func_80389850(s32 arg0, s32 arg1) {
     func_80361C64(arg0, 0.36f, arg1, 7, 0);
     func_80361C64(arg0, 0.618f, arg1, 7, 1);
     func_80361C64(arg0, 0.696f, arg1, 5, 1);
 }
 
-void func_803898C8(s32 arg0, s32 arg1) {
+void cutscenes_func_803898C8(s32 arg0, s32 arg1) {
     func_8028913C(arg0, 1);
     func_80361C64(arg0, 0.03f, reinterpret_cast(s32, arg1), 7, 0);
     func_8028913C(arg0, 1);
@@ -984,7 +984,7 @@ void func_80389DFC(s32 arg0, s32 arg1) {
     func_80288EB0(arg0, 0.9f, 0, 5.0f, 0.8f);
 }
 
-void func_80389EA8(s32 arg0, s32 arg1) {
+void cutscenes_func_80389EA8(s32 arg0, s32 arg1) {
     func_8028913C(arg0, 1);
     func_80361C64(arg0, 0.023f, arg1, 1, 1);
     func_8028913C(arg0, 2);
@@ -1011,7 +1011,7 @@ void func_8038A05C(s32 arg0, s32 arg1) {
     func_80361C64(arg0, 0.02f, arg1, 1, 0);
 }
 
-void func_8038A0A0(s32 arg0, s32 arg1) {
+void cutscenes_func_8038A0A0(s32 arg0, s32 arg1) {
     func_80288D08(arg0, 0.01f, func_803864AC);
     func_80288D08(arg0, 0.0f, func_803865F0);
     func_80288F78(arg0, 0.8f, 0xB1C075U);
@@ -1039,7 +1039,7 @@ void func_8038A254(s32 arg0, s32 arg1) {
     func_80288F78(arg0, 0.5f, 0x041B809CU);
 }
 
-void func_8038A2F0(s32 arg0, s32 arg1) {
+void cutscenes_func_8038A2F0(s32 arg0, s32 arg1) {
     func_8028913C(arg0, 1);
     func_80361C64(arg0, 0.023f, arg1, 1, 0);
 }
@@ -1066,7 +1066,7 @@ void func_8038A334(s32 arg0, s32 arg1) {
     func_80288F78(arg0, 0.93f, 0x9880C3U);
 }
 
-void func_8038A54C(s32 arg0, s32 arg1) {
+void cutscenes_func_8038A54C(s32 arg0, s32 arg1) {
     func_80288F78(arg0, 0.23f, 0x013973A4U);
     func_80288F78(arg0, 0.36f, 0x01398CA4U);
     func_80288D08(arg0, 0.53f, func_80386668);
@@ -1111,7 +1111,7 @@ void func_8038A7E8(s32 arg0, s32 arg1) {
     func_80288F78(arg0, 0.53f, 0x013980A4U);
 }
 
-void func_8038A864(s32 arg0, s32 arg1) {
+void cutscenes_func_8038A864(s32 arg0, s32 arg1) {
     func_80361CF4(arg0, 0.001f, arg1, 0.7f);
     func_8028913C(arg0, 2);
     func_80288D40(arg0, 0.7f, func_80386578, arg1);
@@ -1154,7 +1154,7 @@ void func_8038AAFC(s32 arg0, s32 arg1) {
     func_80288D08(arg0, 0.4f, func_803867D0);
 }
 
-void func_8038AB60(s32 arg0, s32 arg1) {
+void cutscenes_func_8038AB60(s32 arg0, s32 arg1) {
     func_80361D7C(arg0, 0.21f, reinterpret_cast(s32, arg1), 5, 0x96804EU);
     func_80361D7C(arg0, 0.43f, arg1, 5, 0x96864EU);
     func_80361D7C(arg0, 0.65f, arg1, 5, 0x96884EU);
@@ -1330,10 +1330,10 @@ void func_8038B9B4(s32 arg0, s32 arg1) {
     func_80288EB0(arg0, 0.66f, 0, 20.0f, 0.8f);
     func_80288D40(arg0, 0.7f, func_803878A4, arg1);
     func_80288F78(arg0, 0.76f, 0x1F8075U);
-    func_80288D40(arg0, 0.77f, func_803879E0, arg1);
-    func_80288D40(arg0, 0.86f, func_803879E0, arg1);
+    func_80288D40(arg0, 0.77f, cutscenes_func_803879E0, arg1);
+    func_80288D40(arg0, 0.86f, cutscenes_func_803879E0, arg1);
     func_80288EB0(arg0, 0.86f, 0, 20.0f, 0.9f);
-    func_80288D40(arg0, 0.96f, func_803879E0, arg1);
+    func_80288D40(arg0, 0.96f, cutscenes_func_803879E0, arg1);
 }
 
 
@@ -1401,10 +1401,10 @@ void func_8038BF5C(s32 arg0, s32 arg1) {
     func_80288D40(arg0, 0.85f, func_80387B58, arg1);
     func_80288D40(arg0, 0.95f, func_80387B58, arg1);
     func_8028913C(arg0, 0x14);
-    func_80288D08(arg0, 0.05f, func_80386A00);
+    func_80288D08(arg0, 0.05f, cutscenes_func_80386A00);
 }
 
-void func_8038C0DC(s32 arg0, s32 arg1) {
+void cutscenes_func_8038C0DC(s32 arg0, s32 arg1) {
     func_80361C64(arg0, 0.01f, arg1, 4, 1);
     func_8028913C(arg0, 1);
     func_80288D08(arg0, 0.02f, func_80386990);
@@ -1413,13 +1413,13 @@ void func_8038C0DC(s32 arg0, s32 arg1) {
 }
 
 
-void func_8038C16C(s32 arg0, s32 arg1) {
+void cutscenes_func_8038C16C(s32 arg0, s32 arg1) {
     func_80288F78(arg0, 0.2f, 0x17808CU);
 }
 
 void func_8038C19C(s32 arg0, s32 arg1) {
     func_8028913C(arg0, 1);
-    func_80288D08(arg0, 0.02f, func_803863F0);
+    func_80288D08(arg0, 0.02f, cutscenes_func_803863F0);
     func_8028913C(arg0, 1);
     func_80288D08(arg0, 0.97f, func_80386410);
 }
@@ -1464,7 +1464,7 @@ void func_8038C404(s32 arg0, s32 arg1) {
     func_80288D40(arg0, 0.74f, func_80387FC0, arg1);
 }
 
-void func_8038C454(s32 arg0, s32 arg1) {
+void cutscenes_func_8038C454(s32 arg0, s32 arg1) {
     func_80288D40(arg0, 0.2f, func_803881CC, arg1);
     func_80288F78(arg0, 0.2f, 0x1E808CU);
     func_80288D40(arg0, 0.3f, func_803881CC, arg1);

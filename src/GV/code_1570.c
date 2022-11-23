@@ -13,7 +13,7 @@ void chgobi2_update(Actor *this);
 Actor *chgobi2_draw(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 
 /* .data */
-ActorInfo D_80390CB0 = { MARKER_BF_GOBI_2, ACTOR_131_GOBI_2, ASSET_3E0_MODEL_GOBI, 
+ActorInfo GV_D_80390CB0 = { MARKER_BF_GOBI_2, ACTOR_131_GOBI_2, ASSET_3E0_MODEL_GOBI, 
     0x0, NULL, 
     NULL, chgobi2_update, chgobi2_draw, 
     0, 0x533, 0.0f, 0
@@ -26,7 +26,7 @@ f32 D_80390CEC[3] = {1145.0f, 443.0f, 9197.0f};
 extern u8 D_80391A50;
 
 /* .code */
-void func_80387960(void){
+void GV_func_80387960(void){
     func_8028F490(D_80390CD4);
 }
 
@@ -43,7 +43,7 @@ void func_803879D4(ActorMarker *this_marker){
     chgobi2_setState(this, 4);
 }
 
-void func_80387A00(ActorMarker *this_marker){
+void GV_func_80387A00(ActorMarker *this_marker){
     Actor *this = marker_getActor(reinterpret_cast(ActorMarker *, this_marker));
     chgobi2_setState(this, 7);
 }
@@ -57,7 +57,7 @@ void func_80387A2C(ActorMarker *caller, enum asset_e text_id, s32 arg2){
     timed_setCameraToNode(3.0f, 0xd);
     timedFunc_set_0(3.5f, __chgobi2_spawnJIggy);
     func_80324E88(6.0f);
-    timedFunc_set_1(6.0f, (GenMethod_1) func_80387A00, reinterpret_cast(s32, caller));
+    timedFunc_set_1(6.0f, (GenMethod_1) GV_func_80387A00, reinterpret_cast(s32, caller));
     func_80324E38(6.0f, 0);
 }
 
@@ -76,7 +76,7 @@ void chgobi2_setState(Actor *this, s32 next_state){
     }
 
     if(next_state == 3){
-        timedFunc_set_0(0.05f, func_80387960);
+        timedFunc_set_0(0.05f, GV_func_80387960);
         timed_playSfx(0.05f, SFX_84_GOBI_CRYING, 1.1f, 32000);
         func_80324E38(0.051f, 1);
         timedFunc_set_1(0.06f, (GenMethod_1)func_803879D4, reinterpret_cast(s32, this->marker));

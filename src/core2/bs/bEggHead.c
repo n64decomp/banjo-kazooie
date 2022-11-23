@@ -33,7 +33,7 @@ void bsegghead_update(void) {
     has_eggs = (item_empty(ITEM_D_EGGS) == 0);
     if (should_shoot_egg()) {
         if (has_eggs)
-            D_8037D2F0 = func_80258948(D_8037D2F0 + 1, 3);
+            D_8037D2F0 = ml_min_w(D_8037D2F0 + 1, 3);
         else 
             func_80346C10(&sp28, -1, 0, ITEM_D_EGGS, 0);
     }

@@ -20,7 +20,7 @@ typedef struct sm_2900_struct{
 
 //public
 void func_803899B0(Actor * this);
-void func_80389610(Actor * this);
+void SM_func_80389610(Actor * this);
 
 /* .data */
 ActorAnimationInfo D_8038AF60[6] = {
@@ -141,7 +141,7 @@ void func_80388FA0(Actor *this, s32 arg1){
         case 5:
             func_80388F24(this);
             func_8028F94C(2,this->position);
-            func_80389610(this);
+            SM_func_80389610(this);
             break;
         case 3:
             actor_loopAnimation(this);
@@ -256,7 +256,7 @@ void func_80389494(Actor * this, s32* arg1, s32 *arg2){
     }
 }
 
-void func_80389610(Actor * this){
+void SM_func_80389610(Actor * this){
     s32 sp2C;
     s32 sp28;
 
@@ -476,7 +476,7 @@ void func_803899B0(Actor * this){
         }//L80389EA0
         if(actor_animationIsAt(this, 0.9999f)){
             if(!mapSpecificFlags_get(1)){
-                func_80389610(this);
+                SM_func_80389610(this);
             }
             func_80388FA0(this, 3);
         }//L80389EE0
@@ -489,7 +489,7 @@ void func_803899B0(Actor * this){
 
         }else if(actor_animationIsAt(this, 0.35f)){//L80389F78
             if(mapSpecificFlags_get(1)){
-                func_80389610(this);
+                SM_func_80389610(this);
             }
         }
         break;

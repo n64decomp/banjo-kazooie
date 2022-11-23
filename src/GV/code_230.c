@@ -17,9 +17,9 @@ void chancientone_update(Actor *this);
 Actor *chancientone_draw(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 
 /* .data */
-s16 D_80390C20[4] = {5, 6, 7, 8};
+s16 GV_D_80390C20[4] = {5, 6, 7, 8};
 ActorMarker *D_80390C28[5] = {NULL};
-ActorAnimationInfo D_80390C3C[] = {
+ActorAnimationInfo GV_D_80390C3C[] = {
     {0, 0.0f},
     {0, 0.0f},
     {ASSET_ED_ANIM_ANCIENT_ONE, 2.0f},
@@ -27,7 +27,7 @@ ActorAnimationInfo D_80390C3C[] = {
 };
 
 ActorInfo D_80390C5C = { MARKER_F4_ANCIENT_ONE, ACTOR_147_ANCIENT_ONE, ASSET_3E8_MODEL_ANCIENT_ONE, 
-    0x1, D_80390C3C, 
+    0x1, GV_D_80390C3C, 
     chancientone_update, func_80326224, chancientone_draw, 
     0, 0x100, 0.0f, 0
 };
@@ -48,19 +48,19 @@ void func_80386620(Actor *this){
             return;
     }
 
-     D_80390C20[0] = 5;
-     D_80390C20[1] = 6;
-     D_80390C20[2] = 7;
-     D_80390C20[3] = 8;
+     GV_D_80390C20[0] = 5;
+     GV_D_80390C20[1] = 6;
+     GV_D_80390C20[2] = 7;
+     GV_D_80390C20[3] = 8;
 
     phi_s3 = (randf() * 1.0737418e9f);
     phi_s2 = 1;
     phi_s1 = 0;
     while(phi_s2 != 0x40000000){
         if ((phi_s3 & phi_s2) != 0) {
-            temp_a1 = D_80390C20[phi_s1];
-            D_80390C20[phi_s1] = D_80390C20[phi_s1 + 1];
-            D_80390C20[phi_s1 + 1] = temp_a1;
+            temp_a1 = GV_D_80390C20[phi_s1];
+            GV_D_80390C20[phi_s1] = GV_D_80390C20[phi_s1 + 1];
+            GV_D_80390C20[phi_s1 + 1] = temp_a1;
             temp_a0 = D_80390C28[phi_s1 + 1];
             D_80390C28[phi_s1 + 1] = D_80390C28[phi_s1 + 2];
             D_80390C28[phi_s1 + 2] = temp_a0;
@@ -166,7 +166,7 @@ void chancientone_update(Actor *this){
                                 actor_playAnimationOnce(this);
                                 if(this->unkF4_8 < 5){
                                     D_80390C28[this->unkF4_8]->propPtr->unk8_4 = TRUE;
-                                    func_802BAFE4(D_80390C20[this->unkF4_8 - 1]);
+                                    func_802BAFE4(GV_D_80390C20[this->unkF4_8 - 1]);
                                     func_80244BB0(2, 0x86, 0x7ff8, 0.3f);
                                     timedFunc_set_0(0.45f, func_8038678C);
                                 
@@ -259,7 +259,7 @@ Actor *chancientone_draw(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **v
 }
 
 
-void func_80387118(void){
+void GV_func_80387118(void){
     int i;
     for(i = 0; i < 5; i++){
         D_80390C28[i] = NULL;

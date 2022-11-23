@@ -45,7 +45,7 @@ s32 n_alSynAllocVoice( N_ALVoice *voice, ALVoiceConfig *vc)
             update->type       = AL_FILTER_SET_VOLUME;
             update->data.i     = 0;
             update->moredata.i = pvoice->offset - 64;
-            n_alEnvmixerResampleParam(voice->pvoice, AL_FILTER_ADD_UPDATE, update);
+            n_alEnvmixerParam(voice->pvoice, AL_FILTER_ADD_UPDATE, update);
 
             /*
              * stop stolen voice
@@ -55,7 +55,7 @@ s32 n_alSynAllocVoice( N_ALVoice *voice, ALVoiceConfig *vc)
                 update->delta  = n_syn->paramSamples + pvoice->offset;
                 update->type   = AL_FILTER_STOP_VOICE;
                 update->next   = 0;
-                n_alEnvmixerResampleParam(voice->pvoice, AL_FILTER_ADD_UPDATE, update);
+                n_alEnvmixerParam(voice->pvoice, AL_FILTER_ADD_UPDATE, update);
             } else {
 #ifdef _DEBUG                
                 __osError(ERR_ALSYN_NO_UPDATE, 0);

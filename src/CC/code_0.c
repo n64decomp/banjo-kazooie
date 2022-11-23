@@ -20,7 +20,7 @@ ActorInfo D_80389AA0 = {
 };
 
 /* .code */
-void func_803863F0(Actor *this, s32 next_state){
+void CC_func_803863F0(Actor *this, s32 next_state){
     ActorLocal_CC_0 * local = (ActorLocal_CC_0 *)this->local;
     if(this->state == 4){
         func_80388ED4(0);
@@ -55,7 +55,7 @@ void func_803864D4(Actor *this){
     if(!this->unk16C_4){
         this->unk16C_4 = 1;
         marker->propPtr->unk8_3 = 1;
-        func_803863F0(this, 1);
+        CC_func_803863F0(this, 1);
     }//L80386530
 
     func_80388B4C(&sp4C);
@@ -65,27 +65,27 @@ void func_803864D4(Actor *this){
         sp30[0] = sp4C[0] - sp40[0];
         sp30[1] = 0.0f;
         sp30[2] = sp4C[2] - sp40[2];
-        if(!func_80388CA0()){
+        if(!CC_func_80388CA0()){
             local->unk4 = 2.0f;
         }
         else if(60.0f < gu_sqrtf(sp30[0]*sp30[0] + sp30[1]*sp30[1] + sp30[2]*sp30[2])){
             local->unk4 = 0.05f;
         }
         else{
-            func_803863F0(this, 2);
+            CC_func_803863F0(this, 2);
         }
     }//L80386634
 
     if(func_8025773C(&local->unk0, sp3C)){
-        func_803863F0(this, 4);
+        CC_func_803863F0(this, 4);
     }
     
     if((this->state == 2) && (1.0 <= local->unk8)){
-            func_803863F0(this, 3);
+            CC_func_803863F0(this, 3);
     }//L803866B4
 
     if((this->state == 4) && (1.0 <= local->unk8)){
-            func_803863F0(this, 1);
+            CC_func_803863F0(this, 1);
     }//L80386714
 
     if(this->state == 1){

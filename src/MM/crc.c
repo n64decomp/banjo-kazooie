@@ -27,7 +27,7 @@ void func_80387EC0(void) {
     }
 }
 
-void func_80387F44(void) {
+void MM_func_80387F44(void) {
     s32 sp1C;
 
     osPiReadIo(0x578, (u32 *)&sp1C);

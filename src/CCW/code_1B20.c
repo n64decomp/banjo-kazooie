@@ -17,7 +17,7 @@ typedef struct{
 }ActorLocal_CCW_1B20;
 
 void func_80387F64(Actor *this, s32 next_state);
-Actor *func_803882F4(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
+Actor *CCW_func_803882F4(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void func_80388478(Actor *this);
 
 /* .data */
@@ -28,7 +28,7 @@ Struct_CCW_1B20_0 D_8038EC40[4] ={
     {0x183, 1, 1, 0x000, 0x000, 0x00, 0}
 };
 
-ActorInfo D_8038EC70 = { 0x1B0, 0x29D, 0x447, 0x0, NULL, func_80388478, NULL, func_803882F4, 0, 0, 1.0f, 0};
+ActorInfo D_8038EC70 = { 0x1B0, 0x29D, 0x447, 0x0, NULL, func_80388478, NULL, CCW_func_803882F4, 0, 0, 1.0f, 0};
 f32 D_8038EC94[3] = {200.0f,  2120.0f, -5570.0f};
 
 /* .code */
@@ -90,7 +90,7 @@ bool func_80388260(ActorMarker *marker, s32 arg1){
     return marker->unk40_31 != 1;
 }
 
-void func_80388278(ActorMarker *marker, ActorMarker *other_marker) {
+void CCW_func_80388278(ActorMarker *marker, ActorMarker *other_marker) {
     func_8025A6EC(COMUSIC_2B_DING_B, 28000);
 }
 
@@ -102,7 +102,7 @@ void func_803882A4(ActorMarker* marker, ActorMarker *other_marker) {
     }
 }
 
-Actor *func_803882F4(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
+Actor *CCW_func_803882F4(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     Actor *this;
     s32 sp18;
 
@@ -144,7 +144,7 @@ void func_80388478(Actor *this) {
     if (!this->unk16C_4) {
         this->unk16C_4 = TRUE;
         func_803300C0(this->marker, func_80388260);
-        marker_setCollisionScripts(this->marker, NULL, func_80388278, func_803882A4);
+        marker_setCollisionScripts(this->marker, NULL, CCW_func_80388278, func_803882A4);
         actor_collisionOn(this);
         if (!jiggyscore_isSpawned(JIGGY_4D_CCW_FLOWER)) {
             func_80320004(0xE5, FALSE);

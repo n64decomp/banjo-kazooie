@@ -41,11 +41,11 @@ enum asset_e D_80390984[] = {    0, 0xC66, 0xC68, 0xC6A, 0xC92, 0xC93, 0xC94,   
 enum asset_e D_803909A4[] = {    0, 0xC67, 0xC69,     0, 0xC95, 0xC96, 0xC97};
 enum asset_e D_803909C0[] = {    0, 0xC6E, 0xC6F,     0, 0xC95, 0xC96, 0xC97};
 enum asset_e D_803909DC[] = {0xC65, 0xC65, 0xC65, 0xC8F,     0,     0,     0};
-enum asset_e D_803909F8[] = {0xC64,     0,     0, 0xC8E,     0,     0,     0,    0}; 
+enum asset_e BGS_D_803909F8[] = {0xC64,     0,     0, 0xC8E,     0,     0,     0,    0}; 
 enum asset_e D_80390A18[] = {0xC6D, 0xC70, 0xC71, 0xC8E,     0,     0,     0,    0};
 
 /* .code */
-bool func_80389810(f32 arg0[3]) {
+bool BGS_func_80389810(f32 arg0[3]) {
     if (func_8028ECAC() != BSGROUP_7_CROC_ATTACK) {
         return FALSE;
     }
@@ -53,7 +53,7 @@ bool func_80389810(f32 arg0[3]) {
     return TRUE;
 }
 
-void func_80389850(Actor *this, s32 arg1) {
+void BGS_func_80389850(Actor *this, s32 arg1) {
     ActorLocal_BGS_3420 *local;
     Actor *vile;
     f32 sp94[3];
@@ -158,11 +158,11 @@ void func_80389C58(ActorMarker *marker) {
 
     this = marker_getActor(marker);
     local = (ActorLocal_BGS_3420 *)&this->local;
-    func_80389850(this, 0);
+    BGS_func_80389850(this, 0);
     func_80311480(D_80390984[local->unkC], 0xF, func_8038C284(local->vile_marker), this->marker, func_80389BF8, NULL);
 }
 
-void func_80389CD8(ActorMarker *marker, enum asset_e text_id, s32 arg2){
+void BGS_func_80389CD8(ActorMarker *marker, enum asset_e text_id, s32 arg2){
     Actor *this;
 
     this = marker_getActor(marker);
@@ -177,11 +177,11 @@ void func_80389D20(ActorMarker *marker) {
 
     this = marker_getActor(marker);
     local = (ActorLocal_BGS_3420 *)&this->local;
-    func_80389850(this, 0);
+    BGS_func_80389850(this, 0);
     if (local->unkC == local->unkD) {
-        func_80311480(D_803909A4[local->unkC], 0xF, func_8038C284(local->vile_marker), this->marker, func_80389CD8, NULL);
+        func_80311480(D_803909A4[local->unkC], 0xF, func_8038C284(local->vile_marker), this->marker, BGS_func_80389CD8, NULL);
     } else {
-        func_80311480(D_803909C0[local->unkC], 0xF, func_8038C284(local->vile_marker), this->marker, func_80389CD8, NULL);
+        func_80311480(D_803909C0[local->unkC], 0xF, func_8038C284(local->vile_marker), this->marker, BGS_func_80389CD8, NULL);
     }
     func_80347A14(0);
 }
@@ -202,7 +202,7 @@ void func_80389E40(ActorMarker *marker) {
     this = marker_getActor(marker);
     local = (ActorLocal_BGS_3420 *)&this->local;
 
-    func_80389850(this, 1);
+    BGS_func_80389850(this, 1);
     func_80311480(0xC6B, 0xF, func_8038C284(local->vile_marker), this->marker, func_80389DF8, NULL);
 }
 
@@ -227,7 +227,7 @@ void func_80389F08(ActorMarker *marker) {
 
     this = marker_getActor(marker);
     local = (ActorLocal_BGS_3420 *)&this->local;
-    func_80389850(this, 0);
+    BGS_func_80389850(this, 0);
     var_s2 = func_80326F58(0x49);
     vile = marker_getActor(local->vile_marker);
     if (var_s2 > 0) {
@@ -278,7 +278,7 @@ void func_8038A068(Actor *this, s32 next_state) {
     }
     if (next_state == 4) {
         if (local->unkC == local->unkD) {
-            func_80311480(D_803909F8[local->unkC], 0xE | ((D_803909F8[local->unkC] == 0xC8E) ? 1 : 0) | 0xE, func_8038C284(local->vile_marker), this->marker, func_80389BC8, NULL);
+            func_80311480(BGS_D_803909F8[local->unkC], 0xE | ((BGS_D_803909F8[local->unkC] == 0xC8E) ? 1 : 0) | 0xE, func_8038C284(local->vile_marker), this->marker, func_80389BC8, NULL);
         } else {
             func_80311480(D_80390A18[local->unkC], 0xF , func_8038C284(local->vile_marker), this->marker, func_80389BC8, NULL);
         }
@@ -290,7 +290,7 @@ void func_8038A068(Actor *this, s32 next_state) {
             local->unkD = local->unkC;
         }
         if (local->unkC == 7) {
-            func_8038C434(local->vile_marker);
+            BGS_func_8038C434(local->vile_marker);
         } else {
             local->current_type = YUMBLIE;
             local->player_score = 0;
@@ -315,7 +315,7 @@ void func_8038A068(Actor *this, s32 next_state) {
                 func_8038A044();
             }
         }
-        func_8038C460(local->vile_marker);
+        BGS_func_8038C460(local->vile_marker);
         func_80347A14(1);
     }
     if (next_state == 6) {
@@ -363,7 +363,7 @@ void chvilegame_player_consume_piece(Actor *this) {
 
     begin = (struct vilegame_piece *)vector_getBegin(local->game_pieces);
     end = (struct vilegame_piece *) vector_getEnd(local->game_pieces);
-    if ((end != begin) && func_80389810(sp44)){
+    if ((end != begin) && BGS_func_80389810(sp44)){
         sp44[1] = 0.0f;
         for(i_ptr = begin; i_ptr < end; i_ptr++){
             if ((ml_vec3f_distance(i_ptr->position, sp44) < 65.25) && chyumblie_is_edible(i_ptr->marker)) {
@@ -640,7 +640,7 @@ void chvilegame_update(Actor *this) {
             }
         }
     }
-    if ((this->state == 7) && (func_8038C338(local->vile_marker) != 0)) {
+    if ((this->state == 7) && (BGS_func_8038C338(local->vile_marker) != 0)) {
         func_8038A068(this, 1);
     }
 }

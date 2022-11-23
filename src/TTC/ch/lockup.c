@@ -55,7 +55,7 @@ Actor *func_803894C0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 
 }
 
-void func_80389530(Actor *this){
+void TTC_func_80389530(Actor *this){
     func_80328B8C(this, 1, 0.2f, 1);
     this->marker->collidable = FALSE;
     this->unk38_31 = 0;
@@ -142,7 +142,7 @@ void func_80389600(Actor *this){
         case 4: //L803898F4
         case 5: //L803898F4
             if(this->marker->unk14_21 && actor_animationIsAt(this, 0.99f)){
-                func_80389530(this);
+                TTC_func_80389530(this);
                 for(i = 5; i < 0xe; i++){
                     func_8034A174(this->marker->unk44, i, this->unk1C);
                     func_802EE6CC(this->unk1C, D_8038C80C, D_8038C7FC, 1, 0.4f, 50.0f, 0xb4, 0xa0, 0);

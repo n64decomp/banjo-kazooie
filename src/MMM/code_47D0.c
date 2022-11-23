@@ -14,7 +14,7 @@ typedef struct {
 }Struct_MMM_47D0_0;
 
 /* .code */
-void func_8038ABC0(s32 arg0) {
+void MMM_func_8038ABC0(s32 arg0) {
     if (getGameMode() != 7) {
         func_80295864(func_802957F0() & ~arg0);
     }
@@ -22,7 +22,7 @@ void func_8038ABC0(s32 arg0) {
 
 void func_8038AC04(void){
     if((*(u32*)PHYS_TO_K1(0x1D0)) - 0x356BAAAE){
-        func_8038ABC0(0x820);
+        MMM_func_8038ABC0(0x820);
     }
 }
 
@@ -61,7 +61,7 @@ bool func_8038AD4C(s32 arg0, s32 arg1) {
         && (func_8028ECAC() == 0);
 }
 
-void func_8038ADF0(Struct_MMM_47D0_0 *arg0, Struct68s *arg1) {
+void MMM_func_8038ADF0(Struct_MMM_47D0_0 *arg0, Struct68s *arg1) {
     u8 sp3F;
     f32 sp38;
     Actor *jiggy;

@@ -137,7 +137,7 @@ void __overlay_mmm_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx){ return; }
 
 void func_80322930(void){
     func_8038953C();
-    func_80389CD8();
+    MMM_func_80389CD8();
     func_8038A994();
 }
 
@@ -158,7 +158,7 @@ void func_803229C0(s32 arg0, s32 arg1){
 }
 
 void __overlay_cc_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx){ 
-    func_80388760(gfx, mtx, vtx);
+    CC_func_80388760(gfx, mtx, vtx);
 }
 
 void func_80322A00(void){
@@ -172,7 +172,7 @@ void func_80322A28(void){
 }
 
 void __overlay_cc_update(void){
-    func_80388F4C();
+    CC_func_80388F4C();
     func_8038817C();
 }
 
@@ -308,7 +308,7 @@ void func_80322DB0(void){
 
 void func_80322DE8(void){
     func_8038A7F0();
-    func_8038A9C0();
+    FP_func_8038A9C0();
     func_8038B7A4();
     func_803918C0();
 }

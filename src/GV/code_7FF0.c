@@ -16,11 +16,11 @@ extern ActorInfo D_80390C5C;
 extern ActorInfo D_80390C80;
 extern ActorInfo D_80390D30;
 extern ActorInfo D_80390D60;
-extern ActorInfo D_80390CB0;
+extern ActorInfo GV_D_80390CB0;
 extern ActorInfo D_80390D00;
 extern ActorInfo D_80390D90;
-extern ActorInfo D_80390DD0;
-extern ActorInfo D_80390E30;
+extern ActorInfo GV_D_80390DD0;
+extern ActorInfo GV_D_80390E30;
 extern ActorInfo D_80390E54;
 extern ActorInfo D_80390ED0;
 extern ActorInfo D_80390F00;
@@ -36,7 +36,7 @@ extern ActorInfo D_80391260;
 extern ActorInfo D_80391318;
 extern ActorInfo D_80391358;
 extern ActorInfo D_803912B8;
-extern ActorInfo D_80391390;
+extern ActorInfo GV_D_80391390;
 extern ActorInfo D_803913B4;
 extern ActorInfo D_80390F40;
 extern ActorInfo D_80391494;
@@ -44,8 +44,8 @@ extern ActorInfo D_803915C0;
 extern ActorInfo D_80391620;
 extern ActorInfo D_803914B8;
 extern ActorInfo D_803914DC;
-extern ActorInfo D_80391500;
-extern ActorInfo D_80391524;
+extern ActorInfo GV_D_80391500;
+extern ActorInfo GV_D_80391524;
 extern ActorInfo D_8039156C;
 extern ActorInfo D_80391428;
 extern ActorInfo D_8039144C;
@@ -116,13 +116,13 @@ ActorInfo D_803914DC = { MARKER_ED_GV_SUN_DOOR, ACTOR_140_GV_SUN_DOOR, ASSET_3FF
     0, 0, 0.0f, 0
 };
 
-ActorInfo D_80391500 = { MARKER_F0_GV_KAZOOIE_DOOR, ACTOR_143_GV_KAZOOIE_DOOR, ASSET_3D9_MODEL_GV_KAZOOIE_DOOR, 
+ActorInfo GV_D_80391500 = { MARKER_F0_GV_KAZOOIE_DOOR, ACTOR_143_GV_KAZOOIE_DOOR, ASSET_3D9_MODEL_GV_KAZOOIE_DOOR, 
     0x1, 0x0, 
     chKazooieDoor_update, func_80326224, func_80325F2C,
     0, 0, 0.0f, 0
 };
 
-ActorInfo D_80391524 = { MARKER_EF_GV_STAR_HATCH, ACTOR_142_GV_STAR_HATCH, ASSET_3DB_MODEL_GV_STAR_HATCH, 
+ActorInfo GV_D_80391524 = { MARKER_EF_GV_STAR_HATCH, ACTOR_142_GV_STAR_HATCH, ASSET_3DB_MODEL_GV_STAR_HATCH, 
     0x1, 0x0, 
     func_8038E648, func_80326224, func_80325F2C,
     0, 0, 0.0f, 0
@@ -465,18 +465,18 @@ void func_8038F130(UNK_TYPE(s32) arg0, ActorMarker *arg1){
     func_8038F028(arg0, arg1, 1, 0); //JINXY egg flags?
 }
 
-void func_8038F154(void)
+void GV_func_8038F154(void)
 {
     spawnableActorList_add(&D_80390BF0, actor_new, 0X180);
     spawnableActorList_add(&D_80390C5C, actor_new, 0X58A);
     spawnableActorList_add(&D_80390C80, actor_new, 0X9A8);
     spawnableActorList_add(&D_80390D30, actor_new, 0X880);
     spawnableActorList_add(&D_80390D60, actor_new, 0X80);
-    spawnableActorList_add(&D_80390CB0, actor_new, 0XDA8);
+    spawnableActorList_add(&GV_D_80390CB0, actor_new, 0XDA8);
     spawnableActorList_add(&D_80390D00, actor_new, 0X9A8);
     spawnableActorList_add(&D_80390D90, actor_new, 0XD80);
-    spawnableActorList_add(&D_80390DD0, actor_new, 0X4004);
-    spawnableActorList_add(&D_80390E30, actor_new, 0X448);
+    spawnableActorList_add(&GV_D_80390DD0, actor_new, 0X4004);
+    spawnableActorList_add(&GV_D_80390E30, actor_new, 0X448);
     spawnableActorList_add(&D_80390E54, actor_new, 0X48);
     spawnableActorList_add(&D_80390ED0, actor_new, 0X180);
     spawnableActorList_add(&D_80390F00, actor_new, 0X80);
@@ -492,7 +492,7 @@ void func_8038F154(void)
     spawnableActorList_add(&D_80391318, actor_new, 0X78A);
     spawnableActorList_add(&D_80391358, actor_new, 0X518);
     spawnableActorList_add(&D_803912B8, actor_new, 0X500);
-    spawnableActorList_add(&D_80391390, actor_new, 0X500);
+    spawnableActorList_add(&GV_D_80391390, actor_new, 0X500);
     spawnableActorList_add(&D_803913B4, actor_new, 0X500);
     spawnableActorList_add(&D_80390F40, actor_new, 0);
     spawnableActorList_add(&D_80391494, actor_new, 0X408);
@@ -500,8 +500,8 @@ void func_8038F154(void)
     spawnableActorList_add(&D_80391620, actor_new, 0X400);
     spawnableActorList_add(&D_803914B8, actor_new, 0X400);
     spawnableActorList_add(&D_803914DC, actor_new, 0X400);
-    spawnableActorList_add(&D_80391500, actor_new, 0X400);
-    spawnableActorList_add(&D_80391524, actor_new, 0X400);
+    spawnableActorList_add(&GV_D_80391500, actor_new, 0X400);
+    spawnableActorList_add(&GV_D_80391524, actor_new, 0X400);
     spawnableActorList_add(&D_8039156C, actor_new, 0X400);
     spawnableActorList_add(&D_80391428, actor_new, 8);
     spawnableActorList_add(&D_8039144C, actor_new, 8);

@@ -7,12 +7,12 @@ Actor *func_802D94B4(ActorMarker *, Gfx **, Mtx **, Vtx**);
 void func_80324E88(f32);
 
 //public
-void func_8038A5D8(Actor *this);
+void SM_func_8038A5D8(Actor *this);
 void func_8038A4DC(Actor *this, s32 arg1);
 
 /* .data */
 ActorInfo D_8038B0B0 = { 0x1ED, 0x3B9, 0, 1, NULL,
-    func_8038A5D8, func_80326224, func_80325340,
+    SM_func_8038A5D8, func_80326224, func_80325340,
     0, 0, 0.0f, 0
 };
 
@@ -55,7 +55,7 @@ void func_8038A4DC(Actor *this, s32 arg1){
     func_80328A84(this, arg1);
 }
 
-void func_8038A5D8(Actor *this){
+void SM_func_8038A5D8(Actor *this){
     f32 sp5C[3];
     s32 sp44[6];
     f32 sp40;

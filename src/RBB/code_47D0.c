@@ -53,7 +53,7 @@ s32 D_8039092C[3] = { 0, 0xFF, 0};
 s32 D_80390938[3] = { 0xFF, 0, 0};
 
 /* .code */
-Struct_RBB_47D0 *func_8038ABC0(Actor *arg0){
+Struct_RBB_47D0 *RBB_func_8038ABC0(Actor *arg0){
     Struct_RBB_47D0 *iPtr = D_80390870;
     while(iPtr->unk0 != 0){
         if(iPtr->unk0 == arg0->modelCacheIndex)
@@ -134,7 +134,7 @@ void func_8038AEB8(Actor *this){
         this->marker->propPtr->unk8_3 = 1;
         this->marker->unk30 = func_8038AD7C;
         marker_setCollisionScripts(this->marker, NULL, func_8038AD3C, NULL);
-        local->unk4 = func_8038ABC0(this);
+        local->unk4 = RBB_func_8038ABC0(this);
         mapSpecificFlags_set(local->unk4->unk10, FALSE);
         this->position_x = local->unk4->unk4[0];
         this->position_y = local->unk4->unk4[1];

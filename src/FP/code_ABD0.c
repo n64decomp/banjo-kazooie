@@ -7,16 +7,16 @@
 
 extern ActorInfo D_80367FE0;
 
-extern ActorInfo D_80391A10;
-extern ActorInfo D_80391A60;
-extern ActorInfo D_80391AB0;
+extern ActorInfo FP_D_80391A10;
+extern ActorInfo FP_D_80391A60;
+extern ActorInfo FP_D_80391AB0;
 extern ActorInfo D_80391B50;
 extern ActorInfo D_80391BB0;
 extern ActorInfo D_80391C18;
 extern ActorInfo D_80391C58;
 extern ActorInfo D_80391CE8;
 extern ActorInfo D_80391E08;
-extern ActorInfo D_80391E2C;
+extern ActorInfo FP_D_80391E2C;
 extern ActorInfo D_80391E50;
 extern ActorInfo D_80391F88;
 extern ActorInfo D_80391FAC;
@@ -35,25 +35,25 @@ extern ActorInfo D_80392690;
 extern ActorInfo D_803926C0;
 extern ActorInfo D_80392700;
 extern ActorInfo D_80392730;
-extern ActorInfo D_80392840;
+extern ActorInfo FP_D_80392840;
 
 void func_80391040(Actor *this);
 void func_80391180(Actor *this);
-void func_80391254(Actor *this);
+void FP_func_80391254(Actor *this);
 void func_803912EC(Actor *this);
 void func_8039180C(Actor *this);
 void func_80391894(Actor *this);
 
 /* .data */
-ActorInfo D_803928E0 = { 0x247, 0x355, 0x4E5, 0x0, NULL, func_80391040, func_80326224, func_80325888, 3000, 0, 0.0f, 0};
+ActorInfo FP_D_803928E0 = { 0x247, 0x355, 0x4E5, 0x0, NULL, func_80391040, func_80326224, func_80325888, 3000, 0, 0.0f, 0};
 ActorInfo D_80392904 = { 0x248, 0x356, 0x4E6, 0x0, NULL, func_80391040, func_80326224, func_80325888, 3000, 0, 0.0f, 0};
 ActorInfo D_80392928 = { 0x249, 0x357, 0x4E7, 0x0, NULL, func_80391040, func_80326224, func_80325888, 3000, 0, 0.0f, 0};
 ActorInfo D_8039294C = { 0x24A, 0x358, 0x4E8, 0x0, NULL, func_80391040, func_80326224, func_80325888, 3000, 0, 0.0f, 0};
 ActorInfo D_80392970 = { 0x21F, 0x22B, 0x4C4, 0x1, NULL, func_80391180, func_80326224, func_80325E78, 0, 0, 0.0f, 0};
 ActorInfo D_80392994 = { 0x220, 0x22C, 0x4C5, 0x1, NULL, func_80391180, func_80326224, func_80325E78, 0, 0, 0.0f, 0};
-ActorInfo D_803929B8 = { 0x221, 0x22D, 0x4C6, 0x1, NULL, func_80391254, func_80326224, func_80325E78, 0, 0, 0.0f, 0};
-ActorInfo D_803929DC = { 0x222, 0x22E, 0x4C6, 0x1, NULL, func_80391254, func_80326224, func_80325E78, 0, 0, 0.0f, 0};
-ActorInfo D_80392A00 = { 0x223, 0x22F, 0x4C6, 0x1, NULL, func_80391254, func_80326224, func_80325E78, 0, 0, 0.0f, 0};
+ActorInfo D_803929B8 = { 0x221, 0x22D, 0x4C6, 0x1, NULL, FP_func_80391254, func_80326224, func_80325E78, 0, 0, 0.0f, 0};
+ActorInfo D_803929DC = { 0x222, 0x22E, 0x4C6, 0x1, NULL, FP_func_80391254, func_80326224, func_80325E78, 0, 0, 0.0f, 0};
+ActorInfo D_80392A00 = { 0x223, 0x22F, 0x4C6, 0x1, NULL, FP_func_80391254, func_80326224, func_80325E78, 0, 0, 0.0f, 0};
 ActorInfo D_80392A24 = { 0x24B, 0x35D, 0x4E9, 0x1, NULL, func_803912EC, func_80326224, func_80325E78, 0, 0, 0.0f, 0};
 ActorInfo D_80392A48 = { 0x24C, 0x35E, 0x4EC, 0x1, NULL, func_803912EC, func_80326224, func_80325E78, 0, 0, 0.0f, 0};
 ActorInfo D_80392A6C = { 0x24D, 0x35F, 0x4EA, 0x1, NULL, func_803912EC, func_80326224, func_80325E78, 0, 0, 0.0f, 0};
@@ -131,7 +131,7 @@ void func_80391180(Actor *this){
       }
 }
 
-void func_80391254(Actor *this){
+void FP_func_80391254(Actor *this){
       func_802D3D74(this);
       if(!this->unk16C_4){
             this->unk16C_4 = TRUE;
@@ -152,15 +152,15 @@ void func_803912EC(Actor *this){
 
 }
 
-void func_80391324(void)
+void FP_func_80391324(void)
 {
-      spawnableActorList_add(&D_80391AB0, actor_new, 0X600);
+      spawnableActorList_add(&FP_D_80391AB0, actor_new, 0X600);
       spawnableActorList_add(&D_80391BB0, actor_new, 0X2A);
       spawnableActorList_add(&D_80391C18, actor_new, 0X180084);
       spawnableActorList_add(&D_80391C58, actor_new, 0X180084);
       spawnableActorList_add(&D_80391CE8, actor_new, 0X2002E);
       spawnableActorList_add(&D_80391E08, actor_new, 0X100);
-      spawnableActorList_add(&D_80391E2C, actor_new, 0X100);
+      spawnableActorList_add(&FP_D_80391E2C, actor_new, 0X100);
       spawnableActorList_add(&D_80391E50, actor_new, 0X100);
       spawnableActorList_add(&D_80391F88, actor_new, 0X2100C);
       spawnableActorList_add(&D_80391FAC, actor_new, 0X2100C);
@@ -174,17 +174,17 @@ void func_80391324(void)
       spawnableActorList_add(&D_803924B0, actor_new, 8);
       spawnableActorList_add(&D_803924D4, actor_new, 8);
       spawnableActorList_add(&D_803924F8, actor_new, 8);
-      spawnableActorList_add(&D_80391A10, actor_new, 0);
-      spawnableActorList_add(&D_80391A60, actor_new, 0X20);
+      spawnableActorList_add(&FP_D_80391A10, actor_new, 0);
+      spawnableActorList_add(&FP_D_80391A60, actor_new, 0X20);
       spawnableActorList_add(&D_80392588, actor_new, 0X80108);
       spawnableActorList_add(&D_80392628, actor_new, 0X44);
       spawnableActorList_add(&D_80392690, actor_new, 0XA8);
       spawnableActorList_add(&D_803926C0, actor_new, 0X8000400);
       spawnableActorList_add(&D_80392700, actor_new, 0X108);
-      spawnableActorList_add(&D_80392840, actor_new, 0);
+      spawnableActorList_add(&FP_D_80392840, actor_new, 0);
       spawnableActorList_add(&D_80392730, actor_new, 0X20000);
       spawnableActorList_add(&D_80367FE0, actor_new, 0);
-      spawnableActorList_add(&D_803928E0, actor_new, 0X40);
+      spawnableActorList_add(&FP_D_803928E0, actor_new, 0X40);
       spawnableActorList_add(&D_80392904, actor_new, 0X40);
       spawnableActorList_add(&D_80392928, actor_new, 0X40);
       spawnableActorList_add(&D_8039294C, actor_new, 0X40);

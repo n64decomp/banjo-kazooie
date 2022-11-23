@@ -11,14 +11,14 @@ typedef struct {
 } ActorLocal_Wozza;
 
 Actor *func_8038F210(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
-void func_8038F7AC(Actor *this);
+void FP_func_8038F7AC(Actor *this);
 
 /* .data */
 extern ActorAnimationInfo D_80392520[];
 
 extern ActorInfo D_80392588 = { MARKER_20B_WOZZA, ACTOR_1F3_WOZZA, ASSET_494_MODEL_WOZZA, 
     0x1, D_80392520,
-    func_8038F7AC, func_80326224, func_8038F210,
+    FP_func_8038F7AC, func_80326224, func_8038F210,
     0, 0, 1.6f, 0
 };
 
@@ -132,7 +132,7 @@ bool func_8038F5D4(Actor *this, f32 arg1[3], f32 arg2, f32 arg3, s32 arg4){
 
 }
 
-bool func_8038F6C4(Actor *this, f32 arg1[3], f32 arg2){
+bool FP_func_8038F6C4(Actor *this, f32 arg1[3], f32 arg2){
     s32 dTheta;
 
     func_80328C64(this, func_803297C8(this, arg1));
@@ -144,7 +144,7 @@ bool func_8038F6C4(Actor *this, f32 arg1[3], f32 arg2){
     return FALSE;
 }
 
-void func_8038F758(ActorMarker *marker){
+void FP_func_8038F758(ActorMarker *marker){
     Actor *this = marker_getActor(reinterpret_cast(ActorMarker *, marker));
     Actor *jiggy = spawn_child_actor(ACTOR_1F4_WOZZAS_JIGGY, &this);
     s32 pad;
@@ -155,7 +155,7 @@ void func_8038F758(ActorMarker *marker){
 
 }
 
-void func_8038F7AC(Actor *this){
+void FP_func_8038F7AC(Actor *this){
     ActorLocal_Wozza * local = (ActorLocal_Wozza *)&this->local;
 
     if(func_803203FC(0xC4)){
@@ -190,7 +190,7 @@ void func_8038F7AC(Actor *this){
             this->position[0] = local->unkC[0];\
             this->position[1] = local->unkC[1];\
             this->position[2] = local->unkC[2];
-            __spawnqueue_add_1(func_8038F758, this->marker);
+            __spawnqueue_add_1(FP_func_8038F758, this->marker);
             local->unk30 = FALSE;
         }
     }//L8038F910
@@ -244,7 +244,7 @@ void func_8038F7AC(Actor *this){
             break;
 
         case 5: //L8038FB50
-            func_8038F6C4(this, local->unk18, 1.0f);
+            FP_func_8038F6C4(this, local->unk18, 1.0f);
             if(0.97 < animctrl_getAnimTimer(this->animctrl)){
                 func_80328B8C(this, 6, 0.02f, 1);
                 actor_loopAnimation(this);
@@ -252,7 +252,7 @@ void func_8038F7AC(Actor *this){
             break;
 
         case 6: //L8038FBA8
-            func_8038F6C4(this, local->unk18, 1.0f);
+            FP_func_8038F6C4(this, local->unk18, 1.0f);
             if( func_80329530(this, 1700) ) break;
             if( func_8028ECAC() == BSGROUP_A_FLYING )    break;
             
@@ -266,7 +266,7 @@ void func_8038F7AC(Actor *this){
             break;
 
         case 7: //L8038FC30
-            if(!func_8038F6C4(this, local->unkC, 4.5f)) 
+            if(!FP_func_8038F6C4(this, local->unkC, 4.5f)) 
                 break;
 
             if(func_80329530(this, 1000) || func_8028ECAC() == BSGROUP_A_FLYING){
@@ -294,7 +294,7 @@ void func_8038F7AC(Actor *this){
             }//L8038FD40
 
             if(mapSpecificFlags_get(8)){
-                if(func_8038F6C4(this, D_803925AC, 9.0f)){
+                if(FP_func_8038F6C4(this, D_803925AC, 9.0f)){
                     func_80328B8C(this, 9, 0.02f, 1);
                     actor_playAnimationOnce(this);
                 }
@@ -315,7 +315,7 @@ void func_8038F7AC(Actor *this){
             break;
 
         case 9: //L8038FE14
-            func_8038F6C4(this, D_803925AC, 9.0f);
+            FP_func_8038F6C4(this, D_803925AC, 9.0f);
             if(0.97 < animctrl_getAnimTimer(this->animctrl)){
                 func_80328B8C(this, 10, 0.02f, 1);
                 actor_loopAnimation(this);

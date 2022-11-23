@@ -122,7 +122,7 @@ void func_8024BFD8(s32 arg0){
     
     osViSwapBuffer(D_803A5D00[D_80280720 = func_8024BD80()]);
     D_80280E90 = 0;
-    while(!(osDpGetStatus() & 2) && osViGetCurrFrameBuffer() != osViGetNextFrameBuffer()){
+    while(!(osDpGetStatus() & 2) && osViGetCurrentFramebuffer() != osViGetNextFramebuffer()){
         osRecvMesg(&D_802807D0, NULL, OS_MESG_BLOCK);
         D_80280E90++;
     }//L8024C178

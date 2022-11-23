@@ -78,7 +78,7 @@ void func_80387B14(Actor *this, s32 next_state){
 }
 
 
-void func_80387CF4(ActorMarker *this_marker, ActorMarker *other_marker) {
+void MMM_func_80387CF4(ActorMarker *this_marker, ActorMarker *other_marker) {
     func_8030E6D4(0x1E);
 }
 
@@ -176,7 +176,7 @@ void func_80388028(Actor *this){
     if(!this->unk16C_4){
         this->unk16C_4 = TRUE;
         this->unk16C_0 = TRUE;
-        marker_setCollisionScripts(this->marker, NULL, func_80387CF4, func_80387D1C);
+        marker_setCollisionScripts(this->marker, NULL, MMM_func_80387CF4, func_80387D1C);
         __spawnqueue_add_1(func_80387D48, this->marker);
         func_80387B14(this, (this->state < 5) ? 1 : 6);
     }//L803880B4

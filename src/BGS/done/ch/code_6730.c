@@ -9,7 +9,7 @@ void func_8025A58C(u32, u32);
 void func_80324E88(f32);
 
 
-ActorInfo D_80390AB0 = {MARKER_C4_YELLOW_FLIBBIT_CTRL, ACTOR_136_YELLOW_FLIBBIT_CONTROLLER, 0x00, 0x00, NULL,
+ActorInfo BGS_D_80390AB0 = {MARKER_C4_YELLOW_FLIBBIT_CTRL, ACTOR_136_YELLOW_FLIBBIT_CONTROLLER, 0x00, 0x00, NULL,
     func_8038CEE8, NULL, func_80325340,
     0, 0, 0.0f, 0
 };
@@ -20,7 +20,7 @@ f32 D_80390AD4[3] = {1985.0f, 200.0f, -1386.0f};
 u8 D_80391240[4];
 
 /* .code */
-void func_8038CB20(void){
+void BGS_func_8038CB20(void){
     jiggySpawn(JIGGY_24_BGS_FLIBBITS, D_80390AD4);
 }
 
@@ -97,7 +97,7 @@ void func_8038CC08(Actor * arg0, u32 arg1){
     if(arg1 == 5){
         func_80324E38(0.0f, 3);
         timed_setCameraToNode(0.0f, 0x27);
-        timedFunc_set_0(0.2f, func_8038CB20);
+        timedFunc_set_0(0.2f, BGS_func_8038CB20);
         func_80324E88(3.0f);
         func_80324E38(3.0f, 0);
         arg1 = 6;
@@ -121,7 +121,7 @@ void func_8038CEB8(void){
     D_80391240[2]++;
 }
 
-void func_8038CED0(void){
+void BGS_func_8038CED0(void){
     D_80391240[3]++;
 }
 
