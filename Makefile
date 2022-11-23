@@ -110,9 +110,11 @@ C_DEPS               := $(C_OBJS:.o=.d)
 ASM_OBJS             := $(addprefix $(BUILD_DIR)/,$(ALL_ASM_SRCS:.s=.s.o) $(NEW_ASM_SRCS:.s=.s.o))
 BOOT_ASM_OBJS        := $(addprefix $(BUILD_DIR)/,$(BOOT_ASM_SRCS:.s=.s.o))
 BIN_OBJS             := $(addprefix $(BUILD_DIR)/,$(ALL_BINS:.bin=.bin.o) $(NEW_BINS:.bin=.bin.o))
-Z64                  := $(addprefix $(BUILD_DIR)/,$(BASENAME).$(VERSION).uncompressed.z64)
+PRELIM_Z64           := $(addprefix $(BUILD_DIR)/,$(BASENAME).$(VERSION).prelim.z64)
+PRELIM_ELF           := $(PRELIM_Z64:.z64=.elf)
+UNCOMPRESSED_Z64     := $(addprefix $(BUILD_DIR)/,$(BASENAME).$(VERSION).uncompressed.z64)
 FINAL_Z64            := $(addprefix $(BUILD_DIR)/,$(BASENAME).$(VERSION).z64)
-ELF                  := $(Z64:.z64=.elf)
+ELF                  := $(FINAL_Z64:.z64=.elf)
 LD_SCRIPT            := $(BASENAME).ld
 BK_BOOT_LD_SCRIPT    := bk_boot.ld
 ASSET_BIN            := $(BUILD_DIR)/assets.bin
@@ -245,7 +247,7 @@ $(BUILD_DIR)/%.s.o: %.s | $(ASM_BUILD_DIRS)
 $(BOOT_ASM_OBJS) : $(BUILD_DIR)/%.s.o : %.s | $(ASM_BUILD_DIRS)
 	$(call print2,Assembling:,$<,$@)
 	@$(GCC) $(GCC_ASFLAGS) $(INCLUDE_CFLAGS) -o $@ $<
-	$(OBJCOPY) --prefix-symbols=boot_ $@
+	@$(OBJCOPY) --prefix-symbols=boot_ $@
 
 # .bin -> .o
 $(BIN_OBJS) : $(BUILD_DIR)/%.bin.o : %.bin | $(BIN_BUILD_DIRS)
@@ -337,11 +339,6 @@ $(ASSET_OBJS): $(ASSET_BIN)
 	$(call print2,Objcopying:,$<,$@)
 	@$(OBJCOPY) $(BINOFLAGS) $< $@
 
-# .o -> .elf (game)
-$(ELF): $(ALL_OBJS) $(LD_SCRIPT) $(ASSET_OBJS)
-	$(call print1,Linking elf:,$@)
-	@$(LD) $(LDFLAGS) -T undefined_syms_auto.$(VERSION).txt -T undefined_syms.$(VERSION).txt -T rzip_dummy_addrs.txt -o $@
-
 $(BK_BOOT_LD_SCRIPT): $(LD_SCRIPT)
 	sed 's|$(CRC_OBJS)|$(DUMMY_CRC_OBJ)|'  $< > $@
 
@@ -353,23 +350,34 @@ $(BUILD_DIR)/bk_boot.elf: $(DUMMY_CRC_OBJ) $(filter-out $(CRC_OBJS),$(MAIN_ALL_O
 # decompress baserom
 $(DECOMPRESSED_BASEROM): $(BASEROM) $(BK_ROM_DECOMPRESS)
 	@$(BK_ROM_DECOMPRESS) $< $@
+	
+# .o -> .elf (dummy symbols)
+$(PRELIM_ELF): $(ALL_OBJS) $(LD_SCRIPT) $(ASSET_OBJS)
+	$(call print1,Linking elf:,$@)
+	@$(LD) $(LDFLAGS) -T undefined_syms_auto.$(VERSION).txt -T undefined_syms.$(VERSION).txt -T rzip_dummy_addrs.txt -T emptyLvl_dummy_addrs.txt -o $@
 
-# generate compressed ROM symbols
-$(COMPRESSED_SYMBOLS): $(ELF) $(Z64) $(BK_ROM_COMPRESS)
-	@$(BK_ROM_COMPRESS) --symbols $(ELF) $(Z64) $@
-
-# compress ROM
-$(FINAL_Z64) : $(ELF) $(Z64) $(BK_ROM_COMPRESS)
-	@$(BK_ROM_COMPRESS) $(ELF) $(Z64) $@
-
-# .elf -> .z64
-$(Z64) : $(ELF)
-#$(OVERLAY_PROG_SVGS) $(MAIN_PROG_SVG) $(TOTAL_PROG_SVG) $(README_MD)
+# .elf -> .z64 (dummy symbols)
+$(PRELIM_Z64) : $(PRELIM_ELF)
 	$(call print1,Creating z64:,$@)
 	@$(OBJCOPY) $< $@ -O binary $(OCOPYFLAGS)
 
-$(COMPRESSED_Z64) : $(Z64) $(ELF) $(BK_ROM_COMPRESS)
-	$(BK_ROM_COMPRESS) --version $(VERSION) --symbols
+# generate compressed ROM symbols
+$(COMPRESSED_SYMBOLS): $(PRELIM_ELF) $(PRELIM_Z64) $(BK_ROM_COMPRESS)
+	@$(BK_ROM_COMPRESS) --symbols $(PRELIM_ELF) $(PRELIM_Z64) $@
+
+# .o -> .elf (game)
+$(ELF): $(ALL_OBJS) $(LD_SCRIPT) $(ASSET_OBJS) $(COMPRESSED_SYMBOLS)
+	$(call print1,Linking elf:,$@)
+	@$(LD) $(LDFLAGS) -T undefined_syms_auto.$(VERSION).txt -T undefined_syms.$(VERSION).txt -T $(COMPRESSED_SYMBOLS) -T emptyLvl_dummy_addrs.txt -o $@
+
+# .elf -> .z64 (uncompressed)
+$(UNCOMPRESSED_Z64) : $(ELF)
+	$(call print1,Creating z64:,$@)
+	@$(OBJCOPY) $< $@ -O binary $(OCOPYFLAGS)
+
+# .z64 (uncompressed) + .elf -> .z64 (final)
+$(FINAL_Z64) : $(UNCOMPRESSED_Z64) $(ELF) $(BK_ROM_COMPRESS)
+	@$(BK_ROM_COMPRESS) $(ELF) $(UNCOMPRESSED_Z64) $@
 
 $(BK_TOOLS)/gzip-1.2.4/gzip: $(BK_TOOLS)/gzip-1.2.4/Makefile
 	@$(CD) $(BK_TOOLS)/gzip-1.2.4 && $(MAKE) gzip
