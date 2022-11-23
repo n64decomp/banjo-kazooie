@@ -195,6 +195,8 @@ segments:
   type: bin #type: rzip_code/overlay #compressed code
   start: 0xFD6190
   #vram:  0x803863F0
-- [0xFDAA10, bin, emptyLvl.us.v10.rzip]
+- name: emptyLvl.us.v10.rzip
+  type: bin #type: rzip_code/overlay #compressed code
+  start: 0xFD6190
 - [0xFDAA30, bin, trailer] # 0xff to end
 - [0x1000000] # end of ROM

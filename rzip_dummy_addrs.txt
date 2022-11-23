@@ -28,3 +28,5 @@ boot_lair_us_v10_rzip_ROM_START = 0xFC9150;
 boot_lair_us_v10_rzip_ROM_END = 0xFD0420;
 boot_fight_us_v10_rzip_ROM_START = 0xFD0420;
 boot_fight_us_v10_rzip_ROM_END = 0xFD6190;
+boot_emptyLvl_us_v10_rzip_ROM_START = 0xFDAA10;
+boot_emptyLvl_us_v10_rzip_ROM_END = 0xFDAA30;

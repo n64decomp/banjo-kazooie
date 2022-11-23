@@ -323,7 +323,7 @@ $(DECOMPRESSED_BASEROM): $(BASEROM) $(BK_ROM_DECOMPRESS)
 # .o -> .elf (dummy symbols)
 $(PRELIM_ELF): $(ALL_OBJS) $(LD_SCRIPT) $(ASSET_OBJS)
 	$(call print1,Linking elf:,$@)
-	@$(LD) $(LDFLAGS) -T undefined_syms_auto.$(VERSION).txt -T undefined_syms.$(VERSION).txt -T rzip_dummy_addrs.txt -T emptyLvl_dummy_addrs.txt -o $@
+	@$(LD) $(LDFLAGS) -T undefined_syms_auto.$(VERSION).txt -T undefined_syms.$(VERSION).txt -T rzip_dummy_addrs.txt -o $@
 
 # .elf -> .z64 (dummy symbols)
 $(PRELIM_Z64) : $(PRELIM_ELF)
@@ -337,7 +337,7 @@ $(COMPRESSED_SYMBOLS): $(PRELIM_ELF) $(PRELIM_Z64) $(BK_ROM_COMPRESS)
 # .o -> .elf (game)
 $(ELF): $(ALL_OBJS) $(LD_SCRIPT) $(ASSET_OBJS) $(COMPRESSED_SYMBOLS)
 	$(call print1,Linking elf:,$@)
-	@$(LD) $(LDFLAGS) -T undefined_syms_auto.$(VERSION).txt -T undefined_syms.$(VERSION).txt -T $(COMPRESSED_SYMBOLS) -T emptyLvl_dummy_addrs.txt -o $@
+	@$(LD) $(LDFLAGS) -T undefined_syms_auto.$(VERSION).txt -T undefined_syms.$(VERSION).txt -T $(COMPRESSED_SYMBOLS) -o $@
 
 # .elf -> .z64 (uncompressed)
 $(UNCOMPRESSED_Z64) : $(ELF)

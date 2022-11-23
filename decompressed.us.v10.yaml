@@ -2223,6 +2223,13 @@ segments:
   - [0x10BCC50, .rodata, code_7BF0]
   - [0x10BCC60, .rodata, code_8050]
   - [0x10BCD00, .bss, code_3310]
-- [0x010BCD00, bin, emptyLvl.us.v10.rzip]
-- [0x010BCD10, bin, trailer] # 0x00 to end
+- name: emptyLvl
+  dir: emptyLvl
+  type: code
+  start: 0x010BCD00
+  vram: 0x803863F0
+  exclusive_ram_id: overlay
+  subsegments:
+  - [0x10BCD00, c, code_0]
+  - [0x10BCD10, .data, code_0]
 - [0x010BCD20] # end of ROM
