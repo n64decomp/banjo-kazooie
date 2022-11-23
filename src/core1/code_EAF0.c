@@ -409,42 +409,33 @@ f32 func_8024DDD8(s32 arg0, f32 arg1){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_EAF0/func_8024DE1C.s")
 
-
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_EAF0/func_8024E030.s")
-#else
-bool func_8024E030(f32 arg0[3], f32 *arg1) {
+bool func_8024E030(f32 arg0[3], f32 *arg1)
+{
     f32 sp34[3];
-    f32 sp28;
-    f32 sp24;
-    f32 temp_f0;
-    f32 temp_f12;
-    f32 temp_f12_2;
-    f32 temp_f16;
-    f32 temp_f2;
     f32 temp_f2_2;
-
-    sp28 = (D_80275D20 * M_PI) / 360.0;
+    f32 temp_f2;
+    f32 sp28;
+    sp28 = (D_80275D20 * 3.14159265358979323846) / 360.0;
     sp34[0] = arg0[0] - D_80280EB0[0];
     sp34[1] = arg0[1] - D_80280EB0[1];
     sp34[2] = arg0[2] - D_80280EB0[2];
     ml_vec3f_yaw_rotate_copy(sp34, sp34, -D_80280EC0[1]);
-    ml_vec3f_pitch_rotate_copy(&sp34, &sp34, -D_80280EC0[0]);
-    if (-D_80275D28 <= sp34[2]) {
-        return FALSE;
-    }
-    temp_f2 = gu_sqrtf((sp34[1] * sp34[1]) + (sp34[2] * sp34[2]))*sinf(sp28);
-    arg1[0] = (f32) ((1 + (sp34[0] / (((f32)D_80276588 / (f32) D_8027658C) * temp_f2))) * ((f32)D_80276588 / 2));
-    arg1[1] = (f32) ((1 - (sp34[1] / temp_f2)) * ((f32) D_8027658C / 2));
-    if ((arg1[0] < -(f32)D_80276588) || (((f32)D_80276588 * 2) < arg1[0])) {
+    ml_vec3f_pitch_rotate_copy(sp34, sp34, -D_80280EC0[0]);
+    if ((-D_80275D28) <= sp34[2]) {
         return 0;
     }
-    if ((arg1[1] < -(f32)D_8027658C) || (((f32)D_8027658C * 2) < arg1[1])) {
+    temp_f2 = gu_sqrtf((sp34[1] * sp34[1]) + (sp34[2] * sp34[2])) * sinf(sp28);
+    temp_f2_2 = (((f32) D_80276588) / ((f32) D_8027658C)) * temp_f2;
+    arg1[0] = (f32) (((sp34[0] / temp_f2_2) + 1) * (((f32) D_80276588) / 2));
+    arg1[1] = (f32) ((1 - (sp34[1] / temp_f2)) * (((f32) D_8027658C) / 2));
+    if ((arg1[0] < (-((f32) D_80276588))) || ((((f32) D_80276588) * 2) < arg1[0])) {
+        return 0;
+    }
+    if ((arg1[1] < (-((f32) D_8027658C))) || ((((f32) D_8027658C) * 2) < arg1[1])) {
         return 0;
     }
     return 1;
 }
-#endif
 
 void func_8024E258(void){
     s32 i, j;
