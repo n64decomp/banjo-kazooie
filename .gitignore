@@ -67,7 +67,6 @@ undefined_funcs_auto*
 
 #progress reports
 *.csv
-symbol_addrs.us.v10.txt
 
 #secret folder
 tmp/

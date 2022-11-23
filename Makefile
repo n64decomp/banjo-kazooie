@@ -18,7 +18,6 @@ ifeq ($(VERSION),jp)
 	C_VERSION=3
 endif
 
-IN_CFLAGS ?= -DCODE2_CODE_CRC2=0 -DCODE2_DATA_CRC2=0
 ### Tools ###
 
 # System tools
@@ -42,12 +41,7 @@ PYTHON  := python3
 GREP    := grep -rl
 SPLAT   := $(PYTHON) tools/n64splat/split.py
 PRINT   := printf
-PATCH_LIB_MATH    := tools/patch_libultra_math
 ASM_PROCESSOR_DIR := tools/asm-processor
-BK_TOOLS          := tools/bk_tools
-BK_CRC            := tools/bk_crc/bk_crc
-BK_INFLATE        := $(BK_TOOLS)/bk_inflate_code
-BK_DEFLATE        := $(BK_TOOLS)/bk_deflate_code
 BK_ROM_COMPRESS   := tools/bk_rom_compressor/target/release/bk_rom_compress
 BK_ROM_DECOMPRESS := tools/bk_rom_compressor/target/release/bk_rom_decompress
 BK_ASSET_TOOL     := tools/bk_asset_tool/bk_asset_tool
@@ -116,9 +110,7 @@ UNCOMPRESSED_Z64     := $(addprefix $(BUILD_DIR)/,$(BASENAME).$(VERSION).uncompr
 FINAL_Z64            := $(addprefix $(BUILD_DIR)/,$(BASENAME).$(VERSION).z64)
 ELF                  := $(FINAL_Z64:.z64=.elf)
 LD_SCRIPT            := $(BASENAME).ld
-BK_BOOT_LD_SCRIPT    := bk_boot.ld
 ASSET_BIN            := $(BUILD_DIR)/assets.bin
-DUMMY_CRC_OBJ        := $(BUILD_DIR)/$(BIN_ROOT)/dummy_crc.bin.o
 ASSET_OBJS           := $(BUILD_DIR)/$(BIN_ROOT)/assets.bin.o
 BIN_OBJS             := $(filter-out $(ASSET_OBJS),$(BIN_OBJS))
 ALL_OBJS             := $(C_OBJS) $(ASM_OBJS) $(BIN_OBJS)
@@ -168,14 +160,12 @@ endef
 # Build tool flags
 CFLAGS         := -c -Wab,-r4300_mul -non_shared -G 0 -Xcpluscomm $(OPT_FLAGS) $(MIPSBIT) -D_FINALROM -DF3DEX_GBI -DVERSION='$(C_VERSION)'
 CFLAGS         += -woff 649,654,838,807
-CFLAGS         += $(IN_CFLAGS)
 CPPFLAGS       := -D_FINALROM -DN_MICRO
 INCLUDE_CFLAGS := -I . -I include -I include/2.0L -I include/2.0L/PR
 OPT_FLAGS      := -O2 
 MIPSBIT        := -mips2
 ASFLAGS        := -EB -mtune=vr4300 -march=vr4300 -mabi=32 -I include
 GCC_ASFLAGS    := -c -x assembler-with-cpp -mabi=32 -ffreestanding -mtune=vr4300 -march=vr4300 -mfix4300 -G 0 -O -mno-shared -fno-PIC -mno-abicalls
-LDFLAGS_COMMON := -T symbol_addrs.core1.$(VERSION).txt -T symbol_addrs.core2.$(VERSION).txt -T symbol_addrs.global.$(VERSION).txt -T undefined_syms.$(VERSION).txt -T undefined_syms.libultra.txt --no-check-sections --accept-unknown-input-arch
 LDFLAGS        := -T $(LD_SCRIPT) -Map $(ELF:.elf=.map) --no-check-sections --accept-unknown-input-arch -T undefined_syms.libultra.txt
 BINOFLAGS      := -I binary -O elf32-tradbigmips
 
@@ -254,19 +244,6 @@ $(BIN_OBJS) : $(BUILD_DIR)/%.bin.o : %.bin | $(BIN_BUILD_DIRS)
 	$(call print2,Objcopying:,$<,$@)
 	@$(OBJCOPY) $(BINOFLAGS) $< $@
 
-$(BUILD_DIR)/bk_boot.full: $(BUILD_DIR)/bk_boot.elf
-	@mips-linux-gnu-objcopy -I elf32-tradbigmips -O binary --only-section .boot_bk_boot $(BUILD_DIR)/bk_boot.elf $@
-
-# Creates a dummy crc file of 32 bytes to use in the initial link
-$(BUILD_DIR)/dummy_crc.bin:
-	$(call print1,Creating dummy crc file:$@)
-	truncate -s 32 $@
-
-# .bin -> .o (dummy crc)
-$(DUMMY_CRC_OBJ) : $(BUILD_DIR)/dummy_crc.bin
-	$(call print2,Objcopying:,$<,$@)
-	@$(OBJCOPY) $(BINOFLAGS) $< $@
-
 # .c -> .o
 $(BUILD_DIR)/%.c.o : %.c | $(C_BUILD_DIRS)
 	$(call print2,Compiling:,$<,$@)
@@ -339,14 +316,6 @@ $(ASSET_OBJS): $(ASSET_BIN)
 	$(call print2,Objcopying:,$<,$@)
 	@$(OBJCOPY) $(BINOFLAGS) $< $@
 
-$(BK_BOOT_LD_SCRIPT): $(LD_SCRIPT)
-	sed 's|$(CRC_OBJS)|$(DUMMY_CRC_OBJ)|'  $< > $@
-
-# .o -> .elf (game)
-$(BUILD_DIR)/bk_boot.elf: $(DUMMY_CRC_OBJ) $(filter-out $(CRC_OBJS),$(MAIN_ALL_OBJS)) $(BK_BOOT_LD_SCRIPT) $(ASSET_OBJS)
-	$(call print1,Linking elf:,$@)
-	@$(LD) -T $(BK_BOOT_LD_SCRIPT) -Map $(ELF:.elf=.map) --no-check-sections --accept-unknown-input-arch -T undefined_syms.libultra.txt -T undefined_syms_auto.$(VERSION).txt  -T undefined_syms.$(VERSION).txt -T rzip_dummy_addrs.txt -o $@
-
 # decompress baserom
 $(DECOMPRESSED_BASEROM): $(BASEROM) $(BK_ROM_DECOMPRESS)
 	@$(BK_ROM_DECOMPRESS) $< $@
@@ -379,34 +348,15 @@ $(UNCOMPRESSED_Z64) : $(ELF)
 $(FINAL_Z64) : $(UNCOMPRESSED_Z64) $(ELF) $(BK_ROM_COMPRESS)
 	@$(BK_ROM_COMPRESS) $(ELF) $(UNCOMPRESSED_Z64) $@
 
-$(BK_TOOLS)/gzip-1.2.4/gzip: $(BK_TOOLS)/gzip-1.2.4/Makefile
-	@$(CD) $(BK_TOOLS)/gzip-1.2.4 && $(MAKE) gzip
-
-$(BK_TOOLS)/gzip-1.2.4/Makefile:
-	@$(CD) $(BK_TOOLS)/gzip-1.2.4 && ./configure
-
 $(BK_ASSET_TOOL):
 	@$(CD) tools/bk_asset_tool && cargo build --release
 	@$(CP) tools/bk_asset_tool/target/release/bk_asset_tool $@
-
-# Build tools
-$(BK_TOOLS)/%: $(BK_TOOLS)/gzip-1.2.4/gzip
-	$(call print1,Compiling build tool:,$@)
-	@$(CD) $(BK_TOOLS) && $(MAKE) $*
-
-$(BK_CRC) :
-	g++ $@.cpp -o $@
 
 $(BK_ROM_COMPRESS):
 	@$(CD) tools/bk_rom_compressor && cargo build --release --bin bk_rom_compress
 
 $(BK_ROM_DECOMPRESS):
 	@$(CD) tools/bk_rom_compressor && cargo build --release --bin bk_rom_decompress
-
-# Combined symbol addresses file
-$(SYMBOL_ADDRS): $(SYMBOL_ADDR_FILES)
-	$(call print0,Combining symbol address files)
-	@$(CAT) symbol_addrs.*.$(VERSION).txt > $@
 
 clean:
 	$(call print0,Cleaning build artifacts)
