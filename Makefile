@@ -175,10 +175,11 @@ BINOFLAGS      := -I binary -O elf32-tradbigmips
 all: verify
 
 # Shows progress for all overlays, boot, and total
-progress: $(OVERLAY_PROG_CSVS) $(MAIN_PROG_CSV) $(TOTAL_PROG_CSV)
+progress: $(OVERLAY_PROG_CSVS) $(MAIN_PROG_CSV) $(TOTAL_PROG_CSV) 
 	@$(foreach overlay,$(OVERLAYS),$(PROGRESS_READ) progress/progress.$(overlay).csv $(VERSION) $(overlay) &&) \
 	$(PROGRESS_READ) $(MAIN_PROG_CSV) $(VERSION) bk_boot
 	@$(PROGRESS_READ) $(TOTAL_PROG_CSV) $(VERSION) total
+	@head -n 21 $(TOTAL_PROG_CSV) | tail -n 1 | head -c -8 | tail -c +32 | xargs -i sed -i "/# banjo*/c\# banjo ({})" $(README_MD)
 
 # Shows progress for a single overlay (e.g. progress-SM)
 $(addprefix progress-,$(OVERLAYS)) : progress-% : progress/progress.%.csv
@@ -214,9 +215,6 @@ $(TOTAL_PROG_SVG): $(TOTAL_PROG_CSV)
 $(TOTAL_PROG_CSV): $(OVERLAY_PROG_CSVS) $(MAIN_PROG_CSV)
 	$(call print0,Calculating total progress)
 	@cat $^ > $@
-
-$(README_MD): $(TOTAL_PROG_SVG)
-	@head -n 21 $< | tail -n 1 | head -c -8 | tail -c +32 | xargs -i sed -i "/# banjo*/c\# banjo ({})" $@
 
 # mkdir
 $(ALL_DIRS) :
