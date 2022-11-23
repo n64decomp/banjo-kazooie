@@ -59,6 +59,8 @@ Ubuntu 18.04 or higher.
 ```sh
 sudo apt-get update && sudo apt-get install -y $(cat packages.txt)
 
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
 python3 -m pip install -r requirements.txt
 ```
 

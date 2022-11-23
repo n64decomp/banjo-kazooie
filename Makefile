@@ -185,11 +185,6 @@ $(addprefix progress-,$(OVERLAYS)) : progress-% : progress/progress.%.csv
 	@$(PROGRESS_READ) $< $(VERSION) $*
 
 # Verify that the roms match, also sets up diff_settings
-verify-decompressed: $(DECOMPRESSED_BASEROM) $(Z64)
-	@$(DIFF) $(DECOMPRESSED_BASEROM) $(Z64) > /dev/null && \
-	$(PRINT) "$(YELLOW)        _\n      _( )_\n     [     ]_\n      ) _   _)\n     [_( )_]\n$(BLUE)$(BASENAME).$(VERSION).uncompressed.z64$(NO_COL): $(GREEN)OK$(NO_COL)\n" || \
-	$(PRINT) "$(BLUE)$(BASEROM) $(RED)differs$(NO_COL)\n"
-
 verify: $(BASEROM) $(FINAL_Z64)
 	@$(DIFF) $(BASEROM) $(FINAL_Z64) > /dev/null && \
 	$(PRINT) "$(YELLOW)        _\n      _( )_\n     [     ]_\n      ) _   _)\n     [_( )_]\n$(BLUE)$(BASENAME).$(VERSION).z64$(NO_COL): $(GREEN)OK$(NO_COL)\n" || \
@@ -433,7 +428,7 @@ MAKEFLAGS += -r
 .SUFFIXES:
 
 # Phony targets
-.PHONY: all clean verify verify-decompressed $(OVERLAYS) progress $(addprefix progress-,$(OVERLAYS))
+.PHONY: all clean verify $(OVERLAYS) progress $(addprefix progress-,$(OVERLAYS))
 
 # Set up pipefail
 SHELL = /bin/bash -e -o pipefail

@@ -3,6 +3,7 @@ build-essential
 cmake
 gcc-mips-linux-gnu
 less
+curl
 libglib2.0-0
 libssl-dev
 python3
