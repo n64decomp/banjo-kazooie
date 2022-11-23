@@ -4,7 +4,6 @@
 
 extern void guPerspective(Mtx *, u16*, f32, f32, f32, f32, f32);
 extern f32 ml_vec3f_dot_product(f32[3], f32[3]);
-extern s32 D_A00001D8;
 
 /* .data */
 extern f32 D_80275D20; //fovy
@@ -133,21 +132,17 @@ void func_8024C904(Gfx **gfx, Mtx **mtx){
     func_8024C964(gfx, mtx, D_80275D28, D_80275D2C);
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_EAF0/func_8024C964.s")
-#else
 void func_8024C964(Gfx **gfx, Mtx **mtx, f32 near, f32 far){
     u16 sp5e;
 
     near = MAX(D_80275D28, near);
     far = MIN(D_80275D2C, far);
 
-    if(D_A00001D8 + 0x53D4FFF0){
+    if(*(u32*)OS_PHYSICAL_TO_K1(0x1D8) + 0x53D4FFF0){
         near = 750.0f;
         far = 1250.0f;
     }
     
-
     guPerspective(*mtx, &sp5e, D_80275D20, D_80275D24, near, far, 0.5f);
     gSPPerspNormalize((*gfx)++, sp5e);
     gSPMatrix((*gfx)++, OS_PHYSICAL_TO_K0((*mtx)++), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
@@ -164,7 +159,6 @@ void func_8024C964(Gfx **gfx, Mtx **mtx, f32 near, f32 far){
     guTranslate(*mtx, 0.0f, 0.0f, 0.0f);
     gSPMatrix((*gfx)++, OS_PHYSICAL_TO_K0((*mtx)++), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
 }
-#endif
 
 void func_8024CBD4(Gfx **gfx, Mtx **mtx){
     func_8024C964(gfx, mtx, D_80275D28, D_80275D2C);
