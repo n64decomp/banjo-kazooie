@@ -107,25 +107,15 @@ void func_8024C794(f32 *arg0, f32 *arg1, f32 *arg2){
     *arg2 = D_80280EC0[2];
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_EAF0/func_8024C7B8.s")
-#else
 void func_8024C7B8(Gfx **gfx, Mtx **mtx){
-    f32 tmp_f0;
-    f32 tmp_f16;
-    f32 tmp_f2;
-    f32 tmp_f18;
     gSPViewport((*gfx)++, &D_80280F10[D_80281018]);
 
-    tmp_f0 = D_80276588;
-    tmp_f2 = D_8027658C;
-    guOrtho(*mtx, -(2*tmp_f0), (2*tmp_f0), -(2*tmp_f2), (2*tmp_f2), 1.0f, 20.0f, 1.0f);
-    gSPMatrix((*gfx)++, OS_PHYSICAL_TO_K0((*mtx)++), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
+    guOrtho(*mtx, -(2*(f32)D_80276588), (2*(f32)D_80276588), -(2*(f32)D_8027658C), (2*(f32)D_8027658C), 1.0f, 20.0f, 1.0f);
+    gSPMatrix((*gfx)++, OS_K0_TO_PHYSICAL((*mtx)++), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
     
     guTranslate(*mtx, 0.0f, 0.0f, 0.0f);
-    gSPMatrix((*gfx)++, OS_PHYSICAL_TO_K0((*mtx)++), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
+    gSPMatrix((*gfx)++, OS_K0_TO_PHYSICAL((*mtx)++), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
 }
-#endif
 
 void func_8024C904(Gfx **gfx, Mtx **mtx){
     gSPViewport((*gfx)++, &D_80280F10[D_80281018]);
