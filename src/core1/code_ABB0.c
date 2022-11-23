@@ -425,80 +425,79 @@ void draw_sprite_ia8(s32 x, s32 y, BKSprite *sprite, s32 frame, bool alpha_enabl
     }
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_ABB0/draw_sprite_rgba32.s")
-#else
-void draw_sprite_rgba32(s32 x, s32 y, BKSprite *sprite, s32 frame, s32 alpha_enabled) {
-    s32 i_chunk;
-    BKSpriteFrame *sprite_frame;
+void draw_sprite_rgba32(s32 x, s32 y, BKSprite *sprite, s32 frame, s32 alpha_enabled){
     BKSpriteTextureBlock *chunk_ptr;
-    u32 *var_t4;
-    s16 temp_v0;
+    u32 *tmem;
+    u32 fb_value;
     s16 var_v1;
-    s32 temp_a1;
-    s32 temp_a2;
-    u16 *temp_s5;
+    s32 fb_x;
+    s32 fb_y;
+    u16 *framebuffer;
     s32 temp_t1;
     s32 alpha;
-    s32 temp_v0_5;
-    s32 var_s0;
-    s32 var_t2;
-    u16 *temp_a3;
+    s32 i_chunk;
+    s32 iy;
+    s32 ix;
+    u16 *pxl_ptr;
+    BKSpriteFrame *sprite_frame;
     u16 p1_a;
-    u32 temp_v1;
+    u32 txtr_value;
     s32 red8;
     s32 green8;
     s32 blue8;
 
-    temp_s5 = &D_803A5D00[D_802806EC][0];
+
+    framebuffer = &D_803A5D00[D_802806EC][0];
     sprite_frame = spriteGetFramePtr(sprite, frame);
     if (!alpha_enabled) {
         set_prim_color(0, 0, 0x80);
         draw_prim_rect(x, y, sprite_frame->w, sprite_frame->h);
     }
-    chunk_ptr = (BKSpriteTextureBlock *)(sprite_frame + 1);
-    for(i_chunk = 0; i_chunk < sprite_frame->chunkCnt; i_chunk++){
-        if( ((chunk_ptr->x >= -5) && (chunk_ptr->x < 0x29))
-            && (chunk_ptr->y >= -5) && (chunk_ptr->y < 0x29)
+    chunk_ptr = (BKSpriteTextureBlock *) (sprite_frame + 1);
+    for (i_chunk = 0; i_chunk < sprite_frame->chunkCnt; i_chunk++) {
+        if( (((chunk_ptr->x >= (-5)) && (chunk_ptr->x < 0x29)) 
+            && (chunk_ptr->y >= (-5))) && (chunk_ptr->y < 0x29)
         ) {
-            //align
-            var_t4 = (u32 *)(chunk_ptr + 1);
-            while((s32)var_t4 % 8){var_t4++;}
+            tmem = (u32 *) (1 + chunk_ptr);
+            while (((s32) tmem) % 8)
+            {
+                tmem++;
+            }
 
-            for(var_s0 = 0; var_s0 < chunk_ptr->h; var_s0++){
-                for(var_t2 = 0; var_t2 < chunk_ptr->w; var_t2++) {
-                    temp_a1 = chunk_ptr->x + x + var_t2;
-                    if ((temp_a1 >= 0) && (temp_a1 < D_80276588)) {
-                        temp_a2 = chunk_ptr->y + y + var_s0;
-                        if ((temp_a2 >= 0) && (temp_a2 < D_8027658C)) {
-                            temp_v1 = *var_t4;
-                            temp_a3 = temp_s5 + temp_a1 + temp_a2 * D_80276588;
-                            alpha = _SHIFTR(temp_v1, 0, 8);
-                            temp_t0 = *temp_a3;
-                            if (alpha != 0) {
-
-                                temp_v0_5 = 0xFF - alpha;
-                                red8    = (((_SHIFTR(temp_v1, 24, 8) * alpha) + ((_SHIFTR(temp_t0,  11, 5) << 3) * temp_v0_5)) / 0xFF);
-                                green8  = (((_SHIFTR(temp_v1, 16, 8) * alpha) + ((_SHIFTR(temp_t0,  6, 5) << 3)  * temp_v0_5)) / 0xFF);
-                                blue8   = (((_SHIFTR(temp_v1, 8, 8) * alpha)  + ((_SHIFTR(temp_t0,  1, 5) << 3)  * temp_v0_5)) / 0xFF);
-                                *temp_a3 = _SHIFTL((red8 >> 3), 11, 5)
-                                         | _SHIFTL((green8 >> 3), 6, 5)
-                                         | _SHIFTL((blue8 >> 3), 1, 5)
-                                         | 1;
-                            } else if (!alpha_enabled) {
-                                *temp_a3 = 0x0001;
+            for (iy = 0; iy < chunk_ptr->h; iy++)
+            {
+                for (ix = 0; ix < chunk_ptr->w; ix++)
+                {
+                    fb_x = (chunk_ptr->x + x) + ix;
+                    if ((fb_x >= 0) && (fb_x < D_80276588))
+                    {
+                        fb_y = (chunk_ptr->y + y) + iy;
+                        if ((fb_y >= 0) && (fb_y < D_8027658C))
+                        {
+                            txtr_value = *tmem;
+                            pxl_ptr = (framebuffer + fb_x) + (fb_y * D_80276588);
+                            fb_value = (unsigned int) (*pxl_ptr);
+                            alpha = _SHIFTR(txtr_value, 0, 8);
+                            if (alpha) {//blend texture with existing pixel color
+                                red8 = ((_SHIFTR(txtr_value, 24, 8) * alpha)   + (((((fb_value >> 11) )) *8) * (0xFF - alpha))) / 0xFF;
+                                green8 = ((_SHIFTR(txtr_value, 16, 8) * alpha) + ((_SHIFTR(fb_value, 6, 5) * 8) * (0xFF - alpha))) / 0xFF;
+                                blue8 = ((_SHIFTR(txtr_value, 8, 8) * alpha)   + ((_SHIFTR(fb_value, 1, 5) * 8) * (0xFF - alpha))) / 0xFF;
+                                    
+                                *pxl_ptr = ((_SHIFTL((red8 >> 3), 11, 5) | _SHIFTL((green8 >> 3), 6, 5)) | _SHIFTL((blue8 >> 3), 1, 5)) | 1;
+                            }
+                            else if (!alpha_enabled) {
+                                *pxl_ptr = 0x0001;
                             }
                         }
                     }
-                    var_t4++;
+                    tmem++;
                 }
+
             }
-            chunk_ptr = (BKSpriteFrame *) var_t4;
+            chunk_ptr = (BKSpriteFrame *) tmem;
         }
     }
 }
-#endif
-
 
 void func_802499BC(s32 arg0, s32 arg1, s32 arg2, s32 arg3){//signature may have more variables passed in
 }
