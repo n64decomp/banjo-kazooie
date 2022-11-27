@@ -97,22 +97,16 @@ void func_802E4C78(void){
     D_8037E900 = NULL;
 }
 
-#ifndef NONMATCHING
-s32 func_802E4CF8(u8);
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5DBC0/func_802E4CF8.s")
-#else
 s32 func_802E4CF8(u8 arg0) {
     u32 var_v1;
-
-    for(var_v1 = D_8037E900->unk10; var_v1 > 0; var_v1--){
-        if (arg0 == D_8037E900->unk4[var_v1 - 1].font_id) {
-            return var_v1 - 1;
+    var_v1 = D_8037E900->unk10;
+    while(var_v1--){
+        if (arg0 == D_8037E900->unk4[var_v1].font_id) {
+            return var_v1;
         }
     }
     return -1;
 }
-#endif
-
 
 BKSpriteTextureBlock *func_802E4D5C(s32 arg0, char arg1){
     return D_8037E900->unk4[arg0].letter_texture[arg1 - 0x21];

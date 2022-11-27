@@ -686,7 +686,7 @@ segments:
   - [0xFB1810, c, code_5BEB0]
   - [0xFB1BA0, c, code_5C240] #DONE
   - [0xFB21D0, c, code_5C870] #DONE
-  - [0xFB3520, c, code_5DBC0]
+  - [0xFB3520, c, code_5DBC0] #DONE
   - [0xFB5460, c, code_5FB00] #DONE
   - [0xFB56E0, c, code_5FD80] #DONE
   - [0xFB56F0, c, code_5FD90]
