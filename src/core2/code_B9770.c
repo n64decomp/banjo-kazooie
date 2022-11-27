@@ -301,7 +301,7 @@ s32 func_80340760(s32 arg0, s32 *arg1, f32 *arg2, s32 arg3, s32 arg4, f32 *arg5,
     return 0;
 }
 
-f32 func_80340A4C(f32 arg0, s32 arg1, f32 *arg2) {
+f32 glspline_catmull_rom_interpolate(f32 arg0, s32 arg1, f32 *arg2) {
     s32 tmp_v1;
     s32 tmp_t7;
     f32 sp24[3];

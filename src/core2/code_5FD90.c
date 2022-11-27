@@ -9,20 +9,12 @@ extern void func_80252CC4(f32[3],s32, f32, s32);
 extern f32  func_802560D0(f32[3], f32[3], f32[3]);
 
 typedef struct {
-    u8 pad0[0x24];
-    BKCollisionTri *unk24;
-}Struct_core2_5FD90_0;
-
-typedef struct {
-    f32 unk0[3];
-    f32 unkC[3];
+    f32 unk0[3]; 
+    f32 unkC[3]; 
     f32 unk18[3];
-    struct {
-        BKCollisionTri * unk0;
-        f32 unk4[3][3];
-    }
-    unk24;
-}Struct_core2_5FD90_1;
+    BKCollisionTri *unk24;
+    f32 unk28[3][3];
+}Struct_core2_5FD90_0;
 
 
 /* .rodata */
@@ -35,7 +27,7 @@ struct {
     BKCollisionGeo **unk190;
 }D_8037E910;
 f32 D_8037EAA8[3][3];
-Struct_core2_5FD90_1 D_8037EAD0[100];
+Struct_core2_5FD90_0 D_8037EAD0[100];
 
 /* .code */
 void func_802E6D20(BKCollisionTri *arg0, BKVertexList *vtx_list) {
@@ -477,7 +469,7 @@ s32 func_802E81CC(BKCollisionList *collision_list, BKVertexList *vtx_list, f32 a
 //     //pad8C;
 //     f32 sp80[3];
 //     f32 sp74[3];
-//     Struct_core2_5FD90_1 *var_s2;
+//     Struct_core2_5FD90_0 *var_s2;
 //     ? *var_t0;
 //     ? *var_v0;
 //     f32 *temp_v0;

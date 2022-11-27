@@ -5,7 +5,7 @@
 #include "assets.h"
 #include "animation.h"
 
-extern f32 func_80340A4C(f32, s32, f32 *);
+extern f32 glspline_catmull_rom_interpolate(f32, s32, f32 *);
 
 extern f32 D_803709E0[];
 extern u8 D_80370A1C;
@@ -107,7 +107,7 @@ f32 func_8033AC38(AnimationFile *this, AnimationFileElement *elem, f32 arg2){
         sp38[0] = sp38[1] = D_803709E0[elem->unk0_3];
         sp38[2] = (f32) var_a2->unk2 / 64;
         sp38[3] = (var_a2->unk0_15 == 1 && elem->data_cnt >= 2) ? (f32)(var_a2 + 1)->unk2/64 : sp38[2];
-        return func_80340A4C((arg2 - this->unk0)/(var_a2->unk0_13 - this->unk0), 4, sp38);
+        return glspline_catmull_rom_interpolate((arg2 - this->unk0)/(var_a2->unk0_13 - this->unk0), 4, sp38);
     }
     var_a0 = var_a2 + elem->data_cnt;
     var_a0--;
@@ -116,7 +116,7 @@ f32 func_8033AC38(AnimationFile *this, AnimationFileElement *elem, f32 arg2){
         sp38[0] =  ((var_a0->unk0_14 == 1) && (elem->data_cnt >= 2)) ? (f32) (var_a0 - 1)->unk2 / 64 : sp38[1];
         sp38[2] = sp38[3] = sp38[1];
 
-        return func_80340A4C(arg2 - var_a0->unk0_13, 4, sp38);
+        return glspline_catmull_rom_interpolate(arg2 - var_a0->unk0_13, 4, sp38);
     }
 
     
@@ -142,7 +142,7 @@ f32 func_8033AC38(AnimationFile *this, AnimationFileElement *elem, f32 arg2){
     
     sp38[0] = (var_a2->unk0_14 == 1 && (var_a2 - 1) >= &elem->data[0]) ?  (f32)(var_a2 - 1)->unk2/64 : sp38[1];
     sp38[3] = (var_a0->unk0_15 == 1 && (var_a0 + 1) < &elem->data[elem->data_cnt]) ? (f32)(var_a0 + 1)->unk2/64 : sp38[2];
-    return func_80340A4C(temp_f12, 4, sp38);
+    return glspline_catmull_rom_interpolate(temp_f12, 4, sp38);
 }
 
 void func_8033AFB8(Struct_B1400 *arg0, s32 arg1, f32 arg2[3][3]){

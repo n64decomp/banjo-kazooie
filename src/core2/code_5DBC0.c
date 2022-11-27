@@ -74,20 +74,14 @@ struct5DBC0s *func_802E4B50(void){
     return D_8037E900;
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5DBC0/func_802E4C0C.s")
-#else
-void func_802E4C0C(struct5DBC0_2s * arg0, u32 arg1){
-    // u32 i, v0;
-    u32 v0;
-    while(--arg1 > 0){
-        // arg1--;
-        assetcache_release(arg0[arg1].font_bin);
+void func_802E4C0C(struct5DBC0_2s *arg0, u32 arg1)
+{
+    while(arg1--){
+        assetcache_release(arg0[arg1].font_bin);   
         free(arg0[arg1].letter_texture);
     }
     free(arg0);
 }
-#endif
 
 void func_802E4C78(void){
     if(D_8037E900->unk0 != NULL){
