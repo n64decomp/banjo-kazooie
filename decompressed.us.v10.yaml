@@ -2074,10 +2074,10 @@ segments:
   - [0x10A3C40, c, code_BBD0] #DONE
   - [0x10A4230, c, code_C1C0] #DONE
   - [0x10A4730, c, code_C6C0] #DONE
-  - [0x10A4930, bin, data_C8C0] #.data, code_0]
-  - [0x10A51A0, bin, data_D130] #.data, code_42A0]
+  - [0x10A4930, .data, code_0]
+  - [0x10A51A0, .data, code_42A0]
   - [0x10A5390, .data, code_5640]
-  - [0x10A53E0, bin, data_D370] #.data, code_5ED0]
+  - [0x10A53E0, .data, code_5ED0]
   - [0x10A6430, .data, code_86F0]
   - [0x10A64E0, .data, code_9C40]
   - [0x10A6560, .data, code_A170]

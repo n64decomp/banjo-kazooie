@@ -21,14 +21,14 @@ extern struct {
 }D_8027EF18;
 
 /* .data */
-extern struct{
+struct{
     N_AL_Struct81s *unk0;
     N_AL_Struct81s *unk4;
     N_AL_Struct81s *unk8;
 }D_802758C0 = {NULL, NULL, NULL};
-extern N_ALSndPlayer *D_802758CC = &D_8027EEC0;
-extern s32 D_802758D0 = 1;
-extern s16 D_802758D4 = 0;
+N_ALSndPlayer *D_802758CC = &D_8027EEC0;
+s32 D_802758D0 = 1;
+s16 D_802758D4 = 0;
 
 /* .code */
 void func_80243070(Struct87s *arg0) {

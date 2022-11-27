@@ -85,65 +85,132 @@ extern ActorInfo D_80394CF0;
 extern ActorInfo D_80394C94;
 
 /* .data */
-extern ActorAnimationInfo D_80392CB0[];
-extern ActorInfo lair_D_80392D90 = { 0x270, 0x2D8, 0x3B2, 0x1, NULL, func_802D3D54, func_80326224, func_80325E78, 0, 0, 0.0f, 0};
-extern ActorInfo D_80392DB4 = { 0x110, 0x214, 0x4AB, 0x1, D_80392CB0, func_803896D4, func_80326224, func_80325888, 0, 0, 0.0f, 0};
-extern ActorInfo D_80392DD8 = { 0x113, 0x217, 0x4A9, 0x1, D_80392CB0, func_803896F4, func_80326224, func_80325888, 0, 0, 0.0f, 0};
-extern ActorInfo D_80392DFC = { 0x115, 0x219, 0x4AA, 0x1, D_80392CB0, func_80389714, func_80326224, func_80325888, 0, 0, 0.0f, 0};
-extern ActorInfo D_80392E20 = { 0x11B, 0x221, 0x4B5, 0x1, D_80392CB0, func_80389734, func_80326224, func_80325888, 0, 0, 0.0f, 0};
-extern ActorInfo D_80392E44 = { 0x11C, 0x222, 0x4B2, 0x1, D_80392CB0, func_8038975C, func_80326224, func_80325888, 0, 0, 0.0f, 0};
-extern ActorInfo D_80392E68 = { 0x11D, 0x223, 0x4B0, 0x1, D_80392CB0, func_80389784, func_80326224, func_80325888, 0, 0, 0.0f, 0};
-extern ActorInfo D_80392E8C = { 0x232, 0x23C, 0x4B8, 0x1, D_80392CB0, func_803897AC, func_80326224, func_80325888, 0, 0, 0.0f, 0};
-extern ActorInfo D_80392EB0 = { 0x23F, 0x246, 0x534, 0x1, D_80392CB0, func_80386D20, func_80326224, func_80325888, 0, 0, 0.0f, 0};
-extern ActorInfo D_80392ED4 = { 0x241, 0x248, 0x540, 0x1, D_80392CB0, func_80386780, func_80326224, func_80325888, 0, 0, 0.0f, 0};
-extern ActorInfo D_80392EF8 = { 0x109, 0x20D, 0x4A1, 0x1, D_80392CB0, lair_func_80386550, func_80326224, func_80325888, 0, 0, 0.0f, 0x85};
-extern ActorInfo D_80392F1C = { 0x264, 0x2E5, 0x550, 0x19, D_80392CB0, func_80388524, func_80326224, func_80325888, 0, 0, 0.0f, 0};
-extern ActorInfo D_80392F40 = { 0x224, 0x230, 0x4BF, 0xB, D_80392CB0, lair_func_803863F0, func_80326224, func_80325888, 0, 0, 0.0f, 0x88};
-extern ActorInfo D_80392F64 = { 0x225, 0x231, 0x4D5, 0xE, D_80392CB0, lair_func_803864B0, func_80326224, func_80325888, 0, 0, 0.0f, 0x88};
-extern ActorInfo D_80392F88 = { 0x111, 0x215, 0x4A4, 0x1, NULL, func_80388FC8, func_80326224, func_80325E78, 0, 0, 0.0f, 0};
-extern ActorInfo D_80392FAC = { 0x112, 0x216, 0x4A5, 0x1, NULL, func_80388FC8, func_80326224, func_80325E78, 0, 0, 0.0f, 0};
-extern ActorInfo D_80392FD0 = { 0x114, 0x218, 0x4A6, 0x1, NULL, lair_func_80389204, func_80326224, func_80325E78, 0, 0, 0.0f, 0};
-extern ActorInfo D_80392FF4 = { 0x10D, 0x211, 0x4A3, 0x1, NULL, func_80388524, func_80326224, func_80325E78, 0, 0, 0.0f, 0};
-extern ActorInfo D_80393018 = { 0x22C, 0x23A, 0x4D9, 0x1, NULL, func_803882B0, func_80326224, func_80325E78, 0, 0, 0.0f, 0};
-extern ActorInfo D_8039303C = { 0x164, 0x259, 0x507, 0x1, NULL, func_803880BC, func_80326224, func_80325E78, 0, 0, 0.0f, 0};
-extern ActorInfo D_80393060 = { 0x165, 0x25A, 0x508, 0x1, NULL, func_8038824C, func_80326224, func_80325E78, 0, 0, 0.0f, 0};
-extern ActorInfo D_80393084 = { 0x240, 0x247, 0x48A, 0x1, NULL, func_80386D78, func_80326224, func_80325E78, 0, 0, 0.0f, 0};
-extern ActorInfo D_803930A8 = { 0x242, 0x249, 0x2DD, 0x1, NULL, func_803867A8, func_80326224, func_80325E78, 0, 0, 0.0f, 0};
-extern ActorInfo D_803930CC = { 0x11F, 0x225, 0x4B3, 0x1, NULL, func_8038A064, func_80326224, func_80325E78, 0, 0, 0.0f, 0};
-extern ActorInfo D_803930F0 = { 0x10A, 0x20E, 0x4A2, 0x1, NULL, func_80388524, func_80326224, func_80325E78, 0, 0, 0.0f, 0};
-extern ActorInfo D_80393114 = { 0x11A, 0x220, 0x4B7, 0x1, NULL, func_80389FF4, func_80326224, func_80325E78, 0, 0, 0.0f, 0x91};
-extern ActorInfo D_80393138 = { 0x11E, 0x224, 0x4AF, 0x1, NULL, func_8038A014, func_80326224, func_80325E78, 0, 0, 0.0f, 0x83};
-extern ActorInfo D_8039315C = { 0x227, 0x234, 0x4D6, 0x1, NULL, func_80388524, func_80326224, func_80325E78, 0, 0, 0.0f, 0x93};
-extern ActorInfo D_80393180 = { 0x228, 0x235, 0x4D7, 0x1, NULL, func_80388524, func_80326224, func_80325E78, 0, 0, 0.0f, 0x8B};
-extern ActorInfo D_803931A4 = { 0x229, 0x236, 0x4D8, 0x1, NULL, func_80388524, func_80326224, func_80325E78, 0, 0, 0.0f, 0x8B};
-extern ActorInfo D_803931C8 = { MARKER_121_GLASS_EYE, ACTOR_227_GLASS_EYE, ASSET_4BD_MODEL_GLASS_EYE, 0x1, NULL, func_8038A034, func_80326224, func_80325888, 0, 0, 0.0f, 0x89};
-extern ActorInfo D_803931EC = { 0x116, 0x21A, 0x4AC, 0x1, NULL, func_803893B8, func_80326224, func_80325E78, 0, 0, 0.0f, 0x82};
-extern ActorInfo D_80393210 = { 0x117, 0x21B, 0x4AD, 0x1, NULL, lair_func_803894B0, func_80326224, func_80325E78, 0, 0, 0.0f, 0x82};
-extern ActorInfo D_80393234 = { 0x10B, 0x20F, 0x4B4, 0x1, NULL, func_80388524, func_80326224, func_80325E78, 0, 0, 0.0f, 0x90};
-extern ActorInfo D_80393258 = { 0x10C, 0x210, 0x4AE, 0x1, NULL, func_80388524, func_80326224, func_80325E78, 0, 0, 0.0f, 0x84};
-extern ActorInfo D_8039327C = { 0x10E, 0x212, 0x4A7, 0x1, NULL, func_80388524, func_80326224, func_80325E78, 0, 0, 0.0f, 0x7F};
-extern ActorInfo D_803932A0 = { 0x120, 0x226, 0x4BC, 0x1, NULL, func_80388524, func_80326224, func_80325E78, 0, 0, 0.0f, 0x87};
-extern ActorInfo D_803932C4 = { 0x122, 0x228, 0x4BE, 0x1, NULL, func_80388524, func_80326224, func_80325E78, 0, 0, 0.0f, 0x8C};
-extern ActorInfo D_803932E8 = { 0x10F, 0x213, 0x4A8, 0x1, NULL, func_803875F0, func_80326224, func_80325E78, 0, 0, 0.0f, 0x80};
-extern ActorInfo D_8039330C = { 0x118, 0x21E, 0x4B1, 0x1, NULL, lair_func_8038A084, func_80326224, func_80325E78, 0, 0, 0.0f, 0x8F};
-extern ActorInfo D_80393330 = { 0x119, 0x21F, 0x4B6, 0x1, NULL, func_8038A0A4, func_80326224, func_80325E78, 0, 0, 0.0f, 0x92};
-extern ActorInfo D_80393354 = { 0x266, 0x2E3, 0x563, 0x1, NULL, func_803870DC, func_80326224, lair_func_80387560, 0, 0, 0.0f, 0};
-extern ActorInfo D_80393378 = { 0x17D, 0x1E1, 0x517, 0x1, NULL, func_80389D08, func_80326224, func_80389E10, 0, 0, 0.0f, 0x8D};
-extern ActorInfo D_8039339C = { 0x234, 0x23E, 0x4E1, 0x12, D_80392CB0, func_8038982C, func_80326224, func_80325E78, 0, 0, 0.0f, 0};
-extern ActorInfo D_803933C0 = { 0x163, 0x258, 0x511, 0x12, D_80392CB0, func_80389898, func_80326224, func_8038664C, 0, 0, 0.0f, 0x8E};
-extern ActorInfo D_803933E4 = { 0x160, 0x255, 0x509, 0x15, D_80392CB0, func_80389934, func_80326224, func_80325888, 0, 0, 0.0f, 0};
-extern ActorInfo D_80393408 = { 0x102, 0x203, 0x491, 0x1, D_80392CB0, func_80387730, func_80326224, func_80387DA8, 0, 0, 0.0f, 0};
-extern struct31s D_8039342C;
-extern s16       D_80393452[]; //enum bkprog_e
-extern s16       D_80393466[];
-extern s16       D_8039347A[]; //notedoor_notes_required_to_open
-extern s16       D_80393490[];
-extern s32       D_803934A0[3];
-extern struct31s D_803934AC;
-extern struct42s D_803934D4;
-extern s32       D_80393504[4];
+ActorAnimationInfo D_80392CB0[] = {
+    {    0,   0.0f}, 
+    {    0,   0.0f},
+    { 0xD4,   0.15f}, 
+    { 0xD5,   0.5f},
+    {    0,   0.0f}, 
+    {    0,   0.0f},
+    { 0xD4,   0.15f}, 
+    { 0xD5,   0.5f},
+    { 0xD5, 1e+08f}, 
+    {0x1E3,   0.73},
+    {0x1E3, 1e+08f}, 
+    {0x1F0,   1.0f},
+    {0x1F1,   0.7f}, 
+    {0x1F1, 1e+08f},
+    {0x1F2,   1.0f}, 
+    {0x1F3,   0.4f},
+    {0x1F3, 1e+08f}, 
+    {    0,   0.0f},
+    {0x218, 1e+08f}, 
+    {0x218,   1.0f},
+    {0x218, 1e+08f}, 
+    {0x235, 1e+08f},
+    {0x235, 1e+08f}, 
+    {0x235,   1.0f},
+    {0x235, 1e+08f}, 
+    {0x271, 1e+08f},
+    {0x271,   3.0f}, 
+    {0x271, 1e+08f}
+};
+ActorInfo lair_D_80392D90 = { 0x270, 0x2D8, 0x3B2, 0x1, NULL, func_802D3D54, func_80326224, func_80325E78, 0, 0,   0.0f, 0};
+ActorInfo D_80392DB4 = { 0x110, 0x214, 0x4AB, 0x1, D_80392CB0, func_803896D4, func_80326224, func_80325888, 0, 0,   0.0f, 0};
+ActorInfo D_80392DD8 = { 0x113, 0x217, 0x4A9, 0x1, D_80392CB0, func_803896F4, func_80326224, func_80325888, 0, 0,   0.0f, 0};
+ActorInfo D_80392DFC = { 0x115, 0x219, 0x4AA, 0x1, D_80392CB0, func_80389714, func_80326224, func_80325888, 0, 0,   0.0f, 0};
+ActorInfo D_80392E20 = { 0x11B, 0x221, 0x4B5, 0x1, D_80392CB0, func_80389734, func_80326224, func_80325888, 0, 0,   0.0f, 0};
+ActorInfo D_80392E44 = { 0x11C, 0x222, 0x4B2, 0x1, D_80392CB0, func_8038975C, func_80326224, func_80325888, 0, 0,   0.0f, 0};
+ActorInfo D_80392E68 = { 0x11D, 0x223, 0x4B0, 0x1, D_80392CB0, func_80389784, func_80326224, func_80325888, 0, 0,   0.0f, 0};
+ActorInfo D_80392E8C = { 0x232, 0x23C, 0x4B8, 0x1, D_80392CB0, func_803897AC, func_80326224, func_80325888, 0, 0,   0.0f, 0};
+ActorInfo D_80392EB0 = { 0x23F, 0x246, 0x534, 0x1, D_80392CB0, func_80386D20, func_80326224, func_80325888, 0, 0,   0.0f, 0};
+ActorInfo D_80392ED4 = { 0x241, 0x248, 0x540, 0x1, D_80392CB0, func_80386780, func_80326224, func_80325888, 0, 0,   0.0f, 0};
+ActorInfo D_80392EF8 = { 0x109, 0x20D, 0x4A1, 0x1, D_80392CB0, lair_func_80386550, func_80326224, func_80325888, 0, 0,   0.0f, 0x85};
+ActorInfo D_80392F1C = { 0x264, 0x2E5, 0x550, 0x19, D_80392CB0, func_80388524, func_80326224, func_80325888, 0, 0,   0.0f, 0};
+ActorInfo D_80392F40 = { 0x224, 0x230, 0x4BF, 0xB, D_80392CB0, lair_func_803863F0, func_80326224, func_80325888, 0, 0,   0.0f, 0x88};
+ActorInfo D_80392F64 = { 0x225, 0x231, 0x4D5, 0xE, D_80392CB0, lair_func_803864B0, func_80326224, func_80325888, 0, 0,   0.0f, 0x88};
+ActorInfo D_80392F88 = { 0x111, 0x215, 0x4A4, 0x1, NULL, func_80388FC8, func_80326224, func_80325E78, 0, 0,   0.0f, 0};
+ActorInfo D_80392FAC = { 0x112, 0x216, 0x4A5, 0x1, NULL, func_80388FC8, func_80326224, func_80325E78, 0, 0,   0.0f, 0};
+ActorInfo D_80392FD0 = { 0x114, 0x218, 0x4A6, 0x1, NULL, lair_func_80389204, func_80326224, func_80325E78, 0, 0,   0.0f, 0};
+ActorInfo D_80392FF4 = { 0x10D, 0x211, 0x4A3, 0x1, NULL, func_80388524, func_80326224, func_80325E78, 0, 0,   0.0f, 0};
+ActorInfo D_80393018 = { 0x22C, 0x23A, 0x4D9, 0x1, NULL, func_803882B0, func_80326224, func_80325E78, 0, 0,   0.0f, 0};
+ActorInfo D_8039303C = { 0x164, 0x259, 0x507, 0x1, NULL, func_803880BC, func_80326224, func_80325E78, 0, 0,   0.0f, 0};
+ActorInfo D_80393060 = { 0x165, 0x25A, 0x508, 0x1, NULL, func_8038824C, func_80326224, func_80325E78, 0, 0,   0.0f, 0};
+ActorInfo D_80393084 = { 0x240, 0x247, 0x48A, 0x1, NULL, func_80386D78, func_80326224, func_80325E78, 0, 0,   0.0f, 0};
+ActorInfo D_803930A8 = { 0x242, 0x249, 0x2DD, 0x1, NULL, func_803867A8, func_80326224, func_80325E78, 0, 0,   0.0f, 0};
+ActorInfo D_803930CC = { 0x11F, 0x225, 0x4B3, 0x1, NULL, func_8038A064, func_80326224, func_80325E78, 0, 0,   0.0f, 0};
+ActorInfo D_803930F0 = { 0x10A, 0x20E, 0x4A2, 0x1, NULL, func_80388524, func_80326224, func_80325E78, 0, 0,   0.0f, 0};
+ActorInfo D_80393114 = { 0x11A, 0x220, 0x4B7, 0x1, NULL, func_80389FF4, func_80326224, func_80325E78, 0, 0,   0.0f, 0x91};
+ActorInfo D_80393138 = { 0x11E, 0x224, 0x4AF, 0x1, NULL, func_8038A014, func_80326224, func_80325E78, 0, 0,   0.0f, 0x83};
+ActorInfo D_8039315C = { 0x227, 0x234, 0x4D6, 0x1, NULL, func_80388524, func_80326224, func_80325E78, 0, 0,   0.0f, 0x93};
+ActorInfo D_80393180 = { 0x228, 0x235, 0x4D7, 0x1, NULL, func_80388524, func_80326224, func_80325E78, 0, 0,   0.0f, 0x8B};
+ActorInfo D_803931A4 = { 0x229, 0x236, 0x4D8, 0x1, NULL, func_80388524, func_80326224, func_80325E78, 0, 0,   0.0f, 0x8B};
+ActorInfo D_803931C8 = { MARKER_121_GLASS_EYE, ACTOR_227_GLASS_EYE, ASSET_4BD_MODEL_GLASS_EYE, 0x1, NULL, func_8038A034, func_80326224, func_80325888, 0, 0,   0.0f, 0x89};
+ActorInfo D_803931EC = { 0x116, 0x21A, 0x4AC, 0x1, NULL, func_803893B8, func_80326224, func_80325E78, 0, 0,   0.0f, 0x82};
+ActorInfo D_80393210 = { 0x117, 0x21B, 0x4AD, 0x1, NULL, lair_func_803894B0, func_80326224, func_80325E78, 0, 0,   0.0f, 0x82};
+ActorInfo D_80393234 = { 0x10B, 0x20F, 0x4B4, 0x1, NULL, func_80388524, func_80326224, func_80325E78, 0, 0,   0.0f, 0x90};
+ActorInfo D_80393258 = { 0x10C, 0x210, 0x4AE, 0x1, NULL, func_80388524, func_80326224, func_80325E78, 0, 0,   0.0f, 0x84};
+ActorInfo D_8039327C = { 0x10E, 0x212, 0x4A7, 0x1, NULL, func_80388524, func_80326224, func_80325E78, 0, 0,   0.0f, 0x7F};
+ActorInfo D_803932A0 = { 0x120, 0x226, 0x4BC, 0x1, NULL, func_80388524, func_80326224, func_80325E78, 0, 0,   0.0f, 0x87};
+ActorInfo D_803932C4 = { 0x122, 0x228, 0x4BE, 0x1, NULL, func_80388524, func_80326224, func_80325E78, 0, 0,   0.0f, 0x8C};
+ActorInfo D_803932E8 = { 0x10F, 0x213, 0x4A8, 0x1, NULL, func_803875F0, func_80326224, func_80325E78, 0, 0,   0.0f, 0x80};
+ActorInfo D_8039330C = { 0x118, 0x21E, 0x4B1, 0x1, NULL, lair_func_8038A084, func_80326224, func_80325E78, 0, 0,   0.0f, 0x8F};
+ActorInfo D_80393330 = { 0x119, 0x21F, 0x4B6, 0x1, NULL, func_8038A0A4, func_80326224, func_80325E78, 0, 0,   0.0f, 0x92};
+ActorInfo D_80393354 = { 0x266, 0x2E3, 0x563, 0x1, NULL, func_803870DC, func_80326224, lair_func_80387560, 0, 0,   0.0f, 0};
+ActorInfo D_80393378 = { 0x17D, 0x1E1, 0x517, 0x1, NULL, func_80389D08, func_80326224, func_80389E10, 0, 0,   0.0f, 0x8D};
+ActorInfo D_8039339C = { 0x234, 0x23E, 0x4E1, 0x12, D_80392CB0, func_8038982C, func_80326224, func_80325E78, 0, 0,   0.0f, 0};
+ActorInfo D_803933C0 = { 0x163, 0x258, 0x511, 0x12, D_80392CB0, func_80389898, func_80326224, func_8038664C, 0, 0,   0.0f, 0x8E};
+ActorInfo D_803933E4 = { 0x160, 0x255, 0x509, 0x15, D_80392CB0, func_80389934, func_80326224, func_80325888, 0, 0,   0.0f, 0};
+ActorInfo D_80393408 = { 0x102, 0x203, 0x491, 0x1, D_80392CB0, func_80387730, func_80326224, func_80387DA8, 0, 0,   0.0f, 0};
+struct31s D_8039342C = {
+    {0.31f, 0.37f},
+    {0.17f, 0.22f},
+    {0.0f,  0.01f},
+    {0.9f,  0.9f},
+    0.0f, 0.0f
+}; 
+s16 D_80393454[] = {
+    BKPROG_31_MM_OPEN, 
+    BKPROG_32_TTC_OPEN,
+    BKPROG_33_CC_OPEN,
+    BKPROG_34_BGS_OPEN,
+    BKPROG_35_FP_OPEN,
+    BKPROG_36_GV_OPEN,
+    BKPROG_37_MMM_OPEN,
+    BKPROG_38_RBB_OPEN,
+    BKPROG_39_CCW_OPEN,
+    0
+};
 
-/* .bss */
+s16 D_80393468[] = {
+    0, 
+    0, 
+    UNKFLAGS1_7F_SANDCASTLE_OPEN_CC, 
+    UNKFLAGS1_84_SANDCASTLE_OPEN_BGS, 
+    UNKFLAGS1_8B_SANDCASTLE_OPEN_FP, 
+    UNKFLAGS1_87_SANDCASTLE_OPEN_GV, 
+    UNKFLAGS1_8C_SANDCASTLE_OPEN_MMM, 
+    UNKFLAGS1_90_SANDCASTLE_OPEN_RBB, 
+    UNKFLAGS1_93_SANDCASTLE_OPEN_CCW, 
+    0
+};
+
+s16 D_8039347C[] = {50, 180, 260, 350, 450, 640, 765, 810, 828, 846, 864, 882}; //notedoor_notes_required_to_open
+
+s16 D_80393494[]  = {0x66, 0x67, 0x68, 0x69, 0x6A, 0x6B}; 
+s32 D_803934A0[3] = {0x00, 0xFF, 0x00};
+struct31s D_803934AC = {
+    {1.0f, 2.0f},
+    {2.4f, 5.0f},
+    {0.0f, 3.2f},
+    {3.8f, 5.0f},
+    0.31f, 0.93f
+};
+struct42s D_803934D4 = {
+    {{-80.0f, 30.0f, -80.0f}, {80.0f, 270.0f, 80.0f}},
+    {{40.0f, 0.0f, -50.0f}, {100.0f, 200.0f, 50.0f}},
+};
+s32 D_80393504[4] = {0x87, 0x87, 0x87, 0xB4};
 
 
 //chcobweb
@@ -219,7 +286,7 @@ void lair_func_80386550(Actor *this)
                 func_80326310(this);
                 func_80328B8C(this, 10, 0.98f, 1);
 
-                this->pitch = 270.f;
+                this->pitch = 270.0f;
             }
 
             break;
@@ -458,8 +525,8 @@ void func_803870DC(Actor *this) {
     f32 sp64[3];
     s32 temp_s7;
 
-    phi_v1 = func_8031FF1C(D_80393452[this->unkF4_8]) 
-             || (D_80393466[this->unkF4_8] != 0 && func_803203FC(D_80393466[this->unkF4_8]));
+    phi_v1 = func_8031FF1C(D_80393454[this->unkF4_8 - 1]) 
+             || (D_80393468[this->unkF4_8 - 1] != 0 && func_803203FC(D_80393468[this->unkF4_8 - 1]));
 
     if (!this->unk16C_4) {
         this->unk16C_4 = TRUE;
@@ -600,7 +667,7 @@ void func_80387730(Actor *this) {
             marker_despawn(this->marker);
             return;
         }
-        if ((this->unkF4_8 >= 2U) && (this->unkF4_8 < 8U) && func_803203FC(D_80393490[this->unkF4_8])) {
+        if ((this->unkF4_8 >= 2U) && (this->unkF4_8 < 8U) && func_803203FC(D_80393494[this->unkF4_8 - 2])) {
             marker_despawn(this->marker);
             return;
         }
@@ -620,7 +687,7 @@ void func_80387730(Actor *this) {
         if ((ml_vec3f_distance(spAC, this->position) < 500.0f) && (func_803114C4() != 0xF64)) {
             func_802FACA4(0xC);
         }
-        if (itemscore_noteScores_getTotal() >= D_8039347A[this->unkF4_8]) {
+        if (itemscore_noteScores_getTotal() >= D_8039347C[this->unkF4_8 - 1]) {
             if (this->marker->unk14_21) {
                 func_8032BC60(this, 5, sp90);
                 func_8032BC60(this, 6, sp84);

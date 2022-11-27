@@ -5,18 +5,17 @@
 void func_80240924(s32 arg0);
 
 OSMesgQueue D_8027E120;
-OSMesg D_8027E138;
+OSMesg      D_8027E138;
 OSMesgQueue D_8027E140;
-OSMesg D_8027E158;
-OSThread D_8027E160;
-u8 pad_8027E310[0x800];
-extern u8 D_8027EB10;
+OSMesg      D_8027E158;
+OSThread    D_8027E160;
+u8          D_8027E310[0x800];
 
 /* .code */
 void func_802407C0(void){
     osCreateMesgQueue(&D_8027E120, &D_8027E138, 1);
     osCreateMesgQueue(&D_8027E140, &D_8027E158, 1);
-    osCreateThread(&D_8027E160, 2, func_80240924, NULL,  &D_8027EB10, 10);
+    osCreateThread(&D_8027E160, 2, func_80240924, NULL,  &D_8027E310[0x800], 10);
     osStartThread(&D_8027E160);
 }
 

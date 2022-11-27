@@ -23,15 +23,43 @@ void func_8038AE2C(Actor *this);
 Actor *func_8038B898(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 
 /* .data */
-extern ActorAnimationInfo D_80393520[];
-extern ActorInfo D_80393560 = { 0x231, 0x23B, 0x4DF, 0x1, D_80393520, func_8038AE2C, func_80326224, func_8038B898, 0, 0, 3.0f, 0};
-extern ActorInfo D_80393584 = { 0x244, 0x2DB, 0x450, 0x1, D_80393520, func_8038AE2C, func_80326224, func_8038B898, 0, 0, 3.0f, 0};
-extern f32 D_803935A8[][2][3];
-extern Struct_lair_42A0_0 D_80393620[];
-extern f32 D_80393670[];
-extern f32 D_80393688[];
-extern f32 D_803936A8[];
-extern f32 D_803936E4[];
+ActorAnimationInfo D_80393520[] = {
+    {    0, 0.0f},
+    {0x213, 2.66f},
+    {0x212, 2.0f},
+    {0x214, 6.4f},
+    {0x215, 3.4f},
+    {0x216, 1.0f},
+    {0x28F, 5.167f},
+    {0x290, 6.26f}
+};
+ActorInfo D_80393560 = { 0x231, 0x23B, 0x4DF, 1, D_80393520, func_8038AE2C, func_80326224, func_8038B898, 0, 0, 3.0f, 0};
+ActorInfo D_80393584 = { 0x244, 0x2DB, 0x450, 1, D_80393520, func_8038AE2C, func_80326224, func_8038B898, 0, 0, 3.0f, 0};
+f32 D_803935A8[][2][3] = {
+    {{1.0f, 1.0f, 1.0f}, {1.0f, 0.0f, 1.0f}}, 
+    {{1.0f, 1.0f, 1.0f}, {0.0f, 1.0f, 1.0f}}, 
+    {{1.0f, 1.0f, 1.0f}, {1.0f, 0.4f, 0.0f}}, 
+    {{1.0f, 1.0f, 1.0f}, {0.3f, 0.6f, 1.0f}}, 
+    {{1.0f, 1.0f, 1.0f}, {1.0f, 1.0f, 0.0f}}
+};
+
+Struct_lair_42A0_0 D_80393620[] = {
+    {MAP_6A_GL_TTC_AND_CC_PUZZLE, 0x5A, 0x8, 0x72, 0x62, 0x6A, 0x240},
+    {MAP_6F_GL_FP_LOBBY,          0x5B, 0x8, 0x73, 0x63, 0x6B, 0x240},
+    {MAP_6F_GL_FP_LOBBY,          0x5C, 0x9, 0x74, 0x64, 0x6C, 0x241},
+    {MAP_77_GL_RBB_LOBBY,         0x5D, 0x8, 0x75, 0x65, 0x6D, 0x240},
+    {MAP_6C_GL_RED_CAULDRON_ROOM, 0x5E, 0x8, 0x76, 0x66, 0x6E, 0x240},
+    {MAP_79_GL_CCW_LOBBY,         0x5F, 0x8, 0x77, 0x67, 0x6F, 0x240},
+    {MAP_93_GL_DINGPOT,           0x60, 0x0, 0x78, 0x68, 0x70, 0x240},
+    {0,                           0x61, 0x0, 0x79, 0x69, 0x71, 0x240},
+    {MAP_8E_GL_FURNACE_FUN,       0x8A, 0x8, 0x90, 0x8C, 0x8E, 0x240},
+    {MAP_93_GL_DINGPOT,           0x8B, 0x8, 0x91, 0x8D, 0x8F, 0x241}
+};
+
+f32 D_80393670[] = {0.083f, 0.202f, 0.285f, 0.371f, 0.417f, -1.0f};
+f32 D_80393688[] = {0.571f, 0.608f, 0.645f, 0.685f, 0.716f, 0.75f, 0.791f, -1.0f};
+f32 D_803936A8[] = {0.293f, 0.376f, 0.42f, 0.453f, 0.488f, 0.522f, 0.556f, 0.59f, 0.626f, 0.661f, 0.693f, 0.729f, 0.764f, 0.863f, -1.0f}; 
+f32 D_803936E4[] = {0.03f, 0.09f, 0.2f, 0.25f, 0.32f, 0.4f, 0.45f, 1.0f};
 
 /* .code */
 bool func_8038A690(Actor *this) {
