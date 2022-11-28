@@ -27,6 +27,9 @@ void func_802BB318(s32 arg0);
 void func_802BB360(s32 arg0, f32 arg1);
 void func_802BB3AC(s32 arg0, f32 arg1);
 
+/* .data */
+u8 D_80365790[0x50] = {0};
+
 /* .bss */
 Struct_core2_33F90_0 D_8037D840[4];
 

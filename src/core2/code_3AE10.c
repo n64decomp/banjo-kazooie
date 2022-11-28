@@ -9,12 +9,12 @@ extern void func_802589E4(f32[3], f32, f32);
 extern void func_802BD0D8(s32);
 
 /* .data */
-extern f32 D_80365DA0;
-extern f32 D_80365DA4;
-extern f32 D_80365DA8;
-extern f32 D_80365DAC;
-extern u8 D_80365DB0;
-extern f32 D_80365DB4;
+f32 D_80365DA0 = 0.0f;
+f32 D_80365DA4 = 0.0f;
+f32 D_80365DA8 = 0.0f;
+f32 D_80365DAC = 100.0f;
+u8 D_80365DB0 = 0;
+f32 D_80365DB4 = 0.0f;
 
 /* .code */ 
 void func_802C1DA0(void){}

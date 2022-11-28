@@ -28,10 +28,12 @@ void func_802BD870(f32 arg0, f32 arg1, f32 arg2, f32 arg3);
 f32  func_802BD8C8(void);
 void func_802BD8EC(f32 arg0);
 
-
-extern Struct_core2_356B0_0 D_80365D48;
-extern Struct_core2_356B0_0 D_80365D50;
-extern Struct_core2_356B0_0 D_80365D58;
+f32 D_80365CD0[] = {0.0f};
+f32 D_80365CD4[] = {0.0f, -25.0f, 25.0f, -50.0f, 50.0f, -80.0f, 80.0f, -120.0f, 120.0f, -140.0f, 140.0f};
+f32 D_80365D00[] = {0.0f, 20.0f, 40.0f, 60.0f, 80.0f, 100.0f, 120.0f, 140.0f, 160.0f, 180.0f, 200.0f, 220.0f, 240.0f, 260.0f, 280.0f, 300.0f, 320.0f, 340.0f};
+Struct_core2_356B0_0 D_80365D48 = {D_80365CD0, 1};
+Struct_core2_356B0_0 D_80365D50 = {D_80365CD4, 11};
+Struct_core2_356B0_0 D_80365D58 = {D_80365D00, 18};
 
 
 /* .bss */

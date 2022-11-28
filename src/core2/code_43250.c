@@ -11,7 +11,7 @@ typedef struct {
 typedef struct {
     Struct_Core2_43250_1 *unk0;
     s16 unk4;
-    u8 pad6[2];
+    // u8 pad6[2];
 }Struct_Core2_43250_0;
 
 
@@ -19,14 +19,14 @@ typedef struct {
 void func_802CA1E0(Actor *this);
 
 /* .data */
-extern ActorInfo D_80366CD0 = {
+ActorInfo D_80366CD0 = {
     0x3D, 0x183, 0,
     0, NULL,
     func_802CA1E0, func_80326224, func_80325340,
     0, 0, 0.0f, 0
 };
 
-extern Struct_Core2_43250_1 D_80366CF4 [16]= { 
+Struct_Core2_43250_1 D_80366CF4 [16]= { 
     {SFX_6B_LOCKUP_OPENING, 0x40, 0xFF},
     {SFX_6C_LOCKUP_CLOSING, 0x80, 0xFA},
     {SFX_3F_CAULDRON_SQEAK_1, 0x99, 0x65},
@@ -45,14 +45,14 @@ extern Struct_Core2_43250_1 D_80366CF4 [16]= {
     {SFX_20_METAL_CLANK_1, 0x79, 0x75}
 };
 
-extern Struct_Core2_43250_1 D_80366D34[4] = { 
+Struct_Core2_43250_1 D_80366D34[4] = { 
     {SFX_EA_GRUNTY_LAUGH_1, 0x80, 0xFA},
     {SFX_6B_LOCKUP_OPENING, 0x73, 0xFF},
     {SFX_6C_LOCKUP_CLOSING, 0x80, 0xFA},
     {SFX_C_TAKING_FLIGHT_LIFTOFF, 0x66, 0xFA}
 };
 
-extern Struct_Core2_43250_1 D_80366D44[13] = { 
+Struct_Core2_43250_1 D_80366D44[13] = { 
     {SFX_C6_SHAKING_MOUTH, 0x80, 0xFF},
     {SFX_2C_PULLING_NOISE, 0x80, 0xFF},
     {SFX_C5_TWINKLY_POP, 0x80, 0xFF},
@@ -68,7 +68,7 @@ extern Struct_Core2_43250_1 D_80366D44[13] = {
     {SFX_6F_BANJO_HEADSCRATCH, 0x80, 0x4E}
 };
 
-extern Struct_Core2_43250_1 D_80366D78[8] = {
+Struct_Core2_43250_1 D_80366D78[8] = {
     {SFX_5D_BANJO_RAAOWW, 0x59, 0xC3},
     {SFX_5E_BANJO_PHEWWW, 0x59, 0xC3},
     {SFX_5D_BANJO_RAAOWW, 0x59, 0xC3},
@@ -79,7 +79,7 @@ extern Struct_Core2_43250_1 D_80366D78[8] = {
     {SFX_5D_BANJO_RAAOWW, 0x59, 0xC3},
 };
 
-extern Struct_Core2_43250_1 D_80366D98[14] = { 
+Struct_Core2_43250_1 D_80366D98[14] = { 
     {SFX_EA_GRUNTY_LAUGH_1, 0x86, 0xFA},
     {SFX_C_TAKING_FLIGHT_LIFTOFF, 0x59, 0xFA},
     {SFX_6F_BANJO_HEADSCRATCH, 0x80, 0x4E},
@@ -96,7 +96,7 @@ extern Struct_Core2_43250_1 D_80366D98[14] = {
     {SFX_C_TAKING_FLIGHT_LIFTOFF, 0x59, 0xFA}
 };
 
-extern Struct_Core2_43250_1 D_80366DD0[37] = { 
+Struct_Core2_43250_1 D_80366DD0[37] = { 
     {SFX_15_METALLIC_HIT_2, 0x80, 0xFA},
     {SFX_E_SHOCKSPRING_BOING, 0x80, 0xFA},
     {SFX_8F_SNOWBALL_FLYING, 0x80, 0xFA},
@@ -136,13 +136,13 @@ extern Struct_Core2_43250_1 D_80366DD0[37] = {
     {SFX_9B_BOULDER_BREAKING_1, 0x80, 0x9C}
 };
 
-extern Struct_Core2_43250_0 D_80366E64[] = {
-    {D_80366CF4, 0x10, {00, 00}},
-    {D_80366D34, 0x04, {00, 00}},
-    {D_80366D44, 0x0D, {00, 00}},
-    {D_80366D78, 0x08, {00, 00}},
-    {D_80366D98, 0x0E, {00, 00}},
-    {D_80366DD0, 0x25, {00, 00}},
+Struct_Core2_43250_0 D_80366E64[] = {
+    {D_80366CF4, 0x10},
+    {D_80366D34, 0x04},
+    {D_80366D44, 0x0D},
+    {D_80366D78, 0x08},
+    {D_80366D98, 0x0E},
+    {D_80366DD0, 0x25},
 };
 
 /* .code */

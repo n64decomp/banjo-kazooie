@@ -3,7 +3,7 @@
 #include "variables.h"
 
 /* .data */
-extern f32 D_80365D90;
+f32 D_80365D90 = 30.0f;
 
 /* .code */
 void func_802BF270(void){

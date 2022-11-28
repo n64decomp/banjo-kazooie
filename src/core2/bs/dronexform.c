@@ -10,14 +10,6 @@ extern f32 cosf(f32);
 extern f32 func_802588B0(f32, f32);
 extern f32 func_80257AD4(f32, f32);
 
-
-extern struct41s D_80364BB0;
-extern struct41s D_80364BE0;
-extern struct41s D_80364C10;
-extern struct41s D_80364C40;
-extern struct41s D_80364C70;
-extern struct41s D_80364CA0;
-
 /* .bss */
 struct {
     ParticleEmitter *unk0;
@@ -119,6 +111,34 @@ void func_802AFBAC(f32 arg0){
 }
 
 void func_802AFBB8(f32 (* arg0)[3]){
+    static struct41s D_80364BB0 = {
+        {{-150.0f,   10.0f, -150.0f}, { 150.0f,   50.0f,  150.0f}},
+        {{   0.0f,  -50.0f,    0.0f}, {   0.0f,  -50.0f,    0.0f}}
+    };
+
+    static struct41s D_80364BE0 = {
+        {{-300.0f,  150.0f, -300.0f}, { 300.0f,  200.0f,  300.0f}},
+        {{   0.0f, -150.0f,    0.0f}, {   0.0f, -150.0f,    0.0f}}
+    };
+
+
+    static struct41s D_80364C10 = {
+        {{-100.0f,   10.0f, -100.0f}, { 100.0f,   15.0f,  100.0f}},
+        {{   0.0f, -700.0f,    0.0f}, {   0.0f, -700.0f,    0.0f}}
+    };
+
+    static struct41s D_80364C40 = {
+        {{ -50.0f,   60.0f,  -50.0f}, {  50.0f,  150.0f,   50.0f}},
+        {{   0.0f,  -50.0f,    0.0f}, {   0.0f,  -50.0f,    0.0f}}
+    };
+    static struct41s D_80364C70 = {
+        {{-400.0f,  150.0f, -400.0f}, { 400.0f,  200.0f,  400.0f}},
+        {{   0.0f, -200.0f,    0.0f}, {   0.0f, -200.0f,    0.0f}}
+    };
+    static struct41s D_80364CA0 = {
+        {{-200.0f,   10.0f, -200.0f}, { 200.0f,   20.0f,  200.0f}},
+        {{   0.0f, -850.0f,    0.0f}, {   0.0f, -850.0f,    0.0f}}
+    };
     ParticleEmitter* s0 = partEmitList_pushNew(1);
     particleEmitter_setSprite(s0, ASSET_6C4_SPRITE_SMOKE_YELLOW); //yellow blast
     func_802EFA5C(s0, 0.7f, 0.8f);

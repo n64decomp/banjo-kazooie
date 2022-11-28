@@ -173,9 +173,9 @@ typedef struct function_queue_s{
 }FunctionQueue;
 
 /* .data */
-extern u8 D_80365DC0;
-extern u8 D_80365DC4;
-extern FunctionQueue *D_80365DC8;
+u8 D_80365DC0 = 0;
+u8 D_80365DC4 = 0;
+FunctionQueue *D_80365DC8 = NULL;
 
 /* .code */
 void func_802C2B10(void){
