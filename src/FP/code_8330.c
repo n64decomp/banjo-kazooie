@@ -6,15 +6,18 @@ Actor *func_8038E720(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void func_8038E940(Actor *this);
 
 /* .data */
-extern ActorAnimationInfo D_80392400[];
+ActorAnimationInfo D_80392400[] = {
+    {0x000, 0.f},
+    {0x143, 1e+08f},
+    {0x1EF, 0.6f},
+    {0x143, 1.0f},
+};
 
-extern ActorInfo D_80392420 = { 0x206, 0x338, 0x486, 
+ActorInfo D_80392420 = { 0x206, 0x338, 0x486, 
     0x1, D_80392400, 
     func_8038E940, func_80326224, func_8038E720, 
     4500, 0, 0.0f, 0
 };
-
-struct31s *D_80392444;
 
 /* .code */
 Actor *func_8038E720(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
@@ -43,6 +46,7 @@ void func_8038E7CC(ActorMarker *this_marker, ActorMarker *other_marker){
 }
 
 void func_8038E840(f32 position[3], s32 cnt, enum asset_e sprite_id){
+    static struct31s D_80392444 = {{0.4f, 0.6f}, {0.8f, 1.8f}, {0.0f, 0.01f}, {0.5f, 1.4f}, 0.0f, 0.01f};
     ParticleEmitter *pCtrl = partEmitList_pushNew(cnt);
     particleEmitter_setSprite(pCtrl, sprite_id);
     particleEmitter_setPosition(pCtrl, position);

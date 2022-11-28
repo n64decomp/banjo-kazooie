@@ -14,15 +14,29 @@ Actor *func_8038F210(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void FP_func_8038F7AC(Actor *this);
 
 /* .data */
-extern ActorAnimationInfo D_80392520[];
+ActorAnimationInfo D_80392520[] ={
+    {0x000, 0.0f},
+    {0x1AC, 3.8f},
+    {0x1AC, 3.8f},
+    {0x1AE, 0.55f},
+    {0x1AE, 0.55f},
+    {0x1B3, 0.6f},
+    {0x1B4, 0.8f},
+    {0x1AE, 0.55f},
+    {0x1AD, 4.4f},
+    {0x1B5, 1.2f},
+    {0x221, 5.0f},
+    {0x1AE, 0.55f},
+    {0x1AE, 0.55f}
+};
 
-extern ActorInfo D_80392588 = { MARKER_20B_WOZZA, ACTOR_1F3_WOZZA, ASSET_494_MODEL_WOZZA, 
+ActorInfo D_80392588 = { MARKER_20B_WOZZA, ACTOR_1F3_WOZZA, ASSET_494_MODEL_WOZZA, 
     0x1, D_80392520,
     FP_func_8038F7AC, func_80326224, func_8038F210,
     0, 0, 1.6f, 0
 };
 
-extern f32 D_803925AC[3];
+f32 D_803925AC[3] = {-4026.0f, 800.0f, -4097.0f};
 
 /* .code */
 Actor *func_8038F210(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){

@@ -3,73 +3,59 @@
 #include "variables.h"
 
 extern Actor *func_802EBAE0(UNK_TYPE(s32), f32 position[3], f32 rotation[3], f32 scale, UNK_TYPE(s32), UNK_TYPE(s32), UNK_TYPE(s32), f32, UNK_TYPE(s32));
-
+Actor *func_8038C0B0(ActorMarker *marker, UNK_TYPE(s32) arg1, f32 arg2, UNK_TYPE(s32) arg3);
 Actor *func_8038C1F8(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void func_8038C9A0(Actor *this);
 
 /* .data */
-extern ActorAnimationInfo D_80391F50[];
+ActorAnimationInfo D_80391F50[] = {
+    {0x000, 0.0f},
+    {0x178, 1e+08f},
+    {0x17C, 1e+08f},
+    {0x178, 1e+08f},
+    {0x17C, 2.0f},
+    {0x17C, 1.0f},
+    {0x17C, 2.0f}
+};
 
-extern ActorInfo D_80391F88 = { MARKER_200_TWINKLY_BLUE, ACTOR_332_TWINKLY_BLUE, ASSET_448_MODEL_TWINKLY_BLUE,
+ActorInfo D_80391F88 = { MARKER_200_TWINKLY_BLUE, ACTOR_332_TWINKLY_BLUE, ASSET_448_MODEL_TWINKLY_BLUE,
     0x1, D_80391F50,
     func_8038C9A0, func_80326224, func_8038C1F8,
     0, 0, 1.0f, 0
 };
 
-extern ActorInfo D_80391FAC = { MARKER_201_TWINKLY_GREEN, ACTOR_333_TWINKLY_GREEN, ASSET_449_MODEL_TWINKLY_GREEN,
+ActorInfo D_80391FAC = { MARKER_201_TWINKLY_GREEN, ACTOR_333_TWINKLY_GREEN, ASSET_449_MODEL_TWINKLY_GREEN,
     0x1, D_80391F50,
     func_8038C9A0, func_80326224, func_8038C1F8,
     0, 0, 1.0f, 0
 };
 
-extern ActorInfo D_80391FD0 = { MARKER_202_TWINKLY_ORANGE, ACTOR_334_TWINKLY_ORANGE, ASSET_44A_MODEL_TWINKLY_ORANGE,
+ActorInfo D_80391FD0 = { MARKER_202_TWINKLY_ORANGE, ACTOR_334_TWINKLY_ORANGE, ASSET_44A_MODEL_TWINKLY_ORANGE,
     0x1, D_80391F50,
     func_8038C9A0, func_80326224, func_8038C1F8,
     0, 0, 1.0f, 0
 };
 
-extern ActorInfo D_80391FF4 = { MARKER_203_TWINKLY_RED, ACTOR_335_TWINKLY_RED, ASSET_44B_MODEL_TWINKLY_RED,
+ActorInfo D_80391FF4 = { MARKER_203_TWINKLY_RED, ACTOR_335_TWINKLY_RED, ASSET_44B_MODEL_TWINKLY_RED,
     0x1, D_80391F50,
     func_8038C9A0, func_80326224, func_8038C1F8,
     0, 0, 1.0f, 0
 };
 
-extern s32 D_80392018[4];
-extern struct43s D_80392028;
-extern f32 D_80392070[3];
-extern f32 D_8039207C[3];
-extern f32 D_80392088[3];
-extern f32 D_80392094[3];
-extern s32 D_803920A0[4];
-extern s32 D_803920B0[4];
+s32 FP_D_80392018[4] = {0, 0, 0, func_8038C0B0};
+struct43s D_80392028 = {
+    {{-200.0f,  200.0f, -200.0f}, {200.0f,  400.0f, 200.0f}}, 
+    {{   0.0f, -800.0f,    0.0f}, {  0.0f, -800.0f,   0.0f}}, 
+    {{ -15.0f,  -15.0f,  -15.0f}, { 15.0f,   15.0f,  15.0f}}
+};
+f32 D_80392070[3] = {-4034.0f,  73.0f, 3918.0f};
+f32 D_8039207C[3] = {-3946.0f,  69.0f, 3538.0f};
+f32 D_80392088[3] = {-4459.0f, 176.0f, 5693.0f};
+f32 D_80392094[3] = {-4578.0f, 440.0f, 6198.0f};
+s32 D_803920A0[4] =  {0xFF, 0xFF, 0xFF, 0xFF};
+s32 D_803920B0[4] =  {0xFF, 0xFF, 0xFF, 0x00};
 
-extern f64 D_80392D80;
-extern f64 D_80392D88;
-extern f64 D_80392D90;
-extern f32 D_80392D98;
-extern f32 D_80392D9C;
-extern f32 D_80392DA0;
-extern f32 D_80392DA4;
-extern f32 D_80392DA8;
-extern f32 D_80392DAC;
-extern f32 D_80392DB0;
-extern f64 D_80392DB8;
-extern f64 D_80392DC0;
-extern f64 D_80392DC8;
 
-// C00999999999999A 
-// C00999999999999A
-// 3FEFFFEB074A771D 
-// 3F99999A 
-// 3FA66666
-// 44DAC000
-// 455AC000
-// 3FB33333
-// 44DAC000
-// 455AC000
-// C00999999999999A
-// 3FEFFF2E48E8A71E
-// 3FEFFFFDE7210BE9
 
 /* .code */
 Actor *func_8038C0B0(ActorMarker *marker, UNK_TYPE(s32) arg1, f32 arg2, UNK_TYPE(s32) arg3){
@@ -281,7 +267,7 @@ void func_8038C9A0(Actor *this){
 
     if(!this->unk16C_4){
         this->unk16C_4 = TRUE;
-        this->marker->unk18 = &D_80392018;
+        this->marker->unk18 = &FP_D_80392018;
         this->unk38_31 = 0;
         if(0.0f != other->velocity[0]){
             func_80328A84(this, 4);

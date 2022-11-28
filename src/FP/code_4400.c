@@ -2,6 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
+
+f32 D_80391EB0[3] = {-625.0f, 8840.0f, -111.0f};
 /* .bss */
 extern struct {
     u8  unk0;

@@ -11,6 +11,8 @@ typedef struct {
     u8  unk18;
 } Struct_FP_45D0_0;
 
+f32 D_80391EC0[3] ={-625.0f, 466.0f, -111.0f};
+
 extern Struct_FP_45D0_0 D_80392F50;
 
 /* .code */

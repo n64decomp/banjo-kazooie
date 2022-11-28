@@ -6,15 +6,27 @@ Actor *func_8038FF00(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void func_8038FF54(Actor *this);
 
 /* .data */
-extern ActorAnimationInfo D_803925C0[];
+ActorAnimationInfo D_803925C0[] = {
+    {0x000, 0.0f},
+    {0x1AC, 3.8f},
+    {0x1AC, 3.8f},
+    {0x1AE, 0.55f},
+    {0x1AE, 0.55f},
+    {0x1B3, 0.6f},
+    {0x1B4, 0.8f},
+    {0x1AE, 0.55f},
+    {0x1AD, 4.4f},
+    {0x1B6, 1.2f},
+    {0x221, 5.0f},
+    {0x1AE, 0.55f},
+    {0x1AE, 0.55f}
+};
 
-extern ActorInfo D_80392628 = { MARKER_20C_WOZZAS_JIGGY, ACTOR_1F4_WOZZAS_JIGGY, ASSET_495_MODEL_WOZZAS_JIGGY,
+ActorInfo D_80392628 = { MARKER_20C_WOZZAS_JIGGY, ACTOR_1F4_WOZZAS_JIGGY, ASSET_495_MODEL_WOZZAS_JIGGY,
     0x1, D_803925C0,
     func_8038FF54, func_80326224, func_8038FF00,
     0, 0, 0.0f, 0
 };
-
-extern struct31s D_8039264C;
 
 /* .code */
 Actor *func_8038FF00(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
@@ -25,6 +37,7 @@ Actor *func_8038FF00(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 }
 
 void func_8038FF54(Actor *this){
+    static struct31s D_8039264C = {{0.3f, 0.5f}, {0.5f, 0.7f}, {0.0f, 0.01f}, {0.3f, 0.4f}, 0.3f, 0.7f};
     Actor *other;
     f32 sp40[3];
     ParticleEmitter *sp3C;

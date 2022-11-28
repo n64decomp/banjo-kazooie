@@ -6,17 +6,11 @@ Actor *func_803908F0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void func_80390BDC(Actor *this);
 
 /* .data */
-extern ActorInfo D_80392730 = { 0x210, 0x340, 0x4D2,
+ActorInfo D_80392730 = { 0x210, 0x340, 0x4D2,
     0x0, NULL,
     func_80390BDC, func_80326224, func_803908F0,
     0, 0, 1.0f, 0
 };
-
-extern struct31s D_80392754;
-extern struct43s D_8039277C;
-extern struct31s D_803927C4;
-extern struct43s D_803927EC;
-extern s32 D_80392834[3];
 
 /* .code */
 Actor *func_803908F0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
@@ -27,6 +21,12 @@ Actor *func_803908F0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 }
 
 void func_80390944(f32 position[3], s32 cnt, enum asset_e model_id){
+    static struct31s D_80392754 = {{0.2f, 0.4f}, {-1.0f, -1.0f}, {0.0f, 0.02f}, {2.2f, 2.2f}, 0.0f, 0.3f};
+    static struct43s D_8039277C = {
+        {{-300.0f,   350.0f, -300.0f}, {300.0f,   600.0f, 300.0f}}, /*position*/
+        {{   0.0f, -1000.0f,    0.0f}, {  0.0f, -1000.0f,   0.0f}}, /*velocitcy*/
+        {{-100.0f,     0.0f, -100.0f}, {100.0f,   200.0f, 100.0f}}  /*acceleration*/
+    };
     ParticleEmitter *pCtrl = partEmitList_pushNew(cnt);
     particleEmitter_setModel(pCtrl, model_id);
     particleEmitter_setPosition(pCtrl, position);
@@ -44,6 +44,13 @@ void func_80390944(f32 position[3], s32 cnt, enum asset_e model_id){
 }
 
 void func_80390A30(f32 position[3], s32 cnt, enum asset_e sprite_id){
+    static struct31s D_803927C4 = {{0.6f, 0.8f}, {1.0f, 1.4f}, {0.0f, 0.01f}, {1.2f, 1.8f}, 0.0f, 0.01f};
+    static struct43s D_803927EC = {
+        {{-200.0f,   0.0f, -200.0f}, {200.0f, 200.0f, 200.0f}}, /*position*/
+        {{   0.0f, -10.0f,    0.0f}, {  0.0f, -10.0f,   0.0f}}, /*velocitcy*/
+        {{ -50.0f,   0.0f,  -50.0f}, { 50.0f, 200.0f,  50.0f}}  /*acceleration*/
+    };
+    static s32 D_80392834[3] = {0xDC, 0xDC, 0xE6};
     ParticleEmitter *pCtrl = partEmitList_pushNew(cnt);
     func_802EFFA8(pCtrl, D_80392834);
     particleEmitter_setSprite(pCtrl, sprite_id);

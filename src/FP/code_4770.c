@@ -11,19 +11,24 @@ typedef struct {
 }Struct_FP_4770;
 
 /* .data */
-extern f32 D_80391ED0[3];
-extern f32 D_80391EDC;
-extern f32 D_80391EE0[3];
-extern f32 D_80391EEC;
-extern f32 D_80391EF0[3];
-extern f32 D_80391EFC;
-extern f32 D_80391F00[3];
-extern f32 D_80391F0C;
-extern f32 D_80391F10[3];
-extern f32 D_80391F1C;
-extern f32 D_80391F20[3];
-extern f32 D_80391F2C[3];
-extern f32 D_80391F38[3];
+f32 D_80391ED0[3] = {-880.0f, 3.0f, 1769.0f};
+f32 D_80391EDC = 180.0f;
+
+f32 D_80391EE0[3] = {5187.0f, 428.0f, 854.0f};
+f32 D_80391EEC = 194.0f;
+
+f32 D_80391EF0[3] = {-904.0f, -10.0f, -1662.0f};
+f32 FP_D_80391EFC = 180.0f;
+
+f32 D_80391F00[3] = {2192.0f, 7.0f, 2901.0f};
+f32 D_80391F0C = 85.0f;
+
+f32 D_80391F10[3] = {712.0f, 7.0f, 3036.0f};
+f32 D_80391F1C = 284.0f;
+
+f32 D_80391F20[3] = {1605.0f, 658.0f, 5402.0f};
+f32 D_80391F2C[3] = {-4454.0f, 1920.0f, -6898.0f};
+f32 D_80391F38[3] = {-4451.0f, 1920.0f, -6685.0f};
 
 /* .bss */
 extern ActorMarker *D_80393590[5];
@@ -144,7 +149,7 @@ void func_8038AEE0(s32 indx){
             break;
 
         case 2:// L8038AF64
-            sp1C = func_8032813C(0x22d, D_80391EF0, D_80391EFC);
+            sp1C = func_8032813C(0x22d, D_80391EF0, FP_D_80391EFC);
             break;
 
         case 3:// L8038AF90
