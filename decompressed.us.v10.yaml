@@ -1692,7 +1692,7 @@ segments:
   - [0x105CD40, .data, ch/napper]
   - [0x105CD70, .data, code_DC0]
   - [0x105CDB0, .data, ch/motzhand]
-  - [0x105CDF0, bin, data_56E0] #.data, code_16B0]
+  - [0x105CDF0, .data, code_16B0]
   - [0x105CF00, .data, code_2040]
   - [0x105D150, .data, code_2F60]
   - [0x105D240, .data, code_3420]
