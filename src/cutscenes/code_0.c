@@ -22,46 +22,7 @@ extern void func_80361C24(s32, f32, s32, s32);
 extern void func_80361C64(s32, f32, s32, s32, s32);
 extern void func_80361CF4(s32, f32, s32, f32);
 extern void func_80361D7C(s32, f32, s32, s32, u32);
-
-
-/* .data */
-extern struct31s D_8038D350;
-extern struct31s D_8038D378;
-extern struct31s D_8038D3A0;
-extern struct31s D_8038D3C8;
-extern struct31s D_8038D3F0;
-extern struct31s D_8038D418;
-extern struct31s D_8038D440;
-extern struct42s D_8038D470;
-extern s32 D_8038D4A0[3];
-extern struct31s D_8038D4AC;
-extern struct42s D_8038D4DC;
-extern struct31s D_8038D50C;
-extern struct31s D_8038D534;
-extern struct31s D_8038D55C;
-extern s32 D_8038D584[3];
-extern struct31s D_8038D590;
-extern struct42s D_8038D5C0;
-extern struct31s D_8038D5F0;
-extern struct31s D_8038D618;
-extern struct31s D_8038D640;
-extern struct42s D_8038D670;
-extern s32 D_8038D6A0[3];
-extern struct31s D_8038D6AC;
-extern struct42s D_8038D6DC;
-extern struct31s D_8038D70C;
-extern struct42s D_8038D73C;
-extern s32 D_8038D76C[3];
-extern struct31s D_8038D778;
-extern struct42s D_8038D7A8;
-extern struct31s D_8038D7D8;
-extern struct42s D_8038D808;
-extern s32 D_8038D838[3];
-extern struct31s D_8038D844;
-extern struct42s D_8038D874;
-extern struct31s D_8038D8A4;
-extern struct42s D_8038D8D4;
-
+extern void func_80361CAC(s32, f32, s32, f32);
 /* .code */
 void cutscenes_func_803863F0(void){
     func_8025A2D8();
@@ -209,6 +170,7 @@ void func_80386A90(s32 marker, s32 duration) {
 }
 
 void func_80386AC8(s32 arg0) {
+    static struct31s D_8038D350 = {{2.2f, 2.8f}, {6.3f, 9.4f}, {0.0f, 0.05f}, {10.0f, 10.0f}, 0.2f, 0.9f};
     Actor *actor;
     ParticleEmitter *pCtrl;
     f32 sp34[3];
@@ -229,6 +191,7 @@ void func_80386AC8(s32 arg0) {
 }
 
 void func_80386C34(s32 arg0) {
+    static struct31s D_8038D378 = {{3.0f, 6.0f}, {6.3f, 9.4f}, {0.0f, 0.05f}, {10.0f, 10.0f}, 0.0f, 0.9f};
     Actor *sp44;
     ParticleEmitter *pCtrl;
     f32 sp34[3];
@@ -249,6 +212,7 @@ void func_80386C34(s32 arg0) {
 }
 
 void func_80386DA0(s32 arg0) {
+    static struct31s D_8038D3A0 = {{10.0f, 10.0f}, {100.0f, 100.0f}, {0.0f, 0.05f}, {10.0f, 10.0f}, 0.3f, 0.9f};
     Actor *sp44;
     ParticleEmitter *pCtrl;
     f32 sp34[3];
@@ -269,6 +233,7 @@ void func_80386DA0(s32 arg0) {
 }
 
 void func_80386EF8(s32 arg0) {
+    static struct31s D_8038D3C8 = {{0.05f, 0.1f}, {0.0f, 0.0f}, {0.0f, 0.05f}, {4.0f, 4.0f}, 0.0f, 0.3f};
     Actor *sp44;
     ParticleEmitter *pCtrl;
     f32 sp34[3];
@@ -288,6 +253,7 @@ void func_80386EF8(s32 arg0) {
 }
 
 void func_8038702C(s32 arg0) {
+    static struct31s D_8038D3F0 = {{0.2f, 0.25f}, {0.35f, 0.4f}, {0.0f, 0.05f}, {4.0f, 4.0f}, 0.0f, 0.8f};
     Actor *sp44;
     ParticleEmitter *pCtrl;
     f32 sp34[3];
@@ -308,6 +274,7 @@ void func_8038702C(s32 arg0) {
 }
 
 void func_80387170(s32 arg0) {
+    static struct31s D_8038D418 ={{0.2f, 0.25f}, {0.35f, 0.4f}, {0.0f, 0.05f}, {4.0f, 4.0f}, 0.0f, 0.8f};
     Actor *sp44;
     ParticleEmitter *pCtrl;
     f32 sp34[3];
@@ -328,6 +295,11 @@ void func_80387170(s32 arg0) {
 }
 
 void func_803872B4(s32 arg0) {
+    static struct40s D_8038D440 = {{{1.8f, 1.8f}, {3.3f, 3.8f}, {0.0f, 0.01f}, {9.0f, 9.5f}, 0.1f, 0.4f}, 4.0f, 4.0f};
+    static struct42s D_8038D470 = {
+        {{  40.0f,  5.0f,  -40.0f}, { 40.0f, 10.0f, -40.0f}}, 
+        {{-150.0f, 50.0f, -150.0f}, {150.0f, 50.0f, 150.0f}} 
+    };
     Actor *sp44;
     ParticleEmitter *pCtrl;
     f32 sp34[3];
@@ -345,6 +317,12 @@ void func_803872B4(s32 arg0) {
 }
 
 void func_80387364(s32 arg0) {
+    static s32 D_8038D4A0[3] = {0xA, 0xFF, 0xA};
+    static struct40s D_8038D4AC = {{{2.8f, 2.8f}, {3.5f, 3.9f}, {0.0f, 0.01f}, {9.0f, 9.5f}, 0.2f, 0.8f}, 4.0f, 1.0f};
+    static struct42s D_8038D4DC = {
+        {{-40.0f, -30.0f, -40.0f}, {40.0f,  30.0f, 40.0f}}, 
+        {{-50.0f,   0.0f, -50.0f}, {50.0f, 100.0f, 50.0f}}
+    };
     Actor *sp34;
     ParticleEmitter *pCtrl;
     f32 sp24[3];
@@ -363,6 +341,7 @@ void func_80387364(s32 arg0) {
 }
 
 void func_80387424(s32 arg0) {
+    static struct31s D_8038D50C = {{0.06f, 0.07f}, {0.07f, 0.07f}, {0.0f, 0.8f}, {1.0f, 1.1f}, 0.0f, 0.4f};
     Actor *sp44;
     ParticleEmitter *pCtrl;
     f32 sp34[3];
@@ -382,6 +361,7 @@ void func_80387424(s32 arg0) {
 }
 
 void cutscenes_func_80387560(s32 arg0) {
+    static struct31s D_8038D534 = {{0.15f, 0.15f}, {0.15f, 0.15f}, {0.0f, 0.8f}, {1.0f, 1.1f}, 0.0f, 0.4f};
     Actor *sp44;
     ParticleEmitter *pCtrl;
     f32 sp34[3];
@@ -399,6 +379,7 @@ void cutscenes_func_80387560(s32 arg0) {
 }
 
 void func_80387680(s32 arg0) {
+    static struct31s D_8038D55C = {{0.03f, 0.03f}, {0.03f, 0.03f}, {0.0f, 0.8f}, {1.0f, 1.1f}, 0.0f, 0.4f}; 
     Actor *sp44;
     ParticleEmitter *pCtrl;
     f32 sp34[3];
@@ -416,6 +397,12 @@ void func_80387680(s32 arg0) {
 }
 
 void func_803877A0(s32 arg0) {
+    static s32 D_8038D584[3] = {0xFF, 0xFF, 0xFF};
+    static struct40s D_8038D590 = {{{0.15f, 0.15f}, {0.4f, 0.4f}, {0.0f, 0.01f}, {4.0f, 4.5f}, 0.2f, 0.8f}, 4.0f, 1.0f};
+    static struct42s D_8038D5C0 = {
+        {{-20.0f, 100.0f, -20.0f}, {20.0f, 150.0f, 20.0f}},
+        {{  0.0f,   0.0f,   0.0f}, { 0.0f,   0.0f,  0.0f}} 
+    };
     Actor *sp34;
     ParticleEmitter *pCtrl;
     f32 sp24[3];
@@ -437,6 +424,7 @@ void func_803877A0(s32 arg0) {
 }
 
 void func_803878A4(s32 arg0) {
+    static struct31s D_8038D5F0 = {{1.6f, 1.6f}, {1.6f, 1.6f}, {0.0f, 0.05f}, {4.0f, 4.0f}, 0.0f, 0.3f}; 
     Actor *sp44;
     ParticleEmitter *pCtrl;
     f32 sp34[3];
@@ -458,6 +446,7 @@ void func_803878A4(s32 arg0) {
 }
 
 void cutscenes_func_803879E0(s32 arg0) {
+    static struct31s D_8038D618 = {{1.6f, 1.6f}, {1.6f, 1.6f}, {0.0f, 3.0f}, {4.0f, 4.0f}, 0.0f, 0.3f}; 
     Actor *sp44;
     ParticleEmitter *pCtrl;
     f32 sp34[3];
@@ -480,6 +469,11 @@ void cutscenes_func_803879E0(s32 arg0) {
 }
 
 void func_80387B58(s32 arg0) {
+    static struct40s D_8038D640 = {{{0.5f, 0.8f}, {3.2f, 3.8f}, {0.0f, 0.3f}, {0.5f, 0.6f}, 0.2f, 0.8f}, 4.0f, 4.0f };
+    static struct42s D_8038D670 = {
+        {{  0.0f, 100.0f,   0.0f}, { 0.0f, 100.0f,  0.0f}}, 
+        {{-20.0f, -20.0f, -20.0f}, {20.0f,  20.0f, 20.0f}} 
+    };
     Actor *sp44;
     ParticleEmitter *pCtrl;
     f32 sp34[3];
@@ -499,6 +493,14 @@ void func_80387B58(s32 arg0) {
 }
 
 void func_80387C64(s32 arg0) {
+    static s32 D_8038D6A0[3] = {0x3C, 0x3C, 0xFF};
+    static struct40s D_8038D6AC = {
+        {{0.5f, 0.6f}, {1.4f, 1.6f}, {0.0f, 0.2f}, {0.9f, 1.2f}, 0.2f, 0.8f}, 4.0f, 4.0f
+    };
+    static struct42s D_8038D6DC ={
+        {{ 0.0f,  0.0f,  0.0f}, {0.0f, 0.0f, 0.0f}},
+        {{-5.0f, -5.0f, -5.0f}, {5.0f, 5.0f, 5.0f}}
+    }; 
     Actor *sp44;
     ParticleEmitter *pCtrl;
     f32 sp34[3];
@@ -521,6 +523,11 @@ void func_80387C64(s32 arg0) {
 }
 
 void func_80387D88(s32 arg0) {
+    static struct40s D_8038D70C = {{{0.2f, 0.2f}, {0.3f, 0.3f}, {0.0f, 0.2f}, {0.7f, 0.9f}, 0.2f, 0.8f}, 4.0f, 4.0f};
+    static struct42s D_8038D73C = {
+        {{-800.0f, -800.0f, -800.0f}, {800.0f, 800.0f, 800.0f}},
+        {{ -25.0f,  -25.0f,  -25.0f}, { 25.0f,  25.0f,  25.0f}} 
+    };
     Actor *sp44;
     ParticleEmitter *pCtrl;
     f32 sp34[3];
@@ -542,6 +549,12 @@ void func_80387D88(s32 arg0) {
 }
 
 void func_80387E9C(s32 arg0) {
+    static s32 D_8038D76C[3] = {0x32, 0xFF, 0x46};
+    static struct40s D_8038D778 ={{{0.2f, 0.2f}, {3.3f, 3.3f}, {0.0f, 0.2f}, {0.6f, 0.7f}, 0.1f, 0.9f}, 4.0f, 4.0f};
+    static struct42s D_8038D7A8 = {
+        {{0,0,0}, {0,0,0}},
+        {{0,0,0}, {0,0,0}}
+    };
     Actor *sp44;
     ParticleEmitter *pCtrl;
     f32 sp34[3];
@@ -564,6 +577,12 @@ void func_80387E9C(s32 arg0) {
 }
 
 void func_80387FC0(s32 arg0) {
+    static struct40s D_8038D7D8 = {{{0.4f, 0.4f}, {3.7f, 3.8f}, {0.0f, 0.03f}, {0.6f, 0.6f}, 0.1f, 0.8f}, 4.0f, 4.0f};
+    static struct42s D_8038D808 = {
+        {{0,0,0}, {0,0,0}},
+        {{0,0,0}, {0,0,0}}
+    };
+
     Actor *sp44;
     ParticleEmitter *pCtrl;
     f32 sp34[3];
@@ -585,6 +604,12 @@ void func_80387FC0(s32 arg0) {
 }
 
 void func_803880C8(s32 arg0) {
+    static s32 D_8038D838[3] = {0xFF, 0xFF, 0XFF};
+    static struct40s D_8038D844 = {{{0.15f, 0.15f}, {0.4f, 0.4f}, {0.0f, 0.01f}, {4.0f, 4.5f}, 0.2f, 0.8f}, 4.0f, 1.0f}; 
+    static struct42s D_8038D874 = {
+        {{-20.0f, 70.0f, -20.0f}, {20.0f, 100.0f, 20.0f}},
+        {{  0.0f,  0.0f,   0.0f}, { 0.0f,   0.0f,  0.0f}} 
+    };
     Actor *sp34;
     ParticleEmitter *pCtrl;
     f32 sp24[3];
@@ -606,6 +631,11 @@ void func_803880C8(s32 arg0) {
 }
 
 void func_803881CC(s32 arg0) {
+    static struct40s D_8038D8A4 = {{{0.6f, 0.6f}, {3.0f, 3.4f}, {0.0f, 0.03f}, {1.0f, 1.3f}, 0.1f, 0.6f}, 4.0f, 4.0f}; 
+    static struct42s D_8038D8D4 = {
+        {{  0.0f,   0.0f, -200.0f}, { 0.0f,  0.0f, -370.0f}}, /* position*/
+        {{-40.0f, -40.0f,  -40.0f}, {40.0f, 40.0f,   40.0f}} /* velocity*/
+    };
     Actor *sp44;
     ParticleEmitter *pCtrl;
     f32 sp34[3];
@@ -1121,7 +1151,7 @@ void cutscenes_func_8038A864(s32 arg0, s32 arg1) {
     func_80288F78(arg0, 0.6f, 0x0416736DU);
     func_8028913C(arg0, 4);
     func_80288F78(arg0, 0.6f, 0x0416736DU);
-    func_80361CAC(arg0, 0x3F19999A, arg1, 0x3F333333);
+    func_80361CAC(arg0, 0.6f, arg1, 0.7f);
 }
 
 void func_8038A954(s32 arg0, s32 arg1) {
@@ -1470,3 +1500,123 @@ void cutscenes_func_8038C454(s32 arg0, s32 arg1) {
     func_80288D40(arg0, 0.3f, func_803881CC, arg1);
     func_80288D40(arg0, 0.35f, func_803881CC, arg1);
 }
+
+struct {
+    s16 unk0;
+    void (*unk4)(s32, s32);
+}D_8038D904[] = {
+    {0x1BE, func_803882D4}, 
+    {0x1BF, func_8038837C}, 
+    {0x1BD, cutscenes_func_803883AC}, 
+    {0x1C0, func_80388490}, 
+    {0x204, func_803884DC}, 
+    {0x20B, cutscenes_func_80388660}, 
+    {0x207, func_80388734}, 
+    {0x1C5, func_803887A0}, 
+    {0x000, NULL}, 
+    {0x1C7, func_80388C40}, 
+    {0x1C8, func_80388CE4}, 
+    {0x000, NULL}, 
+    {0x2B8, func_80388A6C}, 
+    {0x085, func_80388B58}, 
+    {0x1D0, func_80388814}, 
+    {0x093, func_80388920}, 
+    {0x1D5, func_803889CC}, 
+    {0x000, NULL}, 
+    {0x1B8, func_80388D30}, 
+    {0x1C2, func_80388DE4}, 
+    {0x000, NULL}, 
+    {0x1F8, func_80388E30}, 
+    {0x13A, func_80388EE0}, 
+    {0x13B, func_80388F9C}, 
+    {0x296, func_803890CC}, 
+    {0x2B2, cutscenes_func_80389204}, 
+    {0x299, func_8038933C}, 
+    {0x000, NULL}, 
+    {0x13D, func_80389498}, 
+    {0x000, NULL}, 
+    {0x1D3, func_803894E8}, 
+    {0x1D4, func_803895CC}, 
+    {0x1CB, func_80389698}, 
+    {0x000, NULL}, 
+    {0x079, func_803896C8}, 
+    {0x084, cutscenes_func_80389850}, 
+    {0x000, NULL}, 
+    {0x163, func_80389B84}, 
+    {0x0F9, func_80389C30}, 
+    {0x000, NULL}, 
+    {0x200, func_80389D34}, 
+    {0x1FF, func_80389D78}, 
+    {0x1FE, func_80389DFC}, 
+    {0x20C, cutscenes_func_80389EA8}, 
+    {0x1C1, func_8038A018}, 
+    {0x000, NULL}, 
+    {0x1D5, func_80388BCC}, 
+    {0x000, NULL}, 
+    {0x202, cutscenes_func_8038A54C}, 
+    {0x201, func_8038A5C8}, 
+    {0x2B6, func_8038A734}, 
+    {0x2B7, func_8038A6D0}, 
+    {0x000, NULL}, 
+    {0x202, func_8038A7E8}, 
+    {0x000, NULL}, 
+    {0x202, cutscenes_func_8038A864}, 
+    {0x000, NULL}, 
+    {0x200, func_8038A05C}, 
+    {0x1FF, cutscenes_func_8038A0A0}, 
+    {0x1FE, func_8038A15C}, 
+    {0x20C, func_8038A254}, 
+    {0x1C1, cutscenes_func_8038A2F0}, 
+    {0x210, func_8038A334}, 
+    {0x000, NULL}, 
+    {0x1FA, func_8038A954}, 
+    {0x1FB, func_8038A9A0}, 
+    {0x000, NULL}, 
+    {0x1FC, func_8038A9D0}, 
+    {0x1FD, func_8038AA64}, 
+    {0x000, NULL}, 
+    {0x20E, func_8038AAFC}, 
+    {0x000, NULL}, 
+    {0x292, cutscenes_func_8038AB60}, 
+    {0x000, NULL}, 
+    {0x293, func_8038AC54}, 
+    {0x29A, func_8038B098}, 
+    {0x295, func_8038B214}, 
+    {0x29B, func_8038B404}, 
+    {0x00C, func_8038AF5C}, 
+    {0x2BA, func_8038B5FC}, 
+    {0x000, NULL}, 
+    {0x291, func_8038B744}, 
+    {0x294, func_8038B7B4}, 
+    {0x2AE, func_8038B8B8}, 
+    {0x2B1, func_8038B9B4}, 
+    {0x2B0, func_8038BB30}, 
+    {0x2B3, func_8038BBF8}, 
+    {0x2B5, func_8038BE30}, 
+    {0x2BB, func_8038BD2C}, 
+    {0x2BC, func_8038BD9C}, 
+    {0x000, NULL}, 
+    {0x297, cutscenes_func_803898C8}, 
+    {0x298, func_80389AD0}, 
+    {0x000, NULL}, 
+    {0x29E, func_8038BF5C}, 
+    {0x29F, cutscenes_func_8038C0DC}, 
+    {0x000, NULL}, 
+    {0x29C, cutscenes_func_8038C16C}, 
+    {0x200, func_8038C19C}, 
+    {0x295, func_8038C200}, 
+    {0x000, NULL}, 
+    {0x2B9, func_8038C264}, 
+    {0x000, NULL}, 
+    {0x08C, func_8038C3BC}, 
+    {0x000, NULL}, 
+    {0x08F, func_8038C314}, 
+    {0x090, func_8038C35C}, 
+    {0x000, NULL}, 
+    {0x07A, func_8038C404}, 
+    {0x000, NULL}, 
+    {0x2A0, cutscenes_func_8038C454}, 
+    {0x000, NULL}, 
+    {0x000, NULL}, 
+};
+

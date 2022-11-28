@@ -2044,7 +2044,7 @@ segments:
   - [0x10961B0, c, code_6730] #DONE
   - [0x1096470, c, code_69F0] #DONE
   - [0x1096710, c, code_6C90] #DONE
-  - [0x10969E0, bin, data_6F60]
+  - [0x10969E0, .data, code_0]
   - [0x1097320, .data, code_60F0]
   - [0x1097D90, .data, code_6730]
   - [0x1097E30, .data, code_69F0]
