@@ -21,9 +21,9 @@ typedef struct{
 BKModelBin *func_8030A428(s32 arg0);
 
 /* .data */
-s32 D_8036B800;
-s32 D_8036B804;
-s32 D_8036B808;
+s32 D_8036B800 = 0;
+s32 D_8036B804 = 0;
+s32 D_8036B808 = 0;
 
 /* .bss */
 struct_7AF80_0 *D_80382390; //prop models ???

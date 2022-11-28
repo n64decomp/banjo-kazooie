@@ -11,24 +11,24 @@ extern void func_8032BB88(Actor *, s32, s32);
 void func_802CDD78(Actor *this);
 
 /* .data */
-extern ActorAnimationInfo D_803671B0[];
-extern ActorInfo D_80367200 = { 0x5A, 0x60, 0x3C0, 0x1, D_803671B0, func_802CDD78, func_80326224, func_80325888, 0, 0, 0.0f, 0};
-extern ActorInfo D_80367224 = { 0x5B, 0x62, 0x3C2, 0x1, D_803671B0, func_802CDD78, func_80326224, func_80325888, 0, 0, 0.0f, 0};
-extern ActorInfo D_80367248 = { 0x5E, 0x5E, 0x3BB, 0x1, D_803671B0, func_802CDD78, func_80326224, func_80325888, 0, 0, 0.0f, 0};
-extern ActorInfo D_8036726C = { 0x5D, 0x61, 0x3C1, 0x1, D_803671B0, func_802CDD78, func_80326224, func_80325888, 0, 0, 0.0f, 0};
-extern ActorInfo D_80367290 = { 0x5C, 0x5F, 0x3BC, 0x1, D_803671B0, func_802CDD78, func_80326224, func_80325888, 0, 0, 0.0f, 0};
+ActorAnimationInfo D_803671B0[] = {
+    {0, 0.0f},
+    {0x2D, 1000000.0f},
+    {0x2D, 1.5f},
+    {0x2F, 1.5f},
+    {0x31, 0.75f},
+    {0x2D, 1000000.0f},
+    {0x31, 0.4f},
+    {0x130, 1.75f},
+    {0x131, 2.13333f},
+    {0x31, 0.75f}
+};
 
-/*.rodata */
-//jumptable D_80376560
-extern f64 D_80376578; //45.0
-extern f64 D_80376580; //182.04444
-extern f64 D_803765A8; //0.015
-extern f64 D_803765B0; //0.8
-extern f64 D_803765B8; //0.3
-extern f64 D_803765C0; //0.2
-extern f64 D_803765C8; //0.9
-//0.1
-//.rodata end 803765d0
+ActorInfo D_80367200 = { 0x5A, 0x60, 0x3C0, 0x1, D_803671B0, func_802CDD78, func_80326224, func_80325888, 0, 0, 0.0f, 0};
+ActorInfo D_80367224 = { 0x5B, 0x62, 0x3C2, 0x1, D_803671B0, func_802CDD78, func_80326224, func_80325888, 0, 0, 0.0f, 0};
+ActorInfo D_80367248 = { 0x5E, 0x5E, 0x3BB, 0x1, D_803671B0, func_802CDD78, func_80326224, func_80325888, 0, 0, 0.0f, 0};
+ActorInfo D_8036726C = { 0x5D, 0x61, 0x3C1, 0x1, D_803671B0, func_802CDD78, func_80326224, func_80325888, 0, 0, 0.0f, 0};
+ActorInfo D_80367290 = { 0x5C, 0x5F, 0x3BC, 0x1, D_803671B0, func_802CDD78, func_80326224, func_80325888, 0, 0, 0.0f, 0};
 
 s32 func_802CDB50(s32 arg0){
     switch(arg0){

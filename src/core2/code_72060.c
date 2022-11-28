@@ -17,15 +17,39 @@ extern void mlMtxApply(Mtx *);
 extern f32 func_802EC920(BKVertexList *);
 extern bool func_8024DB50(f32[3], f32);
 
-extern struct4Cs * D_80369280;
-extern s32 D_80369284;
-extern BKModelBin * D_80369288;
-extern s32 D_8036928C;
-extern Gfx D_80369290[];
-extern Gfx D_803692B0[];
+struct4Cs *D_80369280 = NULL;
 
-extern f32 D_80377350;
-extern f32 D_80377354;
+s32 D_80369284 = 0;
+
+BKModelBin *D_80369288 = NULL;
+
+s32 D_8036928C = 0;
+
+Gfx D_80369290[] = 
+{
+    gsDPPipeSync(),
+    gsDPPipelineMode(G_PM_1PRIMITIVE),
+    gsDPSetCycleType(G_CYC_2CYCLE),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_803692B0[] =
+{
+    gsDPSetRenderMode(Z_CMP | CVG_DST_CLAMP | ZMODE_OPA | FORCE_BL | G_RM_PASS, Z_CMP | CVG_DST_CLAMP | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_0, G_BL_CLR_IN, G_BL_1)),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_803692C0[] = 
+{
+    gsDPSetRenderMode(AA_EN | Z_CMP | IM_RD | CVG_DST_CLAMP | ZMODE_OPA | ALPHA_CVG_SEL | G_RM_PASS, AA_EN | Z_CMP | IM_RD | CVG_DST_CLAMP | ZMODE_OPA | ALPHA_CVG_SEL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_A_MEM)),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_803692D0[] =
+{
+    gsDPSetRenderMode(Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | G_RM_PASS, Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
+    gsSPEndDisplayList(),
+};
 
 /* .bss */
 f32 D_80381040[3];

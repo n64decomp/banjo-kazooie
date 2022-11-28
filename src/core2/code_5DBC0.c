@@ -43,13 +43,13 @@ typedef struct {
     u8                  pad1F[1];
 }struct5DBC0s;
 
-extern u8 D_80368830[3] = {0,0,0};
-extern u8 D_80368834[3];
-extern u8 D_80368838[3];
-extern u8 D_8036883C[3];
-extern u8 D_80368840[3];
-extern u8 D_80368844[3];
-extern u8 D_80368848[3];
+u8 D_80368830[3] = {0xFF, 0x8B, 0};
+u8 D_80368834[3] = {0xFF, 0x8B, 0};
+u8 D_80368838[3] = {0xFF, 0x8B, 0};
+u8 D_8036883C[3] = {0xFF, 0x8B, 0};
+u8 D_80368840[3] = {0xFF, 0xFF, 0XFF};
+u8 D_80368844[3] = {0xFF, 0x00, 0X46};
+u8 D_80368848[3] = {0xFF, 0x8B, 0};
 
 /* .bss */
 struct5DBC0s * D_8037E900;

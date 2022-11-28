@@ -37,40 +37,164 @@ typedef struct{
 }Struct_6DA30_0_s;
 
 /* .data */
-extern Struct_6DA30_0_s  D_80369000[];
+extern Struct_6DA30_0_s  D_80369000[] = {
+    {'A', 'V', -3, 0},
+    {'W', 'A', -3, 0},
+    {'V', 'A', -3, 0},
+    {'Y', 'A', -2, 0},
+    {'M', 'O', -1, 0},
+    {'D', 'A', -1, 0},
+    {'R', 'O', -2, 0},
+    {'T', 'A', -2, 0},
+    {'S', 'T', -1, 0},
+    {'A', 'M', -1, 0},
+    {'C', 'O', -1, 0},
+    {'O', 'V', -1, 0},
+    {'L', 'O', -1, 0},
+    {'M', 'U', -1, 0},
+    {'U', 'M', -1, 0},
+    {'M', 'A', -2, 0},
+    {'M', '0', -1, 0},
+    {'N', 'S',  1, 0},
+    {'H', 'I',  1, 0},
+    {'I', 'P',  1, 0},
+    {'I', '\'', 2, 0},
+    {'A', '\'', -1, 0},
+    {'N', '\'', 3, 0},
+    {'E', 'E', 0, -1},
+    {'Z', 'E', 0, 1},
+    0
+};
 
-extern struct {
+s32 D_80369068[] = {8, 16, 16, 0}; //max letter width
+
+struct {
     u8 unk0;
     u8 unk1;
     u8 unk2;
     u8 unk3;
-} D_80369078;
+} D_80369078 = {0xFF, 0xFF, 0xFF, 0XFF};
 
-extern s32 D_80369068[]; //max letter width
-extern MapFontTextureMap D_8036907C[];
+MapFontTextureMap D_8036907C[] ={
+    {MAP_1_SM_SPIRAL_MOUNTAIN,          0x6F0},
+    {MAP_2_MM_MUMBOS_MOUNTAIN,          0x6EF},
+    {0x3, 0x6EE},
+    {0x4, 0x6EE},
+    {MAP_5_TTC_BLUBBERS_SHIP,           0x6F0},
+    {MAP_6_TTC_NIPPERS_SHELL,           0x6EE},
+    {MAP_7_TTC_TREASURE_TROVE_COVE,     0x6F0},
+    {0x8, 0x6EE},
+    {0x9, 0x6EE},
+    {MAP_A_TTC_SANDCASTLE,              0x6F0},
+    {MAP_B_CC_CLANKERS_CAVERN,          0x6EE},
+    {MAP_C_MM_TICKERS_TOWER,            0x6EF},
+    {MAP_D_BGS_BUBBLEGLOOP_SWAMP,       0x6EE},
+    {MAP_E_MM_MUMBOS_SKULL,             0x6EF},
+    {0xF, 0x6EE},
+    {MAP_10_BGS_MR_VILE,                0x6EE},
+    {MAP_11_BGS_TIPTUP,                 0x6EE},
+    {MAP_12_GV_GOBIS_VALLEY,            0x6F0},
+    {MAP_13_GV_MEMORY_GAME,             0x6EE},
+    {MAP_14_GV_SANDYBUTTS_MAZE,         0x6EE},
+    {MAP_15_GV_WATER_PYRAMID,           0x6EE},
+    {MAP_16_GV_RUBEES_CHAMBER,          0x6EE},
+    {0x17, 0x6EE},
+    {0x18, 0x6EE},
+    {0x19, 0x6EE},
+    {MAP_1A_GV_INSIDE_JINXY,            0x6EE},
+    {MAP_1B_MMM_MAD_MONSTER_MANSION,    0x6EF},
+    {MAP_21_CC_WITCH_SWITCH_ROOM,       0x6EE},
+    {MAP_22_CC_INSIDE_CLANKER,          0x6EE},
+    {MAP_23_CC_GOLDFEATHER_ROOM,        0x6EE},
+    {MAP_24_MMM_TUMBLARS_SHED,          0x6EE},
+    {MAP_25_MMM_WELL,                   0x6EE},
+    {MAP_26_MMM_NAPPERS_ROOM,           0x6EE},
+    {MAP_28_MMM_EGG_ROOM,               0x6EF},
+    {MAP_29_MMM_NOTE_ROOM,              0x6EF},
+    {MAP_2A_MMM_FEATHER_ROOM,           0x6EF},
+    {MAP_2B_MMM_SECRET_CHURCH_ROOM,     0x6EF},
+    {MAP_2C_MMM_BATHROOM,               0x6EF},
+    {MAP_2D_MMM_BEDROOM,                0x6EF},
+    {MAP_2E_MMM_HONEYCOMB_ROOM,         0x6EF},
+    {MAP_2F_MMM_WATERDRAIN_BARREL,      0x6EE},
+    {MAP_30_MMM_MUMBOS_SKULL,           0x6EE},
+    {MAP_31_RBB_RUSTY_BUCKET_BAY,       0x6EE},
+    {MAP_32_UNUSED,                     0x6EE},
+    {MAP_33_UNUSED,                     0x6F0},
+    {MAP_34_RBB_ENGINE_ROOM,            0x6EE},
+    {MAP_35_RBB_WAREHOUSE,              0x6EE},
+    {MAP_36_RBB_BOATHOUSE,              0x6EE},
+    {MAP_37_RBB_CONTAINER_1,            0x6EE},
+    {MAP_38_RBB_CONTAINER_3,            0x6EE},
+    {MAP_39_RBB_CREW_CABIN,             0x6EE},
+    {MAP_3A_RBB_BOSS_BOOM_BOX,          0x6EE},
+    {MAP_3B_RBB_STORAGE_ROOM,           0x6EE},
+    {MAP_3C_RBB_KITCHEN,                0x6EE},
+    {MAP_3D_RBB_NAVIGATION_ROOM,        0x6EE},
+    {MAP_3E_RBB_CONTAINER_2,            0x6EE},
+    {MAP_3F_RBB_CAPTAINS_CABIN,         0x6EE},
+    {MAP_41_FP_BOGGYS_IGLOO,            0x6EE},
+    {0x42, 0x6EE},
+    {MAP_43_CCW_SPRING,                 0x6EE},
+    {MAP_44_CCW_SUMMER,                 0x6EE},
+    {MAP_45_CCW_AUTUMN,                 0x6EE},
+    {MAP_46_CCW_WINTER,                 0x6EE},
+    {MAP_47_BGS_MUMBOS_SKULL,           0x6EE},
+    {MAP_48_FP_MUMBOS_SKULL,            0x6EE},
+    {0x49, 0x6EE},
+    {MAP_4A_CCW_SPRING_MUMBOS_SKULL,    0x6EE},
+    {MAP_4B_CCW_SUMMER_MUMBOS_SKULL,    0x6EE},
+    {MAP_4C_CCW_AUTUMN_MUMBOS_SKULL,    0x6EE},
+    {MAP_4D_CCW_WINTER_MUMBOS_SKULL,    0x6EE},
+    {0x4E, 0x6EE},
+    {0x4F, 0x6EE},
+    {0x50, 0x6EE},
+    {0x51, 0x6EE},
+    {0x52, 0x6EE},
+    {MAP_53_FP_CHRISTMAS_TREE,          0x6EE},
+    {0x54, 0x6EE},
+    {0x55, 0x6EE},
+    {0x56, 0x6EE},
+    {0x57, 0x6EE},
+    {0x58, 0x6EE},
+    {0x59, 0x6EE},
+    {MAP_5A_CCW_SUMMER_ZUBBA_HIVE,      0x6EE},
+    {MAP_5B_CCW_SPRING_ZUBBA_HIVE,      0x6EE},
+    {MAP_5C_CCW_AUTUMN_ZUBBA_HIVE,      0x6EE},
+    {MAP_5E_CCW_SPRING_NABNUTS_HOUSE,   0x6EE},
+    {MAP_5F_CCW_SUMMER_NABNUTS_HOUSE,   0x6EE},
+    {MAP_60_CCW_AUTUMN_NABNUTS_HOUSE,   0x6EE},
+    {MAP_61_CCW_WINTER_NABNUTS_HOUSE,   0x6EE},
+    {MAP_62_CCW_WINTER_HONEYCOMB_ROOM,  0x6EE},
+    {MAP_63_CCW_AUTUMN_NABNUTS_WATER_SUPPLY, 0x6EE},
+    {MAP_64_CCW_WINTER_NABNUTS_WATER_SUPPLY, 0x6EE},
+    {MAP_65_CCW_SPRING_WHIPCRACK_ROOM,  0x6EE},
+    {MAP_66_CCW_SUMMER_WHIPCRACK_ROOM,  0x6EE},
+    {MAP_67_CCW_AUTUMN_WHIPCRACK_ROOM,  0x6EE},
+    {MAP_68_CCW_WINTER_WHIPCRACK_ROOM,  0x6EE},
+    0
+};
 
-extern u8 D_80369200[];
+char D_80369200[] = {
+    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 
+    ':', 
+    'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 
+    '@', '%', '?', '(', ')', '<', '>', '"', '.', ';', '-', '!', '/', '\''
+};
 
-extern Gfx D_80369238[];/* = {
+Gfx D_80369238[] = {
     gsDPPipeSync(),
     gsSPClearGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BOTH | G_FOG | G_LIGHTING | G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR | G_LOD | G_SHADING_SMOOTH),
     gsSPSetGeometryMode(G_SHADE | G_TEXTURE_GEN_LINEAR | G_SHADING_SMOOTH),
-    gsSPTexture(qu016(0.5), qu016(0.5), 0, G_TX_RENDERTILE, G_ON),
+    gsSPTexture(0x8000, 0x8000, 0, G_TX_RENDERTILE, G_ON),
     gsDPSetCycleType(G_CYC_1CYCLE),
     gsDPSetRenderMode(G_RM_XLU_SURF, G_RM_XLU_SURF2),
     gsDPSetTexturePersp(G_TP_NONE),
     gsDPSetTextureFilter(G_TF_BILERP),
     gsSPEndDisplayList(),
-};*/
+};
 
-
-extern u8 D_80377240[4];
-extern u8 D_80377244[4];
-extern u8 D_80377248[4];
-extern u8 D_8037724C[4];
-extern u8 D_80377250[4];
-extern u8 D_80377254[4];
-
+/* .bss */
 char D_80380AB0;
 BKSprite *D_80380AB8[0x5];
 

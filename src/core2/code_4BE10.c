@@ -5,16 +5,18 @@
 void func_802D2DA0(Actor *this);
 
 /* .data */
-extern ActorInfo D_803675F0 = {
+ActorInfo D_803675F0 = {
     0x16, 0x6A, 0x0,
     0x1, NULL, 
     func_802D2DA0, func_80326244, func_80325340, 
     0, 0, 0.0f, 0
 };
-
-extern struct31s D_80367624;
-extern struct42s D_8036764C;
-
+s16 D_80367614[] = {3,2,3,4,3,5,3,0};
+struct31s D_80367624 = {{0.7f,  0.3f}, {0.01f, 0.01f}, {0.05f, 0.05f}, {0.2f,  0.2f},  0.0f,  0.01f};
+struct42s D_8036764C = {
+    {{-100.0f, 400.0f, -100.0f}, { 100.0f, 800.0f,  100.0f}}, 
+    {{-100.0f,   0.0f, -100.0f}, { 100.0f,   0.0f,  100.0f}}
+};
 
 /* .code */
 void func_802D2DA0(Actor *this) {

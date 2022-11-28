@@ -30,7 +30,7 @@ Actor *func_802CCA7C(ActorMarker *, Gfx **, Mtx **, Vtx **);
 void func_802CCC5C(Actor *this);
 
 /* .data */
-extern ActorInfo D_80367130 = { 
+ActorInfo D_80367130 = { 
     MARKER_C2_BUZZBOMB, ACTOR_134_BUZZBOMB, ASSET_3ED_MODEL_BUZZBOMB, 
     0, NULL, 
     func_802CCC5C, NULL, func_802CCA7C, 

@@ -3,8 +3,7 @@
 #include "variables.h"
 
 
-extern s32 D_80368AA0[3];
-
+s32 D_80368AA0[3] = {0xC8, 0xC8, 0xE6};
 
 /* .bss */
 u8 D_80380A00;

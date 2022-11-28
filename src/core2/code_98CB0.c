@@ -23,7 +23,7 @@ void func_80256E24(f32 *, f32, f32, f32, f32, f32);
 
 
 /* .data */
-extern s32 D_8036DDF0;
+s32 D_8036DDF0 = 0x24;
 
 /* .bss */
 struct {

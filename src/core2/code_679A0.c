@@ -22,7 +22,7 @@ void func_802EFF9C(ParticleEmitter *, f32);
 void func_802F0C78(ParticleEmitter *this);
 
 
-extern Gfx D_80368940[] = {
+Gfx D_80368940[] = {
     gsSPClearGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BOTH | G_FOG | G_LIGHTING | G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR | G_LOD | G_SHADING_SMOOTH),
     gsSPSetGeometryMode(G_ZBUFFER | G_SHADE | G_TEXTURE_GEN_LINEAR | G_SHADING_SMOOTH),
     gsSPTexture(0x8000, 0x8000, 0, G_TX_RENDERTILE, G_ON),
@@ -32,7 +32,7 @@ extern Gfx D_80368940[] = {
     gsSPEndDisplayList()
 };
 
-extern Gfx D_80368978[] = {
+Gfx D_80368978[] = {
     gsSPClearGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BOTH | G_FOG | G_LIGHTING | G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR | G_LOD | G_SHADING_SMOOTH),
     gsSPSetGeometryMode(G_SHADE | G_TEXTURE_GEN_LINEAR | G_SHADING_SMOOTH),
     gsSPTexture(0x8000, 0x8000, 0, G_TX_RENDERTILE, G_ON),
@@ -42,18 +42,9 @@ extern Gfx D_80368978[] = {
     gsSPEndDisplayList()
 };
 
-extern ParticleEmitter **D_803689B0; //particlePtrArrayPtr
-extern s32 D_803689B4;         //particlePtrArraySize
-extern s32 D_803689B8[3];
-
-extern f64 D_803771B0;
-extern f64 D_803771B8;
-extern f64 D_803771C0;
-extern f64 D_803771C8;
-
-// 000F 0220: C0F86A0000000000 40F86A0000000000 
-// 000F 0230: 40F86A0000000000 3F50624DD2F1A9FC 
-// 000F 0240: 400921FB54524550 0000000000000000 
+ParticleEmitter **D_803689B0 = NULL; //particlePtrArrayPtr
+s32 D_803689B4 = 0;                  //particlePtrArraySize
+s32 D_803689B8[3] = {0xAF, 0x87, 0};
 
 /* .bss */
 f32 D_80380920;

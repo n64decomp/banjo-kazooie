@@ -16,12 +16,26 @@ void item_set(s32, s32);
 
 f32 func_802FB0E4(s32);
 
-extern void *D_8036A010;
-extern void *D_8036A014;
-extern s32 D_8036A018[];
-extern Gfx D_8036A030[];
+/* .data*/
+void *D_8036A010 = NULL;
 
+void *D_8036A014 = NULL;
 
+s32 D_8036A018[] = {2, 1, 0, 3, 4, 5};
+
+Gfx D_8036A030[] =
+{
+    gsDPPipeSync(),
+    gsSPClearGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BOTH | G_FOG | G_LIGHTING | G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR | G_LOD | G_SHADING_SMOOTH),
+    gsSPSetGeometryMode(G_SHADE | G_TEXTURE_GEN_LINEAR | G_SHADING_SMOOTH),
+    gsSPTexture(0x1000, 0x1000, 0, G_TX_RENDERTILE, G_ON),
+    gsDPSetCycleType(G_CYC_1CYCLE),
+    gsDPSetCombineLERP(0, 0, 0, TEXEL0, TEXEL0, 0, PRIMITIVE, 0, 0, 0, 0, TEXEL0, TEXEL0, 0, PRIMITIVE, 0),
+    gsDPSetRenderMode(G_RM_XLU_SURF, G_RM_XLU_SURF2),
+    gsSPEndDisplayList()
+};
+
+/* .bss */
 s32 D_803815C0;
 s32 D_803815C4;
 f32 D_803815C8;
@@ -36,16 +50,6 @@ s32 D_803815E8;
 s32 D_803815EC;
 struct7s D_803815F0;
 s32 D_80381610;
-
-
-/* rodata 
-    !!! NOTE the second half of .rodata is already defined as .rodata
-    COMBINE IN subyaml/core2.us.v10.yaml
-*/
-extern f64 D_803773B0;
-extern f64 D_803773B8;
-extern f64 D_803773C0;
-extern f64 D_803773C8;
 
 void func_802FDD20(void) {
     s32 phi_v1;

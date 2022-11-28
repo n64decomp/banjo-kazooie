@@ -19,12 +19,33 @@ typedef struct {
 }Struct_core2_6B030_0;
 
 /* .data */
-extern Gfx D_80368AC0[];
-extern Struct_core2_6B030_0 *D_80368AB0;
-extern s16 D_80368AB4;
-extern s16 D_80368AB8;
-extern Gfx D_80368B08[];
-extern Struct_core2_6B030_1 D_80368B28[];
+Struct_core2_6B030_0 *D_80368AB0 = NULL;
+s16 D_80368AB4 = 0;
+s16 D_80368AB8 = 0;
+
+Gfx D_80368AC0[] = {
+    gsDPPipeSync(),
+    gsSPClearGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BOTH | G_FOG | G_LIGHTING | G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR | G_LOD | G_SHADING_SMOOTH),
+    gsSPSetGeometryMode(G_ZBUFFER | G_SHADE | G_TEXTURE_GEN_LINEAR | G_SHADING_SMOOTH),
+    gsSPTexture(0x8000, 0x8000, 0, G_TX_RENDERTILE, G_ON),
+    gsDPSetTextureLOD(G_TL_TILE),
+    gsDPSetCycleType(G_CYC_2CYCLE),
+    gsDPSetCombineLERP(TEXEL1, 0, SHADE, 0, TEXEL0, 0, SHADE, 0, 0, 0, 0, COMBINED, 0, 0, 0, COMBINED),
+    gsDPSetRenderMode(G_RM_PASS, G_RM_ZB_XLU_SURF2),
+    gsSPEndDisplayList()
+};
+
+Gfx D_80368B08[] = {
+    gsDPPipeSync(),
+    gsDPSetCombineLERP(TEXEL0, PRIMITIVE, TEXEL0, PRIMITIVE, TEXEL0, 0, SHADE, 0, COMBINED, 0, SHADE, 0, 0, 0, 0, COMBINED),
+    gsDPSetPrimColor(0, 0, 0x50, 0xF0, 0xFF, 0xFF),
+    gsSPEndDisplayList()
+};
+
+Struct_core2_6B030_1 D_80368B28[] = {
+    {0x704, 0xFFFF},
+    {0x705, 0xFFFF}
+};
 
 /* .bss */
 f32 *D_80380A10;

@@ -13,7 +13,7 @@ typedef struct {
 }ActorLocal_climbBase;
 
 /* .data */
-extern ActorInfo D_80367B20 = { 
+ActorInfo D_80367B20 = { 
     0x35, 0x26, 0x0, 
     0x1, NULL, 
     func_802D77D4, func_80326224, func_80325340, 

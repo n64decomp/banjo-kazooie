@@ -17,10 +17,6 @@ typedef struct {
 }Struct_core2_5FD90_0;
 
 
-/* .rodata */
-extern f32 D_80377180;
-extern f32 D_80377184;
-
 /* .bss */
 struct { 
     BKCollisionGeo *unk0[100];

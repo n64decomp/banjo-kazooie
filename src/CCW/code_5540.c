@@ -36,7 +36,7 @@ void __chnabnut_setState_method(ActorMarker* marker, s32 next_state) {
 void chnabnut_setState(Actor *this, s32 next_state) {
 
     if (next_state == NABNUT_STATE_1_SAD) {
-        func_80335924(this->unk148, ASSET_22C_ANIM_NAMBUT_CRY, 0.2f, 10.6f);
+        func_80335924(this->unk148, ASSET_22C_ANIM_NABNUT_CRY, 0.2f, 10.6f);
     }
 
     if (next_state == NABNUT_STATE_2_WAIT) {
@@ -45,7 +45,7 @@ void chnabnut_setState(Actor *this, s32 next_state) {
 
     if (next_state == NABNUT_STATE_3_BACKFLIP) {
         this->marker->propPtr->unk8_3 = FALSE;
-        func_80335924(this->unk148, ASSET_22D_ANIM_NAMBUT_BACKFLIP, 0.2f, 3.13f);
+        func_80335924(this->unk148, ASSET_22D_ANIM_NABNUT_BACKFLIP, 0.2f, 3.13f);
         func_80335A8C(this->unk148, 2);
         func_80324E38(0.0f, 3);
         timed_setCameraToNode(0.0f, 0xB);
@@ -53,14 +53,14 @@ void chnabnut_setState(Actor *this, s32 next_state) {
     }
 
     if (next_state == NABNUT_STATE_4_THANK_PLAYER) {
-        func_80335924(this->unk148, ASSET_22E_ANIM_NAMBUT_STAND, 0.2f, 3.53f);
+        func_80335924(this->unk148, ASSET_22E_ANIM_NABNUT_STAND, 0.2f, 3.53f);
         func_80335A8C(this->unk148, 1);
         func_802C8F70(this->yaw - 40.0f);
         jiggySpawn(JIGGY_4A_CCW_NABNUT, this->position);
     }
 
     if (next_state == NABNUT_STATE_5_EXIT) {
-        func_80335924(this->unk148, ASSET_22F_ANIM_NAMBUT_RUN, 0.2f, 0.34f);
+        func_80335924(this->unk148, ASSET_22F_ANIM_NABNUT_RUN, 0.2f, 0.34f);
     }
 
     if (next_state == NABNUT_STATE_6_DESPAWN) {

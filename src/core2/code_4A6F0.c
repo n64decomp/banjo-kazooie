@@ -12,24 +12,34 @@ Actor *func_802D2964(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void func_802D1CF0(Actor *this);
 
 /* .data */
-extern ActorAnimationInfo D_80367490[];
-extern ActorInfo D_803674E0 = { 
+ActorAnimationInfo D_80367490[] = {
+    {0, 0.0f}, 
+    {0x6A, 2.6f},
+    {0x6B, 1.33f}, 
+    {0x6C, 6.67f},
+    {0x6C, 6.67f}, 
+    {0x6D, 7.5f},
+    {0x6E, 0.67f}, 
+    {0x16E, 8.0f},
+    {0x17F, 2.0f}, 
+    {0x180, 0.7f},
+};
+
+ActorInfo D_803674E0 = { 
     0x6, 0x7, 0x3C6, 
     0x1, D_80367490, 
     func_802D1CF0, func_80326224, func_802D2964, 
     0, 0, 0.0f, 0
 };
-extern s32 D_80367504[3];
-extern f32 D_80367510[3];
-extern s32 D_8036751C[4];
-
+s32 D_80367504[3] = {0.0f, 0.0f, 0.0f};
+f32 D_80367510[3] = {1.0f, 0.0f, 2.0f};
+s32 D_8036751C[4] = {100, 100, 30, 100};
 
 /* .bss */
 u8 D_8037DDF0;
 u8 D_8037DDF1;
 u8 D_8037DDF2;
 u8 D_8037DDF3;
-
 
 /* .code */
 s32 func_802D1680(s32 arg0) {

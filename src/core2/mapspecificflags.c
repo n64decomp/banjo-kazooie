@@ -5,7 +5,7 @@
 void mapSpecificFlags_set(s32 i, s32 val);
 
 /* .data */
-extern u32 D_80367000;
+u32 D_80367000 = 0;
 
 /* .bss */
 u32 D_8037DDE0;

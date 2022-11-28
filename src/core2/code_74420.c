@@ -2,8 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
-extern f32 D_80369800[9];
-extern s32 D_80369824;
+f32 D_80369800[9] = {11.0f, 8.0f, 6.0f, 4.5f, 3.0f, 2.0f, -1.0f, -1.0f, 0.0f};
+s32 D_80369824 = 0;
 
 /* .bss */
 struct8s * D_80381530[4];

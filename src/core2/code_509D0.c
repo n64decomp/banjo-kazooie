@@ -9,49 +9,52 @@ extern ActorMarker *func_8028E86C(void);
 extern void func_803252D0(f32, s32);
 extern void func_8035646C(s32);
 
-extern ActorAnimationInfo D_80367B50[];
+ActorAnimationInfo D_80367B50[] = {
+    {0, 0.0f},
+    {0x18A, 1.5f},
+    {0x18A, 1.5f},
+    {0x18A, 1.5f},
+    {0x18A, 1.5f},
+    {0x18A, 1.5f}
+};
 
-
-extern ActorInfo D_80367B80 = {
+ActorInfo D_80367B80 = {
     MARKER_36_ORANGE_COLLECTABLE, ACTOR_29_ORANGE_COLLECTABLE, ASSET_2D2_MODEL_ORANGE,
     0x5, NULL,
     func_802D8528, func_80326224, func_80325888,
     0, 0, 0.6f,0
 };
 
-extern ActorInfo D_80367BA4 = {
+ActorInfo D_80367BA4 = {
     MARKER_37_GOLD_BULLION, ACTOR_2A_GOLD_BULLION, ASSET_3C7_MODEL_GOLD_BULLION,
     0x5, NULL,
     func_802D8528, func_80326224, func_80325888,
     0, 0, 0.6f, 0
 };
 
-extern ActorInfo D_80367BC8 = {
+ActorInfo D_80367BC8 = {
     MARKER_1FD_BLUE_PRESENT_COLLECTABLE, ACTOR_1ED_BLUE_PRESENT_COLLECTABLE, ASSET_47F_MODEL_XMAS_GIFT_BLUE,
     0x5, D_80367B50,
     func_802D8528, func_80326224, func_80325888,
     0, 0, 1.8f, 0
 };
 
-extern ActorInfo D_80367BEC = {
+ActorInfo D_80367BEC = {
     MARKER_1FE_GREEN_PRESENT_COLLECTABLE, ACTOR_1EF_GREEN_PRESENT_COLLECTABLE, ASSET_480_MODEL_XMAS_GIFT_GREEN,
     0x5, D_80367B50,
     func_802D8528, func_80326224, func_80325888,
     0, 0, 1.4f, 0
 };
 
-extern ActorInfo D_80367C10 = {
+ActorInfo D_80367C10 = {
     MARKER_1FF_RED_PRESENT_COLLECTABLE, ACTOR_1F1_RED_PRESENT_COLLECTABLE, ASSET_481_MODEL_XMAS_GIFT_RED,
     0x5, D_80367B50,
     func_802D8528, func_80326224, func_80325888,
     0, 0, 1.4f, 0
 };
-extern struct31s D_80367C34;
 
-extern f32 D_80376D60;
-extern f32 D_80376D64;
-extern f32 D_80376D68;
-extern f32 D_80376D6C;
+struct31s D_80367C34 = {{0.2f, 0.4f}, {0.1f, 0.1f}, {0.0f, 0.01f}, {3.0f, 3.5f}, 0.1f, 0.1f};
+
 
 /* .code */
 void func_802D7960(f32 position[3], enum asset_e sprite_id) {

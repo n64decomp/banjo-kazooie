@@ -6,8 +6,8 @@ extern void func_802FB020(struct8s *, s32);
 
 
 /* .data */
-extern f32 D_80369860[9];
-extern s32 D_80369884;
+f32 D_80369860[9] = {14.0f, 10.5f, 7.5f, 5.0f, 3.0f, 2.0f, -1.0f, -1.0f, 0.0f};
+s32 D_80369884 = 0;
 
 /* .bss */
 struct8s *D_80381560[3];

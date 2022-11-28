@@ -5,8 +5,18 @@
 extern f32 func_802FB0E4(struct8s*);
 
 /* .code */
-extern s32 D_8036A260[];
-extern Gfx D_8036A278[];
+enum asset_e D_8036A260[] = {0x7E0, 0x7E1, 0x7E2, 0x7E3, 0x7E4};
+Gfx D_8036A278[] =
+{
+    gsDPPipeSync(),
+    gsSPClearGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BOTH | G_FOG | G_LIGHTING | G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR | G_LOD | G_SHADING_SMOOTH),
+    gsSPSetGeometryMode(G_SHADE | G_TEXTURE_GEN_LINEAR | G_SHADING_SMOOTH),
+    gsSPTexture(0x8000, 0x8000, 0, G_TX_RENDERTILE, G_ON),
+    gsDPSetCycleType(G_CYC_1CYCLE),
+    gsDPSetRenderMode(G_RM_XLU_SURF, G_RM_XLU_SURF2),
+    gsSPEndDisplayList(),
+};
+
 
 /* .bss */
 void *D_80381EB0[2];

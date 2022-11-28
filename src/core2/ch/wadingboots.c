@@ -6,8 +6,14 @@ Actor *chwadingboots_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void chwadingboots_update(Actor *this);
 
 /* .data */
-extern ActorAnimationInfo D_80367A00[];
-extern ActorInfo D_80367A20 = {
+ActorAnimationInfo D_80367A00[] = {
+    {0x67, 0.7f},
+    {0x67, 0.7f},
+    {0x67, 0.7f},
+    {0x67, 0.7f},
+};
+
+ActorInfo D_80367A20 = {
     MARKER_11_WADING_BOOTS, ACTOR_65_WADING_BOOTS, ASSET_366_MODEL_WADING_BOOTS, 
     0x0, D_80367A00, 
     chwadingboots_update, func_80326224, chwadingboots_draw, 

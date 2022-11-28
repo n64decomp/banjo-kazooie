@@ -166,7 +166,7 @@ Struct_core2_83D70_1 D_8036BCE8[] = {
 };
 
 /* .bss */
-char D_803823A0[0x60];
+char D_803823A0[0x70];
 
 /* .data */
 MapInfo * func_8030AD00(enum map_e map_id){

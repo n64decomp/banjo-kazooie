@@ -3,8 +3,8 @@
 #include "variables.h"
 
 /* .data */
-extern f32 D_803698F0[];
-extern s32 D_80369914;
+f32 D_803698F0[] = {14.0f, 10.5f, 7.5f, 5.0f, 3.0f, 2.0f, -1.0f, -1.0f, 0.0f};
+s32 D_80369914 = 0;
 
 /* .bss */
 struct8s *D_80381590[4];

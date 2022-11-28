@@ -7,7 +7,7 @@ extern func_802EFAB0(ParticleEmitter *, s32, f32);
 ParticleEmitter *func_802F4274(f32 arg0[3]);
 
 /* .data */
-extern s32 D_80368DE0[3];
+s32 D_80368DE0[3] = {0xFF, 0XFF, 0XFE};
 
 /* .bss */
 u8 D_80380AA0;

@@ -38,7 +38,13 @@ void func_8033DC9C(f32);
 extern void func_80324C58(void);
 
 /* .data */
-extern s16 D_80367FF0[];
+s16 D_803687F0[] = {
+    0x159A, 0x02BC, 0x21C8, 0x00C8, 0x14ED, 0x03A2, 0x1951, 0x0003,
+    '**', ' B', 'AN', 'JO', ' K', 'AZ', 'OO', 'IE',
+    ' (', 'c)', ' R', 'AR', 'E ', 'Lt', 'd ', '19',
+    '98', ' *', '*\0',   0,    0,    0,    0,    0,
+ 
+};
 
 /* .bss */
 struct{
@@ -640,35 +646,35 @@ u8 func_802E4A8C(void){
 }
 
 s32 func_802E4A98(s32 arg0){
-    return D_80367FF0[arg0*8 + 0];
+    return D_803687F0[8*(arg0 - 0x80) + 0];
 }
 
 s32 func_802E4AAC(s32 arg0){
-    return D_80367FF0[arg0*8 + 1];
+    return D_803687F0[8*(arg0 - 0x80) + 1];
 }
 
 s32 func_802E4AC0(s32 arg0){
-    return D_80367FF0[arg0*8 + 2];
+    return D_803687F0[8*(arg0 - 0x80) + 2];
 }
 
 s32 func_802E4AD4(s32 arg0){
-    return D_80367FF0[arg0*8 + 3];
+    return D_803687F0[8*(arg0 - 0x80) + 3];
 }
 
 s32 func_802E4AE8(s32 arg0){
-    return D_80367FF0[arg0*8 + 4];
+    return D_803687F0[8*(arg0 - 0x80) + 4];
 }
 
 s32 func_802E4AFC(s32 arg0){
-    return D_80367FF0[arg0*8 + 5];
+    return D_803687F0[8*(arg0 - 0x80) + 5];
 }
 
 s32 func_802E4B10(s32 arg0){
-    return D_80367FF0[arg0*8 + 6];
+    return D_803687F0[8*(arg0 - 0x80) + 6];
 }
 
 s32 func_802E4B24(s32 arg0){
-    return D_80367FF0[arg0*8 + 7];
+    return D_803687F0[8*(arg0 - 0x80) + 7];
 }
 
 f32 func_802E4B38(void){

@@ -7,7 +7,7 @@ extern bool func_8024DB50(f32[3], f32);
 void func_802DC208(Actor *this);
 
 /* .data */
-ActorInfo D_8037FE0 = {
+ActorInfo D_80367FE0 = {
     0x1F6, 0x1E6, 0,
     0, NULL,
     func_802DC208, func_80326224, func_80325340,
@@ -22,9 +22,6 @@ struct40s D_80368004 = {
     0.0f, 0.7f},
     4.0f, 1.0f
 };
- 
- /* .rodata */
-extern f64 D_80376EF0;
 
 /* .code */
 void func_802DC110(f32 *position, enum asset_e sprite_id) {

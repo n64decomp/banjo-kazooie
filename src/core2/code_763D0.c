@@ -10,7 +10,7 @@ extern s32 D_80276588; //framebuffer_w
 extern s32 D_8027658C; //framebuffer_h
 
 
-extern Gfx D_80369920[] = {
+Gfx D_80369920[] = {
     gsDPPipeSync(),
     gsSPClearGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BOTH | G_FOG | G_LIGHTING | G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR | G_LOD | G_SHADING_SMOOTH),
     gsSPSetGeometryMode(G_SHADE | G_TEXTURE_GEN_LINEAR | G_SHADING_SMOOTH),
@@ -21,7 +21,7 @@ extern Gfx D_80369920[] = {
     gsSPEndDisplayList(),
 };
 
-extern struct8s D_80369960[] = {
+struct8s D_80369960[] = {
     {
         0, 0, 0.0f, 0.0f, 0.0f, 0, 0, 0.0f,
         ITEM_C_NOTE, ASSET_7D9_SPRITE_NOTE, 0x1, 0xA,
@@ -126,10 +126,6 @@ extern struct8s D_80369960[] = {
         NULL, {0}, 0.0f
     },
 };
-
-/* .rodata */
-extern f32 D_803773A0;
-extern f32 D_803773A4;
 
 /* .code */
 void func_802FD360(struct8s *arg0, Gfx **gfx, Mtx **mtx, Vtx **vtx){

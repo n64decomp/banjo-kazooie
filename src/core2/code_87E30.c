@@ -11,8 +11,7 @@ extern void gczoombox_minimize(gczoombox_t *);
 extern void gczoombox_close(gczoombox_t *);
 extern bool func_803188B4(gczoombox_t *);
 
-extern s8 D_8036C4D0[];
-extern f32 D_80378534;
+s8 D_8036C4D0[] = {1, 0x1E, 0x14, 0xF, 0xB, 8, 6, 4, 3, 2, -1, -1};
 
 /* .bss */
 struct {

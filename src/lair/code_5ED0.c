@@ -222,7 +222,7 @@ extern struct {
     {2, TALK_PIC_41_GRUNTILDA_3,     0,  0.0f},
     {2, TALK_PIC_43_BOGGY,           0,  0.0f},
     {2, TALK_PIC_44_WOZZA,           0,  0.0f},
-    {2, TALK_PIC_50_NAMBUT,          0,  0.0f},
+    {2, TALK_PIC_50_NABNUT,          0,  0.0f},
     {2, TALK_PIC_51_POLAR_BEAR_CUBS, 0,  0.0f},
     {2, TALK_PIC_55_ADULT_EEYRIE,    0,  0.0f},
     {2, TALK_PIC_57_BRENTILDA,       0,  0.0f},

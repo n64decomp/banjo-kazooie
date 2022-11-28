@@ -31,14 +31,6 @@ typedef struct {
     f32 unk3C;
 }ActorLocal_core2_53C10;
 
-/* .data */
-extern struct41s D_80367EA0;
-extern struct41s D_80367ED0;
-extern struct41s D_80367F00;
-
-/* .rodata */
-
-
 /* .code */
 void func_802DABA0(ParticleEmitter *pCtrl, f32 position[3], f32 scale, enum asset_e model_id) {
     particleEmitter_setPosition(pCtrl, position);
@@ -55,6 +47,10 @@ void func_802DABA0(ParticleEmitter *pCtrl, f32 position[3], f32 scale, enum asse
 }
 
 void func_802DAC84(ParticleEmitter *pCtrl, Actor *this, enum asset_e model_id) {
+    static struct41s D_80367EA0 = {
+        {{-200.0f,   850.0f, -200.0f}, { 400.0f,  1000.0f,  400.0f}}, 
+        {{   0.0f, -1800.0f,    0.0f}, {   0.0f, -1800.0f,    0.0f}}
+    };
     particleEmitter_setVelocityAndAccelerationRanges(pCtrl, &D_80367EA0);
     func_802DABA0(pCtrl, this->position, this->scale, model_id);
     func_802EFE24(pCtrl, -800.0f, -800.0f, -800.0f, 800.0f, 800.0f, 800.0f);
@@ -63,6 +59,10 @@ void func_802DAC84(ParticleEmitter *pCtrl, Actor *this, enum asset_e model_id) {
 
 
 void func_802DAD08(ParticleEmitter *pCtrl, Actor *this, enum asset_e model_id) {
+    static struct41s D_80367ED0 = {
+        {{ -50.0f,   750.0f,  -50.0f}, { 120.0f,   900.0f,  120.0f}}, 
+        {{   0.0f, -1800.0f,    0.0f}, {   0.0f, -1800.0f,    0.0f}}
+    };
     particleEmitter_setVelocityAndAccelerationRanges(pCtrl, &D_80367ED0);
     func_802DABA0(pCtrl, this->position, this->scale, model_id);
     func_802EFE24(pCtrl, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
@@ -70,6 +70,10 @@ void func_802DAD08(ParticleEmitter *pCtrl, Actor *this, enum asset_e model_id) {
 }
 
 void func_802DAD8C(ParticleEmitter *pCtrl, Actor *this, enum asset_e model_id) {
+    static struct41s D_80367F00 = {
+        {{ -80.0f,   400.0f,  -80.0f}, { 160.0f,   860.0f,  160.0f}}, 
+        {{   0.0f, -1400.0f,    0.0f}, {   0.0f, -1400.0f,    0.0f}}
+    };
     particleEmitter_setVelocityAndAccelerationRanges(pCtrl, &D_80367F00);
     func_802DABA0(pCtrl, this->position, this->scale, model_id);
     func_802EFE24(pCtrl, -300.0f, -300.0f, -300.0f, 300.0f, 300.0f, 300.0f);
