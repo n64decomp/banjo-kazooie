@@ -10,7 +10,7 @@ typedef struct {
 } Struct_Core2_CECD0_0;
 
 /* .data */
-extern Struct_Core2_CECD0_0 D_803726F0;
+extern Struct_Core2_CECD0_0 D_803726F0 = {0x3, 0x32};
 
 /* .code */
 void func_80355C60(f32 arg0[3], f32 arg1){

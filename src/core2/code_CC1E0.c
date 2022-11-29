@@ -27,15 +27,18 @@ extern ActorProp *func_80320EB0(ActorMarker *, f32, s32);
 void fxegg_collide(s32 arg0, ActorMarker *arg1, s32 arg2);
 
 /* .data */
-extern struct53s D_803726A0;
-
-/* .rodata */
-extern f32 D_80379430;
-extern f32 D_80379434;
-extern f32 D_80379438;
-extern f64 D_80379440;
-extern f64 D_80379448;
-
+struct53s D_803726A0[] = {
+    {9, 1}, 
+    {8, 1}, 
+    {7, 1}, 
+    {6, 1}, 
+    {5, 1}, 
+    {4, 1}, 
+    {3, 1}, 
+    {2, 1}, 
+    {1, 1}, 
+    {0, 1}
+};
 
 /* .code */
 void fxegg_shatter(u8 projectile_indx){
@@ -185,7 +188,7 @@ void fxegg_head_spawn(void){
     func_8033FCD8(projectile_indx, 0xe);
 
     func_80287E9C(sp78);
-    func_80287F50(sp78, &D_803726A0, 0x14);
+    func_80287F50(sp78, D_803726A0, 0x14);
     func_80287F10(sp78);
 
     func_80344E18(sp77, 1);

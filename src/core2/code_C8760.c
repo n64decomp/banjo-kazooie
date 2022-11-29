@@ -9,7 +9,7 @@ struct {
     u8 unk4;
     u8 unk5;
     u8 pad6[2];
-}D_803720A0;
+}D_803720A0 = {NULL, 0, 0};
 
 extern f32 D_803792F0;
 

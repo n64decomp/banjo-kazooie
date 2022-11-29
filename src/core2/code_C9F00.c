@@ -23,16 +23,57 @@ typedef struct {
     void (*unk4)(void *, Struct68s *, f32);
 }Struct_Core2_C9F00_0;
 
-extern Struct_Core2_C9F00_1 D_803725C0[];
-extern Struct_Core2_C9F00_0 D_803725F4[];
+Struct_Core2_C9F00_1 D_803725C0[] = {
+    { 0x37, 0x1, 0x00}, 
+    { 0x38, 0x2, 0x24},  
+    { 0xF9, 0x5, 0x22}, 
+    { 0xFA, 0x6, 0x22},
+    { 0xFB, 0x7, 0x22}, 
+    { 0xFC, 0x8, 0x22},  
+    { 0xFD, 0x9, 0x22}, 
+    { 0xFE, 0xA, 0x22},
+    { 0xFF, 0xB, 0x22}, 
+    {0x100, 0xC, 0x22},  
+    {0x100, 0xC, 0x22}, 
+    { 0x13, 0xD, 0x00},
+    0
+};
 
-/* .rodata */
-extern f64 D_80379350;
-extern f64 D_80379358;
-extern f64 D_80379360;
-extern f64 D_80379368;
-extern f64 D_80379370;
-extern f64 D_80379378;
+
+void func_80351DE0(Struct6Bs *, Struct68s *);
+extern void MMM_func_8038ADF0(void *, Struct68s *);
+extern void func_80387940(void *, Struct68s *);
+extern void GV_func_80387960(void *, Struct68s *);
+extern void func_80387980(void *, Struct68s *);
+extern void func_803879A0(void *, Struct68s *);
+extern void func_803879C0(void *, Struct68s *);
+extern void CC_func_803879E0(void *, Struct68s *);
+extern void CC_func_80387A00(void *, Struct68s *);
+extern void CC_func_80387A20(void *, Struct68s *);
+extern void func_80351FE0(void *, Struct68s *);
+
+void func_80351E60(Struct6Bs *, Struct68s *, f32);
+extern void func_8038AF90(void *, Struct68s *, f32);
+extern void func_8038B790(void *, Struct68s *, f32);
+extern void CCW_func_80387A40(void *, Struct68s *, f32);
+extern void func_80352114(void *, Struct68s *, f32);
+
+Struct_Core2_C9F00_0 D_803725F4[] = {
+    {         NULL,          NULL}, 
+    {func_80351DE0, func_80351E60}, 
+    {MMM_func_8038ADF0, func_8038AF90}, 
+    {         NULL,          NULL}, 
+    {         NULL, func_8038B790}, 
+    {func_80387940, CCW_func_80387A40}, 
+    {GV_func_80387960, CCW_func_80387A40}, 
+    {func_80387980, CCW_func_80387A40}, 
+    {func_803879A0, CCW_func_80387A40}, 
+    {func_803879C0, CCW_func_80387A40}, 
+    {CC_func_803879E0, CCW_func_80387A40}, 
+    {CC_func_80387A00, CCW_func_80387A40}, 
+    {CC_func_80387A20, CCW_func_80387A40}, 
+    {func_80351FE0, func_80352114}
+};
 
 /* .bss */
 struct {

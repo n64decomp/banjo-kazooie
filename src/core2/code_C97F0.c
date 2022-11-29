@@ -13,22 +13,67 @@ typedef struct {
 
 typedef struct {
     u8 unk0;
-    u8 pad1[3];
+    // u8 pad1[3];
     Struct_core2_C97F0_2 unk4[15];
 }Struct_core2_C97F0_1;
 
 typedef struct {
     s16 unk0;
-    u8 pad2[0x2];
     f32 unk4[3];
     u8 unk10;
-    u8 pad11[0x3];
 }Struct_core2_C97F0_0;
 
 /* .data */
-extern Struct_core2_C97F0_1 D_803720B0[];
-extern Struct_core2_C97F0_0 D_803724F4[];
-extern s32 D_803725A8[4];
+Struct_core2_C97F0_1 D_803720B0[] = {
+    {1, {
+        {0.01f, {0xFF, 0xFF, 0xFF, 0x80}, 1.0f,},
+        {0.25f, {0xFF, 0x00, 0x00, 0x80}, 0.75f},
+        {0.5f,  {0x00, 0xFF, 0x00, 0x80}, 0.5f},
+        {0.75f, {0x00, 0x00, 0xFF, 0x80}, 0.25f},
+        {1.0f,  {0xFF, 0x00, 0xFF, 0x80}, 0.1f},
+        0
+    }},
+    {0, {
+        {0.15f, {0xFF, 0xFF, 0xFF, 0x80}, 0.2f},
+        {0.25f, {0xDC, 0xD2, 0xDC, 0xD2}, 0.35f},
+        {0.32f, {0xFF, 0xFF, 0xFF, 0x5A}, 0.7f},
+        {0.45f, {0xD2, 0xFF, 0xD7, 0x78}, 0.3f},
+        {0.56f, {0xC8, 0xFF, 0xFF, 0x96}, 0.9f},
+        {0.69f, {0xFF, 0xD2, 0xFF, 0x6E}, 0.45f},
+        {0.78f, {0xDC, 0xFF, 0xFF, 0x73}, 0.28f}, 
+        {0.84f, {0xFF, 0xE6, 0xFF, 0xC8}, 0.55f},
+        {1.05f, {0xC8, 0xFF, 0xFF, 0x64}, 0.4f}, 
+        {1.15f, {0xFF, 0xC8, 0xFF, 0x96}, 0.22f},
+        0
+    }},
+    {2, {
+        {0.15f, {0xFF, 0x00, 0x00, 0xC8}, 0.2f}, 
+        {0.25f, {0xDC, 0xD2, 0xDC, 0xD2}, 0.35f}, 
+        {0.32f, {0xFF, 0xFF, 0xFF, 0xA0}, 0.7f}, 
+        {0.45f, {0xD2, 0xF0, 0xBE, 0xDC}, 0.3f}, 
+        {0.56f, {0xC8, 0xFF, 0xFF, 0xBE}, 0.9f}, 
+        {0.69f, {0xFF, 0xD2, 0xFF, 0xA0}, 0.45f}, 
+        {0.78f, {0xDC, 0xFF, 0xFF, 0x8C}, 0.28f}, 
+        {0.84f, {0xFF, 0xE6, 0xFF, 0xFF}, 0.55f},
+        {1.05f, {0xC8, 0xFF, 0xFF, 0xBE}, 0.4f}, 
+        {1.15f, {0xFF, 0xC8, 0xFF, 0x96}, 0.22f}, 
+        0
+    }}
+};
+
+Struct_core2_C97F0_0 D_803724F4[] = {
+    {0x95, {  48.0f,  10.0f,  -51.0f},      0}, 
+    {0x20, {  48.0f,  10.0f,  -51.0f},      0},
+    {0x96, {  48.0f,  10.0f,  -51.0f},      0},
+    {0x97, {  48.0f,  10.0f,  -51.0f},      0},
+    {0x07, {  52.0f,  24.0f,  -21.0f},      0},
+    {0x12, {-358.74f, 90.8f,  306.8f},      0},
+    {0x1F, { -61.8f,  -3.64f, -42.921f},    2},
+    {0x04, {   0.0f,  24.0f,  -21.0f},      1},
+    0
+};
+
+s32 D_803725A8[4] = {0, 0, 0, 0};
 
 /* .bss */
 struct{

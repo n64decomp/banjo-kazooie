@@ -3,7 +3,6 @@
 #include "variables.h"
 
 //these funtions include references to overlay functions
-/*
 extern void func_802DC528(s32, s32);
 extern void func_802DC560(s32, s32);
 extern void func_802DC748(s32, s32);
@@ -72,7 +71,7 @@ extern void func_80388BEC(s32, s32);
 extern void func_80388C00(s32, s32);
 extern void func_80388C28(s32, s32);
 extern void func_80388C50(s32, s32);
-extern void func_80388C78(s32, s32);
+extern void CC_func_80388C78(s32, s32);
 extern void func_8038A0E4(s32, s32);
 extern void func_8038A150(s32, s32);
 extern void func_8038F10C(s32, s32);
@@ -292,7 +291,7 @@ extern void func_8031FB14(s32, s32);
 
 extern void func_802C1674(s32, s32);
 extern void func_802C169C(s32, s32);
-extern void core2_func_80389BFC(s32, s32);
+extern void TTC_func_80389BFC(s32, s32);
 extern void func_80389C24(s32, s32);
 extern void func_80389C4C(s32, s32);
 extern void func_80389C74(s32, s32);
@@ -301,7 +300,7 @@ extern void func_80389CC4(s32, s32);
 extern void func_802D2B94(s32, s32);
 extern void func_802D2C24(s32, s32);
 extern void func_8033443C(s32, s32);
-*/
+
 
 typedef struct {
     f32 unk0[3];
@@ -314,7 +313,7 @@ typedef struct {
 typedef void (*Method_core2_AD110)(s32, s32);
 
 /* .data */
-Method_core2_AD110 D_8036F980[]; /*= {
+Method_core2_AD110 D_8036F980[] = {
     func_80388BEC, func_80334430, func_80386744, func_80386744,
     func_80386744, func_8031DE2C, func_8031DE50, func_8038F10C,
     func_8038F130, func_8031E83C, func_8031E818, func_8031E938,
@@ -327,7 +326,7 @@ Method_core2_AD110 D_8036F980[]; /*= {
     func_8031F0AC, func_8031F088, func_8031F064, func_8031F01C,
     func_8031F040, func_8031EC98, func_8031ECBC, func_8031ECE0,
     func_8031ED04, func_8031ED28, func_8031ED4C, func_80388C00,
-    func_80388C28, func_80388C50, func_80388C78, func_80334430,
+    func_80388C28, func_80388C50, CC_func_80388C78, func_80334430,
     func_80334430, func_80334430, func_802DC748, func_802DC780,
     func_8031F57C, func_8031F5A0, func_8031EFD4, func_8031EFF8,
     func_8031EF8C, func_8031EFB0, func_8031EF68, func_8031EF44,
@@ -393,9 +392,9 @@ Method_core2_AD110 D_8036F980[]; /*= {
     func_8031FA48, func_8031FB14, func_80334430, func_80334430,
     func_80334430, func_80334430, func_80334430, func_80334430,
     func_80334430, func_80334430, func_80334430,
-};*/
+};
 
-Method_core2_AD110 D_8036FE5C[]; /* ={
+Method_core2_AD110 D_8036FE5C[] ={
     func_8033443C,
     func_8033443C, func_8033443C, func_8033443C, func_8033443C,
     func_8033443C, func_8033443C, func_8033443C, func_8033443C,
@@ -414,7 +413,7 @@ Method_core2_AD110 D_8036FE5C[]; /* ={
     func_8033443C, func_8033443C, func_8033443C, func_8033443C,
     func_8033443C, func_8033443C, func_8033443C, func_8033443C,
     func_8033443C, func_8033443C, func_8033443C, func_8033443C,
-    func_8033443C, core2_func_80389BFC, func_80389C24, func_80389C4C,
+    func_8033443C, TTC_func_80389BFC, func_80389C24, func_80389C4C,
     func_80389C74, func_80389C9C, func_80389CC4, func_802D2B94,
     func_802D2C24, func_8033443C, func_8033443C, func_8033443C,
     func_8033443C, func_8033443C, func_8033443C, func_8033443C,
@@ -461,7 +460,6 @@ Method_core2_AD110 D_8036FE5C[]; /* ={
     func_8033443C, func_8033443C, func_8033443C, func_8033443C,
     func_8033443C, func_8033443C
 };
-*/
 
 /* .bss */
 vector(Struct_core2_AD110_0) *D_803835C0;

@@ -13,7 +13,29 @@ extern void func_80344D94(u8, f32[3]);
 extern void func_80344E3C(u8, f32[3]);
 
 /* .data */
-extern struct53s D_80372670;
+struct53s D_80372670[] = {
+    { 0x0, 1}, 
+    { 0x1, 1}, 
+    { 0x2, 1}, 
+    { 0x3, 1}, 
+    { 0x4, 1}, 
+    { 0x5, 1}, 
+    { 0x6, 1},
+    { 0x7, 1},
+    { 0x8, 1}, 
+    { 0x9, 1}, 
+    { 0xA, 1}, 
+    { 0xB, 1}, 
+    { 0xC, 1}, 
+    { 0xD, 1},
+    { 0xE, 1},
+    { 0xF, 1},
+    {0x10, 1}, 
+    {0x11, 1}, 
+    {0x12, 1}, 
+    {0x13, 1}
+};
+
 
 /* .code */
 void func_80352CA0(u8 arg0, f32 *arg1){
@@ -72,7 +94,7 @@ void func_80352DE4(void) {
     func_8033FD98(temp_s0, sp2C);
     func_80287E9C(sp58);
     func_80287F7C(sp58, 1);
-    func_80287F50(sp58, &D_80372670, 0x28);
+    func_80287F50(sp58, D_80372670, 0x28);
     func_80287F10(sp58);
     sp38[0] = 0.0f;
     sp38[1] = 40.0f;

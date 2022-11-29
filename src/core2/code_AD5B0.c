@@ -3,7 +3,7 @@
 #include "variables.h"
 
 /* .data */
-extern u8 D_80370250;
+extern u8 D_80370250 = 0;
 
 /* .bss */
 struct {

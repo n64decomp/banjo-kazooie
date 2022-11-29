@@ -7,11 +7,15 @@
 
 extern f32 glspline_catmull_rom_interpolate(f32, s32, f32 *);
 
-extern f32 D_803709E0[];
-extern u8 D_80370A1C;
-extern u8 D_80370A14; //assetCache_size;
-extern u8 D_80370A18;
-extern s32 D_80370A10;
+f32 D_803709E0[] = {
+    0.0f, 0.0f, 0.0f, 1.0f,
+    1.0f, 1.0f, 0.0f, 0.0f,
+    0.0f, 0.0f, 0.0f, 0.0f
+};
+s32 D_80370A10 = 0;
+ u8 D_80370A14 = 0; //assetCache_size;
+ u8 D_80370A18 = 0;
+ u8 D_80370A1C = 0;
 
 
 /* .bss */

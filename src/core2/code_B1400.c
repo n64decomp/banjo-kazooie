@@ -166,7 +166,7 @@ void func_8033A410(s32 a);
 void func_8033A45C(s32 arg0, s32 arg1);
 
 
-extern Gfx D_80370340[] = 
+Gfx D_80370340[] =
 {
     gsDPPipeSync(),
     gsDPPipelineMode(G_PM_1PRIMITIVE),
@@ -175,7 +175,7 @@ extern Gfx D_80370340[] =
     gsSPEndDisplayList()
 };
 
-extern Gfx D_80370368[] =
+Gfx D_80370368[] =
 {
     gsDPPipeSync(),
     gsDPPipelineMode(G_PM_1PRIMITIVE),
@@ -185,7 +185,7 @@ extern Gfx D_80370368[] =
     gsSPEndDisplayList()
 };
 
-extern Gfx D_80370398[] = 
+Gfx D_80370398[] =
 {
     gsDPPipeSync(),
     gsDPPipelineMode(G_PM_1PRIMITIVE),
@@ -195,7 +195,7 @@ extern Gfx D_80370398[] =
     gsSPEndDisplayList()
 };
 
-extern Gfx D_803703C8[] =
+Gfx D_803703C8[] =
 {
     gsDPPipeSync(),
     gsDPPipelineMode(G_PM_1PRIMITIVE),
@@ -204,118 +204,400 @@ extern Gfx D_803703C8[] =
     gsSPEndDisplayList()
 };
 
-extern Gfx D_803703F0[] = 
-{
+Gfx D_803703F0[] = {
     gsDPSetRenderMode(G_RM_OPA_SURF, G_RM_OPA_SURF2),
     gsSPEndDisplayList()
 };
 
-// 000E 9470: B9 00 03 1D 0C 19 20 48  B8 00 00 00 00 00 00 00  ...... H ........  
-// 000E 9480: B9 00 03 1D 0C 18 42 40  B8 00 00 00 00 00 00 00  ......B@ ........  
-// 000E 9490: B9 00 03 1D 0C 18 41 C8  B8 00 00 00 00 00 00 00  ......A. ........  
-// 000E 94A0: B9 00 03 1D 0C 18 42 40  B8 00 00 00 00 00 00 00  ......B@ ........  
-// 000E 94B0: B9 00 03 1D 0C 18 41 C8  B8 00 00 00 00 00 00 00  ......A. ........  
-// 000E 94C0: B9 00 03 1D 0F 0A 40 00  B8 00 00 00 00 00 00 00  ......@. ........  
-// 000E 94D0: B9 00 03 1D 0C 19 20 48  B8 00 00 00 00 00 00 00  ...... H ........  
-// 000E 94E0: B9 00 03 1D 0C 18 42 40  B8 00 00 00 00 00 00 00  ......B@ ........  
-// 000E 94F0: B9 00 03 1D 0C 18 41 C8  B8 00 00 00 00 00 00 00  ......A. ........  
-// 000E 9500: B9 00 03 1D 0C 18 42 40  B8 00 00 00 00 00 00 00  ......B@ ........  
-// 000E 9510: B9 00 03 1D 0C 18 41 C8  B8 00 00 00 00 00 00 00  ......A. ........  
-// 000E 9520: B9 00 03 1D 0C 18 43 C8  B8 00 00 00 00 00 00 00  ......C. ........  
+Gfx D_80370400[] = {
+    gsDPSetRenderMode(G_RM_PASS, G_RM_AA_OPA_SURF2),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_80370410[] = {
+    gsDPSetRenderMode(G_RM_PASS, G_RM_XLU_SURF2),
+    gsSPEndDisplayList(),
+};
 
 
-extern Gfx D_803704C0[] = {
+Gfx D_80370420[] =  {
+    gsDPSetRenderMode(G_RM_PASS, G_RM_AA_XLU_SURF2),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_80370430[] = {
+    gsDPSetRenderMode(G_RM_PASS, G_RM_XLU_SURF2),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_80370440[] = {
+    gsDPSetRenderMode(G_RM_PASS, G_RM_AA_XLU_SURF2),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_80370450[] = {
+    gsDPSetRenderMode(G_RM_OPA_SURF, G_RM_OPA_SURF2),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_80370460[] = {
+    gsDPSetRenderMode(G_RM_PASS, G_RM_AA_OPA_SURF2),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_80370470[] = {
+    gsDPSetRenderMode(G_RM_PASS, G_RM_XLU_SURF2),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_80370480[] = {
+    gsDPSetRenderMode(G_RM_PASS, G_RM_AA_XLU_SURF2),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_80370490[] = {
+    gsDPSetRenderMode(G_RM_PASS, G_RM_XLU_SURF2),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_803704A0[] = {
+    gsDPSetRenderMode(G_RM_PASS, G_RM_AA_XLU_SURF2),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_803704B0[] = {
+    gsDPSetRenderMode(AA_EN | IM_RD | CLR_ON_CVG | CVG_DST_SAVE | ZMODE_OPA | FORCE_BL | G_RM_PASS, AA_EN | IM_RD | CLR_ON_CVG | CVG_DST_SAVE | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_803704C0[] = {
     gsDPSetRenderMode(Z_CMP | Z_UPD | CVG_DST_CLAMP | ZMODE_OPA | FORCE_BL | G_RM_PASS, Z_CMP | Z_UPD | CVG_DST_CLAMP | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_0, G_BL_CLR_IN, G_BL_1)),
     gsSPEndDisplayList()
 };
-// 000E 9540: B9 00 03 1D 0C 19 20 78  B8 00 00 00 00 00 00 00  ...... x ........  
-// 000E 9550: B9 00 03 1D 0C 18 42 70  B8 00 00 00 00 00 00 00  ......Bp ........  
-// 000E 9560: B9 00 03 1D 0C 18 41 F8  B8 00 00 00 00 00 00 00  ......A. ........  
-// 000E 9570: B9 00 03 1D 0C 18 42 70  B8 00 00 00 00 00 00 00  ......Bp ........  
-// 000E 9580: B9 00 03 1D 0C 18 41 F8  B8 00 00 00 00 00 00 00  ......A. ........  
-// 000E 9590: B9 00 03 1D 0F 0A 40 10  B8 00 00 00 00 00 00 00  ......@. ........  
-// 000E 95A0: B9 00 03 1D 0C 19 20 58  B8 00 00 00 00 00 00 00  ...... X ........  
-// 000E 95B0: B9 00 03 1D 0C 18 42 50  B8 00 00 00 00 00 00 00  ......BP ........  
-// 000E 95C0: B9 00 03 1D 0C 18 41 D8  B8 00 00 00 00 00 00 00  ......A. ........  
-// 000E 95D0: B9 00 03 1D 0C 18 42 50  B8 00 00 00 00 00 00 00  ......BP ........  
-// 000E 95E0: B9 00 03 1D 0C 18 41 D8  B8 00 00 00 00 00 00 00  ......A. ........  
-// 000E 95F0: B9 00 03 1D 0C 18 43 D8  B8 00 00 00 00 00 00 00  ......C. ........  
 
+Gfx D_803704D0[] = {
+    gsDPSetRenderMode(G_RM_PASS, G_RM_AA_ZB_OPA_SURF2),
+    gsSPEndDisplayList(),
+};
 
-extern Gfx D_80370590[] =
-{
+Gfx D_803704E0[] = {
+    gsDPSetRenderMode(Z_CMP | Z_UPD | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | G_RM_PASS, Z_CMP | Z_UPD | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_803704F0[] = {
+    gsDPSetRenderMode(AA_EN | Z_CMP | Z_UPD | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | G_RM_PASS, AA_EN | Z_CMP | Z_UPD | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_80370500[] = {
+    gsDPSetRenderMode(Z_CMP | Z_UPD | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | G_RM_PASS, Z_CMP | Z_UPD | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_80370510[] = {
+    gsDPSetRenderMode(AA_EN | Z_CMP | Z_UPD | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | G_RM_PASS, AA_EN | Z_CMP | Z_UPD | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_80370520[] = {
+    gsDPSetRenderMode(Z_CMP | CVG_DST_CLAMP | ZMODE_OPA | FORCE_BL | G_RM_PASS, Z_CMP | CVG_DST_CLAMP | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_0, G_BL_CLR_IN, G_BL_1)),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_80370530[] = {
+    gsDPSetRenderMode(AA_EN | Z_CMP | IM_RD | CVG_DST_CLAMP | ZMODE_OPA | ALPHA_CVG_SEL | G_RM_PASS, AA_EN | Z_CMP | IM_RD | CVG_DST_CLAMP | ZMODE_OPA | ALPHA_CVG_SEL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_A_MEM)),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_80370540[] =  {
+    gsDPSetRenderMode(Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | G_RM_PASS, Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_80370550[] = {
+    gsDPSetRenderMode(AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | G_RM_PASS, AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_80370560[] = {
+    gsDPSetRenderMode(Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | G_RM_PASS, Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_80370570[] = {
+    gsDPSetRenderMode(AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | G_RM_PASS, AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
+    gsSPEndDisplayList()
+};
+
+Gfx D_80370580[] = {
+    gsDPSetRenderMode(AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_SAVE | ZMODE_OPA | FORCE_BL | G_RM_PASS, AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_SAVE | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
+    gsSPEndDisplayList()
+};
+
+Gfx D_80370590[] = {
     gsDPSetRenderMode(Z_CMP | CVG_DST_CLAMP | ZMODE_OPA | FORCE_BL | G_RM_PASS, Z_CMP | CVG_DST_CLAMP | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_0, G_BL_CLR_IN, G_BL_1)),
     gsSPEndDisplayList()
 };
 
-// 000E 9610: B9 00 03 1D 0C 19 20 58  B8 00 00 00 00 00 00 00  ...... X ........  
-// 000E 9620: B9 00 03 1D 0C 18 42 50  B8 00 00 00 00 00 00 00  ......BP ........  
-// 000E 9630: B9 00 03 1D 0C 18 41 D8  B8 00 00 00 00 00 00 00  ......A. ........  
-// 000E 9640: B9 00 03 1D 0C 18 42 50  B8 00 00 00 00 00 00 00  ......BP ........  
-// 000E 9650: B9 00 03 1D 0C 18 41 D8  B8 00 00 00 00 00 00 00  ......A. ........  
-// 000E 9660: B9 00 03 1D 0F 0A 40 10  B8 00 00 00 00 00 00 00  ......@. ........  
-// 000E 9670: B9 00 03 1D 0C 19 20 58  B8 00 00 00 00 00 00 00  ...... X ........  
-
-
-extern Gfx D_80370600[] =
-{
+Gfx D_803705A0[] = {
     gsDPSetRenderMode(AA_EN | Z_CMP | IM_RD | CVG_DST_CLAMP | ZMODE_OPA | ALPHA_CVG_SEL | G_RM_PASS, AA_EN | Z_CMP | IM_RD | CVG_DST_CLAMP | ZMODE_OPA | ALPHA_CVG_SEL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_A_MEM)),
-    gsSPEndDisplayList()
+    gsSPEndDisplayList(),
 };
 
-// 000E 9680: B9 00 03 1D 0C 18 42 50  B8 00 00 00 00 00 00 00  ......BP ........  
-// 000E 9690: B9 00 03 1D 0C 18 41 D8  B8 00 00 00 00 00 00 00  ......A. ........  
-// 000E 96A0: B9 00 03 1D 0C 18 42 50  B8 00 00 00 00 00 00 00  ......BP ........  
-// 000E 96B0: B9 00 03 1D 0C 18 41 D8  B8 00 00 00 00 00 00 00  ......A. ........  
-// 000E 96C0: B9 00 03 1D 0C 18 43 D8  B8 00 00 00 00 00 00 00  ......C. ........  
+Gfx D_803705B0[] = {
+    gsDPSetRenderMode(Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | G_RM_PASS, Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
+    gsSPEndDisplayList(),
+};
 
-extern Gfx D_80370660[];
-// B9 00 03 1D 0C 18 42 40  B8 00 00 00 00 00 00 00  ......B@ ........  
-// B9 00 03 1D 0C 18 41 C8  B8 00 00 00 00 00 00 00  ......A. ........  
-// B9 00 03 1D 0C 18 42 40  B8 00 00 00 00 00 00 00  ......B@ ........  
-// B9 00 03 1D 0C 18 41 C8  B8 00 00 00 00 00 00 00  ......A. ........  
-// B9 00 03 1D 0C 18 42 40  B8 00 00 00 00 00 00 00  ......B@ ........  
-// B9 00 03 1D 0C 18 41 C8  B8 00 00 00 00 00 00 00  ......A. ........  
-// B9 00 03 1D 0C 18 42 40  B8 00 00 00 00 00 00 00  ......B@ ........  
-// B9 00 03 1D 0C 18 41 C8  B8 00 00 00 00 00 00 00  ......A. ........  
-// B9 00 03 1D 0C 18 42 40  B8 00 00 00 00 00 00 00  ......B@ ........  
-// B9 00 03 1D 0C 18 41 C8  B8 00 00 00 00 00 00 00  ......A. ........  
-// B9 00 03 1D 0C 18 42 40  B8 00 00 00 00 00 00 00  ......B@ ........  
-// B9 00 03 1D 0C 18 41 C8  B8 00 00 00 00 00 00 00  ......A. ........  
-// B9 00 03 1D 0C 18 43 C8  B8 00 00 00 00 00 00 00  ......C. ........  
+Gfx D_803705C0[] = {
+    gsDPSetRenderMode(AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | G_RM_PASS, AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
+    gsSPEndDisplayList(),
+};
 
-extern u8 D_80370730;
-// 000E 97A0: B9 00 03 1D 0C 18 42 70  B8 00 00 00 00 00 00 00  ......Bp ........  
-// 000E 97B0: B9 00 03 1D 0C 18 41 F8  B8 00 00 00 00 00 00 00  ......A. ........  
-// 000E 97C0: B9 00 03 1D 0C 18 42 70  B8 00 00 00 00 00 00 00  ......Bp ........  
-// 000E 97D0: B9 00 03 1D 0C 18 41 F8  B8 00 00 00 00 00 00 00  ......A. ........  
-// 000E 97E0: B9 00 03 1D 0C 18 42 70  B8 00 00 00 00 00 00 00  ......Bp ........  
-// 000E 97F0: B9 00 03 1D 0C 18 41 F8  B8 00 00 00 00 00 00 00  ......A. ........  
-// 000E 9800: B9 00 03 1D 0C 18 42 50  B8 00 00 00 00 00 00 00  ......BP ........  
-// 000E 9810: B9 00 03 1D 0C 18 41 D8  B8 00 00 00 00 00 00 00  ......A. ........  
-// 000E 9820: B9 00 03 1D 0C 18 42 50  B8 00 00 00 00 00 00 00  ......BP ........  
-// 000E 9830: B9 00 03 1D 0C 18 41 D8  B8 00 00 00 00 00 00 00  ......A. ........  
-// 000E 9840: B9 00 03 1D 0C 18 42 50  B8 00 00 00 00 00 00 00  ......BP ........  
-// 000E 9850: B9 00 03 1D 0C 18 41 D8  B8 00 00 00 00 00 00 00  ......A. ........  
-// 000E 9860: B9 00 03 1D 0C 18 43 D8  B8 00 00 00 00 00 00 00  ......C. ........  
+Gfx D_803705D0[] = {
+    gsDPSetRenderMode(Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | G_RM_PASS, Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
+    gsSPEndDisplayList(),
+};
 
-extern u8 D_80370800;
+Gfx D_803705E0[] = {
+    gsDPSetRenderMode(AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | G_RM_PASS, AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
+    gsSPEndDisplayList(),
+};
 
-// 000E 9870: B9 00 03 1D 0C 18 42 50  B8 00 00 00 00 00 00 00  ......BP ........  
-// 000E 9880: B9 00 03 1D 0C 18 41 D8  B8 00 00 00 00 00 00 00  ......A. ........  
-// 000E 9890: B9 00 03 1D 0C 18 42 50  B8 00 00 00 00 00 00 00  ......BP ........  
-// 000E 98A0: B9 00 03 1D 0C 18 41 D8  B8 00 00 00 00 00 00 00  ......A. ........  
-// 000E 98B0: B9 00 03 1D 0C 18 42 50  B8 00 00 00 00 00 00 00  ......BP ........  
-// 000E 98C0: B9 00 03 1D 0C 18 41 D8  B8 00 00 00 00 00 00 00  ......A. ........  
-// 000E 98D0: B9 00 03 1D 0C 18 42 50  B8 00 00 00 00 00 00 00  ......BP ........  
-// 000E 98E0: B9 00 03 1D 0C 18 41 D8  B8 00 00 00 00 00 00 00  ......A. ........  
-// 000E 98F0: B9 00 03 1D 0C 18 42 50  B8 00 00 00 00 00 00 00  ......BP ........  
-// 000E 9900: B9 00 03 1D 0C 18 41 D8  B8 00 00 00 00 00 00 00  ......A. ........  
-// 000E 9910: B9 00 03 1D 0C 18 42 50  B8 00 00 00 00 00 00 00  ......BP ........  
-// 000E 9920: B9 00 03 1D 0C 18 41 D8  B8 00 00 00 00 00 00 00  ......A. ........  
-// 000E 9930: B9 00 03 1D 0C 18 43 D8  B8 00 00 00 00 00 00 00  ......C. ........  
+Gfx D_803705F0[] = {
+    gsDPSetRenderMode(Z_CMP | CVG_DST_CLAMP | ZMODE_OPA | FORCE_BL | G_RM_PASS, Z_CMP | CVG_DST_CLAMP | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_0, G_BL_CLR_IN, G_BL_1)),
+    gsSPEndDisplayList(),
+};
 
-extern Gfx D_803708D0[] = 
+Gfx D_80370600[] = {
+    gsDPSetRenderMode(AA_EN | Z_CMP | IM_RD | CVG_DST_CLAMP | ZMODE_OPA | ALPHA_CVG_SEL | G_RM_PASS, AA_EN | Z_CMP | IM_RD | CVG_DST_CLAMP | ZMODE_OPA | ALPHA_CVG_SEL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_A_MEM)),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_80370610[] = {
+    gsDPSetRenderMode(Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | G_RM_PASS, Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_80370620[] = {
+    gsDPSetRenderMode(AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | G_RM_PASS, AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_80370630[] = {
+    gsDPSetRenderMode(Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | G_RM_PASS, Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_80370640[] = {
+    gsDPSetRenderMode(AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | G_RM_PASS, AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_80370650[] = {
+    gsDPSetRenderMode(AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_SAVE | ZMODE_OPA | FORCE_BL | G_RM_PASS, AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_SAVE | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
+    gsSPEndDisplayList(),
+};
+
+
+Gfx D_80370660[] = {
+    gsDPSetRenderMode(G_RM_PASS, G_RM_XLU_SURF2),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_80370670[] = {
+    gsDPSetRenderMode(G_RM_PASS, G_RM_AA_XLU_SURF2),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_80370680[] = {
+    gsDPSetRenderMode(G_RM_PASS, G_RM_XLU_SURF2),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_80370690[] = {
+    gsDPSetRenderMode(G_RM_PASS, G_RM_AA_XLU_SURF2),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_803706A0[] = {
+    gsDPSetRenderMode(G_RM_PASS, G_RM_XLU_SURF2),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_803706B0[] = {
+    gsDPSetRenderMode(G_RM_PASS, G_RM_AA_XLU_SURF2),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_803706C0[] = {
+    gsDPSetRenderMode(G_RM_PASS, G_RM_XLU_SURF2),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_803706D0[] = {
+    gsDPSetRenderMode(G_RM_PASS, G_RM_AA_XLU_SURF2),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_803706E0[] = {
+    gsDPSetRenderMode(G_RM_PASS, G_RM_XLU_SURF2),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_803706F0[] = {
+    gsDPSetRenderMode(G_RM_PASS, G_RM_AA_XLU_SURF2),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_80370700[] = {
+    gsDPSetRenderMode(G_RM_PASS, G_RM_XLU_SURF2),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_80370710[] = {
+    gsDPSetRenderMode(G_RM_PASS, G_RM_AA_XLU_SURF2),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_80370720[] = {
+    gsDPSetRenderMode(AA_EN | IM_RD | CLR_ON_CVG | CVG_DST_SAVE | ZMODE_OPA | FORCE_BL | G_RM_PASS, AA_EN | IM_RD | CLR_ON_CVG | CVG_DST_SAVE | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_80370730[] = {
+    gsDPSetRenderMode(Z_CMP | Z_UPD | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | G_RM_PASS, Z_CMP | Z_UPD | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_80370740[] = {
+    gsDPSetRenderMode(AA_EN | Z_CMP | Z_UPD | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | G_RM_PASS, AA_EN | Z_CMP | Z_UPD | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_80370750[] = {
+    gsDPSetRenderMode(Z_CMP | Z_UPD | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | G_RM_PASS, Z_CMP | Z_UPD | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_80370760[] = {
+    gsDPSetRenderMode(AA_EN | Z_CMP | Z_UPD | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | G_RM_PASS, AA_EN | Z_CMP | Z_UPD | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_80370770[] = {
+    gsDPSetRenderMode(Z_CMP | Z_UPD | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | G_RM_PASS, Z_CMP | Z_UPD | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_80370780[] = {
+    gsDPSetRenderMode(AA_EN | Z_CMP | Z_UPD | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | G_RM_PASS, AA_EN | Z_CMP | Z_UPD | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_80370790[] = {
+    gsDPSetRenderMode(Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | G_RM_PASS, Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_803707A0[] = {
+    gsDPSetRenderMode(AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | G_RM_PASS, AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_803707B0[] = {
+    gsDPSetRenderMode(Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | G_RM_PASS, Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_803707C0[] = {
+    gsDPSetRenderMode(AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | G_RM_PASS, AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_803707D0[] = {
+    gsDPSetRenderMode(Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | G_RM_PASS, Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_803707E0[] = {
+    gsDPSetRenderMode(AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | G_RM_PASS, AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_803707F0[] = {
+    gsDPSetRenderMode(AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_SAVE | ZMODE_OPA | FORCE_BL | G_RM_PASS, AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_SAVE | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
+    gsSPEndDisplayList(),
+};
+
+
+Gfx D_80370800[] = {
+    gsDPSetRenderMode(Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | G_RM_PASS, Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_80370810[] = {
+    gsDPSetRenderMode(AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | G_RM_PASS, AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_80370820[] = {
+    gsDPSetRenderMode(Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | G_RM_PASS, Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_80370830[] = {
+    gsDPSetRenderMode(AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | G_RM_PASS, AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_80370840[] = {
+    gsDPSetRenderMode(Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | G_RM_PASS, Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_80370850[] = {
+    gsDPSetRenderMode(AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | G_RM_PASS, AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_80370860[] = {
+    gsDPSetRenderMode(Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | G_RM_PASS, Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_80370870[] = {
+    gsDPSetRenderMode(AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | G_RM_PASS, AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_80370880[] = {
+    gsDPSetRenderMode(Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | G_RM_PASS, Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_80370890[] = {
+    gsDPSetRenderMode(AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | G_RM_PASS, AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_803708A0[] = {
+    gsDPSetRenderMode(Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | G_RM_PASS, Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_803708B0[] = {
+    gsDPSetRenderMode(AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | G_RM_PASS, AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_803708C0[] = {
+    gsDPSetRenderMode(AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_SAVE | ZMODE_OPA | FORCE_BL | G_RM_PASS, AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_SAVE | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_803708D0[] = 
 {
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0x0000, 2, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD),
     gsDPSetTileSize(2, 0, 0, 0x007C, 0x007C),
@@ -330,7 +612,7 @@ extern Gfx D_803708D0[] =
     gsSPEndDisplayList()
 };
 
-extern Gfx D_80370928[] =
+Gfx D_80370928[] =
 {
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0x0000, 2, 0, G_TX_NOMIRROR | G_TX_WRAP, 5, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_WRAP, 5, G_TX_NOLOD),
     gsDPSetTileSize(2, 0, 0, 0x007C, 0x007C),
@@ -347,9 +629,9 @@ extern Gfx D_80370928[] =
     gsSPEndDisplayList()
 };
 
-extern s32 D_80370990 = 0;
+s32 D_80370990 = 0;
 
-extern GeoListFunc D_80370994[] = {
+GeoListFunc D_80370994[] = {
     func_803384A8,
     func_803385BC,
     func_803387F8,

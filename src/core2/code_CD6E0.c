@@ -9,18 +9,16 @@ extern void projectile_getPosition(u8 arg0, f32 arg1[3]);
 extern void func_8033FC98(u8 arg0, s32 arg1);
 
 /* .data */
+// 0104 1090: 00 01 01 01 02 01 03 01  04 01 05 01 06 01 07 01  ........ ........  
+// 0104 10A0: 08 01 09 01 
+
 extern u8 D_803726D4[];
+//                        0A 0A 0F 14  19 1E 23 28 2D 32 36 3A  ........ ..#(-26:  
+// 0104 10B0: 3E 42 46 4A 4C 4E 50 28  14 00 00 00 
 extern f32 D_803726EC;
-
-/* .rodata */
-extern f64 D_80379480;
-
-extern f64 D_803794B0;
-
+//                                                 00 00 00 00  >BFJLNP( ........  
 
 /* .bss */
-// extern s32 D_803863E4;
-
 void func_80354670(u8 arg0, s32 arg1) {
     func_8033FFE4(arg0, D_803726D4[arg1], D_803726D4[arg1]);
     func_8033FC34(arg0, ml_map_f(arg1, 0.0f, 8.0f, 40.0f, 255.0f));

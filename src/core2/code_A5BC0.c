@@ -64,12 +64,6 @@ extern s16 D_8036E7FC[]; //={-1};
 //extern s32 D_8036E800;
 // extern u32 D_8036E804[8];
 
-/* .rodata */
-extern f32 D_80378EA0;
-extern f32 D_80378EA4;
-extern f64 D_80378EA8;
-extern f64 D_80378EB0;
-
 /* .bss */
 s32 D_803833F0[3];
 s32 D_803833FC;
@@ -77,6 +71,8 @@ s32 D_80383400;
 Cube *D_80383404;
 s32 D_80383408;
 s32 D_8038340C;
+
+//BREAK???
 f32 D_80383410[3];
 ActorMarker *D_8038341C;
 s32 D_80383420;

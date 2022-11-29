@@ -25,7 +25,7 @@ typedef struct demo_file_header{
 
 void demo_free(void);
 
-extern DemoInput D_80371EF0;
+DemoInput D_80371EF0 = {0, 0, 0, 2, 0};
 
 /* .bss */
 DemoInput *D_803860D0; //demo_input_ptr

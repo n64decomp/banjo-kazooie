@@ -19,9 +19,27 @@ typedef struct struct_core2_9B180_s{
 extern void func_8024FE44(u8, f32, f32);
 extern void func_8030EDAC(f32, f32);
 
+void func_80322298(Struct_core2_9B180_0 *);
+void func_803222F4(Struct_core2_9B180_0 *);
+void func_80322110(Struct_core2_9B180_0 *);
+void func_8032222C(Struct_core2_9B180_0 *);
+void func_803221C4(Struct_core2_9B180_0 *);
+void func_803221F4(Struct_core2_9B180_0 *);
+void func_803222BC(Struct_core2_9B180_0 *);
+void func_80322318(Struct_core2_9B180_0 *);
+void func_80322130(Struct_core2_9B180_0 *);
+
 /* .data */
-extern Struct_core2_9B180_0 D_8036DE00[6];
-extern u8 D_8036DE78;
+Struct_core2_9B180_0 D_8036DE00[6] = {
+    {0x18A, NULL, func_80322298, func_803222BC, NULL}, 
+    {0x018, NULL, func_803222F4, func_80322318, NULL}, 
+    {0x18B, NULL, func_80322110, func_80322130, NULL}, 
+    {0x194, NULL, func_8032222C,          NULL, NULL}, 
+    {0x193, NULL, func_803221C4,          NULL, NULL}, 
+    {0x192, NULL, func_803221F4,          NULL, NULL}
+};
+
+u8 D_8036DE78 = 1;
 
 /* .bss */
 u8 D_80383330;
@@ -50,16 +68,16 @@ void func_80322130(Struct_core2_9B180_0 *arg0) {
 }
 
 
-void func_803221C4(s32 arg0){
+void func_803221C4(Struct_core2_9B180_0 * arg0){
     func_8024FE44(0, 0.2f, 1.25f);
 }
 
-void func_803221F4(s32 arg0){
+void func_803221F4(Struct_core2_9B180_0 * arg0){
     func_8030EDAC(0.50999999f, 1.0f);
     func_80244A98(0);
 }
 
-void func_8032222C(s32 arg0) {
+void func_8032222C(Struct_core2_9B180_0 * arg0) {
     s32 phi_s0;
 
     for(phi_s0 = 1; phi_s0 < 5; phi_s0++){
@@ -74,7 +92,7 @@ void func_80322298(Struct_core2_9B180_0 *arg0){
     }
 }
 
-void func_803222BC(s32 ag0){
+void func_803222BC(Struct_core2_9B180_0 * ag0){
     if(func_8024E698(0) == 1){
         func_8031D06C(0,0);
     }
@@ -87,7 +105,7 @@ void func_803222F4(Struct_core2_9B180_0 *arg0){
     }
 }
 
-void func_80322318(s32 arg0){
+void func_80322318(Struct_core2_9B180_0 * arg0){
     func_8031D0C0(0, 0);
 }
 
