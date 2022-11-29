@@ -12,32 +12,34 @@ typedef struct {
 }ActorLocal_core2_D7D10;
 
 /* .data */
-extern ActorAnimationInfo D_80372F80[];
+ActorAnimationInfo D_80372F80[] = {
+    {0, 0.0f},
+    {0x9A, 8000000.0f},
+    {0x9A,       1.3f},
+    {0x9B,       0.6f},
+    {0x9B,       0.75f},
+    {0x9A,       1.5f},
+    {0x1ED,      1.0f},
+    {0x1EE,      2.4f}
+};
 
-extern ActorInfo D_80372FC0 = { 
+ActorInfo D_80372FC0 = { 
     MARKER_96_RIPPER, ACTOR_C7_RIPPER, ASSET_3C9_MODEL_RIPPER, 
     0x1, D_80372F80, 
     func_8035F138, func_80326224, func_8035ECA0, 
     3500, 0, 1.2f, 0
 };
 
-extern ActorInfo D_80372FE4 = { 
+ActorInfo D_80372FE4 = { 
     MARKER_297_GIANT_RIPPER, ACTOR_3C2_GIANT_RIPPER, ASSET_3C9_MODEL_RIPPER, 
     0x1, D_80372F80, 
     func_8035F138, func_80326224, func_8035ECA0, 
     14000, 0, 3.2f, 0
 };
 
-extern f32 D_80373008[3];
-extern s32 D_80373014[3];
-extern struct31s D_80373020;
-extern struct43s D_80373048;
-
-/* .rodata */
-extern f32 D_80379920;
-
 /* .code */
 Actor *func_8035ECA0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
+    static f32 D_80373008[3] = {0.0f, 0.0f, 0.0f};
     f32 rotation[3];
     Actor *this;
     ActorLocal_core2_D7D10 *local;
@@ -65,6 +67,13 @@ bool func_8035ED60(Actor *this) {
 }
 
 void func_8035EDB0(f32 position[3], s32 count, enum asset_e sprite) {
+    static s32 D_80373014[3] = {0xAA, 0xAA, 0xAA};
+    static struct31s D_80373020 = {{0.4f, 0.8f}, {1.4f, 2.0f}, {0.0f, 0.01f}, {1.2f, 1.8f}, 0.0f, 0.01};
+    static struct43s D_80373048 = {
+        {{-200.0f, -200.0f, -200.0f}, { 200.0f,  200.0f,  200.0f}}, 
+        {{   0.0f,  -10.0f,    0.0f}, {   0.0f,  -10.0f,    0.0f}}, 
+        {{ -50.0f,    0.0f,  -50.0f}, {  50.0f,  200.0f,   50.0f}}
+    };
     ParticleEmitter *p_ctrl;
 
     p_ctrl = partEmitList_pushNew(count);

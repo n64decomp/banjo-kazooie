@@ -31,18 +31,26 @@ typedef struct {
 }ActorLocal_core2_D6180;
 
 /* .data */ 
-extern ActorAnimationInfo D_80372E20[];
-extern ActorInfo D_80372E78 = { 
+ActorAnimationInfo D_80372E20[] = {
+    {0x000, 0},
+    {0x1E9, 4.0f},
+    {0x1E9, 1.4f},
+    {0x1E9, 0.8f},
+    {0x1E9, 0.9f},
+    {0x1EA, 0.7f},
+    {0x1E9, 1.5f},
+    {0x1E9, 0.8f},
+    {0x1E9, 1.5f},
+    {0x1EA, 0.4f},
+    {0x1EB, 0.3f}
+};
+
+ActorInfo D_80372E78 = { 
     MARKER_219_MUMMUM, ACTOR_34F_MUMMUM, ASSET_4C7_MODEL_MUMMUM, 
     0x1, D_80372E20, 
     func_8035D3D8, func_80326224, func_80325888, 
     2500, 0, 1.0f, 0
 };
-
-/* .rodata */
-extern f32 D_80379860;
-extern f32 D_80379864;
-extern f32 D_80379868;
 
 /* .code */
 void func_8035D110(ParticleEmitter *p_emitter, Actor *this, enum asset_e model_id) {

@@ -29,12 +29,6 @@ extern u8 D_8037DCCE[];
 /* .data */
 enum actor_e D_8036DDD0[] = {0, 0x184, 0x185, 0x186, -1};
 
-/* .rodata */
-extern f32 D_80378D40;
-extern f32 D_80378D44;
-// 3FE66666
-// 3F4CCCCD
-
 /* .bss */
 u8 D_80383190;
 

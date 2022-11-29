@@ -1501,10 +1501,9 @@ void cutscenes_func_8038C454(s32 arg0, s32 arg1) {
     func_80288D40(arg0, 0.35f, func_803881CC, arg1);
 }
 
-struct {
-    s16 unk0;
-    void (*unk4)(s32, s32);
-}D_8038D904[] = {
+/* .h */
+
+Struct63s D_8038D904[] = {
     {0x1BE, func_803882D4}, 
     {0x1BF, func_8038837C}, 
     {0x1BD, cutscenes_func_803883AC}, 
@@ -1513,79 +1512,139 @@ struct {
     {0x20B, cutscenes_func_80388660}, 
     {0x207, func_80388734}, 
     {0x1C5, func_803887A0}, 
-    {0x000, NULL}, 
+    0
+};
+
+Struct63s D_8038D94C[] = {
     {0x1C7, func_80388C40}, 
     {0x1C8, func_80388CE4}, 
-    {0x000, NULL}, 
+    0
+};
+
+Struct63s D_8038D964[] = {
     {0x2B8, func_80388A6C}, 
     {0x085, func_80388B58}, 
     {0x1D0, func_80388814}, 
     {0x093, func_80388920}, 
     {0x1D5, func_803889CC}, 
-    {0x000, NULL}, 
+    0
+};
+
+Struct63s D_8038D994[] = {
     {0x1B8, func_80388D30}, 
     {0x1C2, func_80388DE4}, 
-    {0x000, NULL}, 
+    0
+};
+
+Struct63s D_8038D9AC[] = {
     {0x1F8, func_80388E30}, 
     {0x13A, func_80388EE0}, 
     {0x13B, func_80388F9C}, 
     {0x296, func_803890CC}, 
     {0x2B2, cutscenes_func_80389204}, 
     {0x299, func_8038933C}, 
-    {0x000, NULL}, 
+    0 
+};
+
+Struct63s D_8038D9E4[] = {
     {0x13D, func_80389498}, 
-    {0x000, NULL}, 
+    0 
+};
+
+Struct63s D_8038D9F4[] = {
     {0x1D3, func_803894E8}, 
     {0x1D4, func_803895CC}, 
     {0x1CB, func_80389698}, 
-    {0x000, NULL}, 
+    0 
+};
+
+Struct63s D_8038DA14[] = {
     {0x079, func_803896C8}, 
     {0x084, cutscenes_func_80389850}, 
-    {0x000, NULL}, 
+    0 
+};
+
+Struct63s D_8038DA2C[] = {
     {0x163, func_80389B84}, 
     {0x0F9, func_80389C30}, 
-    {0x000, NULL}, 
+    0 
+};
+
+Struct63s D_8038DA44[] = {
     {0x200, func_80389D34}, 
     {0x1FF, func_80389D78}, 
     {0x1FE, func_80389DFC}, 
     {0x20C, cutscenes_func_80389EA8}, 
     {0x1C1, func_8038A018}, 
-    {0x000, NULL}, 
+    0 
+};
+
+Struct63s D_8038DA74[] = {
     {0x1D5, func_80388BCC}, 
-    {0x000, NULL}, 
+    0 
+};
+
+Struct63s D_8038DA84[] = {
     {0x202, cutscenes_func_8038A54C}, 
     {0x201, func_8038A5C8}, 
     {0x2B6, func_8038A734}, 
     {0x2B7, func_8038A6D0}, 
-    {0x000, NULL}, 
+    0 
+};
+
+Struct63s D_8038DAAC[] = {
     {0x202, func_8038A7E8}, 
-    {0x000, NULL}, 
+    0 
+};
+
+Struct63s D_8038DABC[] = {
     {0x202, cutscenes_func_8038A864}, 
-    {0x000, NULL}, 
+    0 
+};
+
+Struct63s D_8038DACC[] = {
     {0x200, func_8038A05C}, 
     {0x1FF, cutscenes_func_8038A0A0}, 
     {0x1FE, func_8038A15C}, 
     {0x20C, func_8038A254}, 
     {0x1C1, cutscenes_func_8038A2F0}, 
     {0x210, func_8038A334}, 
-    {0x000, NULL}, 
+    0 
+};
+
+Struct63s D_8038DB04[] = {
     {0x1FA, func_8038A954}, 
     {0x1FB, func_8038A9A0}, 
-    {0x000, NULL}, 
+    0 
+};
+
+Struct63s D_8038DB1C[] = {
     {0x1FC, func_8038A9D0}, 
     {0x1FD, func_8038AA64}, 
-    {0x000, NULL}, 
+    0 
+};
+
+Struct63s D_8038DB34[] = {
     {0x20E, func_8038AAFC}, 
-    {0x000, NULL}, 
+    0 
+};
+
+Struct63s D_8038DB44[] = {
     {0x292, cutscenes_func_8038AB60}, 
-    {0x000, NULL}, 
+    0 
+};
+
+Struct63s D_8038DB54[] = {
     {0x293, func_8038AC54}, 
     {0x29A, func_8038B098}, 
     {0x295, func_8038B214}, 
     {0x29B, func_8038B404}, 
     {0x00C, func_8038AF5C}, 
     {0x2BA, func_8038B5FC}, 
-    {0x000, NULL}, 
+    0 
+};
+
+Struct63s D_8038DB8C[] = {
     {0x291, func_8038B744}, 
     {0x294, func_8038B7B4}, 
     {0x2AE, func_8038B8B8}, 
@@ -1595,28 +1654,52 @@ struct {
     {0x2B5, func_8038BE30}, 
     {0x2BB, func_8038BD2C}, 
     {0x2BC, func_8038BD9C}, 
-    {0x000, NULL}, 
+    0 
+};
+
+Struct63s D_8038DBDC[] = {
     {0x297, cutscenes_func_803898C8}, 
     {0x298, func_80389AD0}, 
-    {0x000, NULL}, 
+    0 
+};
+
+
+Struct63s D_8038DBF4[] = {
     {0x29E, func_8038BF5C}, 
     {0x29F, cutscenes_func_8038C0DC}, 
-    {0x000, NULL}, 
+    0 
+};
+
+
+Struct63s D_8038DC0C[] = {
     {0x29C, cutscenes_func_8038C16C}, 
     {0x200, func_8038C19C}, 
     {0x295, func_8038C200}, 
-    {0x000, NULL}, 
-    {0x2B9, func_8038C264}, 
-    {0x000, NULL}, 
-    {0x08C, func_8038C3BC}, 
-    {0x000, NULL}, 
-    {0x08F, func_8038C314}, 
-    {0x090, func_8038C35C}, 
-    {0x000, NULL}, 
-    {0x07A, func_8038C404}, 
-    {0x000, NULL}, 
-    {0x2A0, cutscenes_func_8038C454}, 
-    {0x000, NULL}, 
-    {0x000, NULL}, 
+    0 
 };
 
+Struct63s D_8038DC2C[] = {
+    {0x2B9, func_8038C264}, 
+    0 
+};
+
+Struct63s D_8038DC3C[] = {
+    {0x08C, func_8038C3BC}, 
+    0 
+};
+
+Struct63s D_8038DC4C[] = {
+    {0x08F, func_8038C314}, 
+    {0x090, func_8038C35C}, 
+    0 
+};
+
+Struct63s D_8038DC64[] = {
+    {0x07A, func_8038C404}, 
+    0 
+};
+
+Struct63s D_8038DC74[] = {
+    {0x2A0, cutscenes_func_8038C454}, 
+    0 
+};

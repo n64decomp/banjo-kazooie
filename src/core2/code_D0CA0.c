@@ -28,15 +28,13 @@ typedef struct {
 }ActorLocal_core2_D0CA0;
 
 /* .data */
-extern ActorInfo D_803728A0 = { 
+ActorInfo D_803728A0 = { 
     MARKER_253_SCARAB_BEETLE, ACTOR_380_SCARAB_BEETLE, ASSET_51B_MODEL_SCARAB_BEETLE, 
     0, NULL, 
     func_80358684, NULL, func_80358344, 
     0, 0, 1.0f, 0
 };
 
-extern struct31s D_803728C4;
-extern struct43s D_803728EC;
 
 /* .code */
 bool func_80357C30(Actor *this) {
@@ -241,6 +239,12 @@ void func_803584BC(Actor *this) {
 
 
 void func_80358524(f32 position[3], s32 count, enum asset_e model_id) {
+    static struct31s D_803728C4 = { {1.0f, 1.0f}, {1.0f, 1.0f}, {0.0f, 0.01f}, {1.2f, 1.2f}, 0.0f, 0.1f};
+    static struct43s D_803728EC = {
+        {{-250.0f,   500.0f, -250.0f}, { 350.0f,   760.0f,  350.0f}},
+        {{   0.0f, -1200.0f,    0.0f}, {   0.0f, -1200.0f,    0.0f}},
+        {{ -50.0f,     0.0f,  -50.0f}, {  50.0f,    50.0f,   50.0f}}
+    };
     ParticleEmitter *p_ctrl;
     ParticleEmitter *temp_v0;
 

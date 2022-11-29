@@ -6,7 +6,77 @@ extern void func_80288C7C(VLA**);
 extern void func_80288D84(s32, f32, void (*)(s32,s32), s32, s32);
 extern void func_80288DCC(s32 , f32, void (*)(s32, s32,s32), s32, s32, s32);
 
-extern Struct62s D_803731E0[0x20];
+//TODO import from cutscenes/code_0.h
+extern Struct63s D_8038D904[];
+extern Struct63s D_8038D94C[];
+extern Struct63s D_8038D964[];
+extern Struct63s D_8038D994[];
+extern Struct63s D_8038D9AC[];
+extern Struct63s D_8038D9E4[];
+extern Struct63s D_8038D9F4[];
+extern Struct63s D_8038DA14[];
+extern Struct63s D_8038DA2C[];
+extern Struct63s D_8038DA44[];
+extern Struct63s D_8038DA74[];
+extern Struct63s D_8038DA84[];
+extern Struct63s D_8038DAAC[];
+extern Struct63s D_8038DABC[];
+extern Struct63s D_8038DACC[];
+extern Struct63s D_8038DB04[];
+extern Struct63s D_8038DB1C[];
+extern Struct63s D_8038DB34[];
+extern Struct63s D_8038DB44[];
+extern Struct63s D_8038DB54[];
+extern Struct63s D_8038DB8C[];
+extern Struct63s D_8038DBDC[];
+extern Struct63s D_8038DBF4[];
+extern Struct63s D_8038DC0C[];
+extern Struct63s D_8038DC2C[];
+extern Struct63s D_8038DC4C[];
+extern Struct63s D_8038DC3C[];
+extern Struct63s D_8038DC64[];
+extern Struct63s D_8038DC74[];
+
+// TODO import from SM/code_0.h
+extern Struct63s D_8038AAC0[];
+extern Struct63s D_8038AAD0[];
+
+
+/* .data */
+Struct62s D_803731E0[0x20] = {
+    { 0xAC, D_8038D904},
+    { 0x9E, D_8038D904},
+    { 0xB8, D_8038D94C},
+    { 0xB4, D_8038D964},
+    { 0xB2, D_8038D994},
+    { 0xB0, D_8038D9AC},
+    { 0xB1, D_8038D9E4},
+    { 0xBB, D_8038D9F4},
+    { 0x8F, D_8038DA14},
+    { 0xA5, D_8038DA2C},
+    {0x2ED, D_8038DA44},
+    {0x2EF, D_8038DA74},
+    {0x2EE, D_8038DA84},
+    {0x2FA, D_8038DAAC},
+    {0x2F1, D_8038DABC},
+    {0x2F2, D_8038DACC},
+    { 0xC2, D_8038DB04},
+    { 0xC3, D_8038DB1C},
+    {0x2F0, D_8038DB34},
+    { 0xA8, D_8038DB44},
+    {0x2FB, D_8038DB54},
+    { 0xA7, D_8038DB8C},
+    {0x2FC, D_8038DBDC},
+    {0x2F5, D_8038AAC0},
+    {0x2F4, D_8038AAD0},
+    {0x301, D_8038DBF4},
+    {0x2FE, D_8038DC0C},
+    {0x302, D_8038DC2C},
+    { 0x93, D_8038DC4C},
+    { 0x94, D_8038DC3C},
+    { 0x8E, D_8038DC64},
+    { 0xBC, D_8038DC74}
+};
 
 /* .code */
 void func_80361A30(f32 arg0[3], s32 arg1){

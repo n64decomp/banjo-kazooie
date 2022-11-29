@@ -34,17 +34,6 @@ typedef struct {
     f32 unk38;
 }Struct_core2_C89C0_0;
 
-/* .rodata */
-extern f32 D_80379300;
-extern f32 D_80379304;
-extern f32 D_80379308;
-extern f64 D_80379310;
-extern f32 D_80379318;
-extern f64 D_80379320;
-extern f32 D_80379328;
-extern f32 D_8037932C;
-extern f32 D_80379330;
-
 /* .bss */
 struct {
     void *unk0; //2D_fish_bin

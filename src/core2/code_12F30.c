@@ -85,12 +85,6 @@ s16 D_80364580[] = {
     0
 };
 
-/* .rodata */
-extern f32 D_80374CF0;
-extern f64 D_80374CF8;
-extern f64 D_80374D00;
-extern f32 D_80374D08;
-
 /*.bss*/
 struct {
     u8 unk0;

@@ -34,8 +34,21 @@ typedef struct {
 void func_8035D058(Actor *this);
 
 /* .data */
-extern ActorAnimationInfo D_80372DA0[];
-extern ActorInfo D_80372DF8 = {
+ActorAnimationInfo D_80372DA0[] = {
+    {0, 0.0f},
+    {0x1D6,      4.0f},
+    {0x1D6,      0.7f},
+    {0x1D8,      0.7f},
+    {0x1D7,      0.9f},
+    {0x1D9,      0.7f},
+    {0x1D6,      1.5f},
+    {0x1D8,      0.5f},
+    {0x1D6,      1.5f},
+    {0x1D6, 100000.0f},
+    {0x1D6, 100000.0f}
+};
+
+ActorInfo D_80372DF8 = {
     MARKER_21A_SEAMAN_GRUBLIN, ACTOR_350_SEAMAN_GRUBLIN, ASSET_49D_MODEL_SEAMAN_GRUBLIN,
     0x1, D_80372DA0, 
     func_8035D058, func_80326224, func_80325888, 

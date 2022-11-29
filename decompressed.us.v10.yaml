@@ -846,6 +846,7 @@ segments:
   - [0x1024630, c, code_CECD0] #DONE
   - [0x10249F0, c, code_CF090] #DONE
   - [0x1024D40, c, code_CF3E0] #DONE
+  - [0x1024F50, c, code_CF5F0] #DONE
   - [0x1025140, c, ch/clankerwhipcrack] #DONE
   - [0x10253C0, c, ch/code_CFA60] #DONE
   - [0x1025B20, c, ch/clucker] #DONE
@@ -1034,7 +1035,7 @@ segments:
   - [0x103CDF0, .data, code_9D640]
   - [0x103CF30, .data, code_9E370]
   - [0x103CFA0, .data, code_A4D00]
-  - [0x103D180, bin, data_E7820]
+  - [0x103D180, bin, data_E7820] # .data, code_A5BC0 (file needs to be broken?)
   - [0x103D1D0, .data, code_A5BC0]
   - [0x103D200, .data, code_ABC00]
   - [0x103E340, .data, code_AC520]
@@ -1064,26 +1065,30 @@ segments:
   - [0x1041090, bin, data_1041090] # .data, code_CD6E0]
   - [0x10410C0, .data, code_CECD0]
   - [0x10410D0, .data, code_CF090]
-  - [0x1041100, bin, data_1041100] # .data, code_CF3E0]
-  - [0x10411C0, .data, code_CF3E0]
+  - [0x1041100, .data, code_CF3E0]
+  - [0x10411C0, .data, code_CF5F0]
   - [0x10411E0, .data, ch/clankerwhipcrack]
   - [0x1041210, .data, ch/code_CFA60]
   - [0x1041240, .data, ch/clucker]
-  - [0x1041270, bin, data_EB910] # .data, code_D0CA0]
+  - [0x1041270, .data, code_D0CA0]
   - [0x1041310, .data, code_D2180]
   - [0x1041460, .data, ch/firefx]
   - [0x1041490, .data, ch/drips]
   - [0x1041520, .data, ch/icecube]
   - [0x10415B0, .data, ch/ghost]
   - [0x1041650, .data, ch/flotsam]
-  - [0x10416F0, bin, data_EBD90]
+  - [0x10416F0, .data, code_D5D10]
+  - [0x1041770, .data, code_D5FD0]
+  - [0x10417F0, .data, code_D6180]
+  - [0x1041870, .data, code_D6600]
   - [0x10418E0, .data, code_D7040]
-  - [0x1041950, bin, data_EBFF0]
+  - [0x1041950, .data, code_D7D10]
+  - [0x1041A60, .data, code_D89E0]
   - [0x1041AD0, .data, ch/whipcrack]
   - [0x1041B00, .data, code_DA3A0]
   - [0x1041B80, .data, code_DA760]
-  - [0x1041BB0, bin, code_EC250]
-  - [0x1041CB0, bin, code_EC350] #.data, code_DB010]
+  - [0x1041BB0, .data, code_DAAA0]
+  - [0x1041CB0, .data, code_DB010]
   - [0x1042790, .data, code_DC4B0]
   - [0x10427C0, ".rodata", animctrl]
   - [0x10427F0, .rodata, code_AD0]

@@ -50,13 +50,6 @@ f32 D_80394BC0[2] = {1000.0f, 2000.0f};
 s32 D_80394BC8[3] = {0xC0, 0xC0, 0xC0};
 s32 D_80394BD4[3] = {0xff, 0x80, 0x80};
 
-/* .rodata */
-extern f32 D_803952D0; // .rodata : 0.2f
-extern f64 D_803952D8; // 4.0
-extern f64 D_803952E0;
-extern f64 D_803952E8;
-
-
 /* .code */
 void func_80391160(f32 pos[3], u32 count)
 {

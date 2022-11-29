@@ -16,8 +16,18 @@ typedef struct {
 void func_8035DA1C(Actor *this);
 
 /* .data */
-extern ActorAnimationInfo D_80372EA0[];
-extern ActorInfo D_80372EE0 = { 
+ActorAnimationInfo D_80372EA0[] = {
+    {0, 0.0f},
+    {0x0B3, 1.8f},
+    {0x0B3, 0.9f},
+    {0x0B3, 0.6f},
+    {0x0B3, 0.4f},
+    {0x0B3, 0.5f},
+    {0x0B4, 0.4f},
+    {0x2C0, 1.5f}
+};
+
+ActorInfo D_80372EE0 = { 
     MARKER_69_CHUMP_FISH, ACTOR_A_CHUMP_FISH, ASSET_36B_CHUMP_FISH, 
     0x2, D_80372EA0, 
     func_8035DA1C, func_80326224, func_80325888, 

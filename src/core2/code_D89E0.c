@@ -14,8 +14,19 @@ typedef struct {
 void func_80360828(Actor *this);
 
 /* .data */
-extern ActorAnimationInfo D_80373090[];
-extern ActorInfo D_803730D8 = { 
+ActorAnimationInfo D_80373090[] = {
+    {0, 0.0f},
+    { 0xAE, 12.0f},
+    { 0xAD,  0.3f},
+    { 0x9D,  2.0f},
+    { 0x9D,  0.4f},
+    { 0x9D,  0.35f},
+    { 0xAD,  0.2f},
+    {0x2A9,  0.4f},
+    {0x2AA,  0.85f},
+};
+
+ActorInfo D_803730D8 = { 
     MARKER_127_BAT, ACTOR_163_BAT, ASSET_3CA_MODEL_BAT, 
     0x1, D_80373090, 
     func_80360828, func_80326224, func_80325888, 

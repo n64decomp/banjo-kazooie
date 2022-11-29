@@ -159,8 +159,6 @@ Struct_core2_82000_0 D_8036ABE0[] = {
     0
 };
 
-/* .rodata */
-
 /* .bss */
 struct {
     void *unk0;

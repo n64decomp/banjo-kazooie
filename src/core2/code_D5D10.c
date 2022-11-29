@@ -33,8 +33,21 @@ typedef struct {
 void chskeleton_update(Actor *this);
 
 /* .data */
-extern ActorAnimationInfo D_80372D20[];
-extern ActorInfo D_80372D78 = { 
+ActorAnimationInfo D_80372D20[] = {
+    {0, 0.0f}, 
+    {0x1E4, 4.0f},
+    {0x1E4, 0.7f}, 
+    {0x1E6, 0.7f},
+    {0x1E5, 0.9f}, 
+    {0x1E7, 0.7f},
+    {0x1E4, 1.5f}, 
+    {0x1E6, 0.5f},
+    {0x1E4, 1.5f}, 
+    {0x1E7, 1.5f},
+    {0x1E8, 2.2f}
+};
+
+ActorInfo D_80372D78 = { 
     MARKER_218_LIMBO, ACTOR_34E_LIMBO, ASSET_4CC_MODEL_LIMBO, 
     0x1, D_80372D20, 
     chskeleton_update, func_80326224, func_80325888, 
@@ -51,7 +64,7 @@ void func_8035CCA0(ParticleEmitter *pCtrl, Actor *this, enum asset_e model_id) {
 }
 
 
-void func_8035CD80(ActorMarker *marker, s32 arg1) {
+void chskeleton_despawn(ActorMarker *marker, s32 arg1) {
     Actor *this;
 
     this = marker_getActor(marker);
@@ -64,7 +77,7 @@ void func_8035CD80(ActorMarker *marker, s32 arg1) {
     marker_despawn(marker);
 }
 
-void func_8035CE50(Actor *this) {
+static void _chskeleton_init(Actor *this) {
     ActorLocal_Skeleton *local;
 
     local = (ActorLocal_Skeleton *)&this->local;
@@ -89,13 +102,13 @@ void func_8035CE50(Actor *this) {
     local->unk2C = 1.0f;
     local->unkC_28 = TRUE;
     local->unk30 = func_802DB4E0;
-    local->unk34 = func_8035CD80;
+    local->unk34 = chskeleton_despawn;
 
 }
 
 void chskeleton_update(Actor *this){
     if(!this->unk16C_4){
-        func_8035CE50(this);
+        _chskeleton_init(this);
     }
     func_802DB5A0(this);
 }

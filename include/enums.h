@@ -13,15 +13,16 @@
 
 enum bkprog_e{
     
-    // BKPROG_03_ "1st Note Text"}, -- 0x00 > 3
-	// BKPROG_04_ "1st Mumbo Token Text"}, -- 0x00 > 4
-	// BKPROG_05_ "1st Egg Text"}, -- 0x00 > 5
-	// BKPROG_06_ "1st Red Feather Text"}, -- 0x00 > 6
-	// BKPROG_07_ "1st Gold Feather Text"}, -- 0x00 > 7
-	// BKPROG_08_ "1st Gold Bullion Text"}, -- 0x01 > 1 (flipped, but only for this byte, no idea why)
-	// BKPROG_09_ "1st Orange Text"}, -- 0x01 > 0 (flipped, but only for this byte, no idea why)
-	// BKPROG_0A_ "1st Honeycomb Text"}, -- 0x01 > 2
-	// BKPROG_0B_ "1st Empty Honeycomb Text"}, -- 0x01 > 3
+    BKPROG_3_MUSIC_NOTE_TEXT = 0x3,
+    BKPROG_4_MUMBO_TOKEN_TEXT,
+    BKPROG_5_BLUE_EGG_TEXT,
+    BKPROG_6_RED_FEATHER_TEXT,
+    BKPROG_7_GOLD_FEATHER_TEXT,
+    BKPROG_8_GOLD_BULLION_TEXT,
+    BKPROG_9_ORANGE_TEXT,
+    BKPROG_A_HONEYCOMB_TEXT,
+    BKPROG_B_EMPTY_HONEYCOMB_TEXT,
+    BKPROG_C_EXTRA_LIFE_TEXT,
 	// BKPROG_0C_ "1st Extra Life Text"},
 	// BKPROG_0D_ "1st Beehive Text"},
     BKPROG_D_BEEHIVE_TEXT = 0xD,
@@ -179,9 +180,8 @@ enum bkprog_e{
     BKPROG_A8_HAS_DIED,
     BKPROG_A9_HAS_TOUCHED_RBB_OVEN,
     BKPROG_AA_HAS_TOUCHED_CCW_BRAMBLE_FIELD,
-	// {index=0xAA, type="Prog", level=8, name="1st CCW Bramble Field Text"},
-	// {index=0xAB, type="Prog", level=9, name="Oily Water Surface Text"},
-	// {index=0xAC, type="Prog", level=9, name="Oily Water Underwater Text"},
+	BKPROG_AB_SWIM_OILY_WATER,
+	BKPROG_AC_DIVE_OILY_WATER,
 	// {index=0xAD, type="Prog", level=6, name="Cheato: BLUEEGGS Unlocked"},
 	// {index=0xAE, type="Prog", level=6, name="Cheato: REDFEATHERS Unlocked"},
 	// {index=0xAF, type="Prog", level=6, name="Cheato: GOLDFEATHERS Unlocked"},
@@ -230,7 +230,7 @@ enum bkprog_e{
 	// {index=0xDA, type="Prog", level=6, name="??FF PATTERN 2^7"},
 
     BKPROG_DC_HAS_HAD_ENOUGH_TOKENS_BEFORE = 0xDC,
-	// {index=0xDD, type="Prog", level=8, name="1st CCW Icy Water Text"},
+    BKPROG_DD_HAS_TOUCHED_ICY_WATER,
 
 	// {index=0xDF, type="Prog", level=6, name="Remove Puzzle Piece Text"},
 	// {index=0xE0, type="Prog", level=6, name="Place All Puzzle Pieces Text"},

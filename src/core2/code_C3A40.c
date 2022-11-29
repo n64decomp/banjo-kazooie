@@ -2,9 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-/* .rodata */
-extern f32 D_80379170;
-
 /* .code */
 f32 func_8034A9D0(f32 arg0[4], f32 arg1) {
     if (arg0[1] <= arg1) {

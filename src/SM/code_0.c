@@ -4,14 +4,6 @@
 
 extern void func_80288F78(Actor*, f32, s32);
 
-typedef struct {
-    s16 unk0;
-    //u8 pad2[2];
-    void (*unk4)(Actor *, s32);
-    s32 pad8;
-    s32 padC;
-}Struct_SM_0;
-
 /* .code */
 void SM_func_803863F0(Actor *this, s32 arg1) {
     func_80288F78(this, 0.20f, 0xF280FA);
@@ -27,7 +19,12 @@ void SM_func_80386420(Actor *arg0, s32 arg1) {
 }
 
 /* .data */
-Struct_SM_0 D_8038AAC0[2] = {
-    {0x20A, SM_func_803863F0, 0, 0},
-    {0x208, SM_func_80386420, 0, 0},
+Struct63s D_8038AAC0[] = {
+    {0x20A, SM_func_803863F0},
+    0
+};
+
+Struct63s D_8038AAD0[] = {
+    {0x208, SM_func_80386420},
+    0
 };

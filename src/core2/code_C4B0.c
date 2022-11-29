@@ -33,13 +33,6 @@ typedef struct {
     s32 unk8C;
 }Struct_core2_C4B0_0;
 
-/* .rodata */
-extern f64 D_80374760;
-extern f64 D_80374768;
-extern f64 D_80374770;
-extern f64 D_80374778;
-extern f64 D_80374780;
-
 /* .bss */
 f32 D_8037C1F0[2];
 f32 D_8037C1F8[2];

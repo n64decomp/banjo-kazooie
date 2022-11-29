@@ -20,318 +20,24 @@ typedef struct{
 }struct_core2_DB010;
 
 /* .data */
-extern ActorInfo D_803732E0= {
+ActorInfo D_803732E0 = {
     0x1F7, 0x1E7, 0, 
     0, NULL, 
     func_80363310, func_80363330, func_80325340,
     0, 0, 0.0f, 0
 }; 
 
-extern struct40s D_80373304;
-// 000E C370:             3E CC CC CD  3F B3 33 33 00 00 00 00
-// 000E C380: 00 00 00 00 00 00 00 00  3C 23 D7 0A 40 80 00 00
-// 000E C390: 40 80 00 00 3F 00 00 00  3F 33 33 33 40 80 00 00
-// 000E C3A0: 41 70 00 00 
-
-extern struct43s D_80373334;
-//                        C3 7A 00 00  44 16 00 00 C3 7A 00 00
-// 000E C3B0: 43 AF 00 00 44 70 00 00  43 AF 00 00 00 00 00 00
-// 000E C3C0: C4 96 00 00 00 00 00 00  00 00 00 00 C4 96 00 00
-// 000E C3D0: 00 00 00 00 C2 70 00 00  C1 F0 00 00 C2 70 00 00
-// 000E C3E0: 42 70 00 00 41 F0 00 00  42 70 00 00 
-
-extern s32 D_8037337C[3] = {50, 255, 50};
-
-extern struct40s D_80373388;
-//                                     3E 99 99 9A 3C F5 C2 8F
-// 000E C400: 3F 00 00 00 3F 00 00 00  00 00 00 00 3C 23 D7 0A
-// 000E C410: 3F C0 00 00 40 00 00 00  3D 75 C2 8F 3F 33 33 33
-// 000E C420: 40 80 00 00 3F 80 00 00  
-
-extern struct42s D_803733B8;
-//                                     C0 A0 00 00 42 C8 00 00
-// 000E C430: C0 A0 00 00 40 A0 00 00  42 C8 00 00 40 A0 00 00
-// 000E C440: C2 70 00 00 00 00 00 00  C2 70 00 00 42 70 00 00
-// 000E C450: 40 A0 00 00 42 70 00 00  
-
-extern s32 D_803733E8[3] = {0xb4, 0xe6, 0xff};
-
-
-extern struct40s D_803733F4;
-//                        3F 80 00 00  3F E6 66 66 40 0C CC CD
-// 000E C470: 40 2C CC CD 00 00 00 00  3C 23 D7 0A 3F 4C CC CD
-// 000E C480: 3F 99 99 9A 3E D1 EB 85  3F 3A E1 48 40 80 00 00
-// 000E C490: 41 70 00 00 
-
-extern struct43s D_80373424;
-//                        C3 96 00 00  44 16 00 00 C3 96 00 00
-// 000E C4A0: 43 96 00 00 44 7A 00 00  43 96 00 00 00 00 00 00
-// 000E C4B0: C4 96 00 00 00 00 00 00  00 00 00 00 C4 C8 00 00
-// 000E C4C0: 00 00 00 00 C1 20 00 00  00 00 00 00 C1 20 00 00
-// 000E C4D0: 41 20 00 00 00 00 00 00  41 20 00 00 
-
-extern struct40s D_8037346C;
-//                                                 3E 99 99 9A
-// 000E C4E0: 3E CC CC CD 3F 00 00 00  3F 00 00 00 00 00 00 00
-// 000E C4F0: 3C 23 D7 0A 3F 4C CC CD  3F 99 99 9A 3F 68 F5 C3
-// 000E C500: 3F 7D 70 A4 40 80 00 00  41 90 00 00
-
-extern struct43s D_8037349C;
-//                                                 C3 48 00 00
-// 000E C510: 44 61 00 00 C3 48 00 00  43 48 00 00 44 AF 00 00
-// 000E C520: 43 48 00 00 00 00 00 00  C4 E1 00 00 00 00 00 00
-// 000E C530: 00 00 00 00 C5 16 00 00  00 00 00 00 C1 20 00 00
-// 000E C540: C1 A0 00 00 C1 20 00 00  41 20 00 00 C1 A0 00 00
-// 000E C550: 41 20 00 00 
-
-extern struct40s D_803734E4;
-//                        40 4C CC CD  40 59 99 9A 00 00 00 00
-// 000E C560: 00 00 00 00 00 00 00 00  3C 23 D7 0A 40 00 00 00
-// 000E C570: 40 00 00 00 00 00 00 00  3E 99 99 9A 40 80 00 00
-// 000E C580: 41 70 00 00 C4 6D 80 00  44 48 00 00 C3 7A 00 00
-// 000E C590: C4 09 80 00 44 AA 00 00  42 48 00 00 C4 2F 00 00
-// 000E C5A0: C4 D4 80 00 00 00 00 00  C4 61 00 00 C4 D4 80 00
-// 000E C5B0: 00 00 00 00 C2 70 00 00  00 00 00 00 C2 70 00 00
-// 000E C5C0: 42 70 00 00 41 F0 00 00  42 70 00 00 40 40 00 00
-// 000E C5D0: 40 59 99 9A 00 00 00 00  00 00 00 00 00 00 00 00
-// 000E C5E0: 3C 23 D7 0A 40 80 00 00  40 80 00 00 00 00 00 00
-// 000E C5F0: 3E 99 99 9A 40 80 00 00  41 70 00 00 C3 E1 00 00
-// 000E C600: 44 16 00 00 C2 48 00 00  C3 16 00 00 44 89 80 00
-// 000E C610: 42 48 00 00 C4 2F 00 00  C4 D4 80 00 00 00 00 00
-// 000E C620: C4 48 00 00 C4 D4 80 00  00 00 00 00 C2 70 00 00
-// 000E C630: 00 00 00 00 C2 70 00 00  42 70 00 00 41 F0 00 00
-// 000E C640: 42 70 00 00 3F 8C CC CD  3F 8C CC CD 40 89 99 9A
-// 000E C650: 40 89 99 9A 00 00 00 00  3D 4C CC CD 3E 99 99 9A
-// 000E C660: 3F 00 00 00 3D 75 C2 8F  3E 99 99 9A 40 80 00 00
-// 000E C670: 3F 80 00 00 00 00 00 00  00 00 00 00 00 00 00 00
-// 000E C680: 00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00
-// 000E C690: 00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00
-// 000E C6A0: 00 00 00 00 00 00 00 0A  00 00 00 FF 00 00 00 0A
-// 000E C6B0: 40 00 00 00 40 00 00 00  40 40 00 00 40 60 00 00
-// 000E C6C0: 00 00 00 00 3C 23 D7 0A  40 00 00 00 40 20 00 00
-// 000E C6D0: 3D CC CC CD 3E CC CC CD  40 80 00 00 3F 80 00 00
-// 000E C6E0: 00 00 00 00 42 20 00 00  00 00 00 00 00 00 00 00
-// 000E C6F0: 42 B4 00 00 00 00 00 00  C3 C8 00 00 00 00 00 00
-// 000E C700: C3 C8 00 00 43 C8 00 00  00 00 00 00 43 C8 00 00
-// 000E C710: 00 00 00 FF 00 00 00 FF  00 00 00 FF 3C 23 D7 0A
-// 000E C720: 3C 23 D7 0A 3F C0 00 00  3F CC CC CD 3D 4C CC CD
-// 000E C730: 3F 33 33 33 3F 33 33 33  3F A6 66 66 3D CC CC CD
-// 000E C740: 3F 4C CC CD 40 80 00 00  41 C8 00 00 3F 33 33 33
-// 000E C750: 3F 66 66 66 3E CC CC CD  3F 00 00 00 00 00 00 00
-// 000E C760: 3C 23 D7 0A 3F 4C CC CD  3F 80 00 00 3E 19 99 9A
-// 000E C770: 3E 99 99 9A 00 00 00 00  3F 80 00 00 C1 20 00 00
-// 000E C780: C1 20 00 00 C1 20 00 00  41 20 00 00 41 20 00 00
-// 000E C790: 41 20 00 00 00 00 00 00  41 F0 00 00 00 00 00 00
-// 000E C7A0: 00 00 00 00 41 F0 00 00  00 00 00 00 3D 4C CC CD
-// 000E C7B0: 3D CC CC CD 3D CC CC CD  3E 4C CC CD 00 00 00 00
-// 000E C7C0: 3C 23 D7 0A 3F B3 33 33  3F C0 00 00 3C 23 D7 0A
-// 000E C7D0: 3F 33 33 33 00 00 00 00  3F 80 00 00 C0 A0 00 00
-// 000E C7E0: C0 A0 00 00 C0 A0 00 00  40 A0 00 00 40 A0 00 00
-// 000E C7F0: 40 A0 00 00 00 00 00 00  C2 48 00 00 00 00 00 00
-// 000E C800: 00 00 00 00 C2 B4 00 00  00 00 00 00 C1 F0 00 00
-// 000E C810: 41 F0 00 00 C1 F0 00 00  41 F0 00 00 42 70 00 00
-// 000E C820: 41 F0 00 00 00 00 00 FF  00 00 00 FF 00 00 00 00
-// 000E C830: 3D CC CC CD 3E 99 99 9A  3F 19 99 9A 3F 33 33 33
-// 000E C840: 00 00 00 00 3C 23 D7 0A  3E 99 99 9A 3E CC CC CD
-// 000E C850: 3C 23 D7 0A 3E 99 99 9A  40 80 00 00 41 80 00 00
-// 000E C860: C4 16 00 00 C4 16 00 00  C4 16 00 00 44 16 00 00
-// 000E C870: 44 16 00 00 44 16 00 00  00 00 00 00 41 F0 00 00
-// 000E C880: 00 00 00 00 00 00 00 00  41 F0 00 00 00 00 00 00
-
-
-
-extern s32 D_80373514;
-
-extern s32 D_8037355C;
-
-extern s32 D_8037358C;
-
-extern s32 D_803735D4;
-
-extern struct42s D_80373604;
-
-extern s32 D_80373634;
-
-extern s32 D_80373640;
-
-extern struct42s D_80373670;
-
-extern s32 D_803736A0[3];
-
-extern struct40s D_803736AC;
-
-extern s32 D_803736DC;
-
-extern struct42s D_8037370C;
-
-extern s32 D_8037373C;
-
-extern s32 D_8037376C;
-
-extern s32 D_803737B4;
-
-extern s32 D_803737C0;
-
-extern struct42s D_803737F0;
-
-
-extern s32 D_80373820[3] = {130, 155, 40};
-extern struct40s D_8037382C;
-//                                                 40 53 33 33
-// 000E C8A0: 40 53 33 33 40 90 00 00  40 96 66 66 00 00 00 00
-// 000E C8B0: 3C 23 D7 0A 3F E6 66 66  40 4C CC CD 3E 9E B8 52
-// 000E C8C0: 3F 3A E1 48 40 80 00 00  41 30 00 00 
-
-extern struct43s D_8037385C;
-//                                                 C3 48 00 00
-// 000E C8D0: 42 F0 00 00 C3 48 00 00  43 48 00 00 43 02 00 00
-// 000E C8E0: 43 48 00 00 00 00 00 00  C2 C8 00 00 00 00 00 00
-// 000E C8F0: 00 00 00 00 C2 C8 00 00  00 00 00 00 C1 F0 00 00
-// 000E C900: 00 00 00 00 C1 F0 00 00  41 F0 00 00 00 00 00 00
-// 000E C910: 41 F0 00 00 
-
-extern s32 D_803738A4[3] = {91, 142, 0};
-extern struct40s D_803738B0;
-// 000E C920: 3E 4C CC CD 3F 66 66 66  3E CC CC CD 3F 66 66 66
-// 000E C930: 00 00 00 00 3C 23 D7 0A  3F E6 66 66 40 86 66 66
-// 000E C940: 3E 9E B8 52 3F 3A E1 48  40 80 00 00 41 50 00 00
-
-extern struct43s D_803738E0;
-// 000E C950: C3 C8 00 00 44 02 00 00  C3 C8 00 00 43 C8 00 00
-// 000E C960: 44 3B 80 00 43 C8 00 00  00 00 00 00 C4 96 00 00
-// 000E C970: 00 00 00 00 00 00 00 00  C4 C8 00 00 00 00 00 00
-// 000E C980: C1 F0 00 00 00 00 00 00  C1 F0 00 00 41 F0 00 00
-// 000E C990: 00 00 00 00 41 F0 00 00 
-
-extern s32 D_80373928[3] = {0, 255, 0};
-extern struct40s D_80373934;
-                    //    3F B3 33 33  3F F3 33 33 40 19 99 9A
-// 000E C9B0: 40 39 99 9A 00 00 00 00  40 4C CC CD 41 0C CC CD
-// 000E C9C0: 41 13 33 33 3E 9E B8 52  3F 3A E1 48 40 80 00 00
-// 000E C9D0: 41 50 00 00 
-
-extern struct43s D_80373964;
-//                        C2 70 00 00  42 C8 00 00 C2 70 00 00
-// 000E C9E0: 42 70 00 00 43 2A 00 00  42 70 00 00 00 00 00 00
-// 000E C9F0: 00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00
-// 000E CA00: 00 00 00 00 C1 F0 00 00  00 00 00 00 C1 F0 00 00
-// 000E CA10: 41 F0 00 00 00 00 00 00  41 F0 00 00
-
-extern s32 D_803739AC[3] = {255, 255, 255};
-extern struct40s D_803739B8;
-//                                     3E 4C CC CD 3F 66 66 66
-// 000E CA30: 3E 99 99 9A 3E CC CC CD  00 00 00 00 3E 4C CC CD
-// 000E CA40: 3F 80 00 00 3F 99 99 9A  3E 9E B8 52 3F 3A E1 48
-// 000E CA50: 40 80 00 00 41 50 00 00  
-
-extern struct43s D_803739E8;
-//                                     C4 16 00 00 00 00 00 00
-// 000E CA60: C4 16 00 00 44 16 00 00  00 00 00 00 44 16 00 00
-// 000E CA70: 00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00
-// 000E CA80: 00 00 00 00 00 00 00 00  00 00 00 00 42 20 00 00
-// 000E CA90: 00 00 00 00 00 00 00 00  42 20 00 00 00 00 00 00
-
-extern s32 D_80373A30[3] = {255, 255, 255};
-extern struct40s D_80373A3C;
-//                                                 3F C0 00 00
-// 000E CAB0: 3F CC CC CD 40 20 00 00  40 39 99 9A 00 00 00 00
-// 000E CAC0: 3C 23 D7 0A 40 00 00 00  40 20 00 00 3D CC CC CD
-// 000E CAD0: 3E CC CC CD 40 80 00 00  3F 80 00 00 
-
-extern struct43s D_80373A6C;
-//                                                 00 00 00 00
-// 000E CAE0: 42 20 00 00 00 00 00 00  00 00 00 00 42 B4 00 00
-// 000E CAF0: 00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00
-// 000E CB00: 00 00 00 00 00 00 00 00  00 00 00 00 C0 A0 00 00
-// 000E CB10: 00 00 00 00 C0 A0 00 00  40 A0 00 00 00 00 00 00
-// 000E CB20: 40 A0 00 00
-
-
-extern s32 D_80373AB4[3] = {30, 30, 30};
-extern struct40s D_80373AC0;
-// 000E CB30: 40 40 00 00 40 59 99 9A  40 79 99 9A 40 83 33 33
-// 000E CB40: 00 00 00 00 3C 23 D7 0A  40 00 00 00 40 20 00 00
-// 000E CB50: 3E 99 99 9A 3F 00 00 00  40 80 00 00 3F 80 00 00
-
-extern struct43s D_80373AF0;
-// 000E CB60: 42 C8 00 00 42 20 00 00  42 C8 00 00 42 C8 00 00
-// 000E CB70: 42 B4 00 00 42 C8 00 00  00 00 00 00 00 00 00 00
-// 000E CB80: 00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00
-// 000E CB90: C0 A0 00 00 00 00 00 00  C0 A0 00 00 40 A0 00 00
-// 000E CBA0: 00 00 00 00 40 A0 00 00
-
-extern s32 D_80373B38[3] = {130, 130, 130};
-extern struct40s D_80373B44;
-//                        40 00 00 00  40 19 99 9A 40 79 99 9A
-// 000E CBC0: 40 83 33 33 00 00 00 00  3C 23 D7 0A 40 00 00 00
-// 000E CBD0: 40 20 00 00 3E 4C CC CD  3F 33 33 33 40 80 00 00
-// 000E CBE0: 3F 80 00 00 
-
-extern struct43s D_80373B74;
-//                        42 C8 00 00  42 20 00 00 42 C8 00 00
-// 000E CBF0: 42 C8 00 00 42 B4 00 00  42 C8 00 00 00 00 00 00
-// 000E CC00: 00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00
-// 000E CC10: 00 00 00 00 C0 A0 00 00  00 00 00 00 C0 A0 00 00
-// 000E CC20: 40 A0 00 00 00 00 00 00  40 A0 00 00  
-
-extern s32 D_80373BBC[3] = {0xff, 0xff, 0xff};
-extern struct40s D_80373BC8;
-//                                     3F 00 00 00 3F 19 99 9A
-// 000E CC40: 3F C0 00 00 3F F3 33 33  00 00 00 00 3C 23 D7 0A
-// 000E CC50: 40 80 00 00 40 90 00 00  3D CC CC CD 3F 4C CC CD
-// 000E CC60: 00 00 00 00 3F 80 00 00  
-
-extern struct43s D_80373BF8;
-//                                     00 00 00 00 42 20 00 00
-// 000E CC70: 00 00 00 00 00 00 00 00  42 B4 00 00 00 00 00 00
-// 000E CC80: 00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00
-// 000E CC90: 00 00 00 00 00 00 00 00  C0 A0 00 00 00 00 00 00
-// 000E CCA0: C0 A0 00 00 40 A0 00 00  00 00 00 00 40 A0 00 00
-
-extern s32 D_80373C40[3] = {160, 170, 170};
-extern struct40s D_80373C4C;
-//                                                 40 20 00 00
-// 000E CCC0: 40 26 66 66 40 60 00 00  40 79 99 9A 00 00 00 00
-// 000E CCD0: 3C 23 D7 0A 3E 99 99 9A  3F 00 00 00 3D CC CC CD
-// 000E CCE0: 3F 4C CC CD 40 80 00 00  3F 80 00 00 
-
-extern struct43s D_80373C7C;
-//                                                 C2 70 00 00
-// 000E CCF0: C2 70 00 00 C2 70 00 00  42 70 00 00 42 70 00 00
-// 000E CD00: 42 70 00 00 00 00 00 00  00 00 00 00 00 00 00 00
-// 000E CD10: 00 00 00 00 00 00 00 00  00 00 00 00 C2 48 00 00
-// 000E CD20: C2 48 00 00 C2 48 00 00  42 48 00 00 42 48 00 00
-// 000E CD30: 42 48 00 00 
-
-extern s32 D_80373CC4[] = {90, 90, 90};
-extern struct40s D_80373CD0;
-// 3FC00000 3FCCCCCD 40200000 4039999A
-// 00000000 3C23D70A 3E99999A 3F000000
-// 3DCCCCCD 3F4CCCCD 40800000 3F800000
-
-extern struct43s D_80373D00 = {
-    {{-60.0f, -60.0f, -60.0f}, {60.0f, 60.0f, 60.0f}},
-    {{0.0f, -0.0f, -0.0f}, {-0.0f, -0.0f, -0.0f}},
-    {{-50.0f, -50.0f, -50.0f}, {50.0f, 50.0f, 50.0f}}
-};
-
-extern struct40s D_80373D48 = {
-    { {1.8f, 3.5f}, {1.8f, 3.5f}, {0.0f, 0.01f}, {5.0f, 5.0f}, 0.0f, 0.9f}, 
-    4.0f, 
-    15.0f 
-};
-
-extern struct43s D_80373D78 = {
-    {{-450.0f, 700.0f, -450.0f}, {450.0f, 1100.0f, 450.0f}},
-    {{   0.0f, -900.0f,    0.0f}, {  0.0f, -900.0f,   0.0f}},
-    {{-150.0f, -100.0f, -150.0f}, {150.0f,    5.0f, 150.0f}}
-};
-
-
-
 /* .code */
 void func_80361FA0(f32 arg0[3]) {
+    static struct40s D_80373304 = {{{0.4f, 1.4f}, {0.0f, 0.0f}, {0.0f, 0.01f}, {4.0f, 4.0f}, 0.5f, 0.7f}, 4.0f, 15.0f};
+    static struct43s D_80373334 = {
+        {{-250.0f,   600.0f, -250.0f}, { 350.0f,   960.0f,  350.0f}}, 
+        {{   0.0f, -1200.0f,    0.0f}, {   0.0f, -1200.0f,    0.0f}}, 
+        {{ -60.0f,   -30.0f,  -60.0f}, {  60.0f,    30.0f,   60.0f}}
+    };
+
     ParticleEmitter *pCtrl = partEmitList_pushNew(0xFU);
+
     particleEmitter_setModel(pCtrl, 0x441);
     particleEmitter_setPosition(pCtrl, arg0);
     func_802EFE24(pCtrl, -200.0f, 200.0f, -200.0f, 200.0f, 200.0f, 200.0f);
@@ -345,6 +51,13 @@ void func_80361FA0(f32 arg0[3]) {
 }
 
 void func_80362084(f32 position[3]) {
+    static s32 D_8037337C[3] = {50, 255, 50};
+    static struct40s D_80373388 = {{{0.3f, 0.03f}, {0.5f, 0.5f}, {0.0f, 0.01f}, {1.5f, 2.0f}, 0.06f, 0.7f}, 4.0f, 1.0f};
+    static struct42s D_803733B8 = {
+       {{ -5.0f, 100.0f,  -5.0f}, {  5.0f, 100.0f,   5.0f}}, 
+       {{-60.0f,   0.0f, -60.0f}, { 60.0f,   5.0f,  60.0f}}
+    };
+
     ParticleEmitter *pCtrl;
 
     pCtrl = partEmitList_pushNew(1U);
@@ -362,7 +75,16 @@ void func_80362084(f32 position[3]) {
 
 
 void func_8036215C(f32 arg0[3]) {
+    static s32 D_803733E8[3] = {0xb4, 0xe6, 0xff};
+    static struct40s D_803733F4 = {{{1.0f, 1.8f}, {2.2f, 2.7f}, {0.0f, 0.01f}, {0.8f, 1.2f}, 0.41f, 0.73f}, 4.0f, 15.0f};
+    static struct43s D_80373424 = {
+        {{-300.0f,   600.0f, -300.0f}, { 300.0f,  1000.0f,  300.0f}}, 
+        {{   0.0f, -1200.0f,    0.0f}, {   0.0f, -1600.0f,    0.0f}}, 
+        {{ -10.0f,     0.0f,  -10.0f}, {  10.0f,     0.0f,   10.0f}}
+    };
+
     ParticleEmitter *pCtrl = partEmitList_pushNew(0xFU);
+
     particleEmitter_setSprite(pCtrl, 0x700);
     particleEmitter_setStartingFrameRange(pCtrl, 3, 4);
     func_802EFFA8(pCtrl, D_803733E8);
@@ -373,7 +95,15 @@ void func_8036215C(f32 arg0[3]) {
 }
 
 void func_803621F0(f32 arg0[3]) {
+    static struct40s D_8037346C = {{{0.3f, 0.4f}, {0.5f, 0.5f}, {0.0f, 0.01f}, {0.8f, 1.2f}, 0.91f, 0.99f}, 4.0f, 18.0f};
+    static struct43s D_8037349C = {
+        {{-200.0f,   900.0f, -200.0f}, { 200.0f,  1400.0f,  200.0f}}, 
+        {{   0.0f, -1800.0f,    0.0f}, {   0.0f, -2400.0f,    0.0f}}, 
+        {{ -10.0f,   -20.0f,  -10.0f}, {  10.0f,   -20.0f,   10.0f}}
+    };
+
     ParticleEmitter *pCtrl = partEmitList_pushNew(0x12U);
+
     particleEmitter_setSprite(pCtrl, 0x702);
     particleEmitter_setStartingFrameRange(pCtrl, 3, 5);
     func_802EF9E4(pCtrl, 0xD2);
@@ -383,7 +113,15 @@ void func_803621F0(f32 arg0[3]) {
 }
 
 void func_80362274(f32 arg0[3]) {
+    static struct40s D_803734E4 = {{{3.2f, 3.4f}, {0.0f, 0.0f}, {0.0f, 0.01f}, {2.0f, 2.0f}, 0.0f, 0.3f}, 4.0f, 15.0f};
+    static struct43s D_80373514 = {
+        {{-950.0f,   800.0f, -250.0f}, {-550.0f,  1360.0f,   50.0f}}, 
+        {{-700.0f, -1700.0f,    0.0f}, {-900.0f, -1700.0f,    0.0f}}, 
+        {{ -60.0f,     0.0f,  -60.0f}, {  60.0f,    30.0f,   60.0f}}
+    };
+
     ParticleEmitter *pCtrl = partEmitList_pushNew(0xFU);
+    
     particleEmitter_setModel(pCtrl, 0x89B);
     particleEmitter_setPosition(pCtrl, arg0);
     func_802EFE24(pCtrl, -400.0f, -200.0f, -400.0f, 400.0f, -400.0f, 400.0f);
@@ -395,7 +133,15 @@ void func_80362274(f32 arg0[3]) {
 }
 
 void func_8036233C(f32 arg0[3]) {
+    static struct40s D_8037355C = {{{3.0f, 3.4f}, {0.0f, 0.0f}, {0.0f, 0.01f}, {4.0f, 4.0f}, 0.0f, 0.3f}, 4.0f, 15.0f};
+    static struct43s D_8037358C = {
+        {{-450.0f,   600.0f, -50.0f}, {-150.0f,  1100.0f,  50.0f}}, 
+        {{-700.0f, -1700.0f,   0.0f}, {-800.0f, -1700.0f,   0.0f}}, 
+        {{ -60.0f,     0.0f, -60.0f}, {  60.0f,    30.0f,  60.0f}}
+    };
+
     ParticleEmitter *pCtrl = partEmitList_pushNew(0xFU);
+    
     particleEmitter_setModel(pCtrl, 0x89A);
     particleEmitter_setPosition(pCtrl, arg0);
     func_802EFE24(pCtrl, -200.0f, 200.0f, -200.0f, 200.0f, 200.0f, 200.0f);
@@ -407,7 +153,14 @@ void func_8036233C(f32 arg0[3]) {
 }
 
 void func_80362404(f32 arg0[3]) {
+    static struct40s D_803735D4 = {{{1.1f, 1.1f}, {4.3f, 4.3f}, {0.0f, 0.05f}, {0.3f, 0.5f}, 0.06f, 0.3f}, 4.0f, 1.0f};
+    static struct42s D_80373604 = {
+        {{0.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.0f}},
+        {{0.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.0f}}
+    };
+
     ParticleEmitter *pCtrl = partEmitList_pushNew(1U);
+
     particleEmitter_setSprite(pCtrl, 0x6DD);
     particleEmitter_setStartingFrameRange(pCtrl, 2, 2);
     particleEmitter_setPosition(pCtrl, arg0);
@@ -416,7 +169,15 @@ void func_80362404(f32 arg0[3]) {
 }
 
 void func_8036247C(f32 arg0[3]) {
+    static s32 D_80373634[3] = {0xA, 0xFF, 0xA};
+    static struct40s D_80373640 = {{{2.0f, 2.0f}, {3.0f, 3.5f}, {0.0f, 0.01f}, {2.0f, 2.5f}, 0.1f, 0.4}, 4.0f, 1.0f};
+    static struct42s D_80373670 = {
+        {{   0.0f, 40.0f,    0.0f}, {   0.0f, 90.0f,    0.0f}}, 
+        {{-400.0f,  0.0f, -400.0f}, { 400.0f,  0.0f,  400.0f}}
+    };
+
     ParticleEmitter *pCtrl = partEmitList_pushNew(1U);
+
     particleEmitter_setSprite(pCtrl, 0x70D);
     particleEmitter_setStartingFrameRange(pCtrl, 1, 6);
     func_802EFFA8(pCtrl, &D_80373634);
@@ -427,6 +188,9 @@ void func_8036247C(f32 arg0[3]) {
 }
 
 void func_80362510(Actor *actor) {
+    static s32 D_803736A0[3] = {0xFF, 0xFF, 0xFF};
+    static struct40s D_803736AC = {{{0.01f, 0.01f}, {1.5f, 1.6f}, {0.05f, 0.7f}, {0.7f, 1.3f}, 0.1f, 0.8f}, 4.0f, 25.0f};
+
     ParticleEmitter *pCtrl;
     f32 sp30[3];
 
@@ -451,7 +215,14 @@ void func_80362510(Actor *actor) {
 
 
 void func_80362680(f32 arg0[3]) {
+    static struct40s D_803736DC = {{{0.7f, 0.9f}, {0.4f, 0.5}, {0.0f, 0.01f}, {0.8f, 1.0f}, 0.15f, 0.3f}, 0.0f, 1.0f};
+    static struct42s D_8037370C = {
+        {{-10.0f, -10.0f, -10.0f}, { 10.0f,  10.0f,  10.0f}}, 
+        {{  0.0f,  30.0f,   0.0f}, {  0.0f,  30.0f,   0.0f}}
+    };
+
     ParticleEmitter *pCtrl = partEmitList_pushNew(1U);
+
     particleEmitter_setSprite(pCtrl, 0x45A);
     particleEmitter_setStartingFrameRange(pCtrl, 2, 2);
     particleEmitter_setPosition(pCtrl, arg0);
@@ -460,6 +231,13 @@ void func_80362680(f32 arg0[3]) {
 }
 
 void func_803626F8(f32 arg0[3]) {
+    static struct40s D_8037373C = {{{0.05f, 0.1f}, {0.1f, 0.2f}, {0.0f, 0.01f}, {1.4f, 1.5f}, 0.01f, 0.7f}, 0.0f, 1.0f};
+    static struct43s D_8037376C = {
+        {{ -5.0f,  -5.0f,  -5.0f}, {  5.0f,   5.0f,   5.0f}}, 
+        {{  0.0f, -50.0f,   0.0f}, {  0.0f, -90.0f,   0.0f}}, 
+        {{-30.0f,  30.0f, -30.0f}, { 30.0f,  60.0f,  30.0f}}
+    };
+
     ParticleEmitter *pCtrl = partEmitList_pushNew(1U);
 
     particleEmitter_setSprite(pCtrl, 0x713);
@@ -471,6 +249,13 @@ void func_803626F8(f32 arg0[3]) {
 
 
 void func_80362770(f32 arg0[3]) {
+    static s32 D_803737B4[3] = {0xFF, 0xFF, 00};
+    static struct40s D_803737C0 = {{{0.1f, 0.3f}, {0.6f, 0.7f}, {0.0f, 0.01f}, {0.3f, 0.4f}, 0.01f, 0.3f}, 4.0f, 16.0f};
+    static struct42s D_803737F0 = {
+        {{-600.0f, -600.0f, -600.0f}, { 600.0f,  600.0f,  600.0f}}, 
+        {{   0.0f,   30.0f,    0.0f}, {   0.0f,   30.0f,    0.0f}},
+    };
+
     ParticleEmitter *pCtrl = partEmitList_pushNew(0x10U);
 
     particleEmitter_setSprite(pCtrl, 0x714);
@@ -482,7 +267,16 @@ void func_80362770(f32 arg0[3]) {
 }
 
 void func_803627F8(f32 arg0[3]){
+    static s32 D_80373820[3] = {130, 155, 40};
+    static struct40s D_8037382C = {{{3.3f, 3.3f}, {4.5f, 4.7f}, {0.0f, 0.01f}, {1.8f, 3.2f}, 0.31f, 0.73f}, 4.0f, 11.0f};
+    static struct43s D_8037385C = {
+        {{-200.0f,  120.0f, -200.0f}, { 200.0f,  130.0f,  200.0f}}, 
+        {{   0.0f, -100.0f,    0.0f}, {   0.0f, -100.0f,    0.0f}}, 
+        {{ -30.0f,    0.0f,  -30.0f}, {  30.0f,    0.0f,   30.0f}}
+    };
+
     ParticleEmitter *pCtrl = partEmitList_pushNew(11);
+    
     particleEmitter_setSprite(pCtrl, ASSET_70D_SPRITE_SMOKE_1);
     particleEmitter_setStartingFrameRange(pCtrl, 1, 6);
     func_802EFFA8(pCtrl, D_80373820);
@@ -493,7 +287,16 @@ void func_803627F8(f32 arg0[3]){
 }
 
 void func_8036288C(f32 arg0[3]){
+    static s32 D_803738A4[3] = {91, 142, 0};
+    static struct40s D_803738B0 = {{{0.2f, 0.9f}, {0.4f, 0.9f}, {0.0f, 0.01f}, {1.8f, 4.2f}, 0.31f, 0.73f}, 4.0f, 13.0f};
+    static struct43s D_803738E0 = {
+        {{-400.0f,   520.0f, -400.0f}, { 400.0f,   750.0f,  400.0f}}, 
+        {{   0.0f, -1200.0f,    0.0f}, {   0.0f, -1600.0f,    0.0f}}, 
+        {{ -30.0f,     0.0f,  -30.0f}, {  30.0f,     0.0f,   30.0f}}
+    };
+
     ParticleEmitter *pCtrl = partEmitList_pushNew(0xd);
+
     particleEmitter_setSprite(pCtrl, ASSET_702_SPRITE_UNKNOWN);
     particleEmitter_setStartingFrameRange(pCtrl, 3, 4);
     func_802EFFA8(pCtrl, D_803738A4);
@@ -504,6 +307,13 @@ void func_8036288C(f32 arg0[3]){
 }
 
 void func_80362920(f32 arg0[3]){
+    static s32 D_80373928[3] = {0, 255, 0};
+    static struct40s D_80373934 = {{{1.4f, 1.9f}, {2.4f, 2.9f}, {0.0f, 3.2f}, {8.8f, 9.2f}, 0.31f, 0.73f}, 4.0f, 13.0f};
+    static struct43s D_80373964 = {
+        {{-60.0f, 100.0f, -60.0f}, { 60.0f, 170.0f,  60.0f}}, 
+        {{  0.0f,   0.0f,   0.0f}, {  0.0f,   0.0f,   0.0f}}, 
+        {{-30.0f,   0.0f, -30.0f}, { 30.0f,   0.0f,  30.0f}}
+    };
     ParticleEmitter *pCtrl = partEmitList_pushNew(0xd);
     particleEmitter_setSprite(pCtrl, ASSET_70D_SPRITE_SMOKE_1);
     particleEmitter_setStartingFrameRange(pCtrl, 1, 6);
@@ -515,7 +325,16 @@ void func_80362920(f32 arg0[3]){
 }
 
 void func_803629B4(f32 arg0[3]){
+    static s32 D_803739AC[3] = {255, 255, 255};
+    static struct40s D_803739B8 = {{{0.2f, 0.9f}, {0.3f, 0.4f}, {0.0f, 0.2f}, {1.0f, 1.2f}, 0.31f, 0.73f}, 4.0f, 13.0f};
+    static struct43s D_803739E8 = {
+        {{-600.0f,  0.0f, -600.0f}, { 600.0f,  0.0f,  600.0f}}, 
+        {{   0.0f,  0.0f,    0.0f}, {   0.0f,  0.0f,    0.0f}}, 
+        {{   0.0f, 40.0f,    0.0f}, {   0.0f, 40.0f,    0.0f}}
+    };
+
     ParticleEmitter *pCtrl = partEmitList_pushNew(0xd);
+    
     particleEmitter_setSprite(pCtrl, ASSET_713_SPRITE_SPARKLE_YELLOW);
     particleEmitter_setStartingFrameRange(pCtrl, 1, 6);
     func_802EFFA8(pCtrl, D_803739AC);
@@ -526,7 +345,16 @@ void func_803629B4(f32 arg0[3]){
 }
 
 void func_80362A48(f32 arg0[3]){
+    static s32 D_80373A30[3] = {255, 255, 255};
+    static struct40s D_80373A3C = {{{1.5f, 1.6f}, {2.5f, 2.9f}, {0.0f, 0.01f}, {2.0f, 2.5f}, 0.1f, 0.4f}, 4.0f, 1.0f};
+    static struct43s D_80373A6C = {
+        {{ 0.0f, 40.0f,  0.0f}, { 0.0f, 90.0f,  0.0f}}, 
+        {{ 0.0f,  0.0f,  0.0f}, { 0.0f,  0.0f,  0.0f}}, 
+        {{-5.0f,  0.0f, -5.0f}, { 5.0f,  0.0f,  5.0f}}
+    };
+
     ParticleEmitter *pCtrl = partEmitList_pushNew(1);
+    
     particleEmitter_setSprite(pCtrl, ASSET_70D_SPRITE_SMOKE_1);
     particleEmitter_setStartingFrameRange(pCtrl, 1, 6);
     func_802EFFA8(pCtrl, D_80373A30);
@@ -537,7 +365,16 @@ void func_80362A48(f32 arg0[3]){
 }
 
 void func_80362ADC(f32 arg0[3]){
+    static s32 D_80373AB4[3] = {30, 30, 30};
+    static struct40s D_80373AC0 = {{{3.0f, 3.4f}, {3.9f, 4.1f}, {0.0f, 0.01f}, {2.0f, 2.5f}, 0.3f, 0.5f}, 4.0f, 1.0f};
+    static struct43s D_80373AF0 = {
+        {{100.0f, 40.0f, 100.0f}, {100.0f, 90.0f, 100.0f}}, 
+        {{  0.0f,  0.0f,   0.0f}, {  0.0f,  0.0f,   0.0f}}, 
+        {{ -5.0f,  0.0f,  -5.0f}, {  5.0f,  0.0f,   5.0f}}
+    };
+
     ParticleEmitter *pCtrl = partEmitList_pushNew(1);
+    
     particleEmitter_setSprite(pCtrl, ASSET_70D_SPRITE_SMOKE_1);
     particleEmitter_setStartingFrameRange(pCtrl, 1, 6);
     func_802EFFA8(pCtrl, D_80373AB4);
@@ -548,6 +385,13 @@ void func_80362ADC(f32 arg0[3]){
 }
 
 void func_80362B70(f32 arg0[3]){
+    static s32 D_80373B38[3] = {130, 130, 130};
+    static struct40s D_80373B44 = {{{2.0f, 2.4f}, {3.9f, 4.1f}, {0.0f, 0.01f}, {2.0f, 2.5f}, 0.2f, 0.7f}, 4.0f, 1.0f};
+    static struct43s D_80373B74 = {
+        {{100.0f, 40.0f, 100.0f}, {100.0f, 90.0f, 100.0f}}, 
+        {{  0.0f,  0.0f,   0.0f}, {  0.0f,  0.0f,   0.0f}}, 
+        {{ -5.0f,  0.0f,  -5.0f}, {  5.0f,  0.0f,   5.0f}}
+    };
     ParticleEmitter *pCtrl = partEmitList_pushNew(1);
     particleEmitter_setSprite(pCtrl, ASSET_70D_SPRITE_SMOKE_1);
     particleEmitter_setStartingFrameRange(pCtrl, 1, 6);
@@ -559,7 +403,16 @@ void func_80362B70(f32 arg0[3]){
 }
 
 void func_80362C04(f32 arg0[3]){
+    static s32 D_80373BBC[3] = {0xff, 0xff, 0xff};
+    static struct40s D_80373BC8 = {{{0.5f, 0.6f}, {1.5f, 1.9f}, {0.0f, 0.01f}, {4.0f, 4.5f}, 0.1f, 0.8f,}, 0.0f, 1.0f};
+    static struct43s D_80373BF8 = {
+        {{ 0.0f, 40.0f,  0.0f}, { 0.0f, 90.0f,  0.0f}}, 
+        {{ 0.0f,  0.0f,  0.0f}, { 0.0f,  0.0f,  0.0f}}, 
+        {{-5.0f,  0.0f, -5.0f}, { 5.0f,  0.0f,  5.0f}}
+    };
+
     ParticleEmitter *pCtrl = partEmitList_pushNew(1);
+    
     particleEmitter_setSprite(pCtrl, ASSET_70D_SPRITE_SMOKE_1);
     particleEmitter_setStartingFrameRange(pCtrl, 1, 6);
     func_802EFFA8(pCtrl, D_80373BBC);
@@ -570,7 +423,16 @@ void func_80362C04(f32 arg0[3]){
 }
 
 void func_80362C98(f32 arg0[3]){
+    static s32 D_80373C40[3] = {160, 170, 170};
+    static struct40s D_80373C4C = {{{2.5f, 2.6f}, {3.5f, 3.9f}, {0.0f, 0.01f}, {0.3f, 0.5f}, 0.1f, 0.8f}, 4.0f, 1.0f};
+    static struct43s D_80373C7C = {
+        {{-60.0f, -60.0f, -60.0f}, { 60.0f,  60.0f,  60.0f}}, 
+        {{  0.0f,   0.0f,   0.0f}, {  0.0f,   0.0f,   0.0f}}, 
+        {{-50.0f, -50.0f, -50.0f}, { 50.0f,  50.0f,  50.0f}}
+    };
+
     ParticleEmitter *pCtrl = partEmitList_pushNew(1);
+
     particleEmitter_setSprite(pCtrl, ASSET_70D_SPRITE_SMOKE_1);
     particleEmitter_setStartingFrameRange(pCtrl, 1, 6);
     func_802EFFA8(pCtrl, D_80373C40);
@@ -581,7 +443,16 @@ void func_80362C98(f32 arg0[3]){
 }
 
 void func_80362D2C(f32 arg0[3]){
+    static s32 D_80373CC4[] = {90, 90, 90};
+    static struct40s D_80373CD0 = {{{1.5f, 1.6f}, {2.5f, 2.9f}, {0.0f, 0.01f}, {0.3f, 0.5f}, 0.1f, 0.8f}, 4.0f, 1.0f};
+    static struct43s D_80373D00 = {
+        {{-60.0f, -60.0f, -60.0f}, {60.0f, 60.0f, 60.0f}},
+        {{  0.0f,   0.0f,   0.0f}, { 0.0f,  0.0f,  0.0f}},
+        {{-50.0f, -50.0f, -50.0f}, {50.0f, 50.0f, 50.0f}}
+    };
+
     ParticleEmitter *pCtrl = partEmitList_pushNew(1);
+
     particleEmitter_setSprite(pCtrl, ASSET_70D_SPRITE_SMOKE_1);
     particleEmitter_setStartingFrameRange(pCtrl, 4, 6);
     func_802EFFA8(pCtrl, D_80373CC4);
@@ -592,6 +463,13 @@ void func_80362D2C(f32 arg0[3]){
 }
 
 void func_80362DC0(f32 arg0[3]){
+    static struct40s D_80373D48 = {{ {1.8f, 3.5f}, {1.8f, 3.5f}, {0.0f, 0.01f}, {5.0f, 5.0f}, 0.0f, 0.9f}, 4.0f, 15.0f };
+    static struct43s D_80373D78 = {
+        {{-450.0f, 700.0f, -450.0f}, {450.0f, 1100.0f, 450.0f}},
+        {{   0.0f, -900.0f,    0.0f}, {  0.0f, -900.0f,   0.0f}},
+        {{-150.0f, -100.0f, -150.0f}, {150.0f,    5.0f, 150.0f}}
+    };
+
     ParticleEmitter *pCtrl = partEmitList_pushNew(0xF);
     particleEmitter_setModel(pCtrl, ASSET_47B_MODEL_ROCK);
     particleEmitter_setPosition(pCtrl, arg0);
@@ -731,5 +609,4 @@ void func_80363388(struct_core2_DB010 *arg0, s32 arg1){
             // could be any unused value(s) between (0x29 and 0x36)
             break;
     }
-
 }

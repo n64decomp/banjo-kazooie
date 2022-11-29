@@ -11,20 +11,6 @@ extern f32 D_80275D24; //aspect
 extern f32 D_80275D28; //near
 extern f32 D_80275D2C; //far
 
-
-/* .rodata */
-extern f64 D_802779F0;
-extern f32 D_80277A08;
-extern f64 D_80277A30;
-extern f32 D_80277A00;
-extern f32 D_80277A04;
-extern f32 D_80277A0C;
-extern f32 D_80277A10;
-extern f32 D_80277A14;
-extern f32 D_80277A18;
-extern f32 D_80277A1C;
-extern f32 D_80277A20;
-
 /* .data */
 f32 D_80280EA0[3];
 f32 D_80280EB0[3];

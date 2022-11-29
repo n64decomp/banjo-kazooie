@@ -33,6 +33,7 @@ typedef struct{
     t n[2][3];\
 }
 
+#define KEY_VALUE_PAIR(T1, T2) struct { T1 key; T2 value; }
 
 typedef struct variable_length_array{
     s32 elem_size;
