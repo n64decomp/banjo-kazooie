@@ -9,26 +9,22 @@ extern void func_80250E6C(f32, f32);
 extern void func_802BB360(s32, f32);
 extern void func_802BB378(s32, f32, f32);
 extern void func_802BB3AC(s32, f32);
-extern void func_8031B908(u8, u8, u8, f32);
+extern void func_8031B908(s32, s32, s32, f32);
 
 /* .bss */
 s32 D_8037BF10;
 
 /* .code */
-#ifndef NONMATCHING
-void func_802888C0(s32 arg0, s32 arg1);
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_1930/func_802888C0.s")
-#else
-void func_802888C0(s32 arg0, s32 arg1){
-    u8 sp1C[3];
-    f32 f0;
-    sp1C[0] = arg0 >> 16;\
-    sp1C[1] = arg0 >> 8;\
-    sp1C[2] = arg0 >> 0;\
-    f0 = reinterpret_cast(f32, arg1);\
-    func_8031B908(sp1C[0], sp1C[1], sp1C[2], f0);
+void func_802888C0(s32 arg0, s32 arg1)
+{
+  u8 sp1C[3];
+  f32 f0;
+  sp1C[0] = (arg0 >> 16) & 0xFF;
+  sp1C[1] = (arg0 >> 8) & 0xFF;
+  sp1C[2] = (arg0 >> 0) & 0xFF;
+  f0 = reinterpret_cast(f32, arg1);
+  func_8031B908(sp1C[0], sp1C[1], sp1C[2], f0);
 }
-#endif
 
 void func_80288914(s32 arg0, s32 arg1, s32 arg2){
     f32 f0 = reinterpret_cast(f32, arg1);
