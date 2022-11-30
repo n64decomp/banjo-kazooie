@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-s64 D_80376E70;
+s64 D_80376E70 = 0xAB8D9F7781280783;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1E820/func_8025C240.s")
 

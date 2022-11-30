@@ -11,7 +11,7 @@ typedef struct struct_27_s{
     u8 pad2[0x12];
 }struct27s;
 
-extern s16 * D_802758E0;
+s16 * D_802758E0 = NULL;
 
 void func_80244C78(int arg0);
 

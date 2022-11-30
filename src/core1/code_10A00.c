@@ -33,18 +33,18 @@ typedef struct {
     f32 joystick[2];
 }Struct_core1_10A00_1;
 
-/* .data */
-extern s32 D_80275D38;
-
 extern s32 D_80276574; // = CORE2_DATA_CRC2
 
+/* .data */
+extern s32 D_80275D30 = 0xC3A68832; //WHAT IS THIS?
+extern s32 D_80275D34 = 0xDDC3A724; //WHAT IS THIS?
+extern s32 D_80275D38 = 0;
 
 /* .bss */
 UNK_TYPE(s32) D_802810E0[4][5];
 u8 D_80281130;
 Struct_core1_10A00_0 D_80281138[4];
 Struct_core1_10A00_0 D_80281218;
-// u8 pad_80281230[0x20];
 Struct_core1_10A00_1 D_80281250[4];
 OSMesg D_802812B0;
 OSMesg D_802812B4;
@@ -57,7 +57,7 @@ OSContStatus D_80281318;
 u8 pad_D_80281320[0x8];
 volatile s32 D_80281328;
 OSThread D_80281330;
-u8 pad_D_802814E0[0x200];
+u8 D_802814E0[0x200];
 f32 D_802816E0;
 OSMesgQueue D_802816E8;
 OSMesg D_80281700[4];
@@ -319,7 +319,7 @@ void func_8024EFB0(void *arg0){
 void func_8024F05C(void){
     osCreateMesgQueue(&D_802812D8, &D_802812B0, 1);
     osCreateMesgQueue(&D_802812F0, &D_802812B4, 1);
-    osCreateThread(&D_80281330, 7, func_8024EFB0, NULL, &D_802816E0, 0x28);
+    osCreateThread(&D_80281330, 7, func_8024EFB0, NULL, D_802814E0 + 0x200, 0x28);
     osSetEventMesg(OS_EVENT_SI, &D_802812D8, &D_802812B0);
     osContInit(&D_802812D8, &D_80281130, &D_80281318);
     osContSetCh(1);

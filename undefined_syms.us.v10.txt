@@ -18,6 +18,7 @@ core1_D_803727F4 = 0x803727F4;
 __osBaseTimer = 0x80285D00;
 FP_D_80392864 = 0x80392864;
 D_803687F0 = 0x803687F0;
+D_80276E70 = 0x80276E70;
 
 n_aspMainTextStart = _binary_bin_core1_n_aspMain_text_bin_start;
 n_aspMainTextEnd = _binary_bin_core1_n_aspMain_text_bin_end;

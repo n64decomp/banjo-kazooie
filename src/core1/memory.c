@@ -43,19 +43,20 @@ typedef struct empty_heap_block{
 
 extern EmptyHeapBlock D_8002D500[LAST_HEAP_BLOCK + 1];
 extern EmptyHeapBlock D_8023DA00;
-extern struct{
-    bool unk0;
-}D_802765B0;
 
-extern u32 heap_occupiedBytes; //occupied heap size
-extern u8 D_80276594;
-extern u8 D_80276598;
-extern void *D_8027659C;
-extern void *D_802765A0;
-extern s32 D_802765A4;
-extern void *D_802765A8;
-extern s32 D_802765AC;
-extern UNK_TYPE(void *) D_802765B4;
+/* .data */
+u32 heap_occupiedBytes = 0; //occupied heap size
+u8 D_80276594 = 0;
+u8 D_80276598 = 0;
+void *D_8027659C = NULL;
+void *D_802765A0 = NULL;
+s32 D_802765A4 = 0;
+void *D_802765A8 = NULL;
+s32 D_802765AC = 0;
+struct{
+    bool unk0;
+}D_802765B0 = {0};
+UNK_TYPE(void *) D_802765B4 = NULL;
 
 /* .bss */
 s32 D_80283220;

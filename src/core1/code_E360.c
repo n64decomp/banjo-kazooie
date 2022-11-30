@@ -14,8 +14,47 @@ typedef struct struct_1_s{
 
 extern u32 D_80000300;
 
-extern OSViMode D_80275C80;
-extern OSViMode D_80275CD0;
+OSViMode D_80275C80 = {
+    OS_VI_NTSC_LPN1,
+    {
+        VI_CTRL_TYPE_16 | VI_CTRL_GAMMA_DITHER_ON | VI_CTRL_GAMMA_ON | 0x3200,       /*ctrl*/
+        292,          /* width*/
+        0x3E52239,    /* burst*/
+        0x20D,        /* vSync*/
+        0xC15,        /* hSync*/
+        0xC150C15,    /* leap */
+        0x8C02D5,     /* hstart */
+        0x200,        /* xScale */
+        0x0,          /* vCurrent */
+    },
+    {
+        {0x248, 0x400, 0x3D01E8, 0xE0204, 2},
+        {0x248, 0x400, 0x3D01E8, 0xE0204, 2},
+    }
+};
+
+OSViMode D_80275CD0 = {
+    OS_VI_MPAL_LPN1,
+    {
+        VI_CTRL_TYPE_16 | VI_CTRL_GAMMA_DITHER_ON | VI_CTRL_GAMMA_ON | 0x3200,       /*ctrl*/
+        292,          /* width*/
+        0x4651E39,    /* burst*/
+        0x20D,        /* vSync*/
+        0x40C11,      /* hSync*/
+        0xC190C1A,    /* leap */
+        0x8C02D5,     /* hstart */
+        0x200,        /* xScale */
+        0x0,          /* vCurrent */
+    },
+    {
+        {0x248, 0x400, 0x3D01E8, 0xE0204, 2},
+        {0x248, 0x400, 0x3D01E8, 0xE0204, 2},
+    }
+};
+
+// 42200000 3FAD097B 41F00000 457A0000
+// C3A68832 DDC3A724 00000000 00000000
+
 
 u32 D_80280720;
 u32 D_80280724;
@@ -183,8 +222,8 @@ void func_8024C408(s32 arg0){
 
 void func_8024C428(void) {
     //zeros all both framebuffers
-    func_80253034(&D_803A5D00, 0, (s32) ((f32)D_80276588*2*D_8027658C*2));
-    osWritebackDCache(&D_803A5D00, (s32) ((f32)D_80276588*2* D_8027658C*2));
+    func_80253034(&D_803A5D00, 0, (s32) ((f32)framebuffer_width*2*framebuffer_height*2));
+    osWritebackDCache(&D_803A5D00, (s32) ((f32)framebuffer_width*2* framebuffer_height*2));
 }
 
 s32 func_8024C4E8(void){

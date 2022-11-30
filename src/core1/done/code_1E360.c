@@ -8,7 +8,7 @@
  * An index used to track the position in the outgoing payload
  * it should write the next key to.
  */
-extern s32 snsPayloadOutCurrPos;
+s32 snsPayloadOutCurrPos = 0;
 
 /*.bss*/
 /**

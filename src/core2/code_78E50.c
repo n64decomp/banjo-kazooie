@@ -154,9 +154,9 @@ void func_802FFED4(s32 item_id, struct8s *arg1){
 //                 var_fp = var_s4 + 4;
 //                 sp104 = temp_v0_5;
 //             }
-//             temp_s5 = (s32) ((40.0f - ((f32) D_80276588 / 2.0f)) + (f32) spE0);
+//             temp_s5 = (s32) ((40.0f - ((f32) framebuffer_width / 2.0f)) + (f32) spE0);
 //             temp_f12 = (f32) temp_s5;
-//             temp_f14 = (f32) (s32) (((((f32) D_8027658C / 2.0f) - func_802FB0E4(arg1)) - -16.0f) - (f32) spDC);
+//             temp_f14 = (f32) (s32) (((((f32) framebuffer_height / 2.0f) - func_802FB0E4(arg1)) - -16.0f) - (f32) spDC);
 //             for(var_v1 = 0; var_v1 != var_s2; var_v1++){
 //                 temp_f2 = (f32) var_v1;
 //                 temp_s2 = var_s2 - 1;

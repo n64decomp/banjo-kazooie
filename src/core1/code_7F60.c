@@ -2,7 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
-extern f32 D_80275908;
+u8 D_80275900[] = {0xCF, 0xAD, 0xA2, 0x90, 0x93, 0x4A, 0x83, 0xF1};
+f32 D_80275908 = BAD_DTOR;
 
 s32 func_80245980(f32 arg0){
 	return arg0*65536.0f;

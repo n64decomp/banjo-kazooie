@@ -738,14 +738,14 @@ void _printbuffer_draw_letter(s32 letter, f32* xPtr, f32* yPtr, f32 arg3, Gfx **
             f32 temp_f24;
             f32 temp_f0_3;
 
-            spC0 = f28 - (D_8027658C - 1)*0.5;
+            spC0 = f28 - (framebuffer_height - 1)*0.5;
             temp_f24 = sp214->x - 1.0;
             spD0 = sp214->y - 1.0;
             gSPVertex((*gfx)++, *vtx, 4, 0);
             for(f28 = 0.0f; f28 < 2.0f; f28+= 1.0f){
                 for(temp_f0_3 = 0.0f; temp_f0_3 < 2.0f; temp_f0_3 += 1.0f){
-                    (*vtx)->v.ob[0] = (s16)(((f64)sp214->x*arg3*temp_f0_3 + ((f64)sp200 - D_80276588 * 0.5)) * 4.0);
-                    (*vtx)->v.ob[1] = (s16)(((f64)spD0*arg3*f28 + ((f64)sp200 - D_80276588 * 0.5)) * 4.0);
+                    (*vtx)->v.ob[0] = (s16)(((f64)sp214->x*arg3*temp_f0_3 + ((f64)sp200 - framebuffer_width * 0.5)) * 4.0);
+                    (*vtx)->v.ob[1] = (s16)(((f64)spD0*arg3*f28 + ((f64)sp200 - framebuffer_width * 0.5)) * 4.0);
                     (*vtx)->v.ob[2] = -0x14;
                     (*vtx)->v.tc[0] = (s16)(temp_f0_3*temp_f24*64.0f);
                     (*vtx)->v.tc[1] = (s16)(f28*spD0*64.0f);

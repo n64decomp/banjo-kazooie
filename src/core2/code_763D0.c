@@ -6,8 +6,8 @@ f32 time_getDelta(void);
 f32 func_802FB0DC(struct8s *);
 f32 func_802FB0E4(struct8s *);
 
-extern s32 D_80276588; //framebuffer_w
-extern s32 D_8027658C; //framebuffer_h
+extern s32 framebuffer_width; //framebuffer_w
+extern s32 framebuffer_height; //framebuffer_h
 
 
 Gfx D_80369920[] = {
@@ -152,8 +152,8 @@ void func_802FD360(struct8s *arg0, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     tmp_f26 = (arg0->unk20 == ITEM_0_HOURGLASS_TIMER && spAC == 0x10) ? 1.0f : 0.0f;
     for(tmp_s4 = 0; tmp_s4 < 2; tmp_s4++){//L802FD528
         for(tmp_s2 = 0; tmp_s2 < 2; tmp_s2++){//
-            (*vtx)->v.ob[0] =  ((func_802FB0DC(arg0) + (((spAC*arg0->unk40*tmp_s2 - spAC*arg0->unk40/2) - (f32)D_80276588/2) + arg0->unk38)) + tmp_f26) * 4.0f;
-            (*vtx)->v.ob[1] =  ((((spA8*arg0->unk40/2 - spA8*arg0->unk40*tmp_s4) + (f32)D_8027658C/2) - arg0->unk3C) - func_802FB0E4(arg0)*arg0->unk4C)*4.0f;
+            (*vtx)->v.ob[0] =  ((func_802FB0DC(arg0) + (((spAC*arg0->unk40*tmp_s2 - spAC*arg0->unk40/2) - (f32)framebuffer_width/2) + arg0->unk38)) + tmp_f26) * 4.0f;
+            (*vtx)->v.ob[1] =  ((((spA8*arg0->unk40/2 - spA8*arg0->unk40*tmp_s4) + (f32)framebuffer_height/2) - arg0->unk3C) - func_802FB0E4(arg0)*arg0->unk4C)*4.0f;
             (*vtx)->v.ob[2] = -0x14;
             (*vtx)->v.tc[0] =  ((spAC -1) * tmp_s2) << 6;
             (*vtx)->v.tc[1] =  ((spA8 -1) * tmp_s4) << 6;

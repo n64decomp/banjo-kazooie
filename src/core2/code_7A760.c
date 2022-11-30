@@ -80,8 +80,8 @@ void func_803017D0(enum item_e item_id, struct8s *arg1, Gfx **gfx, Mtx **mtx, Vt
             }
             temp_f16 = func_802FB0E4(arg1);
             temp_f16 = (-40.0f + temp_f16);
-            var_f14 = (temp_f16 + D_80381F68[var_s6]) - ((f32) D_80276588 / 2);
-            temp_f16 = (((var_s4 * 15.5) + 78.0) - ((f32) D_8027658C / 2));
+            var_f14 = (temp_f16 + D_80381F68[var_s6]) - ((f32) framebuffer_width / 2);
+            temp_f16 = (((var_s4 * 15.5) + 78.0) - ((f32) framebuffer_height / 2));
             var_f14 = (var_s4 & 1) ? var_f14 + 5.0f : var_f14 - 5.0f;
             gSPVertex((*gfx)++, *vtx, 4, 0);
             for(var_v1 = 0; var_v1 < 2; var_v1++){

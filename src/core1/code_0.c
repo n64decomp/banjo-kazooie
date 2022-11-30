@@ -173,7 +173,7 @@ void func_8023DD0C(void){
     ){
         s32 offset;
         //render weird CRC failure image
-        for(x= 0x1e; x< D_8027658C - 0x1e; x++){//L8023DEB4
+        for(x= 0x1e; x< framebuffer_height - 0x1e; x++){//L8023DEB4
             g = x >> 3;
             for(y = 0x14; y < 0xeb; y++){
                 b = ((func_8023DB5C() << 3) + y*y + x*x) >> 3;
@@ -182,7 +182,7 @@ void func_8023DD0C(void){
                 rgba |= _SHIFTL(r, 11, 5 );
                 rgba |= _SHIFTL(g, 6, 5);
                 rgba |= _SHIFTL(1, 0, 1 );
-                offset = ((D_80276588 - 0xff)/2 + y + x*D_80276588);
+                offset = ((framebuffer_width - 0xff)/2 + y + x*framebuffer_width);
                 D_803A5D00[0][offset] = rgba;
                 D_803A5D00[1][offset] = rgba;
             }

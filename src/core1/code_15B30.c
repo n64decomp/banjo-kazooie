@@ -14,7 +14,9 @@ typedef struct {
 extern u8 D_803A5D00[2][0x1ecc0];
 
 /* .data */
-extern Gfx *D_80276580[2];
+Gfx *D_80276580[2] = {NULL, NULL};
+s32  framebuffer_width  = 292;
+s32  framebuffer_height = 216;
 
 /* .bss */
 Mtx *D_80282FF0[2];
@@ -70,8 +72,8 @@ void func_80253640(Gfx ** gdl, void *arg1){
     gDPSetAlphaCompare((*gdl)++, G_AC_NONE);
     gDPSetColorDither((*gdl)++, G_CD_MAGICSQ);
     gDPSetScissor((*gdl)++, G_SC_NON_INTERLACE, D_8028320C, D_8028320E, D_80283210, D_80283212);
-    func_80253208(gdl, 0, 0,  D_80276588, D_8027658C, arg1);
-    gDPSetColorImage((*gdl)++, G_IM_FMT_RGBA, G_IM_SIZ_16b, D_80276588, OS_K0_TO_PHYSICAL(arg1));
+    func_80253208(gdl, 0, 0,  framebuffer_width, framebuffer_height, arg1);
+    gDPSetColorImage((*gdl)++, G_IM_FMT_RGBA, G_IM_SIZ_16b, framebuffer_width, OS_K0_TO_PHYSICAL(arg1));
     gDPSetCycleType((*gdl)++, G_CYC_1CYCLE);
     gDPSetTextureConvert((*gdl)++, G_TC_FILT);
     gDPSetTextureDetail((*gdl)++, G_TD_CLAMP);
@@ -100,7 +102,7 @@ void func_802539AC(Gfx **gdl, s32 arg1){
 
 void func_80253A58(Gfx **gfx, s32 arg1){
     gSPSegment((*gfx)++, 0x00, 0x00000000);
-    gDPSetColorImage((*gfx)++, G_IM_FMT_RGBA, G_IM_SIZ_16b, D_80276588, OS_PHYSICAL_TO_K0(arg1));
+    gDPSetColorImage((*gfx)++, G_IM_FMT_RGBA, G_IM_SIZ_16b, framebuffer_width, OS_PHYSICAL_TO_K0(arg1));
     gSPClearGeometryMode((*gfx)++, G_ZBUFFER | G_SHADE | G_CULL_BOTH | G_FOG | G_LIGHTING | G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR | G_LOD | G_SHADING_SMOOTH);
     gSPTexture((*gfx)++, 0, 0, 0, G_TX_RENDERTILE, G_OFF);
     gSPSetGeometryMode((*gfx)++, G_ZBUFFER | G_SHADE | G_SHADING_SMOOTH);
@@ -222,8 +224,8 @@ void func_8025425C(void){
         D_80276580[1] = (Gfx *)malloc(29600);
         D_80282FF0[0] = (Mtx *)malloc(44800);
         D_80282FF0[1] = (Mtx *)malloc(44800);
-        D_80282FF8[0] = malloc(6880);
-        D_80282FF8[1] = malloc(6880);
+        D_80282FF8[0] = (Vtx *)malloc(6880);
+        D_80282FF8[1] = (Vtx *)malloc(6880);
         func_80254464();
     }
     D_80283000 = 0;
@@ -235,8 +237,8 @@ void func_802542F4(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     D_80283210 = arg1;
     D_8028320E = arg2;
     D_80283212 = arg3;
-    D_80276588 = arg1 - arg0;
-    D_8027658C = arg3 - arg2;
+    framebuffer_width = arg1 - arg0;
+    framebuffer_height = arg3 - arg2;
     func_8024CC5C();
 }
 

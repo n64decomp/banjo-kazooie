@@ -20,8 +20,8 @@ void func_8025ABB8(enum comusic_e, s32, s32, s32);
 void *func_802EDAA4(SLA **, s32*);
 
 /* .bss */
-extern CoMusic *D_80276E30; //active track ptr
-extern int D_80276E34;
+CoMusic *D_80276E30 = NULL; //active track ptr
+int D_80276E34 = 0;
 
 /* .code */
 CoMusic *func_802598B0(enum comusic_e track_id) {

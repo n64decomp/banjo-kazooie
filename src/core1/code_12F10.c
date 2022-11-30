@@ -4,9 +4,6 @@
 
 
 void func_8024F35C(s32);
-
-extern f64 D_80278190;
-
  
 OSMesgQueue  D_80282390;
 OSMesg       D_802823A8;
@@ -19,7 +16,7 @@ f32          D_80282424;
 f32          D_80282428;
 f32          D_8028242C;
 OSThread     D_80282430;
-u8           pad_D_80282430[0x200];
+u8           D_802825E0[0x200];
 
 /* .code */
 void func_80250D94(f32, f32, f32);
@@ -110,7 +107,6 @@ void func_80250C08(void) {
 }
 
 void func_80250C84(void){
-    extern s32 D_802827E0;
     s32 pfs_status;
     
     func_8024F35C(4);
@@ -124,7 +120,7 @@ void func_80250C84(void){
     D_802823B0 = D_802823AC;
     if(D_802823AC){
         osCreateMesgQueue(&D_80282390, &D_802823A8, 1);
-        osCreateThread(&D_80282430, 8, func_8025098C, NULL, &D_802827E0, 0x19);
+        osCreateThread(&D_80282430, 8, func_8025098C, NULL, &D_802825E0[0x200], 0x19);
         osStartThread(&D_80282430);
         func_8024BDAC(&D_80282390, 0);
     }
@@ -136,7 +132,7 @@ void func_80250D94(f32 arg0, f32 arg1, f32 arg2){
     f32 f4;
     if(arg2 != 0.0f && D_802823AC){
         if(func_802E4A08() == 0){
-            if(!(D_80278190 < D_80282420 - D_80282424) || !(arg0 + arg1 < D_80282428 + D_8028242C)){
+            if(!(0.1 < D_80282420 - D_80282424) || !(arg0 + arg1 < D_80282428 + D_8028242C)){
                 D_80282420 = arg2;
                 D_80282424 = 0.0f;
                 D_80282428 = arg0;

@@ -26,7 +26,7 @@ u8 _gcbound_blue; //D_80380902
 void  _gcbound_draw(Gfx** dl, s32 a, s32 r, s32 g, s32 b){
     gSPDisplayList((*dl)++, &D_803688E8);
     gDPSetFogColor((*dl)++, r, g, b, a);
-    gSPTextureRectangle((*dl)++, 0,  0, (D_80276588-1)<<2, (D_8027658C-1)<<2, 0, 0, 0, 0x100, 0x100);
+    gSPTextureRectangle((*dl)++, 0,  0, (framebuffer_width-1)<<2, (framebuffer_height-1)<<2, 0, 0, 0, 0x100, 0x100);
 }
 
 void gcbound_draw(Gfx** dl){

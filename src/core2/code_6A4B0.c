@@ -100,7 +100,7 @@ void func_802F1440(Struct_Core2_6A4B0_2 *arg0, Gfx **gfx, Mtx **mtx, Vtx **vtx) 
     gSPVertex((*gfx)++, osVirtualToPhysical(sp9C), 16, 0);
     for(sp4C = 0; sp4C < 6; sp4C++){
         for(sp50 = 0; sp50 < 9; sp50++){
-            gDPLoadTextureTile((*gfx)++, osVirtualToPhysical((u16*)arg0->unk8 + (sp4C*0x20 + 0xC) * D_80276588 + (sp50*0x20 + 1)), G_IM_FMT_RGBA, G_IM_SIZ_16b, D_80276588, 0, 0, 0, 33, 33, 0, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
+            gDPLoadTextureTile((*gfx)++, osVirtualToPhysical((u16*)arg0->unk8 + (sp4C*0x20 + 0xC) * framebuffer_width + (sp50*0x20 + 1)), G_IM_FMT_RGBA, G_IM_SIZ_16b, framebuffer_width, 0, 0, 0, 33, 33, 0, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
             for(sp54 = 0; sp54 < 2; sp54++){
                 gSP1Triangle((*gfx)++, var_s3, var_s3 + 1, var_s3 + 2, 0);
                 var_s3 += 3;
@@ -154,12 +154,12 @@ Struct_Core2_6A4B0_2 *func_802F18F0(void){
 
 void func_802F1934(Struct_Core2_6A4B0_2 * arg0, s32 arg1){
     func_802F18B8(arg0);
-    arg0->unk4 = malloc(D_80276588*D_8027658C*sizeof(u16) + 0x10);
+    arg0->unk4 = malloc(framebuffer_width*framebuffer_height*sizeof(u16) + 0x10);
     arg0->unk8 = arg0->unk4;
     while((arg0->unk8 & 0x10) == 0){
         (arg0->unk8)++;
     }
-    func_80253010(arg0->unk8, D_803A5D00[arg1], D_80276588*D_8027658C*sizeof(u16));
+    func_80253010(arg0->unk8, D_803A5D00[arg1], framebuffer_width*framebuffer_height*sizeof(u16));
     osWriteBackDCacheAll();
 }
 
@@ -186,8 +186,8 @@ void func_802F1A10(Struct_Core2_6A4B0_2 *arg0, f32 arg1) {
     cos = cosf(arg1 * 2 * BAD_PI);
     sin = sinf(arg1 * 2 * BAD_PI);
     func_8024C5CC(spC0);
-    spCC[0] = (-(D_80276588 / 2) * 4) + 8;
-    spCC[1] = ((D_8027658C / 2) * 4) - 0x38;
+    spCC[0] = (-(framebuffer_width / 2) * 4) + 8;
+    spCC[1] = ((framebuffer_height / 2) * 4) - 0x38;
     spCC[2] = -0xA;
     for(var_s6 = 0; var_s6 < 6; var_s6++){
         for(var_s4 = 0; var_s4 < 9; var_s4++){

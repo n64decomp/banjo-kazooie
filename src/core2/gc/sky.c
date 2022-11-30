@@ -76,7 +76,7 @@ void sky_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx){
 
     func_8024CE60(5.0f, 15000.0f);
     if(gcSky.model_bins[0]){
-        func_80254084(gfx, 0, 0, (s32)(f32) D_80276588, (s32)(f32)D_8027658C,0, 0, 0); //fill screen with black
+        func_80254084(gfx, 0, 0, (s32)(f32) framebuffer_width, (s32)(f32)framebuffer_height,0, 0, 0); //fill screen with black
         func_8024C904(gfx, mtx);
         func_8024C5CC(position);
         for(i = 0; i < 3; i++){
@@ -90,7 +90,7 @@ void sky_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx){
         }
     }
     else{//L8030B200
-        func_80254084(gfx, 0, 0, (s32)(f32) D_80276588, (s32)(f32)D_8027658C, 0, 0, 0);
+        func_80254084(gfx, 0, 0, (s32)(f32) framebuffer_width, (s32)(f32)framebuffer_height, 0, 0, 0);
     }//L8030B254
 }
 

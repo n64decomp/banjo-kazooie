@@ -4,8 +4,8 @@
 
 extern f32 func_802FB0E4(struct8s*);
 
-extern s32 D_80276588;
-extern s32 D_8027658C;
+extern s32 framebuffer_width;
+extern s32 framebuffer_height;
 
 /* .data */
 BKSprite * D_8036A910 = NULL;
@@ -105,8 +105,8 @@ void func_80300D0C(enum item_e item_id, struct8s *arg1, Gfx **gfx, Mtx **mtx, Vt
         else{//L80300F58
            gDPSetPrimColor((*gfx)++, 0, 0, 0xFF, 0xFF, 0xFF, 0x78); 
         }
-        f20 = 96.0f - (f32)D_80276588/2 + (i*13);
-        f14 = (f32)D_8027658C/2 - func_802FB0E4(arg1) - D_80381F08[s6] - -48.0f;
+        f20 = 96.0f - (f32)framebuffer_width/2 + (i*13);
+        f14 = (f32)framebuffer_height/2 - func_802FB0E4(arg1) - D_80381F08[s6] - -48.0f;
         f14 = (i & 1) ? f14 + 5.75 : f14 - 5.75;
         gSPVertex((*gfx)++, *vtx, 4, 0);
         for(tmp_v1 = 0; tmp_v1 < 2; tmp_v1++){//L8030101C

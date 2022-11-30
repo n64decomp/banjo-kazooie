@@ -481,7 +481,7 @@ void func_802E6628(s32 arg0, char *arg1) {
 
     sp2C = func_802E4E54(0);
     arg0 *= D_8037E900->unk4[sp2C].height;
-    func_802E502C((s32) (((f32) D_80276588 - (f32) func_802E51A4(arg1, sp2C, 0, D_8037E900->flags)) / 2), arg0, sp2C, arg1, sp28);
+    func_802E502C((s32) (((f32) framebuffer_width - (f32) func_802E51A4(arg1, sp2C, 0, D_8037E900->flags)) / 2), arg0, sp2C, arg1, sp28);
 }
 
 void func_802E66F0(s32 arg0, char *arg1) {
@@ -491,7 +491,7 @@ void func_802E66F0(s32 arg0, char *arg1) {
 
     sp24 = func_802E4E54(0);
     arg0 *= D_8037E900->unk4[sp24].height;
-    func_802E502C((s32) (((f32) D_80276588 - (f32) func_802E51A4(arg1, sp24, 0, D_8037E900->flags)) / 2), arg0, sp24, arg1, D_8037E900->unk1C);
+    func_802E502C((s32) (((f32) framebuffer_width - (f32) func_802E51A4(arg1, sp24, 0, D_8037E900->flags)) / 2), arg0, sp24, arg1, D_8037E900->unk1C);
 }
 
 void func_802E67AC(void){

@@ -83,23 +83,23 @@ void func_802F1FC0(Struct65s *self, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     func_8025235C(&spD0, &spD0);
     spD0[0] = (-297.0f * spD0[0]) / spD0[2];
     spD0[1] = (297.0f * spD0[1]) / spD0[2];
-    spC4 = (s32) (spD0[0] + (f32) (D_80276588 / 2));
-    spC0 = (s32) (spD0[1] + (f32) (D_8027658C / 2));
+    spC4 = (s32) (spD0[0] + (f32) (framebuffer_width / 2));
+    spC0 = (s32) (spD0[1] + (f32) (framebuffer_height / 2));
     if (spC4 < 0) {
         spC4 = 0;
-    } else if (D_80276588 - 0x20 < spC4) {
-        spC4 = D_80276588 - 0x20;
+    } else if (framebuffer_width - 0x20 < spC4) {
+        spC4 = framebuffer_width - 0x20;
     }
     if (spC0 < 0) {
         spC0 = 0;
-    } else if (D_8027658C - 0x20 < spC0) {
-        spC0 = D_8027658C - 0x20;
+    } else if (framebuffer_height - 0x20 < spC0) {
+        spC0 = framebuffer_height - 0x20;
     }
     
     gSPDisplayList((*gfx)++, D_80368AC0);
     func_80347FC0(gfx, D_80368AB0[1].unk0, 0, 0, 0, 0, 0, NULL, NULL, &width, &height);
-    temp_addr = &D_803A5D00[func_8024BD80()][spC0*D_80276588 + (spC4 & 0xFFFC)];
-    gDPSetTextureImage((*gfx)++, G_IM_FMT_RGBA, G_IM_SIZ_16b, D_80276588, temp_addr);
+    temp_addr = &D_803A5D00[func_8024BD80()][spC0*framebuffer_width + (spC4 & 0xFFFC)];
+    gDPSetTextureImage((*gfx)++, G_IM_FMT_RGBA, G_IM_SIZ_16b, framebuffer_width, temp_addr);
     gDPSetTile((*gfx)++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 9, 0x0080, G_TX_LOADTILE, 0, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOLOD);
     gDPLoadSync((*gfx)++);
     gDPLoadTile((*gfx)++, G_TX_LOADTILE, 0, 0, 0x008C, 0x007C);

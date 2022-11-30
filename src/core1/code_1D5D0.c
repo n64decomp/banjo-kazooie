@@ -4,6 +4,12 @@
 #include "SnS.h"
 #include "save.h"
 
+bool snsToRestoreItems = FALSE;
+struct SnsPayload *snsBasePayloadPtr1 = NULL;
+struct SnsPayload *snsBasePayloadPtr2 = NULL;
+struct SnsPayload *snsBasePayloadPtr3 = NULL;
+struct SnsPayload *snsBasePayloadPtr4 = NULL;
+
 /* .bss */
 StopNSwop_Data snsParsedKeys;
 struct GlobalSave gSaveData;

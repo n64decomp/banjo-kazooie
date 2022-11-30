@@ -10,8 +10,8 @@ extern void func_8033DC18(void);
 extern f32  func_8033DC20(void);
 extern void func_8033DC9C(f32);
 
-extern s32 D_80276588; //framebuffer_width
-extern s32 D_8027658C; //framebuffer_height
+extern s32 framebuffer_width; //framebuffer_width
+extern s32 framebuffer_height; //framebuffer_height
 extern s16 D_803A5D00[2][0xF660]; //framebuffer
 
 /* .bss */
@@ -34,7 +34,7 @@ void func_802E31D0(s32 arg0) {
     if ((temp_v0 == 0) || (temp_v0 == 3)) {
         func_8024A85C(arg0);
         func_80249DE0(0, 0, D_8037E8C0.unkC, 0, 0);
-        osWritebackDCache(D_803A5D00[arg0], (s32) ((f32) D_80276588 * (f32) D_8027658C * sizeof(s16)));
+        osWritebackDCache(D_803A5D00[arg0], (s32) ((f32) framebuffer_width * (f32) framebuffer_height * sizeof(s16)));
     }
 }
 
@@ -52,14 +52,14 @@ void func_802E329C(s32 arg0, Gfx **gfx_begin, Gfx **gfx_end) {
     vtx_start = vtx;
     func_802539AC(&gfx, arg0);
     if (D_8037E8C0.unk14 == 2) {
-        func_80254084(&gfx, 0, 0, (s32) (f32) D_80276588, (s32) (f32) D_8027658C, 0, 0, 0);
+        func_80254084(&gfx, 0, 0, (s32) (f32) framebuffer_width, (s32) (f32) framebuffer_height, 0, 0, 0);
     }
     if ((D_8037E8C0.unk14 == 0) || (D_8037E8C0.unk14 == 3)) {
         func_8024C904(&gfx, &mtx);
         gcbound_draw(&gfx);
     }
     if (D_8037E8C0.unk14 == 1) {
-        func_80254084(&gfx, 0, 0, (s32) (f32) D_80276588, (s32) (f32) D_8027658C, 0, 0, 0);
+        func_80254084(&gfx, 0, 0, (s32) (f32) framebuffer_width, (s32) (f32) framebuffer_height, 0, 0, 0);
         func_8024C904(&gfx, &mtx);
         func_802F1858(D_8037E8C0.unk10, &gfx, &mtx, &vtx);
     }

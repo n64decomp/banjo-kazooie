@@ -40,10 +40,10 @@ void func_80314BB0(Gfx **gfx, Mtx **mtx, Vtx **vtx, void * frame_buffer_1, void 
     s32 y;
 
     gSPDisplayList((*gfx)++, D_8036C630);
-    gDPSetColorImage((*gfx)++, G_IM_FMT_RGBA, G_IM_SIZ_16b, D_80276588, OS_PHYSICAL_TO_K0(frame_buffer_1));
-    for(y = 0;  y < D_8027658C / 32 + 1; y++){
-        for(x = 0; x < D_80276588 / 32 + 1; x++){
-            gDPLoadTextureTile((*gfx)++, osVirtualToPhysical(frame_buffer_2), G_IM_FMT_RGBA, G_IM_SIZ_16b, D_80276588, D_8027658C,
+    gDPSetColorImage((*gfx)++, G_IM_FMT_RGBA, G_IM_SIZ_16b, framebuffer_width, OS_PHYSICAL_TO_K0(frame_buffer_1));
+    for(y = 0;  y < framebuffer_height / 32 + 1; y++){
+        for(x = 0; x < framebuffer_width / 32 + 1; x++){
+            gDPLoadTextureTile((*gfx)++, osVirtualToPhysical(frame_buffer_2), G_IM_FMT_RGBA, G_IM_SIZ_16b, framebuffer_width, framebuffer_height,
                 0x20*x, 0x20*y, 0x20*(x + 1) - 1, 0x20*(y + 1) - 1,
                 NULL, G_TX_CLAMP, G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK, 0, 0
             );
@@ -53,7 +53,7 @@ void func_80314BB0(Gfx **gfx, Mtx **mtx, Vtx **vtx, void * frame_buffer_1, void 
         }
     }
     gSPDisplayList((*gfx)++, D_8036C690);
-    gDPSetColorImage((*gfx)++, G_IM_FMT_RGBA, G_IM_SIZ_16b, D_80276588, OS_PHYSICAL_TO_K0(D_803A5D00[func_8024BDA0()]));
+    gDPSetColorImage((*gfx)++, G_IM_FMT_RGBA, G_IM_SIZ_16b, framebuffer_width, OS_PHYSICAL_TO_K0(D_803A5D00[func_8024BDA0()]));
 }
 
 void func_80315084(Gfx **gfx, Mtx **mtx, Vtx **vtx){

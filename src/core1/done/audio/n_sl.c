@@ -5,8 +5,8 @@
 #include "n_libaudio.h"
 
 
-extern N_ALSynth *D_80276E80;
-extern N_ALSynth *n_syn;
+N_ALSynth *D_80276E80 = NULL;
+N_ALSynth *n_syn = NULL;
 
 void n_alInit(N_ALGlobals *g, ALSynConfig *config)
 {

@@ -9,13 +9,14 @@ void func_8024632C(Mtx*, f32, f32, f32, f32);
 f32 func_80263FF0(f32);
 f32 cosf(f32);
 
-extern f32 D_80276578;
-extern f32 D_8027657C;
+#ifndef CORE2_DATA_CRC2
+    #define CORE2_DATA_CRC2 0
+#endif
 
-
-extern f64 D_80278220;
-extern f64 D_80278228;
-extern f64 D_80278230;
+s32 D_80276570 = 0xFF62C2B8; //WHAT IS THIS?
+s32 D_80276574 = CORE2_DATA_CRC2;
+f32 D_80276578 = BAD_DTOR;
+f32 D_8027657C = BAD_DTOR;
 
 /*.bss*/
 Mtx_t D_80282810;
@@ -170,7 +171,7 @@ void mlMtxRotYaw(f32 arg0) {
     s32 i;
 
     if (arg0 != 0.0f) {
-        arg0 *= D_80278220;
+        arg0 *= BAD_DTOR;
         sin = sinf(arg0);
         cos = cosf(arg0);
         for(i = 0; i < 3; i++){
@@ -218,7 +219,7 @@ void func_80251F8C(f32 arg0) {
     s32 i;
 
     if (arg0 != 0.0f) {
-        arg0 *= D_80278228;
+        arg0 *= BAD_DTOR;
         sin = sinf(arg0);
         cos = cosf(arg0);
         for(i = 0; i < 3; i++){
@@ -238,7 +239,7 @@ void func_8025208C(f32 arg0) {
     s32 i;
 
     if (arg0 != 0.0f) {
-        arg0 *= D_80278230;
+        arg0 *= BAD_DTOR;
         sin = sinf(arg0);
         cos = cosf(arg0);
         for(i = 0; i < 3; i++){

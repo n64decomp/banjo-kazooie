@@ -13,9 +13,6 @@ Gfx D_80275880[] = {
     gsSPEndDisplayList()
 };
 
-extern f64 D_80277650;
-extern f64 D_80277658;
-
 /* .code */
 void func_80241490(Gfx **gfx, Vtx **vtx, s32 *arg2[3], s32 arg3[3], s32 arg4[3], s32 arg5[3], s32 arg6, s32 arg7) {
     s32 spB4[3];
@@ -106,7 +103,7 @@ void func_802424D4(Gfx **gfx, Mtx **mtx, Vtx **vtx, f32 arg3[3], f32 arg4[3], f3
     sp50[2] = arg4[2];
     if ((arg3[0] != sp50[0]) || (arg3[1] != sp50[1]) || (arg3[2] != sp50[2])) {
         if ((arg3[0] == sp50[0]) && (arg3[2] == sp50[2])) {
-            sp50[0] += D_80277658;
+            sp50[0] += 0.05;
         }
         sp80[0] = sp50[0] - arg3[0];
         sp80[1] = sp50[1] - arg3[1];

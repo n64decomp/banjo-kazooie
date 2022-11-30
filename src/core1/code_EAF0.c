@@ -6,10 +6,10 @@ extern void guPerspective(Mtx *, u16*, f32, f32, f32, f32, f32);
 extern f32 ml_vec3f_dot_product(f32[3], f32[3]);
 
 /* .data */
-extern f32 D_80275D20; //fovy
-extern f32 D_80275D24; //aspect
-extern f32 D_80275D28; //near
-extern f32 D_80275D2C; //far
+f32 D_80275D20 = 40.0f; //fovy
+f32 D_80275D24 = 1.35185182f; //aspect
+f32 D_80275D28 = 30.0f;   //near
+f32 D_80275D2C = 4000.0f; //far
 
 /* .data */
 f32 D_80280EA0[3];
@@ -96,7 +96,7 @@ void func_8024C794(f32 *arg0, f32 *arg1, f32 *arg2){
 void func_8024C7B8(Gfx **gfx, Mtx **mtx){
     gSPViewport((*gfx)++, &D_80280F10[D_80281018]);
 
-    guOrtho(*mtx, -(2*(f32)D_80276588), (2*(f32)D_80276588), -(2*(f32)D_8027658C), (2*(f32)D_8027658C), 1.0f, 20.0f, 1.0f);
+    guOrtho(*mtx, -(2*(f32)framebuffer_width), (2*(f32)framebuffer_width), -(2*(f32)framebuffer_height), (2*(f32)framebuffer_height), 1.0f, 20.0f, 1.0f);
     gSPMatrix((*gfx)++, OS_K0_TO_PHYSICAL((*mtx)++), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
     
     guTranslate(*mtx, 0.0f, 0.0f, 0.0f);
@@ -153,7 +153,7 @@ f32 func_8024CC50(void){
 }
 
 void func_8024CC5C(void){
-    func_8024CE74((s32) ((f32)D_80276588/2), (s32) ((f32)D_8027658C/2), (s32) ((f32)D_80276588/2), (s32) ((f32)D_8027658C/2));
+    func_8024CE74((s32) ((f32)framebuffer_width/2), (s32) ((f32)framebuffer_height/2), (s32) ((f32)framebuffer_width/2), (s32) ((f32)framebuffer_height/2));
 }
 
 void func_8024CCC4(void){
@@ -395,13 +395,13 @@ bool func_8024E030(f32 arg0[3], f32 *arg1)
         return 0;
     }
     temp_f2 = gu_sqrtf((sp34[1] * sp34[1]) + (sp34[2] * sp34[2])) * sinf(sp28);
-    temp_f2_2 = (((f32) D_80276588) / ((f32) D_8027658C)) * temp_f2;
-    arg1[0] = (f32) (((sp34[0] / temp_f2_2) + 1) * (((f32) D_80276588) / 2));
-    arg1[1] = (f32) ((1 - (sp34[1] / temp_f2)) * (((f32) D_8027658C) / 2));
-    if ((arg1[0] < (-((f32) D_80276588))) || ((((f32) D_80276588) * 2) < arg1[0])) {
+    temp_f2_2 = (((f32) framebuffer_width) / ((f32) framebuffer_height)) * temp_f2;
+    arg1[0] = (f32) (((sp34[0] / temp_f2_2) + 1) * (((f32) framebuffer_width) / 2));
+    arg1[1] = (f32) ((1 - (sp34[1] / temp_f2)) * (((f32) framebuffer_height) / 2));
+    if ((arg1[0] < (-((f32) framebuffer_width))) || ((((f32) framebuffer_width) * 2) < arg1[0])) {
         return 0;
     }
-    if ((arg1[1] < (-((f32) D_8027658C))) || ((((f32) D_8027658C) * 2) < arg1[1])) {
+    if ((arg1[1] < (-((f32) framebuffer_height))) || ((((f32) framebuffer_height) * 2) < arg1[1])) {
         return 0;
     }
     return 1;

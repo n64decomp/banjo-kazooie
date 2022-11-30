@@ -139,8 +139,8 @@ void func_802FDEE0(s32 arg0, struct8s *arg1, Gfx **arg2, Mtx **arg3, Vtx **arg4)
                     }
                 }
             }
-            sp128 = (244.0f - ((f32) D_80276588 / 2));
-            sp124 = func_802FB0E4(arg1) + ((f32) D_8027658C / 2) - 246.0f;
+            sp128 = (244.0f - ((f32) framebuffer_width / 2));
+            sp124 = func_802FB0E4(arg1) + ((f32) framebuffer_height / 2) - 246.0f;
             guTranslate(*arg3, sp128 * 4.0f, sp124 * 4.0f, 0.0f);
             gSPMatrix((*arg2)++, OS_K0_TO_PHYSICAL((*arg3)++), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
             guRotate(*arg3, func_802FDE60(D_803815D8 + D_803815DC), 0.0f, 0.0f, 1.0f);

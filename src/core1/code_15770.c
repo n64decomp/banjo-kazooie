@@ -13,14 +13,14 @@ extern u8 D_803A5D00[2][0x1ecc0];
 void func_80253208(Gfx **gdl, s32 x, s32 y, s32 w, s32 h, void *color_buffer);
 
 void func_80253190(Gfx **gdl){
-    func_80253208(gdl, 0, 0, D_80276588, D_8027658C, D_803A5D00[func_8024BDA0()]);
+    func_80253208(gdl, 0, 0, framebuffer_width, framebuffer_height, D_803A5D00[func_8024BDA0()]);
 }
 
 void func_80253208(Gfx **gdl, s32 x, s32 y, s32 w, s32 h, void *color_buffer){
     if( D_80282FE0.unk0 != NULL && (getGameMode() != GAME_MODE_4_PAUSED || func_80335134())){
         //draw z_buffer
         gDPPipeSync((*gdl)++);
-        gDPSetColorImage((*gdl)++, G_IM_FMT_RGBA, G_IM_SIZ_16b, D_80276588, OS_K0_TO_PHYSICAL(D_80282FE0.unk0));
+        gDPSetColorImage((*gdl)++, G_IM_FMT_RGBA, G_IM_SIZ_16b, framebuffer_width, OS_K0_TO_PHYSICAL(D_80282FE0.unk0));
         gDPSetCycleType((*gdl)++, G_CYC_FILL);
         gDPSetRenderMode((*gdl)++, G_RM_NOOP, G_RM_NOOP2);
         gDPSetFillColor((*gdl)++, 0xFFFCFFFC);
@@ -28,7 +28,7 @@ void func_80253208(Gfx **gdl, s32 x, s32 y, s32 w, s32 h, void *color_buffer){
         
         //draw color_buffer
         gDPPipeSync((*gdl)++);
-        gDPSetColorImage((*gdl)++, G_IM_FMT_RGBA, G_IM_SIZ_16b, D_80276588, OS_K0_TO_PHYSICAL(color_buffer));
+        gDPSetColorImage((*gdl)++, G_IM_FMT_RGBA, G_IM_SIZ_16b, framebuffer_width, OS_K0_TO_PHYSICAL(color_buffer));
     }
 }
 
