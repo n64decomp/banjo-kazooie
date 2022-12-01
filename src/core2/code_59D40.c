@@ -289,7 +289,7 @@ void func_802E1168(Actor *this) {
     }
 
     actor_setOpacity(this, local->unk4);
-    this->unk124_9 = (255.0 == local->unk4) ? 1 : 2;
+    this->depth_mode = (255.0 == local->unk4) ? MODEL_RENDER_DEPTH_FULL : MODEL_RENDER_DEPTH_COMPARE;
 }
 
 extern f32 D_8037E624;

@@ -109,8 +109,8 @@ Actor* func_8034FCDC(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     sp2C[0] = 0.0f;
     sp2C[1] = sp28->unk14;
     sp2C[2] = 0.0f;
-    set_model_render_mode(2);
-    func_803391A4(gfx, mtx, sp28->unk8, sp2C, sp28->unk18 * 0.1, NULL, D_80386150.unk0);
+    modelRender_setDepthMode(MODEL_RENDER_DEPTH_COMPARE);
+    modelRender_draw(gfx, mtx, sp28->unk8, sp2C, sp28->unk18 * 0.1, NULL, D_80386150.unk0);
 
     return NULL;
 }

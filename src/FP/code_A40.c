@@ -106,7 +106,7 @@ void chXmasTree_update(Actor *this){
         }
     }
 
-    this->unk124_9 = 1;
+    this->depth_mode = 1;
     if(jiggyscore_isCollected(JIGGY_2F_FP_XMAS_TREE) || levelSpecificFlags_get(0x29)){
         FP_func_80386EF4(this, 1);
         return;

@@ -9,7 +9,7 @@ extern f32 *func_802E05AC(s32);
 extern f32  func_802E4B38(void);
 extern void func_8033A8F0(s32, s32, f32[4]);
 extern f32  func_8033DDB8(void);
-BKAnimationList *func_8033A0D4(BKModelBin *arg0);
+BKAnimationList *model_getAnimationList(BKModelBin *arg0);
 extern void func_8034BB08(s32);
 extern void func_803458E4(f32[4], f32[4], f32[4], f32);
 
@@ -160,9 +160,9 @@ Actor *func_802DD188(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     func_802DD080(gfx, mtx);
     {sp60[0] = 0.0f; sp60[1] = 0.0f; sp60[2] = 0.0f;};
     {sp54[0] = 0.0f; sp54[1] = 0.0f; sp54[2] = 0.0f;};
-    set_model_render_mode(1);
-    func_803391A4(gfx, mtx, sp60, NULL, 1.0f, sp54, D_8037DEA4);
-    func_803391A4(gfx, mtx, sp60, NULL, 1.0f, sp54, D_8037DEA8);
+    modelRender_setDepthMode(MODEL_RENDER_DEPTH_FULL);
+    modelRender_draw(gfx, mtx, sp60, NULL, 1.0f, sp54, D_8037DEA4);
+    modelRender_draw(gfx, mtx, sp60, NULL, 1.0f, sp54, D_8037DEA8);
 
     gDPSetTextureFilter((*gfx)++, G_TF_POINT);
     gDPSetColorDither((*gfx)++, G_CD_DISABLE);
@@ -174,7 +174,7 @@ Actor *func_802DD188(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     func_8033A2D4(func_803253A0, sp6C);
     func_8033A2E8(func_80325794, marker);
 
-    func_803391A4(gfx, mtx, sp60, NULL, D_80368250, sp54, func_80330B1C(marker));
+    modelRender_draw(gfx, mtx, sp60, NULL, D_80368250, sp54, func_80330B1C(marker));
     gDPSetTextureFilter((*gfx)++, G_TF_BILERP);
     gDPSetColorDither((*gfx)++, G_CD_MAGICSQ);
     func_802DF71C(gfx, mtx, vtx);
@@ -222,7 +222,7 @@ f32 *func_802DD584(s32 arg0){
 
     // temp_f0 = D_80376F48;
     sizeof(BKAnimationList);
-    temp_v1 = (BKAnimation*)(func_8033A0D4(func_80330B1C(D_8037DEA0)) + 1);
+    temp_v1 = (BKAnimation*)(model_getAnimationList(func_80330B1C(D_8037DEA0)) + 1);
     D_8037DF70[0] = temp_v1[5 + arg0].unk0[0] * 0.01;
     D_8037DF70[1] = temp_v1[5 + arg0].unk0[1] * 0.01;
     D_8037DF70[2] = temp_v1[5 + arg0].unk0[2] * 0.01;

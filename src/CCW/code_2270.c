@@ -113,8 +113,8 @@ Actor *func_803889AC(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
         sp2C[2] = this->roll;
 
         func_8033A238(func_803356A0(local->unk4, local));
-        set_model_render_mode(2);
-        func_803391A4(gfx, mtx, this->position, sp2C, 1.0f, NULL, local->unk8);
+        modelRender_setDepthMode(MODEL_RENDER_DEPTH_COMPARE);
+        modelRender_draw(gfx, mtx, this->position, sp2C, 1.0f, NULL, local->unk8);
     }
     return func_80325888(marker, gfx, mtx, vtx);
 }

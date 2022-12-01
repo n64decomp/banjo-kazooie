@@ -223,10 +223,10 @@ void gctransition_draw(Gfx **gdl, Mtx **mptr, Vtx **vptr){
         gDPSetTextureFilter((*gdl)++, G_TF_POINT);
         gDPSetColorDither((*gdl)++, G_CD_DISABLE);
         func_8028781C(D_80382430.animctrl, sp58, 1);
-        set_model_render_mode(1);
+        modelRender_setDepthMode(MODEL_RENDER_DEPTH_FULL);
     }
     if(D_80382430.unk8 == 1 || D_80382430.unk8 == 6){
-        func_803391A4(gdl, mptr, sp58, sp68, 1.0f, 0, D_80382430.unkC);
+        modelRender_draw(gdl, mptr, sp58, sp68, 1.0f, 0, D_80382430.unkC);
         if(D_80382430.animctrl != NULL){
             gDPSetTextureFilter((*gdl)++, G_TF_BILERP);
             gDPSetColorDither((*gdl)++, G_CD_MAGICSQ);
@@ -244,7 +244,7 @@ void gctransition_draw(Gfx **gdl, Mtx **mptr, Vtx **vptr){
                 sp68[2] = D_80382430.rotation - 90.0f*sp64;
                 tmp = sp64*D_80382430.unk4->unk10 + 0.1;
             }
-            func_803391A4(gdl, mptr, sp58, sp68, tmp, 0, D_80382430.unkC);
+            modelRender_draw(gdl, mptr, sp58, sp68, tmp, 0, D_80382430.unkC);
         }
         else if(D_80382430.unk8 == 5){//L8030B9EC
             switch (D_80382430.unk4->uid)
@@ -262,10 +262,10 @@ void gctransition_draw(Gfx **gdl, Mtx **mptr, Vtx **vptr){
                 break;
             }
             if(!(D_80382430.unk1C < 3) || D_80382430.unk4->uid != 0x11){
-                func_803391A4(gdl, mptr, sp58, sp68, tmp, 0, D_80382430.unkC);
+                modelRender_draw(gdl, mptr, sp58, sp68, tmp, 0, D_80382430.unkC);
             }
             else{
-                func_80338390();
+                modelRender_reset();
             }
 
         }

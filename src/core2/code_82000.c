@@ -2,12 +2,13 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "core2/modelRender.h"
+
 extern UNK_TYPE(s32) func_802E8E88(BKCollisionList *, BKVertexList *, f32[3], f32[3], f32, f32[3], s32, s32);
 extern UNK_TYPE(s32) func_802E92AC(BKCollisionList *, BKVertexList *, f32[3], f32, f32[3], s32);
 extern UNK_TYPE(s32) func_802EC394(BKMeshList *, UNK_TYPE(s32), UNK_TYPE(s32), f32, UNK_TYPE(s32), UNK_TYPE(s32), UNK_TYPE(s32));
 extern void func_802EC458(BKVertexList *, s32[3], s32[3]);
 extern void func_8033A494(s32);
-extern void set_model_render_mode(s32);
 extern void func_8033A388(s32, s32, s32, s32);
 extern void func_802F7BC0(Gfx **, Mtx **, Vtx **);
 extern void func_8033A450(s32);
@@ -209,7 +210,7 @@ f32 func_80308FDC(f32 arg0[3], u32 arg1) {
     sp58[1] = arg0[1];
     sp58[2] = arg0[2];
     sp58[1] -= 2000.0f;
-    if (func_80309B48(&sp64, &sp58, &sp70, arg1)) {
+    if (func_80309B48(sp64, sp58, sp70, arg1)) {
         return sp58[1];
     }
     phi_s2 = 150;
@@ -339,19 +340,20 @@ void func_803091D4(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
             break;
         }
         func_8033A450(D_80382350.unk24);
-        set_model_render_mode(1);
+        modelRender_setDepthMode(MODEL_RENDER_DEPTH_FULL);
         temp_a0 = D_80382350.unk0;
         if (temp_a0 != 0) {
             func_8033A494(temp_a0);
         }
         func_8033A388(D_80382350.unk2C, D_80382350.unk2D, D_80382350.unk2E, 0xFF);
-        func_803391A4(gfx, mtx, NULL, NULL, D_80382350.unk28->unk14, NULL, D_80382350.unk18);
+        modelRender_draw(gfx, mtx, NULL, NULL, D_80382350.unk28->unk14, NULL, D_80382350.unk18);
         if (!func_80309F78()) {
             func_802F7BC0(gfx, mtx, vtx);
         }
     }
 }
 
+//levelRender_model2_draw
 void func_80309628(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     s32 temp_a0;
 
@@ -359,13 +361,13 @@ void func_80309628(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
         if (map_get() == MAP_1D_MMM_CELLAR) {
             func_8033A45C(1, (func_80326EEC(0x191) != NULL) ? 0 : 1);
         }
-        set_model_render_mode(2);
+        modelRender_setDepthMode(MODEL_RENDER_DEPTH_COMPARE);
         temp_a0 = D_80382350.unk4;
         if (temp_a0 != 0) {
             func_8033A494(temp_a0);
         }
         func_8033A388(D_80382350.unk2C, D_80382350.unk2D, D_80382350.unk2E, 0xFF);
-        func_803391A4(gfx, mtx, NULL, NULL, D_80382350.unk28->unk14, NULL, D_80382350.unk1C);
+        modelRender_draw(gfx, mtx, NULL, NULL, D_80382350.unk28->unk14, NULL, D_80382350.unk1C);
         func_802F7BC0(gfx, mtx, vtx);
     }
 }

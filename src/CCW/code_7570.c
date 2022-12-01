@@ -26,7 +26,7 @@ void func_8038D9E0(Actor *this) {
 
     if (!this->unk16C_4) {
         this->unk16C_4 = TRUE;
-        this->unk124_9 = 2;
+        this->depth_mode = 2;
         this->marker->unk40_22 = TRUE;
         func_8038D960(this, 1);
     }

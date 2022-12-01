@@ -50,8 +50,8 @@ Actor *func_802D6F48(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     if(other)
         func_8033A410(other->alpha_124_19);
     sp40 = ml_map_f(this->unk28, 0.0f , 800.0f, 0.53f, 0.18f)*this->unk1C[1];
-    set_model_render_mode(2);
-    func_803391A4(gfx, mtx, this->position, sp44, sp40, NULL, func_80330B1C(marker));
+    modelRender_setDepthMode(MODEL_RENDER_DEPTH_COMPARE);
+    modelRender_draw(gfx, mtx, this->position, sp44, sp40, NULL, func_80330B1C(marker));
     return this;
 }
 

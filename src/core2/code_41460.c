@@ -79,8 +79,8 @@ Actor *func_802C8484(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     phi_s4 = FALSE;
     for(phi_s0 = temp_s1->begin; phi_s0 < temp_s1->current; phi_s0++){
         if ((phi_s0->unk0 != 0) && (phi_s0->model_bin != NULL)) {
-            set_model_render_mode(1);
-            func_803391A4(gfx, mtx, phi_s0->unk8, phi_s0->unk14, phi_s0->unk2C / 10.0f, NULL, phi_s0->model_bin);
+            modelRender_setDepthMode(MODEL_RENDER_DEPTH_FULL);
+            modelRender_draw(gfx, mtx, phi_s0->unk8, phi_s0->unk14, phi_s0->unk2C / 10.0f, NULL, phi_s0->model_bin);
             phi_s4 = TRUE;
         }
     }

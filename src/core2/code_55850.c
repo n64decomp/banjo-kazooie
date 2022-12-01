@@ -47,7 +47,7 @@ Actor *func_802DC7E0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     sp34[0] = 0.0f;
     sp34[1] = -87.0f;
     sp34[2] = 0.0f;
-    func_803391A4(gfx, mtx, sp40, NULL, 1.0f, sp34, func_80330B1C(marker));
+    modelRender_draw(gfx, mtx, sp40, NULL, 1.0f, sp34, func_80330B1C(marker));
     func_8024E2FC();
     func_8024C904(gfx, mtx);
     return this;
@@ -60,7 +60,7 @@ void func_802DC8F0(Actor *this){
 void func_802DC900(Actor *this){
     if(!this->initialized){
         this->initialized = TRUE;
-        this->unk124_9 = 0;
+        this->depth_mode = MODEL_RENDER_DEPTH_NONE;
         actor_collisionOff(this);
         func_803300D8(this->marker, func_802DC8F0);
     }

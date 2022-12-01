@@ -148,7 +148,7 @@ void func_802DF71C(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     this = func_80325300(D_8037E060, &sp44);
     func_8033A2D4(func_803253A0, this);
     func_8033A2E8(func_80325794, D_8037E060);
-    set_model_render_mode(1);
+    modelRender_setDepthMode(MODEL_RENDER_DEPTH_FULL);
     actor_setOpacity(this, 0xB9);
     func_8024E030(this->position, D_8037E5C0.unk18);
     sp3C = (this->scale * 650.0f);
@@ -157,7 +157,7 @@ void func_802DF71C(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
         (s32)sp3C, (s32)sp3C,
         D_803A5D00[func_8024BDA0()]
     );
-    func_803391A4(gfx, mtx, this->position, sp44, this->scale, NULL, func_80330B1C(D_8037E060));
+    modelRender_draw(gfx, mtx, this->position, sp44, this->scale, NULL, func_80330B1C(D_8037E060));
     func_8024E030(this->position, D_8037E5C0.unk10);
     if (this->state == 1) {
         D_8037E5C0.unk10[0] -= 24.0f;

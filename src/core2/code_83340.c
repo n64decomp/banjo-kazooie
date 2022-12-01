@@ -38,9 +38,9 @@ void func_8030A2D0(Gfx **gfx, Mtx **mtx, Vtx **vtx, f32 arg3[3], f32 arg4[3], f3
     sp2C = func_8030A428(arg6);
     func_8033A244(3700.0f);
     func_8033A28C(1);
-    set_model_render_mode(1);
+    modelRender_setDepthMode(MODEL_RENDER_DEPTH_FULL);
     func_8033A1FC();
-    func_803391A4(gfx, mtx, arg3, arg4, arg5, NULL, sp2C);
+    modelRender_draw(gfx, mtx, arg3, arg4, arg5, NULL, sp2C);
 }
 
 void func_8030A350(Gfx **gfx, Mtx **mtx, Vtx **Vtx, f32 arg3[3], f32 arg4, s32 arg5, Cube *arg6, s32 arg7, s32 arg8, s32 arg9, s32 argA, s32 argB) {

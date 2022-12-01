@@ -18,7 +18,7 @@ ActorInfo D_80366EF0 = {
 /* .code */
 void func_802CA790(Actor *this){
     func_8033A410(0xff);
-    set_model_render_mode(2);
+    modelRender_setDepthMode(MODEL_RENDER_DEPTH_COMPARE);
 }
 
 Actor *func_802CA7BC(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
@@ -53,7 +53,7 @@ Actor *func_802CA7BC(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     sp48[2] = this->roll;
     sp44 = ml_map_f(sp54[1] - sp40, 0.0f, 300.0f, 0.43f, 0.28f);
     func_8033A2D4(func_802CA790, this);
-    func_803391A4(gfx, mtx, this->position, sp48, sp44, NULL, func_80330B1C(marker));
+    modelRender_draw(gfx, mtx, this->position, sp48, sp44, NULL, func_80330B1C(marker));
     return this;
 }
 

@@ -2,6 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "core2/modelRender.h"
+
 extern BKCollisionTri *func_8028EF48(void);
 extern void func_8030E9FC(enum sfx_e uid, f32 arg1, f32 arg2, u32 arg3, f32 arg4[3], f32 arg5, f32 arg6);
 extern void func_8030EA54(enum sfx_e uid, f32 arg1, f32 arg2, u32 arg3, f32 arg4[3], f32 arg5, f32 arg6);
@@ -202,9 +204,9 @@ void CC_func_80388760(Gfx **gfx, Mtx **mtx, Vtx **vtx){
     }
     func_8033A238(s1);
     func_8033A450(D_80389FA0.unk34);
-    func_8033A4C0(D_80389FA0.unk40);
-    set_model_render_mode(1);
-    func_803391A4(gfx, mtx, D_80389FA0.unk28, NULL, 1.0f, NULL, D_80389FA0.unk24);
+    modelRender_setVertexList(D_80389FA0.unk40);
+    modelRender_setDepthMode(MODEL_RENDER_DEPTH_FULL);
+    modelRender_draw(gfx, mtx, D_80389FA0.unk28, NULL, 1.0f, NULL, D_80389FA0.unk24);
     if(func_80340020(D_80389FA0.unk18, D_80389FA0.unk28, 0, 1.0f, 0, D_80389FA0.unk40, spA4, spA4)){
         func_8028FAB0(spA4);
         func_802921D4(spA4);

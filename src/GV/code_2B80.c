@@ -47,8 +47,8 @@ Actor *func_80389050(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     sp2C[0] = this->pitch;
     sp2C[1] = this->yaw + 220.0f;
     sp2C[2] = this->roll;
-    set_model_render_mode(2);
-    func_803391A4(gfx, mtx, sp38, sp2C, 1.0f, NULL, func_8030A428(3));
+    modelRender_setDepthMode(MODEL_RENDER_DEPTH_COMPARE);
+    modelRender_draw(gfx, mtx, sp38, sp2C, 1.0f, NULL, func_8030A428(3));
     return this;
 }
 

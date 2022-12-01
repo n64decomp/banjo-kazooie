@@ -76,7 +76,7 @@ void chspellbarrier_update(Actor *this){
         actor_collisionOn(this);
         local->unk0 = 0;
         local->unk4 = 1;
-        this->unk124_9 = 0;
+        this->depth_mode = 0;
         this->scale = 0.0f;
         this->unk44_31 = func_8030ED2C(SFX_142_GRUNTY_LAUGH_3, 3);
         func_8030DB04(this->unk44_31, 32000, this->position, 4000.0f, 12000.0f);

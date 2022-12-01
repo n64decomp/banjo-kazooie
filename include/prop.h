@@ -5,6 +5,7 @@
 
 #include "structs.h"
 #include "core2/animctrl.h"
+#include "core2/modelRender.h"
 
 typedef struct sprite_prop_s{
     u32 unk0_31:0xC;
@@ -231,7 +232,7 @@ typedef struct actor_s{
     u32 unk124_31:12;
     u32 alpha_124_19:8;
     u32 unk124_11:2; //blend_mode? 
-    u32 unk124_9:2; //render_mode (passed to set_model_render_mode())
+    u32 depth_mode:2; //render_mode (passed to modelRender_setDepthMode())
     u32 unk124_7:1;
     u32 unk124_6:1;
     u32 unk124_5:2;

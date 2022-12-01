@@ -106,8 +106,8 @@ Actor *func_80350E90(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
         if (temp_s0->unk8 != NULL) {
             temp_s0->unk8(&temp_s0->local, temp_s0, temp_s0->unk14, temp_s0->unk20, temp_s0->unk2C, temp_v0, gfx, mtx, vtx);
         } else {
-            set_model_render_mode(1);
-            func_803391A4(gfx, mtx, temp_s0->unk14, temp_s0->unk20, temp_s0->unk2C, NULL, temp_s0->unkC);
+            modelRender_setDepthMode(MODEL_RENDER_DEPTH_FULL);
+            modelRender_draw(gfx, mtx, temp_s0->unk14, temp_s0->unk20, temp_s0->unk2C, NULL, temp_s0->unkC);
         }
     }
     return 0;

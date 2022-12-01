@@ -60,14 +60,14 @@ Actor *func_802DEC00(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     D_8037DFF0[0] = 0.0f;
     D_8037DFF0[1] = 270.0f;
     D_8037DFF0[2] = 0.0f;
-    set_model_render_mode(1);
-    func_803391A4(gfx, mtx, sp58, NULL, 1.0f, sp4C, D_8037DFE8);
+    modelRender_setDepthMode(MODEL_RENDER_DEPTH_FULL);
+    modelRender_draw(gfx, mtx, sp58, NULL, 1.0f, sp4C, D_8037DFE8);
     gDPSetColorDither((*gfx)++, G_CD_DISABLE);
     func_80253190(gfx);
     gSPSegment((*gfx)++, 0x04, osVirtualToPhysical(sp48));
     func_8033A2D4(func_803253A0, this);
     func_8033A2E8(func_80325794, marker);
-    func_803391A4(gfx, mtx, this->position, NULL, 4.5f, &sp4C, func_80330B1C(marker));
+    modelRender_draw(gfx, mtx, this->position, NULL, 4.5f, &sp4C, func_80330B1C(marker));
     gDPSetTextureFilter((*gfx)++, G_TF_BILERP);
     gDPSetColorDither((*gfx)++, G_CD_MAGICSQ);
     func_802DD158(gfx, mtx);

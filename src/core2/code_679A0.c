@@ -165,8 +165,8 @@ void func_802EEE3C(ParticleEmitter *this, Gfx **gfx, Mtx **mtx, Vtx **vtx, u32 a
                 func_8033A410((s32) (iPtr->unkC*this->unk49));
             }//L802EEF5C
             // tmp_a3 = (this->unk18 & 0x10)?0:1;
-            set_model_render_mode((this->unk18 & 0x10)?0:1);
-            func_803391A4(gfx, mtx, sp8C, iPtr->unk24, iPtr->size_30, NULL, this->model_20);
+            modelRender_setDepthMode((this->unk18 & 0x10)?0:1);
+            modelRender_draw(gfx, mtx, sp8C, iPtr->unk24, iPtr->size_30, NULL, this->model_20);
         }
         return;
     }

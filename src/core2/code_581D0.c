@@ -28,12 +28,12 @@ Actor *func_802DF160(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
 
     this = marker_getActor(D_8037E000);
     sp38 = func_8030C704();
-    set_model_render_mode(1);
+    modelRender_setDepthMode(MODEL_RENDER_DEPTH_FULL);
     gDPSetTextureFilter((*gfx)++, G_TF_POINT);
     gSPSegment((*gfx)++, 0x04, osVirtualToPhysical(sp38));
     func_8033A2D4(func_803253A0, this);
     func_8033A2E8(func_80325794, D_8037E000);
-    func_803391A4(gfx, mtx, &D_80368360, NULL, 1.0f, NULL, func_80330B1C(D_8037E000));
+    modelRender_draw(gfx, mtx, &D_80368360, NULL, 1.0f, NULL, func_80330B1C(D_8037E000));
     gDPSetTextureFilter((*gfx)++, G_TF_BILERP);
     return this;
 }

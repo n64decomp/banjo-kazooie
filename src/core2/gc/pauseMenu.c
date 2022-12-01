@@ -1357,9 +1357,9 @@ void gcpausemenu_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
                     func_8033A45C(var_s0_2 + 1, 0);
                 }
                 func_8033A45C(i, 1);
-                set_model_render_mode(0);
+                modelRender_setDepthMode(MODEL_RENDER_DEPTH_NONE);
                 func_8033A410(D_80383010.sns_alpha);
-                func_803391A4(gfx, mtx, &sp98, &sp8C, 0.8f, &sp80, D_80383010.sns_egg_model);
+                modelRender_draw(gfx, mtx, &sp98, &sp8C, 0.8f, &sp80, D_80383010.sns_egg_model);
                 func_8024E2FC();
                 func_8024C904(gfx, mtx);
             }
@@ -1398,9 +1398,9 @@ void gcpausemenu_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
             sp80[0] = 0.0f;
             sp80[1] = 120.0f;
             sp80[2] = 0.0f;
-            set_model_render_mode(0);
+            modelRender_setDepthMode(MODEL_RENDER_DEPTH_NONE);
             func_8033A410(D_80383010.sns_alpha);
-            func_803391A4(gfx, mtx, sp98, sp8C, 0.8f, sp80, D_80383010.ice_key_model);
+            modelRender_draw(gfx, mtx, sp98, sp8C, 0.8f, sp80, D_80383010.ice_key_model);
             func_8024E2FC();
             func_8024C904(gfx, mtx);
         }

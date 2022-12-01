@@ -189,7 +189,7 @@ void func_802CB7C0(ActorMarker *marker, ActorMarker *other){
     if( map_get() == MAP_B_CC_CLANKERS_CAVERN
         && func_80259254(this->position, 13778.0f, 0.0f, 3000.0f)
     ) {
-        this->unk124_9 =  2;
+        this->depth_mode =  MODEL_RENDER_DEPTH_COMPARE;
         if( !jiggyscore_isCollected(JIGGY_16_CC_SNIPPETS)
             && ((func_80326D68(this->position, 0xF5, -1, &sp44) == NULL) || (3000.0f < sp44))) {
             sp48[0] = 13814.0f;

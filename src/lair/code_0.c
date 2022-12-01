@@ -1823,7 +1823,7 @@ void func_8038A014(Actor *this)
 
 void func_8038A034(Actor *this)
 {
-    this->unk124_9 = 2;
+    this->depth_mode = 2;
 
     func_80389FA8(this, BKPROG_C4_STATUE_EYE_BROKEN);
 }

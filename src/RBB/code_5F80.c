@@ -467,7 +467,7 @@ Actor *func_8038D638(ActorMarker *marker, Gfx **gdl, Mtx ** mptr, s32 arg3){
     }
     func_8033A2D4(func_803253A0, actor);
     func_8033A2E8(func_80325794, marker);
-    func_803391A4(gdl, mptr, &actor->position, &sp3C, actor->scale, NULL, func_80330B1C(marker));
+    modelRender_draw(gdl, mptr, &actor->position, &sp3C, actor->scale, NULL, func_80330B1C(marker));
     
     return actor;
 }

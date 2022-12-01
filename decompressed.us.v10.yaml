@@ -794,7 +794,7 @@ segments:
   - [0x1003BF0, c, code_AE290] #DONE
   - [0x1003F30, c, code_AE5D0] #DONE
   - [0x1004700, c, code_AEDA0]
-  - [0x1006D60, c, code_B1400]
+  - [0x1006D60, c, modelRender]
   - [0x1008EE0, c, code_B3580] #DONE
   - [0x10093E0, c, code_B3A80] #DONE
   - [0x100A9A0, c, code_B5040] #DONE
@@ -1052,7 +1052,7 @@ segments:
   - [0x103E350, .data, code_AD110]
   - [0x103EC20, .data, code_AD5B0]
   - [0x103EC30, .data, code_AEDA0]
-  - [0x103ED10, .data, code_B1400]
+  - [0x103ED10, .data, modelRender]
   - [0x103F3B0, .data, code_B3A80]
   - [0x103F3F0, .data, code_B5040]
   - [0x103F490, .data, code_B62B0]
@@ -1290,7 +1290,7 @@ segments:
   - [0x1047890, .rodata, code_AD110]
   - [0x10478B0, .rodata, code_AE5D0]
   - [0x10478C0, .rodata, code_AEDA0]
-  - [0x1047910, .rodata, code_B1400]
+  - [0x1047910, .rodata, modelRender]
   - [0x1047920, .rodata, code_B3A80]
   - [0x1047930, .rodata, string]
   - [0x1047950, .rodata, code_B6C60]
@@ -1570,7 +1570,7 @@ segments:
   - [0x1048560, .bss, code_AD5B0]
   - [0x1048560, .bss, code_AE290]
   - [0x1048560, .bss, code_AEDA0]
-  - [0x1048560, .bss, code_B1400]
+  - [0x1048560, .bss, modelRender]
   - [0x1048560, .bss, code_B3A80]
   - [0x1048560, .bss, code_B5040]
   - [0x1048560, .bss, code_B5E00]

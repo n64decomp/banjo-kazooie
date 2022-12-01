@@ -19,12 +19,12 @@ void func_802FEDE0(BKTextureList *texture_list, s32 indx, s32 x_offset, s32 y_of
     };
 }
 
-//framebuffer_to_texture_list
+//framebuffer_to_model_texture
 void func_802FEF48(BKModelBin *model_bin){
     BKTextureList *texture_list;
     s32 x, y;
 
-    texture_list = func_8033A104(model_bin);
+    texture_list = model_getTextureList(model_bin);
     osInvalDCache((void *)D_803A5D00[func_8024BDA0()], framebuffer_width * framebuffer_height*2);
 
     for(y = 0; y < 8; y++){//L802FEFEC

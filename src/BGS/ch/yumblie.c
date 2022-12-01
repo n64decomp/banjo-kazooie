@@ -118,10 +118,10 @@ Actor *chyumblie_draw(ActorMarker *this, Gfx **gfx, Mtx** mtx, Vtx **vtx){
     sp38[1] = thisActor->yaw;
     sp38[2] = thisActor->roll;
     if(sp40->unk4 && sp40->game_marker){
-        func_803391A4(gfx, mtx, sp44, sp38, 1.0f, NULL, chvilegame_get_grumblie_model(sp40->game_marker));
+        modelRender_draw(gfx, mtx, sp44, sp38, 1.0f, NULL, chvilegame_get_grumblie_model(sp40->game_marker));
     }
     else{
-        func_803391A4(gfx, mtx, sp44, sp38, 1.0f, NULL, func_80330B1C(this));
+        modelRender_draw(gfx, mtx, sp44, sp38, 1.0f, NULL, func_80330B1C(this));
     }
     return thisActor;
 }

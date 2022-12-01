@@ -203,7 +203,7 @@ void fxcommon3score_draw(enum item_e item_id, void *arg1, Gfx **gfx, Mtx **mtx, 
         sp50[2] = 0.0f;
         func_8033A308(sp50);
         if(getGameMode() != GAME_MODE_4_PAUSED){
-            set_model_render_mode(1);
+            modelRender_setDepthMode(MODEL_RENDER_DEPTH_FULL);
         }
         sp68[0] += a1->unk4C;
         if(a1->unk6C == 0.0f){
@@ -213,7 +213,7 @@ void fxcommon3score_draw(enum item_e item_id, void *arg1, Gfx **gfx, Mtx **mtx, 
         if(a1->anim_ctrl != NULL){
             func_8028781C(a1->anim_ctrl, sp5C, 1);
         }
-        func_803391A4(gfx, mtx, sp5C, sp68, a1->unk3C*sp3C, sp44, a1->model);
+        modelRender_draw(gfx, mtx, sp5C, sp68, a1->unk3C*sp3C, sp44, a1->model);
     }//L80300BA4
 }
 

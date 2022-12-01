@@ -138,7 +138,7 @@ void func_80386A7C(Actor *this){
     s32 temp_v0;
 
     func_802D3D74(this);
-    this->unk124_9 = 1;
+    this->depth_mode = 1;
     func_8024C5CC(&sp2C);
     sp28 = func_80386A30(&this->position);
     temp_v0 = func_80386A30(&sp2C);

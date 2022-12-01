@@ -3,9 +3,9 @@
 #include "variables.h"
 
 #include "prop.h"
+#include "core2/modelRender.h"
 
 void func_80335A24(void *, u32, f32, f32);
-void set_model_render_mode(u32);
 Actor *chvile_draw(ActorMarker*, Gfx **, Mtx **, Vtx **);
 void chvile_update(Actor *);
 void func_8038BB40(ActorMarker *);
@@ -240,8 +240,8 @@ Actor *chvile_draw(ActorMarker *marker, Gfx **gfx, Mtx** mtx, Vtx **vtx){
     ) {
         func_8034A174(func_80329934(), 5, &sp34);
         sp34[1] -= 30.0f;
-        set_model_render_mode(1);
-        func_803391A4(gfx, mtx, &sp34, 0, local->unk14, 0, local->unk4);
+        modelRender_setDepthMode(MODEL_RENDER_DEPTH_FULL);
+        modelRender_draw(gfx, mtx, &sp34, 0, local->unk14, 0, local->unk4);
     }
     return this;
 }

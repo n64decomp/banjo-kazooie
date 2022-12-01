@@ -3,6 +3,8 @@
 #include "variables.h"
 #include "CC.h"
 
+#include "core2/modelRender.h"
+
 typedef struct{
     void (*unk0)(s32 arg0);
     u8 pad4[0x14];
@@ -41,8 +43,8 @@ void func_803877B0(Struct_CC_13C0_1* arg0, void* arg1, f32 position[3], f32 rota
         arg4 = arg4*(1.0f - arg0->unkC);
     }
     func_8033A45C(2, 0);
-    set_model_render_mode(1);
-    func_803391A4(gfx, mtx, position, rotation, arg4, NULL, modeL_ptr);
+    modelRender_setDepthMode(MODEL_RENDER_DEPTH_FULL);
+    modelRender_draw(gfx, mtx, position, rotation, arg4, NULL, modeL_ptr);
 }
 
 void func_803878AC(Struct_CC_13C0_1 *arg0, Struct68s *arg1, s32 arg2) {

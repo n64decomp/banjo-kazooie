@@ -102,11 +102,11 @@ void func_803253A0(Actor *this){
     if(this->marker->unk20 != NULL){
         sp44 = FALSE;
         if(this->unk148 != NULL){
-            func_802EA1A8(&this->marker->unk20, func_8033A0D4(sp48), func_803356A0(this->unk148));
+            func_802EA1A8(&this->marker->unk20, model_getAnimationList(sp48), func_803356A0(this->unk148));
             sp44 = TRUE;
         }//L8032542C
-        else if(this->animctrl != NULL && func_8033A0D4(sp48)){
-            anim_802897D4(&this->marker->unk20, func_8033A0D4(sp48), animctrl_getAnimPtr(this->animctrl));
+        else if(this->animctrl != NULL && model_getAnimationList(sp48)){
+            anim_802897D4(&this->marker->unk20, model_getAnimationList(sp48), animctrl_getAnimPtr(this->animctrl));
             sp44 = TRUE;
         }//L80325474
 
@@ -119,7 +119,7 @@ void func_803253A0(Actor *this){
         func_8033A410(this->alpha_124_19);
     }
 
-    set_model_render_mode(this->unk124_9);
+    modelRender_setDepthMode(this->depth_mode);
     if(this->marker->unk44 != 0){
         if((s32)this->marker->unk44 == 1){
             func_8033A450(D_8036E568);
@@ -137,7 +137,7 @@ void func_803253A0(Actor *this){
             sp34[2] = this->roll;
             func_80333D48(sp40, this->position, sp34, this->scale, 0, func_8033A148(sp48));
         }//L80325560
-        func_8033A4C0(sp40);
+        modelRender_setVertexList(sp40);
         this->unkF4_29 = NOT(this->unkF4_29);
     }//L80325594
 
@@ -221,7 +221,7 @@ Actor *func_80325888(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     this = func_80325300(marker, sp3C);
     func_8033A2D4(func_803253A0, this);
     func_8033A2E8(func_80325794, marker);
-    func_803391A4(gfx, mtx, this->position, sp3C, this->scale, (this->unk104 != NULL) ? D_8036E580 : NULL, func_803257B4(marker));
+    modelRender_draw(gfx, mtx, this->position, sp3C, this->scale, (this->unk104 != NULL) ? D_8036E580 : NULL, func_803257B4(marker));
     return this;
 }
 
@@ -340,10 +340,10 @@ Actor *func_80325E78(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     Actor *this;
 
     this = func_80325300(marker, rotation);
-    set_model_render_mode(1);
+    modelRender_setDepthMode(MODEL_RENDER_DEPTH_FULL);
     func_8033A2D4(func_803253A0, this);
     func_8033A2E8(func_80325794, marker);
-    func_803391A4(gfx, mtx, this->position, rotation, this->scale, (this->unk104 != NULL) ?  D_8036E580 : NULL, func_803257B4(marker));
+    modelRender_draw(gfx, mtx, this->position, rotation, this->scale, (this->unk104 != NULL) ?  D_8036E580 : NULL, func_803257B4(marker));
     return this;
 }
 
@@ -902,7 +902,7 @@ Actor *actor_new(s32 (* position)[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
     }//L80327BA8
     D_80383390->unk124_11 = 0;
     D_80383390->alpha_124_19 = 0xff;
-    D_80383390->unk124_9 = 1;
+    D_80383390->depth_mode = MODEL_RENDER_DEPTH_FULL;
     D_80383390->unk124_0 = D_80383390->unk138_31 = 1;
     for(i = 0; i < 0x10; i++){
         ((s32 *)D_80383390->unk7C)[i] = 0;

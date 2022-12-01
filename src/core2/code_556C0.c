@@ -27,7 +27,7 @@ void func_802DC67C(Actor *this){
     if(!this->initialized){
 
         this->initialized = TRUE;
-        this->unk124_9 = 0;
+        this->depth_mode = MODEL_RENDER_DEPTH_NONE;
         func_803262E4(this);
         actor_collisionOff(this);
         func_803300D8(this->marker, func_802DC650);

@@ -79,10 +79,10 @@ Actor *func_8038A224(ActorMarker *marker, Gfx **gdl, Mtx **mptr, s32 arg3){
 
     func_8033A2D4(func_803253A0, actor);
     if(local->unk4){
-        func_803391A4(gdl, mptr, &actor->position, NULL, 1.0f, NULL, local->unk4);
+        modelRender_draw(gdl, mptr, &actor->position, NULL, 1.0f, NULL, local->unk4);
     }
     else{
-        func_803391A4(gdl, mptr, &actor->position, NULL, 1.0f, NULL, func_80330B1C(marker));
+        modelRender_draw(gdl, mptr, &actor->position, NULL, 1.0f, NULL, func_80330B1C(marker));
     }
     return actor;
 }

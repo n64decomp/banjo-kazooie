@@ -131,12 +131,12 @@ Actor *chgobi2_draw(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     sp3C[2] = this->roll;
     func_8033A238(func_803356A0(this->unk148));
     func_8033A2D4(func_803253A0, this);
-    func_803391A4(gfx, mtx, this->position, sp3C, 1.0f, NULL, func_80330B1C(this_marker));
+    modelRender_draw(gfx, mtx, this->position, sp3C, 1.0f, NULL, func_80330B1C(this_marker));
 
     if(this->state == 4){
         func_8033A238(func_803356A0(local->unk4));
-        set_model_render_mode(2);
-        func_803391A4(gfx, mtx, this->position, sp3C, 1.0f, NULL, local->unk8);
+        modelRender_setDepthMode(MODEL_RENDER_DEPTH_COMPARE);
+        modelRender_draw(gfx, mtx, this->position, sp3C, 1.0f, NULL, local->unk8);
     }
     return this;
 }

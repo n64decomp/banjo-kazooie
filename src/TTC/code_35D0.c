@@ -209,7 +209,7 @@ void TTC_func_80389E90(Actor *this){
             break;
     }//L8038A094
     actor_setOpacity(this, (s32)this->unk60);
-    this->unk124_9 = 2;
+    this->depth_mode = 2;
 }
 
 Actor *func_8038A0D0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
@@ -240,6 +240,6 @@ Actor *func_8038A0D0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 
     func_8032AA58(actor, sp3C);
     func_8033A2D4(func_803253A0, actor);
-    func_803391A4(gfx, mtx, sp40, sp4C, sp3C, NULL, func_80330B1C(marker));
+    modelRender_draw(gfx, mtx, sp40, sp4C, sp3C, NULL, func_80330B1C(marker));
     return actor;
 }

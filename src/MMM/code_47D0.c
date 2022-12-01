@@ -36,8 +36,8 @@ void func_8038AC40(Struct_MMM_47D0_0 *arg0, struct struct_68_s *arg1, f32 positi
         } else if (arg0->unk4 == 2) {
             func_8033A410((s32)((1 - ((f64)arg0->unk8 * 1)) * 255.0), arg0);
         }
-        set_model_render_mode(1);
-        func_803391A4(gfx, mtx, position, rotation, scale, NULL, model_bin);
+        modelRender_setDepthMode(MODEL_RENDER_DEPTH_FULL);
+        modelRender_draw(gfx, mtx, position, rotation, scale, NULL, model_bin);
     }
 }
 

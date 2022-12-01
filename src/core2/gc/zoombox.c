@@ -841,11 +841,11 @@ void func_803163A8(gczoombox_t *this, Gfx **gfx, Mtx **mtx) {
     sp38[0] = 0.0f; sp38[1] = 0.0f; sp38[2] = 0.0f;
     sp44[0] = 0.0f; sp44[1] = 0.0f; sp44[2] = 0.0f;
     func_8033A308(sp44);
-    set_model_render_mode(0);
+    modelRender_setDepthMode(MODEL_RENDER_DEPTH_NONE);
     if (this->anim_ctrl != NULL) {
         func_8028781C(this->anim_ctrl, sp50, 1);
     }
-    func_803391A4(gfx, mtx, sp50, sp5C, this->unk198 * sp34, &sp38, this->unkF0);
+    modelRender_draw(gfx, mtx, sp50, sp5C, this->unk198 * sp34, &sp38, this->unkF0);
 }
 
 void func_803164B0(gczoombox_t *this, Gfx **gfx, Mtx **mtx, s32 arg3, s32 arg4, s32 arg5, f32 arg6) {
@@ -874,7 +874,7 @@ void func_803164B0(gczoombox_t *this, Gfx **gfx, Mtx **mtx, s32 arg3, s32 arg4, 
     mlMtxScale_xyz(temp_f12, temp_f12, 1.0f);
     mlMtxApply(*mtx);
     gSPMatrix((*gfx)++, (*mtx)++, G_MTX_LOAD | G_MTX_MODELVIEW);
-    set_model_render_mode(0);
+    modelRender_setDepthMode(MODEL_RENDER_DEPTH_NONE);
     func_80344090(arg5, this->unk186, gfx);
     func_8033687C(gfx);
     func_8024C904(gfx, mtx);

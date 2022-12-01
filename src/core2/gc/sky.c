@@ -85,7 +85,7 @@ void sky_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx){
                 rotation[0] = 0.0f;
                 rotation[1] = gcSky.sky_info->sky_list[i].rotation_speed * gcSky.timer;
                 rotation[2] = 0.0f;
-                func_803391A4(gfx, mtx, position, rotation, gcSky.sky_info->sky_list[i].scale, NULL, iAsset);
+                modelRender_draw(gfx, mtx, position, rotation, gcSky.sky_info->sky_list[i].scale, NULL, iAsset);
             }
         }
     }

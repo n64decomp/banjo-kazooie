@@ -51,8 +51,8 @@ Actor*  func_80389014(ActorMarker *this, Gfx **dl, Mtx **mPtr, Vtx **arg2){
     actorPtr = func_80325300(this, sp34);
     jujuPtr = (ActorLocal_Juju_2 *)&actorPtr->local;
     if(jujuPtr->unk0 != 2){
-        set_model_render_mode(1);
-        func_803391A4(dl, mPtr, actorPtr->position, sp34, jujuPtr->unk14, NULL, func_80330B1C(this));
+        modelRender_setDepthMode(MODEL_RENDER_DEPTH_FULL);
+        modelRender_draw(dl, mPtr, actorPtr->position, sp34, jujuPtr->unk14, NULL, func_80330B1C(this));
     }
     return actorPtr;
 }

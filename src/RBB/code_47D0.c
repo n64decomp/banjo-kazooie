@@ -119,7 +119,7 @@ Actor *func_8038AD9C(ActorMarker *marker, Gfx **gdl, Mtx **mptr, s32 arg3){
             (local->unk4->unk4[1] - actor->position_y)/30.0, 
             func_8033A148(temp_v0)
         );
-        func_8033A4C0(local->unkC);
+        modelRender_setVertexList(local->unkC);
     }
     return func_80325888(marker, gdl, mptr, arg3);
 }

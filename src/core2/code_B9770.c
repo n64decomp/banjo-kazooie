@@ -28,67 +28,6 @@ typedef struct {
     }unkC;
 } Struct_glspline_0;
 
-// typedef struct {
-//     u8 pad_0[0x4];
-//     union {
-//         struct{
-//             u16 bit63;
-//             u16 bit47:12;
-//             u16 unk0_3:3;
-//             u16 pad0_0:1;
-//             u32 bit31:24;
-//             u32 pad4_7:8;
-//         }t0;
-//         struct{
-//             u32 pad_bit63: 12;
-//             u32 bit51: 2;
-//             u32 pad_bit49: 18;
-//             u32 bit31: 10;
-//             u32 bit21: 11;
-//             u32 bit10: 1;
-//             u32 pad_bit9: 1;
-//             u32 bit8: 1;
-//             u32 pad_bit7: 1;
-//             u32 bit6: 3;
-//             u32 bit3: 3;
-//             u32 pad_bit0: 1;
-//         }t1;
-//         struct{
-//             u32 bit63:  1;
-//             u32 bit62: 15;
-//             u32 bit47:  8;
-//             u32 bit39: 4;
-//             u32 pad_bit35: 4;
-//             u32 pad_bit31: 32;
-//         }t2;
-//     }unk4;
-//     u32 padC_31:8;
-//     u32 unkC_23:2;
-//     u32 unkC_21:1;
-//     u32 unkC_20:8;
-//     u32 unkC_12:12;
-//     u32 unkC_0 : 1;
-//     union {
-//         struct {
-//             u32 pad_bit31: 24;
-//             u32 bit7:7;
-//             u32 bit0:1;
-//         }t0;
-//         struct {
-//             u32 pad_bit31: 25;
-//             u32 bit6: 1;
-//             u32 bit5: 1;
-//             u32 bit4: 1;
-//             u32 pad_bit3:5;
-//         }t1;
-//         struct {
-//             u32 pad_bit31: 24;
-//             u32 bit7:5;
-//             u32 pad_bit1:2;
-//         }t2;
-//     }unk10;
-// }Struct_glspline_0;
-
 typedef struct {
     u32 bit31: 16;
     u32 bit15: 12;
@@ -203,7 +142,7 @@ typedef union{
 typedef struct{
     s32 unk0;
     Union_glspline spline[];
-}glspline_list;
+}SplineList;
 
 typedef struct {
     s16 unk0;
@@ -214,11 +153,11 @@ typedef struct {
     u16 pad8_12:13;
 }Struct_glspline_803411B0;
 
-s32 func_80341BC8(struct56s *arg0, glspline_list * arg1);
+s32 func_80341BC8(struct56s *arg0, SplineList * arg1);
 
 /* .data */
 struct56s **D_80371E70 = NULL;
-glspline_list **D_80371E74 = NULL;
+SplineList **D_80371E74 = NULL;
 s32 D_80371E78 = 0;
 s32 D_80371E7C = 0;
 s32 D_80371E80 = 0;
@@ -236,7 +175,6 @@ s16 *D_803858A0;
 struct56s *func_80342038(s32 indx);
 
 /* .code */
-//glspline_clamp
 f32 func_80340700(f32 value, f32 min, f32 max) {
     return (value < min) ? min
          : (max < value) ? max
@@ -248,8 +186,8 @@ bool func_80340748(s32 arg0, s32 arg1, s32 arg2, f32 arg3[3], s32 arg4, s32 arg5
 }
 
 s32 func_80340760(s32 arg0, s32 *arg1, f32 *arg2, s32 arg3, s32 arg4, f32 *arg5, f32 *arg6) {
-    glspline_list **temp_t0 = D_80371E74;
-    glspline_list *temp_a0;
+    SplineList **temp_t0 = D_80371E74;
+    SplineList *temp_a0;
     Union_glspline *temp_v0;
     Union_glspline *var_v1;
     s32 var_a2;
@@ -303,23 +241,23 @@ s32 func_80340760(s32 arg0, s32 *arg1, f32 *arg2, s32 arg3, s32 arg4, f32 *arg5,
     return 0;
 }
 
-f32 glspline_catmull_rom_interpolate(f32 arg0, s32 arg1, f32 *arg2) {
-    s32 tmp_v1;
+f32 glspline_catmull_rom_interpolate(f32 x, s32 knotCount, f32 *knotList) {
+    s32 start_knot;
     s32 tmp_t7;
     f32 sp24[3];
     f32 *var_a0;
 
-    tmp_t7 = arg1 - 3;
-    tmp_v1 = arg0 = tmp_t7 * func_80340700(arg0, 0.0f, 1.0f);
-    tmp_v1 = (tmp_v1 >= (arg1 - 4)) ? (arg1 - 4) : (tmp_v1);
-    arg2 += tmp_v1;
-    arg0 -= tmp_v1;
+    tmp_t7 = knotCount - 3;
+    start_knot = x = tmp_t7 * func_80340700(x, 0.0f, 1.0f);
+    start_knot = (start_knot >= (knotCount - 4)) ? (knotCount - 4) : (start_knot);
+    knotList += start_knot;
+    x -= start_knot;
     
-    sp24[2] = -0.5*arg2[0] +  1.5*arg2[1] + -1.5*arg2[2] +  0.5*arg2[3];
-    sp24[1] =  1.0*arg2[0] + -2.5*arg2[1] +  2.0*arg2[2] + -0.5*arg2[3];
-    sp24[0] = -0.5*arg2[0] +  0.0*arg2[1] +  0.5*arg2[2] +  0.0*arg2[3];
+    sp24[2] = -0.5*knotList[0] +  1.5*knotList[1] + -1.5*knotList[2] +  0.5*knotList[3];
+    sp24[1] =  1.0*knotList[0] + -2.5*knotList[1] +  2.0*knotList[2] + -0.5*knotList[3];
+    sp24[0] = -0.5*knotList[0] +  0.0*knotList[1] +  0.5*knotList[2] +  0.0*knotList[3];
     
-    return (((((sp24[2] * arg0) + sp24[1]) * arg0) + sp24[0]) * arg0) + (1.0*arg2[1]);
+    return (((((sp24[2] * x) + sp24[1]) * x) + sp24[0]) * x) + (1.0*knotList[1]);
 }
 
 void func_80340BE4(f32 arg0, s32 arg1, s32 arg2, s32 arg3, f32 * arg4, f32 arg5[3]);
@@ -340,7 +278,7 @@ void func_803411B0(void) {
     s32 spC8;
     s32 spC4;
     struct56s *spB4;
-    glspline_list *spA8;
+    SplineList *spA8;
     struct56s *spA4;
     Union_glspline *sp80;
     Struct_glspline_803411B0 *sp50;
@@ -440,7 +378,7 @@ void func_803411B0(void) {
                             spB4 = (struct56s *) malloc(sizeof(struct56s) + (var_s7 * 3* sizeof(f32)));
                             spB4->unk0 = var_s7;
                             spB4->unk4 = 0;
-                            spA8 = (glspline_list *)malloc(sizeof(glspline_list) + var_s0*sizeof(Union_glspline));
+                            spA8 = (SplineList *)malloc(sizeof(SplineList) + var_s0*sizeof(Union_glspline));
                             spA8->unk0 = var_s0;
                             var_s1_2 = &spA8->spline[0];
                             var_s2 = var_s0;
@@ -519,7 +457,7 @@ void func_80341BA0(void){
     func_803411B0();
 }
 
-s32 func_80341BC8(struct56s *arg0, glspline_list * arg1) {
+s32 func_80341BC8(struct56s *arg0, SplineList * arg1) {
     s32 temp_t7;
     void *temp_v0;
     void *temp_v0_2;
@@ -528,7 +466,7 @@ s32 func_80341BC8(struct56s *arg0, glspline_list * arg1) {
     D_80371E70 = (struct56s **)realloc(D_80371E70, D_80371E78 * sizeof(struct56s *));
 
     D_80371E70[D_80371E78 - 1] = arg0;
-    D_80371E74 = (glspline_list **)realloc(D_80371E74, D_80371E78 * sizeof(glspline_list *));
+    D_80371E74 = (SplineList **)realloc(D_80371E74, D_80371E78 * sizeof(SplineList *));
     D_80371E74[D_80371E78 - 1] = arg1;
     return D_80371E78 - 1;
 }
@@ -645,8 +583,8 @@ int func_80342064(s32 arg0){
 }
 
 s32 func_80342070(s32 arg0){
-    glspline_list **temp_v0 = D_80371E74;
-    glspline_list *temp_v1;
+    SplineList **temp_v0 = D_80371E74;
+    SplineList *temp_v1;
 
     if(arg0 == -1)
         return 0;
@@ -659,8 +597,8 @@ s32 func_80342070(s32 arg0){
 }
 
 s32 func_803420BC(s32 arg0, s32 arg1, s32 arg2){
-    glspline_list **temp_v0 = D_80371E74;
-    glspline_list *temp_v1;
+    SplineList **temp_v0 = D_80371E74;
+    SplineList *temp_v1;
     s32 temp_a1;
     s32 var_a0;
 
@@ -686,8 +624,8 @@ s32 func_803420BC(s32 arg0, s32 arg1, s32 arg2){
 }
 
 s32 func_803421A4(s32 arg0, f32 arg1) {
-    glspline_list **temp_v0 = D_80371E74;
-    glspline_list *temp_v1;
+    SplineList **temp_v0 = D_80371E74;
+    SplineList *temp_v1;
     s32 var_a3;
     Union_glspline *i_ptr;
     Union_glspline *temp_a2;
@@ -722,7 +660,7 @@ void func_803422AC(ActorMarker *caller, enum asset_e text_id, s32 arg2){
 #ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B9770/func_803422D4.s")
 #else
-s32 func_803422D4(Actor *arg0, Union_glspline *arg1, glspline_list *arg2) {
+s32 func_803422D4(Actor *arg0, Union_glspline *arg1, SplineList *arg2) {
     s32 sp84 = 0;
     u8 sp83;
     f32 sp7C;
@@ -1114,8 +1052,8 @@ s32 func_80343654(Actor *this){
 }
 
 s32 func_80343694(Actor *actor, s32 indx, s32 begin, s32 end, s32 count, s32 stride) {
-    glspline_list **temp_v0;
-    glspline_list *temp_s5;
+    SplineList **temp_v0;
+    SplineList *temp_s5;
     Union_glspline *start_ptr;
     Union_glspline *end_ptr;
     bool var_v1;
@@ -1275,14 +1213,14 @@ void glspline_defrag(void) {
         D_80371E70 = (struct56s **) defrag(D_80371E70);
     }
     if (D_80371E74 != 0) {
-        D_80371E74 = (glspline_list **) defrag(D_80371E74);
+        D_80371E74 = (SplineList **) defrag(D_80371E74);
     }
     if (D_803858A0 != 0) {
         D_803858A0 = (s16 *) defrag(D_803858A0);
     }
 
     for(i = 0; i < D_80371E78; i++){
-        D_80371E74[i] = (glspline_list *) defrag(D_80371E74[i]);
+        D_80371E74[i] = (SplineList *) defrag(D_80371E74[i]);
         D_80371E70[i] = (struct56s *) defrag(D_80371E70[i]);
     }
 }

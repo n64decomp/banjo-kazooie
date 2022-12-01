@@ -98,55 +98,55 @@ s32 func_8033AC30(AnimationFile *this){
     return this->elem_cnt;
 }
 
-f32 func_8033AC38(AnimationFile *this, AnimationFileElement *elem, f32 arg2){
-    AnimationFileData *var_a0;
-    AnimationFileData *var_a2;
+f32 func_8033AC38(AnimationFile *this, AnimationFileElement *elem, f32 time){
+    AnimationFileData *end_anim;
+    AnimationFileData *start_anim;
     AnimationFileData *var_v0;
     f32 temp_f12;
-    f32 sp38[4];
+    f32 knot_list[4];
     u32 temp_t2;
 
-    var_a2 = &elem->data[0];
-    if ((s32)arg2 < var_a2->unk0_13) {
-        sp38[0] = sp38[1] = D_803709E0[elem->unk0_3];
-        sp38[2] = (f32) var_a2->unk2 / 64;
-        sp38[3] = (var_a2->unk0_15 == 1 && elem->data_cnt >= 2) ? (f32)(var_a2 + 1)->unk2/64 : sp38[2];
-        return glspline_catmull_rom_interpolate((arg2 - this->unk0)/(var_a2->unk0_13 - this->unk0), 4, sp38);
+    start_anim = &elem->data[0];
+    if ((s32)time < start_anim->unk0_13) {
+        knot_list[0] = knot_list[1] = D_803709E0[elem->unk0_3];
+        knot_list[2] = (f32) start_anim->unk2 / 64;
+        knot_list[3] = (start_anim->unk0_15 == 1 && elem->data_cnt >= 2) ? (f32)(start_anim + 1)->unk2/64 : knot_list[2];
+        return glspline_catmull_rom_interpolate((time - this->unk0)/(start_anim->unk0_13 - this->unk0), 4, knot_list);
     }
-    var_a0 = var_a2 + elem->data_cnt;
-    var_a0--;
-    if ((s32) arg2 >= (var_a0->unk0_13)) {
-        sp38[1] = (f32) var_a0->unk2 / 64;
-        sp38[0] =  ((var_a0->unk0_14 == 1) && (elem->data_cnt >= 2)) ? (f32) (var_a0 - 1)->unk2 / 64 : sp38[1];
-        sp38[2] = sp38[3] = sp38[1];
+    end_anim = start_anim + elem->data_cnt;
+    end_anim--;
+    if ((s32) time >= (end_anim->unk0_13)) {
+        knot_list[1] = (f32) end_anim->unk2 / 64;
+        knot_list[0] =  ((end_anim->unk0_14 == 1) && (elem->data_cnt >= 2)) ? (f32) (end_anim - 1)->unk2 / 64 : knot_list[1];
+        knot_list[2] = knot_list[3] = knot_list[1];
 
-        return glspline_catmull_rom_interpolate(arg2 - var_a0->unk0_13, 4, sp38);
+        return glspline_catmull_rom_interpolate(time - end_anim->unk0_13, 4, knot_list);
     }
 
     
-    var_v0 = var_a2 + 1;
-    while (var_v0 < var_a0){
-            var_v0 = &var_a2[(var_a0 - var_a2)/2];
-            if (var_v0->unk0_13 <= (s32)arg2) {
-                var_a2 = var_v0;
-                if (!var_a2);
+    var_v0 = start_anim + 1;
+    while (var_v0 < end_anim){
+            var_v0 = &start_anim[(end_anim - start_anim)/2];
+            if (var_v0->unk0_13 <= (s32)time) {
+                start_anim = var_v0;
+                if (!start_anim);
             } else {
-                var_a0 = var_v0;
+                end_anim = var_v0;
             }
-            var_v0 = var_a2 + 1;
+            var_v0 = start_anim + 1;
         
     }
     
-    sp38[1] = (f32) var_a2->unk2 / 64;
-    sp38[2] = (f32) var_a0->unk2 / 64;
-    temp_f12 = (arg2 - var_a2->unk0_13) / (var_a0->unk0_13 - var_a2->unk0_13);
-    if ((var_a2->unk0_14 == 0) && (var_a0->unk0_15 == 0)) {
-        return sp38[1] + ((sp38[2] - sp38[1]) * temp_f12);
+    knot_list[1] = (f32) start_anim->unk2 / 64;
+    knot_list[2] = (f32) end_anim->unk2 / 64;
+    temp_f12 = (time - start_anim->unk0_13) / (end_anim->unk0_13 - start_anim->unk0_13);
+    if ((start_anim->unk0_14 == 0) && (end_anim->unk0_15 == 0)) {
+        return knot_list[1] + ((knot_list[2] - knot_list[1]) * temp_f12);
     }
     
-    sp38[0] = (var_a2->unk0_14 == 1 && (var_a2 - 1) >= &elem->data[0]) ?  (f32)(var_a2 - 1)->unk2/64 : sp38[1];
-    sp38[3] = (var_a0->unk0_15 == 1 && (var_a0 + 1) < &elem->data[elem->data_cnt]) ? (f32)(var_a0 + 1)->unk2/64 : sp38[2];
-    return glspline_catmull_rom_interpolate(temp_f12, 4, sp38);
+    knot_list[0] = (start_anim->unk0_14 == 1 && (start_anim - 1) >= &elem->data[0]) ?  (f32)(start_anim - 1)->unk2/64 : knot_list[1];
+    knot_list[3] = (end_anim->unk0_15 == 1 && (end_anim + 1) < &elem->data[elem->data_cnt]) ? (f32)(end_anim + 1)->unk2/64 : knot_list[2];
+    return glspline_catmull_rom_interpolate(temp_f12, 4, knot_list);
 }
 
 void func_8033AFB8(Struct_B1400 *arg0, s32 arg1, f32 arg2[3][3]){
