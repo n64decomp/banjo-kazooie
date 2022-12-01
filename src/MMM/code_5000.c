@@ -25,21 +25,21 @@ void func_8038B3F0(Struct5Fs *arg0, struct struct_68_s *arg1, f32 position[3], f
         sp58[1] = temp_f4;
         sp58[2] = temp_f4;
         sp58[3] = 0xFF;
-        func_8033A334(sp58, __mmm_5000_red);
+        modelRender_setPrimAndEnvColors(sp58, __mmm_5000_red);
     } else if (arg0->unk4 > 0.0f) {
         temp_f6 = (s32) (((1.0f - arg0->unk4) * 223.0f) + 32.0f);
         sp44[0] = temp_f6;
         sp44[1] = temp_f6;
         sp44[2] = temp_f6;
         sp44[3] = 0xFF;
-        func_8033A334(sp44, __mmm_5000_green);
+        modelRender_setPrimAndEnvColors(sp44, __mmm_5000_green);
     } else if (arg0->unk0 > 0.0f) {
         temp_f8 = (s32) (((1.0f - arg0->unk0) * 223.0f) + 32.0f);
         sp30[0] = temp_f8;
         sp30[1] = temp_f8;
         sp30[2] = temp_f8;
         sp30[3] = 0xFF;
-        func_8033A334(sp30, __mmm_5000_blue);
+        modelRender_setPrimAndEnvColors(sp30, __mmm_5000_blue);
     }
     modelRender_setDepthMode(MODEL_RENDER_DEPTH_FULL);
     modelRender_draw(gfx, mtx, position, rotation, scale, NULL, model_bin);

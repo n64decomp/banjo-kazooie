@@ -305,7 +305,7 @@ Actor * func_8038F4B0(ActorMarker *marker, Gfx **gdl, Mtx **mptr, s32 arg3){
         D_803912A0[0] = actor->pitch;
         D_803912A0[1] = actor->yaw;
         D_803912A0[2] = actor->roll;
-        func_8033A334(sp28, &D_80390DDC);
+        modelRender_setPrimAndEnvColors(sp28, &D_80390DDC);
     }//L8038F5F8
     return func_80325888(marker, gdl, mptr, arg3);
 }

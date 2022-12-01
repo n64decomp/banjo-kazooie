@@ -32,9 +32,9 @@ void func_8038AC40(Struct_MMM_47D0_0 *arg0, struct struct_68_s *arg1, f32 positi
 
     if (arg0->unk4 != 3) {
         if ((arg0->unk4 == 0) || (arg0->unk4 == 1)) {
-            func_8033A410(0xFF, arg0);
+            modelRender_setAlpha(0xFF);
         } else if (arg0->unk4 == 2) {
-            func_8033A410((s32)((1 - ((f64)arg0->unk8 * 1)) * 255.0), arg0);
+            modelRender_setAlpha((s32)((1 - ((f64)arg0->unk8 * 1)) * 255.0));
         }
         modelRender_setDepthMode(MODEL_RENDER_DEPTH_FULL);
         modelRender_draw(gfx, mtx, position, rotation, scale, NULL, model_bin);

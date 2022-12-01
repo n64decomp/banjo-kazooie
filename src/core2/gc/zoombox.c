@@ -467,9 +467,9 @@ void func_803152C4(gczoombox_t *this){
 }
 
 void func_80315300(gczoombox_t *this){
-     if(this->unkF0 != NULL){
-          func_8033BD20(&this->unkF0);
-          this->unkF0 = NULL;
+     if(this->model != NULL){
+          func_8033BD20(&this->model);
+          this->model = NULL;
      }
      if(this->anim_ctrl != NULL){
           animctrl_free(this->anim_ctrl);
@@ -845,7 +845,7 @@ void func_803163A8(gczoombox_t *this, Gfx **gfx, Mtx **mtx) {
     if (this->anim_ctrl != NULL) {
         func_8028781C(this->anim_ctrl, sp50, 1);
     }
-    modelRender_draw(gfx, mtx, sp50, sp5C, this->unk198 * sp34, &sp38, this->unkF0);
+    modelRender_draw(gfx, mtx, sp50, sp5C, this->unk198 * sp34, &sp38, this->model);
 }
 
 void func_803164B0(gczoombox_t *this, Gfx **gfx, Mtx **mtx, s32 arg3, s32 arg4, s32 arg5, f32 arg6) {
@@ -993,7 +993,7 @@ void gczoombox_draw(gczoombox_t *this, Gfx **gdl, Mtx ** mptr, void *vptr){
      if(getGameMode() == GAME_MODE_9_BANJO_AND_KAZOOIE)
           func_8034A900();
      //L80316BCC
-     if(this->unk1A4_28 && this->state && this->unkF0){
+     if(this->unk1A4_28 && this->state && this->model){
           func_803162B4(this);
           func_803163A8(this, gdl, mptr);
           if( this->unk139 == 2
@@ -1453,7 +1453,7 @@ gczoombox_t *gczoombox_new(s32 arg0, enum talk_pic_e portrait_id, s32 arg2, s32 
     
     this->unk1A4_11 = this->unk1A4_18 = 1;
 
-    this->unkF0 = assetcache_get(0x89d);
+    this->model = assetcache_get(0x89d);
     func_80317C90(this, portrait_id);
     this->anim_ctrl = animctrl_new(0);
     animctrl_reset(this->anim_ctrl);

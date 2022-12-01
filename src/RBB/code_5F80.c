@@ -265,7 +265,7 @@ void RBB_func_8038CC9C(Actor *this, s32 new_state){
     int i;
     f32 pad;
     f32 sp68[3];
-    f32 sp64;
+    f32 player_position;
     f32 sp60;
     f32 sp5C;
     f32 sp58;
@@ -404,11 +404,11 @@ void RBB_func_8038CC9C(Actor *this, s32 new_state){
     if(this->state == 3 || this->state == 4 || this->state == 5){
         local->unk20 = RBB_func_8038CBF0(this);
         if( local->unk20 == 0){
-            sp64 = local->unk0->unk4*300.0f;
+            player_position = local->unk0->unk4*300.0f;
             for(i = 0; i < 10; i++){
-                local->unk14[0] = local->unk8[0] + randf2(-sp64, sp64);
+                local->unk14[0] = local->unk8[0] + randf2(-player_position, player_position);
                 local->unk14[1] = local->unk14[1];
-                local->unk14[2] = local->unk8[2] + randf2(-sp64, sp64);
+                local->unk14[2] = local->unk8[2] + randf2(-player_position, player_position);
                 func_8038CA70(this, &local->unk14);
                 local->unk20 = RBB_func_8038CBF0(this);
                 if(local->unk20)
@@ -465,9 +465,9 @@ Actor *func_8038D638(ActorMarker *marker, Gfx **gdl, Mtx ** mptr, s32 arg3){
         func_8033A45C(6, (actor->state == 4)? 2: 1);
         func_8033A45C(7, (actor->state == 4)? 2: 1);
     }
-    func_8033A2D4(func_803253A0, actor);
-    func_8033A2E8(func_80325794, marker);
-    modelRender_draw(gdl, mptr, &actor->position, &sp3C, actor->scale, NULL, func_80330B1C(marker));
+    modelRender_preDraw( (GenMethod_1)func_803253A0, (s32)actor);
+    modelRender_postDraw((GenMethod_1)func_80325794, (s32)marker);
+    modelRender_draw(gdl, mptr, actor->position, sp3C, actor->scale, NULL, func_80330B1C(marker));
     
     return actor;
 }
@@ -493,7 +493,7 @@ void func_8038D7E8(ActorMarker *marker, s32 arg1){
 void func_8038D8B4(Actor *actor){}
 
 void func_8038D8BC(Actor *this){
-    f32 sp64[3];
+    f32 player_position[3];
     ActorLocal_RBB_5F80 *local = (ActorLocal_RBB_5F80 *) &this->local;
     f32 sp5C;
     f32 sp58;
@@ -540,7 +540,7 @@ void func_8038D8BC(Actor *this){
         return;
     }
 
-    player_getPosition(&sp64);
+    player_getPosition(player_position);
     if(this->state == 1){
         if(func_803203FC(2)){
             if(func_803203FC(3)){
@@ -548,7 +548,7 @@ void func_8038D8BC(Actor *this){
             }
         }
         else{//L8038DAA8
-            if(ml_vec3f_distance(&this->position, &sp64) < 1200.0f){
+            if(ml_vec3f_distance(this->position, player_position) < 1200.0f){
                 RBB_func_8038CC9C(this, 2);
             }
         }
@@ -565,7 +565,7 @@ void func_8038D8BC(Actor *this){
         if(func_8033567C(this->unk148) == ASSET_147_ANIM_BOOMBOX_MOVE){
             func_8033568C(this->unk148, &sp5C, &sp58);
             if(sp5C < 0.6 && 0.6 <= sp58){
-                func_8030E878(SFX_6C_LOCKUP_CLOSING, randf2(-0.05f, 0.05f) + local->unk0->unk14, 0x4e20, &this->position, 500.0f, 1000.0f);
+                func_8030E878(SFX_6C_LOCKUP_CLOSING, randf2(-0.05f, 0.05f) + local->unk0->unk14, 20000, this->position, 500.0f, 1000.0f);
             }//L8038DC04
             if(sp5C < 0.1 && 0.1 <= sp58){
                 func_8038C39C(this);
@@ -584,7 +584,7 @@ void func_8038D8BC(Actor *this){
         func_8033568C(this->unk148, &sp54, &sp50);
         if(0.1 <= sp50 && sp50 <= 0.6){
             sp4C = (sp50 - 0.1)/0.5;
-            func_80255FE4(&this->position, &local->unk8, &local->unk14, sp4C);
+            func_80255FE4(this->position, local->unk8, local->unk14, sp4C);
             this->yaw = local->unk24 + sp4C*(local->unk28 - local->unk24);
         }
 
@@ -602,7 +602,7 @@ void func_8038D8BC(Actor *this){
                 tmp_f2 = tmp_f2/0.3;
             else
                 tmp_f2 = 1.0f;
-            func_80255FE4(&this->position, &local->unk8, &local->unk14, tmp_f2);
+            func_80255FE4(this->position, local->unk8, local->unk14, tmp_f2);
         }
     }//L8038DE10
 

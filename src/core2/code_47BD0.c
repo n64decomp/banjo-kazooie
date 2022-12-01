@@ -98,12 +98,12 @@ Actor *chBeeSwarm_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
         sp8C[2] = this->position[2] + phi_s0->unk0[2];
 
         modelRender_setDepthMode(MODEL_RENDER_DEPTH_COMPARE);
-        func_8033A410(0xFF);
+        modelRender_setAlpha(0xFF);
         modelRender_draw(gfx, mtx, sp8C, sp80, 0.25f, NULL, phi_fp);
         local->unk5 |= func_8033A170();
         if(phi_s2 < 10){
             sp8C[1] = local->unk18 + 6.0f;
-            func_8033A410(0xC0);
+            modelRender_setAlpha(0xC0);
             modelRender_setDepthMode(MODEL_RENDER_DEPTH_COMPARE);
             modelRender_draw(gfx, mtx, sp8C, sp80, 0.1f, NULL, local->unk20);
             local->unk5 |= func_8033A170();

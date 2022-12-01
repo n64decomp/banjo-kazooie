@@ -28,8 +28,8 @@ Actor *func_802DC7E0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     f32 sp34[3];
 
     this = marker_getActor(marker);
-    func_8033A2D4(func_803253A0, this);
-    func_8033A2E8(func_80325794, marker);
+    modelRender_preDraw( (GenMethod_1)func_803253A0, (s32)this);
+    modelRender_postDraw((GenMethod_1)func_80325794, (s32)marker);
     func_8024E258();
     sp58[0] = 0.0f;
     sp58[1] = 0.0f;

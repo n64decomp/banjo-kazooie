@@ -146,8 +146,8 @@ void func_802DF71C(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     f32 sp3C;
 
     this = func_80325300(D_8037E060, &sp44);
-    func_8033A2D4(func_803253A0, this);
-    func_8033A2E8(func_80325794, D_8037E060);
+    modelRender_preDraw((GenMethod_1)func_803253A0, (s32)this);
+    modelRender_postDraw((GenMethod_1)func_80325794, (s32)D_8037E060);
     modelRender_setDepthMode(MODEL_RENDER_DEPTH_FULL);
     actor_setOpacity(this, 0xB9);
     func_8024E030(this->position, D_8037E5C0.unk18);

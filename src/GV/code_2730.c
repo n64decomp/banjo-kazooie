@@ -71,7 +71,7 @@ Actor *func_80388C64(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     sp3C[0] = this->pitch;
     sp3C[1] = this->yaw;
     sp3C[2] = this->roll;
-    func_8033A2D4(func_803253A0, this);
+    modelRender_preDraw(func_803253A0, this);
     func_8033A450(func_80329934());
     modelRender_draw(gfx, mtx, this->position, sp3C, 1.0f, NULL,func_80330B1C(this_marker));
     func_8034A174(func_80329934(), 5, local->unk0);

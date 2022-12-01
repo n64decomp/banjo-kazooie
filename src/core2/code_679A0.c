@@ -162,7 +162,7 @@ void func_802EEE3C(ParticleEmitter *this, Gfx **gfx, Mtx **mtx, Vtx **vtx, u32 a
             sp8C[1] = iPtr->position_18[1] + this->unk4[1];
             sp8C[2] = iPtr->position_18[2] + this->unk4[2];
             if( 0.0f != this->unk10 || 1.0 != this->unk14 || this->unk49 != 0xff ){
-                func_8033A410((s32) (iPtr->unkC*this->unk49));
+                modelRender_setAlpha((s32) (iPtr->unkC*this->unk49));
             }//L802EEF5C
             // tmp_a3 = (this->unk18 & 0x10)?0:1;
             modelRender_setDepthMode((this->unk18 & 0x10)?0:1);

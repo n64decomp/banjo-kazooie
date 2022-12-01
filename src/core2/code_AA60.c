@@ -102,9 +102,9 @@ void func_80291AF0(Gfx **gfx, Mtx **mtx, Vtx **vtx){
     if(D_8037C0E0){
         func_80289F30();
         func_8029DD6C();
-        func_8033A388(sp50[0], sp50[1], sp50[2], D_8037C0E6);
+        modelRender_setEnvColor(sp50[0], sp50[1], sp50[2], D_8037C0E6);
         func_8033A280(2.0f);
-        func_8033A2D4(func_80291AC4, 0);
+        modelRender_preDraw(func_80291AC4, 0);
         func_8033A450(D_80363780);
         modelRender_setDepthMode(MODEL_RENDER_DEPTH_FULL);
         if(D_8037C150.unk0){

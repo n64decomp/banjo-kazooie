@@ -29,7 +29,7 @@ Actor *func_803892D0(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
         position[1] = this->position_y;
         position[2] = this->position_z;
         position[1] += 8.0f;
-        func_8033A2D4(func_803253A0, this);
+        modelRender_preDraw(func_803253A0, this);
         modelRender_draw(gfx, mtx, position, rotation, this->unk1C[0], NULL, func_80330B1C(this_marker));
     }
     return this;

@@ -162,7 +162,7 @@ void func_80350818(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
                     sp80[2] = temp_s2->unk4[i].unk4[2];
                     sp80[3] = temp_s2->unk4[i].unk4[3];
                     sp80[3] *= var_f22;
-                    func_8033A334(sp80, D_803725A8);
+                    modelRender_setPrimAndEnvColors(sp80, D_803725A8);
                     modelRender_draw(gfx, mtx, spB8, spD0, temp_s2->unk4[i].unk14*0.25, NULL, D_80386170.unk8);
                 }
             }

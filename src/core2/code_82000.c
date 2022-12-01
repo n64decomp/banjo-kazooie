@@ -9,7 +9,7 @@ extern UNK_TYPE(s32) func_802E92AC(BKCollisionList *, BKVertexList *, f32[3], f3
 extern UNK_TYPE(s32) func_802EC394(BKMeshList *, UNK_TYPE(s32), UNK_TYPE(s32), f32, UNK_TYPE(s32), UNK_TYPE(s32), UNK_TYPE(s32));
 extern void func_802EC458(BKVertexList *, s32[3], s32[3]);
 extern void func_8033A494(s32);
-extern void func_8033A388(s32, s32, s32, s32);
+extern void modelRender_setEnvColor(s32, s32, s32, s32);
 extern void func_802F7BC0(Gfx **, Mtx **, Vtx **);
 extern void func_8033A450(s32);
 extern void func_8033A45C(s32, s32);
@@ -164,20 +164,20 @@ Struct_core2_82000_0 D_8036ABE0[] = {
 struct {
     void *unk0;
     void *unk4;
-    BKCollisionList *unk8;
-    BKCollisionList *unkC;
-    BKModel *unk10;
-    BKModel *unk14;
-    BKModelBin *unk18;
-    BKModelBin *unk1C;
+    BKCollisionList *collision_opa;
+    BKCollisionList *collision_xlu;
+    BKModel *model_opa;
+    BKModel *model_xlu;
+    BKModelBin *model_bin_opa;
+    BKModelBin *model_bin_xlu;
     s32 unk20;
     struct5Bs *unk24;
     Struct_core2_82000_0 *unk28;
-    u8 unk2C;
-    u8 unk2D;
-    u8 unk2E;
+    u8 env_red;
+    u8 env_green;
+    u8 env_blue;
     f32 unk30;
-}D_80382350;
+}levelModel;
 
 enum asset_e func_8030A068(void);
 
@@ -237,7 +237,7 @@ f32 func_80308FDC(f32 arg0[3], u32 arg1) {
     return 0.0f;
 }
 
-void func_803091D4(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
+void levelModel_opa_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     s32 temp_a0;
 
     if (func_80320708() && levelSpecificFlags_validateCRC2() && func_80320248()) {
@@ -339,44 +339,42 @@ void func_803091D4(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
             func_8033A45C(6, (func_8038EAE0(0xA) || func_8031FF1C(0xE2) || func_803203FC(0xC1)));
             break;
         }
-        func_8033A450(D_80382350.unk24);
+        func_8033A450(levelModel.unk24);
         modelRender_setDepthMode(MODEL_RENDER_DEPTH_FULL);
-        temp_a0 = D_80382350.unk0;
+        temp_a0 = levelModel.unk0;
         if (temp_a0 != 0) {
             func_8033A494(temp_a0);
         }
-        func_8033A388(D_80382350.unk2C, D_80382350.unk2D, D_80382350.unk2E, 0xFF);
-        modelRender_draw(gfx, mtx, NULL, NULL, D_80382350.unk28->unk14, NULL, D_80382350.unk18);
+        modelRender_setEnvColor(levelModel.env_red, levelModel.env_green, levelModel.env_blue, 0xFF);
+        modelRender_draw(gfx, mtx, NULL, NULL, levelModel.unk28->unk14, NULL, levelModel.model_bin_opa);
         if (!func_80309F78()) {
             func_802F7BC0(gfx, mtx, vtx);
         }
     }
 }
 
-//levelRender_model2_draw
-void func_80309628(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
+void levelModel_xlu_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     s32 temp_a0;
 
-    if (D_80382350.unk1C != NULL) {
+    if (levelModel.model_bin_xlu != NULL) {
         if (map_get() == MAP_1D_MMM_CELLAR) {
             func_8033A45C(1, (func_80326EEC(0x191) != NULL) ? 0 : 1);
         }
         modelRender_setDepthMode(MODEL_RENDER_DEPTH_COMPARE);
-        temp_a0 = D_80382350.unk4;
+        temp_a0 = levelModel.unk4;
         if (temp_a0 != 0) {
             func_8033A494(temp_a0);
         }
-        func_8033A388(D_80382350.unk2C, D_80382350.unk2D, D_80382350.unk2E, 0xFF);
-        modelRender_draw(gfx, mtx, NULL, NULL, D_80382350.unk28->unk14, NULL, D_80382350.unk1C);
+        modelRender_setEnvColor(levelModel.env_red, levelModel.env_green, levelModel.env_blue, 0xFF);
+        modelRender_draw(gfx, mtx, NULL, NULL, levelModel.unk28->unk14, NULL, levelModel.model_bin_xlu);
         func_802F7BC0(gfx, mtx, vtx);
     }
 }
 
-
 void func_80309704(s32 arg0, s32 arg1, s32 arg2){}
 
 s32 func_80309714(void){
-    return D_80382350.unk8->unk12;
+    return levelModel.collision_opa->unk12;
 }
 
 f32 func_80309724(f32 arg0[3]){
@@ -384,44 +382,44 @@ f32 func_80309724(f32 arg0[3]){
 }
 
 BKModel *func_80309744(s32 arg0){
-    return (arg0) ? D_80382350.unk14 : D_80382350.unk10;
+    return (arg0) ? levelModel.model_xlu : levelModel.model_opa;
 }
 
-s32 func_80309764(s32 arg0){
+BKModelBin *func_80309764(s32 arg0){
     if(arg0 == 0)
-        return D_80382350.unk18;
+        return levelModel.model_bin_opa;
     if(arg0 == 1)
-        return D_80382350.unk1C;
+        return levelModel.model_bin_xlu;
     return 0;
 }
 
 s32 func_80309794(void){
-    return D_80382350.unk20;
+    return levelModel.unk20;
 }
 
 struct5Bs *func_803097A0(void){
-    return D_80382350.unk24;
+    return levelModel.unk24;
 }
 
 
 void func_803097AC(s32 arg0[3], s32 arg1[3]) {
-    func_802EC458(func_8033A148(D_80382350.unk18), arg0, arg1);
+    func_802EC458(func_8033A148(levelModel.model_bin_opa), arg0, arg1);
     func_8033ECD8(arg0, arg1, 0x3E8);
-    arg0[0] = arg0[0] + D_80382350.unk28->unk6[0];
-    arg0[1] = arg0[1] + D_80382350.unk28->unk6[1];
-    arg0[2] = arg0[2] + D_80382350.unk28->unk6[2];
-    arg1[0] = arg1[0] + D_80382350.unk28->unkC[0];
-    arg1[1] = arg1[1] + D_80382350.unk28->unkC[1];
-    arg1[2] = arg1[2] + D_80382350.unk28->unkC[2];
+    arg0[0] = arg0[0] + levelModel.unk28->unk6[0];
+    arg0[1] = arg0[1] + levelModel.unk28->unk6[1];
+    arg0[2] = arg0[2] + levelModel.unk28->unk6[2];
+    arg1[0] = arg1[0] + levelModel.unk28->unkC[0];
+    arg1[1] = arg1[1] + levelModel.unk28->unkC[1];
+    arg1[2] = arg1[2] + levelModel.unk28->unkC[2];
 }
 
 void func_80309888(s32 arg0[3], s32 arg1[3]) {
     s32 i;
 
-    func_802EC458(func_8033A148(D_80382350.unk18), arg0, arg1);
+    func_802EC458(func_8033A148(levelModel.model_bin_opa), arg0, arg1);
     for(i = 0; i < 3; i++){
-        arg0[i] *= D_80382350.unk30;
-        arg1[i] *= D_80382350.unk30;
+        arg0[i] *= levelModel.unk30;
+        arg1[i] *= levelModel.unk30;
     }
 }
 
@@ -430,14 +428,14 @@ void func_80309998(s32 arg0[3], s32 arg1[3]) {
     s32 sp3C[3];
     s32 sp30[3];
 
-    func_802EC458(func_8033A148(D_80382350.unk18), arg0, arg1);
+    func_802EC458(func_8033A148(levelModel.model_bin_opa), arg0, arg1);
     for(i = 0; i < 3; i++){
-        arg0[i] *= D_80382350.unk30;
-        arg1[i] *= D_80382350.unk30;
+        arg0[i] *= levelModel.unk30;
+        arg1[i] *= levelModel.unk30;
     }
 
-    if (D_80382350.unk1C != NULL) {
-        func_802EC458(func_8033A148(D_80382350.unk1C), sp3C, sp30);
+    if (levelModel.model_bin_xlu != NULL) {
+        func_802EC458(func_8033A148(levelModel.model_bin_xlu), sp3C, sp30);
         for(j = 0; j < 3; j++){
             if(sp3C[j] < arg0[j]){
                 arg0[j] = sp3C[j];
@@ -458,27 +456,27 @@ BKCollisionTri *func_80309B48(f32 arg0[3], f32 arg1[3], f32 arg2[3], s32 arg3) {
     BKCollisionTri *sp2C;
     BKCollisionTri *temp_v0;
 
-    D_80382350.unk20 = 0;
-    if (D_80382350.unkC != NULL) {
+    levelModel.unk20 = 0;
+    if (levelModel.collision_xlu != NULL) {
         if ((arg3 & 0x80001F00) == 0x80001F00) {
             sp2C = NULL;
         } else {
-            sp2C = func_802E76B0(D_80382350.unk8, func_8033A148(D_80382350.unk18), arg0, arg1, arg2, arg3);
+            sp2C = func_802E76B0(levelModel.collision_opa, func_8033A148(levelModel.model_bin_opa), arg0, arg1, arg2, arg3);
         }
-        temp_v0 = func_802E76B0(D_80382350.unkC, func_8033A148(D_80382350.unk1C), arg0, arg1, arg2, arg3);
+        temp_v0 = func_802E76B0(levelModel.collision_xlu, func_8033A148(levelModel.model_bin_xlu), arg0, arg1, arg2, arg3);
         if (temp_v0 != NULL) {
-            D_80382350.unk20 = (s32) D_80382350.unk1C;
+            levelModel.unk20 = (s32) levelModel.model_bin_xlu;
             return temp_v0;
         }
         if (sp2C != NULL) {
-            D_80382350.unk20 = (s32) D_80382350.unk18;
+            levelModel.unk20 = (s32) levelModel.model_bin_opa;
         }
         return sp2C;
     }
     else{
-        sp2C = func_802E76B0(D_80382350.unk8, func_8033A148(D_80382350.unk18), arg0, arg1, arg2, arg3);
+        sp2C = func_802E76B0(levelModel.collision_opa, func_8033A148(levelModel.model_bin_opa), arg0, arg1, arg2, arg3);
         if (sp2C != NULL) {
-            D_80382350.unk20 = (s32) D_80382350.unk18;
+            levelModel.unk20 = (s32) levelModel.model_bin_opa;
         }
     }
     return sp2C;
@@ -488,17 +486,17 @@ BKCollisionTri *func_80309C74(f32 arg0[3], f32 arg1[3], f32 arg2[3], s32 arg3, B
     BKCollisionTri *sp2C;
     BKCollisionTri *phi_v0;
 
-    sp2C = func_802E76B0(D_80382350.unk8, func_8033A148(D_80382350.unk18), arg0, arg1, arg2, arg3);
+    sp2C = func_802E76B0(levelModel.collision_opa, func_8033A148(levelModel.model_bin_opa), arg0, arg1, arg2, arg3);
     if (sp2C != NULL) {
-        *arg4 = D_80382350.unk18;
+        *arg4 = levelModel.model_bin_opa;
     }
-    if (D_80382350.unkC == NULL) {
+    if (levelModel.collision_xlu == NULL) {
         return sp2C;
     }
 
-    phi_v0 = func_802E76B0(D_80382350.unkC, func_8033A148(D_80382350.unk1C), arg0, arg1, arg2, arg3);
+    phi_v0 = func_802E76B0(levelModel.collision_xlu, func_8033A148(levelModel.model_bin_xlu), arg0, arg1, arg2, arg3);
     if (phi_v0 != 0) {
-        *arg4 = D_80382350.unk1C;
+        *arg4 = levelModel.model_bin_xlu;
     }
     return (phi_v0 != NULL) ? phi_v0 : sp2C;
 }
@@ -506,7 +504,7 @@ BKCollisionTri *func_80309C74(f32 arg0[3], f32 arg1[3], f32 arg2[3], s32 arg3, B
 UNK_TYPE(s32) func_80309D58(UNK_TYPE(s32) arg0, UNK_TYPE(s32) arg1) {
     BKMeshList *temp_v0;
 
-    temp_v0 = func_8033A12C(D_80382350.unk18);
+    temp_v0 = func_8033A12C(levelModel.model_bin_opa);
     if (temp_v0 != NULL) {
         return func_802EC394(temp_v0, 0, 0, 1.0f, 0, arg0, arg1);
     }
@@ -517,17 +515,17 @@ UNK_TYPE(s32) func_80309DBC(f32 arg0[3], f32 arg1[3], f32 arg2, f32 arg3[3], s32
     s32 sp34;
     s32 temp_v0_2;
 
-    D_80382350.unk20 = 0;
-    sp34 = func_802E8E88(D_80382350.unk8, func_8033A148(D_80382350.unk18), arg0, arg1, arg2, arg3, arg4, arg5);
+    levelModel.unk20 = 0;
+    sp34 = func_802E8E88(levelModel.collision_opa, func_8033A148(levelModel.model_bin_opa), arg0, arg1, arg2, arg3, arg4, arg5);
     if (sp34 != 0) {
-        D_80382350.unk20 = (s32) D_80382350.unk18;
+        levelModel.unk20 = (s32) levelModel.model_bin_opa;
     }
-    if (D_80382350.unkC == 0) {
+    if (levelModel.collision_xlu == 0) {
         return sp34;
     }
-    temp_v0_2 = func_802E8E88(D_80382350.unkC, func_8033A148(D_80382350.unk1C), arg0, arg1, arg2, arg3, arg4, arg5);
+    temp_v0_2 = func_802E8E88(levelModel.collision_xlu, func_8033A148(levelModel.model_bin_xlu), arg0, arg1, arg2, arg3, arg4, arg5);
     if (temp_v0_2 != 0) {
-        D_80382350.unk20 = (s32) D_80382350.unk1C;
+        levelModel.unk20 = (s32) levelModel.model_bin_xlu;
         return temp_v0_2;
     }
     return sp34;
@@ -537,16 +535,16 @@ UNK_TYPE(s32) func_80309EB0(f32 arg0[3], f32 arg1, f32 arg2[3], s32 arg3) {
     s32 sp24;
     s32 temp_v0_2;
 
-    sp24 = func_802E92AC(D_80382350.unk8, func_8033A148(D_80382350.unk18), arg0, arg1, arg2, arg3);
-    if (D_80382350.unkC == 0) {
+    sp24 = func_802E92AC(levelModel.collision_opa, func_8033A148(levelModel.model_bin_opa), arg0, arg1, arg2, arg3);
+    if (levelModel.collision_xlu == 0) {
         return sp24;
     }
-    temp_v0_2 = func_802E92AC(D_80382350.unkC, func_8033A148(D_80382350.unk1C), arg0, arg1, arg2, arg3);
+    temp_v0_2 = func_802E92AC(levelModel.collision_xlu, func_8033A148(levelModel.model_bin_xlu), arg0, arg1, arg2, arg3);
     return (temp_v0_2 != 0) ? temp_v0_2 : sp24;
 }
 
 bool func_80309F78(void) {
-    return (D_80382350.unk18 != NULL) && (D_80382350.unk1C != NULL);
+    return (levelModel.model_bin_opa != NULL) && (levelModel.model_bin_xlu != NULL);
 }
 
 bool func_80309FA4(enum map_e map_id){
@@ -560,97 +558,97 @@ bool func_80309FA4(enum map_e map_id){
     return FALSE;
 }
 
-void func_80309FF0(void){
-    assetcache_release(D_80382350.unk18);
+void levelModel_free(void){
+    assetcache_release(levelModel.model_bin_opa);
 
-    if(D_80382350.unk1C)
-        assetcache_release(D_80382350.unk1C);
+    if(levelModel.model_bin_xlu)
+        assetcache_release(levelModel.model_bin_xlu);
     
-    if(D_80382350.unk10)
-        model_free(D_80382350.unk10);
+    if(levelModel.model_opa)
+        model_free(levelModel.model_opa);
 
-    if(D_80382350.unk14)
-        model_free(D_80382350.unk14);
+    if(levelModel.model_xlu)
+        model_free(levelModel.model_xlu);
 
-    func_8034A2A8(D_80382350.unk24);
+    func_8034A2A8(levelModel.unk24);
 }
 
 enum asset_e func_8030A068(void){
-    return D_80382350.unk28->model1_id;
+    return levelModel.unk28->model1_id;
 }
 
 void func_8030A078(void) {
     BKMeshList *sp24;
     Struct_core2_82000_0 *temp_v0;
 
-    D_80382350.unk2E = 0xFF;
-    D_80382350.unk2D = 0xFF;
-    D_80382350.unk2C = 0xFF;
+    levelModel.env_blue = 0xFF;
+    levelModel.env_green = 0xFF;
+    levelModel.env_red = 0xFF;
 
     temp_v0 = func_80308F90(map_get());;
-    D_80382350.unk28 = temp_v0;
-    D_80382350.unk30 = (f32) temp_v0->unk14;
-    D_80382350.unk18 = (BKModelBin *)assetcache_get(D_80382350.unk28->model1_id);
-    D_80382350.unk8 = func_8033A084(D_80382350.unk18);
-    D_80382350.unk20 = 0;
-    if (D_80382350.unk28->model2_id != 0) {
-        D_80382350.unk1C = (BKModelBin *)assetcache_get(D_80382350.unk28->model2_id);
-        D_80382350.unkC = func_8033A084(D_80382350.unk1C);
+    levelModel.unk28 = temp_v0;
+    levelModel.unk30 = (f32) temp_v0->unk14;
+    levelModel.model_bin_opa = (BKModelBin *)assetcache_get(levelModel.unk28->model1_id);
+    levelModel.collision_opa = func_8033A084(levelModel.model_bin_opa);
+    levelModel.unk20 = 0;
+    if (levelModel.unk28->model2_id != 0) {
+        levelModel.model_bin_xlu = (BKModelBin *)assetcache_get(levelModel.unk28->model2_id);
+        levelModel.collision_xlu = func_8033A084(levelModel.model_bin_xlu);
     } else {
-        D_80382350.unk1C = NULL;
-        D_80382350.unkC = NULL;
+        levelModel.model_bin_xlu = NULL;
+        levelModel.collision_xlu = NULL;
     }
-    sp24 = func_8033A0B0(D_80382350.unk18);
+    sp24 = func_8033A0B0(levelModel.model_bin_opa);
     if (sp24 != NULL) {
-        D_80382350.unk10 = func_8033F5F8(sp24, func_8033A148(D_80382350.unk18));
+        levelModel.model_opa = func_8033F5F8(sp24, func_8033A148(levelModel.model_bin_opa));
     } else {
-        D_80382350.unk10 = NULL;
+        levelModel.model_opa = NULL;
     }
-    if (D_80382350.unk10 != NULL) {
-        func_8034C6DC(D_80382350.unk10);
+    if (levelModel.model_opa != NULL) {
+        func_8034C6DC(levelModel.model_opa);
     }
 
-    if (D_80382350.unk1C != NULL) {
-        sp24 = func_8033A0B0(D_80382350.unk1C);
+    if (levelModel.model_bin_xlu != NULL) {
+        sp24 = func_8033A0B0(levelModel.model_bin_xlu);
     }
     else{
         sp24 = NULL;
     }
     
     if (sp24 != NULL) {
-        D_80382350.unk14 = func_8033F5F8(sp24, func_8033A148(D_80382350.unk1C));
+        levelModel.model_xlu = func_8033F5F8(sp24, func_8033A148(levelModel.model_bin_xlu));
     } else {
-        D_80382350.unk14 = 0;
+        levelModel.model_xlu = 0;
     }
-    if (D_80382350.unk14 != NULL) {
-        func_8034C6DC(D_80382350.unk14);
+    if (levelModel.model_xlu != NULL) {
+        func_8034C6DC(levelModel.model_xlu);
     }
-    D_80382350.unk24 = func_8034A2C8();
+    levelModel.unk24 = func_8034A2C8();
     func_80320B44(func_80309B48, func_80309DBC, func_80309EB0, func_80309794);
 
-    if (( D_80382350.unk18 != NULL) && (func_8033A110( D_80382350.unk18) != NULL)) {
-        D_80382350.unk0 = func_80349C3C();
-        func_80349D00(D_80382350.unk0, func_8033A110(D_80382350.unk18));
+    if (( levelModel.model_bin_opa != NULL) && (func_8033A110( levelModel.model_bin_opa) != NULL)) {
+        levelModel.unk0 = func_80349C3C();
+        func_80349D00(levelModel.unk0, func_8033A110(levelModel.model_bin_opa));
     } else {
-        D_80382350.unk0 = NULL;
+        levelModel.unk0 = NULL;
     }
-    if ((D_80382350.unk1C != NULL) && (func_8033A110(D_80382350.unk1C) != 0)) {
-        D_80382350.unk4 = func_80349C3C();
-        func_80349D00(D_80382350.unk4, func_8033A110(D_80382350.unk1C));
+    if ((levelModel.model_bin_xlu != NULL) && (func_8033A110(levelModel.model_bin_xlu) != 0)) {
+        levelModel.unk4 = func_80349C3C();
+        func_80349D00(levelModel.unk4, func_8033A110(levelModel.model_bin_xlu));
     }
     else{
-        D_80382350.unk4 = NULL;
+        levelModel.unk4 = NULL;
     }
 }
 
-void func_8030A280(s32 r, s32 g, s32 b){
-    D_80382350.unk2C = r;
-    D_80382350.unk2D = g;
-    D_80382350.unk2E = b;
+void levelModel_setEnvColor(s32 r, s32 g, s32 b){
+    levelModel.env_red = r;
+    levelModel.env_green = g;
+    levelModel.env_blue = b;
 }
 
 void func_8030A298(void){
-    if(D_80382350.unk24 != NULL){
-        D_80382350.unk24 = func_8034A348(D_80382350.unk24);
+    if(levelModel.unk24 != NULL){
+        levelModel.unk24 = func_8034A348(levelModel.unk24);
     }
 }

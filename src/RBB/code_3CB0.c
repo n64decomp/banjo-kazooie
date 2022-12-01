@@ -4,7 +4,6 @@
 
 extern void func_8028F9DC(s32);
 extern void func_803253A0(Actor *);
-extern void func_8033A2D4(void(*)(Actor *), Actor *);
 
 /* typedefs and declarations */
 typedef struct {
@@ -77,7 +76,7 @@ Actor *func_8038A224(ActorMarker *marker, Gfx **gdl, Mtx **mptr, s32 arg3){
         return actor;
     }
 
-    func_8033A2D4(func_803253A0, actor);
+    modelRender_preDraw(func_803253A0, actor);
     if(local->unk4){
         modelRender_draw(gdl, mptr, &actor->position, NULL, 1.0f, NULL, local->unk4);
     }

@@ -109,10 +109,10 @@ Actor *func_802C4360(ActorMarker *marker, Gfx **arg1, Mtx **arg2, Vtx **arg3){
     func_8033A45C(0xC, 1);
     func_8033A45C(0xF, 1);
     if(sp1C == D_80365E00){
-        func_8033A388(0xFF, 0xFF, 0xFF, 0xFF);
+        modelRender_setEnvColor(0xFF, 0xFF, 0xFF, 0xFF);
     }
     else{
-        func_8033A388(0x64, 0x64, 0x64, 0xFF);
+        modelRender_setEnvColor(0x64, 0x64, 0x64, 0xFF);
     }
     return func_80325888(marker, arg1, arg2, arg3);
 }

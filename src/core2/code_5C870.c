@@ -78,7 +78,7 @@ void func_802E3854(void){
     func_80254464();
     for(i = 0; i < 0xF; i++){
         func_802E6820(5);
-        func_8033A4D8();
+        modelRender_defrag();
         mapSavestate_defrag_all();
         gctransition_8030B740();
         func_802F542C();
@@ -589,7 +589,7 @@ s32 func_802E48D8(void){
     func_80288470();
     func_802F1320();
     func_802BA128();
-    func_8033A4D8();
+    modelRender_defrag();
     func_8028FB68();
     func_802F0E58();
     func_8030A298();

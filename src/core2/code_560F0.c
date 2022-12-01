@@ -171,8 +171,8 @@ Actor *func_802DD188(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     
     gDPSetTextureFilter((*gfx)++, G_TF_POINT);
     gSPSegment((*gfx)++, 0x04, osVirtualToPhysical(sp50));
-    func_8033A2D4(func_803253A0, sp6C);
-    func_8033A2E8(func_80325794, marker);
+    modelRender_preDraw((GenMethod_1)func_803253A0, (s32)sp6C);
+    modelRender_postDraw((GenMethod_1)func_80325794, (s32)marker);
 
     modelRender_draw(gfx, mtx, sp60, NULL, D_80368250, sp54, func_80330B1C(marker));
     gDPSetTextureFilter((*gfx)++, G_TF_BILERP);

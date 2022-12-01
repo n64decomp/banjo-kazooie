@@ -120,7 +120,7 @@ typedef struct {
     u8 unk60[0x30];
     u8 unk90[0x20];
     u8 unkB0[0x40];
-    BKModelBin *unkF0;
+    BKModelBin *model;
     AnimCtrl *anim_ctrl;
     BKSprite *unkF8;
     BKSpriteDisplayData *unkFC;

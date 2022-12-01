@@ -85,7 +85,7 @@ Actor *func_80388188(ActorMarker *this, Gfx **dl, Mtx **mptr, Vtx **vtx){
         sp48[0] = actorPtr->position_x;
         sp48[1] = actorPtr->unk1C_y + 3.0f;
         sp48[2] = actorPtr->position_z;
-        func_8033A410( (s32) MIN(255.0f, actorPtr->unk60) );
+        modelRender_setAlpha( (s32) MIN(255.0f, actorPtr->unk60) );
         modelRender_setDepthMode(MODEL_RENDER_DEPTH_FULL);
         modelRender_draw(dl, mptr, sp48, sp54, actorPtr->unk28, sp60, func_8030A428(0x18));
         actorPtr->position_y -= 1.9;

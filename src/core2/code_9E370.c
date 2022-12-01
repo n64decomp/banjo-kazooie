@@ -13,10 +13,9 @@ extern void func_802EE6CC(f32[3], s32[4], s32[4], s32, f32, f32, s32, s32, s32);
 
 
 extern void func_8033A244(f32);
-extern void func_8033A410(s32);
 
 f32 func_80257204(f32, f32, f32, f32);
-extern Actor *func_802C4260(enum actor_id, s32 x, s32 y, s32 z, s32 yaw);
+extern Actor *func_802C4260(enum actor_e actor_id, s32 x, s32 y, s32 z, s32 yaw);
 f32 func_8033229C(ActorMarker *);
 f32 func_8028EBA4(void);
 extern void func_8032FFF4(ActorMarker *, ActorMarker *, s32);
@@ -87,7 +86,7 @@ Actor *func_80325340(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 }
 
 void func_803253A0(Actor *this){
-    s32 pad;
+    s32 pad4C;
     BKModelBin *sp48;
     bool sp44;
     BKVertexList *sp40;
@@ -116,11 +115,11 @@ void func_803253A0(Actor *this){
     }//L8032548C
 
     if(this->alpha_124_19 < 0xFF){
-        func_8033A410(this->alpha_124_19);
+        modelRender_setAlpha(this->alpha_124_19);
     }
 
     modelRender_setDepthMode(this->depth_mode);
-    if(this->marker->unk44 != 0){
+    if((s32)this->marker->unk44 != 0){
         if((s32)this->marker->unk44 == 1){
             func_8033A450(D_8036E568);
         }
@@ -219,8 +218,8 @@ Actor *func_80325888(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     Actor *this;
 
     this = func_80325300(marker, sp3C);
-    func_8033A2D4(func_803253A0, this);
-    func_8033A2E8(func_80325794, marker);
+    modelRender_preDraw((GenMethod_1)func_803253A0, (s32)this);
+    modelRender_postDraw((GenMethod_1)func_80325794, (s32)marker);
     modelRender_draw(gfx, mtx, this->position, sp3C, this->scale, (this->unk104 != NULL) ? D_8036E580 : NULL, func_803257B4(marker));
     return this;
 }
@@ -341,8 +340,8 @@ Actor *func_80325E78(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
 
     this = func_80325300(marker, rotation);
     modelRender_setDepthMode(MODEL_RENDER_DEPTH_FULL);
-    func_8033A2D4(func_803253A0, this);
-    func_8033A2E8(func_80325794, marker);
+    modelRender_preDraw((GenMethod_1)func_803253A0, (s32)this);
+    modelRender_postDraw((GenMethod_1)func_80325794, (s32)marker);
     modelRender_draw(gfx, mtx, this->position, rotation, this->scale, (this->unk104 != NULL) ?  D_8036E580 : NULL, func_803257B4(marker));
     return this;
 }

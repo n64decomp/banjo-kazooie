@@ -84,10 +84,10 @@ Actor *chnapper_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     }
 
     if(this->state == 1){ //set model alpha
-        func_8033A410(0x80);
+        modelRender_setAlpha(0x80);
     }
     else{
-        func_8033A410(0xdc);
+        modelRender_setAlpha(0xdc);
     }
 
     return func_80325888(marker, gfx, mtx, vtx);

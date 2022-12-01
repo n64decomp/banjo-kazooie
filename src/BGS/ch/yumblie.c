@@ -109,8 +109,8 @@ Actor *chyumblie_draw(ActorMarker *this, Gfx **gfx, Mtx** mtx, Vtx **vtx){
         return thisActor;
     }
 
-    func_8033A2D4(func_803253A0, thisActor, sp40);
-    func_8033A2E8(func_80325794, this);
+    modelRender_preDraw((GenMethod_1) func_803253A0, (s32)thisActor);
+    modelRender_postDraw((GenMethod_1) func_80325794, (s32)this);
     sp44[0] = thisActor->position_x;
     sp44[1] = thisActor->position_y + sp40->unk0*75.0f;
     sp44[2] = thisActor->position_z;

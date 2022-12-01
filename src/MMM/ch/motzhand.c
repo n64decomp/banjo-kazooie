@@ -69,10 +69,10 @@ Actor *chMotzhand_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     func_8033A238(func_803356A0(this->unk148));
     
     if(this->state == 4){
-        func_8033A410((s32) (local->alpha * 255.0f));
+        modelRender_setAlpha((s32) (local->alpha * 255.0f));
     }
     else{
-        func_8033A410((s32) 255);
+        modelRender_setAlpha((s32) 255);
     }
 
     sp3C[0] = sp3C[1] = sp3C[2] = 0.0f;

@@ -48,8 +48,8 @@ Actor *func_8035ECA0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     local = (ActorLocal_core2_D7D10 *)&this->local;
     func_8033A45C(3, (s32) this->velocity[1]);
     func_8033A45C(4, local->unk0);
-    func_8033A2D4(func_803253A0, this);
-    func_8033A2E8(func_80325794, marker);
+    modelRender_preDraw( (GenMethod_1)func_803253A0, (s32)this);
+    modelRender_postDraw((GenMethod_1)func_80325794, (s32)marker);
     modelRender_draw(gfx, mtx, this->position, rotation, this->scale, D_80373008, func_803257B4(marker));
     return this;
 }

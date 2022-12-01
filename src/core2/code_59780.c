@@ -89,9 +89,9 @@ Actor *func_802E0738(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     Actor *this;
 
     this = func_80325300(marker, &sp34);
-    func_8033A2D4(func_802E0710, this);
-    func_8033A2E8(func_80325794, marker);
-    modelRender_draw(gfx, mtx, this->position, &sp34, this->scale, NULL, func_80330B1C(marker));
+    modelRender_preDraw( (GenMethod_1)func_802E0710, (s32)this);
+    modelRender_postDraw((GenMethod_1)func_80325794, (s32)marker);
+    modelRender_draw(gfx, mtx, this->position, sp34, this->scale, NULL, func_80330B1C(marker));
     return this;
 }
 

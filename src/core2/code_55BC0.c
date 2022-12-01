@@ -45,8 +45,8 @@ Actor *func_802DCB50(ActorMarker *marker, Gfx **gdl, Mtx **mptr, Vtx **vptr){
     if(D_8037DE84)
         return actor;
 
-    func_8033A2D4(func_803253A0, actor);
-    func_8033A2E8(func_80325794, marker);
+    modelRender_preDraw((GenMethod_1)func_803253A0, (s32)actor);
+    modelRender_postDraw((GenMethod_1)func_80325794, (s32)marker);
     func_8024E258();
     {sp58[0] = 0.0f; sp58[1] = 0.0f; sp58[2] = 1312.5f;};
     {sp4C[0] = 0.0f; sp4C[1] = 0.0f; sp4C[2] = 0.0f;};

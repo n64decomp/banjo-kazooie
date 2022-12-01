@@ -239,7 +239,7 @@ Actor *func_8038A0D0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     sp40[2] = actor->position[2];
 
     func_8032AA58(actor, sp3C);
-    func_8033A2D4(func_803253A0, actor);
+    modelRender_preDraw(func_803253A0, actor);
     modelRender_draw(gfx, mtx, sp40, sp4C, sp3C, NULL, func_80330B1C(marker));
     return actor;
 }

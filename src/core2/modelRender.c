@@ -22,24 +22,11 @@ extern void mlMtxApply(Mtx* mtx);
 extern struct58s *func_802EA154();
 extern struct58s *func_802EA374(struct58s *);
 
-typedef struct{
-    s32 env[4];
-    s32 prim[4];
-} Struct_Core2_B1400_0;
 
 typedef struct{
     void (* unk0)(Actor *);
     Actor *unk4;
 } Struct_Core2_B1400_1;
-
-
-typedef struct{
-    f32 unk0[3];
-    f32 unkC[3];
-    s32 unk18;
-    f32 unk1C[3];
-    f32 unk28[3];
-} Struct_Core2_B1400_2;
 
 typedef void (*GeoListFunc)(Gfx **, Mtx **, void *);
 
@@ -150,7 +137,8 @@ typedef struct {
     s32 unk8;
 }GeoCmd10;
 
-void modelRender_reset(void);
+
+
 void func_803384A8(Gfx **, Mtx **, void *);
 void func_803385BC(Gfx **, Mtx **, void *);
 void func_803387F8(Gfx **, Mtx **, void *);
@@ -168,7 +156,6 @@ void func_80338DCC(Gfx **, Mtx **, void *);
 void func_80338EB8(Gfx **, Mtx **, void *);
 void func_8033909C(Gfx **, Mtx **, void *);
 void func_80339124(Gfx **, Mtx **, BKGeoList *);
-void func_8033A410(s32 a);
 void func_8033A45C(s32 arg0, s32 arg1);
 
 // Sets up 2 cycle mode
@@ -605,44 +592,69 @@ GeoListFunc D_80370994[] = {
     func_8033878C
 };
 
+enum model_render_color_mode_e{
+    COLOR_MODE_DYNAMIC_PRIM_AND_ENV,
+    COLOR_MODE_DYNAMIC_ENV,
+    COLOR_MODE_STATIC_OPAQUE,
+    COLOR_MODE_STATIC_TRANSPARENT
+};
+
 /* .bss */
-s32 D_80383650;
-s32 D_80383658[0x2A];
-s32 D_80383700;
+s32  D_80383650;
+s32  D_80383658[0x2A];
+s32  D_80383700;
 bool D_80383704;
-f32 D_80383708;
-f32 D_8038370C;
-s32 D_80383710;
-s32 D_80383714;
-BKGfxList *modelRenderDisplayList;
-struct58s *D_8038371C;
-static BKTextureList *modelRenderTextureList;
-s32 D_80383724;
-static BKVertexList *modelRenderVextureList;
-BKModelUnk20List *D_8038372C;
-struct58s *D_80383730;
-f32 D_80383734;
-Struct_Core2_B1400_0 D_80383738;
-Struct_Core2_B1400_2 D_80383758;
+f32  D_80383708;
+f32  D_8038370C;
+s32  D_80383710;
+enum model_render_color_mode_e  modelRenderColorMode;
+BKGfxList *            modelRenderDisplayList;
+struct58s *            D_8038371C;
+static BKTextureList * modelRenderTextureList;
+s32                    D_80383724;
+static BKVertexList *  modelRenderVextureList;
+BKModelUnk20List *     D_8038372C;
+struct58s *            D_80383730;
+f32                    D_80383734;
+
 struct{
-    void (* unk0)(Actor *);
-    Actor *unk4;
-    void (* unk8)(ActorMarker *);
-    ActorMarker *unkC;
-} D_80383790;
-s32 D_803837A0[4];
+    s32 env[4];
+    s32 prim[4];
+} modelRenderDynColors;
+
+struct{
+    f32 unk0[3];
+    f32 unkC[3];
+    s32 unk18;
+    f32 unk1C[3];
+    f32 unk28[3];
+} D_80383758;
+
+struct{
+    GenMethod_1 pre_method;
+    s32 pre_arg;
+    GenMethod_1 post_method;
+    s32 post_arg;
+} modelRenderCallback;
+
+s32 modelRenderDynEnvColor[4];
+
 struct {
     s32 unk0;
     f32 unk4[3];
 }D_803837B0;
-u8 D_803837C0;
+
+u8 modelRenderDynAlpha;
+
 struct {
     s32 model_id; //model_asset_index
     f32 unk4;
     f32 unk8;
     u8 padC[0x4];
 } D_803837C8; 
-static s32 modelRenderDepthMode;
+
+static enum model_render_depth_mode_e modelRenderDepthMode;
+
 struct {
     LookAt lookat_buffer[32];
     LookAt *cur_lookat;
@@ -650,8 +662,8 @@ struct {
     f32 eye_pos[3];
 } D_803837E0;
 Mtx D_80383BF8;
-f32 D_80383C38[3];
-f32 D_80383C48[3];
+f32 modelRenderCameraPosition[3];
+f32 modelRenderCameraRotation[3];
 BKModelBin *modelRenderModelBin;
 f32 D_80383C58[3];
 f32 D_80383C64;
@@ -667,7 +679,7 @@ void modelRender_reset(void){
     D_80383704 = TRUE;
     D_8038370C = 1.0f;
     D_80383710 = FALSE;
-    D_80383714 = 2;
+    modelRenderColorMode = COLOR_MODE_STATIC_OPAQUE;
     D_80383650 = 0;
     modelRenderDisplayList = NULL;
     D_8038371C = NULL;
@@ -675,11 +687,11 @@ void modelRender_reset(void){
     D_80383724 = 0;
     modelRenderVextureList = NULL;
     D_8038372C = 0;
-    D_80383790.unk0 = NULL;
-    D_80383790.unk8 = NULL;
+    modelRenderCallback.pre_method = NULL;
+    modelRenderCallback.post_method = NULL;
     D_803837B0.unk0 = 0;
     D_803837C8.model_id = 0;
-    modelRenderDepthMode = 0;
+    modelRenderDepthMode = MODEL_RENDER_DEPTH_NONE;
     func_8033A45C(1,1);
     func_8033A45C(2,0);
     if(D_80383758.unk18){
@@ -702,9 +714,9 @@ void func_803384A8(Gfx **gfx, Mtx **mtx, void *arg2){
     if(cmd->unk8){
         func_8025235C(sp30, cmd->unkC);
         func_80251788(sp30[0], sp30[1], sp30[2]);
-        mlMtxRotYaw(D_80383C48[1]);
+        mlMtxRotYaw(modelRenderCameraRotation[1]);
         if(!cmd->unkA){
-            mlMtxRotPitch(D_80383C48[0]);
+            mlMtxRotPitch(modelRenderCameraRotation[0]);
         }
         mlMtxScale(D_80383734);
         mlMtxTranslate(-cmd->unkC[0], -cmd->unkC[1], -cmd->unkC[2]);
@@ -869,9 +881,9 @@ void func_80338BFC(Gfx **gfx, Mtx **mtx, void *arg2){
         else{
             func_8025235C(sp20, cmd->unkC);
         }
-        sp20[0] += D_80383C38[0];
-        sp20[1] += D_80383C38[1];
-        sp20[2] += D_80383C38[2];
+        sp20[0] += modelRenderCameraPosition[0];
+        sp20[1] += modelRenderCameraPosition[1];
+        sp20[2] += modelRenderCameraPosition[2];
         func_8034A308(D_80383650, cmd->unk8, sp20);
     }
 }
@@ -963,9 +975,9 @@ void func_80338EB8(Gfx ** gfx, Mtx ** mtx, void *arg2){
             func_8025235C(sp34, sp34);
         }
 
-        sp34[0] += D_80383C38[0];
-        sp34[1] += D_80383C38[1];
-        sp34[2] += D_80383C38[2];
+        sp34[0] += modelRenderCameraPosition[0];
+        sp34[1] += modelRenderCameraPosition[1];
+        sp34[2] += modelRenderCameraPosition[2];
         if(func_8024DB50(sp34, sp30) && cmd->unk10){
             func_80339124(gfx, mtx, (BKGeoList*)((s32)cmd + cmd->unk10));
         }
@@ -999,9 +1011,9 @@ void func_80339124(Gfx ** gfx, Mtx ** mtx, BKGeoList *geo_list){
 
 BKModelBin *modelRender_draw(Gfx **gfx, Mtx **mtx, f32 position[3], f32 arg3[3], f32 scale, f32*arg5, BKModelBin* model_bin){
     f32 camera_focus[3];
-    f32 spF0;
+    f32 camera_focus_distance;
     f32 padEC;
-    f32 camera_position[3];
+    f32 object_position[3];
     void *rendermode_table_opa; // Table of render modes to use for opaque rendering
     void *rendermode_table_xlu; // Table of render modes to use for translucent rendering
     f32 spD4;
@@ -1019,30 +1031,30 @@ BKModelBin *modelRender_draw(Gfx **gfx, Mtx **mtx, f32 position[3], f32 arg3[3],
     }
 
     D_80370990 = 0;
-    func_8024C5CC(D_80383C38);
-    func_8024C764(D_80383C48);
+    func_8024C5CC(modelRenderCameraPosition);
+    func_8024C764(modelRenderCameraRotation);
     if(D_80383758.unk18){
-        D_80383758.unk1C[0] = D_80383C38[0];
-        D_80383758.unk1C[1] = D_80383C38[1];
-        D_80383758.unk1C[2] = D_80383C38[2];
+        D_80383758.unk1C[0] = modelRenderCameraPosition[0];
+        D_80383758.unk1C[1] = modelRenderCameraPosition[1];
+        D_80383758.unk1C[2] = modelRenderCameraPosition[2];
 
-        D_80383758.unk28[0] = D_80383C48[0];\
-        D_80383758.unk28[1] = D_80383C48[1];\
-        D_80383758.unk28[2] = D_80383C48[2];
+        D_80383758.unk28[0] = modelRenderCameraRotation[0];\
+        D_80383758.unk28[1] = modelRenderCameraRotation[1];\
+        D_80383758.unk28[2] = modelRenderCameraRotation[2];
     }
 
     if(position){
-        camera_position[0] = position[0];
-        camera_position[1] = position[1];
-        camera_position[2] = position[2];
+        object_position[0] = position[0];
+        object_position[1] = position[1];
+        object_position[2] = position[2];
     }
     else{
-        camera_position[0] = camera_position[1] = camera_position[2] = 0.0f;
+        object_position[0] = object_position[1] = object_position[2] = 0.0f;
     }
 
-    camera_focus[0] = camera_position[0] - D_80383C38[0];
-    camera_focus[1] = camera_position[1] - D_80383C38[1];
-    camera_focus[2] = camera_position[2] - D_80383C38[2];
+    camera_focus[0] = object_position[0] - modelRenderCameraPosition[0];
+    camera_focus[1] = object_position[1] - modelRenderCameraPosition[1];
+    camera_focus[2] = object_position[2] - modelRenderCameraPosition[2];
 
     if( ((camera_focus[0] < -17000.0f) || (17000.0f < camera_focus[0]))
         || ((camera_focus[1] < -17000.0f) || (17000.0f < camera_focus[1]))
@@ -1053,19 +1065,19 @@ BKModelBin *modelRender_draw(Gfx **gfx, Mtx **mtx, f32 position[3], f32 arg3[3],
     }
 
     if(D_80383758.unk18){
-        D_80383C38[0] = D_80383758.unk0[0];
-        D_80383C38[1] = D_80383758.unk0[1];
-        D_80383C38[2] = D_80383758.unk0[2];
+        modelRenderCameraPosition[0] = D_80383758.unk0[0];
+        modelRenderCameraPosition[1] = D_80383758.unk0[1];
+        modelRenderCameraPosition[2] = D_80383758.unk0[2];
 
-        D_80383C48[0] = D_80383758.unkC[0],
-        D_80383C48[1] = D_80383758.unkC[1],
-        D_80383C48[2] = D_80383758.unkC[2];
-        func_8024CD88(D_80383C38);
-        func_8024CE18(D_80383C48);
+        modelRenderCameraRotation[0] = D_80383758.unkC[0],
+        modelRenderCameraRotation[1] = D_80383758.unkC[1],
+        modelRenderCameraRotation[2] = D_80383758.unkC[2];
+        func_8024CD88(modelRenderCameraPosition);
+        func_8024CE18(modelRenderCameraRotation);
         func_8024CFD4();
-        camera_focus[0] = camera_position[0] - D_80383C38[0];
-        camera_focus[1] = camera_position[1] - D_80383C38[1];
-        camera_focus[2] = camera_position[2] - D_80383C38[2];
+        camera_focus[0] = object_position[0] - modelRenderCameraPosition[0];
+        camera_focus[1] = object_position[1] - modelRenderCameraPosition[1];
+        camera_focus[2] = object_position[2] - modelRenderCameraPosition[2];
     }
 
     if(model_bin){
@@ -1077,24 +1089,24 @@ BKModelBin *modelRender_draw(Gfx **gfx, Mtx **mtx, f32 position[3], f32 arg3[3],
         spD0 = D_803837C8.unk8;
         spD4 = D_803837C8.unk4;
     }
-    spF0 = gu_sqrtf(camera_focus[0]*camera_focus[0] + camera_focus[1]*camera_focus[1] + camera_focus[2]*camera_focus[2]);
-    if( 4000.0f <= spF0 && spD4*scale*D_8038370C*50.0f < D_80383708){
+    camera_focus_distance = gu_sqrtf(camera_focus[0]*camera_focus[0] + camera_focus[1]*camera_focus[1] + camera_focus[2]*camera_focus[2]);
+    if( 4000.0f <= camera_focus_distance && spD4*scale*D_8038370C*50.0f < D_80383708){
         D_80383708 = spD4*scale*D_8038370C*50.0f;
     }
 
-    if(D_80383708 <= spF0){
+    if(D_80383708 <= camera_focus_distance){
         modelRender_reset();
         return 0;
     }
 
-    D_80370990 = (D_80383704) ? func_8024DB50(camera_position, spD0*scale) : 1;
+    D_80370990 = (D_80383704) ? func_8024DB50(object_position, spD0*scale) : 1;
     if(D_80370990 == 0){
         modelRender_reset();
         return 0;
     }
 
-    if(D_80383790.unk0){
-        D_80383790.unk0(D_80383790.unk4);
+    if(modelRenderCallback.pre_method != NULL){
+        modelRenderCallback.pre_method(modelRenderCallback.pre_arg);
     }
     func_80349AD0();
     if(model_bin == NULL){
@@ -1108,19 +1120,19 @@ BKModelBin *modelRender_draw(Gfx **gfx, Mtx **mtx, f32 position[3], f32 arg3[3],
 
     if(D_80383710){
         tmp_f0 = D_80383708 - 500.0f;
-        if(tmp_f0 < spF0){
-            alpha = (s32)((1.0f - (spF0 - tmp_f0)/500.0f)*255.0f);
-            if(D_80383714 == 0){
-                D_80383738.prim[3] = (D_80383738.prim[3] * alpha) / 0xff;
+        if(tmp_f0 < camera_focus_distance){
+            alpha = (s32)((1.0f - (camera_focus_distance - tmp_f0)/500.0f)*255.0f);
+            if(modelRenderColorMode == COLOR_MODE_DYNAMIC_PRIM_AND_ENV){
+                modelRenderDynColors.prim[3] = (modelRenderDynColors.prim[3] * alpha) / 0xff;
             }
-            else if(D_80383714 == 1){
-                D_803837A0[3] = (D_803837A0[3] * alpha)/0xff;
+            else if(modelRenderColorMode == COLOR_MODE_DYNAMIC_ENV){
+                modelRenderDynEnvColor[3] = (modelRenderDynEnvColor[3] * alpha)/0xff;
             }
-            else if(D_80383714 == 2){
-                func_8033A410(alpha);
+            else if(modelRenderColorMode == COLOR_MODE_STATIC_OPAQUE){
+                modelRender_setAlpha(alpha);
             }
-            else if(D_80383714 == 3){
-                D_803837C0 = (D_803837C0 *alpha)/0xff;
+            else if(modelRenderColorMode == COLOR_MODE_STATIC_TRANSPARENT){
+                modelRenderDynAlpha = (modelRenderDynAlpha *alpha)/0xff;
             }
         }
     }
@@ -1160,13 +1172,13 @@ BKModelBin *modelRender_draw(Gfx **gfx, Mtx **mtx, f32 position[3], f32 arg3[3],
         rendermode_table_xlu = renderModesDepthCompareXlu;
     }
 
-    if(D_80383714 == 0){
+    if(modelRenderColorMode == COLOR_MODE_DYNAMIC_PRIM_AND_ENV){
         s32 alpha;
         
-        alpha = D_80383738.prim[3] + (D_80383738.env[3]*(0xFF - D_80383738.prim[3]))/0xff;
+        alpha = modelRenderDynColors.prim[3] + (modelRenderDynColors.env[3]*(0xFF - modelRenderDynColors.prim[3]))/0xff;
         gSPDisplayList((*gfx)++, setup2CycleDL);
-        gDPSetEnvColor((*gfx)++, D_80383738.env[0], D_80383738.env[1], D_80383738.env[2], alpha);
-        gDPSetPrimColor((*gfx)++, 0, 0, D_80383738.prim[0], D_80383738.prim[1], D_80383738.prim[2], 0);
+        gDPSetEnvColor((*gfx)++, modelRenderDynColors.env[0], modelRenderDynColors.env[1], modelRenderDynColors.env[2], alpha);
+        gDPSetPrimColor((*gfx)++, 0, 0, modelRenderDynColors.prim[0], modelRenderDynColors.prim[1], modelRenderDynColors.prim[2], 0);
 
         // Set up segment 3 to point to the right render mode table based on the alpha value
         if(alpha == 0xFF){
@@ -1177,25 +1189,25 @@ BKModelBin *modelRender_draw(Gfx **gfx, Mtx **mtx, f32 position[3], f32 arg3[3],
         }
         //TODO
     }
-    else if(D_80383714 == 1){
+    else if(modelRenderColorMode == COLOR_MODE_DYNAMIC_ENV){
         gSPDisplayList((*gfx)++, setup2CycleBlackPrimDL);
-        gDPSetEnvColor((*gfx)++, D_803837A0[0], D_803837A0[1], D_803837A0[2], D_803837A0[3]);
+        gDPSetEnvColor((*gfx)++, modelRenderDynEnvColor[0], modelRenderDynEnvColor[1], modelRenderDynEnvColor[2], modelRenderDynEnvColor[3]);
 
         // Set up segment 3 to point to the right render mode table based on the alpha value
-        if(D_803837A0[3] == 0xFF){
+        if(modelRenderDynEnvColor[3] == 0xFF){
             gSPSegment((*gfx)++, 0x03, osVirtualToPhysical(rendermode_table_opa));
         }
         else{
             gSPSegment((*gfx)++, 0x03, osVirtualToPhysical(rendermode_table_xlu));
         }
     }
-    else if(D_80383714 == 2){
+    else if(modelRenderColorMode == COLOR_MODE_STATIC_OPAQUE){
         gSPDisplayList((*gfx)++, setup2CycleWhiteEnvDL);
         gSPSegment((*gfx)++, 0x03, osVirtualToPhysical(rendermode_table_opa));
     }
-    else if(D_80383714 == 3){
+    else if(modelRenderColorMode == COLOR_MODE_STATIC_TRANSPARENT){
         gSPDisplayList((*gfx)++, setup2CycleDL_copy);
-        gDPSetEnvColor((*gfx)++, 0xFF, 0xFF, 0xFF, D_803837C0);
+        gDPSetEnvColor((*gfx)++, 0xFF, 0xFF, 0xFF, modelRenderDynAlpha);
         gSPSegment((*gfx)++, 0x03, osVirtualToPhysical(rendermode_table_xlu));
     }
 
@@ -1232,7 +1244,7 @@ BKModelBin *modelRender_draw(Gfx **gfx, Mtx **mtx, f32 position[3], f32 arg3[3],
     }
 
     if(D_8038372C){
-        func_802ED52C(D_8038372C, D_80383C38, scale);
+        func_802ED52C(D_8038372C, modelRenderCameraPosition, scale);
     }
 
     if(model_bin->unk28 != NULL && D_8038371C != NULL){
@@ -1241,10 +1253,10 @@ BKModelBin *modelRender_draw(Gfx **gfx, Mtx **mtx, f32 position[3], f32 arg3[3],
 
     mlMtxIdent();
     if(D_80383758.unk18){
-        func_80252AF0(D_80383758.unk1C, camera_position, arg3, scale, arg5);
+        func_80252AF0(D_80383758.unk1C, object_position, arg3, scale, arg5);
     }
     else{
-        func_80252AF0(D_80383C38, camera_position, arg3, scale, arg5);
+        func_80252AF0(modelRenderCameraPosition, object_position, arg3, scale, arg5);
     }
 
     if(D_803837B0.unk0){
@@ -1268,8 +1280,8 @@ BKModelBin *modelRender_draw(Gfx **gfx, Mtx **mtx, f32 position[3], f32 arg3[3],
     func_80339124(gfx, mtx, (BKGeoList *)((u8 *)model_bin + model_bin->geo_list_offset_4));
     gSPPopMatrix((*gfx)++, G_MTX_MODELVIEW);
 
-    if(D_80383790.unk8){
-        D_80383790.unk8(D_80383790.unkC);
+    if(modelRenderCallback.post_method != NULL){
+        modelRenderCallback.post_method(modelRenderCallback.post_arg);
     }
 
     if(D_803837C8.model_id){
@@ -1409,14 +1421,14 @@ void func_8033A298(bool arg0){
     }
 }
 
-void func_8033A2D4(void(*func)(Actor *), Actor* actor){
-    D_80383790.unk0 = func;
-    D_80383790.unk4 = actor;
+void modelRender_preDraw(GenMethod_1 func, s32 arg){
+    modelRenderCallback.pre_method = func;
+    modelRenderCallback.pre_arg = arg;
 }
 
-void func_8033A2E8(void(*func)(ActorMarker *), ActorMarker* marker){
-    D_80383790.unk8 = func;
-    D_80383790.unkC = marker;
+void modelRender_postDraw(GenMethod_1 func, s32 arg){
+    modelRenderCallback.post_method = func;
+    modelRenderCallback.post_arg = arg;
 }
 
 void modelRender_setDisplayList(BKGfxList *gfx_list){
@@ -1430,36 +1442,36 @@ void func_8033A308(f32 arg0[3]){
     D_803837B0.unk4[2] = arg0[2];
 }
 
-void func_8033A334(s32 env[4], s32 prim[4]){
-    D_80383714 = 0;
+void modelRender_setPrimAndEnvColors(s32 env[4], s32 prim[4]){
+    modelRenderColorMode = COLOR_MODE_DYNAMIC_PRIM_AND_ENV;
 
-    D_80383738.env[0] = env[0];
-    D_80383738.env[1] = env[1];
-    D_80383738.env[2] = env[2];
-    D_80383738.env[3] = env[3];
+    modelRenderDynColors.env[0] = env[0];
+    modelRenderDynColors.env[1] = env[1];
+    modelRenderDynColors.env[2] = env[2];
+    modelRenderDynColors.env[3] = env[3];
 
-    D_80383738.prim[0] = prim[0];
-    D_80383738.prim[1] = prim[1];
-    D_80383738.prim[2] = prim[2];
-    D_80383738.prim[3] = prim[3];
+    modelRenderDynColors.prim[0] = prim[0];
+    modelRenderDynColors.prim[1] = prim[1];
+    modelRenderDynColors.prim[2] = prim[2];
+    modelRenderDynColors.prim[3] = prim[3];
 }
 
-void func_8033A388(s32 r, s32 g, s32 b, s32 a){
-    D_80383714 = 1;
+void modelRender_setEnvColor(s32 r, s32 g, s32 b, s32 a){
+    modelRenderColorMode = COLOR_MODE_DYNAMIC_ENV;
 
-    D_803837A0[0] = MIN(0xFF, r);
-    D_803837A0[1] = MIN(0xFF, g);
-    D_803837A0[2] = MIN(0xFF, b);
-    D_803837A0[3] = MIN(0xFF, a);
+    modelRenderDynEnvColor[0] = MIN(0xFF, r);
+    modelRenderDynEnvColor[1] = MIN(0xFF, g);
+    modelRenderDynEnvColor[2] = MIN(0xFF, b);
+    modelRenderDynEnvColor[3] = MIN(0xFF, a);
 }
 
-void func_8033A410(s32 a){
+void modelRender_setAlpha(s32 a){
     if(a == 0xff){
-        D_80383714 = 2;
+        modelRenderColorMode = COLOR_MODE_STATIC_OPAQUE;
     }
     else{
-        D_80383714 = 3;
-        D_803837C0 = a;
+        modelRenderColorMode = COLOR_MODE_STATIC_TRANSPARENT;
+        modelRenderDynAlpha = a;
     }
 }
 
@@ -1501,7 +1513,7 @@ void modelRender_setDepthMode(enum model_render_depth_mode_e renderMode){
     modelRenderDepthMode = renderMode;
 }
 
-void func_8033A4D8(void){
+void modelRender_defrag(void){
     if(D_80383730 != NULL){
         D_80383730 = func_802EA374(D_80383730);
     }
