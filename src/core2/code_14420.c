@@ -677,9 +677,9 @@ void func_8029C4E4(bool arg0) {
 
     if (func_80294574()) {
         if (arg0) {
-            func_80292260(sp3C);
+            playerModel_80292260(sp3C);
         } else {
-            func_8029223C(sp3C);
+            playerModel_8029223C(sp3C);
         }
         sp3C[1] = func_80294500();
         sp38 = yaw_get();

@@ -19,7 +19,7 @@ void func_80291930(s32 arg0){
             func_8029E3C0(5, 2.0f);
             func_8029C984();
             bs_setState(BS_5A_LOADZONE);
-            func_802921C8(0);
+            playerModel_setVisible(FALSE);
             func_802978DC(7);
             func_8029151C(6);
         }

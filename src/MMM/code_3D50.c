@@ -220,7 +220,7 @@ void func_8038A9B4(void){
     
     if(map_get() == MAP_24_MMM_TUMBLARS_SHED){
         MMM_D_8038C510.unkC = NULL;
-        MMM_D_8038C510.unk0 = func_80309744(0);
+        MMM_D_8038C510.unk0 = levelModel_getModel(0);
         MMM_D_8038C510.unk4 = NULL;
 
         func_8038A2B8();

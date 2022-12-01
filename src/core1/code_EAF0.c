@@ -167,7 +167,7 @@ void func_8024CCC4(void){
     mlMtxIdent();
     mlMtxRotYaw(-60.0f);
     mlMtxRotPitch(-90.0f);
-    func_802513B0(&D_80280FD8);
+    mlMtxGet(&D_80280FD8);
 }
 
 void func_8024CD7C(int arg0){
@@ -247,7 +247,7 @@ void func_8024CFD4(void){
     mlMtxIdent();
     mlMtxRotYaw(D_80280EC0[1]);
     mlMtxRotPitch(D_80280EC0[0]);
-    func_802513B0(&D_80280F98);
+    mlMtxGet(&D_80280F98);
     D_80280EA0[0] = 0.0f;
     D_80280EA0[1] = 0.0f;
     D_80280EA0[2] = -1.0f;

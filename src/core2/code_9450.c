@@ -32,10 +32,10 @@ void func_80290494(void){
     f32 sp2C[3];
     ParticleEmitter *sp28;
     if(!D_8037C03D || player_getTransformation() != TRANSFORM_1_BANJO){
-        func_802924E8(sp2C);
+        playerModel_802924E8(sp2C);
     }
     else{
-        func_802924B8(sp2C);
+        playerModel_802924B8(sp2C);
     }
     sp28 = func_8029B950(sp2C, 0.0f);
     particleEmitter_setParticleVelocityRange(sp28, -15.0f, 0.0f, -15.0f, 15.0f, 50.0f, 15.0f);

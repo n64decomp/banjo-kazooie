@@ -330,7 +330,7 @@ void func_802F2ED0(Struct64s *arg0, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
         mlMtxIdent();
         mlMtxRotPitch(-sp38[0]);
         mlMtxRotYaw(-sp38[1]);
-        func_802513B0(&D_80380A18);
+        mlMtxGet(&D_80380A18);
         for(phi_s0 = arg0->unk0; phi_s0 < arg0->unk0 + arg0->unk4; phi_s0++){
             if (phi_s0->unk23 & 1) {
                 func_802F1FC0(phi_s0, gfx, mtx, vtx);

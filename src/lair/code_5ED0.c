@@ -78,7 +78,7 @@ extern void func_80324CFC(f32, s16, s16);
 extern void gczoombox_open(gczoombox_t *);
 extern void gczoombox_maximize(gczoombox_t *);
 
-extern void *func_80309744(s32);
+extern void *levelModel_getModel(s32);
 extern void  func_8029A95C(s32); // set transformation
 
 //typedef migrated to "inlcude/core2/code_C9E70.h"
@@ -628,7 +628,7 @@ void lair_func_8038CF18(void)
     if (map_get() != MAP_8E_GL_FURNACE_FUN)
         return;
 
-    D_8037DCB8->unk0 = func_80309744(0);
+    D_8037DCB8->unk0 = levelModel_getModel(0);
     D_8037DCB8->unk11 = 0;
 
     if (func_803203FC(2) && !func_803203FC(4))

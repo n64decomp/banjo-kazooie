@@ -113,7 +113,7 @@ void func_8028DE0C(enum actor_e actor_id){
     Actor *actor;
     f32 sp20[3];
 
-    banjo_getPosition(sp20);
+    playerModel_getPosition(sp20);
     actor = func_8032813C(actor_id, sp20, (s32) yaw_get());
     actor->unk138_22 = TRUE;
     func_802948F8(actor->marker);

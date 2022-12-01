@@ -18,7 +18,7 @@ void func_802EA060(struct58s **arg0, BKAnimationList *anim_list){
     end_ptr = (Mtx *)(sp24->size_40*sizeof(Mtx) + (s32)sp24 +sizeof(struct58s));
     mlMtxIdent();
     for(i_ptr = sp24->data; i_ptr < end_ptr; i_ptr++){
-        func_802513B0(i_ptr);
+        mlMtxGet(i_ptr);
     }
 }
 
@@ -39,7 +39,7 @@ struct58s *func_802EA154(void){
     this->size_40 = 0;
     this->capacity_44 = 0;
     mlMtxIdent();
-    func_802513B0(this);
+    mlMtxGet(this);
     return this;
 }
 
@@ -95,7 +95,7 @@ void func_802EA1A8(struct58s **arg0, BKAnimationList *anim_list, s32 arg2){
 
         mlMtxScale_xyz(sp68[0], sp68[1], sp68[2]);
         mlMtxTranslate(-s0->unk0[0], -s0->unk0[1], -s0->unk0[2]);
-        func_802513B0(i_ptr);
+        mlMtxGet(i_ptr);
     }
 }
 

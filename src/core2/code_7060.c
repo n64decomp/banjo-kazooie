@@ -233,7 +233,7 @@ void func_8028E668(f32 arg0[3], f32 arg1, f32 arg2, f32 arg3) {
 void func_8028E6A4(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     if (D_8037BFB8) {
         eggShatter_draw(gfx, mtx, vtx);
-        func_80291AF0(gfx, mtx, vtx);
+        playerModel_draw(gfx, mtx, vtx);
     }
 }
 
@@ -316,7 +316,7 @@ f32 func_8028E904(void){
 f32 func_8028E924(f32 arg0[3], s32 arg1){
     s32 *sp1C;
     
-    func_80292284(arg0, arg1);
+    playerModel_80292284(arg0, arg1);
     func_8028D6F0(&sp1C);
     return (f32) sp1C[arg1];
 }
@@ -336,19 +336,19 @@ void player_getPosition(f32 dst[3]){
 void func_8028E9C4(s32 arg0, f32 arg1[3]) {
     switch(arg0){
         case 1: //L8028E9EC
-            banjo_getPosition(arg1);
+            playerModel_getPosition(arg1);
             break;
 
         case 2: //L8028E9FC
-            func_802924E8(arg1);
+            playerModel_802924E8(arg1);
             break;
 
         case 3: //L8028EA0C
-            func_8029223C(arg1);
+            playerModel_8029223C(arg1);
             break;
 
         case 4: //L8028EA1C
-            func_80292260(arg1);
+            playerModel_80292260(arg1);
             break;
 
         case 5: //L8028EA2C
@@ -603,7 +603,7 @@ bool func_8028F12C(void){
 }
 
 bool func_8028F150(void){
-    return func_80292548();
+    return playerModel_isVisible();
 }
 
 bool func_8028F170(void){
@@ -951,7 +951,7 @@ void func_8028FCBC(void){
 }
 
 void func_8028FCC8(bool arg0){
-    func_802921C8(arg0);
+    playerModel_setVisible(arg0);
 }
 
 void func_8028FCE8(void) {

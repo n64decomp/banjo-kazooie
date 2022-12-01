@@ -9,7 +9,7 @@ f32 func_80297A64(void);
 void func_80299B58(f32, f32);
 f32 func_8029B2E8(void);
 f32 func_8029B33C(void);
-void func_802921BC(f32);
+void playerModel_setYDisplacement(f32);
 void func_8028A084(s32, f32);
 
 /* .data */
@@ -387,7 +387,7 @@ bool bsjump_jumpingFromWater(void){
 void bsjump_tumble_init(void){
     func_8028A084(0x68, 0.35f);
     func_8029C7F4(1,1,3,6);
-    func_802921BC(60.0f);
+    playerModel_setYDisplacement(60.0f);
     if(func_80293234() == 1){
         func_8029E3C0(0, 0.5f);
         func_8029E3C0(1, 0.41f);
@@ -438,6 +438,6 @@ void bsjump_tumble_end(void){
         func_80293240(3);
     }
     func_8029CB84();
-    func_802921BC(0.0f);
+    playerModel_setYDisplacement(0.0f);
     func_80299E6C();
 }

@@ -615,7 +615,7 @@ s32                    D_80383724;
 static BKVertexList *  modelRenderVextureList;
 BKModelUnk20List *     D_8038372C;
 struct58s *            D_80383730;
-f32                    D_80383734;
+f32                    modelRenderScale;
 
 struct{
     s32 env[4];
@@ -665,7 +665,7 @@ Mtx D_80383BF8;
 f32 modelRenderCameraPosition[3];
 f32 modelRenderCameraRotation[3];
 BKModelBin *modelRenderModelBin;
-f32 D_80383C58[3];
+f32 modelRenderRotation[3];
 f32 D_80383C64;
 f32 D_80383C68[3];
 f32 D_80383C78[3];
@@ -718,7 +718,7 @@ void func_803384A8(Gfx **gfx, Mtx **mtx, void *arg2){
         if(!cmd->unkA){
             mlMtxRotPitch(modelRenderCameraRotation[0]);
         }
-        mlMtxScale(D_80383734);
+        mlMtxScale(modelRenderScale);
         mlMtxTranslate(-cmd->unkC[0], -cmd->unkC[1], -cmd->unkC[2]);
         mlMtxApply(*mtx);
         gSPMatrix((*gfx)++, (*mtx)++, G_MTX_PUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
@@ -932,13 +932,13 @@ void func_80338DCC(Gfx ** gfx, Mtx ** mtx, void *arg2){
     f32 sp20[3];
     GeoCmdD * cmd = (GeoCmdD *)arg2;
     if(cmd->unk14){
-        sp2C[0] = (f32)cmd->unk8[0] * D_80383734;
-        sp2C[1] = (f32)cmd->unk8[1] * D_80383734;
-        sp2C[2] = (f32)cmd->unk8[2] * D_80383734;
+        sp2C[0] = (f32)cmd->unk8[0] * modelRenderScale;
+        sp2C[1] = (f32)cmd->unk8[1] * modelRenderScale;
+        sp2C[2] = (f32)cmd->unk8[2] * modelRenderScale;
 
-        sp20[0] = (f32)cmd->unkE[0] * D_80383734;
-        sp20[1] = (f32)cmd->unkE[1] * D_80383734;
-        sp20[2] = (f32)cmd->unkE[2] * D_80383734;
+        sp20[0] = (f32)cmd->unkE[0] * modelRenderScale;
+        sp20[1] = (f32)cmd->unkE[1] * modelRenderScale;
+        sp20[2] = (f32)cmd->unkE[2] * modelRenderScale;
         if(func_8024D374(sp2C, sp20)){
             func_80339124(gfx, mtx, (BKGeoList*)((s32)cmd + cmd->unk14));
         }
@@ -952,10 +952,10 @@ void func_80338EB8(Gfx ** gfx, Mtx ** mtx, void *arg2){
     GeoCmdE * cmd = (GeoCmdE *)arg2;
 
     if(cmd->unk12 == -1){
-        sp34[0] = (f32)cmd->unk8[0] * D_80383734;
-        sp34[1] = (f32)cmd->unk8[1] * D_80383734;
-        sp34[2] = (f32)cmd->unk8[2] * D_80383734;
-        sp30 = (f32)cmd->unkE*D_80383734;
+        sp34[0] = (f32)cmd->unk8[0] * modelRenderScale;
+        sp34[1] = (f32)cmd->unk8[1] * modelRenderScale;
+        sp34[2] = (f32)cmd->unk8[2] * modelRenderScale;
+        sp30 = (f32)cmd->unkE*modelRenderScale;
         if(func_8024DB50(sp34, sp30) && cmd->unk10){
             func_80339124(gfx, mtx, (BKGeoList*)((s32)cmd + cmd->unk10));
         }
@@ -965,7 +965,7 @@ void func_80338EB8(Gfx ** gfx, Mtx ** mtx, void *arg2){
         sp34[1] = (f32)cmd->unk8[1];
         sp34[2] = (f32)cmd->unk8[2];
 
-        sp30 = (f32)cmd->unkE*D_80383734;
+        sp30 = (f32)cmd->unkE*modelRenderScale;
         if(D_8038371C){
             func_802519C8(&D_80383BF8, func_802EA110(D_8038371C, cmd->unk12));
             func_8025235C(sp34, sp34);
@@ -1009,7 +1009,7 @@ void func_80339124(Gfx ** gfx, Mtx ** mtx, BKGeoList *geo_list){
     }while(1);
 }
 
-BKModelBin *modelRender_draw(Gfx **gfx, Mtx **mtx, f32 position[3], f32 arg3[3], f32 scale, f32*arg5, BKModelBin* model_bin){
+BKModelBin *modelRender_draw(Gfx **gfx, Mtx **mtx, f32 position[3], f32 rotation[3], f32 scale, f32*arg5, BKModelBin* model_bin){
     f32 camera_focus[3];
     f32 camera_focus_distance;
     f32 padEC;
@@ -1253,28 +1253,28 @@ BKModelBin *modelRender_draw(Gfx **gfx, Mtx **mtx, f32 position[3], f32 arg3[3],
 
     mlMtxIdent();
     if(D_80383758.unk18){
-        func_80252AF0(D_80383758.unk1C, object_position, arg3, scale, arg5);
+        func_80252AF0(D_80383758.unk1C, object_position, rotation, scale, arg5);
     }
     else{
-        func_80252AF0(modelRenderCameraPosition, object_position, arg3, scale, arg5);
+        func_80252AF0(modelRenderCameraPosition, object_position, rotation, scale, arg5);
     }
 
     if(D_803837B0.unk0){
         mlMtxRotate(D_803837B0.unk4[0], D_803837B0.unk4[1], D_803837B0.unk4[2]);
     }
+    mlMtxGet(&D_80383BF8);
 
-    func_802513B0(&D_80383BF8);
     mlMtxApply(*mtx);
     gSPMatrix((*gfx)++, (*mtx)++, G_MTX_PUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
-    D_80383734 = scale;
     
-    if(arg3){
-        D_80383C58[0] = arg3[0];
-        D_80383C58[1] = arg3[1];
-        D_80383C58[2] = arg3[2];
+    modelRenderScale = scale;
+    if(rotation){
+        modelRenderRotation[0] = rotation[0];
+        modelRenderRotation[1] = rotation[1];
+        modelRenderRotation[2] = rotation[2];
     }
     else{
-        D_80383C58[0] = D_80383C58[1] = D_80383C58[2] = 0.0f;
+        modelRenderRotation[0] = modelRenderRotation[1] = modelRenderRotation[2] = 0.0f;
     }
 
     func_80339124(gfx, mtx, (BKGeoList *)((u8 *)model_bin + model_bin->geo_list_offset_4));

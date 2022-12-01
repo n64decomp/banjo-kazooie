@@ -612,7 +612,7 @@ void func_802AD318(void){
 void bscroc_eat_good_init(void){
     func_8028A010(0x122, 0.25f);
     func_8029C7F4(1,1,1,2);
-    func_80292188(func_802AD2A8);
+    playerModel_setPostDraw(func_802AD2A8);
     D_8037D3E8 = assetcache_get(func_80294974());
     D_8037D3F0 = 1.0f;
     D_8037D3F5 = 0;
@@ -661,7 +661,7 @@ void bscroc_eat_good_update(void){
 void bscroc_eat_good_end(void){
     D_8037D3F5 = 0;
     assetcache_release(D_8037D3E8);
-    func_80292188(0);
+    playerModel_setPostDraw(0);
     func_802ABFBC();
 }
 

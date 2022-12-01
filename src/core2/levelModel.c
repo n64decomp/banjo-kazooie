@@ -6,10 +6,8 @@
 
 extern UNK_TYPE(s32) func_802E8E88(BKCollisionList *, BKVertexList *, f32[3], f32[3], f32, f32[3], s32, s32);
 extern UNK_TYPE(s32) func_802E92AC(BKCollisionList *, BKVertexList *, f32[3], f32, f32[3], s32);
-extern UNK_TYPE(s32) func_802EC394(BKMeshList *, UNK_TYPE(s32), UNK_TYPE(s32), f32, UNK_TYPE(s32), UNK_TYPE(s32), UNK_TYPE(s32));
+extern s32 func_802EC394(BKModelUnk14List *arg0, s32 arg1, s32 arg2, f32 arg3, s32 arg4, s32 arg5, s32 arg6);
 extern void func_802EC458(BKVertexList *, s32[3], s32[3]);
-extern void func_8033A494(s32);
-extern void modelRender_setEnvColor(s32, s32, s32, s32);
 extern void func_802F7BC0(Gfx **, Mtx **, Vtx **);
 extern void func_8033A450(s32);
 extern void func_8033A45C(s32, s32);
@@ -179,7 +177,7 @@ struct {
     f32 unk30;
 }levelModel;
 
-enum asset_e func_8030A068(void);
+enum asset_e levelModel_getOpaModelId(void);
 
 /* .code */
 Struct_core2_82000_0 *func_80308F90(enum map_e map_id){
@@ -241,7 +239,7 @@ void levelModel_opa_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     s32 temp_a0;
 
     if (func_80320708() && levelSpecificFlags_validateCRC2() && func_80320248()) {
-        if (func_8030A068() == 0x14CF) {
+        if (levelModel_getOpaModelId() == ASSET_14CF_MODEL_SM_OPA) {
             func_8033A45C(1, 0);
             func_8033A45C(2, 1);
         }
@@ -381,11 +379,11 @@ f32 func_80309724(f32 arg0[3]){
     return func_80308FDC(arg0, 0x1e0000);
 }
 
-BKModel *func_80309744(s32 arg0){
+BKModel *levelModel_getModel(s32 arg0){
     return (arg0) ? levelModel.model_xlu : levelModel.model_opa;
 }
 
-BKModelBin *func_80309764(s32 arg0){
+BKModelBin *levelModel_getModelBin(s32 arg0){
     if(arg0 == 0)
         return levelModel.model_bin_opa;
     if(arg0 == 1)
@@ -573,7 +571,7 @@ void levelModel_free(void){
     func_8034A2A8(levelModel.unk24);
 }
 
-enum asset_e func_8030A068(void){
+enum asset_e levelModel_getOpaModelId(void){
     return levelModel.unk28->model1_id;
 }
 
@@ -647,7 +645,7 @@ void levelModel_setEnvColor(s32 r, s32 g, s32 b){
     levelModel.env_blue = b;
 }
 
-void func_8030A298(void){
+void levelModel_defrag(void){
     if(levelModel.unk24 != NULL){
         levelModel.unk24 = func_8034A348(levelModel.unk24);
     }

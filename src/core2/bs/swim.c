@@ -34,9 +34,9 @@ void func_802B5480(void) {
 
     if (func_80294574()) {
         if (randf() > 0.5) {
-            func_8029223C(sp2C);
+            playerModel_8029223C(sp2C);
         } else {
-            func_80292260(sp2C);
+            playerModel_80292260(sp2C);
         }
         sp28 = func_8029B950(&sp2C, 0.0f);
         particleEmitter_setParticleVelocityRange(sp28, -60.0f, -100.0f, -60.0f, 60.0f, 0.0f, 60.0f);

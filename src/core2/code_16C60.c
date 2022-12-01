@@ -26,7 +26,7 @@ f32 D_8037D240;
 /* .code */
 void func_8029DBF0(void){
     s32 temp_s0;
-    switch(func_80291FAC()){
+    switch(playerModel_getModelId()){
         case 0x34D: //L8029DC24
         case 0x34E: //L8029DC24
             temp_s0 = (s32) func_80257C48(D_8037D23C, 1.0f, 8.0f);
@@ -61,7 +61,7 @@ void func_8029DD6C(void) {
     bool temp_s0;
 
     func_8033A1FC();
-    switch (func_80291FAC()) {
+    switch (playerModel_getModelId()) {
     case 0x34D:
     case 0x34E:
         func_8033A45C(1, D_8037D238);

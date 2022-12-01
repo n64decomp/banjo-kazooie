@@ -24,7 +24,7 @@ u8 pad_D_80282850[0x780];
 Mtx * D_80282FD0;
 
 /*.code*/
-void func_802513B0(f32 *arg0) {
+void mlMtxGet(f32 *arg0) {
     s32 var_v0, j;
 
     for(var_v0 = 0; var_v0 < 4; var_v0++){
@@ -388,14 +388,14 @@ void func_80252AF0(f32 arg0[3], f32 arg1[3], f32 rotation[3], f32 scale, f32 arg
 }
 
 
-void func_80252C08(f32 arg0[3], f32 arg1[3], f32 scale, f32 arg3[3]){
+void func_80252C08(f32 arg0[3], f32 rotation[3], f32 scale, f32 arg3[3]){
     if(arg0 != NULL)
         mlMtxTranslate(arg0[0], arg0[1], arg0[2]);
 
-    if(arg1 != NULL){
-        mlMtxRotYaw(arg1[1]);  
-        mlMtxRotPitch(arg1[0]);
-        mlMtxRotRoll(arg1[2]);
+    if(rotation != NULL){
+        mlMtxRotYaw(rotation[1]);  
+        mlMtxRotPitch(rotation[0]);
+        mlMtxRotRoll(rotation[2]);
     }
 
     if(scale != 1.0f){

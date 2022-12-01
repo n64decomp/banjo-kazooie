@@ -15,7 +15,7 @@ BKAnimationList *model_getAnimationList(BKModelBin *arg0);
 BKTextureList *model_getTextureList(BKModelBin *arg0);
 
 void modelRender_reset(void);
-BKModelBin *modelRender_draw(Gfx **gfx, Mtx **mtx, f32 position[3], f32 arg3[3], f32 scale, f32*arg5, BKModelBin* model_bin);
+BKModelBin *modelRender_draw(Gfx **gfx, Mtx **mtx, f32 position[3], f32 rotation[3], f32 scale, f32*arg5, BKModelBin* model_bin);
 
 void modelRender_preDraw(GenMethod_1 func, s32 arg);
 void modelRender_postDraw(GenMethod_1 func, s32 arg);

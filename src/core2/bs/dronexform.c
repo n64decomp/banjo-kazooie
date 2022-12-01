@@ -291,7 +291,7 @@ static void __bsdronexform_setState(int arg0){
                 yaw_applyIdeal();
             }
             func_8029A95C(func_80294A4C()); //set player transformation
-            func_80291D04(); //update player model
+            playerModel_updateModel(); //update player model
             func_8029BD44(&sp34, &sp30);
             func_8028A010(sp34, sp30);
             func_8029E3C0(0, 0.1f);

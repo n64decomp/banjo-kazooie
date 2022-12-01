@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void func_802920FC(f32);
+extern void playerModel_setScale(f32);
 extern void func_8028A084(s32, f32);
 extern void func_8029AD68(f32, s32);
 
@@ -321,7 +321,7 @@ void func_802B2C58(void) {
     sp3C = ml_map_f(sp34, 0.0f, 2.3f, 0.0f, 45.0f);
     yaw_setIdeal(mlNormalizeAngle(sp38 + sp3C));
     yaw_applyIdeal();
-    func_802920FC(ml_map_f(sp34, 0.0f, 2.3f, 1.0f, 0.3f));
+    playerModel_setScale(ml_map_f(sp34, 0.0f, 2.3f, 1.0f, 0.3f));
     ml_vec3f_copy(sp28, D_8037D4E8);
     sp28[1] = ml_map_f(sp34, 0.0f, 2.3f, D_8037D4E8[1], D_8037D4E8[1] - 50.0);
     func_8028FAB0(sp28);
@@ -329,7 +329,7 @@ void func_802B2C58(void) {
 
 void func_802B2D50(void) {
     func_80294378(1);
-    func_802920FC(1.0f);
+    playerModel_setScale(1.0f);
 }
 
 void func_802B2D80(s32 arg0) {

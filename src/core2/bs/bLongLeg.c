@@ -1,6 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "core2/playerModel.h"
 
 /* .data */
 const f32 D_80364A40 = 80.0f;
@@ -57,7 +58,7 @@ void func_802A531C(void){
 }
 
 void func_802A5374(void){
-    func_80292078(1, -50.0f);
+    playerModel_80292078(1, -50.0f);
     func_8029B324(0, 0.03f);
     func_8029B324(1, 1.0f);
     func_8029E070(1);
@@ -72,12 +73,12 @@ void func_802A5404(void){
     if(bslongleg_inSet(bs_getNextState()))
         return;
     
-    func_80292078(1,0);
+    playerModel_80292078(1,0);
     func_8029B0C0();
     func_8029E070(0);
     func_8029E064(0);
     func_8029E0F4(0);
-    func_80292090(1);
+    playerModel_setDirection(PLAYER_MODEL_DIR_BANJO);
     pitch_setIdeal(0.0f);
     roll_setIdeal(0.0f);
     func_802917C4(2);
@@ -154,7 +155,7 @@ void bsblongleg_stand_enter(void){
     func_8028A010(ASSET_41_ANIM_BSLONGLEG_IDLE, 1.0f);
     func_8029C7F4(1,1,1,2);
     func_80297970(0.0f);
-    func_80292090(2);
+    playerModel_setDirection(PLAYER_MODEL_DIR_KAZOOIE);
     func_802A5374();
 }
 
@@ -462,7 +463,7 @@ void func_802A6394(void){
     func_8029C7F4(1,1,3,2);
     func_80297970(0.0f);
     func_802A5374();
-    func_80292090(2);
+    playerModel_setDirection(PLAYER_MODEL_DIR_KAZOOIE);
     func_8029C674();
 }
 

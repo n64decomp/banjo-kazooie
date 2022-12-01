@@ -3,7 +3,7 @@
 #include "variables.h"
 
 extern void func_8028FDC8(f32);
-extern void func_802921BC(f32);
+extern void playerModel_setYDisplacement(f32);
 extern f32 func_8029B2D0(void);
 extern void func_802BFE50(f32, f32, f32);
 extern void func_80354030(f32[3], f32);
@@ -47,7 +47,7 @@ void func_802A3404(void){
 }
 
 void func_802A3430(void){
-    func_802921BC(60.0f);
+    playerModel_setYDisplacement(60.0f);
     func_802991A8(3);
     func_80299234(500.0f, 2.0f);
     roll_setAngularVelocity(500.0f, 2.0f);
@@ -63,7 +63,7 @@ void func_802A34C8(void){
         gravity_reset();
         func_80297B94();
         func_8029E070(0);
-        func_802921BC(0.0f);
+        playerModel_setYDisplacement(0.0f);
         func_8029CB84();
         func_802991A8(1);
         func_80291548();
@@ -462,7 +462,7 @@ void func_802A4430(void){
     pitch_setIdeal(0.0f);
     gravity_reset();
     func_80297B94();
-    func_802921BC(0.0f);
+    playerModel_setYDisplacement(0.0f);
     func_80299CF4(SFX_31_BANJO_OHHWAAOOO, 1.0f, 0x7fff);
     func_80299D2C(SFX_61_CARTOONY_FALL, 1.0f, 0x7fff);
     D_8037D320 = 0.35f;

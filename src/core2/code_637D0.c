@@ -374,7 +374,7 @@ s32 func_802EBAE0(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 
   {
     mlMtxIdent();
     func_80252C08(position, rotation, scale, arg4);
-    func_802513B0(&D_80380880);
+    mlMtxGet(&D_80380880);
     phi_v0 = func_802EB8A0(arg0, position, rotation, scale, arg4, arg5, arg6, arg7);
     if (phi_v0 == 0)
     {

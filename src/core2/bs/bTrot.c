@@ -2,6 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "core2/playerModel.h"
 
 /* .data */
 f32 D_80364A90 = 30.0f;
@@ -104,7 +105,7 @@ void func_802A8A40(void){
     roll_setAngularVelocity(1000.0f, 12.0f);
     miscflag_set(3);
     func_8029CF48(4,1,0.24f);
-    func_80292090(2);
+    playerModel_setDirection(PLAYER_MODEL_DIR_KAZOOIE);
 }
 
 void func_802A8AD8(void){
@@ -133,7 +134,7 @@ void func_802A8BB0(void){
     if(bsbtrot_inSet(next_state))
         return;
     
-    func_80292090(1);
+    playerModel_setDirection(PLAYER_MODEL_DIR_BANJO);
     func_8029B0C0();
     func_8029E070(0);
     func_8029E064(0);
@@ -378,7 +379,7 @@ void bsbtrot_jump_update(void){
     else
         func_802A89D4();
 
-    _get_velocity(&sp1C);
+    _get_velocity(sp1C);
     if(button_released(BUTTON_A) && 0.0f < sp1C[1])
         gravity_reset();
     
@@ -589,7 +590,7 @@ void bsbtrot_fall_update(void){
     else
         func_802A89D4();
 
-    _get_velocity(&sp1C);
+    _get_velocity(sp1C);
     switch (D_8037D3A4){
     case 0://L802A9D90
         if(func_8028B254(0x8C)){
@@ -679,7 +680,7 @@ void bsbtrot_unk79_init(void){
     func_8029C7F4(1,1,3,2);
     func_80297970(0.0f);
     func_802A8A40();
-    func_80292090(2);
+    playerModel_setDirection(PLAYER_MODEL_DIR_KAZOOIE);
     func_8029C674();
 }
 
@@ -707,7 +708,7 @@ void bsbtrot_ow_init(void){
     func_80298760(func_80296560());
     func_8028A274(0x66, 1.1f);
     func_80299BFC(1.0f);
-    _player_getPosition(&sp30);
+    _player_getPosition(sp30);
     func_80294980(sp24);
     func_80257F18(sp24, sp30, &sp3C);
     yaw_setIdeal(mlNormalizeAngle(sp3C + 180.0f));\

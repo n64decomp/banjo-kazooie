@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void func_802921BC(f32);
+extern void playerModel_setYDisplacement(f32);
 extern f32  func_8029494C(void);
 extern f32  func_8029B2D0(void);
 extern bool func_8029E284(s32, f32);
@@ -76,7 +76,7 @@ void func_802A744C(void) {
     func_8029B324(1, 1.0f);
     func_8029E070(1);
     func_80294378(3);
-    func_802921BC(60.0f);
+    playerModel_setYDisplacement(60.0f);
     func_80297B64(2.0f);
 }
 
@@ -106,7 +106,7 @@ void func_802A75B0(void) {
         func_8029B0C0();
         func_8029E070(0);
         func_80294378(1);
-        func_802921BC(0.0f);
+        playerModel_setYDisplacement(0.0f);
     }
 }
 

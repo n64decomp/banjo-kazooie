@@ -8,7 +8,7 @@ f32 func_8029B33C(void);
 void func_8029797C(f32);
 void func_80297970(f32);
 
-void func_802921BC(f32);
+void playerModel_setYDisplacement(f32);
 void func_80297BF8(f32);
 void func_802BFE50(f32, f32, f32);
 void func_80299234(f32, f32);
@@ -94,7 +94,7 @@ void func_802A0750(void){
 void _bsbeefly_end(void){
     if(bsBeeFly_inSet(bs_getNextState()))
         return;
-    func_802921BC(0.0f);
+    playerModel_setYDisplacement(0.0f);
     roll_setIdeal(0.0f);
     pitch_setIdeal(0.0f);
     func_80291548();
@@ -107,7 +107,7 @@ void _bsbeefly_end(void){
 void func_802A07F8(void){
     if(bsBeeFly_inSet(bs_getPrevState()))
         return;
-    func_802921BC(65.0f);
+    playerModel_setYDisplacement(65.0f);
     func_802991A8(3);
     roll_setAngularVelocity(500.0f, 2.0f);
     func_802A0724();

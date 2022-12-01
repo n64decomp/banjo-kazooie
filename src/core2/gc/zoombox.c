@@ -845,7 +845,7 @@ void func_803163A8(gczoombox_t *this, Gfx **gfx, Mtx **mtx) {
     if (this->anim_ctrl != NULL) {
         func_8028781C(this->anim_ctrl, sp50, 1);
     }
-    modelRender_draw(gfx, mtx, sp50, sp5C, this->unk198 * sp34, &sp38, this->model);
+    modelRender_draw(gfx, mtx, sp50, sp5C, this->unk198 * sp34, sp38, this->model);
 }
 
 void func_803164B0(gczoombox_t *this, Gfx **gfx, Mtx **mtx, s32 arg3, s32 arg4, s32 arg5, f32 arg6) {

@@ -24,7 +24,7 @@ extern void func_8033A45C(s32, s32);
 extern void func_8033A238(s32);
 extern void func_8033A450(s32);
 extern void func_8028FAB0(f32[3]);
-extern void func_802921D4(f32[3]);
+extern void playerModel_802921D4(f32[3]);
 
 /* .data */
 f32 D_80389C00[3] = {5700.0f, 4300.0f, 0.0f};
@@ -209,7 +209,7 @@ void CC_func_80388760(Gfx **gfx, Mtx **mtx, Vtx **vtx){
     modelRender_draw(gfx, mtx, D_80389FA0.unk28, NULL, 1.0f, NULL, D_80389FA0.unk24);
     if(func_80340020(D_80389FA0.unk18, D_80389FA0.unk28, 0, 1.0f, 0, D_80389FA0.unk40, spA4, spA4)){
         func_8028FAB0(spA4);
-        func_802921D4(spA4);
+        playerModel_802921D4(spA4);
     }
 }
 

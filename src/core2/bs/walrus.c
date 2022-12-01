@@ -567,9 +567,9 @@ void bswalrus_sled_update(void){
 
     if(50.0f < func_80297AB8()){
         if(func_8023DB4C(1)){
-            func_80292554(&sp20);
+            playerModel_80292554(&sp20);
         }else{
-            func_80292578(&sp20);
+            playerModel_80292578(&sp20);
         }
         particleEmitter_emitN(func_802F1EC8(sp20), 1);
     }//L802B927C

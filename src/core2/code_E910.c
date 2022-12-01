@@ -218,7 +218,7 @@ void func_80295914(void){
     func_80294790();
     func_80293DA4();
     func_80289D1C();
-    func_80291D2C();
+    playerModel_reset();
     playerMarker_init();
     func_80299900();
     func_8029A4D0();
@@ -259,7 +259,7 @@ void func_80295B04(void){
     func_8029065C();
     func_8029175C();
     eggShatter_free();
-    func_80291E88();
+    playerModel_free();
     func_80289DDC();
     func_80293E88();
     func_802947C4();
@@ -299,7 +299,7 @@ void func_80295C14(void){
     func_80290108();
     eggShatter_update();
     func_80292EDC();
-    func_80291ECC();
+    playerModel_update();
     func_8029842C();
     func_8028D2E4();
     func_80294890();
@@ -321,7 +321,7 @@ void func_80295C14(void){
 void func_80295D74(void){
     if(D_80363820){
         func_80289E74();
-        func_8029259C();
+        playerModel_defrag();
         eggShatter_defrag();
         func_80294750();
         func_8029AF1C();

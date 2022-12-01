@@ -101,7 +101,7 @@ void _player_getPosition(f32 dst[3]);
 void player_getPosition(f32 dst[3]);
 void player_getRotation(f32 *dst);
 
-void func_80291A60(s32 arg0, f32* arg1);
+void playerModel_80291A50(s32 arg0, f32* arg1);
 
 int button_pressed(s32);
 u32 button_held(s32);
@@ -311,9 +311,9 @@ int  func_80291698(s32);
 int  func_80291700(s32, f32);
 void func_802917E4(s32, f32);
 
-void func_80292078(s32, f32);
-void func_80292158(f32);
-f32  func_80292230(void);
+void playerModel_80292078(s32, f32);
+void playerModel_80292158(f32);
+f32  playerModel_80292230(void);
 
 
 void func_802927E0(f32, f32);

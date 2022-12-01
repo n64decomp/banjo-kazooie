@@ -25,7 +25,7 @@ void bsdronevanish_setState(s32 next_state) {
         break;
     case 3:
         gcpausemenu_returnToLair();
-        func_802921C8(0);
+        playerModel_setVisible(FALSE);
         comusic_8025AB44(COMUSIC_43_ENTER_LEVEL_GLITTER, 0, 2000);
         func_8029E3C0(0, 2.0f);
         break;
@@ -115,7 +115,7 @@ void bsdronevanish_update(void) {
     case 2:
         func_802AF550();
         sp20 = func_8029E1A8(0);
-        func_80291FB8((s32) ml_map_f(func_8029E270(0), 0.0f, 0.4f, 0.0f, 255.0f));
+        playerModel_setEnvAlpha((s32) ml_map_f(func_8029E270(0), 0.0f, 0.4f, 0.0f, 255.0f));
         if (sp20) {
             bsdronevanish_setState(3);
         }
@@ -132,5 +132,5 @@ void bsdronevanish_update(void) {
 void func_802AF768(void){
     func_802AF4B0();
     func_80294378(1);
-    func_80291D04();
+    playerModel_updateModel();
 }

@@ -20,7 +20,7 @@ extern void func_8035644C(s32);
 extern void func_8035646C(s32 arg0);
 extern void func_80291634(ActorMarker *, ActorMarker *);
 extern void func_80291610(ActorMarker *, ActorMarker *);
-extern void func_80291AAC(void);
+extern void playerModel_80291AAC(void);
 extern void func_8028D7B8(s32 arg0, ActorMarker *arg1, struct5Cs *collision_flags);
 extern void func_802EE6CC(f32[3], s32, s32[4], s32, f32, f32, s32,s32,s32);
 extern void func_80320ED8(ActorMarker *, f32, s32);
@@ -861,7 +861,7 @@ void func_8028BCA0(Prop *prop){
 void playerMarker_init(void){
     f32 sp1C[3];
     _player_getPosition(sp1C);
-    playerMarker = func_8032FBE4(sp1C, func_80291AAC, 1, 0);
+    playerMarker = func_8032FBE4(sp1C, playerModel_80291AAC, 1, 0);
     playerMarker->unk2C_1 = 1;
     marker_setCollisionScripts(playerMarker, NULL, func_80291634, func_80291610);
     func_803300B8(playerMarker, func_8028D7B8);
@@ -907,7 +907,7 @@ void func_8028D2E4(void){
         func_8032F64C(sp168, playerMarker);
         for(D_8037BF8C = NULL, i = 0, temp_s2 = 0; i < 2;i++){//L8028D3DC
             D_8037BF90 = i;
-            func_80292284(sp174, i); //get top of player?
+            playerModel_80292284(sp174, i); //get top of player?
             playerMarker->unk38[0] = sp174[0] - sp168[0];
             playerMarker->unk38[1] = sp174[1] - sp168[1];
             playerMarker->unk38[2] = sp174[2] - sp168[2];

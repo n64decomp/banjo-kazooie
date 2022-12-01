@@ -89,7 +89,7 @@ void func_80386630(Actor *this){
         mlMtxIdent();
         mlMtxRotYaw(sp64[1]);
         mlMtxRotPitch(sp64[0]);
-        func_802513B0(sp24);
+        mlMtxGet(sp24);
         
         sp70[0] = 0.0f;
         sp70[1] = 18.0f;

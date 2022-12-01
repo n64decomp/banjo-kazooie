@@ -6,7 +6,7 @@
 
 /* extern */
 extern void func_802D6310(f32, enum map_e, s32, s32, enum bkprog_e);
-extern BKModel *func_80309744(s32);
+extern BKModel *levelModel_getModel(s32);
 
 extern u8 D_8037DCC0[7];
 
@@ -417,8 +417,8 @@ void func_8038B094(void){
             func_8034E71C(sp28, -500, 0.0f);
         }//L8038B1EC
 
-        D_8038D720.unk0 = func_80309744(0);
-        D_8038D720.unk4 = func_80309744(1);
+        D_8038D720.unk0 = levelModel_getModel(0);
+        D_8038D720.unk4 = levelModel_getModel(1);
         D_8038D720.unk8 = 0;
         D_8038D720.unk10 = 0;
         D_8038D720.unkC = 0.0f;

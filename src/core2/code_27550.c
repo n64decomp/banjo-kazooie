@@ -22,8 +22,8 @@ void func_802AE4E0(s32 arg0) {
         func_8025A6CC(COMUSIC_43_ENTER_LEVEL_GLITTER, 32000);
         func_8025AABC(COMUSIC_43_ENTER_LEVEL_GLITTER);
         func_8029E3C0(0, 0.4f);
-        func_80291FB8(0);
-        func_80291D04();
+        playerModel_setEnvAlpha(0);
+        playerModel_updateModel();
         break;
     case 3:
         comusic_8025AB44(COMUSIC_43_ENTER_LEVEL_GLITTER, 0, 2000);
@@ -120,7 +120,7 @@ void func_802AEA2C(void) {
     case 2:
         func_802AE914();
         sp20 = func_8029E1A8(0);
-        func_80291FB8((s32) ml_map_f(func_8029E270(0), 0.0f, 0.4f, 255.0f, 0.0f));
+        playerModel_setEnvAlpha((s32) ml_map_f(func_8029E270(0), 0.0f, 0.4f, 255.0f, 0.0f));
         if (sp20) {
             func_802AE4E0(3);
         }
@@ -137,5 +137,5 @@ void func_802AEA2C(void) {
 void func_802AEB24(void){
     func_802AE874();
     func_80294378(1);
-    func_80291D04();
+    playerModel_updateModel();
 }
