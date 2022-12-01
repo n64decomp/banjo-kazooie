@@ -2,7 +2,10 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void func_802ED52C(s32, f32[3], f32);
+#define ARRAYLEN(x) (sizeof(x) / sizeof((x)[0]))
+
+extern bool func_802ED420(BKModelUnk20List *arg0, u8 *arg1, u32 arg2);
+extern void func_802ED52C(BKModelUnk20List *, f32[3], f32);
 extern void func_80252AF0(f32[3], f32[3], f32[3], f32, f32[3]);
 extern void mlMtxRotate(f32, f32, f32);
 extern void func_8024C5CC(f32[3]);
@@ -15,6 +18,8 @@ extern s32 func_8024DB50(f32[3], f32);
 extern void func_80251788(f32, f32, f32);
 extern void mlMtxScale(f32);
 extern void mlMtxApply(Mtx* mtx);
+extern struct58s *func_802EA154();
+extern struct58s *func_802EA374(struct58s *);
 
 typedef struct{
     s32 env[4];
@@ -135,7 +140,7 @@ typedef struct {
     s16 unk8;
     u8  unkA;
     u8  unkB;
-    f32 unkC[3];
+    u8  unkC[12];
 }GeoCmdF;
 
 typedef struct {
@@ -152,7 +157,7 @@ void func_80338904(Gfx **, Mtx **, void *);
 void func_80338498(Gfx **, Mtx **, void *);
 void func_80338970(Gfx **, Mtx **, void *);
 void func_80338AC4(Gfx **, Mtx **, void *);
-void func_80338AE8(Gfx **, Mtx **, GeoCmd7 *cmd);
+void func_80338AE8(Gfx **, Mtx **, void *);
 void func_80338498(Gfx **, Mtx **, void *);
 void func_8033878C(Gfx **, Mtx **, void *);
 void func_80338B50(Gfx **, Mtx **, void *);
@@ -165,8 +170,8 @@ void func_80339124(Gfx **, Mtx **, BKGeoList *);
 void func_8033A410(s32 a);
 void func_8033A45C(s32 arg0, s32 arg1);
 
-
-Gfx D_80370340[] =
+// Sets up 2 cycle mode
+Gfx setup2CycleDL[] =
 {
     gsDPPipeSync(),
     gsDPPipelineMode(G_PM_1PRIMITIVE),
@@ -175,7 +180,8 @@ Gfx D_80370340[] =
     gsSPEndDisplayList()
 };
 
-Gfx D_80370368[] =
+// Sets up 2 cycle mode with black prim color
+Gfx setup2CycleBlackPrimDL[] =
 {
     gsDPPipeSync(),
     gsDPPipelineMode(G_PM_1PRIMITIVE),
@@ -185,7 +191,8 @@ Gfx D_80370368[] =
     gsSPEndDisplayList()
 };
 
-Gfx D_80370398[] =
+// Sets up 2 cycle mode with white env color
+Gfx setup2CycleWhiteEnvDL[] =
 {
     gsDPPipeSync(),
     gsDPPipelineMode(G_PM_1PRIMITIVE),
@@ -195,7 +202,8 @@ Gfx D_80370398[] =
     gsSPEndDisplayList()
 };
 
-Gfx D_803703C8[] =
+// Sets up 2 cycle mode (duplicate of setup2CycleDL)
+Gfx setup2CycleDL_copy[] =
 {
     gsDPPipeSync(),
     gsDPPipelineMode(G_PM_1PRIMITIVE),
@@ -204,426 +212,371 @@ Gfx D_803703C8[] =
     gsSPEndDisplayList()
 };
 
-Gfx D_803703F0[] = {
-    gsDPSetRenderMode(G_RM_OPA_SURF, G_RM_OPA_SURF2),
-    gsSPEndDisplayList()
-};
-
-Gfx D_80370400[] = {
-    gsDPSetRenderMode(G_RM_PASS, G_RM_AA_OPA_SURF2),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_80370410[] = {
-    gsDPSetRenderMode(G_RM_PASS, G_RM_XLU_SURF2),
-    gsSPEndDisplayList(),
-};
-
-
-Gfx D_80370420[] =  {
-    gsDPSetRenderMode(G_RM_PASS, G_RM_AA_XLU_SURF2),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_80370430[] = {
-    gsDPSetRenderMode(G_RM_PASS, G_RM_XLU_SURF2),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_80370440[] = {
-    gsDPSetRenderMode(G_RM_PASS, G_RM_AA_XLU_SURF2),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_80370450[] = {
-    gsDPSetRenderMode(G_RM_OPA_SURF, G_RM_OPA_SURF2),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_80370460[] = {
-    gsDPSetRenderMode(G_RM_PASS, G_RM_AA_OPA_SURF2),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_80370470[] = {
-    gsDPSetRenderMode(G_RM_PASS, G_RM_XLU_SURF2),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_80370480[] = {
-    gsDPSetRenderMode(G_RM_PASS, G_RM_AA_XLU_SURF2),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_80370490[] = {
-    gsDPSetRenderMode(G_RM_PASS, G_RM_XLU_SURF2),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_803704A0[] = {
-    gsDPSetRenderMode(G_RM_PASS, G_RM_AA_XLU_SURF2),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_803704B0[] = {
-    gsDPSetRenderMode(AA_EN | IM_RD | CLR_ON_CVG | CVG_DST_SAVE | ZMODE_OPA | FORCE_BL | G_RM_PASS, AA_EN | IM_RD | CLR_ON_CVG | CVG_DST_SAVE | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_803704C0[] = {
-    gsDPSetRenderMode(Z_CMP | Z_UPD | CVG_DST_CLAMP | ZMODE_OPA | FORCE_BL | G_RM_PASS, Z_CMP | Z_UPD | CVG_DST_CLAMP | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_0, G_BL_CLR_IN, G_BL_1)),
-    gsSPEndDisplayList()
-};
-
-Gfx D_803704D0[] = {
-    gsDPSetRenderMode(G_RM_PASS, G_RM_AA_ZB_OPA_SURF2),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_803704E0[] = {
-    gsDPSetRenderMode(Z_CMP | Z_UPD | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | G_RM_PASS, Z_CMP | Z_UPD | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_803704F0[] = {
-    gsDPSetRenderMode(AA_EN | Z_CMP | Z_UPD | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | G_RM_PASS, AA_EN | Z_CMP | Z_UPD | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_80370500[] = {
-    gsDPSetRenderMode(Z_CMP | Z_UPD | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | G_RM_PASS, Z_CMP | Z_UPD | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_80370510[] = {
-    gsDPSetRenderMode(AA_EN | Z_CMP | Z_UPD | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | G_RM_PASS, AA_EN | Z_CMP | Z_UPD | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_80370520[] = {
-    gsDPSetRenderMode(Z_CMP | CVG_DST_CLAMP | ZMODE_OPA | FORCE_BL | G_RM_PASS, Z_CMP | CVG_DST_CLAMP | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_0, G_BL_CLR_IN, G_BL_1)),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_80370530[] = {
-    gsDPSetRenderMode(AA_EN | Z_CMP | IM_RD | CVG_DST_CLAMP | ZMODE_OPA | ALPHA_CVG_SEL | G_RM_PASS, AA_EN | Z_CMP | IM_RD | CVG_DST_CLAMP | ZMODE_OPA | ALPHA_CVG_SEL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_A_MEM)),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_80370540[] =  {
-    gsDPSetRenderMode(Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | G_RM_PASS, Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_80370550[] = {
-    gsDPSetRenderMode(AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | G_RM_PASS, AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_80370560[] = {
-    gsDPSetRenderMode(Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | G_RM_PASS, Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_80370570[] = {
-    gsDPSetRenderMode(AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | G_RM_PASS, AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
-    gsSPEndDisplayList()
-};
-
-Gfx D_80370580[] = {
-    gsDPSetRenderMode(AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_SAVE | ZMODE_OPA | FORCE_BL | G_RM_PASS, AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_SAVE | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
-    gsSPEndDisplayList()
-};
-
-Gfx D_80370590[] = {
-    gsDPSetRenderMode(Z_CMP | CVG_DST_CLAMP | ZMODE_OPA | FORCE_BL | G_RM_PASS, Z_CMP | CVG_DST_CLAMP | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_0, G_BL_CLR_IN, G_BL_1)),
-    gsSPEndDisplayList()
-};
-
-Gfx D_803705A0[] = {
-    gsDPSetRenderMode(AA_EN | Z_CMP | IM_RD | CVG_DST_CLAMP | ZMODE_OPA | ALPHA_CVG_SEL | G_RM_PASS, AA_EN | Z_CMP | IM_RD | CVG_DST_CLAMP | ZMODE_OPA | ALPHA_CVG_SEL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_A_MEM)),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_803705B0[] = {
-    gsDPSetRenderMode(Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | G_RM_PASS, Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_803705C0[] = {
-    gsDPSetRenderMode(AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | G_RM_PASS, AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_803705D0[] = {
-    gsDPSetRenderMode(Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | G_RM_PASS, Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_803705E0[] = {
-    gsDPSetRenderMode(AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | G_RM_PASS, AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_803705F0[] = {
-    gsDPSetRenderMode(Z_CMP | CVG_DST_CLAMP | ZMODE_OPA | FORCE_BL | G_RM_PASS, Z_CMP | CVG_DST_CLAMP | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_0, G_BL_CLR_IN, G_BL_1)),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_80370600[] = {
-    gsDPSetRenderMode(AA_EN | Z_CMP | IM_RD | CVG_DST_CLAMP | ZMODE_OPA | ALPHA_CVG_SEL | G_RM_PASS, AA_EN | Z_CMP | IM_RD | CVG_DST_CLAMP | ZMODE_OPA | ALPHA_CVG_SEL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_A_MEM)),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_80370610[] = {
-    gsDPSetRenderMode(Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | G_RM_PASS, Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_80370620[] = {
-    gsDPSetRenderMode(AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | G_RM_PASS, AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_80370630[] = {
-    gsDPSetRenderMode(Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | G_RM_PASS, Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_80370640[] = {
-    gsDPSetRenderMode(AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | G_RM_PASS, AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_80370650[] = {
-    gsDPSetRenderMode(AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_SAVE | ZMODE_OPA | FORCE_BL | G_RM_PASS, AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_SAVE | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
-    gsSPEndDisplayList(),
-};
-
-
-Gfx D_80370660[] = {
-    gsDPSetRenderMode(G_RM_PASS, G_RM_XLU_SURF2),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_80370670[] = {
-    gsDPSetRenderMode(G_RM_PASS, G_RM_AA_XLU_SURF2),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_80370680[] = {
-    gsDPSetRenderMode(G_RM_PASS, G_RM_XLU_SURF2),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_80370690[] = {
-    gsDPSetRenderMode(G_RM_PASS, G_RM_AA_XLU_SURF2),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_803706A0[] = {
-    gsDPSetRenderMode(G_RM_PASS, G_RM_XLU_SURF2),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_803706B0[] = {
-    gsDPSetRenderMode(G_RM_PASS, G_RM_AA_XLU_SURF2),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_803706C0[] = {
-    gsDPSetRenderMode(G_RM_PASS, G_RM_XLU_SURF2),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_803706D0[] = {
-    gsDPSetRenderMode(G_RM_PASS, G_RM_AA_XLU_SURF2),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_803706E0[] = {
-    gsDPSetRenderMode(G_RM_PASS, G_RM_XLU_SURF2),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_803706F0[] = {
-    gsDPSetRenderMode(G_RM_PASS, G_RM_AA_XLU_SURF2),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_80370700[] = {
-    gsDPSetRenderMode(G_RM_PASS, G_RM_XLU_SURF2),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_80370710[] = {
-    gsDPSetRenderMode(G_RM_PASS, G_RM_AA_XLU_SURF2),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_80370720[] = {
-    gsDPSetRenderMode(AA_EN | IM_RD | CLR_ON_CVG | CVG_DST_SAVE | ZMODE_OPA | FORCE_BL | G_RM_PASS, AA_EN | IM_RD | CLR_ON_CVG | CVG_DST_SAVE | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_80370730[] = {
-    gsDPSetRenderMode(Z_CMP | Z_UPD | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | G_RM_PASS, Z_CMP | Z_UPD | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_80370740[] = {
-    gsDPSetRenderMode(AA_EN | Z_CMP | Z_UPD | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | G_RM_PASS, AA_EN | Z_CMP | Z_UPD | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_80370750[] = {
-    gsDPSetRenderMode(Z_CMP | Z_UPD | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | G_RM_PASS, Z_CMP | Z_UPD | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_80370760[] = {
-    gsDPSetRenderMode(AA_EN | Z_CMP | Z_UPD | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | G_RM_PASS, AA_EN | Z_CMP | Z_UPD | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_80370770[] = {
-    gsDPSetRenderMode(Z_CMP | Z_UPD | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | G_RM_PASS, Z_CMP | Z_UPD | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_80370780[] = {
-    gsDPSetRenderMode(AA_EN | Z_CMP | Z_UPD | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | G_RM_PASS, AA_EN | Z_CMP | Z_UPD | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_80370790[] = {
-    gsDPSetRenderMode(Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | G_RM_PASS, Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_803707A0[] = {
-    gsDPSetRenderMode(AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | G_RM_PASS, AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_803707B0[] = {
-    gsDPSetRenderMode(Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | G_RM_PASS, Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_803707C0[] = {
-    gsDPSetRenderMode(AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | G_RM_PASS, AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_803707D0[] = {
-    gsDPSetRenderMode(Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | G_RM_PASS, Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_803707E0[] = {
-    gsDPSetRenderMode(AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | G_RM_PASS, AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_803707F0[] = {
-    gsDPSetRenderMode(AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_SAVE | ZMODE_OPA | FORCE_BL | G_RM_PASS, AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_SAVE | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
-    gsSPEndDisplayList(),
-};
-
-
-Gfx D_80370800[] = {
-    gsDPSetRenderMode(Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | G_RM_PASS, Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_80370810[] = {
-    gsDPSetRenderMode(AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | G_RM_PASS, AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_80370820[] = {
-    gsDPSetRenderMode(Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | G_RM_PASS, Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_80370830[] = {
-    gsDPSetRenderMode(AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | G_RM_PASS, AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_80370840[] = {
-    gsDPSetRenderMode(Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | G_RM_PASS, Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_80370850[] = {
-    gsDPSetRenderMode(AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | G_RM_PASS, AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_80370860[] = {
-    gsDPSetRenderMode(Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | G_RM_PASS, Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_80370870[] = {
-    gsDPSetRenderMode(AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | G_RM_PASS, AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_80370880[] = {
-    gsDPSetRenderMode(Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | G_RM_PASS, Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_80370890[] = {
-    gsDPSetRenderMode(AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | G_RM_PASS, AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_803708A0[] = {
-    gsDPSetRenderMode(Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | G_RM_PASS, Z_CMP | IM_RD | CVG_DST_FULL | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_803708B0[] = {
-    gsDPSetRenderMode(AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | G_RM_PASS, AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_803708C0[] = {
-    gsDPSetRenderMode(AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_SAVE | ZMODE_OPA | FORCE_BL | G_RM_PASS, AA_EN | Z_CMP | IM_RD | CLR_ON_CVG | CVG_DST_SAVE | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)),
-    gsSPEndDisplayList(),
-};
-
-Gfx D_803708D0[] = 
+// List of render modes
+Gfx renderModesNoDepthOpa[][2] = {
+    {
+        gsDPSetRenderMode(G_RM_PASS, G_RM_OPA_SURF2),
+        gsSPEndDisplayList()
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, G_RM_AA_OPA_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, G_RM_XLU_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, G_RM_AA_XLU_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, G_RM_XLU_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, G_RM_AA_XLU_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, G_RM_OPA_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, G_RM_AA_OPA_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, G_RM_XLU_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, G_RM_AA_XLU_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, G_RM_XLU_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, G_RM_AA_XLU_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, CVG_DST_SAVE | G_RM_AA_XLU_SURF2),
+        gsSPEndDisplayList(),
+    }
+};
+
+// Same as renderModesNoDepthOpa but with Z_CMP | Z_UPD added to the first 6 and Z_CMP added to the next 7
+Gfx renderModesFullDepthOpa[][2] = {
+    {
+        gsDPSetRenderMode(G_RM_PASS, Z_CMP | Z_UPD | G_RM_OPA_SURF2),
+        gsSPEndDisplayList()
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, Z_CMP | Z_UPD | G_RM_AA_OPA_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, Z_CMP | Z_UPD | G_RM_XLU_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, Z_CMP | Z_UPD | G_RM_AA_XLU_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, Z_CMP | Z_UPD | G_RM_XLU_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, Z_CMP | Z_UPD | G_RM_AA_XLU_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, Z_CMP | G_RM_OPA_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, Z_CMP | G_RM_AA_OPA_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, Z_CMP | G_RM_XLU_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, Z_CMP | G_RM_AA_XLU_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, Z_CMP | G_RM_XLU_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, Z_CMP | G_RM_AA_XLU_SURF2),
+        gsSPEndDisplayList()
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, Z_CMP | CVG_DST_SAVE | G_RM_AA_XLU_SURF2),
+        gsSPEndDisplayList()
+    }
+};
+
+// Same as renderModesNoDepthOpa but with Z_CMP added to all entries
+Gfx renderModesDepthCompareOpa[][2] = {
+    {
+        gsDPSetRenderMode(G_RM_PASS, Z_CMP | G_RM_OPA_SURF2),
+        gsSPEndDisplayList()
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, Z_CMP | G_RM_AA_OPA_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, Z_CMP | G_RM_XLU_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, Z_CMP | G_RM_AA_XLU_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, Z_CMP | G_RM_XLU_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, Z_CMP | G_RM_AA_XLU_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, Z_CMP | G_RM_OPA_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, Z_CMP | G_RM_AA_OPA_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, Z_CMP | G_RM_XLU_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, Z_CMP | G_RM_AA_XLU_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, Z_CMP | G_RM_XLU_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, Z_CMP | G_RM_AA_XLU_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, Z_CMP | CVG_DST_SAVE | G_RM_AA_XLU_SURF2),
+        gsSPEndDisplayList(),
+    }
+};
+
+// Same as renderModesNoDepthOpa but with OPA replaced by XLU
+Gfx renderModesNoDepthXlu[][2] = {
+    {
+        gsDPSetRenderMode(G_RM_PASS, G_RM_XLU_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, G_RM_AA_XLU_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, G_RM_XLU_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, G_RM_AA_XLU_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, G_RM_XLU_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, G_RM_AA_XLU_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, G_RM_XLU_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, G_RM_AA_XLU_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, G_RM_XLU_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, G_RM_AA_XLU_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, G_RM_XLU_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, G_RM_AA_XLU_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, CVG_DST_SAVE | G_RM_AA_XLU_SURF2),
+        gsSPEndDisplayList(),
+    }
+};
+
+// Same as renderModesFullDepthOpa but with OPA replaced by XLU
+Gfx renderModesFullDepthXlu[][2] = {
+    {
+        gsDPSetRenderMode(G_RM_PASS, Z_CMP | Z_UPD | G_RM_XLU_SURF2),
+        gsSPEndDisplayList()
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, Z_CMP | Z_UPD | G_RM_AA_XLU_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, Z_CMP | Z_UPD | G_RM_XLU_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, Z_CMP | Z_UPD | G_RM_AA_XLU_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, Z_CMP | Z_UPD | G_RM_XLU_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, Z_CMP | Z_UPD | G_RM_AA_XLU_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, Z_CMP | G_RM_XLU_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, Z_CMP | G_RM_AA_XLU_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, Z_CMP | G_RM_XLU_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, Z_CMP | G_RM_AA_XLU_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, Z_CMP | G_RM_XLU_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, Z_CMP | G_RM_AA_XLU_SURF2),
+        gsSPEndDisplayList()
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, Z_CMP | CVG_DST_SAVE | G_RM_AA_XLU_SURF2),
+        gsSPEndDisplayList()
+    }
+};
+
+// Same as renderModesDepthCompareOpa but with OPA replaced by XLU
+Gfx renderModesDepthCompareXlu[][2] = {
+    {
+        gsDPSetRenderMode(G_RM_PASS, Z_CMP | G_RM_XLU_SURF2),
+        gsSPEndDisplayList()
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, Z_CMP | G_RM_AA_XLU_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, Z_CMP | G_RM_XLU_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, Z_CMP | G_RM_AA_XLU_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, Z_CMP | G_RM_XLU_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, Z_CMP | G_RM_AA_XLU_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, Z_CMP | G_RM_XLU_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, Z_CMP | G_RM_AA_XLU_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, Z_CMP | G_RM_XLU_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, Z_CMP | G_RM_AA_XLU_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, Z_CMP | G_RM_XLU_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, Z_CMP | G_RM_AA_XLU_SURF2),
+        gsSPEndDisplayList(),
+    },
+    {
+        gsDPSetRenderMode(G_RM_PASS, Z_CMP | CVG_DST_SAVE | G_RM_AA_XLU_SURF2),
+        gsSPEndDisplayList(),
+    }
+};
+
+// Mipmap tile configuration with no wrapping (G_TX_NOMASK disables wrap)
+Gfx mipMapClampDL[] = 
 {
-    gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0x0000, 2, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD),
-    gsDPSetTileSize(2, 0, 0, 0x007C, 0x007C),
-    gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0x0100, 3, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, 1, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, 1),
-    gsDPSetTileSize(3, 0, 0, 0x003C, 0x003C),
-    gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0x0104, 4, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, 2, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, 2),
-    gsDPSetTileSize(4, 0, 0, 0x001C, 0x001C),
-    gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0x0106, 5, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, 3, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, 3),
-    gsDPSetTileSize(5, 0, 0, 0x000C, 0x000C),
-    gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0x0107, 6, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, 4, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, 4),
-    gsDPSetTileSize(6, 0, 0, 0x0004, 0x0004),
+    gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0x0000, 2, 0, G_TX_NOMIRROR, G_TX_NOMASK, 0, G_TX_NOMIRROR, G_TX_NOMASK, 0),
+    gsDPSetTileSize(2, 0, 0, (32 - 1) << 2, (32 - 1) << 2),
+    gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0x0100, 3, 0, G_TX_NOMIRROR, G_TX_NOMASK, 1, G_TX_NOMIRROR, G_TX_NOMASK, 1),
+    gsDPSetTileSize(3, 0, 0, (16 - 1) << 2, (16 - 1) << 2),
+    gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0x0104, 4, 0, G_TX_NOMIRROR, G_TX_NOMASK, 2, G_TX_NOMIRROR, G_TX_NOMASK, 2),
+    gsDPSetTileSize(4, 0, 0, (8 - 1) << 2, (8 - 1) << 2),
+    gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0x0106, 5, 0, G_TX_NOMIRROR, G_TX_NOMASK, 3, G_TX_NOMIRROR, G_TX_NOMASK, 3),
+    gsDPSetTileSize(5, 0, 0, (4 - 1) << 2, (4 - 1) << 2),
+    gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0x0107, 6, 0, G_TX_NOMIRROR, G_TX_NOMASK, 4, G_TX_NOMIRROR, G_TX_NOMASK, 4),
+    gsDPSetTileSize(6, 0, 0, (2 - 1) << 2, (2 - 1) << 2),
     gsSPEndDisplayList()
 };
 
-Gfx D_80370928[] =
+// Mipmap tile configuration with wrapping
+Gfx mipMapWrapDL[] =
 {
-    gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0x0000, 2, 0, G_TX_NOMIRROR | G_TX_WRAP, 5, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_WRAP, 5, G_TX_NOLOD),
-    gsDPSetTileSize(2, 0, 0, 0x007C, 0x007C),
+    gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0x0000, 2, 0, G_TX_NOMIRROR | G_TX_WRAP, 5, 0, G_TX_NOMIRROR | G_TX_WRAP, 5, 0),
+    gsDPSetTileSize(2, 0, 0, (32 - 1) << 2, (32 - 1) << 2),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0x0100, 3, 0, G_TX_NOMIRROR | G_TX_WRAP, 4, 1, G_TX_NOMIRROR | G_TX_WRAP, 4, 1),
-    gsDPSetTileSize(3, 0, 0, 0x003C, 0x003C),
+    gsDPSetTileSize(3, 0, 0, (16 - 1) << 2, (16 - 1) << 2),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0x0104, 4, 0, G_TX_NOMIRROR | G_TX_WRAP, 3, 2, G_TX_NOMIRROR | G_TX_WRAP, 3, 2),
-    gsDPSetTileSize(4, 0, 0, 0x001C, 0x001C),
+    gsDPSetTileSize(4, 0, 0, (8 - 1) << 2, (8 - 1) << 2),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0x0106, 5, 0, G_TX_NOMIRROR | G_TX_WRAP, 2, 3, G_TX_NOMIRROR | G_TX_WRAP, 2, 3),
-    gsDPSetTileSize(5, 0, 0, 0x000C, 0x000C),
+    gsDPSetTileSize(5, 0, 0, (4 - 1) << 2, (4 - 1) << 2),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0x0107, 6, 0, G_TX_NOMIRROR | G_TX_WRAP, 1, 4, G_TX_NOMIRROR | G_TX_WRAP, 1, 4),
-    gsDPSetTileSize(6, 0, 0, 0x0004, 0x0004),
+    gsDPSetTileSize(6, 0, 0, (2 - 1) << 2, (2 - 1) << 2),
     gsDPSetTextureDetail(G_TD_CLAMP),
     gsDPSetTextureLOD(G_TL_LOD),
     gsSPEndDisplayList()
@@ -665,7 +618,7 @@ struct58s *D_8038371C;
 BKTextureList *D_80383720;
 s32 D_80383724;
 BKVertexList *D_80383728;
-s32 D_8038372C;
+BKModelUnk20List *D_8038372C;
 struct58s *D_80383730;
 f32 D_80383734;
 Struct_Core2_B1400_0 D_80383738;
@@ -686,14 +639,14 @@ struct {
     s32 unk0; //model_asset_index
     f32 unk4;
     f32 unk8;
-    u8 padC[0x4]
+    u8 padC[0x4];
 } D_803837C8; 
 s32 D_803837D8;
 struct {
-    LookAt unk0[32];
-    LookAt *unk400;
-    LookAt *unk404;
-    f32 unk408[3];
+    LookAt lookat_buffer[32];
+    LookAt *cur_lookat;
+    LookAt *lookat_buffer_end;
+    f32 eye_pos[3];
 } D_803837E0;
 Mtx D_80383BF8;
 f32 D_80383C38[3];
@@ -756,7 +709,7 @@ void func_803384A8(Gfx **gfx, Mtx **mtx, void *arg2){
         mlMtxTranslate(-cmd->unkC[0], -cmd->unkC[1], -cmd->unkC[2]);
         mlMtxApply(*mtx);
         gSPMatrix((*gfx)++, (*mtx)++, G_MTX_PUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
-        func_80339124(gfx, mtx, (s32)cmd + cmd->unk8);
+        func_80339124(gfx, mtx, (BKGeoList*)((s32)cmd + cmd->unk8));
         mlMtxPop();
         gSPPopMatrix((*gfx)++, G_MTX_MODELVIEW);
     }
@@ -780,13 +733,13 @@ void func_803385BC(Gfx **gfx, Mtx **mtx, void *arg2){
     if(cmd->unk20 & 1){
         if(0.0f <= f14 && (tmp_v0 = cmd->unk24)){
             D_80383C64 = f14;
-            func_80339124(gfx, mtx, (s32)cmd + tmp_v0);
+            func_80339124(gfx, mtx, (BKGeoList*)((s32)cmd + tmp_v0));
         }
         else{
             D_80383C64 = f14;
             if(f14 < 0.0f){
                 if(cmd->unk22)
-                    func_80339124(gfx, mtx, (s32)cmd + cmd->unk22);
+                    func_80339124(gfx, mtx, (BKGeoList*)((s32)cmd + cmd->unk22));
             }
         }
     }
@@ -794,17 +747,17 @@ void func_803385BC(Gfx **gfx, Mtx **mtx, void *arg2){
         D_80383C64 = f14;
         if(0.0f <= f14){
             if(cmd->unk22)
-                func_80339124(gfx, mtx, (s32)cmd + cmd->unk22);
+                func_80339124(gfx, mtx, (BKGeoList*)((s32)cmd + cmd->unk22));
 
             if(cmd->unk24)
-                func_80339124(gfx, mtx, (s32)cmd + cmd->unk24);
+                func_80339124(gfx, mtx, (BKGeoList*)((s32)cmd + cmd->unk24));
         }
         else{
             if(cmd->unk24)
-                func_80339124(gfx, mtx, (s32)cmd + cmd->unk24);
+                func_80339124(gfx, mtx, (BKGeoList*)((s32)cmd + cmd->unk24));
 
             if(cmd->unk22)
-                func_80339124(gfx, mtx, (s32)cmd + cmd->unk22);
+                func_80339124(gfx, mtx, (BKGeoList*)((s32)cmd + cmd->unk22));
         }
     }
 }
@@ -815,10 +768,10 @@ void func_8033878C(Gfx **gfx, Mtx **mtx, void *arg2){
 
     switch(cmd->unk8){
         case 1:
-            gSPDisplayList((*gfx)++, &D_803708D0);
+            gSPDisplayList((*gfx)++, mipMapClampDL);
             break;
         case 2:
-            gSPDisplayList((*gfx)++, &D_80370928);
+            gSPDisplayList((*gfx)++, mipMapWrapDL);
             break;
     }
 }
@@ -833,9 +786,9 @@ void func_803387F8(Gfx **gfx, Mtx **mtx, void *arg2){
             mlMtxApply(*mtx);
             gSPMatrix((*gfx)++, (*mtx)++, G_MTX_PUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
         }
-    }//L80338890
+    }
     if(cmd->unk8){
-        func_80339124(gfx, mtx, (u8*)cmd + cmd->unk8);
+        func_80339124(gfx, mtx, (BKGeoList*)((u8*)cmd + cmd->unk8));
     }
     if(D_8038371C){
         mlMtxPop();
@@ -848,10 +801,10 @@ void func_803387F8(Gfx **gfx, Mtx **mtx, void *arg2){
 //cmd3_LOAD_DL
 void func_80338904(Gfx **gfx, Mtx **mtx, void *arg2){
     GeoCmd3 *cmd = (GeoCmd3 *)arg2;
-    s32 vptr;
+    Gfx *vptr;
 
     if(D_80370990){
-        vptr = (s32)D_80383718  + sizeof(Gfx)*cmd->unk8 + sizeof(BKGfxList);
+        vptr = &D_80383718->list[cmd->unk8];
         gSPDisplayList((*gfx)++, osVirtualToPhysical(vptr));
     }
 }
@@ -862,14 +815,14 @@ void func_80338970(Gfx **gfx, Mtx **mtx, void *arg2){
     int i;
 
     if(D_80370990){
-        gSPDisplayList((*gfx)++, osVirtualToPhysical((s32)D_80383718  + sizeof(Gfx)*cmd->unk8[0] + sizeof(BKGfxList)));
+        gSPDisplayList((*gfx)++, osVirtualToPhysical(D_80383718->list + cmd->unk8[0]));
     }
 
     if(D_80370990){
         for(i = 1; cmd->unk8[i]; i++){
             mlMtxApply(*mtx);
             gSPMatrix((*gfx)++, (*mtx)++, G_MTX_PUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
-            gSPDisplayList((*gfx)++, osVirtualToPhysical((s32)D_80383718  + sizeof(Gfx)*cmd->unk8[i] + sizeof(BKGfxList)));
+            gSPDisplayList((*gfx)++, osVirtualToPhysical(D_80383718->list + cmd->unk8[i]));
         }
     }
 }
@@ -877,13 +830,13 @@ void func_80338970(Gfx **gfx, Mtx **mtx, void *arg2){
 //Cmd6_???
 void func_80338AC4(Gfx **gfx, Mtx **mtx, void *arg2){
     GeoCmd6 *cmd = (GeoCmd6 *)arg2;
-    func_80339124(gfx, mtx, (s32)cmd + cmd->unk8);
+    func_80339124(gfx, mtx, (BKGeoList*)((s32)cmd + cmd->unk8));
 }
 
 //Cmd7_LOAD_DL???
-void func_80338AE8(Gfx **gfx, Mtx **mtx, GeoCmd7 *cmd){
+void func_80338AE8(Gfx **gfx, Mtx **mtx, void *arg2){
     if(D_80370990){
-        gSPDisplayList((*gfx)++, osVirtualToPhysical((s32)D_80383718  + sizeof(Gfx)*cmd->unkA + sizeof(BKGfxList)));
+        gSPDisplayList((*gfx)++, osVirtualToPhysical(D_80383718->list + ((GeoCmd7*)arg2)->unkA));
     }
 }
 
@@ -896,7 +849,7 @@ void func_80338B50(Gfx **gfx, Mtx **mtx, void *arg2){
         func_8025235C(D_80383C98, cmd->unk10);
         dist = gu_sqrtf(D_80383C98[0]*D_80383C98[0] + D_80383C98[1]*D_80383C98[1] + D_80383C98[2]*D_80383C98[2]);
         if(cmd->min_C < dist && dist <= cmd->max_8){
-            func_80339124(gfx, mtx, (s32)cmd + cmd->subgeo_offset_1C);
+            func_80339124(gfx, mtx, (BKGeoList*)((s32)cmd + cmd->subgeo_offset_1C));
         }
     }
 }
@@ -974,7 +927,7 @@ void func_80338DCC(Gfx ** gfx, Mtx ** mtx, void *arg2){
         sp20[1] = (f32)cmd->unkE[1] * D_80383734;
         sp20[2] = (f32)cmd->unkE[2] * D_80383734;
         if(func_8024D374(sp2C, sp20)){
-            func_80339124(gfx, mtx, (s32)cmd + cmd->unk14);
+            func_80339124(gfx, mtx, (BKGeoList*)((s32)cmd + cmd->unk14));
         }
     }
 }
@@ -991,7 +944,7 @@ void func_80338EB8(Gfx ** gfx, Mtx ** mtx, void *arg2){
         sp34[2] = (f32)cmd->unk8[2] * D_80383734;
         sp30 = (f32)cmd->unkE*D_80383734;
         if(func_8024DB50(sp34, sp30) && cmd->unk10){
-            func_80339124(gfx, mtx, (s32)cmd + cmd->unk10);
+            func_80339124(gfx, mtx, (BKGeoList*)((s32)cmd + cmd->unk10));
         }
     }
     else{
@@ -1013,10 +966,10 @@ void func_80338EB8(Gfx ** gfx, Mtx ** mtx, void *arg2){
         sp34[1] += D_80383C38[1];
         sp34[2] += D_80383C38[2];
         if(func_8024DB50(sp34, sp30) && cmd->unk10){
-            func_80339124(gfx, mtx, (s32)cmd + cmd->unk10);
+            func_80339124(gfx, mtx, (BKGeoList*)((s32)cmd + cmd->unk10));
         }
 
-    }//L8033908C
+    }
 
 }
 
@@ -1028,7 +981,7 @@ void func_8033909C(Gfx ** gfx, Mtx ** mtx, void *arg2){
         || (tmp_v0 && (cmd->unkB & 2)) 
     ){
         if(cmd->unk8 != 0)
-            func_80339124(gfx, mtx, (s32)cmd + cmd->unk8);
+            func_80339124(gfx, mtx, (BKGeoList*)((s32)cmd + cmd->unk8));
     }
 
 }
@@ -1039,20 +992,20 @@ void func_80339124(Gfx ** gfx, Mtx ** mtx, BKGeoList *geo_list){
         D_80370994[geo_list->cmd_0](gfx, mtx, geo_list);
         if(geo_list->size_4 == 0)
             return;
-        geo_list = ((s32)geo_list + geo_list->size_4);
+        geo_list = (BKGeoList*)((s32)geo_list + geo_list->size_4);
     }while(1);
 }
 
-int func_803391A4(Gfx **gfx, Mtx **mtx, f32 position[3], f32 arg3[3], f32 scale, f32*arg5, BKModelBin* model_bin){
-    f32 spF4[3];
+BKModelBin *func_803391A4(Gfx **gfx, Mtx **mtx, f32 position[3], f32 arg3[3], f32 scale, f32*arg5, BKModelBin* model_bin){
+    f32 camera_focus[3];
     f32 spF0;
     f32 padEC;
-    f32 spE0[3];
-    s32 spDC;
-    s32 spD8;
+    f32 camera_position[3];
+    void *rendermode_table_opa; // Table of render modes to use for opaque rendering
+    void *rendermode_table_xlu; // Table of render modes to use for translucent rendering
     f32 spD4;
     f32 spD0;
-    BKVertexList *tmp_v1;
+    BKVertexList *verts;
     s32 alpha; 
     f32 tmp_f0;
     f32 padB8;
@@ -1075,24 +1028,24 @@ int func_803391A4(Gfx **gfx, Mtx **mtx, f32 position[3], f32 arg3[3], f32 scale,
         D_80383758.unk28[0] = D_80383C48[0];\
         D_80383758.unk28[1] = D_80383C48[1];\
         D_80383758.unk28[2] = D_80383C48[2];
-    }//L80339274
+    }
 
     if(position){
-        spE0[0] = position[0];
-        spE0[1] = position[1];
-        spE0[2] = position[2];
+        camera_position[0] = position[0];
+        camera_position[1] = position[1];
+        camera_position[2] = position[2];
     }
-    else{//L803392A8
-        spE0[0] = spE0[1] = spE0[2] = 0.0f;
-    }//L803392BC
+    else{
+        camera_position[0] = camera_position[1] = camera_position[2] = 0.0f;
+    }
 
-    spF4[0] = spE0[0] - D_80383C38[0];
-    spF4[1] = spE0[1] - D_80383C38[1];
-    spF4[2] = spE0[2] - D_80383C38[2];
+    camera_focus[0] = camera_position[0] - D_80383C38[0];
+    camera_focus[1] = camera_position[1] - D_80383C38[1];
+    camera_focus[2] = camera_position[2] - D_80383C38[2];
 
-    if( ((spF4[0] < -17000.0f) || (17000.0f < spF4[0]))
-        || ((spF4[1] < -17000.0f) || (17000.0f < spF4[1]))
-        || ((spF4[2] < -17000.0f) || (17000.0f < spF4[2]))
+    if( ((camera_focus[0] < -17000.0f) || (17000.0f < camera_focus[0]))
+        || ((camera_focus[1] < -17000.0f) || (17000.0f < camera_focus[1]))
+        || ((camera_focus[2] < -17000.0f) || (17000.0f < camera_focus[2]))
     ){
         func_80338390();
         return 0;
@@ -1103,37 +1056,37 @@ int func_803391A4(Gfx **gfx, Mtx **mtx, f32 position[3], f32 arg3[3], f32 scale,
         D_80383C38[1] = D_80383758.unk0[1];
         D_80383C38[2] = D_80383758.unk0[2];
 
-        D_80383C48[0] = D_80383758.unkC[0];\
-        D_80383C48[1] = D_80383758.unkC[1];\
+        D_80383C48[0] = D_80383758.unkC[0],
+        D_80383C48[1] = D_80383758.unkC[1],
         D_80383C48[2] = D_80383758.unkC[2];
         func_8024CD88(D_80383C38);
         func_8024CE18(D_80383C48);
         func_8024CFD4();
-        spF4[0] = spE0[0] - D_80383C38[0];
-        spF4[1] = spE0[1] - D_80383C38[1];
-        spF4[2] = spE0[2] - D_80383C38[2];
-    }//L803393E8
+        camera_focus[0] = camera_position[0] - D_80383C38[0];
+        camera_focus[1] = camera_position[1] - D_80383C38[1];
+        camera_focus[2] = camera_position[2] - D_80383C38[2];
+    }
 
     if(model_bin){
-        tmp_v1 = D_80383728 ? D_80383728 : (BKVertexList *)((s32)model_bin + model_bin->vtx_list_offset_10);
-        spD0 = tmp_v1->unk16;
-        spD4 = tmp_v1->unk12;
+        verts = D_80383728 ? D_80383728 : (BKVertexList *)((s32)model_bin + model_bin->vtx_list_offset_10);
+        spD0 = verts->unk16;
+        spD4 = verts->unk12;
     }
-    else{//L80339434
+    else{
         spD0 = D_803837C8.unk8;
         spD4 = D_803837C8.unk4;
-    }//L80339440
-    spF0 = gu_sqrtf(spF4[0]*spF4[0] + spF4[1]*spF4[1] + spF4[2]*spF4[2]);
+    }
+    spF0 = gu_sqrtf(camera_focus[0]*camera_focus[0] + camera_focus[1]*camera_focus[1] + camera_focus[2]*camera_focus[2]);
     if( 4000.0f <= spF0 && spD4*scale*D_8038370C*50.0f < D_80383708){
         D_80383708 = spD4*scale*D_8038370C*50.0f;
-    }//L803394C8
+    }
 
     if(D_80383708 <= spF0){
         func_80338390();
         return 0;
     }
 
-    D_80370990 = (D_80383704) ? func_8024DB50(spE0, spD0*scale) : 1;
+    D_80370990 = (D_80383704) ? func_8024DB50(camera_position, spD0*scale) : 1;
     if(D_80370990 == 0){
         func_80338390();
         return 0;
@@ -1147,10 +1100,10 @@ int func_803391A4(Gfx **gfx, Mtx **mtx, f32 position[3], f32 arg3[3], f32 scale,
         model_bin = assetcache_get(D_803837C8.unk0);
     }
     D_80383C54 = model_bin;
-    D_80383718 = D_80383718 ? D_80383718 : (BKGfxList *)((s32)D_80383C54 + D_80383C54->gfx_list_offset_C);
-    D_80383720 = D_80383720 ? D_80383720 : (BKTextureList *)((s32)D_80383C54 + D_80383C54->texture_list_offset_8);
-    D_80383728 = D_80383728 ? D_80383728 : (BKVertexList *)((s32)D_80383C54 + D_80383C54->vtx_list_offset_10);
-    D_8038372C = (D_80383C54->unk20 == NULL) ? NULL : (u8*)model_bin + model_bin->unk20;
+    D_80383718 = D_80383718 ? D_80383718 : (BKGfxList *)((s32)D_80383C54 + D_80383C54->gfx_list_offset_C),
+    D_80383720 = D_80383720 ? D_80383720 : (BKTextureList *)((s32)D_80383C54 + D_80383C54->texture_list_offset_8),
+    D_80383728 = D_80383728 ? D_80383728 : (BKVertexList *)((s32)D_80383C54 + D_80383C54->vtx_list_offset_10),
+    D_8038372C = (D_80383C54->unk20 == NULL) ? NULL : (BKModelUnk20List *)((u8*)model_bin + model_bin->unk20);
 
     if(D_80383710){
         tmp_f0 = D_80383708 - 500.0f;
@@ -1159,102 +1112,110 @@ int func_803391A4(Gfx **gfx, Mtx **mtx, f32 position[3], f32 arg3[3], f32 scale,
             if(D_80383714 == 0){
                 D_80383738.prim[3] = (D_80383738.prim[3] * alpha) / 0xff;
             }
-            else if(D_80383714 == 1){//L803396DC
+            else if(D_80383714 == 1){
                 D_803837A0[3] = (D_803837A0[3] * alpha)/0xff;
             }
-            else if(D_80383714 == 2){//L80339710
+            else if(D_80383714 == 2){
                 func_8033A410(alpha);
             }
             else if(D_80383714 == 3){
                 D_803837C0 = (D_803837C0 *alpha)/0xff;
             }
-        }////L80339764
-    }//L80339764
+        }
+    }
 
-    gSPSegment((*gfx)++, 0x01, osVirtualToPhysical((void*)((s32)D_80383728 + sizeof(BKVertexList))));
-    gSPSegment((*gfx)++, 0x02, osVirtualToPhysical((void*)((s32)D_80383720 + D_80383720->cnt_4*sizeof(BKTextureHeader) + sizeof(BKTextureList))));
+    // Set up segments 1 and 2 to point to vertices and textures respectively
+    gSPSegment((*gfx)++, 0x01, osVirtualToPhysical(&D_80383728->vtx_18));
+    gSPSegment((*gfx)++, 0x02, osVirtualToPhysical(&D_80383720->tex_8[D_80383720->cnt_4]));
 
     if(D_80383724){
         int i;
-        s32 spB0;
+        s32 texture_offset;
         
         for(i = 0; i < 4; i++){
-            if(func_80349BB0(D_80383724, i, &spB0))
-                gSPSegment((*gfx)++, 15-i, osVirtualToPhysical((void*)((s32) D_80383720 + D_80383720->cnt_4*sizeof(BKTextureHeader) + spB0 + sizeof(BKTextureList))));
+            if(func_80349BB0(D_80383724, i, &texture_offset))
+                gSPSegment((*gfx)++, 15-i, osVirtualToPhysical((u8*)&D_80383720->tex_8[D_80383720->cnt_4] + texture_offset));
         }
     }
 
     if(D_803837D8){
         gSPSetGeometryMode((*gfx)++, G_ZBUFFER);
     }
-    else{//L803398C0
+    else{
         gSPClearGeometryMode((*gfx)++, G_ZBUFFER);
     }
 
-    //select RenderMode
-    if(D_803837D8 == 0){
-        spDC = &D_803703F0;
-        spD8 = &D_80370660;
+    // Pick a table of render modes for opaque and translucent rendering
+    if(D_803837D8 == 0){ // No depth buffering
+        rendermode_table_opa = renderModesNoDepthOpa;
+        rendermode_table_xlu = renderModesNoDepthXlu;
     }
-    else if(D_803837D8 == 1){
-        spDC = &D_803704C0;
-        spD8 = &D_80370730;
+    else if(D_803837D8 == 1){ // Full depth buffering
+        rendermode_table_opa = renderModesFullDepthOpa;
+        rendermode_table_xlu = renderModesFullDepthXlu;
     }
-    else if(D_803837D8 == 2){
-        spDC = &D_80370590;
-        spD8 = &D_80370800;
-    }//L80339948
+    else if(D_803837D8 == 2){ // Depth compare but no depth write
+        rendermode_table_opa = renderModesDepthCompareOpa;
+        rendermode_table_xlu = renderModesDepthCompareXlu;
+    }
 
     if(D_80383714 == 0){
-        s32 padBC;
+        s32 alpha;
         
-        padBC = D_80383738.prim[3] + (D_80383738.env[3]*(0xFF - D_80383738.prim[3]))/0xff;
-        gSPDisplayList((*gfx)++, D_80370340);
-        gDPSetEnvColor((*gfx)++, D_80383738.env[0], D_80383738.env[1], D_80383738.env[2], padBC);
+        alpha = D_80383738.prim[3] + (D_80383738.env[3]*(0xFF - D_80383738.prim[3]))/0xff;
+        gSPDisplayList((*gfx)++, setup2CycleDL);
+        gDPSetEnvColor((*gfx)++, D_80383738.env[0], D_80383738.env[1], D_80383738.env[2], alpha);
         gDPSetPrimColor((*gfx)++, 0, 0, D_80383738.prim[0], D_80383738.prim[1], D_80383738.prim[2], 0);
-        if(padBC == 0xFF){
-            gSPSegment((*gfx)++, 0x03, osVirtualToPhysical(spDC));
+
+        // Set up segment 3 to point to the right render mode table based on the alpha value
+        if(alpha == 0xFF){
+            gSPSegment((*gfx)++, 0x03, osVirtualToPhysical(rendermode_table_opa));
         }
         else{
-            gSPSegment((*gfx)++, 0x03, osVirtualToPhysical(spD8));
+            gSPSegment((*gfx)++, 0x03, osVirtualToPhysical(rendermode_table_xlu));
         }
         //TODO
     }
-    else if(D_80383714 == 1){//L80339AC0
-        gSPDisplayList((*gfx)++, D_80370368);
+    else if(D_80383714 == 1){
+        gSPDisplayList((*gfx)++, setup2CycleBlackPrimDL);
         gDPSetEnvColor((*gfx)++, D_803837A0[0], D_803837A0[1], D_803837A0[2], D_803837A0[3]);
+
+        // Set up segment 3 to point to the right render mode table based on the alpha value
         if(D_803837A0[3] == 0xFF){
-            gSPSegment((*gfx)++, 0x03, osVirtualToPhysical(spDC));
+            gSPSegment((*gfx)++, 0x03, osVirtualToPhysical(rendermode_table_opa));
         }
         else{
-            gSPSegment((*gfx)++, 0x03, osVirtualToPhysical(spD8));
+            gSPSegment((*gfx)++, 0x03, osVirtualToPhysical(rendermode_table_xlu));
         }
     }
     else if(D_80383714 == 2){
-        gSPDisplayList((*gfx)++, D_80370398);
-        gSPSegment((*gfx)++, 0x03, osVirtualToPhysical(spDC));
+        gSPDisplayList((*gfx)++, setup2CycleWhiteEnvDL);
+        gSPSegment((*gfx)++, 0x03, osVirtualToPhysical(rendermode_table_opa));
     }
     else if(D_80383714 == 3){
-        gSPDisplayList((*gfx)++, D_803703C8);
+        gSPDisplayList((*gfx)++, setup2CycleDL_copy);
         gDPSetEnvColor((*gfx)++, 0xFF, 0xFF, 0xFF, D_803837C0);
-        gSPSegment((*gfx)++, 0x03, osVirtualToPhysical(spD8));
-    }//L80339C80
+        gSPSegment((*gfx)++, 0x03, osVirtualToPhysical(rendermode_table_xlu));
+    }
 
     if(D_80383C54->geo_typ_A & 2){ //trilinear mipmapping
-        gSPDisplayList((*gfx)++, D_80370928);
-    }//L80339CC8
+        gSPDisplayList((*gfx)++, mipMapWrapDL);
+    }
 
     if(D_80383C54->geo_typ_A & 4){ //env mapping
-        if(0.0f == spF4[2]){
-            spF4[2] = -0.1f;
+        if(0.0f == camera_focus[2]){
+            camera_focus[2] = -0.1f;
         }
-        guLookAtReflect(*mtx, D_803837E0.unk400, D_803837E0.unk408[0], D_803837E0.unk408[1], D_803837E0.unk408[2], spF4[0], spF4[1], spF4[2], 0.0f, 1.0f, 0.0f);
-        gSPLookAt((*gfx)++, D_803837E0.unk400);
-        osWritebackDCache(D_803837E0.unk400, sizeof(LookAt));
-        D_803837E0.unk400++;
-        if(D_803837E0.unk400 == D_803837E0.unk404)
-            D_803837E0.unk400 = &D_803837E0.unk0;
-    }//L80339DBC
+        guLookAtReflect(*mtx, D_803837E0.cur_lookat,
+            D_803837E0.eye_pos[0], D_803837E0.eye_pos[1], D_803837E0.eye_pos[2],
+            camera_focus[0], camera_focus[1], camera_focus[2],
+            0.0f, 1.0f, 0.0f);
+        gSPLookAt((*gfx)++, D_803837E0.cur_lookat);
+        osWritebackDCache(D_803837E0.cur_lookat, sizeof(LookAt));
+        D_803837E0.cur_lookat++;
+        if(D_803837E0.cur_lookat == D_803837E0.lookat_buffer_end)
+            D_803837E0.cur_lookat = D_803837E0.lookat_buffer;
+    }
 
     if(D_8038371C && !D_80383C54->animation_list_offset_18){
         D_8038371C = 0;
@@ -1263,31 +1224,31 @@ int func_803391A4(Gfx **gfx, Mtx **mtx, f32 position[3], f32 arg3[3], f32 scale,
         if(D_80383700 == 0){
             func_802EA060(&D_80383730, (u8*)model_bin + model_bin->animation_list_offset_18);
         }
-        else{//L80339E38
+        else{
             func_802EA1A8(&D_80383730, (u8*)model_bin + model_bin->animation_list_offset_18, D_80383700);
-        }//L80339E48
+        }
         D_8038371C = D_80383730;
-    }//L80339E58
+    }
 
     if(D_8038372C){
         func_802ED52C(D_8038372C, D_80383C38, scale);
-    }//L80339E74
+    }
 
     if(model_bin->unk28 != NULL && D_8038371C != NULL){
         func_802E6BD0((s32)D_80383C54 + D_80383C54->unk28, D_80383728, D_8038371C);
-    }//L80339EAC
+    }
 
     mlMtxIdent();
     if(D_80383758.unk18){
-        func_80252AF0(D_80383758.unk1C, spE0, arg3, scale, arg5);
+        func_80252AF0(D_80383758.unk1C, camera_position, arg3, scale, arg5);
     }
     else{
-        func_80252AF0(D_80383C38, spE0, arg3, scale, arg5);
-    }//L80339F08
+        func_80252AF0(D_80383C38, camera_position, arg3, scale, arg5);
+    }
 
     if(D_803837B0.unk0){
         mlMtxRotate(D_803837B0.unk4[0], D_803837B0.unk4[1], D_803837B0.unk4[2]);
-    }//L80339F2C
+    }
 
     func_802513B0(&D_80383BF8);
     mlMtxApply(*mtx);
@@ -1303,7 +1264,7 @@ int func_803391A4(Gfx **gfx, Mtx **mtx, f32 position[3], f32 arg3[3], f32 scale,
         D_80383C58[0] = D_80383C58[1] = D_80383C58[2] = 0.0f;
     }
 
-    func_80339124(gfx, mtx, (u8 *)model_bin + model_bin->geo_list_offset_4);
+    func_80339124(gfx, mtx, (BKGeoList *)((u8 *)model_bin + model_bin->geo_list_offset_4));
     gSPPopMatrix((*gfx)++, G_MTX_MODELVIEW);
 
     if(D_80383790.unk8){
@@ -1375,7 +1336,7 @@ BKTextureList *func_8033A104(BKModelBin *arg0){
 void *func_8033A110(BKModelBin *arg0){
     if(arg0->unk2C == 0)
         return NULL;
-    return (s32)arg0 + arg0->unk2C;
+    return (void*)((s32)arg0 + arg0->unk2C);
 }
 
 BKModelUnk14List *func_8033A12C(BKModelBin *this){
@@ -1404,9 +1365,9 @@ void func_8033A17C(void){
 void func_8033A1A4(void){
     func_80338390();
     D_80383758.unk18 = 0;
-    D_803837E0.unk400 = &D_803837E0.unk0[0];
-    D_803837E0.unk404 = D_803837E0.unk400 + 32;
-    D_803837E0.unk408[0] = D_803837E0.unk408[1] = D_803837E0.unk408[2] = 0.0f;
+    D_803837E0.cur_lookat = D_803837E0.lookat_buffer;
+    D_803837E0.lookat_buffer_end = D_803837E0.cur_lookat + ARRAYLEN(D_803837E0.lookat_buffer);
+    D_803837E0.eye_pos[0] = D_803837E0.eye_pos[1] = D_803837E0.eye_pos[2] = 0.0f;
     D_80383730 = func_802EA154();
 }
 

@@ -37,7 +37,7 @@ if args.make:
 baseimg = f"decompressed.us.v10.z64"
 basemap = f"decompressed.map"
 
-myimg = f"build/us.v10/banjo.us.v10.z64"
+myimg = f"build/us.v10/banjo.us.v10.uncompressed.z64"
 mymap = f"build/us.v10/banjo.us.v10.map"
 
 if not os.path.isfile(baseimg):

@@ -100,6 +100,7 @@ typedef struct {
     s32 size_0;
     s16 cnt_4;
     u8 pad6[2];
+    BKTextureHeader tex_8[];
 }BKTextureList;
 
 typedef struct {
