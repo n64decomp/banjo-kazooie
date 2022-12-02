@@ -29,18 +29,18 @@ u32 D_8037D550;
 
 /* .code */
 void func_802B5480(void) {
-    f32 sp2C[3];
-    ParticleEmitter *sp28;
+    f32 bubble_spawn_position[3];
+    ParticleEmitter *bubble_emitter;
 
     if (func_80294574()) {
         if (randf() > 0.5) {
-            playerModel_8029223C(sp2C);
+            playerModel_8029223C(bubble_spawn_position);
         } else {
-            playerModel_80292260(sp2C);
+            playerModel_80292260(bubble_spawn_position);
         }
-        sp28 = func_8029B950(&sp2C, 0.0f);
-        particleEmitter_setParticleVelocityRange(sp28, -60.0f, -100.0f, -60.0f, 60.0f, 0.0f, 60.0f);
-        particleEmitter_emitN(sp28, 1);
+        bubble_emitter = func_8029B950(bubble_spawn_position, 0.0f);
+        particleEmitter_setParticleVelocityRange(bubble_emitter, -60.0f, -100.0f, -60.0f, 60.0f, 0.0f, 60.0f);
+        particleEmitter_emitN(bubble_emitter, 1);
     }
 }
 

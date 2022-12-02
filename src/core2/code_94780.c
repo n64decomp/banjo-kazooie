@@ -24,7 +24,7 @@ void func_8031B718(void){
 }
 
 void func_8031B760(void){
-    levelModel_setEnvColor(D_80383170.rgb[0], D_80383170.rgb[1], D_80383170.rgb[2]);
+    mapModel_setEnvColor(D_80383170.rgb[0], D_80383170.rgb[1], D_80383170.rgb[2]);
 }
 
 void func_8031B790(void) {

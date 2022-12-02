@@ -592,7 +592,7 @@ s32 func_802E48D8(void){
     modelRender_defrag();
     func_8028FB68();
     func_802F0E58();
-    levelModel_defrag();
+    mapModel_defrag();
     func_803086B4();
     func_8032AF94();
     func_802C4320();

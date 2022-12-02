@@ -17,16 +17,16 @@ BKCollisionTri *func_80309B48(f32 arg0[3], f32 arg1[3], f32 arg2[3], s32 arg3) ;
 
 typedef struct {
     s16 map_id; //enum map_e
-    s16 model1_id; //enum asset_e level_model_id
-    s16 model2_id; //enum asset_e level2_model_id
+    s16 opa_model_id; //enum asset_e level_model_id
+    s16 xlu_model_id; //enum asset_e level2_model_id
     s16 unk6[3];
     s16 unkC[3];
     // u8 pad12[0x2];
-    f32 unk14;
-}Struct_core2_82000_0;
+    f32 scale;
+}MapModelDescription;
 
 /* .data */
-Struct_core2_82000_0 D_8036ABE0[] = {
+MapModelDescription D_8036ABE0[] = {
     {MAP_1_SM_SPIRAL_MOUNTAIN,          0x14CF, 0x14D0,   {1, 0, 1},  {-3, -4, -2}, 1.0f},
     {MAP_2_MM_MUMBOS_MOUNTAIN,          0x14AA, 0x14AB,   {1, 0, 2},   {-2, 0, -2}, 1.0f},
     {MAP_5_TTC_BLUBBERS_SHIP,           0x146F, 0x1470,   {0, 0, 0},     {0, 0, 0}, 1.0f},
@@ -170,18 +170,18 @@ struct {
     BKModelBin *model_bin_xlu;
     s32 unk20;
     struct5Bs *unk24;
-    Struct_core2_82000_0 *unk28;
+    MapModelDescription *description;
     u8 env_red;
     u8 env_green;
     u8 env_blue;
-    f32 unk30;
-}levelModel;
+    f32 scale;
+}mapModel;
 
-enum asset_e levelModel_getOpaModelId(void);
+enum asset_e mapModel_getOpaModelId(void);
 
 /* .code */
-Struct_core2_82000_0 *func_80308F90(enum map_e map_id){
-    Struct_core2_82000_0 *i_ptr;
+static MapModelDescription *_mapModel_mapIdToDescription(enum map_e map_id){
+    MapModelDescription *i_ptr;
 
     for(i_ptr = D_8036ABE0; i_ptr->map_id != 0; i_ptr++){
         if(map_id == i_ptr->map_id){
@@ -235,15 +235,14 @@ f32 func_80308FDC(f32 arg0[3], u32 arg1) {
     return 0.0f;
 }
 
-void levelModel_opa_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
+void mapModel_opa_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     s32 temp_a0;
 
     if (func_80320708() && levelSpecificFlags_validateCRC2() && func_80320248()) {
-        if (levelModel_getOpaModelId() == ASSET_14CF_MODEL_SM_OPA) {
+        if (mapModel_getOpaModelId() == ASSET_14CF_MODEL_SM_OPA) {
             func_8033A45C(1, 0);
             func_8033A45C(2, 1);
         }
-        // temp_v0 = map_get();
         switch (map_get()) {                          /* irregular */
         case MAP_88_CS_SPIRAL_MOUNTAIN_6:
             if (mapSpecificFlags_get(0) != 0) {
@@ -337,34 +336,34 @@ void levelModel_opa_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
             func_8033A45C(6, (func_8038EAE0(0xA) || func_8031FF1C(0xE2) || func_803203FC(0xC1)));
             break;
         }
-        func_8033A450(levelModel.unk24);
+        func_8033A450(mapModel.unk24);
         modelRender_setDepthMode(MODEL_RENDER_DEPTH_FULL);
-        temp_a0 = levelModel.unk0;
+        temp_a0 = mapModel.unk0;
         if (temp_a0 != 0) {
             func_8033A494(temp_a0);
         }
-        modelRender_setEnvColor(levelModel.env_red, levelModel.env_green, levelModel.env_blue, 0xFF);
-        modelRender_draw(gfx, mtx, NULL, NULL, levelModel.unk28->unk14, NULL, levelModel.model_bin_opa);
+        modelRender_setEnvColor(mapModel.env_red, mapModel.env_green, mapModel.env_blue, 0xFF);
+        modelRender_draw(gfx, mtx, NULL, NULL, mapModel.description->scale, NULL, mapModel.model_bin_opa);
         if (!func_80309F78()) {
             func_802F7BC0(gfx, mtx, vtx);
         }
     }
 }
 
-void levelModel_xlu_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
+void mapModel_xlu_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     s32 temp_a0;
 
-    if (levelModel.model_bin_xlu != NULL) {
+    if (mapModel.model_bin_xlu != NULL) {
         if (map_get() == MAP_1D_MMM_CELLAR) {
             func_8033A45C(1, (func_80326EEC(0x191) != NULL) ? 0 : 1);
         }
         modelRender_setDepthMode(MODEL_RENDER_DEPTH_COMPARE);
-        temp_a0 = levelModel.unk4;
+        temp_a0 = mapModel.unk4;
         if (temp_a0 != 0) {
             func_8033A494(temp_a0);
         }
-        modelRender_setEnvColor(levelModel.env_red, levelModel.env_green, levelModel.env_blue, 0xFF);
-        modelRender_draw(gfx, mtx, NULL, NULL, levelModel.unk28->unk14, NULL, levelModel.model_bin_xlu);
+        modelRender_setEnvColor(mapModel.env_red, mapModel.env_green, mapModel.env_blue, 0xFF);
+        modelRender_draw(gfx, mtx, NULL, NULL, mapModel.description->scale, NULL, mapModel.model_bin_xlu);
         func_802F7BC0(gfx, mtx, vtx);
     }
 }
@@ -372,52 +371,52 @@ void levelModel_xlu_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
 void func_80309704(s32 arg0, s32 arg1, s32 arg2){}
 
 s32 func_80309714(void){
-    return levelModel.collision_opa->unk12;
+    return mapModel.collision_opa->unk12;
 }
 
 f32 func_80309724(f32 arg0[3]){
     return func_80308FDC(arg0, 0x1e0000);
 }
 
-BKModel *levelModel_getModel(s32 arg0){
-    return (arg0) ? levelModel.model_xlu : levelModel.model_opa;
+BKModel *mapModel_getModel(s32 arg0){
+    return (arg0) ? mapModel.model_xlu : mapModel.model_opa;
 }
 
-BKModelBin *levelModel_getModelBin(s32 arg0){
+BKModelBin *mapModel_getModelBin(s32 arg0){
     if(arg0 == 0)
-        return levelModel.model_bin_opa;
+        return mapModel.model_bin_opa;
     if(arg0 == 1)
-        return levelModel.model_bin_xlu;
+        return mapModel.model_bin_xlu;
     return 0;
 }
 
 s32 func_80309794(void){
-    return levelModel.unk20;
+    return mapModel.unk20;
 }
 
 struct5Bs *func_803097A0(void){
-    return levelModel.unk24;
+    return mapModel.unk24;
 }
 
 
 void func_803097AC(s32 arg0[3], s32 arg1[3]) {
-    func_802EC458(func_8033A148(levelModel.model_bin_opa), arg0, arg1);
-    func_8033ECD8(arg0, arg1, 0x3E8);
-    arg0[0] = arg0[0] + levelModel.unk28->unk6[0];
-    arg0[1] = arg0[1] + levelModel.unk28->unk6[1];
-    arg0[2] = arg0[2] + levelModel.unk28->unk6[2];
-    arg1[0] = arg1[0] + levelModel.unk28->unkC[0];
-    arg1[1] = arg1[1] + levelModel.unk28->unkC[1];
-    arg1[2] = arg1[2] + levelModel.unk28->unkC[2];
+    func_802EC458(func_8033A148(mapModel.model_bin_opa), arg0, arg1);
+    func_8033ECD8(arg0, arg1, 1000);
+    arg0[0] = arg0[0] + mapModel.description->unk6[0];
+    arg0[1] = arg0[1] + mapModel.description->unk6[1];
+    arg0[2] = arg0[2] + mapModel.description->unk6[2];
+    arg1[0] = arg1[0] + mapModel.description->unkC[0];
+    arg1[1] = arg1[1] + mapModel.description->unkC[1];
+    arg1[2] = arg1[2] + mapModel.description->unkC[2];
 }
 
 void func_80309888(s32 arg0[3], s32 arg1[3]) {
     s32 i;
 
-    func_802EC458(func_8033A148(levelModel.model_bin_opa), arg0, arg1);
+    func_802EC458(func_8033A148(mapModel.model_bin_opa), arg0, arg1);
     for(i = 0; i < 3; i++){
-        arg0[i] *= levelModel.unk30;
-        arg1[i] *= levelModel.unk30;
+        arg0[i] *= mapModel.scale;
+        arg1[i] *= mapModel.scale;
     }
 }
 
@@ -426,14 +425,14 @@ void func_80309998(s32 arg0[3], s32 arg1[3]) {
     s32 sp3C[3];
     s32 sp30[3];
 
-    func_802EC458(func_8033A148(levelModel.model_bin_opa), arg0, arg1);
+    func_802EC458(func_8033A148(mapModel.model_bin_opa), arg0, arg1);
     for(i = 0; i < 3; i++){
-        arg0[i] *= levelModel.unk30;
-        arg1[i] *= levelModel.unk30;
+        arg0[i] *= mapModel.scale;
+        arg1[i] *= mapModel.scale;
     }
 
-    if (levelModel.model_bin_xlu != NULL) {
-        func_802EC458(func_8033A148(levelModel.model_bin_xlu), sp3C, sp30);
+    if (mapModel.model_bin_xlu != NULL) {
+        func_802EC458(func_8033A148(mapModel.model_bin_xlu), sp3C, sp30);
         for(j = 0; j < 3; j++){
             if(sp3C[j] < arg0[j]){
                 arg0[j] = sp3C[j];
@@ -454,27 +453,27 @@ BKCollisionTri *func_80309B48(f32 arg0[3], f32 arg1[3], f32 arg2[3], s32 arg3) {
     BKCollisionTri *sp2C;
     BKCollisionTri *temp_v0;
 
-    levelModel.unk20 = 0;
-    if (levelModel.collision_xlu != NULL) {
+    mapModel.unk20 = 0;
+    if (mapModel.collision_xlu != NULL) {
         if ((arg3 & 0x80001F00) == 0x80001F00) {
             sp2C = NULL;
         } else {
-            sp2C = func_802E76B0(levelModel.collision_opa, func_8033A148(levelModel.model_bin_opa), arg0, arg1, arg2, arg3);
+            sp2C = func_802E76B0(mapModel.collision_opa, func_8033A148(mapModel.model_bin_opa), arg0, arg1, arg2, arg3);
         }
-        temp_v0 = func_802E76B0(levelModel.collision_xlu, func_8033A148(levelModel.model_bin_xlu), arg0, arg1, arg2, arg3);
+        temp_v0 = func_802E76B0(mapModel.collision_xlu, func_8033A148(mapModel.model_bin_xlu), arg0, arg1, arg2, arg3);
         if (temp_v0 != NULL) {
-            levelModel.unk20 = (s32) levelModel.model_bin_xlu;
+            mapModel.unk20 = (s32) mapModel.model_bin_xlu;
             return temp_v0;
         }
         if (sp2C != NULL) {
-            levelModel.unk20 = (s32) levelModel.model_bin_opa;
+            mapModel.unk20 = (s32) mapModel.model_bin_opa;
         }
         return sp2C;
     }
     else{
-        sp2C = func_802E76B0(levelModel.collision_opa, func_8033A148(levelModel.model_bin_opa), arg0, arg1, arg2, arg3);
+        sp2C = func_802E76B0(mapModel.collision_opa, func_8033A148(mapModel.model_bin_opa), arg0, arg1, arg2, arg3);
         if (sp2C != NULL) {
-            levelModel.unk20 = (s32) levelModel.model_bin_opa;
+            mapModel.unk20 = (s32) mapModel.model_bin_opa;
         }
     }
     return sp2C;
@@ -484,17 +483,17 @@ BKCollisionTri *func_80309C74(f32 arg0[3], f32 arg1[3], f32 arg2[3], s32 arg3, B
     BKCollisionTri *sp2C;
     BKCollisionTri *phi_v0;
 
-    sp2C = func_802E76B0(levelModel.collision_opa, func_8033A148(levelModel.model_bin_opa), arg0, arg1, arg2, arg3);
+    sp2C = func_802E76B0(mapModel.collision_opa, func_8033A148(mapModel.model_bin_opa), arg0, arg1, arg2, arg3);
     if (sp2C != NULL) {
-        *arg4 = levelModel.model_bin_opa;
+        *arg4 = mapModel.model_bin_opa;
     }
-    if (levelModel.collision_xlu == NULL) {
+    if (mapModel.collision_xlu == NULL) {
         return sp2C;
     }
 
-    phi_v0 = func_802E76B0(levelModel.collision_xlu, func_8033A148(levelModel.model_bin_xlu), arg0, arg1, arg2, arg3);
+    phi_v0 = func_802E76B0(mapModel.collision_xlu, func_8033A148(mapModel.model_bin_xlu), arg0, arg1, arg2, arg3);
     if (phi_v0 != 0) {
-        *arg4 = levelModel.model_bin_xlu;
+        *arg4 = mapModel.model_bin_xlu;
     }
     return (phi_v0 != NULL) ? phi_v0 : sp2C;
 }
@@ -502,7 +501,7 @@ BKCollisionTri *func_80309C74(f32 arg0[3], f32 arg1[3], f32 arg2[3], s32 arg3, B
 UNK_TYPE(s32) func_80309D58(UNK_TYPE(s32) arg0, UNK_TYPE(s32) arg1) {
     BKMeshList *temp_v0;
 
-    temp_v0 = func_8033A12C(levelModel.model_bin_opa);
+    temp_v0 = func_8033A12C(mapModel.model_bin_opa);
     if (temp_v0 != NULL) {
         return func_802EC394(temp_v0, 0, 0, 1.0f, 0, arg0, arg1);
     }
@@ -513,17 +512,17 @@ UNK_TYPE(s32) func_80309DBC(f32 arg0[3], f32 arg1[3], f32 arg2, f32 arg3[3], s32
     s32 sp34;
     s32 temp_v0_2;
 
-    levelModel.unk20 = 0;
-    sp34 = func_802E8E88(levelModel.collision_opa, func_8033A148(levelModel.model_bin_opa), arg0, arg1, arg2, arg3, arg4, arg5);
+    mapModel.unk20 = 0;
+    sp34 = func_802E8E88(mapModel.collision_opa, func_8033A148(mapModel.model_bin_opa), arg0, arg1, arg2, arg3, arg4, arg5);
     if (sp34 != 0) {
-        levelModel.unk20 = (s32) levelModel.model_bin_opa;
+        mapModel.unk20 = (s32) mapModel.model_bin_opa;
     }
-    if (levelModel.collision_xlu == 0) {
+    if (mapModel.collision_xlu == 0) {
         return sp34;
     }
-    temp_v0_2 = func_802E8E88(levelModel.collision_xlu, func_8033A148(levelModel.model_bin_xlu), arg0, arg1, arg2, arg3, arg4, arg5);
+    temp_v0_2 = func_802E8E88(mapModel.collision_xlu, func_8033A148(mapModel.model_bin_xlu), arg0, arg1, arg2, arg3, arg4, arg5);
     if (temp_v0_2 != 0) {
-        levelModel.unk20 = (s32) levelModel.model_bin_xlu;
+        mapModel.unk20 = (s32) mapModel.model_bin_xlu;
         return temp_v0_2;
     }
     return sp34;
@@ -533,20 +532,20 @@ UNK_TYPE(s32) func_80309EB0(f32 arg0[3], f32 arg1, f32 arg2[3], s32 arg3) {
     s32 sp24;
     s32 temp_v0_2;
 
-    sp24 = func_802E92AC(levelModel.collision_opa, func_8033A148(levelModel.model_bin_opa), arg0, arg1, arg2, arg3);
-    if (levelModel.collision_xlu == 0) {
+    sp24 = func_802E92AC(mapModel.collision_opa, func_8033A148(mapModel.model_bin_opa), arg0, arg1, arg2, arg3);
+    if (mapModel.collision_xlu == 0) {
         return sp24;
     }
-    temp_v0_2 = func_802E92AC(levelModel.collision_xlu, func_8033A148(levelModel.model_bin_xlu), arg0, arg1, arg2, arg3);
+    temp_v0_2 = func_802E92AC(mapModel.collision_xlu, func_8033A148(mapModel.model_bin_xlu), arg0, arg1, arg2, arg3);
     return (temp_v0_2 != 0) ? temp_v0_2 : sp24;
 }
 
 bool func_80309F78(void) {
-    return (levelModel.model_bin_opa != NULL) && (levelModel.model_bin_xlu != NULL);
+    return (mapModel.model_bin_opa != NULL) && (mapModel.model_bin_xlu != NULL);
 }
 
 bool func_80309FA4(enum map_e map_id){
-    Struct_core2_82000_0 *i_ptr;
+    MapModelDescription *i_ptr;
 
     for(i_ptr = D_8036ABE0; i_ptr->map_id != 0; i_ptr++){
         if(map_id == i_ptr->map_id){
@@ -556,97 +555,97 @@ bool func_80309FA4(enum map_e map_id){
     return FALSE;
 }
 
-void levelModel_free(void){
-    assetcache_release(levelModel.model_bin_opa);
+void mapModel_free(void){
+    assetcache_release(mapModel.model_bin_opa);
 
-    if(levelModel.model_bin_xlu)
-        assetcache_release(levelModel.model_bin_xlu);
+    if(mapModel.model_bin_xlu)
+        assetcache_release(mapModel.model_bin_xlu);
     
-    if(levelModel.model_opa)
-        model_free(levelModel.model_opa);
+    if(mapModel.model_opa)
+        model_free(mapModel.model_opa);
 
-    if(levelModel.model_xlu)
-        model_free(levelModel.model_xlu);
+    if(mapModel.model_xlu)
+        model_free(mapModel.model_xlu);
 
-    func_8034A2A8(levelModel.unk24);
+    func_8034A2A8(mapModel.unk24);
 }
 
-enum asset_e levelModel_getOpaModelId(void){
-    return levelModel.unk28->model1_id;
+enum asset_e mapModel_getOpaModelId(void){
+    return mapModel.description->opa_model_id;
 }
 
 void func_8030A078(void) {
     BKMeshList *sp24;
-    Struct_core2_82000_0 *temp_v0;
+    MapModelDescription *description;
 
-    levelModel.env_blue = 0xFF;
-    levelModel.env_green = 0xFF;
-    levelModel.env_red = 0xFF;
+    mapModel.env_blue = 0xFF;
+    mapModel.env_green = 0xFF;
+    mapModel.env_red = 0xFF;
 
-    temp_v0 = func_80308F90(map_get());;
-    levelModel.unk28 = temp_v0;
-    levelModel.unk30 = (f32) temp_v0->unk14;
-    levelModel.model_bin_opa = (BKModelBin *)assetcache_get(levelModel.unk28->model1_id);
-    levelModel.collision_opa = func_8033A084(levelModel.model_bin_opa);
-    levelModel.unk20 = 0;
-    if (levelModel.unk28->model2_id != 0) {
-        levelModel.model_bin_xlu = (BKModelBin *)assetcache_get(levelModel.unk28->model2_id);
-        levelModel.collision_xlu = func_8033A084(levelModel.model_bin_xlu);
+    description = _mapModel_mapIdToDescription(map_get());;
+    mapModel.description = description;
+    mapModel.scale = (f32) description->scale;
+    mapModel.model_bin_opa = (BKModelBin *)assetcache_get(mapModel.description->opa_model_id);
+    mapModel.collision_opa = func_8033A084(mapModel.model_bin_opa);
+    mapModel.unk20 = 0;
+    if (mapModel.description->xlu_model_id != 0) {
+        mapModel.model_bin_xlu = (BKModelBin *)assetcache_get(mapModel.description->xlu_model_id);
+        mapModel.collision_xlu = func_8033A084(mapModel.model_bin_xlu);
     } else {
-        levelModel.model_bin_xlu = NULL;
-        levelModel.collision_xlu = NULL;
+        mapModel.model_bin_xlu = NULL;
+        mapModel.collision_xlu = NULL;
     }
-    sp24 = func_8033A0B0(levelModel.model_bin_opa);
+    sp24 = func_8033A0B0(mapModel.model_bin_opa);
     if (sp24 != NULL) {
-        levelModel.model_opa = func_8033F5F8(sp24, func_8033A148(levelModel.model_bin_opa));
+        mapModel.model_opa = func_8033F5F8(sp24, func_8033A148(mapModel.model_bin_opa));
     } else {
-        levelModel.model_opa = NULL;
+        mapModel.model_opa = NULL;
     }
-    if (levelModel.model_opa != NULL) {
-        func_8034C6DC(levelModel.model_opa);
+    if (mapModel.model_opa != NULL) {
+        func_8034C6DC(mapModel.model_opa);
     }
 
-    if (levelModel.model_bin_xlu != NULL) {
-        sp24 = func_8033A0B0(levelModel.model_bin_xlu);
+    if (mapModel.model_bin_xlu != NULL) {
+        sp24 = func_8033A0B0(mapModel.model_bin_xlu);
     }
     else{
         sp24 = NULL;
     }
     
     if (sp24 != NULL) {
-        levelModel.model_xlu = func_8033F5F8(sp24, func_8033A148(levelModel.model_bin_xlu));
+        mapModel.model_xlu = func_8033F5F8(sp24, func_8033A148(mapModel.model_bin_xlu));
     } else {
-        levelModel.model_xlu = 0;
+        mapModel.model_xlu = 0;
     }
-    if (levelModel.model_xlu != NULL) {
-        func_8034C6DC(levelModel.model_xlu);
+    if (mapModel.model_xlu != NULL) {
+        func_8034C6DC(mapModel.model_xlu);
     }
-    levelModel.unk24 = func_8034A2C8();
+    mapModel.unk24 = func_8034A2C8();
     func_80320B44(func_80309B48, func_80309DBC, func_80309EB0, func_80309794);
 
-    if (( levelModel.model_bin_opa != NULL) && (func_8033A110( levelModel.model_bin_opa) != NULL)) {
-        levelModel.unk0 = func_80349C3C();
-        func_80349D00(levelModel.unk0, func_8033A110(levelModel.model_bin_opa));
+    if (( mapModel.model_bin_opa != NULL) && (func_8033A110( mapModel.model_bin_opa) != NULL)) {
+        mapModel.unk0 = func_80349C3C();
+        func_80349D00(mapModel.unk0, func_8033A110(mapModel.model_bin_opa));
     } else {
-        levelModel.unk0 = NULL;
+        mapModel.unk0 = NULL;
     }
-    if ((levelModel.model_bin_xlu != NULL) && (func_8033A110(levelModel.model_bin_xlu) != 0)) {
-        levelModel.unk4 = func_80349C3C();
-        func_80349D00(levelModel.unk4, func_8033A110(levelModel.model_bin_xlu));
+    if ((mapModel.model_bin_xlu != NULL) && (func_8033A110(mapModel.model_bin_xlu) != 0)) {
+        mapModel.unk4 = func_80349C3C();
+        func_80349D00(mapModel.unk4, func_8033A110(mapModel.model_bin_xlu));
     }
     else{
-        levelModel.unk4 = NULL;
+        mapModel.unk4 = NULL;
     }
 }
 
-void levelModel_setEnvColor(s32 r, s32 g, s32 b){
-    levelModel.env_red = r;
-    levelModel.env_green = g;
-    levelModel.env_blue = b;
+void mapModel_setEnvColor(s32 r, s32 g, s32 b){
+    mapModel.env_red = r;
+    mapModel.env_green = g;
+    mapModel.env_blue = b;
 }
 
-void levelModel_defrag(void){
-    if(levelModel.unk24 != NULL){
-        levelModel.unk24 = func_8034A348(levelModel.unk24);
+void mapModel_defrag(void){
+    if(mapModel.unk24 != NULL){
+        mapModel.unk24 = func_8034A348(mapModel.unk24);
     }
 }

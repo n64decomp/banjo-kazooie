@@ -890,7 +890,7 @@ void func_80338BFC(Gfx **gfx, Mtx **mtx, void *arg2){
 
 //CmdC_SELECTOR
 #ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B1400/func_80338CD0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core2/modelRender/func_80338CD0.s")
 #else
 void func_80338CD0(Gfx **gfx, Mtx **mtx, void *arg2){
     GeoCmdC *cmd = (GeoCmdC *)arg2;

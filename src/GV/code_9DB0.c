@@ -159,7 +159,7 @@ void func_803904A8(void){
     if(D_80391AE0.tile1_0 == NULL || D_80391AE0.tile2_4 == NULL){
         if( player_getActiveHitbox(0) == HITBOX_1_BEAK_BUSTER && func_8028F20C()){
             player_getPosition(sp50);
-            sp4C = func_8033F3E8(levelModel_getModel(0), sp50, 0x190, 0x1a0);
+            sp4C = func_8033F3E8(mapModel_getModel(0), sp50, 0x190, 0x1a0);
             if(sp4C){
                 sp48 = func_8034C528(sp4C);
                 if(D_80391AE0.state_9 == 1){
@@ -197,7 +197,7 @@ void func_803904A8(void){
                     func_8034E120(D_80391AE0.tile1_0->unk4, 180.0f, 0.0f, 0.5f, 2);
                     func_8034E120(D_80391AE0.tile2_4->unk4, 180.0f, 0.0f, 0.5f, 2);
                     player_getPosition(sp38);
-                    sp48  = func_8033F3E8(levelModel_getModel(0), sp38, 0x190, 0x1a0);
+                    sp48  = func_8033F3E8(mapModel_getModel(0), sp38, 0x190, 0x1a0);
                     if(sp48 == D_80391AE0.tile1_0->unk0 || sp48 == D_80391AE0.tile2_4->unk0){
                         func_8028F66C(BS_INTR_14);
                     }

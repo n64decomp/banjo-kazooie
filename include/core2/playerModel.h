@@ -10,6 +10,7 @@ enum player_model_direction_e {
 void playerModel_80292048(s32, f32, f32, f32);
 void playerModel_setDirection(enum player_model_direction_e arg0);
 void playerModel_setScale(f32);
+void playerModel_setYDisplacement(f32);
 void playerModel_8029217C(f32);
 void playerModel_setVisible(s32 arg0);
 

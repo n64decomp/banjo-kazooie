@@ -2,7 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void playerModel_setScale(f32);
+#include "core2/playerModel.h"
+
 extern void func_8028A084(s32, f32);
 extern void func_8029AD68(f32, s32);
 

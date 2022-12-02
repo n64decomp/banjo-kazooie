@@ -2,7 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void playerModel_setYDisplacement(f32);
+#include "core2/playerModel.h"
+
 extern f32  func_8029494C(void);
 extern f32  func_8029B2D0(void);
 extern bool func_8029E284(s32, f32);

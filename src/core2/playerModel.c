@@ -52,10 +52,10 @@ static void _playerModel_updateModelYaw(void){
     }
 }
 
-void playerModel_80291A50(s32 arg0, f32 arg1[3]){
-    func_8034A174(D_80363780, arg0, arg1);
-    if(func_802582EC(arg1)){
-        _player_getPosition(arg1);
+void playerModel_80291A50(s32 arg0, f32 dst[3]){
+    func_8034A174(D_80363780, arg0, dst);
+    if(func_802582EC(dst)){
+        _player_getPosition(dst);
     }
 }
 

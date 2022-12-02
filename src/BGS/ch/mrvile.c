@@ -246,8 +246,7 @@ Actor *chvile_draw(ActorMarker *marker, Gfx **gfx, Mtx** mtx, Vtx **vtx){
     return this;
 }
 
-//chvile_get_position
-f32 *func_8038C284(ActorMarker *marker){
+f32 *chVile_getPostion(ActorMarker *marker){
     Actor *this;
 
     this = marker_getActor(marker);
@@ -255,15 +254,15 @@ f32 *func_8038C284(ActorMarker *marker){
 }
 
 bool func_8038C2A8(ActorMarker *marker) {
-    f32 sp24[3];
+    f32 player_position[3];
     Actor *this;
     ActorLocal_MrVile *local;
 
     this = marker_getActor(marker);
     local = (ActorLocal_MrVile *)&this->local;
-    player_getPosition(&sp24);
+    player_getPosition(player_position);
     if (this->state == 6) {
-        return ml_vec3f_distance(this->position, &sp24) < 150.0f;
+        return ml_vec3f_distance(this->position, player_position) < 150.0f;
     }
     return local->unk0 == 1;
 }

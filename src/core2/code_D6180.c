@@ -145,7 +145,7 @@ void func_8035D4F0(ActorMarker *marker, s32 arg1){
     if(map_get() == MAP_13_GV_MEMORY_GAME){
         actor = marker_getActor(marker);
         if(actor->state != 9){
-            if(func_8033F3E8(levelModel_getModel(0), actor->position, 0x190, 0x1A0) == arg1){
+            if(func_8033F3E8(mapModel_getModel(0), actor->position, 0x190, 0x1A0) == arg1){
                 func_802C9334(0x1C, actor);
                 func_8035D2C0(marker, 0);
             }

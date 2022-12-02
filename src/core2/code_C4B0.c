@@ -473,8 +473,8 @@ int func_80294560(void){
      return D_8037C280 == 3;
 }
 
-void func_80294574(void){
-     func_8031C594(D_8037C200);
+bool func_80294574(void){
+     return func_8031C594(D_8037C200);
 }
 
 bool func_80294598(void) {

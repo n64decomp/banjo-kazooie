@@ -42,7 +42,7 @@ void func_80334540(Gfx** gdl, Mtx **mptr, Vtx **vptr) {
     func_8024CE60(sp44, sp40);
     func_8024C904(gdl, mptr);
     if (func_80309F78() != 0) {
-        levelModel_opa_draw(gdl, mptr, vptr);
+        mapModel_opa_draw(gdl, mptr, vptr);
         if (func_802E49F0() == 0) {
             func_80322E64(gdl, mptr, vptr);
         }
@@ -65,7 +65,7 @@ void func_80334540(Gfx** gdl, Mtx **mptr, Vtx **vptr) {
             func_802F0A34(gdl, mptr, vptr);
         }
         if (func_802E49F0() == 0) {
-            levelModel_xlu_draw(gdl, mptr, vptr);
+            mapModel_xlu_draw(gdl, mptr, vptr);
         }
         if (func_802E49F0() == 0) {
             func_8032D3D8(gdl, mptr, vptr);
@@ -78,7 +78,7 @@ void func_80334540(Gfx** gdl, Mtx **mptr, Vtx **vptr) {
         }
         func_802D520C(gdl, mptr, vptr);
     } else {
-        levelModel_opa_draw(gdl, mptr, vptr);
+        mapModel_opa_draw(gdl, mptr, vptr);
         func_80322E64(gdl, mptr, vptr);
         func_8034F6F0(gdl, mptr, vptr);
         func_8028E6A4(gdl, mptr, vptr);
@@ -154,7 +154,7 @@ void func_80334910(void) {
     func_80323100();
     cubeList_free();
     func_8031B710();
-    levelModel_free();
+    mapModel_free();
     func_8030A6B0();
     func_80333918();
     sky_free();

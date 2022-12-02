@@ -47,7 +47,7 @@ Actor *chhut_draw(ActorMarker *this, Gfx **arg1, Mtx **arg2, Vtx **arg3){
     temp_a1 = actorPtr->state != 2;
     temp_a2 = actorPtr->state == 0 || actorPtr->state == 2;
     this->propPtr->unk8_3 = temp_a2;
-    func_8033A45C(1, temp_a1, temp_a2);
+    func_8033A45C(1, temp_a1);
 
     return func_80325888(this, arg1, arg2, arg3);
 }
