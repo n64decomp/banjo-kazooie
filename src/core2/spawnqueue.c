@@ -7,8 +7,8 @@
 
 void func_802E1790(void);
 
-void func_802C3BDC(void);
-void func_802C3BE8(void);
+void spawnQueue_unlock(void);
+void spawnQueue_lock(void);
 
 Actor *func_802D7558(s32 *, s32, ActorInfo*, u32);
 Actor *func_802D75B4(s32 *, s32, ActorInfo*, u32);
@@ -173,22 +173,22 @@ typedef struct function_queue_s{
 }FunctionQueue;
 
 /* .data */
-u8 D_80365DC0 = 0;
-u8 D_80365DC4 = 0;
-FunctionQueue *D_80365DC8 = NULL;
+u8 spawnQueueLock = 0;
+u8 spawnQueueLength = 0;
+FunctionQueue *spawnQueue = NULL;
 
 /* .code */
-void func_802C2B10(void){
-    u32 tmp = (map_get() == MAP_90_GL_BATTLEMENTS)? 0x32: 0xF;
-    D_80365DC8 = (FunctionQueue *) malloc(tmp * sizeof(FunctionQueue));
+void spawnQueue_malloc(void){
+    u32 tmp = (map_get() == MAP_90_GL_BATTLEMENTS)? 50: 15;
+    spawnQueue = (FunctionQueue *) malloc(tmp * sizeof(FunctionQueue));
 }
 
-void func_802C2B5C(void){
+void spawnQueue_reset(void){
     s32 loaded_asm_file;
 
     loaded_asm_file = get_loaded_overlay_id();
-    func_802C3BE8();
-    D_80365DC4 = 0;
+    spawnQueue_lock();
+    spawnQueueLength = 0;
     func_802D1724();
     func_802E1790();
     switch(loaded_asm_file){
@@ -402,136 +402,136 @@ void func_802C2B5C(void){
     }
     func_80305990(1);
     func_8032A5F8();
-    func_802C3BDC();
+    spawnQueue_unlock();
 }
 
-void func_802C398C(void){
+void spawnQueue_free(void){
     spawnableActorList_free();
-    func_80326124();
+    actorArray_free();
     func_80305D94();
-    free(D_80365DC8);
-    D_80365DC8 = NULL;
-    D_80365DC4 = 0;
+    free(spawnQueue);
+    spawnQueue = NULL;
+    spawnQueueLength = 0;
     
 }
 
-void func_802C39D4(void){
+void spawnQueue_func_802C39D4(void){
     func_803268B4();
     if(!levelSpecificFlags_validateCRC2()){
         write_file_blocks(0, 0, 0x80749530, EEPROM_MAXBLOCKS);
     }
 }
 
-void func_802C3A18(void){
+void spawnQueue_func_802C3A18(void){
     func_803283BC();
 }
 
-void func_802C3A38(void){
+void spawnQueue_flush(void){
     s32 i;
 
-    func_802C3BE8();
-    for(i = 0; i < D_80365DC4; i++){
-        switch(D_80365DC8[i].arg_cnt){
+    spawnQueue_lock();
+    for(i = 0; i < spawnQueueLength; i++){
+        switch(spawnQueue[i].arg_cnt){
             case 0:
-                D_80365DC8[i].func0();
+                spawnQueue[i].func0();
                 break;
             case 1:
-                D_80365DC8[i].func1(D_80365DC8[i].arg[0]);
+                spawnQueue[i].func1(spawnQueue[i].arg[0]);
                 break;
             case 2:
-                D_80365DC8[i].func2(D_80365DC8[i].arg[0], D_80365DC8[i].arg[1]);
+                spawnQueue[i].func2(spawnQueue[i].arg[0], spawnQueue[i].arg[1]);
                 break;
             case 3:
-                D_80365DC8[i].func3(D_80365DC8[i].arg[0], D_80365DC8[i].arg[1], D_80365DC8[i].arg[2]);
+                spawnQueue[i].func3(spawnQueue[i].arg[0], spawnQueue[i].arg[1], spawnQueue[i].arg[2]);
                 break;
             case 4:
-                D_80365DC8[i].func4(D_80365DC8[i].arg[0], D_80365DC8[i].arg[1], D_80365DC8[i].arg[2], D_80365DC8[i].arg[3]);
+                spawnQueue[i].func4(spawnQueue[i].arg[0], spawnQueue[i].arg[1], spawnQueue[i].arg[2], spawnQueue[i].arg[3]);
                 break;
             case 5:
-                D_80365DC8[i].func5(D_80365DC8[i].arg[0], D_80365DC8[i].arg[1], D_80365DC8[i].arg[2], D_80365DC8[i].arg[3], D_80365DC8[i].arg[4]);
+                spawnQueue[i].func5(spawnQueue[i].arg[0], spawnQueue[i].arg[1], spawnQueue[i].arg[2], spawnQueue[i].arg[3], spawnQueue[i].arg[4]);
                 break;
             default:
                 break;
         }
     }
-    D_80365DC4 = 0;
+    spawnQueueLength = 0;
     func_803283D4();
 }
 
-void func_802C3BDC(void){
-    D_80365DC0 = 0;
+void spawnQueue_unlock(void){
+    spawnQueueLock = 0;
 }
 
-void func_802C3BE8(void){
-    D_80365DC0 = 1;
+void spawnQueue_lock(void){
+    spawnQueueLock = 1;
 }
 
-void func_802C3BF8(void (* arg0)(void)){
+void __spawnQueue_add_0(void (* arg0)(void)){
     u32 tmp = (map_get() == MAP_90_GL_BATTLEMENTS)? 0x32: 0xF;
-    if(tmp != D_80365DC4){
-        D_80365DC8[D_80365DC4].func0 = arg0;
-        D_80365DC8[D_80365DC4].arg_cnt = 0;
-        D_80365DC4++;
+    if(tmp != spawnQueueLength){
+        spawnQueue[spawnQueueLength].func0 = arg0;
+        spawnQueue[spawnQueueLength].arg_cnt = 0;
+        spawnQueueLength++;
     }
 }
 
-void __spawnqueue_add_1(GenMethod_1 arg0, s32 arg1){
+void __spawnQueue_add_1(GenMethod_1 arg0, s32 arg1){
     u32 tmp = (map_get() == MAP_90_GL_BATTLEMENTS)? 0x32: 0xF;
-    if(tmp != D_80365DC4){
-        D_80365DC8[D_80365DC4].func0 = (void (*)(void))arg0;
-        D_80365DC8[D_80365DC4].arg[0] = arg1;
-        D_80365DC8[D_80365DC4].arg_cnt = 1;
-        D_80365DC4++;
+    if(tmp != spawnQueueLength){
+        spawnQueue[spawnQueueLength].func0 = (void (*)(void))arg0;
+        spawnQueue[spawnQueueLength].arg[0] = arg1;
+        spawnQueue[spawnQueueLength].arg_cnt = 1;
+        spawnQueueLength++;
     }
 }
 
-void func_802C3D3C(void (* arg0)(void), s32 arg1, s32 arg2){
+void __spawnQueue_add_2(void (* arg0)(void), s32 arg1, s32 arg2){
     u32 tmp = (map_get() == MAP_90_GL_BATTLEMENTS)? 0x32: 0xF;
-    if(tmp != D_80365DC4){
-        D_80365DC8[D_80365DC4].func0 = arg0;
-        D_80365DC8[D_80365DC4].arg[0] = arg1;
-        D_80365DC8[D_80365DC4].arg[1] = arg2;
-        D_80365DC8[D_80365DC4].arg_cnt = 2;
-        D_80365DC4++;
+    if(tmp != spawnQueueLength){
+        spawnQueue[spawnQueueLength].func0 = arg0;
+        spawnQueue[spawnQueueLength].arg[0] = arg1;
+        spawnQueue[spawnQueueLength].arg[1] = arg2;
+        spawnQueue[spawnQueueLength].arg_cnt = 2;
+        spawnQueueLength++;
     }
 }
 
-void func_802C3E10(void (* arg0)(void), s32 arg1, s32 arg2, s32 arg3){
+void __spawnQueue_add_3(void (* arg0)(void), s32 arg1, s32 arg2, s32 arg3){
     u32 tmp = (map_get() == MAP_90_GL_BATTLEMENTS)? 0x32: 0xF;
-    if(tmp != D_80365DC4){
-        D_80365DC8[D_80365DC4].func0 = arg0;
-        D_80365DC8[D_80365DC4].arg[0] = arg1;
-        D_80365DC8[D_80365DC4].arg[1] = arg2;
-        D_80365DC8[D_80365DC4].arg[2] = arg3;
-        D_80365DC8[D_80365DC4].arg_cnt = 3;
-        D_80365DC4++;
+    if(tmp != spawnQueueLength){
+        spawnQueue[spawnQueueLength].func0 = arg0;
+        spawnQueue[spawnQueueLength].arg[0] = arg1;
+        spawnQueue[spawnQueueLength].arg[1] = arg2;
+        spawnQueue[spawnQueueLength].arg[2] = arg3;
+        spawnQueue[spawnQueueLength].arg_cnt = 3;
+        spawnQueueLength++;
     }
 }
 
-void func_802C3F04(GenMethod_4 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4){
+void __spawnQueue_add_4(GenMethod_4 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4){
     u32 tmp = (map_get() == MAP_90_GL_BATTLEMENTS)? 0x32: 0xF;
-    if(tmp != D_80365DC4){
-        D_80365DC8[D_80365DC4].func0 = (void (*)(void))arg0;
-        D_80365DC8[D_80365DC4].arg[0] = arg1;
-        D_80365DC8[D_80365DC4].arg[1] = arg2;
-        D_80365DC8[D_80365DC4].arg[2] = arg3;
-        D_80365DC8[D_80365DC4].arg[3] = arg4;
-        D_80365DC8[D_80365DC4].arg_cnt = 4;
-        D_80365DC4++;
+    if(tmp != spawnQueueLength){
+        spawnQueue[spawnQueueLength].func0 = (void (*)(void))arg0;
+        spawnQueue[spawnQueueLength].arg[0] = arg1;
+        spawnQueue[spawnQueueLength].arg[1] = arg2;
+        spawnQueue[spawnQueueLength].arg[2] = arg3;
+        spawnQueue[spawnQueueLength].arg[3] = arg4;
+        spawnQueue[spawnQueueLength].arg_cnt = 4;
+        spawnQueueLength++;
     }
 }
 
-void func_802C4014(void (* arg0)(void), s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5){
+void __spawnQueue_add_5(void (* arg0)(void), s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5){
     u32 tmp = (map_get() == MAP_90_GL_BATTLEMENTS)? 0x32: 0xF;
-    if(tmp != D_80365DC4){
-        D_80365DC8[D_80365DC4].func0 = arg0;
-        D_80365DC8[D_80365DC4].arg[0] = arg1;
-        D_80365DC8[D_80365DC4].arg[1] = arg2;
-        D_80365DC8[D_80365DC4].arg[2] = arg3;
-        D_80365DC8[D_80365DC4].arg[3] = arg4;
-        D_80365DC8[D_80365DC4].arg[4] = arg5;
-        D_80365DC8[D_80365DC4].arg_cnt = 5;
-        D_80365DC4++;
+    if(tmp != spawnQueueLength){
+        spawnQueue[spawnQueueLength].func0 = arg0;
+        spawnQueue[spawnQueueLength].arg[0] = arg1;
+        spawnQueue[spawnQueueLength].arg[1] = arg2;
+        spawnQueue[spawnQueueLength].arg[2] = arg3;
+        spawnQueue[spawnQueueLength].arg[3] = arg4;
+        spawnQueue[spawnQueueLength].arg[4] = arg5;
+        spawnQueue[spawnQueueLength].arg_cnt = 5;
+        spawnQueueLength++;
     }
 }
 
@@ -594,7 +594,7 @@ Actor * func_802C42F0(s32 arg0, s32 arg1, s32 arg2, s32 arg3){
     return func_802C8F88(arg0, sp1C);
 }
 
-void func_802C4320(FunctionQueue *arg0){
-    if((arg0 = D_80365DC8) != NULL)
-        D_80365DC8 = (FunctionQueue *)defrag();
+void spawnQueue_defrag(FunctionQueue *arg0){
+    if((arg0 = spawnQueue) != NULL)
+        spawnQueue = (FunctionQueue *)defrag();
 }

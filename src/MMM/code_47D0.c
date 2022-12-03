@@ -82,7 +82,7 @@ void MMM_func_8038ADF0(Struct_MMM_47D0_0 *arg0, Struct68s *arg1) {
     func_8030E2C4(sp3F);
     func_8035179C(arg1, sp28);
     sp38 = 500.0f;
-    jiggy = func_80326D68(sp28, ACTOR_46_JIGGY, -1, &sp38);
+    jiggy = actorArray_findClosestActorFromActorId(sp28, ACTOR_46_JIGGY, -1, &sp38);
     if (jiggy != NULL) {
         arg0->unk0 = jiggy->marker;
     } else {

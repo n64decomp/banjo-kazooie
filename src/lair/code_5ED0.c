@@ -774,7 +774,7 @@ void func_8038D1E4(void)
         case 3:
         {
             timedFunc_set_2(
-                0.5f, (TFQM2)func_8038D16C,
+                0.5f, (GenMethod_2)func_8038D16C,
                 D_80394354[D_8037DCB8->unkC].unk2,
                 D_80394354[D_8037DCB8->unkC].unk4
             );
@@ -839,7 +839,7 @@ void func_8038D4BC(void)
 
     // trigger warp after a delay
     timedFunc_set_3(0.25f,
-        (TFQM3)func_802E4078,
+        (GenMethod_3)func_802E4078,
         D_803945B8[D_8037DCB8->unkC].map,
         D_803945B8[D_8037DCB8->unkC].exit,
         1

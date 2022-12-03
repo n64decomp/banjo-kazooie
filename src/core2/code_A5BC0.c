@@ -7,7 +7,7 @@
 extern int func_802E74A0(f32[3], f32, s32, s32);
 extern s32 func_802E9118(BKCollisionList * collision_list, BKVertexList *vtx_list, f32 arg2[3], s32 arg3, f32 arg4, f32 arg5[3], f32 arg6[3], f32 arg7, f32 arg8[3], s32 arg9, s32 argA);
 extern f32 func_802EC920(BKVertexList *);
-extern void func_802C39D4(void);
+extern void spawnQueue_func_802C39D4(void);
 extern bool func_80340020(s32, f32[3], f32[3], f32, s32, BKVertexList *, f32[3], f32[3]);
 extern void func_80340200(s32, f32[3], f32[3], f32, s32, s32, BKVertexList *, s32);
 extern s32 func_802E9DD8(BKCollisionList *collisionList, BKVertexList *vtxList, f32 arg2[3], f32 *arg3, f32 arg4, f32 arg5[3], f32 arg6, f32 arg7[3], s32 arg8);
@@ -1597,7 +1597,7 @@ void func_80330FF4(void){
         func_80340200(D_8038341C->unk50, phi_s0->position, scale, 1.0f, NULL, D_80383420, func_80330DA4(phi_s0), D_80383410);
     }//L8033108C
 
-    func_802C39D4();
+    spawnQueue_func_802C39D4();
     if(D_8038341C != NULL){
         phi_s0 = marker_getActor(D_8038341C);
         player_getPosition(sp48);
@@ -1650,7 +1650,7 @@ s32 func_803311D4(Cube *arg0, f32 *arg1, f32 *arg2, f32 *arg3, u32 arg4) {
     f32 var_f10;
     f32 var_f4;
     f32 var_f6;
-    s32 (*temp_v1_2)(struct actor_marker_s *, f32 [3], f32, f32 [3], s32);
+    s32 (*temp_v1_2)(struct actorMarker_s *, f32 [3], f32, f32 [3], s32);
     s32 temp_s0;
     s32 temp_s0_2;
     BKCollisionList *temp_s2;

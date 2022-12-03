@@ -44,17 +44,17 @@ void *func_802EDAA4(SLA **this, s32 *arg1) {
         first_ptr = (s16*)var_s0->unk4;
         var_s0->elem_cnt = new_cnt;
         *this = var_s0;
-        for(i = new_cnt - 1, i_ptr = &var_s0->unk4[i * var_s0->elem_size]; i >= prev_cnt; i--){
+        for(i = new_cnt - 1, i_ptr = (s16*)&var_s0->unk4[i * var_s0->elem_size]; i >= prev_cnt; i--){
             *i_ptr = *first_ptr;
             *first_ptr = i;
-            i_ptr = (s32)i_ptr - var_s0->elem_size;
+            i_ptr = (s16*)((s32)i_ptr - var_s0->elem_size);
         }
     }
     i = *first_ptr;
-    i_ptr = (s32)first_ptr + (i * var_s0->elem_size);
+    i_ptr = (s16*)((s32)first_ptr + (i * var_s0->elem_size));
     *arg1 = i;
     *first_ptr = *i_ptr;
-    return (s32) i_ptr;
+    return (void *) i_ptr;
 }
 
 int func_802EDC18(SLA *this, s32 arg1)
@@ -88,11 +88,11 @@ SLA *array_new(s32 size, s32 cnt){
 }
 
 void func_802EDCDC(SLA *this, s32 indx){
-    void* *ptr_n = ((s32)(this + 1) + indx*this->elem_size);
+    void* *ptr_n = (void *)((s32)(this + 1) + indx*this->elem_size);
     *(s16 *)ptr_n = *(s16 *)(this +1);
     *(s16 *)(this +1) = indx;
 }
 
 SLA *array_defrag(SLA *this){
-    return defrag(this);
+    return (SLA *)defrag(this);
 }

@@ -202,8 +202,8 @@ void func_8030AA6C(void) {
     BKModelBin *temp_a0;
     s32 phi_s2;
 
-    D_80382394 = defrag(D_80382394);
-    D_80382390 = defrag(D_80382390);
+    D_80382394 = (struct_7AF80_1 *) defrag(D_80382394);
+    D_80382390 = (struct_7AF80_0 *) defrag(D_80382390);
     if (!func_802559A0() && !func_80255AE4() && D_80382390 != NULL) {
         for(phi_s2 = 0x14; (phi_s2 != 0) && !func_80255AE4(); phi_s2--){
             D_8036B800++;

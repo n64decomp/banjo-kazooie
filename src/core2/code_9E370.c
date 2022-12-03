@@ -23,7 +23,7 @@ extern void func_802C9334(s32, Actor *);
 extern void func_8032B3A0(Actor *, ActorMarker *);
 extern void func_8032EE0C(GenMethod_2, s32);
 extern void func_8032EE20(void);
-extern void func_802C4014(GenMethod_5, s32, s32, s32, s32, s32);
+extern void __spawnQueue_add_5(GenMethod_5, s32, s32, s32, s32, s32);
 
 
 void func_8032A6A8(Actor *arg0);
@@ -47,9 +47,9 @@ typedef struct {
 }Actorlocal_Core2_9E370;
 
 /* .data */
-ActorArray *D_8036E560 = NULL; //actorArrayPtr
+ActorArray *suBaddieActorArray = NULL; //actorArrayPtr
 s32 D_8036E564 = 0;
-s32 D_8036E568 = 0;
+struct5Bs *D_8036E568 = NULL;
 s32 D_8036E56C = 0;
 void *D_8036E570 = NULL;
 u8 D_8036E574 = 0;
@@ -64,12 +64,11 @@ f32 D_8036E598[4] = {1000.f, 20.0f, 10.5f, 1.0f};
 /* .bss */
 Actor *D_80383390;
 s32 D_80383394;
-Actor *D_80383398[14]; //array of jiggy actor ptrs
+Actor *suBaddieJiggyArray[14]; //array of jiggy actor ptrs
 
 
-//marker_getActorAndRotation
-Actor * func_80325300(ActorMarker *marker,f32 rotation[3])
-{   Actor *actor = &D_8036E560->data[marker->actrArrayIdx];
+Actor * marker_getActorAndRotation(ActorMarker *marker,f32 rotation[3])
+{   Actor *actor = &suBaddieActorArray->data[marker->actrArrayIdx];
     rotation[0] = actor->pitch;
     rotation[1] = actor->yaw;
     rotation[2] = actor->roll;
@@ -119,7 +118,7 @@ void func_803253A0(Actor *this){
     }
 
     modelRender_setDepthMode(this->depth_mode);
-    if((s32)this->marker->unk44 != 0){
+    if(this->marker->unk44 != 0){
         if((s32)this->marker->unk44 == 1){
             func_8033A450(D_8036E568);
         }
@@ -217,7 +216,7 @@ Actor *func_80325888(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     f32 sp3C[3];
     Actor *this;
 
-    this = func_80325300(marker, sp3C);
+    this = marker_getActorAndRotation(marker, sp3C);
     modelRender_preDraw((GenMethod_1)func_803253A0, (s32)this);
     modelRender_postDraw((GenMethod_1)func_80325794, (s32)marker);
     modelRender_draw(gfx, mtx, this->position, sp3C, this->scale, (this->unk104 != NULL) ? D_8036E580 : NULL, func_803257B4(marker));
@@ -338,7 +337,7 @@ Actor *func_80325E78(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     f32 rotation[3];
     Actor *this;
 
-    this = func_80325300(marker, rotation);
+    this = marker_getActorAndRotation(marker, rotation);
     modelRender_setDepthMode(MODEL_RENDER_DEPTH_FULL);
     modelRender_preDraw((GenMethod_1)func_803253A0, (s32)this);
     modelRender_postDraw((GenMethod_1)func_80325794, (s32)marker);
@@ -355,7 +354,7 @@ Actor *func_80325F2C(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
 void func_80325F84(Actor *this){}
 
 void func_80325F8C(void) {
-    D_8036E560 = NULL;
+    suBaddieActorArray = NULL;
     D_8036E568 = func_8034A2C8();
     D_8036E56C = func_802EE5E0(0x10);
     D_8036E570 = func_802F2AEC();
@@ -412,20 +411,19 @@ void func_80325FE8(Actor *this) {
     func_8032ACA8(this);
 }
 
-//actorArray_free()
-void func_80326124(void) {
+void actorArray_free(void) {
     Actor *var_s0;
 
-    if (D_8036E560 != NULL) {
-        for(var_s0 = D_8036E560->data; var_s0 < &D_8036E560->data[D_8036E560->cnt]; var_s0++){
+    if (suBaddieActorArray != NULL) {
+        for(var_s0 = suBaddieActorArray->data; var_s0 < &suBaddieActorArray->data[suBaddieActorArray->cnt]; var_s0++){
             func_80325FE8(var_s0);
             if (var_s0->marker != NULL) {
                 marker_free(var_s0->marker);
             }
             var_s0->marker = NULL;
         }
-        free(D_8036E560);
-        D_8036E560 = NULL;
+        free(suBaddieActorArray);
+        suBaddieActorArray = NULL;
     }
     func_8034A2A8(D_8036E568);
     D_8036E568 = NULL;
@@ -529,10 +527,10 @@ void func_803268B4(void) {
     s32 temp_s1;
     
 
-    if (D_8036E560 != NULL) {
+    if (suBaddieActorArray != NULL) {
         sp54 = func_803203FC(101);
-        for(temp_v1 = D_8036E560->cnt - 1; temp_v1 >= 0; temp_v1--){
-            actor = &D_8036E560->data[temp_v1];
+        for(temp_v1 = suBaddieActorArray->cnt - 1; temp_v1 >= 0; temp_v1--){
+            actor = &suBaddieActorArray->data[temp_v1];
             actor_info = actor->actor_info;
             marker = actor->marker;
             anim_ctrl = actor->animctrl;
@@ -590,7 +588,7 @@ void func_803268B4(void) {
                         func_802D7124(actor, actor_info->shadow_scale);
                     }
                     if (actor->unk10_0) {
-                        actor = &D_8036E560->data[temp_v1];
+                        actor = &suBaddieActorArray->data[temp_v1];
                         func_802C96E4(actor);
                     }
                 }
@@ -613,12 +611,12 @@ void func_80326C24(s32 arg0){
     D_80383394 = arg0;
 }
 
-Actor *func_80326C30(enum asset_e model_id) {
+Actor *actorArray_findActorFromModelId(enum asset_e model_id) {
     Actor *actor_begin;
     Actor *i_actor;
 
-    actor_begin = D_8036E560->data;
-    for(i_actor = actor_begin; (i_actor - actor_begin) < D_8036E560->cnt; i_actor++){
+    actor_begin = suBaddieActorArray->data;
+    for(i_actor = actor_begin; (i_actor - actor_begin) < suBaddieActorArray->cnt; i_actor++){
         if ((model_id == i_actor->marker->modelId) && !i_actor->despawn_flag) {
             return i_actor;
         }
@@ -626,13 +624,13 @@ Actor *func_80326C30(enum asset_e model_id) {
     return NULL;
 }
 
-Actor *func_80326CCC(s32 arg0) {
+Actor *actorArray_findActorFromMarkerId(enum marker_e marker_id) {
     Actor *actor_begin;
     Actor *i_actor;
 
-    actor_begin = D_8036E560->data;
-    for(i_actor = actor_begin; i_actor - actor_begin < D_8036E560->cnt; i_actor++) {
-        if ((arg0 == i_actor->marker->unk14_20) && !i_actor->despawn_flag) {
+    actor_begin = suBaddieActorArray->data;
+    for(i_actor = actor_begin; i_actor - actor_begin < suBaddieActorArray->cnt; i_actor++) {
+        if ((marker_id == i_actor->marker->unk14_20) && !i_actor->despawn_flag) {
             return i_actor;
         }
     }
@@ -643,20 +641,20 @@ Actor *func_80326CCC(s32 arg0) {
  * find the closest actor to position with actor_id and not in state
  * returns Actor* and distance (last arg)
  */
-Actor *func_80326D68(f32 position[3], enum actor_e actor_id, s32 arg2, f32 *min_distance_ptr) {
+Actor *actorArray_findClosestActorFromActorId(f32 position[3], enum actor_e actor_id, s32 exclude_state, f32 *min_distance_ptr) {
     Actor *begin;
     Actor *i_actor;
     f32 i_dist;
     f32 min_dist;
     s32 *closest_actor;
 
-    if (D_8036E560 != NULL) {
-        begin = D_8036E560->data;
+    if (suBaddieActorArray != NULL) {
+        begin = suBaddieActorArray->data;
         closest_actor = NULL;
         min_dist = 1e+10f;
-        for(i_actor = begin; (i_actor - begin) < D_8036E560->cnt; i_actor++){
+        for(i_actor = begin; (i_actor - begin) < suBaddieActorArray->cnt; i_actor++){
             if ( ((actor_id == i_actor->modelCacheIndex) || (actor_id < 0)) 
-                 && (arg2 != i_actor->state) 
+                 && (exclude_state != i_actor->state) 
                  && (i_actor->modelCacheIndex != ACTOR_17_PLAYER_SHADOW) 
                  && (i_actor->modelCacheIndex != 0x108) 
                  && !i_actor->despawn_flag
@@ -676,13 +674,13 @@ Actor *func_80326D68(f32 position[3], enum actor_e actor_id, s32 arg2, f32 *min_
     return NULL;
 }
 
-Actor *func_80326EEC(enum actor_e actor_id) {
+Actor *actorArray_findActorFromActorId(enum actor_e actor_id) {
     Actor *begin;
     Actor *end;
     Actor *i_actor;
 
-    begin = D_8036E560->data;
-    end = begin + D_8036E560->cnt;
+    begin = suBaddieActorArray->data;
+    end = begin + suBaddieActorArray->cnt;
     for(i_actor = begin; i_actor < end; i_actor++){
         if ((actor_id == i_actor->modelCacheIndex) && !i_actor->despawn_flag) {
             return i_actor;
@@ -691,15 +689,15 @@ Actor *func_80326EEC(enum actor_e actor_id) {
     return NULL;
 }
 
-s32 func_80326F58(enum actor_e actor_id) {
+s32 actorArray_actorCount(enum actor_e actor_id) {
     Actor *begin;
     Actor *end;
     Actor *i_actor;
     s32 var_v1;
 
     var_v1 = 0;
-    begin = D_8036E560->data;
-    end = begin + D_8036E560->cnt;
+    begin = suBaddieActorArray->data;
+    end = begin + suBaddieActorArray->cnt;
     for(i_actor = begin; i_actor < end; i_actor++){
         if ((actor_id == i_actor->modelCacheIndex) && !i_actor->despawn_flag) {
             var_v1 += 1;
@@ -708,21 +706,21 @@ s32 func_80326F58(enum actor_e actor_id) {
     return var_v1;
 }
 
-Actor **func_80326FC0(void) {
+Actor **actorArray_findJiggyActors(void) {
     Actor *begin;
     Actor *i_actor;
 
     s32 var_a1;
 
-    begin = D_8036E560->data;
-    for(i_actor = begin, var_a1 = 0; (D_8036E560 != NULL) && ((i_actor - begin) < D_8036E560->cnt); i_actor++){
+    begin = suBaddieActorArray->data;
+    for(i_actor = begin, var_a1 = 0; (suBaddieActorArray != NULL) && ((i_actor - begin) < suBaddieActorArray->cnt); i_actor++){
         if ((i_actor->modelCacheIndex == ACTOR_46_JIGGY) && !i_actor->despawn_flag) {
-            D_80383398[var_a1] = i_actor;
+            suBaddieJiggyArray[var_a1] = i_actor;
             var_a1 += 1;
         }
     }
-    D_80383398[var_a1] = NULL;
-    return D_80383398;
+    suBaddieJiggyArray[var_a1] = NULL;
+    return suBaddieJiggyArray;
 }
 
 bool func_803270B8(f32 arg0[3], f32 arg1, s32 arg2, int (*arg3)(Actor *), ActorMarker * arg4){
@@ -731,8 +729,8 @@ bool func_803270B8(f32 arg0[3], f32 arg1, s32 arg2, int (*arg3)(Actor *), ActorM
     Actor * i_ptr;
 
     var_s4 = FALSE;
-    start = &D_8036E560->data[0];
-    for(i_ptr = start; (D_8036E560 != NULL) && (i_ptr - start < D_8036E560->cnt); i_ptr++){
+    start = &suBaddieActorArray->data[0];
+    for(i_ptr = start; (suBaddieActorArray != NULL) && (i_ptr - start < suBaddieActorArray->cnt); i_ptr++){
         if( !i_ptr->despawn_flag 
             && i_ptr->marker->collidable 
             && ((arg3 == NULL) || arg3(i_ptr)) 
@@ -764,18 +762,18 @@ Actor *actor_new(s32 (* position)[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
     s32 i;
     f32 sp44[3];
     
-    if(D_8036E560 == NULL){
-        D_8036E560 = (ActorArray *)malloc(sizeof(ActorArray) + 20*sizeof(Actor));
-        D_8036E560->cnt = 0;
-        D_8036E560->max_cnt = 20;
+    if(suBaddieActorArray == NULL){
+        suBaddieActorArray = (ActorArray *)malloc(sizeof(ActorArray) + 20*sizeof(Actor));
+        suBaddieActorArray->cnt = 0;
+        suBaddieActorArray->max_cnt = 20;
     }
-    //i = D_8036E560->cnt + 1;
-    if(D_8036E560->cnt + 1 > D_8036E560->max_cnt){
-        D_8036E560->max_cnt = D_8036E560->cnt + 5;
-        D_8036E560 = (ActorArray *)realloc(D_8036E560, sizeof(ActorArray) + D_8036E560->max_cnt*sizeof(Actor));
+    //i = suBaddieActorArray->cnt + 1;
+    if(suBaddieActorArray->cnt + 1 > suBaddieActorArray->max_cnt){
+        suBaddieActorArray->max_cnt = suBaddieActorArray->cnt + 5;
+        suBaddieActorArray = (ActorArray *)realloc(suBaddieActorArray, sizeof(ActorArray) + suBaddieActorArray->max_cnt*sizeof(Actor));
     }
-    ++D_8036E560->cnt;
-    D_80383390 = &D_8036E560->data[D_8036E560->cnt - 1];
+    ++suBaddieActorArray->cnt;
+    D_80383390 = &suBaddieActorArray->data[suBaddieActorArray->cnt - 1];
     D_80383390->actor_info = actorInfo;
     D_80383390->unk10_25 = 0;
     D_80383390->unk10_18 = 0;
@@ -845,7 +843,7 @@ Actor *actor_new(s32 (* position)[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
     D_80383390->unk124_31 = 0;
     D_80383390->unkF4_20 = 0;
     D_80383390->sound_timer = 0.0f;
-    func_8032FFD4(D_80383390->marker, D_8036E560->cnt - 1);
+    func_8032FFD4(D_80383390->marker, suBaddieActorArray->cnt - 1);
     marker_setModelId(D_80383390->marker, actorInfo->modelId);
     func_803300C8(D_80383390->marker, actorInfo->update_func);
     func_803300D0(D_80383390->marker, actorInfo->unk10);
@@ -1036,19 +1034,19 @@ static void __actor_free(ActorMarker *arg0, Actor *arg1){
     s32 arrayEnd;
 
     //copy last actor over actor to delete
-    arrayEnd = &D_8036E560->data[D_8036E560->cnt - 1];
+    arrayEnd = &suBaddieActorArray->data[suBaddieActorArray->cnt - 1];
     func_80325FE8(arg1);
     if((s32)arg1 != arrayEnd)
         memcpy(arg1, arrayEnd, 0x180); //memcpy
     arg1->marker->actrArrayIdx = arg0->actrArrayIdx;
 
     //remove last actor from actor array
-    D_8036E560->cnt--;
+    suBaddieActorArray->cnt--;
 
     //shrink actor array capacity
-    if(D_8036E560->cnt + 8 <= D_8036E560->max_cnt){
-        D_8036E560->max_cnt = D_8036E560->cnt + 4;
-        D_8036E560 = (ActorArray *)realloc(D_8036E560, D_8036E560->max_cnt*sizeof(Actor) + sizeof(ActorArray));
+    if(suBaddieActorArray->cnt + 8 <= suBaddieActorArray->max_cnt){
+        suBaddieActorArray->max_cnt = suBaddieActorArray->cnt + 4;
+        suBaddieActorArray = (ActorArray *)realloc(suBaddieActorArray, suBaddieActorArray->max_cnt*sizeof(Actor) + sizeof(ActorArray));
     }
 
     marker_free(arg0);
@@ -1129,8 +1127,8 @@ void func_803283D4(void){
     Actor *iPtr;
     if(D_8036E574){
         if(D_8036E578)
-            for(i = D_8036E560->cnt-1; i >= 0 ; i--){
-                iPtr = &D_8036E560->data[i];
+            for(i = suBaddieActorArray->cnt-1; i >= 0 ; i--){
+                iPtr = &suBaddieActorArray->data[i];
                 if(iPtr->despawn_flag)
                     __actor_free(iPtr->marker, iPtr);
             }
@@ -1639,7 +1637,7 @@ Struct64s* func_8032994C(void){
 
 //marker_getActorPtr
 Actor *marker_getActor(ActorMarker *this){
-    return &(D_8036E560->data[this->actrArrayIdx]);
+    return &(suBaddieActorArray->data[this->actrArrayIdx]);
 }
 
 Actor *subaddie_getLinkedActor(Actor *this){
@@ -1709,9 +1707,9 @@ void *actors_appendToSavestate(void * begin, u32 end){
     u32 sp30; //SavedActorDataSize
     u32 sp2C; //SavedActorDataOffset
    
-    if(D_8036E560){
+    if(suBaddieActorArray){
         sp30 = 0;
-        for(s1 = D_8036E560->data; s1 < &D_8036E560->data[(u32) D_8036E560->cnt]; s1++){
+        for(s1 = suBaddieActorArray->data; s1 < &suBaddieActorArray->data[(u32) suBaddieActorArray->cnt]; s1++){
             if( s1->marker
                 && s1->unk10_1 == 1
                 && s1->despawn_flag == 0
@@ -1726,7 +1724,7 @@ void *actors_appendToSavestate(void * begin, u32 end){
         end = (u32)sp3C + sp2C;
         *(u32 *)end = sp30;
         s0 = (Actor *)((u8*)end + sizeof(u32));
-        for(s1 = D_8036E560->data; s1 < &D_8036E560->data[(u32) D_8036E560->cnt]; s1++){
+        for(s1 = suBaddieActorArray->data; s1 < &suBaddieActorArray->data[(u32) suBaddieActorArray->cnt]; s1++){
             if( s1->marker
                 && s1->unk10_1 == 1
                 && s1->despawn_flag == 0
@@ -1795,8 +1793,8 @@ void func_8032A09C(s32 arg0, s32 arg1) {
     Actor *temp_v0_6;
 
 
-    func_802C3BE8();
-    if (D_8036E560 != NULL) {
+    spawnQueue_lock();
+    if (suBaddieActorArray != NULL) {
         func_803283BC();
         var_s3 = 0;
         var_s0 = var_s1->actor_save_state;
@@ -1806,7 +1804,7 @@ void func_8032A09C(s32 arg0, s32 arg1) {
             }
             var_s0++;
         }
-        for(var_s0 = &D_8036E560->data[0]; var_s0 < &D_8036E560->data[D_8036E560->cnt]; var_s0++){
+        for(var_s0 = &suBaddieActorArray->data[0]; var_s0 < &suBaddieActorArray->data[suBaddieActorArray->cnt]; var_s0++){
             if ((var_s0->unk78_13 != 0) && (var_s3 < var_s0->unk78_13)) {
                 var_s3 = var_s0->unk78_13;
             }
@@ -1826,7 +1824,7 @@ void func_8032A09C(s32 arg0, s32 arg1) {
             }
             var_s0++;
         }
-        for(var_s0 = &D_8036E560->data[0]; var_s0 < &D_8036E560->data[D_8036E560->cnt]; var_s0++){
+        for(var_s0 = &suBaddieActorArray->data[0]; var_s0 < &suBaddieActorArray->data[suBaddieActorArray->cnt]; var_s0++){
             if ((var_s0->unk78_13 != 0)) {
                 sp60[var_s0->unk78_13] = var_s0;
             }
@@ -1865,15 +1863,15 @@ void func_8032A09C(s32 arg0, s32 arg1) {
         free(sp60);
         free(sp5C);
     }
-    func_802C3BDC();
+    spawnQueue_unlock();
 }
 #endif
 
 void func_8032A5F8(void) {
     Actor *var_s0;
 
-    if (D_8036E560 != NULL) {
-        for(var_s0 = &D_8036E560->data[0]; var_s0 < &D_8036E560->data[D_8036E560->cnt]; var_s0++){
+    if (suBaddieActorArray != NULL) {
+        for(var_s0 = &suBaddieActorArray->data[0]; var_s0 < &suBaddieActorArray->data[suBaddieActorArray->cnt]; var_s0++){
             if (var_s0->unk124_31 == 0xfff) {
                 var_s0->unk124_31 = 0;
                 func_8032A6A8(var_s0);
@@ -1890,7 +1888,7 @@ void func_8032A6A8(Actor *arg0) {
 
     if (arg0->unk44_14 != -1) {
         var_f0 = 1.0f;
-        for(var_v0 = &D_8036E560->data[0]; var_v0 < &D_8036E560->data[D_8036E560->cnt]; var_v0++){
+        for(var_v0 = &suBaddieActorArray->data[0]; var_v0 < &suBaddieActorArray->data[suBaddieActorArray->cnt]; var_v0++){
             if ((arg0->unk44_14 == var_v0->unk44_14) && (arg0 != var_v0)) {
                 var_f2 = var_v0->unk48;
                 if ((var_f2 <= var_f0) && (arg0->unk48 <= var_f2)) {
@@ -1908,8 +1906,8 @@ Actor *func_8032A7AC(Actor *arg0) {
     Actor *var_a0;
 
     if (arg0->unk124_31 != 0) {
-        if (D_8036E560 != NULL) {
-            for(var_a0 = &D_8036E560->data[0]; var_a0 < &D_8036E560->data[D_8036E560->cnt]; var_a0++){
+        if (suBaddieActorArray != NULL) {
+            for(var_a0 = &suBaddieActorArray->data[0]; var_a0 < &suBaddieActorArray->data[suBaddieActorArray->cnt]; var_a0++){
                 if (arg0->unk124_31 == var_a0->unk78_13) {
                     return var_a0;
                 }
@@ -1977,20 +1975,20 @@ void actor_collisionOn(Actor* this){
 }
 
 void func_8032AA9C(void){
-    func_802C3BDC();
+    spawnQueue_unlock();
 }
 
 void func_8032AABC(void){
     Actor *i_ptr;
-    Actor *start = &D_8036E560->data[0];
+    Actor *start = &suBaddieActorArray->data[0];
     u32 i;
     u32 cnt;
     
-    func_802C3BE8();
+    spawnQueue_lock();
 
 
-    if(D_8036E560 != NULL){    
-        cnt =  D_8036E560->cnt;
+    if(suBaddieActorArray != NULL){    
+        cnt =  suBaddieActorArray->cnt;
         for(i_ptr = start, i = 0; i < cnt; i++, i_ptr++){
             i_ptr->marker->unk14_21 = 0;
         }
@@ -2058,15 +2056,15 @@ void func_8032AD7C(s32 arg0) {
     static s32 D_8036E5A8 = 0;
     
 
-    if (D_8036E560 != NULL) {
-        if (D_8036E5A8 >= D_8036E560->cnt) {
+    if (suBaddieActorArray != NULL) {
+        if (D_8036E5A8 >= suBaddieActorArray->cnt) {
             D_8036E5A8 = 0;
         }
-        for(var_s0 = 0; var_s0 < ((arg0 == 1) ? 0xF : D_8036E560->cnt); var_s0++){
-            if (func_80330E28(&D_8036E560->data[D_8036E5A8]) == NULL) {
-                func_8032ACA8(&D_8036E560->data[D_8036E5A8]);
+        for(var_s0 = 0; var_s0 < ((arg0 == 1) ? 0xF : suBaddieActorArray->cnt); var_s0++){
+            if (func_80330E28(&suBaddieActorArray->data[D_8036E5A8]) == NULL) {
+                func_8032ACA8(&suBaddieActorArray->data[D_8036E5A8]);
             }
-            D_8036E5A8 = (D_8036E5A8 + 1) % D_8036E560->cnt;
+            D_8036E5A8 = (D_8036E5A8 + 1) % suBaddieActorArray->cnt;
         }
     }
 }
@@ -2076,13 +2074,13 @@ void func_8032AEB4(void) {
     Actor *temp_s2;
     Actor *var_s0;
 
-    temp_s2 = &D_8036E560->data[0];
-    for(var_s0 = temp_s2; (D_8036E560 != NULL) && ((var_s0 - temp_s2) != D_8036E560->cnt); var_s0++){
+    temp_s2 = &suBaddieActorArray->data[0];
+    for(var_s0 = temp_s2; (suBaddieActorArray != NULL) && ((var_s0 - temp_s2) != suBaddieActorArray->cnt); var_s0++){
         func_8032ACA8(var_s0);
     }
 }
 
-void func_8032AF94(void) {
+void actorArray_defrag(void) {
     AnimCtrl *temp_a0_4;
     ParticleEmitter *temp_a0_2;
     ParticleEmitter *temp_a0_3;
@@ -2095,52 +2093,52 @@ void func_8032AF94(void) {
     s32 temp_a0_9;
     s32 temp_t7;
     s32 var_s1;
-    Actor *temp_s0;
+    Actor *i_actor;
     void *temp_s0_2;
     static s32 D_8036E5AC = 0;
 
 
-    if (D_8036E560 != NULL) {
+    if (suBaddieActorArray != NULL) {
         for(var_s1 = 0; var_s1 < 8; var_s1++){
             D_8036E5AC++;
-            if (D_8036E5AC >= D_8036E560->cnt) {
+            if (D_8036E5AC >= suBaddieActorArray->cnt) {
                 D_8036E5AC = 0;
             }
-            temp_s0 = &D_8036E560->data[D_8036E5AC];
+            i_actor = &suBaddieActorArray->data[D_8036E5AC];
 
-            if ((s32)temp_s0->marker->unk44 < 0) {
-                temp_s0->marker->unk44 = func_8034A348(temp_s0->marker->unk44);
+            if ((s32)i_actor->marker->unk44 < 0) {
+                i_actor->marker->unk44 = func_8034A348(i_actor->marker->unk44);
             }
 
-            if (temp_s0->unk158[0] != NULL) {
-                temp_s0->unk158[0] = func_802F0D74(temp_s0->unk158[0]);
+            if (i_actor->unk158[0] != NULL) {
+                i_actor->unk158[0] = func_802F0D74(i_actor->unk158[0]);
             }
 
-            if (temp_s0->unk158[1] != NULL) {
-                temp_s0->unk158[1] = func_802F0D74(temp_s0->unk158[1]);
+            if (i_actor->unk158[1] != NULL) {
+                i_actor->unk158[1] = func_802F0D74(i_actor->unk158[1]);
             }
 
-            if (temp_s0->animctrl != NULL) {
-                temp_s0->animctrl = animctrl_defrag(temp_s0->animctrl);
+            if (i_actor->animctrl != NULL) {
+                i_actor->animctrl = animctrl_defrag(i_actor->animctrl);
             }
 
-            if (temp_s0->marker->unk20 != NULL) {
-                temp_s0->marker->unk20 = func_802EA374(temp_s0->marker->unk20);
+            if (i_actor->marker->unk20 != NULL) {
+                i_actor->marker->unk20 = func_802EA374(i_actor->marker->unk20);
             }
 
-            if (temp_s0->unk148 != NULL) {
-                temp_s0->unk148 = (Struct80s*)defrag(temp_s0->unk148);
+            if (i_actor->unk148 != NULL) {
+                i_actor->unk148 = (Struct80s*)defrag(i_actor->unk148);
             }
 
-            if (temp_s0->marker->unk50 != NULL) {
-                temp_s0->marker->unk50 = func_803406D4(temp_s0->marker->unk50);
+            if (i_actor->marker->unk50 != NULL) {
+                i_actor->marker->unk50 = func_803406D4(i_actor->marker->unk50);
             }
 
-            if (temp_s0->marker->unk14_20 == MARKER_217_BEE_SWARM) {
-                func_802CEB60(temp_s0);
+            if (i_actor->marker->unk14_20 == MARKER_217_BEE_SWARM) {
+                func_802CEB60(i_actor);
             }
         }
-        D_8036E560 = (ActorArray *) defrag(D_8036E560);
+        suBaddieActorArray = (ActorArray *) defrag(suBaddieActorArray);
     }
 
     if (D_8036E568 != 0) {
@@ -2156,10 +2154,10 @@ ActorMarker *func_8032B16C(enum jiggy_e jiggy_id) {
     Actor *temp_s3;
     Actor *var_s0;
 
-    if (D_8036E560 != NULL) {
-        temp_s3 = &D_8036E560->data[0];
-        for(var_s0 = temp_s3; (var_s0 - temp_s3) < D_8036E560->cnt; var_s0++){
-            if ((var_s0->marker->unk14_20 == MARKER_52_JIGGY) && (func_802C8088(&(var_s0->marker)) == jiggy_id)) {
+    if (suBaddieActorArray != NULL) {
+        temp_s3 = &suBaddieActorArray->data[0];
+        for(var_s0 = temp_s3; (var_s0 - temp_s3) < suBaddieActorArray->cnt; var_s0++){
+            if ((var_s0->marker->unk14_20 == MARKER_52_JIGGY) && (chjiggy_getJiggyId(&(var_s0->marker)) == jiggy_id)) {
                 return var_s0->marker;
             }
         }
@@ -2178,12 +2176,12 @@ void func_8032B258(Actor *this, enum collision_e arg1) {
             func_8034A174( this->marker->unk44, 0x20, sp38);
         }
         if (((s32)this->marker->unk44 < 0) && ((sp38[0] != 0.0f) || (sp38[1] != 0.0f) || (sp38[2] != 0.0f))) {
-            func_802C4014((GenMethod_5)func_802C4260, this->unk138_27 + 0x15, reinterpret_cast(s32,sp38[0]), reinterpret_cast(s32,sp38[1]), reinterpret_cast(s32,sp38[2]), reinterpret_cast(s32,sp44));
+            __spawnQueue_add_5((GenMethod_5)func_802C4260, this->unk138_27 + 0x15, reinterpret_cast(s32,sp38[0]), reinterpret_cast(s32,sp38[1]), reinterpret_cast(s32,sp38[2]), reinterpret_cast(s32,sp44));
             return;
         }
         else{
             sp34 = this->position[1] + 50.0f;
-            func_802C4014((GenMethod_5)func_802C4260, this->unk138_27 + 0x15, reinterpret_cast(s32,this->position[0]), reinterpret_cast(s32,sp34), reinterpret_cast(s32,this->position[2]), reinterpret_cast(s32,sp44));
+            __spawnQueue_add_5((GenMethod_5)func_802C4260, this->unk138_27 + 0x15, reinterpret_cast(s32,this->position[0]), reinterpret_cast(s32,sp34), reinterpret_cast(s32,this->position[2]), reinterpret_cast(s32,sp44));
         }
     }
 }
@@ -2299,15 +2297,15 @@ void func_8032B5C0(ActorMarker *arg0, ActorMarker *arg1, struct5Cs *arg2) {
                     }
                     func_8032EE0C(func_8032B38C, this);
                     if (((s32)arg0->unk44 < 0) && ((sp50[0] != 0.0f) || (sp50[1] != 0.0f) || (sp50[2] != 0.0f))) {
-                        func_802C4014(func_802C4260, sp70 + 0x15, reinterpret_cast(s32, sp50[0]), reinterpret_cast(s32, sp50[1]), reinterpret_cast(s32, sp50[2]), reinterpret_cast(s32, sp5C));
+                        __spawnQueue_add_5((GenMethod_5)func_802C4260, sp70 + 0x15, reinterpret_cast(s32, sp50[0]), reinterpret_cast(s32, sp50[1]), reinterpret_cast(s32, sp50[2]), reinterpret_cast(s32, sp5C));
                     } else if (this->unk16C_3 && func_803048E0(sp3C, &sp4C, &sp48, 3, (s32) (func_8033229C(arg0) * 4.0f))) {
                         sp50[0] = (f32) sp48->x;
                         sp50[1] = (f32) sp48->y;
                         sp50[2] = (f32) sp48->z;
-                        func_802C4014(func_802C4260, sp70 + 0x15, reinterpret_cast(s32, sp50[0]), reinterpret_cast(s32, sp50[1]), reinterpret_cast(s32, sp50[2]), reinterpret_cast(s32, sp5C));
+                        __spawnQueue_add_5((GenMethod_5)func_802C4260, sp70 + 0x15, reinterpret_cast(s32, sp50[0]), reinterpret_cast(s32, sp50[1]), reinterpret_cast(s32, sp50[2]), reinterpret_cast(s32, sp5C));
                     } else {
                         sp38 = this->position[1] + func_8033229C(arg0);
-                        func_802C4014(func_802C4260, sp70 + 0x15, reinterpret_cast(s32, this->position[0]), reinterpret_cast(s32, sp38), reinterpret_cast(s32, this->position[2]), reinterpret_cast(s32, sp5C));
+                        __spawnQueue_add_5((GenMethod_5)func_802C4260, sp70 + 0x15, reinterpret_cast(s32, this->position[0]), reinterpret_cast(s32, sp38), reinterpret_cast(s32, this->position[2]), reinterpret_cast(s32, sp5C));
                     }
                     func_8032EE20();
                 }

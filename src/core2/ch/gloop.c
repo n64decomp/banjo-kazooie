@@ -83,7 +83,7 @@ void chgloop_update(Actor *this){
                     sp34[2] = this->position[2];
                 }
                 if(func_80329530(this, 1900)){
-                    func_802C3F04(chgloop_spawnBubble, reinterpret_cast(s32, sp34[0]), reinterpret_cast(s32, sp34[1]), reinterpret_cast(s32, sp34[2]), reinterpret_cast(s32, this->yaw));
+                    __spawnQueue_add_4(chgloop_spawnBubble, reinterpret_cast(s32, sp34[0]), reinterpret_cast(s32, sp34[1]), reinterpret_cast(s32, sp34[2]), reinterpret_cast(s32, this->yaw));
                 }
 
                 func_8030E9C4(SFX_3ED, randf()/2 + 0.6, 32000, this->position, 100.0f, 3000.0f);

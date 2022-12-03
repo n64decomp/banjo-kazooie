@@ -21,7 +21,7 @@ struct{
 
 /* .code */
 bool func_802C2550(void) {
-    return (ml_vec3f_distance(D_8037DC60.unk0, &D_8037DC60.unk18) < 40.0f);
+    return (ml_vec3f_distance(D_8037DC60.unk0, D_8037DC60.unk18) < 40.0f);
 }
 
 void func_802C2598(f32 arg0[3], f32 arg1[3]) {
@@ -57,8 +57,8 @@ void func_802C26D8(f32 arg0[3], f32 arg1[3]) {
     if (!func_802C2550() && !func_8028F150()) {
         func_8028FCC8(1);
     }
-    ml_vec3f_copy(arg0, &D_8037DC60.unk0);
-    ml_vec3f_copy(arg1, &D_8037DC60.unkC);
+    ml_vec3f_copy(arg0, D_8037DC60.unk0);
+    ml_vec3f_copy(arg1, D_8037DC60.unkC);
 }
 
 

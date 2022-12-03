@@ -426,7 +426,7 @@ void func_802BAFE4(s32 arg0) {
             temp_f0 = func_802BAFA0(arg0, phi_s1);
             switch(D_803654B8[arg0][phi_s1 + 1]){
                 case -5:
-                    timedFunc_set_6(temp_f0, (TFQM6) func_802BAF80, NULL);
+                    timedFunc_set_6(temp_f0, (GenMethod_6) func_802BAF80, NULL);
                     phi_s0++;
                     break;
 

@@ -407,7 +407,7 @@ void func_803899B0(Actor * this){
     }//L80389B20
 
     if(!this->unk16C_4){
-        __spawnqueue_add_1((GenMethod_1)func_80389948, reinterpret_cast(s32, this->marker));
+        __spawnQueue_add_1((GenMethod_1)func_80389948, reinterpret_cast(s32, this->marker));
         this->unk16C_4 = 1;
     }//L80389B4C
 

@@ -3,6 +3,7 @@
 #include "variables.h"
 
 extern f32 func_8028EBA4();
+AnimCtrl *player_getAnimCtrlPtr(void);
 
 Actor *func_802C80C0(ActorMarker *this, Gfx **gdl, Mtx **mptr, Vtx **arg3);
 void func_802C811C(Actor * this);
@@ -38,7 +39,7 @@ Actor *func_802C80C0(ActorMarker *this, Gfx **gdl, Mtx **mptr, Vtx **arg3){
 }
 
 void func_802C811C(Actor * this){
-    ActorAnimCtrl *plyrMvmt;
+    AnimCtrl *plyrMvmt;
 
     this->marker->collidable = 0;
     switch(this->state){

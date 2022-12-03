@@ -408,7 +408,7 @@ void func_8038B094(void){
             func_80324E88(2.0f);
             func_80324E38(2.0f, 0);
             func_803228D8();
-            timedFunc_set_3(2.0f, (TFQM3) func_802E4078, MAP_7_TTC_TREASURE_TROVE_COVE, 1, 0);
+            timedFunc_set_3(2.0f, (GenMethod_3) func_802E4078, MAP_7_TTC_TREASURE_TROVE_COVE, 1, 0);
         }
         else if(levelSpecificFlags_get(2) || func_803203FC(2)){
             func_8034E71C(sp2C, -500, 0.0f);

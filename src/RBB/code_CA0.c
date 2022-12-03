@@ -64,7 +64,7 @@ void func_8038718C(ActorMarker *marker){
     timed_playSfx(4.0f, SFX_7F_HEAVYDOOR_SLAM, 1.0f, 19000);\
     func_80324E88(5.0f);
     func_80324E38(5.0f, 0);
-    timedFunc_set_2(5.0f, (TFQM2) func_80387090, (s32) marker, 3);
+    timedFunc_set_2(5.0f, (GenMethod_2) func_80387090, (s32) marker, 3);
 }
 
 void func_80387308(ActorMarker *marker){
@@ -86,9 +86,9 @@ void func_80387308(ActorMarker *marker){
     timed_playSfx(0.5f, SFX_7F_HEAVYDOOR_SLAM, 0.8f, 19000);
     timed_playSfx(0.5f, SFX_7F_HEAVYDOOR_SLAM, 0.9f, 19000);
     timed_playSfx(0.5f, SFX_7F_HEAVYDOOR_SLAM, 1.0f, 19000);
-    timedFunc_set_2(0.5f, (TFQM2) func_80387090, (s32) actor->marker, 1);
+    timedFunc_set_2(0.5f, (GenMethod_2) func_80387090, (s32) actor->marker, 1);
     
-    timedFunc_set_2(1.5f, (TFQM2) func_803870BC, 0x19d, 0x1f4);
+    timedFunc_set_2(1.5f, (GenMethod_2) func_803870BC, 0x19d, 0x1f4);
     func_80324E88(1.5f);
     func_80324E38(1.5f, 0);
 

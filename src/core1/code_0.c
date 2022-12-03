@@ -156,10 +156,10 @@ void func_8023DD0C(void){
         case 3:
             func_80255524();
             func_80255ACC();
-            func_802C3A18();
+            spawnQueue_func_802C3A18();
             if(func_802E4424())
                 func_802E3F8C(0);
-            func_802C3A38();
+            spawnQueue_flush();
             break;
     }//L8023DE34
 

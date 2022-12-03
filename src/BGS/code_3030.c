@@ -43,7 +43,7 @@ void func_80389488(Actor *this, s32 next_state) {
     if (next_state == 3) {
         func_8030E6A4(SFX_86_TIPTUP_CHORUS_AH, local->unk8, 0x7FFF);
         func_80335924(this->unk148, ASSET_12F_ANIM_CHOIR_TURTLE_HURT, 0.1f, 1.75f);
-        func_80335800(this->unk148, 0.9f, func_80389420, (s32)this->marker);
+        func_80335800(this->unk148, 0.9f, func_80389420, this->marker);
         if (local->tiptup_marker != NULL) {
             func_80388E94(local->tiptup_marker, local->unk0);
         }
@@ -88,7 +88,7 @@ void func_80389668(Actor *this) {
 
     local->unkC++;
     if (local->unkC == 2) {
-        tiptup = func_80326D68(this->position, ACTOR_27A_TIPTUP, -1, &sp30);
+        tiptup = actorArray_findClosestActorFromActorId(this->position, ACTOR_27A_TIPTUP, -1, &sp30);
         local->tiptup_marker = (tiptup != NULL) ? tiptup->marker : NULL;
         if (local->tiptup_marker != NULL) {
             func_80388FFC(local->tiptup_marker, &local->unk0, &local->unk8);

@@ -405,7 +405,7 @@ void func_802A411C(void) {
             } else {
                 sp44 = 0;
             }
-            ml_vec3f_copy(sp28, &D_8037D338);
+            ml_vec3f_copy(sp28, D_8037D338);
             ml_vec3f_normalize(sp28);
             sp24 = mlAbsF(sp34[0] * sp28[0] + sp34[1] * sp28[1] + sp34[2] * sp28[2]);
             if (miscflag_isTrue(8) || ((sp44 & 0x80) != 0)) {
@@ -705,15 +705,15 @@ void func_802A4D70(void){
 
 void func_802A4D90(void) {
     f32 sp34;
-    f32 sp28[3];
+    f32 player_position[3];
     f32 sp1C[3];
 
     func_802BB3DC(2, 100.0f, 0.85f);
     func_8028A274(0x10D, 1.0f);
     func_8030E58C(SFX_56_BANJO_HUI, 1.0f);
-    _player_getPosition(&sp28);
+    _player_getPosition(player_position);
     func_80294980(sp1C);
-    func_80257F18(sp1C, sp28, &sp34);
+    func_80257F18(sp1C, player_position, &sp34);
     yaw_setIdeal(mlNormalizeAngle(sp34 + 180.0f));
     yaw_applyIdeal();
     func_80297970(1300.0f);

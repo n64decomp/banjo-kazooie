@@ -174,10 +174,10 @@ void func_80332CCC(void) {
     Actor **temp_v0;
     s32 i;
 
-    temp_v0 = func_80326FC0();
+    temp_v0 = actorArray_findJiggyActors();
     for(D_8038356C = 0; temp_v0[D_8038356C] != NULL; D_8038356C++){
         if(!temp_v0[D_8038356C]->unk44_2){
-            D_8036E834[func_802C8088(temp_v0[D_8038356C]) - 1].unk10.marker = temp_v0[D_8038356C]->marker;
+            D_8036E834[chjiggy_getJiggyId(temp_v0[D_8038356C]) - 1].unk10.marker = temp_v0[D_8038356C]->marker;
         }
     }
 }
@@ -274,7 +274,7 @@ void func_80333270(enum jiggy_e jiggy_id, f32 position[3], void (*method)(Actor 
 
 void func_803332D0(Actor *arg0)
 {
-  s32 indx = func_802C8088(arg0) - 1;
+  s32 indx = chjiggy_getJiggyId(arg0) - 1;
   Struct81s *sp18 = &D_8036E834[indx].unk10;
   if (D_8036E834[indx].unkC)
   {
@@ -305,16 +305,16 @@ void func_80333388(enum jiggy_e jiggy_id) {
 }
 
 void func_803333DC(Struct81s *arg0, Actor *arg1) {
-    s32 sp20;
+    s32 jiggy_id;
 
     arg0->marker = arg1->marker;
     if (arg0->unk14 != NULL) {
         arg0->unk14(arg1, arg0->unk18);
     }
     func_803300D8(arg1->marker, func_803332D0);
-    sp20 = ((s32) ((s32)arg0 - (s32)&D_8036E834) / 0x2C) + 1;
-    func_802C80B4(arg1, sp20);
-    if ((sp20 == JIGGY_49_CCW_EYRIE) || (sp20 == JIGGY_39_LAIR_MMM_WITCH_SWITCH) || (sp20 == JIGGY_3C_LAIR_CCW_WITCH_SWITCH)) {
+    jiggy_id = ((s32) ((s32)arg0 - (s32)&D_8036E834) / 0x2C) + 1;
+    chjiggy_setJiggyId(arg1, jiggy_id);
+    if ((jiggy_id == JIGGY_49_CCW_EYRIE) || (jiggy_id == JIGGY_39_LAIR_MMM_WITCH_SWITCH) || (jiggy_id == JIGGY_3C_LAIR_CCW_WITCH_SWITCH)) {
         arg1->marker->unk40_21 = TRUE;
         arg1->marker->unk40_20 = TRUE;
     }

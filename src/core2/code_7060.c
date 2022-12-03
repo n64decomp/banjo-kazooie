@@ -950,6 +950,7 @@ void func_8028FCBC(void){
     D_8037BFB8 = FALSE;
 }
 
+//player_setModelVisibile
 void func_8028FCC8(bool arg0){
     playerModel_setVisible(arg0);
 }

@@ -6,7 +6,7 @@
 
 extern f32 ml_vec3f_distance_squared(f32[3], f32[3]);
 extern f32 func_802586B0(f32[3], f32[3]);
-
+extern void mapModel_getCubeBounds(s32 min[3], s32 max[3]);
 extern f32 func_803243D0(struct56s *arg0, f32 arg1[3]);
 extern void func_802CAF14(u32*, s32, bool);
 extern void func_8032D510(Cube *, Gfx **, Mtx **, Vtx **);
@@ -453,9 +453,9 @@ void func_80302C94(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
         func_8032D510(D_80381FA0.unk40, gfx, mtx, vtx);
     }
     if (((45.0f <= sp54[1]) && (sp54[1] <= 135.0f)) || ((225.0f <= sp54[1]) && (sp54[1] <= 315.0f))) {
-        func_80301F50(gfx, mtx, vtx, &sp60, &sp44, &sp38);
+        func_80301F50(gfx, mtx, vtx, sp60, sp44, sp38);
     } else {
-        func_80302634(gfx, mtx, vtx, &sp60, &sp44, &sp38);
+        func_80302634(gfx, mtx, vtx, sp60, sp44, sp38);
     }
     func_80308D2C(gfx, mtx, vtx);
 }
@@ -577,7 +577,7 @@ void * func_803036A0(f32 volume_p1[3], f32 volume_p2[3], f32 arg2[3], u32 arg3) 
     void *var_s5;
 
     var_s5 = NULL;
-    cube_volumeToIndices(&min, &max, volume_p1, volume_p2, D_80381FA0.unk4);
+    cube_volumeToIndices(min, max, volume_p1, volume_p2, D_80381FA0.unk4);
     for(cube_indx[2] = min[2]; cube_indx[2] <= max[2]; cube_indx[2]++){
         for(cube_indx[1] = min[1]; cube_indx[1] <= max[1]; cube_indx[1]++){
             for(cube_indx[0] = min[0]; cube_indx[0] <= max[0]; cube_indx[0]++){
@@ -602,7 +602,7 @@ void * func_80303800(f32 volume_p1[3], f32 volume_p2[3], f32 arg2[3], u32 arg3) 
     void *temp_v0;
     void *var_s5;
 
-    cube_volumeToIndices(&min, &max, volume_p1, volume_p2, D_80381FA0.unk4);
+    cube_volumeToIndices(min, max, volume_p1, volume_p2, D_80381FA0.unk4);
     for(cube_indx[0] = min[0]; cube_indx[0] <= max[0]; cube_indx[0]++){
         for(cube_indx[1] = min[1]; cube_indx[1] <= max[1]; cube_indx[1]++){
             for(cube_indx[2] = min[2]; cube_indx[2] <= max[2]; cube_indx[2]++){
@@ -786,7 +786,7 @@ void cubeList_init(void){
     
     func_80303F38();
     D_80381FA0.unk44 = 0;
-    func_803097AC(D_80381FA0.min, D_80381FA0.max);
+    mapModel_getCubeBounds(D_80381FA0.min, D_80381FA0.max);
     D_80381FA0.unk2C = 0;
     D_80381FA0.width[0] = D_80381FA0.max[0] - D_80381FA0.min[0] + 1;
     D_80381FA0.width[1] = D_80381FA0.max[1] - D_80381FA0.min[1] + 1;
@@ -985,7 +985,7 @@ NodeProp *func_803049CC(enum actor_e actor_id, s32 arg1[3]) {
         if (func_80305C30(sp7C[1] - D_80381FA0.min[1]) != 0) {
             for(sp7C[0] = D_80381FA0.min[0]; sp7C[0] <= D_80381FA0.max[0] ; sp7C[0]++) {
                 for(sp7C[2] = D_80381FA0.min[2]; sp7C[2] <= D_80381FA0.max[2] ; sp7C[2]++) {
-                    temp_v0 = func_8032E230(cube_atIndices(&sp7C), actor_id);
+                    temp_v0 = func_8032E230(cube_atIndices(sp7C), actor_id);
                     if (temp_v0 != NULL) {
                         return temp_v0;
                     }
@@ -2142,7 +2142,7 @@ NodeProp *func_803080C8(s32 arg0) {
         if(func_80305C30(sp3C[1] - D_80381FA0.min[1])){
             for(sp3C[0] = D_80381FA0.min[0]; sp3C[0] <= D_80381FA0.max[0]; sp3C[0]++){
                 for(sp3C[2] = D_80381FA0.min[2]; sp3C[2] <= D_80381FA0.max[2]; sp3C[2]++){
-                    temp_v0 = cube_atIndices(&sp3C);
+                    temp_v0 = cube_atIndices(sp3C);
                     if (temp_v0 != NULL) {
                         for(var_v1 = 0; var_v1 < temp_v0->prop1Cnt; var_v1++){
                             if (arg0 == temp_v0->prop1Ptr[var_v1].unk10_31) {
@@ -2292,7 +2292,7 @@ void func_80308658(Struct_core2_7AF80_1 *arg0, s32 arg1) {
         return;
 
     for(i = arg0; i < arg0 + arg1; i++){
-        i->unk8 = defrag(i->unk8);
+        i->unk8 = (Struct_core2_7AF80_2 *)defrag(i->unk8);
     }
 }
 
@@ -2308,7 +2308,7 @@ void func_803086B4(void) {
         if (cube->prop2Cnt != 0) {
             if (cube->prop2Ptr != NULL) {
                 prop = cube->prop2Ptr;
-                cube->prop2Ptr = defrag(cube->prop2Ptr);
+                cube->prop2Ptr = (Prop *)defrag(cube->prop2Ptr);
                 if (prop != cube->prop2Ptr) {
                     func_80330104(cube);
                     phi_s1 -= 5;
@@ -2318,7 +2318,7 @@ void func_803086B4(void) {
         if (cube->prop1Cnt != 0) {
             if (cube->prop1Ptr != NULL) {
                 node = cube->prop1Ptr;
-                cube->prop1Ptr = defrag(cube->prop1Ptr);
+                cube->prop1Ptr = (NodeProp *)defrag(cube->prop1Ptr);
                 if (node != cube->prop1Ptr) {
                     phi_s1 -= 5;
                 }
@@ -2341,19 +2341,19 @@ void func_803086B4(void) {
         }
 
         if (D_8036A9BC != NULL) {
-            D_8036A9BC = defrag(D_8036A9BC);
+            D_8036A9BC = (Struct_core2_7AF80_1 *) defrag(D_8036A9BC);
         }
 
         if (D_8036A9C8 != NULL) {
-            D_8036A9C8 = defrag(D_8036A9C8);
+            D_8036A9C8 = (Struct_core2_7AF80_1 *) defrag(D_8036A9C8);
         }
 
         if (D_8036A9D4 != NULL) {
-            D_8036A9D4 = defrag(D_8036A9D4);
+            D_8036A9D4 = (Struct_core2_7AF80_1 *) defrag(D_8036A9D4);
         }
 
         if (sSpawnableActorList != NULL) {
-            sSpawnableActorList = defrag(sSpawnableActorList);
+            sSpawnableActorList = (ActorSpawn *)defrag(sSpawnableActorList);
         }
     } else {
         func_80308658(D_8036A9BC, D_8036A9B8);

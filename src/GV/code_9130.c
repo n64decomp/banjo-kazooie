@@ -96,9 +96,9 @@ void __chmazectrl_setState(Actor *this, s32 next_state){
 
     if(next_state == 3){
         func_80324E38(0.0f, 3);
-        timedFunc_set_2(0.0f, (TFQM2)func_8025A6EC, COMUSIC_3E_SANDYBUTT_FAILURE, 0x7FFF);
-        timedFunc_set_2(1.0f, (TFQM2)__chmazectrl_markerSetState, reinterpret_cast(s32, this->marker), 6);
-        timedFunc_set_2(2.0f, (TFQM2)__chmazectrl_markerSetState, reinterpret_cast(s32, this->marker), 4);
+        timedFunc_set_2(0.0f, (GenMethod_2)func_8025A6EC, COMUSIC_3E_SANDYBUTT_FAILURE, 0x7FFF);
+        timedFunc_set_2(1.0f, (GenMethod_2)__chmazectrl_markerSetState, reinterpret_cast(s32, this->marker), 6);
+        timedFunc_set_2(2.0f, (GenMethod_2)__chmazectrl_markerSetState, reinterpret_cast(s32, this->marker), 4);
     }//L8038F850
 
     if(next_state == 4){

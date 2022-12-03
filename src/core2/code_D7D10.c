@@ -44,7 +44,7 @@ Actor *func_8035ECA0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     Actor *this;
     ActorLocal_core2_D7D10 *local;
 
-    this = func_80325300(marker, rotation);
+    this = marker_getActorAndRotation(marker, rotation);
     local = (ActorLocal_core2_D7D10 *)&this->local;
     func_8033A45C(3, (s32) this->velocity[1]);
     func_8033A45C(4, local->unk0);

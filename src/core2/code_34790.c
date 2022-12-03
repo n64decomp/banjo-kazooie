@@ -116,7 +116,7 @@ void func_802BBA84(void) {
     f32 sp30[3];
     f32 sp24[3];
 
-    func_80309998(sp30, sp24);
+    mapModel_getBounds(sp30, sp24);
     func_8024C5CC(sp54);
     func_8024C764(sp3C);
     func_8024C5A8(sp48);
@@ -356,7 +356,7 @@ void func_802BC2CC(s32 arg0) {
     func_8024CD88(D_8037D908);
     func_8024CE18(D_8037D918);
     func_8024CFD4();
-    func_802C3D3C(func_802BC2A0, D_8037D908, D_8037D918);
+    __spawnQueue_add_2((GenMethod_2)func_802BC2A0, D_8037D908, D_8037D918);
     if (D_8037D8C0 == 2) {
         func_802BE720();
         if (sp1C != 0x63) {

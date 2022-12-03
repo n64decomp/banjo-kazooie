@@ -72,11 +72,11 @@ void BGS_func_80388760(void){
     func_8025A6EC(COMUSIC_2C_BUZZER, 28000);
 }
 
-void func_80388784(ActorMarker *this, s32 arg1, s32 arg2){
+void func_80388784(ActorMarker *this, enum asset_e text_id, s32 arg2){
     Actor *thisActor;
 
     thisActor = marker_getActor(this);
-    switch(arg1){
+    switch(text_id){
         case 0xc72:
         case 0xc74:
             BGS_func_803888E4(thisActor, 3);
@@ -167,8 +167,8 @@ void BGS_func_803888E4(Actor *this, s32 arg1){
         for(; i < D_80390864[unqPtr->unkA]; i++){
             tmpf += randf2(1.0f, 1.5f);
             while((rand2 = randi2(1,7)) == prev_member);
-            timedFunc_set_2(tmpf, func_803886B4, this->marker, rand2);
-            timedFunc_set_2(tmpf + 0.1, func_803886B4, this->marker, 0);
+            timedFunc_set_2(tmpf, (GenMethod_2) func_803886B4, reinterpret_cast(s32, this->marker), rand2);
+            timedFunc_set_2(tmpf + 0.1, (GenMethod_2)func_803886B4, reinterpret_cast(s32, this->marker), 0);
             prev_member = rand2;
         }//L80388B7C
         
@@ -179,7 +179,7 @@ void BGS_func_803888E4(Actor *this, s32 arg1){
         }
         func_80324E38(sp54 = tmpf + 0.6, 0);
         if(func_803203FC(2)){
-            timedFunc_set_1(sp54, func_803886F4, this->marker);
+            timedFunc_set_1(sp54, (GenMethod_1)func_803886F4, reinterpret_cast(s32, this->marker));
         }else{
             this->state = 0x05;
         }
@@ -194,8 +194,8 @@ void BGS_func_803888E4(Actor *this, s32 arg1){
         for(j = 0; j < vector_size(unqPtr->unk4); j++){
             s1 = (Struct_BGS_2270_0s *)vector_at(unqPtr->unk4,j);
             tmpf += randf2(1.0f, 1.5f);
-            timedFunc_set_2(tmpf, func_803886B4, this->marker, s1->unk0);
-            timedFunc_set_2(tmpf + 0.1, func_803886B4, this->marker, 0);
+            timedFunc_set_2(tmpf, (GenMethod_2)func_803886B4, reinterpret_cast(s32, this->marker), s1->unk0);
+            timedFunc_set_2(tmpf + 0.1, (GenMethod_2)func_803886B4, reinterpret_cast(s32, this->marker), 0);
         }
         func_80324E88(tmpf += 2.5);
         func_80324E38(tmpf + 0.6,0);
@@ -238,7 +238,7 @@ void func_80388E94(ActorMarker *this, s32 arg1){
     }else{
         tmp = (Struct_BGS_2270_0s *)vector_at(unqPtr->unk4, unqPtr->unk0);
         if(arg1 == tmp->unk0){
-            timedFunc_set_1(0.5f, func_80388848, thisActor->marker);
+            timedFunc_set_1(0.5f, (GenMethod_1)func_80388848, reinterpret_cast(s32, thisActor->marker));
         }
         else{
             func_8028F55C(1, thisActor->marker);
@@ -271,7 +271,7 @@ void func_80388FFC(ActorMarker *this, s32 *arg1, f32* arg2){
 }
 
 void func_80389080(Actor *this){
-    f32 sp44[3];
+    f32 player_position[3];
     ActorLocal_BGS_2270 *unqPtr;
     f32 sp3C;
     f32 sp38;
@@ -301,7 +301,7 @@ void func_80389080(Actor *this){
             marker_despawn(this->marker);
     }
     else{
-        player_getPosition(&sp44);
+        player_getPosition(player_position);
         if(func_8033567C(this->unk148) == ASSET_12C_ANIM_TIPTUP_TAPPING && func_80335794(this->unk148) > 0){
             func_80335924(this->unk148, ASSET_12B_ANIM_TIPTUP_IDLE, 1.0f, 9.0f);
             unqPtr->unkC = randf2(5.0f, 15.0f);
@@ -309,7 +309,7 @@ void func_80389080(Actor *this){
         if(func_8025773C(&unqPtr->unkC, sp3C)){
             func_80335924(this->unk148, ASSET_12C_ANIM_TIPTUP_TAPPING, 1.0f, 4.0f);
         }
-        func_80258A4C(this->position, this->yaw - 90.0f, &sp44, &sp38, &sp34, &sp30);
+        func_80258A4C(this->position, this->yaw - 90.0f, player_position, &sp38, &sp34, &sp30);
         this->yaw = this->yaw + 5.0f*sp30;
         if(this->state == 1){
             if(func_803203FC(2)){
@@ -319,7 +319,7 @@ void func_80389080(Actor *this){
                 }
             }
             else{
-                if(ml_vec3f_distance(this->position, &sp44) < 300.0f && player_getTransformation() == TRANSFORM_1_BANJO && !jiggyscore_isSpawned(JIGGY_27_BGS_TIPTUP)){
+                if(ml_vec3f_distance(this->position, player_position) < 300.0f && player_getTransformation() == TRANSFORM_1_BANJO && !jiggyscore_isSpawned(JIGGY_27_BGS_TIPTUP)){
                     BGS_func_803888E4(this, 2);
                 }
             }
@@ -333,12 +333,12 @@ void func_80389080(Actor *this){
                 }
             } //L80389370
             else{
-                if(ml_vec3f_distance(this->position, &sp44) >= 300.0f)
+                if(ml_vec3f_distance(this->position, player_position) >= 300.0f)
                     BGS_func_803888E4(this, 1);
             }
         }//L803893A0
         if(this->state == 6){
-            if(ml_vec3f_distance(this->position, &sp44) < 300.0f && !unqPtr->unk8){
+            if(ml_vec3f_distance(this->position, player_position) < 300.0f && !unqPtr->unk8){
                 unqPtr->unk8 = 1;
                 func_80311480(0xc7d, 4, 0, 0, 0, 0);
             }

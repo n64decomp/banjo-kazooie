@@ -41,9 +41,9 @@ void func_8038C0FC(Actor *this, s32 new_state){
         set_camera_to_node(0xC);
         func_80324E38(0.0f, 3);
         timedFunc_set_0(1.0f, func_8038C000);
-        timedFunc_set_2(1.0f, (TFQM2)mapSpecificFlags_set, 8, TRUE);
+        timedFunc_set_2(1.0f, (GenMethod_2)mapSpecificFlags_set, 8, TRUE);
         timed_playSfx(2.1f, SFX_3F6_UNKNOWN, 0.6f, 0x7fbc);
-        timedFunc_set_2(2.7f, (TFQM2)mapSpecificFlags_set, 4, TRUE);
+        timedFunc_set_2(2.7f, (GenMethod_2)mapSpecificFlags_set, 4, TRUE);
         timedFunc_set_0(3.0f, func_8038C058);
         func_80324DBC(3.0f, 0xb9C, 7, NULL, this->marker, func_8038C0A8, NULL);
     }//L8038C1D8
@@ -66,6 +66,6 @@ void func_8038C204(Actor *this){
         func_80324E88(0.0f);
         func_80324E38(0.0f, 0);
         timedFunc_set_0(0.0f, func_803228D8);
-        timedFunc_set_3(0.0f, (TFQM3)func_802E4078, MAP_8B_RBB_ANCHOR_ROOM, 2, 0);
+        timedFunc_set_3(0.0f, (GenMethod_3)func_802E4078, MAP_8B_RBB_ANCHOR_ROOM, 2, 0);
     }//L8038C2E4
 }

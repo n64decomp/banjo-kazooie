@@ -149,7 +149,7 @@ void func_80322960(void){
 
 void __overlay_mmm_update(void){
     func_8038966C();
-    func_80389FC0();
+    organMinigame_update();
     func_8038AA44();
 }
 

@@ -69,7 +69,7 @@ void func_80387574(ActorMarker *caller, enum asset_e text_id, s32 arg1){
 
     if(func_80304E24(0x14b, sp24)){
         jiggySpawn(JIGGY_14_TTC_BLUBBER, sp24);
-        func_802C3F04((GenMethod_4)func_802C4140, ACTOR_4C_STEAM, reinterpret_cast(s32, sp24[0]), reinterpret_cast(s32, sp24[1]), reinterpret_cast(s32, sp24[2]));
+        __spawnQueue_add_4((GenMethod_4)func_802C4140, ACTOR_4C_STEAM, reinterpret_cast(s32, sp24[0]), reinterpret_cast(s32, sp24[1]), reinterpret_cast(s32, sp24[2]));
     }
 }
 

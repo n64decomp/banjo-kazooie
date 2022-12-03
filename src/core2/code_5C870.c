@@ -22,8 +22,7 @@ extern void func_8030ED0C(void);
 extern void func_80259BD0(void);
 
 enum transition_e {
-    TRANSITION_0_NONE,
-
+    TRANSITION_0_NONE
 };
 
 void func_802E3BD0(s32 frame_buffer_indx);
@@ -594,8 +593,8 @@ s32 func_802E48D8(void){
     func_802F0E58();
     mapModel_defrag();
     func_803086B4();
-    func_8032AF94();
-    func_802C4320();
+    actorArray_defrag();
+    spawnQueue_defrag();
     func_802F3300();
     func_802F542C();
     gcdialog_defrag();

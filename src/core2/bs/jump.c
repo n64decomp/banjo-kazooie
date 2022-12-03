@@ -95,7 +95,7 @@ void bsjump_update(void){
         func_802B6FA8();
     }
 
-    _get_velocity(&velocity);
+    _get_velocity(velocity);
     if((button_released(BUTTON_A) && 0.0f < velocity[1] && !D_8037D4C2) || !can_control_jump_height()){
         gravity_reset();
     }
@@ -189,14 +189,14 @@ void bsjump_fall_init(void){
 void bsjump_fall_update(void){
     enum bs_e sp2C = 0;
     AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
-    f32 sp1C[3];
+    f32 player_velocity[3];
 
     if(miscflag_isTrue(0xf))
         func_802978A4();
     else
         func_802B6FA8();
 
-    _get_velocity(&sp1C);
+    _get_velocity(player_velocity);
 
     switch(D_8037D4C0){
         case 0://L802B17B8
@@ -245,7 +245,7 @@ void bsjump_fall_update(void){
     bs_setState(sp2C);
 }
 
-void bsjump_fall_end(void){};
+void bsjump_fall_end(void){}
 
 void func_802B1928(void) {
     AnimCtrl *anim_ctrl;

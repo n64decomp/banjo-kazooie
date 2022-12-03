@@ -50,7 +50,7 @@ void func_8038FC48(Actor *this){
     }
     else{//L8038FD34
         if(local->unk8 == NULL)
-            local->unk8 = func_80326EEC(*local->unk4)->marker;
+            local->unk8 = actorArray_findActorFromActorId(*local->unk4)->marker;
         sp20 = func_8038A6B8(local->unk8);
         tmp_f2 = 1.5* sp20 + 0.5;
         func_802F9DB8(local->unk0, tmp_f2, tmp_f2, 0.0f);

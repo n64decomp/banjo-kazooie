@@ -1319,7 +1319,7 @@ void __chfinalboss_spawnStatue(enum bossjinjo_e statue_id) {
     Actor *sp1C;
     ActorLocal_fight_180 *local;
 
-    local = (ActorLocal_fight_180 *)&func_80326EEC(ACTOR_38B_GRUNTILDA_FINAL_BOSS)->local;
+    local = (ActorLocal_fight_180 *)&actorArray_findActorFromActorId(ACTOR_38B_GRUNTILDA_FINAL_BOSS)->local;
 
     switch (statue_id) {
     case BOSSJINJO_ORANGE:
@@ -2309,7 +2309,7 @@ void chfinalboss_update(Actor *this){
             __chFinalBossJinjoStatueMarker[i] = NULL;
         }
 
-        __spawnqueue_add_1((GenMethod_1) chfinalboss_spawnShadow, (s32) this->marker);
+        __spawnQueue_add_1((GenMethod_1) chfinalboss_spawnShadow, (s32) this->marker);
         chfinalboss_setPhase(this->marker, 0);
         local->hits = 0;
         func_80386600(this->marker, 0);
@@ -2415,7 +2415,7 @@ void func_8038C148(void) {
     s32 camera_node;
     f32 sp34;
 
-    sp4C = func_80326EEC(ACTOR_38B_GRUNTILDA_FINAL_BOSS);
+    sp4C = actorArray_findActorFromActorId(ACTOR_38B_GRUNTILDA_FINAL_BOSS);
     sp48 = (ActorLocal_fight_180 *)&sp4C->local;
     sp34 = func_8038DFA0();
     temp_f20 = sp34 + chjinjonator_80391234();

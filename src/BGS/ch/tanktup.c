@@ -9,7 +9,7 @@ void func_80324E88(f32);
 void timedFunc_set_2(f32, void(*)(s32, s32), s32, s32);
 
 void func_8028E668(f32[3], f32, f32, f32);
-extern void func_802C3E10(void(*arg0)(void), ActorMarker *, s32, s32);
+extern void __spawnQueue_add_3(GenMethod_3, s32, s32, s32);
 
 void func_8038F6A4(Actor *);
 
@@ -18,7 +18,7 @@ enum chtanktup_leg_e {
     TANKTUP_LEG_FRONT_LEFT,
     TANKTUP_LEG_BACK_LEFT,
     TANKTUP_LEG_FRONT_RIGHT,
-    TANKTUP_LEG_BACK_RIGHT,
+    TANKTUP_LEG_BACK_RIGHT
 };
 
 ActorAnimationInfo BGS_D_80390C20[] = {
@@ -53,7 +53,7 @@ void func_8038F470(ActorMarker *this, s32 arg1, enum chtanktup_leg_e leg_id){
 
 void func_8038F51C(Actor *this){
     Actor * spawnPtr;
-    spawnPtr = func_80326D68(this->position, ACTOR_E8_TANKTUP, -1, 0);
+    spawnPtr = actorArray_findClosestActorFromActorId(this->position, ACTOR_E8_TANKTUP, -1, 0);
     spawnPtr->tanktup.unk0[this->unk10_12] = 1;
     spawnPtr->tanktup.unk10 = 1;
 }
@@ -65,26 +65,26 @@ s32 func_8038F570(s16 *arg0){
     pos[0] = (f32)arg0[0];
     pos[1] = (f32)arg0[1];
     pos[2] = (f32)arg0[2];
-    spawnPtr = func_80326D68(pos, ACTOR_E8_TANKTUP, -1, 0);
+    spawnPtr = actorArray_findClosestActorFromActorId(pos, ACTOR_E8_TANKTUP, -1, 0);
     return spawnPtr->state == 3;
 
 
 }
 
-void func_8038F5E4(s32 arg0, s32 arg1, s32 arg2){
+void func_8038F5E4(ActorMarker *marker, enum asset_e text_id, s32 arg2){
     func_80324E88(0.0f);
 }
 
 void func_8038F610(Actor *this) {
     f32 sp24[3];
 
-    func_8034A174(this->marker->unk44, 8, &sp24);
-    if (func_80258368(&sp24) != 0) {
-        func_8028E668(&sp24, 200.0f, -600.0f, 300.0f);
+    func_8034A174(this->marker->unk44, 8, sp24);
+    if (func_80258368(sp24) != 0) {
+        func_8028E668(sp24, 200.0f, -600.0f, 300.0f);
     }
-    func_8034A174(this->marker->unk44, 7, &sp24);
-    if (func_80258368(&sp24) != 0) {
-        func_8028E668(&sp24, 200.0f, -600.0f, 200.0f);
+    func_8034A174(this->marker->unk44, 7, sp24);
+    if (func_80258368(sp24) != 0) {
+        func_8028E668(sp24, 200.0f, -600.0f, 200.0f);
     }
 }
 
@@ -97,7 +97,7 @@ void func_8038F6A4(Actor *this)
   ActorLocal_TanktupBody *local = (ActorLocal_TanktupBody *) (&this->local);
   f32 sp48[3];
   s32 sp44;
-  Prop *temp_v0;
+  NodeProp *temp_v0;
   if (!this->initialized)
   {
     temp_v0 = func_80304C38(ACTOR_32B_UNKNOWN, this);
@@ -124,7 +124,7 @@ void func_8038F6A4(Actor *this)
     {
       if (local->unk0[sp44] == 0)
       {
-        func_802C3E10(func_8038F470, *((s32 *) (&this->marker)), local->unk0[sp44], sp44);
+        __spawnQueue_add_3((GenMethod_3)func_8038F470, *((s32 *) (&this->marker)), local->unk0[sp44], sp44);
       }
     }
 

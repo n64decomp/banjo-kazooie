@@ -166,7 +166,7 @@ void func_8028B9A8(s32 arg0){
 }
 
 void func_8028BA00(s32 arg0){
-    __spawnqueue_add_1(func_8028B9A8, arg0);
+    __spawnQueue_add_1((GenMethod_1)func_8028B9A8, arg0);
     if(arg0);
 }
 
@@ -239,7 +239,7 @@ void func_8028BCA0(Prop *prop){
     Actor *actor; //0xb8
     f32 spAC[3];
     f32 spA0[3];
-    s32 sp9C;
+    s32 jiggy_id;
     s32 sp98;
     volatile s32 sp94;
     s32 sp88[3]; //0
@@ -527,13 +527,13 @@ void func_8028BCA0(Prop *prop){
                         return;
                     
                     player_getPosition(spA0);
-                    sp9C = func_802C8088(actor);
-                    if( sp9C != JIGGY_2F_FP_XMAS_TREE
+                    jiggy_id = chjiggy_getJiggyId(actor);
+                    if( jiggy_id != JIGGY_2F_FP_XMAS_TREE
                         || (func_8028B2E8() && !(3600.0f < ml_vec3f_distance_squared(actor->position, spA0)))
                     ){
-                        jiggyscore_setCollected(sp9C, 1);
+                        jiggyscore_setCollected(jiggy_id, TRUE);
                         func_803463F4(ITEM_26_JIGGY_TOTAL, 1);
-                        if(sp9C == JIGGY_20_BGS_ELEVATED_WALKWAY || sp9C == JIGGY_25_BGS_MAZE){
+                        if(jiggy_id == JIGGY_20_BGS_ELEVATED_WALKWAY || jiggy_id == JIGGY_25_BGS_MAZE){
                             func_802D6924();
                         }
                         if(jiggyscore_total() < 3){
@@ -544,7 +544,7 @@ void func_8028BCA0(Prop *prop){
                             func_8028B8DC();
                         }
 
-                        func_802C3F04(func_8028B904, reinterpret_cast(u32, prop->actorProp.x), reinterpret_cast(u32, prop->actorProp.y), reinterpret_cast(u32, prop->actorProp.z), sp9C);
+                        __spawnQueue_add_4((GenMethod_4)func_8028B904, reinterpret_cast(u32, prop->actorProp.x), reinterpret_cast(u32, prop->actorProp.y), reinterpret_cast(u32, prop->actorProp.z), jiggy_id);
                         marker_despawn(marker);
                     }
                 }
@@ -574,7 +574,7 @@ void func_8028BCA0(Prop *prop){
             case 0x54: //L8028C820
                 func_8025A6EC(COMUSIC_19_LOW_PITCH_FLUTES, 28000);
                 func_803012F8();
-                func_802C3F04(func_802C418C, 0x4E, reinterpret_cast(u32, prop->actorProp.x), reinterpret_cast(u32, prop->actorProp.y), reinterpret_cast(u32, prop->actorProp.z));
+                __spawnQueue_add_4((GenMethod_4)func_802C418C, 0x4E, reinterpret_cast(u32, prop->actorProp.x), reinterpret_cast(u32, prop->actorProp.y), reinterpret_cast(u32, prop->actorProp.z));
                 marker_despawn(marker);
                 break;
 
@@ -747,7 +747,7 @@ void func_8028BCA0(Prop *prop){
                 miscflag_set(MISC_FLAG_E_TOUCHING_WADING_BOOTS);
                 func_802A6388(chwadingboots_802D6E4C(actor));
                 bs_checkInterrupt(BS_INTR_1B);
-                func_802C3F04(func_802C418C, 0x4E, reinterpret_cast(u32, prop->actorProp.x), reinterpret_cast(u32, prop->actorProp.y), reinterpret_cast(u32, prop->actorProp.z));
+                __spawnQueue_add_4((GenMethod_4)func_802C418C, 0x4E, reinterpret_cast(u32, prop->actorProp.x), reinterpret_cast(u32, prop->actorProp.y), reinterpret_cast(u32, prop->actorProp.z));
                 chwadingboots_802D6E54(actor);
                 break;
 
@@ -771,7 +771,7 @@ void func_8028BCA0(Prop *prop){
                 miscflag_set(MISC_FLAG_10_TOUCHING_TURBO_TRAINERS);
                 func_80294AE8(chtrainers_802CA748(actor));
                 bs_checkInterrupt(BS_INTR_1A);
-                func_802C3F04(func_802C418C, 0x4E, reinterpret_cast(u32, prop->actorProp.x), reinterpret_cast(u32, prop->actorProp.y), reinterpret_cast(u32, prop->actorProp.z));
+                __spawnQueue_add_4((GenMethod_4)func_802C418C, 0x4E, reinterpret_cast(u32, prop->actorProp.x), reinterpret_cast(u32, prop->actorProp.y), reinterpret_cast(u32, prop->actorProp.z));
                 chtrainers_802CA750(actor);
                 break;
 

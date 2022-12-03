@@ -7,9 +7,8 @@
 extern UNK_TYPE(s32) func_802E8E88(BKCollisionList *, BKVertexList *, f32[3], f32[3], f32, f32[3], s32, s32);
 extern UNK_TYPE(s32) func_802E92AC(BKCollisionList *, BKVertexList *, f32[3], f32, f32[3], s32);
 extern s32 func_802EC394(BKModelUnk14List *arg0, s32 arg1, s32 arg2, f32 arg3, s32 arg4, s32 arg5, s32 arg6);
-extern void func_802EC458(BKVertexList *, s32[3], s32[3]);
+extern void vtxList_getBounds_s32(BKVertexList *, s32[3], s32[3]);
 extern void func_802F7BC0(Gfx **, Mtx **, Vtx **);
-extern void func_8033A450(s32);
 extern void func_8033A45C(s32, s32);
 
 
@@ -308,7 +307,7 @@ void mapModel_opa_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
             func_8033A45C(2, 1);
             break;
         case MAP_1D_MMM_CELLAR:
-            func_8033A45C(1, func_80326EEC(0x191) ?  0 : 1);
+            func_8033A45C(1, actorArray_findActorFromActorId(0x191) ?  0 : 1);
             break;
         case MAP_7C_CS_INTRO_BANJOS_HOUSE_1:
         case MAP_89_CS_INTRO_BANJOS_HOUSE_2:
@@ -355,7 +354,7 @@ void mapModel_xlu_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
 
     if (mapModel.model_bin_xlu != NULL) {
         if (map_get() == MAP_1D_MMM_CELLAR) {
-            func_8033A45C(1, (func_80326EEC(0x191) != NULL) ? 0 : 1);
+            func_8033A45C(1, (actorArray_findActorFromActorId(0x191) != NULL) ? 0 : 1);
         }
         modelRender_setDepthMode(MODEL_RENDER_DEPTH_COMPARE);
         temp_a0 = mapModel.unk4;
@@ -399,46 +398,46 @@ struct5Bs *func_803097A0(void){
 }
 
 
-void func_803097AC(s32 arg0[3], s32 arg1[3]) {
-    func_802EC458(func_8033A148(mapModel.model_bin_opa), arg0, arg1);
-    func_8033ECD8(arg0, arg1, 1000);
-    arg0[0] = arg0[0] + mapModel.description->unk6[0];
-    arg0[1] = arg0[1] + mapModel.description->unk6[1];
-    arg0[2] = arg0[2] + mapModel.description->unk6[2];
-    arg1[0] = arg1[0] + mapModel.description->unkC[0];
-    arg1[1] = arg1[1] + mapModel.description->unkC[1];
-    arg1[2] = arg1[2] + mapModel.description->unkC[2];
+void mapModel_getCubeBounds(s32 min[3], s32 max[3]) {
+    vtxList_getBounds_s32(func_8033A148(mapModel.model_bin_opa), min, max);
+    func_8033ECD8(min, max, 1000);
+    min[0] = min[0] + mapModel.description->unk6[0];
+    min[1] = min[1] + mapModel.description->unk6[1];
+    min[2] = min[2] + mapModel.description->unk6[2];
+    max[0] = max[0] + mapModel.description->unkC[0];
+    max[1] = max[1] + mapModel.description->unkC[1];
+    max[2] = max[2] + mapModel.description->unkC[2];
 }
 
-void func_80309888(s32 arg0[3], s32 arg1[3]) {
+void mapModel_getOpaBounds(s32 min[3], s32 max[3]) {
     s32 i;
 
-    func_802EC458(func_8033A148(mapModel.model_bin_opa), arg0, arg1);
+    vtxList_getBounds_s32(func_8033A148(mapModel.model_bin_opa), min, max);
     for(i = 0; i < 3; i++){
-        arg0[i] *= mapModel.scale;
-        arg1[i] *= mapModel.scale;
+        min[i] *= mapModel.scale;
+        max[i] *= mapModel.scale;
     }
 }
 
-void func_80309998(s32 arg0[3], s32 arg1[3]) {
+void mapModel_getBounds(s32 min[3], s32 max[3]) {
     s32 i, j;
-    s32 sp3C[3];
-    s32 sp30[3];
+    s32 xlu_min[3];
+    s32 xlu_max[3];
 
-    func_802EC458(func_8033A148(mapModel.model_bin_opa), arg0, arg1);
+    vtxList_getBounds_s32(func_8033A148(mapModel.model_bin_opa), min, max);
     for(i = 0; i < 3; i++){
-        arg0[i] *= mapModel.scale;
-        arg1[i] *= mapModel.scale;
+        min[i] *= mapModel.scale;
+        max[i] *= mapModel.scale;
     }
 
     if (mapModel.model_bin_xlu != NULL) {
-        func_802EC458(func_8033A148(mapModel.model_bin_xlu), sp3C, sp30);
+        vtxList_getBounds_s32(func_8033A148(mapModel.model_bin_xlu), xlu_min, xlu_max);
         for(j = 0; j < 3; j++){
-            if(sp3C[j] < arg0[j]){
-                arg0[j] = sp3C[j];
+            if(xlu_min[j] < min[j]){
+                min[j] = xlu_min[j];
             }
-            if(arg1[j] < sp30[j]){
-                arg1[j] = sp30[j];
+            if(max[j] < xlu_max[j]){
+                max[j] = xlu_max[j];
             }
         }
 

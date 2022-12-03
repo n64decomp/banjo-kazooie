@@ -26,7 +26,7 @@ void RBB_func_8038FA60(ActorMarker *marker){
 void func_8038FA9C(Actor *this, s32 arg1){
     if(arg1 == 3){
         func_80324E38(0.0f, 3);
-        timedFunc_set_2(1.0f, (TFQM2)func_8025A6EC, COMUSIC_2B_DING_B, 28000);
+        timedFunc_set_2(1.0f, (GenMethod_2)func_8025A6EC, COMUSIC_2B_DING_B, 28000);
         timed_setCameraToNode(1.8f, 1);
         timedFunc_set_1(2.0f, (GenMethod_1) RBB_func_8038FA60, (s32)this->marker);
         func_80324E88(5.0f);

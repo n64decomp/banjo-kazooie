@@ -554,7 +554,7 @@ void func_802D4614(enum map_e map_id){
     D_803676AC = TRUE;
     func_8028F918(2);
     func_8025A788(COMUSIC_69_FF_WARP, 0.0f, 1.7f);
-    timedFunc_set_2(1.0f, (TFQM2) func_8031CC40, map_id, 2);
+    timedFunc_set_2(1.0f, (GenMethod_2) func_8031CC40, map_id, 2);
 }
 
 void func_802D4680(Actor *this){
@@ -707,44 +707,44 @@ void func_802D4CD4(Actor *this){
     func_802D4AC0(this, 0x4000bb, 0x47);
 }
 
-void func_802D4D3C(s32 arg0, s32 arg1) {
-    s32 sp5C[3];
+void func_802D4D3C(enum actor_e arg0, enum actor_e arg1) {
+    f32 sp5C[3];
     s32 sp4C[4];
     f32 sp40[3];
 
-    if (func_80304E24(arg1, &sp5C)) {
-        func_803331D8(arg0, &sp5C);
+    if (func_80304E24(arg1, sp5C)) {
+        func_803331D8(arg0, sp5C);
         func_8025A6EC(COMUSIC_3D_JIGGY_SPAWN, 0x7FFF);
         if (arg0 == 0x36) {
             
             sp4C[3] = 200;
             sp4C[0] = sp4C[1] = sp4C[2] = 180;\
-            ml_vec3f_assign(&sp40, 0.0f, 0.0f, 0.0f);
-            func_802EE6CC(&sp5C, &sp40, &sp4C, 0, 6.0f, 200.0f, 200, 100, 0);
+            ml_vec3f_assign(sp40, 0.0f, 0.0f, 0.0f);
+            func_802EE6CC(sp5C, sp40, sp4C, 0, 6.0f, 200.0f, 200, 100, 0);
 
             sp4C[3] = 230;
             sp4C[0] = sp4C[1] = sp4C[2] = 150;
-            ml_vec3f_assign(&sp40, 0.0f, 2.0f, 0.0f);
-            func_802EE6CC(&sp5C, &sp40, &sp4C, 0, 2.0f, 90.0f, 50, 33, 0);
+            ml_vec3f_assign(sp40, 0.0f, 2.0f, 0.0f);
+            func_802EE6CC(sp5C, sp40, sp4C, 0, 2.0f, 90.0f, 50, 33, 0);
           
             sp4C[3] = 150;
             sp4C[0] = sp4C[1] = sp4C[2] = 230;
-            ml_vec3f_assign(&sp40, -3.0f, 1.0f, 1.0f);
-            func_802EE6CC(&sp5C, &sp40, &sp4C, 0, 3.5f, 130.0f, 100, 80, 0);
+            ml_vec3f_assign(sp40, -3.0f, 1.0f, 1.0f);
+            func_802EE6CC(sp5C, sp40, sp4C, 0, 3.5f, 130.0f, 100, 80, 0);
 
             sp4C[3] = 200;
             sp4C[0] = sp4C[1] = sp4C[2] = 250;
-            ml_vec3f_assign(&sp40, -1.0f, 3.0f, -3.0f);
-            func_802EE6CC(&sp5C, &sp40, &sp4C, 0, 2.4f, 40.0f, 10, 120, 0);
+            ml_vec3f_assign(sp40, -1.0f, 3.0f, -3.0f);
+            func_802EE6CC(sp5C, sp40, sp4C, 0, 2.4f, 40.0f, 10, 120, 0);
             
             sp4C[3] = 130;
             sp4C[0] = sp4C[1] = sp4C[2] = 130;
-            ml_vec3f_assign(&sp40, 2.0f, -2.0f, 2.0f);
-            func_802EE6CC(&sp5C, &sp40, &sp4C, 0, 4.7f, 180.0f, 20, 160, 0);
+            ml_vec3f_assign(sp40, 2.0f, -2.0f, 2.0f);
+            func_802EE6CC(sp5C, sp40, sp4C, 0, 4.7f, 180.0f, 20, 160, 0);
             func_8030E6D4(SFX_1B_EXPLOSION_1);
         }
         else{
-            func_802C3F04(func_802C4140, 0x4C, 
+            __spawnQueue_add_4((GenMethod_4)func_802C4140, ACTOR_4C_STEAM, 
                 reinterpret_cast(s32, sp5C[0]),
                 reinterpret_cast(s32, sp5C[1]),
                 reinterpret_cast(s32, sp5C[2])
@@ -775,7 +775,7 @@ void func_802D5058(enum map_e map_id, s32 arg1, bool arg2) {
     D_8036769C = 0;
     D_803676A0 = 0;
     if (map_id != D_80367694) {
-        timedFunc_set_1(0.25f, func_802D5000, map_id);
+        timedFunc_set_1(0.25f, (GenMethod_1)func_802D5000, map_id);
     } else {
         timedFunc_set_0(0.25f, func_802D63D4);
     }
@@ -913,21 +913,21 @@ void func_802D5628(void){
         switch(D_8036768C){
             case 0x1: // L802D57C8
                 if(!D_80367690){
-                    timedFunc_set_2(0.4f, (TFQM2) func_802D4D3C, 0x34, 0x205);
+                    timedFunc_set_2(0.4f, (GenMethod_2) func_802D4D3C, 0x34, 0x205);
                     D_80367690++;
                 }
                 break;
 
             case 0x2: // L802D5808
                 if(!D_80367690){
-                    timedFunc_set_2(0.4f, (TFQM2) func_802D4D3C, 0x39, 0x207);
+                    timedFunc_set_2(0.4f, (GenMethod_2) func_802D4D3C, 0x39, 0x207);
                     D_80367690++;
                 }
                 break;
 
             case 0x3: // L802D5848
                 if(!D_80367690){
-                    timedFunc_set_2(0.4f, (TFQM2) func_802D4D3C, 0x36, 0x20a);
+                    timedFunc_set_2(0.4f, (GenMethod_2) func_802D4D3C, 0x36, 0x20a);
                     D_80367690++;
                 }   
                 break;
@@ -935,14 +935,14 @@ void func_802D5628(void){
             case 0x4: // L802D5888
                 func_802D5260();
                 if(!D_80367690){
-                    timedFunc_set_2(0.4f, (TFQM2) func_802D4D3C, 0x3b, 0x20c);
+                    timedFunc_set_2(0.4f, (GenMethod_2) func_802D4D3C, 0x3b, 0x20c);
                     D_80367690++;
                 }
                 break;
 
             case 0x12: // L802D58D0
                 if(!D_80367690){
-                    timedFunc_set_2(0.4f, (TFQM2) func_802D4D3C, 0x3c, 0x238);
+                    timedFunc_set_2(0.4f, (GenMethod_2) func_802D4D3C, 0x3c, 0x238);
                     D_80367690++;
                 }
                 break;
@@ -1217,13 +1217,13 @@ void func_802D6494(void){
                 break;
             case ACTOR_212_IRON_BARS:// L802D6550
                 if(map_get() == MAP_70_GL_CC_LOBBY && !func_803203FC(UNKFLAGS1_7F_SANDCASTLE_OPEN_CC)){
-                    func_802D4830(func_80326EEC(ACTOR_212_IRON_BARS), SFX_9A_MECHANICAL_CLOSING, 0.5f);
+                    func_802D4830(actorArray_findActorFromActorId(ACTOR_212_IRON_BARS), SFX_9A_MECHANICAL_CLOSING, 0.5f);
                     func_8025A6CC(COMUSIC_64_WORLD_OPENING_A, 32000);
                 }
                 break;
             case ACTOR_234_CCW_ENTRANCE_DOOR:// L802D65A0
                 if(map_get() == MAP_79_GL_CCW_LOBBY && !func_803203FC(UNKFLAGS1_93_SANDCASTLE_OPEN_CCW)){
-                    func_802D485C(func_80326EEC(ACTOR_234_CCW_ENTRANCE_DOOR), SFX_3EC_CCW_DOOR_OPENING, 0.8f, 15000);
+                    func_802D485C(actorArray_findActorFromActorId(ACTOR_234_CCW_ENTRANCE_DOOR), SFX_3EC_CCW_DOOR_OPENING, 0.8f, 15000);
                     func_8025A6CC(COMUSIC_64_WORLD_OPENING_A, 32000);
                 }
                 break;
@@ -1235,13 +1235,13 @@ void func_802D6494(void){
                 break;
             case ACTOR_235_FP_ENTANCE_DOOR:// L802D6624
                 if(map_get() == MAP_6F_GL_FP_LOBBY && !func_803203FC(UNKFLAGS1_8B_SANDCASTLE_OPEN_FP)){
-                    func_802D4830(func_80326EEC(ACTOR_235_FP_ENTANCE_DOOR), SFX_18_BIGBUTT_SLIDE, 0.5f);
+                    func_802D4830(actorArray_findActorFromActorId(ACTOR_235_FP_ENTANCE_DOOR), SFX_18_BIGBUTT_SLIDE, 0.5f);
                     func_8025A6CC(COMUSIC_64_WORLD_OPENING_A, 32000);
                 }
                 break;
             case ACTOR_226_GV_ENTRANCE:// L802D6674
                 if(map_get() == MAP_6E_GL_GV_LOBBY && !func_803203FC(UNKFLAGS1_87_SANDCASTLE_OPEN_GV)){
-                    func_802D485C(func_80326EEC(ACTOR_226_GV_ENTRANCE), SFX_3EC_CCW_DOOR_OPENING, 0.8f, 15000);
+                    func_802D485C(actorArray_findActorFromActorId(ACTOR_226_GV_ENTRANCE), SFX_3EC_CCW_DOOR_OPENING, 0.8f, 15000);
                     func_8025A6CC(COMUSIC_64_WORLD_OPENING_A, 32000);
                 }
                 break;
@@ -1253,7 +1253,7 @@ void func_802D6494(void){
                 break;
             case ACTOR_20F_RBB_ENTRANCE_DOOR:// L802D66F8
                 if(map_get() == MAP_77_GL_RBB_LOBBY && !func_803203FC(UNKFLAGS1_90_SANDCASTLE_OPEN_RBB)){
-                    func_802D4830(func_80326EEC(ACTOR_20F_RBB_ENTRANCE_DOOR), SFX_9A_MECHANICAL_CLOSING, 0.5f);
+                    func_802D4830(actorArray_findActorFromActorId(ACTOR_20F_RBB_ENTRANCE_DOOR), SFX_9A_MECHANICAL_CLOSING, 0.5f);
                     func_8025A6CC(COMUSIC_64_WORLD_OPENING_A, 32000);
                 }
                 break;

@@ -123,14 +123,14 @@ Actor *CCW_func_803882F4(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
 }
 
 void func_803883F4() {
-    Actor* actor = func_80326EEC(0x29D);
+    Actor* actor = actorArray_findActorFromActorId(0x29D);
     if (actor && actor->state == 1) {
         func_80387F64(actor, 2);
     }
 }
 
 bool func_80388438() {
-    Actor* actor = func_80326EEC(0x29D);
+    Actor* actor = actorArray_findActorFromActorId(0x29D);
     if (actor && actor->state == 2) {
         return TRUE;
     }

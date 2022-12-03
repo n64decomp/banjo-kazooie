@@ -186,7 +186,7 @@ void func_802C74F4(Actor *actor, s32 arg1, f32 arg2){
 }
 
 void func_802C7568(enum actor_e actor_id, s32 arg1, f32 arg2){
-    Actor *actor = func_80326EEC(actor_id);
+    Actor *actor = actorArray_findActorFromActorId(actor_id);
     if(actor)
         func_802C74F4(actor, arg1, arg2);
 }
@@ -198,7 +198,7 @@ void func_802C75A0(Actor *actor, s32 arg1){
 }
 
 void func_802C75C8(enum actor_e actor_id, s32 arg1){
-    Actor *actor = func_80326EEC(actor_id);
+    Actor *actor = actorArray_findActorFromActorId(actor_id);
     if(actor)
         func_802C75A0(actor, arg1);
 }
@@ -208,7 +208,7 @@ void func_802C75F8(Actor *actor, s32 arg1){
 }
 
 void func_802C7600(enum actor_e actor_id, s32 arg1){
-    Actor *actor = func_80326EEC(actor_id);
+    Actor *actor = actorArray_findActorFromActorId(actor_id);
     if(actor)
         func_802C75F8(actor, arg1);
 }

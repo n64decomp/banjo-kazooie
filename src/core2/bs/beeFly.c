@@ -30,15 +30,15 @@ u8 D_8037D2C0;
 int bsBeeFly_inSet(s32);
 
 void func_802A04F0(void){
-    f32 plyrPos[3]; //sp1C
+    f32 player_position[3];
 
-    _player_getPosition(&plyrPos);
-    plyrPos[0] += randf2(-30.0f, 30.0f);
-    plyrPos[1] += 30.0f + randf2(0.0f, 30.0f);
-    plyrPos[2] += randf2(-30.0f, 30.0f);
+    _player_getPosition(player_position);
+    player_position[0] += randf2(-30.0f, 30.0f);
+    player_position[1] += 30.0f + randf2(0.0f, 30.0f);
+    player_position[2] += randf2(-30.0f, 30.0f);
     func_803541C0(3);
     func_803541CC(0x50);
-    func_80354030(plyrPos, 0.5f);
+    func_80354030(player_position, 0.5f);
 
 }
 

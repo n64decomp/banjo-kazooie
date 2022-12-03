@@ -85,7 +85,7 @@ void bsbbuster_update(void){
     AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     s32 sp3C;
     f32 sp30[3];
-    s32 sp24[3];
+    f32 player_position[3];
 
     D_8037D2B8 = 0;
     if(animctrl_isAt(aCtrl, 0.24f))
@@ -144,8 +144,8 @@ void bsbbuster_update(void){
                 D_8037D2B8 = 1;
                 D_8037D2B0 = 0.09f;
                 D_8037D2BA = 3;
-                _player_getPosition(&sp24);
-                func_8032728C(sp24, 150.0f, 2, func_8029FB20);
+                _player_getPosition(player_position);
+                func_8032728C(player_position, 150.0f, 2, func_8029FB20);
                 if(func_802931DC(&sp3C)){
                     sp44 = BS_SPLAT;
                 }

@@ -47,7 +47,7 @@ f32 func_8033AA10(AnimationFile *this, s32 arg1){
     return (f32)(arg1 - this->unk0)/(f32)(this->unk2 - this->unk0);
 }
 
-void func_8033AA50(AnimationFile *anim_file, f32 arg1, s32 arg2){
+void func_8033AA50(AnimationFile *anim_file, f32 arg1, Struct_B1400 *arg2){
     s32 tmp_s1;
     int i;
     f32 tmp_f22;
@@ -55,7 +55,7 @@ void func_8033AA50(AnimationFile *anim_file, f32 arg1, s32 arg2){
     f32 sp54[3][3];
 
     tmp_f22 = func_8033ABA0(anim_file, arg1);
-    tmp_s0 = (s32)anim_file + sizeof(AnimationFile);
+    tmp_s0 = (AnimationFileElement *)((s32)anim_file + sizeof(AnimationFile));
     tmp_s1 = 0;
     for(i = 0; i < anim_file->elem_cnt; i++){//L8033AAB8
         if(tmp_s0->unk0_15 != tmp_s1){
@@ -199,7 +199,7 @@ void func_8033B180(void){
 }
 
 void func_8033B1BC(void){
-    struct21s *tmp_a0;
+    vector(struct21s) *tmp_a0;
     struct21s *iPtr;
     struct21s *start_ptr;
     struct21s *endPtr;
@@ -220,8 +220,8 @@ void func_8033B1BC(void){
 }
 
 void func_8033B268(void){
-    D_80383CE0[0] = defrag(D_80383CE0[0]);
-    D_80383CE0[1] = defrag(D_80383CE0[1]);
+    D_80383CE0[0] = (vector(struct21s) *)defrag(D_80383CE0[0]);
+    D_80383CE0[1] = (vector(struct21s) *)defrag(D_80383CE0[1]);
 }
 
 void func_8033B2A4(s32 arg0) {
@@ -385,7 +385,7 @@ void *assetcache_get(s32 arg0) {
         if (func_8025498C((u32)comp_size + uncomp_size) && !sp28) {
             sp33 = 1;
             uncompressed_file = malloc((u32)comp_size + uncomp_size);
-            compressed_file = (s32) uncompressed_file + uncomp_size;
+            compressed_file = (void *)((s32) uncompressed_file + uncomp_size);
         } else {
             sp33 = 2;
             if (sp28 != 0) {
@@ -513,7 +513,7 @@ s32 func_8033BDAC(enum asset_e id, void *dst, s32 size) {
         }
         else if(size >= var_s0) {
             sp2B = 2;
-            comp_ptr = malloc(comp_ptr);
+            comp_ptr = (s32)malloc(comp_ptr);
         }
         else{
             return 0;
@@ -525,7 +525,7 @@ s32 func_8033BDAC(enum asset_e id, void *dst, s32 size) {
            var_s0 = (comp_ptr - (comp_ptr & (0x10 -1))) + 0x10;
         
         if(size >= comp_ptr){
-            comp_ptr = dst;
+            comp_ptr = (s32)dst;
         }
         else{
             return 0;
@@ -537,7 +537,7 @@ s32 func_8033BDAC(enum asset_e id, void *dst, s32 size) {
         rarezip_inflate(comp_ptr, dst);
         osWritebackDCache(dst, D_80370A10);
         if (sp2B == 2) {
-            free(comp_ptr);
+            free((void *)comp_ptr);
         }
     }
     return var_s0;

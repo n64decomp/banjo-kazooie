@@ -24,20 +24,20 @@ void snacker_reset(void){
 
 //__playerWithinHorizontalDistance
 s32 func_8028A41C(f32 x, f32 z, f32 dist){
-    f32 plyrPos[3];
+    f32 player_position[3];
 
-    _player_getPosition(&plyrPos);
-    return func_80259254(plyrPos, x, z, dist);
+    _player_getPosition(player_position);
+    return func_80259254(player_position, x, z, dist);
 }
 
 //_snacker_ttc_update
 s32 func_8028A45C(void){
     s32 nextState = 0;
-    f32 plyrPos[3];
+    f32 player_position[3];
 
-    _player_getPosition(&plyrPos);
+    _player_getPosition(player_position);
     if(func_8028B470() || func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE)){ //(swimming || ???)
-        if(plyrPos[1] < 600.0f
+        if(player_position[1] < 600.0f
             && !func_8028A41C(2478.0f, 4586.0f, 1750.0f) //within 1750 of sandcastle center
             && !func_8028A41C(-400.0, 2315.0f, 2000.0f)  //within 2000 of blubber's ship center
         ){

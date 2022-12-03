@@ -52,7 +52,7 @@ void func_802D88E0(Actor *this) {
         for(i = 0; i < 3; i++){
             sp5C[i] = this->position[i] + (randf()*2)*25 - ((i == 1) ? 0 : 25);
         }
-        particleEmitter_setPosition(pCtrl, &sp5C);
+        particleEmitter_setPosition(pCtrl, sp5C);
         particleEmitter_setSprite(pCtrl, (this->modelCacheIndex == 0x1FF) ? ASSET_715_SPRITE_SPARKLE_RED : ASSET_713_SPRITE_SPARKLE_YELLOW);
         particleEmitter_setStartingFrameRange(pCtrl, 0, 0);
         func_802EFB98(pCtrl, &D_80367CD8);
@@ -89,5 +89,5 @@ void func_802D8B20(enum actor_e actor_id){
 }
 
 void func_802D8BE4(bool gold_feather){
-    __spawnqueue_add_1(func_802D8B20, (!gold_feather) ? 0x1FF : 0x200);
+    __spawnQueue_add_1((GenMethod_1)func_802D8B20, (!gold_feather) ? 0x1FF : 0x200);
 }

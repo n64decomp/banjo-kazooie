@@ -40,7 +40,7 @@ void chnabnut_setState(Actor *this, s32 next_state) {
     }
 
     if (next_state == NABNUT_STATE_2_WAIT) {
-        timedFunc_set_2(1.0f, (TFQM2)__chnabnut_setState_method, (s32)this->marker, NABNUT_STATE_3_BACKFLIP);
+        timedFunc_set_2(1.0f, (GenMethod_2)__chnabnut_setState_method, (s32)this->marker, NABNUT_STATE_3_BACKFLIP);
     }
 
     if (next_state == NABNUT_STATE_3_BACKFLIP) {

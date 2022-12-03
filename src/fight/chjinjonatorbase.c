@@ -97,7 +97,7 @@ void func_8038E260(ActorMarker *arg0) {
     Actor *sp24 = marker_getActor(arg0);
 
     func_802BB3DC(0, 18.0f, 0.92f);
-    func_802C3F04((GenMethod_4) func_802C4140, 0x3AD, *(u32 *)(&sp24->unk1C_x), *(u32 *)(&sp24->unk1C_y), *(u32 *)(&sp24->unk1C_z));
+    __spawnQueue_add_4((GenMethod_4) func_802C4140, 0x3AD, *(u32 *)(&sp24->unk1C_x), *(u32 *)(&sp24->unk1C_y), *(u32 *)(&sp24->unk1C_z));
     func_8038E03C(sp24->unk1C, 0x10);
 }
 

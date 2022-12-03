@@ -74,7 +74,7 @@ void func_8038AC18(Actor *this, s32 new_state){
         mapSpecificFlags_set(local->unk4->unk10, TRUE);
         this->position_y -= 30.0f;
         local->unk8 = 1.0f;
-        other = func_80326EEC(0x1c5);
+        other = actorArray_findActorFromActorId(0x1c5);
         if(other){
             local->unk0 = func_8038B56C(other, this->modelCacheIndex - 0x1be, this);
         }

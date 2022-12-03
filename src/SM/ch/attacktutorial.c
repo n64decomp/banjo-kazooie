@@ -43,7 +43,7 @@ s32 SM_func_803871FC(Actor *this, s32 arg1){
     s32 tmp_v0;
     
     sp1C = (arg1 == 1)? ACTOR_166_TOPPER_A : (tmp_v0 = (arg1 == 2)? ACTOR_165_BAWL_A : ACTOR_164_COLLYWOBBLE_A);
-    func_802C3D3C(__chAttackTutorial_spawnEnemy, this->marker, sp1C);
+    __spawnQueue_add_2(__chAttackTutorial_spawnEnemy, this->marker, sp1C);
     
 }
 
@@ -113,7 +113,7 @@ void chAttackTutorial_update(Actor *this){
     
     if(!this->initialized){ 
         //find closest tutorial bottles
-        bottles = func_80326D68(this->position, ACTOR_12B_TUTORIAL_BOTTLES, -1, &sp2C);
+        bottles = actorArray_findClosestActorFromActorId(this->position, ACTOR_12B_TUTORIAL_BOTTLES, -1, &sp2C);
         if(bottles != NULL){
             this->unk1C_x = bottles->position_x;
             this->unk1C_y = bottles->position_y;

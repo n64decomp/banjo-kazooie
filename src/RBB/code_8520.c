@@ -75,7 +75,7 @@ void func_8038E998(Actor *this){
     particleEmitter_setSprite(other, ASSET_70E_SPRITE_SMOKE_2);
     func_802EFA5C(other, 0.0f, 0.1f);
     particleEmitter_setStartingFrameRange(other, 0, 7);
-    particleEmitter_setPosition(other, &this->position);
+    particleEmitter_setPosition(other, this->position);
     func_802EFB70(other, 0.25f, 0.75f);
     func_802EFB84(other, 0.75f, 1.75f);
     particleEmitter_setParticleSpawnPositionRange(other, -50.0f, 25.0f, -50.0f, 50.0f, 25.0f, 50.0f);
@@ -94,7 +94,7 @@ void func_8038EAB4(Actor *this){
     particleEmitter_setStartingFrameRange(other, 0, 0);
     particleEmitter_setParticleFramerateRange(other, 4.0f, 4.0f);
     particleEmitter_setParticleSpawnPositionRange(other, 0.0f, 200.0f, 0.0f, 0.0f, 200.0f, 0.0f);
-    particleEmitter_setPosition(other, &this->position);
+    particleEmitter_setPosition(other, this->position);
     func_802EFB70(other, 3.0f, 3.0f);
     func_802EFB84(other, 8.0f, 8.0f);
     func_802EFEC0(other, 0.5f, 0.5f);
@@ -108,7 +108,7 @@ void func_8038EC14(Actor *this){
     particleEmitter_setSprite(other, ASSET_70E_SPRITE_SMOKE_2);
     func_802EFA5C(other, 0.05f, 0.1f);
     particleEmitter_setStartingFrameRange(other, 0, 7);
-    particleEmitter_setPosition(other, &this->position);
+    particleEmitter_setPosition(other, this->position);
     func_802EFB70(other, 1.0f, 1.5f);
     func_802EFB84(other, 2.0f, 3.0f);
     particleEmitter_setParticleSpawnPositionRange(other, -75.0f, 25.0f, -75.0f, 75.0f, 75.0f, 75.0f);
@@ -124,7 +124,7 @@ void func_8038ED3C(Actor * actor, s32 arg1){
     func_802EF9F8(other, 0.6f);
     func_802EFA18(other, 3);
     particleEmitter_setModel(other, arg1);
-    particleEmitter_setPosition(other, &actor->position);
+    particleEmitter_setPosition(other, actor->position);
     func_802EFB70(other, 0.05f, 0.4f);
     func_802EFE24(other, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
     particleEmitter_setSpawnIntervalRange(other, 0.0f, 0.01f);

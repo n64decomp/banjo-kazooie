@@ -630,7 +630,7 @@ segments:
   - [0xF90770, c, code_3AE10] #DONE
   - [0xF90C20, c, done/code_3B2C0] #DONE
   - [0xF90F20, c, code_3B5C0] #DONE
-  - [0xF914E0, c, code_3BB80] #DONE
+  - [0xF914E0, c, spawnqueue] #DONE
   - [0xF92D30, c, ch/gameSelect] #DONE
   - [0xF94430, c, code_3EAD0] #DONE
   - [0xF94590, c, code_3EC30] #DONE
@@ -927,7 +927,7 @@ segments:
   - [0x1034730, .data, code_37E50]
   - [0x1034760, .data, code_382E0]
   - [0x1034770, .data, code_3AE10]
-  - [0x1034790, .data, code_3BB80]
+  - [0x1034790, .data, spawnqueue]
   - [0x10347A0, .data, ch/gameSelect]
   - [0x1034900, .data, code_3EAD0]
   - [0x1034980, .data, code_3EC30]
@@ -1198,7 +1198,7 @@ segments:
   - [0x1044930, .rodata, code_39A10]
   - [0x1044950, .rodata, code_39EF0]
   - [0x1044990, .rodata, code_3AE10]
-  - [0x10449A0, .rodata, code_3BB80]
+  - [0x10449A0, .rodata, spawnqueue]
   - [0x10449F0, .rodata, ch/gameSelect]
   - [0x1044B70, .rodata, code_3ECE0]
   - [0x1044B80, .rodata, ch/bigbutt]

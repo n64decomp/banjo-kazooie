@@ -121,7 +121,7 @@ void func_802D0F30(ActorMarker *marker, ActorMarker *other_marker) {
 
     this = marker_getActor(marker);
     FUNC_8030E8B4(SFX_1B_EXPLOSION_1, 1.0f, 32736, this->position, 1250, 2500);
-    __spawnqueue_add_1((GenMethod_1)func_802D0B24, reinterpret_cast(s32, this));
+    __spawnQueue_add_1((GenMethod_1)func_802D0B24, reinterpret_cast(s32, this));
     func_802D0B54(this);
     func_802D0CB4(this);
     func_802D0DDC(this, ASSET_53A_MODEL_SHRAPNAL_PIECE_EYE, 2);

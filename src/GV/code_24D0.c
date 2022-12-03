@@ -41,7 +41,7 @@ void chgobirope_update(Actor *this){
         this->unk16C_4 = TRUE;
         this->marker->propPtr->unk8_3 = TRUE;
         actor_collisionOff(this);
-        sp2C = func_80326D68(this->position, ACTOR_12E_GOBI_1, -1, &sp28);
+        sp2C = actorArray_findClosestActorFromActorId(this->position, ACTOR_12E_GOBI_1, -1, &sp28);
         if(sp2C){
             this->position_x = sp2C->position_x;
             this->position_y = sp2C->position_y;

@@ -223,12 +223,12 @@ void func_803876D0(Actor *this){
         func_80304D4C(sp40, &((ActorLocal_Conga *)&this->local)->unk10);
     }
     if(0.0f == this->unk28){
-        this->unk28 = (func_80326CCC(0x36) != NULL)? 2.0f: 1.0f;
+        this->unk28 = (actorArray_findActorFromMarkerId(MARKER_36_ORANGE_COLLECTABLE) != NULL)? 2.0f: 1.0f;
     }
     if(0.0f != this->velocity_x){
         this->velocity_x -= 1.0f; 
         if(0.0f == this->velocity_x){
-            __spawnqueue_add_1((GenMethod_1)func_80387100, (s32)this->marker);
+            __spawnQueue_add_1((GenMethod_1)func_80387100, (s32)this->marker);
         }
     }
     marker_setCollisionScripts(this->marker, NULL, NULL, func_80387168);
@@ -369,6 +369,6 @@ void func_803876D0(Actor *this){
         || (this->state == 7 && actor_animationIsAt(this, 0.468f))
     ){
         func_8034A1B4(this->marker->unk44, 5, &this->local);
-        __spawnqueue_add_1((GenMethod_1)func_803873C8, (s32)this->marker); //spawn orange
+        __spawnQueue_add_1((GenMethod_1)func_803873C8, (s32)this->marker); //spawn orange
     }
 }

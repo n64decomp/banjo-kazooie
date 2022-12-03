@@ -63,8 +63,8 @@ bool func_8031C6E4(void) {
         if (!mapSpecificFlags_get(0xC)) {
             mapSpecificFlags_set(0xC, TRUE);
             func_802DC528(0, 0);
-            timedFunc_set_2(11.0f, (TFQM2)func_802DC560, 0, 0);
-            timedFunc_set_3(12.0f, (TFQM3)func_802E4078, MAP_1F_CS_START_RAREWARE, 0, 1);
+            timedFunc_set_2(11.0f, (GenMethod_2)func_802DC560, 0, 0);
+            timedFunc_set_3(12.0f, (GenMethod_3)func_802E4078, MAP_1F_CS_START_RAREWARE, 0, 1);
         } else {
             timedFuncQueue_flush();
         }
@@ -394,7 +394,7 @@ void func_8031D604(s32 arg0, s32 arg1) {
 void func_8031D628(s32 arg0, s32 arg1) {
     Actor *actor;
 
-    actor = func_80326EEC(0x13E);
+    actor = actorArray_findActorFromActorId(0x13E);
     if (actor) {
         marker_despawn(actor->marker);
     }

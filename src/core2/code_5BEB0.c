@@ -37,7 +37,7 @@ void mapSavestate_defrag_all(void){
     int i;
     for(i = 0; i < 0x9A; i++){
         if(D_8037E650[i]){
-            D_8037E650[i] = defrag(D_8037E650[i]);
+            D_8037E650[i] = (MapSavestate *)defrag(D_8037E650[i]);
         }
     }
 }

@@ -125,7 +125,7 @@ void chwasp_update(Actor *this) {
         return;
     }
     if(local->unk4 == NULL) {
-        other = func_80326EEC(0x299);
+        other = actorArray_findActorFromActorId(0x299);
         if (other == NULL) {
             marker_despawn(this->marker);
             return;

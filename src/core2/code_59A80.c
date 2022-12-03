@@ -44,7 +44,7 @@ s32 func_802E0A90(Actor *this){
     sp18[0] = (s32)this->position[0];
     sp18[1] = (s32)this->position[1];
     sp18[2] = (s32)this->position[2];
-    id = func_80307164(sp18, this);
+    id = func_80307164(sp18);
     if(id < 0){
         return 0;
     }

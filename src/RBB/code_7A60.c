@@ -24,7 +24,7 @@ void func_8038DE68(Actor *this){
         if(jiggyscore_isSpawned(JIGGY_56_RBB_BOSS_BOOM_BOX) && !func_803203FC(2)){
             marker_despawn(this->marker);
         }else{
-            func_802C3F04(func_802C4140, 0x281, reinterpret_cast(s32,this->position_x), reinterpret_cast(s32,this->position_y), reinterpret_cast(s32,this->position_z));
+            __spawnQueue_add_4((GenMethod_4)func_802C4140, 0x281, reinterpret_cast(s32,this->position_x), reinterpret_cast(s32,this->position_y), reinterpret_cast(s32,this->position_z));
             func_8038DE50(this, 1);
         }
     }//L8038DEF4

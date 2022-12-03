@@ -195,5 +195,5 @@ typedef struct{
 
 BKVertexList *func_8033A148(BKModelBin *arg0);
 Vtx *vtxList_getVertices(BKVertexList *vtxList);
-void func_80333D48(BKVertexList *arg0, f32 position[3], f32 rotation[3], f32 scale, s32 arg4, BKVertexList *arg5);
+void func_80333D48(BKVertexList *arg0, f32 position[3], f32 rotation[3], f32 scale, f32 arg4[3], BKVertexList *arg5);
 #endif

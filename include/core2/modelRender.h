@@ -25,7 +25,7 @@ void modelRender_setPrimAndEnvColors(s32 env[4], s32 prim[4]);
 void modelRender_setEnvColor(s32 r, s32 g, s32 b, s32 a);
 void modelRender_setAlpha(s32 a);
 void func_8033A444(struct58s *arg0);
-void func_8033A450(s32 arg0);
+void func_8033A450(struct5Bs *arg0);
 void func_8033A45C(s32 arg0, s32 arg1);
 void func_8033A470(s32 arg0, s32 arg1);
 void modelRender_setTextureList(BKTextureList *textureList);

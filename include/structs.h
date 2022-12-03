@@ -635,7 +635,7 @@ typedef struct {
 typedef struct struct_63_s{
     s16 unk0;
     // u8 pad2[2];
-    void (*unk4)(s32, struct actor_marker_s *);
+    void (*unk4)(vector(struct2s) **, struct actorMarker_s *);
 } Struct63s;
 
 typedef struct struct_64_s{
@@ -645,8 +645,8 @@ typedef struct struct_64_s{
 
 typedef struct struct_65_s{
     f32 unk0[3];
-    struct actor_marker_s *unkC;
-    s32 (*unk10)(f32[3], f32, struct actor_marker_s *);
+    struct actorMarker_s *unkC;
+    s32 (*unk10)(f32[3], f32, struct actorMarker_s *);
     s16 unk14[3];
     s16 unk1A[3];
     u8 unk20;
@@ -665,7 +665,7 @@ typedef void  (*Struct68DrawMethod)(void *, struct struct_68_s *, f32[3], f32[3]
 typedef struct struct_68_s{
     u8 unk0;
     // u8 pad1[0x3];
-    struct actor_marker_s *unk4;
+    struct actorMarker_s *unk4;
     Struct68DrawMethod unk8;
     BKModelBin *unkC;
     u8 pad10[0x4];
@@ -688,10 +688,10 @@ typedef struct {
 } Struct6Bs;
 
 typedef struct{
-    s32 (* unk0)(struct actor_marker_s *, f32[3], f32[3], f32[3], s32);
-    s32 (* unk4)(struct actor_marker_s *, f32[3], f32[3], f32, f32[3], s32, u32);
-    s32 (* unk8)(struct actor_marker_s *, f32[3], f32, f32[3], s32);
-    s32 (* unkC)(struct actor_marker_s *, f32[3], f32, f32[3], s32);
+    s32 (* unk0)(struct actorMarker_s *, f32[3], f32[3], f32[3], s32);
+    s32 (* unk4)(struct actorMarker_s *, f32[3], f32[3], f32, f32[3], s32, u32);
+    s32 (* unk8)(struct actorMarker_s *, f32[3], f32, f32[3], s32);
+    s32 (* unkC)(struct actorMarker_s *, f32[3], f32, f32[3], s32);
 } Struct6Cs;
 
 typedef struct struct_6D_s{
@@ -830,7 +830,7 @@ typedef struct {
     f32 unk0;
     u8 unk4;
     u8 pad5[0x3];
-    void (* unk8)(struct actor_marker_s *);
+    void (* unk8)(struct actorMarker_s *);
     s32 unkC;
 }Struct7Fs;
 
@@ -856,18 +856,18 @@ typedef struct {
 
 typedef struct {
     enum actor_e actor_id;
-    struct actor_marker_s *marker;
+    struct actorMarker_s *marker;
     f32 position[3];
-    void (*unk14)(struct actor_s *, struct actor_marker_s *);
-    struct actor_marker_s *unk18;
+    void (*unk14)(struct actor_s *, struct actorMarker_s *);
+    struct actorMarker_s *unk18;
 }Struct81s;
 
 typedef struct {
     enum actor_e actor_id;
-    struct actor_marker_s *marker;
+    struct actorMarker_s *marker;
     f32 position[3];
-    void (*unk14)(struct actor_s *, struct actor_marker_s *);
-    struct actor_marker_s *unk18;
+    void (*unk14)(struct actor_s *, struct actorMarker_s *);
+    struct actorMarker_s *unk18;
 }Struct82s;
 
 typedef struct {

@@ -108,13 +108,13 @@ void BGS_func_8038BBA0(Actor *this, s32 arg1){
     if(arg1 == 103){
         func_80335A24(this->unk148, 0x124, 0.1f, 0.5f); //0x124 = croc_munch
         if(this->state == 4){
-            timed_playSfx(0.31f, SFX_4C_LIP_SMACK, 0.90f, 0x61A8);
-            timedFunc_set_1(0.31f, func_8038BB40, this->marker);
+            timed_playSfx(0.31f, SFX_4C_LIP_SMACK, 0.90f, 25000);
+            timedFunc_set_1(0.31f, (GenMethod_1)func_8038BB40, reinterpret_cast(s32, this->marker));
         }
         else{
-            timed_playSfx(0.31f, SFX_4C_LIP_SMACK, 0.90f, 0x61A8);
-            timed_playSfx(0.81f, SFX_4C_LIP_SMACK, 0.93f, 0x61A8);
-            timed_playSfx(1.31f, SFX_4C_LIP_SMACK, 0.91f, 0x61A8);
+            timed_playSfx(0.31f, SFX_4C_LIP_SMACK, 0.90f, 25000);
+            timed_playSfx(0.81f, SFX_4C_LIP_SMACK, 0.93f, 25000);
+            timed_playSfx(1.31f, SFX_4C_LIP_SMACK, 0.91f, 25000);
         }
     }
     if(arg1 == 104){
@@ -143,7 +143,7 @@ void func_8038BD84(Actor *this){
 
 void func_8038BDD4(Actor *this) {
     ActorLocal_MrVile *local;
-    f32 sp60[3];
+    f32 start_position[3];
     f32 sp5C;
     f32 sp58;
     f32 sp54;
@@ -153,9 +153,9 @@ void func_8038BDD4(Actor *this) {
 
     local = (ActorLocal_MrVile *)&this->local;
     sp5C = time_getDelta();
-    sp60[0] = this->position[0];
-    sp60[1] = this->position[1];
-    sp60[2] = this->position[2];
+    start_position[0] = this->position[0];
+    start_position[1] = this->position[1];
+    start_position[2] = this->position[2];
     func_8025773C(&local->unk14, sp5C);
     if ((local->unkC == 102) || (local->unkC == 103) || (local->unkC == 104)) {
         sp44[0] = 0.0f;
@@ -191,7 +191,7 @@ void func_8038BDD4(Actor *this) {
         }
     }
     if (this->position[1] > 100.0f) {
-        func_8038B9F0(&sp60, this->position, 90.0f, 70.0f, 0);
+        func_8038B9F0(start_position, this->position, 90.0f, 70.0f, 0);
     }
 }
 
@@ -228,7 +228,7 @@ void func_8038C0C8(Actor * this, s32 next_state){
 Actor *chvile_draw(ActorMarker *marker, Gfx **gfx, Mtx** mtx, Vtx **vtx){
     Actor *this;
     ActorLocal_MrVile *local;
-    f32 sp34[3];
+    f32 position[3];
     
 
     this = func_80325888(marker, gfx, mtx, vtx);
@@ -238,10 +238,10 @@ Actor *chvile_draw(ActorMarker *marker, Gfx **gfx, Mtx** mtx, Vtx **vtx){
         (local->unk14 > 0.0f) 
         && (this->marker->unk14_21)
     ) {
-        func_8034A174(func_80329934(), 5, &sp34);
-        sp34[1] -= 30.0f;
+        func_8034A174(func_80329934(), 5, position);
+        position[1] -= 30.0f;
         modelRender_setDepthMode(MODEL_RENDER_DEPTH_FULL);
-        modelRender_draw(gfx, mtx, &sp34, 0, local->unk14, 0, local->unk4);
+        modelRender_draw(gfx, mtx, position, 0, local->unk14, 0, local->unk4);
     }
     return this;
 }
@@ -323,12 +323,10 @@ void BGS_func_8038C460(ActorMarker *arg0){
 }
 
 void chvile_update(Actor *this) {
-    ActorLocal_MrVile *local;
-    bool var_v1;
-    f32 sp94;
+    f32 player_position[3];
     f32 sp90;
     f32 temp_a0;
-    f32 temp_f0;
+    bool var_v1;
     f32 sp84;
     f32 sp80;
     f32 sp7C;
@@ -337,8 +335,8 @@ void chvile_update(Actor *this) {
     f32 sp70;
     f32 sp6C;
     f32 sp68;
-    f32 sp50;
-    f32 sp58[3];
+    ActorLocal_MrVile *local;
+    f32 random_position[3];
 
     local = (ActorLocal_MrVile *)&this->local;
     if (!this->unk16C_4) {
@@ -352,17 +350,17 @@ void chvile_update(Actor *this) {
         return;
     }
     if (local->game_marker == NULL) {
-        local->game_marker = func_80326D68(this->position, 0x138, -1, &sp90)->marker;
+        local->game_marker = actorArray_findClosestActorFromActorId(this->position, 0x138, -1, &sp90)->marker;
     }
-    player_getPosition(&sp94);
-    sp90 = ml_vec3f_distance(this->position, &sp94);
+    player_getPosition(player_position);
+    sp90 = ml_vec3f_distance(this->position, player_position);
     if (sp90 <= 300.0f) {
         local->unk0 =  (local->unk0 == 0) ? 1 : 2;
     } else if (sp90 > 300.0f) {
         local->unk0 = 0U;
     }
     if (this->state == 2) {
-        func_80258A4C(this->position, this->yaw - 90.0f, &sp94, &sp84, &sp80, &sp7C);
+        func_80258A4C(this->position, this->yaw - 90.0f, player_position, &sp84, &sp80, &sp7C);
         if (((sp84 > 50.0f) && (0.05 < sp7C)) || (sp7C < -0.05)) {
             this->yaw += sp7C * 20.0f;
         } else {
@@ -432,15 +430,15 @@ void chvile_update(Actor *this) {
     }
     if ((this->state == 6)){
         local->unk10 = 400.0f;
-        if((ml_vec3f_distance(this->position, local->target_position) < 100.0f) || (ml_vec3f_distance(&sp94, local->target_position) < 300.0f)) {
+        if((ml_vec3f_distance(this->position, local->target_position) < 100.0f) || (ml_vec3f_distance(player_position, local->target_position) < 300.0f)) {
             for(i = 0; i < 10; i++){
-                sp58[0] = randf2(-500.0f, 500.0f);
-                sp58[1] = 0.0f;
-                sp58[2] = randf2(-500.0f, 500.0f);
-                if ((i == 0) || (ml_vec3f_distance(&sp94, &sp58) > ml_vec3f_distance(&sp94, local->target_position))) {
-                    local->target_position[0] = sp58[0];
-                    local->target_position[1] = sp58[1];
-                    local->target_position[2] = sp58[2];
+                random_position[0] = randf2(-500.0f, 500.0f);
+                random_position[1] = 0.0f;
+                random_position[2] = randf2(-500.0f, 500.0f);
+                if ((i == 0) || (ml_vec3f_distance(player_position, random_position) > ml_vec3f_distance(player_position, local->target_position))) {
+                    local->target_position[0] = random_position[0];
+                    local->target_position[1] = random_position[1];
+                    local->target_position[2] = random_position[2];
                 }
             };
         }

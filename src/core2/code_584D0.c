@@ -145,7 +145,7 @@ void func_802DF71C(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     Actor *this;
     f32 sp3C;
 
-    this = func_80325300(D_8037E060, &sp44);
+    this = marker_getActorAndRotation(D_8037E060, &sp44);
     modelRender_preDraw((GenMethod_1)func_803253A0, (s32)this);
     modelRender_postDraw((GenMethod_1)func_80325794, (s32)D_8037E060);
     modelRender_setDepthMode(MODEL_RENDER_DEPTH_FULL);

@@ -182,7 +182,7 @@ MapInfo * func_8030AD00(enum map_e map_id){
 
 enum level_e map_getLevel(enum map_e map){
     return func_8030AD00(map)->level_id;
-};
+}
 
 /* returns string containing the map name and index */
 char *gcsection_getName(enum map_e map){

@@ -71,7 +71,7 @@ void func_8035D1F0(ActorMarker *arg0, s32 arg1) {
     func_802DAD8C(partEmitList_pushNew(2), this, ASSET_4C8_MODEL_MUMMUM_ARM);
     func_8035D110(partEmitList_pushNew(1), this, ASSET_4CB_MODEL_MUMMUM_BODY);
     FUNC_8030E8B4(SFX_119_FISH_DEATH, 0.8f, 32000, this->position, 1250, 2500);
-    func_802C3F04((GenMethod_4) func_802C4140, ACTOR_4C_STEAM, reinterpret_cast(s32, this->position[0]), reinterpret_cast(s32, this->position[1]), reinterpret_cast(s32, this->position[2]));
+    __spawnQueue_add_4((GenMethod_4) func_802C4140, ACTOR_4C_STEAM, reinterpret_cast(s32, this->position[0]), reinterpret_cast(s32, this->position[1]), reinterpret_cast(s32, this->position[2]));
     marker_despawn(arg0);
 }
 

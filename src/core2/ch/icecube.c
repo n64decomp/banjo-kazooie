@@ -5,9 +5,11 @@
 #define _HorzDist3v(v1, v2) ((v1[0]-v2[0])*(v1[0]-v2[0]) + (v1[2]-v2[2])*(v1[2]-v2[2]))
 extern void func_802D729C(Actor *, f32);
 extern f32 func_80257204(f32, f32, f32, f32);
+extern Actor *func_802C937C(enum actor_e, f32[3]);
 
 void chicecube_update(Actor *this);
 Actor *chicecube_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
+
 
 /* .data */
 ActorAnimationInfo D_80372B50[] = {
@@ -224,7 +226,7 @@ void __chicecube_die(ActorMarker *marker, ActorMarker *other_marker){
     func_8035A04C(actor->position, 12, ASSET_505_MODEL_ICECUBE_CHUNK, actor->scale);
     func_8035A228(actor->position, 6, ASSET_700_SPRITE_DUST, actor->scale);
     if(actor->unkF4_8 != 1){
-        __spawnqueue_add_1(__chicecube_spawnHalfCubes, actor->marker);
+        __spawnQueue_add_1((GenMethod_1)__chicecube_spawnHalfCubes, reinterpret_cast(s32, actor->marker));
     }
     marker_despawn(actor->marker);
 }

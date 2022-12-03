@@ -76,7 +76,7 @@ void func_802DC960(void) {
 
 void func_802DC9A4(s32 arg0, s32 arg1){
     if(D_8037DE60 == NULL){
-        func_802C3BF8(func_802DC960);
+        __spawnQueue_add_0(func_802DC960);
     }
 }
 

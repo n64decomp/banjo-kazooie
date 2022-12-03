@@ -87,7 +87,7 @@ void func_8038E4C0(ActorMarker* marker, s32 arg1) {
     FUNC_8030E8B4(SFX_C2_GRUBLIN_EGH, 1.0f, 32000, actor->position, 1250, 2500);
     pCtrl = partEmitList_pushNew(1);
     func_8038E440(pCtrl, actor, ASSET_52D_MODEL_GRUBLIN_HOOD_HAT);
-    func_802C3F04((GenMethod_4)func_802C4140, ACTOR_4C_STEAM, reinterpret_cast(s32,actor->position_x), reinterpret_cast(s32,actor->position_y), reinterpret_cast(s32,actor->position_z));
+    __spawnQueue_add_4((GenMethod_4)func_802C4140, ACTOR_4C_STEAM, reinterpret_cast(s32,actor->position_x), reinterpret_cast(s32,actor->position_y), reinterpret_cast(s32,actor->position_z));
     actor_collisionOff(actor);
     actor->unk138_24 = 1;
 }

@@ -368,7 +368,7 @@ void func_8038D6C8(Actor *this){
             func_8038D324(this);
         
         if(actor_animationIsAt(this, 0.999f))
-            __spawnqueue_add_1((GenMethod_1)func_8038D474, (s32)this->marker);
+            __spawnQueue_add_1((GenMethod_1)func_8038D474, (s32)this->marker);
         
         if(this->velocity[0] != 0.0f)
             break;
@@ -381,7 +381,7 @@ void func_8038D6C8(Actor *this){
         item_set(ITEM_6_HOURGLASS, TRUE);
         this->unk38_31 = 0xA;
         item_set(ITEM_24_TWINKLY_SCORE, this->unk38_31);
-        __spawnqueue_add_1((GenMethod_1)func_8038D41C, (s32)this->marker);
+        __spawnQueue_add_1((GenMethod_1)func_8038D41C, (s32)this->marker);
         this->unk60 = 0.0f;
         func_80347A14(0);
         func_802FAD64(ITEM_14_HEALTH);
@@ -421,7 +421,7 @@ void func_8038D6C8(Actor *this){
 
         if(0.96 < animctrl_getAnimTimer(this->animctrl)){
             if(this->unk60 <= 0.0){
-                __spawnqueue_add_1((GenMethod_1)func_8038D474, (s32)this->marker);
+                __spawnQueue_add_1((GenMethod_1)func_8038D474, (s32)this->marker);
                 this->unk60 = 2.9f;
             }
             else{

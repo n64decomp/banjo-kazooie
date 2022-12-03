@@ -9,9 +9,9 @@ void func_802C4218(u32,f32,f32,f32);
 void func_80328A84(Actor *, u32);
 
 /* local declarations */
-Actor *func_8038EAD0(ActorMarker *this, Gfx** gdl, Mtx** mtx, u32 arg3);
+Actor *chmudhut_draw(ActorMarker *this, Gfx** gdl, Mtx** mtx, Vtx **vtx);
 void func_8038EB4C(ActorMarker *);
-void func_8038EB8C(Actor *this);
+void chmudhut_update(Actor *this);
 
 /* .data section */
 ActorAnimationInfo D_80390B30[4] = {
@@ -24,7 +24,7 @@ ActorAnimationInfo D_80390B30[4] = {
 u32 D_80390B50[6] = {0xA, 0xA, 0xB, 0xA, 0xA, 0xC};
 
 ActorInfo D_80390B68 = {MARKER_D5_BGS_MUD_HUT, ACTOR_C_MUD_HUT, ASSET_7D8_MODEL_MM_HUT_TOP, 0x01, D_80390B30,
-    func_8038EB8C, func_80326224, func_8038EAD0,
+    chmudhut_update, func_80326224, chmudhut_draw,
     0, 0, 0.0f, 0
 };
 
@@ -43,7 +43,7 @@ void func_8038EA90(void){
     }
 }
 
-Actor *func_8038EAD0(ActorMarker *this, Gfx** gdl, Mtx** mtx, u32 arg3){
+Actor *chmudhut_draw(ActorMarker *this, Gfx** gdl, Mtx** mtx, Vtx **vtx){
     Actor *thisActor;
 
     thisActor = marker_getActor(this);
@@ -51,7 +51,7 @@ Actor *func_8038EAD0(ActorMarker *this, Gfx** gdl, Mtx** mtx, u32 arg3){
     if(thisActor->state == 3)
         return thisActor;
     
-    return func_80325888(this, gdl, mtx, arg3);
+    return func_80325888(this, gdl, mtx, vtx);
 }
 
 void func_8038EB4C(ActorMarker *this){
@@ -63,7 +63,7 @@ void func_8038EB4C(ActorMarker *this){
     if(this);
 }
 
-void func_8038EB8C(Actor *this){
+void chmudhut_update(Actor *this){
     
     f32 diffPos[3];
     f32 plyrPos[3];
@@ -78,7 +78,7 @@ void func_8038EB8C(Actor *this){
         switch(this->state){
             case 1:
                 this->marker->propPtr->unk8_3 = 1;
-                player_getPosition(&plyrPos);
+                player_getPosition(plyrPos);
                 diffPos[0] = plyrPos[0] - this->position_x;
                 diffPos[1] = plyrPos[1] - this->position_y;
                 diffPos[2] = plyrPos[2] - this->position_z;
@@ -100,9 +100,13 @@ void func_8038EB8C(Actor *this){
                     if(tmp == 5){
                         func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);
                     }
-                    __spawnqueue_add_1(func_8038EB4C, this->marker);
+                    __spawnQueue_add_1((GenMethod_1)func_8038EB4C, reinterpret_cast(s32, this->marker));
                     if(tmp < 5){
-                        func_802C3F04(func_802C4218,D_80390B50[tmp], ((u32 *)diffPos)[0], ((u32 *)diffPos)[1], ((u32 *)diffPos)[2]);
+                        __spawnQueue_add_4((GenMethod_4)func_802C4218, D_80390B50[tmp], 
+                            reinterpret_cast(s32, diffPos[0]), 
+                            reinterpret_cast(s32, diffPos[1]), 
+                            reinterpret_cast(s32, diffPos[2])
+                        );
                     } else {
                         jiggySpawn(JIGGY_23_BGS_HUTS, diffPos);
                     }

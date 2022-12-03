@@ -73,7 +73,7 @@ s32 func_8038BAA4(Actor *jiggy){
     sp18[0] = (s32)jiggy->position_x;
     sp18[1] = (s32)jiggy->position_y;
     sp18[2] = (s32)jiggy->position_z;
-    tmp_v0 = func_80307164(sp18, jiggy);
+    tmp_v0 = func_80307164(sp18);
     if( tmp_v0 < 0) 
         return 0;
     else
@@ -198,7 +198,7 @@ void GV_func_8038BEA0(Actor *this){
                     this->unk38_31 = 0;
                     D_80391A80 = this->state;
                     func_802BB3DC(0, 14.0f, 0.92f);
-                    func_802C3F04((GenMethod_4)func_802C4140, 0x11f, 
+                    __spawnQueue_add_4((GenMethod_4)func_802C4140, 0x11f, 
                         reinterpret_cast(s32, this->position_x), reinterpret_cast(s32, this->position_y), reinterpret_cast(s32, this->position_z)
                     );
                 }

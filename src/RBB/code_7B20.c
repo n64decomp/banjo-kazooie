@@ -62,7 +62,7 @@ void func_8038DF6C(Actor* this){
     if(++local->unk20 == 2){
         for(i = 0x5e; i < 0x63; i++){
             
-            other = func_80326D68(this->position, i, -1, &sp58);
+            other = actorArray_findClosestActorFromActorId(this->position, i, -1, &sp58);
             if(sp58 < 300.0f){
                 local->unk4 = other->marker;
                 other->position_x = this->position_x;

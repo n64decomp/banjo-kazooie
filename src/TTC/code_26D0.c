@@ -135,7 +135,7 @@ void func_80388D04(s32 arg0){
 void func_80388D34(Actor *this){
     TTC_func_80388C78(this);
     if(!this->unk16C_4){
-        __spawnqueue_add_1((GenMethod_1)func_80388D04, (s32)this->marker);
+        __spawnQueue_add_1((GenMethod_1)func_80388D04, (s32)this->marker);
         this->unk16C_4 = TRUE;
     }
 }

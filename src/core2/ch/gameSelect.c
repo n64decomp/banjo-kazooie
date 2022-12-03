@@ -21,9 +21,11 @@ extern void func_8031FB14(s32, s32);
 extern void func_8031F678(s32, s32);
 extern void func_80335110(s32);
 
-extern void func_8024E60C(s32, f32*);
+extern void func_8024E60C(s32, s32[3]);
 extern void func_8024E71C(s32, f32*);
 
+extern char *gcpausemenu_TimeToA(int);
+extern struct5Bs *func_803097A0(void);
 
 /* .data */
 f32 D_80365DD0[3][3] = {
@@ -88,7 +90,7 @@ gczoombox_t *D_8037DCF0;
 gczoombox_t *D_8037DCF4;
 f32 D_8037DCF8[2][3];
 f32 D_8037DD10[2][3];
-void *D_8037DD28;
+s32 D_8037DD28;
 s32 D_8037DD2C;
 f32 D_8037DD30;
 f32 D_8037DD34;
@@ -286,7 +288,7 @@ void func_802C4C14(Actor *this){
     f32 sp54;
     f32 sp50; 
     int i; //sp4C
-    s32 sp48;
+    struct5Bs *sp48;
     f32 sp44;
     s32 tmp_a2_2;
     f32 sp34[3];
@@ -298,7 +300,7 @@ void func_802C4C14(Actor *this){
         return;
 
     if(!this->initialized){
-        __spawnqueue_add_1(func_802C4BB4, this->marker);
+        __spawnQueue_add_1((GenMethod_1)func_802C4BB4, reinterpret_cast(s32, this->marker));
         func_802C7318(this);
         this->unk130 = func_802C71F0;
         if(sp84 == 0){
@@ -348,7 +350,7 @@ void func_802C4C14(Actor *this){
                 case 1://L802C4F10
                     if(sp84 == 1){
                         func_8030E510(SFX_136_GAMEBOY_STARTUP, 15000);
-                        timedFunc_set_3(0.25f, comusic_8025AB44, COMUSIC_73_GAMEBOY, -1, 2000);
+                        timedFunc_set_3(0.25f, (GenMethod_3)comusic_8025AB44, COMUSIC_73_GAMEBOY, -1, 2000);
                         func_8025A58C(0, 2000);
                     }
                     else{
@@ -390,19 +392,19 @@ void func_802C4C14(Actor *this){
                     if(animctrl_isStopped(this->animctrl)){
                         func_802DEB80();
                         if(!func_8033D1BC(sp84)){
-                            timedFunc_set_3(0.0f, func_802E4078, MAP_85_CS_SPIRAL_MOUNTAIN_3, 0, 1);
+                            timedFunc_set_3(0.0f, (GenMethod_3)func_802E4078, MAP_85_CS_SPIRAL_MOUNTAIN_3, 0, 1);
                         }
                         else{//L802C511C
                             sp44 = 0.0f;
                             if(this->state == 4 &&  (sp84 == 0 || sp84 == 1))
                                 sp44 = 0.25f;
                             if(func_802DA498() && func_8031FF1C(BKPROG_BD_ENTER_LAIR_CUTSCENE)){
-                                timedFunc_set_2(sp44, func_8031FB14, 0, 0);
+                                timedFunc_set_2(sp44, (GenMethod_2)func_8031FB14, 0, 0);
                             }
                             else{//L802C5188
-                                timedFunc_set_2(sp44, func_8031F678, 0, 0);
+                                timedFunc_set_2(sp44, (GenMethod_2)func_8031F678, 0, 0);
                             }//L802C51A0
-                            timedFunc_set_1(sp44, func_80335110, 1);
+                            timedFunc_set_1(sp44, (GenMethod_1)func_80335110, 1);
                         }//L802C51B8
                         this->state = 6;
                     }
@@ -426,17 +428,17 @@ void func_802C4C14(Actor *this){
                                     case 0://L802C52B8
                                         func_8030E510(SFX_31_BANJO_OHHWAAOOO, 28000);
                                         func_8030E540(SFX_135_CARTOONY_SPRING);
-                                        timedFunc_set_2(0.4f, func_8030E510, SFX_13A_GLASS_BREAKING_7, 0x7fff);
-                                        timedFunc_set_2(0.9f, func_8030E510, SFX_150_PORCELAIN_CRASH, 0x7fff);
-                                        timedFunc_set_2(1.0f, func_8030E510, SFX_151_CAT_MEOW, 0x7fff);
+                                        timedFunc_set_2(0.4f, (GenMethod_2)func_8030E510, SFX_13A_GLASS_BREAKING_7, 0x7fff);
+                                        timedFunc_set_2(0.9f, (GenMethod_2)func_8030E510, SFX_150_PORCELAIN_CRASH, 0x7fff);
+                                        timedFunc_set_2(1.0f, (GenMethod_2)func_8030E510, SFX_151_CAT_MEOW, 0x7fff);
                                         break;
                                     case 1://L802C5320
-                                        timedFunc_set_2(0.4f, func_8030E510, SFX_31_BANJO_OHHWAAOOO, 28000);
-                                        timedFunc_set_2(0.2f, func_8030E510, SFX_E_SHOCKSPRING_BOING, 28000);
+                                        timedFunc_set_2(0.4f, (GenMethod_2)func_8030E510, SFX_31_BANJO_OHHWAAOOO, 28000);
+                                        timedFunc_set_2(0.2f, (GenMethod_2)func_8030E510, SFX_E_SHOCKSPRING_BOING, 28000);
                                         func_8030E540(SFX_2D_KABOING);
                                         break;
                                     case 2://L802C5364
-                                        timedFunc_set_2(0.15f, func_8030E510, SFX_32_BANJO_EGHEE, 28000);
+                                        timedFunc_set_2(0.15f, (GenMethod_2)func_8030E510, SFX_32_BANJO_EGHEE, 28000);
                                         func_8030E510(SFX_3F6_UNKNOWN, 28000);
                                         func_8030E540(SFX_8F_SNOWBALL_FLYING);
                                         break;

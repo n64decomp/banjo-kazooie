@@ -226,7 +226,7 @@ void particleEmitter_setSprite(ParticleEmitter *, enum asset_e);
 void particleEmitter_setPosition(ParticleEmitter *, f32[3]);
 ParticleEmitter *partEmitList_pushNew(u32);
 void func_802BB3DC(s32, f32, f32);
-void func_802C3F04(GenMethod_4, s32, s32, s32, s32);
+void __spawnQueue_add_4(GenMethod_4, s32, s32, s32, s32);
 Actor *func_802C4140(enum actor_e actor_id, s32 x, s32 y, s32 z);
 void func_8030DA44(u8);
 
@@ -451,7 +451,7 @@ void func_8030EC20(enum sfx_e uid, f32 arg1, f32 arg2, u32 arg3, u32 arg4);
 u8 func_8030ED2C(enum sfx_e uid, s32 arg1);
 
 void func_80320044(s32, s32, s32);
-Actor *func_80325300(ActorMarker *marker, f32 rotation[3]);
+Actor *marker_getActorAndRotation(ActorMarker *marker, f32 rotation[3]);
 Actor *func_80325934(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 Actor *func_80325E78(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 
@@ -520,7 +520,7 @@ void player_setYPosition(f32);
 
 NodeProp *func_80304C38(enum actor_e arg0, Actor *arg1);
 NodeProp *func_80304CAC(s32 arg0, f32 position[3]);
-Actor *func_80326D68(f32 position[3], enum actor_e actor_id, s32 arg2, f32 *min_distance_ptr);
+Actor *actorArray_findClosestActorFromActorId(f32 position[3], enum actor_e actor_id, s32 arg2, f32 *min_distance_ptr);
 Actor *subaddie_getLinkedActor(Actor *);
  
  /* used in RBB */
@@ -544,7 +544,7 @@ void func_802C8F70(f32);
 void func_802F9DB8(s32, f32, f32, f32);
 void func_802F9F80(s32, f32, f32, f32);
 void func_802FA060(s32, s32, s32, f32);
-Actor *func_80326EEC(enum actor_e);
+Actor *actorArray_findActorFromActorId(enum actor_e);
 f32 func_8038A6B8(ActorMarker *);
 void *defrag_asset(void *);
 void func_80255FE4(f32 [3], f32 [3], f32 [3], f32);
@@ -579,8 +579,8 @@ void func_802596AC(f32 a0[3], f32 a1[3], f32 a2[3], f32 a3[3]);
 
 void func_8024E55C(s32, s32 [6]);
 
-void __spawnqueue_add_1(GenMethod_1, s32);
-#define SPAWNQUEUE_ADD_1(method, arg0) __spawnqueue_add_1((GenMethod_1) (method), reinterpret_cast(s32, (arg0)))
+void __spawnQueue_add_1(GenMethod_1, s32);
+#define SPAWNQUEUE_ADD_1(method, arg0) __spawnQueue_add_1((GenMethod_1) (method), reinterpret_cast(s32, (arg0)))
 
 void func_802FAD64(enum item_e);
 void nodeprop_getPosition(NodeProp *, f32[3]);

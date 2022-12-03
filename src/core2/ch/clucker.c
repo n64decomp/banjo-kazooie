@@ -91,7 +91,7 @@ void func_80357264(Actor *this, s32 next_state){
 
     if(next_state == 5){
         if(!levelSpecificFlags_get(0x14)
-            && !( func_80326D68(this->position, 0x318, -1, &sp38) && ( sp38 < 250.0f))
+            && !( actorArray_findClosestActorFromActorId(this->position, 0x318, -1, &sp38) && ( sp38 < 250.0f))
         ){
             levelSpecificFlags_set(0x14, TRUE);
             func_80324E38(0.0f, 3);

@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void func_802C3D3C(void (*)(s32, s32), s32, s32);
+extern void __spawnQueue_add_2(void (*)(s32, s32), s32, s32);
 
 Actor *func_802D6F48(ActorMarker *this, Gfx **gdl, Mtx **mptr, Vtx **arg3);
 void func_802D6EA0(Actor *this);
@@ -38,7 +38,7 @@ void func_802D6EA0(Actor *this){
 Actor *func_802D6F48(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     f32 sp44[3];
     f32 sp40;
-    Actor *this = func_80325300(marker, sp44);
+    Actor *this = marker_getActorAndRotation(marker, sp44);
     Actor *other;
     if(this->despawn_flag) 
         return this;
@@ -136,7 +136,7 @@ void func_802D729C(Actor *actor, f32 arg1){
         return;
     }
     if(!actor->unk104){
-        func_802C3D3C(func_802D71A0, (s32) actor->marker, reinterpret_cast(s32, arg1));
+        __spawnQueue_add_2((GenMethod_2)func_802D71A0, (s32) actor->marker, reinterpret_cast(s32, arg1));
         return;
     }
 

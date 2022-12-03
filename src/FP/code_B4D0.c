@@ -13,7 +13,7 @@ void func_803918C0(void){
     if(map_get() == MAP_7F_FP_WOZZAS_CAVE){
         D_803935E0.unk0 = func_8030ED2C(SFX_128_FIRE_CRACKING, 2);
         func_8030DBB4(D_803935E0.unk0, 1.0f);
-        actor  = func_80326EEC(0x353);
+        actor  = actorArray_findActorFromActorId(0x353);
         if(actor){
             D_803935E0.unk4[0] = actor->position_x;
             D_803935E0.unk4[1] = actor->position_y;

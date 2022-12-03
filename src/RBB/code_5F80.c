@@ -105,7 +105,7 @@ void func_8038C39C(Actor *this){
     func_802EFA5C(other, 0.0f, 0.1f);
     particleEmitter_setStartingFrameRange(other, 0, 7);
     func_802EFA70(other, 4);
-    particleEmitter_setPosition(other, &this->position);
+    particleEmitter_setPosition(other, this->position);
     func_802EFB70(other, local->unk0->unk4*1, local->unk0->unk4*3.0f);
     func_802EFB84(other, 3.0f*local->unk0->unk4, local->unk0->unk4*7.0f);
     particleEmitter_setParticleSpawnPositionRange(other, 
@@ -127,7 +127,7 @@ void RBB_func_8038C538(Actor *this){
     func_802EFA5C(other, 0.1f, 0.3f);
     func_802EFA70(other, 4);
     particleEmitter_setStartingFrameRange(other, 0, 7);
-    particleEmitter_setPosition(other, &this->position);
+    particleEmitter_setPosition(other, this->position);
     func_802EFB70(other, local->unk0->unk4*1, local->unk0->unk4*6.0f);
     func_802EFB84(other, 0.5*local->unk0->unk4, local->unk0->unk4*3.0f);
     particleEmitter_setParticleSpawnPositionRange(other, 
@@ -156,7 +156,7 @@ void RBB_func_8038C70C(Actor *this){
         local->unk0->unk4 * -300.0f, local->unk0->unk4 * 100.0f, local->unk0->unk4 * -300.0f, 
         local->unk0->unk4 * 300.0f, local->unk0->unk4 * 200.0f, local->unk0->unk4 * 300.0f
     );
-    particleEmitter_setPosition(other, &this->position);
+    particleEmitter_setPosition(other, this->position);
     func_802EFB70(other, local->unk0->unk4*0.3, local->unk0->unk4*0.8);
     func_802EFE24(other, 
         -600.0f, -600.0f, -600.0f, 
@@ -182,7 +182,7 @@ void func_8038C8A8(Actor * this){
     func_802EFA5C(other, 0.0, 0.5f);
     func_802EFA70(other, 4);
     particleEmitter_setStartingFrameRange(other, 0, 7);
-    particleEmitter_setPosition(other, &sp24);
+    particleEmitter_setPosition(other, sp24);
     func_802EFB70(other, local->unk0->unk4*1, local->unk0->unk4*3.0f);
     func_802EFB84(other, local->unk0->unk4*3.0f, local->unk0->unk4*6.0f);
     particleEmitter_setPositionVelocityAndAccelerationRanges(other, &D_80390CA8);
@@ -191,14 +191,14 @@ void func_8038C8A8(Actor * this){
     particleEmitter_emitN(other, 5);
 }
 
-void func_8038C9F0(s32 arg0, s32 arg1, s32 arg2){
-    Actor *actor = func_80326EEC(0x46);
-    if(actor)
-        marker_despawn(actor->marker);
+void chbossboombox_respawnJiggy(s32 position_x, s32 position_y, s32 position_z){
+    Actor *jiggy = actorArray_findActorFromActorId(ACTOR_46_JIGGY);
+    if(jiggy)
+        marker_despawn(jiggy->marker);
 
-    D_80391288[0] = (f32)arg0;
-    D_80391288[1] = (f32)(arg1 + 0x28);
-    D_80391288[2] = (f32)arg2;
+    D_80391288[0] = (f32)position_x;
+    D_80391288[1] = (f32)(position_y + 0x28);
+    D_80391288[2] = (f32)position_z;
     jiggySpawn(JIGGY_56_RBB_BOSS_BOOM_BOX, &D_80391288);
 }
 
@@ -230,13 +230,13 @@ void func_8038CB68(ActorMarker *marker, s32 arg1, s32 arg2){
     Actor *actor = marker_getActor(marker);
     func_80324E88(0.0f);
     func_80324E38(0.0f, 0);
-    timedFunc_set_2(0.0f, (TFQM2)RBB_func_8038C370, actor->marker, 3);
+    timedFunc_set_2(0.0f, (GenMethod_2)RBB_func_8038C370, actor->marker, 3);
 }
 
-void func_8038CBC0(void){
-    Actor * actor = func_80326EEC(0x46);
-    if(actor)
-        func_802C8090(actor);
+void chbossboombox_hideJiggy(void){
+    Actor * jiggy = actorArray_findActorFromActorId(ACTOR_46_JIGGY);
+    if(jiggy)
+        chjiggy_hide(jiggy);
 }
 
 int RBB_func_8038CBF0(Actor *this){
@@ -280,7 +280,7 @@ void RBB_func_8038CC9C(Actor *this, s32 new_state){
     sp80[1] = sp8C[1] - this->position_y;
     sp80[2] = sp8C[2] - this->position_z;
     if(this->state == 2){
-        func_8038CBC0();
+        chbossboombox_hideJiggy();
     }
 
     if(this->state == 7){
@@ -320,10 +320,10 @@ void RBB_func_8038CC9C(Actor *this, s32 new_state){
             item_set(ITEM_0_HOURGLASS_TIMER, 0x1067);
             func_80324E88(2.4f);
             func_80324E38(2.4f, 0);
-            timedFunc_set_2(2.4f, (TFQM2)RBB_func_8038C370, (s32)this->marker, 3);
+            timedFunc_set_2(2.4f, (GenMethod_2)RBB_func_8038C370, (s32)this->marker, 3);
         }
         else{//L8038CEFC
-            timedFunc_set_3(2.4f, (TFQM3)comusic_8025AB44, COMUSIC_62_RBB_BOOMBOX, 0x1f40, 0x12C);
+            timedFunc_set_3(2.4f, (GenMethod_3)comusic_8025AB44, COMUSIC_62_RBB_BOOMBOX, 0x1f40, 0x12C);
             func_80324DBC(2.4f, 0xb9e, 4, NULL, this->marker, func_8038CB34, func_8038CB68);
         }
     }//L8038CF60
@@ -368,7 +368,7 @@ void RBB_func_8038CC9C(Actor *this, s32 new_state){
                     func_803204E4(5, 1);
                 }
                 else{//L8038D220
-                    timedFunc_set_3(0.0f, (TFQM3)func_8038C9F0,  (s32)this->position_x, (s32)this->position_y, (s32)this->position_z);
+                    timedFunc_set_3(0.0f, (GenMethod_3)chbossboombox_respawnJiggy,  (s32)this->position_x, (s32)this->position_y, (s32)this->position_z);
                     func_80311480(0xb9f, 4, 0, 0, 0, 0);
                 }
             }//L8038D278
@@ -377,12 +377,12 @@ void RBB_func_8038CC9C(Actor *this, s32 new_state){
             sp68[0] = this->position_x + 200.0f*local->unk0->unk4;
             sp68[1] = this->position_y + 80.0f*local->unk0->unk4;
             sp68[2] = this->position_z;
-            func_802C3F04(func_802C4140, local->unk0->unk0 + 1,  reinterpret_cast(s32, sp68[0]), reinterpret_cast(s32, sp68[1]), reinterpret_cast(s32, sp68[2]));
+            __spawnQueue_add_4((GenMethod_4)func_802C4140, local->unk0->unk0 + 1,  reinterpret_cast(s32, sp68[0]), reinterpret_cast(s32, sp68[1]), reinterpret_cast(s32, sp68[2]));
 
             sp68[0] = this->position_x - 200.0f*local->unk0->unk4;
             sp68[1] = this->position_y + 80.0f*local->unk0->unk4;
             sp68[2] = this->position_z;
-            func_802C3F04(func_802C4140, local->unk0->unk0 + 1, reinterpret_cast(s32, sp68[0]), reinterpret_cast(s32, sp68[1]), reinterpret_cast(s32, sp68[2]));
+            __spawnQueue_add_4((GenMethod_4)func_802C4140, local->unk0->unk0 + 1, reinterpret_cast(s32, sp68[0]), reinterpret_cast(s32, sp68[1]), reinterpret_cast(s32, sp68[2]));
         }
     }//L8038D378
 
@@ -452,7 +452,7 @@ void func_8038D608(ActorMarker *marker, ActorMarker *other){
 
 Actor *func_8038D638(ActorMarker *marker, Gfx **gdl, Mtx ** mptr, s32 arg3){
     f32 sp3C[3];
-    Actor *actor = func_80325300(marker, &sp3C);
+    Actor *actor = marker_getActorAndRotation(marker, &sp3C);
     ActorLocal_RBB_5F80 *local = (ActorLocal_RBB_5F80 *) &actor->local;
     func_8033A45C(1, local->unk0->unkD);
     if(local->unk0->unkD == 1){
@@ -529,10 +529,10 @@ void func_8038D8BC(Actor *this){
             marker_despawn(this->marker);
         
         if(func_803203FC(2))
-            func_8038CBC0();
+            chbossboombox_hideJiggy();
 
         if(func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)){
-            func_8038CBC0();
+            chbossboombox_hideJiggy();
             func_80335924(this->unk148, ASSET_146_ANIM_BOSS_BOOMBOX_APPEAR, 0.0f, 2.4f);
             func_80335A8C(this->unk148, 2);
             this->state = 2;

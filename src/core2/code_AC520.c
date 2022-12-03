@@ -40,7 +40,7 @@ extern void func_803334B0(f32 position[3], f32 rotation[3], f32 scale, f32 arg3[
     end_ptr = (Struct_core2_AC520_0 *)vector_getEnd(D_80383570.unk0);
     mlMtxIdent();
     func_80252CC4(position, rotation, scale, arg3);
-    D_80383570.unk44 = &D_80383570.unk4;
+    D_80383570.unk44 = D_80383570.unk4;
     iPtr = start_ptr;
     for(; iPtr < end_ptr && D_80383570.unk44 < D_80383570.unk48; iPtr++){
         if(iPtr->unk34 && ml_vec3f_distance(position, iPtr->unk0) < iPtr->unk1C + arg4){
@@ -148,7 +148,7 @@ void func_80333974(s32 index){
     v0->unk34 = 0;
 }
 
-s32 func_803339A4(s32 arg0){
+s32 func_803339A4(f32 arg0[3]){
     Struct_core2_AC520_0 *beginPtr = vector_getBegin(D_80383570.unk0);
     Struct_core2_AC520_0 *endPtr = vector_getEnd(D_80383570.unk0);
     Struct_core2_AC520_0 *iPtr;
@@ -156,7 +156,7 @@ s32 func_803339A4(s32 arg0){
     
     for(iPtr = beginPtr; iPtr < endPtr; iPtr++){
         if(iPtr->unk34){
-            if(!tmp_s0 || ml_vec3f_distance(arg0, iPtr) < ml_vec3f_distance(arg0, tmp_s0)){
+            if(tmp_s0 == NULL || ml_vec3f_distance(arg0, iPtr->unk0) < ml_vec3f_distance(arg0, tmp_s0->unk0)){
                 tmp_s0 = iPtr;
             }
         }
@@ -221,7 +221,7 @@ s32 func_80333C78(s32 arg0){
     return func_8034AF98(arg0, 0);
 }
 
-void func_80333D48(BKVertexList *arg0, f32 position[3], f32 rotation[3], f32 scale, s32 arg4, BKVertexList *arg5) {
+void func_80333D48(BKVertexList *arg0, f32 position[3], f32 rotation[3], f32 scale, f32 arg4[3], BKVertexList *arg5) {
     static s32 D_8036F970[3] = {0, 0, 0};
     Vtx *i_ptr;
     Vtx *end_ptr;

@@ -228,7 +228,7 @@ void func_8039180C(Actor *this){
       ActorMarker *sp24;
 
       if(!this->initialized){
-            sp24 = func_80326EEC(0x254);
+            sp24 = actorArray_findActorFromActorId(0x254);
             if(sns_get_item_state(SNS_ITEM_ICE_KEY, 1) == 1){
                   marker_despawn(this->marker);
             }

@@ -86,7 +86,7 @@ void RBB_func_8038B0B8(Actor *this, s32 arg1){
             -5.0f, -5.0f, 0.0f,
             5.0f, 5.0f, 0.0f
         );
-        particleEmitter_setPosition(other, &local->unk4);
+        particleEmitter_setPosition(other, local->unk4);
         particleEmitter_setParticleVelocityRange(other, 
             -400.0f, 0.0f, -30.0f,
             -800.0f, 0.0f, 30.0f

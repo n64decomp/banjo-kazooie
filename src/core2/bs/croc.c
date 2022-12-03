@@ -204,12 +204,12 @@ void bscroc_jump_init(void){
 void bscroc_jump_update(void){
     enum bs_e sp2C = 0;
     AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
-    f32 sp1C[3];
+    f32 player_velocity[3];
 
     func_802ABE70();
     func_802ABF54();
-    _get_velocity(&sp1C);
-    if(button_released(BUTTON_A) && 0.0f < sp1C[1])
+    _get_velocity(player_velocity);
+    if(button_released(BUTTON_A) && 0.0f < player_velocity[1])
         gravity_reset();
 
     switch(D_8037D3EC){
@@ -283,12 +283,12 @@ void bscroc_fall_init(void){
 void bscroc_fall_update(void){
     enum bs_e next_state = 0;
     AnimCtrl * aCtrl = _player_getAnimCtrlPtr();
-    f32 velocity[3];
+    f32 player_velocity[3];
 
     func_802ABE70();
     func_80299628(0);
     func_802ABF54();
-    _get_velocity(&velocity);
+    _get_velocity(player_velocity);
     
     switch(D_8037D3EC){
         case 0:
@@ -328,7 +328,7 @@ void bscroc_fall_end(void){
 static void __bscroc_recoil_init(s32 damage){
     AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     f32 sp38;
-    f32 sp2C[3];
+    f32 player_position[3];
     f32 sp20[3];
 
     animctrl_reset(aCtrl);
@@ -342,9 +342,9 @@ static void __bscroc_recoil_init(s32 damage){
     else
         func_8030E58C(SFX_56_BANJO_HUI, 1.8f);
     
-    _player_getPosition(&sp2C);
-    func_80294980(&sp20);
-    func_80257F18(&sp20, &sp2C, &sp38);
+    _player_getPosition(player_position);
+    func_80294980(sp20);
+    func_80257F18(sp20, player_position, &sp38);
     yaw_setIdeal(mlNormalizeAngle(sp38 + 180.0f));
     yaw_applyIdeal();
     func_80297970(200.0f);
@@ -415,7 +415,7 @@ void bscroc_bounce_end(void){
 void bscroc_die_init(void){
     AnimCtrl * aCtrl = _player_getAnimCtrlPtr();
     f32 sp38;
-    f32 sp2C[3];
+    f32 player_position[3];
     f32 sp20[3];
 
     func_8029B930();
@@ -427,9 +427,9 @@ void bscroc_die_init(void){
     animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
     func_802875AC(aCtrl, "bscroc.c", 0x32b);
     func_8029C7F4(1,1,2,3);
-    _player_getPosition(&sp2C);
-    func_80294980(&sp20);
-    func_80257F18(&sp20, &sp2C, &sp38);
+    _player_getPosition(player_position);
+    func_80294980(sp20);
+    func_80257F18(sp20, player_position, &sp38);
     yaw_setIdeal(mlNormalizeAngle(sp38 + 180.0f));
     yaw_applyIdeal();
     D_8037D3E0 = 250.0f;
@@ -504,9 +504,9 @@ static void func_802ACF58(void){
     f32 sp2C;
     f32 sp20[3];
     sp2C = func_8028B2E8() ? 500.0f : 400.0f;
-    func_802589E4(&sp20, yaw_get(), sp2C);
+    func_802589E4(sp20, yaw_get(), sp2C);
     sp20[1] = 200.0f;
-    func_80297A0C(&sp20);
+    func_80297A0C(sp20);
 }
 
 void bscroc_bite_init(void){
@@ -595,13 +595,13 @@ void bscroc_eat_bad_end(void){
 
 
 void func_802AD2A8(Gfx **gdl, Mtx **mPtr, void *arg2){
-    f32 sp34[3];
+    f32 player_rotation[3];
     f32 sp28[3];
 
-    player_getRotation(&sp34);
-    func_8028E9C4(2, &sp28);
+    player_getRotation(player_rotation);
+    func_8028E9C4(2, sp28);
     modelRender_setDepthMode(MODEL_RENDER_DEPTH_FULL);
-    modelRender_draw(gdl, mPtr, &sp28, &sp34, D_8037D3F0, NULL, D_8037D3E8);
+    modelRender_draw(gdl, mPtr, sp28, player_rotation, D_8037D3F0, NULL, D_8037D3E8);
 
 }
 

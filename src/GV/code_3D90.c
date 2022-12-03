@@ -70,7 +70,7 @@ void func_8038A31C(Actor *this){
     if(!this->unk16C_4){
         this->unk16C_4 = TRUE;
         actor_collisionOff(this);
-        __spawnqueue_add_1((GenMethod_1)func_8038A2C0, reinterpret_cast(s32, this->marker));
+        __spawnQueue_add_1((GenMethod_1)func_8038A2C0, reinterpret_cast(s32, this->marker));
         this->velocity[0] = 0.0f;
     }
 

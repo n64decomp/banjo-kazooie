@@ -6,13 +6,14 @@
 extern void func_803253A0(Actor *);
 extern void func_80325794(ActorMarker *);
 extern f32 randf (void);
+extern BKModelBin *chvilegame_get_grumblie_model(ActorMarker *marker);
 
 enum chyumblie_state_e{
     YUMBLIE_STATE_1_UNDER_GROUND = 1,
     YUMBLIE_STATE_2_APPEAR,
     YUMBLIE_STATE_3_ABOVE_GROUND,
     YUMBLIE_STATE_4_DISAPPEAR,
-    YUMBLIE_STATE_5_BEING_EATEN,
+    YUMBLIE_STATE_5_BEING_EATEN
 };
 
 typedef struct chyumblie_s{
@@ -157,7 +158,7 @@ void chyumblie_update(Actor *this){
     }
 
     if(s0->game_marker == NULL){
-        s0->game_marker = func_80326D68(this->position, ACTOR_138_VILE_GAME_CTRL, -1, &sp48)->marker;
+        s0->game_marker = actorArray_findClosestActorFromActorId(this->position, ACTOR_138_VILE_GAME_CTRL, -1, &sp48)->marker;
     }
     sp50 = func_80335684(this->unk148);
     if(this->state == YUMBLIE_STATE_1_UNDER_GROUND){

@@ -322,7 +322,7 @@ void chBeeSwarm_update(Actor *this) {
     sp78 = 0;
     if (!this->initialized) {
         this->initialized = TRUE;
-        beehive = func_80326D68(this->position, ACTOR_12_BEEHIVE, -1, &spB0);
+        beehive = actorArray_findClosestActorFromActorId(this->position, ACTOR_12_BEEHIVE, -1, &spB0);
         this->unk100 = (beehive != NULL) ? beehive->marker : NULL;
         if(500.0f < spB0){
             this->unk100 = NULL;
@@ -360,7 +360,7 @@ void chBeeSwarm_update(Actor *this) {
         actor_collisionOff(this);
         local->unk20 = assetcache_get(ASSET_3BF_MODEL_PLAYER_SHADOW);
         if (sp78 == 0) {
-            beehive = func_80326D68(this->position, ACTOR_12_BEEHIVE, -1, &spB0);
+            beehive = actorArray_findClosestActorFromActorId(this->position, ACTOR_12_BEEHIVE, -1, &spB0);
             if (beehive != NULL) {
                 this->unk100 = beehive->marker;
             } else {

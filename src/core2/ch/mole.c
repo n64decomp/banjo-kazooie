@@ -293,8 +293,9 @@ void func_802D9CBC(Actor *this){
 void func_802D9D60(Actor *this){
     s32 sp50[6];
     f32 sp4C;
-    f32 pad44[2];
+    f32 pad44[1];
     Actor *other;
+    NodeProp *node_prop;
     f32 sp34[3];
 
     if(this->unkF4_8 < 8 || this->unkF4_8 >= 0x13)
@@ -304,7 +305,7 @@ void func_802D9D60(Actor *this){
         this->unk16C_4 = 1;
         func_803300D8(this->marker, func_802D9C90);
         if(this->initialized){
-            other = func_80326D68(this->position, ACTOR_12C_MOLEHILL, -1, &sp4C);
+            other = actorArray_findClosestActorFromActorId(this->position, ACTOR_12C_MOLEHILL, -1, &sp4C);
             this->unk100 = (other) ? other->marker : NULL;
             if(this->unk100){
                 other = subaddie_getLinkedActor(this);
@@ -316,29 +317,29 @@ void func_802D9D60(Actor *this){
     }//L802D9E34
 
     if(!this->initialized){
-        other = func_80304C38(0x372, this);
-        if(other == NULL){
+        node_prop = func_80304C38(0x372, this);
+        if(node_prop == NULL){
             this->unk38_0 = FALSE;
         }
         else{
             this->unk38_0 = TRUE;
-            nodeprop_getPosition(other, this->unk1C);
+            nodeprop_getPosition(node_prop, this->unk1C);
         }
-        __spawnqueue_add_1(func_802D9C54, this->marker);
+        __spawnQueue_add_1((GenMethod_1)func_802D9C54, reinterpret_cast(s32, this->marker));
         this->marker->propPtr->unk8_3 = FALSE;
         this->marker->collidable = FALSE;
         this->initialized = TRUE;
         if(this->unkF4_8 == 0x12){
-            other = func_80304C38(0x349, this);
-            if(other == NULL){
+            node_prop = func_80304C38(0x349, this);
+            if(node_prop == NULL){
                 this->velocity[0] = this->position[0];
                 this->velocity[1] = this->position[1];
                 this->velocity[2] = this->position[2];
                 this->unk28 = 500.0f;
             }
             else{ //L802D9F08
-                nodeprop_getPosition(other, this->velocity);
-                this->unk28 = 2*nodeprop_getRadius(other);
+                nodeprop_getPosition(node_prop, this->velocity);
+                this->unk28 = 2*nodeprop_getRadius(node_prop);
             }
         }
     }//L802D9F34

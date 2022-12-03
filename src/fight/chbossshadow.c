@@ -17,7 +17,7 @@ Actor *chbossshadow_draw(ActorMarker *marker, Gfx **gdl, Mtx **mptr, Vtx **arg3)
     f32 sp34[3];
     f32 sp30;
     Actor *this;
-    this = func_80325300(marker, sp34);
+    this = marker_getActorAndRotation(marker, sp34);
     sp30 = this->scale * ml_map_f(this->unk1C[0], 0.0f, 1000.0f, 1.75f, 0.9f);
     modelRender_setDepthMode(MODEL_RENDER_DEPTH_COMPARE);
     modelRender_draw(gdl, mptr, this->position, sp34, sp30, NULL, func_80330B1C(marker));

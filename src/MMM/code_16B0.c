@@ -126,7 +126,7 @@ void func_80387DF8(f32 position[3], s32 count, enum asset_e sprite_id) {
     ParticleEmitter *pCtrl;
 
     pCtrl = partEmitList_pushNew(count);
-    func_802EFFA8(pCtrl, &D_8038BAF4);
+    func_802EFFA8(pCtrl, D_8038BAF4);
     particleEmitter_setSprite(pCtrl, sprite_id);
     particleEmitter_setPosition(pCtrl, position);
     particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_8038BB28);
@@ -184,7 +184,7 @@ void func_80388028(Actor *this){
         this->unk16C_4 = TRUE;
         this->unk16C_0 = TRUE;
         marker_setCollisionScripts(this->marker, NULL, MMM_func_80387CF4, func_80387D1C);
-        __spawnqueue_add_1(func_80387D48, this->marker);
+        __spawnQueue_add_1((GenMethod_1)func_80387D48, reinterpret_cast(s32, this->marker));
         func_80387B14(this, (this->state < 5) ? 1 : 6);
     }//L803880B4
 

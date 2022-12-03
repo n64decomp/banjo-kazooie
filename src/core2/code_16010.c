@@ -55,7 +55,7 @@ void func_8029D154(void){
 }
 
 void func_8029D194(void) {
-    func_802C3BF8(&func_8029D154);
+    __spawnQueue_add_0(&func_8029D154);
     FUNC_8030E624(SFX_A_BANJO_LANDING_05, 1.0f, 28000);
     func_8030E394(D_8037D210);
     sfxsource_setSfxId(D_8037D210, SFX_6D_CROC_BITE);

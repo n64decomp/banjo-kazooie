@@ -350,7 +350,7 @@ void func_80247224(void){
     }
 }
 
-void func_80247304(void){};
+void func_80247304(void){}
 
 void func_8024730C(void){
     static OSViMode D_802759A8 = {

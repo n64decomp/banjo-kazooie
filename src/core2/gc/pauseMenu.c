@@ -62,7 +62,7 @@ extern void func_8033BD20(void *);
 
 enum gcpausemenu_state_e {
     PAUSE_STATE_0_CLOSED = 0,
-    PAUSE_STATE_1_OPENING = 1,
+    PAUSE_STATE_1_OPENING = 1
 };
 
 
@@ -191,7 +191,7 @@ void gcpausemenu_defrag(void){
     for(i =0; i< 4; i++){
         if(D_80383010.zoombox[i]){
             func_80318C0C(D_80383010.zoombox[i]);
-            D_80383010.zoombox[i] = defrag(D_80383010.zoombox[i]);
+            D_80383010.zoombox[i] = (gczoombox_t *)defrag(D_80383010.zoombox[i]);
         }
     }
 }
@@ -312,7 +312,7 @@ char *gcpausemenu_TimeToA(int time){
 void gcpausemenu_printLevelTotals(enum level_e level){
     s32 val;
     s32 max;
-    const char empty[1] = 0; //empty
+    char empty[] = {0}; //empty
 
     //note ratio 2 string
     gcpausemenu_getLevelNoteScore(level, &val, &max);
@@ -357,7 +357,7 @@ void gcpausemenu_getTotalHoneycombScore(s32 *dst){
 
 void gcpausemenu_printTotals(void){
     s32 val;
-    const char D_8036C61C[] = 0;
+    char D_8036C61C[] = {0};
 
     //note ratio 2 string
     gcpausemenu_getTotalNoteScore(&val);
@@ -1238,7 +1238,7 @@ void __gcpausemenu_drawSprite(Gfx** gdl, Mtx** mptr, Vtx** vptr, BKSprite* sprit
 }
 
 
-void gcpausemenu_drawSprite(Gfx** gdl, Mtx** mptr, s32 vptr, BKSprite *sprite, s32 frame, f32 x, f32 y, s32 mirror, u8 a){
+void gcpausemenu_drawSprite(Gfx** gdl, Mtx** mptr, Vtx **vptr, BKSprite *sprite, s32 frame, f32 x, f32 y, s32 mirror, u8 a){
     BKSpriteFrame *_frame; 
     s32 w;
     s32 h;
@@ -1359,7 +1359,7 @@ void gcpausemenu_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
                 func_8033A45C(i, 1);
                 modelRender_setDepthMode(MODEL_RENDER_DEPTH_NONE);
                 modelRender_setAlpha(D_80383010.sns_alpha);
-                modelRender_draw(gfx, mtx, &sp98, &sp8C, 0.8f, &sp80, D_80383010.sns_egg_model);
+                modelRender_draw(gfx, mtx, sp98, sp8C, 0.8f, sp80, D_80383010.sns_egg_model);
                 func_8024E2FC();
                 func_8024C904(gfx, mtx);
             }

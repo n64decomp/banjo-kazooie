@@ -50,8 +50,8 @@ bool TTC_func_803864B0(Actor *this, f32 arg1) {
     f32 sp3C[3];
     s32 sp38;
 
-    sp50 = func_80326D68(this->position, 0x52, -1, &sp5C);
-    sp4C = func_80326D68(this->position, 0x129, -1, &sp58);
+    sp50 = actorArray_findClosestActorFromActorId(this->position, 0x52, -1, &sp5C);
+    sp4C = actorArray_findClosestActorFromActorId(this->position, 0x129, -1, &sp58);
     sp38 = 0;
     if( (sp58 < sp5C) 
         && (sp58 < 16000.0f) 
@@ -241,7 +241,7 @@ void func_80386EDC(s32 this, enum item_e item_id){
 
     player_getPosition(sp24);
     func_802C8F70(randf2(0.0f, 359.0f));
-    func_802C3F04(func_802C4218, this, reinterpret_cast(s32, sp24[0]), reinterpret_cast(s32, sp24[1]), reinterpret_cast(s32, sp24[2]));
+    __spawnQueue_add_4((GenMethod_4)func_802C4218, this, reinterpret_cast(s32, sp24[0]), reinterpret_cast(s32, sp24[1]), reinterpret_cast(s32, sp24[2]));
     item_dec(item_id);
 }
 

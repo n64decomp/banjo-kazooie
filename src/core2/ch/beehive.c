@@ -13,13 +13,13 @@ ActorAnimationInfo D_803672C0[] ={
 };
 
 ActorInfo D_803672E0 = {0x50, ACTOR_12_BEEHIVE, ASSET_364_MODEL_BEEHIVE, 
-    1, &D_803672C0, 
+    1, D_803672C0, 
     func_802CE8D4, func_80326224, func_80325888,
     0, 0x333, 0.0f, 0
 }; 
 
 /* .code */
-void func_802CE7E0(ActorMarker *marker, s32 arg1){
+void func_802CE7E0(ActorMarker *marker, ActorMarker *other){
     Actor *actor = marker_getActor(marker);
     FUNC_8030E8B4(SFX_11_WOOD_BREAKING_1, 1.0f, 28000, actor->position, 300, 3000);
     FUNC_8030E8B4(SFX_D_EGGSHELL_BREAKING, 1.0f, 28000, actor->position, 300, 3000);
@@ -27,8 +27,8 @@ void func_802CE7E0(ActorMarker *marker, s32 arg1){
     actor_playAnimationOnce(actor);
     marker->collidable = FALSE;
     actor->unk138_27 = 3;
-    func_802C3F04(func_802C4140, ACTOR_4C_STEAM, reinterpret_cast(s32, actor->position[0]), reinterpret_cast(s32, actor->position[1]), reinterpret_cast(s32, actor->position[2]));
-    func_802C3F04(func_802C4140, ACTOR_4A_WOOD_EXPLOSION, reinterpret_cast(s32, actor->position[0]), reinterpret_cast(s32, actor->position[1]), reinterpret_cast(s32, actor->position[2]));
+    __spawnQueue_add_4((GenMethod_4)func_802C4140, ACTOR_4C_STEAM, reinterpret_cast(s32, actor->position[0]), reinterpret_cast(s32, actor->position[1]), reinterpret_cast(s32, actor->position[2]));
+    __spawnQueue_add_4((GenMethod_4)func_802C4140, ACTOR_4A_WOOD_EXPLOSION, reinterpret_cast(s32, actor->position[0]), reinterpret_cast(s32, actor->position[1]), reinterpret_cast(s32, actor->position[2]));
     actor->marker->propPtr->unk8_3 = 0;
     func_803115C4(ASSET_D96_TEXT_BEEHIVE);
     func_803115C4(ASSET_DA6_TEXT_BEEHIVE_WITH_BEES);

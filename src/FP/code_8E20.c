@@ -204,7 +204,7 @@ void FP_func_8038F7AC(Actor *this){
             this->position[0] = local->unkC[0];\
             this->position[1] = local->unkC[1];\
             this->position[2] = local->unkC[2];
-            __spawnqueue_add_1(FP_func_8038F758, this->marker);
+            __spawnQueue_add_1((GenMethod_1)FP_func_8038F758, reinterpret_cast(s32, this->marker));
             local->unk30 = FALSE;
         }
     }//L8038F910

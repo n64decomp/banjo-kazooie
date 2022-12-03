@@ -128,7 +128,7 @@ void func_8039040C(void){
             D_80391AE0.tile2_4 = NULL;
             D_80391AE0.state_9 = 1;
             D_80391AE0.unkC = 0.0f;
-            actor = func_80326EEC(0x34f);
+            actor = actorArray_findActorFromActorId(0x34f);
             if(actor){
                 D_80391AE0.unk10 = actor->marker; 
             }

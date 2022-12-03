@@ -7,6 +7,7 @@ extern void func_80324CD8(f32);
 Actor *func_803875E0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void func_8038774C(Actor *this);
 void func_8038794C(Actor *this);
+Actor *func_80328230(enum actor_e id, f32 pos[3], f32 rot[3]);
 
 /* .data */
 ActorAnimationInfo D_80391B80[] = {
@@ -124,7 +125,7 @@ void func_8038794C(Actor *this){
 
         if(jiggyscore_isCollected(JIGGY_2A_FP_BOGGY_1)){
             if(!jiggyscore_isCollected(JIGGY_2C_FP_BOGGY_3) && !jiggyscore_isSpawned(JIGGY_2C_FP_BOGGY_3)){
-                __spawnqueue_add_1(func_80387760, this->marker);
+                __spawnQueue_add_1((GenMethod_1)func_80387760, reinterpret_cast(s32, this->marker));
             }
             this->unk38_31 = 0;
             actor_collisionOff(this);
@@ -194,7 +195,7 @@ void func_8038794C(Actor *this){
         case 5://L80387D90
             if(jiggyscore_isCollected(JIGGY_2A_FP_BOGGY_1)){
                 this->unk38_31 = 0;
-                __spawnqueue_add_1(func_80387760, this->marker);
+                __spawnQueue_add_1((GenMethod_1)func_80387760, reinterpret_cast(s32, this->marker));
             }
             break;
     }

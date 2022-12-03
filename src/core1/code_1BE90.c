@@ -594,12 +594,12 @@ s32 func_8025ADD4(enum comusic_e id){
 
 void func_8025AE0C(s32 arg0, f32 arg1){
     func_8025A58C(0, arg0);
-    timedFunc_set_2(arg1, (TFQM2)func_8025A58C, -1, arg0);
+    timedFunc_set_2(arg1, (GenMethod_2)func_8025A58C, -1, arg0);
 }
 
 void func_8025AE50(s32 arg0, f32 arg1){
     func_8025A430(0, arg0, 6);
-    timedFunc_set_3(arg1, (TFQM3)func_8025A430, -1, arg0, 6);
+    timedFunc_set_3(arg1, (GenMethod_3)func_8025A430, -1, arg0, 6);
 }
 
 void func_8025AEA0(enum comusic_e track_id, s32 arg1){
@@ -624,5 +624,5 @@ void func_8025AF38(void){
     for(iPtr = &D_80276E30[0]; iPtr < &D_80276E30[6]; iPtr++){
         iPtr->unk18 = array_defrag(iPtr->unk18);
     }
-    D_80276E30 = defrag(D_80276E30);
+    D_80276E30 = (CoMusic *)defrag(D_80276E30);
 }

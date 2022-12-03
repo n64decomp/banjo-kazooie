@@ -822,7 +822,7 @@ void func_80387F1C(void)
     {
         jiggySpawn(JIGGY_35_LAIR_CC_WITCH_SWITCH, tmp);
         // FIXME: macro?
-        func_802C3F04((GenMethod_4)func_802C4140, ACTOR_4C_STEAM, *(s32 *)&tmp[0], *(s32 *)&tmp[1], *(s32 *)&tmp[2]);
+        __spawnQueue_add_4((GenMethod_4)func_802C4140, ACTOR_4C_STEAM, *(s32 *)&tmp[0], *(s32 *)&tmp[1], *(s32 *)&tmp[2]);
     }
 }
 
@@ -871,7 +871,7 @@ void func_803880BC(Actor *this)
         this->position_y -= 51.f;
         this->unk1C[0] = 0;
 
-        __spawnqueue_add_1((GenMethod_1)func_80387E94, reinterpret_cast(s32, this->marker));
+        __spawnQueue_add_1((GenMethod_1)func_80387E94, reinterpret_cast(s32, this->marker));
 
         if (func_803203FC(0xBC) && !func_8031FF1C(0x9A))
             FUNC_8030E624(SFX_3F6_UNKNOWN, 0.75f, 30000);
@@ -1144,7 +1144,7 @@ void func_80388524(Actor *this) {
                 break;
                 
             case 0x235://L80388A24
-                    sp30 = func_80326EEC(0x236);
+                    sp30 = actorArray_findActorFromActorId(0x236);
                     if(func_8031FF1C(0x35)){
                         marker_despawn(this->marker);
                         marker_despawn(sp30->marker);
@@ -1270,7 +1270,7 @@ void func_80388524(Actor *this) {
 
             case 0x235://L80388F34
                 {
-                    sp28 = func_80326EEC(0x236);
+                    sp28 = actorArray_findActorFromActorId(0x236);
                     this->unk1C[0] += 3.6;
                     if (this->unk1C[0] > 250.0f) {
                         lair_func_80388278(this);
@@ -1563,7 +1563,7 @@ void func_8038982C(Actor *this)
         this->initialized = TRUE;
 
         if (!func_8031FF1C(BKPROG_9E_CRYPT_COFFIN_LID_OPEN))
-            __spawnqueue_add_1((GenMethod_1)func_803897D4, reinterpret_cast(s32, this->marker));
+            __spawnQueue_add_1((GenMethod_1)func_803897D4, reinterpret_cast(s32, this->marker));
     }
 }
 

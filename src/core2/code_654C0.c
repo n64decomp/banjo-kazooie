@@ -19,8 +19,7 @@ Vtx *vtxList_getVertices(BKVertexList *vtxList){
     return &vtxList->vtx_18[0];
 }
 
-//vtxList_getBoundingBox_i
-void func_802EC458(BKVertexList *vtxList, s32 min[3], s32 max[3]){
+void vtxList_getBounds_s32(BKVertexList *vtxList, s32 min[3], s32 max[3]){
     min[0] = vtxList->minCoord_0[0];
     min[1] = vtxList->minCoord_0[1];
     min[2] = vtxList->minCoord_0[2];
@@ -30,8 +29,7 @@ void func_802EC458(BKVertexList *vtxList, s32 min[3], s32 max[3]){
     max[2] = vtxList->maxCoord_6[2];
 }
 
-//vtxList_getBoundingBox_f
-void func_802EC48C(BKVertexList *vtxList, f32 min[3], f32 max[3]){
+void vtxList_getBounds_f32(BKVertexList *vtxList, f32 min[3], f32 max[3]){
     min[0] = (f32) vtxList->minCoord_0[0];
     min[1] = (f32) vtxList->minCoord_0[1];
     min[2] = (f32) vtxList->minCoord_0[2];

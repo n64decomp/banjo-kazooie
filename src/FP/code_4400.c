@@ -54,7 +54,7 @@ void func_8038A890(void){
                 if(D_80392F30.unk1C){
                     func_802BAFE4(0x12);
                     jiggySpawn(JIGGY_31_FP_SIR_SLUSH, D_80392F30.spawn_pos);
-                    func_802C3F04(func_802C4140, ACTOR_4C_STEAM, 
+                    __spawnQueue_add_4((GenMethod_4)func_802C4140, ACTOR_4C_STEAM, 
                         reinterpret_cast(s32, D_80392F30.spawn_pos[0]),
                         reinterpret_cast(s32, D_80392F30.spawn_pos[1]),
                         reinterpret_cast(s32, D_80392F30.spawn_pos[2])

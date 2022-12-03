@@ -94,7 +94,7 @@ void func_80389288(ActorMarker *caller, enum asset_e text_id, s32 arg2){
     timedFunc_set_0(1.0f, func_80388F88);
     func_80324E38(2.5f, 0);
     timedFunc_set_1(2.5f, func_8028F9DC, 2);
-    timedFunc_set_3(2.5f, (TFQM3)func_802E4078, MAP_A_TTC_SANDCASTLE, 0, 0);
+    timedFunc_set_3(2.5f, (GenMethod_3)func_802E4078, MAP_A_TTC_SANDCASTLE, 0, 0);
     func_803228D8();
 }
 

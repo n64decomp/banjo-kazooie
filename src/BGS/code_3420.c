@@ -228,7 +228,7 @@ void func_80389F08(ActorMarker *marker) {
     this = marker_getActor(marker);
     local = (ActorLocal_BGS_3420 *)&this->local;
     BGS_func_80389850(this, 0);
-    var_s2 = func_80326F58(0x49);
+    var_s2 = actorArray_actorCount(ACTOR_49_EXTRA_LIFE);
     vile = marker_getActor(local->vile_marker);
     if (var_s2 > 0) {
         func_8025A6EC(COMUSIC_15_EXTRA_LIFE_COLLECTED, 0x7FF8);
@@ -305,7 +305,7 @@ void func_8038A068(Actor *this, s32 next_state) {
             mapSpecificFlags_set(6, TRUE);
             func_8038C3DC(local->vile_marker);
             func_8025A58C(0, 4000);
-            timedFunc_set_2(1.0f, func_8025A6EC, COMUSIC_55_BGS_MR_VILE, 28000);
+            timedFunc_set_2(1.0f, (GenMethod_2)func_8025A6EC, COMUSIC_55_BGS_MR_VILE, 28000);
         }
     }
     if (this->state == 5) {
@@ -321,29 +321,29 @@ void func_8038A068(Actor *this, s32 next_state) {
     if (next_state == 6) {
         func_8038C3B0(local->vile_marker);
         func_80324E38(0.0f, 3);
-        timedFunc_set_2(1.0f, func_8025A6EC, COMUSIC_3C_MINIGAME_LOSS, 28000);
-        timedFunc_set_0(4.0f, func_8038A044);
-        timedFunc_set_1(4.0f, func_80389C58, (s32) this->marker);
+        timedFunc_set_2(1.0f, (GenMethod_2)func_8025A6EC, COMUSIC_3C_MINIGAME_LOSS, 28000);
+        timedFunc_set_0(4.0f, (GenMethod_0)func_8038A044);
+        timedFunc_set_1(4.0f, (GenMethod_1)func_80389C58, (s32) this->marker);
     }
     if (next_state == 8) {
         func_8038C3B0(local->vile_marker);
         func_80324E38(0.0f, 3);
-        timedFunc_set_2(1.0f, func_8025A6EC, COMUSIC_3B_MINIGAME_VICTORY, 28000);
-        timedFunc_set_0(3.0f, func_8038A044);
-        timedFunc_set_1(3.0f, func_80389D20, (s32) this->marker);
+        timedFunc_set_2(1.0f, (GenMethod_2)func_8025A6EC, COMUSIC_3B_MINIGAME_VICTORY, 28000);
+        timedFunc_set_0(3.0f, (GenMethod_0)func_8038A044);
+        timedFunc_set_1(3.0f, (GenMethod_1)func_80389D20, (s32) this->marker);
     }
     if (next_state == 9) {
         func_8038C3B0(local->vile_marker);
         func_80324E38(0.0f, 3);
-        timedFunc_set_2(1.0f, func_8025A6EC, COMUSIC_3B_MINIGAME_VICTORY, 28000);
-        timedFunc_set_0(3.0f, func_8038A044);
-        timedFunc_set_1(3.0f, func_80389E40, (s32) this->marker);
+        timedFunc_set_2(1.0f, (GenMethod_2)func_8025A6EC, COMUSIC_3B_MINIGAME_VICTORY, 28000);
+        timedFunc_set_0(3.0f, (GenMethod_0)func_8038A044);
+        timedFunc_set_1(3.0f, (GenMethod_1)func_80389E40, (s32) this->marker);
     }
     if (next_state == 0xA) {
         func_8038C3B0(local->vile_marker);
         func_80324E38(0.5f, 3);
-        timedFunc_set_2(1.0f, func_8025A6EC, COMUSIC_3B_MINIGAME_VICTORY, 28000);
-        timedFunc_set_1(3.0f, func_80389F08, (s32) this->marker);
+        timedFunc_set_2(1.0f, (GenMethod_2) func_8025A6EC, COMUSIC_3B_MINIGAME_VICTORY, 28000);
+        timedFunc_set_1(3.0f, (GenMethod_1) func_80389F08, (s32) this->marker);
     }
     if (next_state == 7) {
         func_8038C384(local->vile_marker);
@@ -581,7 +581,7 @@ void chvilegame_update(Actor *this) {
         return;
     }
     if (local->vile_marker == NULL) {
-        local->vile_marker = func_80326D68(this->position, 0x13A, -1, &sp4C)->marker;
+        local->vile_marker = actorArray_findClosestActorFromActorId(this->position, 0x13A, -1, &sp4C)->marker;
     }
     if (this->state == 1) {
         if (func_803203FC(2)) {

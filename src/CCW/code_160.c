@@ -140,7 +140,7 @@ void func_8038687C(Actor *this) {
         return;
     }
     if ((s32)local->unk0 == 1) {
-        other = func_80326EEC(0x46);
+        other = actorArray_findActorFromActorId(0x46);
         if(func_803203FC(2)) {
             local->unk0 = NULL;
             if (other != NULL) {
@@ -192,7 +192,7 @@ void func_8038687C(Actor *this) {
                     break;
 
             }
-            func_802C3F04(func_802C4140, 0x29B, reinterpret_cast(s32, sp4C[0]), reinterpret_cast(s32, sp4C[1]), reinterpret_cast(s32, sp4C[2]));
+            __spawnQueue_add_4((GenMethod_4)func_802C4140, 0x29B, reinterpret_cast(s32, sp4C[0]), reinterpret_cast(s32, sp4C[1]), reinterpret_cast(s32, sp4C[2]));
             local->unk4++;
         }
         local->unkC = randf2(0.5 - ((local->unk8 / 10) * 0.4), 1.0 - ((local->unk8 / 10) * 0.8));

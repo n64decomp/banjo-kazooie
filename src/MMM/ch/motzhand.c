@@ -152,7 +152,7 @@ void chmotzhand_update(Actor *this){
             func_80387410(sp30);
         }
         else{
-            func_80389BCC(*local->pattern_ptr, sp30);
+            organMinigame_getKeyPosition(*local->pattern_ptr, sp30);
             sp30[0] += local->unkC[0];
             sp30[1] += local->unkC[1];
             sp30[2] += local->unkC[2];

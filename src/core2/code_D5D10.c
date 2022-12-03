@@ -73,7 +73,7 @@ void chskeleton_despawn(ActorMarker *marker, s32 arg1) {
     func_802DAD8C(partEmitList_pushNew(2), this, ASSET_4CD_MODEL_LIMBO_ARM);
     func_8035CCA0(partEmitList_pushNew(4), this, ASSET_4D0_MODEL_LIMBO_BONE);
     FUNC_8030E8B4(SFX_119_FISH_DEATH, 1.0f, 32000, this->position, 1250, 2500);
-    func_802C3F04(func_802C4140, ACTOR_4C_STEAM, reinterpret_cast(s32, this->position[0]), reinterpret_cast(s32, this->position[1]), reinterpret_cast(s32, this->position[2]));
+    __spawnQueue_add_4((GenMethod_4)func_802C4140, ACTOR_4C_STEAM, reinterpret_cast(s32, this->position[0]), reinterpret_cast(s32, this->position[1]), reinterpret_cast(s32, this->position[2]));
     marker_despawn(marker);
 }
 

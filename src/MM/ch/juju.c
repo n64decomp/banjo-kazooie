@@ -48,7 +48,7 @@ Actor*  func_80389014(ActorMarker *this, Gfx **dl, Mtx **mPtr, Vtx **arg2){
     Actor * actorPtr;
     ActorLocal_Juju_2 *jujuPtr;
 
-    actorPtr = func_80325300(this, sp34);
+    actorPtr = marker_getActorAndRotation(this, sp34);
     jujuPtr = (ActorLocal_Juju_2 *)&actorPtr->local;
     if(jujuPtr->unk0 != 2){
         modelRender_setDepthMode(MODEL_RENDER_DEPTH_FULL);
@@ -92,7 +92,7 @@ void func_803891E8(s32 x, s32 y, s32 z, s32 yaw){
 }
 
 void func_80389244(s32 x, s32 y, s32 z, s32 yaw){
-    func_802C3F04(func_803891E8, x, y, z, yaw);
+    __spawnQueue_add_4((GenMethod_4)func_803891E8, x, y, z, yaw);
     func_802BB3DC(0, 10.0f, 0.8f);
     gcpausemenu_80314AC8(1);
 }

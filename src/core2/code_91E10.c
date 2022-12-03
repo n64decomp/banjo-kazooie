@@ -681,7 +681,7 @@ void func_8031A4CC(void) {
         }
 
         if (func_8031A3BC() == 0) {
-            D_803830E0->unkC = defrag(D_803830E0->unkC);
+            D_803830E0->unkC = (QuizQuestionBin *)defrag(D_803830E0->unkC);
         }
         D_803830E0 = (Struct_Core2_91E10 *)defrag(D_803830E0);
     }

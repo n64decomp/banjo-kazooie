@@ -144,7 +144,7 @@ void playerModel_reset(void){
     if(!func_8028ADB4())
         playerModel_updateModel();
     player_getPosition(plyr_pos);
-    func_802C3F04((GenMethod_4)func_802C4140, 
+    __spawnQueue_add_4((GenMethod_4)func_802C4140, 
         ACTOR_17_PLAYER_SHADOW, 
         reinterpret_cast(s32, plyr_pos[0]), 
         reinterpret_cast(s32, plyr_pos[1]), 

@@ -6,6 +6,8 @@ extern bool func_8024549C(f32[3], f32);
 extern void func_802EFAB0(ParticleEmitter *, s32, f32);
 extern ParticleEmitter *func_802F3670(s16[3], f32, enum asset_e);
 extern void func_802F0EAC(ParticleEmitter *, f32);
+extern ParticleEmitter *func_802F0EF0(u8);
+extern ParticleEmitter *func_802F3E98(f32 pos[3], enum asset_e sprite_id);
 
 typedef struct {
     f32 unk0[2];

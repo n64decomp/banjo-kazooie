@@ -42,8 +42,11 @@ void func_802AF7A0(ParticleEmitter *arg0, enum asset_e arg1){
     func_802EFF50(arg0, 1.0f);
 }
 
-void func_802AF88C(Actor * arg0, f32 arg1, f32 arg2){
-    particleEmitter_setParticleVelocityRange(arg0, arg1*30.0f, 10.0f, arg2*30.0f, arg1*30.0f, 10.0f, arg2*30.0f);
+void func_802AF88C(ParticleEmitter * arg0, f32 arg1, f32 arg2){
+    particleEmitter_setParticleVelocityRange(arg0, 
+        arg1*30.0f, 10.0f, arg2*30.0f, 
+        arg1*30.0f, 10.0f, arg2*30.0f
+    );
     func_802EFB70(arg0, D_8037D470.unk14, D_8037D470.unk14);
 }
 
@@ -55,7 +58,7 @@ void func_802AF900(void){
     f32 sp3C;
     f32 sp30[3];
 
-    player_getPosition(&sp30);
+    player_getPosition(sp30);
     sp3C = D_8037D470.unk8;
     sp48 = func_80257A44(sp3C, 0.38f);
     sp4C = sp48 * 6.283185308;
@@ -65,16 +68,16 @@ void func_802AF900(void){
     sp30[1] += func_80257C48(func_80257A44(sp3C, 1.14f), 0.0f, 130.0f);
     sp30[2] += sp44 * D_8037D470.unk18;
     func_802AF88C(D_8037D470.unk4, sp40, sp44);
-    particleEmitter_setPosition(D_8037D470.unk4, &sp30);
+    particleEmitter_setPosition(D_8037D470.unk4, sp30);
     particleEmitter_emitN(D_8037D470.unk4, 1);
 
-    player_getPosition(&sp30);
+    player_getPosition(sp30);
     sp4C = (1.0 - func_802588B0(sp48 + 0.5, 1.0f))* 6.283185308;
     sp30[0] -= sinf(sp4C) * D_8037D470.unk18;
     sp30[1] += func_80257C48(func_80257A44(sp3C, 1.14f), 130.0f, 0.0f);
     sp30[2] -= cosf(sp4C) * D_8037D470.unk18;
     func_802AF88C(D_8037D470.unk0, sp40, sp44);
-    particleEmitter_setPosition(D_8037D470.unk0, &sp30);
+    particleEmitter_setPosition(D_8037D470.unk0, sp30);
     particleEmitter_emitN(D_8037D470.unk0, 1);
 }
 
@@ -110,7 +113,7 @@ void func_802AFBAC(f32 arg0){
     D_8037D470.unk14 = arg0;
 }
 
-void func_802AFBB8(f32 (* arg0)[3]){
+void func_802AFBB8(f32 arg0[3]){
     static struct41s D_80364BB0 = {
         {{-150.0f,   10.0f, -150.0f}, { 150.0f,   50.0f,  150.0f}},
         {{   0.0f,  -50.0f,    0.0f}, {   0.0f,  -50.0f,    0.0f}}
@@ -276,10 +279,10 @@ static void __bsdronexform_setState(int arg0){
             break;
 
         case 5:// 802B02F4
-            _player_getPosition(&sp24);
+            _player_getPosition(sp24);
             sp24[1] += 30.0f;
-            func_8024E3A8(&sp24, 80.0f);
-            func_802AFBB8(&sp24);
+            func_8024E3A8(sp24, 80.0f);
+            func_802AFBB8(sp24);
             func_8029E3C0(0, 0.1f);
             break;
 
@@ -443,4 +446,4 @@ void bsdronexform_end(void){
     miscflag_clear(MISC_FLAG_1B_TRANSFORMING);
 }
 
-void bsdronexform_interrupt(void){};
+void bsdronexform_interrupt(void){}

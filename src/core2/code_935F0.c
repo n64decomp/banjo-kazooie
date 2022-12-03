@@ -49,7 +49,7 @@ void func_8031A618(Actor *this) {
     Actor *jiggy;
 
     if (this->unk10_12 == MINIGAME_5_SANDCASTLE) {
-        jiggy = func_80326EEC(ACTOR_46_JIGGY);
+        jiggy = actorArray_findActorFromActorId(ACTOR_46_JIGGY);
         if (jiggy != NULL) {
             actor_collisionOff(jiggy);
             jiggy->position[1] -= 1000.0f;
@@ -133,7 +133,7 @@ void func_8031A7F4(Actor *this, u32 arg1) {
             func_8025A70C((func_803203FC(5)) ? COMUSIC_3B_MINIGAME_VICTORY : COMUSIC_3C_MINIGAME_LOSS);
             func_802E4A70();
             func_803204E4(0x21, TRUE);
-            timedFunc_set_3(2.0f, (TFQM3)func_802E4078, MAP_8E_GL_FURNACE_FUN, 1, 1);
+            timedFunc_set_3(2.0f, (GenMethod_3)func_802E4078, MAP_8E_GL_FURNACE_FUN, 1, 1);
             break;
     }
     func_80328A84(this, arg1);

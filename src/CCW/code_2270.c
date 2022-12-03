@@ -60,7 +60,7 @@ void CCW_func_8038868C(Actor *this, s32 next_state) {
         timed_playSfx(0.8f, SFX_4B_GULPING, 0.8f, 28000);
         timed_playSfx(1.4f, SFX_4B_GULPING, 0.8f, 28000);
         timed_playSfx(2.0f, SFX_4B_GULPING, 0.8f, 28000);
-        timedFunc_set_2(3.2f, (TFQM2) CCW_func_80388660, (s32) this->marker, 3);
+        timedFunc_set_2(3.2f, (GenMethod_2) CCW_func_80388660, (s32) this->marker, 3);
     }
     if (next_state == 3) {
         func_803883F4();
@@ -95,7 +95,7 @@ void func_8038894C(ActorMarker* marker, ActorMarker *other_marker) {
     Actor* actor = marker_getActor(marker);
     if (actor->state == 1) {
         actor_collisionOff(actor);
-        timedFunc_set_2(0.5f, (TFQM2)CCW_func_80388660, (s32)actor->marker, 2);
+        timedFunc_set_2(0.5f, (GenMethod_2)CCW_func_80388660, (s32)actor->marker, 2);
     }
 }
 

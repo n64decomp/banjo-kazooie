@@ -23,7 +23,7 @@ void func_8038B6E0(Actor *this, s32 arg1){
             levelSpecificFlags_set(0x30, TRUE);
             func_803204E4(0xe, 1);
             timedFunc_set_0(1.0f, func_803228D8);
-            timedFunc_set_3(1.0f, (TFQM3)func_802E4078, MAP_31_RBB_RUSTY_BUCKET_BAY, 0, 0);
+            timedFunc_set_3(1.0f, (GenMethod_3)func_802E4078, MAP_31_RBB_RUSTY_BUCKET_BAY, 0, 0);
         }
     }
     this->state = arg1;

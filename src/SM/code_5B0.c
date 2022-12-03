@@ -113,7 +113,7 @@ void SM_func_80386D68(Actor *this){
 
     if(this->unk100 && func_803870E8(this->unk100)){
         func_802CA1CC(HONEYCOMB_18_SM_QUARRIES);
-        func_802C3F04((GenMethod_4)func_802C4218, 0x1F, reinterpret_cast(s32, this->position[0]), reinterpret_cast(s32, this->position[1]), reinterpret_cast(s32, this->position[2]));
+        __spawnQueue_add_4((GenMethod_4)func_802C4218, 0x1F, reinterpret_cast(s32, this->position[0]), reinterpret_cast(s32, this->position[1]), reinterpret_cast(s32, this->position[2]));
     }
     marker_despawn(this->marker);
 }
@@ -139,7 +139,7 @@ void SM_func_80386EF4(Actor *this) {
     if ((this->state) == 1) {
         temp_t3 = this->unk38_31++ ^ 2;
         if ((temp_t3) == 0) {
-            other = func_80326EEC(0x16E);
+            other = actorArray_findActorFromActorId(0x16E);
             if (other != NULL) {
                 this->unk100 = other->marker;
             } else {

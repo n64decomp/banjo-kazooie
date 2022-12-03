@@ -17,7 +17,7 @@ void func_802BEC60(void) {
 
     func_8024C5CC(D_8037DA50.unk0);
     func_8024C764(D_8037DA50.unkC);
-    func_80309998(sp24, sp18);
+    mapModel_getBounds(sp24, sp18);
 
     D_8037DA50.unk18[0] = (f32) sp24[0];
     D_8037DA50.unk18[1] = (f32) sp24[1];

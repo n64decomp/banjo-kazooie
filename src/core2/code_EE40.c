@@ -15,7 +15,7 @@ void func_80295DD0(void){
     s32 sp24[3];
     s32 sp18[3];
 
-    func_80309998(sp18, sp24);
+    mapModel_getBounds(sp18, sp24);
     ml_vec3w_to_vec3f(D_8037C3C0.unkC, sp18);
     ml_vec3w_to_vec3f(D_8037C3C0.unk0, sp24);
     D_8037C3C0.unkC[0] -= 400.0f;

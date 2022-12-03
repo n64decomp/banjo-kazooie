@@ -36,7 +36,7 @@ void func_80334540(Gfx** gdl, Mtx **mptr, Vtx **vptr) {
     if (func_80320708() == 0) {
         write_file_blocks(0, 0, 0x80BC7230, EEPROM_MAXBLOCKS);
     }
-    func_802C3BDC();
+    spawnQueue_unlock();
     sky_draw(gdl, mptr, vptr);
     func_802BBD2C(&sp44, &sp40);
     func_8024CE60(sp44, sp40);
@@ -96,7 +96,7 @@ void func_80334540(Gfx** gdl, Mtx **mptr, Vtx **vptr) {
     if (func_802E49F0() == 0) {
         func_802BBD0C(gdl, mptr, vptr);
     }
-    func_802C3BE8();
+    spawnQueue_lock();
 }
 
 void func_803348B0(s32 arg0, s32 arg1, s32 arg2){
@@ -135,7 +135,7 @@ void func_80334910(void) {
     func_8028E644();
     func_80322F5C();
     func_80341A54();
-    func_802C398C();
+    spawnQueue_free();
     func_802F53D0();
     func_802FAC3C();
     func_802C8F68();
@@ -210,7 +210,7 @@ void func_80334B20(enum map_e arg0, s32 arg1, s32 arg2) {
         func_802FAE4C();
     }
     func_8031B644();
-    func_802C2B10();
+    spawnQueue_malloc();
     func_803329AC();
     func_80350BFC();
     func_80323190();
@@ -244,7 +244,7 @@ void func_80334B20(enum map_e arg0, s32 arg1, s32 arg2) {
     gcdialog_init();
     mapSpecificFlags_clearAll();
     func_803411B0();
-    func_802C2B5C();
+    spawnQueue_reset();
     func_80322FBC();
     func_8028E4B0();
     func_80322F9C();

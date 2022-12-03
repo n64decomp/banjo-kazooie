@@ -16,7 +16,7 @@ typedef struct chleafboat_s{
 } ActorLocal_Leafboat;
 
 void func_8038FD9C(Actor *this);
-Actor *func_8038FD10(ActorMarker *this, Gfx** gdl, Mtx** mtx, u32 arg3);
+Actor *func_8038FD10(ActorMarker *this, Gfx** gdl, Mtx** mtx, Vtx **Vtx);
 
 
 /* .data section */
@@ -30,23 +30,23 @@ ActorInfo D_80390DA8 = {MARKER_DA_LEAFBOAT, ACTOR_F1_LEAFBOAT, ASSET_30D_MODEL_L
 
 
 /* .code section */
-Actor *func_8038FD10(ActorMarker *this, Gfx** gdl, Mtx** mtx, u32 arg3){
+Actor *func_8038FD10(ActorMarker *this, Gfx** gdl, Mtx** mtx, Vtx **vtx){
     Actor * thisActor;
 
     thisActor = marker_getActor(this);
     if((thisActor->unk1C_x != 0.0f) && (0x80 < thisActor->alpha_124_19)){
-        thisActor = func_80325888(this, gdl, mtx, arg3);
+        thisActor = func_80325888(this, gdl, mtx, vtx);
     }
     return thisActor;
 }
 
-void func_8038FD88(ActorMarker *this, u32 arg1){
+void func_8038FD88(ActorMarker *this, ActorMarker *other){
     this->unk3E_1 = 1;
 }
 
 void func_8038FD9C(Actor *this){
     f32 sp64[3];
-    f32 sp58[3];
+    f32 player_position[3];
     ActorLocal_Leafboat *local;
     u8 tmp[6] = D_80390DA0;
     f32 pad0;
@@ -152,13 +152,13 @@ void func_8038FD9C(Actor *this){
     local->unk60[1] = this->yaw;
     local->unk60[2] = this->roll;
     this->unk60 += time_getDelta();
-    _player_getPosition(&sp58);
+    _player_getPosition(player_position);
     if( func_80294660() == 0x100
         && func_8028F20C()
         && this->marker->unk3E_1
     ){
-        sp44 = local->unk54[0] - sp58[0];
-        sp40 = local->unk54[2] - sp58[2];
+        sp44 = local->unk54[0] - player_position[0];
+        sp40 = local->unk54[2] - player_position[2];
         sp3C = cosf((local->unk60[1] * M_PI) / 180.0);
         sp38 = sinf((local->unk60[1] * M_PI) / 180.0);
         local->unkC[0] = -((sp44 * sp38) + (sp40 * sp3C)) / 8;

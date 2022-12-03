@@ -22,7 +22,6 @@ extern void func_8024C5CC(f32[3]);
 extern void ml_vec3f_normalize(f32[3]);
 extern void func_8033A45C(s32, s32);
 extern void func_8033A238(s32);
-extern void func_8033A450(s32);
 extern void func_8028FAB0(f32[3]);
 extern void playerModel_802921D4(f32[3]);
 
@@ -46,7 +45,7 @@ struct {
     //u8 pad22[0x2];
     BKModelBin * unk24;
     f32 unk28[3];
-    s32 unk34;
+    struct5Bs *unk34;
     f32 unk38;
     f32 unk3C;
     BKVertexList *unk40;

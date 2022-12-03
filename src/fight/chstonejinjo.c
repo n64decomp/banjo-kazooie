@@ -3,7 +3,7 @@
 #include "variables.h"
 #include "fight.h"
 
-extern Actor *func_80326EEC();
+extern Actor *actorArray_findActorFromActorId();
 extern void func_80328B8C(Actor*, s32, f32, s32);
 extern f32 chbossjinjo_8038D268(void);
 
@@ -135,5 +135,5 @@ void chstonejinjo_breakOpen(ActorMarker *marker){
 }
 
 f32 func_8038DFA0(void) {
-    return func_80326EEC(ACTOR_3A1_STONE_JINJO)->unk1C_x;
+    return actorArray_findActorFromActorId(ACTOR_3A1_STONE_JINJO)->unk1C_x;
 }

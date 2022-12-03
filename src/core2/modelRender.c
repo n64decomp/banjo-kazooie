@@ -600,7 +600,7 @@ enum model_render_color_mode_e{
 };
 
 /* .bss */
-s32  D_80383650;
+struct5Bs *D_80383650;
 s32  D_80383658[0x2A];
 s32  D_80383700;
 bool D_80383704;
@@ -1479,7 +1479,7 @@ void func_8033A444(struct58s *arg0){
     D_8038371C = arg0;
 }
 
-void func_8033A450(s32 arg0){
+void func_8033A450(struct5Bs *arg0){
     D_80383650 = arg0;
 }
 

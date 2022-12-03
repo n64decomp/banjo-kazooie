@@ -115,7 +115,7 @@ void func_8038AC90(s32 indx, s32 arg1){
 }
 
 void func_8038ADE4(s32 indx, s32 arg1){
-    func_802C3D3C(func_8038AC90, indx, arg1);
+    __spawnQueue_add_2((GenMethod_2)func_8038AC90, indx, arg1);
 }
 
 void func_8038AE14(s32 indx){
@@ -164,7 +164,7 @@ void func_8038AEE0(s32 indx){
 }
 
 void func_8038B00C(s32 indx){
-    __spawnqueue_add_1(func_8038AEE0, indx);
+    __spawnQueue_add_1((GenMethod_1)func_8038AEE0, indx);
 }
 
 void func_8038B034(void){
@@ -438,7 +438,7 @@ void func_8038B9C8(void){
     func_8038ADE4(0x26, 2);
     func_8038B034();
     if(jiggyscore_isSpawned(JIGGY_30_FP_BOGGY_2) || jiggyscore_isCollected(JIGGY_30_FP_BOGGY_2)){
-        func_802C3BF8(func_8038B0F8);
+        __spawnQueue_add_0(func_8038B0F8);
     }
 
     D_803935A8.unk8 = -1;

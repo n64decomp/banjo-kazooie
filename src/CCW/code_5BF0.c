@@ -61,7 +61,7 @@ void CCW_func_8038C16C(Actor *this, s32 next_state) {
             func_80335924(this->unk148, 0x231, 0.2f, 4.0f);
         }
         if ((this->marker->unk14_20 == 0x1C7) || (this->marker->unk14_20 == 0x1CB) || (this->marker->unk14_20 == 0x1C8)) {
-            other = func_80326EEC(0x313);
+            other = actorArray_findActorFromActorId(0x313);
             if (other != 0) {
                 this->position[0] = other->position[0];
                 this->position[1] = other->position[1];

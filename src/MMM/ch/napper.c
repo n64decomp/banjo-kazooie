@@ -120,7 +120,7 @@ void chnapper_update(Actor *this){
     }//L80386CBC
 
     if(this->state == 0){
-        jiggy = func_80326EEC(ACTOR_46_JIGGY);
+        jiggy = actorArray_findActorFromActorId(ACTOR_46_JIGGY);
         if(jiggy){
             local->jiggy_marker = jiggy->marker;
             this->position_x = jiggy->position_x;\

@@ -341,6 +341,6 @@ bool func_80388A44(s16 arg0[3]){
     sp1C[1] = (f32) arg0[1];
     sp1C[2] = (f32) arg0[2];
 
-    nipper = func_80326D68(sp1C, ACTOR_117_NIPPER, -1, NULL);
+    nipper = actorArray_findClosestActorFromActorId(sp1C, ACTOR_117_NIPPER, -1, NULL);
     return nipper->state == 7;
 }

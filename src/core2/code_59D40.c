@@ -14,7 +14,7 @@ typedef struct {
 }ActorLocal_core2_59D40;
 
 
-void func_802E1168(Actor *this);
+void chsnacker_update(Actor *this);
 
 /* .data */
 ActorAnimationInfo D_803685D0[] ={
@@ -33,7 +33,7 @@ ActorAnimationInfo D_803685D0[] ={
 ActorInfo D_80368620 = { 
     0x14, 0x68, 0x3B0,
     0x1, D_803685D0,
-    func_802E1168, func_80326224, func_80325888,
+    chsnacker_update, func_80326224, func_80325888,
     0, 0, 0.0f, 0
 };
 
@@ -157,11 +157,11 @@ f32 func_802E10F0(f32 arg0) {
     return arg0;
 }
 
-void func_802E1168(Actor *this) {
+void chsnacker_update(Actor *this) {
     f32 sp5C;
     ActorLocal_core2_59D40 *local;
     s32 sp54;
-    f32 sp48[3];
+    f32 player_position[3];
     f32 sp44;
     f32 sp40;
     s32 tmp;
@@ -176,7 +176,7 @@ void func_802E1168(Actor *this) {
         this->unk154 = 0x085E0000;
         marker_setCollisionScripts(this->marker, func_802E1050, func_802E1010, func_802E0F60);
     }
-    _player_getPosition(&sp48);
+    _player_getPosition(player_position);
     sp54 = func_8028A94C();
     
     if(func_802E0DC0(this->position) || ((sp54 != 1) && (sp54 != 2))) {
@@ -354,10 +354,10 @@ void func_802E17E8(void) {
         return;
     }
     if (func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE) == 0) {
-        func_8032BB88(snacker, 0x1388, 0x2EE);
+        func_8032BB88(snacker, 5000, 750);
         func_8024BD08(0);
         func_8025A6EC(0x34, 0);
-        comusic_8025AB44(0x34, 0x7FFF, 0x2EE);
+        comusic_8025AB44(COMUSIC_34_SNACKER_DANGER, 0x7FFF, 750);
         func_8024BD08(1);
     }
     D_8037E624 = 0.0f;
@@ -370,7 +370,7 @@ void func_802E1A04(s32 nextState) {
     sp1C = time_getDelta();
 
     if( getGameMode() == GAME_MODE_A_SNS_PICTURE
-        || getGameMode() == 5
+        || getGameMode() == GAME_MODE_5_UNKNOWN
         || getGameMode() == GAME_MODE_6_FILE_PLAYBACK
     ){ 
         return;
@@ -379,7 +379,7 @@ void func_802E1A04(s32 nextState) {
     if ((D_8037E620 == NULL)) {
         D_8037E624 += sp1C;
         if ((D_8037E628 < D_8037E624) && (nextState != 0)) {
-            func_802C3BF8(func_802E17E8);
+            __spawnQueue_add_0(func_802E17E8);
             D_8037E628 = 1.0f;
         }
     }

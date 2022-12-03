@@ -2,6 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
+extern ActorMarker *carriedobj_getMarker(void);
+
 /* .bss */
 u8 D_8037D580;
 
@@ -28,16 +30,16 @@ void bsthrow_update(void){
     enum bs_e next_state = 0;
     AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     f32 sp34[3];
-    f32 sp28[3];
+    f32 player_position[3];
     f32 sp24;
     ActorMarker *sp20 = carriedobj_getMarker();
 
     if(D_8037D580 == 0 && sp20 != NULL)
         func_802948F8(sp20);
 
-    _player_getPosition(&sp28);
-    func_80294A1C(&sp34);
-    func_80257F18(&sp28, &sp34, &sp24);
+    _player_getPosition(player_position);
+    func_80294A1C(sp34);
+    func_80257F18(player_position, sp34, &sp24);
     yaw_setIdeal(sp24);
 
     if(animctrl_isAt(aCtrl, 0.35f) && sp20){

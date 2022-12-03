@@ -149,10 +149,10 @@ void func_80250E6C(f32 arg0, f32 arg1){
 void func_80250E94(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5){
 
     if(D_802823AC){
-    timedFunc_set_3(0.0f, (TFQM3) func_80250BA4, 0, (s32) (arg0 * 524288.0f), (s32) (arg2*524288.0f));
-    timedFunc_set_3(arg2, (TFQM3) func_80250BA4, (s32) (arg0 * 524288.0f), (s32) (arg1 * 524288.0f), (s32) (arg3*524288.0f));
-    timedFunc_set_3(arg2 + arg3, (TFQM3) func_80250BA4, (s32) (arg1 * 524288.0f), (s32) (arg1 * 524288.0f), (s32) (arg4*524288.0f));
-    timedFunc_set_3(arg2 + arg3 + arg4, (TFQM3) func_80250BA4, (s32) (arg1 * 524288.0f), 0, (s32) (arg5*524288.0f));
+    timedFunc_set_3(0.0f, (GenMethod_3) func_80250BA4, 0, (s32) (arg0 * 524288.0f), (s32) (arg2*524288.0f));
+    timedFunc_set_3(arg2, (GenMethod_3) func_80250BA4, (s32) (arg0 * 524288.0f), (s32) (arg1 * 524288.0f), (s32) (arg3*524288.0f));
+    timedFunc_set_3(arg2 + arg3, (GenMethod_3) func_80250BA4, (s32) (arg1 * 524288.0f), (s32) (arg1 * 524288.0f), (s32) (arg4*524288.0f));
+    timedFunc_set_3(arg2 + arg3 + arg4, (GenMethod_3) func_80250BA4, (s32) (arg1 * 524288.0f), 0, (s32) (arg5*524288.0f));
     }
 }
 

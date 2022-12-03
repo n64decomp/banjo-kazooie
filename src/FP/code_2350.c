@@ -376,7 +376,7 @@ void func_803893E4(Actor *this, f32 arg1, u8 arg2){
 
 void func_803895E0(void){
     int i;
-    s16 *s0;
+    NodeProp *s0;
     f32 sp64[3];
     Actor *actor;
     f32 f20;
@@ -426,7 +426,7 @@ void func_803896FC(Actor *this){
         func_8038B9B0(this->marker);
         this->unk38_31 = 0;
         func_80388C88(this);
-        func_802C3BF8(func_803895E0);
+        __spawnQueue_add_0(func_803895E0);
         if(jiggyscore_isCollected(JIGGY_30_FP_BOGGY_2)){
             local->unk19 = 2;
             this->unk4C = 900.0f;
@@ -584,7 +584,7 @@ void func_803896FC(Actor *this){
                     case 1: //L80389F78
                         if(this->unk38_31 == 2){
                             if(jiggyscore_isCollected(JIGGY_30_FP_BOGGY_2)){
-                                __spawnqueue_add_1(func_80388F54, this->marker);
+                                __spawnQueue_add_1((GenMethod_1)func_80388F54, reinterpret_cast(s32, this->marker));
                                 func_8038B9BC();
                                 marker_despawn(this->marker);
                             }

@@ -12,7 +12,7 @@ void func_80347B10(Struct81s *arg0){
 }
 
 void func_80347B54(Struct81s *arg0){
-    __spawnqueue_add_1((GenMethod_1)func_80347B10, reinterpret_cast(s32, arg0)); 
+    __spawnQueue_add_1((GenMethod_1)func_80347B10, reinterpret_cast(s32, arg0)); 
 }
 
 void func_80347B80(Struct81s *arg0) {

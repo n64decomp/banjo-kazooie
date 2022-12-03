@@ -7,7 +7,7 @@ typedef struct chpinkegg_s{
     u32 unk4;
 } ActorLocal_PinkEgg;
 
-void chpinkegg_draw(ActorMarker *this, Gfx ** gdl, Mtx** mptr, u32 arg3);
+Actor *chpinkegg_draw(ActorMarker *this, Gfx ** gdl, Mtx** mptr, Vtx **vtx);
 void chpinkegg_collision(ActorMarker *this, ActorMarker *other_marker);
 void chpinkegg_update(Actor *this);
 
@@ -67,14 +67,14 @@ void chpinkegg_spawn_next(ActorMarker * arg0, u32 arg1){
     
 }
 
-void chpinkegg_draw(ActorMarker *this, Gfx ** gdl, Mtx** mptr, u32 arg3){
+Actor *chpinkegg_draw(ActorMarker *this, Gfx ** gdl, Mtx** mptr, Vtx **arg3){
     u32 sp18;
     u32 t7;
 
     t7 = marker_getActor(this)->state == 3;
-    func_8033A45C(1, (sp18 = t7) ^ 1);
+    func_8033A45C(1, NOT(sp18 = t7));
     func_8033A45C(2, sp18);
-    func_80325888(this, gdl, mptr, arg3);
+    return func_80325888(this, gdl, mptr, arg3);
 }
 
 
@@ -90,7 +90,7 @@ void chpinkegg_collision(ActorMarker *this, ActorMarker *other_marker){
     this->collidable = 0;
     thisActor->unk124_6 = 0;
     if(D_803906C4[(tmp = (ActorLocal_PinkEgg *) &thisActor->local)->unk0] != 0){
-        func_802C3D3C(chpinkegg_spawn_next, thisActor->marker, tmp->unk0);
+        __spawnQueue_add_2(chpinkegg_spawn_next, thisActor->marker, tmp->unk0);
     } else {
         jiggySpawn(JIGGY_21_BGS_PINKEGG, thisActor->position);
         func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);
