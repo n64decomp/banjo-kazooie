@@ -184,7 +184,7 @@ segments:
   - [0xF36820, c, code_1D5D0]                #DONE
   - [0xF375B0, c, done/code_1E360]           #DONE
   - [0xF37930, c, code_1E6E0]                #DONE
-  - [0xF37A70, c, code_1E820]
+  - [0xF37A70, hasm, code_1E820]
   - [0xF37B10, c, done/audio/n_sl]           #DONE
   - [0xF37BA0, c, done/audio/n_synthesizer]  #DONE
   - [0xF38580, c, done/audio/event]          #DONE
@@ -385,7 +385,7 @@ segments:
   - [0xF52660, .data, code_1BE90]
   - [0xF52670, .data, code_1D5D0]
   - [0xF52690, .data, done/code_1E360]
-  - [0xF526A0, .data, code_1E820]
+  - [0xF526A0, bin, data_F526A0] # .data, code_1E820]
   - [0xF526B0, .data, done/audio/n_sl]
   - [0xF526C0, .data, done/audio/n_drvrNew]
   - [0xF52850, .data, done/audio/n_env]

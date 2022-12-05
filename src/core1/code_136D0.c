@@ -2,6 +2,17 @@
 #include "functions.h"
 #include "variables.h"
 
+extern u8 core2_VRAM[];
+extern u8 core2_VRAM_END[];
+extern u8 core2_ROM_START[];
+extern u8 core2_ROM_END[];
+extern u8 core2_TEXT_START[];
+extern u8 core2_TEXT_END[];
+extern u8 core2_DATA_START[];
+extern u8 core2_RODATA_END[];
+extern u8 core2_BSS_START[];
+extern u8 core2_BSS_END[];
+
 typedef struct struct_2a_s{
     char *name;
     u32 ram_start;
@@ -134,35 +145,16 @@ s32 func_802512FC(void){
     D_80282800 = 0;
 }
 
-#ifdef NONMATCHING
-//this matches, but requires core2 section address to be linked to core
-//needed for shiftability
-extern u8 core2_VRAM_START[]; //core2 RAM start
-extern u8 core2_VRAM_END[]; //core2 RAM end
-
-extern u8 core2_us_v10_rzip_ROM_START[];
-extern u8 core2_us_v10_rzip_ROM_END[];
-extern u8 core2_TEXT_START[];
-extern u8 core2_TEXT_END[];
-extern u8 core2_DATA_START[];
-extern u8 core2_DATA_END[];
-extern u8 core2_BSS_START[];
-extern u8 core2_BSS_END[];
-
 void func_80251308(void){
     func_802512FC();
     func_80253050(0, 
-        core2_VRAM_START, core2_VRAM_END,
-        core2_us_v10_rzip_ROM_START, core2_us_v10_rzip_ROM_END,
+        core2_VRAM, core2_VRAM_END,
+        core2_ROM_START, core2_ROM_END,
         core2_TEXT_START, core2_TEXT_END,
-        core2_DATA_START, core2_DATA_END,
+        core2_DATA_START, core2_RODATA_END,
         core2_BSS_START, core2_BSS_END
     );
     func_802511C4();
 }
-
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_136D0/func_80251308.s")
-#endif
 
 void func_802513A4(void){}

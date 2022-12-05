@@ -24,7 +24,7 @@ f32 D_80381EB8;
 f32 D_80381EBC;
 s32 D_80381EC0;
 s32 D_80381EC4;
-char D_80381EC8[8];
+char code_78E50_ItemValueString[8];
 struct7s D_80381ED0;
 
 /* .code */
@@ -78,9 +78,9 @@ void func_802FFF34(enum item_e item_id, struct8s *arg1, Gfx **gfx, Mtx **mtx, Vt
 
     sp10C = -1;
     sp108 = *vtx;
-    D_80381EC8[0] = '\0';
-    strIToA(D_80381EC8, MIN(9, itemPrint_getValue(item_id)));
-    print_bold_spaced(0x4E, (s32) (func_802FB0E4(arg1) + -16.0f + 4.0f), (char *) &D_80381EC8);
+    code_78E50_ItemValueString[0] = '\0';
+    strIToA(code_78E50_ItemValueString, MIN(9, itemPrint_getValue(item_id)));
+    print_bold_spaced(0x4E, (s32) (func_802FB0E4(arg1) + -16.0f + 4.0f), (char *) &code_78E50_ItemValueString);
     if(1); //fake
     if (D_80381EB0[D_80381EC4] != NULL) {
         gSPDisplayList((*gfx)++, D_8036A278);
