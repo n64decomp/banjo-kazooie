@@ -90,7 +90,7 @@ void func_803902B8(Actor *this) {
 
     sp54 = this->marker->unk14_20 - 0x16D;
     if (!this->initialized) {
-        func_803300D8(this->marker, func_80390298);
+        marker_setFreeMethod(this->marker, func_80390298);
         this->unk138_24 = func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE);
         this->initialized = TRUE;
     }

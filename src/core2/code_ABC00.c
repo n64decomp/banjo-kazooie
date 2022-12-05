@@ -189,7 +189,7 @@ void func_80332D98(enum map_e map_id, enum jiggy_e jiggy_id, enum bkprog_e flag_
     if ((map_get() == map_id) 
         && func_8031FF1C(flag_id)
         && !jiggyscore_isSpawned(jiggy_id)
-        && func_80304E24(arg3, sp1C)
+        && nodeProp_findPositionFromActorId(arg3, sp1C)
     ) {
         func_803331D8(jiggy_id, sp1C);
     }
@@ -311,7 +311,7 @@ void func_803333DC(Struct81s *arg0, Actor *arg1) {
     if (arg0->unk14 != NULL) {
         arg0->unk14(arg1, arg0->unk18);
     }
-    func_803300D8(arg1->marker, func_803332D0);
+    marker_setFreeMethod(arg1->marker, func_803332D0);
     jiggy_id = ((s32) ((s32)arg0 - (s32)&D_8036E834) / 0x2C) + 1;
     chjiggy_setJiggyId(arg1, jiggy_id);
     if ((jiggy_id == JIGGY_49_CCW_EYRIE) || (jiggy_id == JIGGY_39_LAIR_MMM_WITCH_SWITCH) || (jiggy_id == JIGGY_3C_LAIR_CCW_WITCH_SWITCH)) {

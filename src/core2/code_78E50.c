@@ -24,7 +24,7 @@ f32 D_80381EB8;
 f32 D_80381EBC;
 s32 D_80381EC0;
 s32 D_80381EC4;
-u8 D_80381EC8[8];
+char D_80381EC8[8];
 struct7s D_80381ED0;
 
 /* .code */
@@ -61,130 +61,64 @@ void func_802FFED4(s32 item_id, struct8s *arg1){
     };
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_78E50/func_802FFF34.s")
-// void func_802FFF34(enum item_e item_id, struct8s *arg1, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
-//     s32 sp10C;
-//     Vtx *sp108;
-//     s32 sp104;
-//     s32 spF0;
-//     s32 spEC;
-//     s32 spE8;
-//     s32 spE4;
-//     s32 spE0;
-//     s32 spDC;
-//     Gfx *temp_a0;
-//     Gfx *temp_v0;
-//     Gfx *temp_v0_2;
-//     Gfx *temp_v0_3;
-//     Gfx *temp_v0_4;
-//     Gfx *temp_v0_6;
-//     Gfx *temp_v0_7;
-//     Gfx *temp_v0_8;
-//     Gfx *temp_v0_9;
-//     f32 temp_f12;
-//     f32 temp_f14;
-//     f32 temp_f18;
-//     f32 temp_f18_2;
-//     f32 temp_f18_3;
-//     f32 temp_f18_4;
-//     f32 temp_f2;
-//     s32 temp_a1;
-//     s32 temp_lo;
-//     s32 temp_s2;
-//     s32 temp_s5;
-//     s32 temp_t4;
-//     s32 temp_t6;
-//     s32 temp_v0_5;
-//     s32 var_a1;
-//     s32 var_a1_2;
-//     s32 var_fp;
-//     s32 var_s2;
-//     s32 var_s4;
-//     s32 var_s6;
-//     s32 var_s7;
-//     s32 var_v0;
-//     s32 var_v0_2;
-//     s32 var_v1;
+void func_802FFF34(enum item_e item_id, struct8s *arg1, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
+    s32 sp10C;
+    Vtx *sp108;
+    s32 sp104;
+    s32 var_v0;
+    s32 var_v1;
+    s32 var_s5;
+    s32 var_s4;
+    s32 spF0;
+    s32 spEC;
+    s32 spE8;
+    s32 spE4;
+    s32 spE0;
+    s32 spDC;
 
-//     sp10C = -1;
-//     sp108 = *vtx;
-//     D_80381EC8[0] = 0;
-//     if (itemPrint_getValue() >= 10) {
-//         var_a1 = 9;
-//     } else {
-//         var_a1 = itemPrint_getValue(item_id);
-//     }
-//     strIToA(&D_80381EC8, var_a1);
-//     print_bold_spaced(0x4E, (s32) (func_802FB0E4(arg1) + -16.0f + 4.0f), D_80381EC8);
-//     if (*(&D_80381EB0 + (D_80381EC4 * 4)) != 0) {
-//         gSPDisplayList((*gfx)++, D_8036A278);
-//         func_8024C7B8(gfx, mtx);
-//         gDPPipeSync((*gfx)++);
-//         gDPSetCombineLERP((*gfx)++, 0, 0, 0, TEXEL0, TEXEL0, 0, PRIMITIVE, 0, 0, 0, 0, TEXEL0, TEXEL0, 0, PRIMITIVE, 0);
-//         gDPSetPrimColor((*gfx)++, 0, 0, 0x00, 0x00, 0x00, 0xFF);
-//         var_s2 = 2;
-//         do {
-//             func_80348044(gfx, D_80381EB0[D_80381EC4], (s32) D_80381EBC % 4, 0, 0, 0, 0, var_s2, var_s2, &spF0, &spEC, &spE8, &spE4, &spE0, &spDC, &sp10C);
-//             temp_v0_5 = sp104 + 4;
-//             if (((*vtx - sp108) & 0xF) == 0) {
-//                 var_s4 = 0;
-//                 var_s6 = 2;
-//                 sp104 = 0;
-//                 var_s7 = 6;
-//                 temp_t4 = (sp10C + 1) * 4;
-//                 if (temp_t4 >= 0x11) {
-//                     var_v0 = 0x10;
-//                 } else {
-//                     var_v0 = temp_t4;
-//                 }
-//                 if (temp_t4 >= 0x11) {
-//                     var_a1_2 = 0x10;
-//                 } else {
-//                     var_a1_2 = temp_t4;
-//                 }
-//                 //var_a1_2 = n
-//                 // temp_a0->words.w0 = ((((var_a1_2 * 0x10) - 1) | (var_v0 << 0xA)) & 0xFFFF) | 0x04000000;
-//                 // temp_a0->words.w1 = *vtx;
-//                 gSPVertex((*gfx)++, *vtx, var_a1_2, var_v0);
-//                 var_fp = 4;
-//             } else {
-//                 var_s4 = temp_v0_5 * 2;
-//                 var_s6 = var_s4 + 2;
-//                 var_s7 = var_s4 + 6;
-//                 var_fp = var_s4 + 4;
-//                 sp104 = temp_v0_5;
-//             }
-//             temp_s5 = (s32) ((40.0f - ((f32) framebuffer_width / 2.0f)) + (f32) spE0);
-//             temp_f12 = (f32) temp_s5;
-//             temp_f14 = (f32) (s32) (((((f32) framebuffer_height / 2.0f) - func_802FB0E4(arg1)) - -16.0f) - (f32) spDC);
-//             for(var_v1 = 0; var_v1 != var_s2; var_v1++){
-//                 temp_f2 = (f32) var_v1;
-//                 temp_s2 = var_s2 - 1;
-//                 for(var_v0_2 = 0; var_v0_2 != temp_s2; var_v0_2++) {
-//                     (*vtx)->v.ob[0] = ((((f32) spF0 * D_80381EB8 * (f32) var_v0_2) - (((f32) spE8 * D_80381EB8) / 2.0f)) + temp_f12) * 4.0f;
-//                     (*vtx)->v.ob[1] = (((((f32) spE4 * D_80381EB8) / 2.0f) - ((f32) spEC * D_80381EB8 * temp_f2)) + temp_f14) * 4.0f;
-//                     (*vtx)->v.ob[2] = -20;
-//                     (*vtx)->v.tc[0] = (s16) (((spF0 - 1) * var_v0_2) << 6);
-//                     (*vtx)->v.tc[1] = (s16) (((spEC - 1) * var_v1) << 6);
-//                     (*vtx)++;
-//                 }
-//                 temp_f18_3 = D_80381EB8;
-//                 var_s2 = temp_s2 + 1;
-//                 (*vtx)->v.ob[0] = (s16) (s32) (((((f32) spF0 * D_80381EB8 * (f32) var_v0_2) - (((f32) spE8 * D_80381EB8) / 2.0f)) + temp_f12) * 4.0f);
-//                 (*vtx)->v.ob[1] = (s16) (s32) ((((((f32) spE4 * D_80381EB8) / 2.0f) - ((f32) spEC * D_80381EB8 * temp_f2)) + temp_f14) * 4.0f);
-//                 (*vtx)->v.ob[2] = -20;
-//                 (*vtx)->v.tc[0] = (s16) (((spF0 - 1) * var_v0_2) << 6);
-//                 (*vtx)->v.tc[1] = (s16) (((spEC - 1) * var_v1) << 6);
-//                 (*vtx)++;
-//             }
-            //    gSP2Triangles((*gfx)++, var_s4/2, var_fp/2, var_s7/2, 0, var_s4/2, var_s7/2, var_fp/2, 0);
-//         } while (sp10C != 0);
-//         gDPPipeSync((*gfx)++);
-//         gDPSetTextureLUT((*gfx)++, G_TT_NONE);
-//         gDPPipelineMode((*gfx)++, G_PM_NPRIMITIVE);
-//         func_8024C904(gfx, mtx);
-//     }
-// }
+    sp10C = -1;
+    sp108 = *vtx;
+    D_80381EC8[0] = '\0';
+    strIToA(D_80381EC8, MIN(9, itemPrint_getValue(item_id)));
+    print_bold_spaced(0x4E, (s32) (func_802FB0E4(arg1) + -16.0f + 4.0f), (char *) &D_80381EC8);
+    if(1); //fake
+    if (D_80381EB0[D_80381EC4] != NULL) {
+        gSPDisplayList((*gfx)++, D_8036A278);
+        func_8024C7B8(gfx, mtx);
+        if(gfx);
+        gDPPipeSync((*gfx)++);
+        gDPSetCombineLERP((*gfx)++, 0, 0, 0, TEXEL0, TEXEL0, 0, PRIMITIVE, 0, 0, 0, 0, TEXEL0, TEXEL0, 0, PRIMITIVE, 0);
+        gDPSetPrimColor((*gfx)++, 0, 0, 0x00, 0x00, 0x00, 0xFF);
+        do{  
+            func_80348044(gfx, D_80381EB0[D_80381EC4], (s32) D_80381EBC % 4, 0, 0, 0, 0, 2, 2, &spF0, &spEC, &spE8, &spE4, &spE0, &spDC, &sp10C);
+            
+            if (((*vtx - sp108) & 0xF) == 0) {
+                gSPVertex((*gfx)++, *vtx, MIN(0x10, (1 + sp10C) << 2), 0);
+                sp104 = 0;
+            } else {
+                sp104 = sp104 + 4;
+            }
+
+            var_s5 = (40.0f - ((f32) framebuffer_width / 2)) + spE0;
+            var_s4 = (((((f32) framebuffer_height / 2) - func_802FB0E4(arg1)) - -16.0f) - spDC);
+            for(var_v1 = 0; var_v1 < 2; var_v1++){
+                for(var_v0 = 0; var_v0 < 2; var_v0++){
+                        (*vtx)->v.ob[0] = (s16) (s32) (((((f32) spF0 * D_80381EB8 * (f32) var_v0) - (((f32) spE8 * D_80381EB8) / 2)) + var_s5) * 4.0f);
+                        (*vtx)->v.ob[1] = (s16) (s32) ((((((f32) spE4 * D_80381EB8) / 2) - ((f32) spEC * D_80381EB8 * var_v1)) + var_s4) * 4.0f);
+                        (*vtx)->v.ob[2] = -0x14;
+                        (*vtx)->v.tc[0] = ((spF0 - 1) * var_v0) << 6;
+                        (*vtx)->v.tc[1] = ((spEC - 1) * var_v1) << 6;
+                        (*vtx)++;
+                }
+            }
+            gSP1Quadrangle((*gfx)++, sp104, sp104 + 1, sp104 + 3, sp104 + 2, 0);
+        }while(sp10C != 0);
+        gDPPipeSync((*gfx)++);
+        gDPSetTextureLUT((*gfx)++, G_TT_NONE);
+        gDPPipelineMode((*gfx)++, G_PM_NPRIMITIVE);
+        func_8024C904(gfx, mtx);
+    }
+}
 
 void func_803005BC(enum item_e item_id, struct8s *arg1) {
     s32 var_v0;

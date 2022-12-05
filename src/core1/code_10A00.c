@@ -334,12 +334,12 @@ int func_8024F12C(void){
 
 void func_8024F150(void){
     if(func_8024F12C())
-        func_802DD008(0,0);
+        chOverlayNoController_spawn(0,0);
 }
 
 void func_8024F180(void){
     if(func_8024F12C())
-        func_802DD040(0,0);
+        chOverlayNoController_func_802DD040(0,0);
 }
 
 void func_8024F1B0(void){

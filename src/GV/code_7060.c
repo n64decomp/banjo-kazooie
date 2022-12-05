@@ -33,7 +33,7 @@ void func_8038D47C(Actor *this){
     actor_collisionOff(this);
     func_80287784(this->animctrl, 0);
     if(!this->initialized){
-        if(!func_80304E24(0x331, this->spawn_position)){
+        if(!nodeProp_findPositionFromActorId(0x331, this->spawn_position)){
             this->spawn_position_x = -2569.0f;
             this->spawn_position_y = 2997.0f;
             this->spawn_position_z = 5884.0f;

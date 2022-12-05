@@ -118,7 +118,7 @@ void func_802C9E70(Actor *this){
         if( this->marker->unk14_20 == MARKER_55_HONEYCOMB
             && !this->unk44_2
         ){
-            func_803300D8(this->marker, func_802C9CF4);
+            marker_setFreeMethod(this->marker, func_802C9CF4);
             D_8037DDC8++;
             if(D_8037DDC4 == NULL){
                 D_8037DDC4 = (array(s32) *) array_new(sizeof(s32), 10);

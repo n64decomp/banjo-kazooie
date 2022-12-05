@@ -34,7 +34,7 @@ typedef struct {
     Struct_core2_7AF80_2 *unk8;
 } Struct_core2_7AF80_1;
 
-NodeProp *func_803049CC(enum actor_e actor_id, s32 arg1[3]);
+NodeProp *cubeList_findNodePropByActorId(enum actor_e actor_id, s32 arg1[3]);
 s32 func_80304FC4(enum actor_e *actor_id_list, NodeProp **node_list, s32 arg2);
 void cube_positionToIndices(s32 arg0[3], f32 arg1[3]);
 NodeProp *func_803080C8(s32 arg0);
@@ -936,7 +936,7 @@ s32 func_803048E0(s32 arg0[3], s32 arg1[3], s32 arg2, s32 arg3, s32 arg4) {
 s32 func_80304984(s32 arg0, u32 *arg1) {
     NodeProp *temp_v0;
 
-    temp_v0 = func_803049CC(arg0, 0);
+    temp_v0 = cubeList_findNodePropByActorId(arg0, 0);
     if (temp_v0 != 0) {
         *arg1 = temp_v0->unk6.bit15;
         return 1;
@@ -944,50 +944,50 @@ s32 func_80304984(s32 arg0, u32 *arg1) {
     return 0;
 }
 
-NodeProp *func_803049CC(enum actor_e actor_id, s32 arg1[3]) {
-    s32 sp7C[3];
+NodeProp *cubeList_findNodePropByActorId(enum actor_e actor_id, s32 arg1[3]) {
+    s32 cube_indices[3];
     s32 i;
     f32 sp6C[3];
-    s32 sp60[3];
-    s32 sp54[3];
+    s32 cube_min[3];
+    s32 cube_max[3];
     s32 *var_a3;
-    NodeProp *temp_v0;
+    NodeProp *i_node_prop;
 
     if (arg1 != NULL) {
         sp6C[0] = (f32) arg1[0];
         sp6C[1] = (f32) arg1[1];
         sp6C[2] = (f32) arg1[2];
-        cube_positionToIndices(sp7C, sp6C);
+        cube_positionToIndices(cube_indices, sp6C);
         for(i = 0; i < 3; i++){
-            sp60[i] = sp7C[i] - 1;
-            sp54[i] = sp7C[i] + 1;
-            if (sp60[i] < D_80381FA0.min[i]) {
-                sp60[i] = D_80381FA0.min[i];
+            cube_min[i] = cube_indices[i] - 1;
+            cube_max[i] = cube_indices[i] + 1;
+            if (cube_min[i] < D_80381FA0.min[i]) {
+                cube_min[i] = D_80381FA0.min[i];
             }
-            if (D_80381FA0.max[i] < sp54[i]) {
-                sp54[i] = D_80381FA0.max[i];
+            if (D_80381FA0.max[i] < cube_max[i]) {
+                cube_max[i] = D_80381FA0.max[i];
             }
         }
 
-        for(sp7C[0] = sp60[0]; sp7C[0] <= sp54[0]; sp7C[0]++){
-            for(sp7C[1] = sp60[1]; sp7C[1] <= sp54[1]; sp7C[1]++){
-                for(sp7C[2] = sp60[2]; sp7C[2] <= sp54[2]; sp7C[2]++){
-                    temp_v0 = func_8032E230(cube_atIndices(sp7C), actor_id);
-                    if (temp_v0 != NULL) {
-                        return temp_v0;
+        for(cube_indices[0] = cube_min[0]; cube_indices[0] <= cube_max[0]; cube_indices[0]++){
+            for(cube_indices[1] = cube_min[1]; cube_indices[1] <= cube_max[1]; cube_indices[1]++){
+                for(cube_indices[2] = cube_min[2]; cube_indices[2] <= cube_max[2]; cube_indices[2]++){
+                    i_node_prop = cube_findNodePropByActorId(cube_atIndices(cube_indices), actor_id);
+                    if (i_node_prop != NULL) {
+                        return i_node_prop;
                     }
                 }
             }
         }
     }
 
-    for(sp7C[1] = D_80381FA0.min[1]; sp7C[1] <= D_80381FA0.max[1] ; sp7C[1]++) {
-        if (func_80305C30(sp7C[1] - D_80381FA0.min[1]) != 0) {
-            for(sp7C[0] = D_80381FA0.min[0]; sp7C[0] <= D_80381FA0.max[0] ; sp7C[0]++) {
-                for(sp7C[2] = D_80381FA0.min[2]; sp7C[2] <= D_80381FA0.max[2] ; sp7C[2]++) {
-                    temp_v0 = func_8032E230(cube_atIndices(sp7C), actor_id);
-                    if (temp_v0 != NULL) {
-                        return temp_v0;
+    for(cube_indices[1] = D_80381FA0.min[1]; cube_indices[1] <= D_80381FA0.max[1] ; cube_indices[1]++) {
+        if (func_80305C30(cube_indices[1] - D_80381FA0.min[1]) != 0) {
+            for(cube_indices[0] = D_80381FA0.min[0]; cube_indices[0] <= D_80381FA0.max[0] ; cube_indices[0]++) {
+                for(cube_indices[2] = D_80381FA0.min[2]; cube_indices[2] <= D_80381FA0.max[2] ; cube_indices[2]++) {
+                    i_node_prop = cube_findNodePropByActorId(cube_atIndices(cube_indices), actor_id);
+                    if (i_node_prop != NULL) {
+                        return i_node_prop;
                     }
                 }
             }
@@ -1010,25 +1010,25 @@ NodeProp *func_80304C38(enum actor_e actor_id, Actor *arg1){
     } else {
         phi_a1 = vec;
     }
-    return func_803049CC(actor_id, phi_a1);
+    return cubeList_findNodePropByActorId(actor_id, phi_a1);
 }
 
 NodeProp *func_80304CAC(s32 arg0, f32 *arg1) {
     s32 vec[3];
 
-    vec[0] = arg1[0];
-    vec[1] = arg1[1];
-    vec[2] = arg1[2];
-    return func_803049CC(arg0, vec);
+    vec[0] = (s32)arg1[0];
+    vec[1] = (s32)arg1[1];
+    vec[2] = (s32)arg1[2];
+    return cubeList_findNodePropByActorId(arg0, vec);
 }
 
 NodeProp *func_80304D04(s32 arg0, s16 *arg1) {
     s32 arr[3];
 
-    arr[0] = arg1[0];
-    arr[1] = arg1[1];
-    arr[2] = arg1[2];
-    return func_803049CC(arg0, arr);
+    arr[0] = (s32)arg1[0];
+    arr[1] = (s32)arg1[1];
+    arr[2] = (s32)arg1[2];
+    return cubeList_findNodePropByActorId(arg0, arr);
 }
 
 s32 nodeprop_getRadius(NodeProp *arg0) {
@@ -1055,29 +1055,29 @@ s32 func_80304DB8(NodeProp *arg0) {
     return arg0->unkC_22;
 }
 
-s32 func_80304DD0(enum actor_e actor_id, s32 *arg1) {
-    NodeProp *temp_v0;
+bool _nodeProp_findPositionFromActorId(enum actor_e actor_id, s32 *position) {
+    NodeProp *node_prop;
 
-    temp_v0 = func_803049CC(actor_id, 0);
-    if (temp_v0 != 0) {
-        arg1[0] = (s32) temp_v0->x;
-        arg1[1] = (s32) temp_v0->y;
-        arg1[2] = (s32) temp_v0->z;
-        return 1;
+    node_prop = cubeList_findNodePropByActorId(actor_id, NULL);
+    if (node_prop != 0) {
+        position[0] = (s32) node_prop->x;
+        position[1] = (s32) node_prop->y;
+        position[2] = (s32) node_prop->z;
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }
 
-s32 func_80304E24(s32 arg0, f32 *arg1) {
+bool nodeProp_findPositionFromActorId(enum actor_e actor_id, f32 *arg1) {
     s32 vec[3];
 
-    if (func_80304DD0(arg0, vec) == 0) {
-        return 0;
+    if (_nodeProp_findPositionFromActorId(actor_id, vec) == 0) {
+        return FALSE;
     }
     arg1[0] = vec[0];
     arg1[1] = vec[1];
     arg1[2] = vec[2];
-    return 1;
+    return TRUE;
 }
 
 s32 func_80304E9C(s32 arg0, s32 arg1, s32 arg2){
@@ -1189,7 +1189,7 @@ bool func_80305290(bool (* arg0)(NodeProp *), bool (* arg1)(Prop *)){
 bool func_80305344(s32 arg0, u32 *arg1) {
     NodeProp *temp_v0;
 
-    temp_v0 = func_803049CC(arg0, NULL);
+    temp_v0 = cubeList_findNodePropByActorId(arg0, NULL);
     if (temp_v0 != NULL) {
         *arg1 = temp_v0->unkC_31;
         return 1;

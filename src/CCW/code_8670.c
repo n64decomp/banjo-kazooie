@@ -14,7 +14,7 @@ bool func_8038EA60(s32 arg0, s32 arg1, s32 arg2) {
     s32 sp1C;
     s32 temp_v1;
 
-    func_8028EB3C(&sp1C);
+    player_getPosition_s32(&sp1C);
     temp_v1 = arg1 - sp24;
     temp_a0 = arg0 - sp1C;
     return ((temp_v1 * temp_v1) + (temp_a0 * temp_a0)) < (arg2 * arg2);

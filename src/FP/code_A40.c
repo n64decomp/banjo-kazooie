@@ -91,7 +91,7 @@ void chXmasTree_update(Actor *this){
         this->unk16C_4 = TRUE;
         this->marker->propPtr->unk8_3 = TRUE;
         this->marker->collidable = FALSE;
-        func_803300D8(this->marker, func_80386EAC);
+        marker_setFreeMethod(this->marker, func_80386EAC);
         if(this->unk44_31 == 0){
             this->unk44_31 = func_8030D90C();
             sfxsource_setSfxId(this->unk44_31, SFX_415_UNKNOWN);

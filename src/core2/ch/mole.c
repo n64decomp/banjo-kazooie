@@ -303,7 +303,7 @@ void func_802D9D60(Actor *this){
     
     if(!this->unk16C_4){
         this->unk16C_4 = 1;
-        func_803300D8(this->marker, func_802D9C90);
+        marker_setFreeMethod(this->marker, func_802D9C90);
         if(this->initialized){
             other = actorArray_findClosestActorFromActorId(this->position, ACTOR_12C_MOLEHILL, -1, &sp4C);
             this->unk100 = (other) ? other->marker : NULL;

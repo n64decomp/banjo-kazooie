@@ -62,7 +62,7 @@ void func_802DC900(Actor *this){
         this->initialized = TRUE;
         this->depth_mode = MODEL_RENDER_DEPTH_NONE;
         actor_collisionOff(this);
-        func_803300D8(this->marker, func_802DC8F0);
+        marker_setFreeMethod(this->marker, func_802DC8F0);
     }
 }
 

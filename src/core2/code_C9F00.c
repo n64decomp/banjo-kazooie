@@ -446,7 +446,7 @@ void func_80351C48(void) {
     temp_f20 = time_getDelta();
     D_80386180.unk0 = NULL;
     if (D_80386180.unk2C != NULL) {
-        func_8028EB3C(&sp38);
+        player_getPosition_s32(&sp38);
         if ((sp38[0] == D_80386180.unk20[0]) && (sp38[1] == D_80386180.unk20[1]) && (sp38[2] == D_80386180.unk20[2])) {
             player_getPosition(sp4C);
             mlMtxIdent();

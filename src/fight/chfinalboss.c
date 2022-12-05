@@ -2290,7 +2290,7 @@ void chfinalboss_update(Actor *this){
         this->marker->propPtr->unk8_3 = 0;
         actor_collisionOn(this);
         for(i = 0x38C; i < 0x39F; i++){
-            func_80304E24(i, D_803927D0[i - 0x38C]);
+            nodeProp_findPositionFromActorId(i, D_803927D0[i - 0x38C]);
         }
         __chFinalBossFlightPadMarker = NULL;
         __chFinalBossShadowMarker = NULL;

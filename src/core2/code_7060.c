@@ -52,7 +52,7 @@ bool func_8028DFF0(s32 arg0, s32 arg1[3]) {
         return TRUE;
     }
     else{
-        return func_80304DD0(func_803084F0(arg0), arg1);
+        return _nodeProp_findPositionFromActorId(func_803084F0(arg0), arg1);
     }
 }
 
@@ -394,7 +394,7 @@ void func_8028E9C4(s32 arg0, f32 arg1[3]) {
 }
 
 
-void func_8028EB3C(s32 arg0[3]){
+void player_getPosition_s32(s32 arg0[3]){
     f32 plyr_pos[3];
     player_getPosition(plyr_pos);
     arg0[0] = (s32)plyr_pos[0];

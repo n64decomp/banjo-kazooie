@@ -37,7 +37,7 @@ s32 D_803860DC;//total_inputs
 s32 func_80349EC0(s32 arg0){
     s32 sp1C[3];
 
-    return func_80304DD0(arg0 + 0x1CC, &sp1C);
+    return _nodeProp_findPositionFromActorId(arg0 + 0x1CC, &sp1C);
 }
 
 int demo_readInput(OSContPad* arg0, s32* arg1){

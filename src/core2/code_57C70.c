@@ -3,7 +3,7 @@
 #include "variables.h"
 
 extern void func_80325794(ActorMarker *);
-extern void func_802DD080(Gfx **, Mtx **);
+extern void chBottlesBonus_func_802DD080(Gfx **, Mtx **);
 extern void func_80311714(s32);
 
 Actor *func_802DEC00(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
@@ -48,7 +48,7 @@ Actor *func_802DEC00(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     if ((sp48 == 0) || (getGameMode() != GAME_MODE_A_SNS_PICTURE))
         return this;
 
-    func_802DD080(gfx, mtx);
+    chBottlesBonus_func_802DD080(gfx, mtx);
     sp58[0] = 0.0f;
     sp58[1] = 0.0f;
     sp58[2] = 50.0f;
@@ -70,7 +70,7 @@ Actor *func_802DEC00(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     modelRender_draw(gfx, mtx, this->position, NULL, 4.5f, sp4C, func_80330B1C(marker));
     gDPSetTextureFilter((*gfx)++, G_TF_BILERP);
     gDPSetColorDither((*gfx)++, G_CD_MAGICSQ);
-    func_802DD158(gfx, mtx);
+    chBottlesBonus_func_802DD158(gfx, mtx);
     return this;
 }
 
@@ -92,7 +92,7 @@ void func_802DEE1C(Actor *this) {
     if (!this->initialized) {
         this->initialized = TRUE;
         actor_collisionOff(this);
-        func_803300D8(this->marker, func_802DEDDC);
+        marker_setFreeMethod(this->marker, func_802DEDDC);
         actor_playAnimationOnce(this);
         if (D_8037DFE8 == NULL) {
             D_8037DFE8 = assetcache_get(0x56E);

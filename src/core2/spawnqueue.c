@@ -13,7 +13,7 @@ void spawnQueue_lock(void);
 Actor *func_802D7558(s32 *, s32, ActorInfo*, u32);
 Actor *func_802D75B4(s32 *, s32, ActorInfo*, u32);
 Actor *func_802D7610(s32 *, s32, ActorInfo*, u32);
-Actor *func_802DEB18(s32 *, s32, ActorInfo*, u32);
+Actor *chBottlesBonus_new(s32 *, s32, ActorInfo*, u32);
 
 extern ActorInfo D_80365E58; //banjo.without_right_hand
 extern ActorInfo D_80365EAC; //banjo.playing_gameboy
@@ -54,7 +54,7 @@ extern ActorInfo D_80367290; //jingo_orange
 extern ActorInfo D_803672E0; //chbeehive
 extern ActorInfo D_80367310; //chswarm
 extern ActorInfo D_80367390; //chwaterfallfx
-extern ActorInfo D_80367404; //scrapnel
+extern ActorInfo chShrapnelDescription; //scrapnel
 extern ActorInfo chGloop; //gloop
 extern ActorInfo D_803674E0; //mumbo
 extern ActorInfo D_80367530; //mumbo_token_sign.5
@@ -103,10 +103,10 @@ extern ActorInfo D_80367F30;
 extern ActorInfo D_8036804C;//GAME_OVER
 extern ActorInfo D_8036807C;//THE_END
 extern ActorInfo D_803680AC;//player_KAZOOIE
-extern ActorInfo D_803680DC;//copyright_info
+extern ActorInfo chOverlayCopyrightDescription;//copyright_info
 extern ActorInfo D_80368124;//PRESS_START
 extern ActorInfo D_80368174;//NO_CONTROLLER)
-extern ActorInfo D_803682D0; //jiggy_picture
+extern ActorInfo chBottlesBonusDescription; //jiggy_picture
 extern ActorInfo D_8036833C; 
 extern ActorInfo D_8036838C;
 extern ActorInfo D_80368418; //banjos_hand_BB
@@ -189,7 +189,7 @@ void spawnQueue_reset(void){
     loaded_asm_file = get_loaded_overlay_id();
     spawnQueue_lock();
     spawnQueueLength = 0;
-    func_802D1724();
+    chmumbo_func_802D1724();
     func_802E1790();
     switch(loaded_asm_file){
         case OVERLAY_2_WHALE:
@@ -295,9 +295,9 @@ void spawnQueue_reset(void){
     spawnableActorList_add(&D_8036804C, actor_new, 0x508604);//GAME_OVER
     spawnableActorList_add(&D_8036807C, actor_new, 0x508604);//THE_END
     spawnableActorList_add(&D_803680AC, actor_new, 0x508604);//player_KAZOOIE
-    spawnableActorList_add(&D_803680DC, actor_new, 0x508604);//copyright_info
+    spawnableActorList_add(&chOverlayCopyrightDescription, actor_new, 0x508604);//copyright_info
     spawnableActorList_add(&D_80368124, actor_new, 0x508604);//PRESS_START
-    spawnableActorList_add(&D_803682D0, func_802DEB18, 0x509604);//jiggy_picture
+    spawnableActorList_add(&chBottlesBonusDescription, chBottlesBonus_new, 0x509604);//jiggy_picture
     spawnableActorList_add(&D_8036833C, actor_new, 0x508604); 
     spawnableActorList_add(&D_8036838C, actor_new, 0x509604);
     spawnableActorList_add(&D_80368418, actor_new, 0x508644);//banjos_hand_BB
@@ -339,7 +339,7 @@ void spawnQueue_reset(void){
     spawnableActorList_addIfMapVisited(&D_803730D8, actor_new, 0x2200021, MAP_1B_MMM_MAD_MONSTER_MANSION); //nibbly
     spawnableActorList_addIfMapVisited(&D_80367130, actor_new, 0x20009a9, MAP_D_BGS_BUBBLEGLOOP_SWAMP); //buzzbomb
     spawnableActorList_addIfMapVisited(&D_80372B80, actor_new, 0x2020141, MAP_27_FP_FREEZEEZY_PEAK);
-    spawnableActorList_addIfMapVisited(&D_80367404, actor_new, 0x2000101, MAP_7_TTC_TREASURE_TROVE_COVE); //scrapnel
+    spawnableActorList_addIfMapVisited(&chShrapnelDescription, actor_new, 0x2000101, MAP_7_TTC_TREASURE_TROVE_COVE); //scrapnel
     spawnableActorList_addIfMapVisited(&D_80372D78, actor_new, 0x3010121, MAP_1B_MMM_MAD_MONSTER_MANSION); //limbo
     spawnableActorList_addIfMapVisited(&D_80372DF8, actor_new, 0x2010121, MAP_31_RBB_RUSTY_BUCKET_BAY); //grublin_hood
     spawnableActorList_addIfMapVisited(&D_80372E78, actor_new, 0x3010129, MAP_12_GV_GOBIS_VALLEY); //mummum

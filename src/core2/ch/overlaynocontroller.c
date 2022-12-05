@@ -5,8 +5,8 @@
 extern Actor *func_8032813C(enum actor_e, f32[3], s32);
 extern void func_80325794(ActorMarker *marker);
 
-Actor *func_802DCE00(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
-void func_802DCF20(Actor *this);
+Actor *chOverlayNoController_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
+void chOverlayNoController_update(Actor *this);
 
 /* .data */
 ActorAnimationInfo D_80368150[] ={
@@ -16,9 +16,9 @@ ActorAnimationInfo D_80368150[] ={
 };
 f32 D_80368168[3] = {0.0f, 0.0f, 0.0f};
 ActorInfo D_80368174 = { 
-    0x178, 0x1DF, 0x55D, 
+    MARKER_178_NO_CONTROLLER_OVERLAY, ACTOR_1DF_NO_CONTROLLER_OVERLAY, ASSET_55D_MODEL_NO_CONTROLLER_OVERLAY, 
     0x0, D_80368150,
-    func_802DCF20, func_80326224, func_802DCE00,
+    chOverlayNoController_update, func_80326224, chOverlayNoController_draw,
     0, 0, 0.0f, 0
 };
 
@@ -26,7 +26,7 @@ ActorInfo D_80368174 = {
 ActorMarker *D_8037DE90;
 
 /* .code */
-Actor *func_802DCE00(ActorMarker *marker, Gfx **gdl, Mtx **mptr, Vtx **vptr){
+Actor *chOverlayNoController_draw(ActorMarker *marker, Gfx **gdl, Mtx **mptr, Vtx **vptr){
     Actor * actor;
     f32 sp58[3];
     f32 sp4C[3];
@@ -52,18 +52,18 @@ Actor *func_802DCE00(ActorMarker *marker, Gfx **gdl, Mtx **mptr, Vtx **vptr){
     return actor;
 }  
 
-void func_802DCF10(Actor *this){
+void chOverlayNoController_freeMethod(Actor *this){
     D_8037DE90 = NULL;
 }
 
-void func_802DCF20(Actor *this) {
+void chOverlayNoController_update(Actor *this) {
     if (!this->initialized) {
         this->initialized = TRUE;
         this->depth_mode = MODEL_RENDER_DEPTH_NONE;
         actor_collisionOff(this);
         func_80328B8C(this, 1, 0.0f, 1);
         actor_playAnimationOnce(this);
-        func_803300D8(this->marker, func_802DCF10);
+        marker_setFreeMethod(this->marker, chOverlayNoController_freeMethod);
     }
     if (animctrl_isStopped(this->animctrl) != 0) {
         func_80328B8C(this, 2, 0.0f, 1);
@@ -71,19 +71,19 @@ void func_802DCF20(Actor *this) {
     }
 }
 
-void func_802DCFC4(void){
+void __chOverlayNoController_spawn(void){
     if(D_8037DE90 == NULL){
-        D_8037DE90 = func_8032813C(0x1df, D_80368168, 0)->marker;
+        D_8037DE90 = func_8032813C(ACTOR_1DF_NO_CONTROLLER_OVERLAY, D_80368168, 0)->marker;
     }
 }
 
-void func_802DD008(s32 arg0, s32 arg1){
+void chOverlayNoController_spawn(s32 arg0, s32 arg1){
     if(D_8037DE90 == NULL){
-        __spawnQueue_add_0(func_802DCFC4);
+        __spawnQueue_add_0(__chOverlayNoController_spawn);
     }
 }
 
-void func_802DD040(s32 arg0, s32 arg1) {
+void chOverlayNoController_func_802DD040(s32 arg0, s32 arg1) {
     ActorMarker *temp_a0;
 
     temp_a0 = D_8037DE90;

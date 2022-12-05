@@ -7,7 +7,7 @@
 struct FF_StorageStruct *D_8037DCB8;
 
 void func_80350E00(void){
-    func_803208F0();
+    quizQuestionAskedBitfield_defrag();
     func_8031A4CC();
     if(D_8037DCB8 == NULL)
         return;

@@ -232,7 +232,7 @@ void func_80391B04(Actor *this) {
         func_8038EA10(local->unk10, D_80394BC0);
         this->unk58_2 = FALSE;
         func_80391810(this, 1);
-        func_803300D8(this->marker, func_80391AE4);
+        marker_setFreeMethod(this->marker, func_80391AE4);
         this->unk16C_4 = TRUE;
     }
 

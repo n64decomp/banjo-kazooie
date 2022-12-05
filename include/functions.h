@@ -479,7 +479,7 @@ Actor *func_8032A7AC(Actor *);
 Prop *func_8032F528(void);
 ActorMarker *func_8032FBE4(f32 *pos, MarkerDrawFunc arg1, int arg2, enum asset_e model_id);
 
-void func_803300D8(ActorMarker *, void (*)(Actor *));
+void marker_setFreeMethod(ActorMarker *, void (*)(Actor *));
 void marker_setCollisionScripts(ActorMarker *this, MarkerCollisionFunc ow_func, MarkerCollisionFunc arg2, MarkerCollisionFunc die_func);
 BKModelBin *  func_80330B1C(ActorMarker *marker);
 BKVertexList *func_80330C74(Actor *actor);

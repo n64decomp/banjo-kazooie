@@ -115,7 +115,7 @@ void func_802CDD78(Actor * this){
         local->unk4 = 0;
         local->unk8 = (this->position_y < func_80309B24(this->position));
         this->marker->unkC = func_802CDBA8;
-        func_803300D8(this->marker, func_802CDD3C);
+        marker_setFreeMethod(this->marker, func_802CDD3C);
         if(func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE)){
             marker_despawn(this->marker);
         }

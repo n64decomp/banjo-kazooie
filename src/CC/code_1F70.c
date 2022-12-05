@@ -286,7 +286,7 @@ void func_80388D54(void){
         D_80389FA0.unk28[2] = 0.0f;
         D_80389FA0.unk28[1] = 0.0f;
         func_80320B24(func_80388360, func_80388428, func_803884A8);
-        if(!func_80304E24(0x3B, D_80389FA0.unkC)){
+        if(!nodeProp_findPositionFromActorId(0x3B, D_80389FA0.unkC)){
             D_80389FA0.unkC[0] = 0.0f;
             D_80389FA0.unkC[1] =-1e+06f;
             D_80389FA0.unkC[2] = 0.0f;

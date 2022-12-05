@@ -9,7 +9,7 @@ s32 D_80382460;
 void func_8030C740(void){
     f32 sp1C[3];
     D_80382460 = 1;
-    if(func_80304DD0(0x16, sp1C)){
+    if(_nodeProp_findPositionFromActorId(0x16, sp1C)){
         D_80382460 = 0;
     }
 }

@@ -232,7 +232,7 @@ void func_802C16CC(s32 arg0) {
         if(sp38 != D_8037DBE0.unk28 && D_8037DBE0.unk28 != -1){
             player_getPosition(sp54); 
             ml_vec3f_to_vec3w(sp48, sp54);
-            sp30 = func_803049CC(sp38, sp48);
+            sp30 = cubeList_findNodePropByActorId(sp38, sp48);
             if(sp30 != NULL) {
                 nodeprop_getPosition(sp30, sp54);
                 switch (func_80304DB8(sp30)) {                        /* irregular */

@@ -135,7 +135,7 @@ void func_8034B4E4(s32 arg0){
             /* fall-through */
         case 2: //L8034B550
         case 7: //L8034B550
-            func_802DCAD4(0,0);
+            chOverlayCopyright_spawn(0,0);
             break;
 
         case 5: //L8034B564
@@ -155,7 +155,7 @@ void func_8034B580(s32 arg0) {
         switch (arg0) {
         case 4:
             if ((D_80386128 >= 2.5) && (sp1C < 2.5) && (D_80371F9C == 0)) {
-                func_802DCB0C(0, 0);
+                chOverlayCopyright_func_802DCB0C(0, 0);
             }
             /* fallthrough */
         case 3:
@@ -163,19 +163,19 @@ void func_8034B580(s32 arg0) {
                 func_802DC9DC(0, 0);
             }
             if ((D_80386128 >= 4.0) && (sp1C < 4.0) && (func_8024F12C() == 0)) {
-                func_802DCD78(0, 0);
+                chOverlayPressStart_spawn(0, 0);
                 if (D_80371F9C != 0) {
-                    func_802DCDB0();
+                    chOverlayPressStart_func_802DCDB0();
                     return;
                 }
             }
             break;
         case 7:
             if ((D_80386128 >= 2.5) && (sp1C < 2.5)) {
-                func_802DCB0C(0, 0);
+                chOverlayCopyright_func_802DCB0C(0, 0);
             }
             if ((D_80386128 >= 4.0) && (sp1C < 4.0) && (func_8024F12C() == 0)) {
-                func_802DCD78(0, 0);
+                chOverlayPressStart_spawn(0, 0);
             }
             break;
         }
@@ -184,8 +184,8 @@ void func_8034B580(s32 arg0) {
 
 void func_8034B7F0(s32 arg0) {
     func_802DC9DC(0, 0);
-    func_802DCB0C(0, 0);
-    func_802DCDC0(0, 0);
+    chOverlayCopyright_func_802DCB0C(0, 0);
+    chOverlayPressStart_func_802DCDC0(0, 0);
     D_80371F9C = 0;
 }
 

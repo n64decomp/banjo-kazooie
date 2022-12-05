@@ -24,7 +24,7 @@ ActorInfo D_80390BFC = {MARKER_FD_BGS_MAZE_SWITCH,             ACTOR_1FB_BGS_MAZ
 void func_8038EE50(void){
     f32 sp24[3];
 
-    if(func_80304E24(0x14d, sp24)){
+    if(nodeProp_findPositionFromActorId(0x14d, sp24)){
         jiggySpawn(JIGGY_20_BGS_ELEVATED_WALKWAY, sp24);
         __spawnQueue_add_4((GenMethod_4)func_802C4140, ACTOR_4C_STEAM, 
             reinterpret_cast(s32, sp24[0]), 
@@ -67,7 +67,7 @@ void func_8038EEA4(Actor *this){
 void func_8038F018(void){
     f32 sp24[3];
 
-    if(func_80304E24(0x1fc, sp24)){
+    if(nodeProp_findPositionFromActorId(0x1fc, sp24)){
         jiggySpawn(JIGGY_25_BGS_MAZE, sp24);
         __spawnQueue_add_4((GenMethod_4)func_802C4140, ACTOR_4C_STEAM, 
             reinterpret_cast(s32, sp24[0]), 

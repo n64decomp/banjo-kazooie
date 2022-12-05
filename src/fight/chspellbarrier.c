@@ -71,7 +71,7 @@ void chspellbarrier_update(Actor *this){
     if(!this->unk16C_4){
         this->unk16C_4 = 1;
         marker_setCollisionScripts(this->marker, NULL, func_8038E780, NULL);
-        func_803300D8(this->marker, func_8038E7EC);
+        marker_setFreeMethod(this->marker, func_8038E7EC);
         this->marker->propPtr->unk8_3 = 0;
         actor_collisionOn(this);
         local->unk0 = 0;

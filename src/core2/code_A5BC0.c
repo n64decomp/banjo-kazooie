@@ -599,7 +599,7 @@ bool func_8032E178(Cube *arg0, s32 *arg1, s32 arg2) {
     return FALSE;
 }
 
-NodeProp *func_8032E230(Cube *cube, s32 arg1) {
+NodeProp *cube_findNodePropByActorId(Cube *cube, s32 arg1) {
     NodeProp *i_ptr;
 
     if (cube != NULL && cube->prop1Cnt != 0){
@@ -1206,7 +1206,7 @@ void func_803300D0(ActorMarker *marker, s32 arg1){
     marker->unk34 = arg1;
 }
 
-void func_803300D8(ActorMarker *marker, ActorFreeFunc method){
+void marker_setFreeMethod(ActorMarker *marker, ActorFreeFunc method){
     marker->unk30 = method;
 }
 
@@ -1945,22 +1945,22 @@ f32 func_80331F1C(Prop *arg0){
 
 f32 func_80331F54(ActorMarker *marker) {
     f32 sp34;
-    f32 sp28[3];
+    f32 model_center[3];
     BKModelBin *model;
 
     model = func_80330B1C(marker);
     if (model == NULL) {
         return 1.0f;
     }
-    func_802EC930(func_8033A148(model), sp28, &sp34);
+    func_802EC930(func_8033A148(model), model_center, &sp34);
     if (marker->unk3E_0) {
-        sp28[0] = sp28[0] * marker_getActor(marker)->scale;\
-        sp28[1] = sp28[1] * marker_getActor(marker)->scale;\
-        sp28[2] = sp28[2] * marker_getActor(marker)->scale;
+        model_center[0] = model_center[0] * marker_getActor(marker)->scale;\
+        model_center[1] = model_center[1] * marker_getActor(marker)->scale;\
+        model_center[2] = model_center[2] * marker_getActor(marker)->scale;
     }
-    marker->unk38[0] = (s16) sp28[0];\
-    marker->unk38[1] = (s16) sp28[1];\
-    marker->unk38[2] = (s16) sp28[2];
+    marker->unk38[0] = (s16) model_center[0];\
+    marker->unk38[1] = (s16) model_center[1];\
+    marker->unk38[2] = (s16) model_center[2];
     return sp34 * 2;
 }
 

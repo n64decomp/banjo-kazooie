@@ -8,8 +8,8 @@ extern void func_80325794(ActorMarker *);
 extern Actor *func_8032813C(enum actor_e id, f32[3], s32);
 
 
-Actor *func_802DCB50(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
-void func_802DCC90(Actor *this);
+Actor *chOverlayPressStart_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
+void chOverlayPressStart_update(Actor *this);
 
 
 /* .data */
@@ -22,9 +22,9 @@ ActorAnimationInfo D_80368100[] = {
 f32 D_80368118[3] = {0.0f, 0.0f, 0.0f};
 
 ActorInfo D_80368124 = { 
-    0x177, 0x1DE, 0x55C, 
+    MARKER_177_PRESS_START_OVERLAY, ACTOR_1DE_PRESS_START_OVERLAY, ASSET_55C_MODEL_PRESS_START_OVERLAY, 
     0x0, D_80368100,
-    func_802DCC90, func_80326224, func_802DCB50,
+    chOverlayPressStart_update, func_80326224, chOverlayPressStart_draw,
     0, 0, 0.0f, 0
 };
 
@@ -33,7 +33,7 @@ ActorMarker *D_8037DE80;
 bool D_8037DE84;
 
 /* .code */
-Actor *func_802DCB50(ActorMarker *marker, Gfx **gdl, Mtx **mptr, Vtx **vptr){
+Actor *chOverlayPressStart_draw(ActorMarker *marker, Gfx **gdl, Mtx **mptr, Vtx **vptr){
     Actor * actor;
     f32 sp58[3];
     f32 sp4C[3];
@@ -62,19 +62,19 @@ Actor *func_802DCB50(ActorMarker *marker, Gfx **gdl, Mtx **mptr, Vtx **vptr){
     return actor;
 }  
 
-void func_802DCC78(ActorMarker *this){
+void chOverlayPressStart_func_802DCC78(ActorMarker *this){
     D_8037DE80 = 0;
     D_8037DE84 = 0;
 }
 
-void func_802DCC90(Actor *this){
+void chOverlayPressStart_update(Actor *this){
     if(!this->initialized){
         this->initialized = 1;
         this->depth_mode = MODEL_RENDER_DEPTH_NONE;
         actor_collisionOff(this);
         func_80328B8C(this, 1, 0.0f, 1);
         actor_playAnimationOnce(this);
-        func_803300D8(this->marker, func_802DCC78);
+        marker_setFreeMethod(this->marker, chOverlayPressStart_func_802DCC78);
     }
 
     if(animctrl_isStopped(this->animctrl)){
@@ -83,23 +83,23 @@ void func_802DCC90(Actor *this){
     }
 }
 
-void func_802DCD34(void){
+void __chOverlayPressStart_spawn(void){
     if(D_8037DE80 == NULL){
-        D_8037DE80 = func_8032813C(0x1de, D_80368118, 0)->marker;
+        D_8037DE80 = func_8032813C(ACTOR_1DE_PRESS_START_OVERLAY, D_80368118, 0)->marker;
     }
 }
 
-void func_802DCD78(s32 arg0, s32 arg1){
+void chOverlayPressStart_spawn(s32 arg0, s32 arg1){
     if(D_8037DE80 == NULL){
-        __spawnQueue_add_0(func_802DCD34);
+        __spawnQueue_add_0(__chOverlayPressStart_spawn);
     }
 }
 
-void func_802DCDB0(void){
+void chOverlayPressStart_func_802DCDB0(void){
     D_8037DE84 = TRUE;
 }
 
-void func_802DCDC0(s32 arg0, s32 arg1) {
+void chOverlayPressStart_func_802DCDC0(s32 arg0, s32 arg1) {
     ActorMarker *temp_a0;
 
     temp_a0 = D_8037DE80;

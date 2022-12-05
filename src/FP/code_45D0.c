@@ -26,7 +26,7 @@ void FP_func_8038A9C0(void){
     }
 
     D_80392F50.unk18 = 0;
-    if(func_80304E24(0x15E, D_80392F50.spawn_pos)){
+    if(nodeProp_findPositionFromActorId(0x15E, D_80392F50.spawn_pos)){
         D_80392F50.unk18 = 1;
     }
     D_80392F50.unk0 = 1;

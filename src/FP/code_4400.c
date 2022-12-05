@@ -25,7 +25,7 @@ void func_8038A7F0(void){
     }
 
     D_80392F30.unk1C = 0;
-    if(func_80304E24(0x128, D_80392F30.spawn_pos)){
+    if(nodeProp_findPositionFromActorId(0x128, D_80392F30.spawn_pos)){
         D_80392F30.unk1C = 1;
     }
     D_80392F30.unk0 = 1;

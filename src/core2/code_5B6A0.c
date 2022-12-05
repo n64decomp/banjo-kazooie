@@ -16,7 +16,7 @@ void func_802E28D0(Actor *this);
 
 /* .data */
 ActorInfo D_80368710 = { 
-    0xB2, 0x125, 0x378, 
+    0xB2, 0x125, ASSET_378_MODEL_SNOWBALL, 
     0x1, NULL, 
     func_802E28D0, func_80326224, func_802E2630, 
     0, 0x800, 0.8f, 0

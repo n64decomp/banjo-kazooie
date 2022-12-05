@@ -612,7 +612,7 @@ BKGfxList *            modelRenderDisplayList;
 struct58s *            D_8038371C;
 static BKTextureList * modelRenderTextureList;
 s32                    D_80383724;
-static BKVertexList *  modelRenderVextureList;
+static BKVertexList *  modelRendervertexList;
 BKModelUnk20List *     D_8038372C;
 struct58s *            D_80383730;
 f32                    modelRenderScale;
@@ -685,7 +685,7 @@ void modelRender_reset(void){
     D_8038371C = NULL;
     modelRenderTextureList = NULL;
     D_80383724 = 0;
-    modelRenderVextureList = NULL;
+    modelRendervertexList = NULL;
     D_8038372C = 0;
     modelRenderCallback.pre_method = NULL;
     modelRenderCallback.post_method = NULL;
@@ -1081,7 +1081,7 @@ BKModelBin *modelRender_draw(Gfx **gfx, Mtx **mtx, f32 position[3], f32 rotation
     }
 
     if(model_bin){
-        verts = modelRenderVextureList ? modelRenderVextureList : (BKVertexList *)((s32)model_bin + model_bin->vtx_list_offset_10);
+        verts = modelRendervertexList ? modelRendervertexList : (BKVertexList *)((s32)model_bin + model_bin->vtx_list_offset_10);
         spD0 = verts->unk16;
         spD4 = verts->unk12;
     }
@@ -1115,7 +1115,7 @@ BKModelBin *modelRender_draw(Gfx **gfx, Mtx **mtx, f32 position[3], f32 rotation
     modelRenderModelBin = model_bin;
     modelRenderDisplayList = modelRenderDisplayList ? modelRenderDisplayList : (BKGfxList *)((s32)modelRenderModelBin + modelRenderModelBin->gfx_list_offset_C),
     modelRenderTextureList = modelRenderTextureList ? modelRenderTextureList : (BKTextureList *)((s32)modelRenderModelBin + modelRenderModelBin->texture_list_offset_8),
-    modelRenderVextureList = modelRenderVextureList ? modelRenderVextureList : (BKVertexList *)((s32)modelRenderModelBin + modelRenderModelBin->vtx_list_offset_10),
+    modelRendervertexList = modelRendervertexList ? modelRendervertexList : (BKVertexList *)((s32)modelRenderModelBin + modelRenderModelBin->vtx_list_offset_10),
     D_8038372C = (modelRenderModelBin->unk20 == NULL) ? NULL : (BKModelUnk20List *)((u8*)model_bin + model_bin->unk20);
 
     if(D_80383710){
@@ -1138,7 +1138,7 @@ BKModelBin *modelRender_draw(Gfx **gfx, Mtx **mtx, f32 position[3], f32 rotation
     }
 
     // Set up segments 1 and 2 to point to vertices and textures respectively
-    gSPSegment((*gfx)++, 0x01, osVirtualToPhysical(&modelRenderVextureList->vtx_18));
+    gSPSegment((*gfx)++, 0x01, osVirtualToPhysical(&modelRendervertexList->vtx_18));
     gSPSegment((*gfx)++, 0x02, osVirtualToPhysical(&modelRenderTextureList->tex_8[modelRenderTextureList->cnt_4]));
 
     if(D_80383724){
@@ -1248,7 +1248,7 @@ BKModelBin *modelRender_draw(Gfx **gfx, Mtx **mtx, f32 position[3], f32 rotation
     }
 
     if(model_bin->unk28 != NULL && D_8038371C != NULL){
-        func_802E6BD0((s32)modelRenderModelBin + modelRenderModelBin->unk28, modelRenderVextureList, D_8038371C);
+        func_802E6BD0((s32)modelRenderModelBin + modelRenderModelBin->unk28, modelRendervertexList, D_8038371C);
     }
 
     mlMtxIdent();
@@ -1506,7 +1506,7 @@ void func_8033A4A0(enum asset_e modelId, f32 arg1, f32 arg2){
 }
 
 void modelRender_setVertexList(BKVertexList *vertexList){
-    modelRenderVextureList = vertexList;
+    modelRendervertexList = vertexList;
 }
 
 void modelRender_setDepthMode(enum model_render_depth_mode_e renderMode){

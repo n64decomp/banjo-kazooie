@@ -9,12 +9,8 @@ extern f32 func_80309B24(f32[3]);
 /* .h */
 void chshrapnel_update(Actor *this);
 
-typedef struct {
-    s32 unk0;
-}ActorLocal_core2_49A70;
-
 /* .data */
-ActorAnimationInfo D_803673C0[] = {
+ActorAnimationInfo chShrapnelAnimations[] = {
     {0, 0.0f},
     {0x1F4, 1.0f},
     {0x1F4, 1.0f},
@@ -26,19 +22,19 @@ ActorAnimationInfo D_803673C0[] = {
 
 s32 D_803673F8[3] = {0xDE, 0xA7, 0x71};
 
-ActorInfo D_80367404 = { 
+ActorInfo chShrapnelDescription = { 
     MARKER_65_SHRAPNEL, ACTOR_56_SHRAPNEL, ASSET_3EC_MODEL_SHRAPNEL,
-    0x1, D_803673C0,
+    0x1, chShrapnelAnimations,
     chshrapnel_update, func_80326224, func_80325888, 
     2500, 0x333, 0.0f, 0
 };
 
 /* .code */
-void func_802D0A00(Actor *this) {
+void chShrapnel_func_802D0A00(Actor *this) {
     this->unk28 = randf2(1.5f, 2.3f);
 }
 
-void func_802D0A38(Actor *this){
+void chShrapnel_func_802D0A38(Actor *this){
     if(this->unk38_31 != 0){
         this->unk38_31--;
     }
@@ -50,19 +46,19 @@ void func_802D0A38(Actor *this){
     }
 }
 
-void func_802D0AB8(Actor *this) {
+void chShrapnel_func_802D0AB8(Actor *this) {
     func_80328B8C(this, 1, 0.0f, 0);
-    func_802D0A00(this);
+    chShrapnel_func_802D0A00(this);
     func_80328CEC(this, (s32) this->yaw_ideal, 0x87, 0xAF);
     this->unk38_31 = 0x1E;
 }
 
-void func_802D0B24(s32 arg0){
+void chShrapnel_spawnExplodeActor(s32 arg0){
     Actor *this = reinterpret_cast(Actor *, arg0);
     func_8032813C(0xF3, this->unk1C, 0);
 }
 
-void func_802D0B54(Actor *this) {
+void chShrapnel_emitExplosion(Actor *this) {
     ParticleEmitter *temp_v0;
 
     func_802BB3DC(0, 60.0f, 0.9f);
@@ -81,8 +77,7 @@ void func_802D0B54(Actor *this) {
     particleEmitter_emitN(temp_v0, 1);
 }
 
-
-void func_802D0CB4(Actor *this) {
+void chShrapnel_emitSmoke(Actor *this) {
     ParticleEmitter *temp_v0;
 
     temp_v0 = partEmitList_pushNew(6U);
@@ -99,7 +94,7 @@ void func_802D0CB4(Actor *this) {
     particleEmitter_emitN(temp_v0, 6);
 }
 
-void func_802D0DDC(Actor *this, enum model_e model_id, s32 n) {
+void chShrapnel_emitBodyParts(Actor *this, enum model_e model_id, s32 n) {
     ParticleEmitter *temp_v0;
 
     temp_v0 = partEmitList_pushNew(n);
@@ -116,30 +111,30 @@ void func_802D0DDC(Actor *this, enum model_e model_id, s32 n) {
     particleEmitter_emitN(temp_v0, n);
 }
 
-void func_802D0F30(ActorMarker *marker, ActorMarker *other_marker) {
+void chShrapnel_explode(ActorMarker *marker, ActorMarker *other_marker) {
     Actor *this;
 
     this = marker_getActor(marker);
     FUNC_8030E8B4(SFX_1B_EXPLOSION_1, 1.0f, 32736, this->position, 1250, 2500);
-    __spawnQueue_add_1((GenMethod_1)func_802D0B24, reinterpret_cast(s32, this));
-    func_802D0B54(this);
-    func_802D0CB4(this);
-    func_802D0DDC(this, ASSET_53A_MODEL_SHRAPNAL_PIECE_EYE, 2);
-    func_802D0DDC(this, ASSET_53B_MODEL_SHRAPNAL_PIECE_SPIKE, 8);
-    func_802D0DDC(this, ASSET_53C_MODEL_SHRAPNAL_PIECE_PLATE, 8);
+    __spawnQueue_add_1((GenMethod_1)chShrapnel_spawnExplodeActor, reinterpret_cast(s32, this));
+    chShrapnel_emitExplosion(this);
+    chShrapnel_emitSmoke(this);
+    chShrapnel_emitBodyParts(this, ASSET_53A_MODEL_SHRAPNAL_PIECE_EYE, 2);
+    chShrapnel_emitBodyParts(this, ASSET_53B_MODEL_SHRAPNAL_PIECE_SPIKE, 8);
+    chShrapnel_emitBodyParts(this, ASSET_53C_MODEL_SHRAPNAL_PIECE_PLATE, 8);
     marker_despawn(marker);
 }
 
-void func_802D0FC8(Actor *this) {
+void chShrapnel_func_802D0FC8(Actor *this) {
     this->unk4C += time_getDelta();
     if (MAX(0.25, (12.0 - this->unk28) / 12.0) < this->unk4C) {
         *(s32 *)(&this->local) = NOT(*(s32 *)(&this->local));
         this->unk4C = 0.0f;
         if (*(s32 *)(&this->local)) {
-            FUNC_8030E8B4(SFX_2A_CLOCK_TIC_1, 0.5f, 12000, this->position, 0x4E2, 0x9C4);
+            FUNC_8030E8B4(SFX_2A_CLOCK_TIC_1, 0.5f, 12000, this->position, 1250, 2500);
         }
         else{
-            FUNC_8030E8B4(SFX_51_CLOCK_TIC_2, 0.5f, 12000, this->position, 0x4E2, 0x9C4);
+            FUNC_8030E8B4(SFX_51_CLOCK_TIC_2, 0.5f, 12000, this->position, 1250, 2500);
         }
     }
 }
@@ -150,12 +145,12 @@ void chshrapnel_update(Actor *this) {
 
     tick = time_getDelta();
     if (!this->initialized) {
-        marker_setCollisionScripts(this->marker, NULL, NULL, func_802D0F30);
+        marker_setCollisionScripts(this->marker, NULL, NULL, chShrapnel_explode);
         this->unk138_25 = TRUE;
         this->initialized = TRUE;
         this->unk4C = 0.0f;
     }
-    func_802D0FC8(this);
+    chShrapnel_func_802D0FC8(this);
     this->unk60 += tick;
     if (M_PI <= this->unk60) {
         this->unk60 -= M_PI;
@@ -168,7 +163,7 @@ void chshrapnel_update(Actor *this) {
     _player_getPosition(player_position);
     switch (this->state) {
         case 1:
-            func_802D0A38(this);
+            chShrapnel_func_802D0A38(this);
             break;
 
         case 2:
@@ -189,7 +184,7 @@ void chshrapnel_update(Actor *this) {
             func_80328FB0(this, this->unk28 / 2);
             this->unk28 = MIN( 50.0, (this->unk28 + tick));
             if ((250.0 <= ABS(player_position[1] - this->unk1C[1])) || !func_80329054(this, 0)) {
-                func_802D0AB8(this);
+                chShrapnel_func_802D0AB8(this);
             }
             break;
 

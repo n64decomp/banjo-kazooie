@@ -385,8 +385,8 @@ void func_803895E0(void){
 
     for (i = 0; i< 7; i++){
         s0 = (i < 3) 
-            ? func_803049CC(D_80391DB8[i].unk0, D_80391DA0) 
-            : func_803049CC(D_80391DB8[i].unk0, D_80391DAC);
+            ? cubeList_findNodePropByActorId(D_80391DB8[i].unk0, D_80391DA0) 
+            : cubeList_findNodePropByActorId(D_80391DB8[i].unk0, D_80391DAC);
 
         nodeprop_getPosition(s0, sp64);
         f20 = (f32)func_80304DA8(s0);

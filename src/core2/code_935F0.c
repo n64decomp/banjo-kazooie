@@ -154,7 +154,7 @@ void func_8031A9E4(Actor *this){
         }
     
         func_8031A618(this);
-        func_803300D8(this->marker, func_8031A9BC);
+        marker_setFreeMethod(this->marker, func_8031A9BC);
         func_8028FAB0(this->position);
         this->unk1C[0] = 0.0f; this->unk1C[1] = this->yaw; this->unk1C[2] = 0.0f;
         func_8028FAEC(this->unk1C);

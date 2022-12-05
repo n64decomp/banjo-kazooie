@@ -348,7 +348,7 @@ void func_802E17E8(void) {
     local->unk0 = 0;
     local->unk4 = 0;
     local->unk8 = 0.0f;
-    func_803300D8(D_8037E620, func_802E0FC4);
+    marker_setFreeMethod(D_8037E620, func_802E0FC4);
     if (func_8032CA80(snacker, D_8037E62C ? 0x10 : 0xC)) {
         marker_despawn(D_8037E620);
         return;

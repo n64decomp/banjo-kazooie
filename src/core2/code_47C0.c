@@ -157,7 +157,7 @@ void func_8028B9A8(s32 arg0){
     s16 *tmp_v0;
     s32 ideal_yaw[3];
 
-    tmp_v0 = func_803049CC(0x1F6, 0);
+    tmp_v0 = cubeList_findNodePropByActorId(0x1F6, 0);
     func_80304D4C(tmp_v0, &ideal_yaw);
     func_802CA1CC(arg0);
     func_8032811C(0x47, &ideal_yaw, 0);
@@ -296,7 +296,7 @@ void func_8028BCA0(Prop *prop){
             case 0xB5: //L8028BEF4
                 if(func_8028BC20(marker) != HITBOX_0_NONE)
                     return;
-                if(func_802D8E68(prop)){
+                if(chcollectable_collectRedFeather(prop)){
                     marker_despawn(marker);
                 }
                 break;
@@ -305,7 +305,7 @@ void func_8028BCA0(Prop *prop){
                 if(func_8028BC20(marker))
                     return;
                 
-                if(func_802D8EDC(prop)){
+                if(chcollectable_collectGoldFeather(prop)){
                     marker_despawn(marker);
                 }
                 break;
@@ -680,7 +680,7 @@ void func_8028BCA0(Prop *prop){
             case 0x60: //L8028CCF0
                 if(func_8028BC20(marker))
                     return;
-                if(collect_egg(prop)){
+                if(chcollectable_collectEgg(prop)){
                     marker_despawn(marker);
                 }
                 break;
@@ -835,19 +835,19 @@ void func_8028BCA0(Prop *prop){
         case 0x6D7: //L8028D16C
             if(!func_8028BC60()){
                 prop->spriteProp.unk8_4 = 0;
-                collect_egg(prop);
+                chcollectable_collectEgg(prop);
             }
             break;
         case 0x580: //L8028D194
             if(!func_8028BC60()){
                 prop->spriteProp.unk8_4 = 0;
-                func_802D8E68(prop);
+                chcollectable_collectRedFeather(prop);
             }
             break;
         case 0x6D1: //L8028D1BC
             if(!func_8028BC60()){
                 prop->spriteProp.unk8_4 = 0;
-                func_802D8EDC(prop);
+                chcollectable_collectGoldFeather(prop);
             }
             break;
         default:

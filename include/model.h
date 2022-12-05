@@ -33,11 +33,11 @@ typedef struct {
 } BKMeshList;
 
 typedef struct {
-    s16 minCoord_0[3];
-    s16 maxCoord_6[3];
-    s16 unkC[3];
+    s16 minCoord[3];
+    s16 maxCoord[3];
+    s16 centerCoord[3];
     s16 unk12;
-    s16 cnt_14;
+    s16 count;
     s16 unk16;
     Vtx vtx_18[];
 } BKVertexList;

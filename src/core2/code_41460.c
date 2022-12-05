@@ -184,7 +184,7 @@ Actor *func_802C8580(s32 position[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
         ml_vec3f_yaw_rotate_copy(&s0->unk30, &s0->unk30, randf2(15.0f, 90.0f) + f24);
     }//L802C8A08
     actor->unk40 = s1;
-    func_803300D8(actor->marker, func_802C83F0);
+    marker_setFreeMethod(actor->marker, func_802C83F0);
     return actor;
 }
 

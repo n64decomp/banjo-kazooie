@@ -356,7 +356,7 @@ void chBeeSwarm_update(Actor *this) {
     }
     if (!this->unk16C_4) {
         this->unk16C_4 = TRUE;
-        func_803300D8(this->marker, chBeeSwarm_802CEBA8);
+        marker_setFreeMethod(this->marker, chBeeSwarm_802CEBA8);
         actor_collisionOff(this);
         local->unk20 = assetcache_get(ASSET_3BF_MODEL_PLAYER_SHADOW);
         if (sp78 == 0) {

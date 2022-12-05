@@ -112,7 +112,7 @@ void func_80322318(Struct_core2_9B180_0 * arg0){
 bool func_80322340(s32 arg0) {
     f32 sp1C[3];
 
-    if (func_80304E24(arg0, &sp1C)) {
+    if (nodeProp_findPositionFromActorId(arg0, &sp1C)) {
         return 1;
     }
     return 0;
@@ -130,7 +130,7 @@ void func_803223AC(void) {
 
     func_80244A98(1);
     for(i_ptr = D_8036DE00; i_ptr != &D_8036DE00[6]; i_ptr++){
-        i_ptr->unk4 = func_803049CC(i_ptr->unk0, 0);
+        i_ptr->unk4 = cubeList_findNodePropByActorId(i_ptr->unk0, 0);
         if(i_ptr->unk4 != 0 && i_ptr->unk8 != NULL){
             i_ptr->unk8(i_ptr);
         }

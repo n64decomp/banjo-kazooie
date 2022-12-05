@@ -20,41 +20,41 @@ Vtx *vtxList_getVertices(BKVertexList *vtxList){
 }
 
 void vtxList_getBounds_s32(BKVertexList *vtxList, s32 min[3], s32 max[3]){
-    min[0] = vtxList->minCoord_0[0];
-    min[1] = vtxList->minCoord_0[1];
-    min[2] = vtxList->minCoord_0[2];
+    min[0] = vtxList->minCoord[0];
+    min[1] = vtxList->minCoord[1];
+    min[2] = vtxList->minCoord[2];
 
-    max[0] = vtxList->maxCoord_6[0];
-    max[1] = vtxList->maxCoord_6[1];
-    max[2] = vtxList->maxCoord_6[2];
+    max[0] = vtxList->maxCoord[0];
+    max[1] = vtxList->maxCoord[1];
+    max[2] = vtxList->maxCoord[2];
 }
 
 void vtxList_getBounds_f32(BKVertexList *vtxList, f32 min[3], f32 max[3]){
-    min[0] = (f32) vtxList->minCoord_0[0];
-    min[1] = (f32) vtxList->minCoord_0[1];
-    min[2] = (f32) vtxList->minCoord_0[2];
+    min[0] = (f32) vtxList->minCoord[0];
+    min[1] = (f32) vtxList->minCoord[1];
+    min[2] = (f32) vtxList->minCoord[2];
 
-    max[0] = (f32) vtxList->maxCoord_6[0];
-    max[1] = (f32) vtxList->maxCoord_6[1];
-    max[2] = (f32) vtxList->maxCoord_6[2];
+    max[0] = (f32) vtxList->maxCoord[0];
+    max[1] = (f32) vtxList->maxCoord[1];
+    max[2] = (f32) vtxList->maxCoord[2];
 }
 
-void func_802EC508(BKVertexList *arg0, f32 arg1[3], f32 arg2[3]) {
+void vtxList_getBoundsMlMtxTransformed(BKVertexList *self, f32 min[3], f32 max[3]) {
     Vtx *start_vtx;
     Vtx *end_vtx;
     Vtx *i_vtx;
     s32 i;
     f32 sp44[3];
 
-    start_vtx = (Vtx *)(arg0 + 1);
-    end_vtx = start_vtx + arg0->cnt_14;
-    arg1[0] = (f32) start_vtx->v.ob[0];
-    arg1[1] = (f32) start_vtx->v.ob[1];
-    arg1[2] = (f32) start_vtx->v.ob[2];
-    func_8025235C(arg1, arg1);
-    arg2[0] = arg1[0];
-    arg2[1] = arg1[1];
-    arg2[2] = arg1[2];
+    start_vtx = (Vtx *)(self + 1);
+    end_vtx = start_vtx + self->count;
+    min[0] = (f32) start_vtx->v.ob[0];
+    min[1] = (f32) start_vtx->v.ob[1];
+    min[2] = (f32) start_vtx->v.ob[2];
+    func_8025235C(min, min);
+    max[0] = min[0];
+    max[1] = min[1];
+    max[2] = min[2];
 
     for( i_vtx = start_vtx + 1; i_vtx < end_vtx; i_vtx++){ 
         sp44[0] = (f32) i_vtx->v.ob[0];
@@ -63,25 +63,25 @@ void func_802EC508(BKVertexList *arg0, f32 arg1[3], f32 arg2[3]) {
         func_8025235C(sp44, sp44);
 
         for(i = 0; i < 3; i++){
-            if( sp44[i] < arg1[i]){
-                arg1[i] = sp44[i];
+            if( sp44[i] < min[i]){
+                min[i] = sp44[i];
             }
-            if( arg2[i] < sp44[i]){
-                arg2[i] = sp44[i];
+            if( max[i] < sp44[i]){
+                max[i] = sp44[i];
             }
         }
     }
 }
 
-void func_802EC680(BKVertexList *arg0, s32 arg1, f32 arg2[3], f32 arg3[3]) {
+void func_802EC680(BKVertexList *self, s32 arg1, f32 arg2[3], f32 arg3[3]) {
     Vtx *start_vtx;
     Vtx *end_vtx;
     Vtx *i_vtx;
     s32 i;
     f32 sp44[3];
 
-    start_vtx = (Vtx*)(arg0 + 1);
-    end_vtx = start_vtx + arg0->cnt_14;
+    start_vtx = (Vtx*)(self + 1);
+    end_vtx = start_vtx + self->count;
 
     for(i_vtx = start_vtx; i_vtx < end_vtx; i_vtx++){
         sp44[0] = (f32) i_vtx->v.ob[0];
@@ -129,25 +129,23 @@ void func_802EC680(BKVertexList *arg0, s32 arg1, f32 arg2[3], f32 arg3[3]) {
     }
 }
 
-//vtxList_getBeginAndEndPtrs
-void func_802EC8FC(BKVertexList *this, Vtx **vtx, Vtx **vtx_end){
+void vtxList_getVtxRange(BKVertexList *this, Vtx **vtx, Vtx **vtx_end){
     *vtx = &this->vtx_18[0];
-    *vtx_end = &(*vtx)[this->cnt_14];
+    *vtx_end = &(*vtx)[this->count];
 }
 
-//vtxList_getVtxCount
 s32 vtxList_getVtxCount(BKVertexList *this){
-    return this->cnt_14;
+    return this->count;
 }
 
 f32 func_802EC920(BKVertexList *this){
     return (f32)this->unk16;
 }
 
-void func_802EC930(BKVertexList *this, f32 arg1[3], f32 *arg2){
-    arg1[0] = (f32)this->unkC[0];
-    arg1[1] = (f32)this->unkC[1];
-    arg1[2] = (f32)this->unkC[2];
+void func_802EC930(BKVertexList *this, f32 center[3], f32 *arg2){
+    center[0] = (f32)this->centerCoord[0];
+    center[1] = (f32)this->centerCoord[1];
+    center[2] = (f32)this->centerCoord[2];
     *arg2 = this->unk12; 
 }
 
@@ -163,14 +161,13 @@ BKVertexList *vtxList_clone(BKVertexList *vtxList){
     BKVertexList *out_v0;
     size_t list_size;
     
-    list_size = sizeof(BKVertexList) + vtxList->cnt_14*sizeof(Vtx);
+    list_size = sizeof(BKVertexList) + vtxList->count*sizeof(Vtx);
     out_v0 = (BKVertexList *) malloc(list_size);
     func_80254630(out_v0, vtxList, list_size);
     return out_v0;
 }
 
-// vtxList_copy_colors
-void func_802EC9FC(BKVertexList *dst, BKVertexList *src) {
+void vtxList_copyColors(BKVertexList *dst, BKVertexList *src) {
     Vtx *start_ptr;
     Vtx *end_ptr;
     Vtx *i_ptr;
@@ -179,7 +176,7 @@ void func_802EC9FC(BKVertexList *dst, BKVertexList *src) {
 
     src_ptr = &src->vtx_18[0];
     start_ptr = &dst->vtx_18[0];
-    end_ptr = start_ptr + dst->cnt_14;
+    end_ptr = start_ptr + dst->count;
     for(i_ptr = start_ptr; i_ptr < end_ptr; i_ptr++, src_ptr++){
             i_ptr->v.cn[0] = src_ptr->v.cn[0];
             i_ptr->v.cn[1] = src_ptr->v.cn[1];
@@ -197,7 +194,7 @@ void vtxList_tint(BKVertexList *dst, s32 target_color[3], f32 amount, BKVertexLi
     s32 i;
 
     start_ptr = &dst->vtx_18[0];
-    end_ptr = start_ptr + dst->cnt_14;
+    end_ptr = start_ptr + dst->count;
     for(i_ptr = start_ptr, src_ptr = &src->vtx_18[0]; i_ptr < end_ptr; i_ptr++, src_ptr++){
         for(i = 0; i < 3; i++){
             i_ptr->v.cn[i] = src_ptr->v.cn[i] + (target_color[i] - src_ptr->v.cn[i]) * amount;
@@ -229,7 +226,7 @@ void func_802ECBD4(BKVertexList *dst, BKVertexList *src, f32 arg2[3], f32 arg3[3
     func_8025235C(sp68, sp68);
 
     start_vtx = (Vtx *)(dst + 1);
-    end_vtx = start_vtx + dst->cnt_14;
+    end_vtx = start_vtx + dst->count;
     for(dst_vtx = start_vtx, src_vtx = (Vtx *)(src + 1); dst_vtx < end_vtx; dst_vtx++, src_vtx++){
             sp4C[0] = dst_vtx->v.ob[0] - sp74[0];
             sp4C[1] = dst_vtx->v.ob[1] - sp74[1];
@@ -243,14 +240,14 @@ void func_802ECBD4(BKVertexList *dst, BKVertexList *src, f32 arg2[3], f32 arg3[3
     osWritebackDCache(start_vtx, (end_vtx - start_vtx) * sizeof(Vtx));
 }
 
-void func_802ECE30(BKVertexList *arg0) {
+void vtxList_randColors(BKVertexList *self) {
     Vtx *start_ptr;
     Vtx *end_ptr;
     Vtx *i_ptr;
     s32 i;
 
-    start_ptr = &arg0->vtx_18[0];
-    end_ptr = start_ptr + arg0->cnt_14;
+    start_ptr = &self->vtx_18[0];
+    end_ptr = start_ptr + self->count;
     for(i_ptr = start_ptr; i_ptr < end_ptr; i_ptr++){
         for(i = 0; i < 3; i++){
             i_ptr->v.cn[i] = 0;
@@ -260,15 +257,15 @@ void func_802ECE30(BKVertexList *arg0) {
     osWritebackDCache(start_ptr, ((s32)(end_ptr - start_ptr)) * sizeof(Vtx));
 }
 
-void func_802ECF64(BKVertexList *arg0) {
+void vtxList_randWalkColor(BKVertexList *self) {
     Vtx *start_ptr;
     Vtx *end_ptr;
     Vtx *i_ptr;
     s32 i;
     s32 phi_s0;
 
-    start_ptr = &arg0->vtx_18[0];
-    end_ptr = start_ptr + arg0->cnt_14;
+    start_ptr = &self->vtx_18[0];
+    end_ptr = start_ptr + self->count;
     for(i_ptr = start_ptr; i_ptr < end_ptr; i_ptr++){
         for(i = 0; i < 3; i++){
             phi_s0 = i_ptr->v.cn[i];
@@ -281,15 +278,15 @@ void func_802ECF64(BKVertexList *arg0) {
     osWritebackDCache(start_ptr, ((s32)(end_ptr - start_ptr)) * sizeof(Vtx));
 }
 
-void vtxList_recolor(BKVertexList *arg0, s32 arg1[3]) {
+void vtxList_recolor(BKVertexList *self, s32 arg1[3]) {
     Vtx *start_ptr;
     Vtx *end_ptr;
     Vtx *i_ptr;
     s32 i;
     s32 phi_s0;
 
-    start_ptr = &arg0->vtx_18[0];
-    end_ptr = start_ptr + arg0->cnt_14;
+    start_ptr = &self->vtx_18[0];
+    end_ptr = start_ptr + self->count;
     for(i_ptr = start_ptr; i_ptr < end_ptr; i_ptr++){
         for(i = 0; i < 3; i++){
             i_ptr->v.cn[i] = arg1[i];
@@ -321,7 +318,7 @@ void func_802ED138(f32 arg0[3], f32 arg1[3], f32 arg2){
     D_803808C0.unk1C = arg2;
 }
 
-void func_802ED180(BKVertexList *arg0, f32 arg1[3], f32 arg2[3], f32 arg3, f32 arg4[3]) {
+void func_802ED180(BKVertexList *self, f32 arg1[3], f32 arg2[3], f32 arg3, f32 arg4[3]) {
     Vtx *phi_s0;
     f32 sp88[3];
     f32 sp7C[3];
@@ -339,8 +336,8 @@ void func_802ED180(BKVertexList *arg0, f32 arg1[3], f32 arg2[3], f32 arg3, f32 a
     func_8025235C(sp7C, D_803808C0.unk4);
     temp_f20 = D_803808C0.unk1C / arg3;
     temp_f20 = temp_f20*temp_f20;
-    start = (Vtx*)(arg0 + 1);
-    phi_s1 = start + arg0->cnt_14;
+    start = (Vtx*)(self + 1);
+    phi_s1 = start + self->count;
     for(phi_s0 = start; phi_s0 < phi_s1; phi_s0++){
         sp70[0] = (f32) phi_s0->v.ob[0];
         sp70[1] = (f32) phi_s0->v.ob[1];
@@ -360,20 +357,20 @@ void func_802ED180(BKVertexList *arg0, f32 arg1[3], f32 arg2[3], f32 arg3, f32 a
     }
 }
 
-void func_802ED340(BKVertexList *arg0, s32 indx, f32 dst[3]){
+void vtxList_getNthCoord(BKVertexList *self, s32 indx, f32 dst[3]){
     Vtx *vtx;
 
-    vtx = (s32)(arg0 + 1) + (indx * sizeof(Vtx));
+    vtx = (s32)(self + 1) + (indx * sizeof(Vtx));
     dst[0] = (f32) vtx->v.ob[0];
     dst[1] = (f32) vtx->v.ob[1];
     dst[2] = (f32) vtx->v.ob[2];
 }
 
-void func_802ED38C(BKVertexList *arg0, s32 indx, f32 arg2[3]){
+void vtxList_setNthCoord(BKVertexList *self, s32 indx, f32 arg2[3]){
     Vtx *vtx;
     s32 i;
 
-    vtx = (s32)(arg0 + 1) + (indx * sizeof(Vtx));
+    vtx = (s32)(self + 1) + (indx * sizeof(Vtx));
     for(i = 0; i < 3; i++){
         vtx->v.ob[i] = (arg2[i] >= 0.0) ? arg2[i] + 0.5 :  arg2[i] - 0.5;
     }

@@ -23,7 +23,7 @@ s32 func_802E0CB0(Actor *this);
 s32 D_8037E610;
 
 /* .code */
-void func_802E0A10(ActorMarker *marker, ActorMarker *other_marker){
+void chMumboToken_collect(ActorMarker *marker, ActorMarker *other_marker){
     Actor *this;
     
     this = marker_getActor(marker);
@@ -79,7 +79,7 @@ void func_802E0B10(Actor *this){
     }//L802E0BD4
 
     if(!func_8032BBE8(this)){
-        marker_setCollisionScripts(this->marker, func_802E0A10, NULL, NULL);
+        marker_setCollisionScripts(this->marker, chMumboToken_collect, NULL, NULL);
     }
 
     if(this->marker->unk14_21 && randf() < 0.1){

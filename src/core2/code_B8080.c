@@ -181,7 +181,7 @@ BKModel *func_8033F5F8(BKMeshList *arg0, BKVertexList *arg1) {
     s32 phi_s1;
     s32 phi_s6;
 
-    sp40 = (BKModel *)malloc((func_802E9F60() * sizeof(BKVtxRef)) + (arg0->meshCount_0 * sizeof(BKMesh)) + sizeof(BKModel));
+    sp40 = (BKModel *)malloc((func_802E9F60(arg0) * sizeof(BKVtxRef)) + (arg0->meshCount_0 * sizeof(BKMesh)) + sizeof(BKModel));
     sp40->meshList_0 = arg0;
     sp40->vtxList_4 = arg1;
     phi_s3 = (BKMesh *)(arg0 + 1);

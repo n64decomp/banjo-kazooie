@@ -238,7 +238,7 @@ void func_80333D48(BKVertexList *arg0, f32 position[3], f32 rotation[3], f32 sca
         return;
     }
     ref_ptr = vtxList_getVertices(arg5);
-    func_802EC8FC(arg0, &i_ptr, &end_ptr);
+    vtxList_getVtxRange(arg0, &i_ptr, &end_ptr);
     for(i_ptr = i_ptr; i_ptr < end_ptr; i_ptr++, ref_ptr++){
 
         sp68[0] = sp68[1] = sp68[2] = 0.0f;

@@ -307,7 +307,7 @@ void func_8038D6C8(Actor *this){
 
     if(!this->unk16C_4){
         this->unk16C_4 = TRUE;
-        func_803300D8(this->marker, func_8038D3B0);
+        marker_setFreeMethod(this->marker, func_8038D3B0);
         marker_setCollisionScripts(this->marker, NULL, func_8038D5C8, NULL);
         this->unk38_31 = 0;
         this->unk1C[1] = 0.0f;

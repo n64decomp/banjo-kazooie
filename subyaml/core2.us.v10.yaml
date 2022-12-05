@@ -217,7 +217,7 @@ segments:
   - [0x556C0, c, code_556C0] #DONE
   - [0x55850, c, code_55850] #DONE
   - [0x55A90, c, code_55A90] #DONE
-  - [0x55BC0, c, code_55BC0] #DONE
+  - [0x55BC0, c, ch/overlaypressstart] #DONE
   - [0x55E20, c, code_55E70] #DONE
   - [0x560F0, c, code_560F0] #DONE
   - [0x57C70, c, code_57C70] #DONE
@@ -508,7 +508,7 @@ segments:
   - [0xE10E0, .data, code_556C0]
   - [0xE1110, .data, code_55850]
   - [0xE1140, .data, code_55A90]
-  - [0xE1170, .data, code_55BC0]
+  - [0xE1170, .data, ch/overlaypressstart]
   - [0xE11C0, .data, code_55E70]
   - [0xE1210, .data, code_560F0]
   - [0xE1370, .data, code_57C70]
@@ -728,7 +728,7 @@ segments:
   - [0xEFF40, .rodata, code_54D50]
   - [0xEFF60, .rodata, code_55180]
   - [0xEFF70, .rodata, code_55390]
-  - [0xEFF80, .rodata, code_55BC0]
+  - [0xEFF80, .rodata, ch/overlaypressstart]
   - [0xEFF90, .rodata, code_55E70]
   - [0xEFFA0, .rodata, code_560F0]
   - [0xF0010, .rodata, code_57C70]
@@ -981,7 +981,7 @@ segments:
   - [0xf2c00, .bss, code_556C0]
   - [0xf2c00, .bss, code_55850]
   - [0xf2c00, .bss, code_55A90]
-  - [0xf2c00, .bss, code_55BC0]
+  - [0xf2c00, .bss, ch/overlaypressstart]
   - [0xf2c00, .bss, code_55E70]
   - [0xf2c00, .bss, code_560F0]
   - [0xf2c00, .bss, code_57C70]

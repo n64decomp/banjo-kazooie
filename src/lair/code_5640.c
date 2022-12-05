@@ -97,7 +97,7 @@ void func_8038BCF0(Actor *this) {
 
     local = (ActorLocal_lair_5640 *)&this->local;
     if (!this->initialized) {
-        func_803300D8(this->marker, func_8038BBC0);
+        marker_setFreeMethod(this->marker, func_8038BBC0);
         actor_collisionOff(this);
         this->unk10_12 = 2;
         if (!func_8031FF1C(0x5C)) {

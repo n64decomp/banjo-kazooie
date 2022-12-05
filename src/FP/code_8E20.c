@@ -197,10 +197,10 @@ void FP_func_8038F7AC(Actor *this){
             func_8038F274();
         }
         else{//L8038F8A0
-            func_80304E24(0x359, local->unk24);
-            func_80304E24(0x35A, local->unk0);
-            func_80304E24(0x35B, local->unkC);
-            func_80304E24(0x35C, local->unk18);
+            nodeProp_findPositionFromActorId(0x359, local->unk24);
+            nodeProp_findPositionFromActorId(0x35A, local->unk0);
+            nodeProp_findPositionFromActorId(0x35B, local->unkC);
+            nodeProp_findPositionFromActorId(0x35C, local->unk18);
             this->position[0] = local->unkC[0];\
             this->position[1] = local->unkC[1];\
             this->position[2] = local->unkC[2];

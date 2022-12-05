@@ -724,7 +724,7 @@ mapSpecificFlags_setN       = 0x802CAE24;
 mapSpecificFlags_getAll     = 0x802CAE8C;
 mapSpecificFlags_setAll     = 0x802CAE98;
 mapSpecificFlags_validateCRC1 = 0x802CB00C;
-func_802D1724 = 0x802D1724;
+chmumbo_func_802D1724 = 0x802D1724;
 func_802D94B4 = 0x802D94B4;
 func_802DA498 = 0x802DA498;
 func_802DB548 = 0x802DB548;
@@ -962,7 +962,7 @@ D_80366240 = 0x80366240;
 D_80366338 = 0x80366338;
 D_8036633C = 0x8036633C;
 D_80367DC4 = 0x80367DC4;
-D_803682D0 = 0x803682D0;
+chBottlesBonusDescription = 0x803682D0;
 D_803688E0 = 0x803688E0;
 D_803688E8 = 0x803688E8;
 D_8036A070 = 0x8036A070;
@@ -1186,7 +1186,7 @@ __osCleanupThread = 0x8026ABE0;
 __osDisableInt = 0x8026ACB0;
 __osRestoreInt = 0x8026ACD0;
 D_A0000238 = 0xA0000238;
-D_803682D0 = 0x803682D0;
+chBottlesBonusDescription = 0x803682D0;
 
 D_80004FF4 = 0x80004FF4;
 

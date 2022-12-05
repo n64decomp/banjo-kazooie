@@ -818,7 +818,7 @@ void func_80387F1C(void)
 
     func_802BAFE4(0x7B);
 
-    if (func_80304E24(400, tmp))
+    if (nodeProp_findPositionFromActorId(400, tmp))
     {
         jiggySpawn(JIGGY_35_LAIR_CC_WITCH_SWITCH, tmp);
         // FIXME: macro?

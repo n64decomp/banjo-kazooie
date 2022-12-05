@@ -58,14 +58,14 @@ void func_802DF2C4(Actor *this) {
     s32 val;
 
 
-    temp_fp = func_802E06B4() - 0x15;
+    temp_fp = chBottlesBonusCursor_func_802E06B4() - 0x15;
     if (!this->initialized) {
         this->initialized = TRUE;
         actor_collisionOff(this);
         for(i = 0; i < 20; i++){
             func_8034DFB0(func_8034C2C4(this->marker, i + 0x190), D_8036837C, D_8036836C, 0.0f);
         }
-        func_803300D8(this->marker, func_802DF2B4);
+        marker_setFreeMethod(this->marker, func_802DF2B4);
     }
     for( i = 0; i < 20; i++){
         prev_val = D_8037E008[i];

@@ -547,7 +547,7 @@ struct56s *func_80341EF0(f32 arg0[3]){
 
 s32 func_80341F2C(s32 arg0){
     s32 sp1C[3];
-    if(!func_80304DD0(arg0, sp1C)){
+    if(!_nodeProp_findPositionFromActorId(arg0, sp1C)){
         return -1;
     }
     return func_80341C78(sp1C);
@@ -555,7 +555,7 @@ s32 func_80341F2C(s32 arg0){
 
 struct56s *func_80341F64(s32 arg0){
     s32 sp1C[3];
-    if(!func_80304DD0(arg0, sp1C)){
+    if(!_nodeProp_findPositionFromActorId(arg0, sp1C)){
         return NULL;
     }
     return D_80371E70[func_80341C78(sp1C)];

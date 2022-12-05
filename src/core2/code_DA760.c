@@ -42,7 +42,7 @@ void func_80361870(Actor *this){
     s32 text_id;
     s32 sp28;
     if(!this->unk16C_4){
-        func_803300D8(this->marker, func_80361828);
+        marker_setFreeMethod(this->marker, func_80361828);
         this->unk16C_4 = 1;
     }
 

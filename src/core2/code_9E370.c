@@ -1956,7 +1956,7 @@ void func_8032A95C(Actor *arg0, s32 arg1, s32 arg2) {
 bool func_8032A9E4(s32 arg0, s32 arg1, s32 arg2) {
     s32 sp1C[3];
 
-    func_8028EB3C(sp1C);
+    player_getPosition_s32(sp1C);
     return ((arg0 - sp1C[0])*(arg0 - sp1C[0]) + (arg1 - sp1C[2])*(arg1 - sp1C[2])) < (arg2 * arg2);
 }
 

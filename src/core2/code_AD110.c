@@ -7,8 +7,8 @@ extern void func_802DC528(s32, s32);
 extern void func_802DC560(s32, s32);
 extern void func_802DC748(s32, s32);
 extern void func_802DC780(s32, s32);
-extern void func_802DCD78(s32, s32);
-extern void func_802DCDC0(s32, s32);
+extern void chOverlayPressStart_spawn(s32, s32);
+extern void chOverlayPressStart_func_802DCDC0(s32, s32);
 extern void func_8031D06C(s32, s32);
 extern void func_8031D09C(s32, s32);
 extern void func_8031D11C(s32, s32);
@@ -333,7 +333,7 @@ Method_core2_AD110 D_8036F980[] = {
     func_8031ED70, func_8031ED94, func_8031EDB8, func_8031EDDC,
     func_8031EE00, func_8031EE24, func_8031DD10, func_8031DD44,
     func_80363388, func_8038A0E4, func_8038A150, func_80334430,
-    func_802DCD78, func_802DCDC0, func_802DC528, func_802DC560,
+    chOverlayPressStart_spawn, chOverlayPressStart_func_802DCDC0, func_802DC528, func_802DC560,
     func_8031EF20, func_8031EEFC, func_80334430, func_8031EED8,
     func_8031EEB4, func_8031EE90, func_8031EE6C, func_8031EE48,
     func_8031EB0C, func_8031EB30, func_8031EB54, func_8031EB78,

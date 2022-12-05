@@ -53,8 +53,8 @@ void lair_func_8038C6BC(void);
 /* extern */
 extern void func_802FACA4(enum item_e);
 extern void func_8028FA14(enum map_e, s32);
-extern void func_803208C0(u32, int); // ff_isAsked_flag_set
-extern int func_803207F0(u32); // ff_isAsked_flag_get
+extern void quizQuestionAskedBitfield_set(u32, int); // ff_isAsked_flag_set
+extern int quizQuestionAskedBitfield_get(u32); // ff_isAsked_flag_get
 
 extern void func_8033F220(BKModel *model, s32 mesh_id, s16 [3]); //! $a2 type unk
 
@@ -400,19 +400,19 @@ void func_8038C2D4(enum ff_question_type_e type)
     s32 i;
 
     for (i = 0; i < FF_QuestionTypeInfoArr[type].totalQuestionCount; i++)
-        func_803208C0(FF_QuestionTypeInfoArr[type].startingFlagIdx + i, FALSE);
+        quizQuestionAskedBitfield_set(FF_QuestionTypeInfoArr[type].startingFlagIdx + i, FALSE);
 }
 
 // FF: set isAsked flag for type and question
 void lair_func_8038C338(enum ff_question_type_e type, s32 questionIdx, int val)
 {
-    func_803208C0(FF_QuestionTypeInfoArr[type].startingFlagIdx + questionIdx, val);
+    quizQuestionAskedBitfield_set(FF_QuestionTypeInfoArr[type].startingFlagIdx + questionIdx, val);
 }
 
 // FF: get isAsked flag for type and question
-int lair_func_8038C370(enum ff_question_type_e type, s32 questionIdx)
+bool lair_func_8038C370(enum ff_question_type_e type, s32 questionIdx)
 {
-    return func_803207F0(FF_QuestionTypeInfoArr[type].startingFlagIdx + questionIdx);
+    return quizQuestionAskedBitfield_get(FF_QuestionTypeInfoArr[type].startingFlagIdx + questionIdx);
 }
 
 // i love stupid shit like this. these 3 lines of C compile into 150 lines of asm for type handling
@@ -459,7 +459,7 @@ void lair_func_8038C640(s32 a0, Struct_lair_5ED0_0 *a1)
 
     a1->unk9 = 1;
 
-    func_803208C0(a0 - FF_QNF_CNT, TRUE);
+    quizQuestionAskedBitfield_set(a0 - FF_QNF_CNT, TRUE);
 }
 
 void lair_func_8038C6BC(void)
@@ -472,7 +472,7 @@ void lair_func_8038C6BC(void)
 
     for (ptr = D_80393760, s1 = FF_QNF_START; s1 != FF_QNF_END; s1++, ptr++)
     {
-        ptr->unk9 = func_803207F0(s1 - FF_QNF_CNT) ? 1 : 0;
+        ptr->unk9 = quizQuestionAskedBitfield_get(s1 - FF_QNF_CNT) ? 1 : 0;
 
         if (ptr->unk9 == s3)
         {
@@ -554,7 +554,7 @@ void func_8038CCEC(void)
     D_8037DCB8 = NULL;
 
     func_80319190();
-    func_80320818();
+    quizQuestionAskedBitfield_free();
     func_802C5994();
 }
 
@@ -597,7 +597,7 @@ void func_8038CE28(void)
 
     func_80319050();
     D_8037DCB8 = malloc(sizeof(struct FF_StorageStruct));
-    func_80320840();
+    quizQuestionAskedBitfield_init();
 
     // dump currently unlocked moves to storage
     D_8037DCB8->unlockedMoves = func_802957F0();
@@ -633,8 +633,8 @@ void lair_func_8038CF18(void)
 
     if (func_803203FC(2) && !func_803203FC(4))
     {
-        func_80320818();
-        func_80320840();
+        quizQuestionAskedBitfield_free();
+        quizQuestionAskedBitfield_init();
 
         for (i = 0; i < ARRLEN(D_8037DCB8->unk3C); i++)
             D_8037DCB8->unk3C[i] = 0;
@@ -868,7 +868,7 @@ void func_8038D5A0(void)
 
         ptr->unk9 = 1;
 
-        func_803208C0(s0 - FF_QNF_CNT, TRUE);
+        quizQuestionAskedBitfield_set(s0 - FF_QNF_CNT, TRUE);
     }
 }
 
@@ -961,9 +961,9 @@ void func_8038D670(enum FF_Action next_state) {
                     D_8037DCB8->unk3C[D_8037DCB8->ffQuestionType] = 0;
                     func_8038C2D4(D_8037DCB8->ffQuestionType);
                 }
-                if (((s32) D_8037DCB8->unk4->unk8 >= 7) && (func_803207F0(func_8038D60C(D_8037DCB8->unk8)) == 0)) {
+                if (((s32) D_8037DCB8->unk4->unk8 >= 7) && (quizQuestionAskedBitfield_get(func_8038D60C(D_8037DCB8->unk8)) == 0)) {
                     func_803463D4(ITEM_27_JOKER_CARD, D_8037DCB8->unk4->unk8 - 6);
-                    func_803208C0(func_8038D60C(D_8037DCB8->unk8), TRUE);
+                    quizQuestionAskedBitfield_set(func_8038D60C(D_8037DCB8->unk8), TRUE);
                     func_80356540(0xA8);
                 }
                 if (D_8037DCB8->unk8 != 0x1EF) {
@@ -997,7 +997,7 @@ void func_8038D670(enum FF_Action next_state) {
                     func_8030E6D4(SFX_124_AUDIENCE_CHEERING_1);
                 }
                 if (D_8037DCB8->unk4->unk8 >= 7) {
-                    func_803208C0(func_8038D60C(D_8037DCB8->unk8), TRUE);
+                    quizQuestionAskedBitfield_set(func_8038D60C(D_8037DCB8->unk8), TRUE);
                     lair_func_8038C640(D_8037DCB8->unk8, D_8037DCB8->unk4);
                 }
                 if (func_803203FC(0xA3)) {

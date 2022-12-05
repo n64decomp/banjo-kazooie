@@ -283,7 +283,7 @@ void func_8038F620(Actor *this){
         this->scale = 0.1f;
         if( this->marker->unk14_20 == MARKER_280_GRUNTY_SPELL_GREEN_ATTACK){
             actor_collisionOff(this);
-            func_803300D8(this->marker, func_8038F5F8);
+            marker_setFreeMethod(this->marker, func_8038F5F8);
             func_80324CFC(0.0f, COMUSIC_43_ENTER_LEVEL_GLITTER, 32000);
             timed_playSfx(0.0f, SFX_113_PAD_APPEARS, 1.0f, 32000);
             timed_playSfx(0.75f, 0x415, 1.0f, 32000);

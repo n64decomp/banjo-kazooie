@@ -67,7 +67,7 @@ void func_8028A558(s32 arg0, s32 arg1, s32 arg2){
 
 void func_8028A584(s32 arg0, s32 arg1, s32 arg2){
     func_803219F4(3);
-    func_8034B9BC(func_802DE41C());
+    func_8034B9BC(chBottlesBonus_getPuzzleIndex());
 }
 
 //snacker_update_bottlesBonusPuzzle
@@ -78,21 +78,21 @@ s32 func_8028A5C0(void){
     if(gctransition_8030BDC0() || getGameMode() != GAME_MODE_3_NORMAL)
         return 0;
 
-    if(func_8034BB48() && func_802DE41C() != 7){
-        func_80311480(0xe26 + (func_802DE41C() << 1), 6, &D_80363610, 0, 0, 0);
+    if(func_8034BB48() && chBottlesBonus_getPuzzleIndex() != 7){
+        func_80311480(0xe26 + (chBottlesBonus_getPuzzleIndex() << 1), 6, &D_80363610, 0, 0, 0);
     }
     if(!func_8028F25C() && func_80321960() == 3)
         func_803219F4(1);
 
     if(miscflag_isTrue(0x17) && !func_8028F25C()){
         if(func_8028A41C(183.0f, -100.0f, 75.0f)){
-            if(func_802DE41C() == 6){
+            if(chBottlesBonus_getPuzzleIndex() == 6){
                 if(!D_8037DCCC){
                     func_8028F94C(4, &D_80363610);
                     func_80311480(0xe33, 0x6, &D_80363610, 0, func_8028A584, NULL);
                 }
             }//L8028A70C
-            else if(func_802DE41C() == 7){
+            else if(chBottlesBonus_getPuzzleIndex() == 7){
                 func_8028F94C(4, &D_80363610);
                 func_80311480(0xe35, 0x6, &D_80363610, 0, func_8028A558, NULL);
                 D_8037DCCC = 1;

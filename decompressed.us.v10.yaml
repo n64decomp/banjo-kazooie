@@ -669,7 +669,7 @@ segments:
   - [0xFA6330, c, code_509D0] #DONE
   - [0xFA7100, c, code_517A0] #DONE
   - [0xFA72B0, c, code_51950] #DONE
-  - [0xFA75F0, c, code_51C90] #DONE
+  - [0xFA75F0, c, ch/collectable] #DONE
   - [0xFA7BF0, c, ch/mole]     #DONE
   - [0xFA8F30, c, ch/molehill] #DONE
   - [0xFA9370, c, code_53A10]  #DONE
@@ -679,13 +679,13 @@ segments:
   - [0xFAACF0, c, code_55390] #DONE
   - [0xFAB020, c, code_556C0] #DONE
   - [0xFAB1B0, c, code_55850] #DONE
-  - [0xFAB3F0, c, code_55A90] #DONE
-  - [0xFAB520, c, code_55BC0] #DONE
-  - [0xFAB780, c, code_55E70] #DONE
-  - [0xFABA50, c, code_560F0] #DONE
+  - [0xFAB3F0, c, ch/overlaycopyright] #DONE
+  - [0xFAB520, c, ch/overlaypressstart] #DONE
+  - [0xFAB780, c, ch/overlaynocontroller] #DONE
+  - [0xFABA50, c, ch/bottlesbonus] #DONE
   - [0xFAD5D0, c, code_57C70] #DONE
   - [0xFADB30, c, code_581D0] #DONE
-  - [0xFADE30, c, code_584D0] #DONE
+  - [0xFADE30, c, ch/bottlesbonuscursor] #DONE
   - [0xFAF0E0, c, code_59780] #DONE
   - [0xFAF340, c, code_599E0] #DONE
   - [0xFAF3E0, c, code_59A80] #DONE
@@ -744,7 +744,7 @@ segments:
   - [0xFCC6F0, c, code_76D90] #DONE
   - [0xFCD7B0, c, code_77E50] #DONE
   - [0xFCDA60, c, code_78100]
-  - [0xFCE7B0, c, code_78E50]
+  - [0xFCE7B0, c, code_78E50] #DONE
   - [0xFCF190, c, fxcommon3score] #DONE
   - [0xFCF5E0, c, code_79C80] #DONE
   - [0xFD00C0, c, code_7A760] #DONE
@@ -769,7 +769,7 @@ segments:
   - [0xFEA380, c, code_94A20] #DONE
   - [0xFEB010, c, code_956B0] #DONE
   - [0xFEE610, c, code_98CB0]
-  - [0xFEF1C0, c, code_99860] #DONE
+  - [0xFEF1C0, c, quizquestionaskedbitfield] #DONE
   - [0xFEF300, c, code_999A0] #DONE
   - [0xFEF8E0, c, jiggyscore] #DONE
   - [0xFEFC80, c, code_9A320] #DONE
@@ -966,7 +966,7 @@ segments:
   - [0x1036520, .data, code_509D0]
   - [0x1036630, .data, code_517A0]
   - [0x1036660, .data, code_51950]
-  - [0x10366D0, .data, code_51C90]
+  - [0x10366D0, .data, ch/collectable]
   - [0x1036740, .data, ch/mole]
   - [0x10367D0, .data, ch/molehill]
   - [0x1036840, .data, code_53A10]
@@ -976,13 +976,13 @@ segments:
   - [0x1036A10, .data, code_55390]
   - [0x1036A40, .data, code_556C0]
   - [0x1036A70, .data, code_55850]
-  - [0x1036AA0, .data, code_55A90]
-  - [0x1036AD0, .data, code_55BC0]
-  - [0x1036B20, .data, code_55E70]
-  - [0x1036B70, .data, code_560F0]
+  - [0x1036AA0, .data, ch/overlaycopyright]
+  - [0x1036AD0, .data, ch/overlaypressstart]
+  - [0x1036B20, .data, ch/overlaynocontroller]
+  - [0x1036B70, .data, ch/bottlesbonus]
   - [0x1036CD0, .data, code_57C70]
   - [0x1036D30, .data, code_581D0]
-  - [0x1036D80, .data, code_584D0]
+  - [0x1036D80, .data, ch/bottlesbonuscursor]
   - [0x1036E10, .data, code_59780]
   - [0x1036F70, .data, code_59A80]
   - [0x1036FA0, .data, code_59D40]
@@ -1230,12 +1230,12 @@ segments:
   - [0x10458A0, .rodata, code_54D50]
   - [0x10458C0, .rodata, code_55180]
   - [0x10458D0, .rodata, code_55390]
-  - [0x10458E0, .rodata, code_55BC0]
-  - [0x10458F0, .rodata, code_55E70]
-  - [0x1045900, .rodata, code_560F0]
+  - [0x10458E0, .rodata, ch/overlaypressstart]
+  - [0x10458F0, .rodata, ch/overlaynocontroller]
+  - [0x1045900, .rodata, ch/bottlesbonus]
   - [0x1045970, .rodata, code_57C70]
   - [0x1045990, .rodata, code_581D0]
-  - [0x10459A0, .rodata, code_584D0]
+  - [0x10459A0, .rodata, ch/bottlesbonuscursor]
   - [0x1045A00, .rodata, code_599E0]
   - [0x1045A10, .rodata, code_59A80]
   - [0x1045A20, .rodata, code_59D40]
@@ -1482,13 +1482,13 @@ segments:
   - [0x1048560, .bss, code_55390]
   - [0x1048560, .bss, code_556C0]
   - [0x1048560, .bss, code_55850]
-  - [0x1048560, .bss, code_55A90]
-  - [0x1048560, .bss, code_55BC0]
-  - [0x1048560, .bss, code_55E70]
-  - [0x1048560, .bss, code_560F0]
+  - [0x1048560, .bss, ch/overlaycopyright]
+  - [0x1048560, .bss, ch/overlaypressstart]
+  - [0x1048560, .bss, ch/overlaynocontroller]
+  - [0x1048560, .bss, ch/bottlesbonus]
   - [0x1048560, .bss, code_57C70]
   - [0x1048560, .bss, code_581D0]
-  - [0x1048560, .bss, code_584D0]
+  - [0x1048560, .bss, ch/bottlesbonuscursor]
   - [0x1048560, .bss, code_59A80]
   - [0x1048560, .bss, code_59D40]
   - [0x1048560, .bss, code_5B6A0]
@@ -1548,7 +1548,7 @@ segments:
   - [0x1048560, .bss, code_94780]
   - [0x1048560, .bss, code_956B0]
   - [0x1048560, .bss, code_98CB0]
-  - [0x1048560, .bss, code_99860]
+  - [0x1048560, .bss, quizquestionaskedbitfield]
   - [0x1048560, .bss, code_999A0]
   - [0x1048560, .bss, jiggyscore]
   - [0x1048560, .bss, code_9A320]

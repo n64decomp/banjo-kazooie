@@ -72,7 +72,7 @@ void func_8024AAB0(void){
     f32 plyr_pos[3]; //sp34
     f32 sp30;
 
-    func_8028EB3C(&D_802806F8);
+    player_getPosition_s32(&D_802806F8);
     player_getPosition(plyr_pos);
     D_80280708[0] = func_8032274C();
     D_80280708[1] = func_80322758();
@@ -188,7 +188,7 @@ void func_8024AF48(void){
     if(gctransition_8030BDC0()) return;
     if(getGameMode() == GAME_MODE_A_SNS_PICTURE) return;
 
-    func_8028EB3C(D_802806F8);
+    player_getPosition_s32(D_802806F8);
     func_8024AAB0();
     switch(map_get()){
         case MAP_2_MM_MUMBOS_MOUNTAIN: // L8024B000

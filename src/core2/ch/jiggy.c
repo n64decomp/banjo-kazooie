@@ -162,10 +162,10 @@ void chjiggy_update(Actor *this){
                         this->unk124_6 = 0;
                         break;
                     case JIGGY_41_GV_MAZE:// L802C7F7C
-                        this->marker->unk14_10 = 0x1E;
+                        this->marker->unk14_10 = 30;
                         break;
                     case JIGGY_13_TTC_LOCKUP: //L802C7F94
-                        this->marker->unk14_10 = 0x28;
+                        this->marker->unk14_10 = 40;
                         break;
                 }
             }

@@ -73,7 +73,7 @@ void func_80389C78(Actor *this){
         this->marker->propPtr->unk8_3 = 1;
         this->pitch = randf2(0.0f, 300.0f);
         func_803300C0(this->marker, func_80389B44);
-        func_803300D8(this->marker, func_80389C44);
+        marker_setFreeMethod(this->marker, func_80389C44);
         func_80389B80(this, 1.0f);
         if(this->unk78_13 == 0x1C){
             local->unk8 = 0;

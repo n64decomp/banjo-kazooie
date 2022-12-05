@@ -95,7 +95,7 @@ Actor * func_802D7610(s32 *arg0, s32 arg1, ActorInfo *arg2, u32 arg3) {
 void func_802D766C(Actor *this) {
     ActorLocal_core2_50490 * local = (ActorLocal_core2_50490 *)&this->local;
     if (!this->initialized) {
-        func_803300D8(this->marker, func_802D7420);
+        marker_setFreeMethod(this->marker, func_802D7420);
         this->initialized = TRUE;
     }
     if (func_802EE5F0(local->unk0) == 0) {

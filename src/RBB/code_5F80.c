@@ -516,7 +516,7 @@ void func_8038D8BC(Actor *this){
             this->yaw = 270.0f;
         }
         marker_setCollisionScripts(this->marker, func_8038D590, func_8038D5BC, func_8038D608);
-        func_803300D8(this->marker, func_8038D8B4);
+        marker_setFreeMethod(this->marker, func_8038D8B4);
         if(local->unk0->unk0 == ACTOR_281_BOSS_BOOM_BOX_LARGEST){
             RBB_func_8038CC9C(this, 1);
             D_80391280 = 0;
