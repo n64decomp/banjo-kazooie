@@ -197,7 +197,7 @@ segments:
   - [0xF38E50, c, done/audio/n_synsetfxmix]  #DONE
   - [0xF38EE0, c, done/audio/n_synstopvoice] #DONE
   - [0xF38F50, c, done/audio/n_synfreevoice] #DONE
-  - [0xF38FF0, c, audio/n_csplayer]
+  - [0xF38FF0, c, done/audio/n_csplayer]     #DONE
   - [0xF3A460, c, done/audio/cspsetbank]     #DONE
   - [0xF3A4A0, c, done/audio/cspstop]        #DONE
   - [0xF3A4D0, c, done/audio/n_csq]          #DONE
@@ -424,7 +424,7 @@ segments:
   - [0xF53B70, .rodata, code_1BE90]
   - [0xF53BA0, .rodata, code_1D5D0]
   - [0xF53C00, .rodata, done/audio/n_synthesizer]
-  - [0xF53C10, bin, data_3A9C0] # .rodata, audio/n_csplayer]
+  - [0xF53C10, .rodata, done/audio/n_csplayer]
   - [0xF53F80, .rodata, done/audio/n_reverb]
   - [0xF53FB0, .rodata, done/audio/n_drvrNew]
   - [0xF53FD0, .rodata, done/audio/n_env]
