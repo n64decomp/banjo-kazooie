@@ -374,7 +374,7 @@ segments:
   - [0xF51440, .data, done/code_CE60]
   - [0xF514B0, .data, code_E360]
   - [0xF51550, .data, code_EAF0]
-  - [0xF51560, bin, data_F51560] # .data, code_10A00]
+  - [0xF51560, .data, code_10A00]
   - [0xF51570, .data, code_11AC0]
   - [0xF51B00, .data, code_136D0]
   - [0xF51DA0, .data, code_13990]
