@@ -498,6 +498,7 @@ segments:
   type: code
   start: 0x00F55960
   vram:  0x80286F90 # via https://hack64.net/wiki/doku.php?id=player_kazooie:ram_map
+  follows_vram: core1
   subsegments:
   - [0xF55960, c, animctrl] #DONE
   - [0xF56430, c, code_AD0] #DONE
