@@ -1603,6 +1603,7 @@ segments:
   type: code
   start: 0x01048560
   vram: 0x803863F0
+  follows_vram: core2
   exclusive_ram_id: overlay
   subsegments:
   - [0x1048560, c, code_0]
@@ -1638,6 +1639,7 @@ segments:
   type: code
   start: 0x0104C0E0
   vram: 0x803863F0
+  follows_vram: core2
   exclusive_ram_id: overlay
   subsegments:
   - [0x104C0E0, c, code_0]       #DONE
@@ -1740,6 +1742,7 @@ segments:
   type: code
   start: 0x01057710
   vram: 0x803863F0
+  follows_vram: core2
   exclusive_ram_id: overlay
   subsegments:
   - [0x1057710, c, ch/loggo]  #DONE
@@ -1786,6 +1789,7 @@ segments:
   type: code
   start: 0x0105D7E0
   vram: 0x803863F0
+  follows_vram: core2
   exclusive_ram_id: overlay
   subsegments:
   - [0x105D7E0, c, code_0]       #DONE
@@ -1825,6 +1829,7 @@ segments:
   type: code
   start: 0x01064AE0
   vram: 0x803863F0
+  follows_vram: core2
   exclusive_ram_id: overlay
   subsegments:
   - [0x1064AE0, c, ch/orangepad]
@@ -1863,6 +1868,7 @@ segments:
   type: code
   start: 0x01068370
   vram: 0x803863F0
+  follows_vram: core2
   exclusive_ram_id: overlay
   # after: core2-data
   subsegments:
@@ -1921,6 +1927,7 @@ segments:
   type: code
   start: 0x010731B0
   vram: 0x803863F0
+  follows_vram: core2
   exclusive_ram_id: overlay
   subsegments:
   - [0x10731B0, c, code_0]
@@ -2007,6 +2014,7 @@ segments:
   type: code
   start: 0x0107E030
   vram: 0x803863F0
+  follows_vram: core2
   exclusive_ram_id: overlay
   subsegments:
   - [0x107E030, c, code_0]       #DONE
@@ -2089,6 +2097,7 @@ segments:
   type: code
   start: 0x0108AB50
   vram: 0x803863F0
+  follows_vram: core2
   exclusive_ram_id: overlay
   subsegments:
   - [0x108AB50, c, code_0]
@@ -2124,6 +2133,7 @@ segments:
   type: code
   start: 0x0108FA80
   vram: 0x803863F0
+  follows_vram: core2
   exclusive_ram_id: overlay
   subsegments:
   - [0x108FA80, c, code_0]
@@ -2146,6 +2156,7 @@ segments:
   type: code
   start: 0x01098070
   vram: 0x803863F0
+  follows_vram: core2
   exclusive_ram_id: overlay
   subsegments:
   - [0x1098070, c, code_0] #DONE
@@ -2196,6 +2207,7 @@ segments:
   type: code
   start: 0x010A6FD0
   vram: 0x803863F0
+  follows_vram: core2
   exclusive_ram_id: overlay
   subsegments:
   - [0x10A6FD0, c, code_0] #DONE
@@ -2238,6 +2250,7 @@ segments:
   type: code
   start: 0x010B3320
   vram: 0x803863F0
+  follows_vram: core2
   exclusive_ram_id: overlay
   subsegments:
   - [0x10B3320, c, code_0] #DONE
@@ -2322,6 +2335,7 @@ segments:
   type: code
   start: 0x010BCD00
   vram: 0x803863F0
+  follows_vram: core2
   exclusive_ram_id: overlay
   subsegments:
   - [0x10BCD00, c, code_0]
