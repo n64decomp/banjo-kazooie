@@ -485,6 +485,14 @@ segments:
   - [0xF55960, .bss, done/io/controller]
   - [0xF55960, .bss, done/io/motor]
   - [0xF55960, .bss, done/io/cartrominit]
+  - [0xF55960, .bss, done/io/leodiskinit]
+  - [0xF55960, .bss, done/io/piacs]
+  - [0xF55960, .bss, done/os/timerintr]
+  - [0xF55960, .bss, done/io/siacs]
+  - [0xF55960, .bss, done/io/pfsisplug]
+  - [0xF55960, .bss, done/io/conteepread]
+  - [0xF55960, .bss, os/kdebugserver]
+  - [0xF55960, .bss, done/io/leointerrupt]
 - name: core2
   dir: core2
   type: code

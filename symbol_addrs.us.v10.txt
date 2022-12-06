@@ -457,6 +457,8 @@ _motorstopbuf = 0x80285BA0;
 __osSetSR = 0x8026A210;
 __osGetSR = 0x8026A220;
 __osEepPifRam = 0x80285DA0;
+__osThreadSave = 0x80285DE0;
+leoDiskStack = 0x80285F90;//technically should have a OS_LEO_STACKSIZE or something..
 
 
 alCSeqGetLoc = 0x80267320;

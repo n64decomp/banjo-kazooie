@@ -2,8 +2,8 @@
 
 #define SI_Q_BUF_LEN 1
 u32 __osSiAccessQueueEnabled = 0;
-extern OSMesg siAccessBuf[SI_Q_BUF_LEN];
-extern OSMesgQueue __osSiAccessQueue;
+OSMesg siAccessBuf[SI_Q_BUF_LEN];
+OSMesgQueue __osSiAccessQueue;
 
 void __osSiCreateAccessQueue(void)
 {

@@ -3,7 +3,7 @@
 #include "siint.h"
 
 static void __osPackEepReadData(u8 address);
-extern OSPifRam __osEepPifRam; // todo bss
+OSPifRam __osEepPifRam; // todo bss
 s32 osEepromRead(OSMesgQueue *mq, u8 address, u8 *buffer)
 {
 	s32 ret;

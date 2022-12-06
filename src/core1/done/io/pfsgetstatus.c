@@ -2,7 +2,7 @@
 #include "controller.h"
 #include "siint.h"
 
-OSPifRam __osPfsPifRam;
+extern OSPifRam __osPfsPifRam;
 s32 __osPfsGetStatus(OSMesgQueue *queue, int channel)
 {
     s32 ret;
