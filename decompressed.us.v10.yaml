@@ -2326,4 +2326,5 @@ segments:
   subsegments:
   - [0x10BCD00, c, code_0]
   - [0x10BCD10, .data, code_0]
+  - [0x10BCD20, .bss, code_0]
 - [0x010BCD20] # end of ROM

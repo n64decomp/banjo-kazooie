@@ -2,56 +2,78 @@
 #include "functions.h"
 #include "variables.h"
 
-extern u8 core2_VRAM[];
-extern u8 core2_VRAM_END[];
-extern u8 core2_ROM_START[];
-extern u8 core2_ROM_END[];
-extern u8 core2_TEXT_START[];
-extern u8 core2_TEXT_END[];
-extern u8 core2_DATA_START[];
-extern u8 core2_RODATA_END[];
-extern u8 core2_BSS_START[];
-extern u8 core2_BSS_END[];
-
-extern u8 CC_VRAM[];
-extern u8 CC_VRAM_END[];
-
 typedef struct struct_2a_s{
     char *name;
-    u32 ram_start;
-    u32 ram_end;
-    u32 unkC; //uncompressed_rom_range_start
-    u32 unk10; //uncompressed_rom_range_end
-    u32 code_start;
-    u32 code_end;
-    u32 data_start;
-    u32 data_end;
-    u32 bss_start;
-    u32 bss_end;
+    u8* ram_start;
+    u8* ram_end;
+    u8* unkC; //uncompressed_rom_range_start
+    u8* unk10; //uncompressed_rom_range_end
+    u8* code_start;
+    u8* code_end;
+    u8* data_start;
+    u8* data_end;
+    u8* bss_start;
+    u8* bss_end;
 } struct2As;
 
 
 extern u8 D_803A5D00;
 
+#define SEGMENT_EXTERNS(segname) \
+    extern u8 segname##_VRAM[]; \
+    extern u8 segname##_VRAM_END[]; \
+    extern u8 segname##_ROM_START[]; \
+    extern u8 segname##_ROM_END[]; \
+    extern u8 segname##_TEXT_START[]; \
+    extern u8 segname##_TEXT_END[]; \
+    extern u8 segname##_DATA_START[]; \
+    extern u8 segname##_DATA_END[]; \
+    extern u8 segname##_RODATA_START[]; \
+    extern u8 segname##_RODATA_END[]; \
+    extern u8 segname##_BSS_START[]; \
+    extern u8 segname##_BSS_END[]
+
+SEGMENT_EXTERNS(core2);
+SEGMENT_EXTERNS(emptyLvl);
+SEGMENT_EXTERNS(CC);
+SEGMENT_EXTERNS(MMM);
+SEGMENT_EXTERNS(GV);
+SEGMENT_EXTERNS(TTC);
+SEGMENT_EXTERNS(MM);
+SEGMENT_EXTERNS(BGS);
+SEGMENT_EXTERNS(RBB);
+SEGMENT_EXTERNS(FP);
+SEGMENT_EXTERNS(CCW);
+SEGMENT_EXTERNS(SM);
+SEGMENT_EXTERNS(cutscenes);
+SEGMENT_EXTERNS(lair);
+SEGMENT_EXTERNS(fight);
+
+#define SEGMENT_ENTRY(segname, realname) \
+    {#realname, segname##_VRAM, segname##_VRAM_END, segname##_ROM_START, segname##_ROM_END, segname##_TEXT_START, segname##_TEXT_END, segname##_DATA_START, segname##_RODATA_END, segname##_BSS_START, segname##_BSS_END}
+
+#define DUMMY_SEGMENT_ENTRY(segname, realname) \
+    {#realname, segname##_VRAM, segname##_VRAM_END, segname##_ROM_START, segname##_ROM_END, NULL, NULL, NULL, NULL, NULL, NULL}
+
 /* .data */
 struct2As D_802762D0[] = {
-    {"gs",          0x80286F90, 0x803863F0, 0x00F55960, 0x01048560, 0x80286F90, 0x80363590, 0x80363590, 0x80379B90, 0x80379B90, 0x803863F0},
-    {"coshow",      0x803863F0, 0x80386430, 0x010BCD00, 0x010BCD20, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000},
-    {"whale",       (u32)CC_VRAM, (u32)CC_VRAM_END, 0x01048560, 0x0104C0E0, 0x803863F0, 0x80389AA0, 0x80389AA0, 0x80389F70, 0x80389F70, 0x8038A000},
-    {"haunted",     0x803863F0, 0x8038C530, 0x01057710, 0x0105D7E0, 0x803863F0, 0x8038B9E0, 0x8038B9E0, 0x8038C4C0, 0x8038C4C0, 0x8038C530},
-    {"desert",      0x803863F0, 0x80391B10, 0x0104C0E0, 0x01057710, 0x803863F0, 0x80390BD0, 0x80390BD0, 0x80391A20, 0x80391A20, 0x80391B10},
-    {"beach",       0x803863F0, 0x8038D740, 0x0105D7E0, 0x01064AE0, 0x803863F0, 0x8038C3B0, 0x8038C3B0, 0x8038D6F0, 0x8038D6F0, 0x8038D740},
-    {"jungle",      0x803863F0, 0x80389CA0, 0x01064AE0, 0x01068370, 0x803863F0, 0x80389890, 0x80389890, 0x80389C80, 0x80389C80, 0x80389CA0},
-    {"swamp",       0x803863F0, 0x80391250, 0x01068370, 0x010731B0, 0x803863F0, 0x80390690, 0x80390690, 0x80391230, 0x80391230, 0x80391250},
-    {"ship",        0x803863F0, 0x803912D0, 0x010731B0, 0x0107E030, 0x803863F0, 0x80390050, 0x80390050, 0x80391270, 0x80391270, 0x803912D0},
-    {"snow",        0x803863F0, 0x803935F0, 0x0107E030, 0x0108AB50, 0x803863F0, 0x803919F0, 0x803919F0, 0x80392F10, 0x80392F10, 0x803935F0},
-    {"tree",        0x803863F0, 0x8038FDF0, 0x010B3320, 0x010BCD00, 0x803863F0, 0x8038EB50, 0x8038EB50, 0x8038FDD0, 0x8038FDD0, 0x8038FDF0},
-    {"training",    0x803863F0, 0x8038B330, 0x0108AB50, 0x0108FA80, 0x803863F0, 0x8038AAC0, 0x8038AAC0, 0x8038B320, 0x8038B320, 0x8038B330},
-    {"intro",       0x803863F0, 0x8038E9F0, 0x0108FA80, 0x01098070, 0x803863F0, 0x8038D350, 0x8038D350, 0x8038E9E0, 0x8038E9E0, 0x8038E9F0},
-    {"witch",       0x803863F0, 0x80395470, 0x01098070, 0x010A6FD0, 0x803863F0, 0x80392CB0, 0x80392CB0, 0x80395350, 0x80395350, 0x80395470},
-    {"battle",      0x803863F0, 0x80392930, 0x010A6FD0, 0x010B3320, 0x803863F0, 0x80391380, 0x80391380, 0x80392740, 0x80392740, 0x80392930},
+    SEGMENT_ENTRY(core2, gs),
+    DUMMY_SEGMENT_ENTRY(emptyLvl, coshow),
+    SEGMENT_ENTRY(CC, whale),
+    SEGMENT_ENTRY(MMM, haunted),
+    SEGMENT_ENTRY(GV, desert),
+    SEGMENT_ENTRY(TTC, beach),
+    SEGMENT_ENTRY(MM, jungle),
+    SEGMENT_ENTRY(BGS, swamp),
+    SEGMENT_ENTRY(RBB, ship),
+    SEGMENT_ENTRY(FP, snow),
+    SEGMENT_ENTRY(CCW, tree),
+    SEGMENT_ENTRY(SM, training),
+    SEGMENT_ENTRY(cutscenes, intro),
+    SEGMENT_ENTRY(lair, witch),
+    SEGMENT_ENTRY(fight, battle),
 };
-s32 D_80276564 = 15;
+s32 D_80276564 = sizeof(D_802762D0) / sizeof(D_802762D0[0]);
 
 /* .bss */
 enum overlay_e D_80282800;
@@ -67,7 +89,7 @@ struct2As *func_802510F0(void){
 
     v1 = &D_802762D0[1];
     for(i = 1; i < D_80276564; i++){
-        if(v1->ram_end - v1->ram_start < D_802762D0[i].ram_end - D_802762D0[i].ram_start){
+        if(v1->ram_end - v1->ram_start < (u32)(D_802762D0[i].ram_end - D_802762D0[i].ram_start)){
             v1 = &D_802762D0[i];
         }
     }
@@ -89,7 +111,7 @@ s32 func_80251178(void){
     sp18 = func_802546DC();
     sp1C = func_80251170();
 
-    return ((sp1C + (u32)&D_803A5D00) - sp20->ram_end) + sp18;
+    return ((sp1C + &D_803A5D00) - sp20->ram_end) + sp18;
 }
 
 void func_802511C4(void){
