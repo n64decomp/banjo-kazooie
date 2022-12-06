@@ -173,7 +173,7 @@ OscState oscStates[48];
 /* .code */
 f32 _depth2Cents(u8 depth)
 {
-	f32 x = /*1.0309929847717f*/ D_80277620;
+	f32 x = 1.03099298f;
 	f32 cents = 1.0f;
 
 	while (depth) {
@@ -237,7 +237,7 @@ ALMicroTime updateOsc(void *oscState, f32 *updateVal)
 		}
 
 		sp2c = (f32)state->unk8 / (f32)state->unk6;
-		sp2c = sinf(sp2c * /*M_TAU*/D_80277628);
+		sp2c = sinf(sp2c * BAD_TAU);
 		sp2c = sp2c * state->unkC.type1.unk0;
 		*updateVal = state->unkC.type1.unk1 + sp2c;
 		break;
@@ -250,7 +250,7 @@ ALMicroTime updateOsc(void *oscState, f32 *updateVal)
 		}
 
 		sp2c = (f32)state->unk8 / (f32)state->unk6;
-		sp2c = sinf(sp2c * /*M_TAU*/D_80277630) * state->unkC.type80.unk0;
+		sp2c = sinf(sp2c * BAD_TAU) * state->unkC.type80.unk0;
 		*updateVal = alCents2Ratio(sp2c);
 		break;
 	default:
@@ -295,12 +295,14 @@ void func_8023FB1C(void){
 
 void amgrCreate(void) {
     int i;
+    f32 var_f0;
 
     osCreateMesgQueue(&D_8027D008, &D_8027D020, 0x32);
     osCreateMesgQueue(&g_AudioManager.audioReplyMsgQ, g_AudioManager.audioReplyMsgBuf, 8); //audioReplyMesgQueue
     osCreateMesgQueue(&g_AudioManager.audioFrameMsgQ, g_AudioManager.audioFrameMsgBuf, 8);
-    D_8027DD74 = (s32)D_80277638;
-    if ((f32) D_8027DD74 < D_80277638) {
+    var_f0 = 733.333313f;
+    D_8027DD74 = (s32)var_f0;
+    if ((f32) D_8027DD74 < var_f0) {
         D_8027DD74++;
     }
     D_8027DD74 = ((D_8027DD74 / 0xB8) * 0xB8) + 0xB8;

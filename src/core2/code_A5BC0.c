@@ -54,15 +54,16 @@ void func_8032F64C(f32 *pos, ActorMarker * marker);
 
 
 /* .data */
-extern s32 D_8036E7B0;
-extern ModelCache *modelCache; //D_8036E7C0 //model pointer array pointer
-extern u8 *D_8036E7C4;
-extern ActorMarker *D_8036E7C8;
-extern Struct6Cs D_8036E7D0; //= {NULL, NULL, NULL, func_80330974};
-extern s16 D_8036E7E0[];//= {0x2D2, 0x2DD, 0x580, 0x6D1, 0x6D6, 0x6D7, 0x364, 0x2E8, 0x309, 0x30A, 0x704, 0x30D, 0x6C7, -1};
-extern s16 D_8036E7FC[]; //={-1};
-//extern s32 D_8036E800;
-// extern u32 D_8036E804[8];
+s32 D_8036E7B0 = 0;
+u8 pad_8036E7B4[0xC] = {0}; //PROBABLY INDICATES FILE BREAK
+
+ModelCache *modelCache = NULL; //D_8036E7C0 //model pointer array pointer
+u8 *D_8036E7C4 = NULL;
+ActorMarker *D_8036E7C8 = NULL;
+s32 D_8036E7CC = 0;
+Struct6Cs D_8036E7D0 = {NULL, NULL, NULL, func_80330974};
+s16 D_8036E7E0[] = {0x2D2, 0x2DD, 0x580, 0x6D1, 0x6D6, 0x6D7, 0x364, 0x2E8, 0x309, 0x30A, 0x704, 0x30D, 0x6C7, -1};
+s16 D_8036E7FC[] ={-1};
 
 /* .bss */
 s32 D_803833F0[3];

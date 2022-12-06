@@ -11,6 +11,7 @@ asm/*/*.s
 asm/core1/os
 !asm/ultra
 !asm/core1/ultra
+!asm/core1/code_1E820.s
 build/*
 build/
 

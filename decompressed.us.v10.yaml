@@ -297,7 +297,7 @@ segments:
   - [0xF45A60, hasm, setfpccsr]            #DONE
   - [0xF45A70, c, done/io/sirawread]       #DONE
   - [0xF45AC0, c, done/io/sirawwrite]      #DONE
-  - [0xF45B10, hasm, exceptasm]            #DONE
+  - [0xF45B10, hasm, ultra/exceptasm]      #DONE
   - [0xF46480, c, done/io/pirawread]       #DONE
   - [0xF464E0, hasm, interrupt]            #DONE
   - [0xF46520, c, done/os/thread]          #DONE
@@ -357,16 +357,16 @@ segments:
   - [0xF4EA20, bin, gSPF3DEX_fifo_text]
   - [0xF4FE50, bin, gSPL3DEX_fifo_text]
   - [0xF50E40, linker_offset, DATA_START] #data Section
-  - [0xF50E40, bin, data_37BF0] #data Section
+  - [0xF50E40, .data, code_0]
   - [0xF50EA0, .data, code_660]
   - [0xF50FA0, .data, code_1D00]
-  - [0xF51080, bin, data_37E30] #data Section
+  - [0xF51080, bin, data_37E30] #unreferenced
   - [0xF51090, .data, code_2FA0]
   - [0xF510A0, .data, code_3250]
   - [0xF510B0, .data, code_3A70]
   - [0xF510F0, .data, code_5650]
   - [0xF51110, .data, code_7090]
-  - [0xF51120, bin, data_37ED0]
+  - [0xF51120, bin, data_37ED0] #unreferenced
   - [0xF51130, .data, code_7F60]
   - [0xF51140, .data, code_8C50]
   - [0xF51280, .data, code_9D30]
@@ -385,7 +385,7 @@ segments:
   - [0xF52660, .data, code_1BE90]
   - [0xF52670, .data, code_1D5D0]
   - [0xF52690, .data, done/code_1E360]
-  - [0xF526A0, bin, data_F526A0] # .data, code_1E820]
+  - [0xF526A0, .data, data_1E820]
   - [0xF526B0, .data, done/audio/n_sl]
   - [0xF526C0, .data, done/audio/n_drvrNew]
   - [0xF52850, .data, done/audio/n_env]
@@ -396,7 +396,7 @@ segments:
   - [0xF529C0, .data, done/io/vimgr]
   - [0xF529E0, .data, done/io/controller]
   - [0xF529F0, .data, done/audio/drvrNew]
-  - [0xF52B80, bin, data_39930] # .data, ultra/exceptasm]
+  - [0xF52B80, .data, ultra/exceptasm]
   - [0xF52BA0, .data, done/os/thread]
   - [0xF52BC0, .data, done/io/piacs]
   - [0xF52BD0, .data, done/io/vi]
@@ -406,7 +406,7 @@ segments:
   - [0xF52D60, .data, done/io/vimodepallan1]
   - [0xF52DB0, .data, done/io/vimodempallan1]
   - [0xF52DB0, .data, done/io/vimodentsclan1]
-  - [0xF52E50, bin, data_39C00] # .rodata, code_1D00]
+  - [0xF52E50, .rodata, code_1D00]
   - [0xF52E70, .rodata, code_3250]
   - [0xF52E80, .rodata, code_3A70]
   - [0xF52E90, .rodata, code_5650]
@@ -433,13 +433,13 @@ segments:
   - [0xF543E0, .rodata, done/gu/sinf]
   - [0xF54430, .rodata, done/audio/cents2ratio]
   - [0xF54440, .rodata, done/gu/cosf]
-  - [0xF54490, bin, data_3B1F0] # .rodata, ultra/setintmask] # splat bug preventing this from linking correctly
-  - [0xF54510, .rodata, done/gu/rotate] # need to resolve .data section first
+  - [0xF54490, .rodata, ultra/setintmask]
+  - [0xF54510, .rodata, done/gu/rotate]
   - [0xF54520, .rodata, done/audio/cseq]
   - [0xF54530, .rodata, done/audio/drvrNew]
   - [0xF54550, .rodata, done/audio/reverb]
   - [0xF54580, .rodata, done/audio/seq]
-  - [0xF54590, bin, data_3B340] # .rodata, ultra/exceptasm]
+  - [0xF54590, .rodata, ultra/exceptasm]
   - [0xF545E0, hasm, ultra/libm_vals] # Nothing in this file, just here so splat sees it's ASM
   - [0xF545E0, .rodata, ultra/libm_vals]
   - [0xF545F0, .rodata, done/audio/synthesizer]
@@ -889,7 +889,7 @@ segments:
   - [0x1030400, c, code_DAAA0] #DONE
   - [0x1030970, c, code_DB010] #DONE
   - [0x1031E10, c, code_DC4B0] #DONE
-  - [0x1031F60, bin, data_DC600]
+  - [0x1031F60, bin, data_DC600] #unreferenced
   - [0x1031F90, .data, code_1550]
   - [0x1031FB0, .data, code_2890]
   - [0x1031FE0, .data, code_3480]
@@ -915,7 +915,7 @@ segments:
   - [0x1033410, .data, bs/bLongLeg]
   - [0x1033430, .data, bs/bPeck]
   - [0x1033440, .data, bs/bShock]
-  - [0x1033450, bin, data_DDAF0]
+  - [0x1033450, bin, data_DDAF0] #unreferenced
   - [0x1033460, .data, bs/bTrot]
   - [0x10334A0, .data, bs/bWhirl]
   - [0x10334C0, .data, bs/carry]
@@ -1054,7 +1054,7 @@ segments:
   - [0x103CDF0, .data, code_9D640]
   - [0x103CF30, .data, code_9E370]
   - [0x103CFA0, .data, code_A4D00]
-  - [0x103D180, bin, data_E7820] # .data, code_A5BC0 (file needs to be broken?)
+  - [0x103D180, .data, code_A5BC0] #(file needs to be broken?)
   - [0x103D1D0, .data, code_A5BC0]
   - [0x103D200, .data, code_ABC00]
   - [0x103E340, .data, code_AC520]
@@ -1071,7 +1071,7 @@ segments:
   - [0x1040840, .data, code_B9770]
   - [0x1040890, .data, code_BD100]
   - [0x10408A0, .data, code_BE2C0]
-  - [0x10408B0, bin, data_EAF40]
+  - [0x10408B0, bin, data_EAF40] #unreferenced
   - [0x10408C0, .data, code_C2F30]
   - [0x10408D0, .data, code_C4320]
   - [0x1040990, .data, code_C4F40]
@@ -1081,7 +1081,7 @@ segments:
   - [0x1040F90, .data, code_C9F00]
   - [0x1041040, .data, code_CBD10]
   - [0x1041070, .data, code_CC1E0]
-  - [0x1041090, bin, data_1041090] # .data, code_CD6E0]
+  - [0x1041090, .data, code_CD6E0]
   - [0x10410C0, .data, code_CECD0]
   - [0x10410D0, .data, code_CF090]
   - [0x1041100, .data, code_CF3E0]
