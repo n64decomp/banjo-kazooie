@@ -147,9 +147,9 @@ ActorInfo D_80391590 = { MARKER_23A_GV_SNS_CHAMBER_DOOR, ACTOR_243_GV_SNS_CHAMBE
 };
 
 /* .bss */
-extern f32 D_80391AC0;
-extern f32 D_80391AC4;
-extern f32 D_80391AC8;
+f32 D_80391AC0;
+f32 D_80391AC4;
+f32 D_80391AC8;
 
 /* .code */
 void func_8038E3E0(Actor *this){

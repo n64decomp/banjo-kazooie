@@ -13,7 +13,8 @@ typedef struct {
 
 f32 D_80391EC0[3] ={-625.0f, 466.0f, -111.0f};
 
-extern Struct_FP_45D0_0 D_80392F50;
+/* .bss */
+Struct_FP_45D0_0 D_80392F50;
 
 /* .code */
 void FP_func_8038A9C0(void){

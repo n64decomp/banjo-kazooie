@@ -7,10 +7,9 @@
 f32 D_80389BF0[3] = {0.0f, 1300.0f, -2800.0f}; 
 
 /* .bss */
-extern struct {
+struct {
     u8 unk0;
     u8 unk1;
-    //u8 pad2[2];
     f32 unk4;
     f32 unk8;
 } D_80389F90;

@@ -33,7 +33,7 @@ Struct_GV_9DB0_1 D_80391650[] = {
 f32 GV_D_803916D8[3] = {0.0f, 100.0f, 0.0f};
 
 /*.bss */
-extern struct {
+struct {
     Struct_GV_9DB0_1 *tile1_0;
     Struct_GV_9DB0_1 *tile2_4;
     u8 matchCnt_8;//match_count

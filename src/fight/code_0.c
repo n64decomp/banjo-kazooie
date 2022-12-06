@@ -21,7 +21,7 @@ extern ActorInfo D_80392018;
 extern ActorInfo D_80392090;
 
 /* .bss */
-u8 pad_80392750[0x10];
+u8 pad_fight_80392740[0x10];
 
 void fight_func_803863F0(void)
 {

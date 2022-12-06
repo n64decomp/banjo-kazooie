@@ -26,7 +26,6 @@ ActorInfo D_80390C80 = { MARKER_BC_GOBI_1, ACTOR_12E_GOBI_1, ASSET_3E0_MODEL_GOB
 
 
 /* .bss */
-u8 GV_pad0[0x10];
 struct {
     u8 unk0;
     u8 unk1;

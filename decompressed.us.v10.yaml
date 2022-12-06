@@ -1629,6 +1629,10 @@ segments:
   - [0x104C080, .rodata, ch/tooth]
   - [0x104C090, .rodata, code_1B90]
   - [0x104C0A0, .rodata, code_1F70]
+  - [0x104C0E0, .bss, bss_pad]
+  - [0x104C0E0, .bss, code_BF0]
+  - [0x104C0E0, .bss, code_1B90]
+  - [0x104C0E0, .bss, code_1F70]
 - name: GV
   dir: GV
   type: code
@@ -1717,6 +1721,20 @@ segments:
   - [0x10576B0, .rodata, code_9860]
   - [0x10576F0, .rodata, code_9DB0]
   - [0x1057700, .rodata, code_A490]
+  - [0x1057710, .bss, bss_pad]
+  - [0x1057710, .bss, code_0]
+  - [0x1057710, .bss, code_D60]
+  - [0x1057710, .bss, code_1570]
+  - [0x1057710, .bss, code_2730]
+  - [0x1057710, .bss, code_4740]
+  - [0x1057710, .bss, code_5570]
+  - [0x1057710, .bss, code_61E0]
+  - [0x1057710, .bss, code_6F80]
+  - [0x1057710, .bss, code_7D50]
+  - [0x1057710, .bss, code_7FF0]
+  - [0x1057710, .bss, code_9C10]
+  - [0x1057710, .bss, code_9DB0]
+  - [0x1057710, .bss, code_A490]
 - name: MMM
   dir: MMM
   type: code
@@ -1758,7 +1776,11 @@ segments:
   - [0x105D780, .rodata, code_3D50]
   - [0x105D7A0, .rodata, code_47D0]
   - [0x105D7D0, .rodata, code_5000]
+  - [0x105D7E0, .bss, bss_pad]
   - [0x105D7E0, .bss, code_2040]
+  - [0x105D7E0, .bss, code_3120]
+  - [0x105D7E0, .bss, code_3420]
+  - [0x105D7E0, .bss, code_3D50]
 - name: TTC
   dir: TTC
   type: code
@@ -1834,6 +1856,8 @@ segments:
   - [0x1068340, .rodata, ch/grublin]
   - [0x1068350, .rodata, ch/jujuhitbox]
   - [0x1068360, .rodata, ch/juju]
+  - [0x1068370, .bss, bss_pad]
+  - [0x1068370, .bss, ch/juju]
 - name: BGS
   dir: BGS
   type: code
@@ -1890,6 +1914,7 @@ segments:
   - [0x1073130, .rodata, ch/tanktup]
   - [0x1073140, .rodata, code_9750]
   - [0x1073150, .rodata, ch/leafboat]
+  - [0x10731B0, .bss, bss_pad]
   - [0x10731B0, .bss, done/ch/code_6730]
 - name: RBB
   dir: RBB
@@ -1971,6 +1996,7 @@ segments:
   - [0x107DF60, .rodata, code_7FD0]
   - [0x107DFB0, .rodata, code_8520]
   - [0x107E020, .rodata, code_9670]
+  - [0x107E030, .bss, bss_pad]
   - [0x107E030, .bss, code_5F80]
   - [0x107E030, .bss, code_8520]
   - [0x107E030, .bss, code_8520]
@@ -2052,6 +2078,12 @@ segments:
   - [0x108AB10, .rodata, ch/wozzasjig]
   - [0x108AB30, .rodata, code_A500]
   - [0x108AB40, .rodata, code_A880]
+  - [0x108AB50, .bss, bss_pad]
+  - [0x108AB50, .bss, code_2350]
+  - [0x108AB50, .bss, code_4400]
+  - [0x108AB50, .bss, code_45D0]
+  - [0x108AB50, .bss, code_4770]
+  - [0x108AB50, .bss, bss_end_pad]
 - name: SM
   dir: SM
   type: code
@@ -2108,6 +2140,7 @@ segments:
   - [0x1098040, .rodata, code_6730]
   - [0x1098050, .rodata, code_69F0]
   - [0x1098060, .rodata, code_6C90]
+  - [0x1098070, .bss, bss_pad]
 - name: lair
   dir: lair
   type: code
@@ -2155,7 +2188,9 @@ segments:
   - [0x10A6F70, .rodata, code_BBD0]
   - [0x10A6FB0, .rodata, code_C1C0]
   - [0x10A6FC0, .rodata, code_C6C0]
+  - [0x10A6FD0, .bss, bss_pad]
   - [0x10A6FD0, .bss, code_0]
+  - [0x10A6FD0, .bss, code_A810]
 - name: fight
   dir: fight
   type: code
@@ -2280,6 +2315,7 @@ segments:
   - [0x10BCC40, .rodata, code_76C0]
   - [0x10BCC50, .rodata, code_7BF0]
   - [0x10BCC60, .rodata, code_8050]
+  - [0x10BCD00, .bss, bss_pad]
   - [0x10BCD00, .bss, code_3310]
 - name: emptyLvl
   dir: emptyLvl

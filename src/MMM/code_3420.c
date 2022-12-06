@@ -134,7 +134,7 @@ u8 D_8038C1D4[] = {0xA, 0x12, 0xF, 0x9, 0xE, 0xD, 0x9, 0x11, 0xB, 0xF, 0, 0};
 f32 D_8038C1E0[3] = {0.0f, 3250.0f, -3200.0f}; //jiggy spawn position
 
 /* .bss */
-extern struct {
+struct {
     s32 unk0;
     ActorMarker *motzhand_marker;
     Struct_MMM_3420_0 *unk8;

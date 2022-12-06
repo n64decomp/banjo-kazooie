@@ -245,7 +245,7 @@ void func_803888B8(Actor *this){
 }
 
 Actor *func_80388994(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
-    static u8 pad[0x10];
+    
     static s32 i;
     Actor *this;
     f32 sp90[3];

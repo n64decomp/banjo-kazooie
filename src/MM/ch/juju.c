@@ -18,7 +18,8 @@ typedef struct{
 void    func_80389598(Actor *this);
 Actor*  func_80389014(ActorMarker *, Gfx **, Mtx**, Vtx** );
 
-extern s32 D_80389C90;
+/* .bss */
+s32 MM_D_80389C90;
 
 /* .data */
 ActorInfo chjujuInfo = { MARKER_67_JUJU, ACTOR_59_JUJU, ASSET_2E6_MODEL_JUJU, 
@@ -161,10 +162,10 @@ int func_8038948C(ActorMarker **ptr){
 
 void func_80389514(ActorMarker **ptr){
     s32 i;
-    D_80389C90 = 0;
+    MM_D_80389C90 = 0;
     for(i = 0; i < 4; i++){
         if(((ActorLocal_Juju_2 *)&marker_getActor(ptr[i])->local)->unk0 != 2){
-            D_80389C90++;
+            MM_D_80389C90++;
         };
     }
 }
@@ -180,7 +181,7 @@ void    func_80389598(Actor *this){
     switch(jujuPtr->unk0){
         case 1: //L80389624
             sp34 = this->yaw;
-            this->yaw += ((0xb - D_80389C90*2)*time_getDelta()*60.0f)/2;
+            this->yaw += ((0xb - MM_D_80389C90*2)*time_getDelta()*60.0f)/2;
             if(360.0f < this->yaw){
                 sp38 = 1;
                 this->yaw -= 360.0f;

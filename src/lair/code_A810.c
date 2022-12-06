@@ -15,8 +15,8 @@ void func_80390E28(Actor *this);
 ActorInfo D_80394A80 = { 0x1EC, 0x377, 0x0, 0x0, NULL, func_80390E28, func_80326224, func_80325340, 3000, 0, 0.0f, 0};
 
 /* .bss */
-extern f32 D_80395370[14][3];
-extern s32 D_80395460;
+f32 D_80395370[0x14][3];
+s32 D_80395460;
 
 /* .code */
 void func_80390C00(ActorMarker *marker)

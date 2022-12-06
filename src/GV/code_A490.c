@@ -3,7 +3,6 @@
 #include "variables.h"
 
 /* .bss */
-u8 GV_pad3[0x40];
 struct {
     u8 unk0;
     f32 unk4;

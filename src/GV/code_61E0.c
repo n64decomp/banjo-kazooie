@@ -22,7 +22,6 @@ ActorInfo D_803911C0 = { 0xAC, 0x11E, 0x3E5,
 };
 
 /* .bss */
-u8 GV_pad2[0x10];
 s32 GV_D_80391A90;
 
 /* .code */

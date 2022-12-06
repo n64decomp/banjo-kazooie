@@ -23,7 +23,7 @@ f32 chgobi2_jiggy_position[3] = {1150.0f, 1150.0f, 9200.0f}; //jiggy spawn posit
 f32 D_80390CEC[3] = {1145.0f, 443.0f, 9197.0f};
 
 /* .bss */
-extern u8 D_80391A50;
+u8 D_80391A50;
 
 /* .code */
 void GV_func_80387960(void){

@@ -1776,7 +1776,6 @@ Actor *func_80389E10(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     f32 sp84[3];
     f32 sp78[3];
     f32 sp6C[3];
-    static u8 D_80395350[0x10]; //padding
     static s32 D_80395360;
 
 
