@@ -51,13 +51,13 @@ typedef struct struct_core1_1D00_5_s{
     }unkC;
 }OscState;
 
-void amgrCreate(void);
-void func_8023FE80(void *);
+void audioManager_create(void);
+void audioManager_handle(void *);
 // void func_802403B8(void);
-void amgrHandleDoneMsg(AudioInfo *info);
+void audioManager_handleDoneMsg(AudioInfo *info);
 void *func_802403B8(void *state);
 void func_802403F0(void);
-void amgrStartThread(void);
+void audioManager_startThread(void);
 
 
 s32 D_80275770 = 0;
@@ -141,7 +141,7 @@ struct {
     OSMesg audioFrameMsgBuf[8];
     OSMesgQueue audioReplyMsgQ;
     OSMesg audioReplyMsgBuf[8];
-} g_AudioManager;
+} audioManager;
 u8 pad_8027C178[0xE78];
 ALHeap D_8027CFF0;
 u8 * D_8027D000;
@@ -281,25 +281,25 @@ void func_8023FA64(ALSeqpConfig *arg0) {
     arg0->stopOsc   = stopOsc;
 }
 
-void func_8023FB1C(void){
+void audioManager_init(void){
     D_8027D000 = (u8 *) malloc(0x21000);
     bzero(D_8027D000, 0x21000);
     alHeapInit(&D_8027CFF0, D_8027D000, 0x21000);
     if(osTvType != OS_TV_NTSC)
         osViClock = 0x2e6025c;
-    amgrCreate();
-    func_80335220();
-    func_8024F4E0();
-    amgrStartThread();
+    audioManager_create();
+    sfxInstruments_init();
+    musicInstruments_init();
+    audioManager_startThread();
 }
 
-void amgrCreate(void) {
+void audioManager_create(void) {
     int i;
     f32 var_f0;
 
     osCreateMesgQueue(&D_8027D008, &D_8027D020, 0x32);
-    osCreateMesgQueue(&g_AudioManager.audioReplyMsgQ, g_AudioManager.audioReplyMsgBuf, 8); //audioReplyMesgQueue
-    osCreateMesgQueue(&g_AudioManager.audioFrameMsgQ, g_AudioManager.audioFrameMsgBuf, 8);
+    osCreateMesgQueue(&audioManager.audioReplyMsgQ, audioManager.audioReplyMsgBuf, 8); //audioReplyMesgQueue
+    osCreateMesgQueue(&audioManager.audioFrameMsgQ, audioManager.audioFrameMsgBuf, 8);
     var_f0 = 733.333313f;
     D_8027DD74 = (s32)var_f0;
     if ((f32) D_8027DD74 < var_f0) {
@@ -326,28 +326,28 @@ void amgrCreate(void) {
     D_8027D5C0[i].unk10 = alHeapDBAlloc(0, 0, D_8027DD50.heap, 1, 0x200);
 
     for(i = 0; i < 2; i++){
-        g_AudioManager.ACMDList[i] = malloc(20000);
+        audioManager.ACMDList[i] = malloc(20000);
     }
     D_8027DD80 = 2500;
     for(i = 0; i < 3; i++){
-        g_AudioManager.audioInfo[i] = alHeapDBAlloc(0, 0, D_8027DD50.heap, 1, 0x10);
-        g_AudioManager.audioInfo[i]->unk8 = 0;
-        g_AudioManager.audioInfo[i]->unkC = g_AudioManager.audioInfo[i];
-        g_AudioManager.audioInfo[i]->data = malloc(D_8027DD7C * 4);
+        audioManager.audioInfo[i] = alHeapDBAlloc(0, 0, D_8027DD50.heap, 1, 0x10);
+        audioManager.audioInfo[i]->unk8 = 0;
+        audioManager.audioInfo[i]->unkC = audioManager.audioInfo[i];
+        audioManager.audioInfo[i]->data = malloc(D_8027DD7C * 4);
     }
-    osCreateThread(&g_AudioManager.thread, 4, &func_8023FE80, 0, &D_8027CFF0, 0x32);
+    osCreateThread(&audioManager.thread, 4, &audioManager_handle, 0, &D_8027CFF0, 0x32);
 }
 
-void func_8023FE80(void *arg0) {
+void audioManager_handle(void *arg0) {
     s32 phi_s1;
 
     phi_s1 = 1;
     while(1){
-        osRecvMesg(&g_AudioManager.audioFrameMsgQ, NULL, OS_MESG_BLOCK);
-        if (amgr_handleFrameMsg(g_AudioManager.audioInfo[D_8027DCC8 % 3], D_80275848)){
+        osRecvMesg(&audioManager.audioFrameMsgQ, NULL, OS_MESG_BLOCK);
+        if (audioManager_handleFrameMsg(audioManager.audioInfo[D_8027DCC8 % 3], D_80275848)){
             if(phi_s1 == 0){
-                osRecvMesg(&g_AudioManager.audioReplyMsgQ, &D_80275844, OS_MESG_BLOCK);
-                amgrHandleDoneMsg(D_80275844->unk4);
+                osRecvMesg(&audioManager.audioReplyMsgQ, &D_80275844, OS_MESG_BLOCK);
+                audioManager_handleDoneMsg(D_80275844->unk4);
                 D_80275848 = D_80275844->unk4;
             }else{
                 phi_s1 += -1;
@@ -364,7 +364,7 @@ void func_8023FFD4(s32 arg0, s32 arg1, s32 arg2){
     return;
 }
 
-bool amgr_handleFrameMsg(AudioInfo *info, AudioInfo *prev_info){
+bool audioManager_handleFrameMsg(AudioInfo *info, AudioInfo *prev_info){
     s16 *outbuffer;
     Acmd *sp38;
     s32 sp34;
@@ -399,7 +399,7 @@ bool amgr_handleFrameMsg(AudioInfo *info, AudioInfo *prev_info){
         info->frameSamples = D_8027DD78;
     }
 
-    sp38 = n_alAudioFrame(g_AudioManager.ACMDList[D_8027DCD0], &sp34, outbuffer, info->frameSamples);
+    sp38 = n_alAudioFrame(audioManager.ACMDList[D_8027DCD0], &sp34, outbuffer, info->frameSamples);
 
     if(D_8027DD80 < sp34){
         func_80247F24(2, 2000);
@@ -411,14 +411,14 @@ bool amgr_handleFrameMsg(AudioInfo *info, AudioInfo *prev_info){
     if(sp34 == 0){
         return 0;
     }else{
-        func_802535A8(g_AudioManager.ACMDList[D_8027DCD0], sp38, &g_AudioManager.audioReplyMsgQ, &info->unk8);
+        func_802535A8(audioManager.ACMDList[D_8027DCD0], sp38, &audioManager.audioReplyMsgQ, &info->unk8);
         func_80250650();
         D_8027DCD0 ^= 1;
         return 1;
     }
 }
 
-void amgrHandleDoneMsg(AudioInfo *info)
+void audioManager_handleDoneMsg(AudioInfo *info)
 {   
     static int D_8027584C = TRUE;
 	if (osAiGetLength() >> 2 == 0 && D_8027584C == FALSE) {
@@ -527,22 +527,22 @@ void func_802403F0(void) {
     D_8027DCC8 += 1;
 }
 
-void amgrStopThread(void){
+void audioManager_stopThread(void){
     if(D_80275774){
         D_80275774 = 0;
-        osStopThread(&g_AudioManager.thread);
+        osStopThread(&audioManager.thread);
     }
 }
 
-void amgrStartThread(void){
+void audioManager_startThread(void){
     if(D_80275774 == 0){
         D_80275774 = 1;
-        osStartThread(&g_AudioManager.thread);
+        osStartThread(&audioManager.thread);
     }
 }
 
-OSThread * amgrGetThread(void){
-    return &g_AudioManager.thread;
+OSThread * audioManager_getThread(void){
+    return &audioManager.thread;
 }
 
 ALHeap * func_802405B8(void){
@@ -557,6 +557,6 @@ OSIoMesg * func_802405D0(void){
     return &D_8027D0E8;
 }
 
-OSMesgQueue * amgr_getFrameMesgQueue(void){
-    return &g_AudioManager.audioFrameMsgQ;
+OSMesgQueue * audioManager_getFrameMesgQueue(void){
+    return &audioManager.audioFrameMsgQ;
 }

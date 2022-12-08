@@ -39,7 +39,7 @@ void func_8034E71C(Struct73s *arg0, s32 arg1, f32 arg2) {
     if (arg2 == 0.0f) {
         arg0->dy = arg1;
         sp18 = func_8034C4F0(arg0);
-        func_8033F120(sp18, func_8034C50C(arg0), func_8034E660, (s32) arg0);
+        BKModel_transformMesh(sp18, func_8034C50C(arg0), func_8034E660, (s32) arg0);
     }
 }
 
@@ -104,5 +104,5 @@ void func_8034E8E4(Struct73s *arg0, BKModel *arg1, s32 arg2) {
     sp28 = ((arg0->unk14 < arg0->unk1C) ? arg0->unkC + ((arg0->unk14 / arg0->unk1C) * (arg0->unkE - arg0->unkC)) : arg0->unkE);
     sp28 += sp2C;
     arg0->dy = (sp28 >= 0.0) ? sp28 + 0.5 : sp28 - 0.5;
-    func_8033F120(arg1, arg2, func_8034E660, (s32) arg0);
+    BKModel_transformMesh(arg1, arg2, func_8034E660, (s32) arg0);
 }

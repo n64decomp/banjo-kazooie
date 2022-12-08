@@ -214,7 +214,7 @@ ALBank *     D_80282108;
 structBs     D_80282110[0x20];
 
 /* .code */
-void func_8024F4E0(void){
+void musicInstruments_init(void){
     s32 size;
     ALBankFile * bnk_f; //sp38
     s32 i;

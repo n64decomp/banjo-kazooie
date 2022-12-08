@@ -42,21 +42,21 @@ s32 D_80275D38 = 0;
 
 /* .bss */
 UNK_TYPE(s32) D_802810E0[4][5];
-u8 D_80281130;
+u8 pfsManagerBitPattern;
 Struct_core1_10A00_0 D_80281138[4];
 Struct_core1_10A00_0 D_80281218;
 Struct_core1_10A00_1 D_80281250[4];
-OSMesg D_802812B0;
-OSMesg D_802812B4;
-OSContPad D_802812B8[4];
+OSMesg pfsManagerContPollingMsqBuf;
+OSMesg pfsManagerContReplyMsgBuf;
+OSContPad pfsManagerContPadData[4];
 OSContPad D_802812D0;
-OSMesgQueue D_802812D8;
-OSMesgQueue D_802812F0;
+OSMesgQueue pfsManagerContPollingMsqQ;
+OSMesgQueue pfsManagerContReplyMsgQ;
 f32 D_80281308[4];
-OSContStatus D_80281318;
+OSContStatus pfsManagerContStatus;
 u8 pad_D_80281320[0x8];
-volatile s32 D_80281328;
-OSThread D_80281330;
+volatile s32 pfsManagerBusy;
+OSThread pfsManagerThread;
 u8 D_802814E0[0x200];
 f32 D_802816E0;
 OSMesgQueue D_802816E8;
@@ -152,8 +152,8 @@ void func_8024E71C(s32 controller_index, f32 dst[2]){
         dst[1] = D_80281250[controller_index].joystick[1];
     }
     else{
-        dst[0] = func_8024E420(D_802812B8[controller_index].stick_x, 7, 0x3B);
-        dst[1] = func_8024E420(D_802812B8[controller_index].stick_y, 7, 0x3D);
+        dst[0] = func_8024E420(pfsManagerContPadData[controller_index].stick_x, 7, 0x3B);
+        dst[1] = func_8024E420(pfsManagerContPadData[controller_index].stick_y, 7, 0x3D);
     }
 }
 
@@ -173,9 +173,9 @@ void func_8024E7C8(void){
         func_802E4384();
 
     osSetThreadPri(NULL, 0x29);
-    D_802812D0.stick_x = D_802812B8[0].stick_x;
-    D_802812D0.stick_y = D_802812B8[0].stick_y;
-    D_802812D0.button = D_802812B8[0].button;
+    D_802812D0.stick_x = pfsManagerContPadData[0].stick_x;
+    D_802812D0.stick_y = pfsManagerContPadData[0].stick_y;
+    D_802812D0.button = pfsManagerContPadData[0].button;
     if( getGameMode() == GAME_MODE_6_FILE_PLAYBACK
         || getGameMode() == GAME_MODE_7_ATTRACT_DEMO
         || getGameMode() == GAME_MODE_8_BOTTLES_BONUS
@@ -189,7 +189,7 @@ void func_8024E7C8(void){
         if(D_802816E0 < 1.0 || getGameMode() == GAME_MODE_9_BANJO_AND_KAZOOIE){
             s0 = 0;
         }
-        temp_t6 = demo_readInput(&D_802812B8, &sp5C) == 0;
+        temp_t6 = demo_readInput(&pfsManagerContPadData, &sp5C) == 0;
         if(D_802812D0.button & s0 || temp_t6){
             if(D_802812D0.button & s0){
                 func_803204E4(0x64, 1);
@@ -206,15 +206,15 @@ void func_8024E7C8(void){
 
     randf();
 //     var_s0_2 = &D_80281250;
-//     var_s1 = &D_802812B8
+//     var_s1 = &pfsManagerContPadData
     for(i = 0; i < 4; i++){
 //         temp_t5 = var_s1->unk0;
 //         temp_t1 = temp_t5 & 0x20;
-        if ((D_802812B8[i].button & 0x20) && (D_802812B8[i].button & 0x10)) {
-            D_802810E0[i][0] = (D_802812B8[i].button & 0x0004) ? D_802810E0[i][0] + 1 : 0;
-            D_802810E0[i][1] = (D_802812B8[i].button & 0x2000) ? D_802810E0[i][1] + 1 : 0;
-            D_802810E0[i][2] = (D_802812B8[i].button & 0x8000) ? D_802810E0[i][2] + 1 : 0;
-            D_802810E0[i][3] = (D_802812B8[i].button & 0x4000) ? D_802810E0[i][3] + 1 : 0;
+        if ((pfsManagerContPadData[i].button & 0x20) && (pfsManagerContPadData[i].button & 0x10)) {
+            D_802810E0[i][0] = (pfsManagerContPadData[i].button & 0x0004) ? D_802810E0[i][0] + 1 : 0;
+            D_802810E0[i][1] = (pfsManagerContPadData[i].button & 0x2000) ? D_802810E0[i][1] + 1 : 0;
+            D_802810E0[i][2] = (pfsManagerContPadData[i].button & 0x8000) ? D_802810E0[i][2] + 1 : 0;
+            D_802810E0[i][3] = (pfsManagerContPadData[i].button & 0x4000) ? D_802810E0[i][3] + 1 : 0;
             D_802810E0[i][4] = (D_802812D0.button & 0x4000) ? D_802810E0[i][4] + 1 : 0;
             for(j = 0; j < 0xE; j++){
                 ((s32*)&D_80281138[i])[j] = 0;
@@ -239,22 +239,22 @@ void func_8024E7C8(void){
                 D_802810E0[i][j] = 0;
             }
             
-            D_80281138[i].face_button[0] = (D_802812B8[i].button & 0x8000) ? D_80281138[i].face_button[0] + 1 : 0;
-            D_80281138[i].face_button[1] = (D_802812B8[i].button & 0x4000) ? D_80281138[i].face_button[1] + 1 : 0;
-            D_80281138[i].face_button[2] = (D_802812B8[i].button & 0x0002) ? D_80281138[i].face_button[2] + 1 : 0;
-            D_80281138[i].face_button[3] = (D_802812B8[i].button & 0x0004) ? D_80281138[i].face_button[3] + 1 : 0;
-            D_80281138[i].face_button[4] = (D_802812B8[i].button & 0x0008) ? D_80281138[i].face_button[4] + 1 : 0;
-            D_80281138[i].face_button[5] = (D_802812B8[i].button & 0x0001) ? D_80281138[i].face_button[5] + 1 : 0;
+            D_80281138[i].face_button[0] = (pfsManagerContPadData[i].button & 0x8000) ? D_80281138[i].face_button[0] + 1 : 0;
+            D_80281138[i].face_button[1] = (pfsManagerContPadData[i].button & 0x4000) ? D_80281138[i].face_button[1] + 1 : 0;
+            D_80281138[i].face_button[2] = (pfsManagerContPadData[i].button & 0x0002) ? D_80281138[i].face_button[2] + 1 : 0;
+            D_80281138[i].face_button[3] = (pfsManagerContPadData[i].button & 0x0004) ? D_80281138[i].face_button[3] + 1 : 0;
+            D_80281138[i].face_button[4] = (pfsManagerContPadData[i].button & 0x0008) ? D_80281138[i].face_button[4] + 1 : 0;
+            D_80281138[i].face_button[5] = (pfsManagerContPadData[i].button & 0x0001) ? D_80281138[i].face_button[5] + 1 : 0;
             
-            D_80281138[i].side_button[0] = (D_802812B8[i].button & 0x2000) ? D_80281138[i].side_button[0] + 1 : 0;
-            D_80281138[i].side_button[1] = (D_802812B8[i].button & 0x0020) ? D_80281138[i].side_button[1] + 1 : 0;
-            D_80281138[i].side_button[2] = (D_802812B8[i].button & 0x0010) ? D_80281138[i].side_button[2] + 1 : 0;
+            D_80281138[i].side_button[0] = (pfsManagerContPadData[i].button & 0x2000) ? D_80281138[i].side_button[0] + 1 : 0;
+            D_80281138[i].side_button[1] = (pfsManagerContPadData[i].button & 0x0020) ? D_80281138[i].side_button[1] + 1 : 0;
+            D_80281138[i].side_button[2] = (pfsManagerContPadData[i].button & 0x0010) ? D_80281138[i].side_button[2] + 1 : 0;
 
-            D_80281138[i].unk24[0] = (D_802812B8[i].button & 0x0800) ? D_80281138[i].unk24[0] + 1 : 0;
-            D_80281138[i].unk24[1] = (D_802812B8[i].button & 0x0400) ? D_80281138[i].unk24[1] + 1 : 0;
-            D_80281138[i].unk24[2] = (D_802812B8[i].button & 0x0200) ? D_80281138[i].unk24[2] + 1 : 0;
-            D_80281138[i].unk24[3] = (D_802812B8[i].button & 0x0100) ? D_80281138[i].unk24[3] + 1 : 0;
-            D_80281138[i].start_button = (D_802812B8[i].button & 0x1000) ? D_80281138[i].start_button + 1 : 0;
+            D_80281138[i].unk24[0] = (pfsManagerContPadData[i].button & 0x0800) ? D_80281138[i].unk24[0] + 1 : 0;
+            D_80281138[i].unk24[1] = (pfsManagerContPadData[i].button & 0x0400) ? D_80281138[i].unk24[1] + 1 : 0;
+            D_80281138[i].unk24[2] = (pfsManagerContPadData[i].button & 0x0200) ? D_80281138[i].unk24[2] + 1 : 0;
+            D_80281138[i].unk24[3] = (pfsManagerContPadData[i].button & 0x0100) ? D_80281138[i].unk24[3] + 1 : 0;
+            D_80281138[i].start_button = (pfsManagerContPadData[i].button & 0x1000) ? D_80281138[i].start_button + 1 : 0;
             
             if(i == 0){
                 D_80281218.face_button[0] = (D_802812D0.button & 0x8000) ? D_80281218.face_button[0] + 1 : 0;
@@ -282,8 +282,8 @@ void func_8024E7C8(void){
             D_80281250[i].unk2 = temp_v0_3; //previous buttons
             D_80281250[i].unk8 = D_80281250[i].joystick[0];
             D_80281250[i].unkC = D_80281250[i].joystick[1];
-            D_80281250[i].joystick[0] = func_8024E420(D_802812B8[i].stick_x, 7, 0x3B);
-            D_80281250[i].joystick[1] = func_8024E420(D_802812B8[i].stick_y, 7, 0x3D);
+            D_80281250[i].joystick[0] = func_8024E420(pfsManagerContPadData[i].stick_x, 7, 0x3B);
+            D_80281250[i].joystick[1] = func_8024E420(pfsManagerContPadData[i].stick_y, 7, 0x3D);
 
             D_80281308[i] = ((D_80281250[i].unk4 != 0) 
                 || (D_80281250[i].unk8 != D_80281250[i].joystick[0]) 
@@ -297,82 +297,82 @@ void func_8024E7C8(void){
 }
 #endif
 
-void func_8024EF74(){
+void pfsManager_readData(){
     func_8024F35C(0);
-    if(!D_80281318.errno)
-        osContGetReadData(D_802812B8);
+    if(!pfsManagerContStatus.errno)
+        osContGetReadData(pfsManagerContPadData);
 }
 
 
-void func_8024EFB0(void *arg0){
+void pfsManager_handle(void *arg0){
     do{
-        osRecvMesg(&D_802812D8, 0, 1);
-        if(D_80281328 == TRUE){
-            func_8024EF74();
+        osRecvMesg(&pfsManagerContPollingMsqQ, 0, 1);
+        if(pfsManagerBusy == TRUE){
+            pfsManager_readData();
         }
         else{
-            osSendMesg(&D_802812F0, 0, 0);
+            osSendMesg(&pfsManagerContReplyMsgQ, 0, 0);
         }
     }while(1);
 }
 
-void func_8024F05C(void){
-    osCreateMesgQueue(&D_802812D8, &D_802812B0, 1);
-    osCreateMesgQueue(&D_802812F0, &D_802812B4, 1);
-    osCreateThread(&D_80281330, 7, func_8024EFB0, NULL, D_802814E0 + 0x200, 0x28);
-    osSetEventMesg(OS_EVENT_SI, &D_802812D8, &D_802812B0);
-    osContInit(&D_802812D8, &D_80281130, &D_80281318);
+void pfsManager_init(void){
+    osCreateMesgQueue(&pfsManagerContPollingMsqQ, &pfsManagerContPollingMsqBuf, 1);
+    osCreateMesgQueue(&pfsManagerContReplyMsgQ, &pfsManagerContReplyMsgBuf, 1);
+    osCreateThread(&pfsManagerThread, 7, pfsManager_handle, NULL, D_802814E0 + 0x200, 0x28);
+    osSetEventMesg(OS_EVENT_SI, &pfsManagerContPollingMsqQ, &pfsManagerContPollingMsqBuf);
+    osContInit(&pfsManagerContPollingMsqQ, &pfsManagerBitPattern, &pfsManagerContStatus);
     osContSetCh(1);
     func_8024F224();
     func_802476DC();
-    osStartThread(&D_80281330);
+    osStartThread(&pfsManagerThread);
 }
 
-int func_8024F12C(void){
-    return D_80281318.errno ? 1 : 0;
+bool pfsManager_contErr(void){
+    return pfsManagerContStatus.errno ? TRUE : FALSE;
 }
 
 void func_8024F150(void){
-    if(func_8024F12C())
+    if(pfsManager_contErr())
         chOverlayNoController_spawn(0,0);
 }
 
 void func_8024F180(void){
-    if(func_8024F12C())
+    if(pfsManager_contErr())
         chOverlayNoController_func_802DD040(0,0);
 }
 
-void func_8024F1B0(void){
-    if(D_80281328 == 0){
+void pfsManager_getStartReadData(void){
+    if(pfsManagerBusy == 0){
         func_8024F35C(1);
-        osContStartReadData(&D_802812D8);
+        osContStartReadData(&pfsManagerContPollingMsqQ);
     }
 }
 
 void func_8024F1F0(void){
-    osRecvMesg(&D_802812D8, NULL, 1);
+    osRecvMesg(&pfsManagerContPollingMsqQ, NULL, 1);
     func_8024E7C8();
 }
 
 void func_8024F224(void){
-    s32 iController, j;
+    s32 iCont, j;
 
-    for(iController = 0; iController < 4; iController++){
-        D_80281250[iController].unk0 = 0;
-        D_80281250[iController].unk2 = 0;
-        D_80281250[iController].unk4 = 0;
-        D_80281250[iController].unk6 = 0;
-        D_80281250[iController].joystick[0] = 0.0f;
-        D_80281250[iController].joystick[1] = 0.0f;
-        D_80281250[iController].unk8 = 0.0f;
-        D_80281250[iController].unkC = 0.0f;
+    for(iCont = 0; iCont < 4; iCont++){
+        D_80281250[iCont].unk0 = 0;
+        D_80281250[iCont].unk2 = 0;
+        D_80281250[iCont].unk4 = 0;
+        D_80281250[iCont].unk6 = 0;
+        D_80281250[iCont].joystick[0] = 0.0f;
+        D_80281250[iCont].joystick[1] = 0.0f;
+        D_80281250[iCont].unk8 = 0.0f;
+        D_80281250[iCont].unkC = 0.0f;
         for(j = 0; j < 5; j++){
-            D_802810E0[iController][j] = 0;
+            D_802810E0[iCont][j] = 0;
         }
         for(j = 0; j < 14; j++){
-            D_80281138[iController].face_button[j] = 0;
+            D_80281138[iCont].face_button[j] = 0;
         }
-        D_80281308[iController] = 0.0f;
+        D_80281308[iCont] = 0.0f;
     }
 }
 
@@ -384,12 +384,12 @@ void func_8024F328(s32 controller_index, s32 arg1){
     D_80281138[controller_index].side_button[SIDE_BUTTON(BUTTON_Z)] = arg1;
 }
 
-OSMesgQueue * func_8024F344(void){
-    return &D_802812F0;
+OSMesgQueue * pfsManager_getFrameReplyQ(void){
+    return &pfsManagerContReplyMsgQ;
 }
 
-OSMesgQueue *func_8024F350(void){
-    return &D_802812D8;
+OSMesgQueue *pfsManager_getFrameMesgQ(void){
+    return &pfsManagerContPollingMsqQ;
 }
 
 void func_8024F35C(bool arg0){
@@ -399,16 +399,16 @@ void func_8024F35C(bool arg0){
         func_8024F450();
 
     if(arg0 || D_802816E8.validCount == 1){
-        D_80281328 = arg0; 
+        pfsManagerBusy = arg0; 
     }
 }
 
-s32 func_8024F3B4(void){
-    return D_80281328;
+bool pfsManager_isBusy(void){
+    return pfsManagerBusy;
 }
 
 int func_8024F3C4(int arg0){
-    return D_802812B8[arg0].button + D_802812B8[arg0].stick_x + D_802812B8[arg0].stick_y;
+    return pfsManagerContPadData[arg0].button + pfsManagerContPadData[arg0].stick_x + pfsManagerContPadData[arg0].stick_y;
 }
 
 OSContPad *func_8024F3F4(void){
@@ -425,8 +425,8 @@ void func_8024F400(void){
 void func_8024F450(void){
     if(!D_80275D38)
         func_8024F400();
-    osRecvMesg(&D_802816E8, 0, 1);
-    osSetEventMesg(OS_EVENT_SI, &D_802812D8, &D_802812B0);
+    osRecvMesg(&D_802816E8, NULL, OS_MESG_BLOCK);
+    osSetEventMesg(OS_EVENT_SI, &pfsManagerContPollingMsqQ, &pfsManagerContPollingMsqBuf);
 }
 
 void func_8024F4AC(void){

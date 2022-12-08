@@ -110,9 +110,9 @@ void func_8023DC0C(void){
     func_8025AFB0();
     func_8033EF58();
     assetCache_init();
-    func_8024F05C();
+    pfsManager_init();
     func_80250C84();
-    func_8023FB1C();
+    audioManager_init();
     func_8025425C();
     func_80257424();
     gctransition_reset();

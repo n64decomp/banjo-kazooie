@@ -162,7 +162,7 @@ void func_8034B580(s32 arg0) {
             if ((D_80386128 >= 2.5) && (sp1C < 2.5) && (D_80371F9C == 0)) {
                 func_802DC9DC(0, 0);
             }
-            if ((D_80386128 >= 4.0) && (sp1C < 4.0) && (func_8024F12C() == 0)) {
+            if ((D_80386128 >= 4.0) && (sp1C < 4.0) && !pfsManager_contErr()) {
                 chOverlayPressStart_spawn(0, 0);
                 if (D_80371F9C != 0) {
                     chOverlayPressStart_func_802DCDB0();
@@ -174,7 +174,7 @@ void func_8034B580(s32 arg0) {
             if ((D_80386128 >= 2.5) && (sp1C < 2.5)) {
                 chOverlayCopyright_func_802DCB0C(0, 0);
             }
-            if ((D_80386128 >= 4.0) && (sp1C < 4.0) && (func_8024F12C() == 0)) {
+            if ((D_80386128 >= 4.0) && (sp1C < 4.0) && !pfsManager_contErr()) {
                 chOverlayPressStart_spawn(0, 0);
             }
             break;

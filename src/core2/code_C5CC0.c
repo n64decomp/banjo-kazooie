@@ -45,5 +45,5 @@ void func_8034CD8C(Struct71s *arg0, BKModel *arg1, s32 arg2) {
     if ((arg0->unk0 == 2) && func_8025773C(&arg0->unkC, temp_f14)) {
         func_8034CD08(arg0, 1);
     }
-    func_8033F120(arg1, arg2, func_8034CC50, (s32) arg0);
+    BKModel_transformMesh(arg1, arg2, func_8034CC50, (s32) arg0);
 }

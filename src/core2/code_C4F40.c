@@ -83,7 +83,7 @@ void func_8034BFF8(ActorMarker *marker) {
 
     if (marker->unk48 != NULL) {
         marker->unk4C = vector_new(sizeof(Struct6Es), 0);
-        sp2C = func_8033F2AC(marker->unk48);
+        sp2C = BKModel_getMeshList(marker->unk48);
         phi_s1 = (BKMesh *)(sp2C + 1);
         for(phi_s2 = 0; phi_s2 < sp2C->meshCount_0; phi_s2++){
             if ((phi_s1->uid_0 >= 0x65) && (phi_s1->uid_0 < 0xC8)) {

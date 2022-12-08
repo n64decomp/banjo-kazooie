@@ -12,23 +12,23 @@ f32 D_803709E0[] = {
     1.0f, 1.0f, 0.0f, 0.0f,
     0.0f, 0.0f, 0.0f, 0.0f
 };
-s32 D_80370A10 = 0;
- u8 D_80370A14 = 0; //assetCache_size;
- u8 D_80370A18 = 0;
+s32 assetCacheCurrentSize = 0;
+ u8 assetCacheLength = 0; //assetCache_size;
+ u8 assetCacheCurrentIndex = 0;
  u8 D_80370A1C = 0;
 
 
 /* .bss */
 s32 D_80383CB0;
 u8 pad_80383CB8[0x8];
-AssetROMHead *D_80383CC0;
-AssetFileMeta *D_80383CC4;
+AssetROMHead *assetSectionRomHeader;
+AssetFileMeta *assetSectionRomMetaList;
 u32 D_80383CC8;
 s32 D_80383CCC; //asset_data_rom_offset
-void** D_80383CD0; //assetCache_ptrs;
+void** assetCachePtrList; //assetCache_ptrs;
 BKSpriteDisplayData **D_80383CD4;
-u8* assetCache_depCount; //assetCache_dependencies;
-s16 *D_80383CDC; //assetCache_indexs
+u8* assetCacheDependencyCount; //assetCache_dependencies;
+s16 *assetCacheAssetIdList; //assetCache_indexs
 vector(struct21s) *D_80383CE0[2];
 
 /* .public */
@@ -225,11 +225,11 @@ void func_8033B268(void){
 }
 
 void func_8033B2A4(s32 arg0) {
-    D_80383CD0[D_80370A14] = malloc(arg0);
-    D_80383CD4[D_80370A14] = NULL;
-    assetCache_depCount[D_80370A14] = 1;
-    D_80383CDC[D_80370A14] = -1;
-    D_80370A14 += 1;
+    assetCachePtrList[assetCacheLength] = malloc(arg0);
+    D_80383CD4[assetCacheLength] = NULL;
+    assetCacheDependencyCount[assetCacheLength] = 1;
+    assetCacheAssetIdList[assetCacheLength] = -1;
+    assetCacheLength += 1;
 }
 
 bool func_8033B338(void **sprite_ptr, BKSpriteDisplayData **arg1)
@@ -262,25 +262,25 @@ bool func_8033B388(BKSprite **sprite_ptr, BKSpriteDisplayData **arg1){
 s32 assetcache_release(void * arg0){
     s32 i;
     if(arg0){
-        for(i = 0; i < D_80370A14  && arg0 != D_80383CD0[i]; i++);
+        for(i = 0; i < assetCacheLength  && arg0 != assetCachePtrList[i]; i++);
         
-        if(i == D_80370A14)
+        if(i == assetCacheLength)
             return 2;
 
-        D_80370A18 = i;
-        if(assetCache_depCount[i] == 1){
+        assetCacheCurrentIndex = i;
+        if(assetCacheDependencyCount[i] == 1){
             if(D_80383CD4[i])
                 func_803449DC(D_80383CD4[i]);
             free(arg0);
-            D_80370A14--;
-            assetCache_depCount[i] = assetCache_depCount[D_80370A14];
-            D_80383CD0[i] = D_80383CD0[D_80370A14];
-            D_80383CD4[i] = D_80383CD4[D_80370A14];
-            D_80383CDC[i] = D_80383CDC[D_80370A14];
+            assetCacheLength--;
+            assetCacheDependencyCount[i] = assetCacheDependencyCount[assetCacheLength];
+            assetCachePtrList[i] = assetCachePtrList[assetCacheLength];
+            D_80383CD4[i] = D_80383CD4[assetCacheLength];
+            assetCacheAssetIdList[i] = assetCacheAssetIdList[assetCacheLength];
             return 0;
         }
         else{
-            assetCache_depCount[i]--;
+            assetCacheDependencyCount[i]--;
             return 1;
         }
     } else{
@@ -294,10 +294,10 @@ void assetcache_update_ptr(void * arg0, void* arg1){
     if((arg0 == NULL) || (arg1 == NULL) || (arg0 == arg1))
         return;
 
-    for(i = 0; i < D_80370A14  && arg0 != D_80383CD0[i]; i++);
+    for(i = 0; i < assetCacheLength  && arg0 != assetCachePtrList[i]; i++);
 
-    if(i != D_80370A14 && arg1 != D_80383CD0[i])
-        D_80383CD0[i] = arg1;
+    if(i != assetCacheLength && arg1 != assetCachePtrList[i])
+        assetCachePtrList[i] = arg1;
 }
 
 void func_8033B5FC(void){
@@ -311,35 +311,35 @@ void func_8033B61C(void){
 }
 
 s32 func_8033B64C(s32 arg0){
-    return D_80383CC4[arg0].unk6;
+    return assetSectionRomMetaList[arg0].unk6;
 }
 
-s32 func_8033B664(void){//asset get rom count
-    return D_80383CC0->count-1;
+s32 assetSection_getCount(void){
+    return assetSectionRomHeader->count-1;
 }
 
-s32 func_8033B678(void ){//static last asset decompressed size
-    return D_80370A10;
+s32 func_8033B678(void ){
+    return assetCacheCurrentSize;
 }
 
-s32 func_8033B684(s32 arg0){ //asset_size
-    return D_80383CC4[arg0+1].offset - D_80383CC4[arg0].offset;
+s32 asset_getSize(s32 arg0){
+    return assetSectionRomMetaList[arg0+1].offset - assetSectionRomMetaList[arg0].offset;
 }
 
-s32 func_8033B6A4(enum asset_e arg0){ //asset_compressed?
-    return (D_80383CC4[arg0].compFlag & 1) !=0;
+bool asset_isCompressed(enum asset_e arg0){ //asset_compressed?
+    return (assetSectionRomMetaList[arg0].compFlag & 1) !=0;
 }
 
 //returns raw sprite(as saved in ROM) and points arg1 to a parsed sprite(?)
 BKSprite *func_8033B6C4(enum asset_e sprite_id, BKSpriteDisplayData **arg1){
     BKSprite *s0;
     s0 = assetcache_get(sprite_id);
-    if(D_80383CD4[D_80370A18] == NULL){
+    if(D_80383CD4[assetCacheCurrentIndex] == NULL){
         func_803382E4(-1);
         func_80338308(func_802510A0(s0), func_802510A8(s0));
-        D_80383CD4[D_80370A18] = func_80344A1C(s0);
+        D_80383CD4[assetCacheCurrentIndex] = func_80344A1C(s0);
     }
-    *arg1 = D_80383CD4[D_80370A18];
+    *arg1 = D_80383CD4[assetCacheCurrentIndex];
     return s0;
 }
 
@@ -347,7 +347,7 @@ void func_8033B788(void ){
     D_80370A1C = 1;
 }
 
-void *assetcache_get(s32 arg0) {
+void *assetcache_get(enum asset_e assetId) {
     s32 comp_size;//sp_44
     s32 i;
     volatile s32 sp3C; //sp3C
@@ -359,24 +359,24 @@ void *assetcache_get(s32 arg0) {
     
     sp28 = (s32 )D_80370A1C;
     D_80370A1C = (u8)0U;
-    for(i = 0; i < D_80370A14 && arg0 != D_80383CDC[i]; i++);
-    D_80370A18 = i;
+    for(i = 0; i < assetCacheLength && assetId != assetCacheAssetIdList[i]; i++);
+    assetCacheCurrentIndex = i;
     if(i == 0x96)
         return NULL;
     
-    if(i < D_80370A14){ //asset exists in array;
-        assetCache_depCount[i]++;
-        return D_80383CD0[i];
+    if(i < assetCacheLength){ //asset exists in array;
+        assetCacheDependencyCount[i]++;
+        return assetCachePtrList[i];
     }
-    comp_size = D_80383CC4[arg0+1].offset - D_80383CC4[arg0].offset;
+    comp_size = assetSectionRomMetaList[assetId+1].offset - assetSectionRomMetaList[assetId].offset;
     if(comp_size & 1) 
         comp_size++;
     sp3C = comp_size;
 
-    if(D_80383CC4[arg0].compFlag & 0x0001){//compressed
-        func_8033BAB0(arg0, 0, 0x10, &D_80383CB0);
-        D_80370A10 = rarezip_get_uncompressed_size(&D_80383CB0);
-        uncomp_size = D_80370A10;
+    if(assetSectionRomMetaList[assetId].compFlag & 0x0001){//compressed
+        func_8033BAB0(assetId, 0, 0x10, &D_80383CB0);
+        assetCacheCurrentSize = rarezip_get_uncompressed_size(&D_80383CB0);
+        uncomp_size = assetCacheCurrentSize;
         if(uncomp_size & 0xF){
             uncomp_size -= uncomp_size & 0xF;
             uncomp_size += 0x10;
@@ -398,63 +398,62 @@ void *assetcache_get(s32 arg0) {
         uncompressed_file = malloc(comp_size);
         compressed_file = uncompressed_file;
     }
-    func_802405F0(compressed_file, D_80383CC4[arg0].offset + D_80383CCC, sp3C);
-    if(D_80383CC4[arg0].compFlag & 0x0001){//decompress
+    func_802405F0(compressed_file, assetSectionRomMetaList[assetId].offset + D_80383CCC, sp3C);
+    if(assetSectionRomMetaList[assetId].compFlag & 0x0001){//decompress
         rarezip_inflate(compressed_file, uncompressed_file);
-        realloc(uncompressed_file, D_80370A10);
-        osWritebackDCache(uncompressed_file, D_80370A10);
+        realloc(uncompressed_file, assetCacheCurrentSize);
+        osWritebackDCache(uncompressed_file, assetCacheCurrentSize);
         if (sp33 == 2) {
             free(compressed_file);
         }
     }
-    D_80370A18 = D_80370A14;
-    assetCache_depCount[D_80370A14] = 1;
-    D_80383CD0[D_80370A14] = uncompressed_file;
-    D_80383CD4[D_80370A14] = 0;
-    D_80383CDC[D_80370A14] = arg0;
-    D_80370A14++;
+    assetCacheCurrentIndex = assetCacheLength;
+    assetCacheDependencyCount[assetCacheLength] = 1;
+    assetCachePtrList[assetCacheLength] = uncompressed_file;
+    D_80383CD4[assetCacheLength] = 0;
+    assetCacheAssetIdList[assetCacheLength] = assetId;
+    assetCacheLength++;
     return uncompressed_file;
 }
 
 void func_8033BAB0(enum asset_e asset_id, s32 offset, s32 size, void *dst_ptr) {
-    func_802405F0(dst_ptr, D_80383CC4[asset_id].offset + D_80383CCC + offset, size);
+    func_802405F0(dst_ptr, assetSectionRomMetaList[asset_id].offset + D_80383CCC + offset, size);
 }
 
-void func_8033BB00(void *arg0, s32 arg1){
+void assetCache_resizeAsset(void *assetPtr, s32 size){
     s32 tmp;
     s32 i;
 
-    for(i = 0; i < D_80370A14  && arg0 != D_80383CD0[i]; i++);
-    D_80383CD0[i] = realloc(arg0, arg1);
+    for(i = 0; i < assetCacheLength  && assetPtr != assetCachePtrList[i]; i++);
+    assetCachePtrList[i] = realloc(assetPtr, size);
 }
 
-//assetCache_init
 void assetCache_init(void){
     D_80370A1C = 0;
     func_8033B180();
-    D_80383CD0 = malloc(600);
+    assetCachePtrList = (void **)malloc(150*sizeof(void*));
     D_80383CD4 = malloc(600);
-    assetCache_depCount = malloc(150);
-    D_80383CDC = malloc(150*sizeof(s16));
-    D_80370A14 = 0;
-    D_80383CC0 = malloc(sizeof(AssetROMHead));
+    assetCacheDependencyCount = (u8*)malloc(150*sizeof(u8));
+    assetCacheAssetIdList = (s16 *)malloc(150*sizeof(s16));
+    assetCacheLength = 0;
+    assetSectionRomHeader = (AssetROMHead *)malloc(sizeof(AssetROMHead));
     D_80383CC8 = (u32) &D_5E90;
-    func_802405F0(D_80383CC0, D_80383CC8, sizeof(AssetROMHead));
-    D_80383CC4 = malloc(D_80383CC0->count*sizeof(AssetFileMeta));
-    func_802405F0(D_80383CC4, D_80383CC8 + sizeof(AssetROMHead),D_80383CC0->count*sizeof(AssetFileMeta));
-    D_80383CCC = D_80383CC8 + sizeof(AssetROMHead) + D_80383CC0->count*sizeof(AssetFileMeta);
+    func_802405F0(assetSectionRomHeader, D_80383CC8, sizeof(AssetROMHead));
+    assetSectionRomMetaList = (AssetFileMeta *)malloc(assetSectionRomHeader->count*sizeof(AssetFileMeta));
+    func_802405F0(assetSectionRomMetaList, D_80383CC8 + sizeof(AssetROMHead),assetSectionRomHeader->count*sizeof(AssetFileMeta));
+    D_80383CCC = D_80383CC8 + sizeof(AssetROMHead) + assetSectionRomHeader->count*sizeof(AssetFileMeta);
 }
 
-s32 func_8033BC94(s32 arg0){ //asset_compressedSize
-    return D_80383CC4[arg0+1].offset - D_80383CC4[arg0].offset;
+s32 asset_getCompressedSize(enum asset_e arg0){
+    return assetSectionRomMetaList[arg0+1].offset - assetSectionRomMetaList[arg0].offset;
 }
 
-s32 func_8033BCB4(s32 arg0){ //asset_getDependencyCount
+s32 assetCache_getDependencyCount(enum asset_e arg0){
     s32 i;
 
-    for(i = 0; i < D_80370A14  && arg0 != D_80383CDC[i]; i++);
-    if(i < D_80370A14){
-        return assetCache_depCount[i];
+    for(i = 0; i < assetCacheLength  && arg0 != assetCacheAssetIdList[i]; i++);
+    if(i < assetCacheLength){
+        return assetCacheDependencyCount[i];
     }
     return 0;
 }
@@ -486,23 +485,23 @@ s32 func_8033BDAC(enum asset_e id, void *dst, s32 size) {
     s32 sp20;
 
     //find asset in cache
-    for(phi_v0 = 0; phi_v0 < D_80370A14 && id != D_80383CDC[phi_v0]; phi_v0++);
-    D_80370A18 = phi_v0;
-    if (phi_v0 == 0x96) {
+    for(phi_v0 = 0; phi_v0 < assetCacheLength && id != assetCacheAssetIdList[phi_v0]; phi_v0++);
+    assetCacheCurrentIndex = phi_v0;
+    if (phi_v0 == 150) { //asset not in cache
         return 0;
     }
-    comp_ptr = D_80383CC4[id + 1].offset - D_80383CC4[id].offset;
+    comp_ptr = assetSectionRomMetaList[id + 1].offset - assetSectionRomMetaList[id].offset;
     if (comp_ptr & 1) {
         comp_ptr++;
     }
     sp34 = comp_ptr;
         
-    if (D_80383CC4[id].compFlag & 1) {
+    if (assetSectionRomMetaList[id].compFlag & 1) {
         func_8033BAB0(id, 0, 0x10, &D_80383CB0);
-        D_80370A10 = rarezip_get_uncompressed_size(&D_80383CB0);
+        assetCacheCurrentSize = rarezip_get_uncompressed_size(&D_80383CB0);
 
         // get aligned uncompressed size
-        var_s0 = D_80370A10;
+        var_s0 = assetCacheCurrentSize;
         if (var_s0 & 0xF) {
             var_s0 = (var_s0 - (var_s0 & 0xF)) + 0x10;
         }
@@ -531,11 +530,11 @@ s32 func_8033BDAC(enum asset_e id, void *dst, s32 size) {
             return 0;
         }
     }
-    comp_size = D_80383CC4[id].offset + D_80383CCC;
+    comp_size = assetSectionRomMetaList[id].offset + D_80383CCC;
     func_802405F0(comp_ptr, comp_size, sp34);
-    if (D_80383CC4[id].compFlag & 1) {
+    if (assetSectionRomMetaList[id].compFlag & 1) {
         rarezip_inflate(comp_ptr, dst);
-        osWritebackDCache(dst, D_80370A10);
+        osWritebackDCache(dst, assetCacheCurrentSize);
         if (sp2B == 2) {
             free((void *)comp_ptr);
         }

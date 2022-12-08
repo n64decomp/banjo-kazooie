@@ -165,10 +165,10 @@ void func_8038A750(void){
     for(v1 = &D_8038C1F0[0]; v1->unk0 != 0; v1++){
         v1->unk4 += f20;
         if(v1->unk3 == 1){
-            func_8033F120(MMM_D_8038C510.unk0, v1->unk0, MMM_func_8038A2F0, v1);
+            BKModel_transformMesh(MMM_D_8038C510.unk0, v1->unk0, MMM_func_8038A2F0, v1);
         }
         else if(v1->unk3 == 3){
-            func_8033F120(MMM_D_8038C510.unk0, v1->unk0, func_8038A58C, v1);
+            BKModel_transformMesh(MMM_D_8038C510.unk0, v1->unk0, func_8038A58C, v1);
         }
     }
 }

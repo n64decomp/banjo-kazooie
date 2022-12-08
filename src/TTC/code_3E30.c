@@ -221,11 +221,11 @@ void func_8038AA2C(void) {
     for(var_s0 = D_8038C984; var_s0->unk0 != 0; var_s0++){
         var_s0->unk4 += temp_f20;
         if (var_s0->unk3 == 1) {
-            func_8033F120(D_8038D720.unk0, var_s0->unk0, func_8038A37C, (s32)var_s0);
+            BKModel_transformMesh(D_8038D720.unk0, var_s0->unk0, func_8038A37C, (s32)var_s0);
         } else if (var_s0->unk3 == 3) {
-            func_8033F120(D_8038D720.unk0, var_s0->unk0, func_8038A618, (s32)var_s0);
+            BKModel_transformMesh(D_8038D720.unk0, var_s0->unk0, func_8038A618, (s32)var_s0);
         } else if (var_s0->unk3 == 5) {
-            func_8033F120(D_8038D720.unk0, var_s0->unk0, func_8038A7DC, (s32)var_s0);
+            BKModel_transformMesh(D_8038D720.unk0, var_s0->unk0, func_8038A7DC, (s32)var_s0);
         }
     }
 }
@@ -439,7 +439,7 @@ void func_8038B094(void){
         if( jiggyscore_isCollected(JIGGY_10_TTC_SANDCASTLE)
             && !func_803203FC(2)
         ){
-            func_8033F120(D_8038D720.unk4, 0x3C, func_8038A23C, 0);
+            BKModel_transformMesh(D_8038D720.unk4, 0x3C, func_8038A23C, 0);
             D_8038D720.unk8 = 3;
         }//L8038B2CC
         func_8038AB44();
@@ -491,7 +491,7 @@ void func_8038B2F0(void) {
             }
         } else if (D_8038D720.unk8 == 2) {
             D_8038D720.unkC = (f32) (D_8038D720.unkC + sp24);
-            func_8033F120(D_8038D720.unk4, 0x3C, func_8038A220, 0);
+            BKModel_transformMesh(D_8038D720.unk4, 0x3C, func_8038A220, 0);
             if (D_8038D720.unkC > 4.0f) {
                 D_8038D720.unk8 = 3;
                 func_8030E2C4(D_8038D720.unkA);

@@ -737,6 +737,8 @@ mapSavestate_defrag_all = 0x802E2ED4;
 mapSavestate_save = 0x802E2F2C;
 mapSavestate_apply = 0x802E30AC;
 getGameMode = 0x802E49FC;
+meshList_getVtxVCount = 0x802E9F60;
+
 vtxList_getVertices = 0x802EC450;
 vtxList_free = 0x802EC994;
 vtxList_clone = 0x802EC9B4;
@@ -1148,7 +1150,7 @@ D_80381E90 = 0x80381E90;
 jiggyscore = 0x803832C0;
 sHoneycombScore = 0x803832E0;
 sMumboTokenScore = 0x803832F0;
-assetCache_depCount = 0x80383CD8;
+assetCacheDependencyCount = 0x80383CD8;
 D_A00001D8 = 0xA00001D8;
 D_5E90 = 0x5E90;
 D_D846C0 = 0xD846C0;

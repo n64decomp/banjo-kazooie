@@ -110,7 +110,7 @@ void func_80250C84(void){
     s32 pfs_status;
     
     func_8024F35C(4);
-    D_802823B4 = func_8024F344();
+    D_802823B4 = pfsManager_getFrameReplyQ();
     pfs_status = osPfsInit(D_802823B4, &D_802823B8, 0);
     if(pfs_status == PFS_ERR_ID_FATAL || pfs_status == PFS_ERR_DEVICE){
         pfs_status = osMotorInit(D_802823B4, &D_802823B8, 0);

@@ -122,7 +122,7 @@ Struct70s *func_8034C630(s32 arg0){
 
     for(iPtr = vector_getBegin(D_80386140.unk4); iPtr < endPtr; iPtr++){
         if( (iPtr->unk6 == 3)
-            && func_802E9FEC(func_8033F2AC(iPtr->unk0), iPtr->unk4, arg0)
+            && meshList_meshContainsVtx(BKModel_getMeshList(iPtr->unk0), iPtr->unk4, arg0)
         ){
             return &iPtr->unk8;
         }
@@ -131,7 +131,7 @@ Struct70s *func_8034C630(s32 arg0){
 }
 
 void func_8034C6DC(BKModel *arg0){
-    BKMeshList * sp2C = func_8033F2AC(arg0);
+    BKMeshList * sp2C = BKModel_getMeshList(arg0);
     s32 i;
     BKMesh * s1 = (sp2C + 1);
     for(i = 0; i < sp2C->meshCount_0; i++){

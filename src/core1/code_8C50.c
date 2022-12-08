@@ -74,7 +74,7 @@ s32 D_8027FC18;
 s32 D_8027FC1C;
 s32 D_8027FC20;
 s32 D_8027FC24;
-u8 pad_8027FC28[2040]; //stack for thread D_80280428;
+u8 D_8027FC28[2040]; //stack for thread D_80280428;
 OSThread D_80280428;
 Struct_Core1_8C50_s * D_802805D8[20];
 volatile s32 D_80280628;
@@ -332,7 +332,7 @@ void func_802471D8(OSMesg arg0){
 }
 
 void func_802471EC(void){
-    osSendMesg(amgr_getFrameMesgQueue(), NULL, OS_MESG_NOBLOCK);
+    osSendMesg(audioManager_getFrameMesgQueue(), NULL, OS_MESG_NOBLOCK);
     func_80247224();
 }
 
@@ -426,7 +426,7 @@ void func_802473B4(void *arg0){
         else if((u32)msg == CORE1_8C50_EVENT_FAULT)       { do{}while(1); }
         else if((u32)msg == CORE1_8C50_EVENT_PRENMI)      { func_8024730C(); }
         else if((u32)msg == 12) {  }
-        else if((u32)msg == CORE1_8C50_EVENT_CONT_TIMER)  { func_8024F1B0(); }
+        else if((u32)msg == CORE1_8C50_EVENT_CONT_TIMER)  { pfsManager_getStartReadData(); }
         else if((u32)msg >= 100) {
             if(*(u32*)msg == 0){ func_80246A64(msg); }
             else if(*(u32*)msg == 1){ func_80246A84(msg); }
@@ -458,7 +458,7 @@ void func_80247560(void){
     tmp_v0 = D_8027EF40;
     while((u32)tmp_v0 % 0x10){((u32)tmp_v0)++;}
     D_80275950.t.yield_data_ptr = tmp_v0;
-    osCreateThread(&D_80280428, 5, func_802473B4, NULL, &pad_8027FC28[2040], 60);
+    osCreateThread(&D_80280428, 5, func_802473B4, NULL, &D_8027FC28[2040], 60);
     osStartThread(&D_80280428);
 }
 

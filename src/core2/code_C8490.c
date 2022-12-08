@@ -67,5 +67,5 @@ void func_8034F5B0(Struct76s *arg0, BKModel *arg1, s32 arg2){
             func_8034F434(arg0, 0);
         }
     }
-    func_8033F120(arg1, arg2, func_8034F420, (s32) arg0);
+    BKModel_transformMesh(arg1, arg2, func_8034F420, (s32) arg0);
 }

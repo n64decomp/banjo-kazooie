@@ -56,7 +56,7 @@ extern void func_8028FA14(enum map_e, s32);
 extern void quizQuestionAskedBitfield_set(u32, int); // ff_isAsked_flag_set
 extern int quizQuestionAskedBitfield_get(u32); // ff_isAsked_flag_get
 
-extern void func_8033F220(BKModel *model, s32 mesh_id, s16 [3]); //! $a2 type unk
+extern void BKModel_getMeshCenter(BKModel *model, s32 mesh_id, s16 [3]); //! $a2 type unk
 
 extern s32  func_803203FC(s32);  // get volatile flag
 extern void func_80295864(s32);  // set unlocked moves bitfield
@@ -484,7 +484,7 @@ void lair_func_8038C6BC(void)
             ptr->unk10 = 0.45f;
         }
 
-        func_8033F220(D_8037DCB8->unk0, s1, &ptr->unkA);
+        BKModel_getMeshCenter(D_8037DCB8->unk0, s1, &ptr->unkA);
     }
 }
 
@@ -506,11 +506,11 @@ void func_8038C9D0(void) {
         } else if ((phi_s0->unk9 != 0) && (phi_s0->unk10 < 0.95)) {
             phi_s0->unk10 = MIN(phi_s0->unk10 + 0.05, 0.95);
         }
-        func_8033F120(D_8037DCB8->unk0, phi_s1, func_8038C3A0, (s32) phi_s0);
+        BKModel_transformMesh(D_8037DCB8->unk0, phi_s1, func_8038C3A0, (s32) phi_s0);
         phi_s0++;
     }
 
-    func_8033F120(D_8037DCB8->unk0, 0x1F1, func_8038C7A0, (s32) phi_s0);
+    BKModel_transformMesh(D_8037DCB8->unk0, 0x1F1, func_8038C7A0, (s32) phi_s0);
     if ( !((D_8037DCB8->currFfMode != FFA_3_TRIGGER_QUESTION) && (D_8037DCB8->currFfMode != FFA_4_UNK)) 
          && (0.5 < D_8037DCB8->unk14)
     ) {

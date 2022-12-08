@@ -12,7 +12,7 @@ s32 write_file_blocks(s32 filenum, s32 blockOffset, u8 *buffer, s32 blockCount) 
     s32 ret;
 
     func_8024F35C(3);
-    ret = osEepromLongWrite(func_8024F344(), address, buffer, blockCount * EEPROM_BLOCK_SIZE);
+    ret = osEepromLongWrite(pfsManager_getFrameReplyQ(), address, buffer, blockCount * EEPROM_BLOCK_SIZE);
     func_8024F35C(0);
     return ret;
 }
@@ -22,7 +22,7 @@ s32 load_file_blocks(s32 filenum, s32 blockOffset, u8 *buffer, s32 blockCount) {
     s32 ret;
 
     func_8024F35C(3);
-    ret = osEepromLongRead(func_8024F344(), address, buffer, blockCount * EEPROM_BLOCK_SIZE);
+    ret = osEepromLongRead(pfsManager_getFrameReplyQ(), address, buffer, blockCount * EEPROM_BLOCK_SIZE);
     func_8024F35C(0);
     return ret;
 }

@@ -154,7 +154,7 @@ VLA *   vector_defrag(VLA *this);
 
 void actor_collisionOff(Actor *);
 
-void *assetcache_get(s32 arg0);
+void *assetcache_get(enum asset_e assetId);
 
 Actor *actor_new(s32 (*position)[3], s32 yaw, ActorInfo *actorInfo, u32 flags);
 Actor *func_802C8A54(s32 position[3], s32 yaw, ActorInfo* actorInfo, u32 flags);
@@ -256,7 +256,7 @@ void particleEmitter_setSpawnInterval(ParticleEmitter *, f32);
 
 int  func_8024DC04(f32, f32, f32);
 void func_8024E3A8(f32 [3], f32);
-OSMesgQueue *func_8024F344(void);
+OSMesgQueue *pfsManager_getFrameReplyQ(void);
 
 void ml_vec3f_clear(f32 dst[3]);
 void ml_vec3f_roll_rotate_copy(f32[3], f32[3], f32);

@@ -3,11 +3,11 @@
 #include "variables.h"
 
 
-void func_8033F2B4(BKModel *model, s32 mesh_id, s16 arg2[3], s16 arg3[3]);
+void BKModel_getMeshCoordRange(BKModel *model, s32 mesh_id, s16 min[3], s16 max[3]);
 s32  func_8033F3E8(BKModel *model, f32 position[3], s32 min_id, s32 max_id);
 /* .code */
 //performs operation "fn" for every vtx in every mesh of a model
-void func_8033F010(BKModel *model, void (*fn)(s32, BKVtxRef *, Vtx *, s32), s32 arg3) {
+void BKModel_transformMeshes(BKModel *model, void (*fn)(s32, BKVtxRef *, Vtx *, s32), s32 arg3) {
     s32 i;
     BKMesh *iMesh;
     BKVtxRef *iVtx;
@@ -28,7 +28,7 @@ void func_8033F010(BKModel *model, void (*fn)(s32, BKVtxRef *, Vtx *, s32), s32 
 }
 
 //performs operation "fn" for every vtx in a model's mesh
-void func_8033F120(BKModel *model, s32 mesh_id, void (*fn)(s32, BKVtxRef *, Vtx *, s32), s32 arg3) {
+void BKModel_transformMesh(BKModel *model, s32 mesh_id, void (*fn)(s32, BKVtxRef *, Vtx *, s32), s32 arg3) {
     s32 i;
     BKMesh *iMesh;
     BKVtxRef *iVtx;
@@ -52,22 +52,22 @@ void func_8033F120(BKModel *model, s32 mesh_id, void (*fn)(s32, BKVtxRef *, Vtx 
 }
 
 //BKModel_getAveragePositionOfMesh
-void func_8033F220(BKModel *model, s32 mesh_id, s16 arg2[3]) {
+void BKModel_getMeshCenter(BKModel *model, s32 mesh_id, s16 arg2[3]) {
     s16 min[3];
     s16 max[3];
 
-    func_8033F2B4(model, mesh_id, min, max);
+    BKModel_getMeshCoordRange(model, mesh_id, min, max);
     arg2[0] = (min[0] + max[0]) / 2;
     arg2[1] = (min[1] + max[1]) / 2;
     arg2[2] = (min[2] + max[2]) / 2;
 }
 
 
-BKMeshList *func_8033F2AC(BKModel *arg0){
+BKMeshList *BKModel_getMeshList(BKModel *arg0){
     return arg0->meshList_0;
 }
 
-void func_8033F2B4(BKModel *model, s32 mesh_id, s16 arg2[3], s16 arg3[3]) {
+void BKModel_getMeshCoordRange(BKModel *model, s32 mesh_id, s16 min[3], s16 max[3]) {
     s32 pad2C;
     s32 pad28;
     BKMesh *mesh;
@@ -78,7 +78,7 @@ void func_8033F2B4(BKModel *model, s32 mesh_id, s16 arg2[3], s16 arg3[3]) {
     s16 *phi_t4;
     s32 i;
 
-    mesh = func_802E9F9C(model->meshList_0, mesh_id);
+    mesh = meshList_getMesh(model->meshList_0, mesh_id);
     vtx_pool = vtxList_getVertices(model->vtxList_4);
     if (mesh == NULL) return;
     
@@ -88,10 +88,10 @@ void func_8033F2B4(BKModel *model, s32 mesh_id, s16 arg2[3], s16 arg3[3]) {
         i_vtx = &vtx_pool[*phi_t4];
         for(i = 0; i < 3; i++){
             if (phi_t4 == (s16*)(mesh + 1)) {
-                arg2[i] = arg3[i] = i_vtx->v.ob[i];
+                min[i] = max[i] = i_vtx->v.ob[i];
             } else {
-                arg2[i] = MIN(i_vtx->v.ob[i], arg2[i]);
-                arg3[i] = MAX(i_vtx->v.ob[i], arg3[i]);
+                min[i] = MIN(i_vtx->v.ob[i], min[i]);
+                max[i] = MAX(i_vtx->v.ob[i], max[i]);
             }
         }
     }
@@ -181,7 +181,7 @@ BKModel *func_8033F5F8(BKMeshList *arg0, BKVertexList *arg1) {
     s32 phi_s1;
     s32 phi_s6;
 
-    sp40 = (BKModel *)malloc((func_802E9F60(arg0) * sizeof(BKVtxRef)) + (arg0->meshCount_0 * sizeof(BKMesh)) + sizeof(BKModel));
+    sp40 = (BKModel *)malloc((meshList_getVtxCount(arg0) * sizeof(BKVtxRef)) + (arg0->meshCount_0 * sizeof(BKMesh)) + sizeof(BKModel));
     sp40->meshList_0 = arg0;
     sp40->vtxList_4 = arg1;
     phi_s3 = (BKMesh *)(arg0 + 1);

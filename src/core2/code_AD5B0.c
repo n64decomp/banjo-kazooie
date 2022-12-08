@@ -262,7 +262,7 @@ void func_80334B20(enum map_e arg0, s32 arg1, s32 arg2) {
     if (func_802E4A08() == 0) {
         func_802F5188();
     }
-    if (arg0 != 0x1F) {
+    if (arg0 != MAP_1F_CS_START_RAREWARE) {
         func_8024F150();
     }
 }

@@ -18,7 +18,7 @@ struct {
 ALBank * D_80383604;
 
 /* .code */
-void func_80335220(void){
+void sfxInstruments_init(void){
     ALBank *bnk;
     s32 size;
     ALInstrument *inst;
