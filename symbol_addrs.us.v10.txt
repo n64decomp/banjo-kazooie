@@ -737,7 +737,7 @@ mapSavestate_defrag_all = 0x802E2ED4;
 mapSavestate_save = 0x802E2F2C;
 mapSavestate_apply = 0x802E30AC;
 getGameMode = 0x802E49FC;
-meshList_getVtxVCount = 0x802E9F60;
+meshList_getVtxCount = 0x802E9F60;
 
 vtxList_getVertices = 0x802EC450;
 vtxList_free = 0x802EC994;
