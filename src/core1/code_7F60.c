@@ -28,7 +28,27 @@ void func_802459A0(float mf[4][4], Mtx *m)
 	}
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_7F60/func_80245A7C.s")
+void func_80245A7C(float mf[4][4], Mtx *m) //should be mf[4][4]
+{
+  int i;
+  int j;
+  int e1;
+  int e2;
+  int *ai;
+  int *af;
+    float * a2;
+    
+  ai = (int *) (&m->m[0][0]);
+  af = (int *) (&m->m[2][0]);
+  a2 = mf[0];
+  for (i = 0; i < 8; i+=4)
+    for (j = 0; j < 4; j++) {
+		e1=(*(a2++))* 65536;
+		e2=(*(a2++))* 65536;
+      *(ai++) = (e1 & 0xffff0000) | ((e2 >> 16) & 0xffff);
+      *(af++) = ((e1 <<  16) & 0xffff0000) | (e2 & 0xffff);
+    }
+}
 
 void func_80245BE4(f32 mf[4][4], f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6, f32 arg7) {
     s32 i, j;

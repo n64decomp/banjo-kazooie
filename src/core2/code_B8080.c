@@ -51,7 +51,6 @@ void BKModel_transformMesh(BKModel *model, s32 mesh_id, void (*fn)(s32, BKVtxRef
     };
 }
 
-//BKModel_getAveragePositionOfMesh
 void BKModel_getMeshCenter(BKModel *model, s32 mesh_id, s16 arg2[3]) {
     s16 min[3];
     s16 max[3];
