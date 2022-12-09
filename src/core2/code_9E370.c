@@ -1151,20 +1151,20 @@ void func_80328478(f32 arg0[3], f32 arg1, f32 arg2){
     arg0[2] += sp1C[2]; 
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_80328508.s")
-#else
-bool func_80328508(Actor * arg0, s32 arg1){
+bool func_80328508(Actor *arg0, s32 arg1)
+{
     ActorAnimationInfo *animInfo;
-
+    s32 index;
     arg0->state = arg1;
-    if(arg0->unk18 != NULL)
-        return 0;
+    if (arg0->unk18 == 0)
+        return FALSE;
     
-    animInfo = &arg0->unk18[arg1];
+    animInfo = arg0->unk18 + arg1;
+    index = animInfo->index;
+    if (1);
 
-    if(animInfo->index != NULL){
-        if(arg0->animctrl == NULL){
+    if (index != 0){
+        if (arg0->animctrl == NULL){
             arg0->animctrl = animctrl_new(0);
             animctrl_reset(arg0->animctrl);
         }
@@ -1172,16 +1172,12 @@ bool func_80328508(Actor * arg0, s32 arg1){
         animctrl_setDuration(arg0->animctrl, animInfo->duration);
         animctrl_setDirection(arg0->animctrl, mvmt_dir_forwards);
     }
-    else {
-        if(arg0->animctrl){
-            animctrl_setPlaybackType(arg0->animctrl,  ANIMCTRL_STOPPED);
-            animctrl_setDirection(arg0->animctrl, mvmt_dir_forwards);
-        }
+    else if (arg0->animctrl) {
+        animctrl_setPlaybackType(arg0->animctrl, ANIMCTRL_STOPPED);
+        animctrl_setDirection(arg0->animctrl, mvmt_dir_forwards);
     }
-    return 1;
-
+    return TRUE;
 }
-#endif
 
 void func_803285E8(Actor *this, f32 arg1, int direction){
     func_8028774C(this->animctrl, arg1);
