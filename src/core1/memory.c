@@ -777,25 +777,9 @@ void func_80255980(void *arg0, int arg1){
     D_802765A4 = D_802765AC;
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/memory/func_802559A0.s")
-#else
-bool func_802559A0(){
-    s32 var_v0;
-    s32 var_v1;
-
-    var_v0 = FALSE;
-    if (D_80276598 == FALSE) {
-        var_v0 = NOT(D_80283220 < 0xF4240);
-        if (!var_v0) {
-            var_v1 =  (D_80276594 == TRUE) ? FALSE : TRUE;
-            var_v0 = var_v1 != 0;
-        }
-        return var_v0;
-    }
-    return var_v0;
+bool func_802559A0(void) {
+    return (D_80276598 == 0) ? (D_80283220 >= 0xF4240) || ((D_80276594 == 1) ? 0 : 1) : 0;
 }
-#endif
 
 void func_80255A04(void){
     D_80276594 = 1;
