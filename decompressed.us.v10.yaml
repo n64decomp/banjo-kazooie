@@ -828,7 +828,7 @@ segments:
   - [0x1014880, c, code_BEF20]
   - [0x10164E0, c, code_C0B80] #DONE
   - [0x1016650, c, code_C0CF0] #DONE
-  - [0x10167C0, c, code_C0E60]
+  - [0x10167C0, c, code_C0E60] #DONE
   - [0x1018580, c, code_C2C20] #DONE
   - [0x1018890, c, code_C2F30] #DONE
   - [0x1018B00, c, code_C31A0] #DONE

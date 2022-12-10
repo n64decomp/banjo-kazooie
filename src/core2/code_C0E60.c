@@ -22,8 +22,8 @@ void func_80348044(Gfx **gfx, BKSprite* sprite, s32 frame, s32 tmem, s32 rtile, 
 		tmem, rtile, pal, cmt,					\
 		maskt, shiftt, cms, masks, shifts);			\
 	gDPSetTileSize(pkt, rtile, \
-		(uls)<<G_TEXTURE_IMAGE_FRAC,			\
-		(ult)<<G_TEXTURE_IMAGE_FRAC,			\
+		(uls),			\
+		(ult),			\
 		((width)-1) << G_TEXTURE_IMAGE_FRAC,			\
 		((height)-1) << G_TEXTURE_IMAGE_FRAC)			\
 }
@@ -44,8 +44,8 @@ void func_80348044(Gfx **gfx, BKSprite* sprite, s32 frame, s32 tmem, s32 rtile, 
 		rtile, pal, cmt, maskt, shiftt, cms, masks,		\
 		shifts);						\
 	gDPSetTileSize(pkt, rtile, \
-		(uls)<<G_TEXTURE_IMAGE_FRAC,			\
-		(ult)<<G_TEXTURE_IMAGE_FRAC,			\
+		(uls),			\
+		(ult),			\
 		((width)-1) << G_TEXTURE_IMAGE_FRAC,			\
 		((height)-1) << G_TEXTURE_IMAGE_FRAC)			\
 }
@@ -67,7 +67,7 @@ s32 D_803860A0;
 s32 D_803860A4;
 s32 D_803860A8;
 s32 D_803860AC;
-s32 D_803860B0;
+s32 spriteRenderHasPalette;
 s32 D_803860B4;
 
 /* .code */
@@ -123,44 +123,40 @@ void func_80347FC0(Gfx **gfx, BKSprite *sprite, s32 frame, s32 tmem, s32 rtile, 
     );
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C0E60/func_80348044.s")
-#else
 void func_80348044(Gfx **gfx, BKSprite* sprite, s32 frame, s32 tmem, s32 rtile, s32 arg5, s32 arg6, s32 cms, s32 cmt, s32 *width, s32 *height, s32 *argB, s32 *argC, s32 *argD, s32 *argE, s32 *argF) {
-    s32 sp144;
-    s32 temp_a2;
-    BKSpriteFrame *temp_v0;
+    BKSpriteFrame *sprite_frame;
     s32 palette_addr;
     BKSpriteTextureBlock *var_v1;
     s32 timg;
+    s32 sp144;
     s32 var_a0;
     s32 chunk_count;
     s32 masks;
     s32 var_v0;
     s32 maskt;
 
-    temp_v0 = spriteGetFramePtr(sprite, frame);
-    *argB = (s32) temp_v0->w;
-    *argC = (s32) temp_v0->h;
+    sprite_frame = spriteGetFramePtr(sprite, frame);
+    *argB = (s32) sprite_frame->w;
+    *argC = (s32) sprite_frame->h;
     if (*argF == -1) {
-        *argF = (s32) temp_v0->chunkCnt;
+        *argF = (s32) sprite_frame->chunkCnt;
     }
     (*argF)--;
-    chunk_count = *argF;
+    chunk_count = (*argF);
     if (sprite->type & SPRITE_TYPE_CI4) {
-        for(palette_addr = (s32)(temp_v0 + 1); palette_addr % 8; palette_addr++);
+        for(palette_addr = (s32)(sprite_frame + 1); palette_addr % 8; palette_addr++);
         gDPSetTextureLUT((*gfx)++, G_TT_RGBA16);
         gDPLoadTLUT_pal16((*gfx)++, 0, palette_addr);
-        D_803860B0 = TRUE;
+        spriteRenderHasPalette = TRUE;
         D_803860B4 = 0;
-        D_80386074 = NULL;
-        D_8038607C = 0;
-        D_80386098 = 0;
+        D_80386074 = 0; 
+        var_v1 = palette_addr + 0x20;
+        D_80386098 = D_8038607C = 0;
     } else if (sprite->type & SPRITE_TYPE_CI8) {
         gDPPipelineMode((*gfx)++, G_PM_1PRIMITIVE);
-        for(palette_addr = (s32)(temp_v0 + 1); palette_addr % 8; palette_addr++);
-        D_803860B0 = TRUE;
-        D_803860B4 = 1;
+        for(palette_addr = (s32)(sprite_frame + 1); palette_addr % 8; palette_addr++);
+        D_803860B4 = spriteRenderHasPalette = TRUE;
+        // D_803860B4 = 1;
         D_80386074 = NULL;
         D_8038607C = 0;
         var_v1 = palette_addr + 0x200;
@@ -173,24 +169,24 @@ void func_80348044(Gfx **gfx, BKSprite* sprite, s32 frame, s32 tmem, s32 rtile, 
         gDPSetTextureLUT((*gfx)++, G_TT_RGBA16);
         gDPLoadTLUT_pal256((*gfx)++, palette_addr);
     } else {
-        D_803860B0 = FALSE;
-        var_v1 = temp_v0 + 0x14;
+        var_v1 = (BKSpriteTextureBlock *)(sprite_frame + 1);
+        spriteRenderHasPalette = FALSE;
     }
 
     if ((D_8038607C == 0) || (tmem == D_80386078)) {
         D_80386078 = tmem;
-        D_80386070 = temp_v0;
+        D_80386070 = sprite_frame;
         D_80386080 = arg5;
         D_80386084 = arg6;
-        sp144 = 0;
         D_80386088 = rtile;
+        sp144 = 0;
     } else {
         D_80386094 = tmem;
-        D_80386074 = temp_v0;
+        D_80386074 = sprite_frame;
         D_8038609C = arg5;
         D_803860A0 = arg6;
-        sp144 = 1;
         D_803860A4 = rtile;
+        sp144 = 1;
     }
 
     *width = (s32) var_v1->w;
@@ -217,8 +213,9 @@ void func_80348044(Gfx **gfx, BKSprite* sprite, s32 frame, s32 tmem, s32 rtile, 
     } else {
         masks = 0;
     }
-    
-    var_v0 = *height - 1;
+
+    maskt = *height - 1;
+    var_v0 = maskt;
     if ((*height & 7) == 0) {
         maskt = 0;
         while (var_v0 != 0) {
@@ -272,25 +269,26 @@ void func_80348044(Gfx **gfx, BKSprite* sprite, s32 frame, s32 tmem, s32 rtile, 
             D_80386098 = (s32) D_80386098 >> 1;
         }
     } else if (sprite->type & SPRITE_TYPE_CI4) {
-        rare_gDPLoadMultiBlock((*gfx)++, timg, tmem, rtile, G_IM_FMT_CI, G_IM_SIZ_4b, *width, *height, arg5, arg6, 0, cms, cmt, masks, maskt, G_TX_NOLOD, G_TX_NOLOD);
+        rare_gDPLoadMultiBlock_4b((*gfx)++, timg, tmem, rtile, G_IM_FMT_RGBA, *width, *height, arg5, arg6, 0, cms, cmt, masks, maskt, G_TX_NOLOD, G_TX_NOLOD);
         D_8038607C = D_8038607C >> 4;
     } else if (sprite->type & SPRITE_TYPE_CI8) {
         rare_gDPLoadMultiBlock((*gfx)++, timg, tmem, rtile, G_IM_FMT_CI, G_IM_SIZ_8b, *width, *height, arg5, arg6, 0, cms, cmt, masks, maskt, G_TX_NOLOD, G_TX_NOLOD);
         D_8038607C = (s32) D_8038607C >> 3;
     }
-
-    if ((D_8038607C != 0) && (D_80386098 != 0) && (D_80386094 < (D_80386078 + D_8038607C))) {
+    if( D_8038607C != 0 
+        && D_80386098 != 0
+        && (D_80386094 < (D_80386078 + D_8038607C))
+    ) {
         D_80386074 = NULL;
         D_80386098 = 0;
     }
 }
-#endif
 
 void func_80349AD0(void){
     D_80386074 = D_80386070 = 0;
     D_80386098 = D_8038607C = 0;
     D_80386094 = D_80386078 = -1;
-    D_803860B0 = 0;
+    spriteRenderHasPalette = FALSE;
 }
 
 void func_80349B1C(Gfx **gfx) {
@@ -298,10 +296,10 @@ void func_80349B1C(Gfx **gfx) {
     void *temp_v1_2;
     void *temp_v1_3;
 
-    if (D_803860B0) {
+    if (spriteRenderHasPalette) {
         gDPPipeSync((*gfx)++);
         gDPSetTextureLUT((*gfx)++, G_TT_NONE);
-        D_803860B0 = FALSE;
+        spriteRenderHasPalette = FALSE;
         if (D_803860B4) {
             gDPPipelineMode((*gfx)++, G_PM_NPRIMITIVE);
             D_803860B4 = FALSE;
