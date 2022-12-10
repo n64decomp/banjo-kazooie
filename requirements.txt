@@ -1,3 +1,4 @@
+-r tools/n64splat/requirements.txt
 ansiwrap
 anybadge
 capstone
