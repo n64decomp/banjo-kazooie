@@ -752,7 +752,7 @@ segments:
   - [0xFCBD30, c, code_763D0] #DONE
   - [0xFCC6F0, c, code_76D90] #DONE
   - [0xFCD7B0, c, code_77E50] #DONE
-  - [0xFCDA60, c, code_78100]
+  - [0xFCDA60, c, code_78100] #DONE
   - [0xFCE7B0, c, code_78E50] #DONE
   - [0xFCF190, c, fxcommon3score] #DONE
   - [0xFCF5E0, c, code_79C80] #DONE
