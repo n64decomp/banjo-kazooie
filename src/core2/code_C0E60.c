@@ -4,7 +4,7 @@
 
 extern void func_80355C60(f32[3], f32);
 
-void func_80348044(Gfx **gfx, BKSprite* sprite, s32 frame, s32 tmem, s32 rtile, s32 arg5, s32 arg6, s32 cms, s32 cmt, s32 *width, s32 *height, s32 *argB, s32 *argC, s32 *argD, s32 *argE, s32 *argF);
+void func_80348044(Gfx **gfx, BKSprite* sprite, s32 frame, s32 tmem, s32 rtile, s32 arg5, s32 arg6, s32 cms, s32 cmt, s32 *width, s32 *height, s32 *argB, s32 *argC, s32 *argD, s32 *argE, s32 *textureCount);
 
 #define	rare_gDPLoadMultiBlock(pkt, timg, tmem, rtile, fmt, siz, width, height, \
     uls, ult, \
@@ -123,7 +123,7 @@ void func_80347FC0(Gfx **gfx, BKSprite *sprite, s32 frame, s32 tmem, s32 rtile, 
     );
 }
 
-void func_80348044(Gfx **gfx, BKSprite* sprite, s32 frame, s32 tmem, s32 rtile, s32 arg5, s32 arg6, s32 cms, s32 cmt, s32 *width, s32 *height, s32 *argB, s32 *argC, s32 *argD, s32 *argE, s32 *argF) {
+void func_80348044(Gfx **gfx, BKSprite* sprite, s32 frame, s32 tmem, s32 rtile, s32 arg5, s32 arg6, s32 cms, s32 cmt, s32 *width, s32 *height, s32 *argB, s32 *argC, s32 *argD, s32 *argE, s32 *textureCount) {
     BKSpriteFrame *sprite_frame;
     s32 palette_addr;
     BKSpriteTextureBlock *var_v1;
@@ -138,11 +138,11 @@ void func_80348044(Gfx **gfx, BKSprite* sprite, s32 frame, s32 tmem, s32 rtile, 
     sprite_frame = spriteGetFramePtr(sprite, frame);
     *argB = (s32) sprite_frame->w;
     *argC = (s32) sprite_frame->h;
-    if (*argF == -1) {
-        *argF = (s32) sprite_frame->chunkCnt;
+    if (*textureCount == -1) {
+        *textureCount = (s32) sprite_frame->chunkCnt;
     }
-    (*argF)--;
-    chunk_count = (*argF);
+    (*textureCount)--;
+    chunk_count = (*textureCount);
     if (sprite->type & SPRITE_TYPE_CI4) {
         for(palette_addr = (s32)(sprite_frame + 1); palette_addr % 8; palette_addr++);
         gDPSetTextureLUT((*gfx)++, G_TT_RGBA16);

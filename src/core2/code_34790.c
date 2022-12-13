@@ -2,9 +2,11 @@
 #include "functions.h"
 #include "variables.h"
 
+extern Actor *func_80328230(enum actor_e, f32[3], f32[3]);
 extern void func_802BEA4C(f32[3], f32[3], f32, f32[3]);
 extern void func_802BEBE8(f32[3], f32[3], f32, f32[3]);
 extern void func_802BEAAC(f32[3], f32[3], f32, f32[3], f32[3], f32[3], f32[3]);
+extern NodeProp *cubeList_findNodePropByActorId(enum actor_e, s32[3]);
 extern BKCollisionTri *func_80320B98(f32[3], f32[3], f32[3], s32);
 f32 func_802BB938(f32[3], f32[3]);
 f32 func_802BBD48(void);
@@ -38,7 +40,7 @@ f32 D_8037D918[3];
 /* .code */
 bool func_802BB720(s32 arg0, f32 arg1[3], f32 arg2[3], s32 *arg3) {
     f32 temp_f6;
-    s16 *temp_v0;
+    NodeProp *temp_v0;
 
     if (arg0 == 0x65) {
         arg0 = 0x1A;
@@ -55,7 +57,7 @@ bool func_802BB720(s32 arg0, f32 arg1[3], f32 arg2[3], s32 *arg3) {
     if ((arg0 >= 0x5B) && (arg0 < 0x63)) {
         arg0 -= 0x40;
     }
-    temp_v0 = cubeList_findNodePropByActorId(D_803657E0[arg0], 0);
+    temp_v0 = cubeList_findNodePropByActorId(D_803657E0[arg0], NULL);
     if (temp_v0 != NULL) {
         nodeprop_getPosition(temp_v0, arg1);
         *arg3 = func_80304DB8(temp_v0);
@@ -212,7 +214,7 @@ f32 func_802BBEA4(f32 arg0[3], f32 arg1[3], f32 arg2, s32 arg3, s32 arg4) {
     ml_vec3f_copy(sp4C, sp58[D_8037D8D0.unk30]);
     sp38 = func_80320B98(arg0, sp4C, sp3C, arg4);
     if (sp38 != NULL) {
-        phi_f2 = ml_vec3f_distance(arg0, &sp4C);
+        phi_f2 = ml_vec3f_distance(arg0, sp4C);
         D_8037D8D0.unk0[D_8037D8D0.unk30] = sp38->flags;
     } else {
         phi_f2 = arg2;
@@ -329,16 +331,12 @@ Actor *func_802BC2A0(f32 position[3], f32 rotation[3]){
     return func_80328230(0x66, position, rotation);
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_34790/func_802BC2CC.s")
-#else
+
 void func_802BC2CC(s32 arg0) {
-    f32 *sp24;
-    f32 *sp20;
+    f32 *sp24 = D_8037D908;\
+    f32 *sp20 = D_8037D918;
     s32 sp1C;
     
-    sp24 = &D_8037D908;
-    sp20 = &D_8037D918;
     if (func_803203FC(0xE) != 0) {
         func_80347A14(0);
     }
@@ -356,7 +354,7 @@ void func_802BC2CC(s32 arg0) {
     func_8024CD88(D_8037D908);
     func_8024CE18(D_8037D918);
     func_8024CFD4();
-    __spawnQueue_add_2((GenMethod_2)func_802BC2A0, D_8037D908, D_8037D918);
+    __spawnQueue_add_2((GenMethod_2)func_802BC2A0, reinterpret_cast(s32, sp24), reinterpret_cast(s32, sp20));
     if (D_8037D8C0 == 2) {
         func_802BE720();
         if (sp1C != 0x63) {
@@ -365,7 +363,6 @@ void func_802BC2CC(s32 arg0) {
         }
     }
 }
-#endif
 
 bool func_802BC428(void){
     return D_8037D8C6;

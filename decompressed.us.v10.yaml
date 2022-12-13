@@ -619,7 +619,7 @@ segments:
   - [0xF896A0, c, code_33D40] #DONE
   - [0xF898F0, c, code_33F90] #DONE
   - [0xF89C70, c, code_34310] #DONE
-  - [0xF8A0F0, c, code_34790]
+  - [0xF8A0F0, c, code_34790] #DONE
   - [0xF8AE80, c, code_35520] #DONE
   - [0xF8B010, c, code_356B0] #DONE
   - [0xF8D310, c, code_379B0]
