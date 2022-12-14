@@ -153,8 +153,18 @@ void func_80251B5C(f32 arg0, f32 arg1, f32 arg2){
     *(var_v0++) = arg0; *(var_v0++) = arg1; *(var_v0++) = arg2; *(var_v0++) = 1.0f;
 }
 
-void func_80245DCC(Mtx *,Mtx *, Mtx *);
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_80251BCC.s")
+void func_80251BCC(Mtx* arg0) {
+    s32 i, j;
+    f32 *v0;
+    
+    v0 = D_80282FD0 = &D_80282810;
+    // a0 = &arg0;
+    for(i = 0; i < 4*4; i+=4){
+        for(j = 0; j < 4; j++){
+            *(v0++) = *(((f32*)arg0)++);
+        }
+    }
+}
 
 void func_80251C20(f32 arg0, f32 arg1, f32 arg2, f32 arg3) {
     func_8024632C(D_80282FD0 + 1, arg0, arg1, arg2, arg3);
