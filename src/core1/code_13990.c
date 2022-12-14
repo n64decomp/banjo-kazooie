@@ -69,7 +69,32 @@ void func_802514BC(Mtx *arg0) {
 }
 #endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_802515D4.s")
+void func_802515D4(f32 arg0[3][3]) {
+    f32 var_f0;
+    s32 var_v0;
+    s32 var_v1;
+    s32 i;
+    f32 sp1C[3][3];
+
+    for(i = 0; i < 3; i++){
+        for(var_v1 = 0; var_v1 < 3; var_v1++){
+            var_f0 = 0.0f;
+            for(var_v0 = 0; var_v0 < 3; var_v0++){
+                var_f0 += arg0[i][var_v0] * reinterpret_cast(f32, D_80282FD0->m[var_v0][var_v1]);
+            }
+            sp1C[i][var_v1] = var_f0;
+        }
+    
+    }
+
+    for( i = 0; i < 3; i++){
+        for(var_v1 = 0; var_v1 < 3; var_v1++){
+            reinterpret_cast(f32, D_80282FD0->m[i][var_v1]) = sp1C[i][var_v1];
+
+        }
+    }
+}
+
 
 void mlMtxPop(void){
     D_80282FD0--; 
