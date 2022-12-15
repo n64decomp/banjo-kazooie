@@ -26,10 +26,8 @@ typedef struct {
     f32 unk28[3];
     f32 unk34[3];
     s32 unk40;
-    f32 unk44[3];
-    u8 pad50[0x18];
-    f32 unk68[3];
-    u8 pad74[0x18];
+    f32 unk44[3][3];
+    f32 unk68[3][3];
     s32 unk8C;
 }Struct_core2_C4B0_0;
 
@@ -509,7 +507,7 @@ BKCollisionTri *func_802946F0(void){
      return D_8037C204;
 }
 
-int func_802946FC(s32 arg0, s32 arg1){
+bool func_802946FC(f32 arg0[3][3], s32 arg1){
      if(arg1 == 0){
           return 0;
      }

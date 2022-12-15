@@ -7,6 +7,14 @@
 #define IA8_A(ia) ((ia) & 0xF)
 #define I4_2_RGBA16(i,a) ((i << 12) | (i << 7) | (i << 2) | (a))
 
+#define RGBA16_R5(rgba) ((rgba) >> 11)
+#define RGBA16_G5(rgba) (((rgba) >> 6) & 0x1f)
+#define RGBA16_B5(rgba) (((rgba) >> 1) & 0x1f)
+#define RGBA16_RED5(rgba) ((rgba) >> 11)
+#define C5_TO_C8(c5) ((c5) << 3)
+#define C8_TO_C5(c5) ((c5) >> 3)
+
+
 void func_8024A3C8(s32 x, s32 y);
 void draw_prim_rect(s32 x, s32 y, s32 w, s32 h);
 void set_prim_color(s32 r, s32 g, s32 b);
@@ -583,8 +591,36 @@ void func_80249DE0(s32 x, s32 y, s16 *arg2, s32 arg3, s32 arg4) {
     }
 }
 
+void func_80249F34(s32 x, s32 y, Struct84s* maskList, s32 maskIndex, s32 mX, s32 mY, s32 mW, s32 mH, s32 maskColor, s32 mStride, bool dim, s32 replacementColor) {
+    BKSpriteTextureBlock* mask_texture;
+    s32 ix;
+    s32 iy;
+    u16* color_ptr;
+    u16* mask_ptr;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_ABB0/func_80249F34.s")
+    mask_texture = func_8033EFB0(maskList, maskIndex);
+    mask_ptr = (u16*)(mask_texture + 1) + mX + mY * mask_texture->w;
+    color_ptr = &D_803A5D00[D_802806EC][x + y * framebuffer_width];
+    for(iy = 0; iy < mH; iy += mStride){
+        for(ix = 0; ix < mW; ix++){
+
+            if(maskColor != *mask_ptr){
+                *color_ptr = (replacementColor != 0)? replacementColor : *mask_ptr;
+            }
+            else if(dim){
+                *color_ptr = _SHIFTL(C8_TO_C5(C5_TO_C8(RGBA16_R5(*color_ptr)) / 2), 11, 5) 
+                        | _SHIFTL(C8_TO_C5(C5_TO_C8(RGBA16_G5(*color_ptr)) / 2), 6, 5) 
+                        | _SHIFTL(C8_TO_C5(C5_TO_C8(RGBA16_B5(*color_ptr)) / 2), 1, 5) 
+                        | 1;
+            }
+
+            color_ptr++;
+            mask_ptr++;
+        }
+        mask_ptr += ((mStride * mask_texture->w) - mW);
+        color_ptr += (framebuffer_width - mW);
+    }
+}
 
 //fill framebuffer with vert and horz lines
 void func_8024A284(s32 x, s32 y, s32 arg2, s32 arg3, s32 horz_spacing, s32 vert_spacing) {

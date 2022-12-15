@@ -162,7 +162,7 @@ void func_802E70FC(BKCollisionList *collision_list, s32 arg1[3], s32 arg2[3], BK
     }
 }
 
-void func_802E73C8(f32 (*arg0)[3]) {
+void func_802E73C8(f32 arg0[3][3]) {
     s32 i;
     for(i = 0; i < 3; i++){
         arg0[i][0] = D_8037EAA8[i][0]; 

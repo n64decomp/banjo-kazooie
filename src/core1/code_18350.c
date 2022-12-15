@@ -646,7 +646,7 @@ bool func_8025773C(f32 *timer, f32 delta)
     return FALSE;
 }
 
-void func_8025778C(f32 dst[3], f32 arg1[3], f32 arg2[9]){
+void func_8025778C(f32 dst[3], f32 arg1[3], f32 arg2[3][3]){
     f32 sp54;
     f32 sp50;
     f32 sp4C;
@@ -654,9 +654,9 @@ void func_8025778C(f32 dst[3], f32 arg1[3], f32 arg2[9]){
     f32 sp34[3];
     f32 sp28[3];
 
-    func_802596AC(sp40, arg2, &arg2[3], arg1);
-    func_802596AC(sp34, &arg2[3], &arg2[6], arg1);
-    func_802596AC(sp28, &arg2[6], arg2, arg1);
+    func_802596AC(sp40, arg2[0], arg2[1], arg1);
+    func_802596AC(sp34, arg2[1], arg2[2], arg1);
+    func_802596AC(sp28, arg2[2], arg2[0], arg1);
 
     sp54 = ml_vec3f_distance_squared(sp40, arg1);
     sp50 = ml_vec3f_distance_squared(sp34, arg1);
@@ -955,7 +955,7 @@ int func_802582EC(f32 vec[3])
 }
 
 //ml_vec3f_is_not_zero
-int func_80258368(f32 vec[3])
+bool func_80258368(f32 vec[3])
 {
     return vec[0] != 0 || vec[1] != 0 || vec[2] != 0;
 }

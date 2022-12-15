@@ -68,7 +68,7 @@ s32 D_803860A4;
 s32 D_803860A8;
 s32 D_803860AC;
 s32 spriteRenderHasPalette;
-s32 D_803860B4;
+s32 spriteRender1PrimMode;
 
 /* .code */
 void func_80347DF0(Struct81s *arg0){
@@ -148,15 +148,14 @@ void func_80348044(Gfx **gfx, BKSprite* sprite, s32 frame, s32 tmem, s32 rtile, 
         gDPSetTextureLUT((*gfx)++, G_TT_RGBA16);
         gDPLoadTLUT_pal16((*gfx)++, 0, palette_addr);
         spriteRenderHasPalette = TRUE;
-        D_803860B4 = 0;
+        spriteRender1PrimMode = FALSE;
         D_80386074 = 0; 
         var_v1 = palette_addr + 0x20;
         D_80386098 = D_8038607C = 0;
     } else if (sprite->type & SPRITE_TYPE_CI8) {
         gDPPipelineMode((*gfx)++, G_PM_1PRIMITIVE);
         for(palette_addr = (s32)(sprite_frame + 1); palette_addr % 8; palette_addr++);
-        D_803860B4 = spriteRenderHasPalette = TRUE;
-        // D_803860B4 = 1;
+        spriteRender1PrimMode = spriteRenderHasPalette = TRUE;
         D_80386074 = NULL;
         D_8038607C = 0;
         var_v1 = palette_addr + 0x200;
@@ -300,9 +299,9 @@ void func_80349B1C(Gfx **gfx) {
         gDPPipeSync((*gfx)++);
         gDPSetTextureLUT((*gfx)++, G_TT_NONE);
         spriteRenderHasPalette = FALSE;
-        if (D_803860B4) {
+        if (spriteRender1PrimMode) {
             gDPPipelineMode((*gfx)++, G_PM_NPRIMITIVE);
-            D_803860B4 = FALSE;
+            spriteRender1PrimMode = FALSE;
         }
     }
 }
