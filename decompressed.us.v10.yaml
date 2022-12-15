@@ -622,7 +622,7 @@ segments:
   - [0xF8A0F0, c, code_34790] #DONE
   - [0xF8AE80, c, code_35520] #DONE
   - [0xF8B010, c, code_356B0] #DONE
-  - [0xF8D310, c, code_379B0]
+  - [0xF8D310, c, code_379B0] #DONE
   - [0xF8D630, c, code_37CD0] #DONE
   - [0xF8D7B0, c, code_37E50] #DONE
   - [0xF8DAB0, c, code_38150] #DONE
