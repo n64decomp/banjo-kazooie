@@ -719,29 +719,21 @@ Struct_core2_5FD90_0 *func_802E879C(Struct_core2_5FD90_0 *arg0, Struct_core2_5FD
     return spD0;
 }
 
-
-#ifndef NONMATCHING
-BKCollisionTri *func_802E8E88(BKCollisionList *collision_list, BKVertexList *vtx_list, f32 arg2[3], f32 arg3[3], f32 arg4, f32 arg5[3], s32 arg6, s32 arg7);
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5FD90/func_802E8E88.s")
-#else
 BKCollisionTri *func_802E8E88(BKCollisionList *collision_list, BKVertexList *vtx_list, f32 arg2[3], f32 arg3[3], f32 arg4, f32 arg5[3], s32 arg6, s32 arg7){
-    s32 spC4;
-    s32 spC0;
+    Struct_core2_5FD90_0 * spC4;
+    Struct_core2_5FD90_0 * spC0;
     f32 spB4[3];
-    f32 sp98[3];
-    f32 sp8C[3];
-    f32 sp78[3];
+    
     f32 temp_f20;
-    s32 temp_s0;
-    void *temp_s5;
-    void *temp_s5_2;
-    void *temp_v0;
-    void *temp_v0_2;
     f32 phi_f22;
     f32 phi_f24;
     s32 phi_s0;
+
+    f32 sp98[3];
+    f32 sp8C[3];
     Struct_core2_5FD90_0 *phi_s5;
-    void *phi_s5_2;
+    Struct_core2_5FD90_0 *phi_v0;
+    f32 sp78[3];
 
     sp78[0] = arg3[0] - arg2[0];
     sp78[1] = arg3[1] - arg2[1];
@@ -765,23 +757,23 @@ BKCollisionTri *func_802E8E88(BKCollisionList *collision_list, BKVertexList *vtx
     phi_f22 = 0.0f;
     phi_f24 = 1.0f;
     for(phi_s0 = 0; phi_s0 < arg6; phi_s0++){
-        temp_f20 = (f64) (phi_f22 + phi_f24) / 2.0;
-        sp98[0] = (spB4[0] * temp_f20) + arg2[0];
-        sp98[1] = (spB4[1] * temp_f20) + arg2[1];
-        sp98[2] = (spB4[2] * temp_f20) + arg2[2];
-        phi_s5 = func_802E879C(spC4, spC0, &sp98, arg4, &sp8C);
-        if (phi_s5 != NULL) {
+        temp_f20 = (phi_f22 + phi_f24) * 0.5;
+        sp98[0] = arg2[0] + (spB4[0] * temp_f20);
+        sp98[1] = arg2[1] + (spB4[1] * temp_f20);
+        sp98[2] = arg2[2] + (spB4[2] * temp_f20);
+        phi_v0 = func_802E879C(spC4, spC0, sp98, arg4, sp8C);
+        if (phi_v0 != NULL) {
             arg5[0] = sp8C[0];
             arg5[1] = sp8C[1];
             arg5[2] = sp8C[2];
             phi_f24 = temp_f20;
+            phi_s5 = phi_v0;
         } else {
             arg3[0] = sp98[0];
             arg3[1] = sp98[1];
             arg3[2] = sp98[2];
             phi_f22 = temp_f20;
         }
-        phi_s5 = phi_s5_2;
     }
     if (phi_s5 == NULL) {
         return NULL;
@@ -790,7 +782,6 @@ BKCollisionTri *func_802E8E88(BKCollisionList *collision_list, BKVertexList *vtx
     func_802E6D20(phi_s5->unk24, vtx_list);
     return phi_s5->unk24;
 }
-#endif
 
 s32 func_802E9118(BKCollisionList * collision_list, BKVertexList *vtx_list, f32 arg2[3], s32 arg3, f32 arg4, f32 arg5[3], f32 arg6[3], f32 arg7, f32 arg8[3], s32 arg9, s32 argA) {
     f32 sp4C[3];
