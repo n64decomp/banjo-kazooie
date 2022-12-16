@@ -241,56 +241,44 @@ void func_802E75D0(f32 arg0[3], f32 arg1[3], s32 arg2[3], s32 arg3[3], f32 arg4[
     arg4[2] = (arg1[2] - arg0[2]);
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5FD90/func_802E76B0.s")
-#else
-BKCollisionTri * *func_802E76B0(BKCollisionList *arg0, BKVertexList *arg1, f32 arg2[3], f32 arg3[3], f32 arg4[3], u32 arg5) {
+BKCollisionTri *func_802E76B0(BKCollisionList *arg0, BKVertexList *arg1, f32 arg2[3], f32 arg3[3], f32 arg4[3], u32 arg5) {
+    s32 i;
+    s32 j;
     BKCollisionGeo **sp18C;
     BKCollisionGeo **sp188;
     BKCollisionGeo **sp184;
     BKCollisionTri *sp180;
+    BKCollisionGeo *temp_v1;
     BKCollisionTri *sp178;
+    BKCollisionTri *phi_s1;
+    Vtx *vtx_pool;
     Vtx *sp164[3];
     s32 sp158[3];
     s32 sp14C[3];
     f32 sp140[3];
+    Vtx *temp_a2;
     f32 sp130[3];
     f32 sp124[3];
     f32 sp118[3];
     f32 sp10C[3];
-    f32 spFC[3];
-    f32 spF8;
-    f32 spF4;
-    f32 spF0;
-    f32 spEC;
-    f32 spE8;
-    f32 spE4;
-    f32 spBC[3];
-    f32 sp90[3][3];
-    BKCollisionTri *sp8C;
     f32 temp_f0_2;
+    f32 spFC[3];
+    f32 spF0[3];
+    f32 spE4[3];
+
     f32 temp_f12_2;
     f32 temp_f12_3;
     f32 temp_f12_4;
     f32 temp_f14_2;
-    f32 temp_f18_2;
     f32 temp_f20;
-    f32 temp_f22;
-    f32 temp_f26;
     f32 temp_f2_2;
     f32 temp_f2_6;
-    Vtx *temp_a2;
-    s32 temp_hi;
-    s32 temp_hi_2;
-    Vtx *vtx_pool;
-    BKCollisionTri *temp_t1;
-    BKCollisionGeo *temp_v1;
-    BKCollisionTri *phi_s1;
-    f32 phi_f0;
-    f32 phi_f12;
+    f32 spBC[3];
+
     s32 phi_a0_2;
-    s32 i;
-    s32 j;
+    f32 pad;
+    f32 sp90[3][3];
+    BKCollisionTri *sp8C;
 
     sp8C = NULL;
     temp_f20 = (f32) arg1->unk16;
@@ -302,119 +290,117 @@ BKCollisionTri * *func_802E76B0(BKCollisionList *arg0, BKVertexList *arg1, f32 a
     }
     func_802E70FC(arg0, sp158, sp14C, &sp18C, &sp184);
     for(sp188 = sp18C; sp188 < sp184; sp188++){
-        temp_v1 = *sp188;
         // sp180 = (temp_v1->unk0 * 0xC) + (s32)arg0 + (arg0->unk10 * 4) + sizeof(BKCollisionList);
-        sp180 = (BKCollisionTri *)((BKCollisionGeo *)(arg0 + 1) + arg0->unk10) + temp_v1->start_tri_index;
-        sp178 = sp180 + temp_v1->tri_count;
+        sp180 = (BKCollisionTri *)((BKCollisionGeo *)(arg0 + 1) + arg0->unk10) + (*sp188)->start_tri_index;
+        sp178 = sp180 + (*sp188)->tri_count;
         for(phi_s1 = sp180; phi_s1 < sp178; phi_s1++){
-            if(!(phi_s1->flags & arg5)){
-                vtx_pool = (s32)arg1 + sizeof(BKVertexList);
-                sp164[0] = &vtx_pool[phi_s1->unk0[0]]; 
-                sp164[1] = &vtx_pool[phi_s1->unk0[1]]; 
-                sp164[2] = &vtx_pool[phi_s1->unk0[2]];
-                if( !((sp164[0]->v.ob[0] < sp158[0]) && (sp164[1]->v.ob[0] < sp158[0]) && (sp164[2]->v.ob[0] < sp158[0])) 
-                    && !((sp14C[0] < sp164[0]->v.ob[0]) && (sp14C[0] < sp164[1]->v.ob[0]) && (sp14C[0] < sp164[2]->v.ob[0])) 
-                    && !((sp164[0]->v.ob[2] < sp158[2]) && (sp164[1]->v.ob[2] < sp158[2]) && (sp164[2]->v.ob[2] < sp158[2])) 
-                    && !((sp14C[2] < sp164[0]->v.ob[2]) && (sp14C[2] < sp164[1]->v.ob[2]) && (sp14C[2] < sp164[2]->v.ob[2])) 
-                    && !((sp164[0]->v.ob[1] < sp158[1]) && (sp164[1]->v.ob[1] < sp158[1]) && (sp164[2]->v.ob[1] < sp158[1])) 
-                    && !((sp14C[1] < sp164[0]->v.ob[1]) && (sp14C[1] < sp164[1]->v.ob[1]) && (sp14C[1] < sp164[2]->v.ob[1])) 
-                ){
-                    for(i = 0; i < 3; i++){
-                        temp_a2 = &vtx_pool[phi_s1->unk0[i]];
-                        for(j = 0; j <3; j++){
-                            sp90[i][j] = temp_a2->v.ob[j];
-                        }
-                    }
-                    sp130[0] = sp90[1][0] - sp90[0][0];\
-                    sp130[1] = sp90[1][1] - sp90[0][1];\
-                    sp130[2] = sp90[1][2] - sp90[0][2];
+            vtx_pool = (Vtx*)(arg1 + 1);
+            if((phi_s1->flags & arg5))
+                continue;
 
-                    sp124[0] = sp90[2][0] - sp90[0][0];\
-                    sp124[1] = sp90[2][1] - sp90[0][1];\
-                    sp124[2] = sp90[2][2] - sp90[0][2];
+            sp164[0] = &vtx_pool[phi_s1->unk0[0]]; 
+            sp164[1] = &vtx_pool[phi_s1->unk0[1]]; 
+            sp164[2] = &vtx_pool[phi_s1->unk0[2]];
+            if((sp164[0]->v.ob[0] < sp158[0]) && (sp164[1]->v.ob[0] < sp158[0]) && (sp164[2]->v.ob[0] < sp158[0])) continue;
+            if((sp14C[0] < sp164[0]->v.ob[0]) && (sp14C[0] < sp164[1]->v.ob[0]) && (sp14C[0] < sp164[2]->v.ob[0])) continue;
+            
+            if((sp164[0]->v.ob[2] < sp158[2]) && (sp164[1]->v.ob[2] < sp158[2]) && (sp164[2]->v.ob[2] < sp158[2])) continue;
+            if((sp14C[2] < sp164[0]->v.ob[2]) && (sp14C[2] < sp164[1]->v.ob[2]) && (sp14C[2] < sp164[2]->v.ob[2])) continue;
+            
+            if((sp164[0]->v.ob[1] < sp158[1]) && (sp164[1]->v.ob[1] < sp158[1]) && (sp164[2]->v.ob[1] < sp158[1])) continue;
+            if((sp14C[1] < sp164[0]->v.ob[1]) && (sp14C[1] < sp164[1]->v.ob[1]) && (sp14C[1] < sp164[2]->v.ob[1])) continue;
 
-                    spBC[0] = (sp130[1] * sp124[2]) - (sp124[1] * sp130[2]);
-                    spBC[1] = (sp130[2] * sp124[0]) - (sp124[2] * sp130[0]);
-                    spBC[2] = (sp130[0] * sp124[1]) - (sp124[0] * sp130[1]);
-                    if( (100000.0f < spBC[0]) || (100000.0f < spBC[1]) || (100000.0f < spBC[2]) 
-                        || (spBC[0] < -100000.0f) || (spBC[1] < -100000.0f) || (spBC[2] < -100000.0f)
-                    ) {
-                        spBC[0] /= 100000.0f;
-                        spBC[1] /= 100000.0f;
-                        spBC[2] /= 100000.0f;
-                    }
-                    sp118[0] = arg2[0] - sp90[0][0];
-                    sp118[1] = arg2[1] - sp90[0][1];
-                    sp118[2] = arg2[2] - sp90[0][2];
-                    sp10C[0] = arg3[0] - sp90[0][0];
-                    sp10C[1] = arg3[1] - sp90[0][1];
-                    sp10C[2] = arg3[2] - sp90[0][2];
-
-                    temp_f12_2 = sp118[0]*spBC[0] + sp118[1]*spBC[1] + sp118[2]*spBC[2];
-                    temp_f2_2 = sp10C[0]*spBC[0] + sp10C[1]*spBC[1] + sp10C[2]*spBC[2];
-                    if ((!(temp_f12_2 >= 0.0f) || !(temp_f2_2 >= 0.0f)) && (!(temp_f12_2 <= 0.0f) || !(temp_f2_2 <= 0.0f))) {
-                        if ((phi_s1->flags & 0x10000) && (temp_f12_2 < 0.0f)) {
-                            spBC[0] = -spBC[0];
-                            spBC[1] = -spBC[1];
-                            spBC[2] = -spBC[2];
-                        }
-                        if (spBC[0]*sp140[0] + spBC[1]*sp140[1] + spBC[2]*sp140[2] != 0.0f) {
-                            temp_f0_2 = -((spBC[0]*arg2[0] + spBC[1]*arg2[1] + spBC[2]*arg2[2]) - (sp90[0][0]*spBC[0] + sp90[0][1]*spBC[1] + sp90[0][2]*spBC[2])) / temp_f12_3;
-                            if (!(temp_f0_2 <= 0.0f) && !(temp_f0_2 >= 1.0f)) {
-                                spFC[0] = (sp140[0] * temp_f0_2) + arg2[0];
-                                spFC[1] = (sp140[1] * temp_f0_2) + arg2[1];
-                                spFC[2] = (sp140[2] * temp_f0_2) + arg2[2];
-
-                                phi_a0_2 = 1;
-                                phi_f12 = (spBC[0] >= 0.0f) ? spBC[0] : -spBC[0];
-                                phi_f0 = (spBC[1] >= 0.0f) ? spBC[1] : -spBC[1];
-                                if (phi_f0 < phi_f12) {
-                                    phi_a0_2 = 0;
-                                }
-
-                                phi_a0_2 = phi_a0_2;
-                                phi_f12 = (spBC[2] >= 0.0f) ? spBC[2] : -spBC[2];
-                                phi_f0 = (spBC[phi_a0_2] >= 0.0f) ? spBC[phi_a0_2] : -spBC[phi_a0_2];
-                                if (phi_f0 < phi_f12) {
-                                    phi_a0_2 = 2;
-                                }
-
-                                temp_hi = (s32) (phi_a0_2 + 1) % 3;
-                                spF0 = spFC[temp_hi] - sp90[0][temp_hi];
-                                spF4 = sp130[temp_hi];
-                                spF8 = sp124[temp_hi];
-                                temp_hi_2 = (s32) (phi_a0_2 + 2) % 3;
-                                spE4 = spFC[temp_hi_2] - sp90[0][temp_hi_2];
-                                spE8 = sp130[temp_hi_2];
-                                spEC = sp124[temp_hi_2];
-                                temp_f14_2 = (spF4 * spEC) - (sp124[temp_hi] * spE8);
-                                temp_f18_2 = (spF0 * spEC) - (sp124[temp_hi] * spE4);
-                                if (!((temp_f18_2 / temp_f14_2) < 0.0f)) {
-                                    temp_f12_4 = temp_f18_2 / temp_f14_2;
-                                    if (!(temp_f12_4 > 1.0f)) {
-                                        temp_f2_6 = ((spF4 * spE4) - (spF0 * spE8)) / temp_f14_2;
-                                        if (!(temp_f2_6 < 0.0f) && !(temp_f2_6 > 1.0f) && !((temp_f12_4 + temp_f2_6) > 1.0f)) {
-                                            sp8C = phi_s1;
-                                            arg3[0] = spFC[0];
-                                            arg3[1] = spFC[1];
-                                            arg3[2] = spFC[2];
-                                            ml_vec3f_normalize_copy(arg4, spBC);
-                                            func_802E75D0(arg2, arg3, sp158, sp14C, sp140);
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
+            for(i = 0; i < 3; i++){
+                temp_a2 = &vtx_pool[phi_s1->unk0[i]];
+                for(j = 0; j <3; j++){
+                    sp90[i][j] = temp_a2->v.ob[j];
                 }
             }
+            sp130[0] = sp90[1][0] - sp90[0][0];
+            sp130[1] = sp90[1][1] - sp90[0][1];
+            sp130[2] = sp90[1][2] - sp90[0][2];
+
+            sp124[0] = sp90[2][0] - sp90[0][0];
+            sp124[1] = sp90[2][1] - sp90[0][1];
+            sp124[2] = sp90[2][2] - sp90[0][2];
+
+            spBC[0] = (sp130[1] * sp124[2]) - (sp130[2] * sp124[1]);
+            spBC[1] = (sp130[2] * sp124[0]) - (sp130[0] * sp124[2]);
+            spBC[2] = (sp130[0] * sp124[1]) - (sp130[1] * sp124[0]);
+            if( (100000.0f < spBC[0]) || (100000.0f < spBC[1]) || (100000.0f < spBC[2]) 
+                || (spBC[0] < -100000.0f) || (spBC[1] < -100000.0f) || (spBC[2] < -100000.0f)
+            ) {
+                spBC[0] /= 100000.0f;
+                spBC[1] /= 100000.0f;
+                spBC[2] /= 100000.0f;
+            }
+            sp118[0] = arg2[0] - sp90[0][0];
+            sp118[1] = arg2[1] - sp90[0][1];
+            sp118[2] = arg2[2] - sp90[0][2];
+            sp10C[0] = arg3[0] - sp90[0][0];
+            sp10C[1] = arg3[1] - sp90[0][1];
+            sp10C[2] = arg3[2] - sp90[0][2];
+
+            temp_f12_2 = sp118[0]*spBC[0] + sp118[1]*spBC[1] + sp118[2]*spBC[2];
+            temp_f2_2 = sp10C[0]*spBC[0] + sp10C[1]*spBC[1] + sp10C[2]*spBC[2];
+            pad = temp_f2_2;
+            if ((!((temp_f12_2 >= 0.0f) && (pad >= 0.0f))))
+            if( !((temp_f12_2 <= 0.0f) && (pad <= 0.0f))) {
+                if ((phi_s1->flags & 0x10000) && (temp_f12_2 < 0.0f)) {
+                    spBC[0] = -spBC[0];
+                    spBC[1] = -spBC[1];
+                    spBC[2] = -spBC[2];
+                }
+                
+                temp_f12_3 = spBC[0]*sp140[0] + spBC[1]*sp140[1] + spBC[2]*sp140[2];
+                pad = (sp90[0][0]*spBC[0] + sp90[0][1]*spBC[1] + sp90[0][2]*spBC[2]);
+                if (temp_f12_3 == 0.0f) 
+                    continue;
+                
+                temp_f0_2 = -((spBC[0]*arg2[0] + spBC[1]*arg2[1] + spBC[2]*arg2[2]) - pad)/ temp_f12_3;
+                if(temp_f0_2 <= 0.0f || 1.0f <= temp_f0_2)
+                    continue;
+                
+                spFC[0] = arg2[0] + (sp140[0] * temp_f0_2);
+                spFC[1] = arg2[1] + (sp140[1] * temp_f0_2);
+                spFC[2] = arg2[2] + (sp140[2] * temp_f0_2);
+
+                phi_a0_2 = (ABS_F(spBC[0]) > ABS_F(spBC[1])) ? 0 : 1;
+                phi_a0_2 = (ABS_F(spBC[2]) > ABS_F(spBC[phi_a0_2])) ? 2 : phi_a0_2;
+                
+                spF0[0] = spFC[(phi_a0_2 + 1) % 3] - sp90[0][(phi_a0_2 + 1) % 3];
+                spF0[1] = sp130[(phi_a0_2 + 1) % 3];
+                spF0[2] = sp124[(phi_a0_2 + 1) % 3];
+                
+                spE4[0] = spFC[(phi_a0_2 + 2) % 3] - sp90[0][(phi_a0_2 + 2) % 3];
+                spE4[1] = sp130[(phi_a0_2 + 2) % 3];
+                spE4[2] = sp124[(phi_a0_2 + 2) % 3];
+                temp_f14_2 = ((spF0[1] * spE4[2]) - (spE4[1] * spF0[2]));
+                
+                temp_f12_4 = ((spF0[0] * spE4[2]) - (spE4[0] * spF0[2])) / temp_f14_2;
+                if(temp_f12_4 < 0.0f || 1.0f < temp_f12_4) 
+                    continue;
+                
+                temp_f2_6 =  ((spF0[1] * spE4[0]) - (spE4[1] * spF0[0])) / temp_f14_2;
+                if(temp_f2_6 < 0.0f || 1.0f < temp_f2_6)   
+                    continue;
+                
+                if(1.0f < (temp_f12_4 + temp_f2_6))        
+                    continue;
+
+                sp8C = phi_s1;
+                arg3[0] = spFC[0];
+                arg3[1] = spFC[1];
+                arg3[2] = spFC[2];
+                ml_vec3f_normalize_copy(arg4, spBC);
+                func_802E75D0(arg2, arg3, sp158, sp14C, sp140);
+            }
+            
         }
     }
     func_802E6D20(sp8C, arg1);
     return sp8C;
 }
-#endif
-
 
 int func_802E805C(BKCollisionList *collision_list, BKVertexList *vtxList, f32 arg2[3], f32 arg3[3], f32 arg4, s32 arg5, s32 arg6, s32 arg7, s32 arg8){
     f32 sp44[3];
