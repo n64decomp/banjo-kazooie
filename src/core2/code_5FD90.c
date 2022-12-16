@@ -8,6 +8,8 @@ extern void func_80252C08(f32[3],f32[3], f32, f32[3]);
 extern void func_80252CC4(f32[3],s32, f32, s32);
 extern f32  func_802560D0(f32[3], f32[3], f32[3]);
 
+#define ABS_F(s) (((s) >= (f32)0.0f) ? (s) : -(s))
+
 typedef struct {
     f32 unk0[3]; 
     f32 unkC[3]; 
@@ -601,9 +603,122 @@ s32 func_802E81CC(BKCollisionList *collision_list, BKVertexList *vtx_list, f32 a
 //     return var_s2 - D_8037EAD0 > 0;
 // }
 
+Struct_core2_5FD90_0 *func_802E879C(Struct_core2_5FD90_0 *arg0, Struct_core2_5FD90_0 *arg1, f32 arg2[3], f32 arg3, f32 arg4[3]) {
+    s32 i;
+    Struct_core2_5FD90_0 *i_ptr;
+    
+    f32 sp144[3][3];
+    f32 sp120[3][3];
+    
+    f32 temp_f0_2;
+    f32 temp_f0_3;
+    f32 temp_f0_4;
 
-Struct_core2_5FD90_0 *func_802E879C(s32, f32[3], f32[3], f32, f32[3]);
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5FD90/func_802E879C.s")
+    f32 temp_f12_3;
+    f32 temp_f18;
+    f32 temp_f22;
+    f32 spFC[3];
+    f32 spF0[3];
+    u32 var_a0;
+    s32 var_a1;
+    s32 var_a2;
+    f32 spD8[3];
+    f32 temp_f2_4;
+    Struct_core2_5FD90_0 *spD0;
+    f32 temp_f8;
+    f32 *var_s0;
+    
+
+
+    spD0 = 0;
+    arg4[0] = 0.0f;
+    arg4[1] = 0.0f;
+    arg4[2] = 0.0f;
+    for(i_ptr = arg0; i_ptr < arg1; i_ptr++){
+        sp120[0][0] = arg2[0] - i_ptr->unk28[0][0];
+        sp120[0][1] = arg2[1] - i_ptr->unk28[0][1];
+        sp120[0][2] = arg2[2] - i_ptr->unk28[0][2];
+        temp_f18 = (sp120[0][0] * i_ptr->unk18[0]) + (sp120[0][1] * i_ptr->unk18[1]) + (sp120[0][2] * i_ptr->unk18[2]);
+        if ((-(arg3 - 0.5)>= temp_f18) || ((arg3 -0.5) <= temp_f18))
+            continue;
+
+        temp_f8 = i_ptr->unk18[0];
+        temp_f0_2 = (temp_f8 * i_ptr->unk18[0]) + (i_ptr->unk18[1] * i_ptr->unk18[1]) + (i_ptr->unk18[2] * i_ptr->unk18[2]);
+        if(temp_f0_2 == 0.0f)
+            continue;
+        
+        temp_f0_2 = -temp_f18 / temp_f0_2;
+        spD8[0] = arg2[0] + (i_ptr->unk18[0] * temp_f0_2);
+        spD8[1] = arg2[1] + (i_ptr->unk18[1] * temp_f0_2);
+        spD8[2] = arg2[2] + (i_ptr->unk18[2] * temp_f0_2);
+        
+        var_a2 = (ABS_F(i_ptr->unk18[0]) > ABS_F(i_ptr->unk18[1])) ? 0 : 1;
+        var_a2 = (ABS_F(i_ptr->unk18[2]) > ABS_F(i_ptr->unk18[var_a2])) ? 2 : var_a2;
+
+        
+        spFC[0] = spD8[(var_a2 + 1)%3] - i_ptr->unk28[0][(var_a2 + 1)%3];
+        spFC[1] = i_ptr->unk0[(var_a2 + 1)%3];
+        spFC[2] = i_ptr->unkC[(var_a2 + 1)%3];
+
+        spF0[0] = spD8[(var_a2 + 2)%3] - i_ptr->unk28[0][(var_a2 + 2)%3];
+        spF0[1] = i_ptr->unk0[(var_a2 + 2)%3];
+        spF0[2] = i_ptr->unkC[(var_a2 + 2)%3];
+
+        temp_f2_4 =  (spFC[1] * spF0[2]) - (spF0[1] * spFC[2]);
+        temp_f12_3 = ((spFC[0] * spF0[2]) - (spF0[0] * spFC[2]))/temp_f2_4;
+        temp_f0_4 =  ((spFC[1] * spF0[0]) - (spF0[1] * spFC[0]))/ temp_f2_4;
+        if ((0.0f <= temp_f12_3) && (temp_f12_3 <= 1.0f)
+         && (0.0f <= temp_f0_4) && (temp_f0_4 <= 1.0f))
+        if (((temp_f12_3 + temp_f0_4) <= 1.0f)
+        ) {
+            spD0 = i_ptr;
+            arg4[0] = arg4[0] + i_ptr->unk18[0];
+            arg4[1] = arg4[1] + i_ptr->unk18[1];
+            arg4[2] = arg4[2] + i_ptr->unk18[2];
+            continue;
+        }
+
+        for(i = 0; i < 3; i++){
+            sp120[i][0] = arg2[0] - i_ptr->unk28[i][0];
+            sp120[i][1] = arg2[1] - i_ptr->unk28[i][1];
+            sp120[i][2] = arg2[2] - i_ptr->unk28[i][2];
+            if (sp120[i][0]*sp120[i][0] + sp120[i][1]*sp120[i][1] + sp120[i][2]*sp120[i][2] < arg3 * arg3) {
+                spD0 = i_ptr;
+                arg4[0] = arg4[0] + i_ptr->unk18[0];
+                arg4[1] = arg4[1] + i_ptr->unk18[1];
+                arg4[2] = arg4[2] + i_ptr->unk18[2];
+                break;
+            }
+            
+        }
+        if(i < 3)
+            continue;
+                
+        for(i = 0; i < 3; i++){
+            
+            sp144[i][0] = i_ptr->unk28[(i + 1) % 3][0] - i_ptr->unk28[i][0];
+            sp144[i][1] = i_ptr->unk28[(i + 1) % 3][1] - i_ptr->unk28[i][1];
+            sp144[i][2] = i_ptr->unk28[(i + 1) % 3][2] - i_ptr->unk28[i][2];
+            temp_f22 = sp144[i][0]*sp144[i][0] + sp144[i][1]*sp144[i][1] + sp144[i][2]*sp144[i][2];
+            ml_vec3f_normalize(sp144[i]);
+            temp_f0_3 = (sp144[i][0]*sp120[i][0]) + (sp144[i][1]*sp120[i][1]) + (sp144[i][2]*sp120[i][2]);
+            if ((0.0f <= temp_f0_3) && ((temp_f0_3 * temp_f0_3) <= temp_f22)){
+                spD8[0] = sp120[i][0] - sp144[i][0]*temp_f0_3;
+                spD8[1] = sp120[i][1] - sp144[i][1]*temp_f0_3;
+                spD8[2] = sp120[i][2] - sp144[i][2]*temp_f0_3;
+                if(spD8[0]*spD8[0] + spD8[1]*spD8[1] + spD8[2]*spD8[2] < arg3 * arg3){
+                    spD0 = i_ptr;
+                    arg4[0] = arg4[0] + i_ptr->unk18[0];
+                    arg4[1] = arg4[1] + i_ptr->unk18[1];
+                    arg4[2] = arg4[2] + i_ptr->unk18[2];
+                    break;
+                }
+            } 
+        }
+    }
+    return spD0;
+}
+
 
 #ifndef NONMATCHING
 BKCollisionTri *func_802E8E88(BKCollisionList *collision_list, BKVertexList *vtx_list, f32 arg2[3], f32 arg3[3], f32 arg4, f32 arg5[3], s32 arg6, s32 arg7);
