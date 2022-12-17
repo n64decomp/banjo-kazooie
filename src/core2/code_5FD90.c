@@ -7,8 +7,9 @@
 extern void func_80252C08(f32[3],f32[3], f32, f32[3]);
 extern void func_80252CC4(f32[3],s32, f32, s32);
 extern f32  func_802560D0(f32[3], f32[3], f32[3]);
+extern f32  func_802EC920(BKVertexList *);
 
-#define ABS_F(s) (((s) >= (f32)0.0f) ? (s) : -(s))
+#define ABS_F(s) (((s) >= 0.0f) ? (s) : -(s))
 
 typedef struct {
     f32 unk0[3]; 
@@ -800,9 +801,198 @@ s32 func_802E9118(BKCollisionList * collision_list, BKVertexList *vtx_list, f32 
     return sp3C;
 }
 
-s32 func_802E92AC(BKCollisionList *, BKVertexList *, f32[3], f32, f32 [3], s32);
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5FD90/func_802E92AC.s")
+BKCollisionTri *func_802E92AC(BKCollisionList *collisionList, BKVertexList *vertexList, f32 position[3], f32 radius, f32 arg4[3], s32 flagFilter) {
+    BKCollisionGeo **start_geo;
+    BKCollisionGeo **i_geo;
+    BKCollisionGeo **end_geo;
+    s32 i;
+    s32 j;
+    f32 sp1E0[3];
+    f32 sp1D4[3];
+    BKCollisionTri *start_tri;
+    BKCollisionTri *i_tri;
+    BKCollisionTri *end_tri;
+    f32 tri_vtx_coord[3][3];
+    Vtx *vtx_pool;
+    Vtx *i_vtx;
+    f32 min_coord[3];
+    f32 max_coord[3];
+    BKCollisionGeo *temp_a2;
+    f32 sp15C[3][3];
+    f32 sp138[3][3];
+    f32 temp_f0_10;
+    f32 temp_f0_2;
+    f32 temp_f0_6;
+    f32 sp120[3];
+    f32 temp_f0_8;
+    f32 temp_f12_2;
+    f32 temp_f14_2;
+    f32 sp108[3];
+    f32 spFC[3];
+    f32 temp_f2_3;
+    f32 temp_f2_6;
+    f32 temp_f2_7;
+    f32 spE4[3];
+    f32 spD8[3];
+    f32 temp_f8;
+    BKCollisionTri *spD0;
+    s32 var_a2;
+    s32 var_v1_2;
 
+    for(i = 0; i < 3; i++){
+        sp1E0[i] = position[i] - (radius + 0.5);
+        sp1D4[i] = position[i] + (radius + 0.5);
+    }
+
+    temp_f0_2 = func_802EC920(vertexList);
+    for(i = 0; i < 3; i++){
+        if((sp1D4[i] <= -temp_f0_2)|| temp_f0_2 <= sp1E0[i])
+            return NULL;
+    }
+    spD0 = NULL;
+    spE4[0] = spE4[1] = spE4[2] = 0.0f;
+    func_802E6DEC(collisionList, sp1E0, sp1D4, &start_geo, &end_geo);
+    vtx_pool = vtxList_getVertices(vertexList);
+    for(i_geo = start_geo; i_geo < end_geo; i_geo++){
+        start_tri = (BKCollisionTri *)((BKCollisionGeo *)(collisionList + 1) + collisionList->unk10) + (*i_geo)->start_tri_index;
+        end_tri = start_tri + (*i_geo)->tri_count;
+        for(i_tri = start_tri; i_tri < end_tri; i_tri++){
+            if (!(i_tri->flags & flagFilter)){    
+                for(i = 0; i < 3; i++){
+                    i_vtx = &vtx_pool[i_tri->unk0[i]];
+                    tri_vtx_coord[i][0] = i_vtx->v.ob[0];
+                    tri_vtx_coord[i][1] = i_vtx->v.ob[1];
+                    tri_vtx_coord[i][2] = i_vtx->v.ob[2];
+                }
+    
+                min_coord[0] = tri_vtx_coord[0][0];
+                min_coord[1] = tri_vtx_coord[0][1];
+                min_coord[2] = tri_vtx_coord[0][2];
+    
+                max_coord[0] = tri_vtx_coord[0][0];
+                max_coord[1] = tri_vtx_coord[0][1];
+                max_coord[2] = tri_vtx_coord[0][2];
+                for(i = 1; i < 3; i++){
+                    for(j = 0; j < 3; j++){
+                        if(tri_vtx_coord[i][j] < min_coord[j]){
+                            min_coord[j] = tri_vtx_coord[i][j];
+                        }
+                        if(max_coord[j] < tri_vtx_coord[i][j]){
+                            max_coord[j] = tri_vtx_coord[i][j];
+                        }
+                    }
+                }
+    
+                if ((sp1D4[0] < min_coord[0]) || (max_coord[0] < sp1E0[0])) continue;
+                if ((sp1D4[1] < min_coord[1]) || (max_coord[1] < sp1E0[1])) continue;
+                if ((sp1D4[2] < min_coord[2]) || (max_coord[2] < sp1E0[2])) continue;
+                
+                sp15C[0][0] = tri_vtx_coord[1][0] - tri_vtx_coord[0][0];\
+                sp15C[0][1] = tri_vtx_coord[1][1] - tri_vtx_coord[0][1];\
+                sp15C[0][2] = tri_vtx_coord[1][2] - tri_vtx_coord[0][2];
+    
+                sp15C[1][0] = tri_vtx_coord[2][0] - tri_vtx_coord[0][0];
+                sp15C[1][1] = tri_vtx_coord[2][1] - tri_vtx_coord[0][1];
+                sp15C[1][2] = tri_vtx_coord[2][2] - tri_vtx_coord[0][2];
+    
+                sp120[0] = (sp15C[0][1] * sp15C[1][2]) - (sp15C[0][2] * sp15C[1][1]);
+                sp120[1] = (sp15C[0][2] * sp15C[1][0]) - (sp15C[0][0] * sp15C[1][2]);
+                sp120[2] = (sp15C[0][0] * sp15C[1][1]) - (sp15C[0][1] * sp15C[1][0]);
+                ml_vec3f_normalize(sp120);
+                    
+                if ((sp120[0] == 0.0f) && (sp120[1] == 0.0f) && (sp120[2] == 0.0f)) 
+                    continue;
+    
+                sp138[0][0] = position[0] - tri_vtx_coord[0][0];
+                sp138[0][1] = position[1] - tri_vtx_coord[0][1];
+                sp138[0][2] = position[2] - tri_vtx_coord[0][2];
+    
+                temp_f12_2 = (sp138[0][0] * sp120[0]) + (sp138[0][1] * sp120[1]) + (sp138[0][2] * sp120[2]);
+                if((temp_f12_2 <= -(radius - 0.5)) || ((radius - 0.5) <= temp_f12_2))
+                    continue;
+    
+                temp_f2_3 = (sp120[0] * sp120[0]) + (sp120[1] * sp120[1]) + (sp120[2]*sp120[2]);
+                if (temp_f2_3 == 0.0f) 
+                    continue;
+    
+                temp_f0_6 = -temp_f12_2 / temp_f2_3;
+                spD8[0] = position[0] + (sp120[0] * temp_f0_6);
+                spD8[1] = position[1] + (sp120[1] * temp_f0_6);
+                spD8[2] = position[2] + (sp120[2] * temp_f0_6);
+    
+                var_a2 = (ABS_F(sp120[0]) > ABS_F(sp120[1])) ? 0 : 1;
+                var_a2 = (ABS_F(sp120[2]) > ABS_F(sp120[var_a2])) ? 2 : var_a2;
+                
+                sp108[0] = spD8[(var_a2 + 1) % 3] - tri_vtx_coord[0][(var_a2 + 1) % 3];
+                sp108[1] = sp15C[0][(var_a2 + 1) % 3];
+                sp108[2] = sp15C[1][(var_a2 + 1) % 3];
+    
+                spFC[0] = spD8[(var_a2 + 2) % 3] - tri_vtx_coord[0][(var_a2 + 2) % 3];
+                spFC[1] = sp15C[0][(var_a2 + 2) % 3];
+                spFC[2] = sp15C[1][(var_a2 + 2) % 3];
+                
+                temp_f14_2 = (sp108[1] * spFC[2]) - (spFC[1] * sp108[2]);
+                temp_f2_6 = ((sp108[0] * spFC[2]) - (spFC[0] * sp108[2]))/ temp_f14_2;
+                if ((0.0f <= temp_f2_6) && (temp_f2_6 <= 1)){
+                    temp_f0_8 = ((sp108[1] * spFC[0]) - (spFC[1] * sp108[0]))/temp_f14_2;
+                    if(1)
+                    if((0.0f <= temp_f0_8) && ((temp_f0_8 <= 1))){
+                        if((temp_f2_6 + temp_f0_8 <= 1)){
+                                    spD0 = i_tri;
+                                    spE4[0] = spE4[0] + sp120[0];
+                                    spE4[1] = spE4[1] + sp120[1];
+                                    spE4[2] = spE4[2] + sp120[2];
+                                continue;
+                        }
+                    }
+                }
+    
+                for(i = 0; i < 3; i++){
+                    sp138[i][0] = position[0] - tri_vtx_coord[i][0];
+                    sp138[i][1] = position[1] - tri_vtx_coord[i][1];
+                    sp138[i][2] = position[2] - tri_vtx_coord[i][2];
+                    if((sp138[i][0] * sp138[i][0]) + (sp138[i][1] * sp138[i][1]) + (sp138[i][2] * sp138[i][2]) < (radius *radius)){
+                        spD0 = i_tri;
+                        spE4[0] = spE4[0] + sp120[0];
+                        spE4[1] = spE4[1] + sp120[1];
+                        spE4[2] = spE4[2] + sp120[2];
+                        break;
+                    }
+                }
+                
+                if(i < 3)
+                    continue;
+                    
+                for(i = 0; i < 3; i++){
+                    sp15C[i][0] = tri_vtx_coord[(i + 1)%3][0] - tri_vtx_coord[i][0];\
+                    sp15C[i][1] = tri_vtx_coord[(i + 1)%3][1] - tri_vtx_coord[i][1];\
+                    sp15C[i][2] = tri_vtx_coord[(i + 1)%3][2] - tri_vtx_coord[i][2];
+                    temp_f2_7 = (sp15C[i][0] * sp15C[i][0]) + (sp15C[i][1] * sp15C[i][1]) + (sp15C[i][2] * sp15C[i][2]);
+                    ml_vec3f_normalize(sp15C[i]);
+                    temp_f0_10 = (sp15C[i][0] * sp138[i][0]) + (sp15C[i][1] * sp138[i][1]) + (sp15C[i][2] * sp138[i][2]);
+                    if ((temp_f0_10 >= 0.0f) && ((temp_f0_10 *temp_f0_10) <= temp_f2_7)){
+                        spD8[0] = sp138[i][0] - (sp15C[i][0] * temp_f0_10);
+                        spD8[1] = sp138[i][1] - (sp15C[i][1] * temp_f0_10);
+                        spD8[2] = sp138[i][2] - (sp15C[i][2] * temp_f0_10);
+                        if((spD8[0] * spD8[0]) + (spD8[1] * spD8[1]) + (spD8[2] * spD8[2]) < (radius * radius)) {
+                            spD0 = i_tri;
+                            spE4[0] = spE4[0] + sp120[0];
+                            spE4[1] = spE4[1] + sp120[1];
+                            spE4[2] = spE4[2] + sp120[2];
+                            break;
+                        }
+                    } 
+                }
+                
+            }
+        }
+    }
+    if (spD0 != NULL) {
+        ml_vec3f_normalize_copy(arg4, spE4);
+    }
+    func_802E6D20(spD0, vertexList);
+    return spD0;
+}
 
 s32 func_802E9DD8(BKCollisionList *collisionList, BKVertexList *vtxList, f32 arg2[3], f32 *arg3, f32 arg4, f32 arg5[3], f32 arg6, f32 arg7[3], s32 arg8) {
     f32 sp34[3];
