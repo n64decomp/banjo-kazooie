@@ -8,6 +8,7 @@ extern void func_80252C08(f32[3],f32[3], f32, f32[3]);
 extern void func_80252CC4(f32[3],s32, f32, s32);
 extern f32  func_802560D0(f32[3], f32[3], f32[3]);
 extern f32  func_802EC920(BKVertexList *);
+extern void func_8033D5D0(f32 arg0[3], f32 arg1[3], f32 margin, f32 min[3], f32 max[3]);
 
 #define ABS_F(s) (((s) >= 0.0f) ? (s) : -(s))
 
@@ -442,153 +443,109 @@ int func_802E805C(BKCollisionList *collision_list, BKVertexList *vtxList, f32 ar
     return sp34;
 }
 
-s32 func_802E81CC(BKCollisionList *collision_list, BKVertexList *vtx_list, f32 arg2[3], f32 arg3[3], f32[3], f32, s32, s32 *, s32 *);
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5FD90/func_802E81CC.s")
-// s32 func_802E81CC(BKCollisionList *collision_list, BKVertexList *vtx_list, f32 arg2[3], f32 arg3[3], f32 arg4[3], f32 arg5, s32 flags, s32 *arg7, s32 *arg8) {
-//     BKCollisionGeo **spD4;
-//     BKCollisionGeo **spD0;
-//     BKCollisionGeo **spCC;
-//     f32 spC0[3];
-//     f32 spAC[3];
-//     f32 spA0[3];
-//     //pad8C;
-//     f32 sp80[3];
-//     f32 sp74[3];
-//     Struct_core2_5FD90_0 *var_s2;
-//     ? *var_t0;
-//     ? *var_v0;
-//     f32 *temp_v0;
-//     f32 *var_a0;
-//     f32 *var_a1;
-//     f32 *var_v1_3;
-//     f32 temp_f0;
-//     f32 temp_f0_2;
-//     f32 temp_f0_3;
-//     f32 temp_f0_4;
-//     f32 temp_f0_5;
-//     f32 temp_f12;
-//     f32 temp_f12_2;
-//     f32 temp_f14;
-//     f32 temp_f16;
-//     f32 temp_f18;
-//     f32 temp_f20;
-//     f32 temp_f2;
-//     f32 temp_f2_2;
-//     f32 temp_f2_3;
-//     BKCollisionTri *temp_v0_2;
-//     s16 *var_a3;
-//     BKCollisionTri *i_tri;
-//     s16 *var_v1_2;
-//     s16 var_t8;
-//     Vtx *vertices;
-//     s32 var_a0_2;
-//     s32 var_a2;
-//     s32 var_t1;
-//     s32 var_v1;
-//     u32 temp_t9;
-//     BKCollisionTri *temp_s7;
-//     BKCollisionGeo *temp_v1;
-//     void *var_t0_2;
-//     void *var_v0_2;
-//     s32 i;
+s32 func_802E81CC(BKCollisionList *collisionList, BKVertexList *vertexList, f32 arg2[3], f32 arg3[3], f32 arg4[3], f32 arg5, s32 flagFilter, s32 *arg7, s32 *arg8) {
+    BKCollisionGeo **spD4;
+    BKCollisionGeo **spD0;
+    BKCollisionGeo **spCC;
+    f32 spC0[3];
+    BKCollisionTri *start_tri;
+    BKCollisionTri *end_tri;
+    f32 spAC[3];
+    f32 spA0[3];
+    BKCollisionTri *i_tri;
+    Vtx *vertex_pool;
+    Vtx *i_vtx;
+    s32 i;
+    s32 j;
+    f32 sp80[3];
+    f32 sp74[3];
+    Struct_core2_5FD90_0 *var_s2;
+    f32 temp_f0;
 
-//     func_8033D5D0(arg2, arg3, arg5, &spAC, &spA0);
-//     temp_f0 = func_802EC920(vtx_list);
-//     for(var_v1 = 0; var_v1 < 3; var_v1++){
-//         if ((spA0[var_v1] <= -temp_f0) || (temp_f0 <= spAC[var_v1])) {
-//             return 0;
-//         }
-//     }
-//     func_802E6DEC(collision_list, spAC, spA0, &spD4, &spCC);
-//     vertices = vtxList_getVertices(vtx_list);
-//     var_s2 = &D_8037EAD0;
-//     spD0 = spD4;
-//     if (spD4 < spCC) {
-//         do{
-//             temp_v1 = *spD0;
-//             temp_v0_2 = (temp_v1->start_tri_index * sizeof(BKCollisionTri)) + (s32)collision_list + (collision_list->unk10 * 4) + sizeof(BKCollisionList);
-//             temp_s7 = temp_v0_2 + temp_v1->tri_count;
-//             for(i_tri = temp_v0_2; i_tri < temp_s7; i_tri++){
-//                 if ((i_tri->flags & flags) == 0) {
-//                     for(var_a2 = 0; var_a2 < 3; var_a2++){
-//                         for(var_a0_2 = 0; var_a0_2 < 3; var_a0_2++)
-//                                 var_s2->unk24.unk4[var_a2][var_a0_2] = (f32) vertices[i_tri->unk0[var_a2]].v.ob[var_a0_2];
-//                         }
-//                     }
-//                     var_t1 = 1;
-//                     var_t0_2 = var_s2 + 0xC;
-//                     sp80[0] = var_s2->unk24.unk4[0][0];
-//                     sp80[1] = var_s2->unk24.unk4[0][1];
-//                     sp80[2] = var_s2->unk24.unk4[0][2];
-//                     sp74[0] = var_s2->unk24.unk4[0][0];
-//                     sp74[1] = var_s2->unk24.unk4[0][1];
-//                     sp74[2] = var_s2->unk24.unk4[0][2];
-//                     for(var_t1 = 0; var_t1 < 3; var_t1++){
-//                         var_a1 = &sp80;
-//                         var_v1_3 = &sp74;
-//                         for(i = 0; i < 3; i++){
-//                             if ( var_s2->unk24.unk4[i][0] < sp80[i]) {
-//                                 sp80[i] =  var_s2->unk24.unk4[i][0];
-//                             }
 
-//                             if (sp74[i] < var_s2->unk24.unk4[i][1]) {
-//                                 sp80[i] = var_s2->unk24.unk4[i][1];
-//                             }
-//                         }
-//                     }
-
-//                     if ( !((spA0[0] < sp80[0]) || (sp74[0] < spAC[0]))
-//                          && !((spA0[1] < sp80[1]) || (sp74[1] < spAC[1]))
-//                          && !((spA0[2] < sp80[2]) || (sp74[2] < spAC[2]))
-//                     ) {
-//                         var_s2->unk0[0] = var_s2->unk24.unk4[1][0] - var_s2->unk24.unk4[0][0];
-//                         var_s2->unk0[1] = var_s2->unk24.unk4[1][1] - var_s2->unk24.unk4[0][1];
-//                         var_s2->unk0[2] = var_s2->unk24.unk4[1][2] - var_s2->unk24.unk4[0][2];
-//                         var_s2->unkC[0] = var_s2->unk24.unk4[2][0] - var_s2->unk24.unk4[0][0];
-//                         var_s2->unkC[1] = var_s2->unk24.unk4[2][1] - var_s2->unk24.unk4[0][1];
-//                         var_s2->unkC[2] = var_s2->unk24.unk4[2][2] - var_s2->unk24.unk4[0][2];
-//                         var_s2->unk18[0] = (var_s2->unk0[1] * var_s2->unkC[2]) - (var_s2->unkC[1] *var_s2->unk0[2]);
-//                         var_s2->unk18[1] = (var_s2->unk0[2] * var_s2->unkC[0]) - (var_s2->unkC[2] * var_s2->unk0[0]);
-//                         var_s2->unk18[2] = (var_s2->unk0[0] * var_s2->unkC[1]) - (var_s2->unkC[0] * var_s2->unk0[1]);
-//                         ml_vec3f_normalize( var_s2->unk18);
-//                         if (i_tri->flags & 0x10000) {
-//                             spC0[0] = arg2[0] - var_s2->unk24.unk4[0];
-//                             spC0[1] = arg2[1] - var_s2->unk24.unk4[1];
-//                             spC0[2] = arg2[2] - var_s2->unk24.unk4[2];
-//                             if (((spC0[0]*var_s2->unk18[0]) + (spC0[0]*var_s2->unk18[0]) + (spC0[0]*var_s2->unk18[0])) < 0.0f) {
-//                                 var_s2->unk18[0] = -var_s2->unk18[0];
-//                                 var_s2->unk18[1] = -var_s2->unk18[1];
-//                                 var_s2->unk18[2] = -var_s2->unk18[2];
-//                             }
-//                             goto block_31;
-//                         }
-//                         if (!(((var_s2->unk18[0]*arg4[0]) + (var_s2->unk18[1]*arg4[1]) + (var_s2->unk18[2]*arg4[2])) > 0.0f)) {
-//                         block_31:
-//                         var_s2++;
-//                             var_s2->unk24.unk0 = i_tri;
-//                             if ((var_s2 - D_8037EAD0) < 0x65) {
-//                                 goto block_32;
-//                             }
-//                         } else {
-//                             goto block_32;
-//                         }
-//                     } else {
-//                         goto block_32;
-//                     }
-//                 } else {
-//                     block_32:
-//                     i_tri++;
-//                     if ((u32) i_tri < (u32) temp_s7) {
-//                         goto loop_8;
-//                     }
-//                 }
-//             }
-//         }while(((var_s2 - D_8037EAD0) < 0x65) && (spD0 += 4 < spCC));
-//     }
-//     *arg7 = (s32) D_8037EAD0;
-//     *arg8 = (s32) var_s2;
-//     return var_s2 - D_8037EAD0 > 0;
-// }
+    func_8033D5D0(arg2, arg3, arg5, spAC, spA0);
+    temp_f0 = func_802EC920(vertexList);
+    for(i = 0; i < 3; i++){
+        if ((spA0[i] <= -temp_f0) || (temp_f0 <= spAC[i])) {
+            return 0;
+        }
+    }
+    func_802E6DEC(collisionList, spAC, spA0, &spD4, &spCC);
+    vertex_pool = vtxList_getVertices(vertexList);
+    var_s2 = D_8037EAD0;
+    for(spD0 = spD4; spD0 < spCC; spD0++){
+        start_tri = (BKCollisionTri *)((BKCollisionGeo *)(collisionList + 1) + collisionList->unk10) + (*spD0)->start_tri_index;
+        end_tri = start_tri + (*spD0)->tri_count;
+        for(i_tri = start_tri; i_tri < end_tri; i_tri++){
+            if (!(i_tri->flags & flagFilter)) {
+                for(i = 0; i < 3; i++){
+                    i_vtx = vertex_pool + i_tri->unk0[i];
+                    for(j = 0; j < 3; j++){
+                        var_s2->unk28[i][j] = i_vtx->v.ob[j];
+                    }
+                }
+                sp80[0] = var_s2->unk28[0][0];\
+                sp80[1] = var_s2->unk28[0][1];\
+                sp80[2] = var_s2->unk28[0][2];
+                    
+                sp74[0] = var_s2->unk28[0][0];\
+                sp74[1] = var_s2->unk28[0][1];\
+                sp74[2] = var_s2->unk28[0][2];
+                for(i = 1; i < 3; i++){
+                    for(j = 0; j < 3; j++){
+                        if (var_s2->unk28[i][j] < sp80[j]) {
+                            sp80[j] = var_s2->unk28[i][j];
+                        }
+    
+                        if (sp74[j] < var_s2->unk28[i][j]) {
+                            sp74[j] = var_s2->unk28[i][j];
+                        }
+                    }
+                }
+    
+                if ((spA0[0] < sp80[0]) || (sp74[0] < spAC[0])) continue;
+                if ((spA0[1] < sp80[1]) || (sp74[1] < spAC[1])) continue;
+                if ((spA0[2] < sp80[2]) || (sp74[2] < spAC[2])) continue;
+    
+                var_s2->unk0[0] = var_s2->unk28[1][0] - var_s2->unk28[0][0];
+                var_s2->unk0[1] = var_s2->unk28[1][1] - var_s2->unk28[0][1];
+                var_s2->unk0[2] = var_s2->unk28[1][2] - var_s2->unk28[0][2];
+                    
+                var_s2->unkC[0] = var_s2->unk28[2][0] - var_s2->unk28[0][0];
+                var_s2->unkC[1] = var_s2->unk28[2][1] - var_s2->unk28[0][1];
+                var_s2->unkC[2] = var_s2->unk28[2][2] - var_s2->unk28[0][2];
+                    
+                var_s2->unk18[0] = (var_s2->unk0[1] * var_s2->unkC[2]) - (var_s2->unk0[2] * var_s2->unkC[1]);
+                var_s2->unk18[1] = (var_s2->unk0[2] * var_s2->unkC[0]) - (var_s2->unk0[0] * var_s2->unkC[2]);
+                var_s2->unk18[2] = (var_s2->unk0[0] * var_s2->unkC[1]) - (var_s2->unk0[1] * var_s2->unkC[0]);
+                ml_vec3f_normalize( var_s2->unk18);
+                if (i_tri->flags & 0x10000) {
+                    spC0[0] = arg2[0] - var_s2->unk28[0][0];
+                    spC0[1] = arg2[1] - var_s2->unk28[0][1];
+                    spC0[2] = arg2[2] - var_s2->unk28[0][2];
+                    if (((spC0[0]*var_s2->unk18[0]) + (spC0[1]*var_s2->unk18[1]) + (spC0[2]*var_s2->unk18[2])) < 0.0f) {
+                        var_s2->unk18[0] = -var_s2->unk18[0];\
+                        var_s2->unk18[1] = -var_s2->unk18[1];\
+                        var_s2->unk18[2] = -var_s2->unk18[2];
+                    }
+                }
+                else{
+                    if (((var_s2->unk18[0]*arg4[0]) + (var_s2->unk18[1]*arg4[1]) + (var_s2->unk18[2]*arg4[2])) > 0.0f)
+                        continue;
+                }
+                var_s2->unk24 = i_tri;
+                var_s2++;
+                if ((var_s2 - D_8037EAD0) > 100) 
+                    break;       
+            }
+        }
+        if ((var_s2 - D_8037EAD0) > 100) 
+            break; 
+    }
+    *arg7 = (s32) D_8037EAD0;
+    *arg8 = (s32) var_s2;
+    return var_s2 - D_8037EAD0 > 0;
+}
 
 Struct_core2_5FD90_0 *func_802E879C(Struct_core2_5FD90_0 *arg0, Struct_core2_5FD90_0 *arg1, f32 arg2[3], f32 arg3, f32 arg4[3]) {
     s32 i;

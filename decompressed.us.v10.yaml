@@ -708,7 +708,7 @@ segments:
   - [0xFB3520, c, code_5DBC0] #DONE
   - [0xFB5460, c, code_5FB00] #DONE
   - [0xFB56E0, c, code_5FD80] #DONE
-  - [0xFB56F0, c, code_5FD90]
+  - [0xFB56F0, c, code_5FD90] #DONE
   - [0xFB8930, c, code_62FD0] #DONE
   - [0xFB8A30, c, code_630D0] #DONE
   - [0xFB8D70, c, code_63410] #DONE
