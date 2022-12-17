@@ -448,18 +448,18 @@ f32 func_80309B24(f32 arg0[3]){
     return func_80308FDC(arg0, 0xf800ff0f);
 }
 
-BKCollisionTri *func_80309B48(f32 arg0[3], f32 arg1[3], f32 arg2[3], s32 arg3) {
+BKCollisionTri *func_80309B48(f32 arg0[3], f32 arg1[3], f32 arg2[3], s32 flagFilter) {
     BKCollisionTri *sp2C;
     BKCollisionTri *temp_v0;
 
     mapModel.unk20 = 0;
     if (mapModel.collision_xlu != NULL) {
-        if ((arg3 & 0x80001F00) == 0x80001F00) {
+        if ((flagFilter & 0x80001F00) == 0x80001F00) {
             sp2C = NULL;
         } else {
-            sp2C = func_802E76B0(mapModel.collision_opa, func_8033A148(mapModel.model_bin_opa), arg0, arg1, arg2, arg3);
+            sp2C = func_802E76B0(mapModel.collision_opa, func_8033A148(mapModel.model_bin_opa), arg0, arg1, arg2, flagFilter);
         }
-        temp_v0 = func_802E76B0(mapModel.collision_xlu, func_8033A148(mapModel.model_bin_xlu), arg0, arg1, arg2, arg3);
+        temp_v0 = func_802E76B0(mapModel.collision_xlu, func_8033A148(mapModel.model_bin_xlu), arg0, arg1, arg2, flagFilter);
         if (temp_v0 != NULL) {
             mapModel.unk20 = (s32) mapModel.model_bin_xlu;
             return temp_v0;
@@ -470,7 +470,7 @@ BKCollisionTri *func_80309B48(f32 arg0[3], f32 arg1[3], f32 arg2[3], s32 arg3) {
         return sp2C;
     }
     else{
-        sp2C = func_802E76B0(mapModel.collision_opa, func_8033A148(mapModel.model_bin_opa), arg0, arg1, arg2, arg3);
+        sp2C = func_802E76B0(mapModel.collision_opa, func_8033A148(mapModel.model_bin_opa), arg0, arg1, arg2, flagFilter);
         if (sp2C != NULL) {
             mapModel.unk20 = (s32) mapModel.model_bin_opa;
         }
@@ -478,11 +478,11 @@ BKCollisionTri *func_80309B48(f32 arg0[3], f32 arg1[3], f32 arg2[3], s32 arg3) {
     return sp2C;
 }
 
-BKCollisionTri *func_80309C74(f32 arg0[3], f32 arg1[3], f32 arg2[3], s32 arg3, BKModelBin **arg4) {
+BKCollisionTri *func_80309C74(f32 arg0[3], f32 arg1[3], f32 arg2[3], s32 flagFilter, BKModelBin **arg4) {
     BKCollisionTri *sp2C;
     BKCollisionTri *phi_v0;
 
-    sp2C = func_802E76B0(mapModel.collision_opa, func_8033A148(mapModel.model_bin_opa), arg0, arg1, arg2, arg3);
+    sp2C = func_802E76B0(mapModel.collision_opa, func_8033A148(mapModel.model_bin_opa), arg0, arg1, arg2, flagFilter);
     if (sp2C != NULL) {
         *arg4 = mapModel.model_bin_opa;
     }
@@ -490,7 +490,7 @@ BKCollisionTri *func_80309C74(f32 arg0[3], f32 arg1[3], f32 arg2[3], s32 arg3, B
         return sp2C;
     }
 
-    phi_v0 = func_802E76B0(mapModel.collision_xlu, func_8033A148(mapModel.model_bin_xlu), arg0, arg1, arg2, arg3);
+    phi_v0 = func_802E76B0(mapModel.collision_xlu, func_8033A148(mapModel.model_bin_xlu), arg0, arg1, arg2, flagFilter);
     if (phi_v0 != 0) {
         *arg4 = mapModel.model_bin_xlu;
     }
