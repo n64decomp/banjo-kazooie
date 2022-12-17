@@ -951,9 +951,6 @@ void func_8032F194(ActorMarker *marker, s32 position[3], Cube *cube) {
 }
 #endif
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_8032F21C.s")
-#else
 void func_8032F21C(Cube *cube, s32 position[3], ActorMarker *marker, bool arg3) {
     ActorProp *sp1C;
 
@@ -967,7 +964,7 @@ void func_8032F21C(Cube *cube, s32 position[3], ActorMarker *marker, bool arg3) 
     sp1C->unk8_15 = 0;
     sp1C->unk8_5 = FALSE;
 
-    sp1C->unk8_10 = (func_802E4A08(position)) ? 0xF : (u8)(randf() * 32);
+    sp1C->unk8_10 = (func_802E4A08()) ? 0xF : (u8)(randf() * 32);
     sp1C->unk8_3 = FALSE;
     sp1C->unk8_2 = FALSE;
     sp1C->unk8_4 = TRUE;
@@ -977,7 +974,6 @@ void func_8032F21C(Cube *cube, s32 position[3], ActorMarker *marker, bool arg3) 
         func_80305CD8(func_803058C0((f32)position[1]), 1);
     }
 }
-#endif
 
 void func_8032F3D4(s32 arg0[3], ActorMarker *marker, s32 arg2){
     func_8032F21C((marker->unk40_23)? func_8030364C() : cube_atPosition_s32(arg0), arg0, marker, arg2);
