@@ -124,7 +124,17 @@ f32 *func_80251788(f32 arg0, f32 arg1, f32 arg2){
     *(var_v0++) = arg0; *(var_v0++) = arg1; *(var_v0++) = arg2; *(var_v0++) = 1.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_802517F8.s")
+void func_802517F8(f32* arg0) {
+    s32 var_v0, j;
+
+    D_80282FD0++;
+    for(var_v0 = 0; var_v0 < 4; var_v0++){
+        for(j = 0; j < 4; j++){
+            reinterpret_cast(f32, D_80282FD0->m[var_v0][j]) = *arg0++;
+        }
+    }
+}
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_80251878.s")
 
