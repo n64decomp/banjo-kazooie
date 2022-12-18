@@ -173,7 +173,7 @@ segments:
   - [0xF2E880, c, code_15630] #DONE
   - [0xF2E9C0, c, code_15770]
   - [0xF2ED80, c, code_15B30] #DONE
-  - [0xF2FCA0, c, memory]
+  - [0xF2FCA0, c, memory]     #DONE
   - [0xF31360, c, code_18110] #DONE
   - [0xF31460, c, code_18210] #DONE
   - [0xF31560, c, code_18310] #DONE

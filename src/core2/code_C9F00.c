@@ -138,19 +138,19 @@ s32 func_80350F7C(ActorMarker *marker, s32 arg1, f32 arg2[3], s32 arg3, s32 arg4
     return sp4C;
 }
 
-s32 func_803510B4(ActorMarker *marker, s32 arg1, f32 arg2[3], f32 arg3, s32 arg4, s32 arg5, s32 arg6) {
+s32 func_803510B4(ActorMarker *marker, s32 arg1, f32 arg2[3], f32 arg3, s32 arg4, s32 arg5, s32 flagFliter) {
     s32 pad44;
     Struct68s *sp40;
-    BKVertexList *sp3C;
-    BKCollisionList *sp38;
+    BKVertexList *vertex_list;
+    BKCollisionList *collision_list;
 
     sp40 = &D_803861B0.unk4[marker->actrArrayIdx];
     if ((sp40->unkC == NULL) || (sp40->unk30 & 1)) {
         return 0;
     }
-    sp38 = func_8033A084(sp40->unkC);
-    sp3C = func_8033A148(sp40->unkC);
-    return func_802E9118(sp38, sp3C, sp40->unk14, sp40->unk20, sp40->unk2C, arg1, arg2, arg3, arg4, arg5, arg6);
+    collision_list = func_8033A084(sp40->unkC);
+    vertex_list = func_8033A148(sp40->unkC);
+    return func_802E9118(collision_list, vertex_list, sp40->unk14, sp40->unk20, sp40->unk2C, arg1, arg2, arg3, arg4, arg5, flagFliter);
 }
 
 s32 func_80351198(ActorMarker *marker, s32 arg1, f32 arg2, s32 arg3, s32 arg4) {

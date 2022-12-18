@@ -496,28 +496,29 @@ void func_80255198(void){
     }
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/memory/func_80255200.s")
-#else
 //resizes and fragments a block;
 void func_80255200(HeapHeader *block, s32 size){
-    u32 chnk_size;
     u32 remaining_bytes;
     EmptyHeapBlock *a0;
+    u32 tmp, tmp2, tmp3;
 
-    chnk_size = (u32)block->next - (u32)block;
-    remaining_bytes = chnk_size - 0x20;
-    block->unusedBytes_C_31 = chnk_size - sizeof(HeapHeader) - size;
+    block->unusedBytes_C_31 = chunkSize(block) - size;
+    tmp = ((u32) (block)->next) - ((u32) (block));
     if(size > 0)
-        remaining_bytes = chunkSize(block) - __heap_align(size);
-    else{
-        remaining_bytes = remaining_bytes;
+    {
+        // tmp2 = chunkSize(block) - sizeof(HeapHeader);
+        tmp2 = __heap_align(size);
+        remaining_bytes = chunkSize(block) - tmp2;
     }
-
+    else{
+        remaining_bytes =  tmp - sizeof(EmptyHeapBlock);
+    }
     
-    if(remaining_bytes >= 0x20){
-        heap_occupiedBytes = heap_occupiedBytes - remaining_bytes;
-        a0 = (s32)block + (chnk_size - remaining_bytes);
+    if(remaining_bytes >= sizeof(EmptyHeapBlock)){
+        tmp = (chunkSize(block) + sizeof(HeapHeader)) - remaining_bytes;
+        if(tmp);
+        a0 = (s32)block + tmp;
+        heap_occupiedBytes -= remaining_bytes;
 
         a0->hdr.prev = block;
         a0->hdr.next = block->next;
@@ -527,7 +528,6 @@ void func_80255200(HeapHeader *block, s32 size){
         func_8025456C(a0);
     }
 }
-#endif
 
 void func_80255300(HeapHeader *block, s32 size){
     func_80255200(block, size);
