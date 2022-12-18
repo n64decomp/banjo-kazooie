@@ -135,8 +135,22 @@ void func_802517F8(f32* arg0) {
     }
 }
 
+void func_80251878(f32* arg0) {
+    s32 i;
+    s32 j;
+    Mtx* var_a2;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_80251878.s")
+    var_a2 = D_80282FD0 + 1;
+    for(i  = 0; i < 4; i++, arg0 += 4){
+        for(j = 0; j < 4; j++){
+            reinterpret_cast(f32, var_a2->m[i][j]) = arg0[0] * reinterpret_cast(f32, D_80282FD0->m[0][j])
+                                                   + arg0[1] * reinterpret_cast(f32, D_80282FD0->m[1][j])
+                                                   + arg0[2] * reinterpret_cast(f32, D_80282FD0->m[2][j])
+                                                   + arg0[3] * reinterpret_cast(f32, D_80282FD0->m[3][j]);
+        }
+    }
+    D_80282FD0 = var_a2;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_802519C8.s")
 
