@@ -165,41 +165,36 @@ void model_free(void *arg0){
     free(arg0);
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B8080/func_8033F5F8.s")
-#else
-BKModel *func_8033F5F8(BKMeshList *arg0, BKVertexList *arg1) {
-    BKModel *sp40;
+BKModel *func_8033F5F8(BKMeshList *meshList, BKVertexList *vertexList) {
     s32 temp_s1;
-    s32 temp_s6;
+    BKModel *sp40;
     void *temp_v0;
     BKMesh *phi_s3;
     BKMesh *phi_s5;
-    s16 *phi_s2;
     BKVtxRef *phi_s0;
+    Vtx *new_var;
     s32 phi_s1;
     s32 phi_s6;
 
-    sp40 = (BKModel *)malloc((meshList_getVtxCount(arg0) * sizeof(BKVtxRef)) + (arg0->meshCount_0 * sizeof(BKMesh)) + sizeof(BKModel));
-    sp40->meshList_0 = arg0;
-    sp40->vtxList_4 = arg1;
-    phi_s3 = (BKMesh *)(arg0 + 1);
+    sp40 = (BKModel *)malloc((meshList_getVtxCount(meshList) * sizeof(BKVtxRef)) + (meshList->meshCount_0 * sizeof(BKMesh)) + sizeof(BKModel));
+    sp40->meshList_0 = meshList;
+    sp40->vtxList_4 = vertexList;
+    phi_s3 = (BKMesh *)(meshList + 1); 
     phi_s5 = (BKMesh *)(sp40 + 1);
-    for(phi_s6 = 0; phi_s6 < arg0->meshCount_0; phi_s6++){
+    for(phi_s6 = 0; phi_s6 < meshList->meshCount_0; phi_s6++){
             phi_s5->uid_0 = (s16) phi_s3->uid_0;
             phi_s5->vtxCount_2 = (s16) phi_s3->vtxCount_2;
-            phi_s2 = (s16*)(phi_s3 + 1);
-            phi_s0 = (BKVtxRef *)(phi_s5 + 1);
+            phi_s0 = ((BKVtxRef *)(phi_s5 + 1));
             for(phi_s1 = 0; phi_s1 < phi_s3->vtxCount_2; phi_s1++){
-                phi_s0[phi_s1].unk10 = phi_s2[phi_s1];
-                memcpy(&phi_s0->v, (Vtx *)(arg1 + 1) + phi_s0->unk10, sizeof(Vtx));
+                phi_s0->unk10 = ((s16 *)(phi_s3 + 1))[phi_s1];
+                memcpy(phi_s0, ((Vtx *)(vertexList + 1)) + phi_s0->unk10, sizeof(Vtx));
+                phi_s0++;
             }
-            phi_s3 = (BKMesh *)((Vtx *)(phi_s3 + 1) + phi_s3->vtxCount_2);
-            phi_s3 = (BKMesh *)((BKVtxRef *)(phi_s5 + 1) + phi_s5->vtxCount_2);
+            phi_s3 = (BKMesh *)((s16 *)(phi_s3 + 1) + phi_s3->vtxCount_2);
+            phi_s5 = (BKMesh *)((BKVtxRef *)(phi_s5 + 1) + phi_s5->vtxCount_2);
     }
     return sp40;
 }
-#endif
 
 void func_8033F738(ActorMarker *arg0) {
     BKModelBin *sp1C;
