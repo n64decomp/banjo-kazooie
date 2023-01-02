@@ -161,7 +161,7 @@ segments:
   - [0xF23E00, c, code_ABB0] #DONE
   - [0xF260B0, c, done/code_CE60] #DONE
   - [0xF275B0, c, code_E360]    #DONE
-  - [0xF27D40, c, code_EAF0]
+  - [0xF27D40, c, code_EAF0]  #DONE
   - [0xF29C50, c,code_10A00]
   - [0xF2AD10, c, code_11AC0] #DONE
   - [0xF2C160, c, code_12F10] #DONE
