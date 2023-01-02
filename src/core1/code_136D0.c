@@ -141,11 +141,9 @@ int is_overlay_loaded(int overlay_id){
     return D_80282800 == overlay_id;
 }
 
-//load_overlay
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_136D0/load_overlay.s")
-#else
-bool load_overlay(enum overlay_e overlay_id){
+bool load_overlay(enum overlay_e overlay_id){ 
+    enum overlay_e rom_addr;
+    
     if(overlay_id == 0)
         return FALSE;
 
@@ -153,17 +151,23 @@ bool load_overlay(enum overlay_e overlay_id){
         return FALSE;
 
     D_80282800 = overlay_id;
+    rom_addr = D_802762D0 + overlay_id;
+    
     func_80253050(
-        overlay_id, 
-        D_802762D0[overlay_id].ram_start,  D_802762D0[overlay_id].ram_end,  
-        D_802762D0[overlay_id].unkC,       D_802762D0[overlay_id].unk10,     
-        D_802762D0[overlay_id].code_start, D_802762D0[overlay_id].code_end,
-        D_802762D0[overlay_id].data_start, D_802762D0[overlay_id].data_end,
-        D_802762D0[overlay_id].bss_start,  D_802762D0[overlay_id].bss_end
+        overlay_id,
+        ((struct2As*)rom_addr)->ram_start,
+        ((struct2As*)rom_addr)->ram_end,
+        ((struct2As*)rom_addr)->unkC,
+        ((struct2As*)rom_addr)->unk10,
+        ((struct2As*)rom_addr)->code_start,
+        ((struct2As*)rom_addr)->code_end,
+        ((struct2As*)rom_addr)->data_start,
+        ((struct2As*)rom_addr)->data_end,
+        ((struct2As*)rom_addr)->bss_start,
+        ((struct2As*)rom_addr)->bss_end 
     );
     return TRUE;
 }
-#endif
 
 //clear_loaded_overlay_id
 s32 func_802512FC(void){
