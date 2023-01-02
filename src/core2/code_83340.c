@@ -22,8 +22,6 @@ BKModelBin *func_8030A428(s32 arg0);
 
 /* .data */
 s32 D_8036B800 = 0;
-s32 D_8036B804 = 0;
-s32 D_8036B808 = 0;
 
 /* .bss */
 struct_7AF80_0 *D_80382390; //prop models ???
@@ -152,42 +150,28 @@ void func_8030A78C(void){//init
     }
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_83340/func_8030A850.s")
-#else
 void func_8030A850(s32 arg0) {
-    struct_7AF80_0 *sp3C;
-    struct_7AF80_1 *temp_a0_2;
-    s32 sp34;
-    s32 sp30;
-    s32 temp_a0;
+    static s32 D_8036B804 = 0;
+    static s32 D_8036B808 = 0;
     s32 temp_s3;
     s32 var_s0;
-    s32 var_s0_2;
-    s32 var_v1;
-    s32 var_v1_2;
-    s32 var_v1_3;
-    s32 var_v1_4;
-    void *temp_v1;
+    struct_7AF80_0 *sp3C;
+    struct_7AF80_1 *temp_a0_2;
 
-    sp34 = func_8023DB5C();
-    sp30 = func_80255B08(arg0);
-    temp_s3 = sp34 - sp30;
-    for(var_s0 = 0; (D_80382390 != 0) && (var_s0 < ((arg0 == 1) ? 0x28 : 0x2A1)); var_s0++){
-        sp3C = &D_80382390[D_8036B804];
+    temp_s3 = func_8023DB5C() - func_80255B08(arg0);
+    for(var_s0 = 0; (D_80382390 != NULL) && (var_s0 < ((arg0 == 1) ? 0x28 : 0x2A1)); var_s0++, D_8036B804 = (D_8036B804 >= 0x2A1)? 0: D_8036B804 + 1){
+        sp3C = (struct_7AF80_0*)((u32)D_80382390 + sizeof(struct_7AF80_0)*D_8036B804);
         if ((sp3C->unk0 != 0) && ((sp3C->unk4 < temp_s3) || (arg0 == 3))){
             assetcache_release(sp3C->unk0);
             sp3C->unk0 = 0;
             if( (arg0 != 1) && (func_80254BC4(1))){
                 return;
             }
-            D_8036B804++;
-            D_8036B804 %= 0x2A1;
         }
     }
 
-    for(var_s0 = 0; (D_80382394 != 0) && (var_s0 < ((arg0 == 1) ? 0x28 : 0x167)); var_s0++){
-        temp_a0_2 = &D_80382394[D_8036B808];
+    for(var_s0 = 0; (D_80382394 != NULL) && (var_s0 < ((arg0 == 1) ? 0x28 : 0x167)); var_s0++, D_8036B808 = (D_8036B808 >= 0x167)? 0: D_8036B808 + 1){
+        temp_a0_2 = (struct_7AF80_1*)((u32)D_80382394 + sizeof(struct_7AF80_1)*D_8036B808);
         if ((temp_a0_2->unk0 != 0) && ((temp_a0_2->unk8 < temp_s3) || (arg0 == 3))){
             func_8033B338(&temp_a0_2->unk0, &temp_a0_2->unk4);
             if( (arg0 != 1) && (func_80254BC4(1))){
@@ -196,7 +180,6 @@ void func_8030A850(s32 arg0) {
         }
     }
 }
-#endif
 
 void func_8030AA6C(void) {
     BKModelBin *temp_a0;
