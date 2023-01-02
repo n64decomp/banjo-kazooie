@@ -22,15 +22,7 @@ int D_80280F90;
 f32 D_80280F98[4][4];
 Mtx D_80280FD8;
 s32 D_80281018; //viewport indx
-u8 pad_8028101C[0x8];
-f32 D_80281028[3];
-f32 D_80281038[3];
-f32 D_80281048[3];
-f32 D_80281058[3];
-f32 D_80281068[3];
-f32 D_80281078[3];
-f32 D_80281088[3];
-f32 D_80281098[4][4];
+
 
 
 
@@ -377,7 +369,43 @@ f32 func_8024DDD8(s32 arg0, f32 arg1){
     return mlNormalizeAngle((D_80280EC0[1] + arg1) + 90.0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_EAF0/func_8024DE1C.s")
+f32 func_8024DE1C(f32 arg0, f32 arg1, f32 arg2[3], f32 arg3[3]) {
+    f32 sp24;
+    static f32 D_8028101C;
+    static f32 D_80281020;
+    static f32 D_80281024;
+
+    if ((D_80275D20 != D_8028101C) || (D_80275D28 != D_80281020)) {
+        sp24 = (D_80275D20 * M_PI) / 360.0;
+        D_80281024 = (500.0 + D_80275D28) / (((framebuffer_height / (f32)2) / sinf(sp24)) * cosf(sp24));
+        D_8028101C = D_80275D20;\
+        D_80281020 = D_80275D28;
+    }
+    arg0 = arg0 - (framebuffer_width / (f32)2);
+    arg1 = (framebuffer_height / (f32)2) - arg1;
+    arg3[0] = D_80280EC0[0];
+    arg3[1] = D_80280EC0[1];
+    arg3[2] = D_80280EC0[2];
+    arg2[0] = arg0 * D_80281024;
+    arg2[1] = arg1 * D_80281024;
+    arg2[2] = (-500.0 - D_80275D28);
+    ml_vec3f_pitch_rotate_copy(arg2, arg2, arg3[0]);
+    ml_vec3f_yaw_rotate_copy(arg2, arg2, arg3[1]);
+    
+    arg2[0] += D_80280EB0[0];
+    arg2[1] += D_80280EB0[1];
+    arg2[2] += D_80280EB0[2];
+    return D_80281024;
+}
+
+f32 D_80281028[3];
+f32 D_80281038[3];
+f32 D_80281048[3];
+f32 D_80281058[3];
+f32 D_80281068[3];
+f32 D_80281078[3];
+f32 D_80281088[3];
+f32 D_80281098[4][4];
 
 bool func_8024E030(f32 arg0[3], f32 *arg1)
 {

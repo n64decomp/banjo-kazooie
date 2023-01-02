@@ -132,7 +132,6 @@ void func_8030A6B0(void){//clear
     D_80382394 = NULL;
 }
 
-
 void func_8030A78C(void){//init
     struct_7AF80_0* iPtr;
     struct_7AF80_1* jPtr;
@@ -201,7 +200,6 @@ void func_8030AA6C(void) {
     }
 }
 
-
 void func_8030ABA4(void) {
     s32 temp_lo;
     s32 temp_t7;
@@ -227,4 +225,3 @@ void func_8030ABA4(void) {
         }
     }
 }
-
