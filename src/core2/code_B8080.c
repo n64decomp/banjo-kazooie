@@ -104,65 +104,61 @@ s32 func_8033F3C0(BKModel *model, f32 position[3]){
 #ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B8080/func_8033F3E8.s")
 #else
-s32 func_8033F3E8(BKModel *arg0, f32 arg1[3], s32 min_id, s32 max_id) {
+s32 func_8033F3E8(BKModel *model, f32 position[3], s32 min_id, s32 max_id) {
     int i;
     int j;
     int k;
-    s16 sp64[3];
-    s16 sp5C[3];
-    s16 sp54[3];
-    s16 temp_v1_3;
-    Vtx *temp_v0;
-    BKMesh *phi_t3;
-    Vtx *phi_a1;
+    s16 min[3];
+    s16 max[3];
+    s16 position_s16[3];
+    s32 temp_v1_3;
+    Vtx *vertex_pool;
+    BKMesh *current_mesh;
+    Vtx *current_vertex;
     s32 mesh_cnt;
-    s32 vtx_cnt;
-    s16 *tmp;
-    s16 t8;
+    s16 *vertex_index_list;
 
-    temp_v0 = vtxList_getVertices(arg0->vtxList_4);
-    sp54[0] = (s16) arg1[0];
-    sp54[1] = (s16) arg1[1];
-    sp54[2] = (s16) arg1[2];
-    phi_t3 = (BKMesh *)(arg0->meshList_0 + 1);
-    for(k = 0; k < arg0->meshList_0->meshCount_0; k++){
-        if ((min_id > phi_t3->uid_0 || phi_t3->uid_0 >= max_id)){
-            vtx_cnt = phi_t3->vtxCount_2;
-        }
-        else{
-            t8 = *(s16*)(phi_t3 + 1);
-            phi_a1 = temp_v0 + t8;
-            for(i = 0; &sp64[i] < &sp64[3]; i++){
-                 temp_v1_3 = phi_a1->v.ob[i];
-                sp64[i] = temp_v1_3;
-                sp5C[i] = temp_v1_3;
+    vertex_pool = vtxList_getVertices(model->vtxList_4);
+    position_s16[0] = (s16) position[0];
+    position_s16[1] = (s16) position[1];
+    position_s16[2] = (s16) position[2];
+    current_mesh = (BKMesh *)(model->meshList_0 + 1);
+    for(k = 0; k < model->meshList_0->meshCount_0; k++, current_mesh = ((s16 *)(current_mesh + 1)) + current_mesh->vtxCount_2){
+        if ((min_id > current_mesh->uid_0 || current_mesh->uid_0 >= max_id))
+            continue;
+
+        j = 0;
+        vertex_index_list = ((s16*)(current_mesh + 1));
+        current_vertex = vertex_pool + vertex_index_list[j];
+        for(i = 0; &min[i] < &min[3]; i++){
+             temp_v1_3 = current_vertex->v.ob[i];
+            min[i] = temp_v1_3;
+            max[i] = temp_v1_3;
+        };
+
+        
+        for(j = 1; j < current_mesh->vtxCount_2; j++){
+            current_vertex = vertex_pool + vertex_index_list[j];
+            for(i = 0; i < 3; i++){
+                temp_v1_3 = current_vertex->v.ob[i];
+                min[i] = MIN(temp_v1_3, min[i]);
+                max[i] = MAX(temp_v1_3, max[i]);
             };
-
-            tmp = (s16*)(phi_t3 + 1);
-            for(j = 0; j < phi_t3->vtxCount_2; j++){
-                phi_a1 = temp_v0 + tmp[j];
-                for(i = 0; i < 3; i++){
-                    temp_v1_3 = phi_a1->v.ob[i];
-                    sp64[i] = (temp_v1_3 < sp64[i]) ? temp_v1_3 : sp64[i];
-                    sp5C[i] = (sp5C[i] < temp_v1_3) ? temp_v1_3 : sp5C[i];
-                };
-            }
-            if( (sp64[0] < sp54[0] && sp54[0] < sp5C[0])
-                && (sp64[2] < sp54[2] && sp54[2] < sp5C[2])
-            ){
-                return phi_t3->uid_0;
-            }
-            vtx_cnt = phi_t3->vtxCount_2;
         }
-        phi_t3 = &(((s16 *)(phi_t3 + 1))[vtx_cnt]); 
+        if( (min[0] < position_s16[0] && position_s16[0] < max[0])
+            && (min[2] < position_s16[2] && position_s16[2] < max[2])
+        ){
+            return current_mesh->uid_0;
+        }
+         
     }
     return 0;
 }
 
 #endif
 
-void model_free(void *arg0){
-    free(arg0);
+void model_free(BKModel *model){
+    free(model);
 }
 
 BKModel *func_8033F5F8(BKMeshList *meshList, BKVertexList *vertexList) {

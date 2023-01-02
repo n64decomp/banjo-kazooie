@@ -103,15 +103,12 @@ void mlMtxPop(void){
 void func_802516E0(void) {
     s32 i, j;
     f32 *var_a3;
-    f32 (*var_a2)[4];
-    
-    var_a3 = D_80282FD0;
+    f32 *var_a2;
+
     var_a2 = D_80282FD0 + 1;
-    if(1);
-    for(i = 0; i < 4; i++){
-        for(j = 0; j < 4; j++){
-            var_a2[i][j] = var_a3[4*i + j];
-        }
+    var_a3 = D_80282FD0;
+    for(i = 0; i < 16; i++) {
+        var_a2[i] = var_a3[i];
     }
     D_80282FD0++;
 }

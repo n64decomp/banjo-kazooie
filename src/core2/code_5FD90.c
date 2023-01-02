@@ -8,7 +8,7 @@ extern void func_80252C08(f32[3],f32[3], f32, f32[3]);
 extern void func_80252CC4(f32[3],s32, f32, s32);
 extern f32  func_802560D0(f32[3], f32[3], f32[3]);
 extern f32  func_802EC920(BKVertexList *);
-extern void func_8033D5D0(f32 arg0[3], f32 arg1[3], f32 margin, f32 min[3], f32 max[3]);
+extern void points_to_boundingBoxWithMargin(f32 arg0[3], f32 arg1[3], f32 margin, f32 min[3], f32 max[3]);
 
 #define ABS_F(s) (((s) >= 0.0f) ? (s) : -(s))
 
@@ -442,7 +442,7 @@ int func_802E805C(BKCollisionList *collision_list, BKVertexList *vtxList, f32 ar
     return sp34;
 }
 
-s32 func_802E81CC(BKCollisionList *collisionList, BKVertexList *vertexList, f32 p1[3], f32 p2[3], f32 arg4[3], f32 arg5, s32 flagFilter, s32 *arg7, s32 *arg8) {
+s32 func_802E81CC(BKCollisionList *collisionList, BKVertexList *vertexList, f32 p1[3], f32 p2[3], f32 velocity[3], f32 margin, s32 flagFilter, s32 **activeTriStartPtr, s32 *activeTriEndPtr) {
     BKCollisionGeo **start_geo;
     BKCollisionGeo **i_geo;
     BKCollisionGeo **end_geo;
@@ -462,7 +462,7 @@ s32 func_802E81CC(BKCollisionList *collisionList, BKVertexList *vertexList, f32 
     f32 temp_f0;
 
 
-    func_8033D5D0(p1, p2, arg5, min, max);
+    points_to_boundingBoxWithMargin(p1, p2, margin, min, max);
     temp_f0 = func_802EC920(vertexList);
     for(i = 0; i < 3; i++){
         if ((max[i] <= -temp_f0) || (temp_f0 <= min[i])) {
@@ -535,10 +535,10 @@ s32 func_802E81CC(BKCollisionList *collisionList, BKVertexList *vertexList, f32 
                     }
                 }
                 else{
-                    if (((var_s2->normal[0]*arg4[0]) + (var_s2->normal[1]*arg4[1]) + (var_s2->normal[2]*arg4[2])) > 0.0f)
-                        continue; //arg4 is same direction as triangle normal
+                    if (((var_s2->normal[0]*velocity[0]) + (var_s2->normal[1]*velocity[1]) + (var_s2->normal[2]*velocity[2])) > 0.0f)
+                        continue; //velocity is same direction as triangle normal
                 }
-                //add tri to active collisions
+                //add tri to active tri collisions
                 var_s2->tri_ptr = i_tri;
                 var_s2++;
                 if ((var_s2 - D_8037EAD0) > 100) 
@@ -548,14 +548,14 @@ s32 func_802E81CC(BKCollisionList *collisionList, BKVertexList *vertexList, f32 
         if ((var_s2 - D_8037EAD0) > 100) 
             break; 
     }
-    *arg7 = (s32) D_8037EAD0; //collisionPool
-    *arg8 = (s32) var_s2; //collisionPoolEnd
+    *activeTriStartPtr = (s32) D_8037EAD0; //activeTriPool
+    *activeTriEndPtr = (s32) var_s2; //activeTriPoolEnd
     return var_s2 - D_8037EAD0 > 0; //Count
 }
 
-Struct_core2_5FD90_0 *func_802E879C(Struct_core2_5FD90_0 *arg0, Struct_core2_5FD90_0 *arg1, f32 arg2[3], f32 arg3, f32 arg4[3]) {
+Struct_core2_5FD90_0 *func_802E879C(Struct_core2_5FD90_0 *startTri, Struct_core2_5FD90_0 *endTri, f32 position[3], f32 radius, f32 arg4[3]) {
     s32 i;
-    Struct_core2_5FD90_0 *i_ptr;
+    Struct_core2_5FD90_0 *i_tri;
     
     f32 sp144[3][3];
     f32 sp120[3][3];
@@ -584,59 +584,61 @@ Struct_core2_5FD90_0 *func_802E879C(Struct_core2_5FD90_0 *arg0, Struct_core2_5FD
     arg4[0] = 0.0f;
     arg4[1] = 0.0f;
     arg4[2] = 0.0f;
-    for(i_ptr = arg0; i_ptr < arg1; i_ptr++){
-        sp120[0][0] = arg2[0] - i_ptr->tri_coord[0][0];
-        sp120[0][1] = arg2[1] - i_ptr->tri_coord[0][1];
-        sp120[0][2] = arg2[2] - i_ptr->tri_coord[0][2];
-        temp_f18 = (sp120[0][0] * i_ptr->normal[0]) + (sp120[0][1] * i_ptr->normal[1]) + (sp120[0][2] * i_ptr->normal[2]);
-        if ((-(arg3 - 0.5)>= temp_f18) || ((arg3 -0.5) <= temp_f18))
+    for(i_tri = startTri; i_tri < endTri; i_tri++){
+        //project point onto plane of triangle
+        sp120[0][0] = position[0] - i_tri->tri_coord[0][0];
+        sp120[0][1] = position[1] - i_tri->tri_coord[0][1];
+        sp120[0][2] = position[2] - i_tri->tri_coord[0][2];
+        temp_f18 = (sp120[0][0] * i_tri->normal[0]) + (sp120[0][1] * i_tri->normal[1]) + (sp120[0][2] * i_tri->normal[2]);
+        if ((-(radius - 0.5)>= temp_f18) || ((radius -0.5) <= temp_f18))
             continue;
 
-        temp_f8 = i_ptr->normal[0];
-        normal_length = (temp_f8 * i_ptr->normal[0]) + (i_ptr->normal[1] * i_ptr->normal[1]) + (i_ptr->normal[2] * i_ptr->normal[2]);
+        temp_f8 = i_tri->normal[0];
+        normal_length = (temp_f8 * i_tri->normal[0]) + (i_tri->normal[1] * i_tri->normal[1]) + (i_tri->normal[2] * i_tri->normal[2]);
         if(normal_length == 0.0f)
             continue;
         
         normal_length = -temp_f18 / normal_length;
-        projected_position[0] = arg2[0] + (i_ptr->normal[0] * normal_length); //project point onto triangle
-        projected_position[1] = arg2[1] + (i_ptr->normal[1] * normal_length);
-        projected_position[2] = arg2[2] + (i_ptr->normal[2] * normal_length);
+        projected_position[0] = position[0] + (i_tri->normal[0] * normal_length);
+        projected_position[1] = position[1] + (i_tri->normal[1] * normal_length);
+        projected_position[2] = position[2] + (i_tri->normal[2] * normal_length);
         
-        var_a2 = (ABS_F(i_ptr->normal[0]) > ABS_F(i_ptr->normal[1])) ? 0 : 1;
-        var_a2 = (ABS_F(i_ptr->normal[2]) > ABS_F(i_ptr->normal[var_a2])) ? 2 : var_a2;
+        //check if projected point is inside of triangle
+        var_a2 = (ABS_F(i_tri->normal[0]) > ABS_F(i_tri->normal[1])) ? 0 : 1;
+        var_a2 = (ABS_F(i_tri->normal[2]) > ABS_F(i_tri->normal[var_a2])) ? 2 : var_a2;
 
-        
-        spFC[0] = projected_position[(var_a2 + 1)%3] - i_ptr->tri_coord[0][(var_a2 + 1)%3];
-        spFC[1] = i_ptr->edgeAB[(var_a2 + 1)%3];
-        spFC[2] = i_ptr->edgeAC[(var_a2 + 1)%3];
+        spFC[0] = projected_position[(var_a2 + 1)%3] - i_tri->tri_coord[0][(var_a2 + 1)%3];
+        spFC[1] = i_tri->edgeAB[(var_a2 + 1)%3];
+        spFC[2] = i_tri->edgeAC[(var_a2 + 1)%3];
 
-        spF0[0] = projected_position[(var_a2 + 2)%3] - i_ptr->tri_coord[0][(var_a2 + 2)%3];
-        spF0[1] = i_ptr->edgeAB[(var_a2 + 2)%3];
-        spF0[2] = i_ptr->edgeAC[(var_a2 + 2)%3];
+        spF0[0] = projected_position[(var_a2 + 2)%3] - i_tri->tri_coord[0][(var_a2 + 2)%3];
+        spF0[1] = i_tri->edgeAB[(var_a2 + 2)%3];
+        spF0[2] = i_tri->edgeAC[(var_a2 + 2)%3];
 
         temp_f2_4 =  (spFC[1] * spF0[2]) - (spF0[1] * spFC[2]);
         temp_f12_3 = ((spFC[0] * spF0[2]) - (spF0[0] * spFC[2]))/temp_f2_4;
         temp_f0_4 =  ((spFC[1] * spF0[0]) - (spF0[1] * spFC[0]))/ temp_f2_4;
         if ((0.0f <= temp_f12_3) && (temp_f12_3 <= 1.0f)
          && (0.0f <= temp_f0_4) && (temp_f0_4 <= 1.0f))
-        if (((temp_f12_3 + temp_f0_4) <= 1.0f)
-        ) {
-            spD0 = i_ptr;
-            arg4[0] = arg4[0] + i_ptr->normal[0];
-            arg4[1] = arg4[1] + i_ptr->normal[1];
-            arg4[2] = arg4[2] + i_ptr->normal[2];
+        if ((0 <= 1.0f - (temp_f12_3 + temp_f0_4))) {
+            //projected point lies on triangle
+            spD0 = i_tri;
+            arg4[0] = arg4[0] + i_tri->normal[0];
+            arg4[1] = arg4[1] + i_tri->normal[1];
+            arg4[2] = arg4[2] + i_tri->normal[2];
             continue;
         }
 
+        //projected point lies outside triangle
         for(i = 0; i < 3; i++){
-            sp120[i][0] = arg2[0] - i_ptr->tri_coord[i][0];
-            sp120[i][1] = arg2[1] - i_ptr->tri_coord[i][1];
-            sp120[i][2] = arg2[2] - i_ptr->tri_coord[i][2];
-            if (sp120[i][0]*sp120[i][0] + sp120[i][1]*sp120[i][1] + sp120[i][2]*sp120[i][2] < arg3 * arg3) {
-                spD0 = i_ptr;
-                arg4[0] = arg4[0] + i_ptr->normal[0];
-                arg4[1] = arg4[1] + i_ptr->normal[1];
-                arg4[2] = arg4[2] + i_ptr->normal[2];
+            sp120[i][0] = position[0] - i_tri->tri_coord[i][0];
+            sp120[i][1] = position[1] - i_tri->tri_coord[i][1];
+            sp120[i][2] = position[2] - i_tri->tri_coord[i][2];
+            if (sp120[i][0]*sp120[i][0] + sp120[i][1]*sp120[i][1] + sp120[i][2]*sp120[i][2] < radius * radius) {
+                spD0 = i_tri;
+                arg4[0] = arg4[0] + i_tri->normal[0];
+                arg4[1] = arg4[1] + i_tri->normal[1];
+                arg4[2] = arg4[2] + i_tri->normal[2];
                 break;
             }
             
@@ -645,10 +647,9 @@ Struct_core2_5FD90_0 *func_802E879C(Struct_core2_5FD90_0 *arg0, Struct_core2_5FD
             continue;
                 
         for(i = 0; i < 3; i++){
-            
-            sp144[i][0] = i_ptr->tri_coord[(i + 1) % 3][0] - i_ptr->tri_coord[i][0];
-            sp144[i][1] = i_ptr->tri_coord[(i + 1) % 3][1] - i_ptr->tri_coord[i][1];
-            sp144[i][2] = i_ptr->tri_coord[(i + 1) % 3][2] - i_ptr->tri_coord[i][2];
+            sp144[i][0] = i_tri->tri_coord[(i + 1) % 3][0] - i_tri->tri_coord[i][0];
+            sp144[i][1] = i_tri->tri_coord[(i + 1) % 3][1] - i_tri->tri_coord[i][1];
+            sp144[i][2] = i_tri->tri_coord[(i + 1) % 3][2] - i_tri->tri_coord[i][2];
             temp_f22 = sp144[i][0]*sp144[i][0] + sp144[i][1]*sp144[i][1] + sp144[i][2]*sp144[i][2];
             ml_vec3f_normalize(sp144[i]);
             temp_f0_3 = (sp144[i][0]*sp120[i][0]) + (sp144[i][1]*sp120[i][1]) + (sp144[i][2]*sp120[i][2]);
@@ -656,11 +657,11 @@ Struct_core2_5FD90_0 *func_802E879C(Struct_core2_5FD90_0 *arg0, Struct_core2_5FD
                 projected_position[0] = sp120[i][0] - sp144[i][0]*temp_f0_3;
                 projected_position[1] = sp120[i][1] - sp144[i][1]*temp_f0_3;
                 projected_position[2] = sp120[i][2] - sp144[i][2]*temp_f0_3;
-                if(projected_position[0]*projected_position[0] + projected_position[1]*projected_position[1] + projected_position[2]*projected_position[2] < arg3 * arg3){
-                    spD0 = i_ptr;
-                    arg4[0] = arg4[0] + i_ptr->normal[0];
-                    arg4[1] = arg4[1] + i_ptr->normal[1];
-                    arg4[2] = arg4[2] + i_ptr->normal[2];
+                if(projected_position[0]*projected_position[0] + projected_position[1]*projected_position[1] + projected_position[2]*projected_position[2] < radius * radius){
+                    spD0 = i_tri;
+                    arg4[0] = arg4[0] + i_tri->normal[0];
+                    arg4[1] = arg4[1] + i_tri->normal[1];
+                    arg4[2] = arg4[2] + i_tri->normal[2];
                     break;
                 }
             } 
@@ -669,9 +670,9 @@ Struct_core2_5FD90_0 *func_802E879C(Struct_core2_5FD90_0 *arg0, Struct_core2_5FD
     return spD0;
 }
 
-BKCollisionTri *func_802E8E88(BKCollisionList *collision_list, BKVertexList *vtx_list, f32 arg2[3], f32 arg3[3], f32 arg4, f32 arg5[3], s32 arg6, s32 flagFilter){
-    Struct_core2_5FD90_0 * spC4;
-    Struct_core2_5FD90_0 * spC0;
+BKCollisionTri *func_802E8E88(BKCollisionList *collision_list, BKVertexList *vtx_list, f32 p1[3], f32 p2[3], f32 radius, f32 arg5[3], s32 arg6, s32 flagFilter){
+    Struct_core2_5FD90_0 * start_active_tri;
+    Struct_core2_5FD90_0 * end_active_tri;
     f32 spB4[3];
     
     f32 temp_f20;
@@ -685,33 +686,33 @@ BKCollisionTri *func_802E8E88(BKCollisionList *collision_list, BKVertexList *vtx
     Struct_core2_5FD90_0 *phi_v0;
     f32 sp78[3];
 
-    sp78[0] = arg3[0] - arg2[0];
-    sp78[1] = arg3[1] - arg2[1];
-    sp78[2] = arg3[2] - arg2[2];
-    if (!func_802E81CC(collision_list, vtx_list, arg2, arg3, sp78, (f32) ((f64) arg4 + 0.5), flagFilter, &spC4, &spC0)) {
+    sp78[0] = p2[0] - p1[0];
+    sp78[1] = p2[1] - p1[1];
+    sp78[2] = p2[2] - p1[2];
+    if (!func_802E81CC(collision_list, vtx_list, p1, p2, sp78, (f32) ((f64) radius + 0.5), flagFilter, &start_active_tri, &end_active_tri)) {
         return NULL;
     }
-    phi_s5 = func_802E879C(spC4, spC0, arg3, arg4, sp8C);
+    phi_s5 = func_802E879C(start_active_tri, end_active_tri, p2, radius, sp8C);
     if (phi_s5 == NULL) {
         return NULL;
     }
     arg5[0] = sp8C[0];
     arg5[1] = sp8C[1];
     arg5[2] = sp8C[2];
-    spB4[0] = arg3[0] - arg2[0];
-    spB4[1] = arg3[1] - arg2[1];
-    spB4[2] = arg3[2] - arg2[2];
-    arg3[0] = arg2[0];
-    arg3[1] = arg2[1];
-    arg3[2] = arg2[2];
+    spB4[0] = p2[0] - p1[0];
+    spB4[1] = p2[1] - p1[1];
+    spB4[2] = p2[2] - p1[2];
+    p2[0] = p1[0];
+    p2[1] = p1[1];
+    p2[2] = p1[2];
     phi_f22 = 0.0f;
     phi_f24 = 1.0f;
     for(phi_s0 = 0; phi_s0 < arg6; phi_s0++){
         temp_f20 = (phi_f22 + phi_f24) * 0.5;
-        sp98[0] = arg2[0] + (spB4[0] * temp_f20);
-        sp98[1] = arg2[1] + (spB4[1] * temp_f20);
-        sp98[2] = arg2[2] + (spB4[2] * temp_f20);
-        phi_v0 = func_802E879C(spC4, spC0, sp98, arg4, sp8C);
+        sp98[0] = p1[0] + (spB4[0] * temp_f20);
+        sp98[1] = p1[1] + (spB4[1] * temp_f20);
+        sp98[2] = p1[2] + (spB4[2] * temp_f20);
+        phi_v0 = func_802E879C(start_active_tri, end_active_tri, sp98, radius, sp8C);
         if (phi_v0 != NULL) {
             arg5[0] = sp8C[0];
             arg5[1] = sp8C[1];
@@ -719,9 +720,9 @@ BKCollisionTri *func_802E8E88(BKCollisionList *collision_list, BKVertexList *vtx
             phi_f24 = temp_f20;
             phi_s5 = phi_v0;
         } else {
-            arg3[0] = sp98[0];
-            arg3[1] = sp98[1];
-            arg3[2] = sp98[2];
+            p2[0] = sp98[0];
+            p2[1] = sp98[1];
+            p2[2] = sp98[2];
             phi_f22 = temp_f20;
         }
     }

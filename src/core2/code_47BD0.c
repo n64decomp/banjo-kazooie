@@ -311,8 +311,8 @@ void chBeeSwarm_update(Actor *this) {
     f32 spB0;
     f32 spAC;
     f32 spA0[3];
-    f32 sp94[3];
-    f32 sp88[3];
+    f32 position[3];
+    f32 next_position[3];
     f32 sp7C[3];
     s32 sp78;
     f32 temp_f0;
@@ -340,18 +340,18 @@ void chBeeSwarm_update(Actor *this) {
         this->position[1] = local->unkC[1];
         this->position[2] = local->unkC[2];
         
-        sp94[0] = this->position[0];
-        sp94[1] = this->position[1];
-        sp94[2] = this->position[2];
+        position[0] = this->position[0];
+        position[1] = this->position[1];
+        position[2] = this->position[2];
         
-        sp88[0] = this->position[0];
-        sp88[1] = this->position[1];
-        sp88[2] = this->position[2];
+        next_position[0] = this->position[0];
+        next_position[1] = this->position[1];
+        next_position[2] = this->position[2];
         
-        sp94[1] += 50.0f;
-        sp88[1] -= 500.0f;
-        if (func_80309B48(sp94, sp88, sp7C, 0x5E0000)) {
-            local->unk18 = sp88[1];
+        position[1] += 50.0f;
+        next_position[1] -= 500.0f;
+        if (func_80309B48(position, next_position, sp7C, 0x5E0000)) {
+            local->unk18 = next_position[1];
         }
     }
     if (!this->unk16C_4) {
@@ -397,14 +397,14 @@ void chBeeSwarm_update(Actor *this) {
         }
         this->unk58_0 = TRUE;
     }
-    sp94[0] = this->position[0];
-    sp94[1] = this->position[1];
-    sp94[2] = this->position[2];
-    sp88[0] = this->position[0] + (this->velocity[0] * spAC);
-    sp88[1] = this->position[1] + (this->velocity[1] * spAC);
-    sp88[2] = this->position[2] + (this->velocity[2] * spAC);
+    position[0] = this->position[0];
+    position[1] = this->position[1];
+    position[2] = this->position[2];
+    next_position[0] = this->position[0] + (this->velocity[0] * spAC);
+    next_position[1] = this->position[1] + (this->velocity[1] * spAC);
+    next_position[2] = this->position[2] + (this->velocity[2] * spAC);
     if (this->state != 7) {
-        if (func_80309DBC(sp94, sp88, 75.0f, sp7C, 3, 0)) {
+        if (func_80309DBC(position, next_position, 75.0f, sp7C, 3, 0)) {
             ml_vec3f_normalize(sp7C);
             temp_f0 = (this->velocity[0]*sp7C[0] + this->velocity[1]*sp7C[1] + this->velocity[2]*sp7C[2]) * -1.5;
             this->velocity[0] = this->velocity[0] + (sp7C[0] * temp_f0);
@@ -423,13 +423,13 @@ void chBeeSwarm_update(Actor *this) {
     if (map_get() == MAP_78_GL_RBB_AND_MMM_PUZZLE) {
         if (this->unk38_31++ == 0x1E) {
             this->unk38_31 = 0;
-            sp88[0] = this->position[0];
-            sp88[1] = this->position[1];
-            sp88[2] = this->position[2];
-            sp94[1] += 1000.0f;
-            sp88[1] -= 1000.0f;
-            if (func_80309B48(sp94, sp88, sp7C, 0xF800FF0F)) {
-                local->unk1C = sp88[1];
+            next_position[0] = this->position[0];
+            next_position[1] = this->position[1];
+            next_position[2] = this->position[2];
+            position[1] += 1000.0f;
+            next_position[1] -= 1000.0f;
+            if (func_80309B48(position, next_position, sp7C, 0xF800FF0F)) {
+                local->unk1C = next_position[1];
             } else {
                 local->unk1C = -16000.0f;
             }

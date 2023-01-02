@@ -95,7 +95,7 @@ typedef struct {
     s16 unk8;
     s16 unkA;
     f32 unkC[3];
-}GeoCmd9;
+}GeoCmdA;
 
 typedef struct {
     s32 cmd_0;
@@ -869,7 +869,7 @@ void func_80338B50(Gfx **gfx, Mtx **mtx, void *arg2){
 
 //CmdA_REFERENCE_POINT
 void func_80338BFC(Gfx **gfx, Mtx **mtx, void *arg2){
-    GeoCmd9 *cmd = (GeoCmd9 *)arg2;
+    GeoCmdA *cmd = (GeoCmdA *)arg2;
     f32 sp20[3];
 
     if(D_80383650){

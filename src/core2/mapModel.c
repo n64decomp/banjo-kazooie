@@ -507,19 +507,19 @@ UNK_TYPE(s32) func_80309D58(UNK_TYPE(s32) arg0, UNK_TYPE(s32) arg1) {
     return 0;
 }
 
-UNK_TYPE(s32) func_80309DBC(f32 arg0[3], f32 arg1[3], f32 arg2, f32 arg3[3], s32 arg4, s32 arg5) {
+UNK_TYPE(s32) func_80309DBC(f32 currentPosition[3], f32 next_position[3], f32 arg2, f32 arg3[3], s32 arg4, s32 arg5) {
     s32 sp34;
     s32 temp_v0_2;
 
     mapModel.unk20 = 0;
-    sp34 = func_802E8E88(mapModel.collision_opa, func_8033A148(mapModel.model_bin_opa), arg0, arg1, arg2, arg3, arg4, arg5);
+    sp34 = func_802E8E88(mapModel.collision_opa, func_8033A148(mapModel.model_bin_opa), currentPosition, next_position, arg2, arg3, arg4, arg5);
     if (sp34 != 0) {
         mapModel.unk20 = (s32) mapModel.model_bin_opa;
     }
     if (mapModel.collision_xlu == 0) {
         return sp34;
     }
-    temp_v0_2 = func_802E8E88(mapModel.collision_xlu, func_8033A148(mapModel.model_bin_xlu), arg0, arg1, arg2, arg3, arg4, arg5);
+    temp_v0_2 = func_802E8E88(mapModel.collision_xlu, func_8033A148(mapModel.model_bin_xlu), currentPosition, next_position, arg2, arg3, arg4, arg5);
     if (temp_v0_2 != 0) {
         mapModel.unk20 = (s32) mapModel.model_bin_xlu;
         return temp_v0_2;
