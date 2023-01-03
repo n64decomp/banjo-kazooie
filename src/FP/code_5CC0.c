@@ -133,76 +133,67 @@ void func_8038C398(f32 position[3], enum marker_e marker_id){
     func_8038C260(position, 4, ASSET_498_MODEL_TWINKLY_SHARD_YELLOW);
 }
 
-#ifndef NONMATCHING
-void func_8038C428(Actor *this, f32 arg1[3], f32 arg2);
-#pragma GLOBAL_ASM("asm/nonmatchings/FP/code_5CC0/func_8038C428.s")
-#else
-void func_8038C428(Actor *arg0, f32 arg1[3], f32 arg2) {
+void func_8038C428(Actor *arg0, f32 arg1[3], f32 arg2)
+{
     u8 sp7F;
     s32 sp78;
     f32 sp74;
     f32 sp70;
     f32 temp_f14;
     f32 var_f22;
-    f32 var_f24;
-    f32 temp_f0;
     f32 sp5C[3];
+    f32 var_f24;
     f32 sp54;
     f32 sp48[3];
-    f32 var_f2;
-    s32 var_v0;
-    f32 temp_f0_2;
-    
+    f32 temp_f0;
 
     sp78 = 0;
     sp74 = arg2;
     sp70 = arg0->position[1];
-    
-    sp7F =(arg2 == 0.0f) ? 0 : 1;
-    
-    var_f22 = (arg1[0] - arg0->position[0]);
-    var_f24 = (arg1[2] - arg0->position[2]);
+    sp7F = (arg2 == 0.0f) ? (0) : (1);
+    var_f22 = arg1[0] - arg0->position[0];
+    var_f24 = arg1[2] - arg0->position[2];
     sp54 = gu_sqrtf((var_f22 * var_f22) + (var_f24 * var_f24));
     sp48[0] = var_f22 / sp54;
     sp48[2] = var_f24 / sp54;
-    
-    if (sp7F) {
+    if (sp7F)
+    {
         temp_f0 = randf2(130.0f, 150.0f);
-        sp54 = MIN(sp54, temp_f0);
+        sp54 = (sp54 < temp_f0) ? (sp54) : (temp_f0);
         var_f22 = sp48[0] * sp54;
         var_f24 = sp48[2] * sp54;
     }
-
     sp5C[0] = arg0->position[0] + var_f22;
     sp5C[1] = arg0->position[1];
     sp5C[2] = arg0->position[2] + var_f24;
     temp_f14 = func_80309724(sp5C);
     if (sp7F) {
-
         do {
             sp78 += 1;
-            sp74 += -3.2;
-            sp70 += sp74;
-        } while ((temp_f14 < sp70) || (sp74 > 0.0f));
-    } else {
-        sp78 = 0x1C;
-        temp_f0_2 = sp78;
-        sp74 = ((arg1[1] + 40.0f) - arg0->position[1]) / temp_f0_2 - -3.2 * temp_f0_2 /2.0;
+            temp_f0 = arg2 + (-3.2);
+            arg2 = temp_f0;
+            sp70 += temp_f0;
+        }
+        while ((temp_f14 < sp70) || (arg2 > 0.0f));
     }
-    animctrl_setAnimTimer(arg0->animctrl, 0.0f);
-    arg0->unk1C[0] = 0.99999 / (f32)sp78;
-    arg0->velocity[0] = var_f22 / sp78;
+    else {
+        sp78 = 0x1C;
+        temp_f0 = sp78;
+        sp74 = (((arg1[1] + 40.0f) - arg0->position[1]) / temp_f0) - (((-3.2) * temp_f0) / 2.0);
+    }
+    animctrl_setAnimTimer(arg0->animctrl, 0.0f);(arg0->animctrl, 0.0f);
+    temp_f0 = sp78;
+    arg0->unk1C[0] = (f32) (0.99999 / temp_f0);
     arg0->velocity[1] = sp74;
-    arg0->velocity[2] = var_f24 / sp78;
-    
+    arg0->velocity[0] = (f32) (var_f22 / temp_f0);
+    arg0->velocity[2] = (f32) (var_f24 / temp_f0);
     if (sp7F) {
         func_8030E878(SFX_3F2_UNKNOWN, randf2(1.2f, 1.3f), 0x7D00U, arg0->position, 1750.0f, 3500.0f);
     }
-    else{
+    else {
         func_8030E878(SFX_53_BANJO_HUIII, randf2(1.4f, 1.5f), 0x7D00U, arg0->position, 1750.0f, 3500.0f);
     }
 }
-#endif
 
 bool func_8038C718(Actor *this, f32 arg1){
     f32 tmp;
