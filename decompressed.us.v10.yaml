@@ -151,7 +151,7 @@ segments:
   - [0xF1C1F0, c, code_2FA0] #DONE
   - [0xF1C410, c, code_31C0] #DONE
   - [0xF1C4A0, c, code_3250] #DONE
-  - [0xF1CCC0, c, code_3A70]
+  - [0xF1CCC0, c, code_3A70] #DONE
   - [0xF1E8A0, c, code_5650]
   - [0xF202E0, c, code_7090] #DONE
   - [0xF20500, c, code_72B0] #DONE
