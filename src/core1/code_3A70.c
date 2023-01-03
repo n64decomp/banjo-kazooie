@@ -2,6 +2,10 @@
 #include "functions.h"
 #include "variables.h"
 
+extern f32 ml_cos_deg(f32);
+extern f32 ml_sin_deg(f32);
+extern void func_8024C5F0(s32[3]);
+
 Gfx D_80275880[] = {
     gsSPClearGeometryMode(G_CULL_BOTH | G_FOG | G_LIGHTING | G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR | G_LOD | G_SHADING_SMOOTH | G_CLIPPING | 0x0060CD00),
     gsSPTexture(0, 0, 0, G_TX_RENDERTILE, G_OFF),
@@ -22,7 +26,7 @@ void func_80241490(Gfx **gfx, Vtx **vtx, s32 *arg2[3], s32 arg3[3], s32 arg4[3],
     s32 sp78[3][4];
     s32 i;
 
-    func_8024C5F0(&spB4);
+    func_8024C5F0(spB4);
     gSPDisplayList((*gfx)++, D_80275880);
     if (arg6 != 0) {
         gSPSetGeometryMode((*gfx)++, G_ZBUFFER | G_CULL_BACK);
@@ -85,7 +89,39 @@ void func_80241490(Gfx **gfx, Vtx **vtx, s32 *arg2[3], s32 arg3[3], s32 arg4[3],
     gSP2Triangles((*gfx)++, 0, 1, 2, 0, 1, 3, 2, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_3A70/func_80241928.s")
+void func_80241928(Gfx** gfx, Vtx** vtx, s32 arg2[3], s32 arg3, s32 arg4[3]) {
+    s32 spB4[3];
+    f32 var_f26;
+    s32 var_fp;
+    s32 var_s0;
+
+    func_8024C5F0(spB4);
+    for(var_fp = 0; var_fp < 4; var_fp++){
+        gSPDisplayList((*gfx)++, D_80275880);
+        gSPSetGeometryMode((*gfx)++, G_ZBUFFER);
+        gSPVertex((*gfx)++, *vtx, 10, 0);
+        for(var_f26 = 0; var_f26 <= 90; var_f26 += 22.5){
+            for(var_s0 = -300; var_s0 < 900; var_s0 += 600){
+                (*vtx)->v.ob[0] = ((ml_sin_deg(var_fp*90 + var_f26) * arg3) + (f32) arg2[0]) - spB4[0];
+                (*vtx)->v.ob[1] = ((var_s0 / 2) + arg2[1]) - spB4[1];
+                (*vtx)->v.ob[2] = ((ml_cos_deg(var_fp*90 + var_f26) * arg3) + (f32) arg2[2]) - spB4[2];
+                (*vtx)->v.tc[0] = 0;
+                (*vtx)->v.tc[1] = 0;
+                (*vtx)->v.cn[0] = 0;
+                (*vtx)->v.cn[1] = 0;
+                (*vtx)->v.cn[2] = 0;
+                (*vtx)->v.cn[3] = 0;
+                (*vtx)++;
+            }
+        }
+        gDPPipeSync((*gfx)++);
+        
+        for(var_f26 = 0; var_f26 < 4; var_f26++){
+            gDPSetPrimColor((*gfx)++, 0, 0, arg4[0], arg4[1], arg4[2], 90.0f + (var_fp * 25.0f) + (var_f26 * 6.25f));
+            gSP2Triangles((*gfx)++, var_f26*2, var_f26*2 + 3, var_f26*2 + 1, var_f26*2, var_f26*2, var_f26*2 + 2, var_f26*2 + 3, var_f26*2);
+        }
+    }
+}
 
 void func_802424D4(Gfx **gfx, Mtx **mtx, Vtx **vtx, f32 arg3[3], f32 arg4[3], f32 arg5, s32 arg6[4]) {
     s32 var_a0;
