@@ -323,9 +323,9 @@ bool func_803192A4(enum ff_question_type_e q_type, s32 q_indx, s32 arg2) {
         }
         SKIP(char_iter, str_size);
     }
-    return TRUE;
     #undef NEXT
     #undef SKIP
+    return TRUE;
 }
 
 
