@@ -60,10 +60,6 @@ u8 pad_8036E7B4[0xC] = {0}; //PROBABLY INDICATES FILE BREAK
 ModelCache *modelCache = NULL; //D_8036E7C0 //model pointer array pointer
 u8 *D_8036E7C4 = NULL;
 ActorMarker *D_8036E7C8 = NULL;
-s32 D_8036E7CC = 0;
-Struct6Cs D_8036E7D0 = {NULL, NULL, NULL, func_80330974};
-s16 D_8036E7E0[] = {0x2D2, 0x2DD, 0x580, 0x6D1, 0x6D6, 0x6D7, 0x364, 0x2E8, 0x309, 0x30A, 0x704, 0x30D, 0x6C7, -1};
-s16 D_8036E7FC[] ={-1};
 
 /* .bss */
 s32 D_803833F0[3];
@@ -77,7 +73,7 @@ s32 D_8038340C;
 f32 D_80383410[3];
 ActorMarker *D_8038341C;
 s32 D_80383420;
-u8 D_80383428[0x1C];
+u8  D_80383428[0x1C];
 s32 D_80383444;
 int D_80383448;
 s32 D_80383450[0x40];
@@ -1310,58 +1306,45 @@ void func_803305AC(void){
     D_80383444 = 0;
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_803306C8.s")
-#else
-extern  s32 D_8036E7CC;
 void func_803306C8(s32 arg0) {
-    s32 sp54;
-    s32 temp_a0;
-    u32 temp_fp;
-    s32 temp_lo;
-    s32 temp_s0;
-    s32 temp_t7;
-    s32 temp_v0;
-    s32 var_s0;
-    s32 var_s0_2;
-    s32 var_s0_3;
-    s32 var_s1;
+    static  s32 D_8036E7CC = 0;
     ModelCache *var_a2;
+    s32 temp_a0;
+    s32 sp54;
+    s32 temp_fp;
+    s32 var_s0_2;
+    s32 var_s1;
 
     temp_fp = func_8023DB5C() - func_80255B08(arg0);
     func_80254BD0(&sp54, 1);
-    if (sp54 <= 256000) {
-        var_s1 = 0;
-        for(var_s1 = 0; var_s1 < ((arg0 == 1) ? 0x28 : 0x3D4); var_s1++) {
-            var_a2 = modelCache + D_8036E7CC;
-            if ((var_a2->unk10 < temp_fp) 
-                || ((arg0 == 3) && ((D_80383444 == 0) || (D_8036E7CC != D_80383444)))
-            ) {
-                var_s0_2 = FALSE;
-                if (var_a2->modelPtr != NULL) {
-                    assetcache_release(var_a2->modelPtr);
-                    var_s0_2 = TRUE;
-                    var_a2->modelPtr = NULL;
-                    var_a2 = modelCache + D_8036E7CC;
-                }
-                if (var_a2->unk4 != NULL) {
-                    var_s0_2 = TRUE;
-                    func_8033B338(&var_a2->unk4, &var_a2->unk8);
-                }
-                if ((arg0 != 1) && (var_s0_2 == 1) && (func_80254BC4(1))) {
-                    return;
-                }
+    if(sp54 > 256000) return;
+    
+    for(var_s1 = 0; var_s1 < ((arg0 == 1) ? 0x28 : 0x3D4); var_s1++, D_8036E7CC = (D_8036E7CC >= 0x3D4) ? 0 : D_8036E7CC + 1) {
+        var_a2 = modelCache + D_8036E7CC;
+        
+        if (((s32)var_a2->unk10 < temp_fp) 
+            || ((arg0 == 3) && ((D_80383444 == 0) || (D_8036E7CC != D_80383444)))
+        ) {
+            var_s0_2 = FALSE;
+            if (var_a2->modelPtr != NULL) {
+                assetcache_release(var_a2->modelPtr);
+                modelCache[D_8036E7CC].modelPtr = NULL;
+                var_s0_2 = TRUE;
             }
+            var_a2 = modelCache + D_8036E7CC;
             
-            if (D_8036E7CC >= 0x3D4) {
-                D_8036E7CC = 0;
-            } else {
-                D_8036E7CC += 1;
+            if (var_a2->unk4 != NULL) {
+                if (!D_8036E7CC);
+
+                var_s0_2 = TRUE;
+                func_8033B338(&var_a2->unk4, &var_a2->unk8);
+            }
+            if ((arg0 != 1) && (var_s0_2 == 1) && (func_80254BC4(1))) {
+                return;
             }
         }
     }
 }
-#endif
 
 extern void *func_802EBAE0(UNK_TYPE(s32), f32 position[3], f32 rotation[3], f32 scale, UNK_TYPE(s32), UNK_TYPE(s32), UNK_TYPE(s32), f32, UNK_TYPE(s32));
 BKModelBin *func_80330DE4(ActorMarker *this);
@@ -1421,6 +1404,7 @@ s32 func_80330974(ActorMarker *marker, s32 arg1, f32 arg2, s32 arg3) {
 }
 
 Struct6Cs *func_80330B10(void){
+    static Struct6Cs D_8036E7D0 = {NULL, NULL, NULL, func_80330974};
     return &D_8036E7D0;
 }
 
@@ -2109,6 +2093,8 @@ void func_8033283C(s32 arg0, s32 arg1, s32 arg2) {
 }
 
 void func_80332894(void) {
+    static s16 D_8036E7E0[] = {0x2D2, 0x2DD, 0x580, 0x6D1, 0x6D6, 0x6D7, 0x364, 0x2E8, 0x309, 0x30A, 0x704, 0x30D, 0x6C7, -1};
+    static s16 D_8036E7FC[] ={-1};
     s32 size;
     s32 i;
 
