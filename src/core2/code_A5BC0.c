@@ -87,96 +87,79 @@ Method_Core2_A5BC0 D_80383558;
 s32 D_8038355C;
 
 /* .code */
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_8032CB50.s")
+// This function sorts a cube's props based on distance
+void func_8032CB50(Cube *cube, bool global) {
+    s32 ref_position[3];
+    Prop *var_v1;
+    Prop *start_prop;
+    s32 temp_a2;
+    Prop *var_t1;
+    Prop * var_a3;
+    Prop * var_t0;
+    s32 i;
+    Prop *new_var;
 
-// void func_8032CB50(Cube *cube, s32 arg1) {
-//     s32 sp4C[3];
-//     // ? *temp_a0;
-//     s32 temp_a1;
-//     s32 temp_a1_2;
-//     s32 temp_a2;
-//     s32 temp_a2_2;
-//     s32 temp_t6;
-//     s32 temp_t7;
-//     s32 temp_v0;
-//     s32 temp_v0_2;
-//     u32 temp_t2;
-//     u32 temp_t4;
-//     u32 temp_t5;
-//     void *temp_v1;
-//     Prop *phi_v1;
-//     // ? *phi_a0;
-//     u32 phi_t2;
-//     Prop *phi_a3;
-//     Prop *phi_t0;
-//     s32 *phi_a0_2;
-//     u32 phi_a3_2;
-//     Prop *phi_v1_2;
-//     u32 phi_a3_3;
-//     u32 phi_t1;
-//     u32 phi_a3_4;
-//     u32 phi_t0_2;
-//     s32 i;
-//     Prop tmp;
+    if (cube->prop2Cnt >= 2) {
+        if (global == 0) {
+            func_8024C5F0(ref_position); //distance from viewport
+        } else {
+            ref_position[0] = 0;
+            ref_position[1] = 0;
+            ref_position[2] = 0;
+        }
 
-//     if (cube->prop2Cnt < 2U)
-//         return;
-//     if (arg1 == 0) {
-//         func_8024C5F0(sp4C);
-//     } else {
-//         sp4C[0] = 0;
-//         sp4C[1] = 0;
-//         sp4C[2] = 0;
-//     }
-//     phi_v1 = cube->prop2Ptr;
-//     phi_t2 = 0U;
-//     phi_t1 = cube->prop2Cnt;
-//     for(phi_t2 = 0; phi_t2 < cube->prop2Cnt; phi_t2++){
-//         temp_v0 = cube->prop2Ptr[phi_t2].actorProp.x - sp4C[0];
-//         temp_a1 = cube->prop2Ptr[phi_t2].actorProp.y - sp4C[1];
-//         temp_a2 = cube->prop2Ptr[phi_t2].actorProp.z - sp4C[2];
-//         D_80383450[phi_t2] = temp_v0*temp_v0 + temp_a1*temp_a1 + temp_a2*temp_a2;
-//     }
-//     phi_a3 = cube->prop2Ptr;
-//     phi_t0 = &cube->prop2Ptr[cube->prop2Cnt - 1];
-//     do {
-//         phi_a3_2 = 0U;
-// //     phi_t0_2 = phi_t0;
-//         for(phi_v1_2 = phi_a3; phi_v1_2 < phi_t0; phi_v1_2++){
-//             phi_a0_2 = &D_80383450[phi_v1_2 - cube->prop2Ptr];
-//             temp_a1_2 = phi_a0_2[0];
-//             temp_a2_2 = phi_a0_2[1];
-// //             phi_a3_4 = phi_a3_2;
-// //             phi_a3_4 = phi_a3_2;
-//             if (phi_a0_2[0] < phi_a0_2[1]) {
-//                 phi_t0 =  phi_v1_2 + 1;
-//                 if (phi_a3_2 != 0) {
-//                     phi_t0_2 = (u32) phi_v1_2;
-//                 } else {
-//                     phi_a3_2 = phi_v1_2 - 1;
-//                     if (phi_v1_2 == cube->prop2Ptr) {
-//                         phi_a3_4 = (u32) phi_v1_2;
-//                     }
-//                 }
-//                 phi_a0_2[0] = temp_a2_2;
-//                 phi_a0_2[0] = temp_a1_2;
+        //calculate prop distances
+        new_var = var_v1 = cube->prop2Ptr;
+        for(i = 0; i < cube->prop2Cnt; var_v1++, i++){
+            D_80383450[i] =  (var_v1->actorProp.x - ref_position[0])*(var_v1->actorProp.x - ref_position[0]) 
+                               +  (var_v1->actorProp.y - ref_position[1])* (var_v1->actorProp.y - ref_position[1])
+                               +  (var_v1->actorProp.z - ref_position[2])* (var_v1->actorProp.z - ref_position[2]);
+        }
 
-//                 tmp = phi_v1_2[0];
-//                 phi_v1_2[0] = phi_v1_2[1];
-//                 phi_v1_2[1] = tmp;
-//             }
-// //             temp_v1 = phi_v1_2 + 0xC;
-// //             phi_a0_2 += 4;
-// //             phi_a3_2 = phi_a3_4;
-// //             phi_v1_2 = temp_v1;
-// //             phi_a3_3 = phi_a3_4;
-// //             phi_t0 = phi_t0_2;
-//         }
+        //sort prop list
+        start_prop = cube->prop2Ptr;
+        var_t0 = cube->prop2Ptr + (cube->prop2Cnt - 1);   
+        do {
+            new_var = start_prop;
+            var_t1 = var_t0;
+            start_prop = NULL;
+            var_v1 = new_var;
+            i = (new_var - cube->prop2Ptr);
+            while(var_v1 < var_t1){
+                if(D_80383450[i] < D_80383450[i + 1]){
+                    var_t0 = var_v1 + 1;
+                    if (start_prop != 0) {
+                        var_t0 = var_v1;
+                    } else {
+                        start_prop = (var_v1 == cube->prop2Ptr) ? var_v1 : var_v1 - 1;
+                    }
+                    
+                    //swap_distances
+                    temp_a2 = D_80383450[i];
+                    D_80383450[i] = D_80383450[i + 1];
+                    D_80383450[i + 1] = temp_a2;
 
-//         phi_a3 = phi_a3_3;
-//     } while (phi_a3_3 != 0);
-//     func_80330104(cube);
-// }
+                    //swap_props
+                    temp_a2 = ((s32*)(&var_v1[0]))[0];
+                    ((s32*)(&var_v1[0]))[0] = ((s32*)(&var_v1[1]))[0];
+                    ((s32*)(&var_v1[1]))[0] = temp_a2;
+
+                    temp_a2 = ((s32*)(&var_v1[0]))[1];
+                    ((s32*)(&var_v1[0]))[1] = ((s32*)(&var_v1[1]))[1];
+                    ((s32*)(&var_v1[1]))[1] = temp_a2;
+
+                    temp_a2 = ((s32*)(&var_v1[0]))[2];
+                    ((s32*)(&var_v1[0]))[2] = ((s32*)(&var_v1[1]))[2];
+                    ((s32*)(&var_v1[1]))[2] = temp_a2;
+                }
+
+                var_v1++;
+                i++;
+            }
+        } while (start_prop != NULL);
+        func_80330104(cube);
+    }
+}
 
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_8032CD60.s")
