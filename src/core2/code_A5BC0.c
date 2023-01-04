@@ -11,7 +11,7 @@ extern void spawnQueue_func_802C39D4(void);
 extern bool func_80340020(s32, f32[3], f32[3], f32, s32, BKVertexList *, f32[3], f32[3]);
 extern void func_80340200(s32, f32[3], f32[3], f32, s32, s32, BKVertexList *, s32);
 extern s32 func_802E9DD8(BKCollisionList *collisionList, BKVertexList *vtxList, f32 arg2[3], f32 *arg3, f32 arg4, f32 arg5[3], f32 arg6, f32 arg7[3], s32 arg8);
-
+extern void *func_802EBAE0(UNK_TYPE(s32), f32 position[3], f32 rotation[3], f32 scale, UNK_TYPE(s32), UNK_TYPE(s32), UNK_TYPE(s32), f32, UNK_TYPE(s32));
 
 
 extern f32 func_8030A590(void);
@@ -44,6 +44,8 @@ typedef bool( *Method_Core2_A5BC0)(NodeProp *, s32);
 
 s32 func_80330974(ActorMarker *marker, s32 arg1, f32 arg2, s32 arg3);
 s32 func_80320DB0(f32[3], f32, f32[3], u32);
+BKModelBin *func_80330DE4(ActorMarker *this);
+
 extern void func_80320EB0(ActorMarker *, f32, s32);
 extern void func_80320ED8(ActorMarker *, f32, s32);
 f32 func_8033229C(ActorMarker *marker);
@@ -1346,34 +1348,34 @@ void func_803306C8(s32 arg0) {
     }
 }
 
-extern void *func_802EBAE0(UNK_TYPE(s32), f32 position[3], f32 rotation[3], f32 scale, UNK_TYPE(s32), UNK_TYPE(s32), UNK_TYPE(s32), f32, UNK_TYPE(s32));
-BKModelBin *func_80330DE4(ActorMarker *this);
-
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_803308A0.s")
-#else
-void assetcache_release(BKModelBin *);
-void func_8033B388(BKSprite **, BKSpriteDisplayData**);
-void func_80349CD8(void *);
-void func_803308A0(void){
+void func_803308A0(void) {
     s32 i;
-    for(i = 0; i < AssetCacheSize; i++){
-        if(modelCache[i].modelPtr){
-            assetcache_release(modelCache[i].modelPtr);
-            modelCache[i].modelPtr = NULL;
+    ModelCache *var_s0;
+    void *var_a1;
+
+    for (i = 0; i < 0x3D5; i++) {
+        var_s0 = &modelCache[i];
+        if (var_s0->modelPtr) {
+            assetcache_release(var_s0->modelPtr);
+            modelCache[i].modelPtr = 0;
         }
-        if(modelCache[i].unk4){
-            func_8033B388(&modelCache[i].unk4, &modelCache[i].unk8);
+        
+        var_s0 = &modelCache[i];
+        if (var_s0->unk4) {
+            func_8033B388(&var_s0->unk4, &var_s0->unk8);
         }
-        if(modelCache[i].unkC){
-            func_80349CD8(modelCache[i].unkC);
-            modelCache[i].unkC = NULL;
+        
+        var_s0 = &modelCache[i];
+        var_a1 = var_s0->unkC;
+        if (var_a1) {
+            func_80349CD8(var_a1);
+            modelCache[i].unkC = 0;
         }
     }
+    
     free(modelCache);
-    modelCache = NULL;
+    modelCache = 0;
 }
-#endif
 
 s32 func_80330974(ActorMarker *marker, s32 arg1, f32 arg2, s32 arg3) {
     BKModelBin *model;
