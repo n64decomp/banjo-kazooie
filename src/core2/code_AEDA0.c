@@ -8,7 +8,7 @@ void func_80252330(f32, f32, f32);
 void mlMtxApply(Mtx *);
 void func_803382D8(s32 arg0);
 void func_803382E4(s32 arg0);
-void func_803382F0(s32 arg0);
+void spriteRender_set1Primative(bool boolean);
 void func_803382FC(s32 arg0);
 void func_80338308(s32 arg0, s32 arg1);
 
@@ -578,7 +578,7 @@ void func_803381B4(Gfx **gfx, Mtx **mtx, f32 arg2[3]) {
 void func_80338270(){
     func_803382D8(0xFF);
     func_803382E4(0);
-    func_803382F0(0);
+    spriteRender_set1Primative(0);
     func_803382FC(0xFF);
     func_80338308(100, 100);
 
@@ -599,8 +599,8 @@ void func_803382E4(s32 arg0){
     D_80383634 = arg0;
 }
 
-void func_803382F0(s32 arg0){
-    D_80383638 = arg0;
+void spriteRender_set1Primative(bool boolean){
+    D_80383638 = boolean;
 }
 
 void func_803382FC(s32 arg0){

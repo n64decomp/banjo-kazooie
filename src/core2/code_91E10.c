@@ -243,127 +243,90 @@ void func_80319214(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     }
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_91E10/func_803192A4.s")
-#else
 bool func_803192A4(enum ff_question_type_e q_type, s32 q_indx, s32 arg2) {
-    s32 sp60;
-    s32 sp54;
-    s32 sp50;
-    s32 sp48;
-    s32 sp44;
-    s32 sp30;
-    s32 sp2C;
-    s32 temp_a1;
-    s32 temp_a1_2;
-    s32 temp_a2;
-    s32 temp_a2_2;
+    #define NEXT(iter) (*(((char *)(iter))++))
+    #define SKIP(iter,n) (((char *)(iter)) += (n))
+    char *char_iter;
     s32 temp_s0;
     s32 temp_s2;
-    s32 temp_v0;
-    s32 temp_v0_2;
-    s32 temp_v0_3;
-    s32 temp_v0_5;
-    s32 temp_v0_7;
-    s32 temp_v1;
-    u8 *temp_s0_7;
-    u8 temp_t0;
-    u8 str_cnt;
-    QuizQuestionBin *q_bin;
-    QuizQuestionBin_Struct_1 *temp_s0_3;
-    StringBin *temp_s0_4;
-    u8 *temp_s0_5;
+    s32 str_cnt;
     s32 phi_v1;
-    s32 phi_v1_2;
-    s32 phi_v1_3;
-    s32 phi_a3;
-    s32 phi_a3_2;
-    s32 phi_t0;
-    s32 phi_a2;
-    s32 phi_a3_3;
+    s32 sp60;
     s32 phi_a1;
-    s32 phi_v1_4;
-    s32 phi_a0;
-    void *phi_s0;
-    s32 phi_a0_2;
-    s32 phi_a0_3;
-    s32 phi_a1_2;
-    s32 phi_a0_4;
-    s32 phi_a0_5;
+    s32 sp58;
+    s32 sp54;
+    s32 sp50;
+    s32 sp4C;
+    s32 sp48;
+    s32 sp44;
+    s32 temp_v0_3;
+    s32 str_size;
 
     temp_s0 = func_80318ED8(q_type) + q_indx;
-    if (func_8031A3BC() != 0) {
+    if (func_8031A3BC()) {
         return 0;
     }
     if (func_8033BDAC(temp_s0, D_803830E0->unkC, 0x400) == 0) {
         free(D_803830E0->unkC);
         D_803830E0->unkC = (QuizQuestionBin *) assetcache_get(temp_s0);
     }
-    q_bin = D_803830E0->unkC;
-    sp50 = q_bin->unk2;
-    phi_v1_4 = 0;
-    if (q_bin->unk1 >= 2) {
-        sp54 = q_bin->unk1;
-        phi_v1_4 = func_80318F60(q_type, q_indx, arg2);
-    }
-    temp_s2 = phi_v1_4 + 1;
-    phi_v1 = sp50 == 0;
-    if (phi_v1 == 0) {
-        sp54 = q_bin->unk1;
-        phi_v1 = func_80318FB4(q_type) != 0;
-    }
-    phi_a0_2 = 0;
-    phi_a0_3 = 0;
-    if (phi_v1 != 0) {
-        sp30 = q_bin->unk1 + sp50;
-        sp2C = temp_s2 - 1;
+    char_iter = D_803830E0->unkC;
+    sp58 = NEXT(char_iter);
+    sp54 = NEXT(char_iter);
+    sp50 = NEXT(char_iter);
+    sp4C = ((sp54 >= 2) ? func_80318F60(q_type, q_indx, arg2) : 0) + 1;
+    if (((sp50 == 0) || (func_80318FB4(q_type) != 0)) != 0) {
         do {
-            temp_v0 = randi2(0, sp30);
-            sp2C = sp2C;
-            sp48 = temp_v0 + 1;
-        } while (temp_v0 == sp2C);
+            sp48 = randi2(0, sp54 + sp50) + 1;
+        } while (sp48 == sp4C);
         do {
-            temp_v0_2 = randi2(0, sp30);
-            sp44 = temp_v0_2 + 1;
-        } while (temp_v0_2 == sp2C || sp44 == sp48);
+            sp44 = randi2(0, sp54 + sp50) + 1;
+        } while (sp44 == sp4C || sp44 == sp48);
     } else {
-        sp54 = q_bin->unk1;
-        sp48 = randi2(0, sp50) + q_bin->unk1 + 1;
-        phi_t0 = q_bin->unk1;
+        sp48 = randi2(0, sp50) + sp54 + 1;
         do {
             sp44 = randi2(0, sp50) + sp54 + 1;
-        } while (sp48 == sp44);
+        } while (sp44 == sp48);
     }
-    temp_s0_3 = (s32)q_bin +sizeof(QuizQuestionBin) + func_8031B5B0()*2;
-    temp_s0_4 = (s32)D_803830E0->unkC + (temp_s0_3->unk0 + (temp_s0_3->unk1 << 8)) + 1;
-    str_cnt = *((u8*)temp_s0_4 - 1);
-    phi_a1_2 = 0;
+        
+    SKIP(char_iter, 2*func_8031B5B0());
+    phi_v1 = NEXT(char_iter);
+    phi_v1 += (NEXT(char_iter) << 8);
+    char_iter = (s32)D_803830E0->unkC + phi_v1;
+    str_cnt = NEXT(char_iter);
+    
     for(phi_a1 = 0; phi_a1 < 4; phi_a1++){
         D_803830E0->unk18[phi_a1] = 0;
     }
 
-    for(phi_a1_2 = 0; phi_a1_2 < str_cnt; phi_a1_2++){
-        temp_s0_5 = temp_s0_4 + 1;
-        temp_v0_3 = temp_s0_4->cmd - 0x80;
-        phi_a1_2 = 1;
-        if ((temp_v0_3 == 0) || (temp_v0_3 == temp_s2) || (temp_v0_3 == sp48) || (temp_v0_3 == sp44)) {
-            if (temp_v0_5 == 0) {
+    
+    for(phi_a1 = 0; phi_a1 < str_cnt; phi_a1++){
+        temp_v0_3 = NEXT(char_iter);
+        str_size = NEXT(char_iter);
+        temp_v0_3 -= 0x80;
+        
+
+        if ((temp_v0_3 == 0) || (temp_v0_3 == sp4C) || (temp_v0_3 == sp48) || (temp_v0_3 == sp44)) {
+            if (temp_v0_3 == 0) {
                 sp60 = 0;
-            } else if (temp_v0_5 == temp_s2) {
+            } else if (temp_v0_3 == sp4C) {
                 sp60 = 1;
-            } else if (temp_v0_5 == sp48) {
+            } else if (temp_v0_3 == sp48) {
                 sp60 = 2;
-            } else if (temp_v0_5 == sp44) {
+            } else if (temp_v0_3 == sp44) {
                 sp60 = 3;
+            } else{
+                sp60 = sp60;
             }
+        
+            D_803830E0->unk34.unk0[sp60][D_803830E0->unk18[sp60]++] = char_iter;
         }
-        D_803830E0->unk34.unk0[sp60][D_803830E0->unk18[sp60]] = temp_s0_5;
-        D_803830E0->unk18[sp60]++;
-        temp_s0_4 = (s32)temp_s0_5 + temp_s0_4->string_size;
+        SKIP(char_iter, str_size);
     }
     return TRUE;
+    #undef NEXT
+    #undef SKIP
 }
-#endif
 
 
 void func_803196D0(s32 arg0) {

@@ -770,7 +770,7 @@ segments:
   - [0xFE0110, c, gc/pauseMenu] #DONE
   - [0xFE3580, c, code_8DC20] #DONE
   - [0xFE3BD0, c, gc/zoombox] #DONE
-  - [0xFE7770, c, code_91E10]
+  - [0xFE7770, c, code_91E10] #DONE
   - [0xFE8F50, c, code_935F0] #DONE #chminigmae
   - [0xFE9570, c, gc/parade] #DONE
   - [0xFE9F80, c, code_94620] #DONE
