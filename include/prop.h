@@ -28,17 +28,23 @@ typedef struct sprite_prop_s{
 } SpriteProp;
 
 typedef struct model_prop_s{
-    u16 unk0_31:12;
-    u16 pad0_19:4;
+    union{
+        u16 unk0;
+        struct{    
+            u16 unk0_31:12;
+            u16 pad0_19:4;
+        };
+    };
     u8 unk0_15;
-    u8 unk0_7; 
+    u8 unk0_7;
     s16 unk4[3];
-    u8 unkA; //scale * 100.0
+    u8 unkA;
     u8 padB_7 :2;
     u8 unkB_5 :1;
     u8 unkB_4 :1;
     u8 padB_3 :4;
 } ModelProp;
+
 
 typedef struct actor_prop_s{
     struct actorMarker_s* marker;
