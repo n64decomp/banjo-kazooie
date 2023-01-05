@@ -1685,83 +1685,109 @@ s32 func_803311D4(Cube *arg0, f32 *arg1, f32 *arg2, f32 *arg3, u32 arg4) {
     return var_s6;
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_80331638.s")
-#else
-s32 func_80331638(Cube *cube, f32 arg1[3], f32 arg2[3], f32 arg3, f32 arg4[3], s32 arg5, u32 flags) {
-    s32 spD8;
-    Actor *temp_v0_6;
-    BKModelBin *temp_v0_2;
-    BKVertexList *temp_a1;
-    BKCollisionList *temp_v0_3;
-    u32 var_s3;
-    f32 spBC[3];
-    f32 spB0[3];
-    f32 sp98[3];
-    f32 sp8C[3];
-    s32 var_v0;
-    ActorMarker *temp_a0;
-    Struct6Cs *temp_v0_7;
-    Prop *var_s0;
-
-    spD8 = 0;
-    var_s3 = cube->prop2Cnt;
-    var_s0 = cube->prop2Ptr;
-    while(var_s3 != 0) {
-            if (!var_s0->markerFlag && var_s0->unk8_1 && var_s0->unk8_4) {
-                temp_v0_2 = func_8030A4B4((u32)(*(u16 *)(&var_s0->modelProp)) >> 4);
-                if (temp_v0_2 != NULL) {
-                    temp_v0_3 = func_8033A084(temp_v0_2);
-                    if (temp_v0_3 != NULL) {
-                        spBC[0] = (f32) var_s0->modelProp.unk4[0];
-                        spBC[1] = (f32) var_s0->modelProp.unk4[1];
-                        spBC[2] = (f32) var_s0->modelProp.unk4[2];
-                        spB0[0] = 0.0f;
-                        spB0[1] = (f32) (var_s0->modelProp.unk0_15 * 2);
-                        spB0[2] = (f32) (var_s0->modelProp.unk0_7 * 2);
-                        var_v0 = func_802E9118(temp_v0_3, func_8033A148(temp_v0_2), spBC, spB0, (f32) ((f32) var_s0->modelProp.unkA / 100.0), arg1, arg2, arg3, arg4, arg5, flags);
-                        if (var_v0 != 0) {
-                            spD8 = var_v0;
-                        }
-                    }
-                }
-            } else if (var_s0->markerFlag && var_s0->unk8_3 && var_s0->unk8_4) {
-                temp_v0_2 = func_80330DE4(var_s0->actorProp.marker);
-                if (temp_v0_2 != NULL) {
-                    temp_v0_3 = func_8033A084(temp_v0_2);
-                    if (temp_v0_3 != NULL) {
-                        temp_v0_6 = marker_getActor(var_s0->actorProp.marker);
-                        temp_a1 = func_80330C74(temp_v0_6);
-                        sp98[0] = (f32) var_s0->actorProp.x;
-                        sp98[1] = (f32) var_s0->actorProp.y;
-                        sp98[2] = (f32) var_s0->actorProp.z;
-                        sp8C[0] = (f32)var_s0->actorProp.marker->pitch;
-                        sp8C[1] = (f32)var_s0->actorProp.marker->yaw;
-                        sp8C[2] = (f32)var_s0->actorProp.marker->roll;
-                        var_v0 = func_802E9118(temp_v0_3, temp_a1, sp98, sp8C, temp_v0_6->scale, arg1, arg2, arg3, arg4, arg5, flags);
-                        if (var_v0 != 0) {
-                            spD8 = var_v0;
-                        }
-                    }
-                }
-            } else if (var_s0->markerFlag) {
-                temp_a0 = var_s0->actorProp.marker;
-                temp_v0_7 = temp_a0->unk18;
-                if (temp_v0_7 != NULL) {
-                    if (temp_v0_7->unk4 != NULL) {
-                        var_v0 = temp_v0_7->unk4(temp_a0, arg1, arg2, arg3, arg4, arg5, flags);
-                        if (var_v0 != 0) {
-                            spD8 = var_v0;
-                        }
-                    }
-                }
-            }
-            var_s0++;
-            var_s3--;
+s32 func_80331638(Cube *cube, f32 arg1[3], f32 arg2[3], f32 arg3, f32 arg4[3], s32 arg5, u32 flags)
+{
+  f32 *new_var2;
+  s32 spD8;
+  Actor *temp_v0_6;
+  BKModelBin *temp_v0_2;
+  BKVertexList *temp_a1;
+  BKCollisionList *temp_v0_3;
+  f32 spBC[3];
+  f32 spB0[3];
+  u32 var_s3;
+  f32 *new_var;
+  BKModelBin *pad9C;
+  f32 sp98[3];
+  f32 sp8C[3];
+  s32 var_v0;
+  ActorMarker *temp_a0;
+  Struct6Cs *temp_v0_7;
+  Prop *var_s0;
+    
+  spD8 = 0;
+  var_s0 = cube->prop2Ptr;
+  var_s3 = cube->prop2Cnt;
+  new_var2 = sp8C;
+  for (; var_s3 != 0; var_s0++, var_s3--)
+  {
+    if (((!var_s0->markerFlag) && var_s0->unk8_1) && var_s0->unk8_4)
+    {
+      temp_v0_2 = func_8030A4B4(((u32) (*((u16 *) (&var_s0->modelProp)))) >> 4);
+      if (temp_v0_2 == 0)
+      {
+        continue;
+      }
+      temp_v0_3 = func_8033A084(temp_v0_2);
+      if (temp_v0_3 == 0)
+      {
+        continue;
+      }
+      spBC[0] = (f32) var_s0->modelProp.unk4[0];
+      spBC[1] = (f32) var_s0->modelProp.unk4[1];
+      spBC[2] = (f32) var_s0->modelProp.unk4[2];
+      spB0[0] = 0.0f;
+      spB0[1] = (f32) (var_s0->modelProp.unk0_15 * 2);
+      new_var = spB0;
+      spB0[2] = (f32) (var_s0->modelProp.unk0_7 * 2);
+      var_v0 = func_802E9118(temp_v0_3, func_8033A148(temp_v0_2), spBC, new_var, (f32) (((f32) var_s0->modelProp.unkA) / 100.0), arg1, arg2, arg3, arg4, arg5, flags);
+      if (var_v0 != 0)
+      {
+        spD8 = var_v0;
+      }
     }
-    return spD8;
+    else
+      if ((var_s0->markerFlag && var_s0->unk8_3) && var_s0->unk8_4)
+    {
+      temp_v0_3 = func_80330DE4(var_s0->actorProp.marker);
+      pad9C = temp_v0_3;
+      if (temp_v0_3 == 0)
+      {
+        continue;
+      }
+      temp_v0_2 = func_8033A084(pad9C);
+      if (temp_v0_2 == 0)
+      {
+        continue;
+      }
+      temp_v0_6 = marker_getActor(var_s0->actorProp.marker);
+      temp_a1 = func_80330C74(temp_v0_6);
+      {
+        sp98[0] = (f32) var_s0->actorProp.x;
+        sp98[1] = (f32) var_s0->actorProp.y;
+        sp98[2] = (f32) var_s0->actorProp.z;
+        sp8C[0] = (f32) var_s0->actorProp.marker->pitch;
+        sp8C[1] = (f32) var_s0->actorProp.marker->yaw;
+        sp8C[2] = (f32) var_s0->actorProp.marker->roll;
+        var_v0 = func_802E9118(temp_v0_2, temp_a1, sp98, new_var2, temp_v0_6->scale, arg1, arg2, arg3, arg4, arg5, flags);
+      }
+      if (var_v0 != 0)
+      {
+        spD8 = var_v0;
+      }
+    }
+    else
+      if (var_s0->markerFlag)
+    {
+      temp_a0 = var_s0->actorProp.marker;
+      temp_v0_7 = temp_a0->unk18;
+      if (temp_v0_7 == 0)
+      {
+        continue;
+      }
+      if (temp_v0_7->unk4 != 0)
+      {
+        var_v0 = temp_v0_7->unk4(temp_a0, arg1, arg2, arg3, arg4, arg5, flags);
+        if (var_v0 != 0)
+        {
+          spD8 = var_v0;
+        }
+      }
+    }
+  }
+
+  return spD8;
 }
-#endif
 
 #ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_803319C0.s")
