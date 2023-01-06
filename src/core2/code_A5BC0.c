@@ -1789,91 +1789,96 @@ s32 func_80331638(Cube *cube, f32 arg1[3], f32 arg2[3], f32 arg3, f32 arg4[3], s
   return spD8;
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_803319C0.s")
-#else
-BKCollisionTri *func_803319C0(Cube *arg0, f32 arg1[3], f32 arg2, s32 arg3, f32 arg4[3], u32 arg5) {
+BKCollisionTri *func_803319C0(Cube *arg0, f32 arg1[3], f32 arg2, s32 arg3, f32 arg4[3], u32 arg5){
     BKCollisionTri *var_s7;
     BKCollisionTri *var_v0;
     s32 var_s3;
     Prop *var_s0;
-
-
-    var_s7 = NULL;
-    var_s0 = arg0->prop2Ptr;\
+    BKCollisionList *temp_v0_3;
+    BKVertexList *temp_a1;
+    f32 spAC[3];
+    f32 spA0[3];
+    BKModelBin *temp_v0_2;
+    BKModelBin *new_var;
+    ModelProp *mProp;
+    f32 sp88[3];
+    f32 sp7C[3];
+    Actor *temp_v0_6;
+    ActorProp *aProp = &var_s0->actorProp;
+    
+    var_s7 = 0;
+    var_s0 = arg0->prop2Ptr;
     for (var_s3 = arg0->prop2Cnt; var_s3 != 0; var_s3--, var_s0++) {
-            if (!var_s0->markerFlag && var_s0->unk8_1 && var_s0->unk8_4) {
-                ModelProp *mProp = &var_s0->modelProp;
-                BKModelBin *temp_v0_2;
-                BKCollisionList *temp_v0_3;
-
-                temp_v0_2 = func_8030A4B4(mProp->unk0_31);
-                if (temp_v0_2 != NULL) {
-                    temp_v0_3 = func_8033A084(temp_v0_2);
-                    if (temp_v0_3 != NULL) {
-                        f32 spAC[3];
-                        f32 spA0[3];
-
-                        spAC[0] = (f32) mProp->unk4[0];
-                        spAC[1] = (f32) mProp->unk4[1];
-                        spAC[2] = (f32) mProp->unk4[2];
-                        spA0[0] = 0.0f;
-                        spA0[1] = (f32) (mProp->unk0_15 * 2);
-                        spA0[2] = (f32) (mProp->unk0_7 * 2);
-                        var_v0 = func_802E9DD8(temp_v0_3, func_8033A148(temp_v0_2), spAC, spA0, ((f32) mProp->unkA) / 100.0, arg1, arg2, arg3, arg4);
-                        if (var_v0 != NULL) {
-                            var_s7 = var_v0;
-                        }
-                    }
-                }
-            } else if (var_s0->markerFlag && var_s0->unk8_3 && var_s0->unk8_4) {
-                ActorProp *aProp = &var_s0->actorProp;
-                BKModelBin *temp_v0_2;
-                BKCollisionList *temp_v0_3;
-                Actor *temp_v0_6;
-                BKVertexList *temp_a1;
-
-                temp_v0_2 = func_80330DE4(aProp->marker);
-                if (temp_v0_2 != NULL) {
-                    temp_v0_3 = func_8033A084(temp_v0_2);
-                    if (temp_v0_3 != NULL) {
-                        f32 sp88[3];
-                        f32 sp7C[3];
-
-                        temp_v0_6 = marker_getActor(aProp->marker);
-                        temp_a1 = func_80330C74(temp_v0_6);
-                        sp88[0] = (f32) aProp->x;
-                        sp88[1] = (f32) aProp->y;
-                        sp88[2] = (f32) aProp->z;
-
-                        sp7C[0] = aProp->marker->pitch;
-                        sp7C[1] = aProp->marker->yaw;
-                        sp7C[2] = aProp->marker->roll;
-
-                        var_v0 = func_802E9DD8(temp_v0_3, temp_a1, sp88, sp7C, temp_v0_6->scale, arg1, arg2, arg3, arg4);
-                        if (var_v0 != 0) {
-                            var_s7 = var_v0;
-                        }
-                    }
-                }
-            } else if (var_s0->markerFlag) {
-                ActorProp *aProp = &var_s0->actorProp;
-                Struct6Cs *temp_v0_7;
-
-                temp_v0_7 = aProp->marker->unk18;
-                if (temp_v0_7 != NULL) {
-                    if (temp_v0_7->unk8 != NULL) {
-                        var_v0 = temp_v0_7->unk8(aProp->marker, arg1, arg2, arg3, arg4);
-                        if (var_v0 != 0) {
-                            var_s7 = var_v0;
-                        }
-                    }
+        if (((!var_s0->markerFlag) && var_s0->unk8_1) && var_s0->unk8_4)
+        {
+            mProp = &var_s0->modelProp;
+            new_var = func_8030A4B4(mProp->unk0_31); 
+            if (1) { } if (1) { } if (1) { }
+            temp_v0_2 = new_var;
+            if (temp_v0_2 != 0){
+                temp_v0_3 = func_8033A084(temp_v0_2);
+                if (temp_v0_3 != 0){
+                    spAC[0] = (f32) mProp->unk4[0];
+                    spAC[1] = (f32) mProp->unk4[1];
+                    spAC[2] = (f32) mProp->unk4[2];
+                    spA0[0] = 0.0f;
+                    spA0[1] = (f32) (mProp->unk0_15 * 2);
+                    temp_v0_2 = temp_v0_2;
+                    spA0[2] = (f32) (mProp->unk0_7 * 2);
+                    var_v0 = func_802E9DD8(temp_v0_3, func_8033A148(temp_v0_2), spAC, spA0, ((f32) mProp->unkA) / 100.0, arg1, arg2, arg3, arg4);
+                    if (var_v0 != 0)
+                        var_s7 = var_v0;
                 }
             }
+        } else {
+            aProp = &var_s0->actorProp;
+            if ((var_s0->markerFlag && var_s0->unk8_3) && var_s0->unk8_4)
+            {
+            temp_v0_2 = func_80330DE4(aProp->marker);
+            if (temp_v0_2 != 0)
+            {
+            new_var = func_8033A084(temp_v0_2);
+            if (new_var != 0)
+            {
+        
+            temp_v0_6 = marker_getActor(aProp->marker);
+            temp_a1 = func_80330C74(temp_v0_6);
+            sp88[0] = (f32) aProp->x;
+            sp88[1] = (f32) aProp->y;
+            sp88[2] = (f32) aProp->z;
+            sp7C[0] = aProp->marker->pitch;
+            sp7C[1] = aProp->marker->yaw;
+            sp7C[2] = aProp->marker->roll;
+            var_v0 = func_802E9DD8(new_var, temp_a1, sp88, sp7C, temp_v0_6->scale, arg1, arg2, arg3, arg4);
+            if (var_v0 != 0)
+            {
+            var_s7 = var_v0;
+            }
+            }
+            }
+            }
+            else
+            if (var_s0->markerFlag)
+            {
+            Struct6Cs *temp_v0_7;
+            temp_v0_7 = aProp->marker->unk18;
+            if (temp_v0_7 != 0)
+            {
+            if (temp_v0_7->unk8 != 0)
+            {
+            var_v0 = temp_v0_7->unk8(aProp->marker, arg1, arg2, arg3, arg4);
+            if (var_v0 != 0)
+            {
+            var_s7 = var_v0;
+            }
+            }
+            }
+            }
+        }
     }
+    
     return var_s7;
 }
-#endif
 
 f32 func_80331D20(BKSprite *sprite) {
     BKSpriteFrame *frame;
