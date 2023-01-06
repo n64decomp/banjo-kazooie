@@ -72,6 +72,7 @@ s32 D_8038363C;
 s32 D_80383640;
 s32 D_80383644;
 
+void spriteRender_drawWithSegment(Gfx **gfx, Vtx **vtx, BKSprite *sprite, u32 frame, u32 segment);
 void func_803380F8(Gfx **gfx, Mtx **mtx, f32 arg2[3]);
 void func_803381B4(Gfx **gfx, Mtx **mtx, f32 arg2[3]);
 
@@ -210,243 +211,172 @@ void func_8033687C( Gfx **gfx )
      }
  }
 
-void func_80336904(Gfx **gfx, Vtx **vtx, BKSprite *sp, u32 frame){
-    func_80336924(gfx, vtx, sp, frame, 0);
+void spriteRender_draw(Gfx **gfx, Vtx **vtx, BKSprite *sp, u32 frame){
+    spriteRender_drawWithSegment(gfx, vtx, sp, frame, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AEDA0/func_80336924.s")
-/*func_80336924(Gfx **gfx, Vtx **vtx, BKSprite *sp, u32 frame, u32 segment){
-    u32 chkDataSize_1C0;
-    s32 i_1BC;
+void spriteRender_drawWithSegment(Gfx **gfx, Vtx **vtx, BKSprite *sprite, u32 frame, u32 segment) {
+    s32 ix;
+    s32 pixel_size_nibbles; //sp1C0
+    s32 sp1BC;
+    Vtx *var_a3;
     Gfx *sp1B4;
     Vtx *sp1B0;
-    void *sp1A8;
-    BKSpriteFrame *framePtr_18c;
-    Vtx *sp184;
+    u32 palette_mem;
+    u8 *tmem;
+    BKSpriteTextureBlock *var_t2;
+    f32 temp_f0;
+    f32 temp_f2;
+    Gfx *var_a2;
+    s32 temp_a2_2;
+    s32 i_vtx;
+    BKSpriteFrame *frame_ptr; //sp18c
+    s32 var_t1_8;
+    Vtx *vtx_start; //sp184
+    s32 temp_ra;
+    s32 iy;
+    
+    vtx_start = *vtx;
 
-    s32 sp48;
-    s32 sp44;
-
-    s32 sp_type;
-    BKSpriteTextureBlock *chunkPtr;
-    u32 chunk_block;
-    u32 chunkSize;
-    u16* palPtr;
-    s32 s2;
-    sp184 = *vtx;
-
+    //get pize size in nibs
     func_80349AD0();
-  
-    if (sp->type & SPRITE_TYPE_CI4) {
-        chkDataSize_1C0 = 1;
-    } else if (sp->type & SPRITE_TYPE_CI8) {
-        chkDataSize_1C0 = 2;
-    } else if (sp->type & 0x40){
-        chkDataSize_1C0 = 2;
-    } else if (sp->type & 0x100){
-        chkDataSize_1C0 = 2;
-    } else if (sp->type & SPRITE_TYPE_RGBA16) {
-        chkDataSize_1C0 = 4;
-    } else if (sp->type & SPRITE_TYPE_RGBA32){
-        chkDataSize_1C0 = 8;
+    if (sprite->type & SPRITE_TYPE_CI4) {
+        pixel_size_nibbles = 1;
+    } else if (sprite->type & SPRITE_TYPE_CI8) {
+        pixel_size_nibbles = 2;
+    } else if (sprite->type & 0x40){
+        pixel_size_nibbles = 2;
+    } else if (sprite->type & 0x100){
+        pixel_size_nibbles = 2;
+    } else if (sprite->type & SPRITE_TYPE_RGBA16) {
+        pixel_size_nibbles = 4;
+    } else if (sprite->type & SPRITE_TYPE_RGBA32){
+        pixel_size_nibbles = 8;
     }
-  
     func_80335D30(gfx);
-    if(D_80383638 || (sp->type & SPRITE_TYPE_CI8)){
+
+    //set to 1Prim if using
+    if(D_80383638 || (sprite->type & SPRITE_TYPE_CI8)){
         gDPPipelineMode((*gfx)++, G_PM_1PRIMITIVE);
     }
-
-    framePtr_18c = spriteGetFramePtr(sp, frame);
-
-    // //load Palettes for CI4 and CI8
-    chunkPtr = ((u32) (framePtr_18c + 1));
-    if (sp->type & SPRITE_TYPE_CI4) { //CI4
+    
+    frame_ptr = spriteGetFramePtr(sprite, frame);
+    
+    //load palette in indexed pixels
+    var_t2 = frame_ptr + 1;
+    if (sprite->type & SPRITE_TYPE_CI4) {
         gDPSetTextureLUT((*gfx)++, G_TT_RGBA16);
-        gDPSetTextureImage((*gfx)++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, chunkPtr = (u32)chunkPtr & -8);
-        gDPTileSync((*gfx)++);
-        gDPSetTile((*gfx)++, G_IM_FMT_RGBA, G_IM_SIZ_4b, 0, 0x0100, G_TX_LOADTILE, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD);
-    //     sp1d0 = sp;
-        gDPLoadSync((*gfx)++);
-        gDPLoadTLUTCmd((*gfx)++, G_TX_LOADTILE, 15);
-        gDPPipeSync((*gfx)++);
-        chunkPtr = (u32) chunkPtr + 0x10 * sizeof(u16);
-    } else if (sp->type & SPRITE_TYPE_CI8) {//CI8
-    //     //L80336B28
+        palette_mem = ALIGN(frame_ptr + 1, 8);
+        gDPLoadTLUT_pal16((*gfx)++, 0, palette_mem);
+        var_t2 = palette_mem + 0x20;
+    } else if (sprite->type & SPRITE_TYPE_CI8) {
         gDPSetTextureLUT((*gfx)++, G_TT_RGBA16);
-        gDPSetTextureImage((*gfx)++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, chunkPtr = (u32)chunkPtr & -8);
-        gDPTileSync((*gfx)++);
-        gDPSetTile((*gfx)++, G_IM_FMT_RGBA, G_IM_SIZ_4b, 0, 0x0100, G_TX_LOADTILE, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD);
-        gDPLoadSync((*gfx)++);
-        gDPLoadTLUTCmd((*gfx)++, G_TX_LOADTILE, 255);
-        gDPPipeSync((*gfx)++);
-        chunkPtr = (u32) chunkPtr + 0x100 * sizeof(u16);
-    }//L80336C0C
-
-    s2 = 0;
-    sp1B0 = *vtx;
+        palette_mem = ALIGN(frame_ptr + 1, 8);
+        gDPLoadTLUT_pal256((*gfx)++, palette_mem);
+        var_t2 = palette_mem + 0x200;
+    }
+    
+//start new vtx seg
+    i_vtx = 0;
+    var_a3 = *vtx;
     sp1B4 = *gfx;
-    if(segment){
-        gSPVertex((*gfx)++, SEGMENT_ADDR(segment, (s32)sp1B0 - (s32)sp184), 0, 0);
+    sp1B0 = var_a3;
+    if(segment != 0){
+        gSPVertex((*gfx)++, SEGMENT_ADDR(segment, (s32)sp1B0 - (s32)vtx_start), 0, 0);
     }else{
         gSPVertex((*gfx)++, sp1B0, 0, 0);
     }
+    //for each texture (chunk) in frame
+    // sp1B4 = sp1B4;
+    for(sp1BC = 0; sp1BC < frame_ptr->chunkCnt; sp1BC++){
+        temp_ra = var_t2->h;
+        tmem = ALIGN(var_t2 + 1, 8); //align
 
-    for(i_1BC = 0; i_1BC < framePtr_18c->chunkCnt; i_1BC++){
-        //L80336CA0
-        //temp_ra = phi_t2->unk6;
-        sp1A8 = ((s32)chunkPtr + 0xF) & ~7;
-// //         // temp_a0_3 = arg2->unk2;
-// //         // temp_s3 = phi_s2 * 2;
+        //load texture block
+        if (sprite->type & SPRITE_TYPE_RGBA16) {
+            gDPLoadTextureBlock((*gfx)++, tmem, G_IM_FMT_RGBA, G_IM_SIZ_16b, var_t2->w, temp_ra, NULL, 0, 0, 0, 0, 0, 0);
+        } else if (sprite->type & SPRITE_TYPE_RGBA32) {
+            gDPLoadTextureBlock((*gfx)++, tmem, G_IM_FMT_RGBA, G_IM_SIZ_32b, var_t2->w, temp_ra, NULL, 0, 0, 0, 0, 0, 0);
+        } else if (sprite->type & SPRITE_TYPE_CI4) {
+            gDPLoadTextureBlock_4b((*gfx)++, tmem, G_IM_FMT_CI, var_t2->w, temp_ra, NULL, 0, 0, 0, 0, 0, 0);
+        } else if (sprite->type & SPRITE_TYPE_CI8) {
+            gDPLoadTextureBlock((*gfx)++, tmem, G_IM_FMT_CI, G_IM_SIZ_8b, var_t2->w, temp_ra, NULL, 0, 0, 0, 0, 0, 0);
+        }else if (sprite->type & SPRITE_TYPE_IA8) {
+            gDPLoadTextureBlock((*gfx)++, tmem, G_IM_FMT_CI, G_IM_SIZ_8b, var_t2->w, temp_ra, NULL, 0, 0, 0, 0, 0, 0);
+        } else if (sprite->type & SPRITE_TYPE_I8) {
+            gDPLoadTextureBlock((*gfx)++, tmem, G_IM_FMT_I, G_IM_SIZ_8b, var_t2->w, temp_ra, NULL, 0, 0, 0, 0, 0, 0);
+        }
 
-// /    temp_fp = temp_s3 + 2;
-        sp1A8 = (((u32) (chunkPtr + 1) + 0xF) & 0xFFFFFFF8);
-        if(sp->type & SPRITE_TYPE_RGBA16) { //RGBA16
-            gDPLoadTextureBlock((*gfx)++, sp1A8, G_IM_FMT_RGBA, G_IM_SIZ_16b, 
-                chunkPtr->w, chunkPtr->h, 0, 0, 0, 0, 0, 0, 0);
-        } else if (sp->type & SPRITE_TYPE_RGBA32) { //RGBA32 //L80336E78
-            gDPLoadTextureBlock((*gfx)++, sp1A8, G_IM_FMT_RGBA, G_IM_SIZ_32b, 
-                chunkPtr->w, chunkPtr->h, 0, 0, 0, 0, 0, 0, 0);
-        } else if (sp->type & 1) { //CI4 //L80337020
-            gDPLoadTextureBlock((*gfx)++, chunk_block, G_IM_FMT_CI, G_IM_SIZ_16b, 
-                chunkPtr->w, chunkPtr->h, 0, 0, 0, 0, 0, 0, 0);
-        } else if (sp->type & 4) { //CI8 //L803371C4
-            gDPLoadTextureBlock((*gfx)++, chunk_block, G_IM_FMT_CI, G_IM_SIZ_16b, 
-                chunkPtr->w, chunkPtr->h, 0, 0, 0, 0, 0, 0, 0);
-        } else if (sp->type & 0x100) {
-            gDPLoadTextureBlock((*gfx)++, chunk_block, G_IM_FMT_I, G_IM_SIZ_16b, 
-                chunkPtr->w, chunkPtr->h, 0, 0, 0, 0, 0, 0, 0);
-        } else if (sp->type & 0x40) {
-            gDPLoadTextureBlock((*gfx)++, chunk_block, G_IM_FMT_I, G_IM_SIZ_8b, 
-                chunkPtr->w, chunkPtr->h, 0, 0, 0, 0, 0, 0, 0);
-        }//L803376A8
-         gSP2Triangles((*gfx)++, 0, 1, 2, 0, 2, 1, 0, 0);        
-        //L803376E4
-// // // //         temp_a2 = *arg0;
-// // // //         temp_v1_69 = temp_s3 & 0xFF;
-// // // //         *arg0 = (void *) (temp_a2 + 8);
-// // // //         if (phi_s2 == 0) {
-// // // //             temp_t9 = sp48 & 0xFF;
-// // // //             phi_a0_7 = (temp_v1_69 << 0x10) | ((temp_fp & 0xFF) << 8) | temp_t9;
-// // // //             phi_v1_3 = temp_v1_69;
-// // // //             phi_a1 = temp_t9;
-// // // //         } else {
-// // // //             if (phi_s2 == 1) {
-// // // //                 temp_t6 = sp48 & 0xFF;
-// // // //                 temp_v1_70 = temp_s3 & 0xFF;
-// // // //                 phi_t1_8 = ((temp_fp & 0xFF) << 0x10) | (temp_t6 << 8) | temp_v1_70;
-// // // //                 phi_v1_3 = temp_v1_70;
-// // // //                 phi_a1 = temp_t6;
-// // // //             } else {
-// // // //                 temp_t8_5 = sp48 & 0xFF;
-// // // //                 temp_v1_71 = temp_s3 & 0xFF;
-// // // //                 phi_t1_8 = (temp_t8_5 << 0x10) | (temp_v1_71 << 8) | (temp_fp & 0xFF);
-// // // //                 phi_v1_3 = temp_v1_71;
-// // // //                 phi_a1 = temp_t8_5;
-// // // //             }
-// // // //             phi_a0_7 = phi_t1_8;
-// // // //         }
-// // // //         temp_a2->unk0 = (s32) (phi_a0_7 | 0xB1000000);
-// // // //         if (phi_s2 == 0) {
-// // // //             temp_a2->unk4 = (s32) ((phi_v1_3 << 0x10) | (phi_a1 << 8) | (sp44 & 0xFF));
-// // // //         } else {
-// // // //             if (phi_s2 == 1) {
-// // // //                 phi_a0_8 = (phi_a1 << 0x10) | ((sp44 & 0xFF) << 8) | phi_v1_3;
-// // // //             } else {
-// // // //                 phi_a0_8 = ((sp44 & 0xFF) << 0x10) | (phi_v1_3 << 8) | phi_a1;
-// // // //             }
-// // // //             temp_a2->unk4 = phi_a0_8;
-// // // //         }
-// // // //         temp_a2_2 = phi_t2->unk0 - temp_v0->unk0;
-// // // //         temp_f0 = (f32) D_80383640 / (f32) temp_v0->unk4;
-// // // //         phi_t1_7 = temp_v0->unk2 - phi_t2->unk2;
-// // // //         phi_t0 = 0;
-// // // // loop_95:
-// // // //         temp_a1 = ((temp_ra << 6) * phi_t0) - 0x20;
-// // // //         temp_f4 = (s32) ((f32) phi_t1_7 * ((f32) D_80383644 / (f32) temp_v0->unk6));
-// // // //         temp_t3 = phi_t3 - 1;
-// // // //         temp_lo = (phi_t2->unk4 - 1) * 0;
-// // // //         phi_a3 = phi_a3_4;
-// // // //         phi_lo = temp_lo;
-// // // //         phi_v1_4 = 0;
-// // // //         phi_a3_2 = phi_a3_4;
-// // // //         phi_lo_2 = temp_lo;
-// // // //         phi_v1_5 = 0;
-// // // //         if (temp_t3 != 0) {
-// // // // loop_96:
-// // // //             phi_a3->unk2 = (s16) temp_f4;
-// // // //             phi_a3->unk4 = (u16)0;
-// // // //             temp_a3_2 = phi_a3 + 0x10;
-// // // //             temp_a3_2->unk-10 = (s16) (s32) ((f32) (phi_lo + temp_a2_2) * temp_f0);
-// // // //             temp_a3_2->unk-6 = temp_a1;
-// // // //             temp_a3_2->unk-4 = 0x7F80;
-// // // //             temp_v1_72 = phi_v1_4 + 1;
-// // // //             temp_a3_2->unk-8 = (s16) (((phi_t2->unk4 << 6) * phi_v1_4) - 0x20);
-// // // //             temp_lo_2 = (phi_t2->unk4 - 1) * temp_v1_72;
-// // // //             phi_a3 = temp_a3_2;
-// // // //             phi_lo = temp_lo_2;
-// // // //             phi_v1_4 = temp_v1_72;
-// // // //             phi_a3_2 = temp_a3_2;
-// // // //             phi_lo_2 = temp_lo_2;
-// // // //             phi_v1_5 = temp_v1_72;
-// // // //             if (temp_v1_72 != temp_t3) {
-// // // //                 goto loop_96;
-// // // //             }
-// // // //         }
-// // // //         phi_a3_2->unk2 = (s16) temp_f4;
-// // // //         phi_a3_2->unk4 = (u16)0;
-// // // //         temp_t3_2 = temp_t3 + 1;
-// // // //         temp_a3_3 = phi_a3_2 + 0x10;
-// // // //         temp_a3_3->unk-10 = (s16) (s32) ((f32) (phi_lo_2 + temp_a2_2) * temp_f0);
-// // // //         temp_a3_3->unk-6 = temp_a1;
-// // // //         temp_a3_3->unk-4 = 0x7F80;
-// // // //         temp_a3_3->unk-8 = (s16) (((phi_t2->unk4 << 6) * phi_v1_5) - 0x20);
-// // // //         temp_t0 = phi_t0 + 1;
-// // // //         phi_t3 = temp_t3_2;
-// // // //         phi_t1_7 = (phi_t1_7 - temp_ra) + 1;
-// // // //         phi_t0 = temp_t0;
-// // // //         phi_a3_4 = temp_a3_3;
-// // // //         if (temp_t0 != temp_t3_2) {
-// // // //             goto loop_95;
-// // // //         }
-// // // //         temp_s2_2 = phi_s2 + 4;
-// // // //         phi_s2_3 = temp_s2_2;
-// // // //         if (temp_s2_2 == 0x10) {
-            if (segment != 0) {
-                gSPVertex((*gfx)++, SEGMENT_ADDR(segment, *vtx - sp184, 16, 0);
-            } else {
-                gSPVertex((*gfx)++, 0x80001234, 16, 0);
+        //generate vtx coords for texture
+        gSP2Triangles((*gfx)++, i_vtx, i_vtx + 1, i_vtx + 3, i_vtx, i_vtx, i_vtx + 3, i_vtx + 2, i_vtx);
+         temp_f0 = ((f32) D_80383640 / (f32) frame_ptr->w);
+         temp_f2 = ((f32) D_80383644 / (f32) frame_ptr->h);
+        temp_a2_2 = var_t2->x - frame_ptr->unk0;
+        var_t1_8 = (frame_ptr->unk2 - var_t2->y);
+        for(iy = 0; iy < 2; iy++){
+            for(ix = 0; ix < 2; ix++){
+                var_a3->v.ob[0] = (s32)((temp_a2_2 + (var_t2->w - 1) * ix) * temp_f0);
+                var_a3->v.ob[1] = (s32)((var_t1_8 +  -(temp_ra - 1) * iy) * temp_f2);
+                var_a3->v.ob[2] = 0;
+                var_a3->v.tc[0] = 0x20*(2*var_t2->w * ix  - 1);
+                var_a3->v.tc[1] = 0x20*(2*temp_ra * (iy^0) - 1);
+                *(u32*)&var_a3->v.cn = 0x7F80;
+                var_a3++;
             }
-// // // //             temp_v1_73 = *arg0;
-// // // //             sp1B0 = temp_a3_3;
-// // // //             sp1B4 = temp_v1_73;
-// // //              if (arg4 != 0) {
-// // // //                 *arg0 = (void *) (temp_v1_73 + 8);
-// // // //                 temp_v1_73->unk0 = 0x400FFFF;
-// // // //                 temp_v1_73->unk4 = (void *) ((arg4 << 0x18) + (temp_a3_3 - sp184));
-// // // //                 phi_s2_3 = 0;
-// // //              } else {
-// // // //                 *arg0 = (void *) (temp_v1_73 + 8);
-// // // //                 temp_v1_73->unk0 = 0x400FFFF;
-// // // //                 temp_v1_73->unk4 = temp_a3_3;
-// // // //                 phi_s2_3 = 0;
-// // //              }
-// // // //         }
-           chunkSize = chunkPtr->w * chunkPtr->h * chkDataSize_1C0;
-           chunkPtr = (s32)sp1A8 + chunkSize/2;
+        }
+        i_vtx += 4;
+        //rewrite vtx seg start with correct vtx count
+        if (i_vtx == 0x10) {
+            i_vtx = 0;
+            if(segment != 0){
+                gSPVertex(sp1B4, SEGMENT_ADDR(segment, (s32)sp1B0 - (s32)vtx_start), 16, 0);
+            }else{
+                gSPVertex(sp1B4, sp1B0, 16, 0);
+            }
+            //start new vtx seg
+            sp1B4 = *gfx;
+            sp1B0 = var_a3;
+            if (segment) {
+                gSPVertex((*gfx)++, SEGMENT_ADDR(segment, (s32)sp1B0 - (s32)vtx_start), 0, 0);
+            } else {
+                gSPVertex((*gfx)++, sp1B0, 0, 0);
+            }
+        }
+        var_t2 = tmem + ((s32) (var_t2->w * var_t2->h) * pixel_size_nibbles / 2);
+    }
+    // sp1B4 = reinterpret_cast(Gfx *,sp1B4);
+    *vtx = var_a3;
+    
+    
+    //rewrite vtx seg start with correct vtx count
+    if (i_vtx > 0) {
+        if(segment != 0){
+            gSPVertex(sp1B4, SEGMENT_ADDR(segment, (s32)sp1B0 - (s32)vtx_start), i_vtx, 0);
+        }else{
+            if(1); 
+            gSPVertex(sp1B4, sp1B0, i_vtx, 0);
+        }
+    }
+    else {
+        //no vtx, overwrite gSPVertex() command;
+        *gfx = sp1B4;
     }
 
     gDPPipeSync((*gfx)++);
-//     if((sp->type & SPRITE_TYPE_CI4) || (sp->type & SPRITE_TYPE_CI8)){ //CI4 or CI8 //L80337AD8
-//         gDPSetTextureLUT((*gfx)++, G_TT_NONE);
-//     }
-//     if( D_80383638 || sp->type & SPRITE_TYPE_CI8){
-//         //L80337B18
-//         gDPPipelineMode((*gfx)++, G_PM_NPRIMITIVE);
-//     }//L80337B30
-//     func_8033687C(gfx);
 
-    if(chkDataSize_1C0);
-}//*/
+    //clear palette if used
+    if (( sprite->type & SPRITE_TYPE_CI4) || ( sprite->type & SPRITE_TYPE_CI8)) {
+        gDPSetTextureLUT((*gfx)++, G_TT_NONE);
+    }
+
+    //restore pipeline to NPrim mode if set to 1Prim
+    if ((D_80383638 != 0) || (sprite->type & SPRITE_TYPE_CI8)) {
+        gDPPipelineMode((*gfx)++, G_PM_NPRIMITIVE);
+    }
+    if(sp1B4);
+    func_8033687C(gfx);
+}
+
 
 #ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_AEDA0/func_80337B68.s")

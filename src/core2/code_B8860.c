@@ -58,7 +58,7 @@ void func_8033F7F0(u8 arg0, Gfx **gfx, Mtx **mtx, Vtx **vtx){
         func_80338308(sp54->unk20[0], sp54->unk20[1]);
         func_8033837C(1);
         func_80338370();
-        func_80336904(gfx, vtx, sp54->sprite_0, sp54->frame_28_31);
+        spriteRender_draw(gfx, vtx, sp54->sprite_0, sp54->frame_28_31);
         gSPPopMatrix((*gfx)++, G_MTX_MODELVIEW);
     }
 }

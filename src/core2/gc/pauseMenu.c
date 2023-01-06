@@ -1233,7 +1233,7 @@ void __gcpausemenu_drawSprite(Gfx** gdl, Mtx** mptr, Vtx** vptr, BKSprite* sprit
     mlMtxApply(*mptr); //add matrix;
     gSPMatrix((*gdl)++, (*mptr)++, G_MTX_PUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
     func_80338308((s32)sp2C, (s32)sp28);
-    func_80336904(gdl, vptr, sprite, frame);
+    spriteRender_draw(gdl, vptr, sprite, frame);
     gSPPopMatrix((*gdl)++, G_MTX_MODELVIEW);
 }
 

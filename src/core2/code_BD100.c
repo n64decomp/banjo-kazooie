@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void func_80336924(Gfx**, Vtx**, BKSprite *, s32, s32);
+extern void spriteRender_drawWithSegment(Gfx**, Vtx**, BKSprite *, s32, s32);
 extern void func_80252330(f32, f32, f32);
 extern void mlMtxRotate(f32, f32, f32);
 extern void mlMtxApply(Mtx *);
@@ -236,7 +236,7 @@ BKSpriteDisplayData * func_80344A1C(BKSprite *arg0){
         gfx_start = (Gfx *)(vtx_start + 200);
         vtx_end = vtx_start;
         gfx_end = gfx_start;
-        func_80336924(&gfx_end, &vtx_end, arg0, i, 1);
+        spriteRender_drawWithSegment(&gfx_end, &vtx_end, arg0, i, 1);
         gSPEndDisplayList(gfx_end++);
         frame_vtx_size[i] = ALIGN(sizeof(Vtx)*(vtx_end - vtx_start), 0x10);
         frame_gfx_size[i] = sizeof(Gfx)*(gfx_end - gfx_start);

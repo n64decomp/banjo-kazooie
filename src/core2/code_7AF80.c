@@ -2168,9 +2168,9 @@ void func_80308230(s32 arg0) {
     Cube *iCube;
     for(iCube = D_80381FA0.cube_list; iCube < D_80381FA0.cube_list + D_80381FA0.cubeCnt; iCube++){
         if (arg0 == 0) {
-            func_8032D158(iCube);
+            func_8032D158(iCube); //sort cube props (dist from viewport)
         } else {
-            func_8032D120(iCube);
+            func_8032D120(iCube); //sort cube props (dist from origin)
         }
     }
 }
