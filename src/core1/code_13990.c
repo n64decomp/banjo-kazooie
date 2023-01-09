@@ -403,7 +403,37 @@ void mlMtx_apply_vec3s(s16 dst[3], s16 src[3]) {
     dst[2] = (spC[2] >= 0.0) ? spC[2] + 0.5 : spC[2] - 0.5;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_8025276C.s")
+void func_8025276C(s32 arg0[3], s32 arg1[3], s32 arg2[3], s32 arg3[3]) {
+	s32 var_t0;
+	s32 j;
+    f32 sp48[8][3];
+    f32 *ptr = sp48[0];
+
+    for(var_t0 = 0; var_t0 < 8; var_t0++){
+        ptr[0] = (var_t0 & 1) ? arg3[0] : arg2[0];
+        ptr[1] = (var_t0 & 2) ? arg3[1] : arg2[1];
+        ptr[2] = (var_t0 & 4) ? arg3[2] : arg2[2];
+        ptr+=3;
+    }
+
+    for(var_t0 = 0; var_t0 < 8; var_t0++){
+        func_8025235C(sp48[var_t0], sp48[var_t0]);
+    }
+
+    for(var_t0 = 0; var_t0< 3; var_t0++){
+        arg0[var_t0] = arg1[var_t0] = sp48[0][var_t0];
+    }
+
+    for(var_t0 = 1; var_t0 < 8; var_t0++){
+        for(j = 0; j < 3; j++){
+            if(sp48[var_t0][j] < arg0[j]){
+                arg0[j] = sp48[var_t0][j];
+            } else if (arg1[j] < sp48[var_t0][j]){
+                arg1[j] = sp48[var_t0][j];
+            }
+        }
+    }
+}
 
 void mlMtxTranslate(f32 x, f32 y, f32 z) {
     f32 *temp_t6;
