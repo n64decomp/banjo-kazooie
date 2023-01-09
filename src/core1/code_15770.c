@@ -8,7 +8,7 @@ struct {
 } D_80282FE0;
 
 extern u8 D_8000E800;
-extern u8 D_803A5D00[2][0x1ecc0];
+extern u16 D_803A5D00[2][0xF660];
 
 void func_80253208(Gfx **gdl, s32 x, s32 y, s32 w, s32 h, void *color_buffer);
 
@@ -42,22 +42,21 @@ int func_8025340C(void){
 
 void func_80253420(void){}
 
-#ifdef NONMATCHING
-s32 func_80253428(int arg0){
-    if(arg0){
-        D_80282FE0.unk0 = &D_8000E800;
-        while((s32)D_80282FE0.unk0 % 0x40){
-            D_80282FE0.unk0 = (s32)D_80282FE0.unk0 + 2;
+void func_80253428(int arg0) {
+    u16 *var_v0;
+    int new_var;
+    if (arg0) {
+        var_v0 = (D_80282FE0.unk0 = &D_8000E800);
+        while (((s32) D_80282FE0.unk0) % 0x40) {\
+          var_v0 = (D_80282FE0.unk0 = var_v0 + 1);
         }
-    }else{//L80253494
-        D_80282FE0.unk0 = NULL;
         
-    }//L802534A0
+        do { } while ((&D_8000E800 && 1) * 0); //remove this
+    }else{
+        D_80282FE0.unk0 = 0;
+    }
     D_80282FE0.unk4 = 0;
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_15770/func_80253428.s")
-#endif
 
 void func_802534A8(int arg0){
     D_80282FE0.unk4 = (D_80282FE0.unk0 != NULL && arg0);
