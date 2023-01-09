@@ -10,14 +10,14 @@ void func_80244050(ALEventQueue *arg0, N_AL_Struct81s *arg1, u16 arg2);
 
 
 void func_8024324C(N_ALSndPlayer *arg0);
+void func_80244190(N_AL_Struct81s *arg0);
 
 // extern ALEventUnknown;
 /* .bss */
 N_ALSndPlayer D_8027EEC0;
 u16 *D_8027EF14;
 extern struct {
-    u8 pad0[4];
-    s32 volume[3];
+    s32 volume[4];
 }D_8027EF18;
 
 /* .data */
@@ -156,11 +156,8 @@ s32 func_80244110(u16 *arg0, u16 *arg1) {
     return var_v1;
 }
 
-
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_5650/func_80244190.s")
-#else
-void func_80244190(N_AL_Struct81s *arg0) {
+void func_80244190(N_AL_Struct81s *arg0)
+{
     ALMicroTime *temp_a1;
     s32 prev_volume;
     s32 temp_t1;
@@ -172,32 +169,33 @@ void func_80244190(N_AL_Struct81s *arg0) {
     ALEnvelope *envelope;
     N_AL_Struct81s *var_v0;
     N_AL_Struct81s *var_v1;
-
-    for(var_v0 = D_802758C0.unk0; var_v0 != NULL; var_v0 = (N_AL_Struct81s *)var_v0->node.next){
+    for (var_v0 = D_802758C0.unk0; var_v0 != 0; var_v0 = (N_AL_Struct81s *) var_v0->node.next)
+    {
         var_v1 = var_v0;
-        envelope = var_v0->unk8->envelope;
+        envelope = var_v1->unk8->envelope;
         temp_a1 = &envelope->attackTime;
-        D_8027EF18.volume[AL_PHASE_ATTACK] = (s32) envelope->attackVolume;
-        D_8027EF18.volume[AL_PHASE_DECAY] = (s32) envelope->decayVolume;
-        while( var_v0->envPhase < AL_PHASE_RELEASE 
-                && var_v0->unk48 >= temp_a1[var_v0->envPhase] 
-                && temp_a1[var_v0->envPhase] != -1
-        ){
-            var_v0->unk48 -= temp_a1[var_v0->envPhase];
-            var_v0->envPhase++;
+        D_8027EF18.volume[1] = (s32) envelope->attackVolume;
+        D_8027EF18.volume[2] = (s32) envelope->decayVolume ;
+        while (((var_v1->envPhase < 3) && (var_v1->unk48 >= temp_a1[var_v1->envPhase])) && (temp_a1[var_v1->envPhase] != (-1)))
+        {
+            var_v1->unk48 -= temp_a1[var_v1->envPhase];
+            var_v1->envPhase++;
         }
 
-        if (var_v0->envPhase < AL_PHASE_RELEASE) {
-            if (temp_a1[var_v1->envPhase] != -1) {
-                var_v0->unk44 = D_8027EF18.volume[var_v0->envPhase - 1] + ((s32) ((D_8027EF18.volume[var_v0->envPhase] - D_8027EF18.volume[var_v0->envPhase - 1]) * var_v0->unk48) / temp_a1[var_v0->envPhase]);
+        if (var_v1->envPhase < 3){
+            if (temp_a1[var_v1->envPhase] != (-1)) {
+                var_v1->unk44 = D_8027EF18.volume[var_v1->envPhase]
+                    + (D_8027EF18.volume[var_v1->envPhase + 1] - D_8027EF18.volume[var_v1->envPhase])
+                    * var_v0->unk48
+                    / temp_a1[var_v1->envPhase];
             } else {
-                var_v0->unk44 = D_8027EF18.volume[var_v0->envPhase - 1]; //
+                var_v0->unk44 = D_8027EF18.volume[var_v1->envPhase];
             }
         }
-        var_v0->unk48 += arg0->unk48;
+
+        var_v1->unk48 += arg0->unk48;
     }
 }
-#endif
 
 N_AL_Struct81s *func_8024431C(ALBank *bank, ALSound *sound) {
     s32 sp24;
