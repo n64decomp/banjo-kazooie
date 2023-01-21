@@ -759,7 +759,7 @@ segments:
   - [0xFD00C0, c, code_7A760] #DONE
   - [0xFD08E0, c, code_7AF80]
   - [0xFD7960, c, mapModel] #DONE
-  - [0xFD8CA0, c, code_83340]
+  - [0xFD8CA0, c, code_83340] #DONE
   - [0xFD96D0, c, gc/section] #DONE
   - [0xFD9A30, c, gc/sky] #DONE
   - [0xFD9DD0, c, gc/transition] #DONE
