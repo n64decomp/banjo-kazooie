@@ -72,18 +72,15 @@ BKModelBin *func_8030A4B4(s32 arg0){
     return D_80382390[arg0].unk0;
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_83340/func_8030A4D4.s")
-#else
-BKSpriteDisplayData *func_8030A4D4(s32 arg0){
-    struct_7AF80_1 *ptr;
-    if((ptr = D_80382394[arg0].unk0) == NULL){
-        D_80382394[arg0].unk0 = func_8033B6C4(arg0 + 0x572, &ptr->unk4);
+BKSpriteDisplayData *func_8030A4D4(s32 arg0)
+{
+    
+    if (((struct_7AF80_1 *)((s32)D_80382394 + arg0*sizeof(struct_7AF80_1)))->unk0 == 0){
+        ((struct_7AF80_1 *)((s32)D_80382394 + arg0*sizeof(struct_7AF80_1)))->unk0 = func_8033B6C4(arg0 + 0x572, &((struct_7AF80_1 *)((s32)D_80382394 + arg0*sizeof(struct_7AF80_1)))->unk4);
     }
     D_80382394[arg0].unk8 = func_8023DB5C();
     return D_80382394[arg0].unk4;
 }
-#endif
 
 BKSprite *func_8030A55C(s32 arg0){
     func_8030A4D4(arg0);
