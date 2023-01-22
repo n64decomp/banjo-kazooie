@@ -21,7 +21,7 @@ extern ActorInfo D_80365F00; //banjo.cooking
 extern ActorInfo D_80365F60;
 extern ActorInfo D_80365F84; //turbotrainers
 extern ActorInfo D_80365FB0; //shrapnel
-extern ActorInfo D_80365FE0;
+extern ActorInfo chBubble;
 extern ActorInfo D_80366090; //bigbutt
 extern ActorInfo D_803660B4; //brownbull
 extern ActorInfo D_803662A8; //jiggy
@@ -250,7 +250,7 @@ void spawnQueue_reset(void){
     spawnableActorList_add(&D_80367A50, actor_new, 0x0000004); //chbadshad
     spawnableActorList_add(&D_803685A0, actor_new, 0x0000040); //mumbotoken
     spawnableActorList_add(&D_80367F30, actor_new, 0x0000400);
-    spawnableActorList_add(&D_80365FE0, actor_new, 0x0000004);
+    spawnableActorList_add(&chBubble, actor_new, 0x0000004);
     spawnableActorList_add(&chGloop, actor_new, 0x000008A); //gloop
     spawnableActorList_add(&D_80366F20, actor_new, 0x0000000); //chshockjump
     spawnableActorList_add(&D_80366F44, actor_new, 0x0000000); //flight_pad

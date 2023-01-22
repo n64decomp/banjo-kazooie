@@ -643,7 +643,7 @@ segments:
   - [0xF92D30, c, ch/gameSelect] #DONE
   - [0xF94430, c, code_3EAD0] #DONE
   - [0xF94590, c, code_3EC30] #DONE
-  - [0xF94640, c, code_3ECE0] #DONE
+  - [0xF94640, c, ch/bubble] #DONE
   - [0xF94850, c, ch/bigbutt] #DONE
   - [0xF95A50, c, code_400F0] #DONE
   - [0xF96400, c, ch/jiggy]   #DONE
@@ -940,7 +940,7 @@ segments:
   - [0x10347A0, .data, ch/gameSelect]
   - [0x1034900, .data, code_3EAD0]
   - [0x1034980, .data, code_3EC30]
-  - [0x10349B0, .data, code_3ECE0]
+  - [0x10349B0, .data, ch/bubble]
   - [0x10349E0, .data, ch/bigbutt]
   - [0x1034AC0, .data, code_400F0]
   - [0x1034C60, .data, ch/jiggy]
@@ -1209,7 +1209,7 @@ segments:
   - [0x1044990, .rodata, code_3AE10]
   - [0x10449A0, .rodata, spawnqueue]
   - [0x10449F0, .rodata, ch/gameSelect]
-  - [0x1044B70, .rodata, code_3ECE0]
+  - [0x1044B70, .rodata, ch/bubble]
   - [0x1044B80, .rodata, ch/bigbutt]
   - [0x1044C60, .rodata, code_400F0]
   - [0x1044CC0, .rodata, ch/jiggy]
