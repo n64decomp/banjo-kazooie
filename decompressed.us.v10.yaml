@@ -818,7 +818,7 @@ segments:
   - [0x100D8A0, c, code_B7F40] #DONE
   - [0x100D980, c, code_B8020] #DONE
   - [0x100D9D0, c, code_B8070] #DONE
-  - [0x100D9E0, c, code_B8080]
+  - [0x100D9E0, c, code_B8080] #DONE
   - [0x100E1C0, c, code_B8860] #DONE
   - [0x100E9F0, c, code_B9090] #DONE
   - [0x100F0D0, c, code_B9770]

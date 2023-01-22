@@ -101,10 +101,7 @@ s32 func_8033F3C0(BKModel *model, f32 position[3]){
     return func_8033F3E8(model, position, 0, 100000);
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B8080/func_8033F3E8.s")
-#else
-s32 func_8033F3E8(BKModel *model, f32 position[3], s32 min_id, s32 max_id) {
+s32 func_8033F3E8(BKModel *arg0, f32 position[3], s32 min_id, s32 max_id) {
     int i;
     int j;
     int k;
@@ -115,31 +112,27 @@ s32 func_8033F3E8(BKModel *model, f32 position[3], s32 min_id, s32 max_id) {
     Vtx *vertex_pool;
     BKMesh *current_mesh;
     Vtx *current_vertex;
-    s32 mesh_cnt;
     s16 *vertex_index_list;
 
-    vertex_pool = vtxList_getVertices(model->vtxList_4);
+    vertex_pool = vtxList_getVertices(arg0->vtxList_4);
     position_s16[0] = (s16) position[0];
     position_s16[1] = (s16) position[1];
     position_s16[2] = (s16) position[2];
-    current_mesh = (BKMesh *)(model->meshList_0 + 1);
-    for(k = 0; k < model->meshList_0->meshCount_0; k++, current_mesh = ((s16 *)(current_mesh + 1)) + current_mesh->vtxCount_2){
+    current_mesh = (BKMesh *)(arg0->meshList_0 + 1);
+    for(k = 0; k < arg0->meshList_0->meshCount_0; k++, current_mesh = (BKMesh *)(((s16 *)(current_mesh + 1)) + current_mesh->vtxCount_2)){
         if ((min_id > current_mesh->uid_0 || current_mesh->uid_0 >= max_id))
             continue;
 
-        j = 0;
         vertex_index_list = ((s16*)(current_mesh + 1));
-        current_vertex = vertex_pool + vertex_index_list[j];
-        for(i = 0; &min[i] < &min[3]; i++){
-             temp_v1_3 = current_vertex->v.ob[i];
-            min[i] = temp_v1_3;
-            max[i] = temp_v1_3;
+        current_vertex = vertex_pool + vertex_index_list[0];
+        for(j = 0; j < 3; j++){
+            min[j] = max[j] = current_vertex->v.ob[j];
         };
 
         
         for(j = 1; j < current_mesh->vtxCount_2; j++){
             current_vertex = vertex_pool + vertex_index_list[j];
-            for(i = 0; i < 3; i++){
+            for(i = 0; i < 3; i++){\
                 temp_v1_3 = current_vertex->v.ob[i];
                 min[i] = MIN(temp_v1_3, min[i]);
                 max[i] = MAX(temp_v1_3, max[i]);
@@ -154,8 +147,6 @@ s32 func_8033F3E8(BKModel *model, f32 position[3], s32 min_id, s32 max_id) {
     }
     return 0;
 }
-
-#endif
 
 void model_free(BKModel *model){
     free(model);
