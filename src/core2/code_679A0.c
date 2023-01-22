@@ -19,7 +19,7 @@ void func_802EFA78(ParticleEmitter *this, s32 arg1);
 void func_802EFF5C(ParticleEmitter *, f32, f32, f32);
 void func_802EFF7C(ParticleEmitter *, f32, f32, f32);
 void func_802EFF9C(ParticleEmitter *, f32);
-void func_802F0C78(ParticleEmitter *this);
+void partEmitList_remove(ParticleEmitter *this);
 
 
 Gfx D_80368940[] = {
@@ -783,7 +783,7 @@ void func_802F08A0(void){
         }//L802F09C0
         for(i = 0; i < D_803689B4;){
             if(D_803689B0[i]->unk0_1){
-                func_802F0C78(D_803689B0[i]);
+                partEmitList_remove(D_803689B0[i]);
             }
             else{
                 i++;
@@ -819,7 +819,7 @@ ParticleEmitter *partEmitList_pushNew(u32 cnt){
 }
 
 
-void func_802F0C78(ParticleEmitter *this){
+void partEmitList_remove(ParticleEmitter *this){
     int i = 0;
     while(this != D_803689B0[i] && i < D_803689B4){i++;}
     if(i == D_803689B4)

@@ -20,7 +20,7 @@ void func_802AAE80(void){
 void func_802AAEE0(void){
     enum bs_e state = bs_getNextState();
 
-    if(state != BS_3A_CARRY_IDLE && state != BS_CARRY_WALK)
+    if(state != BS_3A_CARRY_IDLE && state != BS_3B_CARRY_WALK)
         func_8029B0C0();
     
     func_80289F10(1);
@@ -42,7 +42,7 @@ void bscarry_idle_update(void){
     enum bs_e sp1C = 0;
 
     if(func_8029B300() > 0)
-        sp1C = BS_CARRY_WALK;
+        sp1C = BS_3B_CARRY_WALK;
 
     if(carriedobj_getMarker() == NULL)
         sp1C = BS_1_IDLE;
@@ -85,7 +85,7 @@ void bscarry_walk_end(void){
 
 int bscarry_inSet(enum bs_e state){
     return state == BS_3A_CARRY_IDLE 
-        || state == BS_CARRY_WALK; 
+        || state == BS_3B_CARRY_WALK; 
 }
 
 void bscarry_interrupt(void){
@@ -95,7 +95,7 @@ void bscarry_interrupt(void){
             break;
         case 8:
             func_8029A86C(2);
-            bs_setState(BS_3C);
+            bs_setState(BS_3C_TALK);
             break;
         case 0x12:
             func_8028DE6C(carriedObject_getActorID());

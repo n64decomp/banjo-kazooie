@@ -59,7 +59,7 @@ void func_802F1104(void){
 
 void func_802F1190(u8 arg0){
     if(D_80380938[arg0].p_emitter){
-        func_802F0C78(D_80380938[arg0].p_emitter);
+        partEmitList_remove(D_80380938[arg0].p_emitter);
     }
     D_80380938[arg0].unk8_31 = 0;
 }
@@ -73,7 +73,7 @@ void func_802F11E8(void){
         ){
            D_80380938[i].unk0 -= time_getDelta();
            if(D_80380938[i].unk0 <= 0.0f){
-                func_802F0C78(D_80380938[i].p_emitter);
+                partEmitList_remove(D_80380938[i].p_emitter);
                 D_80380938[i].p_emitter = NULL;
            }
         }
@@ -87,7 +87,7 @@ void func_802F1294(void){
             && D_80380938[i].p_emitter != NULL
             && i != D_80380930
         ){
-           func_802F0C78(D_80380938[i].p_emitter);
+           partEmitList_remove(D_80380938[i].p_emitter);
            D_80380938[i].p_emitter = NULL;
         }
     }

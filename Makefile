@@ -116,7 +116,7 @@ BIN_OBJS             := $(filter-out $(ASSET_OBJS),$(BIN_OBJS))
 ALL_OBJS             := $(C_OBJS) $(ASM_OBJS) $(BIN_OBJS)
 SYMBOL_ADDRS         := symbol_addrs.$(VERSION).txt
 SYMBOL_ADDR_FILES    := $(filter-out $(SYMBOL_ADDRS), $(wildcard symbol_addrs.*.$(VERSION).txt))
-MIPS3_OBJS           := $(BUILD_DIR)/$(SRC_ROOT)/core1/done/ll.c.o
+MIPS3_OBJS           := $(BUILD_DIR)/$(SRC_ROOT)/core1/ll.c.o
 BOOT_MIPS3_OBJS      := $(BUILD_DIR)/$(SRC_ROOT)/done/ll.c.o
 BOOT_C_OBJS          := $(filter-out $(BOOT_MIPS3_OBJS),$(BOOT_C_OBJS))
 COMPRESSED_SYMBOLS   := $(BUILD_DIR)/compressed_symbols.txt
@@ -366,24 +366,13 @@ clean:
 
 # Per-file flag definitions
 build/$(VERSION)/src/core1/io/%.c.o: OPT_FLAGS = -O1
-build/$(VERSION)/src/core1/io/pimgr.c.o: OPT_FLAGS = -O1
-build/$(VERSION)/src/core1/done/io/%.c.o: OPT_FLAGS = -O1
 build/$(VERSION)/src/core1/os/%.c.o: OPT_FLAGS = -O1
-build/$(VERSION)/src/core1/code_2D2D0.c.o: OPT_FLAGS = -O1
-build/$(VERSION)/src/core1/done/os/%.c.o: OPT_FLAGS = -O1
-build/$(VERSION)/src/core1/code_21A10.c.o: INCLUDE_CFLAGS = -I . -I include -I include/2.0L -I include/2.0L/PR
-build/$(VERSION)/src/core1/code_21A10.c.o: OPT_FLAGS = -O3
-build/$(VERSION)/src/core1/done/gu/%.c.o: OPT_FLAGS = -O3
-build/$(VERSION)/src/core1/done/gu/%.c.o: INCLUDE_CFLAGS = -I . -I include -I include/2.0L -I include/2.0L/PR
-build/$(VERSION)/src/core1/gu/mtxutil.c.o: OPT_FLAGS = -O2
-build/$(VERSION)/src/core1/gu/rotate.c.o: OPT_FLAGS = -O2
-build/$(VERSION)/src/core1/done/audio/%.c.o: INCLUDE_CFLAGS = -I . -I include -I include/2.0L -I include/2.0L/PR
-build/$(VERSION)/src/core1/done/audio/%.c.o: OPT_FLAGS = -O3
-# build/$(VERSION)/src/core1/code_21CB0.c.o: INCLUDE_CFLAGS = -I . -I include -I include/2.0L -I include/2.0L/PR
-# build/$(VERSION)/src/core1/code_21CB0.c.o: OPT_FLAGS = -O3
-build/$(VERSION)/src/core1/done/io/sptask.c.o: OPT_FLAGS = -O1
-build/$(VERSION)/src/core1/done/ll.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/core1/done/ll.c.o: MIPSBIT := -mips3 -o32
+build/$(VERSION)/src/core1/gu/%.c.o: OPT_FLAGS = -O3
+build/$(VERSION)/src/core1/gu/%.c.o: INCLUDE_CFLAGS = -I . -I include -I include/2.0L -I include/2.0L/PR
+build/$(VERSION)/src/core1/audio/%.c.o: OPT_FLAGS = -O3
+build/$(VERSION)/src/core1/audio/%.c.o: INCLUDE_CFLAGS = -I . -I include -I include/2.0L -I include/2.0L/PR
+build/$(VERSION)/src/core1/ll.c.o: OPT_FLAGS := -O1
+build/$(VERSION)/src/core1/ll.c.o: MIPSBIT := -mips3 -o32
 
 build/$(VERSION)/src/bk_boot_27F0.c.o: OPT_FLAGS = -O2
 build/$(VERSION)/src/done/destroythread.c.o: OPT_FLAGS := -O1

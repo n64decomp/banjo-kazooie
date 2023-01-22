@@ -328,7 +328,7 @@ void func_802B5350(void){
     }
     else if(sp1C == 0x8){//L802B5438
         func_8029A86C(2);
-        bs_setState(BS_3C);
+        bs_setState(BS_3C_TALK);
     }else{
         func_802948E0();
         func_80296608();

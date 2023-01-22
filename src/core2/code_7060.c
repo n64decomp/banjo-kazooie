@@ -463,7 +463,7 @@ enum bsgroup_e func_8028ECAC(void) {
     switch(state_id){
         case BS_E_OW: //L8028EE00
         case BS_34_JIG_NOTEDOOR: //L8028EE00
-        case BS_3C: //L8028EE00
+        case BS_3C_TALK: //L8028EE00
         case BS_3F: //L8028EE00
         case BS_41_DIE: //L8028EE00
         case BS_44_JIG_JIGGY: //L8028EE00

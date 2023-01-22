@@ -1905,6 +1905,7 @@ enum actor_e
 
 enum bs_e
 {
+    BS_0_NONE = 0,
     BS_1_IDLE = 0x1,
     BS_2_WALK_SLOW,
     BS_WALK = 0x3,
@@ -1963,8 +1964,8 @@ enum bs_e
     BS_38_ANT_FALL,
     BS_39_DIVE_A,
     BS_3A_CARRY_IDLE,
-    BS_CARRY_WALK = 0x3B,
-    BS_3C,
+    BS_3B_CARRY_WALK,
+    BS_3C_TALK,
     BS_3D_FALL_TUMBLING,
     BS_3E_ANT_OW,
     BS_3F,

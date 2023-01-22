@@ -82,8 +82,8 @@ void func_802AF900(void){
 }
 
 void func_802AFADC(void){
-    func_802F0C78(D_8037D470.unk4);
-    func_802F0C78(D_8037D470.unk0);
+    partEmitList_remove(D_8037D470.unk4);
+    partEmitList_remove(D_8037D470.unk0);
 }
 
 void func_802AFB0C(void){

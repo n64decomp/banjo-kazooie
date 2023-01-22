@@ -10,10 +10,10 @@ typedef struct{
 
 struct_drone D_80364B30[] = {
     {01, {func_802AEDE8, func_802AEE48, func_802AEE9C, NULL}},
-    {02, {func_802AEEF4, func_802AEFB0, func_802AF164, func_80296608}},
+    {02, {bsDroneLook_init, bsDroneLook_update, bsDroneLook_end, func_80296608}},
     {04, {bsdronexform_init, bsdronexform_update, bsdronexform_end, bsdronexform_interrupt}},
-    {05, {func_802AE9C8, func_802AEA2C, func_802AEB24, NULL}},
-    {06, {func_802AF604, bsdronevanish_update, func_802AF768, NULL}},
+    {05, {bsDroneEnter_init, bsDroneEnter_update, bsDroneEnter_end, NULL}},
+    {06, {bsDroneVanish_init, bsDroneVanish_update, bsDroneVanish_end, NULL}},
     {0}
 };
 
