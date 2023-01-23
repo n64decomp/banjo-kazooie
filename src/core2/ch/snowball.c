@@ -9,16 +9,16 @@ extern f32 func_8033229C(ActorMarker *);
 typedef struct{
     s32 unk0;
     s32 unk4;
-}ActorLocal_core2_5B6A0;
+}ActorLocal_chSnowball;
 
-Actor *func_802E2630(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
-void func_802E28D0(Actor *this);
+Actor *chSnowball_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
+void chSnowball_update(Actor *this);
 
 /* .data */
-ActorInfo D_80368710 = { 
-    0xB2, 0x125, ASSET_378_MODEL_SNOWBALL, 
+ActorInfo chSnowball = { 
+    MARKER_B2_SNOWBALL, ACTOR_125_SNOWBALL, ASSET_378_MODEL_SNOWBALL, 
     0x1, NULL, 
-    func_802E28D0, func_80326224, func_802E2630, 
+    chSnowball_update, func_80326224, chSnowball_draw, 
     0, 0x800, 0.8f, 0
 };
 
@@ -26,7 +26,7 @@ ActorInfo D_80368710 = {
 f32 D_8037E640[3];
 
 /* .code */
-Actor *func_802E2630(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
+Actor *chSnowball_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     Actor *this;
 
     this = func_80325888(marker, gfx, mtx, vtx);
@@ -37,7 +37,7 @@ Actor *func_802E2630(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     return this;
 }
 
-void func_802E26A4(f32 position[3]) {
+void __chSnowball_spawnPieces(f32 position[3]) {
     static struct31s D_80368734 = {{0.65f, 1.1}, {0.0f, 0.0f}, {0.0f, 0.01f}, {0.8f, 0.8f}, 0.0f, 0.5f};
     static struct43s D_8036875C = {
         {{-220.0f,  210.0f, -220.0f}, {280.0f,  460.0f, 280.0f}},
@@ -48,7 +48,7 @@ void func_802E26A4(f32 position[3]) {
 
      
     pCtrl = partEmitList_pushNew(8);
-    particleEmitter_setModel(pCtrl, 0x37A);
+    particleEmitter_setModel(pCtrl, ASSET_37A_MODEL_TINY_SNOWBALL);
     particleEmitter_setPosition(pCtrl, position);
     particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_8036875C);
     func_802EFE24(pCtrl, -300.0f, -300.0f, -300.0f, 300.0f, 300.0f, 300.0f);
@@ -56,9 +56,9 @@ void func_802E26A4(f32 position[3]) {
     particleEmitter_emitN(pCtrl, 8);
 }
 
-void func_802E2748(Actor *this, s32 arg1) {
+void __chSnowball_collisionCallback(Actor *this, bool water_collision) {
     static f32 D_803687A4[4] = {0.2f, 0.3f, 1.0f, 1.2f};
-    if (arg1 != 0) {
+    if (water_collision) {
         D_8037E640[0] = this->position[0];
         D_8037E640[1] = this->position[1];
         D_8037E640[2] = this->position[2];
@@ -74,24 +74,24 @@ void func_802E2748(Actor *this, s32 arg1) {
     }
     else{
         func_8030E878(SFX_2F_ORANGE_SPLAT, 1.0f, 32000, this->position, 1250.0f, 2500.0f);
-        func_802E26A4(this->position);
+        __chSnowball_spawnPieces(this->position);
         marker_despawn(this->marker);
     }
 }
 
-void func_802E28A4(ActorMarker *marker, ActorMarker *other_marker){
+void __chSnowball_actorCollisionCallback(ActorMarker *marker, ActorMarker *other_marker){
     Actor *this;
 
     this = marker_getActor(marker);
-    func_802E2748(this, 0);
+    __chSnowball_collisionCallback(this, 0);
 }
 
-void func_802E28D0(Actor *this) {
+void chSnowball_update(Actor *this) {
     f32 sp7C[3];
     f32 sp70[3];
     f32 sp64[3];
     f32 sp58[3];
-    ActorLocal_core2_5B6A0 *local = (ActorLocal_core2_5B6A0 *)&this->local; 
+    ActorLocal_chSnowball *local = (ActorLocal_chSnowball *)&this->local; 
     BKCollisionTri *temp_v0_3;
     s32 phi_a1;
     s32 i;
@@ -103,7 +103,7 @@ void func_802E28D0(Actor *this) {
 
 
     if(!this->initialized){
-        marker_setCollisionScripts(this->marker, NULL, NULL, func_802E28A4);
+        marker_setCollisionScripts(this->marker, NULL, NULL, __chSnowball_actorCollisionCallback);
         if(local->unk0 == 0){
             player_getPosition(this->unk1C);
             local->unk0 = 1;
@@ -144,7 +144,7 @@ void func_802E28D0(Actor *this) {
         if (local->unk4 >= 6) {
             temp_v0_3 = func_80320C94(sp64, this->position, func_8033229C(this->marker) * 1.2, sp70, 5, 0);
             if (temp_v0_3 != 0) {
-                func_802E2748(this, *((u32*)temp_v0_3 + 2) & 0x20000);
+                __chSnowball_collisionCallback(this, *((u32*)temp_v0_3 + 2) & 0x20000);
                 return;
             }
         }

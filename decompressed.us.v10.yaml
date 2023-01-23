@@ -699,8 +699,8 @@ segments:
   - [0xFAF340, c, code_599E0] #DONE
   - [0xFAF3E0, c, code_59A80] #DONE
   - [0xFAF6A0, c, code_59D40] #DONE
-  - [0xFB0490, c, ch/code_5AB30] #DONE
-  - [0xFB1000, c, code_5B6A0] #DONE
+  - [0xFB0490, c, ch/snowman] #DONE
+  - [0xFB1000, c, ch/snowball] #DONE
   - [0xFB16F0, c, code_5BD90] #DONE
   - [0xFB1810, c, code_5BEB0]
   - [0xFB1BA0, c, code_5C240] #DONE
@@ -995,8 +995,8 @@ segments:
   - [0x1036E10, .data, code_59780]
   - [0x1036F70, .data, code_59A80]
   - [0x1036FA0, .data, code_59D40]
-  - [0x1037020, .data, ch/code_5AB30]
-  - [0x10370E0, .data, code_5B6A0]
+  - [0x1037020, .data, ch/snowman]
+  - [0x10370E0, .data, ch/snowball]
   - [0x1037190, .data, code_5BD90]
   - [0x10371C0, .data, code_5C870]
   - [0x1037200, .data, code_5DBC0]
@@ -1248,8 +1248,8 @@ segments:
   - [0x1045A00, .rodata, code_599E0]
   - [0x1045A10, .rodata, code_59A80]
   - [0x1045A20, .rodata, code_59D40]
-  - [0x1045A70, .rodata, ch/code_5AB30]
-  - [0x1045AA0, .rodata, code_5B6A0]
+  - [0x1045A70, .rodata, ch/snowman]
+  - [0x1045AA0, .rodata, ch/snowball]
   - [0x1045AD0, .rodata, code_5C240]
   - [0x1045AE0, .rodata, code_5C870]
   - [0x1045B50, .rodata, code_5FD90]
@@ -1500,7 +1500,7 @@ segments:
   - [0x1048560, .bss, ch/bottlesbonuscursor]
   - [0x1048560, .bss, code_59A80]
   - [0x1048560, .bss, code_59D40]
-  - [0x1048560, .bss, code_5B6A0]
+  - [0x1048560, .bss, ch/snowball]
   - [0x1048560, .bss, code_5BEB0]
   - [0x1048560, .bss, code_5C240]
   - [0x1048560, .bss, code_5C870]

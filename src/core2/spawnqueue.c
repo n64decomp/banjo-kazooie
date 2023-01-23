@@ -121,8 +121,8 @@ extern ActorInfo D_8036854C;
 extern ActorInfo D_80368570;
 extern ActorInfo D_803685A0; //mumbotoken
 extern ActorInfo D_80368620; //snacker
-extern ActorInfo D_80368670; //sirslush
-extern ActorInfo D_80368710; //snowball
+extern ActorInfo chSnowman; //sirslush
+extern ActorInfo chSnowball; //snowball
 extern ActorInfo D_803687C0; //sir_slush_hat
 extern ActorInfo D_80372810;
 extern ActorInfo D_80372840; //grillchompa
@@ -288,7 +288,7 @@ void spawnQueue_reset(void){
     spawnableActorList_add(&D_803677CC, actor_new, 0x8680);//mumbo_transform_pad
     spawnableActorList_add(&D_803677F0, actor_new, 0x8680);
     spawnableActorList_add(&D_803731B0, actor_new, 0x0);
-    spawnableActorList_add(&D_80368710, actor_new, 0x100044);//snowball
+    spawnableActorList_add(&chSnowball, actor_new, 0x100044);//snowball
     spawnableActorList_add(&D_803687C0, actor_new, 0x4);//sir_slush_hat
     spawnableActorList_add(&gChDripsInfo, actor_new, 0x400);//water_drops
     spawnableActorList_add(&D_80372BA4, actor_new, 0x2020141);//ice_cube
@@ -349,7 +349,7 @@ void spawnQueue_reset(void){
     spawnableActorList_addIfMapVisited(&D_80367100, actor_new, 0x3001021, MAP_7_TTC_TREASURE_TROVE_COVE); //mutie_snippet
     spawnableActorList_addIfMapVisited(&D_80372870, actor_new, 0x2800820, MAP_40_CCW_HUB); //clucker
     spawnableActorList_addIfMapVisited(&D_803728A0, actor_new, 0x2000981, MAP_12_GV_GOBIS_VALLEY); //scarab
-    spawnableActorList_addIfMapVisited(&D_80368670, actor_new, 0x2000460, MAP_27_FP_FREEZEEZY_PEAK); //sirslush
+    spawnableActorList_addIfMapVisited(&chSnowman, actor_new, 0x2000460, MAP_27_FP_FREEZEEZY_PEAK); //sirslush
     switch(loaded_asm_file){
         default:
             break;

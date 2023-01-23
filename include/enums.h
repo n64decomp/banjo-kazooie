@@ -2597,8 +2597,8 @@ enum asset_e
     ASSET_376_MODEL_SLAPPA,
     ASSET_377_MODEL_SIR_SLUSH,
     ASSET_378_MODEL_SNOWBALL,
-    // 379 Sir Slush Hat
-    // 37a (Sir Slush Snowball?)
+    ASSET_379_MODEL_SIRSLUSH_HAT,
+    ASSET_37A_MODEL_TINY_SNOWBALL,
     // 37b Snowball Fragment
     // 37c Yum-Yum Large Shell Fragment
     // 37d Yum-Yum Eye
@@ -3793,6 +3793,7 @@ enum marker_e{
     MARKER_AF_MAGIC_CARPET_SHADOW = 0xAF,
     MARKER_B0_MAGIC_CARPET_2,
     MARKER_B1_SIR_SLUSH,
+    MARKER_B2_SNOWBALL,
 
     MARKER_B5_RED_FEATHER_COLLECTABLE = 0xB5,
 
