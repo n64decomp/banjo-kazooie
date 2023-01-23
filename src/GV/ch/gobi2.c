@@ -8,25 +8,23 @@ typedef struct {
     BKModelBin *unk8;
 }ActorLocal_Gobi2;
 
-void chgobi2_setState(Actor *this, s32 next_state);
-void chgobi2_update(Actor *this);
-Actor *chgobi2_draw(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
+void chGobi2_setState(Actor *this, s32 next_state);
+void chGobi2_update(Actor *this);
+Actor *chGobi2_draw(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 
 /* .data */
-ActorInfo GV_D_80390CB0 = { MARKER_BF_GOBI_2, ACTOR_131_GOBI_2, ASSET_3E0_MODEL_GOBI, 
+ActorInfo chGobi2 = { MARKER_BF_GOBI_2, ACTOR_131_GOBI_2, ASSET_3E0_MODEL_GOBI, 
     0x0, NULL, 
-    NULL, chgobi2_update, chgobi2_draw, 
+    NULL, chGobi2_update, chGobi2_draw, 
     0, 0x533, 0.0f, 0
 };
-f32 D_80390CD4[3] = {1475.0f, 442.0f, 8870.0f};
-f32 chgobi2_jiggy_position[3] = {1150.0f, 1150.0f, 9200.0f}; //jiggy spawn position
-f32 D_80390CEC[3] = {1145.0f, 443.0f, 9197.0f};
 
 /* .bss */
 u8 D_80391A50;
 
 /* .code */
 void GV_func_80387960(void){
+    static f32 D_80390CD4[3] = {1475.0f, 442.0f, 8870.0f};
     func_8028F490(D_80390CD4);
 }
 
@@ -34,18 +32,19 @@ void func_80387984(ActorMarker *this){
     mapSpecificFlags_set(0xC, 1);
 }
 
-void __chgobi2_spawnJIggy(void){
-    jiggySpawn(JIGGY_45_GV_GOBI_2, chgobi2_jiggy_position);
+void __chGobi2_spawnJIggy(void){
+    static f32 jiggy_position[3] = {1150.0f, 1150.0f, 9200.0f};
+    jiggySpawn(JIGGY_45_GV_GOBI_2, jiggy_position);
 }
 
 void func_803879D4(ActorMarker *this_marker){
     Actor *this = marker_getActor(reinterpret_cast(ActorMarker *, this_marker));
-    chgobi2_setState(this, 4);
+    chGobi2_setState(this, 4);
 }
 
 void GV_func_80387A00(ActorMarker *this_marker){
     Actor *this = marker_getActor(reinterpret_cast(ActorMarker *, this_marker));
-    chgobi2_setState(this, 7);
+    chGobi2_setState(this, 7);
 }
 
 void func_80387A2C(ActorMarker *caller, enum asset_e text_id, s32 arg2){
@@ -55,13 +54,15 @@ void func_80387A2C(ActorMarker *caller, enum asset_e text_id, s32 arg2){
     timed_playSfx(1.8f, SFX_2C_PULLING_NOISE, 1.0f, 32000);
     timed_playSfx(2.5f, SFX_2C_PULLING_NOISE, 1.1f, 32000);
     timed_setCameraToNode(3.0f, 0xd);
-    timedFunc_set_0(3.5f, __chgobi2_spawnJIggy);
+    timedFunc_set_0(3.5f, __chGobi2_spawnJIggy);
     func_80324E88(6.0f);
     timedFunc_set_1(6.0f, (GenMethod_1) GV_func_80387A00, reinterpret_cast(s32, caller));
     func_80324E38(6.0f, 0);
 }
 
-void chgobi2_setState(Actor *this, s32 next_state){
+void chGobi2_setState(Actor *this, s32 next_state){
+    static f32 D_80390CEC[3] = {1145.0f, 443.0f, 9197.0f};
+
     ActorLocal_Gobi2 *local = (ActorLocal_Gobi2 *)&this->local;
 
     if(next_state == 1)
@@ -114,7 +115,7 @@ void chgobi2_setState(Actor *this, s32 next_state){
     this->state = next_state;
 }
 
-Actor *chgobi2_draw(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
+Actor *chGobi2_draw(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     Actor *this = marker_getActor(this_marker);
     ActorLocal_Gobi2 *local = (ActorLocal_Gobi2 *)&this->local;
     f32 sp3C[3];
@@ -142,16 +143,16 @@ Actor *chgobi2_draw(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 }
 
 
-void __chgobi2_80387EFC(Actor *this){
+void __chGobi2_80387EFC(Actor *this){
     ActorLocal_Gobi2 *local = (ActorLocal_Gobi2 *)&this->local;
 
-    chgobi2_setState(this, 0);
+    chGobi2_setState(this, 0);
     func_80335874(local->unk4);
     assetcache_release(local->unk8);
 
 }
 
-void __chgobi2_ow(ActorMarker *this_marker, ActorMarker *other_marker){
+void __chGobi2_ow(ActorMarker *this_marker, ActorMarker *other_marker){
     Actor *this = marker_getActor(this_marker);
     enum hitbox_e hitbox;
     hitbox = player_getActiveHitbox(NULL);
@@ -162,7 +163,7 @@ void __chgobi2_ow(ActorMarker *this_marker, ActorMarker *other_marker){
     }
 }
 
-void chgobi2_update(Actor *this){
+void chGobi2_update(Actor *this){
     ActorMarker *sp34;
     ActorLocal_Gobi2 *local = (ActorLocal_Gobi2 *)&this->local;
     f32 sp2C;
@@ -171,14 +172,14 @@ void chgobi2_update(Actor *this){
     sp2C = time_getDelta();
     if(!this->unk16C_4){
         this->unk16C_4 = TRUE;
-        marker_setCollisionScripts(this->marker, __chgobi2_ow, NULL, NULL);
-        sp34->unk30 = __chgobi2_80387EFC;
+        marker_setCollisionScripts(this->marker, __chGobi2_ow, NULL, NULL);
+        sp34->unk30 = __chGobi2_80387EFC;
         local->unk4 = func_803358B4();
         local->unk8 = (BKModelBin*) assetcache_get(ASSET_3F3_MODEL_GOBI_SPIT);
         D_80391A50 = 0;
         this->unk1C[0] = 0.0f;
         this->unk1C[1] = 0.0f;
-        chgobi2_setState(this, 1);
+        chGobi2_setState(this, 1);
         if(jiggyscore_isSpawned(JIGGY_45_GV_GOBI_2))
             marker_despawn(this->marker);
         return;
@@ -186,15 +187,15 @@ void chgobi2_update(Actor *this){
 
     if(this->state == 1){
         if(jiggyscore_isCollected(JIGGY_44_GV_GOBI_1))
-            chgobi2_setState(this, 2);
+            chGobi2_setState(this, 2);
     }
 
     if(this->state == 2){
         if(this->unk1C[0] != 0.0f && this->unk1C[1] == 0){
-            chgobi2_setState(this, 8);
+            chGobi2_setState(this, 8);
         }
         else if(D_80391A50){
-            chgobi2_setState(this, 3);
+            chGobi2_setState(this, 3);
         }
     }//L80388114
 
@@ -212,13 +213,13 @@ void chgobi2_update(Actor *this){
     if(this->state == 4){
         func_80335A94(local->unk4, sp2C, 1);
         if(func_80335794(this->unk148) > 0){
-            chgobi2_setState(this, 5);
+            chGobi2_setState(this, 5);
         }
     }
 
     if(this->state == 5){
         if(func_80335794(this->unk148) > 0){
-            chgobi2_setState(this, 6);
+            chGobi2_setState(this, 6);
         }
     }
 
@@ -228,7 +229,7 @@ void chgobi2_update(Actor *this){
 
     if(this->state == 8){
         if(func_80335794(this->unk148) > 0){
-            chgobi2_setState(this, 2);
+            chGobi2_setState(this, 2);
         }
     }
     D_80391A50 = FALSE;

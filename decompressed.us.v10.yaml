@@ -1651,14 +1651,14 @@ segments:
   follows_vram: core2
   exclusive_ram_id: overlay
   subsegments:
-  - [0x104C0E0, c, code_0]       #DONE
-  - [0x104C310, c, code_230]   #DONE
-  - [0x104CE40, c, code_D60]   #DONE
-  - [0x104D650, c, code_1570] #DONE
-  - [0x104DF60, c, code_1E80] #DONE
-  - [0x104E5B0, c, code_24D0] #DONE
-  - [0x104E810, c, code_2730] #DONE
-  - [0x104EC60, c, code_2B80] #DONE
+  - [0x104C0E0, c, ch/toots]       #DONE
+  - [0x104C310, c, ch/ancientone]   #DONE
+  - [0x104CE40, c, ch/gobi1]   #DONE
+  - [0x104D650, c, ch/gobi2] #DONE
+  - [0x104DF60, c, ch/gobi3] #DONE
+  - [0x104E5B0, c, ch/gobirope] #DONE
+  - [0x104E810, c, ch/gobirock] #DONE
+  - [0x104EC60, c, ch/trunker] #DONE
   - [0x104EFC0, c, code_2EE0] #DONE
   - [0x104F1A0, c, code_30C0] #DONE
   - [0x104F710, c, code_3630] #DONE
@@ -1678,20 +1678,20 @@ segments:
   - [0x1053E90, c, code_7DB0] #DONE
   - [0x10540A0, c, code_7FC0] #DONE
   - [0x10540D0, c, code_7FF0] #DONE
-  - [0x1055210, c, code_9130] #DONE
-  - [0x1055940, c, code_9860] #DONE
+  - [0x1055210, c, ch/mazectrl] #DONE
+  - [0x1055940, c, ch/buriedpyramid] #DONE
   - [0x1055C50, c, code_9B70] #DONE
   - [0x1055CF0, c, code_9C10] #DONE
-  - [0x1055E90, c, code_9DB0] #DONE
+  - [0x1055E90, c, matchinggame] #DONE
   - [0x1056570, c, code_A490] #DONE
-  - [0x10568C0, .data, code_0]
-  - [0x1056910, .data, code_230]
-  - [0x1056970, .data, code_D60]
-  - [0x10569A0, .data, code_1570]
-  - [0x10569F0, .data, code_1E80]
-  - [0x1056A20, .data, code_24D0]
-  - [0x1056A50, .data, code_2730]
-  - [0x1056A80, .data, code_2B80]
+  - [0x10568C0, .data, ch/toots]
+  - [0x1056910, .data, ch/ancientone]
+  - [0x1056970, .data, ch/gobi1]
+  - [0x10569A0, .data, ch/gobi2]
+  - [0x10569F0, .data, ch/gobi3]
+  - [0x1056A20, .data, ch/gobirope]
+  - [0x1056A50, .data, ch/gobirock]
+  - [0x1056A80, .data, ch/trunker]
   - [0x1056AB0, .data, code_2EE0]
   - [0x1056AF0, .data, code_30C0]
   - [0x1056B90, .data, code_3630]
@@ -1710,14 +1710,14 @@ segments:
   - [0x1057030, .data, code_7DB0]
   - [0x1057070, .data, code_7FC0]
   - [0x10570D0, .data, code_7FF0]
-  - [0x10572B0, .data, code_9130]
-  - [0x1057310, .data, code_9860]
-  - [0x1057340, .data, code_9DB0]
-  - [0x10573E0, .rodata, code_230]
-  - [0x1057400, .rodata, code_D60]
-  - [0x1057410, .rodata, code_1570]
-  - [0x1057430, .rodata, code_1E80]
-  - [0x1057470, .rodata, code_2730]
+  - [0x10572B0, .data, ch/mazectrl]
+  - [0x1057310, .data, ch/buriedpyramid]
+  - [0x1057340, .data, matchinggame]
+  - [0x10573E0, .rodata, ch/ancientone]
+  - [0x1057400, .rodata, ch/gobi1]
+  - [0x1057410, .rodata, ch/gobi2]
+  - [0x1057430, .rodata, ch/gobi3]
+  - [0x1057470, .rodata, ch/gobirock]
   - [0x1057480, .rodata, code_30C0]
   - [0x1057490, .rodata, code_3BB0]
   - [0x10574A0, .rodata, code_3D90]
@@ -1728,15 +1728,15 @@ segments:
   - [0x10575E0, .rodata, code_7060]
   - [0x1057600, .rodata, code_7530]
   - [0x1057630, .rodata, code_7FF0]
-  - [0x1057690, .rodata, code_9130]
-  - [0x10576B0, .rodata, code_9860]
-  - [0x10576F0, .rodata, code_9DB0]
+  - [0x1057690, .rodata, ch/mazectrl]
+  - [0x10576B0, .rodata, ch/buriedpyramid]
+  - [0x10576F0, .rodata, matchinggame]
   - [0x1057700, .rodata, code_A490]
   - [0x1057710, .bss, bss_pad]
-  - [0x1057710, .bss, code_0]
-  - [0x1057710, .bss, code_D60]
-  - [0x1057710, .bss, code_1570]
-  - [0x1057710, .bss, code_2730]
+  - [0x1057710, .bss, ch/toots]
+  - [0x1057710, .bss, ch/gobi1]
+  - [0x1057710, .bss, ch/gobi2]
+  - [0x1057710, .bss, ch/gobirock]
   - [0x1057710, .bss, code_4740]
   - [0x1057710, .bss, code_5570]
   - [0x1057710, .bss, code_61E0]
@@ -1744,7 +1744,7 @@ segments:
   - [0x1057710, .bss, code_7D50]
   - [0x1057710, .bss, code_7FF0]
   - [0x1057710, .bss, code_9C10]
-  - [0x1057710, .bss, code_9DB0]
+  - [0x1057710, .bss, matchinggame]
   - [0x1057710, .bss, code_A490]
 - name: MMM
   dir: MMM
@@ -1801,7 +1801,7 @@ segments:
   follows_vram: core2
   exclusive_ram_id: overlay
   subsegments:
-  - [0x105D7E0, c, code_0]       #DONE
+  - [0x105D7E0, c, ch/clam]       #DONE
   - [0x105E880, c, code_10A0] #DONE
   - [0x105F1B0, c, code_19D0] #DONE
   - [0x105FEB0, c, code_26D0] #DONE
@@ -1811,7 +1811,7 @@ segments:
   - [0x1060DB0, c, code_35D0] #DONE
   - [0x1061610, c, code_3E30] #DONE
   - [0x10633B0, c, ch/treasure] #DONE
-  - [0x10637A0, .data, code_0]
+  - [0x10637A0, .data, ch/clam]
   - [0x10638D0, .data, code_10A0]
   - [0x1063930, .data, code_19D0]
   - [0x10639D0, .data, code_26D0]
@@ -1821,7 +1821,7 @@ segments:
   - [0x1063C10, .data, code_35D0]
   - [0x1063D70, .data, code_3E30]
   - [0x1064080, .data, ch/treasure]
-  - [0x10640D0, .rodata, code_0]
+  - [0x10640D0, .rodata, ch/clam]
   - [0x1064130, .rodata, code_10A0]
   - [0x1064160, .rodata, code_19D0]
   - [0x1064180, .rodata, code_26D0]

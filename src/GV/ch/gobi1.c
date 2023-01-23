@@ -12,15 +12,15 @@ typedef struct {
     f32 unkC;
     f32 unk10;
     f32 unk14;
-}ActorLocal_GV_D60;
+}ActorLocal_chGobi1;
 
-void func_80387408(Actor *this);
+void chGobi1_update(Actor *this);
 Actor *chgobi1_draw(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 
 /* .data */
-ActorInfo D_80390C80 = { MARKER_BC_GOBI_1, ACTOR_12E_GOBI_1, ASSET_3E0_MODEL_GOBI, 
+ActorInfo Gobi1 = { MARKER_BC_GOBI_1, ACTOR_12E_GOBI_1, ASSET_3E0_MODEL_GOBI, 
     0, NULL, 
-    NULL, func_80387408, chgobi1_draw, 
+    NULL, chGobi1_update, chgobi1_draw, 
     0, 0x533, 0.0f, 0
 };
 
@@ -33,8 +33,8 @@ struct {
 
 
 /* .code */
-void GV_func_80387150(Actor *this, s32 next_state){
-    ActorLocal_GV_D60 *local = (ActorLocal_GV_D60 *)&this->local;
+void chGobi1_setState(Actor *this, s32 next_state){
+    ActorLocal_chGobi1 *local = (ActorLocal_chGobi1 *)&this->local;
     
     this->state = next_state;
     GV_D_80391A40.unk0 = FALSE;
@@ -87,8 +87,8 @@ s32 func_80387360(void){
 }
 
 void func_8038736C(Actor *this){
-    ActorLocal_GV_D60 *local = (ActorLocal_GV_D60 *)&this->local;
-    GV_func_80387150(this, 0);
+    ActorLocal_chGobi1 *local = (ActorLocal_chGobi1 *)&this->local;
+    chGobi1_setState(this, 0);
     func_8030DA44(local->unk0[0]);
     func_8030DA44(local->unk0[1]);
 }
@@ -102,9 +102,9 @@ void func_803873B0(ActorMarker *this_marker, ActorMarker *other_marker){
     }
 }
 
-void func_80387408(Actor *this){
+void chGobi1_update(Actor *this){
     ActorMarker *marker = this->marker;
-    ActorLocal_GV_D60 *local = (ActorLocal_GV_D60 *)&this->local;
+    ActorLocal_chGobi1 *local = (ActorLocal_chGobi1 *)&this->local;
     s32 sp6C = 0;
     f32 tick; //sp68;
     int i;
@@ -129,7 +129,7 @@ void func_80387408(Actor *this){
         local->unk14 = 0.0f;
         this->unk1C[0] = 0.0f;
         this->unk1C[1] = 0.0f;
-        GV_func_80387150(this, 1);
+        chGobi1_setState(this, 1);
         if(jiggyscore_isSpawned(JIGGY_44_GV_GOBI_1) && ! func_803203FC(1)){
             marker_despawn(this->marker);
         }
@@ -166,7 +166,7 @@ void func_80387408(Actor *this){
     }
 
     if(this->state == 1 || this->state == 2){
-        if(func_80388D78())
+        if(chGobiRock_isDestroyed())
             sp6C = 3;
     }
 
@@ -229,5 +229,5 @@ void func_80387408(Actor *this){
     this->unk1C[0] = 0.0f;
 
     if(sp6C)
-        GV_func_80387150(this, sp6C);
+        chGobi1_setState(this, sp6C);
 }

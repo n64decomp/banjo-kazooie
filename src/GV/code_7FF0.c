@@ -11,14 +11,14 @@ extern Actor *func_80325F2C(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx 
 extern void func_8032BC3C(Actor *, f32);
 extern void func_80343E20(s32, s32, f32, s32);
 
-extern ActorInfo D_80390BF0;
-extern ActorInfo D_80390C5C;
-extern ActorInfo D_80390C80;
-extern ActorInfo D_80390D30;
-extern ActorInfo D_80390D60;
-extern ActorInfo GV_D_80390CB0;
-extern ActorInfo D_80390D00;
-extern ActorInfo D_80390D90;
+extern ActorInfo chToots;
+extern ActorInfo chAncientOne;
+extern ActorInfo Gobi1;
+extern ActorInfo chGobiRope;
+extern ActorInfo chGobiRock;
+extern ActorInfo chGobi2;
+extern ActorInfo chGobi3;
+extern ActorInfo chTrunker;
 extern ActorInfo GV_D_80390DD0;
 extern ActorInfo GV_D_80390E30;
 extern ActorInfo D_80390E54;
@@ -40,8 +40,8 @@ extern ActorInfo GV_D_80391390;
 extern ActorInfo D_803913B4;
 extern ActorInfo D_80390F40;
 extern ActorInfo D_80391494;
-extern ActorInfo D_803915C0;
-extern ActorInfo D_80391620;
+extern ActorInfo chMazeCtrl;
+extern ActorInfo chBuriedPyramid;
 extern ActorInfo D_803914B8;
 extern ActorInfo D_803914DC;
 extern ActorInfo GV_D_80391500;
@@ -467,14 +467,14 @@ void func_8038F130(UNK_TYPE(s32) arg0, ActorMarker *arg1){
 
 void GV_func_8038F154(void)
 {
-    spawnableActorList_add(&D_80390BF0, actor_new, 0X180);
-    spawnableActorList_add(&D_80390C5C, actor_new, 0X58A);
-    spawnableActorList_add(&D_80390C80, actor_new, 0X9A8);
-    spawnableActorList_add(&D_80390D30, actor_new, 0X880);
-    spawnableActorList_add(&D_80390D60, actor_new, 0X80);
-    spawnableActorList_add(&GV_D_80390CB0, actor_new, 0XDA8);
-    spawnableActorList_add(&D_80390D00, actor_new, 0X9A8);
-    spawnableActorList_add(&D_80390D90, actor_new, 0XD80);
+    spawnableActorList_add(&chToots, actor_new, 0X180);
+    spawnableActorList_add(&chAncientOne, actor_new, 0X58A);
+    spawnableActorList_add(&Gobi1, actor_new, 0X9A8);
+    spawnableActorList_add(&chGobiRope, actor_new, 0X880);
+    spawnableActorList_add(&chGobiRock, actor_new, 0X80);
+    spawnableActorList_add(&chGobi2, actor_new, 0XDA8);
+    spawnableActorList_add(&chGobi3, actor_new, 0X9A8);
+    spawnableActorList_add(&chTrunker, actor_new, 0XD80);
     spawnableActorList_add(&GV_D_80390DD0, actor_new, 0X4004);
     spawnableActorList_add(&GV_D_80390E30, actor_new, 0X448);
     spawnableActorList_add(&D_80390E54, actor_new, 0X48);
@@ -496,8 +496,8 @@ void GV_func_8038F154(void)
     spawnableActorList_add(&D_803913B4, actor_new, 0X500);
     spawnableActorList_add(&D_80390F40, actor_new, 0);
     spawnableActorList_add(&D_80391494, actor_new, 0X408);
-    spawnableActorList_add(&D_803915C0, actor_new, 0);
-    spawnableActorList_add(&D_80391620, actor_new, 0X400);
+    spawnableActorList_add(&chMazeCtrl, actor_new, 0);
+    spawnableActorList_add(&chBuriedPyramid, actor_new, 0X400);
     spawnableActorList_add(&D_803914B8, actor_new, 0X400);
     spawnableActorList_add(&D_803914DC, actor_new, 0X400);
     spawnableActorList_add(&GV_D_80391500, actor_new, 0X400);

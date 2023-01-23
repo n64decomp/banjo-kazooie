@@ -185,21 +185,21 @@ void __overlay_gv_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx){ return; }
 void func_80322A94(void){
     func_8038FF60();
     func_803900F8();
-    func_803903EC(); //gv_matchingGame_reset
+    gv_matchingGame_reset(); //gv_matchingGame_reset
     func_803909EC();
 }
 
 void func_80322ACC(void){
     func_8038FF68();
     func_80390100();
-    func_8039040C(); //gv_matchingGame_init
+    gv_matchingGame_init(); //gv_matchingGame_init
     func_803909F4();
 }
 
 void __overlay_gv_update(void){
     func_8038FFF4();
     func_80390138();
-    func_803904A8(); //gv_matchingGame_update
+    gv_matchingGame_update(); //gv_matchingGame_update
     func_80390A94();
 }
 

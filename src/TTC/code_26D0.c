@@ -4,7 +4,7 @@
 #include "prop.h"
 #include "SnS.h"
 
-extern ActorInfo D_8038C3D0;
+extern ActorInfo chClam;
 extern ActorInfo TTC_D_8038C510;
 extern ActorInfo D_8038C580;
 extern ActorInfo D_8038C5E0;
@@ -108,7 +108,7 @@ void TTC_func_80388AC0(void)
     spawnableActorList_add(&D_8038C694, actor_new, 0X400);
     spawnableActorList_add(&D_8038C6B8, actor_new, 0X400);
     spawnableActorList_add(&D_8038C6DC, actor_new, 0X400);
-    spawnableActorList_add(&D_8038C3D0, actor_new, 0X2000041);
+    spawnableActorList_add(&chClam, actor_new, 0X2000041);
 }
 
 void TTC_func_80388C78(Actor *this){

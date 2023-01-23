@@ -3,19 +3,19 @@
 #include "variables.h"
 
 
-void func_80389144(Actor *this);
-Actor *func_80389050(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
+void chTrucker_update(Actor *this);
+Actor *chTrucker_draw(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 
 /* .data */
-ActorInfo D_80390D90 = { 
+ActorInfo chTrunker = { 
     MARKER_C0_TRUNKER, ACTOR_132_TRUNKER, ASSET_3DF_MODEL_TRUNKER, 
     0, NULL, 
-    func_80389144, NULL, func_80389050, 
+    chTrucker_update, NULL, chTrucker_draw, 
     0, 0x599, 2.0f, 0
 };
 
 /* .code */
-void GV_func_80388F70(Actor *this, s32 next_state){
+void __chTrucker_setState(Actor *this, s32 next_state){
     this->state = next_state;
     if(this->state == 1){
         func_80335924(this->unk148, ASSET_FE_ANIM_TRUCKER_SHORT, 0.1f, 2.5f);
@@ -33,7 +33,7 @@ void GV_func_80388F70(Actor *this, s32 next_state){
     }
 }
 
-Actor *func_80389050(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
+Actor *chTrucker_draw(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     Actor *this = marker_getActor(this_marker);
     f32 sp38[3];
     f32 sp2C[3];
@@ -53,7 +53,7 @@ Actor *func_80389050(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 }
 
 
-void func_80389144(Actor *this){
+void chTrucker_update(Actor *this){
     ActorMarker *marker = this->marker;
     s32 sp28 = 0;
     if(!this->unk16C_4){
@@ -62,10 +62,10 @@ void func_80389144(Actor *this){
         actor_collisionOff(this);
         mapSpecificFlags_set(0xC, FALSE);
         if(jiggyscore_isSpawned(JIGGY_45_GV_GOBI_2) && !func_803203FC(1)){
-            GV_func_80388F70(this, 3);
+            __chTrucker_setState(this, 3);
         }
         else{//L803891CC
-            GV_func_80388F70(this, 1);
+            __chTrucker_setState(this, 1);
         }
     }//L803891D8
     if( this->state == 1
@@ -87,5 +87,5 @@ void func_80389144(Actor *this){
     }
 
     if(sp28)
-        GV_func_80388F70(this, sp28);
+        __chTrucker_setState(this, sp28);
 }

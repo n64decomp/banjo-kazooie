@@ -43,7 +43,7 @@ ActorInfo D_8039123C = { 0xBB, 0x287, 0x3E6,
 /* .code */
 void func_8038C760(Actor *this, s32 arg1){
     ActorLocal_GV_6370 *local = (ActorLocal_GV_6370 *)&this->local;
-    func_8038FD50(local->unk14, arg1);
+    chBuriedPyramid_setRaisedAmount(local->unk14, arg1);
     FUNC_8030E624(SFX_3F6_UNKNOWN, 0.7f, 28000);
     FUNC_8030E624(SFX_3F6_UNKNOWN, 0.9f, 29000);
     FUNC_8030E624(SFX_3F6_UNKNOWN, 1.0f, 30000);

@@ -3,17 +3,17 @@
 #include "variables.h"
 
 
-void chgobirope_update(Actor *this);
+void chGobiRope_update(Actor *this);
 
 /* .data */
-ActorInfo D_80390D30 = { MARKER_BD_GOBI_ROPE, ACTOR_12F_GOBI_ROPE, ASSET_3E3_MODEL_GOBI_ROPE, 
+ActorInfo chGobiRope = { MARKER_BD_GOBI_ROPE, ACTOR_12F_GOBI_ROPE, ASSET_3E3_MODEL_GOBI_ROPE, 
     0, NULL, 
-    chgobirope_update, func_80326224, func_80325888, 
+    chGobiRope_update, func_80326224, func_80325888, 
     0, 0x533, 0.0f, 0
 };
 
 /* .code */
-void chgobirope_setState(Actor *this, s32 next_state){
+void chGobiRope_setState(Actor *this, s32 next_state){
     this->state = next_state;
 
     if(this->state == 1){
@@ -34,7 +34,7 @@ void chgobirope_setState(Actor *this, s32 next_state){
     }
 }
 
-void chgobirope_update(Actor *this){
+void chGobiRope_update(Actor *this){
     Actor *sp2C;
     f32 sp28;
     if(!this->unk16C_4){
@@ -47,7 +47,7 @@ void chgobirope_update(Actor *this){
             this->position_y = sp2C->position_y;
             this->position_z = sp2C->position_z;
         }
-        chgobirope_setState(this, 1);
+        chGobiRope_setState(this, 1);
         if( jiggyscore_isSpawned(JIGGY_44_GV_GOBI_1)
             && !func_803203FC(1)
         ){
@@ -57,20 +57,20 @@ void chgobirope_update(Actor *this){
     else{
         if(this->state == 1 || this->state == 2){
             if(this->state == 1 && func_80387354()){
-                chgobirope_setState(this, 2);
+                chGobiRope_setState(this, 2);
             }
             else{
                 if(func_80387360())
-                    chgobirope_setState(this, 4);
+                    chGobiRope_setState(this, 4);
             }
         }//L80388AB4
         if(this->state == 2){
             if(func_80335794(this->unk148) > 0)
-                chgobirope_setState(this, 1);
+                chGobiRope_setState(this, 1);
         }
         if(this->state == 3){
             if(func_80335794(this->unk148) > 0)
-                chgobirope_setState(this, 4);
+                chGobiRope_setState(this, 4);
         }
     }
 }

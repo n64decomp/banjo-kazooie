@@ -11,22 +11,22 @@ typedef struct {
     f32 unk8; 
 } ActorLocal_GVMazeCtrl;
 
-void __chmazectrl_setState(Actor *this, s32 next_state);
-void chmazectrl_update(Actor *this);
+void __chMazeCtrl_setState(Actor *this, s32 next_state);
+void chMazeCtrl_update(Actor *this);
 
 /* .data */
-ActorInfo D_803915C0 = { MARKER_1CD_GV_MAZE_CTRL, ACTOR_319_GV_MAZE_CTRL, 0x0,
+ActorInfo chMazeCtrl = { MARKER_1CD_GV_MAZE_CTRL, ACTOR_319_GV_MAZE_CTRL, 0x0,
     0, NULL, 
-    chmazectrl_update, 0x0, func_80325340, 
+    chMazeCtrl_update, 0x0, func_80325340, 
     0, 0, 0.0f, 0
 };
-f32 D_803915E4[3] = {460.0f, 1400.0f, 0.0f};
-f32 D_803915F0[3] = {0.0f, 0.0f, 0.0f};
-f32 D_803915FC[3] = {0.0f, 0.0f, 0.0f};
-f32 D_80391608[3] = {460.0f, 1400.0f, 0.0f};
+
+
 
 /* .code */
 void func_8038F520(f32 arg0){
+    static f32 D_803915E4[3] = {460.0f, 1400.0f, 0.0f};
+    static f32 D_803915F0[3] = {0.0f, 0.0f, 0.0f};
     Struct6Ds *tmp_v0 = func_8034C528(0x19A);
     if(tmp_v0 != NULL){
         func_8034DDF0(tmp_v0, D_803915E4, D_803915F0, arg0, 1);
@@ -34,25 +34,27 @@ void func_8038F520(f32 arg0){
 }
 
 void func_8038F56C(f32 arg0){
+    static f32 D_803915FC[3] = {0.0f, 0.0f, 0.0f};
+    static f32 D_80391608[3] = {460.0f, 1400.0f, 0.0f};
     Struct6Ds *tmp_v0 = func_8034C528(0x19A);
     if(tmp_v0 != NULL){
         func_8034DDF0(tmp_v0, D_803915FC, D_80391608, arg0, 1);
     }
 }
 
-void __chmazectrl_markerSetState(ActorMarker *this_marker, s32 arg1){
+void __chMazeCtrl_markerSetState(ActorMarker *this_marker, s32 arg1){
     Actor *this = marker_getActor(this_marker);
-    __chmazectrl_setState(this, arg1);
+    __chMazeCtrl_setState(this, arg1);
 }
 
-void __chmazectrl_8038F5E4(Actor *this){
+void __chMazeCtrl_8038F5E4(Actor *this){
     if(this->state == 2){
         comusic_8025AB44(COMUSIC_26_GV_SANDYBUTT_DANGER, 0, 30000);
         item_set(ITEM_6_HOURGLASS, FALSE);
     }
 }
 
-void __chmazectrl_setState(Actor *this, s32 next_state){
+void __chMazeCtrl_setState(Actor *this, s32 next_state){
     f32 plyr_pos[3];
     Struct6Ds *tmp_v0;
     ActorLocal_GVMazeCtrl *local;
@@ -97,8 +99,8 @@ void __chmazectrl_setState(Actor *this, s32 next_state){
     if(next_state == 3){
         func_80324E38(0.0f, 3);
         timedFunc_set_2(0.0f, (GenMethod_2)func_8025A6EC, COMUSIC_3E_SANDYBUTT_FAILURE, 0x7FFF);
-        timedFunc_set_2(1.0f, (GenMethod_2)__chmazectrl_markerSetState, reinterpret_cast(s32, this->marker), 6);
-        timedFunc_set_2(2.0f, (GenMethod_2)__chmazectrl_markerSetState, reinterpret_cast(s32, this->marker), 4);
+        timedFunc_set_2(1.0f, (GenMethod_2)__chMazeCtrl_markerSetState, reinterpret_cast(s32, this->marker), 6);
+        timedFunc_set_2(2.0f, (GenMethod_2)__chMazeCtrl_markerSetState, reinterpret_cast(s32, this->marker), 4);
     }//L8038F850
 
     if(next_state == 4){
@@ -140,7 +142,7 @@ void __chmazectrl_setState(Actor *this, s32 next_state){
     this->state = next_state;
 }
 
-void chmazectrl_update(Actor *this){
+void chMazeCtrl_update(Actor *this){
     f32 sp3C[3];
     Struct6Ds *sp38;
     f32 sp34;
@@ -150,7 +152,7 @@ void chmazectrl_update(Actor *this){
     sp34 = time_getDelta();
     if(!this->unk16C_4){
         this->unk16C_4 = TRUE;
-        this->marker->unk30 = __chmazectrl_8038F5E4;
+        this->marker->unk30 = __chMazeCtrl_8038F5E4;
         if(this->state == 2){
             comusic_8025AB44(COMUSIC_26_GV_SANDYBUTT_DANGER, 30000, 30000);
             item_set(ITEM_6_HOURGLASS, TRUE);
@@ -159,7 +161,7 @@ void chmazectrl_update(Actor *this){
             func_8038F56C(0.0f);
             local->unk4 = 0;
             this->state = 0;
-            __chmazectrl_setState(this, 1);
+            __chMazeCtrl_setState(this, 1);
             local->unk8 = 1.0f;
         }//L8038FA8C
         if(jiggyscore_isCollected(JIGGY_41_GV_MAZE))
@@ -170,7 +172,7 @@ void chmazectrl_update(Actor *this){
     if(this->state == 1){
         sp38 = func_8034C528(0x191);
         if(sp38 != NULL && func_8034DC80(sp38, sp3C)){
-            __chmazectrl_setState(this, 2);
+            __chMazeCtrl_setState(this, 2);
         }
         if( !levelSpecificFlags_get(0x15) 
             && func_8025773C(&local->unk8, sp34)
@@ -182,25 +184,25 @@ void chmazectrl_update(Actor *this){
 
     if(this->state == 2){
         if( sp3C[0] <= -1750.0f && 80.0f <= sp3C[2] && sp3C[2] <= 350.0f){
-            __chmazectrl_setState(this, 5);
+            __chMazeCtrl_setState(this, 5);
         }
         else{
             if(item_empty(ITEM_6_HOURGLASS)){
-                __chmazectrl_setState(this, 3);
+                __chMazeCtrl_setState(this, 3);
             }
         }
     }//L8038FBBC
 
     if(this->state == 5){
         if(-1700.0f < sp3C[0]){
-            __chmazectrl_setState(this, 2);
+            __chMazeCtrl_setState(this, 2);
         }
     }
 
     if(this->state == 4){
         sp30 = func_8034C528(0x190);
         if(sp30 != NULL && func_8034DC78(sp30)){
-            __chmazectrl_setState(this, 0);
+            __chMazeCtrl_setState(this, 0);
         }
     }
 }

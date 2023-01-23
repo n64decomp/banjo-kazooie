@@ -6,26 +6,26 @@ extern void func_802C4218(s32, s32, s32, s32);
 extern f32 func_80257204(f32, f32, f32, f32);
 extern ActorProp * func_80320EB0(ActorMarker *, f32, s32);
 
-void func_80386FDC(Actor *this);
+void chClam_update(Actor *this);
 
 /* .data */
-ActorAnimationInfo D_8038C3B0[] = {
+ActorAnimationInfo chClamAnimations[] = {
     {0x00, 0.0f},
     {0xAA, 2.0f},
     {0x24, 1.0f},
     {0xAB, 0.6f}
 };
 
-ActorInfo D_8038C3D0 = { 
+ActorInfo chClam = { 
     MARKER_15_CLAM, ACTOR_69_CLAM, ASSET_351_MODEL_CLAM,
-    0x1, D_8038C3B0,
-    func_80386FDC, func_80326224, func_80325888, 
+    0x1, chClamAnimations,
+    chClam_update, func_80326224, func_80325888, 
     4500, 0x366, 1.6f, 0
 };
 
 
 /* .code */
-void TTC_func_803863F0(enum sfx_e sfx_id, f32 arg1, s32 arg2, f32 position[3], f32 arg4, f32 arg5){
+void __chClam_func_803863F0(enum sfx_e sfx_id, f32 arg1, s32 arg2, f32 position[3], f32 arg4, f32 arg5){
     if(func_803114B0()){
         arg2 -= 10000;
         if(arg2 < 0)
@@ -34,49 +34,49 @@ void TTC_func_803863F0(enum sfx_e sfx_id, f32 arg1, s32 arg2, f32 position[3], f
     func_8030E878(sfx_id, arg1, arg2, position, arg4, arg5);
 }
 
-void func_80386454(Actor *this){
+void __chClam_func_80386454(Actor *this){
     func_80328B8C(this, 1, 0.01f, 1);
     actor_loopAnimation(this);
     animctrl_setDuration(this->animctrl, randf2(1.9f, 2.1f));
 }
 
-bool TTC_func_803864B0(Actor *this, f32 arg1) {
-    f32 sp5C;
-    f32 sp58;
+bool __chClam_updateTarget(Actor *this, f32 arg1) {
+    f32 egg_dist;
+    f32 red_feather_dist;
     f32 pad;
-    Actor *sp50;
-    Actor *sp4C;
+    Actor *red_feather;
+    Actor *egg;
     f32 phi_f2;
-    f32 sp3C[3];
+    f32 target_position[3];
     s32 sp38;
 
-    sp50 = actorArray_findClosestActorFromActorId(this->position, 0x52, -1, &sp5C);
-    sp4C = actorArray_findClosestActorFromActorId(this->position, 0x129, -1, &sp58);
+    red_feather = actorArray_findClosestActorFromActorId(this->position, ACTOR_52_BLUE_EGG, -1, &egg_dist);
+    egg = actorArray_findClosestActorFromActorId(this->position, ACTOR_129_RED_FEATHER, -1, &red_feather_dist);
     sp38 = 0;
-    if( (sp58 < sp5C) 
-        && (sp58 < 16000.0f) 
-        && (sp4C != 0)
-        && func_80307258(sp4C->position, this->unk10_25 - 1, this->unk10_18 - 1) != -1
+    if( (red_feather_dist < egg_dist) 
+        && (red_feather_dist < 16000.0f) 
+        && (egg != 0)
+        && func_80307258(egg->position, this->unk10_25 - 1, this->unk10_18 - 1) != -1
     ) {
-            sp3C[0] = sp4C->position[0];
-            sp3C[1] = sp4C->position[1];
-            sp3C[2] = sp4C->position[2];
-            phi_f2 = sp58;
+            target_position[0] = egg->position[0];
+            target_position[1] = egg->position[1];
+            target_position[2] = egg->position[2];
+            phi_f2 = red_feather_dist;
     }
     else if(
-        (sp5C < sp58) 
-        && (sp5C < 16000.0f) 
-        && (sp50 != 0)
-        && func_80307258(sp50->position, this->unk10_25 - 1, this->unk10_18 - 1) != -1
+        (egg_dist < red_feather_dist) 
+        && (egg_dist < 16000.0f) 
+        && (red_feather != 0)
+        && func_80307258(red_feather->position, this->unk10_25 - 1, this->unk10_18 - 1) != -1
     ){
-            sp3C[0] = sp50->position[0];
-            sp3C[1] = sp50->position[1];
-            sp3C[2] = sp50->position[2];
-            phi_f2 = sp5C;
+            target_position[0] = red_feather->position[0];
+            target_position[1] = red_feather->position[1];
+            target_position[2] = red_feather->position[2];
+            phi_f2 = egg_dist;
     }
-    else if ((func_80329530(this, 0x4B0) != 0) && (func_803292E0(this) != 0)) {
+    else if ((func_80329530(this, 1200) != 0) && (func_803292E0(this) != 0)) {
         phi_f2 = gu_sqrtf((f32) func_8032970C(this));
-        player_getPosition(sp3C);
+        player_getPosition(target_position);
         sp38 = 1;
     }
     else{
@@ -84,19 +84,19 @@ bool TTC_func_803864B0(Actor *this, f32 arg1) {
     }
 
     this->unk28 = phi_f2 / arg1;
-    this->yaw_ideal = func_80257204(this->position[0], this->position[2], sp3C[0], sp3C[2]);
+    this->yaw_ideal = func_80257204(this->position[0], this->position[2], target_position[0], target_position[2]);
     if ((func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE) ? 0 : 0x11) < this->unk28) {
         this->unk28 = (func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE) != 0) ? 0.0f : 17.0f;
     } else if (sp38 == 0) {
-        TTC_func_803863F0(SFX_AE_YUMYUM_TALKING, randf2(0.9f, 1.0f), 22000, this->position, 500.0f, 2000.0f);
+        __chClam_func_803863F0(SFX_AE_YUMYUM_TALKING, randf2(0.9f, 1.0f), 22000, this->position, 500.0f, 2000.0f);
     }
-    return 1;
+    return TRUE;
 
 }
 
-bool func_80386760(Actor *this, s32 arg1) {
+bool __chClam_rotateTowardTarget(Actor *this, s32 arg1) {
     f32 temp_f0_2;
-    s32 sp24;
+    s32 position;
     s32 sp2C;
 
     if(this->unk10_25 == 0) return FALSE;
@@ -104,7 +104,7 @@ bool func_80386760(Actor *this, s32 arg1) {
 
     animctrl_setDuration(this->animctrl, 1.0f);
     sp2C = (s32) ((f64) (60.0f / (f32) func_8033DD90()) * 0.5);
-    if ((this->unk1C[0] != 0.0f) || !TTC_func_803864B0(this, sp2C)) {
+    if ((this->unk1C[0] != 0.0f) || !__chClam_updateTarget(this, sp2C)) {
         if (((f64) animctrl_getAnimTimer(this->animctrl) < 0.1) && ((f64) randf() < 0.5)) {
             if (this->unk1C[0] != 0.0f) {
                 arg1 *= 2;
@@ -136,7 +136,7 @@ bool func_80386760(Actor *this, s32 arg1) {
 }
 
 
-void func_80386A9C(ParticleEmitter *pCtrl, f32 position[3]){
+void __chClam_particalEmitterInit(ParticleEmitter *pCtrl, f32 position[3]){
     particleEmitter_setPosition(pCtrl, position);
     func_802EF9F8(pCtrl, 0.7f);
     func_802EFA18(pCtrl, 3);
@@ -148,7 +148,7 @@ void func_80386A9C(ParticleEmitter *pCtrl, f32 position[3]){
     func_802EFA70(pCtrl, 2);
 }
 
-void TTC_func_80386B54(f32 position[3], s32 count){
+void __chClam_emitLargeShellParticles(f32 position[3], s32 count){
     static struct41s D_8038C3F4 = {
         {{-50.0f,   750.0f, -50.0f}, {120.0f,   900.0f, 120.0f}},
         {{  0.0f, -1800.0f,   0.0f}, {  0.0f, -1800.0f,   0.0f}}
@@ -156,15 +156,15 @@ void TTC_func_80386B54(f32 position[3], s32 count){
     ParticleEmitter *pCtrl;
 
     pCtrl = partEmitList_pushNew(count);
-    func_80386A9C(pCtrl, position);
-    particleEmitter_setModel(pCtrl, 0x37c);
+    __chClam_particalEmitterInit(pCtrl, position);
+    particleEmitter_setModel(pCtrl, ASSET_37C_MODEL_CLAM_LARGE_SHELL_PIECE);
     particleEmitter_setVelocityAndAccelerationRanges(pCtrl, &D_8038C3F4);
     func_802EFE24(pCtrl, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
     func_802EFB70(pCtrl, 1.0f, 1.0f);
     particleEmitter_emitN(pCtrl, count);
 }
 
-void func_80386C08(f32 position[3], s32 count){
+void __chClam_emitEyeParticles(f32 position[3], s32 count){
     static struct41s D_8038C424 = {
         {{-80.0f,   400.0f, -80.0f}, {160.0f,   860.0f, 160.0f}},
         {{  0.0f, -1400.0f,   0.0f}, {  0.0f, -1400.0f,   0.0f}}
@@ -172,15 +172,15 @@ void func_80386C08(f32 position[3], s32 count){
     ParticleEmitter *pCtrl;
 
     pCtrl = partEmitList_pushNew(count);
-    func_80386A9C(pCtrl, position);
-    particleEmitter_setModel(pCtrl, 0x37d);
+    __chClam_particalEmitterInit(pCtrl, position);
+    particleEmitter_setModel(pCtrl, ASSET_37D_MODEL_CLAM_EYE);
     particleEmitter_setVelocityAndAccelerationRanges(pCtrl, &D_8038C424);
     func_802EFE24(pCtrl, -300.0f, -300.0f, -300.0f, 300.0f, 300.0f, 300.0f);
     func_802EFB70(pCtrl, 1.0f, 1.0f);
     particleEmitter_emitN(pCtrl, count);
 }
 
-void func_80386CBC(f32 position[3], s32 count){
+void __chClam_emitSmallShellParticles(f32 position[3], s32 count){
     static struct41s D_8038C454 = {
         {{-200.0f,  850.0f, -200.0f}, {400.0f,  1000.0f, 400.0f}},
         {{  0.0f, -1800.0f,    0.0f}, {  0.0f, -1800.0f,   0.0f}}
@@ -188,15 +188,15 @@ void func_80386CBC(f32 position[3], s32 count){
     ParticleEmitter *pCtrl;
 
     pCtrl = partEmitList_pushNew(count);
-    func_80386A9C(pCtrl, position);
-    particleEmitter_setModel(pCtrl, 0x37E);
+    __chClam_particalEmitterInit(pCtrl, position);
+    particleEmitter_setModel(pCtrl, ASSET_37E_MODEL_CLAM_SMALL_SHELL_PIECE);
     particleEmitter_setVelocityAndAccelerationRanges(pCtrl, &D_8038C454);
     func_802EFE24(pCtrl, -800.0f, -800.0f, -800.0f, 800.0f, 800.0f, 800.0f);
     func_802EFB70(pCtrl, 0.5f, 0.8f);
     particleEmitter_emitN(pCtrl, count);
 }
 
-void TTC_func_80386D68(f32 position[3], enum asset_e sprite_id, s32 count){
+void __chClam_emitEatenCollectableParticles(f32 position[3], enum asset_e sprite_id, s32 count){
     static struct31s D_8038C484 = {
     {0.2f,  0.35f},
     {0.0f,  0.0f},
@@ -221,31 +221,31 @@ void TTC_func_80386D68(f32 position[3], enum asset_e sprite_id, s32 count){
     particleEmitter_emitN(pCtrl, count);
 }
 
-void func_80386DF4(ActorMarker *this_marker, ActorMarker *other_marker){
+void __chClam_takeDamage(ActorMarker *this_marker, ActorMarker *other_marker){
     Actor *this;
 
     this = marker_getActor(this_marker);
     this->marker->collidable = FALSE;
     this->unk138_27 = TRUE;
-    TTC_func_803863F0(SFX_1D_HITTING_AN_ENEMY_1, 1.0f, 26000, this->position, 1500.0f, 2000.0f);
-    TTC_func_803863F0(SFX_115_BUZZBOMB_DEATH, 1.2f, 26000, this->position, 1500.0f, 2000.0f);
-    TTC_func_80386B54(this->position, 2);
-    func_80386C08(this->position, 2);
-    func_80386CBC(this->position, 0xC);
+    __chClam_func_803863F0(SFX_1D_HITTING_AN_ENEMY_1, 1.0f, 26000, this->position, 1500.0f, 2000.0f);
+    __chClam_func_803863F0(SFX_115_BUZZBOMB_DEATH, 1.2f, 26000, this->position, 1500.0f, 2000.0f);
+    __chClam_emitLargeShellParticles(this->position, 2);
+    __chClam_emitEyeParticles(this->position, 2);
+    __chClam_emitSmallShellParticles(this->position, 0xC);
     func_803115C4(0xa14);
     marker_despawn(this->marker);
 }
 
-void func_80386EDC(s32 this, enum item_e item_id){
-    f32 sp24[3];
+void __chClam_playerDropsItem(s32 index, enum item_e item_id){
+    f32 position[3];
 
-    player_getPosition(sp24);
+    player_getPosition(position);
     func_802C8F70(randf2(0.0f, 359.0f));
-    __spawnQueue_add_4((GenMethod_4)func_802C4218, this, reinterpret_cast(s32, sp24[0]), reinterpret_cast(s32, sp24[1]), reinterpret_cast(s32, sp24[2]));
+    __spawnQueue_add_4((GenMethod_4)func_802C4218, index, reinterpret_cast(s32, position[0]), reinterpret_cast(s32, position[1]), reinterpret_cast(s32, position[2]));
     item_dec(item_id);
 }
 
-void func_80386F44(ActorMarker *this_marker, ActorMarker *other_marker){
+void __chClam_attackOther(ActorMarker *this_marker, ActorMarker *other_marker){
     
     if(func_80297C6C() == 3) return;
 
@@ -254,13 +254,13 @@ void func_80386F44(ActorMarker *this_marker, ActorMarker *other_marker){
     }
 
     if(item_getCount(ITEM_D_EGGS) != 0)
-        func_80386EDC(0xe, ITEM_D_EGGS);
+        __chClam_playerDropsItem(0xe, ITEM_D_EGGS);
 
     if(item_getCount(ITEM_F_RED_FEATHER) != 0)
-        func_80386EDC(0xf, ITEM_F_RED_FEATHER);
+        __chClam_playerDropsItem(0xf, ITEM_F_RED_FEATHER);
 }
 
-void func_80386FDC(Actor *this){
+void chClam_update(Actor *this){
     ActorProp *sp4C = func_80320EB0(this->marker, 30.0f, 1);
     f32 sp48;
     s32 sp44;
@@ -273,7 +273,7 @@ void func_80386FDC(Actor *this){
 
     if(!this->unk16C_4){
         this->unk16C_4 =  TRUE;
-        marker_setCollisionScripts(this->marker, NULL, func_80386F44, func_80386DF4);
+        marker_setCollisionScripts(this->marker, NULL, __chClam_attackOther, __chClam_takeDamage);
     }
 
     if(this->state != 3){
@@ -297,11 +297,11 @@ void func_80386FDC(Actor *this){
 
     switch(this->state){
         case 1://L80387170
-            if(func_80386760(this, 140)){
+            if(__chClam_rotateTowardTarget(this, 140)){
                 func_80328B8C(this, 2, 0.01f, 1);
                 actor_playAnimationOnce(this);
                 animctrl_setDuration(this->animctrl, 1.0f);
-                TTC_func_803863F0(SFX_3F2_UNKNOWN, randf2(1.0f, 1.1f), 22000, this->position, 1500.0f, 2000.0f);
+                __chClam_func_803863F0(SFX_3F2_UNKNOWN, randf2(1.0f, 1.1f), 22000, this->position, 1500.0f, 2000.0f);
             }
             else{
                 animctrl_setDuration(this->animctrl, 2.0f);
@@ -312,13 +312,13 @@ void func_80386FDC(Actor *this){
             this->position_y += this->velocity_y;
             this->velocity_y += -5.0f;
             if(actor_animationIsAt(this, 0.63f)){
-                TTC_func_803863F0(SFX_80_YUMYUM_CLACK, 1.0f, 20000, this->position, 1500.0f, 2000.0f);
+                __chClam_func_803863F0(SFX_80_YUMYUM_CLACK, 1.0f, 20000, this->position, 1500.0f, 2000.0f);
             }
 
             if(this->position_y <= sp48){
                 this->position_y = sp48;
                 if(actor_animationIsAt(this, 0.99f) || 0.98 < animctrl_getAnimTimer(this->animctrl)){
-                    func_80386454(this);
+                    __chClam_func_80386454(this);
                 }
             }
             else{//L803872D4
@@ -334,12 +334,12 @@ void func_80386FDC(Actor *this){
             }
 
             if(3.0f <= this->velocity_x){
-                func_80386454(this);
+                __chClam_func_80386454(this);
                 break;
             }
 
             if(actor_animationIsAt(this, 0.8f) && 2.0f == this->velocity_x){
-                TTC_func_803863F0(SFX_4B_GULPING, randf2(0.8f, 0.9f), 22000, this->position, 700.0f, 2000.0f);
+                __chClam_func_803863F0(SFX_4B_GULPING, randf2(0.8f, 0.9f), 22000, this->position, 700.0f, 2000.0f);
                 break;
             }//L803873C4
 
@@ -347,15 +347,15 @@ void func_80386FDC(Actor *this){
 
             if(!this->marker->unk14_21) break;
 
-            TTC_func_803863F0(SFX_4C_LIP_SMACK, 1.0f, 20000, this->position, 500.0f, 2000.0f);
+            __chClam_func_803863F0(SFX_4C_LIP_SMACK, 1.0f, 20000, this->position, 500.0f, 2000.0f);
             func_8034A174(this->marker->unk44, 5, sp38);
 
             switch(this->unk38_31){
-                case 0x60:
-                    TTC_func_80386D68(sp38, ASSET_718_SPRITE_SPARKLE_WHITE_2, 8);
+                case MARKER_60_BLUE_EGG_COLLECTABLE:
+                    __chClam_emitEatenCollectableParticles(sp38, ASSET_718_SPRITE_SPARKLE_WHITE_2, 8);
                     break;
-                case 0xb5:
-                    TTC_func_80386D68(sp38, ASSET_715_SPRITE_SPARKLE_RED, 8);
+                case MARKER_B5_RED_FEATHER_COLLECTABLE:
+                    __chClam_emitEatenCollectableParticles(sp38, ASSET_715_SPRITE_SPARKLE_RED, 8);
                     break;
             }
             break;

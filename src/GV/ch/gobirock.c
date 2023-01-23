@@ -9,34 +9,33 @@ typedef struct {
     ParticleEmitter *unkC;
     ParticleEmitter *unk10;
     f32 unk14;
-}ActorLocal_GV_2730;
+}ActorLocal_chGobiRock;
 
-void func_80388DC8(Actor *this);
-Actor *func_80388C64(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
+void chGobiRock_update(Actor *this);
+Actor *chGobiRock_draw(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 
 /* .data */
-ActorInfo D_80390D60 = { 0xBE, 0x130, 0x3E4, 
+ActorInfo chGobiRock = { MARKER_BE_GOBI_ROCK, ACTOR_130_GOBI_ROCK, ASSET_3E4_MODEL_GOBI_ROCK, 
     0, NULL, 
-    func_80388DC8, func_80326224, func_80388C64, 
+    chGobiRock_update, func_80326224, chGobiRock_draw, 
     0, 0x533, 0.0f, 0
 };
 
-f32 D_80390D84[3] = {5644.0f, 2930.0f, -3258.0f};
 
 /*.bss */
-u8 GV_D_80391A60;
+u8 chGobiRockDestroyed;
 
 /* .code */
-void func_80388B20(Actor *this, s32 next_state){
-    ActorLocal_GV_2730 *local = (ActorLocal_GV_2730 *)&this->local;
+void __chGobiRock_setState(Actor *this, s32 next_state){
+    ActorLocal_chGobiRock *local = (ActorLocal_chGobiRock *)&this->local;
 
     this->state = next_state;
     local->unk14 = 0.0f;
-    GV_D_80391A60 = FALSE;
+    chGobiRockDestroyed = FALSE;
     if(this->state == 2){
         this->marker->propPtr->unk8_3 = FALSE;
         local->unk14 = 2.6f;
-        GV_D_80391A60 = TRUE;
+        chGobiRockDestroyed = TRUE;
         func_8028F428(2, this->marker);
         FUNC_8030E624(SFX_9B_BOULDER_BREAKING_1, 0.3f, 9000);
         FUNC_8030E624(SFX_9B_BOULDER_BREAKING_1, 0.5f, 9000);
@@ -51,15 +50,15 @@ void func_80388B20(Actor *this, s32 next_state){
     }
 }
 
-void func_80388C24(ActorMarker *this_marker, ActorMarker *other_marker){
+void __chGobiRock_destroy(ActorMarker *this_marker, ActorMarker *other_marker){
     Actor *this = marker_getActor(this_marker);
     if(this->state == 1)
-        func_80388B20(this, 2);
+        __chGobiRock_setState(this, 2);
 }
 
-Actor *func_80388C64(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
+Actor *chGobiRock_draw(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     Actor *this = marker_getActor(this_marker);
-    ActorLocal_GV_2730 *local = (ActorLocal_GV_2730 *)&this->local;
+    ActorLocal_chGobiRock *local = (ActorLocal_chGobiRock *)&this->local;
     f32 sp3C[3];
 
     func_802EF3A8(local->unkC, gfx, mtx, vtx);
@@ -78,39 +77,41 @@ Actor *func_80388C64(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     
 }
 
-s32 func_80388D78(void){
-    return GV_D_80391A60;
+bool chGobiRock_isDestroyed(void){
+    return chGobiRockDestroyed;
 }
 
-void func_80388D84(Actor *this){
-    ActorLocal_GV_2730 *local = (ActorLocal_GV_2730 *)&this->local;
-    func_80388B20(this, 0);
+void chGobiRock_free(Actor *this){
+    ActorLocal_chGobiRock *local = (ActorLocal_chGobiRock *)&this->local;
+    __chGobiRock_setState(this, 0);
     func_802EF684(local->unkC);
     func_802EF684(local->unk10);
 }
 
-void func_80388DC8(Actor *this){
+void chGobiRock_update(Actor *this){
+    static f32 jiggy_position[3] = {5644.0f, 2930.0f, -3258.0f};
+
     ActorMarker *sp34 = this->marker;
-    ActorLocal_GV_2730 *local = (ActorLocal_GV_2730 *)&this->local;
+    ActorLocal_chGobiRock *local = (ActorLocal_chGobiRock *)&this->local;
     f32 sp2C;
     Actor *sp28;
     f32 sp24 = time_getDelta();
 
     if(!this->unk16C_4){
         this->unk16C_4 = TRUE;
-        sp34->unk30 = func_80388D84;
+        sp34->unk30 = chGobiRock_free;
         sp34->propPtr->unk8_3 = TRUE;
-        marker_setCollisionScripts(this->marker, NULL, NULL, func_80388C24);
+        marker_setCollisionScripts(this->marker, NULL, NULL, __chGobiRock_destroy);
         local->unkC = particleEmitter_new(20);
         local->unk10 = particleEmitter_new(30);
-        GV_D_80391A60 = FALSE;
+        chGobiRockDestroyed = FALSE;
         sp28 = actorArray_findClosestActorFromActorId(this->position, ACTOR_12E_GOBI_1, -1, &sp2C);
         if(sp28){
             this->position_x = sp28->position_x;
             this->position_y = sp28->position_y;
             this->position_z = sp28->position_z;
         }
-        func_80388B20(this, 1);
+        __chGobiRock_setState(this, 1);
         if(jiggyscore_isSpawned(JIGGY_44_GV_GOBI_1) && !func_803203FC(1)){
             marker_despawn(this->marker);
         }
@@ -119,7 +120,7 @@ void func_80388DC8(Actor *this){
         particleEmitter_update(local->unkC);
         particleEmitter_update(local->unk10);
         if(func_8025773C(&local->unk14, sp24)){
-            jiggySpawn(JIGGY_44_GV_GOBI_1, D_80390D84);
+            jiggySpawn(JIGGY_44_GV_GOBI_1, jiggy_position);
             func_802BB3DC(0, 60.0f, 0.65f);
         }
         if(this->state == 2){
