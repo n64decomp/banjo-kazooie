@@ -11,13 +11,13 @@ typedef struct{
 
 typedef struct{
     Struct_CCW_2270_0 *unk0;
-    void *unk4;
-    void *unk8;
-}ActorLocal_CCW_2270;
+    Struct80s *unk4;
+    BKModelBin *spit_model;
+}ActorLocal_chGobiCCW;
 
 void CCW_func_8038868C(Actor *this, s32 next_state);
-Actor *func_803889AC(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
-void func_80388AA0(Actor *this);
+Actor *chGobiCCW_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
+void chGobiCCW_update(Actor *this);
 
 /* .data */
 Struct_CCW_2270_0 D_8038ECD0[] = {
@@ -27,9 +27,9 @@ Struct_CCW_2270_0 D_8038ECD0[] = {
 };
 
 ActorInfo D_8038ECE8 = { 
-    0x1B1, 0x29E, ASSET_3E0_MODEL_GOBI,
+    MARKER_1B1_CCW_GOBI, ACTOR_29E_CCW_GOBI, ASSET_3E0_MODEL_GOBI,
     0x0, NULL,
-    func_80388AA0, func_80388AA0, func_803889AC,
+    chGobiCCW_update, chGobiCCW_update, chGobiCCW_draw,
     0, 0, 1.0f, 0
 };
 
@@ -39,9 +39,9 @@ void CCW_func_80388660(ActorMarker* marker, s32 arg1) {
 }
 
 void CCW_func_8038868C(Actor *this, s32 next_state) {
-    ActorLocal_CCW_2270 *local;
+    ActorLocal_chGobiCCW *local;
 
-    local = (ActorLocal_CCW_2270*)&this->local;
+    local = (ActorLocal_chGobiCCW*)&this->local;
 
     if (next_state == 1) {
         func_80335924(this->unk148, ASSET_F4_ANIM_GOBI_IDLE, 0.5f, 12.0f);
@@ -99,13 +99,13 @@ void func_8038894C(ActorMarker* marker, ActorMarker *other_marker) {
     }
 }
 
-Actor *func_803889AC(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
+Actor *chGobiCCW_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     Actor *this;
-    ActorLocal_CCW_2270 *local;
+    ActorLocal_chGobiCCW *local;
     f32 sp2C[3];
 
     this = marker_getActor(marker);
-    local = (ActorLocal_CCW_2270*)&this->local;
+    local = (ActorLocal_chGobiCCW*)&this->local;
 
     if (this->state == 2) {
         sp2C[0] = this->pitch;
@@ -114,32 +114,32 @@ Actor *func_803889AC(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 
         func_8033A238(func_803356A0(local->unk4, local));
         modelRender_setDepthMode(MODEL_RENDER_DEPTH_COMPARE);
-        modelRender_draw(gfx, mtx, this->position, sp2C, 1.0f, NULL, local->unk8);
+        modelRender_draw(gfx, mtx, this->position, sp2C, 1.0f, NULL, local->spit_model);
     }
     return func_80325888(marker, gfx, mtx, vtx);
 }
 
-void func_80388A70(Actor *this){
-    ActorLocal_CCW_2270 *local = (ActorLocal_CCW_2270*)&this->local;
+void chGobiCCW_free(Actor *this){
+    ActorLocal_chGobiCCW *local = (ActorLocal_chGobiCCW*)&this->local;
 
     func_80335874(local->unk4);
-    assetcache_release(local->unk8);
+    assetcache_release(local->spit_model);
 }
 
-void func_80388AA0(Actor *this) {
-    ActorLocal_CCW_2270 *local;
+void chGobiCCW_update(Actor *this) {
+    ActorLocal_chGobiCCW *local;
     f32 sp48[3];
     f32 sp44;
     f32 sp40;
 
-    local = (ActorLocal_CCW_2270*)&this->local;
+    local = (ActorLocal_chGobiCCW*)&this->local;
     if (!this->unk16C_4) {
         this->unk16C_4 = TRUE;
         this->marker->propPtr->unk8_3 = TRUE;
-        this->marker->unk30 = func_80388A70;
+        this->marker->unk30 = chGobiCCW_free;
         this->unk138_24 = FALSE;
         local->unk4 = func_803358B4();
-        local->unk8 = assetcache_get(0x3F3);
+        local->spit_model = assetcache_get(ASSET_3F3_MODEL_GOBI_SPIT);
         marker_setCollisionScripts(this->marker, 0, func_8038894C, 0);
         if(!jiggyscore_isSpawned(JIGGY_4D_CCW_FLOWER)) {
             func_80320004(0xE5, 0);

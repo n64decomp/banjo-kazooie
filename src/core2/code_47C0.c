@@ -293,7 +293,7 @@ void func_8028BCA0(Prop *prop){
                 }
                 break;
 
-            case 0xB5: //L8028BEF4
+            case MARKER_B5_RED_FEATHER_COLLECTABLE: //L8028BEF4
                 if(func_8028BC20(marker) != HITBOX_0_NONE)
                     return;
                 if(chcollectable_collectRedFeather(prop)){
@@ -301,7 +301,7 @@ void func_8028BCA0(Prop *prop){
                 }
                 break;
 
-            case 0x1E5: //L8028BF24
+            case MARKER_1E5_GOLD_FEATHER_COLLECTABLE: //L8028BF24
                 if(func_8028BC20(marker))
                     return;
                 
@@ -331,17 +331,17 @@ void func_8028BCA0(Prop *prop){
                 }
                 break;
 
-            case 0xF5: //L8028BFB0
+            case MARKER_F5_BGS_ELEVATED_WALKWAY_SWITCH: //L8028BFB0
                 if(plyr_hitbox_type == HITBOX_1_BEAK_BUSTER)
                     func_8028BAB0(JIGGY_20_BGS_ELEVATED_WALKWAY, 1, 3, 7);
                 break;
                 
-            case 0xFD: //L8028BFD4
+            case MARKER_FD_BGS_MAZE_SWITCH: //L8028BFD4
                 if(plyr_hitbox_type == HITBOX_1_BEAK_BUSTER)
                     func_8028BAB0(JIGGY_25_BGS_MAZE, 0xa, 0xc, 8);
                 break;
                 
-            case 0xEC: //L8028BFF8
+            case MARKER_EC_GV_SUN_SWITCH: //L8028BFF8
                 if(plyr_hitbox_type == HITBOX_1_BEAK_BUSTER){
                     mapSpecificFlags_set(3, 1);
                     func_8030E6D4(SFX_90_SWITCH_PRESS);
@@ -677,7 +677,7 @@ void func_8028BCA0(Prop *prop){
                 marker_despawn(marker);
                 break;
 
-            case 0x60: //L8028CCF0
+            case MARKER_60_BLUE_EGG_COLLECTABLE: //L8028CCF0
                 if(func_8028BC20(marker))
                     return;
                 if(chcollectable_collectEgg(prop)){
@@ -685,7 +685,7 @@ void func_8028BCA0(Prop *prop){
                 }
                 break;
 
-            case 0x6B: //L8028CD20
+            case MARKER_6B_GLOOPBUBBLE: //L8028CD20
                 if(func_8028EE84() == BSWATERGROUP_2_UNDERWATER){
                     func_803463D4(ITEM_17_AIR, func_80301DBC(2));
                 }
@@ -710,7 +710,7 @@ void func_8028BCA0(Prop *prop){
             
 
 
-            case 0xD4: //L8028CDEC
+            case MARKER_D4_SPRING_PAD: //L8028CDEC
             case 0x242: //L8028CDEC
                 if(ability_isUnlocked(ABILITY_D_SHOCK_JUMP)){
                     miscflag_set(MISC_FLAG_2_ON_SPRING_PAD);
@@ -721,9 +721,9 @@ void func_8028BCA0(Prop *prop){
                 }
                 break;
 
-            case 0x45: //L8028CE3C
-            case 0x240: //L8028CE3C
-            case 0x261: //L8028CE3C
+            case MARKER_45_FLIGHT_PAD: //L8028CE3C
+            case MARKER_240_LAIR_SWITCH_FLIGHT_PAD: //L8028CE3C
+            case MARKER_261_FIGHT_FLIGHT_PAD: //L8028CE3C
                 if(ability_isUnlocked(ABILITY_9_FLY)){
                     miscflag_set(MISC_FLAG_1_ON_FLIGHT_PAD);
                 }
@@ -789,7 +789,7 @@ void func_8028BCA0(Prop *prop){
                 }
                 break;
 
-            case 0x1B1: //L8028D024
+            case MARKER_1B1_CCW_GOBI: //L8028D024
                 if(plyr_hitbox_type == HITBOX_1_BEAK_BUSTER)
                     obj_collision_type = 1;
                 break;

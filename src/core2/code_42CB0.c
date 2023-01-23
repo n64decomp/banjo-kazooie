@@ -9,18 +9,18 @@ typedef struct{
     s32 unk4;
 }ActorLocal_EmptyHoneycomb;
 
-void func_802C9E70(Actor *this);
+void chHoneycomb_update(Actor *this);
 
 /* .data */
 ActorInfo D_80366C80 = { MARKER_53_EMPTY_HONEYCOMB, ACTOR_47_EMPTY_HONEYCOMB, ASSET_361_MODEL_EMPTY_HONEYCOMB, 
     0, NULL, 
-    func_802C9E70, func_80326224, func_80325888, 
+    chHoneycomb_update, func_80326224, func_80325888, 
     0, 0, 0.8f, 0
 };
 
 ActorInfo D_80366CA4 = { MARKER_55_HONEYCOMB, ACTOR_50_HONEYCOMB, ASSET_363_MODEL_HONEYCOMB, 
     0, NULL, 
-    func_802C9E70, func_80326224, func_80325888, 
+    chHoneycomb_update, func_80326224, func_80325888, 
     0, 0, 0.8f, 0
 };
 
@@ -92,7 +92,7 @@ void func_802C9D80(void){
     marker_despawn(s5);
 }
 
-void func_802C9E70(Actor *this){
+void chHoneycomb_update(Actor *this){
     ActorLocal_EmptyHoneycomb *local = (ActorLocal_EmptyHoneycomb *)&this->local;
     ActorMarker **tmp_v0;
     int i;

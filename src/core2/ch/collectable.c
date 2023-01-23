@@ -26,7 +26,7 @@ extern ActorInfo D_80367D24 = {
 };
 
 extern ActorInfo D_80367D48 = {
-    MARKER_1E5_GOLD_FEATHER, ACTOR_370_GOLD_FEATHER, ASSET_6D1_SPRITE_GOLDFEATHTER,
+    MARKER_1E5_GOLD_FEATHER_COLLECTABLE, ACTOR_370_GOLD_FEATHER, ASSET_6D1_SPRITE_GOLDFEATHTER,
     0, NULL, 
     chCollectable_update, func_80326224, chCollectable_draw, 
     0, 0, 0.5f, 0
@@ -63,7 +63,7 @@ void func_802D8C98(Actor *this, s32 arg1) {
         phi_v0 = (arg1 == 1) || (arg1 == 2) || (arg1 == 3);
         break;
 
-    case MARKER_1E5_GOLD_FEATHER:
+    case MARKER_1E5_GOLD_FEATHER_COLLECTABLE:
         phi_v0 = TRUE;
         break;
 

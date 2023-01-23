@@ -282,7 +282,7 @@ void func_80386FDC(Actor *this){
             sp44 = sp4C->marker->unk14_20;
         }
 
-        if(sp44 == 0x60 || sp44 == 0xb5){
+        if(sp44 == MARKER_60_BLUE_EGG_COLLECTABLE || sp44 == 0xb5){
             if(this->position_y <= sp48 + 15.0f && sp48 - 15.0f <= this->position_y){
                 this->position_y = sp48;
                 this->unk38_31 = sp44;
