@@ -123,7 +123,7 @@ extern ActorInfo D_803685A0; //mumbotoken
 extern ActorInfo D_80368620; //snacker
 extern ActorInfo chSnowman; //sirslush
 extern ActorInfo chSnowball; //snowball
-extern ActorInfo D_803687C0; //sir_slush_hat
+extern ActorInfo chSnowmanHat; //sir_slush_hat
 extern ActorInfo D_80372810;
 extern ActorInfo D_80372840; //grillchompa
 extern ActorInfo D_80372870; //clucker
@@ -289,7 +289,7 @@ void spawnQueue_reset(void){
     spawnableActorList_add(&D_803677F0, actor_new, 0x8680);
     spawnableActorList_add(&D_803731B0, actor_new, 0x0);
     spawnableActorList_add(&chSnowball, actor_new, 0x100044);//snowball
-    spawnableActorList_add(&D_803687C0, actor_new, 0x4);//sir_slush_hat
+    spawnableActorList_add(&chSnowmanHat, actor_new, 0x4);//sir_slush_hat
     spawnableActorList_add(&gChDripsInfo, actor_new, 0x400);//water_drops
     spawnableActorList_add(&D_80372BA4, actor_new, 0x2020141);//ice_cube
     spawnableActorList_add(&D_8036804C, actor_new, 0x508604);//GAME_OVER

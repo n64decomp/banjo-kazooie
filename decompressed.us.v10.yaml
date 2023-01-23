@@ -701,7 +701,7 @@ segments:
   - [0xFAF6A0, c, code_59D40] #DONE
   - [0xFB0490, c, ch/snowman] #DONE
   - [0xFB1000, c, ch/snowball] #DONE
-  - [0xFB16F0, c, code_5BD90] #DONE
+  - [0xFB16F0, c, ch/snowmanhat] #DONE
   - [0xFB1810, c, code_5BEB0]
   - [0xFB1BA0, c, code_5C240] #DONE
   - [0xFB21D0, c, code_5C870] #DONE
@@ -997,7 +997,7 @@ segments:
   - [0x1036FA0, .data, code_59D40]
   - [0x1037020, .data, ch/snowman]
   - [0x10370E0, .data, ch/snowball]
-  - [0x1037190, .data, code_5BD90]
+  - [0x1037190, .data, ch/snowmanhat]
   - [0x10371C0, .data, code_5C870]
   - [0x1037200, .data, code_5DBC0]
   - [0x1037220, .data, code_66D90]

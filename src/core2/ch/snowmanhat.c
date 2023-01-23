@@ -2,18 +2,18 @@
 #include "functions.h"
 #include "variables.h"
 
-void func_802E2D20(Actor *this);
+void chSnowmanHat_update(Actor *this);
 
 /* .data */
-ActorInfo D_803687C0 = {
-    0xB3, 0x126, 0x379,
+ActorInfo chSnowmanHat = {
+    MARKER_B3_SIR_SLUSH_HAT, ACTOR_126_SIR_SLUSH_HAT, ASSET_379_MODEL_SIRSLUSH_HAT,
     0x1, NULL, 
-    func_802E2D20, func_80326224, func_80325888, 
+    chSnowmanHat_update, func_80326224, func_80325888, 
     4500, 0, 1.0f, 0
 };
 
 /* code */
-void func_802E2D20(Actor *this){
+void chSnowmanHat_update(Actor *this){
     switch(this->state){
         case 1:
             this->position[0] += this->velocity[0];
