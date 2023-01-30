@@ -148,7 +148,7 @@ void func_8038A724(Actor *this){
     
     if(this->state == 2){
         if(0.0f < local->unk1C){
-            if(func_8025773C(&local->unk1C, sp1C)){
+            if(ml_timer_update(&local->unk1C, sp1C)){
                 func_8038A524(this, 3);
             }//L8038AA8C
         }else{
@@ -163,7 +163,7 @@ void func_8038A724(Actor *this){
     
     if(this->state == 3){
         if(0.0f < local->unk1C){
-            if(func_8025773C(&local->unk1C, sp1C)){
+            if(ml_timer_update(&local->unk1C, sp1C)){
                 func_8038A524(this, 2);
             }//L8038AA8C
         }else{

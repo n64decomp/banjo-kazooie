@@ -1,6 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "core2/particle.h"
 
 extern bool func_8024549C(f32[3], f32);
 extern void func_802EFAB0(ParticleEmitter *, s32, f32);
@@ -109,7 +110,7 @@ ParticleEmitter *func_802F3404(s32 arg0, f32 arg1[3], bool arg2){
     sp38[1] += 3.0f;
     p_emitter = func_802F0EF0(D_80380A60);
     particleEmitter_setSprite(p_emitter, ASSET_70C_SPRITE_RIPPLE);
-    func_802EFA70(p_emitter, 1);
+    particleEmitter_setDrawMode(p_emitter, PART_EMIT_3D_ROTATE);
     if(sp44){
         func_802EFAB0(p_emitter, sp44, sp38[1]);
     }
@@ -120,12 +121,12 @@ ParticleEmitter *func_802F3404(s32 arg0, f32 arg1[3], bool arg2){
     sp28[0] = (s32) var_s0->unk1C[0];
     sp28[1] = (s32) var_s0->unk1C[1];
     sp28[2] = (s32) var_s0->unk1C[2];
-    func_802EFA5C(p_emitter, 0.0f, var_s0->unk8);
+    particleEmitter_setFade(p_emitter, 0.0f, var_s0->unk8);
     particleEmitter_setPosition(p_emitter, sp38);
-    func_802EFFA8(p_emitter, sp28);
+    particleEmitter_setRGB(p_emitter, sp28);
     func_802EFB70(p_emitter, var_s0->unkC[0], var_s0->unkC[1]);
     func_802EFB84(p_emitter, var_s0->unk14[0], var_s0->unk14[1]);
-    func_802EFEC0(p_emitter, var_s0->unk0[0], var_s0->unk0[1]);
+    particleEmitter_setParticleLifeTimeRange(p_emitter, var_s0->unk0[0], var_s0->unk0[1]);
     func_802EFF50(p_emitter, 100.0f);
     return p_emitter;
 }
@@ -212,7 +213,7 @@ void func_802F3874(s16 arg0[3]){
     particleEmitter_setPositionAndVelocityRanges(p_emitter, &D_80368C30);
     func_802EFB70(p_emitter, 0.5f, 0.5f);
     particleEmitter_emitN(p_emitter, 12);
-    func_802EFEC0(p_emitter, 1.5f, 1.5f);
+    particleEmitter_setParticleLifeTimeRange(p_emitter, 1.5f, 1.5f);
 }
 
 void func_802F38F0(s16 arg0[3]){
@@ -254,7 +255,7 @@ void func_802F3AC0(s16 arg0[3]){
     particleEmitter_setPositionAndVelocityRanges(p_emitter, &D_80368CC0);
     func_802EFB70(p_emitter, 0.4f, 0.4f);
     particleEmitter_emitN(p_emitter, 7);
-    func_802EFEC0(p_emitter, 1.5f, 1.5f);
+    particleEmitter_setParticleLifeTimeRange(p_emitter, 1.5f, 1.5f);
 }
 
 void func_802F3B3C(s16 arg0[3]){
@@ -275,7 +276,7 @@ void func_802F3BF4(s16 arg0[3]){
     ParticleEmitter *p_emitter = func_802F3670(arg0, 10.0f, ASSET_713_SPRITE_SPARKLE_YELLOW);
     particleEmitter_setPositionAndVelocityRanges(p_emitter, &D_80368D50);
     func_802EFB70(p_emitter, 0.45f, 0.6f);
-    func_802EFEC0(p_emitter, 0.5f, 0.8f);
+    particleEmitter_setParticleLifeTimeRange(p_emitter, 0.5f, 0.8f);
     particleEmitter_emitN(p_emitter, 3);
 }
 

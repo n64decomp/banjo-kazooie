@@ -1,6 +1,8 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "core2/particle.h"
+
 
 extern bool func_8024DB50(f32[3], f32);
 
@@ -27,11 +29,11 @@ struct40s D_80368004 = {
 void func_802DC110(f32 *position, enum asset_e sprite_id) {
     ParticleEmitter *pCtrl;
 
-    pCtrl = partEmitList_pushNew(1);
+    pCtrl = partEmitMgr_newEmitter(1);
     particleEmitter_setSprite(pCtrl, sprite_id);
     particleEmitter_setStartingFrameRange(pCtrl, 1, 6);
     particleEmitter_setPosition(pCtrl, position);
-    func_802EFA70(pCtrl, 0x10);
+    particleEmitter_setDrawMode(pCtrl, PART_EMIT_NO_DEPTH);
     func_802EFC28(pCtrl, &D_80368004);
 }
 

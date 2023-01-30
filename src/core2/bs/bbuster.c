@@ -119,7 +119,7 @@ void bsbbuster_update(void){
                 D_8037D2B4++;
             }
             if(D_8037D2B6 == 0 && func_8028B254(0x4b)){
-                func_80250D94(1.0f, 0.3f, 0.4f);
+                rumbleManager_80250D94(1.0f, 0.3f, 0.4f);
                 D_8037D2B6++;
             }
             D_8037D2B9 = miscflag_isTrue(8);

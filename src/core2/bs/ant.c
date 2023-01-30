@@ -42,7 +42,7 @@ void func_8029E48C(void){
         func_80297970(0.0f);
     }
     else{
-        func_80297970(func_80257C48(sp1C, D_80364960, D_80364964));
+        func_80297970(ml_interpolate_f(sp1C, D_80364960, D_80364964));
     }
 }
 
@@ -304,7 +304,7 @@ static void __bsant_recoil_init(int take_damage){
     func_8029C7F4(1,1,2,3);
     player_setYVelocity(510.0f);
     gravity_set(-1200.0f);
-    func_8028D5DC();
+    baMarker_collisionOff();
     func_80292E48();
     D_8037D294 = 0;
 }
@@ -335,7 +335,7 @@ static void __bsant_recoil_update(void){
 static void __bsant_recoil_end(void){
     func_80297CA8();
     gravity_reset();
-    func_8028D5F4();
+    baMarker_collisionOn();
     func_80292EA4();
     func_8029E4EC();
 }
@@ -396,7 +396,7 @@ void bsant_die_init(void){
     func_802BF2C0(30.0f);
     func_8029C984();
     D_8037D294 = 0;
-    func_8028D5DC();
+    baMarker_collisionOff();
     func_80292E48();
     func_8029E3C0(0, 2.9f);
 }

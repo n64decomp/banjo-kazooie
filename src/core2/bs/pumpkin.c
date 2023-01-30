@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-#include "core2/playerModel.h"
+#include "core2/ba/model.h"
 
 extern void func_8028A084(s32, f32);
 extern void func_8029AD68(f32, s32);
@@ -45,7 +45,7 @@ void func_802B223C(void) {
         func_80297970(0.0f);
         return;
     }
-    func_80297970(func_80257C48(sp1C, D_80364CF0, D_80364CF4));
+    func_80297970(ml_interpolate_f(sp1C, D_80364CF0, D_80364CF4));
 }
 
 void func_802B229C(void) {
@@ -322,7 +322,7 @@ void func_802B2C58(void) {
     sp3C = ml_map_f(sp34, 0.0f, 2.3f, 0.0f, 45.0f);
     yaw_setIdeal(mlNormalizeAngle(sp38 + sp3C));
     yaw_applyIdeal();
-    playerModel_setScale(ml_map_f(sp34, 0.0f, 2.3f, 1.0f, 0.3f));
+    baModel_setScale(ml_map_f(sp34, 0.0f, 2.3f, 1.0f, 0.3f));
     ml_vec3f_copy(sp28, D_8037D4E8);
     sp28[1] = ml_map_f(sp34, 0.0f, 2.3f, D_8037D4E8[1], D_8037D4E8[1] - 50.0);
     func_8028FAB0(sp28);
@@ -330,7 +330,7 @@ void func_802B2C58(void) {
 
 void func_802B2D50(void) {
     func_80294378(1);
-    playerModel_setScale(1.0f);
+    baModel_setScale(1.0f);
 }
 
 void func_802B2D80(s32 arg0) {
@@ -362,7 +362,7 @@ void func_802B2D80(s32 arg0) {
     func_8029C7F4(1, 1, 2, 3);
     player_setYVelocity(510.0f);
     gravity_set(-1200.0f);
-    func_8028D5DC();
+    baMarker_collisionOff();
     func_80292E48();
     D_8037D4E0 = 0;
 }
@@ -394,7 +394,7 @@ void func_802B2EE8(void) {
 void func_802B2F9C(void) {
     func_80297CA8();
     gravity_reset();
-    func_8028D5F4();
+    baMarker_collisionOn();
     func_80292EA4();
     func_802B229C();
 }
@@ -455,7 +455,7 @@ void func_802B309C(void) {
     func_802914CC(0xD);
     func_802BF2C0(30.0f);
     func_8029C984();
-    func_8028D5DC();
+    baMarker_collisionOff();
     func_80292E48();
     func_8029E3C0(1, 2.9f);
     D_8037D4E0 = 0;
@@ -491,7 +491,7 @@ void func_802B3240(void){
         break;
 
     case 3://L802B3338
-        D_8037D4F4 = max_f(0.0f, D_8037D4F4 - 10.0f);
+        D_8037D4F4 = ml_max_f(0.0f, D_8037D4F4 - 10.0f);
         if (func_8028B254(90)) {
             func_8028A37C(0.36f);
             D_8037D4E0 = 4;
@@ -499,7 +499,7 @@ void func_802B3240(void){
         break;
 
     case 4://L802B3384
-        D_8037D4F4 = max_f(0.0f, D_8037D4F4 - 10.0f);
+        D_8037D4F4 = ml_max_f(0.0f, D_8037D4F4 - 10.0f);
         if (func_8028B2E8()) {
             func_8029AE48();
             FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 0.8f, 18000);
@@ -510,7 +510,7 @@ void func_802B3240(void){
         break;
 
     case 5://L802B33F4
-        D_8037D4F4 = max_f(0.0f, D_8037D4F4 - 10.0f);
+        D_8037D4F4 = ml_max_f(0.0f, D_8037D4F4 - 10.0f);
         break;
 
     }

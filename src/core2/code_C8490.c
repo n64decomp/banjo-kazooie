@@ -50,7 +50,7 @@ void func_8034F5B0(Struct76s *arg0, BKModel *arg1, s32 arg2){
     f32 sp24;
 
     sp24 = time_getDelta();
-    if ((arg0->unkC == 0) && (func_8025773C(&arg0->unk10, sp24))) {
+    if ((arg0->unkC == 0) && (ml_timer_update(&arg0->unk10, sp24))) {
         func_8034F434(arg0, 1);
     }
     if (arg0->unkC == 1) {
@@ -63,7 +63,7 @@ void func_8034F5B0(Struct76s *arg0, BKModel *arg1, s32 arg2){
                 arg0->alpha = ((arg0->unk14 - arg0->unk10) / 0.04) * arg0->unk2;
             }
         }
-        if (func_8025773C(&arg0->unk10, sp24)) {
+        if (ml_timer_update(&arg0->unk10, sp24)) {
             func_8034F434(arg0, 0);
         }
     }

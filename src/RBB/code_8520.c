@@ -1,8 +1,10 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "core2/particle.h"
 
-extern void func_80255FE4(f32 [3], f32 [3], f32 [3], f32);
+
+extern void ml_interpolate_vec3f(f32 [3], f32 [3], f32 [3], f32);
 extern void func_802C8F70(f32);
 extern int  func_80309EB0(f32(*)[3], f32, f32 (*)[3], s32);
 extern int func_803342AC(f32(*)[3], f32(*)[3],f32);
@@ -64,71 +66,71 @@ void func_8038E92C(Actor *this){
 
     if(this->state == 2 && local->unk34 == 0)
         return;
-    if(func_8025773C( &local->unk30, time_getDelta()))
+    if(ml_timer_update( &local->unk30, time_getDelta()))
         func_8038F190(this, 3);
 }
 
 void func_8038E998(Actor *this){
-    ParticleEmitter *other = partEmitList_pushNew(2);
+    ParticleEmitter *other = partEmitMgr_newEmitter(2);
     f32 temp_f0;
 
     particleEmitter_setSprite(other, ASSET_70E_SPRITE_SMOKE_2);
-    func_802EFA5C(other, 0.0f, 0.1f);
+    particleEmitter_setFade(other, 0.0f, 0.1f);
     particleEmitter_setStartingFrameRange(other, 0, 7);
     particleEmitter_setPosition(other, this->position);
     func_802EFB70(other, 0.25f, 0.75f);
     func_802EFB84(other, 0.75f, 1.75f);
     particleEmitter_setParticleSpawnPositionRange(other, -50.0f, 25.0f, -50.0f, 50.0f, 25.0f, 50.0f);
     particleEmitter_setParticleVelocityRange(other, -50.0f, 100.0f, -50.0f, 50.0f, 200.0f, 50.0f);
-    func_802EFEC0(other, 0.5f, 1.0f);
+    particleEmitter_setParticleLifeTimeRange(other, 0.5f, 1.0f);
     particleEmitter_emitN(other, 2);
 }
 
 void func_8038EAB4(Actor *this){
     ParticleEmitter *other;
     func_802BB3DC(0, 60.0f, 0.9f);
-    other = partEmitList_pushNew(1);
+    other = partEmitMgr_newEmitter(1);
     particleEmitter_setSprite(other, ASSET_4A0_SPRITE_EXPLOSION);
-    func_802EFA5C(other, 0.1f, 0.2f);
-    func_802EFA70(other, 8);
+    particleEmitter_setFade(other, 0.1f, 0.2f);
+    particleEmitter_setDrawMode(other, PART_EMIT_NO_LOOP);
     particleEmitter_setStartingFrameRange(other, 0, 0);
     particleEmitter_setParticleFramerateRange(other, 4.0f, 4.0f);
     particleEmitter_setParticleSpawnPositionRange(other, 0.0f, 200.0f, 0.0f, 0.0f, 200.0f, 0.0f);
     particleEmitter_setPosition(other, this->position);
     func_802EFB70(other, 3.0f, 3.0f);
     func_802EFB84(other, 8.0f, 8.0f);
-    func_802EFEC0(other, 0.5f, 0.5f);
+    particleEmitter_setParticleLifeTimeRange(other, 0.5f, 0.5f);
     particleEmitter_setParticleVelocityRange(other, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
     particleEmitter_emitN(other, 1);
 }
 
 void func_8038EC14(Actor *this){
     ParticleEmitter *other;
-    other = partEmitList_pushNew(6);
+    other = partEmitMgr_newEmitter(6);
     particleEmitter_setSprite(other, ASSET_70E_SPRITE_SMOKE_2);
-    func_802EFA5C(other, 0.05f, 0.1f);
+    particleEmitter_setFade(other, 0.05f, 0.1f);
     particleEmitter_setStartingFrameRange(other, 0, 7);
     particleEmitter_setPosition(other, this->position);
     func_802EFB70(other, 1.0f, 1.5f);
     func_802EFB84(other, 2.0f, 3.0f);
     particleEmitter_setParticleSpawnPositionRange(other, -75.0f, 25.0f, -75.0f, 75.0f, 75.0f, 75.0f);
     particleEmitter_setParticleVelocityRange(other, -70.0f, 50.0f, -70.0f, 70.0f, 100.0f, 70.0f);
-    func_802EFFA8(other, &RBB_D_80390DD0);
-    func_802EFEC0(other, 3.0f, 4.0f);
+    particleEmitter_setRGB(other, &RBB_D_80390DD0);
+    particleEmitter_setParticleLifeTimeRange(other, 3.0f, 4.0f);
     particleEmitter_emitN(other, 6);
 }
 
 void func_8038ED3C(Actor * actor, s32 arg1){
-    ParticleEmitter *other = partEmitList_pushNew(0xa);
+    ParticleEmitter *other = partEmitMgr_newEmitter(0xa);
     particleEmitter_setParticleAccelerationRange(other, 0.0f, -800.0f, 0.0f, 0.0f, -800.0f, 0.0f);
     func_802EF9F8(other, 0.6f);
     func_802EFA18(other, 3);
     particleEmitter_setModel(other, arg1);
     particleEmitter_setPosition(other, actor->position);
     func_802EFB70(other, 0.05f, 0.4f);
-    func_802EFE24(other, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
+    particleEmitter_setAngularVelocityRange(other, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
     particleEmitter_setSpawnIntervalRange(other, 0.0f, 0.01f);
-    func_802EFEC0(other, 10.0f, 10.0f);
+    particleEmitter_setParticleLifeTimeRange(other, 10.0f, 10.0f);
     particleEmitter_setParticleVelocityRange(other, -700.0f, 200.0f, -700.0f, 700.0f, 500.0f, 700.0f);
     particleEmitter_emitN(other, 0xa);
 }
@@ -274,7 +276,7 @@ void func_8038F430(ActorMarker *marker, s32 arg1){
 
     if(actor->state < 3){
         player_getPosition(&sp18);
-        if(ml_vec3f_distance(&actor->position, &sp18) < 300.0f)
+        if(ml_distance_vec3f(&actor->position, &sp18) < 300.0f)
             func_8028F55C(5, actor->marker);
         func_8038F190(actor, 3);
     }//L8038F4A4
@@ -351,7 +353,7 @@ void func_8038F618(Actor *this){
     }
     func_8038E92C(this);
     if(this->state == 1){
-        if(sp78 && ml_vec3f_distance(&this->position, &sp7C) < 500.0f){
+        if(sp78 && ml_distance_vec3f(&this->position, &sp7C) < 500.0f){
             func_8038F190(this, 2);
         }
     }//L8038F7A0
@@ -370,7 +372,7 @@ void func_8038F618(Actor *this){
         func_8033568C(this->unk148, &sp6C, &sp68);
 
         if(0.1 <= sp68 && sp68 <= 0.6)
-            func_80255FE4(this->position, &local->unk14, &local->unk20, (sp68 - 0.1) /0.5 );
+            ml_interpolate_vec3f(this->position, &local->unk14, &local->unk20, (sp68 - 0.1) /0.5 );
         if(sp6C < 0.6 && 0.6 <= sp68)
             func_8030E878(SFX_6C_LOCKUP_CLOSING, 1.1 + randf2(-0.05f, 0.05f), 20000, this->position, 500.0f, 1000.0f);
 
@@ -385,7 +387,7 @@ void func_8038F618(Actor *this){
         
         this->yaw += (sp44*400.0f)*sp70;
         if(func_80335794(this->unk148) > 0){
-            if(ml_vec3f_distance(&this->position, &local->unk8) < 10.0f){
+            if(ml_distance_vec3f(&this->position, &local->unk8) < 10.0f){
                 func_8038F190(this, 1);
             }else{
                 func_8038F190(this, 2);

@@ -46,10 +46,10 @@ void chjinjonatorbase_spawnStoneJinjo(ActorMarker *marker) {
 }
 
 void func_8038E03C(f32 arg0[3], u32 arg1) {
-    ParticleEmitter *temp_v0 = partEmitList_pushNew(arg1);
+    ParticleEmitter *temp_v0 = partEmitMgr_newEmitter(arg1);
 
     particleEmitter_setSprite(temp_v0, ASSET_70E_SPRITE_SMOKE_2);
-    func_802EFFA8(temp_v0, D_80391A64);
+    particleEmitter_setRGB(temp_v0, D_80391A64);
     particleEmitter_setStartingFrameRange(temp_v0, 0, 7);
     particleEmitter_setPosition(temp_v0, arg0);
     particleEmitter_setPositionAndVelocityRanges(temp_v0, &D_80391A98);

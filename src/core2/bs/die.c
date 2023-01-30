@@ -56,7 +56,7 @@ void bsdie_init(void){
     func_8029C984();
     func_8029E3C0(0,2.9f);
     D_8037D414 = 0;
-    func_8028D5DC();
+    baMarker_collisionOff();
     func_80292E48();
 }
 
@@ -73,7 +73,7 @@ void bsdie_update(void){
                 player_setYVelocity(400.0f);
                 func_80299DB8();
                 FUNC_8030E624(SFX_39_BANJO_AYE_2, 1.0f, 18000);
-                func_80250D94(1.0f, 1.0f, 0.4f);
+                rumbleManager_80250D94(1.0f, 1.0f, 0.4f);
                 _bsdie_802ADE20();
                 D_8037D414 = 1;
             }
@@ -82,12 +82,12 @@ void bsdie_update(void){
             if(_bsdie_802ADE00()){
                 func_80299E00();
                 FUNC_8030E624(SFX_38_BANJO_AYE_1, 1.0f, 18000);
-                func_80250D94(1.0f, 0.5f, 0.4f);
+                rumbleManager_80250D94(1.0f, 0.5f, 0.4f);
                 D_8037D414 = 2;
             }
             break;
         case 2://L802AE184
-            D_8037D410 = max_f(D_8037D410 - 12.0f, 0.0f);
+            D_8037D410 = ml_max_f(D_8037D410 - 12.0f, 0.0f);
             if(140.0f < D_8037D410)
                 func_802929F8();
 

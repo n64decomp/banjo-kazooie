@@ -25,16 +25,16 @@ void CCW_func_8038D510(Actor *this) {
     };
     ParticleEmitter *pCtrl;
 
-    pCtrl = partEmitList_pushNew(6);
+    pCtrl = partEmitMgr_newEmitter(6);
     particleEmitter_setSprite(pCtrl, ASSET_70E_SPRITE_SMOKE_2);
-    func_802EFA5C(pCtrl, 0.01f, 0.5f);
+    particleEmitter_setFade(pCtrl, 0.01f, 0.5f);
     particleEmitter_setStartingFrameRange(pCtrl, 0, 7);
     particleEmitter_setPosition(pCtrl, this->position);
     func_802EFB70(pCtrl, 1.0f, 2.0f);
     func_802EFB84(pCtrl, 3.0f, 4.0f);
     particleEmitter_setPositionAndVelocityRanges(pCtrl, &D_8038F670);
-    func_802EFFA8(pCtrl, D_8038F664);
-    func_802EFEC0(pCtrl, 3.0f, 4.0f);
+    particleEmitter_setRGB(pCtrl, D_8038F664);
+    particleEmitter_setParticleLifeTimeRange(pCtrl, 3.0f, 4.0f);
     particleEmitter_emitN(pCtrl, 6);
 }
 
@@ -47,18 +47,18 @@ void func_8038D5DC(Actor *this) {
 
     ParticleEmitter *pCtrl;
 
-    pCtrl = partEmitList_pushNew(30);
+    pCtrl = partEmitMgr_newEmitter(30);
     func_802EF9F8(pCtrl, 0.6f);
     func_802EFA18(pCtrl, 3);
     particleEmitter_setModel(pCtrl, 0x896);
     particleEmitter_setPosition(pCtrl, this->position);
     func_802EFB70(pCtrl, 0.05f, 0.3f);
-    func_802EFE24(pCtrl,
+    particleEmitter_setAngularVelocityRange(pCtrl,
         -600.0f, -600.0f, -600.0f,
          600.0f,  600.0f,  600.0f
     );
     particleEmitter_setSpawnIntervalRange(pCtrl, 0.0f, 0.01f);
-    func_802EFEC0(pCtrl, 10.0f, 10.0f);
+    particleEmitter_setParticleLifeTimeRange(pCtrl, 10.0f, 10.0f);
     particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_8038F6A0);
     particleEmitter_emitN(pCtrl, 30);
 }
@@ -116,7 +116,7 @@ void func_8038D85C(Actor *this) {
         return;
     } 
     if(this->state == 2){
-        if (func_8025773C(&local->unk0, tick) ) {
+        if (ml_timer_update(&local->unk0, tick) ) {
             func_8038D6D8(this, 3);
         }
     }

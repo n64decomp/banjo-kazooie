@@ -81,7 +81,7 @@ void func_802CAA44(Actor *this){
 }
 
 void func_802CAAF0(f32 position[3]){
-    ParticleEmitter *pCtrl = partEmitList_pushNew(0x18);
+    ParticleEmitter *pCtrl = partEmitMgr_newEmitter(0x18);
     particleEmitter_setSprite(pCtrl, ASSET_715_SPRITE_SPARKLE_RED);
     particleEmitter_setPosition(pCtrl, position);
     particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_80366FB4);

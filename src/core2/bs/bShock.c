@@ -35,7 +35,7 @@ void bsbshock_charge_init(void){
     D_8037D382 = func_8030D90C();
     sfxsource_setSfxId(D_8037D382, SFX_2C_PULLING_NOISE);
     func_8030E04C(D_8037D382, 1.4f, 0.4f, -1.2f);
-    playerModel_80292158(-50.0f);
+    baModel_80292158(-50.0f);
     func_80298528(-50.0f);
     D_8037D380 = 1;
     D_8037D381 = 0;
@@ -103,7 +103,7 @@ void bsbshock_charge_update(void){
     
     if(animctrl_isAt(aCtrl, 0.5551f)){
         player_setYVelocity(180.0f);
-        playerModel_80292158(0.0f);
+        baModel_80292158(0.0f);
         func_80298528(50.0f);
     }
 
@@ -116,8 +116,8 @@ void bsbshock_charge_end(void){
     func_8030DA44(D_8037D382);
     func_8029E064(0);
     func_8029E070(0);
-    if(playerModel_80292230() != 0.0f){
-        playerModel_80292158(0.0f);
+    if(baModel_80292230() != 0.0f){
+        baModel_80292158(0.0f);
         func_80298528(50.0f);
     }
 }
@@ -146,7 +146,7 @@ void bsbshock_init(void){
     func_8029E064(1);
     func_8029E070(1);
     ability_use(9);
-    playerModel_80292158(-50.0f);
+    baModel_80292158(-50.0f);
     func_80298528(-50.0f);
     D_8037D381 = 0;
 }
@@ -190,6 +190,6 @@ void bsbshock_end(void){
 
     func_8029E064(0);
     func_8029E070(0);
-    playerModel_80292158(0.0f);
+    baModel_80292158(0.0f);
     func_80298528(50.0f);
 }

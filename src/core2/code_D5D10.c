@@ -58,7 +58,7 @@ ActorInfo D_80372D78 = {
 void func_8035CCA0(ParticleEmitter *pCtrl, Actor *this, enum asset_e model_id) {
     func_802DABA0(pCtrl, this->position, this->scale, model_id);
     particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -1800.0f, 0.0f, 0.0f, -1800.0f, 0.0f);
-    func_802EFE24(pCtrl, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
+    particleEmitter_setAngularVelocityRange(pCtrl, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
     particleEmitter_setParticleVelocityRange(pCtrl, -50.0f, 750.0f, -50.0f, 120.0f, 900.0f, 120.0f);
     particleEmitter_emitN(pCtrl, 4);
 }
@@ -68,10 +68,10 @@ void chskeleton_despawn(ActorMarker *marker, s32 arg1) {
     Actor *this;
 
     this = marker_getActor(marker);
-    func_802DAC84(partEmitList_pushNew(2), this, ASSET_4CE_MODEL_LIMBO_LEG);
-    func_802DAD08(partEmitList_pushNew(1), this, ASSET_4CF_MODEL_LIMBO_HEAD);
-    func_802DAD8C(partEmitList_pushNew(2), this, ASSET_4CD_MODEL_LIMBO_ARM);
-    func_8035CCA0(partEmitList_pushNew(4), this, ASSET_4D0_MODEL_LIMBO_BONE);
+    func_802DAC84(partEmitMgr_newEmitter(2), this, ASSET_4CE_MODEL_LIMBO_LEG);
+    func_802DAD08(partEmitMgr_newEmitter(1), this, ASSET_4CF_MODEL_LIMBO_HEAD);
+    func_802DAD8C(partEmitMgr_newEmitter(2), this, ASSET_4CD_MODEL_LIMBO_ARM);
+    func_8035CCA0(partEmitMgr_newEmitter(4), this, ASSET_4D0_MODEL_LIMBO_BONE);
     FUNC_8030E8B4(SFX_119_FISH_DEATH, 1.0f, 32000, this->position, 1250, 2500);
     __spawnQueue_add_4((GenMethod_4)func_802C4140, ACTOR_4C_STEAM, reinterpret_cast(s32, this->position[0]), reinterpret_cast(s32, this->position[1]), reinterpret_cast(s32, this->position[2]));
     marker_despawn(marker);

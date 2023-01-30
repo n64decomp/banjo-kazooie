@@ -67,14 +67,14 @@ void func_8035E1B0(Actor *this) {
 
 void func_8035E2A8(ParticleEmitter *pCtrl, f32 position[3]){
     particleEmitter_setPosition(pCtrl, position);
-    func_802EFA70(pCtrl, 2);
+    particleEmitter_setDrawMode(pCtrl, 2);
     func_802EF9F8(pCtrl, 0.7f);
     func_802EFA18(pCtrl, 5);
     func_802EFA20(pCtrl, 0.8f, 1.0f);
-    func_802EF9EC(pCtrl, 0x1F, 10000);
+    particleEmitter_setSfx(pCtrl, SFX_1F_HITTING_AN_ENEMY_3, 10000);
     particleEmitter_setSpawnIntervalRange(pCtrl, 0.0f, 0.01f);
-    func_802EFEC0(pCtrl, 3.5f, 3.5f);
-    func_802EFA5C(pCtrl, 0.0f, 0.65f);
+    particleEmitter_setParticleLifeTimeRange(pCtrl, 3.5f, 3.5f);
+    particleEmitter_setFade(pCtrl, 0.0f, 0.65f);
 }
 
 void func_8035E360(ParticleEmitter *pCtrl, f32 position[3]){
@@ -82,7 +82,7 @@ void func_8035E360(ParticleEmitter *pCtrl, f32 position[3]){
     particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -1800.0f, 0.0f, 0.0f, -1800.0f, 0.0f);
     particleEmitter_setModel(pCtrl, 0x393);
     func_802EFB70(pCtrl, 0.5f, 0.8f);
-    func_802EFE24(pCtrl, -800.0f, -800.0f, -800.0f, 800.0f, 800.0f, 800.0f);
+    particleEmitter_setAngularVelocityRange(pCtrl, -800.0f, -800.0f, -800.0f, 800.0f, 800.0f, 800.0f);
     particleEmitter_setParticleVelocityRange(pCtrl, -200.0f, 850.0f, -200.0f, 400.0f, 1000.0f, 400.0f);
     particleEmitter_emitN(pCtrl, 6);
 }
@@ -92,7 +92,7 @@ void func_8035E44C(ParticleEmitter *pCtrl, f32 position[3]){
     particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -1800.0f, 0.0f, 0.0f, -1800.0f, 0.0f);
     particleEmitter_setModel(pCtrl, 0x394);
     func_802EFB70(pCtrl, 1.0f, 1.0f);
-    func_802EFE24(pCtrl, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
+    particleEmitter_setAngularVelocityRange(pCtrl, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
     particleEmitter_setParticleVelocityRange(pCtrl, -50.0f, 750.0f, -50.0f, 120.0f, 900.0f, 120.0f);
     particleEmitter_emitN(pCtrl, 1);
 }
@@ -102,7 +102,7 @@ void func_8035E540(ParticleEmitter *pCtrl, f32 position[3]){
     particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -1800.0f, 0.0f, 0.0f, -1800.0f, 0.0f);
     particleEmitter_setModel(pCtrl, 0x395);
     func_802EFB70(pCtrl, 1.0f, 1.0f);
-    func_802EFE24(pCtrl, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
+    particleEmitter_setAngularVelocityRange(pCtrl, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
     particleEmitter_setParticleVelocityRange(pCtrl, -50.0f, 750.0f, -50.0f, 120.0f, 900.0f, 120.0f);
     particleEmitter_emitN(pCtrl, 1);
 }
@@ -112,7 +112,7 @@ void func_8035E634(ParticleEmitter *pCtrl, f32 position[3]){
     particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -1400.0f, 0.0f, 0.0f, -1400.0f, 0.0f);
     particleEmitter_setModel(pCtrl, 0x396);
     func_802EFB70(pCtrl, 1.0f, 1.0f);
-    func_802EFE24(pCtrl, -300.0f, -300.0f, -300.0f, 300.0f, 300.0f, 300.0f);
+    particleEmitter_setAngularVelocityRange(pCtrl, -300.0f, -300.0f, -300.0f, 300.0f, 300.0f, 300.0f);
     particleEmitter_setParticleVelocityRange(pCtrl, -80.0f, 400.0f, -80.0f, 160.0f, 860.0f, 160.0f);
     particleEmitter_emitN(pCtrl, 2);
 }
@@ -129,10 +129,10 @@ void func_8035E750(ActorMarker *marker, ActorMarker *other_marker){
     Actor *this;
 
     this = marker_getActor(marker);
-    func_8035E360(partEmitList_pushNew(6), this->position);
-    func_8035E44C(partEmitList_pushNew(1), this->position);
-    func_8035E540(partEmitList_pushNew(1), this->position);
-    func_8035E634(partEmitList_pushNew(2), this->position);
+    func_8035E360(partEmitMgr_newEmitter(6), this->position);
+    func_8035E44C(partEmitMgr_newEmitter(1), this->position);
+    func_8035E540(partEmitMgr_newEmitter(1), this->position);
+    func_8035E634(partEmitMgr_newEmitter(2), this->position);
     marker->collidable = FALSE;
     this->unk138_27 = 1;
     FUNC_8030E624(SFX_D1_SNORKEL_WAH, 1.4f, 32750);

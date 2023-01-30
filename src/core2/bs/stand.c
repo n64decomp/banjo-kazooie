@@ -9,7 +9,7 @@ void func_80299234(f32, f32);
 void func_802875AC(AnimCtrl *, char*, s32);
 
 void func_802900B4(void);
-void func_80250D94(f32, f32, f32);
+void rumbleManager_80250D94(f32, f32, f32);
 
 /* .data */
 u8 D_80364D20[] = {
@@ -100,7 +100,7 @@ void bsstand_init(void){
 void func_802B4A10(AnimCtrl *arg0){
     if(animctrl_isAt(arg0, 0.2057f)){ //(30/145)
         FUNC_8030E624(SFX_21_EGG_BOUNCE_1, 1.8f, 16000);
-        func_80250D94(0.5f, 0.25f, 0.4f);
+        rumbleManager_80250D94(0.5f, 0.25f, 0.4f);
     }//L802B4A54
 
     if(animctrl_isAt(arg0, 0.2057f)) //(30/145)
@@ -109,12 +109,12 @@ void func_802B4A10(AnimCtrl *arg0){
 
     if(animctrl_isAt(arg0, 0.2555f)){ //(37/145)
         FUNC_8030E624(SFX_21_EGG_BOUNCE_1, 1.8f, 16000);
-        func_80250D94(0.5f, 0.25f, 0.4f);
+        rumbleManager_80250D94(0.5f, 0.25f, 0.4f);
     }//L802B4AB0
 
     if(animctrl_isAt(arg0, 0.2896f)){ //(42/145)
         FUNC_8030E624(SFX_21_EGG_BOUNCE_1, 1.8f, 16000);
-        func_80250D94(0.5f, 0.25f, 0.4f);
+        rumbleManager_80250D94(0.5f, 0.25f, 0.4f);
     }//L802B4AEC
 
     if(animctrl_isAt(arg0, 0.3f)){ //(43.5/145)?
@@ -143,7 +143,7 @@ void func_802B4A10(AnimCtrl *arg0){
 
     if(animctrl_isAt(arg0, 0.6619f)){
         FUNC_8030E624(SFX_21_EGG_BOUNCE_1, 1.8f, 16000);
-        func_80250D94(0.5f, 0.25f, 0.4f);
+        rumbleManager_80250D94(0.5f, 0.25f, 0.4f);
     }//L802B4BF4
 
     if(animctrl_isAt(arg0, 0.6688f))
@@ -152,7 +152,7 @@ void func_802B4A10(AnimCtrl *arg0){
 
     if(animctrl_isAt(arg0, 0.6964f)){
         FUNC_8030E624(SFX_21_EGG_BOUNCE_1, 1.8f, 16000);
-        func_80250D94(0.5f, 0.25f, 0.4f);
+        rumbleManager_80250D94(0.5f, 0.25f, 0.4f);
     }//L802B4C50
 
     if(animctrl_isAt(arg0, 0.7747f))
@@ -315,14 +315,14 @@ void func_802B5350(void){
         if(_player_getTransformation() != TRANSFORM_1_BANJO)
             func_8029A86C(1);
         else{
-            func_802948F8(func_8028D688());
+            func_802948F8(baMarker_8028D688());
             bs_setState(BS_3A_CARRY_IDLE);
         }
     }
     else if(sp1C == 0x12){//L802B53D0
         func_8029A86C(1);
         if( _player_getTransformation() == TRANSFORM_1_BANJO && !miscflag_isTrue(0xF) && func_802916CC(0)){
-            func_8028DE6C(carriedObject_getActorID());
+            func_8028DE6C(baMarker_getCarriedObjectActorId());
             func_8029A86C(2);
         }
     }

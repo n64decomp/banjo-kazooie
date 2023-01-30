@@ -56,7 +56,7 @@ void func_802BFF8C(void) {
         case MAP_27_FP_FREEZEEZY_PEAK:
         case MAP_48_FP_MUMBOS_SKULL:
             if (!func_802BE834(sp3C)) {
-                D_8037DB30.unk4 = max_f(D_8037DB30.unk4 - 8.0f, -75.0f);
+                D_8037DB30.unk4 = ml_max_f(D_8037DB30.unk4 - 8.0f, -75.0f);
             }
             break;
         default:

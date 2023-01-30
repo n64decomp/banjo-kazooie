@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void func_802EF3A8(ParticleEmitter *, Gfx **, Mtx **, Vtx**);
+extern void particleEmitter_draw(ParticleEmitter *, Gfx **, Mtx **, Vtx**);
 
 typedef struct {
     f32 unk0[3];
@@ -61,8 +61,8 @@ Actor *chGobiRock_draw(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx
     ActorLocal_chGobiRock *local = (ActorLocal_chGobiRock *)&this->local;
     f32 sp3C[3];
 
-    func_802EF3A8(local->unkC, gfx, mtx, vtx);
-    func_802EF3A8(local->unk10, gfx, mtx, vtx);
+    particleEmitter_draw(local->unkC, gfx, mtx, vtx);
+    particleEmitter_draw(local->unk10, gfx, mtx, vtx);
     if(this->state == 0 || this->state == 2)
         return this;
 
@@ -84,8 +84,8 @@ bool chGobiRock_isDestroyed(void){
 void chGobiRock_free(Actor *this){
     ActorLocal_chGobiRock *local = (ActorLocal_chGobiRock *)&this->local;
     __chGobiRock_setState(this, 0);
-    func_802EF684(local->unkC);
-    func_802EF684(local->unk10);
+    particleEmitter_free(local->unkC);
+    particleEmitter_free(local->unk10);
 }
 
 void chGobiRock_update(Actor *this){
@@ -119,12 +119,12 @@ void chGobiRock_update(Actor *this){
     else{//L80388ED0
         particleEmitter_update(local->unkC);
         particleEmitter_update(local->unk10);
-        if(func_8025773C(&local->unk14, sp24)){
+        if(ml_timer_update(&local->unk14, sp24)){
             jiggySpawn(JIGGY_44_GV_GOBI_1, jiggy_position);
             func_802BB3DC(0, 60.0f, 0.65f);
         }
         if(this->state == 2){
-            if(func_802EF648(local->unkC) && func_802EF648(local->unk10)){
+            if(particleEmitter_isDone(local->unkC) && particleEmitter_isDone(local->unk10)){
                 marker_despawn(sp34);
             }
         }

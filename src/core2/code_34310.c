@@ -3,7 +3,7 @@
 #include "variables.h"
 
 
-extern void func_80250E6C(f32, f32);
+extern void rumbleManager_80250E6C(f32, f32);
 extern void func_80258E60(f32[3], f32[3], f32);
 extern void func_80258EF4(f32[3], f32[3], f32);
 extern void func_80258F88(f32[3], f32[3], f32);
@@ -120,14 +120,14 @@ void func_802BB4D8(s32 arg0, s32 arg1) {
             break;
         case 3:
             if (D_8037D840[phi_s1].unk18 != 0.0f) {
-                temp_f0 = max_f(0.0f, D_8037D840[phi_s1].unk18 - temp_f22);
+                temp_f0 = ml_max_f(0.0f, D_8037D840[phi_s1].unk18 - temp_f22);
                 D_8037D840[phi_s1].unk18 = temp_f0;
                 D_8037D840[phi_s1].unk10 = ml_map_f(temp_f0, D_8037D840[phi_s1].unk0, 0.0f, D_8037D840[phi_s1].unkC, D_8037D840[phi_s1].unk8);
             } else {
                 D_8037D840[phi_s1].unk10 *= D_8037D840[phi_s1].unk4;
             }
             if (level_get() != LEVEL_D_CUTSCENE) {
-                func_80250E6C(D_8037D840[phi_s1].unk10 * 0.25, temp_f22);
+                rumbleManager_80250E6C(D_8037D840[phi_s1].unk10 * 0.25, temp_f22);
             }
             func_802BB434(phi_s1, arg0, arg1, D_8037D840[phi_s1].unk14*D_8037D840[phi_s1].unk10);
             D_8037D840[phi_s1].unk14 = (f32) -D_8037D840[phi_s1].unk14;

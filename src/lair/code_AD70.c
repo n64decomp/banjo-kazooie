@@ -1,6 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "core2/particle.h"
 
 extern void func_8038EA68(s32, s32[3]);
 extern void func_8038EA10(s32, f32[3]);
@@ -53,10 +54,10 @@ s32 D_80394BD4[3] = {0xff, 0x80, 0x80};
 /* .code */
 void func_80391160(f32 pos[3], u32 count)
 {
-    ParticleEmitter *p = partEmitList_pushNew(count);
+    ParticleEmitter *p = partEmitMgr_newEmitter(count);
     particleEmitter_setSprite(p, 0x70E);
-    func_802EFFA8(p, D_80394AD4);
-    func_802EF9E4(p, 0xEB);
+    particleEmitter_setRGB(p, D_80394AD4);
+    particleEmitter_setAlpha(p, 0xEB);
     particleEmitter_setStartingFrameRange(p, 0, 7);
     particleEmitter_setPosition(p, pos);
     particleEmitter_setParticleSpawnPositionRange(p, -55, -55, -55, 55, 55, 55);
@@ -67,44 +68,44 @@ void func_80391160(f32 pos[3], u32 count)
 
 void lair_func_80391254(f32 pos[3], u32 count, enum asset_e sprite)
 {
-    ParticleEmitter *p = partEmitList_pushNew(count);
+    ParticleEmitter *p = partEmitMgr_newEmitter(count);
     particleEmitter_setSprite(p, sprite);
-    func_802EFA70(p, 8);
+    particleEmitter_setDrawMode(p, PART_EMIT_NO_LOOP);
     particleEmitter_setStartingFrameRange(p, 0, 2);
     particleEmitter_setParticleFramerateRange(p, 4, 6);
     particleEmitter_setParticleSpawnPositionRange(p, -80, 0, -80, 80, 0, 80);
     particleEmitter_setPosition(p, pos);
-    func_802EFA5C(p, 0.6f, 0.7f);
+    particleEmitter_setFade(p, 0.6f, 0.7f);
     func_802EFB70(p, 3, 3);
     func_802EFB84(p, 4, 4);
-    func_802EFEC0(p, 1, 1);
+    particleEmitter_setParticleLifeTimeRange(p, 1, 1);
     particleEmitter_emitN(p, count);
 }
 
 void func_8039137C(f32 pos[3], u32 count, enum asset_e sprite)
 {
-    ParticleEmitter *p = partEmitList_pushNew(count);
+    ParticleEmitter *p = partEmitMgr_newEmitter(count);
     particleEmitter_setSprite(p, sprite);
     particleEmitter_setPosition(p, pos);
     func_802EF9F8(p, 0.3f);
     func_802EFA18(p, 3);
-    func_802EFE24(p, 0, 0, 600, 0, 0, 900);
+    particleEmitter_setAngularVelocityRange(p, 0, 0, 600, 0, 0, 900);
     particleEmitter_setPositionVelocityAndAccelerationRanges(p, &D_80394B30);
     func_802EFB98(p, &D_80394B08);
-    func_802EFA70(p, 2);
+    particleEmitter_setDrawMode(p, 2);
     particleEmitter_emitN(p, count);
 }
 
 void func_8039144C(f32 pos[3], u32 count)
 {
-    ParticleEmitter *p = partEmitList_pushNew(count);
+    ParticleEmitter *p = partEmitMgr_newEmitter(count);
     particleEmitter_setSprite(p, 0x713);
     particleEmitter_setPosition(p, pos);
     particleEmitter_setParticleSpawnPositionRange(p, -40, -40, -40, 40, 40, 40);
-    func_802EFA70(p, 4);
-    func_802EFE24(p, 0, 0, 200, 0, 0, 300);
-    func_802EFA5C(p, 0.1f, 0.2f);
-    func_802EFEC0(p, 0.75f, 0.75f);
+    particleEmitter_setDrawMode(p, 4);
+    particleEmitter_setAngularVelocityRange(p, 0, 0, 200, 0, 0, 300);
+    particleEmitter_setFade(p, 0.1f, 0.2f);
+    particleEmitter_setParticleLifeTimeRange(p, 0.75f, 0.75f);
     func_802EFB70(p, 0.5f, 0.5f);
     func_802EFB84(p, 0.2f, 0.2f);
     particleEmitter_setParticleAccelerationRange(p, 0, -50, 0, 0, -100, 0);
@@ -113,31 +114,31 @@ void func_8039144C(f32 pos[3], u32 count)
 
 void func_803915A4(f32 pos[3], s32 count, f32 scale)
 {
-    ParticleEmitter *p = partEmitList_pushNew(count);
+    ParticleEmitter *p = partEmitMgr_newEmitter(count);
     particleEmitter_setSprite(p, 0x4A0);
-    func_802EFA5C(p, 0.1f, 0.2f);
-    func_802EFA70(p, 8);
+    particleEmitter_setFade(p, 0.1f, 0.2f);
+    particleEmitter_setDrawMode(p, PART_EMIT_NO_LOOP);
     particleEmitter_setStartingFrameRange(p, 2, 8);
     particleEmitter_setParticleFramerateRange(p, 8, 8);
     particleEmitter_setPosition(p, pos);
     func_802EFB70(p, scale * 2.0, scale * 2.0);
     func_802EFB84(p, scale * 0.4, scale * 0.4);
-    func_802EFEC0(p, 0.5f, 0.5f);
+    particleEmitter_setParticleLifeTimeRange(p, 0.5f, 0.5f);
     particleEmitter_emitN(p, count);
 }
 
 
 void func_803916BC(f32 position[3], s32 cnt){
-    ParticleEmitter *pCtrl = partEmitList_pushNew(cnt);
+    ParticleEmitter *pCtrl = partEmitMgr_newEmitter(cnt);
     particleEmitter_setSprite(pCtrl, ASSET_4A0_SPRITE_EXPLOSION);
-    func_802EFA5C(pCtrl, 0.1f, 0.3f);
-    func_802EFA70(pCtrl, 8);
+    particleEmitter_setFade(pCtrl, 0.1f, 0.3f);
+    particleEmitter_setDrawMode(pCtrl, PART_EMIT_NO_LOOP);
     particleEmitter_setStartingFrameRange(pCtrl, 0, 6);
     particleEmitter_setParticleFramerateRange(pCtrl, 5.0f, 8.0f);
     particleEmitter_setPosition(pCtrl, position);
     func_802EFB70(pCtrl, 2.0f, 2.0f);
     func_802EFB84(pCtrl, 4.0f, 4.0f);
-    func_802EFEC0(pCtrl, 1.0f, 1.5f);
+    particleEmitter_setParticleLifeTimeRange(pCtrl, 1.0f, 1.5f);
     particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_80394B78);
     particleEmitter_emitN(pCtrl, cnt);
 }

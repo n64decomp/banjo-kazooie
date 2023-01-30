@@ -29,8 +29,8 @@ void func_802EDD68(ParticleEmitter *caller, f32 pos[3]){
 ParticleEmitter *func_802EDD8C(f32 pos[3], f32 xz_range, f32 arg2){
     ParticleEmitter *pCtrl = func_802F0EF0(D_803808F0);
     particleEmitter_setSprite(pCtrl, ASSET_70A_SPRITE_BUBBLE_1);
-    func_802EFA70(pCtrl, 4);
-    func_802EF9E4(pCtrl, 0xff);
+    particleEmitter_setDrawMode(pCtrl, 4);
+    particleEmitter_setAlpha(pCtrl, 0xff);
     particleEmitter_setParticleAccelerationRange( pCtrl,
         0.0f, 150.0f, 0.0f,
         0.0f, 150.0f, 0.0f
@@ -38,14 +38,14 @@ ParticleEmitter *func_802EDD8C(f32 pos[3], f32 xz_range, f32 arg2){
     func_802EFA18(pCtrl, 1);
     func_802EFA34(pCtrl, arg2);
     particleEmitter_setParticleCallback(pCtrl, func_802EDD68);
-    func_802EFA5C(pCtrl, 0.0f, 0.8f);
-    func_802EFEC0(pCtrl, 4.0f, 4.0f);
+    particleEmitter_setFade(pCtrl, 0.0f, 0.8f);
+    particleEmitter_setParticleLifeTimeRange(pCtrl, 4.0f, 4.0f);
     particleEmitter_setParticleSpawnPositionRange( pCtrl,
         -xz_range, 0.0f, -xz_range,
         xz_range, 0.0f, xz_range
     );
     particleEmitter_setPosition(pCtrl, pos);
-    func_802EFFA8(pCtrl, D_80368850);
+    particleEmitter_setRGB(pCtrl, D_80368850);
     func_802EFB70(pCtrl, 0.05f, 0.09f);
     func_802EFB84(pCtrl, 0.05f, 0.09f);
     func_802EFF50(pCtrl, 10.0f);

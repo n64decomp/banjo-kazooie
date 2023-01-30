@@ -69,7 +69,7 @@ f32 D_80392920[3];
 
 /* .code */
 void chjinjonator_80390130(f32 position[3], int count, enum asset_e sprite_id){
-    ParticleEmitter *s0 = partEmitList_pushNew(count);
+    ParticleEmitter *s0 = partEmitMgr_newEmitter(count);
     particleEmitter_setSprite(s0, sprite_id);
     particleEmitter_setStartingFrameRange(s0, 1, 6);
     particleEmitter_setPosition(s0, position);
@@ -78,10 +78,10 @@ void chjinjonator_80390130(f32 position[3], int count, enum asset_e sprite_id){
     func_802EFB70(s0, 0.5f, 0.65f);
     func_802EFB84(s0, 0.0f, 0.0f);
     particleEmitter_setSpawnIntervalRange(s0, 0.0f, 0.01f);
-    func_802EFEC0(s0, 0.65f, 0.85f);
-    func_802EFA5C(s0, 0.0f, 0.35f);
+    particleEmitter_setParticleLifeTimeRange(s0, 0.65f, 0.85f);
+    particleEmitter_setFade(s0, 0.0f, 0.35f);
     func_802EFA78(s0, 1);
-    func_802EFA70(s0, 4);
+    particleEmitter_setDrawMode(s0, 4);
     particleEmitter_emitN(s0, count);
 }
 

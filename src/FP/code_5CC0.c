@@ -91,22 +91,22 @@ Actor *func_8038C1F8(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 void func_8038C260(f32 position[3], s32 count, enum asset_e model_id){
     ParticleEmitter *pCtrl;
 
-    pCtrl = partEmitList_pushNew(count);
+    pCtrl = partEmitMgr_newEmitter(count);
     particleEmitter_setModel(pCtrl, model_id);
     particleEmitter_setPosition(pCtrl, position);
     particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_80392028);
-    func_802EFE24(pCtrl,
+    particleEmitter_setAngularVelocityRange(pCtrl,
         400.0f, 400.0f, 400.0f,
         800.0f, 800.0f, 800.0f
     );
     func_802EFB70(pCtrl, 0.1f, 0.2f);
     particleEmitter_setSpawnIntervalRange(pCtrl, 0.0f, 0.02f);
-    func_802EFEC0(pCtrl, 1.5f, 1.5f);
-    func_802EFA5C(pCtrl, 0.0f, 0.3f);
+    particleEmitter_setParticleLifeTimeRange(pCtrl, 1.5f, 1.5f);
+    particleEmitter_setFade(pCtrl, 0.0f, 0.3f);
     func_802EF9F8(pCtrl, 0.6f);
     func_802EFA18(pCtrl, 0);
     func_802EFA20(pCtrl, 1.0f, 1.3f);
-    func_802EF9EC(pCtrl, 0x7B, 8000);
+    particleEmitter_setSfx(pCtrl, SFX_7B_ICE_BREAKING_1, 8000);
     particleEmitter_emitN(pCtrl, count);
 }
 

@@ -3,7 +3,7 @@
 #include "variables.h"
 
 extern void func_8029AD68(f32, s32);
-extern f32  ml_vec3f_dot_product(f32[3], f32[3]);
+extern f32  ml_dotProduct_vec3f(f32[3], f32[3]);
 
 int bswalrus_inSet(enum bs_e state);
 
@@ -47,7 +47,7 @@ void func_802B7E6C(void) {
         func_80297970(0.0f);
         return;
     }
-    func_80297970(func_80257C48(sp1C, D_80364DC0, D_80364DC4));
+    func_80297970(ml_interpolate_f(sp1C, D_80364DC0, D_80364DC4));
 }
 
 void func_802B7ECC(void) {
@@ -55,7 +55,7 @@ void func_802B7ECC(void) {
     if (func_80295530(8) < 3) {
         D_8037D5C0 = 1.0f;
     }
-    D_8037D5C0 = mlClamp_f(D_8037D5C0, 0.0f, 1.0f);
+    D_8037D5C0 = ml_clamp_f(D_8037D5C0, 0.0f, 1.0f);
 }
 
 void func_802B7F28(void) {
@@ -75,7 +75,7 @@ void func_802B7F28(void) {
     if (900.0 < sp20[0] * sp20[0] + sp20[1] * sp20[1] + sp20[2] * sp20[2]) {
         ml_vec3f_normalize(sp20);
         func_80294480(sp2C);
-        if ( ml_vec3f_dot_product(sp20, sp2C) < -0.2) {
+        if ( ml_dotProduct_vec3f(sp20, sp2C) < -0.2) {
             sp3C += D_8037D5C0 * 350.0;
         }
     }
@@ -83,7 +83,7 @@ void func_802B7F28(void) {
         func_80297970(0.0f);
         return;
     }
-    func_80297970(func_80257C48(sp40, sp38, sp3C));
+    func_80297970(ml_interpolate_f(sp40, sp38, sp3C));
 }
 
 void func_802B8048(void){
@@ -387,7 +387,7 @@ static void __bswalrus_recoil_init(s32 damage){
     func_8029C7F4(1,1,2,3);
     player_setYVelocity(func_802987C4());
     gravity_set(func_802987E4());
-    func_8028D5DC();
+    baMarker_collisionOff();
     func_80292E48();
     func_802B8110();
 }
@@ -405,7 +405,7 @@ static void __bswalrus_recoil_update(void){
 
 static void __bswalrus_recoil_end(void){
     gravity_reset();
-    func_8028D5F4();
+    baMarker_collisionOn();
     func_80292EA4();
     func_802B8048();
 }
@@ -467,7 +467,7 @@ void bswalrus_die_init(void){
     func_8025AB00();
     func_8025A2FC(0, 0xfa0);
     func_8025A70C(0x1A);
-    func_8028D5DC();
+    baMarker_collisionOff();
     func_80292E48();
     func_8029E3C0(0, 1.5f);
     func_802B8110();
@@ -494,7 +494,7 @@ void bswalrus_die_update(void){
             break;
         case 3://L802B8FB0
             if(0.0f < D_8037D5C4){
-                D_8037D5C4 = max_f(0.0f, D_8037D5C4 - 10.0f);
+                D_8037D5C4 = ml_max_f(0.0f, D_8037D5C4 - 10.0f);
             }
             break;
     }//L802B8FE0
@@ -567,9 +567,9 @@ void bswalrus_sled_update(void){
 
     if(50.0f < func_80297AB8()){
         if(func_8023DB4C(1)){
-            playerModel_80292554(&sp20);
+            baModel_80292554(&sp20);
         }else{
-            playerModel_80292578(&sp20);
+            baModel_80292578(&sp20);
         }
         particleEmitter_emitN(func_802F1EC8(sp20), 1);
     }//L802B927C
@@ -731,7 +731,7 @@ void func_802B978C(void) {
     func_8025A58C(0, 0xFA0);
     func_8025A70C(COMUSIC_3C_MINIGAME_LOSS);
     func_8024BD08(0);
-    func_8028D5DC();
+    baMarker_collisionOff();
     func_8029E3C0(0, 2.9f);
     func_802B813C();
     func_80292E48();

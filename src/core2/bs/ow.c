@@ -22,7 +22,7 @@ void bsow_init(void){
     func_802875AC(plyr_mvmnt, "bsow.c", 0x50);
     func_80299BFC(1.0f);
     func_802B360C();
-    func_8028D5DC();
+    baMarker_collisionOff();
     func_80292E48();
     D_8037D4D0 = 0;
     func_802B1FD0(1);
@@ -66,6 +66,6 @@ void bsow_end(void){
     func_802B1FD0(0);
     func_80297CA8();
     gravity_reset();
-    func_8028D5F4();
+    baMarker_collisionOn();
     func_80292EA4();
 }

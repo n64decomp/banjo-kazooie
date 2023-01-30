@@ -67,7 +67,7 @@ void func_8038B19C(Actor *this) {
         func_8038B0F0(this, 1);
     }
 
-    if ((this->state == 1) && func_8025773C(&local->unk0, tick)) {
+    if ((this->state == 1) && ml_timer_update(&local->unk0, tick)) {
         func_8038B0F0(this, 2);
     }
 

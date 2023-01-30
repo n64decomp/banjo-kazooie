@@ -116,6 +116,6 @@ void    chhut_update(Actor *this){
 
 }
 
-void func_80386C90(void){
+void mm_resetHuts(void){
     D_8037DCB0 = 0;
 }

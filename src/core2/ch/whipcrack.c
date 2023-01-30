@@ -16,7 +16,7 @@ s32 D_80373124[3] = {0xA0, 0x6B, 0x23};
 
 /* .code */
 void __chwhipcrack_spawnPieces(Actor *this, enum asset_e model_id, s32 cnt){
-    ParticleEmitter *pCtrl = partEmitList_pushNew(cnt);
+    ParticleEmitter *pCtrl = partEmitMgr_newEmitter(cnt);
     
     particleEmitter_setParticleAccelerationRange(pCtrl,
         0.0f, -1000.0f, 0.0f,
@@ -25,7 +25,7 @@ void __chwhipcrack_spawnPieces(Actor *this, enum asset_e model_id, s32 cnt){
     func_802EF9F8(pCtrl, 0.7f);
     func_802EFA18(pCtrl, 3);
     func_802EFA20(pCtrl, 0.5f, 1.0f);
-    func_802EF9EC(pCtrl, 0x1f, 10000);
+    particleEmitter_setSfx(pCtrl, SFX_1F_HITTING_AN_ENEMY_3, 10000);
     particleEmitter_setModel(pCtrl, model_id);
     particleEmitter_setParticleSpawnPositionRange(pCtrl,
         -120.0f,  50.0f, -120.0f, 
@@ -33,12 +33,12 @@ void __chwhipcrack_spawnPieces(Actor *this, enum asset_e model_id, s32 cnt){
     );
     particleEmitter_setPosition(pCtrl, this->position);
     func_802EFB70(pCtrl, 0.5f, 1.0f);
-    func_802EFE24(pCtrl,
+    particleEmitter_setAngularVelocityRange(pCtrl,
         -500.0f, -500.0f, -500.0f,
          500.0f,  500.0f,  500.0f
     );
     particleEmitter_setSpawnIntervalRange(pCtrl, 0.0f, 0.01f);
-    func_802EFEC0(pCtrl, 4.0f, 4.0f);
+    particleEmitter_setParticleLifeTimeRange(pCtrl, 4.0f, 4.0f);
     particleEmitter_setParticleVelocityRange(pCtrl,
         -300.0f, 250.0f, -300.0f,
          300.0f, 400.0f,  300.0f
@@ -47,9 +47,9 @@ void __chwhipcrack_spawnPieces(Actor *this, enum asset_e model_id, s32 cnt){
 }
 
 void __chwhipcrack_spawnSmoke(Actor *this, s32 cnt){
-    ParticleEmitter *pCtrl = partEmitList_pushNew(cnt);
+    ParticleEmitter *pCtrl = partEmitMgr_newEmitter(cnt);
     particleEmitter_setSprite(pCtrl, ASSET_70E_SPRITE_SMOKE_2);
-    func_802EFA5C(pCtrl, 0.05f, 0.1f);
+    particleEmitter_setFade(pCtrl, 0.05f, 0.1f);
     particleEmitter_setStartingFrameRange(pCtrl, 0, 7);
     particleEmitter_setPosition(pCtrl, this->position);
     func_802EFB70(pCtrl, 3.0f, 3.5f);
@@ -62,8 +62,8 @@ void __chwhipcrack_spawnSmoke(Actor *this, s32 cnt){
         -30.0f, 150.0f, -30.0f,
          30.0f, 300.0f,  30.0f
     );
-    func_802EFFA8(pCtrl, D_80373124);
-    func_802EFEC0(pCtrl, 3.0f, 4.0f);
+    particleEmitter_setRGB(pCtrl, D_80373124);
+    particleEmitter_setParticleLifeTimeRange(pCtrl, 3.0f, 4.0f);
     particleEmitter_emitN(pCtrl, cnt);
 }
 
@@ -105,7 +105,7 @@ void chwhipcrack_update(Actor *this){
         __chwhipcrack_setState(this, 1);
     }
     player_getPosition(plyr_pos);
-    plyr_dist = ml_vec3f_distance(plyr_pos, this->position);
+    plyr_dist = ml_distance_vec3f(plyr_pos, this->position);
     if(this->state == 1){
         if(plyr_dist < 700.0f){
             __chwhipcrack_setState(this, 2);

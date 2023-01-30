@@ -117,16 +117,16 @@ void __chSnowman_spawnSnowballParticles(f32 position[3], s32 count){
         {{-80.0f, 0.0f, -80.0f}, {80.0f, 200.0f, 80.0f}}
     };
 
-    ParticleEmitter *particleSpawner = partEmitList_pushNew(count);
+    ParticleEmitter *particleSpawner = partEmitMgr_newEmitter(count);
 
     particleEmitter_setModel(particleSpawner, ASSET_378_MODEL_SNOWBALL);
     particleEmitter_setPosition(particleSpawner, position);
     particleEmitter_setPositionVelocityAndAccelerationRanges(particleSpawner, &D_803686BC);
-    func_802EFE24(particleSpawner, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
+    particleEmitter_setAngularVelocityRange(particleSpawner, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
     func_802EF9F8(particleSpawner, 0.01f);
     func_802EFA18(particleSpawner, 3);
     func_802EFA20(particleSpawner, 1.0f, 1.3f);
-    func_802EF9EC(particleSpawner, 0x2f, 16000);
+    particleEmitter_setSfx(particleSpawner, SFX_2F_ORANGE_SPLAT, 16000);
     func_802EFB98(particleSpawner, &D_80368694);
     particleEmitter_emitN(particleSpawner, count);
 }

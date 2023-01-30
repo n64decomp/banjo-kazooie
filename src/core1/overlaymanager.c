@@ -14,7 +14,7 @@ typedef struct struct_2a_s{
     u8* data_end;
     u8* bss_start;
     u8* bss_end;
-} struct2As;
+} OverlayAddressMap;
 
 
 extern u8 D_803A5D00;
@@ -56,7 +56,7 @@ SEGMENT_EXTERNS(fight);
     {#realname, segname##_VRAM, segname##_VRAM_END, segname##_ROM_START, segname##_ROM_END, NULL, NULL, NULL, NULL, NULL, NULL}
 
 /* .data */
-struct2As D_802762D0[] = {
+static OverlayAddressMap overlayAddressMap[] = {
     SEGMENT_ENTRY(core2, gs),
     DUMMY_SEGMENT_ENTRY(emptyLvl, coshow),
     SEGMENT_ENTRY(CC, whale),
@@ -73,117 +73,116 @@ struct2As D_802762D0[] = {
     SEGMENT_ENTRY(lair, witch),
     SEGMENT_ENTRY(fight, battle),
 };
-s32 D_80276564 = sizeof(D_802762D0) / sizeof(D_802762D0[0]);
+static s32 overlayCount = sizeof(overlayAddressMap) / sizeof(overlayAddressMap[0]);
 
 /* .bss */
-enum overlay_e D_80282800;
+enum overlay_e overlayMgrLoadedId;
 
 
-void func_802513A4(void);
+void overlayManagerdebug(void);
 
 /* .code */
-struct2As *func_802510F0(void){
-    //returns struct2As ptr with largest RAM size
+OverlayAddressMap *__overlayManagergetLargetOverlayAddressMap(void){
+    //returns OverlayAddressMap ptr with largest RAM size
     int i;
-    struct2As * v1;
+    OverlayAddressMap * largest_overlay;
 
-    v1 = &D_802762D0[1];
-    for(i = 1; i < D_80276564; i++){
-        if(v1->ram_end - v1->ram_start < (u32)(D_802762D0[i].ram_end - D_802762D0[i].ram_start)){
-            v1 = &D_802762D0[i];
+    largest_overlay = &overlayAddressMap[1];
+    for(i = 1; i < overlayCount; i++){
+        if(largest_overlay->ram_end - largest_overlay->ram_start < (u32)(overlayAddressMap[i].ram_end - overlayAddressMap[i].ram_start)){
+            largest_overlay = &overlayAddressMap[i];
         }
     }
-    return v1;
+    return largest_overlay;
 }
 
-s32 func_80251170(void){
+s32 __overlayManager80251170(void){
     return 0;
 }
 
-s32 func_80251178(void){
+s32 __overlayManager80251178(void){
     int sp24;
-    struct2As *sp20;
+    OverlayAddressMap *largest_overlay;
     s32 sp1C;
     s32 sp18;
     
 
-    sp20 = func_802510F0();
+    largest_overlay = __overlayManagergetLargetOverlayAddressMap();
     sp18 = func_802546DC();
-    sp1C = func_80251170();
+    sp1C = __overlayManager80251170();
 
-    return ((sp1C + &D_803A5D00) - sp20->ram_end) + sp18;
+    return ((sp1C + &D_803A5D00) - largest_overlay->ram_end) + sp18;
 }
 
-void func_802511C4(void){
+void __overlayManager802511C4(void){
     s32 sp24;
     int sp20;
     int sp1C;
-    int sp18;
+    int heap_size;
     u32 tmp_v0;
 
-    sp24 = func_80251178();
-    sp18 = heap_get_size();
+    sp24 = __overlayManager80251178();
+    heap_size = heap_get_size();
     sp20 = func_802546DC();
-    sp1C = sp18 - sp20;
+    sp1C = heap_size - sp20;
 
     if(sp24 < 0){
-        func_802513A4();
+        overlayManagerdebug();
         tmp_v0 = sp1C + sp24;
         while( tmp_v0 & 0xF){tmp_v0--;}
     }
 }
 
-int get_loaded_overlay_id(void){
-    return D_80282800;
+int overlayManagergetLoadedId(void){
+    return overlayMgrLoadedId;
 }
 
-int is_overlay_loaded(int overlay_id){
-    return D_80282800 == overlay_id;
+bool overlayManagerisOverlayLoaded(int overlay_id){
+    return overlayMgrLoadedId == overlay_id;
 }
 
-bool load_overlay(enum overlay_e overlay_id){ 
-    enum overlay_e rom_addr;
+bool overlayManagerload(enum overlay_e overlay_id){ 
+    s32 rom_addr;
     
     if(overlay_id == 0)
         return FALSE;
 
-    if(overlay_id == D_80282800)
+    if(overlay_id == overlayMgrLoadedId)
         return FALSE;
 
-    D_80282800 = overlay_id;
-    rom_addr = D_802762D0 + overlay_id;
+    overlayMgrLoadedId = overlay_id;
+    rom_addr = (s32)(overlayAddressMap + overlay_id);
     
-    func_80253050(
+    overlay_load(
         overlay_id,
-        ((struct2As*)rom_addr)->ram_start,
-        ((struct2As*)rom_addr)->ram_end,
-        ((struct2As*)rom_addr)->unkC,
-        ((struct2As*)rom_addr)->unk10,
-        ((struct2As*)rom_addr)->code_start,
-        ((struct2As*)rom_addr)->code_end,
-        ((struct2As*)rom_addr)->data_start,
-        ((struct2As*)rom_addr)->data_end,
-        ((struct2As*)rom_addr)->bss_start,
-        ((struct2As*)rom_addr)->bss_end 
+        ((OverlayAddressMap*)rom_addr)->ram_start,
+        ((OverlayAddressMap*)rom_addr)->ram_end,
+        ((OverlayAddressMap*)rom_addr)->unkC,
+        ((OverlayAddressMap*)rom_addr)->unk10,
+        ((OverlayAddressMap*)rom_addr)->code_start,
+        ((OverlayAddressMap*)rom_addr)->code_end,
+        ((OverlayAddressMap*)rom_addr)->data_start,
+        ((OverlayAddressMap*)rom_addr)->data_end,
+        ((OverlayAddressMap*)rom_addr)->bss_start,
+        ((OverlayAddressMap*)rom_addr)->bss_end 
     );
     return TRUE;
 }
 
-//clear_loaded_overlay_id
-s32 func_802512FC(void){
-    D_80282800 = 0;
+s32 overlayManagerclearLoadedId(void){
+    overlayMgrLoadedId = 0;
 }
 
-void func_80251308(void){
-    func_802512FC();
-    func_80253050(0, 
+void overlayManagerloadCore2(void){
+    overlayManagerclearLoadedId();
+    overlay_load(0, 
         core2_VRAM, core2_VRAM_END,
         core2_ROM_START, core2_ROM_END,
         core2_TEXT_START, core2_TEXT_END,
         core2_DATA_START, core2_RODATA_END,
         core2_BSS_START, core2_BSS_END
     );
-    func_802511C4();
+    __overlayManager802511C4();
 }
 
-void func_802513A4(void){}
+void overlayManagerdebug(void){}

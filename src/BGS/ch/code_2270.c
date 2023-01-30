@@ -306,7 +306,7 @@ void func_80389080(Actor *this){
             func_80335924(this->unk148, ASSET_12B_ANIM_TIPTUP_IDLE, 1.0f, 9.0f);
             unqPtr->unkC = randf2(5.0f, 15.0f);
         }
-        if(func_8025773C(&unqPtr->unkC, sp3C)){
+        if(ml_timer_update(&unqPtr->unkC, sp3C)){
             func_80335924(this->unk148, ASSET_12C_ANIM_TIPTUP_TAPPING, 1.0f, 4.0f);
         }
         func_80258A4C(this->position, this->yaw - 90.0f, player_position, &sp38, &sp34, &sp30);
@@ -319,7 +319,7 @@ void func_80389080(Actor *this){
                 }
             }
             else{
-                if(ml_vec3f_distance(this->position, player_position) < 300.0f && player_getTransformation() == TRANSFORM_1_BANJO && !jiggyscore_isSpawned(JIGGY_27_BGS_TIPTUP)){
+                if(ml_distance_vec3f(this->position, player_position) < 300.0f && player_getTransformation() == TRANSFORM_1_BANJO && !jiggyscore_isSpawned(JIGGY_27_BGS_TIPTUP)){
                     BGS_func_803888E4(this, 2);
                 }
             }
@@ -333,12 +333,12 @@ void func_80389080(Actor *this){
                 }
             } //L80389370
             else{
-                if(ml_vec3f_distance(this->position, player_position) >= 300.0f)
+                if(ml_distance_vec3f(this->position, player_position) >= 300.0f)
                     BGS_func_803888E4(this, 1);
             }
         }//L803893A0
         if(this->state == 6){
-            if(ml_vec3f_distance(this->position, player_position) < 300.0f && !unqPtr->unk8){
+            if(ml_distance_vec3f(this->position, player_position) < 300.0f && !unqPtr->unk8){
                 unqPtr->unk8 = 1;
                 func_80311480(0xc7d, 4, 0, 0, 0, 0);
             }

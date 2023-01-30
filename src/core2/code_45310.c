@@ -49,7 +49,7 @@ bool func_802CC2A0(Actor *this) {
     if (!this->marker->unk14_21) {
         return TRUE;
     }
-    func_80255FE4(sp20, local->unk8, local->unk18, func_802575BC(local->unk4 + 0.05));
+    ml_interpolate_vec3f(sp20, local->unk8, local->unk18, func_802575BC(local->unk4 + 0.05));
     sp20[1] += 60.0f;
     return func_80320DB0(sp20, 50.0f, sp2C, 0) == 0;
 }
@@ -351,7 +351,7 @@ void func_802CCC5C(Actor *this) {
                     spB0 = (spB0 < spAC) ? spAC : MIN(spA8 , spB0);
                 }
                 func_8030DBB4(local->unk0, spB0);
-                phi_f12 = 1.0f - ml_vec3f_distance(spC4, this->position) / 2000.0f;
+                phi_f12 = 1.0f - ml_distance_vec3f(spC4, this->position) / 2000.0f;
                 if(0.0f > phi_f12){
                     phi_f12 = 0.0f;
                 }
@@ -362,7 +362,7 @@ void func_802CCC5C(Actor *this) {
             }
         }
         if (this->unk10_25 != 0) {
-            if (func_8025773C(&local->unk28, spB8) != 0) {
+            if (ml_timer_update(&local->unk28, spB8) != 0) {
                 spBC = 2;
             }
             if (local->unk3A == 2) {
@@ -411,7 +411,7 @@ void func_802CCC5C(Actor *this) {
                     local->unk4 = 1.0f;
                 }
                 sp9C = func_802575BC(local->unk4);
-                func_80255FE4(this->position, local->unk8, local->unk18, sp9C);
+                ml_interpolate_vec3f(this->position, local->unk8, local->unk18, sp9C);
                 this->yaw = local->unk14 + (sp9C * (local->unk24 - local->unk14));
                 if ((func_8033567C(this->unk148) == 0x10E) && (func_80335794(this->unk148) > 0)) {
                     func_80335924(this->unk148, 0x10F, 0.1f, 0.45f);
@@ -455,7 +455,7 @@ void func_802CCC5C(Actor *this) {
                     sp68[1] = this->position[1];
                     sp68[2] = this->position[2];
                     sp68[0] = 0.0f;
-                    if (ml_vec3f_distance(sp8C, sp68) < 800.0f) {
+                    if (ml_distance_vec3f(sp8C, sp68) < 800.0f) {
                         spBC = 3;
                     }
                 }

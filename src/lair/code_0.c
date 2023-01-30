@@ -316,9 +316,9 @@ ParticleEmitter *func_803866D8(s32 a0)
     void *ptr;
     s32 colour[3];
 
-    ptr = partEmitList_pushNew(0x28);
+    ptr = partEmitMgr_newEmitter(0x28);
 
-    func_802F0D54(ptr);
+    particleEmitter_manualFree(ptr);
     particleEmitter_setSprite(ptr, ASSET_710_SPRITE_SPARKLE_PURPLE);
     func_802EFB98(ptr, &D_8039342C);
     particleEmitter_setParticleVelocityRange(ptr, 0.f, 70.f, 0.f, 0.f, 140.f, 0.f);
@@ -327,7 +327,7 @@ ParticleEmitter *func_803866D8(s32 a0)
     colour[1] = 0xFF;
     colour[2] = 0;
 
-    func_802EFFA8(ptr, colour);
+    particleEmitter_setRGB(ptr, colour);
 
     return ptr;
 }
@@ -407,7 +407,7 @@ void func_803867A8(Actor *this) {
         if (this->marker->unk14_21) {
             sp44 = this->unk158[func_8023DB5C() & 1];
             if (sp44 != NULL) {
-                func_802EF9E4(sp44, this->alpha_124_19);
+                particleEmitter_setAlpha(sp44, this->alpha_124_19);
                 phi_f0 = this->unk60 - 10.0f;
                 while(phi_f0 < 0.0f) {phi_f0 += 360.0f;}
 
@@ -560,7 +560,7 @@ void func_803870DC(Actor *this) {
             this->alpha_124_19 = phi_v1;
             temp_s7 = (s32)((f32)this->alpha_124_19 / 5.0) - 0xC;
             if (this->marker->unk14_21 && (temp_s7 > 0)) {
-                temp_s5 = partEmitList_pushNew(temp_s7);
+                temp_s5 = partEmitMgr_newEmitter(temp_s7);
                 func_8034A174(func_80329934(), 5, sp90);
                 func_8034A174(func_80329934(), 6, sp84);
                 particleEmitter_setSprite(temp_s5, ASSET_710_SPRITE_SPARKLE_PURPLE);
@@ -568,9 +568,9 @@ void func_803870DC(Actor *this) {
                 func_802EFB84(temp_s5, 0.08f, 0.13f);
                 particleEmitter_setParticleAccelerationRange(temp_s5, -500.0f, -1800.0f, -500.0f, 500.0f, 1800.0f, 500.0f);
                 particleEmitter_setSpawnIntervalRange(temp_s5, 0.0f, 0.01f);
-                func_802EFEC0(temp_s5, 0.9f, 0.9f);
+                particleEmitter_setParticleLifeTimeRange(temp_s5, 0.9f, 0.9f);
                 particleEmitter_setParticleVelocityRange(temp_s5, -400.0f, 400.0f, -400.0f, 400.0f, -400.0f, 400.0f);
-                func_802EF9E4(temp_s5, this->alpha_124_19);
+                particleEmitter_setAlpha(temp_s5, this->alpha_124_19);
                 for(phi_s4 = 0; phi_s4 < temp_s7; phi_s4++){
                     for(i = 0; i < 3; i++){
                         sp64[i] = randf2(sp90[i], sp84[i]);
@@ -579,7 +579,7 @@ void func_803870DC(Actor *this) {
                     sp70[0] = (s32) ((randf() * 130.0f) + 125.0f);
                     sp70[2] = sp70[1] = (s32) ((randf() * 170.0f) + 85.0f);
                     sp70[(randf() > 0.5) ? 2 : 1] = 0;
-                    func_802EFFA8(temp_s5, sp70);
+                    particleEmitter_setRGB(temp_s5, sp70);
                     particleEmitter_emitN(temp_s5, 1);
                 }
             }
@@ -684,7 +684,7 @@ void func_80387730(Actor *this) {
     }
     if (!func_8031FF1C(this->unkF4_8 + 0x39) && ability_isUnlocked(ABILITY_13_1ST_NOTEDOOR)) {
         player_getPosition(spAC);
-        if ((ml_vec3f_distance(spAC, this->position) < 500.0f) && (func_803114C4() != 0xF64)) {
+        if ((ml_distance_vec3f(spAC, this->position) < 500.0f) && (func_803114C4() != 0xF64)) {
             func_802FACA4(0xC);
         }
         if (itemscore_noteScores_getTotal() >= D_8039347C[this->unkF4_8 - 1]) {
@@ -700,7 +700,7 @@ void func_80387730(Actor *this) {
                 phi_f20 = 290.0f;
             }
             sp9C[1] = this->position[1];
-            if ((ml_vec3f_distance(spAC, sp9C) < phi_f20) || (this->alpha_124_19 != 0xFF)) {
+            if ((ml_distance_vec3f(spAC, sp9C) < phi_f20) || (this->alpha_124_19 != 0xFF)) {
                 if (this->alpha_124_19 == 0xFF) {
                     func_80324CFC(0.0f, COMUSIC_43_ENTER_LEVEL_GLITTER, 32700);
                     func_80324D2C(2.4f, COMUSIC_43_ENTER_LEVEL_GLITTER);
@@ -719,16 +719,16 @@ void func_80387730(Actor *this) {
                     return;
                 }
                 if (this->marker->unk14_21) {
-                    temp_s5 = partEmitList_pushNew((s32)((f32) this->alpha_124_19 / 11.0));
+                    temp_s5 = partEmitMgr_newEmitter((s32)((f32) this->alpha_124_19 / 11.0));
                     sp6C[2] = 0;
                     particleEmitter_setSprite(temp_s5, ASSET_710_SPRITE_SPARKLE_PURPLE);
                     func_802EFB70(temp_s5, 0.13f, 0.18f);
                     func_802EFB84(temp_s5, 0.08f, 0.13f);
                     particleEmitter_setParticleAccelerationRange(temp_s5, -10.0f, 0.0f, -10.0f, 10.0f, 1600.0f, 10.0f);
                     particleEmitter_setSpawnIntervalRange(temp_s5, 0.0f, 0.01f);
-                    func_802EFEC0(temp_s5, 1.4f, 1.4f);
+                    particleEmitter_setParticleLifeTimeRange(temp_s5, 1.4f, 1.4f);
                     particleEmitter_setParticleVelocityRange(temp_s5, -100.0f, 100.0f, -100.0f, 100.0f, 0.0f, 100.0f);
-                    func_802EF9E4(temp_s5, this->alpha_124_19);
+                    particleEmitter_setAlpha(temp_s5, this->alpha_124_19);
                     for(phi_s4 = 0; phi_s4 < (s32) ((f32)this->alpha_124_19 / 11.0); phi_s4++){
                         for(i = 0; i < 3; i++){
                             sp60[i] = randf2(sp90[i], sp84[i]);
@@ -736,12 +736,12 @@ void func_80387730(Actor *this) {
                         particleEmitter_setPosition(temp_s5, sp60);
                         sp6C[0] = (s32) ((randf() * 60.0f) + 195.0f);
                         sp6C[1] = (s32) ((randf() * 130.0f) + 125.0f);
-                        func_802EFFA8(temp_s5, sp6C);
+                        particleEmitter_setRGB(temp_s5, sp6C);
                         particleEmitter_emitN(temp_s5, 1);
                     }
                 }
             }
-        } else if ((this->unkF4_8 >= 2) && (ml_vec3f_distance(spAC, this->position) < 290.0f)) {
+        } else if ((this->unkF4_8 >= 2) && (ml_distance_vec3f(spAC, this->position) < 290.0f)) {
             func_80356520(0xB0);
         }
     }
@@ -1184,11 +1184,11 @@ void func_80388524(Actor *this) {
                             func_8030E6D4(SFX_6C_LOCKUP_CLOSING);
                         }
                         if (animctrl_getAnimTimer(this->animctrl) < 0.68) {
-                            sp2C = partEmitList_pushNew(3U);
+                            sp2C = partEmitMgr_newEmitter(3U);
                             particleEmitter_setSprite(sp2C, ASSET_70D_SPRITE_SMOKE_1);
                             particleEmitter_setStartingFrameRange(sp2C, 1, 6);
-                            func_802EFFA8(sp2C, D_803934A0);
-                            func_802EF9E4(sp2C, 0x3C);
+                            particleEmitter_setRGB(sp2C, D_803934A0);
+                            particleEmitter_setAlpha(sp2C, 0x3C);
                             particleEmitter_setPosition(sp2C, this->position);
                             particleEmitter_setPositionAndVelocityRanges(sp2C, &D_803934D4);
                             func_802EFB98(sp2C, &D_803934AC);

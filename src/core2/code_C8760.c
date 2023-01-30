@@ -15,14 +15,14 @@ extern f32 D_803792F0;
 
 void func_8034F6F0(Gfx **gdl, Mtx **mptr, s32 vptr){
     if(D_803720A0.unk0){
-        func_802EF3A8(D_803720A0.unk0, gdl, mptr, vptr);
+        particleEmitter_draw(D_803720A0.unk0, gdl, mptr, vptr);
     }
 }
 
 void func_8034F734(void){
     if(D_803720A0.unk0){
         func_8030DA44(D_803720A0.unk5);
-        func_802EF684(D_803720A0.unk0);
+        particleEmitter_free(D_803720A0.unk0);
     }
 }
 
@@ -38,14 +38,14 @@ void func_8034F774(void){
     if( !s0 || !s1){
         D_803720A0.unk0 = NULL;
     }else{
-        D_803720A0.unk0 = particleEmitter_new(0xA);
+        D_803720A0.unk0 = particleEmitter_new(10);
         particleEmitter_setSprite(D_803720A0.unk0, ASSET_70E_SPRITE_SMOKE_2);
         particleEmitter_setStartingFrameRange(D_803720A0.unk0, 0, 4);
         particleEmitter_setParticleFramerateRange(D_803720A0.unk0, 15.0f, 30.0f);
         particleEmitter_setSpawnIntervalRange(D_803720A0.unk0, 0.0f, 1.0f);
-        func_802EFEC0(D_803720A0.unk0, 216000.0f, 216000.0f);
+        particleEmitter_setParticleLifeTimeRange(D_803720A0.unk0, 216000.0f, 216000.0f);
         func_802EFB70(D_803720A0.unk0, 1.8f, 2.2f);
-        func_802EF4AC(D_803720A0.unk0, &sp38, &sp2C, 0xA);
+        particleEmitter_emitUniformLine(D_803720A0.unk0, &sp38, &sp2C, 10);
         particleEmitter_setSpawnInterval(D_803720A0.unk0, 0.0f);
         D_803720A0.unk5 = func_8030D90C();
 

@@ -39,10 +39,10 @@ void func_80387DC0(f32 *position, s32 count) {
     };
     ParticleEmitter *pCtrl;
 
-    pCtrl = partEmitList_pushNew(count);
+    pCtrl = partEmitMgr_newEmitter(count);
     pCtrl = pCtrl;
     particleEmitter_setSprite(pCtrl, ASSET_700_SPRITE_DUST);
-    func_802EFFA8(pCtrl, D_8038C5A4);
+    particleEmitter_setRGB(pCtrl, D_8038C5A4);
     particleEmitter_setStartingFrameRange(pCtrl, 0, 7);
     particleEmitter_setPosition(pCtrl, position);
     particleEmitter_setParticleSpawnPositionRange(pCtrl,

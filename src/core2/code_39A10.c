@@ -27,7 +27,7 @@ f32 func_802C09E8(void) {
     sp2C[0] = D_8037DBB0[0] - sp20[0];
     sp2C[1] = 0.0f;
     sp2C[2] = D_8037DBB0[2] - sp20[2];
-    return min_f(gu_sqrtf(sp2C[0]*sp2C[0] + sp2C[2]*sp2C[2]), D_8037DBBC) / D_8037DBBC;
+    return ml_min_f(gu_sqrtf(sp2C[0]*sp2C[0] + sp2C[2]*sp2C[2]), D_8037DBBC) / D_8037DBBC;
 }
 
 void func_802C0A60(f32 arg0[3]) {

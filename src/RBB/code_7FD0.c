@@ -55,7 +55,7 @@ void func_8038E3D8(Actor *this){
         func_8038E3C0(this, 1);
     }//L8038E4C8
 
-    if(func_8025773C(&local->unk2C, sp5C)){
+    if(ml_timer_update(&local->unk2C, sp5C)){
         local->unk2C = randf2(3.5f, 5.5f);
         func_8030E878(SFX_69_WHIPCRACK_CREAKING, randf2(1.1f, 1.2f), 22000, &this->position, 500.0f, 1500.0f);
     }//L8038E544

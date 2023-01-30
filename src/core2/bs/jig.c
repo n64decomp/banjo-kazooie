@@ -42,7 +42,7 @@ void bsjig_jiggy_init(void){
     func_8030E6D4(SFX_33_BANJO_AHOO);
     miscflag_clear(7);
     miscflag_clear(0xf);
-    func_8028D5DC();
+    baMarker_collisionOff();
     func_802C82C0(marker_getActor(bsjig_gJiggyMarker), 1);
     D_8037D4B0 = 0;
 }
@@ -106,7 +106,7 @@ void bsjig_jiggy_end(void){
         func_8025A2FC(-1, 0xfa0);
         func_8024BD08(1);
     }
-    func_8028D5F4();
+    baMarker_collisionOn();
     if( jiggyscore_total() == 100 
         && func_8031FF1C(BKPROG_FC_DEFEAT_GRUNTY) 
         && bs_getNextState() != BS_34_JIG_NOTEDOOR
@@ -144,7 +144,7 @@ void bsjig_jiggy_interrupt(void){
 }
 
 void bsjig_notedoor_end(void){
-    func_8028D5F4();
+    baMarker_collisionOn();
     func_8025A2FC(-1, 0xfa0);
     func_8024BD08(1);
     func_8029E070(0);
@@ -179,7 +179,7 @@ void bsjig_notedoor_init(void){
     func_8029151C(0xc);
     func_8029E070(1);
     func_8030E6D4(SFX_33_BANJO_AHOO);
-    func_8028D5DC();
+    baMarker_collisionOff();
 }
 
 void bsjig_notedoor_update(void){

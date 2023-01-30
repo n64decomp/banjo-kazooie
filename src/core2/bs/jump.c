@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-#include "core2/playerModel.h"
+#include "core2/ba/model.h"
 
 f32 func_80294438(void);
 void func_8029797C(f32);
@@ -348,7 +348,7 @@ void func_802B1BF4(void) {
     func_80297970(0.0f);
     func_80297A0C(0);
     D_8037D4C0 = 0;
-    func_8028D5DC();
+    baMarker_collisionOff();
 }
 
 void func_802B1CF8(void) {
@@ -378,7 +378,7 @@ void func_802B1CF8(void) {
 }
 
 void func_802B1DA4(void){
-    func_8028D5F4();
+    baMarker_collisionOn();
 }
 
 bool bsjump_jumpingFromWater(void){
@@ -388,7 +388,7 @@ bool bsjump_jumpingFromWater(void){
 void bsjump_tumble_init(void){
     func_8028A084(0x68, 0.35f);
     func_8029C7F4(1,1,3,6);
-    playerModel_setYDisplacement(60.0f);
+    baModel_setYDisplacement(60.0f);
     if(func_80293234() == 1){
         func_8029E3C0(0, 0.5f);
         func_8029E3C0(1, 0.41f);
@@ -439,6 +439,6 @@ void bsjump_tumble_end(void){
         func_80293240(3);
     }
     func_8029CB84();
-    playerModel_setYDisplacement(0.0f);
+    baModel_setYDisplacement(0.0f);
     func_80299E6C();
 }

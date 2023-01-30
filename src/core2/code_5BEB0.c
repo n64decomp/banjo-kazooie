@@ -16,7 +16,7 @@ void func_802E3BD0(s32 frame_buffer_indx);
 int func_802E49F0(void);
 
 /* .code */
-void func_802E2E40(void){
+void mapSavestate_init(void){
     int i;
     for(i = 0; i < 0x9A; i++){
         D_8037E650[i] = 0;

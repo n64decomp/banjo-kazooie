@@ -126,7 +126,7 @@ void func_80259BD0(void) {
     for(var_s0 = D_80276E30; var_s0 < &D_80276E30[6]; var_s0++){
         if (var_s0->unk10 >= 0) {
             temp_lo = var_s0 - D_80276E30; 
-            var_s0->unk4 = min_f(var_s0->unk4 + sp3C, 600.0f);
+            var_s0->unk4 = ml_min_f(var_s0->unk4 + sp3C, 600.0f);
             if ((var_s0->unk4 > 1.0f) && func_80250074(temp_lo)) {
                 func_8025A7DC(var_s0->unk10);
             }

@@ -122,7 +122,7 @@ void func_802CEDE4(f32 target_position[3], f32 p_ctrl[3], f32 distance, f32 *arg
         p_ctrl[1] = randf2(-distance, distance);
         p_ctrl[2] = randf2(-distance, distance);
         phi_s1++;
-    }while(phi_s1 < 10 &&  ml_vec3f_distance(target_position, p_ctrl) < distance);
+    }while(phi_s1 < 10 &&  ml_distance_vec3f(target_position, p_ctrl) < distance);
     *arg3 =  randf2(arg4, arg5);
 }
 
@@ -237,7 +237,7 @@ void chBeeSwarm_802CF434(Actor *this) {
     local = (ActorLocal_core2_47BD0 *) &this->local;
     for(phi_s2 = 0, phi_s0 = local->unk8; phi_s2 < local->unk0; phi_s2++){
         chBeeSwarm_802CF1C8(phi_s0->unk18, phi_s0->unk0, phi_s0->unkC, phi_s0->unk24[2], 150.0f, phi_s0->unk24, &sp58);
-        if (ml_vec3f_distance(phi_s0->unk0, phi_s0->unk18) < 50.0f) {
+        if (ml_distance_vec3f(phi_s0->unk0, phi_s0->unk18) < 50.0f) {
             func_802CEEA4(this, phi_s0);
         }
         phi_s0++;
@@ -278,18 +278,18 @@ bool chBeeSwarm_802CF5E4(Actor *this){
 void chBeeSwarm_802CF610(Actor *this, ParticleEmitter *p_ctrl, f32 position[3]) {
     func_8030E6A4(SFX_66_BIRD_AUUGHH, randf2(1.75f, 1.85f), 15000);
     particleEmitter_setPosition(p_ctrl, position);
-    func_802EFA70(p_ctrl, 2);
+    particleEmitter_setDrawMode(p_ctrl, 2);
     func_802EF9F8(p_ctrl, 0.5f);
     func_802EFA18(p_ctrl, 3);
     func_802EFA20(p_ctrl, 0.8f, 1.0f);
-    func_802EF9EC(p_ctrl, 0x1F, 10000);
+    particleEmitter_setSfx(p_ctrl, SFX_1F_HITTING_AN_ENEMY_3, 10000);
     particleEmitter_setSpawnIntervalRange(p_ctrl, 0.0f, 0.01f);
-    func_802EFEC0(p_ctrl, 2.0f, 2.5f);
-    func_802EFA5C(p_ctrl, 0.0f, 0.65f);
+    particleEmitter_setParticleLifeTimeRange(p_ctrl, 2.0f, 2.5f);
+    particleEmitter_setFade(p_ctrl, 0.0f, 0.65f);
     particleEmitter_setParticleAccelerationRange(p_ctrl, 0.0f, -1800.0f, 0.0f, 0.0f, -1800.0f, 0.0f);
     particleEmitter_setModel(p_ctrl,this->marker->modelId);
     func_802EFB70(p_ctrl, 0.25f, 0.25f);
-    func_802EFE24(p_ctrl, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
+    particleEmitter_setAngularVelocityRange(p_ctrl, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
     particleEmitter_setParticleVelocityRange(p_ctrl, -300.0f, 750.0f, -300.0f, 300.0f, 900.0f, 300.0f);
     particleEmitter_emitN(p_ctrl, 1);
 }
@@ -455,12 +455,12 @@ void chBeeSwarm_update(Actor *this) {
         if (chBeeSwarm_802CF5E4(this)) {
             func_80328A84(this, 2U);
         }
-        if (ml_vec3f_distance(this->position, this->unk1C) < 50.0f) {
+        if (ml_distance_vec3f(this->position, this->unk1C) < 50.0f) {
             func_802CEF54(this, local->unkC, 100.0f);
         }
         break;
     case 2:
-        if (ml_vec3f_distance(this->position, this->unk1C) < 50.0f) {
+        if (ml_distance_vec3f(this->position, this->unk1C) < 50.0f) {
             func_802CEF54(this, local->unkC, 100.0f);
         }
         chBeeSwarm_802CF518(this);
@@ -471,7 +471,7 @@ void chBeeSwarm_update(Actor *this) {
         this->unk1C[2] = spB4[2];
         this->unk1C[1] += 50.0f;
         this->unk28 = 400.0f;
-        if (ml_vec3f_distance(this->position, this->unk1C) < 100.0f) {
+        if (ml_distance_vec3f(this->position, this->unk1C) < 100.0f) {
             func_802CEF54(this, spB4, 50.0f);
             func_80328A84(this, 4);
         }
@@ -489,29 +489,29 @@ void chBeeSwarm_update(Actor *this) {
                 sp68[0] = local->unk8[local->unk0].unk0[0] + this->position[0];
                 sp68[1] = local->unk8[local->unk0].unk0[1] + this->position[1];
                 sp68[2] = local->unk8[local->unk0].unk0[2] + this->position[2];
-                chBeeSwarm_802CF610(this, partEmitList_pushNew(1), sp68);
+                chBeeSwarm_802CF610(this, partEmitMgr_newEmitter(1), sp68);
                 this->unk60 -= 0.2;
             }
         }
         if (local->unk0 == 0) {
             marker_despawn(this->marker);
         }
-        if (ml_vec3f_distance(this->position, this->unk1C) < 50.0f) {
+        if (ml_distance_vec3f(this->position, this->unk1C) < 50.0f) {
             func_802CEF54(this, (s32 *) spB4, 50.0f);
         }
-        if (ml_vec3f_distance(this->position, spB4) > 100.0f) {
+        if (ml_distance_vec3f(this->position, spB4) > 100.0f) {
             func_80328A84(this, 3);
         }
         chBeeSwarm_802CF57C(this);
         break;
     case 5:
-        if (ml_vec3f_distance(this->position, this->unk1C) < 50.0f) {
+        if (ml_distance_vec3f(this->position, this->unk1C) < 50.0f) {
             func_80328A84(this, 2);
         }
         chBeeSwarm_802CF518(this);
         break;
     case 6:
-        if (ml_vec3f_distance(this->position, this->unk1C) < 50.0f) {
+        if (ml_distance_vec3f(this->position, this->unk1C) < 50.0f) {
             func_80328A84(this, local->unk6);
         }
         break;

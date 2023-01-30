@@ -119,28 +119,28 @@ f32 func_80255F14(f32 vec1[3], f32 vec2[3])
 }
 
 //ml_vec3f_cross_product
-void func_80255F74(f32 dst[3], f32 src1[3], f32 src2[3])
+void ml_crossProduct_vec3f(f32 dst[3], f32 src1[3], f32 src2[3])
 {
     dst[0] = src1[1] * src2[2] - src1[2] * src2[1];
     dst[1] = src1[2] * src2[0] - src1[0] * src2[2];
     dst[2] = src1[0] * src2[1] - src1[1] * src2[0];
 }
 
-void func_80255FE4(f32 dst[3], f32 vec1[3], f32 vec2[3], f32 scale)
+void ml_interpolate_vec3f(f32 dst[3], f32 vec1[3], f32 vec2[3], f32 scale)
 {
     dst[0] = vec1[0] + (vec2[0] - vec1[0]) * scale;
     dst[1] = vec1[1] + (vec2[1] - vec1[1]) * scale;
     dst[2] = vec1[2] + (vec2[2] - vec1[2]) * scale;
 }
 
-f32 ml_vec3f_dot_product(f32 vec1[3], f32 vec2[3])
+f32 ml_dotProduct_vec3f(f32 vec1[3], f32 vec2[3])
 {
     return vec1[0] * vec2[0]
          + vec1[1] * vec2[1]
          + vec1[2] * vec2[2];
 }
 
-f32 ml_vec3f_distance(f32 vec1[3], f32 vec2[3])
+f32 ml_distance_vec3f(f32 vec1[3], f32 vec2[3])
 {
     f32 diff[3];
 
@@ -167,7 +167,7 @@ f32 func_802560D0(f32 arg0[3], f32 arg1[3], f32 arg2[3]) {
     sp24[2] = arg1[2] - arg0[2];
     sp20 = gu_sqrtf(sp24[0]*sp24[0] + sp24[1]*sp24[1] + sp24[2]*sp24[2]);
     if (sp20 < 0.01) {
-        return ml_vec3f_distance(arg0, arg2);
+        return ml_distance_vec3f(arg0, arg2);
     }
 
     sp3C[0] = arg2[0] - arg0[0];
@@ -183,10 +183,10 @@ f32 func_802560D0(f32 arg0[3], f32 arg1[3], f32 arg2[3]) {
     sp4C[0] = arg0[0] + (sp24[0] * sp30);
     sp4C[1] = arg0[1] + (sp24[1] * sp30);
     sp4C[2] = arg0[2] + (sp24[2] * sp30);
-    return ml_vec3f_distance(sp4C, arg2);
+    return ml_distance_vec3f(sp4C, arg2);
 }
 
-f32 ml_vec3f_distance_squared(f32 vec1[3], f32 vec2[3])
+f32 ml_distanceSquared_vec3f(f32 vec1[3], f32 vec2[3])
 {
     f32 diff[3];
 
@@ -564,7 +564,7 @@ void func_8025727C(f32 x1, f32 y1, f32 z1, f32 x2, f32 y2, f32 z2, f32 *o1, f32 
 }
 
 //ml_init
-void func_80257424(void)
+void ml_init(void)
 {
     u16 i;
 
@@ -583,7 +583,7 @@ void func_80257424(void)
  * Deallocates the ushort table used for asin
  */
 //ml_free
-void func_80257594(void)
+void ml_free(void)
 {
     free(D_80276CB8);
     D_80276CB8 = NULL;
@@ -629,7 +629,7 @@ void func_802576F8(void)
 
 //ml_timer_update
 //decrement a counter and returns True if timer reaches 0
-bool func_8025773C(f32 *timer, f32 delta)
+bool ml_timer_update(f32 *timer, f32 delta)
 {
     if (*timer > 0)
     {
@@ -658,9 +658,9 @@ void func_8025778C(f32 dst[3], f32 arg1[3], f32 arg2[3][3]){
     func_802596AC(sp34, arg2[1], arg2[2], arg1);
     func_802596AC(sp28, arg2[2], arg2[0], arg1);
 
-    sp54 = ml_vec3f_distance_squared(sp40, arg1);
-    sp50 = ml_vec3f_distance_squared(sp34, arg1);
-    sp4C = ml_vec3f_distance_squared(sp28, arg1);
+    sp54 = ml_distanceSquared_vec3f(sp40, arg1);
+    sp50 = ml_distanceSquared_vec3f(sp34, arg1);
+    sp4C = ml_distanceSquared_vec3f(sp28, arg1);
 
     if(sp54 < sp50){
         if(sp4C < sp54){
@@ -688,7 +688,7 @@ void func_802578A4(f32 dst[3], f32 vec1[3], f32 vec2[3])
 
     ml_vec3f_diff_copy(tmp1, &vec2[3], vec2);
     ml_vec3f_diff_copy(tmp2, &vec2[6], vec2);
-    func_80255F74(tmp3, tmp1, tmp2);
+    ml_crossProduct_vec3f(tmp3, tmp1, tmp2);
     ml_vec3f_normalize(tmp3);
     func_80257918(dst, vec1, vec2, tmp3);
 }
@@ -712,19 +712,19 @@ bool func_802579B0(f32 vec[3], f32 x1, f32 z1, f32 x2, f32 z2)
 
 f32 func_80257A44(f32 val1, f32 val2)
 {
-    return func_802588B0(val1, val2) / val2;
+    return ml_remainder_f(val1, val2) / val2;
 }
 
 f32 func_80257A6C(f32 val1, f32 val2)
 {
-    f32 tmp = func_802588B0(val1, val2) / val2;
+    f32 tmp = ml_remainder_f(val1, val2) / val2;
 
     return (sinf(tmp * (2*BAD_PI)) + 1.0) / 2.0;
 }
 
 f32 func_80257AD4(f32 val1, f32 val2)
 {
-    return sinf((func_802588B0(val1, val2) / val2) * (2*BAD_PI));
+    return sinf((ml_remainder_f(val1, val2) / val2) * (2*BAD_PI));
 }
 
 f32 ml_map_f(f32 a, f32 b, f32 c, f32 d, f32 e)
@@ -768,8 +768,7 @@ f32 func_80257BFC(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4)
     return arg4;
 }
     
-//ml_f_interpolate
-f32 func_80257C48(f32 arg0, f32 arg1, f32 arg2)
+f32 ml_interpolate_f(f32 arg0, f32 arg1, f32 arg2)
 {
     return arg0 * (arg2 - arg1) + arg1;
 }
@@ -805,7 +804,7 @@ void func_80257DB0(f32 arg0[3], f32 arg1[3], f32 arg2[3])
     f32 tmp[3];
 
     ml_vec3f_scale_copy(arg0, arg1, -1);
-    dot_product = ml_vec3f_dot_product(arg0, arg2);
+    dot_product = ml_dotProduct_vec3f(arg0, arg2);
     ml_vec3f_scale_copy(tmp, arg2, 2 * dot_product);
     ml_vec3f_diff_copy(arg0, tmp, arg0);
 }
@@ -821,8 +820,7 @@ void func_80257E14(f32 v[3], f32 a)
     }
 }
 
-// int clamp
-s32 func_80257EA8(s32 val, s32 min, s32 max)
+s32 ml_clamp_w(s32 val, s32 min, s32 max)
 {
     if (val < min)
         return min;
@@ -833,16 +831,15 @@ s32 func_80257EA8(s32 val, s32 min, s32 max)
     return val;    
 }
 
-//ml_clamp_f
-f32 mlClamp_f(f32 arg0, f32 arg1, f32 arg2)
+f32 ml_clamp_f(f32 val, f32 min, f32 max)
 {
-    if (arg0 < arg1)
-        return arg1;
+    if (val < min)
+        return min;
 
-    if (arg0 > arg2)
-        return arg2;
+    if (val > max)
+        return max;
 
-    return arg0;
+    return val;
 }
 
 //ml_vec3f_yaw_between
@@ -948,14 +945,12 @@ int func_80258210(f32 x, f32 y, f32 *dst)
     return TRUE;
 }
 
-//ml_vec3f_is_zero
-int func_802582EC(f32 vec[3])
+int ml_isZero_vec3f(f32 vec[3])
 {
     return !(vec[0] != 0 || vec[1] != 0 || vec[2] != 0);
 }
 
-//ml_vec3f_is_not_zero
-bool func_80258368(f32 vec[3])
+bool ml_isNonzero_vec3f(f32 vec[3])
 {
     return vec[0] != 0 || vec[1] != 0 || vec[2] != 0;
 }
@@ -1062,19 +1057,19 @@ f32 mlNormalizeAngle(f32 angle)
     return angle;
 }
 
-f32 func_802588B0(f32 arg0, f32 arg1)
+f32 ml_remainder_f(f32 arg0, f32 arg1)
 {
     f32 val = arg0 / arg1;
 
     return (val - (s32)val) * arg1;
 }
 
-f32 max_f(f32 arg0, f32 arg1)
+f32 ml_max_f(f32 arg0, f32 arg1)
 {
     return arg0 > arg1 ? arg0 : arg1;
 }
 
-f32 min_f(f32 arg0, f32 arg1)
+f32 ml_min_f(f32 arg0, f32 arg1)
 {
     return arg0 < arg1 ? arg0 : arg1;
 }
@@ -1471,9 +1466,9 @@ void func_802596AC(f32 a0[3], f32 a1[3], f32 a2[3], f32 a3[3])
 
     func_80259554(a0, a1, a2, a3);
 
-    a = ml_vec3f_distance_squared(a1, a2);
-    b = ml_vec3f_distance_squared(a1, a0);
-    c = ml_vec3f_distance_squared(a2, a0);
+    a = ml_distanceSquared_vec3f(a1, a2);
+    b = ml_distanceSquared_vec3f(a1, a0);
+    c = ml_distanceSquared_vec3f(a2, a0);
 
     if (a < b || a < c)
     {

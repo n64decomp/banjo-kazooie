@@ -59,7 +59,7 @@ void func_80386444(ActorMarker *arg0){
         }// L803865D8
 
         //emmit sparkles
-        s0 = partEmitList_pushNew(30);
+        s0 = partEmitMgr_newEmitter(30);
         particleEmitter_setPosition(s0, orange_pad->position);
         particleEmitter_setModel(s0, 0x89f);
         func_802EFB70(s0, 0.09f, 0.19f);
@@ -75,12 +75,12 @@ void func_80386444(ActorMarker *arg0){
             0.0f, -1200.0f, 0.0f
         );
 
-        func_802EFE24(s0, 
+        particleEmitter_setAngularVelocityRange(s0, 
             -600.0f, -600.0f, -600.0f,
             600.0f, 600.0f, 600.0f
         );
         particleEmitter_setSpawnIntervalRange(s0, 0.0f, 0.01f);
-        func_802EFEC0(s0, 4.0f, 4.0f);
+        particleEmitter_setParticleLifeTimeRange(s0, 4.0f, 4.0f);
         func_802EF9F8(s0, 0.01f);
         func_802EFA18(s0, 3);
         func_802EFA20(s0, 1.0f, 1.3f);

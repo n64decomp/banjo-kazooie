@@ -399,7 +399,7 @@ void func_8024730C(void){
         } else {
             osViSetMode(&D_802759F8);
         }
-        func_80250FC0(); //stop controller motors
+        rumbleManager_80250FC0(); //stop controller motors
         do{ 
             osDpSetStatus(DPC_STATUS_FLUSH);
         }while(1);

@@ -39,19 +39,19 @@ f32 GV_D_80391A70[3];
 /* .code */
 void func_8038AB30(ParticleEmitter *pCtrl, f32 position[3], s32 cnt){
     if(map_get() != MAP_1A_GV_INSIDE_JINXY)
-        func_802EFFA8(pCtrl, D_803910BC);
+        particleEmitter_setRGB(pCtrl, D_803910BC);
     else
-        func_802EFFA8(pCtrl, D_803910C8);
+        particleEmitter_setRGB(pCtrl, D_803910C8);
     
-    func_802EF9E4(pCtrl, 0xBE);
+    particleEmitter_setAlpha(pCtrl, 0xBE);
     particleEmitter_setSprite(pCtrl, ASSET_700_SPRITE_DUST);
-    func_802EFA5C(pCtrl, 0.0f, 0.01f);
+    particleEmitter_setFade(pCtrl, 0.0f, 0.01f);
     particleEmitter_setStartingFrameRange(pCtrl, 0, 7);
     particleEmitter_setPosition(pCtrl, position);
 }
 
 void func_8038ABD8(f32 position[3], s32 cnt){
-    ParticleEmitter *pCtrl = partEmitList_pushNew(cnt);
+    ParticleEmitter *pCtrl = partEmitMgr_newEmitter(cnt);
     func_8038AB30(pCtrl, position, cnt);
     particleEmitter_setParticleSpawnPositionRange(pCtrl, 
         -40.0f, -5.0f, -40.0f,
@@ -64,12 +64,12 @@ void func_8038ABD8(f32 position[3], s32 cnt){
     func_802EFB70(pCtrl, 0.1f, 0.5f);
     func_802EFB84(pCtrl, 1.2f, 2.6f);
     particleEmitter_setSpawnIntervalRange(pCtrl, 0.0f, 0.01f);
-    func_802EFEC0(pCtrl, 0.5f, 1.4f);
+    particleEmitter_setParticleLifeTimeRange(pCtrl, 0.5f, 1.4f);
     particleEmitter_emitN(pCtrl, cnt);
 }
 
 void func_8038ACEC(f32 pos[3], s32 cnt){
-    ParticleEmitter *pCtrl = partEmitList_pushNew(cnt);
+    ParticleEmitter *pCtrl = partEmitMgr_newEmitter(cnt);
     func_8038AB30(pCtrl, pos, cnt);
     particleEmitter_setParticleSpawnPositionRange(pCtrl, 
         -80.0f, 20.0f, -80.0f,
@@ -82,23 +82,23 @@ void func_8038ACEC(f32 pos[3], s32 cnt){
     func_802EFB70(pCtrl, 1.0f, 2.6f);
     func_802EFB84(pCtrl, 3.0f, 5.5f);
     particleEmitter_setSpawnIntervalRange(pCtrl, 0.0f, 0.01f);
-    func_802EFEC0(pCtrl, 1.2f, 3.2f);
+    particleEmitter_setParticleLifeTimeRange(pCtrl, 1.2f, 3.2f);
     particleEmitter_emitN(pCtrl, cnt);
 }
 
 void func_8038ADFC(f32 pos[3], s32 cnt){
-    ParticleEmitter *pCtrl = partEmitList_pushNew(cnt);
+    ParticleEmitter *pCtrl = partEmitMgr_newEmitter(cnt);
     particleEmitter_setModel(pCtrl, 0x389);
     particleEmitter_setPosition(pCtrl, pos);
     particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_803910D4);
-    func_802EFE24(pCtrl, -500.0f, -500.0f, -500.0f, 500.0f, 500.0f, 500.0f);
+    particleEmitter_setAngularVelocityRange(pCtrl, -500.0f, -500.0f, -500.0f, 500.0f, 500.0f, 500.0f);
     func_802EF9F8(pCtrl, 0.6f);
     func_802EFA18(pCtrl, 2);
     func_802EFB70(pCtrl, 1.0f, 1.0f);
-    func_802EFA70(pCtrl, 2);
+    particleEmitter_setDrawMode(pCtrl, 2);
     particleEmitter_setSpawnIntervalRange(pCtrl, 0.0f, 0.01f);
-    func_802EFEC0(pCtrl, 4.0f, 6.0f);
-    func_802EFA5C(pCtrl, 0.0f, 0.05f);
+    particleEmitter_setParticleLifeTimeRange(pCtrl, 4.0f, 6.0f);
+    particleEmitter_setFade(pCtrl, 0.0f, 0.05f);
     particleEmitter_emitN(pCtrl, cnt);
 }
 

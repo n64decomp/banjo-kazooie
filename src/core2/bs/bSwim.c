@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-#include "core2/playerModel.h"
+#include "core2/ba/model.h"
 
 extern f32  func_8029494C(void);
 extern f32  func_8029B2D0(void);
@@ -40,8 +40,8 @@ void func_802A71D8(void) {
         func_80299234(250.0f, 20.0f);
     } else {
         roll_range = 35.0f;
-        yaw_range = func_80257C48(sp38, 3.1f, 2.4f);
-        func_80299234(90.0f, func_80257C48(sp38, 3.8f, 2.2f));
+        yaw_range = ml_interpolate_f(sp38, 3.1f, 2.4f);
+        func_80299234(90.0f, ml_interpolate_f(sp38, 3.8f, 2.2f));
     }
     roll_setIdeal(ml_map_f(sp30, -1.0f, 1.0f, -roll_range, roll_range));
     yaw_setIdeal(mlNormalizeAngle(yaw_getIdeal() + ml_map_f(sp30, -1.0f, 1.0f, yaw_range, -yaw_range)));
@@ -50,7 +50,7 @@ void func_802A71D8(void) {
 void func_802A7304() {
     f32 temp_f0;
 
-    pitch_setAngVel(func_80257C48(func_802A716C(), 70.0f, 30.0f), 0.9f);
+    pitch_setAngVel(ml_interpolate_f(func_802A716C(), 70.0f, 30.0f), 0.9f);
     temp_f0 = func_8029B2DC();
     if (temp_f0 < 0.0f) {
         pitch_setIdeal(ml_map_f(temp_f0, -1.0f, 0.0f, 275.0f, 360.0f));
@@ -77,7 +77,7 @@ void func_802A744C(void) {
     func_8029B324(1, 1.0f);
     func_8029E070(1);
     func_80294378(3);
-    playerModel_setYDisplacement(60.0f);
+    baModel_setYDisplacement(60.0f);
     func_80297B64(2.0f);
 }
 
@@ -107,7 +107,7 @@ void func_802A75B0(void) {
         func_8029B0C0();
         func_8029E070(0);
         func_80294378(1);
-        playerModel_setYDisplacement(0.0f);
+        baModel_setYDisplacement(0.0f);
     }
 }
 
@@ -189,7 +189,7 @@ void func_802A7838(void) {
     func_802A7304();
     if (D_8037D390 > 0.0f) {
         func_802A77D8();
-        D_8037D390 = max_f(D_8037D390 - 10.0f, 0.0f);
+        D_8037D390 = ml_max_f(D_8037D390 - 10.0f, 0.0f);
     }
     if (animctrl_isAt(anim_ctrl, 0.1f)) {
         func_8030EB88(SFX_0_BLOOP, 1.2f, 1.4f);
@@ -295,7 +295,7 @@ void func_802A7BD0(void) {
     func_8029797C(sp3C);
     func_802979AC(sp3C, func_80297A64());
     func_8029C7F4(1, 1, 2, 3);
-    func_8028D5DC();
+    baMarker_collisionOff();
     func_80292E48();
     func_802A744C();
 }
@@ -323,7 +323,7 @@ void func_802A7CA8(void) {
 
 void func_802A7D74(void) {
     func_80297CA8();
-    func_8028D5F4();
+    baMarker_collisionOn();
     func_80292EA4();
     func_802A75B0();
 }
@@ -400,7 +400,7 @@ void func_802A7F6C(void) {
     pitch_setIdeal(275.0f);
     roll_setIdeal(0.0f);
     D_8037D396 = 0;
-    func_8028D5DC();
+    baMarker_collisionOff();
     func_8029E3C0(0, 0.0f);
     func_8029E3C0(1, 0.0f);
     func_802906A4(3);
@@ -463,7 +463,7 @@ void func_802A82D4(void) {
     func_802906A4(1);
     func_80291548();
     func_8024BD08(0);
-    func_8028D5F4();
+    baMarker_collisionOn();
     if (bs_getNextState() != BS_5A_LOADZONE) {
         func_80346CE8();
     }
@@ -517,7 +517,7 @@ void func_802A846C(void) {
     func_8029CCC4();
     sp28 = func_8029494C();
     if (bs_getPrevState() == 0xF) {
-        sp28 = max_f(sp28, 600.0f);
+        sp28 = ml_max_f(sp28, 600.0f);
     }
     if (sp28 > 80.0f) {
         animctrl_reset(temp_s0);
@@ -553,7 +553,7 @@ void func_802A85EC(void) {
     particleEmitter_setParticleVelocityRange(sp34, -30.0f, -30.0f, -30.0f, 30.0f, 30.0f, 30.0f);
     particleEmitter_emitN(sp34, 1);
     if (D_8037D398 < 0.0f) {
-        D_8037D398 += max_f(mlAbsF(D_8037D398) * 0.1, 50.0f);
+        D_8037D398 += ml_max_f(mlAbsF(D_8037D398) * 0.1, 50.0f);
         player_setYVelocity(D_8037D398);
     }
     if (func_8028B2E8()) {

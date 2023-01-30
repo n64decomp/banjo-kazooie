@@ -103,7 +103,7 @@ void func_80361AE0(s32 arg0, s32 arg1, s32 arg2){
     tmp = this->marker->unk44;
     if(tmp){
         func_8034A174(tmp, arg1, sp20);
-        if(func_802582EC(sp20)){
+        if(ml_isZero_vec3f(sp20)){
             ml_vec3f_copy(sp20, this->position);
         }
     } else {//L80361B44

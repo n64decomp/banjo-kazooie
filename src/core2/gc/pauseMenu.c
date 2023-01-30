@@ -722,7 +722,7 @@ void gcpausemenu_init(void) {
     D_80383010.b_button_frame = D_80383010.unk3_0 = D_80383010.b_button_alpha = 0;
     D_80383010.page_cnt = gcpausemenu_initLargestPageIndex();
     D_80383010.sns_alpha = D_80383010.sns_visible = D_80383010.unk70_31 = D_80383010.unk70_30 = 0;
-    func_80250FC0();
+    rumbleManager_80250FC0();
     gcPauseMenu_setState(0);
 }
 

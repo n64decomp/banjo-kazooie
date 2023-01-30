@@ -56,7 +56,7 @@ void func_8038FF70(void){
             func_8038FDE0(1);
 
     if(D_803912C8 == 1)
-        if(func_8025773C(&D_803912CC,time_getDelta()))
+        if(ml_timer_update(&D_803912CC,time_getDelta()))
             func_8038FDE0(2);
 
     if(D_803912C8 == 2)

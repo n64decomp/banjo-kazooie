@@ -289,7 +289,7 @@ void func_80322D38(void){
         && func_803203FC(2)
         && func_803203FC(7)
     ){
-        func_8029A95C(TRANSFORM_5_CROC);
+        player_setTransformation(TRANSFORM_5_CROC);
     }
 }
 
@@ -370,7 +370,7 @@ void func_80322FE4(void){
     int i;
     s32 overlay_id;
     func_80356714();
-    overlay_id = get_loaded_overlay_id();
+    overlay_id = overlayManagergetLoadedId();
     D_80383350.unk4 = D_80383350.unk8 = D_80383350.unkC = NULL;
     D_80383350.unk10 = NULL;
     D_80383350.unk14 = NULL;

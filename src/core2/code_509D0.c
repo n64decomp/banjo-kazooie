@@ -60,7 +60,7 @@ struct31s D_80367C34 = {{0.2f, 0.4f}, {0.1f, 0.1f}, {0.0f, 0.01f}, {3.0f, 3.5f},
 void func_802D7960(f32 position[3], enum asset_e sprite_id) {
     ParticleEmitter *p_emitter;
 
-    p_emitter = partEmitList_pushNew(1);
+    p_emitter = partEmitMgr_newEmitter(1);
     particleEmitter_setSprite(p_emitter, sprite_id);
     particleEmitter_setStartingFrameRange(p_emitter, 0, 7);
     particleEmitter_setPosition(p_emitter, position);
@@ -73,16 +73,16 @@ void func_802D7960(f32 position[3], enum asset_e sprite_id) {
 void func_802D7A40(f32 position[3], enum asset_e sprite_id) {
     ParticleEmitter *p_emitter;
 
-    p_emitter = partEmitList_pushNew(8);
+    p_emitter = partEmitMgr_newEmitter(8);
     particleEmitter_setSprite(p_emitter, sprite_id);
     particleEmitter_setPosition(p_emitter, position);
     particleEmitter_setParticleAccelerationRange(p_emitter, 0.0f, -250.0f, 0.0f, 0.0f, -250.0f, 0.0f);
     particleEmitter_setParticleVelocityRange(p_emitter, -100.0f, 200.0f, -100.0f, 100.0f, 350.0f, 100.0f);
-    func_802EFE24(p_emitter, 0.0f, 0.0f, 200.0f, 0.0f, 0.0f, 240.0f);
+    particleEmitter_setAngularVelocityRange(p_emitter, 0.0f, 0.0f, 200.0f, 0.0f, 0.0f, 240.0f);
     func_802EFB70(p_emitter, 0.47f, 0.47f);
     func_802EFB84(p_emitter, 0.03f, 0.03f);
-    func_802EFA5C(p_emitter, 0.4f, 0.8f);
-    func_802EFEC0(p_emitter, 0.9f, 0.9f);
+    particleEmitter_setFade(p_emitter, 0.4f, 0.8f);
+    particleEmitter_setParticleLifeTimeRange(p_emitter, 0.9f, 0.9f);
     particleEmitter_emitN(p_emitter, 8);
 }
 

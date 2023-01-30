@@ -64,7 +64,7 @@ void bsthrow_end(void){
 void bsthrow_interrupt(void){
     if(bs_getInterruptType() == BS_INTR_12){
         if(D_8037D580 == 0){
-            func_8028DE6C(carriedObject_getActorID());
+            func_8028DE6C(baMarker_getCarriedObjectActorId());
         }
         else{
             func_8029A86C(1);

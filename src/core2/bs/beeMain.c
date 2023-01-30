@@ -15,7 +15,7 @@ f32 func_80289F70(void);
 void func_8028A3B8(f32, f32);
 f32 func_8029B2E8(void);
 f32 func_8029B33C(void);
-f32 func_80257C48(f32, f32, f32);
+f32 ml_interpolate_f(f32, f32, f32);
 f32 func_8029B30C();
 
 /* .data */
@@ -54,7 +54,7 @@ void func_802A1020(void){
         func_80297970(0.0f);
     }
     else{
-        func_80297970(func_80257C48(sp1c, D_803649E0, D_803649E4));
+        func_80297970(ml_interpolate_f(sp1c, D_803649E0, D_803649E4));
     }
 }
 
@@ -331,7 +331,7 @@ void func_802A18E8(s32 arg0){
     func_8029C7F4(1, 1, 2, 3);
     player_setYVelocity(510.0f);
     gravity_set(-1200.0f);
-    func_8028D5DC();
+    baMarker_collisionOff();
     func_80292E48();
     D_8037D2D4 = 0;
 }
@@ -364,7 +364,7 @@ void func_802A1A50(void){
 void func_802A1B28(void){
     func_80297CA8();
     gravity_reset();
-    func_8028D5F4();
+    baMarker_collisionOn();
     func_80292EA4();
     func_802A02C0();
 }
@@ -422,7 +422,7 @@ void bsbeemain_die_init(void){
     player_setYVelocity(420.0f);
     gravity_set(-1200.0f);
     pitch_setAngVel(1000.0f, 12.0f);
-    func_8028D5DC();
+    baMarker_collisionOff();
     func_80292E48();
     func_802914CC(0xd);
     func_802BF2C0(30.0f);
@@ -458,7 +458,7 @@ void func_802A1DD8(void){
             break;
         case 3:
             if(0.0f < D_8037D2D0){
-                D_8037D2D0 = max_f(0.0f, D_8037D2D0 - 10.0f);
+                D_8037D2D0 = ml_max_f(0.0f, D_8037D2D0 - 10.0f);
             }
             break;
     }//L802A1EFC
@@ -507,7 +507,7 @@ void func_802A2014(void){
 }
 
 void func_802A2054(void){
-    func_8028D5F4();
+    baMarker_collisionOn();
     func_8025A2FC(-1, 0xFA0);
     func_8024BD08(1);
     func_80291548();
@@ -524,7 +524,7 @@ void func_802A2098(void){
     func_8025A2FC(0, 0xFA0);
     func_8025A6EC(COMUSIC_42_NOTEDOOR_OPENING_FANFARE, -1);
     func_8029151C(0xC);
-    func_8028D5DC();
+    baMarker_collisionOff();
     func_8029E3C0(0, 3.0f);
 }
 

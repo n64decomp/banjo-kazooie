@@ -1,6 +1,8 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "core2/particle.h"
+
 
 /* .data */
 s16 D_80368930[3] = {
@@ -22,7 +24,7 @@ void func_802EE5E8(ParticleEmitter *this){
 }
 
 bool func_802EE5F0(s32 arg0){
-    return (arg0 < 3) ? !func_802EF648(func_802F0EF0(D_80380910[arg0])) : FALSE;
+    return (arg0 < 3) ? !particleEmitter_isDone(func_802F0EF0(D_80380910[arg0])) : FALSE;
 }
 
 void func_802EE63C(void) {
@@ -52,7 +54,7 @@ void func_802EE6CC(f32 position[3], f32 velocity[3], s32 color[4], s32 arg3, f32
     sp3C = 0x28;
     p_ctrl = func_802F0EF0(D_80380910[arg8]);
     particleEmitter_setSprite(p_ctrl, D_80368930[arg8]);
-    func_802EFA5C(p_ctrl, 0.075f, 0.4f);
+    particleEmitter_setFade(p_ctrl, 0.075f, 0.4f);
     particleEmitter_setPosition(p_ctrl, position);
     particleEmitter_setSpawnIntervalRange(p_ctrl, 0.0f, 0.0f);
     func_802EFA78(p_ctrl, 1);
@@ -67,14 +69,14 @@ void func_802EE6CC(f32 position[3], f32 velocity[3], s32 color[4], s32 arg3, f32
     }
     particleEmitter_setParticleVelocityRange(p_ctrl, sp40[0], sp40[1], sp40[2], sp40[0], sp40[1], sp40[2]);
     if (color != NULL) {
-        func_802EFFA8(p_ctrl, color);
-        func_802EF9E4(p_ctrl, color[3]);
+        particleEmitter_setRGB(p_ctrl, color);
+        particleEmitter_setAlpha(p_ctrl, color[3]);
     }
     if (arg3 == 0) {
-        sp3C = 0x38;
+        sp3C = PART_EMIT_NO_OPA | PART_EMIT_NO_DEPTH | PART_EMIT_NO_LOOP;
     }
-    func_802EFA70(p_ctrl, sp3C);
-    func_802EFEC0(p_ctrl, arg4, arg4);
+    particleEmitter_setDrawMode(p_ctrl, sp3C);
+    particleEmitter_setParticleLifeTimeRange(p_ctrl, arg4, arg4);
     func_802EFB70(p_ctrl, arg6 / 175.0, arg6 / 175.0);
     func_802EFB84(p_ctrl, (arg6 + arg7) / 175.0, (arg6 + arg7) / 175.0);
     if (arg8 == 0) {

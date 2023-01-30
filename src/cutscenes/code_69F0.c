@@ -51,26 +51,26 @@ struct42s D_8038E85C ={
 /* .code */
 void func_8038CDE0(ParticleEmitter *pCtrl){
     particleEmitter_setSprite(pCtrl, ASSET_45A_SPRITE_GREEN_GLOW);
-    func_802EFFA8(pCtrl, D_8038E7C4);
-    func_802EF9E4(pCtrl, 0xff);
-    func_802EFE24(pCtrl, -600.0f, -600.0f,-600.0f, 600.0f, 600.0f, 600.0f);
+    particleEmitter_setRGB(pCtrl, D_8038E7C4);
+    particleEmitter_setAlpha(pCtrl, 0xff);
+    particleEmitter_setAngularVelocityRange(pCtrl, -600.0f, -600.0f,-600.0f, 600.0f, 600.0f, 600.0f);
     particleEmitter_setPositionAndVelocityRanges(pCtrl, &D_8038E7F8);
     func_802EFB98(pCtrl, &D_8038E7D0);
     func_802EFA78(pCtrl, 1);
-    func_802EFA70(pCtrl, 4);
-    func_802F0D54(pCtrl);
+    particleEmitter_setDrawMode(pCtrl, 4);
+    particleEmitter_manualFree(pCtrl);
 }
 
 void func_8038CE98(ParticleEmitter *pCtrl){
     particleEmitter_setSprite(pCtrl, ASSET_713_SPRITE_SPARKLE_YELLOW);
-    func_802EFFA8(pCtrl, D_8038E828);
-    func_802EF9E4(pCtrl, 0xff);
-    func_802EFE24(pCtrl, -600.0f, -600.0f,-600.0f, 600.0f, 600.0f, 600.0f);
+    particleEmitter_setRGB(pCtrl, D_8038E828);
+    particleEmitter_setAlpha(pCtrl, 0xff);
+    particleEmitter_setAngularVelocityRange(pCtrl, -600.0f, -600.0f,-600.0f, 600.0f, 600.0f, 600.0f);
     particleEmitter_setPositionAndVelocityRanges(pCtrl, &D_8038E85C);
     func_802EFB98(pCtrl, &D_8038E834);
     func_802EFA78(pCtrl, 1);
-    func_802EFA70(pCtrl, 4);
-    func_802F0D54(pCtrl);
+    particleEmitter_setDrawMode(pCtrl, 4);
+    particleEmitter_manualFree(pCtrl);
 }
 
 extern void func_8038CF50(Actor *this){
@@ -80,8 +80,8 @@ extern void func_8038CF50(Actor *this){
 
     if(!this->unk16C_4){
         this->unk16C_4 = TRUE;
-        local->unk0 = partEmitList_pushNew(6);
-        local->unk4 = partEmitList_pushNew(6);
+        local->unk0 = partEmitMgr_newEmitter(6);
+        local->unk4 = partEmitMgr_newEmitter(6);
 
         func_8038CDE0(local->unk0);
         func_8038CE98(local->unk4);

@@ -186,7 +186,7 @@ void spawnQueue_malloc(void){
 void spawnQueue_reset(void){
     s32 loaded_asm_file;
 
-    loaded_asm_file = get_loaded_overlay_id();
+    loaded_asm_file = overlayManagergetLoadedId();
     spawnQueue_lock();
     spawnQueueLength = 0;
     chmumbo_func_802D1724();

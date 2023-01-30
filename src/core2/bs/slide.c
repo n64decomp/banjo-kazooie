@@ -84,7 +84,7 @@ void bsslide_update(void){
     f32 sp28;
 
     func_80299AAC();
-    D_8037D528 = max_f(D_8037D528 - time_getDelta(), 0.0f);
+    D_8037D528 = ml_max_f(D_8037D528 - time_getDelta(), 0.0f);
     if(player_isSliding()){
         func_80294480(sp30);
         if(func_80258108(sp30, &sp2C, &sp28)){

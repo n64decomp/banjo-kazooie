@@ -70,7 +70,7 @@ void func_802ABF54(void){
         func_80297970(0.0f);
     }
     else{
-        func_80297970(func_80257C48(sp1C, D_80364B00, func_802ABDC0()));
+        func_80297970(ml_interpolate_f(sp1C, D_80364B00, func_802ABDC0()));
     }
 }
 
@@ -353,7 +353,7 @@ static void __bscroc_recoil_init(s32 damage){
     func_8029C7F4(1,1,2,3);
     player_setYVelocity(510.0f);
     gravity_set(-1200.0f);
-    func_8028D5DC();
+    baMarker_collisionOff();
     func_80292E48();
     D_8037D3EC = 0;
 }
@@ -383,7 +383,7 @@ static void __bscroc_recoil_update(void){
 void __bscroc_recoil_end(void){
     func_80297CA8();
     gravity_reset();
-    func_8028D5F4();
+    baMarker_collisionOn();
     func_80292EA4();
     func_802ABFBC();
 }
@@ -439,7 +439,7 @@ void bscroc_die_init(void){
     player_setYVelocity(420.0f);
     gravity_set(-1200.0f);
     pitch_setAngVel(1000.0f, 12.0f);
-    func_8028D5DC();
+    baMarker_collisionOff();
     func_80292E48();
     func_802914CC(0xd);
     func_802BF2C0(30.0f);
@@ -477,7 +477,7 @@ void bscroc_die_update(void){
             break;
         case 3:
             if(0.0f < D_8037D3E0)
-                D_8037D3E0 = max_f(0.0f, D_8037D3E0 - 10.0f);
+                D_8037D3E0 = ml_max_f(0.0f, D_8037D3E0 - 10.0f);
             break;
     }//L802ACECC
 
@@ -612,7 +612,7 @@ void func_802AD318(void){
 void bscroc_eat_good_init(void){
     func_8028A010(0x122, 0.25f);
     func_8029C7F4(1,1,1,2);
-    playerModel_setPostDraw(func_802AD2A8);
+    baModel_setPostDraw(func_802AD2A8);
     D_8037D3E8 = assetcache_get(func_80294974());
     D_8037D3F0 = 1.0f;
     D_8037D3F5 = 0;
@@ -628,7 +628,7 @@ void bscroc_eat_good_update(void){
     AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
 
     func_802ABE70();
-    D_8037D3F0 = max_f(0.1f, D_8037D3F0 - 0.05);
+    D_8037D3F0 = ml_max_f(0.1f, D_8037D3F0 - 0.05);
     func_80299628(0);
     func_802ABF54();
     if(animctrl_isAt(aCtrl, 0.99f)){
@@ -661,7 +661,7 @@ void bscroc_eat_good_update(void){
 void bscroc_eat_good_end(void){
     D_8037D3F5 = 0;
     assetcache_release(D_8037D3E8);
-    playerModel_setPostDraw(0);
+    baModel_setPostDraw(0);
     func_802ABFBC();
 }
 

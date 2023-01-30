@@ -101,16 +101,16 @@ void func_802C71F0(Actor *actor){
         case 0x8E:
         case 0xAC:
         case 0xB8://L802C7254
-            func_8033A45C(0x1, (s32)func_80257C48(local->unk0[0], 1.0f, 6.0f));
-            func_8033A45C(0x2, (s32)func_80257C48(local->unk0[1], 1.0f, 6.0f));
+            func_8033A45C(0x1, (s32)ml_interpolate_f(local->unk0[0], 1.0f, 6.0f));
+            func_8033A45C(0x2, (s32)ml_interpolate_f(local->unk0[1], 1.0f, 6.0f));
             break;
 
         case 0x195:
         case 0x196:
         case 0x197://L802C72B0
         case 0x2FB://L802C72B4
-            func_8033A45C(0x1C, (s32)func_80257C48(local->unk0[0], 1.0f, 8.0f));
-            func_8033A45C(0x1D, (s32)func_80257C48(local->unk0[1], 1.0f, 8.0f));
+            func_8033A45C(0x1C, (s32)ml_interpolate_f(local->unk0[0], 1.0f, 8.0f));
+            func_8033A45C(0x1D, (s32)ml_interpolate_f(local->unk0[1], 1.0f, 8.0f));
             break;
     }
 }

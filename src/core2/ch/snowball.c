@@ -47,11 +47,11 @@ void __chSnowball_spawnPieces(f32 position[3]) {
     ParticleEmitter *pCtrl;
 
      
-    pCtrl = partEmitList_pushNew(8);
+    pCtrl = partEmitMgr_newEmitter(8);
     particleEmitter_setModel(pCtrl, ASSET_37A_MODEL_TINY_SNOWBALL);
     particleEmitter_setPosition(pCtrl, position);
     particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_8036875C);
-    func_802EFE24(pCtrl, -300.0f, -300.0f, -300.0f, 300.0f, 300.0f, 300.0f);
+    particleEmitter_setAngularVelocityRange(pCtrl, -300.0f, -300.0f, -300.0f, 300.0f, 300.0f, 300.0f);
     func_802EFB98(pCtrl, &D_80368734);
     particleEmitter_emitN(pCtrl, 8);
 }

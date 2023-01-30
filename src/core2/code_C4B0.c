@@ -85,7 +85,7 @@ void func_8029350C(f32 *arg0) {
     u8 temp_v0;
 
     func_8031C618(D_8037C200, arg0);
-    func_8031C638(D_8037C200, func_8028D694());
+    func_8031C638(D_8037C200, baMarker_8028D694());
     func_8031C44C(D_8037C200);
     sp38 = func_8031C5D4(D_8037C200);
     func_8031C5AC(D_8037C200, sp3C);
@@ -128,7 +128,7 @@ void func_80293668(void) {
     u32 temp_s7;
     s32 temp_v0;
 
-    temp_v0 = func_8028D694();
+    temp_v0 = baMarker_8028D694();
     func_80244FC0(D_8037C228, sp390, D_8037C1F8[1], D_8037C1F8[0], 1, temp_v0 | 0x1E0000);
     temp_s7 = temp_v0 | 0x1E0000;
     for(i = 0; i < 5; i++){
@@ -224,7 +224,7 @@ void func_80293668(void) {
                 sp380[2] = sp380[2] + sp3AC[2];
                 sp90[i].unk0[0] = sp380[0];
                 sp90[i].unk0[2] = sp380[2];
-            } else if (func_80258368(sp90[i].unk1C)) {
+            } else if (ml_isNonzero_vec3f(sp90[i].unk1C)) {
                 func_802450DC(sp90[i].unkC, sp90[i].unk0, sp90[i].unk34, sp90[i].unk28, sp90[i].unk1C);
             }
 
@@ -286,10 +286,10 @@ void func_80293E88(void){
 //__clamp to_range_within_point
 f32 func_80293EAC(f32 arg0, f32 arg1, f32 arg2){
      if(arg1 < arg0){
-          arg1 = min_f(arg0, arg1+arg2);
+          arg1 = ml_min_f(arg0, arg1+arg2);
      }
      else if(arg0 < arg1){
-          arg1 = max_f(arg0, arg1-arg2);
+          arg1 = ml_max_f(arg0, arg1-arg2);
      }
      return arg1;
 }

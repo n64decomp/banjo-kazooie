@@ -49,13 +49,13 @@ ParticleEmitter *func_802F4274(f32 arg0[3]) {
         func_802EFAB0(temp_v0, sp20, sp2C[1]);
     }
     particleEmitter_setSprite(temp_v0, 0x42A);
-    func_802EF9E4(temp_v0, 0xFF);
-    func_802EFA5C(temp_v0, 0, 0.78f);
+    particleEmitter_setAlpha(temp_v0, 0xFF);
+    particleEmitter_setFade(temp_v0, 0, 0.78f);
     particleEmitter_setStartingFrameRange(temp_v0, 0, 0);
     particleEmitter_setParticleFramerateRange(temp_v0, 25.7142868f, 25.7142868f);
-    func_802EFEC0(temp_v0, 0.7f, 0.7f);
+    particleEmitter_setParticleLifeTimeRange(temp_v0, 0.7f, 0.7f);
     particleEmitter_setPosition(temp_v0, sp2C);
-    func_802EFFA8(temp_v0, D_80368DE0);
+    particleEmitter_setRGB(temp_v0, D_80368DE0);
     func_802EFB70(temp_v0, 0.8, 0.8);
     func_802EFB84(temp_v0, 0.8, 0.8);
     return temp_v0;

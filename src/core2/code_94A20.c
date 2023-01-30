@@ -169,7 +169,7 @@ void func_8031BF08(struct0 *arg0) {
     sp30 = 0;
     ml_vec3f_copy(&sp38, arg0->unk1C);
     sp64 = arg0->posZ;
-    temp_v0 = func_8031BBA0(sp38, max_f(arg0->unk28[1] - arg0->unk1C[1], 150.0f) + 10.0f, -5.0f, 0xF800FF0F, &sp48);
+    temp_v0 = func_8031BBA0(sp38, ml_max_f(arg0->unk28[1] - arg0->unk1C[1], 150.0f) + 10.0f, -5.0f, 0xF800FF0F, &sp48);
     if (temp_v0 != NULL) {
         func_8031BE98(arg0, sp48.unkC, temp_v0);
         sp30 = 1;

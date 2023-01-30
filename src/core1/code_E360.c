@@ -145,8 +145,8 @@ void func_8024BFD8(s32 arg0){
     static s32 D_80280E90;
     
     osSetThreadPri(NULL, 0x7f);
-    func_802408EC(0x1E);
-    func_80240874();
+    defragManager_setPriority(0x1E);
+    defragManager_80240874();
     if(arg0){
         osRecvMesg(&D_802807B0, NULL, OS_MESG_BLOCK);
     }
@@ -167,9 +167,9 @@ void func_8024BFD8(s32 arg0){
     }//L8024C178
     D_80280724 = D_802808D8;
     D_802808D8 = 0;
-    func_802408B0();
+    defragManager_802408B0();
     osSetThreadPri(NULL, 0x14);
-    func_802408EC(0xA);
+    defragManager_setPriority(0xA);
 }
 
 void func_8024C1B4(void){

@@ -346,7 +346,7 @@ s32 func_802EB8A0(BKModelUnk14List *arg0, f32 *position, f32 *rotation, f32 scal
         sp44[1] = sp5C[1] - sp68[1];
         sp44[2] = sp5C[2] - sp68[2];
         temp_f0 = gu_sqrtf(sp44[0]*sp44[0] + sp44[1]*sp44[1] + sp44[2]*sp44[2]);
-        if ((arg7 + temp_f0 >= ml_vec3f_distance(sp68, sp74))) {
+        if ((arg7 + temp_f0 >= ml_distance_vec3f(sp68, sp74))) {
             return (s32) var_s0->unk8;
         }
     }
@@ -525,7 +525,7 @@ s32 func_802EC238(BKModelUnk14List *arg0, f32 arg1[3], f32 arg2[3], f32 arg3, f3
             sp40[1] = var_s0->unk2[1];
             sp40[2] = var_s0->unk2[2];
             arg3 = var_s0->unk0;
-            if (ml_vec3f_distance(sp40, sp54) < arg3)
+            if (ml_distance_vec3f(sp40, sp54) < arg3)
                 return var_s0->unk8;
             if (!var_s0->unk0){
                 

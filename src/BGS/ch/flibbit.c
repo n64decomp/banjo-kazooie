@@ -343,7 +343,7 @@ void chflibbit_update(Actor *this){
     spB0[2] = player_position[2] - this->position[2];
     player_distance = gu_sqrtf(spB0[0]*spB0[0] + spB0[1]*spB0[1] + spB0[2]*spB0[2]);
 
-    if(func_8025773C(&local->unk24, spA4)){
+    if(ml_timer_update(&local->unk24, spA4)){
         func_8030E878(0x3f0, randf2(0.9f, 1.1f), randi2(12000, 19000), this->position, 500.0f, 2500.0f);
         local->unk24 = randf2(1.0f, 6.0f);
     }//L80387274
@@ -375,7 +375,7 @@ void chflibbit_update(Actor *this){
             sp84[0]  = (f32)local->unkE[0];
             sp84[1]  = (f32)local->unkE[1];
             sp84[2]  = (f32)local->unkE[2];
-            if(ml_vec3f_distance(this->position, sp84) < 30.0f){
+            if(ml_distance_vec3f(this->position, sp84) < 30.0f){
                 func_80386AEC(this, 1);
             }
             else{
@@ -421,7 +421,7 @@ void chflibbit_update(Actor *this){
 
 
     if(this->state == 4 || this->state == 5){
-        if(func_8025773C(&local->unk18, spA4)){
+        if(ml_timer_update(&local->unk18, spA4)){
             func_80386AEC(this, 3);
         }
     }

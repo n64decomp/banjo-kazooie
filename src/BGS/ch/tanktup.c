@@ -79,11 +79,11 @@ void func_8038F610(Actor *this) {
     f32 sp24[3];
 
     func_8034A174(this->marker->unk44, 8, sp24);
-    if (func_80258368(sp24) != 0) {
+    if (ml_isNonzero_vec3f(sp24) != 0) {
         func_8028E668(sp24, 200.0f, -600.0f, 300.0f);
     }
     func_8034A174(this->marker->unk44, 7, sp24);
-    if (func_80258368(sp24) != 0) {
+    if (ml_isNonzero_vec3f(sp24) != 0) {
         func_8028E668(sp24, 200.0f, -600.0f, 200.0f);
     }
 }
@@ -140,7 +140,7 @@ void func_8038F6A4(Actor *this)
       player_getPosition(sp48);
       if (!this->unk138_24)
     {
-      if ((((ml_vec3f_distance(local->unk18, sp48) < 250.0f) && (ml_vec3f_distance(local->unk18, sp48) > 80.0f)) && (!func_8028ECAC())) && (player_getTransformation() == TRANSFORM_1_BANJO))
+      if ((((ml_distance_vec3f(local->unk18, sp48) < 250.0f) && (ml_distance_vec3f(local->unk18, sp48) > 80.0f)) && (!func_8028ECAC())) && (player_getTransformation() == TRANSFORM_1_BANJO))
       {
         func_80311480(0xC7E, 0, 0, 0, 0, 0);
         this->unk138_24 = 1;

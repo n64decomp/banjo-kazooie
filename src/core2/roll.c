@@ -20,7 +20,7 @@ static void __roll_update(f32 limit, f32 step_percent){
         }
 
         val = diff * step_percent * tick;
-        val = (val < 0) ? mlClamp_f(val, -max, -0.1f) : mlClamp_f(val, 0.1f, max);
+        val = (val < 0) ? ml_clamp_f(val, -max, -0.1f) : ml_clamp_f(val, 0.1f, max);
 
         D_8037C680 =( mlAbsF(val) <= mlAbsF(diff)) ?  D_8037C680 + val : D_8037C684;
 

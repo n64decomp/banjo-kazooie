@@ -20,7 +20,7 @@ void _bsbflip_802A2D60(void){
     if(!func_8029B300())
         func_80297970(0.0f);
     else
-        func_80297970(func_80257C48(sp1C, D_80364A2C, D_80364A30));
+        func_80297970(ml_interpolate_f(sp1C, D_80364A2C, D_80364A30));
 }
 
 void _bsbflip_802A2DC0(void){

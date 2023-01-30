@@ -41,12 +41,12 @@ s32 D_8036889C[] = {
 
 /* .code */
 void func_802EDF40(f32 pos[3], s32 arg1, s32 cnt, f32 arg3, f32 arg4, f32 arg5, f32 arg6[3], f32 arg7[3]){
-    ParticleEmitter *pCtrl = partEmitList_pushNew(cnt);
+    ParticleEmitter *pCtrl = partEmitMgr_newEmitter(cnt);
     f32 tmp_f0;
     if(arg1 < 0x3e7){
         particleEmitter_setModel(pCtrl, D_80368860[arg1]);
         func_802EFB70(pCtrl, arg3 * 0.6, arg3 * 1.1);
-        func_802EFE24(pCtrl, 400.0f, 400.0f, 400.0f, 800.0f, 800.0f, 800.0f);
+        particleEmitter_setAngularVelocityRange(pCtrl, 400.0f, 400.0f, 400.0f, 800.0f, 800.0f, 800.0f);
     }
     else{//L802EE008
         particleEmitter_setSprite(pCtrl, D_8036889C[arg1 - 0x3e8]);
@@ -58,7 +58,7 @@ void func_802EDF40(f32 pos[3], s32 arg1, s32 cnt, f32 arg3, f32 arg4, f32 arg5, 
         }
         func_802EFB70(pCtrl, arg3, arg3);
         func_802EFB84(pCtrl, arg3, arg3);
-        func_802EFE24(pCtrl, 0, 0, 0, 0, 0, 0);
+        particleEmitter_setAngularVelocityRange(pCtrl, 0, 0, 0, 0, 0, 0);
         func_802EFF9C(pCtrl, 0);
     }//L802EE0B4
     particleEmitter_setParticleAccelerationRange(pCtrl, 
@@ -72,7 +72,7 @@ void func_802EDF40(f32 pos[3], s32 arg1, s32 cnt, f32 arg3, f32 arg4, f32 arg5, 
         10.0f, 10.0f, 10.0f
     );
     particleEmitter_setSpawnIntervalRange(pCtrl, 0, 0.01f);
-    func_802EFEC0(pCtrl, arg5, arg5);
+    particleEmitter_setParticleLifeTimeRange(pCtrl, arg5, arg5);
     if(arg7){
         tmp_f0 = arg7[0]*arg4;
         particleEmitter_setParticleVelocityRange(pCtrl,
@@ -87,8 +87,8 @@ void func_802EDF40(f32 pos[3], s32 arg1, s32 cnt, f32 arg3, f32 arg4, f32 arg5, 
         );
     }
     if(arg6){
-        func_802EFFA8(pCtrl, arg6);
-        func_802EF9E4(pCtrl, reinterpret_cast(s32, arg6[3]));
+        particleEmitter_setRGB(pCtrl, arg6);
+        particleEmitter_setAlpha(pCtrl, reinterpret_cast(s32, arg6[3]));
     }
 
     particleEmitter_setPosition(pCtrl, pos);

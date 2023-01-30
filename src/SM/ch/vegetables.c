@@ -138,7 +138,7 @@ struct43s D_8038AF0C ={
 /* .code */
 void func_80387910(ParticleEmitter *arg0, f32 *arg1, s32 arg2){
     s32 sp24[3] = D_8038ADA0;
-    func_802EFFA8(arg0, sp24);
+    particleEmitter_setRGB(arg0, sp24);
     particleEmitter_setSprite(arg0, ASSET_700_SPRITE_DUST);
     particleEmitter_setStartingFrameRange(arg0, 0, 7);
     particleEmitter_setPosition(arg0, arg1);
@@ -152,8 +152,8 @@ void func_803879B8(ParticleEmitter *arg0, f32 *arg1, s32 arg2, enum asset_e mode
     func_802EFA18(arg0, 2);
     particleEmitter_setModel(arg0, model_id);
     particleEmitter_setPosition(arg0, arg1);
-    func_802EFA70(arg0, 2);
-    func_802EFE24(arg0, -300.0f, -300.0f, -300.0f, 300.0f, 300.0f, 300.0f);
+    particleEmitter_setDrawMode(arg0, 2);
+    particleEmitter_setAngularVelocityRange(arg0, -300.0f, -300.0f, -300.0f, 300.0f, 300.0f, 300.0f);
     func_802EFB98(arg0, &D_8038AE04);
     particleEmitter_setPositionVelocityAndAccelerationRanges(arg0, &D_8038AE2C);
     particleEmitter_emitN(arg0, arg2);
@@ -164,8 +164,8 @@ void func_80387A80(ParticleEmitter *arg0, f32 *arg1, s32 arg2, enum asset_e mode
     func_802EFA18(arg0, 3);
     particleEmitter_setModel(arg0, model_id);
     particleEmitter_setPosition(arg0, arg1);
-    func_802EFA70(arg0, 2);
-    func_802EFE24(arg0, -300.0f, -300.0f, -300.0f, 300.0f, 300.0f, 300.0f);
+    particleEmitter_setDrawMode(arg0, 2);
+    particleEmitter_setAngularVelocityRange(arg0, -300.0f, -300.0f, -300.0f, 300.0f, 300.0f, 300.0f);
     func_802EFB98(arg0, &D_8038AE74);
     particleEmitter_setPositionVelocityAndAccelerationRanges(arg0, &D_8038AE9C);
     particleEmitter_emitN(arg0, arg2);
@@ -176,9 +176,9 @@ void func_80387B48(ParticleEmitter *arg0, f32 arg1[3], s32 arg2, enum asset_e mo
     func_802EFA18(arg0, 4);
     particleEmitter_setModel(arg0, model_id);
     particleEmitter_setPosition(arg0, arg1);
-    func_802EFA70(arg0, 2);
-    func_802EFE24(arg0, 150.0f, -300.0f, -300.0f, 300.0f, 300.0f, -150.0f);
-    func_802EF9EC(arg0, 0x1f, 0x1f40);
+    particleEmitter_setDrawMode(arg0, 2);
+    particleEmitter_setAngularVelocityRange(arg0, 150.0f, -300.0f, -300.0f, 300.0f, 300.0f, -150.0f);
+    particleEmitter_setSfx(arg0, SFX_1F_HITTING_AN_ENEMY_3, 8000);
     func_802EFB98(arg0, &D_8038AEE4);
     particleEmitter_setPositionVelocityAndAccelerationRanges(arg0, &D_8038AF0C);
     particleEmitter_emitN(arg0, arg2);
@@ -194,11 +194,11 @@ void func_80387C28(Actor * this){
         sp30[1] = this->position_y;
         sp30[2] = this->position_z;
         sp30[1] += 50.0f;
-        func_80387B48(partEmitList_pushNew(0xC), sp30, 0xC, 0x4F4);
-        func_803879B8(partEmitList_pushNew(4), sp30, 0x4, 0x4F2);
-        func_803879B8(partEmitList_pushNew(4), sp30, 0x4, 0x4F3);
+        func_80387B48(partEmitMgr_newEmitter(0xC), sp30, 0xC, 0x4F4);
+        func_803879B8(partEmitMgr_newEmitter(4), sp30, 0x4, 0x4F2);
+        func_803879B8(partEmitMgr_newEmitter(4), sp30, 0x4, 0x4F3);
         sp30[1] += 50.0f;
-        func_80387910(partEmitList_pushNew(8), sp30, 8);
+        func_80387910(partEmitMgr_newEmitter(8), sp30, 8);
     }//L80387D18
     if(this->unk38_31){
         this->position_y += 100.0f;
@@ -423,7 +423,7 @@ void func_80388080(Actor *this){
                 if(gu_sqrtf(this->velocity_z*this->velocity_z + (this->velocity_x*this->velocity_x + this->velocity_y*this->velocity_y)) > 50.0f){
                     ml_vec3f_set_length(this->velocity, 50.0f);
                 }
-                if(ml_vec3f_distance(this->position, this->unk1C) < 20.0f){
+                if(ml_distance_vec3f(this->position, this->unk1C) < 20.0f){
                     func_80387E64(this);
                 }
                 this->unk28 = 5.0f;
@@ -484,7 +484,7 @@ void func_80388080(Actor *this){
             if(local->unkC == 1)
                 sp54[1] += 150.0f;
             this->unk138_24 = 0;
-            func_80387A80(partEmitList_pushNew(3), sp54, 3, (local->unkC == 1)? 0x4f0: 0x4f1);
+            func_80387A80(partEmitMgr_newEmitter(3), sp54, 3, (local->unkC == 1)? 0x4f0: 0x4f1);
         }//L80388CC4
         
         if(actor_animationIsAt(this, 0.75f))

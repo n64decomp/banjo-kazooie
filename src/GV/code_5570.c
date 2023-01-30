@@ -109,16 +109,16 @@ void func_8038BB6C(Actor *jiggy, ActorMarker * grabba_marker)
 }
 
 void func_8038BBFC(ParticleEmitter *pCtrl, f32 position[3], s32 cnt){
-    func_802EFFA8(pCtrl, D_8039117C);
-    func_802EF9E4(pCtrl, 0x96);
+    particleEmitter_setRGB(pCtrl, D_8039117C);
+    particleEmitter_setAlpha(pCtrl, 0x96);
     particleEmitter_setSprite(pCtrl, ASSET_700_SPRITE_DUST);
-    func_802EFA5C(pCtrl, 0.0f, 0.01f);
+    particleEmitter_setFade(pCtrl, 0.0f, 0.01f);
     particleEmitter_setStartingFrameRange(pCtrl, 0, 7);
     particleEmitter_setPosition(pCtrl, position);
 }
 
 void func_8038BC7C(f32 position[3], s32 cnt){
-    ParticleEmitter *pCtrl = partEmitList_pushNew(cnt);
+    ParticleEmitter *pCtrl = partEmitMgr_newEmitter(cnt);
     func_8038BBFC(pCtrl, position, cnt);
     particleEmitter_setParticleSpawnPositionRange(pCtrl,
         -60.0f,  0.0f, -60.0f,
@@ -131,12 +131,12 @@ void func_8038BC7C(f32 position[3], s32 cnt){
     func_802EFB70(pCtrl, 0.1f, 0.5f);
     func_802EFB84(pCtrl, 2.0f, 2.6f);
     particleEmitter_setSpawnIntervalRange(pCtrl, 0.0f, 0.01f);
-    func_802EFEC0(pCtrl, 0.5f, 1.4f);
+    particleEmitter_setParticleLifeTimeRange(pCtrl, 0.5f, 1.4f);
     particleEmitter_emitN(pCtrl, cnt);
 }
 
 void func_8038BD8C(f32 position[3], s32 cnt){
-    ParticleEmitter *pCtrl = partEmitList_pushNew(cnt);
+    ParticleEmitter *pCtrl = partEmitMgr_newEmitter(cnt);
     func_8038BBFC(pCtrl, position, cnt);
     particleEmitter_setParticleSpawnPositionRange(pCtrl,
         -40.0f,  0.0f, -40.0f,
@@ -149,7 +149,7 @@ void func_8038BD8C(f32 position[3], s32 cnt){
     func_802EFB70(pCtrl, 0.1f, 0.5f);
     func_802EFB84(pCtrl, 1.2, 1.6f);
     particleEmitter_setSpawnIntervalRange(pCtrl, 0.0f, 0.01f);
-    func_802EFEC0(pCtrl, 0.5f, 1.4f);
+    particleEmitter_setParticleLifeTimeRange(pCtrl, 0.5f, 1.4f);
     particleEmitter_emitN(pCtrl, cnt);
 }
 

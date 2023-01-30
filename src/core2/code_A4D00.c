@@ -10,8 +10,8 @@ extern s32  func_80320DB0(f32[3], f32, f32[3], u32);
 extern void func_80320ED8(ActorMarker *, f32, s32);
 extern f32  func_8033229C(ActorMarker *marker);
 extern f32  func_80309B24(f32 [3]);
-extern f32  ml_vec3f_dot_product(f32[3], f32[3]);
-extern f32  ml_vec3f_distance_squared(f32[3], f32[3]);
+extern f32  ml_dotProduct_vec3f(f32[3], f32[3]);
+extern f32  ml_distanceSquared_vec3f(f32[3], f32[3]);
 extern BKCollisionTri *func_80320C94(f32 arg0[3], f32 arg1[3], f32 arg2, f32 arg3[3], s32 arg4, u32 arg5);
 
 /* .h */
@@ -146,7 +146,7 @@ bool func_8032BD88(Actor *arg0, f32 arg1[3], s32 arg2, s32 arg3){
             ml_vec3f_copy(spBC[i].unk0, arg0->position);
             ml_vec3f_copy(spBC[i].unkC, arg1);
         }
-        if (sp84 < ml_vec3f_distance_squared(spBC[i].unkC, spBC[i].unk0)) {
+        if (sp84 < ml_distanceSquared_vec3f(spBC[i].unkC, spBC[i].unk0)) {
             temp_f20 = spBC[i].unk0[1];
             spBC[i].unk40 = func_80244E54(spBC[i].unkC, spBC[i].unk0, spBC[i].unk44, temp_s7, var_f24 - 1.0f, var_f22);
             if (spBC[i].unk40 != 0) {
@@ -178,7 +178,7 @@ bool func_8032BD88(Actor *arg0, f32 arg1[3], s32 arg2, s32 arg3){
             ml_vec3f_normalize(sp26C);
             ml_vec3f_copy(spBC[i].unk1C, sp26C);
         }
-        if (func_80258368(spBC[i].unk1C) != 0) {
+        if (ml_isNonzero_vec3f(spBC[i].unk1C) != 0) {
             func_802451A4(spBC[i].unkC, spBC[i].unk0, spBC[i].unk34, spBC[i].unk28, spBC[i].unk1C, (i == 0));
         }
 
@@ -191,7 +191,7 @@ bool func_8032BD88(Actor *arg0, f32 arg1[3], s32 arg2, s32 arg3){
         arg0->position[0] = var_fp->unk0[0];
         arg0->position[1] = var_fp->unk0[1];
         arg0->position[2] = var_fp->unk0[2];
-        if ((temp_f20 != 0.0f) && ((ml_vec3f_dot_product(var_fp->unk1C, sp284) / temp_f20) < 0.93969262)) {
+        if ((temp_f20 != 0.0f) && ((ml_dotProduct_vec3f(var_fp->unk1C, sp284) / temp_f20) < 0.93969262)) {
             var_fp = NULL;
         }
     }

@@ -46,7 +46,7 @@ void func_80323238(void){}
 // =============================================BREAK ???
 
 extern f32 func_80258708(f32 [3], f32[3]);
-extern f32 ml_vec3f_distance_squared(f32 [3], f32 [3]);
+extern f32 ml_distanceSquared_vec3f(f32 [3], f32 [3]);
 extern void func_80341180(f32, s32, s32, f32 *, f32 [3]);
 
 /* .code */
@@ -340,8 +340,8 @@ f32 func_8032429C(struct56s *this, f32 arg1[3], f32 min, f32 max, f32 step){
     f32 f24;
     f32 f2;
     
-    min = max_f(0.0f, min);
-    max = min_f(1.0f, max);
+    min = ml_max_f(0.0f, min);
+    max = ml_min_f(1.0f, max);
     f24 = 1e+8f;
     f28 = min;
     f20 = min;
@@ -408,7 +408,7 @@ f32 func_803243D0(struct56s *arg0, f32 arg1[3]){
 
         func_80323240(arg0, tmp_f0, sp64);
         func_80323240(arg0, 1.0f, sp58);
-        if(ml_vec3f_distance_squared(arg1, sp64) < ml_vec3f_distance_squared(arg1, sp58)){
+        if(ml_distanceSquared_vec3f(arg1, sp64) < ml_distanceSquared_vec3f(arg1, sp58)){
             return tmp_f0;
         }
         return 1.0f;

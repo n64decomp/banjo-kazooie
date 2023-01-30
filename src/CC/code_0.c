@@ -61,7 +61,7 @@ void func_803864D4(Actor *this){
     func_80388B4C(&sp4C);
     TUPLE_ASSIGN(sp40, 2640.0f, 5695.0f, -10.0f);
     local->unk8 += sp3C;
-    if(func_8025773C(&local->unk4, sp3C)){
+    if(ml_timer_update(&local->unk4, sp3C)){
         sp30[0] = sp4C[0] - sp40[0];
         sp30[1] = 0.0f;
         sp30[2] = sp4C[2] - sp40[2];
@@ -76,7 +76,7 @@ void func_803864D4(Actor *this){
         }
     }//L80386634
 
-    if(func_8025773C(&local->unk0, sp3C)){
+    if(ml_timer_update(&local->unk0, sp3C)){
         CC_func_803863F0(this, 4);
     }
     

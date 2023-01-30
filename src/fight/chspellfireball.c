@@ -1,6 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "core2/particle.h"
 
 extern void func_80324CFC(f32, s32, s32);
 extern void func_80386654(f32 arg0, f32 arg1[4], f32 arg2[4]);
@@ -98,7 +99,7 @@ void func_8038EB90(ActorMarker *arg0, f32 *arg1) {
 }
 
 void func_8038EBE0(f32 arg0[3], u32 arg1, enum asset_e arg2, f32 arg3[6], f32 arg4[6], f32 arg5[6], f32 arg6[4], f32 arg7[4], f32 arg8[2]) {
-    ParticleEmitter *temp_v0 = partEmitList_pushNew(arg1);
+    ParticleEmitter *temp_v0 = partEmitMgr_newEmitter(arg1);
 
     particleEmitter_setSprite(temp_v0, arg2);
     particleEmitter_setStartingFrameRange(temp_v0, 1, 6);
@@ -106,21 +107,21 @@ void func_8038EBE0(f32 arg0[3], u32 arg1, enum asset_e arg2, f32 arg3[6], f32 ar
     particleEmitter_setParticleSpawnPositionRange(temp_v0, arg3[0], arg3[1], arg3[2], arg3[3], arg3[4], arg3[5]);
     particleEmitter_setParticleAccelerationRange(temp_v0, arg4[0], arg4[1], arg4[2], arg4[3], arg4[4], arg4[5]);
     particleEmitter_setParticleVelocityRange(temp_v0, arg5[0], arg5[1], arg5[2], arg5[3], arg5[4], arg5[5]);
-    func_802EFE24(temp_v0, -300.0f, -300.0f, -300.0f, 300.0f, 300.0f, 300.0f);
+    particleEmitter_setAngularVelocityRange(temp_v0, -300.0f, -300.0f, -300.0f, 300.0f, 300.0f, 300.0f);
     func_802EFB70(temp_v0, arg6[0], arg6[1]);
     func_802EFB84(temp_v0, arg6[2], arg6[3]);
     func_802EF9F8(temp_v0, 0.5f);
     func_802EFA18(temp_v0, 3);
     particleEmitter_setSpawnIntervalRange(temp_v0, arg7[0], arg7[1]);
-    func_802EFEC0(temp_v0, arg7[2], arg7[3]);
-    func_802EFA5C(temp_v0, arg8[0], arg8[1]);
+    particleEmitter_setParticleLifeTimeRange(temp_v0, arg7[2], arg7[3]);
+    particleEmitter_setFade(temp_v0, arg8[0], arg8[1]);
     func_802EFA78(temp_v0, 1);
-    func_802EFA70(temp_v0, 4);
+    particleEmitter_setDrawMode(temp_v0, 4);
     particleEmitter_emitN(temp_v0, arg1);
 }
 
 void func_8038ED9C(f32 arg0[3], u32 arg1, s32 arg2, s32 arg3[2], f32 arg4[6], f32 arg5[4], f32 arg6[4], f32 arg7[2]) {
-    ParticleEmitter *temp_v0 = partEmitList_pushNew(arg2);
+    ParticleEmitter *temp_v0 = partEmitMgr_newEmitter(arg2);
 
     particleEmitter_setSprite(temp_v0, arg1);
     particleEmitter_setStartingFrameRange(temp_v0, arg3[0], arg3[1]);
@@ -131,28 +132,28 @@ void func_8038ED9C(f32 arg0[3], u32 arg1, s32 arg2, s32 arg3[2], f32 arg4[6], f3
     func_802EFB70(temp_v0, arg5[0], arg5[1]);
     func_802EFB84(temp_v0, arg5[2], arg5[3]);
     particleEmitter_setSpawnIntervalRange(temp_v0, arg6[0], arg6[1]);
-    func_802EFEC0(temp_v0, arg6[2], arg6[3]);
-    func_802EFA5C(temp_v0, arg7[0], arg7[1]);
-    func_802EFA70(temp_v0, 0x10);
+    particleEmitter_setParticleLifeTimeRange(temp_v0, arg6[2], arg6[3]);
+    particleEmitter_setFade(temp_v0, arg7[0], arg7[1]);
+    particleEmitter_setDrawMode(temp_v0, PART_EMIT_NO_DEPTH);
     func_802EFA78(temp_v0, 1);
     particleEmitter_emitN(temp_v0, arg2);
 }
 
 void func_8038EEFC(f32 arg0[3], u32 arg1, f32 *arg2) {
-    ParticleEmitter *temp_v0 = partEmitList_pushNew(arg1);
+    ParticleEmitter *temp_v0 = partEmitMgr_newEmitter(arg1);
 
     particleEmitter_setSprite(temp_v0, ASSET_70E_SPRITE_SMOKE_2);
-    func_802EFFA8(temp_v0, D_80391B48);
-    func_802EF9E4(temp_v0, 0xEB);
+    particleEmitter_setRGB(temp_v0, D_80391B48);
+    particleEmitter_setAlpha(temp_v0, 0xEB);
     particleEmitter_setStartingFrameRange(temp_v0, 0, 7);
     particleEmitter_setPosition(temp_v0, arg0);
     particleEmitter_setPositionAndVelocityRanges(temp_v0, &D_80391B54);
     func_802EFB70(temp_v0, 0.1f, 0.2f);
     func_802EFB84(temp_v0, 3.6f, 4.6f);
     particleEmitter_setSpawnIntervalRange(temp_v0, arg2[0], arg2[1]);
-    func_802EFEC0(temp_v0, arg2[2], arg2[3]);
-    func_802EFA5C(temp_v0, 0.05f, 0.1f);
-    func_802EFA70(temp_v0, 0x10);
+    particleEmitter_setParticleLifeTimeRange(temp_v0, arg2[2], arg2[3]);
+    particleEmitter_setFade(temp_v0, 0.05f, 0.1f);
+    particleEmitter_setDrawMode(temp_v0, PART_EMIT_NO_DEPTH);
     func_802EFA78(temp_v0, 1);
     particleEmitter_emitN(temp_v0, arg1);
 }

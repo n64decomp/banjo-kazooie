@@ -1,6 +1,8 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "core2/particle.h"
+
 
 extern void func_8024C5CC(f32 (*)[3]);
 extern void func_80328B8C(Actor *, s32, f32, s32);
@@ -72,27 +74,27 @@ struct31s D_80391968 = {
 
 /* .code */
 void fight_func_8038C2C0(f32 position[3], s32 count, enum asset_e id, f32 arg3){
-    ParticleEmitter * temp_s0 = partEmitList_pushNew(count);
+    ParticleEmitter * temp_s0 = partEmitMgr_newEmitter(count);
     f32 sp24;
 
     particleEmitter_setSprite(temp_s0, id);
     particleEmitter_setStartingFrameRange(temp_s0, 1, 6);
     particleEmitter_setPosition(temp_s0, position);
-    func_802EFE24(temp_s0, -300.0f, -300.0f, -300.0f, 300.0f, 300.0f, 300.0f);
+    particleEmitter_setAngularVelocityRange(temp_s0, -300.0f, -300.0f, -300.0f, 300.0f, 300.0f, 300.0f);
     func_802EFB70(temp_s0, arg3*0.35, arg3*0.65);
     func_802EFB84(temp_s0, 0.0f, 0.0f);
     func_802EF9F8(temp_s0, 0.5f);
     func_802EFA18(temp_s0, 3);
     particleEmitter_setSpawnIntervalRange(temp_s0, 0.0f, 0.01f);
-    func_802EFEC0(temp_s0, 3.0f, 3.3f);
-    func_802EFA5C(temp_s0, 0.0f, 0.35f);
+    particleEmitter_setParticleLifeTimeRange(temp_s0, 3.0f, 3.3f);
+    particleEmitter_setFade(temp_s0, 0.0f, 0.35f);
     particleEmitter_setPositionVelocityAndAccelerationRanges(temp_s0, &D_803918D0);
-    func_802EFA70(temp_s0, 4);
+    particleEmitter_setDrawMode(temp_s0, 4);
     particleEmitter_emitN(temp_s0, count);
 }
 
 void func_8038C424(f32 position[3], s32 count, enum asset_e id, f32 arg3){
-    ParticleEmitter * temp_s0 = partEmitList_pushNew(count);
+    ParticleEmitter * temp_s0 = partEmitMgr_newEmitter(count);
     f32 sp24;
 
     particleEmitter_setSprite(temp_s0, id);
@@ -104,9 +106,9 @@ void func_8038C424(f32 position[3], s32 count, enum asset_e id, f32 arg3){
     func_802EFB70(temp_s0, sp24, sp24);
     func_802EFB84(temp_s0, sp24, sp24);
     particleEmitter_setSpawnIntervalRange(temp_s0, 0.0f, 0.0f);
-    func_802EFEC0(temp_s0, (arg3*0.5), (arg3*0.5)*1.5);
-    func_802EFA5C(temp_s0, 0.7f, 0.8f);
-    func_802EFA70(temp_s0, 0x10);
+    particleEmitter_setParticleLifeTimeRange(temp_s0, (arg3*0.5), (arg3*0.5)*1.5);
+    particleEmitter_setFade(temp_s0, 0.7f, 0.8f);
+    particleEmitter_setDrawMode(temp_s0, PART_EMIT_NO_DEPTH);
     particleEmitter_emitN(temp_s0, count);
 }
 
@@ -318,7 +320,7 @@ void func_8038C840(Actor *this){
 }
 
 void func_8038CED8(f32 arg0[3], enum asset_e model_id, f32 arg2, f32 arg3){
-    ParticleEmitter *s0 = partEmitList_pushNew(1);
+    ParticleEmitter *s0 = partEmitMgr_newEmitter(1);
     f32 sp40[3];
     f32 sp34[3];
 
@@ -339,7 +341,7 @@ void func_8038CED8(f32 arg0[3], enum asset_e model_id, f32 arg2, f32 arg3){
     D_80391968.unk8[0] *= arg2;
     D_80391968.unk8[1] *= arg2;
     func_802EFB98(s0, &D_80391968);
-    func_802EFA70(s0, 0x10);
+    particleEmitter_setDrawMode(s0, PART_EMIT_NO_DEPTH);
     func_802EFA78(s0, 1);
     particleEmitter_emitN(s0, 1);
 }

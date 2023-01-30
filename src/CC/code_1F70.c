@@ -23,7 +23,7 @@ extern void ml_vec3f_normalize(f32[3]);
 extern void func_8033A45C(s32, s32);
 extern void func_8033A238(s32);
 extern void func_8028FAB0(f32[3]);
-extern void playerModel_802921D4(f32[3]);
+extern void baModel_802921D4(f32[3]);
 
 /* .data */
 f32 D_80389C00[3] = {5700.0f, 4300.0f, 0.0f};
@@ -208,7 +208,7 @@ void CC_func_80388760(Gfx **gfx, Mtx **mtx, Vtx **vtx){
     modelRender_draw(gfx, mtx, D_80389FA0.unk28, NULL, 1.0f, NULL, D_80389FA0.unk24);
     if(func_80340020(D_80389FA0.unk18, D_80389FA0.unk28, 0, 1.0f, 0, D_80389FA0.unk40, spA4, spA4)){
         func_8028FAB0(spA4);
-        playerModel_802921D4(spA4);
+        baModel_802921D4(spA4);
     }
 }
 
@@ -331,7 +331,7 @@ void CC_func_80388F4C(void){
     CC_func_80387D4C();
     if(D_80389FA0.unk21 != 0 && func_80334904() == 2){
         player_getPosition(sp6C);
-        D_80389FA0.unk20 = (ml_vec3f_distance(sp6C, D_80389FA0.unkC) < 200.0f);
+        D_80389FA0.unk20 = (ml_distance_vec3f(sp6C, D_80389FA0.unkC) < 200.0f);
 
         D_80389FA0.unk38 += sp68;
         sp64 = func_80335684(D_80389FA0.unk0);
@@ -381,7 +381,7 @@ void CC_func_80388F4C(void){
 
         if(D_80389FA0.unk21 == 3){
             func_8034A174(D_80389FA0.unk34, 6, sp48);
-            if(ml_vec3f_distance(sp48, sp6C) <= 130.0f && sp6C[1] - sp48[1] < 50.0f){
+            if(ml_distance_vec3f(sp48, sp6C) <= 130.0f && sp6C[1] - sp48[1] < 50.0f){
                 func_8031D04C(0x21, 1);
             }
         }//L80389260
@@ -400,7 +400,7 @@ void CC_func_80388F4C(void){
                 }
             }
         }//L803892DC
-        if(func_8025773C(&D_80389FA0.unk3C, sp68)){
+        if(ml_timer_update(&D_80389FA0.unk3C, sp68)){
             if(D_80389FA0.unk21 == 3){
                 func_8030E9FC(SFX_D0_GRIMLET_SQUEAK, 0.5f, 0.7f, 20000, D_80389C24, 2000.0f, 4000.0f);
             }else{
@@ -409,7 +409,7 @@ void CC_func_80388F4C(void){
             D_80389FA0.unk3C = randf2(3.0f, 6.0f);
         }//L803893A0
         if(D_80389FA0.unk50 == 0){
-            if(func_8025773C(&D_80389FA0.unk54, sp68))
+            if(ml_timer_update(&D_80389FA0.unk54, sp68))
                 D_80389FA0.unk50 = 1;
         }
 

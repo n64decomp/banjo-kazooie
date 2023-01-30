@@ -45,7 +45,7 @@ void func_80361330(Actor *this, s32 next_state){
         local->unk4 = 3.0f;
 
     if(next_state == 2){
-        pctrl = partEmitList_pushNew(6);
+        pctrl = partEmitMgr_newEmitter(6);
         sp40[0] = 1000.0f;
         sp40[1] = 100.0f;
         sp40[2] = 0.0f;
@@ -96,9 +96,9 @@ void func_8036158C(Actor *this){
     if(this->state == 1){
         player_getPosition(sp24);
         actor_collisionOff(this);
-        if( ml_vec3f_distance(this->position, sp24) < 1000.0f 
+        if( ml_distance_vec3f(this->position, sp24) < 1000.0f 
             && func_8024DC04(this->position_x, this->position_y, this->position_z)
-            && func_8025773C(&local->unk4, sp30)
+            && ml_timer_update(&local->unk4, sp30)
         ){
             func_80361330(this, 2);
         }
@@ -106,7 +106,7 @@ void func_8036158C(Actor *this){
 
     if(this->state == 2){
         actor_collisionOn(this);
-        if(func_8025773C(&local->unk4, sp30)){
+        if(ml_timer_update(&local->unk4, sp30)){
             func_80361330(this, 1);
         }
     }

@@ -88,6 +88,6 @@ void func_80295328(int arg0, f32 arg1){
 
 void func_8029533C(void){
     if(D_8037C304 != 0.0f){
-       D_8037C304  = max_f(D_8037C304 - time_getDelta(), 0.0f);
+       D_8037C304  = ml_max_f(D_8037C304 - time_getDelta(), 0.0f);
     }
 }

@@ -103,7 +103,7 @@ void func_802B3868(void) {
     _func_802875AC(anim_ctrl, "bsrebound.c", 0xC6);
     func_8030E58C(SFX_56_BANJO_HUI, 1.0f);
     func_8029E3C0(0, 1.5f);
-    func_8028D5DC();
+    baMarker_collisionOff();
 }
 
 
@@ -114,7 +114,7 @@ void func_802B3954(void) {
     next_state = 0;
     anim_ctrl = _player_getAnimCtrlPtr();
     if (func_8029E1A8(0) && map_get() == MAP_93_GL_DINGPOT) {
-        func_8028D5F4();
+        baMarker_collisionOn();
     }
     func_802B37DC();
     if (func_8028B2E8()) {
@@ -133,5 +133,5 @@ void func_802B3954(void) {
 void func_802B3A20(void) {
     func_802B35DC();
     gravity_reset();
-    func_8028D5F4();
+    baMarker_collisionOn();
 }

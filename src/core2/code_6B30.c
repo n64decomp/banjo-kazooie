@@ -101,7 +101,7 @@ bool func_8028DD60(enum actor_e actor_id, Actor **arg1){
     if(m2 && actor->modelCacheIndex != actor_id)
         return 0;
 
-    carriedObject_setActorID(actor_id);
+    baMarker_setCarriedObject(actor_id);
     if(!item_empty(carriedobj_actorId2ItemId(actor_id))){
         func_8028F66C(BS_INTR_12);
     }
@@ -113,7 +113,7 @@ void func_8028DE0C(enum actor_e actor_id){
     Actor *actor;
     f32 sp20[3];
 
-    playerModel_getPosition(sp20);
+    baModel_getPosition(sp20);
     actor = func_8032813C(actor_id, sp20, (s32) yaw_get());
     actor->unk138_22 = TRUE;
     func_802948F8(actor->marker);
@@ -133,7 +133,7 @@ void func_8028DE6C(enum actor_e actor_id){
         func_802948F8(marker);
     }
     else{
-        __spawnQueue_add_1((GenMethod_1)func_8028DE0C, carriedObject_getActorID());
+        __spawnQueue_add_1((GenMethod_1)func_8028DE0C, baMarker_getCarriedObjectActorId());
     }
 }
 

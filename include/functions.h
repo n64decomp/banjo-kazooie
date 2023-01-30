@@ -24,7 +24,6 @@ extern f32 fabsf(f32);
 #pragma intrinsic (fabsf)
 
 
-#define NOT(boolean) ((boolean) ^ 1)
 
 #define TUPLE_ASSIGN(out, a, b, c) {\
     out[0] = a;\
@@ -73,8 +72,8 @@ void *realloc(void* ptr, s32 size);
 
 f32 ml_map_f(f32 val, f32 in_min, f32 in_max, f32 out_min, f32 out_max);
 float mlNormalizeAngle(float);
-f32 max_f(f32, f32);
-f32 min_f(f32, f32);
+f32 ml_max_f(f32, f32);
+f32 ml_min_f(f32, f32);
 void ml_vec3f_copy(f32 dst[3], f32 src[3]);
 
 void ml_vec3f_add(f32 dst[3], f32 src1[3], f32 src2[3]);
@@ -91,7 +90,7 @@ void func_8028A37C(f32);
 
 int player_inWater(void);
 
-ActorMarker *_player_getMarker(void);
+ActorMarker *baMarker_get(void);
 
 u32 player_getTransformation(void);
 
@@ -224,20 +223,20 @@ void func_80324D2C(f32, enum comusic_e);
 void func_80324DBC(f32 time, enum asset_e text_id, s32 arg2, f32 position[3], ActorMarker *caller, void (*callback_method_1)(ActorMarker *, enum asset_e, s32), void (*callback_method_2)(ActorMarker *, enum asset_e, s32));
 void particleEmitter_setSprite(ParticleEmitter *, enum asset_e);
 void particleEmitter_setPosition(ParticleEmitter *, f32[3]);
-ParticleEmitter *partEmitList_pushNew(u32);
+ParticleEmitter *partEmitMgr_newEmitter(u32);
 void func_802BB3DC(s32, f32, f32);
 void __spawnQueue_add_4(GenMethod_4, s32, s32, s32, s32);
 Actor *func_802C4140(enum actor_e actor_id, s32 x, s32 y, s32 z);
 void func_8030DA44(u8);
 
 
-void func_802EF3F4(ParticleEmitter *, f32[3], f32[3], s32);
+void particleEmitter_emitInVolume(ParticleEmitter *, f32[3], f32[3], s32);
 ParticleEmitter *particleEmitter_new(u32 capacity);
 void particleEmitter_setParticleAccelerationRange(ParticleEmitter *, f32, f32, f32, f32, f32, f32);
 void func_802EF9F8(ParticleEmitter *, f32);
 void func_802EFA18(ParticleEmitter *, s32);
-void func_802EFA5C(ParticleEmitter *, f32, f32);
-void func_802EFA70(ParticleEmitter *, s32);
+void particleEmitter_setFade(ParticleEmitter *, f32, f32);
+void particleEmitter_setDrawMode(ParticleEmitter *, s32);
 void particleEmitter_setStartingFrameRange(ParticleEmitter *this, s32 arg1, s32 arg2);
 void particleEmitter_setParticleFramerateRange(ParticleEmitter *, f32, f32);
 void particleEmitter_setParticleSpawnPositionRange(ParticleEmitter *, f32, f32, f32, f32, f32, f32);
@@ -246,12 +245,12 @@ void func_802EFB84(ParticleEmitter *, f32, f32);
 void func_802EFB98(ParticleEmitter *, struct31s *);
 void particleEmitter_setVelocityAndAccelerationRanges(ParticleEmitter *, struct41s *);
 void particleEmitter_setPositionAndVelocityRanges(ParticleEmitter *this, struct42s *arg1);
-void func_802EFE24(ParticleEmitter *, f32, f32, f32, f32, f32, f32);
+void particleEmitter_setAngularVelocityRange(ParticleEmitter *, f32, f32, f32, f32, f32, f32);
 void particleEmitter_setSpawnIntervalRange(ParticleEmitter *, f32, f32);
-void func_802EFEC0(ParticleEmitter *, f32, f32);
+void particleEmitter_setParticleLifeTimeRange(ParticleEmitter *, f32, f32);
 void particleEmitter_setParticleVelocityRange(ParticleEmitter *, f32, f32, f32, f32, f32, f32);
 void func_802EFF50(ParticleEmitter *, f32);
-void func_802EFFA8(ParticleEmitter *this, s32 arg1[3]);
+void particleEmitter_setRGB(ParticleEmitter *this, s32 arg1[3]);
 void particleEmitter_setSpawnInterval(ParticleEmitter *, f32);
 
 int  func_8024DC04(f32, f32, f32);
@@ -260,18 +259,18 @@ OSMesgQueue *pfsManager_getFrameReplyQ(void);
 
 void ml_vec3f_clear(f32 dst[3]);
 void ml_vec3f_roll_rotate_copy(f32[3], f32[3], f32);
-void func_80250D94(f32, f32, f32);
+void rumbleManager_80250D94(f32, f32, f32);
 void func_80256E24(f32[3], f32, f32, f32, f32, f32);
 void func_8025727C(f32 x1, f32 y1, f32 z1, f32 x2, f32 y2, f32 z2, f32 *o1, f32 *o2);
 f32  func_80257A44(f32, f32);
-f32  func_80257C48(f32, f32, f32);
+f32  ml_interpolate_f(f32, f32, f32);
 f32  func_80257D30(f32, f32, f32, f32, f32);
 int  func_80257F18(f32 src[3], f32 target[3], f32 *yaw);
 bool func_8025801C(f32[3], f32*);
 
 f32  mlAbsF(f32);
-f32  mlClamp_f(f32, f32, f32);
-f32  func_802588B0(f32, f32);
+f32  ml_clamp_f(f32, f32, f32);
+f32  ml_remainder_f(f32, f32);
 void func_802589E4(f32 dst[3], f32 yaw, f32 length);
 f32  mlDiffDegF(f32, f32);
 
@@ -310,10 +309,10 @@ int  func_80291698(s32);
 int  func_80291700(s32, f32);
 void func_802917E4(s32, f32);
 
-void playerModel_80291A50(s32 arg0, f32* arg1);
-void playerModel_80292078(s32, f32);
-void playerModel_80292158(f32);
-f32  playerModel_80292230(void);
+void baModel_80291A50(s32 arg0, f32* arg1);
+void baModel_80292078(s32, f32);
+void baModel_80292158(f32);
+f32  baModel_80292230(void);
 
 void func_802927E0(f32, f32);
 void func_80292974(f32, f32, f32);
@@ -405,7 +404,7 @@ Actor *func_802DC7E0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void particleEmitter_emitN(ParticleEmitter *, int);
 void func_802EFA20(ParticleEmitter *, f32, f32);
 
-ParticleEmitter *func_802F0D74(ParticleEmitter *);
+ParticleEmitter *partEmitMgr_defragEmitter(ParticleEmitter *);
 ParticleEmitter *func_802F4094(f32[3], f32);
 
 
@@ -525,19 +524,19 @@ Actor *subaddie_getLinkedActor(Actor *);
  
  /* used in RBB */
 void ml_vec3f_pitch_rotate_copy(f32 dst[3], f32 src[3], f32 pitch);
-int func_8025773C(f32 *arg0, f32 arg1);
+int ml_timer_update(f32 *arg0, f32 arg1);
 Actor *func_80325888(ActorMarker *, Gfx**, Mtx**, Vtx **);
 
 Actor *func_80325340(ActorMarker *, Gfx **, Mtx **, Vtx **);
 void func_8032AA58(Actor *, f32);
 void func_80324E38(f32, s32);
 void timed_playSfx(f32, enum sfx_e, f32, s32);
-f32 ml_vec3f_distance(f32 [3], f32 [3]);
+f32 ml_distance_vec3f(f32 [3], f32 [3]);
 void timed_setCameraToNode(f32, s32);
 void func_80324E88(f32);
 int actor_animationIsAt(Actor*, f32);
 
-void func_80250E94(f32, f32, f32, f32, f32, f32);
+void rumbleManager_80250E94(f32, f32, f32, f32, f32, f32);
 
 
 void func_802C8F70(f32);
@@ -547,7 +546,7 @@ void func_802FA060(s32, s32, s32, f32);
 Actor *actorArray_findActorFromActorId(enum actor_e);
 f32 func_8038A6B8(ActorMarker *);
 void *defrag_asset(void *);
-void func_80255FE4(f32 [3], f32 [3], f32 [3], f32);
+void ml_interpolate_vec3f(f32 [3], f32 [3], f32 [3], f32);
 void func_8030DEB4(u8, f32, f32);
 void func_8030DB04(u8, s32, f32 position[3], f32, f32);
 void func_80258A4C(f32 [3], f32, f32 [3], f32 *, f32 *, f32 *);

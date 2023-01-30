@@ -37,7 +37,7 @@ void func_803567EC(Actor *this){
     }
 
     player_getPosition(plyr_pos);
-    plyr_dist = ml_vec3f_distance(plyr_pos, this->position);
+    plyr_dist = ml_distance_vec3f(plyr_pos, this->position);
     if(this->state == 1){
         if(plyr_dist < 700.0f)
             func_80356770(this, 2);

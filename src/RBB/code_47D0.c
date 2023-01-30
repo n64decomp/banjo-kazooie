@@ -143,7 +143,7 @@ void func_8038AEB8(Actor *this){
         func_8038AC18(this, 1);
     }//L8038AF88
 
-    if(func_8025773C(&local->unk8, sp20))
+    if(ml_timer_update(&local->unk8, sp20))
         func_8038AC18(this, 1);
 
     if(this->state == 2){

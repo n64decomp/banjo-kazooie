@@ -34,16 +34,16 @@ f32 BGS_D_80390B10[3] = {0.0f, 0.0f, 0.0f};
 void func_8038D1E0(Actor *this) {
     ParticleEmitter *temp_s0;
 
-    temp_s0 = partEmitList_pushNew(4U);
+    temp_s0 = partEmitMgr_newEmitter(4U);
     particleEmitter_setSprite(temp_s0, ASSET_70E_SPRITE_SMOKE_2);
-    func_802EFA5C(temp_s0, 0.01f, 0.7f);
+    particleEmitter_setFade(temp_s0, 0.01f, 0.7f);
     particleEmitter_setStartingFrameRange(temp_s0, 0, 7);
     particleEmitter_setPosition(temp_s0, this->position);
-    func_802EFFA8(temp_s0, D_80390B04);
+    particleEmitter_setRGB(temp_s0, D_80390B04);
     func_802EFB70(temp_s0, 1.0f, 1.5f);
     func_802EFB84(temp_s0, 2.5f, 3.0f);
     particleEmitter_setParticleVelocityRange(temp_s0, -70.0f, 50.0f, -70.0f, 70.0f, 100.0f, 70.0f);
-    func_802EFEC0(temp_s0, 3.0f, 4.0f);
+    particleEmitter_setParticleLifeTimeRange(temp_s0, 3.0f, 4.0f);
     particleEmitter_emitN(temp_s0, 4);
     FUNC_8030E8B4(SFX_30_MAGIC_POOF, 1.0f, 25000, this->position, 500, 2500);
 }
@@ -372,7 +372,7 @@ void BGS_func_8038E034(Actor *this) {
     spA8[1] = spB4[1] - this->position[1];
     spA8[2] = spB4[2] - this->position[2];
     spA4 = gu_sqrtf(spA8[0]*spA8[0] + spA8[1]*spA8[1] + spA8[2]*spA8[2]);
-    if (func_8025773C(&local->unk28, sp9C) != 0) {
+    if (ml_timer_update(&local->unk28, sp9C) != 0) {
         func_8030E878(0x3F0, randf2(0.9f, 1.1f), randi2(12000, 19000), this->position, 500.0f, 2500.0f);
         local->unk28 = randf2(1.0f, 6.0f);
     }
@@ -395,7 +395,7 @@ void BGS_func_8038E034(Actor *this) {
     }
 
     if(this->state == 2){
-        if(func_8025773C(&local->unk1C, sp9C)){
+        if(ml_timer_update(&local->unk1C, sp9C)){
             func_8038D9D0(this, 3);
         }
     }
@@ -423,7 +423,7 @@ void BGS_func_8038E034(Actor *this) {
             sp7C[0] = (f32) local->unk10[0];
             sp7C[1] = (f32) local->unk10[1];
             sp7C[2] = (f32) local->unk10[2];
-            if (ml_vec3f_distance(this->position, sp7C) < 30.0f) {
+            if (ml_distance_vec3f(this->position, sp7C) < 30.0f) {
                 func_8038D9D0(this, 1);
             } else {
                 func_8038D9D0(this, 5);
@@ -464,7 +464,7 @@ void BGS_func_8038E034(Actor *this) {
     }
 
     if(this->state == 7 || this->state == 8){
-        if(func_8025773C(&local->unk1C, sp9C)){
+        if(ml_timer_update(&local->unk1C, sp9C)){
             func_8038D9D0(this, 6);
         }
     }

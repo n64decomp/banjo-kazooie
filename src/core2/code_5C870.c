@@ -152,7 +152,7 @@ void func_802E39D0(Gfx **gdl, Mtx **mptr, Vtx **vptr, s32 arg3, s32 arg4){
 
     gcdialog_draw(gdl, mptr, vptr);
     if(!func_802E49F0()){
-        func_802FAB54(gdl, mptr, vptr);
+        itemPrint_draw(gdl, mptr, vptr);
     }
 
     printbuffer_draw(gdl, mptr, vptr);
@@ -264,7 +264,7 @@ void func_802E3E7C(enum game_mode_e mode){
     map = D_8037E8E0.map;
     sp28 = D_8037E8E0.exit;
     prev_mode = D_8037E8E0.unk0;
-    func_802E3BF8(2, 0);
+    func_802E3BF8(GAME_MODE_2_UNKNOWN, 0);
     if(!func_80320454(0x21, 0) || map_getLevel(map_get()) == map_getLevel(D_8037E8E0.map)){
         if(!func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE))
             mapSavestate_save(map_get());
@@ -356,8 +356,8 @@ void func_802E412C(s32 arg0, s32 arg1){
 }
 
 void func_802E4170(void){
-    func_802E3BF8(2,0);
-    func_80240844();
+    func_802E3BF8(GAME_MODE_2_UNKNOWN,0);
+    defragManager_free();
     func_802E5F68();
     if(!func_802E4A08())
         func_802F4F64();
@@ -374,7 +374,7 @@ void func_802E4170(void){
     func_8030D8DC();
 }
 
-void func_802E4214(s32 arg0){
+void func_802E4214(enum map_e map_id){
     D_8037E8E0.transition = TRANSITION_0_NONE;
     D_8037E8E0.unk19 = D_8037E8E0.unk18 = 0;
     D_8037E8E0.map = D_8037E8E0.exit = D_8037E8E0.unk17 = 0;
@@ -392,7 +392,7 @@ void func_802E4214(s32 arg0){
     if(!func_802E4A08())
         func_802F51B8();
     func_802E5F38();
-    func_802407C0();
+    defragManager_init();
     func_8033A1A4();
     func_80253428(1);
     func_80288070();
@@ -408,12 +408,12 @@ void func_802E4214(s32 arg0){
     D_8037E8E0.unk8 = 0.0f;
     func_8033DC9C(0.0f);
     func_8033DD04(0);
-    func_803216D0(arg0);
-    func_8030AFA0(arg0);
+    func_803216D0(map_id);
+    func_8030AFA0(map_id);
     func_802E3854();
-    func_802E38E8(arg0, 0, 0);
+    func_802E38E8(map_id, 0, 0);
     D_8037E8E0.unk0 = 0;
-    func_802E3BF8(3,1);
+    func_802E3BF8(GAME_MODE_3_NORMAL,1);
 }
 
 void func_802E4384(void){
@@ -579,8 +579,8 @@ void func_802E48B8(enum game_mode_e mode, s32 arg1){
     func_802E3BF8(mode, arg1);
 }
 
-s32 func_802E48D8(void){
-    func_802555C4();
+s32 game_defrag(void){
+    func_802555C4(); //reset defragged flag in memory.c
     if( !level_get() )
         return NULL;
     
@@ -590,7 +590,7 @@ s32 func_802E48D8(void){
     func_802BA128();
     modelRender_defrag();
     func_8028FB68();
-    func_802F0E58();
+    partEmitMgr_defrag();
     mapModel_defrag();
     func_803086B4();
     actorArray_defrag();
@@ -600,7 +600,7 @@ s32 func_802E48D8(void){
     gcdialog_defrag();
     if(D_8037E8E0.game_mode == GAME_MODE_4_PAUSED)
         gcpausemenu_defrag();
-    switch(get_loaded_overlay_id()){
+    switch(overlayManagergetLoadedId()){
         case OVERLAY_2_WHALE:
             func_803894A0();
             break;
@@ -608,7 +608,7 @@ s32 func_802E48D8(void){
             func_80350E00();
             break;
     }
-    return func_802555D0();
+    return func_802555D0(); //returns defrag flag in memory.c
 }
 
 void func_802E49E0(void){

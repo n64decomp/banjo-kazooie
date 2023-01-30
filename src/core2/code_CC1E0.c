@@ -239,7 +239,7 @@ void fxegg_head_update(void){
     func_8033EA40(2, tmp_f24);
     func_803531C8(projectile_indx, 0);
     func_80344E7C(sp96, sp88);
-    if(func_802582EC(sp88)){
+    if(ml_isZero_vec3f(sp88)){
         s0 = func_8033E840();
         projectile_getPosition(projectile_indx, sp60);
         sp54[0] = (f32)s0->propPtr->x;
@@ -251,7 +251,7 @@ void fxegg_head_update(void){
     func_80344E3C(sp96, sp88);
     tmp_f20 = func_8033EA14(0);
     func_8033FFE4(projectile_indx, (s32) tmp_f20, (s32) tmp_f20);
-    func_8033EA40(0, min_f(tmp_f20 + 4.0f, 50.0f));
+    func_8033EA40(0, ml_min_f(tmp_f20 + 4.0f, 50.0f));
     sp78 += time_getDelta();
     func_8033EA40(1, sp78);
     if(2.0 < sp78){
@@ -356,7 +356,7 @@ void fxegg_ass_update(void) {
     func_80344E3C(sp8E, sp74);
     temp_f20 = func_8033EA14(0);
     func_8033FFE4(projectile_indx, (s32)temp_f20, (s32)temp_f20);
-    func_8033EA40(0, min_f(temp_f20 + 8.0f, 50.0f));
+    func_8033EA40(0, ml_min_f(temp_f20 + 8.0f, 50.0f));
     sp64 += time_getDelta();
     func_8033EA40(1, sp64);
     if ((2.8 < sp64) && (func_80344EC0(sp8E) || (sp64 > 3.5))) {

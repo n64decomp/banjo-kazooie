@@ -94,11 +94,11 @@ f32 func_802BB938(f32 arg0[3], f32 arg1[3]) {
 
     phi_f14 = func_802BBEA4(arg0, arg1, 350.0f, 1, 0x800000);
     phi_f12 = (D_8037D8D0.unk31) ? 25.0f : 10.0f;
-    phi_f20 = max_f(phi_f12, phi_f14* 0.8 - 15.0);
+    phi_f20 = ml_max_f(phi_f12, phi_f14* 0.8 - 15.0);
     func_802BAC58();
 
     if (func_802BB884(arg0, &sp3C)) {
-        phi_f20 = min_f(phi_f20, ml_map_f(sp3C, 90.0f, 450.0f, 20.0f, 240.0f));
+        phi_f20 = ml_min_f(phi_f20, ml_map_f(sp3C, 90.0f, 450.0f, 20.0f, 240.0f));
     }
 
     if (65.0 < phi_f20 && func_802BAC1C()) {
@@ -106,7 +106,7 @@ f32 func_802BB938(f32 arg0[3], f32 arg1[3]) {
     }
 
     if (gctransition_8030BDAC()) {
-        phi_f20 = min_f(phi_f20, gctransition_8030BD88() * 0.8);
+        phi_f20 = ml_min_f(phi_f20, gctransition_8030BD88() * 0.8);
     }
     return phi_f20;
 }
@@ -143,7 +143,7 @@ void func_802BBA84(void) {
         D_8037D8C8 = 10.0f;
         return;
     }
-    D_8037D8C8 = min_f(D_8037D8C8, func_802BB938(sp54, sp3C));
+    D_8037D8C8 = ml_min_f(D_8037D8C8, func_802BB938(sp54, sp3C));
 }
 
 void func_802BBC58(s32 arg0) {
@@ -214,7 +214,7 @@ f32 func_802BBEA4(f32 arg0[3], f32 arg1[3], f32 arg2, s32 arg3, s32 arg4) {
     ml_vec3f_copy(sp4C, sp58[D_8037D8D0.unk30]);
     sp38 = func_80320B98(arg0, sp4C, sp3C, arg4);
     if (sp38 != NULL) {
-        phi_f2 = ml_vec3f_distance(arg0, sp4C);
+        phi_f2 = ml_distance_vec3f(arg0, sp4C);
         D_8037D8D0.unk0[D_8037D8D0.unk30] = sp38->flags;
     } else {
         phi_f2 = arg2;

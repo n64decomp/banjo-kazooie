@@ -26,15 +26,15 @@ f32 D_8037D240;
 /* .code */
 void func_8029DBF0(void){
     s32 temp_s0;
-    switch(playerModel_getModelId()){
+    switch(baModel_getModelId()){
         case 0x34D: //L8029DC24
         case 0x34E: //L8029DC24
-            temp_s0 = (s32) func_80257C48(D_8037D23C, 1.0f, 8.0f);
+            temp_s0 = (s32) ml_interpolate_f(D_8037D23C, 1.0f, 8.0f);
             func_8033A45C(0x1B, temp_s0);
             func_8033A45C(0x1D, temp_s0);
             func_8033A45C(0x1F, temp_s0);
             func_8033A45C(0x21, temp_s0);
-            temp_s0 = (s32) func_80257C48(D_8037D240, 1.0f, 8.0f);
+            temp_s0 = (s32) ml_interpolate_f(D_8037D240, 1.0f, 8.0f);
             func_8033A45C(0x1A, temp_s0);
             func_8033A45C(0x1C, temp_s0);
             func_8033A45C(0x1E, temp_s0);
@@ -45,12 +45,12 @@ void func_8029DBF0(void){
         case ASSET_359_MODEL_BANJO_WALRUS: //L8029DCCC
         case ASSET_36F_MODEL_BANJO_PUMPKIN: //L8029DCCC
         case ASSET_374_MODEL_BANJO_CROC: //L8029DCCC
-            func_8033A45C(0x1B, (s32) func_80257C48(D_8037D23C, 1.0f, 6.0f));
-            func_8033A45C(0x1A, (s32) func_80257C48(D_8037D240, 1.0f, 6.0f));
+            func_8033A45C(0x1B, (s32) ml_interpolate_f(D_8037D23C, 1.0f, 6.0f));
+            func_8033A45C(0x1A, (s32) ml_interpolate_f(D_8037D240, 1.0f, 6.0f));
             break;
 
         case ASSET_356_MODEL_BANJO_WISHYWASHY: //L8029DD2C
-            func_8033A45C(1, (s32) func_80257C48(D_8037D240, 1.0f, 4.0f));
+            func_8033A45C(1, (s32) ml_interpolate_f(D_8037D240, 1.0f, 4.0f));
             break;
     }
 }
@@ -61,7 +61,7 @@ void func_8029DD6C(void) {
     bool temp_s0;
 
     func_8033A1FC();
-    switch (playerModel_getModelId()) {
+    switch (baModel_getModelId()) {
     case 0x34D:
     case 0x34E:
         func_8033A45C(1, D_8037D238);

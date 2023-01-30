@@ -180,7 +180,7 @@ void chnapper_update(Actor *this){
         }
     }//L80386F74
 
-    if(this->state == 2 && func_8025773C(&local->unk8, sp68)){
+    if(this->state == 2 && ml_timer_update(&local->unk8, sp68)){
         player_getPosition(player_position);
         sp30[0] = player_position[0] - this->position_x;
         sp30[1] = player_position[1] - this->position_y;

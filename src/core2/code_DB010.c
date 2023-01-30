@@ -36,15 +36,15 @@ void func_80361FA0(f32 arg0[3]) {
         {{ -60.0f,   -30.0f,  -60.0f}, {  60.0f,    30.0f,   60.0f}}
     };
 
-    ParticleEmitter *pCtrl = partEmitList_pushNew(0xFU);
+    ParticleEmitter *pCtrl = partEmitMgr_newEmitter(15);
 
     particleEmitter_setModel(pCtrl, 0x441);
     particleEmitter_setPosition(pCtrl, arg0);
-    func_802EFE24(pCtrl, -200.0f, 200.0f, -200.0f, 200.0f, 200.0f, 200.0f);
+    particleEmitter_setAngularVelocityRange(pCtrl, -200.0f, 200.0f, -200.0f, 200.0f, 200.0f, 200.0f);
     func_802EF9F8(pCtrl, 0.01f);
     func_802EFA18(pCtrl, 3);
     func_802EFA20(pCtrl, 1.0f, 1.3f);
-    func_802EF9EC(pCtrl, 0x2F, 0x3E80);
+    particleEmitter_setSfx(pCtrl, SFX_2F_ORANGE_SPLAT, 16000);
     particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_80373334);
     func_802EFC28(pCtrl, &D_80373304);
     FUNC_8030E624(SFX_7C_CHEBOOF, 0.6f, 29000);
@@ -60,11 +60,11 @@ void func_80362084(f32 position[3]) {
 
     ParticleEmitter *pCtrl;
 
-    pCtrl = partEmitList_pushNew(1U);
+    pCtrl = partEmitMgr_newEmitter(1U);
     particleEmitter_setSprite(pCtrl, 0x702);
     particleEmitter_setStartingFrameRange(pCtrl, 3, 5);
-    func_802EFFA8(pCtrl, D_8037337C);
-    func_802EF9E4(pCtrl, 0xA0);
+    particleEmitter_setRGB(pCtrl, D_8037337C);
+    particleEmitter_setAlpha(pCtrl, 0xA0);
     particleEmitter_setPosition(pCtrl, position);
     func_802EFF5C(pCtrl, 0.1f, 0.2f, 0.0f);
     func_802EFF7C(pCtrl, 0.0f, 0.25f, 0.0f);
@@ -83,12 +83,12 @@ void func_8036215C(f32 arg0[3]) {
         {{ -10.0f,     0.0f,  -10.0f}, {  10.0f,     0.0f,   10.0f}}
     };
 
-    ParticleEmitter *pCtrl = partEmitList_pushNew(0xFU);
+    ParticleEmitter *pCtrl = partEmitMgr_newEmitter(0xFU);
 
     particleEmitter_setSprite(pCtrl, 0x700);
     particleEmitter_setStartingFrameRange(pCtrl, 3, 4);
-    func_802EFFA8(pCtrl, D_803733E8);
-    func_802EF9E4(pCtrl, 0x28);
+    particleEmitter_setRGB(pCtrl, D_803733E8);
+    particleEmitter_setAlpha(pCtrl, 0x28);
     particleEmitter_setPosition(pCtrl, arg0);
     particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_80373424);
     func_802EFC28(pCtrl, &D_803733F4);
@@ -102,11 +102,11 @@ void func_803621F0(f32 arg0[3]) {
         {{ -10.0f,   -20.0f,  -10.0f}, {  10.0f,   -20.0f,   10.0f}}
     };
 
-    ParticleEmitter *pCtrl = partEmitList_pushNew(0x12U);
+    ParticleEmitter *pCtrl = partEmitMgr_newEmitter(0x12U);
 
     particleEmitter_setSprite(pCtrl, 0x702);
     particleEmitter_setStartingFrameRange(pCtrl, 3, 5);
-    func_802EF9E4(pCtrl, 0xD2);
+    particleEmitter_setAlpha(pCtrl, 0xD2);
     particleEmitter_setPosition(pCtrl, arg0);
     particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_8037349C);
     func_802EFC28(pCtrl, &D_8037346C);
@@ -120,11 +120,11 @@ void func_80362274(f32 arg0[3]) {
         {{ -60.0f,     0.0f,  -60.0f}, {  60.0f,    30.0f,   60.0f}}
     };
 
-    ParticleEmitter *pCtrl = partEmitList_pushNew(0xFU);
+    ParticleEmitter *pCtrl = partEmitMgr_newEmitter(0xFU);
     
     particleEmitter_setModel(pCtrl, 0x89B);
     particleEmitter_setPosition(pCtrl, arg0);
-    func_802EFE24(pCtrl, -400.0f, -200.0f, -400.0f, 400.0f, -400.0f, 400.0f);
+    particleEmitter_setAngularVelocityRange(pCtrl, -400.0f, -200.0f, -400.0f, 400.0f, -400.0f, 400.0f);
     func_802EF9F8(pCtrl, 0.01f);
     func_802EFA18(pCtrl, 3);
     func_802EFA20(pCtrl, 1.0f, 1.3f);
@@ -140,11 +140,11 @@ void func_8036233C(f32 arg0[3]) {
         {{ -60.0f,     0.0f, -60.0f}, {  60.0f,    30.0f,  60.0f}}
     };
 
-    ParticleEmitter *pCtrl = partEmitList_pushNew(0xFU);
+    ParticleEmitter *pCtrl = partEmitMgr_newEmitter(0xFU);
     
     particleEmitter_setModel(pCtrl, 0x89A);
     particleEmitter_setPosition(pCtrl, arg0);
-    func_802EFE24(pCtrl, -200.0f, 200.0f, -200.0f, 200.0f, 200.0f, 200.0f);
+    particleEmitter_setAngularVelocityRange(pCtrl, -200.0f, 200.0f, -200.0f, 200.0f, 200.0f, 200.0f);
     func_802EF9F8(pCtrl, 0.01f);
     func_802EFA18(pCtrl, 3);
     func_802EFA20(pCtrl, 1.0f, 1.3f);
@@ -159,7 +159,7 @@ void func_80362404(f32 arg0[3]) {
         {{0.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.0f}}
     };
 
-    ParticleEmitter *pCtrl = partEmitList_pushNew(1U);
+    ParticleEmitter *pCtrl = partEmitMgr_newEmitter(1U);
 
     particleEmitter_setSprite(pCtrl, 0x6DD);
     particleEmitter_setStartingFrameRange(pCtrl, 2, 2);
@@ -176,12 +176,12 @@ void func_8036247C(f32 arg0[3]) {
         {{-400.0f,  0.0f, -400.0f}, { 400.0f,  0.0f,  400.0f}}
     };
 
-    ParticleEmitter *pCtrl = partEmitList_pushNew(1U);
+    ParticleEmitter *pCtrl = partEmitMgr_newEmitter(1U);
 
     particleEmitter_setSprite(pCtrl, 0x70D);
     particleEmitter_setStartingFrameRange(pCtrl, 1, 6);
-    func_802EFFA8(pCtrl, &D_80373634);
-    func_802EF9E4(pCtrl, 0x64);
+    particleEmitter_setRGB(pCtrl, &D_80373634);
+    particleEmitter_setAlpha(pCtrl, 0x64);
     particleEmitter_setPosition(pCtrl, arg0);
     particleEmitter_setPositionAndVelocityRanges(pCtrl, &D_80373670);
     func_802EFC28(pCtrl, &D_80373640);
@@ -194,11 +194,11 @@ void func_80362510(Actor *actor) {
     ParticleEmitter *pCtrl;
     f32 sp30[3];
 
-    pCtrl = partEmitList_pushNew(0x19U);
+    pCtrl = partEmitMgr_newEmitter(0x19U);
     particleEmitter_setSprite(pCtrl, 0x70D);
     particleEmitter_setStartingFrameRange(pCtrl, 0, 5);
-    func_802EFFA8(pCtrl, D_803736A0);
-    func_802EF9E4(pCtrl, 0x1E);
+    particleEmitter_setRGB(pCtrl, D_803736A0);
+    particleEmitter_setAlpha(pCtrl, 0x1E);
     particleEmitter_setPosition(pCtrl, actor->position);
     particleEmitter_setParticleSpawnPositionRange(pCtrl, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
     sp30[0] = 1000.0f;
@@ -221,7 +221,7 @@ void func_80362680(f32 arg0[3]) {
         {{  0.0f,  30.0f,   0.0f}, {  0.0f,  30.0f,   0.0f}}
     };
 
-    ParticleEmitter *pCtrl = partEmitList_pushNew(1U);
+    ParticleEmitter *pCtrl = partEmitMgr_newEmitter(1U);
 
     particleEmitter_setSprite(pCtrl, 0x45A);
     particleEmitter_setStartingFrameRange(pCtrl, 2, 2);
@@ -238,7 +238,7 @@ void func_803626F8(f32 arg0[3]) {
         {{-30.0f,  30.0f, -30.0f}, { 30.0f,  60.0f,  30.0f}}
     };
 
-    ParticleEmitter *pCtrl = partEmitList_pushNew(1U);
+    ParticleEmitter *pCtrl = partEmitMgr_newEmitter(1U);
 
     particleEmitter_setSprite(pCtrl, 0x713);
     particleEmitter_setStartingFrameRange(pCtrl, 1, 6);
@@ -256,11 +256,11 @@ void func_80362770(f32 arg0[3]) {
         {{   0.0f,   30.0f,    0.0f}, {   0.0f,   30.0f,    0.0f}},
     };
 
-    ParticleEmitter *pCtrl = partEmitList_pushNew(0x10U);
+    ParticleEmitter *pCtrl = partEmitMgr_newEmitter(0x10U);
 
     particleEmitter_setSprite(pCtrl, 0x714);
     particleEmitter_setStartingFrameRange(pCtrl, 7, 8);
-    func_802EFFA8(pCtrl, &D_803737B4);
+    particleEmitter_setRGB(pCtrl, &D_803737B4);
     particleEmitter_setPosition(pCtrl, arg0);
     particleEmitter_setPositionAndVelocityRanges(pCtrl, &D_803737F0);
     func_802EFC28(pCtrl, &D_803737C0);
@@ -275,12 +275,12 @@ void func_803627F8(f32 arg0[3]){
         {{ -30.0f,    0.0f,  -30.0f}, {  30.0f,    0.0f,   30.0f}}
     };
 
-    ParticleEmitter *pCtrl = partEmitList_pushNew(11);
+    ParticleEmitter *pCtrl = partEmitMgr_newEmitter(11);
     
     particleEmitter_setSprite(pCtrl, ASSET_70D_SPRITE_SMOKE_1);
     particleEmitter_setStartingFrameRange(pCtrl, 1, 6);
-    func_802EFFA8(pCtrl, D_80373820);
-    func_802EF9E4(pCtrl, 120);
+    particleEmitter_setRGB(pCtrl, D_80373820);
+    particleEmitter_setAlpha(pCtrl, 120);
     particleEmitter_setPosition(pCtrl, arg0);
     particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_8037385C);
     func_802EFC28(pCtrl, &D_8037382C);
@@ -295,12 +295,12 @@ void func_8036288C(f32 arg0[3]){
         {{ -30.0f,     0.0f,  -30.0f}, {  30.0f,     0.0f,   30.0f}}
     };
 
-    ParticleEmitter *pCtrl = partEmitList_pushNew(0xd);
+    ParticleEmitter *pCtrl = partEmitMgr_newEmitter(0xd);
 
     particleEmitter_setSprite(pCtrl, ASSET_702_SPRITE_UNKNOWN);
     particleEmitter_setStartingFrameRange(pCtrl, 3, 4);
-    func_802EFFA8(pCtrl, D_803738A4);
-    func_802EF9E4(pCtrl, 255);
+    particleEmitter_setRGB(pCtrl, D_803738A4);
+    particleEmitter_setAlpha(pCtrl, 255);
     particleEmitter_setPosition(pCtrl, arg0);
     particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_803738E0);
     func_802EFC28(pCtrl, &D_803738B0);
@@ -314,11 +314,11 @@ void func_80362920(f32 arg0[3]){
         {{  0.0f,   0.0f,   0.0f}, {  0.0f,   0.0f,   0.0f}}, 
         {{-30.0f,   0.0f, -30.0f}, { 30.0f,   0.0f,  30.0f}}
     };
-    ParticleEmitter *pCtrl = partEmitList_pushNew(0xd);
+    ParticleEmitter *pCtrl = partEmitMgr_newEmitter(0xd);
     particleEmitter_setSprite(pCtrl, ASSET_70D_SPRITE_SMOKE_1);
     particleEmitter_setStartingFrameRange(pCtrl, 1, 6);
-    func_802EFFA8(pCtrl, D_80373928);
-    func_802EF9E4(pCtrl, 60);
+    particleEmitter_setRGB(pCtrl, D_80373928);
+    particleEmitter_setAlpha(pCtrl, 60);
     particleEmitter_setPosition(pCtrl, arg0);
     particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_80373964);
     func_802EFC28(pCtrl, &D_80373934);
@@ -333,12 +333,12 @@ void func_803629B4(f32 arg0[3]){
         {{   0.0f, 40.0f,    0.0f}, {   0.0f, 40.0f,    0.0f}}
     };
 
-    ParticleEmitter *pCtrl = partEmitList_pushNew(0xd);
+    ParticleEmitter *pCtrl = partEmitMgr_newEmitter(0xd);
     
     particleEmitter_setSprite(pCtrl, ASSET_713_SPRITE_SPARKLE_YELLOW);
     particleEmitter_setStartingFrameRange(pCtrl, 1, 6);
-    func_802EFFA8(pCtrl, D_803739AC);
-    func_802EF9E4(pCtrl, 255);
+    particleEmitter_setRGB(pCtrl, D_803739AC);
+    particleEmitter_setAlpha(pCtrl, 255);
     particleEmitter_setPosition(pCtrl, arg0);
     particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_803739E8);
     func_802EFC28(pCtrl, &D_803739B8);
@@ -353,12 +353,12 @@ void func_80362A48(f32 arg0[3]){
         {{-5.0f,  0.0f, -5.0f}, { 5.0f,  0.0f,  5.0f}}
     };
 
-    ParticleEmitter *pCtrl = partEmitList_pushNew(1);
+    ParticleEmitter *pCtrl = partEmitMgr_newEmitter(1);
     
     particleEmitter_setSprite(pCtrl, ASSET_70D_SPRITE_SMOKE_1);
     particleEmitter_setStartingFrameRange(pCtrl, 1, 6);
-    func_802EFFA8(pCtrl, D_80373A30);
-    func_802EF9E4(pCtrl, 40);
+    particleEmitter_setRGB(pCtrl, D_80373A30);
+    particleEmitter_setAlpha(pCtrl, 40);
     particleEmitter_setPosition(pCtrl, arg0);
     particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_80373A6C);
     func_802EFC28(pCtrl, &D_80373A3C);
@@ -373,12 +373,12 @@ void func_80362ADC(f32 arg0[3]){
         {{ -5.0f,  0.0f,  -5.0f}, {  5.0f,  0.0f,   5.0f}}
     };
 
-    ParticleEmitter *pCtrl = partEmitList_pushNew(1);
+    ParticleEmitter *pCtrl = partEmitMgr_newEmitter(1);
     
     particleEmitter_setSprite(pCtrl, ASSET_70D_SPRITE_SMOKE_1);
     particleEmitter_setStartingFrameRange(pCtrl, 1, 6);
-    func_802EFFA8(pCtrl, D_80373AB4);
-    func_802EF9E4(pCtrl, 40);
+    particleEmitter_setRGB(pCtrl, D_80373AB4);
+    particleEmitter_setAlpha(pCtrl, 40);
     particleEmitter_setPosition(pCtrl, arg0);
     particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_80373AF0);
     func_802EFC28(pCtrl, &D_80373AC0);
@@ -392,11 +392,11 @@ void func_80362B70(f32 arg0[3]){
         {{  0.0f,  0.0f,   0.0f}, {  0.0f,  0.0f,   0.0f}}, 
         {{ -5.0f,  0.0f,  -5.0f}, {  5.0f,  0.0f,   5.0f}}
     };
-    ParticleEmitter *pCtrl = partEmitList_pushNew(1);
+    ParticleEmitter *pCtrl = partEmitMgr_newEmitter(1);
     particleEmitter_setSprite(pCtrl, ASSET_70D_SPRITE_SMOKE_1);
     particleEmitter_setStartingFrameRange(pCtrl, 1, 6);
-    func_802EFFA8(pCtrl, D_80373B38);
-    func_802EF9E4(pCtrl, 110);
+    particleEmitter_setRGB(pCtrl, D_80373B38);
+    particleEmitter_setAlpha(pCtrl, 110);
     particleEmitter_setPosition(pCtrl, arg0);
     particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_80373B74);
     func_802EFC28(pCtrl, &D_80373B44);
@@ -411,12 +411,12 @@ void func_80362C04(f32 arg0[3]){
         {{-5.0f,  0.0f, -5.0f}, { 5.0f,  0.0f,  5.0f}}
     };
 
-    ParticleEmitter *pCtrl = partEmitList_pushNew(1);
+    ParticleEmitter *pCtrl = partEmitMgr_newEmitter(1);
     
     particleEmitter_setSprite(pCtrl, ASSET_70D_SPRITE_SMOKE_1);
     particleEmitter_setStartingFrameRange(pCtrl, 1, 6);
-    func_802EFFA8(pCtrl, D_80373BBC);
-    func_802EF9E4(pCtrl, 40);
+    particleEmitter_setRGB(pCtrl, D_80373BBC);
+    particleEmitter_setAlpha(pCtrl, 40);
     particleEmitter_setPosition(pCtrl, arg0);
     particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_80373BF8);
     func_802EFC28(pCtrl, &D_80373BC8);
@@ -431,12 +431,12 @@ void func_80362C98(f32 arg0[3]){
         {{-50.0f, -50.0f, -50.0f}, { 50.0f,  50.0f,  50.0f}}
     };
 
-    ParticleEmitter *pCtrl = partEmitList_pushNew(1);
+    ParticleEmitter *pCtrl = partEmitMgr_newEmitter(1);
 
     particleEmitter_setSprite(pCtrl, ASSET_70D_SPRITE_SMOKE_1);
     particleEmitter_setStartingFrameRange(pCtrl, 1, 6);
-    func_802EFFA8(pCtrl, D_80373C40);
-    func_802EF9E4(pCtrl, 140);
+    particleEmitter_setRGB(pCtrl, D_80373C40);
+    particleEmitter_setAlpha(pCtrl, 140);
     particleEmitter_setPosition(pCtrl, arg0);
     particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_80373C7C);
     func_802EFC28(pCtrl, &D_80373C4C);
@@ -451,12 +451,12 @@ void func_80362D2C(f32 arg0[3]){
         {{-50.0f, -50.0f, -50.0f}, {50.0f, 50.0f, 50.0f}}
     };
 
-    ParticleEmitter *pCtrl = partEmitList_pushNew(1);
+    ParticleEmitter *pCtrl = partEmitMgr_newEmitter(1);
 
     particleEmitter_setSprite(pCtrl, ASSET_70D_SPRITE_SMOKE_1);
     particleEmitter_setStartingFrameRange(pCtrl, 4, 6);
-    func_802EFFA8(pCtrl, D_80373CC4);
-    func_802EF9E4(pCtrl, 140);
+    particleEmitter_setRGB(pCtrl, D_80373CC4);
+    particleEmitter_setAlpha(pCtrl, 140);
     particleEmitter_setPosition(pCtrl, arg0);
     particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_80373D00);
     func_802EFC28(pCtrl, &D_80373CD0);
@@ -470,14 +470,14 @@ void func_80362DC0(f32 arg0[3]){
         {{-150.0f, -100.0f, -150.0f}, {150.0f,    5.0f, 150.0f}}
     };
 
-    ParticleEmitter *pCtrl = partEmitList_pushNew(0xF);
+    ParticleEmitter *pCtrl = partEmitMgr_newEmitter(0xF);
     particleEmitter_setModel(pCtrl, ASSET_47B_MODEL_ROCK);
     particleEmitter_setPosition(pCtrl, arg0);
-    func_802EFE24(pCtrl, -200.0f, 200.0f, -200.0f, 200.0f, 200.0f, 200.0f);
+    particleEmitter_setAngularVelocityRange(pCtrl, -200.0f, 200.0f, -200.0f, 200.0f, 200.0f, 200.0f);
     func_802EF9F8(pCtrl, 0.4f);
     func_802EFA18(pCtrl, 3);
     func_802EFA20(pCtrl, 1.0f, 1.3f);
-    func_802EFA70(pCtrl, 2);
+    particleEmitter_setDrawMode(pCtrl, 2);
     particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_80373D78);
     func_802EFC28(pCtrl, &D_80373D48);
 }

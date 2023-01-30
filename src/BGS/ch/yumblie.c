@@ -162,7 +162,7 @@ void chyumblie_update(Actor *this){
     }
     sp50 = func_80335684(this->unk148);
     if(this->state == YUMBLIE_STATE_1_UNDER_GROUND){
-        if(func_8025773C(&s0->unk8, sp4C)){
+        if(ml_timer_update(&s0->unk8, sp4C)){
             if(mapSpecificFlags_get(6) && (12 > chvilegame_get_piece_count(s0->game_marker))){
                 chyumblie_set_state(this, YUMBLIE_STATE_2_APPEAR);
             }
@@ -194,7 +194,7 @@ void chyumblie_update(Actor *this){
 
     }
     if(this->state == YUMBLIE_STATE_3_ABOVE_GROUND){
-        if( func_8025773C(&s0->unk8,sp4C) || !mapSpecificFlags_get(6) ){
+        if( ml_timer_update(&s0->unk8,sp4C) || !mapSpecificFlags_get(6) ){
             chyumblie_set_state(this,YUMBLIE_STATE_4_DISAPPEAR);
         }
     }
@@ -210,7 +210,7 @@ void chyumblie_update(Actor *this){
     }
 
     if(this->state == YUMBLIE_STATE_5_BEING_EATEN){
-        if( func_8025773C(&s0->unk8,sp4C)){
+        if( ml_timer_update(&s0->unk8,sp4C)){
             chyumblie_set_state(this,YUMBLIE_STATE_1_UNDER_GROUND);
         }
     }

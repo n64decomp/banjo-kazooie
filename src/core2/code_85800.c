@@ -341,15 +341,15 @@ void func_8030D310(u8 indx){
             case 1: //L8030D388[
                 ptr->unk34 += ptr->unk1C*time_getDelta();
                 if(0.0f < ptr->unk1C)
-                    ptr->unk34 = min_f(ptr->unk34, ptr->unk20);
+                    ptr->unk34 = ml_min_f(ptr->unk34, ptr->unk20);
                 else
-                    ptr->unk34 = max_f(ptr->unk34, ptr->unk20);
+                    ptr->unk34 = ml_max_f(ptr->unk34, ptr->unk20);
                 sfxsource_setFlag(ptr, SFX_SRC_FLAG_2_UNKOWN);
                 break;
             case 2: //L8030D3E8
                 sp24 = time_getDelta();
                 ptr->unk34 +=  sfx_randf2(-ptr->unk24, ptr->unk24)*sp24;
-                ptr->unk34 = mlClamp_f(ptr->unk34, ptr->unk20, ptr->unk1C);
+                ptr->unk34 = ml_clamp_f(ptr->unk34, ptr->unk20, ptr->unk1C);
                 sfxsource_setFlag(ptr, SFX_SRC_FLAG_2_UNKOWN);
                 break;
         }
@@ -535,7 +535,7 @@ void func_8030DB04(u8 indx, s32 arg1, f32 arg2[3], f32 min_dist, f32 max_dist){
     f32 dist;
     f32 temp_f2;
     __sfx_getPlayerPositionIfPresent(sp24);
-    dist = ml_vec3f_distance(arg2, sp24);
+    dist = ml_distance_vec3f(arg2, sp24);
     if(max_dist <= dist)
         temp_f2 = 0.0f;
     else{
@@ -904,7 +904,7 @@ void func_8030E78C(enum sfx_e uid, f32 arg1, u32 arg2, f32 position[3], f32 arg4
     f32 plyr_pos[3];
     
     __sfx_getPlayerPositionIfPresent(plyr_pos);
-    if( !(arg5 <= ml_vec3f_distance(plyr_pos, position))
+    if( !(arg5 <= ml_distance_vec3f(plyr_pos, position))
         && levelSpecificFlags_validateCRC2()
         && func_80320240()
     ){

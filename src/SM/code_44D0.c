@@ -40,7 +40,7 @@ void func_8038A8F8(Actor *this){
         this->unk16C_4 = 1;
     }//L8038A968
     player_getPosition(this->velocity);
-    sp2C = ml_vec3f_distance(this->velocity, this->position);
+    sp2C = ml_distance_vec3f(this->velocity, this->position);
     if(sp2C < (f32) this->unkF4_8)
         func_80388D48();
 
@@ -48,7 +48,7 @@ void func_8038A8F8(Actor *this){
         if( !mapSpecificFlags_get(2) 
             || (mapSpecificFlags_get(3) && !mapSpecificFlags_get(0xf))
         ){ //L8038AA54
-            this->yaw_ideal = ml_vec3f_distance(this->velocity, this->unk1C) / 150.0;
+            this->yaw_ideal = ml_distance_vec3f(this->velocity, this->unk1C) / 150.0;
             func_8028F3D8(this->unk1C, this->yaw_ideal, func_8038A8C0, this->marker);
             mapSpecificFlags_set(0x10, 1);
         }

@@ -19,7 +19,7 @@ int func_8029E1A8(s32 arg0){
     if(0.0f == D_8037D250.unk0[arg0]){
         return 0;
     }
-    D_8037D250.unk0[arg0] = max_f(0.0f, D_8037D250.unk0[arg0] - time_getDelta());
+    D_8037D250.unk0[arg0] = ml_max_f(0.0f, D_8037D250.unk0[arg0] - time_getDelta());
     return D_8037D250.unk0[arg0] == 0.0f;
 }
 

@@ -14,7 +14,7 @@ void func_802AAE80(void){
     if(func_8029B300() == 0)
         func_80297970(0.0f);
     else
-        func_80297970(func_80257C48(sp1C, D_80364AF0, D_80364AF4));
+        func_80297970(ml_interpolate_f(sp1C, D_80364AF0, D_80364AF4));
 }
 
 void func_802AAEE0(void){
@@ -91,14 +91,14 @@ int bscarry_inSet(enum bs_e state){
 void bscarry_interrupt(void){
     switch(bs_getInterruptType()){
         case 7:
-            func_802948F8(func_8028D688());
+            func_802948F8(baMarker_8028D688());
             break;
         case 8:
             func_8029A86C(2);
             bs_setState(BS_3C_TALK);
             break;
         case 0x12:
-            func_8028DE6C(carriedObject_getActorID());
+            func_8028DE6C(baMarker_getCarriedObjectActorId());
             break;
         case BS_INTR_16_THROW_CARRIED_OBJ:
             if(func_802916CC(1)){

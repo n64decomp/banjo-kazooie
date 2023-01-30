@@ -7,8 +7,8 @@
 
 extern void func_803012F8(void);
 extern f32 func_8024DDD8(f32[3], f32);
-extern f32 ml_vec3f_distance_squared(f32 arg0[3], f32 arg1[3]);
-extern void func_8028BA00(s32);
+extern f32 ml_distanceSquared_vec3f(f32 arg0[3], f32 arg1[3]);
+extern void __baMarker_8028BA00(s32);
 extern void func_802C418C(void);
 extern void func_802A6388(f32);
 extern f32 chwadingboots_802D6E4C(Actor *);
@@ -20,11 +20,11 @@ extern void func_8035644C(s32);
 extern void func_8035646C(s32 arg0);
 extern void func_80291634(ActorMarker *, ActorMarker *);
 extern void func_80291610(ActorMarker *, ActorMarker *);
-extern void playerModel_80291AAC(void);
-extern void func_8028D7B8(s32 arg0, ActorMarker *arg1, struct5Cs *collision_flags);
+extern Actor *baModel_80291AAC(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
+extern void baMarker_8028D7B8(s32 arg0, ActorMarker *arg1, struct5Cs *collision_flags);
 extern void func_802EE6CC(f32[3], s32, s32[4], s32, f32, f32, s32,s32,s32);
 extern void func_80320ED8(ActorMarker *, f32, s32);
-
+extern NodeProp *cubeList_findNodePropByActorId(enum actor_e actor_id, s32 position[3]);
 
 typedef struct 
 {
@@ -34,7 +34,7 @@ typedef struct
 }
 tmp_struct_type;
 
-void func_8028D638(s32 arg0, s32 arg1);
+void baMarker_8028D638(s32 arg0, s32 arg1);
 
 /* .data */
 s32 D_80363630[2] = {0x20, 0x1C};
@@ -59,7 +59,7 @@ s32 D_80363680[4] = {0xff, 0xff, 0xff, 0xc8};
 /* .bss */
 ActorMarker *playerMarker;
 s32 D_8037BF74;
-s32 carriedObject_actorID;
+s32 baMarkerCarriedObjActorId;
 s32 D_8037BF7C;
 s32 D_8037BF80[2];
 s32 D_8037BF88;
@@ -67,7 +67,7 @@ ActorMarker *D_8037BF8C;
 u8 D_8037BF90;
 
 /* .code */
-s32 *func_8028B750(void){
+s32 *__baMarker_8028B750(void){
     if(D_8037BF80[0]){
         return D_8037BF80;
     }
@@ -101,7 +101,7 @@ s32 *func_8028B750(void){
     }
 }
 
-void func_8028B7F4(void){
+void __baMarker_8028B7F4(void){
     yaw_setIdeal(func_8029B41C());
     func_802991A8(1);
     func_8029957C(3);
@@ -110,7 +110,7 @@ void func_8028B7F4(void){
     func_8029151C(0xC);
 }
 
-void func_8028B848(void){
+void __baMarker_8028B848(void){
     s32 s0 = 0;
     if(map_get() == MAP_69_GL_MM_LOBBY){
         s0 = 0xf57;
@@ -121,18 +121,18 @@ void func_8028B848(void){
 
     if(s0){
         if(player_getTransformation() ==  TRANSFORM_1_BANJO){
-            func_8028B7F4();
+            __baMarker_8028B7F4();
         }
         func_80311480(s0, 0x2A, NULL, NULL, NULL, 0);
     }
 }
 
-void func_8028B8DC(void){
+void __baMarker_8028B8DC(void){
     func_8028F918(1);
     D_8037BF88 = 1;
 }
 
-void func_8028B904(s32 arg0, s32 arg1, s32 arg2, s32 arg3){
+void __baMarker_8028B904(s32 arg0, s32 arg1, s32 arg2, s32 arg3){
     f32 sp1C[3];
 
     sp1C[0] = reinterpret_cast(s16, arg0);
@@ -153,38 +153,37 @@ void func_8028B904(s32 arg0, s32 arg1, s32 arg2, s32 arg3){
 }
 
 
-void func_8028B9A8(s32 arg0){
-    s16 *tmp_v0;
+void __baMarker_8028B9A8(s32 arg0){
+    NodeProp *tmp_v0;
     s32 ideal_yaw[3];
 
     tmp_v0 = cubeList_findNodePropByActorId(0x1F6, 0);
     func_80304D4C(tmp_v0, &ideal_yaw);
     func_802CA1CC(arg0);
-    func_8032811C(0x47, &ideal_yaw, 0);
+    func_8032811C(ACTOR_47_EMPTY_HONEYCOMB, &ideal_yaw, 0);
     func_8025A6EC(COMUSIC_2B_DING_B, 28000);
     
 }
 
-void func_8028BA00(s32 arg0){
-    __spawnQueue_add_1((GenMethod_1)func_8028B9A8, arg0);
-    if(arg0);
+void __baMarker_8028BA00(s32 arg0){
+    __spawnQueue_add_1((GenMethod_1)__baMarker_8028B9A8, reinterpret_cast(s32, arg0));
 }
 
 
-void func_8028BA2C(s32 arg0) {
-    if (func_802FADD4(0x1B) == 0) {
+void __baMarker_resolveMusicNoteCollision(Prop *arg0) {
+    if (!func_802FADD4(ITEM_1B_VILE_VILE_SCORE)) {
         item_inc(ITEM_C_NOTE);
     } else {
         func_803463F4(ITEM_C_NOTE, 1);
     }
     if (item_getCount(ITEM_C_NOTE) < 100) {
-        func_8025A6EC(COMUSIC_9_NOTE_COLLECTED, 0x3E80);
+        func_8025A6EC(COMUSIC_9_NOTE_COLLECTED, 16000);
         timedFunc_set_1(0.75f, func_8035644C, 3);
     }
-    func_802F379C(arg0 + 4);
+    func_802F379C(arg0->unk4);
 }
 
-void func_8028BAB0(enum jiggy_e jiggy_id, s32 arg1, s32 arg2, s32 arg3){
+void __baMarker_8028BAB0(enum jiggy_e jiggy_id, s32 arg1, s32 arg2, s32 arg3){
     if(jiggyscore_isCollected(jiggy_id))
         return;
 
@@ -195,7 +194,7 @@ void func_8028BAB0(enum jiggy_e jiggy_id, s32 arg1, s32 arg2, s32 arg3){
     func_8030E6D4(SFX_90_SWITCH_PRESS);
 }
 
-void func_8028BB1C(s32 arg0, u32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6){
+void __baMarker_8028BB1C(s32 arg0, u32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6){
     u32 sp24;
     if(arg0 != 1)
         return;
@@ -222,15 +221,15 @@ void func_8028BB1C(s32 arg0, u32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s
     }
 }
 
-int func_8028BC20(ActorMarker *marker){
+int __baMarker_8028BC20(ActorMarker *marker){
     return D_8037BF90 == 1 && player_getActiveHitbox(marker) == HITBOX_5_PECK;
 }
 
-int func_8028BC60(void){
+int __baMarker_8028BC60(void){
     return D_8037BF90 == 1 && player_getActiveHitbox(NULL) == HITBOX_5_PECK;
 } 
 
-void func_8028BCA0(Prop *prop){
+void __baMarker_resolveCollision(Prop *other_prop){
     s32 plyr_collision_type;
     s32 obj_collision_type;
     s32 plyr_hitbox_type;
@@ -252,10 +251,10 @@ void func_8028BCA0(Prop *prop){
     tmp_struct_type sp64;
     s32 tmp1;
 
-    if(*((u32*)(((u32)prop) + 8)) & 1){
+    if(*((u32*)(((u32)other_prop) + 8)) & 1){
         plyr_collision_type = 0;
         obj_collision_type = 0;
-        marker = prop->actorProp.marker;
+        marker = other_prop->actorProp.marker;
         actor = NULL;
         if(marker->unk3E_0){
             actor = marker_getActor(marker);
@@ -294,18 +293,18 @@ void func_8028BCA0(Prop *prop){
                 break;
 
             case MARKER_B5_RED_FEATHER_COLLECTABLE: //L8028BEF4
-                if(func_8028BC20(marker) != HITBOX_0_NONE)
+                if(__baMarker_8028BC20(marker) != HITBOX_0_NONE)
                     return;
-                if(chcollectable_collectRedFeather(prop)){
+                if(chcollectable_collectRedFeather(other_prop)){
                     marker_despawn(marker);
                 }
                 break;
 
             case MARKER_1E5_GOLD_FEATHER_COLLECTABLE: //L8028BF24
-                if(func_8028BC20(marker))
+                if(__baMarker_8028BC20(marker))
                     return;
                 
-                if(chcollectable_collectGoldFeather(prop)){
+                if(chcollectable_collectGoldFeather(other_prop)){
                     marker_despawn(marker);
                 }
                 break;
@@ -333,12 +332,12 @@ void func_8028BCA0(Prop *prop){
 
             case MARKER_F5_BGS_ELEVATED_WALKWAY_SWITCH: //L8028BFB0
                 if(plyr_hitbox_type == HITBOX_1_BEAK_BUSTER)
-                    func_8028BAB0(JIGGY_20_BGS_ELEVATED_WALKWAY, 1, 3, 7);
+                    __baMarker_8028BAB0(JIGGY_20_BGS_ELEVATED_WALKWAY, 1, 3, 7);
                 break;
                 
             case MARKER_FD_BGS_MAZE_SWITCH: //L8028BFD4
                 if(plyr_hitbox_type == HITBOX_1_BEAK_BUSTER)
-                    func_8028BAB0(JIGGY_25_BGS_MAZE, 0xa, 0xc, 8);
+                    __baMarker_8028BAB0(JIGGY_25_BGS_MAZE, 0xa, 0xc, 8);
                 break;
                 
             case MARKER_EC_GV_SUN_SWITCH: //L8028BFF8
@@ -354,7 +353,7 @@ void func_8028BCA0(Prop *prop){
                         mapSpecificFlags_set(0xD, 1);
                         func_8030E6D4(SFX_90_SWITCH_PRESS);
                         func_802BAFE4(0x14);
-                        timedFunc_set_1(1.5f, func_8028BA00, 0xB);
+                        timedFunc_set_1(1.5f, __baMarker_8028BA00, 0xB);
                     }
                 }
                 break;
@@ -365,7 +364,7 @@ void func_8028BCA0(Prop *prop){
                         mapSpecificFlags_set(0,1);
                         func_8030E6D4(SFX_90_SWITCH_PRESS);
                         func_802BAFE4(0x7E);
-                        timedFunc_set_1(1.5f, func_8028BA00, 0xf);
+                        timedFunc_set_1(1.5f, __baMarker_8028BA00, 0xf);
                     }
                 }
                 break;
@@ -455,62 +454,62 @@ void func_8028BCA0(Prop *prop){
                 break;
 
             case 0x241: //L8028C31C
-                func_8028BB1C(plyr_hitbox_type, 0xC6, 0x6E, 0x81, 0x2C, 0xA, 0xC7);
+                __baMarker_8028BB1C(plyr_hitbox_type, 0xC6, 0x6E, 0x81, 0x2C, 0xA, 0xC7);
                 break;
 
             case MARKER_23C_GV_SNS_SWITCH: //L8028C350
-                func_8028BB1C(plyr_hitbox_type, 0xA3, 0x92, 0x7F, 0x1A, 0xA, 0xA4);
+                __baMarker_8028BB1C(plyr_hitbox_type, 0xA3, 0x92, 0x7F, 0x1A, 0xA, 0xA4);
                 break;
 
             case MARKER_161_GV_WITCH_SWITCH: //L8028C384
-                func_8028BB1C(plyr_hitbox_type, 0x4000BE, 0x6E, 0x7D, 0x19, 0x14, 0xA0);
+                __baMarker_8028BB1C(plyr_hitbox_type, 0x4000BE, 0x6E, 0x7D, 0x19, 0x14, 0xA0);
                 break;
 
             case MARKER_162_BGS_WITCH_SWITCH: //L8028C3BC
-                func_8028BB1C(plyr_hitbox_type, 0x4000BD, 0x71, 0x7C, 0x18, 0x14, 0x9F);
+                __baMarker_8028BB1C(plyr_hitbox_type, 0x4000BD, 0x71, 0x7C, 0x18, 0x14, 0x9F);
                 break;
             case MARKER_166_CC_WITCH_SWITCH: //L8028C3F4
-                func_8028BB1C(plyr_hitbox_type, 0x4000BC, 0x6A, 0x7A, 0x17, 0x14, 0x9A);
+                __baMarker_8028BB1C(plyr_hitbox_type, 0x4000BC, 0x6A, 0x7A, 0x17, 0x14, 0x9A);
                 break;
            
             case MARKER_22B_FP_WITCH_SWITCH: //L8028C42C
-                func_8028BB1C(plyr_hitbox_type, 0x4000BB, 0x6F, 0x3A, 0x13, 0x15, 0x47);
+                __baMarker_8028BB1C(plyr_hitbox_type, 0x4000BB, 0x6F, 0x3A, 0x13, 0x15, 0x47);
                 break;
 
             case MARKER_22A_CCW_WITCH_SWITCH: //L8028C464
-                func_8028BB1C(plyr_hitbox_type, 0x4000BA, 0x79, 0x39, 0x12, 0x15, 0x46);
+                __baMarker_8028BB1C(plyr_hitbox_type, 0x4000BA, 0x79, 0x39, 0x12, 0x15, 0x46);
                 break;
 
             case MARKER_103_MM_WITCH_SWITCH: //L8028C49C
-                func_8028BB1C(plyr_hitbox_type, 0x4000B6, 0x69, 0x26, 1, 4, 0x18);
+                __baMarker_8028BB1C(plyr_hitbox_type, 0x4000B6, 0x69, 0x26, 1, 4, 0x18);
                 break;
                 
             case MARKER_104_MMM_WITCH_SWITCH: //L8028C4D4
-                func_8028BB1C(plyr_hitbox_type, 0x4000B7, 0x6F, 0x27, 2, 0x14, 0x19);
+                __baMarker_8028BB1C(plyr_hitbox_type, 0x4000B7, 0x6F, 0x27, 2, 0x14, 0x19);
                 break;
                 
             case MARKER_105_TTC_WITCH_SWITCH: //L8028C50C
-                func_8028BB1C(plyr_hitbox_type, 0x4000B8, 0x6D, 0x28, 3, 0x14, 0x1A);
+                __baMarker_8028BB1C(plyr_hitbox_type, 0x4000B8, 0x6D, 0x28, 3, 0x14, 0x1A);
                 break;
                 
             case MARKER_106_RBB_WITCH_SWITCH: //L8028C544
-                func_8028BB1C(plyr_hitbox_type, 0x4000B9, 0x76, 0x29, 4, 0xe, 0x1C);
+                __baMarker_8028BB1C(plyr_hitbox_type, 0x4000B9, 0x76, 0x29, 4, 0xe, 0x1C);
                 break;
                 
             case MARKER_11B_WATER_LEVEL_SWITCH_1: //L8028C57C
-                func_8028BB1C(plyr_hitbox_type, 0x22, 0x77, 0x2D, 5, 0xA, 0x23);
+                __baMarker_8028BB1C(plyr_hitbox_type, 0x22, 0x77, 0x2D, 5, 0xA, 0x23);
                 break;
                 
             case MARKER_11C_WATER_LEVEL_SWITCH_2: //L8028C5B0
-                func_8028BB1C(plyr_hitbox_type, 0x24, 0x77, 0x2E, 6, 0xA, 0x25);
+                __baMarker_8028BB1C(plyr_hitbox_type, 0x24, 0x77, 0x2E, 6, 0xA, 0x25);
                 break;
                 
             case MARKER_11D_WATER_LEVEL_SWITCH_3: //L8028C5E4
-                func_8028BB1C(plyr_hitbox_type, 0x26, 0x76, 0x2F, 0x7, 0xA, 0x27);
+                __baMarker_8028BB1C(plyr_hitbox_type, 0x26, 0x76, 0x2F, 0x7, 0xA, 0x27);
                 break;
 
             case 0x232: //L8028C618
-                func_8028BB1C(plyr_hitbox_type, 0x53, 0x6b, 0x3b, 0x14, 0x12, 0x54);
+                __baMarker_8028BB1C(plyr_hitbox_type, 0x53, 0x6b, 0x3b, 0x14, 0x12, 0x54);
                 break;
 
             case MARKER_F3_GV_KAZOOIE_TARGET: //L8028C64C
@@ -523,13 +522,13 @@ void func_8028BCA0(Prop *prop){
 
             case MARKER_52_JIGGY: //L8028C66C
                 {
-                    if(func_8028BC20(marker))
+                    if(__baMarker_8028BC20(marker))
                         return;
                     
                     player_getPosition(spA0);
                     jiggy_id = chjiggy_getJiggyId(actor);
                     if( jiggy_id != JIGGY_2F_FP_XMAS_TREE
-                        || (func_8028B2E8() && !(3600.0f < ml_vec3f_distance_squared(actor->position, spA0)))
+                        || (func_8028B2E8() && !(3600.0f < ml_distanceSquared_vec3f(actor->position, spA0)))
                     ){
                         jiggyscore_setCollected(jiggy_id, TRUE);
                         func_803463F4(ITEM_26_JIGGY_TOTAL, 1);
@@ -537,14 +536,14 @@ void func_8028BCA0(Prop *prop){
                             func_802D6924();
                         }
                         if(jiggyscore_total() < 3){
-                            func_8028B848();
+                            __baMarker_8028B848();
                         }
 
                         if(func_8025AD7C(COMUSIC_30_5TH_JINJO_COLLECTED)){
-                            func_8028B8DC();
+                            __baMarker_8028B8DC();
                         }
 
-                        __spawnQueue_add_4((GenMethod_4)func_8028B904, reinterpret_cast(u32, prop->actorProp.x), reinterpret_cast(u32, prop->actorProp.y), reinterpret_cast(u32, prop->actorProp.z), jiggy_id);
+                        __spawnQueue_add_4((GenMethod_4)__baMarker_8028B904, reinterpret_cast(u32, other_prop->actorProp.x), reinterpret_cast(u32, other_prop->actorProp.y), reinterpret_cast(u32, other_prop->actorProp.z), jiggy_id);
                         marker_despawn(marker);
                     }
                 }
@@ -553,7 +552,7 @@ void func_8028BCA0(Prop *prop){
             case MARKER_53_EMPTY_HONEYCOMB: //L8028C774
                 {
                     
-                    if(func_8028BC20(marker))
+                    if(__baMarker_8028BC20(marker))
                         return;
                     sp98 = func_802CA1C4(marker_getActor(marker));
                     if(sp98 != HONEYCOMB_12_MMM_FLOORBOARD || player_getTransformation() == TRANSFORM_3_PUMPKIN)
@@ -565,7 +564,7 @@ void func_8028BCA0(Prop *prop){
                         if(!(item_getCount(ITEM_13_EMPTY_HONEYCOMB) < 6)){
                             gcpausemenu_80314AC8(0);
                         }
-                        func_802F36DC(&prop->actorProp.x);
+                        func_802F36DC(&other_prop->actorProp.x);
                         marker_despawn(marker);
                     }
                 }
@@ -574,12 +573,12 @@ void func_8028BCA0(Prop *prop){
             case 0x54: //L8028C820
                 func_8025A6EC(COMUSIC_19_LOW_PITCH_FLUTES, 28000);
                 func_803012F8();
-                __spawnQueue_add_4((GenMethod_4)func_802C418C, 0x4E, reinterpret_cast(u32, prop->actorProp.x), reinterpret_cast(u32, prop->actorProp.y), reinterpret_cast(u32, prop->actorProp.z));
+                __spawnQueue_add_4((GenMethod_4)func_802C418C, 0x4E, reinterpret_cast(u32, other_prop->actorProp.x), reinterpret_cast(u32, other_prop->actorProp.y), reinterpret_cast(u32, other_prop->actorProp.z));
                 marker_despawn(marker);
                 break;
 
             case MARKER_55_HONEYCOMB: //L8028C86C
-                if(func_8028BC20(marker))
+                if(__baMarker_8028BC20(marker))
                     return;
                 
                 if( map_get() == MAP_8E_GL_FURNACE_FUN
@@ -593,7 +592,7 @@ void func_8028BCA0(Prop *prop){
                 func_8025A6EC(COMUSIC_16_HONEYCOMB_COLLECTED, 28000);
                 timedFunc_set_1(0.75f, func_8035644C, 0xA);
                 item_inc(ITEM_14_HEALTH);
-                func_802F373C(&prop->actorProp.x);
+                func_802F373C(&other_prop->actorProp.x);
                 marker_despawn(marker);
                 break;
 
@@ -670,17 +669,17 @@ void func_8028BCA0(Prop *prop){
                 break;
             
             case MARKER_5F_MUSIC_NOTE: //L8028CCC8
-                if(func_8028BC20(marker))
+                if(__baMarker_8028BC20(marker))
                     return;
 
-                func_8028BA2C(prop);
+                __baMarker_resolveMusicNoteCollision(other_prop);
                 marker_despawn(marker);
                 break;
 
             case MARKER_60_BLUE_EGG_COLLECTABLE: //L8028CCF0
-                if(func_8028BC20(marker))
+                if(__baMarker_8028BC20(marker))
                     return;
-                if(chcollectable_collectEgg(prop)){
+                if(chcollectable_collectEgg(other_prop)){
                     marker_despawn(marker);
                 }
                 break;
@@ -692,7 +691,7 @@ void func_8028BCA0(Prop *prop){
                 break;
 
             case MARKER_61_EXTRA_LIFE: //L8028CD50
-                if(func_8028BC20(marker))
+                if(__baMarker_8028BC20(marker))
                     return;
                 if( map_get() == MAP_8E_GL_FURNACE_FUN
                     && func_803203FC(0)
@@ -703,7 +702,7 @@ void func_8028BCA0(Prop *prop){
                 }
                 func_8025A6EC(COMUSIC_15_EXTRA_LIFE_COLLECTED, 0x7FFF);
                 timedFunc_set_1(1.5f, func_8035646C, 0xC);
-                func_802F3B3C(&prop->actorProp.x);
+                func_802F3B3C(&other_prop->actorProp.x);
                 item_inc(ITEM_16_LIFE);
                 marker_despawn(marker);
                 break;
@@ -733,7 +732,7 @@ void func_8028BCA0(Prop *prop){
                 break;
 
             case MARKER_11_WADING_BOOTS: //L8028CE8C
-                if(func_8028BC20(marker))
+                if(__baMarker_8028BC20(marker))
                     return;
                 if(_player_getTransformation() != TRANSFORM_1_BANJO)
                     return;
@@ -747,12 +746,12 @@ void func_8028BCA0(Prop *prop){
                 miscflag_set(MISC_FLAG_E_TOUCHING_WADING_BOOTS);
                 func_802A6388(chwadingboots_802D6E4C(actor));
                 bs_checkInterrupt(BS_INTR_1B);
-                __spawnQueue_add_4((GenMethod_4)func_802C418C, 0x4E, reinterpret_cast(u32, prop->actorProp.x), reinterpret_cast(u32, prop->actorProp.y), reinterpret_cast(u32, prop->actorProp.z));
+                __spawnQueue_add_4((GenMethod_4)func_802C418C, 0x4E, reinterpret_cast(u32, other_prop->actorProp.x), reinterpret_cast(u32, other_prop->actorProp.y), reinterpret_cast(u32, other_prop->actorProp.z));
                 chwadingboots_802D6E54(actor);
                 break;
 
             case MARKER_38_TURBO_TALON_TRAINERS: //L8028CF38
-                if(func_8028BC20(marker))
+                if(__baMarker_8028BC20(marker))
                     return;
 
                 tmp1 = _player_getTransformation();
@@ -771,7 +770,7 @@ void func_8028BCA0(Prop *prop){
                 miscflag_set(MISC_FLAG_10_TOUCHING_TURBO_TRAINERS);
                 func_80294AE8(chtrainers_802CA748(actor));
                 bs_checkInterrupt(BS_INTR_1A);
-                __spawnQueue_add_4((GenMethod_4)func_802C418C, 0x4E, reinterpret_cast(u32, prop->actorProp.x), reinterpret_cast(u32, prop->actorProp.y), reinterpret_cast(u32, prop->actorProp.z));
+                __spawnQueue_add_4((GenMethod_4)func_802C418C, 0x4E, reinterpret_cast(u32, other_prop->actorProp.x), reinterpret_cast(u32, other_prop->actorProp.y), reinterpret_cast(u32, other_prop->actorProp.z));
                 chtrainers_802CA750(actor);
                 break;
 
@@ -806,9 +805,9 @@ void func_8028BCA0(Prop *prop){
             func_8032B258(actor, obj_collision_type);
         }
     }
-    else if(prop->unk8_1)//L8028D0B0 //ModelProp
+    else if(other_prop->unk8_1)//L8028D0B0 //ModelProp
     {
-        tmp2 = prop->modelProp.unk0_31 + 0x2D1;
+        tmp2 = other_prop->modelProp.unk0_31 + 0x2D1;
         switch (tmp2)
         {
         case 0x2E8:
@@ -823,31 +822,31 @@ void func_8028BCA0(Prop *prop){
         }
     }
     else{//L8028D10C //SpriteProp
-        tmp3 = prop->spriteProp.unk0_31 + 0x572;
+        tmp3 = other_prop->spriteProp.unk0_31 + 0x572;
         switch (tmp3)
         {
         case 0x6D6: //L8028D144
-            if(!func_8028BC60()){
-                prop->spriteProp.unk8_4 = 0;
-                func_8028BA2C(prop);
+            if(!__baMarker_8028BC60()){
+                other_prop->spriteProp.unk8_4 = 0;
+                __baMarker_resolveMusicNoteCollision(other_prop);
             }
             break;
         case 0x6D7: //L8028D16C
-            if(!func_8028BC60()){
-                prop->spriteProp.unk8_4 = 0;
-                chcollectable_collectEgg(prop);
+            if(!__baMarker_8028BC60()){
+                other_prop->spriteProp.unk8_4 = 0;
+                chcollectable_collectEgg(other_prop);
             }
             break;
         case 0x580: //L8028D194
-            if(!func_8028BC60()){
-                prop->spriteProp.unk8_4 = 0;
-                chcollectable_collectRedFeather(prop);
+            if(!__baMarker_8028BC60()){
+                other_prop->spriteProp.unk8_4 = 0;
+                chcollectable_collectRedFeather(other_prop);
             }
             break;
         case 0x6D1: //L8028D1BC
-            if(!func_8028BC60()){
-                prop->spriteProp.unk8_4 = 0;
-                chcollectable_collectGoldFeather(prop);
+            if(!__baMarker_8028BC60()){
+                other_prop->spriteProp.unk8_4 = 0;
+                chcollectable_collectGoldFeather(other_prop);
             }
             break;
         default:
@@ -857,31 +856,30 @@ void func_8028BCA0(Prop *prop){
     }
 }
 
-//player_initMarker
-void playerMarker_init(void){
+void baMarker_init(void){
     f32 sp1C[3];
     _player_getPosition(sp1C);
-    playerMarker = func_8032FBE4(sp1C, playerModel_80291AAC, 1, 0);
+    playerMarker = func_8032FBE4(sp1C, baModel_80291AAC, 1, 0);
     playerMarker->unk2C_1 = 1;
     marker_setCollisionScripts(playerMarker, NULL, func_80291634, func_80291610);
-    func_803300B8(playerMarker, func_8028D7B8);
+    func_803300B8(playerMarker, baMarker_8028D7B8);
     miscflag_clear(MISC_FLAG_1_ON_FLIGHT_PAD);
     miscflag_clear(MISC_FLAG_2_ON_SPRING_PAD);
     miscflag_clear(8);
-    func_8028D638(0,0);
+    baMarker_8028D638(0,0);
     func_8033D2F4();
     D_8037BF8C = 0;
     D_8037BF90 = 0xff;
     
 }
 
-void playerMarker_free(void){
+void baMarker_free(void){
     marker_free(playerMarker);
     playerMarker = NULL;
 }
 
 
-void func_8028D2E4(void){
+void baMarker_update(void){
     f32 sp174[3];
     f32 sp168[3];
     s32 temp_s0;
@@ -889,7 +887,7 @@ void func_8028D2E4(void){
     Prop *sp58[65];
     s32 *temp_s0_2;
     s32 temp_s2;
-    Prop *temp_s1;
+    Prop *other_prop;
 
     if ((D_8037BF88 != 0)){
         temp_s0 = func_8024FEEC(func_8025ADD4(COMUSIC_30_5TH_JINJO_COLLECTED) & 0xFF);
@@ -900,26 +898,26 @@ void func_8028D2E4(void){
     }//L8028D364
     miscflag_clear(8);
     if(playerMarker->collidable){
-        temp_s0_2 = func_8028B750();
+        temp_s0_2 = __baMarker_8028B750();
         miscflag_clear(MISC_FLAG_1_ON_FLIGHT_PAD);
         miscflag_clear(MISC_FLAG_2_ON_SPRING_PAD);
         _player_getPosition(sp168);
         func_8032F64C(sp168, playerMarker);
         for(D_8037BF8C = NULL, i = 0, temp_s2 = 0; i < 2;i++){//L8028D3DC
             D_8037BF90 = i;
-            playerModel_80292284(sp174, i); //get top of player?
+            baModel_80292284(sp174, i); //get top of player?
             playerMarker->unk38[0] = sp174[0] - sp168[0];
             playerMarker->unk38[1] = sp174[1] - sp168[1];
             playerMarker->unk38[2] = sp174[2] - sp168[2];
             func_80320ED8(playerMarker, temp_s0_2[i], 1);
-            while(temp_s1 = func_8032F528()){//L8028D480
-                if(!temp_s1->unk8_2){
-                    if(!D_8037BF8C && temp_s1->markerFlag && temp_s1->unk8_1){
-                        D_8037BF8C = temp_s1->actorProp.marker;
+            while(other_prop = func_8032F528()){//L8028D480
+                if(!other_prop->unk8_2){
+                    if(!D_8037BF8C && other_prop->markerFlag && other_prop->unk8_1){
+                        D_8037BF8C = other_prop->actorProp.marker;
                     }
-                    func_8028BCA0(temp_s1);
-                    temp_s1->unk8_2 = 1;
-                    sp58[temp_s2] = temp_s1;
+                    __baMarker_resolveCollision(other_prop);
+                    other_prop->unk8_2 = 1;
+                    sp58[temp_s2] = other_prop;
                     temp_s2++;
                 }//L8028D4E0 
             }//L8028D4F0
@@ -932,52 +930,52 @@ void func_8028D2E4(void){
     }
 }
 
-ActorMarker *_player_getMarker(void){ //_player_getMarker
+ActorMarker *baMarker_get(void){ //baMarker_get
     return playerMarker;
 }
 
-void func_8028D5DC(void){ //player_collisionOff
+void baMarker_collisionOff(void){ //player_collisionOff
     playerMarker->collidable = 0;
 }
 
-void func_8028D5F4(void){ //player_collisionOn
+void baMarker_collisionOn(void){ //player_collisionOn
     playerMarker->collidable = 1;
 }
 
-s32 func_8028D60C(void){ //player_isCollidable
-    return (playerMarker->collidable)? 1 : 0;
+bool baMarker_isCollidable(void){ //player_isCollidable
+    return BOOL(playerMarker->collidable);
 }
 
-void func_8028D638(s32 arg0, s32 arg1){
+void baMarker_8028D638(s32 arg0, s32 arg1){
     D_8037BF80[0] = arg0;
     D_8037BF80[1] = arg1;
 }
 
-void func_8028D64C(s32 arg0){
+void baMarker_8028D64C(s32 arg0){
     D_8037BF74 = arg0;
 }
 
-void carriedObject_setActorID(enum actor_e arg0){
-    carriedObject_actorID = arg0;
+void baMarker_setCarriedObject(enum actor_e actor_id){
+    baMarkerCarriedObjActorId = actor_id;
 }
 
-s32 func_8028D664(void){
+s32 baMarker_8028D664(void){
     return D_8037BF74;
 }
 
-enum actor_e carriedObject_getActorID(void){
-    return carriedObject_actorID;
+enum actor_e baMarker_getCarriedObjectActorId(void){
+    return baMarkerCarriedObjActorId;
 }
 
-void func_8028D67C(s32 arg0){
+void baMarker_8028D67C(s32 arg0){
     D_8037BF7C = arg0;
 }
 
-s32 func_8028D688(void){
+s32 baMarker_8028D688(void){
     return D_8037BF7C;
 }
 
-s32 func_8028D694(void) {
+s32 baMarker_8028D694(void) {
     s32 temp_a0;
     s32 phi_v1;
 
@@ -992,12 +990,12 @@ s32 func_8028D694(void) {
 }
 
 
-s32 func_8028D6F0(s32 **arg0){
-    *arg0 = func_8028B750();
+s32 baMarker_8028D6F0(s32 **arg0){
+    *arg0 = __baMarker_8028B750();
     return 2;
 }
 
-void func_8028D71C(void){
+void baMarker_8028D71C(void){
     f32 sp3C[3];
     f32 sp30[3];
     
@@ -1005,10 +1003,9 @@ void func_8028D71C(void){
     player_getPosition(sp3C);
     sp3C[1] += (sp30[1] - sp3C[1])*0.75;
     func_802EE6CC(sp3C, 0, D_80363680, 1, 0.75f, 0.0f, 0x7d, 0xfa, 0);
-
 }
 
-void func_8028D7B8(s32 arg0, ActorMarker *arg1, struct5Cs *collision_flags){
+void baMarker_8028D7B8(s32 arg0, ActorMarker *arg1, struct5Cs *collision_flags){
     s32 sp24;
     s32 sp20 = func_8033D594(collision_flags);
     s32 sp1C = 0;
@@ -1050,15 +1047,15 @@ void func_8028D7B8(s32 arg0, ActorMarker *arg1, struct5Cs *collision_flags){
                     sp24 = MAX(MIN(sp24, 0xb), 7);
                     sp24 -= 7;
                     func_8028F428(sp24 +8, arg1);
-                    func_80250D94(0.8f, sp24 + 0.2, 0.3f);
+                    rumbleManager_80250D94(0.8f, sp24 + 0.2, 0.3f);
                     break;
                 case 2://L8028DA10
                     sp24 = MAX(MIN(sp24, 5), 1);
                     sp24--;
                     func_8028F55C(sp24 + 3, arg1);
-                    func_80250D94(1.0f, sp24 + 0.3, 0.5f);
+                    rumbleManager_80250D94(1.0f, sp24 + 0.3, 0.5f);
                     if(actor->unk16C_2 || actor->unk16C_1){
-                        func_8028D71C();
+                        baMarker_8028D71C();
                     }
                     break;
                 case 0:

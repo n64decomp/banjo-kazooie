@@ -381,7 +381,7 @@ void func_80296608(void){
             sp2C = 2;
             break;
         case BS_INTR_1F: //L80296868
-            if(func_80297C6C() != 3 && func_8028D60C()){
+            if(func_80297C6C() != 3 && baMarker_isCollidable()){
         case BS_INTR_31: //L8029688C
                 func_802960C4(2);
                 item_dec(ITEM_14_HEALTH);

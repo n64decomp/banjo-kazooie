@@ -319,7 +319,7 @@ void func_8029B73C(f32 arg0[3], f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
 
     if (!((arg3 * arg3) < temp_f20)) {
         temp_f20 = gu_sqrtf(temp_f20);
-        ml_vec3f_set_length_copy(sp30, sp30, min_f(time_getDelta() * arg4, arg3 - temp_f20));
+        ml_vec3f_set_length_copy(sp30, sp30, ml_min_f(time_getDelta() * arg4, arg3 - temp_f20));
         ml_vec3f_add(sp3C, sp3C, sp30);
         func_8028FAB0(sp3C);
     }
@@ -677,9 +677,9 @@ void func_8029C4E4(bool arg0) {
 
     if (func_80294574()) {
         if (arg0) {
-            playerModel_80292260(sp3C);
+            baModel_80292260(sp3C);
         } else {
-            playerModel_8029223C(sp3C);
+            baModel_8029223C(sp3C);
         }
         sp3C[1] = func_80294500();
         sp38 = yaw_get();

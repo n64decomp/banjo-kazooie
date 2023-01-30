@@ -1,6 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "core2/particle.h"
 
 
 
@@ -124,39 +125,39 @@ void func_80387C5C(void){
     ParticleEmitter *actor;
 
     func_802BB3DC(0, 60.0f, 0.9f);
-    actor = partEmitList_pushNew(1);
+    actor = partEmitMgr_newEmitter(1);
     particleEmitter_setSprite(actor, ASSET_4A0_SPRITE_EXPLOSION);
-    func_802EFA5C(actor, 0.1f, 0.2f);
-    func_802EFA70(actor, 8);
+    particleEmitter_setFade(actor, 0.1f, 0.2f);
+    particleEmitter_setDrawMode(actor, PART_EMIT_NO_LOOP);
     particleEmitter_setStartingFrameRange(actor, 0, 0);
     particleEmitter_setParticleFramerateRange(actor, 4.0f, 4.0f);
     func_802EFB70(actor, 10.0f, 10.0f);
     func_802EFB84(actor, 15.0f, 20.0f);
-    func_802EFEC0(actor, 4.0f, 4.0f);
+    particleEmitter_setParticleLifeTimeRange(actor, 4.0f, 4.0f);
     particleEmitter_setParticleVelocityRange(actor, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
-    func_802EF3F4(actor, &D_803902D4, &D_803902E0, 1);
+    particleEmitter_emitInVolume(actor, &D_803902D4, &D_803902E0, 1);
 }
 
 void func_80387D80(void){
-    ParticleEmitter *actor = partEmitList_pushNew(3);
+    ParticleEmitter *actor = partEmitMgr_newEmitter(3);
     particleEmitter_setSprite(actor, ASSET_70E_SPRITE_SMOKE_2);
     particleEmitter_setStartingFrameRange(actor, 0, 7);
     func_802EFB98(actor, &D_80390304);
     particleEmitter_setParticleVelocityRange(actor, 0.0f, 100.0f, 0.0f, 0.0f, 200.0f ,0.0f);
-    func_802EF3F4(actor, &D_803902EC, &D_803902F8, 3);
+    particleEmitter_emitInVolume(actor, &D_803902EC, &D_803902F8, 3);
 }
 
 void func_80387E20(void){
-    ParticleEmitter *actor = partEmitList_pushNew(0x19);
+    ParticleEmitter *actor = partEmitMgr_newEmitter(0x19);
     func_802EF9F8(actor, 0.6f);
     func_802EFA18(actor, 3);
     particleEmitter_setModel(actor, 0x427);
     func_802EFB70(actor, 0.05f, 0.4f);
-    func_802EFE24(actor, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
+    particleEmitter_setAngularVelocityRange(actor, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
     particleEmitter_setSpawnIntervalRange(actor, 0.0f, 0.01f);
-    func_802EFEC0(actor, 10.0f, 10.0f);
+    particleEmitter_setParticleLifeTimeRange(actor, 10.0f, 10.0f);
     particleEmitter_setVelocityAndAccelerationRanges(actor, &D_80390344);
-    func_802EF3F4(actor, &D_8039032C, &D_80390338, 0x19);
+    particleEmitter_emitInVolume(actor, &D_8039032C, &D_80390338, 0x19);
 }
 
 void RBB_func_80387F18(ActorMarker *marker, s32 arg1){
@@ -164,7 +165,7 @@ void RBB_func_80387F18(ActorMarker *marker, s32 arg1){
 }
 
 void RBB_func_80387F44(void){
-    func_80250E94(0.5f, 1.0f, 1.5f, 0.0f, 1.0f, 1.5f);
+    rumbleManager_80250E94(0.5f, 1.0f, 1.5f, 0.0f, 1.0f, 1.5f);
 }
 
 void func_80387F88(ActorMarker *marker){

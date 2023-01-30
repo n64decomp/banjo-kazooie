@@ -4,27 +4,15 @@
 
 extern s16 D_803A5D00[2][0xF660];
 
-
 typedef struct Struct_Core2_6A4B0_2{
-    void *unk0;
-    void *unk4;
-    s32 unk8;
-    void (*unkC)(struct Struct_Core2_6A4B0_2 *, Gfx **, Mtx **, Vtx **);
-    s32 unk10;
+    s16 (*vtx_coord)[3];
+    u16 *tmem_raw_ptr;
+    u16 *tmem_ptr;
+    void (*draw_method)(struct Struct_Core2_6A4B0_2 *, Gfx **, Mtx **, Vtx **);
+    bool unk10;
 }Struct_Core2_6A4B0_2;
 
-typedef struct {
-    s16 unk0[3];
-}Struct_Core2_6A4B0_1;
-
-typedef struct {
-    u8 pad0[0x8];
-    u16 *unk8;
-    u8 padC[4];
-    s32 unk10;
-}Struct_Core2_6A4B0_0;
-
-s32  func_802F1804(s32 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
+s16 *func_802F1804(Struct_Core2_6A4B0_2 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
 void func_802F18B8(Struct_Core2_6A4B0_2 *arg0);
 
 /* .data */
@@ -39,36 +27,36 @@ Gfx D_803689D0[] = {
     gsSPEndDisplayList()
 };
 
-s32 D_80368A10[6] = {0x60, 0x840,  0x60, 0x840, 0x840,  0x60};
-s32 D_80368A28[6] = {0x60,  0x60, 0x860,  0x60, 0x860, 0x860};
-s32 D_80368A40[6] = {0, 1, 0, 1, 1, 0};
-s32 D_80368A58[6] = {0, 0, 1, 0, 1, 1};
-s32 D_80368A70[6] = {0, 1, 0, 1, 1, 0};
-s32 D_80368A88[6] = {0, 0, 1, 0, 1, 1};
+
+
 
 /* .code */
 #ifndef NONMATCHING
+s32 D_80368A10[6] = {0x60, 0x840,  0x60, 0x840, 0x840,  0x60};
+s32 D_80368A28[6] = {0x60,  0x60, 0x860,  0x60, 0x860, 0x860};
 void func_802F1440(Struct_Core2_6A4B0_2 *arg0, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6A4B0/func_802F1440.s")
 #else
 void func_802F1440(Struct_Core2_6A4B0_2 *arg0, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
+    Vtx *start_vtx;
+
     Vtx *sp9C;
-    Vtx *var_s2_2;
+    s32 *var_s1;
+    s32 *var_s2;
+    s16 *temp_v0_2;
+    s32 var_s3;
     s32 sp54;
     s32 sp50;
     s32 sp4C;
-    s32 var_s3;
-    Struct_Core2_6A4B0_1 *temp_v0_2;
-    s32 *var_s1;
-    s32 *var_s2;
-    u16* temp;
+    static s32 D_80368A10[6] = {0x60, 0x840,  0x60, 0x840, 0x840,  0x60};
+    static s32 D_80368A28[6] = {0x60,  0x60, 0x860,  0x60, 0x860, 0x860};
     
-    if (arg0->unk10 == 0) {
+    if (!arg0->unk10) {
         func_8024C7B8(gfx, mtx);
     }
     gSPDisplayList((*gfx)++, D_803689D0);
 
-    var_s2_2 = sp9C = *vtx;
+    start_vtx = sp9C = *vtx;
     for(sp4C = 0; sp4C < 6; sp4C++){
         for(sp50 = 0; sp50 < 9; sp50++){
             for(sp54 = 0; sp54 < 2; sp54++){
@@ -76,9 +64,9 @@ void func_802F1440(Struct_Core2_6A4B0_2 *arg0, Gfx **gfx, Mtx **mtx, Vtx **vtx) 
                 var_s2 = D_80368A28 + 3*sp54;
                 for(var_s3 = 0; var_s3 < 3; var_s3++){
                     temp_v0_2 = func_802F1804(arg0, sp50, sp4C, sp54, var_s3);
-                    sp9C->n.ob[0] = temp_v0_2->unk0[0];
-                    sp9C->n.ob[1] = temp_v0_2->unk0[1];
-                    sp9C->n.ob[2] = temp_v0_2->unk0[2];
+                    sp9C->n.ob[0] = temp_v0_2[0];
+                    sp9C->n.ob[1] = temp_v0_2[1];
+                    sp9C->n.ob[2] = temp_v0_2[2];
 
                     sp9C->n.flag = 0;
 
@@ -96,13 +84,13 @@ void func_802F1440(Struct_Core2_6A4B0_2 *arg0, Gfx **gfx, Mtx **mtx, Vtx **vtx) 
         }
     }
     *vtx = sp9C;
-    sp9C = var_s2_2;
+    sp9C = start_vtx;
     var_s3 = 0;
     gSPVertex((*gfx)++, osVirtualToPhysical(sp9C), 16, 0);
     for(sp4C = 0; sp4C < 6; sp4C++){
         for(sp50 = 0; sp50 < 9; sp50++){
-            temp = (0x20*sp50 + 1) + ((u16*)arg0->unk8 + (0x20*sp4C + 0xC)*framebuffer_width);
-            gDPLoadTextureTile((*gfx)++, osVirtualToPhysical(temp), G_IM_FMT_RGBA, G_IM_SIZ_16b, framebuffer_width, 0, 0, 0, 33, 33, 0, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
+            temp_v0_2 = arg0->tmem_ptr + (0x20*sp50 + 1) + (0x20*sp4C + 0xC)*framebuffer_width;
+            gDPLoadTextureTile((*gfx)++, osVirtualToPhysical(temp_v0_2), G_IM_FMT_RGBA, G_IM_SIZ_16b, framebuffer_width, 0, 0, 0, 33, 33, 0, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
             for(sp54 = 0; sp54 < 2; sp54++){
                 gSP1Triangle((*gfx)++, var_s3, var_s3 + 1, var_s3 + 2, 0);
                 var_s3 += 3;
@@ -114,32 +102,32 @@ void func_802F1440(Struct_Core2_6A4B0_2 *arg0, Gfx **gfx, Mtx **mtx, Vtx **vtx) 
             }
         }
     }
-    if (arg0->unk10 == 0) {
+    if (!arg0->unk10) {
         func_8024C904(gfx, mtx);
     }
 }
 #endif
 
-s32 func_802F1804(s32 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
-    return *arg0 + (arg1 * 0x24) + (arg2 * 0x144) + (arg3 * 0x12) + (arg4 * 6);
+s16 *func_802F1804(Struct_Core2_6A4B0_2 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
+    return (s16*)(arg0->vtx_coord + (arg1 * 2*3) + (arg2 * 2*3*9) + (arg3 * 3) + (arg4));
 }
 
 void func_802F1858(Struct_Core2_6A4B0_2 *arg0, Gfx **gfx, Mtx **mtx, Vtx **vtx){
-    if(arg0->unkC != NULL){
-        arg0->unkC(arg0, gfx, mtx, vtx);
+    if(arg0->draw_method != NULL){
+        arg0->draw_method(arg0, gfx, mtx, vtx);
     }
 }
 
 void func_802F1884(Struct_Core2_6A4B0_2 *arg0){
     func_802F18B8(arg0);
-    free(arg0->unk0);
+    free(arg0->vtx_coord);
     free(arg0);
 }
 
 void func_802F18B8(Struct_Core2_6A4B0_2 *arg0){
-    if(arg0->unk4 != NULL){
-        free(arg0->unk4);
-        arg0->unk4 = NULL;
+    if(arg0->tmem_raw_ptr != NULL){
+        free(arg0->tmem_raw_ptr);
+        arg0->tmem_raw_ptr = NULL;
     }
 }
 
@@ -147,27 +135,27 @@ Struct_Core2_6A4B0_2 *func_802F18F0(void){
     Struct_Core2_6A4B0_2 *self;
 
     self = (Struct_Core2_6A4B0_2 *) malloc(sizeof(Struct_Core2_6A4B0_2));
-    self->unk0 = malloc(0x798);
-    self->unk4 = 0;
-    self->unkC = 0;
+    self->vtx_coord = malloc(6*9*2*3*3*sizeof(u16));
+    self->tmem_raw_ptr = NULL;
+    self->draw_method = 0;
     self->unk10 = 0;
     return self;
 }
 
 void func_802F1934(Struct_Core2_6A4B0_2 * arg0, s32 arg1){
     func_802F18B8(arg0);
-    arg0->unk4 = malloc(framebuffer_width*framebuffer_height*sizeof(u16) + 0x10);
-    arg0->unk8 = arg0->unk4;
-    while((arg0->unk8 & 0x10) == 0){
-        (arg0->unk8)++;
+    arg0->tmem_raw_ptr = malloc(framebuffer_width*framebuffer_height*sizeof(u16) + 0x10);
+    arg0->tmem_ptr = arg0->tmem_raw_ptr;
+    while(((s32)arg0->tmem_ptr & 0x10) == 0){
+        arg0->tmem_ptr = (u16*)((s32)arg0->tmem_ptr + 1);
     }
-    func_80253010(arg0->unk8, D_803A5D00[arg1], framebuffer_width*framebuffer_height*sizeof(u16));
+    func_80253010(arg0->tmem_ptr, D_803A5D00[arg1], framebuffer_width*framebuffer_height*sizeof(u16));
     osWriteBackDCacheAll();
 }
 
 void func_802F1A08(s32 arg0) { }
 
-void func_802F1A10(Struct_Core2_6A4B0_2 *arg0, f32 arg1) {
+void func_802F1A10(Struct_Core2_6A4B0_2 *arg0, f32 angle_degrees) {
     s32 spCC[3];
     f32 spC0[3];
     f32 temp_f0;
@@ -184,9 +172,11 @@ void func_802F1A10(Struct_Core2_6A4B0_2 *arg0, f32 arg1) {
     s32 sp90;
     s32 var_s6;
     s16 *temp_v0_2;
+    static s32 D_80368A40[6] = {0, 1, 0, 1, 1, 0};
+    static s32 D_80368A58[6] = {0, 0, 1, 0, 1, 1};
 
-    cos = cosf(arg1 * 2 * BAD_PI);
-    sin = sinf(arg1 * 2 * BAD_PI);
+    cos = cosf(angle_degrees * 2 * BAD_PI);
+    sin = sinf(angle_degrees * 2 * BAD_PI);
     func_8024C5CC(spC0);
     spCC[0] = (-(framebuffer_width / 2) * 4) + 8;
     spCC[1] = ((framebuffer_height / 2) * 4) - 0x38;
@@ -201,15 +191,15 @@ void func_802F1A10(Struct_Core2_6A4B0_2 *arg0, f32 arg1) {
                     temp_f0 = (f32) (spCC[0] + var_s4 * 0x80 + (*var_s1 * 0x80));
                     temp_f2 = (f32) (spCC[1] - var_s6 * 0x80 - (*var_s2 * 0x80));
                     
-                    temp_f0 = temp_f0 * (1.0f - arg1);
-                    temp_f2 = temp_f2 * (1.0f - arg1);
+                    temp_f0 = temp_f0 * (1.0f - angle_degrees);
+                    temp_f2 = temp_f2 * (1.0f - angle_degrees);
 
                     temp_f12 = temp_f0;
                     temp_f0 = (temp_f12 * cos) - (temp_f2 * sin);
                     temp_f2 = (temp_f12 * sin) + (temp_f2 * cos);
                     
-                    temp_f0 = temp_f0 + ((-560.0f - temp_f0) * arg1);
-                    temp_f2 = temp_f2 + ((400.0f - temp_f2) * arg1);
+                    temp_f0 = temp_f0 + ((-560.0f - temp_f0) * angle_degrees);
+                    temp_f2 = temp_f2 + ((400.0f - temp_f2) * angle_degrees);
                     
                     temp_v0_2[0] = (s16) (s32) temp_f0;
                     temp_v0_2[1] = (s16) (s32) temp_f2;
@@ -220,11 +210,14 @@ void func_802F1A10(Struct_Core2_6A4B0_2 *arg0, f32 arg1) {
             }
         }
     }
-    arg0->unkC = &func_802F1440;
-    arg0->unk10 = 0;
+    arg0->draw_method = &func_802F1440;
+    arg0->unk10 = FALSE;
 }
 
 void func_802F1CAC(Struct_Core2_6A4B0_2 *arg0) {
+    static s32 D_80368A70[6] = {0, 1, 0, 1, 1, 0};
+    static s32 D_80368A88[6] = {0, 0, 1, 0, 1, 1};
+
     s32 sp84[3];
     f32 sp78[3];
     s32 var_s0;
@@ -258,6 +251,6 @@ void func_802F1CAC(Struct_Core2_6A4B0_2 *arg0) {
             }
         }
     }
-    arg0->unkC = &func_802F1440;
-    arg0->unk10 = 1;
+    arg0->draw_method = &func_802F1440;
+    arg0->unk10 = TRUE;
 }

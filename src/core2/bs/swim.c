@@ -34,9 +34,9 @@ void func_802B5480(void) {
 
     if (func_80294574()) {
         if (randf() > 0.5) {
-            playerModel_8029223C(bubble_spawn_position);
+            baModel_8029223C(bubble_spawn_position);
         } else {
-            playerModel_80292260(bubble_spawn_position);
+            baModel_80292260(bubble_spawn_position);
         }
         bubble_emitter = func_8029B950(bubble_spawn_position, 0.0f);
         particleEmitter_setParticleVelocityRange(bubble_emitter, -60.0f, -100.0f, -60.0f, 60.0f, 0.0f, 60.0f);
@@ -67,7 +67,7 @@ void func_802B55DC(void) {
         func_80297970(0.0f);
         return;
     }
-    func_80297970(func_80257C48(sp1C, D_80364D40, D_80364D44));
+    func_80297970(ml_interpolate_f(sp1C, D_80364D40, D_80364D44));
 }
 
 void func_802B563C(void) {

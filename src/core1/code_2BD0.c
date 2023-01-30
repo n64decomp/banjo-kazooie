@@ -35,7 +35,7 @@ void func_802405F0(u32 arg0, u32 arg1, s32 size){
 }
 #endif
 
-void func_80240754(void){
+void piMgr_create(void){
     osCreateMesgQueue(&D_8027E0AC, &D_8027E0A8, 1);
     osCreateMesgQueue(&D_8027E108, &D_8027E0C8[0], 16);
     osCreatePiManager(OS_PRIORITY_PIMGR, &D_8027E108, &D_8027E0C8[0], 16);

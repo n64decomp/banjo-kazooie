@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void func_80250E6C(f32, f32);
+extern void rumbleManager_80250E6C(f32, f32);
 extern void func_80258E60(f32[3], f32[3], f32);
 extern void func_80258EF4(f32[3], f32[3], f32);
 extern void func_80258F88(f32[3], f32[3], f32);

@@ -750,7 +750,7 @@ bool func_803270B8(f32 arg0[3], f32 arg1, s32 arg2, int (*arg3)(Actor *), ActorM
 
 
 void func_8032728C(f32 arg0[3], f32 arg1, s32 arg2, int (*arg3)(Actor *)){
-    func_803270B8(arg0, arg1, arg2, arg3, _player_getMarker());
+    func_803270B8(arg0, arg1, arg2, arg3, baMarker_get());
 }
 
 void func_803272D0(f32 arg0[3], f32 arg1, s32 arg2, int (*arg3)(Actor *)){
@@ -2107,11 +2107,11 @@ void actorArray_defrag(void) {
             }
 
             if (i_actor->unk158[0] != NULL) {
-                i_actor->unk158[0] = func_802F0D74(i_actor->unk158[0]);
+                i_actor->unk158[0] = partEmitMgr_defragEmitter(i_actor->unk158[0]);
             }
 
             if (i_actor->unk158[1] != NULL) {
-                i_actor->unk158[1] = func_802F0D74(i_actor->unk158[1]);
+                i_actor->unk158[1] = partEmitMgr_defragEmitter(i_actor->unk158[1]);
             }
 
             if (i_actor->animctrl != NULL) {

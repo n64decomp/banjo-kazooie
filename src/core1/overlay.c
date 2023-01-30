@@ -15,7 +15,7 @@ extern u8  D_8002D500;
 extern u32 D_8027BF2C;
 extern u32 D_8027BF30;
 
-void func_80253050(
+void overlay_load(
     s32 overlay_id, u32 ram_start, u32 ram_end, u32 rom_start, u32 rom_end, 
     u32 code_start, u32 code_end, u32 data_start, u32 data_end, u32 bss_start, u32 bss_end
 ){

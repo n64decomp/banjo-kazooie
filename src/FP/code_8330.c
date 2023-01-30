@@ -47,7 +47,7 @@ void func_8038E7CC(ActorMarker *this_marker, ActorMarker *other_marker){
 
 void func_8038E840(f32 position[3], s32 cnt, enum asset_e sprite_id){
     static struct31s D_80392444 = {{0.4f, 0.6f}, {0.8f, 1.8f}, {0.0f, 0.01f}, {0.5f, 1.4f}, 0.0f, 0.01f};
-    ParticleEmitter *pCtrl = partEmitList_pushNew(cnt);
+    ParticleEmitter *pCtrl = partEmitMgr_newEmitter(cnt);
     particleEmitter_setSprite(pCtrl, sprite_id);
     particleEmitter_setPosition(pCtrl, position);
     particleEmitter_setParticleSpawnPositionRange(pCtrl,

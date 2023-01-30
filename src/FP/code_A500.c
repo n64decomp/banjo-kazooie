@@ -27,11 +27,11 @@ void func_80390944(f32 position[3], s32 cnt, enum asset_e model_id){
         {{   0.0f, -1000.0f,    0.0f}, {  0.0f, -1000.0f,   0.0f}}, /*velocitcy*/
         {{-100.0f,     0.0f, -100.0f}, {100.0f,   200.0f, 100.0f}}  /*acceleration*/
     };
-    ParticleEmitter *pCtrl = partEmitList_pushNew(cnt);
+    ParticleEmitter *pCtrl = partEmitMgr_newEmitter(cnt);
     particleEmitter_setModel(pCtrl, model_id);
     particleEmitter_setPosition(pCtrl, position);
     particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_8039277C);
-    func_802EFE24(pCtrl,
+    particleEmitter_setAngularVelocityRange(pCtrl,
         100.0f, 100.0f, 100.0f, 
         250.0f, 250.0f, 250.0f
     );
@@ -39,7 +39,7 @@ void func_80390944(f32 position[3], s32 cnt, enum asset_e model_id){
     func_802EF9F8(pCtrl, 0.6f);
     func_802EFA18(pCtrl, 0);
     func_802EFA20(pCtrl, 1.0f, 1.3f);
-    func_802EF9EC(pCtrl, 0x7B, 8000);
+    particleEmitter_setSfx(pCtrl, SFX_7B_ICE_BREAKING_1, 8000);
     particleEmitter_emitN(pCtrl, cnt);
 }
 
@@ -51,8 +51,8 @@ void func_80390A30(f32 position[3], s32 cnt, enum asset_e sprite_id){
         {{ -50.0f,   0.0f,  -50.0f}, { 50.0f, 200.0f,  50.0f}}  /*acceleration*/
     };
     static s32 D_80392834[3] = {0xDC, 0xDC, 0xE6};
-    ParticleEmitter *pCtrl = partEmitList_pushNew(cnt);
-    func_802EFFA8(pCtrl, D_80392834);
+    ParticleEmitter *pCtrl = partEmitMgr_newEmitter(cnt);
+    particleEmitter_setRGB(pCtrl, D_80392834);
     particleEmitter_setSprite(pCtrl, sprite_id);
     particleEmitter_setPosition(pCtrl, position);
     particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_803927EC);

@@ -3,7 +3,7 @@
 #include "variables.h"
 
 extern void guPerspective(Mtx *, u16*, f32, f32, f32, f32, f32);
-extern f32 ml_vec3f_dot_product(f32[3], f32[3]);
+extern f32 ml_dotProduct_vec3f(f32[3], f32[3]);
 
 /* .data */
 f32 D_80275D20 = 40.0f; //fovy
@@ -48,7 +48,7 @@ void func_8024C510(f32 arg0){
 }
 
 void func_8024C584(f32 arg0[3]){
-    ml_vec3f_distance(arg0, D_80280EB0);
+    ml_distance_vec3f(arg0, D_80280EB0);
 }
 
 void func_8024C5A8(f32 arg0[3]){
@@ -355,7 +355,7 @@ bool func_8024DB50(f32 arg0[3], f32 arg1) {
     sp3C[1] = arg0[1] - D_80280EB0[1];
     sp3C[2] = arg0[2] - D_80280EB0[2];
     for(i = 0; i < 4; i++){
-        if(arg1 <= ml_vec3f_dot_product(sp3C, D_80280ED0[i])){
+        if(arg1 <= ml_dotProduct_vec3f(sp3C, D_80280ED0[i])){
             return FALSE;
         }
     }

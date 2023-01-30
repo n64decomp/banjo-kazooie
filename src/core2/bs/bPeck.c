@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-void playerModel_80292048(s32, f32, f32, f32);
+void baModel_80292048(s32, f32, f32, f32);
 void func_802875AC(AnimCtrl *, char *, s32);
 
 /* .data */
@@ -42,9 +42,9 @@ void bsbpeck_init(void){
     func_8029E070(1);
     gravity_set(D_80364A60);
     player_setYVelocity(D_80364A64);
-    playerModel_80292048(1, -38.0f, 0.0f, 105.0f);
-    playerModel_80292048(0, -38.0f, 0.0f, -7.0f);
-    func_8028D638(0x23, 0x2A);
+    baModel_80292048(1, -38.0f, 0.0f, 105.0f);
+    baModel_80292048(0, -38.0f, 0.0f, -7.0f);
+    baMarker_8028D638(0x23, 0x2A);
     D_8037D375 = 0;
     D_8037D374 = 0;
     D_8037D376 = 1;
@@ -129,9 +129,9 @@ void bsbpeck_update(void){
 void bsbpeck_end(void){
     D_8037D376 = 0;
     ability_use(0xa);
-    playerModel_80292048(1, 0.0f, 0.0f, 0.0f);
-    playerModel_80292048(0, 0.0f, 0.0f, 0.0f);
-    func_8028D638(0, 0);
+    baModel_80292048(1, 0.0f, 0.0f, 0.0f);
+    baModel_80292048(0, 0.0f, 0.0f, 0.0f);
+    baMarker_8028D638(0, 0);
     func_8029E070(0);
     gravity_reset();
 }

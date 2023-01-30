@@ -7,7 +7,7 @@ extern void yaw_applyIdeal(void);
 extern void func_802978DC(int);
 extern f32 func_80257A44(f32, f32);
 extern f32 cosf(f32);
-extern f32 func_802588B0(f32, f32);
+extern f32 ml_remainder_f(f32, f32);
 extern f32 func_80257AD4(f32, f32);
 
 /* .bss */
@@ -25,20 +25,20 @@ struct {
     f32 unk24;
     f32 unk28;
     f32 unk2C;
-    u8 unk30;
-    u8 unk31; //enum bs_e
-    u8 unk32;
+    u8 room_transformation;
+    u8 player_transformation; //enum bs_e
+    u8 state;
 } D_8037D470;
 
 /* .code */
 void func_802AF7A0(ParticleEmitter *arg0, enum asset_e arg1){
-    func_802F0D54(arg0);
+    particleEmitter_manualFree(arg0);
     particleEmitter_setSprite(arg0, arg1);
     particleEmitter_setParticleAccelerationRange(arg0, 0.0f, -50.0f, 0.0f, 0.0f, -50.0f, 0.0f);
-    func_802EFA5C(arg0, 0.4f, 0.8f);
+    particleEmitter_setFade(arg0, 0.4f, 0.8f);
     func_802EFB84(arg0, 0.03f, 0.03f);
-    func_802EFE24(arg0, 0.0f, 0.0f, 300.0f, 0.0f, 0.0f, 300.0f);
-    func_802EFEC0(arg0, 0.65f, 0.65f);
+    particleEmitter_setAngularVelocityRange(arg0, 0.0f, 0.0f, 300.0f, 0.0f, 0.0f, 300.0f);
+    particleEmitter_setParticleLifeTimeRange(arg0, 0.65f, 0.65f);
     func_802EFF50(arg0, 1.0f);
 }
 
@@ -65,16 +65,16 @@ void func_802AF900(void){
     sp40 = sinf(sp4C);
     sp44 = cosf(sp4C);
     sp30[0] += sp40 * D_8037D470.unk18;
-    sp30[1] += func_80257C48(func_80257A44(sp3C, 1.14f), 0.0f, 130.0f);
+    sp30[1] += ml_interpolate_f(func_80257A44(sp3C, 1.14f), 0.0f, 130.0f);
     sp30[2] += sp44 * D_8037D470.unk18;
     func_802AF88C(D_8037D470.unk4, sp40, sp44);
     particleEmitter_setPosition(D_8037D470.unk4, sp30);
     particleEmitter_emitN(D_8037D470.unk4, 1);
 
     player_getPosition(sp30);
-    sp4C = (1.0 - func_802588B0(sp48 + 0.5, 1.0f))* 6.283185308;
+    sp4C = (1.0 - ml_remainder_f(sp48 + 0.5, 1.0f))* 6.283185308;
     sp30[0] -= sinf(sp4C) * D_8037D470.unk18;
-    sp30[1] += func_80257C48(func_80257A44(sp3C, 1.14f), 130.0f, 0.0f);
+    sp30[1] += ml_interpolate_f(func_80257A44(sp3C, 1.14f), 130.0f, 0.0f);
     sp30[2] -= cosf(sp4C) * D_8037D470.unk18;
     func_802AF88C(D_8037D470.unk0, sp40, sp44);
     particleEmitter_setPosition(D_8037D470.unk0, sp30);
@@ -82,15 +82,15 @@ void func_802AF900(void){
 }
 
 void func_802AFADC(void){
-    partEmitList_remove(D_8037D470.unk4);
-    partEmitList_remove(D_8037D470.unk0);
+    partEmitMgr_freeEmitter(D_8037D470.unk4);
+    partEmitMgr_freeEmitter(D_8037D470.unk0);
 }
 
 void func_802AFB0C(void){
-    D_8037D470.unk0 = partEmitList_pushNew(0x32);
+    D_8037D470.unk0 = partEmitMgr_newEmitter(0x32);
     func_802AF7A0(D_8037D470.unk0, ASSET_476_SPRITE_BLUE_GLOW); //blue glow
 
-    D_8037D470.unk4 = partEmitList_pushNew(0x32);
+    D_8037D470.unk4 = partEmitMgr_newEmitter(0x32);
     func_802AF7A0(D_8037D470.unk4, ASSET_477_SPRITE_YELLOW_GLOW); //orange glow
 
     D_8037D470.unkC = 1.0f;
@@ -142,34 +142,34 @@ void func_802AFBB8(f32 arg0[3]){
         {{-200.0f,   10.0f, -200.0f}, { 200.0f,   20.0f,  200.0f}},
         {{   0.0f, -850.0f,    0.0f}, {   0.0f, -850.0f,    0.0f}}
     };
-    ParticleEmitter* s0 = partEmitList_pushNew(1);
+    ParticleEmitter* s0 = partEmitMgr_newEmitter(1);
     particleEmitter_setSprite(s0, ASSET_6C4_SPRITE_SMOKE_YELLOW); //yellow blast
-    func_802EFA5C(s0, 0.7f, 0.8f);
+    particleEmitter_setFade(s0, 0.7f, 0.8f);
     particleEmitter_setParticleFramerateRange(s0, 12.0f, 12.0f);
     particleEmitter_setPosition(s0, arg0);
     func_802EFB70(s0, 3.2f, 3.2f);
     func_802EFB84(s0, 3.2f, 3.2f);
-    func_802EFEC0(s0, 0.8f, 0.8f);
+    particleEmitter_setParticleLifeTimeRange(s0, 0.8f, 0.8f);
     particleEmitter_emitN(s0, 1);
     
-    s0 = partEmitList_pushNew(1);
+    s0 = partEmitMgr_newEmitter(1);
     particleEmitter_setSprite(s0, ASSET_6C2_SPRITE_SMOKE_WHITE); //smoke
-    func_802EFA5C(s0, 0.1f, 0.8f);
+    particleEmitter_setFade(s0, 0.1f, 0.8f);
     particleEmitter_setParticleFramerateRange(s0, 15.0f, 15.0f);
     particleEmitter_setPosition(s0, arg0);
     func_802EFB70(s0, 3.0f, 3.0f);
     func_802EFB84(s0, 3.0f, 3.0f);
-    func_802EFEC0(s0, 0.65f, 0.65f);
+    particleEmitter_setParticleLifeTimeRange(s0, 0.65f, 0.65f);
     particleEmitter_emitN(s0, 1);
 
-    s0 = partEmitList_pushNew(0x11);
+    s0 = partEmitMgr_newEmitter(0x11);
     particleEmitter_setSprite(s0, ASSET_713_SPRITE_SPARKLE_YELLOW); //sparkle
     particleEmitter_setVelocityAndAccelerationRanges(s0, &D_80364BB0);
-    func_802EFA5C(s0, 0.0f, 0.6f);
+    particleEmitter_setFade(s0, 0.0f, 0.6f);
     func_802EFB70(s0, 0.28f, 0.32f);
     func_802EFB84(s0, 0.03f, 0.03f);
-    func_802EFE24(s0, 0.0f, 0.0f, 300.0f, 0.0f, 0.0f, 300.0f);
-    func_802EFEC0(s0, 2.0f, 2.0f);
+    particleEmitter_setAngularVelocityRange(s0, 0.0f, 0.0f, 300.0f, 0.0f, 0.0f, 300.0f);
+    particleEmitter_setParticleLifeTimeRange(s0, 2.0f, 2.0f);
     func_802EFF50(s0, 1.0f);
     particleEmitter_setPosition(s0, arg0);
     particleEmitter_emitN(s0, 8);
@@ -182,14 +182,14 @@ void func_802AFBB8(f32 arg0[3]){
     func_802EFA18(s0, 3);
     particleEmitter_emitN(s0, 4);
 
-    s0 = partEmitList_pushNew(0x11);
+    s0 = partEmitMgr_newEmitter(0x11);
     particleEmitter_setSprite(s0, ASSET_716_SPRITE_SPARKLE_WHITE); //sparkle
     particleEmitter_setVelocityAndAccelerationRanges(s0, &D_80364C40);
-    func_802EFA5C(s0, 0.0f, 0.6f);
+    particleEmitter_setFade(s0, 0.0f, 0.6f);
     func_802EFB70(s0, 0.28f, 0.32f);
     func_802EFB84(s0, 0.03f, 0.03f);
-    func_802EFE24(s0, 0.0f, 0.0f, 300.0f, 0.0f, 0.0f, 300.0f);
-    func_802EFEC0(s0, 2.0f, 2.0f);
+    particleEmitter_setAngularVelocityRange(s0, 0.0f, 0.0f, 300.0f, 0.0f, 0.0f, 300.0f);
+    particleEmitter_setParticleLifeTimeRange(s0, 2.0f, 2.0f);
     func_802EFF50(s0, 1.0f);
     particleEmitter_setPosition(s0, arg0);
     particleEmitter_emitN(s0, 8);
@@ -246,13 +246,13 @@ void func_802B01C8(void){
    D_8037D470.unk20 += time_getDelta();
 }
 
-static void __bsdronexform_setState(int arg0){
+static void __bsdronexform_setState(int next_state){
     enum asset_e sp34;
     f32 sp30;
     f32 sp24[3];
 
-    D_8037D470.unk32 = arg0;
-    switch(arg0){
+    D_8037D470.state = next_state;
+    switch(next_state){
         case 1:// 802B0230
             D_8037D470.unk1C = 1;
             D_8037D470.unk2C = player_getYPosition();
@@ -289,12 +289,12 @@ static void __bsdronexform_setState(int arg0){
         case 6: // 802B033C
             func_802BB3DC(2, 80.0f, 0.85f);
             func_8030E6D4(SFX_147_GRUNTY_SPELL_ATTACK_2);
-            if(D_8037D470.unk30 == 7 || D_8037D470.unk31 == 7){
+            if(D_8037D470.room_transformation == TRANSFORM_7_WISHWASHY || D_8037D470.player_transformation == TRANSFORM_7_WISHWASHY){
                 yaw_setIdeal(yaw_get() + 180.0f);
                 yaw_applyIdeal();
             }
-            func_8029A95C(func_80294A4C()); //set player transformation
-            playerModel_updateModel(); //update player model
+            player_setTransformation(func_80294A4C()); //set player transformation
+            baModel_updateModel(); //update player model
             func_8029BD44(&sp34, &sp30);
             func_8028A010(sp34, sp30);
             func_8029E3C0(0, 0.1f);
@@ -305,7 +305,7 @@ static void __bsdronexform_setState(int arg0){
             break;
 
         case 8: // 802B03FC
-            if(D_8037D470.unk30 == 1 && D_8037D470.unk31 == 1){
+            if(D_8037D470.room_transformation == TRANSFORM_1_BANJO && D_8037D470.player_transformation == TRANSFORM_1_BANJO){
                 func_8025A6EC(COMUSIC_3C_MINIGAME_LOSS, 28000);
             }
             func_8029E3C0(0, 1.0f);
@@ -332,10 +332,10 @@ void bsdronexform_init(void){
     func_80294378(6);
     func_802AFB0C();
     func_802B016C();
-    D_8037D470.unk31 = _player_getTransformation();
-    D_8037D470.unk30 = func_80294A4C();
+    D_8037D470.player_transformation = _player_getTransformation();
+    D_8037D470.room_transformation = func_80294A4C();
     miscflag_set(MISC_FLAG_1B_TRANSFORMING);
-    D_8037D470.unk32 = 0;
+    D_8037D470.state = 0;
     __bsdronexform_setState(1);
 }
 
@@ -349,7 +349,7 @@ void bsdronexform_update(void){
         func_802AFFAC();
 
     func_802B01C8();
-    switch(D_8037D470.unk32){
+    switch(D_8037D470.state){
         case 1: 
             sp24 = func_8029E1A8(0);
             player_setYPosition(func_802B051C(0, 2.8f, 0.0f, 90.0f) + D_8037D470.unk2C);

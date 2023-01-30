@@ -41,7 +41,7 @@ void MMM_func_803871FC(Actor *this){
     func_803255FC(this);
 }
 
-void func_80387260() {
+void mm_resetFlowerPots() {
     func_803871D4(5);
 }
 

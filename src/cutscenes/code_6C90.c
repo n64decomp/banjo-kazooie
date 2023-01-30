@@ -42,13 +42,13 @@ struct41s D_8038E900 = {
 void func_8038D080(ParticleEmitter *pCtrl){
     particleEmitter_setSprite(pCtrl, ASSET_702_SPRITE_UNKNOWN);
     particleEmitter_setStartingFrameRange(pCtrl, 3, 5);
-    func_802EFFA8(pCtrl, D_8038E8CC);
-    func_802EF9E4(pCtrl, 60);
-    func_802EFE24(pCtrl, -600.0f, -600.0f,-600.0f, 600.0f, 600.0f, 600.0f);
+    particleEmitter_setRGB(pCtrl, D_8038E8CC);
+    particleEmitter_setAlpha(pCtrl, 60);
+    particleEmitter_setAngularVelocityRange(pCtrl, -600.0f, -600.0f,-600.0f, 600.0f, 600.0f, 600.0f);
     particleEmitter_setVelocityAndAccelerationRanges(pCtrl, &D_8038E900);
     func_802EFB98(pCtrl, &D_8038E8D8);
-    func_802EFA70(pCtrl, 4);
-    func_802F0D54(pCtrl);
+    particleEmitter_setDrawMode(pCtrl, 4);
+    particleEmitter_manualFree(pCtrl);
 }
 
 Actor* func_8038D13C(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
@@ -77,7 +77,7 @@ void func_8038D218(Actor *this){
         this->unk16C_4 = TRUE;
         animctrl_setSmoothTransition(this->animctrl, 0);
         this->unk60 = this->yaw/4;
-        local->unk0 = partEmitList_pushNew(0x100);
+        local->unk0 = partEmitMgr_newEmitter(0x100);
         func_8038D080(local->unk0);
     }
 

@@ -125,8 +125,8 @@ void func_80387DF8(f32 position[3], s32 count, enum asset_e sprite_id) {
     };
     ParticleEmitter *pCtrl;
 
-    pCtrl = partEmitList_pushNew(count);
-    func_802EFFA8(pCtrl, D_8038BAF4);
+    pCtrl = partEmitMgr_newEmitter(count);
+    particleEmitter_setRGB(pCtrl, D_8038BAF4);
     particleEmitter_setSprite(pCtrl, sprite_id);
     particleEmitter_setPosition(pCtrl, position);
     particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_8038BB28);
@@ -143,16 +143,16 @@ void func_80387E84(f32 position[3], s32 count, enum asset_e model_id) {
     };
     ParticleEmitter *pCtrl;
 
-    pCtrl = partEmitList_pushNew(count);
+    pCtrl = partEmitMgr_newEmitter(count);
     particleEmitter_setModel(pCtrl, model_id);
     particleEmitter_setPosition(pCtrl, position);
     particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_8038BB98);
-    func_802EFE24(pCtrl, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
+    particleEmitter_setAngularVelocityRange(pCtrl, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
     func_802EF9F8(pCtrl, 0.4f);
     func_802EFA18(pCtrl, 3);
     func_802EFA20(pCtrl, 1.0f, 1.3f);
-    func_802EF9EC(pCtrl, 0x2F, 0x3E80);
-    func_802EFA70(pCtrl, 2);
+    particleEmitter_setSfx(pCtrl, SFX_2F_ORANGE_SPLAT, 16000);
+    particleEmitter_setDrawMode(pCtrl, 2);
     func_802EFB98(pCtrl, &D_8038BB70);
     particleEmitter_emitN(pCtrl, count);
 }
@@ -189,7 +189,7 @@ void func_80388028(Actor *this){
     }//L803880B4
 
     player_getPosition(plyr_position);
-    plyr_dist = ml_vec3f_distance(this->position, plyr_position);
+    plyr_dist = ml_distance_vec3f(this->position, plyr_position);
 
     if(this->state == 4)
         actor_collisionOn(this);
@@ -214,7 +214,7 @@ void func_80388028(Actor *this){
     }//L80388204
 
     if(this->state == 3){
-        if(func_8025773C(&local->unk0, sp58)){
+        if(ml_timer_update(&local->unk0, sp58)){
             func_80387B14(this, 4);
         }
     }

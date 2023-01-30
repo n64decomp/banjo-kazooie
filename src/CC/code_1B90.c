@@ -83,7 +83,7 @@ void func_8038817C(void){
     if(D_80389F90.unk0 != 0){
         D_80389F90.unk4 += sp20;
         player_getPosition(sp24);
-        if(func_8025773C(&D_80389F90.unk8, sp20)){
+        if(ml_timer_update(&D_80389F90.unk8, sp20)){
             func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);
             func_80324E38(0.0f, 3);
             timed_setCameraToNode(2.0f, 0);

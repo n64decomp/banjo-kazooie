@@ -5,7 +5,7 @@
 #define _SQ3v1(v)      (v[0] * v[0] + v[1] * v[1] + v[2] * v[2])
 
 extern f32 ml_sin_deg(f32);
-extern f32 ml_vec3f_dot_product(f32[3], f32[3]);
+extern f32 ml_dotProduct_vec3f(f32[3], f32[3]);
 extern void func_80256D0C(f32, f32, f32, f32, f32, f32 *, f32 *, f32 *);
 extern void func_80256E24(f32[3], f32, f32, f32, f32, f32);
 extern f32 climbGetRadius(void);
@@ -68,7 +68,7 @@ void func_80296CF0(void){
     if(func_80294548()){
         func_80294480(sp54);
         ml_vec3f_normalize_copy(sp48, sp60);
-        sp44 = ml_vec3f_dot_product(sp48, sp54);
+        sp44 = ml_dotProduct_vec3f(sp48, sp54);
         sp40 = get_slope_timer();
         if(sp44 != 0.0f){
             if(sp44 < 0){
@@ -209,9 +209,9 @@ void func_802974A0(void){
             D_8037C508.unk20 += time_getDelta();
             sp2C = ml_map_f(D_8037C508.unk20, 0.0f, D_8037C508.unk1C, 0.0f, 1.0f);
             ml_vec3f_copy(D_8037C4B8, D_8037C4A8);
-            D_8037C4A8[0] = func_80257C48(sp2C, D_8037C508.unk4[0], D_8037C508.unk10[0]);
-            D_8037C4A8[1] = func_80257C48(sp2C, D_8037C508.unk4[1], D_8037C508.unk10[1]);
-            D_8037C4A8[2] = func_80257C48(sp2C, D_8037C508.unk4[2], D_8037C508.unk10[2]);
+            D_8037C4A8[0] = ml_interpolate_f(sp2C, D_8037C508.unk4[0], D_8037C508.unk10[0]);
+            D_8037C4A8[1] = ml_interpolate_f(sp2C, D_8037C508.unk4[1], D_8037C508.unk10[1]);
+            D_8037C4A8[2] = ml_interpolate_f(sp2C, D_8037C508.unk4[2], D_8037C508.unk10[2]);
             ml_vec3f_diff_copy(D_8037C4B8, D_8037C4A8, D_8037C4B8);
             ml_vec3f_scale(D_8037C4B8, 1.0/time_getDelta());
             if(1.0 == sp2C){

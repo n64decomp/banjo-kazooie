@@ -106,25 +106,25 @@ int func_80359FEC(f32 arg0[3], f32 arg1[3], s32 arg2){
 }
 
 void func_8035A04C(f32 position[3], s32 cnt, enum asset_e model_id, f32 scale){
-    ParticleEmitter *pCtrl = partEmitList_pushNew(cnt);
+    ParticleEmitter *pCtrl = partEmitMgr_newEmitter(cnt);
 
     particleEmitter_setModel(pCtrl, model_id);
     particleEmitter_setPosition(pCtrl, position);
     particleEmitter_setParticleSpawnPositionRange(pCtrl, -100.0f*scale, 0.0f, -100.0f*scale, 100.0f*scale, 200.0f*scale, 100.0f*scale);
     particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -1000.0f, 0.0f, 0.0f, -1000.0f, 0.0f);
     particleEmitter_setParticleVelocityRange(pCtrl, -400.0f*scale, 450.0f*scale, -400.0f*scale, 400.0f*scale, 600.0f*scale, 400.0f*scale);
-    func_802EFE24(pCtrl, 100.0f*scale, 100.0f*scale, 100.0f*scale, 250.0f*scale, 250.0f*scale, 250.0f*scale);
+    particleEmitter_setAngularVelocityRange(pCtrl, 100.0f*scale, 100.0f*scale, 100.0f*scale, 250.0f*scale, 250.0f*scale, 250.0f*scale);
     func_802EFB70(pCtrl, scale*0.2, scale*0.4);
     particleEmitter_setSpawnIntervalRange(pCtrl, 0.0f, 0.02f);
-    func_802EFEC0(pCtrl, 2.2f, 2.2f);
-    func_802EFA5C(pCtrl, 0.0f, 0.3f);
+    particleEmitter_setParticleLifeTimeRange(pCtrl, 2.2f, 2.2f);
+    particleEmitter_setFade(pCtrl, 0.0f, 0.3f);
     particleEmitter_emitN(pCtrl, cnt);
 }
 
 void func_8035A228(f32 position[3], s32 cnt, enum asset_e sprite_id, f32 scale){
-    ParticleEmitter *pCtrl = partEmitList_pushNew(cnt);
+    ParticleEmitter *pCtrl = partEmitMgr_newEmitter(cnt);
 
-    func_802EFFA8(pCtrl, D_80372BC8);
+    particleEmitter_setRGB(pCtrl, D_80372BC8);
     particleEmitter_setSprite(pCtrl, sprite_id);
     particleEmitter_setPosition(pCtrl, position);
     particleEmitter_setParticleSpawnPositionRange(pCtrl, -50.0f*scale, 0.0f, -50.0f*scale, 50.0f*scale, 200.0f*scale, 50.0f*scale);
@@ -133,15 +133,15 @@ void func_8035A228(f32 position[3], s32 cnt, enum asset_e sprite_id, f32 scale){
     func_802EFB70(pCtrl, scale*0.6, scale*0.8);
     func_802EFB84(pCtrl, scale*1.0, scale*1.4);
     particleEmitter_setSpawnIntervalRange(pCtrl, 0.0f, 0.01f);
-    func_802EFEC0(pCtrl, 1.2f, 1.8f);
-    func_802EFA5C(pCtrl, 0.0f, 0.01f);
+    particleEmitter_setParticleLifeTimeRange(pCtrl, 1.2f, 1.8f);
+    particleEmitter_setFade(pCtrl, 0.0f, 0.01f);
     particleEmitter_emitN(pCtrl, cnt);
 }
 
 void func_8035A3F8(f32 position[3], s32 cnt, enum asset_e sprite_id, f32 scale){
-    ParticleEmitter *pCtrl = partEmitList_pushNew(cnt);
+    ParticleEmitter *pCtrl = partEmitMgr_newEmitter(cnt);
 
-    func_802EFFA8(pCtrl, D_80372BD4);
+    particleEmitter_setRGB(pCtrl, D_80372BD4);
     particleEmitter_setSprite(pCtrl, sprite_id);
     particleEmitter_setPosition(pCtrl, position);
     particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -10.0f, 0.0f, 0.0f, -10.0f, 0.0f);
@@ -149,9 +149,9 @@ void func_8035A3F8(f32 position[3], s32 cnt, enum asset_e sprite_id, f32 scale){
     func_802EFB70(pCtrl, scale*0.4, scale*0.6);
     func_802EFB84(pCtrl, scale*0.8, scale*1.2);
     particleEmitter_setSpawnIntervalRange(pCtrl, 0.0f, 0.01f);
-    func_802EFEC0(pCtrl, 0.5f, 0.7f);
-    func_802EFA5C(pCtrl, 0.0f, 0.3f);
-    func_802EFA70(pCtrl, 4);
+    particleEmitter_setParticleLifeTimeRange(pCtrl, 0.5f, 0.7f);
+    particleEmitter_setFade(pCtrl, 0.0f, 0.3f);
+    particleEmitter_setDrawMode(pCtrl, 4);
     particleEmitter_emitN(pCtrl, cnt);
 }
 

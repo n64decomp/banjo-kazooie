@@ -61,7 +61,7 @@ void func_802BFAF0(void) {
     sp44 += func_80259198(temp_f10 * D_8037DB10, sp38 * D_8037DB14);
     func_8025727C(sp84[0], sp84[1], sp84[2], sp6C[0], sp6C[1], sp6C[2], &sp54[0], &sp54[1]);
     if ((sp34 > 180.0f) && (sp34 < 360.0f)) {
-        sp34 = min_f(100.0f, (f32) ((f64) (360.0f - sp34) * 1.4));
+        sp34 = ml_min_f(100.0f, (f32) ((f64) (360.0f - sp34) * 1.4));
     }
     sp48[0] = mlDiffDegF(mlNormalizeAngle(sp34), sp54[0]);
     sp48[1] = mlDiffDegF(mlNormalizeAngle(func_8028EBA4() + 180.0f), sp54[1]);

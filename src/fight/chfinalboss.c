@@ -331,10 +331,10 @@ void func_80386698(f32 arg0) {
 void chfinalboss_spawnBroomstickParticles(f32 position[3], enum asset_e model_id, s32 n) {
     ParticleEmitter *temp_s0;
 
-    temp_s0 = partEmitList_pushNew(n);
+    temp_s0 = partEmitMgr_newEmitter(n);
     particleEmitter_setModel(temp_s0, model_id);
     particleEmitter_setPosition(temp_s0, position);
-    func_802EFE24(temp_s0, -300.0f, -300.0f, -300.0f, 300.0f, 300.0f, 300.0f);
+    particleEmitter_setAngularVelocityRange(temp_s0, -300.0f, -300.0f, -300.0f, 300.0f, 300.0f, 300.0f);
     particleEmitter_setPositionVelocityAndAccelerationRanges(temp_s0, &D_80391564);
     func_802EFB98(temp_s0, &D_8039153C);
     func_802EFA78(temp_s0, 1);
@@ -344,17 +344,17 @@ void chfinalboss_spawnBroomstickParticles(f32 position[3], enum asset_e model_id
 void func_8038679C(f32 arg0[3], s32 arg1, f32 arg2[4]) {
     ParticleEmitter *temp_s0;
 
-    temp_s0 = partEmitList_pushNew(arg1);
+    temp_s0 = partEmitMgr_newEmitter(arg1);
     particleEmitter_setSprite(temp_s0, ASSET_70E_SPRITE_SMOKE_2);
-    func_802EFFA8(temp_s0, D_803915AC);
+    particleEmitter_setRGB(temp_s0, D_803915AC);
     particleEmitter_setStartingFrameRange(temp_s0, 0, 7);
     particleEmitter_setPosition(temp_s0, arg0);
     particleEmitter_setPositionAndVelocityRanges(temp_s0, &D_803915B8);
     func_802EFB70(temp_s0, arg2[0], arg2[1]);
     func_802EFB84(temp_s0, arg2[2], arg2[3]);
     particleEmitter_setSpawnIntervalRange(temp_s0, 0.0f, 0.01f);
-    func_802EFEC0(temp_s0, 2.8f, 3.2f);
-    func_802EFA5C(temp_s0, 0.3f, 0.4f);
+    particleEmitter_setParticleLifeTimeRange(temp_s0, 2.8f, 3.2f);
+    particleEmitter_setFade(temp_s0, 0.3f, 0.4f);
     func_802EFA78(temp_s0, 1);
     particleEmitter_emitN(temp_s0, arg1);
 }
@@ -362,10 +362,10 @@ void func_8038679C(f32 arg0[3], s32 arg1, f32 arg2[4]) {
 void func_803868A0(f32 arg0[3], s32 arg1[3]) {
     ParticleEmitter * temp_s0;
 
-    temp_s0 = partEmitList_pushNew(1);
+    temp_s0 = partEmitMgr_newEmitter(1);
     particleEmitter_setSprite(temp_s0, ASSET_45A_SPRITE_GREEN_GLOW);
     particleEmitter_setStartingFrameRange(temp_s0, 2, 2);
-    func_802EFFA8(temp_s0, arg1);
+    particleEmitter_setRGB(temp_s0, arg1);
     particleEmitter_setPosition(temp_s0, arg0);
     func_802EFA78(temp_s0, 1);
     particleEmitter_setPositionAndVelocityRanges(temp_s0, &D_80391618);
@@ -375,7 +375,7 @@ void func_803868A0(f32 arg0[3], s32 arg1[3]) {
 void func_80386934(f32 position[3], enum asset_e sprite_id) {
     ParticleEmitter * temp_s0;
 
-    temp_s0 = partEmitList_pushNew(1);
+    temp_s0 = partEmitMgr_newEmitter(1);
     particleEmitter_setSprite(temp_s0, sprite_id);
     particleEmitter_setStartingFrameRange(temp_s0, 1, 6);
     particleEmitter_setPosition(temp_s0, position);
@@ -631,7 +631,7 @@ bool func_80387470(Actor *this, f32 arg1[3], f32 v_max, f32 arg3, f32 arg4, f32 
     diff[2] = arg1[2] - this->position[2];
 
     if (arg5 != 0.00f) {
-        if (ml_vec3f_distance(this->position, arg1) < arg5) {
+        if (ml_distance_vec3f(this->position, arg1) < arg5) {
             ml_vec3f_set_length(diff, arg3 * 4.00f);
         } else {
             ml_vec3f_set_length(diff, arg3 * 1.00f);
@@ -660,7 +660,7 @@ bool func_80387470(Actor *this, f32 arg1[3], f32 v_max, f32 arg3, f32 arg4, f32 
 
     this->yaw += (arg4 * temp.pos_x * dt);
 
-    if (ml_vec3f_distance(this->position, arg1) < arg6) {
+    if (ml_distance_vec3f(this->position, arg1) < arg6) {
         return TRUE;
     }
     return FALSE;
@@ -1045,7 +1045,7 @@ void chfinalboss_phase1_update(ActorMarker *marker) {
     case 3:
         func_80386600(this->marker, 0);
         func_803869BC(this);
-        sp50 = ml_map_f(ml_vec3f_distance(this->position, this->unk1C), 300.0f, 1000.0f, 100.0f, 1000.0f);
+        sp50 = ml_map_f(ml_distance_vec3f(this->position, this->unk1C), 300.0f, 1000.0f, 100.0f, 1000.0f);
         func_80387ACC(this, 60.0f * sp54);
         if (func_80387470(this, this->unk1C, sp50, 1800.0f, 200.0f, 500.0f, 300.0f)) {
             chfinalboss_phase1_setState(this, 4);
@@ -1247,7 +1247,7 @@ void chfinalboss_phase2_update(ActorMarker *marker) {
         case 14:
             func_803869BC(this);
             func_80387ACC(this, 30.0f * sp4C);
-            if (func_80387470(this, this->unk1C, ml_map_f(ml_vec3f_distance(this->position, this->unk1C), 70.0f, 1000.0f, 100.0f, D_80391758[sp48]), D_80391758[sp48] * 2, 160.0f, 500.0f, 70.0f)) {
+            if (func_80387470(this, this->unk1C, ml_map_f(ml_distance_vec3f(this->position, this->unk1C), 70.0f, 1000.0f, 100.0f, D_80391758[sp48]), D_80391758[sp48] * 2, 160.0f, 500.0f, 70.0f)) {
                 local->unkA = 1;
                 chfinalboss_phase2_setState(this, 0xF);
             }

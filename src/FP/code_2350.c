@@ -229,8 +229,8 @@ void func_80388D70(ActorMarker *caller, enum asset_e text_id, s32 arg2){
             func_8025A58C(0, 4000);
             func_8024BD08(0);
             func_802BE720();
-            local->unk0 = partEmitList_pushNew(16);
-            local->unk4 = partEmitList_pushNew(16);
+            local->unk0 = partEmitMgr_newEmitter(16);
+            local->unk4 = partEmitMgr_newEmitter(16);
             func_80388EE8(local->unk0);
             func_80388EE8(local->unk4);
             func_80328B8C(this, 4, 0.0001f, 1);
@@ -256,10 +256,10 @@ void func_80388D70(ActorMarker *caller, enum asset_e text_id, s32 arg2){
 
 void func_80388EE8(ParticleEmitter *pCtrl){
     particleEmitter_setSprite(pCtrl, ASSET_700_SPRITE_DUST);
-    func_802EFFA8(pCtrl, D_80391D24);
+    particleEmitter_setRGB(pCtrl, D_80391D24);
     particleEmitter_setPositionAndVelocityRanges(pCtrl, &D_80391D58);
     func_802EFB98(pCtrl, &D_80391D30);
-    func_802F0D54(pCtrl);
+    particleEmitter_manualFree(pCtrl);
 }
 
 void FP_func_80388F4C(Actor *this){}

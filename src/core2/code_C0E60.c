@@ -126,7 +126,7 @@ void func_80347FC0(Gfx **gfx, BKSprite *sprite, s32 frame, s32 tmem, s32 rtile, 
 void func_80348044(Gfx **gfx, BKSprite* sprite, s32 frame, s32 tmem, s32 rtile, s32 arg5, s32 arg6, s32 cms, s32 cmt, s32 *width, s32 *height, s32 *argB, s32 *argC, s32 *argD, s32 *argE, s32 *textureCount) {
     BKSpriteFrame *sprite_frame;
     s32 palette_addr;
-    BKSpriteTextureBlock *var_v1;
+    BKSpriteTextureBlock *texture_block;
     s32 timg;
     s32 sp144;
     s32 var_a0;
@@ -150,7 +150,7 @@ void func_80348044(Gfx **gfx, BKSprite* sprite, s32 frame, s32 tmem, s32 rtile, 
         spriteRenderHasPalette = TRUE;
         spriteRender1PrimMode = FALSE;
         D_80386074 = 0; 
-        var_v1 = palette_addr + 0x20;
+        texture_block = (BKSpriteTextureBlock *)(palette_addr + 0x20);
         D_80386098 = D_8038607C = 0;
     } else if (sprite->type & SPRITE_TYPE_CI8) {
         gDPPipelineMode((*gfx)++, G_PM_1PRIMITIVE);
@@ -158,17 +158,17 @@ void func_80348044(Gfx **gfx, BKSprite* sprite, s32 frame, s32 tmem, s32 rtile, 
         spriteRender1PrimMode = spriteRenderHasPalette = TRUE;
         D_80386074 = NULL;
         D_8038607C = 0;
-        var_v1 = palette_addr + 0x200;
+        texture_block = (BKSpriteTextureBlock *)(palette_addr + 0x200);
         D_80386098 = 0;
         for(var_a0 = 0; var_a0 < chunk_count; var_a0++) {
-            var_v1 = (s32)var_v1 + (var_v1->w * var_v1->h) + sizeof(BKSpriteTextureBlock);
+            texture_block = (s32)texture_block + (texture_block->w * texture_block->h) + sizeof(BKSpriteTextureBlock);
         }
-        *argD = var_v1->x;
-        *argE = var_v1->y;
+        *argD = texture_block->x;
+        *argE = texture_block->y;
         gDPSetTextureLUT((*gfx)++, G_TT_RGBA16);
         gDPLoadTLUT_pal256((*gfx)++, palette_addr);
     } else {
-        var_v1 = (BKSpriteTextureBlock *)(sprite_frame + 1);
+        texture_block = (BKSpriteTextureBlock *)(sprite_frame + 1);
         spriteRenderHasPalette = FALSE;
     }
 
@@ -188,9 +188,9 @@ void func_80348044(Gfx **gfx, BKSprite* sprite, s32 frame, s32 tmem, s32 rtile, 
         sp144 = 1;
     }
 
-    *width = (s32) var_v1->w;
-    *height = (s32) var_v1->h;
-    for(timg = (s32)(var_v1 + 1); timg % 8; timg++);
+    *width = (s32) texture_block->w;
+    *height = (s32) texture_block->h;
+    for(timg = (s32)(texture_block + 1); timg % 8; timg++);
 
     if (sp144 == 0) {
         D_8038608C = *width;

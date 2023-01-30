@@ -220,7 +220,7 @@ void __marker_draw(ActorMarker *this, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 
 void func_8032D330(void){
     D_80383550 = vector_new(sizeof(ActorMarker *),2);
-    D_80383554 = vector_new(sizeof(u32),2);
+    D_80383554 = vector_new(sizeof(ActorMarker *),2);
 }
 
 void func_8032D36C(void){

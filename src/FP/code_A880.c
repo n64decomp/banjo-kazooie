@@ -18,11 +18,11 @@ void func_80390C70(f32 position[3]){
     static struct40s FP_D_80392864 = {{{1.7f, 2.0f}, {2.4f, 2.7f}, {0.0f, 0.01f}, {4.0f, 7.0f}, 0.3f, 0.7f}, 4.0f, 1.0f};
     static s32 D_80392894[3] = {0xFF, 0XFF, 0xFF};
     
-    ParticleEmitter *pCtrl = partEmitList_pushNew(1);
+    ParticleEmitter *pCtrl = partEmitMgr_newEmitter(1);
     particleEmitter_setSprite(pCtrl, ASSET_70D_SPRITE_SMOKE_1);
     particleEmitter_setStartingFrameRange(pCtrl, 1, 6);
-    func_802EFFA8(pCtrl, D_80392894);
-    func_802EF9E4(pCtrl, 0x41);
+    particleEmitter_setRGB(pCtrl, D_80392894);
+    particleEmitter_setAlpha(pCtrl, 0x41);
     particleEmitter_setPosition(pCtrl, position);
     particleEmitter_setParticleSpawnPositionRange(pCtrl,
         -40.0f, 110.0f, -40.0f,
@@ -39,11 +39,11 @@ void func_80390D58(f32 position[3]){
     static struct40s D_803928A0 = {{{0.05f, 0.1f}, {0.1f, 0.2f}, {0.0f, 0.01f}, {0.9f, 1.3f}, 0.3f, 0.7f}, 4.0f, 1.0f};
     static s32 D_803928D0[3] = {0xFF, 0xFF, 0xFF};
 
-    ParticleEmitter *pCtrl = partEmitList_pushNew(1);
+    ParticleEmitter *pCtrl = partEmitMgr_newEmitter(1);
     particleEmitter_setSprite(pCtrl, ASSET_713_SPRITE_SPARKLE_YELLOW);
     particleEmitter_setStartingFrameRange(pCtrl, 1, 6);
-    func_802EFFA8(pCtrl, D_803928D0);
-    func_802EF9E4(pCtrl, 0xFF);
+    particleEmitter_setRGB(pCtrl, D_803928D0);
+    particleEmitter_setAlpha(pCtrl, 0xFF);
     particleEmitter_setPosition(pCtrl, position);
     particleEmitter_setParticleSpawnPositionRange(pCtrl,
         -40.0f, 50.0,-40.0f,

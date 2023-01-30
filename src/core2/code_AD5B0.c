@@ -1,6 +1,8 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "core2/particle.h"
+
 
 /* .data */
 extern u8 D_80370250 = 0;
@@ -47,7 +49,7 @@ void func_80334540(Gfx** gdl, Mtx **mptr, Vtx **vptr) {
             func_80322E64(gdl, mptr, vptr);
         }
         if (func_802E49F0() == 0) {
-            func_8028E6A4(gdl, mptr, vptr);
+            player_draw(gdl, mptr, vptr);
         }
         if (func_802E49F0() == 0) {
             func_80302C94(gdl, mptr, vptr);
@@ -62,7 +64,7 @@ void func_80334540(Gfx** gdl, Mtx **mptr, Vtx **vptr) {
             func_802F2ED0(func_8032994C(), gdl, mptr, vptr);
         }
         if (func_802E49F0() == 0) {
-            func_802F0A34(gdl, mptr, vptr);
+            partEmitMgr_drawPass0(gdl, mptr, vptr);
         }
         if (func_802E49F0() == 0) {
             mapModel_xlu_draw(gdl, mptr, vptr);
@@ -71,7 +73,7 @@ void func_80334540(Gfx** gdl, Mtx **mptr, Vtx **vptr) {
             func_8032D3D8(gdl, mptr, vptr);
         }
         if (func_802E49F0() == 0) {
-            func_802F0AE8(gdl, mptr, vptr);
+            partEmitMgr_drawPass1(gdl, mptr, vptr);
         }
         if (func_802E49F0() == 0) {
             func_8034F6F0(gdl, mptr, vptr);
@@ -81,14 +83,14 @@ void func_80334540(Gfx** gdl, Mtx **mptr, Vtx **vptr) {
         mapModel_opa_draw(gdl, mptr, vptr);
         func_80322E64(gdl, mptr, vptr);
         func_8034F6F0(gdl, mptr, vptr);
-        func_8028E6A4(gdl, mptr, vptr);
+        player_draw(gdl, mptr, vptr);
         func_80302C94(gdl, mptr, vptr);
         func_8032D3D8(gdl, mptr, vptr);
         func_80332F4C(gdl, mptr, vptr);
         func_803500D8(gdl, mptr, vptr);
         func_802F2ED0(func_8032994C(), gdl, mptr, vptr);
         func_802D520C(gdl, mptr, vptr);
-        func_802F0B98(gdl, mptr, vptr);
+        partEmitMgr_draw(gdl, mptr, vptr);
     }
     if (func_802E49F0() == 0) {
         func_80350818(gdl, mptr, vptr);
@@ -148,7 +150,7 @@ void func_80334910(void) {
     func_802B9D80();
     func_802F1388();
     func_802F10A4();
-    func_802F0804();
+    partEmitMgr_free();
     func_802F7CE0();
     func_8031F9E0();
     func_80323100();
@@ -170,7 +172,7 @@ void func_80334910(void) {
     func_80305BD4();
     func_80332A38();
     if (func_802E4A08() == 0) {
-        func_802FAF0C();
+        itemPrint_free();
     }
     func_8031B664();
     func_802986D0();
@@ -207,7 +209,7 @@ void func_80334B20(enum map_e arg0, s32 arg1, s32 arg2) {
     func_8031B718();
     func_80298700();
     if (func_802E4A08() == 0) {
-        func_802FAE4C();
+        itemPrint_init();
     }
     func_8031B644();
     spawnQueue_malloc();
@@ -225,7 +227,7 @@ void func_80334B20(enum map_e arg0, s32 arg1, s32 arg2) {
     func_8033F9C0();
     func_802B9D40();
     func_802BC044();
-    func_802F07D8();
+    partEmitMgr_init();
     func_802F1104();
     func_802F13E0();
     func_802F7D30();
@@ -297,7 +299,7 @@ s32 func_80334ECC(void) {
 
     func_80356734();
     func_802D5628();
-    func_802FA724();
+    itemPrint_update();
     if (getGameMode() != 4) {
         func_802F7E54();
     }
@@ -316,7 +318,7 @@ s32 func_80334ECC(void) {
         } else {
             phi_v1 = 0x1F;
         }
-        if (((phi_v1 & phi_v0) == 3) && (get_loaded_overlay_id() == OVERLAY_5_BEACH)) {
+        if (((phi_v1 & phi_v0) == 3) && (overlayManagergetLoadedId() == OVERLAY_5_BEACH)) {
             if ((ttc_func_8038BF8C() == 0) || (D_80370250 != 0)) {
                 D_80370250 = (u8)1;
                 for (phi_v0 = 0; phi_v0 != 0x8F0D180; phi_v0++){
@@ -335,7 +337,7 @@ s32 func_80334ECC(void) {
         func_8034C9D4();
         func_8030A850(1);
         sky_update();
-        func_802F08A0();
+        partEmitMgr_update();
         func_8034F918();
         func_80350250();
         if (mapSpecificFlags_validateCRC1() == 0) {

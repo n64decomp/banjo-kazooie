@@ -99,11 +99,11 @@ void RBB_func_8038C370(ActorMarker *marker, s32 arg1){
 
 void func_8038C39C(Actor *this){
     ActorLocal_RBB_5F80 *local = (ActorLocal_RBB_5F80 *) &this->local;
-    ParticleEmitter *other = partEmitList_pushNew(local->unk0->unkE);
+    ParticleEmitter *other = partEmitMgr_newEmitter(local->unk0->unkE);
     particleEmitter_setSprite(other, ASSET_70E_SPRITE_SMOKE_2);
-    func_802EFA5C(other, 0.0f, 0.1f);
+    particleEmitter_setFade(other, 0.0f, 0.1f);
     particleEmitter_setStartingFrameRange(other, 0, 7);
-    func_802EFA70(other, 4);
+    particleEmitter_setDrawMode(other, 4);
     particleEmitter_setPosition(other, this->position);
     func_802EFB70(other, local->unk0->unk4*1, local->unk0->unk4*3.0f);
     func_802EFB84(other, 3.0f*local->unk0->unk4, local->unk0->unk4*7.0f);
@@ -115,16 +115,16 @@ void func_8038C39C(Actor *this){
         -50.0f, 100.0f, -50.0f,
         50.0f, 200.0f, 50.0f
     );
-    func_802EFEC0(other, 0.5f, 1.0f);
+    particleEmitter_setParticleLifeTimeRange(other, 0.5f, 1.0f);
     particleEmitter_emitN(other, local->unk0->unkE);
 }
 
 void RBB_func_8038C538(Actor *this){
     ActorLocal_RBB_5F80 *local = (ActorLocal_RBB_5F80 *) &this->local;
-    ParticleEmitter *other = partEmitList_pushNew(3*local->unk0->unkE);
+    ParticleEmitter *other = partEmitMgr_newEmitter(3*local->unk0->unkE);
     particleEmitter_setSprite(other, ASSET_70E_SPRITE_SMOKE_2);
-    func_802EFA5C(other, 0.1f, 0.3f);
-    func_802EFA70(other, 4);
+    particleEmitter_setFade(other, 0.1f, 0.3f);
+    particleEmitter_setDrawMode(other, 4);
     particleEmitter_setStartingFrameRange(other, 0, 7);
     particleEmitter_setPosition(other, this->position);
     func_802EFB70(other, local->unk0->unk4*1, local->unk0->unk4*6.0f);
@@ -137,19 +137,19 @@ void RBB_func_8038C538(Actor *this){
         -70.0f, 50.0f, -70.0f,
         70.0f, 100.0f, 70.0f
     );
-    func_802EFFA8(other, &D_80390C60);
-    func_802EFEC0(other, 3.0f, 4.0f);
+    particleEmitter_setRGB(other, &D_80390C60);
+    particleEmitter_setParticleLifeTimeRange(other, 3.0f, 4.0f);
     particleEmitter_emitN(other, 3*local->unk0->unkE);
 
 }
 
 void RBB_func_8038C70C(Actor *this){
     ActorLocal_RBB_5F80 *local = (ActorLocal_RBB_5F80 *) &this->local;
-    ParticleEmitter *other = partEmitList_pushNew(0xa);
+    ParticleEmitter *other = partEmitMgr_newEmitter(0xa);
 
     func_802EF9F8(other, 0.6f);
     func_802EFA18(other, 3);
-    func_802EFA70(other, 4);
+    particleEmitter_setDrawMode(other, 4);
     particleEmitter_setModel(other, 0x427);
     particleEmitter_setParticleSpawnPositionRange(other, 
         local->unk0->unk4 * -300.0f, local->unk0->unk4 * 100.0f, local->unk0->unk4 * -300.0f, 
@@ -157,12 +157,12 @@ void RBB_func_8038C70C(Actor *this){
     );
     particleEmitter_setPosition(other, this->position);
     func_802EFB70(other, local->unk0->unk4*0.3, local->unk0->unk4*0.8);
-    func_802EFE24(other, 
+    particleEmitter_setAngularVelocityRange(other, 
         -600.0f, -600.0f, -600.0f, 
         600.0f, 600.0f, 600.0f
     );
     particleEmitter_setSpawnIntervalRange(other, 0.0f, 0.01f);
-    func_802EFEC0(other, 10.0f, 10.0f);
+    particleEmitter_setParticleLifeTimeRange(other, 10.0f, 10.0f);
     particleEmitter_setVelocityAndAccelerationRanges(other, &D_80390C6C);
     particleEmitter_emitN(other, 10);
 
@@ -170,7 +170,7 @@ void RBB_func_8038C70C(Actor *this){
 
 void func_8038C8A8(Actor * this){
     ActorLocal_RBB_5F80 *local = (ActorLocal_RBB_5F80 *) &this->local;
-    ParticleEmitter *other = partEmitList_pushNew(5);
+    ParticleEmitter *other = partEmitMgr_newEmitter(5);
     f32 sp24[3];
     
 
@@ -178,15 +178,15 @@ void func_8038C8A8(Actor * this){
     sp24[1] += 50.0f;
 
     particleEmitter_setSprite(other, ASSET_70E_SPRITE_SMOKE_2);
-    func_802EFA5C(other, 0.0, 0.5f);
-    func_802EFA70(other, 4);
+    particleEmitter_setFade(other, 0.0, 0.5f);
+    particleEmitter_setDrawMode(other, 4);
     particleEmitter_setStartingFrameRange(other, 0, 7);
     particleEmitter_setPosition(other, sp24);
     func_802EFB70(other, local->unk0->unk4*1, local->unk0->unk4*3.0f);
     func_802EFB84(other, local->unk0->unk4*3.0f, local->unk0->unk4*6.0f);
     particleEmitter_setPositionVelocityAndAccelerationRanges(other, &D_80390CA8);
-    func_802EFEC0(other, 1.0f, 2.0f);
-    func_802EFFA8(other, &D_80390C9C);
+    particleEmitter_setParticleLifeTimeRange(other, 1.0f, 2.0f);
+    particleEmitter_setRGB(other, &D_80390C9C);
     particleEmitter_emitN(other, 5);
 }
 
@@ -547,7 +547,7 @@ void func_8038D8BC(Actor *this){
             }
         }
         else{//L8038DAA8
-            if(ml_vec3f_distance(this->position, player_position) < 1200.0f){
+            if(ml_distance_vec3f(this->position, player_position) < 1200.0f){
                 RBB_func_8038CC9C(this, 2);
             }
         }
@@ -583,7 +583,7 @@ void func_8038D8BC(Actor *this){
         func_8033568C(this->unk148, &sp54, &sp50);
         if(0.1 <= sp50 && sp50 <= 0.6){
             sp4C = (sp50 - 0.1)/0.5;
-            func_80255FE4(this->position, local->unk8, local->unk14, sp4C);
+            ml_interpolate_vec3f(this->position, local->unk8, local->unk14, sp4C);
             this->yaw = local->unk24 + sp4C*(local->unk28 - local->unk24);
         }
 
@@ -601,7 +601,7 @@ void func_8038D8BC(Actor *this){
                 tmp_f2 = tmp_f2/0.3;
             else
                 tmp_f2 = 1.0f;
-            func_80255FE4(this->position, local->unk8, local->unk14, tmp_f2);
+            ml_interpolate_vec3f(this->position, local->unk8, local->unk14, tmp_f2);
         }
     }//L8038DE10
 

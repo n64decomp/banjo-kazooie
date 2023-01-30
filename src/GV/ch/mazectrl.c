@@ -175,7 +175,7 @@ void chMazeCtrl_update(Actor *this){
             __chMazeCtrl_setState(this, 2);
         }
         if( !levelSpecificFlags_get(0x15) 
-            && func_8025773C(&local->unk8, sp34)
+            && ml_timer_update(&local->unk8, sp34)
             && func_80311480(ASSET_A81_TEXT_SANDYBUTT_ENTER, 0, NULL, NULL, NULL, NULL)
         ){
             levelSpecificFlags_set(0x15, TRUE);

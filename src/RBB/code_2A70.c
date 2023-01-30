@@ -111,7 +111,7 @@ void func_803890BC(Actor *this){
             func_80388EB8(this, 1);
     }//L80389164
 
-    if(func_8025773C(&local->unk24, sp38))
+    if(ml_timer_update(&local->unk24, sp38))
         func_80388EB8(this, (this->state == 1) ? 2 : 1);
     //L803891A8
 
@@ -119,7 +119,7 @@ void func_803890BC(Actor *this){
         local->unk1C += 0.25 * sp38;
         if(1.0f < local->unk1C)
             local->unk1C = 1.0f;
-        func_80255FE4(sp2C, local->unk4, local->unk10, local->unk1C);
+        ml_interpolate_vec3f(sp2C, local->unk4, local->unk10, local->unk1C);
         this->pitch = sp2C[0];
         this->yaw = sp2C[1];
         this->roll = sp2C[2];

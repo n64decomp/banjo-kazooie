@@ -5,7 +5,7 @@
 extern void func_80335A8C(Struct80s *, s32);
 extern f32 func_8025715C(f32, f32);
 extern f32 func_802575BC(f32);
-extern void func_80255FE4(f32[3], f32[3], f32[3], f32);
+extern void ml_interpolate_vec3f(f32[3], f32[3], f32[3], f32);
 extern bool func_80320DB0(f32[3], f32, f32[3], u32);
 
 /* .h */
@@ -47,7 +47,7 @@ bool func_80357C30(Actor *this) {
     if (!this->marker->unk14_21) {
         return TRUE;
     }
-    func_80255FE4(sp20, local->unk8, local->unk18, func_802575BC(local->unk4 + 0.05));
+    ml_interpolate_vec3f(sp20, local->unk8, local->unk18, func_802575BC(local->unk4 + 0.05));
     sp20[1] += 60.0f;
     return !func_80320DB0(sp20, 50.0f, sp2C, 0);
 }
@@ -248,15 +248,15 @@ void func_80358524(f32 position[3], s32 count, enum asset_e model_id) {
     ParticleEmitter *p_ctrl;
     ParticleEmitter *temp_v0;
 
-    temp_v0 = partEmitList_pushNew(count);
+    temp_v0 = partEmitMgr_newEmitter(count);
     p_ctrl = temp_v0;
     particleEmitter_setModel(temp_v0, model_id);
     particleEmitter_setPosition(p_ctrl, position);
-    func_802EFE24(p_ctrl, -400.0f, -400.0f, -400.0f, 400.0f, 400.0f, 400.0f);
+    particleEmitter_setAngularVelocityRange(p_ctrl, -400.0f, -400.0f, -400.0f, 400.0f, 400.0f, 400.0f);
     func_802EF9F8(p_ctrl, 0.01f);
     func_802EFA18(p_ctrl, 3);
     func_802EFA20(p_ctrl, 1.0f, 1.3f);
-    func_802EF9EC(p_ctrl, 0x2F, 16000);
+    particleEmitter_setSfx(p_ctrl, SFX_2F_ORANGE_SPLAT, 16000);
     particleEmitter_setPositionVelocityAndAccelerationRanges(p_ctrl, &D_803728EC);
     func_802EFB98(p_ctrl, &D_803728C4);
     particleEmitter_emitN(p_ctrl, count);
@@ -338,7 +338,7 @@ void func_80358684(Actor *this) {
                  : sp84;
         }
         func_8030DBB4(local->unk0, sp84);
-        sp78 = 1.0f - ml_vec3f_distance(sp94, this->position) / 2000.0f;
+        sp78 = 1.0f - ml_distance_vec3f(sp94, this->position) / 2000.0f;
         sp78 = (0.0f > sp78) ? 0 : sp78;
         if (sp78 > 0.0f) {
             sfxsource_setSampleRate(local->unk0, (s32) (sp78 * 10000.0f));
@@ -346,7 +346,7 @@ void func_80358684(Actor *this) {
         }
     }
     if (this->unk10_25) {
-        if (func_8025773C(&local->unk28, sp88)) {
+        if (ml_timer_update(&local->unk28, sp88)) {
             next_state = 2;
         }
         
@@ -394,7 +394,7 @@ void func_80358684(Actor *this) {
                 local->unk4 = 1.0f;
             }
             sp70 = func_802575BC(local->unk4);
-            func_80255FE4(this->position, local->unk8, local->unk18, sp70);
+            ml_interpolate_vec3f(this->position, local->unk8, local->unk18, sp70);
             this->yaw = local->unk14 + (sp70 * (local->unk24 - local->unk14));
             if ((func_8033567C(this->unk148) == 0x23B) && (func_80335794(this->unk148) > 0)) {
                 func_80335924(this->unk148, 0x23C, 0.1f, 0.45f);
@@ -420,7 +420,7 @@ void func_80358684(Actor *this) {
                 sp54[1] = this->position[1];
                 sp54[2] = this->position[2];
                 sp54[0] = 0.0f;
-                if (ml_vec3f_distance(sp60, sp54) < 800.0f) {
+                if (ml_distance_vec3f(sp60, sp54) < 800.0f) {
                     next_state = 3;
                 }
             }

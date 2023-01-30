@@ -47,7 +47,7 @@ Actor *func_80386B80(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 
 void FP_func_80386BEC(Actor *this){
     f32 plyr_pos[3];
-    ParticleEmitter *pCtrl = partEmitList_pushNew(12);
+    ParticleEmitter *pCtrl = partEmitMgr_newEmitter(12);
     
     player_getPosition(plyr_pos);
     func_80328B8C(this, 2, 0.01f, 1);
@@ -55,7 +55,7 @@ void FP_func_80386BEC(Actor *this){
     func_8025A6EC(COMUSIC_2B_DING_B, 28000);
     FUNC_8030E624(SFX_90_SWITCH_PRESS, 1.0f, 32000);
     func_8038AB40();
-    func_802EFFA8(pCtrl, D_80391B44);
+    particleEmitter_setRGB(pCtrl, D_80391B44);
     particleEmitter_setSprite(pCtrl, ASSET_700_SPRITE_DUST);
     particleEmitter_setPosition(pCtrl, plyr_pos);
     particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_80391AFC);

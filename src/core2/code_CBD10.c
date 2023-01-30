@@ -115,7 +115,7 @@ void func_80352F58(void){
     }
     else{
         sp2C[0] += sp2C[1]*sp20;
-        sp2C[2] = max_f(0.0f, sp2C[2] + sp2C[3]*sp20);
+        sp2C[2] = ml_max_f(0.0f, sp2C[2] + sp2C[3]*sp20);
         func_80352CA0(sp27, sp2C);
     }
 }

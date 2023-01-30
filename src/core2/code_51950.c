@@ -48,7 +48,7 @@ void func_802D88E0(Actor *this) {
         this->position_y += this->unk1C[1];
     }
     if (this->unk60 > 0.5) {
-        pCtrl = partEmitList_pushNew(1U);
+        pCtrl = partEmitMgr_newEmitter(1U);
         for(i = 0; i < 3; i++){
             sp5C[i] = this->position[i] + (randf()*2)*25 - ((i == 1) ? 0 : 25);
         }

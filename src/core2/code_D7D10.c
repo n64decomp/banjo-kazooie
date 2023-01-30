@@ -1,6 +1,8 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "core2/particle.h"
+
 
 Actor *func_8035ECA0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void func_8035F138(Actor *this);
@@ -76,13 +78,13 @@ void func_8035EDB0(f32 position[3], s32 count, enum asset_e sprite) {
     };
     ParticleEmitter *p_ctrl;
 
-    p_ctrl = partEmitList_pushNew(count);
-    func_802EFFA8(p_ctrl, D_80373014);
+    p_ctrl = partEmitMgr_newEmitter(count);
+    particleEmitter_setRGB(p_ctrl, D_80373014);
     particleEmitter_setSprite(p_ctrl, sprite);
     particleEmitter_setPosition(p_ctrl, position);
     particleEmitter_setPositionVelocityAndAccelerationRanges(p_ctrl, &D_80373048);
     func_802EFB98(p_ctrl, &D_80373020);
-    func_802EFA70(p_ctrl, 0x10);
+    particleEmitter_setDrawMode(p_ctrl, PART_EMIT_NO_DEPTH);
     particleEmitter_emitN(p_ctrl, count);
 }
 

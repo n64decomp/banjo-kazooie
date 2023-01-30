@@ -25,7 +25,7 @@ void __bsDroneVanish_setSubstate(s32 next_state) {
         break;
     case 3:
         gcpausemenu_returnToLair();
-        playerModel_setVisible(FALSE);
+        baModel_setVisible(FALSE);
         comusic_8025AB44(COMUSIC_43_ENTER_LEVEL_GLITTER, 0, 2000);
         func_8029E3C0(0, 2.0f);
         break;
@@ -53,28 +53,28 @@ void __bsDroneVanish_emitParticles(void) {
 }
 
 void __bsDroneVanish_particleEmitInit(ParticleEmitter *p_ctrl, enum asset_e sprite_id) {
-    func_802F0D54();
+    particleEmitter_manualFree();
     particleEmitter_setSprite(p_ctrl, sprite_id);
-    func_802EFA5C(p_ctrl, 0.3f, 0.8f);
+    particleEmitter_setFade(p_ctrl, 0.3f, 0.8f);
     particleEmitter_setParticleSpawnPositionRange(p_ctrl, -45.0f, 0.0f, -45.0f, 45.0f, 0.0f, 45.0f);
     func_802EFB70(p_ctrl, 0.15f, 0.22f);
     func_802EFB84(p_ctrl, 0.03f, 0.05f);
-    func_802EFE24(p_ctrl, 0.0f, 0.0f, 300.0f, 0.0f, 0.0f, 300.0f);
-    func_802EFEC0(p_ctrl, 0.55f, 0.55f);
+    particleEmitter_setAngularVelocityRange(p_ctrl, 0.0f, 0.0f, 300.0f, 0.0f, 0.0f, 300.0f);
+    particleEmitter_setParticleLifeTimeRange(p_ctrl, 0.55f, 0.55f);
 }
 
 void __bsDroneVanish_end(void) {
-    partEmitList_remove(D_8037D450.unk4);
-    partEmitList_remove(D_8037D450.unk0);
+    partEmitMgr_freeEmitter(D_8037D450.unk4);
+    partEmitMgr_freeEmitter(D_8037D450.unk0);
 }
 
 void __bsDroneVanish_init(void) {
     D_8037D450.unk10 = 0.0f;
     D_8037D450.unk8 = 0.0f;
     D_8037D450.unkC = 1.0f;
-    D_8037D450.unk0 = partEmitList_pushNew(60);
+    D_8037D450.unk0 = partEmitMgr_newEmitter(60);
     __bsDroneVanish_particleEmitInit(D_8037D450.unk0, ASSET_716_SPRITE_SPARKLE_WHITE);
-    D_8037D450.unk4 = partEmitList_pushNew(60);
+    D_8037D450.unk4 = partEmitMgr_newEmitter(60);
     __bsDroneVanish_particleEmitInit(D_8037D450.unk4, ASSET_713_SPRITE_SPARKLE_YELLOW);
 }
 
@@ -115,7 +115,7 @@ void bsDroneVanish_update(void) {
     case 2:
         __bsDroneVanish_update();
         sp20 = func_8029E1A8(0);
-        playerModel_setEnvAlpha((s32) ml_map_f(func_8029E270(0), 0.0f, 0.4f, 0.0f, 255.0f));
+        baModel_setEnvAlpha((s32) ml_map_f(func_8029E270(0), 0.0f, 0.4f, 0.0f, 255.0f));
         if (sp20) {
             __bsDroneVanish_setSubstate(3);
         }
@@ -132,5 +132,5 @@ void bsDroneVanish_update(void) {
 void bsDroneVanish_end(void){
     __bsDroneVanish_end();
     func_80294378(1);
-    playerModel_updateModel();
+    baModel_updateModel();
 }

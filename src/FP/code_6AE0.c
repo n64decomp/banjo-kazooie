@@ -127,11 +127,11 @@ Actor *FP_func_8038CED0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 void func_8038CF54(f32 position[3], s32 count, enum asset_e model_id){
     ParticleEmitter *pCtrl;
 
-    pCtrl = partEmitList_pushNew(count);
+    pCtrl = partEmitMgr_newEmitter(count);
     particleEmitter_setModel(pCtrl, model_id);
     particleEmitter_setPosition(pCtrl, position);
     particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_80392134);
-    func_802EFE24(pCtrl,
+    particleEmitter_setAngularVelocityRange(pCtrl,
         100.0f, 100.0f, 100.0f,
         200.0f, 200.0f, 200.0f
     );
@@ -144,8 +144,8 @@ void func_8038CF54(f32 position[3], s32 count, enum asset_e model_id){
 void func_8038D01C(f32 position[3], s32 count, enum asset_e sprite_id){
     ParticleEmitter *pCtrl;
 
-    pCtrl = partEmitList_pushNew(count);
-    func_802EFFA8(pCtrl, D_803921A4);
+    pCtrl = partEmitMgr_newEmitter(count);
+    particleEmitter_setRGB(pCtrl, D_803921A4);
     particleEmitter_setSprite(pCtrl, sprite_id);
     particleEmitter_setPosition(pCtrl, position);
     particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_803921B0);
@@ -156,11 +156,11 @@ void func_8038D01C(f32 position[3], s32 count, enum asset_e sprite_id){
 void func_8038D0A8(f32 position[3], s32 count, enum asset_e model_id){
     ParticleEmitter *pCtrl;
 
-    pCtrl = partEmitList_pushNew(count);
+    pCtrl = partEmitMgr_newEmitter(count);
     particleEmitter_setModel(pCtrl, model_id);
     particleEmitter_setPosition(pCtrl, position);
     particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_80392220);
-    func_802EFE24(pCtrl,
+    particleEmitter_setAngularVelocityRange(pCtrl,
         200.0f, 200.0f, 200.0f,
         300.0f, 300.0f, 300.0f
     );
@@ -173,7 +173,7 @@ void func_8038D0A8(f32 position[3], s32 count, enum asset_e model_id){
 void func_8038D170(f32 position[3], s32 count, enum asset_e sprite_id){
     ParticleEmitter *pCtrl;
 
-    pCtrl = partEmitList_pushNew(count);
+    pCtrl = partEmitMgr_newEmitter(count);
     particleEmitter_setSprite(pCtrl, sprite_id);
     particleEmitter_setPosition(pCtrl, position);
     particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_80392290);
@@ -186,8 +186,8 @@ void func_8038D170(f32 position[3], s32 count, enum asset_e sprite_id){
 void func_8038D208(f32 position[3], s32 count, enum asset_e sprite_id){
     ParticleEmitter *pCtrl;
 
-    pCtrl = partEmitList_pushNew(count);
-    func_802EFFA8(pCtrl, D_80392300);
+    pCtrl = partEmitMgr_newEmitter(count);
+    particleEmitter_setRGB(pCtrl, D_80392300);
     particleEmitter_setSprite(pCtrl, sprite_id);
     particleEmitter_setPosition(pCtrl, position);
     particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_8039230C);

@@ -23,15 +23,15 @@ ParticleEmitter *func_802F3E98(f32 pos[3], enum asset_e sprite_id){
         0.0f, -250.0f, 0.0f,
         0.0f, -250.0f, 0.0f
     );
-    func_802EFA5C(this, 0.4f, 0.8f);
+    particleEmitter_setFade(this, 0.4f, 0.8f);
     particleEmitter_setPosition(this, pos);
     func_802EFB70(this, 0.22f, 0.22f);
     func_802EFB84(this, 0.03f, 0.03f);
-    func_802EFE24(this, 
+    particleEmitter_setAngularVelocityRange(this, 
         0.0f, 0.0f, 200.0f, 
         0.0f, 0.0f, 240.0f
     );
-    func_802EFEC0(this, 0.7f, 0.7f);
+    particleEmitter_setParticleLifeTimeRange(this, 0.7f, 0.7f);
     func_802EFF50(this, 1.0f);
     return this;
 }

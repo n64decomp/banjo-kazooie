@@ -3,7 +3,7 @@
 #include "variables.h"
 
 extern void func_8028FDC8(f32);
-extern void playerModel_setYDisplacement(f32);
+extern void baModel_setYDisplacement(f32);
 extern f32 func_8029B2D0(void);
 extern void func_802BFE50(f32, f32, f32);
 extern void func_80354030(f32[3], f32);
@@ -47,7 +47,7 @@ void func_802A3404(void){
 }
 
 void func_802A3430(void){
-    playerModel_setYDisplacement(60.0f);
+    baModel_setYDisplacement(60.0f);
     func_802991A8(3);
     func_80299234(500.0f, 2.0f);
     roll_setAngularVelocity(500.0f, 2.0f);
@@ -63,7 +63,7 @@ void func_802A34C8(void){
         gravity_reset();
         func_80297B94();
         func_8029E070(0);
-        playerModel_setYDisplacement(0.0f);
+        baModel_setYDisplacement(0.0f);
         func_8029CB84();
         func_802991A8(1);
         func_80291548();
@@ -287,7 +287,7 @@ void bsbfly_update(void){
     if(should_beak_bust())
         sp54 = BS_F_BBUSTER;
 
-    D_8037D320 = max_f(D_8037D320 - time_getDelta(), 0.0f);
+    D_8037D320 = ml_max_f(D_8037D320 - time_getDelta(), 0.0f);
     if( D_8037D320 == 0.0f
         && button_pressed(BUTTON_B)
         && can_beak_bomb()
@@ -462,7 +462,7 @@ void func_802A4430(void){
     pitch_setIdeal(0.0f);
     gravity_reset();
     func_80297B94();
-    playerModel_setYDisplacement(0.0f);
+    baModel_setYDisplacement(0.0f);
     func_80299CF4(SFX_31_BANJO_OHHWAAOOO, 1.0f, 0x7fff);
     func_80299D2C(SFX_61_CARTOONY_FALL, 1.0f, 0x7fff);
     D_8037D320 = 0.35f;
@@ -532,10 +532,10 @@ void func_802A4748(void) {
     func_8029E070(1);
     FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 0.8f, 32750);
     func_80299CF4(SFX_36_BANJO_DOH, 1.0f, 28000);
-    func_80250D94(1.0f, 0.5f, 0.5f);
+    rumbleManager_80250D94(1.0f, 0.5f, 0.5f);
     item_dec(ITEM_14_HEALTH);
     func_802A46C8();
-    func_8028D5DC();
+    baMarker_collisionOff();
     D_8037D344 = 0;
 }
 
@@ -612,7 +612,7 @@ void func_802A4A40(void) {
     func_80291548();
     func_8029CB84();
     func_8029E070(0);
-    func_8028D5F4();
+    baMarker_collisionOn();
 }
 
 void func_802A4A78(s32 arg0) {
@@ -633,7 +633,7 @@ void func_802A4A78(s32 arg0) {
     func_802BB3DC(2, 100.0f, 0.85f);
     func_8028A274(0xD3, 1.2f);
     func_80299BFC(1.0f);
-    func_80250D94(1.0f, 0.5f, 0.5f);
+    rumbleManager_80250D94(1.0f, 0.5f, 0.5f);
     _player_getPosition(sp3C);
     func_80294980(sp30);
     func_80257F18(sp30, sp3C, &sp28);
@@ -653,7 +653,7 @@ void func_802A4A78(s32 arg0) {
     func_8029E070(1);
     func_802914CC(4);
     func_802BFE50(12.0f, 10000.0f, 800.0f);
-    func_8028D5DC();
+    baMarker_collisionOff();
     func_802A3430();
 }
 
@@ -672,7 +672,7 @@ void func_802A4C34(s32 arg0) {
 
 void func_802A4C88(s32 arg0) {
     func_80297B3C();
-    func_8028D5F4();
+    baMarker_collisionOn();
     func_80297CA8();
     func_8029E070(0);
     func_80291548();
@@ -726,7 +726,7 @@ void func_802A4D90(void) {
     func_8029C7F4(1, 1, 2, 3);
     player_setYVelocity(400.0f);
     gravity_set(-1800.0f);
-    func_8028D5DC();
+    baMarker_collisionOff();
     func_802914CC(4);
     func_802BFE50(12.0f, 10000.0f, 800.0f);
 }
@@ -749,7 +749,7 @@ void func_802A4EC8(void) {
 
 void func_802A4F44(void){
     gravity_reset();
-    func_8028D5F4();
+    baMarker_collisionOn();
     func_802A34C8();
 }
 

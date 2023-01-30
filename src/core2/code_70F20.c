@@ -167,7 +167,7 @@ void func_802F83AC(struct3s *arg0) {
     arg0->unk1C++;
     if (arg0->unk1C < vector_size(arg0->unk20)) {
         temp_v0 = (struct4s *)vector_at(arg0->unk20, arg0->unk1C);
-        if (1210.0 < ml_vec3f_distance(temp_v0->unk0, sp3C)) {
+        if (1210.0 < ml_distance_vec3f(temp_v0->unk0, sp3C)) {
             vector_remove(arg0->unk20, arg0->unk1C);
         }
     } else {
@@ -196,7 +196,7 @@ void func_802F83AC(struct3s *arg0) {
             arg0->unk3C = 0.01f;
         }
     }
-    if (func_8025773C(&arg0->unk30, temp_f20)) {
+    if (ml_timer_update(&arg0->unk30, temp_f20)) {
         if ((arg0->unk28 == 1) && !func_802BEF64() && (arg0->unk34 != 4)) {
             func_802F7EB0(arg0);
         }

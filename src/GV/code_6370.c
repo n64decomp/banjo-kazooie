@@ -94,7 +94,7 @@ void func_8038C8A0(Actor *this, s32 next_state){
         local->unk18[1] = this->position_y;
         local->unk18[2] = this->position_z;
         if(this->state == 1){
-            func_80250E94(0.0f, 0.6f, 1.0f, 0, 1.3f, 0.0f);
+            rumbleManager_80250E94(0.0f, 0.6f, 1.0f, 0, 1.3f, 0.0f);
             timed_playSfx(1.0f, SFX_3F6_UNKNOWN, 0.8f, 30000);
         }
     }//L8038CA6C
@@ -125,13 +125,13 @@ void func_8038C8A0(Actor *this, s32 next_state){
         local->unk18[0] = this->position_x;
         local->unk18[1] = this->position_y;
         local->unk18[2] = this->position_z;
-        func_80250D94(0.7f, 0.5f, 1.3f);
+        rumbleManager_80250D94(0.7f, 0.5f, 1.3f);
         FUNC_8030E624(SFX_3F6_UNKNOWN, 0.8f, 30000);
     }
 
     if(next_state == 8){
         if(this->state == 7){
-            func_80250D94(0.8f, 0.7f, 3.0f);
+            rumbleManager_80250D94(0.8f, 0.7f, 3.0f);
             func_8038C760(this, *local->unk8 + 1);
         }
         marker_despawn(this->marker);

@@ -143,8 +143,8 @@ void func_80299A8C(void){
 
 void func_80299AAC(void){
     D_8037C6CC += randf()*0.1 - 0.05;
-    D_8037C6CC = max_f(D_8037C6CC, 0.9f);
-    D_8037C6CC = min_f(D_8037C6CC, 1.5f);
+    D_8037C6CC = ml_max_f(D_8037C6CC, 0.9f);
+    D_8037C6CC = ml_min_f(D_8037C6CC, 1.5f);
     func_8030DBB4(D_8037C6C1, D_8037C6CC);
     func_8030E2C4(D_8037C6C1);
 }

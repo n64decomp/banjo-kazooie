@@ -12,7 +12,7 @@ f32 D_803635E0[3] = {0.0f, 5.0f, 0.0f};
 s32 D_803635EC[7] = {0x4, 0x3, 0x60, 0x18, 0x1B, 0x67, 0x80};
 
 /* .bss */
-AnimCtrl *D_8037BF20;
+AnimCtrl *playerAnimCtrl;
 s32 D_8037BF24;
 f32 D_8037BF28;
 f32 D_8037BF2C;
@@ -39,13 +39,13 @@ void func_8028982C(void) {
     sp24 = (D_8037BF30.unk14 != 0) ? D_8037BF30.unk10 : 1.0f;
     _get_velocity(sp2C);
     temp_f12 = func_80257BFC(gu_sqrtf(sp2C[0]*sp2C[0] + sp2C[2] * sp2C[2]), D_8037BF30.unk0, D_8037BF30.unk4, D_8037BF30.unk8 * sp24, D_8037BF30.unkC * sp24);
-    animctrl_setDuration(D_8037BF20, mlClamp_f(temp_f12, D_8037BF28, D_8037BF2C));
-    animctrl_update(D_8037BF20);
+    animctrl_setDuration(playerAnimCtrl, ml_clamp_f(temp_f12, D_8037BF28, D_8037BF2C));
+    animctrl_update(playerAnimCtrl);
 }
 
 void func_802898F8(void) {
-    animctrl_setDuration(D_8037BF20, mlClamp_f(func_80257BFC(mlAbsF(func_80297AAC()), D_8037BF30.unk0, D_8037BF30.unk4, D_8037BF30.unk8, D_8037BF30.unkC), D_8037BF28, D_8037BF2C));
-    animctrl_update(D_8037BF20);
+    animctrl_setDuration(playerAnimCtrl, ml_clamp_f(func_80257BFC(mlAbsF(func_80297AAC()), D_8037BF30.unk0, D_8037BF30.unk4, D_8037BF30.unk8, D_8037BF30.unkC), D_8037BF28, D_8037BF2C));
+    animctrl_update(playerAnimCtrl);
 }
 
 
@@ -106,10 +106,10 @@ void func_80289A78(s32 arg0, s32 arg1) {
     }
     if (map_get() == MAP_A_TTC_SANDCASTLE) {
         if ((D_8037BF4C & 0x80) && (player_getTransformation() != TRANSFORM_7_WISHWASHY)) {
-            func_8028FB88(7);
+            func_8028FB88(TRANSFORM_7_WISHWASHY);
         }
         if (!(D_8037BF4C & 0x80) && (player_getTransformation() == TRANSFORM_7_WISHWASHY)) {
-            func_8028FB88(1);
+            func_8028FB88(TRANSFORM_1_BANJO);
         }
     }
     if (D_8037BF48 != NULL) {
@@ -117,11 +117,11 @@ void func_80289A78(s32 arg0, s32 arg1) {
     }
 }
 
-void func_80289D1C(void){
-    D_8037BF20 = animctrl_new(1);
-    func_80287784(D_8037BF20, 0);
-    animctrl_setSmoothTransition(D_8037BF20, FALSE);
-    func_8028746C(D_8037BF20, func_80289A78);
+void baAnim_init(void){
+    playerAnimCtrl = animctrl_new(1);
+    func_80287784(playerAnimCtrl, 0);
+    animctrl_setSmoothTransition(playerAnimCtrl, FALSE);
+    func_8028746C(playerAnimCtrl, func_80289A78);
     D_8037BF48 = NULL;
     func_80289F30();
     D_8037BF24 = 0;
@@ -132,11 +132,11 @@ void func_80289D1C(void){
     D_8037BF30.unk10 = 1.0f;
 }
 
-void func_80289DDC(void){
-    animctrl_free(D_8037BF20);
+void baAnim_free(void){
+    animctrl_free(playerAnimCtrl);
 }
 
-void func_80289E00(void){
+void baAnim_update(void){
     switch(D_8037BF24){
         case 2:
             func_8028982C();
@@ -147,7 +147,7 @@ void func_80289E00(void){
             break;
 
         case 1:
-            animctrl_update(D_8037BF20);
+            animctrl_update(playerAnimCtrl);
             break;
 
         case 0:
@@ -155,8 +155,8 @@ void func_80289E00(void){
     }
 }
 
-void func_80289E74(void){
-    D_8037BF20 = animctrl_defrag(D_8037BF20);
+void baAnim_defrag(void){
+    playerAnimCtrl = animctrl_defrag(playerAnimCtrl);
 }
 
 s32 func_80289E9C(void){
@@ -193,98 +193,98 @@ void func_80289F30(void){
     f32 sp1C[3];
 
     _player_getPosition(sp1C);
-    func_8028781C(D_8037BF20, sp1C, 1);
+    func_8028781C(playerAnimCtrl, sp1C, 1);
 }
 
 AnimCtrl *_player_getAnimCtrlPtr(void){
-    return D_8037BF20;
+    return playerAnimCtrl;
 }
 
 f32 func_80289F70(void){
-    return animctrl_getAnimTimer(D_8037BF20);
+    return animctrl_getAnimTimer(playerAnimCtrl);
 }
 
 bool func_80289F94(enum asset_e anim_id){
-    return animctrl_getIndex(D_8037BF20) == anim_id;
+    return animctrl_getIndex(playerAnimCtrl) == anim_id;
 }
 
 bool baanim_isStopped(void){
-    return animctrl_isStopped(D_8037BF20);
+    return animctrl_isStopped(playerAnimCtrl);
 }
 
 bool baanim_isAt(f32 time){
-    return animctrl_isAt(D_8037BF20, time);
+    return animctrl_isAt(playerAnimCtrl, time);
 }
 
 void func_8028A010(enum asset_e anim_id, f32 duration){
-    animctrl_reset(D_8037BF20);
-    animctrl_setIndex(D_8037BF20, anim_id);
-    animctrl_setDuration(D_8037BF20, duration);
-    animctrl_setPlaybackType(D_8037BF20, 2);
-    func_802875AC(D_8037BF20, "baanim.c", 0x188);
+    animctrl_reset(playerAnimCtrl);
+    animctrl_setIndex(playerAnimCtrl, anim_id);
+    animctrl_setDuration(playerAnimCtrl, duration);
+    animctrl_setPlaybackType(playerAnimCtrl, 2);
+    func_802875AC(playerAnimCtrl, "baanim.c", 0x188);
 }
 
 void func_8028A084(enum asset_e anim_id, f32 duration){
-    animctrl_reset(D_8037BF20);
-    animctrl_setSmoothTransition(D_8037BF20, FALSE);
-    animctrl_setIndex(D_8037BF20, anim_id);
-    animctrl_setDuration(D_8037BF20, duration);
-    animctrl_setPlaybackType(D_8037BF20, 2);
-    func_802875AC(D_8037BF20, "baanim.c", 0x193);
+    animctrl_reset(playerAnimCtrl);
+    animctrl_setSmoothTransition(playerAnimCtrl, FALSE);
+    animctrl_setIndex(playerAnimCtrl, anim_id);
+    animctrl_setDuration(playerAnimCtrl, duration);
+    animctrl_setPlaybackType(playerAnimCtrl, 2);
+    func_802875AC(playerAnimCtrl, "baanim.c", 0x193);
 }
 
 void func_8028A100(enum asset_e anim_id, f32 duration, f32 arg2){
-    animctrl_reset(D_8037BF20);
-    animctrl_setIndex(D_8037BF20, anim_id);
-    animctrl_setDuration(D_8037BF20, duration);
-    func_8028774C(D_8037BF20, arg2);
-    animctrl_setPlaybackType(D_8037BF20, 2);
-    func_802875AC(D_8037BF20, "baanim.c", 0x19e);
+    animctrl_reset(playerAnimCtrl);
+    animctrl_setIndex(playerAnimCtrl, anim_id);
+    animctrl_setDuration(playerAnimCtrl, duration);
+    func_8028774C(playerAnimCtrl, arg2);
+    animctrl_setPlaybackType(playerAnimCtrl, 2);
+    func_802875AC(playerAnimCtrl, "baanim.c", 0x19e);
 }
 
 void func_8028A180(enum asset_e anim_id, f32 duration){
-    animctrl_reset(D_8037BF20);
-    animctrl_setIndex(D_8037BF20, anim_id);
-    animctrl_setDuration(D_8037BF20, duration);
-    animctrl_setPlaybackType(D_8037BF20, 1);
-    func_802875AC(D_8037BF20, "baanim.c", 0x1a8);
+    animctrl_reset(playerAnimCtrl);
+    animctrl_setIndex(playerAnimCtrl, anim_id);
+    animctrl_setDuration(playerAnimCtrl, duration);
+    animctrl_setPlaybackType(playerAnimCtrl, 1);
+    func_802875AC(playerAnimCtrl, "baanim.c", 0x1a8);
 }
 
 void func_8028A1F4(enum asset_e anim_id, f32 duration, f32 arg2){
-    animctrl_reset(D_8037BF20);
-    animctrl_setIndex(D_8037BF20, anim_id);
-    animctrl_setDuration(D_8037BF20, duration);
-    func_8028774C(D_8037BF20, arg2);
-    animctrl_setPlaybackType(D_8037BF20, 1);
-    func_802875AC(D_8037BF20, "baanim.c", 0x1b3);
+    animctrl_reset(playerAnimCtrl);
+    animctrl_setIndex(playerAnimCtrl, anim_id);
+    animctrl_setDuration(playerAnimCtrl, duration);
+    func_8028774C(playerAnimCtrl, arg2);
+    animctrl_setPlaybackType(playerAnimCtrl, 1);
+    func_802875AC(playerAnimCtrl, "baanim.c", 0x1b3);
 }
 
 void func_8028A274(enum asset_e anim_id, f32 duration){
-    animctrl_reset(D_8037BF20);
-    animctrl_setSmoothTransition(D_8037BF20, FALSE);
-    animctrl_setIndex(D_8037BF20, anim_id);
-    animctrl_setDuration(D_8037BF20, duration);
-    animctrl_setPlaybackType(D_8037BF20, 1);
-    func_802875AC(D_8037BF20, "baanim.c", 0x1bd);
+    animctrl_reset(playerAnimCtrl);
+    animctrl_setSmoothTransition(playerAnimCtrl, FALSE);
+    animctrl_setIndex(playerAnimCtrl, anim_id);
+    animctrl_setDuration(playerAnimCtrl, duration);
+    animctrl_setPlaybackType(playerAnimCtrl, 1);
+    func_802875AC(playerAnimCtrl, "baanim.c", 0x1bd);
 }
 
 void func_8028A2F0(enum asset_e anim_id, f32 duration, f32 arg2){
-    animctrl_reset(D_8037BF20);
-    animctrl_setSmoothTransition(D_8037BF20, FALSE);
-    animctrl_setIndex(D_8037BF20, anim_id);
-    animctrl_setDuration(D_8037BF20, duration);
-    func_8028774C(D_8037BF20, arg2);
-    animctrl_setPlaybackType(D_8037BF20, 1);
-    func_802875AC(D_8037BF20, "baanim.c", 0x1c9);
+    animctrl_reset(playerAnimCtrl);
+    animctrl_setSmoothTransition(playerAnimCtrl, FALSE);
+    animctrl_setIndex(playerAnimCtrl, anim_id);
+    animctrl_setDuration(playerAnimCtrl, duration);
+    func_8028774C(playerAnimCtrl, arg2);
+    animctrl_setPlaybackType(playerAnimCtrl, 1);
+    func_802875AC(playerAnimCtrl, "baanim.c", 0x1c9);
 }
 
 void func_8028A37C(f32 arg0){
-    animctrl_setSubRange(D_8037BF20, 0.0f, arg0);
-    animctrl_setPlaybackType(D_8037BF20, 1);
+    animctrl_setSubRange(playerAnimCtrl, 0.0f, arg0);
+    animctrl_setPlaybackType(playerAnimCtrl, 1);
 }
 
 void func_8028A3B8(f32 arg0, f32 arg1){
-    animctrl_setSubRange(D_8037BF20, 0.0f, arg0);
-    animctrl_setDuration(D_8037BF20, arg1);
-    animctrl_setPlaybackType(D_8037BF20, 1);
+    animctrl_setSubRange(playerAnimCtrl, 0.0f, arg0);
+    animctrl_setDuration(playerAnimCtrl, arg1);
+    animctrl_setPlaybackType(playerAnimCtrl, 1);
 }

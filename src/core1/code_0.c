@@ -5,7 +5,7 @@
 #include "gc/gctransition.h"
 
 
-void func_8023E00C(s32);
+void func_8023E00C(enum map_e);
 void func_8023DFF0(s32);
 
 
@@ -26,7 +26,7 @@ u32 D_8027A130;
 u8  pad_8027A138[0x400];
 u64 D_8027A538;
 u8  pad_8027A540[0x17F8];
-OSThread D_8027BD38;
+OSThread s_MainThread;
 s32      D_8027BEE8;
 s32      D_8027BEEC;
 u64      D_8027BEF0;
@@ -98,12 +98,12 @@ void func_8023DBDC(void){
     func_8023DFF0(3);
 }
 
-void func_8023DC0C(void){
+void core1_init(void){
     func_80255C30();
     func_8023E00C(func_8023DBA4());
     rarezip_init(); //initialize decompressor's huft table
     func_8024BE30();
-    func_80251308();
+    overlayManagerloadCore2();
     D_8027BEF0 = D_8027A538;
     heap_init();
     func_80254028();
@@ -111,10 +111,10 @@ void func_8023DC0C(void){
     func_8033EF58();
     assetCache_init();
     pfsManager_init();
-    func_80250C84();
+    rumbleManager_init();
     audioManager_init();
     func_8025425C();
-    func_80257424();
+    ml_init();
     gctransition_reset();
     D_8027A130 = 0;
     D_80275618 = 0;
@@ -132,9 +132,9 @@ void func_8023DCF4(void){
 
 
 #ifndef NOMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_0/func_8023DD0C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_0/mainLoop.s")
 #else
-void func_8023DD0C(void){
+void mainLoop(void){
     s32 x;
     s32 y;
     s32 r;
@@ -152,7 +152,7 @@ void func_8023DD0C(void){
     if(!D_8027BEEC)
         func_8024E7C8();
     D_8027BEEC = 0;
-    func_80250C08();
+    rumbleManager_80250C08();
 
     if(!mapSpecificFlags_validateCRC1()){
         write_file_blocks(0, 0, 0x80397AD0, 0x40);
@@ -200,11 +200,11 @@ void func_8023DD0C(void){
 }
 #endif
 
-void func_8023DF9C(void *arg0){ 
-    func_8023DC0C();
+void __mainMethod(void *arg0){ 
+    core1_init();
     sns_write_payload_over_heap();
     while(1){ //main loop
-        func_8023DD0C();
+        mainLoop();
     }
 }
 
@@ -216,18 +216,18 @@ s32 func_8023E000(void){
     return D_8027A130;
 }
 
-void func_8023E00C(s32 arg0){
-    D_8027BEE8 = arg0;
+void func_8023E00C(enum map_e map_id){
+    D_8027BEE8 = map_id;
 }
 
-void func_8023E018(void){
+void mainThread_create(void){
     // 5th argument should be a pointer to the end of an array, but the start is unknown
     // D_8027A538 is not the right symbol, but the end of the array is the important port and this is the closest symbol currently
-    osCreateThread(&D_8027BD38, 6, func_8023DF9C, NULL, ((u8*)&D_8027A538) + 0x1800, 0x14);
+    osCreateThread(&s_MainThread, 6, __mainMethod, NULL, ((u8*)&D_8027A538) + 0x1800, 0x14);
 }
 
-OSThread *func_8023E060(void){
-    return &D_8027BD38;
+OSThread *mainThread_get(void){
+    return &s_MainThread;
 }
 
 void func_8023E06C(void){

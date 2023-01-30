@@ -121,7 +121,7 @@ void func_80345000(Struct_Core2_BD100_0 *self, f32 arg1[3]) {
     temp_a0 = self + 0x10;
     if (func_80244D94(arg1, sp30, sp3C, 0x025E0080, 15.0f)) {
         func_80257DB0(self->unk10, self->unk10, sp3C);
-        self->unk10[1] = max_f(self->unk10[1], 250.0f);
+        self->unk10[1] = ml_max_f(self->unk10[1], 250.0f);
         self->unk24 = TRUE;
     }
     self->unk0 = func_80344FF0(sp30);

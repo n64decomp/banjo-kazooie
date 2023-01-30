@@ -79,7 +79,7 @@ extern void gczoombox_open(gczoombox_t *);
 extern void gczoombox_maximize(gczoombox_t *);
 
 extern void *mapModel_getModel(s32);
-extern void  func_8029A95C(s32); // set transformation
+extern void  player_setTransformation(s32); // set transformation
 
 //typedef migrated to "inlcude/core2/code_C9E70.h"
 extern struct FF_StorageStruct *D_8037DCB8; 
@@ -659,7 +659,7 @@ void lair_func_8038CF18(void)
     ptr[-3].unk20 = 0;
 #endif
 
-    func_8029A95C(TRANSFORM_1_BANJO);
+    player_setTransformation(TRANSFORM_1_BANJO);
 
     func_80347A14(0);
 

@@ -20,8 +20,8 @@ Struct_Core2_69F60_0 D_80380938[16];
 ParticleEmitter *func_802F0EF0(u8 arg0){
     if(D_80380938[arg0].p_emitter == NULL){
         D_80380930 = arg0;
-        D_80380938[arg0].p_emitter = partEmitList_pushNew(D_80380938[arg0].capacity);
-        func_802F0D54(D_80380938[arg0].p_emitter);
+        D_80380938[arg0].p_emitter = partEmitMgr_newEmitter(D_80380938[arg0].capacity);
+        particleEmitter_manualFree(D_80380938[arg0].p_emitter);
         D_80380930 = 0;
     }
     D_80380938[arg0].unk0 = 1.0f;
@@ -59,7 +59,7 @@ void func_802F1104(void){
 
 void func_802F1190(u8 arg0){
     if(D_80380938[arg0].p_emitter){
-        partEmitList_remove(D_80380938[arg0].p_emitter);
+        partEmitMgr_freeEmitter(D_80380938[arg0].p_emitter);
     }
     D_80380938[arg0].unk8_31 = 0;
 }
@@ -69,11 +69,11 @@ void func_802F11E8(void){
     for(i = 1; i < 16; i++){
         if( D_80380938[i].unk8_31 != 0
             && D_80380938[i].p_emitter != NULL
-            && func_802EF648(D_80380938[i].p_emitter)
+            && particleEmitter_isDone(D_80380938[i].p_emitter)
         ){
            D_80380938[i].unk0 -= time_getDelta();
            if(D_80380938[i].unk0 <= 0.0f){
-                partEmitList_remove(D_80380938[i].p_emitter);
+                partEmitMgr_freeEmitter(D_80380938[i].p_emitter);
                 D_80380938[i].p_emitter = NULL;
            }
         }
@@ -87,7 +87,7 @@ void func_802F1294(void){
             && D_80380938[i].p_emitter != NULL
             && i != D_80380930
         ){
-           partEmitList_remove(D_80380938[i].p_emitter);
+           partEmitMgr_freeEmitter(D_80380938[i].p_emitter);
            D_80380938[i].p_emitter = NULL;
         }
     }
@@ -99,7 +99,7 @@ void func_802F1320(void){
         if( D_80380938[i].unk8_31 != 0
             && D_80380938[i].p_emitter != NULL
         ){
-           D_80380938[i].p_emitter = func_802F0D74(D_80380938[i].p_emitter);
+           D_80380938[i].p_emitter = partEmitMgr_defragEmitter(D_80380938[i].p_emitter);
         }
     }
 }

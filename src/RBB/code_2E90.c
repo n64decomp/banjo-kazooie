@@ -143,7 +143,7 @@ void func_8038944C(Actor *this){
         }
     }//L80389508
 
-    if(func_8025773C(&local->unk28, tick)){
+    if(ml_timer_update(&local->unk28, tick)){
         if(this->state == 2)
             func_803892D8(this, 3);
         else if(this->state == 3)

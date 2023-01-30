@@ -217,9 +217,9 @@ void func_80295914(void){
     eggShatter_init();
     func_80294790();
     func_80293DA4();
-    func_80289D1C();
-    playerModel_reset();
-    playerMarker_init();
+    baAnim_init();
+    baModel_reset();
+    baMarker_init();
     func_80299900();
     func_8029A4D0();
     func_8029ADCC();
@@ -255,12 +255,12 @@ void func_80295B04(void){
     func_8029A980(tmp_a1);
     func_8029A974(sp24);
     bs_setState(BS_5A_LOADZONE);
-    playerMarker_free();
+    baMarker_free();
     func_8029065C();
     func_8029175C();
     eggShatter_free();
-    playerModel_free();
-    func_80289DDC();
+    baModel_free();
+    baAnim_free();
     func_80293E88();
     func_802947C4();
     func_80299A20();
@@ -293,15 +293,15 @@ void func_80295C14(void){
     roll_update();
     func_802993C8();//yaw update
     func_802906D8();
-    func_80289E00();
+    baAnim_update();
     func_8029A554();
     func_80298344(); //climb_cooldown_update
     func_80290108();
     eggShatter_update();
     func_80292EDC();
-    playerModel_update();
+    baModel_update();
     func_8029842C();
-    func_8028D2E4();
+    baMarker_update();
     func_80294890();
     func_8028A8D0();
     func_8028B71C();
@@ -320,8 +320,8 @@ void func_80295C14(void){
 
 void func_80295D74(void){
     if(D_80363820){
-        func_80289E74();
-        playerModel_defrag();
+        baAnim_defrag();
+        baModel_defrag();
         eggShatter_defrag();
         func_80294750();
         func_8029AF1C();

@@ -5,7 +5,7 @@
 
 
 
-extern void func_80250E6C(f32, f32);
+extern void rumbleManager_80250E6C(f32, f32);
 extern void func_802BB360(s32, f32);
 extern void func_802BB378(s32, f32, f32);
 extern void func_802BB3AC(s32, f32);
@@ -75,14 +75,14 @@ void func_80288B14(enum sfx_e arg0){
 void func_80288B34(s32 arg0, s32 arg1){
     f32 f12 = reinterpret_cast(f32, arg0);
     f32 f14 = reinterpret_cast(f32, arg1);
-    func_80250E6C(f12, f14);
+    rumbleManager_80250E6C(f12, f14);
 }
 
 void func_80288B60(s32 arg0, s32 arg1, s32 arg2){
     f32 f12 = reinterpret_cast(f32, arg0);
     f32 f14 = reinterpret_cast(f32, arg1);
     f32 f0 = reinterpret_cast(f32, arg2);
-    func_80250D94(f12, f14, f0);
+    rumbleManager_80250D94(f12, f14, f0);
 }
 
 void func_80288B98(vector(struct2s) **arg0, struct2s *arg1){

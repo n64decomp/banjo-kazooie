@@ -4,7 +4,7 @@
 
 #include "prop.h"
 
-extern f32 ml_vec3f_distance_squared(f32[3], f32[3]);
+extern f32 ml_distanceSquared_vec3f(f32[3], f32[3]);
 extern f32 func_802586B0(f32[3], f32[3]);
 extern void mapModel_getCubeBounds(s32 min[3], s32 max[3]);
 extern f32 func_803243D0(struct56s *arg0, f32 arg1[3]);
@@ -944,20 +944,20 @@ s32 func_80304984(s32 arg0, u32 *arg1) {
     return 0;
 }
 
-NodeProp *cubeList_findNodePropByActorId(enum actor_e actor_id, s32 arg1[3]) {
+NodeProp *cubeList_findNodePropByActorId(enum actor_e actor_id, s32 position[3]) {
     s32 cube_indices[3];
     s32 i;
-    f32 sp6C[3];
+    f32 position_f32[3];
     s32 cube_min[3];
     s32 cube_max[3];
     s32 *var_a3;
     NodeProp *i_node_prop;
 
-    if (arg1 != NULL) {
-        sp6C[0] = (f32) arg1[0];
-        sp6C[1] = (f32) arg1[1];
-        sp6C[2] = (f32) arg1[2];
-        cube_positionToIndices(cube_indices, sp6C);
+    if (position != NULL) {
+        position_f32[0] = (f32) position[0];
+        position_f32[1] = (f32) position[1];
+        position_f32[2] = (f32) position[2];
+        cube_positionToIndices(cube_indices, position_f32);
         for(i = 0; i < 3; i++){
             cube_min[i] = cube_indices[i] - 1;
             cube_max[i] = cube_indices[i] + 1;
@@ -1166,7 +1166,7 @@ bool func_8030515C(f32 arg0[3], s32 arg1, s32 arg2, f32 (*arg3)(f32[3], f32[3]))
 }
 
 bool func_80305248(f32 arg0[3], s32 arg1, s32 arg2){
-    return func_8030515C(arg0, arg1, arg2, ml_vec3f_distance_squared);
+    return func_8030515C(arg0, arg1, arg2, ml_distanceSquared_vec3f);
 }
 
 bool func_8030526C(f32 arg0[3], s32 arg1, s32 arg2){

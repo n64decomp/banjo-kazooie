@@ -56,7 +56,7 @@ ActorInfo D_80372E78 = {
 void func_8035D110(ParticleEmitter *p_emitter, Actor *this, enum asset_e model_id) {
     func_802DABA0(p_emitter, this->position, this->scale, model_id);
     particleEmitter_setParticleAccelerationRange(p_emitter, 0.0f, -1800.0f, 0.0f, 0.0f, -1800.0f, 0.0f);
-    func_802EFE24(p_emitter, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
+    particleEmitter_setAngularVelocityRange(p_emitter, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
     particleEmitter_setParticleVelocityRange(p_emitter, -50.0f, 750.0f, -50.0f, 120.0f, 900.0f, 120.0f);
     particleEmitter_emitN(p_emitter, 1);
 }
@@ -66,10 +66,10 @@ void func_8035D1F0(ActorMarker *arg0, s32 arg1) {
     Actor *this;
 
     this = marker_getActor(arg0);
-    func_802DAC84(partEmitList_pushNew(2), this, ASSET_4C9_MODEL_MUMMUM_LEG);
-    func_802DAD08(partEmitList_pushNew(1), this, ASSET_4CA_MODEL_MUMMUM_HEAD);
-    func_802DAD8C(partEmitList_pushNew(2), this, ASSET_4C8_MODEL_MUMMUM_ARM);
-    func_8035D110(partEmitList_pushNew(1), this, ASSET_4CB_MODEL_MUMMUM_BODY);
+    func_802DAC84(partEmitMgr_newEmitter(2), this, ASSET_4C9_MODEL_MUMMUM_LEG);
+    func_802DAD08(partEmitMgr_newEmitter(1), this, ASSET_4CA_MODEL_MUMMUM_HEAD);
+    func_802DAD8C(partEmitMgr_newEmitter(2), this, ASSET_4C8_MODEL_MUMMUM_ARM);
+    func_8035D110(partEmitMgr_newEmitter(1), this, ASSET_4CB_MODEL_MUMMUM_BODY);
     FUNC_8030E8B4(SFX_119_FISH_DEATH, 0.8f, 32000, this->position, 1250, 2500);
     __spawnQueue_add_4((GenMethod_4) func_802C4140, ACTOR_4C_STEAM, reinterpret_cast(s32, this->position[0]), reinterpret_cast(s32, this->position[1]), reinterpret_cast(s32, this->position[2]));
     marker_despawn(arg0);

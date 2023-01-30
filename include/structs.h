@@ -8,6 +8,8 @@
 #define UNK_TYPE(t) t
 
 typedef int bool;
+#define NOT(boolean) ((boolean) ^ 1)
+#define BOOL(boolean) ((boolean) ? TRUE : FALSE)
 
 typedef struct{
     f32 x;
@@ -338,16 +340,16 @@ typedef struct struct_21_s{
 
 //particle
 typedef struct struct_2F_s{
-    f32 unk0[3];
-    f32 unkC;
-    f32 frame_10; //frame
-    f32 framerate_14; //framerate
-    f32 position_18[3];
-    f32 unk24[3];
-    f32 size_30; //size
+    f32 acceleration[3];
+    f32 fade;
+    f32 frame; //frame
+    f32 framerate; //framerate
+    f32 position[3];
+    f32 rotation[3];
+    f32 scale; //size
     f32 initialSize_34; //initial_size
     f32 finalSizeDiff; //delta_size
-    f32 unk3C[3];
+    f32 angluar_velocity[3];
     f32 age_48;
     f32 lifetime_4C;
     f32 velocity_50[3];
@@ -361,25 +363,25 @@ typedef struct struct_30_s{
     u32 doneSpawning_0_23:7; //doneSpawning
     u32 unk0_16:1;
     u32 assetId_0_15:14; //uid
-    u32 unk0_1:1;
-    u32 unk0_0:1;
+    u32 dead:1;
+    u32 auto_free:1;
     f32 unk4[3];
-    f32 unk10;
-    f32 unk14;
-    u32 unk18;
+    f32 fade_in; //fade_in_end
+    f32 fade_out; //fade_out_start
+    u32 draw_mode;
     BKSprite *sprite_1C; //sprite_ptr
     BKModelBin *model_20; //model_ptr
     f32 particleSpawnTimer_24; //particleSpawnTimer?
     f32 postion_28[3]; //position
     BKSpriteDisplayData *unk34;
     f32 spawnIntervalTimer_38; //spawnIntervalTimer
-    s32 unk3C[3];
+    s32 rgb[3];
     u8  sphericalParticleVelocity_48; //sphericalParticalVelocity
-    u8  unk49;
+    u8  alpha;
     u8  pad4A[0x2];
     TUPLE_PAIR(f32, particleAccerationRange_4C);
     s16 unk64;
-    s16 unk66;
+    s16 sfx_id;
     f32 unk68;
     f32 unk6C;
     f32 unk70;
@@ -395,7 +397,7 @@ typedef struct struct_30_s{
     f32 unkBC[3];
     f32 unkC8[3];
     PAIR(f32, spawnIntervalRange_D4);
-    f32 unkDC[2]; //particleLifetimeRange
+    f32 particleLifeTimeRange[2];
     union
     {
         TUPLE_PAIR(f32, cartisian);
@@ -419,12 +421,12 @@ typedef struct struct_30_s{
 } ParticleEmitter;
 
 typedef struct struct_31_s{
-    f32 unk0[2];
-    f32 unk8[2];
-    f32 unk10[2];
-    f32 unk18[2];
-    f32 unk20;
-    f32 unk24;
+    f32 unk0[2]; //particle_starting_scale_range
+    f32 unk8[2]; //particle_starting_scale_range
+    f32 unk10[2]; //particle_spawn_interval_range
+    f32 unk18[2]; //particle_lifetime_range
+    f32 unk20; //particle_fade_in
+    f32 unk24; //particle_fade_in
 } struct31s;
 
 typedef struct struct_32_s{

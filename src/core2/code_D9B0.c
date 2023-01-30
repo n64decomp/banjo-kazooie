@@ -148,7 +148,7 @@ void func_80294BDC(void) {
             sp28 *= 2.0;
         }
         if ((sp24 & 0x50) && !player_inWater()) {
-            D_8037C2E4 = min_f((sp28 * sp30) + D_8037C2E4, 1.0f);
+            D_8037C2E4 = ml_min_f((sp28 * sp30) + D_8037C2E4, 1.0f);
         } else {
             D_8037C2E4 = 0.0f;
         }

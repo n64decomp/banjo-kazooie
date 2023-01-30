@@ -148,7 +148,7 @@ void func_8035765C(Actor *this){
     }//L803576EC
 
     player_getPosition(sp5C);
-    sp58 = ml_vec3f_distance(this->position, sp5C);
+    sp58 = ml_distance_vec3f(this->position, sp5C);
     if(this->state == 1){
         if(sp58 < this->scale*800.0f){
             func_80357264(this, 2);
@@ -168,7 +168,7 @@ void func_8035765C(Actor *this){
     }//L80357808
 
     if(this->state == 3){
-        if(func_8025773C(&local->unk4, sp50)){
+        if(ml_timer_update(&local->unk4, sp50)){
             func_80357264(this, 4);
         }
     }

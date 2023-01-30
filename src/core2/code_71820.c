@@ -170,7 +170,7 @@ void func_802F8CD0(struct6s * this){
     this->unk18++;
     if((s32)this->unk18 < vector_size(this->unk1C)){
         iPtr = vector_at(this->unk1C, this->unk18);
-        if(1320.0 < ml_vec3f_distance(iPtr->unk4, plyr_pos)){
+        if(1320.0 < ml_distance_vec3f(iPtr->unk4, plyr_pos)){
             vector_remove(this->unk1C, this->unk18);
         }
     }
@@ -178,7 +178,7 @@ void func_802F8CD0(struct6s * this){
         this->unk18 = 0;
     }
     
-    if(func_8025773C(&this->unk38, f20)){
+    if(ml_timer_update(&this->unk38, f20)){
         if(this->unk22 == 1 && !func_802BEF64())
             func_802F87B0(this);
         this->unk38 = 0.1f;

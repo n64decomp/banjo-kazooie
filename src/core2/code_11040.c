@@ -18,7 +18,7 @@ void func_80297FDC(void){
         D_8037C550 = D_8037C554;
     }
     else{
-        D_8037C550 += mlClamp_f(diff, -0.12f, 0.12f);
+        D_8037C550 += ml_clamp_f(diff, -0.12f, 0.12f);
     }
 }
 

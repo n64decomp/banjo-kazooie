@@ -19,7 +19,7 @@ void func_802AA400(void){
     if(!func_8029B300()){
         func_80297970(0.0f);
     }else{
-        func_80297970(func_80257C48(sp1C, D_80364AD0, D_80364AD4));
+        func_80297970(ml_interpolate_f(sp1C, D_80364AD0, D_80364AD4));
     }
 }
 

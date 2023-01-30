@@ -57,7 +57,7 @@ void func_802DA634(ParticleEmitter *pCtrl, f32 arg1[3], s32 cnt){
     particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -600.0f, 0.0f, 0.0f, -600.0f, 0.0f);
     particleEmitter_setModel(pCtrl, 0x344);
     particleEmitter_setPosition(pCtrl, arg1);
-    func_802EFE24(pCtrl, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
+    particleEmitter_setAngularVelocityRange(pCtrl, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
     particleEmitter_setParticleVelocityRange(pCtrl, -150.0f, 150.0f, -150.0f, 150.0f, 360.0f, 150.0f);
     func_802EFB98(pCtrl, &D_80367E44);
     func_802EF9F8(pCtrl, 0.01f);
@@ -83,7 +83,7 @@ void func_802DA740(Actor *this){
             }
             else{
                 if(local->unk0 && actor_animationIsAt(this, 0.05f)){
-                    func_802DA634(partEmitList_pushNew(6), this->velocity, 6);
+                    func_802DA634(partEmitMgr_newEmitter(6), this->velocity, 6);
                 }
             }
             break;
@@ -93,19 +93,19 @@ void func_802DA740(Actor *this){
             }
             else if(local->unk0){ 
                 if(actor_animationIsAt(this, 0.3f)){
-                    func_802DA634(partEmitList_pushNew(6), this->velocity, 6);
+                    func_802DA634(partEmitMgr_newEmitter(6), this->velocity, 6);
                 }
                 else if(actor_animationIsAt(this, 0.4f)){
-                    func_802DA634(partEmitList_pushNew(4), this->unk1C, 4);
+                    func_802DA634(partEmitMgr_newEmitter(4), this->unk1C, 4);
                 }
                 else if(actor_animationIsAt(this, 0.45f)){
-                    func_802DA634(partEmitList_pushNew(4), local->unk4, 4);
+                    func_802DA634(partEmitMgr_newEmitter(4), local->unk4, 4);
                 }
                 else if(actor_animationIsAt(this, 0.5f)){
-                    func_802DA634(partEmitList_pushNew(4), local->unk10, 4);
+                    func_802DA634(partEmitMgr_newEmitter(4), local->unk10, 4);
                 }
                 else if(actor_animationIsAt(this, 0.55f)){
-                    func_802DA634(partEmitList_pushNew(4), local->unk1C, 4);
+                    func_802DA634(partEmitMgr_newEmitter(4), local->unk1C, 4);
                 }
             }
             break;

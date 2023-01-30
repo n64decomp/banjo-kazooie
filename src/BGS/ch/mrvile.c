@@ -156,7 +156,7 @@ void func_8038BDD4(Actor *this) {
     start_position[0] = this->position[0];
     start_position[1] = this->position[1];
     start_position[2] = this->position[2];
-    func_8025773C(&local->unk14, sp5C);
+    ml_timer_update(&local->unk14, sp5C);
     if ((local->unkC == 102) || (local->unkC == 103) || (local->unkC == 104)) {
         sp44[0] = 0.0f;
         sp44[1] = 0.0f;
@@ -262,7 +262,7 @@ bool func_8038C2A8(ActorMarker *marker) {
     local = (ActorLocal_MrVile *)&this->local;
     player_getPosition(player_position);
     if (this->state == 6) {
-        return ml_vec3f_distance(this->position, player_position) < 150.0f;
+        return ml_distance_vec3f(this->position, player_position) < 150.0f;
     }
     return local->unk0 == 1;
 }
@@ -353,7 +353,7 @@ void chvile_update(Actor *this) {
         local->game_marker = actorArray_findClosestActorFromActorId(this->position, 0x138, -1, &sp90)->marker;
     }
     player_getPosition(player_position);
-    sp90 = ml_vec3f_distance(this->position, player_position);
+    sp90 = ml_distance_vec3f(this->position, player_position);
     if (sp90 <= 300.0f) {
         local->unk0 =  (local->unk0 == 0) ? 1 : 2;
     } else if (sp90 > 300.0f) {
@@ -413,7 +413,7 @@ void chvile_update(Actor *this) {
     if (this->state == 4) {
         player_getPosition(local->target_position);
         local->unk10 = 500.0f;
-        if ((local->unkC == 102) && (ml_vec3f_distance(this->position, local->target_position) < 200.0f)) {
+        if ((local->unkC == 102) && (ml_distance_vec3f(this->position, local->target_position) < 200.0f)) {
             BGS_func_8038BBA0(this, 103);
         }
         if ((local->unkC == 103) && (func_80335794(this->unk148) >= 2)) {
@@ -422,7 +422,7 @@ void chvile_update(Actor *this) {
     }
     if (this->state == 5) {
         local->unk10 = 200.0f;
-        if (ml_vec3f_distance(this->position, local->target_position) < 100.0f) {
+        if (ml_distance_vec3f(this->position, local->target_position) < 100.0f) {
             local->target_position[0] = randf2(-500.0f, 500.0f);
             local->target_position[1] = 0.0f;
             local->target_position[2] = randf2(-500.0f, 500.0f);
@@ -430,12 +430,12 @@ void chvile_update(Actor *this) {
     }
     if ((this->state == 6)){
         local->unk10 = 400.0f;
-        if((ml_vec3f_distance(this->position, local->target_position) < 100.0f) || (ml_vec3f_distance(player_position, local->target_position) < 300.0f)) {
+        if((ml_distance_vec3f(this->position, local->target_position) < 100.0f) || (ml_distance_vec3f(player_position, local->target_position) < 300.0f)) {
             for(i = 0; i < 10; i++){
                 random_position[0] = randf2(-500.0f, 500.0f);
                 random_position[1] = 0.0f;
                 random_position[2] = randf2(-500.0f, 500.0f);
-                if ((i == 0) || (ml_vec3f_distance(player_position, random_position) > ml_vec3f_distance(player_position, local->target_position))) {
+                if ((i == 0) || (ml_distance_vec3f(player_position, random_position) > ml_distance_vec3f(player_position, local->target_position))) {
                     local->target_position[0] = random_position[0];
                     local->target_position[1] = random_position[1];
                     local->target_position[2] = random_position[2];

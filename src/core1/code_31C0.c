@@ -14,14 +14,14 @@ void func_80240BE0(void){
     osStartThread(&D_8027ED10);
 }
 
-void func_80240754(void);
-void func_8023E018(void);
-OSThread *func_8023E060(void);
+void piMgr_create(void);
+void mainThread_create(void);
+OSThread *mainThread_get(void);
 
 void func_80240C30(void *arg)
 {
-    func_80240754();
-    func_8023E018();
-    osStartThread(func_8023E060());
+    piMgr_create();
+    mainThread_create();
+    osStartThread(mainThread_get());
     while (1);
 }

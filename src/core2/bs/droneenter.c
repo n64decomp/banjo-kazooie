@@ -30,8 +30,8 @@ void __bsDroneEnter_setSubstate(enum bsdroneenter_state_e arg0) {
         func_8025A6CC(COMUSIC_43_ENTER_LEVEL_GLITTER, 32000);
         func_8025AABC(COMUSIC_43_ENTER_LEVEL_GLITTER);
         func_8029E3C0(0, 0.4f);
-        playerModel_setEnvAlpha(0);
-        playerModel_updateModel();
+        baModel_setEnvAlpha(0);
+        baModel_updateModel();
         break;
     case 3:
         comusic_8025AB44(COMUSIC_43_ENTER_LEVEL_GLITTER, 0, 2000);
@@ -69,27 +69,27 @@ void __bsDroneEnter_emitParticles(void) {
 }
 
 void __bsDroneEnter_initParticleTypes(ParticleEmitter *p_ctrl, enum asset_e sprite_id) {
-    func_802F0D54(p_ctrl);
+    particleEmitter_manualFree(p_ctrl);
     particleEmitter_setSprite(p_ctrl, sprite_id);
-    func_802EFA5C(p_ctrl, 0.3f, 0.8f);
+    particleEmitter_setFade(p_ctrl, 0.3f, 0.8f);
     func_802EFB70(p_ctrl, 0.15f, 0.22f);
     func_802EFB84(p_ctrl, 0.03f, 0.05f);
-    func_802EFE24(p_ctrl, 0.0f, 0.0f, 300.0f, 0.0f, 0.0f, 300.0f);
-    func_802EFEC0(p_ctrl, 0.55f, 0.55f);
+    particleEmitter_setAngularVelocityRange(p_ctrl, 0.0f, 0.0f, 300.0f, 0.0f, 0.0f, 300.0f);
+    particleEmitter_setParticleLifeTimeRange(p_ctrl, 0.55f, 0.55f);
 }
 
 void __bsDroneEnter_removeParticleTypes(void) {
-    partEmitList_remove(bsDroneEnter.yellow_sparkle_emitter);
-    partEmitList_remove(bsDroneEnter.white_sparkle_emitter);
+    partEmitMgr_freeEmitter(bsDroneEnter.yellow_sparkle_emitter);
+    partEmitMgr_freeEmitter(bsDroneEnter.white_sparkle_emitter);
 }
 
 void __bsDroneEnter_init(void) {
     bsDroneEnter.unk10 = 0.0f;
     bsDroneEnter.unk8 = 0.0f;
     bsDroneEnter.unkC = 1.0f;
-    bsDroneEnter.white_sparkle_emitter = partEmitList_pushNew(60);
+    bsDroneEnter.white_sparkle_emitter = partEmitMgr_newEmitter(60);
     __bsDroneEnter_initParticleTypes(bsDroneEnter.white_sparkle_emitter, ASSET_716_SPRITE_SPARKLE_WHITE);
-    bsDroneEnter.yellow_sparkle_emitter = partEmitList_pushNew(60);
+    bsDroneEnter.yellow_sparkle_emitter = partEmitMgr_newEmitter(60);
     __bsDroneEnter_initParticleTypes(bsDroneEnter.yellow_sparkle_emitter, ASSET_713_SPRITE_SPARKLE_YELLOW);
 }
 
@@ -131,7 +131,7 @@ void bsDroneEnter_update(void) {
     case BSDRONEENTER_SUBSTATE_2:
         func_802AE914();
         sp20 = func_8029E1A8(0);
-        playerModel_setEnvAlpha((s32) ml_map_f(func_8029E270(0), 0.0f, 0.4f, 255.0f, 0.0f));
+        baModel_setEnvAlpha((s32) ml_map_f(func_8029E270(0), 0.0f, 0.4f, 255.0f, 0.0f));
         if (sp20) {
             __bsDroneEnter_setSubstate(BSDRONEENTER_SUBSTATE_3);
         }
@@ -148,5 +148,5 @@ void bsDroneEnter_update(void) {
 void bsDroneEnter_end(void){
     __bsDroneEnter_removeParticleTypes();
     func_80294378(1);
-    playerModel_updateModel();
+    baModel_updateModel();
 }

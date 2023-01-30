@@ -111,7 +111,7 @@ void func_80390E28(Actor *this) {
         }
         this->unk10_12 = 0;
         for(i = 0; (i < D_80395460) && (this->unk10_12 < 4); i++){
-            temp_f0 = ml_vec3f_distance(this->position, D_80395370[i]);
+            temp_f0 = ml_distance_vec3f(this->position, D_80395370[i]);
             if ((temp_f0 > 400.0f) && (temp_f0 < 1200.0f)) {
                 local->unk0[this->unk10_12][0] = D_80395370[i][0];
                 local->unk0[this->unk10_12][1] = D_80395370[i][1];

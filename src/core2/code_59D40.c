@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-extern f32 ml_vec3f_distance_squared(f32 [3], f32 [3]);
+extern f32 ml_distanceSquared_vec3f(f32 [3], f32 [3]);
 extern f32 func_80309B24(f32[3]);
 extern void func_80328FF0(Actor *, f32);
 extern void mapSpecificFlags_setN(s32, s32, s32);
@@ -78,7 +78,7 @@ bool func_802E0DC0(f32 arg0[3]){
     f32 pad0;
 
     player_getPosition(sp2C);
-    return (4000000.0f < ml_vec3f_distance_squared(sp2C, arg0))
+    return (4000000.0f < ml_distanceSquared_vec3f(sp2C, arg0))
         || ( (arg0[1] - func_80309724(arg0) < 70.0f) && (func_80309B24(arg0) - arg0[1] < 70.0f));
 }
 

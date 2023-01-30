@@ -1,6 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "core2/particle.h"
 
 #define ABS(s) (((s) >= 0) ? (s) : -(s))
 
@@ -62,17 +63,17 @@ void chShrapnel_emitExplosion(Actor *this) {
     ParticleEmitter *temp_v0;
 
     func_802BB3DC(0, 60.0f, 0.9f);
-    temp_v0 = partEmitList_pushNew(1U);
+    temp_v0 = partEmitMgr_newEmitter(1U);
     particleEmitter_setSprite(temp_v0, ASSET_4A0_SPRITE_EXPLOSION);
-    func_802EFA5C(temp_v0, 0.1f, 0.2f);
-    func_802EFA70(temp_v0, 8);
+    particleEmitter_setFade(temp_v0, 0.1f, 0.2f);
+    particleEmitter_setDrawMode(temp_v0, PART_EMIT_NO_LOOP);
     particleEmitter_setStartingFrameRange(temp_v0, 0, 0);
     particleEmitter_setParticleFramerateRange(temp_v0, 4.0f, 4.0f);
     particleEmitter_setParticleSpawnPositionRange(temp_v0, 0.0f, 200.0f, 0.0f, 0.0f, 200.0f, 0.0f);
     particleEmitter_setPosition(temp_v0, this->position);
     func_802EFB70(temp_v0, 3.0f, 3.0f);
     func_802EFB84(temp_v0, 8.0f, 8.0f);
-    func_802EFEC0(temp_v0, 0.5f, 0.5f);
+    particleEmitter_setParticleLifeTimeRange(temp_v0, 0.5f, 0.5f);
     particleEmitter_setParticleVelocityRange(temp_v0, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
     particleEmitter_emitN(temp_v0, 1);
 }
@@ -80,33 +81,33 @@ void chShrapnel_emitExplosion(Actor *this) {
 void chShrapnel_emitSmoke(Actor *this) {
     ParticleEmitter *temp_v0;
 
-    temp_v0 = partEmitList_pushNew(6U);
+    temp_v0 = partEmitMgr_newEmitter(6U);
     particleEmitter_setSprite(temp_v0, ASSET_70E_SPRITE_SMOKE_2);
-    func_802EFA5C(temp_v0, 0.05f, 0.1f);
+    particleEmitter_setFade(temp_v0, 0.05f, 0.1f);
     particleEmitter_setStartingFrameRange(temp_v0, 0, 7);
     particleEmitter_setPosition(temp_v0, this->position);
     func_802EFB70(temp_v0, 1.0f, 1.5f);
     func_802EFB84(temp_v0, 2.0f, 3.0f);
     particleEmitter_setParticleSpawnPositionRange(temp_v0, -75.0f, 25.0f, -75.0f, 75.0f, 75.0f, 75.0f);
     particleEmitter_setParticleVelocityRange(temp_v0, -70.0f, 50.0f, -70.0f, 70.0f, 100.0f, 70.0f);
-    func_802EFFA8(temp_v0, &D_803673F8);
-    func_802EFEC0(temp_v0, 3.0f, 4.0f);
+    particleEmitter_setRGB(temp_v0, &D_803673F8);
+    particleEmitter_setParticleLifeTimeRange(temp_v0, 3.0f, 4.0f);
     particleEmitter_emitN(temp_v0, 6);
 }
 
 void chShrapnel_emitBodyParts(Actor *this, enum model_e model_id, s32 n) {
     ParticleEmitter *temp_v0;
 
-    temp_v0 = partEmitList_pushNew(n);
+    temp_v0 = partEmitMgr_newEmitter(n);
     particleEmitter_setParticleAccelerationRange(temp_v0, 0.0f, -800.0f, 0.0f, 0.0f, -800.0f, 0.0f);
     func_802EF9F8(temp_v0, 0.6f);
     func_802EFA18(temp_v0, 1);
     particleEmitter_setModel(temp_v0, model_id);
     particleEmitter_setPosition(temp_v0, this->position);
     func_802EFB70(temp_v0, 0.05f, 2.0f);
-    func_802EFE24(temp_v0, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
+    particleEmitter_setAngularVelocityRange(temp_v0, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
     particleEmitter_setSpawnIntervalRange(temp_v0, 0.0f, 0.01f);
-    func_802EFEC0(temp_v0, 10.0f, 10.0f);
+    particleEmitter_setParticleLifeTimeRange(temp_v0, 10.0f, 10.0f);
     particleEmitter_setParticleVelocityRange(temp_v0, -500.0f, 400.0f, -500.0f, 500.0f, 800.0f, 500.0f);
     particleEmitter_emitN(temp_v0, n);
 }

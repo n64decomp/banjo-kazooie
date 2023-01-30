@@ -147,7 +147,7 @@ segments:
   - [0xF19A10, c, inflate]                    #DONE
   - [0xF1AF50, c, code_1D00]                  #DONE
   - [0xF1BE20, c, code_2BD0]    
-  - [0xF1BFF0, c, code_2DA0]                  #DONE
+  - [0xF1BFF0, c, defragmanager]              #DONE
   - [0xF1C1F0, c, code_2FA0]                  #DONE
   - [0xF1C410, c, code_31C0]                  #DONE
   - [0xF1C4A0, c, code_3250]                  #DONE
@@ -164,13 +164,13 @@ segments:
   - [0xF27D40, c, code_EAF0]                  #DONE
   - [0xF29C50, c,code_10A00]    
   - [0xF2AD10, c, code_11AC0]                 #DONE
-  - [0xF2C160, c, code_12F10]                 #DONE
+  - [0xF2C160, c, rumblemanager]                 #DONE
   - [0xF2C890, c, code_13640]                 #DONE
   - [0xF2C8D0, c, code_13680]                 #DONE
-  - [0xF2C920, c, code_136D0]                 #DONE
+  - [0xF2C920, c, overlaymanager]                 #DONE
   - [0xF2CBE0, c, code_13990]   
   - [0xF2E840, hasm, code_155F0]              #DONE
-  - [0xF2E880, c, code_15630]                 #DONE
+  - [0xF2E880, c, overlay]                 #DONE
   - [0xF2E9C0, c, code_15770]                 #DONE
   - [0xF2ED80, c, code_15B30]                 #DONE
   - [0xF2FCA0, c, memory]                     #DONE
@@ -376,7 +376,7 @@ segments:
   - [0xF51550, .data, code_EAF0]
   - [0xF51560, .data, code_10A00]
   - [0xF51570, .data, code_11AC0]
-  - [0xF51B00, .data, code_136D0]
+  - [0xF51B00, .data, overlaymanager]
   - [0xF51DA0, .data, code_13990]
   - [0xF51DB0, .data, code_15B30]
   - [0xF51DC0, .data, memory]
@@ -417,8 +417,8 @@ segments:
   - [0xF53220, .rodata, code_EAF0]
   - [0xF532A0, .rodata, code_10A00]
   - [0xF539B0, .rodata, code_11AC0]
-  - [0xF539C0, .rodata, code_12F10]
-  - [0xF539D0, .rodata, code_136D0]
+  - [0xF539C0, .rodata, rumblemanager]
+  - [0xF539D0, .rodata, overlaymanager]
   - [0xF53A50, .rodata, code_13990]
   - [0xF53A70, .rodata, code_18350]
   - [0xF53B70, .rodata, code_1BE90]
@@ -454,7 +454,7 @@ segments:
   - [0xF55960, .bss, inflate]
   - [0xF55960, .bss, code_1D00]
   - [0xF55960, .bss, code_2BD0]
-  - [0xF55960, .bss, code_2DA0]
+  - [0xF55960, .bss, defragmanager]
   - [0xF55960, .bss, code_31C0]
   - [0xF55960, .bss, code_5650]
   - [0xF55960, .bss, code_7090]
@@ -466,9 +466,9 @@ segments:
   - [0xF55960, .bss, code_EAF0]
   - [0xF55960, .bss, code_10A00]
   - [0xF55960, .bss, code_11AC0]
-  - [0xF55960, .bss, code_12F10]
+  - [0xF55960, .bss, rumblemanager]
   - [0xF55960, .bss, code_13640]
-  - [0xF55960, .bss, code_136D0]
+  - [0xF55960, .bss, overlaymanager]
   - [0xF55960, .bss, code_13990]
   - [0xF55960, .bss, code_15770]
   - [0xF55960, .bss, code_15B30]
@@ -506,10 +506,10 @@ segments:
   - [0xF56EB0, c, code_1550] #DONE
   - [0xF57290, c, code_1930] #DONE
   - [0xF57BA0, c, code_2240] #DONE
-  - [0xF581F0, c, code_2890] #DONE
+  - [0xF581F0, c, ba/anim] #DONE
   - [0xF58DE0, c, code_3480] #DONE
   - [0xF59330, c, code_39D0] #DONE
-  - [0xF5A120, c, code_47C0] #DONE
+  - [0xF5A120, c, ba/marker] #DONE
   - [0xF5C490, c, code_6B30] #DONE
   - [0xF5C9C0, c, code_7060] #DONE
   - [0xF5E700, c, code_8DA0] #DONE
@@ -521,7 +521,7 @@ segments:
   - [0xF5FF60, c, code_A600] #DONE
   - [0xF60040, c, code_A6E0] #DONE
   - [0xF602C0, c, code_A960] #DONE
-  - [0xF603C0, c, playerModel] #DONE
+  - [0xF603C0, c, ba/model] #DONE
   - [0xF60FB0, c, code_B650] #DONE
   - [0xF611B0, c, code_B850] #DONE
   - [0xF614B0, c, code_BB50] #DONE
@@ -722,7 +722,7 @@ segments:
   - [0xFBC910, c, code_66FB0] #DONE
   - [0xFBCDF0, c, gc/bound]   #DONE
   - [0xFBCFB0, c, code_67650] #DONE
-  - [0xFBD300, c, code_679A0] #DONE
+  - [0xFBD300, c, particle] #DONE
   - [0xFBF8C0, c, code_69F60] #DONE
   - [0xFBFE10, c, code_6A4B0]
   - [0xFC0850, c, code_6AEF0] #DONE
@@ -891,12 +891,12 @@ segments:
   - [0x1031E10, c, code_DC4B0] #DONE
   - [0x1031F60, bin, data_DC600] #unreferenced
   - [0x1031F90, .data, code_1550]
-  - [0x1031FB0, .data, code_2890]
+  - [0x1031FB0, .data, ba/anim]
   - [0x1031FE0, .data, code_3480]
-  - [0x1032000, .data, code_47C0]
+  - [0x1032000, .data, ba/marker]
   - [0x1032060, .data, code_7060]
   - [0x10320A0, .data, code_90E0]
-  - [0x1032150, .data, playerModel]
+  - [0x1032150, .data, ba/model]
   - [0x1032150, .data, code_B850]
   - [0x1032170, .data, code_BB50]
   - [0x10321C0, .data, code_C0E0]
@@ -1004,7 +1004,7 @@ segments:
   - [0x1037230, .data, code_66FB0]
   - [0x10372B0, .data, gc/bound]
   - [0x1037300, .data, code_67650]
-  - [0x1037310, .data, code_679A0]
+  - [0x1037310, .data, particle]
   - [0x10373A0, .data, code_6A4B0]
   - [0x1037470, .data, code_6AEF0]
   - [0x1037480, .data, code_6B030]
@@ -1112,16 +1112,16 @@ segments:
   - [0x10427C0, ".rodata", animctrl]
   - [0x10427F0, .rodata, code_AD0]
   - [0x1042800, .rodata, code_1930]
-  - [0x1042880, .rodata, code_2890]
+  - [0x1042880, .rodata, ba/anim]
   - [0x1042890, .rodata, code_3480]
   - [0x10428A0, .rodata, code_39D0]
-  - [0x1042940, .rodata, code_47C0]
+  - [0x1042940, .rodata, ba/marker]
   - [0x1042D70, .rodata, code_6B30]
   - [0x1042E60, .rodata, code_7060]
   - [0x1042F90, .rodata, code_9450]
   - [0x1042FC0, .rodata, code_9900]
   - [0x1042FD0, .rodata, code_9BD0]
-  - [0x1043010, .rodata, playerModel]
+  - [0x1043010, .rodata, ba/model]
   - [0x10430C0, .rodata, code_B650]
   - [0x10430D0, .rodata, code_B850]
   - [0x10430F0, .rodata, code_BD20]
@@ -1255,7 +1255,7 @@ segments:
   - [0x1045B50, .rodata, code_5FD90]
   - [0x1045B60, .rodata, code_66FB0]
   - [0x1045B70, .rodata, code_67650]
-  - [0x1045B80, .rodata, code_679A0]
+  - [0x1045B80, .rodata, particle]
   - [0x1045BA0, .rodata, code_6A4B0]
   - [0x1045BB0, .rodata, code_6B030]
   - [0x1045BC0, .rodata, code_6C3E0]
@@ -1361,10 +1361,10 @@ segments:
   - [0x1048560, .bss, code_10E0]
   - [0x1048560, .bss, code_1550]
   - [0x1048560, .bss, code_1930]
-  - [0x1048560, .bss, code_2890]
+  - [0x1048560, .bss, ba/anim]
   - [0x1048560, .bss, code_3480]
   - [0x1048560, .bss, code_39D0]
-  - [0x1048560, .bss, code_47C0]
+  - [0x1048560, .bss, ba/marker]
   - [0x1048560, .bss, code_6B30]
   - [0x1048560, .bss, code_7060]
   - [0x1048560, .bss, code_8DA0]
@@ -1375,7 +1375,7 @@ segments:
   - [0x1048560, .bss, code_9BD0]
   - [0x1048560, .bss, code_A600]
   - [0x1048560, .bss, code_A6E0]
-  - [0x1048560, .bss, playerModel]
+  - [0x1048560, .bss, ba/model]
   - [0x1048560, .bss, code_B650]
   - [0x1048560, .bss, code_BB50]
   - [0x1048560, .bss, code_BD20]
@@ -1511,7 +1511,7 @@ segments:
   - [0x1048560, .bss, code_66D90]
   - [0x1048560, .bss, gc/bound]
   - [0x1048560, .bss, code_67650]
-  - [0x1048560, .bss, code_679A0]
+  - [0x1048560, .bss, particle]
   - [0x1048560, .bss, code_69F60]
   - [0x1048560, .bss, code_6AEF0]
   - [0x1048560, .bss, code_6B030]

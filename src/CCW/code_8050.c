@@ -70,7 +70,7 @@ void func_8038E440(ParticleEmitter *pCtrl, Actor *actor, enum asset_e model_id){
     };
 
     func_802DABA0(pCtrl, actor->position, actor->scale, model_id);
-    func_802EFE24(pCtrl, 
+    particleEmitter_setAngularVelocityRange(pCtrl, 
         -600.0f, -600.0f, -600.0f, 
          600.0f,  600.0f,  600.0f
     );
@@ -85,7 +85,7 @@ void func_8038E4C0(ActorMarker* marker, s32 arg1) {
     func_80328B8C(actor, 5, 0.0f, 1);
     actor_playAnimationOnce(actor);
     FUNC_8030E8B4(SFX_C2_GRUBLIN_EGH, 1.0f, 32000, actor->position, 1250, 2500);
-    pCtrl = partEmitList_pushNew(1);
+    pCtrl = partEmitMgr_newEmitter(1);
     func_8038E440(pCtrl, actor, ASSET_52D_MODEL_GRUBLIN_HOOD_HAT);
     __spawnQueue_add_4((GenMethod_4)func_802C4140, ACTOR_4C_STEAM, reinterpret_cast(s32,actor->position_x), reinterpret_cast(s32,actor->position_y), reinterpret_cast(s32,actor->position_z));
     actor_collisionOff(actor);

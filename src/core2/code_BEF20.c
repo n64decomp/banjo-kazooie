@@ -191,7 +191,7 @@ void func_8034646C(void){
     D_80385FE4 = FALSE;
 }
 
-void func_803464F8(s32 level){
+void func_803464F8(enum level_e level){
     int i;
     
     for(i = 0; i < 6; i++){
@@ -310,8 +310,8 @@ void func_803465E4(void){
     if( getGameMode() != GAME_MODE_4_PAUSED
         && func_8028F070()
     ){
-        if(sp4C == 0xC)
-            sp4C = 6;
+        if(sp4C == LEVEL_C_BOSS)
+            sp4C = LEVEL_6_LAIR;
         if(sp4C > 0  && sp4C < 0xC && map_get() != MAP_91_FILE_SELECT){
             D_80386000[sp4C] = MAX(1.0, MIN(65535.0, D_80386000[sp4C] + time_getDelta()));
         }

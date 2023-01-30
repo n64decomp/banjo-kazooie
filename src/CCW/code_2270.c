@@ -161,7 +161,7 @@ void chGobiCCW_update(Actor *this) {
     if(this->state == 1){
         if (!this->unk138_24) {
             player_getPosition(sp48);
-            if (ml_vec3f_distance(this->position, sp48) < 600.0f) {
+            if (ml_distance_vec3f(this->position, sp48) < 600.0f) {
                 if (local->unk0->unk2 != 0) {
                     func_80311480((s32) local->unk0->unk2, 4, NULL, NULL, NULL, NULL);
                 }

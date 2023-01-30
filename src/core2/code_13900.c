@@ -44,7 +44,7 @@ void func_8029A92C(void){
     func_8029A974(0.0f);
 }
 
-void func_8029A95C(enum transformation_e xform_id){
+void player_setTransformation(enum transformation_e xform_id){
     D_8037D180.xform_8 = xform_id;
 }
 

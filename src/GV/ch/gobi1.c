@@ -136,13 +136,13 @@ void chGobi1_update(Actor *this){
         return;
     }//L80387514
 
-    if(func_8025773C(&local->unk8, tick))
+    if(ml_timer_update(&local->unk8, tick))
         sp6C = 5;
 
-    if(func_8025773C(&local->unkC, tick))
+    if(ml_timer_update(&local->unkC, tick))
         FUNC_8030E8B4(SFX_84_GOBI_CRYING, 0.9f, 32000, this->position, 1500, 2500);
 
-    if(func_8025773C(&local->unk10, tick)){
+    if(ml_timer_update(&local->unk10, tick)){
         for(i = 0; i < 2; i++){
             sfxsource_setSfxId(local->unk0[i], SFX_3F9_UNKNOWN);
             func_8030DD14(local->unk0[i], 3);
@@ -151,7 +151,7 @@ void chGobi1_update(Actor *this){
         }
     }
 
-    if(func_8025773C(&local->unk14, tick)){
+    if(ml_timer_update(&local->unk14, tick)){
         local->unk10 = 0.75f;
         local->unk8 = 7.5f;
         timed_setCameraToNode(0.5f, 0xa);
@@ -191,7 +191,7 @@ void chGobi1_update(Actor *this){
             sp6C = 6;
         }//L803877F0
         else{
-            if(func_8025773C(&local->unk4, tick))
+            if(ml_timer_update(&local->unk4, tick))
                 sp6C = 2;
         }
     }//L80387808

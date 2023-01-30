@@ -5,7 +5,7 @@
 int func_802458E0(f32 arg0[3], Actor *arg1, s32 arg2);
 extern bool func_80320DB0(f32[3], f32, f32[3], u32);
 extern bool func_80323240(struct56s *, f32, f32[3]);
-extern f32 ml_vec3f_dot_product(f32[3], f32[3]);
+extern f32 ml_dotProduct_vec3f(f32[3], f32[3]);
 extern BKCollisionTri *func_80320B98(f32[3], f32[3], f32[3], u32);
 extern BKCollisionTri *func_80320C94(f32 arg0[3], f32 arg1[3], f32 arg2, f32 arg3[3], s32 arg4, u32 arg5);
 extern f32 func_8031C5D4(struct0*);
@@ -122,7 +122,7 @@ void func_802450DC(f32 arg0[3], f32 arg1[3], f32 arg2[3], f32 arg3[3], f32 arg4[
     ml_vec3f_diff_copy(sp3C, arg1, arg0);
     ml_vec3f_diff_copy(sp30, arg3, arg2);
     ml_vec3f_diff_copy(sp24, sp3C, sp30);
-    phi_f12 = -ml_vec3f_dot_product(arg4, sp24);
+    phi_f12 = -ml_dotProduct_vec3f(arg4, sp24);
     phi_f12 = MAX(5.0f, phi_f12);
     arg1[0] += phi_f12 * arg4[0];
     arg1[1] += phi_f12 * arg4[1];
@@ -145,13 +145,13 @@ void func_802451A4(f32 arg0[3], f32 arg1[3], f32 arg2[3], f32 arg3[3], f32 arg4[
     ml_vec3f_diff_copy(sp54, sp6C, sp60);
     ml_vec3f_normalize_copy(sp3C, sp54);
     ml_vec3f_yaw_rotate_copy(sp30, sp3C, 90.0f);
-    sp28 = ml_vec3f_dot_product(arg4, sp3C);
+    sp28 = ml_dotProduct_vec3f(arg4, sp3C);
     if (arg5 != 0) {
-        D_8027EF30 = ml_vec3f_dot_product(arg4, sp30);
+        D_8027EF30 = ml_dotProduct_vec3f(arg4, sp30);
     }
     phi_v0 = (D_8027EF30 < 0.0f) ? -1 : 1;
     ml_vec3f_yaw_rotate_copy(sp48, arg4,(phi_v0 * sp28) * 45.0);
-    phi_f12 = -ml_vec3f_dot_product(sp48, sp54);
+    phi_f12 = -ml_dotProduct_vec3f(sp48, sp54);
     phi_f12 = MAX(5.0f, phi_f12);
     arg1[0] += phi_f12 * sp48[0];
     arg1[1] += phi_f12 * sp48[1];
@@ -280,7 +280,7 @@ void func_8024560C(f32 arg0[3], struct0 *arg1, UNK_TYPE(s32) arg2, u8 *arg3, f32
 }
 
 BKCollisionTri *func_8024575C(f32 arg0[3], f32 arg1[3], f32 arg2, f32 arg3[3], s32 arg4, u32 arg5){
-    if(arg2 < ml_vec3f_distance(arg0, arg1)){
+    if(arg2 < ml_distance_vec3f(arg0, arg1)){
         return NULL;
     }
     return func_80320C94(arg0, arg1, arg2, arg3, arg4, arg5);

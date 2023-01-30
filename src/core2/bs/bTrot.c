@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-#include "core2/playerModel.h"
+#include "core2/ba/model.h"
 
 /* .data */
 f32 D_80364A90 = 30.0f;
@@ -91,7 +91,7 @@ void func_802A89D4(void){
         func_80297970(0.0f);
     }
     else{
-        func_80297970(func_80257C48(sp24, func_802A8900(), func_802A88B0()));
+        func_80297970(ml_interpolate_f(sp24, func_802A8900(), func_802A88B0()));
     }
 
 }
@@ -105,7 +105,7 @@ void func_802A8A40(void){
     roll_setAngularVelocity(1000.0f, 12.0f);
     miscflag_set(3);
     func_8029CF48(4,1,0.24f);
-    playerModel_setDirection(PLAYER_MODEL_DIR_KAZOOIE);
+    baModel_setDirection(PLAYER_MODEL_DIR_KAZOOIE);
 }
 
 void func_802A8AD8(void){
@@ -134,7 +134,7 @@ void func_802A8BB0(void){
     if(bsbtrot_inSet(next_state))
         return;
     
-    playerModel_setDirection(PLAYER_MODEL_DIR_BANJO);
+    baModel_setDirection(PLAYER_MODEL_DIR_BANJO);
     func_8029B0C0();
     func_8029E070(0);
     func_8029E064(0);
@@ -523,7 +523,7 @@ void bsbtrot_slide_update(void){
     if(func_80291698(3))
         func_802A87C0();
     func_80299AAC();
-    D_8037D3A0 = max_f(D_8037D3A0-time_getDelta(), 0.0f);
+    D_8037D3A0 = ml_max_f(D_8037D3A0-time_getDelta(), 0.0f);
     if(player_shouldSlideTrot()){
         func_80294480(sp30);
         func_8025801C(sp30, &sp2C);
@@ -680,7 +680,7 @@ void bsbtrot_unk79_init(void){
     func_8029C7F4(1,1,3,2);
     func_80297970(0.0f);
     func_802A8A40();
-    playerModel_setDirection(PLAYER_MODEL_DIR_KAZOOIE);
+    baModel_setDirection(PLAYER_MODEL_DIR_KAZOOIE);
     func_8029C674();
 }
 
@@ -721,7 +721,7 @@ void bsbtrot_ow_init(void){
         func_802978DC(6);
     player_setYVelocity(func_802987C4());
     gravity_set(func_802987E4());
-    func_8028D5DC();
+    baMarker_collisionOff();
     func_80292E48();
 }
 
@@ -748,7 +748,7 @@ void bsbtrot_ow_update(void){
 void bsbtrot_ow_end(void){
     func_80297CA8();
     gravity_reset();
-    func_8028D5F4();
+    baMarker_collisionOn();
     func_80292EA4();
     func_802A8BB0();
 }

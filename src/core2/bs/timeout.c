@@ -18,7 +18,7 @@ void func_802B6270(void){
     func_8025A70C(COMUSIC_3C_MINIGAME_LOSS);
     func_8024BD08(0);
     func_8029E070(1);
-    func_8028D5DC();
+    baMarker_collisionOff();
 }
 
 void func_802B6314(void){
@@ -58,7 +58,7 @@ void func_802B63F8(void){
     func_8025A58C(0,0xfa0);
     func_8025A70C(COMUSIC_3C_MINIGAME_LOSS);
     func_8024BD08(0);
-    func_8028D5DC();
+    baMarker_collisionOff();
     func_8029E3C0(0, 2.9f);
 }
 

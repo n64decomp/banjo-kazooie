@@ -1,7 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
-#include "core2/playerModel.h"
+#include "core2/ba/model.h"
 
 /* .data */
 const f32 D_80364A40 = 80.0f;
@@ -38,7 +38,7 @@ void func_802A524C(void){
     if(!func_8029B300())
         func_80297970(0.0f);
     else
-        func_80297970(func_80257C48(sp1C, D_80364A40, D_80364A44));
+        func_80297970(ml_interpolate_f(sp1C, D_80364A40, D_80364A44));
 }
 
 int bslongleg_inSet(s32 move_indx){
@@ -58,7 +58,7 @@ void func_802A531C(void){
 }
 
 void func_802A5374(void){
-    playerModel_80292078(1, -50.0f);
+    baModel_80292078(1, -50.0f);
     func_8029B324(0, 0.03f);
     func_8029B324(1, 1.0f);
     func_8029E070(1);
@@ -73,12 +73,12 @@ void func_802A5404(void){
     if(bslongleg_inSet(bs_getNextState()))
         return;
     
-    playerModel_80292078(1,0);
+    baModel_80292078(1,0);
     func_8029B0C0();
     func_8029E070(0);
     func_8029E064(0);
     func_8029E0F4(0);
-    playerModel_setDirection(PLAYER_MODEL_DIR_BANJO);
+    baModel_setDirection(PLAYER_MODEL_DIR_BANJO);
     pitch_setIdeal(0.0f);
     roll_setIdeal(0.0f);
     func_802917C4(2);
@@ -155,7 +155,7 @@ void bsblongleg_stand_enter(void){
     func_8028A010(ASSET_41_ANIM_BSLONGLEG_IDLE, 1.0f);
     func_8029C7F4(1,1,1,2);
     func_80297970(0.0f);
-    playerModel_setDirection(PLAYER_MODEL_DIR_KAZOOIE);
+    baModel_setDirection(PLAYER_MODEL_DIR_KAZOOIE);
     func_802A5374();
 }
 
@@ -428,7 +428,7 @@ void bsblongleg_slide_update(void){
 
     func_802A531C();
     func_80299AAC();
-    D_8037D358 = max_f(D_8037D358 - time_getDelta(), 0.0f);
+    D_8037D358 = ml_max_f(D_8037D358 - time_getDelta(), 0.0f);
 
     if(player_isSliding()){
         func_80294480(sp30);
@@ -463,7 +463,7 @@ void func_802A6394(void){
     func_8029C7F4(1,1,3,2);
     func_80297970(0.0f);
     func_802A5374();
-    playerModel_setDirection(PLAYER_MODEL_DIR_KAZOOIE);
+    baModel_setDirection(PLAYER_MODEL_DIR_KAZOOIE);
     func_8029C674();
 }
 

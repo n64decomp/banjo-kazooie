@@ -141,11 +141,11 @@ void __chClam_particalEmitterInit(ParticleEmitter *pCtrl, f32 position[3]){
     func_802EF9F8(pCtrl, 0.7f);
     func_802EFA18(pCtrl, 3);
     func_802EFA20(pCtrl, 0.8f, 1.0f);
-    func_802EF9EC(pCtrl, 0x1f, 10000);
+    particleEmitter_setSfx(pCtrl, SFX_1F_HITTING_AN_ENEMY_3, 10000);
     particleEmitter_setSpawnIntervalRange(pCtrl, 0.0f, 0.01f);
-    func_802EFEC0(pCtrl, 3.5f, 3.5f);
-    func_802EFA5C(pCtrl, 0.0f, 0.65f);
-    func_802EFA70(pCtrl, 2);
+    particleEmitter_setParticleLifeTimeRange(pCtrl, 3.5f, 3.5f);
+    particleEmitter_setFade(pCtrl, 0.0f, 0.65f);
+    particleEmitter_setDrawMode(pCtrl, 2);
 }
 
 void __chClam_emitLargeShellParticles(f32 position[3], s32 count){
@@ -155,11 +155,11 @@ void __chClam_emitLargeShellParticles(f32 position[3], s32 count){
     };
     ParticleEmitter *pCtrl;
 
-    pCtrl = partEmitList_pushNew(count);
+    pCtrl = partEmitMgr_newEmitter(count);
     __chClam_particalEmitterInit(pCtrl, position);
     particleEmitter_setModel(pCtrl, ASSET_37C_MODEL_CLAM_LARGE_SHELL_PIECE);
     particleEmitter_setVelocityAndAccelerationRanges(pCtrl, &D_8038C3F4);
-    func_802EFE24(pCtrl, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
+    particleEmitter_setAngularVelocityRange(pCtrl, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
     func_802EFB70(pCtrl, 1.0f, 1.0f);
     particleEmitter_emitN(pCtrl, count);
 }
@@ -171,11 +171,11 @@ void __chClam_emitEyeParticles(f32 position[3], s32 count){
     };
     ParticleEmitter *pCtrl;
 
-    pCtrl = partEmitList_pushNew(count);
+    pCtrl = partEmitMgr_newEmitter(count);
     __chClam_particalEmitterInit(pCtrl, position);
     particleEmitter_setModel(pCtrl, ASSET_37D_MODEL_CLAM_EYE);
     particleEmitter_setVelocityAndAccelerationRanges(pCtrl, &D_8038C424);
-    func_802EFE24(pCtrl, -300.0f, -300.0f, -300.0f, 300.0f, 300.0f, 300.0f);
+    particleEmitter_setAngularVelocityRange(pCtrl, -300.0f, -300.0f, -300.0f, 300.0f, 300.0f, 300.0f);
     func_802EFB70(pCtrl, 1.0f, 1.0f);
     particleEmitter_emitN(pCtrl, count);
 }
@@ -187,11 +187,11 @@ void __chClam_emitSmallShellParticles(f32 position[3], s32 count){
     };
     ParticleEmitter *pCtrl;
 
-    pCtrl = partEmitList_pushNew(count);
+    pCtrl = partEmitMgr_newEmitter(count);
     __chClam_particalEmitterInit(pCtrl, position);
     particleEmitter_setModel(pCtrl, ASSET_37E_MODEL_CLAM_SMALL_SHELL_PIECE);
     particleEmitter_setVelocityAndAccelerationRanges(pCtrl, &D_8038C454);
-    func_802EFE24(pCtrl, -800.0f, -800.0f, -800.0f, 800.0f, 800.0f, 800.0f);
+    particleEmitter_setAngularVelocityRange(pCtrl, -800.0f, -800.0f, -800.0f, 800.0f, 800.0f, 800.0f);
     func_802EFB70(pCtrl, 0.5f, 0.8f);
     particleEmitter_emitN(pCtrl, count);
 }
@@ -212,7 +212,7 @@ void __chClam_emitEatenCollectableParticles(f32 position[3], enum asset_e sprite
 
     ParticleEmitter *pCtrl;
     
-    pCtrl = partEmitList_pushNew(count);
+    pCtrl = partEmitMgr_newEmitter(count);
     particleEmitter_setSprite(pCtrl, sprite_id);
     particleEmitter_setStartingFrameRange(pCtrl, 1, 6);
     particleEmitter_setPosition(pCtrl, position);

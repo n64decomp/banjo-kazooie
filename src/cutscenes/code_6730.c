@@ -41,13 +41,13 @@ extern struct41s D_8038E770 ={
 /* .code */
 void cutscenes_func_8038CB20(ParticleEmitter *pCtrl){
     particleEmitter_setSprite(pCtrl, ASSET_713_SPRITE_SPARKLE_YELLOW);
-    func_802EFFA8(pCtrl, D_8038E73C);
-    func_802EF9E4(pCtrl, 230);
-    func_802EFE24(pCtrl, -600.0f, -600.0f,-600.0f, 600.0f, 600.0f, 600.0f);
+    particleEmitter_setRGB(pCtrl, D_8038E73C);
+    particleEmitter_setAlpha(pCtrl, 230);
+    particleEmitter_setAngularVelocityRange(pCtrl, -600.0f, -600.0f,-600.0f, 600.0f, 600.0f, 600.0f);
     particleEmitter_setVelocityAndAccelerationRanges(pCtrl, &D_8038E770);
     func_802EFB98(pCtrl, &D_8038E748);
-    func_802EFA70(pCtrl, 4);
-    func_802F0D54(pCtrl);
+    particleEmitter_setDrawMode(pCtrl, 4);
+    particleEmitter_manualFree(pCtrl);
 }
 
 Actor* func_8038CBCC(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
@@ -76,7 +76,7 @@ void func_8038CCA8(Actor *this){
         this->unk16C_4 = TRUE;
         animctrl_setSmoothTransition(this->animctrl, 0);
         this->unk60 = this->yaw/4;
-        local->unk0 = partEmitList_pushNew(0xA0);
+        local->unk0 = partEmitMgr_newEmitter(0xA0);
         cutscenes_func_8038CB20(local->unk0);
     }
 

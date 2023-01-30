@@ -4,7 +4,7 @@
 #include "bsint.h"
 
 void func_80292900(f32, f32);
-void func_80250D94(f32, f32, f32);
+void rumbleManager_80250D94(f32, f32, f32);
 
 /* .bss */
 u8 D_8037D530;
@@ -27,10 +27,10 @@ void bssplat_init(void){
     if(func_8029CEB0() == 4){
         FUNC_8030E624(SFX_116_DEAF_RUSTLING, 0.7f, 32000);
         FUNC_8030E624(SFX_116_DEAF_RUSTLING, 0.8f, 32000);
-        func_80250D94(0.75f, 0.25f, 0.3f);
+        rumbleManager_80250D94(0.75f, 0.25f, 0.3f);
     }else{
         FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 0.8f, 32750);
-        func_80250D94(1.0f, 0.5f, 0.4f);
+        rumbleManager_80250D94(1.0f, 0.5f, 0.4f);
     }
     func_80299CF4(SFX_38_BANJO_AYE_1, 1.0f, 28000);
     func_802B4570();
@@ -39,13 +39,13 @@ void bssplat_init(void){
         bs_setState(BS_41_DIE);
 
     D_8037D530 = 0;
-    func_8028D5DC();
+    baMarker_collisionOff();
 }
 
 void bssplat_update(void){
     enum bs_e sp1C = 0;
     AnimCtrl *aCtrl =  _player_getAnimCtrlPtr();
-    func_80297970(max_f(0.0f, func_80297A64() - 15.0f));
+    func_80297970(ml_max_f(0.0f, func_80297A64() - 15.0f));
 
     switch (D_8037D530)
     {
@@ -82,6 +82,6 @@ void bssplat_update(void){
 }
 
 void bssplat_end(void){
-    func_8028D5F4();
+    baMarker_collisionOn();
     func_80297CA8();
 }

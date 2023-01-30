@@ -427,7 +427,7 @@ void func_803899B0(Actor * this){
             || (this->unkF4_8 == 8 && mapSpecificFlags_get(3) && !mapSpecificFlags_get(0xF))
         ){//L80389C50
             
-            if( ((ml_vec3f_distance(sp44, this->unk1C) < this->unk28) && func_8028F20C())
+            if( ((ml_distance_vec3f(sp44, this->unk1C) < this->unk28) && func_8028F20C())
                 || mapSpecificFlags_get(0x10)
             ){//L80389C8C
                 if(func_80329530(this, 0x96))

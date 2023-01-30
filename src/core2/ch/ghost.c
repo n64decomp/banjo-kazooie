@@ -1,6 +1,8 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "core2/particle.h"
+
 
 typedef struct {
     f32 unk0;
@@ -41,10 +43,10 @@ s32 D_80372C6C[3] = {0xFE, 0x46, 0xFE};
 
 /* .code */
 void func_8035AFE0(f32 scale, f32 pos[3], s32 cnt, enum asset_e sprite_id, s32 arg4[3]){
-    ParticleEmitter *pCtrl = partEmitList_pushNew(cnt);
+    ParticleEmitter *pCtrl = partEmitMgr_newEmitter(cnt);
 
     particleEmitter_setSprite(pCtrl, sprite_id);
-    func_802EFFA8(pCtrl, arg4);
+    particleEmitter_setRGB(pCtrl, arg4);
     particleEmitter_setPosition(pCtrl, pos);
     particleEmitter_setParticleSpawnPositionRange(pCtrl,
         -100.0f*scale, 20.0f*scale, -100.0f*scale,
@@ -61,9 +63,9 @@ void func_8035AFE0(f32 scale, f32 pos[3], s32 cnt, enum asset_e sprite_id, s32 a
     func_802EFB70(pCtrl, scale*0.4, scale*0.6);
     func_802EFB84(pCtrl, scale*1.0, scale*1.4);
     particleEmitter_setSpawnIntervalRange(pCtrl, 0.0f, 0.01f);
-    func_802EFEC0(pCtrl, 1.0f, 1.4f);
-    func_802EFA5C(pCtrl, 0.0f, 0.01f);
-    func_802EFA70(pCtrl, 0x10);
+    particleEmitter_setParticleLifeTimeRange(pCtrl, 1.0f, 1.4f);
+    particleEmitter_setFade(pCtrl, 0.0f, 0.01f);
+    particleEmitter_setDrawMode(pCtrl, PART_EMIT_NO_DEPTH);
     particleEmitter_emitN(pCtrl, cnt);
 }
 

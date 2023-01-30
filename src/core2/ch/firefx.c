@@ -18,26 +18,26 @@ ActorInfo gChFireFxInfo = {
 void __chfirefx_spawnSmoke(f32 position[3], f32 scale){
     ParticleEmitter *pCtrl;
 
-    pCtrl = partEmitList_pushNew(1);
+    pCtrl = partEmitMgr_newEmitter(1);
     particleEmitter_setSprite(pCtrl, ASSET_70D_SPRITE_SMOKE_1);
     particleEmitter_setStartingFrameRange(pCtrl, 1, 6);
-    func_802EF9E4(pCtrl, 0x23);
+    particleEmitter_setAlpha(pCtrl, 0x23);
     particleEmitter_setPosition(pCtrl, position);
     particleEmitter_setParticleSpawnPositionRange(pCtrl, 0.0f, 110.0f*scale, 0.0f, 0.0f, 110.0f*scale, 0.0f);
     particleEmitter_setParticleVelocityRange(pCtrl, 0.0f, 40.0f*scale, 0.0f, 0.0f, 90.0f*scale, 0.0f);
     func_802EFB70(pCtrl, 2.6*scale, 3.2*scale);
     func_802EFB84(pCtrl, 5.0*scale, 6.0*scale);
     particleEmitter_setSpawnIntervalRange(pCtrl, 0.0f, 0.01f);
-    func_802EFEC0(pCtrl, 4.0f, 7.0f);
-    func_802EFA5C(pCtrl, 0.3f, 0.7f);
-    func_802EFA70(pCtrl, 4);
+    particleEmitter_setParticleLifeTimeRange(pCtrl, 4.0f, 7.0f);
+    particleEmitter_setFade(pCtrl, 0.3f, 0.7f);
+    particleEmitter_setDrawMode(pCtrl, 4);
     particleEmitter_emitN(pCtrl, 1);
 }
 
 void __chfirefx_spawnSpark(f32 position[3], f32 scale){
     ParticleEmitter *pCtrl;
 
-    pCtrl = partEmitList_pushNew(1);
+    pCtrl = partEmitMgr_newEmitter(1);
     particleEmitter_setSprite(pCtrl, ASSET_713_SPRITE_SPARKLE_YELLOW);
     particleEmitter_setStartingFrameRange(pCtrl, 1, 6);
     particleEmitter_setPosition(pCtrl, position);
@@ -47,9 +47,9 @@ void __chfirefx_spawnSpark(f32 position[3], f32 scale){
     func_802EFB70(pCtrl, 0.1*scale, 0.2*scale);
     func_802EFB84(pCtrl, 0.2*scale, 0.4*scale);
     particleEmitter_setSpawnIntervalRange(pCtrl, 0.0f, 0.01f);
-    func_802EFEC0(pCtrl, 0.9f, 1.3f);
-    func_802EFA5C(pCtrl, 0.3f, 0.7f);
-    func_802EFA70(pCtrl, 4);
+    particleEmitter_setParticleLifeTimeRange(pCtrl, 0.9f, 1.3f);
+    particleEmitter_setFade(pCtrl, 0.3f, 0.7f);
+    particleEmitter_setDrawMode(pCtrl, 4);
     particleEmitter_emitN(pCtrl, 1);
 }
 

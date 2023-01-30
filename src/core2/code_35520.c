@@ -160,7 +160,7 @@ void func_802BC538(s32 arg0, s32 *arg1, s32 *arg2, s32 *arg3, s32 *arg4, s32 *ar
 void func_802BC5CC(void){
     int i;
     int overlay;
-    overlay = get_loaded_overlay_id();
+    overlay = overlayManagergetLoadedId();
     D_8037D930 = &D_80365C4C[0];
     for(i = 0; D_80365C64[i].overlay_id; i++){
         if(D_80365C64[i].overlay_id == overlay){

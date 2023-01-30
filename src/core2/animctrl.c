@@ -16,7 +16,7 @@ void animctrl_80286F90(AnimCtrl *this){
         anim = animctrl_getAnimPtr(this);
         duration = anim_getDuration(anim);
         if( duration < 1.0f ){
-            anim_setDuration(anim, min_f(1.0f, time_getDelta()/animctrl_getTransistionDuration(this) + duration));
+            anim_setDuration(anim, ml_min_f(1.0f, time_getDelta()/animctrl_getTransistionDuration(this) + duration));
         }
     }
 }

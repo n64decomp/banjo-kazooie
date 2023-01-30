@@ -100,7 +100,7 @@ void func_8029D2F8(void) {
             return;
         }
 
-        D_8037D224 = max_f(0.0f, D_8037D224 - time_getDelta());
+        D_8037D224 = ml_max_f(0.0f, D_8037D224 - time_getDelta());
         if (D_8037D224 == 0.0f) {
             if (D_8037D211 == 1) {
                 func_8029D050();
@@ -137,7 +137,7 @@ void func_8029D448(void) {
 
 void func_8029D4D8(void) {
     if (D_8037D212 != 0) {
-        D_8037D224 = max_f(0.0f, D_8037D224 - time_getDelta());
+        D_8037D224 = ml_max_f(0.0f, D_8037D224 - time_getDelta());
         if (!(D_8037D224 > 0.0f)) {
             D_8037D212 += -1;
             D_8037D224 = randf2(0.12f, 0.22f);
@@ -255,7 +255,7 @@ void func_8029D968(void){
             sp18 = (temp_v0->flags & 0x4000)  && func_8028B2E8();
         }
         if (sp1C || sp18) {
-            func_80250D94(1.0f, 0.5f, 0.4f);
+            rumbleManager_80250D94(1.0f, 0.5f, 0.4f);
             func_8028F504(0xD);
         }
     }//L8029DA18
@@ -274,7 +274,7 @@ void func_8029D968(void){
                 func_8029E3C0(4, 4.0f);
                 if(func_8028F504(0xD)){
                     func_8029D230();
-                    func_80250D94(1.0f, 0.5f, 0.4f);
+                    rumbleManager_80250D94(1.0f, 0.5f, 0.4f);
                 }
                 if(item_empty(ITEM_14_HEALTH)){
                     bs_checkInterrupt(BS_INTR_13);

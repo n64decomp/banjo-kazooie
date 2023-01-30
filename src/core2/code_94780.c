@@ -31,7 +31,7 @@ void func_8031B790(void) {
     s32 i;
 
     if (D_80383170.unk11 != 0) {
-        D_80383170.unk0 = max_f(0.0f, D_80383170.unk0 - time_getDelta());
+        D_80383170.unk0 = ml_max_f(0.0f, D_80383170.unk0 - time_getDelta());
         for(i = 0; i < 3; i++){
             D_80383170.rgb[i] = ml_map_f(D_80383170.unk0, D_80383170.unk4, 0.0f,D_80383170.unkE[i], D_80383170.unkB[i]);
         }

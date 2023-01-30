@@ -12,7 +12,7 @@ extern f32 func_8028E82C(void);
 extern f32 func_8028EBA4(void);
 extern f32 func_8028EF88(void);
 extern int func_80320DB0(f32[3], f32, f32[3], u32);
-extern f32 ml_vec3f_dot_product(f32[3], f32[3]);
+extern f32 ml_dotProduct_vec3f(f32[3], f32[3]);
 
 typedef struct {
     f32* unk0;
@@ -77,7 +77,7 @@ bool func_802BC640(f32 arg0[3], f32 arg1[3], f32 arg2, s32 arg3) {
     f32 sp78[3];
     f32 phi_f26;
 
-    phi_f26 = max_f(150.0f, arg2 - 100.0f);
+    phi_f26 = ml_max_f(150.0f, arg2 - 100.0f);
     switch (arg3) {
     case 1:
         phi_s4 = &D_80365D50;
@@ -875,7 +875,7 @@ void func_802BE384(f32 arg0[3], f32 arg1[3], f32 arg2[3], f32 arg3[3], f32 arg4[
     sp1C[0] = sp34[0] - sp28[0];
     sp1C[1] = sp34[1] - sp28[1];
     sp1C[2] = sp34[2] - sp28[2];
-    dp = -ml_vec3f_dot_product(arg4, sp1C);
+    dp = -ml_dotProduct_vec3f(arg4, sp1C);
     arg3[0] += dp*arg4[0];
     arg3[1] += dp*arg4[1];
     arg3[2] += dp*arg4[2];

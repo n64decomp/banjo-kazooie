@@ -46,7 +46,7 @@ void bsDroneLook_update(void) {
         eye_rotation[0] -= func_8029B2DC() * 90.0f * dt;
         eye_rotation[1] -= func_8029B2D0() * 90.0f * dt;
         eye_rotation[2] = 0.0f;
-        eye_rotation[0] = (eye_rotation[0] > 180.0f) ? max_f(305.0f, eye_rotation[0]) : min_f(70.0f, eye_rotation[0]);
+        eye_rotation[0] = (eye_rotation[0] > 180.0f) ? ml_max_f(305.0f, eye_rotation[0]) : ml_min_f(70.0f, eye_rotation[0]);
         func_802C2A8C(eye_rotation);
         yaw_setIdeal(eye_rotation[1] + 180.0f);
         exit_first_person = FALSE;
