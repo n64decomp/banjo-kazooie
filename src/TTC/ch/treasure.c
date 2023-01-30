@@ -69,7 +69,7 @@ void chtreasure_update(Actor *this){
     sp34[1] = (s16)sp3C[1];
     sp34[2] = (s16)sp3C[2];
     sp34[1] += 50;
-    func_802F3BF4(sp34);
+    fxSparkle_chTreasure(sp34);
 
     switch(this->state){
         case 1://L8038C29C

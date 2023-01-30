@@ -96,7 +96,7 @@ void func_80344138(BKSpriteDisplayData *self, s32 frame, s32 mirrored, f32 posit
     func_80344124();
 }
 
-void func_80344424(BKSpriteDisplayData *arg0, s32 frame, bool mirrored, f32 arg3[3], f32 scale[3], f32 rotation, Gfx **gfx, Mtx **mtx) {
+void func_80344424(BKSpriteDisplayData *arg0, s32 frame, bool mirrored, f32 position[3], f32 scale[3], f32 rotation, Gfx **gfx, Mtx **mtx) {
     f32 sp6C[3];
     f32 sp60[3];
     f32 sp5C;
@@ -111,9 +111,9 @@ void func_80344424(BKSpriteDisplayData *arg0, s32 frame, bool mirrored, f32 arg3
 
     func_8024C5CC(sp6C);
     func_8024C5A8(sp60);
-    sp50[0] = arg3[0] - sp6C[0];
-    sp50[1] = arg3[1] - sp6C[1];
-    sp50[2] = arg3[2] - sp6C[2];
+    sp50[0] = position[0] - sp6C[0];
+    sp50[1] = position[1] - sp6C[1];
+    sp50[2] = position[2] - sp6C[2];
     sp5C = sp60[0]*sp50[0] + sp60[1]*sp50[1] + sp60[2]*sp50[2];
     if ((sp5C < 0.0f) || (20000.0f < sp5C)) {
         func_80344124();
@@ -157,7 +157,7 @@ void func_80344424(BKSpriteDisplayData *arg0, s32 frame, bool mirrored, f32 arg3
 }
 
 
-void func_80344720(BKSpriteDisplayData *arg0, s32 frame, bool mirrored, f32 arg3[3], f32 rotation[3], f32 scale[3], Gfx **gfx, Mtx **mtx) {
+void func_80344720(BKSpriteDisplayData *arg0, s32 frame, bool mirrored, f32 position[3], f32 rotation[3], f32 scale[3], Gfx **gfx, Mtx **mtx) {
     f32 sp5C[3];
     f32 sp50[3];
     f32 sp4C;
@@ -169,9 +169,9 @@ void func_80344720(BKSpriteDisplayData *arg0, s32 frame, bool mirrored, f32 arg3
 
     func_8024C5CC(sp5C);
     func_8024C5A8(sp50);
-    sp40[0] = arg3[0] - sp5C[0];
-    sp40[1] = arg3[1] - sp5C[1];
-    sp40[2] = arg3[2] - sp5C[2];
+    sp40[0] = position[0] - sp5C[0];
+    sp40[1] = position[1] - sp5C[1];
+    sp40[2] = position[2] - sp5C[2];
     sp4C = sp50[0]*sp40[0] + sp50[1]*sp40[1] + sp50[2]*sp40[2];
     if ((sp4C < 0.0f) || (20000.0f < sp4C)) {
         func_80344124();

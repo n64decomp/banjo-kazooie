@@ -106,9 +106,9 @@ void func_802F1320(void){
 
 void func_802F1388(void){
     func_802EDD20();
-    func_802F35B4();
+    fxRipple_free();
     func_802F1E80();
-    func_802F3C64();
+    fxSparkle_free();
     func_802F404C();
     func_802F422C();
     func_802EE684();
@@ -117,9 +117,9 @@ void func_802F1388(void){
 
 void func_802F13E0(void){
     func_802EDD44();
-    func_802F35D8();
+    fxRipple_init();
     func_802F1EA4();
-    func_802F3C84();
+    fxSparkle_init();
     func_802F4070();
     func_802F4250();
     func_802EE63C();

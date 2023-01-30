@@ -4,7 +4,7 @@
 
 BKCollisionTri *func_80309B48(f32 *, f32 *, f32 *, u32);
 void func_8031C608(struct0 *this);
-void func_8031BD98(struct0 *, f32, s32, s32, f32 *, void *, s32);
+void func_8031BD98(struct0 *, f32, s32, s32, f32 *, void *, BKCollisionTri *);
 
 void func_8031BE98(struct0*, f32, BKCollisionTri *);
 
@@ -126,9 +126,9 @@ s32 func_8031BCF4(struct0 *this) {
     return 3;
 }
 
-void func_8031BD98(struct0 *this, f32 arg1, s32 arg2, s32 arg3, f32 *normPtr, void *model, s32 arg6){
+void func_8031BD98(struct0 *this, f32 arg1, s32 arg2, s32 arg3, f32 *normPtr, void *model, BKCollisionTri *arg6){
     if(arg6){
-        func_8024587C(&this->unk4, arg6);
+        collisionTri_copy(&this->unk4, arg6);
     }
     this->unk58 = 1;
     this->unk4C = arg2;
@@ -148,7 +148,7 @@ void func_8031BE58(struct0 *this){
 
 void func_8031BE98(struct0 *this, f32 arg1, BKCollisionTri * arg2){
     if(arg2 != NULL)
-        func_8024587C(&this->unk10, arg2);
+        collisionTri_copy(&this->unk10, arg2);
     this->unk59 = 1;
     this->posY = arg1;
 }

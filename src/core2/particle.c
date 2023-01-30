@@ -8,21 +8,6 @@ extern s32 spriteGetFrameCount(BKSprite *);
 extern void func_80344720(s32 SpriteGfx, s32 frame, s32, f32[3], f32[3], f32[3], Gfx **, Mtx **);
 extern void func_80344424(s32 SpriteGfx, s32 frame, s32, f32[3], f32[3], f32, Gfx **, Mtx **);
 
-
-void particleEmitter_setAlpha(ParticleEmitter *this, s32 arg1);
-void particleEmitter_setSfx(ParticleEmitter *this, enum sfx_e arg1, s32 arg2);
-void func_802EFA04(ParticleEmitter *, f32);
-void particleEmitter_setParticleCallback(ParticleEmitter *this, void (*arg1)(ParticleEmitter *this, f32 pos[3]));
-void func_802EFA20(ParticleEmitter *, f32, f32);
-void func_802EFA34(ParticleEmitter *, f32);
-void func_802EFA40(ParticleEmitter *, f32 (*)[3]);
-void func_802EFA78(ParticleEmitter *this, s32 arg1);
-void func_802EFF5C(ParticleEmitter *, f32, f32, f32);
-void func_802EFF7C(ParticleEmitter *, f32, f32, f32);
-void func_802EFF9C(ParticleEmitter *, f32);
-void partEmitMgr_freeEmitter(ParticleEmitter *this);
-
-
 Gfx D_80368940[] = {
     gsSPClearGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BOTH | G_FOG | G_LIGHTING | G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR | G_LOD | G_SHADING_SMOOTH),
     gsSPSetGeometryMode(G_ZBUFFER | G_SHADE | G_TEXTURE_GEN_LINEAR | G_SHADING_SMOOTH),
@@ -45,6 +30,25 @@ Gfx D_80368978[] = {
 
 ParticleEmitter **partEmitMgr = NULL; //particlePtrArrayPtr
 s32 partEmitMgrLength = 0; //particlePtrArraySize
+
+//particle
+typedef struct particle{
+    f32 acceleration[3];
+    f32 fade;
+    f32 frame; //frame
+    f32 framerate; //framerate
+    f32 position[3];
+    f32 rotation[3];
+    f32 scale; //size
+    f32 initialSize_34; //initial_size
+    f32 finalSizeDiff; //delta_size
+    f32 angluar_velocity[3];
+    f32 age_48;
+    f32 lifetime_4C;
+    f32 velocity_50[3];
+    u8 unk5C;
+    //u8 pad5D[3];
+} Particle;
 
 /* .bss */
 f32 particleSfxTimer;
@@ -209,7 +213,7 @@ void __particleEmitter_drawOnPass(ParticleEmitter *this, Gfx **gfx, Mtx **mtx, V
                 func_802EED1C(this, iPtr->age_48, scale);
             }
             func_80344C2C(this->unk0_16);
-            if(this->draw_mode & PART_EMIT_3D_ROTATE){
+            if(this->draw_mode & PART_EMIT_ROTATABLE){
                 func_80344720(this->unk34, (s32)iPtr->frame, 0, position, flat_rotation, scale, gfx, mtx);
             }//L802EF2F8
             else{
@@ -330,8 +334,8 @@ ParticleEmitter * particleEmitter_new(u32 capacity){
     func_802EFF50(this, 0.0f);
     this->unk100 = 0;
     this->unk104 = 0;
-    this->pList_start_124 = &this->data[0];
-    this->pList_end_128 = &this->data[0];
+    this->pList_start_124 = (Particle *)(this + 1);
+    this->pList_end_128 = (Particle *)(this + 1);
     this->pList_capacity_12C = &this->pList_start_124[capacity];
     return this;
 }

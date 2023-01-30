@@ -130,7 +130,7 @@ void func_8038BCF0(Actor *this) {
         sp48[0] = (s16)sp50[0];
         sp48[1] = (s16)sp50[1];
         sp48[2] = (s16)sp50[2];
-        func_802F3B9C(sp48);
+        fxSparkle_brentilda(sp48);
     }
     
     this->unk38_31++;

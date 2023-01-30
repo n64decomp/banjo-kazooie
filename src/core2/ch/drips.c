@@ -38,7 +38,7 @@ struct43s D_80372B00 = {
 void func_80359A40(f32 position[3], struct_core2_D2AB0 *arg1, s32 cnt){
     ParticleEmitter *pCtrl = partEmitMgr_newEmitter(cnt);
     particleEmitter_setSprite(pCtrl, ASSET_70C_SPRITE_RIPPLE);
-    particleEmitter_setDrawMode(pCtrl, PART_EMIT_3D_ROTATE);
+    particleEmitter_setDrawMode(pCtrl, PART_EMIT_ROTATABLE);
     particleEmitter_setRGB(pCtrl, D_80372AE4);
     particleEmitter_setPosition(pCtrl, position);
     func_802EFB70(pCtrl, 0.1f, 0.1f);

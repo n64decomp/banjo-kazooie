@@ -13,7 +13,7 @@ void func_802C5BC0(Actor *this){
         actor_collisionOff(this);
         this->unk60 = 0.0f;
         this->pitch = 90.0f;
-        func_802F3554(4, this->position);
+        fxRipple_802F3554(4, this->position);
         this->initialized = TRUE;
     }
     else{

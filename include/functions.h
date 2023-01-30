@@ -587,7 +587,7 @@ bool func_80311480(s32 text_id, s32 arg1, f32 *pos, ActorMarker *marker, void(*c
 void ability_unlock(enum ability_e);
 
 extern void func_802EE278(Actor *, s32, s32, s32, f32, f32);
-extern void func_802F3BF4(s16[3]);
+extern void fxSparkle_chTreasure(s16[3]);
 extern void actor_collisionOn(Actor *);
 extern void func_80328AC8(Actor *, s32);
 

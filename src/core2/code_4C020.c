@@ -7,7 +7,7 @@
 extern f32 func_80258640(f32 [3], f32[3]);
 extern void func_8025A788(enum comusic_e, f32, f32);
 extern void func_8031CC40(enum map_e, s32);
-extern void func_802F363C(f32);
+extern void fxRipple_802F363C(f32);
 extern void func_802F9D38(s32);
 extern void func_802EE6CC(f32[3], f32[3], s32[4], s32, f32, f32, s32, s32, s32);
 extern void ml_vec3f_assign(f32[3], f32, f32, f32);
@@ -865,7 +865,7 @@ void func_802D5260(void) {
         func_8034DEB4(sp38, sp34);
         player_getPosition(sp28);
         
-        func_802F363C(sp34 + ((sp3C != -1) ? (D_803679E0[sp3C] + ((sp3C == 2) ? (6600.0f < sp28[0]) ? -200 : 0 : 0)) : 0));
+        fxRipple_802F363C(sp34 + ((sp3C != -1) ? (D_803679E0[sp3C] + ((sp3C == 2) ? (6600.0f < sp28[0]) ? -200 : 0 : 0)) : 0));
     }
 }
 

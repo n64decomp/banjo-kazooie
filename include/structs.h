@@ -338,27 +338,10 @@ typedef struct struct_21_s{
     void * unk1;
 }struct21s;
 
-//particle
-typedef struct struct_2F_s{
-    f32 acceleration[3];
-    f32 fade;
-    f32 frame; //frame
-    f32 framerate; //framerate
-    f32 position[3];
-    f32 rotation[3];
-    f32 scale; //size
-    f32 initialSize_34; //initial_size
-    f32 finalSizeDiff; //delta_size
-    f32 angluar_velocity[3];
-    f32 age_48;
-    f32 lifetime_4C;
-    f32 velocity_50[3];
-    u8 unk5C;
-    u8 pad5D[3];
-} Particle;
+
 
 //particle_ctrl
-typedef struct struct_30_s{
+typedef struct particle_emitter{
     u32 pad0_31:8;
     u32 doneSpawning_0_23:7; //doneSpawning
     u32 unk0_16:1;
@@ -388,7 +371,7 @@ typedef struct struct_30_s{
     f32 unk74;
     f32 unk78;
     s32 unk7C;
-    void  (*particleCallback_80)(struct struct_30_s *, f32 [3]); //particleCallback
+    void  (*particleCallback_80)(struct particle_emitter *, f32 [3]); //particleCallback
     PAIR(s32, particleStartingFrameRange_84);
     PAIR(f32, particleFramerateRange_8C);
     TUPLE_PAIR(f32, particleSpawnPositionRange_94);
@@ -414,10 +397,9 @@ typedef struct struct_30_s{
     f32 unk108;
     f32 unk10C[3];
     f32 unk118[3];
-    Particle *pList_start_124; //start_ptr?
-    Particle *pList_end_128; //end_ptr
-    Particle *pList_capacity_12C; //capacity_end_ptr;
-    Particle data[];//end of struct 0x130 
+    struct particle *pList_start_124; //start_ptr?
+    struct particle *pList_end_128; //end_ptr
+    struct particle *pList_capacity_12C; //capacity_end_ptr;
 } ParticleEmitter;
 
 typedef struct struct_31_s{

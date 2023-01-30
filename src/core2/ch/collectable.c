@@ -96,7 +96,7 @@ bool chcollectable_collectItem(Actor* actor, u32 arg1, enum asset_e dialogId, en
 s32 chcollectable_collectEgg(ActorProp *arg0){
     Actor *actPtr = NULL;
     if(arg0 != NULL){
-        func_802F3808(&arg0->x);
+        fxSparkle_blueEgg(&arg0->x);
         if(arg0->unk8_0)
             actPtr = marker_getActor(arg0->marker);
     }
@@ -105,7 +105,7 @@ s32 chcollectable_collectEgg(ActorProp *arg0){
 
 void chcollectable_collectRedFeather(ActorProp *arg0){
     Actor *actPtr = NULL;
-    func_802F38F0(&arg0->x);
+    fxSparkle_redFeather(&arg0->x);
     if(arg0->unk8_0)
         actPtr = marker_getActor(arg0->marker);
     chcollectable_collectItem(actPtr, 6, 0xD9F, COMUSIC_B_RED_FEATHER_COLLECTED, 0xF, 4.0f);
@@ -113,7 +113,7 @@ void chcollectable_collectRedFeather(ActorProp *arg0){
 
 void chcollectable_collectGoldFeather(ActorProp *arg0){
     Actor *actPtr = NULL;
-    func_802F39D8(&arg0->x);
+    fxSparkle_goldFeather(&arg0->x);
     if(arg0->unk8_0)
         actPtr = marker_getActor(arg0->marker);
     chcollectable_collectItem(actPtr, 7, 0xDA0, COMUSIC_14_GOLD_FEATHER_COLLECTED, ITEM_10_GOLD_FEATHER, 6.0f);

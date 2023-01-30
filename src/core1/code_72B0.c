@@ -309,7 +309,7 @@ BKCollisionTri *func_802457C4(f32 arg0[3], f32 arg1[3], f32 arg2, f32 arg3, f32 
     return var_v1;
 }
 
-void func_8024587C(BKCollisionTri *dst, BKCollisionTri *src){
+void collisionTri_copy(BKCollisionTri *dst, BKCollisionTri *src){
     dst->unk0[0] = src->unk0[0];
     dst->unk0[1] = src->unk0[1];
     dst->unk0[2] = src->unk0[2];

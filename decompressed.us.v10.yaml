@@ -727,7 +727,8 @@ segments:
   - [0xFBFE10, c, code_6A4B0]
   - [0xFC0850, c, code_6AEF0] #DONE
   - [0xFC0990, c, code_6B030] #DONE
-  - [0xFC1D40, c, code_6C3E0] #DONE
+  - [0xFC1D40, c, fx/ripple] #DONE
+  - [0xFC2040, c, fx/sparkle] #DONE
   - [0xFC2680, c, code_6CD20] #DONE
   - [0xFC2820, c, code_6CEC0] #DONE
   - [0xFC2990, c, code_6D030] #DONE
@@ -1008,7 +1009,8 @@ segments:
   - [0x10373A0, .data, code_6A4B0]
   - [0x1037470, .data, code_6AEF0]
   - [0x1037480, .data, code_6B030]
-  - [0x1037500, .data, code_6C3E0]
+  - [0x1037500, .data, fx/ripple]
+  - [0x10375A0, .data, fx/sparkle]
   - [0x1037750, .data, code_6CD20]
   - [0x10377A0, .data, code_6D030]
   - [0x10377B0, .data, code_6D270]
@@ -1258,7 +1260,8 @@ segments:
   - [0x1045B80, .rodata, particle]
   - [0x1045BA0, .rodata, code_6A4B0]
   - [0x1045BB0, .rodata, code_6B030]
-  - [0x1045BC0, .rodata, code_6C3E0]
+  - [0x1045BC0, .rodata, fx/ripple]
+  - [0x1045BD0, .rodata, fx/sparkle]
   - [0x1045BE0, .rodata, code_6CEC0]
   - [0x1045BF0, .rodata, code_6D030]
   - [0x1045C00, .rodata, code_6D270]
@@ -1515,7 +1518,7 @@ segments:
   - [0x1048560, .bss, code_69F60]
   - [0x1048560, .bss, code_6AEF0]
   - [0x1048560, .bss, code_6B030]
-  - [0x1048560, .bss, code_6C3E0]
+  - [0x1048560, .bss, fx/ripple]
   - [0x1048560, .bss, code_6CD20]
   - [0x1048560, .bss, code_6CEC0]
   - [0x1048560, .bss, code_6D030]

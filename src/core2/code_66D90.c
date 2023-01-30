@@ -23,7 +23,7 @@ void func_802EDD44(void){
 }
 
 void func_802EDD68(ParticleEmitter *caller, f32 pos[3]){
-    func_802F3554(0, pos);
+    fxRipple_802F3554(0, pos);
 }
 
 ParticleEmitter *func_802EDD8C(f32 pos[3], f32 xz_range, f32 arg2){

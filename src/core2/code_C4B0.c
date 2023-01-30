@@ -380,7 +380,7 @@ void func_80293F0C(void){
     _player_getPosition(sp38);
     ml_vec3f_diff_copy(D_8037C268, sp38, sp2C);
     if (D_8037C204) {
-        func_8024587C(&D_8037C208, D_8037C204);
+        collisionTri_copy(&D_8037C208, D_8037C204);
         D_8037C204 = &D_8037C208;
     }
 }

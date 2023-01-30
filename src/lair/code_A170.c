@@ -35,17 +35,17 @@ void func_803905CC(ActorMarker *marker, ActorMarker *other_marker){
     switch (marker->unk14_20) {
     case 0x170:
         func_80346448(ITEM_D_EGGS);
-        func_802F3874(&marker->propPtr->x);
+        fxSparkle_giantBlueEgg(&marker->propPtr->x);
         func_8025A6EC(SFX_EGG_REFILL, -1);
         break;
     case 0x171:
         func_80346448(ITEM_F_RED_FEATHER);
-        func_802F3978(&marker->propPtr->x);
+        fxSparkle_giantRedFeather(&marker->propPtr->x);
         func_8025A6EC(SFX_RED_FEATHER_REFILL, -1);
         break;
     case 0x172:
         func_80346448(ITEM_10_GOLD_FEATHER);
-        func_802F3A60(&marker->propPtr->x);
+        fxSparkle_giantGoldFeather(&marker->propPtr->x);
         func_8025A6EC(SFX_GOLD_FEATHER_REFILL, -1);
         break;
     }

@@ -1,20 +1,16 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
-
-extern void func_802EFA04(ParticleEmitter *, f32);
+#include "core2/particle.h"
 
 ParticleEmitter *func_802F4094(f32 pos[3], f32 arg1);
-
-/* .data */
-s32 D_80368DD0[3] = {0xff, 0xff, 0xfe};
 
 /* .bss */
 u8 D_80380A90;
 
 /* .code */
 void func_802F3FC0(ParticleEmitter *this, f32 pos[3]){
-    func_802F3554(0, pos);
+    fxRipple_802F3554(0, pos);
 }
 
 void func_802F3FE4(f32 pos[3]){
@@ -37,6 +33,8 @@ void func_802F4070(void){
 
 ParticleEmitter *func_802F4094(f32 pos[3], f32 arg1){
     ParticleEmitter *pCtrl;
+    static s32 D_80368DD0[3] = {0xff, 0xff, 0xfe};
+
 
     pCtrl = func_802F0EF0(D_80380A90);
     particleEmitter_setSprite(pCtrl, ASSET_70B_SPRITE_BUBBLE_2);

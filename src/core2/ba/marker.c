@@ -180,7 +180,7 @@ void __baMarker_resolveMusicNoteCollision(Prop *arg0) {
         func_8025A6EC(COMUSIC_9_NOTE_COLLECTED, 16000);
         timedFunc_set_1(0.75f, func_8035644C, 3);
     }
-    func_802F379C(arg0->unk4);
+    fxSparkle_musicNote(arg0->unk4);
 }
 
 void __baMarker_8028BAB0(enum jiggy_e jiggy_id, s32 arg1, s32 arg2, s32 arg3){
@@ -564,7 +564,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
                         if(!(item_getCount(ITEM_13_EMPTY_HONEYCOMB) < 6)){
                             gcpausemenu_80314AC8(0);
                         }
-                        func_802F36DC(&other_prop->actorProp.x);
+                        fxSparkle_emptyHoneycomb(&other_prop->actorProp.x);
                         marker_despawn(marker);
                     }
                 }
@@ -592,7 +592,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
                 func_8025A6EC(COMUSIC_16_HONEYCOMB_COLLECTED, 28000);
                 timedFunc_set_1(0.75f, func_8035644C, 0xA);
                 item_inc(ITEM_14_HEALTH);
-                func_802F373C(&other_prop->actorProp.x);
+                fxSparkle_honeycomb(&other_prop->actorProp.x);
                 marker_despawn(marker);
                 break;
 
@@ -702,7 +702,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
                 }
                 func_8025A6EC(COMUSIC_15_EXTRA_LIFE_COLLECTED, 0x7FFF);
                 timedFunc_set_1(1.5f, func_8035646C, 0xC);
-                func_802F3B3C(&other_prop->actorProp.x);
+                fxSparkle_extraLife(&other_prop->actorProp.x);
                 item_inc(ITEM_16_LIFE);
                 marker_despawn(marker);
                 break;

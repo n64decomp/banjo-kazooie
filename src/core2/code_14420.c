@@ -599,7 +599,7 @@ void func_8029C0D0(void) {
         _player_getPosition(sp3C);
         sp3C[1] = sp34 = func_80294500();
         p_ctrl = func_802F4094(sp3C, 35.0f);
-        func_802F3554(3, sp3C);
+        fxRipple_802F3554(3, sp3C);
         particleEmitter_setParticleVelocityRange(p_ctrl, -350.0f, 300.0f, -350.0f, 350.0f, 500.0f, 350.0f);
         particleEmitter_emitN(p_ctrl, 0xA);
         particleEmitter_setParticleVelocityRange(p_ctrl, -150.0f, 500.0f, -150.0f, 150.0f, 800.0f, 150.0f);
@@ -635,7 +635,7 @@ void func_8029C304(s32 arg0) {
 
     _player_getPosition(sp1C);
     sp1C[1] = func_80294500();
-    func_802F3584(arg0, sp1C, func_802946CC());
+    fxRipple_802F3584(arg0, sp1C, func_802946CC());
 }
 
 void func_8029C348(void) {
