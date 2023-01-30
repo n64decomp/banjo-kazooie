@@ -38,7 +38,7 @@ void func_803016F0(void) {
     }
 }
 
-void func_80301754(s32 arg0, struct8s *arg1) {
+void fxairscore_free(s32 arg0, struct8s *arg1) {
     if (D_8036A960 != NULL) {
         func_8033BD4C(D_8036A960);
         D_8036A960 = NULL;
@@ -46,13 +46,13 @@ void func_80301754(s32 arg0, struct8s *arg1) {
     func_803016F0();
 }
 
-struct7s *func_8030179C(s32 arg0) {
+struct7s *fxairscore_new(s32 arg0) {
     func_803016F0();
     D_80381F5C = 0.68f;
     return &D_80381F80;
 }
 
-void func_803017D0(enum item_e item_id, struct8s *arg1, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
+void fxairscore_draw(enum item_e item_id, struct8s *arg1, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     f32 temp_f16;
     f32 var_f14;
     s32 spD4;
@@ -123,7 +123,7 @@ s32 func_80301DBC(s32 minutes) {
     return (s32) (minutes * 60 * 60) / 6;
 }
 
-void func_80301DE4(enum item_e arg0, struct7s *arg1) {
+void fxairscore_update(enum item_e arg0, struct7s *arg1) {
     s32 temp_s0;
     s32 var_s0;
 
@@ -140,7 +140,7 @@ void func_80301DE4(enum item_e arg0, struct7s *arg1) {
             }
             break;
         case 0:
-            func_80301754(arg0, arg1);
+            fxairscore_free(arg0, arg1);
             break;
     }
     if (temp_s0 != 0) {

@@ -8,7 +8,7 @@ extern f32 ml_distanceSquared_vec3f(f32[3], f32[3]);
 extern f32 func_802586B0(f32[3], f32[3]);
 extern void mapModel_getCubeBounds(s32 min[3], s32 max[3]);
 extern f32 func_803243D0(struct56s *arg0, f32 arg1[3]);
-extern void func_802CAF14(u32*, s32, bool);
+extern void bitfield_setBit(u32*, s32, bool);
 extern void func_8032D510(Cube *, Gfx **, Mtx **, Vtx **);
 extern ActorProp *func_803322F0(Cube *, ActorMarker *, f32, s32, s32 *);
 extern BKCollisionTri *func_803319C0(Cube *cube, f32 position[3], f32 radius, f32 arg2[3], u32 flags);
@@ -775,7 +775,7 @@ void cubeList_free(void){
         cube_free(D_80381FA0.unk40);
         free(D_80381FA0.unk40);
     }
-    func_802CAEF4(D_8036A9E0);
+    bitfield_free(D_8036A9E0);
     D_8036A9E0 = NULL;
 }
 
@@ -867,7 +867,7 @@ void cubeList_init(void){
         D_80381FA0.unk4 = 200.0f;
     }
     func_80320B24(func_803036A0, func_80303960, func_80303AF0);
-    D_8036A9E0 = func_802CAEBC(0xF0);
+    D_8036A9E0 = bitfield_new(0xF0);
     func_8032E070();
 }
 
@@ -905,7 +905,7 @@ void cubeList_fromFile(Struct61s *file_ptr) {
         }
     }
     func_8034AF98(file_ptr, 0);
-    func_802CAFA8(D_8036A9E0, 0);
+    bitfield_setAll(D_8036A9E0, 0);
     for(sp5C[0] = sp50[0]; sp5C[0] <= sp44[0]; sp5C[0]++){
         for(sp5C[1] = sp50[1]; sp5C[1] <= sp44[1]; sp5C[1]++){
             for(sp5C[2] = sp50[2]; sp5C[2] <= sp44[2]; sp5C[2]++){
@@ -913,7 +913,7 @@ void cubeList_fromFile(Struct61s *file_ptr) {
                 if (cube->unk0_4) {
                     for(iPtr = cube->prop1Ptr; iPtr < &cube->prop1Ptr[cube->unk0_4] ;iPtr++){
                         if (!iPtr->unk6.bit0) {
-                            func_802CAF14(D_8036A9E0, iPtr->unkA, 1);
+                            bitfield_setBit(D_8036A9E0, iPtr->unkA, 1);
                         }
                     }
                 }
@@ -2030,7 +2030,7 @@ Cube **func_80307948(s32 arg0[3]) {
 //     s32 i;
 
 //     temp_s4 = D_8036A9E4[marker->unk14_20];
-//     if ((temp_s4 != 0xFF) && (func_802CAF70(D_8036A9E0, temp_s4) == 1)) {
+//     if ((temp_s4 != 0xFF) && (bitfield_isBitSet(D_8036A9E0, temp_s4) == 1)) {
 //         func_8032E010(marker->propPtr, sp58);
 //         var_s2 = func_80307948(sp58);
 //         var_a0 = *var_s2;

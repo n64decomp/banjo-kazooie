@@ -781,17 +781,17 @@ void func_8029C848(AnimCtrl *arg0) {
             break;
 
         case TRANSFORM_3_PUMPKIN: //L8029C8A0
-            animctrl_setIndex(arg0, 0xA0);
+            animctrl_setIndex(arg0, ASSET_A0_ANIM_BSPUMPKIN_WALK);
             animctrl_setDuration(arg0, 0.8f);
             break;
 
         case TRANSFORM_5_CROC: //L8029C8C4
-            animctrl_setIndex(arg0, 0xE1);
+            animctrl_setIndex(arg0, ASSET_E1_ANIM_BSCROC_IDLE);
             animctrl_setDuration(arg0, 1.0f);
             break;
 
         case TRANSFORM_4_WALRUS: //L8029C8E4
-            animctrl_setIndex(arg0, 0x11F);
+            animctrl_setIndex(arg0, ASSET_11F_ANIM_BSWALRUS_IDLE);
             animctrl_setDuration(arg0, 1.0f);
             break;
 
@@ -803,11 +803,11 @@ void func_8029C848(AnimCtrl *arg0) {
         case TRANSFORM_1_BANJO:
         default:
             if (player_inWater()) {
-                animctrl_setIndex(arg0, 0x57);
+                animctrl_setIndex(arg0, ASSET_57_ANIM_BSSWIM_IDLE);
                 animctrl_setDuration(arg0, 1.2f);
             }
             else{
-                animctrl_setIndex(arg0, 0x6F);
+                animctrl_setIndex(arg0, ASSET_6F_ANIM_BSSTAND_IDLE);
                 animctrl_setDuration(arg0, 5.5f);
             }
             break;

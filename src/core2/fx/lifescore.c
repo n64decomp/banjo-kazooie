@@ -38,7 +38,7 @@ s32 func_802FFE04(void){
     return (5 - v1)*4;
 }
 
-struct7s *func_802FFE4C(s32 item_id){
+struct7s *fxlifescore_new(s32 item_id){
     s32 i;
 
     D_80381EB8 = 1.0f;
@@ -51,7 +51,7 @@ struct7s *func_802FFE4C(s32 item_id){
     return &D_80381ED0;
 }
 
-void func_802FFED4(s32 item_id, struct8s *arg1){
+void fxlifescore_free(s32 item_id, struct8s *arg1){
     s32 i;
     for(i = 0; i < 2; i++){
         if(D_80381EB0[i] != NULL){
@@ -61,7 +61,7 @@ void func_802FFED4(s32 item_id, struct8s *arg1){
     };
 }
 
-void func_802FFF34(enum item_e item_id, struct8s *arg1, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
+void fxlifescore_draw(enum item_e item_id, struct8s *arg1, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     s32 sp10C;
     Vtx *sp108;
     s32 sp104;
@@ -120,7 +120,7 @@ void func_802FFF34(enum item_e item_id, struct8s *arg1, Gfx **gfx, Mtx **mtx, Vt
     }
 }
 
-void func_803005BC(enum item_e item_id, struct8s *arg1) {
+void fxlifescore_update(enum item_e item_id, struct8s *arg1) {
     s32 var_v0;
     s32 sp20;
     s32 sp1C;
@@ -135,7 +135,7 @@ void func_803005BC(enum item_e item_id, struct8s *arg1) {
             break;
 
         case 0:
-            func_802FFED4(item_id, arg1);
+            fxlifescore_free(item_id, arg1);
             break;
 
         case 2:

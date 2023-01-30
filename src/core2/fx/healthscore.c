@@ -45,7 +45,7 @@ void func_80300C10(void) {
     }
 }
 
-void func_80300C70(enum item_e item_id, struct8s *arg1){
+void fxhealthscore_free(enum item_e item_id, struct8s *arg1){
     s32 temp_a0;
     s32 temp_a0_2;
 
@@ -60,13 +60,13 @@ void func_80300C70(enum item_e item_id, struct8s *arg1){
     func_80300C10();
 }
 
-struct7s *func_80300CD8(enum item_e item_id){
+struct7s *fxhealthscore_new(enum item_e item_id){
     func_80300C10();
     D_80381EFC = 0.68f;
     return &D_80381F30;
 }
 
-void func_80300D0C(enum item_e item_id, struct8s *arg1, Gfx **gfx, Mtx **mtx, Vtx **vtx){
+void fxhealthscore_draw(enum item_e item_id, struct8s *arg1, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     int i; 
     int tmp_v1;
     s32 spEC;
@@ -142,7 +142,7 @@ void func_803012F8(void) {
 }
 
 
-void func_80301348(enum item_e item_id, struct8s *arg1) {
+void fxhealthscore_update(enum item_e item_id, struct8s *arg1) {
     f32 temp_f20;
     s32 var_s0;
     s32 sp2C;
@@ -209,7 +209,7 @@ void func_80301348(enum item_e item_id, struct8s *arg1) {
             break;
 
         case 0:
-            func_80300C70(item_id, arg1);
+            fxhealthscore_free(item_id, arg1);
             break;
     }
     if (sp2C) {

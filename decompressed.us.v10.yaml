@@ -749,15 +749,15 @@ segments:
   - [0xFCADE0, c, code_75480] #DONE
   - [0xFCB290, c, code_75930] #DONE
   - [0xFCB7F0, c, code_75E90] #DONE
-  - [0xFCBCF0, c, code_76390] #DONE
-  - [0xFCBD30, c, code_763D0] #DONE
-  - [0xFCC6F0, c, code_76D90] #DONE
+  - [0xFCBCF0, c, fx/common1score] #DONE
+  - [0xFCBD30, c, fx/common2score] #DONE
+  - [0xFCC6F0, c, fx/honeycarrierscore] #DONE
   - [0xFCD7B0, c, code_77E50] #DONE
-  - [0xFCDA60, c, code_78100] #DONE
-  - [0xFCE7B0, c, code_78E50] #DONE
-  - [0xFCF190, c, fxcommon3score] #DONE
-  - [0xFCF5E0, c, code_79C80] #DONE
-  - [0xFD00C0, c, code_7A760] #DONE
+  - [0xFCDA60, c, fx/jinjoscore] #DONE
+  - [0xFCE7B0, c, fx/lifescore] #DONE
+  - [0xFCF190, c, fx/common3score] #DONE
+  - [0xFCF5E0, c, fx/healthscore] #DONE
+  - [0xFD00C0, c, fx/airscore] #DONE
   - [0xFD08E0, c, code_7AF80]
   - [0xFD7960, c, mapModel] #DONE
   - [0xFD8CA0, c, code_83340] #DONE
@@ -1026,13 +1026,13 @@ segments:
   - [0x1038260, .data, code_75480]
   - [0x1038290, .data, code_75930]
   - [0x10382C0, .data, code_75E90]
-  - [0x10382F0, .data, code_763D0]
-  - [0x10389E0, .data, code_76D90]
-  - [0x1038A40, .data, code_78100]
-  - [0x1038C30, .data, code_78E50]
-  - [0x1038C80, .data, fxcommon3score]
-  - [0x10392E0, .data, code_79C80]
-  - [0x1039330, .data, code_7A760]
+  - [0x10382F0, .data, fx/common2score]
+  - [0x10389E0, .data, fx/honeycarrierscore]
+  - [0x1038A40, .data, fx/jinjoscore]
+  - [0x1038C30, .data, fx/lifescore]
+  - [0x1038C80, .data, fx/common3score]
+  - [0x10392E0, .data, fx/healthscore]
+  - [0x1039330, .data, fx/airscore]
   - [0x1039380, .data, code_7AF80]
   - [0x10395B0, .data, mapModel]
   - [0x103A1D0, .data, code_83340]
@@ -1271,13 +1271,13 @@ segments:
   - [0x1045D10, .rodata, code_72060]
   - [0x1045D30, .rodata, code_73640]
   - [0x1045D60, .rodata, code_74420]
-  - [0x1045D70, .rodata, code_763D0]
-  - [0x1045D80, .rodata, code_76D90]
-  - [0x1045DD0, .rodata, code_78100]
-  - [0x1045E00, .rodata, code_78100]
-  - [0x1045E30, .rodata, fxcommon3score]
-  - [0x1045E50, .rodata, code_79C80]
-  - [0x1045E60, .rodata, code_7A760]
+  - [0x1045D70, .rodata, fx/common2score]
+  - [0x1045D80, .rodata, fx/honeycarrierscore]
+  - [0x1045DD0, .rodata, fx/jinjoscore]
+  - [0x1045E00, .rodata, fx/jinjoscore]
+  - [0x1045E30, .rodata, fx/common3score]
+  - [0x1045E50, .rodata, fx/healthscore]
+  - [0x1045E60, .rodata, fx/airscore]
   - [0x1045E80, .rodata, code_7AF80]
   - [0x1045F40, .rodata, mapModel]
   - [0x1046100, .rodata, code_83340]
@@ -1535,12 +1535,12 @@ segments:
   - [0x1048560, .bss, code_75480]
   - [0x1048560, .bss, code_75930]
   - [0x1048560, .bss, code_75E90]
-  - [0x1048560, .bss, code_76390]
-  - [0x1048560, .bss, code_76D90]
-  - [0x1048560, .bss, code_78100]
-  - [0x1048560, .bss, code_78E50]
-  - [0x1048560, .bss, code_79C80]
-  - [0x1048560, .bss, code_7A760]
+  - [0x1048560, .bss, fx/common1score]
+  - [0x1048560, .bss, fx/honeycarrierscore]
+  - [0x1048560, .bss, fx/jinjoscore]
+  - [0x1048560, .bss, fx/lifescore]
+  - [0x1048560, .bss, fx/healthscore]
+  - [0x1048560, .bss, fx/airscore]
   - [0x1048560, .bss, code_7AF80]
   - [0x1048560, .bss, mapModel]
   - [0x1048560, .bss, code_83340]

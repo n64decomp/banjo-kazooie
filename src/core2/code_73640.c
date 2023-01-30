@@ -58,12 +58,12 @@ ItemPrint D_803692F8[0x2C] = {
     { fxcommon2score_new, fxcommon2score_update, fxcommon2score_draw, fxcommon2score_free, 1, NULL }, //ITEM_F_RED_FEATHER
     { fxcommon2score_new, fxcommon2score_update, fxcommon2score_draw, fxcommon2score_free, 1, NULL }, //ITEM_10_GOLD_FEATHER
     { fxcommon1score_new, fxcommon1score_update, fxcommon1score_draw, fxcommon1score_free, 0, NULL }, //17
-    { func_802FF090, fxjinjoscore_update, fxjinjoscore_draw, fxjinjoscore_free, 3, NULL }, //ITEM_12_JINJOS
-    { func_802FDE2C, func_802FE844, func_802FDEE0, func_802FDDC4, 0, NULL }, //ITEM_13_EMPTY_HONEYCOMB
-    { func_80300CD8, func_80301348, func_80300D0C, func_80300C70, 0, NULL }, //ITEM_14_HEALTH
+    { fxjinjoscore_new,   fxjinjoscore_update,   fxjinjoscore_draw,   fxjinjoscore_free,   3, NULL }, //ITEM_12_JINJOS
+    { fxhoneycarrierscore_new, fxhoneycarrierscore_update, fxhoneycarrierscore_draw, fxhoneycarrierscore_free, 0, NULL }, //ITEM_13_EMPTY_HONEYCOMB
+    { fxhealthscore_new,  fxhealthscore_update,  fxhealthscore_draw,  fxhealthscore_free,  0, NULL }, //ITEM_14_HEALTH
     { fxcommon1score_new, fxcommon1score_update, fxcommon1score_draw, fxcommon1score_free, 0, NULL }, //ITEM_15_HEALTH_TOTAL
-    { func_802FFE4C, func_803005BC, func_802FFF34, func_802FFED4, 6, NULL }, //ITEM_16_LIFE
-    { func_8030179C, func_80301DE4, func_803017D0, func_80301754, 0, NULL }, //ITEM_17_AIR
+    { fxlifescore_new,    fxlifescore_update,    fxlifescore_draw,    fxlifescore_free,    6, NULL }, //ITEM_16_LIFE
+    { fxairscore_new,     fxairscore_update,     fxairscore_draw,     fxairscore_free,     0, NULL }, //ITEM_17_AIR
     { fxcommon3score_new, fxcommon3score_update, fxcommon3score_draw, fxcommon3score_free, 2, NULL }, //ITEM_18_GOLD_BULLIONS
     { fxcommon3score_new, fxcommon3score_update, fxcommon3score_draw, fxcommon3score_free, 2, NULL }, //ITEM_19_ORANGE
     { fxcommon2score_new, fxcommon2score_update, fxcommon2score_draw, fxcommon2score_free, 6, NULL }, //ITEM_1A_PLAYER_VILE_SCORE

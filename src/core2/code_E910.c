@@ -241,18 +241,18 @@ void func_80295A8C(void){
 void func_80295B04(void){
     f32 sp24;
     enum bs_e sp20 = bs_getState();
-    int tmp_a1;
+    bool is_in_talon_trot;
     
     sp24 = (bslongleg_inSet(sp20)) ? func_80291670(2) : 0.0f;
     func_8029A968(sp24);
     sp24 = 0.0f;
-    tmp_a1 = 0;
+    is_in_talon_trot = FALSE;
     if(bsbtrot_inSet(sp20)){
         sp24 = func_80291670(3);
-        tmp_a1 = 1;
+        is_in_talon_trot = TRUE;
     }
 
-    func_8029A980(tmp_a1);
+    func_8029A980(is_in_talon_trot);
     func_8029A974(sp24);
     bs_setState(BS_5A_LOADZONE);
     baMarker_free();

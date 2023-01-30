@@ -63,7 +63,7 @@ void func_802FDD20(void) {
     D_803815E8 = 0x50;
 }
 
-void func_802FDDC4(s32 arg0, struct8s *arg1){
+void fxhoneycarrierscore_free(s32 arg0, struct8s *arg1){
     if(D_8036A010){
         func_8033BD4C(D_8036A010);
         D_8036A010 = NULL;
@@ -75,7 +75,7 @@ void func_802FDDC4(s32 arg0, struct8s *arg1){
     D_803815E8 = 0x50;
 }
 
-struct7s *func_802FDE2C(s32 arg0){
+struct7s *fxhoneycarrierscore_new(s32 arg0){
     func_802FDD20();
     D_803815D0 = 1.0f;
     return &D_803815F0;
@@ -97,7 +97,7 @@ f32 func_802FDE60(f32 arg0) {
     return arg0;
 }
 
-void func_802FDEE0(s32 arg0, struct8s *arg1, Gfx **arg2, Mtx **arg3, Vtx **arg4){
+void fxhoneycarrierscore_draw(s32 arg0, struct8s *arg1, Gfx **arg2, Mtx **arg3, Vtx **arg4){
     f64 var_f24;
     s32 sp13C;
     s32 sp138;
@@ -174,7 +174,7 @@ void func_802FDEE0(s32 arg0, struct8s *arg1, Gfx **arg2, Mtx **arg3, Vtx **arg4)
 }
 
 extern f64 D_803773E0;
-void func_802FE844(s32 arg0, struct8s *arg1){
+void fxhoneycarrierscore_update(s32 arg0, struct8s *arg1){
     f32 sp24;
     s32 sp20;
     s32 tmp;
@@ -199,7 +199,7 @@ void func_802FE844(s32 arg0, struct8s *arg1){
                 D_8036A010 = assetcache_get(0x7DC);
             break;
         case 0:
-            func_802FDDC4(arg0, arg1);
+            fxhoneycarrierscore_free(arg0, arg1);
             break;
         case 2:
             switch(D_803815C0){
@@ -242,7 +242,7 @@ void func_802FE844(s32 arg0, struct8s *arg1){
                     D_803815E4 = _76D90_MIN((D_803815E4 + (400.0*sp24)), 255.0);
                     if(D_803815E0 < 0.1){
                         func_802FDD20();
-                        func_802FDDC4(arg0, arg1);
+                        fxhoneycarrierscore_free(arg0, arg1);
                     }
                     break;
             }

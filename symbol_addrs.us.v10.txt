@@ -100,6 +100,7 @@ spawnQueue_lock             = 0x802C3BE8;
 mapSpecificFlags_set        = 0x802CADC0;
 mapSpecificFlags_getAll     = 0x802CAE8C;
 mapSpecificFlags_setAll     = 0x802CAE98;
+bitfield_isBitSet           = 0x802CAF70;
 mapSpecificFlags_validateCRC1 = 0x802CB00C;
 mapSavestate_save           = 0x802E2F2C;
 mapSavestate_apply          = 0x802E30AC;

@@ -45,7 +45,7 @@ struct7s D_80381E90;
 
 
 /* .code */
-struct7s *func_802FF090(enum item_e arg0){
+struct7s *fxjinjoscore_new(enum item_e arg0){
     s32 i;
     s32 red;
     s32 green;

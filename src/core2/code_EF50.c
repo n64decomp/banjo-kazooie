@@ -75,7 +75,7 @@ enum bs_e func_80295EE0(enum bs_e arg0){
     return arg0;
 }
 
-enum bs_e func_80296038(void){
+enum bs_e __get_rebound_state_id(void){
     switch(_player_getTransformation()){
         case TRANSFORM_3_PUMPKIN:// L8029606C
             return BS_PUMPKIN_BOUNCE;
@@ -312,22 +312,22 @@ void func_80296608(void){
             break;
         case BS_INTR_24: //L802966B8
             func_802960C4(0);
-            next_state = func_80296038();
+            next_state = __get_rebound_state_id();
             sp2C = 2;
             break;
         case BS_INTR_23: //L802966D8
             func_802960C4(1);
-            next_state = func_80296038();
+            next_state = __get_rebound_state_id();
             sp2C = 2;
             break;
         case BS_INTR_2D: //L802966F8
             func_802960C4(3);
-            next_state = func_80296038();
+            next_state = __get_rebound_state_id();
             sp2C = 2;
             break;
         case BS_INTR_5:  //L80296718
             func_802961B4(0);
-            next_state = func_80296038();
+            next_state = __get_rebound_state_id();
             sp2C = 2;
             break;
         case BS_INTR_2C: //L80296738

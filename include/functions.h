@@ -180,36 +180,36 @@ void fxcommon2score_update(s32, struct8s *);
 void fxcommon2score_draw(enum item_e, struct8s *, Gfx**, Mtx**, Vtx **);
 void fxcommon2score_free(enum item_e, struct8s *);
 
-struct7s *func_802FDE2C(s32);
-void func_802FE844(s32, struct8s *);
-void func_802FDEE0(s32, struct8s *, Gfx**, Mtx**, Vtx **);
-void func_802FDDC4(s32, struct8s *);
+struct7s *fxhoneycarrierscore_new(s32);
+void fxhoneycarrierscore_update(s32, struct8s *);
+void fxhoneycarrierscore_draw(s32, struct8s *, Gfx**, Mtx**, Vtx **);
+void fxhoneycarrierscore_free(s32, struct8s *);
 
-struct7s *func_802FF090(enum item_e);
+struct7s *fxjinjoscore_new(enum item_e);
 void fxjinjoscore_update(enum item_e, struct8s *);
 void fxjinjoscore_draw(s32, struct8s *, Gfx**, Mtx**, Vtx **);
 void fxjinjoscore_free(enum item_e, struct8s *);
 
-struct7s *func_802FFE4C(s32);
-void func_803005BC(enum item_e, struct8s *);
-void func_802FFF34(enum item_e, struct8s *, Gfx**, Mtx**, Vtx **);
-void func_802FFED4(s32, struct8s *);
+struct7s *fxlifescore_new(s32);
+void fxlifescore_update(enum item_e, struct8s *);
+void fxlifescore_draw(enum item_e, struct8s *, Gfx**, Mtx**, Vtx **);
+void fxlifescore_free(s32, struct8s *);
 
 void *fxcommon3score_new(enum item_e);
 void fxcommon3score_update(enum item_e, void *);
 void fxcommon3score_draw(enum item_e, void *, Gfx**, Mtx**, Vtx **);
 void fxcommon3score_free(enum item_e item_id, void *);
 
-struct7s *func_80300CD8(enum item_e);
-void func_80301348(enum item_e, struct8s *);
-void func_80300D0C(enum item_e item_id, struct8s *arg1, Gfx **gfx, Mtx **mtx, Vtx **vtx);
-void func_80300C70(enum item_e, struct8s *);
+struct7s *fxhealthscore_new(enum item_e);
+void fxhealthscore_update(enum item_e, struct8s *);
+void fxhealthscore_draw(enum item_e item_id, struct8s *arg1, Gfx **gfx, Mtx **mtx, Vtx **vtx);
+void fxhealthscore_free(enum item_e, struct8s *);
 
 
-struct7s *func_8030179C(s32);
-void func_80301DE4(enum item_e, struct7s *);
-void func_803017D0(enum item_e, struct8s *, Gfx**, Mtx**, Vtx **);
-void func_80301754(s32, struct8s *);
+struct7s *fxairscore_new(s32);
+void fxairscore_update(enum item_e, struct7s *);
+void fxairscore_draw(enum item_e, struct8s *, Gfx**, Mtx**, Vtx **);
+void fxairscore_free(s32, struct8s *);
 
 
 
