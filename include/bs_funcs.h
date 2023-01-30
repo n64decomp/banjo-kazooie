@@ -282,33 +282,33 @@ void func_802A2098(void);
 void func_802A2130(void);
 void func_802A2054(void);
 //BS_48_PUMPKIN_IDLE
-void func_802B2384(void);
-void func_802B242C(void);
-void func_802B24AC(void);
+void bspumpkin_idle_init(void);
+void bspumpkin_idle_update(void);
+void bspumpkin_idle_end(void);
 //BS_49_PUMPKIN_WALK
-void func_802B24D4(void);
-void func_802B2580(void);
-void func_802B2610(void);
+void bspumpkin_walk_init(void);
+void bspumpkin_walk_update(void);
+void bspumpkin_walk_end(void);
 //BS_4A_PUMPKIN_JUMP
-void func_802B2638(void);
-void func_802B2750(void);
-void func_802B2990(void);
+void bspumpkin_jump_init(void);
+void bspumpkin_jump_update(void);
+void bspumpkin_jump_end(void);
 //BS_4B_PUMPKIN_FALL
-void func_802B29C0(void);
-void func_802B2A5C(void);
-void func_802B2BD0(void);
+void bspumpkin_fall_init(void);
+void bspumpkin_fall_update(void);
+void bspumpkin_fall_end(void);
 //BS_4C_LANDING_IN_WATER
 void func_802A846C(void);
 void func_802A85EC(void);
 void func_802A872C(void);
 //BS_4D_PUMPKIN_OW
-void func_802B2FDC(void);
-void func_802B2FFC(void);
-void func_802B301C(void);
+void __bspumpkin_ow_init(void);
+void __bspumpkin_ow_update(void);
+void __bspumpkin_ow_end(void);
 //BS_4E_PUMPKIN_DIE
-void func_802B309C(void);
-void func_802B3240(void);
-void func_802B3448(void);
+void bspumpkin_die_init(void);
+void bspumpkin_die_update(void);
+void bspumpkin_die_end(void);
 //BS_4F_CLIMB_IDLE
 void bsclimb_idle_init(void);
 void bsclimb_idle_update(void);
@@ -667,9 +667,9 @@ void bsant_bounce_update(void);
 void bsant_bounce_end(void);
 
 //0x000000A0
-void func_802B303C(void);
-void func_802B305C(void);
-void func_802B307C(void);
+void bspumpkin_rebound_init(void);
+void bspumpkin_rebound_update(void);
+void bspumpkin_rebound_end(void);
 
 //0x000000A1
 void bscroc_bounce_init(void);

@@ -3,7 +3,6 @@
 #include "variables.h"
 
 
-s32 D_80368AA0[3] = {0xC8, 0xC8, 0xE6};
 
 /* .bss */
 u8 D_80380A00;
@@ -19,6 +18,8 @@ void func_802F1EA4(void){
 }
 
 ParticleEmitter *func_802F1EC8(f32 *position) {
+    static s32 D_80368AA0[3] = {0xC8, 0xC8, 0xE6};
+
     ParticleEmitter *p_emitter;
 
     p_emitter = func_802F0EF0(D_80380A00);

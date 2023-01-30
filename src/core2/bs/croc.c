@@ -182,7 +182,7 @@ void bscroc_jump_init(void){
 
     animctrl_reset(aCtrl);
     animctrl_setSmoothTransition(aCtrl, FALSE);
-    animctrl_setIndex(aCtrl, 0x11C);
+    animctrl_setIndex(aCtrl, ASSET_11C_ANIM_BSCROC_JUMP);
     animctrl_setSubRange(aCtrl, 0.0f, 0.35f);
     animctrl_setDuration(aCtrl, 1.0f);
     func_8028774C(aCtrl, 0.1f);
@@ -271,7 +271,7 @@ void bscroc_fall_init(void){
     AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
 
     animctrl_reset(aCtrl);
-    animctrl_setIndex(aCtrl, 0x11C);
+    animctrl_setIndex(aCtrl, ASSET_11C_ANIM_BSCROC_JUMP);
     func_8028774C(aCtrl, 0.5036f);
     animctrl_setDuration(aCtrl, 0.7f);
     animctrl_setPlaybackType(aCtrl, ANIMCTRL_STOPPED);
@@ -332,7 +332,7 @@ static void __bscroc_recoil_init(s32 damage){
     f32 sp20[3];
 
     animctrl_reset(aCtrl);
-    animctrl_setIndex(aCtrl, 0x11d);
+    animctrl_setIndex(aCtrl, ASSET_11D_ANIM_BSCROC_BOUNCE);
     animctrl_setDuration(aCtrl, 1.0f);
     animctrl_setSubRange(aCtrl, 0.0f, 0.7518f);
     animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
@@ -421,7 +421,7 @@ void bscroc_die_init(void){
     func_8029B930();
     animctrl_reset(aCtrl);
     animctrl_setSmoothTransition(aCtrl, FALSE);
-    animctrl_setIndex(aCtrl, 0x11e);
+    animctrl_setIndex(aCtrl, ASSET_11E_ANIM_BSCROC_DIE);
     animctrl_setSubRange(aCtrl, 0.0f, 0.3966f);
     animctrl_setDuration(aCtrl, 1.7f);
     animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);

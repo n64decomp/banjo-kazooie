@@ -164,7 +164,7 @@ void bsjig_notedoor_init(void){
     D_8037D4B2 = (bs_getPrevState() == BS_44_JIG_JIGGY);
     miscflag_clear(0x1A);
     animctrl_reset(aCtrl);
-    animctrl_setIndex(aCtrl, 0x282);
+    animctrl_setIndex(aCtrl, ASSET_282_ANIM_BSJIG_NOTEDOOR);
     animctrl_setDuration(aCtrl, 3.6f);
     animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
     func_802875AC(aCtrl, "bsjig.c", 0x14d);

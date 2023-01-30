@@ -12,7 +12,7 @@ void bsthrow_init(void){
     AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
 
     animctrl_reset(aCtrl);
-    animctrl_setIndex(aCtrl, 0x11b);
+    animctrl_setIndex(aCtrl, ASSET_11B_ANIM_BSTHROW);
     animctrl_setDuration(aCtrl, 1.0f);
     animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
     func_802875AC(aCtrl, "bsthrow.c", 0x2e);

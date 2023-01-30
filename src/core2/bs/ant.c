@@ -152,7 +152,7 @@ void bsant_jump_init(void){
     AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     func_8029E554();
     animctrl_reset(aCtrl);
-    animctrl_setIndex(aCtrl, ANIM_TERMITE_JUMP);
+    animctrl_setIndex(aCtrl, ASSET_60_ANIM_BSTERMITE_JUMP);
     animctrl_setDuration(aCtrl, 1.0f);
     animctrl_setTransitionDuration(aCtrl, 0.1f);
     func_8028774C(aCtrl, 0.2987f);
@@ -232,7 +232,7 @@ void bsant_fall_init(void){
     func_8029E554();
     D_8037D298 = 0;
     animctrl_reset(aCtrl);
-    animctrl_setIndex(aCtrl, ANIM_TERMITE_JUMP);
+    animctrl_setIndex(aCtrl, ASSET_60_ANIM_BSTERMITE_JUMP);
     animctrl_setDuration(aCtrl, 1.9f);
     func_8028774C(aCtrl, 0.4423f);
     animctrl_setPlaybackType(aCtrl, ANIMCTRL_STOPPED);
@@ -283,7 +283,7 @@ static void __bsant_recoil_init(int take_damage){
 
     func_8029E554();
     animctrl_reset(aCtrl);
-    animctrl_setIndex(aCtrl, ANIM_TERMITE_OW);
+    animctrl_setIndex(aCtrl, ASSET_28_ANIM_BSTERMITE_OW);
     animctrl_setDuration(aCtrl, 1.4f);
     animctrl_setSubRange(aCtrl, 0.0f, 0.4899f);
     animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
@@ -373,7 +373,7 @@ void bsant_die_init(void){
     func_8029B930();
     animctrl_reset(aCtrl);
     animctrl_setSmoothTransition(aCtrl, 0);
-    animctrl_setIndex(aCtrl, ANIM_TERMITE_DIE);
+    animctrl_setIndex(aCtrl, ASSET_29_ANIM_BSTERMITE_DIE);
     animctrl_setSubRange(aCtrl, 0.0f, 0.523f);
     animctrl_setDuration(aCtrl, 1.6f);
     animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);

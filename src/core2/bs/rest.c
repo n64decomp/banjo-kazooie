@@ -57,13 +57,13 @@ bool func_802B3BB0(void) {
         case 0x167:
             if (baanim_isStopped() != 0) {
                 if (animctrl_isPlayedForwards(anim_ctrl) != 0) {
-                    func_8028A010(0x14A, 11.4f);
+                    func_8028A010(ASSET_14A_ANIM_BANJO_LISTENING, 11.4f);
                 } else if (func_80298850() == 0) {
                     sp20 = TRUE;
                 }
             }
             break;
-        case 0x14A:
+        case ASSET_14A_ANIM_BANJO_LISTENING:
             if (func_80298850() == 0) {
                 animctrl_reset(anim_ctrl);
                 animctrl_setDirection(anim_ctrl, 0);

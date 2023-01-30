@@ -36,7 +36,7 @@ void bsbpeck_init(void){
     if(func_80293234() == 1)
         func_80293240(2);
 
-    func_8028A274(0x1a, 0.2f);
+    func_8028A274(ASSET_1A_ANIM_BSBPECK, 0.2f);
     func_8029C7F4(1,3,1,6);
     func_80299234(1200.0f, 10.0f);
     func_8029E070(1);
@@ -101,7 +101,7 @@ void bsbpeck_update(void){
             if(D_8037D370 < 0.0f){
                 animctrl_reset(aCtrl);
                 animctrl_setSmoothTransition(aCtrl, 0);
-                animctrl_setIndex(aCtrl, ANIM_BANJO_BPECK);
+                animctrl_setIndex(aCtrl, ASSET_1A_ANIM_BSBPECK);
                 animctrl_setDirection(aCtrl, 0);
                 animctrl_setDuration(aCtrl, 0.2f);
                 animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);

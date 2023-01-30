@@ -97,7 +97,7 @@ void func_802B3868(void) {
     animctrl_reset(anim_ctrl);
     animctrl_setSmoothTransition(anim_ctrl, 0);
     animctrl_setSubRange(anim_ctrl, 0.0f, 0.5823f);
-    animctrl_setIndex(anim_ctrl, 0xF);
+    animctrl_setIndex(anim_ctrl, ASSET_F_ANIM_BSREBOUND);
     animctrl_setDuration(anim_ctrl, sp20);
     animctrl_setPlaybackType(anim_ctrl, ANIMCTRL_ONCE);
     _func_802875AC(anim_ctrl, "bsrebound.c", 0xC6);

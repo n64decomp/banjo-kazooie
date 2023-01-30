@@ -51,7 +51,7 @@ void bsjump_init(void){
     else {
         D_8037D4C1 = (sp30 == BS_2D_SWIM_IDLE) || (sp30 == BS_2E_SWIM);
         animctrl_reset(aCtrl);
-        animctrl_setIndex(aCtrl, ANIM_BANJO_JUMP);
+        animctrl_setIndex(aCtrl, ASSET_8_ANIM_BSJUMP);
         animctrl_setDuration(aCtrl, 1.9f);
         animctrl_setTransitionDuration(aCtrl, 0.134f);
         func_8028774C(aCtrl, 0.3f);
@@ -178,7 +178,7 @@ void bsjump_fall_init(void){
     sp20 = (bs_getPrevState() == BS_12_BFLIP)? 0 : 1;
     animctrl_reset(aCtrl);
     animctrl_setSmoothTransition(aCtrl, sp20);
-    animctrl_setIndex(aCtrl, 0xb0);
+    animctrl_setIndex(aCtrl, ASSET_B0_ANIM_BSJUMP_FALL);
     animctrl_setTransitionDuration(aCtrl, 0.3f);
     animctrl_setDuration(aCtrl, 0.38f);
     func_802875AC(aCtrl, "bsjump.c", 0x188);
@@ -202,7 +202,7 @@ void bsjump_fall_update(void){
         case 0://L802B17B8
             if(func_8028B254(0x5a)){
                 animctrl_reset(aCtrl);
-                animctrl_setIndex(aCtrl, 8);
+                animctrl_setIndex(aCtrl, ASSET_8_ANIM_BSJUMP);
                 func_8028774C(aCtrl, 0.6667f);
                 animctrl_setDuration(aCtrl, 2.0f);
                 animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
@@ -253,7 +253,7 @@ void func_802B1928(void) {
     anim_ctrl = _player_getAnimCtrlPtr();
     climbRelease();
     animctrl_reset(anim_ctrl);
-    animctrl_setIndex(anim_ctrl, ANIM_BANJO_JUMP);
+    animctrl_setIndex(anim_ctrl, ASSET_8_ANIM_BSJUMP);
     animctrl_setDuration(anim_ctrl, 1.9f);
     animctrl_setTransitionDuration(anim_ctrl, 0.134f);
     func_8028774C(anim_ctrl, 0.3f);
@@ -334,7 +334,7 @@ void func_802B1BF4(void) {
     }
     animctrl_reset(anim_ctrl);
     animctrl_setSmoothTransition(anim_ctrl, smooth_transition);
-    animctrl_setIndex(anim_ctrl, ANIM_BANJO_JUMP);
+    animctrl_setIndex(anim_ctrl, ASSET_8_ANIM_BSJUMP);
     animctrl_setTransitionDuration(anim_ctrl, 0.3f);
     animctrl_setDuration(anim_ctrl, 1.9f);
     func_8028774C(anim_ctrl, 0.6667f);

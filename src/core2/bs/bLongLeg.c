@@ -106,7 +106,7 @@ void func_802A5548(void){
     AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     animctrl_reset(aCtrl);
     animctrl_setSmoothTransition(aCtrl, 0);
-    animctrl_setIndex(aCtrl, ANIM_BANJO_LONGLEG_ENTER_AS_BEAR);
+    animctrl_setIndex(aCtrl, ASSET_16_ANIM_BSBTROT_ENTER);
     animctrl_setDuration(aCtrl, 0.5f);
     animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
     func_802875AC(aCtrl, "bsblongleg.c", 0xf6);
@@ -259,7 +259,7 @@ void func_802A5B34(void){
 
     animctrl_reset(aCtrl);
     animctrl_setSmoothTransition(aCtrl, 0);
-    animctrl_setIndex(aCtrl, ANIM_BANJO_BTROT_EXIT);
+    animctrl_setIndex(aCtrl, ASSET_7_ANIM_BSBTROT_EXIT);
     animctrl_setDuration(aCtrl, 0.6f);
     animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
     func_802875AC(aCtrl, "bsblongleg.c", 0x210);

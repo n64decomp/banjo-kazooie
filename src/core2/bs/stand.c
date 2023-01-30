@@ -249,14 +249,14 @@ void bsstand_update(void) {
             func_8029E070(1);
             func_802900FC();
         } else if (sp18 & 8) {
-            if (animctrl_getIndex(anim_ctrl) == 0x6F) {
+            if (animctrl_getIndex(anim_ctrl) == ASSET_6F_ANIM_BSSTAND_IDLE) {
                 sp1C = animctrl_getAnimTimer(anim_ctrl);
             } else {
                 sp1C = 0.0f;
                 func_802900B4();
             }
             animctrl_reset(anim_ctrl);
-            animctrl_setIndex(anim_ctrl, 0x6F);
+            animctrl_setIndex(anim_ctrl, ASSET_6F_ANIM_BSSTAND_IDLE);
             animctrl_setDuration(anim_ctrl, 5.5f);
             animctrl_setPlaybackType(anim_ctrl, ANIMCTRL_LOOP);
             func_8028774C(anim_ctrl, sp1C);

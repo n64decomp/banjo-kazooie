@@ -140,7 +140,7 @@ int bswalrus_inSet(enum bs_e state){
 }
 
 void bswalrus_idle_init(void){
-    func_8028A010(0x11f, 4.0f);
+    func_8028A010(ASSET_11F_ANIM_BSWALRUS_IDLE, 4.0f);
     func_8029C7F4(1,1,1,2);
     func_80297970(0.0f);
     pitch_setAngVel(1000.0f, 12.0f);
@@ -178,7 +178,7 @@ void bswalrus_idle_end(void){
 }
 
 void bswalrus_walk_init(void){
-    func_8028A010(0x120, 0.8f);
+    func_8028A010(ASSET_120_ANIM_BSWALRUS_WALK, 0.8f);
     func_8029C7F4(2,1,1,2);
     func_80289EC8(D_80364DC0, D_80364DC4, D_80364DC8, D_80364DCC);
     func_802900B4();
@@ -214,7 +214,7 @@ void bswalrus_jump_init(void){
 
     animctrl_reset(aCtrl);
     animctrl_setSmoothTransition(aCtrl, FALSE);
-    animctrl_setIndex(aCtrl, 0x121);
+    animctrl_setIndex(aCtrl, ASSET_121_ANIM_BSWALRUS_JUMP);
     animctrl_setSubRange(aCtrl, 0.0f, 0.514f);
     animctrl_setDuration(aCtrl, 1.0f);
     func_8028774C(aCtrl, 0.1);
@@ -304,7 +304,7 @@ void bswalrus_jump_end(void){
 void bswalrus_fall_init(void){
     AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     animctrl_reset(aCtrl);
-    animctrl_setIndex(aCtrl, 0x121);
+    animctrl_setIndex(aCtrl, ASSET_121_ANIM_BSWALRUS_JUMP);
     func_8028774C(aCtrl, 0.662f);
     animctrl_setDuration(aCtrl, 0.7f);
     animctrl_setPlaybackType(aCtrl, ANIMCTRL_STOPPED);
@@ -443,7 +443,7 @@ void bswalrus_die_init(void){
     func_8029B930();
     animctrl_reset(aCtrl);
     animctrl_setSmoothTransition(aCtrl, FALSE);
-    animctrl_setIndex(aCtrl, 0x19d);
+    animctrl_setIndex(aCtrl, ASSET_19D_ANIM_BSWALRUS_DIE);
     animctrl_setSubRange(aCtrl, 0.0f, 0.4454f);
     animctrl_setDuration(aCtrl, 2.2f);
     animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
@@ -529,7 +529,7 @@ void bswalrus_drone_end(void){
 }
 
 void func_802B90D0(void){
-    func_8028A010(0x19e, 0.8f);
+    func_8028A010(ASSET_19E_ANIM_BSWALRUS_SLED, 0.8f);
     func_8029C7F4(1,1,3,2);
     func_80297970(0.0f);
     func_8029C674();
@@ -554,7 +554,7 @@ void func_802B917C(void){
 }
 
 void bswalrus_sled_init(void){
-    func_8028A010(0x19e, 0.8f);
+    func_8028A010(ASSET_19E_ANIM_BSWALRUS_SLED, 0.8f);
     func_8029C7F4(2,1,1,2);
     func_80289EC8(D_80364DC0, D_80364DC4, D_80364DE0, D_80364DE4);
     func_802900B4();
@@ -595,7 +595,7 @@ void bswalrus_sled_jump_init(void){
     AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     animctrl_reset(aCtrl);
     animctrl_setSmoothTransition(aCtrl, FALSE);
-    animctrl_setIndex(aCtrl, 0x19f);
+    animctrl_setIndex(aCtrl, ASSET_19F_ANIM_BSWALRUS_SLED_JUMP);
     animctrl_setSubRange(aCtrl, 0.0f, 0.4285f);
     animctrl_setDuration(aCtrl, 1.0f);
     func_8028774C(aCtrl, 0.14f);
@@ -664,7 +664,7 @@ void bswalrus_sled_jump_end(void){
 void func_802B95A0(void){
     AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     animctrl_reset(aCtrl);
-    animctrl_setIndex(aCtrl, 0x19f);
+    animctrl_setIndex(aCtrl, ASSET_19F_ANIM_BSWALRUS_SLED_JUMP);
     animctrl_setSubRange(aCtrl, 0.0f, 0.5058f);
     animctrl_setDuration(aCtrl, 1.0f);
     animctrl_setPlaybackType(aCtrl, ANIMCTRL_STOPPED);

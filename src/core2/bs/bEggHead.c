@@ -11,7 +11,7 @@ u8 D_8037D2F1;
 
 /* .code */
 void bsegghead_init(void){
-    func_8028A274(0x2A, 1.0f);
+    func_8028A274(ASSET_2A_ANIM_BSEGGHEAD, 1.0f);
     func_8029C7F4(1,3,1,3);
     func_80299234(350.0f, 14.0f);
     func_80297970(0.0f);

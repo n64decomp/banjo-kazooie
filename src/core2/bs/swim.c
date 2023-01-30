@@ -122,15 +122,15 @@ void func_802B5774(void) {
         }
         func_80295328(4, 0.7f);
     }
-    if ((animctrl_getIndex(anim_ctrl) == 0x57) && (prev_state != BS_4C_LANDING_IN_WATER)) {
+    if ((animctrl_getIndex(anim_ctrl) == ASSET_57_ANIM_BSSWIM_IDLE) && (prev_state != BS_4C_LANDING_IN_WATER)) {
         animctrl_setSmoothTransition(anim_ctrl, 0);
-        animctrl_setIndex(anim_ctrl, 0x57);
+        animctrl_setIndex(anim_ctrl, ASSET_57_ANIM_BSSWIM_IDLE);
         animctrl_setPlaybackType(anim_ctrl, ANIMCTRL_LOOP);
         animctrl_setDuration(anim_ctrl, 1.2f);
     } else {
         animctrl_reset(anim_ctrl);
         animctrl_setTransitionDuration(anim_ctrl, transition_duration);
-        animctrl_setIndex(anim_ctrl, 0x57);
+        animctrl_setIndex(anim_ctrl, ASSET_57_ANIM_BSSWIM_IDLE);
         animctrl_setPlaybackType(anim_ctrl, ANIMCTRL_LOOP);
         func_8028774C(anim_ctrl, 0.3f);
         animctrl_setDuration(anim_ctrl, 1.2f);
@@ -196,9 +196,9 @@ void func_802B5B18(void) {
     } else {
         anim_duration = 0.4f;
     }
-    if (animctrl_getIndex(anim_ctrl) != 0x39) {
+    if (animctrl_getIndex(anim_ctrl) != ASSET_39_ANIM_BSSWIM_SWIM) {
         animctrl_reset(anim_ctrl);
-        animctrl_setIndex(anim_ctrl, 0x39);
+        animctrl_setIndex(anim_ctrl, ASSET_39_ANIM_BSSWIM_SWIM);
         animctrl_setTransitionDuration(anim_ctrl, anim_duration);
         func_8028774C(anim_ctrl, 0.8f);
         animctrl_setPlaybackType(anim_ctrl, ANIMCTRL_LOOP);

@@ -71,8 +71,8 @@ int bspumpkin_inSet(s32 move_indx){
     || (move_indx == BS_93_PUMPKIN_DRONE);
 }
 
-void func_802B2384(void) {
-    func_8028A084(0xA0, 0.8f);
+void bspumpkin_idle_init(void) {
+    func_8028A084(ASSET_A0_ANIM_BSPUMPKIN_WALK, 0.8f);
     func_8029C7F4(1, 1, 1, 2);
     func_80297970(0.0f);
     pitch_setAngVel(1000.0f, 12.0f);
@@ -83,7 +83,7 @@ void func_802B2384(void) {
     func_802900B4();
 }
 
-void func_802B242C(void) {
+void bspumpkin_idle_update(void) {
     s32 next_state;
 
     next_state = 0;
@@ -103,17 +103,17 @@ void func_802B242C(void) {
 }
 
 
-void func_802B24AC(void){
+void bspumpkin_idle_end(void){
     func_802B229C();
     func_802900FC();
 }
 
-void func_802B24D4(void) {
+void bspumpkin_walk_init(void) {
     AnimCtrl *anim_ctrl;
 
     anim_ctrl = _player_getAnimCtrlPtr();
     animctrl_reset(anim_ctrl);
-    animctrl_setIndex(anim_ctrl, 0xA0);
+    animctrl_setIndex(anim_ctrl, ASSET_A0_ANIM_BSPUMPKIN_WALK);
     animctrl_setDuration(anim_ctrl, 0.8f);
     animctrl_setPlaybackType(anim_ctrl, ANIMCTRL_LOOP);
     _func_802875AC(anim_ctrl, "bspumpkin.c", 0x11D);
@@ -123,7 +123,7 @@ void func_802B24D4(void) {
 }
 
 
-void func_802B2580(void) {
+void bspumpkin_walk_update(void) {
     s32 next_state;
 
     next_state = 0;
@@ -141,17 +141,17 @@ void func_802B2580(void) {
     bs_setState(next_state);
 }
 
-void func_802B2610(void){
+void bspumpkin_walk_end(void){
     func_802B229C();
     func_802900FC();
 }
 
-void func_802B2638(void) {
+void bspumpkin_jump_init(void) {
     AnimCtrl *anim_ctrl;
 
     anim_ctrl = _player_getAnimCtrlPtr();
     animctrl_reset(anim_ctrl);
-    animctrl_setIndex(anim_ctrl, 0xA1);
+    animctrl_setIndex(anim_ctrl, ASSET_A1_ANIM_BSPUMPKIN_JUMP);
     animctrl_setSubRange(anim_ctrl, 0.0f, 0.3941f);
     animctrl_setDuration(anim_ctrl, 1.2f);
     animctrl_setPlaybackType(anim_ctrl, ANIMCTRL_ONCE);
@@ -169,7 +169,7 @@ void func_802B2638(void) {
     D_8037D4E0 = 0;
 }
 
-void func_802B2750(void) {
+void bspumpkin_jump_update(void) {
     s32 next_state;
     AnimCtrl *anim_ctrl;
     f32 sp1C[3];
@@ -233,19 +233,19 @@ void func_802B2750(void) {
     bs_setState(next_state);
 }
 
-void func_802B2990(void){
+void bspumpkin_jump_end(void){
     func_80292EA4();
     gravity_reset();
     func_802B229C();
 }
 
-void func_802B29C0(void) {
+void bspumpkin_fall_init(void) {
     AnimCtrl *anim_ctrl;
 
     anim_ctrl = _player_getAnimCtrlPtr();
     D_8037D4E4 = 0;
     animctrl_reset(anim_ctrl);
-    animctrl_setIndex(anim_ctrl, 0xA1);
+    animctrl_setIndex(anim_ctrl, ASSET_A1_ANIM_BSPUMPKIN_JUMP);
     func_8028774C(anim_ctrl, 0.662f);
     animctrl_setDuration(anim_ctrl, 0.7f);
     animctrl_setPlaybackType(anim_ctrl, ANIMCTRL_STOPPED);
@@ -255,7 +255,7 @@ void func_802B29C0(void) {
 }
 
 
-void func_802B2A5C(void) {
+void bspumpkin_fall_update(void) {
     s32 next_state;
     AnimCtrl *anim_ctrl;
     f32 sp1C[3];
@@ -297,14 +297,14 @@ void func_802B2A5C(void) {
     bs_setState(next_state);
 }
 
-void func_802B2BD0(void){
+void bspumpkin_fall_end(void){
     func_802B229C();
 }
 
 void func_802B2BF0(void) {
     func_8029656C(D_8037D4E8);
     func_8028FAB0(D_8037D4E8);
-    func_8028A084(0xA0, 0.8f);
+    func_8028A084(ASSET_A0_ANIM_BSPUMPKIN_WALK, 0.8f);
     func_8029C7F4(1, 1, 2, 7);
     func_80294378(6);
     func_8029E3C0(0, 0.0f);
@@ -333,7 +333,7 @@ void func_802B2D50(void) {
     baModel_setScale(1.0f);
 }
 
-void func_802B2D80(s32 arg0) {
+void __bspumpkin_bounce_init(s32 arg0) {
     AnimCtrl *anim_ctrl;
     f32 sp38;
     f32 plyr_pos[3];
@@ -341,7 +341,7 @@ void func_802B2D80(s32 arg0) {
 
     anim_ctrl = _player_getAnimCtrlPtr();
     animctrl_reset(anim_ctrl);
-    animctrl_setIndex(anim_ctrl, 0x236);
+    animctrl_setIndex(anim_ctrl, ASSET_236_ANIM_BSPUMPKIN_REBOUND);
     animctrl_setDuration(anim_ctrl, 1.3f);
     animctrl_setSubRange(anim_ctrl, 0.0f, 0.45f);
     animctrl_setPlaybackType(anim_ctrl, ANIMCTRL_ONCE);
@@ -367,7 +367,7 @@ void func_802B2D80(s32 arg0) {
     D_8037D4E0 = 0;
 }
 
-void func_802B2EE8(void) {
+void __bspumpkin_bounce_update(void) {
     s32 next_state;
 
     next_state = 0;
@@ -391,7 +391,7 @@ void func_802B2EE8(void) {
     bs_setState(next_state);
 }
 
-void func_802B2F9C(void) {
+void __bspumpkin_bounce_end(void) {
     func_80297CA8();
     gravity_reset();
     baMarker_collisionOn();
@@ -399,31 +399,31 @@ void func_802B2F9C(void) {
     func_802B229C();
 }
 
-void func_802B2FDC(void){
-    func_802B2D80(1);
+void __bspumpkin_ow_init(void){
+    __bspumpkin_bounce_init(1);
 }
 
-void func_802B2FFC(void){
-    func_802B2EE8();
+void __bspumpkin_ow_update(void){
+    __bspumpkin_bounce_update();
 }
 
-void func_802B301C(void){
-    func_802B2F9C();
+void __bspumpkin_ow_end(void){
+    __bspumpkin_bounce_end();
 }
 
-void func_802B303C(void){
-    func_802B2D80(2);
+void bspumpkin_rebound_init(void){
+    __bspumpkin_bounce_init(2);
 }
 
-void func_802B305C(void){
-    func_802B2EE8();
+void bspumpkin_rebound_update(void){
+    __bspumpkin_bounce_update();
 }
 
-void func_802B307C(void){
-    func_802B2F9C();
+void bspumpkin_rebound_end(void){
+    __bspumpkin_bounce_end();
 }
 
-void func_802B309C(void) {
+void bspumpkin_die_init(void) {
     AnimCtrl *anim_ctrl;
     f32 sp38;
     f32 plyr_pos[3];
@@ -433,7 +433,7 @@ void func_802B309C(void) {
     func_8029B930();
     animctrl_reset(anim_ctrl);
     animctrl_setSmoothTransition(anim_ctrl, 0);
-    animctrl_setIndex(anim_ctrl, 0x188);
+    animctrl_setIndex(anim_ctrl, ASSET_188_ANIM_BSPUMPKIN_DIE);
     animctrl_setSubRange(anim_ctrl, 0.0f, 0.1439f);
     animctrl_setDuration(anim_ctrl, 3.5f);
     animctrl_setPlaybackType(anim_ctrl, ANIMCTRL_ONCE);
@@ -461,7 +461,7 @@ void func_802B309C(void) {
     D_8037D4E0 = 0;
 }
 
-void func_802B3240(void){
+void bspumpkin_die_update(void){
     func_80297970(D_8037D4F4);
     func_80299628(0);
     switch(D_8037D4E0){
@@ -520,7 +520,7 @@ void func_802B3240(void){
     bs_setState(0);
 }
 
-void func_802B3448(void) {
+void bspumpkin_die_end(void) {
     func_802B229C();
     func_8024BD08(0);
     gravity_reset();

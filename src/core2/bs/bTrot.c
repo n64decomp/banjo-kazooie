@@ -210,7 +210,7 @@ enum bs_e func_802A8D84(enum bs_e arg0){
 
 void bsbtrot_enter_init(void){
     func_802A8AD8();
-    func_8028A274(0x16, 1.0f);
+    func_8028A274(ASSET_16_ANIM_BSBTROT_ENTER, 1.0f);
     func_8029C7F4(1,1,2,2);
     func_80297970(0.0f);
     func_802A8A40();
@@ -342,7 +342,7 @@ void bsbtrot_jump_init(void){
     AnimCtrl * aCtrl = _player_getAnimCtrlPtr();
 
     animctrl_reset(aCtrl);
-    animctrl_setIndex(aCtrl, ANIM_BANJO_BTROT_JUMP);
+    animctrl_setIndex(aCtrl, ASSET_27_ANIM_BSBTROR_JUMP);
     animctrl_setDuration(aCtrl, 1.4f);
     animctrl_setTransitionDuration(aCtrl, 0.1f);
     func_8028774C(aCtrl, 0.2f);
@@ -477,7 +477,7 @@ void bsbtrot_jump_end(void){
 }
 
 void bsbtrot_exit_init(void){
-    func_8028A274(7, 0.6f);
+    func_8028A274(ASSET_7_ANIM_BSBTROT_EXIT, 0.6f);
     func_80289F10(1);
     func_80297970(0.0f);
 }
@@ -497,7 +497,7 @@ void bsbtrot_exit_end(void){
 void bsbtrot_slide_init(void){
     AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     animctrl_reset(aCtrl);
-    animctrl_setIndex(aCtrl, ANIM_BANJO_BTROT_JUMP);
+    animctrl_setIndex(aCtrl, ASSET_27_ANIM_BSBTROR_JUMP);
     func_8028774C(aCtrl, 0.069f);
     animctrl_setPlaybackType(aCtrl,  ANIMCTRL_STOPPED);
     func_802875AC(aCtrl, "bsbtrot.c", 0x382);
@@ -564,7 +564,7 @@ int bsbtrot_inSet(s32 move_indx){
 void bsbtrot_fall_init(void){
     AnimCtrl * aCtrl = _player_getAnimCtrlPtr();
     animctrl_reset(aCtrl);
-    animctrl_setIndex(aCtrl, ANIM_BANJO_BTROT_JUMP);
+    animctrl_setIndex(aCtrl, ASSET_27_ANIM_BSBTROR_JUMP);
     animctrl_setDuration(aCtrl, 1.4f);
     func_8028774C(aCtrl, 0.4653f);
     animctrl_setPlaybackType(aCtrl,  ANIMCTRL_STOPPED);
@@ -706,7 +706,7 @@ void bsbtrot_ow_init(void){
 
     func_802A8A40();
     func_80298760(func_80296560());
-    func_8028A274(0x66, 1.1f);
+    func_8028A274(ASSET_66_ANIM_BSBTROT_OW, 1.1f);
     func_80299BFC(1.0f);
     _player_getPosition(sp30);
     func_80294980(sp24);

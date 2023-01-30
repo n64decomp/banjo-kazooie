@@ -29,7 +29,7 @@ void func_802AAEE0(void){
 void bscarry_idle_init(void){
     AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     animctrl_reset(aCtrl);
-    animctrl_setIndex(aCtrl, 0x72);
+    animctrl_setIndex(aCtrl, ASSET_72_ANIM_BSCARRY_IDLE);
     animctrl_setDuration(aCtrl, 1.2f);
     func_802875AC(aCtrl, "bscarry.c", 0x6f);
     func_8029C7F4(1,1,1,2);
@@ -57,7 +57,7 @@ void bscarry_idle_end(void){
 void bscarry_walk_init(void){
     AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     animctrl_reset(aCtrl);
-    animctrl_setIndex(aCtrl, 0x73);
+    animctrl_setIndex(aCtrl, ASSET_73_ANIM_BSCARRY_WALK);
     animctrl_setDuration(aCtrl, 0.8f);
     animctrl_setPlaybackType(aCtrl, ANIMCTRL_LOOP);
     func_802875AC(aCtrl, "bscarry.c", 0xac);

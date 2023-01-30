@@ -11,7 +11,7 @@ void func_802B5FD0(void) {
 
     anim_ctrl = _player_getAnimCtrlPtr();
     animctrl_reset(anim_ctrl);
-    animctrl_setIndex(anim_ctrl, 0x69);
+    animctrl_setIndex(anim_ctrl, ASSET_69_ANIM_BSSURF);
     animctrl_setDuration(anim_ctrl, 1.8f);
     animctrl_setPlaybackType(anim_ctrl, ANIMCTRL_LOOP);
     _func_802875AC(anim_ctrl, "bssurf.c", 0x33);

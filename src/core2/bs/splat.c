@@ -20,7 +20,7 @@ void func_802B4570(void) {
 
 void bssplat_init(void){
     s32 sp1C;
-    func_8028A274(0x149, 1.1f);
+    func_8028A274(ASSET_149_ANIM_BSSPLAT, 1.1f);
     func_8029C7F4(1,1,3,3);
     func_802931DC(&sp1C);
     func_803463D4(ITEM_14_HEALTH, -sp1C);

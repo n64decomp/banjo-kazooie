@@ -8,7 +8,7 @@ u8 D_8037D2E1;
 
 /* .code */
 void bseggass_init(void){
-    func_8028A274(0x2B, 1.0f);
+    func_8028A274(ASSET_2B_ANIM_BSEGGASS, 1.0f);
     func_8029C7F4(1,3,1,3);
     func_80299234(350.0f, 14.0f);
     func_80297970(0.0f);
