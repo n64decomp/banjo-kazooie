@@ -11,9 +11,9 @@ ParticleEmitter *__fxSparkle_create(s16 position[3], f32 height, enum asset_e sp
     position_f[0] = (f32)position[0];
     position_f[1] = (f32)position[1];
     position_f[2] = (f32)position[2];
-    position[1] += height;
+    position_f[1] += height;
 
-    return func_802F3E98(position, sprite_id);
+    return func_802F3E98(position_f, sprite_id);
 }
 
 void fxSparkle_emptyHoneycomb(s16 position[3]){
