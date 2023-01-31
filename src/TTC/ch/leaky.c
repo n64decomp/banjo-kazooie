@@ -6,7 +6,7 @@ extern void func_8028E668(f32 [3], f32, f32, f32);
 extern void func_8028F9DC(s32);
 extern void func_803272D0(f32 arg0[3], f32 arg1, s32 arg2, int (*arg3)(Actor *));
 
-void func_80388FBC(Actor *this);
+void chLeaky_update(Actor *this);
 
 /* .data */
 ActorAnimationInfo D_8038C700[] = {
@@ -18,13 +18,13 @@ ActorAnimationInfo D_8038C700[] = {
 ActorInfo D_8038C718 = { 
     MARKER_33_LEAKY,  ACTOR_1E_LEAKY, ASSET_51A_MODEL_LEAKY,
     0x1, D_8038C700,
-    func_80388FBC, func_80326224, func_80325888,
+    chLeaky_update, func_80326224, func_80325888,
     0, 0, 0.0f, 0
 };
 
 /* .code */
 bool TTC_func_80388F70(Actor *this){
-    return this->modelCacheIndex == 0x56;
+    return this->modelCacheIndex == ACTOR_56_SHRAPNEL;
 }
 
 void func_80388F88(void){
@@ -32,7 +32,7 @@ void func_80388F88(void){
     func_803272D0(D_8038C73C, 2000.0f, 2, TTC_func_80388F70);
 }
 
-void func_80388FBC(Actor *this) {
+void chLeaky_update(Actor *this) {
     void *temp_v0_2;
 
     func_8028E668(this->position, 100.0f, -20.0f, 100.0f);
@@ -80,7 +80,7 @@ void func_80388FBC(Actor *this) {
     }
 }
 
-void func_80389288(ActorMarker *caller, enum asset_e text_id, s32 arg2){
+void __chLeaky_startCutscene(ActorMarker *caller, enum asset_e text_id, s32 arg2){
     Actor *this = marker_getActor(caller);
     Struct73s *temp_v0;
     func_80328A84(this, 2);
@@ -98,7 +98,7 @@ void func_80389288(ActorMarker *caller, enum asset_e text_id, s32 arg2){
     func_803228D8();
 }
 
-bool func_80389364(ActorMarker *marker){
+bool chLeaky_eggCollision(ActorMarker *marker){
     Actor *this = marker_getActor(marker);
     
     if(levelSpecificFlags_get(2)) 
@@ -111,6 +111,6 @@ bool func_80389364(ActorMarker *marker){
 
     levelSpecificFlags_set(2, TRUE);
     levelSpecificFlags_set(5, TRUE);
-    func_80311480(0xa28, 0x2a, this->position, this->marker, func_80389288, NULL);
+    func_80311480(ASSET_A28_TEXT_LEAKY_DONE, 0x2a, this->position, this->marker, __chLeaky_startCutscene, NULL);
     return TRUE;
 }

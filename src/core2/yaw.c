@@ -1,136 +1,137 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "core2/yaw.h"
 
-void func_80299248(f32);
-void func_802991A8(s32);
 
-f32 D_8037C690; //yaw
-f32 D_8037C694; //yaw_ideal
-s32 D_8037C698; //yaw_update_type
+
+f32 yaw_deg; //yaw
+f32 yawIdeal_deg; //yaw_ideal
+s32 yawUpdateState; //yaw_update_type
 f32 D_8037C69C; //yaw_update2_angular_velocity
 f32 D_8037C6A0; //yaw_update3_angular_velocity_limit
 f32 D_8037C6A4; //yaw_update3_angular_velocity_percentage
 
-void func_80298D70(f32 arg0) {
-    f32 sp24;
+
+void __yaw_update_limitless(f32 arg0) {
+    f32 dYaw_deg;
     f32 sp20;
 
     arg0 *= time_getDelta();
-    sp24 = D_8037C694 - D_8037C690;
-    if (mlAbsF(sp24) > 180.0f) {
-        sp24 += (sp24 < 0.0f) ? 360.0 : -360.0;
+    dYaw_deg = yawIdeal_deg - yaw_deg;
+    if (mlAbsF(dYaw_deg) > 180.0f) {
+        dYaw_deg += (dYaw_deg < 0.0f) ? 360.0 : -360.0;
     }
 
-    sp20 = (mlAbsF(sp24) > 180.0f) ? arg0 : ((sp24 < 0.0f)? -arg0: arg0);
+    sp20 = (mlAbsF(dYaw_deg) > 180.0f) ? arg0 : ((dYaw_deg < 0.0f)? -arg0: arg0);
     
-    if(mlAbsF(sp20) <= mlAbsF(sp24))
-        D_8037C690 += sp20;
+    if(mlAbsF(sp20) <= mlAbsF(dYaw_deg))
+        yaw_deg += sp20;
     else
-        D_8037C690 = D_8037C694;
+        yaw_deg = yawIdeal_deg;
 
-    if (D_8037C690 < 360.0) {
-        if (D_8037C690 < 0.0) {
-            D_8037C690 = (f32) (D_8037C690 + 360.0);
+    if (yaw_deg < 360.0) {
+        if (yaw_deg < 0.0) {
+            yaw_deg = (f32) (yaw_deg + 360.0);
         }
     } else {
-        D_8037C690 = (f32) (D_8037C690 - 360.0);
+        yaw_deg = (f32) (yaw_deg - 360.0);
     }
 }
 
-static void func_80298F14(f32 limit, f32 step_percent){
-        f32 diff;
-        f32 val;
-        f32 tick = time_getDelta();
-        f32 max;
+static void __yaw_update_limited(f32 limit_degPerSec, f32 step_percent){
+        f32 dyaw_deg;
+        f32 val_deg;
+        f32 dt_s = time_getDelta();
+        f32 max_deg;
         
-        max = limit*tick;
-        diff = D_8037C694 - D_8037C690;
-        if(180.0f < mlAbsF(diff)){
-            diff += (diff < 0.0f)? 360.0: -360.0;
+        max_deg = limit_degPerSec*dt_s;
+        dyaw_deg = yawIdeal_deg - yaw_deg;
+        if(180.0f < mlAbsF(dyaw_deg)){
+            dyaw_deg += (dyaw_deg < 0.0f)? 360.0: -360.0;
         }
 
-        val = diff * step_percent * tick;
-        val = (val < 0) ? ml_clamp_f(val, -max, -0.1f) : ml_clamp_f(val, 0.1f, max);
+        val_deg = dyaw_deg * step_percent * dt_s;
+        val_deg = (val_deg < 0) ? ml_clamp_f(val_deg, -max_deg, -0.1f) : ml_clamp_f(val_deg, 0.1f, max_deg);
 
-        D_8037C690 =( mlAbsF(val) <= mlAbsF(diff)) ?  D_8037C690 + val : D_8037C694;
+        yaw_deg =( mlAbsF(val_deg) <= mlAbsF(dyaw_deg)) ?  yaw_deg + val_deg : yawIdeal_deg;
 
-        if(D_8037C690 < 360.0){
-            if(D_8037C690 < 0.0)
-                D_8037C690 += 360.0;
+        if(yaw_deg < 360.0){
+            if(yaw_deg < 0.0)
+                yaw_deg += 360.0;
         }
         else 
-            D_8037C690 -= 360.0;
+            yaw_deg -= 360.0;
 }
 
-void func_802990B4(void){
-    D_8037C690 = 0.0f;
-    D_8037C694 = 0.0f;
-    func_80299234(700.0f, 7.5f);
-    func_80299248(360.0f);
-    D_8037C698 = 0;
-    func_802991A8(1);
+void yaw_init(void){
+    yaw_deg = 0.0f;
+    yawIdeal_deg = 0.0f;
+    yaw_setVelocityBounded(700.0f, 7.5f);
+    yaw_setVelocityUnbounded(360.0f);
+    yawUpdateState = 0;
+    yaw_setUpdateState(YAW_STATE_1_DEFAULT);
 }
 
 void yaw_update(void){
-    switch(D_8037C698){
-        case 0:
+    switch(yawUpdateState){
+        case YAW_STATE_0_NONE:
             break;
-        case 1:
-            func_80298F14(700.0f, 7.5f);
+        case YAW_STATE_1_DEFAULT:
+            __yaw_update_limited(700.0f, 7.5f);
             break;
-        case 2:
-            func_80298D70(D_8037C69C);
+        case YAW_STATE_2_UNBOUNDED:
+            __yaw_update_limitless(D_8037C69C);
             break;
-        case 3:
-            func_80298F14(D_8037C6A0, D_8037C6A4);
+        case YAW_STATE_3_BOUNDED:
+            __yaw_update_limited(D_8037C6A0, D_8037C6A4);
             break;
     }
 }
 
-void func_802991A8(s32 arg0){
-    D_8037C698 = arg0;
+void yaw_setUpdateState(s32 arg0){
+    yawUpdateState = arg0;
 }
 
 void yaw_setIdeal(f32 arg0){
-    D_8037C694 = mlNormalizeAngle(arg0);
+    yawIdeal_deg = mlNormalizeAngle(arg0);
 }
 
 void yaw_set(f32 arg0){
-    D_8037C690 = mlNormalizeAngle(arg0);
+    yaw_deg = mlNormalizeAngle(arg0);
 }
 
 void yaw_applyIdeal(void){
-    D_8037C690 = D_8037C694;
+    yaw_deg = yawIdeal_deg;
 }
 
-s32 func_80299210(void){
-    return D_8037C698;
+s32 yaw_getUpdateState(void){
+    return yawUpdateState;
 }
 
 f32 yaw_get(void){
-    return D_8037C690;
+    return yaw_deg;
 }
 
 f32 yaw_getIdeal(void){
-    return D_8037C694;
+    return yawIdeal_deg;
 }
 
-void func_80299234(f32 arg0, f32 arg1){
+void yaw_setVelocityBounded(f32 arg0, f32 arg1){
     D_8037C6A0 = arg0;
     D_8037C6A4 = arg1;
 }
 
-void func_80299248(f32 arg0){
+void yaw_setVelocityUnbounded(f32 arg0){
     D_8037C69C = arg0;
 }
 
-void func_80299254(f32 arg0){
-    f32 diff = D_8037C694 - D_8037C690;
-    if(180.0f < mlAbsF(diff)){
-        diff += (diff < 0.0f)? 360.0: -360.0;
+void yaw_rotateTimed(f32 time_sec){
+    f32 dyaw_deg = yawIdeal_deg - yaw_deg;
+    if(180.0f < mlAbsF(dyaw_deg)){
+        dyaw_deg += (dyaw_deg < 0.0f)? 360.0: -360.0;
     }
 
-    D_8037C69C = mlAbsF(diff/arg0);
+    D_8037C69C = mlAbsF(dyaw_deg/time_sec);
 }
 

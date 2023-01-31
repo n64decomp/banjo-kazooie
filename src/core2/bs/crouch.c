@@ -57,8 +57,8 @@ void bscrouch_init(void){
     func_8028774C(aCtrl, sp24);
     func_802875AC(aCtrl, "bscrouch.c", 0xa0);
     func_80289F10(1);
-    func_802991A8(3);
-    func_80299234(350.0f, 14.0f);
+    yaw_setUpdateState(3);
+    yaw_setVelocityBounded(350.0f, 14.0f);
     func_8029957C(7);
     func_8029932C(8.0f);
     func_802978DC(3);

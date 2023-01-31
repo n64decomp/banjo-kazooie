@@ -37,11 +37,11 @@ void func_802A71D8(void) {
     if (button_held(BUTTON_R)) {
         roll_range = 45.0f;
         yaw_range = 4.3f;
-        func_80299234(250.0f, 20.0f);
+        yaw_setVelocityBounded(250.0f, 20.0f);
     } else {
         roll_range = 35.0f;
         yaw_range = ml_interpolate_f(sp38, 3.1f, 2.4f);
-        func_80299234(90.0f, ml_interpolate_f(sp38, 3.8f, 2.2f));
+        yaw_setVelocityBounded(90.0f, ml_interpolate_f(sp38, 3.8f, 2.2f));
     }
     roll_setIdeal(ml_map_f(sp30, -1.0f, 1.0f, -roll_range, roll_range));
     yaw_setIdeal(mlNormalizeAngle(yaw_getIdeal() + ml_map_f(sp30, -1.0f, 1.0f, yaw_range, -yaw_range)));
@@ -332,7 +332,7 @@ void func_802A7DAC(void) {
     ability_use(ABILITY_3_CAMERA_CONTROL);
     func_8028A180(0x3C, 1.0f);
     func_802A7140();
-    func_80299234(500.0f, 5.0f);
+    yaw_setVelocityBounded(500.0f, 5.0f);
     func_80297930(0);
     func_802A744C();
     pitch_setAngVel(200.0f, 2.5f);

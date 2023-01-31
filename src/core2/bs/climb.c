@@ -18,7 +18,7 @@ void func_802AB5C0(void){
         f2 = 0.0f; 
     }
     else{
-        f2 = func_80257D30(sp28, 0.03f, 1.0f, 100.0f, 300.0f);
+        f2 = ml_mapRange_f(sp28, 0.03f, 1.0f, 100.0f, 300.0f);
     }
     sp2C[0] = 0.0f;
     sp2C[1] = f2;
@@ -28,8 +28,8 @@ void func_802AB5C0(void){
 
 void func_802AB654(void){
     func_8029957C(6);
-    func_802991A8(3);
-    func_80299234(500.0f, 15.0f);
+    yaw_setUpdateState(3);
+    yaw_setVelocityBounded(500.0f, 15.0f);
     func_8029B324(0, 0.03f);
     func_8029B324(1, 1.0f);
     func_802978DC(0xA);

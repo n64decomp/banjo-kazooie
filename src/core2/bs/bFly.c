@@ -48,8 +48,8 @@ void func_802A3404(void){
 
 void func_802A3430(void){
     baModel_setYDisplacement(60.0f);
-    func_802991A8(3);
-    func_80299234(500.0f, 2.0f);
+    yaw_setUpdateState(3);
+    yaw_setVelocityBounded(500.0f, 2.0f);
     roll_setAngularVelocity(500.0f, 2.0f);
     func_802A33D8();
     func_80293D48(60.0f, 45.0f);
@@ -65,7 +65,7 @@ void func_802A34C8(void){
         func_8029E070(0);
         baModel_setYDisplacement(0.0f);
         func_8029CB84();
-        func_802991A8(1);
+        yaw_setUpdateState(1);
         func_80291548();
         func_80293D74();
         func_80294378(1);
@@ -80,12 +80,12 @@ void func_802A354C(void){
 
     sp2C = func_8029B2D0();
     if(button_held(BUTTON_R)){
-        func_80299234(500.0f, 30.0f);
+        yaw_setVelocityBounded(500.0f, 30.0f);
         yaw_range = 6.0f;
         roll_range = 85.0f;
     }
     else{
-        func_80299234(500.0f, 2.0f);
+        yaw_setVelocityBounded(500.0f, 2.0f);
         yaw_range = 3.0f;
         roll_range = 75.0f;
     }

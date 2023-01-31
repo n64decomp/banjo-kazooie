@@ -44,7 +44,7 @@ void bsdie_init(void){
     func_8029797C(sp38);
     func_802979AC(sp38, func_80297A64());
     func_80289F10(1);
-    func_802991A8(1);
+    yaw_setUpdateState(1);
     func_8029957C(2);
     func_802978DC(3);
     player_setYVelocity(510.0f);

@@ -1,6 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "core2/yaw.h"
 
 void baModel_80292048(s32, f32, f32, f32);
 void func_802875AC(AnimCtrl *, char *, s32);
@@ -37,8 +38,8 @@ void bsbpeck_init(void){
         func_80293240(2);
 
     func_8028A274(ASSET_1A_ANIM_BSBPECK, 0.2f);
-    func_8029C7F4(1,3,1,6);
-    func_80299234(1200.0f, 10.0f);
+    func_8029C7F4(1,YAW_STATE_3_BOUNDED, 1, 6);
+    yaw_setVelocityBounded(1200.0f, 10.0f);
     func_8029E070(1);
     gravity_set(D_80364A60);
     player_setYVelocity(D_80364A64);

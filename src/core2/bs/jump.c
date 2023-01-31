@@ -261,7 +261,7 @@ void func_802B1928(void) {
     animctrl_setPlaybackType(anim_ctrl, ANIMCTRL_ONCE);
     func_802875AC(anim_ctrl, "bsjump.c", 0x201);
     func_80289F10(1);
-    func_802991A8(1);
+    yaw_setUpdateState(1);
     func_8029957C(3);
     func_802978DC(3);
     func_8029797C(yaw_getIdeal());
@@ -342,7 +342,7 @@ void func_802B1BF4(void) {
     func_802875AC(anim_ctrl, "bsjump.c", 0x298);
     yaw_setIdeal(func_8029B41C());
     func_80289F10(1);
-    func_802991A8(1);
+    yaw_setUpdateState(1);
     func_8029957C(3);
     func_802978DC(6);
     func_80297970(0.0f);

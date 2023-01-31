@@ -12,14 +12,14 @@ f32 D_80364D44 = 300.0f;
 f32 D_80364D48 = 1.2f;
 f32 D_80364D4C = 0.7f;
 s16 D_80364D50[10] = {
-    0x57,
-    0x57,
-    0x57,
+    ASSET_57_ANIM_BSSWIM_IDLE,
+    ASSET_57_ANIM_BSSWIM_IDLE,
+    ASSET_57_ANIM_BSSWIM_IDLE,
     0x58,
-    0x57,
+    ASSET_57_ANIM_BSSWIM_IDLE,
     0x58,
-    0x57,
-    0x57,
+    ASSET_57_ANIM_BSSWIM_IDLE,
+    ASSET_57_ANIM_BSSWIM_IDLE,
     0x58,
     0x58
 };
@@ -137,7 +137,7 @@ void func_802B5774(void) {
         func_802875AC(anim_ctrl, "bsswim.c", 0xFD);
     }
     func_8029C7F4(1, 3, 3, 2);
-    func_80299234(500.0f, 5.0f);
+    yaw_setVelocityBounded(500.0f, 5.0f);
     func_80297970(0.0f);
     func_802B563C();
     D_8037D550 = 0;
@@ -207,8 +207,8 @@ void func_802B5B18(void) {
     func_80289F10(2);
     func_80289EA8(0.3f, 1.5f);
     func_80289EC8(D_80364D40, D_80364D44, D_80364D48, D_80364D4C);
-    func_802991A8(3);
-    func_80299234(500.0f, 5.0f);
+    yaw_setUpdateState(3);
+    yaw_setVelocityBounded(500.0f, 5.0f);
     func_8029957C(1);
     func_802978DC(2);
 }
@@ -279,7 +279,7 @@ void func_802B5E30(void) {
 void func_802B5E8C(void) {
     func_8028A010(0x57, 1.2f);
     func_8029C7F4(1, 3, 3, 2);
-    func_80299234(500.0f, 5.0f);
+    yaw_setVelocityBounded(500.0f, 5.0f);
     func_80297970(0.0f);
     func_802B563C();
     func_802B5E30();

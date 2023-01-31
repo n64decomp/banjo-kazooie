@@ -103,7 +103,7 @@ s32 *__baMarker_8028B750(void){
 
 void __baMarker_8028B7F4(void){
     yaw_setIdeal(func_8029B41C());
-    func_802991A8(1);
+    yaw_setUpdateState(1);
     func_8029957C(3);
     func_802978DC(2);
     func_80297970(0.0f);

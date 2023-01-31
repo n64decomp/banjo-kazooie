@@ -34,7 +34,7 @@ s32 func_802FFDE0(s32 arg0){
 
 s32 func_802FFE04(void){
     s32 v1;
-    v1 = (5 < itemPrint_getValue(ITEM_14_HEALTH)) ? 5 : itemPrint_getValue(ITEM_14_HEALTH);
+    v1 = MIN(5 , itemPrint_getValue(ITEM_14_HEALTH));
     return (5 - v1)*4;
 }
 

@@ -18,7 +18,7 @@ void bsthrow_init(void){
     func_802875AC(aCtrl, "bsthrow.c", 0x2e);
 
     func_80289F10(1);
-    func_802991A8(1);
+    yaw_setUpdateState(1);
     func_8029957C(3);
     func_802978DC(3);
     func_80297970(0.0f);

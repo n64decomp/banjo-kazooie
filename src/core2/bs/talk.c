@@ -22,7 +22,7 @@ void bstalk_init(void){
     func_80257F18(plyr_pos, target_pos, &yaw);
     yaw_setIdeal(yaw);
     func_80289F10(1);
-    func_802991A8(1);
+    yaw_setUpdateState(1);
     func_8029957C(3);
     func_802978DC(2);
     func_80297970(0.0f);

@@ -1,6 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "core2/yaw.h"
 
 f32 func_8024DDD8(f32[3], f32);
 extern void func_8024E71C(s32, f32*);
@@ -761,9 +762,9 @@ enum bs_e func_8029C780(void){
     return BS_5_JUMP;
 }
 
-void func_8029C7F4(s32 arg0, s32 arg1, s32 arg2, s32 arg3){
+void func_8029C7F4(s32 arg0, enum yaw_state_e yaw_state, s32 arg2, s32 arg3){
     func_80289F10(arg0);
-    func_802991A8(arg1);
+    yaw_setUpdateState(yaw_state);
     func_8029957C(arg2);
     func_802978DC(arg3);
 }

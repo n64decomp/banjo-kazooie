@@ -351,7 +351,7 @@ void bsbtrot_jump_init(void){
     func_802875AC(aCtrl, "bsbtrot.c", 0x272);
     func_802A8A40();
     func_80289F10(1);
-    func_802991A8(1);
+    yaw_setUpdateState(1);
     func_8029957C(3);
     func_802978DC(6);
     if(func_8029B2E8() != 0.0f)

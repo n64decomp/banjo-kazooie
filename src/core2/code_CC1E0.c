@@ -83,7 +83,7 @@ s32 func_803531C8(u8 projectile_indx, s32 arg1){
                     break;
 
                 case MARKER_33_LEAKY: //L80353350
-                    if(func_802458A8(sp40, other_marker, 0x32) && func_80389364(other_marker)){
+                    if(func_802458A8(sp40, other_marker, 0x32) && chLeaky_eggCollision(other_marker)){
                         func_8033E984();
                     }
                     break;

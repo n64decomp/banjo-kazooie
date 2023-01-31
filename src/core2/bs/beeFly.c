@@ -11,7 +11,7 @@ void func_80297970(f32);
 void baModel_setYDisplacement(f32);
 void func_80297BF8(f32);
 void func_802BFE50(f32, f32, f32);
-void func_80299234(f32, f32);
+void yaw_setVelocityBounded(f32, f32);
 f32 func_8029B2D0(void);
 f32 func_8029B2DC(void);
 f32 func_80297A64(void);
@@ -108,7 +108,7 @@ void func_802A07F8(void){
     if(bsBeeFly_inSet(bs_getPrevState()))
         return;
     baModel_setYDisplacement(65.0f);
-    func_802991A8(3);
+    yaw_setUpdateState(3);
     roll_setAngularVelocity(500.0f, 2.0f);
     func_802A0724();
     gravity_set(-300.0f);
@@ -125,12 +125,12 @@ void _bsBeeFly_updateYaw(void){
     stickX = func_8029B2D0();
     func_802BFE50(2.0f, 2000.0f, 350.0f);
     if(button_held(BUTTON_R)){
-        func_80299234(500.0f, 30.0f);
+        yaw_setVelocityBounded(500.0f, 30.0f);
         sp34 = 6.0f;
         sp30 = 85.0f;
     }
     else{
-        func_80299234(500.0f, 2.0f);
+        yaw_setVelocityBounded(500.0f, 2.0f);
         sp34 = 3.0f;
         sp30 = 65.0f;
     }

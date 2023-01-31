@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-void func_80299234(f32, f32);
+void yaw_setVelocityBounded(f32, f32);
 void func_802875AC(AnimCtrl *, char*, s32);
 
 /* .bss */
@@ -13,7 +13,7 @@ u8 D_8037D2F1;
 void bsegghead_init(void){
     func_8028A274(ASSET_2A_ANIM_BSEGGHEAD, 1.0f);
     func_8029C7F4(1,3,1,3);
-    func_80299234(350.0f, 14.0f);
+    yaw_setVelocityBounded(350.0f, 14.0f);
     func_80297970(0.0f);
     func_8029E070(1);
     D_8037D2F0 = (D_8037D2F1 = 1);

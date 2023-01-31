@@ -18,7 +18,7 @@ void bsturn_init(void){
     animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
     func_802875AC(aCtrl, "bsturn.c", 0x37);
     func_80289F10(1);
-    func_802991A8(1);
+    yaw_setUpdateState(1);
     func_8029957C(2);
     func_802978DC(3);
     _get_velocity(&sp28);

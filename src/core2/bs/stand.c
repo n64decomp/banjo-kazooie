@@ -4,7 +4,7 @@
 #include "bsint.h"
 
 extern f32 func_8029B2E8(void);
-void func_80299234(f32, f32);
+void yaw_setVelocityBounded(f32, f32);
 
 void func_802875AC(AnimCtrl *, char*, s32);
 
@@ -189,14 +189,14 @@ void bsstand_update(void) {
     anim_ctrl = _player_getAnimCtrlPtr();
     if ((func_8029B300() == 0) && (func_8029B2E8() > 0.0f)) {
         D_8037D544 = 1;
-        func_802991A8(3);
-        func_80299234(200.0f, 14.0f);
+        yaw_setUpdateState(3);
+        yaw_setVelocityBounded(200.0f, 14.0f);
     } else {
         if (D_8037D544 != 0) {
             yaw_setIdeal(yaw_get());
         }
         D_8037D544 = 0;
-        func_802991A8(1);
+        yaw_setUpdateState(1);
     }
     next_state = func_802B488C(0);
     sp18 = D_80364D20[D_8037D540];

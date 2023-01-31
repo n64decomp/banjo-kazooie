@@ -22,7 +22,7 @@ void bstwirl_init(void){
     animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
     func_802875AC(aCtrl, "bstwirl.c", 0x46);
     func_80289F10(1);
-    func_802991A8(1);
+    yaw_setUpdateState(1);
     func_8029957C(3);
     func_8029797C(yaw_getIdeal());
     func_802979AC(yaw_getIdeal(), func_80297A64());

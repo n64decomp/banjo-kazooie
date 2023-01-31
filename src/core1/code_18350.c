@@ -790,12 +790,12 @@ f32 func_80257CF8(f32 a, f32 b, f32 c, f32 d, f32 e)
     return func_80257C60(a, b, c, d, e, func_80257658);
 }
 
-f32 func_80257D30(f32 a, f32 b, f32 c, f32 d, f32 e)
+f32 ml_mapRange_f(f32 val, f32 in_min, f32 in_max, f32 out_min, f32 out_max)
 {
-    if (a < 0)
-        return ml_map_f(a, -b, -c, -d, -e);
+    if (val < 0)
+        return ml_map_f(val, -in_min, -in_max, -out_min, -out_max);
     else
-        return ml_map_f(a, b, c, d, e);
+        return ml_map_f(val, in_min, in_max, out_min, out_max);
 }
 
 void func_80257DB0(f32 arg0[3], f32 arg1[3], f32 arg2[3])

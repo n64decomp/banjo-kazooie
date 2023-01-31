@@ -73,12 +73,12 @@ void bsbflip_update(void){
     case 0://L802A2FD4
         if(animctrl_isAt(aCtrl, 0.1837f)){
             if(func_8029B2E8() != 0.0f){
-                func_802991A8(2);
+                yaw_setUpdateState(2);
                 func_8029957C(3);
                 if(func_8029B2E8){ //!!! BUG !!!
                     yaw_setIdeal(func_8029B33C());
                 }
-                func_80299254(1.0f);
+                yaw_rotateTimed(1.0f);
                 func_802978DC(6);
                 func_8029797C(yaw_getIdeal());
                 func_80297970(200.0f);
