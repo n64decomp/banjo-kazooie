@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void func_8038FEE8(void); //rbb
+extern void rbb_propellorCtrl_stop(void); //rbb
 
 typedef struct {
     u8 unk0;
@@ -46,7 +46,7 @@ void func_803216D0(enum map_e map){
         }
 
         if(D_80383300.level == LEVEL_9_RUSTY_BUCKET_BAY){
-            func_8038FF18();
+            rbb_propellorCtrl_reset();
         }
 
         switch(map){
@@ -66,7 +66,7 @@ void func_803216D0(enum map_e map){
 void func_80321854(void){
     if(!func_802E4A8C()){
         if( D_80383300.level == LEVEL_9_RUSTY_BUCKET_BAY){
-            func_8038FEE8();
+            rbb_propellorCtrl_stop();
         }
 
         if( D_80383300.level == LEVEL_1_MUMBOS_MOUNTAIN
@@ -97,6 +97,6 @@ void func_80321918(int arg0){
 
 void func_80321924(void){
     if(D_80383300.level == LEVEL_9_RUSTY_BUCKET_BAY){
-        func_8038FF70();
+        rbb_propellorCtrl_update();
     }
 }

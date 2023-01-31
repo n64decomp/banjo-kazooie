@@ -10,28 +10,28 @@ typedef struct {
     f32 unkC;
 }ActorLocal_RBB_36A0;
 
-void func_80389C78(Actor *this);
+void chPropellor_update(Actor *this);
 
 /* .data */
 ActorInfo D_803906E0 = {
     MARKER_185_MODEL_RUSTY_BUCKET_REAR_PROPELLER, ACTOR_175_MODEL_RUSTY_BUCKET_REAR_PROPELLER, ASSET_403_MODEL_RUSTY_BUCKET_REAR_PROPELLER,
     0x0, NULL,
-    func_80389C78, NULL, func_80325888,
+    chPropellor_update, NULL, func_80325888,
     0, 0, 0.0f, 0
 };
 
 s32 D_80390704[4] = {0x258, 0x12C, 0x12C, 0};
 
 /*.code */
-f32 func_80389A90(void){
+f32 __chPropellor_getSpeed(void){
     return (f32) D_80390704[2*levelSpecificFlags_get(0x27) + levelSpecificFlags_get(0x28)];
 }
 
-void func_80389ADC(Actor *this, s32 arg1){
+void __chPropellor_setState(Actor *this, s32 arg1){
     ActorLocal_RBB_36A0 * local = (ActorLocal_RBB_36A0 *)&this->local;
     if(arg1 == 1){
-        local->unkC = func_80389A90();
-        local->unk4 = func_80389A90();
+        local->unkC = __chPropellor_getSpeed();
+        local->unk4 = __chPropellor_getSpeed();
     }
     this->state = arg1;
 }
@@ -56,14 +56,14 @@ void func_80389B80(Actor *this, f32 arg1){
     }
 }
 
-void func_80389C44(Actor *actor){
+void __chPropellor_free(Actor *actor){
     ActorLocal_RBB_36A0 * local = (ActorLocal_RBB_36A0 *)&actor->local;
     if(func_802F9C0C(local->unk0))
         func_802F9D38(local->unk0);
 }
 
 
-void func_80389C78(Actor *this){ 
+void chPropellor_update(Actor *this){ 
     ActorLocal_RBB_36A0 * local = (ActorLocal_RBB_36A0 *)&this->local;
     f32 tmp;
     f32 sp34 = time_getDelta();
@@ -73,7 +73,7 @@ void func_80389C78(Actor *this){
         this->marker->propPtr->unk8_3 = 1;
         this->pitch = randf2(0.0f, 300.0f);
         func_803300C0(this->marker, func_80389B44);
-        marker_setFreeMethod(this->marker, func_80389C44);
+        marker_setFreeMethod(this->marker, __chPropellor_free);
         func_80389B80(this, 1.0f);
         if(this->unk78_13 == 0x1C){
             local->unk8 = 0;
@@ -89,7 +89,7 @@ void func_80389C78(Actor *this){
         }//L80389D7C
         local->unk4 = 0.0f;
         local->unkC = 0.0f;
-        func_80389ADC(this, 1);
+        __chPropellor_setState(this, 1);
         if(levelSpecificFlags_get(local->unk8 ? 4 : 3)){
             set_camera_to_node(9);
             func_80324E38(0.0f, 3);
@@ -108,15 +108,15 @@ void func_80389C78(Actor *this){
         || (180.0f < tmp && this->pitch <= 180.0f)
     ){
         if(levelSpecificFlags_get(3) || levelSpecificFlags_get(4))
-            func_8030E760(SFX_2_CLAW_SWIPE, 0.4f, 0x4e20);
+            func_8030E760(SFX_2_CLAW_SWIPE, 0.4f, 20000);
         else
-            func_8030E988(SFX_2_CLAW_SWIPE, 0.4f, 0x4e20, &this->position, 500.0f, 1000.0f);
+            func_8030E988(SFX_2_CLAW_SWIPE, 0.4f, 20000, &this->position, 500.0f, 1000.0f);
     }//L80389F94
     if(this->pitch < 0.0f)
         this->pitch += 360.0f;
     
     if(this->state == 1){
-        local->unk4 = func_80389A90();
+        local->unk4 = __chPropellor_getSpeed();
         if(local->unkC < local->unk4){
             local->unkC += 75*sp34;
             local->unkC = MIN(local->unk4, local->unkC);

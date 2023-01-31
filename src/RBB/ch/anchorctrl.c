@@ -3,18 +3,16 @@
 #include "variables.h"
 
 
-void func_8038C0FC(Actor *this, s32 new_state);
+void __chAnchorCtrl_setState(Actor *this, s32 new_state);
 
-void func_8038C204(Actor *this);
+void chAnchorCtrl_update(Actor *this);
 
 /* .data */
 ActorInfo RBB_D_80390B10 = {
     0x199, 0x1CB, 0x0, 0x0, NULL,
-    func_8038C204, NULL, func_80325340,
+    chAnchorCtrl_update, NULL, func_80325340,
     0, 0, 0.0f, 0
 };
-
-f32 D_80390B34[3] = {-5100.0f, -2550.0f, 1470.0f};
 
 /* .code */
 void func_8038C000(void){
@@ -29,34 +27,36 @@ void func_8038C058(void){
     func_8030E760(SFX_7F_HEAVYDOOR_SLAM, 1.0f, 0x55f0);
 }
 
-void func_8038C0A8(ActorMarker *marker, s32 arg1, s32 arg2){
+void __chAnchorCtrl_spawnJiggy(ActorMarker *marker, s32 arg1, s32 arg2){
+    static f32 D_80390B34[3] = {-5100.0f, -2550.0f, 1470.0f};
+
     Actor *actor = marker_getActor(marker);
     jiggySpawn(JIGGY_53_RBB_SNORKEL, &D_80390B34);
     timed_setCameraToNode(0.5f, 0xb);
-    func_8038C0FC(actor, 3);
+    __chAnchorCtrl_setState(actor, 3);
 }
 
-void func_8038C0FC(Actor *this, s32 new_state){
+void __chAnchorCtrl_setState(Actor *this, s32 new_state){
     if(new_state == 2){
         set_camera_to_node(0xC);
         func_80324E38(0.0f, 3);
         timedFunc_set_0(1.0f, func_8038C000);
         timedFunc_set_2(1.0f, (GenMethod_2)mapSpecificFlags_set, 8, TRUE);
-        timed_playSfx(2.1f, SFX_3F6_UNKNOWN, 0.6f, 0x7fbc);
+        timed_playSfx(2.1f, SFX_3F6_UNKNOWN, 0.6f, 32700);
         timedFunc_set_2(2.7f, (GenMethod_2)mapSpecificFlags_set, 4, TRUE);
         timedFunc_set_0(3.0f, func_8038C058);
-        func_80324DBC(3.0f, 0xb9C, 7, NULL, this->marker, func_8038C0A8, NULL);
+        func_80324DBC(3.0f, 0xb9C, 7, NULL, this->marker, __chAnchorCtrl_spawnJiggy, NULL);
     }//L8038C1D8
     this->state = new_state;
 }
 
-void func_8038C204(Actor *this){
+void chAnchorCtrl_update(Actor *this){
     if(!this->unk16C_4){
         this->unk16C_4 = 1;
         if(levelSpecificFlags_getSet(0x30, FALSE))
-            func_8038C0FC(this, 2);
+            __chAnchorCtrl_setState(this, 2);
         else
-            func_8038C0FC(this, 1);
+            __chAnchorCtrl_setState(this, 1);
         
         if(jiggyscore_isSpawned(JIGGY_53_RBB_SNORKEL))
             marker_despawn(this->marker);

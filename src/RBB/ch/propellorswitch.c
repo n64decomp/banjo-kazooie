@@ -18,8 +18,8 @@ typedef struct {
     void *unk4;
 }ActorLocal_RBB_3CB0;
 
-void func_8038A324(Actor *this);
-Actor *func_8038A224(ActorMarker *marker, Gfx **gdl, Mtx **mptr, s32 arg3);
+void chPropellorSwitch_update(Actor *this);
+Actor *chPropellorSwitch_draw(ActorMarker *marker, Gfx **gdl, Mtx **mptr, s32 arg3);
 
 /* .data */
 Struct_RBB_3CB0 D_80390720[2] = {
@@ -29,12 +29,12 @@ Struct_RBB_3CB0 D_80390720[2] = {
 
 ActorInfo D_80390738 = {
     0x186, 0x176, 0x404, 0x0, NULL,
-    func_8038A324, NULL, func_8038A224,
+    chPropellorSwitch_update, NULL, chPropellorSwitch_draw,
     0, 0, 0.0f, 0
 };
 
 /* .code */
-void RBB_func_8038A0A0(Actor *this, s32 arg1){
+void __chPropellorSwitch_setState(Actor *this, s32 arg1){
     ActorLocal_RBB_3CB0 *local = (ActorLocal_RBB_3CB0 *)&this->local;
 
     if(arg1 == 1)
@@ -61,14 +61,14 @@ void RBB_func_8038A0A0(Actor *this, s32 arg1){
 void func_8038A1C8(ActorMarker *marker, s32 arg1){
     Actor *actor = marker_getActor(marker);
     if(actor->state == 1){
-        RBB_func_8038A0A0(actor, 2);
+        __chPropellorSwitch_setState(actor, 2);
     }
     else if(actor->state == 2){
-        func_8038FF40();
+        rbb_propellorCtrl_start();
     }
 }
 
-Actor *func_8038A224(ActorMarker *marker, Gfx **gdl, Mtx **mptr, s32 arg3){
+Actor *chPropellorSwitch_draw(ActorMarker *marker, Gfx **gdl, Mtx **mptr, s32 arg3){
     Actor *actor = marker_getActor(marker);
     ActorLocal_RBB_3CB0 *local = (ActorLocal_RBB_3CB0 *)&actor->local;
 
@@ -86,17 +86,17 @@ Actor *func_8038A224(ActorMarker *marker, Gfx **gdl, Mtx **mptr, s32 arg3){
     return actor;
 }
 
-void func_8038A2F8(Actor *actor){
+void chPropellorSwitch_free(Actor *actor){
     ActorLocal_RBB_3CB0 *local = (ActorLocal_RBB_3CB0 *)&actor->local;
     if(local->unk4)
         assetcache_release(local->unk4);
 }
 
-void func_8038A324(Actor *this){
+void chPropellorSwitch_update(Actor *this){
     ActorLocal_RBB_3CB0 *local = (ActorLocal_RBB_3CB0 *)&this->local;
     if(!this->unk16C_4){
         this->marker->propPtr->unk8_3 = 1;
-        this->marker->unk30 = func_8038A2F8;
+        this->marker->unk30 = chPropellorSwitch_free;
         this->unk16C_4 = 1;
         local->unk0 = &D_80390720[((this->unk78_13 == 2) ? 0:1)];
         if(local->unk0->unk6 == 0)
@@ -108,16 +108,16 @@ void func_8038A324(Actor *this){
         this->position_y = (f32)local->unk0->unk0[1];
         this->position_z = (f32)local->unk0->unk0[2];
         if(levelSpecificFlags_get(local->unk0->unkA))
-            RBB_func_8038A0A0(this, 2);
+            __chPropellorSwitch_setState(this, 2);
         else
-            RBB_func_8038A0A0(this, 1);
+            __chPropellorSwitch_setState(this, 1);
     }//L8038A47C
     if(this->state == 2){
         if( !levelSpecificFlags_get(local->unk0->unkA)
             && !levelSpecificFlags_get(3)
             && !levelSpecificFlags_get(4)
         ){
-            RBB_func_8038A0A0(this, 1);
+            __chPropellorSwitch_setState(this, 1);
         }
     }
 }

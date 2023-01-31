@@ -65,7 +65,7 @@ Struct_RBB_47D0 *RBB_func_8038ABC0(Actor *arg0){
 
 void func_8038AC18(Actor *this, s32 new_state){
     ActorLocal_RBB_47D0 *local = (ActorLocal_RBB_47D0 *)&this->local;
-    Actor *other;
+    Actor *whistle_ctrl;
     local->unk8 = 0.0f;
     if(new_state == 2){
         func_8030E6D4(SFX_90_SWITCH_PRESS);
@@ -74,9 +74,9 @@ void func_8038AC18(Actor *this, s32 new_state){
         mapSpecificFlags_set(local->unk4->unk10, TRUE);
         this->position_y -= 30.0f;
         local->unk8 = 1.0f;
-        other = actorArray_findActorFromActorId(0x1c5);
-        if(other){
-            local->unk0 = func_8038B56C(other, this->modelCacheIndex - 0x1be, this);
+        whistle_ctrl = actorArray_findActorFromActorId(0x1c5);
+        if(whistle_ctrl){
+            local->unk0 = chWhistleCtrl_newEvent(whistle_ctrl, this->modelCacheIndex - 0x1be, this);
         }
     }//L8038ACD0
 

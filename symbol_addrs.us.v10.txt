@@ -139,6 +139,7 @@ D_8037901C                  = 0x8037901C;
 D_8037DCB0                  = 0x8037DCB0;
 print_sCurrentPtr           = 0x80380AE4;
 print_sInFontFormatMode     = 0x80380B08;
+__propellorTimer = 0x803912CC;  
 
 D_A00001D8 = 0xA00001D8;
 D_A0000238 = 0xA0000238;

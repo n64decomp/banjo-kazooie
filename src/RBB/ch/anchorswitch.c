@@ -2,17 +2,17 @@
 #include "functions.h"
 #include "variables.h"
 
-void func_8038B7E8(Actor *this);
+void chAnchorSwitch_update(Actor *this);
 
 /* .data */
 ActorInfo D_80390A80 = {
     0x2F, 0x1C7, 0x41B, 0x0, NULL,
-    func_8038B7E8, NULL, func_80325888,
+    chAnchorSwitch_update, NULL, func_80325888,
     0, 0, 0.0f, 0
 };
 
 /* .code */
-void func_8038B6E0(Actor *this, s32 arg1){
+void __chAnchorSwitch_setState(Actor *this, s32 arg1){
     if(arg1 == 2){
         if(this->state == 1){
             func_8030E6D4(SFX_90_SWITCH_PRESS);
@@ -29,19 +29,19 @@ void func_8038B6E0(Actor *this, s32 arg1){
     this->state = arg1;
 }
 
-void func_8038B7BC(ActorMarker *marker, s32 arg1){
+void __chAnchorSwitch_press(ActorMarker *marker, s32 arg1){
     Actor *actor = marker_getActor(marker);
-    func_8038B6E0(actor, 2);
+    __chAnchorSwitch_setState(actor, 2);
 }
 
-void func_8038B7E8(Actor *this){
+void chAnchorSwitch_update(Actor *this){
     if(!this->unk16C_4){
         this->unk16C_4 = 1;
         this->marker->propPtr->unk8_3 = 1;
-        marker_setCollisionScripts(this->marker, NULL, func_8038B7BC, NULL);
+        marker_setCollisionScripts(this->marker, NULL, __chAnchorSwitch_press, NULL);
         if(jiggyscore_isSpawned(JIGGY_53_RBB_SNORKEL))
-            func_8038B6E0(this, 2);
+            __chAnchorSwitch_setState(this, 2);
         else
-            func_8038B6E0(this, 1);
+            __chAnchorSwitch_setState(this, 1);
     }
 }
