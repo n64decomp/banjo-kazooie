@@ -2,26 +2,26 @@
 #include "functions.h"
 #include "variables.h"
 
-Actor *func_803868C0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
-void func_80386AA4(Actor *this);
+Actor *chRaceSled_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
+void chRaceSled_update(Actor *this);
 
 /* .data */
-ActorAnimationInfo FP_D_80391A40 []= {
+ActorAnimationInfo chRaceSledAnimations []= {
     { ASSET_1A1_ANIM_SLED, 1.0f},
     { ASSET_1A1_ANIM_SLED, 1.0f},
     { ASSET_1A1_ANIM_SLED, 1.0f},
     { ASSET_1A1_ANIM_SLED, 1.0f}
 };
 
-ActorInfo FP_D_80391A60 = { 
+ActorInfo chRaceSled = { 
     MARKER_3C_RACE_SLED, ACTOR_182_RACE_SLED, ASSET_352_MODEL_SLED, 
-    0x0, FP_D_80391A40, 
-    func_80386AA4, NULL, func_803868C0, 
+    0x0, chRaceSledAnimations, 
+    chRaceSled_update, NULL, chRaceSled_draw, 
     1000, 0, 0.0f, 0
 };
 
 /* .code */
-Actor *func_803868C0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
+Actor *chRaceSled_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     Actor *this = marker_getActor(marker);
     if(this->unk10_12 == FALSE){
         return func_80325888(marker, gfx, mtx, vtx);
@@ -29,7 +29,7 @@ Actor *func_803868C0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     return this;
 }
 
-void FP_func_80386920(Actor *this, s32 next_state){
+void __chRaceSled_setState(Actor *this, s32 next_state){
     if(this->state != 1 || next_state != 1){
         func_80328A84(this, next_state);
         switch(next_state){
@@ -49,7 +49,7 @@ void FP_func_80386920(Actor *this, s32 next_state){
     }
 }
 
-void func_803869FC(ActorMarker *this_marker, ActorMarker *other_marker){
+void __chRaceSled_touch(ActorMarker *this_marker, ActorMarker *other_marker){
     Actor *this = marker_getActor(this_marker);
     f32 plyr_pos[3];
 
@@ -60,33 +60,33 @@ void func_803869FC(ActorMarker *this_marker, ActorMarker *other_marker){
             && player_getTransformation() == TRANSFORM_4_WALRUS
             && func_8028F68C(BS_INTR_27_WALRUS_SLED, this->marker)
         ){
-            FP_func_80386920(this, 3); //start_race
+            __chRaceSled_setState(this, 3); //start_race
         }
     }
 }
 
-void func_80386AA4(Actor *this){
+void chRaceSled_update(Actor *this){
     s32 sp24;
     if(!this->initialized){
         this->initialized = TRUE;
-        marker_setCollisionScripts(this->marker, func_803869FC, NULL, NULL);
-        FP_func_80386920(this, 1);
+        marker_setCollisionScripts(this->marker, __chRaceSled_touch, NULL, NULL);
+        __chRaceSled_setState(this, 1);
     }
     
     sp24 = mapSpecificFlags_get(4);
     if(sp24 == 0){
-        FP_func_80386920(this, 1);
+        __chRaceSled_setState(this, 1);
     }
 
     switch (this->state){
     case 1://L80386B38
         if(sp24){
-            FP_func_80386920(this, 2);
+            __chRaceSled_setState(this, 2);
         }
         break;
     case 3://L80386B50
         if(func_8028ECAC() != BSGROUP_C_WALRUS_SLED){
-            FP_func_80386920(this, 2);
+            __chRaceSled_setState(this, 2);
         }
         break;
     }

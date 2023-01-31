@@ -4,7 +4,7 @@
 
 /* .bss */
 struct {
-    u8 unk0;
+    u8 state;
     f32 unk4;
 }GV_D_80391B00;
 
@@ -18,10 +18,10 @@ void func_80390880(void){
     }
 }
 
-void func_803908C4(s32 arg0){
+void __waterCtrl_setState(s32 arg0){
     void *tmp_v0;
-    GV_D_80391B00.unk0 = arg0;
-    if(GV_D_80391B00.unk0 == 2){
+    GV_D_80391B00.state = arg0;
+    if(GV_D_80391B00.state == 2){
         func_80324E38(0.0f, 3);
         timed_setCameraToNode(0.0f, 0);
         timedFunc_set_0(3.0f, func_80390880);
@@ -36,7 +36,7 @@ void func_803908C4(s32 arg0){
         }
     }
 
-    if(GV_D_80391B00.unk0 == 3){
+    if(GV_D_80391B00.state == 3){
         levelSpecificFlags_set(6, TRUE);
         func_803228D8();
         func_803204E4(0xe, 1);
@@ -44,14 +44,14 @@ void func_803908C4(s32 arg0){
     }
 }
 
-void func_803909EC(void){}
+void gv_waterCtrl_end(void){}
 
-void func_803909F4(void){
+void gv_waterCtrl_init(void){
     void *tmp_v0;
     void *tmp_v0_2;
 
 
-    GV_D_80391B00.unk0 = 0;
+    GV_D_80391B00.state = 0;
     if(map_get() != MAP_15_GV_WATER_PYRAMID) return;
 
     if(jiggyscore_isCollected(JIGGY_42_GV_WATER_PYRAMID)){
@@ -65,23 +65,23 @@ void func_803909F4(void){
     }
     else{
         GV_D_80391B00.unk4 = 0.0f;
-        func_803908C4(1);
+        __waterCtrl_setState(1);
     }
 }
 
-void func_80390A94(void){
+void gv_waterCtrl_update(void){
     f32 time_delta;
     void *tmp_v0;
 
     time_delta = time_getDelta();
 
-    if(!GV_D_80391B00.unk0) return;
+    if(GV_D_80391B00.state == 0) return;
 
-    if(GV_D_80391B00.unk0 == 1){
+    if(GV_D_80391B00.state == 1){
         if(0.0f < GV_D_80391B00.unk4){
             GV_D_80391B00.unk4 -= time_delta;
             if(GV_D_80391B00.unk4 <= 0.0f){
-                func_803908C4(2);
+                __waterCtrl_setState(2);
             }
         }
         else{
@@ -91,7 +91,7 @@ void func_80390A94(void){
         }
     }//L80390B34
 
-    if(GV_D_80391B00.unk0 == 2){
+    if(GV_D_80391B00.state == 2){
         tmp_v0 = func_8034C528(0x190);
         if(tmp_v0 && func_8034DC78(tmp_v0) == 1){
             func_8030E760(SFX_7F_HEAVYDOOR_SLAM, 0.8f, 0x7fd0);
@@ -100,6 +100,6 @@ void func_80390A94(void){
             func_8034E264(tmp_v0, 2);
         }
         if(timedFuncQueue_is_empty())
-            func_803908C4(3);
+            __waterCtrl_setState(3);
     }
 }

@@ -316,7 +316,7 @@ void func_802E4048(s32 map, s32 exit, s32 transition){
 }
 
 //take me there
-extern void func_802E4078(enum map_e map, s32 exit, s32 transition){
+void func_802E4078(enum map_e map, s32 exit, s32 transition){
     func_802E40D0(map, exit);
     func_802E40E8(transition);
     func_802E40C4(1);

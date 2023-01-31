@@ -186,21 +186,21 @@ void func_80322A94(void){
     func_8038FF60();
     func_803900F8();
     gv_matchingGame_reset(); //gv_matchingGame_reset
-    func_803909EC();
+    gv_waterCtrl_end();
 }
 
 void func_80322ACC(void){
     func_8038FF68();
     func_80390100();
     gv_matchingGame_init(); //gv_matchingGame_init
-    func_803909F4();
+    gv_waterCtrl_init();
 }
 
 void __overlay_gv_update(void){
     func_8038FFF4();
     func_80390138();
     gv_matchingGame_update(); //gv_matchingGame_update
-    func_80390A94();
+    gv_waterCtrl_update();
 }
 
 void func_80322B3C(s32 arg0, s32 arg1){ return; }
@@ -300,22 +300,22 @@ void func_80322D94(s32 arg0, s32 arg1){ return; }
 void __overlay_fp_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx){ return; }
 
 void func_80322DB0(void){
-    func_8038A888();
-    func_8038AA58();
+    fp_sirslushgame_end();
+    fp_snowmanButtonGame_end();
     func_8038B8A8();
     func_8039195C();
 }
 
 void func_80322DE8(void){
-    func_8038A7F0();
-    FP_func_8038A9C0();
+    fp_sirslushgame_init();
+    fp_snowmanButtonGame_init();
     func_8038B7A4();
     func_803918C0();
 }
 
 void __overlay_fp_update(void){
-    func_8038A890();
-    func_8038AA60();
+    fp_sirslushgame_update();
+    fp_snowmanButtonGame_update();
     func_8038B544();
     func_80391994();
 }

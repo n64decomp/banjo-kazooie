@@ -1676,7 +1676,7 @@ segments:
   - [0x1052450, c, code_6370] #DONE
   - [0x1053060, c, code_6F80] #DONE
   - [0x1053140, c, code_7060] #DONE
-  - [0x1053610, c, code_7530] #DONE
+  - [0x1053610, c, ch/histup] #DONE
   - [0x1053E30, c, code_7D50] #DONE
   - [0x1053E90, c, code_7DB0] #DONE
   - [0x10540A0, c, code_7FC0] #DONE
@@ -1686,7 +1686,7 @@ segments:
   - [0x1055C50, c, code_9B70] #DONE
   - [0x1055CF0, c, code_9C10] #DONE
   - [0x1055E90, c, matchinggame] #DONE
-  - [0x1056570, c, code_A490] #DONE
+  - [0x1056570, c, waterctrl] #DONE
   - [0x10568C0, .data, ch/toots]
   - [0x1056910, .data, ch/ancientone]
   - [0x1056970, .data, ch/gobi1]
@@ -1709,7 +1709,7 @@ segments:
   - [0x1056EE0, .data, code_6370]
   - [0x1056F50, .data, code_6F80]
   - [0x1056F80, .data, code_7060]
-  - [0x1056FD0, .data, code_7530]
+  - [0x1056FD0, .data, ch/histup]
   - [0x1057030, .data, code_7DB0]
   - [0x1057070, .data, code_7FC0]
   - [0x10570D0, .data, code_7FF0]
@@ -1729,12 +1729,12 @@ segments:
   - [0x1057530, .rodata, code_5570]
   - [0x1057580, .rodata, code_6370]
   - [0x10575E0, .rodata, code_7060]
-  - [0x1057600, .rodata, code_7530]
+  - [0x1057600, .rodata, ch/histup]
   - [0x1057630, .rodata, code_7FF0]
   - [0x1057690, .rodata, ch/mazectrl]
   - [0x10576B0, .rodata, ch/buriedpyramid]
   - [0x10576F0, .rodata, matchinggame]
-  - [0x1057700, .rodata, code_A490]
+  - [0x1057700, .rodata, waterctrl]
   - [0x1057710, .bss, bss_pad]
   - [0x1057710, .bss, ch/toots]
   - [0x1057710, .bss, ch/gobi1]
@@ -1748,7 +1748,7 @@ segments:
   - [0x1057710, .bss, code_7FF0]
   - [0x1057710, .bss, code_9C10]
   - [0x1057710, .bss, matchinggame]
-  - [0x1057710, .bss, code_A490]
+  - [0x1057710, .bss, waterctrl]
 - name: MMM
   dir: MMM
   type: code
@@ -2029,80 +2029,80 @@ segments:
   follows_vram: core2
   exclusive_ram_id: overlay
   subsegments:
-  - [0x107E030, c, code_0]       #DONE
-  - [0x107E500, c, code_4D0]   #DONE
-  - [0x107E7C0, c, code_790]   #DONE
-  - [0x107EA70, c, code_A40]   #DONE
-  - [0x107F220, c, code_11F0] #DONE
+  - [0x107E030, c, ch/scarfsled]       #DONE
+  - [0x107E500, c, ch/racesled]   #DONE
+  - [0x107E7C0, c, ch/snowmanbutton]   #DONE
+  - [0x107EA70, c, ch/xmastree]   #DONE
+  - [0x107F220, c, ch/boggy1] #DONE
   - [0x107FA10, c, code_19E0] #DONE
   - [0x1080020, c, code_1FF0] #DONE
-  - [0x1080380, c, code_2350] #DONE
-  - [0x1081E30, c, code_3E00] #DONE
-  - [0x1082430, c, code_4400] #DONE
-  - [0x1082600, c, code_45D0] #DONE
-  - [0x10827A0, c, code_4770] #DONE
-  - [0x1083CF0, c, code_5CC0] 
-  - [0x1084B10, c, code_6AE0] #DONE
-  - [0x10859B0, c, code_7980] #DONE
-  - [0x1086360, c, code_8330] #DONE
-  - [0x1086810, c, code_87E0] #DONE
-  - [0x1086D30, c, code_8D00] #DONE
-  - [0x1086E50, c, code_8E20] #DONE
+  - [0x1080380, c, ch/boggy2] #DONE
+  - [0x1081E30, c, ch/bearcub] #DONE
+  - [0x1082430, c, sirslushgame] #DONE
+  - [0x1082600, c, snowmanbuttongame] #DONE
+  - [0x10827A0, c, racectrl] #DONE
+  - [0x1083CF0, c, ch/twinkly] 
+  - [0x1084B10, c, ch/twinklybox] #DONE
+  - [0x10859B0, c, ch/twinklymuncher] #DONE
+  - [0x1086360, c, ch/xmastreeswitch] #DONE
+  - [0x1086810, c, ch/xmastreestar] #DONE
+  - [0x1086D30, c, ch/present] #DONE
+  - [0x1086E50, c, ch/wozza] #DONE
   - [0x1087B40, c, ch/wozzasjig] #DONE
-  - [0x1087ED0, c, code_9EA0] #DONE
+  - [0x1087ED0, c, ch/boggy3] #DONE
   - [0x10881F0, c, code_A1C0] #DONE
-  - [0x1088270, c, code_A240] #DONE
-  - [0x1088530, c, code_A500] #DONE
-  - [0x10888B0, c, code_A880] #DONE
+  - [0x1088270, c, ch/cavewozza] #DONE
+  - [0x1088530, c, ch/xmastreeice] #DONE
+  - [0x10888B0, c, ch/xmastreeeggtoll] #DONE
   - [0x1088C00, c, code_ABD0] #DONE
   - [0x1089500, c, code_B4D0] #DONE
-  - [0x1089630, .data, code_0]
-  - [0x1089680, .data, code_4D0]
-  - [0x10896D0, .data, code_790]
-  - [0x1089790, .data, code_A40]
-  - [0x10897C0, .data, code_11F0]
+  - [0x1089630, .data, ch/scarfsled]
+  - [0x1089680, .data, ch/racesled]
+  - [0x10896D0, .data, ch/snowmanbutton]
+  - [0x1089790, .data, ch/xmastree]
+  - [0x10897C0, .data, ch/boggy1]
   - [0x1089840, .data, code_19E0]
   - [0x1089880, .data, code_1FF0]
-  - [0x10898C0, .data, code_2350]
-  - [0x1089A30, .data, code_3E00]
-  - [0x1089AF0, .data, code_4400]
-  - [0x1089B00, .data, code_45D0]
-  - [0x1089B10, .data, code_4770]
-  - [0x1089B90, .data, code_5CC0]
-  - [0x1089D00, .data, code_6AE0]
-  - [0x1089FD0, .data, code_7980]
-  - [0x108A040, .data, code_8330]
-  - [0x108A0B0, .data, code_87E0]
-  - [0x108A0E0, .data, code_8D00]
-  - [0x108A160, .data, code_8E20]
+  - [0x10898C0, .data, ch/boggy2]
+  - [0x1089A30, .data, ch/bearcub]
+  - [0x1089AF0, .data, sirslushgame]
+  - [0x1089B00, .data, snowmanbuttongame]
+  - [0x1089B10, .data, racectrl]
+  - [0x1089B90, .data, ch/twinkly]
+  - [0x1089D00, .data, ch/twinklybox]
+  - [0x1089FD0, .data, ch/twinklymuncher]
+  - [0x108A040, .data, ch/xmastreeswitch]
+  - [0x108A0B0, .data, ch/xmastreestar]
+  - [0x108A0E0, .data, ch/present]
+  - [0x108A160, .data, ch/wozza]
   - [0x108A200, .data, ch/wozzasjig]
-  - [0x108A2C0, .data, code_9EA0]
+  - [0x108A2C0, .data, ch/boggy3]
   - [0x108A300, .data, code_A1C0]
-  - [0x108A330, .data, code_A240]
-  - [0x108A370, .data, code_A500]
-  - [0x108A480, .data, code_A880]
+  - [0x108A330, .data, ch/cavewozza]
+  - [0x108A370, .data, ch/xmastreeice]
+  - [0x108A480, .data, ch/xmastreeeggtoll]
   - [0x108A520, .data, code_ABD0]
-  - [0x108A7C0, .rodata, code_0]
-  - [0x108A7D0, .rodata, code_A40]
-  - [0x108A830, .rodata, code_11F0]
+  - [0x108A7C0, .rodata, ch/scarfsled]
+  - [0x108A7D0, .rodata, ch/xmastree]
+  - [0x108A830, .rodata, ch/boggy1]
   - [0x108A850, .rodata, code_19E0]
   - [0x108A860, .rodata, code_1FF0]
-  - [0x108A870, .rodata, code_2350]
-  - [0x108A950, .rodata, code_3E00]
-  - [0x108A970, .rodata, code_4770]
-  - [0x108A9C0, .rodata, code_5CC0]
-  - [0x108AA40, .rodata, code_6AE0]
-  - [0x108AA80, .rodata, code_7980]
-  - [0x108AAB0, .rodata, code_87E0]
-  - [0x108AAC0, .rodata, code_8E20]
+  - [0x108A870, .rodata, ch/boggy2]
+  - [0x108A950, .rodata, ch/bearcub]
+  - [0x108A970, .rodata, racectrl]
+  - [0x108A9C0, .rodata, ch/twinkly]
+  - [0x108AA40, .rodata, ch/twinklybox]
+  - [0x108AA80, .rodata, ch/twinklymuncher]
+  - [0x108AAB0, .rodata, ch/xmastreestar]
+  - [0x108AAC0, .rodata, ch/wozza]
   - [0x108AB10, .rodata, ch/wozzasjig]
-  - [0x108AB30, .rodata, code_A500]
-  - [0x108AB40, .rodata, code_A880]
+  - [0x108AB30, .rodata, ch/xmastreeice]
+  - [0x108AB40, .rodata, ch/xmastreeeggtoll]
   - [0x108AB50, .bss, bss_pad]
-  - [0x108AB50, .bss, code_2350]
-  - [0x108AB50, .bss, code_4400]
-  - [0x108AB50, .bss, code_45D0]
-  - [0x108AB50, .bss, code_4770]
+  - [0x108AB50, .bss, ch/boggy2]
+  - [0x108AB50, .bss, sirslushgame]
+  - [0x108AB50, .bss, snowmanbuttongame]
+  - [0x108AB50, .bss, racectrl]
   - [0x108AB50, .bss, bss_end_pad]
 - name: SM
   dir: SM

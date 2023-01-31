@@ -7,10 +7,10 @@
 
 extern ActorInfo D_80367FE0;
 
-extern ActorInfo FP_D_80391A10;
-extern ActorInfo FP_D_80391A60;
+extern ActorInfo chScarfSled;
+extern ActorInfo chRaceSled;
 extern ActorInfo FP_D_80391AB0;
-extern ActorInfo D_80391B50;
+extern ActorInfo chXmasTree;
 extern ActorInfo D_80391BB0;
 extern ActorInfo D_80391C18;
 extern ActorInfo D_80391C58;
@@ -168,14 +168,14 @@ void FP_func_80391324(void)
       spawnableActorList_add(&D_80391FF4, actor_new, 0X2100C);
       spawnableActorList_add(&D_803920E8, actor_new, 0X408);
       spawnableActorList_add(&D_803923D0, actor_new, 0X100006C);
-      spawnableActorList_add(&D_80391B50, actor_new, 0X20400);
+      spawnableActorList_add(&chXmasTree, actor_new, 0X20400);
       spawnableActorList_add(&D_80392420, actor_new, 4);
       spawnableActorList_add(&D_80392470, actor_new, 0X444);
       spawnableActorList_add(&D_803924B0, actor_new, 8);
       spawnableActorList_add(&D_803924D4, actor_new, 8);
       spawnableActorList_add(&D_803924F8, actor_new, 8);
-      spawnableActorList_add(&FP_D_80391A10, actor_new, 0);
-      spawnableActorList_add(&FP_D_80391A60, actor_new, 0X20);
+      spawnableActorList_add(&chScarfSled, actor_new, 0);
+      spawnableActorList_add(&chRaceSled, actor_new, 0X20);
       spawnableActorList_add(&D_80392588, actor_new, 0X80108);
       spawnableActorList_add(&D_80392628, actor_new, 0X44);
       spawnableActorList_add(&D_80392690, actor_new, 0XA8);

@@ -3802,6 +3802,7 @@ enum marker_e{
 
     MARKER_95_CHIMPY_STUMP = 0x95,
     MARKER_96_RIPPER,
+    MARKER_97_BOGGY_2,
 
     MARKER_99_TEEHEE = 0x99,
 

@@ -6,21 +6,21 @@
 f32 D_80391EB0[3] = {-625.0f, 8840.0f, -111.0f};
 /* .bss */
 struct {
-    u8  unk0;
-    s32 unk4;
-    s32 unk8;
+    u8  state;
+    s32 remaining;
+    s32 total;
     s32 unkC;
     f32 spawn_pos[3];
     u8 unk1C;
 } D_80392F30;
 
 /* .code */
-void func_8038A7F0(void){
+void fp_sirslushgame_init(void){
     if( map_get() != MAP_27_FP_FREEZEEZY_PEAK
         || jiggyscore_isCollected(JIGGY_31_FP_SIR_SLUSH)
         || jiggyscore_isSpawned(JIGGY_31_FP_SIR_SLUSH)
     ){
-        D_80392F30.unk0 = 0;
+        D_80392F30.state = 0;
         return;
     }
 
@@ -28,23 +28,23 @@ void func_8038A7F0(void){
     if(nodeProp_findPositionFromActorId(0x128, D_80392F30.spawn_pos)){
         D_80392F30.unk1C = 1;
     }
-    D_80392F30.unk0 = 1;
-    D_80392F30.unk4 = 0;
-    D_80392F30.unk8 = 0;
+    D_80392F30.state = 1;
+    D_80392F30.remaining = 0;
+    D_80392F30.total = 0;
 }
 
-void func_8038A888(void){}
+void fp_sirslushgame_end(void){}
 
-void func_8038A890(void){
-    switch(D_80392F30.unk0){
+void fp_sirslushgame_update(void){
+    switch(D_80392F30.state){
         case 0:
             break;
 
         case 1://L8038A8CC
-            if(D_80392F30.unk4)  break;
-            if(!D_80392F30.unk8) break;
+            if(D_80392F30.remaining)  break;
+            if(!D_80392F30.total) break;
 
-            D_80392F30.unk0 = 2;
+            D_80392F30.state = 2;
             D_80392F30.unkC = 0;
             break;
 
@@ -60,7 +60,7 @@ void func_8038A890(void){
                         reinterpret_cast(s32, D_80392F30.spawn_pos[2])
                     );
                 }
-                D_80392F30.unk0 = 3;
+                D_80392F30.state = 3;
             }
             else{
                 D_80392F30.unkC++;
@@ -72,11 +72,11 @@ void func_8038A890(void){
     }
 }
 
-void func_8038A978(void){
-    D_80392F30.unk4--;
+void fp_sirslushgame_decRemaining(void){
+    D_80392F30.remaining--;
 }
 
-void func_8038A990(void){
-    D_80392F30.unk8++;
-    D_80392F30.unk4++;
+void fp_sirslushgame_incTotal(void){
+    D_80392F30.total++;
+    D_80392F30.remaining++;
 }

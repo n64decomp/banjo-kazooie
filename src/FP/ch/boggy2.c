@@ -45,39 +45,10 @@ ActorAnimationInfo D_80391C80[] = {
     {0x150, 0.6f}
 };
 
-ActorInfo D_80391CE8 = { 0x97, ACTOR_C8_BOGGY_2, ASSET_38A_MODEL_BOGGY_1, 
+ActorInfo D_80391CE8 = { MARKER_97_BOGGY_2, ACTOR_C8_BOGGY_2, ASSET_38A_MODEL_BOGGY_1, 
     0x1, D_80391C80, 
     FP_func_80388F4C, func_803896FC, func_80388740, 
     0, 0, 1.4f, 0
-};
-f32 D_80391D0C[3] = {1842.0f, 658.0f, 5758.0f};
-f32 D_80391D18[3] = {1463.0f, 635.0f, 5193.0f};
-s32 D_80391D24[3] = {0xc8, 0xc8, 0xe6};
-struct31s D_80391D30 = {
-    {0.2f, 0.4f},
-    {1.2f, 1.6f},
-    {0.0f, 0.001f},
-    {0.3f, 0.45f},
-    0.0f, 0.01f
-};
-
-struct42s D_80391D58 = {
-    {{-10.0f, 10.0f, -10.0f}, {10.0f, 240.0f, 10.0f}},
-    {{0.0f, 0.0f, 0.0f}, {0.0f, 20.0f, 0.0f}}
-};
-
-f32 D_80391D88[3] = { 1592.0f, 673.0f, 5895.0f};
-f32 FP_D_80391D94[3] = {0.0f, 0.0f, 0.0f};
-s32 D_80391DA0[3] = {0x5F5, 0x292, 0x1539};
-s32 D_80391DAC[3] = {-0x11F8, 0x637, -0x1816};
-Struct_FP_2350 D_80391DB8[7]={
-    {0x361, 0x35D},
-    {0x365, 0x35D},
-    {0x362, 0x360},
-    {0x366, 0x35D},
-    {0x37B, 0x35D},
-    {0x363, 0x35F},
-    {0x364, 0x35E}
 };
 
 /* .bss */
@@ -117,6 +88,8 @@ Actor *func_80388740(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 }
 
 void FP_func_803888E4(Actor *this){
+    static f32 D_80391D0C[3] = {1842.0f, 658.0f, 5758.0f};
+    static f32 D_80391D18[3] = {1463.0f, 635.0f, 5193.0f};
     func_80328B8C(this, 0xC, 0.0001f, 1);
     if(!jiggyscore_isSpawned(JIGGY_30_FP_BOGGY_2)){
         if(mapSpecificFlags_get(5)){
@@ -255,6 +228,18 @@ void func_80388D70(ActorMarker *caller, enum asset_e text_id, s32 arg2){
 }
 
 void func_80388EE8(ParticleEmitter *pCtrl){
+    static s32 D_80391D24[3] = {0xc8, 0xc8, 0xe6};
+    static struct31s D_80391D30 = {
+        {0.2f, 0.4f},
+        {1.2f, 1.6f},
+        {0.0f, 0.001f},
+        {0.3f, 0.45f},
+        0.0f, 0.01f
+    };
+    static struct42s D_80391D58 = {
+        {{-10.0f, 10.0f, -10.0f}, {10.0f, 240.0f, 10.0f}}, /*position*/
+        {{0.0f, 0.0f, 0.0f}, {0.0f, 20.0f, 0.0f}}          /*velocity*/
+    };
     particleEmitter_setSprite(pCtrl, ASSET_700_SPRITE_DUST);
     particleEmitter_setRGB(pCtrl, D_80391D24);
     particleEmitter_setPositionAndVelocityRanges(pCtrl, &D_80391D58);
@@ -265,6 +250,8 @@ void func_80388EE8(ParticleEmitter *pCtrl){
 void FP_func_80388F4C(Actor *this){}
 
 void func_80388F54(ActorMarker *marker){
+    static f32 D_80391D88[3] = { 1592.0f, 673.0f, 5895.0f};
+    static f32 FP_D_80391D94[3] = {0.0f, 0.0f, 0.0f};
     Actor *other  = func_80328230(ACTOR_C8_BOGGY_2, D_80391D88, FP_D_80391D94);
     func_80343DEC(other);
 }
@@ -374,6 +361,17 @@ void func_803893E4(Actor *this, f32 arg1, u8 arg2){
 }
 
 void func_803895E0(void){
+    static s32 D_80391DA0[3] = {0x5F5, 0x292, 0x1539};
+    static s32 D_80391DAC[3] = {-0x11F8, 0x637, -0x1816};
+    static Struct_FP_2350 D_80391DB8[7]={
+        {0x361, 0x35D},
+        {0x365, 0x35D},
+        {0x362, 0x360},
+        {0x366, 0x35D},
+        {0x37B, 0x35D},
+        {0x363, 0x35F},
+        {0x364, 0x35E}
+    };
     int i;
     NodeProp *s0;
     f32 sp64[3];

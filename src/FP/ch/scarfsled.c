@@ -2,25 +2,25 @@
 #include "functions.h"
 #include "variables.h"
 
-void func_803867BC(Actor *this);
+void chScarfSled_update(Actor *this);
 
 /* .data */
-ActorAnimationInfo FP_D_803919F0[] ={
+ActorAnimationInfo chScarfSledAnimations[] ={
     {ASSET_1A1_ANIM_SLED, 1.0f},
     {ASSET_1A1_ANIM_SLED, 1.0f},
     {ASSET_1A1_ANIM_SLED, 1.0f},
     {ASSET_1A1_ANIM_SLED, 1.0f}
 };
 
-ActorInfo FP_D_80391A10 = {
+ActorInfo chScarfSled = {
     MARKER_3B_SCARF_SLED, ACTOR_181_SCARF_SLED, ASSET_352_MODEL_SLED,
-    0, FP_D_803919F0,
-    NULL,  func_803867BC, func_80325888,
+    0, chScarfSledAnimations,
+    NULL,  chScarfSled_update, func_80325888,
     1000, 0,  0.0f, 0
 };
 
 /* .code */
-void FP_func_803863F0(Actor *this, s32 next_state){
+void __chScarfSled_setState(Actor *this, s32 next_state){
     func_80328A84(this, next_state);
     
     if(next_state == 2){
@@ -40,17 +40,17 @@ void FP_func_803863F0(Actor *this, s32 next_state){
     }
 }
 
-void func_803864F4(ActorMarker *this_marker, ActorMarker *other_marker){
+void __chScarfSled_touch(ActorMarker *this_marker, ActorMarker *other_marker){
     Actor * this = marker_getActor(this_marker);
     
     if(this->state != 1)  return;
     if(player_getTransformation() != TRANSFORM_1_BANJO) return;
 
     if(func_8028F68C(BS_INTR_27_BANJO_SLED, this->marker))
-        FP_func_803863F0(this, 2);
+        __chScarfSled_setState(this, 2);
 }
 
-void func_8038655C(Actor *this){
+void __chScarfSled_func_8038655C(Actor *this){
     int tmp_bool;
     int tmp;
     tmp_bool = (mlAbsF(this->position_y - this->velocity_y) < 100.0f);
@@ -71,7 +71,7 @@ void func_8038655C(Actor *this){
     }
 }
 
-void func_80386630(Actor *this){
+void __chScarfSled_func_80386630(Actor *this){
     f32 sp7C[3];
     f32 sp70[3];
     f32 sp64[3];
@@ -79,7 +79,7 @@ void func_80386630(Actor *this){
 
     func_80343DEC(this);
     mapSpecificFlags_set(9, 1);
-    func_8038655C(this);
+    __chScarfSled_func_8038655C(this);
     if(this->unk138_20){
 
         this->yaw = 0.0f;
@@ -121,14 +121,14 @@ void func_80386630(Actor *this){
     }//L803867AC
 }
 
-void func_803867BC(Actor *this){
+void chScarfSled_update(Actor *this){
     if(!this->initialized){
         this->initialized = TRUE;
-        marker_setCollisionScripts(this->marker, func_803864F4, NULL, NULL);
+        marker_setCollisionScripts(this->marker, __chScarfSled_touch, NULL, NULL);
         this->marker->propPtr->unk8_3 = TRUE;
         this->unk10_12 = 0;
         ml_vec3f_clear(this->velocity);
-        FP_func_803863F0(this, 1);
+        __chScarfSled_setState(this, 1);
     }
 
     if(!this->unk16C_4){
@@ -143,6 +143,6 @@ void func_803867BC(Actor *this){
     this->velocity_y = func_80309724(this->position);
     this->velocity_z = this->position_z;
     if(this->state == 2){
-        func_80386630(this);
+        __chScarfSled_func_80386630(this);
     }
 }

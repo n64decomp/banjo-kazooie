@@ -23,97 +23,6 @@ ActorInfo D_803920E8 = { 0x204, 0x336, 0x442,
     0, 0, 0.0f, 0
 };
 
-struct31s D_8039210C = {
-    { 0.4f,  0.8f },
-    {-1.0f, -1.0f },
-    { 0.0f,  0.02f},
-    { 1.8f,  2.2f },
-    0.0f,  
-    0.7f
-};
-
-struct43s D_80392134 = {
-    {{-200.0f, 200.0f, -200.0f}, {200.0f, 400.0f, 200.0f}},
-    {{   0.0f, -800.0f,    0.0f}, {  0.0f, -800.0f,   0.0f}},
-    {{-100.0f,    0.0f, -100.0f}, {100.0f,  100.0f, 100.0f}}
-};
-
-struct31s D_8039217C = {
-    {0.8f, 1.2f },
-    {1.4f, 2.0f },
-    {0.0f, 0.01f},
-    {1.2f, 1.8f },
-    0.0f,
-    0.01f
-};
-
-s32 D_803921A4[3] = { 0xDC, 0xDC, 0xE6};
-
-struct43s D_803921B0 = {
-    {{-200.0f, 0.0f, -200.0f}, {200.0f, 200.0f, 200.0f}},
-    {{  0.0f, -10.0f,   0.0f}, { 0.0f, -10.0f,  0.0f}},
-    {{-50.0f,   0.0f, -50.0f}, {50.0f, 200.0f, 50.0f}}
-};
-
-struct31s D_803921F8 = {
-    { 0.2f,  0.3f },
-    {-1.0f, -1.0f },
-    { 0.0f,  0.02f},
-    { 2.0f,  2.5f },
-    0.0f, 0.3f
-};
-
-struct43s D_80392220 = {
-    {{-300.0f, 400.0f, -300.0f}, {300.0f, 800.0f, 300.0f}},
-    {{  0.0f, -800.0f,  0.0f}, { 0.0f, -800.0f,  0.0f}},
-    {{-80.0f,  80.0f, -80.0f}, {80.0f,   80.0f, 80.0f}}
-};
-
-struct31s D_80392268 ={
-    { 0.4f,  0.6f },
-    {-1.0f, -1.0f },
-    { 0.0f,  0.02f},
-    { 2.0f,  2.5f },
-    0.0f,
-    0.3f
-};
-
-struct43s D_80392290 = {
-    {{-300.0f, 400.0f, -300.0f}, {300.0f, 800.0f, 300.0f}},
-    {{  0.0f, -800.0f,   0.0f}, { 0.0f, -800.0f,  0.0f}},
-    {{-80.0f,   80.0f, -80.0f}, {80.0f,   80.0f, 80.0f}}
-};
-
-struct31s D_803922D8 = {
-    {0.5f, 0.7f },
-    {1.4f, 1.7f },
-    {0.0f, 0.01f},
-    {0.6f, 0.9f },
-    0.0f, 0.01f
-};
-
-s32 D_80392300[3] = { 0xDC, 0xDC, 0xE6};
-
-struct43s D_8039230C = {
-    {{-100.0f, 0.0f, -100.0f}, {100.0f, 100.0f, 100.0f}},
-    {{0.0f, -10.0f, 0.0f}, {0.0f, -10.0f, 0.0f}},
-    {{-80.0f, 0.0f, -80.0f}, {50.0f, 200.0f, 80.0f}}
-};
-
-f32 D_80392354[3] = {-4165.0f, 73.0f, 4483.0f};
-
-f32 D_80392360[3] = {-4292.0f, 73.0f, 5054.0f};
-
-enum actor_e D_8039236C[4] = {
-    ACTOR_332_TWINKLY_BLUE,
-    ACTOR_333_TWINKLY_GREEN,
-    ACTOR_334_TWINKLY_ORANGE, 
-    ACTOR_335_TWINKLY_RED,
-    
-};
-
-f32 D_8039237C[3] = {-3940.0f, 69.0f, 3570.0f};
-
 /* .code */
 Actor *FP_func_8038CED0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     Actor *this = marker_getActor(marker);
@@ -125,6 +34,19 @@ Actor *FP_func_8038CED0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 }
 
 void func_8038CF54(f32 position[3], s32 count, enum asset_e model_id){
+    static struct31s D_8039210C = {
+        { 0.4f,  0.8f },
+        {-1.0f, -1.0f },
+        { 0.0f,  0.02f},
+        { 1.8f,  2.2f },
+        0.0f,  
+        0.7f
+    };
+    static struct43s D_80392134 = {
+        {{-200.0f, 200.0f, -200.0f}, {200.0f, 400.0f, 200.0f}},
+        {{   0.0f, -800.0f,    0.0f}, {  0.0f, -800.0f,   0.0f}},
+        {{-100.0f,    0.0f, -100.0f}, {100.0f,  100.0f, 100.0f}}
+    };
     ParticleEmitter *pCtrl;
 
     pCtrl = partEmitMgr_newEmitter(count);
@@ -142,6 +64,21 @@ void func_8038CF54(f32 position[3], s32 count, enum asset_e model_id){
 }
 
 void func_8038D01C(f32 position[3], s32 count, enum asset_e sprite_id){
+    static struct31s D_8039217C = {
+        {0.8f, 1.2f },
+        {1.4f, 2.0f },
+        {0.0f, 0.01f},
+        {1.2f, 1.8f },
+        0.0f,
+        0.01f
+    };
+    static s32 D_803921A4[3] = { 0xDC, 0xDC, 0xE6};
+    static struct43s D_803921B0 = {
+        {{-200.0f, 0.0f, -200.0f}, {200.0f, 200.0f, 200.0f}},
+        {{  0.0f, -10.0f,   0.0f}, { 0.0f, -10.0f,  0.0f}},
+        {{-50.0f,   0.0f, -50.0f}, {50.0f, 200.0f, 50.0f}}
+    };
+
     ParticleEmitter *pCtrl;
 
     pCtrl = partEmitMgr_newEmitter(count);
@@ -154,6 +91,19 @@ void func_8038D01C(f32 position[3], s32 count, enum asset_e sprite_id){
 }
 
 void func_8038D0A8(f32 position[3], s32 count, enum asset_e model_id){
+    static struct31s D_803921F8 = {
+        { 0.2f,  0.3f },
+        {-1.0f, -1.0f },
+        { 0.0f,  0.02f},
+        { 2.0f,  2.5f },
+        0.0f, 0.3f
+    };
+
+    static struct43s D_80392220 = {
+        {{-300.0f, 400.0f, -300.0f}, {300.0f, 800.0f, 300.0f}},
+        {{  0.0f, -800.0f,  0.0f}, { 0.0f, -800.0f,  0.0f}},
+        {{-80.0f,  80.0f, -80.0f}, {80.0f,   80.0f, 80.0f}}
+    };
     ParticleEmitter *pCtrl;
 
     pCtrl = partEmitMgr_newEmitter(count);
@@ -171,6 +121,19 @@ void func_8038D0A8(f32 position[3], s32 count, enum asset_e model_id){
 }
 
 void func_8038D170(f32 position[3], s32 count, enum asset_e sprite_id){
+    static struct31s D_80392268 ={
+        { 0.4f,  0.6f },
+        {-1.0f, -1.0f },
+        { 0.0f,  0.02f},
+        { 2.0f,  2.5f },
+        0.0f,
+        0.3f
+    };
+    static struct43s D_80392290 = {
+        {{-300.0f, 400.0f, -300.0f}, {300.0f, 800.0f, 300.0f}},
+        {{  0.0f, -800.0f,   0.0f}, { 0.0f, -800.0f,  0.0f}},
+        {{-80.0f,   80.0f, -80.0f}, {80.0f,   80.0f, 80.0f}}
+    };
     ParticleEmitter *pCtrl;
 
     pCtrl = partEmitMgr_newEmitter(count);
@@ -184,6 +147,19 @@ void func_8038D170(f32 position[3], s32 count, enum asset_e sprite_id){
 }
 
 void func_8038D208(f32 position[3], s32 count, enum asset_e sprite_id){
+    static struct31s D_803922D8 = {
+        {0.5f, 0.7f },
+        {1.4f, 1.7f },
+        {0.0f, 0.01f},
+        {0.6f, 0.9f },
+        0.0f, 0.01f
+    };
+    static s32 D_80392300[3] = { 0xDC, 0xDC, 0xE6};
+    static struct43s D_8039230C = {
+        {{-100.0f, 0.0f, -100.0f}, {100.0f, 100.0f, 100.0f}},
+        {{0.0f, -10.0f, 0.0f}, {0.0f, -10.0f, 0.0f}},
+        {{-80.0f, 0.0f, -80.0f}, {50.0f, 200.0f, 80.0f}}
+};
     ParticleEmitter *pCtrl;
 
     pCtrl = partEmitMgr_newEmitter(count);
@@ -227,6 +203,8 @@ void func_8038D3D8(void){
 }
 
 void func_8038D41C(ActorMarker *marker){
+    static f32 D_80392354[3] = {-4165.0f, 73.0f, 4483.0f};
+    static f32 D_80392360[3] = {-4292.0f, 73.0f, 5054.0f};
     s32 pad[2];
     ActorMarker *_marker = reinterpret_cast(ActorMarker *, marker);
     Actor *actor;
@@ -239,6 +217,13 @@ void func_8038D41C(ActorMarker *marker){
 }
 
 void func_8038D474(ActorMarker *marker){
+    static enum actor_e D_8039236C[4] = {
+        ACTOR_332_TWINKLY_BLUE,
+        ACTOR_333_TWINKLY_GREEN,
+        ACTOR_334_TWINKLY_ORANGE, 
+        ACTOR_335_TWINKLY_RED,
+        
+    };
     Actor *actor  = marker_getActor(reinterpret_cast(ActorMarker*, marker));
     Actor *child;
     s32 pad;
@@ -266,6 +251,8 @@ void func_8038D51C(ActorMarker *marker){
 }
 
 void func_8038D5C8(ActorMarker *this_marker, ActorMarker *other_marker){
+    static f32 D_8039237C[3] = {-3940.0f, 69.0f, 3570.0f};
+
     Actor *this = marker_getActor(this_marker);
 
     if(this->state == 1 || this->state == 2){

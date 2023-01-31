@@ -54,7 +54,7 @@ void FP_func_80386BEC(Actor *this){
     actor_collisionOff(this);
     func_8025A6EC(COMUSIC_2B_DING_B, 28000);
     FUNC_8030E624(SFX_90_SWITCH_PRESS, 1.0f, 32000);
-    func_8038AB40();
+    fp_snowmanButtonGame_decRemaining();
     particleEmitter_setRGB(pCtrl, D_80391B44);
     particleEmitter_setSprite(pCtrl, ASSET_700_SPRITE_DUST);
     particleEmitter_setPosition(pCtrl, plyr_pos);
@@ -84,7 +84,7 @@ void FP_func_80386CF8(Actor *this){
     if(!this->unk16C_4){
         this->unk16C_4 = TRUE;
         if(this->state == 3){
-            func_8038AB40();
+            fp_snowmanButtonGame_decRemaining();
         }
     }
 

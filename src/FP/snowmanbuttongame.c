@@ -17,7 +17,7 @@ f32 D_80391EC0[3] ={-625.0f, 466.0f, -111.0f};
 Struct_FP_45D0_0 D_80392F50;
 
 /* .code */
-void FP_func_8038A9C0(void){
+void fp_snowmanButtonGame_init(void){
         if( map_get() != MAP_27_FP_FREEZEEZY_PEAK
         || jiggyscore_isCollected(JIGGY_2D_FP_SNOWMAN_BUTTONS)
         || jiggyscore_isSpawned(JIGGY_2D_FP_SNOWMAN_BUTTONS)
@@ -34,9 +34,9 @@ void FP_func_8038A9C0(void){
     D_80392F50.unk4 = 3;
 }
 
-void func_8038AA58(void){}
+void fp_snowmanButtonGame_end(void){}
 
-void func_8038AA60(void){
+void fp_snowmanButtonGame_update(void){
     switch(D_80392F50.unk0){
         case 1:
             if(D_80392F50.unk4 <= 0){
@@ -70,6 +70,6 @@ void func_8038AA60(void){
     }
 }
 
-void func_8038AB40(void){
+void fp_snowmanButtonGame_decRemaining(void){
     D_80392F50.unk4--;
 }
