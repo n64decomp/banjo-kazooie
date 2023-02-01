@@ -809,7 +809,7 @@ void func_80255A3C(void){
         func_802F542C();
 
     if(!func_802559A0()){
-        func_802576F8();
+        ml_defrag();
         func_80254464();
     }
 

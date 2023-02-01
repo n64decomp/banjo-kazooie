@@ -657,11 +657,8 @@ void func_803422AC(ActorMarker *caller, enum asset_e text_id, s32 arg2){
     jiggyscore_total();
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B9770/func_803422D4.s")
-#else
-s32 func_803422D4(Actor *arg0, Union_glspline *arg1, SplineList *arg2) {
-    s32 sp84 = 0;
+s32 func_803422D4(Actor *arg0, Union_glspline *arg1, SplineList *arg2){
+    s32 sp84;
     u8 sp83;
     f32 sp7C;
     s32 sp78;
@@ -669,18 +666,18 @@ s32 func_803422D4(Actor *arg0, Union_glspline *arg1, SplineList *arg2) {
     u32 sp70;
     s32 sp6C;
     s32 sp68;
-    s32 sp64;
+    s32 sp64 = 1;
     f32 sp60;
     f32 sp54[3];
     f32 sp50;
     f32 sp4C;
-    Struct_glspline_t1 *sp48;                                     /* compiler-managed */
+    Struct_glspline_t1 *sp48;
     Struct_glspline_t1 *temp_v0_6;
 
-    if (arg1->common.unkC.bit0) {
-        if (D_80371E80 == 1) {
-            sp84 = 1;
-        }
+    sp84 = 0;
+    if (arg1->common.unkC.bit0){
+        if(sp64 == D_80371E80) sp84 = sp64;
+
         switch (arg1->t0.unk4.common.bit3) {
             case 1:
                 func_80250530(0, arg1->t0.unk4.common.bit31, 3.0f);
@@ -693,59 +690,54 @@ s32 func_803422D4(Actor *arg0, Union_glspline *arg1, SplineList *arg2) {
 
             case 3:
                 sp78 = arg1->t0.unk4.common.bit31;
-                sp7C = arg1->t0.unk8.bit31/8.388608e6f;
-                sp74 = arg1->t0.unk4.common.bit15*8;
+                sp7C = arg1->t0.unk8.bit31 / 8.388608e6f;
+                sp74 = arg1->t0.unk4.common.bit15 * 8;
                 sp70 = arg1->t0.unk10.common.bit7;
-                if (func_8030ED70(func_80255D44(sp78))) {
+                if (func_8030ED70(func_80255D44(sp78))){
                     sp83 = func_8030D90C();
                     if (sp83 == 0){
                         return sp84;
                     }
-
                     sfxsource_setSfxId(sp83, func_80255D44(sp78));
                     func_8030DBB4(sp83, sp7C);
                     sfxsource_setSampleRate(sp83, sp74);
                     func_8030E2C4(sp83);
-                    if (D_803858A0[sp70] != 0) {
+                    if (D_803858A0[sp70] != 0){
                         func_8030DA44(D_803858A0[sp70]);
                     }
                     D_803858A0[sp70] = sp83;
-
                 } else {
                     func_8030E6A4(func_80255D44(sp78), sp7C, sp74);
                 }
                 break;
 
             case 7:
-                if(((arg1->t0.unk10.word << 0x1e) >>0x1f) == TRUE){
-                    arg0->unk124_11 = (arg1->t0.unk4.t7.bit31 == FALSE) ? 2
-                                    : (arg1->t0.unk4.t7.bit31 == TRUE)  ? 1
-                                    : 0;
-                    arg0->unk1C[0] = (arg1->t0.unk4.t7.bit30 != 0) ? (f32)((f32)arg1->t0.unk4.t7.bit30 * 0.25) 
-                                   : 0.0f;
+                if (((arg1->t0.unk10.word << 0x1e) >> 0x1f) == 1){
+                    arg0->unk124_11 = (arg1->t0.unk4.t7.bit31 == 0) ? (2) : ((sp64 == arg1->t0.unk4.t7.bit31) ? (1) : (0));
+                    arg0->unk1C[0] = (arg1->t0.unk4.t7.bit30 != 0) ? ((f32) (((f32) arg1->t0.unk4.t7.bit30) * 0.25)) : (0.0f);
                     arg0->unk1C[1] = 0.0f;
                 }
-                if (arg1->t0.unkC.bit21 == 1) {
+                if (arg1->t0.unkC.bit21 == 1){
                     func_803110F8(arg1->t0.unkC.bit20, arg1->t0.unk10.t7.bit7, arg1->t0.unk4.t7.bit15, arg1->t0.unk4.t7.bit7, func_803422AC);
                 }
-                if ((arg1->t0.unkC.bit23 == 1) || (arg1->t0.unkC.bit23 == 2)) {
+                if ((arg1->t0.unkC.bit23 == 1) || (arg1->t0.unkC.bit23 == 2)){
                     D_80371E80 = arg1->t0.unkC.bit23 - 1;
                 }
                 break;
-                
+
             case 6:
-                mapSpecificFlags_set(arg1->t0.unk4.common.bit31, TRUE);
+                mapSpecificFlags_set(arg1->t0.unk4.common.bit31, 1);
                 break;
 
             case 4:
-                if (D_803858A0[arg1->t0.unk10.common.bit7] != 0) {
+                if (D_803858A0[arg1->t0.unk10.common.bit7] != 0){
                     func_8025A7DC(func_80255D30(D_803858A0[arg1->t0.unk10.common.bit7]));
                     D_803858A0[arg1->t0.unk10.common.bit7] = 0;
                 }
                 break;
 
             case 5:
-                if (D_803858A0[arg1->t0.unk10.common.bit7] != 0) {
+                if (D_803858A0[arg1->t0.unk10.common.bit7] != 0){
                     func_8030DA44(D_803858A0[arg1->t0.unk10.common.bit7]);
                     D_803858A0[arg1->t0.unk10.common.bit7] = 0;
                 }
@@ -765,103 +757,100 @@ s32 func_803422D4(Actor *arg0, Union_glspline *arg1, SplineList *arg2) {
             arg0->position[1] = sp54[1];
             arg0->position[2] = sp54[2];
             if (sp68 != 0) {
-                if (sp50 != -9999.0f) {
+                if (sp50 != (-9999.0f)) {
                     arg0->yaw = sp50;
-                        if (arg0->marker->unk14_20 == 0x12) {
-                            arg0->yaw = (f32) func_80342244((s32) arg0->yaw);
-                        }
+                    if (arg0->marker->unk14_20 == 0x12) {
+                        arg0->yaw = (f32) func_80342244((s32) arg0->yaw);
+                    }
                     arg0->yaw_ideal = arg0->yaw;
                 }
-                if (sp4C != -9999.0f) {
+                if (sp4C != (-9999.0f)){
                     arg0->pitch = sp4C;
                     arg0->unk6C = arg0->pitch;
                 }
-                if ((sp50 != -9999.0f) || (sp4C != -9999.0f)) {
+                if ((sp50 != (-9999.0f)) || (sp4C != (-9999.0f))){
                     func_802CDAC4(arg0);
                 }
             }
-            if (sp64) {
-
-            }
+            if (sp64);
         }
-        
     } else {
-        if (D_80371E80 == 1) {
-            sp84 = 1;
+        if (sp64 == D_80371E80){
+            sp84 = sp64;
         }
-        if (arg1->t1.unk8.bit8) {
-            if (arg1->t1.unk10.bit5) {
-                arg0->unk138_3 = (arg1->t1.unkC.bit11 - 0x69);
+        if (arg1->t1.unk8.bit8){
+            if (arg1->t1.unk10.bit5){
+                arg0->unk138_3 = arg1->t1.unkC.bit11 - 0x69;
             } else {
-                arg0->unk54 = (f32)arg1->t1.unkC.bit11 / 4;
+                arg0->unk54 = ((f32) arg1->t1.unkC.bit11) / 4;
             }
         }
-        if (arg1->t1.unk8.bit10) {
-            arg0->unk5C = (f32)arg1->t1.unk8.bit21 / 4;
+        if (arg1->t1.unk8.bit10){
+            arg0->unk5C = ((f32) arg1->t1.unk8.bit21) / 4;
             arg0->unk58_31 = func_80255D58(arg1->t1.unk8.bit31);
-            if (arg0->animctrl == NULL) {
+            if (arg0->animctrl == 0) {
                 arg0->animctrl = animctrl_new(0);
                 animctrl_reset(arg0->animctrl);
             }
             animctrl_setIndex(arg0->animctrl, arg0->unk58_31);
             animctrl_setDuration(arg0->animctrl, arg0->unk5C);
             animctrl_setDirection(arg0->animctrl, 1);
-            if (arg0->animctrl != NULL) {
-                _func_802875AC(arg0->animctrl, "glspline.c"/*&D_80378FF0*/, 0x545);
+            if (arg0->animctrl != 0) {
+                _func_802875AC(arg0->animctrl, "glspline.c", 0x545);
             }
         }
-        switch (arg1->t1.unk4.bit6) {                          /* switch 2 */
-            case 1:                                     /* switch 2 */
-                arg0->unk10_4 = TRUE;
-                arg0->unk10_8 = TRUE;
-                arg0->unk10_7 = TRUE;
+        switch (arg1->t1.unk4.bit6){
+            case 1:
+                arg0->unk10_4 = 1;
+                arg0->unk10_8 = 1;
+                arg0->unk10_7 = 1;
                 break;
 
-            case 2:                                     /* switch 2 */
-                arg0->unk10_4 = FALSE;
-                arg0->unk10_8 = FALSE;
+            case 2:
+                arg0->unk10_4 = 0;
+                arg0->unk10_8 = 0;
                 break;
 
-            case 3:                                     /* switch 2 */
-                arg0->unk10_4 = FALSE;
-                arg0->unk10_8 = TRUE;
+            case 3:
+                arg0->unk10_4 = 0;
+                arg0->unk10_8 = 1;
                 break;
 
-            case 4:                                     /* switch 2 */
-                arg0->unk10_4 = FALSE;
-                arg0->unk10_7 = FALSE;
+            case 4:
+                arg0->unk10_4 = 0;
+                arg0->unk10_7 = 0;
                 break;
 
-            case 5:                                     /* switch 2 */
-                arg0->unk10_4 = FALSE;
-                arg0->unk10_7 = TRUE;
+            case 5:
+                arg0->unk10_4 = 0;
+                arg0->unk10_7 = 1;
                 break;
 
-            case 6:                                     /* switch 2 */
-                arg0->unk10_4 = FALSE;
-                arg0->unk10_8 = FALSE;
-                arg0->unk10_7 = FALSE;
+            case 6:
+                arg0->unk10_4 = 0;
+                arg0->unk10_8 = 0;
+                arg0->unk10_7 = 0;
                 break;
 
-            case 7:                                     /* switch 2 */
-                arg0->unk10_4 = FALSE;
-                arg0->unk10_8 = TRUE;
-                arg0->unk10_7 = TRUE;
+            case 7:
+                arg0->unk10_4 = 0;
+                arg0->unk10_8 = 1;
+                arg0->unk10_7 = 1;
                 break;
         }
 
-        switch (arg1->t1.unk4.bit3) {                        /* switch 3 */
-            case 2:                                     /* switch 3 */
+        switch (arg1->t1.unk4.bit3){
+            case 2:
                 arg0->unk10_6 = 0;
-                if (arg0->unk4C < 0.0f) {
+                if (arg0->unk4C < 0.0f){
                     arg0->unk4C = -arg0->unk4C;
                 } else {
                     arg0->unk4C = arg0->unk4C;
                 }
                 actor_playAnimationOnce(arg0);
-               break;
+                break;
 
-            case 3:                                     /* switch 3 */
+            case 3:
                 arg0->unk10_6 = 0;
                 if (arg0->unk4C < 0.0f) {
                     arg0->unk4C = arg0->unk4C;
@@ -871,7 +860,7 @@ s32 func_803422D4(Actor *arg0, Union_glspline *arg1, SplineList *arg2) {
                 actor_playAnimationOnce(arg0);
                 break;
 
-            case 4:                                     /* switch 3 */
+            case 4:
                 arg0->unk10_6 = 1;
                 if (arg0->unk4C < 0.0f) {
                     arg0->unk4C = -arg0->unk4C;
@@ -881,9 +870,9 @@ s32 func_803422D4(Actor *arg0, Union_glspline *arg1, SplineList *arg2) {
                 actor_loopAnimation(arg0);
                 break;
 
-            case 5:                                     /* switch 3 */
+            case 5:
                 arg0->unk10_6 = 1;
-                if (arg0->unk4C < 0.0f) {
+                if (arg0->unk4C < 0.0f){
                     arg0->unk4C = arg0->unk4C;
                 } else {
                     arg0->unk4C = -arg0->unk4C;
@@ -891,67 +880,67 @@ s32 func_803422D4(Actor *arg0, Union_glspline *arg1, SplineList *arg2) {
                 actor_loopAnimation(arg0);
                 break;
 
-            case 6:                                     /* switch 3 */
+            case 6:
                 arg0->unk10_6 = 2;
                 break;
+
         }
 
-        if (arg1->t1.unk4.bit19 != 0) {
+        if (arg1->t1.unk4.bit19 != 0){
             arg0->unk10_3 = arg1->t1.unk4.bit19;
         }
-
-        if (arg1->t1.unk10.bit6 != arg0->unk138_30) {
+        if (arg0->unk138_30 != arg1->t1.unk10.bit6){
             arg0->unk138_30 = arg1->t1.unk10.bit6;
         }
-
-        if (arg1->t1.unk8.bit9) {
-            if (!func_802E4A08() && (arg0->modelCacheIndex == ACTOR_123_MAGIC_CARPET_2)) {
-                arg0->unk4C = func_80323540(func_80342038(arg0->unk44_14), arg0->unk48, 1.0f, 500.0f) / ((f32)arg1->t1.unkC.bit22 / 4);
+        if (arg1->t1.unk8.bit9){
+            if ((!func_802E4A08()) && (arg0->modelCacheIndex == ACTOR_123_MAGIC_CARPET_2)){
+                arg0->unk4C = func_80323540(func_80342038(arg0->unk44_14), arg0->unk48, 1.0f, 500.0f) / (((f32) arg1->t1.unkC.bit22) / 4);
             } else {
                 arg0->unk4C = func_80342260(arg0->unk44_14, arg0->unk48, arg1->t1.unkC.bit22);
             }
         }
-        if (arg1->t1.unk4.bit31 != 0) {
-            sp48 = &arg2->spline[0].t1;
-            temp_v0_6 = &arg2->spline[arg2->unk0].t1;
-            while(sp48->unk10.bit31 != arg1->t1.unk4.bit31 && sp48 < temp_v0_6){
-                sp48++;
+        if (arg1->t1.unk4.bit31 != 0){
+            temp_v0_6 = arg2->unk0 + &arg2->spline[0];
+            for (sp48 = &arg2->spline[0]; (sp48->unk10.bit31 != (arg1->t1.unk4.bit31 ^ 0)) && (sp48 < temp_v0_6); sp48++){
+                ;
             }
+
             arg0->unkF4_24 = arg1->t0.unk4.common.bit31;
             arg0->unk70 = arg1->t1.unk0;
             arg0->unk74 = sp48->unk0;
-            if (arg1->t1.unk4.bit17 & 1) {
+            if (arg1->t1.unk4.bit17 & 1)
+            {
                 arg0->unk38_13 = arg1->t1.unkC.bit31;
                 arg0->unk38_21 = sp48->unkC.bit31;
                 arg0->unk78_31 = arg1->t1.unk4.bit15;
                 arg0->unk78_22 = sp48->unk4.bit15;
-                if (arg0->marker->unk14_20 == 0x12) {
+                if (arg0->marker->unk14_20 == 0x12)
+                {
                     arg0->unk38_13 = func_80342244(arg0->unk38_13);
                     arg0->unk38_21 = func_80342244(arg0->unk38_21);
                 }
-                arg0->yaw = arg0->yaw_ideal = (f32) arg0->unk38_13;
-                arg0->pitch = arg0->unk6C = (f32) arg0->unk78_31;
+                arg0->yaw = (arg0->yaw_ideal = (f32) arg0->unk38_13);
+                arg0->pitch = (arg0->unk6C = (f32) arg0->unk78_31);
             }
-            if (arg1->t1.unk4.bit17 & 2) {
+            if (arg1->t1.unk4.bit17 & 2){
                 arg0->unk140 = arg0->unk4C;
-                arg0->unk144 = func_803234FC(func_80342038(arg0->unk44_14), sp48->unk0, 1.0f) / ((f32)sp48->unkC.bit22 / 4);
+                arg0->unk144 = func_803234FC(func_80342038(arg0->unk44_14), sp48->unk0, 1.0f) / (((f32) sp48->unkC.bit22) / 4);
             }
         }
-        if (!arg0->unk10_4) {
-            if (arg0->unk10_8) {
-                arg0->yaw_ideal = (f32)arg1->t1.unkC.bit31;
-                if (arg0->marker->unk14_20 == 0x12) {
+        if (!arg0->unk10_4){
+            if (arg0->unk10_8){
+                arg0->yaw_ideal = (f32) arg1->t1.unkC.bit31;
+                if (arg0->marker->unk14_20 == 0x12){
                     arg0->yaw_ideal = (f32) func_80342244((s32) arg0->yaw_ideal);
                 }
             }
-            if (arg0->unk10_7) {
-                arg0->unk6C = (f32)arg1->t1.unk4.bit15;
+            if (arg0->unk10_7){
+                arg0->unk6C = (f32) arg1->t1.unk4.bit15;
             }
         }
     }
     return sp84;
 }
-#endif
 
 void func_803430B4(Actor *arg0) {
     f32 d_yaw;

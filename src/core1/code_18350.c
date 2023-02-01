@@ -618,13 +618,12 @@ f32 func_80257680(f32 val1, f32 val2, f32 val3)
     return tmp * tmp * (3 - tmp - tmp);
 }
 
-void func_802576F8(void)
+void ml_defrag(void)
 {
-    void *defrag(void *);
 
     if (!func_802559A0() && D_80276CB8 != NULL)
         // Updates heap location for asin/acos value table?
-        D_80276CB8 = defrag(D_80276CB8);
+        D_80276CB8 = (u16*) defrag(D_80276CB8);
 }
 
 //ml_timer_update
@@ -773,7 +772,7 @@ f32 ml_interpolate_f(f32 arg0, f32 arg1, f32 arg2)
     return arg0 * (arg2 - arg1) + arg1;
 }
 
-f32 func_80257C60(f32 a, f32 b, f32 c, f32 d, f32 e, f32 (*func)(f32))
+f32 ml_mapFunction_f(f32 a, f32 b, f32 c, f32 d, f32 e, f32 (*func)(f32))
 {
     f32 val = func(ml_map_f(a, b, c, 0.f, 1.f));
 
@@ -782,12 +781,12 @@ f32 func_80257C60(f32 a, f32 b, f32 c, f32 d, f32 e, f32 (*func)(f32))
 
 f32 func_80257CC0(f32 a, f32 b, f32 c, f32 d, f32 e)
 {
-    return func_80257C60(a, b, c, d, e, func_802575BC);
+    return ml_mapFunction_f(a, b, c, d, e, func_802575BC);
 }
 
 f32 func_80257CF8(f32 a, f32 b, f32 c, f32 d, f32 e)
 {
-    return func_80257C60(a, b, c, d, e, func_80257658);
+    return ml_mapFunction_f(a, b, c, d, e, func_80257658);
 }
 
 f32 ml_mapRange_f(f32 val, f32 in_min, f32 in_max, f32 out_min, f32 out_max)
@@ -809,7 +808,7 @@ void func_80257DB0(f32 arg0[3], f32 arg1[3], f32 arg2[3])
     ml_vec3f_diff_copy(arg0, tmp, arg0);
 }
 
-void func_80257E14(f32 v[3], f32 a)
+void ml_setLength_vec3f(f32 v[3], f32 a)
 {
     if (_SQ3(v[0], v[1], v[2]) > a * a)
     {
@@ -969,7 +968,7 @@ int func_80258424(f32 vec[3], f32 minX, f32 minY, f32 minZ, f32 maxX, f32 maxY, 
         && vec[2] > minZ && vec[2] < maxZ;
 }
 
-//ml_vec3f_inside_box
+//ml_vec3f_inside_box_vec3f
 int func_802584FC(f32 vec[3], f32 min[3], f32 max[3])
 {
     return vec[0] > min[0] && vec[0] < max[0]
