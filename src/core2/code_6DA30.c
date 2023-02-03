@@ -513,28 +513,26 @@ void *func_802F55A8(u8 arg0){
     return  print_sFonts[D_80380AE8][arg0].unk4;
 }
 
-#ifndef NONMATCHING
-f32 D_80380FA0;
-void _printbuffer_draw_letter(s32 letter, f32* xPtr, f32* yPtr, f32 arg3, Gfx **gtx, Mtx **mtx, Vtx **vtx);
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6DA30/_printbuffer_draw_letter.s")
-#else
-void _printbuffer_draw_letter(s32 letter, f32* xPtr, f32* yPtr, f32 arg3, Gfx **gfx, Mtx **mtx, Vtx **vtx){
+void _printbuffer_draw_letter(char letter, f32* xPtr, f32* yPtr, f32 arg3, Gfx **gfx, Mtx **mtx, Vtx **vtx){
+    static f32 D_80380FA0;
+    
     // u8 letter = arg0;
     BKSpriteTextureBlock *sp214;
+    s32 sp210;
     s32 sp20C;
-    f32 sp200;
-    f32 sp1F8;
-    s32 sp1F4; //font_type;
-    f32 f18;
-    f32 f28;
-    f32 f2;
-
-    int i;
     s32 t0;
     s8 t1;
+    f32 sp200;
+    f32 f28;    
+    f32 sp1F8;
+    s32 sp1F4; //font_type;
+
+    int i;
+
+
 
     t0 = 0;
-    f18 = *xPtr;
+    sp200 = *xPtr;
     f28 = *yPtr;
     t1 = 0;
 
@@ -564,9 +562,10 @@ void _printbuffer_draw_letter(s32 letter, f32* xPtr, f32* yPtr, f32 arg3, Gfx **
             }//L802F5738
             break;
         case 2: //L802F5740
+            sp20C = letter;
             if(D_80380B04){
                 t0 = 1;
-                sp20C =  sp20C + (D_80380B04 << 8) - 0x100;
+                sp20C += (D_80380B04 << 8) - 0x100;
                 D_80380B04 = 0;
             }
             else{//L802F5764
@@ -580,7 +579,7 @@ void _printbuffer_draw_letter(s32 letter, f32* xPtr, f32* yPtr, f32 arg3, Gfx **
         print_sInFontFormatMode = FALSE;
         switch(letter){
             case ' '://802F5818
-                *xPtr += arg3*((D_80380AF0) ? D_80369068[D_80380AE8]: D_80369068[D_80380AE8]*0.8);
+                *xPtr += ((D_80380AF0) ? D_80369068[D_80380AE8]: D_80369068[D_80380AE8]*0.8) * arg3;
                 break;
 
             case 'b': //L802F5890
@@ -675,96 +674,99 @@ void _printbuffer_draw_letter(s32 letter, f32* xPtr, f32* yPtr, f32 arg3, Gfx **
             case 0xff://L802F5BFC
                 D_80380B04 = 2;
                 break;
+            default:
+                break;
         }
     }
     else{//L802F5C08
-        BKSpriteTextureBlock *phi_t0_2;
-        u8 *sp210;
-        f32 phi_f0;
-
-        sp200 = *xPtr;
         sp214 = func_802F5494(sp20C, &sp1F4);
         if (D_80380B10 != 0) {
                sp200 += randf2(-2.0f, 2.0f);
                f28 += randf2(-2.0f, 2.0f);
         }
-        if (D_80380AF0 != 0) {
-            sp1F8 = (f32)D_80369068[D_80380AE8];
-        } else {
-            sp1F8 = (f32)sp214->x;
-        }
+        sp1F8 = (D_80380AF0 != 0) ? D_80369068[D_80380AE8] : sp214->x;
+
         // temp_f2 = D_80380FA0;
         // phi_f2 = temp_f2;
         if (D_80380FA0 == 0.0f) {
             D_80380FA0 = -sp1F8 * 0.5;
         }
-        sp210 = (u8*)(sp214 + 1);
+        
         sp200 += (D_80380FA0 + (sp1F8 - sp214->x) * 0.5);
         f28 -= sp214->h*0.5;
-        while((s32)sp210 % 8){
+        sp210 = (sp214 + 1);
+        while(sp210 % 8){
             sp210++;
         }
         if (sp1F4 == SPRITE_TYPE_RGBA32) { 
             gDPLoadTextureTile((*gfx)++, sp210, G_IM_FMT_RGBA, G_IM_SIZ_32b, sp214->w, sp214->h, 0, 0, sp214->x-1, sp214->y - 1, NULL, G_TX_CLAMP, G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
-        } else if (sp1F4 == SPRITE_TYPE_RGBA16) {
-            gDPLoadTextureTile((*gfx)++, sp210, G_IM_FMT_RGBA, G_IM_SIZ_16b, sp214->w, sp214->h, 0, 0, sp214->x-1, sp214->y - 1, NULL, G_TX_CLAMP, G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
-        } else if (sp1F4 == SPRITE_TYPE_CI8) {
+        } else if (sp1F4 == SPRITE_TYPE_IA8) {
+            gDPLoadTextureTile((*gfx)++, sp210, G_IM_FMT_IA, G_IM_SIZ_8b, sp214->w, sp214->h, 0, 0, sp214->x-1, sp214->y - 1, NULL, G_TX_CLAMP, G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
+        } else if (sp1F4 == SPRITE_TYPE_I8) {
             gDPLoadTextureTile((*gfx)++, sp210, G_IM_FMT_I, G_IM_SIZ_8b, sp214->w, sp214->h, 0, 0, sp214->x-1, sp214->y - 1, NULL, G_TX_CLAMP, G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
         } else if (sp1F4 == SPRITE_TYPE_I4) {
             gDPLoadTextureTile_4b((*gfx)++, sp210, G_IM_FMT_I, sp214->w, sp214->h, 0, 0, sp214->x-1, sp214->y-1, NULL, G_TX_CLAMP, G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
         } else if (sp1F4 == SPRITE_TYPE_CI8) {
-            gDPLoadTLUT_pal256((*gfx)++, func_802F55A8(sp20C));
+            void * pal = func_802F55A8(sp20C);
+            gDPLoadTLUT_pal256((*gfx)++, pal);
             gDPLoadTextureTile((*gfx)++, sp210, G_IM_FMT_CI, G_IM_SIZ_8b, sp214->w, sp214->h, 0, 0, sp214->x-1, sp214->y-1, NULL, G_TX_CLAMP, G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
-            gDPSetTextureLUT((*gfx)++, G_TT_NONE | 0x80000000);
+            gDPSetTextureLUT((*gfx)++, G_TT_RGBA16);
         }//L802F6570
         if (D_80380AF8 != 0) {
-
-            s32 temp_t1 = ((print_sCurrentPtr->unk4 - print_sCurrentPtr->y) - D_80380B0C) + 1;
-            s32 phi_a0 = MAX(MAX(temp_t1, 0), 1 - D_80380B0C);
+            s32 temp_t1;
+            s32 phi_a0;
+            temp_t1 = ((print_sCurrentPtr->unk4 - print_sCurrentPtr->y) - D_80380B0C) + 1;
+            phi_a0 =  - MAX(1 - D_80380B0C, MIN(0, temp_t1));
+            
             gDPSetTextureImage((*gfx)++, G_IM_FMT_I, G_IM_SIZ_8b, 32, &D_80380B20);
             gDPSetTile((*gfx)++, G_IM_FMT_I, G_IM_SIZ_8b, (sp214->x + 8) >> 3, 0x0100, G_TX_LOADTILE, 0, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOLOD);
             gDPLoadSync((*gfx)++);
-            gDPLoadTile((*gfx)++, G_TX_LOADTILE, 0, (0-phi_a0) << 2, (sp214->x) << 2, (D_80380B0C - 1) << 2);
+            gDPLoadTile((*gfx)++, G_TX_LOADTILE, 0 << G_TEXTURE_IMAGE_FRAC, (phi_a0) << G_TEXTURE_IMAGE_FRAC, (sp214->x) << G_TEXTURE_IMAGE_FRAC, (D_80380B0C - 1) << G_TEXTURE_IMAGE_FRAC);
             gDPPipeSync((*gfx)++);
-            gDPSetTile((*gfx)++, G_IM_FMT_I, G_IM_SIZ_8b, (sp214->x + 8) >> 3, 0x0100, G_TX_LOADTILE, 0, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOLOD);
-            gDPSetTileSize((*gfx)++, 1, 0, 0, ((sp214->x - 1) + 1) << 2, (MIN(temp_t1, 0) -phi_a0)<<2);
+            gDPSetTile((*gfx)++, G_IM_FMT_I, G_IM_SIZ_8b, ((sp214->x - 0 + 1)*G_IM_SIZ_8b_LINE_BYTES + 7) >> 3, 0x0100, 1, 0, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOLOD);
+            gDPSetTileSize((*gfx)++, 1, 0 << G_TEXTURE_IMAGE_FRAC, (MAX(0, temp_t1) + phi_a0) << G_TEXTURE_IMAGE_FRAC, (sp214->x) << G_TEXTURE_IMAGE_FRAC, (MAX(0, temp_t1) - (1 - D_80380B0C))<<G_TEXTURE_IMAGE_FRAC);
             
             // gDPLoadMultiTile((*gfx)++, &D_80380B20,)
+            
         }//L802F677C
         if (D_80380AF4 != 0) {
-            f32 spD0;
-            f32 spC0;
             f32 temp_f24;
-            f32 temp_f0_3;
+            f32 spD0;
+            f32 ix;
+            f32 iy;
+            f32 temp_f26;
+            f32 spC0;
 
-            spC0 = f28 - (framebuffer_height - 1)*0.5;
-            temp_f24 = sp214->x - 1.0;
+            temp_f24 = (sp214->x - 1.0);
             spD0 = sp214->y - 1.0;
+            temp_f26 = (f64) sp200 - (f32) framebuffer_width * 0.5;
+            spC0 = (f64)f28 - (f32)framebuffer_height*0.5 -0.5f;
             gSPVertex((*gfx)++, *vtx, 4, 0);
-            for(f28 = 0.0f; f28 < 2.0f; f28+= 1.0f){
-                for(temp_f0_3 = 0.0f; temp_f0_3 < 2.0f; temp_f0_3 += 1.0f){
-                    (*vtx)->v.ob[0] = (s16)(((f64)sp214->x*arg3*temp_f0_3 + ((f64)sp200 - framebuffer_width * 0.5)) * 4.0);
-                    (*vtx)->v.ob[1] = (s16)(((f64)spD0*arg3*f28 + ((f64)sp200 - framebuffer_width * 0.5)) * 4.0);
-                    (*vtx)->v.ob[2] = -0x14;
-                    (*vtx)->v.tc[0] = (s16)(temp_f0_3*temp_f24*64.0f);
-                    (*vtx)->v.tc[1] = (s16)(f28*spD0*64.0f);
-                    if(f28 != 0.0f){
-                        (*vtx)->v.cn[3] = print_sCurrentPtr->unk6;
+            for(iy = 0.0f; iy < 2.0; iy+= 1.0){
+                for(ix = 0.0f; ix < 2.0; ix += 1.0){
+                    s32 s = (ix * temp_f24 * 64.0f);
+                    (*vtx)->v.ob[0] = (s16)(s32)((f64) (temp_f26 + (temp_f24 *  arg3  * ix)) * 4.0);
+                    {
+                        s32 t = (iy * spD0 * 64.0f);
+                        (*vtx)->v.ob[1] = (s16) (s32) ((f64) (spC0 + (spD0 * arg3 * iy)) * -4.0);
+                        (*vtx)->v.ob[2] = -0x14;
+                        (*vtx)->v.tc[0] = s;
+                        (*vtx)->v.tc[1] = t;
                     }
-                    else{
-                        (*vtx)->v.cn[3] = print_sCurrentPtr->unk4;
-                    }
+                    (*vtx)->v.cn[3] =(iy != 0.0f) ? print_sCurrentPtr->unk6 : print_sCurrentPtr->unk4;
+                    
                     (*vtx)++;
-                }
+                }    
             }
+            
             gSP1Quadrangle((*gfx)++, 0, 1, 3, 2, 0);
-        } else {
-            gSPScisTextureRectangle((*gfx)++, sp200*4.0f, f28*4.0f, (sp214->x*arg3 + sp200)*4.0f, (sp214->x*arg3 + f28)*4.0f, 0, 0, 0, 1024.0f / arg3, 1024.0f / arg3);
+        }
+        else{
+            gSPScisTextureRectangle((*gfx)++, (s32)(sp200*4.0f), (s32)(f28*4.0f), (s32)((sp200 + sp214->x*arg3)*4.0f), (s32)((f28 + sp214->y*arg3)*4.0f), 0, 0, 0, (s32)(1024.0f / arg3), (s32)(1024.0f / arg3));
         }
         *xPtr += sp1F8 * arg3;
     }
 }
-#endif
 
 f32 func_802F6C90(u8 letter, f32* xPtr, f32 *yPtr, f32 arg3){
     s32 sp44;

@@ -148,7 +148,7 @@ typedef struct {
 } N_ALGenericEvent;
 
 typedef struct {
-    u16                 	type;
+    s16                 	type;
     union {
         ALMIDIEvent     	midi;
         ALTempoEvent    	tempo;
@@ -164,6 +164,24 @@ typedef struct {
         N_ALGenericEvent    generic;
     } msg;
 } N_ALEvent;
+
+typedef struct {
+    u16                 	type;
+    union {
+        ALMIDIEvent     	midi;
+        ALTempoEvent    	tempo;
+        ALEndEvent      	end;
+        N_ALNoteEvent     	note;
+        N_ALVolumeEvent   	vol;
+        ALSeqpLoopEvent 	loop;
+        ALSeqpVolEvent  	spvol;
+        ALSeqpPriorityEvent	sppriority;
+        ALSeqpSeqEvent		spseq;
+        ALSeqpBankEvent		spbank;
+        N_ALOscEvent      	osc;
+        N_ALGenericEvent    generic;
+    } msg;
+} N_ALEvent2;
 
 
 typedef struct {

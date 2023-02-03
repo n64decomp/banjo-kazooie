@@ -69,7 +69,7 @@ void func_80243070(Struct87s *arg0) {
 void func_8024324C(N_ALSndPlayer *arg0)
 {
   N_ALSndPlayer *new_var = (N_ALSndPlayer *)arg0;
-  N_ALEvent sp3C;
+  N_ALEvent2 sp3C;
   
   do
   {
@@ -93,7 +93,7 @@ void func_802432F8(N_ALSndPlayer *sndp, N_ALEvent *event) {
     N_AL_Struct81s *temp_s0;
     ALVoiceConfig spDC;
     N_ALSndPlayer *temp_fp;
-    N_ALEvent *var_s5;
+    N_ALEvent2 *var_s5;
     ALSound *temp_s1;
     
     N_ALEvent spC0;
@@ -112,7 +112,7 @@ void func_802432F8(N_ALSndPlayer *sndp, N_ALEvent *event) {
     u16 sp86;
     u16 sp84;
     N_AL_Struct81s *sp80;
-    N_ALEvent sp70;
+    N_ALEvent sp70; 
     s32 var_v1_4;
     s32 sp68;
     u8 clamped_pan;
@@ -339,7 +339,7 @@ void func_802432F8(N_ALSndPlayer *sndp, N_ALEvent *event) {
             default: 
                 break;
         }
-        var_v0 = var_s5->type & 0x2D1;
+        var_v0 = (u16)var_s5->type & 0x2D1;
         temp_s0 = temp_s6;
         if ((temp_s0 != NULL) && !var_v0) {
             sp94 = temp_s0->unk3F & 1;
