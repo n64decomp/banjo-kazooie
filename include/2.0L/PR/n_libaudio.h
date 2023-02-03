@@ -148,7 +148,7 @@ typedef struct {
 } N_ALGenericEvent;
 
 typedef struct {
-    s16                 	type;
+    u16                 	type;
     union {
         ALMIDIEvent     	midi;
         ALTempoEvent    	tempo;

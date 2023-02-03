@@ -217,8 +217,6 @@ s32 D_80380B18;
 s32 D_80380B1C;
 s8 D_80380B20[0x400];
 s8 D_80380F20[0x80];
-f32 D_80380FA0;
-f32 D_80380FA8[0x20];
 
 
 void func_802F7A2C(s32 arg0);
@@ -516,6 +514,7 @@ void *func_802F55A8(u8 arg0){
 }
 
 #ifndef NONMATCHING
+f32 D_80380FA0;
 void _printbuffer_draw_letter(s32 letter, f32* xPtr, f32* yPtr, f32 arg3, Gfx **gtx, Mtx **mtx, Vtx **vtx);
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_6DA30/_printbuffer_draw_letter.s")
 #else
@@ -821,6 +820,8 @@ f32 func_802F6C90(u8 letter, f32* xPtr, f32 *yPtr, f32 arg3){
 }
 
 void printbuffer_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
+    static f32 D_80380FA8[0x20];
+
     s32 j;
     f32 _x;
     f32 _y;
