@@ -7,7 +7,7 @@
  */
 // Flag set used when collecting an already-unlocked Stop 'n' Swop item in-game
 #define SNS_COLLECTED (0)
-// Flag set used when making a Stop 'n' Swop item visible and collectable in-game
+// Flag set used when making a Stop 'n' Swop item visible and collectible in-game
 #define SNS_UNLOCKED  (1)
 
 /**

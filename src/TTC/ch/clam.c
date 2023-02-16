@@ -11,9 +11,9 @@ void chClam_update(Actor *this);
 /* .data */
 ActorAnimationInfo chClamAnimations[] = {
     {0x00, 0.0f},
-    {0xAA, 2.0f},
-    {0x24, 1.0f},
-    {0xAB, 0.6f}
+    {ASSET_AA_ANIM_CLAM_IDLE, 2.0f},
+    {ASSET_24_ANIM_CLAM_HOP,  1.0f},
+    {ASSET_AB_ANIM_CLAM_EAT,  0.6f}
 };
 
 ActorInfo chClam = { 
@@ -196,7 +196,7 @@ void __chClam_emitSmallShellParticles(f32 position[3], s32 count){
     particleEmitter_emitN(pCtrl, count);
 }
 
-void __chClam_emitEatenCollectableParticles(f32 position[3], enum asset_e sprite_id, s32 count){
+void __chClam_emitEatencollectibleParticles(f32 position[3], enum asset_e sprite_id, s32 count){
     static struct31s D_8038C484 = {
     {0.2f,  0.35f},
     {0.0f,  0.0f},
@@ -282,7 +282,7 @@ void chClam_update(Actor *this){
             sp44 = sp4C->marker->unk14_20;
         }
 
-        if(sp44 == MARKER_60_BLUE_EGG_COLLECTABLE || sp44 == 0xb5){
+        if(sp44 == MARKER_60_BLUE_EGG_COLLECTIBLE || sp44 == MARKER_B5_RED_FEATHER_COLLECTIBLE){
             if(this->position_y <= sp48 + 15.0f && sp48 - 15.0f <= this->position_y){
                 this->position_y = sp48;
                 this->unk38_31 = sp44;
@@ -351,11 +351,11 @@ void chClam_update(Actor *this){
             func_8034A174(this->marker->unk44, 5, sp38);
 
             switch(this->unk38_31){
-                case MARKER_60_BLUE_EGG_COLLECTABLE:
-                    __chClam_emitEatenCollectableParticles(sp38, ASSET_718_SPRITE_SPARKLE_WHITE_2, 8);
+                case MARKER_60_BLUE_EGG_COLLECTIBLE:
+                    __chClam_emitEatencollectibleParticles(sp38, ASSET_718_SPRITE_SPARKLE_WHITE_2, 8);
                     break;
-                case MARKER_B5_RED_FEATHER_COLLECTABLE:
-                    __chClam_emitEatenCollectableParticles(sp38, ASSET_715_SPRITE_SPARKLE_RED, 8);
+                case MARKER_B5_RED_FEATHER_COLLECTIBLE:
+                    __chClam_emitEatencollectibleParticles(sp38, ASSET_715_SPRITE_SPARKLE_RED, 8);
                     break;
             }
             break;

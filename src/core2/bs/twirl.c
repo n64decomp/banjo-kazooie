@@ -16,7 +16,7 @@ void bstwirl_init(void){
     AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     animctrl_reset(aCtrl);
     animctrl_setSmoothTransition(aCtrl, 0);
-    animctrl_setIndex(aCtrl, ANIM_BANJO_ROLL);
+    animctrl_setIndex(aCtrl, ASSET_4F_ANIM_BSTWIRL);
     animctrl_setDuration(aCtrl, 0.9f);
     animctrl_setSubRange(aCtrl, 0.0f, 1.0f);
     animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);

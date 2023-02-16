@@ -8,7 +8,7 @@ f32 func_8029B41C(void);
 void func_802BF2C0(f32);
 
 void func_802B6270(void){
-    func_8028A180(0x77, 3.2f);
+    func_8028A180(ASSET_77_ANIM_BSTIMEOUT, 3.2f);
     func_8029C7F4(1,1,3,2);
     func_80297970(0.0f);
     func_802914CC(0xd);

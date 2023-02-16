@@ -332,7 +332,7 @@ void bsdronexform_init(void){
     func_80294378(6);
     func_802AFB0C();
     func_802B016C();
-    D_8037D470.player_transformation = _player_getTransformation();
+    D_8037D470.player_transformation = bsStoredState_getTransformation();
     D_8037D470.room_transformation = func_80294A4C();
     miscflag_set(MISC_FLAG_1B_TRANSFORMING);
     D_8037D470.state = 0;

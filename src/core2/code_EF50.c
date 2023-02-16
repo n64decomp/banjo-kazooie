@@ -4,7 +4,7 @@
 
 extern void func_80256E24(f32[3], f32, f32, f32, f32, f32);
 extern f32 func_8028EBA4(void);
-extern void func_802C82C0(Actor *, s32);
+extern void chJigsawDance_setState(Actor *, s32);
 extern void bsjig_setJiggyMarkerPtr(ActorMarker *);
 
 typedef struct{
@@ -65,8 +65,8 @@ enum bs_e func_80295EE0(enum bs_e arg0){
         }
         else{
             ml_vec3f_to_vec3h(sp20, D_8037C3E0.unk8);
-            sp1C = func_803282AC(ACTOR_5A_JIGGY_IN_HAND, sp20, 0);
-            func_802C82C0(sp1C, 3);
+            sp1C = func_803282AC(ACTOR_5A_JIGSAW_DANCE, sp20, 0);
+            chJigsawDance_setState(sp1C, 3);
             bsjig_setJiggyMarkerPtr(sp1C->marker);
             sp1C->unk38_31 = D_8037C3E0.unk18;
             arg0 = func_8029B504();
@@ -76,7 +76,7 @@ enum bs_e func_80295EE0(enum bs_e arg0){
 }
 
 enum bs_e __get_rebound_state_id(void){
-    switch(_player_getTransformation()){
+    switch(bsStoredState_getTransformation()){
         case TRANSFORM_3_PUMPKIN:// L8029606C
             return BS_PUMPKIN_BOUNCE;
         case TRANSFORM_2_TERMITE:// L80296074
@@ -158,7 +158,7 @@ enum bs_e func_802962BC(u32 arg0){
 
     sp24 =  item_getCount(ITEM_14_HEALTH);
     sp1C = arg0 < 1 && sp24 != 0;
-    switch(_player_getTransformation()){
+    switch(bsStoredState_getTransformation()){
         case TRANSFORM_2_TERMITE: //L80296314
             if(sp1C)
                 return BS_3E_ANT_OW;

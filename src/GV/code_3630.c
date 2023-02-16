@@ -7,11 +7,11 @@ void func_80389B1C(Actor *this);
 /* .data */
 ActorAnimationInfo D_80390EA0[] = {
     {0x00, 0.0f},
-    {0xDF, 4.5f},
-    {0xE3, 2.0f},
-    {0xE4, 1.95f},
-    {0xCE, 2.4f},
-    {0xDF, 4.5f}
+    {ASSET_DF_ANIM_RUBEE_PET_TOOTS, 4.5f},
+    {ASSET_E3_ANIM_RUBEE_IDLE, 2.0f},
+    {ASSET_E4_ANIM_RUBEE_PLAY, 1.95f},
+    {ASSET_CE_ANIM_RUBEE_STOP_PLAYING, 2.4f},
+    {ASSET_DF_ANIM_RUBEE_PET_TOOTS, 4.5f}
 };
 
 ActorInfo D_80390ED0 = { MARKER_A9_RUBEE, ACTOR_11B_RUBEE, ASSET_3DD_MODEL_RUBEE, 

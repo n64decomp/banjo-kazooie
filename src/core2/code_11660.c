@@ -7,7 +7,7 @@ void *D_8037C5D0;
 
 /* .code */
 s32 func_802985F0(void){
-    switch(_player_getTransformation())
+    switch(bsStoredState_getTransformation())
     {
         case TRANSFORM_2_TERMITE: //80298624
             return ASSET_34F_MODEL_BANJO_TERMITE;
@@ -41,7 +41,7 @@ s32 func_802985F0(void){
                 case MAP_88_CS_SPIRAL_MOUNTAIN_6:
                 case MAP_89_CS_INTRO_BANJOS_HOUSE_2:
                 case MAP_8A_CS_INTRO_BANJOS_HOUSE_3:
-                    return 0x34d;
+                    return ASSET_34D_MODEL_BANJOKAZOOIE_LOW_POLY;
 
                 case MAP_1_SM_SPIRAL_MOUNTAIN:
                 case MAP_2_MM_MUMBOS_MOUNTAIN:
@@ -58,10 +58,10 @@ s32 func_802985F0(void){
                 case MAP_45_CCW_AUTUMN:
                 case MAP_46_CCW_WINTER:
                 case 0x56:
-                    return 0x34d;
+                    return ASSET_34D_MODEL_BANJOKAZOOIE_LOW_POLY;
                     
                 default:
-                    return 0x34e;
+                    return ASSET_34E_MODEL_BANJOKAZOOIE_HIGH_POLY;
             }
         }
     }

@@ -1449,7 +1449,7 @@ void func_8031FB6C(s32 arg0, s32 arg1) {
 }
 
 void func_8031FBA0(void) {
-    func_8029A8B0();
+    bsStoredState_clear();
     func_8031FFAC();
     func_8034646C();
     jiggyscore_clearAll();

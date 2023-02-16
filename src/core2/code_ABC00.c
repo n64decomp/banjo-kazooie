@@ -244,7 +244,7 @@ void jiggySpawn(enum jiggy_e jiggy_id, f32 pos[3]) {
         temp_v0->unk10.position[2] = pos[2];
         temp_v0->unk0(&temp_v0->unk10);
         jiggyscore_setSpawned(jiggy_id, TRUE);
-        if (!jiggyscore_isCollected(jiggy_id) && (jiggy_id != 0x3E) && (jiggy_id != 0xB)) {
+        if (!jiggyscore_isCollected(jiggy_id) && (jiggy_id != JIGGY_3E_GV_GRABBA) && (jiggy_id != JIGGY_0B_TTC_JINJO)) {
             func_8024BD08(0);
             func_8025A55C(0, 4000, 5);
             func_8025A6EC(COMUSIC_3D_JIGGY_SPAWN, 0x7FFF);

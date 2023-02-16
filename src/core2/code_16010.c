@@ -2,6 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "core2/statetimer.h"
+
 extern int func_80258424(f32 vec[3], f32 minX, f32 minY, f32 minZ, f32 maxX, f32 maxY, f32 maxZ);
 
 /* .bss */
@@ -220,8 +222,8 @@ bool func_8029D7B4(void){
         case MAP_7F_FP_WOZZAS_CAVE://L8029D84C
         case MAP_8E_GL_FURNACE_FUN://L8029D84C
             return func_8029D66C() 
-                && _player_getTransformation() == TRANSFORM_1_BANJO
-                && func_802916CC(2)
+                && bsStoredState_getTransformation() == TRANSFORM_1_BANJO
+                && stateTimer_isDone(STATE_TIMER_2_LONGLEG)
                 && func_8028ECAC() != BSGROUP_3_WONDERWING
                 && func_8028ECAC() != BSGROUP_9_LONG_LEG
                 && miscflag_isFalse(MISC_FLAG_E_TOUCHING_WADING_BOOTS)

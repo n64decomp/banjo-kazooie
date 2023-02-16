@@ -124,7 +124,7 @@ void func_8038AFF4(ActorMarker *this_marker, ActorMarker *other_marker){
     Actor *this = marker_getActor(this_marker);
     func_8032B4DC(this, other_marker, 0xC);
     actor_collisionOff(this);
-    func_80328B8C(this, ASSET_9_ANIM_BANJO_DIE, 0.00001f, 1);
+    func_80328B8C(this, ASSET_9_ANIM_BSDIE, 0.00001f, 1);
     actor_playAnimationOnce(this);
     this->unk1C[0] = 0.0f;
     func_8030E878(SFX_D7_GRABBA_DEATH, 1.0f, 32000, this->position, 2250.0f, 4500.0f);

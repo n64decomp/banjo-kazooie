@@ -57,7 +57,7 @@ void bsbbuster_init(void){
     
     animctrl_reset(aCtrl);
     animctrl_setSmoothTransition(aCtrl, 0);
-    animctrl_setIndex(aCtrl, ANIM_BANJO_BBUSTER);
+    animctrl_setIndex(aCtrl, ASSET_1D_ANIM_BSBBUSTER);
     animctrl_setDuration(aCtrl, 1.02f);
     animctrl_setSubRange(aCtrl, 0.0f, 0.35f);
     animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);

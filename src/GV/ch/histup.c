@@ -12,14 +12,14 @@ Actor *func_8038DA18(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 /* .data */
 ActorAnimationInfo D_803912E0[] = {
     {0x00, 0.0f},
-    {0xD1, 800000.0f},
-    {0xE2, 2.0f},
-    {0xD1, 800000.0f},
-    {0xD0, 6.0f},
-    {0xCF, 2.0f},
-    {0xD1, 1.6f},
+    {ASSET_D1_ANIM_HISTUP_HIDE, 800000.0f},
+    {ASSET_E2_ANIM_HISTUP_PEEK, 2.0f},
+    {ASSET_D1_ANIM_HISTUP_HIDE, 800000.0f},
+    {ASSET_D0_ANIM_HISTUP_GROW, 6.0f},
+    {ASSET_CF_ANIM_HISTUP_RAISED, 2.0f},
+    {ASSET_D1_ANIM_HISTUP_HIDE, 1.6f},
 };
-ActorInfo D_80391318 = { 0xAA, 0x11C, 0x3DE, 
+ActorInfo D_80391318 = { MARKER_AA_HISTUP, ACTOR_11C_HISTUP, ASSET_3DE_MODEL_HISTUP, 
     0x1, D_803912E0, 
     func_8038DBDC, func_80326224, func_8038DA18, 
     2500, 0, 1.7f, 0

@@ -12,11 +12,11 @@ Actor *func_8038A180(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 /* .data */
 ActorAnimationInfo D_80390FA0[] = {
     {0, 0.0f},
-    {0xC9, 2.0f},
-    {0xC9, 2.0f},
-    {0xC9, 2.0f},
-    {0xC9, 2.0f},
-    {0xC9, 2.0f},
+    {ASSET_C9_ANIM_MAGIC_CARPET, 2.0f},
+    {ASSET_C9_ANIM_MAGIC_CARPET, 2.0f},
+    {ASSET_C9_ANIM_MAGIC_CARPET, 2.0f},
+    {ASSET_C9_ANIM_MAGIC_CARPET, 2.0f},
+    {ASSET_C9_ANIM_MAGIC_CARPET, 2.0f},
 };
 ActorInfo D_80390FD0 = { MARKER_B0_MAGIC_CARPET_2, ACTOR_123_MAGIC_CARPET_2, ASSET_3DC_MODEL_MAGIC_CARPET, 
     0x1, D_80390FA0, 
@@ -35,7 +35,7 @@ Actor *func_8038A180(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
         if( this->unk54 == 0.0f
             && this->unk48 != this->unk1C[1]
             && this_marker->unk14_21
-            && func_80329530(this, 0xbb8)
+            && func_80329530(this, 3000)
         ){
             func_8033E73C(this->marker, 6, func_80329904);
             func_8033E3F0(0xc, this->marker->unk14_21);

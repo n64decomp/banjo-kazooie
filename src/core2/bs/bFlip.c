@@ -28,7 +28,7 @@ void _bsbflip_802A2DC0(void){
     f32 sp20[3];
 
     animctrl_reset(aCtrl);
-    animctrl_setIndex(aCtrl, ANIM_BANJO_BFLIP);
+    animctrl_setIndex(aCtrl, ASSET_4B_ANIM_BSBFLIP_ENTER);
     animctrl_setDuration(aCtrl, 2.2f);
     func_8028774C(aCtrl, 0.8566f);
     animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
@@ -44,7 +44,7 @@ void bsbflip_init(void){
     AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     animctrl_reset(aCtrl);
     animctrl_setSmoothTransition(aCtrl, 0);
-    animctrl_setIndex(aCtrl, ANIM_BANJO_BFLIP);
+    animctrl_setIndex(aCtrl, ASSET_4B_ANIM_BSBFLIP_ENTER);
     animctrl_setDuration(aCtrl, 2.3f);
     animctrl_setSubRange(aCtrl, 0.0f, 0.7866f);
     func_8028774C(aCtrl, 0.0f);
@@ -100,7 +100,7 @@ void bsbflip_update(void){
         if(animctrl_isStopped(aCtrl)){
             animctrl_reset(aCtrl);
             animctrl_setSmoothTransition(aCtrl, 0);
-            animctrl_setIndex(aCtrl, 0x4C);
+            animctrl_setIndex(aCtrl, ASSET_4C_ANIM_BSBFLIP_HOLD);
             animctrl_setDuration(aCtrl, 0.13f);
             animctrl_setPlaybackType(aCtrl,  ANIMCTRL_LOOP);
             func_802875AC(aCtrl, "bsbflip.c", 0xd9);
@@ -116,7 +116,7 @@ void bsbflip_update(void){
         if(button_released(BUTTON_A)){
             animctrl_reset(aCtrl);
             animctrl_setSmoothTransition(aCtrl, 0);
-            animctrl_setIndex(aCtrl, 0x61);
+            animctrl_setIndex(aCtrl, ASSET_61_ANIM_BSBFLIP_EXIT);
             animctrl_setDuration(aCtrl, 0.8f);
             animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
             func_802875AC(aCtrl, "bsbflip.c", 0xee);

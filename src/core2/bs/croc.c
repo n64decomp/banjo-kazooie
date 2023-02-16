@@ -1,7 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
-
+#include "core2/statetimer.h"
 
 int bscroc_inSet(enum bs_e state);
 
@@ -32,7 +32,7 @@ u8 D_8037D3F5;
 
 /* .code */
 f32 func_802ABDC0(void){
-    if(func_80291670(3) != 0.0f)
+    if(stateTimer_get(STATE_TIMER_3_TURBO_TALON) != 0.0f)
         return D_80364B08;
     else
         return D_80364B04;
@@ -45,11 +45,11 @@ void func_802ABE04(void){
 }
 
 void func_802ABE70(void){
-    f32 sp1C = func_80291670(3);
-    func_80299650(func_80291684(3), sp1C);
+    f32 sp1C = stateTimer_get(STATE_TIMER_3_TURBO_TALON);
+    func_80299650(stateTimer_getPrevious(STATE_TIMER_3_TURBO_TALON), sp1C);
     if(miscflag_isTrue(MISC_FLAG_10_TOUCHING_TURBO_TRAINERS) && bs_getState() != BS_17_BTROT_EXIT){
         miscflag_clear(MISC_FLAG_10_TOUCHING_TURBO_TRAINERS);
-        func_802917E4(3, func_80294A40());
+        stateTimer_set(STATE_TIMER_3_TURBO_TALON, func_80294A40());
         func_8025A6EC(COMUSIC_8A_GETTING_TURBO_TRAINERS, -1);
         func_8029E0DC(1);
     }
@@ -58,9 +58,9 @@ void func_802ABE70(void){
         func_8029C3E8(0.0f, 30.0f);
     }
 
-    if(func_80291700(3, 0.01f)){
+    if(stateTimer_isAt(STATE_TIMER_3_TURBO_TALON, 0.01f)){
         func_8029E0DC(0);
-        func_8030E58C(0x3eb, 1.35f);
+        func_8030E58C(SFX_3EB_UNKNOWN, 1.35f);
     }
 }
 

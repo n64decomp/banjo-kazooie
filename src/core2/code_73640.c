@@ -98,7 +98,7 @@ void *D_80381450[10];
 s32 D_80381478[0X2C];
 
 /* .code */
-void func_802FA5D0(void){
+void itemPrint_reset(void){
     s32 i;
 
     for(i = 0; i < 0x2C; i++){
@@ -120,7 +120,7 @@ void func_802FA69C(void){
         D_803692F8[i].unk14 = D_803692F8[i].unk0(i);
         func_802FB104(D_803692F8[i].unk10, D_803692F8[i].unk14);
     }
-    func_802FA5D0();
+    itemPrint_reset();
 }
 
 void func_802FA718(s32 arg0){

@@ -621,7 +621,7 @@ void chvilegame_update(Actor *this) {
             item_set(ITEM_1A_PLAYER_VILE_SCORE, local->player_score);
             item_set(ITEM_1B_VILE_VILE_SCORE, local->vile_score);
             if ((sp2C != 0) && (local->player_score == 0)) {
-                func_802FA5D0();
+                itemPrint_reset();
             }
             if (item_empty(ITEM_6_HOURGLASS)) {
                 if (func_803203FC(2)) {

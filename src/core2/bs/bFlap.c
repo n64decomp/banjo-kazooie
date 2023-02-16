@@ -18,7 +18,7 @@ f32 D_8037D308;
 u8 D_8037D30C;
 
 void bsbflap_init(void) {
-    func_8028A274(0x18, 0.3f);
+    func_8028A274(ASSET_18_ANIM_BSBFLAP_ENTER, 0.3f);
     func_8029C7F4(1, 1, 1, 2);
     if (func_8029B2E8() != 0.0f) {
         yaw_setIdeal(func_8029B33C());
@@ -114,7 +114,7 @@ void bsbflap_update(void){
             func_802A298C();
             if(animctrl_isAt(sp18, 0.9f)){
                 animctrl_setSmoothTransition(sp18, 0);
-                animctrl_setIndex(sp18, ANIM_BANJO_BFLAP);
+                animctrl_setIndex(sp18, ASSET_17_ANIM_BSBFLAP);
                 animctrl_setDuration(sp18, func_802A2858());
                 animctrl_setPlaybackType(sp18,  ANIMCTRL_LOOP);
                 func_8028774C(sp18, 0.0f);

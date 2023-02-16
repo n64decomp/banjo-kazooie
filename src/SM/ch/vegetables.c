@@ -246,7 +246,7 @@ void func_80387E64(Actor *this){
 void func_80387F00(Actor *this){
     ChVeg *local = (ChVeg *)&this->local;
     
-    this->position_y += (mapSpecificFlags_get(0xC) || func_803203FC(0xC1, this)) ? 120.0 : 180.0;
+    this->position_y += (mapSpecificFlags_get(0xC) || func_803203FC(0xC1)) ? 120.0 : 180.0;
     local->unk0_x = this->position_x;
     local->unk0_y = this->position_y;
     local->unk0_z = this->position_z;

@@ -44,7 +44,7 @@ ActorAnimationInfo chCongaAnimations[9] = {
     {ASSET_54_ANIM_CONGA_THROW, 1.4f},
     {ASSET_55_ANIM_CONGA_BEAT_CHEST, 0.4f},
     {ASSET_56_ANIM_CONGA_RAISE_ARMS, 0.9f},
-    {0xA2, 1.6f},
+    {ASSET_A2_ANIM_CONGA_THROW_2, 1.6f},
     {ASSET_52_ANIM_CONGA_OW, 1.0f}
 };
 
@@ -223,7 +223,7 @@ void func_803876D0(Actor *this){
         func_80304D4C(sp40, &((ActorLocal_Conga *)&this->local)->unk10);
     }
     if(0.0f == this->unk28){
-        this->unk28 = (actorArray_findActorFromMarkerId(MARKER_36_ORANGE_COLLECTABLE) != NULL)? 2.0f: 1.0f;
+        this->unk28 = (actorArray_findActorFromMarkerId(MARKER_36_ORANGE_COLLECTIBLE) != NULL)? 2.0f: 1.0f;
     }
     if(0.0f != this->velocity_x){
         this->velocity_x -= 1.0f; 

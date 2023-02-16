@@ -16,7 +16,7 @@ void bsow_init(void){
     animctrl_reset(plyr_mvmnt);
     animctrl_setSmoothTransition(plyr_mvmnt, 0);
     animctrl_setSubRange(plyr_mvmnt, 0.0f, 0.534399986267f);
-    animctrl_setIndex(plyr_mvmnt, ANIM_BANJO_OW);
+    animctrl_setIndex(plyr_mvmnt, ASSET_4D_ANIM_BSOW);
     animctrl_setDuration(plyr_mvmnt, 1.70000004768f);
     animctrl_setPlaybackType(plyr_mvmnt,  ANIMCTRL_ONCE);
     func_802875AC(plyr_mvmnt, "bsow.c", 0x50);

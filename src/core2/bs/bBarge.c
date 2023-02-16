@@ -67,7 +67,7 @@ void bsbarge_init(void){
     plyrMvmnt = _player_getAnimCtrlPtr();
     animctrl_reset(plyrMvmnt);
     animctrl_setSmoothTransition(plyrMvmnt, 0);
-    animctrl_setIndex(plyrMvmnt, ANIM_BANJO_BBARGE);
+    animctrl_setIndex(plyrMvmnt, ASSET_1C_ANIM_BSBBARGE);
     animctrl_setDuration(plyrMvmnt, 1.0f);
     animctrl_setSubRange(plyrMvmnt, 0, 0.375f);
     animctrl_setPlaybackType(plyrMvmnt,  ANIMCTRL_ONCE);

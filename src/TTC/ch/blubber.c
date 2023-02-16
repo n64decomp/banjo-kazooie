@@ -22,11 +22,11 @@ Actor *func_80387D6C(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 /* .data */
 ActorAnimationInfo D_8038C4E0[] = {
     {0x00, 0.0f},
-    {0xB5, 2.0f},
-    {0xB6, 2.0f},
-    {0xB6, 2.0f},
-    {0xB7, 1.4f},
-    {0xB8, 0.8f}
+    {ASSET_B5_ANIM_BLUBBER_WALK, 2.0f},
+    {ASSET_B6_ANIM_BLUBBER_CRY, 2.0f},
+    {ASSET_B6_ANIM_BLUBBER_CRY, 2.0f},
+    {ASSET_B7_ANIM_BLUBBER_DANCE, 1.4f},
+    {ASSET_B8_ANIM_BLUBBER_RUN, 0.8f}
 };
 
 ActorInfo TTC_D_8038C510 = { 

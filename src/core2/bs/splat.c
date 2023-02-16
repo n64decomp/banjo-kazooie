@@ -57,7 +57,7 @@ void bssplat_update(void){
             sp1C = BS_2F_FALL;
 
         if(animctrl_isStopped(aCtrl)){
-            func_8028A180(ASSET_D2_ANIM_BANJO_GETTING_UP, 2.25f);
+            func_8028A180(ASSET_D2_ANIM_BSSPLAT, 2.25f);
             D_8037D530 = 1;
         }
         break;

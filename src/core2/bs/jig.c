@@ -23,7 +23,7 @@ void bsjig_jiggy_init(void){
 
     animctrl_reset(aCtrl);
     animctrl_setSmoothTransition(aCtrl, FALSE);
-    animctrl_setIndex(aCtrl, ANIM_BANJO_BJIG_JIGGY);
+    animctrl_setIndex(aCtrl, ASSET_2E_ANIM_BSJIG_JIGGY);
     animctrl_setDuration(aCtrl, 4.3f);
     animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
     func_802875AC(aCtrl, "bsjig.c", 0x7f);
@@ -43,13 +43,13 @@ void bsjig_jiggy_init(void){
     miscflag_clear(7);
     miscflag_clear(0xf);
     baMarker_collisionOff();
-    func_802C82C0(marker_getActor(bsjig_gJiggyMarker), 1);
+    chJigsawDance_setState(marker_getActor(bsjig_gJiggyMarker), 1);
     D_8037D4B0 = 0;
 }
 
 void func_802B0BA8(void){
     if(bsjig_gJiggyMarker){
-        func_802C82C0(marker_getActor(bsjig_gJiggyMarker), 4);
+        chJigsawDance_setState(marker_getActor(bsjig_gJiggyMarker), 4);
     }
 }
 
@@ -84,7 +84,7 @@ void bsjig_jiggy_update(void){
 
 void func_802B0CD8(void){
     if(bsjig_gJiggyMarker){
-        func_802C82C0(marker_getActor(bsjig_gJiggyMarker), 5);
+        chJigsawDance_setState(marker_getActor(bsjig_gJiggyMarker), 5);
         bsjig_gJiggyMarker = NULL;
     }
 }

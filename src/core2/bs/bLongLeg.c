@@ -2,6 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 #include "core2/ba/model.h"
+#include "core2/statetimer.h"
+
 
 /* .data */
 const f32 D_80364A40 = 80.0f;
@@ -52,9 +54,9 @@ int bslongleg_inSet(s32 move_indx){
 }
 
 void func_802A531C(void){
-    func_80299650(func_80291684(2), func_80291670(2));
-    if(func_80291700(2, 0.01f))
-        func_8030E484(0x3eb);
+    func_80299650(stateTimer_getPrevious(STATE_TIMER_2_LONGLEG), stateTimer_get(STATE_TIMER_2_LONGLEG));
+    if(stateTimer_isAt(STATE_TIMER_2_LONGLEG, 0.01f))
+        func_8030E484(SFX_3EB_UNKNOWN);
 }
 
 void func_802A5374(void){
@@ -81,28 +83,28 @@ void func_802A5404(void){
     baModel_setDirection(PLAYER_MODEL_DIR_BANJO);
     pitch_setIdeal(0.0f);
     roll_setIdeal(0.0f);
-    func_802917C4(2);
+    stateTimer_clear(STATE_TIMER_2_LONGLEG);
     func_803219F4(1);
     miscflag_clear(3);
     func_8029E180(4, 0.5f);
     func_802A531C();
 }
 
-void func_802A54A8(void){
+void __bsblongleg_enterFromTrot(void){
     AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     animctrl_reset(aCtrl);
     animctrl_setSmoothTransition(aCtrl, 0);
-    animctrl_setIndex(aCtrl, ANIM_BANJO_LONGLEG_ENTER_AS_BIRD);
+    animctrl_setIndex(aCtrl, ASSET_40_ANIM_BSLONGLEG_ENTER_FROM_BTROT);
     animctrl_setDuration(aCtrl, 1.0f);
     animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
     func_802875AC(aCtrl, "bsblongleg.c", 0xe1);
-    func_802917E4(2, D_8037D35C);
+    stateTimer_set(STATE_TIMER_2_LONGLEG, D_8037D35C);
     func_803219F4(2);
     func_8030E2C4(D_8037D361);
     D_8037D360 = 1;
 }
 
-void func_802A5548(void){
+void __bsblongleg_enter(void){
     AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     animctrl_reset(aCtrl);
     animctrl_setSmoothTransition(aCtrl, 0);
@@ -119,9 +121,9 @@ void bsblongleg_enter_init(void){
     func_8030E04C(D_8037D361, 0.8f, 1.9f, 1.2f);
     miscflag_clear(MISC_FLAG_E_TOUCHING_WADING_BOOTS);
     if(bsbtrot_inSet(bs_getPrevState()))
-        func_802A54A8();
+        __bsblongleg_enterFromTrot();
     else
-        func_802A5548();
+        __bsblongleg_enter();
     func_8029C7F4(1,1,3,2);
     func_80297970(0.0f);
     func_802A5374();
@@ -129,21 +131,21 @@ void bsblongleg_enter_init(void){
 }
 
 void bsblongleg_enter_update(void){
-    enum bs_e sp1C = 0;
+    enum bs_e next_state = 0;
     AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     func_802A531C();
     func_80299594(1, 0.5f);
     switch(D_8037D360){
         case 0:
             if(animctrl_isStopped(aCtrl))
-                func_802A54A8();
+                __bsblongleg_enterFromTrot();
             break;
         case 1:
             if(animctrl_isStopped(aCtrl))
-                sp1C = BS_26_LONGLEG_IDLE;
+                next_state = BS_26_LONGLEG_IDLE;
             break;
     }
-    bs_setState(sp1C);
+    bs_setState(next_state);
 }
 
 void bsblongleg_enter_end(void){
@@ -167,7 +169,7 @@ void bsblongleg_stand_update(void){
         next_state = func_802926C0();
 
     if(button_pressed(BUTTON_B))
-        func_802917C4(2);
+        stateTimer_clear(STATE_TIMER_2_LONGLEG);
     
     if(func_8029B300() > 0)
         next_state = BS_LONGLEG_WALK;
@@ -178,7 +180,7 @@ void bsblongleg_stand_update(void){
     if(button_pressed(BUTTON_A) && func_8028B2E8())
         next_state = BS_LONGLEG_JUMP;
 
-    if(func_802916CC(2))
+    if(stateTimer_isDone(STATE_TIMER_2_LONGLEG))
         next_state = BS_LONGLEG_EXIT;
 
     if(func_802A51D0())
@@ -204,7 +206,7 @@ void bsblongleg_walk_init(void){
 }
 
 void bsblongleg_walk_update(void){
-    enum bs_e sp1C = 0;
+    enum bs_e next_state = 0;
     AnimCtrl * aCtrl = _player_getAnimCtrlPtr();
     func_802A531C();
     func_80299594(1, 0.5f);
@@ -218,24 +220,24 @@ void bsblongleg_walk_update(void){
     
     func_802A524C();
     if(button_pressed(BUTTON_B) && func_80297A64() == 0.0f)
-        func_802917C4(2);
+        stateTimer_clear(STATE_TIMER_2_LONGLEG);
 
     if(!func_8029B300() && func_80297C04(1.0f))
-        sp1C = BS_26_LONGLEG_IDLE;
+        next_state = BS_26_LONGLEG_IDLE;
 
     if(player_shouldSlideTrot())
-        sp1C = BS_LONGLEG_SLIDE;
+        next_state = BS_LONGLEG_SLIDE;
 
     if(button_pressed(BUTTON_A) && func_8028B2E8())
-        sp1C = BS_LONGLEG_JUMP;
+        next_state = BS_LONGLEG_JUMP;
 
-    if(func_802916CC(2))
-        sp1C = BS_LONGLEG_EXIT;
+    if(stateTimer_isDone(STATE_TIMER_2_LONGLEG))
+        next_state = BS_LONGLEG_EXIT;
 
     if(func_802A51D0())
-        sp1C = BS_4C_LANDING_IN_WATER;
+        next_state = BS_4C_LANDING_IN_WATER;
 
-    bs_setState(sp1C);
+    bs_setState(next_state);
 }
 
 void bsblongleg_walk_end(void){
@@ -247,7 +249,7 @@ void func_802A5AB0(void){
     animctrl_reset(aCtrl);
     animctrl_setSmoothTransition(aCtrl, 0);
     animctrl_setDirection(aCtrl, 0);
-    animctrl_setIndex(aCtrl, ANIM_BANJO_LONGLEG_ENTER_AS_BIRD);
+    animctrl_setIndex(aCtrl, ASSET_40_ANIM_BSLONGLEG_ENTER_FROM_BTROT);
     animctrl_setDuration(aCtrl, 1.0f);
     animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
     func_802875AC(aCtrl, "bsblongleg.c", 0x200);
@@ -277,7 +279,7 @@ void bsblongleg_exit_init(void){
 }
 
 void bsblongleg_exit_update(void){
-    enum bs_e sp1C = 0;
+    enum bs_e next_state = 0;
     AnimCtrl * aCtrl = _player_getAnimCtrlPtr();
     func_802A531C();
     func_80299628(1);
@@ -292,14 +294,14 @@ void bsblongleg_exit_update(void){
             break;
         case 1://L802A5CB4
             if(animctrl_isStopped(aCtrl))
-                sp1C = BS_1_IDLE;
+                next_state = BS_1_IDLE;
             break;
     }
 
     if(func_802A51D0())
-        sp1C = BS_4C_LANDING_IN_WATER;
+        next_state = BS_4C_LANDING_IN_WATER;
     
-    bs_setState(sp1C);
+    bs_setState(next_state);
     
 }
 
@@ -312,7 +314,7 @@ void bsblongleg_jump_init(void){
     AnimCtrl * aCtrl = _player_getAnimCtrlPtr();
     D_8037D350 = 0.14f;
     animctrl_reset(aCtrl);
-    animctrl_setIndex(aCtrl, ANIM_BANJO_LONGLEG_JUMP);
+    animctrl_setIndex(aCtrl, ASSET_3D_ANIM_BSLONGLEG_JUMP);
     animctrl_setTransitionDuration(aCtrl, 0.134f);
     animctrl_setDuration(aCtrl, 1.0f);
     func_8028774C(aCtrl, D_8037D350);
@@ -383,7 +385,7 @@ void bsblongleg_jump_update(void){
             if(button_pressed(BUTTON_A))
                 sp44 = BS_LONGLEG_JUMP;
 
-            if(func_802916CC(2))
+            if(stateTimer_isDone(STATE_TIMER_2_LONGLEG))
                 sp44 = BS_LONGLEG_EXIT;
 
             break;
@@ -405,7 +407,7 @@ void bsblongleg_slide_init(void){
     AnimCtrl * aCtrl = _player_getAnimCtrlPtr();
 
     animctrl_reset(aCtrl);
-    animctrl_setIndex(aCtrl, ANIM_BANJO_LONGLEG_JUMP);
+    animctrl_setIndex(aCtrl, ASSET_3D_ANIM_BSLONGLEG_JUMP);
     animctrl_setPlaybackType(aCtrl,  ANIMCTRL_STOPPED);
     func_8028774C(aCtrl, 0.0865f);
     func_802875AC(aCtrl, "bsblongleg.c", 0x339);
@@ -468,18 +470,18 @@ void func_802A6394(void){
 }
 
 void func_802A63F0(void){
-    enum bs_e sp1C = 0;
+    enum bs_e next_state = 0;
     func_802A531C();
     func_8029C6D0();
     func_80299628(1);
     
     if(func_80298850() == 0)
-        sp1C = BS_26_LONGLEG_IDLE;
+        next_state = BS_26_LONGLEG_IDLE;
     
     if(func_802A51D0())
-        sp1C = BS_4C_LANDING_IN_WATER;
+        next_state = BS_4C_LANDING_IN_WATER;
 
-    bs_setState(sp1C);
+    bs_setState(next_state);
 }
 
 void func_802A6450(void){
@@ -495,7 +497,7 @@ void bsblongleg_drone_init(void){
 void bsblongleg_drone_update(void){
     func_802A531C();
     bsdrone_update();
-    if(func_802916CC(2))
+    if(stateTimer_isDone(STATE_TIMER_2_LONGLEG))
         bs_setState(BS_LONGLEG_EXIT);
 }
 

@@ -10,13 +10,13 @@ void func_8038F06C(Actor *this);
 ActorAnimationInfo D_80390B90[] = {
     {0x00, 0.0f},
     {0x00, 0.0f},
-    {0xD4, 0.15f},
-    {0xD5, 0.5f},
+    {ASSET_D4_ANIM_SWITCH_DOWN, 0.15f},
+    {ASSET_D5_ANIM_SWITCH_UP, 0.5f},
     {0x00, 0.0f},
     {0x00, 0.0f},
-    {0xD4, 0.15f},
-    {0xD5, 0.5f},
-    {0xD5, 1e+8f}
+    {ASSET_D4_ANIM_SWITCH_DOWN, 0.15f},
+    {ASSET_D5_ANIM_SWITCH_UP, 0.5f},
+    {ASSET_D5_ANIM_SWITCH_UP, 1e+8f}
 };
 ActorInfo D_80390BD8 = {MARKER_F5_BGS_ELEVATED_WALKWAY_SWITCH, ACTOR_14E_BGS_ELEVATED_WALKWAY_SWITCH, ASSET_3F5_BGS_JIGGY_SWITCH, 1, D_80390B90, func_8038EEA4, func_80326224, func_80325888, 0, 0, 0.0f, 0}; 
 ActorInfo D_80390BFC = {MARKER_FD_BGS_MAZE_SWITCH,             ACTOR_1FB_BGS_MAZE_SWITCH,             ASSET_3F5_BGS_JIGGY_SWITCH, 1, D_80390B90, func_8038F06C, func_80326224, func_80325888, 0, 0, 0.0f, 0};

@@ -13,7 +13,7 @@ Actor *func_8038A7A0(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 /* .data */
 ActorAnimationInfo D_80391000[] = {
     {0, 0.0f},
-    {0xC9, 2.0f}
+    {ASSET_C9_ANIM_MAGIC_CARPET, 2.0f}
 };
 
 ActorInfo D_80391010 = { MARKER_A7_MAGIC_CARPET_1, ACTOR_119_MAGIC_CARPET_1, ASSET_3DC_MODEL_MAGIC_CARPET, 
@@ -101,7 +101,7 @@ void GV_func_8038A9C0(Actor *this){
         }
         this->unk1C[2] = this->unk1C[1];
         this->unk1C[1] = this->unk48;
-        if(this->unk100 && sp24 && this->unk100->unk14_20 == MARKER_AF_MAGIC_CARPET_SHADOW){
+        if(this->unk100 != NULL && sp24 != NULL && this->unk100->unk14_20 == MARKER_AF_MAGIC_CARPET_SHADOW){
             sp24->unk1C[0] = func_8038A860(sp24, this);
         }
     }

@@ -839,7 +839,7 @@ typedef struct {
 
 
 typedef struct {
-    enum actor_e actor_id;
+    int actor_id;
     struct actorMarker_s *marker;
     f32 position[3];
     void (*unk14)(struct actor_s *, struct actorMarker_s *);
@@ -847,7 +847,7 @@ typedef struct {
 }Struct81s;
 
 typedef struct {
-    enum actor_e actor_id;
+    int actor_id;
     struct actorMarker_s *marker;
     f32 position[3];
     void (*unk14)(struct actor_s *, struct actorMarker_s *);

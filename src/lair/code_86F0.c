@@ -537,7 +537,7 @@ void lair_func_8038F924(Actor *this) {
         player_getPosition(sp44);
         if (ml_distanceSquared_vec3f(sp44, this->position) < 250000.0f) {
             if (!this->unk38_0) {
-                func_802FA5D0();
+                itemPrint_reset();
                 this->unk38_0 = TRUE;
             }
             func_802FACA4(0x2B);

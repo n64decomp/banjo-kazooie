@@ -2,20 +2,23 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "core2/statetimer.h"
+extern f32 player_stateTimer_get(enum state_timer_e);
+
 Actor *chtrainers_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void chtrainers_update(Actor *this);
 
 /* .data */
-ActorAnimationInfo D_80366EA0[] = {
+ActorAnimationInfo chTrainersAnimations[] = {
     {ASSET_D6_ANIM_TURBO_TALON_TRAINERS, 1.5f},
     {ASSET_D6_ANIM_TURBO_TALON_TRAINERS, 1.5f},
     {ASSET_D6_ANIM_TURBO_TALON_TRAINERS, 1.5f},
     {ASSET_D6_ANIM_TURBO_TALON_TRAINERS, 1.5f}
 };
 
-ActorInfo D_80366EC0 = { 
+ActorInfo chTrainers = { 
     MARKER_38_TURBO_TALON_TRAINERS, ACTOR_2C_TURBO_TALON_TRAINERS, ASSET_367_MODEL_TURBO_TALON_TRAINERS,
-    0x0, D_80366EA0,
+    0x0, chTrainersAnimations,
     chtrainers_update, func_80326224, chtrainers_draw,
     0, 0, 0.0f, 0
 };
@@ -94,7 +97,7 @@ void chtrainers_update(Actor *this){
             break;
         
         case 2://L802CA670
-            if(func_8028E80C(3) == 0.0f){
+            if(player_stateTimer_get(STATE_TIMER_3_TURBO_TALON) == 0.0f){
                 this->velocity[2] = 1.0f;
                 func_80328A84(this, 3);
             }

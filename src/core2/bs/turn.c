@@ -12,7 +12,7 @@ void bsturn_init(void){
     f32 sp28[3];
 
     animctrl_reset(aCtrl);
-    animctrl_setIndex(aCtrl, ANIM_BANJO_TURN);
+    animctrl_setIndex(aCtrl, ASSET_E_ANIM_BSTURN);
     animctrl_setDuration(aCtrl, 0.3f);
     animctrl_setTransitionDuration(aCtrl,0.1f);
     animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
@@ -49,7 +49,7 @@ void bsturn_update(void){
     }//L802B6978
 
     if(animctrl_isStopped(_player_getAnimCtrlPtr()))
-        sp2C = BS_WALK_FAST;
+        sp2C = BS_4_WALK_FAST;
 
     if(button_held(BUTTON_Z))
         sp2C = BS_CROUCH;

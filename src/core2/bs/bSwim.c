@@ -22,7 +22,7 @@ void func_802A7140() {
 
 f32 func_802A716C() {
     f32 sp24[3];
-    _get_velocity(&sp24);
+    _get_velocity(sp24);
     ml_map_f(gu_sqrtf((sp24[0] * sp24[0]) + (sp24[1] * sp24[1]) + (sp24[2] * sp24[2])), 50.0f, 200.0f, 0.0f, 1.0f);
 }
 
@@ -155,7 +155,7 @@ void func_802A7738(void) {
     temp_v0 = _player_getAnimCtrlPtr();
     temp_s0 = temp_v0;
     animctrl_reset(temp_v0);
-    animctrl_setIndex(temp_s0, 0x3F);
+    animctrl_setIndex(temp_s0, ASSET_3F_ANIM_BSSWIM_DIVE_MOVE);
     func_8028774C(temp_s0, 0.4626f);
     animctrl_setDuration(temp_s0, 1.0f);
     func_802875AC(temp_s0, "bsbswim.c", 0x186);
@@ -287,7 +287,7 @@ void func_802A7BD0(void) {
     func_8028A274(0x1A0, 1.4f);
     func_80299BFC(1.0f);
     _player_getPosition(sp30);
-    func_80294980(&sp24);
+    func_80294980(sp24);
     func_80257F18(sp24, sp30, &sp3C);
     yaw_setIdeal(mlNormalizeAngle(sp3C));
     yaw_applyIdeal();
@@ -328,9 +328,9 @@ void func_802A7D74(void) {
     func_802A75B0();
 }
 
-void func_802A7DAC(void) {
+void bsSwim_dive_init(void) {
     ability_use(ABILITY_3_CAMERA_CONTROL);
-    func_8028A180(0x3C, 1.0f);
+    func_8028A180(ASSET_3C_ANIM_BSSWIM_DIVE_ENTER, 1.0f);
     func_802A7140();
     yaw_setVelocityBounded(500.0f, 5.0f);
     func_80297930(0);
@@ -391,7 +391,7 @@ void func_802A7F6C(void) {
     }
 
     func_8029B930();
-    func_8028A010(0xB9, 0.7f);
+    func_8028A010(ASSET_B9_ANIM_BSSWIM_DIE, 0.7f);
     func_802A7140();
     func_802A744C();
     func_80297B64(1.0f);
@@ -521,14 +521,14 @@ void func_802A846C(void) {
     }
     if (sp28 > 80.0f) {
         animctrl_reset(temp_s0);
-        animctrl_setIndex(temp_s0, ANIM_BANJO_ROLL);
+        animctrl_setIndex(temp_s0, ASSET_4F_ANIM_BSTWIRL);
         animctrl_setPlaybackType(temp_s0, ANIMCTRL_STOPPED);
         animctrl_setDuration(temp_s0, 1.2f);
         func_8028774C(temp_s0, 0.8204f);
         func_802875AC(temp_s0, "bsbswim.c", 0x417);
     } else {
         animctrl_reset(temp_s0);
-        animctrl_setIndex(temp_s0, 0x57);
+        animctrl_setIndex(temp_s0, ASSET_57_ANIM_BSSWIM_IDLE);
         animctrl_setPlaybackType(temp_s0, ANIMCTRL_LOOP);
         animctrl_setDuration(temp_s0, 1.2f);
         func_8028774C(temp_s0, 0.6412f);

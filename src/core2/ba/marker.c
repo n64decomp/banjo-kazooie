@@ -292,19 +292,19 @@ void __baMarker_resolveCollision(Prop *other_prop){
                 }
                 break;
 
-            case MARKER_B5_RED_FEATHER_COLLECTABLE: //L8028BEF4
+            case MARKER_B5_RED_FEATHER_COLLECTIBLE: //L8028BEF4
                 if(__baMarker_8028BC20(marker) != HITBOX_0_NONE)
                     return;
-                if(chcollectable_collectRedFeather(other_prop)){
+                if(chCollectible_collectRedFeather(other_prop)){
                     marker_despawn(marker);
                 }
                 break;
 
-            case MARKER_1E5_GOLD_FEATHER_COLLECTABLE: //L8028BF24
+            case MARKER_1E5_GOLD_FEATHER_COLLECTIBLE: //L8028BF24
                 if(__baMarker_8028BC20(marker))
                     return;
                 
-                if(chcollectable_collectGoldFeather(other_prop)){
+                if(chCollectible_collectGoldFeather(other_prop)){
                     marker_despawn(marker);
                 }
                 break;
@@ -676,10 +676,10 @@ void __baMarker_resolveCollision(Prop *other_prop){
                 marker_despawn(marker);
                 break;
 
-            case MARKER_60_BLUE_EGG_COLLECTABLE: //L8028CCF0
+            case MARKER_60_BLUE_EGG_COLLECTIBLE: //L8028CCF0
                 if(__baMarker_8028BC20(marker))
                     return;
-                if(chcollectable_collectEgg(other_prop)){
+                if(chCollectible_collectEgg(other_prop)){
                     marker_despawn(marker);
                 }
                 break;
@@ -734,7 +734,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
             case MARKER_11_WADING_BOOTS: //L8028CE8C
                 if(__baMarker_8028BC20(marker))
                     return;
-                if(_player_getTransformation() != TRANSFORM_1_BANJO)
+                if(bsStoredState_getTransformation() != TRANSFORM_1_BANJO)
                     return;
                 if(func_8028F170())
                     return;
@@ -754,7 +754,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
                 if(__baMarker_8028BC20(marker))
                     return;
 
-                tmp1 = _player_getTransformation();
+                tmp1 = bsStoredState_getTransformation();
                 if(tmp1 != TRANSFORM_1_BANJO && tmp1 != TRANSFORM_5_CROC)
                     return;
                 
@@ -834,19 +834,19 @@ void __baMarker_resolveCollision(Prop *other_prop){
         case 0x6D7: //L8028D16C
             if(!__baMarker_8028BC60()){
                 other_prop->spriteProp.unk8_4 = 0;
-                chcollectable_collectEgg(other_prop);
+                chCollectible_collectEgg(other_prop);
             }
             break;
         case 0x580: //L8028D194
             if(!__baMarker_8028BC60()){
                 other_prop->spriteProp.unk8_4 = 0;
-                chcollectable_collectRedFeather(other_prop);
+                chCollectible_collectRedFeather(other_prop);
             }
             break;
         case 0x6D1: //L8028D1BC
             if(!__baMarker_8028BC60()){
                 other_prop->spriteProp.unk8_4 = 0;
-                chcollectable_collectGoldFeather(other_prop);
+                chCollectible_collectGoldFeather(other_prop);
             }
             break;
         default:

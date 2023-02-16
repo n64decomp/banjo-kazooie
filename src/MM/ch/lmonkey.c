@@ -12,28 +12,28 @@ s32 func_8028F31C(f32 *, f32, s32, Actor **);
 void func_8028FA34(s32, Actor *);
 
 
-void func_803885D0(Actor *);
+void chLMonkey_update(Actor *);
 
 /* .data */
 ActorAnimationInfo chlmonkeyAnimations[5] = {
     {0, 0.0f},
-    {0x5C, 2.3f},
-    {0x5B, 0.67f},
-    {0x5D, 0.5f},
-    {0x5C, 2.3f}
+    {ASSET_5C_ANIM_CHIMPY_IDLE, 2.3f},
+    {ASSET_5B_ANIM_CHIMPY_JUMP, 0.67f},
+    {ASSET_5D_ANIM_CHIMPY_WALK, 0.5f},
+    {ASSET_5C_ANIM_CHIMPY_IDLE, 2.3f}
 };
 
 ActorInfo chlmonkeyInfo = { MARKER_A_CHIMPY, ACTOR_F_CHIMPY, ASSET_35D_MODEL_CHIMPY, 
     1, chlmonkeyAnimations,
-    NULL, func_803885D0, func_80325888,
+    NULL, chLMonkey_update, func_80325888,
     2500, 0, 0.8f, 0
 };
 
 /* .code */
 void func_80388300(Actor **arg0){
-    func_8028F31C((*arg0)->position, 800.0f, ACTOR_29_ORANGE_COLLECTABLE, arg0);
-    if( func_80329530(*arg0, 0x159) 
-        && carriedObj_getMarkerId() == MARKER_36_ORANGE_COLLECTABLE
+    func_8028F31C((*arg0)->position, 800.0f, ACTOR_29_ORANGE_COLLECTIBLE, arg0);
+    if( func_80329530(*arg0, 345) 
+        && carriedObj_getMarkerId() == MARKER_36_ORANGE_COLLECTIBLE
         && func_8028FC34()
     ){
         func_8028FA34(0xc6, *arg0);
@@ -61,30 +61,30 @@ void MM_func_803883AC(Actor *this){
     }
 }
 
-void func_803884C0(s32 x, s32 y, s32 z){
+void __chLMonkey_spawnJiggy(s32 x, s32 y, s32 z){
     f32 sp1C[3];
     TUPLE_ASSIGN(sp1C, x, y, z);
     jiggySpawn(JIGGY_9_MM_CHIMPY, sp1C);
 }
 
-void func_80388514(ActorMarker *marker, enum asset_e arg1, s32 arg2){
+void __chLMonkey_complete(ActorMarker *marker, enum asset_e arg1, s32 arg2){
     Actor * actor = marker_getActor(marker);
     mapSpecificFlags_set(4,1);
     func_80328A84(actor, 3);
     timed_setCameraToNode(2.3f, 0x12);
-    timedFunc_set_3(2.9f,func_803884C0, actor->position_x, actor->position_y + 150.0f, actor->position_z);
+    timedFunc_set_3(2.9f,__chLMonkey_spawnJiggy, actor->position_x, actor->position_y + 150.0f, actor->position_z);
     func_80324E88(4.3f);
     func_80324E38(4.3f, 0);
 }
 
-void func_803885D0(Actor *this){
+void chLMonkey_update(Actor *this){
     func_8028E668(this->position, 35.0f, 0.0f, 65.0f);
     actor_collisionOff(this);
     this->marker->propPtr->unk8_3 = 1;
     if(map_get() != MAP_2_MM_MUMBOS_MOUNTAIN){
         func_80343DEC(this);
     }else{//L80388630
-        if(func_80329530(this, 0x2BC) && !func_803114B0()){
+        if(func_80329530(this, 700) && !func_803114B0()){
             MM_func_803883AC(this);
         }//L8038865C
         switch(this->state){
@@ -92,18 +92,18 @@ void func_803885D0(Actor *this){
                 if(mapSpecificFlags_get(2)){
                     func_80328A84(this, 4);
                     if(!jiggyscore_isCollected(JIGGY_9_MM_CHIMPY)){
-                        func_80311480(0xB40, 0xE, this->position, this->marker, func_80388514, NULL);
+                        func_80311480(ASSET_B40_DIALOG_CHIMPY_COMPLETE, 0xE, this->position, this->marker, __chLMonkey_complete, NULL);
                     }else{//L803886E8
-                        func_80388514(this->marker, 0xB40, -1);
+                        __chLMonkey_complete(this->marker, ASSET_B40_DIALOG_CHIMPY_COMPLETE, -1);
                     }//L80388898
                 }else{
                     func_80388300(&this);
-                    if( func_80329530(this, 0x159)
-                        && !func_80329530(this, 0x96)
+                    if( func_80329530(this, 345)
+                        && !func_80329530(this, 150)
                         && !item_getCount(ITEM_19_ORANGE)
                         && !this->unk138_24
                     ){
-                        func_80311480(0xb3f, 0xe, this->position, NULL, NULL, NULL);
+                        func_80311480(ASSET_B3F_DIALOG_CHIMPY_MEET, 0xe, this->position, NULL, NULL, NULL);
                         this->unk138_24 = 1;
                     }//L80388774
                     actor_loopAnimation(this);

@@ -2,7 +2,9 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void func_8028F710(s32, f32);
+#include "core2/statetimer.h"
+extern void player_stateTimer_set(s32, f32);
+extern f32 player_stateTimer_get(enum state_timer_e);
 
 /* .data */
 //TODO Implement CRC calculation in Makefile(?)
@@ -13,8 +15,8 @@ u32 D_80390F38 = 0x0003031C; //GV.data CRC1 (with this value = 0)
 
 /* .code */
 void func_80389F00(void){
-    if(getGameMode() != GAME_MODE_7_ATTRACT_DEMO && 2.0f < func_8028E80C(3)){
-        func_8028F710(3, 2.0f);
+    if(getGameMode() != GAME_MODE_7_ATTRACT_DEMO && 2.0f < player_stateTimer_get(STATE_TIMER_3_TURBO_TALON)){
+        player_stateTimer_set(STATE_TIMER_3_TURBO_TALON, 2.0f);
     }
 }
 

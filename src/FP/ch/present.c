@@ -7,7 +7,7 @@ void func_8038F144(Actor *this);
 /* .data */
 ActorAnimationInfo D_803924A0[] = {
     {0, 0.0f},
-    {ASSET_18A_XMAS_GIFT, 1.5f}
+    {ASSET_18A_ANIM_XMAS_GIFT, 1.5f}
 };
 
 ActorInfo D_803924B0 = { MARKER_208_BLUE_PRESENT, ACTOR_33A_BLUE_PRESENT, ASSET_47F_MODEL_XMAS_GIFT_BLUE, 

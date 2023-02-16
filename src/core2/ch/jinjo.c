@@ -8,51 +8,46 @@ extern void func_80329904(ActorMarker*, s32, f32*);
 extern void func_80326310(Actor *);
 extern void func_8032BB88(Actor *, s32, s32);
 
-void func_802CDD78(Actor *this);
+void chJinjo_update(Actor *this);
 
 /* .data */
-ActorAnimationInfo D_803671B0[] = {
+ActorAnimationInfo chJinjoAnimations[] = {
     {0, 0.0f},
-    {0x2D, 1000000.0f},
-    {0x2D, 1.5f},
-    {0x2F, 1.5f},
-    {0x31, 0.75f},
-    {0x2D, 1000000.0f},
-    {0x31, 0.4f},
-    {0x130, 1.75f},
-    {0x131, 2.13333f},
-    {0x31, 0.75f}
+    {ASSET_2D_ANIM_JINJO_IDLE, 1000000.0f},
+    {ASSET_2D_ANIM_JINJO_IDLE, 1.5f},
+    {ASSET_2F_ANIM_JINJO_HELP, 1.5f},
+    {ASSET_31_ANIM_JINJO_JUMP, 0.75f},
+    {ASSET_2D_ANIM_JINJO_IDLE, 1000000.0f},
+    {ASSET_31_ANIM_JINJO_JUMP, 0.4f},
+    {ASSET_130_ANIM_JINJO_FLY_START, 1.75f},
+    {ASSET_131_ANIM_JINJO_FLY_END, 2.13333f},
+    {ASSET_31_ANIM_JINJO_JUMP, 0.75f}
 };
 
-ActorInfo D_80367200 = { 0x5A, 0x60, 0x3C0, 0x1, D_803671B0, func_802CDD78, func_80326224, func_80325888, 0, 0, 0.0f, 0};
-ActorInfo D_80367224 = { 0x5B, 0x62, 0x3C2, 0x1, D_803671B0, func_802CDD78, func_80326224, func_80325888, 0, 0, 0.0f, 0};
-ActorInfo D_80367248 = { 0x5E, 0x5E, 0x3BB, 0x1, D_803671B0, func_802CDD78, func_80326224, func_80325888, 0, 0, 0.0f, 0};
-ActorInfo D_8036726C = { 0x5D, 0x61, 0x3C1, 0x1, D_803671B0, func_802CDD78, func_80326224, func_80325888, 0, 0, 0.0f, 0};
-ActorInfo D_80367290 = { 0x5C, 0x5F, 0x3BC, 0x1, D_803671B0, func_802CDD78, func_80326224, func_80325888, 0, 0, 0.0f, 0};
+ActorInfo chJinjoBlue   = { MARKER_5A_JINJO_BLUE,   ACTOR_60_JINJO_BLUE,   ASSET_3C0_MODEL_JINJO_BLUE,   0x1, chJinjoAnimations, chJinjo_update, func_80326224, func_80325888, 0, 0, 0.0f, 0};
+ActorInfo chJinjoGreen  = { MARKER_5B_JINJO_GREEN,  ACTOR_62_JINJO_GREEN,  ASSET_3C2_MODEL_JINJO_GREEN,  0x1, chJinjoAnimations, chJinjo_update, func_80326224, func_80325888, 0, 0, 0.0f, 0};
+ActorInfo chJinjoYellow = { MARKER_5E_JINJO_YELLOW, ACTOR_5E_JINJO_YELLOW, ASSET_3BB_MODEL_JINJO_YELLOW, 0x1, chJinjoAnimations, chJinjo_update, func_80326224, func_80325888, 0, 0, 0.0f, 0};
+ActorInfo chJinjoPink   = { MARKER_5D_JINJO_PINK,   ACTOR_61_JINJO_PINK,   ASSET_3C1_MODEL_JINJO_PINK,   0x1, chJinjoAnimations, chJinjo_update, func_80326224, func_80325888, 0, 0, 0.0f, 0};
+ActorInfo chJinjoOrange = { MARKER_5C_JINJO_ORANGE, ACTOR_5F_JINJO_ORANGE, ASSET_3BC_MODEL_JINJO_ORANGE, 0x1, chJinjoAnimations, chJinjo_update, func_80326224, func_80325888, 0, 0, 0.0f, 0};
 
-s32 func_802CDB50(s32 arg0){
-    switch(arg0){
-        case 0x5A:
-            return 0xD98;
-        case 0x5B:
-            return 0xD99;
-        case 0x5C:
-            return 0xD9b;
-        case 0x5d:
-            return 0xD9a;
-        case 0x5e:
-            return 0xD97;
+enum asset_e __chJinjo_getMeetDialogId(enum marker_e marker_id){
+    switch(marker_id){
+        case MARKER_5A_JINJO_BLUE:   return ASSET_D98_DIALOG_JINJO_MEET_BLUE;
+        case MARKER_5B_JINJO_GREEN:  return ASSET_D99_DIALOG_JINJO_MEET_GREEN;
+        case MARKER_5C_JINJO_ORANGE: return ASSET_D9B_DIALOG_JINJO_MEET_ORANGE;
+        case MARKER_5D_JINJO_PINK:   return ASSET_D9A_DIALOG_JINJO_MEET_PINK;
+        case MARKER_5E_JINJO_YELLOW: return ASSET_D97_DIALOG_JINJO_MEET_YELLOW;
     }
     return 0;
 }
 
-void func_802CDBA8(ActorMarker *this, s32 arg1){
+void __chJinjo_802CDBA8(ActorMarker *this, ActorMarker *other){
     Actor *actorPtr = marker_getActor(this);
     ActorLocal_Jinjo *localPtr = &actorPtr->jinjo;
 
     if(actorPtr->state < 5){
         if(!func_8031FF1C(BKPROG_E_JINJO_TEXT)){
-            func_80311480(func_802CDB50(actorPtr->marker->unk14_20), 4, 0, 0, 0, 0);
+            func_80311480(__chJinjo_getMeetDialogId(actorPtr->marker->unk14_20), 4, 0, 0, 0, 0);
             func_80320004(BKPROG_E_JINJO_TEXT, 1);
         }
         func_80328B8C(actorPtr, 6, 0.0f , -1);
@@ -63,7 +58,7 @@ void func_802CDBA8(ActorMarker *this, s32 arg1){
     }
 }
 
-void func_802CDC9C(Actor *this, s16 arg1){
+void __chJinjo_802CDC9C(Actor *this, s16 arg1){
     f32 tmpf; 
 
     tmpf = this->yaw;
@@ -77,7 +72,7 @@ void func_802CDC9C(Actor *this, s16 arg1){
     this->yaw = tmpf;
 }
 
-void func_802CDD3C(Actor * this){
+void __chJinjo_802CDD3C(Actor * this){
     ActorLocal_Jinjo *localPtr = &this->jinjo;
     if(localPtr->unkC != 0){
         func_802F9D38(localPtr->unkC);
@@ -85,7 +80,7 @@ void func_802CDD3C(Actor * this){
     }
 }
 
-void func_802CDD78(Actor * this){
+void chJinjo_update(Actor * this){
     f32 sp7C[3];
     f32 sp70[3];
     f32 sp6C;
@@ -114,8 +109,8 @@ void func_802CDD78(Actor * this){
         local->unk0 = 1;
         local->unk4 = 0;
         local->unk8 = (this->position_y < func_80309B24(this->position));
-        this->marker->unkC = func_802CDBA8;
-        marker_setFreeMethod(this->marker, func_802CDD3C);
+        this->marker->unkC = __chJinjo_802CDBA8;
+        marker_setFreeMethod(this->marker, __chJinjo_802CDD3C);
         if(func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE)){
             marker_despawn(this->marker);
         }
@@ -168,7 +163,7 @@ void func_802CDD78(Actor * this){
             }//L802CE018
             break;
         case 6:/* 47094 802CE024 02002025 */
-            func_802CDC9C(this, sp66);
+            __chJinjo_802CDC9C(this, sp66);
             if(actor_animationIsAt(this, 0.0f) && --(local->unk0) == 0){
                 func_80328B8C(this, 7, 0.0f, -1);
                 actor_playAnimationOnce(this);
@@ -221,7 +216,7 @@ void func_802CDD78(Actor * this){
 
             if(sp50){ 
                 if(animctrl_getAnimTimer(this->animctrl) < 0.2)
-                    func_802CDC9C(this, sp66);
+                    __chJinjo_802CDC9C(this, sp66);
 
                 if(actor_animationIsAt(this, 0.1f)){
                     local->unkC = func_802F9AA8(SFX_18_BIGBUTT_SLIDE);
@@ -286,8 +281,8 @@ void func_802CDD78(Actor * this){
         actor_playAnimationOnce(this);
     }//L802CE630
     if(!func_803114B0()){
-        switch(D_803671B0[this->state].index){
-            case 0x31: 
+        switch(chJinjoAnimations[this->state].index){
+            case ASSET_31_ANIM_JINJO_JUMP: 
                 if(actor_animationIsAt(this, 0.6f)){
                     if(local->unk8){
                         func_8030E988(SFX_8_BANJO_LANDING_04, 1.8f, 18000, sp30, 120.0f, 1200.0f);
@@ -296,7 +291,7 @@ void func_802CDD78(Actor * this){
                     }
                 }
                 break;
-            case 0x2D: //L802CE6F4
+            case ASSET_2D_ANIM_JINJO_IDLE: //L802CE6F4
                 if(actor_animationIsAt(this, 0.2f)){
                     if(local->unk8){
                         func_8030E988(SFX_17_JINJO_WHISTLE, 1.0f, 22000, sp30, 120.0f, 1200.0f);
@@ -305,7 +300,7 @@ void func_802CDD78(Actor * this){
                     }
                 }
                 break;
-            case 0x2F: //L802CE760
+            case ASSET_2F_ANIM_JINJO_HELP: //L802CE760
                 if(actor_animationIsAt(this, 0.2f)){
                     if(local->unk8){
                         func_8030E988(SFX_27_JINJO_HI, 1.0f, 22000, sp30, 120.0f, 1200.0f);

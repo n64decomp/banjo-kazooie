@@ -27,8 +27,8 @@ f32 D_8037D240;
 void func_8029DBF0(void){
     s32 temp_s0;
     switch(baModel_getModelId()){
-        case 0x34D: //L8029DC24
-        case 0x34E: //L8029DC24
+        case ASSET_34D_MODEL_BANJOKAZOOIE_LOW_POLY: //L8029DC24
+        case ASSET_34E_MODEL_BANJOKAZOOIE_HIGH_POLY: //L8029DC24
             temp_s0 = (s32) ml_interpolate_f(D_8037D23C, 1.0f, 8.0f);
             func_8033A45C(0x1B, temp_s0);
             func_8033A45C(0x1D, temp_s0);
@@ -62,8 +62,8 @@ void func_8029DD6C(void) {
 
     func_8033A1FC();
     switch (baModel_getModelId()) {
-    case 0x34D:
-    case 0x34E:
+    case ASSET_34D_MODEL_BANJOKAZOOIE_LOW_POLY:
+    case ASSET_34E_MODEL_BANJOKAZOOIE_HIGH_POLY:
         func_8033A45C(1, D_8037D238);
         func_8033A45C(9, D_8037D238);
         func_8033A45C(0xC, D_8037D238);

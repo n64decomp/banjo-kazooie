@@ -126,7 +126,7 @@ void bswalk_creep_init(void){
         sp20 = 0.0f;
     }
     animctrl_reset(s0);
-    animctrl_setIndex(s0, ANIM_BANJO_WALK_CREEP);
+    animctrl_setIndex(s0, ASSET_2_ANIM_BSWALK_CREEP);
     animctrl_setDuration(s0, 0.43f);
     func_8028774C(s0, sp20);
     animctrl_setPlaybackType(s0,  ANIMCTRL_LOOP);
@@ -158,7 +158,7 @@ void bswalk_creep_update(void){
             s0 = BS_WALK;
             break;
         case 4:
-            s0 = BS_WALK_FAST;
+            s0 = BS_4_WALK_FAST;
             break;
     }//L802B7194
     if(func_8028B128())
@@ -231,7 +231,7 @@ void bswalk_slow_upate(void){
             s0 = BS_WALK;
             break;
         case 4:
-            s0 = BS_WALK_FAST;
+            s0 = BS_4_WALK_FAST;
             break;
     }//L802B7194
     if(func_8028B128())
@@ -276,7 +276,7 @@ void bswalk_init(void){
             break;
     }
     animctrl_reset(s0);
-    animctrl_setIndex(s0, ANIM_BANJO_RUN);
+    animctrl_setIndex(s0, ASSET_C_ANIM_BSWALK_RUN);
     animctrl_setDuration(s0, 0.66f);
     animctrl_setTransitionDuration(s0, 0.14f);
     func_8028774C(s0, sp20);
@@ -303,7 +303,7 @@ void bswalk_update(void){
                 s0 = BS_2_WALK_SLOW;
             break;
         case 4:
-            s0 = BS_WALK_FAST;
+            s0 = BS_4_WALK_FAST;
             break;
     }//L802B76B8
     if(func_8028B128())
@@ -360,7 +360,7 @@ void bswalk_fast_init(void){
     }
     animctrl_reset(s0);
     animctrl_setSmoothTransition(s0, sp24);
-    animctrl_setIndex(s0, ANIM_BANJO_RUN);
+    animctrl_setIndex(s0, ASSET_C_ANIM_BSWALK_RUN);
     animctrl_setDuration(s0, 0.66f);
     animctrl_setTransitionDuration(s0, 0.1f);
     func_8028774C(s0, sp28);
@@ -444,7 +444,7 @@ void bswalk_fast_end(void){
 }
 
 void bswalk_mud_init(void){
-    func_8028A010(ANIM_BANJO_WALK_MUD, 0.43f);
+    func_8028A010(ASSET_B_ANIM_BSWALK_MUD, 0.43f);
     func_8029C7F4(2,1,1,2);
     func_80289EA8(0.3f, 1.5f);
     func_80289EC8(D_80364D84, D_80364D88, D_80364DB0, D_80364DB4);

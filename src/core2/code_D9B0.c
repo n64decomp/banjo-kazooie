@@ -1,6 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "core2/statetimer.h"
 
 extern f32 func_802944A8(void);
 
@@ -154,9 +155,9 @@ void func_80294BDC(void) {
         }
         if (D_8037C2E4 == 1.0) {
             if (sp24 & 0x10) {
-                func_802917E4(5, 0.18f);
+                stateTimer_set(STATE_TIMER_5_UNKNOWN, 0.18f);
             } else if (sp24 & 0x40) {
-                func_802917E4(6, 0.18f);
+                stateTimer_set(STATE_TIMER_6_UNKNOWN, 0.18f);
             }
         }
     }

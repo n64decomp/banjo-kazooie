@@ -15,13 +15,13 @@ s16 D_80364D50[10] = {
     ASSET_57_ANIM_BSSWIM_IDLE,
     ASSET_57_ANIM_BSSWIM_IDLE,
     ASSET_57_ANIM_BSSWIM_IDLE,
-    0x58,
+    ASSET_58_ANIM_BSSWIM_IDLE2,
     ASSET_57_ANIM_BSSWIM_IDLE,
-    0x58,
+    ASSET_58_ANIM_BSSWIM_IDLE2,
     ASSET_57_ANIM_BSSWIM_IDLE,
     ASSET_57_ANIM_BSSWIM_IDLE,
-    0x58,
-    0x58
+    ASSET_58_ANIM_BSSWIM_IDLE2,
+    ASSET_58_ANIM_BSSWIM_IDLE2
 };
 
 /* .bss */
@@ -196,9 +196,9 @@ void func_802B5B18(void) {
     } else {
         anim_duration = 0.4f;
     }
-    if (animctrl_getIndex(anim_ctrl) != ASSET_39_ANIM_BSSWIM_SWIM) {
+    if (animctrl_getIndex(anim_ctrl) != ASSET_39_ANIM_BSSWIM_MOVE) {
         animctrl_reset(anim_ctrl);
-        animctrl_setIndex(anim_ctrl, ASSET_39_ANIM_BSSWIM_SWIM);
+        animctrl_setIndex(anim_ctrl, ASSET_39_ANIM_BSSWIM_MOVE);
         animctrl_setTransitionDuration(anim_ctrl, anim_duration);
         func_8028774C(anim_ctrl, 0.8f);
         animctrl_setPlaybackType(anim_ctrl, ANIMCTRL_LOOP);

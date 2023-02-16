@@ -2,6 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 #include "bsint.h"
+#include "core2/statetimer.h"
 
 extern f32 func_8029B2E8(void);
 void yaw_setVelocityBounded(f32, f32);
@@ -59,7 +60,7 @@ s32 func_802B488C(s32 arg0){
             retVal = BS_WALK;
             break;
         case 4: //L802B48D4
-            retVal = BS_WALK_FAST;
+            retVal = BS_4_WALK_FAST;
             break;
     }
     if(button_held(BUTTON_Z))
@@ -211,12 +212,12 @@ void bsstand_update(void) {
             if (animctrl_isAt(anim_ctrl, 0.9999f)) func_8029E070(0);
         }//L802B50E4
     } else if (sp18 & 0x20) {
-        if (animctrl_getIndex(anim_ctrl) == 0x95) {
+        if (animctrl_getIndex(anim_ctrl) == ASSET_95_ANIM_BSSTAND_KAZOOIE_PECK) {
             func_802B4A10(anim_ctrl);
             if (animctrl_isAt(anim_ctrl, 0.37f)) {
                 animctrl_reset(anim_ctrl);
                 animctrl_setTransitionDuration(anim_ctrl, 0.1f);
-                animctrl_setIndex(anim_ctrl, 0xF6);
+                animctrl_setIndex(anim_ctrl, ASSET_F6_ANIM_BSSTAND_PULL_KAZOOIE);
                 animctrl_setDuration(anim_ctrl, 5.0f);
                 animctrl_setPlaybackType(anim_ctrl, ANIMCTRL_ONCE);
                 func_802875AC(anim_ctrl, "bsstand.c", 0x170);
@@ -240,12 +241,12 @@ void bsstand_update(void) {
         D_8037D540 = func_802B4870(D_8037D540);
         sp18 = D_80364D20[D_8037D540];
         if (sp18 & 0x10) {
-            func_8028A180(0x95, 5.5f);
+            func_8028A180(ASSET_95_ANIM_BSSTAND_KAZOOIE_PECK, 5.5f);
             _func_802875AC(anim_ctrl, "bsstand.c", 0x1AB);
             func_8029E070(1);
             func_802900FC();
         } else if (sp18 & 0x20) {
-            func_8028A180(0x95, 5.5f);
+            func_8028A180(ASSET_95_ANIM_BSSTAND_KAZOOIE_PECK, 5.5f);
             func_8029E070(1);
             func_802900FC();
         } else if (sp18 & 8) {
@@ -287,7 +288,7 @@ void bsstand_landing_update(void){
     s32 sp1C = 0;
     AnimCtrl * sp18 = _player_getAnimCtrlPtr();
 
-    if(animctrl_getIndex(sp18) == 0xd2){
+    if(animctrl_getIndex(sp18) == ASSET_D2_ANIM_BSSPLAT){
         if(animctrl_isAt(sp18, 0.8264f)){
             func_80299CF4(SFX_6F_BANJO_HEADSCRATCH, 1.0f, 0x36b0);
         }
@@ -312,7 +313,7 @@ void func_802B5350(void){
         bs_setState(0x52);
     }
     if(sp1C == 0x7){
-        if(_player_getTransformation() != TRANSFORM_1_BANJO)
+        if(bsStoredState_getTransformation() != TRANSFORM_1_BANJO)
             func_8029A86C(1);
         else{
             func_802948F8(baMarker_8028D688());
@@ -321,7 +322,7 @@ void func_802B5350(void){
     }
     else if(sp1C == 0x12){//L802B53D0
         func_8029A86C(1);
-        if( _player_getTransformation() == TRANSFORM_1_BANJO && !miscflag_isTrue(0xF) && func_802916CC(0)){
+        if( bsStoredState_getTransformation() == TRANSFORM_1_BANJO && !miscflag_isTrue(0xF) && stateTimer_isDone(STATE_TIMER_0_UNKNOWN)){
             func_8028DE6C(baMarker_getCarriedObjectActorId());
             func_8029A86C(2);
         }

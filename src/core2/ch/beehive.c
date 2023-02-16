@@ -30,7 +30,7 @@ void func_802CE7E0(ActorMarker *marker, ActorMarker *other){
     __spawnQueue_add_4((GenMethod_4)func_802C4140, ACTOR_4C_STEAM, reinterpret_cast(s32, actor->position[0]), reinterpret_cast(s32, actor->position[1]), reinterpret_cast(s32, actor->position[2]));
     __spawnQueue_add_4((GenMethod_4)func_802C4140, ACTOR_4A_WOOD_EXPLOSION, reinterpret_cast(s32, actor->position[0]), reinterpret_cast(s32, actor->position[1]), reinterpret_cast(s32, actor->position[2]));
     actor->marker->propPtr->unk8_3 = 0;
-    func_803115C4(ASSET_D96_TEXT_BEEHIVE);
+    func_803115C4(ASSET_D96_DIALOG_BEEHIVE_MEET);
     func_803115C4(ASSET_DA6_TEXT_BEEHIVE_WITH_BEES);
 }
 
@@ -57,7 +57,7 @@ void func_802CE8D4(Actor *this){
         ){
             if(func_8028ECAC() == 0 || func_8028ECAC() == BSGROUP_8_TROT){
                 if( player_getTransformation() == TRANSFORM_1_BANJO
-                    && func_80311480(ASSET_D96_TEXT_BEEHIVE, 0, NULL, NULL, NULL, 0)
+                    && func_80311480(ASSET_D96_DIALOG_BEEHIVE_MEET, 0, NULL, NULL, NULL, 0)
                 ){
                     func_80320004(BKPROG_D_BEEHIVE_TEXT, 1);
                 }

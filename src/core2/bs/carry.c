@@ -2,6 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 #include "bsint.h"
+#include "core2/statetimer.h"
 
 /* .data */
 const f32  D_80364AF0 = 30.0f;
@@ -101,7 +102,7 @@ void bscarry_interrupt(void){
             func_8028DE6C(baMarker_getCarriedObjectActorId());
             break;
         case BS_INTR_16_THROW_CARRIED_OBJ:
-            if(func_802916CC(1)){
+            if(stateTimer_isDone(STATE_TIMER_1_THROW)){
                 bs_setState(BS_CARRY_THROW);
                 func_8029A86C(2);
             }

@@ -6,34 +6,34 @@
 extern void actor_setOpacity(Actor*,s32);
 extern void func_8035644C(u32);
 
-bool chcollectable_collectItem(Actor*, u32, enum asset_e, enum comusic_e, enum item_e, f32);
-Actor *chCollectable_draw(ActorMarker *this, Gfx **gdl, Mtx **mptr, Vtx **arg3);
-void chCollectable_update(Actor *this);
+bool chCollectible_collectItem(Actor*, u32, enum asset_e, enum comusic_e, enum item_e, f32);
+Actor *chCollectible_draw(ActorMarker *this, Gfx **gdl, Mtx **mptr, Vtx **arg3);
+void chCollectible_update(Actor *this);
 
 /* .data */
 extern ActorInfo D_80367D00 = {
-    MARKER_60_BLUE_EGG_COLLECTABLE, ACTOR_52_BLUE_EGG, ASSET_36D_SPRITE_BLUE_EGG,
+    MARKER_60_BLUE_EGG_COLLECTIBLE, ACTOR_52_BLUE_EGG, ASSET_36D_SPRITE_BLUE_EGG,
     0, NULL, 
-    chCollectable_update, func_80326224, chCollectable_draw, 
+    chCollectible_update, func_80326224, chCollectible_draw, 
     0, 0, 0.7f, 0
 };
 
 extern ActorInfo D_80367D24 = {
-    MARKER_B5_RED_FEATHER_COLLECTABLE, ACTOR_129_RED_FEATHER, ASSET_580_SPRITE_RED_FEATHER,
+    MARKER_B5_RED_FEATHER_COLLECTIBLE, ACTOR_129_RED_FEATHER, ASSET_580_SPRITE_RED_FEATHER,
     0, NULL, 
-    chCollectable_update, func_80326224, chCollectable_draw, 
+    chCollectible_update, func_80326224, chCollectible_draw, 
     0, 0, 0.5f, 0
 };
 
 extern ActorInfo D_80367D48 = {
-    MARKER_1E5_GOLD_FEATHER_COLLECTABLE, ACTOR_370_GOLD_FEATHER, ASSET_6D1_SPRITE_GOLDFEATHTER,
+    MARKER_1E5_GOLD_FEATHER_COLLECTIBLE, ACTOR_370_GOLD_FEATHER, ASSET_6D1_SPRITE_GOLDFEATHTER,
     0, NULL, 
-    chCollectable_update, func_80326224, chCollectable_draw, 
+    chCollectible_update, func_80326224, chCollectible_draw, 
     0, 0, 0.5f, 0
 };
 
 /* .code */
-void chcollectable_setState(Actor *arg0, s32 next_state){
+void chCollectible_setState(Actor *arg0, s32 next_state){
     switch(next_state){
         default:
             break;
@@ -55,15 +55,15 @@ void func_802D8C98(Actor *this, s32 arg1) {
 
     switch (this->marker->unk14_20)
     {
-    case MARKER_60_BLUE_EGG_COLLECTABLE:
+    case MARKER_60_BLUE_EGG_COLLECTIBLE:
         phi_v0 = TRUE;
         break;
 
-    case MARKER_B5_RED_FEATHER_COLLECTABLE:
+    case MARKER_B5_RED_FEATHER_COLLECTIBLE:
         phi_v0 = (arg1 == 1) || (arg1 == 2) || (arg1 == 3);
         break;
 
-    case MARKER_1E5_GOLD_FEATHER_COLLECTABLE:
+    case MARKER_1E5_GOLD_FEATHER_COLLECTIBLE:
         phi_v0 = TRUE;
         break;
 
@@ -73,10 +73,10 @@ void func_802D8C98(Actor *this, s32 arg1) {
     }
 
     this->unk10_12 = arg1;
-    chcollectable_setState(this, (phi_v0 ) ? 2 : 3);
+    chCollectible_setState(this, (phi_v0 ) ? 2 : 3);
 }
 
-bool chcollectable_collectItem(Actor* actor, u32 arg1, enum asset_e dialogId, enum comusic_e sfxId, enum item_e itemId, f32 arg5){
+bool chCollectible_collectItem(Actor* actor, u32 arg1, enum asset_e dialogId, enum comusic_e sfxId, enum item_e itemId, f32 arg5){
     func_8025A6EC(sfxId,32000);
     timedFunc_set_1(0.75f, (GenMethod_1)func_8035644C, arg1);
     if(!func_802FADD4(0x1b)){
@@ -89,37 +89,37 @@ bool chcollectable_collectItem(Actor* actor, u32 arg1, enum asset_e dialogId, en
         return TRUE;
             
     actor->unk60 = arg5;
-    chcollectable_setState(actor, 1);
+    chCollectible_setState(actor, 1);
     return FALSE;
 }
 
-s32 chcollectable_collectEgg(ActorProp *arg0){
+s32 chCollectible_collectEgg(ActorProp *arg0){
     Actor *actPtr = NULL;
     if(arg0 != NULL){
         fxSparkle_blueEgg(&arg0->x);
         if(arg0->unk8_0)
             actPtr = marker_getActor(arg0->marker);
     }
-    chcollectable_collectItem(actPtr, 5, 0xD9E, COMUSIC_C_EGG_COLLECTED, 0xD, 2.0f);
+    chCollectible_collectItem(actPtr, 5, 0xD9E, COMUSIC_C_EGG_COLLECTED, 0xD, 2.0f);
 }
 
-void chcollectable_collectRedFeather(ActorProp *arg0){
+void chCollectible_collectRedFeather(ActorProp *arg0){
     Actor *actPtr = NULL;
     fxSparkle_redFeather(&arg0->x);
     if(arg0->unk8_0)
         actPtr = marker_getActor(arg0->marker);
-    chcollectable_collectItem(actPtr, 6, 0xD9F, COMUSIC_B_RED_FEATHER_COLLECTED, 0xF, 4.0f);
+    chCollectible_collectItem(actPtr, 6, 0xD9F, COMUSIC_B_RED_FEATHER_COLLECTED, 0xF, 4.0f);
 }
 
-void chcollectable_collectGoldFeather(ActorProp *arg0){
+void chCollectible_collectGoldFeather(ActorProp *arg0){
     Actor *actPtr = NULL;
     fxSparkle_goldFeather(&arg0->x);
     if(arg0->unk8_0)
         actPtr = marker_getActor(arg0->marker);
-    chcollectable_collectItem(actPtr, 7, 0xDA0, COMUSIC_14_GOLD_FEATHER_COLLECTED, ITEM_10_GOLD_FEATHER, 6.0f);
+    chCollectible_collectItem(actPtr, 7, 0xDA0, COMUSIC_14_GOLD_FEATHER_COLLECTED, ITEM_10_GOLD_FEATHER, 6.0f);
 }
 
-Actor *chCollectable_draw(ActorMarker *this, Gfx **gdl, Mtx **mptr, Vtx **arg3){
+Actor *chCollectible_draw(ActorMarker *this, Gfx **gdl, Mtx **mptr, Vtx **arg3){
     Actor *thisActor = marker_getActor(this);
 
     if(thisActor->unk28 != 0.0f){
@@ -136,7 +136,7 @@ Actor *chCollectable_draw(ActorMarker *this, Gfx **gdl, Mtx **mptr, Vtx **arg3){
     return thisActor;
 }
 
-void chCollectable_update(Actor *this) {
+void chCollectible_update(Actor *this) {
     f32 temp_f0;
     f32 temp_f0_2;
     f32 temp_f2;
@@ -163,7 +163,7 @@ void chCollectable_update(Actor *this) {
         if (this->unk60 > 0.0) {
             this->unk60 -= time_getDelta();
         } else {
-            chcollectable_setState(this, 2);
+            chCollectible_setState(this, 2);
         }
         /* fallthrough */
     case 3:

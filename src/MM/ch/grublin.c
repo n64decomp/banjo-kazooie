@@ -28,16 +28,16 @@ void func_80388A80(Actor *);
 /* .data */
 ActorAnimationInfo chGrublinAnimations[11] = {
     {0, 0.0f},
-    {0x62, 4.0f},
-    {0x62, 0.7f},
-    {0x63, 0.7f},
-    {0x64, 0.9f},
+    {ASSET_62_ANIM_GRUBLIN_IDLE, 4.0f},
+    {ASSET_62_ANIM_GRUBLIN_IDLE, 0.7f},
+    {ASSET_63_ANIM_GRUBLIN_WALK, 0.7f},
+    {ASSET_64_ANIM_GRUBLIN_JUMP, 0.9f},
     {ASSET_94_ANIM_GRUBLIN_DIE, 1.0f},
-    {0x62, 1.5f},
-    {0x63, 0.5f},
-    {0x62, 1.5f},
-    {0x62, 1000000.0f},
-    {0x62, 1000000.0f}
+    {ASSET_62_ANIM_GRUBLIN_IDLE, 1.5f},
+    {ASSET_63_ANIM_GRUBLIN_WALK, 0.5f},
+    {ASSET_62_ANIM_GRUBLIN_IDLE, 1.5f},
+    {ASSET_62_ANIM_GRUBLIN_IDLE, 1000000.0f},
+    {ASSET_62_ANIM_GRUBLIN_IDLE, 1000000.0f}
 };
 
 ActorInfo chgrublinInfo = { MARKER_5_GRUBLIN, ACTOR_6_GRUBLIN, ASSET_3C5_MODEL_GRUBLIN,

@@ -15,11 +15,11 @@ void func_80389600(Actor *this);
 /* .data */
 ActorAnimationInfo D_8038C760[] ={
     {0, 0.0f},
-    {0xBC, 8000000.0f},
-    {0xBC, 4.0f},
-    {0xBC, 8000000.0f},
-    {0xBC, 1.4f},
-    {0xBC, 8000000.0f}
+    {ASSET_BC_ANIM_LOCKUP, 8000000.0f},
+    {ASSET_BC_ANIM_LOCKUP, 4.0f},
+    {ASSET_BC_ANIM_LOCKUP, 8000000.0f},
+    {ASSET_BC_ANIM_LOCKUP, 1.4f},
+    {ASSET_BC_ANIM_LOCKUP, 8000000.0f}
 };
 
 ActorInfo D_8038C790 = {

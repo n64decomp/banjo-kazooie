@@ -10,17 +10,17 @@ u8 D_8037D404;
 enum bs_e func_802ADCD4(enum bs_e arg0);
 
 void func_802AD6D0(void){
-    func_8028A010(ANIM_BANJO_CROUCH, 0.5f);
+    func_8028A010(ASSET_10C_ANIM_BSCROUCH_IDLE, 0.5f);
     D_8037D404 = 4;
 }
 
 void func_802AD6FC(void){
-    func_8028A180(ANIM_BANJO_CROUCH_NOINPUT, 2.0f);
+    func_8028A180(ASSET_116_ANIM_BSCROUCH_NOINPUT, 2.0f);
     D_8037D404 = 2;
 }
 
 void func_802AD728(void){
-    func_8028A1F4(ANIM_BANJO_CROUCH, 0.5f, 0.9999f);
+    func_8028A1F4(ASSET_10C_ANIM_BSCROUCH_IDLE, 0.5f, 0.9999f);
     func_8029E3C0(2, 2.0f);
     D_8037D404 = 1;
 }
@@ -51,7 +51,7 @@ void bscrouch_init(void){
             break;
     }
     animctrl_reset(aCtrl);
-    animctrl_setIndex(aCtrl, ANIM_BANJO_CROUCH_ENTER);
+    animctrl_setIndex(aCtrl, ASSET_1_ANIM_BSCROUCH_ENTER);
     animctrl_setDuration(aCtrl, 0.5f);
     animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
     func_8028774C(aCtrl, sp24);

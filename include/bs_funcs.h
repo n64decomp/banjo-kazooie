@@ -185,7 +185,7 @@ void bsjump_fall_init(void);
 void bsjump_fall_update(void);
 void bsjump_fall_end(void);
 //BS_30_DIVE_ENTER
-void func_802A7DAC(void);
+void bsSwim_dive_init(void);
 void func_802A7E2C(void);
 void func_802A7F4C(void);
 //BS_ROLL(void);
@@ -348,7 +348,7 @@ void func_802A4548(void);
 void func_802A4664(void);
 void func_802A505C(void);
     //0x58
-void func_802A4748(void);
+void bsbfly_beakbomb_crash_init(void);
 void func_802A48B4(void);
 void func_802A4A40(void);
 

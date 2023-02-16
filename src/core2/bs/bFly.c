@@ -133,7 +133,7 @@ int func_802A37F8(void){
 }
 
 void bsbfly_enter_init(void){
-    func_8028A274(ANIM_BANJO_FLY_ENTER, 1.4f);
+    func_8028A274(ASSET_45_ANIM_BSBFLY_ENTER, 1.4f);
     func_8029C7F4(1,1,3,6);
     if(func_8029B2E8() != 0.0f)
         yaw_setIdeal(func_8029B33C());
@@ -177,7 +177,7 @@ void bsbfly_enter_end(void){
 }
 
 void bsbfly_init(void){
-    func_8028A010(ASSET_38_BANJO_FLY, 0.62f);
+    func_8028A010(ASSET_38_ANIM_BSBFLY, 0.62f);
     func_8029C7F4(1,1,3,3);
     if(miscflag_isTrue(9)){
         func_80297970(0.0f);
@@ -200,7 +200,7 @@ void bsbfly_init(void){
 void bsbfly_update(void){
     enum bs_e sp54 = 0;
     AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
-    int sp4C;
+    BKCollisionTri *sp4C;
     f32 sp40[3];
     f32 sp3C;
     f32 sp38;
@@ -278,7 +278,7 @@ void bsbfly_update(void){
     sp4C = func_802946F0();
     func_8029445C(sp40);
 
-    if(sp4C && -1.0 < sp40[1])
+    if(sp4C != NULL && -1.0 < sp40[1])
         sp38 = 0.0f;
 
     func_8029797C(yaw_get());
@@ -320,7 +320,7 @@ int bsbfly_bombHitboxActive(void){
 //bsbfly_bomb_init
 void func_802A3F9C(void){
     f32 sp1C[3];
-    func_8028A180(ASSET_43_ANIM_BANJO_BEAKBOMB_START, 1.0f);
+    func_8028A180(ASSET_43_ANIM_BSBFLY_BEAKBOMB_START, 1.0f);
     func_8029C7F4(1,1,3,7);
     func_802A339C(D_8037D338, sp1C, 4200.0f);
     yaw_setIdeal(sp1C[1] + 180.0f);
@@ -415,10 +415,10 @@ void func_802A411C(void) {
                 if (0.65 > sp34[1]) {
                     next_state = func_802A40E0();
                 } else {
-                    next_state = BS_58;
+                    next_state = BS_58_BEAKBOMB_CRASH;
                 }
             } else if (sp40 != 0) {
-                next_state = BS_58;
+                next_state = BS_58_BEAKBOMB_CRASH;
             }
         }
         _player_getPosition(sp48);
@@ -449,7 +449,7 @@ void func_802A4430(void){
     plyr_animctrl = _player_getAnimCtrlPtr();
     animctrl_reset(plyr_animctrl);
     animctrl_setTransitionDuration(plyr_animctrl, 0.3f);
-    animctrl_setIndex(plyr_animctrl, ASSET_CC_ANIM_BANJO_BEAKBOMB_END);
+    animctrl_setIndex(plyr_animctrl, ASSET_CC_ANIM_BSFLY_BEAKBOMB_END);
     animctrl_setDuration(plyr_animctrl, 0.38f);
     animctrl_setPlaybackType(plyr_animctrl, ANIMCTRL_LOOP);
     func_802875AC(plyr_animctrl, "bsbfly.c", 0x38a);
@@ -526,8 +526,8 @@ void func_802A46C8(void) {
 }
 
 
-void func_802A4748(void) {
-    func_8028A180(0x3E, 1.4f);
+void bsbfly_beakbomb_crash_init(void) {
+    func_8028A180(ASSET_3E_ANIM_BSBFLY_BEAKBOMB_CRASH, 1.4f);
     func_8029C7F4(1, 1, 3, 3);
     func_8029E070(1);
     FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 0.8f, 32750);
@@ -631,7 +631,7 @@ void func_802A4A78(s32 arg0) {
         sp20 = 400.0f;
     }
     func_802BB3DC(2, 100.0f, 0.85f);
-    func_8028A274(0xD3, 1.2f);
+    func_8028A274(ASSET_D3_ANIM_BSBFLY_BEAKBOMB_REBOUND, 1.2f);
     func_80299BFC(1.0f);
     rumbleManager_80250D94(1.0f, 0.5f, 0.5f);
     _player_getPosition(sp3C);
@@ -754,7 +754,7 @@ void func_802A4F44(void){
 }
 
 void func_802A4F74(void) {
-    func_8028A010(ASSET_38_BANJO_FLY, 0.62f);
+    func_8028A010(ASSET_38_ANIM_BSBFLY, 0.62f);
     func_8029C7F4(1, 1, 3, 7);
     func_8029E070(1);
     func_802914CC(4);
@@ -807,7 +807,7 @@ void func_802A50F8(void){
 }
 
 void func_802A5120(void){
-    func_8028A084(0x68, 0.35f);
+    func_8028A084(ASSET_68_ANIM_BSJUMP_TUMBLE, 0.35f);
     func_8029C7F4(1,1,3,6);
     func_80297970(0.0f);
     func_80297A0C(0);

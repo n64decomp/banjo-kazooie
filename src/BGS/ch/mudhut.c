@@ -1,9 +1,12 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "core2/statetimer.h"
 
 /* TODO move declarations to respective headers*/
-void func_8028F710(s32, f32);
+extern void player_stateTimer_set(enum state_timer_e, f32);
+extern f32 player_stateTimer_get(enum state_timer_e);
+
 
 void func_802C4218(u32,f32,f32,f32);
 void func_80328A84(Actor *, u32);
@@ -17,8 +20,8 @@ void chmudhut_update(Actor *this);
 ActorAnimationInfo D_80390B30[4] = {
     {0, 0.0f},
     {0, 0.0f},
-    {anim_mudhut_smashing, 0.25f},
-    {anim_mudhut_smashing, 1000000.0f}
+    {ASSET_4E_ANIM_MUDHUT_SMASH, 0.25f},
+    {ASSET_4E_ANIM_MUDHUT_SMASH, 1000000.0f}
 };
 
 u32 D_80390B50[6] = {0xA, 0xA, 0xB, 0xA, 0xA, 0xC};
@@ -30,8 +33,8 @@ ActorInfo D_80390B68 = {MARKER_D5_BGS_MUD_HUT, ACTOR_C_MUD_HUT, ASSET_7D8_MODEL_
 
 /* .code section */
 void func_8038EA30(void){
-    if((getGameMode() != GAME_MODE_7_ATTRACT_DEMO) && (1.5 < func_8028E80C(2)) ){
-        func_8028F710(2, 1.5);
+    if((getGameMode() != GAME_MODE_7_ATTRACT_DEMO) && (1.5 < player_stateTimer_get(2)) ){
+        player_stateTimer_set(STATE_TIMER_2_LONGLEG, 1.5);
     }
 }
 

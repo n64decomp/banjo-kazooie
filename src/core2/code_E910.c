@@ -3,6 +3,7 @@
 #include "variables.h"
 #include "bsint.h"
 #include "bs_funcs.h"
+#include "core2/statetimer.h"
 
 
 u8 D_80363820 = 0;
@@ -10,7 +11,7 @@ bsMap D_80363824[] ={
     {BS_1_IDLE,       bsstand_init,       bsstand_update,     bsstand_end,        func_802B5350},
     {BS_2_WALK_SLOW,  bswalk_slow_init,   bswalk_slow_upate,  NULL,               func_802B5350},
     {BS_WALK,       bswalk_init,        bswalk_update,      NULL,               func_802B5350},
-    {BS_WALK_FAST,  bswalk_fast_init,   bswalk_fast_update, bswalk_fast_end,    func_802B5350},
+    {BS_4_WALK_FAST,  bswalk_fast_init,   bswalk_fast_update, bswalk_fast_end,    func_802B5350},
     {BS_5_JUMP,       bsjump_init,        bsjump_update,      bsjump_end,         func_80296608},
     {BS_CLAW,       bsclaw_init,        bsclaw_update,      bsclaw_end,         func_80296608},
     {BS_CROUCH,     bscrouch_init,      bscrouch_update,    bscrouch_end,       func_802B5350},
@@ -52,7 +53,7 @@ bsMap D_80363824[] ={
     {BS_2D_SWIM_IDLE,  func_802B5774, func_802B5950, func_802B5AF8, func_80296608},
     {BS_2E_SWIM,       func_802B5B18, func_802B5C40, func_802B5E10, func_80296608},
     {BS_2F_FALL,       bsjump_fall_init, bsjump_fall_update, bsjump_fall_end, func_80296608},
-    {BS_30_DIVE_ENTER, func_802A7DAC, func_802A7E2C, func_802A7F4C, func_80296608},
+    {BS_30_DIVE_ENTER, bsSwim_dive_init, func_802A7E2C, func_802A7F4C, func_80296608},
     {BS_ROLL,       bstwirl_init,   bstwirl_update, bstwirl_end, func_802B5350},
     {BS_SLIDE,      bsslide_init,   bsslide_update, bsslide_end, func_802B5350},
     {0x33,          func_802B9ACC, func_802B9B14, func_802B9AAC, func_802B9D00},
@@ -63,12 +64,12 @@ bsMap D_80363824[] ={
     {BS_39_DIVE_A,     func_802A7A54, func_802A7AB0, func_802A7BA8, func_80296608},
     {BS_3A_CARRY_IDLE, bscarry_idle_init, bscarry_idle_update, bscarry_idle_end, bscarry_interrupt},
     {BS_3B_CARRY_WALK, bscarry_walk_init, bscarry_walk_update, bscarry_walk_end, bscarry_interrupt},
-    {0x3C,          bstalk_init, bstalk_update, bstalk_end, bstalk_interrupt},
+    {BS_3C_TALK,          bstalk_init, bstalk_update, bstalk_end, bstalk_interrupt},
     {BS_3D_FALL_TUMBLING,  bsjump_tumble_init, bsjump_tumble_update, bsjump_tumble_end, func_80296608},
     {BS_38_ANT_FALL,   bsant_fall_init, bsant_fall_update, bsant_fall_end, func_80296590},
     {BS_3E_ANT_OW,     bsant_ow_init, bsant_ow_update, bsant_ow_end, func_80296590},
     {0x3F,          func_802B1BF4, func_802B1CF8, func_802B1DA4, func_80296590},
-    {0x40,          func_802B2BF0, func_802B2C58, func_802B2D50, func_80296590},
+    {BS_40_PUMPKIN_FLUSH,          func_802B2BF0, func_802B2C58, func_802B2D50, func_80296590},
     {BS_41_DIE,        bsdie_init,     bsdie_update,   bsdie_end,      func_80296590},
     {BS_42_DINGPOT,    func_802A5120, func_802A5190, func_802A51C0, func_80296590},
     {BS_43_ANT_DIE,    bsant_die_init, bsant_die_update, bsant_die_end, func_80296590},
@@ -90,7 +91,7 @@ bsMap D_80363824[] ={
     {BS_LONGLEG_SLIDE, bsblongleg_slide_init, bsblongleg_slide_update, bsblongleg_slide_end, func_802B5350},
     {BS_56_RECOIL, func_802B3868, func_802B3954, func_802B3A20, func_80296590},
     {BS_57_BOMB_END, func_802A4430, func_802A4548, func_802A4664, func_802A505C},
-    {0x58, func_802A4748, func_802A48B4, func_802A4A40, func_80296590},
+    {BS_58_BEAKBOMB_CRASH, bsbfly_beakbomb_crash_init, func_802A48B4, func_802A4A40, func_80296590},
     {0x59, func_802A4CD0, func_802A4CF0, func_802A4D10, func_802A505C},
     {BS_54_SWIM_DIE, func_802A7F6C, func_802A8098, func_802A82D4, func_80296590},
     {BS_CARRY_THROW, bsthrow_init, bsthrow_update, bsthrow_end, bsthrow_interrupt},
@@ -213,7 +214,7 @@ void func_80295914(void){
     func_80292D88();
     func_80290070();
     func_80290664();
-    func_80291764();
+    stateTimer_init();
     eggShatter_init();
     func_80294790();
     func_80293DA4();
@@ -229,8 +230,8 @@ void func_80295914(void){
 
 void func_80295A8C(void){
     
-    func_802917E4(2, func_8029A900());
-    func_802917E4(3, func_8029A90C());
+    stateTimer_set(STATE_TIMER_2_LONGLEG, bsStoredState_getLongLegTimer());
+    stateTimer_set(STATE_TIMER_3_TURBO_TALON, bsStoredState_getTurboTimer());
     if(func_8028ADB4())
         bs_setState(func_80292630());
     else
@@ -243,21 +244,21 @@ void func_80295B04(void){
     enum bs_e sp20 = bs_getState();
     bool is_in_talon_trot;
     
-    sp24 = (bslongleg_inSet(sp20)) ? func_80291670(2) : 0.0f;
-    func_8029A968(sp24);
+    sp24 = (bslongleg_inSet(sp20)) ? stateTimer_get(STATE_TIMER_2_LONGLEG) : 0.0f;
+    bsStoredState_setLongLegTimer(sp24);
     sp24 = 0.0f;
     is_in_talon_trot = FALSE;
     if(bsbtrot_inSet(sp20)){
-        sp24 = func_80291670(3);
+        sp24 = stateTimer_get(STATE_TIMER_3_TURBO_TALON);
         is_in_talon_trot = TRUE;
     }
 
-    func_8029A980(is_in_talon_trot);
-    func_8029A974(sp24);
+    bsStoredState_setTrot(is_in_talon_trot);
+    bsStoredState_setTurboTimer(sp24);
     bs_setState(BS_5A_LOADZONE);
     baMarker_free();
     func_8029065C();
-    func_8029175C();
+    stateTimer_free();
     eggShatter_free();
     baModel_free();
     baAnim_free();
@@ -277,7 +278,7 @@ void func_80295C08(void (* arg0)(void)){
 void func_80295C14(void){
     func_802964B8();
     func_80298A84();
-    func_80291804();
+    stateTimer_update();
     func_8029E100();
     func_8024E7C8();//controller_update
     func_8023E06C();

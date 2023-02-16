@@ -13,22 +13,16 @@ void chshrapnel_update(Actor *this);
 /* .data */
 ActorAnimationInfo chShrapnelAnimations[] = {
     {0, 0.0f},
-    {0x1F4, 1.0f},
-    {0x1F4, 1.0f},
-    {0x92, 0.75f},
-    {0x92, 0.75f},
-    {0x1F4, 1.0f},
-    {0x1F4, 1.0f}
+    {ASSET_1F4_ANIM_SHRAPNEL_IDLE, 1.0f},
+    {ASSET_1F4_ANIM_SHRAPNEL_IDLE, 1.0f},
+    {ASSET_92_ANIM_SHRAPNEL_MOVE, 0.75f},
+    {ASSET_92_ANIM_SHRAPNEL_MOVE, 0.75f},
+    {ASSET_1F4_ANIM_SHRAPNEL_IDLE, 1.0f},
+    {ASSET_1F4_ANIM_SHRAPNEL_IDLE, 1.0f}
 };
 
-s32 D_803673F8[3] = {0xDE, 0xA7, 0x71};
 
-ActorInfo chShrapnelDescription = { 
-    MARKER_65_SHRAPNEL, ACTOR_56_SHRAPNEL, ASSET_3EC_MODEL_SHRAPNEL,
-    0x1, chShrapnelAnimations,
-    chshrapnel_update, func_80326224, func_80325888, 
-    2500, 0x333, 0.0f, 0
-};
+
 
 /* .code */
 void chShrapnel_func_802D0A00(Actor *this) {
@@ -79,6 +73,7 @@ void chShrapnel_emitExplosion(Actor *this) {
 }
 
 void chShrapnel_emitSmoke(Actor *this) {
+    static s32 D_803673F8[3] = {0xDE, 0xA7, 0x71};
     ParticleEmitter *temp_v0;
 
     temp_v0 = partEmitMgr_newEmitter(6U);
@@ -196,3 +191,9 @@ void chshrapnel_update(Actor *this) {
             break;
     }
 }
+ActorInfo chShrapnelDescription = { 
+    MARKER_65_SHRAPNEL, ACTOR_56_SHRAPNEL, ASSET_3EC_MODEL_SHRAPNEL,
+    0x1, chShrapnelAnimations,
+    chshrapnel_update, func_80326224, func_80325888, 
+    2500, 0x333, 0.0f, 0
+};

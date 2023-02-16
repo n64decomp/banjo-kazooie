@@ -125,7 +125,7 @@ void bsclimb_idle_end(void){
 }
 
 void bsclimb_move_init(void){
-    func_8028A010(ASSET_A_ANIM_BANJO_CLIMB_MOVE, 0.9f);
+    func_8028A010(ASSET_A_ANIM_BSCLIMB_MOVE, 0.9f);
     func_80289F10(3);
     func_80289EA8(0.3f, 1.5f);
     func_80289EC8(100.0f, 300.0f, 0.6f, 0.4f);

@@ -2,6 +2,9 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "core2/statetimer.h"
+extern f32 player_stateTimer_get(enum state_timer_e);
+
 void func_803219F4(s32 arg0);
 
 /* .bss */
@@ -93,7 +96,7 @@ void func_803219F4(s32 arg0){
 
 void func_80321C34(void){
     if( D_80383310 == 4
-        && func_8028E80C(3) == 0.0f
+        && player_stateTimer_get(STATE_TIMER_3_TURBO_TALON) == 0.0f
     ){
         func_803219F4(1);
     }

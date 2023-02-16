@@ -73,7 +73,7 @@ void func_802AECE4(void){
         && animctrl_getIndex(aCtrl) == ASSET_3_ANIM_BSWALK
     ){
         animctrl_reset(aCtrl);
-        animctrl_setIndex(aCtrl, ANIM_BANJO_RUN);
+        animctrl_setIndex(aCtrl, ASSET_C_ANIM_BSWALK_RUN);
         func_802875AC(aCtrl, "bsdronegoto.c", 0x9d);
     }
 

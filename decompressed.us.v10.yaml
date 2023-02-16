@@ -519,7 +519,7 @@ segments:
   - [0xF5F260, c, code_9900] #DONE
   - [0xF5F530, c, code_9BD0] #DONE
   - [0xF5FF60, c, code_A600] #DONE
-  - [0xF60040, c, code_A6E0] #DONE
+  - [0xF60040, c, statetimer] #DONE
   - [0xF602C0, c, code_A960] #DONE
   - [0xF603C0, c, ba/model] #DONE
   - [0xF60FB0, c, code_B650] #DONE
@@ -553,7 +553,7 @@ segments:
   - [0xF68890, c, code_12F30]
   - [0xF68FD0, c, bsList]     #DONE
   - [0xF690E0, c, code_13780] #DONE
-  - [0xF69260, c, code_13900] #DONE
+  - [0xF69260, c, bsStoredState] #DONE
   - [0xF69360, c, code_13A00] #DONE
   - [0xF69920, c, code_13FC0] #DONE
   - [0xF69D80, c, code_14420] #DONE
@@ -658,14 +658,14 @@ segments:
   - [0xF99160, c, code_43800]    #DONE
   - [0xF993A0, c, code_43A40]    #DONE
   - [0xF99630, c, mapspecificflags] #DONE
-  - [0xF99A10, c, code_440B0]    #DONE
+  - [0xF99A10, c, ch/crab]    #DONE
   - [0xF9AC70, c, code_45310]    #DONE
   - [0xF9C240, c, ch/code_468E0] #DONE
   - [0xF9C520, c, ch/jinjo]   #DONE
   - [0xF9D1B0, c, ch/beehive] #DONE
   - [0xF9D530, c, code_47BD0] #DONE
   - [0xF9EED0, c, ch/soundsource] #DONE
-  - [0xF9F3D0, c, code_49A70] #DONE
+  - [0xF9F3D0, c, ch/shrapnel] #DONE
   - [0xF9FD80, c, ch/gloop] #DONE
   - [0xFA0050, c, code_4A6F0] #DONE
   - [0xFA16D0, c, code_4BD70] #DONE
@@ -678,7 +678,7 @@ segments:
   - [0xFA6330, c, code_509D0] #DONE
   - [0xFA7100, c, code_517A0] #DONE
   - [0xFA72B0, c, code_51950] #DONE
-  - [0xFA75F0, c, ch/collectable] #DONE
+  - [0xFA75F0, c, ch/collectible] #DONE
   - [0xFA7BF0, c, ch/mole]     #DONE
   - [0xFA8F30, c, ch/molehill] #DONE
   - [0xFA9370, c, code_53A10]  #DONE
@@ -881,8 +881,8 @@ segments:
   - [0x102B930, c, code_D5FD0] #DONE
   - [0x102BAE0, c, code_D6180] #DONE
   - [0x102BF60, c, code_D6600] #DONE
-  - [0x102C9A0, c, code_D7040] #DONE
-  - [0x102D670, c, code_D7D10] #DONE
+  - [0x102C9A0, c, ch/termite] #DONE
+  - [0x102D670, c, ch/gravestone] #DONE
   - [0x102E340, c, code_D89E0]
   - [0x102F700, c, ch/whipcrack] #DONE
   - [0x102FD00, c, code_DA3A0] #DONE
@@ -956,14 +956,14 @@ segments:
   - [0x10358C0, .data, code_43800]
   - [0x10358F0, .data, code_43A40]
   - [0x10359D0, .data, mapspecificflags]
-  - [0x10359E0, .data, code_440B0]
+  - [0x10359E0, .data, ch/crab]
   - [0x1035B00, .data, code_45310]
   - [0x1035B30, .data, ch/code_468E0]
   - [0x1035B80, .data, ch/jinjo]
   - [0x1035C90, .data, ch/beehive]
   - [0x1035CE0, .data, code_47BD0]
   - [0x1035D10, .data, ch/soundsource]
-  - [0x1035D90, .data, code_49A70]
+  - [0x1035D90, .data, ch/shrapnel]
   - [0x1035E00, .data, ch/gloop]
   - [0x1035E60, .data, code_4A6F0]
   - [0x1035F00, .data, code_4BD70]
@@ -976,7 +976,7 @@ segments:
   - [0x1036520, .data, code_509D0]
   - [0x1036630, .data, code_517A0]
   - [0x1036660, .data, code_51950]
-  - [0x10366D0, .data, ch/collectable]
+  - [0x10366D0, .data, ch/collectible]
   - [0x1036740, .data, ch/mole]
   - [0x10367D0, .data, ch/molehill]
   - [0x1036840, .data, code_53A10]
@@ -1102,8 +1102,8 @@ segments:
   - [0x1041770, .data, code_D5FD0]
   - [0x10417F0, .data, code_D6180]
   - [0x1041870, .data, code_D6600]
-  - [0x10418E0, .data, code_D7040]
-  - [0x1041950, .data, code_D7D10]
+  - [0x10418E0, .data, ch/termite]
+  - [0x1041950, .data, ch/gravestone]
   - [0x1041A60, .data, code_D89E0]
   - [0x1041AD0, .data, ch/whipcrack]
   - [0x1041B00, .data, code_DA3A0]
@@ -1222,12 +1222,12 @@ segments:
   - [0x1044E30, .rodata, code_42CB0]
   - [0x1044E40, .rodata, ch/trainers]
   - [0x1044E50, .rodata, code_43800]
-  - [0x1044E60, .rodata, code_440B0]
+  - [0x1044E60, .rodata, ch/crab]
   - [0x1044EB0, .rodata, code_45310]
   - [0x1044F30, .rodata, ch/jinjo]
   - [0x1044FA0, .rodata, ch/beehive]
   - [0x1044FB0, .rodata, code_47BD0]
-  - [0x1045010, .rodata, code_49A70]
+  - [0x1045010, .rodata, ch/shrapnel]
   - [0x1045030, .rodata, ch/gloop]
   - [0x1045040, .rodata, code_4A6F0]
   - [0x10450F0, .rodata, code_4C020]
@@ -1352,8 +1352,8 @@ segments:
   - [0x1048220, .rodata, code_D5D10]
   - [0x1048230, .rodata, code_D6180]
   - [0x1048240, .rodata, code_D6600]
-  - [0x1048280, .rodata, code_D7040]
-  - [0x10482F0, .rodata, code_D7D10]
+  - [0x1048280, .rodata, ch/termite]
+  - [0x10482F0, .rodata, ch/gravestone]
   - [0x1048390, .rodata, code_D89E0]
   - [0x10483C0, .rodata, code_D89E0]
   - [0x1048430, .rodata, ch/whipcrack]
@@ -1377,7 +1377,7 @@ segments:
   - [0x1048560, .bss, code_9900]
   - [0x1048560, .bss, code_9BD0]
   - [0x1048560, .bss, code_A600]
-  - [0x1048560, .bss, code_A6E0]
+  - [0x1048560, .bss, statetimer]
   - [0x1048560, .bss, ba/model]
   - [0x1048560, .bss, code_B650]
   - [0x1048560, .bss, code_BB50]
@@ -1409,7 +1409,7 @@ segments:
   - [0x1048560, .bss, code_12F30]
   - [0x1048560, .bss, bsList]
   - [0x1048560, .bss, code_13780]
-  - [0x1048560, .bss, code_13900]
+  - [0x1048560, .bss, bsStoredState]
   - [0x1048560, .bss, code_13A00]
   - [0x1048560, .bss, code_13FC0]
   - [0x1048560, .bss, code_14420]

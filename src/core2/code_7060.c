@@ -1,6 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "core2/statetimer.h"
 
 #include "prop.h"
 #include "enums.h"
@@ -68,7 +69,7 @@ bool func_8028E060(s32 arg0, s32 *arg1){
 
 void func_8028E0B0(ActorMarker *arg0){
     bs_setState(bs_getIdleState());
-    func_8029A980(0);
+    bsStoredState_setTrot(FALSE);
     miscflag_clear(0x16);
     miscflag_clear(0x18);
 }
@@ -151,7 +152,7 @@ void func_8028E0F0(s32 arg0, s32 arg1[3]) {
     }
     func_8028F85C(&sp7C);
     func_80295A8C();
-    func_8029A980(0);
+    bsStoredState_setTrot(FALSE);
     miscflag_clear(0x16);
     miscflag_clear(0x18);
     func_8028E060(arg0, &sp6C);
@@ -195,7 +196,7 @@ void func_8028E4B0(void) {
         D_8037BFBC = (s32) D_8037BFD0;
         D_8037BFB8 = 1;
         func_80295A8C();
-        func_8029A980(0);
+        bsStoredState_setTrot(FALSE);
         miscflag_clear(0x16);
         yaw_setIdeal(D_8037BFCC);
         yaw_applyIdeal();
@@ -263,15 +264,15 @@ ActorMarker *player_getMarker(void){
 }
 
 u32 player_getTransformation(void){
-    return _player_getTransformation();
+    return bsStoredState_getTransformation();
 }
 
 void func_8028E7EC(f32 arg0[3]){
     climbGetBottom(arg0);
 }
 
-f32 func_8028E80C(s32 arg0){
-    return func_80291670(arg0);
+f32 player_stateTimer_get(enum state_timer_e timer_id){
+    return stateTimer_get(timer_id);
 }
 
 f32 func_8028E82C(void){
@@ -353,7 +354,7 @@ void func_8028E9C4(s32 arg0, f32 arg1[3]) {
 
         case 5: //L8028EA2C
             _player_getPosition(arg1);
-            switch(_player_getTransformation()){
+            switch(bsStoredState_getTransformation()){
                 case TRANSFORM_3_PUMPKIN: //L8028EA68
                     if(map_get() == MAP_1B_MMM_MAD_MONSTER_MANSION){
                         arg1[1] += 100.0f;
@@ -483,7 +484,7 @@ enum bsgroup_e func_8028ECAC(void) {
         case BS_16_BTROT_WALK: //L8028EE10
         case BS_17_BTROT_EXIT: //L8028EE10
         case BS_45_BTROT_SLIDE: //L8028EE10
-            if(func_80291698(3)){
+            if(stateTimer_isActive(STATE_TIMER_3_TURBO_TALON)){
                 return BSGROUP_6_TURBO_TALON_TRAINERS;
             }
             return BSGROUP_8_TROT;
@@ -589,7 +590,7 @@ bool func_8028F098(void){
 bool func_8028F0D4(void){
     enum transformation_e xform_id;
     
-    xform_id = _player_getTransformation();
+    xform_id = bsStoredState_getTransformation();
     return xform_id == TRANSFORM_1_BANJO 
         || xform_id == TRANSFORM_7_WISHWASHY;
 }
@@ -769,8 +770,8 @@ s32 func_8028F6E4(enum bs_interrupt_e arg0, f32 arg1[3]){
     return bs_checkInterrupt(arg0);
 }
 
-void func_8028F710(s32 arg0, f32 arg1){
-    func_802917E4(arg0, arg1);
+void player_stateTimer_set(enum state_timer_e timer_id, f32 value){
+    stateTimer_set(timer_id, value);
 }
 
 void func_8028F738(f32 bottom[3], f32 top[3], f32 radius, u32 arg3){

@@ -9,12 +9,12 @@ Actor *func_80387EB0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 /* .data */
 ActorAnimationInfo D_8038C540[] = {
     {0x00, 0.0f},
-    {0xC0, 2.0f},
-    {0xBD, 1.5f},
-    {0xBF, 1.2f},
-    {0xBE, 1.3f},
-    {0xC0, 2.0f},
-    {0x133, 3.0f},
+    {ASSET_C0_ANIM_NIPPER_IDLE, 2.0f},
+    {ASSET_BD_ANIM_NIPPER_VULNERABLE, 1.5f},
+    {ASSET_BF_ANIM_NIPPER_ATTACK, 1.2f},
+    {ASSET_BE_ANIM_NIPPER_OW, 1.3f},
+    {ASSET_C0_ANIM_NIPPER_IDLE, 2.0f},
+    {ASSET_133_ANIM_NIPPER_DIE, 3.0f},
     {0x00, 0.0f}
 };
 

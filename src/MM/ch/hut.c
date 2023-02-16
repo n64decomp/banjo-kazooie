@@ -23,18 +23,9 @@ extern s32 D_8037DCB0; //mm_hut_smash_count
 /* .data */
 ActorAnimationInfo chhutAnimations[3] = {
     {0, 0.0f}, 
-    {0x4E, 0.25f}, 
-    {0x4E, 1000000.0f}
+    {ASSET_4E_ANIM_MUDHUT_SMASH, 0.25f}, 
+    {ASSET_4E_ANIM_MUDHUT_SMASH, 1000000.0f}
 };
-
-s32 D_803898D8[6] = { 0, 1, 2, 3, 6, 4};
-
-ActorInfo chhutInfo = { MARKER_51_MM_HUT, ACTOR_9_MM_HUT, ASSET_7D7_MODEL_MM_HUT, 
-    0, chhutAnimations,
-    chhut_update, func_80326224, chhut_draw,
-    0, 0x100, 0.0f, 0
-};
-
 
 /* .code */
 Actor *chhut_draw(ActorMarker *this, Gfx **arg1, Mtx **arg2, Vtx **arg3){
@@ -64,6 +55,7 @@ void func_803869EC(ActorMarker *this){
 }
 
 void    chhut_update(Actor *this){
+    static s32 D_803898D8[6] = { 0, 1, 2, 3, 6, 4};
     f32 sp3C[3];
     f32 sp30[3];
 
@@ -119,3 +111,9 @@ void    chhut_update(Actor *this){
 void mm_resetHuts(void){
     D_8037DCB0 = 0;
 }
+
+ActorInfo chhutInfo = { MARKER_51_MM_HUT, ACTOR_9_MM_HUT, ASSET_7D7_MODEL_MM_HUT, 
+    0, chhutAnimations,
+    chhut_update, func_80326224, chhut_draw,
+    0, 0x100, 0.0f, 0
+};

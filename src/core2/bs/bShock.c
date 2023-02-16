@@ -15,7 +15,7 @@ u8 D_8037D382;
 void bsbshock_charge_init(void){
     AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     animctrl_reset(aCtrl);
-    animctrl_setIndex(aCtrl, ANIM_BANJO_BSHOCK_CHARGE);
+    animctrl_setIndex(aCtrl, ASSET_48_ANIM_BSBSHOCK_CHARGE);
     animctrl_setTransitionDuration(aCtrl, 0.4f);
     animctrl_setDuration(aCtrl, 4.2f);
     animctrl_setSubRange(aCtrl, 0.0f, 0.1061f);
@@ -55,7 +55,7 @@ void bsbshock_charge_update(void){
         func_8029C348();
     }
     func_802B6FA8();
-    _get_velocity(&sp1C);
+    _get_velocity(sp1C);
     if(button_released(BUTTON_A) && 0.0f < sp1C[1]){
         gravity_reset();
     }
@@ -126,7 +126,7 @@ void bsbshock_init(void){
     AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     animctrl_reset(aCtrl);
     animctrl_setSmoothTransition(aCtrl, 0);
-    animctrl_setIndex(aCtrl, ANIM_BANJO_BSHOCK_JUMP);
+    animctrl_setIndex(aCtrl, ASSET_49_ANIM_BSBSHOCK_JUMP);
     animctrl_setDuration(aCtrl, 0.8f);
     func_8028774C(aCtrl, 0.5304f);
     animctrl_setSubRange(aCtrl, 0.0f, 1.0f);
@@ -157,7 +157,7 @@ void bsbshock_update(void){
     AnimCtrl * aCtrl = _player_getAnimCtrlPtr();
 
     func_802B6FA8();
-    _get_velocity(&sp20);
+    _get_velocity(sp20);
     if(animctrl_isAt(aCtrl, 0.7f))
         func_8030E484(SFX_53_BANJO_HUIII);
 

@@ -191,7 +191,7 @@ void func_8034646C(void){
     D_80385FE4 = FALSE;
 }
 
-void func_803464F8(enum level_e level){
+void itemscore_levelReset(enum level_e level){
     int i;
     
     for(i = 0; i < 6; i++){
@@ -212,7 +212,7 @@ void func_803464F8(enum level_e level){
     D_80385F30[ITEM_20_BLUE_PRESENT] = 0;
     D_80385F30[ITEM_21_RED_PRESENT] = 0;
     D_80385F30[ITEM_22_CATERPILLAR] = 0;
-    func_802FA5D0();
+    itemPrint_reset();
     D_80385FE8 = 1;
 }
 
@@ -358,13 +358,13 @@ void func_80346CE8(void){
 
 enum item_e carriedobj_actorId2ItemId(enum actor_e actor_id){
     switch(actor_id){
-        case ACTOR_29_ORANGE_COLLECTABLE:           return ITEM_19_ORANGE;
+        case ACTOR_29_ORANGE_COLLECTIBLE:           return ITEM_19_ORANGE;
         case ACTOR_2A9_ACORN:                       return ITEM_23_ACORNS;
         case ACTOR_2A2_CATERPILLAR:                 return ITEM_22_CATERPILLAR;
         case ACTOR_2A_GOLD_BULLION:                 return ITEM_18_GOLD_BULLIONS;
-        case ACTOR_1ED_BLUE_PRESENT_COLLECTABLE:    return ITEM_20_BLUE_PRESENT;
-        case ACTOR_1EF_GREEN_PRESENT_COLLECTABLE:   return ITEM_1F_GREEN_PRESENT;
-        case ACTOR_1F1_RED_PRESENT_COLLECTABLE:     return ITEM_21_RED_PRESENT;
+        case ACTOR_1ED_BLUE_PRESENT_COLLECTIBLE:    return ITEM_20_BLUE_PRESENT;
+        case ACTOR_1EF_GREEN_PRESENT_COLLECTIBLE:   return ITEM_1F_GREEN_PRESENT;
+        case ACTOR_1F1_RED_PRESENT_COLLECTIBLE:     return ITEM_21_RED_PRESENT;
     }
     return 0;
 }
@@ -548,7 +548,7 @@ void func_80347984(void){}
 
 void func_8034798C(void){
     D_80385F30[ITEM_E_JIGGY] = jiggyscore_leveltotal(level_get());
-    func_802FA5D0();
+    itemPrint_reset();
 }
 
 //restore item counts from savestate
@@ -558,7 +558,7 @@ void func_803479C0(u8 *arg0){
     D_80385F30[ITEM_F_RED_FEATHER] = arg0[2];
     D_80385F30[ITEM_10_GOLD_FEATHER] = arg0[3];
     D_80385F30[ITEM_26_JIGGY_TOTAL] = D_80385F30[ITEM_2B_UNKNOWN] = arg0[4];
-    func_802FA5D0();
+    itemPrint_reset();
 }
 
 
@@ -593,5 +593,5 @@ void func_80347AA8(void) {
     func_803204E4(0xC1, FALSE);
     func_803204E4(0xC0, FALSE);
     item_set(ITEM_16_LIFE, D_80386068);
-    func_802FA5D0();
+    itemPrint_reset();
 }

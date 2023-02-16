@@ -35,16 +35,16 @@ void chMotzhand_setState(Actor *this, s32 next_state){
     ActorLocal_Motzhand * local = (ActorLocal_Motzhand *) &this->local;
 
     if(next_state == 1 && this->state == 0){
-        func_80335924(this->unk148, 0xa7, 0.0f, 1.8f);
+        func_80335924(this->unk148, ASSET_A7_ANIM_MOTZHAND_IDLE, 0.0f, 1.8f);
         func_80387410(this->position);
     }
 
     if(next_state == 2){
-        func_80335924(this->unk148, 0xA7, 0.9f, 1.8f);
+        func_80335924(this->unk148, ASSET_A7_ANIM_MOTZHAND_IDLE, 0.9f, 1.8f);
     }
 
     if(next_state == 3){
-        func_80335924(this->unk148, 0xA8, 0.9f, 1.8f);
+        func_80335924(this->unk148, ASSET_A8_ANIM_MOTZHAND_PLAY, 0.9f, 1.8f);
     }
 
     if(next_state == 4){

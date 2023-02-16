@@ -82,7 +82,7 @@ void bsbpeck_update(void){
     switch(D_8037D374){
         case 0://L802A6770
             if(animctrl_isAt(aCtrl, 0.9126f)){
-                animctrl_setIndex(aCtrl, ANIM_BANJO_BPECK_ENTER);
+                animctrl_setIndex(aCtrl, ASSET_19_ANIM_BSBPECK_ENTER);
                 func_8028774C(aCtrl, 0.0f);
                 animctrl_setDuration(aCtrl, 0.35f);
                 animctrl_setPlaybackType(aCtrl,  ANIMCTRL_LOOP);

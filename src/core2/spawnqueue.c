@@ -25,7 +25,7 @@ extern ActorInfo chBubble;
 extern ActorInfo D_80366090; //bigbutt
 extern ActorInfo D_803660B4; //brownbull
 extern ActorInfo D_803662A8; //jiggy
-extern ActorInfo D_80366300; //jigdance
+extern ActorInfo chJigsawDance; //jigdance
 extern ActorInfo D_80366340;
 extern ActorInfo D_80366364;
 extern ActorInfo D_80366388;
@@ -36,7 +36,7 @@ extern ActorInfo chExtraLife; //extralife
 extern ActorInfo D_80366C50; //music_note
 extern ActorInfo D_80366C80; //chhoneycarrier
 extern ActorInfo D_80366CA4; //chhoney
-extern ActorInfo D_80366EC0;
+extern ActorInfo chTrainers;
 extern ActorInfo D_80366EF0; //large_shadow
 extern ActorInfo D_80366F20; //chshockjump
 extern ActorInfo D_80366F44; //flight_pad
@@ -46,11 +46,11 @@ extern ActorInfo D_80367100; //mutie_snippet
 extern ActorInfo D_80367130; //buzzbomb
 extern ActorInfo D_80367160;
 extern ActorInfo D_80367184;
-extern ActorInfo D_80367200; //jingo_blue
-extern ActorInfo D_80367224; //jingo_green
-extern ActorInfo D_80367248; //jingo_yellow
-extern ActorInfo D_8036726C; //jingo_pink
-extern ActorInfo D_80367290; //jingo_orange
+extern ActorInfo chJinjoBlue; //jingo_blue
+extern ActorInfo chJinjoGreen; //jingo_green
+extern ActorInfo chJinjoYellow; //jingo_yellow
+extern ActorInfo chJinjoPink; //jingo_pink
+extern ActorInfo chJinjoOrange; //jingo_orange
 extern ActorInfo D_803672E0; //chbeehive
 extern ActorInfo D_80367310; //chswarm
 extern ActorInfo D_80367390; //chwaterfallfx
@@ -147,7 +147,7 @@ extern ActorInfo D_80372D78; //limbo
 extern ActorInfo D_80372DF8; //grublin_hood
 extern ActorInfo D_80372E78; //mummum
 extern ActorInfo D_80372EE0;
-extern ActorInfo D_80372F50; //ticker
+extern ActorInfo chTermite; //ticker
 extern ActorInfo D_80372FC0;
 extern ActorInfo D_80372FE4;
 extern ActorInfo D_803730D8; //nibbly
@@ -219,13 +219,13 @@ void spawnQueue_reset(void){
     spawnableActorList_add(&D_803672E0, actor_new, 0x2000108);
     spawnableActorList_add(&D_80367310, actor_new, 0x0020001);
     spawnableActorList_add(&D_80367390, actor_new, 0x0080084);
-    spawnableActorList_add(&D_80367248, actor_new, 0x0000140);
-    spawnableActorList_add(&D_80367290, actor_new, 0x0000140);
-    spawnableActorList_add(&D_80367200, actor_new, 0x0000140);
-    spawnableActorList_add(&D_8036726C, actor_new, 0x0000140);
-    spawnableActorList_add(&D_80367224, actor_new, 0x0000140);
+    spawnableActorList_add(&chJinjoYellow, actor_new, 0x0000140);
+    spawnableActorList_add(&chJinjoOrange, actor_new, 0x0000140);
+    spawnableActorList_add(&chJinjoBlue, actor_new, 0x0000140);
+    spawnableActorList_add(&chJinjoPink, actor_new, 0x0000140);
+    spawnableActorList_add(&chJinjoGreen, actor_new, 0x0000140);
     spawnableActorList_add(&D_803662A8, actor_new, 0x02000C0);
-    spawnableActorList_add(&D_80366300, actor_new, 0x0000004);
+    spawnableActorList_add(&chJigsawDance, actor_new, 0x0000004);
     spawnableActorList_add(&D_80367C60, actor_new, 0x0000004);
     spawnableActorList_add(&D_80367A20, actor_new, 0x0000000);
     spawnableActorList_add(&D_80366C80, actor_new, 0x0200040); //chhoneycarrier
@@ -241,7 +241,7 @@ void spawnQueue_reset(void){
     spawnableActorList_add(&D_80367AB0, func_802D7558, 0x0000004);
     spawnableActorList_add(&D_80367AD4, func_802D75B4, 0x0000004);
     spawnableActorList_add(&D_80367AF8, func_802D7610, 0x0000004);
-    spawnableActorList_add(&D_80366EC0, actor_new, 0x0000000);
+    spawnableActorList_add(&chTrainers, actor_new, 0x0000000);
     spawnableActorList_add(&D_80365F60, actor_new, 0x0000004);
     spawnableActorList_add(&D_80365F84, actor_new, 0x0000004); //turbotrainers
     spawnableActorList_add(&D_80367184, actor_new, 0x0000000);
@@ -331,7 +331,7 @@ void spawnQueue_reset(void){
     spawnableActorList_add(&D_80373134, actor_new, 0x880);
     spawnableActorList_add(&D_80373158, actor_new, 0x880);
     spawnableActorList_add(&D_80372EE0, actor_new, 0x2000141);
-    spawnableActorList_addIfMapVisited(&D_80372F50, actor_new, 0x2010101, MAP_2_MM_MUMBOS_MOUNTAIN); //ticker
+    spawnableActorList_addIfMapVisited(&chTermite, actor_new, 0x2010101, MAP_2_MM_MUMBOS_MOUNTAIN); //ticker
     spawnableActorList_addIfMapVisited(&D_80372C80, actor_new, 0x2010981, MAP_31_RBB_RUSTY_BUCKET_BAY); //floatsam
     spawnableActorList_addIfMapVisited(&D_80372C18, actor_new, 0x211A9,   MAP_1B_MMM_MAD_MONSTER_MANSION); //teehee
     spawnableActorList_addIfMapVisited(&D_80372FC0, actor_new, 0x2010001, MAP_1B_MMM_MAD_MONSTER_MANSION);

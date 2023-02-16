@@ -32,10 +32,10 @@ void func_803216D0(enum map_e map){
         }
     
         mapSavestate_init();
-        func_803464F8(D_80383300.level);
+        itemscore_levelReset(D_80383300.level);
         jiggyscore_clearAllSpawned();
         levelSpecificFlags_clear();
-        func_8029A92C();
+        bsStoredState_clearTimers();
         func_803219A8();
         if( func_80320454(0x17, 0) 
             && getGameMode() != 0
@@ -76,7 +76,7 @@ void func_80321854(void){
         ){
             func_803204E4(0x22, 1);
         }
-        func_8029A924(); //null
+        bsStoredState_8029A924(); //null
         func_803465BC(); //null
         mapSavestate_free_all();
         func_8032196C();

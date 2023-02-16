@@ -5,28 +5,28 @@
 extern f32 func_8028EBA4();
 AnimCtrl *player_getAnimCtrlPtr(void);
 
-Actor *func_802C80C0(ActorMarker *this, Gfx **gdl, Mtx **mptr, Vtx **arg3);
-void func_802C811C(Actor * this);
+Actor *__chJigsawDance_draw(ActorMarker *this, Gfx **gdl, Mtx **mptr, Vtx **arg3);
+void __chJigsawDance_update(Actor * this);
 
 /* .data */
-ActorAnimationInfo D_803662D0[] = {
+ActorAnimationInfo chJigsawDanceAnimations[] = {
     {0x00, 0.0f},
     {0x00, 2.0f},
-    {0x76, 1.5f},
-    {0x76, 1.5f},
-    {0x30, 5.0f},
+    {ASSET_76_ANIM_JIGSAWDANCE_HOLD, 1.5f},
+    {ASSET_76_ANIM_JIGSAWDANCE_HOLD, 1.5f},
+    {ASSET_30_ANIM_JIGSAWDANCE_DANCE, 5.0f},
     {0x00, 2.0f}
 };
 
-ActorInfo D_80366300 = {0x68, 0x5A, 0x35E, 
-    1, D_803662D0, 
-    func_802C811C, func_80326224, func_802C80C0,
+ActorInfo chJigsawDance = {MARKER_68_JIGSAW_DANCE, ACTOR_5A_JIGSAW_DANCE, ASSET_35E_MODEL_JIGSAW_DANCE, 
+    1, chJigsawDanceAnimations, 
+    __chJigsawDance_update, func_80326224, __chJigsawDance_draw,
     0, 0, 0.0f, 0
 }; 
 
 
 /* .code */
-Actor *func_802C80C0(ActorMarker *this, Gfx **gdl, Mtx **mptr, Vtx **arg3){
+Actor *__chJigsawDance_draw(ActorMarker *this, Gfx **gdl, Mtx **mptr, Vtx **arg3){
     Actor *thisActor = marker_getActor(this);
 
     if(!thisActor->initialized){
@@ -38,7 +38,7 @@ Actor *func_802C80C0(ActorMarker *this, Gfx **gdl, Mtx **mptr, Vtx **arg3){
     }
 }
 
-void func_802C811C(Actor * this){
+void __chJigsawDance_update(Actor * this){
     AnimCtrl *plyrMvmt;
 
     this->marker->collidable = 0;
@@ -77,7 +77,7 @@ void func_802C811C(Actor * this){
     }
 }
 
-void func_802C82C0(Actor * this, u32 arg1){
+void chJigsawDance_setState(Actor * this, u32 arg1){
     switch(arg1){
         case 3:
             if(this->state == 1){

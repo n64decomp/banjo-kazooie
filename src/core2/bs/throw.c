@@ -1,6 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "core2/statetimer.h"
 
 extern ActorMarker *carriedobj_getMarker(void);
 
@@ -56,8 +57,8 @@ void bsthrow_update(void){
 void bsthrow_end(void){
     D_8037D580 = 0;
     if(bs_getNextState() == BS_1_IDLE){
-        func_802917E4(0, 0.14f);
-        func_802917E4(1, 0.28f);
+        stateTimer_set(STATE_TIMER_0_UNKNOWN, 0.14f);
+        stateTimer_set(STATE_TIMER_1_THROW, 0.28f);
     }
 }
 

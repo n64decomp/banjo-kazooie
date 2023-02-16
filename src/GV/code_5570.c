@@ -3,7 +3,9 @@
 #include "variables.h"
 
 extern void func_8025AE50(s32, f32);
-extern void func_8028F710(s32, f32);
+
+#include "core2/statetimer.h"
+extern void player_stateTimer_set(s32, f32);
 
 typedef struct {
     s32 unk0;
@@ -59,7 +61,7 @@ void func_8038BA08(Actor *this){
     this->unk100 = NULL;
     D_80391A80 = 3;
     if(func_8028ECAC() == BSGROUP_6_TURBO_TALON_TRAINERS)
-        func_8028F710(3, 0.0f);
+        player_stateTimer_set(STATE_TIMER_3_TURBO_TALON, 0.0f);
 
     func_80311480(ASSET_A79_TEXT_GRABBA_DEFEAT, 0xf, this->position, this->marker, func_8038B988, NULL);
     comusic_8025AB44(COMUSIC_57_TURBO_TRAINERS, 7000, 700);

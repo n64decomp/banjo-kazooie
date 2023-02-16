@@ -3,6 +3,8 @@
 #include "variables.h"
 
 #include "core2/ba/model.h"
+#include "core2/statetimer.h"
+
 
 /* .data */
 f32 D_80364A90 = 30.0f;
@@ -24,7 +26,7 @@ f32 D_8037D3A0;
 u8  D_8037D3A4;
 
 void func_802A87C0(void){
-    if(func_80291698(3))
+    if(stateTimer_isActive(STATE_TIMER_3_TURBO_TALON))
         func_8029C3E8(10.0f, 50.0f);
     else
         func_8029C22C();
@@ -39,10 +41,10 @@ void func_802A880C(s32 arg0){
 
 void func_802A8850(void){
     if( button_pressed(BUTTON_B) 
-        && func_80291698(3)
+        && stateTimer_isActive(STATE_TIMER_3_TURBO_TALON)
         && func_80297A64() == 0.0f
     ){
-        func_802917C4(3);
+        stateTimer_clear(STATE_TIMER_3_TURBO_TALON);
     }
 
 }
@@ -51,7 +53,7 @@ f32 func_802A88B0(void){
     if(func_8028B128())
         return D_80364AA0;
 
-    if(func_80291698(3))
+    if(stateTimer_isActive(STATE_TIMER_3_TURBO_TALON))
         return D_80364A9C;
 
     return D_80364A94;
@@ -59,7 +61,7 @@ f32 func_802A88B0(void){
 
 f32 func_802A8900(void){
 
-    if(func_80291698(3))
+    if(stateTimer_isActive(STATE_TIMER_3_TURBO_TALON))
         return D_80364A98;
 
     return D_80364A90;
@@ -69,7 +71,7 @@ f32 func_802A8934(void){
     if(func_8028B128())
         return D_80364AB8;
 
-    if(func_80291698(3))
+    if(stateTimer_isActive(STATE_TIMER_3_TURBO_TALON))
         return D_80364AB0;
 
     return D_80364AA8;
@@ -79,7 +81,7 @@ f32 func_802A8984(void){
     if(func_8028B128())
         return D_80364AB4;
 
-    if(func_80291698(3))
+    if(stateTimer_isActive(STATE_TIMER_3_TURBO_TALON))
         return D_80364AAC;
 
     return D_80364AA4;
@@ -109,14 +111,14 @@ void func_802A8A40(void){
 }
 
 void func_802A8AD8(void){
-    func_80299650(func_80291684(3), func_80291670(3));
+    func_80299650(stateTimer_getPrevious(STATE_TIMER_3_TURBO_TALON), stateTimer_get(STATE_TIMER_3_TURBO_TALON));
     if(miscflag_isTrue(MISC_FLAG_10_TOUCHING_TURBO_TRAINERS) &&(bs_getState() != BS_17_BTROT_EXIT)){
         miscflag_clear(MISC_FLAG_10_TOUCHING_TURBO_TRAINERS);
-        func_802917E4(3, func_80294A40());
+        stateTimer_set(STATE_TIMER_3_TURBO_TALON, func_80294A40());
         func_803219F4(4);
     }
 
-    if(func_802916CC(3)){
+    if(stateTimer_isDone(STATE_TIMER_3_TURBO_TALON)){
         if(func_8029DFE0()){
             func_8029E0DC(0);
             if(miscflag_isFalse(MISC_FLAG_14_LOSE_BOGGY_RACE))
@@ -142,7 +144,7 @@ void func_802A8BB0(void){
     roll_setIdeal(0.0f);
     miscflag_clear(3);
     if(next_state != BS_5A_LOADZONE)
-        func_802917E4(3, 0.0f);
+        stateTimer_set(STATE_TIMER_3_TURBO_TALON, 0.0f);
     func_802A8AD8();
     func_80289F10(1);
     func_8029CF48(4, 0, 0.0f);
@@ -151,7 +153,7 @@ void func_802A8BB0(void){
 }
 
 int func_802A8C60(void){
-    if(func_80291698(3))
+    if(stateTimer_isActive(STATE_TIMER_3_TURBO_TALON))
         return 0;
 
     return button_released(BUTTON_Z);
@@ -167,7 +169,7 @@ void _bsbtrot_802A8C98(AnimCtrl *aCtrl, enum asset_e arg1){
 }
 
 enum asset_e func_802A8D00(enum asset_e arg0, enum asset_e arg1){
-    if(func_802916CC(3))
+    if(stateTimer_isDone(STATE_TIMER_3_TURBO_TALON))
         return arg0;
     else
         return arg1;
@@ -239,7 +241,7 @@ void bsbtrot_enter_end(void){
 }
 
 void bsbtrot_stand_init(void){
-    func_8028A010(ASSET_26_ANIM_BTROT_IDLE, 1.2f);
+    func_8028A010(ASSET_26_ANIM_BSBTROT_IDLE, 1.2f);
     func_8029C7F4(1,1,1,2);
     func_80297970(0.0f);
     func_802A8A40();
@@ -249,7 +251,7 @@ void bsbtrot_stand_update(void){
     enum bs_e next_state = 0;;
     func_802A8850();
     func_802A8AD8();
-    if(func_80291698(3))
+    if(stateTimer_isActive(STATE_TIMER_3_TURBO_TALON))
         func_802A87C0();
     func_80299628(1);
     next_state = func_802A8D84(next_state);
@@ -263,7 +265,7 @@ void bsbtrot_stand_end(void){
 }
 
 enum asset_e func_802A9030(void){
-    return func_802A8D00(0x15, 0x44);
+    return func_802A8D00(ASSET_15_ANIM_BSBTROT_WALK, ASSET_44_ANIM_BSBTROT_TURBO_WALK);
 }
 
 void func_802A9054(void){
@@ -303,7 +305,7 @@ void bsbtrot_walk_update(void){
         func_802A880C(0);
 
     func_8029AD28(0.7781f, 3);
-    if(func_80291698(3)){
+    if(stateTimer_isActive(STATE_TIMER_3_TURBO_TALON)){
         func_802A87C0();
     }
     else{
@@ -371,7 +373,7 @@ void bsbtrot_jump_update(void){
     AnimCtrl * aCtrl = _player_getAnimCtrlPtr();
     f32 sp1C[3];
     func_802A8AD8();
-    if(func_80291698(3))
+    if(stateTimer_isActive(STATE_TIMER_3_TURBO_TALON))
         func_802A87C0();
 
     if(miscflag_isTrue(0xF))
@@ -520,7 +522,7 @@ void bsbtrot_slide_update(void){
     f32 sp2C;
 
     func_802A8AD8();
-    if(func_80291698(3))
+    if(stateTimer_isActive(STATE_TIMER_3_TURBO_TALON))
         func_802A87C0();
     func_80299AAC();
     D_8037D3A0 = ml_max_f(D_8037D3A0-time_getDelta(), 0.0f);
@@ -582,7 +584,7 @@ void bsbtrot_fall_update(void){
     AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
     f32 sp1C[3];
     func_802A8AD8();
-    if(func_80291698(3))
+    if(stateTimer_isActive(STATE_TIMER_3_TURBO_TALON))
         func_802A87C0();
 
     if(miscflag_isTrue(0xf))
@@ -676,7 +678,7 @@ void bsbtrot_fall_end(void){
 }
 
 void bsbtrot_unk79_init(void){
-    func_8028A010(ASSET_26_ANIM_BTROT_IDLE, 1.2f);
+    func_8028A010(ASSET_26_ANIM_BSBTROT_IDLE, 1.2f);
     func_8029C7F4(1,1,3,2);
     func_80297970(0.0f);
     func_802A8A40();

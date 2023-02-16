@@ -2,15 +2,18 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "core2/statetimer.h"
+extern f32 player_stateTimer_get(enum state_timer_e);
+
 Actor *chwadingboots_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void chwadingboots_update(Actor *this);
 
 /* .data */
 ActorAnimationInfo D_80367A00[] = {
-    {0x67, 0.7f},
-    {0x67, 0.7f},
-    {0x67, 0.7f},
-    {0x67, 0.7f},
+    {ASSET_67_ANIM_WADINGBOOTS_WALK, 0.7f},
+    {ASSET_67_ANIM_WADINGBOOTS_WALK, 0.7f},
+    {ASSET_67_ANIM_WADINGBOOTS_WALK, 0.7f},
+    {ASSET_67_ANIM_WADINGBOOTS_WALK, 0.7f},
 };
 
 ActorInfo D_80367A20 = {
@@ -63,10 +66,10 @@ void chwadingboots_update(Actor *this){
             }
 
             if(func_803203FC(0x10))  break;
-            if(!func_80329530(this, 0xfa)) break;
+            if(!func_80329530(this, 250)) break;
             if(player_getTransformation() != TRANSFORM_1_BANJO) break;
             
-            if(func_80311480(0xda5, 0, NULL, NULL, NULL, NULL)){
+            if(func_80311480(ASSET_DA5_DIALOG_WADINGBOOTS_MEET, 0, NULL, NULL, NULL, NULL)){
                 func_803204E4(0x10, TRUE);
             }
 
@@ -80,7 +83,7 @@ void chwadingboots_update(Actor *this){
             break;
         
         case 2://L802D6D74
-            if(func_8028E80C(2) == 0.0f){
+            if(player_stateTimer_get(STATE_TIMER_2_LONGLEG) == 0.0f){
                 this->velocity[1] = 1.5f;
                 func_80328A84(this, 3);
             }

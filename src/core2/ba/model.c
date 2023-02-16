@@ -298,8 +298,8 @@ void baModel_80292284(f32 arg0[3], s32 arg1){
 
     if(baMarker_get()->unk14_21 && baModelIsVisible){
         switch(baModel_getModelId()){
-            case 0x34D:
-            case 0x34E:
+            case ASSET_34D_MODEL_BANJOKAZOOIE_LOW_POLY:
+            case ASSET_34E_MODEL_BANJOKAZOOIE_HIGH_POLY:
             case ASSET_34F_MODEL_BANJO_TERMITE: //802922E8
             case ASSET_359_MODEL_BANJO_WALRUS: //802922E8
             case ASSET_362_MODEL_BANJO_BEE:

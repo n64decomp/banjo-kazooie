@@ -16,14 +16,14 @@ void func_80360828(Actor *this);
 /* .data */
 ActorAnimationInfo D_80373090[] = {
     {0, 0.0f},
-    { 0xAE, 12.0f},
-    { 0xAD,  0.3f},
-    { 0x9D,  2.0f},
-    { 0x9D,  0.4f},
-    { 0x9D,  0.35f},
-    { 0xAD,  0.2f},
-    {0x2A9,  0.4f},
-    {0x2AA,  0.85f},
+    { ASSET_AE_ANIM_BAT_ROOST, 12.0f},
+    { ASSET_AD_ANIM_BAT_TAKE_FLIGHT,  0.3f},
+    { ASSET_9D_ANIM_BAT_FLY,  2.0f},
+    { ASSET_9D_ANIM_BAT_FLY,  0.4f},
+    { ASSET_9D_ANIM_BAT_FLY,  0.35f},
+    { ASSET_AD_ANIM_BAT_TAKE_FLIGHT,  0.2f},
+    { ASSET_2A9_ANIM_BAT_FALL,  0.4f},
+    { ASSET_2AA_ANIM_BAT_DIE,  0.85f},
 };
 
 ActorInfo D_803730D8 = { 

@@ -386,7 +386,7 @@ bool bsjump_jumpingFromWater(void){
 }
 
 void bsjump_tumble_init(void){
-    func_8028A084(0x68, 0.35f);
+    func_8028A084(ASSET_68_ANIM_BSJUMP_TUMBLE, 0.35f);
     func_8029C7F4(1,1,3,6);
     baModel_setYDisplacement(60.0f);
     if(func_80293234() == 1){

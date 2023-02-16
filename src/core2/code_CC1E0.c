@@ -349,7 +349,7 @@ void fxegg_ass_update(void) {
     if (0.6 < func_8033EA14(1)) {
         projectile_getPosition(projectile_indx, sp80);
         if (fxegg_isCollidingWithPlayer(sp80)) {
-            chcollectable_collectEgg(NULL);
+            chCollectible_collectEgg(NULL);
             func_8033E984();
         }
     }

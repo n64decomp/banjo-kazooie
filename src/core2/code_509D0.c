@@ -3,7 +3,7 @@
 #include "variables.h"
 
 extern void func_8028F7D4(f32, f32);
-void func_802D8528(Actor *this);
+void chLevelCollectible_update(Actor *this);
 extern void func_80329904(ActorMarker *, s32, f32*);
 extern ActorMarker *func_8028E86C(void);
 extern void func_803252D0(f32, s32);
@@ -11,53 +11,51 @@ extern void func_8035646C(s32);
 
 ActorAnimationInfo D_80367B50[] = {
     {0, 0.0f},
-    {0x18A, 1.5f},
-    {0x18A, 1.5f},
-    {0x18A, 1.5f},
-    {0x18A, 1.5f},
-    {0x18A, 1.5f}
+    {ASSET_18A_ANIM_XMAS_GIFT, 1.5f},
+    {ASSET_18A_ANIM_XMAS_GIFT, 1.5f},
+    {ASSET_18A_ANIM_XMAS_GIFT, 1.5f},
+    {ASSET_18A_ANIM_XMAS_GIFT, 1.5f},
+    {ASSET_18A_ANIM_XMAS_GIFT, 1.5f}
 };
 
 ActorInfo D_80367B80 = {
-    MARKER_36_ORANGE_COLLECTABLE, ACTOR_29_ORANGE_COLLECTABLE, ASSET_2D2_MODEL_ORANGE,
+    MARKER_36_ORANGE_COLLECTIBLE, ACTOR_29_ORANGE_COLLECTIBLE, ASSET_2D2_MODEL_ORANGE,
     0x5, NULL,
-    func_802D8528, func_80326224, func_80325888,
+    chLevelCollectible_update, func_80326224, func_80325888,
     0, 0, 0.6f,0
 };
 
 ActorInfo D_80367BA4 = {
     MARKER_37_GOLD_BULLION, ACTOR_2A_GOLD_BULLION, ASSET_3C7_MODEL_GOLD_BULLION,
     0x5, NULL,
-    func_802D8528, func_80326224, func_80325888,
+    chLevelCollectible_update, func_80326224, func_80325888,
     0, 0, 0.6f, 0
 };
 
 ActorInfo D_80367BC8 = {
-    MARKER_1FD_BLUE_PRESENT_COLLECTABLE, ACTOR_1ED_BLUE_PRESENT_COLLECTABLE, ASSET_47F_MODEL_XMAS_GIFT_BLUE,
+    MARKER_1FD_BLUE_PRESENT_COLLECTIBLE, ACTOR_1ED_BLUE_PRESENT_COLLECTIBLE, ASSET_47F_MODEL_XMAS_GIFT_BLUE,
     0x5, D_80367B50,
-    func_802D8528, func_80326224, func_80325888,
+    chLevelCollectible_update, func_80326224, func_80325888,
     0, 0, 1.8f, 0
 };
 
 ActorInfo D_80367BEC = {
-    MARKER_1FE_GREEN_PRESENT_COLLECTABLE, ACTOR_1EF_GREEN_PRESENT_COLLECTABLE, ASSET_480_MODEL_XMAS_GIFT_GREEN,
+    MARKER_1FE_GREEN_PRESENT_COLLECTIBLE, ACTOR_1EF_GREEN_PRESENT_COLLECTIBLE, ASSET_480_MODEL_XMAS_GIFT_GREEN,
     0x5, D_80367B50,
-    func_802D8528, func_80326224, func_80325888,
+    chLevelCollectible_update, func_80326224, func_80325888,
     0, 0, 1.4f, 0
 };
 
 ActorInfo D_80367C10 = {
-    MARKER_1FF_RED_PRESENT_COLLECTABLE, ACTOR_1F1_RED_PRESENT_COLLECTABLE, ASSET_481_MODEL_XMAS_GIFT_RED,
+    MARKER_1FF_RED_PRESENT_COLLECTIBLE, ACTOR_1F1_RED_PRESENT_COLLECTIBLE, ASSET_481_MODEL_XMAS_GIFT_RED,
     0x5, D_80367B50,
-    func_802D8528, func_80326224, func_80325888,
+    chLevelCollectible_update, func_80326224, func_80325888,
     0, 0, 1.4f, 0
 };
 
-struct31s D_80367C34 = {{0.2f, 0.4f}, {0.1f, 0.1f}, {0.0f, 0.01f}, {3.0f, 3.5f}, 0.1f, 0.1f};
-
-
 /* .code */
-void func_802D7960(f32 position[3], enum asset_e sprite_id) {
+void __chLevelCollectible_presentReturnEmitSparkles(f32 position[3], enum asset_e sprite_id) {
+    static struct31s D_80367C34 = {{0.2f, 0.4f}, {0.1f, 0.1f}, {0.0f, 0.01f}, {3.0f, 3.5f}, 0.1f, 0.1f};
     ParticleEmitter *p_emitter;
 
     p_emitter = partEmitMgr_newEmitter(1);
@@ -70,7 +68,7 @@ void func_802D7960(f32 position[3], enum asset_e sprite_id) {
     particleEmitter_emitN(p_emitter, 1);
 }
 
-void func_802D7A40(f32 position[3], enum asset_e sprite_id) {
+void __chLevelCollectible_presentCollectEmitSparkles(f32 position[3], enum asset_e sprite_id) {
     ParticleEmitter *p_emitter;
 
     p_emitter = partEmitMgr_newEmitter(8);
@@ -86,68 +84,68 @@ void func_802D7A40(f32 position[3], enum asset_e sprite_id) {
     particleEmitter_emitN(p_emitter, 8);
 }
 
-s32 func_802D7B94(ActorMarker *marker, enum asset_e text_id, s32 arg2) {
+s32 __chLevelCollectible_dialogCallback(ActorMarker *marker, enum asset_e text_id, s32 arg2) {
     return -(levelSpecificFlags_get(0x2A) + levelSpecificFlags_get(0x2B) + levelSpecificFlags_get(0x2C));
 }
 
 
-void func_802D7BE8(enum asset_e text_id){
-    func_80311174(text_id, 0, NULL, NULL, NULL, NULL, func_802D7B94);
+void __chLevelCollectible_callDialog(enum asset_e text_id){
+    func_80311174(text_id, 0, NULL, NULL, NULL, NULL, __chLevelCollectible_dialogCallback);
 }
 
-void func_802D7C24(ActorMarker *marker, ActorMarker *other_marker) {
+void __chLevelCollectible_collide(ActorMarker *marker, ActorMarker *other_marker) {
     Actor *this;
     f32 pad28;
-    s32 var_a3;
+    s32 dialog_id;
     f32 sp18[3];
 
     this = marker_getActor(marker);
-    var_a3 = 0;
+    dialog_id = 0;
     if ((this->state == 1) || (this->state == 2)) {
         sp18[0] = this->position[0];
         sp18[1] = this->position[1];
         sp18[2] = this->position[2];
         switch (marker->unk14_20) {
-            case MARKER_36_ORANGE_COLLECTABLE:
+            case MARKER_36_ORANGE_COLLECTIBLE:
                 if (mapSpecificFlags_get(1))
                     return;
                 func_8035646C(8);
                 func_8030E6D4(SFX_B3_ORANGE_TALKING);
-                var_a3 = 0;
+                dialog_id = 0;
                 break;
                 
             case MARKER_37_GOLD_BULLION:
                 func_8025A6EC(COMUSIC_2B_DING_B, 0x7FFF);
                 timedFunc_set_1(0.5f, func_8035646C, 9);
-                var_a3 = 0;
+                dialog_id = 0;
                 break;
 
-            case MARKER_1FD_BLUE_PRESENT_COLLECTABLE:
-                levelSpecificFlags_set(0x2A, 1);
+            case MARKER_1FD_BLUE_PRESENT_COLLECTIBLE:
+                levelSpecificFlags_set(0x2A, TRUE);
                 func_8025A6EC(COMUSIC_2B_DING_B, 0x7FFF);
-                func_802D7A40(this->position, ASSET_711_SPRITE_SPARKLE_DARK_BLUE);
-                var_a3 = 0xC20;
+                __chLevelCollectible_presentCollectEmitSparkles(this->position, ASSET_711_SPRITE_SPARKLE_DARK_BLUE);
+                dialog_id = ASSET_C20_DIALOG_PRESENT_COLLECTIBLE_MEET_BLUE;
                 break;
 
-            case MARKER_1FE_GREEN_PRESENT_COLLECTABLE:
-                levelSpecificFlags_set(0x2B, 1);
+            case MARKER_1FE_GREEN_PRESENT_COLLECTIBLE:
+                levelSpecificFlags_set(0x2B, TRUE);
                 func_8025A6EC(COMUSIC_2B_DING_B, 0x7FFF);
-                func_802D7A40(this->position, 0x712);
-                var_a3 = 0xC21;
+                __chLevelCollectible_presentCollectEmitSparkles(this->position, ASSET_712_SPRITE_SPARKLE_GREEN);
+                dialog_id = ASSET_C21_DIALOG_PRESENT_COLLECTIBLE_MEET_GREEN;
                 break;
 
-            case MARKER_1FF_RED_PRESENT_COLLECTABLE:
-                levelSpecificFlags_set(0x2C, 1);
+            case MARKER_1FF_RED_PRESENT_COLLECTIBLE:
+                levelSpecificFlags_set(0x2C, TRUE);
                 func_8025A6EC(COMUSIC_2B_DING_B, 0x7FFF);
-                func_802D7A40(this->position, ASSET_715_SPRITE_SPARKLE_RED);
-                var_a3 = 0xC22;
+                __chLevelCollectible_presentCollectEmitSparkles(this->position, ASSET_715_SPRITE_SPARKLE_RED);
+                dialog_id = ASSET_C22_DIALOG_PRESENT_COLLECTIBLE_MEET_RED;
                 break;
 
             default:
                 break;
         }
-        if (var_a3 != 0) {
-            timedFunc_set_1(0.5f, (GenMethod_1)func_802D7BE8, var_a3);
+        if (dialog_id != 0) {
+            timedFunc_set_1(0.5f, (GenMethod_1)__chLevelCollectible_callDialog, dialog_id);
         }
         func_8028F030(this->modelCacheIndex);
         marker_despawn(marker);
@@ -165,7 +163,7 @@ void func_802D7DE8(ActorMarker *marker, f32 arg1[3]) {
     sp4C = marker->unk14_20;
     this = marker_getActor(marker);
     ml_vec3f_to_vec3w(sp50, arg1);
-    if (sp4C == 0x37) {
+    if (sp4C == MARKER_37_GOLD_BULLION) {
         if (mapSpecificFlags_get(0)) {
             mapSpecificFlags_set(1, TRUE);
         } else {
@@ -197,16 +195,16 @@ void func_802D8030(Actor *this){
 
     local = (s32*)&this->local;
     *local = 1;
-    this->marker->unkC = func_802D7C24;
+    this->marker->unkC = __chLevelCollectible_collide;
     func_80328A84(this, 2);
 }
 
-void func_802D8068(Actor *this) {
+void __chLevelCollectible_returnObj(Actor *this) {
     s32 *local;
     f32 sp20;
 
     local = (s32*)&this->local;
-    if( (this->marker->unk14_20 != MARKER_36_ORANGE_COLLECTABLE) 
+    if( (this->marker->unk14_20 != MARKER_36_ORANGE_COLLECTIBLE) 
         || (this->unk78_13 == 0)
     ) {
         this->position[0] += this->velocity[0];
@@ -226,7 +224,7 @@ void func_802D8068(Actor *this) {
             }
         }
         this->position[1] = sp20;
-        if (this->marker->unk14_20 != MARKER_36_ORANGE_COLLECTABLE) {
+        if (this->marker->unk14_20 != MARKER_36_ORANGE_COLLECTIBLE) {
             FUNC_8030E8B4(SFX_21_EGG_BOUNCE_1, 0.76f, 25000, this->position, 1000, 2000);
         } else {
             FUNC_8030E8B4(SFX_B3_ORANGE_TALKING, 1.0f, 25000, this->position, 1000, 2000);
@@ -235,19 +233,19 @@ void func_802D8068(Actor *this) {
             switch (this->marker->unk14_20) {
             case MARKER_37_GOLD_BULLION:
                 break;
-            case MARKER_36_ORANGE_COLLECTABLE:
+            case MARKER_36_ORANGE_COLLECTIBLE:
                 func_803252D0(1.7f, 2);
                 func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 0x7FFF);
                 break;
-            case MARKER_1FD_BLUE_PRESENT_COLLECTABLE:
+            case MARKER_1FD_BLUE_PRESENT_COLLECTIBLE:
                 func_8025A6EC(COMUSIC_2B_DING_B, 32000);
                 levelSpecificFlags_set(0x11, 1);
                 break;
-            case MARKER_1FE_GREEN_PRESENT_COLLECTABLE:
+            case MARKER_1FE_GREEN_PRESENT_COLLECTIBLE:
                 func_8025A6EC(COMUSIC_2B_DING_B, 32000);
                 levelSpecificFlags_set(0x12, 1);
                 break;
-            case MARKER_1FF_RED_PRESENT_COLLECTABLE:
+            case MARKER_1FF_RED_PRESENT_COLLECTIBLE:
                 func_8025A6EC(COMUSIC_2B_DING_B, 32000);
                 levelSpecificFlags_set(0x13, 1);
                 break;
@@ -257,14 +255,14 @@ void func_802D8068(Actor *this) {
         func_80328A84(this, 2);
     }
     switch (this->marker->unk14_20) {
-        case MARKER_1FD_BLUE_PRESENT_COLLECTABLE:
-            func_802D7960(this->position, ASSET_711_SPRITE_SPARKLE_DARK_BLUE);
+        case MARKER_1FD_BLUE_PRESENT_COLLECTIBLE:
+            __chLevelCollectible_presentReturnEmitSparkles(this->position, ASSET_711_SPRITE_SPARKLE_DARK_BLUE);
             break;
-        case MARKER_1FE_GREEN_PRESENT_COLLECTABLE:
-            func_802D7960(this->position, 0x712);
+        case MARKER_1FE_GREEN_PRESENT_COLLECTIBLE:
+            __chLevelCollectible_presentReturnEmitSparkles(this->position, 0x712);
             break;
-        case MARKER_1FF_RED_PRESENT_COLLECTABLE:
-            func_802D7960(this->position, ASSET_715_SPRITE_SPARKLE_RED);
+        case MARKER_1FF_RED_PRESENT_COLLECTIBLE:
+            __chLevelCollectible_presentReturnEmitSparkles(this->position, ASSET_715_SPRITE_SPARKLE_RED);
             break;
     }
 
@@ -312,15 +310,15 @@ void func_802D84F4(Actor *this){
     this->marker->propPtr->unk8_3 = ( this->state == 2 );
 }
 
-void func_802D8528(Actor *this){
+void chLevelCollectible_update(Actor *this){
     s32 marker_id;
     if(this->despawn_flag) return;
 
     if(!this->unk16C_4){
         this->unk16C_4 = TRUE;
-        if( this->marker->unk14_20 == MARKER_1FD_BLUE_PRESENT_COLLECTABLE
-            || this->marker->unk14_20 == MARKER_1FE_GREEN_PRESENT_COLLECTABLE
-            || this->marker->unk14_20 == MARKER_1FF_RED_PRESENT_COLLECTABLE
+        if( this->marker->unk14_20 == MARKER_1FD_BLUE_PRESENT_COLLECTIBLE
+            || this->marker->unk14_20 == MARKER_1FE_GREEN_PRESENT_COLLECTIBLE
+            || this->marker->unk14_20 == MARKER_1FF_RED_PRESENT_COLLECTIBLE
         ){
             if(jiggyscore_isCollected(JIGGY_2E_FP_PRESENTS)){
                 marker_despawn(this->marker);
@@ -339,7 +337,7 @@ void func_802D8528(Actor *this){
             break;
 
         case 1:// 802D8620
-            func_802D8068(this);
+            __chLevelCollectible_returnObj(this);
             break;
 
         case 2:// 802D863C
@@ -350,7 +348,7 @@ void func_802D8528(Actor *this){
             break;
 
         case 4:// 802D866C
-            func_802D8068(this);
+            __chLevelCollectible_returnObj(this);
             break;
 
         default:
@@ -364,15 +362,15 @@ void func_802D8528(Actor *this){
         case MARKER_37_GOLD_BULLION: //L802D86CC
             func_802D83EC(this);
             break;
-        case MARKER_36_ORANGE_COLLECTABLE: //L802D86DC
+        case MARKER_36_ORANGE_COLLECTIBLE: //L802D86DC
             if(mapSpecificFlags_get(3) && map_get() == MAP_2_MM_MUMBOS_MOUNTAIN){
                 marker_despawn(this->marker);
             }
             break;
         
-        case MARKER_1FD_BLUE_PRESENT_COLLECTABLE:
-        case MARKER_1FE_GREEN_PRESENT_COLLECTABLE:
-        case MARKER_1FF_RED_PRESENT_COLLECTABLE:
+        case MARKER_1FD_BLUE_PRESENT_COLLECTIBLE:
+        case MARKER_1FE_GREEN_PRESENT_COLLECTIBLE:
+        case MARKER_1FF_RED_PRESENT_COLLECTIBLE:
             func_802D84F4(this);
             break;
     }

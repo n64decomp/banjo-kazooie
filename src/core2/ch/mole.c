@@ -7,10 +7,10 @@ Actor *func_802D94B4(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void func_802D9830(ActorMarker *marker, enum asset_e arg1, s32 arg2);
 
 typedef struct{
-    s16 unk0;
-    s16 unk2;
-    s8 unk4;
-    s8 unk5;
+    s16 learn_text;
+    s16 refresher_text;
+    s8 camera_node;
+    s8 ability;
 } struct_core2_52290;
 
 /* .data */
@@ -31,16 +31,16 @@ ActorInfo D_80367DA0= {
 }; 
 
 struct_core2_52290 D_80367DC4[] = {
-    {0x0C23, 0x0C24, 0x0F, ABILITY_1_BEAK_BOMB}, 
-    {0x0B47, 0x0B4B, 0x16, ABILITY_6_EGGS},
-    {0x0B48, 0x0B4C, 0x17, ABILITY_2_BEAK_BUSTER},
-    {0x0B49, 0x0B4A, 0x18, ABILITY_10_TALON_TROT},
-    {0x0A1F, 0x0A23, 0x0C, ABILITY_D_SHOCK_JUMP},
-    {0x0A20, 0x0A22, 0x0D, ABILITY_9_FLY},
-    {0x0D35, 0x0D36, 0x01, ABILITY_12_WONDERWING},
-    {0x0C88, 0x0C89, 0x10, ABILITY_E_WADING_BOOTS},
-    {0x0A84, 0x0A85, 0x19, ABILITY_11_TURBO_TALON},
-    {0x0F64, 0x0F65, 0x0E, ABILITY_13_1ST_NOTEDOOR}
+    {ASSET_C23_DIALOG_BEAKBOMB_LEARN,      ASSET_C24_DIALOG_BEAKBOMB_REFRESHER,      0x0F, ABILITY_1_BEAK_BOMB}, 
+    {ASSET_B47_DIALOG_EGGS_LEARN,          ASSET_B4B_DIALOG_EGGS_REFRESHER,          0x16, ABILITY_6_EGGS},
+    {ASSET_B48_DIALOG_BEAKBUSTER_LEARN,    ASSET_B4C_DIALOG_BEAKBUSTER_REFRESHER,    0x17, ABILITY_2_BEAK_BUSTER},
+    {ASSET_B49_DIALOG_TALON_TROT_LEARN,    ASSET_B4A_DIALOG_TALON_TROT_REFRESHER,    0x18, ABILITY_10_TALON_TROT},
+    {ASSET_A1F_DIALOG_SHOCKJUMP_LEARN,     ASSET_A23_DIALOG_SHOCKJUMP_REFRESHER,     0x0C, ABILITY_D_SHOCK_JUMP},
+    {ASSET_A20_DIALOG_FLY_LEARN,           ASSET_A22_DIALOG_FLY_REFRESHER,           0x0D, ABILITY_9_FLY},
+    {ASSET_D35_DIALOG_WONDERWING_LEARN,    ASSET_D36_DIALOG_WONDERWING_REFRESHER,    0x01, ABILITY_12_WONDERWING},
+    {ASSET_C88_DIALOG_LONGLEG_LEARN,       ASSET_C89_DIALOG_LONGLEG_REFRESHER,       0x10, ABILITY_E_WADING_BOOTS},
+    {ASSET_A84_DIALOG_TURBOTRAINERS_LEARN, ASSET_A85_DIALOG_TURBOTRAINERS_REFRESHER, 0x19, ABILITY_11_TURBO_TALON},
+    {ASSET_F64_DIALOG_NOTEDOORS_LEARN,     ASSET_F65_DIALOG_NOTEDOORS_REFRESHER,     0x0E, ABILITY_13_1ST_NOTEDOOR}
 };
 
 /* .code */
@@ -136,18 +136,18 @@ void func_802D9600(Actor * this){
 }
 
 void func_802D9658(Actor *this){
-    timed_setCameraToNode(0.0f, D_80367DC4[this->unkF4_8-9].unk4);
+    timed_setCameraToNode(0.0f, D_80367DC4[this->unkF4_8-9].camera_node);
 }
 
 void func_802D9698(ActorMarker *marker, enum asset_e arg1, s32 arg2){
     Actor *actor = marker_getActor(marker);
 
-    if( arg1 == D_80367DC4[actor->unkF4_8-9].unk0 
+    if( arg1 == D_80367DC4[actor->unkF4_8-9].learn_text 
         && item_getCount(ITEM_14_HEALTH) < item_getCount(ITEM_15_HEALTH_TOTAL)
     ){
         func_80311480(ASSET_D39_TEXT_BOTTLES_REFILL_HEALTH, 7, 0, actor->marker, func_802D9698, func_802D9830);
     }//L802D9738
-    else if(arg1 == D_80367DC4[actor->unkF4_8-9].unk0 || arg1 == ASSET_D39_TEXT_BOTTLES_REFILL_HEALTH){
+    else if(arg1 == D_80367DC4[actor->unkF4_8-9].learn_text || arg1 == ASSET_D39_TEXT_BOTTLES_REFILL_HEALTH){
         func_80311480(func_802D93EC()? 0xa87 : func_802D9304(), 7, 0, actor->marker, func_802D9698, NULL);
     }
     else{//L802D97BC
@@ -206,16 +206,16 @@ void func_802D9830(ActorMarker *marker, enum asset_e arg1, s32 arg2){
 int func_802D997C(Actor *this){
     s32 sp2C;
     s32 sp28 = 0xe;
-    if(ability_isUnlocked(D_80367DC4[this->unkF4_8-9].unk5)){
+    if(ability_isUnlocked(D_80367DC4[this->unkF4_8-9].ability)){
         sp28 = 0xf;
-        sp2C = D_80367DC4[this->unkF4_8-9].unk2;
+        sp2C = D_80367DC4[this->unkF4_8-9].refresher_text;
     }//L802D99EC
     else{
         func_80347A14(0);
         this->unk138_24 = 1;
-        sp2C = D_80367DC4[this->unkF4_8-9].unk0; 
-        ability_unlock(D_80367DC4[this->unkF4_8-9].unk5);
-        switch(D_80367DC4[this->unkF4_8-9].unk5){
+        sp2C = D_80367DC4[this->unkF4_8-9].learn_text; 
+        ability_unlock(D_80367DC4[this->unkF4_8-9].ability);
+        switch(D_80367DC4[this->unkF4_8-9].ability){
             case ABILITY_9_FLY:
             case ABILITY_D_SHOCK_JUMP:
                 func_8030E6A4(SFX_113_PAD_APPEARS, 0.9f, 32000);
@@ -276,7 +276,7 @@ void func_802D9C90(Actor *this){
 }
 
 void func_802D9CBC(Actor *this){
-    if(ability_isUnlocked(D_80367DC4[this->unkF4_8 - 9].unk5)){
+    if(ability_isUnlocked(D_80367DC4[this->unkF4_8 - 9].ability)){
         func_802D9BD8(this);
     }
     else{
@@ -350,7 +350,7 @@ void func_802D9D60(Actor *this){
             func_80328FB0(this, 4.0f);
             if(func_8028F20C() && func_8028F0D4() && !func_8028EC04()){
                 if( this->unkF4_8 == 0x12 
-                    && !ability_isUnlocked(D_80367DC4[this->unkF4_8-9].unk5)
+                    && !ability_isUnlocked(D_80367DC4[this->unkF4_8-9].ability)
                     && (func_8028ECAC() == 0 || func_8028ECAC() == BSGROUP_8_TROT)
                 ){
                     player_getPosition(sp34);

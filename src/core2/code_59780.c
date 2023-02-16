@@ -12,11 +12,11 @@ void func_802E08F0(Actor *this);
 /* .data */
 ActorAnimationInfo D_80368440[] = {
     {0, 0.0f},
-    {0x98, 1.2f}
+    {ASSET_98_ANIM_FIRE_SPARKLE, 1.2f}
 };
 
 ActorInfo D_80368450 = {
-    0x72, 0xA2, 0x3AD, 
+    MARKER_72_FIRE_SPARKLE, ACTOR_A2_FIRE_SPARKLE, ASSET_3AD_FIRE_SPARKLE, 
     0x1, D_80368440, 
     func_802E08F0, func_80326224, func_80325888, 
     0, 0, 0.0f, 0

@@ -241,7 +241,7 @@ void gcpausemenu_zoomboxes_initTotalsMenu(void){
 void gcpausemenu_80311A84(void){
     s32 i;
 
-    func_802FA5D0();
+    itemPrint_reset();
     for(i = 0; i< 7; i++){
         func_802FACA4(D_8036C604[i]);
     }

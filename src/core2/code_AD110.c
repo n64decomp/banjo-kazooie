@@ -297,8 +297,8 @@ extern void func_80389C4C(s32, s32);
 extern void func_80389C74(s32, s32);
 extern void func_80389C9C(s32, s32);
 extern void func_80389CC4(s32, s32);
-extern void func_802D2B94(s32, s32);
-extern void func_802D2C24(s32, s32);
+extern void chMumbo_detransformWarn(s32, s32);
+extern void chMumbo_detransformTrigger(s32, s32);
 extern void func_8033443C(s32, s32);
 
 
@@ -414,8 +414,8 @@ Method_core2_AD110 D_8036FE5C[] ={
     func_8033443C, func_8033443C, func_8033443C, func_8033443C,
     func_8033443C, func_8033443C, func_8033443C, func_8033443C,
     func_8033443C, TTC_func_80389BFC, func_80389C24, func_80389C4C,
-    func_80389C74, func_80389C9C, func_80389CC4, func_802D2B94,
-    func_802D2C24, func_8033443C, func_8033443C, func_8033443C,
+    func_80389C74, func_80389C9C, func_80389CC4, chMumbo_detransformWarn,
+    chMumbo_detransformTrigger, func_8033443C, func_8033443C, func_8033443C,
     func_8033443C, func_8033443C, func_8033443C, func_8033443C,
     func_8033443C, func_8033443C, func_8033443C, func_8033443C,
     func_8033443C, func_8033443C, func_8033443C, func_8033443C,

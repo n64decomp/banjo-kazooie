@@ -3,6 +3,7 @@
 #include "variables.h"
 
 #include "prop.h"
+#include "core2/statetimer.h"
 
 extern f32 func_8024DDD8(f32[3], f32);
 extern int func_80259254(f32 vec[3], f32 x, f32 z, f32 val);
@@ -197,7 +198,7 @@ bool player_isInVerticalRange(f32 position[3], f32 range) {
 }
 
 int player_shouldSlideTrot(void){
-    return func_80291698(6)
+    return stateTimer_isActive(STATE_TIMER_6_UNKNOWN)
         || (1.0 == get_slope_timer() && func_80294610(0x40));
 }
 
@@ -210,7 +211,7 @@ int func_8028B2E8(void){
 }
 
 int player_isSliding(void){
-    return func_80291698(5) 
+    return stateTimer_isActive(STATE_TIMER_5_UNKNOWN) 
         || 1.0 == get_slope_timer();
 }
 
