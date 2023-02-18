@@ -64,14 +64,14 @@ s32 bsbbarge_hitboxActive(void){
 void bsbarge_init(void){
     AnimCtrl *plyrMvmnt;
 
-    plyrMvmnt = _player_getAnimCtrlPtr();
+    plyrMvmnt = baanim_getAnimCtrlPtr();
     animctrl_reset(plyrMvmnt);
     animctrl_setSmoothTransition(plyrMvmnt, 0);
     animctrl_setIndex(plyrMvmnt, ASSET_1C_ANIM_BSBBARGE);
     animctrl_setDuration(plyrMvmnt, 1.0f);
     animctrl_setSubRange(plyrMvmnt, 0, 0.375f);
     animctrl_setPlaybackType(plyrMvmnt,  ANIMCTRL_ONCE);
-    func_802875AC(plyrMvmnt, "bsbbarge.c", 0x98);
+    animctrl_start(plyrMvmnt, "bsbbarge.c", 0x98);
     D_8037D2A4 = 0;
     func_8029C7F4(1,1,3,3);
     func_8029797C(yaw_getIdeal());
@@ -92,7 +92,7 @@ void bsbarge_update(void){
     AnimCtrl *plyrMvmnt;
     
     sp24 = 0;
-    plyrMvmnt = _player_getAnimCtrlPtr();
+    plyrMvmnt = baanim_getAnimCtrlPtr();
     if(button_released(BUTTON_B))
         miscflag_set(0xA);
     switch(D_8037D2A5){
@@ -126,7 +126,7 @@ void bsbarge_update(void){
                 break;
             
             animctrl_setDuration(plyrMvmnt, 1.0f);
-            func_8028A37C(0.565f);
+            baanim_setEnd(0.565f);
             func_80297970(D_8037D2A0);
             func_802979AC(yaw_getIdeal(), func_80297A64());
             func_8030E760(SFX_2_CLAW_SWIPE, 0.558f, 22000);
@@ -138,7 +138,7 @@ void bsbarge_update(void){
             func_80297970(D_8037D2A0);
             if(animctrl_isStopped(plyrMvmnt)){
                 animctrl_setDuration(plyrMvmnt, 2.0f);
-                func_8028A37C(0.6f);
+                baanim_setEnd(0.6f);
                 func_8029E3C0(0, 0.1f);
                 D_8037D2A5 = 3;
             }
@@ -152,7 +152,7 @@ void bsbarge_update(void){
             func_80297970(D_8037D2A0);
             if(D_8037D2A0 < 200.0f){
                 animctrl_setDuration(plyrMvmnt, 1.5f);
-                func_8028A37C(1.0f);
+                baanim_setEnd(1.0f);
                 D_8037D2A5 = 4;
             }
             func_8029F4F0();

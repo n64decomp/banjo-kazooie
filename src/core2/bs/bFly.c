@@ -133,7 +133,7 @@ int func_802A37F8(void){
 }
 
 void bsbfly_enter_init(void){
-    func_8028A274(ASSET_45_ANIM_BSBFLY_ENTER, 1.4f);
+    baanim_playForDuration_onceSmooth(ASSET_45_ANIM_BSBFLY_ENTER, 1.4f);
     func_8029C7F4(1,1,3,6);
     if(func_8029B2E8() != 0.0f)
         yaw_setIdeal(func_8029B33C());
@@ -150,7 +150,7 @@ void bsbfly_enter_init(void){
 
 void bsbfly_enter_update(void){
     enum bs_e sp1C = 0;
-    AnimCtrl * aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl * aCtrl = baanim_getAnimCtrlPtr();
 
     switch(D_8037D344){
     case 0:
@@ -163,7 +163,7 @@ void bsbfly_enter_update(void){
         break;
     default:
         func_802A36D0();
-        if(func_80297AAC() < 0.0f)
+        if(_get_vertVelocity() < 0.0f)
             sp1C = BS_24_FLY;
         break;
     }
@@ -177,7 +177,7 @@ void bsbfly_enter_end(void){
 }
 
 void bsbfly_init(void){
-    func_8028A010(ASSET_38_ANIM_BSBFLY, 0.62f);
+    baanim_playForDuration_loopSmooth(ASSET_38_ANIM_BSBFLY, 0.62f);
     func_8029C7F4(1,1,3,3);
     if(miscflag_isTrue(9)){
         func_80297970(0.0f);
@@ -199,7 +199,7 @@ void bsbfly_init(void){
 
 void bsbfly_update(void){
     enum bs_e sp54 = 0;
-    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
     BKCollisionTri *sp4C;
     f32 sp40[3];
     f32 sp3C;
@@ -320,7 +320,7 @@ int bsbfly_bombHitboxActive(void){
 //bsbfly_bomb_init
 void func_802A3F9C(void){
     f32 sp1C[3];
-    func_8028A180(ASSET_43_ANIM_BSBFLY_BEAKBOMB_START, 1.0f);
+    baanim_playForDuration_once(ASSET_43_ANIM_BSBFLY_BEAKBOMB_START, 1.0f);
     func_8029C7F4(1,1,3,7);
     func_802A339C(D_8037D338, sp1C, 4200.0f);
     yaw_setIdeal(sp1C[1] + 180.0f);
@@ -371,7 +371,7 @@ void func_802A411C(void) {
     f32 sp24;
 
     next_state = 0;
-    sp58 = _player_getAnimCtrlPtr();
+    sp58 = baanim_getAnimCtrlPtr();
     switch (D_8037D344) {
     case 0:
         if (animctrl_isAt(sp58, 0.6905f)) {
@@ -430,7 +430,7 @@ void func_802A411C(void) {
             animctrl_setIndex(sp58, 0x47);
             animctrl_setDuration(sp58, 0.3f);
             animctrl_setPlaybackType(sp58, ANIMCTRL_LOOP);
-            func_802875AC(sp58, "bsbfly.c", 0x361);
+            animctrl_start(sp58, "bsbfly.c", 0x361);
         }
         break;
     }
@@ -446,13 +446,13 @@ void func_802A4404(void){
 void func_802A4430(void){
     AnimCtrl *plyr_animctrl;
 
-    plyr_animctrl = _player_getAnimCtrlPtr();
+    plyr_animctrl = baanim_getAnimCtrlPtr();
     animctrl_reset(plyr_animctrl);
     animctrl_setTransitionDuration(plyr_animctrl, 0.3f);
     animctrl_setIndex(plyr_animctrl, ASSET_CC_ANIM_BSFLY_BEAKBOMB_END);
     animctrl_setDuration(plyr_animctrl, 0.38f);
     animctrl_setPlaybackType(plyr_animctrl, ANIMCTRL_LOOP);
-    func_802875AC(plyr_animctrl, "bsbfly.c", 0x38a);
+    animctrl_start(plyr_animctrl, "bsbfly.c", 0x38a);
     func_8029C7F4(1, 1, 3, 3);
     func_8029E070(1);
     func_802A3430();
@@ -476,7 +476,7 @@ void func_802A4548(void){
     switch(D_8037D344){
         case 0://L802A457C
             if(func_8028B254(0x5A)){
-                func_8028A1F4(8, 2.0f, 0.6667f);
+                baanim_playForDuration_onceStartingAt(ASSET_8_ANIM_BSJUMP, 2.0f, 0.6667f);
                 D_8037D344 = 1;
             }
             break;
@@ -527,7 +527,7 @@ void func_802A46C8(void) {
 
 
 void bsbfly_beakbomb_crash_init(void) {
-    func_8028A180(ASSET_3E_ANIM_BSBFLY_BEAKBOMB_CRASH, 1.4f);
+    baanim_playForDuration_once(ASSET_3E_ANIM_BSBFLY_BEAKBOMB_CRASH, 1.4f);
     func_8029C7F4(1, 1, 3, 3);
     func_8029E070(1);
     FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 0.8f, 32750);
@@ -542,7 +542,7 @@ void bsbfly_beakbomb_crash_init(void) {
 void func_802A47E0(void) {
     AnimCtrl *sp1C;
 
-    sp1C = _player_getAnimCtrlPtr();
+    sp1C = baanim_getAnimCtrlPtr();
     if (animctrl_isAt(sp1C, 0.3659f)) {
         FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 1.0f, 14000);
         func_80299CF4(SFX_8B_KAZOOIE_RAWW, 1.0f, 28000);
@@ -564,7 +564,7 @@ void func_802A48B4(void) {
     AnimCtrl *sp18;
 
     next_state = 0;
-    sp18 = _player_getAnimCtrlPtr();
+    sp18 = baanim_getAnimCtrlPtr();
     func_80299628(0);
     switch (D_8037D344) {
     case 0:
@@ -579,13 +579,13 @@ void func_802A48B4(void) {
                 D_8037D344 = 2;
             }
         } else if (animctrl_isAt(sp18, 0.92f)) {
-            func_8028A180(0xD2, 2.25f);
+            baanim_playForDuration_once(ASSET_D2_ANIM_BSSPLAT, 2.25f);
             D_8037D344 = 1;
         }
         break;
     case 1:
         if (animctrl_isAt(sp18, 0.219f)) {
-            func_80299CF4(SFX_36_BANJO_DOH, 1.0f, 0x3E80);
+            func_80299CF4(SFX_36_BANJO_DOH, 1.0f, 16000);
         }
         if (animctrl_isAt(sp18, 0.63f)) {
             next_state = BS_20_LANDING;
@@ -631,7 +631,7 @@ void func_802A4A78(s32 arg0) {
         sp20 = 400.0f;
     }
     func_802BB3DC(2, 100.0f, 0.85f);
-    func_8028A274(ASSET_D3_ANIM_BSBFLY_BEAKBOMB_REBOUND, 1.2f);
+    baanim_playForDuration_onceSmooth(ASSET_D3_ANIM_BSBFLY_BEAKBOMB_REBOUND, 1.2f);
     func_80299BFC(1.0f);
     rumbleManager_80250D94(1.0f, 0.5f, 0.5f);
     _player_getPosition(sp3C);
@@ -661,7 +661,7 @@ void func_802A4C34(s32 arg0) {
     s32 next_state;
 
     next_state = 0;
-    if (animctrl_isStopped(_player_getAnimCtrlPtr())) {
+    if (animctrl_isStopped(baanim_getAnimCtrlPtr())) {
         next_state = BS_24_FLY;
     }
     if (func_8028B2E8()) {
@@ -709,7 +709,7 @@ void func_802A4D90(void) {
     f32 sp1C[3];
 
     func_802BB3DC(2, 100.0f, 0.85f);
-    func_8028A274(0x10D, 1.0f);
+    baanim_playForDuration_onceSmooth(0x10D, 1.0f);
     func_8030E58C(SFX_56_BANJO_HUI, 1.0f);
     _player_getPosition(player_position);
     func_80294980(sp1C);
@@ -736,7 +736,7 @@ void func_802A4EC8(void) {
     AnimCtrl *sp18;
 
     next_state = 0;
-    sp18 = _player_getAnimCtrlPtr();
+    sp18 = baanim_getAnimCtrlPtr();
     if (func_8028B2E8()) {
         next_state = BS_20_LANDING;
     }
@@ -754,7 +754,7 @@ void func_802A4F44(void){
 }
 
 void func_802A4F74(void) {
-    func_8028A010(ASSET_38_ANIM_BSBFLY, 0.62f);
+    baanim_playForDuration_loopSmooth(ASSET_38_ANIM_BSBFLY, 0.62f);
     func_8029C7F4(1, 1, 3, 7);
     func_8029E070(1);
     func_802914CC(4);
@@ -765,7 +765,7 @@ void func_802A4FC8(void) {
     s32 next_state;
 
     next_state = 0;
-    if (animctrl_isAt(_player_getAnimCtrlPtr(), 0.1358f) != 0) {
+    if (animctrl_isAt(baanim_getAnimCtrlPtr(), 0.1358f) != 0) {
         func_8030EBC8(SFX_2_CLAW_SWIPE, 0.6f, 0.7f, 10000, 12000);
     }
     if (func_80298850() == 0) {
@@ -789,7 +789,7 @@ void func_802A505C(void){
 }
 
 /* BREAK??? */
-extern void func_8028A084(s32, f32);
+extern void baanim_playForDuration_loop(s32, f32);
 
 /* .code */
 void func_802A50B0(void){
@@ -807,7 +807,7 @@ void func_802A50F8(void){
 }
 
 void func_802A5120(void){
-    func_8028A084(ASSET_68_ANIM_BSJUMP_TUMBLE, 0.35f);
+    baanim_playForDuration_loop(ASSET_68_ANIM_BSJUMP_TUMBLE, 0.35f);
     func_8029C7F4(1,1,3,6);
     func_80297970(0.0f);
     func_80297A0C(0);

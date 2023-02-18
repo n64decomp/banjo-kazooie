@@ -17,7 +17,7 @@ extern void func_8033A244(f32);
 f32 func_80257204(f32, f32, f32, f32);
 extern Actor *func_802C4260(enum actor_e actor_id, s32 x, s32 y, s32 z, s32 yaw);
 f32 func_8033229C(ActorMarker *);
-f32 func_8028EBA4(void);
+f32 player_getYaw(void);
 extern void func_8032FFF4(ActorMarker *, ActorMarker *, s32);
 extern void func_802C9334(s32, Actor *);
 extern void func_8032B3A0(Actor *, ActorMarker *);
@@ -894,7 +894,7 @@ Actor *actor_new(s32 (* position)[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
             animctrl_reset(D_80383390->animctrl);
             animctrl_setIndex(D_80383390->animctrl, sp54->index);
             animctrl_setDuration(D_80383390->animctrl, sp54->duration);
-            func_802875AC(D_80383390->animctrl, "subaddie.c", 0x4A5);
+            animctrl_start(D_80383390->animctrl, "subaddie.c", 0x4A5);
         }
     }//L80327BA8
     D_80383390->unk124_11 = 0;
@@ -1179,12 +1179,12 @@ bool func_80328508(Actor *arg0, s32 arg1)
     return TRUE;
 }
 
-void func_803285E8(Actor *this, f32 arg1, int direction){
-    func_8028774C(this->animctrl, arg1);
+void func_803285E8(Actor *this, f32 anim_start_position, int direction){
+    animctrl_setStart(this->animctrl, anim_start_position);
     if(direction != -1){
         animctrl_setDirection(this->animctrl, direction);
     }
-    this->sound_timer = arg1;
+    this->sound_timer = anim_start_position;
 }
 
 
@@ -1268,7 +1268,7 @@ int actor_animationIsAt(Actor *this, f32 arg1){
 
 void func_803289EC(Actor *this , f32 arg1, int direction){
     func_803285E8(this, arg1, direction);
-    func_802875AC(this->animctrl, "subaddie.c", 0x6b1);
+    animctrl_start(this->animctrl, "subaddie.c", 0x6b1);
 }
 
 int func_80328A2C(Actor *this, f32 arg1, s32 direction, f32 probability){
@@ -1283,7 +1283,7 @@ int func_80328A2C(Actor *this, f32 arg1, s32 direction, f32 probability){
 
 void func_80328A84(Actor * arg0, u32 arg1){
     if(func_80328508(arg0, arg1) && arg0->animctrl){
-        func_802875AC(arg0->animctrl, "subaddie.c", 0X6CA);
+        animctrl_start(arg0->animctrl, "subaddie.c", 0X6CA);
     }
 }
 
@@ -1316,7 +1316,7 @@ int func_80328BD4(Actor * this, s32 myAnimId, f32 arg2, s32 arg3, f32 arg4){
     if(randf() < arg4){
         if(func_80328508(this, myAnimId) && this->animctrl){
             func_803285E8(this, arg2, arg3);
-            func_802875AC(this->animctrl, "subaddie.c", 0x705);
+            animctrl_start(this->animctrl, "subaddie.c", 0x705);
         }
         return 1;
     }
@@ -1680,9 +1680,9 @@ void func_80329B68(Actor *this){
     animctrl_setDirection(this->animctrl, this->stored_animctrl_forwards);
     animctrl_setSmoothTransition(this->animctrl, this->stored_animctrl_smoothTransistion);
     animctrl_setDuration(this->animctrl, this->stored_animctrl_duration);
-    func_8028774C(this->animctrl, this->unkEC);
+    animctrl_setStart(this->animctrl, this->unkEC);
     animctrl_setSubRange(this->animctrl, this->stored_animctrl_subrangeMin, this->stored_animctrl_subrangeMax);
-    func_802875AC(this->animctrl, "subaddie.c", 0x8fd);
+    animctrl_start(this->animctrl, "subaddie.c", 0x8fd);
     animctrl_setTimer(this->animctrl, this->sound_timer);
 }
 
@@ -2167,7 +2167,7 @@ void func_8032B258(Actor *this, enum collision_e arg1) {
     f32 sp34;
 
     if ((arg1 == COLLISION_2_DIE) && this->unk138_27 != 0) {
-        sp44 = func_8028EBA4();
+        sp44 = player_getYaw();
         if ((s32)this->marker->unk44 < 0) {
             func_8034A174( this->marker->unk44, 0x20, sp38);
         }
@@ -2284,7 +2284,7 @@ void func_8032B5C0(ActorMarker *arg0, ActorMarker *arg1, struct5Cs *arg2) {
                     this->unk164[sp64] = 0x63;
                 }
                 if ((sp64 == 2) && (sp70 != 0)) {
-                    sp5C = func_8028EBA4();
+                    sp5C = player_getYaw();
                     sp3C[0] = (s32) this->position[0];
                     sp3C[1] = (s32) this->position[1];
                     sp3C[2] = (s32) this->position[2];

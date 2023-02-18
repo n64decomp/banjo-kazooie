@@ -87,7 +87,7 @@ void func_802B3868(void) {
     AnimCtrl *anim_ctrl;
     f32 sp20;
 
-    anim_ctrl = _player_getAnimCtrlPtr();
+    anim_ctrl = baanim_getAnimCtrlPtr();
     func_802B360C();
     if (D_8037D500 == 0) {
         sp20 = 1.4f;
@@ -100,7 +100,7 @@ void func_802B3868(void) {
     animctrl_setIndex(anim_ctrl, ASSET_F_ANIM_BSREBOUND);
     animctrl_setDuration(anim_ctrl, sp20);
     animctrl_setPlaybackType(anim_ctrl, ANIMCTRL_ONCE);
-    _func_802875AC(anim_ctrl, "bsrebound.c", 0xC6);
+    animctrl_start(anim_ctrl, "bsrebound.c", 0xC6);
     func_8030E58C(SFX_56_BANJO_HUI, 1.0f);
     func_8029E3C0(0, 1.5f);
     baMarker_collisionOff();
@@ -112,7 +112,7 @@ void func_802B3954(void) {
     AnimCtrl *anim_ctrl;
 
     next_state = 0;
-    anim_ctrl = _player_getAnimCtrlPtr();
+    anim_ctrl = baanim_getAnimCtrlPtr();
     if (func_8029E1A8(0) && map_get() == MAP_93_GL_DINGPOT) {
         baMarker_collisionOn();
     }

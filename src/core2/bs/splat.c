@@ -20,7 +20,7 @@ void func_802B4570(void) {
 
 void bssplat_init(void){
     s32 sp1C;
-    func_8028A274(ASSET_149_ANIM_BSSPLAT, 1.1f);
+    baanim_playForDuration_onceSmooth(ASSET_149_ANIM_BSSPLAT, 1.1f);
     func_8029C7F4(1,1,3,3);
     func_802931DC(&sp1C);
     func_803463D4(ITEM_14_HEALTH, -sp1C);
@@ -44,7 +44,7 @@ void bssplat_init(void){
 
 void bssplat_update(void){
     enum bs_e sp1C = 0;
-    AnimCtrl *aCtrl =  _player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl =  baanim_getAnimCtrlPtr();
     func_80297970(ml_max_f(0.0f, func_80297A64() - 15.0f));
 
     switch (D_8037D530)
@@ -57,7 +57,7 @@ void bssplat_update(void){
             sp1C = BS_2F_FALL;
 
         if(animctrl_isStopped(aCtrl)){
-            func_8028A180(ASSET_D2_ANIM_BSSPLAT, 2.25f);
+            baanim_playForDuration_once(ASSET_D2_ANIM_BSSPLAT, 2.25f);
             D_8037D530 = 1;
         }
         break;

@@ -224,14 +224,14 @@ void func_802B0060(UNK_TYPE(s32) arg0, UNK_TYPE(s32) arg1){
 
 
 void func_802B014C(void){
-    func_80289EBC(NULL);
+    baanim_setModifyMethod(NULL);
 }
 
 void func_802B016C(void){
     D_8037D470.unk20 = 0.0f;
     D_8037D470.unk28 = 0.0f;
     D_8037D470.unk24 = 1.0f;
-    func_80289EBC(func_802B0060);
+    baanim_setModifyMethod(func_802B0060);
 }
 
 void func_802B01B0(f32 arg0){
@@ -296,7 +296,7 @@ static void __bsdronexform_setState(int next_state){
             player_setTransformation(func_80294A4C()); //set player transformation
             baModel_updateModel(); //update player model
             func_8029BD44(&sp34, &sp30);
-            func_8028A010(sp34, sp30);
+            baanim_playForDuration_loopSmooth(sp34, sp30);
             func_8029E3C0(0, 0.1f);
             break;
 
@@ -323,7 +323,7 @@ void bsdronexform_init(void){
     f32 sp1C;
     enum asset_e sp18;
     func_8029BCAC(&sp18, &sp1C);
-    func_8028A010(sp18, sp1C);
+    baanim_playForDuration_loopSmooth(sp18, sp1C);
     func_8029C7F4(1,1,3,7);
     func_80297A0C(0);
     func_80297930(0);

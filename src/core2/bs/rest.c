@@ -19,26 +19,26 @@ void func_802B3A50(void) {
 void func_802B3AAC(enum asset_e anim_id, f32 anim_duration) {
     AnimCtrl *anim_ctrl;
 
-    anim_ctrl = _player_getAnimCtrlPtr();
-    if (anim_id == 0x14A) {
+    anim_ctrl = baanim_getAnimCtrlPtr();
+    if (anim_id == ASSET_14A_ANIM_BSREST_LISTEN) {
         func_8029E070(1);
-        switch (animctrl_getIndex(_player_getAnimCtrlPtr())) {
-        case 0x14A:
-            func_8028A010(anim_id, anim_duration);
+        switch (animctrl_getIndex(baanim_getAnimCtrlPtr())) {
+        case ASSET_14A_ANIM_BSREST_LISTEN:
+            baanim_playForDuration_loopSmooth(anim_id, anim_duration);
             break;
-        case 0x167:
+        case ASSET_167_ANIM_BSREST_MOVE:
             animctrl_reset(anim_ctrl);
-            animctrl_setIndex(anim_ctrl, 0x167);
+            animctrl_setIndex(anim_ctrl, ASSET_167_ANIM_BSREST_MOVE);
             animctrl_setDuration(anim_ctrl, 0.4f);
             animctrl_setPlaybackType(anim_ctrl, ANIMCTRL_ONCE);
             break;
         default:
-            func_8028A180(0x167, 0.5f);
+            baanim_playForDuration_once(ASSET_167_ANIM_BSREST_MOVE, 0.5f);
             animctrl_setPlaybackType(anim_ctrl, ANIMCTRL_ONCE);
             break;
         }
     } else {
-        func_8028A010(anim_id, anim_duration);
+        baanim_playForDuration_loopSmooth(anim_id, anim_duration);
     }
     func_8029C7F4(1, 1, 3, 2);
     func_80297970(0.0f);
@@ -50,28 +50,28 @@ bool func_802B3BB0(void) {
     AnimCtrl *anim_ctrl;
     bool sp20;
 
-    anim_ctrl = _player_getAnimCtrlPtr();
+    anim_ctrl = baanim_getAnimCtrlPtr();
     func_802B3A50();
     sp20 = FALSE;
     switch(animctrl_getIndex(anim_ctrl)){
-        case 0x167:
+        case ASSET_167_ANIM_BSREST_MOVE:
             if (baanim_isStopped() != 0) {
                 if (animctrl_isPlayedForwards(anim_ctrl) != 0) {
-                    func_8028A010(ASSET_14A_ANIM_BANJO_LISTENING, 11.4f);
+                    baanim_playForDuration_loopSmooth(ASSET_14A_ANIM_BSREST_LISTEN, 11.4f);
                 } else if (func_80298850() == 0) {
                     sp20 = TRUE;
                 }
             }
             break;
-        case ASSET_14A_ANIM_BANJO_LISTENING:
+        case ASSET_14A_ANIM_BSREST_LISTEN:
             if (func_80298850() == 0) {
                 animctrl_reset(anim_ctrl);
                 animctrl_setDirection(anim_ctrl, 0);
                 animctrl_setIndex(anim_ctrl, 0x167);
-                func_8028774C(anim_ctrl, 1.0f);
+                animctrl_setStart(anim_ctrl, 1.0f);
                 animctrl_setDuration(anim_ctrl, 0.5f);
                 animctrl_setPlaybackType(anim_ctrl, ANIMCTRL_ONCE);
-                _func_802875AC(anim_ctrl, "bsrest.c", 0xA3);
+                animctrl_start(anim_ctrl, "bsrest.c", 0xA3);
             }
             break;
         default:

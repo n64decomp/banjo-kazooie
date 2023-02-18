@@ -256,7 +256,7 @@ enum hitbox_e player_getActiveHitbox(ActorMarker *marker){
 }
 
 AnimCtrl *player_getAnimCtrlPtr(void){
-    return _player_getAnimCtrlPtr();
+    return baanim_getAnimCtrlPtr();
 }
 
 ActorMarker *player_getMarker(void){
@@ -403,8 +403,7 @@ void player_getPosition_s32(s32 arg0[3]){
     arg0[2] = (s32)plyr_pos[2];
 }
 
-//player_getYaw
-f32 func_8028EBA4(void){
+f32 player_getYaw(void){
     return yaw_get();
 }
 
@@ -412,7 +411,7 @@ f32 func_8028EBC4(void){
     return func_802B6F9C();
 }
 
-f32 func_8028EBE4(void){
+f32 player_getPitch(void){
     return pitch_get();
 }
 
@@ -532,7 +531,7 @@ f32 func_8028EF08(void){
 }
 
 void func_8028EF28(f32 arg0[3]){
-    func_80294A1C(arg0);
+    get_throw_target_position(arg0);
 }
 
 BKCollisionTri *func_8028EF48(void){
@@ -876,7 +875,7 @@ void func_8028FA34(enum actor_e arg0, Actor *arg1){
 }
 
 void func_8028FA54(f32 arg0[3]){
-    func_80294AC0(arg0);
+    set_throw_target_position(arg0);
 }
 
 void func_8028FA74(f32 dst[3]){
@@ -928,7 +927,7 @@ bool func_8028FBD4(f32 arg0[3]) {
         return FALSE;
     }
     if (arg0 != NULL) {
-        func_80294A98(arg0);
+        set_talk_target_position(arg0);
     }
     return bs_checkInterrupt(BS_INTR_8) == 2;
 }

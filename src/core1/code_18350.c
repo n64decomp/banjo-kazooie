@@ -759,12 +759,12 @@ f32 ml_map_f(f32 a, f32 b, f32 c, f32 d, f32 e)
     return e;
 }
 
-f32 func_80257BFC(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4)
+f32 ml_mapRange_f(f32 val, f32 in_min, f32 in_max, f32 out_min, f32 out_max)
 {
-    if (arg2 != arg1)
-        return ((arg0 - arg1) / (arg2 - arg1)) * (arg4 - arg3) + arg3;
+    if (in_max != in_min)
+        return ((val - in_min) / (in_max - in_min)) * (out_max - out_min) + out_min;
 
-    return arg4;
+    return out_max;
 }
     
 f32 ml_interpolate_f(f32 arg0, f32 arg1, f32 arg2)
@@ -789,7 +789,7 @@ f32 func_80257CF8(f32 a, f32 b, f32 c, f32 d, f32 e)
     return ml_mapFunction_f(a, b, c, d, e, func_80257658);
 }
 
-f32 ml_mapRange_f(f32 val, f32 in_min, f32 in_max, f32 out_min, f32 out_max)
+f32 ml_mapAbsRange_f(f32 val, f32 in_min, f32 in_max, f32 out_min, f32 out_max)
 {
     if (val < 0)
         return ml_map_f(val, -in_min, -in_max, -out_min, -out_max);

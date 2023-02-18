@@ -1458,7 +1458,7 @@ gczoombox_t *gczoombox_new(s32 arg0, enum talk_pic_e portrait_id, s32 arg2, s32 
     this->anim_ctrl = animctrl_new(0);
     animctrl_reset(this->anim_ctrl);
     animctrl_setIndex(this->anim_ctrl, ASSET_138_ANIM_ZOOMBOX);
-    func_802875AC(this->anim_ctrl, "gczoombox.c", 0x6fd);
+    animctrl_start(this->anim_ctrl, "gczoombox.c", 0x6fd);
 
     func_803184C8(this, 15.0f, 5, 2, 0.4f, 0, 0); //func_803184C8(this, 15.0f, 5, 2, D_80378940, 0, 0);
     this->unk176 = D_8036C6C0[portrait_id].unk2;

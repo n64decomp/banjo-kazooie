@@ -9,12 +9,12 @@ s32 D_8037D560;
 void func_802B5FD0(void) {
     AnimCtrl *anim_ctrl;
 
-    anim_ctrl = _player_getAnimCtrlPtr();
+    anim_ctrl = baanim_getAnimCtrlPtr();
     animctrl_reset(anim_ctrl);
     animctrl_setIndex(anim_ctrl, ASSET_69_ANIM_BSSURF);
     animctrl_setDuration(anim_ctrl, 1.8f);
     animctrl_setPlaybackType(anim_ctrl, ANIMCTRL_LOOP);
-    _func_802875AC(anim_ctrl, "bssurf.c", 0x33);
+    animctrl_start(anim_ctrl, "bssurf.c", 0x33);
     func_8029C7F4(1, 1, 3, 2);
     func_80297970(0.0f);
     D_8037D560 = 1;

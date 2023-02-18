@@ -7,7 +7,7 @@
 
 extern f32 func_8024DDD8(f32[3], f32);
 extern int func_80259254(f32 vec[3], f32 x, f32 z, f32 val);
-extern f32 func_8028EBA4(void);
+extern f32 player_getYaw(void);
 
 /* .bss */
 u8 D_8037BF60;
@@ -163,7 +163,7 @@ bool func_8028AED4(f32 arg0[3], f32 arg1) {
     _player_getPosition(sp2C);
     func_80257F18(arg0, sp2C, &sp28);
     sp26 = (u16) (sp28 * 182.044444);
-    sp24 = (u16) (func_8028EBA4() * 182.044444);
+    sp24 = (u16) (player_getYaw() * 182.044444);
     sp26 = (u16)((sp26 - sp24));
     temp_v1 = 0x8000 - sp26;
     phi_a0 = (temp_v1 >= 0) ? temp_v1 : -temp_v1;
@@ -203,11 +203,11 @@ int player_shouldSlideTrot(void){
 }
 
 bool func_8028B254(s32 arg0) {
-    return (func_8028B2E8() || (func_80297AAC() < 0.0f && (player_getYPosition() - func_80294438()) < (f32) arg0));
+    return (func_8028B2E8() || (_get_vertVelocity() < 0.0f && (player_getYPosition() - func_80294438()) < (f32) arg0));
 }
 
 int func_8028B2E8(void){
-    return D_8037BF60 && func_80297AAC() < 0.0f;
+    return D_8037BF60 && _get_vertVelocity() < 0.0f;
 }
 
 int player_isSliding(void){
@@ -296,7 +296,7 @@ void func_8028B59C(void) {
     if (map_get() == MAP_6_TTC_NIPPERS_SHELL) {
         D_8037BF61 = FALSE;
     }
-    if (!sp24 && D_8037BF61 && (func_80297AAC() < -40.0)) {
+    if (!sp24 && D_8037BF61 && (_get_vertVelocity() < -40.0)) {
         func_8029C0D0();
         func_8030E58C(0xF, 0.7f);
     }

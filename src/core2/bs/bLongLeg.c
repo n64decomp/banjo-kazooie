@@ -3,6 +3,7 @@
 #include "variables.h"
 #include "core2/ba/model.h"
 #include "core2/statetimer.h"
+#include "core2/ba/anim.h"
 
 
 /* .data */
@@ -91,13 +92,13 @@ void func_802A5404(void){
 }
 
 void __bsblongleg_enterFromTrot(void){
-    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
     animctrl_reset(aCtrl);
     animctrl_setSmoothTransition(aCtrl, 0);
     animctrl_setIndex(aCtrl, ASSET_40_ANIM_BSLONGLEG_ENTER_FROM_BTROT);
     animctrl_setDuration(aCtrl, 1.0f);
     animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
-    func_802875AC(aCtrl, "bsblongleg.c", 0xe1);
+    animctrl_start(aCtrl, "bsblongleg.c", 0xe1);
     stateTimer_set(STATE_TIMER_2_LONGLEG, D_8037D35C);
     func_803219F4(2);
     func_8030E2C4(D_8037D361);
@@ -105,13 +106,13 @@ void __bsblongleg_enterFromTrot(void){
 }
 
 void __bsblongleg_enter(void){
-    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
     animctrl_reset(aCtrl);
     animctrl_setSmoothTransition(aCtrl, 0);
     animctrl_setIndex(aCtrl, ASSET_16_ANIM_BSBTROT_ENTER);
     animctrl_setDuration(aCtrl, 0.5f);
     animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
-    func_802875AC(aCtrl, "bsblongleg.c", 0xf6);
+    animctrl_start(aCtrl, "bsblongleg.c", 0xf6);
     D_8037D360 = 0;
 }
 
@@ -132,7 +133,7 @@ void bsblongleg_enter_init(void){
 
 void bsblongleg_enter_update(void){
     enum bs_e next_state = 0;
-    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
     func_802A531C();
     func_80299594(1, 0.5f);
     switch(D_8037D360){
@@ -154,7 +155,7 @@ void bsblongleg_enter_end(void){
 }
 
 void bsblongleg_stand_enter(void){
-    func_8028A010(ASSET_41_ANIM_BSLONGLEG_IDLE, 1.0f);
+    baanim_playForDuration_loopSmooth(ASSET_41_ANIM_BSLONGLEG_IDLE, 1.0f);
     func_8029C7F4(1,1,1,2);
     func_80297970(0.0f);
     baModel_setDirection(PLAYER_MODEL_DIR_KAZOOIE);
@@ -195,19 +196,19 @@ void bsblongleg_stand_end(void){
 }
 
 void bsblongleg_walk_init(void){
-    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
 
     animctrl_reset(aCtrl);
     animctrl_setIndex(aCtrl, ASSET_42_ANIM_BSLONGLEG_WALK);
     animctrl_setPlaybackType(aCtrl,  ANIMCTRL_LOOP);
-    func_802875AC(aCtrl, "bsblongleg.c", 0x1a1);
+    animctrl_start(aCtrl, "bsblongleg.c", 0x1a1);
     func_8029C7F4(2,1,1,2);
-    func_80289EC8(D_80364A40, D_80364A44, D_80364A48, D_80364A4C);
+    baanim_setVelocityMapRanges(D_80364A40, D_80364A44, D_80364A48, D_80364A4C);
 }
 
 void bsblongleg_walk_update(void){
     enum bs_e next_state = 0;
-    AnimCtrl * aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl * aCtrl = baanim_getAnimCtrlPtr();
     func_802A531C();
     func_80299594(1, 0.5f);
     func_8029AD28(0.47f, 4);
@@ -245,32 +246,32 @@ void bsblongleg_walk_end(void){
 }
 
 void func_802A5AB0(void){
-    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
     animctrl_reset(aCtrl);
     animctrl_setSmoothTransition(aCtrl, 0);
     animctrl_setDirection(aCtrl, 0);
     animctrl_setIndex(aCtrl, ASSET_40_ANIM_BSLONGLEG_ENTER_FROM_BTROT);
     animctrl_setDuration(aCtrl, 1.0f);
     animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
-    func_802875AC(aCtrl, "bsblongleg.c", 0x200);
+    animctrl_start(aCtrl, "bsblongleg.c", 0x200);
     D_8037D360 = 0;
 }
 
 void func_802A5B34(void){
-    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
 
     animctrl_reset(aCtrl);
     animctrl_setSmoothTransition(aCtrl, 0);
     animctrl_setIndex(aCtrl, ASSET_7_ANIM_BSBTROT_EXIT);
     animctrl_setDuration(aCtrl, 0.6f);
     animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
-    func_802875AC(aCtrl, "bsblongleg.c", 0x210);
+    animctrl_start(aCtrl, "bsblongleg.c", 0x210);
     D_8037D360 = 1;
 }
 
 void bsblongleg_exit_init(void){
     func_802A5AB0();
-    func_80289F10(1);
+    baanim_setUpdateType(BAANIM_UPDATE_1_NORMAL);
     func_8029957C(2);
     func_80297970(0.0f);
     D_8037D361 = func_8030D90C();
@@ -280,7 +281,7 @@ void bsblongleg_exit_init(void){
 
 void bsblongleg_exit_update(void){
     enum bs_e next_state = 0;
-    AnimCtrl * aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl * aCtrl = baanim_getAnimCtrlPtr();
     func_802A531C();
     func_80299628(1);
     switch(D_8037D360){
@@ -311,16 +312,16 @@ void bsblongleg_exit_end(void){
 }
 
 void bsblongleg_jump_init(void){
-    AnimCtrl * aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl * aCtrl = baanim_getAnimCtrlPtr();
     D_8037D350 = 0.14f;
     animctrl_reset(aCtrl);
     animctrl_setIndex(aCtrl, ASSET_3D_ANIM_BSLONGLEG_JUMP);
     animctrl_setTransitionDuration(aCtrl, 0.134f);
     animctrl_setDuration(aCtrl, 1.0f);
-    func_8028774C(aCtrl, D_8037D350);
+    animctrl_setStart(aCtrl, D_8037D350);
     animctrl_setSubRange(aCtrl, 0.0f, 0.42f);
     animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
-    func_802875AC(aCtrl, "bsblongleg.c", 0x27F);
+    animctrl_start(aCtrl, "bsblongleg.c", 0x27F);
     func_8029C7F4(1,1,3,6);
     if(func_8029B2E8() != 0.0f)
         yaw_setIdeal(func_8029B33C());
@@ -335,7 +336,7 @@ void bsblongleg_jump_init(void){
 
 void bsblongleg_jump_update(void){
     enum bs_e sp44 = 0;
-    AnimCtrl * aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl * aCtrl = baanim_getAnimCtrlPtr();
     f32 sp34[3];
     f32 sp30;
 
@@ -404,13 +405,13 @@ void bsblongleg_jump_end(void){
 }
 
 void bsblongleg_slide_init(void){
-    AnimCtrl * aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl * aCtrl = baanim_getAnimCtrlPtr();
 
     animctrl_reset(aCtrl);
     animctrl_setIndex(aCtrl, ASSET_3D_ANIM_BSLONGLEG_JUMP);
     animctrl_setPlaybackType(aCtrl,  ANIMCTRL_STOPPED);
-    func_8028774C(aCtrl, 0.0865f);
-    func_802875AC(aCtrl, "bsblongleg.c", 0x339);
+    animctrl_setStart(aCtrl, 0.0865f);
+    animctrl_start(aCtrl, "bsblongleg.c", 0x339);
     func_8029C7F4(1,1,3,3);
     func_8029797C(yaw_getIdeal());
     func_802979AC(yaw_getIdeal(), func_80297A64());
@@ -461,7 +462,7 @@ void func_802A6388(f32 arg0){
 }
 
 void func_802A6394(void){
-    func_8028A010(ASSET_41_ANIM_BSLONGLEG_IDLE, 1.0f);
+    baanim_playForDuration_loopSmooth(ASSET_41_ANIM_BSLONGLEG_IDLE, 1.0f);
     func_8029C7F4(1,1,3,2);
     func_80297970(0.0f);
     func_802A5374();

@@ -4,7 +4,7 @@
 #include "core2/yaw.h"
 
 void baModel_80292048(s32, f32, f32, f32);
-void func_802875AC(AnimCtrl *, char *, s32);
+void animctrl_start(AnimCtrl *, char *, s32);
 
 /* .data */
 f32 D_80364A60 = -1400.0f;
@@ -37,7 +37,7 @@ void bsbpeck_init(void){
     if(func_80293234() == 1)
         func_80293240(2);
 
-    func_8028A274(ASSET_1A_ANIM_BSBPECK, 0.2f);
+    baanim_playForDuration_onceSmooth(ASSET_1A_ANIM_BSBPECK, 0.2f);
     func_8029C7F4(1,YAW_STATE_3_BOUNDED, 1, 6);
     yaw_setVelocityBounded(1200.0f, 10.0f);
     func_8029E070(1);
@@ -72,7 +72,7 @@ void func_802A664C(void){
 
 void bsbpeck_update(void){
     enum bs_e sp24 = 0;
-    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
 
     func_802B6FA8();
     if(D_8037D377){
@@ -83,10 +83,10 @@ void bsbpeck_update(void){
         case 0://L802A6770
             if(animctrl_isAt(aCtrl, 0.9126f)){
                 animctrl_setIndex(aCtrl, ASSET_19_ANIM_BSBPECK_ENTER);
-                func_8028774C(aCtrl, 0.0f);
+                animctrl_setStart(aCtrl, 0.0f);
                 animctrl_setDuration(aCtrl, 0.35f);
                 animctrl_setPlaybackType(aCtrl,  ANIMCTRL_LOOP);
-                func_802875AC(aCtrl, "bsbpeck.c", 0xbd);
+                animctrl_start(aCtrl, "bsbpeck.c", 0xbd);
                 D_8037D370 = 0.5f;
                 D_8037D374 = 1;
             }
@@ -106,7 +106,7 @@ void bsbpeck_update(void){
                 animctrl_setDirection(aCtrl, 0);
                 animctrl_setDuration(aCtrl, 0.2f);
                 animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
-                func_802875AC(aCtrl, "bsbpeck.c", 0xd4);
+                animctrl_start(aCtrl, "bsbpeck.c", 0xd4);
                 D_8037D374 = 2;
             }
             break;

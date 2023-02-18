@@ -13,14 +13,14 @@ u8 D_8037D382;
 
 /* .code */
 void bsbshock_charge_init(void){
-    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
     animctrl_reset(aCtrl);
     animctrl_setIndex(aCtrl, ASSET_48_ANIM_BSBSHOCK_CHARGE);
     animctrl_setTransitionDuration(aCtrl, 0.4f);
     animctrl_setDuration(aCtrl, 4.2f);
     animctrl_setSubRange(aCtrl, 0.0f, 0.1061f);
     animctrl_setPlaybackType(aCtrl,1);
-    func_802875AC(aCtrl, "bsbshock.c", 0x61);
+    animctrl_start(aCtrl, "bsbshock.c", 0x61);
     func_8029C7F4(1,1,3,6);
 
     if(func_8029B2E8() != 0.0f)
@@ -43,7 +43,7 @@ void bsbshock_charge_init(void){
 
 void bsbshock_charge_update(void){
     enum bs_e sp2C = 0;
-    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
     f32 sp1C[3];
 
     if(func_8028B2E8()){ 
@@ -123,15 +123,15 @@ void bsbshock_charge_end(void){
 }
 
 void bsbshock_init(void){
-    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
     animctrl_reset(aCtrl);
     animctrl_setSmoothTransition(aCtrl, 0);
     animctrl_setIndex(aCtrl, ASSET_49_ANIM_BSBSHOCK_JUMP);
     animctrl_setDuration(aCtrl, 0.8f);
-    func_8028774C(aCtrl, 0.5304f);
+    animctrl_setStart(aCtrl, 0.5304f);
     animctrl_setSubRange(aCtrl, 0.0f, 1.0f);
     animctrl_setPlaybackType(aCtrl,1);
-    func_802875AC(aCtrl, "bsbshock.c", 0x13a);
+    animctrl_start(aCtrl, "bsbshock.c", 0x13a);
     func_8029C7F4(1,1,3,6);
 
     if(func_8029B2E8() != 0.0f)
@@ -154,7 +154,7 @@ void bsbshock_init(void){
 void bsbshock_update(void){
     enum bs_e sp2C = 0;
     f32 sp20[3];
-    AnimCtrl * aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl * aCtrl = baanim_getAnimCtrlPtr();
 
     func_802B6FA8();
     _get_velocity(sp20);

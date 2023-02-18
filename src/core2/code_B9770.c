@@ -796,7 +796,7 @@ s32 func_803422D4(Actor *arg0, Union_glspline *arg1, SplineList *arg2){
             animctrl_setDuration(arg0->animctrl, arg0->unk5C);
             animctrl_setDirection(arg0->animctrl, 1);
             if (arg0->animctrl != 0) {
-                _func_802875AC(arg0->animctrl, "glspline.c", 0x545);
+                animctrl_start(arg0->animctrl, "glspline.c", 0x545);
             }
         }
         switch (arg1->t1.unk4.bit6){

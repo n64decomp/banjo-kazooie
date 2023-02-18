@@ -1,6 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "core2/ba/anim.h"
 
 /* .data */
 f32 D_8037D590;
@@ -8,7 +9,7 @@ s32 D_8037D594;
 
 /* .code */
 void bsturn_init(void){
-    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
     f32 sp28[3];
 
     animctrl_reset(aCtrl);
@@ -16,8 +17,8 @@ void bsturn_init(void){
     animctrl_setDuration(aCtrl, 0.3f);
     animctrl_setTransitionDuration(aCtrl,0.1f);
     animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
-    func_802875AC(aCtrl, "bsturn.c", 0x37);
-    func_80289F10(1);
+    animctrl_start(aCtrl, "bsturn.c", 0x37);
+    baanim_setUpdateType(BAANIM_UPDATE_1_NORMAL);
     yaw_setUpdateState(1);
     func_8029957C(2);
     func_802978DC(3);
@@ -30,7 +31,7 @@ void bsturn_init(void){
 void bsturn_update(void){
     enum bs_e sp2C = 0;
 
-    func_80297970(ml_map_f(animctrl_getAnimTimer(_player_getAnimCtrlPtr()), 0.18f, 1.0f, D_8037D590, 0.0f));
+    func_80297970(ml_map_f(animctrl_getAnimTimer(baanim_getAnimCtrlPtr()), 0.18f, 1.0f, D_8037D590, 0.0f));
 
     D_8037D594++;
     if(!(D_8037D594 < 6))
@@ -38,17 +39,17 @@ void bsturn_update(void){
 
     switch(D_8037D594){
         case -1://L802B68DC
-            func_802927E0(func_80297A7C() - 10.0f, func_80297AB8()*0.88);
+            func_802927E0(func_80297A7C() - 10.0f, _get_horzVelocity()*0.88);
             break;
         case 0://L802B691C
-            func_802927E0(func_80297A7C(), func_80297AB8());
+            func_802927E0(func_80297A7C(), _get_horzVelocity());
             break;
         case 1://L802B6940
-            func_802927E0(func_80297A7C() + 10.0f, func_80297AB8()*0.88);
+            func_802927E0(func_80297A7C() + 10.0f, _get_horzVelocity()*0.88);
             break;
     }//L802B6978
 
-    if(animctrl_isStopped(_player_getAnimCtrlPtr()))
+    if(animctrl_isStopped(baanim_getAnimCtrlPtr()))
         sp2C = BS_4_WALK_FAST;
 
     if(button_held(BUTTON_Z))

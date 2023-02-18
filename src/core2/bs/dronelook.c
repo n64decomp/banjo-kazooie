@@ -17,7 +17,7 @@ void bsDroneLook_init(void) {
 
     func_80299D2C(SFX_12D_CAMERA_ZOOM_CLOSEST, 1.2f, 12000);
     func_8029BCF8(&anim_id, &anim_duration);
-    func_8028A010(anim_id, anim_duration);
+    baanim_playForDuration_loopSmooth(anim_id, anim_duration);
     func_8029C7F4(1, 1, 3, 2);
     func_80297970(0.0f);
     func_80297A0C(0);

@@ -1,6 +1,8 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "core2/ba/anim.h"
+#include "core2/yaw.h"
 
 /* .bss */
 bool  bsTalkStayInState;
@@ -12,17 +14,17 @@ void bstalk_init(void){
     f32 plyr_pos[3];
     f32 target_pos[3];
 
-    player_anim_ctrl = _player_getAnimCtrlPtr();
+    player_anim_ctrl = baanim_getAnimCtrlPtr();
     animctrl_reset(player_anim_ctrl);
     func_8029C848(player_anim_ctrl);
     animctrl_setPlaybackType(player_anim_ctrl,  ANIMCTRL_LOOP);
-    func_802875AC(player_anim_ctrl, "bstalk.c", 0x38);
+    animctrl_start(player_anim_ctrl, "bstalk.c", 0x38);
     _player_getPosition(plyr_pos);
-    func_802949F8(target_pos);
+    get_talk_target_position(target_pos);
     func_80257F18(plyr_pos, target_pos, &yaw);
     yaw_setIdeal(yaw);
-    func_80289F10(1);
-    yaw_setUpdateState(1);
+    baanim_setUpdateType(BAANIM_UPDATE_1_NORMAL);
+    yaw_setUpdateState(YAW_STATE_1_DEFAULT);
     func_8029957C(3);
     func_802978DC(2);
     func_80297970(0.0f);

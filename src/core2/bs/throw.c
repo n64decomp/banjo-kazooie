@@ -2,6 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 #include "core2/statetimer.h"
+#include "core2/ba/anim.h"
 
 extern ActorMarker *carriedobj_getMarker(void);
 
@@ -10,15 +11,15 @@ u8 D_8037D580;
 
 /* .code */
 void bsthrow_init(void){
-    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
 
     animctrl_reset(aCtrl);
     animctrl_setIndex(aCtrl, ASSET_11B_ANIM_BSTHROW);
     animctrl_setDuration(aCtrl, 1.0f);
     animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
-    func_802875AC(aCtrl, "bsthrow.c", 0x2e);
+    animctrl_start(aCtrl, "bsthrow.c", 0x2e);
 
-    func_80289F10(1);
+    baanim_setUpdateType(BAANIM_UPDATE_1_NORMAL);
     yaw_setUpdateState(1);
     func_8029957C(3);
     func_802978DC(3);
@@ -29,7 +30,7 @@ void bsthrow_init(void){
 
 void bsthrow_update(void){
     enum bs_e next_state = 0;
-    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
     f32 sp34[3];
     f32 player_position[3];
     f32 sp24;
@@ -39,7 +40,7 @@ void bsthrow_update(void){
         func_802948F8(sp20);
 
     _player_getPosition(player_position);
-    func_80294A1C(sp34);
+    get_throw_target_position(sp34);
     func_80257F18(player_position, sp34, &sp24);
     yaw_setIdeal(sp24);
 

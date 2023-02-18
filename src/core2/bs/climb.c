@@ -1,6 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "core2/ba/anim.h"
 
 /* .bss */
 u8  D_8037D3D0;
@@ -18,7 +19,7 @@ void func_802AB5C0(void){
         f2 = 0.0f; 
     }
     else{
-        f2 = ml_mapRange_f(sp28, 0.03f, 1.0f, 100.0f, 300.0f);
+        f2 = ml_mapAbsRange_f(sp28, 0.03f, 1.0f, 100.0f, 300.0f);
     }
     sp2C[0] = 0.0f;
     sp2C[1] = f2;
@@ -43,7 +44,7 @@ void func_802AB6F0(void){
     if(!bsclimb_inSet(bs_getNextState())){
         func_80291548();
         func_8029B0C0();
-        func_80289F10(1);
+        baanim_setUpdateType(BAANIM_UPDATE_1_NORMAL);
         func_802978DC(2);
         func_80294378(1);
         func_80293D74();
@@ -77,8 +78,8 @@ void bsclimb_idle_init(void){
         yaw_applyIdeal();
     }
     ability_use(4);
-    func_8028A010(ASSET_B2_ANIM_BSCLIMB_IDLE_2, 2.64f);
-    func_80289F10(1);
+    baanim_playForDuration_loopSmooth(ASSET_B2_ANIM_BSCLIMB_IDLE_2, 2.64f);
+    baanim_setUpdateType(BAANIM_UPDATE_1_NORMAL);
     func_802AB654();
     
     D_8037D3D8 = 1;
@@ -88,19 +89,19 @@ void bsclimb_idle_init(void){
 
 void bsclimb_idle_update(void){
     s32 next_state = 0;
-    AnimCtrl *anim_ctrl = _player_getAnimCtrlPtr();
+    AnimCtrl *anim_ctrl = baanim_getAnimCtrlPtr();
     func_80293350();
     switch(D_8037D3D0){
         case 0:
             D_8037D3D4 -= time_getDelta();
             if(D_8037D3D4 <= 0.0f){
-                func_8028A180(ASSET_B1_ANIM_BSCLIMB_IDLE_1, 2.96f);
+                baanim_playForDuration_once(ASSET_B1_ANIM_BSCLIMB_IDLE_1, 2.96f);
                 D_8037D3D0 = 1;
             }
             break;
         case 1:
             if(animctrl_isStopped(anim_ctrl)){
-                func_8028A010(ASSET_B2_ANIM_BSCLIMB_IDLE_2, 2.64f);
+                baanim_playForDuration_loopSmooth(ASSET_B2_ANIM_BSCLIMB_IDLE_2, 2.64f);
                 func_802AB750(3.0f, 4.0f);
                 D_8037D3D0 = 0;
             }
@@ -125,10 +126,10 @@ void bsclimb_idle_end(void){
 }
 
 void bsclimb_move_init(void){
-    func_8028A010(ASSET_A_ANIM_BSCLIMB_MOVE, 0.9f);
-    func_80289F10(3);
-    func_80289EA8(0.3f, 1.5f);
-    func_80289EC8(100.0f, 300.0f, 0.6f, 0.4f);
+    baanim_playForDuration_loopSmooth(ASSET_A_ANIM_BSCLIMB_MOVE, 0.9f);
+    baanim_setUpdateType(BAANIM_UPDATE_3_SCALE_VERT);
+    baanim_setDurationRange(0.3f, 1.5f);
+    baanim_setVelocityMapRanges(100.0f, 300.0f, 0.6f, 0.4f);
     func_802AB654();
 }
 
@@ -159,7 +160,7 @@ void bsclimb_move_update(void){
             func_80299D2C(SFX_D3_JINXIE_SNIFFLING_1, 0.87f, 22000);
     }//L802ABB84
 
-    if(!func_802AB788() && func_80297AAC() < 30.0f)
+    if(!func_802AB788() && _get_vertVelocity() < 30.0f)
         next_state = BS_4F_CLIMB_IDLE;
 
     _player_getPosition(plyr_pos);
@@ -190,8 +191,8 @@ void bsclimb_move_end(void){
 
 //bsclimb_unknown_9E_init
 void func_802ABCCC(void){
-    func_8028A010(ASSET_B2_ANIM_BSCLIMB_IDLE_2, 2.64f);
-    func_80289F10(1);
+    baanim_playForDuration_loopSmooth(ASSET_B2_ANIM_BSCLIMB_IDLE_2, 2.64f);
+    baanim_setUpdateType(BAANIM_UPDATE_1_NORMAL);
     func_802AB654();
     func_802978DC(7);
 }

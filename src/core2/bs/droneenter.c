@@ -107,7 +107,7 @@ void bsDroneEnter_init(void) {
     enum asset_e anim_id;
 
     func_8029BCF8(&anim_id, &anim_duration);
-    func_8028A010(anim_id, anim_duration);
+    baanim_playForDuration_loopSmooth(anim_id, anim_duration);
     func_8029C7F4(1, 1, 3, 7);
     func_80294378(6);
     __bsDroneEnter_init();

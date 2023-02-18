@@ -94,7 +94,7 @@ void baModel_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx){
     sp38[2] += baModelDisplacement[2];
 
     if(baModelBin){
-        func_80289F30();
+        baanim_80289F30();
         func_8029DD6C();
         modelRender_setEnvColor(env_color[0], env_color[1], env_color[2], baModelEnvAlpha);
         func_8033A280(2.0f);

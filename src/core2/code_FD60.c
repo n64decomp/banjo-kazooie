@@ -365,11 +365,11 @@ void _get_velocity(f32 dst[3]){
     ml_vec3f_copy(dst, D_8037C4B8);
 }
 
-f32 func_80297AAC(void){
+f32 _get_vertVelocity(void){
     return D_8037C4B8[1];
 }
 
-f32 func_80297AB8(void){
+f32 _get_horzVelocity(void){
     return gu_sqrtf(D_8037C4B8[0]*D_8037C4B8[0] + D_8037C4B8[2]*D_8037C4B8[2]);
 }
 
@@ -378,7 +378,7 @@ f32 func_80297AF0(void){
     f32 temp_f0;
     f32 temp_f12;
 
-    temp_f2 = func_80297AB8();
+    temp_f2 = _get_horzVelocity();
     temp_f0 = func_80297A64();
     
     if(temp_f2 < temp_f0){

@@ -46,7 +46,7 @@ void func_802B40D0(void){
 }
 
 void bsslide_init(void){
-    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
     f32 sp30[3];
     f32 sp2C;
     f32 sp28;
@@ -65,7 +65,7 @@ void bsslide_init(void){
     animctrl_setIndex(aCtrl, D_8037D520);
     animctrl_setPlaybackType(aCtrl,  ANIMCTRL_STOPPED);
     animctrl_setDuration(aCtrl, 1.0f);
-    func_802875AC(aCtrl, "bsslide.c", 0x7f);
+    animctrl_start(aCtrl, "bsslide.c", 0x7f);
     func_8029C7F4(1,1,3,3);
     func_8029797C(yaw_getIdeal());
     func_802979AC(yaw_getIdeal() ,func_80297A64());

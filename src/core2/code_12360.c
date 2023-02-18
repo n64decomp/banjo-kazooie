@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-extern f32 ml_mapRange_f(f32, f32, f32, f32, f32);
+extern f32 ml_mapAbsRange_f(f32, f32, f32, f32, f32);
 extern void func_8025901C(f32, f32 *, f32 *, f32);
 extern f32 func_8029B2D0(void);
 
@@ -27,7 +27,7 @@ void func_8029932C(f32 arg0){
 void func_80299338(void){
     f32 stickX = func_8029B2D0();
     f32 d_yaw_deg;
-    d_yaw_deg =(0.03 < (f64)mlAbsF(stickX)) ? ml_mapRange_f(stickX, 0.0f, 1.0f, 1.0f, 6.0f) : 0.0f;
+    d_yaw_deg =(0.03 < (f64)mlAbsF(stickX)) ? ml_mapAbsRange_f(stickX, 0.0f, 1.0f, 1.0f, 6.0f) : 0.0f;
     yaw_setIdeal(yaw_getIdeal() + d_yaw_deg);
 }
 

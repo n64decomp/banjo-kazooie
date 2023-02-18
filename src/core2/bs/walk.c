@@ -2,39 +2,40 @@
 #include "functions.h"
 #include "variables.h"
 #include "animation.h"
+#include "core2/ba/anim.h"
 
-void func_80289EA8(f32, f32);
-f32 func_80297AB8(void);
+void baanim_setDurationRange(f32, f32);
+f32 _get_horzVelocity(void);
 void func_802927E0(f32, f32);
 f32 func_8029B2E8(void);
 int func_80297C04(f32);
 void func_8029AD28(f32, s32);
 f32 func_80297AF0(void);
-void func_80289EF8(f32);
+void baanim_scaleDuration(f32);
 f32 func_8029B30C(void);
 f32 ml_interpolate_f(f32, f32, f32);
 f32 func_80297A64(void);
 void func_80299594(s32, f32);
 
 // .data
-f32 D_80364D70 = 30.0f;//creep_min
-f32 D_80364D74 = 80.0f;//creep_max/slow_walk_min
-f32 D_80364D78 = 150.0f;//slow_walk_max/walk_min
-f32 D_80364D7C = 225.0f;//walk_max/walk_fast_min
-f32 D_80364D80 = 500.0f;//walk_fast_max
-f32 D_80364D84 = 30.0f; //mud_min
-f32 D_80364D88 = 150.0f; //mud_max
-f32 D_80364D8C = 125.0f; 
-f32 D_80364D90 = 1.3f; //walk_slow
-f32 D_80364D94 = 0.6f;
-f32 D_80364D98 = 1.8f; //creep
-f32 D_80364D9C = 1.2f;
-f32 D_80364DA0 = 0.92f; //walk
-f32 D_80364DA4 = 0.58f;
-f32 D_80364DA8 = 0.54f; //walk_fast
-f32 D_80364DAC = 0.44f;
-f32 D_80364DB0 = 1.2f; //mud
-f32 D_80364DB4 = 0.9f;
+f32 bsWalkMinCreepVelocity = 30.0f;//creep_min
+f32 bsWalkCreepSlowWalkVelocityThreshold = 80.0f;//creep_max/slow_walk_min
+f32 bsWalkSlowWalkWalkVelocityThreshold = 150.0f;//slow_walk_max/walk_min
+f32 bsWalkWalkFastWalkVelocityThreshold = 225.0f;//walk_max/walk_fast_min
+f32 bsWalkMaxFastWalkVelocity = 500.0f;//walk_fast_max
+f32 bsWalkMinMudVelocity = 30.0f; //mud_min
+f32 bsWalkMaxMudVelocity = 150.0f; //mud_max
+f32 bsWalkSkidVelocity = 125.0f; 
+f32 bsWalkSlowestSlowWalkDuration = 1.3f; //walk_slow
+f32 bsWalkFastestSlowWalkDuration = 0.6f;
+f32 bsWalkSlowestCreepDuration = 1.8f; //creep
+f32 bsWalkFastestCreepDuration = 1.2f;
+f32 bsWalkSlowestWalkDuration = 0.92f; //walk
+f32 bsWalkFastestWalkDuration = 0.58f;
+f32 bsWalkSlowestFastWalkDuration = 0.54f; //walk_fast
+f32 bsWalkFastestFastWalkDuration = 0.44f;
+f32 bsWalkSlowestMudDuration = 1.2f; //mud
+f32 bsWalkFastestMudDuration = 0.9f;
 
 // .bss (?)
 f32 D_8037D5B0;
@@ -50,7 +51,7 @@ void func_802B6D00(void){
         if(sp18 == 0){
             func_80297970(0.0f);
         }else{//L802B6D48
-            func_80297970(ml_interpolate_f(func_8029B2E8(), D_80364D84, D_80364D88));
+            func_80297970(ml_interpolate_f(func_8029B2E8(), bsWalkMinMudVelocity, bsWalkMaxMudVelocity));
         }
     }
     else{//L802B6D78
@@ -59,16 +60,16 @@ void func_802B6D00(void){
                 func_80297970(0.0f);
                 break;
             case 1://802B6DAC
-                func_80297970(ml_interpolate_f(sp1C, D_80364D70, D_80364D74));
+                func_80297970(ml_interpolate_f(sp1C, bsWalkMinCreepVelocity, bsWalkCreepSlowWalkVelocityThreshold));
                 break;
             case 2://802B6DD0
-                func_80297970(ml_interpolate_f(sp1C, D_80364D74, D_80364D78));
+                func_80297970(ml_interpolate_f(sp1C, bsWalkCreepSlowWalkVelocityThreshold, bsWalkSlowWalkWalkVelocityThreshold));
                 break;
             case 3://802B6DF4
-                func_80297970(ml_interpolate_f(sp1C, D_80364D78, D_80364D7C));
+                func_80297970(ml_interpolate_f(sp1C, bsWalkSlowWalkWalkVelocityThreshold, bsWalkWalkFastWalkVelocityThreshold));
                 break;
             case 4://802B6E18
-                func_80297970(ml_interpolate_f(sp1C, D_80364D7C, D_80364D80));
+                func_80297970(ml_interpolate_f(sp1C, bsWalkWalkFastWalkVelocityThreshold, bsWalkMaxFastWalkVelocity));
                 break;
         }
     }//L802B6E34
@@ -76,9 +77,9 @@ void func_802B6D00(void){
 
 void func_802B6E44(void){
     if(func_8028B394()){
-        func_80289EF8(ml_map_f(func_80297AF0(), 0.0f, 1.0f, 0.5f, 0.9f));
+        baanim_scaleDuration(ml_map_f(func_80297AF0(), 0.0f, 1.0f, 0.5f, 0.9f));
     }else{
-        func_80289EF8(1.0f);
+        baanim_scaleDuration(1.0f);
     }
 
 }
@@ -97,7 +98,7 @@ int func_802B6EF4(void){
 
 s32 func_802B6F20(s32 arg0){
     if(button_pressed(BUTTON_B)){
-        if( D_80364D7C < func_80297A64()){
+        if( bsWalkWalkFastWalkVelocityThreshold < func_80297A64()){
             if(can_roll())
                 arg0 = BS_ROLL;
         }else{//L802B6F74
@@ -109,7 +110,7 @@ s32 func_802B6F20(s32 arg0){
 }
 
 f32 func_802B6F9C(void){
-    return D_80364D80;
+    return bsWalkMaxFastWalkVelocity;
 }
 
 void func_802B6FA8(void){
@@ -117,7 +118,7 @@ void func_802B6FA8(void){
 }
 
 void bswalk_creep_init(void){
-    AnimCtrl * s0 = _player_getAnimCtrlPtr();
+    AnimCtrl * s0 = baanim_getAnimCtrlPtr();
     f32 sp20;
 
     if(bs_getPrevState() == BS_2_WALK_SLOW){
@@ -128,12 +129,12 @@ void bswalk_creep_init(void){
     animctrl_reset(s0);
     animctrl_setIndex(s0, ASSET_2_ANIM_BSWALK_CREEP);
     animctrl_setDuration(s0, 0.43f);
-    func_8028774C(s0, sp20);
+    animctrl_setStart(s0, sp20);
     animctrl_setPlaybackType(s0,  ANIMCTRL_LOOP);
-    func_802875AC(s0, "bswalk.c", 0xe4);
-    func_8029C7F4(2,1,1,2);
-    func_80289EA8(0.3f, 1.5f);
-    func_80289EC8(D_80364D70, D_80364D74, D_80364D98, D_80364D9C);
+    animctrl_start(s0, "bswalk.c", 0xe4);
+    func_8029C7F4(BAANIM_UPDATE_2_SCALE_HORZ,1,1,2);
+    baanim_setDurationRange(0.3f, 1.5f);
+    baanim_setVelocityMapRanges(bsWalkMinCreepVelocity, bsWalkCreepSlowWalkVelocityThreshold, bsWalkSlowestCreepDuration, bsWalkFastestCreepDuration);
 }
 
 void bswalk_creep_update(void){
@@ -190,7 +191,7 @@ void bswalk_creep_update(void){
 }
 
 void bswalk_slow_init(void){
-    AnimCtrl * s0 = _player_getAnimCtrlPtr();
+    AnimCtrl * s0 = baanim_getAnimCtrlPtr();
     f32 sp20;
 
     if(bs_getPrevState() == 3){
@@ -201,12 +202,12 @@ void bswalk_slow_init(void){
     animctrl_reset(s0);
     animctrl_setIndex(s0, ASSET_3_ANIM_BSWALK);
     animctrl_setDuration(s0, 0.43f);
-    func_8028774C(s0, sp20);
+    animctrl_setStart(s0, sp20);
     animctrl_setPlaybackType(s0,  ANIMCTRL_LOOP);
-    func_802875AC(s0, "bswalk.c", 0x168);
-    func_8029C7F4(2,1,1,2);
-    func_80289EA8(0.3f, 1.5f);
-    func_80289EC8(D_80364D74, D_80364D78, D_80364D90, D_80364D94);
+    animctrl_start(s0, "bswalk.c", 0x168);
+    func_8029C7F4(BAANIM_UPDATE_2_SCALE_HORZ,1,1,2);
+    baanim_setDurationRange(0.3f, 1.5f);
+    baanim_setVelocityMapRanges(bsWalkCreepSlowWalkVelocityThreshold, bsWalkSlowWalkWalkVelocityThreshold, bsWalkSlowestSlowWalkDuration, bsWalkFastestSlowWalkDuration);
 }
 
 void bswalk_slow_upate(void){
@@ -263,7 +264,7 @@ void bswalk_slow_upate(void){
 }
 
 void bswalk_init(void){
-    AnimCtrl * s0 = _player_getAnimCtrlPtr();
+    AnimCtrl * s0 = baanim_getAnimCtrlPtr();
     f32 sp20 = 0.0f;
 
     switch(bs_getPrevState()){
@@ -279,12 +280,12 @@ void bswalk_init(void){
     animctrl_setIndex(s0, ASSET_C_ANIM_BSWALK_RUN);
     animctrl_setDuration(s0, 0.66f);
     animctrl_setTransitionDuration(s0, 0.14f);
-    func_8028774C(s0, sp20);
+    animctrl_setStart(s0, sp20);
     animctrl_setPlaybackType(s0,  ANIMCTRL_LOOP);
-    func_802875AC(s0, "bswalk.c", 0x1ed);
-    func_8029C7F4(2,1,1,2);
-    func_80289EA8(0.3f, 1.5f);
-    func_80289EC8(D_80364D78, D_80364D7C, D_80364DA0, D_80364DA4);
+    animctrl_start(s0, "bswalk.c", 0x1ed);
+    func_8029C7F4(BAANIM_UPDATE_2_SCALE_HORZ,1,1,2);
+    baanim_setDurationRange(0.3f, 1.5f);
+    baanim_setVelocityMapRanges(bsWalkSlowWalkWalkVelocityThreshold, bsWalkWalkFastWalkVelocityThreshold, bsWalkSlowestWalkDuration, bsWalkFastestWalkDuration);
     func_802B6EB0(0.3f);
 }
 
@@ -299,7 +300,7 @@ void bswalk_update(void){
         case 0:
         case 1:
         case 2:
-            if(func_80297C04(D_80364D78) && func_802B6EF4())
+            if(func_80297C04(bsWalkSlowWalkWalkVelocityThreshold) && func_802B6EF4())
                 s0 = BS_2_WALK_SLOW;
             break;
         case 4:
@@ -309,7 +310,7 @@ void bswalk_update(void){
     if(func_8028B128())
         s0 = BS_WALK_MUD;
 
-    if(func_8028B4C4() && D_80364D8C < func_80297AB8()){
+    if(func_8028B4C4() && bsWalkSkidVelocity < _get_horzVelocity()){
         s0 = BS_SKID;
     }
 
@@ -339,14 +340,14 @@ void bswalk_update(void){
 }
 
 void bswalk_fast_init(void){
-    AnimCtrl * s0 = _player_getAnimCtrlPtr();
+    AnimCtrl * s0 = baanim_getAnimCtrlPtr();
     f32 sp28 = 0.0f;
     int sp24 = 1;
     
     switch(bs_getPrevState()){
         case 1:
         case 2://L802B780C
-            if(func_80297AB8() < 200.0f){
+            if(_get_horzVelocity() < 200.0f){
                 func_802927E0(0.0f, 0.0f);
             }
             break;
@@ -363,12 +364,12 @@ void bswalk_fast_init(void){
     animctrl_setIndex(s0, ASSET_C_ANIM_BSWALK_RUN);
     animctrl_setDuration(s0, 0.66f);
     animctrl_setTransitionDuration(s0, 0.1f);
-    func_8028774C(s0, sp28);
+    animctrl_setStart(s0, sp28);
     animctrl_setPlaybackType(s0,  ANIMCTRL_LOOP);
-    func_802875AC(s0, "bswalk.c", 0x27d);
-    func_8029C7F4(2,1,1,2);
-    func_80289EA8(0.3f, 1.5f);
-    func_80289EC8(D_80364D7C, D_80364D80, D_80364DA8, D_80364DAC);
+    animctrl_start(s0, "bswalk.c", 0x27d);
+    func_8029C7F4(BAANIM_UPDATE_2_SCALE_HORZ,1,1,2);
+    baanim_setDurationRange(0.3f, 1.5f);
+    baanim_setVelocityMapRanges(bsWalkWalkFastWalkVelocityThreshold, bsWalkMaxFastWalkVelocity, bsWalkSlowestFastWalkDuration, bsWalkFastestFastWalkDuration);
     pitch_setAngVel(1000.0f, 12.0f);
     roll_setAngularVelocity(1000.0f, 12.0f);
     func_802B6EB0(0.3f);
@@ -394,7 +395,7 @@ void bswalk_fast_update(void){
             break;
         case 1:
         case 2://L802B7A28
-            if(func_80297C04(D_80364D78))
+            if(func_80297C04(bsWalkSlowWalkWalkVelocityThreshold))
                 s0 = BS_2_WALK_SLOW;
 
             if(func_80294F78())
@@ -402,7 +403,7 @@ void bswalk_fast_update(void){
 
             break;
         case 3://L802B7A60
-            if(func_80297C04(D_80364D7C) && func_802B6EF4())
+            if(func_80297C04(bsWalkWalkFastWalkVelocityThreshold) && func_802B6EF4())
                 s0 = BS_WALK;
 
             if(func_80294F78())
@@ -412,7 +413,7 @@ void bswalk_fast_update(void){
     if(func_8028B128())
         s0 = BS_WALK_MUD;
 
-    if(func_8028B4C4() && D_80364D8C < func_80297AB8()){
+    if(func_8028B4C4() && bsWalkSkidVelocity < _get_horzVelocity()){
         s0 = BS_SKID;
     }
 
@@ -444,10 +445,10 @@ void bswalk_fast_end(void){
 }
 
 void bswalk_mud_init(void){
-    func_8028A010(ASSET_B_ANIM_BSWALK_MUD, 0.43f);
-    func_8029C7F4(2,1,1,2);
-    func_80289EA8(0.3f, 1.5f);
-    func_80289EC8(D_80364D84, D_80364D88, D_80364DB0, D_80364DB4);
+    baanim_playForDuration_loopSmooth(ASSET_B_ANIM_BSWALK_MUD, 0.43f);
+    func_8029C7F4(BAANIM_UPDATE_2_SCALE_HORZ,1,1,2);
+    baanim_setDurationRange(0.3f, 1.5f);
+    baanim_setVelocityMapRanges(bsWalkMinMudVelocity, bsWalkMaxMudVelocity, bsWalkSlowestMudDuration, bsWalkFastestMudDuration);
 }
 
 void bswalk_mud_update(void){
@@ -489,10 +490,10 @@ void bswalk_mud_update(void){
 
 void bswalk_drone_init(void){
     bsdrone_init();
-    if(func_80289F94(3)){
-        func_80289F10(2);
-        func_80289EA8(0.3f, 1.5f);
-        func_80289EC8(D_80364D74, D_80364D78, D_80364D90, D_80364D94);
+    if(baanim_isAnimID(3)){
+        baanim_setUpdateType(BAANIM_UPDATE_2_SCALE_HORZ);
+        baanim_setDurationRange(0.3f, 1.5f);
+        baanim_setVelocityMapRanges(bsWalkCreepSlowWalkVelocityThreshold, bsWalkSlowWalkWalkVelocityThreshold, bsWalkSlowestSlowWalkDuration, bsWalkFastestSlowWalkDuration);
     }
 }
 

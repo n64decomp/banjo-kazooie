@@ -4,7 +4,7 @@
 
 #include "code_B6EA0.h"
 
-extern f32 func_8028EBA4(void);
+extern f32 player_getYaw(void);
 extern void projectile_getPosition(u8 arg0, f32 arg1[3]);
 extern void func_8033FC98(u8 arg0, s32 arg1);
 
@@ -36,7 +36,7 @@ void func_803546E8(void) {
     temp_s0->unk0[0] = randf2(-10.0f, 10.0f);
     temp_s0->unk0[1] = (randf() * 35.0f) + 50.0f;
     temp_s0->unk0[2] = randf2(-10.0f, 10.0f);
-    func_802589E4(sp28, func_8028EBA4(), 48.0f);
+    func_802589E4(sp28, player_getYaw(), 48.0f);
     sp28[1] = 0.0f;
     temp_s0->unk0[0] += sp28[0];
     temp_s0->unk0[1] += sp28[1];

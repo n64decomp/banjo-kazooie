@@ -2,6 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "core2/ba/anim.h"
+
 const f32 D_80364AD0 = 80.0f;
 const f32 D_80364AD4 = 425.0f;
 const f32 D_80364AD8 = 0.56f;
@@ -39,7 +41,7 @@ static void __bsbwhirl_end(void){
         func_8024BD08(1);
         func_8025A7DC(COMUSIC_25_USING_GOLD_FEATHERS);
     }  
-    func_80289F10(1);
+    baanim_setUpdateType(BAANIM_UPDATE_1_NORMAL);
 }
 
 static void __bsbwhirl_spawnSparkle(void){
@@ -76,7 +78,7 @@ void func_802AA58C(enum bs_e *arg0){
 }
 
 void bsbwhirl_enter_init(void){
-    func_8028A274(ASSET_22_ANIM_BSWHIRL_EXIT, 0.5f);
+    baanim_playForDuration_onceSmooth(ASSET_22_ANIM_BSWHIRL_EXIT, 0.5f);
     func_8029C7F4(1,1,1,2);
     func_80297970(0.0f);
     func_8029B324(0, 0.03f);
@@ -93,7 +95,7 @@ void bsbwhirl_enter_init(void){
 void bsbwhirl_enter_update(void){
     enum bs_e sp1C = 0;
     func_802952A8(1,1);
-    if(animctrl_isStopped(_player_getAnimCtrlPtr()))
+    if(animctrl_isStopped(baanim_getAnimCtrlPtr()))
         sp1C = BS_1B_WONDERWING_IDLE;
     bs_setState(sp1C);
 }
@@ -104,7 +106,7 @@ void bsbwhirl_enter_end(void){
 }
 
 void bsbwhirl_stand_init(void){
-    func_8028A010(ASSET_23_ANIM_BSWONDERWING_IDLE, 1.0f);
+    baanim_playForDuration_loopSmooth(ASSET_23_ANIM_BSWONDERWING_IDLE, 1.0f);
     func_8029C7F4(1,1,1,2);
     func_80297970(0.0f);
 }
@@ -130,8 +132,8 @@ void bsbwhirl_stand_end(void){
 }
 
 void bsbwhirl_walk_init(void){
-    func_8028A010(ASSET_11_ANIM_BSWHIRL_WALK, 0.53f);
-    func_80289EC8(D_80364AD0, D_80364AD4, D_80364AD8, D_80364ADC);
+    baanim_playForDuration_loopSmooth(ASSET_11_ANIM_BSWHIRL_WALK, 0.53f);
+    baanim_setVelocityMapRanges(D_80364AD0, D_80364AD4, D_80364AD8, D_80364ADC);
     func_8029C7F4(2,1,1,2);
 
 }
@@ -168,16 +170,16 @@ void bsbwhirl_walk_end(void){
 }
 
 void bsbwhirl_jump_init(void){
-    AnimCtrl * aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl * aCtrl = baanim_getAnimCtrlPtr();
     
     animctrl_reset(aCtrl);
     animctrl_setIndex(aCtrl, ASSET_1B_ANIM_BSWHIRL_JUMP);
     animctrl_setDuration(aCtrl, 0.8f);
     animctrl_setTransitionDuration(aCtrl, 0.134f);
-    func_8028774C(aCtrl, 0.14f);
+    animctrl_setStart(aCtrl, 0.14f);
     animctrl_setSubRange(aCtrl, 0.0f, 0.4495f);
     animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
-    func_802875AC(aCtrl, "bsbwhirl.c", 0x181);
+    animctrl_start(aCtrl, "bsbwhirl.c", 0x181);
     func_8029C7F4(1,1,3,6);
     if(func_8029B2E8() != 0.0f)
         yaw_setIdeal(func_8029B33C());
@@ -193,7 +195,7 @@ void bsbwhirl_jump_init(void){
 
 void bsbwhirl_jump_update(void){
     enum bs_e sp2C = 0;
-    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
     f32 sp1C[3];
 
     __bsbwhirl_spawnSparkle();
@@ -239,7 +241,7 @@ void bsbwhirl_jump_end(void){
 }
 
 void bsbwhirl_exit_init(void){
-    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
 
     animctrl_reset(aCtrl);
     animctrl_setSmoothTransition(aCtrl, 0);
@@ -247,8 +249,8 @@ void bsbwhirl_exit_init(void){
     animctrl_setIndex(aCtrl, ASSET_22_ANIM_BSWHIRL_EXIT);
     animctrl_setDuration(aCtrl, 0.5f);
     animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
-    func_802875AC(aCtrl, "bsbwhirl.c", 0x201);
-    func_80289F10(1);
+    animctrl_start(aCtrl, "bsbwhirl.c", 0x201);
+    baanim_setUpdateType(BAANIM_UPDATE_1_NORMAL);
     func_8029957C(2);
     func_80297970(0.0f);
     comusic_8025AB44(COMUSIC_25_USING_GOLD_FEATHERS, 0.0f, 0xFA0);
@@ -257,7 +259,7 @@ void bsbwhirl_exit_init(void){
 void bsbwhirl_exit_update(void){
     enum bs_e sp1C = 0;
     
-    if(animctrl_isStopped(_player_getAnimCtrlPtr()))
+    if(animctrl_isStopped(baanim_getAnimCtrlPtr()))
         sp1C = BS_1_IDLE;
 
     bs_setState(sp1C);
@@ -282,7 +284,7 @@ void bsbwhirl_drone_end(void){
 }
 
 void func_802AADBC(void){
-    func_8028A010(ASSET_23_ANIM_BSWONDERWING_IDLE, 1.0f);
+    baanim_playForDuration_loopSmooth(ASSET_23_ANIM_BSWONDERWING_IDLE, 1.0f);
     func_8029C7F4(1,1,3,2);
     func_80297970(0.0f);
     func_8029C674();

@@ -1,6 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "core2/ba/anim.h"
 
 /* .bss */
 f32 D_8037D400;
@@ -10,17 +11,17 @@ u8 D_8037D404;
 enum bs_e func_802ADCD4(enum bs_e arg0);
 
 void func_802AD6D0(void){
-    func_8028A010(ASSET_10C_ANIM_BSCROUCH_IDLE, 0.5f);
+    baanim_playForDuration_loopSmooth(ASSET_10C_ANIM_BSCROUCH_IDLE, 0.5f);
     D_8037D404 = 4;
 }
 
 void func_802AD6FC(void){
-    func_8028A180(ASSET_116_ANIM_BSCROUCH_NOINPUT, 2.0f);
+    baanim_playForDuration_once(ASSET_116_ANIM_BSCROUCH_NOINPUT, 2.0f);
     D_8037D404 = 2;
 }
 
 void func_802AD728(void){
-    func_8028A1F4(ASSET_10C_ANIM_BSCROUCH_IDLE, 0.5f, 0.9999f);
+    baanim_playForDuration_onceStartingAt(ASSET_10C_ANIM_BSCROUCH_IDLE, 0.5f, 0.9999f);
     func_8029E3C0(2, 2.0f);
     D_8037D404 = 1;
 }
@@ -35,7 +36,7 @@ void func_802AD7B0(AnimCtrl *aCtrl){
 }
 
 void bscrouch_init(void){
-    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
     f32 sp28[3];
     f32 sp24;
     f32 sp20;
@@ -54,9 +55,9 @@ void bscrouch_init(void){
     animctrl_setIndex(aCtrl, ASSET_1_ANIM_BSCROUCH_ENTER);
     animctrl_setDuration(aCtrl, 0.5f);
     animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
-    func_8028774C(aCtrl, sp24);
-    func_802875AC(aCtrl, "bscrouch.c", 0xa0);
-    func_80289F10(1);
+    animctrl_setStart(aCtrl, sp24);
+    animctrl_start(aCtrl, "bscrouch.c", 0xa0);
+    baanim_setUpdateType(BAANIM_UPDATE_1_NORMAL);
     yaw_setUpdateState(3);
     yaw_setVelocityBounded(350.0f, 14.0f);
     func_8029957C(7);
@@ -78,7 +79,7 @@ void bscrouch_init(void){
 void bscrouch_update(void){
     enum bs_e sp34 = 0;
     f32 sp30;
-    AnimCtrl *aCtrl = _player_getAnimCtrlPtr(); //sp2C
+    AnimCtrl *aCtrl = baanim_getAnimCtrlPtr(); //sp2C
     f32 temp_f2;
     f32 pad;
     f32 sp20;

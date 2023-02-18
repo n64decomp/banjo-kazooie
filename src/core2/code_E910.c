@@ -127,7 +127,7 @@ bsMap D_80363824[] ={
     {BS_7D_WALRUS_SLED, bswalrus_sled_init, bswalrus_sled_update, bswalrus_sled_end, func_802B98C0},
     {BS_7E_WALRUS_SLED, bswalrus_sled_jump_init, bswalrus_sled_jump_update, bswalrus_sled_jump_end, func_802B98C0},
     {BS_7F_DIVE_OW, func_802A7BD0, func_802A7CA8, func_802A7D74, func_80296590},
-    {0x00000080, func_802B978C, func_802B9830, func_802B9880, func_80296590},
+    {0x00000080, bswalrus_timeout_init, func_802B9830, func_802B9880, func_80296590},
     {0x00000081, func_802B90D0, func_802B9130, func_802B917C, func_802B98C0},
     {0x00000082, func_802B95A0, func_802B963C, func_802B976C, func_802B98C0},
     {BS_85_BEE_IDLE, func_802A1080, func_802A10D4, func_802A117C, func_802B5350},

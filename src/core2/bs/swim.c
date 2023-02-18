@@ -2,16 +2,18 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "core2/ba/anim.h"
+
 extern void func_80295328(s32, f32);
 
 bool bsswim_inset(enum bs_e state_id);
 
 /* .data */
-f32 D_80364D40 = 30.0f;
-f32 D_80364D44 = 300.0f;
-f32 D_80364D48 = 1.2f;
-f32 D_80364D4C = 0.7f;
-s16 D_80364D50[10] = {
+f32 bsSwimHorzVelocityMin = 30.0f;
+f32 bsSwimHorzVelocityMax = 300.0f;
+f32 bsSwimDurationMin = 1.2f;
+f32 bsSwimDurationMax = 0.7f;
+s16 bsSwimAnimations[10] = {
     ASSET_57_ANIM_BSSWIM_IDLE,
     ASSET_57_ANIM_BSSWIM_IDLE,
     ASSET_57_ANIM_BSSWIM_IDLE,
@@ -25,7 +27,7 @@ s16 D_80364D50[10] = {
 };
 
 /* .bss */
-u32 D_8037D550;
+u32 bsSwimCurrentAnimation;
 
 /* .code */
 void func_802B5480(void) {
@@ -47,15 +49,15 @@ void func_802B5480(void) {
 void func_802B5538(AnimCtrl *arg0) {
     enum asset_e sp24;
 
-    sp24 = D_80364D50[D_8037D550];
+    sp24 = bsSwimAnimations[bsSwimCurrentAnimation];
     if (animctrl_getIndex(arg0) != sp24) {
-        func_8028774C(arg0, animctrl_getAnimTimer(arg0));
+        animctrl_setStart(arg0, animctrl_getAnimTimer(arg0));
         animctrl_setIndex(arg0, sp24);
-        _func_802875AC(arg0, "bsswim.c", 0x79);
+        animctrl_start(arg0, "bsswim.c", 0x79);
     }
-    D_8037D550++;
-    if (D_8037D550 >= 10) {
-        D_8037D550 = 0;
+    bsSwimCurrentAnimation++;
+    if (bsSwimCurrentAnimation >= 10) {
+        bsSwimCurrentAnimation = 0;
     }
 }
 
@@ -67,7 +69,7 @@ void func_802B55DC(void) {
         func_80297970(0.0f);
         return;
     }
-    func_80297970(ml_interpolate_f(sp1C, D_80364D40, D_80364D44));
+    func_80297970(ml_interpolate_f(sp1C, bsSwimHorzVelocityMin, bsSwimHorzVelocityMax));
 }
 
 void func_802B563C(void) {
@@ -107,7 +109,7 @@ void func_802B5774(void) {
     s32 prev_state;
     f32 transition_duration;
 
-    anim_ctrl = _player_getAnimCtrlPtr();
+    anim_ctrl = baanim_getAnimCtrlPtr();
     prev_state = bs_getPrevState();
     if (prev_state == BS_4C_LANDING_IN_WATER) {
         transition_duration = 0.8f;
@@ -132,15 +134,15 @@ void func_802B5774(void) {
         animctrl_setTransitionDuration(anim_ctrl, transition_duration);
         animctrl_setIndex(anim_ctrl, ASSET_57_ANIM_BSSWIM_IDLE);
         animctrl_setPlaybackType(anim_ctrl, ANIMCTRL_LOOP);
-        func_8028774C(anim_ctrl, 0.3f);
+        animctrl_setStart(anim_ctrl, 0.3f);
         animctrl_setDuration(anim_ctrl, 1.2f);
-        func_802875AC(anim_ctrl, "bsswim.c", 0xFD);
+        animctrl_start(anim_ctrl, "bsswim.c", 0xFD);
     }
     func_8029C7F4(1, 3, 3, 2);
     yaw_setVelocityBounded(500.0f, 5.0f);
     func_80297970(0.0f);
     func_802B563C();
-    D_8037D550 = 0;
+    bsSwimCurrentAnimation = 0;
 }
 
 void func_802B5950(void) {
@@ -148,7 +150,7 @@ void func_802B5950(void) {
     AnimCtrl *anim_ctrl;
 
     next_state = 0;
-    anim_ctrl = _player_getAnimCtrlPtr();
+    anim_ctrl = baanim_getAnimCtrlPtr();
     if ((func_8023DB4C(7) == 0) && ((f64) randf() < 0.5)) {
         func_8029C304(1);
     }
@@ -190,7 +192,7 @@ void func_802B5B18(void) {
     AnimCtrl *anim_ctrl;
     f32 anim_duration;
 
-    anim_ctrl = _player_getAnimCtrlPtr();
+    anim_ctrl = baanim_getAnimCtrlPtr();
     if (bs_getPrevState() == BS_4C_LANDING_IN_WATER) {
         anim_duration = 0.8f;
     } else {
@@ -200,13 +202,13 @@ void func_802B5B18(void) {
         animctrl_reset(anim_ctrl);
         animctrl_setIndex(anim_ctrl, ASSET_39_ANIM_BSSWIM_MOVE);
         animctrl_setTransitionDuration(anim_ctrl, anim_duration);
-        func_8028774C(anim_ctrl, 0.8f);
+        animctrl_setStart(anim_ctrl, 0.8f);
         animctrl_setPlaybackType(anim_ctrl, ANIMCTRL_LOOP);
-        func_802875AC(anim_ctrl, "bsswim.c", 0x164);
+        animctrl_start(anim_ctrl, "bsswim.c", 0x164);
     }
-    func_80289F10(2);
-    func_80289EA8(0.3f, 1.5f);
-    func_80289EC8(D_80364D40, D_80364D44, D_80364D48, D_80364D4C);
+    baanim_setUpdateType(BAANIM_UPDATE_2_SCALE_HORZ);
+    baanim_setDurationRange(0.3f, 1.5f);
+    baanim_setVelocityMapRanges(bsSwimHorzVelocityMin, bsSwimHorzVelocityMax, bsSwimDurationMin, bsSwimDurationMax);
     yaw_setUpdateState(3);
     yaw_setVelocityBounded(500.0f, 5.0f);
     func_8029957C(1);
@@ -219,7 +221,7 @@ void func_802B5C40(void) {
     f32 sp1C[3];
 
     next_state = 0;
-    anim_ctrl =_player_getAnimCtrlPtr();
+    anim_ctrl =baanim_getAnimCtrlPtr();
     if (animctrl_isAt(anim_ctrl, 0.38f)) {
         func_8029C4E4(1);
     }
@@ -277,7 +279,7 @@ void func_802B5E30(void) {
 }
 
 void func_802B5E8C(void) {
-    func_8028A010(0x57, 1.2f);
+    baanim_playForDuration_loopSmooth(0x57, 1.2f);
     func_8029C7F4(1, 3, 3, 2);
     yaw_setVelocityBounded(500.0f, 5.0f);
     func_80297970(0.0f);

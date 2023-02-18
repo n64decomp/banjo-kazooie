@@ -522,7 +522,7 @@ void func_802A7CA8(void);
 void func_802A7D74(void);
 
 //0x00000080
-void func_802B978C(void);
+void bswalrus_timeout_init(void);
 void func_802B9830(void);
 void func_802B9880(void);
 

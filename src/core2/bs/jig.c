@@ -18,7 +18,7 @@ void bsjig_setJiggyMarkerPtr(ActorMarker * jiggyMarkerPtr){
 }
 
 void bsjig_jiggy_init(void){
-    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
     int tmp;
 
     animctrl_reset(aCtrl);
@@ -26,7 +26,7 @@ void bsjig_jiggy_init(void){
     animctrl_setIndex(aCtrl, ASSET_2E_ANIM_BSJIG_JIGGY);
     animctrl_setDuration(aCtrl, 4.3f);
     animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
-    func_802875AC(aCtrl, "bsjig.c", 0x7f);
+    animctrl_start(aCtrl, "bsjig.c", 0x7f);
     yaw_setIdeal(func_8029B41C()); //face camera
     func_8029C7F4(1,1,3,2);
     func_80297970(0.0f);
@@ -55,7 +55,7 @@ void func_802B0BA8(void){
 
 void bsjig_jiggy_update(void){
     enum bs_e sp1C = 0;
-    AnimCtrl * aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl * aCtrl = baanim_getAnimCtrlPtr();
     
     yaw_setIdeal(func_8029B41C());
     
@@ -160,14 +160,14 @@ void bsjig_notedoor_end(void){
 }
 
 void bsjig_notedoor_init(void){
-    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
     D_8037D4B2 = (bs_getPrevState() == BS_44_JIG_JIGGY);
     miscflag_clear(0x1A);
     animctrl_reset(aCtrl);
     animctrl_setIndex(aCtrl, ASSET_282_ANIM_BSJIG_NOTEDOOR);
     animctrl_setDuration(aCtrl, 3.6f);
     animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
-    func_802875AC(aCtrl, "bsjig.c", 0x14d);
+    animctrl_start(aCtrl, "bsjig.c", 0x14d);
     yaw_setIdeal(func_8029B41C());
     func_8029C7F4(1,1,3,2);
     func_80297970(0.0f);

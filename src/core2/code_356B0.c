@@ -9,7 +9,7 @@ extern void func_8024C510(f32);
 extern f32 func_80258708(f32[3], f32[3]);
 extern f32 func_80259198(f32, f32);
 extern f32 func_8028E82C(void);
-extern f32 func_8028EBA4(void);
+extern f32 player_getYaw(void);
 extern f32 func_8028EF88(void);
 extern int func_80320DB0(f32[3], f32, f32[3], u32);
 extern f32 ml_dotProduct_vec3f(f32[3], f32[3]);
@@ -187,7 +187,7 @@ void func_802BCA58(void) {
 
     player_getPosition(sp28);
     ml_vec3f_diff_copy(sp34, sp28, D_8037D958);
-    sp4C = func_8028EBA4();
+    sp4C = player_getYaw();
     sp48 = ml_map_f(mlAbsF((f32) (mlNormalizeAngle(D_8037D96C - sp4C) - 180.0)), 0.0f, 180.0f, D_8037D97C, D_8037D980);
     func_80256E24(D_8037D9A8, 0.0f, sp4C, 0.0f, 0.0f, ml_map_f(gu_sqrtf(sp34[0]*sp34[0] + sp34[2]*sp34[2]), 300.0f, 450.0f, 0.0f, sp48));
     ml_vec3f_diff_copy(sp34, D_8037D9A8, D_8037D9B8);
@@ -707,7 +707,7 @@ void func_802BDB30(f32 arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 arg4, f32 arg5)
     sp30 = time_getDelta();
     sp38 = mlDiffDegF(arg0, *arg1);
     if (mlAbsF(sp38) < arg5) {
-        *arg2 = ml_mapRange_f(sp38, 0.0f, arg5, 10.0f, arg4);
+        *arg2 = ml_mapAbsRange_f(sp38, 0.0f, arg5, 10.0f, arg4);
     } else {
         phi_f0 = arg3 * sp30;
         if (sp38 < 0.0f) {

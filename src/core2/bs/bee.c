@@ -1,6 +1,8 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "core2/ba/anim.h"
+
 
 void func_80293D48(f32, f32);
 
@@ -21,7 +23,7 @@ void func_802A02C0(void){
         miscflag_clear(4);
         func_80293D74();
     }
-    func_80289F10(1);
+    baanim_setUpdateType(BAANIM_UPDATE_1_NORMAL);
 }
 
 void func_802A0340(void){

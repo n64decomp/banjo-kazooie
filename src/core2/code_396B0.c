@@ -3,7 +3,7 @@
 #include "variables.h"
 
 
-extern f32 func_8028EBA4(void);
+extern f32 player_getYaw(void);
 extern f32 func_802BD51C();
 extern void func_802BDB30(f32, f32*, f32*, f32, f32, f32);
 extern void func_802C2264(f32);
@@ -85,6 +85,6 @@ void func_802C07A0(void) {
 }
 
 void func_802C095C(void){
-    D_8037DBA4 = mlNormalizeAngle(func_8028EBA4() + 180.0);
+    D_8037DBA4 = mlNormalizeAngle(player_getYaw() + 180.0);
 }
 

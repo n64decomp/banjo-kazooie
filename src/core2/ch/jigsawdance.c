@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-extern f32 func_8028EBA4();
+extern f32 player_getYaw();
 AnimCtrl *player_getAnimCtrlPtr(void);
 
 Actor *__chJigsawDance_draw(ActorMarker *this, Gfx **gdl, Mtx **mptr, Vtx **arg3);
@@ -47,29 +47,29 @@ void __chJigsawDance_update(Actor * this){
             break;
         case 2:
             player_getPosition(this->position);
-            this->yaw = func_8028EBA4();
+            this->yaw = player_getYaw();
             plyrMvmt = player_getAnimCtrlPtr();
             animctrl_setSmoothTransition(this->animctrl, 0);
             animctrl_setIndex(this->animctrl, animctrl_getIndex(plyrMvmt));
-            func_8028774C(this->animctrl,animctrl_getAnimTimer(plyrMvmt));
+            animctrl_setStart(this->animctrl,animctrl_getAnimTimer(plyrMvmt));
             animctrl_setDuration(this->animctrl, 1000.0f);
-            func_802875AC(this->animctrl, "chjigsawdance.c", 0x59);
+            animctrl_start(this->animctrl, "chjigsawdance.c", 0x59);
             break;
         case 3:
             plyrMvmt = player_getAnimCtrlPtr();
             animctrl_setSmoothTransition(this->animctrl, 0);
-            func_8028774C(this->animctrl,animctrl_getAnimTimer(plyrMvmt));
+            animctrl_setStart(this->animctrl,animctrl_getAnimTimer(plyrMvmt));
             animctrl_setDuration(this->animctrl, 1000.0f);
-            func_802875AC(this->animctrl, "chjigsawdance.c", 0x62);
+            animctrl_start(this->animctrl, "chjigsawdance.c", 0x62);
             break;
         case 4:
             player_getPosition(this->position);
-            this->yaw = func_8028EBA4();
+            this->yaw = player_getYaw();
             plyrMvmt = player_getAnimCtrlPtr();
             animctrl_setSmoothTransition(this->animctrl, 0);
-            func_8028774C(this->animctrl,animctrl_getAnimTimer(plyrMvmt));
+            animctrl_setStart(this->animctrl,animctrl_getAnimTimer(plyrMvmt));
             animctrl_setDuration(this->animctrl, 1000.0f);
-            func_802875AC(this->animctrl, "chjigsawdance.c", 0x6e);
+            animctrl_start(this->animctrl, "chjigsawdance.c", 0x6e);
             break;
         case 5:
             this->marker->propPtr->unk8_4 = 0;
@@ -93,11 +93,11 @@ void chJigsawDance_setState(Actor * this, u32 arg1){
             break;
         case 4:
             player_getPosition(this->position);
-            this->yaw = func_8028EBA4();
+            this->yaw = player_getYaw();
             animctrl_setSmoothTransition(this->animctrl, 0);
-            func_8028774C(this->animctrl, animctrl_getAnimTimer(player_getAnimCtrlPtr()));
+            animctrl_setStart(this->animctrl, animctrl_getAnimTimer(player_getAnimCtrlPtr()));
             animctrl_setDuration(this->animctrl, 1000.0f);
-            func_802875AC(this->animctrl, "chjigsawdance.c", 0x97);
+            animctrl_start(this->animctrl, "chjigsawdance.c", 0x97);
             break;
         case 5:
             func_80328A84(this, 5);

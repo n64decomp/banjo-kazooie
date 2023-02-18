@@ -102,10 +102,10 @@ void func_8033A8F0(Struct_B1400_1 *arg0, s32 arg1, f32 arg2[4]){
     func_80345250(&arg0->unk0[arg1], arg2);
 }
 
-void func_8033A928(Struct_B1400_1 *arg0, s32 arg1, f32 arg2[3]) {
-    arg0->unk0[arg1].unk10[0] = arg2[0];
-    arg0->unk0[arg1].unk10[1] = arg2[1];
-    arg0->unk0[arg1].unk10[2] = arg2[2];
+void func_8033A928(Struct_B1400_1 *arg0, s32 arg1, f32 scale[3]) {
+    arg0->unk0[arg1].unk10[0] = scale[0];
+    arg0->unk0[arg1].unk10[1] = scale[1];
+    arg0->unk0[arg1].unk10[2] = scale[2];
 }
 
 void func_8033A968(Struct_B1400_1 *arg0, s32 arg1, f32 arg2[3]) {

@@ -50,7 +50,7 @@ void func_802AEC78(void){
     f32 sp20[3];
     s32 sp1C;
     func_8029BC60(&sp1C, &sp2C);
-    func_8028A010(sp1C, sp2C);
+    baanim_playForDuration_loopSmooth(sp1C, sp2C);
     func_802925F8(&sp20, &sp2C);
     func_80297BC4(&sp20);
     func_80297BB8(sp2C);
@@ -62,7 +62,7 @@ void func_802AEC78(void){
 void func_802AECE4(void){
     f32 sp2C;
     f32 sp20[3];
-    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
 
     _get_velocity(&sp20);
     if(func_8025801C(sp20, &sp2C)){
@@ -74,7 +74,7 @@ void func_802AECE4(void){
     ){
         animctrl_reset(aCtrl);
         animctrl_setIndex(aCtrl, ASSET_C_ANIM_BSWALK_RUN);
-        func_802875AC(aCtrl, "bsdronegoto.c", 0x9d);
+        animctrl_start(aCtrl, "bsdronegoto.c", 0x9d);
     }
 
     if(func_80297C48() && D_8037D441 == 0){

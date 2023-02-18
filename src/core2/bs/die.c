@@ -1,6 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "core2/ba/anim.h"
 
 /* .bss */
 f32 D_8037D410;
@@ -20,7 +21,7 @@ void _bsdie_802ADE20(void){
 }
 
 void bsdie_init(void){
-    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
     f32 sp38;
     f32 sp2C[3];
     f32 sp20[3];
@@ -31,7 +32,7 @@ void bsdie_init(void){
     animctrl_setSubRange(aCtrl, 0.0f, 0.3356f);
     animctrl_setDuration(aCtrl, 2.0f);
     animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
-    func_802875AC(aCtrl, "bsdie.c", 0x7e);
+    animctrl_start(aCtrl, "bsdie.c", 0x7e);
     func_8029B930();
     func_8030E58C(SFX_36_BANJO_DOH, 1.0f);
     _player_getPosition(sp2C);
@@ -43,7 +44,7 @@ void bsdie_init(void){
     func_80297970(D_8037D410);
     func_8029797C(sp38);
     func_802979AC(sp38, func_80297A64());
-    func_80289F10(1);
+    baanim_setUpdateType(BAANIM_UPDATE_1_NORMAL);
     yaw_setUpdateState(1);
     func_8029957C(2);
     func_802978DC(3);
@@ -61,7 +62,7 @@ void bsdie_init(void){
 }
 
 void bsdie_update(void){
-    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
     enum bs_e sp28 = 0;
     func_80297970(D_8037D410);
     func_80299628(0);

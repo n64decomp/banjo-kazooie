@@ -12,8 +12,8 @@ extern void __baMarker_8028BA00(s32);
 extern void func_802C418C(void);
 extern void func_802A6388(f32);
 extern f32 chwadingboots_802D6E4C(Actor *);
-extern void func_80294AE8(f32);
-extern f32 chtrainers_802CA748(Actor *);
+extern void set_turbo_duration(f32);
+extern f32 chtrainers_getDuration(Actor *);
 extern int func_80259254(f32 vec[3], f32 x, f32 z, f32 val);
 extern void func_802EE354(Actor *, s32, s32, s32, f32, f32, f32, f32 arg8[3], s32, f32 arg10[2]);
 extern void func_8035644C(s32);
@@ -764,14 +764,14 @@ void __baMarker_resolveCollision(Prop *other_prop){
                 if(func_8028F170())
                     return;
                 
-                if(chtrainers_802CA708(actor) == 0)
+                if(!chtrainers_canUse(actor))
                     return;
 
                 miscflag_set(MISC_FLAG_10_TOUCHING_TURBO_TRAINERS);
-                func_80294AE8(chtrainers_802CA748(actor));
+                set_turbo_duration(chtrainers_getDuration(actor));
                 bs_checkInterrupt(BS_INTR_1A);
                 __spawnQueue_add_4((GenMethod_4)func_802C418C, 0x4E, reinterpret_cast(u32, other_prop->actorProp.x), reinterpret_cast(u32, other_prop->actorProp.y), reinterpret_cast(u32, other_prop->actorProp.z));
-                chtrainers_802CA750(actor);
+                chtrainers_pickup(actor);
                 break;
 
             case 0x1AE: //L8028CFEC

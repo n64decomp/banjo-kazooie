@@ -2,20 +2,21 @@
 #include "functions.h"
 #include "variables.h"
 #include "core2/statetimer.h"
+#include "core2/ba/anim.h"
 
 int bscroc_inSet(enum bs_e state);
 
 /* .data */
-const f32 D_80364B00 = 30.0f;
-const f32 D_80364B04 = 375.0f;
-const f32 D_80364B08 = 500.0f;
-const f32 D_80364B0C = 0.5f;
-const f32 D_80364B10 = 0.3f;
+const f32 bsCrocMinWalkVelocity = 30.0f;
+const f32 bsCrocMaxWalkVelocity = 375.0f;
+const f32 bsCrocMaxTurboVelocity = 500.0f;
+const f32 bsCrocSlowestWalkDuration = 0.5f;
+const f32 bsCrocFastestWalkDuration = 0.3f;
 const f32 D_80364B14 = 0.2f;
-const f32 D_80364B18 = 693.5f; //jump initial velocity
-const f32 D_80364B1C = -1200.0f; //jump gravity
-u8  D_80364B20 = 0;
-s16 D_80364B24[] = {
+const f32 bsCrocInitialJumpVelocity = 693.5f; //jump initial velocity
+const f32 bsCrocGravity = -1200.0f; //jump gravity
+u8  bsCrocJumpSfxIndex = 0;
+s16 bsCrocJumpSfxList[] = {
     SFX_54_BANJO_HOO_1, 
     SFX_55_BANJO_HOO_2, 
     SFX_56_BANJO_HUI
@@ -31,17 +32,17 @@ u8 D_8037D3F4;
 u8 D_8037D3F5;
 
 /* .code */
-f32 func_802ABDC0(void){
+f32 __bscroc_getMaxVelocity(void){
     if(stateTimer_get(STATE_TIMER_3_TURBO_TALON) != 0.0f)
-        return D_80364B08;
+        return bsCrocMaxTurboVelocity;
     else
-        return D_80364B04;
+        return bsCrocMaxWalkVelocity;
 }
 
-void func_802ABE04(void){
-    func_8030EB00(D_80364B24[D_80364B20], 1.35f, 1.45f);
-    if(!(++D_80364B20 < 3))
-        D_80364B20 = 0;
+void __bscroc_jumpSfx(void){
+    func_8030EB00(bsCrocJumpSfxList[bsCrocJumpSfxIndex], 1.35f, 1.45f);
+    if(!(++bsCrocJumpSfxIndex < 3))
+        bsCrocJumpSfxIndex = 0;
 }
 
 void func_802ABE70(void){
@@ -49,7 +50,7 @@ void func_802ABE70(void){
     func_80299650(stateTimer_getPrevious(STATE_TIMER_3_TURBO_TALON), sp1C);
     if(miscflag_isTrue(MISC_FLAG_10_TOUCHING_TURBO_TRAINERS) && bs_getState() != BS_17_BTROT_EXIT){
         miscflag_clear(MISC_FLAG_10_TOUCHING_TURBO_TRAINERS);
-        stateTimer_set(STATE_TIMER_3_TURBO_TALON, func_80294A40());
+        stateTimer_set(STATE_TIMER_3_TURBO_TALON, get_turbo_duration());
         func_8025A6EC(COMUSIC_8A_GETTING_TURBO_TRAINERS, -1);
         func_8029E0DC(1);
     }
@@ -70,7 +71,7 @@ void func_802ABF54(void){
         func_80297970(0.0f);
     }
     else{
-        func_80297970(ml_interpolate_f(sp1C, D_80364B00, func_802ABDC0()));
+        func_80297970(ml_interpolate_f(sp1C, bsCrocMinWalkVelocity, __bscroc_getMaxVelocity()));
     }
 }
 
@@ -83,7 +84,7 @@ void func_802ABFBC(void){
         miscflag_clear(4);
         func_80293D74();
     }
-    func_80289F10(1);
+    baanim_setUpdateType(BAANIM_UPDATE_1_NORMAL);
 }
 
 int bscroc_inSet(enum bs_e state){
@@ -101,7 +102,7 @@ int bscroc_inSet(enum bs_e state){
 }
 
 void bscroc_idle_init(void){
-    func_8028A010(0xe1, 1.0f);
+    baanim_playForDuration_loopSmooth(0xe1, 1.0f);
     func_8029C7F4(1,1,1,2);
     func_80297970(0.0f);
     pitch_setAngVel(1000.0f, 12.0f);
@@ -142,9 +143,9 @@ void bscroc_idle_end(void){
 }
 
 void bscroc_walk_init(void){
-    func_8028A100(0xe0, 0.8f, 0.4f);
-    func_8029C7F4(2,1,1,2);
-    func_80289EC8(D_80364B00, D_80364B04, D_80364B0C, D_80364B10);
+    baanim_playForDuration_loopStartingAt(ASSET_E0_ANIM_BSCROC_WALK, 0.8f, 0.4f);
+    func_8029C7F4(BAANIM_UPDATE_2_SCALE_HORZ,1,1,2);
+    baanim_setVelocityMapRanges(bsCrocMinWalkVelocity, bsCrocMaxWalkVelocity, bsCrocSlowestWalkDuration, bsCrocFastestWalkDuration);
     func_802900B4();
 }
 
@@ -178,16 +179,16 @@ void bscroc_walk_end(void){
 }
 
 void bscroc_jump_init(void){
-    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
 
     animctrl_reset(aCtrl);
     animctrl_setSmoothTransition(aCtrl, FALSE);
     animctrl_setIndex(aCtrl, ASSET_11C_ANIM_BSCROC_JUMP);
     animctrl_setSubRange(aCtrl, 0.0f, 0.35f);
     animctrl_setDuration(aCtrl, 1.0f);
-    func_8028774C(aCtrl, 0.1f);
+    animctrl_setStart(aCtrl, 0.1f);
     animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
-    func_802875AC(aCtrl, "bscroc.c", 0x1ac);
+    animctrl_start(aCtrl, "bscroc.c", 0x1ac);
     func_8029C7F4(1,1,3,6);
     if(func_8029B2E8() != 0.0f){
         yaw_setIdeal(func_8029B33C());
@@ -195,15 +196,15 @@ void bscroc_jump_init(void){
     func_8029797C(yaw_getIdeal());
     func_802ABF54();
     func_802979AC(yaw_getIdeal(), func_80297A64());
-    player_setYVelocity(D_80364B18);
-    gravity_set(D_80364B1C);
-    func_802ABE04();
+    player_setYVelocity(bsCrocInitialJumpVelocity);
+    gravity_set(bsCrocGravity);
+    __bscroc_jumpSfx();
     D_8037D3EC = 0;
 }
 
 void bscroc_jump_update(void){
     enum bs_e sp2C = 0;
-    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
     f32 player_velocity[3];
 
     func_802ABE70();
@@ -216,18 +217,18 @@ void bscroc_jump_update(void){
         case 0:
             if(func_8028B254(0x82))
             {
-                func_8028A3B8(0.6538f, 0.7f);
+                baanim_setEndAndDuration(0.6538f, 0.7f);
                 D_8037D3EC = 2;
             }
             else if(animctrl_isStopped(aCtrl))
             {
-                func_8028A3B8(0.5036f, 3.0f);
+                baanim_setEndAndDuration(0.5036f, 3.0f);
                 D_8037D3EC = 1;
             }
             break;
         case 1:
             if(func_8028B254(0x82)){
-                func_8028A3B8(0.6538f, 1.0f);
+                baanim_setEndAndDuration(0.6538f, 1.0f);
                 D_8037D3EC = 2;
             }
             break;
@@ -235,7 +236,7 @@ void bscroc_jump_update(void){
             func_80299628(0);
             if(func_8028B2E8()){
                 func_8029AE48();
-                func_8028A3B8(1.0f, 1.0f);
+                baanim_setEndAndDuration(1.0f, 1.0f);
                 D_8037D3EC = 3;
             }
             break;
@@ -268,21 +269,21 @@ void bscroc_jump_end(void){
 }
 
 void bscroc_fall_init(void){
-    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
 
     animctrl_reset(aCtrl);
     animctrl_setIndex(aCtrl, ASSET_11C_ANIM_BSCROC_JUMP);
-    func_8028774C(aCtrl, 0.5036f);
+    animctrl_setStart(aCtrl, 0.5036f);
     animctrl_setDuration(aCtrl, 0.7f);
     animctrl_setPlaybackType(aCtrl, ANIMCTRL_STOPPED);
-    func_802875AC(aCtrl, "bscroc.c", 0x235);
+    animctrl_start(aCtrl, "bscroc.c", 0x235);
     func_8029C7F4(1,1,3,6);
     D_8037D3EC = 0;
 }
 
 void bscroc_fall_update(void){
     enum bs_e next_state = 0;
-    AnimCtrl * aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl * aCtrl = baanim_getAnimCtrlPtr();
     f32 player_velocity[3];
 
     func_802ABE70();
@@ -293,7 +294,7 @@ void bscroc_fall_update(void){
     switch(D_8037D3EC){
         case 0:
             if(func_8028B254(0x82)){
-                func_8028A37C(0.6538f);
+                baanim_setEnd(0.6538f);
                 D_8037D3EC = 1;
             }
             break;
@@ -301,7 +302,7 @@ void bscroc_fall_update(void){
             if(func_8028B2E8()){
                 func_8029AE48();
                 func_80297970(0.0f);
-                func_8028A3B8(1.0f, 1.0f);
+                baanim_setEndAndDuration(1.0f, 1.0f);
                 D_8037D3EC = 2;
             }
         case 2:
@@ -326,7 +327,7 @@ void bscroc_fall_end(void){
 }
 
 static void __bscroc_recoil_init(s32 damage){
-    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
     f32 sp38;
     f32 player_position[3];
     f32 sp20[3];
@@ -336,7 +337,7 @@ static void __bscroc_recoil_init(s32 damage){
     animctrl_setDuration(aCtrl, 1.0f);
     animctrl_setSubRange(aCtrl, 0.0f, 0.7518f);
     animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
-    func_802875AC(aCtrl, "bscroc.c", 0x2a5);
+    animctrl_start(aCtrl, "bscroc.c", 0x2a5);
     if(damage == 1)
         func_8030E58C(SFX_38_BANJO_AYE_1, 1.8f);
     else
@@ -367,7 +368,7 @@ static void __bscroc_recoil_update(void){
     switch(D_8037D3EC){
         case 0:
             if(func_8028B254(0x5A)){
-                func_8028A37C(1.0f);
+                baanim_setEnd(1.0f);
                 D_8037D3EC = 1;
             }
             break;
@@ -413,7 +414,7 @@ void bscroc_bounce_end(void){
 }
 
 void bscroc_die_init(void){
-    AnimCtrl * aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl * aCtrl = baanim_getAnimCtrlPtr();
     f32 sp38;
     f32 player_position[3];
     f32 sp20[3];
@@ -425,7 +426,7 @@ void bscroc_die_init(void){
     animctrl_setSubRange(aCtrl, 0.0f, 0.3966f);
     animctrl_setDuration(aCtrl, 1.7f);
     animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
-    func_802875AC(aCtrl, "bscroc.c", 0x32b);
+    animctrl_start(aCtrl, "bscroc.c", 0x32b);
     func_8029C7F4(1,1,2,3);
     _player_getPosition(player_position);
     func_80294980(sp20);
@@ -457,7 +458,7 @@ void bscroc_die_update(void){
     switch(D_8037D3EC){
         case 0:
             if(func_8028B2E8()){
-                func_8028A37C(0.7453f);
+                baanim_setEnd(0.7453f);
                 FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 0.8f, 18000);
                 FUNC_8030E624(SFX_39_BANJO_AYE_2, 1.8f, 18000);
                 player_setYVelocity(400.0f);
@@ -466,7 +467,7 @@ void bscroc_die_update(void){
             break;
         case 1:
             if(func_8028B2E8()){
-                func_8028A37C(1.0f);
+                baanim_setEnd(1.0f);
                 FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 0.8f, 18000);
                 FUNC_8030E624(SFX_39_BANJO_AYE_2, 1.8f, 18000);
                 D_8037D3EC = 2;
@@ -510,7 +511,7 @@ static void func_802ACF58(void){
 }
 
 void bscroc_bite_init(void){
-    func_8028A100(0x122, 0.25f, 0.2f);
+    baanim_playForDuration_loopStartingAt(ASSET_122_ANIM_BSCROC_BITE, 0.25f, 0.2f);
     func_8029C7F4(1,1,1,3);
     func_802ACF58();
     D_8037D3F4 = 0;
@@ -519,7 +520,7 @@ void bscroc_bite_init(void){
 
 void bscroc_bite_update(void){
     enum bs_e next_state = 0;
-    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
 
     func_802ABE70();
     func_80299628(0);
@@ -559,14 +560,14 @@ void bscroc_bite_end(void){
 }
 
 void bscroc_eat_bad_init(void){
-    func_8028A180(0x123, 2.41f);
+    baanim_playForDuration_once(ASSET_123_ANIM_BSCROC_EAT_BAD, 2.41f);
     func_8029C7F4(1,1,2,3);
     func_80297970(0.0f);
 }
 
 void bscroc_eat_bad_update(void){
     enum bs_e next_state = 0;
-    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
 
     func_802ABE70();
     func_80299628(0);
@@ -610,7 +611,7 @@ void func_802AD318(void){
 }
 
 void bscroc_eat_good_init(void){
-    func_8028A010(0x122, 0.25f);
+    baanim_playForDuration_loopSmooth(ASSET_122_ANIM_BSCROC_BITE, 0.25f);
     func_8029C7F4(1,1,1,2);
     baModel_setPostDraw(func_802AD2A8);
     D_8037D3E8 = assetcache_get(func_80294974());
@@ -625,7 +626,7 @@ int func_802AD3A0(void){
 
 void bscroc_eat_good_update(void){
     enum bs_e next_state = 0;
-    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
 
     func_802ABE70();
     D_8037D3F0 = ml_max_f(0.1f, D_8037D3F0 - 0.05);
@@ -666,7 +667,7 @@ void bscroc_eat_good_end(void){
 }
 
 void func_802AD56C(void){
-    func_8028A010(0xe1, 1.0f);
+    baanim_playForDuration_loopSmooth(ASSET_E1_ANIM_BSCROC_IDLE, 1.0f);
     func_8029C7F4(1,1,3,2);
     func_80297970(0.0f);
     func_8029C674();

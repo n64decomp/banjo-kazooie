@@ -75,10 +75,10 @@ enum hitbox_e func_8028DB14(ActorMarker *arg0){
             break;
         case BS_5_JUMP://8028DCD8
         case BS_3D_FALL_TUMBLING:
-            if(func_80297AAC() < 0.0f && !func_8028B2E8())
+            if(_get_vertVelocity() < 0.0f && !func_8028B2E8())
                 return HITBOX_A_FAST_FALLING;
         case BS_2F_FALL://8028DD10
-            if(func_80297AAC() < -1400.0f && !func_8028B2E8())
+            if(_get_vertVelocity() < -1400.0f && !func_8028B2E8())
                 return HITBOX_A_FAST_FALLING;
         default://8028DD4C
             return HITBOX_0_NONE;
@@ -141,7 +141,7 @@ void func_8028DEEC(enum actor_e actor_id, Actor *actor){
     f32 sp1C[3];
 
     nodeprop_getPosition(func_80304C38(actor_id, actor), sp1C);
-    func_80294AC0(sp1C);
+    set_throw_target_position(sp1C);
 }
 
 void func_8028DF20(enum actor_e actor_id){

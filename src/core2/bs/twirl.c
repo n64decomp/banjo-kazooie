@@ -1,6 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "core2/ba/anim.h"
 
 /* .bss */
 f32 D_8037D5A0;
@@ -13,15 +14,15 @@ int bstwirl_hitboxActive(void){
 }
 
 void bstwirl_init(void){
-    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
     animctrl_reset(aCtrl);
     animctrl_setSmoothTransition(aCtrl, 0);
     animctrl_setIndex(aCtrl, ASSET_4F_ANIM_BSTWIRL);
     animctrl_setDuration(aCtrl, 0.9f);
     animctrl_setSubRange(aCtrl, 0.0f, 1.0f);
     animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
-    func_802875AC(aCtrl, "bstwirl.c", 0x46);
-    func_80289F10(1);
+    animctrl_start(aCtrl, "bstwirl.c", 0x46);
+    baanim_setUpdateType(BAANIM_UPDATE_1_NORMAL);
     yaw_setUpdateState(1);
     func_8029957C(3);
     func_8029797C(yaw_getIdeal());
@@ -37,7 +38,7 @@ void bstwirl_init(void){
 
 void bstwirl_update(void){
     enum bs_e sp1C = 0;
-    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
 
     switch(D_8037D5A4){
         case 0:

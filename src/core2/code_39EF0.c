@@ -5,7 +5,7 @@
 extern f32 func_802453DC(struct56s *, f32, f32[3], s32);
 extern f32 func_80259198(f32, f32);
 extern f32 func_802BD51C(void);
-extern f32 func_8028EBA4(void);
+extern f32 player_getYaw(void);
 extern void func_802BE244(f32, f32);
 extern void func_802BE230(f32, f32);
 extern void func_802BD82C(f32, f32);
@@ -306,7 +306,7 @@ void func_802C18F8(void) {
     sp4C = gu_sqrtf((sp50[0] * sp50[0]) + (sp50[2] * sp50[2]));
     sp4C += func_80259198((sp3C - sp4C) * temp_f20 * 2, temp_f20 * 120.0f);
     func_8025801C(sp50, &sp48);
-    sp40 = func_80259198(mlDiffDegF(mlNormalizeAngle(180.0f + func_8028EBA4()), sp48) * (temp_f20 * 1), temp_f20 * 50.0f);
+    sp40 = func_80259198(mlDiffDegF(mlNormalizeAngle(180.0f + player_getYaw()), sp48) * (temp_f20 * 1), temp_f20 * 50.0f);
     sp48 = mlNormalizeAngle(sp48 + sp40);
     func_80256E24(sp68, 0.0f, sp48, 0.0f, 0.0f, sp4C);
     ml_vec3f_add(sp80, sp8C, sp68);
@@ -352,7 +352,7 @@ void func_802C1B2C(void) {
     sp3C = gu_sqrtf(sp40[0]*sp40[0] + sp40[2]*sp40[2]);
     sp3C += func_80259198(sp30*(sp34 - sp3C)*2 , sp30 * 800.0f);
     func_8025727C(sp7C[0], sp7C[1], sp7C[2], sp64[0], sp64[1], sp64[2], &sp4C[0], &sp4C[1]);
-    sp40[1] = sp30 * 0.77 * mlDiffDegF(mlNormalizeAngle(func_8028EBA4() + 180.0f), sp4C[1]);
+    sp40[1] = sp30 * 0.77 * mlDiffDegF(mlNormalizeAngle(player_getYaw() + 180.0f), sp4C[1]);
     sp40[1] = func_80259198(sp40[1], sp30 * 300.0f);
     sp4C[1] = mlNormalizeAngle(sp4C[1] + sp40[1]);
     func_80256E24(&sp58, 0.0f, sp4C[1], 0.0f, 0.0f, sp3C);

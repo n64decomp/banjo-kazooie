@@ -7,7 +7,7 @@ u8 D_8037D5D0;
 
 /* .code */
 void func_802B9980(s32 arg0){
-    AnimCtrl *plyr_anim = _player_getAnimCtrlPtr();
+    AnimCtrl *plyr_anim = baanim_getAnimCtrlPtr();
 
     switch (arg0)
     {
@@ -44,7 +44,7 @@ void func_802B9AAC(void){
 }
 
 void func_802B9ACC(void){
-    func_8028A180(ASSET_281_ANIM_WISHYWASHY_DOOOH, 40.0f);
+    baanim_playForDuration_once(ASSET_281_ANIM_WISHYWASHY_DOOOH, 40.0f);
     func_8029C7F4(1, 1, 3, 2);
     func_802900B4();
     func_802B9980(0);

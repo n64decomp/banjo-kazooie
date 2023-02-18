@@ -4,7 +4,7 @@
 
 #include "core2/ba/model.h"
 #include "core2/statetimer.h"
-
+#include "core2/ba/anim.h"
 
 /* .data */
 f32 D_80364A90 = 30.0f;
@@ -114,7 +114,7 @@ void func_802A8AD8(void){
     func_80299650(stateTimer_getPrevious(STATE_TIMER_3_TURBO_TALON), stateTimer_get(STATE_TIMER_3_TURBO_TALON));
     if(miscflag_isTrue(MISC_FLAG_10_TOUCHING_TURBO_TRAINERS) &&(bs_getState() != BS_17_BTROT_EXIT)){
         miscflag_clear(MISC_FLAG_10_TOUCHING_TURBO_TRAINERS);
-        stateTimer_set(STATE_TIMER_3_TURBO_TALON, func_80294A40());
+        stateTimer_set(STATE_TIMER_3_TURBO_TALON, get_turbo_duration());
         func_803219F4(4);
     }
 
@@ -146,7 +146,7 @@ void func_802A8BB0(void){
     if(next_state != BS_5A_LOADZONE)
         stateTimer_set(STATE_TIMER_3_TURBO_TALON, 0.0f);
     func_802A8AD8();
-    func_80289F10(1);
+    baanim_setUpdateType(BAANIM_UPDATE_1_NORMAL);
     func_8029CF48(4, 0, 0.0f);
 
 
@@ -162,8 +162,8 @@ int func_802A8C60(void){
 void _bsbtrot_802A8C98(AnimCtrl *aCtrl, enum asset_e arg1){
     if(animctrl_getIndex(aCtrl) != arg1){
         animctrl_setIndex(aCtrl, arg1);
-        func_8028774C(aCtrl, animctrl_getAnimTimer(aCtrl));
-        func_802875AC(aCtrl, "bsbtrot.c", 0x12e);
+        animctrl_setStart(aCtrl, animctrl_getAnimTimer(aCtrl));
+        animctrl_start(aCtrl, "bsbtrot.c", 0x12e);
 
     }
 }
@@ -212,7 +212,7 @@ enum bs_e func_802A8D84(enum bs_e arg0){
 
 void bsbtrot_enter_init(void){
     func_802A8AD8();
-    func_8028A274(ASSET_16_ANIM_BSBTROT_ENTER, 1.0f);
+    baanim_playForDuration_onceSmooth(ASSET_16_ANIM_BSBTROT_ENTER, 1.0f);
     func_8029C7F4(1,1,2,2);
     func_80297970(0.0f);
     func_802A8A40();
@@ -222,7 +222,7 @@ void bsbtrot_enter_init(void){
 
 void bsbtrot_enter_update(void){
     enum bs_e next_state = 0;
-    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
     func_802952A8(0,1);
     func_80299628(1);
     if(animctrl_isStopped(aCtrl))
@@ -241,7 +241,7 @@ void bsbtrot_enter_end(void){
 }
 
 void bsbtrot_stand_init(void){
-    func_8028A010(ASSET_26_ANIM_BSBTROT_IDLE, 1.2f);
+    baanim_playForDuration_loopSmooth(ASSET_26_ANIM_BSBTROT_IDLE, 1.2f);
     func_8029C7F4(1,1,1,2);
     func_80297970(0.0f);
     func_802A8A40();
@@ -270,18 +270,18 @@ enum asset_e func_802A9030(void){
 
 void func_802A9054(void){
     f32 tmp = 1.0f;
-    func_80289EC8(func_802A8900(), func_802A88B0(), func_802A8984(), func_802A8934());
+    baanim_setVelocityMapRanges(func_802A8900(), func_802A88B0(), func_802A8984(), func_802A8934());
     if(func_8028B394()){
         tmp = ml_map_f(func_80297AF0(), 0.0f, 1.0f, 0.6f, 0.9f);
-        func_80289EF8(tmp);
+        baanim_scaleDuration(tmp);
     }
     else{
-        func_80289EF8(tmp);
+        baanim_scaleDuration(tmp);
     }
 }
 
 void bsbtrot_walk_init(void){
-    func_8028A010(func_802A9030(), 0.53f);
+    baanim_playForDuration_loopSmooth(func_802A9030(), 0.53f);
     func_8029C7F4(2,1,1,2);
     func_802A8A40();
     func_802A9054();
@@ -289,7 +289,7 @@ void bsbtrot_walk_init(void){
 
 void bsbtrot_walk_update(void){
     enum bs_e sp1C = 0;
-    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
 
     func_802A8850();
     func_802A9054();
@@ -341,18 +341,18 @@ void bsbtrot_walk_end(void){
 void func_802A9320(void){}
 
 void bsbtrot_jump_init(void){
-    AnimCtrl * aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl * aCtrl = baanim_getAnimCtrlPtr();
 
     animctrl_reset(aCtrl);
     animctrl_setIndex(aCtrl, ASSET_27_ANIM_BSBTROR_JUMP);
     animctrl_setDuration(aCtrl, 1.4f);
     animctrl_setTransitionDuration(aCtrl, 0.1f);
-    func_8028774C(aCtrl, 0.2f);
+    animctrl_setStart(aCtrl, 0.2f);
     animctrl_setSubRange(aCtrl, 0.0f,  0.4002f);
     animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
-    func_802875AC(aCtrl, "bsbtrot.c", 0x272);
+    animctrl_start(aCtrl, "bsbtrot.c", 0x272);
     func_802A8A40();
-    func_80289F10(1);
+    baanim_setUpdateType(BAANIM_UPDATE_1_NORMAL);
     yaw_setUpdateState(1);
     func_8029957C(3);
     func_802978DC(6);
@@ -370,7 +370,7 @@ void bsbtrot_jump_init(void){
 
 void bsbtrot_jump_update(void){
     enum bs_e sp2C = 0;
-    AnimCtrl * aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl * aCtrl = baanim_getAnimCtrlPtr();
     f32 sp1C[3];
     func_802A8AD8();
     if(stateTimer_isActive(STATE_TIMER_3_TURBO_TALON))
@@ -479,14 +479,14 @@ void bsbtrot_jump_end(void){
 }
 
 void bsbtrot_exit_init(void){
-    func_8028A274(ASSET_7_ANIM_BSBTROT_EXIT, 0.6f);
-    func_80289F10(1);
+    baanim_playForDuration_onceSmooth(ASSET_7_ANIM_BSBTROT_EXIT, 0.6f);
+    baanim_setUpdateType(BAANIM_UPDATE_1_NORMAL);
     func_80297970(0.0f);
 }
 
 void bsbtrot_exit_update(void){
     enum bs_e sp1C = 0;
-    if(animctrl_isStopped(_player_getAnimCtrlPtr()))
+    if(animctrl_isStopped(baanim_getAnimCtrlPtr()))
         sp1C = BS_1_IDLE;
 
     bs_setState(sp1C);
@@ -497,12 +497,12 @@ void bsbtrot_exit_end(void){
 }
 
 void bsbtrot_slide_init(void){
-    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
     animctrl_reset(aCtrl);
     animctrl_setIndex(aCtrl, ASSET_27_ANIM_BSBTROR_JUMP);
-    func_8028774C(aCtrl, 0.069f);
+    animctrl_setStart(aCtrl, 0.069f);
     animctrl_setPlaybackType(aCtrl,  ANIMCTRL_STOPPED);
-    func_802875AC(aCtrl, "bsbtrot.c", 0x382);
+    animctrl_start(aCtrl, "bsbtrot.c", 0x382);
     func_802A8A40();
     func_8029C7F4(1,1,3,3);
     func_8029797C(yaw_getIdeal());
@@ -564,13 +564,13 @@ int bsbtrot_inSet(s32 move_indx){
 }
 
 void bsbtrot_fall_init(void){
-    AnimCtrl * aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl * aCtrl = baanim_getAnimCtrlPtr();
     animctrl_reset(aCtrl);
     animctrl_setIndex(aCtrl, ASSET_27_ANIM_BSBTROR_JUMP);
     animctrl_setDuration(aCtrl, 1.4f);
-    func_8028774C(aCtrl, 0.4653f);
+    animctrl_setStart(aCtrl, 0.4653f);
     animctrl_setPlaybackType(aCtrl,  ANIMCTRL_STOPPED);
-    func_802875AC(aCtrl, "bsbtrot.c", 0x400);
+    animctrl_start(aCtrl, "bsbtrot.c", 0x400);
     func_802A8A40();
     func_8029C7F4(1,1,3,6);
     func_8029797C(yaw_getIdeal());
@@ -581,7 +581,7 @@ void bsbtrot_fall_init(void){
 
 void bsbtrot_fall_update(void){
     enum bs_e sp2C = 0;
-    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
     f32 sp1C[3];
     func_802A8AD8();
     if(stateTimer_isActive(STATE_TIMER_3_TURBO_TALON))
@@ -678,7 +678,7 @@ void bsbtrot_fall_end(void){
 }
 
 void bsbtrot_unk79_init(void){
-    func_8028A010(ASSET_26_ANIM_BSBTROT_IDLE, 1.2f);
+    baanim_playForDuration_loopSmooth(ASSET_26_ANIM_BSBTROT_IDLE, 1.2f);
     func_8029C7F4(1,1,3,2);
     func_80297970(0.0f);
     func_802A8A40();
@@ -708,7 +708,7 @@ void bsbtrot_ow_init(void){
 
     func_802A8A40();
     func_80298760(func_80296560());
-    func_8028A274(ASSET_66_ANIM_BSBTROT_OW, 1.1f);
+    baanim_playForDuration_onceSmooth(ASSET_66_ANIM_BSBTROT_OW, 1.1f);
     func_80299BFC(1.0f);
     _player_getPosition(sp30);
     func_80294980(sp24);
@@ -741,7 +741,7 @@ void bsbtrot_ow_update(void){
     if(func_8028B2E8() && baanim_isStopped())
         sp1C = BS_15_BTROT_IDLE;
 
-    if(animctrl_isStopped(_player_getAnimCtrlPtr()) && player_inWater())
+    if(animctrl_isStopped(baanim_getAnimCtrlPtr()) && player_inWater())
         sp1C = BS_2D_SWIM_IDLE;
 
     bs_setState(sp1C);

@@ -149,7 +149,7 @@ void _gctranstion_changeState(s32 state, struct9s *arg1){
             osViBlack(1);
             animctrl_setAnimTimer(D_80382430.animctrl, 0.25f); //set animation timer
         }
-        func_802875AC(D_80382430.animctrl, "gctransition.c", 0x125); 
+        animctrl_start(D_80382430.animctrl, "gctransition.c", 0x125); 
     }
 
     if(state == 4){

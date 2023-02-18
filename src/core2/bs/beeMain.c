@@ -11,8 +11,8 @@ f32 func_80297A64(void);
 void func_802979AC(f32, f32);
 void func_802BF2C0(f32);
 
-f32 func_80289F70(void);
-void func_8028A3B8(f32, f32);
+f32 baanim_getTimer(void);
+void baanim_setEndAndDuration(f32, f32);
 f32 func_8029B2E8(void);
 f32 func_8029B33C(void);
 f32 ml_interpolate_f(f32, f32, f32);
@@ -60,7 +60,7 @@ void func_802A1020(void){
 
 void func_802A1080(void){
     func_802A0340();
-    func_8028A010(ASSET_1DE_ANIM_BEE_IDLE,3.0f);
+    baanim_playForDuration_loopSmooth(ASSET_1DE_ANIM_BEE_IDLE,3.0f);
     func_8029C7F4(1,1,1,2);
     func_80297970(0.0f);
     func_802900B4();
@@ -96,9 +96,9 @@ void func_802A117C(void){
 
 void func_802A11A4(void){
     func_802A0340();
-    func_8028A010(ASSET_1DD_ANIM_BEE_WALK, 0.38f);
+    baanim_playForDuration_loopSmooth(ASSET_1DD_ANIM_BEE_WALK, 0.38f);
     func_8029C7F4(2,1,1,2);
-    func_80289EC8(D_803649E0, D_803649E4, D_803649E8, D_803649EC);
+    baanim_setVelocityMapRanges(D_803649E0, D_803649E4, D_803649E8, D_803649EC);
     func_802900B4();
 }
 
@@ -133,16 +133,16 @@ void func_802A12D4(void){
 void func_802A12FC(void){
     AnimCtrl * s0;
 
-    s0 = _player_getAnimCtrlPtr();
+    s0 = baanim_getAnimCtrlPtr();
     func_802A0340();
     animctrl_reset(s0);
     animctrl_setSmoothTransition(s0, 0);
     animctrl_setIndex(s0, ASSET_1E2_ANIM_BEE_JUMP);
     animctrl_setSubRange(s0, 0, 0.34f);
-    func_8028774C(s0, 0.1f);
+    animctrl_setStart(s0, 0.1f);
     animctrl_setDuration(s0, 1.2f);
     animctrl_setPlaybackType(s0,  ANIMCTRL_ONCE);
-    func_802875AC(s0, "bsbeemain.c", 0x15b);
+    animctrl_start(s0, "bsbeemain.c", 0x15b);
     func_8029C7F4(1,1,3,6);
     if(func_8029B2E8() != 0.0f){
         yaw_setIdeal(func_8029B33C());
@@ -162,7 +162,7 @@ void func_802A1438(void){
     f32 sp1c[3];
 
     sp2c = 0;
-    sp28 = _player_getAnimCtrlPtr();
+    sp28 = baanim_getAnimCtrlPtr();
     func_802A1020();
     _get_velocity(sp1c);
     if(button_released(BUTTON_A) && (0.0f < sp1c[1])){
@@ -171,19 +171,19 @@ void func_802A1438(void){
     switch (D_8037D2D4)
     {
     case 0:
-        if(func_8028B254(0x82)){
-            func_8028A3B8(0.715f, 0.7f);
+        if(func_8028B254(130)){
+            baanim_setEndAndDuration(0.715f, 0.7f);
             D_8037D2D4 = 2;
         }else{
             if(animctrl_isStopped(sp28)){
-                func_8028A3B8(0.51f, 4.0f);
+                baanim_setEndAndDuration(0.51f, 4.0f);
                 D_8037D2D4 = 1;
             }
         }
         break;
     case 1:
-        if(func_8028B254(0x82)){
-            func_8028A3B8(0.715f, 1.2f);
+        if(func_8028B254(130)){
+            baanim_setEndAndDuration(0.715f, 1.2f);
             D_8037D2D4 = 2;
         }
         break;
@@ -191,7 +191,7 @@ void func_802A1438(void){
         func_80299628(0);
         if(func_8028B2E8()){
             func_802A0F90();
-            func_8028A3B8(1.0f, 0.7f);
+            baanim_setEndAndDuration(1.0f, 0.7f);
             D_8037D2D4 = 3;
         }
         break;
@@ -228,15 +228,15 @@ void func_802A163C(void){
 void func_802A1664(void){
     AnimCtrl * s0;
 
-    s0 = _player_getAnimCtrlPtr();
+    s0 = baanim_getAnimCtrlPtr();
     func_802A0340();
     animctrl_reset(s0);
     animctrl_setIndex(s0, ASSET_1E2_ANIM_BEE_JUMP);
-    func_8028774C(s0, 0.34f);
+    animctrl_setStart(s0, 0.34f);
     animctrl_setDuration(s0, 8.0f);
     animctrl_setSubRange(s0, 0, 0.51f);
     animctrl_setPlaybackType(s0,  ANIMCTRL_ONCE);
-    func_802875AC(s0, "bsbeemain.c", 0x1e2);
+    animctrl_start(s0, "bsbeemain.c", 0x1e2);
     func_8029C7F4(1,1,3,6);
     D_8037D2D4 = 0;
 }
@@ -247,14 +247,14 @@ void func_802A170C(void){
     f32 sp1c[3];
 
     sp2c = 0;
-    sp28 = _player_getAnimCtrlPtr();
+    sp28 = baanim_getAnimCtrlPtr();
     func_80299628(0);
     func_802A1020();
     _get_velocity(sp1c);
     switch(D_8037D2D4){
         case 0:
             if(func_8028B254(0x82)){
-                func_8028A3B8(0.715f, 0.7f);
+                baanim_setEndAndDuration(0.715f, 0.7f);
                 D_8037D2D4 = 1;
             }
             break;
@@ -263,7 +263,7 @@ void func_802A170C(void){
             if(func_8028B2E8()){
                 func_802A0F90();
                 func_80297970(0.0f);
-                func_8028A3B8(1.0f, 0.7f);
+                baanim_setEndAndDuration(1.0f, 0.7f);
                 D_8037D2D4 = 2;
             }
             break;
@@ -307,14 +307,14 @@ void func_802A18E8(s32 arg0){
     f32 sp20[3];
 
     //sp40 = arg0;
-    sp3C = _player_getAnimCtrlPtr();
+    sp3C = baanim_getAnimCtrlPtr();
     func_802A0340();
     animctrl_reset(sp3C);
     animctrl_setIndex(sp3C, ASSET_1E0_ANIM_BEE_OW);
     animctrl_setDuration(sp3C, 1.0f);
     animctrl_setSubRange(sp3C, 0, 0.7518f);
     animctrl_setPlaybackType(sp3C,  ANIMCTRL_ONCE);
-    func_802875AC(sp3C, "bsbeemain.c", 0x269);
+    animctrl_start(sp3C, "bsbeemain.c", 0x269);
     if(arg0 == 1){
         func_8030E58C(SFX_38_BANJO_AYE_1, 1.8f);
     }else{
@@ -346,7 +346,7 @@ void func_802A1A50(void){
     switch(D_8037D2D4){
         case 0:
             if(func_8028B254(0x5A)){
-                func_8028A37C(1.0f);
+                baanim_setEnd(1.0f);
                 D_8037D2D4 = 1;
             }
             break;
@@ -355,7 +355,7 @@ void func_802A1A50(void){
     }
     if(func_8028B2E8())
         sp1C = BS_85_BEE_IDLE;
-    if(0.65 < func_80289F70() && player_inWater()){
+    if(0.65 < baanim_getTimer() && player_inWater()){
         sp1C = 0x8C;
     }
     bs_setState(sp1C);
@@ -399,7 +399,7 @@ void bsbeemain_die_init(void){
     f32 sp2C[3];
     f32 sp20[3];
     
-    sp3C = _player_getAnimCtrlPtr();
+    sp3C = baanim_getAnimCtrlPtr();
     func_8029B930();
     func_802A0340();
     animctrl_reset(sp3C);
@@ -408,7 +408,7 @@ void bsbeemain_die_init(void){
     animctrl_setSubRange(sp3C, 0, 0.3966f);
     animctrl_setDuration(sp3C, 1.7f);
     animctrl_setPlaybackType(sp3C,  ANIMCTRL_ONCE);
-    func_802875AC(sp3C, "bsbeemain.c", 0x2ef);
+    animctrl_start(sp3C, "bsbeemain.c", 0x2ef);
     func_8029C7F4(1,1,2,3);
     _player_getPosition(sp2C);
     func_80294980(sp20);
@@ -439,7 +439,7 @@ void func_802A1DD8(void){
         case 0:
             if(!func_8028B2E8())
                 break;
-            func_8028A37C(0.7453f);
+            baanim_setEnd(0.7453f);
             FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 0.8f, 18000);
             FUNC_8030E624(SFX_39_BANJO_AYE_2, 1.8f, 18000);
             player_setYVelocity(400.0f);
@@ -448,7 +448,7 @@ void func_802A1DD8(void){
         case 1:
             if(!func_8028B2E8())
                 break;
-            func_8028A37C(1.0f);
+            baanim_setEnd(1.0f);
             FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 0.8f, 18000);
             FUNC_8030E624(SFX_39_BANJO_AYE_2, 1.8f, 18000);
             D_8037D2D4 = 2;
@@ -479,7 +479,7 @@ void func_802A1F2C(void){
 
 void func_802A1F6C(void){
     func_802A0340();
-    func_8028A010(ASSET_1DE_ANIM_BEE_IDLE, 3.0f);
+    baanim_playForDuration_loopSmooth(ASSET_1DE_ANIM_BEE_IDLE, 3.0f);
     func_8029C7F4(1,1,3,2);
     func_80297970(0.0f);
     func_8029C674();
@@ -516,7 +516,7 @@ void func_802A2054(void){
 
 void func_802A2098(void){
     miscflag_clear(0x1A);
-    func_8028A010(ASSET_1DE_ANIM_BEE_IDLE, 3.0f);
+    baanim_playForDuration_loopSmooth(ASSET_1DE_ANIM_BEE_IDLE, 3.0f);
     yaw_setIdeal(func_8029B41C());
     func_8029C7F4(1,1,3,2);
     func_80297970(0.0f);

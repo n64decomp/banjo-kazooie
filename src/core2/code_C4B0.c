@@ -352,13 +352,13 @@ void func_80293F0C(void){
 
     if(D_8037C278 && D_8037C218[1] < (func_8031C5E4(D_8037C200) - 70.0f)){
         func_80294384(3);
-        if(D_8037C279 && func_80297AAC() < 0.0f) {
+        if(D_8037C279 && _get_vertVelocity() < 0.0f) {
             player_setYVelocity(-1.0f);
         }
     }
     else if(D_8037C279){
         func_80294390();
-        if (func_80297AAC() < 0.0f) {
+        if (_get_vertVelocity() < 0.0f) {
             player_setYVelocity(-1.0f);
         }
     } else {

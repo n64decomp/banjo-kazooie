@@ -85,8 +85,8 @@ float gu_sqrtf(float val);
 BKSpriteFrame *spriteGetFramePtr(BKSprite *, u32); 
 
 bool  baanim_isAt(f32);
-void func_8028A180(enum asset_e anim_id, f32 duration);
-void func_8028A37C(f32);
+void baanim_playForDuration_once(enum asset_e anim_id, f32 duration);
+void baanim_setEnd(f32);
 
 int player_inWater(void);
 
@@ -110,7 +110,7 @@ f32 player_getYPosition(void);
 
 void func_80297970(f32);
 
-f32  func_80297AAC(void);
+f32  _get_vertVelocity(void);
 
 void climbGetBottom(f32 dst[3]);
 
@@ -264,7 +264,7 @@ void func_80256E24(f32[3], f32, f32, f32, f32, f32);
 void func_8025727C(f32 x1, f32 y1, f32 z1, f32 x2, f32 y2, f32 z2, f32 *o1, f32 *o2);
 f32  func_80257A44(f32, f32);
 f32  ml_interpolate_f(f32, f32, f32);
-f32  ml_mapRange_f(f32, f32, f32, f32, f32);
+f32  ml_mapAbsRange_f(f32, f32, f32, f32, f32);
 int  func_80257F18(f32 src[3], f32 target[3], f32 *yaw);
 bool func_8025801C(f32[3], f32*);
 
@@ -287,14 +287,14 @@ void func_80287F7C(struct54s *arg0, s32 arg1);
 void func_80287F98(struct54s *arg0, s32 arg1);
 void func_80287FDC(struct54s *arg0, s32 arg1);
 
-void func_80289EA8(f32, f32);
+void baanim_setDurationRange(f32, f32);
 
 
-void func_8028A010(enum asset_e anim_id, f32 duration);
-void func_8028A100(enum asset_e anim_id, f32, f32);
-void func_8028A1F4(enum asset_e anim_id, f32 duration, f32 arg2);
-void func_8028A274(enum asset_e, f32);
-void func_8028A3B8(f32, f32);
+void baanim_playForDuration_loopSmooth(enum asset_e anim_id, f32 duration);
+void baanim_playForDuration_loopStartingAt(enum asset_e anim_id, f32, f32);
+void baanim_playForDuration_onceStartingAt(enum asset_e anim_id, f32 duration, f32 arg2);
+void baanim_playForDuration_onceSmooth(enum asset_e, f32);
+void baanim_setEndAndDuration(f32, f32);
 int  func_8028AED4(f32*, f32);
 void func_8028E668(f32[3], f32, f32, f32);
 bool func_8028F364(f32[3], f32, f32, enum actor_e actor_id, Actor**);
@@ -320,7 +320,7 @@ f32  func_80294500(void);
 BKCollisionTri *func_802946F0(void);
 void func_80294980(f32 arg0[3]);
 f32  get_slope_timer(void);
-f32  func_80294A40(void);
+f32  get_turbo_duration(void);
 void func_80295C08(void (* arg0)(void));
 void func_802978DC(int);
 void func_80297970(f32);
@@ -330,7 +330,7 @@ void func_802979AC(f32, f32);
 f32  func_80297A64(void);
 f32  func_80297A70(void);
 f32  func_80297A7C(void);
-f32  func_80297AB8(void);
+f32  _get_horzVelocity(void);
 f32  func_80297AF0(void);
 void gravity_set(f32);
 void func_80297B64(f32);
@@ -356,8 +356,8 @@ void func_80299650(f32, f32);
 void func_80299B58(f32, f32);
 void func_80299CF4(enum sfx_e, f32, s32);
 void func_80299D2C(enum sfx_e, f32, s32);
-void func_80289EC8(f32, f32, f32, f32);
-void func_80289EF8(f32);
+void baanim_setVelocityMapRanges(f32, f32, f32, f32);
+void baanim_scaleDuration(f32);
 f32  bsStoredState_getLongLegTimer(void);
 f32  bsStoredState_getTurboTimer(void);
 void bsStoredState_setLongLegTimer(f32);
@@ -507,7 +507,7 @@ void func_80352CF4(f32 *, f32 *, f32, f32);
 
 
 
-AnimCtrl *_player_getAnimCtrlPtr(void);
+AnimCtrl *baanim_getAnimCtrlPtr(void);
 void _get_velocity(f32 dst[3]);
 void player_setYPosition(f32);
 

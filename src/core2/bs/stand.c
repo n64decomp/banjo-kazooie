@@ -7,7 +7,7 @@
 extern f32 func_8029B2E8(void);
 void yaw_setVelocityBounded(f32, f32);
 
-void func_802875AC(AnimCtrl *, char*, s32);
+void animctrl_start(AnimCtrl *, char*, s32);
 
 void func_802900B4(void);
 void rumbleManager_80250D94(f32, f32, f32);
@@ -90,7 +90,7 @@ void bsstand_init(void){
     if(bsclimb_inSet(bs_getPrevState()))
         climbRelease();
 
-    func_8028A180(0x6F, 5.5f);
+    baanim_playForDuration_once(ASSET_6F_ANIM_BSSTAND_IDLE, 5.5f);
     func_8029C7F4(1,1,1,2);
     func_80297970(0.0f);
     func_802900B4();
@@ -187,7 +187,7 @@ void bsstand_update(void) {
     f32 sp1C;
     s32 sp18;
 
-    anim_ctrl = _player_getAnimCtrlPtr();
+    anim_ctrl = baanim_getAnimCtrlPtr();
     if ((func_8029B300() == 0) && (func_8029B2E8() > 0.0f)) {
         D_8037D544 = 1;
         yaw_setUpdateState(3);
@@ -220,7 +220,7 @@ void bsstand_update(void) {
                 animctrl_setIndex(anim_ctrl, ASSET_F6_ANIM_BSSTAND_PULL_KAZOOIE);
                 animctrl_setDuration(anim_ctrl, 5.0f);
                 animctrl_setPlaybackType(anim_ctrl, ANIMCTRL_ONCE);
-                func_802875AC(anim_ctrl, "bsstand.c", 0x170);
+                animctrl_start(anim_ctrl, "bsstand.c", 0x170);
             }
         } else {
             if (animctrl_isAt(anim_ctrl, 0.069f))  func_80299D2C(SFX_4B_GULPING, 1.4f, 0x4650);
@@ -241,12 +241,12 @@ void bsstand_update(void) {
         D_8037D540 = func_802B4870(D_8037D540);
         sp18 = D_80364D20[D_8037D540];
         if (sp18 & 0x10) {
-            func_8028A180(ASSET_95_ANIM_BSSTAND_KAZOOIE_PECK, 5.5f);
-            _func_802875AC(anim_ctrl, "bsstand.c", 0x1AB);
+            baanim_playForDuration_once(ASSET_95_ANIM_BSSTAND_KAZOOIE_PECK, 5.5f);
+            animctrl_start(anim_ctrl, "bsstand.c", 0x1AB);
             func_8029E070(1);
             func_802900FC();
         } else if (sp18 & 0x20) {
-            func_8028A180(ASSET_95_ANIM_BSSTAND_KAZOOIE_PECK, 5.5f);
+            baanim_playForDuration_once(ASSET_95_ANIM_BSSTAND_KAZOOIE_PECK, 5.5f);
             func_8029E070(1);
             func_802900FC();
         } else if (sp18 & 8) {
@@ -260,8 +260,8 @@ void bsstand_update(void) {
             animctrl_setIndex(anim_ctrl, ASSET_6F_ANIM_BSSTAND_IDLE);
             animctrl_setDuration(anim_ctrl, 5.5f);
             animctrl_setPlaybackType(anim_ctrl, ANIMCTRL_LOOP);
-            func_8028774C(anim_ctrl, sp1C);
-            func_802875AC(anim_ctrl, "bsstand.c", 0x1C3);
+            animctrl_setStart(anim_ctrl, sp1C);
+            animctrl_start(anim_ctrl, "bsstand.c", 0x1C3);
             func_8029E070(0);
         }
     }
@@ -286,7 +286,7 @@ void bsstand_landing_init(void){
 //bsStand_Land_update
 void bsstand_landing_update(void){
     s32 sp1C = 0;
-    AnimCtrl * sp18 = _player_getAnimCtrlPtr();
+    AnimCtrl * sp18 = baanim_getAnimCtrlPtr();
 
     if(animctrl_getIndex(sp18) == ASSET_D2_ANIM_BSSPLAT){
         if(animctrl_isAt(sp18, 0.8264f)){

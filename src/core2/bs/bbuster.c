@@ -52,7 +52,7 @@ s32 bsbbuster_hitboxActive(void){
 }
 
 void bsbbuster_init(void){
-    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
     f32 sp20[3];
     
     animctrl_reset(aCtrl);
@@ -61,7 +61,7 @@ void bsbbuster_init(void){
     animctrl_setDuration(aCtrl, 1.02f);
     animctrl_setSubRange(aCtrl, 0.0f, 0.35f);
     animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
-    func_802875AC(aCtrl, "bsbbuster.c", 0x81);
+    animctrl_start(aCtrl, "bsbbuster.c", 0x81);
     func_8029C7F4(1,1,3,6);
     gravity_set(0.0f);
     func_80297970(0.0f);
@@ -82,7 +82,7 @@ void bsbbuster_init(void){
 
 void bsbbuster_update(void){
     enum bs_e sp44 = 0;
-    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
     s32 sp3C;
     f32 sp30[3];
     f32 player_position[3];
@@ -93,7 +93,7 @@ void bsbbuster_update(void){
 
     switch(D_8037D2BA){
         case 0://8029FDF0
-            if(animctrl_isStopped(_player_getAnimCtrlPtr())){
+            if(animctrl_isStopped(baanim_getAnimCtrlPtr())){
                 animctrl_setDuration(aCtrl, 0.4f);
                 D_8037D2BA = 1;
             }
@@ -110,7 +110,7 @@ void bsbbuster_update(void){
             }
             break;
         case 2://8029FEA0
-            if(D_8037D2B5 == 0 && func_80297AAC() < 0.0f){
+            if(D_8037D2B5 == 0 && _get_vertVelocity() < 0.0f){
                 func_8030E760(SFX_45_KAZOOIE_HUGHH, 1.2f, 0x7530);
                 D_8037D2B5++;
             }

@@ -44,7 +44,7 @@ void func_802A04F0(void){
 
 void func_802A0590(void){
     func_802A0340();
-    func_8028A274(0x1df, 1.5f);
+    baanim_playForDuration_onceSmooth(0x1df, 1.5f);
     func_8029C7F4(1,1,3,6);
     if(func_8029B2E8() != 0.0f){
         yaw_setIdeal(func_8029B33C());
@@ -59,7 +59,7 @@ void func_802A0630(void){
     s32 next_state = 0;
     AnimCtrl * mvmnt; //sp1C
 
-    mvmnt = _player_getAnimCtrlPtr();
+    mvmnt = baanim_getAnimCtrlPtr();
     switch(D_8037D2C0){
         case 0:
             if(!animctrl_isAt(mvmnt, 0.266f))
@@ -71,8 +71,8 @@ void func_802A0630(void){
         case 1:
             func_802A04F0();
             if(animctrl_isStopped(mvmnt))
-                func_8028A010(ASSET_1DC_ANIM_BEE_FLY, 0.38f);
-            if(func_80297AAC() < 0.0f)
+                baanim_playForDuration_loopSmooth(ASSET_1DC_ANIM_BEE_FLY, 0.38f);
+            if(_get_vertVelocity() < 0.0f)
                 next_state = BS_BEE_FLY;
             break;
     }
@@ -152,7 +152,7 @@ void bsbeefly_enter(void){
     s32 mvmnt;
 
     mvmnt = bs_getPrevState();
-    func_8028A010(ASSET_1DC_ANIM_BEE_FLY, 0.38);
+    baanim_playForDuration_loopSmooth(ASSET_1DC_ANIM_BEE_FLY, 0.38);
     func_8029C7F4(1, 1, 3, 3);
     if(miscflag_isTrue(9))
         func_80297970(0.0f);
@@ -183,7 +183,7 @@ void bsbeefly_update(void){
    
 
     sp4C = 0;
-    sp48 = _player_getAnimCtrlPtr();
+    sp48 = baanim_getAnimCtrlPtr();
     _bsBeeFly_updateYaw();
     _bsBeeFly_updatePitch();
     pitch_get(); //return value never used
@@ -200,7 +200,7 @@ void bsbeefly_update(void){
     sp40 += *sp24;
     sp3C = pitch_get();
     sp30 = 0.0f;
-    if(func_80297AAC() < 0.0f){
+    if(_get_vertVelocity() < 0.0f){
         if(sp3C < 300.0f){
             sp30 = ml_map_f(sp3C, 0.0f, 80.0f, 0.0f, 0.23f);
         }

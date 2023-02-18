@@ -3,6 +3,7 @@
 #include "variables.h"
 #include "bsint.h"
 #include "core2/statetimer.h"
+#include "core2/ba/anim.h"
 
 /* .data */
 const f32  D_80364AF0 = 30.0f;
@@ -24,15 +25,15 @@ void func_802AAEE0(void){
     if(state != BS_3A_CARRY_IDLE && state != BS_3B_CARRY_WALK)
         func_8029B0C0();
     
-    func_80289F10(1);
+    baanim_setUpdateType(BAANIM_UPDATE_1_NORMAL);
 }
 
 void bscarry_idle_init(void){
-    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
     animctrl_reset(aCtrl);
     animctrl_setIndex(aCtrl, ASSET_72_ANIM_BSCARRY_IDLE);
     animctrl_setDuration(aCtrl, 1.2f);
-    func_802875AC(aCtrl, "bscarry.c", 0x6f);
+    animctrl_start(aCtrl, "bscarry.c", 0x6f);
     func_8029C7F4(1,1,1,2);
     func_80297970(0.0f);
     pitch_setAngVel(1000.0f, 12.0f);
@@ -56,14 +57,14 @@ void bscarry_idle_end(void){
 }
 
 void bscarry_walk_init(void){
-    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
     animctrl_reset(aCtrl);
     animctrl_setIndex(aCtrl, ASSET_73_ANIM_BSCARRY_WALK);
     animctrl_setDuration(aCtrl, 0.8f);
     animctrl_setPlaybackType(aCtrl, ANIMCTRL_LOOP);
-    func_802875AC(aCtrl, "bscarry.c", 0xac);
+    animctrl_start(aCtrl, "bscarry.c", 0xac);
     func_8029C7F4(2,1,1,2);
-    func_80289EC8(D_80364AF0, D_80364AF4, D_80364AF8, D_80364AFC);
+    baanim_setVelocityMapRanges(D_80364AF0, D_80364AF4, D_80364AF8, D_80364AFC);
 }
 
 void bscarry_walk_update(void){

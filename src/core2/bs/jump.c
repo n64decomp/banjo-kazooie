@@ -3,6 +3,7 @@
 #include "variables.h"
 
 #include "core2/ba/model.h"
+#include "core2/ba/anim.h"
 
 f32 func_80294438(void);
 void func_8029797C(f32);
@@ -11,7 +12,7 @@ f32 func_80297A64(void);
 void func_80299B58(f32, f32);
 f32 func_8029B2E8(void);
 f32 func_8029B33C(void);
-void func_8028A084(s32, f32);
+void baanim_playForDuration_loop(s32, f32);
 
 /* .data */
 f32 D_80364CD0 =   710.0f;
@@ -32,7 +33,7 @@ void func_802B1100(void){
 }
 
 void bsjump_init(void){
-    AnimCtrl *aCtrl =  _player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl =  baanim_getAnimCtrlPtr();
     enum bs_e sp30;
 
     D_8037D4C2 = miscflag_isTrue(2);
@@ -43,7 +44,7 @@ void bsjump_init(void){
 
     if(sp30 == BS_11_BPECK){
         animctrl_setSubRange(aCtrl, 0.0f, 0.6667f);
-        func_8028774C(aCtrl, 0.5042f);
+        animctrl_setStart(aCtrl, 0.5042f);
         animctrl_setDuration(aCtrl, 8.0f);
         animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
         D_8037D4C0 = 1;
@@ -54,10 +55,10 @@ void bsjump_init(void){
         animctrl_setIndex(aCtrl, ASSET_8_ANIM_BSJUMP);
         animctrl_setDuration(aCtrl, 1.9f);
         animctrl_setTransitionDuration(aCtrl, 0.134f);
-        func_8028774C(aCtrl, 0.3f);
+        animctrl_setStart(aCtrl, 0.3f);
         animctrl_setSubRange(aCtrl, 0.0f, 0.5042f);
         animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
-        func_802875AC(aCtrl, "bsjump.c", 0x95);
+        animctrl_start(aCtrl, "bsjump.c", 0x95);
         func_8029C7F4(1,1,3,6);
         if(func_8029B2E8() != 0.0f){
             yaw_setIdeal(func_8029B33C());
@@ -82,7 +83,7 @@ void bsjump_init(void){
 
 void bsjump_update(void){
     enum bs_e sp34 = 0;
-    AnimCtrl *aCtrl =  _player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl =  baanim_getAnimCtrlPtr();
     f32 velocity[3];
 
 
@@ -169,10 +170,10 @@ void bsjump_end(void){
 }
 
 void bsjump_fall_init(void){
-    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
     int sp20;
 
-    if(miscflag_isTrue(7) && 700.0f < func_80297AAC())
+    if(miscflag_isTrue(7) && 700.0f < _get_vertVelocity())
         player_setYVelocity(700.0f);
 
     sp20 = (bs_getPrevState() == BS_12_BFLIP)? 0 : 1;
@@ -181,14 +182,14 @@ void bsjump_fall_init(void){
     animctrl_setIndex(aCtrl, ASSET_B0_ANIM_BSJUMP_FALL);
     animctrl_setTransitionDuration(aCtrl, 0.3f);
     animctrl_setDuration(aCtrl, 0.38f);
-    func_802875AC(aCtrl, "bsjump.c", 0x188);
+    animctrl_start(aCtrl, "bsjump.c", 0x188);
     func_8029C7F4(1,1,3,6);
     D_8037D4C0 = 0;
 }
 
 void bsjump_fall_update(void){
     enum bs_e sp2C = 0;
-    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
     f32 player_velocity[3];
 
     if(miscflag_isTrue(0xf))
@@ -203,10 +204,10 @@ void bsjump_fall_update(void){
             if(func_8028B254(0x5a)){
                 animctrl_reset(aCtrl);
                 animctrl_setIndex(aCtrl, ASSET_8_ANIM_BSJUMP);
-                func_8028774C(aCtrl, 0.6667f);
+                animctrl_setStart(aCtrl, 0.6667f);
                 animctrl_setDuration(aCtrl, 2.0f);
                 animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
-                func_802875AC(aCtrl, "bsjump.c", 0x1b5);
+                animctrl_start(aCtrl, "bsjump.c", 0x1b5);
                 D_8037D4C0 = 1;
             }
             break;
@@ -250,17 +251,17 @@ void bsjump_fall_end(void){}
 void func_802B1928(void) {
     AnimCtrl *anim_ctrl;
 
-    anim_ctrl = _player_getAnimCtrlPtr();
+    anim_ctrl = baanim_getAnimCtrlPtr();
     climbRelease();
     animctrl_reset(anim_ctrl);
     animctrl_setIndex(anim_ctrl, ASSET_8_ANIM_BSJUMP);
     animctrl_setDuration(anim_ctrl, 1.9f);
     animctrl_setTransitionDuration(anim_ctrl, 0.134f);
-    func_8028774C(anim_ctrl, 0.3f);
+    animctrl_setStart(anim_ctrl, 0.3f);
     animctrl_setSubRange(anim_ctrl, 0.0f, 0.5042f);
     animctrl_setPlaybackType(anim_ctrl, ANIMCTRL_ONCE);
-    func_802875AC(anim_ctrl, "bsjump.c", 0x201);
-    func_80289F10(1);
+    animctrl_start(anim_ctrl, "bsjump.c", 0x201);
+    baanim_setUpdateType(BAANIM_UPDATE_1_NORMAL);
     yaw_setUpdateState(1);
     func_8029957C(3);
     func_802978DC(3);
@@ -280,7 +281,7 @@ void func_802B1A54(void) {
     f32 velocity[3];
 
     next_state = 0;
-    anim_ctrl = _player_getAnimCtrlPtr();
+    anim_ctrl = baanim_getAnimCtrlPtr();
     _get_velocity(velocity);
     if (velocity[1] < 0.0f) {
         func_80294378(1);
@@ -327,7 +328,7 @@ void func_802B1BF4(void) {
     AnimCtrl *anim_ctrl;
     bool smooth_transition;
 
-    anim_ctrl = _player_getAnimCtrlPtr();
+    anim_ctrl = baanim_getAnimCtrlPtr();
     smooth_transition = TRUE;
     if(bs_getPrevState() == BS_12_BFLIP){
         smooth_transition = FALSE;
@@ -337,11 +338,11 @@ void func_802B1BF4(void) {
     animctrl_setIndex(anim_ctrl, ASSET_8_ANIM_BSJUMP);
     animctrl_setTransitionDuration(anim_ctrl, 0.3f);
     animctrl_setDuration(anim_ctrl, 1.9f);
-    func_8028774C(anim_ctrl, 0.6667f);
+    animctrl_setStart(anim_ctrl, 0.6667f);
     animctrl_setPlaybackType(anim_ctrl, ANIMCTRL_STOPPED);
-    func_802875AC(anim_ctrl, "bsjump.c", 0x298);
+    animctrl_start(anim_ctrl, "bsjump.c", 0x298);
     yaw_setIdeal(func_8029B41C());
-    func_80289F10(1);
+    baanim_setUpdateType(BAANIM_UPDATE_1_NORMAL);
     yaw_setUpdateState(1);
     func_8029957C(3);
     func_802978DC(6);
@@ -357,7 +358,7 @@ void func_802B1CF8(void) {
     f32 velocity[3];
 
     next_state = 0;
-    anim_ctrl = _player_getAnimCtrlPtr();
+    anim_ctrl = baanim_getAnimCtrlPtr();
     _get_velocity(velocity);
     switch (D_8037D4C0) {
     case 0:
@@ -386,7 +387,7 @@ bool bsjump_jumpingFromWater(void){
 }
 
 void bsjump_tumble_init(void){
-    func_8028A084(ASSET_68_ANIM_BSJUMP_TUMBLE, 0.35f);
+    baanim_playForDuration_loop(ASSET_68_ANIM_BSJUMP_TUMBLE, 0.35f);
     func_8029C7F4(1,1,3,6);
     baModel_setYDisplacement(60.0f);
     if(func_80293234() == 1){

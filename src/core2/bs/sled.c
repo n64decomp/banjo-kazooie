@@ -24,7 +24,7 @@ void func_802B3F60(void){
 
 void bssled_init(void){
     func_802B3F20();
-    func_8028A010(ASSET_228_ANIM_BANJO_SLED, 1.8f);
+    baanim_playForDuration_loopSmooth(ASSET_228_ANIM_BANJO_SLED, 1.8f);
     func_8029C7F4(1, 1, 3, 7);
     func_80297970(0.0f);
     func_80294A8C(0);

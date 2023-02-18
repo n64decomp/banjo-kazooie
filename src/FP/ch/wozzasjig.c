@@ -56,10 +56,10 @@ void func_8038FF54(Actor *this){
             }
             else{
                 animctrl_setIndex(this->animctrl, animctrl_getIndex(other->animctrl));
-                func_8028774C(this->animctrl, animctrl_getAnimTimer(other->animctrl));
+                animctrl_setStart(this->animctrl, animctrl_getAnimTimer(other->animctrl));
                 animctrl_setDuration(this->animctrl, animctrl_getDuration(other->animctrl));
                 animctrl_setSmoothTransition(this->animctrl, FALSE);
-                func_802875AC(this->animctrl, "chwozzasjig.c", 0x87);
+                animctrl_start(this->animctrl, "chwozzasjig.c", 0x87);
                 this->position[0] = other->position[0];
                 this->position[1] = other->position[1];
                 this->position[2] = other->position[2];

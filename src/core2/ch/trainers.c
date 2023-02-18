@@ -113,15 +113,15 @@ void chtrainers_update(Actor *this){
     }//L802CA6F8
 }
 
-bool chtrainers_802CA708(Actor *this){
+bool chtrainers_canUse(Actor *this){
     return this->unk10_12 && ability_isUnlocked(ABILITY_11_TURBO_TALON);
 }
 
-f32 chtrainers_802CA748(Actor *this){
+f32 chtrainers_getDuration(Actor *this){
     return this->velocity[0];
 }
 
-void chtrainers_802CA750(Actor *this){
+void chtrainers_pickup(Actor *this){
     func_80328A84(this, 1);
     this->velocity[2] = 1.0f;
     this->unk10_12 = 0;

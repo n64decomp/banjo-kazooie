@@ -8,7 +8,7 @@ u8 D_8037D2E1;
 
 /* .code */
 void bseggass_init(void){
-    func_8028A274(ASSET_2B_ANIM_BSEGGASS, 1.0f);
+    baanim_playForDuration_onceSmooth(ASSET_2B_ANIM_BSEGGASS, 1.0f);
     func_8029C7F4(1,3,1,3);
     yaw_setVelocityBounded(350.0f, 14.0f);
     func_80297970(0.0f);
@@ -26,7 +26,7 @@ void bseggass_update(void) {
     s32 fill2;
 
     next_state = 0;
-    plyr_mvmt = _player_getAnimCtrlPtr();
+    plyr_mvmt = baanim_getAnimCtrlPtr();
     has_eggs = (item_empty(ITEM_D_EGGS) == 0);
     if (should_poop_egg()) {
         if (has_eggs)
@@ -42,8 +42,8 @@ void bseggass_update(void) {
             ability_use(7);
         }
         if ((animctrl_isAt(plyr_mvmt,  0.4885f)) &&  (D_8037D2E1 < D_8037D2E0)) {
-            func_8028774C(plyr_mvmt, 0.349f);
-            func_802875AC(plyr_mvmt, "bsbeggass.c", 0x5E);
+            animctrl_setStart(plyr_mvmt, 0.349f);
+            animctrl_start(plyr_mvmt, "bsbeggass.c", 0x5E);
             D_8037D2E1++;
         }
     }

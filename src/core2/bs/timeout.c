@@ -8,7 +8,7 @@ f32 func_8029B41C(void);
 void func_802BF2C0(f32);
 
 void func_802B6270(void){
-    func_8028A180(ASSET_77_ANIM_BSTIMEOUT, 3.2f);
+    baanim_playForDuration_once(ASSET_77_ANIM_BSTIMEOUT, 3.2f);
     func_8029C7F4(1,1,3,2);
     func_80297970(0.0f);
     func_802914CC(0xd);
@@ -22,7 +22,7 @@ void func_802B6270(void){
 }
 
 void func_802B6314(void){
-    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
     if(animctrl_isAt(aCtrl, 0.0625f))
         func_80292E48();
 
@@ -45,11 +45,11 @@ void func_802B63C8(void){
 }
 
 void func_802B63F8(void){
-    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
     animctrl_reset(aCtrl);
     func_8029C848(aCtrl);
     animctrl_setPlaybackType(aCtrl,  ANIMCTRL_LOOP);
-    func_802875AC(aCtrl, "bstimeout.c", 0x7e);
+    animctrl_start(aCtrl, "bstimeout.c", 0x7e);
     func_8029C7F4(1,1,3,7);
     func_80297970(0.0f);
     func_802914CC(0xd);

@@ -16,7 +16,7 @@ int bsclaw_hitboxActive(void){
 }
 
 void bsclaw_init(void){
-    func_8028A180(5, 1.3f);
+    baanim_playForDuration_once(ASSET_5_ANIM_BSPUNCH, 1.3f);
     func_8029C7F4(1,1,3,3);
     func_8029797C(yaw_getIdeal());
     func_80297970(160.0f);
@@ -26,7 +26,7 @@ void bsclaw_init(void){
 
 void bsclaw_update(void){
     enum bs_e sp2C = 0;
-    AnimCtrl * aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl * aCtrl = baanim_getAnimCtrlPtr();
     f32 sp24;
     
     sp24 = animctrl_getAnimTimer(aCtrl);

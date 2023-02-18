@@ -3,11 +3,12 @@
 #include "variables.h"
 #include "core2/yaw.h"
 #include "core2/statetimer.h"
+#include "core2/ba/anim.h"
 
 f32 func_8024DDD8(f32[3], f32);
 extern void func_8024E71C(s32, f32*);
 extern f32 ml_acosf(f32);
-extern f32 func_8028EBA4(void);
+extern f32 player_getYaw(void);
 extern void particleEmitter_setSphericalParticleVelocityRange(ParticleEmitter *this, f32 pitch_min, f32 yaw_min, f32 radial_min, f32 pitch_max, f32 yaw_max, f32 radial_max);
 ParticleEmitter * func_802EDD8C(f32[3], f32, f32);
 extern void func_80354030(f32[3], f32);
@@ -133,7 +134,7 @@ Struct_core2_13FC0 D_80364810[14] = {
     {BS_73_UNKNOWN,      ASSET_11F_ANIM_BSWALRUS_IDLE, 4.0f},
     {BS_77_SWIM_LOCKED,        0, 0.0f},
     {BS_78_DIVE_LOCKED,        0, 0.0f},
-    {BS_73_UNKNOWN,      ASSET_14A_ANIM_BANJO_LISTENING, 11.4f},
+    {BS_73_UNKNOWN,      ASSET_14A_ANIM_BSREST_LISTEN, 11.4f},
     {BS_76_BFLY_LOCKED,        0, 0.0f},
     {BS_79_BTROT_LOCKED,       0, 0.0f},
     {BS_62_LONGLEG_LOCKED,     0, 0.0f},
@@ -166,7 +167,7 @@ Struct_core2_13FC0 D_803648F0[14] = {
     {BS_75_UNKNOWN,      ASSET_11F_ANIM_BSWALRUS_IDLE, 4.0f},
     {BS_77_SWIM_LOCKED,        0, 0.0f},
     {BS_78_DIVE_LOCKED,        0, 0.0f},
-    {BS_75_UNKNOWN,      ASSET_14A_ANIM_BANJO_LISTENING, 11.4f},
+    {BS_75_UNKNOWN,      ASSET_14A_ANIM_BSREST_LISTEN, 11.4f},
     {BS_76_BFLY_LOCKED,        0, 0.0f},
     {BS_79_BTROT_LOCKED,       0, 0.0f},
     {BS_62_LONGLEG_LOCKED,     0, 0.0f},
@@ -622,7 +623,7 @@ void func_8029C22C(void) {
         return;
 
     D_80364620 = D_80364620 ? FALSE : TRUE;
-    if (func_80297AB8() > 100.0f) {
+    if (_get_horzVelocity() > 100.0f) {
         if (D_80364620) {
             func_80292864(func_80297A7C() - 20.0f, 20.0f);
         }
@@ -659,8 +660,8 @@ void func_8029C3E8(f32 arg0, f32 arg1) {
     f32 sp28;
 
     _player_getPosition(sp30);
-    sp28 = ml_map_f(func_80297AB8(), 0.0f, 1000.0f, arg0, arg1);
-    sp2C = func_8028EBA4();
+    sp28 = ml_map_f(_get_horzVelocity(), 0.0f, 1000.0f, arg0, arg1);
+    sp2C = player_getYaw();
     func_802589E4(sp3C, sp2C, sp28);
     sp3C[1] = 0.0f;
     sp30[0] += sp3C[0];\
@@ -763,8 +764,8 @@ enum bs_e func_8029C780(void){
     return BS_5_JUMP;
 }
 
-void func_8029C7F4(s32 arg0, enum yaw_state_e yaw_state, s32 arg2, s32 arg3){
-    func_80289F10(arg0);
+void func_8029C7F4(enum baanim_update_type_e arg0, enum yaw_state_e yaw_state, s32 arg2, s32 arg3){
+    baanim_setUpdateType(arg0);
     yaw_setUpdateState(yaw_state);
     func_8029957C(arg2);
     func_802978DC(arg3);

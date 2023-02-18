@@ -9,7 +9,7 @@ extern f32 func_802944A8(void);
 f32 D_8037C2A0[3]; //recoil_target_position
 f32 D_8037C2B0[3]; //talk_target_position
 f32 D_8037C2C0[3]; //throw_target_position
-f32 D_8037C2CC;
+f32 D_8037C2CC; //turbo_duration
 enum transformation_e D_8037C2D0;
 f32 D_8037C2D8[3];
 f32 D_8037C2E4;
@@ -52,15 +52,15 @@ f32 get_slope_timer(void){
     return D_8037C2E4 * (f64)1;
 }
 
-void func_802949F8(f32 dst[3]){
+void get_talk_target_position(f32 dst[3]){
     ml_vec3f_copy(dst, D_8037C2B0);
 }
 
-void func_80294A1C(f32 dst[3]){
+void get_throw_target_position(f32 dst[3]){
     ml_vec3f_copy(dst, D_8037C2C0);
 }
 
-f32 func_80294A40(void){
+f32 get_turbo_duration(void){
     return D_8037C2CC;
 }
 
@@ -80,15 +80,15 @@ void func_80294A8C(int arg0){
     D_8037C2EC = arg0;
 }
 
-void func_80294A98(f32 src[3])
+void set_talk_target_position(f32 src[3])
 { ml_vec3f_copy(D_8037C2B0, src);
 }
 
-void func_80294AC0(f32 src[3])
+void set_throw_target_position(f32 src[3])
 { ml_vec3f_copy(D_8037C2C0, src);
 }
 
-void func_80294AE8(f32 arg0){
+void set_turbo_duration(f32 arg0){
     D_8037C2CC = arg0;
 }
 

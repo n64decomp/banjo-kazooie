@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-extern f32 func_8028EBA4(void);
+extern f32 player_getYaw(void);
 
 void func_802D88E0(Actor *this);
 
@@ -79,7 +79,7 @@ void func_802D8B20(enum actor_e actor_id){
     f32 temp2;
 
     player_getPosition(plyr_pos);
-    temp2 = func_8028EBA4();
+    temp2 = player_getYaw();
     temp_v0 = (randf() > 0.5) ? 0x1E : -0x1E;
     feather = func_8032813C(actor_id, plyr_pos, (s32) (temp2 + temp_v0));
     func_8032AA58(feather, 0.45f);

@@ -106,9 +106,9 @@ AnimCtrl *animctrl_new(s32 arg0){ //new
     func_802896EC(&this->animation, 1);
     this->animctrl.playback_type = 0;
     this->animctrl.index = 0;
-    this->animctrl.unk25 = 1;
+    this->animctrl.default_start = TRUE;
     this->animctrl.timer = 0.0f;
-    this->animctrl.unk18 = 0.0f;
+    this->animctrl.start = 0.0f;
     func_80287784(&this->animctrl, func_8030C77C());
     animctrl_setSubRange(&this->animctrl, 0.0f, 1.0f);
     animctrl_setDuration(&this->animctrl, 2.0f);
@@ -168,9 +168,9 @@ void func_8028748C(AnimCtrl *this, s32 arg1){
 
 void animctrl_reset(AnimCtrl *this){
     this->playback_type = ANIMCTRL_LOOP;
-    this->unk25 = 1;
+    this->default_start = TRUE;
     this->timer = 0.0;
-    this->unk18 = 0.0;
+    this->start = 0.0;
     animctrl_setSmoothTransition(this, 1);
     animctrl_setSubRange(this, 0.0, 1.0);
     animctrl_setDuration(this, 2.0);
@@ -178,28 +178,29 @@ void animctrl_reset(AnimCtrl *this){
     animctrl_setDirection(this, mvmt_dir_forwards);
 }
 
-void func_8028752C(AnimCtrl *this){
-    if(this->unk25){
+void __animctrl_gotoStart(AnimCtrl *this){
+    if(this->default_start){
         if(this->playback_direction)
             anim_setTimer(this->animation, 0.0f);
         else
             anim_setTimer(this->animation, 0.99999899f);
     }
-    else
-        anim_setTimer(this->animation, this->unk18);
+    else{
+        anim_setTimer(this->animation, this->start);
+    }
     this->timer = anim_getTimer(this->animation);
 }
 
-void _func_802875AC(AnimCtrl * this, char *file, s32 line){
+void _animctrl_start(AnimCtrl * this, char *file, s32 line){
     if(this->smooth_transition && anim_getIndex(this->animation) != 0){
         func_80289674(this->animation);
         anim_setIndex(this->animation, this->index);
-        func_8028752C(this);
+        __animctrl_gotoStart(this);
         anim_setDuration(this->animation, 0.0f);
     } else{
         anim_8028980C(this->animation);
         anim_setIndex(this->animation, this->index);
-        func_8028752C(this);
+        __animctrl_gotoStart(this);
         anim_setDuration(this->animation, 1.0f);
     }
 }
@@ -242,12 +243,12 @@ void animctrl_getSubRange(AnimCtrl *this, f32 *startPtr, f32 *endPtr){
     *endPtr = this->subrange_end;
 }
 
-void func_8028774C(AnimCtrl *this, f32 arg1){
-    if(arg1 == 1.0)
-        arg1 = 0.9999989867210388f; // D_80373E18
+void animctrl_setStart(AnimCtrl *this, f32 start_position){
+    if(start_position == 1.0)
+        start_position = 0.9999989867210388f; // D_80373E18
 
-    this->unk18 = arg1;
-    this->unk25 = 0;
+    this->start = start_position;
+    this->default_start = FALSE;
 }
 
 void func_80287784(AnimCtrl *this, s32 arg1){

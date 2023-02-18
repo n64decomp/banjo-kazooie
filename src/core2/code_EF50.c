@@ -3,7 +3,7 @@
 #include "variables.h"
 
 extern void func_80256E24(f32[3], f32, f32, f32, f32, f32);
-extern f32 func_8028EBA4(void);
+extern f32 player_getYaw(void);
 extern void chJigsawDance_setState(Actor *, s32);
 extern void bsjig_setJiggyMarkerPtr(ActorMarker *);
 
@@ -111,7 +111,7 @@ void func_802960C4(s32 arg0){
             break;
         case 2: //L80296134
             player_getPosition(sp30);
-            func_802589E4(sp24, func_8028EBA4(), 100.0f);
+            func_802589E4(sp24, player_getYaw(), 100.0f);
             sp24[1] = 0.0f;
             sp30[0] += sp24[0];
             sp30[1] += sp24[1];

@@ -3,8 +3,8 @@
 #include "variables.h"
 
 extern f32 func_80259198(f32, f32);
-extern f32 func_8028EBA4(void);
-extern f32 func_8028EBE4(void);
+extern f32 player_getYaw(void);
+extern f32 player_getPitch(void);
 extern void func_802BD870(f32, f32, f32, f32);
 
 void func_802BFE50(f32 arg0, f32 arg1, f32 arg2);
@@ -46,7 +46,7 @@ void func_802BFAF0(void) {
     func_802BD384(sp6C);
     func_802BD4C0(sp84);
     sp84[1] += 40.0f;
-    sp34 = func_8028EBE4();
+    sp34 = player_getPitch();
     if (sp34 > 180.0f) {
         sp3C = ml_map_f(sp34, 300.0f, 360.0f, 900.0f, D_8037DB18);
         sp84[1] += ml_map_f(sp34, 300.0f, 360.0f, -140.0f, 70.0f);
@@ -64,7 +64,7 @@ void func_802BFAF0(void) {
         sp34 = ml_min_f(100.0f, (f32) ((f64) (360.0f - sp34) * 1.4));
     }
     sp48[0] = mlDiffDegF(mlNormalizeAngle(sp34), sp54[0]);
-    sp48[1] = mlDiffDegF(mlNormalizeAngle(func_8028EBA4() + 180.0f), sp54[1]);
+    sp48[1] = mlDiffDegF(mlNormalizeAngle(player_getYaw() + 180.0f), sp54[1]);
     sp48[2] = 0.0f;
     sp48[0] = (f32) ((f64) sp48[0] * ((f64) sp38 * 0.8));
     sp48[1] = sp48[1] * (sp38 * D_8037DB1C);

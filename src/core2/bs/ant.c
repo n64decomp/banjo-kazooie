@@ -2,6 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 #include "core2/yaw.h"
+#include "core2/ba/anim.h"
 
 void func_80293D48(f32,f32);
 
@@ -56,7 +57,7 @@ void func_8029E4EC(void){
         miscflag_clear(4);
         func_80293D74();
     }
-    func_80289F10(1);
+    baanim_setUpdateType(BAANIM_UPDATE_1_NORMAL);
 }
 
 void func_8029E554(void){
@@ -77,7 +78,7 @@ int bsant_inSet(s32 move_indx){
 
 void bsant_idle_init(void){
     func_8029E554();
-    func_8028A010(ASSET_5E_ANIM_BSANT_IDLE, 1.2f);
+    baanim_playForDuration_loopSmooth(ASSET_5E_ANIM_BSANT_IDLE, 1.2f);
     func_8029C7F4(1,YAW_STATE_1_DEFAULT,1,2);
     func_80297970(0.0f);
     pitch_setAngVel(1000.0f, 12.0f);
@@ -113,15 +114,15 @@ void bsant_idle_end(void){
 
 void bsant_walk_init(void){
     func_8029E554();
-    func_8028A010(ASSET_5F_ANIM_BSANT_WALK, 0.8f);
+    baanim_playForDuration_loopSmooth(ASSET_5F_ANIM_BSANT_WALK, 0.8f);
     func_8029C7F4(2,YAW_STATE_1_DEFAULT,1,2);
-    func_80289EC8(D_80364960, D_80364964, D_80364968, D_8036496C);
+    baanim_setVelocityMapRanges(D_80364960, D_80364964, D_80364968, D_8036496C);
     func_802900B4();
 }
 
 void bsant_walk_update(void){
     enum bs_e sp1C = 0;
-    AnimCtrl * aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl * aCtrl = baanim_getAnimCtrlPtr();
 
     func_80299628(0);
     func_8029E48C();
@@ -150,16 +151,16 @@ void bsant_walk_end(void){
 }
 
 void bsant_jump_init(void){
-    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
     func_8029E554();
     animctrl_reset(aCtrl);
     animctrl_setIndex(aCtrl, ASSET_60_ANIM_BSANT_JUMP);
     animctrl_setDuration(aCtrl, 1.0f);
     animctrl_setTransitionDuration(aCtrl, 0.1f);
-    func_8028774C(aCtrl, 0.2987f);
+    animctrl_setStart(aCtrl, 0.2987f);
     animctrl_setSubRange(aCtrl, 0.0f, 0.4423f);
     animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
-    func_802875AC(aCtrl, "bsant.c", 0x17c);
+    animctrl_start(aCtrl, "bsant.c", 0x17c);
     func_8029C7F4(1,YAW_STATE_1_DEFAULT,3,6);
     if(func_8029B2E8() != 0.0f)
         yaw_setIdeal(func_8029B33C());
@@ -174,7 +175,7 @@ void bsant_jump_init(void){
 
 void bsant_jump_update(void){
     enum bs_e sp2C = 0;
-    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
 
     f32 sp1C[3];
 
@@ -188,14 +189,14 @@ void bsant_jump_update(void){
         case 0://L8029EA88
             if(animctrl_isStopped(aCtrl)){
                 animctrl_setDuration(aCtrl, 5.0f);
-                func_8028A37C(0.5026f);
+                baanim_setEnd(0.5026f);
                 D_8037D294 = 1;
             }
             break;
         case 1://L8029EABC
             if(func_8028B254(0x82)){
                 animctrl_setDuration(aCtrl, 1.0f);
-                func_8028A37C(1.0f);
+                baanim_setEnd(1.0f);
                 D_8037D294 = 2;
             }
             break;
@@ -229,22 +230,22 @@ void bsant_jump_end(void){
 }
 
 void bsant_fall_init(void){
-    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
     func_8029E554();
     D_8037D298 = 0;
     animctrl_reset(aCtrl);
     animctrl_setIndex(aCtrl, ASSET_60_ANIM_BSANT_JUMP);
     animctrl_setDuration(aCtrl, 1.9f);
-    func_8028774C(aCtrl, 0.4423f);
+    animctrl_setStart(aCtrl, 0.4423f);
     animctrl_setPlaybackType(aCtrl, ANIMCTRL_STOPPED);
-    func_802875AC(aCtrl, "bsant.c", 0x208);
+    animctrl_start(aCtrl, "bsant.c", 0x208);
     func_8029C7F4(1,YAW_STATE_1_DEFAULT,3,6);
     D_8037D294 = 0;
 }
 
 void bsant_fall_update(void){
     enum bs_e sp2C = 0;
-    AnimCtrl * aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl * aCtrl = baanim_getAnimCtrlPtr();
     f32 sp1C[3];
 
     func_80299628(0);
@@ -256,7 +257,7 @@ void bsant_fall_update(void){
         case 0:
             if(func_8028B254(0x5A)){
                 animctrl_setDuration(aCtrl, 2.0f);
-                func_8028A37C(1.0f);
+                baanim_setEnd(1.0f);
                 D_8037D294 = 1;
             }
             break;
@@ -277,7 +278,7 @@ void bsant_fall_end(void){
 }
 
 static void __bsant_recoil_init(int take_damage){
-    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
     f32 sp38;
     f32 sp2C[3];
     f32 sp20[3];
@@ -288,7 +289,7 @@ static void __bsant_recoil_init(int take_damage){
     animctrl_setDuration(aCtrl, 1.4f);
     animctrl_setSubRange(aCtrl, 0.0f, 0.4899f);
     animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
-    func_802875AC(aCtrl, "bsant.c", 0x272);
+    animctrl_start(aCtrl, "bsant.c", 0x272);
     if(take_damage == 1)
         func_8030E58C(SFX_38_BANJO_AYE_1, 1.8f);
     else
@@ -319,7 +320,7 @@ static void __bsant_recoil_update(void){
     switch(D_8037D294){
         case 0:
             if(func_8028B254(0x5a)){
-                func_8028A37C(1.0f);
+                baanim_setEnd(1.0f);
                 D_8037D294 = 1;
             }
             break;
@@ -366,7 +367,7 @@ void bsant_bounce_end(void){
 }
 
 void bsant_die_init(void){
-    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
     f32 sp38;
     f32 sp2C[3];
     f32 sp20[3];
@@ -378,7 +379,7 @@ void bsant_die_init(void){
     animctrl_setSubRange(aCtrl, 0.0f, 0.523f);
     animctrl_setDuration(aCtrl, 1.6f);
     animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
-    func_802875AC(aCtrl, "bsant.c", 0x2f6);
+    animctrl_start(aCtrl, "bsant.c", 0x2f6);
     func_8030E58C(SFX_36_BANJO_DOH, 1.8f);
     _player_getPosition(sp2C);
     func_80294980(sp20);
@@ -403,14 +404,14 @@ void bsant_die_init(void){
 }
 
 void bsant_die_update(void){
-    AnimCtrl *aCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
 
     func_80297970(D_8037D290);
     func_80299628(0);
     switch(D_8037D294){
         case 0://L8029F270
             if(func_8028B2E8()){
-                func_8028A37C(1.0f);
+                baanim_setEnd(1.0f);
                 FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 0.8f, 18000);
                 FUNC_8030E624(SFX_39_BANJO_AYE_2, 1.8f, 18000);
                 D_8037D290 = 0.0f;
@@ -448,7 +449,7 @@ void bsant_die_end(void){
 
 void func_8029F398(void){
     func_8029E554();
-    func_8028A010(ASSET_5E_ANIM_BSANT_IDLE, 2.0f);
+    baanim_playForDuration_loopSmooth(ASSET_5E_ANIM_BSANT_IDLE, 2.0f);
     func_8029C7F4(1,YAW_STATE_1_DEFAULT,3,2);
     func_80297970(0.0f);
     func_8029C674();

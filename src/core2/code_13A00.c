@@ -43,7 +43,7 @@ void func_8029AA3C(void){
     else
         func_8029C304(2);
     
-    sp30 = ml_map_f(func_80297AB8(), 0.0f, 500.0f, 70.0f, 250.0f);
+    sp30 = ml_map_f(_get_horzVelocity(), 0.0f, 500.0f, 70.0f, 250.0f);
     func_8028E9C4(D_8037D194, sp34);
     sp34[1] = func_80294500();
     pCtrl = func_802F4094(sp34, 8.0f);
@@ -119,7 +119,7 @@ void func_8029ACD4(void){
 }
 
 void func_8029AD28(f32 arg0, s32 arg1){
-    AnimCtrl *plyr_animCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl *plyr_animCtrl = baanim_getAnimCtrlPtr();
     if(animctrl_isAt(plyr_animCtrl, arg0)){
         func_8029AE74(arg1);
     }
@@ -127,7 +127,7 @@ void func_8029AD28(f32 arg0, s32 arg1){
 
 
 void func_8029AD68(f32 arg0, s32 arg1){
-    AnimCtrl *plyr_animCtrl = _player_getAnimCtrlPtr();
+    AnimCtrl *plyr_animCtrl = baanim_getAnimCtrlPtr();
     if(animctrl_isAt(plyr_animCtrl, arg0)){
         func_8029AEE4(arg1);
     }

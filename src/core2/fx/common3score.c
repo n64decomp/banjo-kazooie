@@ -162,7 +162,7 @@ void fxcommon3score_update(enum item_e arg0, void *arg1) {
             animctrl_reset(a1->anim_ctrl);
             animctrl_setIndex(a1->anim_ctrl, (enum asset_e) a1->anim_id);
             animctrl_setDuration(a1->anim_ctrl, a1->anim_duration);
-            func_802875AC(a1->anim_ctrl, "fxcommon3score.c", 0x74);
+            animctrl_start(a1->anim_ctrl, "fxcommon3score.c", 0x74);
         }
         /* fallthrough */
     case 2:

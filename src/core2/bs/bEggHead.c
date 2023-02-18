@@ -3,7 +3,7 @@
 #include "variables.h"
 
 void yaw_setVelocityBounded(f32, f32);
-void func_802875AC(AnimCtrl *, char*, s32);
+void animctrl_start(AnimCtrl *, char*, s32);
 
 /* .bss */
 u8 D_8037D2F0;
@@ -11,7 +11,7 @@ u8 D_8037D2F1;
 
 /* .code */
 void bsegghead_init(void){
-    func_8028A274(ASSET_2A_ANIM_BSEGGHEAD, 1.0f);
+    baanim_playForDuration_onceSmooth(ASSET_2A_ANIM_BSEGGHEAD, 1.0f);
     func_8029C7F4(1,3,1,3);
     yaw_setVelocityBounded(350.0f, 14.0f);
     func_80297970(0.0f);
@@ -29,7 +29,7 @@ void bsegghead_update(void) {
     s32 fill2;
 
     next_state = 0;
-    aCtrl = _player_getAnimCtrlPtr();
+    aCtrl = baanim_getAnimCtrlPtr();
     has_eggs = (item_empty(ITEM_D_EGGS) == 0);
     if (should_shoot_egg()) {
         if (has_eggs)
@@ -50,8 +50,8 @@ void bsegghead_update(void) {
             ability_use(7);
         }
         if ((animctrl_isAt(aCtrl,  0.5919f)) &&  (D_8037D2F1 < D_8037D2F0)) {
-            func_8028774C(aCtrl, 0.3878f);
-            func_802875AC(aCtrl, "bsbegghead.c", 0x62);
+            animctrl_setStart(aCtrl, 0.3878f);
+            animctrl_start(aCtrl, "bsbegghead.c", 0x62);
             D_8037D2F1++;
         }
     }

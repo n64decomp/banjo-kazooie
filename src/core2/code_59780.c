@@ -141,7 +141,7 @@ void func_802E08F0(Actor *this) {
 
     this->marker->collidable = FALSE;
     animctrl_setDuration(this->animctrl, this->unk5C);
-    animctrl_setPlaybackType(this->animctrl, 1);
+    animctrl_setPlaybackType(this->animctrl, ANIMCTRL_ONCE);
     if (actor_animationIsAt(this, 0.99f) != 0) {
         marker_despawn(this->marker);
     }

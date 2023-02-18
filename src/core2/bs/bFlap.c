@@ -18,7 +18,7 @@ f32 D_8037D308;
 u8 D_8037D30C;
 
 void bsbflap_init(void) {
-    func_8028A274(ASSET_18_ANIM_BSBFLAP_ENTER, 0.3f);
+    baanim_playForDuration_onceSmooth(ASSET_18_ANIM_BSBFLAP_ENTER, 0.3f);
     func_8029C7F4(1, 1, 1, 2);
     if (func_8029B2E8() != 0.0f) {
         yaw_setIdeal(func_8029B33C());
@@ -50,7 +50,7 @@ void func_802A2790(s32 arg0, f32 arg1, s32 arg2) {
 
 void func_802A2810(void) {
     AnimCtrl *plyrMvPtr;
-    plyrMvPtr = _player_getAnimCtrlPtr();
+    plyrMvPtr = baanim_getAnimCtrlPtr();
     if (animctrl_isAt(plyrMvPtr, 0.9f)) {
         D_8037D301++;
     }
@@ -75,7 +75,7 @@ f32 func_802A2858(void){
 }
 
 void func_802A28CC(void){
-    AnimCtrl *sp1c = _player_getAnimCtrlPtr();
+    AnimCtrl *sp1c = baanim_getAnimCtrlPtr();
     animctrl_setDuration(sp1c, func_802A2858());
 }
 
@@ -90,7 +90,7 @@ int func_802A293C(f32 arg0){
 
 void func_802A298C(void){
     AnimCtrl * sp1c;
-    sp1c = _player_getAnimCtrlPtr();
+    sp1c = baanim_getAnimCtrlPtr();
     if(func_802A293C(0.08f)){
         func_802A2790(0x4e, 1.24f, 0x4e20);
     }
@@ -105,7 +105,7 @@ void bsbflap_update(void){
     AnimCtrl * sp18;
 
     sp1c = 0;
-    sp18 = _player_getAnimCtrlPtr();
+    sp18 = baanim_getAnimCtrlPtr();
     func_802B6FA8();
     switch(D_8037D300){
         case 0:
@@ -117,8 +117,8 @@ void bsbflap_update(void){
                 animctrl_setIndex(sp18, ASSET_17_ANIM_BSBFLAP);
                 animctrl_setDuration(sp18, func_802A2858());
                 animctrl_setPlaybackType(sp18,  ANIMCTRL_LOOP);
-                func_8028774C(sp18, 0.0f);
-                func_802875AC(sp18, "bsbflap.c", 0xe1);
+                animctrl_setStart(sp18, 0.0f);
+                animctrl_start(sp18, "bsbflap.c", 0xe1);
                 player_setYVelocity(D_80364A10);
                 gravity_set(D_80364A14);
                 func_80297BF8(D_80364A18);

@@ -5,7 +5,7 @@
 f32 func_8024DDD8(f32[3], f32);
 extern void func_8024E71C(s32, f32*);
 extern f32 ml_acosf(f32);
-extern f32 func_8028EBA4(void);
+extern f32 player_getYaw(void);
 extern void particleEmitter_setSphericalParticleVelocityRange(ParticleEmitter *this, f32 pitch_min, f32 yaw_min, f32 radial_min, f32 pitch_max, f32 yaw_max, f32 radial_max);
 ParticleEmitter * func_802EDD8C(f32[3], f32, f32);
 extern void func_80354030(f32[3], f32);
