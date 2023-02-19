@@ -16,9 +16,9 @@ typedef struct {
 }ActorLocal_lair_86F0;
 
 typedef struct {
-    u8 unk0;
-    u8 unk1;
-    u16 unk2;
+    u8 cost;
+    u8 size_bits;
+    u16 progress_flag;
 }Struct_lair_86F0_0;
 
 void func_8038F350(Actor *this, s32 next_state);
@@ -28,17 +28,17 @@ void lair_func_8038F924(Actor *this);
 ActorInfo D_803947B0 = { 0x1EB, 0x3B7, 0x48B, 0x1, NULL, lair_func_8038F924, func_80326224, func_80325888, 0, 0, 0.0f, 0};
 ActorInfo D_803947D4 = { 0x1EB, 0x3BC, 0x538, 0x1, NULL, lair_func_8038F924, func_80326224, func_80325888, 0, 0, 0.0f, 0};
 Struct_lair_86F0_0 D_803947F8[0xb] ={
-    {0x01, 0x1, 0x5D},
-    {0x02, 0x2, 0x5E},
-    {0x05, 0x3, 0x60},
-    {0x07, 0x3, 0x63},
-    {0x08, 0x4, 0x66},
-    {0x09, 0x4, 0x6A},
-    {0x0A, 0x4, 0x6E},
-    {0x0C, 0x4, 0x72},
-    {0x0F, 0x4, 0x76},
-    {0x19, 0x5, 0x7A},
-    {0x04, 0x3, 0x7F}
+    { 1, 0x1, FILEPROG_5D_MM_PUZZLE_PIECES_PLACED},
+    { 2, 0x2, FILEPROG_5E_TCC_PUZZLE_PIECES_PLACED},
+    { 5, 0x3, FILEPROG_60_CC_PUZZLE_PIECES_PLACED},
+    { 7, 0x3, FILEPROG_63_BGS_PUZZLE_PIECES_PLACED},
+    { 8, 0x4, FILEPROG_66_FP_PUZZLE_PIECES_PLACED},
+    { 9, 0x4, FILEPROG_6A_GV_PUZZLE_PIECES_PLACED},
+    {10, 0x4, FILEPROG_6E_MMM_PUZZLE_PIECES_PLACED},
+    {12, 0x4, FILEPROG_72_RBB_PUZZLE_PIECES_PLACED},
+    {15, 0x4, FILEPROG_76_CCW_PUZZLE_PIECES_PLACED},
+    {25, 0x5, FILEPROG_7A_DOG_PUZZLE_PIECES_PLACED},
+    { 4, 0x3, FILEPROG_7F_DOUBLE_HEALTH_PUZZLE_PIECES_PLACED}
 };
 s32 D_80394824[3] = {0xff, 0xff, 0};
 struct31s D_80394830 = {
@@ -51,11 +51,11 @@ struct31s D_80394830 = {
 
 /* .code */
 bool func_8038EAE0(s32 arg0) {
-    return func_8031FF44(D_803947F8[arg0 -1].unk2, D_803947F8[arg0 -1].unk1) == D_803947F8[arg0 -1].unk0;
+    return fileProgressFlag_getN(D_803947F8[arg0 -1].progress_flag, D_803947F8[arg0 -1].size_bits) == D_803947F8[arg0 -1].cost;
 }
 
 s32 func_8038EB24(Actor *this){
-    return (this->unkF4_8 != 0 && this->unkF4_8 < 0xC) ? D_803947F8[this->unkF4_8 - 1].unk0 : 0;
+    return (this->unkF4_8 != 0 && this->unkF4_8 < 0xC) ? D_803947F8[this->unkF4_8 - 1].cost : 0;
 }
 
 bool func_8038EB58(Actor *this){
@@ -72,7 +72,7 @@ s32 func_8038EB84(Actor *this){
 void func_8038EB94(void){
     func_802FAFD4(ITEM_14_HEALTH, 0x417);
     func_802FAFC0(ITEM_14_HEALTH, COMUSIC_2B_DING_B);
-    func_80320004(BKPROG_B9_DOUBLE_HEALTH, TRUE);
+    fileProgressFlag_set(FILEPROG_B9_DOUBLE_HEALTH, TRUE);
     func_80347958();
     func_803463D4(ITEM_14_HEALTH, 0);
     gcpausemenu_80314AC8(1);
@@ -83,7 +83,7 @@ void func_8038EBEC(ActorMarker *marker) {
     u32 temp_t6;
 
     this = marker_getActor(reinterpret_cast(ActorMarker *, marker));
-    if (this->unkF4_8 < 0xAU) {
+    if (this->unkF4_8 < 0xA) {
         levelSpecificFlags_set(func_8038EB84(this), TRUE);
         return;
     }
@@ -189,7 +189,7 @@ void func_8038EF58(ActorMarker *marker) {
     func_8028E6EC(2);
     func_8028F918(0);
     func_8028F94C(4, sp24);
-    func_8038F350(this, func_8031FF1C(0x17) ? 4 : 3);
+    func_8038F350(this, fileProgressFlag_get(FILEPROG_17_HAS_HAD_ENOUGH_JIGSAW_PIECES) ? 4 : 3);
 }
 
 void func_8038EFD8(Actor *this) {
@@ -260,18 +260,18 @@ void func_8038F250(Actor *this){
     if( (this->unkF4_8 >= 2) 
         && (local->unk4 > 0) 
         && !func_8038EB58(this) 
-        && !func_8031FF1C(0xDF)
+        && !fileProgressFlag_get(FILEPROG_DF_CAN_REMOVE_ALL_PUZZLE_PIECES)
     ) {
         if (func_80311480(0xF7C, 2, NULL, NULL, NULL, NULL)) {
-            func_80320004(0xDF, TRUE);
+            fileProgressFlag_set(FILEPROG_DF_CAN_REMOVE_ALL_PUZZLE_PIECES, TRUE);
         }
     } else if ((this->unkF4_8 >= 3) 
         && (local->unk4 >= 2) 
         && !func_8038EB58(this)
-        && !func_8031FF1C(0xE0)
+        && !fileProgressFlag_get(FILEPROG_E0_CAN_PLACE_ALL_PUZZLE_PIECES)
     ){
         if(func_80311480(0xF7D, 2, NULL, NULL, NULL, NULL)) {
-            func_80320004(0xE0, TRUE);
+            fileProgressFlag_set(FILEPROG_E0_CAN_PLACE_ALL_PUZZLE_PIECES, TRUE);
         }
     }
 }
@@ -300,13 +300,13 @@ void func_8038F350(Actor *this, s32 next_state){
             func_803115C4(0xF80);
             func_803115C4(0xF7F);
             if (item_getCount(ITEM_26_JIGGY_TOTAL) > 0) {
-                func_80311480(func_8031FF1C(0x16) ? 0xF5A : 0xF59, 6, sp50, this->marker, func_8038F078, NULL);
-                func_80320004(0x17, 1);
+                func_80311480(fileProgressFlag_get(FILEPROG_16_STOOD_ON_JIGSAW_PODIUM) ? 0xF5A : 0xF59, 6, sp50, this->marker, func_8038F078, NULL);
+                fileProgressFlag_set(FILEPROG_17_HAS_HAD_ENOUGH_JIGSAW_PIECES, 1);
             } else {
                 func_80311480(0xF58, 6, sp50, this->marker, func_8038F078, NULL);
             }
-            func_80320004(0x16, 1);
-            func_80320004(0xA7, 1);
+            fileProgressFlag_set(FILEPROG_16_STOOD_ON_JIGSAW_PODIUM, 1);
+            fileProgressFlag_set(FILEPROG_A7_NEAR_PUZZLE_PODIUM_TEXT, 1);
             break;
 
         case 8: //L8038F4AC
@@ -317,7 +317,7 @@ void func_8038F350(Actor *this, s32 next_state){
                 func_8038F1EC(this, temp_s1, 0);
                 local->unk4--;
                 local->unk0 &= ~(1 << temp_s1);
-                func_80320044(D_803947F8[this->unkF4_8 - 1].unk2, local->unk4, D_803947F8[this->unkF4_8 - 1].unk1);
+                fileProgressFlag_setN(D_803947F8[this->unkF4_8 - 1].progress_flag, local->unk4, D_803947F8[this->unkF4_8 - 1].size_bits);
                 func_803463F4(ITEM_26_JIGGY_TOTAL, 1);
             }
             break;
@@ -330,7 +330,7 @@ void func_8038F350(Actor *this, s32 next_state){
                 temp_s1 = func_8038F0EC(this);
                 func_8038F1EC(this, temp_s1, 1);
                 local->unk0 |= (1 << temp_s1);
-                func_80320044(D_803947F8[this->unkF4_8 - 1].unk2, local->unk4, D_803947F8[this->unkF4_8 - 1].unk1);
+                fileProgressFlag_setN(D_803947F8[this->unkF4_8 - 1].progress_flag, local->unk4, D_803947F8[this->unkF4_8 - 1].size_bits);
                 func_803463F4(ITEM_26_JIGGY_TOTAL, -1);
                 func_8038F250(this);
             }
@@ -353,7 +353,7 @@ void func_8038F350(Actor *this, s32 next_state){
                     local->unk0 |= (1 << temp_s1);
                     func_803463F4(ITEM_26_JIGGY_TOTAL, -1);
                 }
-                func_80320044(D_803947F8[this->unkF4_8 - 1].unk2, local->unk4, D_803947F8[this->unkF4_8 - 1].unk1);
+                fileProgressFlag_setN(D_803947F8[this->unkF4_8 - 1].progress_flag, local->unk4, D_803947F8[this->unkF4_8 - 1].size_bits);
                 func_8038F250(this);
             }
             break;
@@ -391,12 +391,12 @@ void lair_func_8038F894(Actor *this, s32 arg1) {
         return;
     }
     func_8025A70C(COMUSIC_2C_BUZZER);
-    if (func_8031FF1C(0xDE) != 0) {
+    if (fileProgressFlag_get(FILEPROG_DE_USED_ALL_YOUR_PUZZLE_PIECES) != 0) {
         func_8038F350(this, 1);
         return;
     }
     func_80311480(0xFBC, 4, NULL, NULL, NULL, NULL);
-    func_80320004(0xDE, 1);
+    fileProgressFlag_set(FILEPROG_DE_USED_ALL_YOUR_PUZZLE_PIECES, 1);
 }
 
 void lair_func_8038F924(Actor *this) {
@@ -417,7 +417,7 @@ void lair_func_8038F924(Actor *this) {
 
     if (!this->unk16C_4) {
         // temp_v0 = &D_803947F8[this->unkF4_8 - 1];
-        sp64 = func_8031FF44(D_803947F8[this->unkF4_8 - 1].unk2, D_803947F8[this->unkF4_8 - 1].unk1);
+        sp64 = fileProgressFlag_getN(D_803947F8[this->unkF4_8 - 1].progress_flag, D_803947F8[this->unkF4_8 - 1].size_bits);
         local->unk0 = 0;
         local->unk4 = 0;
         local->unk8 = (func_8038ECA8(this->marker)) ? 0xff : 1;
@@ -432,11 +432,11 @@ void lair_func_8038F924(Actor *this) {
         this->unk16C_4 = TRUE;
         if (this->unkF4_8 == 9) {
             this->unk1C[0] = 8.0f;
-            if (!func_8031FF1C(0x53)) {
+            if (!fileProgressFlag_get(FILEPROG_53_CCW_PUZZLE_PODIUM_SWITCH_PRESSED)) {
                 marker_despawn(this->marker);
                 return;
             }
-            if (!func_8031FF1C(0x54)) {
+            if (!fileProgressFlag_get(FILEPROG_54_CCW_PUZZLE_PODIUM_ACTIVE)) {
                 func_802C9334(0x20, this);
                 func_80324CFC(0.0f, COMUSIC_43_ENTER_LEVEL_GLITTER, 0x7FFF);
                 func_80324D2C(2.1f, COMUSIC_43_ENTER_LEVEL_GLITTER);
@@ -445,7 +445,7 @@ void lair_func_8038F924(Actor *this) {
         }
     }
 
-    if ((this->unkF4_8 == 9) && !func_8031FF1C(0x54)) {
+    if ((this->unkF4_8 == 9) && !fileProgressFlag_get(FILEPROG_54_CCW_PUZZLE_PODIUM_ACTIVE)) {
         this->yaw += this->unk1C[0];
         while(this->yaw >= 360.0f){
             this->yaw -= 360.0f;
@@ -477,13 +477,13 @@ void lair_func_8038F924(Actor *this) {
                 this->unk138_24 = TRUE;
             }
             if (func_80329530(this, 300)) {
-                if ((this->unkF4_8 == 0xA) && !func_8031FF1C(0xF6)) {
-                    phi_a0 = (item_getCount(ITEM_26_JIGGY_TOTAL) < D_803947F8[this->unkF4_8 - 1].unk0) ? 0xFAB : 0xFC0;
+                if ((this->unkF4_8 == 0xA) && !fileProgressFlag_get(FILEPROG_F6_SEEN_DOOR_OF_GRUNTY_PUZZLE_PODIUM)) {
+                    phi_a0 = (item_getCount(ITEM_26_JIGGY_TOTAL) < D_803947F8[this->unkF4_8 - 1].cost) ? 0xFAB : 0xFC0;
                     if (func_80311480(phi_a0, 0, NULL, NULL, NULL, NULL)) {
-                        func_80320004(0xF6, TRUE);
+                        fileProgressFlag_set(FILEPROG_F6_SEEN_DOOR_OF_GRUNTY_PUZZLE_PODIUM, TRUE);
                     }
                 } else if (this->unkF4_8 == 1) {
-                    func_8035644C(0xA7);
+                    func_8035644C(FILEPROG_A7_NEAR_PUZZLE_PODIUM_TEXT);
                 }
             }
             if (func_8038ECA8(this->marker) && this->unk138_24 && !func_8038EB58(this) && (func_8028ECAC() == 0 || func_8028ECAC() == BSGROUP_8_TROT)) {
@@ -497,7 +497,7 @@ void lair_func_8038F924(Actor *this) {
                     lair_func_8038F894(this, 5);
                 } else if (sp7C[FACE_BUTTON(BUTTON_B)] == 1) {
                     func_8038F350(this, 1);
-                } else if ((sp6C[0] == 1) && func_8031FF1C(0xE0)) {
+                } else if ((sp6C[SIDE_BUTTON(BUTTON_Z)] == 1) && fileProgressFlag_get(FILEPROG_E0_CAN_PLACE_ALL_PUZZLE_PIECES)) {
                     lair_func_8038F894(this, 6);
                 } else if (sp7C[FACE_BUTTON(BUTTON_C_DOWN)] == 1) {
                     if (local->unk4) {

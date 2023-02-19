@@ -5,10 +5,10 @@
 extern void func_8028F3D8(f32 *, f32,  void(*)(ActorMarker *), ActorMarker *);
 extern void func_8028F760(s32, f32, f32);
 extern void func_8031CE70(f32 *arg0, s32 arg1, s32 arg2);
-extern s32  func_8031FF1C(s32);
-extern s32  func_8031FF44(s32 offset, s32 numBits);
+extern s32  fileProgressFlag_get(s32);
+extern s32  fileProgressFlag_getN(s32 offset, s32 numBits);
 extern void func_8031FFAC(void);
-extern void func_80320004(s32 index, s32 set);
+extern void fileProgressFlag_set(s32 index, s32 set);
 extern void func_8032048C(void);
 extern void func_803204E4(s32 arg0, s32 arg1);
 extern void ml_vec3h_to_vec3f(f32 *, s32);
@@ -34,7 +34,7 @@ u8 D_80383190;
 
 /* .code */
 bool func_8031C640(void) {
-    if ((func_8024E698(0) == 1) && (func_8033D1EC() != 0)) {
+    if ((func_8024E698(0) == 1) && (gameFile_anyNonEmpty() != 0)) {
         return TRUE;
     }
     return FALSE;
@@ -57,9 +57,9 @@ bool func_8031C6E4(void) {
 
     sp24 = func_8024E698(0);
     if (mapSpecificFlags_get(0) != 0) {
-        func_80320004(0xE1, 1);
+        fileProgressFlag_set(0xE1, 1);
     }
-    if ((sp24 == 1) && func_8031FF1C(0xE1) && !gctransition_8030BDC0()) {
+    if ((sp24 == 1) && fileProgressFlag_get(0xE1) && !gctransition_8030BDC0()) {
         if (!mapSpecificFlags_get(0xC)) {
             mapSpecificFlags_set(0xC, TRUE);
             func_802DC528(0, 0);
@@ -302,7 +302,7 @@ void func_8031D2B4(s32 arg0, s32 arg1) {
 }
 
 void func_8031D2F4(s32 arg0, s32 arg1) {
-    if (func_8031FF44(0xF8, 2) == 3) {
+    if (fileProgressFlag_getN(0xF8, 2) == 3) {
         func_8031CC8C(arg0, 0x1401);
     }
 }
@@ -1427,7 +1427,7 @@ void func_8031FA90(s32 arg0, s32 arg1) {
 }
 
 void func_8031FAB4(s32 arg0, s32 arg1) {
-    if ((func_8031FF1C(BKPROG_FC_DEFEAT_GRUNTY) != 0) && (jiggyscore_total() == 100)) {
+    if ((fileProgressFlag_get(FILEPROG_FC_DEFEAT_GRUNTY) != 0) && (jiggyscore_total() == 100)) {
         func_8031CC8C(arg0, 0x9501);
     } else {
         func_8031CC8C(arg0, 0x9001);
@@ -1435,10 +1435,10 @@ void func_8031FAB4(s32 arg0, s32 arg1) {
 }
 
 void func_8031FB14(s32 arg0, s32 arg1) {
-    if (func_8031FF1C(BKPROG_BD_ENTER_LAIR_CUTSCENE) != 0) {
+    if (fileProgressFlag_get(FILEPROG_BD_ENTER_LAIR_CUTSCENE) != 0) {
         func_8031CC8C(arg0, 0x6912);
     } else {
-        func_80320004(BKPROG_BD_ENTER_LAIR_CUTSCENE, 1);
+        fileProgressFlag_set(FILEPROG_BD_ENTER_LAIR_CUTSCENE, 1);
         func_8031CC8C(arg0, 0x8204);
     }
 }

@@ -31,7 +31,7 @@ void func_80392B6C(Actor *this) {
 
     if (!this->unk16C_4) {
         this->unk16C_4 = TRUE;
-        if (func_8031FF1C(0xA6) != 0) {
+        if (fileProgressFlag_get(FILEPROG_A6_FURNACE_FUN_COMPLETE)) {
             marker_despawn(this->marker);
             return;
         }

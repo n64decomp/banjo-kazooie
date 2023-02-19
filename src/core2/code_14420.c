@@ -276,7 +276,7 @@ void func_8029B5EC(void){
 
 void func_8029B62C(void){
     if(item_empty(ITEM_16_LIFE)){
-        if(!func_8031FF1C(BKPROG_BD_ENTER_LAIR_CUTSCENE) || func_8031FF1C(BKPROG_A6_FURNACE_FUN_COMPLETE)){
+        if(!fileProgressFlag_get(FILEPROG_BD_ENTER_LAIR_CUTSCENE) || fileProgressFlag_get(FILEPROG_A6_FURNACE_FUN_COMPLETE)){
             func_8025A430(-1, 0x7D0, 3);
             func_8025A2B0();
             func_802DC528(0, 0);
@@ -335,14 +335,14 @@ void func_8029B85C(ActorMarker *caller, enum asset_e text_id, s32 arg2){
 }
 
 void func_8029B890(void){
-    if(!func_8031FF1C(BKPROG_A8_HAS_DIED) && !func_803203FC(2)){
+    if(!fileProgressFlag_get(FILEPROG_A8_HAS_DIED) && !func_803203FC(2)){
         func_803114D0();
         if(bs_getState() == 0x54){
             func_8029B62C();
             return;
         }
         func_80311480(0xf81, 7, NULL, NULL, func_8029B85C, NULL);
-        func_80320004(BKPROG_A8_HAS_DIED, TRUE);
+        fileProgressFlag_set(FILEPROG_A8_HAS_DIED, TRUE);
     }
     else{
         func_8029B62C();
@@ -888,7 +888,7 @@ void func_8029CBC4(void){
 
 void func_8029CBF4(void){
     if(item_getCount(ITEM_E_JIGGY) == 10){
-        if( jiggyscore_total() == 100 && func_8031FF1C(BKPROG_FC_DEFEAT_GRUNTY)){
+        if( jiggyscore_total() == 100 && fileProgressFlag_get(FILEPROG_FC_DEFEAT_GRUNTY)){
             timedFunc_set_3(4.1f, (GenMethod_3)func_802E4078, MAP_95_CS_END_ALL_100, 0, 1);
         }//L8029CC58
 
@@ -896,7 +896,7 @@ void func_8029CBF4(void){
         func_8025A6EC(COMUSIC_42_NOTEDOOR_OPENING_FANFARE, -1);
     }//L8029CC7C
     else{
-        if( jiggyscore_total() == 100 && func_8031FF1C(BKPROG_FC_DEFEAT_GRUNTY)){
+        if( jiggyscore_total() == 100 && fileProgressFlag_get(FILEPROG_FC_DEFEAT_GRUNTY)){
             func_802E4078(MAP_95_CS_END_ALL_100, 0, 1);
         }
         func_8029CBC4();
@@ -915,7 +915,7 @@ void func_8029CCC4(void){
     miscflag_clear(7);
     func_802B0CD8();
     item_inc(ITEM_E_JIGGY);
-    if(jiggyscore_total() == 100 && func_8031FF1C(BKPROG_FC_DEFEAT_GRUNTY)){
+    if(jiggyscore_total() == 100 && fileProgressFlag_get(FILEPROG_FC_DEFEAT_GRUNTY)){
         func_8028F918(2);
     }
     func_8024BD08(0);

@@ -678,7 +678,7 @@ void lair_func_8038CF18(void)
         }
         else
         {
-            if (func_8031FF1C(BKPROG_A6_FURNACE_FUN_COMPLETE))
+            if (fileProgressFlag_get(FILEPROG_A6_FURNACE_FUN_COMPLETE))
                 func_8038D670(FFA_8_FURNACE_FUN_COMPLETE);
             else
                 func_8038D670(FFA_1_UNK);
@@ -1012,11 +1012,11 @@ void func_8038D670(enum FF_Action next_state) {
             break;
 
         case FFA_8_FURNACE_FUN_COMPLETE: //L8038DC00
-            if (func_8031FF1C(0xA6) == 0) {
+            if (fileProgressFlag_get(FILEPROG_A6_FURNACE_FUN_COMPLETE) == 0) {
                 func_8025A55C(0, 0x1388, 0xB);
                 func_8025AB00();
                 func_8025A70C(JINGLE_DOOR_OF_GRUNTY_OPENED);
-                func_80320004(0xA6, TRUE);
+                fileProgressFlag_set(FILEPROG_A6_FURNACE_FUN_COMPLETE, TRUE);
                 func_803204E4(0, FALSE);
                 func_803204E4(0xA6, TRUE);
                 func_803204E4(0xA7, TRUE);
@@ -1238,9 +1238,9 @@ void lair_func_8038E0B0(void) {
                 func_802FACA4(0x14);
                 func_802FACA4(0x16);
                 if (sp38 != FFTT_0_NIL) {
-                    sp28 = sp38 + 0x54;
-                    if (!func_8031FF1C(sp28) && func_80311480(sp38 + 0x101E, 0, NULL, NULL, NULL, NULL)) {
-                        func_80320004(sp28, TRUE);
+                    sp28 = sp38 - 1 + FILEPROG_55_FF_BK_SQUARE_INSTRUCTIONS;
+                    if (!fileProgressFlag_get(sp28) && func_80311480(sp38 + 0x101E, 0, NULL, NULL, NULL, NULL)) {
+                        fileProgressFlag_set(sp28, TRUE);
                     }
                     if ((sp38 == FFTT_6_SKULL) && (item_getCount(ITEM_16_LIFE) == 1)) {
                         func_80356540(0xAB);

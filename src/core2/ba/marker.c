@@ -178,7 +178,7 @@ void __baMarker_resolveMusicNoteCollision(Prop *arg0) {
     }
     if (item_getCount(ITEM_C_NOTE) < 100) {
         func_8025A6EC(COMUSIC_9_NOTE_COLLECTED, 16000);
-        timedFunc_set_1(0.75f, func_8035644C, 3);
+        timedFunc_set_1(0.75f, func_8035644C, FILEPROG_3_MUSIC_NOTE_TEXT);
     }
     fxSparkle_musicNote(arg0->unk4);
 }
@@ -212,8 +212,8 @@ void __baMarker_8028BB1C(s32 arg0, u32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 a
         }
     }
     else{//L8028BBB8
-        if(!func_8031FF1C(arg1)){
-            func_80320004(arg1, 1);
+        if(!fileProgressFlag_get(arg1)){
+            fileProgressFlag_set(arg1, 1);
             func_8030E6D4(SFX_90_SWITCH_PRESS);
             func_803204E4(0xBF, 1);
             func_802D6264(1.0f, arg2, arg3, arg4, arg5, arg6);
@@ -389,7 +389,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
                     if(func_802458E0(spAC, actor, 0x87) == 0)
                         return;
                     func_803204E4(0x1E, 1);
-                    if(func_8031FF1C(((actor->unkF4_8 - 1) ^ 1) + 0x49)){
+                    if(fileProgressFlag_get(((actor->unkF4_8 - 1) ^ 1) + 0x49)){
                         actor->unk10_12 = 2;
                     }
                     else{
@@ -559,7 +559,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
                     {
                         honeycombscore_set(sp98, 1);
                         func_8025A6EC(COMUSIC_17_EMPTY_HONEYCOMB_COLLECTED, 28000);
-                        timedFunc_set_1(2.0f, func_8035644C, 0xB);
+                        timedFunc_set_1(2.0f, func_8035644C, FILEPROG_B_EMPTY_HONEYCOMB_TEXT);
                         item_inc(ITEM_13_EMPTY_HONEYCOMB);
                         if(!(item_getCount(ITEM_13_EMPTY_HONEYCOMB) < 6)){
                             gcpausemenu_80314AC8(0);
@@ -583,14 +583,14 @@ void __baMarker_resolveCollision(Prop *other_prop){
                 
                 if( map_get() == MAP_8E_GL_FURNACE_FUN
                     && func_803203FC(0)
-                    && !func_8031FF1C(BKPROG_A6_FURNACE_FUN_COMPLETE)
+                    && !fileProgressFlag_get(FILEPROG_A6_FURNACE_FUN_COMPLETE)
                 ){
-                    func_80356540(BKPROG_A6_FURNACE_FUN_COMPLETE);
+                    func_80356540(FILEPROG_A6_FURNACE_FUN_COMPLETE);
                     func_8030E6D4(SFX_126_AUDIENCE_BOOING);
                 }  
 
                 func_8025A6EC(COMUSIC_16_HONEYCOMB_COLLECTED, 28000);
-                timedFunc_set_1(0.75f, func_8035644C, 0xA);
+                timedFunc_set_1(0.75f, func_8035644C, FILEPROG_A_HONEYCOMB_TEXT);
                 item_inc(ITEM_14_HEALTH);
                 fxSparkle_honeycomb(&other_prop->actorProp.x);
                 marker_despawn(marker);
@@ -695,13 +695,13 @@ void __baMarker_resolveCollision(Prop *other_prop){
                     return;
                 if( map_get() == MAP_8E_GL_FURNACE_FUN
                     && func_803203FC(0)
-                    && !func_8031FF1C(BKPROG_A6_FURNACE_FUN_COMPLETE)
+                    && !fileProgressFlag_get(FILEPROG_A6_FURNACE_FUN_COMPLETE)
                 ){
-                    func_80356540(BKPROG_A7_NEAR_PUZZLE_PODIUM_TEXT);
+                    func_80356540(FILEPROG_A7_NEAR_PUZZLE_PODIUM_TEXT);
                     func_8030E6D4(SFX_127_AUDIENCE_MIXED);
                 }
                 func_8025A6EC(COMUSIC_15_EXTRA_LIFE_COLLECTED, 0x7FFF);
-                timedFunc_set_1(1.5f, func_8035646C, 0xC);
+                timedFunc_set_1(1.5f, func_8035646C, FILEPROG_C_EXTRA_LIFE_TEXT);
                 fxSparkle_extraLife(&other_prop->actorProp.x);
                 item_inc(ITEM_16_LIFE);
                 marker_despawn(marker);

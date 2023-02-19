@@ -117,6 +117,7 @@ gczoombox_update            = 0x80316EF4;
 gczoombox_close             = 0x803183FC;
 gczoombox_maximize          = 0x8031840C;
 gczoombox_minimize          = 0x8031841C;
+fileProgressFlag_get        = 0x8031FF1C;
 level_get                   = 0x80321900;
 levelSpecificFlags_validateCRC1 = 0x8032204C;
 marker_despawn              = 0x803282F4;

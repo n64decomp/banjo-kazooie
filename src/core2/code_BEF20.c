@@ -80,7 +80,7 @@ s32 func_80345FB4(enum item_e item, s32 diff, s32 arg2){\
     newVal = MAX(0, D_80385F30[item] + diff);
     D_80385F30[item] = newVal;
 
-    sp34 = ((func_8031FF1C(BKPROG_B9_DOUBLE_HEALTH))? 2 : 1);
+    sp34 = ((fileProgressFlag_get(FILEPROG_B9_DOUBLE_HEALTH))? 2 : 1);
     D_80385F30[ITEM_15_HEALTH_TOTAL] = MIN(sp34*8, D_80385F30[ITEM_15_HEALTH_TOTAL]);
     D_80385F30[ITEM_14_HEALTH]= MIN(D_80385F30[ITEM_15_HEALTH_TOTAL], D_80385F30[ITEM_14_HEALTH]);
     D_80385F30[ITEM_17_AIR] = MIN(3600, D_80385F30[ITEM_17_AIR]);
@@ -89,15 +89,15 @@ s32 func_80345FB4(enum item_e item, s32 diff, s32 arg2){\
 
     switch(item){
         case ITEM_D_EGGS:
-            sp38 = (func_8031FF1C(BKPROG_BE_CHEATO_BLUEEGGS))? 200 : 100;
+            sp38 = (fileProgressFlag_get(FILEPROG_BE_CHEATO_BLUEEGGS))? 200 : 100;
             break;
 
         case ITEM_F_RED_FEATHER:
-            sp38 = (func_8031FF1C(BKPROG_BF_CHEATO_REDFEATHERS))? 100 : 50;
+            sp38 = (fileProgressFlag_get(FILEPROG_BF_CHEATO_REDFEATHERS))? 100 : 50;
             break;
 
         case ITEM_10_GOLD_FEATHER:
-            sp38 = (func_8031FF1C(BKPROG_C0_CHEATO_GOLDFEATHERS))? 20 : 10;
+            sp38 = (fileProgressFlag_get(FILEPROG_C0_CHEATO_GOLDFEATHERS))? 20 : 10;
             break;
 
         default:
@@ -523,7 +523,7 @@ void func_8034789C(void) {
 
     sp1C = honeycombscore_get_total();
     D_80385F30[ITEM_13_EMPTY_HONEYCOMB] = sp1C % 6;
-    if (func_8031FF1C(BKPROG_B9_DOUBLE_HEALTH)) {
+    if (fileProgressFlag_get(FILEPROG_B9_DOUBLE_HEALTH)) {
         D_80385F30[ITEM_15_HEALTH_TOTAL] = 16;
     } else {
         D_80385F30[ITEM_15_HEALTH_TOTAL] =  5 + MIN(3, (sp1C / 6));

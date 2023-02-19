@@ -40,7 +40,7 @@ void chLeaky_update(Actor *this) {
         this->unk16C_4 = TRUE;
         this->marker->propPtr->unk8_3 = FALSE;
         if (levelSpecificFlags_get(5) != 0) {
-            levelSpecificFlags_set(5, 0);
+            levelSpecificFlags_set(5, FALSE);
             timedFunc_set_1(0.5f, (GenMethod_1)func_8025A70C, COMUSIC_2D_PUZZLE_SOLVED_FANFARE);
         }
         if (levelSpecificFlags_get(2) != 0) {

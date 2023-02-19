@@ -98,8 +98,8 @@ void chcaterpillar_update(Actor *this){
         }
         else{//L8038A408
             map_id = map_get();
-            if ( !func_8031FF1C(BKPROG_E6_SPRING_EYRIE_HATCHED)
-                 || ( map_id == MAP_45_CCW_AUTUMN && !func_8031FF1C(BKPROG_E7_SUMMER_EYRIE_FED))
+            if ( !fileProgressFlag_get(FILEPROG_E6_SPRING_EYRIE_HATCHED)
+                 || ( map_id == MAP_45_CCW_AUTUMN && !fileProgressFlag_get(FILEPROG_E7_SUMMER_EYRIE_FED))
             ) {
                 chcaterpillar_setState(this, 5);
             } else {

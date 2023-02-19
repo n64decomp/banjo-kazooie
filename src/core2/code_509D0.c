@@ -109,14 +109,14 @@ void __chLevelCollectible_collide(ActorMarker *marker, ActorMarker *other_marker
             case MARKER_36_ORANGE_COLLECTIBLE:
                 if (mapSpecificFlags_get(1))
                     return;
-                func_8035646C(8);
+                func_8035646C(FILEPROG_8_ORANGE_TEXT);
                 func_8030E6D4(SFX_B3_ORANGE_TALKING);
                 dialog_id = 0;
                 break;
                 
             case MARKER_37_GOLD_BULLION:
                 func_8025A6EC(COMUSIC_2B_DING_B, 0x7FFF);
-                timedFunc_set_1(0.5f, func_8035646C, 9);
+                timedFunc_set_1(0.5f, func_8035646C, FILEPROG_9_GOLD_BULLION_TEXT);
                 dialog_id = 0;
                 break;
 

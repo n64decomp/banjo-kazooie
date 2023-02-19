@@ -46,9 +46,9 @@ void __chJinjo_802CDBA8(ActorMarker *this, ActorMarker *other){
     ActorLocal_Jinjo *localPtr = &actorPtr->jinjo;
 
     if(actorPtr->state < 5){
-        if(!func_8031FF1C(BKPROG_E_JINJO_TEXT)){
+        if(!fileProgressFlag_get(FILEPROG_E_JINJO_TEXT)){
             func_80311480(__chJinjo_getMeetDialogId(actorPtr->marker->unk14_20), 4, 0, 0, 0, 0);
-            func_80320004(BKPROG_E_JINJO_TEXT, 1);
+            fileProgressFlag_set(FILEPROG_E_JINJO_TEXT, 1);
         }
         func_80328B8C(actorPtr, 6, 0.0f , -1);
         if(func_803463D4(ITEM_12_JINJOS, 1 << (this->unk14_20 + 6) ) == 0x1f)

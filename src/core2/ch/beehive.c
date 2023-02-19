@@ -52,14 +52,14 @@ void func_802CE8D4(Actor *this){
     switch(this->state)
     {
     case 1://L802CE9C4
-        if( !func_8031FF1C(BKPROG_D_BEEHIVE_TEXT)
+        if( !fileProgressFlag_get(FILEPROG_D_BEEHIVE_TEXT)
             && subaddie_playerIsWithinCylinder(this, 250, 300)
         ){
             if(func_8028ECAC() == 0 || func_8028ECAC() == BSGROUP_8_TROT){
                 if( player_getTransformation() == TRANSFORM_1_BANJO
                     && func_80311480(ASSET_D96_DIALOG_BEEHIVE_MEET, 0, NULL, NULL, NULL, 0)
                 ){
-                    func_80320004(BKPROG_D_BEEHIVE_TEXT, 1);
+                    fileProgressFlag_set(FILEPROG_D_BEEHIVE_TEXT, 1);
                 }
             }
         }//L802CEA48

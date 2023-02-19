@@ -2,16 +2,15 @@
 #include "functions.h"
 #include "variables.h"
 
-s32 func_8031FF1C(s32);
 void func_8031FFAC(void);
-void func_80320004(s32 index, s32 set);
+void fileProgressFlag_set(s32 index, s32 set);
 s32 func_803200A4(u8 *array, s32 index);
 s32 func_803200E4(u8 *array, s32 offset, s32 numBits);
 void func_8032015C(u8 *array, s32 index, s32 set);
 void func_803201C8(u8 *array, s32 startIndex, s32 set, s32 length);
 void func_8032048C(void);
 void func_803204E4(s32 arg0, s32 arg1);
-s32 func_8031FF44(s32 offset, s32 numBits);
+s32 fileProgressFlag_getN(s32 offset, s32 numBits);
 void func_8031CE70(f32 *arg0, s32 arg1, s32 arg2);
 void ml_vec3h_to_vec3f(f32 *, s32);
 void func_8028F3D8(f32 *, f32,  void(*)(ActorMarker *), ActorMarker *);
@@ -108,19 +107,19 @@ void func_8031FEC0(void) {
     *obscured_addr = func_8031FE40();
 }
 
-s32 func_8031FF1C(s32 index) {
+bool fileProgressFlag_get(enum file_progress_e index) {
     return func_803200A4(D_803831A0.unk8, index);
 }
 
-s32 func_8031FF44(s32 offset, s32 numBits) {
+s32 fileProgressFlag_getN(s32 offset, s32 numBits) {
     return func_803200E4(D_803831A0.unk8, offset, numBits);
 }
 
-s32 func_8031FF74(s32 index, s32 set) {
+s32 fileProgressFlag_getAndSet(s32 index, s32 set) {
     s32 ret;
 
-    ret = func_8031FF1C(index);
-    func_80320004(index, set);
+    ret = fileProgressFlag_get(index);
+    fileProgressFlag_set(index, set);
     return ret;
 }
 
@@ -134,13 +133,13 @@ void func_8031FFAC(void) {
     func_8031FEC0();
 }
 
-void func_80320004(s32 index, s32 set) {
+void fileProgressFlag_set(s32 index, s32 set) {
     func_8032015C(D_803831A0.unk8, index, set);
     func_8031FC40();
     func_8031FEC0();
 }
 
-void func_80320044(s32 startIndex, s32 set, s32 length) {
+void fileProgressFlag_setN(s32 startIndex, s32 set, s32 length) {
     func_803201C8(D_803831A0.unk8, startIndex, set, length);
     func_8031FC40();
     func_8031FEC0();

@@ -5,7 +5,7 @@
 #include "SnS.h"
 
 /* extern */
-extern void func_802D6310(f32, enum map_e, s32, s32, enum bkprog_e);
+extern void func_802D6310(f32, enum map_e, s32, s32, enum file_progress_e);
 extern BKModel *mapModel_getModel(s32);
 
 extern u8 D_8037DCC0[7];
@@ -39,7 +39,7 @@ typedef struct {
     s16 unk2;
 }Struct_TTC_3E30_2;
 
-s32 func_8038B778(void);
+s32 __sandcastleCodes_getNumberEntered(void);
 
 /* .data */
 s32 D_8038C980 = 0;
@@ -234,9 +234,9 @@ void func_8038AB44(void){
     D_8038C980 = func_8038B600();
 }
 
-u32 func_8038AB68(s32 arg0){
-    if(func_8031FF1C(0xAC + arg0)){
-        return 1 << arg0;
+u32 func_8038AB68(s32 cheato_code_index){
+    if(fileProgressFlag_get(FILEPROG_AD_CHEATO_BLUEEGGS_UNLOCKED + cheato_code_index - 1)){
+        return 1 << cheato_code_index;
     }
     return 0;
 }
@@ -319,11 +319,11 @@ void func_8038AC48(Struct_TTC_3E30_1 *arg0) {
                                 D_8038D720.unk8 = 2U;
                                 D_8038D720.unkC = 0.0f;
                                 mapSpecificFlags_set(1, TRUE);
-                                func_80320004(0xFA, TRUE);
+                                fileProgressFlag_set(0xFA, TRUE);
                                 func_8030E2C4(D_8038D720.unk9);
                                 func_8038A258(2);
                             } else if (var_v0 & 0xE) {
-                                func_8035644C((i_ptr - D_8038CA6C) + 0xBD);
+                                func_8035644C((i_ptr - D_8038CA6C) - 1 + FILEPROG_BE_CHEATO_BLUEEGGS);
                                 switch ((i_ptr - D_8038CA6C) - 1) { /* irregular */
                                     default:
                                         break;
@@ -455,7 +455,7 @@ void func_8038B2F0(void) {
     Struct_TTC_3E30_1 *temp_v0_3;
 
     sp24 = time_getDelta();
-    if (func_8038B778() == 3) {
+    if (__sandcastleCodes_getNumberEntered() == 3) {
         func_802C5A3C(-1);
     }
     if (D_8038D720.unk0 != 0) {
@@ -612,23 +612,23 @@ u32 func_8038B600(void) {
     return var_a3;
 }
 
-void TTC_func_8038B6D4(s32 arg0, s32 arg1, s32 arg2, enum bkprog_e prog_id, s32 prog_val, s32 prog_bit_size, enum bkprog_e arg6){
+void TTC_func_8038B6D4(s32 arg0, s32 arg1, s32 arg2, enum file_progress_e prog_id, s32 prog_val, s32 prog_bit_size, enum file_progress_e arg6){
     if( ((arg2 + 20 == D_8038CAD8[arg1].unk5) && func_803203FC(arg2))
         || arg0 == 3
     ){
-        func_80320044(prog_id, prog_val, prog_bit_size);
+        fileProgressFlag_setN(prog_id, prog_val, prog_bit_size);
         if(arg6){
-            func_80320004(arg6, TRUE);
+            fileProgressFlag_set(arg6, TRUE);
         }
     }
 }
 
-void func_8038B750(s32 arg0){
-    func_80320044(0xfd, arg0, 2);
+void __sandcastleCodes_setNumberEntered(s32 arg0){
+    fileProgressFlag_setN(FILEPROG_FD_CHEATCODES_ENTERED, arg0, 2);
 }
 
-s32 func_8038B778(void){
-    return func_8031FF44(0xFD, 2);
+s32 __sandcastleCodes_getNumberEntered(void){
+    return fileProgressFlag_getN(FILEPROG_FD_CHEATCODES_ENTERED, 2);
 }
 
 void func_8038B79C(s32 arg0, s32 arg1, s32 arg2, enum item_e item_id, s32 item_diff, s32 item_val) {
@@ -660,30 +660,30 @@ void func_8038B800(s32 arg0) {
         func_803204E4(0x65, 1);
         func_803204E4(sp38, 1);
     }
-    TTC_func_8038B6D4(0, arg0, 0x6C, 0x60, 5, 3, 0x33);
-    TTC_func_8038B6D4(0, arg0, 0x6D, 0x63, 7, 3, 0x34);
-    TTC_func_8038B6D4(0, arg0, 0x6E, 0x66, 8, 4, 0x35);
-    TTC_func_8038B6D4(0, arg0, 0x6F, 0x6A, 9, 4, 0x36);
-    TTC_func_8038B6D4(0, arg0, 0x70, 0x6E, 0xA, 4, 0x37);
-    TTC_func_8038B6D4(0, arg0, 0x71, 0x72, 0xC, 4, 0x38);
-    TTC_func_8038B6D4(0, arg0, 0x72, 0x76, 0xF, 4, 0x39);
+    TTC_func_8038B6D4(0, arg0, 0x6C, FILEPROG_60_CC_PUZZLE_PIECES_PLACED,   5, 3, FILEPROG_33_CC_OPEN);
+    TTC_func_8038B6D4(0, arg0, 0x6D, FILEPROG_63_BGS_PUZZLE_PIECES_PLACED,  7, 3, FILEPROG_34_BGS_OPEN);
+    TTC_func_8038B6D4(0, arg0, 0x6E, FILEPROG_66_FP_PUZZLE_PIECES_PLACED,   8, 4, FILEPROG_35_FP_OPEN);
+    TTC_func_8038B6D4(0, arg0, 0x6F, FILEPROG_6A_GV_PUZZLE_PIECES_PLACED,   9, 4, FILEPROG_36_GV_OPEN);
+    TTC_func_8038B6D4(0, arg0, 0x70, FILEPROG_6E_MMM_PUZZLE_PIECES_PLACED, 10, 4, FILEPROG_37_MMM_OPEN);
+    TTC_func_8038B6D4(0, arg0, 0x71, FILEPROG_72_RBB_PUZZLE_PIECES_PLACED, 0xC, 4, FILEPROG_38_RBB_OPEN);
+    TTC_func_8038B6D4(0, arg0, 0x72, FILEPROG_76_CCW_PUZZLE_PIECES_PLACED, 0xF, 4, FILEPROG_39_CCW_OPEN);
     func_8038B79C(0, arg0, 0x94, ITEM_15_HEALTH_TOTAL, 0, 8);
     func_8038B79C(0, arg0, 0x77, ITEM_14_HEALTH, 0, item_getCount(ITEM_15_HEALTH_TOTAL));
     func_8038B79C(0, arg0, 0x95, ITEM_1C_MUMBO_TOKEN, 0, 99);
     if (sp38 == 0x81) {
-        func_80320004(0x53, 1);
-        func_80320004(0x54, 1);
+        fileProgressFlag_set(FILEPROG_53_CCW_PUZZLE_PODIUM_SWITCH_PRESSED, 1);
+        fileProgressFlag_set(FILEPROG_54_CCW_PUZZLE_PODIUM_ACTIVE, 1);
     }
     func_8038B5B4();
 }
 
-void func_8038BB10(ActorMarker *caller, enum asset_e text_id, s32 arg2) {
-    if (arg2 == 1) {
-        func_8038B750(3);
+void __sandcastleCodes_eraseGameDialogCallback(ActorMarker *caller, enum asset_e text_id, s32 confirmed) {
+    if (confirmed == 1) {
+        __sandcastleCodes_setNumberEntered(3);
         func_8038B800(D_8038CAD4);
         func_80311480(0xFBF, 0xC, NULL, NULL, NULL, NULL);
-        func_8033D0FC(func_802C5A30());
-        func_8033CFD4(func_802C5A30());
+        gameFile_clear(func_802C5A30());
+        gameFile_8033CFD4(func_802C5A30());
         func_802C5A3C(-1);
         return;
     }
@@ -700,21 +700,21 @@ void TTC_func_8038BBA0(s32 arg0) {
         }
         for( i = 0; D_8038CC7C[i].unk0 != 0; i++){
             if ((D_8038CAD8[arg0].unk5 >= D_8038CC7C[i].unk0) && (D_8038CC7C[i].unk2 >= D_8038CAD8[arg0].unk5)) {
-                switch (func_8038B778()) {
+                switch (__sandcastleCodes_getNumberEntered()) {
                     case 0:
-                        func_8038B750(1);
+                        __sandcastleCodes_setNumberEntered(1);
                         func_8038B800(arg0);
                         func_8038B5B4();
                         return;
                     case 1:
-                        func_8038B750(2);
+                        __sandcastleCodes_setNumberEntered(2);
                         func_8038B800(arg0);
                         func_8038B5B4();
                         func_80311480(0xFBE, 0xC, NULL, NULL, NULL, NULL);
                         return;
                     case 2:
                         D_8038CAD4 = arg0;
-                        func_80311480(0xE38, 0xC, NULL, NULL, func_8038BB10, NULL);
+                        func_80311480(0xE38, 0xC, NULL, NULL, __sandcastleCodes_eraseGameDialogCallback, NULL);
                         return;
                 }
                 return;
@@ -733,7 +733,7 @@ bool func_8038BD10(Struct_TTC_3E30_1 *arg0) {
     s32 var_s2;
     s32 var_v1;
 
-    if ((D_8038CC78 == 2) || (func_8038B778() == 3)) {
+    if ((D_8038CC78 == 2) || (__sandcastleCodes_getNumberEntered() == 3)) {
         return 0;
     }
     if (D_8038CC78 == 0) {

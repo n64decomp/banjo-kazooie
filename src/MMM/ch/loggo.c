@@ -35,23 +35,23 @@ void __chLoggo_textCallback(ActorMarker* caller, enum asset_e text_id, s32 arg3)
 
 void __chLoggo_collide(ActorMarker* this_marker, ActorMarker *other_marker) {
     Actor *this = marker_getActor(this_marker);
-    if ((player_getTransformation() == TRANSFORM_3_PUMPKIN) && !func_8031FF1C(BKPROG_89_ENTERED_LOGGO_AS_PUMPKIN)) {
+    if ((player_getTransformation() == TRANSFORM_3_PUMPKIN) && !fileProgressFlag_get(FILEPROG_89_ENTERED_LOGGO_AS_PUMPKIN)) {
         if (func_80311480(ASSET_ADF_TEXT_ENTER_LOGGO, 0x2B, this->position, this->marker, &__chLoggo_textCallback, 0) != 0) {
             actor_collisionOff(this);
             
-            func_80320004(BKPROG_89_ENTERED_LOGGO_AS_PUMPKIN, TRUE);
+            fileProgressFlag_set(FILEPROG_89_ENTERED_LOGGO_AS_PUMPKIN, TRUE);
         }
         return;
     }
-    if ((player_getTransformation() == TRANSFORM_3_PUMPKIN) && func_8031FF1C(BKPROG_89_ENTERED_LOGGO_AS_PUMPKIN)) {
+    if ((player_getTransformation() == TRANSFORM_3_PUMPKIN) && fileProgressFlag_get(FILEPROG_89_ENTERED_LOGGO_AS_PUMPKIN)) {
         actor_collisionOff(this);
         __chLoggo_flush(this_marker);
         return;
     }
 
-    if ((player_getTransformation() == TRANSFORM_1_BANJO) && !func_8031FF1C(BKPROG_88_TRIED_LOGGO_AS_BEAR)){
+    if ((player_getTransformation() == TRANSFORM_1_BANJO) && !fileProgressFlag_get(FILEPROG_88_TRIED_LOGGO_AS_BEAR)){
         if(func_80311480(ASSET_ADE_TEXT_LOGGO_AS_BEAR, 0x2A, this->position, NULL, NULL, NULL)) {
-            func_80320004(BKPROG_88_TRIED_LOGGO_AS_BEAR, TRUE);
+            fileProgressFlag_set(FILEPROG_88_TRIED_LOGGO_AS_BEAR, TRUE);
         }
     }
 }
@@ -70,9 +70,9 @@ void chLoggo_update(Actor *this){
         func_80328B8C(this, 1, 0.01f, 1);
         actor_loopAnimation(this);
         this->unk60 = 0.0f;
-        if(!func_8031FF1C(BKPROG_8A_EXITED_LOGGO) && levelSpecificFlags_get(0x33)){
+        if(!fileProgressFlag_get(FILEPROG_8A_EXITED_LOGGO) && levelSpecificFlags_get(0x33)){
             if(func_80311480(ASSET_AE0_TEXT_EXIT_LOGGO, 4, NULL, NULL, NULL, NULL)){
-                func_80320004(BKPROG_8A_EXITED_LOGGO, TRUE);
+                fileProgressFlag_set(FILEPROG_8A_EXITED_LOGGO, TRUE);
             }
         }
     }

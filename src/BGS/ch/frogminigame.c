@@ -4,12 +4,13 @@
 
 
 void chfrogminigame_update(Actor *);
-void chFrogMinigame_setState(Actor * arg0, u32 arg1);
+void chFrogMinigame_setState(Actor * arg0, u32 next_state);
 void func_8025A58C(u32, u32);
 void func_80324E88(f32);
 
 
-ActorInfo BGS_D_80390AB0 = {MARKER_C4_YELLOW_FLIBBIT_CTRL, ACTOR_136_YELLOW_FLIBBIT_CONTROLLER, 0x00, 0x00, NULL,
+ActorInfo chFrogMinigame = {MARKER_C4_YELLOW_FLIBBIT_CTRL, ACTOR_136_YELLOW_FLIBBIT_CONTROLLER, 0x00, 
+    0x00, NULL,
     chfrogminigame_update, NULL, func_80325340,
     0, 0, 0.0f, 0
 };
@@ -45,16 +46,16 @@ void func_8038CBB4(Actor * arg0){
     arg0->bgs_6730.unk4 = 0;
 }
 
-void chFrogMinigame_setState(Actor * arg0, u32 arg1){
+void chFrogMinigame_setState(Actor * arg0, u32 next_state){
     ActorLocal_BGS_6730 *s0;
 
     s0 = &arg0->bgs_6730;
-    if(arg1 == 2){
+    if(next_state == 2){
         func_8028F8F8(0x12, 1);
         func_8028F8F8(0x1F, 0);
         mapSpecificFlags_set(0x10, 1);
-        if(!func_8031FF1C(0x1B)){
-            func_80320004(0x1B, 1);
+        if(!fileProgressFlag_get(FILEPROG_1B_MET_YELLOW_FLIBBITS)){
+            fileProgressFlag_set(FILEPROG_1B_MET_YELLOW_FLIBBITS, 1);
             func_80311480(text_flibbits_meet, 0xf, arg0->position, arg0->marker, __chFrogMinigame_textCallback, 0);
         }else{
             if(!arg0->bgs_6730.unk8){
@@ -66,7 +67,7 @@ void chFrogMinigame_setState(Actor * arg0, u32 arg1){
             }
         }
     }
-    if(arg1 == 3){
+    if(next_state == 3){
         s0->unk0 = 1;
         if(!s0->unk4){
             func_8025A58C(0, 400);
@@ -81,7 +82,7 @@ void chFrogMinigame_setState(Actor * arg0, u32 arg1){
     if(arg0->state == 3){
         func_8028F8F8(0x12, 0);
         func_8028F8F8(0x1F, 1);
-        if(arg1 == 1){
+        if(next_state == 1){
             if(s0->unk4){
                 comusic_8025AB44(MUSIC_BGS_FLIBBIT_FIGHT, 18000, 100);
             }
@@ -91,22 +92,22 @@ void chFrogMinigame_setState(Actor * arg0, u32 arg1){
         }
     }
 
-    if(arg1 == 4){
+    if(next_state == 4){
         func_80311480(text_flibbits_defeat, 0xf, arg0->position, arg0->marker, __chFrogMinigame_textCallback, 0);
     }
-    if(arg1 == 5){
+    if(next_state == 5){
         func_80324E38(0.0f, 3);
         timed_setCameraToNode(0.0f, 0x27);
         timedFunc_set_0(0.2f, __chFrogMinigame_spawnJiggy);
         func_80324E88(3.0f);
         func_80324E38(3.0f, 0);
-        arg1 = 6;
+        next_state = 6;
     }
-    if(arg1 == 6){
+    if(next_state == 6){
         func_8028F8F8(0x12, 0);
         func_8028F8F8(0x1F, 1);
     }
-    arg0->state = arg1;
+    arg0->state = next_state;
 }
 
 void func_8038CE88(void){

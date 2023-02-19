@@ -47,7 +47,7 @@ enum bs_e func_80295EE0(enum bs_e arg0){
 
     switch(func_8028ECAC()){
         case 6://L80295F5C
-            if(D_8037C3E0.unk18 != 0x3E){
+            if(D_8037C3E0.unk18 != ASSET_3E_ANIM_BSBFLY_BEAKBOMB_CRASH){
                 sp2C++;
             }
             break;

@@ -16,7 +16,7 @@ extern ActorInfo D_80390C88;
 extern ActorInfo D_80390CC8;
 extern ActorInfo D_80390D08;
 extern ActorInfo D_80390D48;
-extern ActorInfo BGS_D_80390AB0;
+extern ActorInfo chFrogMinigame;
 extern ActorInfo BGS_D_80390AE0;
 extern ActorInfo D_80390960;
 extern ActorInfo D_80390A40;
@@ -47,7 +47,7 @@ void BGS_func_8038F1E0(void){//bgs_updateSpawnableActors
     spawnableActorList_add(&D_80390CC8, actor_new, 0x400042c);//tanktup_leg
     spawnableActorList_add(&D_80390D08, actor_new, 0x400042c);//tanktup_leg
     spawnableActorList_add(&D_80390D48, actor_new, 0x400042c);//tanktup_leg
-    spawnableActorList_add(&BGS_D_80390AB0, actor_new, 0x81);
+    spawnableActorList_add(&chFrogMinigame, actor_new, 0x81);
     spawnableActorList_add(&BGS_D_80390AE0, actor_new, 0x20108a1); //yellow_flibbit
     spawnableActorList_add(&D_80390960, actor_new, 0);
     spawnableActorList_add(&D_80390A40, actor_new, 0x880); //yumblie

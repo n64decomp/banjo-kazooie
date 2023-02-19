@@ -151,7 +151,7 @@ void gcparade_8031ABA0(void) {
     func_8031FBA0();
     if (D_803830F0.unk8 != -1) {
         func_802C5A3C(D_803830F0.unk8);
-        func_8033D13C(D_803830F0.unk8);
+        gameFile_load(D_803830F0.unk8);
         func_80347AA8();
     }
 }

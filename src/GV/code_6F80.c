@@ -28,7 +28,7 @@ void func_8038D3AC(Actor *this){
         this->unk16C_4 = TRUE;
         marker_setCollisionScripts(this->marker, func_8038D370, NULL, NULL);
         D_80391AA0 = 0;
-        if(func_8031FF44(BKPROG_F8_KING_SANDYBUTT_PYRAMID_STATE, 2) == 3){
+        if(fileProgressFlag_getN(FILEPROG_F8_KING_SANDYBUTT_PYRAMID_STATE, 2) == 3){
             marker_despawn(this->marker);
         }
     }

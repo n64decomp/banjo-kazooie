@@ -5,31 +5,31 @@
 typedef KEY_VALUE_PAIR(s16, s16) unkD_80372730;
 
 unkD_80372730 D_80372730[] = {
-    { BKPROG_AB_SWIM_OILY_WATER,                0xBA1},
-    { BKPROG_AC_DIVE_OILY_WATER,                0xBA2},
-    { BKPROG_AA_HAS_TOUCHED_CCW_BRAMBLE_FIELD,  0xCE6},
-    { BKPROG_F_HAS_TOUCHED_PIRAHANA_WATER,      0xC85},
-    { BKPROG_A9_HAS_TOUCHED_RBB_OVEN,           0xBA0},
-    { BKPROG_10_HAS_TOUCHED_SAND_EEL_SAND,      0xA7E},
-    { BKPROG_14_HAS_TOUCHED_FP_ICY_WATER,       0xC11},
-    { BKPROG_F_HAS_TOUCHED_PIRAHANA_WATER,      0xC85},
-    { BKPROG_86_HAS_TOUCHED_MMM_THORN_HEDGE,    0xAE1},
-    { BKPROG_DD_HAS_TOUCHED_ICY_WATER,          0xCE7},
-    { BKPROG_3_MUSIC_NOTE_TEXT,                 0xD9C},
-    { BKPROG_4_MUMBO_TOKEN_TEXT,                0xD9D},
-    { BKPROG_5_BLUE_EGG_TEXT,                   0xD9E},
-    { BKPROG_6_RED_FEATHER_TEXT,                0xD9F},
-    { BKPROG_7_GOLD_FEATHER_TEXT,               0xDA0},
-    { BKPROG_8_GOLD_BULLION_TEXT,               0xB46},
-    { BKPROG_9_ORANGE_TEXT,                     0xA21},
-    { BKPROG_A_HONEYCOMB_TEXT,                  0xDA1},
-    { BKPROG_B_EMPTY_HONEYCOMB_TEXT,            0xDA2},
-    { BKPROG_C_EXTRA_LIFE_TEXT,                 0xDA3},
-    { BKPROG_BE_CHEATO_BLUEEGGS,                0xFA8},
-    { BKPROG_BF_CHEATO_REDFEATHERS,             0xFA9},
-    { BKPROG_C0_CHEATO_GOLDFEATHERS,            0xFAA},
+    { FILEPROG_AB_SWIM_OILY_WATER,                0xBA1},
+    { FILEPROG_AC_DIVE_OILY_WATER,                0xBA2},
+    { FILEPROG_AA_HAS_TOUCHED_CCW_BRAMBLE_FIELD,  0xCE6},
+    { FILEPROG_F_HAS_TOUCHED_PIRAHANA_WATER,      0xC85},
+    { FILEPROG_A9_HAS_TOUCHED_RBB_OVEN,           0xBA0},
+    { FILEPROG_10_HAS_TOUCHED_SAND_EEL_SAND,      0xA7E},
+    { FILEPROG_14_HAS_TOUCHED_FP_ICY_WATER,       0xC11},
+    { FILEPROG_F_HAS_TOUCHED_PIRAHANA_WATER,      0xC85},
+    { FILEPROG_86_HAS_TOUCHED_MMM_THORN_HEDGE,    0xAE1},
+    { FILEPROG_DD_HAS_TOUCHED_ICY_WATER,          0xCE7},
+    { FILEPROG_3_MUSIC_NOTE_TEXT,                 0xD9C},
+    { FILEPROG_4_MUMBO_TOKEN_TEXT,                0xD9D},
+    { FILEPROG_5_BLUE_EGG_TEXT,                   0xD9E},
+    { FILEPROG_6_RED_FEATHER_TEXT,                0xD9F},
+    { FILEPROG_7_GOLD_FEATHER_TEXT,               0xDA0},
+    { FILEPROG_8_ORANGE_TEXT,                     0xB46},
+    { FILEPROG_9_GOLD_BULLION_TEXT,               0xA21},
+    { FILEPROG_A_HONEYCOMB_TEXT,                  0xDA1},
+    { FILEPROG_B_EMPTY_HONEYCOMB_TEXT,            0xDA2},
+    { FILEPROG_C_EXTRA_LIFE_TEXT,                 0xDA3},
+    { FILEPROG_BE_CHEATO_BLUEEGGS,                0xFA8},
+    { FILEPROG_BF_CHEATO_REDFEATHERS,             0xFA9},
+    { FILEPROG_C0_CHEATO_GOLDFEATHERS,            0xFAA},
     {0x95, 0xB50},
-    { BKPROG_A7_NEAR_PUZZLE_PODIUM_TEXT,        0xF7B},
+    { FILEPROG_A7_NEAR_PUZZLE_PODIUM_TEXT,        0xF7B},
     { -1, -1}
 };
 
@@ -71,24 +71,24 @@ static s32 __findIndex(unkD_80372730 *arg0, s32 arg1) {
     return -1;
 }
 
-s32 func_803563B8(enum bkprog_e arg0, s32 arg1) {
+s32 func_803563B8(enum file_progress_e arg0, s32 arg1) {
     s32 index;
 
-    if (func_8031FF1C(arg0) != 0) {
+    if (fileProgressFlag_get(arg0) != 0) {
         return 0;
     } else {
         index = __findIndex(D_80372730, arg0);
         if (index != -1) {
             if (func_80311480(D_80372730[index].value, arg1, 0, 0, 0, 0) != 0) {
-                func_80320004(arg0, 1);
+                fileProgressFlag_set(arg0, 1);
             }
-            return func_8031FF1C(arg0);
+            return fileProgressFlag_get(arg0);
         }
         return 0;
     }
 }
 
-void func_8035644C(s32 arg0){
+void func_8035644C(enum file_progress_e arg0){
     func_803563B8(arg0, 0);
 }
 

@@ -288,32 +288,32 @@ void func_8029D968(void){
                 case MAP_44_CCW_SUMMER://8029DB58
                 case MAP_45_CCW_AUTUMN://8029DB58
                 case MAP_46_CCW_WINTER://8029DB58
-                    func_8035644C(BKPROG_AA_HAS_TOUCHED_CCW_BRAMBLE_FIELD);
+                    func_8035644C(FILEPROG_AA_HAS_TOUCHED_CCW_BRAMBLE_FIELD);
                     break;
 
                 case MAP_D_BGS_BUBBLEGLOOP_SWAMP://8029DB68
                 case MAP_72_GL_BGS_LOBBY:
-                    func_8035644C(BKPROG_F_HAS_TOUCHED_PIRAHANA_WATER);
+                    func_8035644C(FILEPROG_F_HAS_TOUCHED_PIRAHANA_WATER);
                     break;
 
                 case MAP_3C_RBB_KITCHEN://8029DB78
-                    func_8035644C(BKPROG_A9_HAS_TOUCHED_RBB_OVEN);
+                    func_8035644C(FILEPROG_A9_HAS_TOUCHED_RBB_OVEN);
                     break;
 
                 case MAP_12_GV_GOBIS_VALLEY://8029DB88
                 case MAP_6E_GL_GV_LOBBY:
                 case MAP_8E_GL_FURNACE_FUN://8029DB88
-                    func_8035644C(BKPROG_10_HAS_TOUCHED_SAND_EEL_SAND);
+                    func_8035644C(FILEPROG_10_HAS_TOUCHED_SAND_EEL_SAND);
                     break;
 
                 case MAP_27_FP_FREEZEEZY_PEAK://8029DB98
                 case MAP_7F_FP_WOZZAS_CAVE://8029DB98
-                    func_8035644C(BKPROG_14_HAS_TOUCHED_FP_ICY_WATER);
+                    func_8035644C(FILEPROG_14_HAS_TOUCHED_FP_ICY_WATER);
                     break;
 
                 case MAP_1B_MMM_MAD_MONSTER_MANSION://8029DBA8
                     if(!func_8029CFA0())
-                        func_8035644C(BKPROG_86_HAS_TOUCHED_MMM_THORN_HEDGE);
+                        func_8035644C(FILEPROG_86_HAS_TOUCHED_MMM_THORN_HEDGE);
                     break;
             }
         }

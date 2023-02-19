@@ -4,7 +4,7 @@
 
 extern void func_8028F4B8(f32[3], f32, f32);
 extern void func_8028F66C(s32);
-extern void func_802D6310(f32, enum map_e, s32, s32, enum bkprog_e);
+extern void func_802D6310(f32, enum map_e, s32, s32, enum file_progress_e);
 extern void func_802EE354(Actor *, s32, s32, s32, f32, f32, f32, s32[4], s32, s32);
 extern void func_80324CFC(f32, enum comusic_e, s32);
 extern void func_8034DF30(s32, f32[4], f32[4], f32);
@@ -19,8 +19,8 @@ typedef struct {
     s16 unk6;
 }Struct_lair_42A0_0;
 
-void func_8038AE2C(Actor *this);
-Actor *func_8038B898(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
+void chWarpCauldron_update(Actor *this);
+Actor *chWarpCauldron_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 
 /* .data */
 ActorAnimationInfo D_80393520[] = {
@@ -33,8 +33,8 @@ ActorAnimationInfo D_80393520[] = {
     {0x28F, 5.167f},
     {0x290, 6.26f}
 };
-ActorInfo D_80393560 = { 0x231, 0x23B, 0x4DF, 1, D_80393520, func_8038AE2C, func_80326224, func_8038B898, 0, 0, 3.0f, 0};
-ActorInfo D_80393584 = { 0x244, 0x2DB, 0x450, 1, D_80393520, func_8038AE2C, func_80326224, func_8038B898, 0, 0, 3.0f, 0};
+ActorInfo D_80393560 = { MARKER_231_DINGPOT, ACTOR_23B_DINGPOT, ASSET_4DF_MODEL_WARP_CAULDRON, 1, D_80393520, chWarpCauldron_update, func_80326224, chWarpCauldron_draw, 0, 0, 3.0f, 0};
+ActorInfo D_80393584 = { MARKER_244_WARP_CAULDRON, ACTOR_2DB_WARP_CAULDRON, ASSET_450_MODEL_DINGPOT, 1, D_80393520, chWarpCauldron_update, func_80326224, chWarpCauldron_draw, 0, 0, 3.0f, 0};
 f32 D_803935A8[][2][3] = {
     {{1.0f, 1.0f, 1.0f}, {1.0f, 0.0f, 1.0f}}, 
     {{1.0f, 1.0f, 1.0f}, {0.0f, 1.0f, 1.0f}}, 
@@ -71,11 +71,11 @@ bool func_8038A690(Actor *this) {
     }
 }
 
-enum bkprog_e func_8038A6DC(Actor *this){
-    return this->unkF4_8 + 0x48;
+enum file_progress_e chWarpCauldron_getFileProgressFlagIndex(Actor *this){
+    return this->unkF4_8 -1 + 0x49;
 }
 
-enum bkprog_e func_8038A6EC(Actor *this){
+enum file_progress_e chWarpCauldron_getPairedFileProgressFlagIndex(Actor *this){
     return ((this->unkF4_8 - 1) ^ 1) + 0x49;
 }
 
@@ -129,8 +129,8 @@ void func_8038A96C(Actor *this, s32 arg1) {
     f32 sp38[4];
 
     if( ( (arg1 != 3) || ( (this->unk1C[1] == 0.0f) && (this->marker->unk14_21 == 1))) 
-        && (this->modelCacheIndex == 0x23B) 
-        && ((arg1 != 0) || func_8031FF1C(func_8038A6DC(this))) 
+        && (this->modelCacheIndex == ACTOR_23B_DINGPOT) 
+        && ((arg1 != 0) || fileProgressFlag_get(chWarpCauldron_getFileProgressFlagIndex(this))) 
     ){
         sp5C = func_8034C2C4(this->marker, 0x1C3);
         if(sp5C != 0){
@@ -145,7 +145,7 @@ void func_8038A96C(Actor *this, s32 arg1) {
                 func_8034DF30(sp5C, sp38, sp38, 0.3f);
             }
             else{
-                func_8034DF30(sp5C, sp48, sp38, func_8031FF1C(func_8038A6DC(this)) ? 0.3 : 3.0);
+                func_8034DF30(sp5C, sp48, sp38, fileProgressFlag_get(chWarpCauldron_getFileProgressFlagIndex(this)) ? 0.3 : 3.0);
             }
         }
     }
@@ -178,12 +178,12 @@ void func_8038AC7C(Actor *this) {
     if(
         (func_803114C4() != 0xFAD) 
         && func_80329530(this, 1200)
-        && !func_8031FF1C(0xFC)
+        && !fileProgressFlag_get(FILEPROG_FC_DEFEAT_GRUNTY)
     ) {
         this->unk60 += time_getDelta();
         if (35.0 < this->unk60) {
-            sp2C = (func_8031FF1C(0xCF)) ? 0xFB7 : 0xFAE;
-            sp28 = (func_8031FF1C(0xCF)) ? 0xFBC : 0xFB7;
+            sp2C = (fileProgressFlag_get(FILEPROG_CF_HAS_ENTERED_FINAL_FIGHT)) ? 0xFB7 : 0xFAE;
+            sp28 = (fileProgressFlag_get(FILEPROG_CF_HAS_ENTERED_FINAL_FIGHT)) ? 0xFBC : 0xFB7;
             if (func_80311480(sp2C + this->unk38_31, 0, NULL, NULL, NULL, NULL)) {
                 this->unk38_31++;
                 this->unk60 = 0.0f;
@@ -196,8 +196,8 @@ void func_8038AC7C(Actor *this) {
 }
 
 
-void func_8038ADC0(ActorMarker *marker, enum asset_e text_id, s32 arg2){
-    func_80320004(0xF3, TRUE);
+void __chWarpCauldron_dingpotDialogCallback(ActorMarker *marker, enum asset_e text_id, s32 arg2){
+    fileProgressFlag_set(FILEPROG_F3_MET_DINGPOT, TRUE);
 }
 
 bool lair_func_8038ADF0(s32 arg0, s32 arg1) {
@@ -209,7 +209,7 @@ bool lair_func_8038ADF0(s32 arg0, s32 arg1) {
     return phi_v1 < 70;
 }
 
-void func_8038AE2C(Actor *this) {
+void chWarpCauldron_update(Actor *this) {
     f32 sp54[3];
     s32 sp50;
     s32 sp4C;
@@ -227,10 +227,10 @@ void func_8038AE2C(Actor *this) {
         this->marker->propPtr->unk8_3 = TRUE;
         this->unk1C[1] = 0.0f;
         this->velocity[0] = this->yaw;
-        if (this->modelCacheIndex == 0x2DB) {
-            if (func_8031FF1C(0xF3)) {
-                sp4C = (func_8031FF1C(0xCF)) ? 0xFB7 : 0xFAE;
-                phi_v0 = (func_8031FF1C(0xCF)) ? 0xFBC : 0xFB7;
+        if (this->modelCacheIndex == ACTOR_2DB_WARP_CAULDRON) {
+            if (fileProgressFlag_get(FILEPROG_F3_MET_DINGPOT)) {
+                sp4C = (fileProgressFlag_get(FILEPROG_CF_HAS_ENTERED_FINAL_FIGHT)) ? 0xFB7 : 0xFAE;
+                phi_v0 = (fileProgressFlag_get(FILEPROG_CF_HAS_ENTERED_FINAL_FIGHT)) ? 0xFBC : 0xFB7;
                 this->unk60 = 35.0f;
                 this->unk38_31 = randi2(0, phi_v0 - sp4C);
             }
@@ -238,7 +238,7 @@ void func_8038AE2C(Actor *this) {
             func_80328B8C(this, 6, 0.99f, 1);
             func_802D09B8(this, 2);
         }
-        if (func_8031FF1C(func_8038A6DC(this))) {
+        if (fileProgressFlag_get(chWarpCauldron_getFileProgressFlagIndex(this))) {
             func_8038A704(this);
             func_802D09B8(this, 2);
             func_8038A96C(this, 2);
@@ -254,10 +254,10 @@ void func_8038AE2C(Actor *this) {
                 this->unk10_12 = 1;
                 func_8038AB90(this, 5, 1, 0, 0.0f);
             }
-            if (!func_8031FF1C(0xF5) && func_8031FF1C(func_8038A6EC(this))) {
+            if (!fileProgressFlag_get(FILEPROG_F5_COMPLETED_A_WARP_CAULDRON_SET) && fileProgressFlag_get(chWarpCauldron_getPairedFileProgressFlagIndex(this))) {
                 if (func_802D677C(-1) != map_get()) {
                     func_80311480(0xF7A, 4, NULL, NULL, NULL, NULL);
-                    func_80320004(0xF5, 1);
+                    fileProgressFlag_set(FILEPROG_F5_COMPLETED_A_WARP_CAULDRON_SET, 1);
                 }
             }
         }
@@ -275,12 +275,12 @@ void func_8038AE2C(Actor *this) {
                 func_8038A96C(this, 1);
                 func_802BAFE4(D_80393620[this->unkF4_8 - 1].unk3);
                 func_802D09B8(this, 2);
-                phi_a0 = (func_8031FF1C(func_8038A6EC(this)) != 0) ? SFX_107_CAULDRON_ACTIVATION_1 : SFX_108_CAULDRON_ACTIVATION_2;
-                func_8030E510(phi_a0, 0x7D00);
-                if (!func_8031FF1C(0xF5) && !func_8031FF1C(func_8038A6EC(this))) {
+                phi_a0 = (fileProgressFlag_get(chWarpCauldron_getPairedFileProgressFlagIndex(this)) != 0) ? SFX_107_CAULDRON_ACTIVATION_1 : SFX_108_CAULDRON_ACTIVATION_2;
+                func_8030E510(phi_a0, 32000);
+                if (!fileProgressFlag_get(FILEPROG_F5_COMPLETED_A_WARP_CAULDRON_SET) && !fileProgressFlag_get(chWarpCauldron_getPairedFileProgressFlagIndex(this))) {
                     func_80311480(0xF79, 4, NULL, NULL, NULL, NULL);
                 }
-                if (func_8031FF1C(func_8038A6EC(this))){
+                if (fileProgressFlag_get(chWarpCauldron_getPairedFileProgressFlagIndex(this))){
                     switch(this->unkF4_8){
                         case 2://L8038B204
                             func_802D6310(2.0f, MAP_6A_GL_TTC_AND_CC_PUZZLE, 0x62, 0x22, 0);
@@ -326,7 +326,7 @@ void func_8038AE2C(Actor *this) {
             this->unk38_0 = (sp3C & 1) ? TRUE : FALSE;
             if (actor_animationIsAt(this, 0.95f)) {
                 func_8038A704(this);
-                func_80320004(func_8038A6DC(this), 1);
+                fileProgressFlag_set(chWarpCauldron_getFileProgressFlagIndex(this), 1);
                 func_8028F918(0);
                 this->unk1C[2] = 4.0f;
             }
@@ -338,7 +338,7 @@ void func_8038AE2C(Actor *this) {
                 this->unk1C[2] = this->unk1C[2] - 1.0f;
             } else {
                 func_8038AB90(this, 5, 1, 0, 0.0f);
-                func_8038AB90(this, 4, 2, 0xA6, 2.6f);
+                func_8038AB90(this, 4, 2, SFX_A6_MAGICAL_FINISH, 2.6f);
             }
             func_8038A96C(this, 3);
             break;
@@ -384,14 +384,14 @@ void func_8038AE2C(Actor *this) {
             break;
 
         case 6: //L8038B64C
-            if (func_8038A690(this) && !func_8031FF1C(0xF3)) {
-                func_80311480(0xFAD, 0xA, this->position, NULL, func_8038ADC0, NULL);
+            if (func_8038A690(this) && !fileProgressFlag_get(FILEPROG_F3_MET_DINGPOT)) {
+                func_80311480(0xFAD, 0xA, this->position, NULL, __chWarpCauldron_dingpotDialogCallback, NULL);
             }
             this->unk38_0 = TRUE;
 
             sp3C = 0;
-            if (func_8031FF1C(0xFC)){
-                if(jiggyscore_total() == 0x64){
+            if (fileProgressFlag_get(FILEPROG_FC_DEFEAT_GRUNTY)){
+                if(jiggyscore_total() == 100){
                     sp3C = 1;
                 }
             }
@@ -429,12 +429,12 @@ void func_8038AE2C(Actor *this) {
     this->unk1C[1] = (f32)this->marker->unk14_21;
 }
 
-Actor *func_8038B898(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
+Actor *chWarpCauldron_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     Actor *this;
     s32 sp3C[4];
 
     this = marker_getActor(marker);
-    if(this->modelCacheIndex == 0x23B) {
+    if(this->modelCacheIndex == ACTOR_23B_DINGPOT) {
         func_8033A45C(3, this->unk38_0 ? TRUE : FALSE);
         func_8033A45C(4, this->unk38_0 ? FALSE : TRUE);
     }

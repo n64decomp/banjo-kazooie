@@ -1570,7 +1570,7 @@ void chfinalboss_phase3_update(ActorMarker *marker) {
 
 
 void func_80389F54(void) {
-    func_80320004(BKPROG_D2_HAS_SPAWNED_A_JINJO_STATUE_IN_FINAL_FIGHT, TRUE);
+    fileProgressFlag_set(FILEPROG_D2_HAS_SPAWNED_A_JINJO_STATUE_IN_FINAL_FIGHT, TRUE);
     D_803927C4 = (u8)0;
 }
 
@@ -1597,7 +1597,7 @@ void chfinalboss_phase4_setState(Actor *this, s32 arg1) {
         if ((local->unk3 == 2) && (local->unkA == 0)) {
             D_803927C8 = 1;
             func_80311480(randi2(0, 5) + 0x1136, 4, NULL, NULL, NULL, NULL);
-            if ( !func_8031FF1C(BKPROG_D2_HAS_SPAWNED_A_JINJO_STATUE_IN_FINAL_FIGHT) ) {
+            if ( !fileProgressFlag_get(FILEPROG_D2_HAS_SPAWNED_A_JINJO_STATUE_IN_FINAL_FIGHT) ) {
                 local->unkA = 1U;
                 D_803927C4 = 1;
                 func_80324E38(0.0f, 1);
@@ -1725,8 +1725,8 @@ void chfinalboss_phase4_update(ActorMarker *marker) {
     sp6C = chfinalboss_findCollidingJinjo(this, func_8033229C(this->marker));
     if (sp6C != NULL) {
         chbossjinjo_attack(sp6C);
-        if (!func_8031FF1C(BKPROG_D1_HAS_ACTIVATED_A_JINJO_STATUE_IN_FINAL_FIGHT)) {
-            func_80320004(BKPROG_D1_HAS_ACTIVATED_A_JINJO_STATUE_IN_FINAL_FIGHT, TRUE);
+        if (!fileProgressFlag_get(FILEPROG_D1_HAS_ACTIVATED_A_JINJO_STATUE_IN_FINAL_FIGHT)) {
+            fileProgressFlag_set(FILEPROG_D1_HAS_ACTIVATED_A_JINJO_STATUE_IN_FINAL_FIGHT, TRUE);
             D_803927C4 = 0;
             func_80324E88(1.0f);
             func_80324E38(1.0f, 0);
@@ -2142,8 +2142,8 @@ void func_8038B780(ActorMarker *marker) {
     Actor *sp24;
 
     sp24 = marker_getActor(marker);
-    if (!func_8031FF1C(BKPROG_CF_HAS_ENTERED_FINAL_FIGHT)) {
-        func_80320004(BKPROG_CF_HAS_ENTERED_FINAL_FIGHT, TRUE);
+    if (!fileProgressFlag_get(FILEPROG_CF_HAS_ENTERED_FINAL_FIGHT)) {
+        fileProgressFlag_set(FILEPROG_CF_HAS_ENTERED_FINAL_FIGHT, TRUE);
         func_80311480(0x10E7, 0x2A, sp24->position, sp24->marker, chfinalboss_phase0_endTextCallback, NULL);
     }
     else{
@@ -2421,7 +2421,7 @@ void func_8038C148(void) {
     temp_f20 = sp34 + chjinjonator_80391234();
     sp40 = chjinjonator_80391240();
     camera_node = 0x14;
-    func_80320004(BKPROG_FC_DEFEAT_GRUNTY, TRUE);
+    fileProgressFlag_set(FILEPROG_FC_DEFEAT_GRUNTY, TRUE);
     if (sp48->mirror_phase5 != 0) {
         camera_node = 0x23;
     }

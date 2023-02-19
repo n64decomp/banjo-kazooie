@@ -5,7 +5,7 @@
 
 extern void func_8030DBFC(u32, f32, f32, f32);
 extern bool func_80309DBC(f32[3], f32[3], f32, f32 sp54[3], s32, s32);
-extern void func_80320004(s32, bool);
+extern void fileProgressFlag_set(s32, bool);
 extern void func_8030DEB4(u8, f32, f32);
 extern void func_8030DF68(u8, f32[3]);
 extern void func_8030E2C4(u8);
@@ -373,7 +373,7 @@ void chBeeSwarm_update(Actor *this) {
          local->unk24 = (this->unk100 != NULL) ? this->unk100->unk5C : 0;
         local->unk5 = 1;
         if (this->unk100 != NULL) {
-            func_80320004(BKPROG_D_BEEHIVE_TEXT, TRUE);
+            fileProgressFlag_set(FILEPROG_D_BEEHIVE_TEXT, TRUE);
         }
         func_80328A84(this, (this->unk100 != NULL) ? 1 : 2);
         this->unk60 = 0.0f;
@@ -445,12 +445,12 @@ void chBeeSwarm_update(Actor *this) {
     func_8028E9C4(5, spB4);
     switch (this->state) {
     case 1:
-        if (!func_8031FF1C(0x8F) && subaddie_playerIsWithinCylinder(this, 250, 300) 
+        if (!fileProgressFlag_get(FILEPROG_8F_MET_BEE_INFESTED_BEEHIVE) && subaddie_playerIsWithinCylinder(this, 250, 300) 
             && ((func_8028ECAC() == 0) || (func_8028ECAC() == BSGROUP_8_TROT)) 
             && (player_getTransformation() == TRANSFORM_1_BANJO) 
             && (func_80311480(0xDA6, 0, NULL, NULL, NULL, NULL) != 0)
         ) {
-            func_80320004(0x8F, TRUE);
+            fileProgressFlag_set(FILEPROG_8F_MET_BEE_INFESTED_BEEHIVE, TRUE);
         }
         if (chBeeSwarm_802CF5E4(this)) {
             func_80328A84(this, 2U);

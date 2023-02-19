@@ -4,7 +4,7 @@
 
 extern void func_8028F918(s32);
 
-void func_8031A9E4(Actor *this);
+void chMinigame_update(Actor *this);
 
 enum minigame_e {
     MINIGAME_0_BOSS_BOOM_BOX,
@@ -16,16 +16,22 @@ enum minigame_e {
     MINIGAME_F_INVALID = 0xF
 };
 
+enum chminigame_state_e {
+    MINIGAME_STATE_1_INTRODUCE_GAME = 1,
+    MINIGAME_STATE_2_IN_PROGESS,
+    MINIGAME_STATE_3_RETURN_TO_FF,
+};
+
 /* .data */
-ActorInfo D_8036D970 = { 
-    0x1E1, 0x376, 0x0, 
-    0x1, NULL,
-    func_8031A9E4, func_80326224, func_80325340, 
+ActorInfo chMinigame = { 
+    MARKER_1E1_FF_MINIGAME, ACTOR_376_FF_MINIGAME, 0x0, 
+    MINIGAME_STATE_1_INTRODUCE_GAME, NULL,
+    chMinigame_update, func_80326224, func_80325340, 
     0, 0, 0.0f, 0
 };
 
 /* .code */
-enum minigame_e func_8031A580(void){
+enum minigame_e __chminigame_getCurrentMapId(void){
     switch(map_get()){
         case MAP_3A_RBB_BOSS_BOOM_BOX:
             return MINIGAME_0_BOSS_BOOM_BOX;
@@ -45,7 +51,7 @@ enum minigame_e func_8031A580(void){
     return MINIGAME_F_INVALID;
 }
 
-void func_8031A618(Actor *this) {
+void __chMinigame_hideSandcastleJiggy(Actor *this) {
     Actor *jiggy;
 
     if (this->unk10_12 == MINIGAME_5_SANDCASTLE) {
@@ -80,7 +86,7 @@ void func_8031A678(Actor *this){
             break;
 
         case MINIGAME_5_SANDCASTLE:
-            sp2C = func_8034C528(0x191);
+            sp2C = func_8034C528(0x191); //lower water
             func_8034DEB4(sp2C, -1000.0f);
             break;
 
@@ -96,37 +102,37 @@ void func_8031A678(Actor *this){
     }
 }
 
-void func_8031A794(ActorMarker *marker, enum asset_e text_id, s32 arg2){
+void __chMinigame_textCallback1(ActorMarker *marker, enum asset_e text_id, s32 arg2){
     Actor *this = marker_getActor(marker);
     this->unk138_24 = TRUE;
 }
 
-void func_8031A7C4(ActorMarker *marker, enum asset_e text_id, s32 arg2){
+void __chMinigame_transformToCroc(ActorMarker *marker, enum asset_e text_id, s32 arg2){
     if(arg2 == 1){
         func_8028FB88(TRANSFORM_5_CROC);
     }
 }
 
-void func_8031A7F4(Actor *this, u32 arg1) {
+void __chMinigame_setState(Actor *this, u32 arg1) {
     switch (arg1) {
-        case 1:
+        case MINIGAME_STATE_1_INTRODUCE_GAME:
             func_8028F918(2);
             if (this->unk10_12 == MINIGAME_1_VILE) {
                 func_80347A14(0);
             }
             if (func_803203FC(this->unk10_12 + 6) == 0) {
-                func_80324DBC(2.0f, this->unk10_12 + 0x1026, 0xA2, NULL, this->marker, func_8031A794, func_8031A7C4);
+                func_80324DBC(2.0f, this->unk10_12 + 0x1026, 0xA2, NULL, this->marker, __chMinigame_textCallback1, __chMinigame_transformToCroc);
                 func_803204E4(this->unk10_12 + 6, 1);
                 this->unk138_23 = TRUE;
             } else {
-                func_80324DBC(2.0f, 0xD38, 0x20, NULL, this->marker, func_8031A794, NULL);
+                func_80324DBC(2.0f, 0xD38, 0x20, NULL, this->marker, __chMinigame_textCallback1, NULL);
             }
             break;
-        case 2:
+        case MINIGAME_STATE_2_IN_PROGESS:
             func_8028F918(0);
             func_803204E4(3, 1);
             break;
-        case 3:
+        case MINIGAME_STATE_3_RETURN_TO_FF:
             func_803204E4(4, 1);
             func_8028F918(2);
             func_8025AB00();
@@ -139,22 +145,22 @@ void func_8031A7F4(Actor *this, u32 arg1) {
     func_80328A84(this, arg1);
 }
 
-void func_8031A9BC(Actor *this){
+void __chMinigame_free(Actor *this){
     func_803204E4(3, 0);
 }
 
-void func_8031A9E4(Actor *this){
+void chMinigame_update(Actor *this){
     if(!this->unk16C_4){
         this->unk16C_4 = 1;
-        this->unk10_12 = func_8031A580();
+        this->unk10_12 = __chminigame_getCurrentMapId();
         actor_collisionOff(this);
         if(!func_803203FC(2)){
             func_8031A678(this);
             return;
         }
     
-        func_8031A618(this);
-        marker_setFreeMethod(this->marker, func_8031A9BC);
+        __chMinigame_hideSandcastleJiggy(this);
+        marker_setFreeMethod(this->marker, __chMinigame_free);
         func_8028FAB0(this->position);
         this->unk1C[0] = 0.0f; this->unk1C[1] = this->yaw; this->unk1C[2] = 0.0f;
         func_8028FAEC(this->unk1C);
@@ -165,24 +171,24 @@ void func_8031A9E4(Actor *this){
         }
         func_803204E4(5, 0);
         func_803204E4(3, 0);
-        func_8031A7F4(this, 1);
+        __chMinigame_setState(this, MINIGAME_STATE_1_INTRODUCE_GAME);
         gcpausemenu_80314AC8(0);
     }
     if(func_803203FC(2)){
         switch(this->state){
-            case 1://L8031AB2C
+            case MINIGAME_STATE_1_INTRODUCE_GAME://L8031AB2C
                 if(this->unk138_24)
-                    func_8031A7F4(this, 2);
+                    __chMinigame_setState(this, MINIGAME_STATE_2_IN_PROGESS);
                 break;
-            case 2://L8031AB50
+            case MINIGAME_STATE_2_IN_PROGESS://L8031AB50
                 func_8028FA14(MAP_8E_GL_FURNACE_FUN, 2);
                 if(item_getCount(ITEM_14_HEALTH) == 0)
                     item_set(ITEM_6_HOURGLASS, 0);
                 if(!func_803203FC(3)){
-                    func_8031A7F4(this, 3);
+                    __chMinigame_setState(this, MINIGAME_STATE_3_RETURN_TO_FF);
                 }
                 break;
-            case 3:
+            case MINIGAME_STATE_3_RETURN_TO_FF:
                 break;
         }
     }//L8031AB8C

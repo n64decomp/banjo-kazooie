@@ -55,7 +55,7 @@ void func_80387F64(Actor *this, s32 next_state){
         if (map_get() == MAP_43_CCW_SPRING) {
             func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);
         }
-        func_80320004(local->unk0->unk8, 1);
+        fileProgressFlag_set(local->unk0->unk8, TRUE);
         func_80335924(this->unk148, local->unk0->unk4, 0.0f, 6.0f);
         func_80335A8C(this->unk148, 2);
         if (map_get() == MAP_43_CCW_SPRING) {
@@ -107,7 +107,7 @@ Actor *CCW_func_803882F4(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     s32 sp18;
 
     this = marker_getActor(marker);
-    if ((this->state == 1) && !func_8031FF1C(0xE3)) {
+    if ((this->state == 1) && !fileProgressFlag_get(FILEPROG_E3_CCW_FLOWER_SPRING)) {
         return func_80325340(marker, gfx, mtx, vtx);
     }
 
@@ -147,16 +147,16 @@ void func_80388478(Actor *this) {
         marker_setCollisionScripts(this->marker, NULL, CCW_func_80388278, func_803882A4);
         actor_collisionOn(this);
         if (!jiggyscore_isSpawned(JIGGY_4D_CCW_FLOWER)) {
-            func_80320004(0xE5, FALSE);
+            fileProgressFlag_set(FILEPROG_E5_CCW_FLOWER_AUTUMN, FALSE);
         }
         
         for(local->unk0 = &D_8038EC40[0]; local->unk0 < D_8038EC40 + 3; local->unk0++){
-            if(!func_8031FF1C(local->unk0->unk8)){
+            if(!fileProgressFlag_get(local->unk0->unk8)){
                 break;
             }
         }
 
-        if (!func_8031FF1C(0xE3) && (map_get() != MAP_43_CCW_SPRING)) {
+        if (!fileProgressFlag_get(FILEPROG_E3_CCW_FLOWER_SPRING) && (map_get() != MAP_43_CCW_SPRING)) {
             marker_despawn(this->marker);
         }
         else{

@@ -142,16 +142,16 @@ void chGobiCCW_update(Actor *this) {
         local->spit_model = assetcache_get(ASSET_3F3_MODEL_GOBI_SPIT);
         marker_setCollisionScripts(this->marker, 0, func_8038894C, 0);
         if(!jiggyscore_isSpawned(JIGGY_4D_CCW_FLOWER)) {
-            func_80320004(0xE5, 0);
+            fileProgressFlag_set(FILEPROG_E5_CCW_FLOWER_AUTUMN, FALSE);
         }
         local->unk0 = &D_8038ECD0[0];
         while((local->unk0->map_id != 0) && (map_get() != local->unk0->map_id)) {
             local->unk0++;
         }
 
-        if( (map_get() == MAP_44_CCW_SUMMER) && func_8031FF1C(0xE3) && !func_8031FF1C(0xE4)) {
+        if( (map_get() == MAP_44_CCW_SUMMER) && fileProgressFlag_get(FILEPROG_E3_CCW_FLOWER_SPRING) && !fileProgressFlag_get(FILEPROG_E4_CCW_FLOWER_SUMMER)) {
             CCW_func_8038868C(this, 1);
-        } else if( (map_get() == MAP_45_CCW_AUTUMN) && func_8031FF1C(0xE4) && !func_8031FF1C(0xE5) ) {
+        } else if( (map_get() == MAP_45_CCW_AUTUMN) && fileProgressFlag_get(FILEPROG_E4_CCW_FLOWER_SUMMER) && !fileProgressFlag_get(FILEPROG_E5_CCW_FLOWER_AUTUMN) ) {
             CCW_func_8038868C(this, 1);
         } else{
             marker_despawn(this->marker);

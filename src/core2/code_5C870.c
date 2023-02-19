@@ -381,7 +381,7 @@ void func_802E4214(enum map_e map_id){
     D_8037E8E0.unk1B = D_8037E8E0.unk1A = 0;
     D_8037E8E0.unkC = 0;
     D_8037E8E0.unk1C = 0;
-    func_8033C070();
+    savedata_init();
     sns_save_and_update_global_data();
     func_8030D86C();
     func_80259A24();

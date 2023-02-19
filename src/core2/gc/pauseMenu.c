@@ -44,7 +44,7 @@ void func_802DC560(s32, s32);
 s32 func_8024E67C(s32 controller_index);
 bool func_803188B4(gczoombox_t*);
 bool func_803183A4(gczoombox_t*, char *);
-bool func_8031FF1C(enum bkprog_e);
+bool fileProgressFlag_get(enum file_progress_e);
 enum map_e map_get(void);
 bool func_802FD2D4(void);
 bool func_802FC3C4(void);
@@ -1014,7 +1014,7 @@ s32 gcPauseMenu_update(void){
                 case 3://L8031399C
                     func_802C5994();
                     func_803204E4(0,0);
-                    if(!func_8031FF1C(BKPROG_BD_ENTER_LAIR_CUTSCENE) || func_8031FF1C(BKPROG_A6_FURNACE_FUN_COMPLETE)){
+                    if(!fileProgressFlag_get(FILEPROG_BD_ENTER_LAIR_CUTSCENE) || fileProgressFlag_get(FILEPROG_A6_FURNACE_FUN_COMPLETE)){
                         gcPauseMenu_setState(0x14);
                     }else{
                         func_802E412C(1,0);

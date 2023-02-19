@@ -26,7 +26,7 @@ ActorInfo D_803920E8 = { 0x204, 0x336, 0x442,
 /* .code */
 Actor *FP_func_8038CED0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     Actor *this = marker_getActor(marker);
-    if( func_8038BFA0() || func_8031FF1C(BKPROG_13) ){
+    if( func_8038BFA0() || fileProgressFlag_get(FILEPROG_13) ){
         if(0.0f == this->velocity[1])
             return this;
     }
@@ -240,7 +240,7 @@ void func_8038D51C(ActorMarker *marker){
     Actor *this = marker_getActor(marker);
     
     item_set(ITEM_6_HOURGLASS, FALSE);
-    func_80320004(BKPROG_13, TRUE);
+    fileProgressFlag_set(FILEPROG_13, TRUE);
     FUNC_8030E624(SFX_416, 0.8f, 32000);
     func_8028F8F8(7, 0);
     this->unk1C[1] = 1.0f;
@@ -281,7 +281,7 @@ void func_8038D6C8(Actor *this){
     sp24 = time_getDelta();
     mapSpecificFlags_set(0xd, (this->state != 1 && this->state != 2) ? TRUE : FALSE);
     
-    if(func_8038BFA0() || func_8031FF1C(BKPROG_13)){
+    if(func_8038BFA0() || fileProgressFlag_get(FILEPROG_13)){
         this->marker->propPtr->unk8_3 = FALSE;
         actor_collisionOff(this);
         func_8028F8F8(7, FALSE);

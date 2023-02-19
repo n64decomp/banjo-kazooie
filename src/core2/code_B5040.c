@@ -65,7 +65,7 @@ s32 D_80383D08; //savedata_jiggy_offset
 s32 D_80383D0C; //saved_item_offset
 s32 D_80383D10; //abilities_offset
 s32 D_80383D14; //end_offset
-u8 D_80383D18;
+u8 D_80383D18[8];
 
 /* .code */
 void savedata_update_crc(s32 buffer, s32 size){
@@ -90,7 +90,7 @@ int _savedata_verify(SaveData *savedata, s32 size){
     return 0;
 }
 
-void func_8033C070(void){ //savedata_init
+void savedata_init(void){ //savedata_init
     s32 sp54;
     s32 sp50;
     s32 sp4C;
@@ -211,7 +211,7 @@ void func_8033C4E4(u8 *savedata){ //saveddata_load_collectibles
     func_803479C0(sp28);
 }
 
-void func_8033C570(u8 *savedata){ //savedata_load_abilities
+void __savedata_load_abilities(u8 *savedata){ //savedata_load_abilities
     s32 sp2C;
     u8 *sp28;
     int i;
@@ -281,7 +281,7 @@ void __savedata_save_timeScores(u8 *savedata){
     }
 }
 
-void func_8033C8A0(u8 *savedata){ //global_progress
+void __savedata_8033C8A0(u8 *savedata){ //global_progress
     s32 sp2C;
     u8 *sp28;
     int i;
@@ -292,7 +292,7 @@ void func_8033C8A0(u8 *savedata){ //global_progress
     }
 }
 
-void func_8033C924(u8 *savedata){ //saveddata_save_collectibles
+void __savedata_8033CA2C(u8 *savedata){ //saveddata_save_collectibles
     s32 sp2C;
     u8 *sp28;
     int i;
@@ -303,7 +303,7 @@ void func_8033C924(u8 *savedata){ //saveddata_save_collectibles
     }
 }
 
-void func_8033C9A8(u8 *savedata){ //savedata_save_abilities
+void __savedata_save_abilities(u8 *savedata){ //savedata_save_abilities
     s32 sp2C;
     u8 *sp28;
     int i;
@@ -314,7 +314,7 @@ void func_8033C9A8(u8 *savedata){ //savedata_save_abilities
     }
 }
 
-s32 func_8033CA2C(s32 filenum, SaveData *save_data){
+s32 savedata_8033CA2C(s32 filenum, SaveData *save_data){
     s32 sp1C;
     
     sp1C = load_file_blocks(filenum, 0, save_data, 0xF);
@@ -327,7 +327,7 @@ s32 func_8033CA2C(s32 filenum, SaveData *save_data){
     return sp1C;
 }
 
-s32 func_8033CA9C(SaveData *savedata){
+s32 savedata_8033CA9C(SaveData *savedata){
     s32 sp1C;
     
     sp1C = load_file_blocks(0, 0x3C, savedata, 0x4);
@@ -357,16 +357,16 @@ void saveData_load(SaveData *savedata){
     __savedata_load_highNoteScores(savedata);
     __savedata_load_timeScores(savedata);
     func_8033C4E4(savedata);
-    func_8033C570(savedata);
+    __savedata_load_abilities(savedata);
     for(i = 0; D_80370A20[i].unk0 != -1; i++){
-        func_803204E4(D_80370A20[i].unk0, func_8031FF1C(D_80370A20[i].unk2));
+        func_803204E4(D_80370A20[i].unk0, fileProgressFlag_get(D_80370A20[i].unk2));
     }
 }
 
 void saveData_create(SaveData *savedata){
     int i;
     for(i = 0; D_80370A20[i].unk0 != -1; i++){
-        func_80320004(D_80370A20[i].unk2, func_803203FC(D_80370A20[i].unk0));
+        fileProgressFlag_set(D_80370A20[i].unk2, func_803203FC(D_80370A20[i].unk0));
     }
     savedata_clear(savedata);
     func_8033C5F4(savedata);
@@ -375,13 +375,13 @@ void saveData_create(SaveData *savedata){
     __savedata_save_mumboScore(savedata);
     __savedata_save_highNoteScores(savedata);
     __savedata_save_timeScores(savedata);
-    func_8033C8A0(savedata);
-    func_8033C924(savedata);
-    func_8033C9A8(savedata);
+    __savedata_8033C8A0(savedata);
+    __savedata_8033CA2C(savedata);
+    __savedata_save_abilities(savedata);
     savedata_update_crc(savedata, sizeof(SaveData));
 }
 
-int func_8033CC98(s32 filenum, u8 *buffer){
+int savedata_8033CC98(s32 filenum, u8 *buffer){
     int out;
     out = write_file_blocks(filenum, 0, buffer, 0xF);
     if(out){
@@ -390,16 +390,16 @@ int func_8033CC98(s32 filenum, u8 *buffer){
     return out;
 }
 
-int func_8033CCD0(s32 filenum){
+int savedata_8033CCD0(s32 filenum){
     int out;
-    out = write_file_blocks(filenum, 0, &D_80383D18, 1);
+    out = write_file_blocks(filenum, 0, D_80383D18, 1);
     if(out){
         out = 1;
     }
     return out;
 }
 
-int func_8033CD0C(u8 *buffer){
+int savedata_8033CE40(u8 *buffer){
     int out;
     savedata_update_crc(buffer, 0x20);
     out = write_file_blocks(0, 0x3C, buffer, 4);

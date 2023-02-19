@@ -171,8 +171,8 @@ void func_802C4768(s32 gamenum){
     func_8031FBF8();
     D_80365E00 = gamenum;
     func_8031FBA0();
-    if(func_8033D1BC(gamenum)){
-        func_8033D13C(gamenum);
+    if(gameFile_isNotEmpty(gamenum)){
+        gameFile_load(gamenum);
         D_8037DCCE[gamenum] = (itemscore_timeScores_get(LEVEL_6_LAIR)) ? 1 : 0;
     
         strcpy(D_8037DD48, "");
@@ -235,7 +235,7 @@ void func_802C4768(s32 gamenum){
 }
 
 void func_802C4AC8(s32 arg0){
-    func_8033D0FC(arg0);
+    gameFile_clear(arg0);
     func_802C4768(arg0);
 }
 
@@ -253,7 +253,7 @@ void func_802C4AF0(Actor * this){
     }
 
     for(i = 0; i < 3; i++){
-        func_8033CFD4(i);
+        gameFile_8033CFD4(i);
     }
 
     if(D_8037DD28){
@@ -393,14 +393,14 @@ void func_802C4C14(Actor *this){
                 case 4://L802C50C8
                     if(animctrl_isStopped(this->animctrl)){
                         chBottlesBonus_func_802DEB80();
-                        if(!func_8033D1BC(sp84)){
+                        if(!gameFile_isNotEmpty(sp84)){
                             timedFunc_set_3(0.0f, (GenMethod_3)func_802E4078, MAP_85_CS_SPIRAL_MOUNTAIN_3, 0, 1);
                         }
                         else{//L802C511C
                             sp44 = 0.0f;
                             if(this->state == 4 &&  (sp84 == 0 || sp84 == 1))
                                 sp44 = 0.25f;
-                            if(func_802DA498() && func_8031FF1C(BKPROG_BD_ENTER_LAIR_CUTSCENE)){
+                            if(func_802DA498() && fileProgressFlag_get(FILEPROG_BD_ENTER_LAIR_CUTSCENE)){
                                 timedFunc_set_2(sp44, (GenMethod_2)func_8031FB14, 0, 0);
                             }
                             else{//L802C5188
@@ -413,7 +413,7 @@ void func_802C4C14(Actor *this){
                     break;
                 case 2://L802C51CC
                     if(sp74[0] == 1){
-                        if(func_8033D1BC(sp84)){
+                        if(gameFile_isNotEmpty(sp84)){
                             func_8031877C(chGameSelectTopZoombox);
                             func_803183A4(chGameSelectTopZoombox, (&D_80365DFC)[func_8031B5B0()]);
                             D_8037DD2C = 1;
@@ -424,7 +424,7 @@ void func_802C4C14(Actor *this){
                         }
                     }
                     else if(sp5C[FACE_BUTTON(BUTTON_A)] == 1){//L802C5250
-                        if(func_8033D1BC(sp84)){
+                        if(gameFile_isNotEmpty(sp84)){
                             if(randf() < 0.1){
                                 switch(sp84){
                                     case 0://L802C52B8
@@ -543,7 +543,7 @@ void func_802C5740(Actor * this){
     D_8037DCE0.unk4 = (&D_80365DF8)[i];
 
     if(!this->initialized){
-        func_8033CE40();
+        gameFile_8033CE40();
          if(chGameSelectBottomZoombox == NULL){
             chGameSelectBottomZoombox = gczoombox_new(0xA0, TALK_PIC_C_BANJO_2, 2, 0, NULL);
             gczoombox_open(chGameSelectBottomZoombox);
@@ -591,8 +591,8 @@ void func_802C5994(void){
     if( a1 || t6)
     {
         if(D_80365E00 != -1 && !func_802E4A08() && map_get() != MAP_91_FILE_SELECT){
-            func_8033D17C(D_80365E00);
-            func_8033CFD4(D_80365E00);
+            gameFile_save(D_80365E00);
+            gameFile_8033CFD4(D_80365E00);
         }
     }
 }

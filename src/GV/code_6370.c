@@ -50,13 +50,13 @@ void func_8038C760(Actor *this, s32 arg1){
     timed_setCameraToNode(0.0f, 8);
     if(arg1 < 3){
         timed_setCameraToNode(3.5f, arg1 + 0x15);
-        timedFunc_set_3(3.5f, (GenMethod_3)func_80320044, BKPROG_F8_KING_SANDYBUTT_PYRAMID_STATE, arg1, 2);
+        timedFunc_set_3(3.5f, (GenMethod_3)fileProgressFlag_setN, FILEPROG_F8_KING_SANDYBUTT_PYRAMID_STATE, arg1, 2);
         func_80324E88(6.5f);
         func_80324E38(6.5f, 0);
     }
     else{
         timedFunc_set_2(3.5f, (GenMethod_2)func_8025A6EC, COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 0x7fff);
-        timedFunc_set_3(3.5f, (GenMethod_3)func_80320044, BKPROG_F8_KING_SANDYBUTT_PYRAMID_STATE, arg1, 2);
+        timedFunc_set_3(3.5f, (GenMethod_3)fileProgressFlag_setN, FILEPROG_F8_KING_SANDYBUTT_PYRAMID_STATE, arg1, 2);
         func_80324E88(6.0f);
         func_80324E38(6.0f, 0);
     }
@@ -158,7 +158,7 @@ void func_8038CC98(Actor *this){
     f32 sp48[3];
 
     if(!this->unk16C_4){
-        sp7C = func_8031FF44(BKPROG_F8_KING_SANDYBUTT_PYRAMID_STATE, 2);
+        sp7C = fileProgressFlag_getN(FILEPROG_F8_KING_SANDYBUTT_PYRAMID_STATE, 2);
         this->unk16C_4 = TRUE;
         this->marker->unk30 = func_8038C880;
         local->unk8 = &D_803911F0[this->modelCacheIndex - 0x285];
@@ -185,7 +185,7 @@ void func_8038CC98(Actor *this){
     }
 
     if(this->state == 1){
-        if(func_8031FF44(BKPROG_F8_KING_SANDYBUTT_PYRAMID_STATE, 2) == *local->unk8){
+        if(fileProgressFlag_getN(FILEPROG_F8_KING_SANDYBUTT_PYRAMID_STATE, 2) == *local->unk8){
             func_8038C8A0(this, 2);
         }
     }

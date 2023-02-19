@@ -236,7 +236,7 @@ void func_803892C8(ActorMarker *marker, enum asset_e text_id, s32 arg2){
 
 void func_80389494(Actor * this, s32* arg1, s32 *arg2){
     if(ability_isUnlocked(D_8038AFB4[this->unkF4_8 -1].unk5)){
-        if(func_8031FF1C(0xDB)){
+        if(fileProgressFlag_get(FILEPROG_DB_SKIPPED_TUTORIAL)){
             *arg1 = D_8038AFE4 + 0xE0A; //dialog index
             D_8038AFE4++;
             D_8038AFE4 = MIN(D_8038AFE4, 5);
@@ -267,7 +267,7 @@ void SM_func_80389610(Actor * this){
         case 1://L8038965C
             if(mapSpecificFlags_get(1)){
                 sp28 |= 1;
-                if(func_8031FF1C(0xDB)){
+                if(fileProgressFlag_get(FILEPROG_DB_SKIPPED_TUTORIAL)){
                     sp2C = D_8038AFE4 + 0xE0A; //dialog index
                     D_8038AFE4++;
                     D_8038AFE4 = MIN(D_8038AFE4, 5);
@@ -282,7 +282,7 @@ void SM_func_80389610(Actor * this){
             break;
         case 8://L80389720
             if(mapSpecificFlags_get(3)){
-                if(func_8031FF1C(BKPROG_A6_FURNACE_FUN_COMPLETE)){
+                if(fileProgressFlag_get(FILEPROG_A6_FURNACE_FUN_COMPLETE)){
                     sp2C = 0xe37;
                     sp28 |= 1;
                 }else{//L80389758
@@ -291,7 +291,7 @@ void SM_func_80389610(Actor * this){
                         sp28 |= 1;
                     }else{//L80389780
                         func_80388E48();
-                        sp2C = func_8031FF1C(0xdb) ? 0xe1e : 0xe13;
+                        sp2C = fileProgressFlag_get(FILEPROG_DB_SKIPPED_TUTORIAL) ? 0xe1e : 0xe13;
                         mapSpecificFlags_set(0xf, 1);
                     }
                 } //L803897B4
@@ -445,10 +445,10 @@ void func_803899B0(Actor * this){
             
             sp34 = !((!(D_8038AFB4[this->unkF4_8-1].unk5 + 1)) || (!ability_isUnlocked( D_8038AFB4[this->unkF4_8-1].unk5)));
             if( (!sp34 && this->unkF4_8 != 1)
-                || func_8031FF1C(0xDB) == 0
+                || fileProgressFlag_get(FILEPROG_DB_SKIPPED_TUTORIAL) == 0
                 || D_8038AFE4 < 6
             ){
-                if(this->unkF4_8 != 8 || !func_8031FF1C(0xFC)){
+                if(this->unkF4_8 != 8 || !fileProgressFlag_get(FILEPROG_FC_DEFEAT_GRUNTY)){
                     if( func_8028EFC8()
                         && sp50[FACE_BUTTON(BUTTON_B)] == 1
                     ){
@@ -535,7 +535,7 @@ void func_803899B0(Actor * this){
             }//L8038A218
 
             if( sp38 != -1){ //button was pressed
-                func_80320004(0xdb, (sp38)?0:1);
+                fileProgressFlag_set(FILEPROG_DB_SKIPPED_TUTORIAL, (sp38)?0:1);
                 func_80311480((sp38)? 0xe07 : 0xe09, 0xe, this->position, this->marker, func_803892C8, func_80389214);
                 if(!sp38){
                     func_80388EB0(); //give all SM moves

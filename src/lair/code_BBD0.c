@@ -73,7 +73,7 @@ void func_803920E0(Actor *this, enum sfx_e sfx_id, f32 arg2, f32 arg3, s32 arg4,
 void func_8039217C(Actor *this) {
     if (!this->initialized) {
         this->initialized = TRUE;
-        if (func_8031FF1C(0xA6)) {
+        if (fileProgressFlag_get(FILEPROG_A6_FURNACE_FUN_COMPLETE)) {
             marker_despawn(this->marker);
             return;
         }

@@ -85,7 +85,7 @@ void func_80388FD4(Actor *this) {
         this->initialized = TRUE;
     }
     if (!this->unk16C_4) {
-        if (func_8031FF1C(this->unk10_12 + 0x8B)) {
+        if (fileProgressFlag_get(this->unk10_12 + FILEPROG_8B_CCW_SPRING_OPEN)) {
             actor_playAnimationOnce(this);
             func_80328B8C(this, 4, 0.999f, 1);
             actor_collisionOff(this);
@@ -142,7 +142,7 @@ void func_80389268(Actor *this) {
         this->unk1C[1] += 250.0f;
 
         this->unk16C_4 = TRUE;
-        if (func_8031FF1C(this->unk10_12 + 0x8B)) {
+        if (fileProgressFlag_get(this->unk10_12 + FILEPROG_8B_CCW_SPRING_OPEN)) {
             func_80328A84(this, 3);
         }
     }

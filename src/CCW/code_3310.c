@@ -90,9 +90,9 @@ Struct_CCW_3310_1 D_8038F060[] = {
 };
 
 Struct_CCW_3310_0 D_8038F080[] = {
-    {MAP_43_CCW_SPRING,    0, 0xE6,     0,       NULL, 3,     0,       NULL, 0x18F, D_8038EFC0, 0x190, D_8038F030, 0,   0,     0,     0},
-    {MAP_44_CCW_SUMMER, 0xE6, 0xE7, 0x191, D_8038EEA0, 2, 0x192, D_8038EF20, 0x193, D_8038EFC0, 0x194, D_8038F030, 2,   5, 0x21A, 0xCD7},
-    {MAP_45_CCW_AUTUMN, 0xE7, 0xE8, 0x195, D_8038EEA0, 2, 0x196, D_8038EF20, 0x197, D_8038EFC0, 0x198, D_8038F030, 4, 0xA, 0x21B, 0xCDA},
+    {MAP_43_CCW_SPRING, 0,                                FILEPROG_E6_SPRING_EYRIE_HATCHED,     0,       NULL, 3,     0,       NULL, 0x18F, D_8038EFC0, 0x190, D_8038F030, 0,   0,     0,     0},
+    {MAP_44_CCW_SUMMER, FILEPROG_E6_SPRING_EYRIE_HATCHED, FILEPROG_E7_SUMMER_EYRIE_FED,     0x191, D_8038EEA0, 2, 0x192, D_8038EF20, 0x193, D_8038EFC0, 0x194, D_8038F030, 2,   5, 0x21A, 0xCD7},
+    {MAP_45_CCW_AUTUMN, FILEPROG_E7_SUMMER_EYRIE_FED,     FILEPROG_E8_AUTMN_EYRIE_FED,      0x195, D_8038EEA0, 2, 0x196, D_8038EF20, 0x197, D_8038EFC0, 0x198, D_8038F030, 4, 0xA, 0x21B, 0xCDA},
     0
 };
 
@@ -131,7 +131,7 @@ void func_803897B8(Actor *this, s32 next_state) {
         local->unk8 = local->unk0->unk8;
     }
     if ((this->state == 1) && (next_state == 2)) {
-        func_80320004(local->unk0->unk4, TRUE);
+        fileProgressFlag_set(local->unk0->unk4, TRUE);
     }
     if (next_state == 5) {
         func_8028F784(1);
@@ -230,9 +230,9 @@ void CCW_func_80389BFC(Actor *this) {
             local->unk0++;
         }
 
-        if ((local->unk0->unk2 != 0) && !func_8031FF1C(local->unk0->unk2)) {
+        if ((local->unk0->unk2 != 0) && !fileProgressFlag_get(local->unk0->unk2)) {
             marker_despawn(this->marker);
-        } else if (!func_8031FF1C(local->unk0->unk4)) {
+        } else if (!fileProgressFlag_get(local->unk0->unk4)) {
             func_803897B8(this, 1);
         } else {
             func_803897B8(this, 4);
@@ -285,7 +285,7 @@ void CCW_func_80389BFC(Actor *this) {
                 }
             }
         }
-        if (func_8031FF1C(local->unk0->unk4)) {
+        if (fileProgressFlag_get(local->unk0->unk4)) {
             func_803897B8(this, local->unk0->unkC);
         }
     }

@@ -20,8 +20,8 @@ extern ActorInfo chGobi2;
 extern ActorInfo chGobi3;
 extern ActorInfo chTrunker;
 extern ActorInfo GV_D_80390DD0;
-extern ActorInfo GV_D_80390E30;
-extern ActorInfo D_80390E54;
+extern ActorInfo chSarcophagus;
+extern ActorInfo chSNSSarcophagus;
 extern ActorInfo D_80390ED0;
 extern ActorInfo D_80390F00;
 extern ActorInfo D_80390FD0;
@@ -301,7 +301,7 @@ void func_8038E97C(Actor *this){
     }//L8038EA6C
 
     if(this->position_y == this->unk1C[0] + -300.0f){
-        if(func_8031FF44(BKPROG_F8_KING_SANDYBUTT_PYRAMID_STATE, 2) == 3){
+        if(fileProgressFlag_getN(FILEPROG_F8_KING_SANDYBUTT_PYRAMID_STATE, 2) == 3){
             this->position_y = this->unk1C[0];
         }
     }
@@ -476,8 +476,8 @@ void GV_func_8038F154(void)
     spawnableActorList_add(&chGobi3, actor_new, 0X9A8);
     spawnableActorList_add(&chTrunker, actor_new, 0XD80);
     spawnableActorList_add(&GV_D_80390DD0, actor_new, 0X4004);
-    spawnableActorList_add(&GV_D_80390E30, actor_new, 0X448);
-    spawnableActorList_add(&D_80390E54, actor_new, 0X48);
+    spawnableActorList_add(&chSarcophagus, actor_new, 0X448);
+    spawnableActorList_add(&chSNSSarcophagus, actor_new, 0X48);
     spawnableActorList_add(&D_80390ED0, actor_new, 0X180);
     spawnableActorList_add(&D_80390F00, actor_new, 0X80);
     spawnableActorList_add(&D_80390FD0, actor_new, 0X4048);

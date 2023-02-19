@@ -74,9 +74,9 @@ void func_802B55DC(void) {
 
 void func_802B563C(void) {
     if (level_get() == LEVEL_9_RUSTY_BUCKET_BAY) {
-        func_8035644C(0xAB);
+        func_8035644C(FILEPROG_AB_SWIM_OILY_WATER);
     } else if (map_get() == MAP_46_CCW_WINTER) {
-        func_8035644C(0xDD);
+        func_8035644C(FILEPROG_DD_HAS_TOUCHED_ICY_WATER);
     }
     gravity_set(100.0f);
     func_80297BF8(133.33f);

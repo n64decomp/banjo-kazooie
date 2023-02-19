@@ -13,7 +13,7 @@ extern void func_802EE6CC(f32[3], f32[3], s32[4], s32, f32, f32, s32, s32, s32);
 extern void ml_vec3f_assign(f32[3], f32, f32, f32);
 extern void func_802EE2E8(Actor *arg0, s32 arg1, s32 cnt, s32 arg3, f32 arg4, f32 arg5, f32 arg6);
 extern void func_80319EA4(void);
-extern void func_80320004(s32, bool);
+extern void fileProgressFlag_set(s32, bool);
 extern void func_803204E4(s32, bool);
 
 void func_802D3D54(Actor *this);
@@ -51,7 +51,7 @@ s32 D_8036768C = 0;
 s32 D_80367690 = 0;
 s32 D_80367694 = 0; //enum map_e
 s32 D_80367698 = 0;
-s32 D_8036769C = 0; //enum bkprog_e
+s32 D_8036769C = 0; //enum file_progress_e
 s32 D_803676A0 = 0; //enum actor_e
 f32 D_803676A4 = 0.0f;
 s32 D_803676A8 = 0;
@@ -115,7 +115,7 @@ f32 D_8037DE08;
 
 /* .public */
 void func_802D6114(void);
-void func_802D6264(f32 arg0, enum map_e arg1, s32 arg2, s32 arg3, s32 arg4, enum bkprog_e arg5);
+void func_802D6264(f32 arg0, enum map_e arg1, s32 arg2, s32 arg3, s32 arg4, enum file_progress_e arg5);
 void func_802D6344(void);
 void func_802D63D4(void);
 void func_802D6750(void);
@@ -143,8 +143,8 @@ void func_802D3138(ActorMarker *marker, ActorMarker *other_marker){
     }
 }
 
-void func_802D317C(ActorMarker *marker, enum bkprog_e prog_flag_id){
-    func_80320004(prog_flag_id, TRUE);
+void func_802D317C(ActorMarker *marker, enum file_progress_e prog_flag_id){
+    fileProgressFlag_set(prog_flag_id, TRUE);
     marker_despawn(marker);
 }
 
@@ -166,14 +166,14 @@ void func_802D31AC(ActorMarker *arg0, ActorMarker * arg1) {
             FUNC_8030E624(SFX_82_METAL_BREAK, 0.6f, 32736);
             func_802D2FB0(sp2C, 0x14, -0x1E, 0x190, 3.0f, 0x15E, 0x50, 0x96);
             sp2C->unk60 = 1.0f;
-            func_80320004(0xA5, 1);
+            fileProgressFlag_set(0xA5, 1);
             break;
 
-        case 0x109:
+        case MARKER_109_BREAKABLE_BRICK_WALL:
             func_8030E6D4(SFX_114_BRICKWALL_BREAKING);
             func_8030E510(SFX_11_WOOD_BREAKING_1, 28000);
             func_80328AEC(sp2C, 9);
-            func_80320004((sp2C->unkF4_8 == 1) ? 0xC8 : 0xC9, 1);
+            fileProgressFlag_set((sp2C->unkF4_8 == 1) ? FILEPROG_C8_LAIR_BRICKWALL_TO_WADINGBOOTS_BROKEN : FILEPROG_C9_LAIR_BRICKWALL_TO_SHOCKJUMP_PAD_BROKEN, TRUE);
             break;
 
         case 0x107:
@@ -182,20 +182,20 @@ void func_802D31AC(ActorMarker *arg0, ActorMarker * arg1) {
             marker_despawn(arg0);
             break;
 
-        case 0x224:
+        case MARKER_224_BREAKABLE_FLOOR_COBWEB:
             func_8025A70C(COMUSIC_2B_DING_B);
             func_8030E6A4(SFX_129_SWOOSH, (sp2C->scale < 0.45) ? 1.0 : 0.8, 0x7FF8);
             func_80328AEC(sp2C, 0xC);
             func_802D2FB0(sp2C, 8, -0x3C, 0xC8, 2.0f, 0xFA, 0x3C, 0x64);
-            func_80320004((sp2C->unkF4_8== 1) ? 0xCB : 0xCC, 1);
+            fileProgressFlag_set((sp2C->unkF4_8== 1) ? FILEPROG_CB_LAIR_COBWEB_OVER_FLIGHTPAD_BROKEN : FILEPROG_CC_LAIR_COBWEB_OVER_GREEN_CAULDRON_BROKEN, 1);
             break;
 
-        case 0x225:
+        case MARKER_225_BREAKABLE_WALL_COBWEB:
             func_8025A70C(COMUSIC_2B_DING_B);
             func_8030E540(SFX_129_SWOOSH);
             func_80328AEC(sp2C, 0xF);
             func_802D2FB0(sp2C, 0xE, -0x3C, 0xC8, 2.0f, 0xFA, 0x3C, 0x64);
-            func_80320004(0xCA, 1);
+            fileProgressFlag_set(FILEPROG_CA_COBWEB_BLOCKING_PURPLE_CAULDRON_BROKEN, 1);
             break;
 
         case 0x163:
@@ -323,7 +323,7 @@ void func_802D31AC(ActorMarker *arg0, ActorMarker * arg1) {
             func_802EE2E8(sp2C, 1, 0x32, 0x14, 1.2f, 1.4f, 2.2f);
             func_802EE2E8(sp2C, 1, 0x3C, 0x64, 1.6f, 1.8f, 2.2f);
             func_802EE2E8(sp2C, 1, 0x32, 0xB4, 1.2f, 1.4f, 2.2f);
-            func_802D317C(arg0, BKPROG_C4_STATUE_EYE_BROKEN);
+            func_802D317C(arg0, FILEPROG_C4_STATUE_EYE_BROKEN);
             break;
 
         case 0x164:
@@ -496,7 +496,7 @@ bool func_802D42F8(Actor *this) {
         return FALSE;
     }
     else{
-        return func_8031FF1C(D_803679B0[i + 1]);
+        return fileProgressFlag_get(D_803679B0[i + 1]);
     }
 }
 
@@ -623,7 +623,7 @@ void func_802D48F0(void){
 void func_802D4928(Actor *this, s32 arg1, s32 arg2, s32 arg3) {
     this->marker->propPtr->unk8_3 = TRUE;
     if( ( (((arg1 & 0xC00000) == 0) && mapSpecificFlags_get(arg1 - 0)) 
-          || (((arg1 & 0xC00000) == 0x800000) && func_8031FF1C(arg1 - 0x800000)) 
+          || (((arg1 & 0xC00000) == 0x800000) && fileProgressFlag_get(arg1 - 0x800000)) 
           || (((arg1 & 0xC00000) == 0x400000) && func_803203FC(arg1 - 0x400000))
         ) 
         && (arg2 != this->state)
@@ -632,7 +632,7 @@ void func_802D4928(Actor *this, s32 arg1, s32 arg2, s32 arg3) {
         actor_playAnimationOnce(this);
     }
     if( ( (((arg1 & 0xC00000) == 0) && !mapSpecificFlags_get(arg1 - 0)) 
-          || (((arg1 & 0xC00000) == 0x800000) && !func_8031FF1C(arg1 - 0x800000)) 
+          || (((arg1 & 0xC00000) == 0x800000) && !fileProgressFlag_get(arg1 - 0x800000)) 
           || (((arg1 & 0xC00000) == 0x400000) && !func_803203FC(arg1 - 0x400000))
         ) 
         && (arg2 == this->state)
@@ -647,16 +647,16 @@ void func_802D4A9C(Actor *this, s32 arg1){
 }
 
 void func_802D4AC0(Actor *this, s32 arg1, s32 arg2) {
-    if (func_8031FF1C(arg2)) {
+    if (fileProgressFlag_get(arg2)) {
         if (arg1 & 0x800000) {
-            func_80320004(arg1 + 0xFF800000, 1);
+            fileProgressFlag_set(arg1 + 0xFF800000, 1);
         }
         if (arg1 & 0x400000) {
             func_803204E4(arg1 + 0xFFC00000, 1);
         }
     }
-    if( (((arg1 & 0x800000) && (func_8031FF1C(arg1 + 0xFF800000))) || ((arg1 & 0x400000) && (func_803203FC(arg1 + 0xFFC00000)))) 
-        && (func_8031FF1C(arg2)) && (this->animctrl == NULL)
+    if( (((arg1 & 0x800000) && (fileProgressFlag_get(arg1 + 0xFF800000))) || ((arg1 & 0x400000) && (func_803203FC(arg1 + 0xFFC00000)))) 
+        && (fileProgressFlag_get(arg2)) && (this->animctrl == NULL)
     ) {
         func_80328B8C(this, 8, 0.0f, 1);
     }
@@ -665,35 +665,35 @@ void func_802D4AC0(Actor *this, s32 arg1, s32 arg2) {
 
 
 void func_802D4B94(Actor *this){
-    func_802D4AC0(this, 0x4000b6, BKPROG_18_MM_WITCH_SWITCH_JIGGY_SPAWNED);
+    func_802D4AC0(this, 0x4000b6, FILEPROG_18_MM_WITCH_SWITCH_JIGGY_PRESSED);
 }
 
 void func_802D4BBC(Actor *this){
-    func_802D4AC0(this, 0x4000bc, 0x9A);
+    func_802D4AC0(this, 0x4000bc, FILEPROG_9A_CC_WITCH_SWITCH_PRESSED);
 }
 
 void func_802D4BE4(Actor *this){
-    func_802D4AC0(this, 0x4000bd, 0x9F);
+    func_802D4AC0(this, 0x4000bd, FILEPROG_9F_BGS_WITCH_SWITCH_JIGGY_PRESSED);
 }
 
 void func_802D4C0C(Actor *this){
-    func_802D4AC0(this, 0x4000be, 0xA0);
+    func_802D4AC0(this, 0x4000be, FILEPROG_A0_GV_WITCH_SWITCH_JIGGY_PRESSED);
 }
 
 void func_802D4C34(Actor *this){
-    func_802D4AC0(this, 0x4000b7, BKPROG_19_MMM_WITCH_SWITCH_JIGGY_SPAWNED);
+    func_802D4AC0(this, 0x4000b7, FILEPROG_19_MMM_WITCH_SWITCH_JIGGY_PRESSED);
 }
 
 void func_802D4C5C(Actor *this){
-    func_802D4AC0(this, 0x4000b8, BKPROG_1A_TTC_WITCH_SWITCH_JIGGY_SPAWNED);
+    func_802D4AC0(this, 0x4000b8, FILEPROG_1A_TTC_WITCH_SWITCH_JIGGY_PRESSED);
 }
 
 void func_802D4C84(Actor *this){
-    func_802D4AC0(this, 0x4000b9, BKPROG_1C_RBB_WITCH_SWITCH_JIGGY_SPAWNED);
+    func_802D4AC0(this, 0x4000b9, FILEPROG_1C_RBB_WITCH_SWITCH_JIGGY_PRESSED);
 }
 
 void func_802D4CAC(Actor *this){
-    func_802D4AC0(this, 0x4000ba, BKPROG_46_CCW_WITCH_SWITCH_JIGGY_SPAWNED);
+    func_802D4AC0(this, 0x4000ba, FILEPROG_46_CCW_WITCH_SWITCH_JIGGY_PRESSED);
 }
 
 void func_802D4CD4(Actor *this){
@@ -704,7 +704,7 @@ void func_802D4CD4(Actor *this){
         }//L802D4D10
         this->unk58_0 = TRUE;
     }//L802D4D1C
-    func_802D4AC0(this, 0x4000bb, 0x47);
+    func_802D4AC0(this, 0x4000bb, FILEPROG_47_FP_WITCH_SWITCH_JIGGY_PRESSED);
 }
 
 void func_802D4D3C(enum actor_e arg0, enum actor_e arg1) {
@@ -787,10 +787,10 @@ void func_802D5140(ActorMarker *caller, enum asset_e text_id, s32 arg2){
     itemscore_noteScores_get(func_80320424(0x19, 4));
 }
 
-void func_802D5178(s32 arg0, enum bkprog_e arg1, s32 arg2, enum map_e arg3, s32 arg4, s32 arg5, enum actor_e arg6, s32 arg7){
-    if(levelSpecificFlags_get(arg0) && !func_8031FF1C(arg1)){
+void func_802D5178(s32 arg0, enum file_progress_e arg1, s32 arg2, enum map_e arg3, s32 arg4, s32 arg5, enum actor_e arg6, s32 arg7){
+    if(levelSpecificFlags_get(arg0) && !fileProgressFlag_get(arg1)){
         levelSpecificFlags_set(arg0, FALSE);
-        func_80320004(arg1, TRUE);
+        fileProgressFlag_set(arg1, TRUE);
         func_802D6264(0.95f, arg3, arg2, arg4, arg5, 0);
         D_803676A0 = arg6;
         D_80367690 = arg7;
@@ -816,13 +816,13 @@ void func_802D5260(void) {
 
     if (sp3C == -1) {
         levelSpecificFlags_set(0x3C, FALSE);
-        func_80320004(BKPROG_26_WATER_SWITCH_3_PRESSED, FALSE);
-        func_80320004(BKPROG_27_LAIR_WATER_LEVEL_3,     FALSE);
+        fileProgressFlag_set(FILEPROG_26_WATER_SWITCH_3_PRESSED, FALSE);
+        fileProgressFlag_set(FILEPROG_27_LAIR_WATER_LEVEL_3,     FALSE);
         levelSpecificFlags_set(0x3D, FALSE);
         return;
     }
     sp38 = func_8034C528(sp3C + 0x190);
-    if( func_8031FF1C(BKPROG_27_LAIR_WATER_LEVEL_3)
+    if( fileProgressFlag_get(FILEPROG_27_LAIR_WATER_LEVEL_3)
         && !levelSpecificFlags_get(0x3D)
         && !levelSpecificFlags_get(0x3C)
     ) {
@@ -847,8 +847,8 @@ void func_802D5260(void) {
         }
         if (D_803679C8[sp3C].unk6 + D_803676A4 <= D_803679C8[sp3C].unk4) {
             levelSpecificFlags_set(0x3C, FALSE);
-            func_80320004(BKPROG_26_WATER_SWITCH_3_PRESSED, FALSE);
-            func_80320004(BKPROG_27_LAIR_WATER_LEVEL_3,     FALSE);
+            fileProgressFlag_set(FILEPROG_26_WATER_SWITCH_3_PRESSED, FALSE);
+            fileProgressFlag_set(FILEPROG_27_LAIR_WATER_LEVEL_3,     FALSE);
             func_802F9D38(D_803676A8);
             D_803676A8 = 0;
         }
@@ -857,9 +857,9 @@ void func_802D5260(void) {
         if (levelSpecificFlags_get(0x3C) != 0) {
             sp34 = D_803679C8[sp3C].unk6 + D_803676A4;
         } else {
-            sp34 = ((s16 *)&D_803679C8[sp3C])[(func_8031FF1C(BKPROG_27_LAIR_WATER_LEVEL_3)) ? 3 
-                     : (func_8031FF1C(BKPROG_25_LAIR_WATER_LEVEL_2)) ? 2
-                     : (func_8031FF1C(BKPROG_23_LAIR_WATER_LEVEL_1)) ? 1
+            sp34 = ((s16 *)&D_803679C8[sp3C])[(fileProgressFlag_get(FILEPROG_27_LAIR_WATER_LEVEL_3)) ? 3 
+                     : (fileProgressFlag_get(FILEPROG_25_LAIR_WATER_LEVEL_2)) ? 2
+                     : (fileProgressFlag_get(FILEPROG_23_LAIR_WATER_LEVEL_1)) ? 1
                      : 0];
         }
         func_8034DEB4(sp38, sp34);
@@ -1010,20 +1010,20 @@ void func_802D5628(void){
     }
     else{//L802D5B64
         func_802D5260();
-        func_802D5178(0x1C, 0x28, 0x30, MAP_69_GL_MM_LOBBY,  0x8, 0xA, ACTOR_20E_MM_ENTRANCE_DOOR,  0x28);
-        func_802D5178(0x21, 0x2D, 0x31, MAP_6E_GL_GV_LOBBY,  0xA, 0xA, ACTOR_226_GV_ENTRANCE,       0x12);
-        func_802D5178(0x1E, 0x2A, 0x32, MAP_70_GL_CC_LOBBY,  0xE, 0xA, ACTOR_212_IRON_BARS,         0xA);
-        func_802D5178(0x1D, 0x29, 0x33, MAP_6D_GL_TTC_LOBBY, 0x9, 0xB, ACTOR_211_CHEST_LID,         0xA);
+        func_802D5178(0x1C, 0x28, 0x30, MAP_69_GL_MM_LOBBY,  0x8, 0xA, ACTOR_20E_MM_ENTRANCE_DOOR, 0x28);
+        func_802D5178(0x21, 0x2D, 0x31, MAP_6E_GL_GV_LOBBY,  0xA, 0xA, ACTOR_226_GV_ENTRANCE,      0x12);
+        func_802D5178(0x1E, 0x2A, 0x32, MAP_70_GL_CC_LOBBY,  0xE, 0xA, ACTOR_212_CC_ENTRANCE_BARS,         0xA);
+        func_802D5178(0x1D, 0x29, 0x33, MAP_6D_GL_TTC_LOBBY, 0x9, 0xB, ACTOR_211_TCC_ENTRANCE_CHEST_LID,         0xA);
         func_802D5178(0x1F, 0x2B, 0x34, MAP_72_GL_BGS_LOBBY, 0xB, 0xB, ACTOR_210_BGS_ENTRANCE_DOOR, 0xA);
         func_802D5178(0x23, 0x2F, 0x35, MAP_77_GL_RBB_LOBBY, 0xD, 0x5, ACTOR_20F_RBB_ENTRANCE_DOOR, 0xA);
-        func_802D5178(0x22, 0x2E, 0x36, MAP_75_GL_MMM_LOBBY, 0xC, 0x6, ACTOR_228_INVISIBLE_WALL,    0xA);
+        func_802D5178(0x22, 0x2E, 0x36, MAP_75_GL_MMM_LOBBY, 0xC, 0x6, ACTOR_228_MMM_ENTRANCE_DOOR,    0xA);
         func_802D5178(0x24, 0x30, 0x37, MAP_79_GL_CCW_LOBBY, 0xF, 0xB, ACTOR_234_CCW_ENTRANCE_DOOR, 0xA);
         func_802D5178(0x20, 0x2C, 0x38, MAP_6F_GL_FP_LOBBY, 0x11, 0xA, ACTOR_235_FP_ENTANCE_DOOR,   0xA);
-        func_802D5178(0x3F, 0xE2, 0x40, MAP_93_GL_DINGPOT,  0x10, 0xA, ACTOR_2E5_WOODEN_DOOR,       0x28);
+        func_802D5178(0x3F, 0xE2, 0x40, MAP_93_GL_DINGPOT,  0x10, 0xA, ACTOR_2E5_DOOR_OF_GRUNTY,   0x28);
         if(func_803203FC(0x18)){
-            if(!func_8031FF1C(BKPROG_99_PAST_50_NOTE_DOOR_TEXT)){
+            if(!fileProgressFlag_get(FILEPROG_99_PAST_50_NOTE_DOOR_TEXT)){
                 func_80311174(0xF75, 0xE, NULL, NULL, NULL, NULL, func_802D5140);
-                func_80320004(BKPROG_99_PAST_50_NOTE_DOOR_TEXT, TRUE);
+                fileProgressFlag_set(FILEPROG_99_PAST_50_NOTE_DOOR_TEXT, TRUE);
                 func_803204E4(0x18, 0);
             }
             else{//L802D5DD8
@@ -1039,11 +1039,11 @@ void func_802D5628(void){
             ){
                 if( map_get() != MAP_8E_GL_FURNACE_FUN
                     && map_get() != MAP_90_GL_BATTLEMENTS
-                    && !func_8031FF1C(BKPROG_FC_DEFEAT_GRUNTY)
+                    && !fileProgressFlag_get(FILEPROG_FC_DEFEAT_GRUNTY)
                 ){
                     D_8037DE04 += time_getDelta();
                     if(D_80367680 < D_8037DE04 && !func_803203FC(0x16)){
-                        if(func_8031FF1C(BKPROG_A6_FURNACE_FUN_COMPLETE)){
+                        if(fileProgressFlag_get(FILEPROG_A6_FURNACE_FUN_COMPLETE)){
                             sp4C = 0xF9D;
                         }
                         else{
@@ -1056,7 +1056,7 @@ void func_802D5628(void){
 
                         if(func_803203FC(0x22)){
                             if(func_80311480(0xF82, 4, NULL, NULL, NULL, NULL)){
-                                func_80320004(0xc1, 1);
+                                fileProgressFlag_set(FILEPROG_C1_BADDIES_ESCAPE_TEXT, TRUE);
                                 func_803204E4(0x22, 0);
                                 D_8037DE04 = 0.0f;
                                 D_80367680 += 60.0;
@@ -1085,15 +1085,15 @@ void func_802D5628(void){
 
 //water_level_atleast_2;
 int func_802D6088(void){
-    return func_8031FF1C(BKPROG_25_LAIR_WATER_LEVEL_2)
-        || func_8031FF1C(BKPROG_27_LAIR_WATER_LEVEL_3);
+    return fileProgressFlag_get(FILEPROG_25_LAIR_WATER_LEVEL_2)
+        || fileProgressFlag_get(FILEPROG_27_LAIR_WATER_LEVEL_3);
 }
 
 //water_level_atleast_1;
 int func_802D60C4(void){
-    return func_8031FF1C(BKPROG_23_LAIR_WATER_LEVEL_1)
-        || func_8031FF1C(BKPROG_25_LAIR_WATER_LEVEL_2)
-        || func_8031FF1C(BKPROG_27_LAIR_WATER_LEVEL_3);
+    return fileProgressFlag_get(FILEPROG_23_LAIR_WATER_LEVEL_1)
+        || fileProgressFlag_get(FILEPROG_25_LAIR_WATER_LEVEL_2)
+        || fileProgressFlag_get(FILEPROG_27_LAIR_WATER_LEVEL_3);
 }
 
 void func_802D6114(void){
@@ -1103,7 +1103,7 @@ void func_802D6114(void){
     sp24 =  D_80367694;\
     sp20 =  D_80367698;
     if(D_8036769C)
-        func_80320004(D_8036769C, TRUE);
+        fileProgressFlag_set(D_8036769C, TRUE);
     func_802D6344();
     if(map_get() != sp24){
         if(map_getLevel(sp24) != map_getLevel(map_get())){
@@ -1129,8 +1129,8 @@ void func_802D61FC(enum map_e arg0){
     func_802D6750();
 }
 
-void func_802D6264(f32 arg0, enum map_e arg1, s32 arg2, s32 arg3, s32 arg4, enum bkprog_e arg5){
-    D_80367684 = arg1;
+void func_802D6264(f32 delay, enum map_e map_id, s32 arg2, s32 arg3, s32 arg4, enum file_progress_e arg5){
+    D_80367684 = map_id;
     D_80367688 = arg2;
     D_8036768C = arg3;
     D_80367690 = 0;
@@ -1140,17 +1140,17 @@ void func_802D6264(f32 arg0, enum map_e arg1, s32 arg2, s32 arg3, s32 arg4, enum
     D_8036769C = arg5;
     D_803676A0 = 0;
 
-    if(arg1 != D_80367694){
-        timedFunc_set_1(arg0, (GenMethod_1) func_802D61FC, arg1);
+    if(map_id != D_80367694){
+        timedFunc_set_1(delay, (GenMethod_1) func_802D61FC, map_id);
     }
     else{
-        timedFunc_set_0(arg0, func_802D63D4);
+        timedFunc_set_0(delay, func_802D63D4);
     }
     gcpausemenu_80314AC8(0);
 }
 
-void func_802D6310(f32 arg0, enum map_e arg1, s32 arg2, s32 arg3, enum bkprog_e arg4){
-    func_802D6264(arg0, arg1, arg2, arg3, 0x63, arg4);
+void func_802D6310(f32 delay, enum map_e map_id, s32 arg2, s32 arg3, enum file_progress_e arg4){
+    func_802D6264(delay, map_id, arg2, arg3, 0x63, arg4);
     func_8028FCE8();
 }
 
@@ -1205,19 +1205,19 @@ void func_802D6494(void){
     if( (!D_80367684 || (D_80367684 && (map_get() == D_80367684)))
     ){
         switch(D_803676A0){
-            case ACTOR_2E5_WOODEN_DOOR:
+            case ACTOR_2E5_DOOR_OF_GRUNTY:
                 break;
             case ACTOR_20E_MM_ENTRANCE_DOOR:// L802D6510
                 FUNC_8030E624(SFX_6B_LOCKUP_OPENING, 0.6f, 32000);
                 func_8025A6CC(COMUSIC_64_WORLD_OPENING_A, 32000);
                 break;
-            case ACTOR_211_CHEST_LID:// L802D6530
+            case ACTOR_211_TCC_ENTRANCE_CHEST_LID:// L802D6530
                 FUNC_8030E624(SFX_6B_LOCKUP_OPENING, 0.6f, 32000);
                 func_8025A6CC(COMUSIC_64_WORLD_OPENING_A, 32000);
                 break;
-            case ACTOR_212_IRON_BARS:// L802D6550
+            case ACTOR_212_CC_ENTRANCE_BARS:// L802D6550
                 if(map_get() == MAP_70_GL_CC_LOBBY && !func_803203FC(UNKFLAGS1_7F_SANDCASTLE_OPEN_CC)){
-                    func_802D4830(actorArray_findActorFromActorId(ACTOR_212_IRON_BARS), SFX_9A_MECHANICAL_CLOSING, 0.5f);
+                    func_802D4830(actorArray_findActorFromActorId(ACTOR_212_CC_ENTRANCE_BARS), SFX_9A_MECHANICAL_CLOSING, 0.5f);
                     func_8025A6CC(COMUSIC_64_WORLD_OPENING_A, 32000);
                 }
                 break;
@@ -1245,7 +1245,7 @@ void func_802D6494(void){
                     func_8025A6CC(COMUSIC_64_WORLD_OPENING_A, 32000);
                 }
                 break;
-            case ACTOR_228_INVISIBLE_WALL:// L802D66CC
+            case ACTOR_228_MMM_ENTRANCE_DOOR:// L802D66CC
                 if(!func_803203FC(UNKFLAGS1_8C_SANDCASTLE_OPEN_MMM)){
                 FUNC_8030E624(SFX_6B_LOCKUP_OPENING, 0.6f, 32000);
                     func_8025A6CC(COMUSIC_64_WORLD_OPENING_A, 32000);
@@ -1337,31 +1337,31 @@ void func_802D6924(void){
 void func_802D6948(void){
     switch(map_get()){
         case MAP_2_MM_MUMBOS_MOUNTAIN:
-            func_80320004(BKPROG_B0_HAS_ENTERED_MM, TRUE);
+            fileProgressFlag_set(FILEPROG_B0_HAS_ENTERED_MM, TRUE);
             break;
         case MAP_7_TTC_TREASURE_TROVE_COVE:
-            func_80320004(BKPROG_B2_HAS_ENTERED_TTC, TRUE);
+            fileProgressFlag_set(FILEPROG_B2_HAS_ENTERED_TTC, TRUE);
             break;
         case MAP_B_CC_CLANKERS_CAVERN:
-            func_80320004(BKPROG_B8_HAS_ENTERED_CC, TRUE);
+            fileProgressFlag_set(FILEPROG_B8_HAS_ENTERED_CC, TRUE);
             break;
         case MAP_D_BGS_BUBBLEGLOOP_SWAMP:
-            func_80320004(BKPROG_B1_HAS_ENTERED_BGS, TRUE);
+            fileProgressFlag_set(FILEPROG_B1_HAS_ENTERED_BGS, TRUE);
             break;
         case MAP_12_GV_GOBIS_VALLEY:
-            func_80320004(BKPROG_B3_HAS_ENTERED_GV, TRUE);
+            fileProgressFlag_set(FILEPROG_B3_HAS_ENTERED_GV, TRUE);
             break;
         case MAP_1B_MMM_MAD_MONSTER_MANSION:
-            func_80320004(BKPROG_B7_HAS_ENTERED_MMM, TRUE);
+            fileProgressFlag_set(FILEPROG_B7_HAS_ENTERED_MMM, TRUE);
             break;
         case MAP_27_FP_FREEZEEZY_PEAK:
-            func_80320004(BKPROG_B6_HAS_ENTERED_FP, TRUE);
+            fileProgressFlag_set(FILEPROG_B6_HAS_ENTERED_FP, TRUE);
             break;
         case MAP_31_RBB_RUSTY_BUCKET_BAY:
-            func_80320004(BKPROG_B4_HAS_ENTERED_RBB, TRUE);
+            fileProgressFlag_set(FILEPROG_B4_HAS_ENTERED_RBB, TRUE);
             break;
         case MAP_40_CCW_HUB:
-            func_80320004(BKPROG_B5_HAS_ENTERED_CCW, TRUE);
+            fileProgressFlag_set(FILEPROG_B5_HAS_ENTERED_CCW, TRUE);
             break;
     }
 }
@@ -1370,23 +1370,23 @@ void func_802D6948(void){
 int func_802D6A38(enum map_e map_id){
     switch(map_id){
         case MAP_2_MM_MUMBOS_MOUNTAIN:
-            return func_8031FF1C(BKPROG_B0_HAS_ENTERED_MM);
+            return fileProgressFlag_get(FILEPROG_B0_HAS_ENTERED_MM);
         case MAP_7_TTC_TREASURE_TROVE_COVE:
-            return func_8031FF1C(BKPROG_B2_HAS_ENTERED_TTC);
+            return fileProgressFlag_get(FILEPROG_B2_HAS_ENTERED_TTC);
         case MAP_B_CC_CLANKERS_CAVERN:
-            return func_8031FF1C(BKPROG_B8_HAS_ENTERED_CC);
+            return fileProgressFlag_get(FILEPROG_B8_HAS_ENTERED_CC);
         case MAP_D_BGS_BUBBLEGLOOP_SWAMP:
-            return func_8031FF1C(BKPROG_B1_HAS_ENTERED_BGS);
+            return fileProgressFlag_get(FILEPROG_B1_HAS_ENTERED_BGS);
         case MAP_12_GV_GOBIS_VALLEY:
-            return func_8031FF1C(BKPROG_B3_HAS_ENTERED_GV);
+            return fileProgressFlag_get(FILEPROG_B3_HAS_ENTERED_GV);
         case MAP_1B_MMM_MAD_MONSTER_MANSION:
-            return func_8031FF1C(BKPROG_B7_HAS_ENTERED_MMM);
+            return fileProgressFlag_get(FILEPROG_B7_HAS_ENTERED_MMM);
         case MAP_27_FP_FREEZEEZY_PEAK:
-            return func_8031FF1C(BKPROG_B6_HAS_ENTERED_FP);
+            return fileProgressFlag_get(FILEPROG_B6_HAS_ENTERED_FP);
         case MAP_31_RBB_RUSTY_BUCKET_BAY:
-            return func_8031FF1C(BKPROG_B4_HAS_ENTERED_RBB);
+            return fileProgressFlag_get(FILEPROG_B4_HAS_ENTERED_RBB);
         case MAP_40_CCW_HUB:
-            return func_8031FF1C(BKPROG_B5_HAS_ENTERED_CCW);
+            return fileProgressFlag_get(FILEPROG_B5_HAS_ENTERED_CCW);
     }
     return FALSE;
 }

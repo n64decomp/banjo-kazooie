@@ -24,7 +24,7 @@ void func_80388590(Actor *this, s32 next_state){
 void func_803885F8(Actor *this){
     if(!this->unk16C_4){
         this->unk16C_4 = TRUE;
-        if(func_8031FF1C(0xe5)){
+        if(fileProgressFlag_get(FILEPROG_E5_CCW_FLOWER_AUTUMN)){
             func_80388590(this, 1);
         }
         else{

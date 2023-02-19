@@ -52,7 +52,7 @@ void func_803869A0(Actor *this, f32 arg1, f32 arg2) {
 
 void SM_func_80386A00(Actor *this) {
     if (this->unk16C_4 <= 0) {
-        if (func_8031FF1C(BKPROG_FC_DEFEAT_GRUNTY) == 0) {
+        if (fileProgressFlag_get(FILEPROG_FC_DEFEAT_GRUNTY) == 0) {
             marker_despawn(this->marker);
             return;
         }

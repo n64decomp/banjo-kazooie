@@ -120,7 +120,7 @@ void chstonejinjo_breakOpen(ActorMarker *marker){
         actor_playAnimationOnce(actor);
         animctrl_setDuration(actor->animctrl, actor->unk1C[0]);
         SPAWNQUEUE_ADD_1(chstonejinjo_spawnJinjo, actor->marker);
-        if(!func_8031FF1C(BKPROG_D1_HAS_ACTIVATED_A_JINJO_STATUE_IN_FINAL_FIGHT) && actor->unkF4_8 != BOSSJINJO_JINJONATOR){
+        if(!fileProgressFlag_get(FILEPROG_D1_HAS_ACTIVATED_A_JINJO_STATUE_IN_FINAL_FIGHT) && actor->unkF4_8 != BOSSJINJO_JINJONATOR){
             sp38 = 0x30 + actor->unkF4_8*2;
             sp34 = chbossjinjo_8038D268();
             sp30 = actor->unk1C[0] + sp34;

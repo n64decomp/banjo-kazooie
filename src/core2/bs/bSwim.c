@@ -68,7 +68,7 @@ bool func_802A73BC(void) {
 
 void func_802A744C(void) {
     if (player_isInRBB() && bs_getState() != BS_4C_LANDING_IN_WATER) {
-        func_8035644C(0xAC);
+        func_8035644C(FILEPROG_AC_DIVE_OILY_WATER);
     }
     roll_setAngularVelocity(30.0f, 0.9f);
     gravity_set(0.0f);

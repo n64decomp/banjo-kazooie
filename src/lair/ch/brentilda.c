@@ -8,16 +8,16 @@ typedef struct {
     s32 unk0;
 } ActorLocal_lair_5640;
 
-void func_8038BCF0(Actor *this);
+void chBrentilda_update(Actor *this);
 
 /* .data */
-ActorAnimationInfo D_80393710[] ={
+ActorAnimationInfo chBrentildaAnimations[] ={
     {0, 0.0f},
     {0x26B, 4.0f},
     {0x26C, 4.0f},
     {0x26B, 4.0f},
 };
-ActorInfo D_80393730 = { 0x1E0, 0x348, 0x539, 0x1, D_80393710, func_8038BCF0, func_80326224, func_80325888, 2000, 0, 2.0f, 0};
+ActorInfo chBrentilda = { 0x1E0, 0x348, 0x539, 0x1, chBrentildaAnimations, chBrentilda_update, func_80326224, func_80325888, 2000, 0, 2.0f, 0};
 
 /* .code */
 void func_8038BA30(ActorMarker *marker, enum asset_e text_id, s32 arg2){
@@ -34,7 +34,7 @@ void lair_func_8038BA88(ActorMarker *marker, enum asset_e text_id, s32 arg2){
 
     this = marker_getActor(marker);
     item_set(ITEM_14_HEALTH, item_getCount(ITEM_15_HEALTH_TOTAL));
-    func_80320004(this->unkF4_8 + 0xE8, TRUE);
+    fileProgressFlag_set(this->unkF4_8 - 1 + FILEPROG_E9_TALKED_TO_BRENTILDA_1, TRUE);
 }
 
 void func_8038BADC(ActorMarker *marker, enum asset_e text_id, s32 arg2) {
@@ -42,7 +42,7 @@ void func_8038BADC(ActorMarker *marker, enum asset_e text_id, s32 arg2) {
 
     this = marker_getActor(marker);
     if (text_id == ((ActorLocal_lair_5640 *)&this->local)->unk0 + 2) {
-        if (!func_8031FF1C(this->unkF4_8 + 0xE8)) {
+        if (!fileProgressFlag_get(this->unkF4_8 - 1 + FILEPROG_E9_TALKED_TO_BRENTILDA_1)) {
             if (item_getCount(ITEM_14_HEALTH) < item_getCount(ITEM_15_HEALTH_TOTAL)) {
                 func_80311480(0x10A2, 0xF, this->position, this->marker, func_8038BADC, lair_func_8038BA88);
                 return;
@@ -68,8 +68,8 @@ void func_8038BC24(void) {
     s32 phi_s0;
     s32 phi_s1;
 
-    if (func_8031FF1C(0x5C) && !func_803203FC(0x62)) {
-        func_8034A8BC(func_8031FF44(0xD3, 8));
+    if (fileProgressFlag_get(FILEPROG_5C_FF_PATTERN_SET) && !func_803203FC(0x62)) {
+        func_8034A8BC(fileProgressFlag_getN(FILEPROG_D3_FF_PATTERN, 8));
         for(phi_s1 = 0; phi_s1 < func_8031A45C(3); phi_s1++){
             phi_s0 = 0x26 + 2*phi_s1;
                 temp_v0 = randi2(0, 3);
@@ -84,7 +84,7 @@ void func_8038BC24(void) {
 }
 
 
-void func_8038BCF0(Actor *this) {
+void chBrentilda_update(Actor *this) {
     s32 sp78[6];
     s32 sp74;
     ActorLocal_lair_5640 *local;
@@ -100,9 +100,9 @@ void func_8038BCF0(Actor *this) {
         marker_setFreeMethod(this->marker, func_8038BBC0);
         actor_collisionOff(this);
         this->unk10_12 = 2;
-        if (!func_8031FF1C(0x5C)) {
-            func_80320044(0xD3, randi2(0, 0x100), 8);
-            func_80320004(0x5C, TRUE);
+        if (!fileProgressFlag_get(FILEPROG_5C_FF_PATTERN_SET)) {
+            fileProgressFlag_setN(FILEPROG_D3_FF_PATTERN, randi2(0, 0x100), 8);
+            fileProgressFlag_set(FILEPROG_5C_FF_PATTERN_SET, TRUE);
         }
         func_8038BC24();
         actor_setOpacity(this, 0x40);
@@ -178,9 +178,9 @@ void func_8038BCF0(Actor *this) {
             && (func_8028ECAC() == 0) 
             && func_8028F20C()
             && !func_803114B0()) {
-            if (!func_8031FF1C(0x96)) {
-                func_80311480(0x10A1, 0xA, this->position, this->marker, func_8038BADC, NULL);
-                func_80320004(0x96, TRUE);
+            if (!fileProgressFlag_get(FILEPROG_96_MET_BRENTILDA)) {
+                func_80311480(ASSET_10A1_DIALOG_BRENTILDA_MEET, 0xA, this->position, this->marker, func_8038BADC, NULL);
+                fileProgressFlag_set(FILEPROG_96_MET_BRENTILDA, TRUE);
                 func_80328A84(this, 2);
                 return;
             }

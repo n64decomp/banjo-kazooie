@@ -136,7 +136,7 @@ void func_8038D568(Actor *this){
             other = marker_getActor(this->unk100);
             sp3C = this->velocity_y * sp48;
             if(this->position_y + sp3C < this->unk1C[1]){
-                if( !func_8031FF1C(BKPROG_D2_HAS_SPAWNED_A_JINJO_STATUE_IN_FINAL_FIGHT) || this->unkF4_8 == 1){
+                if( !fileProgressFlag_get(FILEPROG_D2_HAS_SPAWNED_A_JINJO_STATUE_IN_FINAL_FIGHT) || this->unkF4_8 == 1){
                     func_8030E2C4(this->unk44_31);
                     func_8030E2C4(local->unk0);
                 }

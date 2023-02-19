@@ -128,7 +128,7 @@ extern ActorInfo D_80372810;
 extern ActorInfo D_80372840; //grillchompa
 extern ActorInfo D_80372870; //clucker
 extern ActorInfo D_803728A0; //scarab
-extern ActorInfo D_8036D970; //boombox
+extern ActorInfo chMinigame; //boombox
 extern ActorInfo D_80372970; //leaf_particle
 extern ActorInfo D_80372994;
 extern ActorInfo D_803729B8; //rain
@@ -275,7 +275,7 @@ void spawnQueue_reset(void){
     spawnableActorList_add(&D_80372A24, actor_new, 0x80); 
     spawnableActorList_add(&D_80372A48, actor_new, 0x81); 
     spawnableActorList_add(&D_80372A6C, actor_new, 0x81); 
-    spawnableActorList_add(&D_8036D970, actor_new, 0x80); //boombox
+    spawnableActorList_add(&chMinigame, actor_new, 0x80); //boombox
     spawnableActorList_add(&D_803677A8, actor_new, 0x8600); //ice_key
     spawnableActorList_add(&D_80367814, actor_new, 0x8600); //SnS_egg
     spawnableActorList_add(&gChFireFxInfo, actor_new, 0x0); //fire

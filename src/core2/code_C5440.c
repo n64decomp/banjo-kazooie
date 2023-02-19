@@ -32,6 +32,25 @@ extern void func_8034CD28(void *arg0);
 extern void func_8034F248(void *arg0);
 extern void func_8034F568(void *arg0);
 
+enum mesh_xform_e{
+    MESH_XFORM_3_WATER = 3,
+};
+
+typedef struct struct_1D_s{
+    BKModel *model;
+    s16 unk4;
+    u8 xform_id;
+    // u8 pad7[1];
+    Struct70s unk8;//union of subtypes
+}struct1Ds;
+
+typedef struct struct_1E_s{
+    void (* unk0)(void * arg0, s32 arg1, s32 arg2, s32 arg3);
+    void (* unk4)(void * arg0, s32 arg1, s32 arg2);
+    void (* unk8)(void * arg0);
+}struct1Es;
+
+
 struct1Es D_80372030[] = {
     {func_8034CF74, func_8034CF90, func_8034CF6C},
     {func_8034D170, func_8034D194, func_8034D168},
@@ -56,10 +75,10 @@ void func_8034C9B0(int arg0);
 //.code
 func_8034C3D0(BKModel *arg0, s32 arg1, s32 vtx_xform_id, s32 arg3){
     struct1Ds * v0 = vector_pushBackNew(&D_80386140.unk4);
-    v0->unk6 = vtx_xform_id;
-    v0->unk0 = arg0;
+    v0->xform_id = vtx_xform_id;
+    v0->model = arg0;
     v0->unk4 = arg1;
-    D_80372030[v0->unk6].unk0(&v0->unk8, arg3, v0->unk0, v0->unk4);
+    D_80372030[v0->xform_id].unk0(&v0->unk8, arg3, v0->model, v0->unk4);
 }
 
 Struct70s *func_8034C448(s32 arg0){
@@ -67,7 +86,7 @@ Struct70s *func_8034C448(s32 arg0){
     struct1Ds *endPtr = vector_getEnd(D_80386140.unk4);
 
     for(iPtr = vector_getBegin(D_80386140.unk4); iPtr < endPtr; iPtr++){
-        if(iPtr->unk6 == 8 && iPtr->unk4 == arg0)
+        if(iPtr->xform_id == 8 && iPtr->unk4 == arg0)
             return &iPtr->unk8;
     }
     return NULL;
@@ -99,7 +118,7 @@ Struct70s *func_8034C528(s32 arg0){
     struct1Ds *endPtr = vector_getEnd(D_80386140.unk4);
 
     for(iPtr = vector_getBegin(D_80386140.unk4); iPtr < endPtr; iPtr++){
-        if(iPtr->unk6 == 2 && iPtr->unk4 == arg0)
+        if(iPtr->xform_id == 2 && iPtr->unk4 == arg0)
             return &iPtr->unk8;
     }
     return NULL;
@@ -110,7 +129,7 @@ Struct70s *func_8034C5AC(s32 arg0){
     struct1Ds *endPtr = vector_getEnd(D_80386140.unk4);
 
     for(iPtr = vector_getBegin(D_80386140.unk4); iPtr < endPtr; iPtr++){
-        if(iPtr->unk6 == 3 && iPtr->unk4 == arg0)
+        if(iPtr->xform_id == 3 && iPtr->unk4 == arg0)
             return &iPtr->unk8;
     }
     return NULL;
@@ -121,8 +140,8 @@ Struct70s *func_8034C630(s32 arg0){
     struct1Ds *endPtr = vector_getEnd(D_80386140.unk4);
 
     for(iPtr = vector_getBegin(D_80386140.unk4); iPtr < endPtr; iPtr++){
-        if( (iPtr->unk6 == 3)
-            && meshList_meshContainsVtx(BKModel_getMeshList(iPtr->unk0), iPtr->unk4, arg0)
+        if( (iPtr->xform_id == 3)
+            && meshList_meshContainsVtx(BKModel_getMeshList(iPtr->model), iPtr->unk4, arg0)
         ){
             return &iPtr->unk8;
         }
@@ -174,7 +193,7 @@ void func_8034C8D8(void){
     struct1Ds *endPtr = vector_getEnd(D_80386140.unk4);
 
     for(iPtr = vector_getBegin(D_80386140.unk4); iPtr < endPtr; iPtr++){
-       D_80372030[iPtr->unk6].unk8(&iPtr->unk8);
+       D_80372030[iPtr->xform_id].unk8(&iPtr->unk8);
     }
     vector_free(D_80386140.unk4);
 }
@@ -193,7 +212,7 @@ void * func_8034C9D4(void){
     struct1Ds *endPtr = vector_getEnd(D_80386140.unk4);
 
     for(iPtr = vector_getBegin(D_80386140.unk4); iPtr < endPtr; iPtr++){
-       D_80372030[iPtr->unk6].unk4(&iPtr->unk8, iPtr->unk0, iPtr->unk4);
+       D_80372030[iPtr->xform_id].unk4(&iPtr->unk8, iPtr->model, iPtr->unk4);
     }
 
 }

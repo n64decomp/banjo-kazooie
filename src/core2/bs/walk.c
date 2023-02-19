@@ -118,27 +118,27 @@ void func_802B6FA8(void){
 }
 
 void bswalk_creep_init(void){
-    AnimCtrl * s0 = baanim_getAnimCtrlPtr();
-    f32 sp20;
+    AnimCtrl * anim_ctrl = baanim_getAnimCtrlPtr();
+    f32 start_position;
 
     if(bs_getPrevState() == BS_2_WALK_SLOW){
-        sp20 = anim_getTimer(animctrl_getAnimPtr(s0));
+        start_position = anim_getTimer(animctrl_getAnimPtr(anim_ctrl));
     }else{
-        sp20 = 0.0f;
+        start_position = 0.0f;
     }
-    animctrl_reset(s0);
-    animctrl_setIndex(s0, ASSET_2_ANIM_BSWALK_CREEP);
-    animctrl_setDuration(s0, 0.43f);
-    animctrl_setStart(s0, sp20);
-    animctrl_setPlaybackType(s0,  ANIMCTRL_LOOP);
-    animctrl_start(s0, "bswalk.c", 0xe4);
+    animctrl_reset(anim_ctrl);
+    animctrl_setIndex(anim_ctrl, ASSET_2_ANIM_BSWALK_CREEP);
+    animctrl_setDuration(anim_ctrl, 0.43f);
+    animctrl_setStart(anim_ctrl, start_position);
+    animctrl_setPlaybackType(anim_ctrl,  ANIMCTRL_LOOP);
+    animctrl_start(anim_ctrl, "bswalk.c", 0xe4);
     func_8029C7F4(BAANIM_UPDATE_2_SCALE_HORZ,1,1,2);
     baanim_setDurationRange(0.3f, 1.5f);
     baanim_setVelocityMapRanges(bsWalkMinCreepVelocity, bsWalkCreepSlowWalkVelocityThreshold, bsWalkSlowestCreepDuration, bsWalkFastestCreepDuration);
 }
 
 void bswalk_creep_update(void){
-    s32 s0 = 0;
+    s32 next_state = 0;
     func_802B6E44();
     if(func_8029B2E8() == 0.0f){
         yaw_setIdeal(yaw_get());
@@ -150,68 +150,68 @@ void bswalk_creep_update(void){
     switch(func_8029B300()){
         case 0://L802B7160
             if(func_80297C04(1.0f))
-                s0 = BS_1_IDLE;
+                next_state = BS_1_IDLE;
             break;
         case 2://L802B7180
-            s0 = BS_2_WALK_SLOW;
+            next_state = BS_2_WALK_SLOW;
             break;
         case 3://L802B7188
-            s0 = BS_WALK;
+            next_state = BS_WALK;
             break;
         case 4:
-            s0 = BS_4_WALK_FAST;
+            next_state = BS_4_WALK_FAST;
             break;
     }//L802B7194
     if(func_8028B128())
-        s0 = BS_WALK_MUD;
+        next_state = BS_WALK_MUD;
 
     if(func_80294F78())
-        s0 = func_802926C0();
+        next_state = func_802926C0();
 
     if(func_8028B094())
-        s0 = BS_2F_FALL;
+        next_state = BS_2F_FALL;
 
     if(button_held(BUTTON_Z))
-        s0 = BS_CROUCH;
+        next_state = BS_CROUCH;
 
-    s0 = func_802B6F20(s0);
+    next_state = func_802B6F20(next_state);
 
     if(button_pressed(BUTTON_A))
-        s0 = func_8029C780();
+        next_state = func_8029C780();
 
     if(player_isSliding())
-        s0 = BS_SLIDE;
+        next_state = BS_SLIDE;
     
-    s0 = func_8029CA94(s0);
+    next_state = func_8029CA94(next_state);
 
     if(player_inWater())
-        s0 = BS_2D_SWIM_IDLE;
+        next_state = BS_2D_SWIM_IDLE;
 
-    bs_setState(s0);
+    bs_setState(next_state);
 }
 
 void bswalk_slow_init(void){
-    AnimCtrl * s0 = baanim_getAnimCtrlPtr();
-    f32 sp20;
+    AnimCtrl * anim_ctrl = baanim_getAnimCtrlPtr();
+    f32 start_position;
 
     if(bs_getPrevState() == 3){
-        sp20 = anim_getTimer(animctrl_getAnimPtr(s0));
+        start_position = anim_getTimer(animctrl_getAnimPtr(anim_ctrl));
     }else{
-        sp20 = 0.0f;
+        start_position = 0.0f;
     }
-    animctrl_reset(s0);
-    animctrl_setIndex(s0, ASSET_3_ANIM_BSWALK);
-    animctrl_setDuration(s0, 0.43f);
-    animctrl_setStart(s0, sp20);
-    animctrl_setPlaybackType(s0,  ANIMCTRL_LOOP);
-    animctrl_start(s0, "bswalk.c", 0x168);
+    animctrl_reset(anim_ctrl);
+    animctrl_setIndex(anim_ctrl, ASSET_3_ANIM_BSWALK);
+    animctrl_setDuration(anim_ctrl, 0.43f);
+    animctrl_setStart(anim_ctrl, start_position);
+    animctrl_setPlaybackType(anim_ctrl,  ANIMCTRL_LOOP);
+    animctrl_start(anim_ctrl, "bswalk.c", 0x168);
     func_8029C7F4(BAANIM_UPDATE_2_SCALE_HORZ,1,1,2);
     baanim_setDurationRange(0.3f, 1.5f);
     baanim_setVelocityMapRanges(bsWalkCreepSlowWalkVelocityThreshold, bsWalkSlowWalkWalkVelocityThreshold, bsWalkSlowestSlowWalkDuration, bsWalkFastestSlowWalkDuration);
 }
 
 void bswalk_slow_upate(void){
-    s32 s0 = 0;
+    s32 next_state = 0;
     func_802B6E44();
     if(func_8029B2E8() == 0.0f){
         yaw_setIdeal(yaw_get());
@@ -223,66 +223,66 @@ void bswalk_slow_upate(void){
     switch(func_8029B300()){
         case 0://L802B7160
             if(func_80297C04(3.0f))
-                s0 = BS_1_IDLE;
+                next_state = BS_1_IDLE;
             break;
         case 1://L802B7180
-            s0 = BS_WALK_CREEP;
+            next_state = BS_WALK_CREEP;
             break;
         case 3://L802B7188
-            s0 = BS_WALK;
+            next_state = BS_WALK;
             break;
         case 4:
-            s0 = BS_4_WALK_FAST;
+            next_state = BS_4_WALK_FAST;
             break;
     }//L802B7194
     if(func_8028B128())
-        s0 = BS_WALK_MUD;
+        next_state = BS_WALK_MUD;
 
     if(func_80294F78())
-        s0 = func_802926C0();
+        next_state = func_802926C0();
 
     if(func_8028B094())
-        s0 = BS_2F_FALL;
+        next_state = BS_2F_FALL;
 
     if(button_held(BUTTON_Z))
-        s0 = BS_CROUCH;
+        next_state = BS_CROUCH;
 
-    s0 = func_802B6F20(s0);
+    next_state = func_802B6F20(next_state);
 
     if(button_pressed(BUTTON_A))
-        s0 = func_8029C780();
+        next_state = func_8029C780();
 
     if(player_isSliding())
-        s0 = BS_SLIDE;
+        next_state = BS_SLIDE;
     
-    s0 = func_8029CA94(s0);
+    next_state = func_8029CA94(next_state);
 
     if(player_inWater())
-        s0 = BS_2D_SWIM_IDLE;
+        next_state = BS_2D_SWIM_IDLE;
 
-    bs_setState(s0);
+    bs_setState(next_state);
 }
 
 void bswalk_init(void){
-    AnimCtrl * s0 = baanim_getAnimCtrlPtr();
-    f32 sp20 = 0.0f;
+    AnimCtrl * anim_ctrl = baanim_getAnimCtrlPtr();
+    f32 start_position = 0.0f;
 
     switch(bs_getPrevState()){
         default:
-            sp20 = 0.0f;
+            start_position = 0.0f;
             break;
-        case 2:
-        case 4:
-            sp20 = anim_getTimer(animctrl_getAnimPtr(s0));
+        case 2://slowwalk
+        case 4://fastwalk
+            start_position = anim_getTimer(animctrl_getAnimPtr(anim_ctrl));
             break;
     }
-    animctrl_reset(s0);
-    animctrl_setIndex(s0, ASSET_C_ANIM_BSWALK_RUN);
-    animctrl_setDuration(s0, 0.66f);
-    animctrl_setTransitionDuration(s0, 0.14f);
-    animctrl_setStart(s0, sp20);
-    animctrl_setPlaybackType(s0,  ANIMCTRL_LOOP);
-    animctrl_start(s0, "bswalk.c", 0x1ed);
+    animctrl_reset(anim_ctrl);
+    animctrl_setIndex(anim_ctrl, ASSET_C_ANIM_BSWALK_RUN);
+    animctrl_setDuration(anim_ctrl, 0.66f);
+    animctrl_setTransitionDuration(anim_ctrl, 0.14f);
+    animctrl_setStart(anim_ctrl, start_position);
+    animctrl_setPlaybackType(anim_ctrl,  ANIMCTRL_LOOP);
+    animctrl_start(anim_ctrl, "bswalk.c", 0x1ed);
     func_8029C7F4(BAANIM_UPDATE_2_SCALE_HORZ,1,1,2);
     baanim_setDurationRange(0.3f, 1.5f);
     baanim_setVelocityMapRanges(bsWalkSlowWalkWalkVelocityThreshold, bsWalkWalkFastWalkVelocityThreshold, bsWalkSlowestWalkDuration, bsWalkFastestWalkDuration);
@@ -290,7 +290,7 @@ void bswalk_init(void){
 }
 
 void bswalk_update(void){
-    s32 s0 = 0;
+    s32 next_state = 0;
     func_802B6E44();
     func_8029AD28(0.4f, 4);
     func_8029AD28(0.9f, 3);
@@ -301,46 +301,46 @@ void bswalk_update(void){
         case 1:
         case 2:
             if(func_80297C04(bsWalkSlowWalkWalkVelocityThreshold) && func_802B6EF4())
-                s0 = BS_2_WALK_SLOW;
+                next_state = BS_2_WALK_SLOW;
             break;
         case 4:
-            s0 = BS_4_WALK_FAST;
+            next_state = BS_4_WALK_FAST;
             break;
     }//L802B76B8
     if(func_8028B128())
-        s0 = BS_WALK_MUD;
+        next_state = BS_WALK_MUD;
 
     if(func_8028B4C4() && bsWalkSkidVelocity < _get_horzVelocity()){
-        s0 = BS_SKID;
+        next_state = BS_SKID;
     }
 
     if(func_80294F78())
-        s0 = func_802926C0();
+        next_state = func_802926C0();
 
     if(func_8028B094())
-        s0 = BS_2F_FALL;
+        next_state = BS_2F_FALL;
 
     if(button_held(BUTTON_Z))
-        s0 = BS_CROUCH;
+        next_state = BS_CROUCH;
 
-    s0 = func_802B6F20(s0);
+    next_state = func_802B6F20(next_state);
 
     if(button_pressed(BUTTON_A))
-        s0 = func_8029C780();
+        next_state = func_8029C780();
 
     if(player_isSliding())
-        s0 = BS_SLIDE;
+        next_state = BS_SLIDE;
     
-    s0 = func_8029CA94(s0);
+    next_state = func_8029CA94(next_state);
 
     if(player_inWater())
-        s0 = BS_2D_SWIM_IDLE;
+        next_state = BS_2D_SWIM_IDLE;
 
-    bs_setState(s0);
+    bs_setState(next_state);
 }
 
 void bswalk_fast_init(void){
-    AnimCtrl * s0 = baanim_getAnimCtrlPtr();
+    AnimCtrl * anim_ctrl = baanim_getAnimCtrlPtr();
     f32 sp28 = 0.0f;
     int sp24 = 1;
     
@@ -355,18 +355,18 @@ void bswalk_fast_init(void){
             sp24 = 0;
             break;
         case 3:
-            sp28 = anim_getTimer(animctrl_getAnimPtr(s0));
+            sp28 = anim_getTimer(animctrl_getAnimPtr(anim_ctrl));
 
             break;
     }
-    animctrl_reset(s0);
-    animctrl_setSmoothTransition(s0, sp24);
-    animctrl_setIndex(s0, ASSET_C_ANIM_BSWALK_RUN);
-    animctrl_setDuration(s0, 0.66f);
-    animctrl_setTransitionDuration(s0, 0.1f);
-    animctrl_setStart(s0, sp28);
-    animctrl_setPlaybackType(s0,  ANIMCTRL_LOOP);
-    animctrl_start(s0, "bswalk.c", 0x27d);
+    animctrl_reset(anim_ctrl);
+    animctrl_setSmoothTransition(anim_ctrl, sp24);
+    animctrl_setIndex(anim_ctrl, ASSET_C_ANIM_BSWALK_RUN);
+    animctrl_setDuration(anim_ctrl, 0.66f);
+    animctrl_setTransitionDuration(anim_ctrl, 0.1f);
+    animctrl_setStart(anim_ctrl, sp28);
+    animctrl_setPlaybackType(anim_ctrl,  ANIMCTRL_LOOP);
+    animctrl_start(anim_ctrl, "bswalk.c", 0x27d);
     func_8029C7F4(BAANIM_UPDATE_2_SCALE_HORZ,1,1,2);
     baanim_setDurationRange(0.3f, 1.5f);
     baanim_setVelocityMapRanges(bsWalkWalkFastWalkVelocityThreshold, bsWalkMaxFastWalkVelocity, bsWalkSlowestFastWalkDuration, bsWalkFastestFastWalkDuration);
@@ -377,7 +377,7 @@ void bswalk_fast_init(void){
 }
 
 void bswalk_fast_update(void){
-    s32 s0 = 0;
+    s32 next_state = 0;
     func_802B6E44();
     func_80299594(0, 0.5f);
     func_8029AD28(0.4f, 4);
@@ -387,56 +387,56 @@ void bswalk_fast_update(void){
     switch(func_8029B300()){
         case 0://L802B79EC
             if(func_80297C04(18.0f))
-                s0 = BS_1_IDLE;
+                next_state = BS_1_IDLE;
 
             if(func_80294F78())
-                s0 = func_802926C0();
+                next_state = func_802926C0();
             
             break;
         case 1:
         case 2://L802B7A28
             if(func_80297C04(bsWalkSlowWalkWalkVelocityThreshold))
-                s0 = BS_2_WALK_SLOW;
+                next_state = BS_2_WALK_SLOW;
 
             if(func_80294F78())
-                s0 = func_802926C0();
+                next_state = func_802926C0();
 
             break;
         case 3://L802B7A60
             if(func_80297C04(bsWalkWalkFastWalkVelocityThreshold) && func_802B6EF4())
-                s0 = BS_WALK;
+                next_state = BS_WALK;
 
             if(func_80294F78())
-                s0 = func_802926C0();
+                next_state = func_802926C0();
             break;
     }//L802B7AA4
     if(func_8028B128())
-        s0 = BS_WALK_MUD;
+        next_state = BS_WALK_MUD;
 
     if(func_8028B4C4() && bsWalkSkidVelocity < _get_horzVelocity()){
-        s0 = BS_SKID;
+        next_state = BS_SKID;
     }
 
     if(func_8028B094())
-        s0 = BS_2F_FALL;
+        next_state = BS_2F_FALL;
 
     if(button_held(BUTTON_Z))
-        s0 = BS_CROUCH;
+        next_state = BS_CROUCH;
 
-    s0 = func_802B6F20(s0);
+    next_state = func_802B6F20(next_state);
 
     if(button_pressed(BUTTON_A))
-        s0 = func_8029C780();
+        next_state = func_8029C780();
 
     if(player_isSliding())
-        s0 = BS_SLIDE;
+        next_state = BS_SLIDE;
     
-    s0 = func_8029CA94(s0);
+    next_state = func_8029CA94(next_state);
 
     if(player_inWater())
-        s0 = BS_2D_SWIM_IDLE;
+        next_state = BS_2D_SWIM_IDLE;
 
-    bs_setState(s0);
+    bs_setState(next_state);
 }
 
 void bswalk_fast_end(void){
@@ -452,40 +452,40 @@ void bswalk_mud_init(void){
 }
 
 void bswalk_mud_update(void){
-    s32 s0 = 0;
+    s32 next_state = 0;
     func_802B6E44();
     func_8029AD28(0.4f, 4);
     func_8029AD28(0.9f, 3);
     func_802B6D00();
     if(!func_8028B128())
-        s0 = BS_2_WALK_SLOW;
+        next_state = BS_2_WALK_SLOW;
 
     if(!func_8029B300())
-        s0 = BS_1_IDLE;
+        next_state = BS_1_IDLE;
 
     if(func_80294F78())
-        s0 = func_802926C0();
+        next_state = func_802926C0();
 
     if(func_8028B094())
-        s0 = BS_2F_FALL;
+        next_state = BS_2F_FALL;
 
     if(button_held(BUTTON_Z))
-        s0 = BS_CROUCH;
+        next_state = BS_CROUCH;
 
-    s0 = func_802B6F20(s0);
+    next_state = func_802B6F20(next_state);
 
     if(button_pressed(BUTTON_A))
-        s0 = func_8029C780();
+        next_state = func_8029C780();
 
     if(player_isSliding())
-        s0 = BS_SLIDE;
+        next_state = BS_SLIDE;
     
-    s0 = func_8029CA94(s0);
+    next_state = func_8029CA94(next_state);
 
     if(player_inWater())
-        s0 = BS_2D_SWIM_IDLE;
+        next_state = BS_2D_SWIM_IDLE;
 
-    bs_setState(s0);
+    bs_setState(next_state);
 }
 
 void bswalk_drone_init(void){

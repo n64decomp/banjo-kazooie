@@ -253,7 +253,7 @@ void func_80388FC0(Actor *this){
     ActorLocal_BGS_2270 *local;
 
     local = (ActorLocal_BGS_2270 *)&this->local;
-    func_80320044(0, local->unkA, 2);
+    fileProgressFlag_setN(0, local->unkA, 2);
     vector_free(local->unk4);
 }
 
@@ -289,7 +289,7 @@ void func_80389080(Actor *this){
         unqPtr->unk4 = vector_new(sizeof(Struct_BGS_2270_0s), 8);
         unqPtr->unk8 = 0;
         unqPtr->unk9 = 0;
-        unqPtr->unkA = func_8031FF44(0,2);
+        unqPtr->unkA = fileProgressFlag_getN(0,2);
         unqPtr->unkB = 0;
         unqPtr->unkC = 0.0f;
         if(func_803203FC(2)){

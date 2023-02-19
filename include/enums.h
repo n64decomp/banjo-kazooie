@@ -11,253 +11,230 @@
 #define SPRITE_TYPE_RGBA16 (1 << 10) ////0x400
 #define SPRITE_TYPE_RGBA32 (1 << 11)
 
-enum bkprog_e{
+enum file_progress_e{
     
-    BKPROG_3_MUSIC_NOTE_TEXT = 0x3,
-    BKPROG_4_MUMBO_TOKEN_TEXT,
-    BKPROG_5_BLUE_EGG_TEXT,
-    BKPROG_6_RED_FEATHER_TEXT,
-    BKPROG_7_GOLD_FEATHER_TEXT,
-    BKPROG_8_GOLD_BULLION_TEXT,
-    BKPROG_9_ORANGE_TEXT,
-    BKPROG_A_HONEYCOMB_TEXT,
-    BKPROG_B_EMPTY_HONEYCOMB_TEXT,
-    BKPROG_C_EXTRA_LIFE_TEXT,
-	// BKPROG_0C_ "1st Extra Life Text"},
-	// BKPROG_0D_ "1st Beehive Text"},
-    BKPROG_D_BEEHIVE_TEXT = 0xD,
-	BKPROG_E_JINJO_TEXT,
-    BKPROG_F_HAS_TOUCHED_PIRAHANA_WATER,
-	BKPROG_10_HAS_TOUCHED_SAND_EEL_SAND,
-    BKPROG_11_HAS_MET_MUMBO, 
-    BKPROG_12_HAS_TRANSFORMED_BEFORE,
-    BKPROG_13, //something with xmas tree jiggy progress
-    BKPROG_14_HAS_TOUCHED_FP_ICY_WATER,
-    BKPROG_15_ENTER_MMM_TEXT,
-	// {index=0x16, type="Prog", level=6, name="1st Time in Jigsaw Text"},
-	// {index=0x17, type="Prog", level=6, name="1st Time Enough Pieces Jigsaw Text"},
-	BKPROG_18_MM_WITCH_SWITCH_JIGGY_SPAWNED = 0x18,
-	BKPROG_19_MMM_WITCH_SWITCH_JIGGY_SPAWNED,
-	BKPROG_1A_TTC_WITCH_SWITCH_JIGGY_SPAWNED,
-	BKPROG_1B_CC_WITCH_SWITCH_JIGGY_SPAWNED,
-	BKPROG_1C_RBB_WITCH_SWITCH_JIGGY_SPAWNED,
-	BKPROG_1D_MMM_DINNING_ROOM_CUTSCENE,
-	// {index=0x1E, type="Prog", level=6, name="Grate to BGS Puzzle Open"},
-	BKPROG_1F_CC_LOBBY_PIPE_1_RAISED = 0x1F,
-    BKPROG_20_CC_LOBBY_PIPE_2_RAISED,
-    BKPROG_21_CC_LOBBY_PIPE_3_RAISED,
-    BKPROG_22_WATER_SWITCH_1_PRESSED,
-    BKPROG_23_LAIR_WATER_LEVEL_1,
-    BKPROG_24_WATER_SWITCH_2_PRESSED,
-    BKPROG_25_LAIR_WATER_LEVEL_2 = 0x25,
-    BKPROG_26_WATER_SWITCH_3_PRESSED,
-    BKPROG_27_LAIR_WATER_LEVEL_3 = 0x27,
+    FILEPROG_3_MUSIC_NOTE_TEXT = 0x3,
+    FILEPROG_4_MUMBO_TOKEN_TEXT,
+    FILEPROG_5_BLUE_EGG_TEXT,
+    FILEPROG_6_RED_FEATHER_TEXT,
+    FILEPROG_7_GOLD_FEATHER_TEXT,
+    FILEPROG_8_ORANGE_TEXT,
+    FILEPROG_9_GOLD_BULLION_TEXT,
+    FILEPROG_A_HONEYCOMB_TEXT,
+    FILEPROG_B_EMPTY_HONEYCOMB_TEXT,
+    FILEPROG_C_EXTRA_LIFE_TEXT,
+    FILEPROG_D_BEEHIVE_TEXT,
+	FILEPROG_E_JINJO_TEXT,
+    FILEPROG_F_HAS_TOUCHED_PIRAHANA_WATER,
+	FILEPROG_10_HAS_TOUCHED_SAND_EEL_SAND,
+    FILEPROG_11_HAS_MET_MUMBO, 
+    FILEPROG_12_HAS_TRANSFORMED_BEFORE,
+    FILEPROG_13, //something with xmas tree jiggy progress
+    FILEPROG_14_HAS_TOUCHED_FP_ICY_WATER,
+    FILEPROG_15_ENTER_MMM_TEXT,
+    FILEPROG_16_STOOD_ON_JIGSAW_PODIUM,
+    FILEPROG_17_HAS_HAD_ENOUGH_JIGSAW_PIECES,
+    FILEPROG_18_MM_WITCH_SWITCH_JIGGY_PRESSED,
+    FILEPROG_19_MMM_WITCH_SWITCH_JIGGY_PRESSED,
+    FILEPROG_1A_TTC_WITCH_SWITCH_JIGGY_PRESSED,
+    FILEPROG_1B_MET_YELLOW_FLIBBITS,
+    FILEPROG_1C_RBB_WITCH_SWITCH_JIGGY_PRESSED,
+    FILEPROG_1D_MMM_DINNING_ROOM_CUTSCENE,
+    FILEPROG_1E_LAIR_GRATE_TO_BGS_PUZZLE_OPEN,
+    FILEPROG_1F_CC_LOBBY_PIPE_1_RAISED,
+    FILEPROG_20_CC_LOBBY_PIPE_2_RAISED,
+    FILEPROG_21_CC_LOBBY_PIPE_3_RAISED,
+    FILEPROG_22_WATER_SWITCH_1_PRESSED,
+    FILEPROG_23_LAIR_WATER_LEVEL_1,
+    FILEPROG_24_WATER_SWITCH_2_PRESSED,
+    FILEPROG_25_LAIR_WATER_LEVEL_2,
+    FILEPROG_26_WATER_SWITCH_3_PRESSED,
+    FILEPROG_27_LAIR_WATER_LEVEL_3,
 
-	BKPROG_31_MM_OPEN = 0x31,
-	BKPROG_32_TTC_OPEN,
-	BKPROG_33_CC_OPEN,
-	BKPROG_34_BGS_OPEN,
-	BKPROG_35_FP_OPEN,
-	BKPROG_36_GV_OPEN,
-	BKPROG_37_MMM_OPEN,
-	BKPROG_38_RBB_OPEN,
-	BKPROG_39_CCW_OPEN,
-	BKPROG_3A_NOTE_DOOR_50_OPEN,
-	BKPROG_3B_NOTE_DOOR_180_OPEN,
-	BKPROG_3C_NOTE_DOOR_260_OPEN,
-	BKPROG_3D_NOTE_DOOR_350_OPEN,
-	BKPROG_3E_NOTE_DOOR_450_OPEN,
-	BKPROG_3F_NOTE_DOOR_640_OPEN,
-	BKPROG_40_NOTE_DOOR_765_OPEN,
-	BKPROG_41_NOTE_DOOR_810_OPEN,
-	BKPROG_42_NOTE_DOOR_828_OPEN,
-	BKPROG_43_NOTE_DOOR_846_OPEN,
-	BKPROG_44_NOTE_DOOR_864_OPEN,
-	BKPROG_45_NOTE_DOOR_882_OPEN,
-	BKPROG_46_CCW_WITCH_SWITCH_JIGGY_SPAWNED,
-
-	// {index=0x48, type="Prog", level=6, name="FP WS Advent Door Open"},
-	// {index=0x49, type="Prog", level=6, name="Pink Cauldron 1 Active"},
-	// {index=0x4A, type="Prog", level=6, name="Pink Cauldron 2 Active"},
-	// {index=0x4B, type="Prog", level=6, name="Green Cauldron 1 Active"},
-	// {index=0x4C, type="Prog", level=6, name="Green Cauldron 2 Active"},
-	// {index=0x4D, type="Prog", level=6, name="Red Cauldron 1 Active"},
-	// {index=0x4E, type="Prog", level=6, name="Red Cauldron 2 Active"},
-	// -- 0x4F - Unused Cauldron Pair?
-	// -- 0x50 - Unused Cauldron Pair?
-	// {index=0x51, type="Prog", level=6, name="Yellow Cauldron 1 Active"},
-	// {index=0x52, type="Prog", level=6, name="Yellow Cauldron 2 Active"},
-	// {index=0x53, type="Prog", level=6, name="CCW Puzzle Podium Switch Pressed"},
-	// {index=0x54, type="Prog", level=6, name="CCW Puzzle Podium Active"},
-	// {index=0x55, type="Prog", level=6, name="1st FF BK Square Text"},
-	// {index=0x56, type="Prog", level=6, name="1st FF Pic Square Text"},
-	// {index=0x57, type="Prog", level=6, name="1st FF Music Square Text"},
-	// {index=0x58, type="Prog", level=6, name="1st FF Mini-Game Square Text"},
-	// {index=0x59, type="Prog", level=6, name="1st FF Grunty Square Text"},
-	// {index=0x5A, type="Prog", level=6, name="1st FF Death Square Text"},
-	// {index=0x5B, type="Prog", level=6, name="1st FF Joker Square Text"},
-
-	// {index=0x5C, type="Prog", level=6, name="??FF Pattern Set"},
-
-	// -- Pieces places in puzzles info
-	// -- TODO: Read/write these as ints?
-	// {index=0x5D, type="Prog", level=6, name="Puzzle: # Pieces in MM Puzzle (2^0)"},
-	// {index=0x5E, type="Prog", level=6, name="Puzzle: # Pieces in TTC Puzzle (2^0)"},
-	// {index=0x5F, type="Prog", level=6, name="Puzzle: # Pieces in TTC Puzzle (2^1)"},
-	// {index=0x60, type="Prog", level=6, name="Puzzle: # Pieces in CC Puzzle (2^0)"},
-	// {index=0x61, type="Prog", level=6, name="Puzzle: # Pieces in CC Puzzle (2^1)"},
-	// {index=0x62, type="Prog", level=6, name="Puzzle: # Pieces in CC Puzzle (2^2)"},
-	// {index=0x63, type="Prog", level=6, name="Puzzle: # Pieces in BGS Puzzle (2^0)"},
-	// {index=0x64, type="Prog", level=6, name="Puzzle: # Pieces in BGS Puzzle (2^1)"},
-	// {index=0x65, type="Prog", level=6, name="Puzzle: # Pieces in BGS Puzzle (2^2)"},
-	// {index=0x66, type="Prog", level=6, name="Puzzle: # Pieces in FP Puzzle (2^0)"},
-	// {index=0x67, type="Prog", level=6, name="Puzzle: # Pieces in FP Puzzle (2^1)"},
-	// {index=0x68, type="Prog", level=6, name="Puzzle: # Pieces in FP Puzzle (2^2)"},
-	// {index=0x69, type="Prog", level=6, name="Puzzle: # Pieces in FP Puzzle (2^3)"},
-	// {index=0x6A, type="Prog", level=6, name="Puzzle: # Pieces in GV Puzzle (2^0)"},
-	// {index=0x6B, type="Prog", level=6, name="Puzzle: # Pieces in GV Puzzle (2^1)"},
-	// {index=0x6C, type="Prog", level=6, name="Puzzle: # Pieces in GV Puzzle (2^2)"},
-	// {index=0x6D, type="Prog", level=6, name="Puzzle: # Pieces in GV Puzzle (2^3)"},
-	// {index=0x6E, type="Prog", level=6, name="Puzzle: # Pieces in MMM Puzzle (2^0)"},
-	// {index=0x6F, type="Prog", level=6, name="Puzzle: # Pieces in MMM Puzzle (2^1)"},
-	// {index=0x70, type="Prog", level=6, name="Puzzle: # Pieces in MMM Puzzle (2^2)"},
-	// {index=0x71, type="Prog", level=6, name="Puzzle: # Pieces in MMM Puzzle (2^3)"},
-	// {index=0x72, type="Prog", level=6, name="Puzzle: # Pieces in RBB Puzzle (2^0)"},
-	// {index=0x73, type="Prog", level=6, name="Puzzle: # Pieces in RBB Puzzle (2^1)"},
-	// {index=0x74, type="Prog", level=6, name="Puzzle: # Pieces in RBB Puzzle (2^2)"},
-	// {index=0x75, type="Prog", level=6, name="Puzzle: # Pieces in RBB Puzzle (2^3)"},
-	// {index=0x76, type="Prog", level=6, name="Puzzle: # Pieces in CCW Puzzle (2^0)"},
-	// {index=0x77, type="Prog", level=6, name="Puzzle: # Pieces in CCW Puzzle (2^1)"},
-	// {index=0x78, type="Prog", level=6, name="Puzzle: # Pieces in CCW Puzzle (2^2)"},
-	// {index=0x79, type="Prog", level=6, name="Puzzle: # Pieces in CCW Puzzle (2^3)"},
-	// {index=0x7A, type="Prog", level=6, name="Puzzle: # Pieces in DoG Puzzle (2^0)"},
-	// {index=0x7B, type="Prog", level=6, name="Puzzle: # Pieces in DoG Puzzle (2^1)"},
-	// {index=0x7C, type="Prog", level=6, name="Puzzle: # Pieces in DoG Puzzle (2^2)"},
-	// {index=0x7D, type="Prog", level=6, name="Puzzle: # Pieces in DoG Puzzle (2^3)"},
-	// {index=0x7E, type="Prog", level=6, name="Puzzle: # Pieces in DoG Puzzle (2^4)"},
-	// {index=0x7F, type="Prog", level=6, name="Puzzle: # Pieces in Double Health Puzzle (2^0)"},
-	// {index=0x80, type="Prog", level=6, name="Puzzle: # Pieces in Double Health Puzzle (2^1)"},
-	// {index=0x81, type="Prog", level=6, name="Puzzle: # Pieces in Double Health Puzzle (2^2)"},
-
-    BKPROG_83_MAGIC_GET_WEAK_TEXT = 0x83,
-    BKPROG_84_MAGIC_ALL_GONE_TEXT,
+    FILEPROG_31_MM_OPEN = 0x31,
+    FILEPROG_32_TTC_OPEN,
+    FILEPROG_33_CC_OPEN,
+    FILEPROG_34_BGS_OPEN,
+    FILEPROG_35_FP_OPEN,
+    FILEPROG_36_GV_OPEN,
+    FILEPROG_37_MMM_OPEN,
+    FILEPROG_38_RBB_OPEN,
+    FILEPROG_39_CCW_OPEN,
+    FILEPROG_3A_NOTE_DOOR_50_OPEN,
+    FILEPROG_3B_NOTE_DOOR_180_OPEN,
+    FILEPROG_3C_NOTE_DOOR_260_OPEN,
+    FILEPROG_3D_NOTE_DOOR_350_OPEN,
+    FILEPROG_3E_NOTE_DOOR_450_OPEN,
+    FILEPROG_3F_NOTE_DOOR_640_OPEN,
+    FILEPROG_40_NOTE_DOOR_765_OPEN,
+    FILEPROG_41_NOTE_DOOR_810_OPEN,
+    FILEPROG_42_NOTE_DOOR_828_OPEN,
+    FILEPROG_43_NOTE_DOOR_846_OPEN,
+    FILEPROG_44_NOTE_DOOR_864_OPEN,
+    FILEPROG_45_NOTE_DOOR_882_OPEN,
+    FILEPROG_46_CCW_WITCH_SWITCH_JIGGY_PRESSED,
+    FILEPROG_47_FP_WITCH_SWITCH_JIGGY_PRESSED,
+    FILEPROG_48_FP_WITCH_SWITCH_ADVENT_DOOR_OPEN,
+    // {index=0x49, type="Prog", level=6, name="Pink Cauldron 1 Active"},
+    // {index=0x4A, type="Prog", level=6, name="Pink Cauldron 2 Active"},
+    // {index=0x4B, type="Prog", level=6, name="Green Cauldron 1 Active"},
+    // {index=0x4C, type="Prog", level=6, name="Green Cauldron 2 Active"},
+    // {index=0x4D, type="Prog", level=6, name="Red Cauldron 1 Active"},
+    // {index=0x4E, type="Prog", level=6, name="Red Cauldron 2 Active"},
+    // -- 0x4F - Unused Cauldron Pair?
+    // -- 0x50 - Unused Cauldron Pair?
+    // {index=0x51, type="Prog", level=6, name="Yellow Cauldron 1 Active"},
+    // {index=0x52, type="Prog", level=6, name="Yellow Cauldron 2 Active"},
+    FILEPROG_53_CCW_PUZZLE_PODIUM_SWITCH_PRESSED = 0x53,
+    FILEPROG_54_CCW_PUZZLE_PODIUM_ACTIVE,
+    FILEPROG_55_FF_BK_SQUARE_INSTRUCTIONS,
+    FILEPROG_56_FF_PICTURE_SQUARE_INSTRUCTIONS,
+    FILEPROG_57_FF_MUSIC_SQAURE_INSTRUCTIONS,
+    FILEPROG_58_FF_MINIGAME_SQAURE_INSTRUCTIONS,
+    FILEPROG_59_FF_GRUNTY_SQAURE_INSTRUCTIONS,
+    FILEPROG_5A_FF_DEATH_SQAURE_INSTRUCTIONS,
+    FILEPROG_5B_FF_JOKER_SQAURE_INSTRUCTIONS,
+    FILEPROG_5C_FF_PATTERN_SET,
+    FILEPROG_5D_MM_PUZZLE_PIECES_PLACED  = 0x5D, //1 bit
+    FILEPROG_5E_TCC_PUZZLE_PIECES_PLACED = 0x5E, //2 bit
+    FILEPROG_60_CC_PUZZLE_PIECES_PLACED  = 0x60, //3 bit
+    FILEPROG_63_BGS_PUZZLE_PIECES_PLACED = 0x63, //3 bit
+    FILEPROG_66_FP_PUZZLE_PIECES_PLACED  = 0x66, //4 bit
+    FILEPROG_6A_GV_PUZZLE_PIECES_PLACED  = 0x6A, //4 bit
+    FILEPROG_6E_MMM_PUZZLE_PIECES_PLACED = 0x6E, //4 bit
+    FILEPROG_72_RBB_PUZZLE_PIECES_PLACED = 0x72, //4 bit
+    FILEPROG_76_CCW_PUZZLE_PIECES_PLACED = 0x76, //4 bit
+    FILEPROG_7A_DOG_PUZZLE_PIECES_PLACED = 0x7A, //5 bit
+    FILEPROG_7F_DOUBLE_HEALTH_PUZZLE_PIECES_PLACED = 0x7F, //3 bit
+    // {index=0x82, unknown}
+    FILEPROG_82_MET_TWINKLIES = 0x82,
+    FILEPROG_83_MAGIC_GET_WEAK_TEXT,
+    FILEPROG_84_MAGIC_ALL_GONE_TEXT,
 	// {index=0x85, type="Prog", level=6, name="Lair Crypt Gate Open"},
-    BKPROG_86_HAS_TOUCHED_MMM_THORN_HEDGE = 0x86,
+    FILEPROG_86_HAS_TOUCHED_MMM_THORN_HEDGE = 0x86,
 
-    BKPROG_88_TRIED_LOGGO_AS_BEAR = 0x88,
-    BKPROG_89_ENTERED_LOGGO_AS_PUMPKIN,
-    BKPROG_8A_EXITED_LOGGO,
+    FILEPROG_88_TRIED_LOGGO_AS_BEAR = 0x88,
+    FILEPROG_89_ENTERED_LOGGO_AS_PUMPKIN,
+    FILEPROG_8A_EXITED_LOGGO,
+    FILEPROG_8B_CCW_SPRING_OPEN,
+    FILEPROG_8C_CCW_SUMMER_OPEN,
+    FILEPROG_8D_CCW_AUTUMN_OPEN,
+    FILEPROG_8E_CCW_WINTER_OPEN,
+    FILEPROG_8F_MET_BEE_INFESTED_BEEHIVE,
+    FILEPROG_90_PAID_TERMITE_COST,
+    FILEPROG_91_PAID_PUMPKIN_COST,
+    FILEPROG_92_PAID_WALRUS_COST,
+    FILEPROG_93_PAID_CROC_COST,
+    FILEPROG_94_PAID_BEE_COST,
 
-	// {index=0x8B, type="Prog", level=8, name="CCW Spring Open"},
-	// {index=0x8C, type="Prog", level=8, name="CCW Summer Open"},
-	// {index=0x8D, type="Prog", level=8, name="CCW Autumn Open"},
-	// {index=0x8E, type="Prog", level=8, name="CCW Winter Open"},
-	// {index=0x8F, type="Prog", level=8, name="Mumbo's Magic Getting Weak Text"},
-    BKPROG_90_PAID_TERMITE_COST = 0x90,
-    BKPROG_91_PAID_PUMPKIN_COST,
-    BKPROG_92_PAID_WALRUS_COST,
-    BKPROG_93_PAID_CROC_COST,
-    BKPROG_94_PAID_BEE_COST,
-
-	// {index=0x96, type="Prog", level=6, name="1st Time Brentilda Text"},
-	BKPROG_97_ENTERED_LAIR_TEXT = 0x97,
-	BKPROG_98_EXITED_LEVEL_TEXT,
-    BKPROG_99_PAST_50_NOTE_DOOR_TEXT,
-	// {index=0x99, type="Prog", level=6, name="1st Time Past 50 ND Text"},
-
-	// {index=0x9B, type="Prog", level=6, name="CC WS Eyes Active"},
-	BKPROG_9C_LAIR_CC_WITCH_SWITCH_LEFT_EYE_PRESSED = 0x9C,
-	BKPROG_9D_LAIR_CC_WITCH_SWITCH_RIGHT_EYE_PRESSED = 0x9D,
-    BKPROG_9E_CRYPT_COFFIN_LID_OPEN = 0x9E,
-
-    BKPROG_A1_STATUE_HAT_OPEN = 0xA1,
-    BKPROG_A2_GV_LOBBY_COFFIN_OPEN,
-    BKPROG_A3_UNKOWN, //tied to actor_244/marker_23B
-    BKPROG_A4_UNKOWN, //tied to actor_244/marker_23B
-
-    BKPROG_A6_FURNACE_FUN_COMPLETE = 0xA6,
-    BKPROG_A7_NEAR_PUZZLE_PODIUM_TEXT,
-    BKPROG_A8_HAS_DIED,
-    BKPROG_A9_HAS_TOUCHED_RBB_OVEN,
-    BKPROG_AA_HAS_TOUCHED_CCW_BRAMBLE_FIELD,
-	BKPROG_AB_SWIM_OILY_WATER,
-	BKPROG_AC_DIVE_OILY_WATER,
-	// {index=0xAD, type="Prog", level=6, name="Cheato: BLUEEGGS Unlocked"},
-	// {index=0xAE, type="Prog", level=6, name="Cheato: REDFEATHERS Unlocked"},
-	// {index=0xAF, type="Prog", level=6, name="Cheato: GOLDFEATHERS Unlocked"},
-    BKPROG_B0_HAS_ENTERED_MM = 0xb0,
-	BKPROG_B1_HAS_ENTERED_BGS,
-	BKPROG_B2_HAS_ENTERED_TTC,
-	BKPROG_B3_HAS_ENTERED_GV,
-	BKPROG_B4_HAS_ENTERED_RBB,
-	BKPROG_B5_HAS_ENTERED_CCW,
-	BKPROG_B6_HAS_ENTERED_FP,
-	BKPROG_B7_HAS_ENTERED_MMM,
-	BKPROG_B8_HAS_ENTERED_CC,
-	BKPROG_B9_DOUBLE_HEALTH,
-	// {index=0xBA, type="Prog", level=6, name="1st Time T. Rex"},
-    BK_PROG_BB_MUMBO_MISTAKE_INDEX = 0xBB, //2 bits
-    // BK_PROG_BC_MUMBO_MISTAKE_INDEX = 0xBC, //2 bits
-	BKPROG_BD_ENTER_LAIR_CUTSCENE =  0xBD,
-    BKPROG_BE_CHEATO_BLUEEGGS,
-    BKPROG_BF_CHEATO_REDFEATHERS,
-    BKPROG_C0_CHEATO_GOLDFEATHERS,
-
-    BKPROG_C2_GRATE_TO_RBB_PUZZLE_OPEN = 0xc2,
-    BKPROG_C3_ICE_BALL_TO_CHEATO_BROKEN,
-    BKPROG_C4_STATUE_EYE_BROKEN,
-    BKPROG_C5_RAREWARE_BOX_BROKEN,
-	// {index=0xC6, type="Prog", level=6, name="Jump Pad Switch Pressed"},
-	// {index=0xC7, type="Prog", level=6, name="Jump Pad Active"},
-	// {index=0xC8, type="Prog", level=6, name="Wall to Wading Boots Broken"},
-	// {index=0xC9, type="Prog", level=6, name="Wall to Jump Pad Switch Broken"},
-	// {index=0xCA, type="Prog", level=6, name="Cobweb to Purple Cauldron Broken"},
-	// {index=0xCB, type="Prog", level=6, name="Cobweb to Flight Pad Broken"},
-	// {index=0xCC, type="Prog", level=6, name="Cobweb to Green Cauldron Broken"},
-	BKPROG_CD_GRATE_TO_WATER_SWITCH_3_OPEN = 0xcd,
-    BKPROG_CE_GRATE_TO_MMM_PUZZLE_OPEN,
-    BKPROG_CF_HAS_ENTERED_FINAL_FIGHT,
+	FILEPROG_96_MET_BRENTILDA = 0x96,
+    FILEPROG_97_ENTERED_LAIR_TEXT,
+	FILEPROG_98_EXITED_LEVEL_TEXT,
+    FILEPROG_99_PAST_50_NOTE_DOOR_TEXT,
+    FILEPROG_9A_CC_WITCH_SWITCH_PRESSED,
+	FILEPROG_9B_LAIR_CC_WITCH_SWITCH_EYES_ACTIVE,
+    FILEPROG_9C_LAIR_CC_WITCH_SWITCH_LEFT_EYE_PRESSED,
+	FILEPROG_9D_LAIR_CC_WITCH_SWITCH_RIGHT_EYE_PRESSED,
+    FILEPROG_9E_CRYPT_COFFIN_LID_OPEN,
+    FILEPROG_9F_BGS_WITCH_SWITCH_JIGGY_PRESSED,
+    FILEPROG_A0_GV_WITCH_SWITCH_JIGGY_PRESSED,
+    FILEPROG_A1_STATUE_HAT_OPEN,
+    FILEPROG_A2_GV_LOBBY_COFFIN_OPEN,
+    FILEPROG_A3_GV_SNS_SWITCH_PRESSED,
+    FILEPROG_A4_GV_SNS_SARCOPHAGUS_OPEN,
+    //crypt gate open?
+    FILEPROG_A6_FURNACE_FUN_COMPLETE = 0xA6,
+    FILEPROG_A7_NEAR_PUZZLE_PODIUM_TEXT,
+    FILEPROG_A8_HAS_DIED,
+    FILEPROG_A9_HAS_TOUCHED_RBB_OVEN,
+    FILEPROG_AA_HAS_TOUCHED_CCW_BRAMBLE_FIELD,
+    FILEPROG_AB_SWIM_OILY_WATER,
+    FILEPROG_AC_DIVE_OILY_WATER,
+    FILEPROG_AD_CHEATO_BLUEEGGS_UNLOCKED,
+    FILEPROG_AE_CHEATO_REDFEATHERS_UNLOCKED,
+    FILEPROG_AF_CHEATO_GOLDFEATHERS_UNLOCKED,
+    FILEPROG_B0_HAS_ENTERED_MM,
+    FILEPROG_B1_HAS_ENTERED_BGS,
+    FILEPROG_B2_HAS_ENTERED_TTC,
+    FILEPROG_B3_HAS_ENTERED_GV,
+    FILEPROG_B4_HAS_ENTERED_RBB,
+    FILEPROG_B5_HAS_ENTERED_CCW,
+    FILEPROG_B6_HAS_ENTERED_FP,
+    FILEPROG_B7_HAS_ENTERED_MMM,
+    FILEPROG_B8_HAS_ENTERED_CC,
+    FILEPROG_B9_DOUBLE_HEALTH,
+    FILEPROG_BA_HAS_SEEN_TREX_TEXT,
+    FILEPROG_BB_MUMBO_MISTAKE_INDEX, //2 bits
+    FILEPROG_BD_ENTER_LAIR_CUTSCENE = 0xBD,
+    FILEPROG_BE_CHEATO_BLUEEGGS,
+    FILEPROG_BF_CHEATO_REDFEATHERS,
+    FILEPROG_C0_CHEATO_GOLDFEATHERS,
+    FILEPROG_C1_BADDIES_ESCAPE_TEXT,
+    FILEPROG_C2_GRATE_TO_RBB_PUZZLE_OPEN,
+    FILEPROG_C3_ICE_BALL_TO_CHEATO_BROKEN,
+    FILEPROG_C4_STATUE_EYE_BROKEN,
+    FILEPROG_C5_RAREWARE_BOX_BROKEN,
+    FILEPROG_C6_LAIR_JUMP_PAD_SWITCH_PRESSED,
+    FILEPROG_C7_LAIR_JUMP_PAD_ACTIVE,
+    FILEPROG_C8_LAIR_BRICKWALL_TO_WADINGBOOTS_BROKEN,
+    FILEPROG_C9_LAIR_BRICKWALL_TO_SHOCKJUMP_PAD_BROKEN,
+    FILEPROG_CA_COBWEB_BLOCKING_PURPLE_CAULDRON_BROKEN,
+    FILEPROG_CB_LAIR_COBWEB_OVER_FLIGHTPAD_BROKEN,
+    FILEPROG_CC_LAIR_COBWEB_OVER_GREEN_CAULDRON_BROKEN,
+    FILEPROG_CD_GRATE_TO_WATER_SWITCH_3_OPEN,
+    FILEPROG_CE_GRATE_TO_MMM_PUZZLE_OPEN,
+    FILEPROG_CF_HAS_ENTERED_FINAL_FIGHT,
     
-    BKPROG_D1_HAS_ACTIVATED_A_JINJO_STATUE_IN_FINAL_FIGHT = 0xD1,
-    BKPROG_D2_HAS_SPAWNED_A_JINJO_STATUE_IN_FINAL_FIGHT,
-	// {index=0xD3, type="Prog", level=6, name="??FF PATTERN 2^0"},
-	// {index=0xD4, type="Prog", level=6, name="??FF PATTERN 2^1"},
-	// {index=0xD5, type="Prog", level=6, name="??FF PATTERN 2^2"},
-	// {index=0xD6, type="Prog", level=6, name="??FF PATTERN 2^3"},
-	// {index=0xD7, type="Prog", level=6, name="??FF PATTERN 2^4"},
-	// {index=0xD8, type="Prog", level=6, name="??FF PATTERN 2^5"},
-	// {index=0xD9, type="Prog", level=6, name="??FF PATTERN 2^6"},
-	// {index=0xDA, type="Prog", level=6, name="??FF PATTERN 2^7"},
+    FILEPROG_D1_HAS_ACTIVATED_A_JINJO_STATUE_IN_FINAL_FIGHT = 0xD1,
+    FILEPROG_D2_HAS_SPAWNED_A_JINJO_STATUE_IN_FINAL_FIGHT,
+    FILEPROG_D3_FF_PATTERN, //8 bit
 
-    BKPROG_DC_HAS_HAD_ENOUGH_TOKENS_BEFORE = 0xDC,
-    BKPROG_DD_HAS_TOUCHED_ICY_WATER,
 
-	// {index=0xDF, type="Prog", level=6, name="Remove Puzzle Piece Text"},
-	// {index=0xE0, type="Prog", level=6, name="Place All Puzzle Pieces Text"},
+	// {index=0xDB, unknown},
+    FILEPROG_DB_SKIPPED_TUTORIAL = 0xDB,
+    FILEPROG_DC_HAS_HAD_ENOUGH_TOKENS_BEFORE,
+    FILEPROG_DD_HAS_TOUCHED_ICY_WATER,
+    FILEPROG_DE_USED_ALL_YOUR_PUZZLE_PIECES,
+    FILEPROG_DF_CAN_REMOVE_ALL_PUZZLE_PIECES,
+    FILEPROG_E0_CAN_PLACE_ALL_PUZZLE_PIECES,
 
-	// {index=0xE2, type="Prog", level=6, name="DoG Open"},
-	// {index=0xE3, type="Prog", level=8, name="CCW Flower Spring"},
-	// {index=0xE4, type="Prog", level=8, name="CCW Flower Summer"},
-	// {index=0xE5, type="Prog", level=8, name="CCW Flower Autumn"},
-    BKPROG_E6_SPRING_EYRIE_HATCHED = 0xE6,
-    BKPROG_E7_SUMMER_EYRIE_FED,
-	// {index=0xE7, type="Prog", level=8, name="Summer Eyrie Fed"},
-	// {index=0xE8, type="Prog", level=8, name="Autumn Eyrie Fed"},
+    FILEPROG_E2_DOOR_OF_GRUNTY_OPEN = 0xE2,
+    FILEPROG_E3_CCW_FLOWER_SPRING,
+    FILEPROG_E4_CCW_FLOWER_SUMMER,
+    FILEPROG_E5_CCW_FLOWER_AUTUMN,
+    FILEPROG_E6_SPRING_EYRIE_HATCHED,
+    FILEPROG_E7_SUMMER_EYRIE_FED,
+    FILEPROG_E8_AUTMN_EYRIE_FED,
+    FILEPROG_E9_TALKED_TO_BRENTILDA_1,
+    FILEPROG_EA_TALKED_TO_BRENTILDA_2,
+    FILEPROG_EB_TALKED_TO_BRENTILDA_3,
+    FILEPROG_EC_TALKED_TO_BRENTILDA_4,
+    FILEPROG_ED_TALKED_TO_BRENTILDA_5,
+    FILEPROG_EE_TALKED_TO_BRENTILDA_6,
+    FILEPROG_EF_TALKED_TO_BRENTILDA_7,
+    FILEPROG_F0_TALKED_TO_BRENTILDA_8,
+    FILEPROG_F1_TALKED_TO_BRENTILDA_9,
+    FILEPROG_F2_TALKED_TO_BRENTILDA_10,
+    FILEPROG_F3_MET_DINGPOT,
+    FILEPROG_F4_ENTER_FF_CUTSCENE,
+    FILEPROG_F5_COMPLETED_A_WARP_CAULDRON_SET,
+    FILEPROG_F6_SEEN_DOOR_OF_GRUNTY_PUZZLE_PODIUM,
+    FILEPROG_F7_HAS_TRANSFORMED_IN_CRYPT,
+	FILEPROG_F8_KING_SANDYBUTT_PYRAMID_STATE = 0xF8, //2bit
+	// FILEPROG_F8_KING_SANDYBUTT_PYRAMID_STATE = 0xF9, //2bit
 
-	// {index=0xF3, type="Prog", level=6, name="Talked to Dingpot"},
-    BKPROG_F4_ENTER_FF_CUTSCENE = 0xF4,
-	// {index=0xF4, type="Prog", level=6, name="1st Time FF Cutscene"},
-
-	// {index=0xF6, type="Prog", level=6, name="1st Time Near DoG Puzzle Podium"},
-	// {index=0xF7, type="Prog", level=10, name="Pumpkin Making Mumbo Hungry Text"},
-    BKPROG_F7_HAS_TRANSFORMED_IN_CRYPT = 0xF7,
-	BKPROG_F8_KING_SANDYBUTT_PYRAMID_STATE = 0xF8, //2bit
-	// BKPROG_F8_KING_SANDYBUTT_PYRAMID_STATE = 0xF9, //2bit
-
-	BKPROG_FC_DEFEAT_GRUNTY = 0xFC
+	FILEPROG_FC_DEFEAT_GRUNTY = 0xFC,
+    FILEPROG_FD_CHEATCODES_ENTERED //2 bit
 };
 
 enum unkflags_1{
+    UNKFLAGS1_6_HAS_SEEN_BOSS_BOOM_BOX_FF_MINIGAME = 0x6,
+    UNKFLAGS1_7_HAS_SEEN_VILE_FF_MINIGAME,
+    UNKFLAGS1_8_HAS_SEEN_MATCHING_PYRAMID_FF_MINIGAME,
+    UNKFLAGS1_9_HAS_SEEN_ZUBBAS_FF_MINIGAME,
+    UNKFLAGS1_A_HAS_SEEN_TIPTUP_FF_MINIGAME,
+    UNKFLAGS1_B_HAS_SEEN_SANDCASTLE_FF_MINIGAME,
+
     UNKFLAGS1_1F_IN_CHARACTER_PARADE = 0x1F,
     UNKFLAGS1_20_BEGIN_CHARACTER_PARADE,
 
@@ -1621,6 +1598,7 @@ enum actor_e
     ACTOR_117_NIPPER,
     ACTOR_118_GRABBA,
     ACTOR_119_MAGIC_CARPET_1,
+    ACTOR_11A_GV_MAZE_SARCOPHAGUS,
 
     ACTOR_11C_HISTUP = 0x11C,
     ACTOR_11D_RUBEES_EGG_POT = 0x11D,
@@ -1747,15 +1725,19 @@ enum actor_e
 
     ACTOR_20B_RBB_WITCH_SWITCH = 0x20B,
 
-    ACTOR_20E_MM_ENTRANCE_DOOR = 0x20E,
+    ACTOR_20D_BREAKABLE_BRICK_WALL = 0x20D,
+    ACTOR_20E_MM_ENTRANCE_DOOR,
     ACTOR_20F_RBB_ENTRANCE_DOOR,
     ACTOR_210_BGS_ENTRANCE_DOOR,
-    ACTOR_211_CHEST_LID, //CC ENTRANCE
-    ACTOR_212_IRON_BARS, //TTC_ENTRANCE
+    ACTOR_211_TCC_ENTRANCE_CHEST_LID, //CC ENTRANCE
+    ACTOR_212_CC_ENTRANCE_BARS, //TTC_ENTRANCE
 
     ACTOR_226_GV_ENTRANCE   = 0x226,
     ACTOR_227_GLASS_EYE,
-    ACTOR_228_INVISIBLE_WALL, //MMM ENTRANCE DOOR???
+    ACTOR_228_MMM_ENTRANCE_DOOR, //MMM ENTRANCE DOOR???
+
+    ACTOR_230_BREAKABLE_FLOOR_COBWEB = 0x230,
+    ACTOR_231_BREAKABLE_WALL_COBWEB,
 
     ACTOR_234_CCW_ENTRANCE_DOOR = 0x234,
     ACTOR_235_FP_ENTANCE_DOOR,
@@ -1764,7 +1746,10 @@ enum actor_e
 
     ACTOR_239_FP_WITCH_SWITCH = 0x239,
 
+    ACTOR_23B_DINGPOT = 0x23B,
+
     ACTOR_243_GV_SNS_CHAMBER_DOOR = 0x243,
+    ACTOR_244_GV_SNS_SARCOPHAGUS,
 
     ACTOR_245_GV_SNS_SWITCH = 0x245,
 
@@ -1813,7 +1798,9 @@ enum actor_e
     ACTOR_2A8_NABNUT = 0x2A8,
     ACTOR_2A9_ACORN,
 
-    ACTOR_2E5_WOODEN_DOOR   = 0x2e5,
+    ACTOR_2DB_WARP_CAULDRON = 0x2DB,
+
+    ACTOR_2E5_DOOR_OF_GRUNTY   = 0x2e5,
 
     ACTOR_30D_BOOM_BOX_FAST = 0x30D,
 
@@ -1861,6 +1848,7 @@ enum actor_e
     ACTOR_370_GOLD_FEATHER  = 0x370,
 
     ACTOR_375_GRUBLIN_HOOD  = 0x375,
+    ACTOR_376_FF_MINIGAME,
 
     ACTOR_379_UNKNOWN = 0x379,
     ACTOR_37A_BOTTLES,
@@ -2348,8 +2336,8 @@ enum asset_e
     ASSET_CA_ANIM_GLOOP_SWIMMING,
     ASSET_CB_ANIM_GLOOP_BLOWING_BUBBLE,
     ASSET_CC_ANIM_BSFLY_BEAKBOMB_END,
-
-    ASSET_CE_ANIM_RUBEE_STOP_PLAYING = 0xCE,
+    ASSET_CD_ANIM_SARCOPHAGUS_OPEN,
+    ASSET_CE_ANIM_RUBEE_STOP_PLAYING,
     ASSET_CF_ANIM_HISTUP_RAISED,
     ASSET_D0_ANIM_HISTUP_GROW,
     ASSET_D1_ANIM_HISTUP_HIDE,
@@ -2670,7 +2658,7 @@ enum asset_e
     // 33a Wall Torch
     // 33b Parasol
     // 33c GV Maze Pot
-    // 33d GV Sarcophagus
+    ASSET_33D_MODEL_SARCOPHAGUS = 0x33D,
     // 33e GV Rock 1 (Behind Entrance?)
     // 33f GV Rock 2 (Behind Entrance?)
     // 340 GL Beauty Stealing Machine
@@ -2950,7 +2938,7 @@ enum asset_e
     ASSET_44D_MODEL_POLAR_BEAR_CUB_GREEN,
     ASSET_44E_MODEL_POLAR_BEAR_CUB_RED,
     // 44f (Green Mist?)
-    // 450 Dingpot
+    ASSET_450_MODEL_DINGPOT = 0x450,
     // 451 Gruntilda
     // 452 Gruntilda's Arms
     // 453 Dingpot Top
@@ -3032,7 +3020,7 @@ enum asset_e
     ASSET_49E_SPRITE_BEE_SWARM,
     // 49f 2D Glowing Bee (Beta)
     ASSET_4A0_SPRITE_EXPLOSION = 0x4A0,
-    // 4a1 Brick Wall Near GV Entrance
+    ASSET_4A1_MODEL_BREAKABLE_BRICK_WALL,
     // 4a2 Mumbo's Mountain Door Entrance
     // 4a3 TTC Entrance Chest Lid
     // 4a4 Clanker's Entrance Long Pipe (Green)
@@ -3061,9 +3049,8 @@ enum asset_e
     // 4bb RBB Window 2
     // 4bc GV Entrance Door
     ASSET_4BD_MODEL_GLASS_EYE = 0x4BD,
-    // 4bd Gruntilda Head Eyeball
     // 4be MMM Entrance Door
-    // 4bf GL Yellow Floor Cobweb
+    ASSET_4BF_MODEL_FLOOR_COBWEB = 0x4BF,
     // 4c0 MMM Window
     // 4c1 MMM Short Window
     // 4c2 MMM Tall Window
@@ -3085,7 +3072,7 @@ enum asset_e
     // 4d2 FP Christmas Tree Glass Container
     // 4d3 FP Christmas Tree Glass Container Fragment
     ASSET_4D4_MODEL_TWINKLY_BOX_PAPER_SHARD = 0x4D4,
-    // 4d5 GL Yellow Wall Cobweb
+    ASSET_4D5_MODEL_WALL_COBWEB,
     // 4d6 Click Clock Wood Entrance Door
     // 4d7 Freezeezy Peak Entrance Left Door
     // 4d8 Freezeezy Peak Entrance Right Door
@@ -3095,7 +3082,7 @@ enum asset_e
     ASSET_4DC_MODEL_WITCH_SWITCH = 0x4DC,
     // 4dd Mumbo Skull Switch
     // 4de RBB Safety Boat 2
-    // 4df Cauldron (Grey)
+    ASSET_4DF_MODEL_WARP_CAULDRON = 0x4DF,
     // 4e0 CCW Season Door
     // 4e1 GL Wooden Coffin
     // 4e2 RBB Skylights (Shattered Window)
@@ -3889,6 +3876,7 @@ enum asset_e
     ASSET_F64_DIALOG_NOTEDOORS_LEARN = 0xf64,
     ASSET_F65_DIALOG_NOTEDOORS_REFRESHER,
 
+    ASSET_10A1_DIALOG_BRENTILDA_MEET = 0x10A1,
 
     ASSET_146B_MODEL_TTC_TREASURE_TROVE_COVE_OPA = 0x146B,
     ASSET_146C_MODEL_TTC_TREASURE_TROVE_COVE_XLU,
@@ -4159,8 +4147,8 @@ enum marker_e{
     MARKER_A5_NIPPER,
     MARKER_A6_GRABBA,
     MARKER_A7_MAGIC_CARPET_1,
-
-    MARKER_A9_RUBEE = 0xA9,
+    MARKER_A8_GV_MAZE_SARCOPHAGUS,
+    MARKER_A9_RUBEE,
     MARKER_AA_HISTUP,
     MARKER_AB_RUBEES_EGG_POT,
 
@@ -4231,6 +4219,8 @@ enum marker_e{
     MARKER_104_MMM_WITCH_SWITCH,
     MARKER_105_TTC_WITCH_SWITCH,
     MARKER_106_RBB_WITCH_SWITCH,
+
+    MARKER_109_BREAKABLE_BRICK_WALL = 0x109,
 
     MARKER_11B_WATER_LEVEL_SWITCH_1 = 0x11B,
     MARKER_11C_WATER_LEVEL_SWITCH_2,
@@ -4309,7 +4299,8 @@ enum marker_e{
     MARKER_1D4_SANDYBUTT_PYRAMID =  0x1D4,
     MARKER_1D5_PALM_TREE,
 
-    MARKER_1E2_GRUBLIN_HOOD =  0x1E2,
+    MARKER_1E1_FF_MINIGAME = 0x1E1,
+    MARKER_1E2_GRUBLIN_HOOD,
 
     MARKER_1E5_GOLD_FEATHER_COLLECTIBLE = 0x1E5,
     MARKER_1E6_TOPPER_B,
@@ -4349,16 +4340,22 @@ enum marker_e{
     MARKER_219_MUMMUM,
     MARKER_21A_SEAMAN_GRUBLIN,
 
+    MARKER_224_BREAKABLE_FLOOR_COBWEB = 0x224,
+    MARKER_225_BREAKABLE_WALL_COBWEB,
+
     MARKER_22A_CCW_WITCH_SWITCH = 0x22A,
     MARKER_22B_FP_WITCH_SWITCH,
 
-    MARKER_23A_GV_SNS_CHAMBER_DOOR = 0x23A,
+    MARKER_231_DINGPOT = 0x231,
 
-    MARKER_23C_GV_SNS_SWITCH = 0x23C,
+    MARKER_23A_GV_SNS_CHAMBER_DOOR = 0x23A,
+    MARKER_23B_GV_SNS_SARCOPHAGUS,
+    MARKER_23C_GV_SNS_SWITCH,
 
     MARKER_23F_LAIR_FLIGHT_PAD_SWITCH = 0x23F,
     MARKER_240_LAIR_SWITCH_FLIGHT_PAD = 0x240,
 
+    MARKER_244_WARP_CAULDRON = 0x244,
     MARKER_245_XMAS_TREE_EGG_TOLL = 0x245,
 
     MARKER_250_ICECUBE_A = 0x250,

@@ -81,7 +81,7 @@ void SM_func_8038A5D8(Actor *this){
     switch (this->state)
     {
     case 1://L8038A688
-        if(func_8031FF1C(0xdb)){
+        if(fileProgressFlag_get(FILEPROG_DB_SKIPPED_TUTORIAL)){
             marker_despawn(this->marker);
         }else{
             if(mapSpecificFlags_get(0xe)){

@@ -45,18 +45,18 @@ void func_802CD8C0(Actor *this){
             return;
         }
         if(map_get() == MAP_26_MMM_NAPPERS_ROOM){
-            if(func_8031FF1C(BKPROG_1D_MMM_DINNING_ROOM_CUTSCENE)){
+            if(fileProgressFlag_get(FILEPROG_1D_MMM_DINNING_ROOM_CUTSCENE)){
                 marker_despawn(this->marker);
                 return;
             }
             else{
                 func_802CD870(this);
-                func_80320004(BKPROG_1D_MMM_DINNING_ROOM_CUTSCENE, TRUE);
+                fileProgressFlag_set(FILEPROG_1D_MMM_DINNING_ROOM_CUTSCENE, TRUE);
             }
         }
         //L802CD9C4
         if(map_get() == MAP_8E_GL_FURNACE_FUN){
-            if(func_8031FF1C(BKPROG_F4_ENTER_FF_CUTSCENE)){
+            if(fileProgressFlag_get(FILEPROG_F4_ENTER_FF_CUTSCENE)){
                 marker_despawn(this->marker);
                 return;
             }

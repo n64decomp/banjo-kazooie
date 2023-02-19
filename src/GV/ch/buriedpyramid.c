@@ -59,7 +59,7 @@ void chBuriedPyramid_update(Actor *this){
     if(!this->unk16C_4){
         this->unk16C_4 = TRUE;
         this->marker->propPtr->unk8_3 = TRUE;
-        local->raised_state = func_8031FF44(BKPROG_F8_KING_SANDYBUTT_PYRAMID_STATE, 2);
+        local->raised_state = fileProgressFlag_getN(FILEPROG_F8_KING_SANDYBUTT_PYRAMID_STATE, 2);
         this->position_x = 67.0f;
         this->position_y = (local->raised_state/3.0)*1050.0 + 1375.0;
         this->position_z = 400.0f;

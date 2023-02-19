@@ -326,13 +326,6 @@ typedef struct struct_1C_1_s{
     u8 *string; //0x4
 }struct1Cs_1;
 
-
-typedef struct struct_1E_s{
-    void (* unk0)(void * arg0, s32 arg1, s32 arg2, s32 arg3);
-    void (* unk4)(void * arg0, s32 arg1, s32 arg2);
-    void (* unk8)(void * arg0);
-}struct1Es;
-
 typedef struct struct_21_s{
     s32 unk0;
     void * unk1;
@@ -791,14 +784,6 @@ typedef union {
     Struct74s type_74;
     Struct77s type_77;
 }Struct70s;
-
-typedef struct struct_1D_s{
-    BKModel *unk0;
-    s16 unk4;
-    u8 unk6;
-    // u8 pad7[1];
-    Struct70s unk8;//union of subtypes
-}struct1Ds;
 
 
 typedef struct {

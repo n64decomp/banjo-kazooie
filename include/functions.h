@@ -391,7 +391,7 @@ f32  func_802B6F9C(void);
 void func_802C1B20(f32);
 int  func_802C1DB0(f32);
 
-void func_802D6264(f32, enum map_e, s32, s32, s32, enum bkprog_e);
+void func_802D6264(f32, enum map_e, s32, s32, s32, enum file_progress_e);
 
 Actor *func_802DC7E0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 
@@ -443,7 +443,7 @@ void func_8030EBC8(enum sfx_e uid, f32 arg1, f32 arg2, s32 arg3, s32 arg4);
 void func_8030EC20(enum sfx_e uid, f32 arg1, f32 arg2, u32 arg3, u32 arg4);
 u8 func_8030ED2C(enum sfx_e uid, s32 arg1);
 
-void func_80320044(s32, s32, s32);
+void fileProgressFlag_setN(s32, s32, s32);
 Actor *marker_getActorAndRotation(ActorMarker *marker, f32 rotation[3]);
 Actor *func_80325934(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 Actor *func_80325E78(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);

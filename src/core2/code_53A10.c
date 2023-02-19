@@ -18,16 +18,16 @@ void func_802DA9A0(ActorMarker *caller, enum asset_e text_id, s32 arg2){
     s32 flag;
     s32 tmp;
     if(level_get() == LEVEL_A_MAD_MONSTER_MANSION){
-        flag = BKPROG_15_ENTER_MMM_TEXT;
+        flag = FILEPROG_15_ENTER_MMM_TEXT;
     }
     else{
         if(map_get() == MAP_69_GL_MM_LOBBY)
-            tmp = BKPROG_97_ENTERED_LAIR_TEXT;
+            tmp = FILEPROG_97_ENTERED_LAIR_TEXT;
         else
-            tmp = BKPROG_98_EXITED_LEVEL_TEXT;
+            tmp = FILEPROG_98_EXITED_LEVEL_TEXT;
         flag = tmp;
     }
-    func_80320004(flag, 1);
+    fileProgressFlag_set(flag, 1);
     FUNC_8030E624(SFX_EA_GRUNTY_LAUGH_1, 1.0f, 30000);
 }
 
@@ -42,17 +42,17 @@ void func_802DAA14(Actor *this){
     }
 
     if(level_get() == LEVEL_A_MAD_MONSTER_MANSION){
-        flag = BKPROG_15_ENTER_MMM_TEXT;
+        flag = FILEPROG_15_ENTER_MMM_TEXT;
     }
     else{
         if(map_get() == MAP_69_GL_MM_LOBBY)
-            tmp = BKPROG_97_ENTERED_LAIR_TEXT;
+            tmp = FILEPROG_97_ENTERED_LAIR_TEXT;
         else
-            tmp = BKPROG_98_EXITED_LEVEL_TEXT;
+            tmp = FILEPROG_98_EXITED_LEVEL_TEXT;
         flag = tmp;
     }
         
-    if(func_8031FF1C(flag)){
+    if(fileProgressFlag_get(flag)){
         marker_despawn(this->marker);
         return;
     }

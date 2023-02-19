@@ -1663,7 +1663,7 @@ segments:
   - [0x104E810, c, ch/gobirock] #DONE
   - [0x104EC60, c, ch/trunker] #DONE
   - [0x104EFC0, c, code_2EE0] #DONE
-  - [0x104F1A0, c, code_30C0] #DONE
+  - [0x104F1A0, c, ch/sarcophagus] #DONE
   - [0x104F710, c, code_3630] #DONE
   - [0x104FB80, c, code_3AA0] #DONE
   - [0x104FBF0, c, code_3B10] #DONE
@@ -1696,7 +1696,7 @@ segments:
   - [0x1056A50, .data, ch/gobirock]
   - [0x1056A80, .data, ch/trunker]
   - [0x1056AB0, .data, code_2EE0]
-  - [0x1056AF0, .data, code_30C0]
+  - [0x1056AF0, .data, ch/sarcophagus]
   - [0x1056B90, .data, code_3630]
   - [0x1056BF0, .data, code_3AA0]
   - [0x1056C20, .data, code_3B10]
@@ -1721,7 +1721,7 @@ segments:
   - [0x1057410, .rodata, ch/gobi2]
   - [0x1057430, .rodata, ch/gobi3]
   - [0x1057470, .rodata, ch/gobirock]
-  - [0x1057480, .rodata, code_30C0]
+  - [0x1057480, .rodata, ch/sarcophagus]
   - [0x1057490, .rodata, code_3BB0]
   - [0x10574A0, .rodata, code_3D90]
   - [0x10574B0, .rodata, code_43B0]
@@ -1892,7 +1892,7 @@ segments:
   - [0x106B790, c, code_3420]
   - [0x106D0E0, c, ch/yumblie] #DONE
   - [0x106D970, c, ch/mrvile] #DONE
-  - [0x106EAA0, c, ch/code_6730] #DONE
+  - [0x106EAA0, c, ch/frogminigame] #DONE
   - [0x106F160, c, ch/yellowflibbit] #DONE
   - [0x10709B0, c, ch/mudhut] #DONE
   - [0x1070DD0, c, ch/code_8A60] #DONE
@@ -1909,7 +1909,7 @@ segments:
   - [0x10728E0, .data, code_3420]
   - [0x10729C0, .data, ch/yumblie]
   - [0x10729F0, .data, ch/mrvile]
-  - [0x1072A30, .data, ch/code_6730]
+  - [0x1072A30, .data, ch/frogminigame]
   - [0x1072A60, .data, ch/yellowflibbit]
   - [0x1072AA0, .data, crc]
   - [0x1072AB0, .data, ch/mudhut]
@@ -1925,7 +1925,7 @@ segments:
   - [0x1072F70, .rodata, code_3420]
   - [0x1072F90, .rodata, ch/yumblie]
   - [0x1072FC0, .rodata, ch/mrvile]
-  - [0x1073010, .rodata, ch/code_6730]
+  - [0x1073010, .rodata, ch/frogminigame]
   - [0x1073020, .rodata, ch/yellowflibbit]
   - [0x1073110, .rodata, ch/mudhut]
   - [0x1073120, .rodata, ch/code_8A60]
@@ -1933,7 +1933,7 @@ segments:
   - [0x1073140, .rodata, code_9750]
   - [0x1073150, .rodata, ch/leafboat]
   - [0x10731B0, .bss, bss_pad]
-  - [0x10731B0, .bss, ch/code_6730]
+  - [0x10731B0, .bss, ch/frogminigame]
 - name: RBB
   dir: RBB
   type: code
@@ -2173,7 +2173,7 @@ segments:
   subsegments:
   - [0x1098070, c, code_0] #DONE
   - [0x109C310, c, code_42A0] #DONE
-  - [0x109D6B0, c, code_5640] #DONE
+  - [0x109D6B0, c, ch/brentilda] #DONE
   - [0x109DF40, c, code_5ED0] #DONE
   - [0x10A0760, c, code_86F0] #DONE
   - [0x10A1CB0, c, code_9C40] #DONE
@@ -2187,7 +2187,7 @@ segments:
   - [0x10A4730, c, code_C6C0] #DONE
   - [0x10A4930, .data, code_0]
   - [0x10A51A0, .data, code_42A0]
-  - [0x10A5390, .data, code_5640]
+  - [0x10A5390, .data, ch/brentilda]
   - [0x10A53E0, .data, code_5ED0]
   - [0x10A6430, .data, code_86F0]
   - [0x10A64E0, .data, code_9C40]
@@ -2201,7 +2201,7 @@ segments:
   - [0x10A69A0, .data, code_C6C0]
   - [0x10A69D0, .rodata, code_0]
   - [0x10A6C80, .rodata, code_42A0]
-  - [0x10A6D10, .rodata, code_5640]
+  - [0x10A6D10, .rodata, ch/brentilda]
   - [0x10A6D40, .rodata, code_5ED0]
   - [0x10A6E50, .rodata, code_86F0]
   - [0x10A6EC0, .rodata, code_9C40]

@@ -199,7 +199,7 @@ void func_8034B834(void) {
     func_80295864(-1);
     func_80295870(-1);
     for(i = 0; i < 10; i++){
-        func_80320004(D_80371FA0[i], 1);
+        fileProgressFlag_set(D_80371FA0[i], 1);
     }
 }
 
@@ -259,7 +259,7 @@ void func_8034BA7C(enum map_e map_id, s32 exit_id){
 void func_8034BA9C(void) {
     if (func_8034BAFC() != -1) {
         func_802C5A3C(func_8034BAFC());
-        func_8033D13C(func_8034BAFC());
+        gameFile_load(func_8034BAFC());
         func_80347AA8();
     }
     func_8031B010();

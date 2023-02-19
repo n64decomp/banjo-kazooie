@@ -15,7 +15,7 @@ void func_80389440(Actor *this, s32 next_state) {
     if (next_state == 2) {
         func_8030E510(SFX_AA_BGS_EGG_BREAKING_1, 28000);
         this->marker->propPtr->unk8_3 = FALSE;
-        func_80320004(0xE6, 1);
+        fileProgressFlag_set(FILEPROG_E6_SPRING_EYRIE_HATCHED, TRUE);
         func_80335924(this->unk148, 0x187, 0.0f, 2.0f);
         func_80335A8C(this->unk148, 2);
         func_80324E38(0.0f, 3);
@@ -54,7 +54,7 @@ void func_803895F4(Actor *this) {
         this->marker->propPtr->unk8_3 = TRUE;
         marker_setCollisionScripts(this->marker, NULL, NULL, &func_8038950C);
         func_80389440(this, 1);
-        if ((func_8031FF1C(0xE6) != 0) || jiggyscore_isSpawned(JIGGY_49_CCW_EYRIE)) {
+        if (fileProgressFlag_get(FILEPROG_E6_SPRING_EYRIE_HATCHED) || jiggyscore_isSpawned(JIGGY_49_CCW_EYRIE)) {
             marker_despawn(this->marker);
         }
         return;

@@ -6,7 +6,7 @@
 extern void actor_setOpacity(Actor*,s32);
 extern void func_8035644C(u32);
 
-bool chCollectible_collectItem(Actor*, u32, enum asset_e, enum comusic_e, enum item_e, f32);
+bool chCollectible_collectItem(Actor*, enum file_progress_e, enum asset_e, enum comusic_e, enum item_e, f32);
 Actor *chCollectible_draw(ActorMarker *this, Gfx **gdl, Mtx **mptr, Vtx **arg3);
 void chCollectible_update(Actor *this);
 
@@ -76,7 +76,7 @@ void func_802D8C98(Actor *this, s32 arg1) {
     chCollectible_setState(this, (phi_v0 ) ? 2 : 3);
 }
 
-bool chCollectible_collectItem(Actor* actor, u32 arg1, enum asset_e dialogId, enum comusic_e sfxId, enum item_e itemId, f32 arg5){
+bool chCollectible_collectItem(Actor* actor, enum file_progress_e arg1, enum asset_e dialogId, enum comusic_e sfxId, enum item_e itemId, f32 arg5){
     func_8025A6EC(sfxId,32000);
     timedFunc_set_1(0.75f, (GenMethod_1)func_8035644C, arg1);
     if(!func_802FADD4(0x1b)){
@@ -100,7 +100,7 @@ s32 chCollectible_collectEgg(ActorProp *arg0){
         if(arg0->unk8_0)
             actPtr = marker_getActor(arg0->marker);
     }
-    chCollectible_collectItem(actPtr, 5, 0xD9E, COMUSIC_C_EGG_COLLECTED, 0xD, 2.0f);
+    chCollectible_collectItem(actPtr, FILEPROG_5_BLUE_EGG_TEXT, 0xD9E, COMUSIC_C_EGG_COLLECTED, 0xD, 2.0f);
 }
 
 void chCollectible_collectRedFeather(ActorProp *arg0){
@@ -108,7 +108,7 @@ void chCollectible_collectRedFeather(ActorProp *arg0){
     fxSparkle_redFeather(&arg0->x);
     if(arg0->unk8_0)
         actPtr = marker_getActor(arg0->marker);
-    chCollectible_collectItem(actPtr, 6, 0xD9F, COMUSIC_B_RED_FEATHER_COLLECTED, 0xF, 4.0f);
+    chCollectible_collectItem(actPtr, FILEPROG_6_RED_FEATHER_TEXT, 0xD9F, COMUSIC_B_RED_FEATHER_COLLECTED, 0xF, 4.0f);
 }
 
 void chCollectible_collectGoldFeather(ActorProp *arg0){
@@ -116,7 +116,7 @@ void chCollectible_collectGoldFeather(ActorProp *arg0){
     fxSparkle_goldFeather(&arg0->x);
     if(arg0->unk8_0)
         actPtr = marker_getActor(arg0->marker);
-    chCollectible_collectItem(actPtr, 7, 0xDA0, COMUSIC_14_GOLD_FEATHER_COLLECTED, ITEM_10_GOLD_FEATHER, 6.0f);
+    chCollectible_collectItem(actPtr, FILEPROG_7_GOLD_FEATHER_TEXT, 0xDA0, COMUSIC_14_GOLD_FEATHER_COLLECTED, ITEM_10_GOLD_FEATHER, 6.0f);
 }
 
 Actor *chCollectible_draw(ActorMarker *this, Gfx **gdl, Mtx **mptr, Vtx **arg3){

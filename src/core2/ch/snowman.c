@@ -257,7 +257,7 @@ void chSnowman_update(Actor *this){
             else if( 
                 map_get() != MAP_27_FP_FREEZEEZY_PEAK
                 || func_8038DD34(local->unk0) == 0
-                || func_8031FF1C(0x13)
+                || fileProgressFlag_get(0x13)
             ){//L802E2318
                 if(0.0 < local->unk4){
                     if( (func_8023DB5C() & 1)

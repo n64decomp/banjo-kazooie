@@ -5,30 +5,31 @@
 extern void func_802EE6CC(f32[3], s32[4], s32[4], s32, f32, f32, s32, s32, s32);
 
 
-void func_80389634(Actor *this);
-void func_803898B8(Actor *this);
+void chSarcophagus_update(Actor *this);
+void chSarcophagus_updateSNS(Actor *this);
 
 /* .data */
-ActorAnimationInfo GV_D_80390E00[] = {
+ActorAnimationInfo chSarcophagusAnimations[] = {
     {0x00, 0.0f},
-    {0xCD, 8000000.0f},
-    {0xCD, 2.5f},
-    {0xCD, 8000000.0f},
-    {0xCD, 1.6f},
-    {0xCD, 4.5f},
+    {ASSET_CD_ANIM_SARCOPHAGUS_OPEN, 8000000.0f},
+    {ASSET_CD_ANIM_SARCOPHAGUS_OPEN, 2.5f},
+    {ASSET_CD_ANIM_SARCOPHAGUS_OPEN, 8000000.0f},
+    {ASSET_CD_ANIM_SARCOPHAGUS_OPEN, 1.6f},
+    {ASSET_CD_ANIM_SARCOPHAGUS_OPEN, 4.5f},
 };
 
-ActorInfo GV_D_80390E30 = { 0xA8, 0x11A, 0x33D, 
-    0x1, GV_D_80390E00, 
-    func_80389634, func_80326224, func_80325888, 
+ActorInfo chSarcophagus = { MARKER_A8_GV_MAZE_SARCOPHAGUS, ACTOR_11A_GV_MAZE_SARCOPHAGUS, ASSET_33D_MODEL_SARCOPHAGUS, 
+    0x1, chSarcophagusAnimations, 
+    chSarcophagus_update, func_80326224, func_80325888, 
     2500, 0, 0.0f, 0
 };
 
-ActorInfo D_80390E54 = { 0x23B, 0x244, 0x33D, 
-    0x1, GV_D_80390E00, 
-    func_803898B8, func_80326224, func_80325888, 
+ActorInfo chSNSSarcophagus = { MARKER_23B_GV_SNS_SARCOPHAGUS, ACTOR_244_GV_SNS_SARCOPHAGUS, ASSET_33D_MODEL_SARCOPHAGUS, 
+    0x1, chSarcophagusAnimations, 
+    chSarcophagus_updateSNS, func_80326224, func_80325888, 
     0, 0, 0.0f, 0
 };
+
 s32 D_80390E78[4] = {0xff, 0xd0, 0x5d, 0xb4};
 s32 D_80390E88[4] = {0, 0, 0, 0};
 
@@ -62,7 +63,7 @@ int func_8038957C(Actor *this){
     return 0;
 }
 
-void func_80389634(Actor *this){
+void chSarcophagus_update(Actor *this){
     int i;
 
     switch(this->state){
@@ -92,7 +93,7 @@ void func_80389634(Actor *this){
             break;
 
         case 3: //L80389788
-            if(!func_80329530(this, 0x2bc)){
+            if(!func_80329530(this, 700)){
                 func_80328B8C(this, 4, 0.5f, 1);
                 FUNC_8030E8B4(SFX_6B_LOCKUP_OPENING, 1.0f, 32000, this->position, 1250, 2500);
                 FUNC_8030E8B4(SFX_3F6_UNKNOWN, 1.0f, 32000, this->position, 1250, 2500);
@@ -118,10 +119,10 @@ void func_80389634(Actor *this){
     }//L803898A8
 }
 
-void func_803898B8(Actor *this){
+void chSarcophagus_updateSNS(Actor *this){
     if(!this->initialized){
         GV_func_803894B0(this);
-        if(func_8031FF1C(BKPROG_A4_UNKOWN))
+        if(fileProgressFlag_get(FILEPROG_A4_GV_SNS_SARCOPHAGUS_OPEN))
             func_80328B8C(this, 3, 0.5f, 1);
         this->unk1C[0] = 0.0f;
     }
@@ -137,7 +138,7 @@ void func_803898B8(Actor *this){
                 }
             }
             else{//L803899C0
-                if(func_8031FF1C(BKPROG_A3_UNKOWN)){
+                if(fileProgressFlag_get(FILEPROG_A3_GV_SNS_SWITCH_PRESSED)){
                     this->unk1C[0] = 33.0f;
                 }
             }

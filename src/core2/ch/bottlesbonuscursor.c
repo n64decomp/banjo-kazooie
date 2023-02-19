@@ -194,7 +194,7 @@ void chBottlesBonusCursor_freeMethod(Actor *this) {
     func_8031FBA0();
     if (func_8034BAFC() != -1) {
         func_802C5A3C(func_8034BAFC());
-        func_8033D13C(func_8034BAFC());
+        gameFile_load(func_8034BAFC());
         func_80347AA8();
     }
     chBottlesBonusSursorMarker = 0;

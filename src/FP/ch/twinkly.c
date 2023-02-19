@@ -334,9 +334,9 @@ void func_8038C9A0(Actor *this){
             this->position_y += 3.0f;
             if(this->unk1C[1] <= this->position_y){
                 this->position_y = this->unk1C[1];
-                if(!func_8031FF1C(0x82)){
+                if(!fileProgressFlag_get(FILEPROG_82_MET_TWINKLIES)){
                     func_80311480(0xc12, 0x2a, this->position, this->marker, func_8038C94C, NULL);
-                    func_80320004(0x82, TRUE);
+                    fileProgressFlag_set(FILEPROG_82_MET_TWINKLIES, TRUE);
                 }
                 else{
                     func_80311480(0xc25, 0x2b, this->position, this->marker, func_8038C94C, NULL);

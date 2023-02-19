@@ -53,13 +53,13 @@ void func_80392690(ActorMarker *marker, enum asset_e text_id, s32 arg2){
 
 void func_80392700(Actor *this) {
     if (mapSpecificFlags_get(4)) {
-        if (func_8031FF1C(0xF4)) {
+        if (fileProgressFlag_get(FILEPROG_F4_ENTER_FF_CUTSCENE)) {
             func_80311480(0x1031, 0xF, this->position, this->marker, func_80392664, func_80392610);
         } else {
             func_802BC280();
             set_camera_to_node(0x1F);
             func_80311480(0x102C, 0xE, this->position, this->marker, func_80392664, func_80392610);
-            func_80320004(0xF4, 1);
+            fileProgressFlag_set(FILEPROG_F4_ENTER_FF_CUTSCENE, TRUE);
         }
         mapSpecificFlags_set(4, 0);
     }
@@ -91,13 +91,13 @@ void func_80392700(Actor *this) {
 
 void func_80392918(Actor *this) {
     if (!this->unk16C_4) {
-        if ((func_8031FF1C(0xF4) != 0) && (func_8028E4A4() == 2)) {
+        if (fileProgressFlag_get(FILEPROG_F4_ENTER_FF_CUTSCENE) && (func_8028E4A4() == 2)) {
             mapSpecificFlags_set(4, 1);
         }
         this->unk4C = 400.0f;
         this->marker->unk2C_2 = FALSE;
         this->unk16C_4 = TRUE;
-        if (func_8031FF1C(0xA6) != 0) {
+        if (fileProgressFlag_get(FILEPROG_A6_FURNACE_FUN_COMPLETE)) {
             marker_despawn(this->marker);
         }
         return;

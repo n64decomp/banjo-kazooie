@@ -88,7 +88,7 @@ void func_8038E940(Actor *this){
     
     switch(this->state){
         case 1: //L8038EA98
-            if(func_8031FF1C(BKPROG_13) && !mapSpecificFlags_get(2))
+            if(fileProgressFlag_get(FILEPROG_13) && !mapSpecificFlags_get(2))
                 func_8038E774(this);
             break;
         case 2: //L8038EAC8

@@ -49,7 +49,7 @@ void sns_update_global_save_data_checksum(void)
      * Running this multiple times seems to achieve nothing.
      * A debug leftover?
      */
-    for (i = 5; i != 0 && func_8033CD0C(&gSaveData); i--)
+    for (i = 5; i != 0 && savedata_8033CE40(&gSaveData); i--)
         ;
 }
 
@@ -62,7 +62,7 @@ void sns_save_and_update_global_data(void)
      * and validates the checksum.
      */
 
-    if (func_8033CA9C(&gSaveData))
+    if (savedata_8033CA9C(&gSaveData))
     {
         /**
          * Failed, hide the evidence.
