@@ -1464,6 +1464,6 @@ void func_8031FBF8(void) {
     honeycombscore_debug();
     jiggyscore_debug();
     func_803465DC();
-    func_8029A890();
+    bsStoredState_debug();
     func_802C5A48();
 }

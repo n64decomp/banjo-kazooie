@@ -10,12 +10,12 @@ struct {
 u8 bsStoredStateInTrot; //in trot
 
 /* .code */
-void func_8029A890(void){
-    func_802957FC();
+void bsStoredState_debug(void){
+    ability_debug();
 }
 
 void bsStoredState_clear(void){
-    func_80295804();
+    ability_clearAll();
     bsStoredState.longleg_timer = bsStoredState.turbo_timer = 0.0f;
     bsStoredState.transformation = TRANSFORM_1_BANJO;
     bsStoredStateInTrot = FALSE;

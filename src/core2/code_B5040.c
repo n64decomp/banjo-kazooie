@@ -115,7 +115,7 @@ void savedata_init(void){ //savedata_init
     func_80346F44(&sp48, &sp24);
     itemscore_timeScores_getSizeAndPtr(&sp44, &sp20);
     func_80347630(&sp3C, &sp1C);
-    func_8029587C(&sp38, &sp18);
+    ability_getSizeAndPtr(&sp38, &sp18);
     D_80383CF0 = 0;
     D_80383CF4 = D_80383CF0 + 2;
     D_80383CF8 = D_80383CF4 + sp54;
@@ -216,7 +216,7 @@ void __savedata_load_abilities(u8 *savedata){ //savedata_load_abilities
     u8 *sp28;
     int i;
     
-    func_8029587C(&sp2C, &sp28);
+    ability_getSizeAndPtr(&sp2C, &sp28);
     for(i = D_80383D10; i < D_80383D10 + sp2C; i++){
         sp28[i - D_80383D10] = savedata[i];
     }
@@ -308,7 +308,7 @@ void __savedata_save_abilities(u8 *savedata){ //savedata_save_abilities
     u8 *sp28;
     int i;
     
-    func_8029587C(&sp2C, &sp28);
+    ability_getSizeAndPtr(&sp2C, &sp28);
     for(i = D_80383D10; i < D_80383D10 + sp2C; i++){
         savedata[i] = sp28[i - D_80383D10];
     }

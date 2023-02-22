@@ -33,8 +33,8 @@ ActorAnimationInfo D_80393520[] = {
     {0x28F, 5.167f},
     {0x290, 6.26f}
 };
-ActorInfo D_80393560 = { MARKER_231_DINGPOT, ACTOR_23B_DINGPOT, ASSET_4DF_MODEL_WARP_CAULDRON, 1, D_80393520, chWarpCauldron_update, func_80326224, chWarpCauldron_draw, 0, 0, 3.0f, 0};
-ActorInfo D_80393584 = { MARKER_244_WARP_CAULDRON, ACTOR_2DB_WARP_CAULDRON, ASSET_450_MODEL_DINGPOT, 1, D_80393520, chWarpCauldron_update, func_80326224, chWarpCauldron_draw, 0, 0, 3.0f, 0};
+ActorInfo D_80393560 = { MARKER_231_WARP_CAULDRON, ACTOR_23B_WARP_CAULDRON, ASSET_4DF_MODEL_WARP_CAULDRON, 1, D_80393520, chWarpCauldron_update, func_80326224, chWarpCauldron_draw, 0, 0, 3.0f, 0};
+ActorInfo D_80393584 = { MARKER_244_DINGPOT, ACTOR_2DB_DINGPOT, ASSET_450_MODEL_DINGPOT, 1, D_80393520, chWarpCauldron_update, func_80326224, chWarpCauldron_draw, 0, 0, 3.0f, 0};
 f32 D_803935A8[][2][3] = {
     {{1.0f, 1.0f, 1.0f}, {1.0f, 0.0f, 1.0f}}, 
     {{1.0f, 1.0f, 1.0f}, {0.0f, 1.0f, 1.0f}}, 
@@ -129,7 +129,7 @@ void func_8038A96C(Actor *this, s32 arg1) {
     f32 sp38[4];
 
     if( ( (arg1 != 3) || ( (this->unk1C[1] == 0.0f) && (this->marker->unk14_21 == 1))) 
-        && (this->modelCacheIndex == ACTOR_23B_DINGPOT) 
+        && (this->modelCacheIndex == ACTOR_23B_WARP_CAULDRON) 
         && ((arg1 != 0) || fileProgressFlag_get(chWarpCauldron_getFileProgressFlagIndex(this))) 
     ){
         sp5C = func_8034C2C4(this->marker, 0x1C3);
@@ -227,7 +227,7 @@ void chWarpCauldron_update(Actor *this) {
         this->marker->propPtr->unk8_3 = TRUE;
         this->unk1C[1] = 0.0f;
         this->velocity[0] = this->yaw;
-        if (this->modelCacheIndex == ACTOR_2DB_WARP_CAULDRON) {
+        if (this->modelCacheIndex == ACTOR_2DB_DINGPOT) {
             if (fileProgressFlag_get(FILEPROG_F3_MET_DINGPOT)) {
                 sp4C = (fileProgressFlag_get(FILEPROG_CF_HAS_ENTERED_FINAL_FIGHT)) ? 0xFB7 : 0xFAE;
                 phi_v0 = (fileProgressFlag_get(FILEPROG_CF_HAS_ENTERED_FINAL_FIGHT)) ? 0xFBC : 0xFB7;
@@ -434,7 +434,7 @@ Actor *chWarpCauldron_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx)
     s32 sp3C[4];
 
     this = marker_getActor(marker);
-    if(this->modelCacheIndex == ACTOR_23B_DINGPOT) {
+    if(this->modelCacheIndex == ACTOR_23B_WARP_CAULDRON) {
         func_8033A45C(3, this->unk38_0 ? TRUE : FALSE);
         func_8033A45C(4, this->unk38_0 ? FALSE : TRUE);
     }

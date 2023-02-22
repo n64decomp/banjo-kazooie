@@ -16,7 +16,7 @@ typedef struct {
 /* .code */
 void MMM_func_8038ABC0(s32 arg0) {
     if (getGameMode() != 7) {
-        func_80295864(func_802957F0() & ~arg0);
+        ability_setAllLearned(ability_getAllLearned() & ~arg0);
     }
 }
 

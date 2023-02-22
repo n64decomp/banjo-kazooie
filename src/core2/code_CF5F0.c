@@ -82,6 +82,6 @@ void func_80356714(void) {
 void func_80356734(void) {
     func_803565BC();
     if (func_803565BC() == 0) {
-        func_80295864(0x10);
+        ability_setAllLearned(0x10);
     }
 }

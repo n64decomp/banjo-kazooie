@@ -196,8 +196,8 @@ void func_8034B834(void) {
     item_set(ITEM_F_RED_FEATHER, 50);
     item_set(ITEM_10_GOLD_FEATHER, 10);
     item_set(ITEM_1C_MUMBO_TOKEN, 25);
-    func_80295864(-1);
-    func_80295870(-1);
+    ability_setAllLearned(-1);
+    ability_setAllUsed(-1);
     for(i = 0; i < 10; i++){
         fileProgressFlag_set(D_80371FA0[i], 1);
     }

@@ -2172,7 +2172,7 @@ segments:
   exclusive_ram_id: overlay
   subsegments:
   - [0x1098070, c, code_0] #DONE
-  - [0x109C310, c, code_42A0] #DONE
+  - [0x109C310, c, ch/cauldron] #DONE
   - [0x109D6B0, c, ch/brentilda] #DONE
   - [0x109DF40, c, code_5ED0] #DONE
   - [0x10A0760, c, code_86F0] #DONE
@@ -2186,7 +2186,7 @@ segments:
   - [0x10A4230, c, code_C1C0] #DONE
   - [0x10A4730, c, code_C6C0] #DONE
   - [0x10A4930, .data, code_0]
-  - [0x10A51A0, .data, code_42A0]
+  - [0x10A51A0, .data, ch/cauldron]
   - [0x10A5390, .data, ch/brentilda]
   - [0x10A53E0, .data, code_5ED0]
   - [0x10A6430, .data, code_86F0]
@@ -2200,7 +2200,7 @@ segments:
   - [0x10A6940, .data, code_C1C0]
   - [0x10A69A0, .data, code_C6C0]
   - [0x10A69D0, .rodata, code_0]
-  - [0x10A6C80, .rodata, code_42A0]
+  - [0x10A6C80, .rodata, ch/cauldron]
   - [0x10A6D10, .rodata, ch/brentilda]
   - [0x10A6D40, .rodata, code_5ED0]
   - [0x10A6E50, .rodata, code_86F0]

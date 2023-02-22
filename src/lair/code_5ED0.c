@@ -59,8 +59,8 @@ extern int quizQuestionAskedBitfield_get(u32); // ff_isAsked_flag_get
 extern void BKModel_getMeshCenter(BKModel *model, s32 mesh_id, s16 [3]); //! $a2 type unk
 
 extern s32  func_803203FC(s32);  // get volatile flag
-extern void func_80295864(s32);  // set unlocked moves bitfield
-extern s32  func_802957F0(void); // get unlocked moves bitfield
+extern void ability_setAllLearned(s32);  // set unlocked moves bitfield
+extern s32  ability_getAllLearned(void); // get unlocked moves bitfield
 
 extern s32  item_getCount(s32); // item count get
 extern void func_803463F4(s32, s32); // item count set
@@ -568,7 +568,7 @@ void lair_func_8038CD48(void)
      * Sets moves upon entering SM or MM from the Lair, FF asm code stays
      * latent until then
      */
-    func_80295864(D_8037DCB8->unlockedMoves);
+    ability_setAllLearned(D_8037DCB8->unlockedMoves);
 
     D_8037DCB8->unk0 = NULL;
 
@@ -600,7 +600,7 @@ void func_8038CE28(void)
     quizQuestionAskedBitfield_init();
 
     // dump currently unlocked moves to storage
-    D_8037DCB8->unlockedMoves = func_802957F0();
+    D_8037DCB8->unlockedMoves = ability_getAllLearned();
 
     for (i = 0; i < ARRLEN(D_8037DCB8->unk3C); i++)
         D_8037DCB8->unk3C[i] = 0;
@@ -833,7 +833,7 @@ void func_8038D4BC(void)
 
     // restore moves after a delay
     timedFunc_set_1(0.25f,
-        func_80295864,
+        ability_setAllLearned,
         D_8037DCB8->unlockedMoves
     );
 
@@ -901,12 +901,12 @@ void func_8038D670(enum FF_Action next_state) {
             }
             func_802FAD64(ITEM_27_JOKER_CARD);
             D_8037DCB8->unkF = -2;
-            func_80295864(D_8037DCB8->unlockedMoves);
+            ability_setAllLearned(D_8037DCB8->unlockedMoves);
             func_80347A14(1);
             break;
 
         case FFA_2_ON_BOARD_FORGET_MOVES: //L8038D70C
-            func_80295864(0);
+            ability_setAllLearned(0);
             break;
 
         case FFA_3_TRIGGER_QUESTION: //L8038D720
@@ -1008,7 +1008,7 @@ void func_8038D670(enum FF_Action next_state) {
             break;
 
         case FFA_5_FORGET_MOVES_2: //L8038DBEC
-            func_80295864(0);
+            ability_setAllLearned(0);
             break;
 
         case FFA_8_FURNACE_FUN_COMPLETE: //L8038DC00
@@ -1026,7 +1026,7 @@ void func_8038D670(enum FF_Action next_state) {
                 func_80347A14(0);
             }
             func_8038D5A0();
-            func_80295864(D_8037DCB8->unlockedMoves);
+            ability_setAllLearned(D_8037DCB8->unlockedMoves);
             func_80347A14(1);
             func_802FAD64(ITEM_27_JOKER_CARD);
             break;

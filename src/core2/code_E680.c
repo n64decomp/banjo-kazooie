@@ -84,13 +84,13 @@ int ability_hasLearned(enum ability_e move){
     return (1 << move) & D_8037C3A0;
 }
 
-s32 func_802957F0(void){
+s32 ability_getAllLearned(void){
     return D_8037C3A0;
 }
 
-void func_802957FC(void){}
+void ability_debug(void){}
 
-void func_80295804(void){
+void ability_clearAll(void){
     D_8037C3A0 = 0;
     D_8037C3A4 = 0;
 }
@@ -103,15 +103,15 @@ void func_80295818(s32 move, s32 val){
     }
 }
 
-void func_80295864(s32 val){
+void ability_setAllLearned(s32 val){
     D_8037C3A0 = val;
 }
 
-void func_80295870(s32 val){
+void ability_setAllUsed(s32 val){
     D_8037C3A4 = val;
 }
 
-void func_8029587C(s32 *size, u8 **addr){
+void ability_getSizeAndPtr(s32 *size, u8 **addr){
     *size = 8;
     *addr = &D_8037C3A0;
 }
