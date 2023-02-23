@@ -54,7 +54,7 @@ s32 func_803327A8(s32 arg0);
 void func_8032CD60(Prop *);
 f32 func_8033A244(f32);
 void func_8032F64C(f32 *pos, ActorMarker * marker);
-
+BKSprite *func_80330F50(ActorMarker * marker);
 
 /* .data */
 s32 D_8036E7B0 = 0;
@@ -160,20 +160,96 @@ void func_8032CB50(Cube *cube, bool global) {
     }
 }
 
+void func_8032CD60(Prop *prop) {
+    BKSprite *var_v0;
+    s32 sp48;
+    s32 sp44;
+    s32 sp40;
+    bool sp3C;
+    s32 sp38;
+    bool sp34;
+    bool sp30;
+    s32 sp2C;
+    bool var_t5;
+    s32 var_v1;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_8032CD60.s")
-// void func_8032CD60(Prop *prop){
-//     s32 tmp_v0;
-//     if(prop->markerFlag){
-//         tmp_v0 = func_80330F50(prop->actorProp.marker);
-//     }
-//     else{
-//         tmp_v0 = func_8030A55C(prop->modelProp.unk0_31);
-//     }
+    // if(prop->markerFlag){
+    var_v0 = ((u32)(((u16*)prop)[5]) & 1) ? func_80330F50(prop->actorProp.marker)
+           : func_8030A55C((u32)(((u16*)prop)[0]) >> 4);
+    if ((var_v0 != NULL) && ((var_v0->unkC.bit27 != 0))) {
+       sp48 = var_v0->unkC.bit31;
+       sp44 = var_v0->unkC.bit27;
+       sp40 = var_v0->unkC.bit24;
+       sp3C = var_v0->unkC.bit22;
+        sp38 =  var_v0->frameCnt;
+        sp34 = (sp44 == 1) || (sp44 == 2U);
+        sp30 = (sp44 == 3) ? sp38 : (sp38 - sp34)*2;
 
-//     if(tmp_v0 == 0) return;
+        sp2C = (s32)((((u32)(((u16*)prop)[5]) << 0x15) >> 0x1B) * sp30) / 32;
+        var_v1 = (((func_8023DB5C(sp34, sp30, prop, sp40) % (sp30 * sp48)) / sp48) + sp2C) % sp30;
+        var_t5 = 0;
+        switch (sp40) {                          /* irregular */
+            default:
+                sp40 = 0;
+                break;
+            case 1:
+                sp40 = (((((u32)(((u16*)prop)[5]) << 0x15) >> 0x1B) & 2)) ? 1 : 0;
+                break;
+            case 2:
+                sp40 = 1;
+                break;
+            case 3:
+                sp40 = (((u32)(((u16*)prop)[1]) << 0x1e) >> 0x1f);
+                break;
+        }
 
-// }
+        switch(sp44){
+            case 4:
+                var_t5 = sp38 <= var_v1;
+            case 1:
+                sp3C = sp38 <= var_v1;
+                break;
+            case 2:
+                
+                var_t5 = sp38 <= var_v1;
+            
+            default:
+                
+                switch (sp3C) {                      /* switch 1; irregular */
+                    case 1:                                 /* switch 1 */
+                         sp3C = ((((u32)(((u16*)prop)[5]) << 0x15) >> 0x1b) & 1) ? 1 : 0;
+                        break;
+                    case 2:                                 /* switch 1 */
+                        sp3C = 1;
+                        break;
+                    default:                                /* switch 1 */
+                        if (((u32)(((u16*)prop)[5])) & 1) {
+                            sp3C =(((u32)(((u32*)prop)[2]) << 0x1a) >> 0x1f);
+                        } else {
+                            sp3C = (((u32)(((u16*)prop)[1]) << 0x1e) >> 0x1f);
+                        }
+                      if (1);
+                        break;
+                }
+                break;
+
+        }
+        
+        if ((sp3C ^ sp40 ^ var_t5)) {
+            var_v1 = sp30 - var_v1;
+        }
+        
+        var_v1 += (sp34) ? sp40 : -sp40;
+        var_v1 = (var_v1 < 0) ? var_v1 +sp38 : var_v1 % sp38;
+        prop->spriteProp.unk8_15 = var_v1;
+        if (((u32)(((u16*)prop)[5]) & 1)) {
+            prop->spriteProp.unk8_5 = sp3C;
+        }
+        else{
+            prop->spriteProp.unk0_1 = sp3C;
+        }
+    }
+}
 
 void func_8032D120(Cube *cube){
     if(cube->prop2Cnt >= 2)

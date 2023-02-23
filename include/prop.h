@@ -19,7 +19,7 @@ typedef struct sprite_prop_s{
     s16 unk4[3];
     u16 unk8_15: 5;
     u16 unk8_10: 5;
-    u16 pad8_5: 1;
+    u16 unk8_5: 1;
     u16 unk8_4: 1;
     u16 unk8_3: 1;
     u16 unk8_2: 1;
