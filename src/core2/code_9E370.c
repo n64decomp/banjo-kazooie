@@ -2044,9 +2044,7 @@ void func_8032ACA8(Actor *arg0) {
     }
 }
 
-#ifdef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032AD7C.s")
-#else
+
 void func_8032AD7C(s32 arg0) {
     s32 var_s0;
     static s32 D_8036E5A8 = 0;
@@ -2064,7 +2062,6 @@ void func_8032AD7C(s32 arg0) {
         }
     }
 }
-#endif
 
 void func_8032AEB4(void) {
     Actor *temp_s2;
