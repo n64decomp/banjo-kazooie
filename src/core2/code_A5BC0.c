@@ -997,7 +997,7 @@ s32 func_8032F170(Cube **arg0, void **arg1){
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_8032F194.s")
 #else
 void func_8032F194(ActorMarker *marker, s32 position[3], Cube *cube) {
-    ActorProp sp24;
+    ActorProp2 sp24;
 
     ((s32*)&sp24)[2] = ((s32*)marker->propPtr)[2];
     sp24.x = (s16) position[0];

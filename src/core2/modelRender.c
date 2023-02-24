@@ -889,42 +889,44 @@ void func_80338BFC(Gfx **gfx, Mtx **mtx, void *arg2){
 }
 
 //CmdC_SELECTOR
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/modelRender/func_80338CD0.s")
-#else
 void func_80338CD0(Gfx **gfx, Mtx **mtx, void *arg2){
-    GeoCmdC *cmd = (GeoCmdC *)arg2;
-    s32 tmp_v0;
+    GeoCmdC *cmd = (GeoCmdC *) arg2;
+    s32 sub_cmd;
     s32 indx;
-    s32 indx2;
     s32 s2;
     s32 s1;
-    s32* s0;
+    s32 *s0;
     
-    tmp_v0 = cmd->unkA;
     indx = D_80383658[cmd->unkA];
-    if(cmd->unkA){
-        if(indx == 0){
-            
-        }else if(indx > 0){
-            if(cmd->unk8 >= indx){
-                func_80339124(gfx, mtx, (s32)cmd + cmd->unkC[indx-1]);
-            }
-            
-        }else{//L80338D5C
-            s1 = -indx;
+
+    if (cmd->unkA == 0)
+        return;
+
+    if (indx == 0)
+        return;
+    
+    if (0 < indx) {
+        if (indx <= cmd->unk8) {
             s0 = cmd->unkC;
-            for(s2 = 0; s2 < cmd->unk8; s2++){//L80338D6C
-                if(s1 & 1){
-                    func_80339124(gfx, mtx, (s32)cmd + *s0);
-                }
-                s1 >>= 1;
-                s0++;
-            }
+            sub_cmd = cmd;
+            sub_cmd += *(s32*)(s0 + (indx - 1));
+            func_80339124(gfx, mtx, sub_cmd);
         }
-    }//L80338DA8
+    } else {
+        s1 = indx * (-1);
+        s0 = cmd->unkC;
+        for (s2 = 0; s2 < cmd->unk8; s2++) {
+            if (s1 & 1)
+            {
+                sub_cmd = cmd;
+                sub_cmd += s0[0];
+                func_80339124(gfx, mtx, sub_cmd);
+            }
+            s1 >>= 1;
+            s0++;
+        }
+    }
 }
-#endif
 
 //CmdD_DRAW_DISTANCE
 void func_80338DCC(Gfx ** gfx, Mtx ** mtx, void *arg2){
