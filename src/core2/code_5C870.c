@@ -587,7 +587,7 @@ s32 game_defrag(void){
     glspline_defrag();
     func_80288470();
     func_802F1320();
-    func_802BA128();
+    ncCameraNodeList_defrag();
     modelRender_defrag();
     func_8028FB68();
     partEmitMgr_defrag();

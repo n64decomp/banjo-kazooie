@@ -147,7 +147,7 @@ void func_80334910(void) {
     func_80287D70();
     animcache_free();
     func_802BC10C();
-    func_802B9D80();
+    ncCameraNodeList_free();
     func_802F1388();
     func_802F10A4();
     partEmitMgr_free();
@@ -225,7 +225,7 @@ void func_80334B20(enum map_e arg0, s32 arg1, s32 arg2) {
     func_80287C58();
     func_80344C50();
     func_8033F9C0();
-    func_802B9D40();
+    ncCameraNodeList_init();
     func_802BC044();
     partEmitMgr_init();
     func_802F1104();
@@ -386,18 +386,18 @@ void func_80335140(enum map_e map_id) {
 
     func_80254008();
     fp = func_8034AB6C(map_id); //LevelSetupFile_Open
-    while (func_8034AF98(fp, 0) == 0) {
-        if (func_8034AF98(fp, 2)) {
+    while (file_isNextByteExpected(fp, 0) == 0) {
+        if (file_isNextByteExpected(fp, 2)) {
             
-        } else if (func_8034AF98(fp, 1)) {
+        } else if (file_isNextByteExpected(fp, 1)) {
             cubeList_fromFile(fp);
-        } else if (func_8034AF98(fp, 3)) {
-            func_802BA0AC(fp);
-        } else if (func_8034AF98(fp, 4)) {
+        } else if (file_isNextByteExpected(fp, 3)) {
+            ncCameraNodeList_fromFile(fp);
+        } else if (file_isNextByteExpected(fp, 4)) {
             func_80333B78(fp);
         }
     }
-    func_8034AAB0(fp); //file close
+    file_close(fp); //file close
 }
 
 void func_8033520C(s32 arg0){

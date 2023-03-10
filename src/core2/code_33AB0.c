@@ -44,9 +44,9 @@ void func_802BAB1C(Struct_core2_33AB0_0 *this, f32 src[3]){
 }
 
 void func_802BAB3C(Struct61s *file_ptr, Struct_core2_33AB0_0 *arg1){
-    while(!func_8034AF98(file_ptr, 0)){
-        if(!func_8034B108(file_ptr, 1, arg1->unk0, 3)){
-            func_8034B108(file_ptr, 2, arg1->unkC, 3);
+    while(!file_isNextByteExpected(file_ptr, 0)){
+        if(!file_getNFloats_ifExpected(file_ptr, 1, arg1->unk0, 3)){
+            file_getNFloats_ifExpected(file_ptr, 2, arg1->unkC, 3);
         }//L802BAA0C
     }
 }

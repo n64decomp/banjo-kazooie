@@ -610,7 +610,7 @@ segments:
   - [0xF856D0, c, bs/walk]     #DONE
   - [0xF867D0, c, bs/walrus]   #DONE
   - [0xF88350, c, bs/washy]   #DONE
-  - [0xF88710, c, code_32DB0] #DONE
+  - [0xF88710, c, nc/cameranodelist] #DONE
   - [0xF88BB0, c, code_33250] #DONE
   - [0xF88BB0, c, code_33310] #DONE
   - [0xF89050, c, code_336F0] #DONE
@@ -1193,7 +1193,7 @@ segments:
   - [0x1044540, .rodata, bs/walk]
   - [0x10445D0, .rodata, bs/walrus]
   - [0x1044630, .rodata, bs/washy]
-  - [0x1044690, .rodata, code_32DB0]
+  - [0x1044690, .rodata, nc/cameranodelist]
   - [0x10446E0, .rodata, code_33F90]
   - [0x1044700, .rodata, code_34310]
   - [0x1044710, .rodata, code_34790]
@@ -1460,7 +1460,7 @@ segments:
   - [0x1048560, .bss, bs/walk]
   - [0x1048560, .bss, bs/walrus]
   - [0x1048560, .bss, bs/washy]
-  - [0x1048560, .bss, code_32DB0]
+  - [0x1048560, .bss, nc/cameranodelist]
   - [0x1048560, .bss, code_33C30]
   - [0x1048560, .bss, code_33D40]
   - [0x1048560, .bss, code_34310]

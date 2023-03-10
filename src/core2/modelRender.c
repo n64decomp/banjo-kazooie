@@ -1423,11 +1423,17 @@ void func_8033A298(bool arg0){
     }
 }
 
+/* moderRender_preDraw() sets a generic 1 argument function that will
+ * be called immediately prior to the model being drawn
+ */
 void modelRender_preDraw(GenMethod_1 func, s32 arg){
     modelRenderCallback.pre_method = func;
     modelRenderCallback.pre_arg = arg;
 }
 
+/* moderRender_postDraw() sets a generic 1 argument function that will
+ * be called immediately after to the model has been drawn
+ */
 void modelRender_postDraw(GenMethod_1 func, s32 arg){
     modelRenderCallback.post_method = func;
     modelRenderCallback.post_arg = arg;

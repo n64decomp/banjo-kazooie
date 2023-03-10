@@ -130,23 +130,23 @@ void func_802BA530(Struct_core2_33310 *arg0, bool arg1){
 }
 
 void func_802BA550(Struct61s *file_ptr, Struct_core2_33310 *arg1){
-    while(!func_8034AF98(file_ptr, 0)){
-        if(!func_8034B108(file_ptr, 1, arg1->unk0, 3)){
-            if(func_8034AF98(file_ptr, 2)){
-                func_8034AD20(file_ptr, &arg1->unkC);
-                func_8034AD20(file_ptr, &arg1->unk10);
+    while(!file_isNextByteExpected(file_ptr, 0)){
+        if(!file_getNFloats_ifExpected(file_ptr, 1, arg1->unk0, 3)){
+            if(file_isNextByteExpected(file_ptr, 2)){
+                file_getFloat(file_ptr, &arg1->unkC);
+                file_getFloat(file_ptr, &arg1->unk10);
             }
-            else if(func_8034AF98(file_ptr, 3)){
-                func_8034AD20(file_ptr, &arg1->unk14);
-                func_8034AD20(file_ptr, &arg1->unk18);
+            else if(file_isNextByteExpected(file_ptr, 3)){
+                file_getFloat(file_ptr, &arg1->unk14);
+                file_getFloat(file_ptr, &arg1->unk18);
             }
-            else if(func_8034AF98(file_ptr, 6)){
-                func_8034AD20(file_ptr, &arg1->unk1C);
-                func_8034AD20(file_ptr, &arg1->unk20);
+            else if(file_isNextByteExpected(file_ptr, 6)){
+                file_getFloat(file_ptr, &arg1->unk1C);
+                file_getFloat(file_ptr, &arg1->unk20);
             }
             else{
-                if(!func_8034B108(file_ptr, 4, arg1->unk24, 3)){
-                    func_8034B150(file_ptr, 5, &arg1->unk30);
+                if(!file_getNFloats_ifExpected(file_ptr, 4, arg1->unk24, 3)){
+                    file_getWord_ifExpected(file_ptr, 5, &arg1->unk30);
                 }
             }
         }//L802BA654

@@ -35,17 +35,17 @@ void func_802BADAC(void){
     func_8024CE18(D_8037D830);
 }
 
-void func_802BADDC(s32 arg0){
+void func_802BADDC(s32 camera_node_index){
     UNK_TYPE(s32) sp1C;
 
-    sp1C = func_802B9E70(arg0);
+    sp1C = func_802B9E70(camera_node_index);
     func_802BAAA8(sp1C, D_8037D820);
     func_802BAAF4(sp1C, D_8037D830);
 }
 
-void set_camera_to_node(s32 arg0){
+void set_camera_to_node(s32 camera_node_index){
     func_802BBC58(3);
-    func_802BADDC(arg0);
+    func_802BADDC(camera_node_index);
 }
 
 void func_802BAE4C(void){

@@ -190,11 +190,11 @@ void func_80333B78(Struct61s *file_ptr){
     s32 sp38[3];
     s32 indx;
     func_803335F4();
-    while(!func_8034AF98(file_ptr, 0)){
-        if( func_8034AF98(file_ptr, 1)
-            && func_8034B108(file_ptr, 2, sp4C, 3)
-            && func_8034B108(file_ptr, 3, sp44, 2)
-            && func_8034B190(file_ptr, 4, sp38, 3)
+    while(!file_isNextByteExpected(file_ptr, 0)){
+        if( file_isNextByteExpected(file_ptr, 1)
+            && file_getNFloats_ifExpected(file_ptr, 2, sp4C, 3)
+            && file_getNFloats_ifExpected(file_ptr, 3, sp44, 2)
+            && file_getNWords_ifExpected(file_ptr, 4, sp38, 3)
         ){
             indx = func_8033383C();
             func_80333A94(indx, sp4C);
@@ -211,14 +211,14 @@ s32 func_80333C78(s32 arg0){
 
     for(iPtr = beginPtr; iPtr < endPtr; iPtr++){
         if(iPtr->unk34){
-            func_8034AF98(arg0, 1);
-            func_8034B108(arg0, 2, &iPtr->unk0, 3);
-            func_8034B108(arg0, 3, &iPtr->unk18, 2);
-            func_8034B190(arg0, 4, &iPtr->unk28, 3);
+            file_isNextByteExpected(arg0, 1);
+            file_getNFloats_ifExpected(arg0, 2, &iPtr->unk0, 3);
+            file_getNFloats_ifExpected(arg0, 3, &iPtr->unk18, 2);
+            file_getNWords_ifExpected(arg0, 4, &iPtr->unk28, 3);
         }
     }
 
-    return func_8034AF98(arg0, 0);
+    return file_isNextByteExpected(arg0, 0);
 }
 
 void func_80333D48(BKVertexList *arg0, f32 position[3], f32 rotation[3], f32 scale, f32 arg4[3], BKVertexList *arg5) {

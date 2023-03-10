@@ -244,9 +244,9 @@ void spriteRender_drawWithSegment(Gfx **gfx, Vtx **vtx, BKSprite *sprite, u32 fr
         pixel_size_nibbles = 1;
     } else if (sprite->type & SPRITE_TYPE_CI8) {
         pixel_size_nibbles = 2;
-    } else if (sprite->type & 0x40){
+    } else if (sprite->type & SPRITE_TYPE_I8){
         pixel_size_nibbles = 2;
-    } else if (sprite->type & 0x100){
+    } else if (sprite->type & SPRITE_TYPE_IA8){
         pixel_size_nibbles = 2;
     } else if (sprite->type & SPRITE_TYPE_RGBA16) {
         pixel_size_nibbles = 4;

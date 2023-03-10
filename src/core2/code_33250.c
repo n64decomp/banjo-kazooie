@@ -26,8 +26,8 @@ void func_802BA23C(s32 *arg0, s32 arg1){
 }
 
 void func_802BA244(Struct61s *file_ptr, s32 *arg1){
-    while(!func_8034AF98(file_ptr, 0)){
-        func_8034B150(file_ptr, 1, arg1);
+    while(!file_isNextByteExpected(file_ptr, 0)){
+        file_getWord_ifExpected(file_ptr, 1, arg1);
     }
 }
 

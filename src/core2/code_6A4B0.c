@@ -27,41 +27,37 @@ Gfx D_803689D0[] = {
     gsSPEndDisplayList()
 };
 
-
-
-
 /* .code */
 void func_802F1440(Struct_Core2_6A4B0_2 *arg0, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
-    Vtx *sp9C;
+    Vtx *vtx_start;
 
     Vtx *i_vtx;
     s32 var_s3;
     s32 sp54;
     s32 sp50;
     s32 sp4C;
-    s16 *temp_v0_2;
-    static s32 D_80368A10[6] = {0x60, 0x840,  0x60, 0x840, 0x840,  0x60};
-    static s32 D_80368A28[6] = {0x60,  0x60, 0x860,  0x60, 0x860, 0x860};
+    static s32 s_values[6] = {0x60, 0x840,  0x60, 0x840, 0x840,  0x60};
+    static s32 t_values[6] = {0x60,  0x60, 0x860,  0x60, 0x860, 0x860};
     
     if (!arg0->unk10) {
         func_8024C7B8(gfx, mtx);
     }
     gSPDisplayList((*gfx)++, D_803689D0);
 
-    i_vtx = sp9C = *vtx;
+    i_vtx = vtx_start = *vtx;
     for(sp4C = 0; sp4C < 6; sp4C++){
         for(sp50 = 0; sp50 < 9; sp50++){
             for(sp54 = 0; sp54 < 2; sp54++){
                 for(var_s3 = 0; var_s3 < 3; var_s3++){
-                    temp_v0_2 = func_802F1804(arg0, sp50, sp4C, sp54, var_s3);
-                    i_vtx->n.ob[0] = temp_v0_2[0];
-                    i_vtx->n.ob[1] = temp_v0_2[1];
-                    i_vtx->n.ob[2] = temp_v0_2[2];
+                    s16 *position = func_802F1804(arg0, sp50, sp4C, sp54, var_s3);
+                    i_vtx->n.ob[0] = position[0];
+                    i_vtx->n.ob[1] = position[1];
+                    i_vtx->n.ob[2] = position[2];
 
                     i_vtx->n.flag = 0;
 
-                    i_vtx->n.tc[0] = D_80368A10[sp54 * 3 + var_s3];
-                    i_vtx->n.tc[1] = D_80368A28[sp54 * 3 + var_s3];
+                    i_vtx->n.tc[0] = s_values[sp54 * 3 + var_s3];
+                    i_vtx->n.tc[1] = t_values[sp54 * 3 + var_s3];
                     i_vtx->n.n[0] = -1;
                     i_vtx->n.n[1] = -1;
                     i_vtx->n.n[2] = -1;
@@ -72,13 +68,13 @@ void func_802F1440(Struct_Core2_6A4B0_2 *arg0, Gfx **gfx, Mtx **mtx, Vtx **vtx) 
         }
     }
     *vtx = i_vtx;
-    i_vtx = sp9C;
+    i_vtx = vtx_start;
     var_s3 = 0;
     gSPVertex((*gfx)++, osVirtualToPhysical(i_vtx), 16, 0);
     for(sp4C = 0; sp4C < 6; sp4C++){
         for(sp50 = 0; sp50 < 9; sp50++){
-            s16 *temp_v0_2 = arg0->tmem_ptr + (0x20*sp50 + 1) + (0x20*sp4C + 0xC)*framebuffer_width;
-            gDPLoadTextureTile((*gfx)++, osVirtualToPhysical(temp_v0_2), G_IM_FMT_RGBA, G_IM_SIZ_16b, framebuffer_width, 0, 0, 0, 33, 33, 0, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
+            s16 *tmem = arg0->tmem_ptr + (0x20*sp50 + 1) + (0x20*sp4C + 0xC)*framebuffer_width;
+            gDPLoadTextureTile((*gfx)++, osVirtualToPhysical(tmem), G_IM_FMT_RGBA, G_IM_SIZ_16b, framebuffer_width, 0, 0, 0, 33, 33, 0, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
             for(sp54 = 0; sp54 < 2; sp54++){
                 gSP1Triangle((*gfx)++, var_s3, var_s3 + 1, var_s3 + 2, 0);
                 var_s3 += 3;

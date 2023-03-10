@@ -878,10 +878,10 @@ void func_803045D8(void){}
 void func_803045E0(Cube *cube, Struct61s* file_ptr) {
     s32 sp2C[3];
 
-    while(!func_8034AF98(file_ptr, 1)) {
-        if (func_8034B190(file_ptr, 0, sp2C, 3)) {
-            func_8034ADB4(file_ptr, sp2C, 3);
-        } else if (!func_8034B190(file_ptr, 2, &sp2C, 3) && func_8034AF98(file_ptr, 3) 
+    while(!file_isNextByteExpected(file_ptr, 1)) {
+        if (file_getNWords_ifExpected(file_ptr, 0, sp2C, 3)) {
+            file_getNWords(file_ptr, sp2C, 3);
+        } else if (!file_getNWords_ifExpected(file_ptr, 2, &sp2C, 3) && file_isNextByteExpected(file_ptr, 3) 
         ) {
             cube_fromFile(file_ptr, cube);
         }
@@ -895,8 +895,8 @@ void cubeList_fromFile(Struct61s *file_ptr) {
     Cube *cube; //should be cube
     NodeProp *iPtr;
 
-    func_8034B190(file_ptr, 1, sp50, 3);
-    func_8034ADB4(file_ptr, sp44, 3);
+    file_getNWords_ifExpected(file_ptr, 1, sp50, 3);
+    file_getNWords(file_ptr, sp44, 3);
     for(sp5C[0] = sp50[0]; sp5C[0] <= sp44[0]; sp5C[0]++){
         for(sp5C[1] = sp50[1]; sp5C[1] <= sp44[1]; sp5C[1]++){
             for(sp5C[2] = sp50[2]; sp5C[2] <= sp44[2]; sp5C[2]++){
@@ -904,7 +904,7 @@ void cubeList_fromFile(Struct61s *file_ptr) {
             }
         }
     }
-    func_8034AF98(file_ptr, 0);
+    file_isNextByteExpected(file_ptr, 0);
     bitfield_setAll(D_8036A9E0, 0);
     for(sp5C[0] = sp50[0]; sp5C[0] <= sp44[0]; sp5C[0]++){
         for(sp5C[1] = sp50[1]; sp5C[1] <= sp44[1]; sp5C[1]++){

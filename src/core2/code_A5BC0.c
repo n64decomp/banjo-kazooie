@@ -865,18 +865,18 @@ void cube_fromFile(Struct61s *file_ptr, Cube *cube) {
     s32 temp_v0_5;
 
     cube_free(cube);
-    if (func_8034B040(file_ptr, 0xA, &sp46)) {
+    if (file_getByte_ifExpected(file_ptr, 0xA, &sp46)) {
         func_8032E784(cube, sp46);
         cube->prop1Ptr = (NodeProp*) malloc(sp46 * sizeof(NodeProp));
         temp_v0 = (NodeProp*) malloc(sp46 * sizeof(NodeProp));
-        func_8034B080(file_ptr, 0xB, temp_v0, cube->prop1Cnt * sizeof(NodeProp));
+        file_getNBytes_ifExpected(file_ptr, 0xB, temp_v0, cube->prop1Cnt * sizeof(NodeProp));
         func_8032E7E8(temp_v0, cube, sp46);
         
-    } else if (func_8034B040(file_ptr, 6, &sp46)) {
+    } else if (file_getByte_ifExpected(file_ptr, 6, &sp46)) {
         func_8032E784(cube, sp46);
         cube->prop1Ptr = (OtherNode*) malloc(sp46 * sizeof(OtherNode));
         temp_v0 = (OtherNode*) malloc(sp46 * sizeof(OtherNode));
-        func_8034B080(file_ptr, 7, temp_v0, cube->prop1Cnt * sizeof(OtherNode));
+        file_getNBytes_ifExpected(file_ptr, 7, temp_v0, cube->prop1Cnt * sizeof(OtherNode));
         for(var_v1_3 = temp_v0; var_v1_3 < (OtherNode*)&temp_v0[sp46]; var_v1_3++){
             if(var_v1_3->unk4_0 && !var_v1_3->unkC_0){
                 var_v1_3->unk4_17 = 0;
@@ -886,7 +886,7 @@ void cube_fromFile(Struct61s *file_ptr, Cube *cube) {
         func_8032E7E8(temp_v0, cube, sp46);
     }
 
-    if (func_8034B040(file_ptr, 8, &sp47)) {
+    if (file_getByte_ifExpected(file_ptr, 8, &sp47)) {
         sp34 = func_803203FC(1) +  func_803203FC(2) + func_803203FC(0x1F);
         
         if ((sp34) && gcparade_8031B4CC()) {
@@ -897,7 +897,7 @@ void cube_fromFile(Struct61s *file_ptr, Cube *cube) {
         }
         cube->prop2Cnt = sp47;
         cube->prop2Ptr = (Prop *) malloc(sp47 * sizeof(Prop));
-        func_8034B080(file_ptr, 9, cube->prop2Ptr, cube->prop2Cnt * sizeof(Prop));
+        file_getNBytes_ifExpected(file_ptr, 9, cube->prop2Ptr, cube->prop2Cnt * sizeof(Prop));
         for(var_v1_2 = cube->prop2Ptr; var_v1_2 < cube->prop2Ptr + sp47; var_v1_2++){
                 var_v1_2->unk8_4 = 1;
                 if (var_v1_2->unk8_1) {
