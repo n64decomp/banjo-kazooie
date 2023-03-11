@@ -202,7 +202,7 @@ f32 func_8029B41C(void){
     f32 sp1C;
 
     player_getPosition(sp2C);
-    func_8024C5CC(sp20);
+    viewport_getPosition(sp20);
     func_80257F18(sp2C, sp20, &sp1C);
     return sp1C;
 }
@@ -362,7 +362,7 @@ void func_8029B984(f32 dst[3]){
     f32 sp18[3];
 
     _player_getPosition(plyr_pos);
-    func_8024C5CC(sp18);
+    viewport_getPosition(sp18);
     ml_vec3f_diff_copy(dst, sp18, plyr_pos);
 }
 
@@ -722,9 +722,9 @@ void func_8029C674(void) {
     if (func_80298850() == 4) {
         D_8037D1E8 = TRUE;
         miscflag_set(0x17);
-        func_802BE8D8();
+        ncDynamicCamera_enterFirstPerson();
         func_8028E9C4(5, sp1C);
-        func_802C2A64(sp1C);
+        ncFirstPersonCamera_setZoomedOutPosition(sp1C);
     }
 }
 
@@ -736,18 +736,18 @@ void func_8029C6D0(void) {
 
     if (func_80298850() == 4 && D_8037D1E8) {
         func_8028E9C4(5, sp18);
-        func_802C2A64(sp18);
+        ncFirstPersonCamera_setZoomedOutPosition(sp18);
         func_8028E9C4(5, sp30);
         func_80298800(sp24);
         func_802BC434(sp3C, sp24, sp30);
-        func_802C2A8C(sp3C);
+        ncFirstPersonCamera_setZoomedOutRotation(sp3C);
     }
 }
 
 void func_8029C748(void) {
     if (D_8037D1E8) {
         miscflag_clear(0x17);
-        func_802BE91C();
+        ncDynamicCamera_exitFirstPerson();
     }
 }
 

@@ -47,17 +47,17 @@ void func_8038C760(Actor *this, s32 arg1){
     FUNC_8030E624(SFX_3F6_UNKNOWN, 0.7f, 28000);
     FUNC_8030E624(SFX_3F6_UNKNOWN, 0.9f, 29000);
     FUNC_8030E624(SFX_3F6_UNKNOWN, 1.0f, 30000);
-    timed_setCameraToNode(0.0f, 8);
+    timed_setStaticCameraToNode(0.0f, 8);
     if(arg1 < 3){
-        timed_setCameraToNode(3.5f, arg1 + 0x15);
+        timed_setStaticCameraToNode(3.5f, arg1 + 0x15);
         timedFunc_set_3(3.5f, (GenMethod_3)fileProgressFlag_setN, FILEPROG_F8_KING_SANDYBUTT_PYRAMID_STATE, arg1, 2);
-        func_80324E88(6.5f);
+        timed_exitStaticCamera(6.5f);
         func_80324E38(6.5f, 0);
     }
     else{
         timedFunc_set_2(3.5f, (GenMethod_2)func_8025A6EC, COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 0x7fff);
         timedFunc_set_3(3.5f, (GenMethod_3)fileProgressFlag_setN, FILEPROG_F8_KING_SANDYBUTT_PYRAMID_STATE, arg1, 2);
-        func_80324E88(6.0f);
+        timed_exitStaticCamera(6.0f);
         func_80324E38(6.0f, 0);
     }
 }

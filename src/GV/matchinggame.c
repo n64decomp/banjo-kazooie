@@ -99,9 +99,9 @@ void __matchingGame_setState(s32 next_state){
                 func_8035D490(matchingGame.mummy_marker);
             }
             func_80324E38(0.5f, 3);
-            timed_setCameraToNode(1.5f, 2);
+            timed_setStaticCameraToNode(1.5f, 2);
             timedFunc_set_0(1.7f, __matchingGame_spawnJIggy);
-            func_80324E88(4.0f);
+            timed_exitStaticCamera(4.0f);
             func_80324E38(4.0f, 0);
 
         }

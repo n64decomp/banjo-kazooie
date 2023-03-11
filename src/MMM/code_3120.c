@@ -56,12 +56,12 @@ void func_803895B0(s32 arg0) {
 void func_803895D8(ActorMarker *caller, enum asset_e text_id, s32 arg2) {
     if (text_id == 0xAD7) {
         timed_playSfx(0.1f, SFX_3F5_UNKNOWN, 1.0f, 30000);
-        func_80324E88(1.5f);
+        timed_exitStaticCamera(1.5f);
         func_80324E38(1.5f, 0);
         return;
     }
     MMM_D_8038C4E0.unk0 = 1;
-    func_80324E88(1.5f);
+    timed_exitStaticCamera(1.5f);
     func_80324E38(1.5f, 0);
 }
 
@@ -80,7 +80,7 @@ void func_8038966C(void){
     ){
         MMM_D_8038C4E0.unk2 = TRUE;
         func_80324E38(0.0f, 3);
-        timed_setCameraToNode(0.2f, 1);
+        timed_setStaticCameraToNode(0.2f, 1);
         func_80324DBC(0.2f, 0xad9, 6, NULL, NULL, func_803895D8, NULL);
     }//L80389700
 
@@ -106,7 +106,7 @@ void func_8038966C(void){
             MMM_D_8038C4E0.unk1 = 2;
             if(!levelSpecificFlags_get(0x1b)){
                 func_80324E38(0.0f, 3);
-                timed_setCameraToNode(0.0f, 0);
+                timed_setStaticCameraToNode(0.0f, 0);
                 func_80324DBC(0.0f, 0xad7, 6, NULL, NULL, func_803895D8, NULL);
                 levelSpecificFlags_set(0x1b, TRUE);
             }

@@ -404,8 +404,8 @@ void func_8038B094(void){
         if(levelSpecificFlags_get(5)){
             func_8034E71C(sp2C, -500, 10.0f);
             func_80324E38(0.0f, 3);
-            timed_setCameraToNode(0.0f, 1);
-            func_80324E88(2.0f);
+            timed_setStaticCameraToNode(0.0f, 1);
+            timed_exitStaticCamera(2.0f);
             func_80324E38(2.0f, 0);
             func_803228D8();
             timedFunc_set_3(2.0f, (GenMethod_3) func_802E4078, MAP_7_TTC_TREASURE_TROVE_COVE, 1, 0);

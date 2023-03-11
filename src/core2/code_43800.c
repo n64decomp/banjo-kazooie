@@ -25,7 +25,7 @@ Actor *func_802CA7BC(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     Actor *this;
     f32 sp60;
     f32 sp54[3];
-    f32 sp48[3];
+    f32 rotation[3];
     f32 sp44;
     f32 sp40;
     f32 sp34[3];
@@ -48,12 +48,12 @@ Actor *func_802CA7BC(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 
     func_80258108(sp34, &this->yaw, &this->pitch);
 
-    sp48[0] = this->pitch;
-    sp48[1] = this->yaw;
-    sp48[2] = this->roll;
+    rotation[0] = this->pitch;
+    rotation[1] = this->yaw;
+    rotation[2] = this->roll;
     sp44 = ml_map_f(sp54[1] - sp40, 0.0f, 300.0f, 0.43f, 0.28f);
     modelRender_preDraw((GenMethod_1)func_802CA790, (s32)this);
-    modelRender_draw(gfx, mtx, this->position, sp48, sp44, NULL, func_80330B1C(marker));
+    modelRender_draw(gfx, mtx, this->position, rotation, sp44, NULL, func_80330B1C(marker));
     return this;
 }
 
@@ -63,7 +63,7 @@ void func_802CA92C(Actor *this){
     f32 sp28[3];
     this->marker->collidable = FALSE;
     player_getPosition(this->position);
-    func_8024C5CC(sp34);
+    viewport_getPosition(sp34);
     ml_vec3f_diff_copy(sp28, sp34, this->position);
     ml_vec3f_set_length_copy(sp28, sp28, 180.0f);
     this->position_x += sp28[0];

@@ -91,10 +91,10 @@ void chPropellor_update(Actor *this){
         local->unkC = 0.0f;
         __chPropellor_setState(this, 1);
         if(levelSpecificFlags_get(local->unk8 ? 4 : 3)){
-            set_camera_to_node(9);
+            ncStaticCamera_setToNode(9);
             func_80324E38(0.0f, 3);
             timedFunc_set_2(0.1f, (GenMethod_2)levelSpecificFlags_set, local->unk8 ? 0x28 : 0x27, 1);
-            func_80324E88(4.5f);
+            timed_exitStaticCamera(4.5f);
             func_80324E38(4.5f, 0);
             timedFunc_set_2(4.5f, (GenMethod_2)levelSpecificFlags_set, local->unk8 ? 0x4 : 0x3, 0);
             timedFunc_set_3(4.5f, (GenMethod_3)func_802E4078, MAP_34_RBB_ENGINE_ROOM, !local->unk8 ? 3 : 2, 0);

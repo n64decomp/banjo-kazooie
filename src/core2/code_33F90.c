@@ -2,10 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void rumbleManager_80250E6C(f32, f32);
-extern void func_80258E60(f32[3], f32[3], f32);
-extern void func_80258EF4(f32[3], f32[3], f32);
-extern void func_80258F88(f32[3], f32[3], f32);
 extern void func_802BE720(void);
 
 typedef struct {
@@ -454,7 +450,7 @@ void func_802BAFE4(s32 arg0) {
                     break;
                 
                 default:
-                    timed_setCameraToNode(temp_f0, D_803654B8[arg0][phi_s1 + 1]);
+                    timed_setStaticCameraToNode(temp_f0, D_803654B8[arg0][phi_s1 + 1]);
                     break;
             }
         }
@@ -462,7 +458,7 @@ void func_802BAFE4(s32 arg0) {
         if (D_803654B8[arg0][phi_s1] == -4) {
             func_80324E38(temp_f0, 4);
         } else {
-            func_80324E88(temp_f0);
+            timed_exitStaticCamera(temp_f0);
         }
         for(phi_s1 = 0; phi_s1 < phi_s0; phi_s1++){
             func_80324E38(temp_f0, 0);

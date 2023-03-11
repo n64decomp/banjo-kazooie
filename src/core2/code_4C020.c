@@ -1167,8 +1167,8 @@ void func_802D6344(void){
 
 void func_802D6388(void){
     timedFunc_set_0(5.0f, func_802D6114);
-    func_802BBC58(1);
-    set_camera_to_node(D_80367688);
+    camera_setType(1);
+    ncStaticCamera_setToNode(D_80367688);
     D_8037DE08 = 0.5f;
 }
 
@@ -1188,7 +1188,7 @@ void func_802D63D4(void){
             break;
         case 0x2D: //L802D6440
             func_802D6388();
-            func_802BAEF4(sp1C);
+            ncStaticCamera_getPosition(sp1C);
             func_8028F85C(sp1C);
             break;
         default: //L802D6460

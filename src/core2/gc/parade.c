@@ -356,8 +356,8 @@ void gcparade_init(void) {
             var_s2 = FALSE;
             D_803830F0.unk5 = 0;
             if(D_803830F0.parade_element->exit >= 0) {
-                func_802BBC58(1);
-                set_camera_to_node(D_803830F0.parade_element->exit);
+                camera_setType(1);
+                ncStaticCamera_setToNode(D_803830F0.parade_element->exit);
                 if (D_803830F0.parade_element->unk8 > 0) {
                     temp_v0 = func_80304FC4(&D_8036DDAC, &D_80383100, 0x14);
                     for(var_s0 = 0;(var_s0 < temp_v0) && !var_s2; var_s0++ ){
@@ -369,7 +369,7 @@ void gcparade_init(void) {
                     }
                 }
                 if (!var_s2) {
-                    func_802BAEF4(sp40);
+                    ncStaticCamera_getPosition(sp40);
                     func_8028F85C(sp40);
                 }
             }

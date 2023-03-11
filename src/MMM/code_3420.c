@@ -177,10 +177,10 @@ void func_803898EC() {
 void func_80389910() {
     func_80311480(0xAD5, 0xE, NULL, NULL, MMM_func_80389810, NULL);
     timedFunc_set_2(0.0f, func_8025A6EC, COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 0x7FFF);
-    timed_setCameraToNode(2.0f, 0);
+    timed_setStaticCameraToNode(2.0f, 0);
     timedFunc_set_0(2.1f, MMM_func_803898A0);
     timedFunc_set_0(6.0f, func_803898EC);
-    func_80324E88(6.0f);
+    timed_exitStaticCamera(6.0f);
     func_80324E38(6.0f, 0);
 }
 

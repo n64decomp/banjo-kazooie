@@ -36,7 +36,7 @@ ParticleEmitter *func_802F4274(f32 arg0[3]) {
     ml_vec3f_copy(sp2C, arg0);
     func_8024559C(sp2C, &sp20, &sp28);
     sp2C[1] = sp28 + 14.0f;
-    func_8024C5CC(sp38);
+    viewport_getPosition(sp38);
     sp44[0] = sp38[0] - sp2C[0];
     sp44[2] = sp38[2] - sp2C[2];
     sp44[1] = 0.0f;

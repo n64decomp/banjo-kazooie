@@ -21,22 +21,22 @@ void func_802BF12C(void){
     f32 sp28[3];
     f32 sp1C[3];
 
-    func_802BD384(sp34);
+    ncDynamicCamera_getPosition(sp34);
     func_802BF0E0(sp1C);
     ml_vec3f_diff_copy(sp28, sp34, sp1C);
     func_8025801C(sp28, &D_8037DAA0);
 }
 
-void func_802BF174(void){
+void ncDynamicCam10_init(void){
     func_802BE244(4.0f, 16.0f);
     func_802BE230(1.1f, 14.0f);
     func_802C0150(3);
     func_802BF12C();
 }
 
-void func_802BF1CC(void){}
+void ncDynamicCam10_end(void){}
 
-void func_802BF1D4(void){
+void ncDynamicCam10_update(void){
     f32 sp5C[3];
     f32 sp50[3];
     f32 sp44[3];

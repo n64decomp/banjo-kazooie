@@ -11,29 +11,29 @@ void func_8033EAB0(s32 arg0[3], s32 arg1[3], s32 arg2[3], s32 arg3[3]) {
     }
 }
 
-s32 func_8033EAF8(s32 arg0[3], s32 arg1[3], f32 arg2[3], f32 arg3[3]) {
-    f32 sp14[3];
-    f32 temp_f2;
-    f32 var_f0;
-    s32 var_a0;
-    s32 var_v0;
-    s32 var_v1;
+s32 func_8033EAF8(s32 min_coord[3], s32 max_coord[3], f32 position[3], f32 arg3[3]) {
+    f32 dCorner[3];
+    f32 dot_product;
+    f32 max;
+    s32 ix;
+    s32 iy;
+    s32 iz;
 
-    var_f0 = 0.0f;
-    for(var_v0 = 0; var_v0 < 2; var_v0++){
-        for(var_v1 = 0; var_v1 < 2; var_v1++){
-            for(var_a0 = 0; var_a0 < 2; var_a0++){
-                sp14[0] = (f32)((var_v0) ? arg0[0] : arg1[0]) - arg2[0];
-                sp14[1] = (f32)((var_v1) ? arg0[1] : arg1[1]) - arg2[1];
-                sp14[2] = (f32)((var_a0) ? arg0[2] : arg1[2]) - arg2[2];
-                temp_f2 = (arg3[0] * sp14[0]) + (arg3[1] * sp14[1]) + (arg3[2] * sp14[2]);
-                if (var_f0 < temp_f2) {
-                    var_f0 = temp_f2;
+    max = 0.0f;
+    for(ix = 0; ix < 2; ix++){
+        for(iy = 0; iy < 2; iy++){
+            for(iz = 0; iz < 2; iz++){
+                dCorner[0] = ((ix) ? min_coord[0] : max_coord[0]) - position[0];
+                dCorner[1] = ((iy) ? min_coord[1] : max_coord[1]) - position[1];
+                dCorner[2] = ((iz) ? min_coord[2] : max_coord[2]) - position[2];
+                dot_product = (arg3[0] * dCorner[0]) + (arg3[1] * dCorner[1]) + (arg3[2] * dCorner[2]);
+                if (max < dot_product) {
+                    max = dot_product;
                 }
             }
         }
     }
-    return (s32) var_f0;
+    return (s32) max;
 }
 
 bool func_8033EC10(s32 arg0[3], s32 arg1[3], s32 arg2[3]) {

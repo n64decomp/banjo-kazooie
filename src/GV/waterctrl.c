@@ -23,9 +23,9 @@ void __waterCtrl_setState(s32 arg0){
     GV_D_80391B00.state = arg0;
     if(GV_D_80391B00.state == 2){
         func_80324E38(0.0f, 3);
-        timed_setCameraToNode(0.0f, 0);
+        timed_setStaticCameraToNode(0.0f, 0);
         timedFunc_set_0(3.0f, func_80390880);
-        timed_setCameraToNode(3.0f, 1);
+        timed_setStaticCameraToNode(3.0f, 1);
         func_80324E38(6.0f, 0);
         tmp_v0 = func_8034C528(400);
         if(tmp_v0){

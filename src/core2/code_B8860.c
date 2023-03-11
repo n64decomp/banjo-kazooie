@@ -40,7 +40,7 @@ void func_8033F7F0(u8 arg0, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     if(sp54->unk28_23 != 1){
         ml_vec3f_copy(sp48,  sp54->unk4);
         sp48[1] += (sp54->unk1C*sp54->unk20[1])/100.0;
-        func_8024C5CC(sp3C);
+        viewport_getPosition(sp3C);
         ml_vec3f_diff_copy(sp30, sp48, sp3C);
         if(sp54->unk28_12){
             func_80251BCC(func_8024DD90());

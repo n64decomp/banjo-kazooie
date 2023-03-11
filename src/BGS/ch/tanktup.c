@@ -4,7 +4,7 @@
 
 #include "prop.h"
 
-void func_80324E88(f32);
+void timed_exitStaticCamera(f32);
 
 void timedFunc_set_2(f32, void(*)(s32, s32), s32, s32);
 
@@ -72,7 +72,7 @@ s32 func_8038F570(s16 *arg0){
 }
 
 void func_8038F5E4(ActorMarker *marker, enum asset_e text_id, s32 arg2){
-    func_80324E88(0.0f);
+    timed_exitStaticCamera(0.0f);
 }
 
 void func_8038F610(Actor *this) {
@@ -195,7 +195,7 @@ void func_8038F6A4(Actor *this)
     case 3:
       if (actor_animationIsAt(this, 0.1f) != 0)
     {
-      timed_setCameraToNode(0.0f, 0xD);
+      timed_setStaticCameraToNode(0.0f, 0xD);
     }
       if (actor_animationIsAt(this, 0.55f) != 0)
     {

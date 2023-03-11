@@ -10,7 +10,7 @@ void func_80297970(f32);
 
 void baModel_setYDisplacement(f32);
 void func_80297BF8(f32);
-void func_802BFE50(f32, f32, f32);
+void ncDynamicCam4_func_802BFE50(f32, f32, f32);
 void yaw_setVelocityBounded(f32, f32);
 f32 func_8029B2D0(void);
 f32 func_8029B2DC(void);
@@ -123,7 +123,7 @@ void _bsBeeFly_updateYaw(void){
     f32 sp30;
     f32 stickX;
     stickX = func_8029B2D0();
-    func_802BFE50(2.0f, 2000.0f, 350.0f);
+    ncDynamicCam4_func_802BFE50(2.0f, 2000.0f, 350.0f);
     if(button_held(BUTTON_R)){
         yaw_setVelocityBounded(500.0f, 30.0f);
         sp34 = 6.0f;

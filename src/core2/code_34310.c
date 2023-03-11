@@ -4,9 +4,9 @@
 
 
 extern void rumbleManager_80250E6C(f32, f32);
-extern void func_80258E60(f32[3], f32[3], f32);
-extern void func_80258EF4(f32[3], f32[3], f32);
-extern void func_80258F88(f32[3], f32[3], f32);
+extern void ml_translate_y_local(f32[3], f32[3], f32);
+extern void ml_translate_z_local(f32[3], f32[3], f32);
+extern void ml_translate_x_local(f32[3], f32[3], f32);
 extern void func_802BE720(void);
 
 typedef struct {
@@ -84,57 +84,57 @@ void func_802BB41C(s32 arg0){
     D_8037D840[arg0].unk1C = 1;
 }
 
-void func_802BB434(s32 arg0, f32 dst[3], f32 src[3], f32 arg3) {
+void func_802BB434(s32 arg0, f32 position[3], f32 rotation[3], f32 delta) {
     switch (arg0) {
     case 1:
-        func_80258F88(dst, src, arg3);
+        ml_translate_x_local(position, rotation, delta);
         return;
     case 0:
-        func_80258E60(dst, src, arg3);
+        ml_translate_y_local(position, rotation, delta);
         return;
     case 2:
-        func_80258EF4(dst, src, arg3);
+        ml_translate_z_local(position, rotation, delta);
         return;
     case 3:
-        dst[1] += arg3;
+        position[1] += delta;
         return;
     }
 }
 
-void func_802BB4D8(s32 arg0, s32 arg1) {
+void func_802BB4D8(f32 position[3], f32 rotation[3]) {
     f32 temp_f0;
-    f32 temp_f22;
+    f32 dt;
     s32 phi_s1;
 
-    temp_f22 = time_getDelta();
+    dt = time_getDelta();
     for(phi_s1 = 0; phi_s1 < 4; phi_s1++){
         switch (D_8037D840[phi_s1].unk1C) {
-        case 2:
-            if (D_8037D840[phi_s1].unk10 >= 0.0f) {
-                D_8037D840[phi_s1].unk14 = 1.0f;
-            } else {
-                D_8037D840[phi_s1].unk14 = -1.0f;
-            }
-            func_802BB434(phi_s1, arg0, arg1, D_8037D840[phi_s1].unk10);
-            D_8037D840[phi_s1].unk1C = 3;
-            break;
-        case 3:
-            if (D_8037D840[phi_s1].unk18 != 0.0f) {
-                temp_f0 = ml_max_f(0.0f, D_8037D840[phi_s1].unk18 - temp_f22);
-                D_8037D840[phi_s1].unk18 = temp_f0;
-                D_8037D840[phi_s1].unk10 = ml_map_f(temp_f0, D_8037D840[phi_s1].unk0, 0.0f, D_8037D840[phi_s1].unkC, D_8037D840[phi_s1].unk8);
-            } else {
-                D_8037D840[phi_s1].unk10 *= D_8037D840[phi_s1].unk4;
-            }
-            if (level_get() != LEVEL_D_CUTSCENE) {
-                rumbleManager_80250E6C(D_8037D840[phi_s1].unk10 * 0.25, temp_f22);
-            }
-            func_802BB434(phi_s1, arg0, arg1, D_8037D840[phi_s1].unk14*D_8037D840[phi_s1].unk10);
-            D_8037D840[phi_s1].unk14 = (f32) -D_8037D840[phi_s1].unk14;
-            if (((f64) D_8037D840[phi_s1].unk4 != 1.0) && ((f64) mlAbsF(D_8037D840[phi_s1].unk10) < 0.001)) {
-                D_8037D840[phi_s1].unk1C = 1U;
-            }
-            break;
+            case 2:
+                if (D_8037D840[phi_s1].unk10 >= 0.0f) {
+                    D_8037D840[phi_s1].unk14 = 1.0f;
+                } else {
+                    D_8037D840[phi_s1].unk14 = -1.0f;
+                }
+                func_802BB434(phi_s1, position, rotation, D_8037D840[phi_s1].unk10);
+                D_8037D840[phi_s1].unk1C = 3;
+                break;
+            case 3:
+                if (D_8037D840[phi_s1].unk18 != 0.0f) {
+                    temp_f0 = ml_max_f(0.0f, D_8037D840[phi_s1].unk18 - dt);
+                    D_8037D840[phi_s1].unk18 = temp_f0;
+                    D_8037D840[phi_s1].unk10 = ml_map_f(temp_f0, D_8037D840[phi_s1].unk0, 0.0f, D_8037D840[phi_s1].unkC, D_8037D840[phi_s1].unk8);
+                } else {
+                    D_8037D840[phi_s1].unk10 *= D_8037D840[phi_s1].unk4;
+                }
+                if (level_get() != LEVEL_D_CUTSCENE) {
+                    rumbleManager_80250E6C(D_8037D840[phi_s1].unk10 * 0.25, dt);
+                }
+                func_802BB434(phi_s1, position, rotation, D_8037D840[phi_s1].unk14*D_8037D840[phi_s1].unk10);
+                D_8037D840[phi_s1].unk14 = (f32) -D_8037D840[phi_s1].unk14;
+                if (((f64) D_8037D840[phi_s1].unk4 != 1.0) && ((f64) mlAbsF(D_8037D840[phi_s1].unk10) < 0.001)) {
+                    D_8037D840[phi_s1].unk1C = 1U;
+                }
+                break;
         }
     }
 }

@@ -13,8 +13,8 @@ f32 D_80275D2C = 4000.0f; //far
 
 /* .data */
 f32 D_80280EA0[3];
-f32 D_80280EB0[3];
-f32 D_80280EC0[3];
+f32 viewportPosition[3];
+f32 viewportRotation[3];
 f32 D_80280ECC;
 f32 D_80280ED0[4][4];
 Vp D_80280F10[8];
@@ -41,48 +41,48 @@ void func_80256E24(f32 [3], f32, f32, f32, f32, f32);
 /* .code */
 void func_8024C510(f32 arg0){
     f32 sp24[3];
-    func_80256E24(sp24, D_80280EC0[0], D_80280EC0[1], 0.0f, 0.0f, arg0);
-    D_80280EB0[0] += sp24[0];
-    D_80280EB0[1] += sp24[1];
-    D_80280EB0[2] += sp24[2];
+    func_80256E24(sp24, viewportRotation[0], viewportRotation[1], 0.0f, 0.0f, arg0);
+    viewportPosition[0] += sp24[0];
+    viewportPosition[1] += sp24[1];
+    viewportPosition[2] += sp24[2];
 }
 
-void func_8024C584(f32 arg0[3]){
-    ml_distance_vec3f(arg0, D_80280EB0);
+f32 viewport_getDistance(f32 arg0[3]){
+    ml_distance_vec3f(arg0, viewportPosition);
 }
 
 void func_8024C5A8(f32 arg0[3]){
     ml_vec3f_copy(arg0, D_80280EA0);
 }
 
-void func_8024C5CC(f32 arg0[3]){
-    ml_vec3f_copy(arg0, D_80280EB0);
+void viewport_getPosition(f32 arg0[3]){
+    ml_vec3f_copy(arg0, viewportPosition);
 }
 
 void func_8024C5F0(s32 dst[3]){
-    dst[0] = ((f32)(s32)(D_80280EB0[0]*500.0))/500.0;
-    dst[1] = ((f32)(s32)(D_80280EB0[1]*500.0))/500.0;
-    dst[2] = ((f32)(s32)(D_80280EB0[2]*500.0))/500.0;
+    dst[0] = ((f32)(s32)(viewportPosition[0]*500.0))/500.0;
+    dst[1] = ((f32)(s32)(viewportPosition[1]*500.0))/500.0;
+    dst[2] = ((f32)(s32)(viewportPosition[2]*500.0))/500.0;
 }
 
 void func_8024C6A0(s16 dst[3]){
-    dst[0] = ((f32)(s32)(D_80280EB0[0]*500.0))/500.0;
-    dst[1] = ((f32)(s32)(D_80280EB0[1]*500.0))/500.0;
-    dst[2] = ((f32)(s32)(D_80280EB0[2]*500.0))/500.0;
+    dst[0] = ((f32)(s32)(viewportPosition[0]*500.0))/500.0;
+    dst[1] = ((f32)(s32)(viewportPosition[1]*500.0))/500.0;
+    dst[2] = ((f32)(s32)(viewportPosition[2]*500.0))/500.0;
 }
 
-void func_8024C764(f32 arg0[3]){
-    ml_vec3f_copy(arg0, D_80280EC0);
+void viewport_getRotation(f32 arg0[3]){
+    ml_vec3f_copy(arg0, viewportRotation);
 }
 
-f32 func_8024C788(void){
-    return D_80280EC0[1];
+f32 viewport_getYaw(void){
+    return viewportRotation[1];
 }
 
 void func_8024C794(f32 *arg0, f32 *arg1, f32 *arg2){
-    *arg0 = D_80280EC0[0];
-    *arg1 = D_80280EC0[1];
-    *arg2 = D_80280EC0[2];
+    *arg0 = viewportRotation[0];
+    *arg1 = viewportRotation[1];
+    *arg2 = viewportRotation[2];
 }
 
 void func_8024C7B8(Gfx **gfx, Mtx **mtx){
@@ -115,13 +115,13 @@ void func_8024C964(Gfx **gfx, Mtx **mtx, f32 near, f32 far){
     gSPPerspNormalize((*gfx)++, sp5e);
     gSPMatrix((*gfx)++, OS_PHYSICAL_TO_K0((*mtx)++), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
 
-    guRotate(*mtx, -D_80280EC0[2], 0.0f, 0.0f, -1.0f);
+    guRotate(*mtx, -viewportRotation[2], 0.0f, 0.0f, -1.0f);
     gSPMatrix((*gfx)++, OS_PHYSICAL_TO_K0((*mtx)++), G_MTX_NOPUSH | G_MTX_MUL | G_MTX_PROJECTION);
 
-    guRotate(*mtx, -D_80280EC0[0], 1.0f, 0.0f, 0.0f);
+    guRotate(*mtx, -viewportRotation[0], 1.0f, 0.0f, 0.0f);
     gSPMatrix((*gfx)++, OS_PHYSICAL_TO_K0((*mtx)++), G_MTX_NOPUSH | G_MTX_MUL | G_MTX_PROJECTION);
 
-    guRotate(*mtx, -D_80280EC0[1], 0.0f, 1.0f, 0.0f);
+    guRotate(*mtx, -viewportRotation[1], 0.0f, 1.0f, 0.0f);
     gSPMatrix((*gfx)++, OS_PHYSICAL_TO_K0((*mtx)++), G_MTX_NOPUSH | G_MTX_MUL | G_MTX_PROJECTION);
 
     guTranslate(*mtx, 0.0f, 0.0f, 0.0f);
@@ -166,30 +166,30 @@ void func_8024CD7C(int arg0){
     D_80280F90 = arg0;
 }
 
-void func_8024CD88(f32 src[3]){
-    ml_vec3f_copy(D_80280EB0, src);
+void viewport_setPosition(f32 src[3]){
+    ml_vec3f_copy(viewportPosition, src);
 }
 
 void func_8024CDB0(s32 src[3]){
-    D_80280EB0[0] = (f32)src[0];
-    D_80280EB0[1] = (f32)src[1];
-    D_80280EB0[2] = (f32)src[2];
+    viewportPosition[0] = (f32)src[0];
+    viewportPosition[1] = (f32)src[1];
+    viewportPosition[2] = (f32)src[2];
 }
 
 void func_8024CDF8(f32 arg0, f32 arg1, f32 arg2){
-    D_80280EB0[0] = arg0;
-    D_80280EB0[1] = arg1;
-    D_80280EB0[2] = arg2;
+    viewportPosition[0] = arg0;
+    viewportPosition[1] = arg1;
+    viewportPosition[2] = arg2;
 }
 
-void func_8024CE18(f32 src[3]){
-    ml_vec3f_copy(D_80280EC0, src);
+void viewport_setRotation(f32 src[3]){
+    ml_vec3f_copy(viewportRotation, src);
 }
 
 void func_8024CE40(f32 arg0, f32 arg1, f32 arg2){
-    D_80280EC0[0] = arg0;
-    D_80280EC0[1] = arg1;
-    D_80280EC0[2] = arg2;
+    viewportRotation[0] = arg0;
+    viewportRotation[1] = arg1;
+    viewportRotation[2] = arg2;
 }
 
 void func_8024CE60(f32 near, f32 far){
@@ -223,22 +223,22 @@ void func_8024CF10(f32 arg0, f32 arg1, f32 arg2, f32 arg3){
     osWritebackDCache(&D_80280F10[D_80281018], sizeof(Vp)*8);
 }
 
-void func_8024CFD4(void){
-    func_80256E24(D_80280ED0[0], D_80280EC0[0], D_80280EC0[1], -89.21774f, 0.0f, 45.168514251708984f);
-    func_80256E24(D_80280ED0[1], D_80280EC0[0], D_80280EC0[1], 89.21774f, 0.0f, 45.168514251708984f);
-    func_80256E24(D_80280ED0[2], D_80280EC0[0], D_80280EC0[1], 0.0f, 93.9692611694336f, 34.20201110839844f);
-    func_80256E24(D_80280ED0[3], D_80280EC0[0], D_80280EC0[1], 0.0f, -93.9692611694336f, 34.20201110839844f);
+void viewport_update(void){
+    func_80256E24(D_80280ED0[0], viewportRotation[0], viewportRotation[1], -89.21774f, 0.0f, 45.168514251708984f);
+    func_80256E24(D_80280ED0[1], viewportRotation[0], viewportRotation[1], 89.21774f, 0.0f, 45.168514251708984f);
+    func_80256E24(D_80280ED0[2], viewportRotation[0], viewportRotation[1], 0.0f, 93.9692611694336f, 34.20201110839844f);
+    func_80256E24(D_80280ED0[3], viewportRotation[0], viewportRotation[1], 0.0f, -93.9692611694336f, 34.20201110839844f);
     ml_vec3f_normalize(D_80280ED0[0]);
     ml_vec3f_normalize(D_80280ED0[1]);
     ml_vec3f_normalize(D_80280ED0[2]);
     ml_vec3f_normalize(D_80280ED0[3]);
-    D_80280ED0[0][3] = -(D_80280EB0[0]*D_80280ED0[0][0] + D_80280EB0[1]*D_80280ED0[0][1] + D_80280EB0[2]*D_80280ED0[0][2]);
-    D_80280ED0[1][3] = -(D_80280EB0[0]*D_80280ED0[1][0] + D_80280EB0[1]*D_80280ED0[1][1] + D_80280EB0[2]*D_80280ED0[1][2]);
-    D_80280ED0[2][3] = -(D_80280EB0[0]*D_80280ED0[2][0] + D_80280EB0[1]*D_80280ED0[2][1] + D_80280EB0[2]*D_80280ED0[2][2]);
-    D_80280ED0[3][3] = -(D_80280EB0[0]*D_80280ED0[3][0] + D_80280EB0[1]*D_80280ED0[3][1] + D_80280EB0[2]*D_80280ED0[3][2]);
+    D_80280ED0[0][3] = -(viewportPosition[0]*D_80280ED0[0][0] + viewportPosition[1]*D_80280ED0[0][1] + viewportPosition[2]*D_80280ED0[0][2]);
+    D_80280ED0[1][3] = -(viewportPosition[0]*D_80280ED0[1][0] + viewportPosition[1]*D_80280ED0[1][1] + viewportPosition[2]*D_80280ED0[1][2]);
+    D_80280ED0[2][3] = -(viewportPosition[0]*D_80280ED0[2][0] + viewportPosition[1]*D_80280ED0[2][1] + viewportPosition[2]*D_80280ED0[2][2]);
+    D_80280ED0[3][3] = -(viewportPosition[0]*D_80280ED0[3][0] + viewportPosition[1]*D_80280ED0[3][1] + viewportPosition[2]*D_80280ED0[3][2]);
     mlMtxIdent();
-    mlMtxRotYaw(D_80280EC0[1]);
-    mlMtxRotPitch(D_80280EC0[0]);
+    mlMtxRotYaw(viewportRotation[1]);
+    mlMtxRotPitch(viewportRotation[0]);
     mlMtxGet(&D_80280F98);
     D_80280EA0[0] = 0.0f;
     D_80280EA0[1] = 0.0f;
@@ -332,9 +332,9 @@ bool func_8024D9B0(Cube *cube) {
     if (cube->x == -0x10) {
         return TRUE;
     }
-    sp1C[0] = (f32) ((cube->x * 1000) + 500) - D_80280EB0[0];
-    sp1C[1] = (f32) ((cube->y * 1000) + 500) - D_80280EB0[1];
-    sp1C[2] = (f32) ((cube->z * 1000) + 500) - D_80280EB0[2];
+    sp1C[0] = (f32) ((cube->x * 1000) + 500) - viewportPosition[0];
+    sp1C[1] = (f32) ((cube->y * 1000) + 500) - viewportPosition[1];
+    sp1C[2] = (f32) ((cube->z * 1000) + 500) - viewportPosition[2];
     if (LENGTH_SQ_VEC3F(sp1C) > 1.6e7f) {
         return FALSE;
     }
@@ -351,9 +351,9 @@ bool func_8024DB50(f32 arg0[3], f32 arg1) {
     f32 sp3C[3];
     s32 i;
 
-    sp3C[0] = arg0[0] - D_80280EB0[0];
-    sp3C[1] = arg0[1] - D_80280EB0[1];
-    sp3C[2] = arg0[2] - D_80280EB0[2];
+    sp3C[0] = arg0[0] - viewportPosition[0];
+    sp3C[1] = arg0[1] - viewportPosition[1];
+    sp3C[2] = arg0[2] - viewportPosition[2];
     for(i = 0; i < 4; i++){
         if(arg1 <= ml_dotProduct_vec3f(sp3C, D_80280ED0[i])){
             return FALSE;
@@ -409,7 +409,7 @@ f32 func_8024DDCC(void){
 }
 
 f32 func_8024DDD8(s32 arg0, f32 arg1){
-    return mlNormalizeAngle((D_80280EC0[1] + arg1) + 90.0);
+    return mlNormalizeAngle((viewportRotation[1] + arg1) + 90.0);
 }
 
 f32 func_8024DE1C(f32 arg0, f32 arg1, f32 arg2[3], f32 arg3[3]) {
@@ -426,18 +426,18 @@ f32 func_8024DE1C(f32 arg0, f32 arg1, f32 arg2[3], f32 arg3[3]) {
     }
     arg0 = arg0 - (framebuffer_width / (f32)2);
     arg1 = (framebuffer_height / (f32)2) - arg1;
-    arg3[0] = D_80280EC0[0];
-    arg3[1] = D_80280EC0[1];
-    arg3[2] = D_80280EC0[2];
+    arg3[0] = viewportRotation[0];
+    arg3[1] = viewportRotation[1];
+    arg3[2] = viewportRotation[2];
     arg2[0] = arg0 * D_80281024;
     arg2[1] = arg1 * D_80281024;
     arg2[2] = (-500.0 - D_80275D28);
     ml_vec3f_pitch_rotate_copy(arg2, arg2, arg3[0]);
     ml_vec3f_yaw_rotate_copy(arg2, arg2, arg3[1]);
     
-    arg2[0] += D_80280EB0[0];
-    arg2[1] += D_80280EB0[1];
-    arg2[2] += D_80280EB0[2];
+    arg2[0] += viewportPosition[0];
+    arg2[1] += viewportPosition[1];
+    arg2[2] += viewportPosition[2];
     return D_80281024;
 }
 
@@ -457,11 +457,11 @@ bool func_8024E030(f32 arg0[3], f32 *arg1)
     f32 temp_f2;
     f32 sp28;
     sp28 = (D_80275D20 * 3.14159265358979323846) / 360.0;
-    sp34[0] = arg0[0] - D_80280EB0[0];
-    sp34[1] = arg0[1] - D_80280EB0[1];
-    sp34[2] = arg0[2] - D_80280EB0[2];
-    ml_vec3f_yaw_rotate_copy(sp34, sp34, -D_80280EC0[1]);
-    ml_vec3f_pitch_rotate_copy(sp34, sp34, -D_80280EC0[0]);
+    sp34[0] = arg0[0] - viewportPosition[0];
+    sp34[1] = arg0[1] - viewportPosition[1];
+    sp34[2] = arg0[2] - viewportPosition[2];
+    ml_vec3f_yaw_rotate_copy(sp34, sp34, -viewportRotation[1]);
+    ml_vec3f_pitch_rotate_copy(sp34, sp34, -viewportRotation[0]);
     if ((-D_80275D28) <= sp34[2]) {
         return 0;
     }
@@ -480,8 +480,8 @@ bool func_8024E030(f32 arg0[3], f32 *arg1)
 
 void func_8024E258(void){
     s32 i, j;
-    func_8024C5CC(D_80281028);
-    func_8024C764(D_80281038);
+    viewport_getPosition(D_80281028);
+    viewport_getRotation(D_80281038);
     func_8024D1EC(D_80281048, D_80281058, D_80281068, D_80281078);
     func_8024C5A8(D_80281088);
     for(i = 0; i < 4; i++){
@@ -493,8 +493,8 @@ void func_8024E258(void){
 
 void func_8024E2FC(void){
     s32 i, j;
-    func_8024CD88(D_80281028);
-    func_8024CE18(D_80281038);
+    viewport_setPosition(D_80281028);
+    viewport_setRotation(D_80281038);
     func_8024D2B0(D_80281048, D_80281058, D_80281068, D_80281078);
     ml_vec3f_copy(D_80280EA0, D_80281088);
     for(i = 0; i < 4; i++){
@@ -504,9 +504,10 @@ void func_8024E2FC(void){
     }
 }
 
+//moves the point(arg0) some distance (arg1) further away from the camera
 void func_8024E3A8(f32 arg0[3], f32 arg1){
     f32 sp1C[3];
-    ml_vec3f_diff_copy(sp1C, D_80280EB0, arg0);
+    ml_vec3f_diff_copy(sp1C, viewportPosition, arg0);
     ml_vec3f_set_length_copy(sp1C, sp1C, arg1);
     arg0[0] += sp1C[0];
     arg0[1] += sp1C[1];

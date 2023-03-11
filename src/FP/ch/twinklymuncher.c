@@ -92,7 +92,7 @@ Actor *func_8038DF34(Actor *this){
 
 void func_8038E040(ActorMarker *caller, enum asset_e text_id, s32 arg2){
     Actor *this = marker_getActor(caller);
-    func_80324E88(0.5f);
+    timed_exitStaticCamera(0.5f);
     func_80328B8C(this, 7, 0.03f, 1);
     actor_playAnimationOnce(this);
 }
@@ -126,7 +126,7 @@ void func_8038E094(Actor *this){
         if(sp38->unk1C[1] == 1.0f){
             if(this->unkF4_8 == 1 && !fileProgressFlag_get(FILEPROG_13)){
                 if(this->state != 6 && this->state != 7 && 0.0f == this->velocity[0]){
-                    timed_setCameraToNode(0.5f, 0xd);
+                    timed_setStaticCameraToNode(0.5f, 0xd);
                     func_80311480(ASSET_C15_TEXT_TWINKLIE_MINIGAME_LOST, 0x2b, this->position, this->marker, func_8038E040, NULL);
                     this->velocity[0] = 1.0f;
                     func_80328B8C(this, 6, 0.03f, 1);

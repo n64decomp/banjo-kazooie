@@ -37,9 +37,9 @@ Actor *func_802DC7E0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     sp4C[0] = 0.0f;
     sp4C[1] = 0.0f;
     sp4C[2] = 0.0f;
-    func_8024CD88(sp58);
-    func_8024CE18(sp4C);
-    func_8024CFD4();
+    viewport_setPosition(sp58);
+    viewport_setRotation(sp4C);
+    viewport_update();
     func_8024C904(gfx, mtx);
     sp40[0] = 0.0f;
     sp40[1] = 0.0f;

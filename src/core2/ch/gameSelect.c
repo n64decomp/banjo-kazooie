@@ -528,7 +528,7 @@ void func_802C4C14(Actor *this){
                 ml_vec3f_copy(D_80365DD0[i], sp34);
             }
         }
-        func_802BAEB4(
+        ncStaticCamera_setPositionAndTarget(
             func_802C44EC(D_80365DD0[D_8037DCE8], D_80365DD0[D_80365E00], D_8037DD30), 
             func_802C44EC(D_80365E04[D_8037DCE8], D_80365E04[D_80365E00], D_8037DD30)
         );

@@ -8,7 +8,7 @@ extern BKCollisionTri *func_8028EF48(void);
 extern void func_8030E9FC(enum sfx_e uid, f32 arg1, f32 arg2, u32 arg3, f32 arg4[3], f32 arg5, f32 arg6);
 extern void func_8030EA54(enum sfx_e uid, f32 arg1, f32 arg2, u32 arg3, f32 arg4[3], f32 arg5, f32 arg6);
 extern void func_8031CE28(s32, s32, f32);
-void func_80324E88(f32);
+void timed_exitStaticCamera(f32);
 extern int func_802E805C(BKCollisionList *, BKVertexList *, f32[3], s32, f32, s32, s32, s32, s32);
 extern void func_80340200(s32, f32[3], s32, f32, s32, s32, BKVertexList *, s32);
 extern void func_802E9118(BKCollisionList *, BKVertexList *, f32[3], s32, f32, s32, s32, f32, s32, s32, s32);
@@ -18,7 +18,7 @@ extern int func_80340020(s32, f32[3], s32, f32, s32, BKVertexList *, f32[3], f32
 extern void func_8033A670(s32, s32, f32[3]);
 extern void func_8033A928(s32, s32, f32[3]);
 extern void func_8033A9A8(s32, s32, f32[3]);
-extern void func_8024C5CC(f32[3]);
+extern void viewport_getPosition(f32[3]);
 extern void ml_vec3f_normalize(f32[3]);
 extern void func_8033A45C(s32, s32);
 extern void func_8033A238(s32);
@@ -115,16 +115,16 @@ void func_80388664(void) {
 
 void CC_func_8038868C(void) {
     func_80324E38(0, 3);
-    timed_setCameraToNode(0, 0);
-    timed_setCameraToNode(5.5f, 1);
-    timed_setCameraToNode(7.0f, 2);
-    timed_setCameraToNode(12.5f, 3);
+    timed_setStaticCameraToNode(0, 0);
+    timed_setStaticCameraToNode(5.5f, 1);
+    timed_setStaticCameraToNode(7.0f, 2);
+    timed_setStaticCameraToNode(12.5f, 3);
     timedFunc_set_0(13.0f, &func_80388664);
-    timed_setCameraToNode(16.0f, 1);
+    timed_setStaticCameraToNode(16.0f, 1);
     if (jiggyscore_isCollected(JIGGY_17_CC_CLANKER_RAISED) == 0) {
         func_80324DBC(18.0f, 0xD2C, 4, NULL, NULL, NULL, 0);
     }
-    func_80324E88(18.0f);
+    timed_exitStaticCamera(18.0f);
     func_80324E38(18.0f, 0);
 }
 
@@ -146,7 +146,7 @@ void CC_func_80388760(Gfx **gfx, Mtx **mtx, Vtx **vtx){
     if(D_80389FA0.unk21 == 0)
         return;
     
-    func_8024C5CC(sp98);
+    viewport_getPosition(sp98);
         
     if(sp98[0] <  -2600.0f || 11600.0f < sp98[0])
         return;

@@ -146,9 +146,9 @@ void __chCrab_spawn_mutant_crab_jiggy(void) {
 void __chCrab_mutantTextCallback(ActorMarker *caller, enum asset_e text_id, s32 model_id){
     if (text_id == ASSET_D33_DIALOG_MUTANT_CRAB_DEFEAT) {
         func_80324E38(0.0f, 3);
-        timed_setCameraToNode(0.0f, 4);
+        timed_setStaticCameraToNode(0.0f, 4);
         timedFunc_set_0(0.1f, __chCrab_spawn_mutant_crab_jiggy);
-        func_80324E88(3.0f);
+        timed_exitStaticCamera(3.0f);
         func_80324E38(3.0f, 0);
         return;
     }

@@ -43,9 +43,9 @@ void __chWhistleCtrl_wrong(ActorMarker *marker){
 void __chWhistleCtrl_complete(void){
     func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);
     func_80324E38(1.0f, 3);
-    timed_setCameraToNode(2.0f, 10);
+    timed_setStaticCameraToNode(2.0f, 10);
     timedFunc_set_0(2.2f, __chWhistleCtrl_soundWhistle);
-    func_80324E88(5.0f);
+    timed_exitStaticCamera(5.0f);
     func_80324E38(5.0f, 0);
 }
 

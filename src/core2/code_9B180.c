@@ -63,7 +63,7 @@ void func_80322130(Struct_core2_9B180_0 *arg0) {
         }
         sp1C[1] = D_80383334;
         func_8028FAB0(sp1C);
-        func_802BD0D8(6);
+        ncDynamicCamera_setState(6);
     }
 }
 

@@ -55,7 +55,7 @@ void CCW_func_8038868C(Actor *this, s32 next_state) {
         func_80335924(local->unk4, ASSET_100_ANIM_GOBI_SPIT, 0.0f, 3.0f);
         func_80335A8C(local->unk4, 2);
         func_80324E38(0.0f, 3);
-        timed_setCameraToNode(0.0f, (map_get() == MAP_44_CCW_SUMMER) ? 1 : 2);
+        timed_setStaticCameraToNode(0.0f, (map_get() == MAP_44_CCW_SUMMER) ? 1 : 2);
         timed_playSfx(0.05f, SFX_84_GOBI_CRYING, 1.1f, 32000);
         timed_playSfx(0.8f, SFX_4B_GULPING, 0.8f, 28000);
         timed_playSfx(1.4f, SFX_4B_GULPING, 0.8f, 28000);
@@ -68,7 +68,7 @@ void CCW_func_8038868C(Actor *this, s32 next_state) {
     if (next_state == 4) {
         func_80335924(this->unk148, ASSET_176_ANIM_GOBI_YAWN, 0.5f, 4.0f);
         func_80335A8C(this->unk148, 2);
-        func_80324E88(0.0f);
+        timed_exitStaticCamera(0.0f);
         func_80324E38(0.0f, 0);
     }
     if (next_state == 5) {
@@ -76,14 +76,14 @@ void CCW_func_8038868C(Actor *this, s32 next_state) {
             func_80311480((s32) local->unk0->unk6, 4, NULL, NULL, NULL, NULL);
         }
         func_80335924(this->unk148, ASSET_FD_ANIM_GOBI2_GETTING_UP, 0.23f, 0.5f);
-        timed_setCameraToNode(0.0f, 3);
+        timed_setStaticCameraToNode(0.0f, 3);
     }
     if (next_state == 6) {
         func_80335924(this->unk148, ASSET_F8_ANIM_GOBI_RUNNING, 0.1f, 0.71f);
         func_80335A8C(this->unk148, 1);
     }
     if (next_state == 7) {
-        func_80324E88(0.0f);
+        timed_exitStaticCamera(0.0f);
         func_80324E38(0.0f, 0);
         marker_despawn(this->marker);
     }

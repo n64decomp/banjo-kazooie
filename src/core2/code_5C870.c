@@ -67,7 +67,7 @@ void func_802E3800(void){
     func_8024CDF8(0.0f, 0.0f, 0.0f);
     func_8024CE40(-30.0f, 30.0f, 0.0f);
     func_8024C510(3000.0f);
-    func_8024CFD4();
+    viewport_update();
 }
 
 void func_802E3854(void){

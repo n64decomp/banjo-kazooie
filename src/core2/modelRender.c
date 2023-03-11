@@ -9,11 +9,11 @@ extern bool func_802ED420(BKModelUnk20List *arg0, u8 *arg1, u32 arg2);
 extern void func_802ED52C(BKModelUnk20List *, f32[3], f32);
 extern void func_80252AF0(f32[3], f32[3], f32[3], f32, f32[3]);
 extern void mlMtxRotate(f32, f32, f32);
-extern void func_8024C5CC(f32[3]);
-extern void func_8024C764(f32[3]);
-extern void func_8024CD88(f32[3]);
-extern void func_8024CE18(f32[3]);
-extern void func_8024CFD4(void);
+extern void viewport_getPosition(f32[3]);
+extern void viewport_getRotation(f32[3]);
+extern void viewport_setPosition(f32[3]);
+extern void viewport_setRotation(f32[3]);
+extern void viewport_update(void);
 extern void func_8033BD4C(BKModelBin *);
 extern s32 func_8024DB50(f32[3], f32);
 extern void func_80251788(f32, f32, f32);
@@ -695,9 +695,9 @@ void modelRender_reset(void){
     func_8033A45C(1,1);
     func_8033A45C(2,0);
     if(D_80383758.unk18){
-        func_8024CD88(D_80383758.unk1C);
-        func_8024CE18(D_80383758.unk28);
-        func_8024CFD4();
+        viewport_setPosition(D_80383758.unk1C);
+        viewport_setRotation(D_80383758.unk28);
+        viewport_update();
     }
 }
 
@@ -1033,8 +1033,8 @@ BKModelBin *modelRender_draw(Gfx **gfx, Mtx **mtx, f32 position[3], f32 rotation
     }
 
     D_80370990 = 0;
-    func_8024C5CC(modelRenderCameraPosition);
-    func_8024C764(modelRenderCameraRotation);
+    viewport_getPosition(modelRenderCameraPosition);
+    viewport_getRotation(modelRenderCameraRotation);
     if(D_80383758.unk18){
         D_80383758.unk1C[0] = modelRenderCameraPosition[0];
         D_80383758.unk1C[1] = modelRenderCameraPosition[1];
@@ -1074,9 +1074,9 @@ BKModelBin *modelRender_draw(Gfx **gfx, Mtx **mtx, f32 position[3], f32 rotation
         modelRenderCameraRotation[0] = D_80383758.unkC[0],
         modelRenderCameraRotation[1] = D_80383758.unkC[1],
         modelRenderCameraRotation[2] = D_80383758.unkC[2];
-        func_8024CD88(modelRenderCameraPosition);
-        func_8024CE18(modelRenderCameraRotation);
-        func_8024CFD4();
+        viewport_setPosition(modelRenderCameraPosition);
+        viewport_setRotation(modelRenderCameraRotation);
+        viewport_update();
         camera_focus[0] = object_position[0] - modelRenderCameraPosition[0];
         camera_focus[1] = object_position[1] - modelRenderCameraPosition[1];
         camera_focus[2] = object_position[2] - modelRenderCameraPosition[2];
@@ -1418,8 +1418,8 @@ void func_8033A28C(bool arg0){
 void func_8033A298(bool arg0){
     D_80383758.unk18 = arg0;
     if(arg0){
-        func_8024C5CC(D_80383758.unk0);
-        func_8024C764(D_80383758.unkC);
+        viewport_getPosition(D_80383758.unk0);
+        viewport_getRotation(D_80383758.unkC);
     }
 }
 

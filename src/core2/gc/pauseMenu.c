@@ -1218,7 +1218,7 @@ void __gcpausemenu_drawSprite(Gfx** gdl, Mtx** mptr, Vtx** vptr, BKSprite* sprit
     func_80338338(0xFF, 0xFF, 0xFF);
     func_803382FC(a);
     func_8033837C(0);
-    func_8024C5CC(sp50);
+    viewport_getPosition(sp50);
     
     sp34 = func_8024DE1C(x, y, sp5C, sp44);
     mlMtxIdent(); //matrix_stack_identity
@@ -1337,9 +1337,9 @@ void gcpausemenu_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
                 sp8C[0] = 0.0f;
                 sp8C[1] = 0.0f;
                 sp8C[2] = 0.0f;
-                func_8024CD88(sp98);
-                func_8024CE18(sp8C);
-                func_8024CFD4();
+                viewport_setPosition(sp98);
+                viewport_setRotation(sp8C);
+                viewport_update();
                 func_8024C904(gfx, mtx);
                 sp98[0] = 0.0f;
                 sp98[1] = 0.0f;
@@ -1382,9 +1382,9 @@ void gcpausemenu_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
             sp8C[1] = 0.0f;
             sp8C[2] = 0.0f;
 
-            func_8024CD88(sp98);
-            func_8024CE18(sp8C);
-            func_8024CFD4();
+            viewport_setPosition(sp98);
+            viewport_setRotation(sp8C);
+            viewport_update();
             func_8024C904(gfx, mtx);
 
             sp98[0] = 0.0f;

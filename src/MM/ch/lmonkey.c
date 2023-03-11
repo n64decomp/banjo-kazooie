@@ -5,9 +5,9 @@
 void func_8028E668(f32 *, f32, f32, f32);
 int actor_animationIsAt(Actor *, f32);
 void func_80328B8C(Actor *, s32, f32, s32);
-void func_80324E88(f32);
+void timed_exitStaticCamera(f32);
 void func_80324E38(f32,s32);
-void timed_setCameraToNode(f32, s32);
+void timed_setStaticCameraToNode(f32, s32);
 s32 func_8028F31C(f32 *, f32, s32, Actor **);
 void func_8028FA34(s32, Actor *);
 
@@ -38,7 +38,7 @@ void func_80388300(Actor **arg0){
     ){
         func_8028FA34(0xc6, *arg0);
         (*arg0)->unk138_24 = 1;
-        timed_setCameraToNode(1.2f, 0xF);
+        timed_setStaticCameraToNode(1.2f, 0xF);
         func_80324E38(1.2f, 3);
     }
     if(arg0);
@@ -71,9 +71,9 @@ void __chLMonkey_complete(ActorMarker *marker, enum asset_e arg1, s32 arg2){
     Actor * actor = marker_getActor(marker);
     mapSpecificFlags_set(4,1);
     func_80328A84(actor, 3);
-    timed_setCameraToNode(2.3f, 0x12);
+    timed_setStaticCameraToNode(2.3f, 0x12);
     timedFunc_set_3(2.9f,__chLMonkey_spawnJiggy, actor->position_x, actor->position_y + 150.0f, actor->position_z);
-    func_80324E88(4.3f);
+    timed_exitStaticCamera(4.3f);
     func_80324E38(4.3f, 0);
 }
 

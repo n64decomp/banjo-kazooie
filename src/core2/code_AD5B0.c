@@ -329,7 +329,7 @@ s32 func_80334ECC(void) {
         func_802F11E8();
         func_80288210();
         func_80288834();
-        func_802BC14C();
+        ncCamera_update();
         func_803045D8();
         func_80332E08();
         func_803465E4();

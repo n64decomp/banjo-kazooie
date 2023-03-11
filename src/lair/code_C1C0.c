@@ -1,6 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "core2/nc/camera.h"
 
 Actor *func_803925B0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void func_80392700(Actor *this);
@@ -33,11 +34,11 @@ void func_80392610(ActorMarker *marker, enum asset_e text_id, s32 arg2){
     else{
         mapSpecificFlags_set(5, FALSE);
     }
-    set_camera_to_node(arg2);
+    ncStaticCamera_setToNode(arg2);
 }
 
 void func_80392664(ActorMarker *marker, enum asset_e text_id, s32 arg2){
-    func_802BBC58(2);
+    camera_setType(CAMERA_TYPE_2_DYNAMIC);
 }
 
 void func_80392690(ActorMarker *marker, enum asset_e text_id, s32 arg2){
@@ -57,7 +58,7 @@ void func_80392700(Actor *this) {
             func_80311480(0x1031, 0xF, this->position, this->marker, func_80392664, func_80392610);
         } else {
             func_802BC280();
-            set_camera_to_node(0x1F);
+            ncStaticCamera_setToNode(0x1F);
             func_80311480(0x102C, 0xE, this->position, this->marker, func_80392664, func_80392610);
             fileProgressFlag_set(FILEPROG_F4_ENTER_FF_CUTSCENE, TRUE);
         }
@@ -66,7 +67,7 @@ void func_80392700(Actor *this) {
     if (mapSpecificFlags_get(6)) {
         func_8025A70C(COMUSIC_A8_KLUNGO_BY_FALLEN_GRUNTY);
         func_802BC280();
-        set_camera_to_node(9);
+        ncStaticCamera_setToNode(9);
         mapSpecificFlags_set(9, 1);
         func_8028F94C(2, this->position);
         func_80311480(0x103F, 0x2A, this->position, this->marker, func_80392690, func_80392610);
@@ -105,7 +106,7 @@ void func_80392918(Actor *this) {
     func_80326224(this);
     if ((this->unk48 > 0.5) && !this->unk138_24) {
         this->unk138_24 = TRUE;
-        set_camera_to_node(0x1E);
+        ncStaticCamera_setToNode(0x1E);
     }
     if ((0.999 < this->unk48) && !this->unk38_0) {
         comusic_8025AB44(COMUSIC_A8_KLUNGO_BY_FALLEN_GRUNTY, 0, 2000);

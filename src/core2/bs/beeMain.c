@@ -9,7 +9,7 @@ void yaw_applyIdeal(void);
 void func_8029797C(f32);
 f32 func_80297A64(void);
 void func_802979AC(f32, f32);
-void func_802BF2C0(f32);
+void ncDynamicCamD_func_802BF2C0(f32);
 
 f32 baanim_getTimer(void);
 void baanim_setEndAndDuration(f32, f32);
@@ -425,7 +425,7 @@ void bsbeemain_die_init(void){
     baMarker_collisionOff();
     func_80292E48();
     func_802914CC(0xd);
-    func_802BF2C0(30.0f);
+    ncDynamicCamD_func_802BF2C0(30.0f);
     func_8029C984();
     func_8030E58C(SFX_36_BANJO_DOH, 1.8f);
     func_8029E3C0(0, 2.9f);

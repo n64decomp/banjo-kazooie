@@ -16,26 +16,26 @@ void func_802BFED0(void){
     f32 sp1C[3];
 
     player_getPosition(sp28);
-    func_802BD384(sp1C);
+    ncDynamicCamera_getPosition(sp1C);
     func_80257F18(sp28, sp1C, &sp34);
     D_8037DB30.unk8 = sp34;
     D_8037DB30.unk4 = 0.0f;
 }
 
-void func_802BFF1C(void) {
+void ncDynamicCamC_init(void) {
     func_802BE244(4.0f, 16.0f);
     func_802BE230(1.8f, 14.0f);
     D_8037DB30.unk0 = 290.0f;
     func_802BFED0();
 }
 
-void func_802BFF78(void){}
+void ncDynamicCamC_end(void){}
 
 void func_802BFF80(f32 arg0){
     D_8037DB30.unk0 = arg0;
 }
 
-void func_802BFF8C(void) {
+void ncDynamicCamC_update(void) {
     f32 sp54[3];
     f32 sp48[3];
     f32 sp3C[3];
@@ -66,7 +66,7 @@ void func_802BFF8C(void) {
             }
             break;
     }
-    func_802BD384(sp54);
+    ncDynamicCamera_getPosition(sp54);
     player_getPosition(sp3C);
     sp3C[1] += 100.0f;
     func_8025727C(sp3C[0], sp3C[1], sp3C[2], sp54[0], sp54[1], sp54[2], &sp48[0], &sp48[1]);

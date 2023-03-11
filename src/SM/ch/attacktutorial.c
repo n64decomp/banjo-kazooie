@@ -5,7 +5,7 @@
 /* chAttackTutorial - controls bottle teaching moves in spiral*/
 
 //external
-void func_80324E88(f32);
+void timed_exitStaticCamera(f32);
 void func_8028F918(s32);
 
 //public
@@ -64,7 +64,7 @@ void func_80387288(ActorMarker *marker, enum asset_e text_id, s32 arg2){
             chAttackTutorial_setState(actor, 2);
             break;
     }//L803872FC
-    func_80324E88(0.0f);
+    timed_exitStaticCamera(0.0f);
 }
 
 void chAttackTutorial_setState(Actor * this, s32 arg1){
@@ -170,7 +170,7 @@ void func_80387690(ActorMarker *marker, enum asset_e text_id, s32 arg2){
             chAttackTutorial_setState(actor, 3);
             break;
     }
-    func_80324E88(0.0f);
+    timed_exitStaticCamera(0.0f);
 }//*/
 
 void func_80387764(ActorMarker * marker){
@@ -211,7 +211,7 @@ void func_80387764(ActorMarker * marker){
         sp34 = 0xE12;
     }//L80387898
     if(temp_a2){
-        timed_setCameraToNode(0.0f, 6);
+        timed_setStaticCameraToNode(0.0f, 6);
     }//L803878B0
 
     func_80311480(sp34, sp2C, actor->unk1C, actor->marker, func_80387690, NULL);

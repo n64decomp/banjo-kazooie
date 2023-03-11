@@ -211,9 +211,9 @@ void gctransition_draw(Gfx **gdl, Mtx **mptr, Vtx **vptr){
     sp68[1] = 0.0f;
     sp68[2] = 0.0f;
     func_8024CE60(D_8036C440, D_8036C444);
-    func_8024CD88(sp74); //camera_setPosition
-    func_8024CE18(sp68); //camera_setRotation
-    func_8024CFD4(); //camera_updateNormal
+    viewport_setPosition(sp74); //viewport_getPosition
+    viewport_setRotation(sp68); //viewport_getRotation
+    viewport_update(); //camera_updateNormal
     func_8024C904(gdl, mptr);
 
     sp58[0] = 0.0f;

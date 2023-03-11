@@ -27,7 +27,7 @@ void func_802CD870(Actor *this){
 
 void func_802CD898(Actor *this){
     marker_despawn(this->marker);
-    func_802BBC58(2);
+    camera_setType(2);
 }
 
 void func_802CD8C0(Actor *this){
@@ -76,8 +76,8 @@ void func_802CD8C0(Actor *this){
                 mapSpecificFlags_set(4, TRUE);
             }
             else{
-                func_802BBC58(2);
-                func_802BD0D8(0xf);
+                camera_setType(2);
+                ncDynamicCamera_setState(0xf);
             }
             marker_despawn(this->marker);
         }
@@ -87,12 +87,12 @@ void func_802CD8C0(Actor *this){
 void func_802CDAC4(Actor *this){
     f32 sp1C[3];
 
-    func_802BBC58(1);
-    func_8024CD88(this->position);
+    camera_setType(1);
+    viewport_setPosition(this->position);
     sp1C[0] = this->pitch;
     sp1C[1] = this->yaw;
     sp1C[2] = 0.0f;
-    func_8024CE18(sp1C);
+    viewport_setRotation(sp1C);
 }
 
 void func_802CDB18(Actor *this){

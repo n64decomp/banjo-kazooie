@@ -454,7 +454,7 @@ void bspumpkin_die_init(void) {
     gravity_set(-1200.0f);
     pitch_setAngVel(1000.0f, 12.0f);
     func_802914CC(0xD);
-    func_802BF2C0(30.0f);
+    ncDynamicCamD_func_802BF2C0(30.0f);
     func_8029C984();
     baMarker_collisionOff();
     func_80292E48();

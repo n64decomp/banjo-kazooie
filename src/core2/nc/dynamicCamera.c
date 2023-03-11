@@ -19,9 +19,9 @@ typedef struct {
     s32 unk4;
 }Struct_core2_356B0_0;
 
-void func_802BD0D8(s32 arg0);
-void func_802BD334(f32 arg0[3]);
-void func_802BD384(f32 arg0[3]);
+void ncDynamicCamera_setState(s32 state);
+void ncDynamicCamera_setPosition(f32 arg0[3]);
+void ncDynamicCamera_getPosition(f32 arg0[3]);
 void func_802BD780(f32[3], f32[3], f32, f32, f32, f32);
 void func_802BD840(void);
 void func_802BD870(f32 arg0, f32 arg1, f32 arg2, f32 arg3);
@@ -39,8 +39,8 @@ Struct_core2_356B0_0 D_80365D58 = {D_80365D00, 18};
 /* .bss */
 s32 D_8037D940;
 f32 D_8037D948[3];
-f32 D_8037D958[3];
-f32 D_8037D968[3];
+f32 cameraPosition[3];
+f32 cameraRotation[3];
 f32 D_8037D96C;
 f32 D_8037D974;
 f32 D_8037D978;
@@ -62,10 +62,10 @@ f32 D_8037D9D8;
 f32 D_8037D9E0[3];
 f32 D_8037D9EC;
 f32 D_8037D9F0;
-u8 D_8037D9F4;
-u8 D_8037D9F5;
+u8 dynamicCameraState;
+u8 cameraUpdateEnabled;
 u8 D_8037D9F6;
-u8 D_8037D9F7;
+u8 dynamicCameraInFirstPerson;
 
 /* .code */
 bool func_802BC640(f32 arg0[3], f32 arg1[3], f32 arg2, s32 arg3) {
@@ -103,7 +103,7 @@ bool func_802BC640(f32 arg0[3], f32 arg1[3], f32 arg2, s32 arg3) {
         func_80244D94(arg0, sp78, sp88, 0x9E0000, 40.0f);
         func_8024575C(arg0, sp78, 40.0f, sp88, 4, 0x9E0000);
         if (phi_f26 < func_80258708(arg0, sp78)) {
-            func_802BD334(sp78);
+            ncDynamicCamera_setPosition(sp78);
             ml_vec3f_clear(D_8037D9C8);
             ml_vec3f_clear(D_8037D9E0);
             return TRUE;
@@ -130,7 +130,7 @@ s32 func_802BC84C(s32 arg0){
     else{
         func_8028EC64(sp50);
     }
-    func_802BD384(sp38);
+    ncDynamicCamera_getPosition(sp38);
     ml_vec3f_diff_copy(sp5C, sp50, sp38);
     ml_vec3f_normalize_copy(sp68, sp5C);
     ml_vec3f_copy(sp44, sp50);
@@ -183,10 +183,10 @@ void func_802BCA58(void) {
     s32 pad44;
     s32 pad40;
     f32 sp34[3];
-    f32 sp28[3];
+    f32 player_position[3];
 
-    player_getPosition(sp28);
-    ml_vec3f_diff_copy(sp34, sp28, D_8037D958);
+    player_getPosition(player_position);
+    ml_vec3f_diff_copy(sp34, player_position, cameraPosition);
     sp4C = player_getYaw();
     sp48 = ml_map_f(mlAbsF((f32) (mlNormalizeAngle(D_8037D96C - sp4C) - 180.0)), 0.0f, 180.0f, D_8037D97C, D_8037D980);
     func_80256E24(D_8037D9A8, 0.0f, sp4C, 0.0f, 0.0f, ml_map_f(gu_sqrtf(sp34[0]*sp34[0] + sp34[2]*sp34[2]), 300.0f, 450.0f, 0.0f, sp48));
@@ -203,18 +203,18 @@ void func_802BCA58(void) {
 
 void func_802BCBD4(void) {
     D_8037D940 = 0;
-    D_8037D9F5 = 1;
+    cameraUpdateEnabled = TRUE;
     func_802BD8EC(130.0f);
     func_802BD870(10.0f, 10.0f, 120.0f, 120.0f);
     func_802BE230(1.4f, 14.0f);
     func_802BD840();
-    func_802C28C8();
+    ncFirstPersonCamera_reset();
     func_802C0120();
     func_802C2258();
     func_802C0F4C();
-    func_8024C764(D_8037D968);
-    func_8024C5CC(D_8037D958);
-    ml_vec3f_copy(D_8037D948, D_8037D958);
+    viewport_getRotation(cameraRotation);
+    viewport_getPosition(cameraPosition);
+    ml_vec3f_copy(D_8037D948, cameraPosition);
     ml_vec3f_clear(D_8037D9C8);
     ml_vec3f_clear(D_8037D9E0);
     ml_vec3f_clear(D_8037D9A8);
@@ -225,12 +225,12 @@ void func_802BCBD4(void) {
     D_8037D9A0 = 0.0f;
     D_8037D9F6 = 0;
     D_8037D978 = 100.0f;
-    D_8037D9F4 = 0;
-    func_802BD0D8(1);
+    dynamicCameraState = 0;
+    ncDynamicCamera_setState(1);
 }
 
 void func_802BCD30(void){
-    func_802BD0D8(0);
+    ncDynamicCamera_setState(0);
     func_802C2250();
     func_802C0148();
 }
@@ -243,7 +243,7 @@ f32 func_802BCD60(void) {
     if ((D_8037D940 & 1) && !func_802BC428()) 
         return D_8037D9A0;
 
-    ml_vec3f_copy(sp28, D_8037D958);
+    ml_vec3f_copy(sp28, cameraPosition);
     temp_v0 = func_80245314(sp28, sp34, 10.0f, -600.0f, 0x800000);
     if (temp_v0 == 0) {
         D_8037D9A0 = sp28[1] - 600.0f;
@@ -276,36 +276,36 @@ void func_802BCE94(void){
         func_802BC84C(0);
 }
 
-void func_802BCEC4(void){
+void ncDynamicCamera_update(void){
     f32 sp24[3];
     f32 sp18[3];
 
-    if(!D_8037D9F5)
+    if(!cameraUpdateEnabled)
         return;
     
     func_802BCD60();
-    D_8037D948[0] = D_8037D958[0];
-    D_8037D948[1] = D_8037D958[1];
-    D_8037D948[2] = D_8037D958[2];
+    D_8037D948[0] = cameraPosition[0];
+    D_8037D948[1] = cameraPosition[1];
+    D_8037D948[2] = cameraPosition[2];
     func_802BCA58();
 
-    switch(D_8037D9F4){
+    switch(dynamicCameraState){
         case 1:// L802BCF3C
-            func_802C18F8();
+            ncDynamicCam1_update();
             func_802BCE94();
             break;
 
         case 3:// L802BCF54
-            func_802C1B2C();
+            ncDynamicCam3_update();
             break;
         
         case 4:// L802BCF64
-            func_802BFAF0();
+            ncDynamicCam4_update();
             func_802BCE94();
             break;
 
         case 5:// L802BCF7C
-            func_802BF454();
+            ncDynamicCam5_update();
             func_802BCE94();
             break;
 
@@ -314,215 +314,215 @@ void func_802BCEC4(void){
             break;
 
         case 8:// L802BCFA4
-            func_802BF888();
+            ncDynamicCam8_update();
             break;
 
         case 9:// L802BCFB4
-            func_802C0D60();
+            ncDynamicCam9_update();
             func_802BCE94();
             break;
 
         case 0xA:// L802BCFCC
-            func_802C1F30();
+            ncDynamicCamA_update();
             break;
 
         case 0xB:// L802BCFDC
-            func_802C0558();
+            ncDynamicCamB_update();
             break;
 
         case 0xC:// L802BCFEC
-            func_802BFF8C();
+            ncDynamicCamC_update();
             func_802BCE94();
             break;
 
         case 0xD:// L802BD004
-            func_802BF2CC();
+            ncDynamicCamD_update();
             func_802BCE94();
             break;
 
         case 0xF:// L802BD01C
-            func_802C24B4();
+            ncDynamicCamF_update();
             break;
 
         case 0x10:// L802BD02C
-            func_802BF1D4();
+            ncDynamicCam10_update();
             break;
 
         case 0x11:// L802BD03C
-            func_802BF5F4();
+            ncDynamicCam11_update();
             break;
 
         case 0x12:// L802BD04C
-            func_802C14E0();
+            ncDynamicCam12_update();
             break;
 
         case 0x13:// L802BD05C
-            func_802C07A0();
+            ncDynamicCam13_update();
             break;
     }//// L802BD064
-    ml_vec3f_copy(sp24, D_8037D958);
-    ml_vec3f_copy(sp18, D_8037D968);
+    ml_vec3f_copy(sp24, cameraPosition);
+    ml_vec3f_copy(sp18, cameraRotation);
     func_802C22C0(sp24, sp18);
-    if(D_8037D9F7){
-        func_802C292C(sp24, sp18);
+    if(dynamicCameraInFirstPerson){
+        ncFirstPersonCamera_getPositionAndRotation(sp24, sp18);
     }
-    func_8024CD88(sp24);
-    func_8024CE18(sp18);
+    viewport_setPosition(sp24);
+    viewport_setRotation(sp18);
 }
 
-int func_802BD0CC(void){
-    return D_8037D9F4;
+int ncDynamicCamera_getState(void){
+    return dynamicCameraState;
 }
 
-void func_802BD0D8(s32 arg0){
-    if(arg0 == D_8037D9F4) 
+void ncDynamicCamera_setState(s32 state){
+    if(state == dynamicCameraState) 
         return;
 
-    switch(D_8037D9F4){
+    switch(dynamicCameraState){
         case 0x1://L802BD114
-            func_802C18F0();
+            ncDynamicCam1_end();
             break;
 
         case 0x3://L802BD124
-            func_802C1AD0();
+            ncDynamicCam3_end();
             break;
 
         case 0x4://L802BD134
-            func_802BFAE8();
+            ncDynamicCam4_end();
             break;
 
         case 0x5://L802BD144
-            func_802BF44C();
+            ncDynamicCam5_end();
             break;
 
         case 0x8://L802BD154
-            func_802BF880();
+            ncDynamicCam8_end();
             break;
 
         case 0x9://L802BD164
-            func_802C09E0();
+            ncDynamicCam9_end();
             break;
 
         case 0xa://L802BD174
-            func_802C1DA8();
+            ncDynamicCamA_end();
             break;
 
         case 0xb://L802BD184
-            func_802C0550();
+            ncDynamicCamB_end();
             break;
 
         case 0xc://L802BD194
-            func_802BFF78();
+            ncDynamicCamC_end();
             break;
 
         case 0xd://L802BD1A4
-            func_802BF2B8();
+            ncDynamicCamD_end();
             break;
 
         case 0xf://L802BD1B4
-            func_802C24AC();
+            ncDynamicCamF_end();
             break;
 
         case 0x10://L802BD1C4
-            func_802BF1CC();
+            ncDynamicCam10_end();
             break;
 
         case 0x11://L802BD1D4
-            func_802BF5EC();
+            ncDynamicCam11_end();
             break;
 
         case 0x12://L802BD1E4
-            func_802C0FCC();
+            ncDynamicCam12_end();
             break;
 
         case 0x13://L802BD1F4
-            func_802C0694();
+            ncDynamicCam13_end();
             break;
     }//L802BD1FC
 
-    switch (arg0)
+    switch (state)
     {
         case 0x1: //L802BD224
-            func_802C18B0();
+            ncDynamicCam1_init();
             break;
 
         case 0x3: //L802BD234
-            func_802C1AD8();
+            ncDynamicCam3_init();
             break;
 
         case 0x4: //L802BD244
-            func_802BFA60();
+            ncDynamicCam4_init();
             break;
 
         case 0x5: //L802BD254
-            func_802BF3F0();
+            ncDynamicCam5_init();
             break;
 
         case 0x8: //L802BD264
-            func_802BF870();
+            ncDynamicCam8_init();
             break;
 
         case 0x9: //L802BD274
-            func_802C09A0();
+            ncDynamicCam9_init();
             break;
 
         case 0xa: //L802BD284
-            func_802C1DA0();
+            ncDynamicCamA_init();
             break;
 
         case 0xb: //L802BD294
-            func_802C04F8();
+            ncDynamicCamB_init();
             break;
 
         case 0xc: //L802BD2A4
-            func_802BFF1C();
+            ncDynamicCamC_init();
             break;
 
         case 0xd: //L802BD2B4
-            func_802BF270();
+            ncDynamicCamD_init();
             break;
 
         case 0xf: //L802BD2C4
-            func_802C2460();
+            ncDynamicCamF_init();
             break;
 
         case 0x10: //L802BD2D4
-            func_802BF174();
+            ncDynamicCam10_init();
             break;
 
         case 0x11: //L802BD2E4
-            func_802BF5C0();
+            ncDynamicCam11_init();
             break;
 
         case 0x12: //L802BD2F4
-            func_802C0F6C();
+            dynamicCam12_init();
             break;
 
         case 0x13: //L802BD304
-            func_802C0710();
+            ncDynamicCam13_init();
             break;
     }
-    D_8037D9F4 = arg0;
+    dynamicCameraState = state;
 }
 
-void func_802BD328(s32 arg0){
-    D_8037D9F5 = arg0;
+void ncDynamicCamera_setUpdateEnabled(bool arg0){
+    cameraUpdateEnabled = arg0;
 }
 
-void func_802BD334(f32 arg0[3]){
-    ml_vec3f_copy(D_8037D958, arg0);
+void ncDynamicCamera_setPosition(f32 arg0[3]){
+    ml_vec3f_copy(cameraPosition, arg0);
 }
 
-void func_802BD35C(f32 arg0[3]){
-    ml_vec3f_copy(D_8037D968, arg0);
+void ncDynamicCamera_setRotation(f32 arg0[3]){
+    ml_vec3f_copy(cameraRotation, arg0);
 }
 
-void func_802BD384(f32 arg0[3]){
-    ml_vec3f_copy(arg0, D_8037D958);
+void ncDynamicCamera_getPosition(f32 arg0[3]){
+    ml_vec3f_copy(arg0, cameraPosition);
 }
 
-void func_802BD3A8(f32 arg0[3]){
-    ml_vec3f_copy(arg0, D_8037D968);
+void ncDynamicCamera_getRotation(f32 arg0[3]){
+    ml_vec3f_copy(arg0, cameraRotation);
 }
 
 void func_802BD3CC(f32 arg0[3]) {
@@ -591,9 +591,9 @@ void func_802BD610(f32 arg0[3], f32 arg1[3], f32 arg2, f32 arg3, f32 arg4, f32 a
 void func_802BD720(f32 arg0[3]) {
     f32 sp24[3];
 
-    func_802BD3A8(sp24);
+    ncDynamicCamera_getRotation(sp24);
     func_802BD780(arg0, sp24, D_8037D984, D_8037D988, D_8037D98C, D_8037D990);
-    func_802BD35C(sp24);
+    ncDynamicCamera_setRotation(sp24);
 }
 
 void func_802BD780(f32 arg0[3], f32 arg1[3], f32 arg2, f32 arg3, f32 arg4, f32 arg5) {
@@ -649,27 +649,27 @@ f32 func_802BD8F8(void){
     return D_8037D974;
 }
 
-void func_802BD904(f32 arg0[3]) {
-    f32 sp5C[3];
+void func_802BD904(f32 target_rotation[3]) {
+    f32 camera_rotation[3];
     f32 sp50[3];
     f32 sp44[3];
     f32 sp38[3];
-    f32 sp34;
+    f32 dt;
     f32 sp30;
 
     if (func_802BC428()) {
         ml_vec3f_clear(D_8037D9C8);
-        func_802BD35C(arg0);
+        ncDynamicCamera_setRotation(target_rotation);
         return;
     }
     
-    sp34 = time_getDelta();
-    func_802BD3A8(sp5C);
-    sp50[0] = mlDiffDegF(arg0[0], sp5C[0]);
-    sp50[1] = mlDiffDegF(arg0[1], sp5C[1]);
+    dt = time_getDelta();
+    ncDynamicCamera_getRotation(camera_rotation);
+    sp50[0] = mlDiffDegF(target_rotation[0], camera_rotation[0]);
+    sp50[1] = mlDiffDegF(target_rotation[1], camera_rotation[1]);
     sp50[2] = 0.0f;
-    sp44[0] = sp50[0] * sp34 * D_8037D9D4;
-    sp44[1] = sp50[1] * sp34 * D_8037D9D4;
+    sp44[0] = sp50[0] * dt * D_8037D9D4;
+    sp44[1] = sp50[1] * dt * D_8037D9D4;
     sp44[2] = 0.0f;
     sp38[0] = sp44[0] - D_8037D9C8[0];
     sp38[1] = sp44[1] - D_8037D9C8[1];
@@ -681,16 +681,16 @@ void func_802BD904(f32 arg0[3]) {
     sp30 = mlAbsF(D_8037D9C8[0]);
     if ((mlAbsF(sp50[0]) < sp30) && (D_8037D9C8[0]*sp50[0] > 0.0f)) {
         D_8037D9C8[0] = 0.0f;
-        sp5C[0] = arg0[0];
+        camera_rotation[0] = target_rotation[0];
     }
     sp30 = mlAbsF(D_8037D9C8[1]);
     if ((mlAbsF(sp50[1]) < sp30) && (D_8037D9C8[1]*sp50[1] > 0.0f)) {
         D_8037D9C8[1] = 0.0f;
-        sp5C[1] = arg0[1];
+        camera_rotation[1] = target_rotation[1];
     }
-    sp5C[0] = mlNormalizeAngle(sp5C[0] + D_8037D9C8[0]);
-    sp5C[1] = mlNormalizeAngle(sp5C[1] + D_8037D9C8[1]);
-    func_802BD35C(sp5C);
+    camera_rotation[0] = mlNormalizeAngle(camera_rotation[0] + D_8037D9C8[0]);
+    camera_rotation[1] = mlNormalizeAngle(camera_rotation[1] + D_8037D9C8[1]);
+    ncDynamicCamera_setRotation(camera_rotation);
 }
 
 void func_802BDB30(f32 arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 arg4, f32 arg5) {
@@ -822,16 +822,16 @@ void func_802BE190(f32 arg0[3]){
 
     if(func_802BC428()){
         ml_vec3f_clear(D_8037D9E0);
-        func_802BD334(arg0);
+        ncDynamicCamera_setPosition(arg0);
         return;
     }
 
     end = func_8033DD90()*5;
-    func_802BD384(sp34);
+    ncDynamicCamera_getPosition(sp34);
     for(i = 0; i < end; i++){
         func_802BDF5C(arg0, sp34);
     }
-    func_802BD334(sp34);
+    ncDynamicCamera_setPosition(sp34);
 }
 
 void func_802BE230(f32 arg0, f32 arg1){
@@ -926,13 +926,13 @@ int func_802BE60C(void){
     if(map_get() == MAP_91_FILE_SELECT)
         return 0;
 
-    ml_vec3f_copy(sp1C, D_8037D958);
-    func_802BE484(D_8037D948, D_8037D958);
-    return !(sp1C[0] == D_8037D958[0]) || !(sp1C[1] == D_8037D958[1]) || !(sp1C[2] == D_8037D958[2]);
+    ml_vec3f_copy(sp1C, cameraPosition);
+    func_802BE484(D_8037D948, cameraPosition);
+    return !(sp1C[0] == cameraPosition[0]) || !(sp1C[1] == cameraPosition[1]) || !(sp1C[2] == cameraPosition[2]);
 }
 
 void func_802BE6FC(f32 arg0[3], f32 arg1[3]){
-    func_802BC434(arg0, arg1, D_8037D958);
+    func_802BC434(arg0, arg1, cameraPosition);
 }
 
 void func_802BE720(void){
@@ -940,29 +940,29 @@ void func_802BE720(void){
     f32 sp28[3];
     f32 sp1C[3];
 
-    func_8024C5CC(sp28);
-    func_8024C764(sp1C);
-    func_802BD334(sp28);
-    func_802BD35C(sp1C);
+    viewport_getPosition(sp28);
+    viewport_getRotation(sp1C);
+    ncDynamicCamera_setPosition(sp28);
+    ncDynamicCamera_setRotation(sp1C);
 
-    sp34 = func_802BD0CC();
-    func_802BD0D8(0);
-    func_802BD0D8(sp34);
+    sp34 = ncDynamicCamera_getState();
+    ncDynamicCamera_setState(0);
+    ncDynamicCamera_setState(sp34);
     ml_vec3f_clear(D_8037D9C8);
     ml_vec3f_clear(D_8037D9E0);
-    func_802C28C8();
+    ncFirstPersonCamera_reset();
 }
 
 void func_802BE794(void){
     f32 sp2C[3];
     f32 sp20[3];
-    if(D_8037D9F4 == 1 || D_8037D9F4 == 0xb || D_8037D9F4 == 3){
+    if(dynamicCameraState == 1 || dynamicCameraState == 0xb || dynamicCameraState == 3){
         player_getPosition(sp2C);
         sp2C[1] += 100.0f;
         player_getRotation(sp20);
         sp20[1] = mlNormalizeAngle(sp20[1] + 180.0f);
-        func_8024CD88(sp2C);
-        func_8024CE18(sp20);
+        viewport_setPosition(sp2C);
+        viewport_setRotation(sp20);
         func_8024C510(300.0f);
         func_802BE720();
     }//L802BE828
@@ -983,20 +983,20 @@ int func_802BE834(f32 arg0[3]){
 
 }
 
-void func_802BE894(f32 arg0[3], f32 arg1[3]){
+void func_802BE894(f32 position[3], f32 rotation[3]){
     f32 sp1C[3];
     func_802C02D4(sp1C);
-    func_802BC434(arg0, sp1C, arg1);
-    arg0[2] = 0.0f;
+    func_802BC434(position, sp1C, rotation);
+    position[2] = 0.0f;
 }
 
-void func_802BE8D8(void){
-    D_8037D9F7 = 1;
-    func_802C29A0(1);
-    func_802C2A64(D_8037D958);
-    func_802C2A8C(D_8037D968);
+void ncDynamicCamera_enterFirstPerson(void){
+    dynamicCameraInFirstPerson = TRUE;
+    ncFirstPersonCamera_setState(1);
+    ncFirstPersonCamera_setZoomedOutPosition(cameraPosition);
+    ncFirstPersonCamera_setZoomedOutRotation(cameraRotation);
 }
 
-void func_802BE91C(void){
-    func_802C29A0(3);
+void ncDynamicCamera_exitFirstPerson(void){
+    ncFirstPersonCamera_setState(3);
 }

@@ -19,7 +19,7 @@ void func_80328FB0(Actor *, f32);
 
 void func_80328B8C(Actor*, s32, f32, s32);
 void func_802C8F70(f32);
-void func_80324E88(f32);
+void timed_exitStaticCamera(f32);
 Actor *func_8032811C(s32 actor_id, s32 position[3], s32 yaw);
 void MM_func_80387F44(void);
 
@@ -129,7 +129,7 @@ void func_80387168(ActorMarker *marker, ActorMarker *other_marker){
                 && !jiggyscore_isCollected(JIGGY_A_MM_CONGA)
             ){
                 func_80328B8C(actorPtr, 8, 0 ,1);
-                timed_setCameraToNode(0.0f, 0x10);
+                timed_setStaticCameraToNode(0.0f, 0x10);
                 func_80324E38(0.0f, 3);
                 FUNC_8030E624(SFX_84_GOBI_CRYING, 0.8f, 32750);
                 FUNC_8030E624(SFX_84_GOBI_CRYING, 0.8f, 32750);
@@ -160,8 +160,8 @@ int func_803872EC(void){
 
 void func_80387370(ActorMarker *this, enum asset_e text_id, s32 arg2){
     marker_getActor(this)->velocity_x = 9.0f;
-    timed_setCameraToNode(0.0f, 0x11);
-    func_80324E88(3.2f);
+    timed_setStaticCameraToNode(0.0f, 0x11);
+    timed_exitStaticCamera(3.2f);
     func_80324E38(3.2f, 0);
 }
 

@@ -215,7 +215,7 @@ void func_802ECBD4(BKVertexList *dst, BKVertexList *src, f32 arg2[3], f32 arg3[3
     f32 temp_f0;
     s32 pad40;
 
-    func_8024C5CC(sp74);
+    viewport_getPosition(sp74);
     func_8024C5A8(sp68);
     mlMtxIdent();
     func_80252CC4(arg2, arg3, 1.0f, NULL);

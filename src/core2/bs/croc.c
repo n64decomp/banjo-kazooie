@@ -443,7 +443,7 @@ void bscroc_die_init(void){
     baMarker_collisionOff();
     func_80292E48();
     func_802914CC(0xd);
-    func_802BF2C0(30.0f);
+    ncDynamicCamD_func_802BF2C0(30.0f);
     func_8029C984();
     func_8030E58C(SFX_36_BANJO_DOH, 1.8f);
     func_8029E3C0(0, 2.9f);

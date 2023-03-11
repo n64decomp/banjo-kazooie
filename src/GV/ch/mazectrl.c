@@ -74,10 +74,10 @@ void __chMazeCtrl_setState(Actor *this, s32 next_state){
         FUNC_8030E624(SFX_3F6_UNKNOWN, 0.5f, 25000);
         if(1500.0f < plyr_pos[0]){
             func_80324E38(0.0f, 3);
-            timed_setCameraToNode(0.0f, 8);
+            timed_setStaticCameraToNode(0.0f, 8);
             timed_playSfx(1.0f, SFX_7F_HEAVYDOOR_SLAM, 1.0f, 32000);
             func_80324CD8(1.2f);
-            func_80324E88(1.2f);
+            timed_exitStaticCamera(1.2f);
             func_80324E38(1.2f, 0);
         }
         else{//L8038F754

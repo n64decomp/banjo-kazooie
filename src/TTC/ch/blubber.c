@@ -95,7 +95,7 @@ void func_80387678(Actor *this){
     this->yaw_ideal = (f32) func_80329784(this);
     mapSpecificFlags_set(3, TRUE);
     func_8028F918(2);
-    timed_setCameraToNode(0.0f, 4);
+    timed_setStaticCameraToNode(0.0f, 4);
     timedFunc_set_1(1.0f, (GenMethod_1)func_803875D4, (s32)this->marker);
     func_80328B8C(this, 1, 0.0f, 1);
 }
@@ -241,7 +241,7 @@ void TTC_func_80387CF4(Actor *this){
     func_80343DEC(this);
     if(0.99 <= this->unk48){
         func_8028F918(0);
-        func_80324E88(0.0f);
+        timed_exitStaticCamera(0.0f);
         marker_despawn(this->marker);
     }
     func_80387830(this, 0.5f, 0.97f);

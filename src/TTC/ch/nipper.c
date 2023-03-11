@@ -87,7 +87,7 @@ void TTC_func_80387FB0(ActorMarker *caller, enum asset_e text_id, s32 arg2){
     Actor *this;
     this = marker_getActor(caller);
     TTC_func_80387F18(this);
-    func_802BAE4C();
+    ncStaticCamera_exit();
     comusic_8025AB44(COMUSIC_12_TTC_NIPPER, -1, 300);
 }
 
@@ -238,7 +238,7 @@ void func_80388434(Actor *this){
                         this->unk138_24 = TRUE;
                     }
                     comusic_8025AB44(COMUSIC_12_TTC_NIPPER, 5000, 300);
-                    set_camera_to_node(11);
+                    ncStaticCamera_setToNode(11);
                 }
                 else{//L803886B0
                     TTC_func_80387F18(this);

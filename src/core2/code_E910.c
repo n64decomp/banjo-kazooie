@@ -309,7 +309,7 @@ void func_80295C14(void){
     func_8029D968();
     func_80297CF8();
     func_80294E60();
-    func_80291358();//camera_update
+    cameraMode_update();
     func_802919A0();
     if(D_8037C3B0){
         D_8037C3B0();

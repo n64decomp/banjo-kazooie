@@ -17,7 +17,7 @@ void func_802409C0(f32 arg0[3], f32 arg1){
     sp30[1] = 0.0f;
     sp30[2] = -(sp28[1] * sp24);
 
-    func_8024C764(&sp3C);
+    viewport_getRotation(&sp3C);
     ml_vec3f_yaw_rotate_copy(sp30, sp30, sp3C[1]);
 
     arg0[0] = arg0[0] + sp30[0];
@@ -59,7 +59,7 @@ void func_80240AC8(f32 arg0[3], f32 arg1){
     sp30[1] = 0.0f;
     sp30[2] = -(sp28[1] * sp24);
 
-    func_8024C764(&sp3C);
+    viewport_getRotation(&sp3C);
     ml_vec3f_yaw_rotate_copy(sp30, sp30, sp3C[1]);
 
     arg0[0] = arg0[0] + sp30[0];

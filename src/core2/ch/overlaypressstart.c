@@ -50,9 +50,9 @@ Actor *chOverlayPressStart_draw(ActorMarker *marker, Gfx **gdl, Mtx **mptr, Vtx 
     func_8024E258();
     {sp58[0] = 0.0f; sp58[1] = 0.0f; sp58[2] = 1312.5f;};
     {sp4C[0] = 0.0f; sp4C[1] = 0.0f; sp4C[2] = 0.0f;};
-    func_8024CD88(sp58);
-    func_8024CE18(sp4C);
-    func_8024CFD4();
+    viewport_setPosition(sp58);
+    viewport_setRotation(sp4C);
+    viewport_update();
     func_8024C904(gdl, mptr);
     {sp40[0] = 0.0f; sp40[1] = 0.0f; sp40[2] = 0.0f;};
     {sp34[0] = 0.0f; sp34[1] = 400.0f; sp34[2] = 0.0f;};

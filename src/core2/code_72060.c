@@ -7,7 +7,7 @@ typedef struct {
     f32 unkC[3];
 }Struct_core2_72060_0;
 
-extern f32  func_8024C788();
+extern f32  viewport_getYaw();
 extern int  func_8024DD34(f32, f32, f32);
 extern void func_80251B5C(f32, f32, f32);
 extern void func_80251F8C(f32);
@@ -166,7 +166,7 @@ void func_802F919C(void) {
                 } else {
                     var_f20 = 70.0f;
                 }
-                ml_vec3f_yaw_rotate_copy(sp4C, sp4C, func_8024C788() + randf2(-var_f20, var_f20));
+                ml_vec3f_yaw_rotate_copy(sp4C, sp4C, viewport_getYaw() + randf2(-var_f20, var_f20));
                 sp4C[0] += D_80381040[0];
                 sp4C[1] += D_80381040[1];
                 sp4C[2] += D_80381040[2];
@@ -200,8 +200,8 @@ void func_802F962C(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     void *phi_s0_2;
 
     if ((D_80369280 != NULL) && (D_80369284 != 0)) {
-        func_8024C5CC(D_80381050);
-        func_8024C764(D_80381060);
+        viewport_getPosition(D_80381050);
+        viewport_getRotation(D_80381060);
         D_80381090 = (s32)D_80369288 + D_80369288->gfx_list_offset_C + sizeof(BKGfxList);
         temp_s3 = (BKVertexList *)((s32)D_80369288 + D_80369288->vtx_list_offset_10);
         D_8038108C = func_802EC920(temp_s3);

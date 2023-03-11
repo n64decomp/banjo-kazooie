@@ -384,8 +384,8 @@ void func_80302C94(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
         return;
 
     func_8032D3A8();
-    func_8024C5CC(sp6C);
-    func_8024C764(sp54);
+    viewport_getPosition(sp6C);
+    viewport_getRotation(sp54);
     func_80256664(sp54);
     cube_positionToIndices(sp60, sp6C);
     sp60[0] -= D_80381FA0.min[0];\

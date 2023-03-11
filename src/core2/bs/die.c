@@ -53,7 +53,7 @@ void bsdie_init(void){
     pitch_setAngVel(1000.0f, 12.0f);
     func_8029E070(1);
     func_8029151C(0xd);
-    func_802BF2C0(30.0f);
+    ncDynamicCamD_func_802BF2C0(30.0f);
     func_8029C984();
     func_8029E3C0(0,2.9f);
     D_8037D414 = 0;

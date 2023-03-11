@@ -21,7 +21,7 @@ void func_802F87B0(struct6s *this){
     
     player_getPosition(plyrPos);
     func_8024C5A8(camNorm);
-    func_8024C764(camRot);
+    viewport_getRotation(camRot);
     ptr = vector_pushBackNew(&this->unk1C);
     f20 = randf2(50.0f, 1200.0f);
     sp4C[0] = 0.0f;

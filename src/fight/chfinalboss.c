@@ -17,7 +17,7 @@ Actor *func_8032813C();
 void fight_func_803900DC(ActorMarker *, f32 *, f32, f32);
 extern Actor* func_80329958(ActorMarker *this, s32 arg1);
 extern void func_803298D8();
-void func_80324E88(f32);
+void timed_exitStaticCamera(f32);
 extern void func_80324CFC(f32, enum comusic_e, s32);
 extern void sfxsource_setSampleRate(u8, s32);
 extern void func_80328FF0(Actor *arg0, f32 arg1);
@@ -478,7 +478,7 @@ void fight_func_80386CF8(Actor *actor) {
     func_8025727C(sp28[0], sp28[1], sp28[2], sp4C[0], sp4C[1], sp4C[2], &sp40[0], &sp40[1]);
     sp40[0] = 360.0f - sp40[0];
     sp40[2] = 0.0f;
-    func_802BAE6C(sp4C, sp40);
+    ncStaticCamera_setPositionAndRotation(sp4C, sp40);
 }
 
 void __chfinalboss_dropHealth(ActorMarker *arg0) {
@@ -692,9 +692,9 @@ void chfinalboss_setPhase(ActorMarker *this, u32 phase_id)
     {
         case 0:
             func_80328B8C(actor, 1, 0.0001f, 1);
-            timed_setCameraToNode(0.0f, 0);
-            func_80324E88(2.0f);
-            timed_setCameraToNode(2.0f, 1);
+            timed_setStaticCameraToNode(0.0f, 0);
+            timed_exitStaticCamera(2.0f);
+            timed_setStaticCameraToNode(2.0f, 1);
             timedFunc_set_1(2.0f, (GenMethod_1)func_8038B780, reinterpret_cast(s32, actor->marker));
             return;
 
@@ -891,7 +891,7 @@ void func_80388110(ActorMarker *marker, enum asset_e text_id, s32 arg2) {
 
     actor = marker_getActor(marker);
     actorLocal = (ActorLocal_fight_180 *)&actor->local;
-    func_802BAE4C();
+    ncStaticCamera_exit();
     func_80311480(randi2(0, 5) + 0x1101, 4, NULL, actor->marker, func_803880E0, NULL);
     actorLocal->unk9 = (u8)1;
 }
@@ -1371,7 +1371,7 @@ void chfinalboss_phase3_endTextCallback(ActorMarker *marker, enum asset_e text_i
     Actor *actor;
 
     actor = marker_getActor(marker);
-    func_802BAE4C();
+    ncStaticCamera_exit();
     func_80324E38(0, 0);
     chfinalboss_setPhase(actor->marker, 4);
 }
@@ -1602,17 +1602,17 @@ void chfinalboss_phase4_setState(Actor *this, s32 arg1) {
                 D_803927C4 = 1;
                 func_80324E38(0.0f, 1);
                 timedFunc_set_1(0.0f, chfinalboss_spawnStatue, BOSSJINJO_ORANGE);
-                timed_setCameraToNode(0.0f, 4);
-                func_80324E88(2.2f);
+                timed_setStaticCameraToNode(0.0f, 4);
+                timed_exitStaticCamera(2.2f);
                 timedFunc_set_1(2.2f, chfinalboss_spawnStatue, BOSSJINJO_GREEN);
-                timed_setCameraToNode(2.2f, 5);
-                func_80324E88(4.4f);
+                timed_setStaticCameraToNode(2.2f, 5);
+                timed_exitStaticCamera(4.4f);
                 timedFunc_set_1(4.4f, chfinalboss_spawnStatue, BOSSJINJO_PINK);
-                timed_setCameraToNode(4.4f, 6);
-                func_80324E88(6.6f);
+                timed_setStaticCameraToNode(4.4f, 6);
+                timed_exitStaticCamera(6.6f);
                 timedFunc_set_1(6.6f, chfinalboss_spawnStatue, BOSSJINJO_YELLOW);
-                timed_setCameraToNode(6.6f, 7);
-                func_80324E88(8.8f);
+                timed_setStaticCameraToNode(6.6f, 7);
+                timed_exitStaticCamera(8.8f);
                 timedFunc_set_0(8.8f, func_80389F54);
                 func_80324E38(8.8f, 0);
                 break;
@@ -1645,14 +1645,14 @@ void chfinalboss_phase4_setState(Actor *this, s32 arg1) {
         this->velocity[2] = sp3C[2] / 1.7;
         func_8028F94C(2, this->position, local);
         if (local->mirror_phase5 == 0) {
-            timed_setCameraToNode(0.0f, 0xA);
-            func_80324E88(1.7f);
-            timed_setCameraToNode(1.7f, 0xB);
+            timed_setStaticCameraToNode(0.0f, 0xA);
+            timed_exitStaticCamera(1.7f);
+            timed_setStaticCameraToNode(1.7f, 0xB);
         }
         else{
-            timed_setCameraToNode(0.0f, 0xC);
-            func_80324E88(1.7f);
-            timed_setCameraToNode(1.7f, 0xD);
+            timed_setStaticCameraToNode(0.0f, 0xC);
+            timed_exitStaticCamera(1.7f);
+            timed_setStaticCameraToNode(1.7f, 0xD);
         }
         break;
     case 34:
@@ -1728,7 +1728,7 @@ void chfinalboss_phase4_update(ActorMarker *marker) {
         if (!fileProgressFlag_get(FILEPROG_D1_HAS_ACTIVATED_A_JINJO_STATUE_IN_FINAL_FIGHT)) {
             fileProgressFlag_set(FILEPROG_D1_HAS_ACTIVATED_A_JINJO_STATUE_IN_FINAL_FIGHT, TRUE);
             D_803927C4 = 0;
-            func_80324E88(1.0f);
+            timed_exitStaticCamera(1.0f);
             func_80324E38(1.0f, 0);
         }
         if (local->hits == 0) {
@@ -1837,7 +1837,7 @@ void chfinalboss_phase4_update(ActorMarker *marker) {
                 func_8030E6A4(SFX_C5_TWINKLY_POP, randf2(0.95f, 1.05f), 32000);
             }
             else if (actor_animationIsAt(this, 0.9999f)) {
-                func_80324E88(0.0f);
+                timed_exitStaticCamera(0.0f);
                 func_80324E38(0.0f, 0);
                 chfinalboss_setPhase(this->marker, 5);
                 func_8030DA44(this->unk44_31);
@@ -1872,8 +1872,8 @@ void chfinalboss_phase5_setState(Actor *this, s32 next_state) {
             }
             func_8028F94C(2, this->position);
             timedFunc_set_1(0.0f, chfinalboss_spawnStatue, 5);
-            timed_setCameraToNode(0.0f, sp28);
-            func_80324E88(7.5f);
+            timed_setStaticCameraToNode(0.0f, sp28);
+            timed_exitStaticCamera(7.5f);
             timedFunc_set_1(7.5f, (GenMethod_1)func_8038AC50, (s32) this->marker);
             func_80324E38(7.5f, 0);
             break;
@@ -1963,17 +1963,17 @@ void chfinalboss_phase5_update(ActorMarker *marker) {
             }
             if (0xA > __chFinalBossJinjonatorHits) {
                 func_802BB3DC(0, 18.0f, 0.9f);
-                func_80324E88(0.6f);
-                timed_setCameraToNode(0.6f, sp38 + 3 + __chFinalBossJinjonatorHits);
+                timed_exitStaticCamera(0.6f);
+                timed_setStaticCameraToNode(0.6f, sp38 + 3 + __chFinalBossJinjonatorHits);
                 chjinjonator_attack(jinjonator_marker, __chFinalBossJinjonatorHits, local->mirror_phase5);
                 chfinalboss_phase5_setState(this, 0x2A);
                 if (__chFinalBossJinjonatorHits == 9) {
                     sp2C = 0x16;
                     if(local->mirror_phase5) sp2C = 0x25;
                     timedFunc_set_1(2.4f, (GenMethod_1)func_8038AF84, (s32) this->marker);
-                    timed_setCameraToNode(2.4f, sp2C);
-                    func_80324E88(4.4f);
-                    timed_setCameraToNode(4.4f, sp38 + 3 + __chFinalBossJinjonatorHits);
+                    timed_setStaticCameraToNode(2.4f, sp2C);
+                    timed_exitStaticCamera(4.4f);
+                    timed_setStaticCameraToNode(4.4f, sp38 + 3 + __chFinalBossJinjonatorHits);
                 }
             } else {
                 static f32 D_803917E0[3] = {0.0f, 186.0f, 0.0f};
@@ -1983,8 +1983,8 @@ void chfinalboss_phase5_update(ActorMarker *marker) {
                 func_8030E6D4(SFX_HEAVY_THUNDERSTORM_01);
                 func_8025A6EC(COMUSIC_A3_JINJONATOR_HITS_GRUNTY_J, 20000);
                 chfinalboss_phase5_setState(this, 0x2B);
-                func_80324E88(0.0f);
-                timed_setCameraToNode(0.0f, sp38 + 0xD);
+                timed_exitStaticCamera(0.0f);
+                timed_setStaticCameraToNode(0.0f, sp38 + 0xD);
                 func_8028F85C(D_803917E0);
                 D_803928C8[0] = 0.0f;
                 D_803928C8[1] = func_80257204(D_803917E0[0], D_803917E0[2], this->position[0], this->position[2]);
@@ -2110,13 +2110,13 @@ void chfinalboss_phase5_update(ActorMarker *marker) {
                 func_803872F8(this);
             }
             if (actor_animationIsAt(this, 0.9f)) {
-                func_802BAE4C();
+                ncStaticCamera_exit();
                 if (local->mirror_phase5 == 0) {
                     static f32 D_803917EC[3] = {-827.0f, 793.0f, 1700.0f};
-                    func_802BAEB4(D_803917EC, this->position);
+                    ncStaticCamera_setPositionAndTarget(D_803917EC, this->position);
                 } else {
                     static f32 D_803917F8[3] = {827.0f, 793.0f, -1700.0f};
-                    func_802BAEB4(D_803917F8, this->position);
+                    ncStaticCamera_setPositionAndTarget(D_803917F8, this->position);
                 }
                 func_8038FC2C(1);
                 timedFunc_set_0(4.8, func_8038AFB0);
@@ -2133,7 +2133,7 @@ void chfinalboss_phase0_endTextCallback(ActorMarker *marker, enum asset_e text_i
 
     sp1C = marker_getActor(marker);
     func_802BE720();
-    func_80324E88(0);
+    timed_exitStaticCamera(0);
     func_8028F784(0);
     chfinalboss_setPhase(sp1C->marker, 1);
 }
@@ -2403,7 +2403,7 @@ void func_8038C138() {
 
 f32 chjinjonator_80391234();
 f32 func_8038DFA0();
-void func_80324E88(f32);
+void timed_exitStaticCamera(f32);
 f32 chjinjonator_80391240();
 
 void func_8038C148(void) {
@@ -2428,17 +2428,17 @@ void func_8038C148(void) {
     chfinalboss_phase5_setState(sp4C, 0x27);
     sp48->unk8 = (u8)1;
     func_80324E38(0, 1);
-    timed_setCameraToNode(0, camera_node);
-    func_80324E88(temp_f20);
+    timed_setStaticCameraToNode(0, camera_node);
+    timed_exitStaticCamera(temp_f20);
     timedFunc_set_0(temp_f20 * 0.08, &func_8038C138);
-    timed_setCameraToNode(temp_f20, camera_node + 1);
+    timed_setStaticCameraToNode(temp_f20, camera_node + 1);
 
-    func_80324E88(temp_f20 + sp40);
+    timed_exitStaticCamera(temp_f20 + sp40);
     timedFunc_set_1(temp_f20 + sp40, func_8038C10C, (s32)sp4C->marker);
-    timed_setCameraToNode(temp_f20 + sp40, camera_node + 2);
+    timed_setStaticCameraToNode(temp_f20 + sp40, camera_node + 2);
 
-    func_80324E88(temp_f20 + sp40 + 2.88f);
-    timed_setCameraToNode(temp_f20 + sp40 + 2.88f, camera_node + 3);
+    timed_exitStaticCamera(temp_f20 + sp40 + 2.88f);
+    timed_setStaticCameraToNode(temp_f20 + sp40 + 2.88f, camera_node + 3);
 }
 
 void func_8038C27C(s32 arg0) {

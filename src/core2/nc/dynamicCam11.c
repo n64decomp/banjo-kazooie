@@ -16,14 +16,14 @@ f32 D_8037DAE8;
 f32 D_8037DAEC;
 
 /* .code */
-void func_802BF5C0(void){
+void ncDynamicCam11_init(void){
     D_8037DAE5 = TRUE;
     func_802C0150(1);
 }
 
-void func_802BF5EC(void){}
+void ncDynamicCam11_end(void){}
 
-void func_802BF5F4(void) {
+void ncDynamicCam11_update(void) {
     f32 sp64[3];
     f32 sp58[3];
     f32 sp4C[3];
@@ -35,7 +35,7 @@ void func_802BF5F4(void) {
 
     if (D_8037DAE5 == 0) {
         func_802C02D4(sp64);
-        func_802BD384(sp58);
+        ncDynamicCamera_getPosition(sp58);
         ml_vec3f_diff_copy(sp24, sp58, sp64);
         sp24[1] = 0.0f;
         sp20 = gu_sqrtf( sp24[0]*sp24[0] + sp24[2]*sp24[2] );
@@ -59,7 +59,7 @@ void func_802BF5F4(void) {
         if (D_8037DAE4) {
             func_802BE60C();
         }
-        func_802BD384(sp58);
+        ncDynamicCamera_getPosition(sp58);
         func_802BC434(sp4C, sp64, sp58);
         func_802BC434(sp40, sp64, D_8037DAD0);
         if (sp30 < 150.0f) {

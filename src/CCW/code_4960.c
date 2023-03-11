@@ -31,7 +31,7 @@ void func_8038AD50(Actor *this, s32 next_state) {
         func_80311480(0xCDD, 0, NULL, NULL, NULL, NULL);
         if (this->state == 1) {
             mapSpecificFlags_set(6, 0);
-            timed_setCameraToNode(0.0f, 1);
+            timed_setStaticCameraToNode(0.0f, 1);
         }
         func_80335924(this->unk148, 0x21D, 0.2f, 0.5f);
         func_80335A8C(this->unk148, 1);
@@ -41,7 +41,7 @@ void func_8038AD50(Actor *this, s32 next_state) {
         func_80335A8C(this->unk148, 2);
     }
     if (next_state == 4) {
-        func_80324E88(0.0f);
+        timed_exitStaticCamera(0.0f);
         func_80324E38(0.0f, 0);
         marker_despawn(this->marker);
     }

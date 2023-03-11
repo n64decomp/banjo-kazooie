@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-void func_80324E88(f32);
+void timed_exitStaticCamera(f32);
 void BGS_func_803888E4(Actor *this, s32 arg1);
 
 typedef struct{
@@ -93,7 +93,7 @@ void func_80388784(ActorMarker *this, enum asset_e text_id, s32 arg2){
             break;
         case 0xc7b:
             timedFunc_set_0(0.0f, BGS_func_8038868C);
-            func_80324E88(2.5f);
+            timed_exitStaticCamera(2.5f);
             func_80324E38(2.5f, 0);
             break;
     }
@@ -159,7 +159,7 @@ void BGS_func_803888E4(Actor *this, s32 arg1){
         unqPtr->unk0 = 0;
         vector_clear(unqPtr->unk4);
         func_80324E38(0.0f, 3);
-        timed_setCameraToNode(0.5f, 0);
+        timed_setStaticCameraToNode(0.5f, 0);
         tmpf = 0.5f;
         i = 0;
         prev_member = 0;
@@ -172,7 +172,7 @@ void BGS_func_803888E4(Actor *this, s32 arg1){
             prev_member = rand2;
         }//L80388B7C
         
-        func_80324E88(tmpf += 2.5);
+        timed_exitStaticCamera(tmpf += 2.5);
         if(!unqPtr->unkA && !func_803203FC(2)){
             func_80324DBC(tmpf + 0.5, 0xc73, 0xe, this->position, this->marker, func_80388784, 0);
             unqPtr->unkA = 1;
@@ -189,7 +189,7 @@ void BGS_func_803888E4(Actor *this, s32 arg1){
         
          unqPtr->unk0 = 0;
         func_80324E38(0.0f, 3);
-        timed_setCameraToNode(0.5f, 0);
+        timed_setStaticCameraToNode(0.5f, 0);
         tmpf = 0.5f;
         for(j = 0; j < vector_size(unqPtr->unk4); j++){
             s1 = (Struct_BGS_2270_0s *)vector_at(unqPtr->unk4,j);
@@ -197,7 +197,7 @@ void BGS_func_803888E4(Actor *this, s32 arg1){
             timedFunc_set_2(tmpf, (GenMethod_2)func_803886B4, reinterpret_cast(s32, this->marker), s1->unk0);
             timedFunc_set_2(tmpf + 0.1, (GenMethod_2)func_803886B4, reinterpret_cast(s32, this->marker), 0);
         }
-        func_80324E88(tmpf += 2.5);
+        timed_exitStaticCamera(tmpf += 2.5);
         func_80324E38(tmpf + 0.6,0);
         vector_clear(unqPtr->unk4);
         this->state = 0x05;
@@ -207,7 +207,7 @@ void BGS_func_803888E4(Actor *this, s32 arg1){
             func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);
         }
         func_80324E38(0.5f, 3);
-        timed_setCameraToNode(1.5f, 1);
+        timed_setStaticCameraToNode(1.5f, 1);
         func_80324DBC(2.0f, D_8039085C[unqPtr->unkA++], 0xF, this->position, this->marker, func_80388784, 0);
     }
 }

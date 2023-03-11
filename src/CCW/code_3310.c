@@ -103,7 +103,7 @@ f32 D_8038FDE0[3];
 
 /* .code */
 void func_80389700(ActorMarker *marker, enum asset_e text_id, s32 arg2) {
-    func_80324E88(0.5f);
+    timed_exitStaticCamera(0.5f);
     func_80324E38(0.5f, 0);
 }
 
@@ -144,8 +144,8 @@ void func_803897B8(Actor *this, s32 next_state) {
         func_80335924(this->unk148, local->unk0->unkE, 0.2f, 8.0f);
         func_80335A8C(this->unk148, 2);
         func_80324E38(0.5f, 3);
-        timed_setCameraToNode(0.5f, local->unk0->unk24);
-        func_80324E88(16.5f);
+        timed_setStaticCameraToNode(0.5f, local->unk0->unk24);
+        timed_exitStaticCamera(16.5f);
         func_80324E38(16.5f, 0);
         local->unk8 = local->unk0->unk10;
     }
@@ -261,7 +261,7 @@ void CCW_func_80389BFC(Actor *this) {
         ){
             this->unk138_24 = TRUE;
             func_80324E38(0.0f, 3);
-            timed_setCameraToNode(0.0f, local->unk0->unk24);
+            timed_setStaticCameraToNode(0.0f, local->unk0->unk24);
             func_80324DBC(0.0f, local->unk0->unk28, 6, NULL, this->marker, func_80389700, NULL);
         }
         local->unkC[0] = (s32) sp4C[0];

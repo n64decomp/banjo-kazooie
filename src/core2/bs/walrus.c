@@ -463,7 +463,7 @@ void bswalrus_die_init(void){
     gravity_set(-1200.0f);
     pitch_setAngVel(1000.0f, 12.0f);
     func_802914CC(0xd);
-    func_802BF2C0(30.0f);
+    ncDynamicCamD_func_802BF2C0(30.0f);
     func_8025AB00();
     func_8025A2FC(0, 0xfa0);
     func_8025A70C(0x1A);
@@ -727,7 +727,7 @@ void bswalrus_timeout_init(void) {
     func_8029C7F4(1, 1, 3, 7);
     func_80297970(0.0f);
     func_802914CC(0xD);
-    func_802BF2C0(60.0f);
+    ncDynamicCamD_func_802BF2C0(60.0f);
     func_8025A58C(0, 4000);
     func_8025A70C(COMUSIC_3C_MINIGAME_LOSS);
     func_8024BD08(0);

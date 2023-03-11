@@ -160,7 +160,7 @@ void func_802F1A10(Struct_Core2_6A4B0_2 *arg0, f32 angle_degrees) {
 
     cos = cosf(angle_degrees * 2 * BAD_PI);
     sin = sinf(angle_degrees * 2 * BAD_PI);
-    func_8024C5CC(spC0);
+    viewport_getPosition(spC0);
     spCC[0] = (-(framebuffer_width / 2) * 4) + 8;
     spCC[1] = ((framebuffer_height / 2) * 4) - 0x38;
     spCC[2] = -0xA;
@@ -214,7 +214,7 @@ void func_802F1CAC(Struct_Core2_6A4B0_2 *arg0) {
     s32 *var_s2;
     
 
-    func_8024C5CC(sp78);
+    viewport_getPosition(sp78);
     sp84[0] = (s32) ((1000.0f - sp78[0]) - 200.0f);
     sp84[1] = (s32) ((0.0f - sp78[1]) + 300.0f);
     sp84[2] = (s32) ((2000.0f - sp78[2]) + 0.0f);

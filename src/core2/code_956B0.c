@@ -183,7 +183,7 @@ void func_8031CD44(s32 arg0, s32 arg1, f32 arg2, f32 arg3, s32 arg4) {
     sp30[0] = sp24[0];
     sp30[1] = arg2;
     sp30[2] = sp24[2];
-    func_802BD328(0);
+    ncDynamicCamera_setUpdateEnabled(0);
     func_8031CB50(arg0, arg1, 1);
     func_8028F3D8(sp30, 1.0f, NULL, NULL);
 }
@@ -216,7 +216,7 @@ void func_8031CE70(f32 *arg0, s32 arg1, s32 arg2) {
             }
             if (ml_distance_vec3f(arg0, sp38) < phi_f2) {
                 if (phi_s0->unk8 == 0x184) {
-                    func_802BD328(0);
+                    ncDynamicCamera_setUpdateEnabled(0);
                     func_8031CB50(arg1, arg2, 1);
                     func_8028F3D8(sp38, 1.0f, NULL, NULL);
                 } else if (phi_s0->unk8 == 0x185) {

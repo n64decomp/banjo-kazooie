@@ -33,8 +33,8 @@ void func_802BAC58(void) {
     f32 sp28[3];
     f32 sp1C[3];
 
-    func_8024C5CC(sp34);
-    func_8024C764(sp28);
+    viewport_getPosition(sp34);
+    viewport_getRotation(sp28);
     func_802BEA4C(sp28, sp34, 150.0f, sp1C);
     if (D_8037D810 == NULL) {
         D_8037D810 = func_8032FBE4(sp1C, func_802BABC0, 1, 0x15D);

@@ -32,13 +32,13 @@ void __chAnchorCtrl_spawnJiggy(ActorMarker *marker, s32 arg1, s32 arg2){
 
     Actor *actor = marker_getActor(marker);
     jiggySpawn(JIGGY_53_RBB_SNORKEL, &D_80390B34);
-    timed_setCameraToNode(0.5f, 0xb);
+    timed_setStaticCameraToNode(0.5f, 0xb);
     __chAnchorCtrl_setState(actor, 3);
 }
 
 void __chAnchorCtrl_setState(Actor *this, s32 new_state){
     if(new_state == 2){
-        set_camera_to_node(0xC);
+        ncStaticCamera_setToNode(0xC);
         func_80324E38(0.0f, 3);
         timedFunc_set_0(1.0f, func_8038C000);
         timedFunc_set_2(1.0f, (GenMethod_2)mapSpecificFlags_set, 8, TRUE);
@@ -63,7 +63,7 @@ void chAnchorCtrl_update(Actor *this){
     }//L8038C27C
 
     if(this->state == 3 && !mapSpecificFlags_get(4)){
-        func_80324E88(0.0f);
+        timed_exitStaticCamera(0.0f);
         func_80324E38(0.0f, 0);
         timedFunc_set_0(0.0f, func_803228D8);
         timedFunc_set_3(0.0f, (GenMethod_3)func_802E4078, MAP_8B_RBB_ANCHOR_ROOM, 2, 0);

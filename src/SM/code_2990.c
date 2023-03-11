@@ -7,7 +7,7 @@ Actor *func_802D94B4(ActorMarker*, Gfx**, Mtx**, Vtx**);
 void func_8028E668(f32*, f32, f32, f32);
 void func_80328FB0(Actor *, f32);
 void func_8030DA44(u8);
-void func_80324E88(f32);
+void timed_exitStaticCamera(f32);
 void func_80328B8C(Actor *, s32, f32, s32);
 
 //static types
@@ -93,10 +93,10 @@ void func_80388EB0(void){
 
 void func_80388F24(Actor *this){
     if(this->unkF4_8 == 1 && !mapSpecificFlags_get(1)){
-        timed_setCameraToNode(0.0f, 0x12);
+        timed_setStaticCameraToNode(0.0f, 0x12);
     }
     else{ //L80388F68
-        timed_setCameraToNode(0.0f, D_8038AFB4[this->unkF4_8 -1].unk4);
+        timed_setStaticCameraToNode(0.0f, D_8038AFB4[this->unkF4_8 -1].unk4);
     }
 }
 
@@ -169,13 +169,13 @@ void func_80389214(ActorMarker *marker, enum asset_e text_id, s32 arg2){
     Actor *actor = marker_getActor(marker);
     switch(arg2){
         case 3:
-            timed_setCameraToNode(0.0f, 2);
+            timed_setStaticCameraToNode(0.0f, 2);
             break;
         case 4:
             mapSpecificFlags_set(4,1);
             break;
         case 5:
-            timed_setCameraToNode(0.0f, 0x12);
+            timed_setStaticCameraToNode(0.0f, 0x12);
             break;
         case 6:
             func_8025A70C(COMUSIC_2B_DING_B);
@@ -196,7 +196,7 @@ void func_803892C8(ActorMarker *marker, enum asset_e text_id, s32 arg2){
     }//L8038933C
     else{ 
         if( !(text_id == 0xdf3 || text_id == 0xe1f || text_id == 0xe1d) ){
-            func_80324E88(0.0f);
+            timed_exitStaticCamera(0.0f);
         }
         switch(text_id){
             case 0xd38:

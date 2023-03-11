@@ -61,17 +61,17 @@ void func_80387F64(Actor *this, s32 next_state){
         if (map_get() == MAP_43_CCW_SPRING) {
             func_80324E38(0.0f, 3);
         }
-        timed_setCameraToNode(0.0f, 0);
+        timed_setStaticCameraToNode(0.0f, 0);
         for( phi_f22 = 0.0f; phi_f22 <= 1.0f; phi_f22 += 0.1) {
                 timed_playSfx(phi_f22 * 5.7, 0x2C, phi_f22 * 0.3 + 0.7, (s32) (32000.0f - phi_f22 * 5000.0f));
         }
         if (local->unk0->unkA != 0) {
-            timed_setCameraToNode(6.0f, 1);
+            timed_setStaticCameraToNode(6.0f, 1);
             timedFunc_set_0(6.1f, func_80387F10);
             timedFunc_set_2(8.0f, func_80387F38, (s32) this->marker, 3);
         } else {
             if (map_get() == MAP_43_CCW_SPRING) {
-                func_80324E88(7.0f);
+                timed_exitStaticCamera(7.0f);
                 func_80324E38(7.0f, 0);
             }
             timedFunc_set_2(7.0f, func_80387F38, (s32) this->marker, 3);

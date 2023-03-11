@@ -19,8 +19,8 @@ void func_80389440(Actor *this, s32 next_state) {
         func_80335924(this->unk148, 0x187, 0.0f, 2.0f);
         func_80335A8C(this->unk148, 2);
         func_80324E38(0.0f, 3);
-        timed_setCameraToNode(0.0f, 2);
-        func_80324E88(8.0f);
+        timed_setStaticCameraToNode(0.0f, 2);
+        timed_exitStaticCamera(8.0f);
         func_80324E38(8.0f, 0);
     }
     this->state = next_state;

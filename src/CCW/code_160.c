@@ -68,9 +68,9 @@ void func_803865F4(Actor *this, s32 next_state) {
             func_8025AABC(COMUSIC_4B_CCW_ZUBBA_FIGHT);
             func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);
             func_80324E38(0.0f, 3);
-            timed_setCameraToNode(2.0f, 4);
+            timed_setStaticCameraToNode(2.0f, 4);
             timedFunc_set_1(2.0f, (GenMethod_1)CCW_func_80386550, (s32) this->marker);
-            func_80324E88(4.0f);
+            timed_exitStaticCamera(4.0f);
             func_80324E38(4.0f, 0);
         }
     }
@@ -162,7 +162,7 @@ void func_8038687C(Actor *this) {
     
     if (local->unk0 != NULL) {
         other = marker_getActor(local->unk0);
-        func_8024C5CC(sp78);
+        viewport_getPosition(sp78);
         sp6C[0] = this->position[0] - sp78[0];
         sp6C[1] = this->position[1] - sp78[1];
         sp6C[2] = this->position[2] - sp78[2];

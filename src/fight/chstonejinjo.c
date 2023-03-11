@@ -127,9 +127,9 @@ void chstonejinjo_breakOpen(ActorMarker *marker){
             fight_func_8038C0DC(&sp24);
             func_8028F94C(2, &sp24);
             func_8038C27C(1);
-            timed_setCameraToNode(0 * sp30, sp38);
-            func_80324E88(1 * sp30);
-            timed_setCameraToNode(1 * sp30, sp38 + 1);
+            timed_setStaticCameraToNode(0 * sp30, sp38);
+            timed_exitStaticCamera(1 * sp30);
+            timed_setStaticCameraToNode(1 * sp30, sp38 + 1);
         }
     }//L8038DF8C
 }

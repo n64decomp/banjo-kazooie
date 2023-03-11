@@ -139,7 +139,7 @@ void func_80386A7C(Actor *this){
 
     func_802D3D74(this);
     this->depth_mode = 1;
-    func_8024C5CC(&sp2C);
+    viewport_getPosition(&sp2C);
     sp28 = func_80386A30(&this->position);
     temp_v0 = func_80386A30(&sp2C);
     this->unk38_0 = 0;

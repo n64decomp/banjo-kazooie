@@ -1,6 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "core2/nc/camera.h"
 
 extern Actor *func_80328230(enum actor_e, f32[3], f32[3]);
 extern void func_802BEA4C(f32[3], f32[3], f32, f32[3]);
@@ -22,7 +23,7 @@ s16 D_803657E0[] = {
 };
 
 /* .bss */
-s32 D_8037D8C0;
+s32 ncCameraType;
 u8 D_8037D8C4;
 u8 D_8037D8C5;
 u8 D_8037D8C6;
@@ -112,17 +113,17 @@ f32 func_802BB938(f32 arg0[3], f32 arg1[3]) {
 }
 
 void func_802BBA84(void) {
-    f32 sp54[3];
+    f32 vp_position[3];
     f32 sp48[3];
-    f32 sp3C[3];
-    f32 sp30[3];
-    f32 sp24[3];
+    f32 vp_rotation[3];
+    f32 min[3];
+    f32 max[3];
 
-    mapModel_getBounds(sp30, sp24);
-    func_8024C5CC(sp54);
-    func_8024C764(sp3C);
+    mapModel_getBounds(min, max);
+    viewport_getPosition(vp_position);
+    viewport_getRotation(vp_rotation);
     func_8024C5A8(sp48);
-    D_8037D8CC = (f32) func_8033EAF8(sp30, sp24, sp54, sp48);
+    D_8037D8CC = (f32) func_8033EAF8(min, max, vp_position, sp48);
     D_8037D8CC += 100.0f;
     if (D_8037D8CC < 1000.0f) {
         D_8037D8CC = 1000.0f;
@@ -143,33 +144,33 @@ void func_802BBA84(void) {
         D_8037D8C8 = 10.0f;
         return;
     }
-    D_8037D8C8 = ml_min_f(D_8037D8C8, func_802BB938(sp54, sp3C));
+    D_8037D8C8 = ml_min_f(D_8037D8C8, func_802BB938(vp_position, vp_rotation));
 }
 
-void func_802BBC58(s32 arg0) {
-    switch (D_8037D8C0) {
-        case 3:
-            func_802BAD00();
+void camera_setType(enum camera_type_e camera_type) {
+    switch (ncCameraType) {
+        case CAMERA_TYPE_3_STATIC:
+            ncStaticCamera_end();
             break;
-        case 4:
-            func_802BED00();
+        case CAMERA_TYPE_4_RANDOM:
+            ncRandomCamera_end();
             break;
-        case 1:
-        case 2:
-            break;
-    }
-    switch (arg0) {
-        case 3:
-            func_802BACD0(arg0);
-            break;
-        case 4:
-            func_802BEC60(arg0);
-            break;
-        case 1:
-        case 2:
+        case CAMERA_TYPE_1_UNKNOWN:
+        case CAMERA_TYPE_2_DYNAMIC:
             break;
     }
-    D_8037D8C0 = arg0;
+    switch (camera_type) {
+        case CAMERA_TYPE_3_STATIC:
+            ncStaticCamera_init();
+            break;
+        case CAMERA_TYPE_4_RANDOM:
+            ncRandomCamera_init();
+            break;
+        case CAMERA_TYPE_1_UNKNOWN:
+        case CAMERA_TYPE_2_DYNAMIC:
+            break;
+    }
+    ncCameraType = camera_type;
 }
 
 
@@ -259,47 +260,47 @@ void func_802BC044(void) {
     func_802BCBD4();
     func_802BEF78();
     func_802BB2A8();
-    D_8037D8C0 = 0;
-    func_802BBC58(2);
+    ncCameraType = 0;
+    camera_setType(2);
 }
 
 
 void func_802BC10C(void){
     func_802BB2A0();
-    func_802BBC58(1);
+    camera_setType(1);
     func_802BCD30();
     func_802BEF70();
     func_802BABD8();
 }
 
-void func_802BC14C(void){
+void ncCamera_update(void){
     f32 sp2C[3];
     f32 sp20[3];
     s32 v0;
 
-    v0 = D_8037D8C0;
+    v0 = ncCameraType;
     if(!D_8037D8C5 && !D_8037D8C6){
         v0 = 0;
     }
 
     switch(v0){
-        case 2:
-            func_802BCEC4();
+        case CAMERA_TYPE_2_DYNAMIC://dynamic viewport position
+            ncDynamicCamera_update();
             break;
-        case 3:
-            func_802BADAC();
+        case CAMERA_TYPE_3_STATIC://set viewport to static location
+            ncStaticCamera_update();
             break;
-        case 4:
-            func_802BED30();
+        case CAMERA_TYPE_4_RANDOM: //set viewport to random location
+            ncRandomCamera_update();
             break;
     }
 
-    func_8024C5CC(sp2C);
-    func_8024C764(sp20);
+    viewport_getPosition(sp2C);
+    viewport_getRotation(sp20);
     func_802BB4D8(sp2C, sp20);
-    func_8024CD88(sp2C);
-    func_8024CE18(sp20);
-    func_8024CFD4();
+    viewport_setPosition(sp2C);
+    viewport_setRotation(sp20);
+    viewport_update();
     func_802BEFB0();
     func_802BBA84();
 }
@@ -313,13 +314,13 @@ void func_802BC21C(s32 arg0, s32 arg1){
     }
 }
 
-s32 func_802BC248(void){
-    return D_8037D8C0;
+s32 ncCamera_getType(void){
+    return ncCameraType;
 }
 
 void func_802BC254(void){
     D_8037D8C6 = 1;
-    func_802BC14C();
+    ncCamera_update();
     D_8037D8C6 = 0;
 }
 
@@ -341,21 +342,21 @@ void func_802BC2CC(s32 arg0) {
         func_80347A14(0);
     }
     if (func_80320454(0xE, 0) || func_802D686C() || (arg0 == 0x63) || !func_802BB720(arg0, D_8037D908, D_8037D918, &sp1C)) {
-        if (D_8037D8C0 == 2) {
+        if (ncCameraType == CAMERA_TYPE_2_DYNAMIC) {
             func_802BE794();
         }
         func_802BC254();
         func_802BC254();
         return;
     }
-    if (D_8037D8C0 == 2) {
+    if (ncCameraType == CAMERA_TYPE_2_DYNAMIC) {
         func_802BE894(D_8037D918, D_8037D908);
     }
-    func_8024CD88(D_8037D908);
-    func_8024CE18(D_8037D918);
-    func_8024CFD4();
+    viewport_setPosition(D_8037D908);
+    viewport_setRotation(D_8037D918);
+    viewport_update();
     __spawnQueue_add_2((GenMethod_2)func_802BC2A0, reinterpret_cast(s32, sp24), reinterpret_cast(s32, sp20));
-    if (D_8037D8C0 == 2) {
+    if (ncCameraType == CAMERA_TYPE_2_DYNAMIC) {
         func_802BE720();
         if (sp1C != 0x63) {
             func_802BC254();

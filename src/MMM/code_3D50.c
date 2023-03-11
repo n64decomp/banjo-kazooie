@@ -71,10 +71,10 @@ struct {
 void func_8038A140(UNK_TYPE(s32) arg0) {
     if (arg0 == 2) {
         func_80324E38(0.3f, 3);
-        timed_setCameraToNode(0.3f, 1);
+        timed_setStaticCameraToNode(0.3f, 1);
         timedFunc_set_2(0.3f, mapSpecificFlags_set, 3, 1);
         func_80324E38(3.0f, 0);
-        func_80324E88(3.0f);
+        timed_exitStaticCamera(3.0f);
         timedFunc_set_1(3.0f, func_8038A140, 3);
     }
     if (arg0 == 3) {

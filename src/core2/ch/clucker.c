@@ -22,7 +22,7 @@ extern ActorInfo D_80372870 = {
 };
 
 /* .code */
-void func_80357150(Actor *this){
+void __clucker_setDeathCutsceneCamera(Actor *this){
     f32 sp34[3];
     f32 sp28[3];
     f32 sp1C[3];
@@ -44,7 +44,7 @@ void func_80357150(Actor *this){
     sp28[0] = -50.0f;
     sp28[1] = this->yaw + 20.0f;
     sp28[2] = 0.0f;
-    func_802BAE6C(sp34, sp28);
+    ncStaticCamera_setPositionAndRotation(sp34, sp28);
 }
 
 void func_80357264(Actor *this, s32 next_state){
@@ -95,8 +95,8 @@ void func_80357264(Actor *this, s32 next_state){
         ){
             levelSpecificFlags_set(0x14, TRUE);
             func_80324E38(0.0f, 3);
-            func_80357150(this);
-            func_80324E88(2.0f);
+            __clucker_setDeathCutsceneCamera(this);
+            timed_exitStaticCamera(2.0f);
             func_80324E38(2.0f, 0);
         }//L80357518
         func_8030E6D4(SFX_1E_HITTING_AN_ENEMY_2);

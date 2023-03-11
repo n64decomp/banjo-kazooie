@@ -385,11 +385,11 @@ void func_802BD8A4(f32, f32, f32);
 f32  func_802BD8D4(void);
 void func_802BE244(f32, f32);
 void func_802BE230(f32, f32);
-void func_802BF2C0(f32);
+void ncDynamicCamD_func_802BF2C0(f32);
 f32  func_802B6F9C(void);
 
 void func_802C1B20(f32);
-int  func_802C1DB0(f32);
+int  ncDynamicCamA_func_802C1DB0(f32);
 
 void func_802D6264(f32, enum map_e, s32, s32, s32, enum file_progress_e);
 
@@ -526,8 +526,8 @@ void func_8032AA58(Actor *, f32);
 void func_80324E38(f32, s32);
 void timed_playSfx(f32, enum sfx_e, f32, s32);
 f32 ml_distance_vec3f(f32 [3], f32 [3]);
-void timed_setCameraToNode(f32, s32);
-void func_80324E88(f32);
+void timed_setStaticCameraToNode(f32, s32);
+void timed_exitStaticCamera(f32);
 int actor_animationIsAt(Actor*, f32);
 
 void rumbleManager_80250E94(f32, f32, f32, f32, f32, f32);

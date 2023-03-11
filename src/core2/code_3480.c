@@ -3,7 +3,7 @@
 #include "variables.h"
 
 s32 func_80259254(f32 *, f32, f32, f32);
-void func_802C2ADC(f32 *);
+void ncFirstPersonCamera_getZoomedInRotation(f32 *);
 
 extern u8  D_8037DCCA;
 extern u8  D_8037DCCB;
@@ -98,7 +98,7 @@ s32 func_8028A5C0(void){
                 D_8037DCCC = 1;
             }//L8028A764
             else if(jiggyscore_isCollected(0x10)){
-                func_802C2ADC(sp30);
+                ncFirstPersonCamera_getZoomedInRotation(sp30);
                 if( (((D_8036361C[0] <= sp30[0])? (sp30[0] - D_8036361C[0]) : -(sp30[0] - D_8036361C[0])) < 4.0f)
                     && (((D_8036361C[1] <= sp30[1])? (sp30[1] - D_8036361C[1]) : -(sp30[1] - D_8036361C[1])) < 20.0f)
                 ){

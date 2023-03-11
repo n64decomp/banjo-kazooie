@@ -21,14 +21,14 @@ void bsDroneLook_init(void) {
     func_8029C7F4(1, 1, 3, 2);
     func_80297970(0.0f);
     func_80297A0C(0);
-    func_802BE8D8();
+    ncDynamicCamera_enterFirstPerson();
     __bsDroneLook_getEyePos(eye_position);
-    func_802C2A64(eye_position);
+    ncFirstPersonCamera_setZoomedOutPosition(eye_position);
     player_getRotation(eye_rotation);
     eye_rotation[0] = 0.0f;
     eye_rotation[1] += 180.0f;
     eye_rotation[2] = 0.0f;
-    func_802C2A8C(eye_rotation);
+    ncFirstPersonCamera_setZoomedOutRotation(eye_rotation);
     miscflag_set(0x17);
 }
 
@@ -41,13 +41,13 @@ void bsDroneLook_update(void) {
 
     next_state = 0;
     dt = time_getDelta();
-    if (func_802C2B00() == 2) {
-        func_802C2ADC(eye_rotation);
+    if (ncFirstPersonCamera_getState() == 2) {
+        ncFirstPersonCamera_getZoomedInRotation(eye_rotation);
         eye_rotation[0] -= func_8029B2DC() * 90.0f * dt;
         eye_rotation[1] -= func_8029B2D0() * 90.0f * dt;
         eye_rotation[2] = 0.0f;
         eye_rotation[0] = (eye_rotation[0] > 180.0f) ? ml_max_f(305.0f, eye_rotation[0]) : ml_min_f(70.0f, eye_rotation[0]);
-        func_802C2A8C(eye_rotation);
+        ncFirstPersonCamera_setZoomedOutRotation(eye_rotation);
         yaw_setIdeal(eye_rotation[1] + 180.0f);
         exit_first_person = FALSE;
         if (button_pressed(BUTTON_B) || button_pressed(BUTTON_A) || button_pressed(BUTTON_C_UP)) {
@@ -65,7 +65,7 @@ void bsDroneLook_update(void) {
         }
     }
     __bsDroneLook_getEyePos(eye_position);
-    func_802C2A64(eye_position);
+    ncFirstPersonCamera_setZoomedOutPosition(eye_position);
     bs_setState(next_state);
 }
 
@@ -73,6 +73,6 @@ void bsDroneLook_end(void) {
     if (func_80298850() == 0) {
         func_80299D2C(SFX_12E_CAMERA_ZOOM_MEDIUM, 1.2f, 12000);
     }
-    func_802BE91C();
+    ncDynamicCamera_exitFirstPerson();
     miscflag_clear(0x17);
 }

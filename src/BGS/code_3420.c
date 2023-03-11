@@ -111,7 +111,7 @@ void BGS_func_80389850(Actor *this, s32 arg1) {
             break;
         }
     }
-    func_802BAE6C(sp94, sp88);
+    ncStaticCamera_setPositionAndRotation(sp94, sp88);
 }
 
 void func_80389B48(ActorMarker *marker, enum asset_e text_id, s32 arg2){
@@ -146,7 +146,7 @@ void func_80389BF8(ActorMarker *marker, enum asset_e text_id, s32 arg2) {
 
     this = marker_getActor(marker);
     local = (ActorLocal_BGS_3420 *)&this->local;
-    func_80324E88(0.0f);
+    timed_exitStaticCamera(0.0f);
     func_80324E38(0.0f, 0);
     local->unkC--;
     func_8038A068(this, 7);
@@ -166,7 +166,7 @@ void BGS_func_80389CD8(ActorMarker *marker, enum asset_e text_id, s32 arg2){
     Actor *this;
 
     this = marker_getActor(marker);
-    func_80324E88(0.0f);
+    timed_exitStaticCamera(0.0f);
     func_80324E38(0.0f, 0);
     func_8038A068(this, 5);
 }
@@ -190,7 +190,7 @@ void func_80389DF8(ActorMarker *marker, enum asset_e text_id, s32 arg2){
     Actor *this;
 
     this = marker_getActor(marker);
-    func_80324E88(0.0f);
+    timed_exitStaticCamera(0.0f);
     func_80324E38(0.0f, 0);
     func_8038A068(this, 1);
 }
@@ -212,7 +212,7 @@ void func_80389EAC(ActorMarker *marker, enum asset_e text_id, s32 arg2){
 
     this = marker_getActor(marker);
     local = (ActorLocal_BGS_3420 *)&this->local;
-    func_80324E88(0.0f);
+    timed_exitStaticCamera(0.0f);
     func_80324E38(0.0f, 0);
     local->unkC = 3;
     func_8038A068(this, 1);

@@ -215,18 +215,18 @@ void func_8038B1C4(void){
 }
 
 void func_8038B1D0(enum jiggy_e jiggy_id){
-    timed_setCameraToNode(0.0f, 3);
+    timed_setStaticCameraToNode(0.0f, 3);
     timedFunc_set_0(0.0f, func_8038AEA0);
     timedFunc_set_0(0.0f, FP_func_8038B0B8);
     timedFunc_set_1(0.1f, (GenMethod_1) func_8038B130, jiggy_id);
     timedFunc_set_0(5.0f, func_8038B190);
     timedFunc_set_0(5.0f, func_8038B1C4);
-    func_80324E88(5.0f);
+    timed_exitStaticCamera(5.0f);
     
 }
 
 void func_8038B268(void){
-    func_80324E88(0.0f);
+    timed_exitStaticCamera(0.0f);
     timedFunc_set_0(0.0f, func_8038AEA0);
     timedFunc_set_0(0.0f, FP_func_8038B0B8);
     func_8028FA14(map_get(), 0x11);
@@ -273,7 +273,7 @@ void func_8038B39C(void){
     func_8025A6EC(COMUSIC_3B_MINIGAME_VICTORY, 28000);
     FP_func_8038AB60(0);
     func_8038ABDC();
-    timed_setCameraToNode(0.0f, 1);
+    timed_setStaticCameraToNode(0.0f, 1);
 }
 
 void func_8038B410(void){
@@ -288,12 +288,12 @@ void func_8038B410(void){
     FP_func_8038AB60(0);
     func_8038ABDC();
     if(!jiggyscore_isCollected(JIGGY_30_FP_BOGGY_2)){
-        timed_setCameraToNode(0.0f, 1);
+        timed_setStaticCameraToNode(0.0f, 1);
         timed_playSfx(1.0f, SFX_8C_BOGGY_WAHEY, 1.0f, 32000);
         func_80324DBC(2.0f, 0xC04, 0x2b, sp2C->position, NULL, func_8038B2C8, NULL);
     }//L8038B4E0
     else{
-        timed_setCameraToNode(0.0f, 1);
+        timed_setStaticCameraToNode(0.0f, 1);
         timed_playSfx(1.0f, SFX_8C_BOGGY_WAHEY, 1.0f, 32000);
         func_80324DBC(2.0f, 0xC0b, 0x2b, sp2C->position, NULL, func_8038B2C8, NULL);
 

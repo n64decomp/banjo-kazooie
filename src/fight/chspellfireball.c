@@ -303,7 +303,7 @@ void func_8038F620(Actor *this){
         }
     }//L8038F79C
     if(D_803928E5 && this->marker->unk14_20 == MARKER_280_GRUNTY_SPELL_GREEN_ATTACK){
-        func_802BAD08(this->position);
+        ncStaticCamera_rotateToTarget(this->position);
     }//L8038F7D4
 
     switch(this->state){

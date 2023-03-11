@@ -218,7 +218,7 @@ s32 func_8030CDE4(struct45s *arg0){
     f32 temp_f0;
     f32 pad;
 
-    func_8024C5CC(&sp44);
+    viewport_getPosition(&sp44);
     func_8024C5A8(&sp38);
     sp2C[0] = arg0->position[0] - sp44[0];
     sp2C[1] = arg0->position[1] - sp44[1];

@@ -110,7 +110,7 @@ int func_8028ACD8(void){
         return 0;
     }
 
-    if(func_802C2B00() == 3)
+    if(ncFirstPersonCamera_getState() == 3)
         return 0;
 
     if(!func_8028B2E8() && !player_inWater())

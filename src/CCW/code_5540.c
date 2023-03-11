@@ -48,7 +48,7 @@ void chnabnut_setState(Actor *this, s32 next_state) {
         func_80335924(this->unk148, ASSET_22D_ANIM_NABNUT_BACKFLIP, 0.2f, 3.13f);
         func_80335A8C(this->unk148, 2);
         func_80324E38(0.0f, 3);
-        timed_setCameraToNode(0.0f, 0xB);
+        timed_setStaticCameraToNode(0.0f, 0xB);
         func_80311480(0xCCC, 0x20, this->position, NULL, NULL, NULL);
     }
 
@@ -65,7 +65,7 @@ void chnabnut_setState(Actor *this, s32 next_state) {
 
     if (next_state == NABNUT_STATE_6_DESPAWN) {
         func_80324E38(0.0f, 0);
-        func_80324E88(0.0f);
+        timed_exitStaticCamera(0.0f);
         marker_despawn(this->marker);
     }
 

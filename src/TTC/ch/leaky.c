@@ -90,7 +90,7 @@ void __chLeaky_startCutscene(ActorMarker *caller, enum asset_e text_id, s32 arg2
     }
 
     func_80324E38(0.0f, 3);
-    timed_setCameraToNode(0.5f, 7);
+    timed_setStaticCameraToNode(0.5f, 7);
     timedFunc_set_0(1.0f, func_80388F88);
     func_80324E38(2.5f, 0);
     timedFunc_set_1(2.5f, func_8028F9DC, 2);

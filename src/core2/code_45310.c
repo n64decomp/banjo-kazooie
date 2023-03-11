@@ -435,7 +435,7 @@ void func_802CCC5C(Actor *this) {
             }
             if (this->state == 1) {
                 player_getPosition(sp8C);
-                func_8024C5CC(sp80);
+                viewport_getPosition(sp80);
                 func_8024C5A8(sp74);
                 sp5C[0] = this->position[0] - sp80[0];
                 sp5C[1] = this->position[1] - sp80[1];

@@ -233,7 +233,7 @@ void func_803465E4(void){
 
     if(func_80334904() != 2) return;
     if(D_80385FE8){
-        if( func_802BC248() != 3
+        if( ncCamera_getType() != 3 //CAMERA_TYPE_3_STATIC
             && func_8028F070()
             && map_get() != MAP_33_UNUSED
             && map_get() != MAP_91_FILE_SELECT

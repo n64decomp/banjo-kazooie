@@ -309,7 +309,7 @@ Actor *func_80325CAC(ActorMarker *marker, Gfx **gfx, Gfx **mtx, Vtx **vtx) {
         this->position[1] -= D_8036E58C[1];
         this->position[2] -= D_8036E58C[2];
     }
-    func_8024C764(rotation);
+    viewport_getRotation(rotation);
     rotation[2] += this->roll;
     func_80338338(0xFF, 0xFF, 0xFF);
     if (this->unk124_11 != 0) {

@@ -4,7 +4,7 @@
 
 //extern
 Actor *func_802D94B4(ActorMarker *, Gfx **, Mtx **, Vtx**);
-void func_80324E88(f32);
+void timed_exitStaticCamera(f32);
 
 //public
 void SM_func_8038A5D8(Actor *this);
@@ -19,7 +19,7 @@ ActorInfo D_8038B0B0 = { 0x1ED, 0x3B9, 0, 1, NULL,
 
 /* .code */
 void func_8038A460(Actor *this){
-    timed_setCameraToNode(0.0f,4);
+    timed_setStaticCameraToNode(0.0f,4);
 }
 
 void func_8038A488(ActorMarker *caller, enum asset_e text_id, s32 arg2){
@@ -27,7 +27,7 @@ void func_8038A488(ActorMarker *caller, enum asset_e text_id, s32 arg2){
     if(text_id == 0xdf9 || text_id == 0xe12){
         func_8038A4DC(actor, 3);
     }
-    func_80324E88(0.0f);
+    timed_exitStaticCamera(0.0f);
 }
 
 void func_8038A4DC(Actor *this, s32 arg1){

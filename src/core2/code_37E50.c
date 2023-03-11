@@ -94,7 +94,7 @@ void func_802BEFB0(void) {
         return;
     }
     D_8037DA80.unk10 += time_getDelta();
-    func_8024C5CC(sp30);
+    viewport_getPosition(sp30);
     sp24[0] = sp30[0];
     sp24[1] = sp30[1] + 10000.0f;
     sp24[2] = sp30[2];

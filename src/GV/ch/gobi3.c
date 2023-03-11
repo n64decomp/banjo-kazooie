@@ -44,7 +44,7 @@ void __chGobi3_runaway(ActorMarker *caller, enum asset_e text_id, s32 arg2){
     timed_playSfx(2.6f, SFX_2E_BIGBUTT_RUNNING, 1.0f, 5000);
     timed_playSfx(2.6f, SFX_2E_BIGBUTT_RUNNING, 1.0f, 5000);
 
-    func_80324E88(3.0f);
+    timed_exitStaticCamera(3.0f);
     func_80324E38(3.0f, 0);
 }
 
@@ -64,7 +64,7 @@ void chGobi3_setState(Actor *this, s32 next_state){
     if(next_state == 3){
         func_80324E38(0.0f, 3);
         timedFunc_set_1(0.02f, (GenMethod_1)__chGobi3_func_80388270, (s32)this);
-        timed_setCameraToNode(0.1f, 0x12);
+        timed_setStaticCameraToNode(0.1f, 0x12);
         timed_playSfx(0.2f, SFX_4C_LIP_SMACK, 1.0f, 32000);
         timedFunc_set_1(0.2f, (GenMethod_1)__chGobi3_spawnHoneyComb, (s32)this);
         func_80335924(this->unk148, ASSET_FC_ANIM_GOBI_SPITTING, 0.2f, 1.0f);

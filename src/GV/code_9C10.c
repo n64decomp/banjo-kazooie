@@ -12,9 +12,9 @@ void func_80390000(s32 arg0){
 
     GV_D_80391AD0 = arg0;
     if(GV_D_80391AD0 == 1){
-        set_camera_to_node(0x14);
+        ncStaticCamera_setToNode(0x14);
         func_80324E38(0.0f, 3);
-        timed_setCameraToNode(4.0f, 0x15);
+        timed_setStaticCameraToNode(4.0f, 0x15);
         func_80324E38(8.0f, 0);
         
         tmp_v0 = func_8034C5AC(0x130);

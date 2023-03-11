@@ -227,7 +227,7 @@ void func_8038CB34(ActorMarker *marker, s32 arg1, s32 arg2){
 
 void func_8038CB68(ActorMarker *marker, s32 arg1, s32 arg2){
     Actor *actor = marker_getActor(marker);
-    func_80324E88(0.0f);
+    timed_exitStaticCamera(0.0f);
     func_80324E38(0.0f, 0);
     timedFunc_set_2(0.0f, (GenMethod_2)RBB_func_8038C370, actor->marker, 3);
 }
@@ -309,7 +309,7 @@ void RBB_func_8038CC9C(Actor *this, s32 new_state){
         func_80335924(this->unk148, ASSET_146_ANIM_BOSS_BOOMBOX_APPEAR, 0.0f, 2.4f);
         func_80335A8C(this->unk148, 2);
         func_80324E38(0.0f, 3);
-        timed_setCameraToNode(0.0f, 0);
+        timed_setStaticCameraToNode(0.0f, 0);
         timed_playSfx(0.5f, SFX_3F5_UNKNOWN, 1.0f, 0x7fc6);
         timed_playSfx(1.25f, SFX_6C_LOCKUP_CLOSING, 1.05f, 0x7d00);
         timed_playSfx(1.35f, SFX_6C_LOCKUP_CLOSING, 1.0f, 0x7d00);
@@ -317,7 +317,7 @@ void RBB_func_8038CC9C(Actor *this, s32 new_state){
         if(func_803203FC(2)){
             item_set(ITEM_6_HOURGLASS, 1);
             item_set(ITEM_0_HOURGLASS_TIMER, 0x1067);
-            func_80324E88(2.4f);
+            timed_exitStaticCamera(2.4f);
             func_80324E38(2.4f, 0);
             timedFunc_set_2(2.4f, (GenMethod_2)RBB_func_8038C370, (s32)this->marker, 3);
         }

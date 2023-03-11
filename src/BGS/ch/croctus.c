@@ -96,12 +96,12 @@ void func_80387E68(ActorMarker *caller, enum asset_e text_id, s32 arg2){
         func_80326310(this);
         bgs_D_803907B8[this->unkF4_8]->propPtr->unk8_4 = TRUE;
         timedFunc_set_1(1.1f, (GenMethod_1)func_80387E00, reinterpret_cast(s32, bgs_D_803907B8[this->unkF4_8]));
-        timed_setCameraToNode(0.8f, 9);
+        timed_setStaticCameraToNode(0.8f, 9);
         func_80324DBC(3.4f, 0xC87, 0xE, NULL, NULL, func_80387E68, NULL);
         __spawnQueue_add_2((GenMethod_2) func_80387D18, reinterpret_cast(s32, this->marker), 0x46);
     }
     else{
-        func_80324E88(0.0f);
+        timed_exitStaticCamera(0.0f);
         func_8028F918(0);
     }
 }

@@ -7,8 +7,8 @@ extern f32 player_getYaw(void);
 extern f32 player_getPitch(void);
 extern void func_802BD870(f32, f32, f32, f32);
 
-void func_802BFE50(f32 arg0, f32 arg1, f32 arg2);
-void func_802BFE74(bool);
+void ncDynamicCam4_func_802BFE50(f32 arg0, f32 arg1, f32 arg2);
+void ncDynamicCam4_func_802BFE74(bool);
 
 /* .bss */
 f32 D_8037DB10;
@@ -18,19 +18,19 @@ f32 D_8037DB1C;
 f32 D_8037DB20;
 
 /* .code */
-void func_802BFA60(void) {
+void ncDynamicCam4_init(void) {
     func_802BD870(10.0f, 20.0f, 120.0f, 200.0f);
     if (map_get() == MAP_90_GL_BATTLEMENTS) {
-        func_802BFE50(10.0f, 800.0f, 1350.0f);
+        ncDynamicCam4_func_802BFE50(10.0f, 800.0f, 1350.0f);
     } else {
-        func_802BFE50(2.0f, 800.0f, 350.0f);
+        ncDynamicCam4_func_802BFE50(2.0f, 800.0f, 350.0f);
     }
-    func_802BFE74(0);
+    ncDynamicCam4_func_802BFE74(0);
 }
 
-void func_802BFAE8(void){}
+void ncDynamicCam4_end(void){}
 
-void func_802BFAF0(void) {
+void ncDynamicCam4_update(void) {
     f32 sp84[3];
     f32 sp78[3];
     f32 sp6C[3];
@@ -43,7 +43,7 @@ void func_802BFAF0(void) {
     f32 sp38;
     f32 sp34;
 
-    func_802BD384(sp6C);
+    ncDynamicCamera_getPosition(sp6C);
     func_802BD4C0(sp84);
     sp84[1] += 40.0f;
     sp34 = player_getPitch();
@@ -75,20 +75,20 @@ void func_802BFAF0(void) {
 
     func_80256E24(sp60, -sp54[0], sp54[1], 0.0f, 0.0f, sp44);
     ml_vec3f_add(sp78, sp84, sp60);
-    func_802BD334(sp78);
+    ncDynamicCamera_setPosition(sp78);
     func_8025727C(sp84[0], sp84[1], sp84[2], sp78[0], sp78[1], sp78[2], &sp54[0], &sp54[1]);
     sp54[0] = -sp54[0];
     sp54[2] = 0.0f;
     func_802BD720(sp54);
 }
 
-void func_802BFE50(f32 arg0, f32 arg1, f32 arg2){
+void ncDynamicCam4_func_802BFE50(f32 arg0, f32 arg1, f32 arg2){
     D_8037DB10 = arg0;
     D_8037DB14 = arg1;
     D_8037DB18 = arg2;
 }
 
-void func_802BFE74(bool arg0) {
+void ncDynamicCam4_func_802BFE74(bool arg0) {
     if (arg0) {
         D_8037DB1C = 6.0f;
         D_8037DB20 = 270.0f;

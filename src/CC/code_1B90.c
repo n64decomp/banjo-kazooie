@@ -86,10 +86,10 @@ void func_8038817C(void){
         if(ml_timer_update(&D_80389F90.unk8, sp20)){
             func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);
             func_80324E38(0.0f, 3);
-            timed_setCameraToNode(2.0f, 0);
+            timed_setStaticCameraToNode(2.0f, 0);
             timedJiggySpawn(2.1f, JIGGY_1C_CC_RINGS, D_80389BF0);
             func_80324E38(5.0f, 0);
-            func_80324E88(5.0f);
+            timed_exitStaticCamera(5.0f);
             tmp_v0 = func_8034C5AC(0x131);
             if(tmp_v0){
                 func_8034E78C(tmp_v0, 0x190, 12.0f);

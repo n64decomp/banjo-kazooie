@@ -51,7 +51,7 @@ void func_80344138(BKSpriteDisplayData *self, s32 frame, s32 mirrored, f32 posit
     f32 sp38;
     f32 sp34;
 
-    func_8024C5CC(sp6C);
+    viewport_getPosition(sp6C);
     func_8024C5A8(sp60);
     sp50[0] = position[0] - sp6C[0];
     sp50[1] = position[1] - sp6C[1];
@@ -109,7 +109,7 @@ void func_80344424(BKSpriteDisplayData *arg0, s32 frame, bool mirrored, f32 posi
     f32 sp38;
     f32 sp34;
 
-    func_8024C5CC(sp6C);
+    viewport_getPosition(sp6C);
     func_8024C5A8(sp60);
     sp50[0] = position[0] - sp6C[0];
     sp50[1] = position[1] - sp6C[1];
@@ -167,7 +167,7 @@ void func_80344720(BKSpriteDisplayData *arg0, s32 frame, bool mirrored, f32 posi
     f32 var_f14;
     BKSpriteFrameDisplayData *temp_a3;
 
-    func_8024C5CC(sp5C);
+    viewport_getPosition(sp5C);
     func_8024C5A8(sp50);
     sp40[0] = position[0] - sp5C[0];
     sp40[1] = position[1] - sp5C[1];

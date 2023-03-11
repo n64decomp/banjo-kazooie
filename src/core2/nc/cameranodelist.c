@@ -92,7 +92,7 @@ void func_802B9EBC(s32 camera_node_index, s32 arg1){
             func_802BA76C(ncCameraNodeList[camera_node_index].data_ptr);
             break;
         case 2:// L802B9F38
-            func_802BAA88(ncCameraNodeList[camera_node_index].data_ptr);
+            ncCameraNodeType2_free(ncCameraNodeList[camera_node_index].data_ptr);
             break;
         case 0:// L802B9F40
             break;
@@ -112,7 +112,7 @@ void func_802B9EBC(s32 camera_node_index, s32 arg1){
         ncCameraNodeList[camera_node_index].data_ptr = func_802BA6D4();
         break;
     case 2:// L802B9FB0
-        ncCameraNodeList[camera_node_index].data_ptr = func_802BAA40();
+        ncCameraNodeList[camera_node_index].data_ptr = ncCameraNodeType2_new();
         break;
     case 0:// L802B9FBC
         break;
@@ -136,7 +136,7 @@ void __ncCameraNodeList_nodeFromFile(Struct61s *file_ptr, s32 arg1){
             func_802BA93C(file_ptr, func_802B9E5C(arg1));
             break;
         case 2:// L802BA084
-            func_802BAB3C(file_ptr, func_802B9E70(arg1));
+            ncCameraNodeType2_fromFile(file_ptr, func_802B9E70(arg1));
             break;
         case 0:// L802BA098
             break;

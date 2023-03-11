@@ -6,7 +6,7 @@
 void chfrogminigame_update(Actor *);
 void chFrogMinigame_setState(Actor * arg0, u32 next_state);
 void func_8025A58C(u32, u32);
-void func_80324E88(f32);
+void timed_exitStaticCamera(f32);
 
 
 ActorInfo chFrogMinigame = {MARKER_C4_YELLOW_FLIBBIT_CTRL, ACTOR_136_YELLOW_FLIBBIT_CONTROLLER, 0x00, 
@@ -97,9 +97,9 @@ void chFrogMinigame_setState(Actor * arg0, u32 next_state){
     }
     if(next_state == 5){
         func_80324E38(0.0f, 3);
-        timed_setCameraToNode(0.0f, 0x27);
+        timed_setStaticCameraToNode(0.0f, 0x27);
         timedFunc_set_0(0.2f, __chFrogMinigame_spawnJiggy);
-        func_80324E88(3.0f);
+        timed_exitStaticCamera(3.0f);
         func_80324E38(3.0f, 0);
         next_state = 6;
     }

@@ -135,9 +135,9 @@ void chBottlesBonus_func_802DD080(Gfx **gfx, Mtx **mtx) {
         sp18[1] = 270.0f;
         sp18[2] = 0.0f;
     }
-    func_8024CD88(sp24);
-    func_8024CE18(sp18);
-    func_8024CFD4();
+    viewport_setPosition(sp24);
+    viewport_setRotation(sp18);
+    viewport_update();
     func_8024C904(gfx, mtx);
 }
 

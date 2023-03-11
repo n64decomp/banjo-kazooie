@@ -4,49 +4,49 @@
 
 
 typedef struct {
-    f32 unk0[3];
-    f32 unkC[3];
-} Struct_core2_33AB0_0;
+    f32 position[3];
+    f32 rotation[3];
+} CameraNodeType2;
 
-void func_802BAAD4(Struct_core2_33AB0_0 *this, f32 src[3]);
-void func_802BAB1C(Struct_core2_33AB0_0 *this, f32 src[3]);
+void ncCameraNodeType2_setPosition(CameraNodeType2 *this, f32 src[3]);
+void ncCameraNodeType2_setRotation(CameraNodeType2 *this, f32 src[3]);
 
 /* .code */
-Struct_core2_33AB0_0 *func_802BAA40(void){
-    Struct_core2_33AB0_0 *this;
+CameraNodeType2 *ncCameraNodeType2_new(void){
+    CameraNodeType2 *this;
     f32 sp18[3];
 
-    this = (Struct_core2_33AB0_0 *)malloc(sizeof(Struct_core2_33AB0_0));
+    this = (CameraNodeType2 *)malloc(sizeof(CameraNodeType2));
     ml_vec3f_clear(sp18);
-    func_802BAAD4(this, sp18);
-    func_802BAB1C(this, sp18);
+    ncCameraNodeType2_setPosition(this, sp18);
+    ncCameraNodeType2_setRotation(this, sp18);
     return this;
 }
 
-void func_802BAA88(Struct_core2_33AB0_0 *this){
+void ncCameraNodeType2_free(CameraNodeType2 *this){
     free(this);
 }
 
-void func_802BAAA8(Struct_core2_33AB0_0 *this, f32 dst[3]){\
-    ml_vec3f_copy(dst, this->unk0);
+void ncCameraNodeType2_getPosition(CameraNodeType2 *this, f32 dst[3]){\
+    ml_vec3f_copy(dst, this->position);
 }
 
-void func_802BAAD4(Struct_core2_33AB0_0 *this, f32 src[3]){
-    ml_vec3f_copy(this->unk0, src);
+void ncCameraNodeType2_setPosition(CameraNodeType2 *this, f32 src[3]){
+    ml_vec3f_copy(this->position, src);
 }
 
-void func_802BAAF4(Struct_core2_33AB0_0 *this, f32 dst[3]){\
-    ml_vec3f_copy(dst, this->unkC);
+void ncCameraNodeType2_getRotation(CameraNodeType2 *this, f32 dst[3]){\
+    ml_vec3f_copy(dst, this->rotation);
 }
 
-void func_802BAB1C(Struct_core2_33AB0_0 *this, f32 src[3]){
-    ml_vec3f_copy(this->unkC, src);
+void ncCameraNodeType2_setRotation(CameraNodeType2 *this, f32 src[3]){
+    ml_vec3f_copy(this->rotation, src);
 }
 
-void func_802BAB3C(Struct61s *file_ptr, Struct_core2_33AB0_0 *arg1){
+void ncCameraNodeType2_fromFile(Struct61s *file_ptr, CameraNodeType2 *arg1){
     while(!file_isNextByteExpected(file_ptr, 0)){
-        if(!file_getNFloats_ifExpected(file_ptr, 1, arg1->unk0, 3)){
-            file_getNFloats_ifExpected(file_ptr, 2, arg1->unkC, 3);
+        if(!file_getNFloats_ifExpected(file_ptr, 1, arg1->position, 3)){
+            file_getNFloats_ifExpected(file_ptr, 2, arg1->rotation, 3);
         }//L802BAA0C
     }
 }

@@ -820,7 +820,7 @@ void func_8028F85C(f32 arg0[3]){
     func_8028A8D0();
     func_8028B71C();
     func_80290B6C();
-    func_80291358();
+    cameraMode_update();
 }
 
 void func_8028F8A4(f32 rotation[3]){

@@ -50,7 +50,7 @@ void func_8038A950(Actor *this, s32 next_state) {
         func_80335924(this->unk148, 0x19A, 0.0f, 7.0f);
         func_80335A8C(this->unk148, 2);
         func_80324E38(0.0f, 3);
-        timed_setCameraToNode(0.0f, 0);
+        timed_setStaticCameraToNode(0.0f, 0);
     }
     if (next_state == 4) {
         mapSpecificFlags_set(5, 1);

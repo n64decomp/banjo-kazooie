@@ -17,7 +17,7 @@ void func_80392AB0(ActorMarker *marker, enum asset_e text_id, s32 arg2){
 }
 
 void func_80392AF4(ActorMarker *marker, enum asset_e text_id, s32 arg2){
-    set_camera_to_node(arg2);
+    ncStaticCamera_setToNode(arg2);
 }
 
 void func_80392B1C(ActorMarker *marker) {
@@ -49,7 +49,7 @@ void func_80392B6C(Actor *this) {
         func_8025A70C(COMUSIC_A9_TOOTY);
         mapSpecificFlags_set(7, 0);
         mapSpecificFlags_set(9, 1);
-        set_camera_to_node(0x10);
+        ncStaticCamera_setToNode(0x10);
         func_8028F918(0);
         func_8028F85C(this->position);
         func_8028F3D8(this->unk1C, (f32) sp28, &func_80392B1C, this->marker);

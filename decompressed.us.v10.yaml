@@ -524,7 +524,7 @@ segments:
   - [0xF603C0, c, ba/model] #DONE
   - [0xF60FB0, c, code_B650] #DONE
   - [0xF611B0, c, code_B850] #DONE
-  - [0xF614B0, c, code_BB50] #DONE
+  - [0xF614B0, c, eggshatter] #DONE
   - [0xF61680, c, code_BD20] #DONE
   - [0xF61A40, c, code_C0E0] #DONE
   - [0xF61D50, c, code_C3F0] #DONE
@@ -616,29 +616,33 @@ segments:
   - [0xF89050, c, code_336F0] #DONE
   - [0xF89410, c, code_33AB0] #DONE
   - [0xF89590, c, code_33C30] #DONE
-  - [0xF896A0, c, code_33D40] #DONE
+  - [0xF896A0, c, nc/staticCamera] #DONE
   - [0xF898F0, c, code_33F90] #DONE
   - [0xF89C70, c, code_34310] #DONE
   - [0xF8A0F0, c, code_34790] #DONE
   - [0xF8AE80, c, code_35520] #DONE
-  - [0xF8B010, c, code_356B0] #DONE
+  - [0xF8B010, c, nc/dynamicCamera] #DONE
   - [0xF8D310, c, code_379B0] #DONE
-  - [0xF8D630, c, code_37CD0] #DONE
+  - [0xF8D630, c, nc/randomCamera] #DONE
   - [0xF8D7B0, c, code_37E50] #DONE
-  - [0xF8DAB0, c, code_38150] #DONE
-  - [0xF8DC40, c, code_382E0] #DONE
-  - [0xF8DDC0, c, code_38460] #DONE
-  - [0xF8DF90, c, code_38630] #DONE
-  - [0xF8E240, c, code_388E0] #DONE
-  - [0xF8E430, c, code_38AD0] #DONE
-  - [0xF8E8A0, c, code_38F40] #DONE
-  - [0xF8EAF0, c, code_39190] #DONE
-  - [0xF8F010, c, code_396B0] #DONE
-  - [0xF8F370, c, code_39A10] #DONE
-  - [0xF8F850, c, code_39EF0] #DONE
-  - [0xF90770, c, code_3AE10] #DONE
+  - [0xF8DAB0, c, nc/dynamicCam10] #DONE
+  - [0xF8DC40, c, nc/dynamicCamD] #DONE
+  - [0xF8DDC0, c, nc/dynamicCam5] #DONE
+  - [0xF8DF90, c, nc/dynamicCam11] #DONE
+  - [0xF8E240, c, nc/dynamicCam8] #DONE
+  - [0xF8E430, c, nc/dynamicCam4] #DONE
+  - [0xF8E8A0, c, nc/dynamicCamC] #DONE
+  - [0xF8EAF0, c, code_F8EAF0] #DONE
+  - [0xF8ED40, c, nc/dynamicCamB] #DONE
+  - [0xF8F010, c, nc/dynamicCam13] #DONE
+  - [0xF8F370, c, nc/dynamicCam9] #DONE
+  - [0xF8F850, c, nc/dynamicCam12] #DONE
+  - [0xF90280, c, nc/dynamicCam1] #DONE
+  - [0xF904A0, c, nc/dynamicCam3] #DONE
+  - [0xF90770, c, nc/dynamicCamA] #DONE
   - [0xF90C20, c, code_3B2C0] #DONE
-  - [0xF90F20, c, code_3B5C0] #DONE
+  - [0xF90E30, c, nc/dynamicCamF] #DONE
+  - [0xF90F20, c, nc/firstpersoncamera] #DONE
   - [0xF914E0, c, spawnqueue] #DONE
   - [0xF92D30, c, ch/gameSelect] #DONE
   - [0xF94430, c, code_3EAD0] #DONE
@@ -899,7 +903,7 @@ segments:
   - [0x10320A0, .data, code_90E0]
   - [0x1032150, .data, ba/model]
   - [0x1032150, .data, code_B850]
-  - [0x1032170, .data, code_BB50]
+  - [0x1032170, .data, eggshatter]
   - [0x10321C0, .data, code_C0E0]
   - [0x10321F0, .data, code_E910]
   - [0x1032E10, .data, code_FD60]
@@ -933,10 +937,10 @@ segments:
   - [0x1034160, .data, code_34310]
   - [0x10341B0, .data, code_34790]
   - [0x1034200, .data, code_35520]
-  - [0x10346A0, .data, code_356B0]
+  - [0x10346A0, .data, nc/dynamicCamera]
   - [0x1034730, .data, code_37E50]
-  - [0x1034760, .data, code_382E0]
-  - [0x1034770, .data, code_3AE10]
+  - [0x1034760, .data, nc/dynamicCamD]
+  - [0x1034770, .data, nc/dynamicCamA]
   - [0x1034790, .data, spawnqueue]
   - [0x10347A0, .data, ch/gameSelect]
   - [0x1034900, .data, code_3EAD0]
@@ -1197,18 +1201,20 @@ segments:
   - [0x10446E0, .rodata, code_33F90]
   - [0x1044700, .rodata, code_34310]
   - [0x1044710, .rodata, code_34790]
-  - [0x1044740, .rodata, code_356B0]
+  - [0x1044740, .rodata, nc/dynamicCamera]
   - [0x1044890, .rodata, code_37E50]
-  - [0x10448B0, .rodata, code_38150]
-  - [0x10448C0, .rodata, code_382E0]
-  - [0x10448D0, .rodata, code_38460]
-  - [0x10448E0, .rodata, code_38AD0]
-  - [0x10448F0, .rodata, code_38F40]
-  - [0x1044900, .rodata, code_39190]
-  - [0x1044920, .rodata, code_396B0]
-  - [0x1044930, .rodata, code_39A10]
-  - [0x1044950, .rodata, code_39EF0]
-  - [0x1044990, .rodata, code_3AE10]
+  - [0x10448B0, .rodata, nc/dynamicCam10]
+  - [0x10448C0, .rodata, nc/dynamicCamD]
+  - [0x10448D0, .rodata, nc/dynamicCam5]
+  - [0x10448E0, .rodata, nc/dynamicCam4]
+  - [0x10448F0, .rodata, nc/dynamicCamC]
+  - [0x1044900, .rodata, code_F8EAF0]
+  - [0x1044910, .rodata, nc/dynamicCamB]
+  - [0x1044920, .rodata, nc/dynamicCam13]
+  - [0x1044930, .rodata, nc/dynamicCam9]
+  - [0x1044950, .rodata, nc/dynamicCam12]
+  - [0x1044980, .rodata, nc/dynamicCam3]
+  - [0x1044990, .rodata, nc/dynamicCamA]
   - [0x10449A0, .rodata, spawnqueue]
   - [0x10449F0, .rodata, ch/gameSelect]
   - [0x1044B70, .rodata, ch/bubble]
@@ -1380,7 +1386,7 @@ segments:
   - [0x1048560, .bss, statetimer]
   - [0x1048560, .bss, ba/model]
   - [0x1048560, .bss, code_B650]
-  - [0x1048560, .bss, code_BB50]
+  - [0x1048560, .bss, eggshatter]
   - [0x1048560, .bss, code_BD20]
   - [0x1048560, .bss, code_C0E0]
   - [0x1048560, .bss, code_C3F0]
@@ -1462,26 +1468,29 @@ segments:
   - [0x1048560, .bss, bs/washy]
   - [0x1048560, .bss, nc/cameranodelist]
   - [0x1048560, .bss, code_33C30]
-  - [0x1048560, .bss, code_33D40]
+  - [0x1048560, .bss, nc/staticCamera]
   - [0x1048560, .bss, code_34310]
   - [0x1048560, .bss, code_34790]
   - [0x1048560, .bss, code_35520]
-  - [0x1048560, .bss, code_356B0]
+  - [0x1048560, .bss, nc/dynamicCamera]
   - [0x1048560, .bss, code_379B0]
-  - [0x1048560, .bss, code_37CD0]
+  - [0x1048560, .bss, nc/randomCamera]
   - [0x1048560, .bss, code_37E50]
-  - [0x1048560, .bss, code_38150]
-  - [0x1048560, .bss, code_38460]
-  - [0x1048560, .bss, code_38630]
-  - [0x1048560, .bss, code_388E0]
-  - [0x1048560, .bss, code_38AD0]
-  - [0x1048560, .bss, code_38F40]
-  - [0x1048560, .bss, code_39190]
-  - [0x1048560, .bss, code_396B0]
-  - [0x1048560, .bss, code_39A10]
-  - [0x1048560, .bss, code_39EF0]
+  - [0x1048560, .bss, nc/dynamicCam10]
+  - [0x1048560, .bss, nc/dynamicCam5]
+  - [0x1048560, .bss, nc/dynamicCam11]
+  - [0x1048560, .bss, nc/dynamicCam8]
+  - [0x1048560, .bss, nc/dynamicCam4]
+  - [0x1048560, .bss, nc/dynamicCamC]
+  - [0x1048560, .bss, code_F8EAF0]
+  - [0x1048560, .bss, nc/dynamicCamB]
+  - [0x1048560, .bss, nc/dynamicCam13]
+  - [0x1048560, .bss, nc/dynamicCam9]
+  - [0x1048560, .bss, nc/dynamicCam12]
+  - [0x1048560, .bss, nc/dynamicCam3]
   - [0x1048560, .bss, code_3B2C0]
-  - [0x1048560, .bss, code_3B5C0]
+  - [0x1048560, .bss, nc/dynamicCamF]
+  - [0x1048560, .bss, nc/firstpersoncamera]
   - [0x1048560, .bss, ch/gameSelect]
   - [0x1048560, .bss, code_41460]
   - [0x1048560, .bss, code_41FB0]

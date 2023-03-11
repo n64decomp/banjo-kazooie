@@ -441,7 +441,7 @@ void func_802A8098(void) {
         }
         if (func_8029E284(1, 1.9f)) {
             func_802914CC(0xD);
-            func_802BF2C0(80.0f);
+            ncDynamicCamD_func_802BF2C0(80.0f);
             if (D_8037D394) {
                 func_8029E3C0(0, 0.5f);
             } else {

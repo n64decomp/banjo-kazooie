@@ -13,13 +13,13 @@ u8 D_8037DB0D;
 u8 D_8037DB0E;
 
 /* .code */
-void func_802BF870(void){
+void ncDynamicCam8_init(void){
     D_8037DB0E = TRUE;
 }
 
-void func_802BF880(void){}
+void ncDynamicCam8_end(void){}
 
-void func_802BF888(void) {
+void ncDynamicCam8_update(void) {
     f32 sp5C[3];
     f32 sp50[3];
     f32 sp44[3];
@@ -31,7 +31,7 @@ void func_802BF888(void) {
     if(D_8037DB0E)
         return;
 
-    func_802BD384(sp44);
+    ncDynamicCamera_getPosition(sp44);
     sp20[0] = D_8037DB00[0];
     sp20[1] = D_8037DB00[1];
     sp20[2] = D_8037DB00[2];
@@ -46,7 +46,7 @@ void func_802BF888(void) {
     if (D_8037DB0D) {
         func_802BE60C();
     }
-    func_802BD384(sp44);
+    ncDynamicCamera_getPosition(sp44);
     func_802BD4C0(sp5C);
     ml_vec3f_diff_copy(sp50, sp5C, sp44);
     func_802BC434(sp38, sp5C, sp44);
@@ -58,7 +58,7 @@ void func_802BF888(void) {
 }
 
 
-void func_802BF9B8(s32 arg0) {
+void ncDynamicCam8_func_802BF9B8(s32 arg0) {
     f32 sp2C;
     f32 sp28;
     s32 temp_s0;

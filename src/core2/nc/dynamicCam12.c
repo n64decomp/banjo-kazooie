@@ -34,7 +34,6 @@ struct {
     u8 unk2E;
     u8 unk2F;
 }D_8037DBE0;
-f32 D_8037DC10;
 
 /* .code */
 bool __is_flying_in_FP(void){
@@ -62,14 +61,14 @@ void func_802C0F4C(void){
     func_802C0EE4();
 }
 
-void func_802C0F6C(void){
+void dynamicCam12_init(void){
     func_802C0150(4);
     func_802BE244(5.0f, 10.0f);
     func_802BE230(3.0f, 8.0f);
     func_802BD82C(100.0f, 100.0f);
 }
 
-void func_802C0FCC(void){
+void ncDynamicCam12_end(void){
     func_802C0EE4();
     func_802BD840();
 }
@@ -176,7 +175,7 @@ s32 func_802C11C8(f32 arg0[3]) {
     return 2;
 }
 
-void func_802C14E0(void) {
+void ncDynamicCam12_update(void) {
     f32 sp5C[3];
     f32 sp50[3];
     f32 sp4C;
@@ -187,7 +186,7 @@ void func_802C14E0(void) {
         if (D_8037DBE0.unk2C == 1) {
             D_8037DBE0.unk2C = 2;
         }
-        func_802BD384(sp40);
+        ncDynamicCamera_getPosition(sp40);
         if ((D_8037DBE0.unk28 == -1) || (func_802C11C8(sp40) == 0) || __is_flying_in_FP()) {
             D_8037DBE0.unk28 = 0;
             return;
@@ -202,7 +201,7 @@ void func_802C14E0(void) {
                 ml_vec3f_add(sp40, D_8037DBE0.unkC, sp50);
             }
         }
-        func_802BD334(sp40);
+        ncDynamicCamera_setPosition(sp40);
         func_802C02D4(sp5C);
         func_802BE6FC(sp34, sp5C);
         func_802BD904(sp34);
@@ -253,8 +252,8 @@ void func_802C16CC(s32 arg0) {
                     D_8037DBE0.unk2F = 1;
                     break;
                 }
-                D_8037DBE0.unk2D = func_802BD0CC();
-                func_802BD384(sp3C);
+                D_8037DBE0.unk2D = ncDynamicCamera_getState();
+                ncDynamicCamera_getPosition(sp3C);
                 ml_vec3f_copy(D_8037DBE0.unkC, sp3C);
                 D_8037DBE0.unk18 = 0.0f;
                 D_8037DBE0.unk28 = sp38;
@@ -264,7 +263,7 @@ void func_802C16CC(s32 arg0) {
                 D_8037DBE0.unk2C = 1;
                 func_80323240(func_802C0EC0(), D_8037DBE0.unk8, D_8037DBE0.unk1C);
                 if (func_802C11C8(D_8037DBE0.unk1C) == 1) {
-                    func_802BD0D8(0x12);
+                    ncDynamicCamera_setState(0x12);
                     func_80291488(0xA);
                     return;
                 }
@@ -277,96 +276,4 @@ void func_802C16CC(s32 arg0) {
 
 bool func_802C189C(void){
     return D_8037DBE0.unk28 < 1;
-}
-
-void func_802C18B0(void){
-    func_802BD870(12.0f, 10.0f, 120.0f, 120.0f);
-}
-
-void func_802C18F0(void){}
-
-void func_802C18F8(void) {
-    f32 sp8C[3];
-    f32 sp80[3];
-    f32 sp74[3];
-    f32 sp68[3];
-    f32 sp5C[3];
-    f32 sp50[3];
-    f32 sp4C;
-    f32 sp48;
-    f32 temp_f20;
-    f32 sp40;
-    f32 sp3C;
-
-    func_802BD384(sp74);
-    func_802BD4C0(sp8C);
-    sp3C = func_802BD8D4();
-    temp_f20 = time_getDelta();
-    ml_vec3f_diff_copy(sp50, sp74, sp8C);
-    sp4C = gu_sqrtf((sp50[0] * sp50[0]) + (sp50[2] * sp50[2]));
-    sp4C += func_80259198((sp3C - sp4C) * temp_f20 * 2, temp_f20 * 120.0f);
-    func_8025801C(sp50, &sp48);
-    sp40 = func_80259198(mlDiffDegF(mlNormalizeAngle(180.0f + player_getYaw()), sp48) * (temp_f20 * 1), temp_f20 * 50.0f);
-    sp48 = mlNormalizeAngle(sp48 + sp40);
-    func_80256E24(sp68, 0.0f, sp48, 0.0f, 0.0f, sp4C);
-    ml_vec3f_add(sp80, sp8C, sp68);
-    sp80[1] = sp74[1] + ((func_802BD51C() - sp74[1]) * temp_f20 * 2);
-    func_802BD334(sp80);
-    func_8025727C(sp8C[0], sp8C[1], sp8C[2], sp80[0], sp80[1], sp80[2], &sp5C[0], &sp5C[1]);
-    sp5C[0] = -sp5C[0];
-    sp5C[2] = 0.0f;
-    func_802BD720(sp5C);
-}
-
-void func_802C1AD0(void){}
-
-void func_802C1AD8(void){
-    func_802BD870(10.0f, 20.0f, 120.0f, 200.0f);
-    func_802C0150(4);
-    D_8037DC10 = 600.0f;
-}
-
-void func_802C1B20(f32 arg0){
-    D_8037DC10 = arg0;
-}
-
-void func_802C1B2C(void) {
-    f32 sp7C[3];
-    f32 sp70[3];
-    f32 sp64[3];
-    f32 sp58[3];
-    f32 sp4C[3];
-    f32 sp40[3];
-    f32 sp3C;
-    f32 sp38;
-    f32 sp34;
-    f32 sp30;
-    
-
-    func_802BD384(sp64);
-    sp34 = D_8037DC10;
-    func_802C02D4(sp7C);
-    sp30 = time_getDelta();
-    if (sp30);
-    ml_vec3f_diff_copy(sp40, sp64, sp7C);
-    sp3C = gu_sqrtf(sp40[0]*sp40[0] + sp40[2]*sp40[2]);
-    sp3C += func_80259198(sp30*(sp34 - sp3C)*2 , sp30 * 800.0f);
-    func_8025727C(sp7C[0], sp7C[1], sp7C[2], sp64[0], sp64[1], sp64[2], &sp4C[0], &sp4C[1]);
-    sp40[1] = sp30 * 0.77 * mlDiffDegF(mlNormalizeAngle(player_getYaw() + 180.0f), sp4C[1]);
-    sp40[1] = func_80259198(sp40[1], sp30 * 300.0f);
-    sp4C[1] = mlNormalizeAngle(sp4C[1] + sp40[1]);
-    func_80256E24(&sp58, 0.0f, sp4C[1], 0.0f, 0.0f, sp3C);
-    sp70[0] = sp7C[0] + sp58[0];
-    sp70[1] = sp64[1];
-    sp70[2] = sp7C[2] + sp58[2];
-    sp40[1] = sp7C[1] - sp64[1];
-    if (mlAbsF(sp40[1]) > 200.0f) {
-        sp70[1] = sp64[1] - ((sp40[1] > 0.0f) ? sp30 * (200.0f - sp40[1]) * 2 : sp30 * (-200.0f - sp40[1]) * 2);
-    }
-    func_802BD334(sp70);
-    if (func_802BE60C()) {
-        func_802BC84C(0);
-    }
-    func_802BE6FC(sp4C, sp7C);
-    func_802BD720(sp4C);
 }

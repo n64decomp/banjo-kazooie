@@ -141,7 +141,7 @@ void func_8038794C(Actor *this){
 
             if(mapSpecificFlags_get(0x1)){
                 func_8028F94C(1, this->position);
-                timed_setCameraToNode(0.0f, 0x12);
+                timed_setStaticCameraToNode(0.0f, 0x12);
                 func_80324DBC(1.0f, 0xc00, 0xe, NULL, this->marker, func_80387828, func_803877A8);
                 func_803876A4(this);
                 break;
@@ -188,7 +188,7 @@ void func_8038794C(Actor *this){
             if(0.99 <= this->unk48){
                 func_8028F918(0);
                 func_80324CD8(0.0f);
-                func_80324E88(0.0f);
+                timed_exitStaticCamera(0.0f);
                 func_803876F8(this);
             }
             break;

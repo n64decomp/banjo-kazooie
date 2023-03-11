@@ -30,7 +30,7 @@ f32 ml_acosValTbl[90] = { //D_80276CBC
     0.0871559978, 0.0697569996, 0.0523359999, 0.0348990001, 0.0174519997
 };
 
-f32 func_8024C788(void);
+f32 viewport_getYaw(void);
 
 // .h
 void func_80257918(f32 arg0[3], f32 arg1[3], f32 arg2[3], f32 arg3[3]);
@@ -1223,29 +1223,29 @@ void ml_vec3f_to_vec3h(s16 dst[3], f32 src[3])
     dst[2] = src[2];
 }
 
-void func_80258E60(f32 dst[3], f32 src[3], f32 amount)
+void ml_translate_y_local(f32 position[3], f32 rotation[3], f32 dy)
 {
     f32 vec[3];
 
     vec[0] = 0;
-    vec[1] = amount;
+    vec[1] = dy;
     vec[2] = 0;
 
-    ml_vec3f_pitch_rotate_copy(vec, vec, src[0]);
-    ml_vec3f_yaw_rotate_copy(vec, vec, src[1]);
+    ml_vec3f_pitch_rotate_copy(vec, vec, rotation[0]);
+    ml_vec3f_yaw_rotate_copy(vec, vec, rotation[1]);
 
-    dst[0] += vec[0];
-    dst[1] += vec[1];
-    dst[2] += vec[2];
+    position[0] += vec[0];
+    position[1] += vec[1];
+    position[2] += vec[2];
 }
 
-void func_80258EF4(f32 dst[3], f32 src[3], f32 amount)
+void ml_translate_z_local(f32 dst[3], f32 src[3], f32 dz)
 {
     f32 vec[3];
 
     vec[0] = 0;
     vec[1] = 0;
-    vec[2] = amount;
+    vec[2] = dz;
 
     ml_vec3f_pitch_rotate_copy(vec, vec, src[0]);
     ml_vec3f_yaw_rotate_copy(vec, vec, src[1]);
@@ -1255,11 +1255,11 @@ void func_80258EF4(f32 dst[3], f32 src[3], f32 amount)
     dst[2] += vec[2];
 }
 
-void func_80258F88(f32 dst[3], f32 src[3], f32 amount)
+void ml_translate_x_local(f32 dst[3], f32 src[3], f32 dx)
 {
     f32 vec[3];
 
-    vec[0] = amount;
+    vec[0] = dx;
     vec[1] = 0;
     vec[2] = 0;
 
@@ -1481,7 +1481,7 @@ void func_802596AC(f32 a0[3], f32 a1[3], f32 a2[3], f32 a3[3])
 
 s32 func_8025975C(f32 a0)
 {
-    f32 val = (s32)(func_8024C788() - a0);
+    f32 val = (s32)(viewport_getYaw() - a0);
 
     while (val < 0)
         val += 360;

@@ -20,7 +20,7 @@ void func_802F7EB0(struct3s *this){
 
     player_getPosition(plyrPos);
     func_8024C5A8(camNorm);
-    func_8024C764(camRot);
+    viewport_getRotation(camRot);
     sp50 = vector_pushBackNew(&this->unk20);
     tmpf = randf2(50.0f, 1100.0f);
     sp4C[0] = 0.0f;

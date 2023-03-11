@@ -5,7 +5,7 @@
 
 void func_80292E80(s32, f32);
 f32 func_8029B41C(void);
-void func_802BF2C0(f32);
+void ncDynamicCamD_func_802BF2C0(f32);
 
 void func_802B6270(void){
     baanim_playForDuration_once(ASSET_77_ANIM_BSTIMEOUT, 3.2f);
@@ -13,7 +13,7 @@ void func_802B6270(void){
     func_80297970(0.0f);
     func_802914CC(0xd);
     yaw_setIdeal(func_8029B41C() + 35.0f);
-    func_802BF2C0(80.0f);
+    ncDynamicCamD_func_802BF2C0(80.0f);
     func_8025A58C(0,0xfa0);
     func_8025A70C(COMUSIC_3C_MINIGAME_LOSS);
     func_8024BD08(0);
@@ -54,7 +54,7 @@ void func_802B63F8(void){
     func_80297970(0.0f);
     func_802914CC(0xd);
     yaw_setIdeal(func_8029B41C() + 35.0f);
-    func_802BF2C0(80.0f);
+    ncDynamicCamD_func_802BF2C0(80.0f);
     func_8025A58C(0,0xfa0);
     func_8025A70C(COMUSIC_3C_MINIGAME_LOSS);
     func_8024BD08(0);

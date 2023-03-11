@@ -4,8 +4,8 @@
 
 #include "core2/timedfunc.h"
 
-void func_802BAE4C(void);
-void set_camera_to_node(s32);
+void ncStaticCamera_exit(void);
+void ncStaticCamera_setToNode(s32);
 
 typedef struct timed_function_queue_s{
     f32 time;
@@ -215,12 +215,12 @@ void func_80324E38(f32 time, s32 arg0){
     timedFunc_set_1(time, (GenMethod_1) func_80324BA0, arg0);
 }
 
-void timed_setCameraToNode(f32 time, s32 arg0){
-    timedFunc_set_1(time, (GenMethod_1) set_camera_to_node, arg0);
+void timed_setStaticCameraToNode(f32 time, s32 arg0){
+    timedFunc_set_1(time, (GenMethod_1) ncStaticCamera_setToNode, arg0);
 }
 
-void func_80324E88(f32 time){
-    timedFunc_set_0(time, (GenMethod_0) func_802BAE4C);
+void timed_exitStaticCamera(f32 time){
+    timedFunc_set_0(time, (GenMethod_0) ncStaticCamera_exit);
 }
 
 void timedFunc_set_0(f32 time, GenMethod_0 funcPtr){

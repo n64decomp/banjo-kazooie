@@ -5,7 +5,7 @@
 extern void func_8028FDC8(f32);
 extern void baModel_setYDisplacement(f32);
 extern f32 func_8029B2D0(void);
-extern void func_802BFE50(f32, f32, f32);
+extern void ncDynamicCam4_func_802BFE50(f32, f32, f32);
 extern void func_80354030(f32[3], f32);
 
 
@@ -35,7 +35,7 @@ int func_802A3350(void){
 void func_802A339C(f32 arg0[3], f32 arg1[3], f32 arg2){
     func_8024C5A8(arg0);
     ml_vec3f_scale(arg0, arg2);
-    func_8024C764(arg1);
+    viewport_getRotation(arg1);
 }
 
 void func_802A33D8(void){
@@ -330,7 +330,7 @@ void func_802A3F9C(void){
     pitch_setIdeal(sp1C[0]);
     func_8029E070(1);
     func_802914CC(4);
-    func_802BFE74(1);
+    ncDynamicCam4_func_802BFE74(1);
     func_802A3430();
     FUNC_8030E624(SFX_52_BANJO_YAH_OH, 1.0f, 28000);
     D_8037D345 = 0;
@@ -377,7 +377,7 @@ void func_802A411C(void) {
         if (animctrl_isAt(sp58, 0.6905f)) {
             func_802978DC(8);
             func_802914CC(5);
-            func_802BF590(&D_8037D338);
+            ncDynamicCam5_func_802BF590(&D_8037D338);
             animctrl_setDuration(sp58, 0.05f);
             func_80299CF4(SFX_50_KAZOOIE_RRRUH, 1.3f, 0x7FFF);
             D_8037D345 = 1;
@@ -573,7 +573,7 @@ void func_802A48B4(void) {
             if (item_getCount(ITEM_14_HEALTH) == 0) {
                 func_8029C984();
                 func_8029151C(0xD);
-                func_802BF2C0(30.0f);
+                ncDynamicCamD_func_802BF2C0(30.0f);
                 func_8029B930();
                 func_8029E3C0(0, 2.5f);
                 D_8037D344 = 2;
@@ -652,7 +652,7 @@ void func_802A4A78(s32 arg0) {
     func_80297BF8(-4000.0f);
     func_8029E070(1);
     func_802914CC(4);
-    func_802BFE50(12.0f, 10000.0f, 800.0f);
+    ncDynamicCam4_func_802BFE50(12.0f, 10000.0f, 800.0f);
     baMarker_collisionOff();
     func_802A3430();
 }
@@ -728,7 +728,7 @@ void func_802A4D90(void) {
     gravity_set(-1800.0f);
     baMarker_collisionOff();
     func_802914CC(4);
-    func_802BFE50(12.0f, 10000.0f, 800.0f);
+    ncDynamicCam4_func_802BFE50(12.0f, 10000.0f, 800.0f);
 }
 
 void func_802A4EC8(void) {

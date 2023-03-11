@@ -116,7 +116,7 @@ void func_80388A50(Actor *this){
     ActorLocal_FP_2350 *local = (ActorLocal_FP_2350 *)&this->local;
 
     func_80328B8C(this, 2, 0.0001f, 1);
-    timed_setCameraToNode(0.0f, 4);
+    timed_setStaticCameraToNode(0.0f, 4);
     local->unk18 = 0;
 }
 
@@ -192,7 +192,7 @@ void func_80388D70(ActorMarker *caller, enum asset_e text_id, s32 arg2){
     Actor *this = marker_getActor(caller);
     ActorLocal_FP_2350 *local = (ActorLocal_FP_2350 *)&this->local;
 
-    func_80324E88(0.0f);
+    timed_exitStaticCamera(0.0f);
     switch(text_id){
         case 0xc03:
         case 0xc06:

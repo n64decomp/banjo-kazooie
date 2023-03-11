@@ -162,7 +162,7 @@ void func_802424D4(Gfx **gfx, Mtx **mtx, Vtx **vtx, f32 arg3[3], f32 arg4[3], f3
         sp68[1] *= arg5;
         sp68[2] *= arg5;
 
-        func_8024C5CC(sp5C);
+        viewport_getPosition(sp5C);
         gSPDisplayList((*gfx)++, D_80275880);
         gSPSetGeometryMode((*gfx)++, G_ZBUFFER);
         gSPVertex((*gfx)++, *vtx, 8, 0);
@@ -209,7 +209,7 @@ void func_80242BE8(Gfx **gfx, Vtx **arg1, f32 arg2[2][2][2][3], s32 arg3[3], s32
     s32 i;
     s32 j;
     s32 k;
-    func_8024C5CC(sp84);
+    viewport_getPosition(sp84);
     gSPDisplayList((*gfx)++, D_80275880);
     if (arg5){
         gSPSetGeometryMode((*gfx)++, G_CULL_BACK);

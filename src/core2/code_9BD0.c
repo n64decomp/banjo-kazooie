@@ -83,7 +83,7 @@ int func_80290D48(void){
             if(bsBeeFly_inSet(sp1C) && !func_802BA4D0(func_802B9E48(camera_node_index))){
                 return FALSE;
             }
-            func_802BD0D8(0x11);
+            ncDynamicCamera_setState(0x11);
             func_802BF798(camera_node_index);
             func_80291488(0x9);
             return TRUE;
@@ -91,8 +91,8 @@ int func_80290D48(void){
             if(bsBeeFly_inSet(sp1C) && !func_802BA89C(func_802B9E5C(camera_node_index))){
                 return FALSE;
             }
-            func_802BD0D8(0x8);
-            func_802BF9B8(camera_node_index);
+            ncDynamicCamera_setState(0x8);
+            ncDynamicCam8_func_802BF9B8(camera_node_index);
             func_80291488(0x9);
             return TRUE;
         default://L80290E7C
@@ -106,7 +106,7 @@ int func_80290E8C(void){
     if(func_8028EE84() != BSWATERGROUP_2_UNDERWATER)
         return FALSE;
 
-    func_802BD0D8(3);
+    ncDynamicCamera_setState(3);
     func_80291488(0xB);
     if( map_get() == MAP_B_CC_CLANKERS_CAVERN
         && player_getYPosition() < 1201.0f
@@ -154,13 +154,13 @@ int func_8029105C(s32 arg0){
     if(func_80298850())
         return FALSE;
 
-    if(should_rotate_camera_left() && func_802C1DB0(-45.0f)){
+    if(should_rotate_camera_left() && ncDynamicCamA_func_802C1DB0(-45.0f)){
         func_80291488(arg0);
         func_8029103C();
         return TRUE;
     }
     
-    if(should_rotate_camera_right() && func_802C1DB0(45.0f)){
+    if(should_rotate_camera_right() && ncDynamicCamA_func_802C1DB0(45.0f)){
         func_80291488(arg0);
         func_8029103C();
         return TRUE;
@@ -171,7 +171,7 @@ int func_8029105C(s32 arg0){
 
 //_camera_mode_1_update
 void func_80291108(void){
-    if(!func_80290D48() && func_802BD0CC() == 0x10){
+    if(!func_80290D48() && ncDynamicCamera_getState() == 0x10){
         func_80290F14();
         func_8029105C(8);
     }
@@ -182,7 +182,7 @@ void func_80291154(void){
     int tmp;
     if(!func_80290D48() && !func_80290E8C()){
         if(button_held(BUTTON_R)){
-            func_802BD0D8(0x13);
+            ncDynamicCamera_setState(0x13);
             func_80291488(0x4);
             func_80290F14();
         }
@@ -190,7 +190,7 @@ void func_80291154(void){
             tmp = func_8029105C(7);
             func_80290F14();
             if(!tmp)
-                func_802BD0D8(0xB);
+                ncDynamicCamera_setState(0xB);
         }
     }
 }
@@ -213,7 +213,7 @@ void func_802911E0(void){
 void func_80291268(void){
     if( !func_80290D48() && !func_80290E8C()){
         func_80290F14();
-        if(!func_8029105C(7) && func_802C1EE0()){
+        if(!func_8029105C(7) && ncDynamicCamA_func_802C1EE0()){
             func_80291488(2);
         }
     }
@@ -223,7 +223,7 @@ void func_80291268(void){
 void func_802912D0(void){
     if(!func_80290D48()){
         func_80290F14();
-        if(!func_8029105C(8) && func_802C1EE0()){
+        if(!func_8029105C(8) && ncDynamicCamA_func_802C1EE0()){
             func_802914CC(0x10);
         }
 
@@ -238,7 +238,7 @@ void func_80291328(void){
 }
 
 /* camera update */
-void func_80291358(void){
+void cameraMode_update(void){
     func_8029E1A8(7);
     func_80290298();
     func_8029028C(0);
@@ -248,7 +248,7 @@ void func_80291358(void){
                 break;
             if(D_8037C060){
                 func_80291488(1);
-                func_802BD0D8(D_8037C060);
+                ncDynamicCamera_setState(D_8037C060);
             }
             else{
                 func_80291488(2);
@@ -276,7 +276,7 @@ void func_80291358(void){
         default://80291438
             if(D_8037C060){
                 func_80291488(1);
-                func_802BD0D8(D_8037C060);
+                ncDynamicCamera_setState(D_8037C060);
             }
             else{
                 func_80291154();
@@ -305,13 +305,13 @@ void func_802914CC(s32 arg0){
     D_8037C060 = arg0;
     if(D_8037C062 != 9 && D_8037C062 != 0xa){
         func_80291488(1);
-        func_802BD0D8(arg0);
+        ncDynamicCamera_setState(arg0);
     }
 }
 
 void func_8029151C(s32 arg0){
     func_80291488(6);
-    func_802BD0D8(arg0);
+    ncDynamicCamera_setState(arg0);
 }
 
 void func_80291548(void){

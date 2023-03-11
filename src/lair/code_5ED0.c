@@ -3,6 +3,8 @@
 #include "variables.h"
 
 #include "core2/code_C9E70.h"
+#include "core2/nc/camera.h"
+
 
 #define ARRLEN(x) ((s32)(sizeof(x) / sizeof(x[0])))
 
@@ -587,8 +589,8 @@ void lair_func_8038CD48(void)
 
 void func_8038CE00(void)
 {
-    func_802BBC58(1);
-    set_camera_to_node(0);
+    camera_setType(CAMERA_TYPE_1_UNKNOWN);
+    ncStaticCamera_setToNode(0);
 }
 
 void func_8038CE28(void)
@@ -822,7 +824,7 @@ void func_8038D3F0(s32 a0, s32 a1)
 void func_8038D48C(void)
 {
     func_8028F918(0);
-    func_802BAE4C();
+    ncStaticCamera_exit();
     func_802BC280();
 }
 

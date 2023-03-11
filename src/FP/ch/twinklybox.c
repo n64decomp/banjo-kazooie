@@ -244,7 +244,7 @@ void func_8038D51C(ActorMarker *marker){
     FUNC_8030E624(SFX_416, 0.8f, 32000);
     func_8028F8F8(7, 0);
     this->unk1C[1] = 1.0f;
-    func_80324E88(1.7f);
+    timed_exitStaticCamera(1.7f);
     func_80324E38(1.7f, 0);
     timedFunc_set_1(2.3f, (GenMethod_1)func_8038D294, (s32)this->marker);
     this->velocity[1] = 1.0f;
@@ -257,7 +257,7 @@ void func_8038D5C8(ActorMarker *this_marker, ActorMarker *other_marker){
 
     if(this->state == 1 || this->state == 2){
         actor_collisionOff(this);
-        timed_setCameraToNode(0.0f, 0xa);
+        timed_setStaticCameraToNode(0.0f, 0xa);
         func_80324CD8(0.1f);
         func_8028F784(1);
         func_8028F490(D_8039237C);
@@ -360,7 +360,7 @@ void func_8038D6C8(Actor *this){
         if(this->velocity[0] != 0.0f)
             break;
 
-        func_80324E88(0.0f);
+        timed_exitStaticCamera(0.0f);
         func_8028F784(0);
         func_80328B8C(this, 4, 0.999f, 1);
         actor_playAnimationOnce(this);
@@ -386,7 +386,7 @@ void func_8038D6C8(Actor *this){
             func_8038D3D8();
             func_80324E38(0.0f, 3);
             timedFunc_set_1(1.3f, (GenMethod_1)func_8038D51C, (s32)this->marker);
-            timed_setCameraToNode(0.9f, 0xC);
+            timed_setStaticCameraToNode(0.9f, 0xC);
             item_set(ITEM_24_TWINKLY_SCORE, this->unk38_31);
             func_80347A14(1);
             break;
