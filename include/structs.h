@@ -48,13 +48,13 @@ typedef struct variable_length_array{
 #define vector(T) struct variable_length_array
 //^defined to keep element type with vla
 
-typedef struct static_length_array{
+typedef struct freelist_s{
     s16 elem_size;
     s16 elem_cnt;
     u8 unk4[];
-}SLA;
+}FLA;
 
-#define array(T) struct static_length_array
+#define FREE_LIST(T) struct freelist_s
 //^defined to keep element type with sla
 
 typedef struct bk_sprite_s{
@@ -108,7 +108,7 @@ typedef struct model_cache_s{
     BKModelBin * modelPtr;
     BKSprite   * unk4; 
     BKSpriteDisplayData *unk8;
-    u32     unkC;
+    u32     animated_texture_cache_id;
     u32     unk10;
 } ModelCache;
 
@@ -283,7 +283,7 @@ typedef struct struct_11_s{
     u8 unk14;
     u8 unk15;
     u8 pad16[0x2];
-    array(struct12s) *unk18;
+    FREE_LIST(struct12s) *unk18;
     s32 unk1C[0xE];
 } CoMusic;
 

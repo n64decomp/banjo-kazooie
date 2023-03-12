@@ -611,7 +611,7 @@ enum model_render_color_mode_e  modelRenderColorMode;
 BKGfxList *            modelRenderDisplayList;
 struct58s *            D_8038371C;
 static BKTextureList * modelRenderTextureList;
-s32                    D_80383724;
+s32                    modelRenderAnimatedTexturesCacheId;
 static BKVertexList *  modelRendervertexList;
 BKModelUnk20List *     D_8038372C;
 struct58s *            D_80383730;
@@ -684,7 +684,7 @@ void modelRender_reset(void){
     modelRenderDisplayList = NULL;
     D_8038371C = NULL;
     modelRenderTextureList = NULL;
-    D_80383724 = 0;
+    modelRenderAnimatedTexturesCacheId = 0;
     modelRendervertexList = NULL;
     D_8038372C = 0;
     modelRenderCallback.pre_method = NULL;
@@ -1084,8 +1084,8 @@ BKModelBin *modelRender_draw(Gfx **gfx, Mtx **mtx, f32 position[3], f32 rotation
 
     if(model_bin){
         verts = modelRendervertexList ? modelRendervertexList : (BKVertexList *)((s32)model_bin + model_bin->vtx_list_offset_10);
-        spD0 = verts->unk16;
-        spD4 = verts->unk12;
+        spD0 = verts->global_norm;
+        spD4 = verts->local_norm;
     }
     else{
         spD0 = D_803837C8.unk8;
@@ -1143,12 +1143,13 @@ BKModelBin *modelRender_draw(Gfx **gfx, Mtx **mtx, f32 position[3], f32 rotation
     gSPSegment((*gfx)++, 0x01, osVirtualToPhysical(&modelRendervertexList->vtx_18));
     gSPSegment((*gfx)++, 0x02, osVirtualToPhysical(&modelRenderTextureList->tex_8[modelRenderTextureList->cnt_4]));
 
-    if(D_80383724){
+    //segments 11 to 15 contain animated textures
+    if(modelRenderAnimatedTexturesCacheId){
         int i_segment;
         s32 texture_offset;
         
         for(i_segment = 0; i_segment < 4; i_segment++){
-            if(func_80349BB0(D_80383724, i_segment, &texture_offset))
+            if(AnimTextureListCache_tryGetTextureOffset(modelRenderAnimatedTexturesCacheId, i_segment, &texture_offset))
                 gSPSegment((*gfx)++, 15 - i_segment, osVirtualToPhysical((u8*)&modelRenderTextureList->tex_8[modelRenderTextureList->cnt_4] + texture_offset));
         }
     }
@@ -1308,11 +1309,11 @@ s32 func_8033A070(BKModelBin *arg0){
     return arg0->geo_typ_A;
 }
 
-BKGfxList *func_8033A078(BKModelBin *arg0){
+BKGfxList *model_getDisplayList(BKModelBin *arg0){
     return (BKGfxList *)((s32)arg0 + arg0->gfx_list_offset_C);
 }
 
-BKCollisionList *func_8033A084(BKModelBin *arg0){
+BKCollisionList *model_getCollisionList(BKModelBin *arg0){
     if(arg0 == NULL)
         return NULL;
     
@@ -1344,14 +1345,14 @@ s32 func_8033A0F0(s32 arg0){
     return D_80383658[arg0];
 }
 
-BKTextureList *model_getTextureList(BKModelBin *arg0){
-    return (BKTextureList *)((s32)arg0 + arg0->texture_list_offset_8);
+BKTextureList *model_getTextureList(BKModelBin *model_bin){
+    return (BKTextureList *)((s32)model_bin + model_bin->texture_list_offset_8);
 }
 
-void *func_8033A110(BKModelBin *arg0){
-    if(arg0->unk2C == 0)
+AnimTexture *model_getAnimTextureList(BKModelBin *model_bin){
+    if(model_bin->animated_texture_list_offset == 0)
         return NULL;
-    return (void*)((s32)arg0 + arg0->unk2C);
+    return (void*)((s32)model_bin + model_bin->animated_texture_list_offset);
 }
 
 BKModelUnk14List *func_8033A12C(BKModelBin *this){
@@ -1360,7 +1361,7 @@ BKModelUnk14List *func_8033A12C(BKModelBin *this){
     return (BKModelUnk14List *)((s32)this + this->unk14);
 }
 
-BKVertexList *func_8033A148(BKModelBin *arg0){
+BKVertexList *model_getVtxList(BKModelBin *arg0){
     return (BKVertexList *)((s32)arg0 + arg0->vtx_list_offset_10);
 }
 
@@ -1503,8 +1504,8 @@ void modelRender_setTextureList(BKTextureList *textureList){
     modelRenderTextureList = textureList;
 }
 
-void func_8033A494(s32 arg0){
-    D_80383724 = arg0;
+void modelRender_setAnimatedTexturesCacheId(s32 arg0){
+    modelRenderAnimatedTexturesCacheId = arg0;
 }
 
 void func_8033A4A0(enum asset_e modelId, f32 arg1, f32 arg2){

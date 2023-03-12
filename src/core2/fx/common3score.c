@@ -3,7 +3,7 @@
 #include "variables.h"
 
 extern f32 func_8024DE1C(f32, f32, f32[3], f32[3]);
-extern f32 func_802EC920(BKVertexList *);
+extern f32 vtxList_getGlobalNorm(BKVertexList *);
 extern void func_80253208(Gfx **gdl, s32 x, s32 y, s32 w, s32 h, void *color_buffer);
 
 extern s16 D_803A5D00[2][0xF660];
@@ -207,7 +207,7 @@ void fxcommon3score_draw(enum item_e item_id, void *arg1, Gfx **gfx, Mtx **mtx, 
         }
         sp68[0] += a1->unk4C;
         if(a1->unk6C == 0.0f){
-            a1->unk6C = 1.1*(func_802EC920(func_8033A148(a1->model)) * a1->unk3C);
+            a1->unk6C = 1.1*(vtxList_getGlobalNorm(model_getVtxList(a1->model)) * a1->unk3C);
         }
         func_80253208(gfx, a1->unk30 - a1->unk6C, sp40 - a1->unk6C, 2*a1->unk6C, 2*a1->unk6C, D_803A5D00[func_8024BDA0()]);
         if(a1->anim_ctrl != NULL){

@@ -10,7 +10,7 @@ extern s32 func_802EC394(BKModelUnk14List *arg0, s32 arg1, s32 arg2, f32 arg3, s
 extern void vtxList_getBounds_s32(BKVertexList *, s32[3], s32[3]);
 extern void func_802F7BC0(Gfx **, Mtx **, Vtx **);
 extern void func_8033A45C(s32, s32);
-
+extern struct5Bs *func_8034A348(struct5Bs *this);
 
 BKCollisionTri *func_80309B48(f32 arg0[3], f32 arg1[3], f32 arg2[3], s32 arg3) ;
 
@@ -339,7 +339,7 @@ void mapModel_opa_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
         modelRender_setDepthMode(MODEL_RENDER_DEPTH_FULL);
         temp_a0 = mapModel.unk0;
         if (temp_a0 != 0) {
-            func_8033A494(temp_a0);
+            modelRender_setAnimatedTexturesCacheId(temp_a0);
         }
         modelRender_setEnvColor(mapModel.env_red, mapModel.env_green, mapModel.env_blue, 0xFF);
         modelRender_draw(gfx, mtx, NULL, NULL, mapModel.description->scale, NULL, mapModel.model_bin_opa);
@@ -359,7 +359,7 @@ void mapModel_xlu_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
         modelRender_setDepthMode(MODEL_RENDER_DEPTH_COMPARE);
         temp_a0 = mapModel.unk4;
         if (temp_a0 != 0) {
-            func_8033A494(temp_a0);
+            modelRender_setAnimatedTexturesCacheId(temp_a0);
         }
         modelRender_setEnvColor(mapModel.env_red, mapModel.env_green, mapModel.env_blue, 0xFF);
         modelRender_draw(gfx, mtx, NULL, NULL, mapModel.description->scale, NULL, mapModel.model_bin_xlu);
@@ -399,7 +399,7 @@ struct5Bs *func_803097A0(void){
 
 
 void mapModel_getCubeBounds(s32 min[3], s32 max[3]) {
-    vtxList_getBounds_s32(func_8033A148(mapModel.model_bin_opa), min, max);
+    vtxList_getBounds_s32(model_getVtxList(mapModel.model_bin_opa), min, max);
     func_8033ECD8(min, max, 1000);
     min[0] = min[0] + mapModel.description->unk6[0];
     min[1] = min[1] + mapModel.description->unk6[1];
@@ -412,7 +412,7 @@ void mapModel_getCubeBounds(s32 min[3], s32 max[3]) {
 void mapModel_getOpaBounds(s32 min[3], s32 max[3]) {
     s32 i;
 
-    vtxList_getBounds_s32(func_8033A148(mapModel.model_bin_opa), min, max);
+    vtxList_getBounds_s32(model_getVtxList(mapModel.model_bin_opa), min, max);
     for(i = 0; i < 3; i++){
         min[i] *= mapModel.scale;
         max[i] *= mapModel.scale;
@@ -424,14 +424,14 @@ void mapModel_getBounds(s32 min[3], s32 max[3]) {
     s32 xlu_min[3];
     s32 xlu_max[3];
 
-    vtxList_getBounds_s32(func_8033A148(mapModel.model_bin_opa), min, max);
+    vtxList_getBounds_s32(model_getVtxList(mapModel.model_bin_opa), min, max);
     for(i = 0; i < 3; i++){
         min[i] *= mapModel.scale;
         max[i] *= mapModel.scale;
     }
 
     if (mapModel.model_bin_xlu != NULL) {
-        vtxList_getBounds_s32(func_8033A148(mapModel.model_bin_xlu), xlu_min, xlu_max);
+        vtxList_getBounds_s32(model_getVtxList(mapModel.model_bin_xlu), xlu_min, xlu_max);
         for(j = 0; j < 3; j++){
             if(xlu_min[j] < min[j]){
                 min[j] = xlu_min[j];
@@ -457,9 +457,9 @@ BKCollisionTri *func_80309B48(f32 arg0[3], f32 arg1[3], f32 arg2[3], s32 flagFil
         if ((flagFilter & 0x80001F00) == 0x80001F00) {
             sp2C = NULL;
         } else {
-            sp2C = func_802E76B0(mapModel.collision_opa, func_8033A148(mapModel.model_bin_opa), arg0, arg1, arg2, flagFilter);
+            sp2C = func_802E76B0(mapModel.collision_opa, model_getVtxList(mapModel.model_bin_opa), arg0, arg1, arg2, flagFilter);
         }
-        temp_v0 = func_802E76B0(mapModel.collision_xlu, func_8033A148(mapModel.model_bin_xlu), arg0, arg1, arg2, flagFilter);
+        temp_v0 = func_802E76B0(mapModel.collision_xlu, model_getVtxList(mapModel.model_bin_xlu), arg0, arg1, arg2, flagFilter);
         if (temp_v0 != NULL) {
             mapModel.unk20 = (s32) mapModel.model_bin_xlu;
             return temp_v0;
@@ -470,7 +470,7 @@ BKCollisionTri *func_80309B48(f32 arg0[3], f32 arg1[3], f32 arg2[3], s32 flagFil
         return sp2C;
     }
     else{
-        sp2C = func_802E76B0(mapModel.collision_opa, func_8033A148(mapModel.model_bin_opa), arg0, arg1, arg2, flagFilter);
+        sp2C = func_802E76B0(mapModel.collision_opa, model_getVtxList(mapModel.model_bin_opa), arg0, arg1, arg2, flagFilter);
         if (sp2C != NULL) {
             mapModel.unk20 = (s32) mapModel.model_bin_opa;
         }
@@ -482,7 +482,7 @@ BKCollisionTri *func_80309C74(f32 arg0[3], f32 arg1[3], f32 arg2[3], s32 flagFil
     BKCollisionTri *sp2C;
     BKCollisionTri *phi_v0;
 
-    sp2C = func_802E76B0(mapModel.collision_opa, func_8033A148(mapModel.model_bin_opa), arg0, arg1, arg2, flagFilter);
+    sp2C = func_802E76B0(mapModel.collision_opa, model_getVtxList(mapModel.model_bin_opa), arg0, arg1, arg2, flagFilter);
     if (sp2C != NULL) {
         *arg4 = mapModel.model_bin_opa;
     }
@@ -490,19 +490,19 @@ BKCollisionTri *func_80309C74(f32 arg0[3], f32 arg1[3], f32 arg2[3], s32 flagFil
         return sp2C;
     }
 
-    phi_v0 = func_802E76B0(mapModel.collision_xlu, func_8033A148(mapModel.model_bin_xlu), arg0, arg1, arg2, flagFilter);
+    phi_v0 = func_802E76B0(mapModel.collision_xlu, model_getVtxList(mapModel.model_bin_xlu), arg0, arg1, arg2, flagFilter);
     if (phi_v0 != 0) {
         *arg4 = mapModel.model_bin_xlu;
     }
     return (phi_v0 != NULL) ? phi_v0 : sp2C;
 }
 
-UNK_TYPE(s32) func_80309D58(UNK_TYPE(s32) arg0, UNK_TYPE(s32) arg1) {
+bool func_80309D58(f32 arg0[3], UNK_TYPE(s32) arg1) {
     BKMeshList *temp_v0;
 
     temp_v0 = func_8033A12C(mapModel.model_bin_opa);
     if (temp_v0 != NULL) {
-        return func_802EC394(temp_v0, 0, 0, 1.0f, 0, arg0, arg1);
+        return func_802EC394(temp_v0, NULL, NULL, 1.0f, NULL, arg0, arg1);
     }
     return 0;
 }
@@ -512,14 +512,14 @@ UNK_TYPE(s32) func_80309DBC(f32 currentPosition[3], f32 next_position[3], f32 ar
     s32 temp_v0_2;
 
     mapModel.unk20 = 0;
-    sp34 = func_802E8E88(mapModel.collision_opa, func_8033A148(mapModel.model_bin_opa), currentPosition, next_position, arg2, arg3, arg4, arg5);
+    sp34 = func_802E8E88(mapModel.collision_opa, model_getVtxList(mapModel.model_bin_opa), currentPosition, next_position, arg2, arg3, arg4, arg5);
     if (sp34 != 0) {
         mapModel.unk20 = (s32) mapModel.model_bin_opa;
     }
     if (mapModel.collision_xlu == 0) {
         return sp34;
     }
-    temp_v0_2 = func_802E8E88(mapModel.collision_xlu, func_8033A148(mapModel.model_bin_xlu), currentPosition, next_position, arg2, arg3, arg4, arg5);
+    temp_v0_2 = func_802E8E88(mapModel.collision_xlu, model_getVtxList(mapModel.model_bin_xlu), currentPosition, next_position, arg2, arg3, arg4, arg5);
     if (temp_v0_2 != 0) {
         mapModel.unk20 = (s32) mapModel.model_bin_xlu;
         return temp_v0_2;
@@ -531,11 +531,11 @@ UNK_TYPE(s32) func_80309EB0(f32 arg0[3], f32 arg1, f32 arg2[3], s32 arg3) {
     s32 sp24;
     s32 temp_v0_2;
 
-    sp24 = func_802E92AC(mapModel.collision_opa, func_8033A148(mapModel.model_bin_opa), arg0, arg1, arg2, arg3);
+    sp24 = func_802E92AC(mapModel.collision_opa, model_getVtxList(mapModel.model_bin_opa), arg0, arg1, arg2, arg3);
     if (mapModel.collision_xlu == 0) {
         return sp24;
     }
-    temp_v0_2 = func_802E92AC(mapModel.collision_xlu, func_8033A148(mapModel.model_bin_xlu), arg0, arg1, arg2, arg3);
+    temp_v0_2 = func_802E92AC(mapModel.collision_xlu, model_getVtxList(mapModel.model_bin_xlu), arg0, arg1, arg2, arg3);
     return (temp_v0_2 != 0) ? temp_v0_2 : sp24;
 }
 
@@ -585,18 +585,18 @@ void func_8030A078(void) {
     mapModel.description = description;
     mapModel.scale = (f32) description->scale;
     mapModel.model_bin_opa = (BKModelBin *)assetcache_get(mapModel.description->opa_model_id);
-    mapModel.collision_opa = func_8033A084(mapModel.model_bin_opa);
+    mapModel.collision_opa = model_getCollisionList(mapModel.model_bin_opa);
     mapModel.unk20 = 0;
     if (mapModel.description->xlu_model_id != 0) {
         mapModel.model_bin_xlu = (BKModelBin *)assetcache_get(mapModel.description->xlu_model_id);
-        mapModel.collision_xlu = func_8033A084(mapModel.model_bin_xlu);
+        mapModel.collision_xlu = model_getCollisionList(mapModel.model_bin_xlu);
     } else {
         mapModel.model_bin_xlu = NULL;
         mapModel.collision_xlu = NULL;
     }
     sp24 = func_8033A0B0(mapModel.model_bin_opa);
     if (sp24 != NULL) {
-        mapModel.model_opa = func_8033F5F8(sp24, func_8033A148(mapModel.model_bin_opa));
+        mapModel.model_opa = func_8033F5F8(sp24, model_getVtxList(mapModel.model_bin_opa));
     } else {
         mapModel.model_opa = NULL;
     }
@@ -612,7 +612,7 @@ void func_8030A078(void) {
     }
     
     if (sp24 != NULL) {
-        mapModel.model_xlu = func_8033F5F8(sp24, func_8033A148(mapModel.model_bin_xlu));
+        mapModel.model_xlu = func_8033F5F8(sp24, model_getVtxList(mapModel.model_bin_xlu));
     } else {
         mapModel.model_xlu = 0;
     }
@@ -622,15 +622,15 @@ void func_8030A078(void) {
     mapModel.unk24 = func_8034A2C8();
     func_80320B44(func_80309B48, func_80309DBC, func_80309EB0, func_80309794);
 
-    if (( mapModel.model_bin_opa != NULL) && (func_8033A110( mapModel.model_bin_opa) != NULL)) {
-        mapModel.unk0 = func_80349C3C();
-        func_80349D00(mapModel.unk0, func_8033A110(mapModel.model_bin_opa));
+    if (( mapModel.model_bin_opa != NULL) && (model_getAnimTextureList( mapModel.model_bin_opa) != NULL)) {
+        mapModel.unk0 = AnimTextureListCache_newList();
+        AnimTextureListCache_at(mapModel.unk0, model_getAnimTextureList(mapModel.model_bin_opa));
     } else {
         mapModel.unk0 = NULL;
     }
-    if ((mapModel.model_bin_xlu != NULL) && (func_8033A110(mapModel.model_bin_xlu) != 0)) {
-        mapModel.unk4 = func_80349C3C();
-        func_80349D00(mapModel.unk4, func_8033A110(mapModel.model_bin_xlu));
+    if ((mapModel.model_bin_xlu != NULL) && (model_getAnimTextureList(mapModel.model_bin_xlu) != 0)) {
+        mapModel.unk4 = AnimTextureListCache_newList();
+        AnimTextureListCache_at(mapModel.unk4, model_getAnimTextureList(mapModel.model_bin_xlu));
     }
     else{
         mapModel.unk4 = NULL;

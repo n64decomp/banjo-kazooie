@@ -103,7 +103,7 @@ void func_80320B84(void){
     D_80383230.unk84 = NULL;
 }
 
-BKCollisionTri *func_80320B98(f32 arg0[3], f32 arg1[3], f32 arg2[3], u32 arg3) {
+BKCollisionTri *func_80320B98(f32 arg0[3], f32 arg1[3], f32 arg2[3], u32 flags) {
     Struct_core2_999A0_0 *var_s0;
     BKCollisionTri * temp_v0_2;
     BKCollisionTri * var_s7;
@@ -112,7 +112,7 @@ BKCollisionTri *func_80320B98(f32 arg0[3], f32 arg1[3], f32 arg2[3], u32 arg3) {
     D_80383230.unk84 = NULL;
     for(var_s0 = &D_80383230.unk0[0]; var_s0 < D_80383230.unk80; var_s0++){
         if (var_s0->unk0 != NULL) {
-            temp_v0_2 = var_s0->unk0(arg0, arg1, arg2, arg3);
+            temp_v0_2 = var_s0->unk0(arg0, arg1, arg2, flags);
             if (temp_v0_2 != NULL) {
                 if (var_s0->unkC != NULL) {
                     D_80383230.unk84 = var_s0->unkC();

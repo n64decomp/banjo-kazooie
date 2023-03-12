@@ -44,7 +44,7 @@ void vtxList_getBoundsMlMtxTransformed(BKVertexList *self, f32 min[3], f32 max[3
     Vtx *end_vtx;
     Vtx *i_vtx;
     s32 i;
-    f32 sp44[3];
+    f32 i_coord[3];
 
     start_vtx = (Vtx *)(self + 1);
     end_vtx = start_vtx + self->count;
@@ -57,17 +57,17 @@ void vtxList_getBoundsMlMtxTransformed(BKVertexList *self, f32 min[3], f32 max[3
     max[2] = min[2];
 
     for( i_vtx = start_vtx + 1; i_vtx < end_vtx; i_vtx++){ 
-        sp44[0] = (f32) i_vtx->v.ob[0];
-        sp44[1] = (f32) i_vtx->v.ob[1];
-        sp44[2] = (f32) i_vtx->v.ob[2];
-        func_8025235C(sp44, sp44);
+        i_coord[0] = (f32) i_vtx->v.ob[0];
+        i_coord[1] = (f32) i_vtx->v.ob[1];
+        i_coord[2] = (f32) i_vtx->v.ob[2];
+        func_8025235C(i_coord, i_coord);
 
         for(i = 0; i < 3; i++){
-            if( sp44[i] < min[i]){
-                min[i] = sp44[i];
+            if( i_coord[i] < min[i]){
+                min[i] = i_coord[i];
             }
-            if( max[i] < sp44[i]){
-                max[i] = sp44[i];
+            if( max[i] < i_coord[i]){
+                max[i] = i_coord[i];
             }
         }
     }
@@ -78,51 +78,51 @@ void func_802EC680(BKVertexList *self, s32 arg1, f32 arg2[3], f32 arg3[3]) {
     Vtx *end_vtx;
     Vtx *i_vtx;
     s32 i;
-    f32 sp44[3];
+    f32 i_coord[3];
 
     start_vtx = (Vtx*)(self + 1);
     end_vtx = start_vtx + self->count;
 
     for(i_vtx = start_vtx; i_vtx < end_vtx; i_vtx++){
-        sp44[0] = (f32) i_vtx->v.ob[0];
-        sp44[1] = (f32) i_vtx->v.ob[1];
-        sp44[2] = (f32) i_vtx->v.ob[2];
-        func_8025235C(sp44, sp44);
-        if ((i_vtx == start_vtx) || (sp44[1] < arg2[1])) {
-            arg2[1] = sp44[1];
+        i_coord[0] = (f32) i_vtx->v.ob[0];
+        i_coord[1] = (f32) i_vtx->v.ob[1];
+        i_coord[2] = (f32) i_vtx->v.ob[2];
+        func_8025235C(i_coord, i_coord);
+        if ((i_vtx == start_vtx) || (i_coord[1] < arg2[1])) {
+            arg2[1] = i_coord[1];
         }
     }
 
     arg3[1] = arg2[1]+ (f32) arg1;
 
     for(i_vtx = start_vtx; i_vtx < end_vtx; i_vtx++){
-        sp44[0] = (f32) i_vtx->v.ob[0];
-        sp44[1] = (f32) i_vtx->v.ob[1];
-        sp44[2] = (f32) i_vtx->v.ob[2];
-        func_8025235C(sp44, sp44);
-        if (sp44[1] < arg3[1]) {
+        i_coord[0] = (f32) i_vtx->v.ob[0];
+        i_coord[1] = (f32) i_vtx->v.ob[1];
+        i_coord[2] = (f32) i_vtx->v.ob[2];
+        func_8025235C(i_coord, i_coord);
+        if (i_coord[1] < arg3[1]) {
 
-            arg2[0] = sp44[0];
-            arg2[2] = sp44[2];
+            arg2[0] = i_coord[0];
+            arg2[2] = i_coord[2];
             
-            arg3[0] = sp44[0];
-            arg3[2] = sp44[2];
+            arg3[0] = i_coord[0];
+            arg3[2] = i_coord[2];
             break;
         } 
     }
 
     for(i_vtx = i_vtx + 1; i_vtx < end_vtx; i_vtx++) {
-        sp44[0] = (f32) i_vtx->v.ob[0];
-        sp44[1] = (f32) i_vtx->v.ob[1];
-        sp44[2] = (f32) i_vtx->v.ob[2];
-        func_8025235C(sp44, sp44);
-        if (sp44[1] < arg3[1]) {
+        i_coord[0] = (f32) i_vtx->v.ob[0];
+        i_coord[1] = (f32) i_vtx->v.ob[1];
+        i_coord[2] = (f32) i_vtx->v.ob[2];
+        func_8025235C(i_coord, i_coord);
+        if (i_coord[1] < arg3[1]) {
             for(i = 0; i < 3; i+=2){
-                if (sp44[i] < arg2[i]) {
-                    arg2[i] = sp44[i];
+                if (i_coord[i] < arg2[i]) {
+                    arg2[i] = i_coord[i];
                 }
-                if (arg3[i] < sp44[i]) {
-                    arg3[i] = sp44[i];
+                if (arg3[i] < i_coord[i]) {
+                    arg3[i] = i_coord[i];
                 }
             }
         }
@@ -138,19 +138,19 @@ s32 vtxList_getVtxCount(BKVertexList *this){
     return this->count;
 }
 
-f32 func_802EC920(BKVertexList *this){
-    return (f32)this->unk16;
+f32 vtxList_getGlobalNorm(BKVertexList *this){
+    return (f32)this->global_norm;
 }
 
-void func_802EC930(BKVertexList *this, f32 center[3], f32 *arg2){
+void vtxList_getCenterAndNorm(BKVertexList *this, f32 center[3], f32 *norm){
     center[0] = (f32)this->centerCoord[0];
     center[1] = (f32)this->centerCoord[1];
     center[2] = (f32)this->centerCoord[2];
-    *arg2 = this->unk12; 
+    *norm = this->local_norm; 
 }
 
-f32 func_802EC984(BKVertexList *this){
-    return (f32)this->unk12;
+f32 vtxList_getLocalNorm(BKVertexList *this){
+    return (f32)this->local_norm;
 }
 
 void vtxList_free(BKVertexList *vtxList){
@@ -203,7 +203,7 @@ void vtxList_tint(BKVertexList *dst, s32 target_color[3], f32 amount, BKVertexLi
     osWritebackDCache(start_ptr, ((s32)(end_ptr - start_ptr)) * sizeof(Vtx));
 }
 
-void func_802ECBD4(BKVertexList *dst, BKVertexList *src, f32 arg2[3], f32 arg3[3], f32 arg4[4]) {
+void func_802ECBD4(BKVertexList *dst, BKVertexList *src, f32 arg2[3], f32 rotation[3], f32 arg4[4]) {
     f32 sp74[3];
     f32 sp68[3];
     Vtx *dst_vtx;
@@ -218,11 +218,11 @@ void func_802ECBD4(BKVertexList *dst, BKVertexList *src, f32 arg2[3], f32 arg3[3
     viewport_getPosition(sp74);
     func_8024C5A8(sp68);
     mlMtxIdent();
-    func_80252CC4(arg2, arg3, 1.0f, NULL);
+    func_80252CC4(arg2, rotation, 1.0f, NULL);
     func_8025235C(sp74, sp74);
 
     mlMtxIdent();
-    func_80252CC4(NULL, arg3, 1.0f, NULL);
+    func_80252CC4(NULL, rotation, 1.0f, NULL);
     func_8025235C(sp68, sp68);
 
     start_vtx = (Vtx *)(dst + 1);

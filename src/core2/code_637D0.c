@@ -10,7 +10,7 @@ extern  s32 func_802EBAE0(BKModelUnk14List *arg0, f32 position[3], f32 rotation[
 Mtx D_80380880;
 
 /* .code */
-bool func_802EA760(BKModelUnk14List *arg0, s32 arg1, f32 arg2[3], f32 arg3[3], f32 arg4, f32 arg5[3], f32 arg6[3], f32 *arg7) {
+bool func_802EA760(BKModelUnk14List *arg0, s32 arg1, f32 arg2[3], f32 rotation[3], f32 scale, f32 arg5[3], f32 arg6[3], f32 *arg7) {
     s32 start;
     BKModelUnk14_2 *temp_v0;
 
@@ -25,9 +25,9 @@ bool func_802EA760(BKModelUnk14List *arg0, s32 arg1, f32 arg2[3], f32 arg3[3], f
     arg6[2] = (f32) temp_v0->unk2[2];
     *arg7 = (f32) temp_v0->unk0;
     mlMtxIdent();
-    func_80252C08(arg2, arg3, arg4, arg5);
+    func_80252C08(arg2, rotation, scale, arg5);
     func_8025235C(arg6, arg6);
-    *arg7 /= arg4;
+    *arg7 /= scale;
     return TRUE;
 }
 
@@ -126,7 +126,7 @@ s32 func_802EAD5C(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 
     f32 temp_f20;
     f32 sp4C[3];
     BKModelUnk14_2 *end_ptr;
-    BKModelUnk14_2 *var_s0;
+    BKModelUnk14_2 *i_ptr;
     f32 pad40;
     f32 sp34[3];
 
@@ -135,19 +135,19 @@ s32 func_802EAD5C(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 
     func_8025235C(sp5C, arg5);
     t0_ptr = (BKModelUnk14_0 *)(arg0 + 1);
     t1_ptr = (BKModelUnk14_1 *)(t0_ptr + arg0->cnt0);
-    var_s0 = (BKModelUnk14_2 *)(t1_ptr + arg0->cnt2);
-    end_ptr = var_s0  + arg0->unk4;
-    for(var_s0 = var_s0; var_s0 < end_ptr; var_s0++) {
-        sp4C[0] = (f32) var_s0->unk2[0];
-        sp4C[1] = (f32) var_s0->unk2[1];
-        sp4C[2] = (f32) var_s0->unk2[2];
+    i_ptr = (BKModelUnk14_2 *)(t1_ptr + arg0->cnt2);
+    end_ptr = i_ptr  + arg0->unk4;
+    for(i_ptr = i_ptr; i_ptr < end_ptr; i_ptr++) {
+        sp4C[0] = (f32) i_ptr->unk2[0];
+        sp4C[1] = (f32) i_ptr->unk2[1];
+        sp4C[2] = (f32) i_ptr->unk2[2];
 
-        temp_f20 = (f32)var_s0->unk0;
+        temp_f20 = (f32)i_ptr->unk0;
         sp34[0] = sp4C[0] - sp5C[0];
         sp34[1] = sp4C[1] - sp5C[1];
         sp34[2] = sp4C[2] - sp5C[2];
         if (!( gu_sqrtf(sp34[0]*sp34[0] + sp34[1]*sp34[1] + sp34[2]*sp34[2]) >= ((arg6 / scale) + temp_f20))) {
-            return var_s0->unk8;
+            return i_ptr->unk8;
         }
     }
     return 0;
@@ -159,7 +159,7 @@ s32 func_802EAED4(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 
     f32 spDC[3];
     f32 spD0[3];
     BKModelUnk14_0 *end_ptr;
-    BKModelUnk14_0 *var_s0;
+    BKModelUnk14_0 *i_ptr;
     f32 spBC[3];
     f32 spB0[3];
     f32 spA4[3];
@@ -170,28 +170,28 @@ s32 func_802EAED4(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 
     f32 sp68[3];
     f32 sp5C[3];
 
-    var_s0 = (BKModelUnk14_0 *)(arg0 + 1);
-    end_ptr = var_s0 + arg0->cnt0;
-    for(var_s0 = var_s0; var_s0 < end_ptr; var_s0++){
-        spF4[0] = (f32) var_s0->unkC[0];
-        spF4[1] = (f32) var_s0->unkC[1];
-        spF4[2] = (f32) var_s0->unkC[2];
+    i_ptr = (BKModelUnk14_0 *)(arg0 + 1);
+    end_ptr = i_ptr + arg0->cnt0;
+    for(i_ptr = i_ptr; i_ptr < end_ptr; i_ptr++){
+        spF4[0] = (f32) i_ptr->unkC[0];
+        spF4[1] = (f32) i_ptr->unkC[1];
+        spF4[2] = (f32) i_ptr->unkC[2];
 
-        spE8[0] = (f32) var_s0->unk0[0];
-        spE8[1] = (f32) var_s0->unk0[1];
-        spE8[2] = (f32) var_s0->unk0[2];
+        spE8[0] = (f32) i_ptr->unk0[0];
+        spE8[1] = (f32) i_ptr->unk0[1];
+        spE8[2] = (f32) i_ptr->unk0[2];
 
-        spDC[0] = (f32) var_s0->unk6[0];
-        spDC[1] = (f32) var_s0->unk6[1];
-        spDC[2] = (f32) var_s0->unk6[2];
+        spDC[0] = (f32) i_ptr->unk6[0];
+        spDC[1] = (f32) i_ptr->unk6[1];
+        spDC[2] = (f32) i_ptr->unk6[2];
 
-        spD0[0] = (f32)var_s0->unk12[0];
-        spD0[1] = (f32)var_s0->unk12[1];
-        spD0[2] = (f32)var_s0->unk12[2];
+        spD0[0] = (f32)i_ptr->unk12[0];
+        spD0[1] = (f32)i_ptr->unk12[1];
+        spD0[2] = (f32)i_ptr->unk12[2];
         spD0[0] *= 2;
         spD0[1] *= 2;
         spD0[2] *= 2;
-        func_802519C8(&D_80380880, func_802EA110(arg5, var_s0->unk16));
+        func_802519C8(&D_80380880, func_802EA110(arg5, i_ptr->unk16));
         func_80252E4C(spF4, spD0);
         func_802524F0(spB0, spE8[0], spE8[1], spE8[2]);
         func_802524F0(sp98, spE8[0], spE8[1], spDC[2]);
@@ -247,8 +247,8 @@ s32 func_802EB458(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 
     BKModelUnk14_0 *ptr_t0;
     f32 spB8[3];
     f32 spAC[3];
-    BKModelUnk14_1 *temp_s2;
-    BKModelUnk14_1 *var_s0;
+    BKModelUnk14_1 *end_ptr;
+    BKModelUnk14_1 *i_ptr;
     
     f32 sp98[3];
     f32 sp8C[3];
@@ -260,21 +260,21 @@ s32 func_802EB458(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 
     f32 temp_f6;
     
     ptr_t0 = (BKModelUnk14_0 *) (arg0 + 1);
-    var_s0 = (BKModelUnk14_1 *) (ptr_t0 + arg0->cnt0);
-    temp_s2 = var_s0 + arg0->cnt2;
-    for (var_s0 = var_s0; var_s0 < temp_s2; var_s0++)
+    i_ptr = (BKModelUnk14_1 *) (ptr_t0 + arg0->cnt0);
+    end_ptr = i_ptr + arg0->cnt2;
+    for (i_ptr = i_ptr; i_ptr < end_ptr; i_ptr++)
     {
-        spB8[0] = (f32) var_s0->unk4[0];
-        spB8[1] = (f32) var_s0->unk4[1];
-        spB8[2] = (f32) var_s0->unk4[2];
-        spAC[0] = (f32) (var_s0->unkA[0] * 2);
-        spAC[1] = (f32) (var_s0->unkA[1] * 2);
-        spAC[2] = (f32) (var_s0->unkA[2] * 2);
-        func_802519C8(&D_80380880, func_802EA110(arg5, var_s0->unkE));
+        spB8[0] = (f32) i_ptr->unk4[0];
+        spB8[1] = (f32) i_ptr->unk4[1];
+        spB8[2] = (f32) i_ptr->unk4[2];
+        spAC[0] = (f32) (i_ptr->unkA[0] * 2);
+        spAC[1] = (f32) (i_ptr->unkA[1] * 2);
+        spAC[2] = (f32) (i_ptr->unkA[2] * 2);
+        func_802519C8(&D_80380880, func_802EA110(arg5, i_ptr->unkE));
         func_80252D8C(spB8, spAC);
-        func_802524F0(sp98, 0.0f, 0.0f, (f32) ((-var_s0->unk2) / 2));
-        func_802524F0(sp8C, 0.0f, 0.0f, (f32) (var_s0->unk2 / 2));
-        func_802524F0(sp68, (f32) var_s0->unk0, 0.0f, (f32) ((-var_s0->unk2) / 2));
+        func_802524F0(sp98, 0.0f, 0.0f, (f32) ((-i_ptr->unk2) / 2));
+        func_802524F0(sp8C, 0.0f, 0.0f, (f32) (i_ptr->unk2 / 2));
+        func_802524F0(sp68, (f32) i_ptr->unk0, 0.0f, (f32) ((-i_ptr->unk2) / 2));
         sp68[0] -= sp98[0];
         sp68[1] -= sp98[1];
         sp68[2] -= sp98[2];
@@ -303,7 +303,7 @@ s32 func_802EB458(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 
                 temp_f20 = gu_sqrtf(((sp74[0] * sp74[0]) + (sp74[1] * sp74[1])) + (sp74[2] * sp74[2]));
                 if (!((temp_f20 - arg7) > gu_sqrtf(((sp68[0] * sp68[0]) + (sp68[1] * sp68[1])) + (sp68[2] * sp68[2]))))
                 {
-                    return var_s0->unkD;
+                    return i_ptr->unkD;
                 }
             }
         }
@@ -319,8 +319,8 @@ s32 func_802EB8A0(BKModelUnk14List *arg0, f32 *position, f32 *rotation, f32 scal
     f32 sp74[3];
     f32 sp68[3];
     f32 sp5C[3];
-    BKModelUnk14_2 *temp_s4;
-    BKModelUnk14_2 *var_s0;
+    BKModelUnk14_2 *end_ptr;
+    BKModelUnk14_2 *i_ptr;
     f32 temp_f0;
     f32 sp44[3];
 
@@ -329,17 +329,17 @@ s32 func_802EB8A0(BKModelUnk14List *arg0, f32 *position, f32 *rotation, f32 scal
     func_8025235C(&sp74, arg6);
     t0_ptr = (BKModelUnk14_0 *)(arg0 + 1);
     t1_ptr = (BKModelUnk14_1 *)(t0_ptr + arg0->cnt0);
-    var_s0 = (BKModelUnk14_2 *)(t1_ptr  + arg0->cnt2);
-    temp_s4 = var_s0  + arg0->unk4;
+    i_ptr = (BKModelUnk14_2 *)(t1_ptr  + arg0->cnt2);
+    end_ptr = i_ptr  + arg0->unk4;
     arg7 /= scale;
-    for(var_s0 = var_s0; var_s0 < temp_s4; var_s0++){
-        sp68[0] = (f32) var_s0->unk2[0];
-        sp68[1] = (f32) var_s0->unk2[1];
-        sp68[2] = (f32) var_s0->unk2[2];
-        sp5C[0] = sp68[0] + (f32) var_s0->unk0;
+    for(i_ptr = i_ptr; i_ptr < end_ptr; i_ptr++){
+        sp68[0] = (f32) i_ptr->unk2[0];
+        sp68[1] = (f32) i_ptr->unk2[1];
+        sp68[2] = (f32) i_ptr->unk2[2];
+        sp5C[0] = sp68[0] + (f32) i_ptr->unk0;
         sp5C[1] = sp68[1];
         sp5C[2] = sp68[2];
-        func_80251BCC(func_802EA110(arg5, var_s0->unk9));
+        func_80251BCC(func_802EA110(arg5, i_ptr->unk9));
         func_8025235C(sp68, sp68);
         func_8025235C(sp5C, sp5C);
         sp44[0] = sp5C[0] - sp68[0];
@@ -347,14 +347,14 @@ s32 func_802EB8A0(BKModelUnk14List *arg0, f32 *position, f32 *rotation, f32 scal
         sp44[2] = sp5C[2] - sp68[2];
         temp_f0 = gu_sqrtf(sp44[0]*sp44[0] + sp44[1]*sp44[1] + sp44[2]*sp44[2]);
         if ((arg7 + temp_f0 >= ml_distance_vec3f(sp68, sp74))) {
-            return (s32) var_s0->unk8;
+            return (s32) i_ptr->unk8;
         }
     }
     return 0;
 }
 
-bool func_802EBA98(BKModelUnk14List *arg0, f32 arg1[3], s32 arg2, f32 arg3, s32 arg4, f32 arg5[3], f32 arg6, f32 arg7[3]){
-    return func_802EBAE0(arg0, arg1, arg2, arg3, arg4, NULL, arg5, arg6, arg7);
+bool func_802EBA98(BKModelUnk14List *arg0, f32 arg1[3], f32 rotation[3], f32 scale, s32 arg4, f32 arg5[3], f32 arg6, f32 arg7[3]){
+    return func_802EBAE0(arg0, arg1, rotation, scale, arg4, NULL, arg5, arg6, arg7);
 }
 
 s32 func_802EBAE0(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 scale, s32 arg4, s32 arg5, f32 arg6[3], f32 arg7, f32 arg8[3])
@@ -407,46 +407,51 @@ s32 func_802EBAE0(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 
   return phi_v0;
 }
 
-s32 func_802EBD3C(BKModelUnk14List *arg0, f32 arg1[3], f32 arg2[3], f32 arg3, s32 arg4, s32 arg5, s32 arg6)
+s32 func_802EBD3C(BKModelUnk14List *arg0, f32 arg1[3], f32 rotation[3], f32 scale, f32 arg4[3], f32 arg5[3], s32 arg6)
 {
     s32 i;
-    f32 spA0[3];
-    f32 sp94[3];
-    f32 sp88[3];
-    f32 sp7C[3];
-    BKModelUnk14_0 *phi_s0;
-    BKModelUnk14_0 *temp_s4;
+    f32 i_position[3];
+    f32 i_min[3];
+    f32 i_max[3];
+    f32 i_rotation[3];
+    BKModelUnk14_0 *i_ptr;
+    BKModelUnk14_0 *end_ptr;
     f32 sp68[3];
-    BKModelUnk14_0 *temp_s0;
-    temp_s0 = (BKModelUnk14_0 *) (arg0 + 1);
-    temp_s4 = temp_s0 + arg0->cnt0;
-    for (phi_s0 = temp_s0; phi_s0 < temp_s4; phi_s0++)
+    BKModelUnk14_0 *start_ptr;
+
+    start_ptr = (BKModelUnk14_0 *) (arg0 + 1);
+    end_ptr = start_ptr + arg0->cnt0;
+    for (i_ptr = start_ptr; i_ptr < end_ptr; i_ptr++)
     {
-        if ((phi_s0->unk15 != 0) && ((arg6 == 0) || (arg6 == phi_s0->unk15)))
+        if ((i_ptr->unk15 != 0) && ((arg6 == 0) || (arg6 == i_ptr->unk15)))
         {
-            spA0[0] = (f32) phi_s0->unkC[0];
-            spA0[1] = (f32) phi_s0->unkC[1];
-            spA0[2] = (f32) phi_s0->unkC[2];
-            sp94[0] = (f32) phi_s0->unk0[0];
-            sp94[1] = (f32) phi_s0->unk0[1];
-            sp94[2] = (f32) phi_s0->unk0[2];
-            sp88[0] = (f32) phi_s0->unk6[0];
-            sp88[1] = (f32) phi_s0->unk6[1];
-            sp88[2] = (f32) phi_s0->unk6[2];
-            sp7C[0] = (f32) phi_s0->unk12[0];
-            sp7C[1] = (f32) phi_s0->unk12[1];
-            sp7C[2] = (f32) phi_s0->unk12[2];
-            sp7C[0] *= 2;
-            sp7C[1] *= 2;
-            sp7C[2] *= 2;
+            i_position[0] = (f32) i_ptr->unkC[0];
+            i_position[1] = (f32) i_ptr->unkC[1];
+            i_position[2] = (f32) i_ptr->unkC[2];
+
+            i_min[0] = (f32) i_ptr->unk0[0];
+            i_min[1] = (f32) i_ptr->unk0[1];
+            i_min[2] = (f32) i_ptr->unk0[2];
+
+            i_max[0] = (f32) i_ptr->unk6[0];
+            i_max[1] = (f32) i_ptr->unk6[1];
+            i_max[2] = (f32) i_ptr->unk6[2];
+            
+            i_rotation[0] = (f32) i_ptr->unk12[0];
+            i_rotation[1] = (f32) i_ptr->unk12[1];
+            i_rotation[2] = (f32) i_ptr->unk12[2];
+            i_rotation[0] *= 2;
+            i_rotation[1] *= 2;
+            i_rotation[2] *= 2;
+
             mlMtxIdent();
-            func_80252EC8(spA0, sp7C);
-            func_80252CC4(arg1, arg2, arg3, arg4);
-            func_8025235C(sp68, arg5);
+            func_80252EC8(i_position, i_rotation); //rotate about point
+            func_80252CC4(arg1, rotation, scale, arg4); 
+            func_8025235C(sp68, arg5); //apply matrix to arg5
             for (i = 0; i < 3; i++)
             {
                 if (1);
-                if ((sp68[i] <= sp94[i]) || (sp88[i] <= sp68[i]))
+                if ((sp68[i] <= i_min[i]) || (i_max[i] <= sp68[i]))
                 {
                     break;
                 }
@@ -454,7 +459,7 @@ s32 func_802EBD3C(BKModelUnk14List *arg0, f32 arg1[3], f32 arg2[3], f32 arg3, s3
             
             if (i == 3)
             {
-                return phi_s0->unk15;
+                return i_ptr->unk15;
             }
         }
     }
@@ -462,37 +467,37 @@ s32 func_802EBD3C(BKModelUnk14List *arg0, f32 arg1[3], f32 arg2[3], f32 arg3, s3
     return 0;
 }
 
-s32 func_802EC000(BKModelUnk14List *arg0, f32 arg1[3], f32 arg2[3], f32 arg3, s32 arg4, f32 arg5[3], s32 arg6){
-    BKModelUnk14_1 *phi_s0;
+s32 func_802EC000(BKModelUnk14List *arg0, f32 arg1[3], f32 rotation[3], f32 scale, s32 arg4, f32 arg5[3], s32 arg6){
+    BKModelUnk14_1 *i_ptr;
     f32 sp90[3];
     f32 sp84[3];
     BKModelUnk14_0 *t0_ptr;
-    BKModelUnk14_1 *temp_s2;
+    BKModelUnk14_1 *end_ptr;
     f32 temp_f20;
     f32 temp_f22;
     f32 sp68[3];
     f32 temp_f0;
 
     t0_ptr = (BKModelUnk14_0 *)(arg0 + 1);
-    phi_s0 = (BKModelUnk14_1 *)(t0_ptr + arg0->cnt0);
-    temp_s2 = &phi_s0[arg0->cnt2];
-    for(phi_s0 = phi_s0; phi_s0 < temp_s2; phi_s0++){
-        if ((phi_s0->unkD != 0) && ((arg6 == 0) || (arg6 == phi_s0->unkD))) {
-            sp90[0] = (f32) phi_s0->unk4[0];
-            sp90[1] = (f32) phi_s0->unk4[1];
-            sp90[2] = (f32) phi_s0->unk4[2];
-            sp84[0] = (f32) (phi_s0->unkA[0] * 2);
-            sp84[1] = (f32) (phi_s0->unkA[1] * 2);
-            sp84[2] = (f32) (phi_s0->unkA[2] * 2);
-            temp_f20 = (f32) phi_s0->unk0;
-            temp_f22 = (f32) phi_s0->unk2;
+    i_ptr = (BKModelUnk14_1 *)(t0_ptr + arg0->cnt0);
+    end_ptr = &i_ptr[arg0->cnt2];
+    for(i_ptr = i_ptr; i_ptr < end_ptr; i_ptr++){
+        if ((i_ptr->unkD != 0) && ((arg6 == 0) || (arg6 == i_ptr->unkD))) {
+            sp90[0] = (f32) i_ptr->unk4[0];
+            sp90[1] = (f32) i_ptr->unk4[1];
+            sp90[2] = (f32) i_ptr->unk4[2];
+            sp84[0] = (f32) (i_ptr->unkA[0] * 2);
+            sp84[1] = (f32) (i_ptr->unkA[1] * 2);
+            sp84[2] = (f32) (i_ptr->unkA[2] * 2);
+            temp_f20 = (f32) i_ptr->unk0;
+            temp_f22 = (f32) i_ptr->unk2;
             mlMtxIdent();
             func_80252DDC(&sp90, &sp84);
-            func_80252CC4(arg1, arg2, arg3, arg4);
+            func_80252CC4(arg1, rotation, scale, arg4);
             func_8025235C(&sp68, arg5);
             temp_f0 = (f32) (temp_f22 / 2.0);
             if (!(temp_f0 <= sp68[2]) && !(sp68[2] <= -temp_f0) && !((temp_f20 * temp_f20) <= (sp68[0] * sp68[0] + sp68[1]*sp68[1]))) {
-                return phi_s0->unkD;
+                return i_ptr->unkD;
             }
             if(1);
             if(1);
@@ -501,33 +506,33 @@ s32 func_802EC000(BKModelUnk14List *arg0, f32 arg1[3], f32 arg2[3], f32 arg3, s3
     return 0;
 }
 
-s32 func_802EC238(BKModelUnk14List *arg0, f32 arg1[3], f32 arg2[3], f32 arg3, f32 arg4[3], s32 arg5, s32 arg6){
+s32 func_802EC238(BKModelUnk14List *arg0, f32 arg1[3], f32 rotation[3], f32 scale, f32 arg4[3], s32 arg5, s32 arg6){
     BKModelUnk14_0 *t0_ptr;
     BKModelUnk14_1 *t1_ptr;
     f32 sp54[3];
-    BKModelUnk14_2 *var_s0;
-    BKModelUnk14_2 *temp_s4;
+    BKModelUnk14_2 *i_ptr;
+    BKModelUnk14_2 *end_ptr;
     f32 sp40[3];
 
 
     t0_ptr = (BKModelUnk14_0 *)(arg0 + 1);
     t1_ptr = (BKModelUnk14_1 *)(t0_ptr + arg0->cnt0);
-    var_s0 = (BKModelUnk14_2 *)(t1_ptr + arg0->cnt2);
-    temp_s4 = var_s0 + arg0->unk4;
+    i_ptr = (BKModelUnk14_2 *)(t1_ptr + arg0->cnt2);
+    end_ptr = i_ptr + arg0->unk4;
     mlMtxIdent();
-    func_80252CC4(arg1, arg2, arg3, arg4);
+    func_80252CC4(arg1, rotation, scale, arg4);
     func_8025235C(sp54, arg5);
-    for (var_s0 = var_s0; var_s0 < temp_s4; var_s0++)
+    for (i_ptr = i_ptr; i_ptr < end_ptr; i_ptr++)
     {
-        if ((var_s0->unk8 != 0) && ((arg6 == 0) || (arg6 == var_s0->unk8)))
+        if ((i_ptr->unk8 != 0) && ((arg6 == 0) || (arg6 == i_ptr->unk8)))
         {
-            sp40[0] = var_s0->unk2[0];
-            sp40[1] = var_s0->unk2[1];
-            sp40[2] = var_s0->unk2[2];
-            arg3 = var_s0->unk0;
-            if (ml_distance_vec3f(sp40, sp54) < arg3)
-                return var_s0->unk8;
-            if (!var_s0->unk0){
+            sp40[0] = i_ptr->unk2[0];
+            sp40[1] = i_ptr->unk2[1];
+            sp40[2] = i_ptr->unk2[2];
+            scale = i_ptr->unk0;
+            if (ml_distance_vec3f(sp40, sp54) < scale)
+                return i_ptr->unk8;
+            if (!i_ptr->unk0){
                 
             }
         }
@@ -535,17 +540,17 @@ s32 func_802EC238(BKModelUnk14List *arg0, f32 arg1[3], f32 arg2[3], f32 arg3, f3
     return 0U;
 }
 
-s32 func_802EC394(BKModelUnk14List *arg0, s32 arg1, s32 arg2, f32 arg3, s32 arg4, s32 arg5, s32 arg6) {
+s32 func_802EC394(BKModelUnk14List *arg0, f32 arg1[3], f32 rotation[3], f32 scale, f32 arg4[3], f32 arg5[3], s32 arg6) {
     s32 phi_v0;
 
-    phi_v0 = func_802EBD3C(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
+    phi_v0 = func_802EBD3C(arg0, arg1, rotation, scale, arg4, arg5, arg6);
     if (phi_v0 != NULL) {
         return phi_v0;
     }
 
-    phi_v0 = func_802EC000(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
+    phi_v0 = func_802EC000(arg0, arg1, rotation, scale, arg4, arg5, arg6);
     if (phi_v0 != NULL) {
         return phi_v0;
     }
-    return func_802EC238(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
+    return func_802EC238(arg0, arg1, rotation, scale, arg4, arg5, arg6);
 }

@@ -69,7 +69,7 @@ void func_8038AC18(Actor *this, s32 new_state){
     local->unk8 = 0.0f;
     if(new_state == 2){
         func_8030E6D4(SFX_90_SWITCH_PRESS);
-        local->unkC = vtxList_clone(func_8033A148(func_80330B1C(this->marker)));
+        local->unkC = vtxList_clone(model_getVtxList(func_80330B1C(this->marker)));
         
         mapSpecificFlags_set(local->unk4->unk10, TRUE);
         this->position_y -= 30.0f;
@@ -117,7 +117,7 @@ Actor *func_8038AD9C(ActorMarker *marker, Gfx **gdl, Mtx **mptr, s32 arg3){
         sp1C = (local->unk0 == 2) ? &D_80390938 : &D_8039092C;
         vtxList_tint(local->unkC, sp1C, 
             (local->unk4->unk4[1] - actor->position_y)/30.0, 
-            func_8033A148(temp_v0)
+            model_getVtxList(temp_v0)
         );
         modelRender_setVertexList(local->unkC);
     }

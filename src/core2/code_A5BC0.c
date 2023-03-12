@@ -6,7 +6,7 @@
 
 extern int func_802E74A0(f32[3], f32, s32, s32);
 extern s32 func_802E9118(BKCollisionList * collision_list, BKVertexList *vtx_list, f32 arg2[3], s32 arg3, f32 arg4, f32 arg5[3], f32 arg6[3], f32 arg7, f32 arg8[3], s32 arg9, s32 argA);
-extern f32 func_802EC920(BKVertexList *);
+extern f32 vtxList_getGlobalNorm(BKVertexList *);
 extern void spawnQueue_func_802C39D4(void);
 extern bool func_80340020(s32, f32[3], f32[3], f32, s32, BKVertexList *, f32[3], f32[3]);
 extern void func_80340200(s32, f32[3], f32[3], f32, s32, s32, BKVertexList *, s32);
@@ -1380,7 +1380,7 @@ void func_803305AC(void){
         modelCache[i].modelPtr = NULL;
         modelCache[i].unk4 = 0;
         modelCache[i].unk8 = 0;
-        modelCache[i].unkC = 0;
+        modelCache[i].animated_texture_cache_id = 0;
     }
     D_80383444 = 0;
 }
@@ -1443,10 +1443,10 @@ void func_803308A0(void) {
         }
         
         var_s0 = &modelCache[i];
-        var_a1 = var_s0->unkC;
+        var_a1 = var_s0->animated_texture_cache_id;
         if (var_a1) {
-            func_80349CD8(var_a1);
-            modelCache[i].unkC = 0; 
+            AnimTextureListCache_freeList(var_a1);
+            modelCache[i].animated_texture_cache_id = 0; 
         }
     }
     
@@ -1500,9 +1500,9 @@ BKModelBin *func_80330B1C(ActorMarker *this){
     if((modelInfo = &modelCache[thisActor->modelCacheIndex])->modelPtr == NULL){
         model = assetcache_get(this->modelId);
         modelInfo->modelPtr = model;
-        if(func_8033A110(model)){
-            modelInfo->unkC = func_80349C3C();
-            func_80349D00(modelInfo->unkC, func_8033A110(modelInfo->modelPtr));
+        if(model_getAnimTextureList(model)){
+            modelInfo->animated_texture_cache_id = AnimTextureListCache_newList();
+            AnimTextureListCache_at(modelInfo->animated_texture_cache_id, model_getAnimTextureList(modelInfo->modelPtr));
         }
         func_8032ACA8(thisActor);
     }
@@ -1514,9 +1514,9 @@ BKModelBin *func_80330B1C(ActorMarker *this){
     return modelInfo->modelPtr;
 }
 
-s32 func_80330C48(Actor *actor){
+s32 actor_getAnimatedTexturesCacheId(Actor *actor){
     ModelCache *model_cache_ptr = &modelCache[actor->modelCacheIndex];
-    return model_cache_ptr->unkC;
+    return model_cache_ptr->animated_texture_cache_id;
 }
 
 BKVertexList *func_80330C74(Actor *actor){
@@ -1528,7 +1528,7 @@ BKVertexList *func_80330C74(Actor *actor){
     if(actor->unkF4_30 && actor->unk14C[actor->unkF4_29]){
         return actor->unk14C[actor->unkF4_29];
     }else{
-        return func_8033A148(model_cache_ptr->modelPtr);
+        return model_getVtxList(model_cache_ptr->modelPtr);
     }
 }
 
@@ -1540,7 +1540,7 @@ BKVertexList *func_80330CFC(Actor *this, s32 arg1){
     }
     if(this->unkF4_30 && this->unk14C[this->unkF4_29 ^ arg1] != NULL)
         return this->unk14C[this->unkF4_29 ^ arg1];
-    return func_8033A148(model_cache_ptr->modelPtr);
+    return model_getVtxList(model_cache_ptr->modelPtr);
 }
 
 BKVertexList * func_80330DA4(Actor *this){
@@ -1696,7 +1696,7 @@ s32 func_803311D4(Cube *arg0, f32 *arg1, f32 *arg2, f32 *arg3, u32 arg4) {
         if (!var_s1->markerFlag && var_s1->unk8_1 && var_s1->unk8_4) { //ModelProp
             var_s0 = func_8030A4B4(((u32)var_s1->modelProp.unk0 >> 0x4));
             if ((var_s0 != NULL) || (func_8028F280() && ((var_s0 = func_8030A428(((u32)var_s1->modelProp.unk0 >> 0x4))) != NULL))) {
-                temp_s2 = func_8033A084(var_s0);
+                temp_s2 = model_getCollisionList(var_s0);
                 if (temp_s2 != 0) {
                     spAC[0] = (f32) var_s1->modelProp.unk4[0];
                     spAC[1] = (f32) var_s1->modelProp.unk4[1];
@@ -1704,7 +1704,7 @@ s32 func_803311D4(Cube *arg0, f32 *arg1, f32 *arg2, f32 *arg3, u32 arg4) {
                     spA0[0] = 0.0f;
                     spA0[1] = (f32) (var_s1->modelProp.unk0_15 * 2);
                     spA0[2] = (f32) (var_s1->modelProp.unk0_7 * 2);
-                    var_v0 = func_802E805C(temp_s2, func_8033A148(var_s0), spAC, spA0, (f32)var_s1->modelProp.unkA / 100.0, arg1, arg2, arg3, arg4);
+                    var_v0 = func_802E805C(temp_s2, model_getVtxList(var_s0), spAC, spA0, (f32)var_s1->modelProp.unkA / 100.0, arg1, arg2, arg3, arg4);
                     if (var_v0 != 0) {
                         var_s6 = var_v0;
                     }
@@ -1718,7 +1718,7 @@ s32 func_803311D4(Cube *arg0, f32 *arg1, f32 *arg2, f32 *arg3, u32 arg4) {
             }
 
             if(var_a0 != NULL || (func_8028F280() && (var_a0 = func_80330B1C(var_s1->actorProp.marker), TRUE))){
-                temp_s0 = func_8033A084(var_a0);
+                temp_s0 = model_getCollisionList(var_a0);
                 if (temp_s0 != 0) {
                     temp_s2_2 = marker_getActor(var_s1->actorProp.marker);
                     temp_a1 = func_80330C74(temp_s2_2);
@@ -1794,7 +1794,7 @@ s32 func_80331638(Cube *cube, f32 arg1[3], f32 arg2[3], f32 arg3, f32 arg4[3], s
       {
         continue;
       }
-      temp_v0_3 = func_8033A084(temp_v0_2);
+      temp_v0_3 = model_getCollisionList(temp_v0_2);
       if (temp_v0_3 == 0)
       {
         continue;
@@ -1806,7 +1806,7 @@ s32 func_80331638(Cube *cube, f32 arg1[3], f32 arg2[3], f32 arg3, f32 arg4[3], s
       spB0[1] = (f32) (var_s0->modelProp.unk0_15 * 2);
       new_var = spB0;
       spB0[2] = (f32) (var_s0->modelProp.unk0_7 * 2);
-      var_v0 = func_802E9118(temp_v0_3, func_8033A148(temp_v0_2), spBC, new_var, (f32) (((f32) var_s0->modelProp.unkA) / 100.0), arg1, arg2, arg3, arg4, arg5, flags);
+      var_v0 = func_802E9118(temp_v0_3, model_getVtxList(temp_v0_2), spBC, new_var, (f32) (((f32) var_s0->modelProp.unkA) / 100.0), arg1, arg2, arg3, arg4, arg5, flags);
       if (var_v0 != 0)
       {
         spD8 = var_v0;
@@ -1821,7 +1821,7 @@ s32 func_80331638(Cube *cube, f32 arg1[3], f32 arg2[3], f32 arg3, f32 arg4[3], s
       {
         continue;
       }
-      temp_v0_2 = func_8033A084(pad9C);
+      temp_v0_2 = model_getCollisionList(pad9C);
       if (temp_v0_2 == 0)
       {
         continue;
@@ -1892,7 +1892,7 @@ BKCollisionTri *func_803319C0(Cube *arg0, f32 arg1[3], f32 arg2, s32 arg3, f32 a
             if (1) { } if (1) { } if (1) { }
             temp_v0_2 = new_var;
             if (temp_v0_2 != 0){
-                temp_v0_3 = func_8033A084(temp_v0_2);
+                temp_v0_3 = model_getCollisionList(temp_v0_2);
                 if (temp_v0_3 != 0){
                     spAC[0] = (f32) mProp->unk4[0];
                     spAC[1] = (f32) mProp->unk4[1];
@@ -1901,7 +1901,7 @@ BKCollisionTri *func_803319C0(Cube *arg0, f32 arg1[3], f32 arg2, s32 arg3, f32 a
                     spA0[1] = (f32) (mProp->unk0_15 * 2);
                     temp_v0_2 = temp_v0_2;
                     spA0[2] = (f32) (mProp->unk0_7 * 2);
-                    var_v0 = func_802E9DD8(temp_v0_3, func_8033A148(temp_v0_2), spAC, spA0, ((f32) mProp->unkA) / 100.0, arg1, arg2, arg3, arg4);
+                    var_v0 = func_802E9DD8(temp_v0_3, model_getVtxList(temp_v0_2), spAC, spA0, ((f32) mProp->unkA) / 100.0, arg1, arg2, arg3, arg4);
                     if (var_v0 != 0)
                         var_s7 = var_v0;
                 }
@@ -1913,7 +1913,7 @@ BKCollisionTri *func_803319C0(Cube *arg0, f32 arg1[3], f32 arg2, s32 arg3, f32 a
             temp_v0_2 = func_80330DE4(aProp->marker);
             if (temp_v0_2 != 0)
             {
-            new_var = func_8033A084(temp_v0_2);
+            new_var = model_getCollisionList(temp_v0_2);
             if (new_var != 0)
             {
         
@@ -1993,7 +1993,7 @@ f32 func_80331E64(ActorMarker *marker) {
 
 
 f32 func_80331F1C(Prop *arg0){
-    return func_802EC920(func_8033A148(func_8030A428(arg0->modelProp.unk0_31)));
+    return vtxList_getGlobalNorm(model_getVtxList(func_8030A428(arg0->modelProp.unk0_31)));
 }
 
 f32 func_80331F54(ActorMarker *marker) {
@@ -2005,7 +2005,7 @@ f32 func_80331F54(ActorMarker *marker) {
     if (model == NULL) {
         return 1.0f;
     }
-    func_802EC930(func_8033A148(model), model_center, &sp34);
+    vtxList_getCenterAndNorm(model_getVtxList(model), model_center, &sp34);
     if (marker->unk3E_0) {
         model_center[0] = model_center[0] * marker_getActor(marker)->scale;\
         model_center[1] = model_center[1] * marker_getActor(marker)->scale;\

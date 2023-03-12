@@ -180,7 +180,7 @@ void func_80334910(void) {
         func_8024F7C4(func_803226E8(D_803835D0.map_4));
     }
     func_80244B3C();
-    func_80349C8C();
+    AnimTextureListCache_free();
     func_80322FDC();
     func_8033BD6C();
     func_80255198();//heap_flush_free_queue
@@ -203,7 +203,7 @@ void func_80334B20(enum map_e arg0, s32 arg1, s32 arg2) {
         func_8024F764(func_803226E8(D_803835D0.map_4));
     }
     func_80320B84();
-    func_80349CB0();
+    AnimTextureListCache_init();
     func_8034C97C();
     func_8030A078();
     func_8031B718();
@@ -343,7 +343,7 @@ s32 func_80334ECC(void) {
         if (mapSpecificFlags_validateCRC1() == 0) {
             func_8028FCBC();
         }
-        func_80349D60();
+        AnimTextureListCache_update();
         func_80350CA4();
         func_8031B65C();
         func_80310D2C();

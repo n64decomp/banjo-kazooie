@@ -133,7 +133,7 @@ void func_803253A0(Actor *this){
             sp34[0] = this->pitch;
             sp34[1] = this->yaw;
             sp34[2] = this->roll;
-            func_80333D48(sp40, this->position, sp34, this->scale, 0, func_8033A148(sp48));
+            func_80333D48(sp40, this->position, sp34, this->scale, 0, model_getVtxList(sp48));
         }//L80325560
         modelRender_setVertexList(sp40);
         this->unkF4_29 = NOT(this->unkF4_29);
@@ -148,7 +148,7 @@ void func_803253A0(Actor *this){
     }
 
     func_8033056C(this);
-    func_8033A494(func_80330C48(this));
+    modelRender_setAnimatedTexturesCacheId(actor_getAnimatedTexturesCacheId(this));
 }
 
 void func_803255FC(Actor *this) {
@@ -203,8 +203,8 @@ bool func_803257B4(ActorMarker *marker) {
     if ((actor->unk174 == 0.0f) || (actor->unk178 == 0.0f)) {
         model_bin = (BKModelBin *) assetcache_get(marker->modelId);
         vtx_list = (BKVertexList *)((s32)model_bin + model_bin->vtx_list_offset_10);
-        actor->unk174 = (f32) vtx_list->unk12 * actor->scale;
-        actor->unk178 = (f32) vtx_list->unk16 * actor->scale;
+        actor->unk174 = (f32) vtx_list->local_norm * actor->scale;
+        actor->unk178 = (f32) vtx_list->global_norm * actor->scale;
         assetcache_release(model_bin);
     }
     func_8033A4A0(marker->modelId, actor->unk174, actor->unk178);
@@ -2001,11 +2001,11 @@ void func_8032AB84(Actor *arg0) {
             if (arg0->unk14C[var_s0] == NULL) {
                 switch (var_s0) {                       /* irregular */
                     case 0:
-                        arg0->unk14C[0] = vtxList_clone(func_8033A148(func_80330DE4(marker)));
+                        arg0->unk14C[0] = vtxList_clone(model_getVtxList(func_80330DE4(marker)));
                         break;
                     case 1:
-                        arg0->unk14C[1] = (arg0->unk17C_31) ? func_8033A148(func_80330DE4(marker))
-                                        : vtxList_clone(func_8033A148(func_80330DE4(marker)));
+                        arg0->unk14C[1] = (arg0->unk17C_31) ? model_getVtxList(func_80330DE4(marker))
+                                        : vtxList_clone(model_getVtxList(func_80330DE4(marker)));
                         break;
                 }
             }

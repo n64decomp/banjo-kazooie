@@ -7,7 +7,7 @@
 extern void func_80252C08(f32[3],f32[3], f32, f32[3]);
 extern void func_80252CC4(f32[3],s32, f32, s32);
 extern f32  func_802560D0(f32[3], f32[3], f32[3]);
-extern f32  func_802EC920(BKVertexList *);
+extern f32  vtxList_getGlobalNorm(BKVertexList *);
 extern void points_to_boundingBoxWithMargin(f32 arg0[3], f32 arg1[3], f32 margin, f32 min[3], f32 max[3]);
 
 #define ABS_F(s) (((s) >= 0.0f) ? (s) : -(s))
@@ -283,7 +283,7 @@ BKCollisionTri *func_802E76B0(BKCollisionList *collisionList, BKVertexList *vert
     BKCollisionTri *sp8C;
 
     sp8C = NULL;
-    temp_f20 = (f32) vertexList->unk16;
+    temp_f20 = (f32) vertexList->global_norm;
     func_802E75D0(arg2, arg3, sp158, sp14C, sp140);
     for(i = 0; i < 3; i++){
         if ((sp14C[i] <= -temp_f20) || (temp_f20 <= sp158[i])) {
@@ -409,7 +409,7 @@ int func_802E805C(BKCollisionList *collision_list, BKVertexList *vtxList, f32 ar
     int sp34;
     int i;
 
-    if(!func_802E74A0(arg2, vtxList->unk16*arg4, arg5, arg6)){
+    if(!func_802E74A0(arg2, vtxList->global_norm*arg4, arg5, arg6)){
         return 0;
     }
     else{
@@ -463,7 +463,7 @@ s32 func_802E81CC(BKCollisionList *collisionList, BKVertexList *vertexList, f32 
 
 
     points_to_boundingBoxWithMargin(p1, p2, margin, min, max);
-    temp_f0 = func_802EC920(vertexList);
+    temp_f0 = vtxList_getGlobalNorm(vertexList);
     for(i = 0; i < 3; i++){
         if ((max[i] <= -temp_f0) || (temp_f0 <= min[i])) {
             return 0;
@@ -740,7 +740,7 @@ s32 func_802E9118(BKCollisionList * collision_list, BKVertexList *vtx_list, f32 
     s32 sp3C;
     s32 i;
 
-    if (((f32)vtx_list->unk16 * arg4) <= (ml_distance_vec3f(arg6, arg2) - arg7)) {
+    if (((f32)vtx_list->global_norm * arg4) <= (ml_distance_vec3f(arg6, arg2) - arg7)) {
         return 0;
     }
     mlMtxIdent();
@@ -809,7 +809,7 @@ BKCollisionTri *func_802E92AC(BKCollisionList *collisionList, BKVertexList *vert
     }
 
     //check if any vertices are within range;
-    temp_f0_2 = func_802EC920(vertexList);
+    temp_f0_2 = vtxList_getGlobalNorm(vertexList);
     for(i = 0; i < 3; i++){
         if((max[i] <= -temp_f0_2)|| temp_f0_2 <= min[i])
             return NULL;
@@ -976,7 +976,7 @@ s32 func_802E9DD8(BKCollisionList *collisionList, BKVertexList *vtxList, f32 arg
     s32 sp30;
     s32 i;
 
-    if ((vtxList->unk16 * arg4) <= (ml_distance_vec3f(arg5, arg2) - arg6)) {
+    if ((vtxList->global_norm * arg4) <= (ml_distance_vec3f(arg5, arg2) - arg6)) {
         return 0;
     }
     mlMtxIdent();

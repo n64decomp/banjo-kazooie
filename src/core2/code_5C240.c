@@ -3,7 +3,7 @@
 #include "variables.h"
 
 extern void func_8023DFF0(s32);
-extern void func_80259BD0(void);
+extern void comusicPlayer_update(void);
 extern void func_802F1A10(void *, f32);
 extern void func_8033DC10(void);
 extern void func_8033DC18(void);
@@ -105,7 +105,7 @@ void func_802E3580(void) {
     assetcache_release(D_8037E8C0.unkC);
     func_802F1884(D_8037E8C0.unk10);
     func_802E5F68();
-    func_80259B14();
+    comusicPlayer_free();
     func_80253420();
     func_8024BF94(2);
 }
@@ -160,7 +160,7 @@ void func_802E35D8(void ) {
             return;
         }
     }
-    func_80259BD0();
+    comusicPlayer_update();
     if (D_8037E8C0.unk14 == 0) {
         gcbound_alpha(D_8037E8C0.unk8);
     }

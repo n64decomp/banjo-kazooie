@@ -462,7 +462,7 @@ void chBottlesBonus_update(Actor *this) {
             D_8037DEA8 = assetcache_get(0x471);
         }
         if (D_8037DEAC == NULL) {
-            D_8037DEAC = func_8033F5F8(func_8033A0B0(chBottleBonusBookselfModelBin), func_8033A148(chBottleBonusBookselfModelBin));
+            D_8037DEAC = func_8033F5F8(func_8033A0B0(chBottleBonusBookselfModelBin), model_getVtxList(chBottleBonusBookselfModelBin));
             func_8034CF74(local, 0, D_8037DEAC, 0xF0);
         }
         func_8028746C(this->animctrl, chBottlesBonus_func_802DD8AC);

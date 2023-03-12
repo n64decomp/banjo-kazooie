@@ -14,7 +14,7 @@ extern void func_80251F8C(f32);
 extern void func_8025208C(f32);
 extern void func_80252A38(f32, f32, f32);
 extern void mlMtxApply(Mtx *);
-extern f32 func_802EC920(BKVertexList *);
+extern f32 vtxList_getGlobalNorm(BKVertexList *);
 extern bool func_8024DB50(f32[3], f32);
 
 struct4Cs *D_80369280 = NULL;
@@ -204,7 +204,7 @@ void func_802F962C(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
         viewport_getRotation(D_80381060);
         D_80381090 = (s32)D_80369288 + D_80369288->gfx_list_offset_C + sizeof(BKGfxList);
         temp_s3 = (BKVertexList *)((s32)D_80369288 + D_80369288->vtx_list_offset_10);
-        D_8038108C = func_802EC920(temp_s3);
+        D_8038108C = vtxList_getGlobalNorm(temp_s3);
         func_80349AD0();
         gSPSegment((*gfx)++, 1, osVirtualToPhysical(temp_s3 + 1));
         gSPSegment((*gfx)++, 0x02, osVirtualToPhysical((s32)D_80369288 + D_80369288->texture_list_offset_8 + sizeof(BKTextureList) + sizeof(BKTextureHeader)));

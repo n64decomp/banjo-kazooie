@@ -114,30 +114,30 @@ bool func_802BC640(f32 arg0[3], f32 arg1[3], f32 arg2, s32 arg3) {
 
 s32 func_802BC84C(s32 arg0){
     f32 sp74[3];
-    f32 sp68[3];
-    f32 sp5C[3];
-    f32 sp50[3];
+    f32 target_direction[3];
+    f32 d_target[3];
+    f32 player_position[3];
     f32 sp44[3];
-    f32 sp38[3];
+    f32 camera_position[3];
     f32 sp2C[3];
     f32 sp20[3];
-    f32 sp1C;
+    f32 target_distance;
 
     if(player_getTransformation() == TRANSFORM_3_PUMPKIN){
-        player_getPosition(sp50);
-        sp50[1] += 76.0f;
+        player_getPosition(player_position);
+        player_position[1] += 76.0f;
     }
     else{
-        func_8028EC64(sp50);
+        func_8028EC64(player_position);
     }
-    ncDynamicCamera_getPosition(sp38);
-    ml_vec3f_diff_copy(sp5C, sp50, sp38);
-    ml_vec3f_normalize_copy(sp68, sp5C);
-    ml_vec3f_copy(sp44, sp50);
-    sp1C = gu_sqrtf(sp5C[0]*sp5C[0] + sp5C[1]*sp5C[1] + sp5C[2]*sp5C[2]);
-    if (1500.0f < sp1C) {
-        ml_vec3f_scale_copy(sp5C, sp68, 1500.0f);
-        ml_vec3f_add(sp44, sp38, sp5C);
+    ncDynamicCamera_getPosition(camera_position);
+    ml_vec3f_diff_copy(d_target, player_position, camera_position);
+    ml_vec3f_normalize_copy(target_direction, d_target);
+    ml_vec3f_copy(sp44, player_position);
+    target_distance = gu_sqrtf(d_target[0]*d_target[0] + d_target[1]*d_target[1] + d_target[2]*d_target[2]);
+    if (1500.0f < target_distance) {
+        ml_vec3f_scale_copy(d_target, target_direction, 1500.0f);
+        ml_vec3f_add(sp44, camera_position, d_target);
     }
     switch(D_8037D9F6) {
         case 0: //802BC94C
@@ -145,12 +145,12 @@ s32 func_802BC84C(s32 arg0){
             break;
 
         case 1: //802BC95C
-            ml_vec3f_scale_copy(sp2C, sp68, 100.0f);
+            ml_vec3f_scale_copy(sp2C, target_direction, 100.0f);
             ml_vec3f_yaw_rotate_copy(sp2C, sp2C, -90.0f);
             break;
 
         case 2: //802BC984
-            ml_vec3f_scale_copy(sp2C, sp68, 100.0f);
+            ml_vec3f_scale_copy(sp2C, target_direction, 100.0f);
             ml_vec3f_yaw_rotate_copy(sp2C, sp2C, 90.0f);
             break;
 
@@ -165,11 +165,11 @@ s32 func_802BC84C(s32 arg0){
             break;
     }//L802BC9D0
     ml_vec3f_add(sp20, sp2C, sp44);
-    if (func_80320B98(sp38, sp20, sp74, 0x9E0000)) {
+    if (func_80320B98(camera_position, sp20, sp74, 0x9E0000)) {
         D_8037D9F6++;
         if (D_8037D9F6 >= 5) {
             D_8037D9F6 = 0;
-            return func_802BC640(sp50, sp68, sp1C, arg0);
+            return func_802BC640(player_position, target_direction, target_distance, arg0);
         }
     }else{
         D_8037D9F6 = 0;

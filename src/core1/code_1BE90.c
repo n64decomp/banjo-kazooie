@@ -13,11 +13,11 @@ void func_8024FD28(u8, s32);
 void func_8024FC1C(u8, s32);
 void func_8025AC20(enum comusic_e, s32, s32, f32, char*, s32);
 void func_8025AC7C(enum comusic_e, s32, s32, f32, s32, char*, s32);
-void func_80259B14(void);
+void comusicPlayer_free(void);
 void func_8025A55C(s32, s32, s32);
 void func_8025A7DC(enum comusic_e);
 void func_8025ABB8(enum comusic_e, s32, s32, s32);
-void *func_802EDAA4(SLA **, s32*);
+void *freelist_next(FLA **, s32*);
 
 /* .bss */
 CoMusic *D_80276E30 = NULL; //active track ptr
@@ -47,11 +47,11 @@ void func_80259914(CoMusic *this, s32 arg1, s32 arg2){
     s32 i;
     struct12s *tmp;
 
-    array_clear(this->unk18);
+    freelist_clear(this->unk18);
     for(i = 0; i < 0xE; i++){
         this->unk1C[i] = 0;
     }
-    tmp  = (struct12s *)func_802EDAA4(&this->unk18, &sp2C);
+    tmp  = (struct12s *)freelist_next(&this->unk18, &sp2C);
     tmp->unk0 = arg1;
     tmp->unk1 = arg2;
 }
@@ -68,12 +68,12 @@ void func_802599B4(CoMusic *this){
     func_8024FC1C(this - D_80276E30, -1);
 }
 
-void func_80259A24(void){
+void comusicPlayer_init(void){
     CoMusic * iPtr;
     s32 i;
     
     if(D_80276E30 != NULL)
-        func_80259B14();
+        comusicPlayer_free();
 
     D_80276E30 = (CoMusic *) malloc(6*sizeof(CoMusic));
     for(iPtr = D_80276E30; iPtr < D_80276E30 + 6; iPtr++){
@@ -85,7 +85,7 @@ void func_80259A24(void){
         iPtr->unk14 = 0;
         iPtr->unk15 = 0;
         iPtr->unk0 = 0.0f;
-        iPtr->unk18 = array_new(sizeof(struct12s),4);
+        iPtr->unk18 = freelist_new(sizeof(struct12s),4);
         for(i = 0; i < 0xE; i++){
             iPtr->unk1C[i] = 0;
         }
@@ -93,13 +93,13 @@ void func_80259A24(void){
 }
 
 //comusic_freeAll
-void func_80259B14(void){
+void comusicPlayer_free(void){
     CoMusic *iPtr;
     func_8024FB8C();
     func_8024F83C();
 
     for(iPtr = D_80276E30; iPtr < D_80276E30 + 6; iPtr++){
-        array_free(iPtr->unk18);
+        freelist_free(iPtr->unk18);
     }
     free(D_80276E30);
     D_80276E30 = NULL;
@@ -116,17 +116,17 @@ s32 func_80259B8C(void){
     return cnt;
 }
 
-void func_80259BD0(void) {
+void comusicPlayer_update(void) {
     s32 temp_lo;
     CoMusic *var_s0;
-    f32 sp3C;
+    f32 dt;
     
 
-    sp3C = time_getDelta();
+    dt = time_getDelta();
     for(var_s0 = D_80276E30; var_s0 < &D_80276E30[6]; var_s0++){
         if (var_s0->unk10 >= 0) {
             temp_lo = var_s0 - D_80276E30; 
-            var_s0->unk4 = ml_min_f(var_s0->unk4 + sp3C, 600.0f);
+            var_s0->unk4 = ml_min_f(var_s0->unk4 + dt, 600.0f);
             if ((var_s0->unk4 > 1.0f) && func_80250074(temp_lo)) {
                 func_8025A7DC(var_s0->unk10);
             }
@@ -180,14 +180,14 @@ void func_80259BD0(void) {
 
 void func_80259EA8(CoMusic *this, s32 *arg1, s32 *arg2){
     int i;
-    int cnt = array_size(this->unk18);
+    int cnt = freelist_size(this->unk18);
     s32 tmp_s1 = 0x7FFF;
     s32 tmp_s2 = 0x40000000;
     struct12s *tmp_ptr;
 
     for(i = 1; i < cnt; i++){
-        if(func_802EDC18(this->unk18, i)){
-            tmp_ptr = (struct12s*)array_at(this->unk18, i);
+        if(freelist_elementIsAlive(this->unk18, i)){
+            tmp_ptr = (struct12s*)freelist_at(this->unk18, i);
             if(tmp_ptr->unk0 < tmp_s1 || (tmp_s1 == tmp_ptr->unk0 && tmp_ptr->unk1 < tmp_s2)){
                 tmp_s1 = tmp_ptr->unk0;
                 tmp_s2 = tmp_ptr->unk1;
@@ -206,12 +206,12 @@ void func_80259F7C(CoMusic *self, s32 *arg1, s32 *arg2, s32 *arg3) {
 
     var_s2 = *arg1;
     sp34 = *arg2;
-    if ((*arg3 != 0) && !func_802EDC18(self->unk18, *arg3)) {
+    if ((*arg3 != 0) && !freelist_elementIsAlive(self->unk18, *arg3)) {
         *arg3 = 0;
     }
 
     if (var_s2 < 0) {
-        temp_v0 = (struct12s *)array_at(self->unk18, 1);
+        temp_v0 = (struct12s *)freelist_at(self->unk18, 1);
         if (temp_v0->unk0 < func_80250034(self->unk10)) {
             var_s2 = func_80250034(self->unk10);
         }
@@ -219,9 +219,9 @@ void func_80259F7C(CoMusic *self, s32 *arg1, s32 *arg2, s32 *arg3) {
             var_s2 = temp_v0->unk0;
         }
         if (*arg3 != 0) {
-            temp_v0 = (struct12s *)array_at(self->unk18, *arg3);
+            temp_v0 = (struct12s *)freelist_at(self->unk18, *arg3);
             *arg2 = temp_v0->unk1;
-            func_802EDCDC(self->unk18, *arg3);
+            freelist_freeElement(self->unk18, *arg3);
             *arg3 = 0;
             func_80259EA8(self, arg1, &sp34);
             return;
@@ -229,15 +229,15 @@ void func_80259F7C(CoMusic *self, s32 *arg1, s32 *arg2, s32 *arg3) {
     }
 
     if (*arg3 == 0) {
-        temp_v0 = (struct12s *)array_at(self->unk18, 1);
+        temp_v0 = (struct12s *)freelist_at(self->unk18, 1);
         if ((temp_v0->unk0 < var_s2) || ((var_s2 == temp_v0->unk0) && (sp34 >= temp_v0->unk1))) {
             func_80259914(self, var_s2, sp34);
         } else {
-            func_802EDAA4(&self->unk18, arg3);
+            freelist_next(&self->unk18, arg3);
         }
     }
     if (*arg3 != 0) {
-        temp_v0 = (struct12s *)array_at(self->unk18, *arg3);
+        temp_v0 = (struct12s *)freelist_at(self->unk18, *arg3);
         temp_v0->unk0 = var_s2;
         temp_v0->unk1 = sp34;
     }
@@ -622,7 +622,7 @@ void func_8025AF38(void){
     if(!D_80276E30) return;
 
     for(iPtr = &D_80276E30[0]; iPtr < &D_80276E30[6]; iPtr++){
-        iPtr->unk18 = array_defrag(iPtr->unk18);
+        iPtr->unk18 = freelist_defrag(iPtr->unk18);
     }
     D_80276E30 = (CoMusic *)defrag(D_80276E30);
 }

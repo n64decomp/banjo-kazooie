@@ -116,17 +116,17 @@ Actor *func_80350E90(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
 s32 func_80350F7C(ActorMarker *marker, s32 arg1, f32 arg2[3], s32 arg3, s32 arg4) {
     s32 sp4C;
     Struct68s *temp_s0;
-    BKVertexList *sp44;
-    BKCollisionList *sp40;
+    BKVertexList *vtx_list;
+    BKCollisionList *colision_list;
 
     temp_s0 = &D_803861B0.unk4[marker->actrArrayIdx];
     if ((temp_s0->unkC == NULL) || (temp_s0->unk30 & 1)) {
         return 0;
     }
 
-    sp40 = func_8033A084(temp_s0->unkC);
-    sp44 = func_8033A148(temp_s0->unkC);
-    sp4C = func_802E805C(sp40, sp44, temp_s0->unk14, temp_s0->unk20, temp_s0->unk2C, arg1, arg2, arg3, arg4);
+    colision_list = model_getCollisionList(temp_s0->unkC);
+    vtx_list = model_getVtxList(temp_s0->unkC);
+    sp4C = func_802E805C(colision_list, vtx_list, temp_s0->unk14, temp_s0->unk20, temp_s0->unk2C, arg1, arg2, arg3, arg4);
     if (sp4C != 0) {
         if (func_8029453C()) {
             D_80386180.unk20[0] = (s32) arg2[0];
@@ -148,24 +148,24 @@ s32 func_803510B4(ActorMarker *marker, s32 arg1, f32 arg2[3], f32 arg3, s32 arg4
     if ((sp40->unkC == NULL) || (sp40->unk30 & 1)) {
         return 0;
     }
-    collision_list = func_8033A084(sp40->unkC);
-    vertex_list = func_8033A148(sp40->unkC);
+    collision_list = model_getCollisionList(sp40->unkC);
+    vertex_list = model_getVtxList(sp40->unkC);
     return func_802E9118(collision_list, vertex_list, sp40->unk14, sp40->unk20, sp40->unk2C, arg1, arg2, arg3, arg4, arg5, flagFliter);
 }
 
 s32 func_80351198(ActorMarker *marker, s32 arg1, f32 arg2, s32 arg3, s32 arg4) {
     s32 pad3C;
     Struct68s *sp38;
-    BKVertexList *sp34;
-    BKCollisionList *sp30;
+    BKVertexList *vtx_list;
+    BKCollisionList *collision_list;
 
     sp38 = &D_803861B0.unk4[marker->actrArrayIdx];
     if ((sp38->unkC == NULL) || (sp38->unk30 & 1)) {
         return 0;
     }
-    sp30 = func_8033A084(sp38->unkC);
-    sp34 = func_8033A148(sp38->unkC);
-    return func_802E9DD8(sp30, sp34, sp38->unk14, sp38->unk20, sp38->unk2C, arg1, arg2, arg3, arg4);
+    collision_list = model_getCollisionList(sp38->unkC);
+    vtx_list = model_getVtxList(sp38->unkC);
+    return func_802E9DD8(collision_list, vtx_list, sp38->unk14, sp38->unk20, sp38->unk2C, arg1, arg2, arg3, arg4);
 }
 
 

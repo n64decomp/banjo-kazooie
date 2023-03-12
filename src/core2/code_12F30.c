@@ -140,7 +140,7 @@ void func_80299EC0(f32 arg0[3]) {
     if (sp6C == NULL) return;
     if (sp6C->unk6 &2) return;
 
-    vtx_buffer = vtxList_getVertices(func_8033A148(spC8));
+    vtx_buffer = vtxList_getVertices(model_getVtxList(spC8));
     for(i = 0; i<3; i++){
         temp_v1 =  vtx_buffer + sp6C->unk0[i];
         sp48[i][0] = (f32) temp_v1->v.ob[0];

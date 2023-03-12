@@ -36,9 +36,9 @@ typedef struct {
     s16 minCoord[3];
     s16 maxCoord[3];
     s16 centerCoord[3];
-    s16 unk12;
+    s16 local_norm;       //(distance to furthest vtx relative to model center)
     s16 count;
-    s16 unk16;
+    s16 global_norm; //(distance to furthest vtx relative to model origin)
     Vtx vtx_18[];
 } BKVertexList;
 
@@ -167,10 +167,15 @@ typedef struct{
     //BKModelUnk28_0[]
 }BKModelUnk28List;
 
+
+
 typedef struct{
-    u8 pad0[1];
-    //BKModelUnk20_0[]
-}BKModelUnk2C;
+    s16 frame_size;
+    s16 frame_cnt;
+    f32 frame_rate;
+}AnimTexture;
+
+
 
 typedef struct {
     BKMeshList *meshList_0;
@@ -190,10 +195,10 @@ typedef struct{
     s32 unk20;
     s32 effects_list_setup_24;
     s32 unk28;
-    s32 unk2C;
+    s32 animated_texture_list_offset; //AnimTexture[4]
 }BKModelBin;
 
-BKVertexList *func_8033A148(BKModelBin *arg0);
+BKVertexList *model_getVtxList(BKModelBin *arg0);
 Vtx *vtxList_getVertices(BKVertexList *vtxList);
 void func_80333D48(BKVertexList *arg0, f32 position[3], f32 rotation[3], f32 scale, f32 arg4[3], BKVertexList *arg5);
 #endif

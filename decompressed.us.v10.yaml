@@ -721,7 +721,7 @@ segments:
   - [0xFBAE20, c, code_654C0] #DONE
   - [0xFBBDF0, c, code_66490] #DONE
   - [0xFBBFF0, c, vla]        #DONE
-  - [0xFBC410, c, sla]        #DONE
+  - [0xFBC410, c, fla]        #DONE
   - [0xFBC6F0, c, code_66D90] #DONE
   - [0xFBC910, c, code_66FB0] #DONE
   - [0xFBCDF0, c, gc/bound]   #DONE
@@ -834,7 +834,7 @@ segments:
   - [0x10164E0, c, code_C0B80] #DONE
   - [0x1016650, c, code_C0CF0] #DONE
   - [0x10167C0, c, code_C0E60] #DONE
-  - [0x1018580, c, code_C2C20] #DONE
+  - [0x1018580, c, animtexturecache] #DONE
   - [0x1018890, c, code_C2F30] #DONE
   - [0x1018B00, c, code_C31A0] #DONE
   - [0x1018D60, c, rand]       #DONE
@@ -1606,7 +1606,7 @@ segments:
   - [0x1048560, .bss, code_BDCC0]
   - [0x1048560, .bss, code_BEF20]
   - [0x1048560, .bss, code_C0E60]
-  - [0x1048560, .bss, code_C2C20]
+  - [0x1048560, .bss, animtexturecache]
   - [0x1048560, .bss, code_C2F30]
   - [0x1048560, .bss, rand]
   - [0x1048560, .bss, code_C4320]

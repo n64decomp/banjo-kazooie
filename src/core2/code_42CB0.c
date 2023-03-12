@@ -26,7 +26,7 @@ ActorInfo D_80366CA4 = { MARKER_55_HONEYCOMB, ACTOR_50_HONEYCOMB, ASSET_363_MODE
 
 /* .bss */
 enum honeycomb_e D_8037DDC0;
-array(s32) *     D_8037DDC4;
+FREE_LIST(ActorMarker *) *     D_8037DDC4;
 s32              D_8037DDC8;
 u32 D_8037DDCC;
 s32 D_8037DDD0;
@@ -54,14 +54,14 @@ enum honeycomb_e func_802C9C40(Actor *this){
     return func_80306DBC(tmp_a0) - 0x63;
 }
 
-void func_802C9CF4(Actor *this){
+void __chHoneycomb_free(Actor *this){
     ActorLocal_EmptyHoneycomb *local = (ActorLocal_EmptyHoneycomb *)&this->local;
 
     D_8037DDC8--;
-    func_802EDCDC(D_8037DDC4, local->uid);
+    freelist_freeElement(D_8037DDC4, local->uid);
     D_8037DDCC &= ~(1 << local->uid);
     if(D_8037DDC8 == 0){
-        array_free(D_8037DDC4);
+        freelist_free(D_8037DDC4);
         D_8037DDC4 = NULL;
     }
 }
@@ -76,9 +76,9 @@ void func_802C9D80(void){
     ActorMarker *s5;
     s5 = NULL;
     s2 = 0xFFFFFFFF;
-    for(i = 1; i < array_size(D_8037DDC4); i++){
+    for(i = 1; i < freelist_size(D_8037DDC4); i++){
         if(D_8037DDCC & (1 << i)){
-            i_marker_ptr = (ActorMarker **)array_at(D_8037DDC4, i);
+            i_marker_ptr = (ActorMarker **)freelist_at(D_8037DDC4, i);
             i_marker = *i_marker_ptr;
             i_actor = marker_getActor(i_marker);
             i_local = (ActorLocal_EmptyHoneycomb *)&i_actor->local;
@@ -118,15 +118,15 @@ void chHoneycomb_update(Actor *this){
         if( this->marker->unk14_20 == MARKER_55_HONEYCOMB
             && !this->unk44_2
         ){
-            marker_setFreeMethod(this->marker, func_802C9CF4);
+            marker_setFreeMethod(this->marker, __chHoneycomb_free);
             D_8037DDC8++;
             if(D_8037DDC4 == NULL){
-                D_8037DDC4 = (array(s32) *) array_new(sizeof(s32), 10);
+                D_8037DDC4 = (FREE_LIST(s32) *) freelist_new(sizeof(s32), 10);
             }
             else if(D_8037DDC8 >= 11){
                 func_802C9D80();
             }
-            tmp_v0 = (ActorMarker **)func_802EDAA4(&D_8037DDC4, this->local);
+            tmp_v0 = (ActorMarker **)freelist_next(&D_8037DDC4, &local->uid);
             *tmp_v0 = this->marker;
             D_8037DDCC |= 1 << local->uid;
             local->unk4 = D_8037DDD0;

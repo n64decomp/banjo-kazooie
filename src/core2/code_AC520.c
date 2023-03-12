@@ -4,7 +4,7 @@
 
 
 extern void func_80252CC4(f32[3], f32[3], f32, f32[3]);
-extern f32  func_802EC920(BKVertexList *arg0);
+extern f32  vtxList_getGlobalNorm(BKVertexList *arg0);
 extern void func_803334B0(f32 position[3], f32 rotation[3], f32 scale, f32[3], f32);
 
 void func_80333918(void);
@@ -232,7 +232,7 @@ void func_80333D48(BKVertexList *arg0, f32 position[3], f32 rotation[3], f32 sca
     Struct_core2_AC520_0 *struct_ptr;
     f32 temp_f0;
 
-    func_803334B0(position, rotation, scale, arg4, func_802EC920(arg0));
+    func_803334B0(position, rotation, scale, arg4, vtxList_getGlobalNorm(arg0));
     if (D_80383570.unk44 == (&D_80383570.unk4[0])) {
         vtxList_recolor(arg0, &D_8036F970);
         return;
